@@ -2,6 +2,7 @@ import { Link } from '@tanstack/react-router';
 import { useState } from 'react';
 import { fmtNumber, fmtRelative } from '../lib/format';
 import { Icon } from './Icon';
+import { Badge } from './ui/Badge';
 import { EditChannelModal } from './EditChannelModal';
 import { ChannelAvatar } from './ChannelAvatar';
 import {
@@ -61,6 +62,13 @@ export function ChannelRow({ c }: { c: TrackedChannel }) {
                 >
                   <Icon name="bots" size={11} style={{ marginRight: 4 }} />
                   {c.bot.username ?? c.bot.bot_id}
+                </span>
+              )}
+              {c.trackingStatus === 'not_subscribed' && (
+                <span title="Акаунт-трекер не підписаний на цей канал">
+                  <Badge tone="warning">
+                    <Icon name="warning" size={11} /> Підпишіться, щоб відстежувати
+                  </Badge>
                 </span>
               )}
             </div>

@@ -6,6 +6,7 @@ export interface TrackedChannel {
   subsCount: number | null;
   isMine: boolean;
   isClosed: boolean;
+  trackingStatus: 'unknown' | 'ok' | 'not_subscribed';
   pollTier: 'hot' | 'warm' | 'cold';
   addedAt: string;
   lastPolledAt: string | null;
@@ -114,6 +115,19 @@ export interface Bot {
   first_name:       string | null;
   platform:         string;
   token_env:        string;
+  active:           boolean;
+  last_verified_at: string | null;
+  verify_error:     string | null;
+  created_at:       string;
+}
+
+export interface TelegraphAccount {
+  id:               string;
+  account_id:       string;
+  token_env:        string;
+  short_name:       string | null;
+  author_name:      string | null;
+  author_url:       string | null;
   active:           boolean;
   last_verified_at: string | null;
   verify_error:     string | null;
