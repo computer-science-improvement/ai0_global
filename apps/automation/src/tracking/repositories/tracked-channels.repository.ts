@@ -26,6 +26,10 @@ export interface TrackedChannel {
   themes:         string[];
   /** Per-channel publishing kill switch. When true, publisher refuses to send. */
   publishPaused:  boolean;
+  /** MTProto session reachability: 'unknown' until first poll, 'ok' when the
+   *  session can read the channel, 'not_subscribed' when it can't. */
+  trackingStatus:    'unknown' | 'ok' | 'not_subscribed';
+  trackingCheckedAt: Date | null;
 }
 
 export interface UpsertChannelInput {
@@ -316,6 +320,15 @@ export class TrackedChannelsRepository {
       botId:        r.bot_id ?? null,
       themes:       Array.isArray(r.themes) ? r.themes : [],
       publishPaused: !!r.publish_paused,
+      trackingStatus:    r.tracking_status ?? 'unknown',
+      trackingCheckedAt: r.tracking_checked_at ?? null,
     };
+  }
+
+  async setTrackingStatus(channelId: string, status: 'ok' | 'not_subscribed'): Promise<void> {
+    await this.pool.query(
+      `UPDATE tracked_channels SET tracking_status = $2, tracking_checked_at = now() WHERE id = $1`,
+      [channelId, status],
+    );
   }
 }

@@ -39,6 +39,12 @@ export class PollMetaWorker implements OnModuleInit {
     if (!target) { this.logger.warn(`channel ${channel.id} has neither tgChatId nor username`); return; }
 
     const meta = await this.mtproto.getFullChannel(target);
+    if (meta === 'not_subscribed') {
+      await this.channels.setTrackingStatus(channel.id, 'not_subscribed');
+      await this.channels.markPolled(channel.id, null, new Date()); // advance tier rotation
+      this.logger.debug(`poll-meta: ${target} not subscribed — flagged`);
+      return;
+    }
     if (!meta) { this.logger.debug(`getFullChannel returned null for ${target}`); return; }
 
     // Update the existing channel row directly by id. The previous version
@@ -58,6 +64,7 @@ export class PollMetaWorker implements OnModuleInit {
       about: meta.about ?? null,
     });
     await this.channels.markPolled(channel.id, meta.subsCount, new Date());
+    await this.channels.setTrackingStatus(channel.id, 'ok');
     this.logger.debug(`poll-meta ok: ${target} subs=${meta.subsCount}`);
   }
 
@@ -83,6 +90,7 @@ export class PollMetaWorker implements OnModuleInit {
       tgChatId:  info.tgChatId,
     });
     await this.channels.markPolled(channelId, info.subsCount, new Date());
+    await this.channels.setTrackingStatus(channelId, 'ok');
     this.logger.debug(
       `poll-meta invite ${hash.slice(0, 8)}… subs=${info.subsCount} ` +
       `${info.alreadyJoined ? '(joined)' : '(peeked)'}`,

@@ -109,7 +109,7 @@ export class TrackingMtprotoClient implements OnModuleInit {
     return usernameOrId;
   }
 
-  async getFullChannel(usernameOrId: string): Promise<FullChannelResult | null> {
+  async getFullChannel(usernameOrId: string): Promise<FullChannelResult | 'not_subscribed' | null> {
     if (!this.ready || !this.client) return null;
     const address = this.toAddress(usernameOrId);
     if (address === null) return null;
@@ -126,6 +126,12 @@ export class TrackingMtprotoClient implements OnModuleInit {
         subsCount: fc?.participantsCount ?? null,
       };
     } catch (err: any) {
+      const notSub = err?.errorMessage === 'CHANNEL_INVALID'
+        || /could not find the input entity/i.test(String(err?.message ?? ''));
+      if (notSub) {
+        this.logger.debug(`getFullChannel: ${usernameOrId} not reachable by session (not subscribed)`);
+        return 'not_subscribed';
+      }
       this.handleApiError('getFullChannel', err);
       return null;
     }

@@ -6,6 +6,9 @@ export interface TrackedChannelDto {
   subsCount: number | null;
   isMine: boolean;
   isClosed: boolean;
+  /** MTProto session reachability. 'not_subscribed' → dashboard prompts the
+   *  operator to subscribe the tracking account so polling can resume. */
+  trackingStatus: 'unknown' | 'ok' | 'not_subscribed';
   pollTier: 'hot' | 'warm' | 'cold';
   addedAt: string;
   lastPolledAt: string | null;

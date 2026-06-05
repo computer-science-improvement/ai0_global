@@ -141,7 +141,13 @@ export class TelegramStatsClient implements OnModuleInit {
       };
     } catch (err: any) {
       this.rememberInaccessible(channelId, err);
-      this.logger.warn(`getChannelInfo(${channelId}) failed: ${err.message}`);
+      const notSub = err?.errorMessage === 'CHANNEL_INVALID'
+        || /could not find the input entity/i.test(String(err?.message ?? ''));
+      if (notSub) {
+        this.logger.debug(`getChannelInfo(${channelId}) not reachable by session (not subscribed)`);
+      } else {
+        this.logger.warn(`getChannelInfo(${channelId}) failed: ${err.message}`);
+      }
       return null;
     }
   }

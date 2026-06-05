@@ -268,6 +268,7 @@ export class TrackingService {
     return {
       id: c.id, username: c.username, title: c.title, about: c.about,
       subsCount: c.subsCount, isMine: c.isMine, isClosed: c.isClosed,
+      trackingStatus: c.trackingStatus ?? 'unknown',
       pollTier: c.pollTier, addedAt: c.addedAt.toISOString(),
       lastPolledAt: c.lastPolledAt ? c.lastPolledAt.toISOString() : null,
       channelKey:    c.channelKey,
