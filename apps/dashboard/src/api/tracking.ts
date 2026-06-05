@@ -44,6 +44,7 @@ export const trackingApi = {
       method: 'POST', body: JSON.stringify(input),
     }),
   deleteChannel: (id: string) => api<void>(`/tracking/channels/${id}`, { method: 'DELETE' }),
+  pollChannel:   (id: string) => api<{ ok: boolean }>(`/tracking/channels/${id}/poll`, { method: 'POST' }),
   listPosts:     (id: string, limit = 50, offset = 0) =>
     api<PageResp<TrackedPost>>(`/tracking/channels/${id}/posts?limit=${limit}&offset=${offset}`),
   subsHistory:   (id: string) =>

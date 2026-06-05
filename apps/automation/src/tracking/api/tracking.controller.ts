@@ -78,6 +78,10 @@ export class TrackingController {
   @Delete('channels/:id')
   remove(@Param('id', new ParseUUIDPipe()) id: string) { return this.service.deleteChannel(id); }
 
+  /** On-demand poll: enqueue an immediate meta + posts fetch for this channel. */
+  @Post('channels/:id/poll')
+  poll(@Param('id', new ParseUUIDPipe()) id: string) { return this.service.pollNow(id); }
+
   @Get('channels/:id/posts')
   posts(
     @Param('id', new ParseUUIDPipe()) id: string,

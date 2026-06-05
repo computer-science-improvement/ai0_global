@@ -51,6 +51,18 @@ export class TrackingService {
     return this.toDto(c, this.strategiesForChannel(c.id));
   }
 
+  /** Enqueue an immediate meta + posts poll for one channel (on-demand
+   *  "fetch stats now"). Also re-checks tracking_status, so a freshly
+   *  subscribed channel flips to 'ok' without waiting for the tier cron. */
+  async pollNow(id: string): Promise<{ ok: boolean }> {
+    const c = await this.channels.getById(id);
+    if (!c) throw new NotFoundException(`Channel ${id} not found`);
+    await this.queue.addPollMeta({ channelId: id });
+    await this.queue.addPollPosts({ channelId: id });
+    this.logger.log(`pollNow: enqueued meta+posts for ${id}`);
+    return { ok: true };
+  }
+
   /** Patch editable config fields; publishes a 'channel' event so the
    *  config cache picks up the change without restart. */
   async patchChannel(id: string, patch: {

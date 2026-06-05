@@ -39,6 +39,29 @@ function ChannelDetailPage() {
     },
   });
 
+  // Inline poll-tier edit — saves immediately.
+  const setTier = useMutation({
+    mutationFn: (tier: 'hot' | 'warm' | 'cold') => trackingApi.patchChannel(id, { pollTier: tier }),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['channels'] });
+      qc.invalidateQueries({ queryKey: ['channel', id] });
+    },
+  });
+
+  // On-demand "fetch stats now" — enqueues an immediate meta+posts poll, then
+  // refreshes the page data after a few seconds (gives the worker time to run).
+  const pollNow = useMutation({
+    mutationFn: () => trackingApi.pollChannel(id),
+    onSuccess: () => {
+      setTimeout(() => {
+        qc.invalidateQueries({ queryKey: ['channel', id] });
+        qc.invalidateQueries({ queryKey: ['subs', id] });
+        qc.invalidateQueries({ queryKey: ['posts', id] });
+        qc.invalidateQueries({ queryKey: ['top', id] });
+      }, 4000);
+    },
+  });
+
   const channelQ    = useQuery({ queryKey: ['channel', id], queryFn: () => trackingApi.getChannel(id) });
   const subsQ       = useQuery({ queryKey: ['subs', id],    queryFn: () => trackingApi.subsHistory(id) });
   const postsQ      = useQuery({ queryKey: ['posts', id],   queryFn: () => trackingApi.listPosts(id, 30) });
@@ -97,15 +120,30 @@ function ChannelDetailPage() {
             <span style={{ color: 'var(--color-ink-muted)' }}> subs</span>
           </span>
           <span className="text-body-sm" style={{ color: 'var(--color-ink-dim)' }}>·</span>
-          <span
-            className={`chip ${c.pollTier === 'hot' ? 'chip-warning' : c.pollTier === 'cold' ? '' : 'chip-success'}`}
+          <select
+            value={c.pollTier}
+            onChange={(e) => setTier.mutate(e.target.value as 'hot' | 'warm' | 'cold')}
+            disabled={setTier.isPending}
             title={POLL_TIER_HELP[c.pollTier]}
+            className="input-field"
+            style={{ padding: '2px 8px', fontSize: 12, width: 'auto' }}
           >
-            {c.pollTier}
-          </span>
+            <option value="hot">hot</option>
+            <option value="warm">warm</option>
+            <option value="cold">cold</option>
+          </select>
           <span className="text-body-sm" style={{ color: 'var(--color-ink-dim)' }}>·</span>
           <span className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>added {fmtDate(c.addedAt)}</span>
           <div style={{ marginLeft: 'auto', display: 'inline-flex', gap: 6 }}>
+            <button
+              onClick={() => pollNow.mutate()}
+              disabled={pollNow.isPending}
+              className="btn-tiny"
+              title="Поставити в чергу негайний збір статистики (meta + пости). Також перевіряє підписку."
+            >
+              <Icon name="refresh" size={12} style={{ marginRight: 4 }} />
+              {pollNow.isPending ? 'Збираю…' : 'Отримати статистику'}
+            </button>
             {c.isMine && (
               <button
                 onClick={() => togglePause.mutate(!c.publishPaused)}
