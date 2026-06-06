@@ -223,4 +223,26 @@ export class TelegramStatsClient implements OnModuleInit {
     }
     return messageId;
   }
+
+  /** Send a plain text (HTML) message as the user account. Returns message id. */
+  async sendMessage(channelId: string, html: string): Promise<number> {
+    if (!this.client || !this.ready) throw new Error('TelegramStatsClient not connected');
+    const entity = await this.client.getEntity(channelId);
+    const sent: any = await this.client.sendMessage(entity as any, { message: html, parseMode: 'html' });
+    const id = sent?.id;
+    if (typeof id !== 'number') throw new Error('sendMessage did not return numeric message id');
+    return id;
+  }
+
+  /** Send a video (from a URL) with an HTML caption as the user account. */
+  async sendVideoWithCaption(channelId: string, videoUrl: string, caption: string): Promise<number> {
+    if (!this.client || !this.ready) throw new Error('TelegramStatsClient not connected');
+    const entity = await this.client.getEntity(channelId);
+    const sent: any = await this.client.sendFile(entity as any, {
+      file: videoUrl, caption, parseMode: 'html', forceDocument: false, silent: false,
+    });
+    const id = Array.isArray(sent) ? sent[0]?.id : sent?.id;
+    if (typeof id !== 'number') throw new Error('sendVideoWithCaption did not return numeric message id');
+    return id;
+  }
 }
