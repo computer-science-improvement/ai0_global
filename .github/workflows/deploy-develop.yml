@@ -101,8 +101,14 @@ jobs:
             # instead of booting automation against a half-migrated DB.
             bash database/migrate.sh
 
-            # AUTOMATION_IMAGE / DASHBOARD_IMAGE / NODE_ENV come from the host's
-            # .env (NODE_ENV=dev-stage, *_IMAGE=...:dev-latest).
+            # Pin the dev image tags here so the box .env doesn't have to carry
+            # *_IMAGE lines (compose's default is the prod ':latest', which dev
+            # never publishes → "manifest unknown"). These exports override .env
+            # for this compose invocation only. NODE_ENV still comes from .env.
+            OWNER=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
+            export AUTOMATION_IMAGE="ghcr.io/${OWNER}/ai0_global-automation:dev-latest"
+            export DASHBOARD_IMAGE="ghcr.io/${OWNER}/ai0_global-dashboard:dev-latest"
+
             docker compose --profile prod pull automation dashboard
             docker compose --profile prod up -d automation dashboard
             docker compose --profile prod restart automation
