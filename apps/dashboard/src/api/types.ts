@@ -228,3 +228,20 @@ export interface StrategyPreview {
   message?: string;
   items:   PreviewItem[];
 }
+
+// ─── Scheduled posts (operator-composed one-off Telegram posts) ─────────────
+
+export type SchedSender = 'bot' | 'mtproto_user';
+export type SchedMedia  = 'none' | 'photo' | 'video';
+export type SchedPlacement = 'above' | 'below';
+export interface SchedButtonRow { buttons: { label: string; url: string }[]; }
+
+export interface ComposedPostInput {
+  channelId: string; sender: SchedSender; botId: string | null;
+  text: string; mediaType: SchedMedia; mediaUrl: string | null;
+  mediaPlacement: SchedPlacement; buttons: SchedButtonRow[]; scheduledAt: string;
+}
+export interface ScheduledPost extends ComposedPostInput {
+  id: string; status: 'pending'|'sending'|'sent'|'failed'|'canceled';
+  messageId: number | null; error: string | null; createdAt: string; updatedAt: string;
+}
