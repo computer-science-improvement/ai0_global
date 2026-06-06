@@ -11,7 +11,7 @@ import { useMediaQuery } from '../lib/useMediaQuery';
 import { AUTH_MODE } from '../lib/env';
 
 export function AppShell() {
-  const { me, refresh } = useAuth();
+  const { me } = useAuth();
   const isMobile = useMediaQuery('(max-width: 860px)');
   const [navOpen, setNavOpen] = useState(false);
 
@@ -20,9 +20,11 @@ export function AppShell() {
   useEffect(() => { if (!isMobile) setNavOpen(false); }, [isMobile]);
 
   const onLogout = async () => {
-    await authApi.logout();
-    await refresh();
-    window.location.href = '/login';
+    // Always hard-redirect, even if the request errors — a full reload re-runs
+    // the auth check against the (now-cleared) cookie. `replace` keeps the
+    // authed view out of history.
+    try { await authApi.logout(); } catch { /* ignore */ }
+    window.location.replace('/login');
   };
 
   return (

@@ -50,7 +50,15 @@ export class AuthController {
 
   @Post('logout')
   logout(@Res({ passthrough: true }) res: Response) {
-    res.clearCookie(COOKIE_NAME);
+    // clearCookie only deletes when the attributes match the Set-Cookie that
+    // created it — otherwise the browser keeps the session cookie and the
+    // user stays logged in. Mirror setSessionCookie's options.
+    res.clearCookie(COOKIE_NAME, {
+      httpOnly: true,
+      secure:   this.config.get('NODE_ENV') === 'production',
+      sameSite: 'lax',
+      path:     '/',
+    });
     return { ok: true };
   }
 }

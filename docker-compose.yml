@@ -77,9 +77,15 @@ services:
   # ─── Dashboard (React SPA serving Phase 1 tracking data) ──────────────────────
   dashboard:
     profiles: ["prod"]
+    # CI builds + pushes this image; the box pulls it. `build:` stays as a
+    # local fallback (`up --build dashboard`). VITE_* are baked at build time.
+    image: ${DASHBOARD_IMAGE:-ghcr.io/computer-science-improvement/ai0_global-dashboard:latest}
     build:
       context: .
       dockerfile: apps/dashboard/Dockerfile
+      args:
+        VITE_AUTH_MODE:       ${VITE_AUTH_MODE:-}
+        VITE_TG_BOT_USERNAME: ${VITE_TG_BOT_USERNAME:-}
     restart: unless-stopped
     ports:
       - "${DASHBOARD_PORT:-8080}:80"

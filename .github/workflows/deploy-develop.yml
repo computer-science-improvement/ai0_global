@@ -15,7 +15,8 @@ on:
     branches: [develop]
 
 env:
-  IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/ai0_global-automation
+  IMAGE_NAME:           ghcr.io/${{ github.repository_owner }}/ai0_global-automation
+  IMAGE_NAME_DASHBOARD: ghcr.io/${{ github.repository_owner }}/ai0_global-dashboard
 
 jobs:
   build:
@@ -26,9 +27,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set lowercased image name
+      - name: Set lowercased image names
         id: image
-        run: echo "name=$(echo ${IMAGE_NAME} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_OUTPUT
+        run: |
+          echo "name=$(echo ${IMAGE_NAME} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_OUTPUT
+          echo "dashboard=$(echo ${IMAGE_NAME_DASHBOARD} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_OUTPUT
 
       - name: Log in to GHCR
         uses: docker/login-action@v3
@@ -40,7 +43,7 @@ jobs:
       - name: Set up Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Build and push (dev tags)
+      - name: Build and push automation (dev tags)
         uses: docker/build-push-action@v5
         with:
           context: .
@@ -49,6 +52,24 @@ jobs:
           tags: |
             ${{ steps.image.outputs.name }}:dev-latest
             ${{ steps.image.outputs.name }}:dev-${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      # Dashboard SPA. VITE_* are baked at build time from repo variables
+      # (Settings → Variables): set VITE_AUTH_MODE=token to ship token login,
+      # VITE_TG_BOT_USERNAME=<bot> for Telegram login. Both empty → dev-bypass.
+      - name: Build and push dashboard (dev tags)
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: apps/dashboard/Dockerfile
+          push: true
+          build-args: |
+            VITE_AUTH_MODE=${{ vars.VITE_AUTH_MODE }}
+            VITE_TG_BOT_USERNAME=${{ vars.VITE_TG_BOT_USERNAME }}
+          tags: |
+            ${{ steps.image.outputs.dashboard }}:dev-latest
+            ${{ steps.image.outputs.dashboard }}:dev-${{ github.sha }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
@@ -80,10 +101,10 @@ jobs:
             # instead of booting automation against a half-migrated DB.
             bash database/migrate.sh
 
-            # AUTOMATION_IMAGE and NODE_ENV come from the host's .env file
-            # (NODE_ENV=dev-stage, AUTOMATION_IMAGE=...:dev-latest).
-            docker compose --profile prod pull automation
-            docker compose --profile prod up -d automation
+            # AUTOMATION_IMAGE / DASHBOARD_IMAGE / NODE_ENV come from the host's
+            # .env (NODE_ENV=dev-stage, *_IMAGE=...:dev-latest).
+            docker compose --profile prod pull automation dashboard
+            docker compose --profile prod up -d automation dashboard
             docker compose --profile prod restart automation
 
             docker image prune -f
