@@ -245,3 +245,21 @@ export interface ScheduledPost extends ComposedPostInput {
   id: string; status: 'pending'|'sending'|'sent'|'failed'|'canceled';
   messageId: number | null; error: string | null; createdAt: string; updatedAt: string;
 }
+
+// ─── App settings (read-only mirror of server .env) ─────────────────────────
+
+export interface AppSettings {
+  telegram: {
+    trackingEnabled:      boolean;
+    trackingShareSession: boolean;
+    statsPostAgeDays:     number;
+    postingCooldownMin:   number;
+    fetchTimeoutMs:       number;
+  };
+  ai: {
+    anthropic:  boolean;
+    perplexity: boolean;
+    openai:     boolean;
+    grok:       boolean;
+  };
+}
