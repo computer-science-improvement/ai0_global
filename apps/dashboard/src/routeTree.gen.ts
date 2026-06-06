@@ -13,6 +13,7 @@ import { Route as TrackedRouteImport } from './routes/tracked'
 import { Route as TelegraphRouteImport } from './routes/telegraph'
 import { Route as StrategiesRouteImport } from './routes/strategies'
 import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as ScheduledRouteImport } from './routes/scheduled'
 import { Route as RecommendationsRouteImport } from './routes/recommendations'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as GraphRouteImport } from './routes/graph'
@@ -44,6 +45,11 @@ const StrategiesRoute = StrategiesRouteImport.update({
 const SettingsRoute = SettingsRouteImport.update({
   id: '/settings',
   path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ScheduledRoute = ScheduledRouteImport.update({
+  id: '/scheduled',
+  path: '/scheduled',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RecommendationsRoute = RecommendationsRouteImport.update({
@@ -118,6 +124,7 @@ export interface FileRoutesByFullPath {
   '/graph': typeof GraphRoute
   '/login': typeof LoginRoute
   '/recommendations': typeof RecommendationsRoute
+  '/scheduled': typeof ScheduledRoute
   '/settings': typeof SettingsRoute
   '/strategies': typeof StrategiesRoute
   '/telegraph': typeof TelegraphRoute
@@ -136,6 +143,7 @@ export interface FileRoutesByTo {
   '/graph': typeof GraphRoute
   '/login': typeof LoginRoute
   '/recommendations': typeof RecommendationsRoute
+  '/scheduled': typeof ScheduledRoute
   '/settings': typeof SettingsRoute
   '/strategies': typeof StrategiesRoute
   '/telegraph': typeof TelegraphRoute
@@ -155,6 +163,7 @@ export interface FileRoutesById {
   '/graph': typeof GraphRoute
   '/login': typeof LoginRoute
   '/recommendations': typeof RecommendationsRoute
+  '/scheduled': typeof ScheduledRoute
   '/settings': typeof SettingsRoute
   '/strategies': typeof StrategiesRoute
   '/telegraph': typeof TelegraphRoute
@@ -175,6 +184,7 @@ export interface FileRouteTypes {
     | '/graph'
     | '/login'
     | '/recommendations'
+    | '/scheduled'
     | '/settings'
     | '/strategies'
     | '/telegraph'
@@ -193,6 +203,7 @@ export interface FileRouteTypes {
     | '/graph'
     | '/login'
     | '/recommendations'
+    | '/scheduled'
     | '/settings'
     | '/strategies'
     | '/telegraph'
@@ -211,6 +222,7 @@ export interface FileRouteTypes {
     | '/graph'
     | '/login'
     | '/recommendations'
+    | '/scheduled'
     | '/settings'
     | '/strategies'
     | '/telegraph'
@@ -230,6 +242,7 @@ export interface RootRouteChildren {
   GraphRoute: typeof GraphRoute
   LoginRoute: typeof LoginRoute
   RecommendationsRoute: typeof RecommendationsRoute
+  ScheduledRoute: typeof ScheduledRoute
   SettingsRoute: typeof SettingsRoute
   StrategiesRoute: typeof StrategiesRoute
   TelegraphRoute: typeof TelegraphRoute
@@ -265,6 +278,13 @@ declare module '@tanstack/react-router' {
       path: '/settings'
       fullPath: '/settings'
       preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/scheduled': {
+      id: '/scheduled'
+      path: '/scheduled'
+      fullPath: '/scheduled'
+      preLoaderRoute: typeof ScheduledRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/recommendations': {
@@ -377,6 +397,7 @@ const rootRouteChildren: RootRouteChildren = {
   GraphRoute: GraphRoute,
   LoginRoute: LoginRoute,
   RecommendationsRoute: RecommendationsRoute,
+  ScheduledRoute: ScheduledRoute,
   SettingsRoute: SettingsRoute,
   StrategiesRoute: StrategiesRoute,
   TelegraphRoute: TelegraphRoute,

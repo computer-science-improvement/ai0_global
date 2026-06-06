@@ -11,7 +11,7 @@ const GROUPS: NavGroup[] = [
   ]},
   { title: 'Публікація', items: [
     { to: '/strategies', label: 'Стратегії', icon: 'strategies' },
-    { to: '/calendar',   label: 'Календар',  icon: 'calendar', soon: true },
+    { to: '/scheduled',  label: 'Заплановані', icon: 'calendar' },
     { to: '/channels',   label: 'Мої канали', icon: 'channels', search: { filter: 'mine' } },
   ]},
   { title: 'Аналітика', items: [
