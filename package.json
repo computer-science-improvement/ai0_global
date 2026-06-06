@@ -7,6 +7,7 @@
     "db:up": "docker compose up postgres -d",
     "db:down": "docker compose stop postgres",
     "migrate": "pnpm --filter pipeline run init-db",
+    "db:migrate": "bash database/migrate.sh",
     "dev:automation": "pnpm --filter automation run start:dev",
     "prod:up": "docker compose --profile prod up -d",
     "prod:down": "docker compose --profile prod down",

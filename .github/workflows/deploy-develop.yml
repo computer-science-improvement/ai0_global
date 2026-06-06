@@ -74,6 +74,12 @@ jobs:
             echo "${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}" \
               | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
 
+            # Apply pending DB migrations BEFORE starting the new image, so the
+            # schema is always ahead of (or level with) the code. Forward-only,
+            # idempotent, fail-fast — a bad migration aborts the deploy (set -e)
+            # instead of booting automation against a half-migrated DB.
+            bash database/migrate.sh
+
             # AUTOMATION_IMAGE and NODE_ENV come from the host's .env file
             # (NODE_ENV=dev-stage, AUTOMATION_IMAGE=...:dev-latest).
             docker compose --profile prod pull automation
