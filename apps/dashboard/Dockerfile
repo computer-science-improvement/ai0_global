@@ -12,7 +12,7 @@ ENV VITE_TG_BOT_USERNAME=$VITE_TG_BOT_USERNAME
 
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 COPY apps/dashboard/package.json apps/dashboard/
-RUN corepack enable && pnpm install --frozen-lockfile --filter dashboard
+RUN corepack enable && corepack prepare pnpm@9.15.0 --activate && pnpm install --frozen-lockfile --filter dashboard
 COPY apps/dashboard apps/dashboard
 RUN pnpm --filter dashboard run build
 
