@@ -37,3 +37,7 @@ tasks/**/scratch/
 mempalace.yaml
 entities.json
 .superpowers/
+
+# Large generated pipeline datasets — never commit (regenerable via loaders)
+apps/pipeline/src/data/normalized/recipes/recipes.json
+apps/pipeline/src/data/**/recipes_scraped.json
