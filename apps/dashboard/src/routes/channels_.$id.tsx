@@ -3,6 +3,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useReducer, useState } from 'react';
 import { trackingApi } from '../api/tracking';
 import { useConfirm } from '../components/ui/ConfirmDialog';
+import { useMediaQuery } from '../lib/useMediaQuery';
 import { useStrategies } from '../api/strategies';
 import { SubsHistoryChart } from '../components/SubsHistoryChart';
 import { ViewsBarChart } from '../components/ViewsBarChart';
@@ -31,6 +32,7 @@ function ChannelDetailPage() {
   const [themesOpen, setThemesOpen] = useState(false);
   const [editOpen,   setEditOpen]   = useState(false);
   const confirm = useConfirm();
+  const isMobile = useMediaQuery('(max-width: 600px)');
   // Bumped to force the controlled poll-tier <select> back to the saved value
   // when the user cancels the confirm dialog.
   const [, revertTier] = useReducer((x: number) => x + 1, 0);
@@ -99,11 +101,11 @@ function ChannelDetailPage() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
-      <header style={{ display: 'flex', alignItems: 'flex-start', gap: 18 }}>
+      <header style={{ display: 'flex', alignItems: 'flex-start', gap: isMobile ? 12 : 18 }}>
         <ChannelAvatar
           name={c.title ?? c.username ?? c.channelKey}
           src={null}
-          size={64}
+          size={isMobile ? 48 : 64}
           title={c.title ?? c.username ?? id}
         />
         <div style={{ flex: 1, minWidth: 0 }}>
@@ -146,7 +148,12 @@ function ChannelDetailPage() {
           </select>
           <span className="text-body-sm" style={{ color: 'var(--color-ink-dim)' }}>·</span>
           <span className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>added {fmtDate(c.addedAt)}</span>
-          <div style={{ marginLeft: 'auto', display: 'inline-flex', gap: 6 }}>
+          <div style={{
+            marginLeft: isMobile ? 0 : 'auto',
+            width: isMobile ? '100%' : 'auto',
+            marginTop: isMobile ? 4 : 0,
+            display: 'flex', flexWrap: 'wrap', gap: 6,
+          }}>
             <button
               onClick={() => pollNow.mutate()}
               disabled={pollNow.isPending}
