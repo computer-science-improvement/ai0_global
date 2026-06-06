@@ -1,5 +1,6 @@
 import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { SettingsService } from '../../settings/settings.service';
 import { TelegramClient, Api } from 'telegram';
 import { StringSession }       from 'telegram/sessions';
 import { LogLevel }            from 'telegram/extensions/Logger';
@@ -68,13 +69,19 @@ export class TrackingMtprotoClient implements OnModuleInit {
   /** Epoch ms of the last getDialogs() cache-warm; throttles re-warming. */
   private dialogsWarmedAt = 0;
 
-  constructor(private readonly config: ConfigService) {}
+  constructor(
+    private readonly config: ConfigService,
+    private readonly settings: SettingsService,
+  ) {}
 
   async onModuleInit(): Promise<void> {
+    // Wait for DB overrides so a dashboard-set TELEGRAM_TRACKING_SHARE_SESSION
+    // wins over .env on this (restart-time) read.
+    await this.settings.whenLoaded();
     const apiId   = parseInt(this.config.get<string>('TELEGRAM_API_ID') ?? '', 10);
     const apiHash = this.config.get<string>('TELEGRAM_API_HASH') ?? '';
     const dedicated = this.config.get<string>('TELEGRAM_TRACKING_SESSION_STRING') ?? '';
-    const shared    = this.config.get<string>('TELEGRAM_TRACKING_SHARE_SESSION') === 'true'
+    const shared    = this.settings.trackingShareSession()
       ? (this.config.get<string>('TELEGRAM_SESSION_STRING') ?? '')
       : '';
     const session = dedicated || shared;
@@ -153,7 +160,7 @@ export class TrackingMtprotoClient implements OnModuleInit {
     const apiId     = this.config.get<string>('TELEGRAM_API_ID') ?? '';
     const apiHash   = this.config.get<string>('TELEGRAM_API_HASH') ?? '';
     const dedicated = this.config.get<string>('TELEGRAM_TRACKING_SESSION_STRING') ?? '';
-    const shareOn   = this.config.get<string>('TELEGRAM_TRACKING_SHARE_SESSION') === 'true';
+    const shareOn   = this.settings.trackingShareSession();
     const shared    = shareOn ? (this.config.get<string>('TELEGRAM_SESSION_STRING') ?? '') : '';
     const hasApiCreds = !!apiId && !!apiHash;
     const hasSession  = !!(dedicated || shared);

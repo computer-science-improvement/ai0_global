@@ -1,5 +1,6 @@
 import { Injectable, Logger, Optional } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { SettingsService } from '../settings/settings.service';
 
 /**
  * Two-stage per-channel coordination:
@@ -35,11 +36,20 @@ export class PostingThrottleService {
   private readonly logger = new Logger(PostingThrottleService.name);
   private readonly locks  = new Set<string>();
   private readonly lastPublishedAt = new Map<string, number>();
-  private readonly cooldownMs: number;
 
-  constructor(@Optional() config?: ConfigService) {
-    const minutes = parseInt(config?.get<string>('POSTING_COOLDOWN_MIN') ?? '20', 10);
-    this.cooldownMs = Math.max(1, minutes) * 60_000;
+  constructor(
+    @Optional() private readonly settings?: SettingsService,
+    @Optional() private readonly config?: ConfigService,
+  ) {}
+
+  /** Cooldown window in ms, read live so dashboard edits to POSTING_COOLDOWN_MIN
+   *  take effect on the next publish check (no restart). Falls back to env when
+   *  the settings service isn't injected (e.g. unit tests). */
+  private cooldownMs(): number {
+    const minutes = this.settings
+      ? this.settings.postingCooldownMin()
+      : Math.max(1, parseInt(this.config?.get<string>('POSTING_COOLDOWN_MIN') ?? '20', 10));
+    return minutes * 60_000;
   }
 
   /**
@@ -51,7 +61,7 @@ export class PostingThrottleService {
     if (this.locks.has(channelId)) return false;
     const last = this.lastPublishedAt.get(channelId);
     if (last === undefined) return true;
-    return Date.now() - last >= this.cooldownMs;
+    return Date.now() - last >= this.cooldownMs();
   }
 
   /**
@@ -86,7 +96,7 @@ export class PostingThrottleService {
   remainingMs(channelId: string): number {
     const last = this.lastPublishedAt.get(channelId);
     if (last === undefined) return 0;
-    return Math.max(0, this.cooldownMs - (Date.now() - last));
+    return Math.max(0, this.cooldownMs() - (Date.now() - last));
   }
 
   logCooldown(strategyId: string, channelId: string): void {

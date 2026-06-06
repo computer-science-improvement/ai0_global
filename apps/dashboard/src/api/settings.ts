@@ -1,8 +1,10 @@
 import { api } from './client';
-import type { AppSettings } from './types';
+import type { AppSettings, SettingsPatch } from './types';
 
-// Read-only app settings mirror (server .env). No mutations — changing these
-// means editing .env on the server + restart.
+// App settings mirror (server .env + DB overrides). The Telegram "Відстеження"
+// block is editable: PATCH persists overrides to the DB (they win over .env).
 export const settingsApi = {
   get: () => api<AppSettings>('/settings'),
+  update: (patch: SettingsPatch) =>
+    api<AppSettings>('/settings', { method: 'PATCH', body: JSON.stringify(patch) }),
 };

@@ -262,4 +262,14 @@ export interface AppSettings {
     openai:     boolean;
     grok:       boolean;
   };
+  /** Env keys whose value comes from a DB override (set via the dashboard). */
+  overrides: string[];
+}
+
+export interface SettingsPatch {
+  trackingEnabled?:      boolean;
+  trackingShareSession?: boolean;
+  statsPostAgeDays?:     number;
+  postingCooldownMin?:   number;
+  fetchTimeoutMs?:       number;
 }

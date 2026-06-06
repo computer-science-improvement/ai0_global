@@ -4,6 +4,7 @@ import { ConfigService } from '@nestjs/config';
 import { TrackedChannelsRepository } from './repositories/tracked-channels.repository';
 import { TrackedPostsRepository } from './repositories/tracked-posts.repository';
 import { TrackingQueueService } from './tracking-queue.service';
+import { SettingsService } from '../settings/settings.service';
 import { classifyTier } from './processors/tier-classifier';
 import { PollTier } from './types';
 
@@ -17,6 +18,7 @@ export class TrackingScheduler {
     private readonly channels: TrackedChannelsRepository,
     private readonly posts:    TrackedPostsRepository,
     private readonly queue:    TrackingQueueService,
+    private readonly settings: SettingsService,
   ) {
     this.batchSize = parseInt(config.get<string>('TRACKING_BATCH_SIZE') ?? '50', 10);
   }
@@ -69,6 +71,6 @@ export class TrackingScheduler {
   }
 
   private enabled(): boolean {
-    return this.config.get<string>('TRACKING_ENABLED') === 'true';
+    return this.settings.trackingEnabled();
   }
 }

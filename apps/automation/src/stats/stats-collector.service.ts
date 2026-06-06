@@ -4,6 +4,7 @@ import { Cron, CronExpression } from '@nestjs/schedule';
 import { Pool } from 'pg';
 import { DB_POOL } from '../database/database.module';
 import { ChannelConfigService } from '../config/channel-config.service';
+import { SettingsService }       from '../settings/settings.service';
 import { PublicationsRepository } from './publications.repository';
 import { TelegramStatsClient }    from './telegram-stats.client';
 
@@ -29,6 +30,7 @@ export class StatsCollectorService {
     private readonly channels:    ChannelConfigService,
     private readonly publications: PublicationsRepository,
     private readonly tg:          TelegramStatsClient,
+    private readonly settings:    SettingsService,
   ) {}
 
   @Cron(CronExpression.EVERY_HOUR)
@@ -71,10 +73,7 @@ export class StatsCollectorService {
       }
 
       // ── 2. Post snapshots ───────────────────────────────────────────────
-      const ageDays = parseInt(
-        this.config.get<string>('STATS_POST_AGE_DAYS') ?? '30',
-        10,
-      ) || 30;
+      const ageDays = this.settings.statsPostAgeDays();
       const posts = await this.publications.listRecent(null, ageDays);
       for (const post of posts) {
         const m = await this.tg.getPostMetrics(post.channelId, post.messageId);
