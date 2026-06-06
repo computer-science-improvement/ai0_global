@@ -27,6 +27,7 @@ import { DevController }        from './dev.controller';
 import { TrackingModule }       from './tracking/tracking.module';
 import { AuthModule }           from './auth/auth.module';
 import { DiscoveryModule }      from './discovery/discovery.module';
+import { ScheduledPostsModule } from './scheduled-posts/scheduled-posts.module';
 
 @Module({
   imports: [
@@ -55,6 +56,7 @@ import { DiscoveryModule }      from './discovery/discovery.module';
     MotivationBiographyStrategyModule,
     AssetsStrategyModule,
     TrackingModule,
+    ScheduledPostsModule,
     AuthModule,
     DiscoveryModule,
   ],
