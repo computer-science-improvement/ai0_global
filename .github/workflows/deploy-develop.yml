@@ -55,9 +55,10 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
-      # Dashboard SPA. VITE_* are baked at build time from repo variables
-      # (Settings → Variables): set VITE_AUTH_MODE=token to ship token login,
-      # VITE_TG_BOT_USERNAME=<bot> for Telegram login. Both empty → dev-bypass.
+      # Dashboard SPA. VITE_* are baked at build time. Read from repo Variables
+      # OR Secrets (vars.* preferred; falls back to secrets.* so it works no
+      # matter which tab they were added under). VITE_AUTH_MODE=token ships
+      # token login, VITE_TG_BOT_USERNAME=<bot> Telegram login; both empty → dev.
       - name: Build and push dashboard (dev tags)
         uses: docker/build-push-action@v5
         with:
@@ -65,8 +66,8 @@ jobs:
           file: apps/dashboard/Dockerfile
           push: true
           build-args: |
-            VITE_AUTH_MODE=${{ vars.VITE_AUTH_MODE }}
-            VITE_TG_BOT_USERNAME=${{ vars.VITE_TG_BOT_USERNAME }}
+            VITE_AUTH_MODE=${{ vars.VITE_AUTH_MODE || secrets.VITE_AUTH_MODE }}
+            VITE_TG_BOT_USERNAME=${{ vars.VITE_TG_BOT_USERNAME || secrets.VITE_TG_BOT_USERNAME }}
           tags: |
             ${{ steps.image.outputs.dashboard }}:dev-latest
             ${{ steps.image.outputs.dashboard }}:dev-${{ github.sha }}
