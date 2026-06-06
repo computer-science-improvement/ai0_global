@@ -8,6 +8,7 @@ import { Button } from './ui/Button';
 import { Icon } from './ui/Icon';
 import { ConfirmProvider } from './ui/ConfirmDialog';
 import { useMediaQuery } from '../lib/useMediaQuery';
+import { TG_BOT_USERNAME } from '../lib/env';
 
 export function AppShell() {
   const { me, refresh } = useAuth();
@@ -75,7 +76,10 @@ export function AppShell() {
               >
                 <Icon name="plus" size={14} />{!isMobile && ' Новий пост'}
               </Button>
-              {me && <Button variant="tiny" onClick={onLogout}>Вийти</Button>}
+              {/* Logout only when real auth is configured — in dev-bypass mode
+                  there's no session to end, and it would just bounce to the
+                  dev login screen. */}
+              {me && TG_BOT_USERNAME && <Button variant="tiny" onClick={onLogout}>Вийти</Button>}
             </div>
           </header>
 
