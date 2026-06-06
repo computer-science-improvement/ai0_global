@@ -7,6 +7,7 @@ import { TelegramNotifier } from './telegram-notifier.service';
 import { PostingThrottleService } from './posting-throttle.service';
 import { AdminBotService } from './admin-bot.service';
 import { TelegraphService } from './telegraph.service';
+import { ComposedSenderService } from './composed-sender.service';
 
 const PUBLISHERS = [
   TelegramPublisher,
@@ -17,6 +18,7 @@ const PUBLISHERS = [
   PostingThrottleService,
   AdminBotService,
   TelegraphService,
+  ComposedSenderService,
 ];
 
 @Global()
