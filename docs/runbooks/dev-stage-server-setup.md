@@ -653,6 +653,6 @@ again.
 
 ## Related docs
 
-- Production release runbook: TODO (file an issue when first cutting a tag)
+- Production release runbook: `prod-release.md`
 - Application architecture: `apps/automation/README.md` (TODO)
 - Channel config schema: see `apps/automation/config/channels-dev.json`

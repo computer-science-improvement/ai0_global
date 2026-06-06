@@ -19,7 +19,8 @@ on:
       - 'v*.*.*'
 
 env:
-  IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/ai0_global-automation
+  IMAGE_NAME:           ghcr.io/${{ github.repository_owner }}/ai0_global-automation
+  IMAGE_NAME_DASHBOARD: ghcr.io/${{ github.repository_owner }}/ai0_global-dashboard
 
 jobs:
   # Safety guard: refuse to ship if the tag points to a commit that isn't on
@@ -59,9 +60,11 @@ jobs:
           VERSION="${GITHUB_REF#refs/tags/}"
           echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
 
-      - name: Set lowercased image name
+      - name: Set lowercased image names
         id: image
-        run: echo "name=$(echo ${IMAGE_NAME} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_OUTPUT
+        run: |
+          echo "name=$(echo ${IMAGE_NAME} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_OUTPUT
+          echo "dashboard=$(echo ${IMAGE_NAME_DASHBOARD} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_OUTPUT
 
       - name: Log in to GHCR
         uses: docker/login-action@v3
@@ -73,7 +76,7 @@ jobs:
       - name: Set up Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Build and push (versioned tags)
+      - name: Build and push automation (versioned tags)
         uses: docker/build-push-action@v5
         with:
           context: .
@@ -82,6 +85,25 @@ jobs:
           tags: |
             ${{ steps.image.outputs.name }}:${{ steps.ver.outputs.version }}
             ${{ steps.image.outputs.name }}:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      # Dashboard SPA. VITE_* are baked at build time from repo Variables OR
+      # Secrets. PROD MUST set VITE_AUTH_MODE=token (or VITE_TG_BOT_USERNAME) —
+      # an empty value ships the dev-bypass build, leaving the prod dashboard
+      # open to anyone.
+      - name: Build and push dashboard (versioned tags)
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: apps/dashboard/Dockerfile
+          push: true
+          build-args: |
+            VITE_AUTH_MODE=${{ vars.VITE_AUTH_MODE || secrets.VITE_AUTH_MODE }}
+            VITE_TG_BOT_USERNAME=${{ vars.VITE_TG_BOT_USERNAME || secrets.VITE_TG_BOT_USERNAME }}
+          tags: |
+            ${{ steps.image.outputs.dashboard }}:${{ steps.ver.outputs.version }}
+            ${{ steps.image.outputs.dashboard }}:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
@@ -106,10 +128,20 @@ jobs:
             echo "${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}" \
               | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
 
-            # Pre-built image lives in compose under AUTOMATION_IMAGE
-            # (prod .env sets it to :latest, which now moves only on tagged release).
-            docker compose --profile prod pull automation
-            docker compose --profile prod up -d automation
+            # Apply pending DB migrations BEFORE starting the new image.
+            # Forward-only, idempotent, fail-fast — a bad migration aborts the
+            # release (set -e) instead of booting against a half-migrated DB.
+            bash database/migrate.sh
+
+            # Pin prod to the exact released version (immutable), not :latest.
+            # Set inline so the box .env needs no *_IMAGE lines. NODE_ENV stays
+            # in .env (=production).
+            OWNER=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
+            export AUTOMATION_IMAGE="ghcr.io/${OWNER}/ai0_global-automation:${{ github.ref_name }}"
+            export DASHBOARD_IMAGE="ghcr.io/${OWNER}/ai0_global-dashboard:${{ github.ref_name }}"
+
+            docker compose --profile prod pull automation dashboard
+            docker compose --profile prod up -d automation dashboard
             docker compose --profile prod restart automation
 
             docker image prune -f
