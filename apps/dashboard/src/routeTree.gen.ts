@@ -25,6 +25,7 @@ import { Route as CalendarRouteImport } from './routes/calendar'
 import { Route as BotsRouteImport } from './routes/bots'
 import { Route as AnalyticsRouteImport } from './routes/analytics'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ConnectionsMetaRouteImport } from './routes/connections_.meta'
 import { Route as ConnectionsPlatformRouteImport } from './routes/connections.$platform'
 import { Route as ChannelsIdRouteImport } from './routes/channels_.$id'
 
@@ -108,6 +109,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ConnectionsMetaRoute = ConnectionsMetaRouteImport.update({
+  id: '/connections_/meta',
+  path: '/connections/meta',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ConnectionsPlatformRoute = ConnectionsPlatformRouteImport.update({
   id: '/$platform',
   path: '/$platform',
@@ -138,6 +144,7 @@ export interface FileRoutesByFullPath {
   '/tracked': typeof TrackedRoute
   '/channels/$id': typeof ChannelsIdRoute
   '/connections/$platform': typeof ConnectionsPlatformRoute
+  '/connections/meta': typeof ConnectionsMetaRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -158,6 +165,7 @@ export interface FileRoutesByTo {
   '/tracked': typeof TrackedRoute
   '/channels/$id': typeof ChannelsIdRoute
   '/connections/$platform': typeof ConnectionsPlatformRoute
+  '/connections/meta': typeof ConnectionsMetaRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -179,6 +187,7 @@ export interface FileRoutesById {
   '/tracked': typeof TrackedRoute
   '/channels_/$id': typeof ChannelsIdRoute
   '/connections/$platform': typeof ConnectionsPlatformRoute
+  '/connections_/meta': typeof ConnectionsMetaRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -201,6 +210,7 @@ export interface FileRouteTypes {
     | '/tracked'
     | '/channels/$id'
     | '/connections/$platform'
+    | '/connections/meta'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -221,6 +231,7 @@ export interface FileRouteTypes {
     | '/tracked'
     | '/channels/$id'
     | '/connections/$platform'
+    | '/connections/meta'
   id:
     | '__root__'
     | '/'
@@ -241,6 +252,7 @@ export interface FileRouteTypes {
     | '/tracked'
     | '/channels_/$id'
     | '/connections/$platform'
+    | '/connections_/meta'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -261,6 +273,7 @@ export interface RootRouteChildren {
   TelegraphRoute: typeof TelegraphRoute
   TrackedRoute: typeof TrackedRoute
   ChannelsIdRoute: typeof ChannelsIdRoute
+  ConnectionsMetaRoute: typeof ConnectionsMetaRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -377,6 +390,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/connections_/meta': {
+      id: '/connections_/meta'
+      path: '/connections/meta'
+      fullPath: '/connections/meta'
+      preLoaderRoute: typeof ConnectionsMetaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/connections/$platform': {
       id: '/connections/$platform'
       path: '/$platform'
@@ -424,6 +444,7 @@ const rootRouteChildren: RootRouteChildren = {
   TelegraphRoute: TelegraphRoute,
   TrackedRoute: TrackedRoute,
   ChannelsIdRoute: ChannelsIdRoute,
+  ConnectionsMetaRoute: ConnectionsMetaRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

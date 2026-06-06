@@ -35,11 +35,9 @@ const toLocalInput = (iso: string): string => {
  *  future, shown disabled with a "soon" chip so the surface reads as
  *  multi-platform without pretending the others work yet. */
 const PLATFORMS: { id: string; label: string; icon: IconName; enabled: boolean }[] = [
-  { id: 'telegram',  label: 'Telegram',  icon: 'telegram',  enabled: true },
-  { id: 'instagram', label: 'Instagram', icon: 'instagram', enabled: false },
-  { id: 'tiktok',    label: 'TikTok',    icon: 'tiktok',    enabled: false },
-  { id: 'facebook',  label: 'Facebook',  icon: 'facebook',  enabled: false },
-  { id: 'threads',   label: 'Threads',   icon: 'threads',   enabled: false },
+  { id: 'telegram', label: 'Telegram', icon: 'telegram', enabled: true },
+  { id: 'meta',     label: 'Meta',     icon: 'facebook', enabled: false },
+  { id: 'tiktok',   label: 'TikTok',   icon: 'tiktok',   enabled: false },
 ];
 
 function PlatformTabs() {

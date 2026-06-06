@@ -24,13 +24,12 @@ const GROUPS: NavGroup[] = [
     { to: '/recommendations', label: 'Рекомендації',  icon: 'recommendations' },
   ]},
   { title: 'Підключення', items: [
-    { to: '/connections',           label: 'Telegram',  icon: 'telegram', exact: true },
-    { to: '/connections/instagram', label: 'Instagram', icon: 'instagram', soon: true },
-    { to: '/connections/tiktok',    label: 'TikTok',    icon: 'tiktok', soon: true },
-    { to: '/connections/facebook',  label: 'Facebook',  icon: 'facebook', soon: true },
+    { to: '/connections',        label: 'Telegram', icon: 'telegram', exact: true },
+    { to: '/connections/meta',   label: 'Meta',     icon: 'facebook' },
+    { to: '/connections/tiktok', label: 'TikTok',   icon: 'tiktok', soon: true },
   ]},
   { title: 'Система', items: [
-    { to: '/settings', label: 'Налаштування', icon: 'settings', soon: true },
+    { to: '/settings', label: 'Налаштування', icon: 'settings' },
   ]},
 ];
 
