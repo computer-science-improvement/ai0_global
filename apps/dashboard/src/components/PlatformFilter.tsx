@@ -3,13 +3,11 @@ import { usePlatform, ACTIVE_PLATFORMS, type Platform } from '../lib/usePlatform
 
 const META: Record<Platform, { label: string; icon?: IconName }> = {
   all:       { label: 'Всі' },
-  telegram:  { label: 'Telegram',  icon: 'telegram' },
-  instagram: { label: 'Instagram', icon: 'instagram' },
-  tiktok:    { label: 'TikTok',    icon: 'tiktok' },
-  threads:   { label: 'Threads',   icon: 'threads' },
-  facebook:  { label: 'Facebook',  icon: 'facebook' },
+  telegram:  { label: 'Telegram', icon: 'telegram' },
+  meta:      { label: 'Meta',     icon: 'facebook' },
+  tiktok:    { label: 'TikTok',   icon: 'tiktok' },
 };
-const ORDER: Platform[] = ['all', 'telegram', 'instagram', 'tiktok', 'threads', 'facebook'];
+const ORDER: Platform[] = ['all', 'telegram', 'meta', 'tiktok'];
 
 export function PlatformFilter() {
   const [platform, setPlatform] = usePlatform();

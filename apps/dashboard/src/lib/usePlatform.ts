@@ -2,7 +2,9 @@
 // has data today; the others are reserved for future integrations.
 import { useNavigate, useSearch } from '@tanstack/react-router';
 
-export const PLATFORMS = ['all', 'telegram', 'instagram', 'tiktok', 'threads', 'facebook'] as const;
+// Facebook / Instagram / Threads are grouped under a single "Meta" entry to
+// match the sidebar and the /connections/meta hub.
+export const PLATFORMS = ['all', 'telegram', 'meta', 'tiktok'] as const;
 export type Platform = typeof PLATFORMS[number];
 
 /** Platforms that actually have data / are selectable right now. */
