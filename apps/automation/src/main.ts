@@ -1,3 +1,4 @@
+import './load-env';                // must run before AppModule/ConfigModule load
 import { NestFactory }             from '@nestjs/core';
 import { ValidationPipe }          from '@nestjs/common';
 import { WinstonModule }           from 'nest-winston';
