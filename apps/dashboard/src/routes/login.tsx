@@ -40,13 +40,31 @@ function LoginPage() {
       <div className="card-featured" style={{ maxWidth: 400, width: '100%', padding: 32 }}>
         <h1 className="text-display-md" style={{ marginBottom: 8 }}>Channel Tracker</h1>
         <p style={{ marginBottom: 24, fontSize: 15, color: 'var(--color-ink-muted)' }}>
-          Sign in with Telegram to continue.
+          {TG_BOT_USERNAME
+            ? 'Sign in with Telegram to continue.'
+            : 'Dev mode — Telegram login is disabled (no VITE_TG_BOT_USERNAME).'}
         </p>
-        <div ref={widgetRef} />
-        {!TG_BOT_USERNAME && (
-          <p style={{ marginTop: 12, fontSize: 12, color: 'var(--color-danger)' }}>
-            VITE_TG_BOT_USERNAME not set — widget cannot render.
-          </p>
+
+        {TG_BOT_USERNAME ? (
+          <div ref={widgetRef} />
+        ) : (
+          // Dev-bypass: the backend guard also bypasses when no auth is
+          // configured, so just re-enter the app as the placeholder Dev user.
+          // This makes logout → login → back-in work on a no-DNS / HTTP dev
+          // box where the Telegram widget can't render.
+          <>
+            <button
+              className="btn-primary"
+              style={{ width: '100%' }}
+              onClick={async () => { await refresh(); await navigate({ to: '/' as any }); }}
+            >
+              Continue in dev mode
+            </button>
+            <p style={{ marginTop: 12, fontSize: 12, color: 'var(--color-ink-dim)' }}>
+              Set <code>VITE_TG_BOT_USERNAME</code> (+ a domain via BotFather <code>/setdomain</code>)
+              to enable real Telegram sign-in.
+            </p>
+          </>
         )}
       </div>
     </div>
