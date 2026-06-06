@@ -41,6 +41,11 @@ test('photo requires mediaUrl', () => {
   assert.ok(r.errors.some(e => e.includes('media URL')));
 });
 
+test('past scheduled time → error', () => {
+  const r = validateComposedPost({ ...base, scheduledAt: '2000-01-01T00:00:00.000Z' });
+  assert.ok(r.errors.some(e => e.includes('future')));
+});
+
 test('mtproto_user + media below text → error', () => {
   const r = validateComposedPost({ ...base, sender: 'mtproto_user', botId: null,
     mediaType: 'photo', mediaUrl: 'https://i', mediaPlacement: 'below' });

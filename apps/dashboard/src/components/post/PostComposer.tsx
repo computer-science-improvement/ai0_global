@@ -117,6 +117,7 @@ export function PostComposer({ editing, onDone }:
     if (post.sender === 'bot' && !post.botId) e.push('Оберіть бота');
     if ((post.mediaType !== 'none') && !/^https?:\/\//i.test(post.mediaUrl ?? '')) e.push('Медіа-URL має бути http(s)');
     if (!post.scheduledAt) e.push('Вкажіть час');
+    else if (Date.parse(post.scheduledAt) <= Date.now()) e.push('Час публікації має бути в майбутньому');
     if (overLimit) e.push(`Текст ${len}/${limit} — перевищено ліміт`);
     if (hasButtons && post.mediaType !== 'none' && post.mediaPlacement === 'above' && len > 1024)
       e.push('Кнопки + фото з підписом >1024 неможливі в одному пості');
@@ -186,6 +187,7 @@ export function PostComposer({ editing, onDone }:
           {/* schedule */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
             <input className="input-field" type="datetime-local"
+              min={toLocalInput(new Date().toISOString())}
               value={toLocalInput(post.scheduledAt)}
               onChange={e => set({ scheduledAt: e.target.value ? new Date(e.target.value).toISOString() : '' })} />
             <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>(локальний час)</span>

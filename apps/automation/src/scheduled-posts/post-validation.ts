@@ -20,6 +20,7 @@ export function validateComposedPost(p: ComposedPost): { errors: string[] } {
 
   if (!p.channelId) errors.push('channel is required');
   if (!p.scheduledAt || Number.isNaN(Date.parse(p.scheduledAt))) errors.push('valid scheduled time is required');
+  else if (Date.parse(p.scheduledAt) <= Date.now()) errors.push('scheduled time must be in the future');
 
   const buttons = hasButtons(p);
   const len = visibleLength(p.text);
