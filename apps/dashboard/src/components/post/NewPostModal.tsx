@@ -11,6 +11,24 @@ const visibleLen = (html: string) => html.replace(/<[^>]+>/g, '').length;
 const limitFor = (s: ComposedPostInput['sender'], m: ComposedPostInput['mediaType']) =>
   m === 'none' ? 4096 : s === 'mtproto_user' ? 2048 : 1024;
 
+/** Project ONLY the 9 input fields — strips ScheduledPost extras (id/status/etc)
+ *  so PATCH bodies pass the backend's forbidNonWhitelisted ValidationPipe. */
+const pick = (p: ComposedPostInput | ScheduledPost): ComposedPostInput => ({
+  channelId: p.channelId, sender: p.sender, botId: p.botId, text: p.text,
+  mediaType: p.mediaType, mediaUrl: p.mediaUrl, mediaPlacement: p.mediaPlacement,
+  buttons: p.buttons, scheduledAt: p.scheduledAt,
+});
+
+/** Convert a stored UTC ISO into a `YYYY-MM-DDTHH:mm` string in local wall-clock
+ *  for a <input type="datetime-local"> value (which is timezone-naive). */
+const toLocalInput = (iso: string): string => {
+  if (!iso) return '';
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return '';
+  const p = (n: number) => String(n).padStart(2, '0');
+  return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}T${p(d.getHours())}:${p(d.getMinutes())}`;
+};
+
 export function NewPostModal({ open, onClose, editing }:
   { open: boolean; onClose: () => void; editing?: ScheduledPost | null }) {
   const qc = useQueryClient();
@@ -18,11 +36,11 @@ export function NewPostModal({ open, onClose, editing }:
   const channelsQ = useQuery({ queryKey: ['channels','mine',1,'',undefined],
     queryFn: () => trackingApi.listChannels({ filter: 'mine', page: 1, pageSize: 100 }) });
 
-  const [post, setPost] = useState<ComposedPostInput>(() => editing ?? {
+  const [post, setPost] = useState<ComposedPostInput>(() => editing ? pick(editing) : {
     channelId: '', sender: 'bot', botId: null, text: '', mediaType: 'none',
     mediaUrl: null, mediaPlacement: 'above', buttons: [], scheduledAt: '',
   });
-  useEffect(() => { if (editing) setPost(editing); }, [editing]);
+  useEffect(() => { if (editing) setPost(pick(editing)); }, [editing]);
 
   const hasButtons = post.buttons.some(r => r.buttons.length > 0);
   const len = visibleLen(post.text);
@@ -32,6 +50,12 @@ export function NewPostModal({ open, onClose, editing }:
 
   // Guardrail: buttons → force bot.
   useEffect(() => { if (hasButtons && post.sender !== 'bot') set({ sender: 'bot' }); }, [hasButtons]);
+
+  // Guardrail: MTProto-user can't put media below text → coerce to 'above'.
+  useEffect(() => {
+    if (post.sender === 'mtproto_user' && post.mediaType !== 'none' && post.mediaPlacement === 'below')
+      set({ mediaPlacement: 'above' });
+  }, [post.sender, post.mediaType, post.mediaPlacement]);
 
   const save = useMutation({
     mutationFn: (input: ComposedPostInput) => editing ? scheduledPostsApi.update(editing.id, input) : scheduledPostsApi.create(input),
@@ -89,7 +113,8 @@ export function NewPostModal({ open, onClose, editing }:
                 <input className="input-field" style={{ flex: 1 }} placeholder="media URL"
                   value={post.mediaUrl ?? ''} onChange={e => set({ mediaUrl: e.target.value })} />
                 <select className="input-field" value={post.mediaPlacement} onChange={e => set({ mediaPlacement: e.target.value as ComposedPostInput['mediaPlacement'] })}>
-                  <option value="above">над текстом</option><option value="below">під текстом</option>
+                  <option value="above">над текстом</option>
+                  {post.sender !== 'mtproto_user' && <option value="below">під текстом</option>}
                 </select>
               </>
             )}
@@ -97,9 +122,12 @@ export function NewPostModal({ open, onClose, editing }:
           {/* buttons */}
           <ButtonsEditor rows={post.buttons} onChange={buttons => set({ buttons })} />
           {/* schedule */}
-          <input className="input-field" type="datetime-local"
-            value={post.scheduledAt ? post.scheduledAt.slice(0,16) : ''}
-            onChange={e => set({ scheduledAt: e.target.value ? new Date(e.target.value).toISOString() : '' })} />
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+            <input className="input-field" type="datetime-local"
+              value={toLocalInput(post.scheduledAt)}
+              onChange={e => set({ scheduledAt: e.target.value ? new Date(e.target.value).toISOString() : '' })} />
+            <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>(локальний час)</span>
+          </div>
           {errors.length > 0 && <ul className="text-micro" style={{ color: 'var(--color-danger)', margin: 0, paddingLeft: 16 }}>{errors.map((x,i) => <li key={i}>{x}</li>)}</ul>}
           {save.error && <p className="text-body-sm" style={{ color: 'var(--color-danger)' }}>{(save.error as Error).message}</p>}
           <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 8 }}>

@@ -72,6 +72,15 @@ export class ScheduledPostsRepository {
     return rows[0] ? toEntity(rows[0]) : null;
   }
 
+  /** Recover posts claimed but never finished (process crash between claim and
+   *  markSent): flip stale 'sending' rows back to 'pending' so they get retried. */
+  async rependStale(): Promise<number> {
+    const { rowCount } = await this.pool.query(
+      `UPDATE scheduled_publications SET status='pending', updated_at=now()
+       WHERE status='sending' AND updated_at < now() - interval '5 minutes'`);
+    return rowCount ?? 0;
+  }
+
   async markSent(id: string, messageId: number): Promise<void> {
     await this.pool.query(
       `UPDATE scheduled_publications SET status='sent', message_id=$2, error=NULL, updated_at=now() WHERE id=$1`,

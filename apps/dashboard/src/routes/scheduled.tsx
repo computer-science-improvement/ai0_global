@@ -5,6 +5,7 @@ import { PageHeader } from '../components/ui/PageHeader';
 import { Badge } from '../components/ui/Badge';
 import { NewPostModal } from '../components/post/NewPostModal';
 import { scheduledPostsApi } from '../api/scheduled-posts';
+import { trackingApi } from '../api/tracking';
 import { useConfirm } from '../components/ui/ConfirmDialog';
 import { fmtDate } from '../lib/format';
 import type { ScheduledPost } from '../api/types';
@@ -21,6 +22,12 @@ function ScheduledPage() {
   const [editing, setEditing] = useState<ScheduledPost | null>(null);
   const [open, setOpen] = useState(false);
   const { data, isLoading } = useQuery({ queryKey: ['scheduled-posts'], queryFn: () => scheduledPostsApi.list() });
+  const channelsQ = useQuery({ queryKey: ['channels','mine',1,'',undefined],
+    queryFn: () => trackingApi.listChannels({ filter: 'mine', page: 1, pageSize: 100 }) });
+  const channelLabel = (id: string) => {
+    const c = channelsQ.data?.items.find(x => x.id === id);
+    return c?.title ?? c?.channelKey ?? id.slice(0, 8);
+  };
   const cancel = useMutation({ mutationFn: (id: string) => scheduledPostsApi.cancel(id),
     onSuccess: () => qc.invalidateQueries({ queryKey: ['scheduled-posts'] }) });
 
@@ -35,7 +42,7 @@ function ScheduledPage() {
         {data?.map(p => (
           <tr key={p.id}>
             <td className="num">{fmtDate(p.scheduledAt)}</td>
-            <td>{p.channelId.slice(0,8)}</td>
+            <td>{channelLabel(p.channelId)}</td>
             <td>{p.sender === 'bot' ? 'Бот' : 'MTProto'}</td>
             <td><Badge tone={TONE[p.status]}>{p.status}</Badge>{p.error && <span className="text-micro" title={p.error} style={{ color:'var(--color-danger)', marginLeft:6 }}>!</span>}</td>
             <td className="meta" style={{ maxWidth: 280, overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap' }}>{p.text.replace(/<[^>]+>/g,'')}</td>

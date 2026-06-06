@@ -32,6 +32,8 @@ export class ScheduledPostsService {
   /** Called by the worker: claim + publish every due post this tick. */
   async publishDue(): Promise<void> {
     const now = new Date();
+    // Recover any rows stuck in 'sending' from a prior crash before claiming.
+    await this.repo.rependStale();
     // claim loop — claimDue returns one at a time (skip-locked), null when drained.
     for (let post = await this.repo.claimDue(now); post; post = await this.repo.claimDue(now)) {
       await this.publishOne(post);

@@ -39,6 +39,9 @@ export function validateComposedPost(p: ComposedPost): { errors: string[] } {
   if (p.sender === 'bot') {
     if (p.botId == null) errors.push('bot must be selected for the bot sender');
   }
+  if (p.sender === 'mtproto_user' && p.mediaType !== 'none' && p.mediaPlacement === 'below') {
+    errors.push('MTProto-user не підтримує медіа під текстом — оберіть «над текстом» або бота');
+  }
 
   const limit = captionLimitFor(p.sender, p.mediaType);
   if (len > limit) {
