@@ -1,9 +1,7 @@
-import { createFileRoute } from '@tanstack/react-router';
-import { useState } from 'react';
+import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { PageHeader } from '../components/ui/PageHeader';
 import { Badge } from '../components/ui/Badge';
-import { NewPostModal } from '../components/post/NewPostModal';
 import { scheduledPostsApi } from '../api/scheduled-posts';
 import { trackingApi } from '../api/tracking';
 import { useConfirm } from '../components/ui/ConfirmDialog';
@@ -19,8 +17,7 @@ const TONE: Record<ScheduledPost['status'], 'neutral'|'success'|'warning'|'dange
 function ScheduledPage() {
   const qc = useQueryClient();
   const confirm = useConfirm();
-  const [editing, setEditing] = useState<ScheduledPost | null>(null);
-  const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
   const { data, isLoading } = useQuery({ queryKey: ['scheduled-posts'], queryFn: () => scheduledPostsApi.list() });
   const channelsQ = useQuery({ queryKey: ['channels','mine',1,'',undefined],
     queryFn: () => trackingApi.listChannels({ filter: 'mine', page: 1, pageSize: 100 }) });
@@ -34,7 +31,7 @@ function ScheduledPage() {
   return (
     <div>
       <PageHeader title="Заплановані" subtitle="Заплановані пости в Telegram"
-        actions={<button className="btn-primary" onClick={() => { setEditing(null); setOpen(true); }}>+ Новий пост</button>} />
+        actions={<button className="btn-primary" onClick={() => navigate({ to: '/compose' })}>+ Новий пост</button>} />
       {isLoading && <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>Завантаження…</p>}
       <div className="table-wrap"><table className="table"><thead><tr>
         <th>Час</th><th>Канал</th><th>Відправник</th><th>Статус</th><th>Текст</th><th style={{ textAlign:'right' }}>Дії</th>
@@ -48,7 +45,7 @@ function ScheduledPage() {
             <td className="meta" style={{ maxWidth: 280, overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap' }}>{p.text.replace(/<[^>]+>/g,'')}</td>
             <td style={{ textAlign:'right' }}>
               {p.status === 'pending' && <>
-                <button className="btn-tiny" onClick={() => { setEditing(p); setOpen(true); }}>Ред.</button>
+                <button className="btn-tiny" onClick={() => navigate({ to: '/compose', search: { id: p.id } })}>Ред.</button>
                 <button className="btn-tiny-danger" style={{ marginLeft: 6 }}
                   onClick={async () => { if (await confirm(`скасувати запланований пост`)) cancel.mutate(p.id); }}>Скасувати</button>
               </>}
@@ -56,7 +53,6 @@ function ScheduledPage() {
           </tr>
         ))}
       </tbody></table></div>
-      <NewPostModal open={open} onClose={() => setOpen(false)} editing={editing} />
     </div>
   );
 }

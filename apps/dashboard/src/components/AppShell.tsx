@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Outlet } from '@tanstack/react-router';
+import { Outlet, useNavigate } from '@tanstack/react-router';
 import { useAuth } from '../auth/use-auth';
 import { authApi } from '../api/auth';
 import { AppSidebar } from './AppSidebar';
@@ -7,15 +7,14 @@ import { PlatformFilter } from './PlatformFilter';
 import { Button } from './ui/Button';
 import { Icon } from './ui/Icon';
 import { ConfirmProvider } from './ui/ConfirmDialog';
-import { NewPostModal } from './post/NewPostModal';
 import { useMediaQuery } from '../lib/useMediaQuery';
 import { AUTH_MODE } from '../lib/env';
 
 export function AppShell() {
   const { me } = useAuth();
+  const navigate = useNavigate();
   const isMobile = useMediaQuery('(max-width: 860px)');
   const [navOpen, setNavOpen] = useState(false);
-  const [composerOpen, setComposerOpen] = useState(false);
 
   // Collapse the drawer whenever we leave the mobile breakpoint, so resizing
   // a desktop window never leaves a stray overlay open.
@@ -77,7 +76,7 @@ export function AppShell() {
                 variant="primary"
                 style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}
                 title="Новий пост"
-                onClick={() => setComposerOpen(true)}
+                onClick={() => navigate({ to: '/compose' })}
               >
                 <Icon name="plus" size={14} />{!isMobile && ' Новий пост'}
               </Button>
@@ -96,7 +95,6 @@ export function AppShell() {
           </main>
         </div>
       </div>
-      <NewPostModal open={composerOpen} onClose={() => setComposerOpen(false)} />
     </ConfirmProvider>
   );
 }
