@@ -2,7 +2,7 @@ import { Link } from '@tanstack/react-router';
 import { useState, type CSSProperties } from 'react';
 import { Icon, type IconName } from './ui/Icon';
 
-interface NavItem { to: string; label: string; icon: IconName; soon?: boolean; search?: Record<string, unknown>; }
+interface NavItem { to: string; label: string; icon: IconName; soon?: boolean; exact?: boolean; search?: Record<string, unknown>; }
 interface NavGroup { title: string; items: NavItem[]; }
 
 const GROUPS: NavGroup[] = [
@@ -24,7 +24,10 @@ const GROUPS: NavGroup[] = [
     { to: '/recommendations', label: 'Рекомендації',  icon: 'recommendations' },
   ]},
   { title: 'Підключення', items: [
-    { to: '/connections', label: 'Підключення', icon: 'connections' },
+    { to: '/connections',           label: 'Telegram',  icon: 'telegram', exact: true },
+    { to: '/connections/instagram', label: 'Instagram', icon: 'instagram', soon: true },
+    { to: '/connections/tiktok',    label: 'TikTok',    icon: 'tiktok', soon: true },
+    { to: '/connections/facebook',  label: 'Facebook',  icon: 'facebook', soon: true },
   ]},
   { title: 'Система', items: [
     { to: '/settings', label: 'Налаштування', icon: 'settings', soon: true },
@@ -105,6 +108,7 @@ export function AppSidebar({ isMobile = false, mobileOpen = false, onNavigate }:
                 to={item.to as any}
                 search={item.search as any}
                 onClick={onNavigate}
+                activeOptions={item.exact ? { exact: true } : undefined}
                 title={isCollapsed ? item.label : undefined}
                 style={{
                   display: 'flex', alignItems: 'center', gap: 9,

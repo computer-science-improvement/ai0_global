@@ -121,17 +121,32 @@ export interface Bot {
   created_at:       string;
 }
 
-export interface TrackingSessionStatus {
+export interface TgAccountInfo {
+  id:        string | null;
+  username:  string | null;
+  firstName: string | null;
+  lastName:  string | null;
+  phone:     string | null;
+  isPremium: boolean;
+}
+
+export interface TrackingSession {
+  id:          string;
+  label:       string;
+  /** Which .env var holds the session string in effect. */
+  envVar:      string;
   /** True when both API creds and a session string are present. */
   configured:  boolean;
   /** True when the MTProto client actually connected at boot. */
   ready:       boolean;
-  hasApiCreds: boolean;
-  /** Which .env var holds the session string in effect. */
-  envVar:      string;
   /** True when reusing the shared publisher session instead of a dedicated one. */
   shared:      boolean;
+  hasApiCreds: boolean;
+  /** The real Telegram account behind this session, when connected. */
+  account:     TgAccountInfo | null;
 }
+
+export interface TrackingSessionsResponse { sessions: TrackingSession[]; }
 
 export interface TelegraphAccount {
   id:               string;

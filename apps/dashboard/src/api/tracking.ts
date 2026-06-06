@@ -1,5 +1,5 @@
 import { api } from './client';
-import type { TrackedChannel, TrackedPost, SubsHistoryPoint, PageResp, GraphResponse, RoiResponse, TrackingSessionStatus } from './types';
+import type { TrackedChannel, TrackedPost, SubsHistoryPoint, PageResp, GraphResponse, RoiResponse, TrackingSessionsResponse } from './types';
 
 export interface PatchChannelInput {
   title?:         string | null;
@@ -45,7 +45,7 @@ export const trackingApi = {
     }),
   deleteChannel: (id: string) => api<void>(`/tracking/channels/${id}`, { method: 'DELETE' }),
   pollChannel:   (id: string) => api<{ ok: boolean }>(`/tracking/channels/${id}/poll`, { method: 'POST' }),
-  sessionStatus: () => api<TrackingSessionStatus>(`/tracking/session`),
+  sessionStatus: () => api<TrackingSessionsResponse>(`/tracking/session`),
   listPosts:     (id: string, limit = 50, offset = 0) =>
     api<PageResp<TrackedPost>>(`/tracking/channels/${id}/posts?limit=${limit}&offset=${offset}`),
   subsHistory:   (id: string) =>

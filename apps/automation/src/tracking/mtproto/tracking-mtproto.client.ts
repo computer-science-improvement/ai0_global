@@ -4,6 +4,15 @@ import { TelegramClient, Api } from 'telegram';
 import { StringSession }       from 'telegram/sessions';
 import { LogLevel }            from 'telegram/extensions/Logger';
 
+export interface TgAccountInfo {
+  id:        string | null;
+  username:  string | null;
+  firstName: string | null;
+  lastName:  string | null;
+  phone:     string | null;
+  isPremium: boolean;
+}
+
 export interface FullChannelResult {
   tgChatId:    string;
   username:    string | null;
@@ -99,6 +108,35 @@ export class TrackingMtprotoClient implements OnModuleInit {
   }
 
   isEnabled(): boolean { return this.ready; }
+
+  private cachedMe: TgAccountInfo | null = null;
+
+  /**
+   * Account behind the session — the real Telegram user the tracker logs in
+   * as. Fetched once via getMe() and cached. Returns null when the session
+   * is empty / not connected. Lets the Connections UI show "who" the session
+   * belongs to (username / name / phone) rather than just a connected flag.
+   */
+  async getAccount(): Promise<TgAccountInfo | null> {
+    if (!this.ready || !this.client) return null;
+    if (this.cachedMe) return this.cachedMe;
+    try {
+      const me: any = await this.client.getMe();
+      if (!me) return null;
+      this.cachedMe = {
+        id:        me.id != null ? String(me.id) : null,
+        username:  me.username  ?? null,
+        firstName: me.firstName ?? null,
+        lastName:  me.lastName  ?? null,
+        phone:     me.phone     ?? null,
+        isPremium: !!me.premium,
+      };
+      return this.cachedMe;
+    } catch (err: any) {
+      this.logger.debug(`getAccount (getMe) failed: ${err?.errorMessage ?? err?.message ?? err}`);
+      return null;
+    }
+  }
 
   /**
    * Read-only snapshot of the tracking session for the Connections UI. Never

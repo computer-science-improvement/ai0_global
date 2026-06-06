@@ -35,9 +35,29 @@ export class TrackingService {
     private readonly mtproto:     TrackingMtprotoClient,
   ) {}
 
-  /** Read-only MTProto tracking-session status for the Connections UI. */
-  sessionStatus() {
-    return this.mtproto.getStatus();
+  /**
+   * Read-only MTProto session list for the Connections UI. Returns an array
+   * (plural-ready — multi-session is on the roadmap) describing each session,
+   * including the real Telegram account behind it (username / name) when the
+   * session is connected. Never exposes the session string itself.
+   */
+  async sessionStatus() {
+    const s = this.mtproto.getStatus();
+    const account = await this.mtproto.getAccount();
+    return {
+      sessions: [
+        {
+          id:          'tracking',
+          label:       s.shared ? 'Спільна сесія (публікатор)' : 'Трекерська сесія',
+          envVar:      s.envVar,
+          configured:  s.configured,
+          ready:       s.ready,
+          shared:      s.shared,
+          hasApiCreds: s.hasApiCreds,
+          account,
+        },
+      ],
+    };
   }
 
   async listChannels(filter: 'mine' | 'all' | 'external', q: string | undefined,
