@@ -101,6 +101,34 @@ export class TrackingMtprotoClient implements OnModuleInit {
   isEnabled(): boolean { return this.ready; }
 
   /**
+   * Read-only snapshot of the tracking session for the Connections UI. Never
+   * leaks the session string itself — only whether it's configured, which env
+   * var holds it, and whether the client connected.
+   */
+  getStatus(): {
+    configured:  boolean;
+    ready:       boolean;
+    hasApiCreds: boolean;
+    envVar:      string;
+    shared:      boolean;
+  } {
+    const apiId     = this.config.get<string>('TELEGRAM_API_ID') ?? '';
+    const apiHash   = this.config.get<string>('TELEGRAM_API_HASH') ?? '';
+    const dedicated = this.config.get<string>('TELEGRAM_TRACKING_SESSION_STRING') ?? '';
+    const shareOn   = this.config.get<string>('TELEGRAM_TRACKING_SHARE_SESSION') === 'true';
+    const shared    = shareOn ? (this.config.get<string>('TELEGRAM_SESSION_STRING') ?? '') : '';
+    const hasApiCreds = !!apiId && !!apiHash;
+    const hasSession  = !!(dedicated || shared);
+    return {
+      configured:  hasApiCreds && hasSession,
+      ready:       this.ready,
+      hasApiCreds,
+      envVar:      dedicated ? 'TELEGRAM_TRACKING_SESSION_STRING' : 'TELEGRAM_SESSION_STRING',
+      shared:      !dedicated && !!shared,
+    };
+  }
+
+  /**
    * Convert the caller's address into something gramjs's getEntity accepts.
    *   - bot-API chat ids (`-1003984251759`) → numeric (gramjs handles the
    *     bot-API ↔ MTProto id translation internally when given a number;

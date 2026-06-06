@@ -17,6 +17,7 @@ import { Route as RecommendationsRouteImport } from './routes/recommendations'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as GraphRouteImport } from './routes/graph'
 import { Route as DiscoveryRouteImport } from './routes/discovery'
+import { Route as ConnectionsRouteImport } from './routes/connections'
 import { Route as ChannelsRouteImport } from './routes/channels'
 import { Route as CalendarRouteImport } from './routes/calendar'
 import { Route as BotsRouteImport } from './routes/bots'
@@ -65,6 +66,11 @@ const DiscoveryRoute = DiscoveryRouteImport.update({
   path: '/discovery',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ConnectionsRoute = ConnectionsRouteImport.update({
+  id: '/connections',
+  path: '/connections',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ChannelsRoute = ChannelsRouteImport.update({
   id: '/channels',
   path: '/channels',
@@ -91,9 +97,9 @@ const IndexRoute = IndexRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const ConnectionsPlatformRoute = ConnectionsPlatformRouteImport.update({
-  id: '/connections/$platform',
-  path: '/connections/$platform',
-  getParentRoute: () => rootRouteImport,
+  id: '/$platform',
+  path: '/$platform',
+  getParentRoute: () => ConnectionsRoute,
 } as any)
 const ChannelsIdRoute = ChannelsIdRouteImport.update({
   id: '/channels_/$id',
@@ -107,6 +113,7 @@ export interface FileRoutesByFullPath {
   '/bots': typeof BotsRoute
   '/calendar': typeof CalendarRoute
   '/channels': typeof ChannelsRoute
+  '/connections': typeof ConnectionsRouteWithChildren
   '/discovery': typeof DiscoveryRoute
   '/graph': typeof GraphRoute
   '/login': typeof LoginRoute
@@ -124,6 +131,7 @@ export interface FileRoutesByTo {
   '/bots': typeof BotsRoute
   '/calendar': typeof CalendarRoute
   '/channels': typeof ChannelsRoute
+  '/connections': typeof ConnectionsRouteWithChildren
   '/discovery': typeof DiscoveryRoute
   '/graph': typeof GraphRoute
   '/login': typeof LoginRoute
@@ -142,6 +150,7 @@ export interface FileRoutesById {
   '/bots': typeof BotsRoute
   '/calendar': typeof CalendarRoute
   '/channels': typeof ChannelsRoute
+  '/connections': typeof ConnectionsRouteWithChildren
   '/discovery': typeof DiscoveryRoute
   '/graph': typeof GraphRoute
   '/login': typeof LoginRoute
@@ -161,6 +170,7 @@ export interface FileRouteTypes {
     | '/bots'
     | '/calendar'
     | '/channels'
+    | '/connections'
     | '/discovery'
     | '/graph'
     | '/login'
@@ -178,6 +188,7 @@ export interface FileRouteTypes {
     | '/bots'
     | '/calendar'
     | '/channels'
+    | '/connections'
     | '/discovery'
     | '/graph'
     | '/login'
@@ -195,6 +206,7 @@ export interface FileRouteTypes {
     | '/bots'
     | '/calendar'
     | '/channels'
+    | '/connections'
     | '/discovery'
     | '/graph'
     | '/login'
@@ -213,6 +225,7 @@ export interface RootRouteChildren {
   BotsRoute: typeof BotsRoute
   CalendarRoute: typeof CalendarRoute
   ChannelsRoute: typeof ChannelsRoute
+  ConnectionsRoute: typeof ConnectionsRouteWithChildren
   DiscoveryRoute: typeof DiscoveryRoute
   GraphRoute: typeof GraphRoute
   LoginRoute: typeof LoginRoute
@@ -222,7 +235,6 @@ export interface RootRouteChildren {
   TelegraphRoute: typeof TelegraphRoute
   TrackedRoute: typeof TrackedRoute
   ChannelsIdRoute: typeof ChannelsIdRoute
-  ConnectionsPlatformRoute: typeof ConnectionsPlatformRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -283,6 +295,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DiscoveryRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/connections': {
+      id: '/connections'
+      path: '/connections'
+      fullPath: '/connections'
+      preLoaderRoute: typeof ConnectionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/channels': {
       id: '/channels'
       path: '/channels'
@@ -320,10 +339,10 @@ declare module '@tanstack/react-router' {
     }
     '/connections/$platform': {
       id: '/connections/$platform'
-      path: '/connections/$platform'
+      path: '/$platform'
       fullPath: '/connections/$platform'
       preLoaderRoute: typeof ConnectionsPlatformRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof ConnectionsRoute
     }
     '/channels_/$id': {
       id: '/channels_/$id'
@@ -335,12 +354,25 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface ConnectionsRouteChildren {
+  ConnectionsPlatformRoute: typeof ConnectionsPlatformRoute
+}
+
+const ConnectionsRouteChildren: ConnectionsRouteChildren = {
+  ConnectionsPlatformRoute: ConnectionsPlatformRoute,
+}
+
+const ConnectionsRouteWithChildren = ConnectionsRoute._addFileChildren(
+  ConnectionsRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AnalyticsRoute: AnalyticsRoute,
   BotsRoute: BotsRoute,
   CalendarRoute: CalendarRoute,
   ChannelsRoute: ChannelsRoute,
+  ConnectionsRoute: ConnectionsRouteWithChildren,
   DiscoveryRoute: DiscoveryRoute,
   GraphRoute: GraphRoute,
   LoginRoute: LoginRoute,
@@ -350,7 +382,6 @@ const rootRouteChildren: RootRouteChildren = {
   TelegraphRoute: TelegraphRoute,
   TrackedRoute: TrackedRoute,
   ChannelsIdRoute: ChannelsIdRoute,
-  ConnectionsPlatformRoute: ConnectionsPlatformRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

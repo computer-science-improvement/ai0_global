@@ -51,6 +51,10 @@ export class TrackingController {
     );
   }
 
+  /** Read-only status of the MTProto tracking session (Connections UI). */
+  @Get('session')
+  session() { return this.service.sessionStatus(); }
+
   @Post('channels')
   add(@Body() dto: AddChannelDto) { return this.service.addChannel(dto.username); }
 

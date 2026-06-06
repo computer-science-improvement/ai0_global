@@ -24,11 +24,7 @@ const GROUPS: NavGroup[] = [
     { to: '/recommendations', label: 'Рекомендації',  icon: 'recommendations' },
   ]},
   { title: 'Підключення', items: [
-    { to: '/bots',                  label: 'TG-боти',   icon: 'bots' },
-    { to: '/telegraph',             label: 'Telegraph', icon: 'telegraph' },
-    { to: '/connections/instagram', label: 'Instagram', icon: 'instagram', soon: true },
-    { to: '/connections/tiktok',    label: 'TikTok',    icon: 'tiktok', soon: true },
-    { to: '/connections/facebook',  label: 'Facebook',  icon: 'facebook', soon: true },
+    { to: '/connections', label: 'Підключення', icon: 'connections' },
   ]},
   { title: 'Система', items: [
     { to: '/settings', label: 'Налаштування', icon: 'settings', soon: true },

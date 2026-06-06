@@ -121,6 +121,18 @@ export interface Bot {
   created_at:       string;
 }
 
+export interface TrackingSessionStatus {
+  /** True when both API creds and a session string are present. */
+  configured:  boolean;
+  /** True when the MTProto client actually connected at boot. */
+  ready:       boolean;
+  hasApiCreds: boolean;
+  /** Which .env var holds the session string in effect. */
+  envVar:      string;
+  /** True when reusing the shared publisher session instead of a dedicated one. */
+  shared:      boolean;
+}
+
 export interface TelegraphAccount {
   id:               string;
   account_id:       string;

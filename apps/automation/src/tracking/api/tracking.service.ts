@@ -11,6 +11,7 @@ import { GraphDto } from './dto/graph.dto';
 import { PollTier } from '../types';
 import { ConfigCacheService } from '../../config/config-cache.service';
 import { ConfigEventsPublisher } from '../../config/config-events.publisher';
+import { TrackingMtprotoClient } from '../mtproto/tracking-mtproto.client';
 
 function edgeColorTier(count: number): 'green' | 'orange' | 'red' {
   if (count >= 10) return 'red';
@@ -31,7 +32,13 @@ export class TrackingService {
     private readonly roiAnalyzer: RoiAnalyzerService,
     private readonly configCache: ConfigCacheService,
     private readonly configEvents: ConfigEventsPublisher,
+    private readonly mtproto:     TrackingMtprotoClient,
   ) {}
+
+  /** Read-only MTProto tracking-session status for the Connections UI. */
+  sessionStatus() {
+    return this.mtproto.getStatus();
+  }
 
   async listChannels(filter: 'mine' | 'all' | 'external', q: string | undefined,
                      tier: PollTier | undefined, page: number, pageSize: number,
