@@ -1,7 +1,7 @@
 import { ForbiddenException, Injectable, Logger, UnauthorizedException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
-import { createHash, createHmac } from 'crypto';
+import { createHash, createHmac, timingSafeEqual } from 'crypto';
 import { TelegramLoginDto } from './telegram-login.dto';
 import { JwtPayload } from './auth.types';
 
@@ -35,6 +35,30 @@ export class AuthService {
     };
     const token = await this.jwt.signAsync(payload, { expiresIn: '30d' });
     return { token, payload };
+  }
+
+  /**
+   * Shared-token login — compares a pasted token against the TRACKING_TOKEN
+   * env secret (constant-time) and issues the same JWT session cookie the
+   * tracking guard already accepts. Lets an operator authenticate on a plain
+   * HTTP box with no domain / no Telegram widget.
+   */
+  async loginWithToken(provided: string): Promise<{ token: string; payload: JwtPayload }> {
+    const expected = this.config.get<string>('TRACKING_TOKEN') ?? '';
+    if (!expected) throw new UnauthorizedException('Token auth not configured (TRACKING_TOKEN unset)');
+    if (!this.safeEqual(provided, expected)) throw new UnauthorizedException('Invalid token');
+
+    const payload: JwtPayload = { sub: 0, username: 'token', firstName: 'Operator' };
+    const token = await this.jwt.signAsync(payload, { expiresIn: '30d' });
+    return { token, payload };
+  }
+
+  /** Constant-time string compare (length mismatch short-circuits to false). */
+  private safeEqual(a: string, b: string): boolean {
+    const ab = Buffer.from(a);
+    const bb = Buffer.from(b);
+    if (ab.length !== bb.length) return false;
+    return timingSafeEqual(ab, bb);
   }
 
   private computeHash(input: TelegramLoginDto, botToken: string): string {

@@ -2,6 +2,7 @@ import { Body, Controller, Get, Post, Req, Res } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { AuthService } from './auth.service';
 import { TelegramLoginDto } from './telegram-login.dto';
+import { TokenLoginDto } from './token-login.dto';
 import { ConfigService } from '@nestjs/config';
 
 const COOKIE_NAME = 'tracking_jwt';
@@ -16,13 +17,26 @@ export class AuthController {
   @Post('telegram-login')
   async login(@Body() dto: TelegramLoginDto, @Res({ passthrough: true }) res: Response) {
     const { token, payload } = await this.auth.loginWithTelegram(dto);
+    this.setSessionCookie(res, token);
+    return { tgUserId: payload.sub, firstName: payload.firstName, username: payload.username };
+  }
+
+  /** Shared-token login — paste the TRACKING_TOKEN secret to get a session
+   *  cookie. For HTTP/no-DNS boxes where the Telegram widget can't run. */
+  @Post('token-login')
+  async tokenLogin(@Body() dto: TokenLoginDto, @Res({ passthrough: true }) res: Response) {
+    const { token, payload } = await this.auth.loginWithToken(dto.token);
+    this.setSessionCookie(res, token);
+    return { tgUserId: payload.sub, firstName: payload.firstName, username: payload.username };
+  }
+
+  private setSessionCookie(res: Response, token: string): void {
     res.cookie(COOKIE_NAME, token, {
       httpOnly: true,
       secure:   this.config.get('NODE_ENV') === 'production',
       sameSite: 'lax',
       maxAge:   30 * 86_400 * 1000,
     });
-    return { tgUserId: payload.sub, firstName: payload.firstName, username: payload.username };
   }
 
   @Get('me')

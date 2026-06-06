@@ -1,7 +1,7 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { authApi, type TelegramLoginPayload } from '../api/auth';
-import { TG_BOT_USERNAME } from '../lib/env';
+import { TG_BOT_USERNAME, AUTH_MODE } from '../lib/env';
 import { useAuth } from '../auth/use-auth';
 
 export const Route = createFileRoute('/login')({ component: LoginPage });
@@ -12,9 +12,28 @@ function LoginPage() {
   const navigate = useNavigate();
   const { refresh } = useAuth();
   const widgetRef = useRef<HTMLDivElement>(null);
+  const [token, setToken] = useState('');
+  const [error, setError] = useState<string | null>(null);
+  const [busy, setBusy] = useState(false);
 
+  const submitToken = async (value: string) => {
+    const t = value.trim();
+    if (!t || busy) return;
+    setBusy(true); setError(null);
+    try {
+      await authApi.tokenLogin(t);
+      await refresh();
+      await navigate({ to: '/' as any });
+    } catch {
+      setError('Невірний токен');
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  // Telegram Login Widget (telegram mode only).
   useEffect(() => {
-    if (!widgetRef.current) return;
+    if (AUTH_MODE !== 'telegram' || !widgetRef.current) return;
     window.onTelegramAuth = async (user) => {
       try {
         await authApi.telegramLogin(user);
@@ -24,7 +43,6 @@ function LoginPage() {
         alert(`Login failed: ${(e as Error).message}`);
       }
     };
-    if (!TG_BOT_USERNAME) return;
     const s = document.createElement('script');
     s.async = true;
     s.src = 'https://telegram.org/js/telegram-widget.js?22';
@@ -35,24 +53,66 @@ function LoginPage() {
     widgetRef.current.appendChild(s);
   }, [navigate, refresh]);
 
+  // "Authorization link" — /login?token=… auto-submits in token mode so a
+  // bookmarked link signs you straight in.
+  useEffect(() => {
+    if (AUTH_MODE !== 'token') return;
+    const t = new URLSearchParams(window.location.search).get('token');
+    if (t) void submitToken(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
-    <div style={{ display: 'flex', minHeight: '100vh', alignItems: 'center', justifyContent: 'center' }}>
+    <div style={{ display: 'flex', minHeight: '100vh', alignItems: 'center', justifyContent: 'center', padding: 16 }}>
       <div className="card-featured" style={{ maxWidth: 400, width: '100%', padding: 32 }}>
         <h1 className="text-display-md" style={{ marginBottom: 8 }}>Channel Tracker</h1>
-        <p style={{ marginBottom: 24, fontSize: 15, color: 'var(--color-ink-muted)' }}>
-          {TG_BOT_USERNAME
-            ? 'Sign in with Telegram to continue.'
-            : 'Dev mode — Telegram login is disabled (no VITE_TG_BOT_USERNAME).'}
-        </p>
 
-        {TG_BOT_USERNAME ? (
-          <div ref={widgetRef} />
-        ) : (
-          // Dev-bypass: the backend guard also bypasses when no auth is
-          // configured, so just re-enter the app as the placeholder Dev user.
-          // This makes logout → login → back-in work on a no-DNS / HTTP dev
-          // box where the Telegram widget can't render.
+        {AUTH_MODE === 'telegram' && (
           <>
+            <p style={{ marginBottom: 24, fontSize: 15, color: 'var(--color-ink-muted)' }}>
+              Sign in with Telegram to continue.
+            </p>
+            <div ref={widgetRef} />
+          </>
+        )}
+
+        {AUTH_MODE === 'token' && (
+          <>
+            <p style={{ marginBottom: 20, fontSize: 15, color: 'var(--color-ink-muted)' }}>
+              Введіть токен доступу, щоб продовжити.
+            </p>
+            <form
+              onSubmit={(e) => { e.preventDefault(); void submitToken(token); }}
+              style={{ display: 'flex', flexDirection: 'column', gap: 12 }}
+            >
+              <input
+                type="password"
+                autoFocus
+                value={token}
+                onChange={(e) => setToken(e.target.value)}
+                placeholder="Токен доступу"
+                className="input-field"
+                style={{ width: '100%' }}
+                autoComplete="off"
+              />
+              <button type="submit" disabled={busy || !token.trim()} className="btn-primary" style={{ width: '100%' }}>
+                {busy ? 'Перевірка…' : 'Увійти'}
+              </button>
+            </form>
+            {error && (
+              <p style={{ marginTop: 12, fontSize: 13, color: 'var(--color-danger)' }}>{error}</p>
+            )}
+            <p style={{ marginTop: 12, fontSize: 12, color: 'var(--color-ink-dim)' }}>
+              Токен звіряється з <code>TRACKING_TOKEN</code> на сервері й зберігається в сесії (cookie).
+            </p>
+          </>
+        )}
+
+        {AUTH_MODE === 'dev' && (
+          <>
+            <p style={{ marginBottom: 24, fontSize: 15, color: 'var(--color-ink-muted)' }}>
+              Dev mode — авторизація вимкнена.
+            </p>
             <button
               className="btn-primary"
               style={{ width: '100%' }}
@@ -61,8 +121,8 @@ function LoginPage() {
               Continue in dev mode
             </button>
             <p style={{ marginTop: 12, fontSize: 12, color: 'var(--color-ink-dim)' }}>
-              Set <code>VITE_TG_BOT_USERNAME</code> (+ a domain via BotFather <code>/setdomain</code>)
-              to enable real Telegram sign-in.
+              Set <code>VITE_AUTH_MODE=token</code> (+ <code>TRACKING_TOKEN</code>) for token login, or
+              {' '}<code>VITE_TG_BOT_USERNAME</code> for Telegram sign-in.
             </p>
           </>
         )}

@@ -13,6 +13,12 @@ export const authApi = {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
     }).then((r) => { if (!r.ok) throw new Error(`auth failed: ${r.status}`); return r.json() as Promise<Me>; }),
+  tokenLogin: (token: string) =>
+    fetch(`${AUTH_BASE}/token-login`, {
+      method: 'POST', credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ token }),
+    }).then((r) => { if (!r.ok) throw new Error(`auth failed: ${r.status}`); return r.json() as Promise<Me>; }),
   me:     () => fetch(`${AUTH_BASE}/me`, { credentials: 'include' }).then((r) => r.ok ? r.json() as Promise<Me | null> : null),
   logout: () => fetch(`${AUTH_BASE}/logout`, { method: 'POST', credentials: 'include' }),
 };

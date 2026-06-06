@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 import { authApi } from '../api/auth';
-import { TG_BOT_USERNAME } from '../lib/env';
+import { AUTH_MODE } from '../lib/env';
 import type { Me } from '../api/types';
 
 interface AuthState { me: Me | null; loading: boolean; refresh: () => Promise<void>; }
@@ -8,11 +8,10 @@ interface AuthState { me: Me | null; loading: boolean; refresh: () => Promise<vo
 const AuthContext = createContext<AuthState | null>(null);
 
 /**
- * Dev-mode bypass: when VITE_TG_BOT_USERNAME is not set we can't render the
- * Telegram Login Widget, so there's no way to authenticate via the proper path.
- * Mirror the backend's dev-bypass (no TRACKING_TOKEN → guard returns true) by
- * treating the user as authenticated with a placeholder identity. Production
- * MUST set VITE_TG_BOT_USERNAME and the user goes through the real flow.
+ * Dev-mode bypass: in 'dev' mode there's no auth configured, so mirror the
+ * backend's dev-bypass (no TRACKING_TOKEN → guard returns true) with a
+ * placeholder identity. In 'telegram' / 'token' modes we always consult
+ * /auth/me (cookie-backed) so a real session is required.
  */
 const DEV_USER: Me = { tgUserId: 0, firstName: 'Dev', username: 'dev' };
 
@@ -23,7 +22,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const refresh = async () => {
     setLoading(true);
     try {
-      if (!TG_BOT_USERNAME) {
+      if (AUTH_MODE === 'dev') {
         setMe(DEV_USER);
         return;
       }
