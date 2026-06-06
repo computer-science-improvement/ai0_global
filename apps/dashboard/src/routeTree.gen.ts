@@ -19,6 +19,7 @@ import { Route as LoginRouteImport } from './routes/login'
 import { Route as GraphRouteImport } from './routes/graph'
 import { Route as DiscoveryRouteImport } from './routes/discovery'
 import { Route as ConnectionsRouteImport } from './routes/connections'
+import { Route as ComposeRouteImport } from './routes/compose'
 import { Route as ChannelsRouteImport } from './routes/channels'
 import { Route as CalendarRouteImport } from './routes/calendar'
 import { Route as BotsRouteImport } from './routes/bots'
@@ -77,6 +78,11 @@ const ConnectionsRoute = ConnectionsRouteImport.update({
   path: '/connections',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ComposeRoute = ComposeRouteImport.update({
+  id: '/compose',
+  path: '/compose',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ChannelsRoute = ChannelsRouteImport.update({
   id: '/channels',
   path: '/channels',
@@ -119,6 +125,7 @@ export interface FileRoutesByFullPath {
   '/bots': typeof BotsRoute
   '/calendar': typeof CalendarRoute
   '/channels': typeof ChannelsRoute
+  '/compose': typeof ComposeRoute
   '/connections': typeof ConnectionsRouteWithChildren
   '/discovery': typeof DiscoveryRoute
   '/graph': typeof GraphRoute
@@ -138,6 +145,7 @@ export interface FileRoutesByTo {
   '/bots': typeof BotsRoute
   '/calendar': typeof CalendarRoute
   '/channels': typeof ChannelsRoute
+  '/compose': typeof ComposeRoute
   '/connections': typeof ConnectionsRouteWithChildren
   '/discovery': typeof DiscoveryRoute
   '/graph': typeof GraphRoute
@@ -158,6 +166,7 @@ export interface FileRoutesById {
   '/bots': typeof BotsRoute
   '/calendar': typeof CalendarRoute
   '/channels': typeof ChannelsRoute
+  '/compose': typeof ComposeRoute
   '/connections': typeof ConnectionsRouteWithChildren
   '/discovery': typeof DiscoveryRoute
   '/graph': typeof GraphRoute
@@ -179,6 +188,7 @@ export interface FileRouteTypes {
     | '/bots'
     | '/calendar'
     | '/channels'
+    | '/compose'
     | '/connections'
     | '/discovery'
     | '/graph'
@@ -198,6 +208,7 @@ export interface FileRouteTypes {
     | '/bots'
     | '/calendar'
     | '/channels'
+    | '/compose'
     | '/connections'
     | '/discovery'
     | '/graph'
@@ -217,6 +228,7 @@ export interface FileRouteTypes {
     | '/bots'
     | '/calendar'
     | '/channels'
+    | '/compose'
     | '/connections'
     | '/discovery'
     | '/graph'
@@ -237,6 +249,7 @@ export interface RootRouteChildren {
   BotsRoute: typeof BotsRoute
   CalendarRoute: typeof CalendarRoute
   ChannelsRoute: typeof ChannelsRoute
+  ComposeRoute: typeof ComposeRoute
   ConnectionsRoute: typeof ConnectionsRouteWithChildren
   DiscoveryRoute: typeof DiscoveryRoute
   GraphRoute: typeof GraphRoute
@@ -322,6 +335,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ConnectionsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/compose': {
+      id: '/compose'
+      path: '/compose'
+      fullPath: '/compose'
+      preLoaderRoute: typeof ComposeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/channels': {
       id: '/channels'
       path: '/channels'
@@ -392,6 +412,7 @@ const rootRouteChildren: RootRouteChildren = {
   BotsRoute: BotsRoute,
   CalendarRoute: CalendarRoute,
   ChannelsRoute: ChannelsRoute,
+  ComposeRoute: ComposeRoute,
   ConnectionsRoute: ConnectionsRouteWithChildren,
   DiscoveryRoute: DiscoveryRoute,
   GraphRoute: GraphRoute,
