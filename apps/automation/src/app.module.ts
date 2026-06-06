@@ -28,6 +28,7 @@ import { TrackingModule }       from './tracking/tracking.module';
 import { AuthModule }           from './auth/auth.module';
 import { DiscoveryModule }      from './discovery/discovery.module';
 import { ScheduledPostsModule } from './scheduled-posts/scheduled-posts.module';
+import { SettingsModule }       from './settings/settings.module';
 
 @Module({
   imports: [
@@ -57,6 +58,7 @@ import { ScheduledPostsModule } from './scheduled-posts/scheduled-posts.module';
     AssetsStrategyModule,
     TrackingModule,
     ScheduledPostsModule,
+    SettingsModule,
     AuthModule,
     DiscoveryModule,
   ],
