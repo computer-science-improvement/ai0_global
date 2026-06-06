@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { Outlet } from '@tanstack/react-router';
 import { useAuth } from '../auth/use-auth';
 import { authApi } from '../api/auth';
@@ -5,9 +6,18 @@ import { AppSidebar } from './AppSidebar';
 import { PlatformFilter } from './PlatformFilter';
 import { Button } from './ui/Button';
 import { Icon } from './ui/Icon';
+import { ConfirmProvider } from './ui/ConfirmDialog';
+import { useMediaQuery } from '../lib/useMediaQuery';
 
 export function AppShell() {
   const { me, refresh } = useAuth();
+  const isMobile = useMediaQuery('(max-width: 860px)');
+  const [navOpen, setNavOpen] = useState(false);
+
+  // Collapse the drawer whenever we leave the mobile breakpoint, so resizing
+  // a desktop window never leaves a stray overlay open.
+  useEffect(() => { if (!isMobile) setNavOpen(false); }, [isMobile]);
+
   const onLogout = async () => {
     await authApi.logout();
     await refresh();
@@ -15,31 +25,69 @@ export function AppShell() {
   };
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh', background: 'var(--color-canvas)' }}>
-      <AppSidebar />
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0 }}>
-        <header style={{
-          display: 'flex', alignItems: 'center', gap: 10,
-          padding: '12px 20px', borderBottom: '1px solid var(--color-hairline)',
-          background: 'var(--color-canvas)', position: 'sticky', top: 0, zIndex: 10,
-        }}>
-          <PlatformFilter />
-          <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 12 }}>
-            {me && (
-              <span className="text-caption" style={{ color: 'var(--color-ink-muted)' }}>
-                {me.firstName}{me.username ? ` · @${me.username}` : ''}
-              </span>
+    <ConfirmProvider>
+      <div style={{ display: 'flex', minHeight: '100vh', background: 'var(--color-canvas)' }}>
+        <AppSidebar
+          isMobile={isMobile}
+          mobileOpen={navOpen}
+          onNavigate={() => setNavOpen(false)}
+        />
+
+        {isMobile && navOpen && (
+          <div
+            onClick={() => setNavOpen(false)}
+            aria-hidden
+            style={{
+              position: 'fixed', inset: 0, zIndex: 55,
+              background: 'rgba(0,0,0,0.5)', backdropFilter: 'blur(2px)',
+            }}
+          />
+        )}
+
+        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0 }}>
+          <header style={{
+            display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap',
+            padding: isMobile ? '10px 14px' : '12px 20px',
+            borderBottom: '1px solid var(--color-hairline)',
+            background: 'var(--color-canvas)', position: 'sticky', top: 0, zIndex: 10,
+          }}>
+            {isMobile && (
+              <button
+                onClick={() => setNavOpen(true)}
+                className="btn-icon"
+                style={{ width: 38, height: 38, flexShrink: 0 }}
+                aria-label="Open menu"
+              >
+                <Icon name="menu" size={18} />
+              </button>
             )}
-            <Button variant="primary" style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
-              <Icon name="plus" size={14} /> Новий пост
-            </Button>
-            {me && <Button variant="tiny" onClick={onLogout}>Вийти</Button>}
-          </div>
-        </header>
-        <main style={{ flex: 1, padding: '24px 30px 60px', maxWidth: 1320, margin: '0 auto', width: '100%' }}>
-          <Outlet />
-        </main>
+            <PlatformFilter />
+            <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: isMobile ? 8 : 12 }}>
+              {me && !isMobile && (
+                <span className="text-caption" style={{ color: 'var(--color-ink-muted)' }}>
+                  {me.firstName}{me.username ? ` · @${me.username}` : ''}
+                </span>
+              )}
+              <Button
+                variant="primary"
+                style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}
+                title="Новий пост"
+              >
+                <Icon name="plus" size={14} />{!isMobile && ' Новий пост'}
+              </Button>
+              {me && <Button variant="tiny" onClick={onLogout}>Вийти</Button>}
+            </div>
+          </header>
+
+          <main style={{
+            flex: 1,
+            padding: isMobile ? '16px 14px 48px' : '24px 30px 60px',
+            maxWidth: 1320, margin: '0 auto', width: '100%',
+          }}>
+            <Outlet />
+          </main>
+        </div>
       </div>
-    </div>
+    </ConfirmProvider>
   );
 }

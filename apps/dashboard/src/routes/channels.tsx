@@ -85,7 +85,7 @@ function ChannelsPage() {
         </>
       )}
 
-      <AddChannelModal open={modalOpen} onClose={() => setModalOpen(false)} />
+      <AddChannelModal open={modalOpen} onClose={() => setModalOpen(false)} ownership="mine" />
     </div>
   );
 }

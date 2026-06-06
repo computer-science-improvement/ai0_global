@@ -10,7 +10,7 @@
 // channel arrives configured and ready, not in a half-initialised state
 // the operator has to fix afterwards.
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from '@tanstack/react-router';
 import { trackingApi, CreateFullChannelInput } from '../api/tracking';
@@ -21,14 +21,29 @@ import { CHANNEL_KIND_HELP, POLL_TIER_HELP, CHANNEL_FLAG_HELP } from '../lib/lab
 
 type Kind = 'public' | 'private';
 
-export function AddChannelModal({ open, onClose }: { open: boolean; onClose: () => void }) {
-  const [kind,       setKind]       = useState<Kind>('private');
+export function AddChannelModal({ open, onClose, ownership = 'mine' }: {
+  open: boolean;
+  onClose: () => void;
+  /** Fixed by the opening page: «Мої канали» → mine, «Відстежувані» → external.
+   *  The Ownership toggle is locked to this value. */
+  ownership?: 'mine' | 'external';
+}) {
+  const forcedMine = ownership === 'mine';
+  const [kind,       setKind]       = useState<Kind>(forcedMine ? 'private' : 'public');
   const [username,   setUsername]   = useState('');
   const [chatId,     setChatId]     = useState('');
   const [title,      setTitle]      = useState('');
   const [botId,      setBotId]      = useState<string>('');
-  const [isMine,     setIsMine]     = useState(true);
   const [pollTier,   setPollTier]   = useState<'hot' | 'warm' | 'cold'>('warm');
+
+  // Re-sync sensible defaults whenever the modal (re)opens. External tracking
+  // is almost always a public @username, so default kind follows ownership.
+  useEffect(() => {
+    if (open) {
+      setKind(forcedMine ? 'private' : 'public');
+      setUsername(''); setChatId(''); setTitle(''); setBotId(''); setPollTier('warm');
+    }
+  }, [open, forcedMine]);
 
   const qc           = useQueryClient();
   const navigate     = useNavigate();
@@ -57,8 +72,8 @@ export function AddChannelModal({ open, onClose }: { open: boolean; onClose: () 
   });
 
   const reset = () => {
-    setKind('private'); setUsername(''); setChatId(''); setTitle('');
-    setBotId(''); setIsMine(true); setPollTier('warm');
+    setKind(forcedMine ? 'private' : 'public'); setUsername(''); setChatId(''); setTitle('');
+    setBotId(''); setPollTier('warm');
   };
 
   const submit = (e: React.FormEvent) => {
@@ -67,7 +82,7 @@ export function AddChannelModal({ open, onClose }: { open: boolean; onClose: () 
     // Simple public-discovery path: only username given, no extra config,
     // and isMine left at default. This is the fastest way to start tracking
     // a public channel without manually filling everything.
-    if (kind === 'public' && username.trim() && !title.trim() && !botId && pollTier === 'warm' && isMine) {
+    if (kind === 'public' && username.trim() && !title.trim() && !botId && pollTier === 'warm' && forcedMine) {
       addDiscovery.mutate(username.trim().replace(/^@/, ''));
       return;
     }
@@ -78,7 +93,7 @@ export function AddChannelModal({ open, onClose }: { open: boolean; onClose: () 
       tgChatId:  kind === 'private' ? chatId.trim() : undefined,
       title:     title.trim() || undefined,
       botId:     botId || undefined,
-      isMine,
+      isMine:    forcedMine,
       pollTier,
     });
   };
@@ -173,15 +188,18 @@ export function AddChannelModal({ open, onClose }: { open: boolean; onClose: () 
         </Field>
 
         <Field label="Ownership" help={`mine: ${CHANNEL_FLAG_HELP.mine}`}>
-          <label style={{ display: 'inline-flex', alignItems: 'center', gap: 8, cursor: 'pointer' }}>
+          <label style={{ display: 'inline-flex', alignItems: 'center', gap: 8, cursor: 'not-allowed', opacity: 0.85 }}>
             <input
               type="checkbox"
-              checked={isMine}
-              onChange={e => setIsMine(e.target.checked)}
+              checked={forcedMine}
+              disabled
+              readOnly
               style={{ accentColor: 'var(--color-accent)' }}
             />
             <span className="text-body-sm" style={{ color: 'var(--color-ink)' }}>
-              Mine — strategies can publish into this channel
+              {forcedMine
+                ? 'Mine — strategies can publish into this channel'
+                : 'External — tracked only; strategies will not publish here'}
             </span>
           </label>
         </Field>

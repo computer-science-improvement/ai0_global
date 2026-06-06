@@ -2,6 +2,7 @@ import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import { useState } from 'react';
 import { AddBotModal } from '../components/AddBotModal';
 import { Icon } from '../components/Icon';
+import { useConfirm } from '../components/ui/ConfirmDialog';
 import {
   useBots, useDeleteBot, useToggleBotActive, useVerifyBot,
 } from '../api/bots';
@@ -14,6 +15,7 @@ function BotsPage() {
   const verify  = useVerifyBot();
   const toggle  = useToggleBotActive();
   const remove  = useDeleteBot();
+  const confirm = useConfirm();
   const [addOpen, setAddOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -98,8 +100,8 @@ function BotsPage() {
                           : <><Icon name="play"  size={12} style={{ marginRight: 4 }} />Activate</>}
                       </button>
                       <button
-                        onClick={() => {
-                          if (confirm(`Delete bot ${b.bot_id}?`)) remove.mutate(b.id);
+                        onClick={async () => {
+                          if (await confirm(`delete bot ${b.username ? `@${b.username}` : b.bot_id}`)) remove.mutate(b.id);
                         }}
                         className="btn-tiny-danger"
                       >

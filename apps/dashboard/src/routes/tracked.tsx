@@ -1,9 +1,12 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { useQuery } from '@tanstack/react-query';
+import { useState } from 'react';
 import { trackingApi } from '../api/tracking';
 import { ChannelRow } from '../components/ChannelRow';
 import { Pagination } from '../components/Pagination';
+import { AddChannelModal } from '../components/AddChannelModal';
 import { PageHeader } from '../components/ui/PageHeader';
+import { Icon } from '../components/Icon';
 
 const PAGE_SIZE = 50;
 
@@ -23,6 +26,7 @@ export const Route = createFileRoute('/tracked')({
 function TrackedPage() {
   const { page, q } = Route.useSearch();
   const navigate = Route.useNavigate();
+  const [modalOpen, setModalOpen] = useState(false);
   const setSearch = (patch: Partial<Search>) =>
     navigate({ search: (old: Search) => ({ ...old, ...patch }) });
 
@@ -33,7 +37,15 @@ function TrackedPage() {
 
   return (
     <div>
-      <PageHeader title="Відстежувані канали" subtitle="Чужі канали, що відстежуються (не мої)" />
+      <PageHeader
+        title="Відстежувані канали"
+        subtitle="Чужі канали, що відстежуються (не мої)"
+        actions={
+          <button onClick={() => setModalOpen(true)} className="btn-primary" style={{ gap: 6 }}>
+            <Icon name="plus" size={14} /> Add channel
+          </button>
+        }
+      />
 
       <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20, flexWrap: 'wrap' }}>
         <input
@@ -55,6 +67,8 @@ function TrackedPage() {
           <Pagination page={page} pageSize={PAGE_SIZE} total={data.total} onPage={(p) => setSearch({ page: p })} />
         </>
       )}
+
+      <AddChannelModal open={modalOpen} onClose={() => setModalOpen(false)} ownership="external" />
     </div>
   );
 }

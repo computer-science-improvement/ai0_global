@@ -4,7 +4,7 @@ import {
   LayoutDashboard, Zap, CalendarClock, Radio, BarChart3, Search, Network,
   Star, Bot, FileText, Plug, Settings, Plus, Pencil, Trash2, RefreshCw,
   Check, X, Play, Pause, Info, TriangleAlert, ChevronLeft, ChevronRight,
-  Send, Camera, Music2, AtSign, ThumbsUp,
+  Send, Camera, Music2, AtSign, ThumbsUp, Menu,
   type LucideIcon,
 } from 'lucide-react';
 
@@ -16,7 +16,7 @@ const ICONS = {
   refresh: RefreshCw, check: Check, x: X, play: Play, pause: Pause,
   info: Info, warning: TriangleAlert, 'chevron-left': ChevronLeft,
   'chevron-right': ChevronRight, telegram: Send, instagram: Camera,
-  tiktok: Music2, threads: AtSign, facebook: ThumbsUp,
+  tiktok: Music2, threads: AtSign, facebook: ThumbsUp, menu: Menu,
 } satisfies Record<string, LucideIcon>;
 
 export type IconName = keyof typeof ICONS;

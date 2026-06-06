@@ -12,6 +12,7 @@ import {
   useForwardRoutes, useCreateForwardRoute, useDeleteForwardRoute,
 } from '../api/forward-routes';
 import { Icon } from './Icon';
+import { useConfirm } from './ui/ConfirmDialog';
 import { channelOptionLabel } from '../lib/labels';
 
 interface Props { sourceChannelId: string; }
@@ -19,6 +20,7 @@ interface Props { sourceChannelId: string; }
 export function ForwardRoutesPanel({ sourceChannelId }: Props) {
   const { data, isLoading } = useForwardRoutes(sourceChannelId);
   const remove              = useDeleteForwardRoute(sourceChannelId);
+  const confirm             = useConfirm();
   const [adding, setAdding] = useState(false);
 
   return (
@@ -72,7 +74,7 @@ export function ForwardRoutesPanel({ sourceChannelId }: Props) {
                 {r.description || <em style={{ color: 'var(--color-ink-dim)' }}>no description</em>}
               </span>
               <button
-                onClick={() => { if (confirm(`Delete forward "${r.topic}"?`)) remove.mutate(r.id); }}
+                onClick={async () => { if (await confirm(`delete forward "${r.topic}"`)) remove.mutate(r.id); }}
                 className="btn-icon"
                 style={{ width: 28, height: 28, color: 'var(--color-ink-muted)' }}
                 title="Delete forward"

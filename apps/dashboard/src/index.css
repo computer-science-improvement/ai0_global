@@ -176,6 +176,21 @@ a:hover { opacity: 0.85; }
   border: none; cursor: pointer;
 }
 
+/* Full-size danger button — for confirm dialogs and destructive primary CTAs. */
+.btn-danger {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--color-danger); color: #fff;
+  border-radius: var(--radius-sm);
+  font-size: 14px; font-weight: 500; line-height: 1; letter-spacing: -0.14px;
+  padding: 10px 16px;
+  border: none;
+  cursor: pointer;
+  transition: filter 0.12s ease, transform 0.12s ease;
+}
+.btn-danger:hover  { filter: brightness(1.08); }
+.btn-danger:active { transform: scale(0.97); }
+.btn-danger:disabled { opacity: 0.40; cursor: not-allowed; }
+
 /* Danger flavor of btn-tiny — for Delete actions. Uses soft surface, danger ink. */
 .btn-tiny-danger {
   display: inline-flex; align-items: center; justify-content: center;
@@ -352,6 +367,10 @@ a:hover { opacity: 0.85; }
   background: var(--color-surface-1);
   border-radius: var(--radius-xl);
   overflow: hidden;
+  /* Let wide tables scroll horizontally on narrow viewports instead of
+     forcing the whole page to overflow. */
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 .table {
   width: 100%;
@@ -453,3 +472,27 @@ a:hover { opacity: 0.85; }
   background: var(--color-accent);
   box-shadow: 0 0 12px rgba(62, 207, 142, 0.55);
 }
+
+/* ----------------------------------------------------------------------------
+ * Responsive — phones & small tablets. The shell (sidebar drawer, header,
+ * paddings) is driven in JS via useMediaQuery; these rules cover the typo-
+ * graphy scale and overflow safety nets that apply across every page.
+ * ------------------------------------------------------------------------- */
+
+@media (max-width: 600px) {
+  html, body { -webkit-text-size-adjust: 100%; }
+
+  .text-display-xl { font-size: 40px; letter-spacing: -1.6px; }
+  .text-display-lg { font-size: 32px; letter-spacing: -1.2px; }
+  .text-display-md { font-size: 25px; letter-spacing: -0.6px; line-height: 1.16; }
+  .text-headline   { font-size: 19px; letter-spacing: -0.5px; }
+
+  /* Pad cards a touch tighter so content keeps its breathing room. */
+  .card          { padding: 16px; }
+  .card-featured { padding: 18px; border-radius: var(--radius-lg); }
+
+  /* Modals go near-fullscreen on phones. */
+  .modal-backdrop { padding: 10px; align-items: flex-end; }
+  .modal-shell, .modal-shell-lg { max-width: 100%; border-radius: var(--radius-lg); padding: 18px; }
+}
+

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Icon } from '../components/Icon';
 import { AddStrategyModal } from '../components/AddStrategyModal';
 import { EditStrategyModal } from '../components/EditStrategyModal';
+import { useConfirm } from '../components/ui/ConfirmDialog';
 import {
   useStrategies, usePatchStrategy, useDeleteStrategy, useStrategyRuns, useStrategyPreview,
 } from '../api/strategies';
@@ -18,6 +19,7 @@ function StrategiesPage() {
   const { data, isLoading, error } = useStrategies();
   const patch  = usePatchStrategy();
   const remove = useDeleteStrategy();
+  const confirm = useConfirm();
   const [addOpen, setAddOpen] = useState(false);
   const [editing, setEditing] = useState<Strategy | null>(null);
   const [expanded, setExpanded] = useState<string | null>(null);
@@ -75,8 +77,8 @@ function StrategiesPage() {
                       onToggleOpen={() => setExpanded(isOpen ? null : s.id)}
                       onEdit={() => setEditing(s)}
                       onToggle={() => patch.mutate({ id: s.id, patch: { enabled: !s.enabled } })}
-                      onDelete={() => {
-                        if (confirm(`Delete strategy ${s.ext_id}?`)) remove.mutate(s.id);
+                      onDelete={async () => {
+                        if (await confirm(`delete strategy ${s.ext_id}`)) remove.mutate(s.id);
                       }}
                     />
                     {isOpen && (

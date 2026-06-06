@@ -2,6 +2,7 @@ import { createFileRoute } from '@tanstack/react-router';
 import { useState } from 'react';
 import { AddTelegraphAccountModal } from '../components/AddTelegraphAccountModal';
 import { Icon } from '../components/Icon';
+import { useConfirm } from '../components/ui/ConfirmDialog';
 import {
   useTelegraphAccounts, useDeleteTelegraphAccount,
   useToggleTelegraphActive, useVerifyTelegraphAccount,
@@ -14,6 +15,7 @@ function TelegraphPage() {
   const verify = useVerifyTelegraphAccount();
   const toggle = useToggleTelegraphActive();
   const remove = useDeleteTelegraphAccount();
+  const confirm = useConfirm();
   const [addOpen, setAddOpen] = useState(false);
 
   return (
@@ -92,8 +94,8 @@ function TelegraphPage() {
                           : <><Icon name="play"  size={12} style={{ marginRight: 4 }} />Activate</>}
                       </button>
                       <button
-                        onClick={() => {
-                          if (confirm(`Delete Telegraph account ${a.account_id}?`)) remove.mutate(a.id);
+                        onClick={async () => {
+                          if (await confirm(`delete Telegraph account ${a.account_id}`)) remove.mutate(a.id);
                         }}
                         className="btn-tiny-danger"
                       >

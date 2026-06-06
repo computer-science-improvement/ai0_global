@@ -1,7 +1,8 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { useState } from 'react';
+import { useReducer, useState } from 'react';
 import { trackingApi } from '../api/tracking';
+import { useConfirm } from '../components/ui/ConfirmDialog';
 import { useStrategies } from '../api/strategies';
 import { SubsHistoryChart } from '../components/SubsHistoryChart';
 import { ViewsBarChart } from '../components/ViewsBarChart';
@@ -29,6 +30,10 @@ function ChannelDetailPage() {
   const { id } = Route.useParams();
   const [themesOpen, setThemesOpen] = useState(false);
   const [editOpen,   setEditOpen]   = useState(false);
+  const confirm = useConfirm();
+  // Bumped to force the controlled poll-tier <select> back to the saved value
+  // when the user cancels the confirm dialog.
+  const [, revertTier] = useReducer((x: number) => x + 1, 0);
   const qc = useQueryClient();
 
   const togglePause = useMutation({
@@ -122,7 +127,14 @@ function ChannelDetailPage() {
           <span className="text-body-sm" style={{ color: 'var(--color-ink-dim)' }}>·</span>
           <select
             value={c.pollTier}
-            onChange={(e) => setTier.mutate(e.target.value as 'hot' | 'warm' | 'cold')}
+            onChange={async (e) => {
+              const next = e.target.value as 'hot' | 'warm' | 'cold';
+              if (await confirm(`change poll tier to “${next}”`, { danger: false, confirmLabel: 'Change' })) {
+                setTier.mutate(next);
+              } else {
+                revertTier(); // user cancelled — snap the select back to the saved tier
+              }
+            }}
             disabled={setTier.isPending}
             title={POLL_TIER_HELP[c.pollTier]}
             className="input-field"
@@ -146,7 +158,13 @@ function ChannelDetailPage() {
             </button>
             {c.isMine && (
               <button
-                onClick={() => togglePause.mutate(!c.publishPaused)}
+                onClick={async () => {
+                  const ok = await confirm(
+                    c.publishPaused ? 'resume publishing to this channel' : 'pause publishing to this channel',
+                    { danger: !c.publishPaused, confirmLabel: c.publishPaused ? 'Resume' : 'Pause' },
+                  );
+                  if (ok) togglePause.mutate(!c.publishPaused);
+                }}
                 disabled={togglePause.isPending}
                 className={c.publishPaused ? 'btn-primary' : 'btn-tiny'}
                 title={CHANNEL_FLAG_HELP.publishPaused}
