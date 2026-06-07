@@ -8,7 +8,7 @@ export const PLATFORMS = ['all', 'telegram', 'meta', 'tiktok'] as const;
 export type Platform = typeof PLATFORMS[number];
 
 /** Platforms that actually have data / are selectable right now. */
-export const ACTIVE_PLATFORMS: Platform[] = ['all', 'telegram'];
+export const ACTIVE_PLATFORMS: Platform[] = ['all', 'telegram', 'meta'];
 
 export function parsePlatform(raw: unknown): Platform {
   return PLATFORMS.includes(raw as Platform) ? (raw as Platform) : 'all';

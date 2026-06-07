@@ -13,6 +13,7 @@ import { Icon } from './Icon';
 import { STRATEGY_DESCRIPTIONS, describeStrategy, SOURCE_KIND_LABEL, channelOptionLabel } from '../lib/labels';
 import type { Strategy } from '../api/types';
 import { SchedulePicker } from './SchedulePicker';
+import { CrosspostSection } from './CrosspostSection';
 
 interface Props {
   strategy: Strategy;
@@ -162,6 +163,8 @@ export function EditStrategyModal({ strategy, open, onClose }: Props) {
           </span>
         </label>
       </Field>
+
+      <CrosspostSection channelId={channelId} />
 
       <div className="callout-warning" style={{ marginBottom: 16 }}>
         <Icon name="info" size={14} />

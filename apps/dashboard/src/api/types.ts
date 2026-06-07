@@ -172,6 +172,8 @@ export interface Strategy {
   channel_key:  string | null;
   /** All channels this strategy reaches: primary + forward targets. */
   channels:     StrategyChannelRef[];
+  /** Platforms this strategy publishes to: 'telegram' + configured cross-post platforms. */
+  platforms:    string[];
   schedule:     string;
   params:       Record<string, unknown>;
   enabled:      boolean;
@@ -282,6 +284,18 @@ export interface MetaAccount {
   last_verified_at: string | null;
   verify_error:     string | null;
   created_at:       string;
+}
+
+export type CrosspostMode = 'mirror' | 'teaser';
+
+export interface CrosspostTarget {
+  id:              string;
+  channel_id:      string;
+  platform:        MetaPlatform;
+  meta_account_id: string;
+  mode:            CrosspostMode;
+  enabled:         boolean;
+  created_at:      string;
 }
 
 export type ActivityType = 'posted' | 'error' | 'skipped' | 'running';

@@ -2,6 +2,8 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { useState } from 'react';
 import { Icon } from '../components/Icon';
+import { Icon as PlatformGlyph, type IconName } from '../components/ui/Icon';
+import { usePlatform } from '../lib/usePlatform';
 import { AddStrategyModal } from '../components/AddStrategyModal';
 import { EditStrategyModal } from '../components/EditStrategyModal';
 import { useConfirm } from '../components/ui/ConfirmDialog';
@@ -15,14 +17,40 @@ import type { Strategy, StrategyRunSummary, PreviewItem } from '../api/types';
 
 export const Route = createFileRoute('/strategies')({ component: StrategiesPage });
 
+const META_PLATFORMS = ['instagram', 'facebook', 'threads'];
+const PLATFORM_GLYPH: Record<string, IconName> = {
+  telegram: 'telegram', instagram: 'instagram', facebook: 'facebook', threads: 'threads',
+};
+
+/** Platform capability icons for a strategy row (shown only on the "All" tab). */
+function PlatformIcons({ platforms }: { platforms: string[] }) {
+  const order = ['telegram', 'instagram', 'facebook', 'threads'].filter(p => platforms.includes(p));
+  return (
+    <span style={{ display: 'inline-flex', gap: 5, marginLeft: 8, verticalAlign: 'middle' }}>
+      {order.map(p => (
+        <PlatformGlyph key={p} name={PLATFORM_GLYPH[p]} size={13}
+          className="" />
+      ))}
+    </span>
+  );
+}
+
 function StrategiesPage() {
   const { data, isLoading, error } = useStrategies();
+  const [platform] = usePlatform();
   const patch  = usePatchStrategy();
   const remove = useDeleteStrategy();
   const confirm = useConfirm();
   const [addOpen, setAddOpen] = useState(false);
   const [editing, setEditing] = useState<Strategy | null>(null);
   const [expanded, setExpanded] = useState<string | null>(null);
+
+  // Icons show only on the "All" tab; the "Meta" tab filters to Meta-capable
+  // strategies; "Telegram" shows all (every strategy publishes to Telegram).
+  const showIcons = platform === 'all';
+  const rows = (data ?? []).filter(s =>
+    platform === 'meta' ? s.platforms.some(p => META_PLATFORMS.includes(p)) : true,
+  );
 
   return (
     <div>
@@ -41,15 +69,17 @@ function StrategiesPage() {
       {isLoading && <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>Loading…</p>}
       {error && <p className="text-body-sm" style={{ color: 'var(--color-danger)' }}>{(error as Error).message}</p>}
 
-      {data && data.length === 0 && (
+      {data && rows.length === 0 && (
         <div className="card" style={{ textAlign: 'center', padding: 48 }}>
           <p className="text-body" style={{ color: 'var(--color-ink-muted)', margin: 0 }}>
-            No strategies yet — add one to start scheduled publishing.
+            {platform === 'meta'
+              ? 'No Meta-enabled strategies — add a cross-post target on a strategy (Edit → Cross-post).'
+              : 'No strategies yet — add one to start scheduled publishing.'}
           </p>
         </div>
       )}
 
-      {data && data.length > 0 && (
+      {data && rows.length > 0 && (
         <div className="table-wrap">
           <table className="table">
             <thead>
@@ -66,13 +96,14 @@ function StrategiesPage() {
               </tr>
             </thead>
             <tbody>
-              {data.map(s => {
+              {rows.map(s => {
                 const isOpen = expanded === s.id;
                 return (
                   <>
                     <StrategyRow
                       key={s.id}
                       s={s}
+                      showIcons={showIcons}
                       open={isOpen}
                       onToggleOpen={() => setExpanded(isOpen ? null : s.id)}
                       onEdit={() => setEditing(s)}
@@ -108,8 +139,8 @@ function StrategiesPage() {
   );
 }
 
-function StrategyRow({ s, open, onToggleOpen, onEdit, onToggle, onDelete }: {
-  s: Strategy; open: boolean; onToggleOpen: () => void; onEdit: () => void; onToggle: () => void; onDelete: () => void;
+function StrategyRow({ s, showIcons, open, onToggleOpen, onEdit, onToggle, onDelete }: {
+  s: Strategy; showIcons: boolean; open: boolean; onToggleOpen: () => void; onEdit: () => void; onToggle: () => void; onDelete: () => void;
 }) {
   return (
     <tr style={{ cursor: 'pointer' }} onClick={onToggleOpen}>
@@ -128,6 +159,7 @@ function StrategyRow({ s, open, onToggleOpen, onEdit, onToggle, onDelete }: {
         >
           {s.type}
         </span>
+        {showIcons && <PlatformIcons platforms={s.platforms} />}
       </td>
       <td style={{ color: 'var(--color-ink-muted)' }}>
         {s.channel_key ?? <span style={{ color: 'var(--color-ink-dim)' }}>—</span>}
