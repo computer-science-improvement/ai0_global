@@ -120,7 +120,7 @@ function LogsPage() {
                   const m = TYPE_META[e.type];
                   return (
                     <tr key={e.id}>
-                      <td className="num" style={{ whiteSpace: 'nowrap' }}>{fmtDate(e.at)}</td>
+                      <td style={{ whiteSpace: 'nowrap', fontVariantNumeric: 'tabular-nums' }}>{fmtDate(e.at)}</td>
                       <td><Badge tone={m.tone}>{m.label}</Badge></td>
                       <td>{e.channel ?? '—'}</td>
                       <td className="meta">{e.strategy ?? '—'}</td>
