@@ -8,7 +8,7 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { PageHeader } from '../components/ui/PageHeader';
 import { SegmentedTabs } from '../components/SegmentedTabs';
-import { Placeholder } from '../components/ui/Placeholder';
+import { MetaAccountsManager } from '../components/connections/MetaAccountsManager';
 
 type Tab = 'facebook' | 'instagram' | 'threads';
 
@@ -42,15 +42,9 @@ function MetaConnectionsPage() {
         <SegmentedTabs value={tab} onChange={setTab} options={TABS} />
       </div>
 
-      {tab === 'facebook' && (
-        <Placeholder icon="facebook" title="Facebook скоро" note="Підключення сторінок Facebook зʼявиться, коли додамо інтеграцію." />
-      )}
-      {tab === 'instagram' && (
-        <Placeholder icon="instagram" title="Instagram скоро" note="Підключення акаунтів Instagram зʼявиться, коли додамо інтеграцію." />
-      )}
-      {tab === 'threads' && (
-        <Placeholder icon="threads" title="Threads скоро" note="Підключення Threads зʼявиться, коли додамо інтеграцію." />
-      )}
+      {tab === 'facebook'  && <MetaAccountsManager platform="facebook" />}
+      {tab === 'instagram' && <MetaAccountsManager platform="instagram" />}
+      {tab === 'threads'   && <MetaAccountsManager platform="threads" />}
     </div>
   );
 }

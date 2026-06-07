@@ -266,6 +266,24 @@ export interface AppSettings {
   overrides: string[];
 }
 
+export type MetaPlatform = 'instagram' | 'facebook' | 'threads';
+
+export interface MetaAccount {
+  id:               string;
+  platform:         MetaPlatform;
+  account_id:       string;
+  token_env:        string;
+  target_id:        string;
+  username:         string | null;
+  display_name:     string | null;
+  followers:        number | null;
+  picture_url:      string | null;
+  active:           boolean;
+  last_verified_at: string | null;
+  verify_error:     string | null;
+  created_at:       string;
+}
+
 export type ActivityType = 'posted' | 'error' | 'skipped' | 'running';
 
 export interface ActivityEvent {
