@@ -3,6 +3,9 @@ import { PostPayload } from '../common/types';
 export interface PublishTarget {
   /** Channel/account/page identifier on the platform */
   id: string;
+  /** OAuth access token for Meta publishers (resolved upstream from token_env).
+   *  Telegram publishers ignore this. */
+  token?: string;
   [key: string]: unknown;
 }
 
