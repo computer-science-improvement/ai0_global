@@ -1,83 +1,92 @@
-# Multi-platform Strategies (sub-project A) — Design
+# Meta Cross-posting (sub-project A) — Design
 
-**Goal:** A strategy can publish to multiple platforms (Telegram + Instagram/Facebook/Threads), each target on its **own schedule**, with **per-account cooldown** so strategies don't flood an account. Strategy rows show **platform-capability icons**; the header platform filter scopes the list. Meta publishing is enabled for the **generic-path** strategies first.
+**Goal:** When a strategy publishes to its Telegram channel, automatically cross-post to attached Meta accounts — either **mirror** (same content) or **teaser** (e.g. recipes: dish name + БЖВ + link to that TG post). Strategy rows show platform icons; the header platform filter scopes the list; the Meta chip is enabled.
 
-**Supersedes:** the Phase 2 targeting approach in `2026-06-07-meta-publishing-phase2-design.md` (which planned to `ALTER strategy_bindings` with `platform`/`meta_account_id`). That ALTER is dropped; instead `strategy_bindings` is left untouched and Meta destinations live in a new `strategy_targets` table. The Phase 2 **publishers + content adapter** (already built/committed) are reused as-is.
+**Supersedes** the independent per-platform-schedule model in earlier drafts of this file and the `ALTER strategy_bindings` plan in `2026-06-07-meta-publishing-phase2-design.md`. The Phase 2 **publishers + `meta-content.ts` adapter** (already built/committed) are reused as-is.
 
 **Decisions (locked via brainstorming):**
-- One strategy → many targets (`strategy_targets`).
-- Auto-derived per-type **capability map** (drives icons + allowed targets).
+- One strategy → many cross-post targets.
+- **Always cross-post after the Telegram publish** (no separate Meta schedules).
+- Two content modes: **mirror** (same as TG) and **teaser** (strategy-supplied short promo + link to the TG post).
+- Recipe teaser links to the **exact TG post** and fires after the TG publish.
 - **Per-account cooldown**, configurable per platform.
-- Meta enabled for the 4 generic-path strategies now (daily-photo, on-this-day, movies, space); custom-`execute()` strategies stay Telegram-only until a later refactor.
+- Wire **recipes (teaser → FB/Threads)** and **ai0-news (mirror → Threads)** now; generic-path strategies get mirror via a central hook; other custom-`execute()` strategies wired later (one call each).
 
-## Data model — migration `017_strategy_targets.sql`
+## Data model — migration `017_meta_crosspost_targets.sql`
 
 ```sql
-CREATE TABLE strategy_targets (
+CREATE TABLE meta_crosspost_targets (
   id              UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   binding_id      UUID NOT NULL REFERENCES strategy_bindings(id) ON DELETE CASCADE,
   platform        TEXT NOT NULL CHECK (platform IN ('instagram','facebook','threads')),
   meta_account_id UUID NOT NULL REFERENCES meta_accounts(id) ON DELETE CASCADE,
-  schedule        TEXT NOT NULL,                    -- cron, independent per target
+  mode            TEXT NOT NULL CHECK (mode IN ('mirror','teaser')),
   enabled         BOOLEAN NOT NULL DEFAULT true,
   created_at      TIMESTAMPTZ NOT NULL DEFAULT now(),
-  UNIQUE (binding_id, meta_account_id)
+  UNIQUE (binding_id, platform, meta_account_id)
 );
-CREATE INDEX idx_strategy_targets_binding ON strategy_targets (binding_id);
+CREATE INDEX idx_meta_crosspost_binding ON meta_crosspost_targets (binding_id);
 ```
-- `strategy_bindings` is **unchanged** = the Telegram schedule (type + params + channel + cron). Zero risk to live Telegram publishing.
-- A "strategy" in the UI = one binding + its Meta targets. Telegram lives on the binding; each Meta target carries its own `schedule`.
+`strategy_bindings` is **unchanged** = the Telegram schedule. Zero risk to live Telegram publishing.
 
-## Capability map — `common/content-strategy/strategy-platforms.ts`
+## Cross-post flow
 
-Static per-type map → `{ instagram, facebook, threads }` (telegram always true). Pure + unit-tested.
-- **daily-photo, movies, space** → instagram + facebook + threads (image-producing).
-- **on-this-day** → facebook + threads (text; instagram off — no guaranteed image).
-- All **custom-`execute()`** types (ua-news, recipes, quotes, facts, ai0-news, ai0-prompts, curated-prompts, game-channel, pdr-quiz, assets, motivation-biography) → telegram only this phase.
-Drives: strategy icons, header-filtered list, and which platforms the Add-target UI offers.
+`CrossPostService.afterPublish(input)` where `input = { bindingId, channelUsername, messageId, mirror: PostPayload, teaser?: { lines: string[] } }`:
+1. Load enabled `meta_crosspost_targets` for `bindingId`. If none, return.
+2. Build the TG post link when the channel is public: `https://t.me/<channelUsername>/<messageId>` (private channel → no link; teaser then links to the channel root or is skipped per platform).
+3. For each target:
+   - resolve `meta_account` (must be `active`; skip+log otherwise), read token via `ConfigService.get(token_env)` (missing → skip+log);
+   - **per-account cooldown** gate (key `meta:<metaAccountId>`, window per platform);
+   - build content by `mode`:
+     - **mirror** → `buildCaption(mirror.text, mirror.tags, caps[platform])` + optional `\n\n↗ <link>`; image = `mirror.imageUrl` (IG requires it);
+     - **teaser** → `teaser.lines.join('\n')` + `\n\n<link>` (e.g. `["🍲 Дієтична каша", "БЖВ: 12/8/40"]`);
+   - dispatch via the platform publisher (FB/IG/Threads).
+4. Failures per target are caught + logged (a Meta failure must NEVER affect the TG publish or other targets). Each cross-post is recorded to `strategy_runs`-style logging so it shows on the Logs page (a lightweight `crosspost` activity row, or reuse the existing run log keyed to the binding).
 
-## Publishing — finish the Phase 2 dispatcher
+`buildCrosspostContent(...)` is a **pure, unit-tested** helper (mirror/teaser → final caption + image + link).
 
-- `PublisherDispatcher` (publishers module): `publish(platform, payload, dest)`.
-  - telegram → existing `TelegramPublisher` (unchanged).
-  - meta → resolve `meta_account` (must be `active`; else throw), read token via `ConfigService.get(token_env)` (missing → throw), pick the platform publisher (FB/IG/Threads, already built), call `publish(payload, { id: target_id, token })`.
-- **Per-account cooldown:** `PostingThrottleService` is generalized from "channelId" to an opaque **destination key** (`tg:<channelId>` / `meta:<metaAccountId>`); the cooldown window is supplied per platform by the caller. Windows configurable in Settings: `POSTING_COOLDOWN_MIN` (telegram, existing) + `INSTAGRAM_COOLDOWN_MIN` / `FACEBOOK_COOLDOWN_MIN` / `THREADS_COOLDOWN_MIN` (new, via the existing DB-override SettingsService). Defaults: TG 2, IG 30, FB 15, Threads 10.
+## Trigger points
 
-## Runner / scheduler
+- **Generic-path strategies** (daily-photo, on-this-day, movies, space): `ContentStrategyRunner`, right after a successful `telegram.publish*`, calls `CrossPostService.afterPublish({ bindingId, channelUsername, messageId, mirror: payload })`. (Telegram publish code path itself unchanged; the call is appended after success.)
+- **recipes** (custom-`execute()`): after its existing TG publish, call `afterPublish` with `teaser.lines = [dishName, "БЖВ: P/F/C"]` (recipes already has the dish + nutrition).
+- **ai0-news** (custom-`execute()`): after its TG publish, call `afterPublish` with `mirror: payload`.
+- The runner/strategies need `channelUsername` + `messageId` — both already available at publish (messageId returned by the publisher; channel resolved from config).
 
-- `ContentStrategyRunner.run(strategy, destination, params, strategyId)` where `destination` is `{ kind:'telegram', channelId }` or `{ kind:'meta', platform, metaAccountId, targetId, token }`.
-  - **Generic path** (no `strategy.execute`): fetch → dedup (keyed by destination) → generate → dispatch to `destination` via the dispatcher. Telegram destination uses the existing publish calls verbatim.
-  - **Custom-`execute()` path**: only ever receives a telegram destination (capability map guarantees it) → unchanged.
-- Scheduler registers a cron per enabled `strategy_target` (in addition to the binding's Telegram cron). On fire it re-resolves the target + binding, runs the strategy for that destination, logs to `strategy_runs` (so Meta runs appear on the Logs page).
-- **Dedup** keyed by destination id, so the same item isn't reposted to the same account.
+## Per-account cooldown
+
+Generalize `PostingThrottleService` from "channelId" to an opaque **destination key** (`tg:<channelId>` / `meta:<metaAccountId>`); the cooldown window is supplied by the caller per platform. New Settings keys (DB-override `SettingsService` + Settings page, meta tab): `INSTAGRAM_COOLDOWN_MIN` / `FACEBOOK_COOLDOWN_MIN` / `THREADS_COOLDOWN_MIN` (defaults 30 / 15 / 10); Telegram keeps `POSTING_COOLDOWN_MIN`. The existing Telegram throttle call sites switch to the `tg:<channelId>` key with identical behaviour.
 
 ## Backend API
 
-- `StrategyTargetsRepository` (list-by-binding, insert, update schedule/enabled, delete).
-- Endpoints under `/api/strategies/:id/targets` (TrackingAuthGuard): `GET` list, `POST` `{platform, metaAccountId, schedule}` (validate platform ∈ capability(type) and account exists+verified), `PATCH /:targetId` `{schedule?, enabled?}`, `DELETE /:targetId`. Publishes `config:changed` so the scheduler hot-reloads.
-- `GET /api/strategies` list gains `platforms: string[]` (capability) + `targets` summary per row.
+- `MetaCrosspostTargetsRepository` (list-by-binding, insert, setEnabled, delete).
+- `/api/strategies/:id/crossposts` (TrackingAuthGuard): `GET` list, `POST` `{platform, metaAccountId, mode}` (validate account exists+verified; validate platform/mode combo — IG only `mirror`+image), `PATCH /:targetId {enabled}`, `DELETE /:targetId`. Publishes `config:changed` (kind `'strategy'`) so the scheduler hot-reloads the binding view.
+- `GET /api/strategies` rows gain `platforms: string[]` (telegram + distinct cross-post platforms).
 
 ## Frontend
 
-- **Capability icons** on each strategy row (Telegram + IG/FB/Threads from the map). Shown when the header platform filter = **All**.
-- **Header filter = Meta** → strategies list filtered to Meta-capable strategies; a Telegram filter shows all. **Enable the Meta chip** in the header (`usePlatform` ACTIVE_PLATFORMS += 'meta').
-- **Edit-strategy modal** gains a **Targets** section: list Meta targets (platform + account + schedule + enabled), add a target (platform limited to capability, account dropdown of active+verified meta accounts of that platform, own SchedulePicker), edit/remove with confirm dialogs.
+- **Capability icons** per strategy row: Telegram + each configured cross-post platform. Shown when header filter = **All**.
+- Header = **Meta** → list filtered to strategies with ≥1 Meta cross-post target. **Enable Meta chip** (`usePlatform` ACTIVE_PLATFORMS += `'meta'`).
+- **Edit-strategy modal → Cross-post section**: list targets (platform + account + mode + enabled), add target (platform; account = active+verified meta accounts of that platform; mode — IG forced `mirror`), toggle/remove with confirm dialogs.
+- `api/strategy-crossposts.ts` + types.
 
-## Out of scope (separate sub-projects)
-- **D — Meta account stats/tracking** (collect IG/FB/Threads insights + per-account stats pages): its own large spec.
-- Refactoring custom-`execute()` strategies to the produce/publish split (so they too can target Meta).
-- Image hosting for IG buffer posts; composer previews.
+## Instagram caveat
+
+IG captions have **no clickable links** and IG **requires an image**. So IG supports **mirror with an image** only; the recipe **teaser-with-link** targets **Facebook + Threads**. The add-target UI offers IG only in `mirror` mode and only warns it needs an image.
+
+## Out of scope (separate sub-project D)
+Meta **statistics / per-account stats pages** (insights collection, follower trends, per-account dashboards) — its own large analytics build, parallel to the Telegram tracker.
 
 ## Task breakdown
-1. Migration `017_strategy_targets` + `StrategyTargetsRepository`.
-2. `strategy-platforms.ts` capability map (+ unit test).
-3. `PublisherDispatcher` + generalize `PostingThrottleService` to destination keys + per-platform cooldown (Settings keys).
-4. `ContentStrategyRunner` destination-aware (generic path dispatches by platform; Telegram unchanged); dedup by destination.
-5. Scheduler registers crons per `strategy_target`; hot-reload on `config:changed`.
-6. Targets API (`/api/strategies/:id/targets`) + DTOs + capability validation; list endpoint exposes `platforms` + targets.
-7. Frontend: header Meta chip enable; strategy capability icons; header-filtered list; Edit-modal Targets section + api/types.
-8. Logs activity label-join resolves meta-account name (Meta runs already logged via strategy_runs).
-9. Verify (tsc + builds + node tests). Real posting = user's manual smoke step.
+1. Migration `017_meta_crosspost_targets` + `MetaCrosspostTargetsRepository`.
+2. `crosspost-content.ts` (pure mirror/teaser caption+link builder) + unit tests.
+3. `PublisherDispatcher` (resolve account token+target → FB/IG/Threads publisher) + generalize `PostingThrottleService` to destination keys + per-platform cooldown (Settings keys).
+4. `CrossPostService.afterPublish` (load targets, cooldown, build, dispatch, isolate failures, log).
+5. Hook generic runner path (mirror) after TG publish.
+6. Wire recipes (teaser) + ai0-news (mirror) after their TG publish.
+7. Crossposts API + DTOs + capability/mode validation; `GET /api/strategies` exposes `platforms`.
+8. Frontend: header Meta chip; strategy icons; header-filtered list; Edit-modal Cross-post section + api/types.
+9. Logs: cross-post attempts appear on the activity feed.
+10. Verify (tsc + builds + node tests). Real posting = user's manual smoke step.
 
 ## Cost/safety
-Build + verify only. Telegram publish path unchanged. Real Meta posting is the user's manual step; no automation restart, no Claude calls, no extra AI copy (Meta reuses the strategy's generated text adapted per platform).
+Build + verify only. Telegram publish path unchanged (cross-post is appended after a successful publish, failures isolated). No automation restart, no Claude calls, no extra AI copy (mirror reuses TG content; teaser is a formatted string from existing recipe fields).
