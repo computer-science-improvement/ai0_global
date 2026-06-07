@@ -56,13 +56,17 @@ export class MetaCrosspostTargetsRepository {
     return rows;
   }
 
-  /** Distinct configured platforms per channel id — for the strategies list icons. */
+  /** Distinct configured platforms per channel id — for the strategies list icons.
+   *  Defensive: returns an empty map if the table is missing/mid-migration so the
+   *  strategies list never 500s over this optional feature. */
   async platformsByChannel(): Promise<Map<string, MetaPlatform[]>> {
-    const { rows } = await this.pool.query<{ channel_id: string; platform: MetaPlatform }>(
-      `SELECT DISTINCT channel_id, platform FROM meta_crosspost_targets`,
-    );
     const m = new Map<string, MetaPlatform[]>();
-    for (const r of rows) m.set(r.channel_id, [...(m.get(r.channel_id) ?? []), r.platform]);
+    try {
+      const { rows } = await this.pool.query<{ channel_id: string; platform: MetaPlatform }>(
+        `SELECT DISTINCT channel_id, platform FROM meta_crosspost_targets`,
+      );
+      for (const r of rows) m.set(r.channel_id, [...(m.get(r.channel_id) ?? []), r.platform]);
+    } catch { /* table missing / mid-migration — no icons, no crash */ }
     return m;
   }
 
