@@ -7,6 +7,7 @@ import { CronJob } from 'cron';
 import { TrackingAuthGuard } from '../../tracking/api/tracking-auth.guard';
 import { StrategyBindingsRepository } from '../strategy-bindings.repository';
 import { StrategyRunsRepository } from '../strategy-runs.repository';
+import { MetaCrosspostTargetsRepository } from '../meta-crosspost-targets.repository';
 import { StrategyPreviewService } from '../strategy-preview.service';
 import { ConfigCacheService } from '../config-cache.service';
 import { ConfigEventsPublisher } from '../config-events.publisher';
@@ -48,6 +49,7 @@ export class StrategiesController {
     private readonly preview:   StrategyPreviewService,
     private readonly cache:     ConfigCacheService,
     private readonly publisher: ConfigEventsPublisher,
+    private readonly crossposts: MetaCrosspostTargetsRepository,
   ) {}
 
   /**
@@ -58,9 +60,10 @@ export class StrategiesController {
    */
   @Get()
   async list() {
-    const [rows, latestByStrategy] = await Promise.all([
+    const [rows, latestByStrategy, crosspostPlatforms] = await Promise.all([
       this.repo.list(),
       this.runsRepo.latestPerStrategy(),
+      this.crossposts.platformsByChannel(),
     ]);
     return rows.map(r => {
       const channel = this.cache.getChannelById(r.channel_id);
@@ -94,6 +97,7 @@ export class StrategiesController {
         channel_id:   r.channel_id,
         channel_key:  channel?.channel_key ?? null,
         channels,
+        platforms:    ['telegram', ...(crosspostPlatforms.get(r.channel_id) ?? [])],
         schedule:     r.schedule,
         params:       r.params,
         enabled:      r.enabled,

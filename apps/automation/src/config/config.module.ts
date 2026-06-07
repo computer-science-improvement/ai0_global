@@ -22,6 +22,7 @@ import { MetaCrosspostTargetsRepository } from './meta-crosspost-targets.reposit
 import { MyBotsController } from './api/my-bots.controller';
 import { TelegraphAccountsController } from './api/telegraph-accounts.controller';
 import { MetaAccountsController } from './api/meta-accounts.controller';
+import { MetaCrosspostsController } from './api/meta-crossposts.controller';
 import { StrategiesController } from './api/strategies.controller';
 import { ForwardRoutesController } from './api/forward-routes.controller';
 import { AuthModule } from '../auth/auth.module';
@@ -29,7 +30,7 @@ import { AuthModule } from '../auth/auth.module';
 @Global()
 @Module({
   imports: [NestConfigModule, DatabaseModule, TrackingModule, AuthModule],
-  controllers: [MyBotsController, TelegraphAccountsController, MetaAccountsController, StrategiesController, ForwardRoutesController],
+  controllers: [MyBotsController, TelegraphAccountsController, MetaAccountsController, MetaCrosspostsController, StrategiesController, ForwardRoutesController],
   providers: [
     ChannelConfigService,
     ConfigCacheService,
