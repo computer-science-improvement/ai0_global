@@ -8,6 +8,8 @@ import { PostingThrottleService } from './posting-throttle.service';
 import { AdminBotService } from './admin-bot.service';
 import { TelegraphService } from './telegraph.service';
 import { ComposedSenderService } from './composed-sender.service';
+import { PublisherDispatcher } from './publisher-dispatcher.service';
+import { CrossPostService } from './cross-post.service';
 
 const PUBLISHERS = [
   TelegramPublisher,
@@ -19,6 +21,8 @@ const PUBLISHERS = [
   AdminBotService,
   TelegraphService,
   ComposedSenderService,
+  PublisherDispatcher,
+  CrossPostService,
 ];
 
 @Global()

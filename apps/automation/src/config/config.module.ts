@@ -18,6 +18,7 @@ import { TelegraphAccountsRepository } from './telegraph-accounts.repository';
 import { TelegraphGetInfoClient } from './telegraph-getinfo.client';
 import { MetaAccountsRepository } from './meta-accounts.repository';
 import { MetaGraphClient } from './meta-graph.client';
+import { MetaCrosspostTargetsRepository } from './meta-crosspost-targets.repository';
 import { MyBotsController } from './api/my-bots.controller';
 import { TelegraphAccountsController } from './api/telegraph-accounts.controller';
 import { MetaAccountsController } from './api/meta-accounts.controller';
@@ -45,6 +46,7 @@ import { AuthModule } from '../auth/auth.module';
     TelegraphGetInfoClient,
     MetaAccountsRepository,
     MetaGraphClient,
+    MetaCrosspostTargetsRepository,
   ],
   exports: [
     ChannelConfigService,
@@ -56,6 +58,7 @@ import { AuthModule } from '../auth/auth.module';
     StrategyRunsRepository,
     ForwardRoutesRepository,
     TelegraphAccountsRepository,
+    MetaCrosspostTargetsRepository,
   ],
 })
 export class ChannelConfigModule {}

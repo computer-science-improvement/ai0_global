@@ -8,7 +8,7 @@ export type CrosspostMode = 'mirror' | 'teaser';
 
 export interface MetaCrosspostTargetRow {
   id:              string;
-  binding_id:      string;
+  channel_id:      string;
   platform:        MetaPlatform;
   meta_account_id: string;
   mode:            CrosspostMode;
@@ -24,7 +24,7 @@ export interface ResolvedCrosspostTarget extends MetaCrosspostTargetRow {
 }
 
 export interface MetaCrosspostInsertInput {
-  binding_id:      string;
+  channel_id:      string;
   platform:        MetaPlatform;
   meta_account_id: string;
   mode:            CrosspostMode;
@@ -34,35 +34,35 @@ export interface MetaCrosspostInsertInput {
 export class MetaCrosspostTargetsRepository {
   constructor(@Inject(DB_POOL) private readonly pool: Pool) {}
 
-  async listByBinding(bindingId: string): Promise<MetaCrosspostTargetRow[]> {
+  async listByChannel(channelId: string): Promise<MetaCrosspostTargetRow[]> {
     const { rows } = await this.pool.query<MetaCrosspostTargetRow>(
-      `SELECT * FROM meta_crosspost_targets WHERE binding_id = $1 ORDER BY created_at`,
-      [bindingId],
+      `SELECT * FROM meta_crosspost_targets WHERE channel_id = $1 ORDER BY created_at`,
+      [channelId],
     );
     return rows;
   }
 
-  /** Enabled targets for a binding, joined with their (active) Meta account. */
-  async listEnabledResolved(bindingId: string): Promise<ResolvedCrosspostTarget[]> {
+  /** Enabled targets for a channel, joined with their Meta account. */
+  async listEnabledResolved(channelId: string): Promise<ResolvedCrosspostTarget[]> {
     const { rows } = await this.pool.query<ResolvedCrosspostTarget>(
       `SELECT t.*, a.active AS account_active, a.token_env AS account_token_env,
               a.target_id AS account_target_id
        FROM meta_crosspost_targets t
        JOIN meta_accounts a ON a.id = t.meta_account_id
-       WHERE t.binding_id = $1 AND t.enabled = true
+       WHERE t.channel_id = $1 AND t.enabled = true
        ORDER BY t.created_at`,
-      [bindingId],
+      [channelId],
     );
     return rows;
   }
 
-  /** Distinct configured platforms per binding id — for the strategies list icons. */
-  async platformsByBinding(): Promise<Map<string, MetaPlatform[]>> {
-    const { rows } = await this.pool.query<{ binding_id: string; platform: MetaPlatform }>(
-      `SELECT DISTINCT binding_id, platform FROM meta_crosspost_targets`,
+  /** Distinct configured platforms per channel id — for the strategies list icons. */
+  async platformsByChannel(): Promise<Map<string, MetaPlatform[]>> {
+    const { rows } = await this.pool.query<{ channel_id: string; platform: MetaPlatform }>(
+      `SELECT DISTINCT channel_id, platform FROM meta_crosspost_targets`,
     );
     const m = new Map<string, MetaPlatform[]>();
-    for (const r of rows) m.set(r.binding_id, [...(m.get(r.binding_id) ?? []), r.platform]);
+    for (const r of rows) m.set(r.channel_id, [...(m.get(r.channel_id) ?? []), r.platform]);
     return m;
   }
 
@@ -75,10 +75,10 @@ export class MetaCrosspostTargetsRepository {
 
   async insert(input: MetaCrosspostInsertInput): Promise<MetaCrosspostTargetRow> {
     const { rows } = await this.pool.query<MetaCrosspostTargetRow>(
-      `INSERT INTO meta_crosspost_targets (binding_id, platform, meta_account_id, mode)
+      `INSERT INTO meta_crosspost_targets (channel_id, platform, meta_account_id, mode)
        VALUES ($1, $2, $3, $4)
        RETURNING *`,
-      [input.binding_id, input.platform, input.meta_account_id, input.mode],
+      [input.channel_id, input.platform, input.meta_account_id, input.mode],
     );
     return rows[0];
   }

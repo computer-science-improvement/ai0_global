@@ -57,11 +57,11 @@ export class PostingThrottleService {
    * past its post-publish cooldown? Used for diagnostic UI (admin bot,
    * preview).
    */
-  canPublish(channelId: string): boolean {
+  canPublish(channelId: string, cooldownMs: number = this.cooldownMs()): boolean {
     if (this.locks.has(channelId)) return false;
     const last = this.lastPublishedAt.get(channelId);
     if (last === undefined) return true;
-    return Date.now() - last >= this.cooldownMs();
+    return Date.now() - last >= cooldownMs;
   }
 
   /**
@@ -69,8 +69,8 @@ export class PostingThrottleService {
    * the cooldown window has passed. Returns true if the caller now owns
    * the slot — they MUST call recordPublish() or releaseLock() to free it.
    */
-  tryLock(channelId: string): boolean {
-    if (!this.canPublish(channelId)) return false;
+  tryLock(channelId: string, cooldownMs: number = this.cooldownMs()): boolean {
+    if (!this.canPublish(channelId, cooldownMs)) return false;
     this.locks.add(channelId);
     return true;
   }

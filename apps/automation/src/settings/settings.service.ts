@@ -24,6 +24,9 @@ const DEFAULTS: Record<string, string> = {
   STATS_POST_AGE_DAYS:             '30',
   POSTING_COOLDOWN_MIN:            '20',
   FETCH_TIMEOUT:                   '15000',
+  INSTAGRAM_COOLDOWN_MIN:          '30',
+  FACEBOOK_COOLDOWN_MIN:           '15',
+  THREADS_COOLDOWN_MIN:            '10',
 };
 
 export interface SettingsPatch {
@@ -86,6 +89,13 @@ export class SettingsService {
   statsPostAgeDays():     number  { return this.intRaw('STATS_POST_AGE_DAYS', 30); }
   postingCooldownMin():   number  { return Math.max(1, this.intRaw('POSTING_COOLDOWN_MIN', 20)); }
   fetchTimeoutMs():       number  { return this.intRaw('FETCH_TIMEOUT', 15000); }
+
+  /** Cooldown (minutes) for a Meta platform; configurable like the Telegram one. */
+  metaCooldownMin(platform: 'instagram' | 'facebook' | 'threads'): number {
+    const key = `${platform.toUpperCase()}_COOLDOWN_MIN`;
+    const def = platform === 'instagram' ? 30 : platform === 'facebook' ? 15 : 10;
+    return Math.max(1, this.intRaw(key, def));
+  }
 
   private intRaw(key: string, fallback: number): number {
     const n = parseInt(this.raw(key), 10);
