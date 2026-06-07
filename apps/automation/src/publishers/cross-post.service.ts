@@ -1,6 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { MetaCrosspostTargetsRepository } from '../config/meta-crosspost-targets.repository';
+import { ChannelConfigService } from '../config/channel-config.service';
 import { SettingsService } from '../settings/settings.service';
 import { PostingThrottleService } from './posting-throttle.service';
 import { PublisherDispatcher } from './publisher-dispatcher.service';
@@ -10,8 +11,7 @@ export interface MirrorContent { text: string; tags: string[]; imageUrl?: string
 export interface TeaserContent { lines: string[]; imageUrl?: string }
 
 export interface CrossPostInput {
-  channelId:        string;                 // tracked_channels.id
-  channelUsername:  string | null;          // for the public post link (null = private)
+  channelKey:       string;                 // channel_key or id (resolved internally)
   messageId:        string | number;
   mirror?:          MirrorContent;          // provided by mirror-mode callers
   teaser?:          TeaserContent;          // provided by teaser-mode callers (e.g. recipes)
@@ -29,6 +29,7 @@ export class CrossPostService {
 
   constructor(
     private readonly targets:    MetaCrosspostTargetsRepository,
+    private readonly channels:   ChannelConfigService,
     private readonly dispatcher: PublisherDispatcher,
     private readonly throttle:   PostingThrottleService,
     private readonly settings:   SettingsService,
@@ -36,16 +37,19 @@ export class CrossPostService {
   ) {}
 
   async afterPublish(input: CrossPostInput): Promise<void> {
+    const meta = this.channels.getChannelMeta(input.channelKey);
+    if (!meta) return;
+
     let targets;
     try {
-      targets = await this.targets.listEnabledResolved(input.channelId);
+      targets = await this.targets.listEnabledResolved(meta.id);
     } catch (err: any) {
       this.logger.warn(`crosspost: failed to load targets: ${err.message}`);
       return;
     }
     if (!targets.length) return;
 
-    const link = tgPostLink(input.channelUsername, input.messageId);
+    const link = tgPostLink(meta.username, input.messageId);
 
     for (const t of targets) {
       try {

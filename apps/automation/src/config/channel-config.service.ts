@@ -96,6 +96,13 @@ export class ChannelConfigService implements OnApplicationBootstrap {
     };
   }
 
+  /** Resolve a channel key/id → its UUID + public username (for cross-posting). */
+  getChannelMeta(channelKeyOrId: string): { id: string; username: string | null } | null {
+    const ch = this.cache.getChannelByKey(channelKeyOrId)
+            ?? this.cache.getChannelById(channelKeyOrId);
+    return ch ? { id: ch.id, username: ch.username } : null;
+  }
+
   resolveStrategyBindings(): ResolvedStrategyBinding[] {
     return this.cache.getBindings().map(b => {
       const ch = this.cache.getChannelById(b.channel_id);

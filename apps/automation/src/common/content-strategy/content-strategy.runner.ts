@@ -5,6 +5,7 @@ import { ImageResolverService } from '../processors/image-resolver.service';
 import { TelegramPublisher }      from '../../publishers/telegram.publisher';
 import { TelegramNotifier }       from '../../publishers/telegram-notifier.service';
 import { PostingThrottleService } from '../../publishers/posting-throttle.service';
+import { CrossPostService }       from '../../publishers/cross-post.service';
 import { PublicationsRepository } from '../../stats/publications.repository';
 import {
   ContentStrategy,
@@ -23,6 +24,7 @@ export class ContentStrategyRunner {
     private readonly notifier:  TelegramNotifier,
     private readonly throttle:  PostingThrottleService,
     private readonly publications: PublicationsRepository,
+    private readonly crossPost: CrossPostService,
   ) {}
 
   /**
@@ -167,6 +169,14 @@ export class ContentStrategyRunner {
         title:        post.title,
         strategyType: strategy.type,
         tags:         [post.contentType],
+      });
+
+      // Fan out to any configured Meta cross-post targets for this channel
+      // (mirror mode). Never throws — Meta failures are isolated + logged.
+      await this.crossPost.afterPublish({
+        channelKey: channelId,
+        messageId,
+        mirror: { text: reviewed, tags: [post.contentType], imageUrl: post.imageUrl },
       });
     } catch (err) {
       this.throttle.releaseLock(channelId);

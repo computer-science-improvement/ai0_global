@@ -22,6 +22,7 @@ import { ImageResolverService }     from '../../common/processors/image-resolver
 import { RawItem, PostPayload }     from '../../common/types';
 import { TelegramPublisher }        from '../../publishers/telegram.publisher';
 import { TelegramNotifier }         from '../../publishers/telegram-notifier.service';
+import { CrossPostService }         from '../../publishers/cross-post.service';
 import { SourceConfig }             from '../../common/types';
 
 @Injectable()
@@ -44,6 +45,7 @@ export class Ai0NewsStrategy implements ContentStrategy, OnModuleInit {
     private readonly telegram:   TelegramPublisher,
     private readonly notifier:   TelegramNotifier,
     private readonly registry:   ContentStrategyRegistry,
+    private readonly crossPost:  CrossPostService,
   ) {}
 
   onModuleInit() {
@@ -198,6 +200,13 @@ export class Ai0NewsStrategy implements ContentStrategy, OnModuleInit {
         title: item.title, strategyType: this.type, tags: item.tags ?? null,
       });
       this.logger.debug(`Published to ${channelId}: ${item.title}`);
+
+      // Mirror to any configured Meta cross-post targets. Never throws.
+      await this.crossPost.afterPublish({
+        channelKey: channelId,
+        messageId,
+        mirror: { text, tags: item.tags ?? [], imageUrl: item.image ?? undefined },
+      });
 
       // Topic routing: forward to a sibling channel if the post matches one.
       // Fire-and-forget — the main publication is already successful.

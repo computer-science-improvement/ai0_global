@@ -38,9 +38,11 @@ function build(overrides = {}) {
   };
   const notifier = { notifyPublished: async () => {} };
   const publications = { insert: async () => {} };
+  const crossPost = { afterPublish: async () => {} };
   const s = new RecipesStrategy(
     claude as any, validator as any, registry as any, publisher as any,
     telegraph as any, repo as any, notifier as any, publications as any,
+    crossPost as any,
   );
   // Avoid network in tests.
   (s as any).downloadImage = async () => Buffer.from('img');

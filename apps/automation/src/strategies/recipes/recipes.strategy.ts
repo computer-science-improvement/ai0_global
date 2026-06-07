@@ -6,6 +6,7 @@ import { ContentStrategyRegistry } from '../../common/content-strategy/content-s
 import { TelegramPublisher }       from '../../publishers/telegram.publisher';
 import { TelegraphService, buildRecipeNodes, fmtNum } from '../../publishers/telegraph.service';
 import { TelegramNotifier }        from '../../publishers/telegram-notifier.service';
+import { CrossPostService }        from '../../publishers/cross-post.service';
 import { PublicationsRepository }  from '../../stats/publications.repository';
 import { RECIPES_CHANNEL_SKILL }   from '../../common/ai/skills/recipes-channel.skill';
 import { Skill }                   from '../../common/ai/skills/skill.interface';
@@ -45,6 +46,7 @@ export class RecipesStrategy implements ContentStrategy, OnModuleInit {
     private readonly repo:         RecipesRepository,
     private readonly notifier:     TelegramNotifier,
     private readonly publications: PublicationsRepository,
+    private readonly crossPost:    CrossPostService,
   ) {}
 
   onModuleInit() {
@@ -109,6 +111,13 @@ export class RecipesStrategy implements ContentStrategy, OnModuleInit {
         title:        uk.titleUk.slice(0, 200),
         strategyType: this.type,
         tags:         row.category ? [row.category] : [],
+      });
+      // Cross-post a teaser (dish name + БЖВ + link to this TG post) to any
+      // configured Meta targets. Never throws — Meta failures are isolated.
+      await this.crossPost.afterPublish({
+        channelKey: channelId,
+        messageId,
+        teaser: { lines: [uk.titleUk, this.nutritionLine(row)], imageUrl: row.image_url },
       });
       this.logger.debug(`Published recipe ${row.id} to ${channelId}`);
     } catch (err: any) {
