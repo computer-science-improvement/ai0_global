@@ -18,6 +18,8 @@ interface ConfirmOptions {
   danger?: boolean;
   /** Label on the confirm button. Defaults to "Delete" (danger) / "Confirm". */
   confirmLabel?: string;
+  /** Optional rich content rendered above the buttons — e.g. an old → new diff. */
+  details?: ReactNode;
 }
 
 type ConfirmFn = (action: string, opts?: ConfirmOptions) => Promise<boolean>;
@@ -25,10 +27,11 @@ type ConfirmFn = (action: string, opts?: ConfirmOptions) => Promise<boolean>;
 const ConfirmContext = createContext<ConfirmFn | null>(null);
 
 interface DialogState {
-  open:   boolean;
-  action: string;
-  danger: boolean;
-  label:  string;
+  open:    boolean;
+  action:  string;
+  danger:  boolean;
+  label:   string;
+  details?: ReactNode;
 }
 
 const CLOSED: DialogState = { open: false, action: '', danger: true, label: 'Delete' };
@@ -44,6 +47,7 @@ export function ConfirmProvider({ children }: { children: ReactNode }) {
       action,
       danger,
       label: opts?.confirmLabel ?? (danger ? 'Delete' : 'Confirm'),
+      details: opts?.details,
     });
     return new Promise<boolean>((resolve) => { resolver.current = resolve; });
   }, []);
@@ -63,6 +67,7 @@ export function ConfirmProvider({ children }: { children: ReactNode }) {
         title="Confirm"
         subtitle={`Are you sure you want to ${state.action}?`}
       >
+        {state.details && <div style={{ marginBottom: 16 }}>{state.details}</div>}
         <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 8 }}>
           <button type="button" onClick={() => settle(false)} className="btn-secondary">
             Cancel
