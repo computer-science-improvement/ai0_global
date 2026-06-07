@@ -266,6 +266,27 @@ export interface AppSettings {
   overrides: string[];
 }
 
+export type ActivityType = 'posted' | 'error' | 'skipped' | 'running';
+
+export interface ActivityEvent {
+  id:         string;
+  at:         string;
+  source:     'strategy_run' | 'scheduled_post';
+  type:       ActivityType;
+  status:     string;
+  channelId:  string | null;
+  channel:    string | null;
+  strategyId: string | null;
+  strategy:   string | null;
+  detail:     string | null;
+  durationMs: number | null;
+}
+
+export interface ActivityListResult {
+  items:   ActivityEvent[];
+  hasMore: boolean;
+}
+
 export interface SettingsPatch {
   trackingEnabled?:      boolean;
   trackingShareSession?: boolean;

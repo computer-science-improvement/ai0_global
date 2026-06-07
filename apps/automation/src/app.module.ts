@@ -29,6 +29,7 @@ import { AuthModule }           from './auth/auth.module';
 import { DiscoveryModule }      from './discovery/discovery.module';
 import { ScheduledPostsModule } from './scheduled-posts/scheduled-posts.module';
 import { SettingsModule }       from './settings/settings.module';
+import { ActivityModule }       from './activity/activity.module';
 
 @Module({
   imports: [
@@ -59,6 +60,7 @@ import { SettingsModule }       from './settings/settings.module';
     TrackingModule,
     ScheduledPostsModule,
     SettingsModule,
+    ActivityModule,
     AuthModule,
     DiscoveryModule,
   ],

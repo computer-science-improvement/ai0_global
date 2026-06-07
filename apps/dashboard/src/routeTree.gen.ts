@@ -15,6 +15,7 @@ import { Route as StrategiesRouteImport } from './routes/strategies'
 import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as ScheduledRouteImport } from './routes/scheduled'
 import { Route as RecommendationsRouteImport } from './routes/recommendations'
+import { Route as LogsRouteImport } from './routes/logs'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as GraphRouteImport } from './routes/graph'
 import { Route as DiscoveryRouteImport } from './routes/discovery'
@@ -57,6 +58,11 @@ const ScheduledRoute = ScheduledRouteImport.update({
 const RecommendationsRoute = RecommendationsRouteImport.update({
   id: '/recommendations',
   path: '/recommendations',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LogsRoute = LogsRouteImport.update({
+  id: '/logs',
+  path: '/logs',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoginRoute = LoginRouteImport.update({
@@ -136,6 +142,7 @@ export interface FileRoutesByFullPath {
   '/discovery': typeof DiscoveryRoute
   '/graph': typeof GraphRoute
   '/login': typeof LoginRoute
+  '/logs': typeof LogsRoute
   '/recommendations': typeof RecommendationsRoute
   '/scheduled': typeof ScheduledRoute
   '/settings': typeof SettingsRoute
@@ -157,6 +164,7 @@ export interface FileRoutesByTo {
   '/discovery': typeof DiscoveryRoute
   '/graph': typeof GraphRoute
   '/login': typeof LoginRoute
+  '/logs': typeof LogsRoute
   '/recommendations': typeof RecommendationsRoute
   '/scheduled': typeof ScheduledRoute
   '/settings': typeof SettingsRoute
@@ -179,6 +187,7 @@ export interface FileRoutesById {
   '/discovery': typeof DiscoveryRoute
   '/graph': typeof GraphRoute
   '/login': typeof LoginRoute
+  '/logs': typeof LogsRoute
   '/recommendations': typeof RecommendationsRoute
   '/scheduled': typeof ScheduledRoute
   '/settings': typeof SettingsRoute
@@ -202,6 +211,7 @@ export interface FileRouteTypes {
     | '/discovery'
     | '/graph'
     | '/login'
+    | '/logs'
     | '/recommendations'
     | '/scheduled'
     | '/settings'
@@ -223,6 +233,7 @@ export interface FileRouteTypes {
     | '/discovery'
     | '/graph'
     | '/login'
+    | '/logs'
     | '/recommendations'
     | '/scheduled'
     | '/settings'
@@ -244,6 +255,7 @@ export interface FileRouteTypes {
     | '/discovery'
     | '/graph'
     | '/login'
+    | '/logs'
     | '/recommendations'
     | '/scheduled'
     | '/settings'
@@ -266,6 +278,7 @@ export interface RootRouteChildren {
   DiscoveryRoute: typeof DiscoveryRoute
   GraphRoute: typeof GraphRoute
   LoginRoute: typeof LoginRoute
+  LogsRoute: typeof LogsRoute
   RecommendationsRoute: typeof RecommendationsRoute
   ScheduledRoute: typeof ScheduledRoute
   SettingsRoute: typeof SettingsRoute
@@ -318,6 +331,13 @@ declare module '@tanstack/react-router' {
       path: '/recommendations'
       fullPath: '/recommendations'
       preLoaderRoute: typeof RecommendationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/logs': {
+      id: '/logs'
+      path: '/logs'
+      fullPath: '/logs'
+      preLoaderRoute: typeof LogsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/login': {
@@ -437,6 +457,7 @@ const rootRouteChildren: RootRouteChildren = {
   DiscoveryRoute: DiscoveryRoute,
   GraphRoute: GraphRoute,
   LoginRoute: LoginRoute,
+  LogsRoute: LogsRoute,
   RecommendationsRoute: RecommendationsRoute,
   ScheduledRoute: ScheduledRoute,
   SettingsRoute: SettingsRoute,
