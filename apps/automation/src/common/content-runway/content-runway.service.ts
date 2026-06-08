@@ -42,7 +42,7 @@ export class ContentRunwayService {
     this.counters = {
       recipes:                () => this.recipes.countEligible(),
       'curated-prompts':      (_key, p) => this.curated.countEligible({ provider: p.provider as string | undefined, mediaType: p.mediaType as string | undefined }),
-      'ai0-prompts':          (_key, p) => this.ai0Prompts.countEligible((p.category as string) ?? ''),
+      'ai0-prompts':          () => this.ai0Prompts.countEligibleAll(),
       quotes:                 needKey((key, p) => this.quotes.countEligible(key, p.category as string | undefined)),
       facts:                  needKey((key) => this.facts.countEligible(key)),
       'pdr-quiz':             needKey((key) => this.pdr.countEligible(key)),

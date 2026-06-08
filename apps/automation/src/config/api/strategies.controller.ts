@@ -112,7 +112,7 @@ export class StrategiesController {
           duration_ms: last.duration_ms,
           error:       last.error,
         } : null,
-        content_remaining:     await this.runway.remainingFor(r.type, channel?.channel_key ?? null, r.params),
+        content_remaining:     await this.runway.remainingFor(r.type, channel?.channel_key ?? r.channel_id, r.params),
         low_content_threshold: this.runway.effectiveThreshold(r.low_content_threshold),
       };
     }));

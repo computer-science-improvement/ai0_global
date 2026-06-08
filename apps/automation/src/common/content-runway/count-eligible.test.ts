@@ -57,12 +57,13 @@ test('curated-prompts.countEligible keeps provider/status predicates, binds filt
   assert.deepEqual(captured.params, [null, 'image']);
 });
 
-test('ai0-prompts.countEligible binds category, keeps prompthero/status predicates', async () => {
+test('ai0-prompts.countEligibleAll counts all prompthero/status-null unposted, no category filter', async () => {
   const { pool, captured } = fakePool('4');
-  assert.equal(await new PromptsRepository(pool as any).countEligible('art'), 4);
+  assert.equal(await new PromptsRepository(pool as any).countEligibleAll(), 4);
   assert.match(captured.sql!, /provider = 'prompthero'/);
   assert.match(captured.sql!, /status IS NULL/);
-  assert.deepEqual(captured.params, ['art']);
+  assert.match(captured.sql!, /NOT \(posted \? 'TELEGRAM'\)/);
+  assert.doesNotMatch(captured.sql!, /category = \$1/);
 });
 
 test('pdr-quiz.countEligible binds channel key', async () => {

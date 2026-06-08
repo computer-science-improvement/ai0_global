@@ -9,7 +9,7 @@ function build() {
     { countEligible: async (k: string, c?: string) => { calls.quotes = { k, c }; return 7; } } as any, // quotes
     { countEligible: async (k: string) => { calls.facts = k; return 3; } } as any,                 // facts
     { countEligible: async () => 9 } as any,                                                       // curated-prompts
-    { countEligible: async (cat: string) => { calls.ai0 = cat; return 4; } } as any,               // ai0-prompts
+    { countEligibleAll: async () => 4 } as any,                                                    // ai0-prompts
     { countEligible: async (_k: string) => 2 } as any,                                             // pdr-quiz
     { countEligible: async (_k: string) => 6 } as any,                                             // motivation-biography
     { countEligible: async (ds: string, k: string) => { calls.assets = { ds, k }; return 8; } } as any, // assets
@@ -46,10 +46,9 @@ test('assets passes dataSource + channel key', async () => {
   assert.deepEqual(calls.assets, { ds: 'epic', k: '@c' });
 });
 
-test('ai0-prompts passes category (channel key irrelevant)', async () => {
-  const { svc, calls } = build();
-  assert.equal(await svc.remainingFor('ai0-prompts', null, { category: 'art' }), 4);
-  assert.equal(calls.ai0, 'art');
+test('ai0-prompts counts all categories (channel key irrelevant)', async () => {
+  const { svc } = build();
+  assert.equal(await svc.remainingFor('ai0-prompts', null, {}), 4);
 });
 
 test('effectiveThreshold falls back to the default', () => {

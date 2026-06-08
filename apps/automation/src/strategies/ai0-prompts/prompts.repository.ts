@@ -29,15 +29,13 @@ export class PromptsRepository {
     return rows[0] ?? null;
   }
 
-  async countEligible(category: string): Promise<number> {
+  async countEligibleAll(): Promise<number> {
     const { rows } = await this.pool.query<{ count: string }>(
       `SELECT count(*) AS count
        FROM prompts
-       WHERE category = $1
-         AND provider = 'prompthero'
+       WHERE provider = 'prompthero'
          AND status IS NULL
          AND NOT (posted ? 'TELEGRAM')`,
-      [category],
     );
     return Number(rows[0]?.count ?? 0);
   }
