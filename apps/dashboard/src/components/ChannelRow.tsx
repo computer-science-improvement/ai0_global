@@ -11,7 +11,7 @@ import {
 } from '../lib/labels';
 import type { TrackedChannel } from '../api/types';
 
-export function ChannelRow({ c }: { c: TrackedChannel }) {
+export function ChannelRow({ c, lowContentIds }: { c: TrackedChannel; lowContentIds?: Set<string> }) {
   const strategies = c.strategies ?? [];
   const [editing, setEditing] = useState(false);
 
@@ -135,6 +135,7 @@ export function ChannelRow({ c }: { c: TrackedChannel }) {
                 `Binding: ${s.ext_id}`,
                 `Role: ${s.role} (${STRATEGY_ROLE_HELP[s.role]})`,
                 `Status: ${s.enabled ? 'enabled' : 'paused'} — ${s.enabled ? STRATEGY_STATUS_HELP.enabled : STRATEGY_STATUS_HELP.paused}`,
+                ...(lowContentIds?.has(s.id) ? ['⚠ Low content — running out of posts for this strategy.'] : []),
               ].join('\n\n');
               return (
                 <span
@@ -145,6 +146,9 @@ export function ChannelRow({ c }: { c: TrackedChannel }) {
                 >
                   {s.type}
                   {s.role === 'forward' && <span style={{ marginLeft: 4, color: 'var(--color-ink-dim)' }}>↩</span>}
+                  {lowContentIds?.has(s.id) && (
+                    <Icon name="warning" size={11} style={{ marginLeft: 4, color: 'var(--color-warning)' }} />
+                  )}
                 </span>
               );
             })}

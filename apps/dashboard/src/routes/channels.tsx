@@ -1,8 +1,10 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { useQuery } from '@tanstack/react-query';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { trackingApi } from '../api/tracking';
 import { useBots } from '../api/bots';
+import { useStrategies } from '../api/strategies';
+import { isLowContent } from '../lib/runway';
 import { ChannelRow } from '../components/ChannelRow';
 import { Pagination } from '../components/Pagination';
 import { AddChannelModal } from '../components/AddChannelModal';
@@ -32,6 +34,12 @@ function ChannelsPage() {
   const navigate = Route.useNavigate();
   const [modalOpen, setModalOpen] = useState(false);
   const { data: bots } = useBots();
+  const { data: strategies } = useStrategies();
+  const lowContentIds = useMemo(() => {
+    const set = new Set<string>();
+    for (const s of strategies ?? []) if (isLowContent(s)) set.add(s.id);
+    return set;
+  }, [strategies]);
 
   const { data, isLoading, error } = useQuery({
     queryKey: ['channels', FILTER, page, q, bot],
@@ -79,7 +87,7 @@ function ChannelsPage() {
       {data && (
         <>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-            {data.items.map((c) => <ChannelRow key={c.id} c={c} />)}
+            {data.items.map((c) => <ChannelRow key={c.id} c={c} lowContentIds={lowContentIds} />)}
           </div>
           <Pagination page={page} pageSize={PAGE_SIZE} total={data.total} onPage={(p) => setSearch({ page: p })} />
         </>
