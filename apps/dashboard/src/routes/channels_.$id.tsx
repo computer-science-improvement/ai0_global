@@ -18,6 +18,8 @@ import { ChannelAvatar } from '../components/ChannelAvatar';
 import { InlineScheduleEditor } from '../components/InlineScheduleEditor';
 import { useChannelThemes } from '../api/discovery';
 import { Icon } from '../components/Icon';
+import { Badge } from '../components/ui/Badge';
+import { FINITE_POOL_TYPES, isLowContent } from '../lib/runway';
 import {
   POLL_TIER_HELP, CHANNEL_KIND_HELP, CHANNEL_FLAG_HELP, STRATEGY_STATUS_HELP,
   STRATEGY_ROLE_HELP, RUN_STATUS_HELP, BOT_STATUS_HELP,
@@ -369,6 +371,7 @@ function StrategiesPanel({
             <th>Schedule</th>
             <th>Next run</th>
             <th>Last run</th>
+            <th>Content</th>
             <th>Status</th>
           </tr>
         </thead>
@@ -465,6 +468,19 @@ function StrategyTableRow({
             {s.last_run.status}
           </span>
         ) : <span className="text-body-sm" style={{ color: 'var(--color-ink-dim)' }} title="No execution recorded yet.">never</span>}
+      </td>
+      <td style={{ fontVariantNumeric: 'tabular-nums' }}>
+        {!FINITE_POOL_TYPES.has(s.type) || s.content_remaining == null ? (
+          <span className="text-body-sm" style={{ color: 'var(--color-ink-dim)' }} title="Live/feed source — unlimited supply, no runway.">—</span>
+        ) : isLowContent(s) ? (
+          <span title={`Low content: ${s.content_remaining} posts left (alert below ${s.low_content_threshold}). Load more content for this strategy.`}>
+            <Badge tone="warning"><Icon name="warning" size={11} /> Low: {s.content_remaining} / {s.low_content_threshold}</Badge>
+          </span>
+        ) : (
+          <span className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }} title={`${s.content_remaining} posts of content remaining (alert below ${s.low_content_threshold}).`}>
+            {s.content_remaining.toLocaleString()}
+          </span>
+        )}
       </td>
       <td>
         {s.enabled
