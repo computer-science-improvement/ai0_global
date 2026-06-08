@@ -12,6 +12,7 @@ export interface StrategyBindingRow {
   params:      Record<string, unknown>;
   enabled:     boolean;
   notes:       string | null;
+  low_content_threshold: number | null;
 }
 
 export interface StrategyBindingInsertInput {
@@ -29,7 +30,7 @@ export class StrategyBindingsRepository {
 
   async list(): Promise<StrategyBindingRow[]> {
     const { rows } = await this.pool.query<StrategyBindingRow>(
-      `SELECT id, ext_id, type, channel_id, schedule, params, enabled, notes
+      `SELECT id, ext_id, type, channel_id, schedule, params, enabled, notes, low_content_threshold
        FROM strategy_bindings
        ORDER BY ext_id`,
     );
@@ -51,7 +52,7 @@ export class StrategyBindingsRepository {
 
   async findById(id: string): Promise<StrategyBindingRow | null> {
     const { rows } = await this.pool.query<StrategyBindingRow>(
-      `SELECT id, ext_id, type, channel_id, schedule, params, enabled, notes
+      `SELECT id, ext_id, type, channel_id, schedule, params, enabled, notes, low_content_threshold
        FROM strategy_bindings WHERE id = $1`, [id],
     );
     return rows[0] ?? null;
@@ -59,7 +60,7 @@ export class StrategyBindingsRepository {
 
   async findByExtId(extId: string): Promise<StrategyBindingRow | null> {
     const { rows } = await this.pool.query<StrategyBindingRow>(
-      `SELECT id, ext_id, type, channel_id, schedule, params, enabled, notes
+      `SELECT id, ext_id, type, channel_id, schedule, params, enabled, notes, low_content_threshold
        FROM strategy_bindings WHERE ext_id = $1`, [extId],
     );
     return rows[0] ?? null;
@@ -89,6 +90,7 @@ export class StrategyBindingsRepository {
     params?:     Record<string, unknown>;
     enabled?:    boolean;
     notes?:      string | null;
+    low_content_threshold?: number | null;
   }): Promise<StrategyBindingRow | null> {
     const sets: string[] = [];
     const params: unknown[] = [id];
@@ -99,11 +101,12 @@ export class StrategyBindingsRepository {
     if (patch.params      !== undefined) { sets.push(`params = $${i++}::jsonb`); params.push(JSON.stringify(patch.params)); }
     if (patch.enabled     !== undefined) { sets.push(`enabled = $${i++}`);     params.push(patch.enabled); }
     if (patch.notes       !== undefined) { sets.push(`notes = $${i++}`);       params.push(patch.notes); }
+    if (patch.low_content_threshold !== undefined) { sets.push(`low_content_threshold = $${i++}`); params.push(patch.low_content_threshold); }
     if (sets.length === 0) return this.findById(id);
     const { rows } = await this.pool.query<StrategyBindingRow>(
       `UPDATE strategy_bindings SET ${sets.join(', ')}
        WHERE id = $1
-       RETURNING id, ext_id, type, channel_id, schedule, params, enabled, notes`,
+       RETURNING id, ext_id, type, channel_id, schedule, params, enabled, notes, low_content_threshold`,
       params,
     );
     return rows[0] ?? null;
