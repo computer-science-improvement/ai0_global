@@ -181,6 +181,10 @@ export interface Strategy {
   /** ISO timestamp of the next scheduled fire, or null if cron invalid / disabled. */
   next_run_at:  string | null;
   last_run:     StrategyRunSummary | null;
+  /** Remaining unpublished posts for finite-pool strategies; null for live/feed types. */
+  content_remaining:     number | null;
+  /** Effective low-content alert threshold (posts); binding override or default 100. */
+  low_content_threshold: number;
 }
 
 export interface StrategyChannelRef {

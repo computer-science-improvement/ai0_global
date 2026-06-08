@@ -55,6 +55,7 @@ export interface PatchStrategyInput {
   params?:     Record<string, unknown>;
   enabled?:    boolean;
   notes?:      string | null;
+  low_content_threshold?: number | null;
 }
 
 export function usePatchStrategy() {
