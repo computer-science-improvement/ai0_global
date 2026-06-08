@@ -29,6 +29,13 @@ export class FactsRepository {
     return rows[0] ?? null;
   }
 
+  async countEligible(channelId: string): Promise<number> {
+    const { rows } = await this.pool.query<{ count: string }>(
+      `SELECT count(*) AS count FROM facts WHERE NOT (posted ? $1)`, [channelId],
+    );
+    return Number(rows[0]?.count ?? 0);
+  }
+
   /**
    * Get a random unposted fact restricted to one of the given article titles.
    * Used by curated bindings (e.g. motivation channel) that should only draw

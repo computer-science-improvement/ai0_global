@@ -28,6 +28,18 @@ export class MotivationBiographyRepository {
     return rows[0] ?? null;
   }
 
+  /**
+   * Total runway: ALL birthdays not yet posted to this channel. Unlike
+   * getToday() this omits the today-only month/day filter — the low-content
+   * warning must reflect real remaining supply, not the 0–1 eligible today.
+   */
+  async countEligible(channelId: string): Promise<number> {
+    const { rows } = await this.pool.query<{ count: string }>(
+      `SELECT count(*) AS count FROM birthdays WHERE NOT (posted ? $1)`, [channelId],
+    );
+    return Number(rows[0]?.count ?? 0);
+  }
+
   async markPosted(id: string, channelId: string): Promise<void> {
     await this.pool.query(
       `UPDATE birthdays SET posted = posted || jsonb_build_object($2::text, NOW()) WHERE id = $1`,

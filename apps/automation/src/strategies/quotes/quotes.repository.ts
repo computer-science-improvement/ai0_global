@@ -35,6 +35,17 @@ export class QuotesRepository {
     return rows[0] ?? null;
   }
 
+  async countEligible(channelId: string, category?: string): Promise<number> {
+    const conditions = ['NOT (posted ? $1)'];
+    const params: unknown[] = [channelId];
+    if (category) { conditions.push(`category = $${params.length + 1}`); params.push(category); }
+    const { rows } = await this.pool.query<{ count: string }>(
+      `SELECT count(*) AS count FROM quotes WHERE ${conditions.join(' AND ')}`,
+      params,
+    );
+    return Number(rows[0]?.count ?? 0);
+  }
+
   /** Check if this author has a birthday today */
   async isBirthdayToday(author: string): Promise<boolean> {
     const { rows } = await this.pool.query<{ found: boolean }>(
