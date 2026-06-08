@@ -11,6 +11,7 @@ import { MetaCrosspostTargetsRepository } from '../meta-crosspost-targets.reposi
 import { StrategyPreviewService } from '../strategy-preview.service';
 import { ConfigCacheService } from '../config-cache.service';
 import { ConfigEventsPublisher } from '../config-events.publisher';
+import { ContentRunwayService } from '../../common/content-runway/content-runway.service';
 import { CreateStrategyDto, PatchStrategyDto } from './dto/strategies.dto';
 
 /**
@@ -50,6 +51,7 @@ export class StrategiesController {
     private readonly cache:     ConfigCacheService,
     private readonly publisher: ConfigEventsPublisher,
     private readonly crossposts: MetaCrosspostTargetsRepository,
+    private readonly runway:    ContentRunwayService,
   ) {}
 
   /**
@@ -65,7 +67,7 @@ export class StrategiesController {
       this.runsRepo.latestPerStrategy(),
       this.crossposts.platformsByChannel(),
     ]);
-    return rows.map(r => {
+    return Promise.all(rows.map(async r => {
       const channel = this.cache.getChannelById(r.channel_id);
       const last    = latestByStrategy.get(r.id);
       // Channels this strategy actually reaches: primary binding + forward
@@ -110,8 +112,10 @@ export class StrategiesController {
           duration_ms: last.duration_ms,
           error:       last.error,
         } : null,
+        content_remaining:     await this.runway.remainingFor(r.type, channel?.channel_key ?? null, r.params),
+        low_content_threshold: this.runway.effectiveThreshold(r.low_content_threshold),
       };
-    });
+    }));
   }
 
   /** Recent execution log for one strategy. */

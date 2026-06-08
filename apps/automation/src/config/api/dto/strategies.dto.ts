@@ -1,7 +1,7 @@
 // apps/automation/src/config/api/dto/strategies.dto.ts
 import {
-  IsBoolean, IsNotEmpty, IsObject, IsOptional, IsString,
-  IsUUID, Matches, MaxLength,
+  IsBoolean, IsInt, IsNotEmpty, IsObject, IsOptional, IsString,
+  IsUUID, Matches, MaxLength, Min,
 } from 'class-validator';
 
 /**
@@ -59,4 +59,7 @@ export class PatchStrategyDto {
 
   @IsOptional() @IsString() @MaxLength(500)
   notes?: string | null;
+
+  @IsOptional() @IsInt() @Min(0)
+  low_content_threshold?: number | null;
 }
