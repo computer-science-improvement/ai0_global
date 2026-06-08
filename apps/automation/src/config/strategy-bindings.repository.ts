@@ -70,7 +70,7 @@ export class StrategyBindingsRepository {
     const { rows } = await this.pool.query<StrategyBindingRow>(
       `INSERT INTO strategy_bindings (ext_id, type, channel_id, schedule, params, enabled)
        VALUES ($1, $2, $3, $4, $5::jsonb, COALESCE($6, true))
-       RETURNING id, ext_id, type, channel_id, schedule, params, enabled, notes`,
+       RETURNING id, ext_id, type, channel_id, schedule, params, enabled, notes, low_content_threshold`,
       [
         input.ext_id, input.type, input.channel_id, input.schedule,
         JSON.stringify(input.params), input.enabled ?? true,
