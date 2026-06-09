@@ -13,7 +13,7 @@ export function TelegramPreview({ post }: { post: ComposedPostInput }) {
       {post.mediaPlacement === 'above' && media}
       {/* Operator-authored Telegram HTML; rendered as-is for fidelity (trusted input). */}
       <div className="text-body-sm" style={{ color: 'var(--color-ink)', whiteSpace: 'pre-wrap', margin: '8px 2px' }}
-           dangerouslySetInnerHTML={{ __html: post.text || '<span style="opacity:.5">(порожньо)</span>' }} />
+           dangerouslySetInnerHTML={{ __html: post.text || '<span style="opacity:.5">(empty)</span>' }} />
       {post.mediaPlacement === 'below' && media}
       {post.buttons.some(r => r.buttons.length > 0) && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 4, marginTop: 8 }}>

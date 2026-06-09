@@ -29,11 +29,11 @@ function ComposePage() {
   return (
     <div>
       <PageHeader
-        title={id ? 'Редагувати пост' : 'Новий пост'}
-        subtitle="Запланований пост у Telegram"
+        title={id ? 'Edit post' : 'New post'}
+        subtitle="Scheduled post in Telegram"
       />
       {id && postQ.isLoading ? (
-        <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>Завантаження…</p>
+        <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>Loading…</p>
       ) : (
         // Remount when the edit target changes so PostComposer re-seeds state.
         <PostComposer key={id ?? 'new'} editing={editing} onDone={done} />
