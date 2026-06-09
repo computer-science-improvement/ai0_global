@@ -29,6 +29,17 @@ export class PromptsRepository {
     return rows[0] ?? null;
   }
 
+  async countEligibleAll(): Promise<number> {
+    const { rows } = await this.pool.query<{ count: string }>(
+      `SELECT count(*) AS count
+       FROM prompts
+       WHERE provider = 'prompthero'
+         AND status IS NULL
+         AND NOT (posted ? 'TELEGRAM')`,
+    );
+    return Number(rows[0]?.count ?? 0);
+  }
+
   /** Mark prompt as posted to Telegram */
   async markPosted(id: string): Promise<void> {
     await this.pool.query(

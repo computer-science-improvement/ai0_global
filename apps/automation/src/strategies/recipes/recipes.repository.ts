@@ -55,6 +55,17 @@ export class RecipesRepository {
     return rows[0] ?? null;
   }
 
+  async countEligible(): Promise<number> {
+    const { rows } = await this.pool.query<{ count: string }>(
+      `SELECT count(*) AS count
+       FROM recipes
+       WHERE NOT (posted ? 'TELEGRAM')
+         AND title_uk IS DISTINCT FROM ''
+         AND kcal IS NOT NULL`,
+    );
+    return Number(rows[0]?.count ?? 0);
+  }
+
   /** Cache a translation (or the empty-string skip sentinel) on the row. */
   async saveTranslation(id: string, t: RecipeTranslation): Promise<void> {
     await this.pool.query(

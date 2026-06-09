@@ -14,6 +14,7 @@ import { STRATEGY_DESCRIPTIONS, describeStrategy, SOURCE_KIND_LABEL, channelOpti
 import type { Strategy } from '../api/types';
 import { SchedulePicker } from './SchedulePicker';
 import { CrosspostSection } from './CrosspostSection';
+import { FINITE_POOL_TYPES } from '../lib/runway';
 
 interface Props {
   strategy: Strategy;
@@ -29,6 +30,11 @@ export function EditStrategyModal({ strategy, open, onClose }: Props) {
   const [paramsErr,  setParamsErr]  = useState<string | null>(null);
   const [enabled,   setEnabled]   = useState(strategy.enabled);
   const [notes,     setNotes]     = useState(strategy.notes ?? '');
+  // Empty string = "use the default" (sends null on save). Number string = override.
+  const [threshold, setThreshold] = useState<string>(
+    strategy.low_content_threshold == null ? '' : String(strategy.low_content_threshold),
+  );
+  const showThreshold = FINITE_POOL_TYPES.has(strategy.type);
 
   useEffect(() => {
     if (open) {
@@ -39,6 +45,7 @@ export function EditStrategyModal({ strategy, open, onClose }: Props) {
       setParamsErr(null);
       setEnabled(strategy.enabled);
       setNotes(strategy.notes ?? '');
+      setThreshold(strategy.low_content_threshold == null ? '' : String(strategy.low_content_threshold));
     }
   }, [open, strategy]);
 
@@ -80,6 +87,13 @@ export function EditStrategyModal({ strategy, open, onClose }: Props) {
     if (notes     !== (strategy.notes ?? '')) body.notes   = notes.trim() || null;
     if (JSON.stringify(parsedParams) !== JSON.stringify(strategy.params ?? {})) {
       body.params = parsedParams;
+    }
+    if (showThreshold) {
+      const next = threshold.trim() === '' ? null : Math.max(0, Math.floor(Number(threshold)));
+      const current = strategy.low_content_threshold;
+      if (next !== current && !(next === null && current == null)) {
+        body.low_content_threshold = next;
+      }
     }
 
     if (Object.keys(body).length === 0) { onClose(); return; }
@@ -149,6 +163,21 @@ export function EditStrategyModal({ strategy, open, onClose }: Props) {
           style={{ width: '100%' }}
         />
       </Field>
+
+      {showThreshold && (
+        <Field label="Low-content alert (posts)">
+          <input
+            type="number"
+            min={0}
+            value={threshold}
+            onChange={e => setThreshold(e.target.value)}
+            placeholder="100 (default)"
+            className="input-field"
+            style={{ width: 160 }}
+            title="Warn when the remaining content for this strategy drops below this many posts. Leave empty to use the default (100)."
+          />
+        </Field>
+      )}
 
       <Field label="Status">
         <label style={{ display: 'inline-flex', alignItems: 'center', gap: 8, cursor: 'pointer' }}>

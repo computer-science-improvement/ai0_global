@@ -37,6 +37,13 @@ export class PdrQuizRepository {
     return rows[0] ?? null;
   }
 
+  async countEligible(channelId: string): Promise<number> {
+    const { rows } = await this.pool.query<{ count: string }>(
+      `SELECT count(*) AS count FROM pdr_questions WHERE NOT (posted ? $1)`, [channelId],
+    );
+    return Number(rows[0]?.count ?? 0);
+  }
+
   async markPosted(id: string, channelId: string): Promise<void> {
     await this.pool.query(
       `UPDATE pdr_questions SET posted = posted || jsonb_build_object($2::text, NOW()) WHERE id = $1`,

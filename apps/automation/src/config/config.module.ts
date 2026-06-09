@@ -26,10 +26,11 @@ import { MetaCrosspostsController } from './api/meta-crossposts.controller';
 import { StrategiesController } from './api/strategies.controller';
 import { ForwardRoutesController } from './api/forward-routes.controller';
 import { AuthModule } from '../auth/auth.module';
+import { ContentRunwayModule } from '../common/content-runway/content-runway.module';
 
 @Global()
 @Module({
-  imports: [NestConfigModule, DatabaseModule, TrackingModule, AuthModule],
+  imports: [NestConfigModule, DatabaseModule, TrackingModule, AuthModule, ContentRunwayModule],
   controllers: [MyBotsController, TelegraphAccountsController, MetaAccountsController, MetaCrosspostsController, StrategiesController, ForwardRoutesController],
   providers: [
     ChannelConfigService,

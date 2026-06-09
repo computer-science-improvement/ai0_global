@@ -38,6 +38,21 @@ export class CuratedPromptsRepository {
     return rows[0] ?? null;
   }
 
+  async countEligible(filter: CuratedFilter = {}): Promise<number> {
+    const { rows } = await this.pool.query<{ count: string }>(
+      `SELECT count(*) AS count
+       FROM prompts
+       WHERE provider <> 'prompthero'
+         AND prompt_text IS NOT NULL
+         AND NOT (posted ? 'TELEGRAM')
+         AND status IS DISTINCT FROM 'ERROR'
+         AND ($1::text IS NULL OR provider   = $1)
+         AND ($2::text IS NULL OR media_type = $2)`,
+      [filter.provider ?? null, filter.mediaType ?? null],
+    );
+    return Number(rows[0]?.count ?? 0);
+  }
+
   async markPosted(id: string): Promise<void> {
     await this.pool.query(
       `UPDATE prompts SET posted = posted || jsonb_build_object('TELEGRAM', NOW()) WHERE id = $1`,

@@ -31,6 +31,14 @@ export class AssetsRepository {
     return rows[0] ?? null;
   }
 
+  async countEligible(dataSource: string, channelId: string): Promise<number> {
+    const { rows } = await this.pool.query<{ count: string }>(
+      `SELECT count(*) AS count FROM assets WHERE data_source = $1 AND NOT (posted ? $2)`,
+      [dataSource, channelId],
+    );
+    return Number(rows[0]?.count ?? 0);
+  }
+
   /** Mark asset as posted for this channel */
   async markPosted(id: string, channelId: string): Promise<void> {
     await this.pool.query(
