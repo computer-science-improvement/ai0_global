@@ -4,6 +4,7 @@ import { SettingsService } from '../../settings/settings.service';
 import { TelegramClient, Api } from 'telegram';
 import { StringSession }       from 'telegram/sessions';
 import { LogLevel }            from 'telegram/extensions/Logger';
+import { withTimeout }         from '../../common/with-timeout';
 
 export interface TgAccountInfo {
   id:        string | null;
@@ -128,7 +129,12 @@ export class TrackingMtprotoClient implements OnModuleInit {
     if (!this.ready || !this.client) return null;
     if (this.cachedMe) return this.cachedMe;
     try {
-      const me: any = await this.client.getMe();
+      // Bound the call: a "ready" session whose socket has silently died makes
+      // getMe() hang forever, which would hang GET /tracking/session and leave
+      // the Connections "Sessions" panel stuck on "Loading…". On timeout we
+      // fall through to the catch and return null (account identity omitted),
+      // while the synchronous getStatus() still drives the panel.
+      const me: any = await withTimeout(this.client.getMe(), 8000, 'tracking getMe');
       if (!me) return null;
       this.cachedMe = {
         id:        me.id != null ? String(me.id) : null,
