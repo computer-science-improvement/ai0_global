@@ -36,7 +36,7 @@ function MetaConnectionsPage() {
 
   return (
     <div>
-      <PageHeader title="Підключення · Meta" subtitle="Facebook, Instagram та Threads в одному місці" />
+      <PageHeader title="Connections · Meta" subtitle="Facebook, Instagram and Threads in one place" />
 
       <div style={{ overflowX: 'auto', marginBottom: 20, paddingBottom: 2 }}>
         <SegmentedTabs value={tab} onChange={setTab} options={TABS} />

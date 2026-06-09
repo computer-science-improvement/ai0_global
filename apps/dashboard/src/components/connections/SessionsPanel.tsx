@@ -19,14 +19,14 @@ export function SessionsPanel() {
   return (
     <div>
       <div style={{ marginBottom: 14 }}>
-        <h2 className="text-eyebrow" style={{ margin: 0 }}>MTProto-сесії</h2>
+        <h2 className="text-eyebrow" style={{ margin: 0 }}>MTProto sessions</h2>
         <p className="text-micro" style={{ margin: '4px 0 0', color: 'var(--color-ink-dim)' }}>
-          Користувацькі акаунти, якими трекер збирає статистику й відстежує канали.
-          Рядки сесій зберігаються у <code style={{ color: 'var(--color-ink-muted)' }}>.env</code>.
+          The user accounts the tracker logs in as to collect channel stats and follow channels.
+          Session strings are stored in <code style={{ color: 'var(--color-ink-muted)' }}>.env</code>.
         </p>
       </div>
 
-      {isLoading && <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>Завантаження…</p>}
+      {isLoading && <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>Loading…</p>}
       {error && <p className="text-body-sm" style={{ color: 'var(--color-danger)' }}>{(error as Error).message}</p>}
 
       {data && (
@@ -43,9 +43,9 @@ function SessionCard({ s }: { s: TrackingSession }) {
     s.ready ? 'ok' : s.configured ? 'configured-not-ready' : 'empty';
 
   const tone =
-    state === 'ok' ? { chip: 'chip chip-success', label: "З'єднано" }
-    : state === 'configured-not-ready' ? { chip: 'chip chip-warning', label: 'Налаштовано, не зʼєднано' }
-    : { chip: 'chip chip-danger', label: 'Порожня' };
+    state === 'ok' ? { chip: 'chip chip-success', label: 'Connected' }
+    : state === 'configured-not-ready' ? { chip: 'chip chip-warning', label: 'Configured, not connected' }
+    : { chip: 'chip chip-danger', label: 'Empty' };
 
   const acct = s.account;
   const displayName = [acct?.firstName, acct?.lastName].filter(Boolean).join(' ') || null;
@@ -62,9 +62,9 @@ function SessionCard({ s }: { s: TrackingSession }) {
       <div style={{ flex: 1, minWidth: 0 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
           <span className="text-body" style={{ color: 'var(--color-ink)', fontWeight: 500 }}>{s.label}</span>
-          <span className={tone.chip} title="Стан акаунта-трекера через MTProto">{tone.label}</span>
+          <span className={tone.chip} title="Tracker account state via MTProto">{tone.label}</span>
           {s.shared && (
-            <span className="chip" title="Використовується спільна сесія публікатора (TELEGRAM_SESSION_STRING)">shared</span>
+            <span className="chip" title="Reuses the publisher's shared session (TELEGRAM_SESSION_STRING)">shared</span>
           )}
           {acct?.isPremium && <span className="chip chip-success">premium</span>}
         </div>
@@ -72,14 +72,14 @@ function SessionCard({ s }: { s: TrackingSession }) {
         {/* Account behind the session */}
         {acct ? (
           <div style={{ display: 'flex', gap: 18, flexWrap: 'wrap', marginTop: 10 }}>
-            <Meta label="Акаунт">
+            <Meta label="Account">
               {acct.username
                 ? <span style={{ color: 'var(--color-ink)' }}>@{acct.username}</span>
-                : <span style={{ color: 'var(--color-ink-dim)' }}>без username</span>}
+                : <span style={{ color: 'var(--color-ink-dim)' }}>no username</span>}
             </Meta>
-            {displayName && <Meta label="Імʼя"><span style={{ color: 'var(--color-ink)' }}>{displayName}</span></Meta>}
+            {displayName && <Meta label="Name"><span style={{ color: 'var(--color-ink)' }}>{displayName}</span></Meta>}
             {acct.phone && (
-              <Meta label="Телефон">
+              <Meta label="Phone">
                 <span style={{ color: 'var(--color-ink)', fontVariantNumeric: 'tabular-nums' }}>+{acct.phone}</span>
               </Meta>
             )}
@@ -92,19 +92,19 @@ function SessionCard({ s }: { s: TrackingSession }) {
         ) : (
           <p className="text-body-sm" style={{ margin: '8px 0 0', color: 'var(--color-ink-muted)' }}>
             {state === 'empty'
-              ? 'Сесія не налаштована.'
-              : 'Дані акаунта недоступні (сесія не зʼєднана).'}
+              ? 'Session not configured.'
+              : 'Account data unavailable (session not connected).'}
           </p>
         )}
 
         <div style={{ display: 'flex', gap: 18, flexWrap: 'wrap', marginTop: 10 }}>
-          <Meta label="ENV-змінна">
+          <Meta label="ENV variable">
             <code style={{ color: 'var(--color-ink)' }}>{s.envVar}</code>
           </Meta>
-          <Meta label="API-ключі">
+          <Meta label="API keys">
             {s.hasApiCreds
-              ? <span style={{ color: 'var(--color-success)' }}>є</span>
-              : <span style={{ color: 'var(--color-danger)' }}>відсутні</span>}
+              ? <span style={{ color: 'var(--color-success)' }}>present</span>
+              : <span style={{ color: 'var(--color-danger)' }}>missing</span>}
           </Meta>
         </div>
 
@@ -112,9 +112,9 @@ function SessionCard({ s }: { s: TrackingSession }) {
           <div className="callout-warning" style={{ marginTop: 12 }}>
             <Icon name="warning" size={16} style={{ flexShrink: 0, marginTop: 1 }} />
             <span>
-              Задайте <code>TELEGRAM_API_ID</code>, <code>TELEGRAM_API_HASH</code> та
-              {' '}<code>{s.envVar}</code> у <code>.env</code>, потім перезапустіть automation —
-              статистика й відстеження ввімкнуться.
+              Set <code>TELEGRAM_API_ID</code>, <code>TELEGRAM_API_HASH</code> and
+              {' '}<code>{s.envVar}</code> in <code>.env</code>, then restart automation —
+              stats and tracking will turn on.
             </span>
           </div>
         )}
