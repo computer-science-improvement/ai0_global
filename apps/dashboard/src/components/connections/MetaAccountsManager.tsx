@@ -37,21 +37,21 @@ export function MetaAccountsManager({ platform }: { platform: MetaPlatform }) {
         <div>
           <h2 className="text-eyebrow" style={{ margin: 0 }}>{PLATFORM_LABEL[platform]}</h2>
           <p className="text-micro" style={{ margin: '4px 0 0', color: 'var(--color-ink-dim)' }}>
-            Акаунти {PLATFORM_LABEL[platform]}. Токени зберігаються у <code style={{ color: 'var(--color-ink-muted)' }}>.env</code>.
+            {PLATFORM_LABEL[platform]} accounts. Tokens are stored in <code style={{ color: 'var(--color-ink-muted)' }}>.env</code>.
           </p>
         </div>
         <button onClick={() => setAddOpen(true)} className="btn-primary" style={{ gap: 6 }}>
-          <Icon name="plus" size={14} /> Додати акаунт
+          <Icon name="plus" size={14} /> Add account
         </button>
       </div>
 
-      {isLoading && <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>Завантаження…</p>}
+      {isLoading && <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>Loading…</p>}
       {error && <p className="text-body-sm" style={{ color: 'var(--color-danger)' }}>{(error as Error).message}</p>}
 
       {!isLoading && accounts.length === 0 && (
         <div className="card" style={{ textAlign: 'center', padding: 40 }}>
           <p className="text-body" style={{ color: 'var(--color-ink-muted)', margin: 0 }}>
-            Ще немає акаунтів {PLATFORM_LABEL[platform]} — додайте, щоб підключити.
+            No {PLATFORM_LABEL[platform]} accounts yet — add one to connect.
           </p>
         </div>
       )}
@@ -63,12 +63,12 @@ export function MetaAccountsManager({ platform }: { platform: MetaPlatform }) {
             account={a}
             onVerify={() => verify.mutate(a.id)}
             onToggle={async () => {
-              const action = a.active ? 'призупинити' : 'активувати';
-              if (await confirm(`${action} акаунт ${a.account_id}`, { danger: false, confirmLabel: a.active ? 'Призупинити' : 'Активувати' }))
+              const action = a.active ? 'pause' : 'activate';
+              if (await confirm(`${action} account ${a.account_id}`, { danger: false, confirmLabel: a.active ? 'Pause' : 'Activate' }))
                 toggle.mutate({ id: a.id, active: !a.active });
             }}
             onDelete={async () => {
-              if (await confirm(`видалити акаунт ${a.username ? `@${a.username}` : a.account_id}`))
+              if (await confirm(`delete account ${a.username ? `@${a.username}` : a.account_id}`))
                 remove.mutate(a.id);
             }}
           />
@@ -95,26 +95,26 @@ function AccountCard({ account: a, onVerify, onToggle, onDelete }: {
             {a.display_name ?? a.account_id}
           </span>
           {a.username && <span className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>@{a.username}</span>}
-          {!a.active && <Badge tone="neutral">неактивний</Badge>}
+          {!a.active && <Badge tone="neutral">inactive</Badge>}
         </div>
         <div className="text-caption" style={{ color: 'var(--color-ink-dim)', marginTop: 4 }}>
-          {a.followers != null && <>{a.followers.toLocaleString()} підписників · </>}
+          {a.followers != null && <>{a.followers.toLocaleString()} followers · </>}
           <code>{a.token_env}</code> · id <code>{a.target_id}</code>
-          {a.last_verified_at && <> · перевірено {new Date(a.last_verified_at).toLocaleString()}</>}
+          {a.last_verified_at && <> · verified {new Date(a.last_verified_at).toLocaleString()}</>}
         </div>
         <div style={{ marginTop: 8 }}>
           {a.verify_error
             ? <Badge tone="danger"><span title={a.verify_error}>{a.verify_error.slice(0, 48)}</span></Badge>
             : verified
-              ? <Badge tone="success">підключено</Badge>
-              : <Badge tone="neutral">не перевірено</Badge>}
+              ? <Badge tone="success">connected</Badge>
+              : <Badge tone="neutral">unverified</Badge>}
         </div>
       </div>
 
       <div style={{ display: 'inline-flex', gap: 6 }}>
-        <button onClick={onVerify} className="btn-tiny" title="Перевірити токен"><Icon name="refresh" size={12} /> Verify</button>
-        <button onClick={onToggle} className="btn-tiny">{a.active ? 'Призупинити' : 'Активувати'}</button>
-        <button onClick={onDelete} className="btn-tiny-danger"><Icon name="trash" size={12} /> Видалити</button>
+        <button onClick={onVerify} className="btn-tiny" title="Verify token"><Icon name="refresh" size={12} /> Verify</button>
+        <button onClick={onToggle} className="btn-tiny">{a.active ? 'Pause' : 'Activate'}</button>
+        <button onClick={onDelete} className="btn-tiny-danger"><Icon name="trash" size={12} /> Delete</button>
       </div>
     </div>
   );

@@ -25,7 +25,7 @@ function LoginPage() {
       await refresh();
       await navigate({ to: '/' as any });
     } catch {
-      setError('Невірний токен');
+      setError('Invalid token');
     } finally {
       setBusy(false);
     }
@@ -79,7 +79,7 @@ function LoginPage() {
         {AUTH_MODE === 'token' && (
           <>
             <p style={{ marginBottom: 20, fontSize: 15, color: 'var(--color-ink-muted)' }}>
-              Введіть токен доступу, щоб продовжити.
+              Enter your access token to continue.
             </p>
             <form
               onSubmit={(e) => { e.preventDefault(); void submitToken(token); }}
@@ -90,20 +90,20 @@ function LoginPage() {
                 autoFocus
                 value={token}
                 onChange={(e) => setToken(e.target.value)}
-                placeholder="Токен доступу"
+                placeholder="Access token"
                 className="input-field"
                 style={{ width: '100%' }}
                 autoComplete="off"
               />
               <button type="submit" disabled={busy || !token.trim()} className="btn-primary" style={{ width: '100%' }}>
-                {busy ? 'Перевірка…' : 'Увійти'}
+                {busy ? 'Checking…' : 'Sign in'}
               </button>
             </form>
             {error && (
               <p style={{ marginTop: 12, fontSize: 13, color: 'var(--color-danger)' }}>{error}</p>
             )}
             <p style={{ marginTop: 12, fontSize: 12, color: 'var(--color-ink-dim)' }}>
-              Токен звіряється з <code>TRACKING_TOKEN</code> на сервері й зберігається в сесії (cookie).
+              The token is checked against <code>TRACKING_TOKEN</code> on the server and stored in the session (cookie).
             </p>
           </>
         )}
@@ -111,7 +111,7 @@ function LoginPage() {
         {AUTH_MODE === 'dev' && (
           <>
             <p style={{ marginBottom: 24, fontSize: 15, color: 'var(--color-ink-muted)' }}>
-              Dev mode — авторизація вимкнена.
+              Dev mode — authorization disabled.
             </p>
             <button
               className="btn-primary"

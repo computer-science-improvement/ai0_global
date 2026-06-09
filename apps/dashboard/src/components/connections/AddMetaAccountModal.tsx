@@ -5,7 +5,7 @@ import { useCreateMetaAccount } from '../../api/meta-accounts';
 import type { MetaPlatform } from '../../api/types';
 
 const DEFAULTS: Record<MetaPlatform, { label: string; tokenEnv: string; targetHint: string }> = {
-  facebook:  { label: 'Facebook',  tokenEnv: 'FACEBOOK_PAGE_TOKEN', targetHint: 'Page id (напр. 1029384756)' },
+  facebook:  { label: 'Facebook',  tokenEnv: 'FACEBOOK_PAGE_TOKEN', targetHint: 'Page id (e.g. 1029384756)' },
   instagram: { label: 'Instagram', tokenEnv: 'INSTAGRAM_TOKEN',     targetHint: 'IG business-account id' },
   threads:   { label: 'Threads',   tokenEnv: 'THREADS_TOKEN',       targetHint: 'Threads user id' },
 };
@@ -32,13 +32,13 @@ export function AddMetaAccountModal({ open, platform, onClose }: Props) {
   };
 
   return (
-    <Modal open={open} onClose={onClose} title={`Додати ${d.label}`}>
-      <Field label="Назва (логічний ідентифікатор)">
+    <Modal open={open} onClose={onClose} title={`Add ${d.label}`}>
+      <Field label="Name (logical identifier)">
         <input value={accountId} onChange={e => setAccountId(e.target.value)}
           placeholder="my_page" className="input-field" style={{ width: '100%' }} />
       </Field>
 
-      <Field label="Назва env-змінної з токеном">
+      <Field label="Name of the env variable holding the token">
         <input value={tokenEnv} onChange={e => setTokenEnv(e.target.value)}
           placeholder={d.tokenEnv} className="input-field" style={{ width: '100%' }} />
       </Field>
@@ -51,8 +51,8 @@ export function AddMetaAccountModal({ open, platform, onClose }: Props) {
       <div className="callout-warning" style={{ marginBottom: 16 }}>
         <Icon name="info" size={14} />
         <span className="text-micro">
-          Збережіть токен у <code style={{ color: 'var(--color-ink)' }}>.env</code> як{' '}
-          <code style={{ color: 'var(--color-ink)' }}>{tokenEnv || d.tokenEnv}=…</code>, перезапустіть automation, тоді натисніть <b>Verify</b>.
+          Save the token in <code style={{ color: 'var(--color-ink)' }}>.env</code> as{' '}
+          <code style={{ color: 'var(--color-ink)' }}>{tokenEnv || d.tokenEnv}=…</code>, restart automation, then click <b>Verify</b>.
         </span>
       </div>
 
@@ -63,9 +63,9 @@ export function AddMetaAccountModal({ open, platform, onClose }: Props) {
       )}
 
       <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 8 }}>
-        <button onClick={onClose} className="btn-secondary">Скасувати</button>
+        <button onClick={onClose} className="btn-secondary">Cancel</button>
         <button onClick={submit} disabled={!accountId || !tokenEnv || !targetId || create.isPending} className="btn-primary">
-          {create.isPending ? 'Збереження…' : 'Зберегти'}
+          {create.isPending ? 'Saving…' : 'Save'}
         </button>
       </div>
     </Modal>

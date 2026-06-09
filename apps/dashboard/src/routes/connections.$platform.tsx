@@ -17,8 +17,8 @@ function Connection() {
   const meta = LABEL[platform] ?? { name: platform, icon: 'connections' as IconName };
   return (
     <div>
-      <PageHeader title={`Підключення · ${meta.name}`} subtitle="Акаунти та токени" />
-      <Placeholder icon={meta.icon} title={`${meta.name} скоро`} note={`Підключення акаунтів ${meta.name} зʼявиться, коли додамо інтеграцію.`} />
+      <PageHeader title={`Connections · ${meta.name}`} subtitle="Accounts and tokens" />
+      <Placeholder icon={meta.icon} title={`${meta.name} soon`} note={`${meta.name} account connections will appear once we add the integration.`} />
     </div>
   );
 }

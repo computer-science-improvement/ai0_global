@@ -4,7 +4,7 @@ import { Placeholder } from '../components/ui/Placeholder';
 
 export const Route = createFileRoute('/calendar')({ component: () => (
   <div>
-    <PageHeader title="Календар / черга" subtitle="Планування публікацій" />
-    <Placeholder icon="calendar" title="Календар скоро" note="Черга та календар запланованих постів." />
+    <PageHeader title="Calendar / queue" subtitle="Scheduling publications" />
+    <Placeholder icon="calendar" title="Calendar soon" note="Queue and calendar of scheduled posts." />
   </div>
 )});

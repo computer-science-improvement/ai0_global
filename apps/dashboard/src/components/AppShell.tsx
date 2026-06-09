@@ -75,14 +75,14 @@ export function AppShell() {
               <Button
                 variant="primary"
                 style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}
-                title="Новий пост"
+                title="New post"
                 onClick={() => navigate({ to: '/compose' })}
               >
-                <Icon name="plus" size={14} />{!isMobile && ' Новий пост'}
+                <Icon name="plus" size={14} />{!isMobile && ' New post'}
               </Button>
               {/* Logout only when real auth is configured (telegram/token) —
                   in dev-bypass mode there's no session to end. */}
-              {me && AUTH_MODE !== 'dev' && <Button variant="tiny" onClick={onLogout}>Вийти</Button>}
+              {me && AUTH_MODE !== 'dev' && <Button variant="tiny" onClick={onLogout}>Log out</Button>}
             </div>
           </header>
 

@@ -28,9 +28,9 @@ export function BotsManager() {
     <div>
       <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 12, marginBottom: 14, flexWrap: 'wrap' }}>
         <div>
-          <h2 className="text-eyebrow" style={{ margin: 0 }}>Боти</h2>
+          <h2 className="text-eyebrow" style={{ margin: 0 }}>Bots</h2>
           <p className="text-micro" style={{ margin: '4px 0 0', color: 'var(--color-ink-dim)' }}>
-            Telegram-боти, що публікують від вашого імені. Токени зберігаються у <code style={{ color: 'var(--color-ink-muted)' }}>.env</code>.
+            Telegram bots that publish on your behalf. Tokens are stored in <code style={{ color: 'var(--color-ink-muted)' }}>.env</code>.
           </p>
         </div>
         <button onClick={() => setAddOpen(true)} className="btn-primary" style={{ gap: 6 }}>

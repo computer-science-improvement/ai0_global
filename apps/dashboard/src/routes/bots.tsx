@@ -9,7 +9,7 @@ export const Route = createFileRoute('/bots')({ component: BotsPage });
 function BotsPage() {
   return (
     <div>
-      <PageHeader title="Bots" subtitle="Telegram-боти, що публікують від вашого імені" />
+      <PageHeader title="Bots" subtitle="Telegram bots that publish on your behalf" />
       <BotsManager />
     </div>
   );

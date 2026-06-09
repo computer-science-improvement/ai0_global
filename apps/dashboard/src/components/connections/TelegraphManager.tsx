@@ -25,7 +25,7 @@ export function TelegraphManager() {
         <div>
           <h2 className="text-eyebrow" style={{ margin: 0 }}>Telegraph</h2>
           <p className="text-micro" style={{ margin: '4px 0 0', color: 'var(--color-ink-dim)' }}>
-            telegra.ph акаунти для довгих публікацій (рецепти) з Instant View. Токени у <code style={{ color: 'var(--color-ink-muted)' }}>.env</code>.
+            telegra.ph accounts for long posts (recipes) with Instant View. Tokens in <code style={{ color: 'var(--color-ink-muted)' }}>.env</code>.
           </p>
         </div>
         <button onClick={() => setAddOpen(true)} className="btn-primary" style={{ gap: 6 }}>

@@ -1,6 +1,6 @@
 // Telegram connections hub — one place for every Telegram-family connector:
-//   Сесії    → MTProto sessions (account info, multi-session-ready)
-//   Боти      → publishing bots
+//   Sessions  → MTProto sessions (account info, multi-session-ready)
+//   Bots      → publishing bots
 //   Telegraph → telegra.ph accounts
 // Other platforms (Instagram / TikTok / Facebook) keep their own sidebar
 // entries + placeholder pages (/connections/$platform). Active tab mirrored
@@ -16,8 +16,8 @@ import { TelegraphManager } from '../components/connections/TelegraphManager';
 type Tab = 'sessions' | 'bots' | 'telegraph';
 
 const TABS: ReadonlyArray<{ key: Tab; label: string }> = [
-  { key: 'sessions',  label: 'Сесії' },
-  { key: 'bots',      label: 'Боти' },
+  { key: 'sessions',  label: 'Sessions' },
+  { key: 'bots',      label: 'Bots' },
   { key: 'telegraph', label: 'Telegraph' },
 ];
 
@@ -40,8 +40,8 @@ function ConnectionsPage() {
   return (
     <div>
       <PageHeader
-        title="Підключення · Telegram"
-        subtitle="Сесії, боти та Telegraph в одному місці"
+        title="Connections · Telegram"
+        subtitle="Sessions, bots and Telegraph in one place"
       />
 
       <div style={{ overflowX: 'auto', marginBottom: 20, paddingBottom: 2 }}>

@@ -48,7 +48,7 @@ export class TrackingService {
       sessions: [
         {
           id:          'tracking',
-          label:       s.shared ? 'Спільна сесія (публікатор)' : 'Трекерська сесія',
+          label:       s.shared ? 'Shared session (publisher)' : 'Tracker session',
           envVar:      s.envVar,
           configured:  s.configured,
           ready:       s.ready,

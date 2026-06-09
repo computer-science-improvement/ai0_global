@@ -9,7 +9,7 @@ export const Route = createFileRoute('/telegraph')({ component: TelegraphPage })
 function TelegraphPage() {
   return (
     <div>
-      <PageHeader title="Telegraph" subtitle="telegra.ph акаунти для довгих публікацій з Instant View" />
+      <PageHeader title="Telegraph" subtitle="telegra.ph accounts for long-form posts with Instant View" />
       <TelegraphManager />
     </div>
   );

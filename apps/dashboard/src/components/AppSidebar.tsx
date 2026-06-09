@@ -6,31 +6,31 @@ interface NavItem { to: string; label: string; icon: IconName; soon?: boolean; e
 interface NavGroup { title: string; items: NavItem[]; }
 
 const GROUPS: NavGroup[] = [
-  { title: 'Головне', items: [
-    { to: '/', label: 'Огляд', icon: 'overview' },
+  { title: 'Home', items: [
+    { to: '/', label: 'Overview', icon: 'overview' },
   ]},
-  { title: 'Публікація', items: [
-    { to: '/strategies', label: 'Стратегії', icon: 'strategies' },
-    { to: '/scheduled',  label: 'Заплановані', icon: 'calendar' },
-    { to: '/channels',   label: 'Мої канали', icon: 'channels', search: { filter: 'mine' } },
+  { title: 'Publishing', items: [
+    { to: '/strategies', label: 'Strategies', icon: 'strategies' },
+    { to: '/scheduled',  label: 'Scheduled', icon: 'calendar' },
+    { to: '/channels',   label: 'My channels', icon: 'channels', search: { filter: 'mine' } },
   ]},
-  { title: 'Аналітика', items: [
-    { to: '/analytics', label: 'Статистика', icon: 'analytics' },
-    { to: '/logs',      label: 'Логи',       icon: 'logs' },
+  { title: 'Analytics', items: [
+    { to: '/analytics', label: 'Analytics', icon: 'analytics' },
+    { to: '/logs',      label: 'Logs',       icon: 'logs' },
   ]},
-  { title: 'Інтелідженс', items: [
+  { title: 'Intelligence', items: [
     { to: '/discovery',       label: 'Discovery',     icon: 'discovery' },
-    { to: '/tracked',         label: 'Відстежувані',  icon: 'channels' },
-    { to: '/graph',           label: 'Граф',          icon: 'graph' },
-    { to: '/recommendations', label: 'Рекомендації',  icon: 'recommendations' },
+    { to: '/tracked',         label: 'Tracked',  icon: 'channels' },
+    { to: '/graph',           label: 'Graph',          icon: 'graph' },
+    { to: '/recommendations', label: 'Recommendations',  icon: 'recommendations' },
   ]},
-  { title: 'Підключення', items: [
+  { title: 'Connections', items: [
     { to: '/connections',        label: 'Telegram', icon: 'telegram', exact: true },
     { to: '/connections/meta',   label: 'Meta',     icon: 'facebook' },
     { to: '/connections/tiktok', label: 'TikTok',   icon: 'tiktok', soon: true },
   ]},
-  { title: 'Система', items: [
-    { to: '/settings', label: 'Налаштування', icon: 'settings' },
+  { title: 'System', items: [
+    { to: '/settings', label: 'Settings', icon: 'settings' },
   ]},
 ];
 
@@ -131,9 +131,9 @@ export function AppSidebar({ isMobile = false, mobileOpen = false, onNavigate }:
 
       {!isMobile && (
         <div style={{ padding: '10px' }}>
-          <button onClick={toggle} className="btn-secondary" style={{ width: '100%', justifyContent: 'center', gap: 8, fontSize: 12, padding: collapsed ? 8 : '8px 12px' }} title={collapsed ? 'Розгорнути' : 'Згорнути'}>
+          <button onClick={toggle} className="btn-secondary" style={{ width: '100%', justifyContent: 'center', gap: 8, fontSize: 12, padding: collapsed ? 8 : '8px 12px' }} title={collapsed ? 'Expand' : 'Collapse'}>
             <Icon name={collapsed ? 'chevron-right' : 'chevron-left'} size={16} />
-            {!collapsed && <span>Згорнути</span>}
+            {!collapsed && <span>Collapse</span>}
           </button>
         </div>
       )}

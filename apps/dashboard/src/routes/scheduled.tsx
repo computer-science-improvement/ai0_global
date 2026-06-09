@@ -30,24 +30,24 @@ function ScheduledPage() {
 
   return (
     <div>
-      <PageHeader title="Заплановані" subtitle="Заплановані пости в Telegram"
-        actions={<button className="btn-primary" onClick={() => navigate({ to: '/compose' })}>+ Новий пост</button>} />
-      {isLoading && <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>Завантаження…</p>}
+      <PageHeader title="Scheduled" subtitle="Scheduled posts in Telegram"
+        actions={<button className="btn-primary" onClick={() => navigate({ to: '/compose' })}>+ New post</button>} />
+      {isLoading && <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>Loading…</p>}
       <div className="table-wrap"><table className="table"><thead><tr>
-        <th>Час</th><th>Канал</th><th>Відправник</th><th>Статус</th><th>Текст</th><th style={{ textAlign:'right' }}>Дії</th>
+        <th>Time</th><th>Channel</th><th>Sender</th><th>Status</th><th>Text</th><th style={{ textAlign:'right' }}>Actions</th>
       </tr></thead><tbody>
         {data?.map(p => (
           <tr key={p.id}>
             <td className="num">{fmtDate(p.scheduledAt)}</td>
             <td>{channelLabel(p.channelId)}</td>
-            <td>{p.sender === 'bot' ? 'Бот' : 'MTProto'}</td>
+            <td>{p.sender === 'bot' ? 'Bot' : 'MTProto'}</td>
             <td><Badge tone={TONE[p.status]}>{p.status}</Badge>{p.error && <span className="text-micro" title={p.error} style={{ color:'var(--color-danger)', marginLeft:6 }}>!</span>}</td>
             <td className="meta" style={{ maxWidth: 280, overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap' }}>{p.text.replace(/<[^>]+>/g,'')}</td>
             <td style={{ textAlign:'right' }}>
               {p.status === 'pending' && <>
-                <button className="btn-tiny" onClick={() => navigate({ to: '/compose', search: { id: p.id } })}>Ред.</button>
+                <button className="btn-tiny" onClick={() => navigate({ to: '/compose', search: { id: p.id } })}>Edit</button>
                 <button className="btn-tiny-danger" style={{ marginLeft: 6 }}
-                  onClick={async () => { if (await confirm(`скасувати запланований пост`)) cancel.mutate(p.id); }}>Скасувати</button>
+                  onClick={async () => { if (await confirm(`cancel the scheduled post`)) cancel.mutate(p.id); }}>Cancel</button>
               </>}
             </td>
           </tr>

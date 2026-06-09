@@ -2,7 +2,7 @@ import { Icon, type IconName } from './ui/Icon';
 import { usePlatform, ACTIVE_PLATFORMS, type Platform } from '../lib/usePlatform';
 
 const META: Record<Platform, { label: string; icon?: IconName }> = {
-  all:       { label: 'Всі' },
+  all:       { label: 'All' },
   telegram:  { label: 'Telegram', icon: 'telegram' },
   meta:      { label: 'Meta',     icon: 'facebook' },
   tiktok:    { label: 'TikTok',   icon: 'tiktok' },
@@ -22,7 +22,7 @@ export function PlatformFilter() {
             key={p}
             disabled={!enabled}
             onClick={() => enabled && setPlatform(p)}
-            title={enabled ? meta.label : `${meta.label} — скоро`}
+            title={enabled ? meta.label : `${meta.label} — soon`}
             style={{
               display: 'inline-flex', alignItems: 'center', gap: 6,
               fontSize: 12, padding: '5px 11px', borderRadius: 'var(--radius-sm)',
