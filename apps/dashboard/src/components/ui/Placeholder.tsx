@@ -12,7 +12,7 @@ export function Placeholder({ icon, title, note }: {
       <h2 className="text-heading-md" style={{ margin: '0 0 6px', color: 'var(--color-ink)', fontWeight: 500 }}>{title}</h2>
       <p className="text-body-sm" style={{ margin: 0 }}>{note}</p>
       <div style={{ marginTop: 12 }}>
-        <span className="chip" style={{ fontSize: 10 }}>Скоро</span>
+        <span className="chip" style={{ fontSize: 10 }}>Soon</span>
       </div>
     </div>
   );
