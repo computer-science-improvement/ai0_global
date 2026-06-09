@@ -52,7 +52,7 @@ function PlatformChips({ value, onChange }: { value: string; onChange: (v: strin
             key={p.key}
             disabled={!p.enabled}
             onClick={() => p.enabled && onChange(p.key)}
-            title={p.enabled ? p.label : `${p.label} — coming soon`}
+            title={p.enabled ? p.label : `${p.label} — soon`}
             style={{
               display: 'inline-flex', alignItems: 'center', gap: 6,
               fontSize: 12, padding: '5px 11px', borderRadius: 'var(--radius-sm)',
