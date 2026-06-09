@@ -11,7 +11,7 @@ import { Icon } from '../components/Icon';
 const PAGE_SIZE = 50;
 
 // Tracked / competitor channels (NOT is_mine) — the intelligence side. Owned
-// publish targets live under «Мої канали» (Publishing). This is the flat,
+// publish targets live under «My channels» (Publishing). This is the flat,
 // manageable list that complements the Graph and Discovery views.
 interface Search { page: number; q: string; }
 
@@ -38,8 +38,8 @@ function TrackedPage() {
   return (
     <div>
       <PageHeader
-        title="Відстежувані канали"
-        subtitle="Чужі канали, що відстежуються (не мої)"
+        title="Tracked channels"
+        subtitle="Other people's channels being tracked (not mine)"
         actions={
           <button onClick={() => setModalOpen(true)} className="btn-primary" style={{ gap: 6 }}>
             <Icon name="plus" size={14} /> Add channel
@@ -51,13 +51,13 @@ function TrackedPage() {
         <input
           value={q}
           onChange={(e) => setSearch({ q: e.target.value, page: 1 })}
-          placeholder="Пошук…"
+          placeholder="Search…"
           className="input-field"
           style={{ flex: 1, minWidth: 220, maxWidth: 360 }}
         />
       </div>
 
-      {isLoading && <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>Завантаження…</p>}
+      {isLoading && <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>Loading…</p>}
       {error && <p className="text-body-sm" style={{ color: 'var(--color-danger)' }}>{(error as Error).message}</p>}
       {data && (
         <>

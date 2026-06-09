@@ -52,10 +52,10 @@ export function CrosspostSection({ channelId }: { channelId: string }) {
 
   return (
     <div style={{ marginBottom: 16 }}>
-      <div className="text-eyebrow" style={{ marginBottom: 6 }}>Крос-постинг у Meta</div>
+      <div className="text-eyebrow" style={{ marginBottom: 6 }}>Meta cross-posting</div>
       <p className="text-micro" style={{ color: 'var(--color-ink-dim)', margin: '0 0 10px' }}>
-        Після кожної публікації в Telegram цей канал репостить у вибрані Meta-акаунти.
-        <b> mirror</b> — той самий контент; <b>teaser</b> — короткий анонс + посилання на пост.
+        After each Telegram post, this channel reposts to the selected Meta accounts.
+        <b> mirror</b> — the same content; <b>teaser</b> — a short teaser + link to the post.
       </p>
 
       {/* Existing targets */}
@@ -70,20 +70,20 @@ export function CrosspostSection({ channelId }: { channelId: string }) {
               <Icon name={meta.icon} size={14} />
               <span className="text-body-sm" style={{ color: 'var(--color-ink)' }}>{accountLabel(t.meta_account_id)}</span>
               <Badge tone="neutral">{t.mode}</Badge>
-              {!t.enabled && <Badge tone="warning">вимкнено</Badge>}
+              {!t.enabled && <Badge tone="warning">disabled</Badge>}
               <span style={{ marginLeft: 'auto', display: 'inline-flex', gap: 6 }}>
                 <button className="btn-tiny" onClick={() => toggle.mutate({ id: t.id, enabled: !t.enabled })}>
-                  {t.enabled ? 'Вимкнути' : 'Увімкнути'}
+                  {t.enabled ? 'Disable' : 'Enable'}
                 </button>
                 <button className="btn-tiny-danger" onClick={async () => {
-                  if (await confirm(`видалити крос-постинг ${meta.label} → ${accountLabel(t.meta_account_id)}`)) remove.mutate(t.id);
-                }}>Видалити</button>
+                  if (await confirm(`remove cross-posting ${meta.label} → ${accountLabel(t.meta_account_id)}`)) remove.mutate(t.id);
+                }}>Delete</button>
               </span>
             </div>
           );
         })}
         {targets.data && targets.data.length === 0 && (
-          <p className="text-micro" style={{ color: 'var(--color-ink-dim)', margin: 0 }}>Ще немає цілей крос-постингу.</p>
+          <p className="text-micro" style={{ color: 'var(--color-ink-dim)', margin: 0 }}>No cross-posting targets yet.</p>
         )}
       </div>
 
@@ -96,7 +96,7 @@ export function CrosspostSection({ channelId }: { channelId: string }) {
 
         <select className="input-field" style={{ padding: '6px 10px', fontSize: 13, minWidth: 160 }}
           value={accountId} onChange={e => setAccountId(e.target.value)}>
-          <option value="">{platformAccounts.length ? 'Оберіть акаунт…' : 'Немає підключених акаунтів'}</option>
+          <option value="">{platformAccounts.length ? 'Select an account…' : 'No connected accounts'}</option>
           {platformAccounts.map(a => (
             <option key={a.id} value={a.id}>{a.username ? `@${a.username}` : a.display_name ?? a.account_id}</option>
           ))}
@@ -109,12 +109,12 @@ export function CrosspostSection({ channelId }: { channelId: string }) {
         </select>
 
         <button className="btn-primary" disabled={!accountId || create.isPending} onClick={add}>
-          {create.isPending ? 'Додавання…' : 'Додати'}
+          {create.isPending ? 'Adding…' : 'Add'}
         </button>
       </div>
       {igForcesMirror && (
         <p className="text-micro" style={{ color: 'var(--color-ink-dim)', marginTop: 6 }}>
-          Instagram підтримує лише <b>mirror</b> (потрібне зображення; посилання в підписах не клікабельні).
+          Instagram supports only <b>mirror</b> (an image is required; links in captions aren't clickable).
         </p>
       )}
       {create.error && (

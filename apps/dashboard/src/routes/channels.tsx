@@ -22,8 +22,8 @@ export const Route = createFileRoute('/channels')({
   component: ChannelsPage,
 });
 
-// «Мої канали» lists owned (is_mine) channels only — the publish targets.
-// Tracked / competitor channels live under Intelligence (Discovery / Граф),
+// «My channels» lists owned (is_mine) channels only — the publish targets.
+// Tracked / competitor channels live under Intelligence (Discovery / Graph),
 // so this page has no all/external tabs.
 const FILTER = 'mine' as const;
 
@@ -46,7 +46,7 @@ function ChannelsPage() {
   return (
     <div>
       <header style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
-        <h1 className="text-display-md" style={{ margin: 0 }}>Мої канали</h1>
+        <h1 className="text-display-md" style={{ margin: 0 }}>My channels</h1>
         <button onClick={() => setModalOpen(true)} className="btn-primary" style={{ gap: 6 }}>
           <Icon name="plus" size={14} /> Add channel
         </button>

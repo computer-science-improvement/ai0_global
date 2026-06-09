@@ -24,7 +24,7 @@ type Kind = 'public' | 'private';
 export function AddChannelModal({ open, onClose, ownership = 'mine' }: {
   open: boolean;
   onClose: () => void;
-  /** Fixed by the opening page: «Мої канали» → mine, «Відстежувані» → external.
+  /** Fixed by the opening page: «My channels» → mine, «Tracked» → external.
    *  The Ownership toggle is locked to this value. */
   ownership?: 'mine' | 'external';
 }) {
@@ -150,7 +150,7 @@ export function AddChannelModal({ open, onClose, ownership = 'mine' }: {
           <input
             value={title}
             onChange={e => setTitle(e.target.value)}
-            placeholder={kind === 'private' ? 'Мотивація | LOCAL' : 'optional — overrides poller'}
+            placeholder={kind === 'private' ? 'Motivation | LOCAL' : 'optional — overrides poller'}
             className="input-field"
             style={{ width: '100%' }}
           />

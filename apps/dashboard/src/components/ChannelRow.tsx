@@ -65,9 +65,9 @@ export function ChannelRow({ c }: { c: TrackedChannel }) {
                 </span>
               )}
               {c.trackingStatus === 'not_subscribed' && (
-                <span title="Акаунт-трекер не підписаний на цей канал">
+                <span title="The tracker account isn't subscribed to this channel">
                   <Badge tone="warning">
-                    <Icon name="warning" size={11} /> Підпишіться, щоб відстежувати
+                    <Icon name="warning" size={11} /> Subscribe to track
                   </Badge>
                 </span>
               )}

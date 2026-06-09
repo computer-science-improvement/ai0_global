@@ -13,7 +13,7 @@ export const Route = createFileRoute('/')({ component: OverviewPage });
 
 type Tone = 'neutral' | 'success' | 'warning' | 'danger' | 'accent';
 const STATUS_TONE: Record<string, Tone> = { ok: 'success', error: 'danger', skipped: 'warning', running: 'neutral' };
-const STATUS_LABEL: Record<string, string> = { ok: 'ok', error: 'помилка', skipped: 'пропущено', running: 'виконується' };
+const STATUS_LABEL: Record<string, string> = { ok: 'ok', error: 'error', skipped: 'skipped', running: 'running' };
 
 function rel(iso: string): string {
   try { return formatDistanceToNow(new Date(iso), { addSuffix: true }); } catch { return iso; }
@@ -45,19 +45,19 @@ function OverviewPage() {
 
   return (
     <div>
-      <PageHeader title="Огляд" subtitle="Telegram · публікація та стан" />
+      <PageHeader title="Overview" subtitle="Telegram · publishing and status" />
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 12, marginBottom: 12 }}>
-        <StatCard label="Мої канали" value={channelsQ.isLoading ? '…' : channels.length} />
-        <StatCard label="Підписники (сума)" value={channelsQ.isLoading ? '…' : totalSubs.toLocaleString('uk-UA')} />
-        <StatCard label="Активні стратегії" value={strategiesQ.isLoading ? '…' : active.length} />
-        <StatCard label="Помилки" value={errors.length} deltaTone={errors.length ? 'down' : 'neutral'} delta={errors.length ? 'потребує уваги' : undefined} />
+        <StatCard label="My channels" value={channelsQ.isLoading ? '…' : channels.length} />
+        <StatCard label="Subscribers (total)" value={channelsQ.isLoading ? '…' : totalSubs.toLocaleString('en-US')} />
+        <StatCard label="Active strategies" value={strategiesQ.isLoading ? '…' : active.length} />
+        <StatCard label="Errors" value={errors.length} deltaTone={errors.length ? 'down' : 'neutral'} delta={errors.length ? 'needs attention' : undefined} />
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-        <Panel title="Найближчі запуски">
+        <Panel title="Upcoming runs">
           {upcoming.length === 0
-            ? <p style={{ color: 'var(--color-ink-muted)', fontSize: 12.5, margin: 0 }}>Немає запланованих запусків.</p>
+            ? <p style={{ color: 'var(--color-ink-muted)', fontSize: 12.5, margin: 0 }}>No scheduled runs.</p>
             : upcoming.map(s => (
               <div key={s.id} style={cell}>
                 <span style={{ color: 'var(--color-ink)' }}>{s.ext_id}</span>
@@ -67,9 +67,9 @@ function OverviewPage() {
             ))}
         </Panel>
 
-        <Panel title="Стан стратегій">
+        <Panel title="Strategy status">
           {recent.length === 0
-            ? <p style={{ color: 'var(--color-ink-muted)', fontSize: 12.5, margin: 0 }}>Ще не було запусків.</p>
+            ? <p style={{ color: 'var(--color-ink-muted)', fontSize: 12.5, margin: 0 }}>No runs yet.</p>
             : recent.map(s => (
               <div key={s.id} style={cell}>
                 <Badge tone={STATUS_TONE[s.last_run!.status] ?? 'neutral'}>{STATUS_LABEL[s.last_run!.status] ?? s.last_run!.status}</Badge>

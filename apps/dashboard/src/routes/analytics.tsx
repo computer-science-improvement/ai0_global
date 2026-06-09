@@ -31,8 +31,8 @@ function AnalyticsPage() {
   return (
     <div>
       <PageHeader
-        title="Статистика"
-        subtitle="Telegram · мої канали"
+        title="Analytics"
+        subtitle="Telegram · my channels"
         actions={
           channels.length > 0 ? (
             <select className="input-field" value={channelId} onChange={e => setSel(e.target.value)} style={{ minWidth: 220 }}>
@@ -43,13 +43,13 @@ function AnalyticsPage() {
       />
 
       {!channelId ? (
-        <Placeholder icon="analytics" title="Немає каналів" note="Додайте власний канал (is_mine), щоб бачити аналітику." />
+        <Placeholder icon="analytics" title="No channels" note="Add your own channel (is_mine) to see analytics." />
       ) : (
         <div style={{ display: 'grid', gap: 12 }}>
-          <Panel title="Підписники"><SubsHistoryChart points={points} /></Panel>
+          <Panel title="Subscribers"><SubsHistoryChart points={points} /></Panel>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-            <Panel title="Перегляди"><ViewsBarChart posts={posts} /></Panel>
-            <Panel title="Залученість"><EngagementChart posts={posts} /></Panel>
+            <Panel title="Views"><ViewsBarChart posts={posts} /></Panel>
+            <Panel title="Engagement"><EngagementChart posts={posts} /></Panel>
           </div>
           <RoiPanel channelId={channelId} />
         </div>

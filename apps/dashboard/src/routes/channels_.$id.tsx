@@ -158,10 +158,10 @@ function ChannelDetailPage() {
               onClick={() => pollNow.mutate()}
               disabled={pollNow.isPending}
               className="btn-tiny"
-              title="Поставити в чергу негайний збір статистики (meta + пости). Також перевіряє підписку."
+              title="Queue an immediate stats fetch (meta + posts). Also checks the subscription."
             >
               <Icon name="refresh" size={12} style={{ marginRight: 4 }} />
-              {pollNow.isPending ? 'Збираю…' : 'Отримати статистику'}
+              {pollNow.isPending ? 'Fetching…' : 'Fetch stats'}
             </button>
             {c.isMine && (
               <button
