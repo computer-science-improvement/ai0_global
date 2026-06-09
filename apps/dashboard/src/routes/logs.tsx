@@ -21,18 +21,18 @@ const PAGE = 50;
 type TypeFilter = ActivityType | 'all';
 
 const TYPE_TABS: ReadonlyArray<{ key: TypeFilter; label: string }> = [
-  { key: 'all',     label: 'Всі' },
-  { key: 'posted',  label: 'Публікації' },
-  { key: 'error',   label: 'Помилки' },
-  { key: 'skipped', label: 'Пропущені' },
-  { key: 'running', label: 'Виконується' },
+  { key: 'all',     label: 'All' },
+  { key: 'posted',  label: 'Posts' },
+  { key: 'error',   label: 'Errors' },
+  { key: 'skipped', label: 'Skipped' },
+  { key: 'running', label: 'Running' },
 ];
 
 const TYPE_META: Record<ActivityType, { label: string; tone: 'success' | 'danger' | 'warning' | 'neutral' }> = {
-  posted:  { label: 'Публікація',  tone: 'success' },
-  error:   { label: 'Помилка',     tone: 'danger'  },
-  skipped: { label: 'Пропущено',   tone: 'warning' },
-  running: { label: 'Виконується', tone: 'neutral' },
+  posted:  { label: 'Posted',  tone: 'success' },
+  error:   { label: 'Error',   tone: 'danger'  },
+  skipped: { label: 'Skipped', tone: 'warning' },
+  running: { label: 'Running', tone: 'neutral' },
 };
 
 // Page-local platform chooser — mirrors the header/connections grouping.
@@ -52,7 +52,7 @@ function PlatformChips({ value, onChange }: { value: string; onChange: (v: strin
             key={p.key}
             disabled={!p.enabled}
             onClick={() => p.enabled && onChange(p.key)}
-            title={p.enabled ? p.label : `${p.label} — скоро`}
+            title={p.enabled ? p.label : `${p.label} — coming soon`}
             style={{
               display: 'inline-flex', alignItems: 'center', gap: 6,
               fontSize: 12, padding: '5px 11px', borderRadius: 'var(--radius-sm)',
@@ -86,13 +86,13 @@ function LogsPage() {
 
   const detailText = (durationMs: number | null, detail: string | null) => {
     if (detail) return detail;
-    if (durationMs != null) return `${(durationMs / 1000).toFixed(1)} с`;
+    if (durationMs != null) return `${(durationMs / 1000).toFixed(1)} s`;
     return '—';
   };
 
   return (
     <div>
-      <PageHeader title="Логи" subtitle="Активність автоматизації — публікації, помилки, пропуски" />
+      <PageHeader title="Logs" subtitle="Automation activity — posts, errors, skips" />
 
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, alignItems: 'center', marginBottom: 16 }}>
         <PlatformChips value={platform} onChange={setPlatform} />
@@ -101,11 +101,11 @@ function LogsPage() {
         </div>
       </div>
 
-      {q.isLoading && <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>Завантаження…</p>}
+      {q.isLoading && <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>Loading…</p>}
       {q.error && <p className="text-body-sm" style={{ color: 'var(--color-danger)' }}>{(q.error as Error).message}</p>}
 
       {!q.isLoading && !q.error && items.length === 0 && (
-        <Placeholder icon="logs" title="Поки що порожньо" note="Активність зʼявиться після виконання стратегій або запланованих постів." />
+        <Placeholder icon="logs" title="Nothing here yet" note="Activity will appear after strategies run or scheduled posts are published." />
       )}
 
       {items.length > 0 && (
@@ -113,7 +113,7 @@ function LogsPage() {
           <div className="table-wrap">
             <table className="table">
               <thead><tr>
-                <th>Час</th><th>Тип</th><th>Канал</th><th>Стратегія</th><th>Деталі</th>
+                <th>Time</th><th>Type</th><th>Channel</th><th>Strategy</th><th>Details</th>
               </tr></thead>
               <tbody>
                 {items.map((e) => {
@@ -137,7 +137,7 @@ function LogsPage() {
           {q.hasNextPage && (
             <div style={{ marginTop: 16, display: 'flex', justifyContent: 'center' }}>
               <button className="btn-secondary" disabled={q.isFetchingNextPage} onClick={() => q.fetchNextPage()}>
-                {q.isFetchingNextPage ? 'Завантаження…' : 'Завантажити ще'}
+                {q.isFetchingNextPage ? 'Loading…' : 'Load more'}
               </button>
             </div>
           )}

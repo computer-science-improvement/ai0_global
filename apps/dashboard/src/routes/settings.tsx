@@ -1,5 +1,5 @@
 // Settings page. Two tabs: Telegram (live values via GET /settings; the
-// "Відстеження" block is editable and persisted via PATCH /settings) and Meta
+// "Tracking" block is editable and persisted via PATCH /settings) and Meta
 // (placeholder). Active tab in ?tab= for reload/linkability.
 //
 // Editing model: every change (toggle flip or number apply) opens a confirm
@@ -42,7 +42,7 @@ function SettingsPage() {
 
   return (
     <div>
-      <PageHeader title="Налаштування" subtitle="Значення з .env · зміни зберігаються в БД і перевизначають .env" />
+      <PageHeader title="Settings" subtitle="Values from .env · changes are saved in the DB and override .env" />
 
       <div style={{ overflowX: 'auto', marginBottom: 20, paddingBottom: 2 }}>
         <SegmentedTabs value={tab} onChange={setTab} options={TABS} />
@@ -52,8 +52,8 @@ function SettingsPage() {
       {tab === 'meta'     && (
         <Placeholder
           icon="facebook"
-          title="Meta — скоро"
-          note="Інтеграція Facebook / Instagram / Threads зʼявиться згодом."
+          title="Meta — coming soon"
+          note="Facebook / Instagram / Threads integration will be added later."
         />
       )}
     </div>
@@ -62,8 +62,8 @@ function SettingsPage() {
 
 function SetChip({ value }: { value: boolean }) {
   return value
-    ? <Badge tone="success">задано</Badge>
-    : <Badge tone="neutral">не задано</Badge>;
+    ? <Badge tone="success">set</Badge>
+    : <Badge tone="neutral">not set</Badge>;
 }
 
 const rowStyle: React.CSSProperties = {
@@ -98,7 +98,7 @@ function FieldLabel({ name, note, overridden }: { name: string; note?: string; o
     <span style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
       <span style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
         <code className="text-body-sm" style={{ color: 'var(--color-ink)', fontFamily: 'var(--font-mono, monospace)', letterSpacing: '-0.01em' }}>{name}</code>
-        {overridden && <Badge tone="neutral">перевизначено</Badge>}
+        {overridden && <Badge tone="neutral">overridden</Badge>}
       </span>
       {note && <span className="text-caption" style={{ color: 'var(--color-ink-dim)' }}>{note}</span>}
     </span>
@@ -155,7 +155,7 @@ function TelegramTab() {
     onSuccess: (fresh) => { qc.setQueryData(['settings'], fresh); },
   });
 
-  if (isLoading) return <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>Завантаження…</p>;
+  if (isLoading) return <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>Loading…</p>;
   if (error)     return <p className="text-body-sm" style={{ color: 'var(--color-danger)' }}>{(error as Error).message}</p>;
   if (!data) return null;
 
@@ -170,29 +170,29 @@ function TelegramTab() {
     newText: string,
     value: boolean | number,
   ) => {
-    const ok = await confirm(`змінити ${FIELD_KEY[field]}`, {
+    const ok = await confirm(`change ${FIELD_KEY[field]}`, {
       danger: false,
-      confirmLabel: 'Зберегти',
+      confirmLabel: 'Save',
       details: <DiffPreview envKey={FIELD_KEY[field]} oldText={oldText} newText={newText} />,
     });
     if (ok) save.mutate({ [field]: value } as SettingsPatch);
   };
 
-  const boolText = (v: boolean) => (v ? 'увімкнено' : 'вимкнено');
+  const boolText = (v: boolean) => (v ? 'Enabled' : 'Disabled');
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
       <section className="card" style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-        <h2 className="text-heading-md" style={{ margin: '0 0 8px', fontWeight: 500 }}>Відстеження</h2>
+        <h2 className="text-heading-md" style={{ margin: '0 0 8px', fontWeight: 500 }}>Tracking</h2>
 
         {save.error && (
           <div className="callout-warning" style={{ marginBottom: 8 }}>
-            Не вдалося зберегти: {(save.error as Error).message}
+            Failed to save: {(save.error as Error).message}
           </div>
         )}
         {!t.trackingEnabled && (
           <div className="callout-warning" style={{ marginBottom: 8 }}>
-            TRACKING_ENABLED ≠ true — статистика підписників не збирається
+            TRACKING_ENABLED ≠ true — subscriber statistics are not being collected
           </div>
         )}
 
@@ -201,28 +201,28 @@ function TelegramTab() {
           <Toggle checked={t.trackingEnabled} onChange={(v) => commit('trackingEnabled', boolText(t.trackingEnabled), boolText(v), v)} />
         </div>
         <div style={rowStyle}>
-          <FieldLabel name="TELEGRAM_TRACKING_SHARE_SESSION" note="застосується після рестарту" overridden={overrides.has('TELEGRAM_TRACKING_SHARE_SESSION')} />
+          <FieldLabel name="TELEGRAM_TRACKING_SHARE_SESSION" note="applies after restart" overridden={overrides.has('TELEGRAM_TRACKING_SHARE_SESSION')} />
           <Toggle checked={t.trackingShareSession} onChange={(v) => commit('trackingShareSession', boolText(t.trackingShareSession), boolText(v), v)} />
         </div>
         <div style={rowStyle}>
           <FieldLabel name="STATS_POST_AGE_DAYS" overridden={overrides.has('STATS_POST_AGE_DAYS')} />
-          <EditableNumber serverValue={t.statsPostAgeDays} min={1} max={365} suffix="днів"
-            onCommit={(v) => commit('statsPostAgeDays', `${t.statsPostAgeDays} днів`, `${v} днів`, v)} />
+          <EditableNumber serverValue={t.statsPostAgeDays} min={1} max={365} suffix="days"
+            onCommit={(v) => commit('statsPostAgeDays', `${t.statsPostAgeDays} days`, `${v} days`, v)} />
         </div>
         <div style={rowStyle}>
           <FieldLabel name="POSTING_COOLDOWN_MIN" overridden={overrides.has('POSTING_COOLDOWN_MIN')} />
-          <EditableNumber serverValue={t.postingCooldownMin} min={1} max={1440} suffix="хв"
-            onCommit={(v) => commit('postingCooldownMin', `${t.postingCooldownMin} хв`, `${v} хв`, v)} />
+          <EditableNumber serverValue={t.postingCooldownMin} min={1} max={1440} suffix="min"
+            onCommit={(v) => commit('postingCooldownMin', `${t.postingCooldownMin} min`, `${v} min`, v)} />
         </div>
         <div style={{ ...rowStyle, borderBottom: 'none' }}>
-          <FieldLabel name="FETCH_TIMEOUT" note="лише для pipeline · після рестарту" overridden={overrides.has('FETCH_TIMEOUT')} />
-          <EditableNumber serverValue={t.fetchTimeoutMs} min={1000} max={120000} suffix="мс"
-            onCommit={(v) => commit('fetchTimeoutMs', `${t.fetchTimeoutMs} мс`, `${v} мс`, v)} />
+          <FieldLabel name="FETCH_TIMEOUT" note="pipeline only · after restart" overridden={overrides.has('FETCH_TIMEOUT')} />
+          <EditableNumber serverValue={t.fetchTimeoutMs} min={1000} max={120000} suffix="ms"
+            onCommit={(v) => commit('fetchTimeoutMs', `${t.fetchTimeoutMs} ms`, `${v} ms`, v)} />
         </div>
       </section>
 
       <section className="card" style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-        <h2 className="text-heading-md" style={{ margin: '0 0 8px', fontWeight: 500 }}>AI-ключі</h2>
+        <h2 className="text-heading-md" style={{ margin: '0 0 8px', fontWeight: 500 }}>AI keys</h2>
         {(Object.keys(AI_KEY_LABEL) as Array<keyof AppSettings['ai']>).map((k, i, arr) => (
           <div key={k} style={i === arr.length - 1 ? { ...rowStyle, borderBottom: 'none' } : rowStyle}>
             <code className="text-body-sm" style={{ color: 'var(--color-ink)', fontFamily: 'var(--font-mono, monospace)' }}>{AI_KEY_LABEL[k]}</code>
@@ -257,8 +257,8 @@ function EditableNumber({ serverValue, min, max, suffix, onCommit }: {
       <span className="text-caption" style={{ color: 'var(--color-ink-dim)', minWidth: 34 }}>{suffix}</span>
       {dirty && (
         <span style={{ display: 'inline-flex', gap: 6 }}>
-          <Button variant="primary" onClick={() => onCommit(v)}>Зберегти</Button>
-          <Button variant="tiny" onClick={() => setV(serverValue)}>Скасувати</Button>
+          <Button variant="primary" onClick={() => onCommit(v)}>Save</Button>
+          <Button variant="tiny" onClick={() => setV(serverValue)}>Cancel</Button>
         </span>
       )}
     </span>
