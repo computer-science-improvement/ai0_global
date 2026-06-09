@@ -49,13 +49,13 @@ test('past scheduled time → error', () => {
 test('mtproto_user + media below text → error', () => {
   const r = validateComposedPost({ ...base, sender: 'mtproto_user', botId: null,
     mediaType: 'photo', mediaUrl: 'https://i', mediaPlacement: 'below' });
-  assert.ok(r.errors.some(e => e.includes('під текстом')));
+  assert.ok(r.errors.some(e => e.includes('media below text')));
 });
 
 test('mtproto_user + media above text → no placement error', () => {
   const r = validateComposedPost({ ...base, sender: 'mtproto_user', botId: null,
     mediaType: 'photo', mediaUrl: 'https://i', mediaPlacement: 'above' });
-  assert.ok(!r.errors.some(e => e.includes('під текстом')));
+  assert.ok(!r.errors.some(e => e.includes('media below text')));
 });
 
 test('button url must be http(s)', () => {

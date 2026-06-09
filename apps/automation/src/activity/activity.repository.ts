@@ -75,7 +75,7 @@ export class ActivityRepository {
            tc.id::text                                       AS channel_id,
            COALESCE(tc.channel_key, tc.username, tc.title)   AS channel,
            NULL::text                                        AS strategy_id,
-           'Запланований пост'                               AS strategy,
+           'Scheduled post'                                  AS strategy,
            sp.error                                          AS detail,
            NULL::int                                         AS duration_ms
          FROM scheduled_publications sp
