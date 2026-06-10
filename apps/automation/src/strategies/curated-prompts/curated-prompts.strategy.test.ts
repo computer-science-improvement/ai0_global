@@ -24,7 +24,8 @@ function build(over = {}) {
   };
   const notifier = { notifyPublished: async () => {} };
   const publications = { insert: async () => {} };
-  const s = new CuratedPromptsStrategy(registry as any, publisher as any, repo as any, notifier as any, publications as any);
+  const crossPost = { afterPublish: async () => {} };
+  const s = new CuratedPromptsStrategy(registry as any, publisher as any, repo as any, notifier as any, publications as any, crossPost as any);
   (s as any).downloadImage = async () => Buffer.from('img');
   return { s, calls };
 }

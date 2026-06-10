@@ -12,6 +12,7 @@ import {
 import { ContentStrategyRegistry }  from '../../common/content-strategy/content-strategy.registry';
 import { TelegramPublisher }        from '../../publishers/telegram.publisher';
 import { TelegramNotifier }         from '../../publishers/telegram-notifier.service';
+import { CrossPostService }         from '../../publishers/cross-post.service';
 import { PublicationsRepository }   from '../../stats/publications.repository';
 import { PromptsRepository }        from './prompts.repository';
 import { PromptHeroScraperService } from '../../workflows/ai0-prompts/prompthero-scraper.service';
@@ -30,6 +31,7 @@ export class Ai0PromptsStrategy implements ContentStrategy, OnModuleInit {
     private readonly scraper:  PromptHeroScraperService,
     private readonly notifier: TelegramNotifier,
     private readonly publications: PublicationsRepository,
+    private readonly crossPost: CrossPostService,
   ) {}
 
   onModuleInit() {
@@ -137,6 +139,13 @@ export class Ai0PromptsStrategy implements ContentStrategy, OnModuleInit {
         title:        meta.prompt.slice(0, 200),
         strategyType: this.type,
         tags:         [category],
+      });
+      // row.id IS the PromptHero image URL (the TG image above is downloaded
+      // from it) — Meta fetches it directly; failures are isolated.
+      await this.crossPost.afterPublish({
+        channelKey: channelId,
+        messageId,
+        mirror: { text: message.caption, tags: [category], imageUrl: row.id },
       });
       this.logger.debug(`Published prompt to ${channelId}`);
     } catch (err) {

@@ -3,6 +3,7 @@ import axios from 'axios';
 import { ContentStrategyRegistry } from '../../common/content-strategy/content-strategy.registry';
 import { TelegramPublisher }       from '../../publishers/telegram.publisher';
 import { TelegramNotifier }        from '../../publishers/telegram-notifier.service';
+import { CrossPostService }        from '../../publishers/cross-post.service';
 import { PublicationsRepository }  from '../../stats/publications.repository';
 import { Skill }                   from '../../common/ai/skills/skill.interface';
 import {
@@ -35,6 +36,7 @@ export class CuratedPromptsStrategy implements ContentStrategy, OnModuleInit {
     private readonly repo:         CuratedPromptsRepository,
     private readonly notifier:     TelegramNotifier,
     private readonly publications: PublicationsRepository,
+    private readonly crossPost:    CrossPostService,
   ) {}
 
   onModuleInit() { this.registry.register(this); }
@@ -70,6 +72,16 @@ export class CuratedPromptsStrategy implements ContentStrategy, OnModuleInit {
         title:        (row.title ?? row.prompt_text).slice(0, 200),
         strategyType: this.type,
         tags:         row.category ? [row.category] : [],
+      });
+      await this.crossPost.afterPublish({
+        channelKey: channelId,
+        messageId,
+        mirror: {
+          text: caption,
+          tags: row.category ? [row.category] : [],
+          // video rows cross-post as text; imageless Instagram is skipped.
+          imageUrl: row.media_type === 'image' ? row.media_url : undefined,
+        },
       });
       this.logger.debug(`Published curated prompt ${row.id} to ${channelId}`);
     } catch (err: any) {
