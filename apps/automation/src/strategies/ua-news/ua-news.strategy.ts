@@ -161,12 +161,6 @@ export class UaNewsStrategy implements ContentStrategy, OnModuleInit {
       });
       this.logger.debug(`Published to ${channelId}: ${item.title}`);
 
-      await this.crossPost.afterPublish({
-        channelKey: channelId,
-        messageId,
-        mirror: { text: payload.text, tags: item.tags ?? [], imageUrl: item.image ?? undefined },
-      });
-
       // Topic routing: forward to a sibling channel if the post matches one.
       const targetChannel = await this.topicRouter.route(result.text, channelId);
       if (targetChannel) {
@@ -176,6 +170,14 @@ export class UaNewsStrategy implements ContentStrategy, OnModuleInit {
           this.logger.warn(`Forward to ${targetChannel} failed: ${fwdErr.message}`);
         }
       }
+
+      // Cross-post last: Meta Graph calls can stall up to the fetch timeout,
+      // and the time-sensitive Telegram work (publish + forward) is done.
+      await this.crossPost.afterPublish({
+        channelKey: channelId,
+        messageId,
+        mirror: { text: payload.text, tags: item.tags ?? [], imageUrl: item.image ?? undefined },
+      });
     } catch (err) {
       await this.botLogger.logError(item.source, channelId, err.message);
       this.logger.warn(
