@@ -114,9 +114,12 @@ export class RecipesStrategy implements ContentStrategy, OnModuleInit {
       });
       // Cross-post a teaser (dish name + БЖВ + link to this TG post) to any
       // configured Meta targets. Never throws — Meta failures are isolated.
+      // mirror (full caption + dish photo) enables Instagram targets (IG is
+      // mirror-only and needs an image); teaser remains for FB/Threads.
       await this.crossPost.afterPublish({
         channelKey: channelId,
         messageId,
+        mirror: { text: caption, tags: row.category ? [row.category] : [], imageUrl: row.image_url },
         teaser: { lines: [uk.titleUk, this.nutritionLine(row)], imageUrl: row.image_url },
       });
       this.logger.debug(`Published recipe ${row.id} to ${channelId}`);

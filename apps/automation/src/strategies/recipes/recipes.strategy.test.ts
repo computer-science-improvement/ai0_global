@@ -16,7 +16,7 @@ function makeRow(over = {}) {
 function build(overrides = {}) {
   const calls = {
     chat: 0, save: [] as any[], posted: [] as string[], published: [] as any[],
-    pages: [] as any[], tgSaved: [] as any[],
+    pages: [] as any[], tgSaved: [] as any[], crossPost: null as any,
   };
   const claude = { available: true, chat: async () => { calls.chat++; return JSON.stringify({
     title_uk: 'Пом Анна', ingredients_uk: 'Картопля — 1 кг', instructions_uk: '1. Розтопіть масло.',
@@ -38,7 +38,7 @@ function build(overrides = {}) {
   };
   const notifier = { notifyPublished: async () => {} };
   const publications = { insert: async () => {} };
-  const crossPost = { afterPublish: async () => {} };
+  const crossPost = { afterPublish: async (i: any) => { calls.crossPost = i; } };
   const s = new RecipesStrategy(
     claude as any, validator as any, registry as any, publisher as any,
     telegraph as any, repo as any, notifier as any, publications as any,
@@ -60,6 +60,10 @@ test('untranslated row: translates once, caches, publishes, marks posted', async
   assert.ok(pub.caption.includes('Картопля — 1 кг'));
   assert.ok(pub.replyText.includes('Розтопіть масло'));
   assert.deepEqual(calls.posted, ['r1']);
+  assert.ok(calls.crossPost.teaser, 'teaser payload present');
+  assert.ok(calls.crossPost.mirror, 'mirror payload present (enables Instagram)');
+  assert.equal(calls.crossPost.mirror.imageUrl, 'https://x/i.jpg');
+  assert.ok(calls.crossPost.mirror.text.length > 0);
 });
 
 test('already-translated row: does NOT call Claude', async () => {
