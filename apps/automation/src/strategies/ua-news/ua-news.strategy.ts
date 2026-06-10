@@ -17,6 +17,7 @@ import { ImageResolverService }     from '../../common/processors/image-resolver
 import { BotLoggerService }         from '../../common/logger/bot-logger.service';
 import { RawItem, PostPayload }     from '../../common/types';
 import { TelegramPublisher }        from '../../publishers/telegram.publisher';
+import { CrossPostService } from '../../publishers/cross-post.service';
 
 @Injectable()
 export class UaNewsStrategy implements ContentStrategy, OnModuleInit {
@@ -35,6 +36,7 @@ export class UaNewsStrategy implements ContentStrategy, OnModuleInit {
     private readonly botLogger:     BotLoggerService,
     private readonly telegram:      TelegramPublisher,
     private readonly registry:      ContentStrategyRegistry,
+    private readonly crossPost: CrossPostService,
   ) {}
 
   onModuleInit() {
@@ -158,6 +160,12 @@ export class UaNewsStrategy implements ContentStrategy, OnModuleInit {
         title: item.title, strategyType: this.type, tags: item.tags ?? null,
       });
       this.logger.debug(`Published to ${channelId}: ${item.title}`);
+
+      await this.crossPost.afterPublish({
+        channelKey: channelId,
+        messageId,
+        mirror: { text: payload.text, tags: item.tags ?? [], imageUrl: item.image ?? undefined },
+      });
 
       // Topic routing: forward to a sibling channel if the post matches one.
       const targetChannel = await this.topicRouter.route(result.text, channelId);

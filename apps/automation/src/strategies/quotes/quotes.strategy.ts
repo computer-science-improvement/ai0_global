@@ -3,6 +3,7 @@ import { ContentStrategyRegistry }  from '../../common/content-strategy/content-
 import { TelegramPublisher }        from '../../publishers/telegram.publisher';
 import { TelegramNotifier }         from '../../publishers/telegram-notifier.service';
 import { PublicationsRepository }   from '../../stats/publications.repository';
+import { CrossPostService } from '../../publishers/cross-post.service';
 import { Skill }                    from '../../common/ai/skills/skill.interface';
 import {
   ContentStrategy,
@@ -24,6 +25,7 @@ export class QuotesStrategy implements ContentStrategy, OnModuleInit {
     private readonly telegram:  TelegramPublisher,
     private readonly notifier:  TelegramNotifier,
     private readonly publications: PublicationsRepository,
+    private readonly crossPost: CrossPostService,
   ) {}
 
   onModuleInit() {
@@ -88,6 +90,11 @@ export class QuotesStrategy implements ContentStrategy, OnModuleInit {
         title:     quote.author ?? 'quote',
         strategyType: this.type,
         tags:      quote.category ? [quote.category] : null,
+      });
+      await this.crossPost.afterPublish({
+        channelKey: channelId,
+        messageId,
+        mirror: { text, tags: quote.category ? [quote.category] : [] },
       });
       this.logger.debug(`Published quote to ${channelId}`);
     } catch (err) {
