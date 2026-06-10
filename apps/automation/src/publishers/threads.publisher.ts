@@ -3,7 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import { PostPayload } from '../common/types';
 import { BasePublisher, PublishTarget } from './base.publisher';
 import { buildCaption } from './meta-content';
-import { THREADS_GRAPH, graphPost, graphTimeout, graphVersion } from './meta-graph.util';
+import { THREADS_GRAPH, graphPost, graphTimeout, threadsVersion } from './meta-graph.util';
 
 // Docs: https://developers.facebook.com/docs/threads/posts
 // target.id = Threads user id, target.token = access token. Posts capped 500 chars.
@@ -20,7 +20,7 @@ export class ThreadsPublisher extends BasePublisher {
     if (!token) throw new Error('Threads publish: missing access token');
 
     const text = buildCaption(payload.text, payload.tags, { maxLen: 500, maxTags: 0 });
-    const ver = graphVersion(this.config);
+    const ver = threadsVersion(this.config);
     const timeout = graphTimeout(this.config);
     const root = `${THREADS_GRAPH}/${ver}/${target.id}`;
 

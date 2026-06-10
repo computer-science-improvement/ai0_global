@@ -9,6 +9,15 @@ export function graphVersion(config: ConfigService): string {
   return config.get<string>('META_GRAPH_VERSION') ?? 'v21.0';
 }
 
+/**
+ * Threads runs on its own Graph host (graph.threads.net) with an INDEPENDENT
+ * version line — it does NOT accept Facebook's v21.0 (you get "Object with ID
+ * 'v21.0' does not exist"). Its current published version is v1.0.
+ */
+export function threadsVersion(config: ConfigService): string {
+  return config.get<string>('THREADS_GRAPH_VERSION') ?? 'v1.0';
+}
+
 export function graphTimeout(config: ConfigService): number {
   const n = parseInt(config.get<string>('FETCH_TIMEOUT') ?? '15000', 10);
   return Number.isFinite(n) ? n : 15000;
