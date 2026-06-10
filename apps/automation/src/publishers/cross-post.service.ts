@@ -70,6 +70,14 @@ export class CrossPostService {
           imageUrl = input.mirror.imageUrl;
         }
 
+        // Instagram requires a public image; skip imageless content quietly
+        // instead of letting the IG publisher throw (text-only strategies with
+        // an IG target attached stay clean in the logs).
+        if (t.platform === 'instagram' && !imageUrl) {
+          this.logger.debug('crosspost skip instagram: no image');
+          continue;
+        }
+
         // Per-account cooldown (key by meta account, per-platform window).
         const key = `meta:${t.meta_account_id}`;
         const cooldownMs = this.settings.metaCooldownMin(t.platform) * 60_000;
