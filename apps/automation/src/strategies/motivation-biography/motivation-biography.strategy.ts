@@ -3,6 +3,7 @@ import { ContentStrategyRegistry }          from '../../common/content-strategy/
 import { TelegramPublisher }                from '../../publishers/telegram.publisher';
 import { TelegramNotifier }                 from '../../publishers/telegram-notifier.service';
 import { PublicationsRepository }           from '../../stats/publications.repository';
+import { CrossPostService } from '../../publishers/cross-post.service';
 import { ClaudeAgent }                      from '../../common/ai/agents/claude.agent';
 import { ReviewAgent }                      from '../../common/ai/agents/review.agent';
 import { PostValidator }                    from '../../common/ai/validators/post.validator';
@@ -37,6 +38,7 @@ export class MotivationBiographyStrategy implements ContentStrategy, OnModuleIni
     private readonly telegram:  TelegramPublisher,
     private readonly notifier:  TelegramNotifier,
     private readonly publications: PublicationsRepository,
+    private readonly crossPost: CrossPostService,
   ) {}
 
   onModuleInit() {
@@ -106,6 +108,11 @@ export class MotivationBiographyStrategy implements ContentStrategy, OnModuleIni
         sourceUrl:    wiki.pageUrl,
         title:        person.name,
         strategyType: this.type,
+      });
+      await this.crossPost.afterPublish({
+        channelKey: channelId,
+        messageId,
+        mirror: { text, tags: [], imageUrl: wiki.imageUrl ?? undefined },
       });
       this.logger.log(`Biography published: "${person.name}" → ${channelId}`);
     } catch (err: any) {
