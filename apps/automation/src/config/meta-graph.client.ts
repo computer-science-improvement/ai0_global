@@ -113,7 +113,7 @@ export class MetaGraphClient {
         // metric unavailable on this platform/version → leave it null for all days.
         // Debug (not warn): this is expected degradation, but logging it lets us
         // tell "unsupported metric" apart from a transient error or a request bug.
-        this.logger.debug(`fetchInsights: metric "${metric}" failed for ${platform}/${targetId}: ${err?.message ?? err}`);
+        this.logger.debug(`fetchInsights: metric "${metric}" failed for ${platform}/${targetId}: ${redactToken(String(err?.message ?? err), token)}`);
       }
     }
     return mergeInsightValues(byMetric);

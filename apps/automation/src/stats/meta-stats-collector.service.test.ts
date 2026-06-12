@@ -95,6 +95,7 @@ test('insights failure is isolated — follower snapshot still happens', async (
   const c = new MetaStatsCollectorService(accounts as any, graph as any, history as any, insights as any, config as any);
   const res = await c.runOnce();
   assert.deepEqual(calls.followerInserts, [['a1', 10]]);   // follower snapshot survived
+  assert.equal(res.snapshots, 1);                           // follower snapshot still counted
   assert.deepEqual(calls.upserts, []);                      // no insight upserts
   assert.equal(res.insightDays, 0);
 });
