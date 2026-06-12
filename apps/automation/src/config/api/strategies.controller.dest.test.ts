@@ -50,6 +50,14 @@ test('meta binding rejects unknown account', async () => {
   );
 });
 
+test('patch rejects setting both channel_id and meta_account_id', async () => {
+  const c = make({ repo: { findById: async () => ({ id: 's1', platform: 'telegram' }) } });
+  await assert.rejects(
+    () => c.patch('s1', { channel_id: 'chan-1', meta_account_id: 'acct-1' } as any),
+    /cannot set both channel_id and meta_account_id/,
+  );
+});
+
 test('valid meta binding inserts with platform + meta_account_id', async () => {
   const c = make();
   const row = await c.create({ ext_id: 'recipes-ig', type: 'recipes', schedule: '0 9 * * *', platform: 'instagram', meta_account_id: 'acct-1' } as any);
