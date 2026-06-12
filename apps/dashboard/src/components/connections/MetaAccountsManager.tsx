@@ -4,6 +4,7 @@
 // NAME is ever shown.
 
 import { useState } from 'react';
+import { Link } from '@tanstack/react-router';
 import { Icon } from '../ui/Icon';
 import { Badge } from '../ui/Badge';
 import { useConfirm } from '../ui/ConfirmDialog';
@@ -89,7 +90,11 @@ function AccountCard({ account: a, onVerify, onToggle, onDelete }: {
     <div className="card" style={{ display: 'flex', gap: 14, alignItems: 'center', flexWrap: 'wrap' }}>
       <Avatar url={a.picture_url} platform={a.platform} />
 
-      <div style={{ flex: 1, minWidth: 200 }}>
+      <Link
+        to={'/connections/meta/$accountId' as any}
+        params={{ accountId: a.id } as any}
+        style={{ flex: 1, minWidth: 200, textDecoration: 'none', color: 'inherit' }}
+      >
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
           <span className="text-body" style={{ color: 'var(--color-ink)', fontWeight: 500 }}>
             {a.display_name ?? a.account_id}
@@ -109,7 +114,7 @@ function AccountCard({ account: a, onVerify, onToggle, onDelete }: {
               ? <Badge tone="success">connected</Badge>
               : <Badge tone="neutral">unverified</Badge>}
         </div>
-      </div>
+      </Link>
 
       <div style={{ display: 'inline-flex', gap: 6 }}>
         <button onClick={onVerify} className="btn-tiny" title="Verify token"><Icon name="refresh" size={12} /> Verify</button>

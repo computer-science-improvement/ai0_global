@@ -49,3 +49,19 @@ export function useDeleteMetaAccount() {
     onSuccess: () => qc.invalidateQueries({ queryKey: KEY }),
   });
 }
+
+export interface MetaFollowerHistory {
+  accountId: string;
+  current:   number | null;
+  delta24h:  number | null;
+  delta7d:   number | null;
+  points:    { at: string; followers: number }[];
+}
+
+export function useMetaFollowerHistory(id: string) {
+  return useQuery({
+    queryKey: ['meta-follower-history', id],
+    queryFn:  () => api<MetaFollowerHistory>(`/api/meta-accounts/${id}/follower-history`),
+    enabled:  !!id,
+  });
+}
