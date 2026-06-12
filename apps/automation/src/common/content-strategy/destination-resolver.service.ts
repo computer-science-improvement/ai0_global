@@ -19,7 +19,7 @@ export class DestinationResolver {
       return {
         platform: 'telegram',
         targetId: b.channelId,
-        token: undefined,
+        // token omitted — undefined by design for Telegram
         metaAccountId: null,
         postedKey: 'TELEGRAM',
         throttleKey: b.channelId,

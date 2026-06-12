@@ -3,6 +3,7 @@ import { Injectable, Logger, OnApplicationBootstrap } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { ConfigCacheService } from './config-cache.service';
 import { JsonImporterService } from './json-importer.service';
+import type { DestinationPlatform } from '../common/content-strategy/publish-destination';
 
 export type AppEnv = 'local-development' | 'dev-stage' | 'production';
 const VALID_ENVS: AppEnv[] = ['local-development', 'dev-stage', 'production'];
@@ -27,7 +28,7 @@ export interface ResolvedStrategyBinding {
   params:     Record<string, unknown>;
   enabled:    boolean;
   /** Destination kind. 'telegram' = publish to channelId; otherwise a Meta platform. */
-  platform:   'telegram' | 'instagram' | 'facebook' | 'threads';
+  platform:   DestinationPlatform;
   /** Meta account UUID when platform != 'telegram'; null otherwise. */
   metaAccountId: string | null;
 }

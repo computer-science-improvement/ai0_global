@@ -66,3 +66,13 @@ test('throws when meta binding has no meta_account_id', async () => {
   const r = make();
   await assert.rejects(() => r.resolve(binding({ metaAccountId: null })), /requires a meta_account_id/);
 });
+
+test('facebook and threads resolve their own posted-key prefixes', async () => {
+  for (const [platform, prefix] of [['facebook', 'FB'], ['threads', 'TH']] as const) {
+    const r = make({ account: { ...account, platform } });
+    const d = await r.resolve(binding({ platform }));
+    assert.equal(d.platform, platform);
+    assert.equal(d.postedKey, `${prefix}:acct-1`);
+    assert.equal(d.throttleKey, 'meta:acct-1');
+  }
+});
