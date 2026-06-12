@@ -8,6 +8,7 @@ import {
 import { ApiKeyGuard }           from './api-key.guard';
 import { StatsService }          from './stats.service';
 import { StatsCollectorService } from './stats-collector.service';
+import { MetaStatsCollectorService } from './meta-stats-collector.service';
 import {
   ChannelDetailDto,
   ChannelSummaryDto,
@@ -23,8 +24,9 @@ import {
 @Controller('stats')
 export class StatsController {
   constructor(
-    private readonly stats:     StatsService,
-    private readonly collector: StatsCollectorService,
+    private readonly stats:        StatsService,
+    private readonly collector:    StatsCollectorService,
+    private readonly metaCollector: MetaStatsCollectorService,
   ) {}
 
   @Get('channels')
@@ -107,5 +109,11 @@ export class StatsController {
   @ApiOkResponse({ type: RefreshResultDto })
   async refresh(): Promise<RefreshResultDto> {
     return this.collector.runOnce();
+  }
+
+  @Post('meta/refresh')
+  @ApiOperation({ summary: 'Trigger the Meta follower-stats collector manually (debug)' })
+  async refreshMeta(): Promise<{ accounts: number; snapshots: number }> {
+    return this.metaCollector.runOnce();
   }
 }
