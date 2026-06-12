@@ -1,10 +1,24 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
-import { useMetaAccounts, useMetaFollowerHistory } from '../api/meta-accounts';
+import { useMetaAccounts, useMetaFollowerHistory, useMetaAccountInsights } from '../api/meta-accounts';
+import { MetaReachImpressionsChart } from '../components/MetaReachImpressionsChart';
+import { MetaProfileViewsChart } from '../components/MetaProfileViewsChart';
 import { SubsHistoryChart } from '../components/SubsHistoryChart';
 import { StatCard } from '../components/ui/StatCard';
 import { Icon } from '../components/Icon';
 
 export const Route = createFileRoute('/connections_/meta/$accountId')({ component: MetaAccountDetailPage });
+
+function InsightEmpty({ platform }: { platform?: string }) {
+  return (
+    <div className="card" style={{ textAlign: 'center', padding: 40 }}>
+      <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)', margin: 0 }}>
+        {platform === 'threads'
+          ? 'Not available on Threads.'
+          : 'No insight data yet — collected daily once the account has been active.'}
+      </p>
+    </div>
+  );
+}
 
 function fmtDelta(n: number | null): { text: string; tone: 'up' | 'down' | 'neutral' } {
   if (n == null) return { text: '—', tone: 'neutral' };
@@ -17,6 +31,10 @@ function MetaAccountDetailPage() {
   const { accountId } = Route.useParams();
   const acc = useMetaAccounts().data?.find(a => a.id === accountId);
   const histQ = useMetaFollowerHistory(accountId);
+  const insQ = useMetaAccountInsights(accountId);
+  const insPoints = insQ.data?.points ?? [];
+  const hasReach = insPoints.some(p => p.reach != null || p.impressions != null);
+  const hasProfileViews = insPoints.some(p => p.profileViews != null);
 
   const d24 = fmtDelta(histQ.data?.delta24h ?? null);
   const d7  = fmtDelta(histQ.data?.delta7d ?? null);
@@ -56,6 +74,16 @@ function MetaAccountDetailPage() {
               No follower data yet — collected hourly for Instagram &amp; Facebook (Threads needs insights access).
             </p>
           </div>}
+
+      <h2 className="text-eyebrow" style={{ margin: '28px 0 10px' }}>Reach &amp; impressions</h2>
+      {hasReach
+        ? <MetaReachImpressionsChart points={insPoints} />
+        : <InsightEmpty platform={acc?.platform} />}
+
+      <h2 className="text-eyebrow" style={{ margin: '28px 0 10px' }}>Profile views</h2>
+      {hasProfileViews
+        ? <MetaProfileViewsChart points={insPoints} />
+        : <InsightEmpty platform={acc?.platform} />}
     </div>
   );
 }

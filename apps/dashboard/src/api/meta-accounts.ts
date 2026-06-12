@@ -65,3 +65,19 @@ export function useMetaFollowerHistory(id: string) {
     enabled:  !!id,
   });
 }
+
+export interface MetaInsightDay {
+  day:          string;
+  reach:        number | null;
+  impressions:  number | null;
+  profileViews: number | null;
+}
+export interface MetaAccountInsights { accountId: string; points: MetaInsightDay[]; }
+
+export function useMetaAccountInsights(id: string) {
+  return useQuery({
+    queryKey: ['meta-account-insights', id],
+    queryFn:  () => api<MetaAccountInsights>(`/api/meta-accounts/${id}/insights`),
+    enabled:  !!id,
+  });
+}
