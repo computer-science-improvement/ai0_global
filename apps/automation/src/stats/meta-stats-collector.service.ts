@@ -35,13 +35,16 @@ export class MetaStatsCollectorService {
     try {
       const active = (await this.accounts.list()).filter(a => a.active);
       for (const a of active) {
-        n++;
         try {
           const token = this.config.get<string>(a.token_env);
           if (!token) {
             this.logger.debug(`Meta collector: ${a.token_env} not set — skipping ${a.id}`);
             continue;
           }
+          // Count only accounts we actually attempt (have a token) — so a
+          // no-token skip (accounts:0) reads differently from a null-followers
+          // account (accounts:1) in the summary log + return value.
+          n++;
           const r = await this.graph.verify(a.platform, a.target_id, token);
           await this.accounts.markVerified(a.id, {
             username: r.username, display_name: r.displayName,

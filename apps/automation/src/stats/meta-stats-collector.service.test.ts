@@ -38,6 +38,7 @@ test('skips accounts whose token env is unset', async () => {
   const r = await svc.runOnce();
   assert.deepEqual(inserted, []);
   assert.equal(r.snapshots, 0);
+  assert.equal(r.accounts, 0); // a no-token skip is not counted as attempted
 });
 
 test('a failing account does not abort the loop; error is recorded', async () => {
