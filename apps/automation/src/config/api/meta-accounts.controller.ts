@@ -1,12 +1,13 @@
 // apps/automation/src/config/api/meta-accounts.controller.ts
 import {
   BadRequestException, Body, ConflictException, Controller, Delete, Get,
-  HttpCode, NotFoundException, Param, Patch, Post, UseGuards,
+  HttpCode, NotFoundException, Param, Patch, Post, Query, UseGuards,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { TrackingAuthGuard } from '../../tracking/api/tracking-auth.guard';
 import { MetaAccountsRepository } from '../meta-accounts.repository';
 import { MetaGraphClient } from '../meta-graph.client';
+import { MetaFollowerHistoryRepository } from '../../stats/meta-follower-history.repository';
 import { CreateMetaAccountDto, PatchMetaAccountDto } from './dto/meta-accounts.dto';
 
 @Controller('api/meta-accounts')
@@ -16,6 +17,7 @@ export class MetaAccountsController {
     private readonly accounts: MetaAccountsRepository,
     private readonly graph:    MetaGraphClient,
     private readonly env:      ConfigService,
+    private readonly history:  MetaFollowerHistoryRepository,
   ) {}
 
   @Get()
@@ -30,6 +32,29 @@ export class MetaAccountsController {
       active: r.active, last_verified_at: r.last_verified_at,
       verify_error: r.verify_error, created_at: r.created_at,
     }));
+  }
+
+  @Get(':id/follower-history')
+  async followerHistory(
+    @Param('id') id: string,
+    @Query('from') from?: string,
+    @Query('to') to?: string,
+  ) {
+    const acc = await this.accounts.findById(id);
+    if (!acc) throw new NotFoundException(`Meta account ${id} not found`);
+    const fromD = from ? new Date(from) : undefined;
+    const toD   = to   ? new Date(to)   : undefined;
+    const [points, summary] = await Promise.all([
+      this.history.history(id, fromD, toD),
+      this.history.latestWithDelta(id),
+    ]);
+    return {
+      accountId: id,
+      current:  summary.followers,
+      delta24h: summary.delta24h,
+      delta7d:  summary.delta7d,
+      points:   points.map(p => ({ at: p.at, followers: p.followers })),
+    };
   }
 
   @Post()
