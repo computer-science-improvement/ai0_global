@@ -5,8 +5,9 @@ import { StatsCollectorService }         from './stats-collector.service';
 import { StatsService }                  from './stats.service';
 import { StatsController }               from './stats.controller';
 import { ApiKeyGuard }                   from './api-key.guard';
-import { MetaFollowerHistoryRepository } from './meta-follower-history.repository';
-import { MetaStatsCollectorService }     from './meta-stats-collector.service';
+import { MetaFollowerHistoryRepository }   from './meta-follower-history.repository';
+import { MetaAccountInsightsRepository }   from './meta-account-insights.repository';
+import { MetaStatsCollectorService }       from './meta-stats-collector.service';
 
 @Global()
 @Module({
@@ -17,9 +18,10 @@ import { MetaStatsCollectorService }     from './meta-stats-collector.service';
     StatsService,
     ApiKeyGuard,
     MetaFollowerHistoryRepository,
+    MetaAccountInsightsRepository,
     MetaStatsCollectorService,
   ],
   controllers: [StatsController],
-  exports: [PublicationsRepository, TelegramStatsClient, MetaFollowerHistoryRepository],
+  exports: [PublicationsRepository, TelegramStatsClient, MetaFollowerHistoryRepository, MetaAccountInsightsRepository],
 })
 export class StatsModule {}
