@@ -21,10 +21,15 @@ export interface ResolvedStrategyBinding {
   /** Internal UUID — used by run-logging to FK back into strategy_bindings. */
   uuid:       string;
   type:       string;
+  /** TG channel_key (resolved) for telegram bindings; '' for meta bindings. */
   channelId:  string;
   schedule:   string;
   params:     Record<string, unknown>;
   enabled:    boolean;
+  /** Destination kind. 'telegram' = publish to channelId; otherwise a Meta platform. */
+  platform:   'telegram' | 'instagram' | 'facebook' | 'threads';
+  /** Meta account UUID when platform != 'telegram'; null otherwise. */
+  metaAccountId: string | null;
 }
 
 export interface ForwardRoute {
@@ -114,6 +119,9 @@ export class ChannelConfigService implements OnApplicationBootstrap {
         schedule:  b.schedule,
         params:    b.params,
         enabled:   b.enabled,
+        // TEMP: real values wired in the binding-resolution task
+        platform:      'telegram' as const,
+        metaAccountId: null,
       };
     });
   }
