@@ -79,6 +79,12 @@ export class RecipesStrategy implements ContentStrategy, OnModuleInit {
     // Native Meta publish: same recipe pool, inline caption + dish photo, no
     // Telegraph / notifier / publications / cross-post (those are TG-only).
     if (dest && dest.platform !== 'telegram') {
+      // DestinationResolver guarantees a token for meta platforms; guard anyway
+      // so a misconfig logs an error instead of throwing on `token!`.
+      if (!dest.token) {
+        this.logger.error(`Meta publish skipped (${row.id}): token missing for ${dest.platform}`);
+        return;
+      }
       const nutri   = this.nutritionLine(row);
       const caption = this.buildCaption(uk.titleUk, row.category, uk.ingredientsUk, nutri);
       try {
