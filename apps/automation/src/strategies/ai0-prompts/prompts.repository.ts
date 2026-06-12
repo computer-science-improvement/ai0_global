@@ -43,7 +43,7 @@ export class PromptsRepository {
   /** Mark prompt as posted to the given destination */
   async markPosted(id: string, postedKey = 'TELEGRAM'): Promise<void> {
     await this.pool.query(
-      `UPDATE prompts SET posted = posted || jsonb_build_object($2, NOW()) WHERE id = $1`,
+      `UPDATE prompts SET posted = posted || jsonb_build_object($2::text, NOW()) WHERE id = $1`,
       [id, postedKey],
     );
   }

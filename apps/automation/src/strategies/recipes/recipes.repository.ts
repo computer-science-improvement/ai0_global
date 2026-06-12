@@ -89,7 +89,7 @@ export class RecipesRepository {
   async markPosted(id: string, postedKey = 'TELEGRAM'): Promise<void> {
     await this.pool.query(
       `UPDATE recipes
-       SET posted = posted || jsonb_build_object($2, to_jsonb(now()))
+       SET posted = posted || jsonb_build_object($2::text, to_jsonb(now()))
        WHERE id = $1`,
       [id, postedKey],
     );
