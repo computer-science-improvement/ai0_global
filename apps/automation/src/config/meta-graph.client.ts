@@ -3,6 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import axios from 'axios';
 import type { MetaPlatform } from './meta-accounts.repository';
+import { INSIGHT_METRICS, mergeInsightValues, parseMetricValues, type InsightKey, type MetaInsightDay, type DayValue } from './meta-insights';
 
 export interface MetaVerifyResult {
   username:    string | null;
@@ -78,5 +79,38 @@ export class MetaGraphClient {
       const desc = err?.response?.data?.error?.message ?? err?.message ?? 'unknown';
       throw new Error(`verify failed: ${redactToken(String(desc), token)}`);
     }
+  }
+
+  /**
+   * Daily account insights for the last `sinceDays`, normalized to
+   * reach/impressions/profileViews. One Graph call per supported metric so a
+   * single deprecated/unsupported metric degrades to null instead of 400-ing the
+   * whole request. A failing metric is swallowed to null; account-level failures
+   * are isolated by the caller (collector).
+   */
+  async fetchInsights(platform: MetaPlatform, targetId: string, token: string, sinceDays = 30): Promise<MetaInsightDay[]> {
+    if (!token || !targetId) return [];
+    const isThreads = platform === 'threads';
+    const base = isThreads ? 'https://graph.threads.net' : 'https://graph.facebook.com';
+    const ver  = isThreads ? this.threadsVersion : this.version;
+    const edge = isThreads ? 'threads_insights' : 'insights';
+    const until = Math.floor(Date.now() / 1000);
+    const since = until - sinceDays * 86_400;
+
+    const metrics = INSIGHT_METRICS[platform];
+    const byMetric: Partial<Record<InsightKey, DayValue[]>> = {};
+    for (const key of Object.keys(metrics) as InsightKey[]) {
+      const metric = metrics[key]!;
+      try {
+        const res = await axios.get(`${base}/${ver}/${encodeURIComponent(targetId)}/${edge}`, {
+          params: { metric, period: 'day', since, until, access_token: token },
+          timeout: this.timeout,
+        });
+        byMetric[key] = parseMetricValues(res.data);
+      } catch {
+        // metric unavailable on this platform/version → leave it null for all days
+      }
+    }
+    return mergeInsightValues(byMetric);
   }
 }
