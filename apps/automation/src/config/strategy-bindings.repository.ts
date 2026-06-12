@@ -42,6 +42,12 @@ export class StrategyBindingsRepository {
     return rows;
   }
 
+  /**
+   * Seed-only insert for the default Telegram bindings. `platform` and
+   * `meta_account_id` on the input are intentionally IGNORED here — the row
+   * relies on the column default (`platform = 'telegram'`, `meta_account_id`
+   * NULL). To create a Meta binding, use `insert()` (which writes both).
+   */
   async insertIfMissing(input: StrategyBindingInsertInput): Promise<boolean> {
     const { rowCount } = await this.pool.query(
       `INSERT INTO strategy_bindings (ext_id, type, channel_id, schedule, params, enabled)
@@ -77,6 +83,7 @@ export class StrategyBindingsRepository {
     const { rows } = await this.pool.query<StrategyBindingRow>(
       `INSERT INTO strategy_bindings
          (ext_id, type, channel_id, schedule, params, enabled, platform, meta_account_id)
+       -- COALESCE($7) keeps the SQL in sync with the column DEFAULT 'telegram'.
        VALUES ($1, $2, $3, $4, $5::jsonb, COALESCE($6, true), COALESCE($7, 'telegram'), $8)
        RETURNING id, ext_id, type, channel_id, schedule, params, enabled, notes,
                  low_content_threshold, platform, meta_account_id`,
