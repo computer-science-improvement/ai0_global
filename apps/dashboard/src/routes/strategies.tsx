@@ -96,7 +96,7 @@ function StrategiesPage() {
                 <th style={{ width: 30 }}></th>
                 <th>Id</th>
                 <th>Type</th>
-                <th>Channel</th>
+                <th>Destination</th>
                 <th>Schedule</th>
                 <th>Next run</th>
                 <th>Last run</th>
