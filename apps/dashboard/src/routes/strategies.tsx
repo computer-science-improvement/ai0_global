@@ -45,11 +45,14 @@ function StrategiesPage() {
   const [editing, setEditing] = useState<Strategy | null>(null);
   const [expanded, setExpanded] = useState<string | null>(null);
 
-  // Icons show only on the "All" tab; the "Meta" tab filters to Meta-capable
-  // strategies; "Telegram" shows all (every strategy publishes to Telegram).
+  // Icons show only on the "All" tab; the "Meta" tab filters to native-Meta
+  // strategies; the "Telegram" tab to strategies that publish to Telegram
+  // (native-Meta bindings no longer publish to Telegram, so they're excluded).
   const showIcons = platform === 'all';
   const rows = (data ?? []).filter(s =>
-    platform === 'meta' ? s.platforms.some(p => META_PLATFORMS.includes(p)) : true,
+    platform === 'meta'     ? s.platforms.some(p => META_PLATFORMS.includes(p))
+    : platform === 'telegram' ? s.platforms.includes('telegram')
+    : true,
   );
 
   return (
@@ -162,7 +165,14 @@ function StrategyRow({ s, showIcons, open, onToggleOpen, onEdit, onToggle, onDel
         {showIcons && <PlatformIcons platforms={s.platforms} />}
       </td>
       <td style={{ color: 'var(--color-ink-muted)' }}>
-        {s.channel_key ?? <span style={{ color: 'var(--color-ink-dim)' }}>—</span>}
+        {s.channel_key
+          ? s.channel_key
+          : s.meta_account
+            ? <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}>
+                <PlatformGlyph name={PLATFORM_GLYPH[s.meta_account.platform] ?? 'instagram'} size={12} className="" />
+                {s.meta_account.username ? '@' + s.meta_account.username : s.meta_account.platform}
+              </span>
+            : <span style={{ color: 'var(--color-ink-dim)' }}>—</span>}
       </td>
       <td style={{ fontVariantNumeric: 'tabular-nums', color: 'var(--color-ink-muted)' }}>{s.schedule}</td>
       <td>

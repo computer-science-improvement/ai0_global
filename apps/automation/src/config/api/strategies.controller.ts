@@ -64,12 +64,17 @@ export class StrategiesController {
    */
   @Get()
   async list() {
-    const [rows, latestByStrategy, crosspostPlatforms] = await Promise.all([
+    const [rows, latestByStrategy, crosspostPlatforms, metaAccountList] = await Promise.all([
       this.repo.list(),
       this.runsRepo.latestPerStrategy(),
       this.crossposts.platformsByChannel(),
+      this.metaAccounts.list(),
     ]);
+    const metaById = new Map(metaAccountList.map(a => [a.id, a]));
     return Promise.all(rows.map(async r => {
+      // The binding's own destination, used so the UI can show the right
+      // platform icon + group native-Meta strategies under the Meta tab.
+      const metaAccount = r.meta_account_id ? metaById.get(r.meta_account_id) : undefined;
       const channel = r.channel_id ? this.cache.getChannelById(r.channel_id) : null;
       const last    = latestByStrategy.get(r.id);
       // Channels this strategy actually reaches: primary binding + forward
@@ -101,7 +106,17 @@ export class StrategiesController {
         channel_id:   r.channel_id,
         channel_key:  channel?.channel_key ?? null,
         channels,
-        platforms:    ['telegram', ...(r.channel_id ? (crosspostPlatforms.get(r.channel_id) ?? []) : [])],
+        // Destination kind of THIS binding (telegram | instagram | facebook | threads).
+        platform:     r.platform,
+        // Meta account this binding publishes to (null for telegram bindings).
+        meta_account: metaAccount
+          ? { id: metaAccount.id, platform: metaAccount.platform, username: metaAccount.username }
+          : null,
+        // Icons + tab grouping. A telegram binding shows telegram + its cross-post
+        // targets; a native-Meta binding shows only its own platform.
+        platforms:    r.platform === 'telegram'
+          ? ['telegram', ...(r.channel_id ? (crosspostPlatforms.get(r.channel_id) ?? []) : [])]
+          : [r.platform],
         schedule:     r.schedule,
         params:       r.params,
         enabled:      r.enabled,
@@ -186,6 +201,9 @@ export class StrategiesController {
     if (body.meta_account_id !== undefined && body.meta_account_id !== null) {
       const acct = await this.metaAccounts.findById(body.meta_account_id);
       if (!acct) throw new BadRequestException(`meta account ${body.meta_account_id} not found`);
+    }
+    if (body.channel_id !== undefined && body.meta_account_id !== undefined) {
+      throw new BadRequestException('cannot set both channel_id and meta_account_id');
     }
 
     const updated = await this.repo.update(id, body);
