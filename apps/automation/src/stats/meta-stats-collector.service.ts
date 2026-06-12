@@ -8,6 +8,7 @@ import { Cron, CronExpression } from '@nestjs/schedule';
 import { MetaAccountsRepository } from '../config/meta-accounts.repository';
 import { MetaGraphClient } from '../config/meta-graph.client';
 import { MetaFollowerHistoryRepository } from './meta-follower-history.repository';
+import { MetaAccountInsightsRepository } from './meta-account-insights.repository';
 
 @Injectable()
 export class MetaStatsCollectorService {
@@ -18,20 +19,22 @@ export class MetaStatsCollectorService {
     private readonly accounts: MetaAccountsRepository,
     private readonly graph:    MetaGraphClient,
     private readonly history:  MetaFollowerHistoryRepository,
+    private readonly insights: MetaAccountInsightsRepository,
     private readonly config:   ConfigService,
   ) {}
 
   @Cron(CronExpression.EVERY_HOUR)
   async hourly(): Promise<void> { await this.runOnce(); }
 
-  async runOnce(): Promise<{ accounts: number; snapshots: number }> {
+  async runOnce(): Promise<{ accounts: number; snapshots: number; insightDays: number }> {
     if (this.running) {
       this.logger.warn('Meta collector already running — skip');
-      return { accounts: 0, snapshots: 0 };
+      return { accounts: 0, snapshots: 0, insightDays: 0 };
     }
     this.running = true;
     let n = 0;
     let snaps = 0;
+    let insightDays = 0;
     try {
       const active = (await this.accounts.list()).filter(a => a.active);
       for (const a of active) {
@@ -54,13 +57,22 @@ export class MetaStatsCollectorService {
             await this.history.insert(a.id, r.followers);
             snaps++;
           }
+          try {
+            const days = await this.graph.fetchInsights(a.platform, a.target_id, token);
+            for (const d of days) {
+              await this.insights.upsertDay(a.id, d.day, { reach: d.reach, impressions: d.impressions, profileViews: d.profileViews });
+              insightDays++;
+            }
+          } catch (err: any) {
+            this.logger.warn(`Meta collector: insights for ${a.id} failed: ${err.message}`);
+          }
         } catch (err: any) {
           this.logger.warn(`Meta collector: account ${a.id} failed: ${err.message}`);
           try { await this.accounts.markVerifyError(a.id, err.message); } catch { /* best-effort */ }
         }
       }
-      this.logger.log(`Meta collector: ${snaps} follower snapshots across ${n} accounts`);
-      return { accounts: n, snapshots: snaps };
+      this.logger.log(`Meta collector: ${snaps} follower snapshots, ${insightDays} insight-days across ${n} accounts`);
+      return { accounts: n, snapshots: snaps, insightDays };
     } finally {
       this.running = false;
     }
