@@ -172,7 +172,10 @@ function StrategyRow({ s, showIcons, open, onToggleOpen, onEdit, onToggle, onDel
       </td>
       <td style={{ color: 'var(--color-ink-muted)' }}>
         {s.channel_key
-          ? s.channel_key
+          ? <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}>
+              <PlatformGlyph name={PLATFORM_GLYPH[s.platform] ?? 'telegram'} size={12} className="" />
+              {s.channel_key}
+            </span>
           : s.meta_account
             ? <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}>
                 <PlatformGlyph name={PLATFORM_GLYPH[s.meta_account.platform] ?? 'instagram'} size={12} className="" />
