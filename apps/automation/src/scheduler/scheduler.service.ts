@@ -6,6 +6,7 @@ import { ChannelConfigService }    from '../config/channel-config.service';
 import { StrategyRunsRepository }  from '../config/strategy-runs.repository';
 import { ContentStrategyRunner }   from '../common/content-strategy/content-strategy.runner';
 import { ContentStrategyRegistry } from '../common/content-strategy/content-strategy.registry';
+import { DestinationResolver } from '../common/content-strategy/destination-resolver.service';
 import { CONFIG_CHANGED_CHANNEL, ConfigChangedEvent } from '../config/config-events.types';
 import { REDIS_CLIENT } from '../tracking/redis.provider';
 import { isChannelPausedError } from '../publishers/errors';
@@ -41,6 +42,7 @@ export class SchedulerService implements OnApplicationBootstrap, OnModuleDestroy
     private readonly runsRepo:         StrategyRunsRepository,
     private readonly strategyRunner:   ContentStrategyRunner,
     private readonly strategyRegistry: ContentStrategyRegistry,
+    private readonly destinationResolver: DestinationResolver,
     @Inject(REDIS_CLIENT) private readonly redis: Redis,
   ) {}
 
@@ -183,6 +185,15 @@ export class SchedulerService implements OnApplicationBootstrap, OnModuleDestroy
         return;
       }
 
+      let dest;
+      try {
+        dest = await this.destinationResolver.resolve(fresh);
+      } catch (err: any) {
+        this.logger.warn(`${name} destination resolve failed: ${err.message}`);
+        this.inFlight.delete(name);
+        return;
+      }
+
       let runId: string | null = null;
       try {
         runId = await this.runsRepo.start(job.meta.uuid, job.meta.extId);
@@ -191,7 +202,7 @@ export class SchedulerService implements OnApplicationBootstrap, OnModuleDestroy
       }
 
       try {
-        await this.strategyRunner.run(strategy, fresh.channelId, fresh.params, fresh.id);
+        await this.strategyRunner.run(strategy, fresh.channelId, fresh.params, fresh.id, dest);
         if (runId) {
           await this.runsRepo.finishOk(runId).catch(err =>
             this.logger.warn(`run-log finishOk failed for ${name}: ${err.message}`),
