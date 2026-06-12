@@ -15,16 +15,16 @@ export class PromptsRepository {
   constructor(@Inject(DB_POOL) private readonly pool: Pool) {}
 
   /** Get first unposted prompt for this category */
-  async getNext(category: string): Promise<PromptRow | null> {
+  async getNext(category: string, postedKey = 'TELEGRAM'): Promise<PromptRow | null> {
     const { rows } = await this.pool.query<PromptRow>(
       `SELECT id, prompt_source, category, status, posted
        FROM prompts
        WHERE category = $1
          AND provider = 'prompthero'
          AND status IS NULL
-         AND NOT (posted ? 'TELEGRAM')
+         AND NOT (posted ? $2)
        LIMIT 1`,
-      [category],
+      [category, postedKey],
     );
     return rows[0] ?? null;
   }
@@ -40,11 +40,11 @@ export class PromptsRepository {
     return Number(rows[0]?.count ?? 0);
   }
 
-  /** Mark prompt as posted to Telegram */
-  async markPosted(id: string): Promise<void> {
+  /** Mark prompt as posted to the given destination */
+  async markPosted(id: string, postedKey = 'TELEGRAM'): Promise<void> {
     await this.pool.query(
-      `UPDATE prompts SET posted = posted || jsonb_build_object('TELEGRAM', NOW()) WHERE id = $1`,
-      [id],
+      `UPDATE prompts SET posted = posted || jsonb_build_object($2, NOW()) WHERE id = $1`,
+      [id, postedKey],
     );
   }
 

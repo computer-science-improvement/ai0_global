@@ -14,6 +14,8 @@ import { TelegramPublisher }        from '../../publishers/telegram.publisher';
 import { TelegramNotifier }         from '../../publishers/telegram-notifier.service';
 import { CrossPostService }         from '../../publishers/cross-post.service';
 import { PublicationsRepository }   from '../../stats/publications.repository';
+import { PublisherDispatcher }      from '../../publishers/publisher-dispatcher.service';
+import type { PublishDestination }  from '../../common/content-strategy/publish-destination';
 import { PromptsRepository }        from './prompts.repository';
 import { PromptHeroScraperService } from '../../workflows/ai0-prompts/prompthero-scraper.service';
 
@@ -32,6 +34,7 @@ export class Ai0PromptsStrategy implements ContentStrategy, OnModuleInit {
     private readonly notifier: TelegramNotifier,
     private readonly publications: PublicationsRepository,
     private readonly crossPost: CrossPostService,
+    private readonly dispatcher: PublisherDispatcher,
   ) {}
 
   onModuleInit() {
@@ -56,17 +59,19 @@ export class Ai0PromptsStrategy implements ContentStrategy, OnModuleInit {
     return null;
   }
 
-  async execute(channelId: string, _params: StrategyParams): Promise<void> {
+  async execute(channelId: string, _params: StrategyParams, dest?: PublishDestination): Promise<void> {
     const MIN_PROMPT_LENGTH = 50;
     const USER_AGENT =
       'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36';
+
+    const postedKey = dest?.postedKey ?? 'TELEGRAM';
 
     // 1. Pick random category
     const category = this.categories[Math.floor(Math.random() * this.categories.length)];
     this.logger.debug(`Selected category: ${category}`);
 
     // 2. Get next unposted prompt from DB
-    const row = await this.db.getNext(category);
+    const row = await this.db.getNext(category, postedKey);
     if (!row) {
       this.logger.debug(`No unposted prompts for category: ${category}`);
       return;
@@ -107,6 +112,28 @@ export class Ai0PromptsStrategy implements ContentStrategy, OnModuleInit {
       return;
     }
 
+    // 5a. Native Meta publish: row.id IS the PromptHero image URL — Meta
+    // fetches it directly. Skip Telegram image download, notifier,
+    // publications, and crossPost (those are TG-only paths).
+    if (dest && dest.platform !== 'telegram') {
+      if (!dest.token) {
+        this.logger.error(`Meta publish skipped (${row.id}): token missing for ${dest.platform}`);
+        return;
+      }
+      try {
+        const id = await this.dispatcher.publish(
+          dest.platform,
+          { text: message.caption, imageUrl: row.id, source: '', tags: [category] },
+          { id: dest.targetId, token: dest.token },
+        );
+        await this.db.markPosted(row.id, postedKey);
+        this.logger.debug(`Published prompt to ${dest.platform} (${id})`);
+      } catch (err: any) {
+        this.logger.error(`Meta publish failed → ${dest.platform}: ${err.message}`);
+      }
+      return;
+    }
+
     // 6. Download image
     let imageBuffer: Buffer | null = null;
     try {
@@ -131,7 +158,7 @@ export class Ai0PromptsStrategy implements ContentStrategy, OnModuleInit {
         },
         { id: channelId },
       );
-      await this.db.markPosted(row.id);
+      await this.db.markPosted(row.id, postedKey);
       await this.notifier.notifyPublished(channelId, messageId);
       await this.publications.insert({
         channelId, messageId,
