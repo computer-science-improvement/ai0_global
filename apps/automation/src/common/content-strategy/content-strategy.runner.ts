@@ -66,6 +66,12 @@ export class ContentStrategyRunner {
         await strategy.execute(channelId, params, dest);
       } catch (err: any) {
         this.logger.error(`${tag} Strategy execute failed: ${err.message}`);
+        // Telegram strategies own their error handling and stay non-throwing,
+        // so a failed publish doesn't error the whole run. A Meta destination
+        // has no such internal recovery path — surface the failure so the
+        // scheduler records the run as an error (visible in the activity log
+        // + the Errors stat). The finally below still releases the lock first.
+        if (dest && dest.platform !== 'telegram') throw err;
       } finally {
         // tryLock() invariant: we got here only because canPublish() was
         // true (no prior publish in the window). If the strategy published

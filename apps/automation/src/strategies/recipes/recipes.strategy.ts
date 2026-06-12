@@ -9,6 +9,7 @@ import { TelegramNotifier }        from '../../publishers/telegram-notifier.serv
 import { CrossPostService }        from '../../publishers/cross-post.service';
 import { PublicationsRepository }  from '../../stats/publications.repository';
 import { PublisherDispatcher }     from '../../publishers/publisher-dispatcher.service';
+import { isPermanentMetaMediaError } from '../../publishers/meta-graph.util';
 import type { PublishDestination } from '../../common/content-strategy/publish-destination';
 import { RECIPES_CHANNEL_SKILL }   from '../../common/ai/skills/recipes-channel.skill';
 import { Skill }                   from '../../common/ai/skills/skill.interface';
@@ -96,7 +97,16 @@ export class RecipesStrategy implements ContentStrategy, OnModuleInit {
         await this.repo.markPosted(row.id, postedKey);
         this.logger.debug(`Published recipe ${row.id} to ${dest.platform} (${id})`);
       } catch (err: any) {
-        this.logger.error(`Meta publish failed (${row.id} → ${dest.platform}): ${err.message}`);
+        const msg = err?.message ?? String(err);
+        this.logger.error(`Meta publish failed (${row.id} → ${dest.platform}): ${msg}`);
+        // Permanent media errors will never succeed for this image — mark it
+        // done for this destination so the queue advances. Transient errors
+        // stay unmarked and retry next tick.
+        if (isPermanentMetaMediaError(msg)) {
+          try { await this.repo.markPosted(row.id, postedKey); } catch { /* best-effort */ }
+        }
+        // Surface to the runner → scheduler records the run as an error.
+        throw new Error(`Meta publish (${dest.platform}): ${msg}`);
       }
       return;
     }

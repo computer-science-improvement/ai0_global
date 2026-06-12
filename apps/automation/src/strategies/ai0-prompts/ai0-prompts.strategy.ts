@@ -15,6 +15,7 @@ import { TelegramNotifier }         from '../../publishers/telegram-notifier.ser
 import { CrossPostService }         from '../../publishers/cross-post.service';
 import { PublicationsRepository }   from '../../stats/publications.repository';
 import { PublisherDispatcher }      from '../../publishers/publisher-dispatcher.service';
+import { isPermanentMetaMediaError } from '../../publishers/meta-graph.util';
 import type { PublishDestination }  from '../../common/content-strategy/publish-destination';
 import { PromptsRepository }        from './prompts.repository';
 import { PromptHeroScraperService } from '../../workflows/ai0-prompts/prompthero-scraper.service';
@@ -129,7 +130,16 @@ export class Ai0PromptsStrategy implements ContentStrategy, OnModuleInit {
         await this.db.markPosted(row.id, postedKey);
         this.logger.debug(`Published prompt to ${dest.platform} (${id})`);
       } catch (err: any) {
-        this.logger.error(`Meta publish failed → ${dest.platform}: ${err.message}`);
+        const msg = err?.message ?? String(err);
+        this.logger.error(`Meta publish failed → ${dest.platform}: ${msg}`);
+        // Permanent media errors (bad aspect ratio, unsupported format) will
+        // never succeed for this image — mark it done for this destination so
+        // the queue advances instead of re-selecting it every tick.
+        if (isPermanentMetaMediaError(msg)) {
+          try { await this.db.markPosted(row.id, postedKey); } catch { /* best-effort */ }
+        }
+        // Surface to the runner → scheduler records the run as an error.
+        throw new Error(`Meta publish (${dest.platform}): ${msg}`);
       }
       return;
     }

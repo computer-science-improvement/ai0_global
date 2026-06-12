@@ -11,6 +11,7 @@ import {
 } from '../../common/content-strategy/content-strategy.interface';
 import { CuratedPromptsRepository, CuratedPromptRow } from './curated-prompts.repository';
 import { PublisherDispatcher } from '../../publishers/publisher-dispatcher.service';
+import { isPermanentMetaMediaError } from '../../publishers/meta-graph.util';
 import type { PublishDestination } from '../../common/content-strategy/publish-destination';
 
 const CAPTION_MAX = 1024;
@@ -76,7 +77,16 @@ export class CuratedPromptsStrategy implements ContentStrategy, OnModuleInit {
         await this.repo.markPosted(row.id, postedKey);
         this.logger.debug(`Published curated ${row.id} to ${dest.platform} (${id})`);
       } catch (err: any) {
-        this.logger.error(`Meta publish failed (${row.id} → ${dest.platform}): ${err.message}`);
+        const msg = err?.message ?? String(err);
+        this.logger.error(`Meta publish failed (${row.id} → ${dest.platform}): ${msg}`);
+        // Permanent media errors will never succeed for this image — mark it
+        // done for this destination so the queue advances. Transient errors
+        // stay unmarked and retry next tick.
+        if (isPermanentMetaMediaError(msg)) {
+          try { await this.repo.markPosted(row.id, postedKey); } catch { /* best-effort */ }
+        }
+        // Surface to the runner → scheduler records the run as an error.
+        throw new Error(`Meta publish (${dest.platform}): ${msg}`);
       }
       return;
     }

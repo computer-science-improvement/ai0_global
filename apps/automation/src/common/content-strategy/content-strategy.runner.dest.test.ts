@@ -51,3 +51,28 @@ test('without a destination, throttle falls back to channelId', async () => {
   assert.deepEqual(throttle.calls.lock, ['@ai0_recipes']);
   assert.deepEqual(throttle.calls.release, ['@ai0_recipes']);
 });
+
+test('meta destination: a throwing execute propagates so the run is recorded as error', async () => {
+  const throttle = makeThrottle();
+  const r = runner(throttle);
+  const strategy: any = {
+    type: 'recipes',
+    execute: async () => { throw new Error('aspect ratio not supported'); },
+  };
+  const dest: PublishDestination = {
+    platform: 'instagram', targetId: 'ig', token: 't',
+    metaAccountId: 'a', postedKey: 'IG:a', throttleKey: 'meta:a',
+  };
+  await assert.rejects(() => r.run(strategy, '', {}, 'recipes-ig', dest), /aspect ratio/);
+  // Lock is released (finally) before the error propagates.
+  assert.deepEqual(throttle.calls.release, ['meta:a']);
+});
+
+test('telegram destination: a throwing execute is swallowed (run stays ok)', async () => {
+  const throttle = makeThrottle();
+  const r = runner(throttle);
+  const strategy: any = { type: 'recipes', execute: async () => { throw new Error('boom'); } };
+  // Must NOT reject — Telegram strategies own their error handling.
+  await r.run(strategy, '@ch', {}, 'recipes-tg');
+  assert.deepEqual(throttle.calls.release, ['@ch']);
+});

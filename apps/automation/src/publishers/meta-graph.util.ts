@@ -30,6 +30,18 @@ export function redactToken(s: string, token: string): string {
   return out;
 }
 
+/**
+ * True when a Meta publish error is PERMANENT for this media — the same image
+ * will never succeed (bad aspect ratio, unsupported format, bad dimensions).
+ * Strategies use this to mark a deterministically-failing row as done for the
+ * destination so its publish queue advances instead of dead-locking on it.
+ * Transient errors (network, rate limit, 5xx) return false and stay retriable.
+ */
+export function isPermanentMetaMediaError(message: string): boolean {
+  return /aspect ratio|not supported|unsupported|invalid (image|media|parameter)|media (type|format)|image (size|dimension)|resolution|pixel|too (large|small|big|tall|wide)/i
+    .test(message ?? '');
+}
+
 /** POST to a Graph endpoint with query params; returns the JSON body. Throws a
  *  token-redacted Error on failure. */
 export async function graphPost(
