@@ -10,6 +10,8 @@ import {
   ContentStrategy, StrategyFetchResult, StrategyPost, StrategyParams,
 } from '../../common/content-strategy/content-strategy.interface';
 import { CuratedPromptsRepository, CuratedPromptRow } from './curated-prompts.repository';
+import { PublisherDispatcher } from '../../publishers/publisher-dispatcher.service';
+import type { PublishDestination } from '../../common/content-strategy/publish-destination';
 
 const CAPTION_MAX = 1024;
 const REPLY_MAX   = 4096;
@@ -37,6 +39,7 @@ export class CuratedPromptsStrategy implements ContentStrategy, OnModuleInit {
     private readonly notifier:     TelegramNotifier,
     private readonly publications: PublicationsRepository,
     private readonly crossPost:    CrossPostService,
+    private readonly dispatcher:   PublisherDispatcher,
   ) {}
 
   onModuleInit() { this.registry.register(this); }
@@ -45,12 +48,38 @@ export class CuratedPromptsStrategy implements ContentStrategy, OnModuleInit {
   async fetch(): Promise<StrategyFetchResult | null> { return null; }
   async generate(): Promise<StrategyPost | 'SKIP_POST' | null> { return null; }
 
-  async execute(channelId: string, params: StrategyParams): Promise<void> {
+  async execute(channelId: string, params: StrategyParams, dest?: PublishDestination): Promise<void> {
     const p = (params ?? {}) as { provider?: string; mediaType?: string };
-    const row = await this.repo.getNext({ provider: p.provider, mediaType: p.mediaType });
+    const postedKey = dest?.postedKey ?? 'TELEGRAM';
+    const row = await this.repo.getNext({ provider: p.provider, mediaType: p.mediaType }, postedKey);
     if (!row) { this.logger.debug('No unposted curated prompts'); return; }
 
     const { caption, replyText } = this.buildMessage(row);
+
+    if (dest && dest.platform !== 'telegram') {
+      if (!dest.token) {
+        this.logger.error(`Meta publish skipped (${row.id}): token missing for ${dest.platform}`);
+        return;
+      }
+      // Instagram publisher takes a public image only — skip video rows (set
+      // params.mediaType = 'image' on an IG binding to avoid selecting them).
+      if (row.media_type !== 'image') {
+        this.logger.debug(`Skipping ${row.media_type} row ${row.id} for ${dest.platform}`);
+        return;
+      }
+      try {
+        const id = await this.dispatcher.publish(
+          dest.platform,
+          { text: caption, imageUrl: row.media_url, source: '', tags: row.category ? [row.category] : [] },
+          { id: dest.targetId, token: dest.token },
+        );
+        await this.repo.markPosted(row.id, postedKey);
+        this.logger.debug(`Published curated ${row.id} to ${dest.platform} (${id})`);
+      } catch (err: any) {
+        this.logger.error(`Meta publish failed (${row.id} → ${dest.platform}): ${err.message}`);
+      }
+      return;
+    }
 
     try {
       let messageId: string;
@@ -64,7 +93,7 @@ export class CuratedPromptsStrategy implements ContentStrategy, OnModuleInit {
           { imageBuffer, caption, replyText: replyText || undefined }, { id: channelId },
         );
       }
-      await this.repo.markPosted(row.id);
+      await this.repo.markPosted(row.id, postedKey);
       await this.notifier.notifyPublished(channelId, messageId);
       await this.publications.insert({
         channelId, messageId,
