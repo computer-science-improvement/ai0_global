@@ -12,6 +12,7 @@ import { StrategyPreviewService } from '../strategy-preview.service';
 import { ConfigCacheService } from '../config-cache.service';
 import { ConfigEventsPublisher } from '../config-events.publisher';
 import { ContentRunwayService } from '../../common/content-runway/content-runway.service';
+import { MetaAccountsRepository } from '../meta-accounts.repository';
 import { CreateStrategyDto, PatchStrategyDto } from './dto/strategies.dto';
 
 /**
@@ -52,6 +53,7 @@ export class StrategiesController {
     private readonly publisher: ConfigEventsPublisher,
     private readonly crossposts: MetaCrosspostTargetsRepository,
     private readonly runway:    ContentRunwayService,
+    private readonly metaAccounts: MetaAccountsRepository,
   ) {}
 
   /**
@@ -144,18 +146,29 @@ export class StrategiesController {
     const existing = await this.repo.findByExtId(body.ext_id);
     if (existing) throw new ConflictException(`ext_id ${body.ext_id} already exists`);
 
-    // Channel must exist — cache is authoritative source of truth.
-    if (!this.cache.getChannelById(body.channel_id)) {
-      throw new BadRequestException(`channel_id ${body.channel_id} not found`);
+    const platform = body.platform ?? 'telegram';
+    if (platform === 'telegram') {
+      if (!body.channel_id) throw new BadRequestException('channel_id is required for a telegram binding');
+      if (!this.cache.getChannelById(body.channel_id)) {
+        throw new BadRequestException(`channel_id ${body.channel_id} not found`);
+      }
+      if (body.meta_account_id) throw new BadRequestException('telegram binding must not set meta_account_id');
+    } else {
+      if (!body.meta_account_id) throw new BadRequestException('meta_account_id is required for a meta binding');
+      const acct = await this.metaAccounts.findById(body.meta_account_id);
+      if (!acct) throw new BadRequestException(`meta account ${body.meta_account_id} not found`);
+      if (body.channel_id) throw new BadRequestException('meta binding must not set channel_id');
     }
 
     const row = await this.repo.insert({
       ext_id:     body.ext_id,
       type:       body.type,
-      channel_id: body.channel_id,
+      channel_id: platform === 'telegram' ? body.channel_id! : null,
       schedule:   body.schedule,
       params:     body.params ?? {},
       enabled:    body.enabled ?? false, // default paused — never auto-publish a freshly created strategy
+      platform,
+      meta_account_id: platform === 'telegram' ? null : body.meta_account_id!,
     });
     await this.publisher.publish('strategy', row.id);
     return row;
@@ -169,6 +182,10 @@ export class StrategiesController {
     if (body.schedule !== undefined) assertCronOrThrow(body.schedule);
     if (body.channel_id !== undefined && !this.cache.getChannelById(body.channel_id)) {
       throw new BadRequestException(`channel_id ${body.channel_id} not found`);
+    }
+    if (body.meta_account_id !== undefined && body.meta_account_id !== null) {
+      const acct = await this.metaAccounts.findById(body.meta_account_id);
+      if (!acct) throw new BadRequestException(`meta account ${body.meta_account_id} not found`);
     }
 
     const updated = await this.repo.update(id, body);
