@@ -21,19 +21,19 @@ export interface CuratedFilter {
 export class CuratedPromptsRepository {
   constructor(@Inject(DB_POOL) private readonly pool: Pool) {}
 
-  async getNext(filter: CuratedFilter = {}): Promise<CuratedPromptRow | null> {
+  async getNext(filter: CuratedFilter = {}, postedKey = 'TELEGRAM'): Promise<CuratedPromptRow | null> {
     const { rows } = await this.pool.query<CuratedPromptRow>(
       `SELECT id, category, title, prompt_text, source, media_url, media_type
        FROM prompts
        WHERE provider <> 'prompthero'
          AND prompt_text IS NOT NULL
-         AND NOT (posted ? 'TELEGRAM')
+         AND NOT (posted ? $3)
          AND status IS DISTINCT FROM 'ERROR'
          AND ($1::text IS NULL OR provider   = $1)
          AND ($2::text IS NULL OR media_type = $2)
        ORDER BY created_at
        LIMIT 1`,
-      [filter.provider ?? null, filter.mediaType ?? null],
+      [filter.provider ?? null, filter.mediaType ?? null, postedKey],
     );
     return rows[0] ?? null;
   }
@@ -53,10 +53,10 @@ export class CuratedPromptsRepository {
     return Number(rows[0]?.count ?? 0);
   }
 
-  async markPosted(id: string): Promise<void> {
+  async markPosted(id: string, postedKey = 'TELEGRAM'): Promise<void> {
     await this.pool.query(
-      `UPDATE prompts SET posted = posted || jsonb_build_object('TELEGRAM', NOW()) WHERE id = $1`,
-      [id],
+      `UPDATE prompts SET posted = posted || jsonb_build_object($2::text, NOW()) WHERE id = $1`,
+      [id, postedKey],
     );
   }
 

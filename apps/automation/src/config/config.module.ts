@@ -60,6 +60,7 @@ import { ContentRunwayModule } from '../common/content-runway/content-runway.mod
     StrategyRunsRepository,
     ForwardRoutesRepository,
     TelegraphAccountsRepository,
+    MetaAccountsRepository,
     MetaCrosspostTargetsRepository,
   ],
 })

@@ -20,6 +20,7 @@ import { TopicRouterService }        from './routing/topic-router.service';
 import { BotLoggerService }          from './logger/bot-logger.service';
 import { ContentStrategyRunner }     from './content-strategy/content-strategy.runner';
 import { ContentStrategyRegistry }   from './content-strategy/content-strategy.registry';
+import { DestinationResolver }       from './content-strategy/destination-resolver.service';
 
 const VALIDATORS = [
   PostValidator,
@@ -49,6 +50,7 @@ const SERVICES = [
   BotLoggerService,
   ContentStrategyRunner,
   ContentStrategyRegistry,
+  DestinationResolver,
 ];
 
 @Global()

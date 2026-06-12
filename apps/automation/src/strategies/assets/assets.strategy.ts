@@ -13,6 +13,7 @@ import { ContentStrategyRegistry } from '../../common/content-strategy/content-s
 import { TelegramPublisher }       from '../../publishers/telegram.publisher';
 import { TelegramNotifier }        from '../../publishers/telegram-notifier.service';
 import { PublicationsRepository }  from '../../stats/publications.repository';
+import { CrossPostService } from '../../publishers/cross-post.service';
 import { AssetsRepository }        from './assets.repository';
 import {
   ACADEMY_SYSTEM_PROMPT,
@@ -52,6 +53,7 @@ export class AssetsStrategy implements ContentStrategy, OnModuleInit {
     private readonly notifier:  TelegramNotifier,
     private readonly db:        AssetsRepository,
     private readonly publications: PublicationsRepository,
+    private readonly crossPost: CrossPostService,
   ) {}
 
   onModuleInit() {
@@ -117,6 +119,11 @@ export class AssetsStrategy implements ContentStrategy, OnModuleInit {
         title:        row.title,
         strategyType: this.type,
         tags:         [dataSource],
+      });
+      await this.crossPost.afterPublish({
+        channelKey: channelId,
+        messageId,
+        mirror: { text, tags: [dataSource], imageUrl: posterUrl ?? undefined },
       });
       this.logger.debug(`Published ${dataSource} asset to ${channelId}: ${row.title}`);
     } catch (err: unknown) {

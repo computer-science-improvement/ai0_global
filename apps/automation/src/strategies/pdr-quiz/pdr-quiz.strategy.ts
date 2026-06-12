@@ -5,6 +5,7 @@ import { ChannelConfigService }    from '../../config/channel-config.service';
 import { TelegramNotifier }        from '../../publishers/telegram-notifier.service';
 import { PostingThrottleService }  from '../../publishers/posting-throttle.service';
 import { PublicationsRepository }  from '../../stats/publications.repository';
+import { CrossPostService } from '../../publishers/cross-post.service';
 import { Skill }                   from '../../common/ai/skills/skill.interface';
 import {
   ContentStrategy,
@@ -44,6 +45,7 @@ export class PdrQuizStrategy implements ContentStrategy, OnModuleInit {
     private readonly notifier:       TelegramNotifier,
     private readonly throttle:       PostingThrottleService,
     private readonly publications:   PublicationsRepository,
+    private readonly crossPost: CrossPostService,
   ) {}
 
   onModuleInit() {
@@ -193,6 +195,13 @@ export class PdrQuizStrategy implements ContentStrategy, OnModuleInit {
         title:        `PDR ticket ${q.ticket_number} q${q.question_num}`,
         strategyType: this.type,
         tags:         ['pdr-quiz'],
+      });
+      // Mirror only the question (+ optional image): the TG poll is interactive,
+      // option buttons don't translate to Meta — answers are deliberately omitted.
+      await this.crossPost.afterPublish({
+        channelKey: channelId,
+        messageId: pollMessageId,
+        mirror: { text: q.text, tags: [], imageUrl: q.image_url ?? undefined },
       });
       this.logger.log(`PDR quiz sent: ticket ${q.ticket_number} q${q.question_num} → ${channelId} [${expanded ? 'expanded' : 'normal'}]`);
     } catch (err: any) {

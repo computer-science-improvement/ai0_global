@@ -33,10 +33,12 @@ export function useStrategies() {
 export interface CreateStrategyInput {
   ext_id:      string;
   type:        string;
-  channel_id:  string;
+  channel_id?: string;
   schedule:    string;
   params?:     Record<string, unknown>;
   enabled?:    boolean;
+  platform?:   'telegram' | 'instagram' | 'facebook' | 'threads';
+  meta_account_id?: string;
 }
 
 export function useCreateStrategy() {

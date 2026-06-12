@@ -23,6 +23,7 @@ import { RawItem }                  from '../../common/types';
 import { TelegramPublisher }        from '../../publishers/telegram.publisher';
 import { TelegramNotifier }         from '../../publishers/telegram-notifier.service';
 import { PublicationsRepository }   from '../../stats/publications.repository';
+import { CrossPostService } from '../../publishers/cross-post.service';
 import { GamerPowerFetcher }        from '../../workflows/game-channel/fetchers/gamerpower.fetcher';
 import { EpicGamesFetcher }         from '../../workflows/game-channel/fetchers/epic-games.fetcher';
 import { SteamDealsFetcher }        from '../../workflows/game-channel/fetchers/steam-deals.fetcher';
@@ -49,6 +50,7 @@ export class GameChannelStrategy implements ContentStrategy, OnModuleInit {
     private readonly gameNews:   GameNewsFetcher,
     private readonly notifier:   TelegramNotifier,
     private readonly publications: PublicationsRepository,
+    private readonly crossPost: CrossPostService,
   ) {}
 
   onModuleInit() {
@@ -223,6 +225,11 @@ export class GameChannelStrategy implements ContentStrategy, OnModuleInit {
         title:        item.title,
         strategyType: this.type,
         tags:         [item.type],
+      });
+      await this.crossPost.afterPublish({
+        channelKey: channelId,
+        messageId,
+        mirror: { text, tags: [item.type], imageUrl: item.imageUrl ?? undefined },
       });
       this.logger.debug(`Published [${item.type}] to ${channelId}: ${item.title}`);
     } catch (err) {

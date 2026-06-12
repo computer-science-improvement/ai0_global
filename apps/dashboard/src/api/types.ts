@@ -172,7 +172,11 @@ export interface Strategy {
   channel_key:  string | null;
   /** All channels this strategy reaches: primary + forward targets. */
   channels:     StrategyChannelRef[];
-  /** Platforms this strategy publishes to: 'telegram' + configured cross-post platforms. */
+  /** Destination kind of this binding: 'telegram' | 'instagram' | 'facebook' | 'threads'. */
+  platform:     string;
+  /** Meta account this binding publishes to natively (null for telegram bindings). */
+  meta_account: { id: string; platform: string; username: string | null } | null;
+  /** Platforms shown as icons / used for tab grouping. Telegram binding: 'telegram' + cross-post targets. Native-Meta binding: just its own platform. */
   platforms:    string[];
   schedule:     string;
   params:       Record<string, unknown>;

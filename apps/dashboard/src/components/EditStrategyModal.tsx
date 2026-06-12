@@ -106,6 +106,10 @@ export function EditStrategyModal({ strategy, open, onClose }: Props) {
 
   return (
     <Modal open={open} onClose={onClose} title="Edit strategy" subtitle={strategy.ext_id} size="lg">
+      <div className="text-micro" style={{ color: 'var(--color-ink-dim)', marginBottom: 12 }}>
+        Destination is fixed at creation. To change it, delete and recreate the strategy.
+      </div>
+
       <Field label="Type">
         <input
           value={type}

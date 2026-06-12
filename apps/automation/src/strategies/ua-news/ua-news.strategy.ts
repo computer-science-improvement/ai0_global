@@ -17,6 +17,7 @@ import { ImageResolverService }     from '../../common/processors/image-resolver
 import { BotLoggerService }         from '../../common/logger/bot-logger.service';
 import { RawItem, PostPayload }     from '../../common/types';
 import { TelegramPublisher }        from '../../publishers/telegram.publisher';
+import { CrossPostService } from '../../publishers/cross-post.service';
 
 @Injectable()
 export class UaNewsStrategy implements ContentStrategy, OnModuleInit {
@@ -35,6 +36,7 @@ export class UaNewsStrategy implements ContentStrategy, OnModuleInit {
     private readonly botLogger:     BotLoggerService,
     private readonly telegram:      TelegramPublisher,
     private readonly registry:      ContentStrategyRegistry,
+    private readonly crossPost: CrossPostService,
   ) {}
 
   onModuleInit() {
@@ -168,6 +170,14 @@ export class UaNewsStrategy implements ContentStrategy, OnModuleInit {
           this.logger.warn(`Forward to ${targetChannel} failed: ${fwdErr.message}`);
         }
       }
+
+      // Cross-post last: Meta Graph calls can stall up to the fetch timeout,
+      // and the time-sensitive Telegram work (publish + forward) is done.
+      await this.crossPost.afterPublish({
+        channelKey: channelId,
+        messageId,
+        mirror: { text: payload.text, tags: item.tags ?? [], imageUrl: item.image ?? undefined },
+      });
     } catch (err) {
       await this.botLogger.logError(item.source, channelId, err.message);
       this.logger.warn(

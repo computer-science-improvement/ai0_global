@@ -1,6 +1,6 @@
 // apps/automation/src/config/api/dto/strategies.dto.ts
 import {
-  IsBoolean, IsInt, IsNotEmpty, IsObject, IsOptional, IsString,
+  IsBoolean, IsIn, IsInt, IsNotEmpty, IsObject, IsOptional, IsString,
   IsUUID, Matches, MaxLength, Min,
 } from 'class-validator';
 
@@ -22,8 +22,17 @@ export class CreateStrategyDto {
   @MaxLength(64)
   type!: string;
 
+  @IsOptional()
   @IsUUID()
-  channel_id!: string;
+  channel_id?: string;
+
+  @IsOptional()
+  @IsIn(['telegram', 'instagram', 'facebook', 'threads'])
+  platform?: 'telegram' | 'instagram' | 'facebook' | 'threads';
+
+  @IsOptional()
+  @IsUUID()
+  meta_account_id?: string;
 
   // Cron expression — validated at controller-level against the `cron` lib
   // because class-validator's CronExpression validator is opinionated.
@@ -62,4 +71,12 @@ export class PatchStrategyDto {
 
   @IsOptional() @IsInt() @Min(0)
   low_content_threshold?: number | null;
+
+  @IsOptional()
+  @IsIn(['telegram', 'instagram', 'facebook', 'threads'])
+  platform?: 'telegram' | 'instagram' | 'facebook' | 'threads';
+
+  @IsOptional()
+  @IsUUID()
+  meta_account_id?: string;
 }

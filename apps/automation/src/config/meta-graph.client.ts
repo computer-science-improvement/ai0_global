@@ -32,6 +32,11 @@ export class MetaGraphClient {
     return this.config.get<string>('META_GRAPH_VERSION') ?? 'v21.0';
   }
 
+  /** Threads has its own Graph version line; it rejects Facebook's v21.0. */
+  private get threadsVersion(): string {
+    return this.config.get<string>('THREADS_GRAPH_VERSION') ?? 'v1.0';
+  }
+
   private get timeout(): number {
     const n = parseInt(this.config.get<string>('FETCH_TIMEOUT') ?? '15000', 10);
     return Number.isFinite(n) ? n : 15000;
@@ -53,7 +58,8 @@ export class MetaGraphClient {
         ? 'username,name,followers_count,profile_picture_url'
         : 'name,username,followers_count,fan_count,picture{url}';
 
-    const url = `${base}/${this.version}/${encodeURIComponent(targetId)}`;
+    const ver = platform === 'threads' ? this.threadsVersion : this.version;
+    const url = `${base}/${ver}/${encodeURIComponent(targetId)}`;
     try {
       const res = await axios.get(url, {
         params: { fields, access_token: token },

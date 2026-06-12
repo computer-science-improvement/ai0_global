@@ -4,6 +4,7 @@ import { ContentStrategyRegistry } from '../../common/content-strategy/content-s
 import { TelegramPublisher }       from '../../publishers/telegram.publisher';
 import { TelegramNotifier }        from '../../publishers/telegram-notifier.service';
 import { PublicationsRepository }  from '../../stats/publications.repository';
+import { CrossPostService } from '../../publishers/cross-post.service';
 import { Skill }                   from '../../common/ai/skills/skill.interface';
 import {
   ContentStrategy,
@@ -25,6 +26,7 @@ export class FactsStrategy implements ContentStrategy, OnModuleInit {
     private readonly telegram: TelegramPublisher,
     private readonly notifier: TelegramNotifier,
     private readonly publications: PublicationsRepository,
+    private readonly crossPost: CrossPostService,
   ) {}
 
   onModuleInit() {
@@ -98,6 +100,13 @@ export class FactsStrategy implements ContentStrategy, OnModuleInit {
         title:        fact.article_title,
         strategyType: this.type,
         tags:         ['факти'],
+      });
+      // tags stay empty: the post text already ends with '#факти' — passing
+      // ['факти'] would duplicate the hashtag in the Meta caption.
+      await this.crossPost.afterPublish({
+        channelKey: channelId,
+        messageId,
+        mirror: { text, tags: [], imageUrl: fact.image_url ?? undefined },
       });
       this.logger.debug(`Published fact "${fact.article_title}" to ${channelId}`);
     } catch (err: any) {

@@ -11,6 +11,7 @@ import {
   ContentStrategy,
   StrategyParams,
 } from './content-strategy.interface';
+import type { PublishDestination } from './publish-destination';
 
 @Injectable()
 export class ContentStrategyRunner {
@@ -36,8 +37,10 @@ export class ContentStrategyRunner {
     channelId: string,
     params: StrategyParams,
     strategyId: string,
+    dest?: PublishDestination,
   ): Promise<void> {
     const tag = `[${strategyId}]`;
+    const lockKey = dest?.throttleKey ?? channelId;
 
     // Atomic in-flight lock: prevents the parallel-cron race where N
     // strategies for the same channel all pass canPublish() in the same
@@ -45,8 +48,8 @@ export class ContentStrategyRunner {
     // concurrent callers see it taken and bail out. The lock is released
     // on every skip/error path so the next cron tick can immediately retry
     // without bumping the 20-min cooldown timestamp.
-    if (!this.throttle.tryLock(channelId)) {
-      this.throttle.logCooldown(strategyId, channelId);
+    if (!this.throttle.tryLock(lockKey)) {
+      this.throttle.logCooldown(strategyId, lockKey);
       return;
     }
 
@@ -60,9 +63,15 @@ export class ContentStrategyRunner {
     // cooldown, so the next cron tick can immediately retry.
     if (strategy.execute) {
       try {
-        await strategy.execute(channelId, params);
+        await strategy.execute(channelId, params, dest);
       } catch (err: any) {
         this.logger.error(`${tag} Strategy execute failed: ${err.message}`);
+        // Telegram strategies own their error handling and stay non-throwing,
+        // so a failed publish doesn't error the whole run. A Meta destination
+        // has no such internal recovery path — surface the failure so the
+        // scheduler records the run as an error (visible in the activity log
+        // + the Errors stat). The finally below still releases the lock first.
+        if (dest && dest.platform !== 'telegram') throw err;
       } finally {
         // tryLock() invariant: we got here only because canPublish() was
         // true (no prior publish in the window). If the strategy published
@@ -70,18 +79,31 @@ export class ContentStrategyRunner {
         // and remainingMs is now ~cooldownMs. If it skipped, remainingMs
         // is still 0. Use that to decide: only release the lock when there
         // was NO publish, so skips don't waste the 20-min window.
-        if (this.throttle.remainingMs(channelId) === 0) {
-          this.throttle.releaseLock(channelId);
+        //
+        // Meta destinations: the strategy's meta branch publishes via the
+        // PublisherDispatcher and does NOT call recordPublish, so remainingMs
+        // stays 0 and the lock is released here every tick. That's intended —
+        // a Meta binding's cadence is governed by its own cron schedule, not
+        // the posting cooldown. (If per-account Meta cooldown is ever needed,
+        // the meta branch must call throttle.recordPublish(dest.throttleKey).)
+        if (this.throttle.remainingMs(lockKey) === 0) {
+          this.throttle.releaseLock(lockKey);
         }
       }
       this.logger.log(`${tag} Finished (custom execute)`);
       return;
     }
 
+    if (dest && dest.platform !== 'telegram') {
+      this.throttle.releaseLock(lockKey);
+      this.logger.warn(`${tag} Meta destination not supported by the generic pipeline — skipping`);
+      return;
+    }
+
     // 1. Fetch
     const fetchResult = await strategy.fetch(params, channelId);
     if (!fetchResult) {
-      this.throttle.releaseLock(channelId);
+      this.throttle.releaseLock(lockKey);
       this.logger.log(`${tag} Nothing to publish`);
       return;
     }
@@ -102,7 +124,7 @@ export class ContentStrategyRunner {
     );
 
     if (!unposted.length) {
-      this.throttle.releaseLock(channelId);
+      this.throttle.releaseLock(lockKey);
       this.logger.log(`${tag} Already posted: ${fetchResult.title}`);
       return;
     }
@@ -111,7 +133,7 @@ export class ContentStrategyRunner {
     const post = await strategy.generate(fetchResult, params);
 
     if (post === 'SKIP_POST') {
-      this.throttle.releaseLock(channelId);
+      this.throttle.releaseLock(lockKey);
       this.logger.warn(`${tag} SKIP_POST signalled — marking as posted`);
       await this.dedup.markPosted(
         fetchResult.sourceUrl, fetchResult.title, channelId, fetchResult.contentType,
@@ -120,7 +142,7 @@ export class ContentStrategyRunner {
     }
 
     if (!post) {
-      this.throttle.releaseLock(channelId);
+      this.throttle.releaseLock(lockKey);
       this.logger.warn(`${tag} Generation failed — will retry next run`);
       return;
     }
@@ -179,7 +201,7 @@ export class ContentStrategyRunner {
         mirror: { text: reviewed, tags: [post.contentType], imageUrl: post.imageUrl },
       });
     } catch (err) {
-      this.throttle.releaseLock(channelId);
+      this.throttle.releaseLock(lockKey);
       this.logger.error(`${tag} Publish failed: ${err.message}`);
       await this.notifier.notifyFailed(channelId, err.message, post.sourceUrl);
     }

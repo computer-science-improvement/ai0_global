@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Icon } from '../components/Icon';
 import { Icon as PlatformGlyph, type IconName } from '../components/ui/Icon';
 import { usePlatform } from '../lib/usePlatform';
+import { PlatformFilter } from '../components/PlatformFilter';
 import { AddStrategyModal } from '../components/AddStrategyModal';
 import { EditStrategyModal } from '../components/EditStrategyModal';
 import { useConfirm } from '../components/ui/ConfirmDialog';
@@ -45,11 +46,14 @@ function StrategiesPage() {
   const [editing, setEditing] = useState<Strategy | null>(null);
   const [expanded, setExpanded] = useState<string | null>(null);
 
-  // Icons show only on the "All" tab; the "Meta" tab filters to Meta-capable
-  // strategies; "Telegram" shows all (every strategy publishes to Telegram).
+  // Icons show only on the "All" tab; the "Meta" tab filters to native-Meta
+  // strategies; the "Telegram" tab to strategies that publish to Telegram
+  // (native-Meta bindings no longer publish to Telegram, so they're excluded).
   const showIcons = platform === 'all';
   const rows = (data ?? []).filter(s =>
-    platform === 'meta' ? s.platforms.some(p => META_PLATFORMS.includes(p)) : true,
+    platform === 'meta'     ? s.platforms.some(p => META_PLATFORMS.includes(p))
+    : platform === 'telegram' ? s.platforms.includes('telegram')
+    : true,
   );
 
   return (
@@ -65,6 +69,11 @@ function StrategiesPage() {
           <Icon name="plus" size={14} /> Add strategy
         </button>
       </header>
+
+      {/* Destination filter — strategies are the only view this affects. */}
+      <div style={{ marginBottom: 20 }}>
+        <PlatformFilter />
+      </div>
 
       {isLoading && <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>Loading…</p>}
       {error && <p className="text-body-sm" style={{ color: 'var(--color-danger)' }}>{(error as Error).message}</p>}
@@ -87,7 +96,7 @@ function StrategiesPage() {
                 <th style={{ width: 30 }}></th>
                 <th>Id</th>
                 <th>Type</th>
-                <th>Channel</th>
+                <th>Destination</th>
                 <th>Schedule</th>
                 <th>Next run</th>
                 <th>Last run</th>
@@ -162,7 +171,17 @@ function StrategyRow({ s, showIcons, open, onToggleOpen, onEdit, onToggle, onDel
         {showIcons && <PlatformIcons platforms={s.platforms} />}
       </td>
       <td style={{ color: 'var(--color-ink-muted)' }}>
-        {s.channel_key ?? <span style={{ color: 'var(--color-ink-dim)' }}>—</span>}
+        {s.channel_key
+          ? <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}>
+              <PlatformGlyph name={PLATFORM_GLYPH[s.platform] ?? 'telegram'} size={12} className="" />
+              {s.channel_key}
+            </span>
+          : s.meta_account
+            ? <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}>
+                <PlatformGlyph name={PLATFORM_GLYPH[s.meta_account.platform] ?? 'instagram'} size={12} className="" />
+                {s.meta_account.username ? '@' + s.meta_account.username : s.meta_account.platform}
+              </span>
+            : <span style={{ color: 'var(--color-ink-dim)' }}>—</span>}
       </td>
       <td style={{ fontVariantNumeric: 'tabular-nums', color: 'var(--color-ink-muted)' }}>{s.schedule}</td>
       <td>

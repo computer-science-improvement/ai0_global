@@ -50,7 +50,8 @@ export class ActivityRepository {
            END                                               AS type,
            sr.status                                         AS status,
            tc.id::text                                       AS channel_id,
-           COALESCE(tc.channel_key, tc.username, tc.title)   AS channel,
+           COALESCE(tc.channel_key, tc.username, tc.title,
+                    '@' || ma.username, ma.account_id)       AS channel,
            sb.id::text                                       AS strategy_id,
            sr.ext_id                                         AS strategy,
            sr.error                                          AS detail,
@@ -58,6 +59,7 @@ export class ActivityRepository {
          FROM strategy_runs sr
          LEFT JOIN strategy_bindings sb ON sb.id = sr.strategy_id
          LEFT JOIN tracked_channels  tc ON tc.id = sb.channel_id
+         LEFT JOIN meta_accounts     ma ON ma.id = sb.meta_account_id
 
          UNION ALL
 
