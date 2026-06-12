@@ -68,11 +68,11 @@ export class StrategiesController {
       this.crossposts.platformsByChannel(),
     ]);
     return Promise.all(rows.map(async r => {
-      const channel = this.cache.getChannelById(r.channel_id);
+      const channel = r.channel_id ? this.cache.getChannelById(r.channel_id) : null;
       const last    = latestByStrategy.get(r.id);
       // Channels this strategy actually reaches: primary binding + forward
       // route targets that originate from the primary channel.
-      const forwards = this.cache.getForwardRoutesForSource(r.channel_id);
+      const forwards = r.channel_id ? this.cache.getForwardRoutesForSource(r.channel_id) : [];
       const channels: Array<{ id: string; channel_key: string | null; title: string | null; role: 'primary' | 'forward' }> = [];
       if (channel) {
         channels.push({
@@ -99,7 +99,7 @@ export class StrategiesController {
         channel_id:   r.channel_id,
         channel_key:  channel?.channel_key ?? null,
         channels,
-        platforms:    ['telegram', ...(crosspostPlatforms.get(r.channel_id) ?? [])],
+        platforms:    ['telegram', ...(r.channel_id ? (crosspostPlatforms.get(r.channel_id) ?? []) : [])],
         schedule:     r.schedule,
         params:       r.params,
         enabled:      r.enabled,

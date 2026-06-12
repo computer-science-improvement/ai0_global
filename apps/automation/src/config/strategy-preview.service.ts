@@ -70,6 +70,7 @@ export class StrategyPreviewService {
         case 'game-channel':
         case 'movies':
         case 'space-news':
+          if (!binding.channel_id) return { kind: 'unsupported', items: [], message: 'No channel_id on this binding.' };
           return await this.fromPostedNews(binding.channel_id);
 
         // Pure API fetches with no persistent table.

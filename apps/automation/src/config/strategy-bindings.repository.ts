@@ -7,21 +7,25 @@ export interface StrategyBindingRow {
   id:          string;
   ext_id:      string;
   type:        string;
-  channel_id:  string;
+  channel_id:  string | null;
   schedule:    string;
   params:      Record<string, unknown>;
   enabled:     boolean;
   notes:       string | null;
   low_content_threshold: number | null;
+  platform:    'telegram' | 'instagram' | 'facebook' | 'threads';
+  meta_account_id: string | null;
 }
 
 export interface StrategyBindingInsertInput {
   ext_id:     string;
   type:       string;
-  channel_id: string;
+  channel_id?: string | null;
   schedule:   string;
   params:     Record<string, unknown>;
   enabled?:   boolean;
+  platform?:  'telegram' | 'instagram' | 'facebook' | 'threads';
+  meta_account_id?: string | null;
 }
 
 @Injectable()
@@ -30,7 +34,8 @@ export class StrategyBindingsRepository {
 
   async list(): Promise<StrategyBindingRow[]> {
     const { rows } = await this.pool.query<StrategyBindingRow>(
-      `SELECT id, ext_id, type, channel_id, schedule, params, enabled, notes, low_content_threshold
+      `SELECT id, ext_id, type, channel_id, schedule, params, enabled, notes,
+              low_content_threshold, platform, meta_account_id
        FROM strategy_bindings
        ORDER BY ext_id`,
     );
@@ -52,7 +57,8 @@ export class StrategyBindingsRepository {
 
   async findById(id: string): Promise<StrategyBindingRow | null> {
     const { rows } = await this.pool.query<StrategyBindingRow>(
-      `SELECT id, ext_id, type, channel_id, schedule, params, enabled, notes, low_content_threshold
+      `SELECT id, ext_id, type, channel_id, schedule, params, enabled, notes,
+              low_content_threshold, platform, meta_account_id
        FROM strategy_bindings WHERE id = $1`, [id],
     );
     return rows[0] ?? null;
@@ -60,7 +66,8 @@ export class StrategyBindingsRepository {
 
   async findByExtId(extId: string): Promise<StrategyBindingRow | null> {
     const { rows } = await this.pool.query<StrategyBindingRow>(
-      `SELECT id, ext_id, type, channel_id, schedule, params, enabled, notes, low_content_threshold
+      `SELECT id, ext_id, type, channel_id, schedule, params, enabled, notes,
+              low_content_threshold, platform, meta_account_id
        FROM strategy_bindings WHERE ext_id = $1`, [extId],
     );
     return rows[0] ?? null;
@@ -68,12 +75,15 @@ export class StrategyBindingsRepository {
 
   async insert(input: StrategyBindingInsertInput): Promise<StrategyBindingRow> {
     const { rows } = await this.pool.query<StrategyBindingRow>(
-      `INSERT INTO strategy_bindings (ext_id, type, channel_id, schedule, params, enabled)
-       VALUES ($1, $2, $3, $4, $5::jsonb, COALESCE($6, true))
-       RETURNING id, ext_id, type, channel_id, schedule, params, enabled, notes, low_content_threshold`,
+      `INSERT INTO strategy_bindings
+         (ext_id, type, channel_id, schedule, params, enabled, platform, meta_account_id)
+       VALUES ($1, $2, $3, $4, $5::jsonb, COALESCE($6, true), COALESCE($7, 'telegram'), $8)
+       RETURNING id, ext_id, type, channel_id, schedule, params, enabled, notes,
+                 low_content_threshold, platform, meta_account_id`,
       [
-        input.ext_id, input.type, input.channel_id, input.schedule,
+        input.ext_id, input.type, input.channel_id ?? null, input.schedule,
         JSON.stringify(input.params), input.enabled ?? true,
+        input.platform ?? 'telegram', input.meta_account_id ?? null,
       ],
     );
     return rows[0];
@@ -85,12 +95,14 @@ export class StrategyBindingsRepository {
    */
   async update(id: string, patch: {
     type?:       string;
-    channel_id?: string;
+    channel_id?: string | null;
     schedule?:   string;
     params?:     Record<string, unknown>;
     enabled?:    boolean;
     notes?:      string | null;
     low_content_threshold?: number | null;
+    platform?:        'telegram' | 'instagram' | 'facebook' | 'threads';
+    meta_account_id?: string | null;
   }): Promise<StrategyBindingRow | null> {
     const sets: string[] = [];
     const params: unknown[] = [id];
@@ -102,11 +114,14 @@ export class StrategyBindingsRepository {
     if (patch.enabled     !== undefined) { sets.push(`enabled = $${i++}`);     params.push(patch.enabled); }
     if (patch.notes       !== undefined) { sets.push(`notes = $${i++}`);       params.push(patch.notes); }
     if (patch.low_content_threshold !== undefined) { sets.push(`low_content_threshold = $${i++}`); params.push(patch.low_content_threshold); }
+    if (patch.platform        !== undefined) { sets.push(`platform = $${i++}`);        params.push(patch.platform); }
+    if (patch.meta_account_id !== undefined) { sets.push(`meta_account_id = $${i++}`); params.push(patch.meta_account_id); }
     if (sets.length === 0) return this.findById(id);
     const { rows } = await this.pool.query<StrategyBindingRow>(
       `UPDATE strategy_bindings SET ${sets.join(', ')}
        WHERE id = $1
-       RETURNING id, ext_id, type, channel_id, schedule, params, enabled, notes, low_content_threshold`,
+       RETURNING id, ext_id, type, channel_id, schedule, params, enabled, notes,
+                 low_content_threshold, platform, meta_account_id`,
       params,
     );
     return rows[0] ?? null;

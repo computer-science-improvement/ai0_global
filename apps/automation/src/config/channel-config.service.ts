@@ -111,18 +111,17 @@ export class ChannelConfigService implements OnApplicationBootstrap {
 
   resolveStrategyBindings(): ResolvedStrategyBinding[] {
     return this.cache.getBindings().map(b => {
-      const ch = this.cache.getChannelById(b.channel_id);
+      const ch = b.channel_id ? this.cache.getChannelById(b.channel_id) : null;
       return {
         id:        b.ext_id,
         uuid:      b.id,
         type:      b.type,
-        channelId: ch?.channel_key ?? b.channel_id,
+        channelId: ch?.channel_key ?? b.channel_id ?? '',
         schedule:  b.schedule,
         params:    b.params,
         enabled:   b.enabled,
-        // TEMP: real values wired in the binding-resolution task
-        platform:      'telegram' as const,
-        metaAccountId: null,
+        platform:  b.platform,
+        metaAccountId: b.meta_account_id,
       };
     });
   }

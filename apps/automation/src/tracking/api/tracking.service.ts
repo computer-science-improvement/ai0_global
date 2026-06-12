@@ -130,7 +130,7 @@ export class TrackingService {
     for (const b of bindings) {
       if (b.channel_id === channelId) {
         refs.push({ id: b.id, ext_id: b.ext_id, type: b.type, enabled: b.enabled, role: 'primary' });
-      } else if (forwardSourceIds.has(b.channel_id)) {
+      } else if (b.channel_id && forwardSourceIds.has(b.channel_id)) {
         refs.push({ id: b.id, ext_id: b.ext_id, type: b.type, enabled: b.enabled, role: 'forward' });
       }
     }
