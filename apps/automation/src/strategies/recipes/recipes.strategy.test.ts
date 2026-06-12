@@ -16,7 +16,7 @@ function makeRow(over = {}) {
 function build(overrides = {}) {
   const calls = {
     chat: 0, save: [] as any[], posted: [] as string[], published: [] as any[],
-    pages: [] as any[], tgSaved: [] as any[], crossPost: null as any,
+    pages: [] as any[], tgSaved: [] as any[], crossPost: null as any, dispatch: null as any,
   };
   const claude = { available: true, chat: async () => { calls.chat++; return JSON.stringify({
     title_uk: 'Пом Анна', ingredients_uk: 'Картопля — 1 кг', instructions_uk: '1. Розтопіть масло.',
@@ -39,10 +39,11 @@ function build(overrides = {}) {
   const notifier = { notifyPublished: async () => {} };
   const publications = { insert: async () => {} };
   const crossPost = { afterPublish: async (i: any) => { calls.crossPost = i; } };
+  const dispatcher = { publish: async (...a: any[]) => { calls.dispatch = a; return 'ig-99'; } };
   const s = new RecipesStrategy(
     claude as any, validator as any, registry as any, publisher as any,
     telegraph as any, repo as any, notifier as any, publications as any,
-    crossPost as any,
+    crossPost as any, dispatcher as any,
   );
   // Avoid network in tests.
   (s as any).downloadImage = async () => Buffer.from('img');
@@ -153,4 +154,34 @@ test('telegraph createPage throws: falls back to inline caption + reply', async 
   assert.ok(pub.caption.includes('Картопля — 1 кг')); // inline ingredients
   assert.ok(pub.replyText.includes('Розтопіть масло')); // inline instructions
   assert.deepEqual(calls.posted, ['r1']);
+});
+
+test('meta destination publishes via dispatcher and marks the per-account key', async () => {
+  const calls = { dispatch: null as any, posted: [] as any[] };
+  const repo = {
+    getNext: async (_k?: string) => makeRow({ title_uk: 'Пом Анна', ingredients_uk: 'Картопля', kcal: '84' }),
+    saveTranslation: async () => {}, saveTelegraph: async () => {},
+    markPosted: async (id: string, key?: string) => { calls.posted.push([id, key]); },
+  };
+  const dispatcher = { publish: async (...a: any[]) => { calls.dispatch = a; return 'ig-99'; } };
+  const telegraph = { available: async () => false, createPage: async () => ({ url: '', path: '' }) };
+  const s = new RecipesStrategy(
+    { available: true, chat: async () => JSON.stringify({ title_uk: 'Пом Анна', ingredients_uk: 'Картопля', instructions_uk: '1.' }) } as any,
+    { check: () => true } as any, { register() {} } as any,
+    { publishPrompt: async () => '42' } as any,
+    telegraph as any, repo as any, { notifyPublished: async () => {} } as any,
+    { insert: async () => {} } as any, { afterPublish: async () => {} } as any,
+    dispatcher as any,
+  );
+  const dest = {
+    platform: 'instagram', targetId: 'ig-target', token: 'tok',
+    metaAccountId: 'acct-1', postedKey: 'IG:acct-1', throttleKey: 'meta:acct-1',
+  };
+  await s.execute('', {}, dest as any);
+  assert.ok(calls.dispatch, 'dispatcher.publish was called');
+  assert.equal(calls.dispatch[0], 'instagram');           // platform
+  assert.equal(calls.dispatch[2].id, 'ig-target');        // target id
+  assert.equal(calls.dispatch[2].token, 'tok');           // token
+  assert.ok(calls.dispatch[1].imageUrl, 'image url present');
+  assert.deepEqual(calls.posted, [['r1', 'IG:acct-1']]);  // per-account dedup key
 });

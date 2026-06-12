@@ -39,18 +39,19 @@ export class RecipesRepository {
    * title_uk means "not translated yet" -> the strategy translates it; a
    * non-empty title_uk means "already translated" -> reuse it.
    */
-  async getNext(): Promise<RecipeRow | null> {
+  async getNext(postedKey = 'TELEGRAM'): Promise<RecipeRow | null> {
     const { rows } = await this.pool.query<RecipeRow>(
       `SELECT id, title, image_url, category, ingredients, instructions,
               title_uk, ingredients_uk, instructions_uk,
               telegraph_url, telegraph_path,
               kcal, protein_g, fat_g, carbs_g, serving_size_g
        FROM recipes
-       WHERE NOT (posted ? 'TELEGRAM')
+       WHERE NOT (posted ? $1)
          AND title_uk IS DISTINCT FROM ''
          AND kcal IS NOT NULL
        ORDER BY created_at
        LIMIT 1`,
+      [postedKey],
     );
     return rows[0] ?? null;
   }
@@ -84,13 +85,13 @@ export class RecipesRepository {
     );
   }
 
-  /** Mark the row published to Telegram. */
-  async markPosted(id: string): Promise<void> {
+  /** Mark the row published to the given destination (default: Telegram). */
+  async markPosted(id: string, postedKey = 'TELEGRAM'): Promise<void> {
     await this.pool.query(
       `UPDATE recipes
-       SET posted = posted || jsonb_build_object('TELEGRAM', to_jsonb(now()))
+       SET posted = posted || jsonb_build_object($2, to_jsonb(now()))
        WHERE id = $1`,
-      [id],
+      [id, postedKey],
     );
   }
 }

@@ -8,6 +8,8 @@ import { TelegraphService, buildRecipeNodes, fmtNum } from '../../publishers/tel
 import { TelegramNotifier }        from '../../publishers/telegram-notifier.service';
 import { CrossPostService }        from '../../publishers/cross-post.service';
 import { PublicationsRepository }  from '../../stats/publications.repository';
+import { PublisherDispatcher }     from '../../publishers/publisher-dispatcher.service';
+import type { PublishDestination } from '../../common/content-strategy/publish-destination';
 import { RECIPES_CHANNEL_SKILL }   from '../../common/ai/skills/recipes-channel.skill';
 import { Skill }                   from '../../common/ai/skills/skill.interface';
 import {
@@ -47,6 +49,7 @@ export class RecipesStrategy implements ContentStrategy, OnModuleInit {
     private readonly notifier:     TelegramNotifier,
     private readonly publications: PublicationsRepository,
     private readonly crossPost:    CrossPostService,
+    private readonly dispatcher:   PublisherDispatcher,
   ) {}
 
   onModuleInit() {
@@ -65,12 +68,32 @@ export class RecipesStrategy implements ContentStrategy, OnModuleInit {
     return null;
   }
 
-  async execute(channelId: string, _params: StrategyParams): Promise<void> {
-    const row = await this.repo.getNext();
+  async execute(channelId: string, _params: StrategyParams, dest?: PublishDestination): Promise<void> {
+    const postedKey = dest?.postedKey ?? 'TELEGRAM';
+    const row = await this.repo.getNext(postedKey);
     if (!row) { this.logger.debug('No unposted recipes'); return; }
 
     const uk = await this.resolveTranslation(row);
     if (!uk) return; // translation unavailable/failed (sentinel already handled)
+
+    // Native Meta publish: same recipe pool, inline caption + dish photo, no
+    // Telegraph / notifier / publications / cross-post (those are TG-only).
+    if (dest && dest.platform !== 'telegram') {
+      const nutri   = this.nutritionLine(row);
+      const caption = this.buildCaption(uk.titleUk, row.category, uk.ingredientsUk, nutri);
+      try {
+        const id = await this.dispatcher.publish(
+          dest.platform,
+          { text: caption, imageUrl: row.image_url, source: '', tags: row.category ? [row.category] : [] },
+          { id: dest.targetId, token: dest.token! },
+        );
+        await this.repo.markPosted(row.id, postedKey);
+        this.logger.debug(`Published recipe ${row.id} to ${dest.platform} (${id})`);
+      } catch (err: any) {
+        this.logger.error(`Meta publish failed (${row.id} → ${dest.platform}): ${err.message}`);
+      }
+      return;
+    }
 
     // Variant A: build a Telegraph page with the FULL recipe, then post the
     // photo with a short caption + link. The page always "fits" (Instant View),
@@ -103,7 +126,7 @@ export class RecipesStrategy implements ContentStrategy, OnModuleInit {
         { imageBuffer, caption, replyText },
         { id: channelId },
       );
-      await this.repo.markPosted(row.id);
+      await this.repo.markPosted(row.id, postedKey);
       await this.notifier.notifyPublished(channelId, messageId);
       await this.publications.insert({
         channelId, messageId,
