@@ -1,5 +1,5 @@
 // apps/automation/src/config/meta-graph.client.ts
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import axios from 'axios';
 import type { MetaPlatform } from './meta-accounts.repository';
@@ -27,6 +27,8 @@ function redactToken(s: string, token: string): string {
 
 @Injectable()
 export class MetaGraphClient {
+  private readonly logger = new Logger(MetaGraphClient.name);
+
   constructor(private readonly config: ConfigService) {}
 
   private get version(): string {
@@ -99,7 +101,7 @@ export class MetaGraphClient {
 
     const metrics = INSIGHT_METRICS[platform];
     const byMetric: Partial<Record<InsightKey, DayValue[]>> = {};
-    for (const key of Object.keys(metrics) as InsightKey[]) {
+    for (const key of Object.keys(metrics) as (keyof typeof metrics)[]) {
       const metric = metrics[key]!;
       try {
         const res = await axios.get(`${base}/${ver}/${encodeURIComponent(targetId)}/${edge}`, {
@@ -107,8 +109,11 @@ export class MetaGraphClient {
           timeout: this.timeout,
         });
         byMetric[key] = parseMetricValues(res.data);
-      } catch {
-        // metric unavailable on this platform/version → leave it null for all days
+      } catch (err: any) {
+        // metric unavailable on this platform/version → leave it null for all days.
+        // Debug (not warn): this is expected degradation, but logging it lets us
+        // tell "unsupported metric" apart from a transient error or a request bug.
+        this.logger.debug(`fetchInsights: metric "${metric}" failed for ${platform}/${targetId}: ${err?.message ?? err}`);
       }
     }
     return mergeInsightValues(byMetric);

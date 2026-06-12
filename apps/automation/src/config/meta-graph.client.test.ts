@@ -1,7 +1,9 @@
-import { test, mock } from 'node:test';
+import { test, mock, afterEach } from 'node:test';
 import assert from 'node:assert/strict';
 import axios from 'axios';
 import { MetaGraphClient } from './meta-graph.client';
+
+afterEach(() => mock.restoreAll());
 
 function client() {
   const config = { get: (k: string) => ({ META_GRAPH_VERSION: 'v21.0', THREADS_GRAPH_VERSION: 'v1.0', FETCH_TIMEOUT: '15000' } as any)[k] };
