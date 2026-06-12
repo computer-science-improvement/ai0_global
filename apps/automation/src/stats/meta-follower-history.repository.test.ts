@@ -28,6 +28,22 @@ test('history orders ASC and threads from/to params (null when absent)', async (
   assert.deepEqual(out, [{ at: new Date('2026-06-01'), followers: 10 }]);
 });
 
+test('history forwards concrete from/to dates as params', async () => {
+  const { pool, calls } = fakePool([]);
+  const repo = new MetaFollowerHistoryRepository(pool as any);
+  const from = new Date('2026-06-01T00:00:00Z');
+  const to   = new Date('2026-06-10T00:00:00Z');
+  await repo.history('acct-1', from, to);
+  assert.deepEqual(calls[0].params, ['acct-1', from, to]);
+});
+
+test('insert is idempotent on the (account_id, snapshot_at) key', async () => {
+  const { pool, calls } = fakePool();
+  const repo = new MetaFollowerHistoryRepository(pool as any);
+  await repo.insert('acct-1', 1);
+  assert.match(calls[0].sql, /ON CONFLICT DO NOTHING/);
+});
+
 test('latestWithDelta maps the computed row', async () => {
   const { pool } = fakePool([{ followers: 100, delta24h: 5, delta7d: 20 }]);
   const repo = new MetaFollowerHistoryRepository(pool as any);

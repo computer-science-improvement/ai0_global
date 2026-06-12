@@ -13,7 +13,8 @@ export class MetaFollowerHistoryRepository {
   async insert(accountId: string, followers: number): Promise<void> {
     await this.pool.query(
       `INSERT INTO meta_follower_history (account_id, followers)
-       VALUES ($1::uuid, $2::int)`,
+       VALUES ($1::uuid, $2::int)
+       ON CONFLICT DO NOTHING`,
       [accountId, followers],
     );
   }
@@ -31,6 +32,14 @@ export class MetaFollowerHistoryRepository {
     return rows.map(r => ({ at: r.at, followers: r.followers }));
   }
 
+  /**
+   * Current followers + short-term deltas. Each baseline is the nearest snapshot
+   * at-or-before the cutoff (24h / 7d ago). On a collection gap the baseline may
+   * be somewhat older than the nominal window, so the delta is an approximation —
+   * acceptable for the dashboard's convenience figures (the chart series itself is
+   * always exact). Returning baseline timestamps for strict windowing is a future
+   * refinement, deferred for Phase A.
+   */
   async latestWithDelta(accountId: string): Promise<FollowerDelta> {
     const { rows } = await this.pool.query(
       `WITH latest AS (
