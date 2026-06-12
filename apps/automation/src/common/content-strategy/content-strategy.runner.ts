@@ -73,6 +73,13 @@ export class ContentStrategyRunner {
         // and remainingMs is now ~cooldownMs. If it skipped, remainingMs
         // is still 0. Use that to decide: only release the lock when there
         // was NO publish, so skips don't waste the 20-min window.
+        //
+        // Meta destinations: the strategy's meta branch publishes via the
+        // PublisherDispatcher and does NOT call recordPublish, so remainingMs
+        // stays 0 and the lock is released here every tick. That's intended —
+        // a Meta binding's cadence is governed by its own cron schedule, not
+        // the posting cooldown. (If per-account Meta cooldown is ever needed,
+        // the meta branch must call throttle.recordPublish(dest.throttleKey).)
         if (this.throttle.remainingMs(lockKey) === 0) {
           this.throttle.releaseLock(lockKey);
         }
