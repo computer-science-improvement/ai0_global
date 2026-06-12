@@ -61,6 +61,7 @@ import { ContentRunwayModule } from '../common/content-runway/content-runway.mod
     ForwardRoutesRepository,
     TelegraphAccountsRepository,
     MetaAccountsRepository,
+    MetaGraphClient,
     MetaCrosspostTargetsRepository,
   ],
 })
