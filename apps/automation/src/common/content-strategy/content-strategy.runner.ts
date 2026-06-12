@@ -11,6 +11,7 @@ import {
   ContentStrategy,
   StrategyParams,
 } from './content-strategy.interface';
+import type { PublishDestination } from './publish-destination';
 
 @Injectable()
 export class ContentStrategyRunner {
@@ -36,8 +37,10 @@ export class ContentStrategyRunner {
     channelId: string,
     params: StrategyParams,
     strategyId: string,
+    dest?: PublishDestination,
   ): Promise<void> {
     const tag = `[${strategyId}]`;
+    const lockKey = dest?.throttleKey ?? channelId;
 
     // Atomic in-flight lock: prevents the parallel-cron race where N
     // strategies for the same channel all pass canPublish() in the same
@@ -45,8 +48,8 @@ export class ContentStrategyRunner {
     // concurrent callers see it taken and bail out. The lock is released
     // on every skip/error path so the next cron tick can immediately retry
     // without bumping the 20-min cooldown timestamp.
-    if (!this.throttle.tryLock(channelId)) {
-      this.throttle.logCooldown(strategyId, channelId);
+    if (!this.throttle.tryLock(lockKey)) {
+      this.throttle.logCooldown(strategyId, lockKey);
       return;
     }
 
@@ -60,7 +63,7 @@ export class ContentStrategyRunner {
     // cooldown, so the next cron tick can immediately retry.
     if (strategy.execute) {
       try {
-        await strategy.execute(channelId, params);
+        await strategy.execute(channelId, params, dest);
       } catch (err: any) {
         this.logger.error(`${tag} Strategy execute failed: ${err.message}`);
       } finally {
@@ -70,18 +73,24 @@ export class ContentStrategyRunner {
         // and remainingMs is now ~cooldownMs. If it skipped, remainingMs
         // is still 0. Use that to decide: only release the lock when there
         // was NO publish, so skips don't waste the 20-min window.
-        if (this.throttle.remainingMs(channelId) === 0) {
-          this.throttle.releaseLock(channelId);
+        if (this.throttle.remainingMs(lockKey) === 0) {
+          this.throttle.releaseLock(lockKey);
         }
       }
       this.logger.log(`${tag} Finished (custom execute)`);
       return;
     }
 
+    if (dest && dest.platform !== 'telegram') {
+      this.throttle.releaseLock(lockKey);
+      this.logger.warn(`${tag} Meta destination not supported by the generic pipeline — skipping`);
+      return;
+    }
+
     // 1. Fetch
     const fetchResult = await strategy.fetch(params, channelId);
     if (!fetchResult) {
-      this.throttle.releaseLock(channelId);
+      this.throttle.releaseLock(lockKey);
       this.logger.log(`${tag} Nothing to publish`);
       return;
     }
@@ -102,7 +111,7 @@ export class ContentStrategyRunner {
     );
 
     if (!unposted.length) {
-      this.throttle.releaseLock(channelId);
+      this.throttle.releaseLock(lockKey);
       this.logger.log(`${tag} Already posted: ${fetchResult.title}`);
       return;
     }
@@ -111,7 +120,7 @@ export class ContentStrategyRunner {
     const post = await strategy.generate(fetchResult, params);
 
     if (post === 'SKIP_POST') {
-      this.throttle.releaseLock(channelId);
+      this.throttle.releaseLock(lockKey);
       this.logger.warn(`${tag} SKIP_POST signalled — marking as posted`);
       await this.dedup.markPosted(
         fetchResult.sourceUrl, fetchResult.title, channelId, fetchResult.contentType,
@@ -120,7 +129,7 @@ export class ContentStrategyRunner {
     }
 
     if (!post) {
-      this.throttle.releaseLock(channelId);
+      this.throttle.releaseLock(lockKey);
       this.logger.warn(`${tag} Generation failed — will retry next run`);
       return;
     }
@@ -179,7 +188,7 @@ export class ContentStrategyRunner {
         mirror: { text: reviewed, tags: [post.contentType], imageUrl: post.imageUrl },
       });
     } catch (err) {
-      this.throttle.releaseLock(channelId);
+      this.throttle.releaseLock(lockKey);
       this.logger.error(`${tag} Publish failed: ${err.message}`);
       await this.notifier.notifyFailed(channelId, err.message, post.sourceUrl);
     }

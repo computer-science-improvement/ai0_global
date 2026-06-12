@@ -1,4 +1,5 @@
 import { Skill } from '../ai/skills/skill.interface';
+import type { PublishDestination } from './publish-destination';
 
 // ─── Strategy params (passed from config) ────────────────────────────────────
 
@@ -53,7 +54,7 @@ export interface ContentStrategy {
    * If implemented, the runner calls this instead of the standard
    * fetch → dedup → generate → review → publish pipeline.
    */
-  execute?(channelId: string, params: StrategyParams): Promise<void>;
+  execute?(channelId: string, params: StrategyParams, dest?: PublishDestination): Promise<void>;
 }
 
 // ─── Data types ──────────────────────────────────────────────────────────────
