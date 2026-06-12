@@ -6,6 +6,7 @@ import { StatsService }                  from './stats.service';
 import { StatsController }               from './stats.controller';
 import { ApiKeyGuard }                   from './api-key.guard';
 import { MetaFollowerHistoryRepository } from './meta-follower-history.repository';
+import { MetaStatsCollectorService }     from './meta-stats-collector.service';
 
 @Global()
 @Module({
@@ -16,6 +17,7 @@ import { MetaFollowerHistoryRepository } from './meta-follower-history.repositor
     StatsService,
     ApiKeyGuard,
     MetaFollowerHistoryRepository,
+    MetaStatsCollectorService,
   ],
   controllers: [StatsController],
   exports: [PublicationsRepository, TelegramStatsClient, MetaFollowerHistoryRepository],
