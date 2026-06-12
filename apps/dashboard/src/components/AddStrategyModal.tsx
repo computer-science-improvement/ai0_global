@@ -10,6 +10,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { trackingApi } from '../api/tracking';
 import { useCreateStrategy } from '../api/strategies';
+import { useMetaAccounts } from '../api/meta-accounts';
 import { Modal } from './Modal';
 import { Icon } from './Icon';
 import { STRATEGY_DESCRIPTIONS, describeStrategy, SOURCE_KIND_LABEL, channelOptionLabel } from '../lib/labels';
@@ -22,6 +23,8 @@ export function AddStrategyModal({ open, onClose }: Props) {
   const [type,      setType]      = useState('');
   const [channelId, setChannelId] = useState('');
   const [schedule,  setSchedule]  = useState('0 9 * * *');
+  const [destKind,  setDestKind]  = useState<'telegram' | 'meta'>('telegram');
+  const [metaId,    setMetaId]    = useState('');
 
   const create = useCreateStrategy();
 
@@ -32,22 +35,30 @@ export function AddStrategyModal({ open, onClose }: Props) {
     enabled:  open,
   });
 
+  // Meta accounts — only fetched when the Meta destination is chosen.
+  const metaAccountsQ = useMetaAccounts();
+  const metaAccounts = open && destKind === 'meta' ? metaAccountsQ : { data: undefined, isLoading: false };
+
   const submit = async () => {
     try {
       await create.mutateAsync({
-        ext_id:     extId.trim(),
-        type:       type.trim(),
-        channel_id: channelId,
-        schedule:   schedule.trim(),
-        enabled:    false, // new strategies start paused — enable explicitly when ready to publish
-        params:     {},
+        ext_id:   extId.trim(),
+        type:     type.trim(),
+        schedule: schedule.trim(),
+        enabled:  false, // new strategies start paused — enable explicitly when ready to publish
+        params:   {},
+        ...(destKind === 'telegram'
+          ? { channel_id: channelId, platform: 'telegram' as const }
+          : { platform: metaPlatformOf(metaAccountsQ.data, metaId) ?? 'instagram', meta_account_id: metaId }),
       });
       setExtId(''); setType(''); setChannelId(''); setSchedule('0 9 * * *');
+      setDestKind('telegram'); setMetaId('');
       onClose();
     } catch { /* error rendered below */ }
   };
 
-  const valid = extId && type && channelId && schedule;
+  const valid = !!extId && !!type && !!schedule &&
+    (destKind === 'telegram' ? !!channelId : !!metaId);
 
   return (
     <Modal open={open} onClose={onClose} title="Add strategy" size="lg">
@@ -76,21 +87,53 @@ export function AddStrategyModal({ open, onClose }: Props) {
         <TypeDescription type={type} />
       </Field>
 
-      <Field label="Channel">
+      <Field label="Destination">
         <select
-          value={channelId}
-          onChange={e => setChannelId(e.target.value)}
+          value={destKind}
+          onChange={e => setDestKind(e.target.value as 'telegram' | 'meta')}
           className="input-field"
           style={{ width: '100%' }}
         >
-          <option value="" disabled>
-            {channelsQ.isLoading ? 'Loading…' : 'Pick a channel'}
-          </option>
-          {channelsQ.data?.items.map(c => (
-            <option key={c.id} value={c.id}>{channelOptionLabel(c)}</option>
-          ))}
+          <option value="telegram">Telegram channel</option>
+          <option value="meta">Meta account (Instagram / Facebook / Threads)</option>
         </select>
       </Field>
+
+      {destKind === 'telegram' && (
+        <Field label="Channel">
+          <select
+            value={channelId}
+            onChange={e => setChannelId(e.target.value)}
+            className="input-field"
+            style={{ width: '100%' }}
+          >
+            <option value="" disabled>
+              {channelsQ.isLoading ? 'Loading…' : 'Pick a channel'}
+            </option>
+            {channelsQ.data?.items.map(c => (
+              <option key={c.id} value={c.id}>{channelOptionLabel(c)}</option>
+            ))}
+          </select>
+        </Field>
+      )}
+
+      {destKind === 'meta' && (
+        <Field label="Meta account" hint="verified accounts only">
+          <select
+            value={metaId}
+            onChange={e => setMetaId(e.target.value)}
+            className="input-field"
+            style={{ width: '100%' }}
+          >
+            <option value="" disabled>
+              {metaAccounts.isLoading ? 'Loading…' : 'Pick a Meta account'}
+            </option>
+            {metaAccountsQ.data?.filter(a => a.active).map(a => (
+              <option key={a.id} value={a.id}>{a.platform} — {a.username ?? a.id}</option>
+            ))}
+          </select>
+        </Field>
+      )}
 
       <Field label="Schedule (cron)">
         <SchedulePicker value={schedule} onChange={setSchedule} placeholder="0 9 * * *" inputId="add-strategy-schedule" />
@@ -117,6 +160,14 @@ export function AddStrategyModal({ open, onClose }: Props) {
       </div>
     </Modal>
   );
+}
+
+function metaPlatformOf(
+  accounts: Array<{ id: string; platform: string }> | undefined,
+  id: string,
+): 'instagram' | 'facebook' | 'threads' | undefined {
+  const p = accounts?.find(a => a.id === id)?.platform;
+  return p === 'instagram' || p === 'facebook' || p === 'threads' ? p : undefined;
 }
 
 function Field({ label, hint, children }: { label: string; hint?: string; children: React.ReactNode }) {
