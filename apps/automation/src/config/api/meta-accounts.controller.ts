@@ -8,6 +8,7 @@ import { TrackingAuthGuard } from '../../tracking/api/tracking-auth.guard';
 import { MetaAccountsRepository } from '../meta-accounts.repository';
 import { MetaGraphClient } from '../meta-graph.client';
 import { MetaFollowerHistoryRepository } from '../../stats/meta-follower-history.repository';
+import { MetaAccountInsightsRepository } from '../../stats/meta-account-insights.repository';
 import { CreateMetaAccountDto, PatchMetaAccountDto } from './dto/meta-accounts.dto';
 
 @Controller('api/meta-accounts')
@@ -18,6 +19,7 @@ export class MetaAccountsController {
     private readonly graph:    MetaGraphClient,
     private readonly env:      ConfigService,
     private readonly history:  MetaFollowerHistoryRepository,
+    private readonly insights: MetaAccountInsightsRepository,
   ) {}
 
   @Get()
@@ -55,6 +57,20 @@ export class MetaAccountsController {
       delta7d:  summary.delta7d,
       points:   points.map(p => ({ at: p.at, followers: p.followers })),
     };
+  }
+
+  @Get(':id/insights')
+  async accountInsights(
+    @Param('id') id: string,
+    @Query('from') from?: string,
+    @Query('to') to?: string,
+  ) {
+    const acc = await this.accounts.findById(id);
+    if (!acc) throw new NotFoundException(`Meta account ${id} not found`);
+    const fromD = from ? new Date(from) : undefined;
+    const toD   = to   ? new Date(to)   : undefined;
+    const points = await this.insights.history(id, fromD, toD);
+    return { accountId: id, points };
   }
 
   @Post()

@@ -10,8 +10,9 @@ function make(over: any = {}) {
     history: async () => over.points ?? [{ at: new Date('2026-06-01T00:00:00Z'), followers: 100 }],
     latestWithDelta: async () => over.summary ?? { followers: 100, delta24h: 5, delta7d: 20 },
   };
-  // Constructor order: accounts, graph, env, history (history added as the 4th param)
-  return new MetaAccountsController(accounts as any, graph as any, env as any, history as any);
+  const insights = { history: async () => over.insightPoints ?? [] };
+  // Constructor order: accounts, graph, env, history, insights
+  return new MetaAccountsController(accounts as any, graph as any, env as any, history as any, insights as any);
 }
 
 test('follower-history returns current/delta/points shape', async () => {
