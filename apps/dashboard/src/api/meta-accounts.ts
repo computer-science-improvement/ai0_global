@@ -72,7 +72,10 @@ export interface MetaInsightDay {
   impressions:  number | null;
   profileViews: number | null;
 }
-export interface MetaAccountInsights { accountId: string; points: MetaInsightDay[]; }
+export interface MetaAccountInsights {
+  accountId: string;
+  points:    MetaInsightDay[];
+}
 
 export function useMetaAccountInsights(id: string) {
   return useQuery({

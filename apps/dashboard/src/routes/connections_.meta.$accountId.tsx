@@ -8,6 +8,14 @@ import { Icon } from '../components/Icon';
 
 export const Route = createFileRoute('/connections_/meta/$accountId')({ component: MetaAccountDetailPage });
 
+function InsightLoading() {
+  return (
+    <div className="card" style={{ textAlign: 'center', padding: 40 }}>
+      <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)', margin: 0 }}>Loading…</p>
+    </div>
+  );
+}
+
 function InsightEmpty({ platform }: { platform?: string }) {
   return (
     <div className="card" style={{ textAlign: 'center', padding: 40 }}>
@@ -33,6 +41,7 @@ function MetaAccountDetailPage() {
   const histQ = useMetaFollowerHistory(accountId);
   const insQ = useMetaAccountInsights(accountId);
   const insPoints = insQ.data?.points ?? [];
+  const insLoading = insQ.isPending;
   const hasReach = insPoints.some(p => p.reach != null || p.impressions != null);
   const hasProfileViews = insPoints.some(p => p.profileViews != null);
 
@@ -76,14 +85,18 @@ function MetaAccountDetailPage() {
           </div>}
 
       <h2 className="text-eyebrow" style={{ margin: '28px 0 10px' }}>Reach &amp; impressions</h2>
-      {hasReach
-        ? <MetaReachImpressionsChart points={insPoints} />
-        : <InsightEmpty platform={acc?.platform} />}
+      {insLoading
+        ? <InsightLoading />
+        : hasReach
+          ? <MetaReachImpressionsChart points={insPoints} />
+          : <InsightEmpty platform={acc?.platform} />}
 
       <h2 className="text-eyebrow" style={{ margin: '28px 0 10px' }}>Profile views</h2>
-      {hasProfileViews
-        ? <MetaProfileViewsChart points={insPoints} />
-        : <InsightEmpty platform={acc?.platform} />}
+      {insLoading
+        ? <InsightLoading />
+        : hasProfileViews
+          ? <MetaProfileViewsChart points={insPoints} />
+          : <InsightEmpty platform={acc?.platform} />}
     </div>
   );
 }

@@ -3,6 +3,7 @@ import { format } from 'date-fns';
 import type { MetaInsightDay } from '../api/meta-accounts';
 
 export function MetaReachImpressionsChart({ points }: { points: MetaInsightDay[] }) {
+  // Keep nulls (don't coerce to 0) so `connectNulls` bridges gaps in sparse data.
   const data = points.map(p => ({ at: new Date(p.day).getTime(), reach: p.reach, impressions: p.impressions }));
   return (
     <div className="h-64 w-full">
