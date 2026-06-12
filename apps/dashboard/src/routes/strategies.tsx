@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Icon } from '../components/Icon';
 import { Icon as PlatformGlyph, type IconName } from '../components/ui/Icon';
 import { usePlatform } from '../lib/usePlatform';
+import { PlatformFilter } from '../components/PlatformFilter';
 import { AddStrategyModal } from '../components/AddStrategyModal';
 import { EditStrategyModal } from '../components/EditStrategyModal';
 import { useConfirm } from '../components/ui/ConfirmDialog';
@@ -68,6 +69,11 @@ function StrategiesPage() {
           <Icon name="plus" size={14} /> Add strategy
         </button>
       </header>
+
+      {/* Destination filter — strategies are the only view this affects. */}
+      <div style={{ marginBottom: 20 }}>
+        <PlatformFilter />
+      </div>
 
       {isLoading && <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>Loading…</p>}
       {error && <p className="text-body-sm" style={{ color: 'var(--color-danger)' }}>{(error as Error).message}</p>}

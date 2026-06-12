@@ -3,7 +3,6 @@ import { Outlet, useNavigate } from '@tanstack/react-router';
 import { useAuth } from '../auth/use-auth';
 import { authApi } from '../api/auth';
 import { AppSidebar } from './AppSidebar';
-import { PlatformFilter } from './PlatformFilter';
 import { Button } from './ui/Button';
 import { Icon } from './ui/Icon';
 import { ConfirmProvider } from './ui/ConfirmDialog';
@@ -65,7 +64,6 @@ export function AppShell() {
                 <Icon name="menu" size={18} />
               </button>
             )}
-            <PlatformFilter />
             <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: isMobile ? 8 : 12 }}>
               {me && !isMobile && (
                 <span className="text-caption" style={{ color: 'var(--color-ink-muted)' }}>
