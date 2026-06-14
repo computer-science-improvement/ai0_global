@@ -65,4 +65,29 @@ export class MetaFollowerHistoryRepository {
       delta7d:   r.delta7d ?? null,
     };
   }
+
+  /**
+   * One-shot 24h follower delta for EVERY account (avoids N+1 on the accounts
+   * list). delta = latest followers − the nearest snapshot at-or-before 24h ago;
+   * null when there's no baseline that old yet.
+   */
+  async delta24hByAccount(): Promise<Map<string, number | null>> {
+    const { rows } = await this.pool.query<{ account_id: string; delta24h: number | null }>(
+      `WITH latest AS (
+         SELECT DISTINCT ON (account_id) account_id, followers
+           FROM meta_follower_history ORDER BY account_id, snapshot_at DESC),
+       d1 AS (
+         SELECT DISTINCT ON (account_id) account_id, followers
+           FROM meta_follower_history
+          WHERE snapshot_at <= now() - interval '24 hours'
+          ORDER BY account_id, snapshot_at DESC)
+       SELECT l.account_id,
+              l.followers - d.followers AS delta24h
+         FROM latest l
+         LEFT JOIN d1 d ON d.account_id = l.account_id`,
+    );
+    const m = new Map<string, number | null>();
+    for (const r of rows) m.set(r.account_id, r.delta24h ?? null);
+    return m;
+  }
 }

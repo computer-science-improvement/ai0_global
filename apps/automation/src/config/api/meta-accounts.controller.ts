@@ -34,13 +34,17 @@ export class MetaAccountsController {
 
   @Get()
   async list() {
-    const rows = await this.accounts.list();
+    const [rows, deltas] = await Promise.all([
+      this.accounts.list(),
+      this.history.delta24hByAccount(),
+    ]);
     // Never return token values — only the env-var name.
     return rows.map(r => ({
       id: r.id, platform: r.platform, account_id: r.account_id,
       token_env: r.token_env, target_id: r.target_id,
       username: r.username, display_name: r.display_name,
       followers: r.followers, picture_url: r.picture_url,
+      followers_delta_24h: deltas.get(r.id) ?? null,
       active: r.active, last_verified_at: r.last_verified_at,
       verify_error: r.verify_error, created_at: r.created_at,
     }));
