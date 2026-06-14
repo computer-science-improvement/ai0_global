@@ -21,4 +21,10 @@ export class PublisherDispatcher {
     if (!publisher) throw new Error(`No publisher for platform ${platform}`);
     return publisher.publish(payload, target);
   }
+
+  async publishCarousel(platform: MetaPlatform, payload: PostPayload, imageUrls: string[], target: PublishTarget): Promise<string> {
+    const publisher = this.byPlatform[platform];
+    if (!publisher) throw new Error(`No publisher for platform ${platform}`);
+    return publisher.publishCarousel(payload, imageUrls, target);
+  }
 }
