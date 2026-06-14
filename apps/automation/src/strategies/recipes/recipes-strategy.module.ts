@@ -4,6 +4,6 @@ import { RecipesRepository } from './recipes.repository';
 
 @Module({
   providers: [RecipesStrategy, RecipesRepository],
-  exports:   [RecipesStrategy],
+  exports:   [RecipesStrategy, RecipesRepository],
 })
 export class RecipesStrategyModule {}
