@@ -8,7 +8,8 @@
     "start": "NODE_ENV=production node dist/main",
     "start:dev": "NODE_ENV=local-development nest start --watch",
     "start:debug": "NODE_ENV=local-development nest start --debug --watch",
-    "lint": "eslint \"{src,test}/**/*.ts\""
+    "lint": "eslint \"{src,test}/**/*.ts\"",
+    "test": "tsx --test \"src/**/*.test.ts\""
   },
   "dependencies": {
     "@anthropic-ai/claude-agent-sdk": "^0.2.119",
@@ -53,6 +54,7 @@
     "@typescript-eslint/eslint-plugin": "^8.58.1",
     "@typescript-eslint/parser": "^8.58.1",
     "eslint": "^10.2.0",
+    "tsx": "^4.21.0",
     "typescript": "^5.3.3",
     "typescript-eslint": "^8.58.1"
   }
