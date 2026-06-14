@@ -21,6 +21,7 @@ import { BotLoggerService }          from './logger/bot-logger.service';
 import { ContentStrategyRunner }     from './content-strategy/content-strategy.runner';
 import { ContentStrategyRegistry }   from './content-strategy/content-strategy.registry';
 import { DestinationResolver }       from './content-strategy/destination-resolver.service';
+import { RecipeCarouselRendererService } from './carousel/recipe-carousel-renderer.service';
 
 const VALIDATORS = [
   PostValidator,
@@ -51,6 +52,7 @@ const SERVICES = [
   ContentStrategyRunner,
   ContentStrategyRegistry,
   DestinationResolver,
+  RecipeCarouselRendererService,
 ];
 
 @Global()
