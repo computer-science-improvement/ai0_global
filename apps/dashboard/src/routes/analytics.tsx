@@ -112,9 +112,11 @@ function AnalyticsPage() {
         ) : (
           <div style={{ display: 'grid', gap: 12 }}>
             <Panel title="Followers over time">
-              {followerPoints.length > 0
-                ? <SubsHistoryChart points={followerPoints.map(p => ({ at: p.at, subs: p.followers }))} />
-                : <ChartEmpty note="No follower data yet." />}
+              {histQ.isPending
+                ? <ChartEmpty note="Loading…" />
+                : followerPoints.length > 0
+                  ? <SubsHistoryChart points={followerPoints.map(p => ({ at: p.at, subs: p.followers }))} />
+                  : <ChartEmpty note="No follower data yet." />}
             </Panel>
             <Panel title="Reach & impressions">
               {insQ.isPending
