@@ -42,3 +42,19 @@ test('returns [] when token or targetId is missing', async () => {
   assert.deepEqual(await client().fetchInsights('instagram', 'IG1', '', 7), []);
   assert.deepEqual(await client().fetchInsights('instagram', '', 'tok', 7), []);
 });
+
+test('fetchThreadsFollowers reads total_value from threads_insights', async () => {
+  mock.method(axios, 'get', async (url: string, opts: any) => {
+    assert.match(url, /graph\.threads\.net/);
+    assert.match(url, /\/threads_insights$/);
+    assert.equal(opts.params.metric, 'followers_count');
+    return { data: { data: [{ name: 'followers_count', total_value: { value: 2 } }] } };
+  });
+  assert.equal(await client().fetchThreadsFollowers('TH1', 'tok'), 2);
+});
+
+test('fetchThreadsFollowers returns null on error or missing value', async () => {
+  mock.method(axios, 'get', async () => { throw new Error('no insights scope'); });
+  assert.equal(await client().fetchThreadsFollowers('TH1', 'tok'), null);
+  assert.equal(await client().fetchThreadsFollowers('', 'tok'), null);
+});

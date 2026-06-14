@@ -49,12 +49,18 @@ export class MetaStatsCollectorService {
           // account (accounts:1) in the summary log + return value.
           n++;
           const r = await this.graph.verify(a.platform, a.target_id, token);
+          // Threads has no follower count in its profile fields — fetch it from
+          // the insights API instead (total_value, needs threads_manage_insights).
+          let followers = r.followers;
+          if (followers == null && a.platform === 'threads') {
+            followers = await this.graph.fetchThreadsFollowers(a.target_id, token);
+          }
           await this.accounts.markVerified(a.id, {
             username: r.username, display_name: r.displayName,
-            followers: r.followers, picture_url: r.pictureUrl,
+            followers, picture_url: r.pictureUrl,
           });
-          if (typeof r.followers === 'number') {
-            await this.history.insert(a.id, r.followers);
+          if (typeof followers === 'number') {
+            await this.history.insert(a.id, followers);
             snaps++;
           }
           try {

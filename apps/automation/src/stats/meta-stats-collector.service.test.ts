@@ -15,6 +15,7 @@ function build(over: any = {}) {
   const graph = {
     verify: over.verify ?? (async () => ({ username: 'u', displayName: 'd', followers: 500, pictureUrl: null })),
     fetchInsights: over.fetchInsights ?? (async () => []),
+    fetchThreadsFollowers: over.fetchThreadsFollowers ?? (async () => null),
   };
   const history = { insert: async (id: string, f: number) => { inserted.push([id, f]); } };
   const insights = { upsertDay: async () => {} };
@@ -22,6 +23,18 @@ function build(over: any = {}) {
   const svc = new MetaStatsCollectorService(accounts as any, graph as any, history as any, insights as any, config as any);
   return { svc, inserted, verifyErrors };
 }
+
+test('threads followers come from fetchThreadsFollowers when verify has none', async () => {
+  const { svc, inserted } = build({
+    accounts: [{ id: 't1', platform: 'threads', target_id: 'TH1', token_env: 'TH_TOKEN', active: true }],
+    env: { TH_TOKEN: 'tok' },
+    verify: async () => ({ username: 'u', displayName: 'd', followers: null, pictureUrl: null }),
+    fetchThreadsFollowers: async () => 2,
+  });
+  const r = await svc.runOnce();
+  assert.deepEqual(inserted, [['t1', 2]]);     // snapshot from the insights follower count
+  assert.equal(r.snapshots, 1);
+});
 
 test('inserts a snapshot when followers is a number', async () => {
   const { svc, inserted } = build();

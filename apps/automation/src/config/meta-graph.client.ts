@@ -118,4 +118,26 @@ export class MetaGraphClient {
     }
     return mergeInsightValues(byMetric);
   }
+
+  /**
+   * Threads doesn't expose a follower count as a plain profile field (unlike
+   * IG `followers_count` / FB `fan_count`), so `verify` returns null for it.
+   * The count is available via the Threads insights API as a `total_value`
+   * (a lifetime total, not a daily series), gated behind `threads_manage_insights`.
+   * Returns null on any failure (e.g. scope not granted) — the caller keeps going.
+   */
+  async fetchThreadsFollowers(targetId: string, token: string): Promise<number | null> {
+    if (!token || !targetId) return null;
+    try {
+      const res = await axios.get(`https://graph.threads.net/${this.threadsVersion}/${encodeURIComponent(targetId)}/threads_insights`, {
+        params: { metric: 'followers_count', access_token: token },
+        timeout: this.timeout,
+      });
+      const v = res.data?.data?.[0]?.total_value?.value;
+      return typeof v === 'number' ? v : null;
+    } catch (err: any) {
+      this.logger.debug(`fetchThreadsFollowers failed for ${targetId}: ${redactToken(String(err?.message ?? err), token)}`);
+      return null;
+    }
+  }
 }
