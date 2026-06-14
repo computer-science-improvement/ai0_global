@@ -56,6 +56,30 @@ export class RecipesRepository {
     return rows[0] ?? null;
   }
 
+  /**
+   * Next recipe for a carousel destination: already published to Telegram (so it
+   * is translated), NOT yet posted to this Meta destination, not a skip sentinel,
+   * and carries nutrition. Oldest-first. The Telegram strategy owns translation;
+   * the carousel never calls Claude.
+   */
+  async getNextForCarousel(postedKey: string): Promise<RecipeRow | null> {
+    const { rows } = await this.pool.query<RecipeRow>(
+      `SELECT id, title, image_url, category, ingredients, instructions,
+              title_uk, ingredients_uk, instructions_uk,
+              telegraph_url, telegraph_path,
+              kcal, protein_g, fat_g, carbs_g, serving_size_g
+       FROM recipes
+       WHERE (posted ? 'TELEGRAM')
+         AND NOT (posted ? $1)
+         AND title_uk IS DISTINCT FROM ''
+         AND kcal IS NOT NULL
+       ORDER BY created_at
+       LIMIT 1`,
+      [postedKey],
+    );
+    return rows[0] ?? null;
+  }
+
   async countEligible(): Promise<number> {
     const { rows } = await this.pool.query<{ count: string }>(
       `SELECT count(*) AS count
