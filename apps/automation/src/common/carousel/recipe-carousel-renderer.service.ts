@@ -1,6 +1,7 @@
 // recipe-carousel-renderer.service.ts — render a recipe into 3 carousel PNG slides.
 // Satori (dynamic-imported) builds SVG; resvg rasterizes to PNG. Fonts come from
-// @fontsource/roboto (Latin + Cyrillic). Pure: data + image bytes in, PNGs out.
+// @expo-google-fonts/roboto (full static TTFs with Latin + Cyrillic in one file).
+// Pure: data + image bytes in, PNGs out.
 import { Injectable } from '@nestjs/common';
 import { readFileSync } from 'node:fs';
 import { Resvg } from '@resvg/resvg-js';
@@ -21,11 +22,11 @@ export interface CarouselRenderOpts { width?: number; height?: number; }
 
 type SatoriFn = (element: any, options: any) => Promise<string>;
 
-const FONT_FILES: Array<{ subset: string; weight: number }> = [
-  { subset: 'latin',    weight: 400 },
-  { subset: 'cyrillic', weight: 400 },
-  { subset: 'latin',    weight: 700 },
-  { subset: 'cyrillic', weight: 700 },
+// Full static TTFs (Latin + Cyrillic in one file) — satori does not merge split
+// subset files, so a single full-coverage file per weight is required for Ukrainian.
+const FONT_FILES: Array<{ file: string; weight: number }> = [
+  { file: '400Regular/Roboto_400Regular.ttf', weight: 400 },
+  { file: '700Bold/Roboto_700Bold.ttf',        weight: 700 },
 ];
 
 const ACCENT = '#3ECF8E';
@@ -43,7 +44,7 @@ export class RecipeCarouselRendererService {
     name: 'Roboto',
     weight: f.weight as 400 | 700,
     style: 'normal' as const,
-    data: readFileSync(require.resolve(`@fontsource/roboto/files/roboto-${f.subset}-${f.weight}-normal.woff`)),
+    data: readFileSync(require.resolve(`@expo-google-fonts/roboto/${f.file}`)),
   }));
 
   private async getSatori(): Promise<SatoriFn> {

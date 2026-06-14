@@ -19,9 +19,9 @@ importers:
       '@anthropic-ai/sdk':
         specifier: ^0.30.0
         version: 0.30.0
-      '@fontsource/roboto':
-        specifier: ^5.2.10
-        version: 5.2.10
+      '@expo-google-fonts/roboto':
+        specifier: ^0.4.3
+        version: 0.4.3
       '@nestjs/common':
         specifier: ^10.3.0
         version: 10.3.0(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.1)(rxjs@7.8.1)
@@ -923,8 +923,8 @@ packages:
       levn: 0.4.1
     dev: true
 
-  /@fontsource/roboto@5.2.10:
-    resolution: {integrity: sha512-8HlA5FtSfz//oFSr2eL7GFXAiE7eIkcGOtx7tjsLKq+as702x9+GU7K95iDeWFapHC4M2hv9RrpXKRTGGBI8Zg==}
+  /@expo-google-fonts/roboto@0.4.3:
+    resolution: {integrity: sha512-kX3wmpmu06fN1yOwYWMdjYJWNUYW6xUiAGeHbvPzzSEb3A3j23JelQ3tAgwQNKgEKRq6wtMmzixy2r7y9c8dsA==}
     dev: false
 
   /@hono/node-server@1.19.14(hono@4.12.15):
