@@ -10,6 +10,7 @@ import { StatCard } from '../components/ui/StatCard';
 import { Panel } from '../components/ui/Card';
 import { Badge } from '../components/ui/Badge';
 import { Icon } from '../components/Icon';
+import { Icon as PlatformGlyph } from '../components/ui/Icon';
 
 export const Route = createFileRoute('/')({ component: OverviewPage });
 
@@ -115,7 +116,7 @@ function OverviewPage() {
                 const dTone = d == null || d === 0 ? 'var(--color-ink-muted)' : d > 0 ? 'var(--color-success)' : 'var(--color-danger)';
                 return (
                   <Link key={a.id} to={'/connections/meta/$accountId' as any} params={{ accountId: a.id } as any} style={metaRow}>
-                    <Icon name={a.platform as any} size={14} />
+                    <PlatformGlyph name={a.platform as any} size={14} />
                     <span style={{ color: 'var(--color-ink)' }}>{a.username ? `@${a.username}` : a.account_id}</span>
                     <span style={{ marginLeft: 'auto', color: 'var(--color-ink-muted)' }}>{a.followers != null ? `${a.followers.toLocaleString('en-US')} followers` : '—'}</span>
                     <span style={{ color: dTone, minWidth: 56, textAlign: 'right' }}>{d == null ? '' : deltaText(d)}</span>
