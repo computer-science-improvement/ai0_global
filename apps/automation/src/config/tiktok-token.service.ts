@@ -44,6 +44,7 @@ export class TikTokTokenService {
       grant_type: 'authorization_code', code, redirect_uri: redirect,
     });
     if (res?.error) throw new Error(`TikTok token exchange failed: ${res.error_description ?? res.error}`);
+    if (!res?.open_id) throw new Error('TikTok token exchange returned no open_id');
     const tokens = toTokenSet(res, Date.now());
     return this.repo.upsertFromTokens({ ...tokens, openId: res.open_id, scope: res.scope ?? null });
   }

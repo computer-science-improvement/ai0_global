@@ -19,6 +19,3 @@ CREATE TABLE IF NOT EXISTS tiktok_accounts (
   refresh_error            TEXT,
   created_at               TIMESTAMPTZ NOT NULL DEFAULT now()
 );
-
-INSERT INTO schema_migrations (version) VALUES ('023_tiktok_accounts')
-  ON CONFLICT (version) DO NOTHING;
