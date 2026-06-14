@@ -6,7 +6,7 @@ import { SubsHistoryChart } from '../components/SubsHistoryChart';
 import { StatCard } from '../components/ui/StatCard';
 import { Icon } from '../components/Icon';
 
-export const Route = createFileRoute('/connections_/meta/$accountId')({ component: MetaAccountDetailPage });
+export const Route = createFileRoute('/connections_/meta_/$accountId')({ component: MetaAccountDetailPage });
 
 function InsightLoading() {
   return (
