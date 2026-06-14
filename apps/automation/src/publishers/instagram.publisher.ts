@@ -39,7 +39,8 @@ export class InstagramPublisher extends BasePublisher {
     return String(published.id ?? creationId);
   }
 
-  /** Graph POST seam — overridable in tests. */
+  /** Graph POST seam — overridable in tests. Only publishCarousel routes through
+   *  it; the single-image publish() above calls graphPost directly. */
   protected post(url: string, params: Record<string, string>): Promise<any> {
     return graphPost(url, params, graphTimeout(this.config), params.access_token);
   }

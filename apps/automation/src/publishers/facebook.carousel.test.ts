@@ -49,3 +49,19 @@ test('facebook publishCarousel uploads unpublished photos then a feed post with 
 
   assert.equal(id, 'fb_post');
 });
+
+test('facebook publishCarousel rejects when a photo upload fails (no feed post)', async () => {
+  const calls: any[] = [];
+  class FailFb extends FacebookPublisher {
+    constructor() { super(fakeConfig()); }
+    protected post(url: string, params: Record<string, string>) {
+      calls.push({ url, params });
+      if (url.endsWith('/photos') && calls.length === 2) throw new Error('bad photo');
+      return Promise.resolve({ id: 'x' });
+    }
+  }
+  await assert.rejects(() => new FailFb().publishCarousel(PAYLOAD, ['u1', 'u2', 'u3'], TARGET), /bad photo/);
+  // only the 2 photo attempts happened — no feed post
+  assert.equal(calls.length, 2);
+  assert.ok(!calls.some(c => c.url.endsWith('/feed')));
+});

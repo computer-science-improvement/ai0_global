@@ -34,11 +34,15 @@ export class FacebookPublisher extends BasePublisher {
     return String(data.post_id ?? data.id ?? '');
   }
 
-  /** Graph POST seam — overridable in tests. */
+  /** Graph POST seam — overridable in tests. Only publishCarousel routes through
+   *  it; the single-image publish() above calls graphPost directly. */
   protected post(url: string, params: Record<string, string>): Promise<any> {
     return graphPost(url, params, graphTimeout(this.config), params.access_token);
   }
 
+  // NOTE: on a partial failure (a later photo upload throws), the earlier
+  // `published:false` photos are knowingly left on the Page's photo store — FB
+  // does not reliably auto-prune unpublished photos. Accepted slack; no cleanup.
   async publishCarousel(payload: PostPayload, imageUrls: string[], target: PublishTarget): Promise<string> {
     const token = target.token;
     if (!token) throw new Error('Facebook album: missing access token');
