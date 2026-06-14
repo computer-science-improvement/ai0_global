@@ -33,10 +33,10 @@ are never logged.
 
 ## Components
 
-### 1. Migration — `database/migrations/022_tiktok_accounts.sql`
+### 1. Migration — `database/migrations/023_tiktok_accounts.sql`
 
 ```sql
--- 022_tiktok_accounts.sql — TikTok creator connections for the carousel publisher.
+-- 023_tiktok_accounts.sql — TikTok creator connections for the carousel publisher.
 -- UNLIKE meta_accounts, the tokens live in the DB: TikTok access tokens expire (~24h)
 -- and rotate on refresh, so a static env var cannot hold them. Plaintext for v1
 -- (internal DB); tokens are never logged. client_key/secret stay in env.
@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS tiktok_accounts (
   created_at               TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
-INSERT INTO schema_migrations (version) VALUES ('022_tiktok_accounts')
+INSERT INTO schema_migrations (version) VALUES ('023_tiktok_accounts')
   ON CONFLICT (version) DO NOTHING;
 ```
 

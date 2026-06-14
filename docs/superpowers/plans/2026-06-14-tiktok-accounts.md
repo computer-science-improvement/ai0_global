@@ -4,7 +4,7 @@
 
 **Goal:** Persist TikTok creator accounts with their rotating OAuth tokens in the DB and expose `getValidAccessToken(accountId)` that auto-refreshes near expiry.
 
-**Architecture:** A `022_tiktok_accounts` migration; a `TikTokAccountsRepository` (mirrors `MetaAccountsRepository`); a `TikTokTokenService` that exchanges auth codes and refreshes tokens against TikTok's `/v2/oauth/token/` endpoint through an overridable `post` seam (so tests need no network); a pure token-shaping helper. Registered in the `@Global` `ChannelConfigModule`. No publishing — this is the token foundation for sub-project 5b.
+**Architecture:** A `023_tiktok_accounts` migration; a `TikTokAccountsRepository` (mirrors `MetaAccountsRepository`); a `TikTokTokenService` that exchanges auth codes and refreshes tokens against TikTok's `/v2/oauth/token/` endpoint through an overridable `post` seam (so tests need no network); a pure token-shaping helper. Registered in the `@Global` `ChannelConfigModule`. No publishing — this is the token foundation for sub-project 5b.
 
 **Tech Stack:** NestJS 10, pg, axios, `node:test` via `cd apps/automation && npm test`.
 
@@ -30,7 +30,7 @@ Spec: `docs/superpowers/specs/2026-06-14-tiktok-accounts-design.md`.
 
 ## File Structure
 
-- `database/migrations/022_tiktok_accounts.sql` — table. New.
+- `database/migrations/023_tiktok_accounts.sql` — table. New.
 - `apps/automation/.env.example` — `TIKTOK_CLIENT_KEY/SECRET/REDIRECT_URI`. Modify.
 - `apps/automation/src/config/tiktok-token.util.ts` — pure `expiryFrom` + `toTokenSet` + types. New.
 - `apps/automation/src/config/tiktok-token.util.test.ts` — helper tests. New.
@@ -46,15 +46,15 @@ Spec: `docs/superpowers/specs/2026-06-14-tiktok-accounts-design.md`.
 ## Task 1: Migration + env vars
 
 **Files:**
-- Create: `database/migrations/022_tiktok_accounts.sql`
+- Create: `database/migrations/023_tiktok_accounts.sql`
 - Modify: `apps/automation/.env.example`
 
 - [ ] **Step 1: Create the migration**
 
-Create `database/migrations/022_tiktok_accounts.sql`:
+Create `database/migrations/023_tiktok_accounts.sql`:
 
 ```sql
--- 022_tiktok_accounts.sql — TikTok creator connections for the carousel publisher.
+-- 023_tiktok_accounts.sql — TikTok creator connections for the carousel publisher.
 -- UNLIKE meta_accounts, the tokens live in the DB: TikTok access tokens expire (~24h)
 -- and rotate on refresh, so a static env var cannot hold them. Plaintext for v1
 -- (internal DB); tokens are never logged. client_key/secret stay in env.
@@ -76,7 +76,7 @@ CREATE TABLE IF NOT EXISTS tiktok_accounts (
   created_at               TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
-INSERT INTO schema_migrations (version) VALUES ('022_tiktok_accounts')
+INSERT INTO schema_migrations (version) VALUES ('023_tiktok_accounts')
   ON CONFLICT (version) DO NOTHING;
 ```
 
@@ -98,15 +98,15 @@ TIKTOK_REDIRECT_URI=
 
 Run (from repo root):
 ```bash
-grep -c "tiktok_accounts" database/migrations/022_tiktok_accounts.sql
+grep -c "tiktok_accounts" database/migrations/023_tiktok_accounts.sql
 ```
 Expected: prints `2` (the CREATE TABLE and nothing relies on a real DB here — the migration runs on the user's next boot).
 
 - [ ] **Step 4: Commit**
 
 ```bash
-git add database/migrations/022_tiktok_accounts.sql apps/automation/.env.example
-git commit -m "feat(tiktok): 022_tiktok_accounts migration + client env vars"
+git add database/migrations/023_tiktok_accounts.sql apps/automation/.env.example
+git commit -m "feat(tiktok): 023_tiktok_accounts migration + client env vars"
 ```
 
 ---
