@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
-import { useMetaAccounts, useMetaFollowerHistory, useMetaAccountInsights } from '../api/meta-accounts';
+import { useMetaAccounts, useMetaFollowerHistory, useMetaAccountInsights, useRefreshMetaStats } from '../api/meta-accounts';
 import { MetaReachImpressionsChart } from '../components/MetaReachImpressionsChart';
 import { MetaProfileViewsChart } from '../components/MetaProfileViewsChart';
 import { SubsHistoryChart } from '../components/SubsHistoryChart';
@@ -40,6 +40,7 @@ function MetaAccountDetailPage() {
   const acc = useMetaAccounts().data?.find(a => a.id === accountId);
   const histQ = useMetaFollowerHistory(accountId);
   const insQ = useMetaAccountInsights(accountId);
+  const refresh = useRefreshMetaStats();
   const insPoints = insQ.data?.points ?? [];
   const insLoading = insQ.isPending;
   const hasReach = insPoints.some(p => p.reach != null || p.impressions != null);
@@ -67,7 +68,22 @@ function MetaAccountDetailPage() {
             {acc?.username ? `@${acc.username}` : acc?.platform ?? ''}
           </p>
         </div>
+        <button
+          onClick={() => refresh.mutate()}
+          disabled={refresh.isPending}
+          className="btn-secondary"
+          style={{ marginLeft: 'auto', display: 'inline-flex', alignItems: 'center', gap: 6 }}
+          title="Fetch the latest followers + insights now"
+        >
+          <Icon name="refresh" size={13} />
+          {refresh.isPending ? 'Refreshing…' : 'Refresh'}
+        </button>
       </header>
+      {refresh.isError && (
+        <p className="text-body-sm" style={{ color: 'var(--color-danger)', margin: '0 0 12px' }}>
+          {(refresh.error as Error).message}
+        </p>
+      )}
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 12, marginBottom: 24 }}>
         <StatCard label="Followers" value={histQ.data?.current != null ? histQ.data.current.toLocaleString() : '—'} />

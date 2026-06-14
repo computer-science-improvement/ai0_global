@@ -11,8 +11,9 @@ function make(over: any = {}) {
     latestWithDelta: async () => over.summary ?? { followers: 100, delta24h: 5, delta7d: 20 },
   };
   const insights = { history: async () => over.insightPoints ?? [] };
-  // Constructor order: accounts, graph, env, history, insights
-  return new MetaAccountsController(accounts as any, graph as any, env as any, history as any, insights as any);
+  const collector = { runOnce: async () => ({ accounts: 0, snapshots: 0, insightDays: 0 }) };
+  // Constructor order: accounts, graph, env, history, insights, collector
+  return new MetaAccountsController(accounts as any, graph as any, env as any, history as any, insights as any, collector as any);
 }
 
 test('follower-history returns current/delta/points shape', async () => {

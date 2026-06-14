@@ -22,6 +22,6 @@ import { MetaStatsCollectorService }       from './meta-stats-collector.service'
     MetaStatsCollectorService,
   ],
   controllers: [StatsController],
-  exports: [PublicationsRepository, TelegramStatsClient, MetaFollowerHistoryRepository, MetaAccountInsightsRepository],
+  exports: [PublicationsRepository, TelegramStatsClient, MetaFollowerHistoryRepository, MetaAccountInsightsRepository, MetaStatsCollectorService],
 })
 export class StatsModule {}

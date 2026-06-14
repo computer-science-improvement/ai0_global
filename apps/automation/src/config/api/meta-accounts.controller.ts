@@ -9,6 +9,7 @@ import { MetaAccountsRepository } from '../meta-accounts.repository';
 import { MetaGraphClient } from '../meta-graph.client';
 import { MetaFollowerHistoryRepository } from '../../stats/meta-follower-history.repository';
 import { MetaAccountInsightsRepository } from '../../stats/meta-account-insights.repository';
+import { MetaStatsCollectorService } from '../../stats/meta-stats-collector.service';
 import { CreateMetaAccountDto, PatchMetaAccountDto } from './dto/meta-accounts.dto';
 
 @Controller('api/meta-accounts')
@@ -20,7 +21,16 @@ export class MetaAccountsController {
     private readonly env:      ConfigService,
     private readonly history:  MetaFollowerHistoryRepository,
     private readonly insights: MetaAccountInsightsRepository,
+    private readonly collector: MetaStatsCollectorService,
   ) {}
+
+  /** Dashboard-triggered manual stats refresh (followers + insights, all active
+   *  accounts). Same collector the hourly cron runs; lets the operator populate
+   *  charts on demand without waiting an hour. */
+  @Post('refresh-stats')
+  async refreshStats(): Promise<{ accounts: number; snapshots: number; insightDays: number }> {
+    return this.collector.runOnce();
+  }
 
   @Get()
   async list() {
