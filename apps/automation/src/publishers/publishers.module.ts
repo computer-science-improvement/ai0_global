@@ -10,6 +10,8 @@ import { TelegraphService } from './telegraph.service';
 import { ComposedSenderService } from './composed-sender.service';
 import { PublisherDispatcher } from './publisher-dispatcher.service';
 import { CrossPostService } from './cross-post.service';
+import { SlideHostingService } from './hosting/slide-hosting.service';
+import { SupabaseSlideHostingService } from './hosting/supabase-slide-hosting.service';
 
 const PUBLISHERS = [
   TelegramPublisher,
@@ -25,9 +27,11 @@ const PUBLISHERS = [
   CrossPostService,
 ];
 
+const SLIDE_HOSTING = { provide: SlideHostingService, useClass: SupabaseSlideHostingService };
+
 @Global()
 @Module({
-  providers: PUBLISHERS,
-  exports:   PUBLISHERS,
+  providers: [...PUBLISHERS, SLIDE_HOSTING],
+  exports:   [...PUBLISHERS, SlideHostingService],
 })
 export class PublishersModule {}
