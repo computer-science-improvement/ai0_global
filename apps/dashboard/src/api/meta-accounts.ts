@@ -65,3 +65,38 @@ export function useMetaFollowerHistory(id: string) {
     enabled:  !!id,
   });
 }
+
+export interface MetaInsightDay {
+  day:          string;
+  reach:        number | null;
+  impressions:  number | null;
+  profileViews: number | null;
+}
+export interface MetaAccountInsights {
+  accountId: string;
+  points:    MetaInsightDay[];
+}
+
+export function useMetaAccountInsights(id: string) {
+  return useQuery({
+    queryKey: ['meta-account-insights', id],
+    queryFn:  () => api<MetaAccountInsights>(`/api/meta-accounts/${id}/insights`),
+    enabled:  !!id,
+  });
+}
+
+/** Manually trigger the Meta stats collector (followers + insights, all active
+ *  accounts), then refresh the account list + history/insight charts. */
+export function useRefreshMetaStats() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: () => api<{ accounts: number; snapshots: number; insightDays: number }>(
+      '/api/meta-accounts/refresh-stats', { method: 'POST' },
+    ),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['meta-accounts'] });
+      qc.invalidateQueries({ queryKey: ['meta-follower-history'] });
+      qc.invalidateQueries({ queryKey: ['meta-account-insights'] });
+    },
+  });
+}

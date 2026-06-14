@@ -29,7 +29,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as ConnectionsMetaRouteImport } from './routes/connections_.meta'
 import { Route as ConnectionsPlatformRouteImport } from './routes/connections.$platform'
 import { Route as ChannelsIdRouteImport } from './routes/channels_.$id'
-import { Route as ConnectionsMetaAccountIdRouteImport } from './routes/connections_.meta.$accountId'
+import { Route as ConnectionsMetaAccountIdRouteImport } from './routes/connections_.meta_.$accountId'
 
 const TrackedRoute = TrackedRouteImport.update({
   id: '/tracked',
@@ -133,9 +133,9 @@ const ChannelsIdRoute = ChannelsIdRouteImport.update({
 } as any)
 const ConnectionsMetaAccountIdRoute =
   ConnectionsMetaAccountIdRouteImport.update({
-    id: '/$accountId',
-    path: '/$accountId',
-    getParentRoute: () => ConnectionsMetaRoute,
+    id: '/connections_/meta_/$accountId',
+    path: '/connections/meta/$accountId',
+    getParentRoute: () => rootRouteImport,
   } as any)
 
 export interface FileRoutesByFullPath {
@@ -158,7 +158,7 @@ export interface FileRoutesByFullPath {
   '/tracked': typeof TrackedRoute
   '/channels/$id': typeof ChannelsIdRoute
   '/connections/$platform': typeof ConnectionsPlatformRoute
-  '/connections/meta': typeof ConnectionsMetaRouteWithChildren
+  '/connections/meta': typeof ConnectionsMetaRoute
   '/connections/meta/$accountId': typeof ConnectionsMetaAccountIdRoute
 }
 export interface FileRoutesByTo {
@@ -181,7 +181,7 @@ export interface FileRoutesByTo {
   '/tracked': typeof TrackedRoute
   '/channels/$id': typeof ChannelsIdRoute
   '/connections/$platform': typeof ConnectionsPlatformRoute
-  '/connections/meta': typeof ConnectionsMetaRouteWithChildren
+  '/connections/meta': typeof ConnectionsMetaRoute
   '/connections/meta/$accountId': typeof ConnectionsMetaAccountIdRoute
 }
 export interface FileRoutesById {
@@ -205,8 +205,8 @@ export interface FileRoutesById {
   '/tracked': typeof TrackedRoute
   '/channels_/$id': typeof ChannelsIdRoute
   '/connections/$platform': typeof ConnectionsPlatformRoute
-  '/connections_/meta': typeof ConnectionsMetaRouteWithChildren
-  '/connections_/meta/$accountId': typeof ConnectionsMetaAccountIdRoute
+  '/connections_/meta': typeof ConnectionsMetaRoute
+  '/connections_/meta_/$accountId': typeof ConnectionsMetaAccountIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -277,7 +277,7 @@ export interface FileRouteTypes {
     | '/channels_/$id'
     | '/connections/$platform'
     | '/connections_/meta'
-    | '/connections_/meta/$accountId'
+    | '/connections_/meta_/$accountId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -299,7 +299,8 @@ export interface RootRouteChildren {
   TelegraphRoute: typeof TelegraphRoute
   TrackedRoute: typeof TrackedRoute
   ChannelsIdRoute: typeof ChannelsIdRoute
-  ConnectionsMetaRoute: typeof ConnectionsMetaRouteWithChildren
+  ConnectionsMetaRoute: typeof ConnectionsMetaRoute
+  ConnectionsMetaAccountIdRoute: typeof ConnectionsMetaAccountIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -444,12 +445,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ChannelsIdRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/connections_/meta/$accountId': {
-      id: '/connections_/meta/$accountId'
-      path: '/$accountId'
+    '/connections_/meta_/$accountId': {
+      id: '/connections_/meta_/$accountId'
+      path: '/connections/meta/$accountId'
       fullPath: '/connections/meta/$accountId'
       preLoaderRoute: typeof ConnectionsMetaAccountIdRouteImport
-      parentRoute: typeof ConnectionsMetaRoute
+      parentRoute: typeof rootRouteImport
     }
   }
 }
@@ -464,18 +465,6 @@ const ConnectionsRouteChildren: ConnectionsRouteChildren = {
 
 const ConnectionsRouteWithChildren = ConnectionsRoute._addFileChildren(
   ConnectionsRouteChildren,
-)
-
-interface ConnectionsMetaRouteChildren {
-  ConnectionsMetaAccountIdRoute: typeof ConnectionsMetaAccountIdRoute
-}
-
-const ConnectionsMetaRouteChildren: ConnectionsMetaRouteChildren = {
-  ConnectionsMetaAccountIdRoute: ConnectionsMetaAccountIdRoute,
-}
-
-const ConnectionsMetaRouteWithChildren = ConnectionsMetaRoute._addFileChildren(
-  ConnectionsMetaRouteChildren,
 )
 
 const rootRouteChildren: RootRouteChildren = {
@@ -497,7 +486,8 @@ const rootRouteChildren: RootRouteChildren = {
   TelegraphRoute: TelegraphRoute,
   TrackedRoute: TrackedRoute,
   ChannelsIdRoute: ChannelsIdRoute,
-  ConnectionsMetaRoute: ConnectionsMetaRouteWithChildren,
+  ConnectionsMetaRoute: ConnectionsMetaRoute,
+  ConnectionsMetaAccountIdRoute: ConnectionsMetaAccountIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
