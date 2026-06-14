@@ -55,6 +55,12 @@ export class RecipeCarouselRendererService {
     return this.satori;
   }
 
+  /**
+   * Render the 3 carousel slides. `imageBuffer` must be PNG or JPEG (the raster
+   * formats resvg decodes reliably); any other/undecodable bytes fall back to a
+   * solid background. Callers that may have WebP/other dish photos should
+   * transcode to PNG/JPEG before calling.
+   */
   async render(recipe: CarouselRecipe, imageBuffer: Buffer, opts: CarouselRenderOpts = {}): Promise<Buffer[]> {
     const width = opts.width ?? 1080;
     const height = opts.height ?? 1350;
