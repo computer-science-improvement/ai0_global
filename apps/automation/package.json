@@ -13,6 +13,7 @@
   "dependencies": {
     "@anthropic-ai/claude-agent-sdk": "^0.2.119",
     "@anthropic-ai/sdk": "^0.30.0",
+    "@expo-google-fonts/roboto": "^0.4.3",
     "@nestjs/common": "^10.3.0",
     "@nestjs/config": "^3.2.0",
     "@nestjs/core": "^10.3.0",
@@ -20,6 +21,7 @@
     "@nestjs/platform-express": "^10.3.0",
     "@nestjs/schedule": "^4.0.0",
     "@nestjs/swagger": "^7",
+    "@resvg/resvg-js": "^2.6.2",
     "axios": "^1.6.2",
     "bullmq": "^5.76.8",
     "cheerio": "^1.0.0-rc.12",
@@ -35,6 +37,7 @@
     "reflect-metadata": "^0.2.1",
     "rss-parser": "^3.13.0",
     "rxjs": "^7.8.1",
+    "satori": "^0.26.0",
     "telegram": "^2.26.22",
     "winston": "^3.19.0",
     "winston-daily-rotate-file": "^5.0.0"
