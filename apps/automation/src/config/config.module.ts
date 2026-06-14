@@ -19,6 +19,8 @@ import { TelegraphGetInfoClient } from './telegraph-getinfo.client';
 import { MetaAccountsRepository } from './meta-accounts.repository';
 import { MetaGraphClient } from './meta-graph.client';
 import { MetaCrosspostTargetsRepository } from './meta-crosspost-targets.repository';
+import { TikTokAccountsRepository } from './tiktok-accounts.repository';
+import { TikTokTokenService } from './tiktok-token.service';
 import { MyBotsController } from './api/my-bots.controller';
 import { TelegraphAccountsController } from './api/telegraph-accounts.controller';
 import { MetaAccountsController } from './api/meta-accounts.controller';
@@ -49,6 +51,8 @@ import { ContentRunwayModule } from '../common/content-runway/content-runway.mod
     MetaAccountsRepository,
     MetaGraphClient,
     MetaCrosspostTargetsRepository,
+    TikTokAccountsRepository,
+    TikTokTokenService,
   ],
   exports: [
     ChannelConfigService,
@@ -63,6 +67,8 @@ import { ContentRunwayModule } from '../common/content-runway/content-runway.mod
     MetaAccountsRepository,
     MetaGraphClient,
     MetaCrosspostTargetsRepository,
+    TikTokAccountsRepository,
+    TikTokTokenService,
   ],
 })
 export class ChannelConfigModule {}
