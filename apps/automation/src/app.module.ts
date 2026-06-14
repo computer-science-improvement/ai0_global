@@ -14,6 +14,7 @@ import { CuratedPromptsStrategyModule } from './strategies/curated-prompts/curat
 import { GameChannelStrategyModule } from './strategies/game-channel/game-channel-strategy.module';
 import { QuotesStrategyModule }      from './strategies/quotes/quotes-strategy.module';
 import { RecipesStrategyModule }     from './strategies/recipes/recipes-strategy.module';
+import { RecipeCarouselStrategyModule } from './strategies/recipe-carousel/recipe-carousel-strategy.module';
 import { DailyPhotoStrategyModule }  from './strategies/daily-photo/daily-photo-strategy.module';
 import { MoviesStrategyModule }      from './strategies/movies/movies-strategy.module';
 import { SpaceStrategyModule }       from './strategies/space/space-strategy.module';
@@ -49,6 +50,7 @@ import { ActivityModule }       from './activity/activity.module';
     GameChannelStrategyModule,
     QuotesStrategyModule,
     RecipesStrategyModule,
+    RecipeCarouselStrategyModule,
     DailyPhotoStrategyModule,
     MoviesStrategyModule,
     SpaceStrategyModule,
