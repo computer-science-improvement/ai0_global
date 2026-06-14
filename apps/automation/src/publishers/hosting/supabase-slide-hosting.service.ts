@@ -30,6 +30,7 @@ export class SupabaseSlideHostingService extends SlideHostingService {
     return Boolean(url && key && bucket);
   }
 
+  // Returns `any`: @supabase/storage-js does not export the StorageFileApi type.
   /** Storage handle for `bucket`. Overridable in tests. */
   protected getStorage(bucket: string): any {
     if (!this.client) {
@@ -40,9 +41,9 @@ export class SupabaseSlideHostingService extends SlideHostingService {
   }
 
   async upload(slides: Buffer[], keyPrefix: string): Promise<HostedSlide[]> {
-    if (!(await this.available())) throw new Error('Slide hosting not configured');
-    const { bucket } = this.cfg();
-    const storage = this.getStorage(bucket!);
+    const { url, key, bucket } = this.cfg();
+    if (!url || !key || !bucket) throw new Error('Slide hosting not configured');
+    const storage = this.getStorage(bucket);
 
     const out: HostedSlide[] = [];
     for (let i = 0; i < slides.length; i++) {
@@ -62,7 +63,8 @@ export class SupabaseSlideHostingService extends SlideHostingService {
     if (paths.length === 0) return;
     try {
       const { bucket } = this.cfg();
-      const { error } = await this.getStorage(bucket!).remove(paths);
+      if (!bucket) return;
+      const { error } = await this.getStorage(bucket).remove(paths);
       if (error) this.logger.warn(`Slide cleanup failed: ${error.message}`);
     } catch (e) {
       this.logger.warn(`Slide cleanup error: ${(e as Error).message}`);

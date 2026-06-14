@@ -38,8 +38,9 @@ function fakeStorage(opts: { uploadError?: (i: number) => string | null; removeE
 
 // Subclass that injects the fake storage instead of a real Supabase client.
 class TestService extends SupabaseSlideHostingService {
+  bucketArg?: string;
   constructor(env: any, private readonly fake: any) { super(env); }
-  protected getStorage(_bucket: string) { return this.fake; }
+  protected getStorage(bucket: string) { this.bucketArg = bucket; return this.fake; }
 }
 
 test('available() is true only when all three env vars are set', async () => {
@@ -69,6 +70,12 @@ test('upload() stores each slide and returns urls+paths in order', async () => {
     'carousel/r1/abc/slide-3.png',
   ]);
   assert.match(result[2].url, /slide-3\.png$/);
+  assert.equal(svc.bucketArg, 'carousel');
+  assert.deepEqual(calls.publicUrls, [
+    'carousel/r1/abc/slide-1.png',
+    'carousel/r1/abc/slide-2.png',
+    'carousel/r1/abc/slide-3.png',
+  ]);
 });
 
 test('upload() throws with the slide index when a slide fails', async () => {
