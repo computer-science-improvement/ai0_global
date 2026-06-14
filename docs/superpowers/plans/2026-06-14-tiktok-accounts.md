@@ -450,7 +450,7 @@ function build(over: any = {}) {
   const repo = {
     findById: async () => over.account === undefined ? acct() : over.account,
     updateTokens: async (id: string, t: any) => { calls.updated = { id, t }; },
-    upsertFromTokens: async (i: any) => { calls.upserted = i; return { id: 'a1', ...i }; },
+    upsertFromTokens: async (i: any) => { calls.upserted = i; return { id: 'a1', open_id: i.openId }; },
     setRefreshError: async (id: string, m: string) => { calls.refreshErr = { id, m }; },
     setActive: async (id: string, a: boolean) => { calls.deactivated = { id, a }; },
   };
@@ -503,7 +503,7 @@ test('exchangeCode posts authorization_code and upserts parsed tokens', async ()
   assert.equal(calls.posts[0].form.redirect_uri, 'https://cb');
   assert.equal(calls.upserted.openId, 'open1');
   assert.equal(calls.upserted.accessToken, 'NEW_AT');
-  assert.equal(row.openId, 'open1');
+  assert.equal(row.open_id, 'open1');
 });
 
 test('refresh failure records the error and rejects (no token in message)', async () => {
