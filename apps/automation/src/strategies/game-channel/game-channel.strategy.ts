@@ -29,12 +29,16 @@ import { EpicGamesFetcher }         from '../../workflows/game-channel/fetchers/
 import { SteamDealsFetcher }        from '../../workflows/game-channel/fetchers/steam-deals.fetcher';
 import { GameNewsFetcher }          from '../../workflows/game-channel/fetchers/game-news.fetcher';
 import { GameChannelItem }          from '../../workflows/game-channel/types';
+import { extractPreloadImage }      from './article-image';
 
 @Injectable()
 export class GameChannelStrategy implements ContentStrategy, OnModuleInit {
   private readonly logger = new Logger(GameChannelStrategy.name);
 
   readonly type = 'game-channel';
+
+  /** PC Gamer articles need their image pulled from the page's preload link. */
+  private static readonly PCGAMER = /^https?:\/\/(www\.)?pcgamer\.com\//i;
 
   constructor(
     private readonly claude:     ClaudeAgent,
@@ -173,16 +177,25 @@ export class GameChannelStrategy implements ContentStrategy, OnModuleInit {
       text = this.appendLink(reviewed, item);
     }
 
-    // 6. Download image
-    let imageBuffer: Buffer | undefined;
-    if (item.imageUrl) {
-      imageBuffer = (await this.images.download(item.imageUrl)) ?? undefined;
+    // 6. Resolve the image. PC Gamer doesn't expose a usable image in its RSS
+    // item — pull the hero image the article preloads via
+    // <link rel="preload" as="image">. Falls back to the feed image if absent.
+    let imageUrl = item.imageUrl ?? undefined;
+    if (item.source && GameChannelStrategy.PCGAMER.test(item.source)) {
+      const preload = await this.findPreloadImage(item.source);
+      if (preload) imageUrl = preload;
     }
 
-    // 6b. No image — try to find a YouTube video embedded in the article so
+    // 6b. Download image
+    let imageBuffer: Buffer | undefined;
+    if (imageUrl) {
+      imageBuffer = (await this.images.download(imageUrl)) ?? undefined;
+    }
+
+    // 6c. No image — try to find a YouTube video embedded in the article so
     // Telegram can render a large video preview instead of a bare link.
     let previewUrl: string | undefined;
-    if (!imageBuffer && !item.imageUrl && item.source) {
+    if (!imageBuffer && !imageUrl && item.source) {
       previewUrl = (await this.findYoutubeUrl(item.source)) ?? undefined;
       if (previewUrl) {
         text = `${text}\n\n${previewUrl}`;
@@ -209,7 +222,7 @@ export class GameChannelStrategy implements ContentStrategy, OnModuleInit {
           {
             text,
             imageBuffer,
-            imageUrl: item.imageUrl ?? undefined,
+            imageUrl,
             source: item.source,
             tags: [item.type],
             title: item.title,
@@ -229,11 +242,34 @@ export class GameChannelStrategy implements ContentStrategy, OnModuleInit {
       await this.crossPost.afterPublish({
         channelKey: channelId,
         messageId,
-        mirror: { text, tags: [item.type], imageUrl: item.imageUrl ?? undefined },
+        mirror: { text, tags: [item.type], imageUrl },
       });
       this.logger.debug(`Published [${item.type}] to ${channelId}: ${item.title}`);
     } catch (err) {
       this.logger.error('Publish failed: ' + err.message);
+    }
+  }
+
+  /**
+   * Fetch the article and return the hero image it preloads via
+   * <link rel="preload" as="image" href="...">. Used for PC Gamer, whose RSS item
+   * carries no usable image. Best-effort: returns null on any failure, never throws.
+   */
+  private async findPreloadImage(articleUrl: string): Promise<string | null> {
+    try {
+      const res = await axios.get<string>(articleUrl, {
+        timeout: 8000,
+        responseType: 'text',
+        maxContentLength: 5_000_000,
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (compatible; AI0Bot/1.0)',
+          Accept: 'text/html',
+        },
+      });
+      return typeof res.data === 'string' ? extractPreloadImage(res.data) : null;
+    } catch (err: any) {
+      this.logger.debug(`findPreloadImage(${articleUrl}) failed: ${err.message}`);
+      return null;
     }
   }
 

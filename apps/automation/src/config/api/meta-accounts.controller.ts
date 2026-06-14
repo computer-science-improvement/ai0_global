@@ -8,6 +8,8 @@ import { TrackingAuthGuard } from '../../tracking/api/tracking-auth.guard';
 import { MetaAccountsRepository } from '../meta-accounts.repository';
 import { MetaGraphClient } from '../meta-graph.client';
 import { MetaFollowerHistoryRepository } from '../../stats/meta-follower-history.repository';
+import { MetaAccountInsightsRepository } from '../../stats/meta-account-insights.repository';
+import { MetaStatsCollectorService } from '../../stats/meta-stats-collector.service';
 import { CreateMetaAccountDto, PatchMetaAccountDto } from './dto/meta-accounts.dto';
 
 @Controller('api/meta-accounts')
@@ -18,7 +20,17 @@ export class MetaAccountsController {
     private readonly graph:    MetaGraphClient,
     private readonly env:      ConfigService,
     private readonly history:  MetaFollowerHistoryRepository,
+    private readonly insights: MetaAccountInsightsRepository,
+    private readonly collector: MetaStatsCollectorService,
   ) {}
+
+  /** Dashboard-triggered manual stats refresh (followers + insights, all active
+   *  accounts). Same collector the hourly cron runs; lets the operator populate
+   *  charts on demand without waiting an hour. */
+  @Post('refresh-stats')
+  async refreshStats(): Promise<{ accounts: number; snapshots: number; insightDays: number }> {
+    return this.collector.runOnce();
+  }
 
   @Get()
   async list() {
@@ -55,6 +67,20 @@ export class MetaAccountsController {
       delta7d:  summary.delta7d,
       points:   points.map(p => ({ at: p.at, followers: p.followers })),
     };
+  }
+
+  @Get(':id/insights')
+  async accountInsights(
+    @Param('id') id: string,
+    @Query('from') from?: string,
+    @Query('to') to?: string,
+  ) {
+    const acc = await this.accounts.findById(id);
+    if (!acc) throw new NotFoundException(`Meta account ${id} not found`);
+    const fromD = from ? new Date(from) : undefined;
+    const toD   = to   ? new Date(to)   : undefined;
+    const points = await this.insights.history(id, fromD, toD);
+    return { accountId: id, points };
   }
 
   @Post()

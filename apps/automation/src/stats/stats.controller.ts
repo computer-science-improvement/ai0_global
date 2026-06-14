@@ -113,7 +113,7 @@ export class StatsController {
 
   @Post('meta/refresh')
   @ApiOperation({ summary: 'Trigger the Meta follower-stats collector manually (debug)' })
-  async refreshMeta(): Promise<{ accounts: number; snapshots: number }> {
+  async refreshMeta(): Promise<{ accounts: number; snapshots: number; insightDays: number }> {
     return this.metaCollector.runOnce();
   }
 }
