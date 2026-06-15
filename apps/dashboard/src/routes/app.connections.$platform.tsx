@@ -10,10 +10,10 @@ const LABEL: Record<string, { name: string; icon: IconName }> = {
   facebook:  { name: 'Facebook',  icon: 'facebook' },
 };
 
-export const Route = createFileRoute('/connections/$platform')({ component: Connection });
+export const Route = createFileRoute('/app/connections/$platform')({ component: Connection });
 
 function Connection() {
-  const { platform } = useParams({ from: '/connections/$platform' });
+  const { platform } = useParams({ from: '/app/connections/$platform' });
   const meta = LABEL[platform] ?? { name: platform, icon: 'connections' as IconName };
   return (
     <div>

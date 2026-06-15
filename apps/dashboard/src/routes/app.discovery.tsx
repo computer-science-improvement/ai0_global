@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { trackingApi } from '../api/tracking';
 import { fmtRelative } from '../lib/format';
 
-export const Route = createFileRoute('/discovery')({ component: DiscoveryPage });
+export const Route = createFileRoute('/app/discovery')({ component: DiscoveryPage });
 
 function DiscoveryPage() {
   const { data, isLoading } = useQuery({ queryKey: ['discovery'], queryFn: () => trackingApi.discovery() });

@@ -9,107 +9,39 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as TrackedRouteImport } from './routes/tracked'
-import { Route as TelegraphRouteImport } from './routes/telegraph'
-import { Route as StrategiesRouteImport } from './routes/strategies'
-import { Route as SettingsRouteImport } from './routes/settings'
-import { Route as ScheduledRouteImport } from './routes/scheduled'
-import { Route as RecommendationsRouteImport } from './routes/recommendations'
-import { Route as LogsRouteImport } from './routes/logs'
 import { Route as LoginRouteImport } from './routes/login'
-import { Route as GraphRouteImport } from './routes/graph'
-import { Route as DiscoveryRouteImport } from './routes/discovery'
-import { Route as ConnectionsRouteImport } from './routes/connections'
-import { Route as ComposeRouteImport } from './routes/compose'
-import { Route as ChannelsRouteImport } from './routes/channels'
-import { Route as CalendarRouteImport } from './routes/calendar'
-import { Route as BotsRouteImport } from './routes/bots'
-import { Route as AnalyticsRouteImport } from './routes/analytics'
+import { Route as AppRouteImport } from './routes/app'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as ConnectionsTiktokRouteImport } from './routes/connections_.tiktok'
-import { Route as ConnectionsMetaRouteImport } from './routes/connections_.meta'
-import { Route as ConnectionsPlatformRouteImport } from './routes/connections.$platform'
-import { Route as ChannelsIdRouteImport } from './routes/channels_.$id'
-import { Route as ConnectionsMetaAccountIdRouteImport } from './routes/connections_.meta_.$accountId'
+import { Route as AppIndexRouteImport } from './routes/app.index'
+import { Route as AppTrackedRouteImport } from './routes/app.tracked'
+import { Route as AppTelegraphRouteImport } from './routes/app.telegraph'
+import { Route as AppStrategiesRouteImport } from './routes/app.strategies'
+import { Route as AppSettingsRouteImport } from './routes/app.settings'
+import { Route as AppScheduledRouteImport } from './routes/app.scheduled'
+import { Route as AppRecommendationsRouteImport } from './routes/app.recommendations'
+import { Route as AppLogsRouteImport } from './routes/app.logs'
+import { Route as AppGraphRouteImport } from './routes/app.graph'
+import { Route as AppDiscoveryRouteImport } from './routes/app.discovery'
+import { Route as AppConnectionsRouteImport } from './routes/app.connections'
+import { Route as AppComposeRouteImport } from './routes/app.compose'
+import { Route as AppChannelsRouteImport } from './routes/app.channels'
+import { Route as AppCalendarRouteImport } from './routes/app.calendar'
+import { Route as AppBotsRouteImport } from './routes/app.bots'
+import { Route as AppAnalyticsRouteImport } from './routes/app.analytics'
+import { Route as AppConnectionsTiktokRouteImport } from './routes/app.connections_.tiktok'
+import { Route as AppConnectionsMetaRouteImport } from './routes/app.connections_.meta'
+import { Route as AppConnectionsPlatformRouteImport } from './routes/app.connections.$platform'
+import { Route as AppChannelsIdRouteImport } from './routes/app.channels_.$id'
+import { Route as AppConnectionsMetaAccountIdRouteImport } from './routes/app.connections_.meta_.$accountId'
 
-const TrackedRoute = TrackedRouteImport.update({
-  id: '/tracked',
-  path: '/tracked',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const TelegraphRoute = TelegraphRouteImport.update({
-  id: '/telegraph',
-  path: '/telegraph',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const StrategiesRoute = StrategiesRouteImport.update({
-  id: '/strategies',
-  path: '/strategies',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SettingsRoute = SettingsRouteImport.update({
-  id: '/settings',
-  path: '/settings',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ScheduledRoute = ScheduledRouteImport.update({
-  id: '/scheduled',
-  path: '/scheduled',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const RecommendationsRoute = RecommendationsRouteImport.update({
-  id: '/recommendations',
-  path: '/recommendations',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LogsRoute = LogsRouteImport.update({
-  id: '/logs',
-  path: '/logs',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
-const GraphRoute = GraphRouteImport.update({
-  id: '/graph',
-  path: '/graph',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DiscoveryRoute = DiscoveryRouteImport.update({
-  id: '/discovery',
-  path: '/discovery',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ConnectionsRoute = ConnectionsRouteImport.update({
-  id: '/connections',
-  path: '/connections',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ComposeRoute = ComposeRouteImport.update({
-  id: '/compose',
-  path: '/compose',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ChannelsRoute = ChannelsRouteImport.update({
-  id: '/channels',
-  path: '/channels',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CalendarRoute = CalendarRouteImport.update({
-  id: '/calendar',
-  path: '/calendar',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BotsRoute = BotsRouteImport.update({
-  id: '/bots',
-  path: '/bots',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AnalyticsRoute = AnalyticsRouteImport.update({
-  id: '/analytics',
-  path: '/analytics',
+const AppRoute = AppRouteImport.update({
+  id: '/app',
+  path: '/app',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -117,256 +49,279 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ConnectionsTiktokRoute = ConnectionsTiktokRouteImport.update({
+const AppIndexRoute = AppIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppTrackedRoute = AppTrackedRouteImport.update({
+  id: '/tracked',
+  path: '/tracked',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppTelegraphRoute = AppTelegraphRouteImport.update({
+  id: '/telegraph',
+  path: '/telegraph',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppStrategiesRoute = AppStrategiesRouteImport.update({
+  id: '/strategies',
+  path: '/strategies',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppSettingsRoute = AppSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppScheduledRoute = AppScheduledRouteImport.update({
+  id: '/scheduled',
+  path: '/scheduled',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppRecommendationsRoute = AppRecommendationsRouteImport.update({
+  id: '/recommendations',
+  path: '/recommendations',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppLogsRoute = AppLogsRouteImport.update({
+  id: '/logs',
+  path: '/logs',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppGraphRoute = AppGraphRouteImport.update({
+  id: '/graph',
+  path: '/graph',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDiscoveryRoute = AppDiscoveryRouteImport.update({
+  id: '/discovery',
+  path: '/discovery',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppConnectionsRoute = AppConnectionsRouteImport.update({
+  id: '/connections',
+  path: '/connections',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppComposeRoute = AppComposeRouteImport.update({
+  id: '/compose',
+  path: '/compose',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppChannelsRoute = AppChannelsRouteImport.update({
+  id: '/channels',
+  path: '/channels',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppCalendarRoute = AppCalendarRouteImport.update({
+  id: '/calendar',
+  path: '/calendar',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppBotsRoute = AppBotsRouteImport.update({
+  id: '/bots',
+  path: '/bots',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppAnalyticsRoute = AppAnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppConnectionsTiktokRoute = AppConnectionsTiktokRouteImport.update({
   id: '/connections_/tiktok',
   path: '/connections/tiktok',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AppRoute,
 } as any)
-const ConnectionsMetaRoute = ConnectionsMetaRouteImport.update({
+const AppConnectionsMetaRoute = AppConnectionsMetaRouteImport.update({
   id: '/connections_/meta',
   path: '/connections/meta',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AppRoute,
 } as any)
-const ConnectionsPlatformRoute = ConnectionsPlatformRouteImport.update({
+const AppConnectionsPlatformRoute = AppConnectionsPlatformRouteImport.update({
   id: '/$platform',
   path: '/$platform',
-  getParentRoute: () => ConnectionsRoute,
+  getParentRoute: () => AppConnectionsRoute,
 } as any)
-const ChannelsIdRoute = ChannelsIdRouteImport.update({
+const AppChannelsIdRoute = AppChannelsIdRouteImport.update({
   id: '/channels_/$id',
   path: '/channels/$id',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => AppRoute,
 } as any)
-const ConnectionsMetaAccountIdRoute =
-  ConnectionsMetaAccountIdRouteImport.update({
+const AppConnectionsMetaAccountIdRoute =
+  AppConnectionsMetaAccountIdRouteImport.update({
     id: '/connections_/meta_/$accountId',
     path: '/connections/meta/$accountId',
-    getParentRoute: () => rootRouteImport,
+    getParentRoute: () => AppRoute,
   } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/analytics': typeof AnalyticsRoute
-  '/bots': typeof BotsRoute
-  '/calendar': typeof CalendarRoute
-  '/channels': typeof ChannelsRoute
-  '/compose': typeof ComposeRoute
-  '/connections': typeof ConnectionsRouteWithChildren
-  '/discovery': typeof DiscoveryRoute
-  '/graph': typeof GraphRoute
+  '/app': typeof AppRouteWithChildren
   '/login': typeof LoginRoute
-  '/logs': typeof LogsRoute
-  '/recommendations': typeof RecommendationsRoute
-  '/scheduled': typeof ScheduledRoute
-  '/settings': typeof SettingsRoute
-  '/strategies': typeof StrategiesRoute
-  '/telegraph': typeof TelegraphRoute
-  '/tracked': typeof TrackedRoute
-  '/channels/$id': typeof ChannelsIdRoute
-  '/connections/$platform': typeof ConnectionsPlatformRoute
-  '/connections/meta': typeof ConnectionsMetaRoute
-  '/connections/tiktok': typeof ConnectionsTiktokRoute
-  '/connections/meta/$accountId': typeof ConnectionsMetaAccountIdRoute
+  '/app/analytics': typeof AppAnalyticsRoute
+  '/app/bots': typeof AppBotsRoute
+  '/app/calendar': typeof AppCalendarRoute
+  '/app/channels': typeof AppChannelsRoute
+  '/app/compose': typeof AppComposeRoute
+  '/app/connections': typeof AppConnectionsRouteWithChildren
+  '/app/discovery': typeof AppDiscoveryRoute
+  '/app/graph': typeof AppGraphRoute
+  '/app/logs': typeof AppLogsRoute
+  '/app/recommendations': typeof AppRecommendationsRoute
+  '/app/scheduled': typeof AppScheduledRoute
+  '/app/settings': typeof AppSettingsRoute
+  '/app/strategies': typeof AppStrategiesRoute
+  '/app/telegraph': typeof AppTelegraphRoute
+  '/app/tracked': typeof AppTrackedRoute
+  '/app/': typeof AppIndexRoute
+  '/app/channels/$id': typeof AppChannelsIdRoute
+  '/app/connections/$platform': typeof AppConnectionsPlatformRoute
+  '/app/connections/meta': typeof AppConnectionsMetaRoute
+  '/app/connections/tiktok': typeof AppConnectionsTiktokRoute
+  '/app/connections/meta/$accountId': typeof AppConnectionsMetaAccountIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/analytics': typeof AnalyticsRoute
-  '/bots': typeof BotsRoute
-  '/calendar': typeof CalendarRoute
-  '/channels': typeof ChannelsRoute
-  '/compose': typeof ComposeRoute
-  '/connections': typeof ConnectionsRouteWithChildren
-  '/discovery': typeof DiscoveryRoute
-  '/graph': typeof GraphRoute
   '/login': typeof LoginRoute
-  '/logs': typeof LogsRoute
-  '/recommendations': typeof RecommendationsRoute
-  '/scheduled': typeof ScheduledRoute
-  '/settings': typeof SettingsRoute
-  '/strategies': typeof StrategiesRoute
-  '/telegraph': typeof TelegraphRoute
-  '/tracked': typeof TrackedRoute
-  '/channels/$id': typeof ChannelsIdRoute
-  '/connections/$platform': typeof ConnectionsPlatformRoute
-  '/connections/meta': typeof ConnectionsMetaRoute
-  '/connections/tiktok': typeof ConnectionsTiktokRoute
-  '/connections/meta/$accountId': typeof ConnectionsMetaAccountIdRoute
+  '/app/analytics': typeof AppAnalyticsRoute
+  '/app/bots': typeof AppBotsRoute
+  '/app/calendar': typeof AppCalendarRoute
+  '/app/channels': typeof AppChannelsRoute
+  '/app/compose': typeof AppComposeRoute
+  '/app/connections': typeof AppConnectionsRouteWithChildren
+  '/app/discovery': typeof AppDiscoveryRoute
+  '/app/graph': typeof AppGraphRoute
+  '/app/logs': typeof AppLogsRoute
+  '/app/recommendations': typeof AppRecommendationsRoute
+  '/app/scheduled': typeof AppScheduledRoute
+  '/app/settings': typeof AppSettingsRoute
+  '/app/strategies': typeof AppStrategiesRoute
+  '/app/telegraph': typeof AppTelegraphRoute
+  '/app/tracked': typeof AppTrackedRoute
+  '/app': typeof AppIndexRoute
+  '/app/channels/$id': typeof AppChannelsIdRoute
+  '/app/connections/$platform': typeof AppConnectionsPlatformRoute
+  '/app/connections/meta': typeof AppConnectionsMetaRoute
+  '/app/connections/tiktok': typeof AppConnectionsTiktokRoute
+  '/app/connections/meta/$accountId': typeof AppConnectionsMetaAccountIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/analytics': typeof AnalyticsRoute
-  '/bots': typeof BotsRoute
-  '/calendar': typeof CalendarRoute
-  '/channels': typeof ChannelsRoute
-  '/compose': typeof ComposeRoute
-  '/connections': typeof ConnectionsRouteWithChildren
-  '/discovery': typeof DiscoveryRoute
-  '/graph': typeof GraphRoute
+  '/app': typeof AppRouteWithChildren
   '/login': typeof LoginRoute
-  '/logs': typeof LogsRoute
-  '/recommendations': typeof RecommendationsRoute
-  '/scheduled': typeof ScheduledRoute
-  '/settings': typeof SettingsRoute
-  '/strategies': typeof StrategiesRoute
-  '/telegraph': typeof TelegraphRoute
-  '/tracked': typeof TrackedRoute
-  '/channels_/$id': typeof ChannelsIdRoute
-  '/connections/$platform': typeof ConnectionsPlatformRoute
-  '/connections_/meta': typeof ConnectionsMetaRoute
-  '/connections_/tiktok': typeof ConnectionsTiktokRoute
-  '/connections_/meta_/$accountId': typeof ConnectionsMetaAccountIdRoute
+  '/app/analytics': typeof AppAnalyticsRoute
+  '/app/bots': typeof AppBotsRoute
+  '/app/calendar': typeof AppCalendarRoute
+  '/app/channels': typeof AppChannelsRoute
+  '/app/compose': typeof AppComposeRoute
+  '/app/connections': typeof AppConnectionsRouteWithChildren
+  '/app/discovery': typeof AppDiscoveryRoute
+  '/app/graph': typeof AppGraphRoute
+  '/app/logs': typeof AppLogsRoute
+  '/app/recommendations': typeof AppRecommendationsRoute
+  '/app/scheduled': typeof AppScheduledRoute
+  '/app/settings': typeof AppSettingsRoute
+  '/app/strategies': typeof AppStrategiesRoute
+  '/app/telegraph': typeof AppTelegraphRoute
+  '/app/tracked': typeof AppTrackedRoute
+  '/app/': typeof AppIndexRoute
+  '/app/channels_/$id': typeof AppChannelsIdRoute
+  '/app/connections/$platform': typeof AppConnectionsPlatformRoute
+  '/app/connections_/meta': typeof AppConnectionsMetaRoute
+  '/app/connections_/tiktok': typeof AppConnectionsTiktokRoute
+  '/app/connections_/meta_/$accountId': typeof AppConnectionsMetaAccountIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/analytics'
-    | '/bots'
-    | '/calendar'
-    | '/channels'
-    | '/compose'
-    | '/connections'
-    | '/discovery'
-    | '/graph'
+    | '/app'
     | '/login'
-    | '/logs'
-    | '/recommendations'
-    | '/scheduled'
-    | '/settings'
-    | '/strategies'
-    | '/telegraph'
-    | '/tracked'
-    | '/channels/$id'
-    | '/connections/$platform'
-    | '/connections/meta'
-    | '/connections/tiktok'
-    | '/connections/meta/$accountId'
+    | '/app/analytics'
+    | '/app/bots'
+    | '/app/calendar'
+    | '/app/channels'
+    | '/app/compose'
+    | '/app/connections'
+    | '/app/discovery'
+    | '/app/graph'
+    | '/app/logs'
+    | '/app/recommendations'
+    | '/app/scheduled'
+    | '/app/settings'
+    | '/app/strategies'
+    | '/app/telegraph'
+    | '/app/tracked'
+    | '/app/'
+    | '/app/channels/$id'
+    | '/app/connections/$platform'
+    | '/app/connections/meta'
+    | '/app/connections/tiktok'
+    | '/app/connections/meta/$accountId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/analytics'
-    | '/bots'
-    | '/calendar'
-    | '/channels'
-    | '/compose'
-    | '/connections'
-    | '/discovery'
-    | '/graph'
     | '/login'
-    | '/logs'
-    | '/recommendations'
-    | '/scheduled'
-    | '/settings'
-    | '/strategies'
-    | '/telegraph'
-    | '/tracked'
-    | '/channels/$id'
-    | '/connections/$platform'
-    | '/connections/meta'
-    | '/connections/tiktok'
-    | '/connections/meta/$accountId'
+    | '/app/analytics'
+    | '/app/bots'
+    | '/app/calendar'
+    | '/app/channels'
+    | '/app/compose'
+    | '/app/connections'
+    | '/app/discovery'
+    | '/app/graph'
+    | '/app/logs'
+    | '/app/recommendations'
+    | '/app/scheduled'
+    | '/app/settings'
+    | '/app/strategies'
+    | '/app/telegraph'
+    | '/app/tracked'
+    | '/app'
+    | '/app/channels/$id'
+    | '/app/connections/$platform'
+    | '/app/connections/meta'
+    | '/app/connections/tiktok'
+    | '/app/connections/meta/$accountId'
   id:
     | '__root__'
     | '/'
-    | '/analytics'
-    | '/bots'
-    | '/calendar'
-    | '/channels'
-    | '/compose'
-    | '/connections'
-    | '/discovery'
-    | '/graph'
+    | '/app'
     | '/login'
-    | '/logs'
-    | '/recommendations'
-    | '/scheduled'
-    | '/settings'
-    | '/strategies'
-    | '/telegraph'
-    | '/tracked'
-    | '/channels_/$id'
-    | '/connections/$platform'
-    | '/connections_/meta'
-    | '/connections_/tiktok'
-    | '/connections_/meta_/$accountId'
+    | '/app/analytics'
+    | '/app/bots'
+    | '/app/calendar'
+    | '/app/channels'
+    | '/app/compose'
+    | '/app/connections'
+    | '/app/discovery'
+    | '/app/graph'
+    | '/app/logs'
+    | '/app/recommendations'
+    | '/app/scheduled'
+    | '/app/settings'
+    | '/app/strategies'
+    | '/app/telegraph'
+    | '/app/tracked'
+    | '/app/'
+    | '/app/channels_/$id'
+    | '/app/connections/$platform'
+    | '/app/connections_/meta'
+    | '/app/connections_/tiktok'
+    | '/app/connections_/meta_/$accountId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AnalyticsRoute: typeof AnalyticsRoute
-  BotsRoute: typeof BotsRoute
-  CalendarRoute: typeof CalendarRoute
-  ChannelsRoute: typeof ChannelsRoute
-  ComposeRoute: typeof ComposeRoute
-  ConnectionsRoute: typeof ConnectionsRouteWithChildren
-  DiscoveryRoute: typeof DiscoveryRoute
-  GraphRoute: typeof GraphRoute
+  AppRoute: typeof AppRouteWithChildren
   LoginRoute: typeof LoginRoute
-  LogsRoute: typeof LogsRoute
-  RecommendationsRoute: typeof RecommendationsRoute
-  ScheduledRoute: typeof ScheduledRoute
-  SettingsRoute: typeof SettingsRoute
-  StrategiesRoute: typeof StrategiesRoute
-  TelegraphRoute: typeof TelegraphRoute
-  TrackedRoute: typeof TrackedRoute
-  ChannelsIdRoute: typeof ChannelsIdRoute
-  ConnectionsMetaRoute: typeof ConnectionsMetaRoute
-  ConnectionsTiktokRoute: typeof ConnectionsTiktokRoute
-  ConnectionsMetaAccountIdRoute: typeof ConnectionsMetaAccountIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/tracked': {
-      id: '/tracked'
-      path: '/tracked'
-      fullPath: '/tracked'
-      preLoaderRoute: typeof TrackedRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/telegraph': {
-      id: '/telegraph'
-      path: '/telegraph'
-      fullPath: '/telegraph'
-      preLoaderRoute: typeof TelegraphRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/strategies': {
-      id: '/strategies'
-      path: '/strategies'
-      fullPath: '/strategies'
-      preLoaderRoute: typeof StrategiesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/settings': {
-      id: '/settings'
-      path: '/settings'
-      fullPath: '/settings'
-      preLoaderRoute: typeof SettingsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/scheduled': {
-      id: '/scheduled'
-      path: '/scheduled'
-      fullPath: '/scheduled'
-      preLoaderRoute: typeof ScheduledRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/recommendations': {
-      id: '/recommendations'
-      path: '/recommendations'
-      fullPath: '/recommendations'
-      preLoaderRoute: typeof RecommendationsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/logs': {
-      id: '/logs'
-      path: '/logs'
-      fullPath: '/logs'
-      preLoaderRoute: typeof LogsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/login': {
       id: '/login'
       path: '/login'
@@ -374,60 +329,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/graph': {
-      id: '/graph'
-      path: '/graph'
-      fullPath: '/graph'
-      preLoaderRoute: typeof GraphRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/discovery': {
-      id: '/discovery'
-      path: '/discovery'
-      fullPath: '/discovery'
-      preLoaderRoute: typeof DiscoveryRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/connections': {
-      id: '/connections'
-      path: '/connections'
-      fullPath: '/connections'
-      preLoaderRoute: typeof ConnectionsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/compose': {
-      id: '/compose'
-      path: '/compose'
-      fullPath: '/compose'
-      preLoaderRoute: typeof ComposeRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/channels': {
-      id: '/channels'
-      path: '/channels'
-      fullPath: '/channels'
-      preLoaderRoute: typeof ChannelsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/calendar': {
-      id: '/calendar'
-      path: '/calendar'
-      fullPath: '/calendar'
-      preLoaderRoute: typeof CalendarRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/bots': {
-      id: '/bots'
-      path: '/bots'
-      fullPath: '/bots'
-      preLoaderRoute: typeof BotsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/analytics': {
-      id: '/analytics'
-      path: '/analytics'
-      fullPath: '/analytics'
-      preLoaderRoute: typeof AnalyticsRouteImport
+    '/app': {
+      id: '/app'
+      path: '/app'
+      fullPath: '/app'
+      preLoaderRoute: typeof AppRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -437,78 +343,220 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/connections_/tiktok': {
-      id: '/connections_/tiktok'
+    '/app/': {
+      id: '/app/'
+      path: '/'
+      fullPath: '/app/'
+      preLoaderRoute: typeof AppIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/tracked': {
+      id: '/app/tracked'
+      path: '/tracked'
+      fullPath: '/app/tracked'
+      preLoaderRoute: typeof AppTrackedRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/telegraph': {
+      id: '/app/telegraph'
+      path: '/telegraph'
+      fullPath: '/app/telegraph'
+      preLoaderRoute: typeof AppTelegraphRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/strategies': {
+      id: '/app/strategies'
+      path: '/strategies'
+      fullPath: '/app/strategies'
+      preLoaderRoute: typeof AppStrategiesRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/settings': {
+      id: '/app/settings'
+      path: '/settings'
+      fullPath: '/app/settings'
+      preLoaderRoute: typeof AppSettingsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/scheduled': {
+      id: '/app/scheduled'
+      path: '/scheduled'
+      fullPath: '/app/scheduled'
+      preLoaderRoute: typeof AppScheduledRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/recommendations': {
+      id: '/app/recommendations'
+      path: '/recommendations'
+      fullPath: '/app/recommendations'
+      preLoaderRoute: typeof AppRecommendationsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/logs': {
+      id: '/app/logs'
+      path: '/logs'
+      fullPath: '/app/logs'
+      preLoaderRoute: typeof AppLogsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/graph': {
+      id: '/app/graph'
+      path: '/graph'
+      fullPath: '/app/graph'
+      preLoaderRoute: typeof AppGraphRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/discovery': {
+      id: '/app/discovery'
+      path: '/discovery'
+      fullPath: '/app/discovery'
+      preLoaderRoute: typeof AppDiscoveryRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/connections': {
+      id: '/app/connections'
+      path: '/connections'
+      fullPath: '/app/connections'
+      preLoaderRoute: typeof AppConnectionsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/compose': {
+      id: '/app/compose'
+      path: '/compose'
+      fullPath: '/app/compose'
+      preLoaderRoute: typeof AppComposeRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/channels': {
+      id: '/app/channels'
+      path: '/channels'
+      fullPath: '/app/channels'
+      preLoaderRoute: typeof AppChannelsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/calendar': {
+      id: '/app/calendar'
+      path: '/calendar'
+      fullPath: '/app/calendar'
+      preLoaderRoute: typeof AppCalendarRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/bots': {
+      id: '/app/bots'
+      path: '/bots'
+      fullPath: '/app/bots'
+      preLoaderRoute: typeof AppBotsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/analytics': {
+      id: '/app/analytics'
+      path: '/analytics'
+      fullPath: '/app/analytics'
+      preLoaderRoute: typeof AppAnalyticsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/connections_/tiktok': {
+      id: '/app/connections_/tiktok'
       path: '/connections/tiktok'
-      fullPath: '/connections/tiktok'
-      preLoaderRoute: typeof ConnectionsTiktokRouteImport
-      parentRoute: typeof rootRouteImport
+      fullPath: '/app/connections/tiktok'
+      preLoaderRoute: typeof AppConnectionsTiktokRouteImport
+      parentRoute: typeof AppRoute
     }
-    '/connections_/meta': {
-      id: '/connections_/meta'
+    '/app/connections_/meta': {
+      id: '/app/connections_/meta'
       path: '/connections/meta'
-      fullPath: '/connections/meta'
-      preLoaderRoute: typeof ConnectionsMetaRouteImport
-      parentRoute: typeof rootRouteImport
+      fullPath: '/app/connections/meta'
+      preLoaderRoute: typeof AppConnectionsMetaRouteImport
+      parentRoute: typeof AppRoute
     }
-    '/connections/$platform': {
-      id: '/connections/$platform'
+    '/app/connections/$platform': {
+      id: '/app/connections/$platform'
       path: '/$platform'
-      fullPath: '/connections/$platform'
-      preLoaderRoute: typeof ConnectionsPlatformRouteImport
-      parentRoute: typeof ConnectionsRoute
+      fullPath: '/app/connections/$platform'
+      preLoaderRoute: typeof AppConnectionsPlatformRouteImport
+      parentRoute: typeof AppConnectionsRoute
     }
-    '/channels_/$id': {
-      id: '/channels_/$id'
+    '/app/channels_/$id': {
+      id: '/app/channels_/$id'
       path: '/channels/$id'
-      fullPath: '/channels/$id'
-      preLoaderRoute: typeof ChannelsIdRouteImport
-      parentRoute: typeof rootRouteImport
+      fullPath: '/app/channels/$id'
+      preLoaderRoute: typeof AppChannelsIdRouteImport
+      parentRoute: typeof AppRoute
     }
-    '/connections_/meta_/$accountId': {
-      id: '/connections_/meta_/$accountId'
+    '/app/connections_/meta_/$accountId': {
+      id: '/app/connections_/meta_/$accountId'
       path: '/connections/meta/$accountId'
-      fullPath: '/connections/meta/$accountId'
-      preLoaderRoute: typeof ConnectionsMetaAccountIdRouteImport
-      parentRoute: typeof rootRouteImport
+      fullPath: '/app/connections/meta/$accountId'
+      preLoaderRoute: typeof AppConnectionsMetaAccountIdRouteImport
+      parentRoute: typeof AppRoute
     }
   }
 }
 
-interface ConnectionsRouteChildren {
-  ConnectionsPlatformRoute: typeof ConnectionsPlatformRoute
+interface AppConnectionsRouteChildren {
+  AppConnectionsPlatformRoute: typeof AppConnectionsPlatformRoute
 }
 
-const ConnectionsRouteChildren: ConnectionsRouteChildren = {
-  ConnectionsPlatformRoute: ConnectionsPlatformRoute,
+const AppConnectionsRouteChildren: AppConnectionsRouteChildren = {
+  AppConnectionsPlatformRoute: AppConnectionsPlatformRoute,
 }
 
-const ConnectionsRouteWithChildren = ConnectionsRoute._addFileChildren(
-  ConnectionsRouteChildren,
+const AppConnectionsRouteWithChildren = AppConnectionsRoute._addFileChildren(
+  AppConnectionsRouteChildren,
 )
+
+interface AppRouteChildren {
+  AppAnalyticsRoute: typeof AppAnalyticsRoute
+  AppBotsRoute: typeof AppBotsRoute
+  AppCalendarRoute: typeof AppCalendarRoute
+  AppChannelsRoute: typeof AppChannelsRoute
+  AppComposeRoute: typeof AppComposeRoute
+  AppConnectionsRoute: typeof AppConnectionsRouteWithChildren
+  AppDiscoveryRoute: typeof AppDiscoveryRoute
+  AppGraphRoute: typeof AppGraphRoute
+  AppLogsRoute: typeof AppLogsRoute
+  AppRecommendationsRoute: typeof AppRecommendationsRoute
+  AppScheduledRoute: typeof AppScheduledRoute
+  AppSettingsRoute: typeof AppSettingsRoute
+  AppStrategiesRoute: typeof AppStrategiesRoute
+  AppTelegraphRoute: typeof AppTelegraphRoute
+  AppTrackedRoute: typeof AppTrackedRoute
+  AppIndexRoute: typeof AppIndexRoute
+  AppChannelsIdRoute: typeof AppChannelsIdRoute
+  AppConnectionsMetaRoute: typeof AppConnectionsMetaRoute
+  AppConnectionsTiktokRoute: typeof AppConnectionsTiktokRoute
+  AppConnectionsMetaAccountIdRoute: typeof AppConnectionsMetaAccountIdRoute
+}
+
+const AppRouteChildren: AppRouteChildren = {
+  AppAnalyticsRoute: AppAnalyticsRoute,
+  AppBotsRoute: AppBotsRoute,
+  AppCalendarRoute: AppCalendarRoute,
+  AppChannelsRoute: AppChannelsRoute,
+  AppComposeRoute: AppComposeRoute,
+  AppConnectionsRoute: AppConnectionsRouteWithChildren,
+  AppDiscoveryRoute: AppDiscoveryRoute,
+  AppGraphRoute: AppGraphRoute,
+  AppLogsRoute: AppLogsRoute,
+  AppRecommendationsRoute: AppRecommendationsRoute,
+  AppScheduledRoute: AppScheduledRoute,
+  AppSettingsRoute: AppSettingsRoute,
+  AppStrategiesRoute: AppStrategiesRoute,
+  AppTelegraphRoute: AppTelegraphRoute,
+  AppTrackedRoute: AppTrackedRoute,
+  AppIndexRoute: AppIndexRoute,
+  AppChannelsIdRoute: AppChannelsIdRoute,
+  AppConnectionsMetaRoute: AppConnectionsMetaRoute,
+  AppConnectionsTiktokRoute: AppConnectionsTiktokRoute,
+  AppConnectionsMetaAccountIdRoute: AppConnectionsMetaAccountIdRoute,
+}
+
+const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AnalyticsRoute: AnalyticsRoute,
-  BotsRoute: BotsRoute,
-  CalendarRoute: CalendarRoute,
-  ChannelsRoute: ChannelsRoute,
-  ComposeRoute: ComposeRoute,
-  ConnectionsRoute: ConnectionsRouteWithChildren,
-  DiscoveryRoute: DiscoveryRoute,
-  GraphRoute: GraphRoute,
+  AppRoute: AppRouteWithChildren,
   LoginRoute: LoginRoute,
-  LogsRoute: LogsRoute,
-  RecommendationsRoute: RecommendationsRoute,
-  ScheduledRoute: ScheduledRoute,
-  SettingsRoute: SettingsRoute,
-  StrategiesRoute: StrategiesRoute,
-  TelegraphRoute: TelegraphRoute,
-  TrackedRoute: TrackedRoute,
-  ChannelsIdRoute: ChannelsIdRoute,
-  ConnectionsMetaRoute: ConnectionsMetaRoute,
-  ConnectionsTiktokRoute: ConnectionsTiktokRoute,
-  ConnectionsMetaAccountIdRoute: ConnectionsMetaAccountIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -14,7 +14,7 @@ const PAGE_SIZE = 50;
 
 interface Search { filter: 'mine' | 'all' | 'external'; page: number; q: string; bot?: string; }
 
-export const Route = createFileRoute('/channels')({
+export const Route = createFileRoute('/app/channels')({
   validateSearch: (s: Record<string, unknown>): Search => ({
     filter: (s.filter as Search['filter']) ?? 'mine',
     page:   Math.max(1, Number(s.page) || 1),

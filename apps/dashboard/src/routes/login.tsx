@@ -23,7 +23,7 @@ function LoginPage() {
     try {
       await authApi.tokenLogin(t);
       await refresh();
-      await navigate({ to: '/' as any });
+      await navigate({ to: '/app' as any });
     } catch {
       setError('Invalid token');
     } finally {
@@ -38,7 +38,7 @@ function LoginPage() {
       try {
         await authApi.telegramLogin(user);
         await refresh();
-        await navigate({ to: '/channels' as any });
+        await navigate({ to: '/app/channels' as any });
       } catch (e: unknown) {
         alert(`Login failed: ${(e as Error).message}`);
       }
@@ -116,7 +116,7 @@ function LoginPage() {
             <button
               className="btn-primary"
               style={{ width: '100%' }}
-              onClick={async () => { await refresh(); await navigate({ to: '/' as any }); }}
+              onClick={async () => { await refresh(); await navigate({ to: '/app' as any }); }}
             >
               Continue in dev mode
             </button>

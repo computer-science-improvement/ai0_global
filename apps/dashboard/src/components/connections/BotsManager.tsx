@@ -21,7 +21,7 @@ export function BotsManager() {
 
   /** Click on a non-action cell → open channels page filtered by this bot. */
   const viewChannels = (botId: string) => {
-    navigate({ to: '/channels' as any, search: { filter: 'mine', page: 1, q: '', bot: botId } as any });
+    navigate({ to: '/app/channels' as any, search: { filter: 'mine', page: 1, q: '', bot: botId } as any });
   };
 
   return (

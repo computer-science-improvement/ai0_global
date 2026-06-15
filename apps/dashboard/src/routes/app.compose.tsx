@@ -6,7 +6,7 @@ import { scheduledPostsApi } from '../api/scheduled-posts';
 
 interface Search { id?: string; }
 
-export const Route = createFileRoute('/compose')({
+export const Route = createFileRoute('/app/compose')({
   validateSearch: (s: Record<string, unknown>): Search =>
     s.id ? { id: String(s.id) } : {},
   component: ComposePage,
@@ -24,7 +24,7 @@ function ComposePage() {
   });
 
   const editing = id ? postQ.data ?? null : null;
-  const done = () => navigate({ to: '/scheduled' });
+  const done = () => navigate({ to: '/app/scheduled' });
 
   return (
     <div>

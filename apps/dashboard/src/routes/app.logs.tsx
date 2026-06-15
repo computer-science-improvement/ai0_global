@@ -14,7 +14,7 @@ import { activityApi } from '../api/activity';
 import { fmtDate } from '../lib/format';
 import type { ActivityType } from '../api/types';
 
-export const Route = createFileRoute('/logs')({ component: LogsPage });
+export const Route = createFileRoute('/app/logs')({ component: LogsPage });
 
 const PAGE = 50;
 

@@ -14,7 +14,7 @@ import { MetaReachImpressionsChart } from '../components/MetaReachImpressionsCha
 import { MetaProfileViewsChart } from '../components/MetaProfileViewsChart';
 import { RoiPanel } from '../components/RoiPanel';
 
-export const Route = createFileRoute('/analytics')({ component: AnalyticsPage });
+export const Route = createFileRoute('/app/analytics')({ component: AnalyticsPage });
 
 type Tab = 'telegram' | 'meta';
 

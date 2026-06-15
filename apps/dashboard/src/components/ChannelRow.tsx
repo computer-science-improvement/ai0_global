@@ -18,7 +18,7 @@ export function ChannelRow({ c, lowContentIds }: { c: TrackedChannel; lowContent
   return (
     <>
       <Link
-        to={'/channels/$id' as any}
+        to={'/app/channels/$id' as any}
         params={{ id: c.id } as any}
         style={{
           display: 'block',

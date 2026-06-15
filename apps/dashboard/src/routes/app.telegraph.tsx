@@ -4,7 +4,7 @@ import { TelegraphManager } from '../components/connections/TelegraphManager';
 
 // Standalone Telegraph route kept for deep links; the canonical home is the
 // unified /connections page (Telegraph tab).
-export const Route = createFileRoute('/telegraph')({ component: TelegraphPage });
+export const Route = createFileRoute('/app/telegraph')({ component: TelegraphPage });
 
 function TelegraphPage() {
   return (

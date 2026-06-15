@@ -91,7 +91,7 @@ function AccountCard({ account: a, onVerify, onToggle, onDelete }: {
       <Avatar url={a.picture_url} platform={a.platform} />
 
       <Link
-        to={'/connections/meta/$accountId' as any}
+        to={'/app/connections/meta/$accountId' as any}
         params={{ accountId: a.id } as any}
         style={{ flex: 1, minWidth: 200, textDecoration: 'none', color: 'inherit' }}
       >

@@ -74,7 +74,7 @@ export function AppShell() {
                 variant="primary"
                 style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}
                 title="New post"
-                onClick={() => navigate({ to: '/compose' })}
+                onClick={() => navigate({ to: '/app/compose' })}
               >
                 <Icon name="plus" size={14} />{!isMobile && ' New post'}
               </Button>

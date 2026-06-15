@@ -16,7 +16,7 @@ import {
 } from '../lib/labels';
 import type { Strategy, StrategyRunSummary, PreviewItem } from '../api/types';
 
-export const Route = createFileRoute('/strategies')({ component: StrategiesPage });
+export const Route = createFileRoute('/app/strategies')({ component: StrategiesPage });
 
 const META_PLATFORMS = ['instagram', 'facebook', 'threads'];
 const PLATFORM_GLYPH: Record<string, IconName> = {

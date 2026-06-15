@@ -27,7 +27,7 @@ import {
 } from '../lib/labels';
 import type { Strategy, TrackedChannel } from '../api/types';
 
-export const Route = createFileRoute('/channels_/$id')({ component: ChannelDetailPage });
+export const Route = createFileRoute('/app/channels_/$id')({ component: ChannelDetailPage });
 
 function ChannelDetailPage() {
   const { id } = Route.useParams();
@@ -357,7 +357,7 @@ function StrategiesPanel({
   if (total === 0) {
     return (
       <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)', margin: 0 }}>
-        No strategies publish to this channel. <Link to="/strategies" className="link-accent">Add one</Link>.
+        No strategies publish to this channel. <Link to="/app/strategies" className="link-accent">Add one</Link>.
       </p>
     );
   }
@@ -418,7 +418,7 @@ function StrategyTableRow({
   return (
     <tr>
       <td>
-        <Link to="/strategies" className="link-accent" style={{ fontVariantNumeric: 'tabular-nums' }}>
+        <Link to="/app/strategies" className="link-accent" style={{ fontVariantNumeric: 'tabular-nums' }}>
           {s.ext_id}
         </Link>
         {role === 'forward' && (

@@ -4,7 +4,7 @@ import { BotsManager } from '../components/connections/BotsManager';
 
 // Standalone bots route kept for deep links; the canonical home is the
 // unified /connections page (Telegram tab).
-export const Route = createFileRoute('/bots')({ component: BotsPage });
+export const Route = createFileRoute('/app/bots')({ component: BotsPage });
 
 function BotsPage() {
   return (

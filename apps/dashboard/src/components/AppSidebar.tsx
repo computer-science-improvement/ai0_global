@@ -7,30 +7,33 @@ interface NavGroup { title: string; items: NavItem[]; }
 
 const GROUPS: NavGroup[] = [
   { title: 'Home', items: [
-    { to: '/', label: 'Overview', icon: 'overview' },
+    { to: '/app', label: 'Overview', icon: 'overview' },
   ]},
   { title: 'Publishing', items: [
-    { to: '/strategies', label: 'Strategies', icon: 'strategies' },
-    { to: '/scheduled',  label: 'Scheduled', icon: 'calendar' },
-    { to: '/channels',   label: 'My channels', icon: 'channels', search: { filter: 'mine' } },
+    { to: '/app/strategies', label: 'Strategies', icon: 'strategies' },
+    { to: '/app/scheduled',  label: 'Scheduled', icon: 'calendar' },
+    { to: '/app/channels',   label: 'My channels', icon: 'channels', search: { filter: 'mine' } },
   ]},
   { title: 'Analytics', items: [
-    { to: '/analytics', label: 'Analytics', icon: 'analytics' },
-    { to: '/logs',      label: 'Logs',       icon: 'logs' },
+    { to: '/app/analytics', label: 'Analytics', icon: 'analytics' },
+    { to: '/app/logs',      label: 'Logs',       icon: 'logs' },
   ]},
   { title: 'Intelligence', items: [
-    { to: '/discovery',       label: 'Discovery',     icon: 'discovery' },
-    { to: '/tracked',         label: 'Tracked',  icon: 'channels' },
-    { to: '/graph',           label: 'Graph',          icon: 'graph' },
-    { to: '/recommendations', label: 'Recommendations',  icon: 'recommendations' },
+    { to: '/app/discovery',       label: 'Discovery',     icon: 'discovery' },
+    { to: '/app/tracked',         label: 'Tracked',  icon: 'channels' },
+    { to: '/app/graph',           label: 'Graph',          icon: 'graph' },
+    { to: '/app/recommendations', label: 'Recommendations',  icon: 'recommendations' },
   ]},
   { title: 'Connections', items: [
-    { to: '/connections',        label: 'Telegram', icon: 'telegram', exact: true },
-    { to: '/connections/meta',   label: 'Meta',     icon: 'facebook' },
-    { to: '/connections/tiktok', label: 'TikTok',   icon: 'tiktok' },
+    { to: '/app/connections',        label: 'Telegram', icon: 'telegram', exact: true },
+    { to: '/app/connections/meta',   label: 'Meta',     icon: 'facebook' },
+    { to: '/app/connections/tiktok', label: 'TikTok',   icon: 'tiktok' },
+  ]},
+  { title: 'Marketing', items: [
+    { to: '/app/landing', label: 'Landing', icon: 'recommendations' },
   ]},
   { title: 'System', items: [
-    { to: '/settings', label: 'Settings', icon: 'settings' },
+    { to: '/app/settings', label: 'Settings', icon: 'settings' },
   ]},
 ];
 
@@ -82,7 +85,7 @@ export function AppSidebar({ isMobile = false, mobileOpen = false, onNavigate }:
     <aside style={style}>
       <div style={{ padding: '16px 14px 8px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <Link
-          to={'/' as any}
+          to={'/app' as any}
           onClick={onNavigate}
           style={{ display: 'flex', alignItems: 'center', gap: 8, color: 'var(--color-ink)', fontWeight: 600, letterSpacing: '-0.02em', textDecoration: 'none' }}
         >

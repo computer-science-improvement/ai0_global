@@ -10,7 +10,7 @@ import { SegmentedTabs } from '../components/SegmentedTabs';
 import type { GraphEdge } from '../api/types';
 import type { LayoutDirection } from '../lib/graph-layout';
 
-export const Route = createFileRoute('/graph')({ component: GraphPage });
+export const Route = createFileRoute('/app/graph')({ component: GraphPage });
 
 function GraphPage() {
   const [filters, setFilters] = useState({

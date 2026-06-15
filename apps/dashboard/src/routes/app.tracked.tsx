@@ -15,7 +15,7 @@ const PAGE_SIZE = 50;
 // manageable list that complements the Graph and Discovery views.
 interface Search { page: number; q: string; }
 
-export const Route = createFileRoute('/tracked')({
+export const Route = createFileRoute('/app/tracked')({
   validateSearch: (s: Record<string, unknown>): Search => ({
     page: Math.max(1, Number(s.page) || 1),
     q:    String(s.q ?? ''),

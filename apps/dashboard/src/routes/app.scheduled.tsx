@@ -8,7 +8,7 @@ import { useConfirm } from '../components/ui/ConfirmDialog';
 import { fmtDate } from '../lib/format';
 import type { ScheduledPost } from '../api/types';
 
-export const Route = createFileRoute('/scheduled')({ component: ScheduledPage });
+export const Route = createFileRoute('/app/scheduled')({ component: ScheduledPage });
 
 const TONE: Record<ScheduledPost['status'], 'neutral'|'success'|'warning'|'danger'> = {
   pending: 'neutral', sending: 'neutral', sent: 'success', failed: 'danger', canceled: 'warning',
@@ -31,7 +31,7 @@ function ScheduledPage() {
   return (
     <div>
       <PageHeader title="Scheduled" subtitle="Scheduled posts in Telegram"
-        actions={<button className="btn-primary" onClick={() => navigate({ to: '/compose' })}>+ New post</button>} />
+        actions={<button className="btn-primary" onClick={() => navigate({ to: '/app/compose' })}>+ New post</button>} />
       {isLoading && <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>Loading…</p>}
       <div className="table-wrap"><table className="table"><thead><tr>
         <th>Time</th><th>Channel</th><th>Sender</th><th>Status</th><th>Text</th><th style={{ textAlign:'right' }}>Actions</th>
@@ -45,7 +45,7 @@ function ScheduledPage() {
             <td className="meta" style={{ maxWidth: 280, overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap' }}>{p.text.replace(/<[^>]+>/g,'')}</td>
             <td style={{ textAlign:'right' }}>
               {p.status === 'pending' && <>
-                <button className="btn-tiny" onClick={() => navigate({ to: '/compose', search: { id: p.id } })}>Edit</button>
+                <button className="btn-tiny" onClick={() => navigate({ to: '/app/compose', search: { id: p.id } })}>Edit</button>
                 <button className="btn-tiny-danger" style={{ marginLeft: 6 }}
                   onClick={async () => { if (await confirm(`cancel the scheduled post`)) cancel.mutate(p.id); }}>Cancel</button>
               </>}

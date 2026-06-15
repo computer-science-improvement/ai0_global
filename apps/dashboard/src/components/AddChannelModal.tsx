@@ -56,7 +56,7 @@ export function AddChannelModal({ open, onClose, ownership = 'mine' }: {
     onSuccess: (res) => {
       qc.invalidateQueries({ queryKey: ['channels'] });
       reset(); onClose();
-      navigate({ to: '/channels/$id' as any, params: { id: res.id } as any });
+      navigate({ to: '/app/channels/$id' as any, params: { id: res.id } as any });
     },
   });
 
@@ -67,7 +67,7 @@ export function AddChannelModal({ open, onClose, ownership = 'mine' }: {
     onSuccess: (channel) => {
       qc.invalidateQueries({ queryKey: ['channels'] });
       reset(); onClose();
-      navigate({ to: '/channels/$id' as any, params: { id: channel.id } as any });
+      navigate({ to: '/app/channels/$id' as any, params: { id: channel.id } as any });
     },
   });
 

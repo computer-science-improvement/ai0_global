@@ -9,7 +9,7 @@ import { TikTokAccountsManager } from '../components/connections/TikTokAccountsM
 
 interface Search { tiktok?: 'connected' | 'error'; }
 
-export const Route = createFileRoute('/connections_/tiktok')({
+export const Route = createFileRoute('/app/connections_/tiktok')({
   validateSearch: (s: Record<string, unknown>): Search =>
     (s.tiktok === 'connected' || s.tiktok === 'error') ? { tiktok: s.tiktok } : {},
   component: TikTokConnectionsPage,

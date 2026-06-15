@@ -6,7 +6,7 @@ import { SubsHistoryChart } from '../components/SubsHistoryChart';
 import { StatCard } from '../components/ui/StatCard';
 import { Icon } from '../components/Icon';
 
-export const Route = createFileRoute('/connections_/meta_/$accountId')({ component: MetaAccountDetailPage });
+export const Route = createFileRoute('/app/connections_/meta_/$accountId')({ component: MetaAccountDetailPage });
 
 function InsightLoading() {
   return (
@@ -52,7 +52,7 @@ function MetaAccountDetailPage() {
 
   return (
     <div>
-      <Link to={'/connections/meta' as any} className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>
+      <Link to={'/app/connections/meta' as any} className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>
         ← Back to Meta accounts
       </Link>
 

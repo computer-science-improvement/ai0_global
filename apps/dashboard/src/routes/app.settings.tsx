@@ -28,7 +28,7 @@ const VALID: Tab[] = ['telegram', 'meta'];
 
 interface Search { tab: Tab; }
 
-export const Route = createFileRoute('/settings')({
+export const Route = createFileRoute('/app/settings')({
   validateSearch: (s: Record<string, unknown>): Search => ({
     tab: VALID.includes(s.tab as Tab) ? (s.tab as Tab) : 'telegram',
   }),

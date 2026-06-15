@@ -25,7 +25,7 @@ const VALID: Tab[] = ['sessions', 'bots', 'telegraph'];
 
 interface Search { tab: Tab; }
 
-export const Route = createFileRoute('/connections')({
+export const Route = createFileRoute('/app/connections')({
   validateSearch: (s: Record<string, unknown>): Search => ({
     tab: VALID.includes(s.tab as Tab) ? (s.tab as Tab) : 'sessions',
   }),

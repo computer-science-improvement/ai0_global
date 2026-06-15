@@ -7,7 +7,7 @@ import { TargetChannelPicker } from '../components/TargetChannelPicker';
 import { Icon } from '../components/Icon';
 import { useChannelThemes, useRecommendations } from '../api/discovery';
 
-export const Route = createFileRoute('/recommendations')({
+export const Route = createFileRoute('/app/recommendations')({
   component: RecommendationsPage,
 });
 

@@ -22,7 +22,7 @@ const VALID: Tab[] = ['facebook', 'instagram', 'threads'];
 
 interface Search { tab: Tab; }
 
-export const Route = createFileRoute('/connections_/meta')({
+export const Route = createFileRoute('/app/connections_/meta')({
   validateSearch: (s: Record<string, unknown>): Search => ({
     tab: VALID.includes(s.tab as Tab) ? (s.tab as Tab) : 'facebook',
   }),
