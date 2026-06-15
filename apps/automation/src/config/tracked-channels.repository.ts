@@ -29,6 +29,17 @@ export interface TrackedFeaturedRow {
   landing_order: number;
 }
 
+/** Admin landing surface: every is-mine channel (visible or not) with subs_count. */
+export interface TrackedCandidateRow {
+  id:              string;
+  channel_key:     string | null;
+  username:        string | null;
+  title:           string | null;
+  subs_count:      number | null;
+  landing_visible: boolean;
+  landing_order:   number;
+}
+
 export interface TrackedChannelUpsertInput {
   channel_key:  string;
   username:     string | null;
@@ -94,6 +105,17 @@ export class TrackedChannelsConfigRepository {
       `UPDATE tracked_channels SET landing_visible = $2, landing_order = $3 WHERE id = $1`,
       [id, opts.visible, opts.order],
     );
+  }
+
+  /** Admin: all is-mine channels (visible or not) with subs_count for ordering. */
+  async listLandingCandidates(): Promise<TrackedCandidateRow[]> {
+    const { rows } = await this.pool.query<TrackedCandidateRow>(
+      `SELECT id, channel_key, username, title, subs_count, landing_visible, landing_order
+       FROM tracked_channels
+       WHERE is_mine = true
+       ORDER BY landing_order, added_at`,
+    );
+    return rows;
   }
 
   async listFeatured(): Promise<TrackedFeaturedRow[]> {

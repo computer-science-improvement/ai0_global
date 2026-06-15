@@ -30,6 +30,7 @@ import { TikTokAccountsController } from './api/tiktok-accounts.controller';
 import { TikTokOAuthController } from './api/tiktok-oauth.controller';
 import { LandingResourcesService } from './landing-resources.service';
 import { LandingController } from './api/landing.controller';
+import { LandingAdminController } from './api/landing-admin.controller';
 import { StrategiesController } from './api/strategies.controller';
 import { ForwardRoutesController } from './api/forward-routes.controller';
 import { AuthModule } from '../auth/auth.module';
@@ -38,7 +39,7 @@ import { ContentRunwayModule } from '../common/content-runway/content-runway.mod
 @Global()
 @Module({
   imports: [NestConfigModule, DatabaseModule, TrackingModule, AuthModule, ContentRunwayModule],
-  controllers: [MyBotsController, TelegraphAccountsController, MetaAccountsController, MetaCrosspostsController, StrategiesController, ForwardRoutesController, TikTokAccountsController, TikTokOAuthController, LandingController],
+  controllers: [MyBotsController, TelegraphAccountsController, MetaAccountsController, MetaCrosspostsController, StrategiesController, ForwardRoutesController, TikTokAccountsController, TikTokOAuthController, LandingController, LandingAdminController],
   providers: [
     ChannelConfigService,
     ConfigCacheService,
