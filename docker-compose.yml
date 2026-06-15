@@ -93,28 +93,11 @@ services:
       automation:
         condition: service_started
 
-  # ─── Caddy (TLS reverse proxy for the public domain) ─────────────────────────
-  # Fronts the dashboard on :80/:443 with an automatic Let's Encrypt certificate
-  # for $PUBLIC_DOMAIN (dev-stage default: dev.ai0.global). The dashboard's own
-  # nginx still serves the SPA + proxies /api + /auth, so Caddy only adds TLS and
-  # the bare-domain entrypoint. Requires the domain's DNS → this host and ports
-  # 80/443 open in the droplet firewall (ACME challenge + traffic).
-  caddy:
-    profiles: ["prod"]
-    image: caddy:2-alpine
-    restart: unless-stopped
-    ports:
-      - "80:80"
-      - "443:443"
-    environment:
-      PUBLIC_DOMAIN: ${PUBLIC_DOMAIN:-dev.ai0.global}
-    volumes:
-      - ./Caddyfile:/etc/caddy/Caddyfile:ro
-      - caddy_data:/data
-      - caddy_config:/config
-    depends_on:
-      dashboard:
-        condition: service_started
+  # NOTE: TLS for the public domain (dev.ai0.global) is handled by the EXISTING
+  # host-level Caddy (the n8n stack's `n8n-caddy`, which already owns :80/:443).
+  # We do NOT run our own Caddy here — it would collide on those ports. Add a
+  # vhost to that Caddy: `dev.ai0.global { reverse_proxy <host>:${DASHBOARD_PORT} }`.
+  # The dashboard publishes host port ${DASHBOARD_PORT:-8080} for that proxy.
 
   # ─── Pipeline (job — run on demand or via cron) ──────────────────────────────
   pipeline:
@@ -142,5 +125,3 @@ services:
 volumes:
   pgdata:
   redisdata:
-  caddy_data:
-  caddy_config:

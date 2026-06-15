@@ -110,8 +110,8 @@ jobs:
             export AUTOMATION_IMAGE="ghcr.io/${OWNER}/ai0_global-automation:dev-latest"
             export DASHBOARD_IMAGE="ghcr.io/${OWNER}/ai0_global-dashboard:dev-latest"
 
-            docker compose --profile prod pull automation dashboard caddy
-            docker compose --profile prod up -d automation dashboard caddy
+            docker compose --profile prod pull automation dashboard
+            docker compose --profile prod up -d automation dashboard
             docker compose --profile prod restart automation
 
             docker image prune -f
