@@ -113,7 +113,7 @@ function LogsPage() {
           <div className="table-wrap">
             <table className="table">
               <thead><tr>
-                <th>Time</th><th>Type</th><th>Channel</th><th>Strategy</th><th>Details</th>
+                <th>Time</th><th>Type</th><th>Destination</th><th>Strategy</th><th>Details</th>
               </tr></thead>
               <tbody>
                 {items.map((e) => {
