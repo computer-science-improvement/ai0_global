@@ -28,6 +28,8 @@ import { MetaCrosspostsController } from './api/meta-crossposts.controller';
 import { TikTokOAuthService } from './tiktok-oauth.service';
 import { TikTokAccountsController } from './api/tiktok-accounts.controller';
 import { TikTokOAuthController } from './api/tiktok-oauth.controller';
+import { LandingResourcesService } from './landing-resources.service';
+import { LandingController } from './api/landing.controller';
 import { StrategiesController } from './api/strategies.controller';
 import { ForwardRoutesController } from './api/forward-routes.controller';
 import { AuthModule } from '../auth/auth.module';
@@ -36,7 +38,7 @@ import { ContentRunwayModule } from '../common/content-runway/content-runway.mod
 @Global()
 @Module({
   imports: [NestConfigModule, DatabaseModule, TrackingModule, AuthModule, ContentRunwayModule],
-  controllers: [MyBotsController, TelegraphAccountsController, MetaAccountsController, MetaCrosspostsController, StrategiesController, ForwardRoutesController, TikTokAccountsController, TikTokOAuthController],
+  controllers: [MyBotsController, TelegraphAccountsController, MetaAccountsController, MetaCrosspostsController, StrategiesController, ForwardRoutesController, TikTokAccountsController, TikTokOAuthController, LandingController],
   providers: [
     ChannelConfigService,
     ConfigCacheService,
@@ -57,6 +59,7 @@ import { ContentRunwayModule } from '../common/content-runway/content-runway.mod
     TikTokAccountsRepository,
     TikTokTokenService,
     TikTokOAuthService,
+    LandingResourcesService,
   ],
   exports: [
     ChannelConfigService,
