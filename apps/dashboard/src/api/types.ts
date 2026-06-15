@@ -287,6 +287,7 @@ export interface MetaAccount {
   username:         string | null;
   display_name:     string | null;
   followers:        number | null;
+  followers_delta_24h: number | null;
   picture_url:      string | null;
   active:           boolean;
   last_verified_at: string | null;

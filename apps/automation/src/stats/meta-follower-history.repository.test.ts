@@ -57,3 +57,15 @@ test('latestWithDelta returns nulls when there is no history', async () => {
   const out = await repo.latestWithDelta('acct-1');
   assert.deepEqual(out, { followers: null, delta24h: null, delta7d: null });
 });
+
+test('delta24hByAccount maps account_id → delta', async () => {
+  const pool = { query: async (_sql: string) => ({ rows: [
+    { account_id: 'a1', delta24h: 12 },
+    { account_id: 'a2', delta24h: null },
+  ] }) };
+  const repo = new MetaFollowerHistoryRepository(pool as any);
+  const m = await repo.delta24hByAccount();
+  assert.equal(m.get('a1'), 12);
+  assert.equal(m.get('a2'), null);
+  assert.equal(m.get('missing'), undefined);
+});
