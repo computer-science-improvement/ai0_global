@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from '@tanstack/react-router';
+import { createFileRoute } from '@tanstack/react-router';
 import { motion } from 'motion/react';
 import { Button } from '../components/ui/Button';
 import { Badge } from '../components/ui/Badge';
@@ -42,7 +42,6 @@ function LandingPage() {
           <span className="dot" />
           ai0
         </span>
-        <Link to={'/login' as any} className="lp-topbar-cta">Sign in</Link>
       </header>
 
       <main className="lp-main">
@@ -84,12 +83,7 @@ function LandingPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, delay: 0.22, ease: [0.2, 0.7, 0.2, 1] }}
           >
-            <Link to={'/login' as any} style={{ textDecoration: 'none' }}>
-              <Button variant="primary" style={{ padding: '12px 22px', fontSize: 15 }}>
-                Open the dashboard
-              </Button>
-            </Link>
-            <a href="#resources" className="lp-hero-secondary">See the network ↓</a>
+            <a href="#resources" className="lp-hero-cta-primary">Explore the network ↓</a>
           </motion.div>
 
           {/* Platform rail — staggered children. */}
@@ -168,7 +162,6 @@ function LandingPage() {
         <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>
           © {new Date().getFullYear()} ai0 — multi-channel publishing network
         </span>
-        <Link to={'/login' as any} className="lp-footer-link">Operator sign-in</Link>
       </footer>
 
       <style>{`
@@ -253,11 +246,14 @@ function LandingPage() {
           display: flex; align-items: center; gap: var(--space-xl);
           margin-top: var(--space-xxl); flex-wrap: wrap; justify-content: center;
         }
-        .lp-hero-secondary {
-          color: var(--color-ink-muted); text-decoration: none;
-          font-size: 14px; font-weight: 500; letter-spacing: -0.14px;
+        .lp-hero-cta-primary {
+          display: inline-flex; align-items: center; gap: 8px;
+          padding: 12px 22px; border-radius: var(--radius-sm);
+          background: var(--color-accent); color: var(--color-on-accent);
+          text-decoration: none; font-size: 15px; font-weight: 600; letter-spacing: -0.15px;
+          transition: background 0.15s ease;
         }
-        .lp-hero-secondary:hover { color: var(--color-ink); opacity: 1; }
+        .lp-hero-cta-primary:hover { background: var(--color-accent-deep); }
 
         .lp-rail {
           display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-sm);
