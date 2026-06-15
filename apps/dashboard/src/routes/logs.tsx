@@ -38,8 +38,8 @@ const TYPE_META: Record<ActivityType, { label: string; tone: 'success' | 'danger
 // Page-local platform chooser — mirrors the header/connections grouping.
 const PLATFORMS: ReadonlyArray<{ key: string; label: string; icon: IconName; enabled: boolean }> = [
   { key: 'telegram', label: 'Telegram', icon: 'telegram', enabled: true },
-  { key: 'meta',     label: 'Meta',     icon: 'facebook', enabled: false },
-  { key: 'tiktok',   label: 'TikTok',   icon: 'tiktok',   enabled: false },
+  { key: 'meta',     label: 'Meta',     icon: 'facebook', enabled: true },
+  { key: 'tiktok',   label: 'TikTok',   icon: 'tiktok',   enabled: true },
 ];
 
 function PlatformChips({ value, onChange }: { value: string; onChange: (v: string) => void }) {

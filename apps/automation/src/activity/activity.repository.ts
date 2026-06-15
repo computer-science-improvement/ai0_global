@@ -9,6 +9,7 @@ export interface ActivityRow {
   at:          Date;
   type:        'posted' | 'error' | 'skipped' | 'running';
   status:      string;
+  platform:    string;
   channel_id:  string | null;
   channel:     string | null;
   strategy_id: string | null;
@@ -20,6 +21,8 @@ export interface ActivityRow {
 export type ActivityType = ActivityRow['type'];
 
 export interface ActivityListParams {
+  /** Concrete binding platforms to include, e.g. ['telegram'] or ['instagram','facebook','threads']. */
+  platforms: string[];
   type?:   ActivityType | null;
   limit:   number;
   offset:  number;
@@ -35,7 +38,7 @@ export class ActivityRepository {
    * labels resolve via LEFT JOIN so a deleted/private channel still renders.
    * Fetches `limit + 1` rows so the caller can compute `hasMore` without COUNT.
    */
-  async list({ type, limit, offset }: ActivityListParams): Promise<ActivityRow[]> {
+  async list({ platforms, type, limit, offset }: ActivityListParams): Promise<ActivityRow[]> {
     const { rows } = await this.pool.query<ActivityRow>(
       `SELECT * FROM (
          SELECT
@@ -49,9 +52,11 @@ export class ActivityRepository {
              ELSE 'running'
            END                                               AS type,
            sr.status                                         AS status,
+           COALESCE(sb.platform, 'telegram')                 AS platform,
            tc.id::text                                       AS channel_id,
            COALESCE(tc.channel_key, tc.username, tc.title,
-                    '@' || ma.username, ma.account_id)       AS channel,
+                    '@' || ma.username, ma.account_id,
+                    '@' || tt.username, tt.open_id)           AS channel,
            sb.id::text                                       AS strategy_id,
            sr.ext_id                                         AS strategy,
            sr.error                                          AS detail,
@@ -60,6 +65,7 @@ export class ActivityRepository {
          LEFT JOIN strategy_bindings sb ON sb.id = sr.strategy_id
          LEFT JOIN tracked_channels  tc ON tc.id = sb.channel_id
          LEFT JOIN meta_accounts     ma ON ma.id = sb.meta_account_id
+         LEFT JOIN tiktok_accounts   tt ON tt.id = sb.tiktok_account_id
 
          UNION ALL
 
@@ -74,6 +80,7 @@ export class ActivityRepository {
              ELSE 'running'
            END                                               AS type,
            sp.status                                         AS status,
+           'telegram'                                        AS platform,
            tc.id::text                                       AS channel_id,
            COALESCE(tc.channel_key, tc.username, tc.title)   AS channel,
            NULL::text                                        AS strategy_id,
@@ -83,10 +90,11 @@ export class ActivityRepository {
          FROM scheduled_publications sp
          LEFT JOIN tracked_channels tc ON tc.id = sp.channel_id
        ) ev
-       WHERE ($1::text IS NULL OR ev.type = $1)
+       WHERE ev.platform = ANY($1::text[])
+         AND ($2::text IS NULL OR ev.type = $2)
        ORDER BY ev.at DESC
-       LIMIT $2 OFFSET $3`,
-      [type ?? null, limit + 1, offset],
+       LIMIT $3 OFFSET $4`,
+      [platforms, type ?? null, limit + 1, offset],
     );
     return rows;
   }

@@ -20,6 +20,13 @@ export interface ActivityListResult {
   hasMore: boolean;
 }
 
+/** UI platform tab → the concrete binding platforms it covers. */
+const PLATFORM_SETS: Record<string, string[]> = {
+  telegram: ['telegram'],
+  meta:     ['instagram', 'facebook', 'threads'],
+  tiktok:   ['tiktok'],
+};
+
 @Injectable()
 export class ActivityService {
   constructor(private readonly repo: ActivityRepository) {}
@@ -30,10 +37,8 @@ export class ActivityService {
     limit:    number;
     offset:   number;
   }): Promise<ActivityListResult> {
-    // All current activity is Telegram; other platforms have no data yet.
-    if (opts.platform !== 'telegram') return { items: [], hasMore: false };
-
-    const rows = await this.repo.list({ type: opts.type ?? null, limit: opts.limit, offset: opts.offset });
+    const platforms = PLATFORM_SETS[opts.platform] ?? ['telegram'];
+    const rows = await this.repo.list({ platforms, type: opts.type ?? null, limit: opts.limit, offset: opts.offset });
     const hasMore = rows.length > opts.limit;
     const items = rows.slice(0, opts.limit).map((r): ActivityEvent => ({
       id:         `${r.source}:${r.row_id}`,
