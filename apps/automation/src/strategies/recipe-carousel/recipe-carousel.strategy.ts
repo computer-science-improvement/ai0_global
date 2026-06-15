@@ -16,8 +16,9 @@ import {
 import { Skill } from '../../common/ai/skills/skill.interface';
 
 /**
- * recipe-carousel — Meta-only. Renders a Telegram-published recipe into 3 slides,
- * hosts them, publishes an IG/Threads carousel or FB album, records per-destination
+ * recipe-carousel — Meta + TikTok. Renders a Telegram-published recipe into 3 slides,
+ * hosts them, publishes an IG/Threads carousel, FB album, or TikTok photo carousel (9:16),
+ * records per-destination
  * dedup, and deletes the hosted slides. The Telegram recipes strategy owns
  * translation; this strategy only consumes already-translated rows.
  */

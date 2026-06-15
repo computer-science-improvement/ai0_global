@@ -12,9 +12,9 @@ export interface PublishDestination {
   token?: string;
   /** Meta account UUID (null for Telegram). */
   metaAccountId: string | null;
-  /** Dedup key written into the `posted` JSONB: 'TELEGRAM' | 'IG:<uuid>' | 'FB:<uuid>' | 'TH:<uuid>'. */
+  /** Dedup key in the `posted` JSONB: 'TELEGRAM' | 'IG:<uuid>' | 'FB:<uuid>' | 'TH:<uuid>' | 'TT:<uuid>'. */
   postedKey: string;
-  /** Posting-throttle key: TG channel_key, or 'meta:<uuid>'. */
+  /** Posting-throttle key: TG channel_key, 'meta:<uuid>', or 'tiktok:<uuid>'. */
   throttleKey: string;
 }
 

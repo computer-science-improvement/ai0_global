@@ -229,6 +229,20 @@ export class StrategiesController {
     if (body.channel_id !== undefined && body.meta_account_id !== undefined) {
       throw new BadRequestException('cannot set both channel_id and meta_account_id');
     }
+    // TikTok destination — mirror create()'s validation so a patch can't persist an
+    // invalid binding (unknown account / incompatible platform / multiple destinations).
+    if (body.tiktok_account_id !== undefined && body.tiktok_account_id !== null) {
+      const acct = await this.tiktokAccounts.findById(body.tiktok_account_id);
+      if (!acct) throw new BadRequestException(`tiktok account ${body.tiktok_account_id} not found`);
+      if (body.channel_id !== undefined) throw new BadRequestException('cannot set both channel_id and tiktok_account_id');
+      if (body.meta_account_id !== undefined) throw new BadRequestException('cannot set both meta_account_id and tiktok_account_id');
+    }
+    if (body.platform !== undefined) {
+      const supported = this.registry.supportedPlatforms(body.type ?? existing.type);
+      if (!supported.includes(body.platform)) {
+        throw new BadRequestException(`strategy ${body.type ?? existing.type} does not support platform ${body.platform}`);
+      }
+    }
 
     const updated = await this.repo.update(id, body);
     await this.publisher.publish('strategy', id);
