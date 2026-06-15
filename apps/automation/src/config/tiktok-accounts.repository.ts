@@ -97,4 +97,9 @@ export class TikTokAccountsRepository {
   async setActive(id: string, active: boolean): Promise<void> {
     await this.pool.query(`UPDATE tiktok_accounts SET active = $2 WHERE id = $1`, [id, active]);
   }
+
+  async delete(id: string): Promise<boolean> {
+    const { rowCount } = await this.pool.query(`DELETE FROM tiktok_accounts WHERE id = $1`, [id]);
+    return (rowCount ?? 0) > 0;
+  }
 }

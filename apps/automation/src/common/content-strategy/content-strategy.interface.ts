@@ -1,5 +1,6 @@
 import { Skill } from '../ai/skills/skill.interface';
 import type { PublishDestination } from './publish-destination';
+import type { DestinationPlatform } from './publish-destination';
 
 // ─── Strategy params (passed from config) ────────────────────────────────────
 
@@ -25,6 +26,9 @@ export type StrategyParams = Record<string, unknown>;
 export interface ContentStrategy {
   /** Unique type name used in config (e.g. 'rss', 'on-this-day') */
   readonly type: string;
+
+  /** Platforms this strategy can publish to. Absent → ['telegram']. */
+  readonly supportedPlatforms?: DestinationPlatform[];
 
   /**
    * Return skills for the review step.

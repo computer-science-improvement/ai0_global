@@ -25,6 +25,9 @@ import { MyBotsController } from './api/my-bots.controller';
 import { TelegraphAccountsController } from './api/telegraph-accounts.controller';
 import { MetaAccountsController } from './api/meta-accounts.controller';
 import { MetaCrosspostsController } from './api/meta-crossposts.controller';
+import { TikTokOAuthService } from './tiktok-oauth.service';
+import { TikTokAccountsController } from './api/tiktok-accounts.controller';
+import { TikTokOAuthController } from './api/tiktok-oauth.controller';
 import { StrategiesController } from './api/strategies.controller';
 import { ForwardRoutesController } from './api/forward-routes.controller';
 import { AuthModule } from '../auth/auth.module';
@@ -33,7 +36,7 @@ import { ContentRunwayModule } from '../common/content-runway/content-runway.mod
 @Global()
 @Module({
   imports: [NestConfigModule, DatabaseModule, TrackingModule, AuthModule, ContentRunwayModule],
-  controllers: [MyBotsController, TelegraphAccountsController, MetaAccountsController, MetaCrosspostsController, StrategiesController, ForwardRoutesController],
+  controllers: [MyBotsController, TelegraphAccountsController, MetaAccountsController, MetaCrosspostsController, StrategiesController, ForwardRoutesController, TikTokAccountsController, TikTokOAuthController],
   providers: [
     ChannelConfigService,
     ConfigCacheService,
@@ -53,6 +56,7 @@ import { ContentRunwayModule } from '../common/content-runway/content-runway.mod
     MetaCrosspostTargetsRepository,
     TikTokAccountsRepository,
     TikTokTokenService,
+    TikTokOAuthService,
   ],
   exports: [
     ChannelConfigService,

@@ -27,12 +27,16 @@ export class CreateStrategyDto {
   channel_id?: string;
 
   @IsOptional()
-  @IsIn(['telegram', 'instagram', 'facebook', 'threads'])
-  platform?: 'telegram' | 'instagram' | 'facebook' | 'threads';
+  @IsIn(['telegram', 'instagram', 'facebook', 'threads', 'tiktok'])
+  platform?: 'telegram' | 'instagram' | 'facebook' | 'threads' | 'tiktok';
 
   @IsOptional()
   @IsUUID()
   meta_account_id?: string;
+
+  @IsOptional()
+  @IsUUID()
+  tiktok_account_id?: string;
 
   // Cron expression — validated at controller-level against the `cron` lib
   // because class-validator's CronExpression validator is opinionated.
@@ -73,10 +77,14 @@ export class PatchStrategyDto {
   low_content_threshold?: number | null;
 
   @IsOptional()
-  @IsIn(['telegram', 'instagram', 'facebook', 'threads'])
-  platform?: 'telegram' | 'instagram' | 'facebook' | 'threads';
+  @IsIn(['telegram', 'instagram', 'facebook', 'threads', 'tiktok'])
+  platform?: 'telegram' | 'instagram' | 'facebook' | 'threads' | 'tiktok';
 
   @IsOptional()
   @IsUUID()
   meta_account_id?: string;
+
+  @IsOptional()
+  @IsUUID()
+  tiktok_account_id?: string;
 }

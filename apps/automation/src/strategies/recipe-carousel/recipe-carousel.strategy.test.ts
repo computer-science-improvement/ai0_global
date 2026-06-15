@@ -46,6 +46,7 @@ function build(over: any = {}) {
   const registry = { register() {} };
   const s = new RecipeCarouselStrategy(
     repo as any, renderer as any, hosting as any, dispatcher as any, images as any, registry as any,
+    { publishCarousel: async () => 'x' } as any,
   );
   return { s, calls };
 }

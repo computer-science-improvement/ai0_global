@@ -12,7 +12,8 @@ import {
 import { CuratedPromptsRepository, CuratedPromptRow } from './curated-prompts.repository';
 import { PublisherDispatcher } from '../../publishers/publisher-dispatcher.service';
 import { isPermanentMetaMediaError } from '../../publishers/meta-graph.util';
-import type { PublishDestination } from '../../common/content-strategy/publish-destination';
+import type { PublishDestination, DestinationPlatform } from '../../common/content-strategy/publish-destination';
+import type { MetaPlatform } from '../../config/meta-accounts.repository';
 
 const CAPTION_MAX = 1024;
 const REPLY_MAX   = 4096;
@@ -32,6 +33,7 @@ function hashtag(category: string | null): string {
 export class CuratedPromptsStrategy implements ContentStrategy, OnModuleInit {
   private readonly logger = new Logger(CuratedPromptsStrategy.name);
   readonly type = 'curated-prompts';
+  readonly supportedPlatforms: DestinationPlatform[] = ['telegram', 'instagram', 'facebook', 'threads'];
 
   constructor(
     private readonly registry:     ContentStrategyRegistry,
@@ -70,7 +72,7 @@ export class CuratedPromptsStrategy implements ContentStrategy, OnModuleInit {
       }
       try {
         const id = await this.dispatcher.publish(
-          dest.platform,
+          dest.platform as MetaPlatform,
           { text: caption, imageUrl: row.media_url, source: '', tags: row.category ? [row.category] : [] },
           { id: dest.targetId, token: dest.token },
         );

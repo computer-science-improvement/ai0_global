@@ -10,7 +10,8 @@ import { CrossPostService }        from '../../publishers/cross-post.service';
 import { PublicationsRepository }  from '../../stats/publications.repository';
 import { PublisherDispatcher }     from '../../publishers/publisher-dispatcher.service';
 import { isPermanentMetaMediaError } from '../../publishers/meta-graph.util';
-import type { PublishDestination } from '../../common/content-strategy/publish-destination';
+import type { PublishDestination, DestinationPlatform } from '../../common/content-strategy/publish-destination';
+import type { MetaPlatform } from '../../config/meta-accounts.repository';
 import { RECIPES_CHANNEL_SKILL }   from '../../common/ai/skills/recipes-channel.skill';
 import { Skill }                   from '../../common/ai/skills/skill.interface';
 import {
@@ -39,6 +40,7 @@ function escapeHtml(s: string): string {
 export class RecipesStrategy implements ContentStrategy, OnModuleInit {
   private readonly logger = new Logger(RecipesStrategy.name);
   readonly type = 'recipes';
+  readonly supportedPlatforms: DestinationPlatform[] = ['telegram', 'instagram', 'facebook', 'threads'];
 
   constructor(
     private readonly claude:       ClaudeAgent,
@@ -90,7 +92,7 @@ export class RecipesStrategy implements ContentStrategy, OnModuleInit {
       const caption = this.buildCaption(uk.titleUk, row.category, uk.ingredientsUk, nutri);
       try {
         const id = await this.dispatcher.publish(
-          dest.platform,
+          dest.platform as MetaPlatform,
           { text: caption, imageUrl: row.image_url, source: '', tags: row.category ? [row.category] : [] },
           { id: dest.targetId, token: dest.token! },
         );

@@ -30,6 +30,16 @@ export function useStrategies() {
   });
 }
 
+export interface StrategyTypeInfo { type: string; supportedPlatforms: string[]; }
+
+/** Registered strategy types + the platforms each supports (for the binding form filter). */
+export function useStrategyTypes() {
+  return useQuery({
+    queryKey: ['strategy-types'],
+    queryFn:  () => api<StrategyTypeInfo[]>('/api/strategies/types'),
+  });
+}
+
 export interface CreateStrategyInput {
   ext_id:      string;
   type:        string;
@@ -37,8 +47,9 @@ export interface CreateStrategyInput {
   schedule:    string;
   params?:     Record<string, unknown>;
   enabled?:    boolean;
-  platform?:   'telegram' | 'instagram' | 'facebook' | 'threads';
+  platform?:   'telegram' | 'instagram' | 'facebook' | 'threads' | 'tiktok';
   meta_account_id?: string;
+  tiktok_account_id?: string;
 }
 
 export function useCreateStrategy() {

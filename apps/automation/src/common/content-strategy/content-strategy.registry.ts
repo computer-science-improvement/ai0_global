@@ -1,5 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { ContentStrategy } from './content-strategy.interface';
+import type { DestinationPlatform } from './publish-destination';
 
 /**
  * Registry for content strategies.
@@ -29,5 +30,10 @@ export class ContentStrategyRegistry {
 
   types(): string[] {
     return Array.from(this.strategies.keys());
+  }
+
+  /** Platforms a strategy type can target; defaults to ['telegram']. */
+  supportedPlatforms(type: string): DestinationPlatform[] {
+    return this.strategies.get(type)?.supportedPlatforms ?? ['telegram'];
   }
 }

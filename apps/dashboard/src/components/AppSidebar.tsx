@@ -27,7 +27,7 @@ const GROUPS: NavGroup[] = [
   { title: 'Connections', items: [
     { to: '/connections',        label: 'Telegram', icon: 'telegram', exact: true },
     { to: '/connections/meta',   label: 'Meta',     icon: 'facebook' },
-    { to: '/connections/tiktok', label: 'TikTok',   icon: 'tiktok', soon: true },
+    { to: '/connections/tiktok', label: 'TikTok',   icon: 'tiktok' },
   ]},
   { title: 'System', items: [
     { to: '/settings', label: 'Settings', icon: 'settings' },

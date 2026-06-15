@@ -4,6 +4,7 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { MetaAccountsRepository } from '../../config/meta-accounts.repository';
+import { TikTokAccountsRepository } from '../../config/tiktok-accounts.repository';
 import type { ResolvedStrategyBinding } from '../../config/channel-config.service';
 import { PublishDestination, META_POSTED_PREFIX } from './publish-destination';
 
@@ -12,6 +13,7 @@ export class DestinationResolver {
   constructor(
     private readonly metaAccounts: MetaAccountsRepository,
     private readonly config: ConfigService,
+    private readonly tiktok: TikTokAccountsRepository,
   ) {}
 
   async resolve(b: ResolvedStrategyBinding): Promise<PublishDestination> {
@@ -23,6 +25,20 @@ export class DestinationResolver {
         metaAccountId: null,
         postedKey: 'TELEGRAM',
         throttleKey: b.channelId,
+      };
+    }
+
+    if (b.platform === 'tiktok') {
+      if (!b.tiktokAccountId) throw new Error(`binding ${b.id}: platform tiktok requires a tiktok_account_id`);
+      const acct = await this.tiktok.findById(b.tiktokAccountId);
+      if (!acct) throw new Error(`binding ${b.id}: tiktok account ${b.tiktokAccountId} not found`);
+      if (!acct.active) throw new Error(`binding ${b.id}: tiktok account ${acct.id} is inactive`);
+      return {
+        platform: 'tiktok',
+        targetId: acct.id,
+        metaAccountId: null,
+        postedKey: `TT:${acct.id}`,
+        throttleKey: `tiktok:${acct.id}`,
       };
     }
 
