@@ -7,7 +7,7 @@ function binding(over: Partial<ResolvedStrategyBinding> = {}): ResolvedStrategyB
   return {
     id: 'recipes-ig', uuid: 'u1', type: 'recipes', channelId: '',
     schedule: '0 9 * * *', params: {}, enabled: true,
-    platform: 'instagram', metaAccountId: 'acct-1', ...over,
+    platform: 'instagram', metaAccountId: 'acct-1', tiktokAccountId: null, ...over,
   };
 }
 
@@ -22,7 +22,7 @@ const account = {
 function make(over: { account?: any; env?: Record<string, string> } = {}) {
   const repo = { findById: async (_id: string) => (over.account === undefined ? account : over.account) };
   const config = { get: (k: string) => (over.env ?? { INSTAGRAM_TOKEN: 'tok-123' })[k] };
-  return new DestinationResolver(repo as any, config as any);
+  return new DestinationResolver(repo as any, config as any, { findById: async () => null } as any);
 }
 
 test('telegram binding maps to channel destination', async () => {

@@ -31,6 +31,8 @@ export interface ResolvedStrategyBinding {
   platform:   DestinationPlatform;
   /** Meta account UUID when platform != 'telegram'; null otherwise. */
   metaAccountId: string | null;
+  /** TikTok account UUID when platform == 'tiktok'; null otherwise. */
+  tiktokAccountId: string | null;
 }
 
 export interface ForwardRoute {
@@ -122,6 +124,7 @@ export class ChannelConfigService implements OnApplicationBootstrap {
         enabled:   b.enabled,
         platform:  b.platform,
         metaAccountId: b.meta_account_id,
+        tiktokAccountId: b.tiktok_account_id,
       };
     });
   }
