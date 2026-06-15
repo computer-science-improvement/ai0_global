@@ -20,6 +20,7 @@ import { Route as AppSettingsRouteImport } from './routes/app.settings'
 import { Route as AppScheduledRouteImport } from './routes/app.scheduled'
 import { Route as AppRecommendationsRouteImport } from './routes/app.recommendations'
 import { Route as AppLogsRouteImport } from './routes/app.logs'
+import { Route as AppLandingRouteImport } from './routes/app.landing'
 import { Route as AppGraphRouteImport } from './routes/app.graph'
 import { Route as AppDiscoveryRouteImport } from './routes/app.discovery'
 import { Route as AppConnectionsRouteImport } from './routes/app.connections'
@@ -87,6 +88,11 @@ const AppRecommendationsRoute = AppRecommendationsRouteImport.update({
 const AppLogsRoute = AppLogsRouteImport.update({
   id: '/logs',
   path: '/logs',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppLandingRoute = AppLandingRouteImport.update({
+  id: '/landing',
+  path: '/landing',
   getParentRoute: () => AppRoute,
 } as any)
 const AppGraphRoute = AppGraphRouteImport.update({
@@ -168,6 +174,7 @@ export interface FileRoutesByFullPath {
   '/app/connections': typeof AppConnectionsRouteWithChildren
   '/app/discovery': typeof AppDiscoveryRoute
   '/app/graph': typeof AppGraphRoute
+  '/app/landing': typeof AppLandingRoute
   '/app/logs': typeof AppLogsRoute
   '/app/recommendations': typeof AppRecommendationsRoute
   '/app/scheduled': typeof AppScheduledRoute
@@ -193,6 +200,7 @@ export interface FileRoutesByTo {
   '/app/connections': typeof AppConnectionsRouteWithChildren
   '/app/discovery': typeof AppDiscoveryRoute
   '/app/graph': typeof AppGraphRoute
+  '/app/landing': typeof AppLandingRoute
   '/app/logs': typeof AppLogsRoute
   '/app/recommendations': typeof AppRecommendationsRoute
   '/app/scheduled': typeof AppScheduledRoute
@@ -220,6 +228,7 @@ export interface FileRoutesById {
   '/app/connections': typeof AppConnectionsRouteWithChildren
   '/app/discovery': typeof AppDiscoveryRoute
   '/app/graph': typeof AppGraphRoute
+  '/app/landing': typeof AppLandingRoute
   '/app/logs': typeof AppLogsRoute
   '/app/recommendations': typeof AppRecommendationsRoute
   '/app/scheduled': typeof AppScheduledRoute
@@ -248,6 +257,7 @@ export interface FileRouteTypes {
     | '/app/connections'
     | '/app/discovery'
     | '/app/graph'
+    | '/app/landing'
     | '/app/logs'
     | '/app/recommendations'
     | '/app/scheduled'
@@ -273,6 +283,7 @@ export interface FileRouteTypes {
     | '/app/connections'
     | '/app/discovery'
     | '/app/graph'
+    | '/app/landing'
     | '/app/logs'
     | '/app/recommendations'
     | '/app/scheduled'
@@ -299,6 +310,7 @@ export interface FileRouteTypes {
     | '/app/connections'
     | '/app/discovery'
     | '/app/graph'
+    | '/app/landing'
     | '/app/logs'
     | '/app/recommendations'
     | '/app/scheduled'
@@ -397,6 +409,13 @@ declare module '@tanstack/react-router' {
       path: '/logs'
       fullPath: '/app/logs'
       preLoaderRoute: typeof AppLogsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/landing': {
+      id: '/app/landing'
+      path: '/landing'
+      fullPath: '/app/landing'
+      preLoaderRoute: typeof AppLandingRouteImport
       parentRoute: typeof AppRoute
     }
     '/app/graph': {
@@ -514,6 +533,7 @@ interface AppRouteChildren {
   AppConnectionsRoute: typeof AppConnectionsRouteWithChildren
   AppDiscoveryRoute: typeof AppDiscoveryRoute
   AppGraphRoute: typeof AppGraphRoute
+  AppLandingRoute: typeof AppLandingRoute
   AppLogsRoute: typeof AppLogsRoute
   AppRecommendationsRoute: typeof AppRecommendationsRoute
   AppScheduledRoute: typeof AppScheduledRoute
@@ -537,6 +557,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppConnectionsRoute: AppConnectionsRouteWithChildren,
   AppDiscoveryRoute: AppDiscoveryRoute,
   AppGraphRoute: AppGraphRoute,
+  AppLandingRoute: AppLandingRoute,
   AppLogsRoute: AppLogsRoute,
   AppRecommendationsRoute: AppRecommendationsRoute,
   AppScheduledRoute: AppScheduledRoute,

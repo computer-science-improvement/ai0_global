@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { api } from './client';
 
 export type LandingPlatform = 'telegram' | 'instagram' | 'facebook' | 'threads' | 'tiktok';
@@ -22,4 +22,21 @@ export const landingApi = {
 
 export function useLandingResources() {
   return useQuery({ queryKey: ['landing', 'resources'], queryFn: landingApi.resources });
+}
+
+export function useLandingAdmin() {
+  return useQuery({ queryKey: ['landing', 'admin'], queryFn: landingApi.adminList });
+}
+
+export function useSetFeatured() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: ({ platform, id, landingVisible, landingOrder }:
+      { platform: LandingPlatform; id: string; landingVisible: boolean; landingOrder: number }) =>
+      landingApi.setFeatured(platform, id, { landingVisible, landingOrder }),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['landing', 'admin'] });
+      qc.invalidateQueries({ queryKey: ['landing', 'resources'] });
+    },
+  });
 }
