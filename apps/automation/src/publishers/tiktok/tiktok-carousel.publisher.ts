@@ -45,7 +45,7 @@ export class TikTokCarouselPublisher {
       if (isFailed(status)) {
         throw new Error(`TikTok publish failed (${publishId}): ${failReason ?? 'unknown'}`);
       }
-      await this.sleep(POLL_INTERVAL_MS);
+      if (attempt < MAX_POLLS - 1) await this.sleep(POLL_INTERVAL_MS);
     }
     throw new Error(`TikTok publish timed out (${publishId})`);
   }
