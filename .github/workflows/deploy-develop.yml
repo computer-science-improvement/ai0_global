@@ -111,7 +111,13 @@ jobs:
             export DASHBOARD_IMAGE="ghcr.io/${OWNER}/ai0_global-dashboard:dev-latest"
 
             docker compose --profile prod pull automation dashboard
-            docker compose --profile prod up -d automation dashboard
+            # --remove-orphans clears containers for services no longer in the
+            # compose file (e.g. the removed bundled caddy) instead of leaving
+            # them dangling and warning on every deploy.
+            docker compose --profile prod up -d --remove-orphans automation dashboard
             docker compose --profile prod restart automation
 
-            docker image prune -f
+            # Best-effort cleanup — never fail the deploy on it (a concurrent
+            # prune from an overlapping run returns non-zero: "a prune operation
+            # is already running").
+            docker image prune -f || true
