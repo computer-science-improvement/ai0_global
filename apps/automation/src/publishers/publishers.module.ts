@@ -12,6 +12,8 @@ import { PublisherDispatcher } from './publisher-dispatcher.service';
 import { CrossPostService } from './cross-post.service';
 import { SlideHostingService } from './hosting/slide-hosting.service';
 import { SupabaseSlideHostingService } from './hosting/supabase-slide-hosting.service';
+import { TikTokContentClient } from './tiktok/tiktok-content.client';
+import { TikTokCarouselPublisher } from './tiktok/tiktok-carousel.publisher';
 
 const PUBLISHERS = [
   TelegramPublisher,
@@ -31,7 +33,7 @@ const SLIDE_HOSTING = { provide: SlideHostingService, useClass: SupabaseSlideHos
 
 @Global()
 @Module({
-  providers: [...PUBLISHERS, SLIDE_HOSTING],
-  exports:   [...PUBLISHERS, SlideHostingService],
+  providers: [...PUBLISHERS, SLIDE_HOSTING, TikTokContentClient, TikTokCarouselPublisher],
+  exports:   [...PUBLISHERS, SlideHostingService, TikTokContentClient, TikTokCarouselPublisher],
 })
 export class PublishersModule {}
