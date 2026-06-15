@@ -19,6 +19,8 @@ export interface TikTokAccountRow {
   last_refreshed_at:         Date | null;
   refresh_error:             string | null;
   created_at:                Date;
+  landing_visible:           boolean;
+  landing_order:             number;
 }
 
 export interface TikTokUpsertInput extends TikTokTokenSet {
@@ -96,6 +98,20 @@ export class TikTokAccountsRepository {
 
   async setActive(id: string, active: boolean): Promise<void> {
     await this.pool.query(`UPDATE tiktok_accounts SET active = $2 WHERE id = $1`, [id, active]);
+  }
+
+  async setLanding(id: string, opts: { visible: boolean; order: number }): Promise<void> {
+    await this.pool.query(
+      `UPDATE tiktok_accounts SET landing_visible = $2, landing_order = $3 WHERE id = $1`,
+      [id, opts.visible, opts.order],
+    );
+  }
+
+  async listFeatured(): Promise<TikTokAccountRow[]> {
+    const { rows } = await this.pool.query<TikTokAccountRow>(
+      `SELECT * FROM tiktok_accounts WHERE landing_visible AND active ORDER BY landing_order, created_at`,
+    );
+    return rows;
   }
 
   async delete(id: string): Promise<boolean> {

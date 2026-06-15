@@ -19,6 +19,8 @@ export interface MetaAccountRow {
   last_verified_at:  Date | null;
   verify_error:      string | null;
   created_at:        Date;
+  landing_visible:   boolean;
+  landing_order:     number;
 }
 
 export interface MetaAccountInsertInput {
@@ -94,6 +96,20 @@ export class MetaAccountsRepository {
 
   async setActive(id: string, active: boolean): Promise<void> {
     await this.pool.query(`UPDATE meta_accounts SET active = $2 WHERE id = $1`, [id, active]);
+  }
+
+  async setLanding(id: string, opts: { visible: boolean; order: number }): Promise<void> {
+    await this.pool.query(
+      `UPDATE meta_accounts SET landing_visible = $2, landing_order = $3 WHERE id = $1`,
+      [id, opts.visible, opts.order],
+    );
+  }
+
+  async listFeatured(): Promise<MetaAccountRow[]> {
+    const { rows } = await this.pool.query<MetaAccountRow>(
+      `SELECT * FROM meta_accounts WHERE landing_visible AND active ORDER BY landing_order, created_at`,
+    );
+    return rows;
   }
 
   async delete(id: string): Promise<boolean> {

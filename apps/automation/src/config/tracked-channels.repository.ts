@@ -15,6 +15,18 @@ export interface TrackedChannelConfigRow {
   themes:          string[];
   /** Per-channel kill switch. When true, publisher refuses to send. */
   publish_paused:  boolean;
+  landing_visible: boolean;
+  landing_order:   number;
+}
+
+/** Projection of the fields the landing page needs for a featured channel. */
+export interface TrackedFeaturedRow {
+  id:          string;
+  channel_key: string | null;
+  username:    string | null;
+  title:       string | null;
+  subs_count:  number | null;
+  landing_order: number;
 }
 
 export interface TrackedChannelUpsertInput {
@@ -33,7 +45,8 @@ export class TrackedChannelsConfigRepository {
   async list(): Promise<TrackedChannelConfigRow[]> {
     const { rows } = await this.pool.query<TrackedChannelConfigRow>(
       `SELECT id, channel_key, username, tg_chat_id::text AS tg_chat_id,
-              title, kind, bot_id, is_mine, themes, publish_paused
+              title, kind, bot_id, is_mine, themes, publish_paused,
+              landing_visible, landing_order
        FROM tracked_channels
        ORDER BY added_at`,
     );
@@ -43,7 +56,8 @@ export class TrackedChannelsConfigRepository {
   async findByChannelKey(channelKey: string): Promise<TrackedChannelConfigRow | null> {
     const { rows } = await this.pool.query<TrackedChannelConfigRow>(
       `SELECT id, channel_key, username, tg_chat_id::text AS tg_chat_id,
-              title, kind, bot_id, is_mine, themes, publish_paused
+              title, kind, bot_id, is_mine, themes, publish_paused,
+              landing_visible, landing_order
        FROM tracked_channels WHERE channel_key = $1`,
       [channelKey],
     );
@@ -73,5 +87,22 @@ export class TrackedChannelsConfigRepository {
       ],
     );
     return rows[0].id;
+  }
+
+  async setLanding(id: string, opts: { visible: boolean; order: number }): Promise<void> {
+    await this.pool.query(
+      `UPDATE tracked_channels SET landing_visible = $2, landing_order = $3 WHERE id = $1`,
+      [id, opts.visible, opts.order],
+    );
+  }
+
+  async listFeatured(): Promise<TrackedFeaturedRow[]> {
+    const { rows } = await this.pool.query<TrackedFeaturedRow>(
+      `SELECT id, channel_key, username, title, subs_count, landing_order
+       FROM tracked_channels
+       WHERE is_mine = true AND landing_visible = true
+       ORDER BY landing_order, added_at`,
+    );
+    return rows;
   }
 }
