@@ -7,10 +7,12 @@
 // later iteration; default `{}`.
 
 import { useQuery } from '@tanstack/react-query';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { trackingApi } from '../api/tracking';
-import { useCreateStrategy } from '../api/strategies';
+import { useCreateStrategy, useStrategyTypes } from '../api/strategies';
 import { useMetaAccounts } from '../api/meta-accounts';
+import { useTikTokAccounts } from '../api/tiktok-accounts';
+import { strategyTypesForPlatform } from '../lib/strategy-types';
 import { Modal } from './Modal';
 import { Icon } from './Icon';
 import { STRATEGY_DESCRIPTIONS, describeStrategy, SOURCE_KIND_LABEL, channelOptionLabel } from '../lib/labels';
@@ -23,8 +25,9 @@ export function AddStrategyModal({ open, onClose }: Props) {
   const [type,      setType]      = useState('');
   const [channelId, setChannelId] = useState('');
   const [schedule,  setSchedule]  = useState('0 9 * * *');
-  const [destKind,  setDestKind]  = useState<'telegram' | 'meta'>('telegram');
+  const [destKind,  setDestKind]  = useState<'telegram' | 'meta' | 'tiktok'>('telegram');
   const [metaId,    setMetaId]    = useState('');
+  const [tiktokId,  setTiktokId]  = useState('');
 
   const create = useCreateStrategy();
 
@@ -35,9 +38,29 @@ export function AddStrategyModal({ open, onClose }: Props) {
     enabled:  open,
   });
 
-  // Meta accounts — only fetched when the Meta destination is chosen.
+  // Meta accounts — only surfaced when the Meta destination is chosen.
   const metaAccountsQ = useMetaAccounts();
   const metaAccounts = open && destKind === 'meta' ? metaAccountsQ : { data: undefined, isLoading: false };
+
+  // TikTok accounts — only surfaced when the TikTok destination is chosen.
+  const tiktokQ = useTikTokAccounts();
+  const tiktokAccts = open && destKind === 'tiktok' ? tiktokQ : { data: undefined, isLoading: false };
+
+  // Registered strategy types + their supported platforms (for the Type filter).
+  const typesQ = useStrategyTypes();
+
+  // Resolved publish platform: telegram/tiktok are fixed; meta is the chosen
+  // account's platform (null until one is picked).
+  const platform: string | null =
+    destKind === 'telegram' ? 'telegram'
+    : destKind === 'tiktok'  ? 'tiktok'
+    : metaPlatformOf(metaAccountsQ.data, metaId) ?? null;
+  const availableTypes = strategyTypesForPlatform(typesQ.data, platform);
+
+  // Drop a chosen Type when the destination's platform no longer supports it.
+  useEffect(() => {
+    if (type && !availableTypes.some(t => t.type === type)) setType('');
+  }, [platform]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const submit = async () => {
     try {
@@ -49,16 +72,19 @@ export function AddStrategyModal({ open, onClose }: Props) {
         params:   {},
         ...(destKind === 'telegram'
           ? { channel_id: channelId, platform: 'telegram' as const }
+          : destKind === 'tiktok'
+          ? { platform: 'tiktok' as const, tiktok_account_id: tiktokId }
           : { platform: metaPlatformOf(metaAccountsQ.data, metaId) ?? 'instagram', meta_account_id: metaId }),
       });
       setExtId(''); setType(''); setChannelId(''); setSchedule('0 9 * * *');
-      setDestKind('telegram'); setMetaId('');
+      setDestKind('telegram'); setMetaId(''); setTiktokId('');
       onClose();
     } catch { /* error rendered below */ }
   };
 
-  const valid = !!extId && !!type && !!schedule &&
-    (destKind === 'telegram' ? !!channelId : !!metaId);
+  const destId = destKind === 'telegram' ? channelId : destKind === 'tiktok' ? tiktokId : metaId;
+  const valid = !!extId && !!schedule && !!destId &&
+    !!type && availableTypes.some(t => t.type === type);
 
   return (
     <Modal open={open} onClose={onClose} title="Add strategy" size="lg">
@@ -72,30 +98,16 @@ export function AddStrategyModal({ open, onClose }: Props) {
         />
       </Field>
 
-      <Field label="Type" hint="pick a registered content-strategy">
-        <select
-          value={type}
-          onChange={e => setType(e.target.value)}
-          className="input-field"
-          style={{ width: '100%' }}
-        >
-          <option value="" disabled>Pick a strategy type</option>
-          {Object.entries(STRATEGY_DESCRIPTIONS).map(([key, meta]) => (
-            <option key={key} value={key}>{meta.title} ({key})</option>
-          ))}
-        </select>
-        <TypeDescription type={type} />
-      </Field>
-
       <Field label="Destination">
         <select
           value={destKind}
-          onChange={e => setDestKind(e.target.value as 'telegram' | 'meta')}
+          onChange={e => setDestKind(e.target.value as 'telegram' | 'meta' | 'tiktok')}
           className="input-field"
           style={{ width: '100%' }}
         >
           <option value="telegram">Telegram channel</option>
           <option value="meta">Meta account (Instagram / Facebook / Threads)</option>
+          <option value="tiktok">TikTok account</option>
         </select>
       </Field>
 
@@ -134,6 +146,46 @@ export function AddStrategyModal({ open, onClose }: Props) {
           </select>
         </Field>
       )}
+
+      {destKind === 'tiktok' && (
+        <Field label="TikTok account" hint="connected accounts only">
+          <select
+            value={tiktokId}
+            onChange={e => setTiktokId(e.target.value)}
+            className="input-field"
+            style={{ width: '100%' }}
+          >
+            <option value="" disabled>
+              {tiktokAccts.isLoading ? 'Loading…' : 'Pick a TikTok account'}
+            </option>
+            {tiktokQ.data?.filter(a => a.active).map(a => (
+              <option key={a.id} value={a.id}>{a.username ?? a.id}</option>
+            ))}
+          </select>
+        </Field>
+      )}
+
+      <Field label="Type" hint={platform ? 'strategies available for this destination' : 'pick a destination first'}>
+        <select
+          value={type}
+          onChange={e => setType(e.target.value)}
+          className="input-field"
+          style={{ width: '100%' }}
+          disabled={!platform || availableTypes.length === 0}
+        >
+          <option value="" disabled>
+            {!platform ? 'Pick a destination first'
+              : availableTypes.length === 0 ? 'No strategies for this destination'
+              : 'Pick a strategy type'}
+          </option>
+          {availableTypes.map(t => (
+            <option key={t.type} value={t.type}>
+              {(STRATEGY_DESCRIPTIONS as Record<string, { title: string }>)[t.type]?.title ?? t.type} ({t.type})
+            </option>
+          ))}
+        </select>
+        <TypeDescription type={type} />
+      </Field>
 
       <Field label="Schedule (cron)">
         <SchedulePicker value={schedule} onChange={setSchedule} placeholder="0 9 * * *" inputId="add-strategy-schedule" />

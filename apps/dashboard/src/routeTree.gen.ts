@@ -26,6 +26,7 @@ import { Route as CalendarRouteImport } from './routes/calendar'
 import { Route as BotsRouteImport } from './routes/bots'
 import { Route as AnalyticsRouteImport } from './routes/analytics'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ConnectionsTiktokRouteImport } from './routes/connections_.tiktok'
 import { Route as ConnectionsMetaRouteImport } from './routes/connections_.meta'
 import { Route as ConnectionsPlatformRouteImport } from './routes/connections.$platform'
 import { Route as ChannelsIdRouteImport } from './routes/channels_.$id'
@@ -116,6 +117,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ConnectionsTiktokRoute = ConnectionsTiktokRouteImport.update({
+  id: '/connections_/tiktok',
+  path: '/connections/tiktok',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ConnectionsMetaRoute = ConnectionsMetaRouteImport.update({
   id: '/connections_/meta',
   path: '/connections/meta',
@@ -159,6 +165,7 @@ export interface FileRoutesByFullPath {
   '/channels/$id': typeof ChannelsIdRoute
   '/connections/$platform': typeof ConnectionsPlatformRoute
   '/connections/meta': typeof ConnectionsMetaRoute
+  '/connections/tiktok': typeof ConnectionsTiktokRoute
   '/connections/meta/$accountId': typeof ConnectionsMetaAccountIdRoute
 }
 export interface FileRoutesByTo {
@@ -182,6 +189,7 @@ export interface FileRoutesByTo {
   '/channels/$id': typeof ChannelsIdRoute
   '/connections/$platform': typeof ConnectionsPlatformRoute
   '/connections/meta': typeof ConnectionsMetaRoute
+  '/connections/tiktok': typeof ConnectionsTiktokRoute
   '/connections/meta/$accountId': typeof ConnectionsMetaAccountIdRoute
 }
 export interface FileRoutesById {
@@ -206,6 +214,7 @@ export interface FileRoutesById {
   '/channels_/$id': typeof ChannelsIdRoute
   '/connections/$platform': typeof ConnectionsPlatformRoute
   '/connections_/meta': typeof ConnectionsMetaRoute
+  '/connections_/tiktok': typeof ConnectionsTiktokRoute
   '/connections_/meta_/$accountId': typeof ConnectionsMetaAccountIdRoute
 }
 export interface FileRouteTypes {
@@ -231,6 +240,7 @@ export interface FileRouteTypes {
     | '/channels/$id'
     | '/connections/$platform'
     | '/connections/meta'
+    | '/connections/tiktok'
     | '/connections/meta/$accountId'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -254,6 +264,7 @@ export interface FileRouteTypes {
     | '/channels/$id'
     | '/connections/$platform'
     | '/connections/meta'
+    | '/connections/tiktok'
     | '/connections/meta/$accountId'
   id:
     | '__root__'
@@ -277,6 +288,7 @@ export interface FileRouteTypes {
     | '/channels_/$id'
     | '/connections/$platform'
     | '/connections_/meta'
+    | '/connections_/tiktok'
     | '/connections_/meta_/$accountId'
   fileRoutesById: FileRoutesById
 }
@@ -300,6 +312,7 @@ export interface RootRouteChildren {
   TrackedRoute: typeof TrackedRoute
   ChannelsIdRoute: typeof ChannelsIdRoute
   ConnectionsMetaRoute: typeof ConnectionsMetaRoute
+  ConnectionsTiktokRoute: typeof ConnectionsTiktokRoute
   ConnectionsMetaAccountIdRoute: typeof ConnectionsMetaAccountIdRoute
 }
 
@@ -424,6 +437,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/connections_/tiktok': {
+      id: '/connections_/tiktok'
+      path: '/connections/tiktok'
+      fullPath: '/connections/tiktok'
+      preLoaderRoute: typeof ConnectionsTiktokRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/connections_/meta': {
       id: '/connections_/meta'
       path: '/connections/meta'
@@ -487,6 +507,7 @@ const rootRouteChildren: RootRouteChildren = {
   TrackedRoute: TrackedRoute,
   ChannelsIdRoute: ChannelsIdRoute,
   ConnectionsMetaRoute: ConnectionsMetaRoute,
+  ConnectionsTiktokRoute: ConnectionsTiktokRoute,
   ConnectionsMetaAccountIdRoute: ConnectionsMetaAccountIdRoute,
 }
 export const routeTree = rootRouteImport
