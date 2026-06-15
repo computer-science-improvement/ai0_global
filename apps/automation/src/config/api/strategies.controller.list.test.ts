@@ -28,6 +28,8 @@ function makeController() {
   return new StrategiesController(
     repo as any, runsRepo as any, {} as any, cache as any, {} as any,
     crossposts as any, runway as any, metaAccounts as any,
+    { types: () => [], supportedPlatforms: () => ['telegram', 'instagram', 'facebook', 'threads', 'tiktok'] } as any,
+    { findById: async () => null } as any,
   );
 }
 

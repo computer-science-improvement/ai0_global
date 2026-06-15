@@ -22,7 +22,9 @@ function make(over: any = {}) {
     publisher as any,   // publisher
     {} as any,          // crossposts
     {} as any,          // runway
-    metaAccounts as any,// metaAccounts (last)
+    metaAccounts as any,// metaAccounts
+    { types: () => [], supportedPlatforms: () => ['telegram', 'instagram', 'facebook', 'threads', 'tiktok'] } as any,
+    { findById: async () => null } as any,
   );
 }
 

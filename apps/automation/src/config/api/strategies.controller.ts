@@ -13,6 +13,8 @@ import { ConfigCacheService } from '../config-cache.service';
 import { ConfigEventsPublisher } from '../config-events.publisher';
 import { ContentRunwayService } from '../../common/content-runway/content-runway.service';
 import { MetaAccountsRepository } from '../meta-accounts.repository';
+import { ContentStrategyRegistry } from '../../common/content-strategy/content-strategy.registry';
+import { TikTokAccountsRepository } from '../tiktok-accounts.repository';
 import { CreateStrategyDto, PatchStrategyDto } from './dto/strategies.dto';
 
 /**
@@ -54,6 +56,8 @@ export class StrategiesController {
     private readonly crossposts: MetaCrosspostTargetsRepository,
     private readonly runway:    ContentRunwayService,
     private readonly metaAccounts: MetaAccountsRepository,
+    private readonly registry: ContentStrategyRegistry,
+    private readonly tiktokAccounts: TikTokAccountsRepository,
   ) {}
 
   /**
@@ -135,6 +139,14 @@ export class StrategiesController {
     }));
   }
 
+  @Get('types')
+  listTypes() {
+    return this.registry.types().map(type => ({
+      type,
+      supportedPlatforms: this.registry.supportedPlatforms(type),
+    }));
+  }
+
   /** Recent execution log for one strategy. */
   @Get(':id/runs')
   async runs(@Param('id') id: string) {
@@ -162,17 +174,28 @@ export class StrategiesController {
     if (existing) throw new ConflictException(`ext_id ${body.ext_id} already exists`);
 
     const platform = body.platform ?? 'telegram';
+    const supported = this.registry.supportedPlatforms(body.type);
+    if (!supported.includes(platform)) {
+      throw new BadRequestException(`strategy ${body.type} does not support platform ${platform}`);
+    }
+
     if (platform === 'telegram') {
       if (!body.channel_id) throw new BadRequestException('channel_id is required for a telegram binding');
-      if (!this.cache.getChannelById(body.channel_id)) {
-        throw new BadRequestException(`channel_id ${body.channel_id} not found`);
-      }
+      if (!this.cache.getChannelById(body.channel_id)) throw new BadRequestException(`channel_id ${body.channel_id} not found`);
       if (body.meta_account_id) throw new BadRequestException('telegram binding must not set meta_account_id');
+      if (body.tiktok_account_id) throw new BadRequestException('telegram binding must not set tiktok_account_id');
+    } else if (platform === 'tiktok') {
+      if (!body.tiktok_account_id) throw new BadRequestException('tiktok_account_id is required for a tiktok binding');
+      const acct = await this.tiktokAccounts.findById(body.tiktok_account_id);
+      if (!acct) throw new BadRequestException(`tiktok account ${body.tiktok_account_id} not found`);
+      if (body.channel_id) throw new BadRequestException('tiktok binding must not set channel_id');
+      if (body.meta_account_id) throw new BadRequestException('tiktok binding must not set meta_account_id');
     } else {
       if (!body.meta_account_id) throw new BadRequestException('meta_account_id is required for a meta binding');
       const acct = await this.metaAccounts.findById(body.meta_account_id);
       if (!acct) throw new BadRequestException(`meta account ${body.meta_account_id} not found`);
       if (body.channel_id) throw new BadRequestException('meta binding must not set channel_id');
+      if (body.tiktok_account_id) throw new BadRequestException('meta binding must not set tiktok_account_id');
     }
 
     const row = await this.repo.insert({
@@ -183,7 +206,8 @@ export class StrategiesController {
       params:     body.params ?? {},
       enabled:    body.enabled ?? false, // default paused — never auto-publish a freshly created strategy
       platform,
-      meta_account_id: platform === 'telegram' ? null : body.meta_account_id!,
+      meta_account_id: (platform === 'instagram' || platform === 'facebook' || platform === 'threads') ? body.meta_account_id! : null,
+      tiktok_account_id: platform === 'tiktok' ? body.tiktok_account_id! : null,
     });
     await this.publisher.publish('strategy', row.id);
     return row;
