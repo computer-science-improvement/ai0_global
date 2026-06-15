@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="ai0 — AI-powered content factory">
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="0%" r="75%">
+      <stop offset="0%" stop-color="#3ecf8e" stop-opacity="0.30"/>
+      <stop offset="55%" stop-color="#24b47e" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#1b1b1b" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="hair" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#2e2e2e" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#2e2e2e" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#2e2e2e" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="#1b1b1b"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+
+  <!-- wordmark: glowing dot + ai0 -->
+  <g transform="translate(96, 150)">
+    <circle cx="14" cy="20" r="13" fill="#3ecf8e"/>
+    <text x="44" y="20" dominant-baseline="central"
+          font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
+          font-size="40" font-weight="700" letter-spacing="-1.5" fill="#ededed">ai0</text>
+  </g>
+
+  <!-- headline -->
+  <text x="96" y="320"
+        font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
+        font-size="92" font-weight="700" letter-spacing="-4" fill="#ededed">AI-powered</text>
+  <text x="96" y="420"
+        font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
+        font-size="92" font-weight="700" letter-spacing="-4" fill="#3ecf8e">content factory</text>
+
+  <!-- subline -->
+  <text x="98" y="492"
+        font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
+        font-size="30" font-weight="400" letter-spacing="-0.5" fill="#a0a0a0">One pipeline — create, schedule &amp; publish, automatically.</text>
+
+  <line x1="96" y1="540" x2="1104" y2="540" stroke="url(#hair)" stroke-width="1"/>
+
+  <!-- platform rail -->
+  <text x="96" y="582"
+        font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
+        font-size="26" font-weight="500" letter-spacing="0.5" fill="#6f6f6f">Telegram · Instagram · Facebook · Threads · TikTok</text>
+</svg>
