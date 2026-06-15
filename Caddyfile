@@ -1,0 +1,15 @@
+# Caddy reverse proxy for the public domain (dev-stage: dev.ai0.global).
+#
+# Terminates HTTPS with an automatic Let's Encrypt certificate for $PUBLIC_DOMAIN
+# and forwards everything to the dashboard container. The dashboard's own nginx
+# serves the SPA (public landing at /, app at /app) and proxies /api + /auth to
+# the automation service — so Caddy only adds TLS + the bare-domain entrypoint
+# on :80/:443. HTTP is auto-redirected to HTTPS by Caddy.
+#
+# The domain comes from the PUBLIC_DOMAIN env var (set on the box .env), with a
+# dev-stage default so it works out of the box.
+
+{$PUBLIC_DOMAIN:dev.ai0.global} {
+	encode zstd gzip
+	reverse_proxy dashboard:80
+}
