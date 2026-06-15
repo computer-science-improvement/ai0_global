@@ -1,4 +1,4 @@
-import { Controller, Get, Query, Redirect, UseGuards } from '@nestjs/common';
+import { Controller, Get, Logger, Query, Redirect, UseGuards } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { TrackingAuthGuard } from '../../tracking/api/tracking-auth.guard';
 import { TikTokOAuthService } from '../tiktok-oauth.service';
@@ -9,6 +9,8 @@ import { TikTokTokenService } from '../tiktok-token.service';
 // signed `state` we issued at `start`).
 @Controller('api/tiktok/oauth')
 export class TikTokOAuthController {
+  private readonly logger = new Logger(TikTokOAuthController.name);
+
   constructor(
     private readonly oauth:  TikTokOAuthService,
     private readonly tokens: TikTokTokenService,
@@ -28,7 +30,12 @@ export class TikTokOAuthController {
     @Query('state') state?: string,
     @Query('error') error?: string,
   ): Promise<{ url: string }> {
-    const base = `${this.env.get<string>('DASHBOARD_URL') ?? ''}/connections/tiktok`;
+    const dashboard = this.env.get<string>('DASHBOARD_URL') ?? '';
+    if (!dashboard) {
+      // Relative redirect lands on the automation origin, not the dashboard.
+      this.logger.warn('DASHBOARD_URL unset — OAuth callback will redirect relative to this service');
+    }
+    const base = `${dashboard}/connections/tiktok`;
     if (error || !code || !state || !this.oauth.verifyState(state, Date.now())) {
       return { url: `${base}?tiktok=error` };
     }

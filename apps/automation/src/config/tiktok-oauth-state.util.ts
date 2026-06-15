@@ -16,7 +16,13 @@ export function signState(secret: string, nowMs: number, ttlMs: number = DEFAULT
   return `${payload}.${sign(secret, payload)}`;
 }
 
-/** True iff the signature verifies AND exp > nowMs. Never throws. */
+/**
+ * True iff the signature verifies AND exp > nowMs. Never throws.
+ * NOTE: this is a TTL-bounded bearer token, NOT single-use — the nonce only adds
+ * entropy and is not tracked, so a captured state replays within its TTL. That is
+ * acceptable here: the OAuth `code` is the single-use secret (TikTok invalidates it
+ * after one exchange), and state only proves the browser started the flow.
+ */
 export function verifyState(secret: string, token: string, nowMs: number): boolean {
   if (!token) return false;
   const parts = token.split('.');
