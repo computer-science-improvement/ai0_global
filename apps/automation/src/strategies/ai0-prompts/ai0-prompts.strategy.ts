@@ -16,7 +16,8 @@ import { CrossPostService }         from '../../publishers/cross-post.service';
 import { PublicationsRepository }   from '../../stats/publications.repository';
 import { PublisherDispatcher }      from '../../publishers/publisher-dispatcher.service';
 import { isPermanentMetaMediaError } from '../../publishers/meta-graph.util';
-import type { PublishDestination }  from '../../common/content-strategy/publish-destination';
+import type { PublishDestination, DestinationPlatform }  from '../../common/content-strategy/publish-destination';
+import type { MetaPlatform }       from '../../config/meta-accounts.repository';
 import { PromptsRepository }        from './prompts.repository';
 import { PromptHeroScraperService } from '../../workflows/ai0-prompts/prompthero-scraper.service';
 
@@ -25,6 +26,7 @@ export class Ai0PromptsStrategy implements ContentStrategy, OnModuleInit {
   private readonly logger = new Logger(Ai0PromptsStrategy.name);
 
   readonly type = 'ai0-prompts';
+  readonly supportedPlatforms: DestinationPlatform[] = ['telegram', 'instagram', 'facebook', 'threads'];
   private categories: string[] = [];
 
   constructor(
@@ -123,7 +125,7 @@ export class Ai0PromptsStrategy implements ContentStrategy, OnModuleInit {
       }
       try {
         const id = await this.dispatcher.publish(
-          dest.platform,
+          dest.platform as MetaPlatform,
           { text: message.caption, imageUrl: row.id, source: '', tags: [category] },
           { id: dest.targetId, token: dest.token },
         );

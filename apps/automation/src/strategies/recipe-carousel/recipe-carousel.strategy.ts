@@ -7,7 +7,8 @@ import { ImageResolverService } from '../../common/processors/image-resolver.ser
 import { isPermanentMetaMediaError } from '../../publishers/meta-graph.util';
 import { RecipesRepository } from '../recipes/recipes.repository';
 import { toCarouselRecipe, buildCarouselCaption } from './recipe-carousel.map';
-import type { PublishDestination } from '../../common/content-strategy/publish-destination';
+import type { PublishDestination, DestinationPlatform } from '../../common/content-strategy/publish-destination';
+import type { MetaPlatform } from '../../config/meta-accounts.repository';
 import {
   ContentStrategy, StrategyFetchResult, StrategyPost, StrategyParams,
 } from '../../common/content-strategy/content-strategy.interface';
@@ -23,6 +24,7 @@ import { Skill } from '../../common/ai/skills/skill.interface';
 export class RecipeCarouselStrategy implements ContentStrategy, OnModuleInit {
   private readonly logger = new Logger(RecipeCarouselStrategy.name);
   readonly type = 'recipe-carousel';
+  readonly supportedPlatforms: DestinationPlatform[] = ['instagram', 'facebook', 'threads', 'tiktok'];
 
   constructor(
     private readonly repo:       RecipesRepository,
@@ -64,7 +66,7 @@ export class RecipeCarouselStrategy implements ContentStrategy, OnModuleInit {
 
     try {
       const id = await this.dispatcher.publishCarousel(
-        dest.platform,
+        dest.platform as MetaPlatform,
         { text: caption, tags: row.category ? [row.category] : [], source: '' },
         hosted.map(h => h.url),
         { id: dest.targetId, token: dest.token },

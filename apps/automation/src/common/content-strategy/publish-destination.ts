@@ -1,7 +1,7 @@
 // publish-destination.ts — the resolved target a strategy publishes to.
 import type { MetaPlatform } from '../../config/meta-accounts.repository';
 
-export type DestinationPlatform = 'telegram' | MetaPlatform;
+export type DestinationPlatform = 'telegram' | MetaPlatform | 'tiktok';
 
 export interface PublishDestination {
   /** 'telegram' = TG channel; otherwise a Meta platform. */
