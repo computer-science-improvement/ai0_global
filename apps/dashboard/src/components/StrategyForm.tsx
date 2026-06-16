@@ -13,7 +13,7 @@ import { trackingApi } from '../api/tracking';
 import { useCreateStrategy, useStrategyTypes } from '../api/strategies';
 import { useMetaAccounts } from '../api/meta-accounts';
 import { useTikTokAccounts } from '../api/tiktok-accounts';
-import { strategyTypesForPlatform } from '../lib/strategy-types';
+import { strategyTypesForPlatform, groupStrategyTypes } from '../lib/strategy-types';
 import { Icon } from './Icon';
 import { STRATEGY_DESCRIPTIONS, describeStrategy, SOURCE_KIND_LABEL, channelOptionLabel } from '../lib/labels';
 import { SchedulePicker } from './SchedulePicker';
@@ -180,10 +180,14 @@ export function StrategyForm({ onCreated, onCancel }: Props) {
               : availableTypes.length === 0 ? 'No strategies for this destination'
               : 'Pick a strategy type'}
           </option>
-          {availableTypes.map(t => (
-            <option key={t.type} value={t.type}>
-              {(STRATEGY_DESCRIPTIONS as Record<string, { title: string }>)[t.type]?.title ?? t.type} ({t.type})
-            </option>
+          {groupStrategyTypes(availableTypes).map(g => (
+            <optgroup key={g.key} label={g.label}>
+              {g.types.map(t => (
+                <option key={t.type} value={t.type}>
+                  {(STRATEGY_DESCRIPTIONS as Record<string, { title: string }>)[t.type]?.title ?? t.type} ({t.type})
+                </option>
+              ))}
+            </optgroup>
           ))}
         </select>
         <TypeDescription type={type} />
