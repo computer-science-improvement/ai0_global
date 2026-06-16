@@ -103,6 +103,7 @@ export class StrategyBindingsRepository {
    * Returns the updated row or null if no row was found.
    */
   async update(id: string, patch: {
+    ext_id?:     string;
     type?:       string;
     channel_id?: string | null;
     schedule?:   string;
@@ -117,6 +118,7 @@ export class StrategyBindingsRepository {
     const sets: string[] = [];
     const params: unknown[] = [id];
     let i = 2;
+    if (patch.ext_id      !== undefined) { sets.push(`ext_id = $${i++}`);      params.push(patch.ext_id); }
     if (patch.type        !== undefined) { sets.push(`type = $${i++}`);        params.push(patch.type); }
     if (patch.channel_id  !== undefined) { sets.push(`channel_id = $${i++}`);  params.push(patch.channel_id); }
     if (patch.schedule    !== undefined) { sets.push(`schedule = $${i++}`);    params.push(patch.schedule); }

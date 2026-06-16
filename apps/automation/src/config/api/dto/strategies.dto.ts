@@ -55,6 +55,14 @@ export class CreateStrategyDto {
 }
 
 export class PatchStrategyDto {
+  // Renaming the logical slug. Same constraints as CreateStrategyDto.ext_id;
+  // uniqueness is enforced server-side in the controller (409 on duplicate).
+  @IsOptional()
+  @IsString()
+  @Matches(/^[a-z0-9_:-]+$/i, { message: 'ext_id must be alphanumeric, plus - _ :' })
+  @MaxLength(80)
+  ext_id?: string;
+
   @IsOptional() @IsString() @IsNotEmpty() @MaxLength(64)
   type?: string;
 

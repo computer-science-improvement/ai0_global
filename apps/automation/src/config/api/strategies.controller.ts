@@ -218,6 +218,13 @@ export class StrategiesController {
     const existing = await this.repo.findById(id);
     if (!existing) throw new NotFoundException(`Strategy ${id} not found`);
 
+    // Renaming the logical slug: enforce uniqueness server-side. A no-op set
+    // (same value as existing) is allowed and skips the lookup.
+    if (body.ext_id !== undefined && body.ext_id !== existing.ext_id) {
+      const dup = await this.repo.findByExtId(body.ext_id);
+      if (dup && dup.id !== id) throw new ConflictException(`ext_id ${body.ext_id} already exists`);
+    }
+
     if (body.schedule !== undefined) assertCronOrThrow(body.schedule);
     if (body.channel_id !== undefined && !this.cache.getChannelById(body.channel_id)) {
       throw new BadRequestException(`channel_id ${body.channel_id} not found`);
