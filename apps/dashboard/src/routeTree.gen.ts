@@ -29,6 +29,8 @@ import { Route as AppChannelsRouteImport } from './routes/app.channels'
 import { Route as AppCalendarRouteImport } from './routes/app.calendar'
 import { Route as AppBotsRouteImport } from './routes/app.bots'
 import { Route as AppAnalyticsRouteImport } from './routes/app.analytics'
+import { Route as AppStrategiesNewRouteImport } from './routes/app.strategies_.new'
+import { Route as AppStrategiesIdRouteImport } from './routes/app.strategies_.$id'
 import { Route as AppConnectionsTiktokRouteImport } from './routes/app.connections_.tiktok'
 import { Route as AppConnectionsMetaRouteImport } from './routes/app.connections_.meta'
 import { Route as AppConnectionsPlatformRouteImport } from './routes/app.connections.$platform'
@@ -135,6 +137,16 @@ const AppAnalyticsRoute = AppAnalyticsRouteImport.update({
   path: '/analytics',
   getParentRoute: () => AppRoute,
 } as any)
+const AppStrategiesNewRoute = AppStrategiesNewRouteImport.update({
+  id: '/strategies_/new',
+  path: '/strategies/new',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppStrategiesIdRoute = AppStrategiesIdRouteImport.update({
+  id: '/strategies_/$id',
+  path: '/strategies/$id',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppConnectionsTiktokRoute = AppConnectionsTiktokRouteImport.update({
   id: '/connections_/tiktok',
   path: '/connections/tiktok',
@@ -187,6 +199,8 @@ export interface FileRoutesByFullPath {
   '/app/connections/$platform': typeof AppConnectionsPlatformRoute
   '/app/connections/meta': typeof AppConnectionsMetaRoute
   '/app/connections/tiktok': typeof AppConnectionsTiktokRoute
+  '/app/strategies/$id': typeof AppStrategiesIdRoute
+  '/app/strategies/new': typeof AppStrategiesNewRoute
   '/app/connections/meta/$accountId': typeof AppConnectionsMetaAccountIdRoute
 }
 export interface FileRoutesByTo {
@@ -213,6 +227,8 @@ export interface FileRoutesByTo {
   '/app/connections/$platform': typeof AppConnectionsPlatformRoute
   '/app/connections/meta': typeof AppConnectionsMetaRoute
   '/app/connections/tiktok': typeof AppConnectionsTiktokRoute
+  '/app/strategies/$id': typeof AppStrategiesIdRoute
+  '/app/strategies/new': typeof AppStrategiesNewRoute
   '/app/connections/meta/$accountId': typeof AppConnectionsMetaAccountIdRoute
 }
 export interface FileRoutesById {
@@ -241,6 +257,8 @@ export interface FileRoutesById {
   '/app/connections/$platform': typeof AppConnectionsPlatformRoute
   '/app/connections_/meta': typeof AppConnectionsMetaRoute
   '/app/connections_/tiktok': typeof AppConnectionsTiktokRoute
+  '/app/strategies_/$id': typeof AppStrategiesIdRoute
+  '/app/strategies_/new': typeof AppStrategiesNewRoute
   '/app/connections_/meta_/$accountId': typeof AppConnectionsMetaAccountIdRoute
 }
 export interface FileRouteTypes {
@@ -270,6 +288,8 @@ export interface FileRouteTypes {
     | '/app/connections/$platform'
     | '/app/connections/meta'
     | '/app/connections/tiktok'
+    | '/app/strategies/$id'
+    | '/app/strategies/new'
     | '/app/connections/meta/$accountId'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -296,6 +316,8 @@ export interface FileRouteTypes {
     | '/app/connections/$platform'
     | '/app/connections/meta'
     | '/app/connections/tiktok'
+    | '/app/strategies/$id'
+    | '/app/strategies/new'
     | '/app/connections/meta/$accountId'
   id:
     | '__root__'
@@ -323,6 +345,8 @@ export interface FileRouteTypes {
     | '/app/connections/$platform'
     | '/app/connections_/meta'
     | '/app/connections_/tiktok'
+    | '/app/strategies_/$id'
+    | '/app/strategies_/new'
     | '/app/connections_/meta_/$accountId'
   fileRoutesById: FileRoutesById
 }
@@ -474,6 +498,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppAnalyticsRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/strategies_/new': {
+      id: '/app/strategies_/new'
+      path: '/strategies/new'
+      fullPath: '/app/strategies/new'
+      preLoaderRoute: typeof AppStrategiesNewRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/strategies_/$id': {
+      id: '/app/strategies_/$id'
+      path: '/strategies/$id'
+      fullPath: '/app/strategies/$id'
+      preLoaderRoute: typeof AppStrategiesIdRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/connections_/tiktok': {
       id: '/app/connections_/tiktok'
       path: '/connections/tiktok'
@@ -545,6 +583,8 @@ interface AppRouteChildren {
   AppChannelsIdRoute: typeof AppChannelsIdRoute
   AppConnectionsMetaRoute: typeof AppConnectionsMetaRoute
   AppConnectionsTiktokRoute: typeof AppConnectionsTiktokRoute
+  AppStrategiesIdRoute: typeof AppStrategiesIdRoute
+  AppStrategiesNewRoute: typeof AppStrategiesNewRoute
   AppConnectionsMetaAccountIdRoute: typeof AppConnectionsMetaAccountIdRoute
 }
 
@@ -569,6 +609,8 @@ const AppRouteChildren: AppRouteChildren = {
   AppChannelsIdRoute: AppChannelsIdRoute,
   AppConnectionsMetaRoute: AppConnectionsMetaRoute,
   AppConnectionsTiktokRoute: AppConnectionsTiktokRoute,
+  AppStrategiesIdRoute: AppStrategiesIdRoute,
+  AppStrategiesNewRoute: AppStrategiesNewRoute,
   AppConnectionsMetaAccountIdRoute: AppConnectionsMetaAccountIdRoute,
 }
 

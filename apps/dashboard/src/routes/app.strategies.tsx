@@ -1,13 +1,13 @@
 // apps/dashboard/src/routes/strategies.tsx
-import { createFileRoute } from '@tanstack/react-router';
-import { useState } from 'react';
+import { createFileRoute, Link } from '@tanstack/react-router';
+import { useEffect, useState } from 'react';
 import { Icon } from '../components/Icon';
 import { Icon as PlatformGlyph, type IconName } from '../components/ui/Icon';
 import { usePlatform } from '../lib/usePlatform';
 import { PlatformFilter } from '../components/PlatformFilter';
-import { AddStrategyModal } from '../components/AddStrategyModal';
 import { EditStrategyModal } from '../components/EditStrategyModal';
 import { useConfirm } from '../components/ui/ConfirmDialog';
+import { ApiError } from '../api/client';
 import {
   useStrategies, usePatchStrategy, useDeleteStrategy, useStrategyRuns, useStrategyPreview,
 } from '../api/strategies';
@@ -42,9 +42,10 @@ function StrategiesPage() {
   const patch  = usePatchStrategy();
   const remove = useDeleteStrategy();
   const confirm = useConfirm();
-  const [addOpen, setAddOpen] = useState(false);
   const [editing, setEditing] = useState<Strategy | null>(null);
   const [expanded, setExpanded] = useState<string | null>(null);
+  // One ext_id cell open for editing at a time (mirrors the single-open pattern).
+  const [editingExtIdId, setEditingExtIdId] = useState<string | null>(null);
 
   // Icons show only on the "All" tab; the "Meta" tab filters to native-Meta
   // strategies; the "Telegram" tab to strategies that publish to Telegram
@@ -65,9 +66,9 @@ function StrategiesPage() {
             Cron-scheduled content generators bound to channels. Click a row to see its execution log.
           </p>
         </div>
-        <button onClick={() => setAddOpen(true)} className="btn-primary" style={{ gap: 6 }}>
+        <Link to={'/app/strategies/new' as never} className="btn-primary" style={{ gap: 6, display: 'inline-flex', alignItems: 'center' }}>
           <Icon name="plus" size={14} /> Add strategy
-        </button>
+        </Link>
       </header>
 
       {/* Destination filter — strategies are the only view this affects. */}
@@ -101,7 +102,7 @@ function StrategiesPage() {
                 <th>Next run</th>
                 <th>Last run</th>
                 <th>Status</th>
-                <th style={{ width: 200, textAlign: 'right' }}>Actions</th>
+                <th style={{ width: 260, textAlign: 'right' }}>Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -115,6 +116,9 @@ function StrategiesPage() {
                       showIcons={showIcons}
                       open={isOpen}
                       onToggleOpen={() => setExpanded(isOpen ? null : s.id)}
+                      editingExtId={editingExtIdId === s.id}
+                      onStartEditExtId={() => setEditingExtIdId(s.id)}
+                      onDoneEditExtId={() => setEditingExtIdId(null)}
                       onEdit={() => setEditing(s)}
                       onToggle={() => patch.mutate({ id: s.id, patch: { enabled: !s.enabled } })}
                       onDelete={async () => {
@@ -136,7 +140,6 @@ function StrategiesPage() {
         </div>
       )}
 
-      <AddStrategyModal open={addOpen} onClose={() => setAddOpen(false)} />
       {editing && (
         <EditStrategyModal
           strategy={editing}
@@ -148,8 +151,12 @@ function StrategiesPage() {
   );
 }
 
-function StrategyRow({ s, showIcons, open, onToggleOpen, onEdit, onToggle, onDelete }: {
-  s: Strategy; showIcons: boolean; open: boolean; onToggleOpen: () => void; onEdit: () => void; onToggle: () => void; onDelete: () => void;
+function StrategyRow({
+  s, showIcons, open, onToggleOpen, editingExtId, onStartEditExtId, onDoneEditExtId, onEdit, onToggle, onDelete,
+}: {
+  s: Strategy; showIcons: boolean; open: boolean; onToggleOpen: () => void;
+  editingExtId: boolean; onStartEditExtId: () => void; onDoneEditExtId: () => void;
+  onEdit: () => void; onToggle: () => void; onDelete: () => void;
 }) {
   return (
     <tr style={{ cursor: 'pointer' }} onClick={onToggleOpen}>
@@ -157,7 +164,15 @@ function StrategyRow({ s, showIcons, open, onToggleOpen, onEdit, onToggle, onDel
         <Icon name={open ? 'chevron-right' : 'chevron-right'} size={14}
           style={{ transform: open ? 'rotate(90deg)' : 'rotate(0deg)', transition: 'transform 0.12s ease' }} />
       </td>
-      <td style={{ fontVariantNumeric: 'tabular-nums', color: 'var(--color-ink)' }}>{s.ext_id}</td>
+      <td style={{ fontVariantNumeric: 'tabular-nums', color: 'var(--color-ink)' }} onClick={(e) => e.stopPropagation()}>
+        <InlineExtIdEditor
+          strategyId={s.id}
+          current={s.ext_id}
+          isEditing={editingExtId}
+          onStartEdit={onStartEditExtId}
+          onDone={onDoneEditExtId}
+        />
+      </td>
       <td>
         <span
           className="chip"
@@ -203,6 +218,15 @@ function StrategyRow({ s, showIcons, open, onToggleOpen, onEdit, onToggle, onDel
       </td>
       <td style={{ textAlign: 'right' }} onClick={(e) => e.stopPropagation()}>
         <div style={{ display: 'inline-flex', gap: 6 }}>
+          <Link
+            to={'/app/strategies/$id' as never}
+            params={{ id: s.id } as never}
+            className="btn-tiny"
+            title="Open strategy detail + example post"
+          >
+            <Icon name="chevron-right" size={12} style={{ marginRight: 4 }} />
+            Open
+          </Link>
           <button onClick={onEdit} className="btn-tiny" title="Edit schedule, params, channel…">
             <Icon name="pencil" size={12} style={{ marginRight: 4 }} />
             Edit
@@ -219,6 +243,103 @@ function StrategyRow({ s, showIcons, open, onToggleOpen, onEdit, onToggle, onDel
         </div>
       </td>
     </tr>
+  );
+}
+
+/** Click-to-edit `ext_id` cell. Parent owns the editing-id so only one cell is
+ *  open at a time. Validates non-empty + the server's slug charset; on a 409
+ *  duplicate the error renders inline and the editor stays open. Copied from the
+ *  InlineScheduleEditor pattern. */
+const EXT_ID_RE = /^[A-Za-z0-9_:-]+$/;
+
+function InlineExtIdEditor({
+  strategyId, current, isEditing, onStartEdit, onDone,
+}: {
+  strategyId: string; current: string; isEditing: boolean; onStartEdit: () => void; onDone: () => void;
+}) {
+  const [draft, setDraft] = useState(current);
+  const patch = usePatchStrategy();
+
+  // Reset only on isEditing transitions, never on `current` background ticks
+  // (useStrategies has a 30s refetchInterval that would otherwise wipe a draft).
+  useEffect(() => {
+    setDraft(current);
+    patch.reset();
+  }, [isEditing]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  if (!isEditing) {
+    return (
+      <button
+        type="button"
+        onClick={onStartEdit}
+        title={`Click to edit id — current: ${current}`}
+        style={{
+          display: 'inline-flex', alignItems: 'center', gap: 6,
+          background: 'transparent', border: 'none',
+          padding: '2px 6px', margin: '-2px -6px',
+          borderRadius: 'var(--radius-sm)',
+          color: 'var(--color-ink)', fontVariantNumeric: 'tabular-nums', cursor: 'pointer',
+        }}
+      >
+        <span>{current}</span>
+        <Icon name="pencil" size={11} style={{ opacity: 0.5 }} />
+      </button>
+    );
+  }
+
+  const trimmed = draft.trim();
+  const formatOk = EXT_ID_RE.test(trimmed);
+  const dirty    = trimmed !== current.trim();
+  const canSave  = formatOk && dirty && !patch.isPending;
+
+  const save = async () => {
+    if (!canSave) return;
+    try {
+      await patch.mutateAsync({ id: strategyId, patch: { ext_id: trimmed } });
+      onDone();
+    } catch {
+      // error rendered inline below; stay open so the user can fix it (incl. 409 duplicate).
+    }
+  };
+
+  const err = patch.error;
+  const conflict = err instanceof ApiError && (err.status === 409 || /already exists/i.test(err.message));
+  const errMsg = conflict
+    ? `Id "${trimmed}" already exists — pick another.`
+    : err ? (err as Error).message : null;
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 6, minWidth: 200 }}>
+      <input
+        value={draft}
+        autoFocus
+        onChange={(e) => setDraft(e.target.value)}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') save();
+          if (e.key === 'Escape') onDone();
+        }}
+        disabled={patch.isPending}
+        className="input-field"
+        style={{ width: '100%', fontVariantNumeric: 'tabular-nums' }}
+      />
+      {!formatOk && trimmed.length > 0 && (
+        <p className="text-micro" style={{ color: 'var(--color-ink-dim)', margin: 0 }}>
+          Only letters, digits, and _ : - are allowed.
+        </p>
+      )}
+      {trimmed.length === 0 && (
+        <p className="text-micro" style={{ color: 'var(--color-ink-dim)', margin: 0 }}>Id cannot be empty.</p>
+      )}
+      {errMsg && (
+        <p className="text-micro" style={{ color: 'var(--color-danger)', margin: 0 }}>{errMsg}</p>
+      )}
+      <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 6 }}>
+        <button type="button" className="btn-secondary" onClick={onDone} disabled={patch.isPending}>Cancel</button>
+        <button type="button" className="btn-primary" onClick={save} disabled={!canSave}>
+          {patch.isPending ? 'Saving…' : 'Save'}
+        </button>
+      </div>
+    </div>
   );
 }
 

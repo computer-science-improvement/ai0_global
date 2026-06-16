@@ -1,10 +1,11 @@
-// apps/dashboard/src/components/AddStrategyModal.tsx
+// apps/dashboard/src/components/StrategyForm.tsx
 //
-// Compact create form for a strategy_binding. Channel is picked from the
-// "Mine" set (only own channels can host strategies). Schedule is a free
-// cron expression — server validates via the same `cron` lib the scheduler
-// uses, so an accepted schedule is guaranteed to fire. `params` left for a
-// later iteration; default `{}`.
+// Create form for a strategy_binding, used by the /app/strategies/new page.
+// Channel is picked from the "Mine" set (only own channels can host
+// strategies). Schedule is a free cron expression — server validates via the
+// same `cron` lib the scheduler uses, so an accepted schedule is guaranteed to
+// fire. `params` left for a later iteration; default `{}`. New strategies start
+// paused — enable explicitly when ready to publish.
 
 import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
@@ -13,14 +14,18 @@ import { useCreateStrategy, useStrategyTypes } from '../api/strategies';
 import { useMetaAccounts } from '../api/meta-accounts';
 import { useTikTokAccounts } from '../api/tiktok-accounts';
 import { strategyTypesForPlatform } from '../lib/strategy-types';
-import { Modal } from './Modal';
 import { Icon } from './Icon';
 import { STRATEGY_DESCRIPTIONS, describeStrategy, SOURCE_KIND_LABEL, channelOptionLabel } from '../lib/labels';
 import { SchedulePicker } from './SchedulePicker';
 
-interface Props { open: boolean; onClose: () => void; }
+interface Props {
+  /** Called after the strategy is created successfully. */
+  onCreated: () => void;
+  /** Called when the user cancels. */
+  onCancel: () => void;
+}
 
-export function AddStrategyModal({ open, onClose }: Props) {
+export function StrategyForm({ onCreated, onCancel }: Props) {
   const [extId,     setExtId]     = useState('');
   const [type,      setType]      = useState('');
   const [channelId, setChannelId] = useState('');
@@ -35,16 +40,15 @@ export function AddStrategyModal({ open, onClose }: Props) {
   const channelsQ = useQuery({
     queryKey: ['channels', 'mine-picker'],
     queryFn:  () => trackingApi.listChannels({ filter: 'mine', pageSize: 200 }),
-    enabled:  open,
   });
 
   // Meta accounts — only surfaced when the Meta destination is chosen.
   const metaAccountsQ = useMetaAccounts();
-  const metaAccounts = open && destKind === 'meta' ? metaAccountsQ : { data: undefined, isLoading: false };
+  const metaAccounts = destKind === 'meta' ? metaAccountsQ : { data: undefined, isLoading: false };
 
   // TikTok accounts — only surfaced when the TikTok destination is chosen.
   const tiktokQ = useTikTokAccounts();
-  const tiktokAccts = open && destKind === 'tiktok' ? tiktokQ : { data: undefined, isLoading: false };
+  const tiktokAccts = destKind === 'tiktok' ? tiktokQ : { data: undefined, isLoading: false };
 
   // Registered strategy types + their supported platforms (for the Type filter).
   const typesQ = useStrategyTypes();
@@ -76,9 +80,7 @@ export function AddStrategyModal({ open, onClose }: Props) {
           ? { platform: 'tiktok' as const, tiktok_account_id: tiktokId }
           : { platform: metaPlatformOf(metaAccountsQ.data, metaId) ?? 'instagram', meta_account_id: metaId }),
       });
-      setExtId(''); setType(''); setChannelId(''); setSchedule('0 9 * * *');
-      setDestKind('telegram'); setMetaId(''); setTiktokId('');
-      onClose();
+      onCreated();
     } catch { /* error rendered below */ }
   };
 
@@ -87,7 +89,7 @@ export function AddStrategyModal({ open, onClose }: Props) {
     !!type && availableTypes.some(t => t.type === type);
 
   return (
-    <Modal open={open} onClose={onClose} title="Add strategy" size="lg">
+    <div>
       <Field label="Strategy id (logical name)" hint="alphanumeric + - + _">
         <input
           value={extId}
@@ -188,7 +190,7 @@ export function AddStrategyModal({ open, onClose }: Props) {
       </Field>
 
       <Field label="Schedule (cron)">
-        <SchedulePicker value={schedule} onChange={setSchedule} placeholder="0 9 * * *" inputId="add-strategy-schedule" />
+        <SchedulePicker value={schedule} onChange={setSchedule} placeholder="0 9 * * *" inputId="new-strategy-schedule" />
       </Field>
 
       <div className="callout-warning" style={{ marginBottom: 16 }}>
@@ -205,12 +207,12 @@ export function AddStrategyModal({ open, onClose }: Props) {
       )}
 
       <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 8 }}>
-        <button onClick={onClose} className="btn-secondary">Cancel</button>
+        <button onClick={onCancel} className="btn-secondary">Cancel</button>
         <button onClick={submit} disabled={!valid || create.isPending} className="btn-primary">
           {create.isPending ? 'Saving…' : 'Save'}
         </button>
       </div>
-    </Modal>
+    </div>
   );
 }
 

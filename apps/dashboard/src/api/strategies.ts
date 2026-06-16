@@ -62,6 +62,7 @@ export function useCreateStrategy() {
 }
 
 export interface PatchStrategyInput {
+  ext_id?:     string;
   type?:       string;
   channel_id?: string;
   schedule?:   string;
