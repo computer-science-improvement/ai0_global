@@ -1,7 +1,7 @@
 // apps/dashboard/src/components/SchedulePicker.tsx
 //
 // Cron expression editor: a free-text input plus one-click preset chips.
-// Used both inside EditStrategyModal (full strategy edit) and inside
+// Used both inside the strategy edit page (full strategy edit) and inside
 // InlineScheduleEditor (per-row inline edit on the channel detail page).
 // Kept here as a single source of truth so both call-sites stay in sync
 // on the preset list and look identical.
