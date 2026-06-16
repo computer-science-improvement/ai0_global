@@ -44,6 +44,13 @@ function nextRunOrNull(schedule: string): string | null {
   }
 }
 
+/**
+ * Strategy types hidden from the create/edit selects. They stay registered and
+ * keep running for existing bindings — they're just not offered when adding a
+ * new strategy (operator decision, not a capability change).
+ */
+const HIDDEN_STRATEGY_TYPES = new Set(['daily-photo', 'ua-news', 'movies']);
+
 @Controller('api/strategies')
 @UseGuards(TrackingAuthGuard)
 export class StrategiesController {
@@ -141,10 +148,12 @@ export class StrategiesController {
 
   @Get('types')
   listTypes() {
-    return this.registry.types().map(type => ({
-      type,
-      supportedPlatforms: this.registry.supportedPlatforms(type),
-    }));
+    return this.registry.types()
+      .filter(type => !HIDDEN_STRATEGY_TYPES.has(type))
+      .map(type => ({
+        type,
+        supportedPlatforms: this.registry.supportedPlatforms(type),
+      }));
   }
 
   /** Recent execution log for one strategy. */
