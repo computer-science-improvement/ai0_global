@@ -5,6 +5,7 @@ import { DatabaseModule }      from './database/database.module';
 import { ChannelConfigModule }  from './config/config.module';
 import { LoggingModule }        from './common/logging/logging.module';
 import { CommonModule }         from './common/common.module';
+import { CryptoModule }         from './common/crypto/crypto.module';
 import { PublishersModule }     from './publishers/publishers.module';
 import { SchedulerModule }      from './scheduler/scheduler.module';
 import { OnThisDayStrategyModule }   from './strategies/on-this-day/on-this-day-strategy.module';
@@ -39,6 +40,7 @@ import { ActivityModule }       from './activity/activity.module';
     DatabaseModule,
     ChannelConfigModule,
     LoggingModule,
+    CryptoModule,
     CommonModule,
     StatsModule,
     PublishersModule,

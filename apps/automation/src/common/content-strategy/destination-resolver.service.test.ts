@@ -1,7 +1,12 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { DestinationResolver } from './destination-resolver.service';
+import { SecretsService } from '../crypto/secrets.service';
 import type { ResolvedStrategyBinding } from '../../config/channel-config.service';
+
+// No master key → resolveToken falls through to the env path, exactly the
+// legacy behavior these tests exercise (token_enc is null on the fixtures).
+const secrets = () => new SecretsService({ get: () => undefined } as any);
 
 function binding(over: Partial<ResolvedStrategyBinding> = {}): ResolvedStrategyBinding {
   return {
@@ -22,7 +27,7 @@ const account = {
 function make(over: { account?: any; env?: Record<string, string> } = {}) {
   const repo = { findById: async (_id: string) => (over.account === undefined ? account : over.account) };
   const config = { get: (k: string) => (over.env ?? { INSTAGRAM_TOKEN: 'tok-123' })[k] };
-  return new DestinationResolver(repo as any, config as any, { findById: async () => null } as any);
+  return new DestinationResolver(repo as any, config as any, { findById: async () => null } as any, secrets());
 }
 
 test('telegram binding maps to channel destination', async () => {

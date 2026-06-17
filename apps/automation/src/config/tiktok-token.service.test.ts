@@ -1,12 +1,21 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { TikTokTokenService } from './tiktok-token.service';
+import { SecretsService } from '../common/crypto/secrets.service';
+import { encryptToken, isEncrypted } from '../common/crypto/token-crypto';
+
+const MASTER = 'tiktok-test-master-key';
 
 function fakeConfig(over: Record<string, string | undefined> = {}) {
   const vars: Record<string, string | undefined> = {
-    TIKTOK_CLIENT_KEY: 'ck', TIKTOK_CLIENT_SECRET: 'cs', TIKTOK_REDIRECT_URI: 'https://cb', ...over,
+    TIKTOK_CLIENT_KEY: 'ck', TIKTOK_CLIENT_SECRET: 'cs', TIKTOK_REDIRECT_URI: 'https://cb',
+    TOKEN_ENCRYPTION_KEY: MASTER, ...over,
   };
   return { get: (k: string) => vars[k] } as any;
+}
+
+function secretsFor(over: Record<string, string | undefined> = {}) {
+  return new SecretsService(fakeConfig(over));
 }
 
 const FAR_FUTURE = new Date('2999-01-01T00:00:00Z');
@@ -30,7 +39,7 @@ function build(over: any = {}) {
     setActive: async (id: string, a: boolean) => { calls.deactivated = { id, a }; },
   };
   class TestSvc extends TikTokTokenService {
-    constructor() { super(fakeConfig(over.env), repo as any); }
+    constructor() { super(fakeConfig(over.env), repo as any, secretsFor(over.env)); }
     protected post(url: string, form: Record<string, string>) {
       calls.posts.push({ url, form });
       if (over.postError) throw new Error(over.postError);
@@ -57,7 +66,10 @@ test('getValidAccessToken refreshes when expired and returns the new token', asy
   assert.equal(calls.posts.length, 1);
   assert.equal(calls.posts[0].form.grant_type, 'refresh_token');
   assert.equal(calls.posts[0].form.refresh_token, 'RT');
-  assert.equal(calls.updated.t.accessToken, 'NEW_AT');
+  // Persisted tokens are encrypted at rest; the returned value is plaintext.
+  assert.ok(isEncrypted(calls.updated.t.accessToken), 'stored access token must be encrypted');
+  assert.ok(isEncrypted(calls.updated.t.refreshToken), 'stored refresh token must be encrypted');
+  assert.equal(secretsFor().decrypt(calls.updated.t.accessToken), 'NEW_AT');
 });
 
 test('getValidAccessToken throws for a missing account', async () => {
@@ -77,7 +89,10 @@ test('exchangeCode posts authorization_code and upserts parsed tokens', async ()
   assert.equal(calls.posts[0].form.code, 'AUTHCODE');
   assert.equal(calls.posts[0].form.redirect_uri, 'https://cb');
   assert.equal(calls.upserted.openId, 'open1');
-  assert.equal(calls.upserted.accessToken, 'NEW_AT');
+  // Tokens are encrypted before they touch the repo.
+  assert.ok(isEncrypted(calls.upserted.accessToken), 'stored access token must be encrypted');
+  assert.ok(isEncrypted(calls.upserted.refreshToken), 'stored refresh token must be encrypted');
+  assert.equal(secretsFor().decrypt(calls.upserted.accessToken), 'NEW_AT');
   assert.equal(row.open_id, 'open1');
 });
 
@@ -95,4 +110,28 @@ test('missing client credentials throws a config error', async () => {
   // Use an expired account so the code path reaches refresh() -> creds().
   const { svc } = build({ account: acct({ access_token_expires_at: FAR_PAST }), env: { TIKTOK_CLIENT_KEY: undefined } });
   await assert.rejects(() => svc.getValidAccessToken('a1'), /credentials/i);
+});
+
+test('getValidAccessToken decrypts an encrypted stored access token (no network)', async () => {
+  const enc = encryptToken('PLAIN_AT', MASTER);
+  const { svc, calls } = build({ account: acct({ access_token: enc }) });
+  const token = await svc.getValidAccessToken('a1');
+  assert.equal(token, 'PLAIN_AT', 'caller gets plaintext');
+  assert.equal(calls.posts.length, 0, 'no refresh needed');
+});
+
+test('getValidAccessToken handles legacy plaintext stored access token', async () => {
+  // OLD_AT is plaintext (no enc:v1 prefix) — must pass through unchanged.
+  const { svc } = build();
+  assert.equal(await svc.getValidAccessToken('a1'), 'OLD_AT');
+});
+
+test('refresh decrypts an encrypted stored refresh_token before sending it', async () => {
+  const encRefresh = encryptToken('PLAIN_RT', MASTER);
+  const { svc, calls } = build({
+    account: acct({ access_token_expires_at: FAR_PAST, refresh_token: encRefresh }),
+  });
+  await svc.getValidAccessToken('a1');
+  // The decrypted refresh token (not the enc blob) is what TikTok receives.
+  assert.equal(calls.posts[0].form.refresh_token, 'PLAIN_RT');
 });

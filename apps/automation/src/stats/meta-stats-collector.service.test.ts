@@ -1,6 +1,11 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { MetaStatsCollectorService } from './meta-stats-collector.service';
+import { SecretsService } from '../common/crypto/secrets.service';
+
+// No master key → resolveToken falls through to env (legacy path). Fixtures
+// have null/absent token_enc, so behavior is unchanged.
+const secrets = () => new SecretsService({ get: () => undefined } as any);
 
 function build(over: any = {}) {
   const inserted: any[] = [];
@@ -20,7 +25,7 @@ function build(over: any = {}) {
   const history = { insert: async (id: string, f: number) => { inserted.push([id, f]); } };
   const insights = { upsertDay: async () => {} };
   const config = { get: (k: string) => (over.env ?? { IG_TOKEN: 'tok' })[k] };
-  const svc = new MetaStatsCollectorService(accounts as any, graph as any, history as any, insights as any, config as any);
+  const svc = new MetaStatsCollectorService(accounts as any, graph as any, history as any, insights as any, config as any, secrets());
   return { svc, inserted, verifyErrors };
 }
 
@@ -85,7 +90,7 @@ test('collects insights per active account and isolates insights failures', asyn
   const history = { insert: async (id: string, f: number) => { calls.followerInserts.push([id, f]); } };
   const insights = { upsertDay: async (id: string, day: string, m: any) => { calls.upserts.push([id, day, m]); } };
   const config = { get: () => 'token-value' };
-  const c = new MetaStatsCollectorService(accounts as any, graph as any, history as any, insights as any, config as any);
+  const c = new MetaStatsCollectorService(accounts as any, graph as any, history as any, insights as any, config as any, secrets());
   const res = await c.runOnce();
   assert.deepEqual(calls.followerInserts, [['a1', 10]]);
   assert.deepEqual(calls.upserts, [['a1', '2026-06-10', { reach: 100, impressions: null, profileViews: 5 }]]);
@@ -105,7 +110,7 @@ test('insights failure is isolated — follower snapshot still happens', async (
   const history = { insert: async (id: string, f: number) => { calls.followerInserts.push([id, f]); } };
   const insights = { upsertDay: async () => { calls.upserts.push('x'); } };
   const config = { get: () => 'token-value' };
-  const c = new MetaStatsCollectorService(accounts as any, graph as any, history as any, insights as any, config as any);
+  const c = new MetaStatsCollectorService(accounts as any, graph as any, history as any, insights as any, config as any, secrets());
   const res = await c.runOnce();
   assert.deepEqual(calls.followerInserts, [['a1', 10]]);   // follower snapshot survived
   assert.equal(res.snapshots, 1);                           // follower snapshot still counted

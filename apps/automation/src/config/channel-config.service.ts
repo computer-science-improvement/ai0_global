@@ -3,6 +3,7 @@ import { Injectable, Logger, OnApplicationBootstrap } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { ConfigCacheService } from './config-cache.service';
 import { JsonImporterService } from './json-importer.service';
+import { SecretsService } from '../common/crypto/secrets.service';
 import type { DestinationPlatform } from '../common/content-strategy/publish-destination';
 
 export type AppEnv = 'local-development' | 'dev-stage' | 'production';
@@ -51,6 +52,7 @@ export class ChannelConfigService implements OnApplicationBootstrap {
     private readonly env:      ConfigService,
     private readonly cache:    ConfigCacheService,
     private readonly importer: JsonImporterService,
+    private readonly secrets:  SecretsService,
   ) {}
 
   async onApplicationBootstrap(): Promise<void> {
@@ -87,7 +89,9 @@ export class ChannelConfigService implements OnApplicationBootstrap {
     const bot = ch.bot_id ? this.cache.getBotById(ch.bot_id) : null;
     if (!bot) throw new Error(`Channel "${channelKey}" has no bot bound`);
 
-    const token = this.env.get<string>(bot.token_env);
+    const token = this.secrets.resolveToken(
+      { enc: bot.token_enc, env: bot.token_env }, (k) => this.env.get<string>(k),
+    );
     if (!token) {
       throw new Error(`Env var "${bot.token_env}" is not set (bot: ${bot.bot_id})`);
     }

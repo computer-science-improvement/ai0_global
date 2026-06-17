@@ -10,6 +10,9 @@ export interface MyBotRow {
   first_name:        string | null;
   platform:          string;
   token_env:         string;
+  // Encrypted token at rest (enc:v1:...). Non-null wins over token_env; null →
+  // legacy env-var path.
+  token_enc:         string | null;
   active:            boolean;
   last_verified_at:  Date | null;
   verify_error:      string | null;
@@ -55,6 +58,13 @@ export class MyBotsRepository {
       [input.bot_id, input.token_env, input.platform ?? null],
     );
     return rows[0];
+  }
+
+  /** Persist (or clear) the encrypted token blob for a bot. */
+  async setTokenEnc(id: string, tokenEnc: string | null): Promise<void> {
+    await this.pool.query(
+      `UPDATE my_bots SET token_enc = $2 WHERE id = $1`, [id, tokenEnc],
+    );
   }
 
   async markVerified(id: string, meta: { username: string; first_name: string }): Promise<void> {

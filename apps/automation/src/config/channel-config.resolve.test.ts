@@ -7,9 +7,9 @@ function svc(bindings: any[], channels: any[] = []) {
     getBindings: () => bindings,
     getChannelById: (id: string) => channels.find(c => c.id === id) ?? null,
   };
-  // ChannelConfigService(env, cache, importer) — only `cache` is used by
-  // resolveStrategyBindings(); pass undefined for env + importer.
-  return new ChannelConfigService(undefined as any, cache as any, undefined as any);
+  // ChannelConfigService(env, cache, importer, secrets) — only `cache` is used
+  // by resolveStrategyBindings(); pass undefined for the rest.
+  return new ChannelConfigService(undefined as any, cache as any, undefined as any, undefined as any);
 }
 
 test('telegram binding resolves channel_key + telegram destination fields', () => {

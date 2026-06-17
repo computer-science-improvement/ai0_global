@@ -12,6 +12,9 @@ export interface TelegraphAccountRow {
   id:                string;
   account_id:        string;
   token_env:         string;
+  // Encrypted token at rest (enc:v1:...). Non-null wins over token_env; null →
+  // legacy env-var path.
+  token_enc:         string | null;
   short_name:        string | null;
   author_name:       string | null;
   author_url:        string | null;
@@ -69,6 +72,13 @@ export class TelegraphAccountsRepository {
       [input.account_id, input.token_env, input.author_name ?? null, input.author_url ?? null],
     );
     return rows[0];
+  }
+
+  /** Persist (or clear) the encrypted token blob for a telegraph account. */
+  async setTokenEnc(id: string, tokenEnc: string | null): Promise<void> {
+    await this.pool.query(
+      `UPDATE telegraph_accounts SET token_enc = $2 WHERE id = $1`, [id, tokenEnc],
+    );
   }
 
   async markVerified(

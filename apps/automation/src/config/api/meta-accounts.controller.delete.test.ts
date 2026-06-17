@@ -1,6 +1,9 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { MetaAccountsController } from './meta-accounts.controller';
+import { SecretsService } from '../../common/crypto/secrets.service';
+
+const secrets = () => new SecretsService({ get: () => undefined } as any);
 
 function make(over: any = {}) {
   const calls: any = { deleted: null, deletedBindings: null, published: [] };
@@ -21,7 +24,7 @@ function make(over: any = {}) {
   const publisher = { publish: async (kind: string, id?: string) => { calls.published.push({ kind, id }); } };
   const c = new MetaAccountsController(
     accounts as any, graph as any, env as any, history as any, insights as any,
-    collector as any, bindings as any, publisher as any,
+    collector as any, bindings as any, publisher as any, secrets(),
   );
   return { c, calls };
 }

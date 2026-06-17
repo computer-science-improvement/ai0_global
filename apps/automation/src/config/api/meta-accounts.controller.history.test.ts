@@ -1,6 +1,9 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { MetaAccountsController } from './meta-accounts.controller';
+import { SecretsService } from '../../common/crypto/secrets.service';
+
+const secrets = () => new SecretsService({ get: () => undefined } as any);
 
 function make(over: any = {}) {
   const accounts = {
@@ -19,7 +22,7 @@ function make(over: any = {}) {
   const bindings = { listByMetaAccount: async () => [], deleteByMetaAccount: async () => 0 };
   const publisher = { publish: async () => {} };
   // Constructor order: accounts, graph, env, history, insights, collector, bindings, publisher
-  return new MetaAccountsController(accounts as any, graph as any, env as any, history as any, insights as any, collector as any, bindings as any, publisher as any);
+  return new MetaAccountsController(accounts as any, graph as any, env as any, history as any, insights as any, collector as any, bindings as any, publisher as any, secrets());
 }
 
 test('follower-history returns current/delta/points shape', async () => {

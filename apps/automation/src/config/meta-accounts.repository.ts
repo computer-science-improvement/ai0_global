@@ -10,6 +10,9 @@ export interface MetaAccountRow {
   platform:          MetaPlatform;
   account_id:        string;
   token_env:         string;
+  // Encrypted token at rest (enc:v1:...). When non-null it is the source of
+  // truth and takes precedence over token_env; null → legacy env-var path.
+  token_enc:         string | null;
   target_id:         string;
   username:          string | null;
   display_name:      string | null;
@@ -78,6 +81,13 @@ export class MetaAccountsRepository {
       [input.platform, input.account_id, input.token_env, input.target_id],
     );
     return rows[0];
+  }
+
+  /** Persist (or clear) the encrypted token blob for an account. */
+  async setTokenEnc(id: string, tokenEnc: string | null): Promise<void> {
+    await this.pool.query(
+      `UPDATE meta_accounts SET token_enc = $2 WHERE id = $1`, [id, tokenEnc],
+    );
   }
 
   async markVerified(id: string, meta: MetaVerifyMeta): Promise<void> {

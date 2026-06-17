@@ -1,10 +1,12 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { DestinationResolver } from './destination-resolver.service';
+import { SecretsService } from '../crypto/secrets.service';
 
 function build(account: any) {
   const tiktok = { findById: async (id: string) => (account && account.id === id ? account : null) };
-  const resolver = new DestinationResolver({ findById: async () => null } as any, { get: () => undefined } as any, tiktok as any);
+  const secrets = new SecretsService({ get: () => undefined } as any);
+  const resolver = new DestinationResolver({ findById: async () => null } as any, { get: () => undefined } as any, tiktok as any, secrets);
   return resolver;
 }
 

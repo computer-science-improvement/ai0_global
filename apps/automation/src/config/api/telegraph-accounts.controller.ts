@@ -8,6 +8,7 @@ import { TrackingAuthGuard } from '../../tracking/api/tracking-auth.guard';
 import { TelegraphAccountsRepository } from '../telegraph-accounts.repository';
 import { TelegraphGetInfoClient } from '../telegraph-getinfo.client';
 import { ConfigEventsPublisher } from '../config-events.publisher';
+import { SecretsService } from '../../common/crypto/secrets.service';
 import { CreateTelegraphAccountDto, PatchTelegraphAccountDto } from './dto/telegraph-accounts.dto';
 
 /**
@@ -23,6 +24,7 @@ export class TelegraphAccountsController {
     private readonly getInfo:   TelegraphGetInfoClient,
     private readonly env:       ConfigService,
     private readonly publisher: ConfigEventsPublisher,
+    private readonly secrets:   SecretsService,
   ) {}
 
   @Get()
@@ -50,7 +52,9 @@ export class TelegraphAccountsController {
     const acc = await this.accounts.findById(id);
     if (!acc) throw new NotFoundException(`Telegraph account ${id} not found`);
 
-    const token = this.env.get<string>(acc.token_env);
+    const token = this.secrets.resolveToken(
+      { enc: acc.token_enc, env: acc.token_env }, (k) => this.env.get<string>(k),
+    );
     if (!token) {
       await this.accounts.markVerifyError(id, `Env var ${acc.token_env} is not set`);
       throw new BadRequestException(`Env var ${acc.token_env} is not set`);

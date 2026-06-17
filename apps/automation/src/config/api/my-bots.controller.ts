@@ -8,6 +8,7 @@ import { TrackingAuthGuard } from '../../tracking/api/tracking-auth.guard';
 import { MyBotsRepository } from '../my-bots.repository';
 import { TelegramGetMeClient } from '../telegram-getme.client';
 import { ConfigEventsPublisher } from '../config-events.publisher';
+import { SecretsService } from '../../common/crypto/secrets.service';
 import { CreateBotDto, PatchBotDto } from './dto/my-bots.dto';
 
 @Controller('api/my-bots')
@@ -18,6 +19,7 @@ export class MyBotsController {
     private readonly tgGetMe:    TelegramGetMeClient,
     private readonly env:        ConfigService,
     private readonly publisher:  ConfigEventsPublisher,
+    private readonly secrets:    SecretsService,
   ) {}
 
   @Get()
@@ -45,7 +47,9 @@ export class MyBotsController {
     const bot = await this.bots.findById(id);
     if (!bot) throw new NotFoundException(`Bot ${id} not found`);
 
-    const token = this.env.get<string>(bot.token_env);
+    const token = this.secrets.resolveToken(
+      { enc: bot.token_enc, env: bot.token_env }, (k) => this.env.get<string>(k),
+    );
     if (!token) {
       await this.bots.markVerifyError(id, `Env var ${bot.token_env} is not set`);
       throw new BadRequestException(`Env var ${bot.token_env} is not set`);

@@ -5,6 +5,7 @@ import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { MetaAccountsRepository } from '../../config/meta-accounts.repository';
 import { TikTokAccountsRepository } from '../../config/tiktok-accounts.repository';
+import { SecretsService } from '../crypto/secrets.service';
 import type { ResolvedStrategyBinding } from '../../config/channel-config.service';
 import { PublishDestination, META_POSTED_PREFIX } from './publish-destination';
 
@@ -14,6 +15,7 @@ export class DestinationResolver {
     private readonly metaAccounts: MetaAccountsRepository,
     private readonly config: ConfigService,
     private readonly tiktok: TikTokAccountsRepository,
+    private readonly secrets: SecretsService,
   ) {}
 
   async resolve(b: ResolvedStrategyBinding): Promise<PublishDestination> {
@@ -48,7 +50,9 @@ export class DestinationResolver {
     const acct = await this.metaAccounts.findById(b.metaAccountId);
     if (!acct) throw new Error(`binding ${b.id}: meta account ${b.metaAccountId} not found`);
     if (!acct.active) throw new Error(`binding ${b.id}: meta account ${acct.id} is inactive`);
-    const token = this.config.get<string>(acct.token_env);
+    const token = this.secrets.resolveToken(
+      { enc: acct.token_enc, env: acct.token_env }, (k) => this.config.get<string>(k),
+    );
     if (!token) throw new Error(`binding ${b.id}: token env ${acct.token_env} not set`);
 
     return {

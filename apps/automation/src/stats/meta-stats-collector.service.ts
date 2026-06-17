@@ -9,6 +9,7 @@ import { MetaAccountsRepository } from '../config/meta-accounts.repository';
 import { MetaGraphClient } from '../config/meta-graph.client';
 import { MetaFollowerHistoryRepository } from './meta-follower-history.repository';
 import { MetaAccountInsightsRepository } from './meta-account-insights.repository';
+import { SecretsService } from '../common/crypto/secrets.service';
 
 @Injectable()
 export class MetaStatsCollectorService {
@@ -21,6 +22,7 @@ export class MetaStatsCollectorService {
     private readonly history:  MetaFollowerHistoryRepository,
     private readonly insights: MetaAccountInsightsRepository,
     private readonly config:   ConfigService,
+    private readonly secrets:  SecretsService,
   ) {}
 
   @Cron(CronExpression.EVERY_HOUR)
@@ -39,7 +41,9 @@ export class MetaStatsCollectorService {
       const active = (await this.accounts.list()).filter(a => a.active);
       for (const a of active) {
         try {
-          const token = this.config.get<string>(a.token_env);
+          const token = this.secrets.resolveToken(
+            { enc: a.token_enc, env: a.token_env }, (k) => this.config.get<string>(k),
+          );
           if (!token) {
             this.logger.debug(`Meta collector: ${a.token_env} not set — skipping ${a.id}`);
             continue;

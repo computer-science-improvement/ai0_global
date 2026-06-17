@@ -5,6 +5,7 @@ import { validateComposedPost } from './post-validation';
 import type { ComposedPost, ScheduledPost } from './scheduled-posts.types';
 import { ConfigCacheService } from '../config/config-cache.service';
 import { ComposedSenderService } from '../publishers/composed-sender.service';
+import { SecretsService } from '../common/crypto/secrets.service';
 
 @Injectable()
 export class ScheduledPostsService {
@@ -14,6 +15,7 @@ export class ScheduledPostsService {
     private readonly configCache: ConfigCacheService,
     private readonly config:      ConfigService,
     private readonly sender:      ComposedSenderService,
+    private readonly secrets:     SecretsService,
   ) {}
 
   private validate(p: ComposedPost): void {
@@ -53,7 +55,9 @@ export class ScheduledPostsService {
       if (post.sender === 'bot') {
         const bot = post.botId ? this.configCache.getBotById(post.botId) : null;
         if (!bot) throw new Error('bot not found');
-        botToken = this.config.get<string>(bot.token_env) ?? null;
+        botToken = this.secrets.resolveToken(
+          { enc: bot.token_enc, env: bot.token_env }, (k) => this.config.get<string>(k),
+        ) ?? null;
         if (!botToken) throw new Error(`bot token env ${bot.token_env} is empty`);
       }
 

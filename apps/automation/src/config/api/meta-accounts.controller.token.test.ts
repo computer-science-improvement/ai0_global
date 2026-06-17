@@ -1,11 +1,15 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { MetaAccountsController } from './meta-accounts.controller';
+import { SecretsService } from '../../common/crypto/secrets.service';
+
+// No master key → resolveToken falls back to the env path (token_enc null).
+const secrets = () => new SecretsService({ get: () => undefined } as any);
 
 function make(over: any = {}) {
   const setTokenMetaCalls: any[] = [];
   const accounts = {
-    findById: async (id: string) => over.account ?? { id, platform: over.platform ?? 'facebook', target_id: 't1' },
+    findById: async (id: string) => over.account ?? { id, platform: over.platform ?? 'facebook', target_id: 't1', token_env: 'META_TOKEN', token_enc: null },
     list: async () => over.accountsList ?? [],
     markVerified: async () => {},
     markVerifyError: async () => {},
@@ -21,7 +25,7 @@ function make(over: any = {}) {
   const collector = {};
   const bindings = { listByMetaAccount: async () => [], deleteByMetaAccount: async () => 0 };
   const publisher = { publish: async () => {} };
-  const c = new MetaAccountsController(accounts as any, graph as any, env as any, history as any, insights as any, collector as any, bindings as any, publisher as any);
+  const c = new MetaAccountsController(accounts as any, graph as any, env as any, history as any, insights as any, collector as any, bindings as any, publisher as any, secrets());
   return { c, setTokenMetaCalls };
 }
 

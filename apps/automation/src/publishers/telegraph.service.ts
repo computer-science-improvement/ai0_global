@@ -11,6 +11,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import axios from 'axios';
 import { TelegraphAccountsRepository } from '../config/telegraph-accounts.repository';
+import { SecretsService } from '../common/crypto/secrets.service';
 
 /** Telegraph DOM node — a string (text) or an element. */
 export type TelegraphNode =
@@ -131,13 +132,16 @@ export class TelegraphService {
   constructor(
     private readonly env:      ConfigService,
     private readonly accounts: TelegraphAccountsRepository,
+    private readonly secrets:  SecretsService,
   ) {}
 
   /** Resolve the active account's access token (env-var indirection). */
   private async resolveToken(): Promise<{ token: string; authorName: string | null; authorUrl: string | null } | null> {
     const acc = await this.accounts.findActive();
     if (!acc) { this.logger.warn('No active Telegraph account configured'); return null; }
-    const token = this.env.get<string>(acc.token_env);
+    const token = this.secrets.resolveToken(
+      { enc: acc.token_enc, env: acc.token_env }, (k) => this.env.get<string>(k),
+    );
     if (!token) { this.logger.warn(`Telegraph token env "${acc.token_env}" not set`); return null; }
     return { token, authorName: acc.author_name, authorUrl: acc.author_url };
   }

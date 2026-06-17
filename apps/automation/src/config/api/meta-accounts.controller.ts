@@ -12,6 +12,7 @@ import { MetaAccountInsightsRepository } from '../../stats/meta-account-insights
 import { MetaStatsCollectorService } from '../../stats/meta-stats-collector.service';
 import { StrategyBindingsRepository } from '../strategy-bindings.repository';
 import { ConfigEventsPublisher } from '../config-events.publisher';
+import { SecretsService } from '../../common/crypto/secrets.service';
 import { CreateMetaAccountDto, PatchMetaAccountDto } from './dto/meta-accounts.dto';
 
 @Controller('api/meta-accounts')
@@ -26,6 +27,7 @@ export class MetaAccountsController {
     private readonly collector: MetaStatsCollectorService,
     private readonly bindings:  StrategyBindingsRepository,
     private readonly publisher: ConfigEventsPublisher,
+    private readonly secrets:   SecretsService,
   ) {}
 
   /** Dashboard-triggered manual stats refresh (followers + insights, all active
@@ -111,7 +113,9 @@ export class MetaAccountsController {
     const acc = await this.accounts.findById(id);
     if (!acc) throw new NotFoundException(`Meta account ${id} not found`);
 
-    const token = this.env.get<string>(acc.token_env);
+    const token = this.secrets.resolveToken(
+      { enc: acc.token_enc, env: acc.token_env }, (k) => this.env.get<string>(k),
+    );
     if (!token) {
       await this.accounts.markVerifyError(id, `Env var ${acc.token_env} is not set`);
       throw new BadRequestException(`Env var ${acc.token_env} is not set`);
