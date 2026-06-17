@@ -14,10 +14,20 @@ export class CreateMetaAccountDto {
   @MaxLength(64)
   accountId!: string;
 
+  // Plaintext token VALUE — encrypted on save into token_enc, never echoed back.
+  // No charset restriction: real tokens contain dots, etc. Optional; the
+  // controller requires at least one of `token` or `tokenEnv`.
+  @IsOptional()
+  @IsString()
+  @MaxLength(4096)
+  token?: string;
+
+  // Legacy env-var NAME path. Optional now that a token value can be supplied.
+  @IsOptional()
   @IsString()
   @Matches(/^[A-Z][A-Z0-9_]*$/, { message: 'tokenEnv must be UPPER_SNAKE_CASE' })
   @MaxLength(64)
-  tokenEnv!: string;
+  tokenEnv?: string;
 
   @IsString()
   @Matches(/^[A-Za-z0-9_.-]+$/, { message: 'targetId must be an object id' })

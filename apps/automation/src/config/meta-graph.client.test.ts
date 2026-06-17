@@ -104,3 +104,30 @@ test('inspectToken returns null on error (best-effort) and does not leak the tok
   assert.equal(out, null);
   assert.equal(logged.includes('SECRET_TOKEN_VALUE'), false);
 });
+
+// ── refreshThreadsToken (Part 2) ──────────────────────────────────────────────
+
+test('refreshThreadsToken returns the new token + expiry from graph.threads.net', async () => {
+  let calledUrl = ''; let calledParams: any;
+  mock.method(axios, 'get', async (url: string, opts: any) => {
+    calledUrl = url; calledParams = opts.params;
+    return { data: { access_token: 'NEW_LONG_LIVED', token_type: 'bearer', expires_in: 5184000 } };
+  });
+  const out = await client().refreshThreadsToken('OLD_TOKEN');
+  assert.match(calledUrl, /graph\.threads\.net\/refresh_access_token/);
+  assert.equal(calledParams.grant_type, 'th_refresh_token');
+  assert.equal(calledParams.access_token, 'OLD_TOKEN');
+  assert.deepEqual(out, { accessToken: 'NEW_LONG_LIVED', expiresInSec: 5184000 });
+});
+
+test('refreshThreadsToken throws a token-redacted error on failure', async () => {
+  mock.method(axios, 'get', async () => { throw new Error('boom for access_token=SECRET_TOKEN_VALUE'); });
+  await assert.rejects(
+    () => client().refreshThreadsToken('SECRET_TOKEN_VALUE'),
+    (err: Error) => {
+      assert.match(err.message, /refreshThreadsToken failed/);
+      assert.equal(err.message.includes('SECRET_TOKEN_VALUE'), false, 'token must be redacted');
+      return true;
+    },
+  );
+});

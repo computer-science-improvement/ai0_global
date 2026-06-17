@@ -12,7 +12,8 @@ export function useBots() {
 export function useCreateBot() {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: (input: { bot_id: string; token_env: string }) =>
+    // Provide a token VALUE (encrypted server-side) OR a legacy token_env name.
+    mutationFn: (input: { bot_id: string; token?: string; token_env?: string }) =>
       api<Bot>('/api/my-bots', { method: 'POST', body: JSON.stringify(input) }),
     onSuccess: () => qc.invalidateQueries({ queryKey: ['bots'] }),
   });

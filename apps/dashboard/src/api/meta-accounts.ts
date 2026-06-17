@@ -11,7 +11,10 @@ export function useMetaAccounts() {
 export interface CreateMetaAccountInput {
   platform:  MetaPlatform;
   accountId: string;
-  tokenEnv:  string;
+  // Token VALUE — encrypted server-side into token_enc. Provide this OR tokenEnv.
+  token?:    string;
+  // Legacy: env-var NAME holding the token (resolved at read time).
+  tokenEnv?: string;
   targetId:  string;
 }
 
@@ -29,6 +32,19 @@ export function useVerifyMetaAccount() {
   return useMutation({
     mutationFn: (id: string) =>
       api<{ ok: boolean; error?: string }>(`/api/meta-accounts/${id}/verify`, { method: 'POST' }),
+    onSuccess: () => qc.invalidateQueries({ queryKey: KEY }),
+  });
+}
+
+/** Refresh a Threads long-lived token (server refreshes + re-encrypts it).
+ *  On success the account list is invalidated so the card shows the new expiry. */
+export function useRefreshThreadsToken() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (id: string) =>
+      api<{ ok: boolean; expiresAt: string }>(
+        `/api/meta-accounts/${id}/refresh-threads-token`, { method: 'POST' },
+      ),
     onSuccess: () => qc.invalidateQueries({ queryKey: KEY }),
   });
 }

@@ -19,14 +19,26 @@ interface Props {
 export function AddMetaAccountModal({ open, platform, onClose }: Props) {
   const d = DEFAULTS[platform];
   const [accountId, setAccountId] = useState('');
-  const [tokenEnv, setTokenEnv]   = useState(d.tokenEnv);
+  const [token, setToken]         = useState('');
+  const [tokenEnv, setTokenEnv]   = useState('');
   const [targetId, setTargetId]   = useState('');
   const create = useCreateMetaAccount();
 
+  // Require either the token value or the legacy env-var name.
+  const hasSecret = !!token.trim() || !!tokenEnv.trim();
+
   const submit = async () => {
+    if (!hasSecret) return;
     try {
-      await create.mutateAsync({ platform, accountId: accountId.trim(), tokenEnv: tokenEnv.trim(), targetId: targetId.trim() });
-      setAccountId(''); setTokenEnv(d.tokenEnv); setTargetId('');
+      await create.mutateAsync({
+        platform,
+        accountId: accountId.trim(),
+        // Send the token VALUE when provided (server encrypts); else the env-var name.
+        token:    token.trim() || undefined,
+        tokenEnv: token.trim() ? undefined : (tokenEnv.trim() || undefined),
+        targetId: targetId.trim(),
+      });
+      setAccountId(''); setToken(''); setTokenEnv(''); setTargetId('');
       onClose();
     } catch { /* error shown below; modal stays open */ }
   };
@@ -38,9 +50,16 @@ export function AddMetaAccountModal({ open, platform, onClose }: Props) {
           placeholder="my_page" className="input-field" style={{ width: '100%' }} />
       </Field>
 
-      <Field label="Name of the env variable holding the token">
+      <Field label="Token (value)">
+        <input type="password" value={token} onChange={e => setToken(e.target.value)}
+          placeholder="Paste the access token" autoComplete="off"
+          className="input-field" style={{ width: '100%' }} />
+      </Field>
+
+      <Field label="…or env variable name (legacy)">
         <input value={tokenEnv} onChange={e => setTokenEnv(e.target.value)}
-          placeholder={d.tokenEnv} className="input-field" style={{ width: '100%' }} />
+          placeholder={d.tokenEnv} className="input-field" style={{ width: '100%' }}
+          disabled={!!token.trim()} />
       </Field>
 
       <Field label="Target id">
@@ -51,8 +70,10 @@ export function AddMetaAccountModal({ open, platform, onClose }: Props) {
       <div className="callout-warning" style={{ marginBottom: 16 }}>
         <Icon name="info" size={14} />
         <span className="text-micro">
-          Save the token in <code style={{ color: 'var(--color-ink)' }}>.env</code> as{' '}
-          <code style={{ color: 'var(--color-ink)' }}>{tokenEnv || d.tokenEnv}=…</code>, restart automation, then click <b>Verify</b>.
+          {token.trim()
+            ? <>The token is encrypted on save — it is never stored in plaintext or shown again. Click <b>Verify</b> after saving.</>
+            : <>Save the token in <code style={{ color: 'var(--color-ink)' }}>.env</code> as{' '}
+                <code style={{ color: 'var(--color-ink)' }}>{tokenEnv || d.tokenEnv}=…</code>, restart automation, then click <b>Verify</b>. Or paste the token value above to store it encrypted.</>}
         </span>
       </div>
 
@@ -64,7 +85,7 @@ export function AddMetaAccountModal({ open, platform, onClose }: Props) {
 
       <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 8 }}>
         <button onClick={onClose} className="btn-secondary">Cancel</button>
-        <button onClick={submit} disabled={!accountId || !tokenEnv || !targetId || create.isPending} className="btn-primary">
+        <button onClick={submit} disabled={!accountId || !hasSecret || !targetId || create.isPending} className="btn-primary">
           {create.isPending ? 'Saving…' : 'Save'}
         </button>
       </div>

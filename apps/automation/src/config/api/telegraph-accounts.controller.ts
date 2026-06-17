@@ -5,7 +5,7 @@ import {
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { TrackingAuthGuard } from '../../tracking/api/tracking-auth.guard';
-import { TelegraphAccountsRepository } from '../telegraph-accounts.repository';
+import { TelegraphAccountsRepository, type TelegraphAccountRow } from '../telegraph-accounts.repository';
 import { TelegraphGetInfoClient } from '../telegraph-getinfo.client';
 import { ConfigEventsPublisher } from '../config-events.publisher';
 import { SecretsService } from '../../common/crypto/secrets.service';
@@ -30,21 +30,36 @@ export class TelegraphAccountsController {
   @Get()
   async list() {
     const rows = await this.accounts.list();
-    return rows.map(r => ({
+    return rows.map(r => this.toListItem(r));
+  }
+
+  /** Public projection of a telegraph row. NEVER includes token_enc (the
+   *  encrypted secret) — only the env-var NAME. */
+  private toListItem(r: TelegraphAccountRow) {
+    return {
       id: r.id, account_id: r.account_id, token_env: r.token_env,
       short_name: r.short_name, author_name: r.author_name, author_url: r.author_url,
       active: r.active, last_verified_at: r.last_verified_at,
       verify_error: r.verify_error, created_at: r.created_at,
-    }));
+    };
   }
 
   @Post()
   async create(@Body() body: CreateTelegraphAccountDto) {
+    if (!body.token && !body.token_env) {
+      throw new BadRequestException('provide a token value or an env var name');
+    }
     const existing = await this.accounts.findByAccountId(body.account_id);
     if (existing) throw new ConflictException(`account_id ${body.account_id} already exists`);
-    const row = await this.accounts.insert(body);
+    // A token VALUE is encrypted into token_enc; never stored in plaintext,
+    // logged, or echoed back. The env-var NAME (legacy) is stored as-is.
+    const tokenEnc = body.token ? this.secrets.encrypt(body.token.trim()) : null;
+    const row = await this.accounts.insert({
+      account_id: body.account_id, token_env: body.token_env ?? null, token_enc: tokenEnc,
+      author_name: body.author_name ?? null, author_url: body.author_url ?? null,
+    });
     await this.publisher.publish('telegraph', row.id);
-    return row;
+    return this.toListItem(row);
   }
 
   @Post(':id/verify')

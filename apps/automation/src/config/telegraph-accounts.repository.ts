@@ -26,7 +26,10 @@ export interface TelegraphAccountRow {
 
 export interface TelegraphAccountInsertInput {
   account_id:   string;
-  token_env:    string;
+  // Legacy env-var NAME — null when a token VALUE (token_enc) is supplied instead.
+  token_env:    string | null;
+  // Encrypted token blob (enc:v1:...) — set when the operator entered a value.
+  token_enc?:   string | null;
   author_name?: string | null;
   author_url?:  string | null;
 }
@@ -66,10 +69,10 @@ export class TelegraphAccountsRepository {
 
   async insert(input: TelegraphAccountInsertInput): Promise<TelegraphAccountRow> {
     const { rows } = await this.pool.query<TelegraphAccountRow>(
-      `INSERT INTO telegraph_accounts (account_id, token_env, author_name, author_url)
-       VALUES ($1, $2, $3, $4)
+      `INSERT INTO telegraph_accounts (account_id, token_env, token_enc, author_name, author_url)
+       VALUES ($1, $2, $3, $4, $5)
        RETURNING *`,
-      [input.account_id, input.token_env, input.author_name ?? null, input.author_url ?? null],
+      [input.account_id, input.token_env, input.token_enc ?? null, input.author_name ?? null, input.author_url ?? null],
     );
     return rows[0];
   }

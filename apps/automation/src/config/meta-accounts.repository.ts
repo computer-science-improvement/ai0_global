@@ -36,7 +36,10 @@ export interface MetaAccountRow {
 export interface MetaAccountInsertInput {
   platform:   MetaPlatform;
   account_id: string;
-  token_env:  string;
+  // Legacy env-var NAME — null when a token VALUE (token_enc) is supplied instead.
+  token_env:  string | null;
+  // Encrypted token blob (enc:v1:...) — set when the operator entered a value.
+  token_enc?: string | null;
   target_id:  string;
 }
 
@@ -75,10 +78,10 @@ export class MetaAccountsRepository {
 
   async insert(input: MetaAccountInsertInput): Promise<MetaAccountRow> {
     const { rows } = await this.pool.query<MetaAccountRow>(
-      `INSERT INTO meta_accounts (platform, account_id, token_env, target_id)
-       VALUES ($1, $2, $3, $4)
+      `INSERT INTO meta_accounts (platform, account_id, token_env, token_enc, target_id)
+       VALUES ($1, $2, $3, $4, $5)
        RETURNING *`,
-      [input.platform, input.account_id, input.token_env, input.target_id],
+      [input.platform, input.account_id, input.token_env, input.token_enc ?? null, input.target_id],
     );
     return rows[0];
   }

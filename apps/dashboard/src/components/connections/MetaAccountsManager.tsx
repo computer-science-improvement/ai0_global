@@ -12,6 +12,7 @@ import { useConfirm } from '../ui/ConfirmDialog';
 import { AddMetaAccountModal } from './AddMetaAccountModal';
 import {
   useMetaAccounts, useVerifyMetaAccount, useToggleMetaAccount, useDeleteMetaAccount,
+  useRefreshThreadsToken,
 } from '../../api/meta-accounts';
 import { useStrategies } from '../../api/strategies';
 import type { MetaAccount, MetaPlatform, Strategy } from '../../api/types';
@@ -30,6 +31,7 @@ export function MetaAccountsManager({ platform }: { platform: MetaPlatform }) {
   const verify = useVerifyMetaAccount();
   const toggle = useToggleMetaAccount();
   const remove = useDeleteMetaAccount();
+  const refreshToken = useRefreshThreadsToken();
   const confirm = useConfirm();
   const [addOpen, setAddOpen] = useState(false);
 
@@ -71,6 +73,9 @@ export function MetaAccountsManager({ platform }: { platform: MetaPlatform }) {
             key={a.id}
             account={a}
             onVerify={() => verify.mutate(a.id)}
+            onRefreshToken={() => refreshToken.mutate(a.id)}
+            refreshing={refreshToken.isPending && refreshToken.variables === a.id}
+            refreshError={refreshToken.variables === a.id && refreshToken.isError ? (refreshToken.error as Error).message : null}
             onToggle={async () => {
               const action = a.active ? 'pause' : 'activate';
               if (await confirm(`${action} account ${a.account_id}`, { danger: false, confirmLabel: a.active ? 'Pause' : 'Activate' }))
@@ -122,9 +127,10 @@ function AttachedStrategiesList({ strategies }: { strategies: Strategy[] }) {
   );
 }
 
-function AccountCard({ account: a, onVerify, onToggle, onDelete }: {
+function AccountCard({ account: a, onVerify, onToggle, onDelete, onRefreshToken, refreshing, refreshError }: {
   account: MetaAccount;
   onVerify: () => void; onToggle: () => void; onDelete: () => void;
+  onRefreshToken: () => void; refreshing: boolean; refreshError: string | null;
 }) {
   const verified = !a.verify_error && !!a.username;
   return (
@@ -158,10 +164,24 @@ function AccountCard({ account: a, onVerify, onToggle, onDelete }: {
         <TokenInfo account={a} />
       </Link>
 
-      <div style={{ display: 'inline-flex', gap: 6 }}>
-        <button onClick={onVerify} className="btn-tiny" title="Verify token"><Icon name="refresh" size={12} /> Verify</button>
-        <button onClick={onToggle} className="btn-tiny">{a.active ? 'Pause' : 'Activate'}</button>
-        <button onClick={onDelete} className="btn-tiny-danger"><Icon name="trash" size={12} /> Delete</button>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 6 }}>
+        <div style={{ display: 'inline-flex', gap: 6 }}>
+          <button onClick={onVerify} className="btn-tiny" title="Verify token"><Icon name="refresh" size={12} /> Verify</button>
+          {/* Threads tokens are short-lived (~60d) and refreshable with only the
+              current token. Refresh re-encrypts the new token + updates the expiry. */}
+          {a.platform === 'threads' && (
+            <button onClick={onRefreshToken} className="btn-tiny" disabled={refreshing} title="Refresh the Threads long-lived token">
+              <Icon name="refresh" size={12} /> {refreshing ? 'Refreshing…' : 'Refresh token'}
+            </button>
+          )}
+          <button onClick={onToggle} className="btn-tiny">{a.active ? 'Pause' : 'Activate'}</button>
+          <button onClick={onDelete} className="btn-tiny-danger"><Icon name="trash" size={12} /> Delete</button>
+        </div>
+        {refreshError && (
+          <span className="text-micro" style={{ color: 'var(--color-danger)', maxWidth: 240, textAlign: 'right' }}>
+            {refreshError}
+          </span>
+        )}
       </div>
     </div>
   );

@@ -10,20 +10,27 @@ interface Props {
 
 export function AddTelegraphAccountModal({ open, onClose }: Props) {
   const [accountId, setAccountId]   = useState('');
-  const [tokenEnv, setTokenEnv]     = useState('TELEGRAPH_ACCESS_TOKEN');
+  const [token, setToken]           = useState('');
+  const [tokenEnv, setTokenEnv]     = useState('');
   const [authorName, setAuthorName] = useState('');
   const [authorUrl, setAuthorUrl]   = useState('');
   const create = useCreateTelegraphAccount();
 
+  // Require either the token value or the legacy env-var name.
+  const hasSecret = !!token.trim() || !!tokenEnv.trim();
+
   const submit = async () => {
+    if (!hasSecret) return;
     try {
       await create.mutateAsync({
         account_id:  accountId.trim(),
-        token_env:   tokenEnv.trim(),
+        // Send the token VALUE when provided (server encrypts); else the env-var name.
+        token:       token.trim() || undefined,
+        token_env:   token.trim() ? undefined : (tokenEnv.trim() || undefined),
         author_name: authorName.trim() || undefined,
         author_url:  authorUrl.trim() || undefined,
       });
-      setAccountId(''); setTokenEnv('TELEGRAPH_ACCESS_TOKEN'); setAuthorName(''); setAuthorUrl('');
+      setAccountId(''); setToken(''); setTokenEnv(''); setAuthorName(''); setAuthorUrl('');
       onClose();
     } catch {
       // Error shown via create.error below; modal stays open.
@@ -42,13 +49,26 @@ export function AddTelegraphAccountModal({ open, onClose }: Props) {
         />
       </Field>
 
-      <Field label="Token env-var name">
+      <Field label="Token (value)">
+        <input
+          type="password"
+          value={token}
+          onChange={e => setToken(e.target.value)}
+          placeholder="Paste the Telegraph access token"
+          autoComplete="off"
+          className="input-field"
+          style={{ width: '100%' }}
+        />
+      </Field>
+
+      <Field label="…or env variable name (legacy)">
         <input
           value={tokenEnv}
           onChange={e => setTokenEnv(e.target.value)}
           placeholder="TELEGRAPH_ACCESS_TOKEN"
           className="input-field"
           style={{ width: '100%' }}
+          disabled={!!token.trim()}
         />
       </Field>
 
@@ -75,7 +95,9 @@ export function AddTelegraphAccountModal({ open, onClose }: Props) {
       <div className="callout-warning" style={{ marginBottom: 16 }}>
         <Icon name="info" size={14} />
         <span className="text-micro">
-          After saving, put the Telegraph access token into <code style={{ color: 'var(--color-ink)' }}>.env</code> as <code style={{ color: 'var(--color-ink)' }}>{tokenEnv || 'TELEGRAPH_ACCESS_TOKEN'}=…</code> and restart automation. Then click <b>Verify</b>. Mint a token via <code style={{ color: 'var(--color-ink)' }}>api.telegra.ph/createAccount</code>.
+          {token.trim()
+            ? <>The token is encrypted on save — it is never stored in plaintext or shown again. Click <b>Verify</b> after saving. Mint a token via <code style={{ color: 'var(--color-ink)' }}>api.telegra.ph/createAccount</code>.</>
+            : <>Put the Telegraph access token into <code style={{ color: 'var(--color-ink)' }}>.env</code> as <code style={{ color: 'var(--color-ink)' }}>{tokenEnv || 'TELEGRAPH_ACCESS_TOKEN'}=…</code> and restart automation. Then click <b>Verify</b>. Or paste the token value above to store it encrypted. Mint a token via <code style={{ color: 'var(--color-ink)' }}>api.telegra.ph/createAccount</code>.</>}
         </span>
       </div>
 
@@ -89,7 +111,7 @@ export function AddTelegraphAccountModal({ open, onClose }: Props) {
         <button onClick={onClose} className="btn-secondary">Cancel</button>
         <button
           onClick={submit}
-          disabled={!accountId || !tokenEnv || create.isPending}
+          disabled={!accountId || !hasSecret || create.isPending}
           className="btn-primary"
         >
           {create.isPending ? 'Saving…' : 'Save'}

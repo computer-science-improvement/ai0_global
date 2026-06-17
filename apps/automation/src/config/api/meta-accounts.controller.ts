@@ -5,7 +5,7 @@ import {
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { TrackingAuthGuard } from '../../tracking/api/tracking-auth.guard';
-import { MetaAccountsRepository } from '../meta-accounts.repository';
+import { MetaAccountsRepository, type MetaAccountRow } from '../meta-accounts.repository';
 import { MetaGraphClient } from '../meta-graph.client';
 import { MetaFollowerHistoryRepository } from '../../stats/meta-follower-history.repository';
 import { MetaAccountInsightsRepository } from '../../stats/meta-account-insights.repository';
@@ -45,20 +45,26 @@ export class MetaAccountsController {
       this.history.delta24hByAccount(),
     ]);
     // Never return token values — only the env-var name.
-    return rows.map(r => ({
+    return rows.map(r => this.toListItem(r, deltas.get(r.id) ?? null));
+  }
+
+  /** Public projection of an account row. NEVER includes token_enc (the
+   *  encrypted secret) — only the env-var NAME and derived token metadata. */
+  private toListItem(r: MetaAccountRow, followersDelta24h: number | null = null) {
+    return {
       id: r.id, platform: r.platform, account_id: r.account_id,
       token_env: r.token_env, target_id: r.target_id,
       username: r.username, display_name: r.display_name,
       followers: r.followers, picture_url: r.picture_url,
-      followers_delta_24h: deltas.get(r.id) ?? null,
+      followers_delta_24h: followersDelta24h,
       active: r.active, last_verified_at: r.last_verified_at,
       verify_error: r.verify_error, created_at: r.created_at,
-      // Derived token metadata only — never the token value (no token column exists).
+      // Derived token metadata only — never the token value.
       token_type: r.token_type, token_expires_at: r.token_expires_at,
       token_data_access_expires_at: r.token_data_access_expires_at,
       token_scopes: r.token_scopes, token_valid: r.token_valid,
       token_checked_at: r.token_checked_at,
-    }));
+    };
   }
 
   @Get(':id/follower-history')
@@ -100,12 +106,47 @@ export class MetaAccountsController {
 
   @Post()
   async create(@Body() body: CreateMetaAccountDto) {
+    if (!body.token && !body.tokenEnv) {
+      throw new BadRequestException('provide a token value or an env var name');
+    }
     const existing = await this.accounts.findByPlatformAccount(body.platform, body.accountId);
     if (existing) throw new ConflictException(`${body.platform} account ${body.accountId} already exists`);
-    return this.accounts.insert({
+    // A token VALUE is encrypted into token_enc; the token itself is never stored
+    // in plaintext, logged, or echoed back. The env-var NAME (legacy) is stored as-is.
+    const tokenEnc = body.token ? this.secrets.encrypt(body.token.trim()) : null;
+    const row = await this.accounts.insert({
       platform: body.platform, account_id: body.accountId,
-      token_env: body.tokenEnv, target_id: body.targetId,
+      token_env: body.tokenEnv ?? null, token_enc: tokenEnc, target_id: body.targetId,
     });
+    return this.toListItem(row);
+  }
+
+  @Post(':id/refresh-threads-token')
+  async refreshThreadsToken(@Param('id') id: string) {
+    const acc = await this.accounts.findById(id);
+    if (!acc) throw new NotFoundException(`Meta account ${id} not found`);
+    if (acc.platform !== 'threads') {
+      throw new BadRequestException('refresh-threads-token is only valid for threads accounts');
+    }
+
+    const token = this.secrets.resolveToken(
+      { enc: acc.token_enc, env: acc.token_env }, (k) => this.env.get<string>(k),
+    );
+    if (!token) throw new BadRequestException('no token to refresh');
+
+    const { accessToken, expiresInSec } = await this.graph.refreshThreadsToken(token);
+
+    // Persist the NEW token encrypted, and record the new expiry so the UI's
+    // token-info card reflects it (token_checked_at is set by setTokenMeta).
+    const enc = this.secrets.encrypt(accessToken);
+    await this.accounts.setTokenEnc(id, enc);
+    const expiresAt = new Date(Date.now() + expiresInSec * 1000);
+    await this.accounts.setTokenMeta(id, {
+      type: 'THREADS', expiresAt, dataAccessExpiresAt: null, scopes: [], isValid: true,
+    });
+
+    // Never return the token value — only the new expiry.
+    return { ok: true, expiresAt };
   }
 
   @Post(':id/verify')

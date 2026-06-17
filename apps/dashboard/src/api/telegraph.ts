@@ -12,7 +12,8 @@ export function useTelegraphAccounts() {
 export function useCreateTelegraphAccount() {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: (input: { account_id: string; token_env: string; author_name?: string; author_url?: string }) =>
+    // Provide a token VALUE (encrypted server-side) OR a legacy token_env name.
+    mutationFn: (input: { account_id: string; token?: string; token_env?: string; author_name?: string; author_url?: string }) =>
       api<TelegraphAccount>('/api/telegraph-accounts', { method: 'POST', body: JSON.stringify(input) }),
     onSuccess: () => qc.invalidateQueries({ queryKey: ['telegraph-accounts'] }),
   });

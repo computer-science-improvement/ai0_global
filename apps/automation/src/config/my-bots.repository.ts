@@ -21,7 +21,10 @@ export interface MyBotRow {
 
 export interface MyBotInsertInput {
   bot_id:    string;
-  token_env: string;
+  // Legacy env-var NAME — null when a token VALUE (token_enc) is supplied instead.
+  token_env: string | null;
+  // Encrypted token blob (enc:v1:...) — set when the operator entered a value.
+  token_enc?: string | null;
   platform?: string;
 }
 
@@ -52,10 +55,10 @@ export class MyBotsRepository {
 
   async insert(input: MyBotInsertInput): Promise<MyBotRow> {
     const { rows } = await this.pool.query<MyBotRow>(
-      `INSERT INTO my_bots (bot_id, token_env, platform)
-       VALUES ($1, $2, COALESCE($3, 'telegram'))
+      `INSERT INTO my_bots (bot_id, token_env, token_enc, platform)
+       VALUES ($1, $2, $3, COALESCE($4, 'telegram'))
        RETURNING *`,
-      [input.bot_id, input.token_env, input.platform ?? null],
+      [input.bot_id, input.token_env, input.token_enc ?? null, input.platform ?? null],
     );
     return rows[0];
   }

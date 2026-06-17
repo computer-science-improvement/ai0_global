@@ -5,7 +5,7 @@ import {
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { TrackingAuthGuard } from '../../tracking/api/tracking-auth.guard';
-import { MyBotsRepository } from '../my-bots.repository';
+import { MyBotsRepository, type MyBotRow } from '../my-bots.repository';
 import { TelegramGetMeClient } from '../telegram-getme.client';
 import { ConfigEventsPublisher } from '../config-events.publisher';
 import { SecretsService } from '../../common/crypto/secrets.service';
@@ -25,21 +25,35 @@ export class MyBotsController {
   @Get()
   async list() {
     const rows = await this.bots.list();
-    return rows.map(r => ({
+    return rows.map(r => this.toListItem(r));
+  }
+
+  /** Public projection of a bot row. NEVER includes token_enc (the encrypted
+   *  secret) — only the env-var NAME. */
+  private toListItem(r: MyBotRow) {
+    return {
       id: r.id, bot_id: r.bot_id, username: r.username, first_name: r.first_name,
       platform: r.platform, token_env: r.token_env, active: r.active,
       last_verified_at: r.last_verified_at, verify_error: r.verify_error,
       created_at: r.created_at,
-    }));
+    };
   }
 
   @Post()
   async create(@Body() body: CreateBotDto) {
+    if (!body.token && !body.token_env) {
+      throw new BadRequestException('provide a token value or an env var name');
+    }
     const existing = await this.bots.findByBotId(body.bot_id);
     if (existing) throw new ConflictException(`bot_id ${body.bot_id} already exists`);
-    const row = await this.bots.insert(body);
+    // A token VALUE is encrypted into token_enc; never stored in plaintext,
+    // logged, or echoed back. The env-var NAME (legacy) is stored as-is.
+    const tokenEnc = body.token ? this.secrets.encrypt(body.token.trim()) : null;
+    const row = await this.bots.insert({
+      bot_id: body.bot_id, token_env: body.token_env ?? null, token_enc: tokenEnc,
+    });
     await this.publisher.publish('bot', row.id);
-    return row;
+    return this.toListItem(row);
   }
 
   @Post(':id/verify')

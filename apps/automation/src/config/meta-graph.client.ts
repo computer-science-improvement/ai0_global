@@ -126,6 +126,31 @@ export class MetaGraphClient {
   }
 
   /**
+   * Refresh a Threads long-lived token. Threads tokens last ~60 days and can be
+   * refreshed with ONLY the current token (no app secret), via
+   * graph.threads.net/refresh_access_token. Returns the NEW token plus its
+   * lifetime in seconds. Throws a token-redacted error on failure — the token
+   * never reaches a log or an error message in plaintext.
+   */
+  async refreshThreadsToken(token: string): Promise<{ accessToken: string; expiresInSec: number }> {
+    if (!token) throw new Error('Token is empty');
+    try {
+      const res = await axios.get('https://graph.threads.net/refresh_access_token', {
+        params: { grant_type: 'th_refresh_token', access_token: token },
+        timeout: this.timeout,
+      });
+      const d = res.data ?? {};
+      const accessToken = typeof d.access_token === 'string' ? d.access_token : '';
+      if (!accessToken) throw new Error('refresh returned no access_token');
+      const expiresInSec = typeof d.expires_in === 'number' ? d.expires_in : 0;
+      return { accessToken, expiresInSec };
+    } catch (err: any) {
+      const desc = err?.response?.data?.error?.message ?? err?.message ?? 'unknown';
+      throw new Error(`refreshThreadsToken failed: ${redactToken(String(desc), token)}`);
+    }
+  }
+
+  /**
    * Daily account insights for the last `sinceDays`, normalized to
    * reach/impressions/profileViews. One Graph call per supported metric so a
    * single deprecated/unsupported metric degrades to null instead of 400-ing the
