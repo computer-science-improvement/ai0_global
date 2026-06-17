@@ -21,6 +21,12 @@ export interface MetaAccountRow {
   created_at:        Date;
   landing_visible:   boolean;
   landing_order:     number;
+  // Derived from Graph debug_token on Verify — the token value is NEVER stored.
+  token_type:                   string | null;
+  token_expires_at:             Date | null;
+  token_data_access_expires_at: Date | null;
+  token_scopes:                 string[] | null;
+  token_checked_at:             Date | null;
 }
 
 export interface MetaAccountInsertInput {
@@ -84,6 +90,24 @@ export class MetaAccountsRepository {
              verify_error     = NULL
        WHERE id = $1`,
       [id, meta.username, meta.display_name, meta.followers, meta.picture_url],
+    );
+  }
+
+  /** Persist debug_token-derived metadata. The token value is NEVER stored;
+   *  isValid is implied by a successful verify so it isn't a column. */
+  async setTokenMeta(
+    id: string,
+    info: { type: string | null; expiresAt: Date | null; dataAccessExpiresAt: Date | null; scopes: string[]; isValid: boolean },
+  ): Promise<void> {
+    await this.pool.query(
+      `UPDATE meta_accounts
+         SET token_type                   = $2,
+             token_expires_at             = $3,
+             token_data_access_expires_at = $4,
+             token_scopes                 = $5,
+             token_checked_at             = now()
+       WHERE id = $1`,
+      [id, info.type, info.expiresAt, info.dataAccessExpiresAt, info.scopes],
     );
   }
 

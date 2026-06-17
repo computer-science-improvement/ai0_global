@@ -293,6 +293,12 @@ export interface MetaAccount {
   last_verified_at: string | null;
   verify_error:     string | null;
   created_at:       string;
+  // Derived access-token metadata (debug_token) — never the token value itself.
+  token_type:                   string | null;
+  token_expires_at:             string | null;
+  token_data_access_expires_at: string | null;
+  token_scopes:                 string[] | null;
+  token_checked_at:             string | null;
 }
 
 export type CrosspostMode = 'mirror' | 'teaser';

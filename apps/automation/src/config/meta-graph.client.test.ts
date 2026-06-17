@@ -58,3 +58,49 @@ test('fetchThreadsFollowers returns null on error or missing value', async () =>
   assert.equal(await client().fetchThreadsFollowers('TH1', 'tok'), null);
   assert.equal(await client().fetchThreadsFollowers('', 'tok'), null);
 });
+
+test('inspectToken parses debug_token payload: type/scopes/isValid and expiresAt as Date', async () => {
+  mock.method(axios, 'get', async (url: string, opts: any) => {
+    assert.match(url, /graph\.facebook\.com\/v21\.0\/debug_token$/);
+    // self-inspection: input_token === access_token === the token under test
+    assert.equal(opts.params.input_token, 'tok');
+    assert.equal(opts.params.access_token, 'tok');
+    return { data: { data: {
+      type: 'PAGE', expires_at: 1786884952, data_access_expires_at: 1789476951,
+      scopes: ['pages_manage_posts'], is_valid: true,
+    } } };
+  });
+  const out = await client().inspectToken('tok');
+  assert.ok(out);
+  assert.equal(out!.type, 'PAGE');
+  assert.deepEqual(out!.scopes, ['pages_manage_posts']);
+  assert.equal(out!.isValid, true);
+  assert.ok(out!.expiresAt instanceof Date);
+  assert.equal(out!.expiresAt!.getTime(), 1786884952 * 1000);
+  assert.ok(out!.dataAccessExpiresAt instanceof Date);
+  assert.equal(out!.dataAccessExpiresAt!.getTime(), 1789476951 * 1000);
+});
+
+test('inspectToken: expires_at 0 → null (never expires); missing scopes → []', async () => {
+  mock.method(axios, 'get', async () => ({ data: { data: {
+    type: 'SYSTEM_USER', expires_at: 0, data_access_expires_at: 0, is_valid: true,
+  } } }));
+  const out = await client().inspectToken('tok');
+  assert.ok(out);
+  assert.equal(out!.expiresAt, null);
+  assert.equal(out!.dataAccessExpiresAt, null);
+  assert.deepEqual(out!.scopes, []);
+  assert.equal(out!.type, 'SYSTEM_USER');
+});
+
+test('inspectToken returns null on error (best-effort) and does not leak the token', async () => {
+  let logged = '';
+  const cfg = { get: (k: string) => ({ META_GRAPH_VERSION: 'v21.0', FETCH_TIMEOUT: '15000' } as any)[k] };
+  const c = new MetaGraphClient(cfg as any);
+  // capture anything the client tries to log
+  (c as any).logger = { debug: (m: string) => { logged += m; }, warn: (m: string) => { logged += m; }, error: (m: string) => { logged += m; } };
+  mock.method(axios, 'get', async () => { throw new Error('debug_token failed for access_token=SECRET_TOKEN_VALUE'); });
+  const out = await c.inspectToken('SECRET_TOKEN_VALUE');
+  assert.equal(out, null);
+  assert.equal(logged.includes('SECRET_TOKEN_VALUE'), false);
+});

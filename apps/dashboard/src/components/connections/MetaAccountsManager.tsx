@@ -3,10 +3,11 @@
 // with verify / pause / delete actions. Tokens live in .env; only the env-var
 // NAME is ever shown.
 
-import { useState } from 'react';
+import { useState, type ReactNode } from 'react';
 import { Link } from '@tanstack/react-router';
 import { Icon } from '../ui/Icon';
 import { Badge } from '../ui/Badge';
+import { fmtDate } from '../../lib/format';
 import { useConfirm } from '../ui/ConfirmDialog';
 import { AddMetaAccountModal } from './AddMetaAccountModal';
 import {
@@ -114,6 +115,7 @@ function AccountCard({ account: a, onVerify, onToggle, onDelete }: {
               ? <Badge tone="success">connected</Badge>
               : <Badge tone="neutral">unverified</Badge>}
         </div>
+        <TokenInfo account={a} />
       </Link>
 
       <div style={{ display: 'inline-flex', gap: 6 }}>
@@ -121,6 +123,58 @@ function AccountCard({ account: a, onVerify, onToggle, onDelete }: {
         <button onClick={onToggle} className="btn-tiny">{a.active ? 'Pause' : 'Activate'}</button>
         <button onClick={onDelete} className="btn-tiny-danger"><Icon name="trash" size={12} /> Delete</button>
       </div>
+    </div>
+  );
+}
+
+// Token type → Badge tone. PAGE tokens are preferred for posting (success);
+// USER tokens work but are shorter-lived / less appropriate (warning).
+const TOKEN_TYPE_TONE: Record<string, 'success' | 'warning' | 'neutral' | 'accent'> = {
+  PAGE: 'success', SYSTEM_USER: 'neutral', USER: 'warning',
+};
+
+/** Whole days from now until `iso` (negative = already past). */
+function daysUntil(iso: string): number {
+  return Math.floor((new Date(iso).getTime() - Date.now()) / 86_400_000);
+}
+
+// Derived access-token metadata from Graph debug_token (never the token itself).
+// Threads accounts are skipped server-side, so token_checked_at stays null there.
+function TokenInfo({ account: a }: { account: MetaAccount }) {
+  const dot = (color: string) => (
+    <span style={{ width: 7, height: 7, borderRadius: 999, background: color, display: 'inline-block', flexShrink: 0 }} />
+  );
+
+  let expiry: ReactNode;
+  if (!a.token_checked_at) {
+    expiry = <span style={{ color: 'var(--color-ink-dim)' }}>Token: not checked — Verify to read</span>;
+  } else if (!a.token_expires_at) {
+    expiry = <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, color: 'var(--color-success)' }}>{dot('var(--color-success)')} Token: never expires</span>;
+  } else {
+    const days = daysUntil(a.token_expires_at);
+    const color = days <= 0 ? 'var(--color-danger)' : days <= 30 ? 'var(--color-warning)' : 'var(--color-success)';
+    const tail = days <= 0 ? 'expired' : `in ${days} day${days === 1 ? '' : 's'}`;
+    expiry = (
+      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, color }} title={fmtDate(a.token_expires_at)}>
+        {dot(color)} Token expires {fmtDate(a.token_expires_at)} · {tail}
+      </span>
+    );
+  }
+
+  const scopes = a.token_scopes ?? [];
+  const scopeText = scopes.length
+    ? scopes.length <= 3 ? scopes.join(', ') : `${scopes.slice(0, 3).join(', ')} +${scopes.length - 3} more`
+    : null;
+
+  return (
+    <div className="text-micro" style={{ marginTop: 6, display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 8, rowGap: 4 }}>
+      <Badge tone={a.token_type ? TOKEN_TYPE_TONE[a.token_type] ?? 'neutral' : 'neutral'}>
+        {a.token_type ?? 'unknown'}
+      </Badge>
+      {expiry}
+      {scopeText && (
+        <span style={{ color: 'var(--color-ink-dim)' }} title={scopes.join(', ')}>· {scopeText}</span>
+      )}
     </div>
   );
 }

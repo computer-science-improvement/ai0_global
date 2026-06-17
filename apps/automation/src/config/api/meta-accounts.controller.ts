@@ -47,6 +47,10 @@ export class MetaAccountsController {
       followers_delta_24h: deltas.get(r.id) ?? null,
       active: r.active, last_verified_at: r.last_verified_at,
       verify_error: r.verify_error, created_at: r.created_at,
+      // Derived token metadata only — never the token value (no token column exists).
+      token_type: r.token_type, token_expires_at: r.token_expires_at,
+      token_data_access_expires_at: r.token_data_access_expires_at,
+      token_scopes: r.token_scopes, token_checked_at: r.token_checked_at,
     }));
   }
 
@@ -114,6 +118,12 @@ export class MetaAccountsController {
         username: r.username, display_name: r.displayName,
         followers: r.followers, picture_url: r.pictureUrl,
       });
+      // Best-effort token-metadata read. debug_token is a facebook.com endpoint
+      // (rejects Threads tokens), and a failure must never break verify.
+      if (acc.platform !== 'threads') {
+        const info = await this.graph.inspectToken(token);
+        if (info) await this.accounts.setTokenMeta(id, info);
+      }
       return { ok: true, ...r };
     } catch (err: any) {
       await this.accounts.markVerifyError(id, err.message);

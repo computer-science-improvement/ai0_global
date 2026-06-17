@@ -12,6 +12,20 @@ export interface MetaVerifyResult {
   pictureUrl:  string | null;
 }
 
+/** Derived metadata from Graph `debug_token` — NEVER the token value itself. */
+export interface MetaTokenInfo {
+  type:                string | null;   // data.type, e.g. 'USER' | 'PAGE' | 'SYSTEM_USER'
+  expiresAt:           Date | null;     // data.expires_at: unix secs; 0 → null (never)
+  dataAccessExpiresAt: Date | null;     // data.data_access_expires_at: 0 → null
+  scopes:              string[];        // data.scopes ?? []
+  isValid:             boolean;         // data.is_valid ?? false
+}
+
+/** Unix epoch seconds → Date; 0/falsy/non-number → null (never-expires/unknown). */
+function unixToDate(secs: unknown): Date | null {
+  return typeof secs === 'number' && secs > 0 ? new Date(secs * 1000) : null;
+}
+
 /**
  * Strip the OAuth token from any string before it lands in verify_error /
  * the GET /api/meta-accounts response. Axios error messages embed the full
@@ -80,6 +94,34 @@ export class MetaGraphClient {
     } catch (err: any) {
       const desc = err?.response?.data?.error?.message ?? err?.message ?? 'unknown';
       throw new Error(`verify failed: ${redactToken(String(desc), token)}`);
+    }
+  }
+
+  /**
+   * Self-inspect `token` via Graph `debug_token` and return its derived
+   * metadata (type / expiry / scopes / validity) — NEVER the token value.
+   * Best-effort: returns null on any error so Verify still succeeds. The token
+   * is redacted from any logged error message. A facebook.com endpoint — only
+   * call for facebook/instagram tokens (it rejects Threads tokens).
+   */
+  async inspectToken(token: string): Promise<MetaTokenInfo | null> {
+    if (!token) return null;
+    try {
+      const res = await axios.get(`https://graph.facebook.com/${this.version}/debug_token`, {
+        params: { input_token: token, access_token: token },
+        timeout: this.timeout,
+      });
+      const d = res.data?.data ?? {};
+      return {
+        type:                typeof d.type === 'string' ? d.type : null,
+        expiresAt:           unixToDate(d.expires_at),
+        dataAccessExpiresAt: unixToDate(d.data_access_expires_at),
+        scopes:              Array.isArray(d.scopes) ? d.scopes : [],
+        isValid:             d.is_valid ?? false,
+      };
+    } catch (err: any) {
+      this.logger.debug(`inspectToken failed: ${redactToken(String(err?.message ?? err), token)}`);
+      return null;
     }
   }
 
