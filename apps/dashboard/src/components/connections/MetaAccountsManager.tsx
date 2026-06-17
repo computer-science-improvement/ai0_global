@@ -145,9 +145,20 @@ function TokenInfo({ account: a }: { account: MetaAccount }) {
     <span style={{ width: 7, height: 7, borderRadius: 999, background: color, display: 'inline-block', flexShrink: 0 }} />
   );
 
+  // The token itself was checked (debug_token ran) but reported is_valid=false —
+  // independent of verify, so show this even when the connection looks fine.
+  const tokenInvalid = !!a.token_checked_at && a.token_valid === false;
+
   let expiry: ReactNode;
   if (!a.token_checked_at) {
     expiry = <span style={{ color: 'var(--color-ink-dim)' }}>Token: not checked — Verify to read</span>;
+  } else if (tokenInvalid) {
+    // An invalid token's expiry is meaningless — surface the validity instead.
+    expiry = (
+      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, color: 'var(--color-danger)', fontWeight: 500 }}>
+        {dot('var(--color-danger)')} Invalid token
+      </span>
+    );
   } else if (!a.token_expires_at) {
     expiry = <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, color: 'var(--color-success)' }}>{dot('var(--color-success)')} Token: never expires</span>;
   } else {
@@ -161,21 +172,57 @@ function TokenInfo({ account: a }: { account: MetaAccount }) {
     );
   }
 
-  const scopes = a.token_scopes ?? [];
-  const scopeText = scopes.length
-    ? scopes.length <= 3 ? scopes.join(', ') : `${scopes.slice(0, 3).join(', ')} +${scopes.length - 3} more`
-    : null;
-
   return (
     <div className="text-micro" style={{ marginTop: 6, display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 8, rowGap: 4 }}>
       <Badge tone={a.token_type ? TOKEN_TYPE_TONE[a.token_type] ?? 'neutral' : 'neutral'}>
         {a.token_type ?? 'unknown'}
       </Badge>
       {expiry}
-      {scopeText && (
-        <span style={{ color: 'var(--color-ink-dim)' }} title={scopes.join(', ')}>· {scopeText}</span>
-      )}
+      <ScopeList scopes={a.token_scopes ?? []} />
     </div>
+  );
+}
+
+// Click-to-expand granted scopes. Collapsed shows the first 3 + a "+N more"
+// button; expanded shows every scope as wrapped chips with a "show less" toggle.
+// The card itself is a Link, so the toggle stops the click from navigating.
+function ScopeList({ scopes }: { scopes: string[] }) {
+  const [expanded, setExpanded] = useState(false);
+  if (!scopes.length) return null;
+
+  const toggle = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setExpanded(v => !v);
+  };
+
+  const toggleStyle: React.CSSProperties = {
+    background: 'none', border: 'none', padding: 0, cursor: 'pointer',
+    font: 'inherit', color: 'var(--color-accent)', textDecoration: 'underline',
+  };
+
+  if (!expanded) {
+    const head = scopes.slice(0, 3);
+    const rest = scopes.length - head.length;
+    return (
+      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, flexWrap: 'wrap', color: 'var(--color-ink-dim)' }}>
+        · {head.join(', ')}
+        {rest > 0 && (
+          <button type="button" onClick={toggle} style={toggleStyle} aria-expanded={false}>
+            +{rest} more
+          </button>
+        )}
+      </span>
+    );
+  }
+
+  return (
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4, flexWrap: 'wrap' }}>
+      {scopes.map(s => <span key={s} className="chip" style={{ fontSize: 10 }}>{s}</span>)}
+      <button type="button" onClick={toggle} style={toggleStyle} aria-expanded={true}>
+        show less
+      </button>
+    </span>
   );
 }
 

@@ -26,6 +26,7 @@ export interface MetaAccountRow {
   token_expires_at:             Date | null;
   token_data_access_expires_at: Date | null;
   token_scopes:                 string[] | null;
+  token_valid:                  boolean | null;
   token_checked_at:             Date | null;
 }
 
@@ -93,8 +94,10 @@ export class MetaAccountsRepository {
     );
   }
 
-  /** Persist debug_token-derived metadata. The token value is NEVER stored;
-   *  isValid is implied by a successful verify so it isn't a column. */
+  /** Persist debug_token-derived metadata. The token value is NEVER stored.
+   *  token_valid records debug_token's is_valid — captured independently of
+   *  Verify, so a live token still reads valid when Verify fails for an
+   *  unrelated reason (e.g. wrong target_id). */
   async setTokenMeta(
     id: string,
     info: { type: string | null; expiresAt: Date | null; dataAccessExpiresAt: Date | null; scopes: string[]; isValid: boolean },
@@ -105,9 +108,10 @@ export class MetaAccountsRepository {
              token_expires_at             = $3,
              token_data_access_expires_at = $4,
              token_scopes                 = $5,
+             token_valid                  = $6,
              token_checked_at             = now()
        WHERE id = $1`,
-      [id, info.type, info.expiresAt, info.dataAccessExpiresAt, info.scopes],
+      [id, info.type, info.expiresAt, info.dataAccessExpiresAt, info.scopes, info.isValid],
     );
   }
 

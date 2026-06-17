@@ -37,6 +37,23 @@ test('verify persists token meta when inspectToken returns info (facebook)', asy
   assert.deepEqual(setTokenMetaCalls[0].info, info);
 });
 
+test('verify captures token meta even when graph.verify THROWS (non-threads)', async () => {
+  let inspectCalled = 0;
+  const info = { type: 'PAGE', expiresAt: null, dataAccessExpiresAt: null, scopes: ['pages_manage_posts'], isValid: false };
+  const { c, setTokenMetaCalls } = make({
+    platform: 'facebook',
+    verify: async () => { throw new Error('Unsupported get request. Object with ID does not exist'); },
+    inspectToken: async () => { inspectCalled++; return info; },
+  });
+  const out = await c.verify('a1') as any;
+  // verify failed → ok:false with the error, but token meta was still saved
+  assert.equal(out.ok, false);
+  assert.match(out.error, /Unsupported get request/);
+  assert.equal(inspectCalled, 1);
+  assert.equal(setTokenMetaCalls.length, 1);
+  assert.deepEqual(setTokenMetaCalls[0].info, info);
+});
+
 test('verify still ok when inspectToken returns null (best-effort)', async () => {
   const { c, setTokenMetaCalls } = make({ platform: 'instagram', inspectToken: async () => null });
   const out = await c.verify('a1') as any;
@@ -63,7 +80,7 @@ test('list projection includes token_* fields but never a token value', async ()
     active: true, last_verified_at: null, verify_error: null, created_at: new Date(),
     token_type: 'PAGE', token_expires_at: new Date('2026-08-01T00:00:00Z'),
     token_data_access_expires_at: null, token_scopes: ['pages_manage_posts'],
-    token_checked_at: new Date('2026-06-17T00:00:00Z'),
+    token_valid: false, token_checked_at: new Date('2026-06-17T00:00:00Z'),
   };
   const { c } = make({ accountsList: [row] });
   const out = await c.list() as any[];
@@ -72,6 +89,7 @@ test('list projection includes token_* fields but never a token value', async ()
   assert.ok(out[0].token_expires_at instanceof Date);
   assert.ok(out[0].token_checked_at instanceof Date);
   assert.equal(out[0].token_data_access_expires_at, null);
+  assert.equal(out[0].token_valid, false);
   // no raw token field of any kind
   assert.equal('token' in out[0], false);
   assert.equal('access_token' in out[0], false);

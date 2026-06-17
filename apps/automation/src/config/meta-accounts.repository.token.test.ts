@@ -29,10 +29,11 @@ test('setTokenMeta issues UPDATE persisting type/expiry/scopes/checked_at', asyn
   assert.match(norm(sql), /token_expires_at\s*=\s*\$3/);
   assert.match(norm(sql), /token_data_access_expires_at\s*=\s*\$4/);
   assert.match(norm(sql), /token_scopes\s*=\s*\$5/);
+  assert.match(norm(sql), /token_valid\s*=\s*\$6/);
   assert.match(norm(sql), /token_checked_at\s*=\s*now\(\)/);
   assert.match(norm(sql), /WHERE id\s*=\s*\$1/);
-  // isValid is not persisted — only the 5 derived fields (id + 4 values, scopes as array)
-  assert.deepEqual(params, ['a1', 'PAGE', expiresAt, dataAccessExpiresAt, ['pages_manage_posts']]);
+  // isValid IS persisted now (token_valid = $6); id + type/expiry/dataExpiry/scopes/valid
+  assert.deepEqual(params, ['a1', 'PAGE', expiresAt, dataAccessExpiresAt, ['pages_manage_posts'], true]);
 });
 
 test('setTokenMeta passes null expiries through (never-expires token)', async () => {
@@ -42,7 +43,17 @@ test('setTokenMeta passes null expiries through (never-expires token)', async ()
     type: 'SYSTEM_USER', expiresAt: null, dataAccessExpiresAt: null,
     scopes: [], isValid: true,
   });
-  assert.deepEqual(calls[0].params, ['a2', 'SYSTEM_USER', null, null, []]);
+  assert.deepEqual(calls[0].params, ['a2', 'SYSTEM_USER', null, null, [], true]);
+});
+
+test('setTokenMeta persists token_valid = false for an invalid token', async () => {
+  const { pool, calls } = fakePool();
+  const repo = new MetaAccountsRepository(pool as any);
+  await repo.setTokenMeta('a3', {
+    type: null, expiresAt: null, dataAccessExpiresAt: null,
+    scopes: [], isValid: false,
+  });
+  assert.deepEqual(calls[0].params, ['a3', null, null, null, [], false]);
 });
 
 test('token_* columns round-trip through the row type (SELECT *)', async () => {
@@ -50,7 +61,7 @@ test('token_* columns round-trip through the row type (SELECT *)', async () => {
   const row = {
     id: 'a1', platform: 'facebook', account_id: 'acc', token_env: 'FB_TOKEN', target_id: 't1',
     token_type: 'PAGE', token_expires_at: new Date(), token_data_access_expires_at: null,
-    token_scopes: ['pages_manage_posts'], token_checked_at: new Date(),
+    token_scopes: ['pages_manage_posts'], token_valid: false, token_checked_at: new Date(),
   };
   (pool as any).__setRows([row]);
   const repo = new MetaAccountsRepository(pool as any);
@@ -58,4 +69,5 @@ test('token_* columns round-trip through the row type (SELECT *)', async () => {
   assert.equal(got!.token_type, 'PAGE');
   assert.deepEqual(got!.token_scopes, ['pages_manage_posts']);
   assert.equal(got!.token_data_access_expires_at, null);
+  assert.equal(got!.token_valid, false);
 });

@@ -298,6 +298,8 @@ export interface MetaAccount {
   token_expires_at:             string | null;
   token_data_access_expires_at: string | null;
   token_scopes:                 string[] | null;
+  /** debug_token is_valid; null = never checked (token_checked_at is null). */
+  token_valid:                  boolean | null;
   token_checked_at:             string | null;
 }
 

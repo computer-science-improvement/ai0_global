@@ -50,7 +50,8 @@ export class MetaAccountsController {
       // Derived token metadata only — never the token value (no token column exists).
       token_type: r.token_type, token_expires_at: r.token_expires_at,
       token_data_access_expires_at: r.token_data_access_expires_at,
-      token_scopes: r.token_scopes, token_checked_at: r.token_checked_at,
+      token_scopes: r.token_scopes, token_valid: r.token_valid,
+      token_checked_at: r.token_checked_at,
     }));
   }
 
@@ -112,18 +113,22 @@ export class MetaAccountsController {
       throw new BadRequestException(`Env var ${acc.token_env} is not set`);
     }
 
+    // Best-effort token-metadata read, INDEPENDENT of verify. debug_token only
+    // needs the token (not the target), so token validity is captured even when
+    // verify fails for an unrelated reason (e.g. a wrong target_id). It's a
+    // facebook.com endpoint (rejects Threads tokens), and a failure must never
+    // break verify.
+    if (acc.platform !== 'threads') {
+      const info = await this.graph.inspectToken(token);
+      if (info) await this.accounts.setTokenMeta(id, info);
+    }
+
     try {
       const r = await this.graph.verify(acc.platform, acc.target_id, token);
       await this.accounts.markVerified(id, {
         username: r.username, display_name: r.displayName,
         followers: r.followers, picture_url: r.pictureUrl,
       });
-      // Best-effort token-metadata read. debug_token is a facebook.com endpoint
-      // (rejects Threads tokens), and a failure must never break verify.
-      if (acc.platform !== 'threads') {
-        const info = await this.graph.inspectToken(token);
-        if (info) await this.accounts.setTokenMeta(id, info);
-      }
       return { ok: true, ...r };
     } catch (err: any) {
       await this.accounts.markVerifyError(id, err.message);
