@@ -13,7 +13,8 @@ import { AddMetaAccountModal } from './AddMetaAccountModal';
 import {
   useMetaAccounts, useVerifyMetaAccount, useToggleMetaAccount, useDeleteMetaAccount,
 } from '../../api/meta-accounts';
-import type { MetaAccount, MetaPlatform } from '../../api/types';
+import { useStrategies } from '../../api/strategies';
+import type { MetaAccount, MetaPlatform, Strategy } from '../../api/types';
 
 const PLATFORM_ICON: Record<MetaPlatform, 'facebook' | 'instagram' | 'threads'> = {
   facebook: 'facebook', instagram: 'instagram', threads: 'threads',
@@ -25,6 +26,7 @@ const PLATFORM_LABEL: Record<MetaPlatform, string> = {
 
 export function MetaAccountsManager({ platform }: { platform: MetaPlatform }) {
   const { data, isLoading, error } = useMetaAccounts();
+  const { data: strategies } = useStrategies();
   const verify = useVerifyMetaAccount();
   const toggle = useToggleMetaAccount();
   const remove = useDeleteMetaAccount();
@@ -49,6 +51,11 @@ export function MetaAccountsManager({ platform }: { platform: MetaPlatform }) {
 
       {isLoading && <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>Loading…</p>}
       {error && <p className="text-body-sm" style={{ color: 'var(--color-danger)' }}>{(error as Error).message}</p>}
+      {remove.error && (
+        <p className="text-body-sm" style={{ color: 'var(--color-danger)', marginBottom: 12 }}>
+          {(remove.error as Error).message}
+        </p>
+      )}
 
       {!isLoading && accounts.length === 0 && (
         <div className="card" style={{ textAlign: 'center', padding: 40 }}>
@@ -70,14 +77,47 @@ export function MetaAccountsManager({ platform }: { platform: MetaPlatform }) {
                 toggle.mutate({ id: a.id, active: !a.active });
             }}
             onDelete={async () => {
-              if (await confirm(`delete account ${a.username ? `@${a.username}` : a.account_id}`))
-                remove.mutate(a.id);
+              const label = a.username ? `@${a.username}` : a.account_id;
+              const attached = (strategies ?? []).filter(s => s.meta_account?.id === a.id);
+              if (attached.length === 0) {
+                if (await confirm(`delete account ${label}`)) remove.mutate({ id: a.id });
+                return;
+              }
+              const n = attached.length;
+              const ok = await confirm(
+                `delete account ${label} and its ${n} strateg${n === 1 ? 'y' : 'ies'}`,
+                {
+                  confirmLabel: 'Delete account + strategies',
+                  details: <AttachedStrategiesList strategies={attached} />,
+                },
+              );
+              if (ok) remove.mutate({ id: a.id, cascade: true });
             }}
           />
         ))}
       </div>
 
       <AddMetaAccountModal open={addOpen} platform={platform} onClose={() => setAddOpen(false)} />
+    </div>
+  );
+}
+
+// Rendered inside the delete-confirm dialog when an account has bound strategies.
+// Cascade-deleting the account also drops every binding listed here.
+function AttachedStrategiesList({ strategies }: { strategies: Strategy[] }) {
+  return (
+    <div>
+      <p className="text-micro" style={{ margin: '0 0 8px', color: 'var(--color-ink-muted)' }}>
+        These strategies are attached and will be deleted too:
+      </p>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+        {strategies.map(s => (
+          <span key={s.id} className="chip" style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+            <span style={{ color: 'var(--color-ink)' }}>{s.ext_id}</span>
+            <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>{s.type}</span>
+          </span>
+        ))}
+      </div>
     </div>
   );
 }

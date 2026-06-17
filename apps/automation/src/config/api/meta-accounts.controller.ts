@@ -10,6 +10,8 @@ import { MetaGraphClient } from '../meta-graph.client';
 import { MetaFollowerHistoryRepository } from '../../stats/meta-follower-history.repository';
 import { MetaAccountInsightsRepository } from '../../stats/meta-account-insights.repository';
 import { MetaStatsCollectorService } from '../../stats/meta-stats-collector.service';
+import { StrategyBindingsRepository } from '../strategy-bindings.repository';
+import { ConfigEventsPublisher } from '../config-events.publisher';
 import { CreateMetaAccountDto, PatchMetaAccountDto } from './dto/meta-accounts.dto';
 
 @Controller('api/meta-accounts')
@@ -22,6 +24,8 @@ export class MetaAccountsController {
     private readonly history:  MetaFollowerHistoryRepository,
     private readonly insights: MetaAccountInsightsRepository,
     private readonly collector: MetaStatsCollectorService,
+    private readonly bindings:  StrategyBindingsRepository,
+    private readonly publisher: ConfigEventsPublisher,
   ) {}
 
   /** Dashboard-triggered manual stats refresh (followers + insights, all active
@@ -146,8 +150,28 @@ export class MetaAccountsController {
 
   @Delete(':id')
   @HttpCode(204)
-  async remove(@Param('id') id: string) {
-    const deleted = await this.accounts.delete(id);
-    if (!deleted) throw new NotFoundException(`Meta account ${id} not found`);
+  async remove(@Param('id') id: string, @Query('cascade') cascade?: string) {
+    const acc = await this.accounts.findById(id);
+    if (!acc) throw new NotFoundException(`Meta account ${id} not found`);
+
+    const bound = await this.bindings.listByMetaAccount(id);
+    if (bound.length > 0 && cascade !== 'true') {
+      // Clean 409 instead of a raw FK 500 — the dashboard lists these and
+      // re-submits with ?cascade=true once the operator confirms.
+      throw new ConflictException(
+        `Account is used by ${bound.length} strateg${bound.length === 1 ? 'y' : 'ies'}: ` +
+        `${bound.map(b => b.ext_id).join(', ')}. Confirm cascade delete.`,
+      );
+    }
+
+    if (bound.length > 0) {
+      // Delete bindings BEFORE the account so the FK is satisfied, then publish
+      // a reload so the scheduler reconciles (drops the removed bindings).
+      await this.bindings.deleteByMetaAccount(id);
+      await this.publisher.publish('strategy', id);
+    }
+
+    const ok = await this.accounts.delete(id);
+    if (!ok) throw new NotFoundException(`Meta account ${id} not found`);
   }
 }

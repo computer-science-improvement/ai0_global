@@ -19,7 +19,9 @@ function make(over: any = {}) {
   const history = { delta24hByAccount: async () => new Map() };
   const insights = {};
   const collector = {};
-  const c = new MetaAccountsController(accounts as any, graph as any, env as any, history as any, insights as any, collector as any);
+  const bindings = { listByMetaAccount: async () => [], deleteByMetaAccount: async () => 0 };
+  const publisher = { publish: async () => {} };
+  const c = new MetaAccountsController(accounts as any, graph as any, env as any, history as any, insights as any, collector as any, bindings as any, publisher as any);
   return { c, setTokenMetaCalls };
 }
 

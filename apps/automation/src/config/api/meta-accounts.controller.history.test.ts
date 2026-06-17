@@ -16,8 +16,10 @@ function make(over: any = {}) {
   };
   const insights = { history: async () => over.insightPoints ?? [] };
   const collector = { runOnce: async () => ({ accounts: 0, snapshots: 0, insightDays: 0 }) };
-  // Constructor order: accounts, graph, env, history, insights, collector
-  return new MetaAccountsController(accounts as any, graph as any, env as any, history as any, insights as any, collector as any);
+  const bindings = { listByMetaAccount: async () => [], deleteByMetaAccount: async () => 0 };
+  const publisher = { publish: async () => {} };
+  // Constructor order: accounts, graph, env, history, insights, collector, bindings, publisher
+  return new MetaAccountsController(accounts as any, graph as any, env as any, history as any, insights as any, collector as any, bindings as any, publisher as any);
 }
 
 test('follower-history returns current/delta/points shape', async () => {

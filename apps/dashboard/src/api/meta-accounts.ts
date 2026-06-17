@@ -45,8 +45,15 @@ export function useToggleMetaAccount() {
 export function useDeleteMetaAccount() {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: (id: string) => api<void>(`/api/meta-accounts/${id}`, { method: 'DELETE' }),
-    onSuccess: () => qc.invalidateQueries({ queryKey: KEY }),
+    // cascade=true also deletes the strategy_bindings attached to this account
+    // (server returns 409 otherwise). Invalidate strategies too so the now-deleted
+    // bindings disappear from the strategies list.
+    mutationFn: ({ id, cascade }: { id: string; cascade?: boolean }) =>
+      api<void>(`/api/meta-accounts/${id}${cascade ? '?cascade=true' : ''}`, { method: 'DELETE' }),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: KEY });
+      qc.invalidateQueries({ queryKey: ['strategies'] });
+    },
   });
 }
 

@@ -72,6 +72,27 @@ export class StrategyBindingsRepository {
     return rows[0] ?? null;
   }
 
+  /** All bindings that publish to a given Meta account (used to surface
+   *  dependents before a cascade delete). */
+  async listByMetaAccount(metaAccountId: string): Promise<StrategyBindingRow[]> {
+    const { rows } = await this.pool.query<StrategyBindingRow>(
+      `SELECT id, ext_id, type, channel_id, schedule, params, enabled, notes,
+              low_content_threshold, platform, meta_account_id, tiktok_account_id
+       FROM strategy_bindings WHERE meta_account_id = $1
+       ORDER BY ext_id`, [metaAccountId],
+    );
+    return rows;
+  }
+
+  /** Cascade-delete all bindings bound to a Meta account. Returns the count
+   *  removed. Caller must delete these BEFORE the account row to satisfy the FK. */
+  async deleteByMetaAccount(metaAccountId: string): Promise<number> {
+    const { rowCount } = await this.pool.query(
+      `DELETE FROM strategy_bindings WHERE meta_account_id = $1`, [metaAccountId],
+    );
+    return rowCount ?? 0;
+  }
+
   async findByExtId(extId: string): Promise<StrategyBindingRow | null> {
     const { rows } = await this.pool.query<StrategyBindingRow>(
       `SELECT id, ext_id, type, channel_id, schedule, params, enabled, notes,
