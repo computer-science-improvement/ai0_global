@@ -179,8 +179,12 @@ function daysUntil(iso: string): number {
 }
 
 // Derived access-token metadata from Graph debug_token (never the token itself).
-// Threads accounts are skipped server-side, so token_checked_at stays null there.
+// Threads accounts are skipped server-side (debug_token is a facebook.com
+// endpoint), so token info is unobtainable — hide the block entirely rather
+// than showing a meaningless "unknown / not checked" until it's ever populated.
 function TokenInfo({ account: a }: { account: MetaAccount }) {
+  if (a.platform === 'threads' && !a.token_checked_at) return null;
+
   const dot = (color: string) => (
     <span style={{ width: 7, height: 7, borderRadius: 999, background: color, display: 'inline-block', flexShrink: 0 }} />
   );
