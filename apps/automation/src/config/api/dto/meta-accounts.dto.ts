@@ -8,7 +8,9 @@ export class CreateMetaAccountDto {
   platform!: typeof PLATFORMS[number];
 
   @IsString()
-  @Matches(/^[a-z0-9_-]+$/i, { message: 'accountId must be alphanumeric + _ or -' })
+  // Mirrors what Meta allows in page/IG handles: letters, digits, dot, underscore,
+  // hyphen (e.g. "ai0.global.recipes"). No spaces or other specials.
+  @Matches(/^[A-Za-z0-9._-]+$/, { message: 'accountId may contain letters, digits, . _ -' })
   @MaxLength(64)
   accountId!: string;
 
