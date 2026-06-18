@@ -18,8 +18,13 @@ const IG_DEST = {
   metaAccountId: 'acc1', postedKey: 'IG:acc1', throttleKey: 'meta:acc1',
 } as any;
 
+const TG_DEST = {
+  platform: 'telegram', targetId: 'c123', metaAccountId: null,
+  postedKey: 'TELEGRAM', throttleKey: 'c123',
+} as any;
+
 function build(over: any = {}) {
-  const calls: any = { rendered: null, uploaded: null, published: null, posted: [], deleted: [], downloaded: 0 };
+  const calls: any = { rendered: null, uploaded: null, published: null, posted: [], deleted: [], downloaded: 0, fanOut: [], telegramPublished: null };
   const repo = {
     getNextForCarousel: async () => ('row' in over ? over.row : makeRow()),
     markPosted: async (id: string, key: string) => { calls.posted.push([id, key]); },
@@ -37,21 +42,42 @@ function build(over: any = {}) {
   };
   const dispatcher = {
     publishCarousel: async (platform: string, payload: any, urls: string[], target: any) => {
-      calls.published = { platform, payload, urls, target };
+      const call = { platform, payload, urls, target };
+      (calls.publishedAll ??= []).push(call);
+      calls.published = call;
       if (over.publishError) throw new Error(over.publishError);
-      return 'post-1';
+      return `post-${(calls.publishedAll).length}`;
     },
   };
   const images = { download: async () => { calls.downloaded++; return over.image === null ? null : Buffer.from('img'); } };
   const registry = { register() {} };
+  const groupFanOut = {
+    fanOut: async (source: any, content: any, markPosted: any) => {
+      calls.fanOut.push({ source, content });
+      if (over.fanOutError) throw new Error(over.fanOutError);
+      // simulate calling markPosted for fan-out targets
+      for (const key of (over.fanOutKeys ?? [])) {
+        await markPosted(key);
+      }
+    },
+  };
+  const telegramPub = {
+    publish: async (payload: any, target: any) => {
+      calls.telegramPublished = { payload, target };
+      if (over.telegramError) throw new Error(over.telegramError);
+      return 'tg-mid-1';
+    },
+  };
   const s = new RecipeCarouselStrategy(
     repo as any, renderer as any, hosting as any, dispatcher as any, images as any, registry as any,
     { publishCarousel: async () => 'x' } as any,
+    groupFanOut as any,
+    telegramPub as any,
   );
   return { s, calls };
 }
 
-test('happy path: render → upload → publishCarousel → markPosted → delete', async () => {
+test('happy path: render → upload → publishCarousel → markPosted → fanOut → delete', async () => {
   const { s, calls } = build();
   await s.execute('', {}, IG_DEST);
 
@@ -64,7 +90,13 @@ test('happy path: render → upload → publishCarousel → markPosted → delet
   assert.equal(calls.published.target.token, 'tok');
   assert.match(calls.published.payload.text, /Пом Анна/);
   assert.deepEqual(calls.published.payload.tags, ['Французька']);
+  // primary markPosted + no fan-out keys → just the primary
   assert.deepEqual(calls.posted, [['r1', 'IG:acc1']]);
+  // groupFanOut.fanOut called once with correct args
+  assert.equal(calls.fanOut.length, 1);
+  assert.equal(calls.fanOut[0].source.platform, 'instagram');
+  assert.deepEqual(calls.fanOut[0].content.imageUrls, ['u1', 'u2', 'u3']);
+  assert.equal(calls.fanOut[0].content.carousel, true);
   assert.deepEqual(calls.deleted, ['p1', 'p2', 'p3']);
 });
 
@@ -74,13 +106,6 @@ test('no eligible recipe: returns without rendering or publishing', async () => 
   assert.equal(calls.rendered, null);
   assert.equal(calls.published, null);
   assert.equal(calls.posted.length, 0);
-});
-
-test('telegram destination: returns without touching the repo', async () => {
-  const { s, calls } = build();
-  await s.execute('', {}, { platform: 'telegram', targetId: 'c', metaAccountId: null, postedKey: 'TELEGRAM', throttleKey: 'c' } as any);
-  assert.equal(calls.rendered, null);
-  assert.equal(calls.published, null);
 });
 
 test('image download fails: throws, no upload/publish/markPosted', async () => {
@@ -103,4 +128,84 @@ test('permanent media error: markPosted (advance queue), slides deleted, throws'
   await assert.rejects(() => s.execute('', {}, IG_DEST), /Carousel publish/);
   assert.deepEqual(calls.posted, [['r1', 'IG:acc1']]);
   assert.deepEqual(calls.deleted, ['p1', 'p2', 'p3']);
+});
+
+// ── groupFanOut integration ───────────────────────────────────────────────────
+
+test('meta publish calls groupFanOut.fanOut with correct content', async () => {
+  const { s, calls } = build({ fanOutKeys: ['IG:ig-acc', 'TH:th-acc'] });
+  await s.execute('', {}, {
+    platform: 'facebook', targetId: 'FB1', token: 'fbtok',
+    metaAccountId: 'fb-acc', postedKey: 'FB:fb-acc', throttleKey: 'meta:fb-acc',
+  } as any);
+
+  assert.equal(calls.fanOut.length, 1);
+  assert.equal(calls.fanOut[0].source.platform, 'facebook');
+  assert.deepEqual(calls.fanOut[0].content.imageUrls, ['u1', 'u2', 'u3']);
+  assert.equal(calls.fanOut[0].content.carousel, true);
+  assert.match(calls.fanOut[0].content.caption, /Пом Анна/);
+  // primary + two fan-out keys via markPosted callback
+  assert.deepEqual(calls.posted, [['r1', 'FB:fb-acc'], ['r1', 'IG:ig-acc'], ['r1', 'TH:th-acc']]);
+  assert.deepEqual(calls.deleted, ['p1', 'p2', 'p3']);
+});
+
+test('fanOut error does NOT prevent slides being deleted (fanOut throws inside try → caught)', async () => {
+  const { s, calls } = build({ fanOutError: 'fan-out exploded' });
+  // fanOut error propagates out (it's in the try block and we don't swallow it)
+  await assert.rejects(() => s.execute('', {}, IG_DEST), /fan-out exploded/);
+  // slides still deleted in finally
+  assert.deepEqual(calls.deleted, ['p1', 'p2', 'p3']);
+});
+
+// ── Telegram source branch ────────────────────────────────────────────────────
+
+test('telegram source: renders cover → uploads → publishes to telegram → fanOut → delete', async () => {
+  const { s, calls } = build({ fanOutKeys: ['IG:ig-acc'] });
+  await s.execute('', {}, TG_DEST);
+
+  // rendered
+  assert.equal(calls.rendered.titleUk, 'Пом Анна');
+  assert.equal(calls.uploaded.prefix, 'carousel/telegram/c123/r1');
+  // telegram published with cover URL
+  assert.ok(calls.telegramPublished);
+  assert.equal(calls.telegramPublished.payload.imageUrl, 'u1');
+  assert.equal(calls.telegramPublished.target.id, 'c123');
+  assert.match(calls.telegramPublished.payload.text, /Пом Анна/);
+  // dedup marked for telegram first, then fan-out key
+  assert.deepEqual(calls.posted, [['r1', 'TELEGRAM'], ['r1', 'IG:ig-acc']]);
+  // fanOut called once
+  assert.equal(calls.fanOut.length, 1);
+  assert.equal(calls.fanOut[0].source.platform, 'telegram');
+  // slides cleaned up
+  assert.deepEqual(calls.deleted, ['p1', 'p2', 'p3']);
+});
+
+test('telegram source: no eligible recipe returns without publishing', async () => {
+  const { s, calls } = build({ row: null });
+  await s.execute('', {}, TG_DEST);
+  assert.equal(calls.rendered, null);
+  assert.equal(calls.telegramPublished, null);
+  assert.equal(calls.posted.length, 0);
+});
+
+test('telegram source: image download fails → throws, slides not uploaded', async () => {
+  const { s, calls } = build({ image: null });
+  await assert.rejects(() => s.execute('', {}, TG_DEST), /image download failed/i);
+  assert.equal(calls.uploaded, null);
+  assert.equal(calls.telegramPublished, null);
+  assert.equal(calls.posted.length, 0);
+});
+
+test('telegram source publish error: throws, slides deleted', async () => {
+  const { s, calls } = build({ telegramError: 'bot blocked' });
+  await assert.rejects(() => s.execute('', {}, TG_DEST), /Carousel publish \(telegram\)/);
+  assert.equal(calls.posted.length, 0);
+  assert.deepEqual(calls.deleted, ['p1', 'p2', 'p3']);
+});
+
+test('no dest: warns and returns without touching repo', async () => {
+  const { s, calls } = build();
+  await s.execute('', {}, undefined);
+  assert.equal(calls.rendered, null);
+  assert.equal(calls.posted.length, 0);
 });

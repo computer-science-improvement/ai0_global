@@ -29,7 +29,9 @@ function build(over: any = {}) {
   const images = { download: async () => over.image === null ? null : Buffer.from('img') };
   const registry = { register() {} };
   const tiktok = { publishCarousel: async (accountId: string, urls: string[], caption: string) => { calls.published = { accountId, urls, caption }; if (over.publishError) throw new Error(over.publishError); return 'pub_1'; } };
-  const s = new RecipeCarouselStrategy(repo as any, renderer as any, hosting as any, dispatcher as any, images as any, registry as any, tiktok as any);
+  const groupFanOut = { fanOut: async () => {} };
+  const telegramPub = { publish: async () => 'mid' };
+  const s = new RecipeCarouselStrategy(repo as any, renderer as any, hosting as any, dispatcher as any, images as any, registry as any, tiktok as any, groupFanOut as any, telegramPub as any);
   return { s, calls };
 }
 
