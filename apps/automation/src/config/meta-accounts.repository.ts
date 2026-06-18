@@ -165,23 +165,6 @@ export class MetaAccountsRepository {
     return rows;
   }
 
-  /** Active accounts in the SAME group as `id`, excluding `id` itself. Empty
-   *  when the account is ungrouped or has no active siblings. Drives the
-   *  Facebook → Instagram + Threads publish fan-out. */
-  async findActiveGroupSiblings(id: string): Promise<MetaAccountRow[]> {
-    const { rows } = await this.pool.query<MetaAccountRow>(
-      `SELECT s.* FROM meta_accounts s
-         JOIN meta_accounts a ON a.id = $1
-        WHERE s.active
-          AND s.group_id IS NOT NULL
-          AND s.group_id = a.group_id
-          AND s.id <> a.id
-        ORDER BY s.platform`,
-      [id],
-    );
-    return rows;
-  }
-
   async setLanding(id: string, opts: { visible: boolean; order: number }): Promise<void> {
     await this.pool.query(
       `UPDATE meta_accounts SET landing_visible = $2, landing_order = $3 WHERE id = $1`,

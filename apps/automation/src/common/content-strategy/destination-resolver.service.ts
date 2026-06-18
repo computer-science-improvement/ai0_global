@@ -70,34 +70,6 @@ export class DestinationResolver {
   }
 
   /**
-   * Destinations for the active Meta accounts grouped WITH `metaAccountId` (its
-   * Instagram / Threads siblings of the same brand) — used to fan a Facebook
-   * publish out to the rest of the group. Each sibling whose token resolves
-   * becomes a full PublishDestination (same shape as `resolve`); siblings with
-   * no usable token are skipped (logged by the caller is unnecessary — they
-   * simply don't receive the post). Empty when the account is ungrouped.
-   */
-  async resolveMetaSiblings(metaAccountId: string): Promise<PublishDestination[]> {
-    const siblings = await this.metaAccounts.findActiveGroupSiblings(metaAccountId);
-    const out: PublishDestination[] = [];
-    for (const acct of siblings) {
-      const token = this.secrets.resolveToken(
-        { enc: acct.token_enc, env: acct.token_env }, (k) => this.config.get<string>(k),
-      );
-      if (!token) continue; // no usable token → can't publish to this sibling
-      out.push({
-        platform: acct.platform,
-        targetId: acct.target_id,
-        token,
-        metaAccountId: acct.id,
-        postedKey: `${META_POSTED_PREFIX[acct.platform]}:${acct.id}`,
-        throttleKey: `meta:${acct.id}`,
-      });
-    }
-    return out;
-  }
-
-  /**
    * Resolve the group a publish destination belongs to and whether THIS dest is
    * the group's designated fan-out source. Returns null when the dest is not in
    * any group (then no fan-out happens).
