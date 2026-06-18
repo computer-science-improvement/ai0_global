@@ -49,6 +49,68 @@ export function useRefreshThreadsToken() {
   });
 }
 
+// ── Meta account groups (FB+IG+Threads brand grouping for publish fan-out) ────
+
+export type GroupSourcePlatform = 'facebook' | 'instagram' | 'threads' | 'telegram';
+
+export interface MetaAccountGroup {
+  id: string;
+  name: string;
+  created_at: string;
+  /** Which member platform mirrors content to the rest of the group when published to. */
+  source_platform: GroupSourcePlatform;
+}
+
+const GROUPS_KEY = ['meta-account-groups'];
+
+export function useMetaAccountGroups() {
+  return useQuery({ queryKey: GROUPS_KEY, queryFn: () => api<MetaAccountGroup[]>('/api/meta-account-groups') });
+}
+
+/** Set which member platform is the group's fan-out source. */
+export function useSetMetaAccountGroupSource() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: ({ id, sourcePlatform }: { id: string; sourcePlatform: GroupSourcePlatform }) =>
+      api<MetaAccountGroup>(`/api/meta-account-groups/${id}`, { method: 'PATCH', body: JSON.stringify({ sourcePlatform }) }),
+    onSuccess: () => qc.invalidateQueries({ queryKey: GROUPS_KEY }),
+  });
+}
+
+export function useCreateMetaAccountGroup() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (name: string) =>
+      api<MetaAccountGroup>('/api/meta-account-groups', { method: 'POST', body: JSON.stringify({ name }) }),
+    onSuccess: () => qc.invalidateQueries({ queryKey: GROUPS_KEY }),
+  });
+}
+
+/** Delete a group. Members are un-grouped server-side (ON DELETE SET NULL), so
+ *  invalidate accounts too. */
+export function useDeleteMetaAccountGroup() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (id: string) =>
+      api<void>(`/api/meta-account-groups/${id}`, { method: 'DELETE' }),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: GROUPS_KEY });
+      qc.invalidateQueries({ queryKey: KEY });
+    },
+  });
+}
+
+/** Assign an account to a group (or null to un-group). Server enforces one
+ *  account per platform per group (409 on clash). */
+export function useSetMetaAccountGroup() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: ({ id, groupId }: { id: string; groupId: string | null }) =>
+      api<{ ok: boolean }>(`/api/meta-accounts/${id}`, { method: 'PATCH', body: JSON.stringify({ groupId }) }),
+    onSuccess: () => qc.invalidateQueries({ queryKey: KEY }),
+  });
+}
+
 export function useToggleMetaAccount() {
   const qc = useQueryClient();
   return useMutation({
