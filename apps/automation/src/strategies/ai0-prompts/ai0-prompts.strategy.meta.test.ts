@@ -21,7 +21,7 @@ test('meta destination publishes prompthero image url via dispatcher', async () 
   };
   const dispatcher = { publish: async (...a: any[]) => { calls.dispatch = a; return 'ig-7'; } };
 
-  // Constructor order: registry, telegram, db, scraper, notifier, publications, crossPost, dispatcher
+  // Constructor order: registry, telegram, db, scraper, notifier, publications, crossPost, dispatcher, groupFanOut
   const s = new Ai0PromptsStrategy(
     { register() {} } as any,                  // registry
     { publishPrompt: async () => '1' } as any, // telegram
@@ -30,7 +30,8 @@ test('meta destination publishes prompthero image url via dispatcher', async () 
     { notifyPublished: async () => {} } as any,// notifier
     { insert: async () => {} } as any,         // publications
     { afterPublish: async () => {} } as any,   // crossPost
-    dispatcher as any,                         // dispatcher (last)
+    dispatcher as any,                         // dispatcher
+    { fanOut: async () => {} } as any,         // groupFanOut (no fan-out)
   );
 
   const dest = {
@@ -62,6 +63,7 @@ function failingStrategy(publishError: string) {
     { register() {} } as any, { publishPrompt: async () => '1' } as any, db as any,
     scraper as any, { notifyPublished: async () => {} } as any, { insert: async () => {} } as any,
     { afterPublish: async () => {} } as any, dispatcher as any,
+    { fanOut: async () => {} } as any,
   );
   return { s, calls };
 }
@@ -86,4 +88,51 @@ test('transient error does NOT mark the row (it retries next tick)', async () =>
   const { s, calls } = failingStrategy('socket hang up');
   await assert.rejects(() => s.execute('', {}, META_DEST as any));
   assert.deepEqual(calls.posted, []); // not marked → retriable
+});
+
+// ── Facebook → group fan-out via GroupFanOutService ───────────────────────────
+
+test('FB publish delegates fan-out to GroupFanOutService with correct args', async () => {
+  mock.method(axios, 'get', async () => ({ data: '<html></html>' }));
+  const calls: any = { published: [] as any[], posted: [] as any[], fanOutArgs: undefined };
+  const scraper = {
+    extractMeta: () => ({ prompt: 'x'.repeat(80) }),
+    buildMessage: () => ({ isError: false, caption: 'A caption', replyText: null }),
+  };
+  const db = {
+    getNext: async () => ({ id: 'https://img/p.png', prompt_source: 'https://ph/p', category: 'art', status: null, posted: null }),
+    markPosted: async (id: string, key?: string) => { calls.posted.push([id, key]); },
+    markError: async () => {},
+  };
+  const dispatcher = {
+    publish: async (platform: string, payload: any, target: any) => {
+      calls.published.push({ platform, imageUrl: payload.imageUrl, target });
+      return `pub-${calls.published.length}`;
+    },
+  };
+  const groupFanOut = {
+    fanOut: async (source: any, content: any, _markPosted: any) => {
+      calls.fanOutArgs = { source, content };
+    },
+  };
+  const s = new Ai0PromptsStrategy(
+    { register() {} } as any, { publishPrompt: async () => '1' } as any, db as any,
+    scraper as any, { notifyPublished: async () => {} } as any, { insert: async () => {} } as any,
+    { afterPublish: async () => {} } as any, dispatcher as any, groupFanOut as any,
+  );
+
+  const fbDest = { platform: 'facebook', targetId: 'FB1', token: 'fbtok', metaAccountId: 'fb', postedKey: 'FB:fb', throttleKey: 'meta:fb' };
+  await s.execute('', {}, fbDest as any);
+
+  // Primary FB publish happened.
+  assert.deepEqual(calls.published.map((c: any) => c.platform), ['facebook']);
+  assert.equal(calls.published[0].imageUrl, 'https://img/p.png');
+  // groupFanOut.fanOut was called with the FB dest and correct content.
+  assert.ok(calls.fanOutArgs, 'groupFanOut.fanOut was called');
+  assert.equal(calls.fanOutArgs.source.platform, 'facebook');
+  assert.equal(calls.fanOutArgs.content.caption, 'A caption');
+  assert.deepEqual(calls.fanOutArgs.content.imageUrls, ['https://img/p.png']);
+  assert.equal(calls.fanOutArgs.content.carousel, false);
+  // Primary FB publish is dedup-marked.
+  assert.deepEqual(calls.posted, [['https://img/p.png', 'FB:fb']]);
 });

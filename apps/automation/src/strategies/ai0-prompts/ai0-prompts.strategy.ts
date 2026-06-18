@@ -15,6 +15,7 @@ import { TelegramNotifier }         from '../../publishers/telegram-notifier.ser
 import { CrossPostService }         from '../../publishers/cross-post.service';
 import { PublicationsRepository }   from '../../stats/publications.repository';
 import { PublisherDispatcher }      from '../../publishers/publisher-dispatcher.service';
+import { GroupFanOutService }       from '../../common/content-strategy/group-fanout.service';
 import { isPermanentMetaMediaError } from '../../publishers/meta-graph.util';
 import type { PublishDestination, DestinationPlatform }  from '../../common/content-strategy/publish-destination';
 import type { MetaPlatform }       from '../../config/meta-accounts.repository';
@@ -38,6 +39,7 @@ export class Ai0PromptsStrategy implements ContentStrategy, OnModuleInit {
     private readonly publications: PublicationsRepository,
     private readonly crossPost: CrossPostService,
     private readonly dispatcher: PublisherDispatcher,
+    private readonly groupFanOut: GroupFanOutService,
   ) {}
 
   onModuleInit() {
@@ -131,6 +133,12 @@ export class Ai0PromptsStrategy implements ContentStrategy, OnModuleInit {
         );
         await this.db.markPosted(row.id, postedKey);
         this.logger.debug(`Published prompt to ${dest.platform} (${id})`);
+
+        await this.groupFanOut.fanOut(
+          dest,
+          { caption: message.caption, tags: [category], imageUrls: [row.id], carousel: false },
+          (key) => this.db.markPosted(row.id, key),
+        );
       } catch (err: any) {
         const msg = err?.message ?? String(err);
         this.logger.error(`Meta publish failed → ${dest.platform}: ${msg}`);
@@ -187,6 +195,11 @@ export class Ai0PromptsStrategy implements ContentStrategy, OnModuleInit {
         mirror: { text: message.caption, tags: [category], imageUrl: row.id },
       });
       this.logger.debug(`Published prompt to ${channelId}`);
+      await this.groupFanOut.fanOut(
+        { platform: 'telegram', targetId: channelId, metaAccountId: null, postedKey: 'TELEGRAM', throttleKey: channelId },
+        { caption: message.caption, tags: [category], imageUrls: [row.id], carousel: false },
+        (key) => this.db.markPosted(row.id, key),
+      );
     } catch (err) {
       this.logger.error('Publish failed: ' + err.message);
     }
