@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Global, Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from '../auth/auth.module';
 import { RedisProvider, REDIS_CLIENT } from './redis.provider';
@@ -18,6 +18,7 @@ import { TrackingController } from './api/tracking.controller';
 import { TrackingAuthGuard } from './api/tracking-auth.guard';
 import { RoiAnalyzerService } from './processors/roi-analyzer.service';
 
+@Global()
 @Module({
   imports: [ConfigModule, AuthModule],
   controllers: [TrackingController],
@@ -38,6 +39,6 @@ import { RoiAnalyzerService } from './processors/roi-analyzer.service';
     TrackingAuthGuard,
     RoiAnalyzerService,
   ],
-  exports: [REDIS_CLIENT],
+  exports: [REDIS_CLIENT, TrackedChannelsRepository],
 })
 export class TrackingModule {}

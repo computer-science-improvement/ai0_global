@@ -19,6 +19,8 @@ import { TelegramGetMeClient } from './telegram-getme.client';
 import { TelegraphAccountsRepository } from './telegraph-accounts.repository';
 import { TelegraphGetInfoClient } from './telegraph-getinfo.client';
 import { MetaAccountsRepository } from './meta-accounts.repository';
+import { MetaAccountGroupsRepository } from './meta-account-groups.repository';
+import { MetaAccountGroupsController } from './api/meta-account-groups.controller';
 import { MetaGraphClient } from './meta-graph.client';
 import { MetaCrosspostTargetsRepository } from './meta-crosspost-targets.repository';
 import { TikTokAccountsRepository } from './tiktok-accounts.repository';
@@ -42,7 +44,7 @@ import { ContentRunwayModule } from '../common/content-runway/content-runway.mod
 @Global()
 @Module({
   imports: [NestConfigModule, DatabaseModule, TrackingModule, AuthModule, ContentRunwayModule],
-  controllers: [MyBotsController, MtprotoSessionsController, TelegraphAccountsController, MetaAccountsController, MetaCrosspostsController, StrategiesController, ForwardRoutesController, TikTokAccountsController, TikTokOAuthController, LandingController, LandingAdminController],
+  controllers: [MyBotsController, MtprotoSessionsController, TelegraphAccountsController, MetaAccountsController, MetaAccountGroupsController, MetaCrosspostsController, StrategiesController, ForwardRoutesController, TikTokAccountsController, TikTokOAuthController, LandingController, LandingAdminController],
   providers: [
     ChannelConfigService,
     ConfigCacheService,
@@ -60,6 +62,7 @@ import { ContentRunwayModule } from '../common/content-runway/content-runway.mod
     TelegraphAccountsRepository,
     TelegraphGetInfoClient,
     MetaAccountsRepository,
+    MetaAccountGroupsRepository,
     MetaGraphClient,
     MetaCrosspostTargetsRepository,
     TikTokAccountsRepository,
@@ -79,6 +82,7 @@ import { ContentRunwayModule } from '../common/content-runway/content-runway.mod
     ForwardRoutesRepository,
     TelegraphAccountsRepository,
     MetaAccountsRepository,
+    MetaAccountGroupsRepository,
     MetaGraphClient,
     MetaCrosspostTargetsRepository,
     TikTokAccountsRepository,
