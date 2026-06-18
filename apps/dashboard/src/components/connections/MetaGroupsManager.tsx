@@ -44,8 +44,6 @@ interface PortData {
   options: { id: string; label: string }[];
   onAssign: (id: string) => void;
   onRemove: (id: string) => void;
-  /** Call to make this port the group's source; undefined when already source or unassigned. */
-  onMakeSource?: () => void;
   /** Show no-bot warning on this port (Telegram only, when channel has no bot). */
   noBotWarning?: boolean;
 }
@@ -102,9 +100,6 @@ export function MetaGroupsManager() {
       options: allChannels.filter(c => c.groupId == null).map(c => ({ id: c.id, label: chLabel(c) })),
       onAssign: (id) => setChannelGroup.mutate({ id, groupId }),
       onRemove: (id) => setChannelGroup.mutate({ id, groupId: null }),
-      onMakeSource: (!isTgSource && ch != null)
-        ? () => setSource.mutate({ id: groupId, sourcePlatform: 'telegram' })
-        : undefined,
       noBotWarning,
     };
     const metaPorts = PLATFORMS.map<PortData>(platform => {
@@ -117,9 +112,6 @@ export function MetaGroupsManager() {
           .map(a => ({ id: a.id, label: acctLabel(a) })),
         onAssign: (id) => setGroup.mutate({ id, groupId }),
         onRemove: (id) => setGroup.mutate({ id, groupId: null }),
-        onMakeSource: (!isSource && acc != null)
-          ? () => setSource.mutate({ id: groupId, sourcePlatform: platform as GroupSourcePlatform })
-          : undefined,
       };
     });
     return [tg, ...metaPorts];
@@ -130,8 +122,9 @@ export function MetaGroupsManager() {
       <p className="text-micro" style={{ margin: '0 0 16px', color: 'var(--color-ink-dim)', maxWidth: 760, lineHeight: 1.6 }}>
         A group links a brand's destinations. Each group has a{' '}
         <b style={{ color: 'var(--color-ink-muted)' }}>source</b> — the member you publish to. Publishing to the
-        source mirrors the same post to every other member (Telegram included). Click{' '}
-        <b style={{ color: 'var(--color-ink-muted)' }}>Set as source</b> on any wired destination to change it.
+        source mirrors the same post to every other member (Telegram included). Pick it from the{' '}
+        <b style={{ color: 'var(--color-ink-muted)' }}>Source</b> dropdown on each group (any wired destination —
+        Facebook, Instagram, Threads or Telegram).
       </p>
 
       {/* Create composer */}
@@ -172,9 +165,16 @@ export function MetaGroupsManager() {
         {(groups ?? []).map((g, i) => {
           const ports = portsFor(g);
           const linked = ports.filter(p => p.assigned).length;
+          // Members actually wired into this group — the only valid sources.
+          const wired = ports.filter(p => p.assigned).map(p => ({ key: p.key, label: p.assigned!.label }));
+          const sourceWired = wired.some(w => w.key === g.source_platform);
+          // If the current source isn't wired (e.g. just unlinked), still show it so the <select> reflects reality.
+          const sourceOptions = sourceWired
+            ? wired
+            : [{ key: g.source_platform, label: `${LABEL[g.source_platform] ?? g.source_platform} (not linked)` }, ...wired];
           return (
             <div key={g.id} className="group-card" style={{ animationDelay: `${Math.min(i, 8) * 55}ms` }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16, flexWrap: 'wrap' }}>
                 <div className="group-hub" aria-hidden>{g.name.charAt(0).toUpperCase()}</div>
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <div className="text-body" style={{ color: 'var(--color-ink)', fontWeight: 600, letterSpacing: '-0.01em', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
@@ -184,6 +184,25 @@ export function MetaGroupsManager() {
                     {linked} of 4 destinations linked
                   </div>
                 </div>
+
+                {/* Source selector — the member you publish to; mirrors to the rest. */}
+                <label style={{ display: 'flex', alignItems: 'center', gap: 7 }} title="The member you publish to — its posts are mirrored to every other member of the group">
+                  <span className="text-eyebrow" style={{ color: 'var(--color-accent)', display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+                    <Icon name="strategies" size={11} /> Source
+                  </span>
+                  <select
+                    className="input-field"
+                    value={g.source_platform}
+                    disabled={busy || wired.length === 0}
+                    onChange={e => setSource.mutate({ id: g.id, sourcePlatform: e.target.value as GroupSourcePlatform })}
+                    style={{ padding: '5px 10px', fontSize: 12, fontWeight: 600, minWidth: 130 }}
+                  >
+                    {sourceOptions.map(o => (
+                      <option key={o.key} value={o.key}>{LABEL[o.key] ?? o.key} — {o.label}</option>
+                    ))}
+                  </select>
+                </label>
+
                 <button
                   className="group-del" title="Delete group"
                   onClick={async () => {
@@ -249,23 +268,6 @@ function Port({ port, busy }: { port: PortData; busy: boolean }) {
           <option value="">Assign…</option>
           {port.options.map(o => <option key={o.id} value={o.id}>{o.label}</option>)}
         </select>
-      )}
-
-      {port.onMakeSource && (
-        <button
-          disabled={busy}
-          onClick={port.onMakeSource}
-          style={{
-            marginTop: 6, padding: '2px 0', background: 'none', border: 'none', cursor: 'pointer',
-            fontSize: 10, fontWeight: 500, letterSpacing: '0.02em',
-            color: 'var(--color-ink-dim)', textAlign: 'left',
-            transition: 'color 0.15s',
-          }}
-          onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.color = 'var(--color-accent)'; }}
-          onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.color = 'var(--color-ink-dim)'; }}
-        >
-          Set as source
-        </button>
       )}
 
       {port.noBotWarning && (
