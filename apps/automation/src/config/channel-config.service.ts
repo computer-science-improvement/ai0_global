@@ -86,8 +86,9 @@ export class ChannelConfigService implements OnApplicationBootstrap {
             ?? this.cache.getChannelById(channelKey);
     if (!ch) throw new Error(`Channel "${channelKey}" not found in config`);
 
-    const bot = ch.bot_id ? this.cache.getBotById(ch.bot_id) : null;
-    if (!bot) throw new Error(`Channel "${channelKey}" has no bot bound`);
+    // Fall back to the default bot when the channel has no specific bot bound.
+    const bot = (ch.bot_id ? this.cache.getBotById(ch.bot_id) : null) ?? this.cache.getDefaultBot();
+    if (!bot) throw new Error(`Channel "${channelKey}" has no bot bound and no default bot is set`);
 
     const token = this.secrets.resolveToken(
       { enc: bot.token_enc, env: bot.token_env }, (k) => this.env.get<string>(k),

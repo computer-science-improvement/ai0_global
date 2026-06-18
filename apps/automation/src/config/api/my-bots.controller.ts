@@ -9,7 +9,7 @@ import { MyBotsRepository, type MyBotRow } from '../my-bots.repository';
 import { TelegramGetMeClient } from '../telegram-getme.client';
 import { ConfigEventsPublisher } from '../config-events.publisher';
 import { SecretsService } from '../../common/crypto/secrets.service';
-import { CreateBotDto, PatchBotDto } from './dto/my-bots.dto';
+import { CreateBotDto, PatchBotDto, SetDefaultBotDto } from './dto/my-bots.dto';
 
 @Controller('api/my-bots')
 @UseGuards(TrackingAuthGuard)
@@ -34,6 +34,7 @@ export class MyBotsController {
     return {
       id: r.id, bot_id: r.bot_id, username: r.username, first_name: r.first_name,
       platform: r.platform, token_env: r.token_env, active: r.active,
+      is_default: r.is_default,
       last_verified_at: r.last_verified_at, verify_error: r.verify_error,
       created_at: r.created_at,
     };
@@ -79,6 +80,20 @@ export class MyBotsController {
       await this.publisher.publish('bot', id);
       return { ok: false, error: err.message };
     }
+  }
+
+  /**
+   * Toggle the default-bot flag. The default bot is the publish fallback for
+   * channels with no specific bot bound. Toggling one on clears any other
+   * (enforced both here, in the repo transaction, and by a DB unique index).
+   */
+  @Post(':id/set-default')
+  async setDefault(@Param('id') id: string, @Body() body: SetDefaultBotDto) {
+    const bot = await this.bots.findById(id);
+    if (!bot) throw new NotFoundException(`Bot ${id} not found`);
+    await this.bots.setDefault(id, body.default);
+    await this.publisher.publish('bot', id);
+    return { ok: true };
   }
 
   @Patch(':id')

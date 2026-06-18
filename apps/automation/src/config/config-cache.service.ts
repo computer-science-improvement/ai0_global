@@ -96,6 +96,11 @@ export class ConfigCacheService implements OnApplicationBootstrap, OnModuleDestr
   getAllBots(): MyBotRow[] { return [...this.botsById.values()]; }
   getBotById(id: string): MyBotRow | null { return this.botsById.get(id) ?? null; }
   getBotByBotId(botId: string): MyBotRow | null { return this.botsByBotId.get(botId) ?? null; }
+  /** The bot flagged `is_default` (the publish fallback), or null if none. */
+  getDefaultBot(): MyBotRow | null {
+    for (const b of this.botsById.values()) if (b.is_default) return b;
+    return null;
+  }
 
   getAllChannels(): TrackedChannelConfigRow[] { return [...this.channelsById.values()]; }
   getChannelById(id: string): TrackedChannelConfigRow | null { return this.channelsById.get(id) ?? null; }

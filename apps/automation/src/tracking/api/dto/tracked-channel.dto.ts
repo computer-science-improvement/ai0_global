@@ -23,6 +23,9 @@ export interface TrackedChannelDto {
   publishPaused: boolean;
   /** Denormalized bot identity (joined via my_bots). null when no bot bound. */
   bot:          ChannelBotRef | null;
+  /** True when this channel has no bot bound AND no default bot exists — the UI
+   *  prompts the operator to bind a bot or set a default. */
+  needsBot:     boolean;
   themes:       string[];
   /** Strategies that publish to this channel (primary binding) or forward
    *  into it from another channel. Empty array when none. */

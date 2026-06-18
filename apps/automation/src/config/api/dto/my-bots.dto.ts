@@ -27,3 +27,8 @@ export class PatchBotDto {
   @IsBoolean()
   active?: boolean;
 }
+
+export class SetDefaultBotDto {
+  @IsBoolean()
+  default!: boolean;
+}

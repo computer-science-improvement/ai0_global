@@ -14,6 +14,9 @@ export interface MyBotRow {
   // legacy env-var path.
   token_enc:         string | null;
   active:            boolean;
+  // At most one bot may be the default (enforced by a partial unique index).
+  // Used as the publish fallback when a channel has no bot bound.
+  is_default:        boolean;
   last_verified_at:  Date | null;
   verify_error:      string | null;
   created_at:        Date;
@@ -91,6 +94,39 @@ export class MyBotsRepository {
 
   async setActive(id: string, active: boolean): Promise<void> {
     await this.pool.query(`UPDATE my_bots SET active = $2 WHERE id = $1`, [id, active]);
+  }
+
+  /**
+   * Toggle the default-bot flag. At most one bot may be default (a partial
+   * unique index enforces this at the DB level). To make `id` the default we
+   * must clear any existing default FIRST, otherwise the index rejects the
+   * second `true`. Both UPDATEs run in one transaction so a reader never sees
+   * zero defaults (or two) mid-swap. Toggling off is a single targeted UPDATE.
+   */
+  async setDefault(id: string, value: boolean): Promise<void> {
+    if (!value) {
+      await this.pool.query(`UPDATE my_bots SET is_default = false WHERE id = $1`, [id]);
+      return;
+    }
+    const client = await this.pool.connect();
+    try {
+      await client.query('BEGIN');
+      await client.query(`UPDATE my_bots SET is_default = false WHERE is_default`);
+      await client.query(`UPDATE my_bots SET is_default = true WHERE id = $1`, [id]);
+      await client.query('COMMIT');
+    } catch (err) {
+      try { await client.query('ROLLBACK'); } catch { /* connection may be dead */ }
+      throw err;
+    } finally {
+      client.release();
+    }
+  }
+
+  async findDefault(): Promise<MyBotRow | null> {
+    const { rows } = await this.pool.query<MyBotRow>(
+      `SELECT * FROM my_bots WHERE is_default LIMIT 1`,
+    );
+    return rows[0] ?? null;
   }
 
   async delete(id: string): Promise<boolean> {

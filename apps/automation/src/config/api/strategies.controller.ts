@@ -117,6 +117,12 @@ export class StrategiesController {
         channel_id:   r.channel_id,
         channel_key:  channel?.channel_key ?? null,
         channels,
+        // True when this telegram binding's channel has no bot bound AND there
+        // is no default bot to fall back to — publishing would stop. Non-telegram
+        // bindings publish via Meta/TikTok accounts, never a bot, so always false.
+        needs_bot:    r.platform === 'telegram'
+          ? (!channel?.bot_id && this.cache.getDefaultBot() === null)
+          : false,
         // Destination kind of THIS binding (telegram | instagram | facebook | threads).
         platform:     r.platform,
         // Meta account this binding publishes to (null for telegram bindings).

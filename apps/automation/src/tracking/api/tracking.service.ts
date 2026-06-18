@@ -315,6 +315,9 @@ export class TrackingService {
       kind:          c.kind,
       botId:         c.botId,
       bot,
+      // No specific bot bound AND no default bot to fall back to → publishing
+      // into this channel would stop. The dashboard surfaces this as a prompt.
+      needsBot:      !c.botId && this.configCache.getDefaultBot() === null,
       themes:        c.themes,
       publishPaused: c.publishPaused,
       strategies,

@@ -18,6 +18,7 @@ function makeController() {
     getChannelById: (id: string) =>
       (id === 'ch-1' ? { id: 'ch-1', channel_key: '@ai0_recipes', title: 'Recipes' } : null),
     getForwardRoutesForSource: () => [],
+    getDefaultBot: () => null,
   };
   const crossposts = { platformsByChannel: async () => new Map([['ch-1', ['facebook']]]) };
   const runway = { remainingFor: async () => 0, effectiveThreshold: () => 100 };
