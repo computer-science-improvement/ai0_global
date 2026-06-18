@@ -16,6 +16,8 @@ import { CrossPostService }         from '../../publishers/cross-post.service';
 import { PublicationsRepository }   from '../../stats/publications.repository';
 import { PublisherDispatcher }      from '../../publishers/publisher-dispatcher.service';
 import { GroupFanOutService }       from '../../common/content-strategy/group-fanout.service';
+import { DestinationResolver }      from '../../common/content-strategy/destination-resolver.service';
+import { composeMetaCaption, promptHashtags } from '../../common/content-strategy/meta-caption.util';
 import { isPermanentMetaMediaError } from '../../publishers/meta-graph.util';
 import type { PublishDestination, DestinationPlatform }  from '../../common/content-strategy/publish-destination';
 import type { MetaPlatform }       from '../../config/meta-accounts.repository';
@@ -40,7 +42,12 @@ export class Ai0PromptsStrategy implements ContentStrategy, OnModuleInit {
     private readonly crossPost: CrossPostService,
     private readonly dispatcher: PublisherDispatcher,
     private readonly groupFanOut: GroupFanOutService,
+    private readonly destinations: DestinationResolver,
   ) {}
+
+  /** Meta publishing is fashion-only (per requirement). Telegram keeps the
+   *  full rotation of categories. */
+  private static readonly META_CATEGORY = 'fashion';
 
   onModuleInit() {
     const path = join(__dirname, '..', '..', '..', 'config', 'sources', 'ai0-prompts.json');
@@ -70,9 +77,13 @@ export class Ai0PromptsStrategy implements ContentStrategy, OnModuleInit {
       'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36';
 
     const postedKey = dest?.postedKey ?? 'TELEGRAM';
+    const isMeta = !!dest && dest.platform !== 'telegram';
 
-    // 1. Pick random category
-    const category = this.categories[Math.floor(Math.random() * this.categories.length)];
+    // 1. Pick category. Meta (FB/IG/Threads) publishes ONLY the fashion category;
+    //    Telegram keeps the full random rotation.
+    const category = isMeta
+      ? Ai0PromptsStrategy.META_CATEGORY
+      : this.categories[Math.floor(Math.random() * this.categories.length)];
     this.logger.debug(`Selected category: ${category}`);
 
     // 2. Get next unposted prompt from DB
@@ -125,10 +136,22 @@ export class Ai0PromptsStrategy implements ContentStrategy, OnModuleInit {
         this.logger.error(`Meta publish skipped (${row.id}): token missing for ${dest.platform}`);
         return;
       }
+      // English AI/fashion hashtags on every Meta platform + a link to the
+      // group's Telegram channel on Facebook & Threads (Instagram excluded).
+      const hashtags = promptHashtags(category);
+      const telegramLink = await this.destinations.resolveGroupTelegramLink(dest);
+      const captionFor = (platform: DestinationPlatform) =>
+        platform === 'telegram'
+          ? message.caption
+          : composeMetaCaption(platform, {
+              base: message.caption, hashtags, telegramLink,
+              linkLabel: '📲 More on Telegram:',
+            });
+
       try {
         const id = await this.dispatcher.publish(
           dest.platform as MetaPlatform,
-          { text: message.caption, imageUrl: row.id, source: '', tags: [category] },
+          { text: captionFor(dest.platform), imageUrl: row.id, source: '', tags: [category] },
           { id: dest.targetId, token: dest.token },
         );
         await this.db.markPosted(row.id, postedKey);
@@ -136,7 +159,7 @@ export class Ai0PromptsStrategy implements ContentStrategy, OnModuleInit {
 
         await this.groupFanOut.fanOut(
           dest,
-          { caption: message.caption, tags: [category], imageUrls: [row.id], carousel: false },
+          { caption: message.caption, captionFor, tags: [category], imageUrls: [row.id], carousel: false },
           (key) => this.db.markPosted(row.id, key),
         );
       } catch (err: any) {

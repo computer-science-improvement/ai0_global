@@ -21,7 +21,7 @@ test('meta destination publishes prompthero image url via dispatcher', async () 
   };
   const dispatcher = { publish: async (...a: any[]) => { calls.dispatch = a; return 'ig-7'; } };
 
-  // Constructor order: registry, telegram, db, scraper, notifier, publications, crossPost, dispatcher, groupFanOut
+  // Constructor order: registry, telegram, db, scraper, notifier, publications, crossPost, dispatcher, groupFanOut, destinations
   const s = new Ai0PromptsStrategy(
     { register() {} } as any,                  // registry
     { publishPrompt: async () => '1' } as any, // telegram
@@ -32,6 +32,7 @@ test('meta destination publishes prompthero image url via dispatcher', async () 
     { afterPublish: async () => {} } as any,   // crossPost
     dispatcher as any,                         // dispatcher
     { fanOut: async () => {} } as any,         // groupFanOut (no fan-out)
+    { resolveGroupTelegramLink: async () => null } as any, // destinations
   );
 
   const dest = {
@@ -64,6 +65,7 @@ function failingStrategy(publishError: string) {
     scraper as any, { notifyPublished: async () => {} } as any, { insert: async () => {} } as any,
     { afterPublish: async () => {} } as any, dispatcher as any,
     { fanOut: async () => {} } as any,
+    { resolveGroupTelegramLink: async () => null } as any,
   );
   return { s, calls };
 }
@@ -119,6 +121,7 @@ test('FB publish delegates fan-out to GroupFanOutService with correct args', asy
     { register() {} } as any, { publishPrompt: async () => '1' } as any, db as any,
     scraper as any, { notifyPublished: async () => {} } as any, { insert: async () => {} } as any,
     { afterPublish: async () => {} } as any, dispatcher as any, groupFanOut as any,
+    { resolveGroupTelegramLink: async () => null } as any,
   );
 
   const fbDest = { platform: 'facebook', targetId: 'FB1', token: 'fbtok', metaAccountId: 'fb', postedKey: 'FB:fb', throttleKey: 'meta:fb' };

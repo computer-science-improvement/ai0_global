@@ -9,11 +9,14 @@ import { DestinationResolver } from './destination-resolver.service';
 import { PublisherDispatcher } from '../../publishers/publisher-dispatcher.service';
 import { TelegramPublisher } from '../../publishers/telegram.publisher';
 import { isPermanentMetaMediaError } from '../../publishers/meta-graph.util';
-import type { PublishDestination } from './publish-destination';
+import type { PublishDestination, DestinationPlatform } from './publish-destination';
 import type { MetaPlatform } from '../../config/meta-accounts.repository';
 
 export interface GroupContent {
   caption: string;
+  /** Optional per-target caption (e.g. platform-specific hashtags / Telegram
+   *  link). Called with each target's platform; falls back to `caption`. */
+  captionFor?: (platform: DestinationPlatform) => string;
   tags: string[];
   /** >=1 image URL. Meta gets a carousel when `carousel` is true, else a single
    *  post from imageUrls[0]. Telegram always gets imageUrls[0] (cover). */
@@ -49,22 +52,23 @@ export class GroupFanOutService {
     for (const t of targets) {
       try {
         let id: string;
+        const text = content.captionFor ? content.captionFor(t.platform) : content.caption;
         if (t.platform === 'telegram') {
           id = await this.telegram.publish(
-            { text: content.caption, imageUrl: content.imageUrls[0], source: '', tags: content.tags },
+            { text, imageUrl: content.imageUrls[0], source: '', tags: content.tags },
             { id: t.targetId, token: '' },
           );
         } else if (content.carousel) {
           id = await this.dispatcher.publishCarousel(
             t.platform as MetaPlatform,
-            { text: content.caption, tags: content.tags, source: '' },
+            { text, tags: content.tags, source: '' },
             content.imageUrls,
             { id: t.targetId, token: t.token! },
           );
         } else {
           id = await this.dispatcher.publish(
             t.platform as MetaPlatform,
-            { text: content.caption, imageUrl: content.imageUrls[0], source: '', tags: content.tags },
+            { text, imageUrl: content.imageUrls[0], source: '', tags: content.tags },
             { id: t.targetId, token: t.token! },
           );
         }

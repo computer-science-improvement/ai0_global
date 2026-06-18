@@ -9,8 +9,11 @@ import { RecipesRepository } from '../recipes/recipes.repository';
 import { TikTokCarouselPublisher } from '../../publishers/tiktok/tiktok-carousel.publisher';
 import { toCarouselRecipe, buildCarouselCaption } from './recipe-carousel.map';
 import { GroupFanOutService } from '../../common/content-strategy/group-fanout.service';
+import { DestinationResolver } from '../../common/content-strategy/destination-resolver.service';
+import { composeMetaCaption, recipeHashtags } from '../../common/content-strategy/meta-caption.util';
 import { TelegramPublisher } from '../../publishers/telegram.publisher';
 import type { PublishDestination, DestinationPlatform } from '../../common/content-strategy/publish-destination';
+import type { RecipeRow } from '../recipes/recipes.repository';
 import type { MetaPlatform } from '../../config/meta-accounts.repository';
 import {
   ContentStrategy, StrategyFetchResult, StrategyPost, StrategyParams,
@@ -39,9 +42,30 @@ export class RecipeCarouselStrategy implements ContentStrategy, OnModuleInit {
     private readonly tiktok:       TikTokCarouselPublisher,
     private readonly groupFanOut:  GroupFanOutService,
     private readonly telegramPub:  TelegramPublisher,
+    private readonly destinations: DestinationResolver,
   ) {}
 
   onModuleInit() { this.registry.register(this); }
+
+  /**
+   * Per-platform caption: the Ukrainian recipe caption + English food hashtags
+   * on all Meta platforms, plus a link to the group's Telegram channel on
+   * Facebook & Threads only. Telegram itself keeps the plain caption (no
+   * self-link). `dest` resolves the group → its Telegram channel link.
+   */
+  private async buildCaptionFor(
+    dest: PublishDestination, row: RecipeRow, caption: string,
+  ): Promise<(platform: DestinationPlatform) => string> {
+    const hashtags = recipeHashtags(row.category);
+    const telegramLink = await this.destinations.resolveGroupTelegramLink(dest);
+    return (platform) =>
+      platform === 'telegram'
+        ? caption
+        : composeMetaCaption(platform, {
+            base: caption, hashtags, telegramLink,
+            linkLabel: '📲 Більше рецептів у Telegram:',
+          });
+  }
 
   getSkills(_params: StrategyParams): Skill[] { return []; }
   async fetch(_params: StrategyParams, _channelId: string): Promise<StrategyFetchResult | null> { return null; }
@@ -99,10 +123,12 @@ export class RecipeCarouselStrategy implements ContentStrategy, OnModuleInit {
     const keyPrefix = `carousel/${dest.platform}/${dest.metaAccountId}/${row.id}`;
     const hosted = await this.hosting.upload(slides, keyPrefix);
 
+    const captionFor = await this.buildCaptionFor(dest, row, caption);
+
     try {
       const id = await this.dispatcher.publishCarousel(
         dest.platform as MetaPlatform,
-        { text: caption, tags: row.category ? [row.category] : [], source: '' },
+        { text: captionFor(dest.platform), tags: row.category ? [row.category] : [], source: '' },
         hosted.map(h => h.url),
         { id: dest.targetId, token: dest.token },
       );
@@ -111,7 +137,7 @@ export class RecipeCarouselStrategy implements ContentStrategy, OnModuleInit {
 
       await this.groupFanOut.fanOut(
         dest,
-        { caption, tags: row.category ? [row.category] : [], imageUrls: hosted.map(h => h.url), carousel: true },
+        { caption, captionFor, tags: row.category ? [row.category] : [], imageUrls: hosted.map(h => h.url), carousel: true },
         (key) => this.repo.markPosted(row.id, key),
       );
     } catch (err: any) {
@@ -142,6 +168,7 @@ export class RecipeCarouselStrategy implements ContentStrategy, OnModuleInit {
 
     const slides = await this.renderer.render(recipe, imageBuffer);
     const hosted = await this.hosting.upload(slides, `carousel/telegram/${dest.targetId}/${row.id}`);
+    const captionFor = await this.buildCaptionFor(dest, row, caption);
 
     try {
       const mid = await this.telegramPub.publish(
@@ -153,7 +180,7 @@ export class RecipeCarouselStrategy implements ContentStrategy, OnModuleInit {
 
       await this.groupFanOut.fanOut(
         dest,
-        { caption, tags: row.category ? [row.category] : [], imageUrls: hosted.map(h => h.url), carousel: true },
+        { caption, captionFor, tags: row.category ? [row.category] : [], imageUrls: hosted.map(h => h.url), carousel: true },
         (key) => this.repo.markPosted(row.id, key),
       );
     } catch (err: any) {

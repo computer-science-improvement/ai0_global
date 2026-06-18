@@ -73,6 +73,7 @@ function build(over: any = {}) {
     { publishCarousel: async () => 'x' } as any,
     groupFanOut as any,
     telegramPub as any,
+    { resolveGroupTelegramLink: async () => over.telegramLink ?? null } as any,
   );
   return { s, calls };
 }

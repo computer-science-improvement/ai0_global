@@ -31,7 +31,7 @@ function build(over: any = {}) {
   const tiktok = { publishCarousel: async (accountId: string, urls: string[], caption: string) => { calls.published = { accountId, urls, caption }; if (over.publishError) throw new Error(over.publishError); return 'pub_1'; } };
   const groupFanOut = { fanOut: async () => {} };
   const telegramPub = { publish: async () => 'mid' };
-  const s = new RecipeCarouselStrategy(repo as any, renderer as any, hosting as any, dispatcher as any, images as any, registry as any, tiktok as any, groupFanOut as any, telegramPub as any);
+  const s = new RecipeCarouselStrategy(repo as any, renderer as any, hosting as any, dispatcher as any, images as any, registry as any, tiktok as any, groupFanOut as any, telegramPub as any, { resolveGroupTelegramLink: async () => null } as any);
   return { s, calls };
 }
 

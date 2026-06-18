@@ -100,6 +100,20 @@ export class DestinationResolver {
   }
 
   /**
+   * Public Telegram link (`https://t.me/<username>`) of the channel attached to
+   * the SAME group as `dest`, or null when the dest is ungrouped, the group has
+   * no Telegram channel, or that channel has no public username (private). Used
+   * to append a "follow us on Telegram" link to a group's Facebook/Threads posts.
+   */
+  async resolveGroupTelegramLink(dest: PublishDestination): Promise<string | null> {
+    const group = await this.resolveGroupForDest(dest);
+    if (!group) return null;
+    const ch = await this.channels.findByGroupId(group.groupId);
+    const username = ch?.username?.replace(/^@/, '').trim();
+    return username ? `https://t.me/${username}` : null;
+  }
+
+  /**
    * Every OTHER active member of a group as a ready-to-publish destination —
    * the Meta accounts (with resolved tokens) and the linked Telegram channel.
    * `excludePlatform` is the source's platform (its own member is skipped).
