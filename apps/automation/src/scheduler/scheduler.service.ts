@@ -47,6 +47,17 @@ export class SchedulerService implements OnApplicationBootstrap, OnModuleDestroy
   ) {}
 
   async onApplicationBootstrap() {
+    // Reconcile runs orphaned by a previous hard stop (left at 'running')
+    // BEFORE the scheduler starts ticking — nothing is legitimately in-flight
+    // yet, so any 'running' row is a dead leftover. Keeps the activity log from
+    // showing a phantom spinner forever.
+    try {
+      const n = await this.runsRepo.failOrphanedRunning();
+      if (n > 0) this.logger.warn(`Reconciled ${n} orphaned 'running' run(s) → error`);
+    } catch (err: any) {
+      this.logger.warn(`orphaned-run reconcile failed: ${err.message}`);
+    }
+
     this.registerStrategies();
 
     // Subscribe to config:changed and reconcile on every kind that could

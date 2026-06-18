@@ -73,6 +73,25 @@ export class StrategyRunsRepository {
     );
   }
 
+  /**
+   * Reconcile rows orphaned by a hard stop: any run still 'running' at boot
+   * belongs to a previous process that died mid-run (a graceful run always
+   * flips terminal). The scheduler hasn't started ticking yet, so nothing is
+   * legitimately in-flight here — flip them to 'error' so the activity log
+   * stops showing a phantom spinner. Returns how many were reconciled.
+   */
+  async failOrphanedRunning(): Promise<number> {
+    const { rowCount } = await this.pool.query(
+      `UPDATE strategy_runs
+         SET finished_at = now(),
+             status      = 'error',
+             error       = 'interrupted: service restarted mid-run',
+             duration_ms = EXTRACT(EPOCH FROM (now() - started_at)) * 1000
+       WHERE status = 'running'`,
+    );
+    return rowCount ?? 0;
+  }
+
   /** Record a tick that was skipped because the previous one was still running. */
   async recordSkipped(strategyId: string, extId: string, reason: string): Promise<void> {
     await this.pool.query(
