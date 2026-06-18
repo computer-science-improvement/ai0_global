@@ -1,5 +1,5 @@
 // apps/automation/src/config/api/dto/meta-accounts.dto.ts
-import { IsBoolean, IsIn, IsOptional, IsString, Matches, MaxLength } from 'class-validator';
+import { IsBoolean, IsIn, IsOptional, IsString, IsUUID, Matches, MaxLength, ValidateIf } from 'class-validator';
 
 const PLATFORMS = ['instagram', 'facebook', 'threads'] as const;
 
@@ -39,4 +39,27 @@ export class PatchMetaAccountDto {
   @IsOptional()
   @IsBoolean()
   active?: boolean;
+
+  // Assign to a Meta account group (UUID), or null to un-group. A group holds at
+  // most one account per platform — a clashing assignment is rejected (409).
+  @IsOptional()
+  @IsUUID()
+  @ValidateIf((_o, v) => v !== null)
+  groupId?: string | null;
+}
+
+export class CreateMetaAccountGroupDto {
+  @IsString()
+  @Matches(/^[A-Za-z0-9 ._-]+$/, { message: 'group name may contain letters, digits, spaces, . _ -' })
+  @MaxLength(64)
+  name!: string;
+}
+
+const SOURCE_PLATFORMS = ['facebook', 'instagram', 'threads', 'telegram'] as const;
+
+export class PatchMetaAccountGroupDto {
+  // Which member platform is this group's fan-out source — publishing to it
+  // mirrors the same content to every other member of the group.
+  @IsIn(SOURCE_PLATFORMS as unknown as string[])
+  sourcePlatform!: typeof SOURCE_PLATFORMS[number];
 }
