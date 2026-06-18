@@ -20,6 +20,8 @@ export interface TrackedChannel {
   /** Per-channel publishing kill switch. When true, all publishes are blocked. */
   publishPaused?: boolean;
   strategies?:   ChannelStrategyRef[];
+  /** True when this channel has no bot bound AND no default bot exists. */
+  needsBot?:     boolean;
 }
 
 export interface ChannelBotRef {
@@ -116,6 +118,8 @@ export interface Bot {
   platform:         string;
   token_env:        string;
   active:           boolean;
+  /** At most one bot is the default — used as a fallback publisher for channels with no bot. */
+  is_default:       boolean;
   last_verified_at: string | null;
   verify_error:     string | null;
   created_at:       string;
@@ -189,6 +193,8 @@ export interface Strategy {
   content_remaining:     number | null;
   /** Effective low-content alert threshold (posts); binding override or default 100. */
   low_content_threshold: number;
+  /** True for a telegram binding whose channel has no bot AND no default bot exists. */
+  needs_bot?:            boolean;
 }
 
 export interface StrategyChannelRef {

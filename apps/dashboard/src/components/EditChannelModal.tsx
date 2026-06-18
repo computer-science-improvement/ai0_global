@@ -7,7 +7,7 @@
 import { useEffect, useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { trackingApi, PatchChannelInput } from '../api/tracking';
-import { useBots } from '../api/bots';
+import { useBots, useSetDefaultBot } from '../api/bots';
 import { Modal } from './Modal';
 import type { TrackedChannel } from '../api/types';
 
@@ -20,6 +20,7 @@ interface Props {
 export function EditChannelModal({ channel, open, onClose }: Props) {
   const qc        = useQueryClient();
   const { data: bots } = useBots();
+  const setDefaultBot  = useSetDefaultBot();
   const [title,         setTitle]         = useState<string>(channel.title ?? '');
   const [botId,         setBotId]         = useState<string | null>(channel.botId ?? null);
   const [isMine,        setIsMine]        = useState<boolean>(channel.isMine);
@@ -82,19 +83,36 @@ export function EditChannelModal({ channel, open, onClose }: Props) {
       </Field>
 
       <Field label="Bot">
-        <select
-          value={botId ?? ''}
-          onChange={e => setBotId(e.target.value || null)}
-          className="input-field"
-          style={{ width: '100%' }}
-        >
-          <option value="">— none —</option>
-          {bots?.map(b => (
-            <option key={b.id} value={b.id}>
-              {b.bot_id}{b.username ? ` (@${b.username})` : ''}{!b.active ? ' · inactive' : ''}
-            </option>
-          ))}
-        </select>
+        <div style={{ display: 'flex', gap: 8 }}>
+          <select
+            value={botId ?? ''}
+            onChange={e => setBotId(e.target.value || null)}
+            className="input-field"
+            style={{ flex: 1, minWidth: 0 }}
+          >
+            <option value="">— none —</option>
+            {bots?.map(b => (
+              <option key={b.id} value={b.id}>
+                {b.bot_id}{b.username ? ` (@${b.username})` : ''}{!b.active ? ' · inactive' : ''}{b.is_default ? ' (default)' : ''}
+              </option>
+            ))}
+          </select>
+          {(() => {
+            const selectedBot = bots?.find(b => b.id === botId) ?? null;
+            return (
+              <button
+                type="button"
+                onClick={() => { if (botId) setDefaultBot.mutate({ id: botId, default: true }); }}
+                disabled={!selectedBot || selectedBot.is_default || setDefaultBot.isPending}
+                className="btn-secondary"
+                style={{ whiteSpace: 'nowrap' }}
+                title="Make the selected bot the default fallback publisher for channels with no bot."
+              >
+                Set default bot
+              </button>
+            );
+          })()}
+        </div>
       </Field>
 
       <Field label="Channel key" hint="@username (public) or -100… numeric id (private)">

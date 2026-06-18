@@ -14,7 +14,7 @@ import { useEffect, useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from '@tanstack/react-router';
 import { trackingApi, CreateFullChannelInput } from '../api/tracking';
-import { useBots } from '../api/bots';
+import { useBots, useSetDefaultBot } from '../api/bots';
 import { Modal } from './Modal';
 import { Icon } from './Icon';
 import { CHANNEL_KIND_HELP, POLL_TIER_HELP, CHANNEL_FLAG_HELP } from '../lib/labels';
@@ -48,6 +48,8 @@ export function AddChannelModal({ open, onClose, ownership = 'mine' }: {
   const qc           = useQueryClient();
   const navigate     = useNavigate();
   const { data: bots } = useBots();
+  const setDefaultBot  = useSetDefaultBot();
+  const selectedBot    = bots?.find(b => b.id === botId) ?? null;
 
   // Public-username discovery path: keeps the legacy addChannel endpoint
   // for the simple "track this public channel" case.
@@ -156,20 +158,32 @@ export function AddChannelModal({ open, onClose, ownership = 'mine' }: {
           />
         </Field>
 
-        <Field label="Bot" help="Telegram bot account that will publish content to this channel.">
-          <select
-            value={botId}
-            onChange={e => setBotId(e.target.value)}
-            className="input-field"
-            style={{ width: '100%' }}
-          >
-            <option value="">— none —</option>
-            {bots?.map(b => (
-              <option key={b.id} value={b.id}>
-                {b.bot_id}{b.username ? ` (@${b.username})` : ''}{!b.active && ' · inactive'}
-              </option>
-            ))}
-          </select>
+        <Field label="Bot" help="Telegram bot account that will publish content to this channel. If none is chosen, the default bot is used as a fallback.">
+          <div style={{ display: 'flex', gap: 8 }}>
+            <select
+              value={botId}
+              onChange={e => setBotId(e.target.value)}
+              className="input-field"
+              style={{ flex: 1, minWidth: 0 }}
+            >
+              <option value="">— none —</option>
+              {bots?.map(b => (
+                <option key={b.id} value={b.id}>
+                  {b.bot_id}{b.username ? ` (@${b.username})` : ''}{!b.active && ' · inactive'}{b.is_default && ' (default)'}
+                </option>
+              ))}
+            </select>
+            <button
+              type="button"
+              onClick={() => { if (botId) setDefaultBot.mutate({ id: botId, default: true }); }}
+              disabled={!selectedBot || selectedBot.is_default || setDefaultBot.isPending}
+              className="btn-secondary"
+              style={{ whiteSpace: 'nowrap' }}
+              title="Make the selected bot the default fallback publisher for channels with no bot."
+            >
+              Set default bot
+            </button>
+          </div>
         </Field>
 
         <Field label="Poll tier" help={`hot: ${POLL_TIER_HELP.hot}\n\nwarm: ${POLL_TIER_HELP.warm}\n\ncold: ${POLL_TIER_HELP.cold}`}>

@@ -64,6 +64,13 @@ export function ChannelRow({ c, lowContentIds }: { c: TrackedChannel; lowContent
                   {c.bot.username ?? c.bot.bot_id}
                 </span>
               )}
+              {c.needsBot && (
+                <span title="This channel has no bot bound and no default bot exists — strategies can't publish here.">
+                  <Badge tone="warning">
+                    <Icon name="warning" size={11} /> No bot — add or set a default bot to publish
+                  </Badge>
+                </span>
+              )}
               {c.trackingStatus === 'not_subscribed' && (
                 <span title="The tracker account isn't subscribed to this channel">
                   <Badge tone="warning">

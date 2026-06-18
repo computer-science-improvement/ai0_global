@@ -6,15 +6,17 @@ import { useState } from 'react';
 import { useNavigate } from '@tanstack/react-router';
 import { AddBotModal } from '../AddBotModal';
 import { Icon } from '../Icon';
+import { Badge } from '../ui/Badge';
 import { useConfirm } from '../ui/ConfirmDialog';
-import { useBots, useDeleteBot, useToggleBotActive, useVerifyBot } from '../../api/bots';
+import { useBots, useDeleteBot, useSetDefaultBot, useToggleBotActive, useVerifyBot } from '../../api/bots';
 import { BOT_STATUS_HELP } from '../../lib/labels';
 
 export function BotsManager() {
   const { data, isLoading, error } = useBots();
-  const verify  = useVerifyBot();
-  const toggle  = useToggleBotActive();
-  const remove  = useDeleteBot();
+  const verify     = useVerifyBot();
+  const toggle     = useToggleBotActive();
+  const remove     = useDeleteBot();
+  const setDefault = useSetDefaultBot();
   const confirm = useConfirm();
   const [addOpen, setAddOpen] = useState(false);
   const navigate = useNavigate();
@@ -40,6 +42,7 @@ export function BotsManager() {
 
       {isLoading && <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>Loading…</p>}
       {error && <p className="text-body-sm" style={{ color: 'var(--color-danger)' }}>{(error as Error).message}</p>}
+      {setDefault.error && <p className="text-body-sm" style={{ color: 'var(--color-danger)' }}>{(setDefault.error as Error).message}</p>}
 
       {data && data.length === 0 && (
         <div className="card" style={{ textAlign: 'center', padding: 40 }}>
@@ -81,12 +84,29 @@ export function BotsManager() {
                           </span>
                         : <span className="chip" title={BOT_STATUS_HELP.unverified}>unverified</span>}
                     {!b.active && <span className="chip" title={BOT_STATUS_HELP.inactive} style={{ marginLeft: 6 }}>inactive</span>}
+                    {b.is_default && (
+                      <span style={{ marginLeft: 6, display: 'inline-flex', verticalAlign: 'middle' }}
+                        title="Default bot — used to publish into channels that have no bot of their own.">
+                        <Badge tone="accent"><Icon name="check" size={11} /> default</Badge>
+                      </span>
+                    )}
                   </td>
                   <td className="meta">
                     {b.last_verified_at ? new Date(b.last_verified_at).toLocaleString() : '—'}
                   </td>
                   <td style={{ textAlign: 'right' }} onClick={(e) => e.stopPropagation()}>
                     <div style={{ display: 'inline-flex', gap: 6 }}>
+                      <button
+                        onClick={() => setDefault.mutate({ id: b.id, default: !b.is_default })}
+                        className="btn-tiny"
+                        title={b.is_default
+                          ? 'This bot is the default fallback publisher. Click to unset.'
+                          : 'Make this the default fallback publisher for channels with no bot.'}
+                      >
+                        {b.is_default
+                          ? <><Icon name="check" size={12} style={{ marginRight: 4 }} />Default</>
+                          : 'Set default'}
+                      </button>
                       <button onClick={() => verify.mutate(b.id)} className="btn-tiny" title="Re-run getMe">
                         <Icon name="refresh" size={12} style={{ marginRight: 4 }} />
                         Verify

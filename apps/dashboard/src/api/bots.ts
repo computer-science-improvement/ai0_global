@@ -49,3 +49,20 @@ export function useDeleteBot() {
     onSuccess: () => qc.invalidateQueries({ queryKey: ['bots'] }),
   });
 }
+
+export function useSetDefaultBot() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: ({ id, default: isDefault }: { id: string; default: boolean }) =>
+      api<{ ok: true }>(`/api/my-bots/${id}/set-default`, {
+        method: 'POST', body: JSON.stringify({ default: isDefault }),
+      }),
+    // Refresh the bot list (is_default), plus channels + strategies so their
+    // needs_bot/needsBot flags and bot-picker option labels reflect the change.
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['bots'] });
+      qc.invalidateQueries({ queryKey: ['channels'] });
+      qc.invalidateQueries({ queryKey: ['strategies'] });
+    },
+  });
+}

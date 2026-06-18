@@ -3,6 +3,7 @@ import { createFileRoute, Link } from '@tanstack/react-router';
 import { useState } from 'react';
 import { Icon } from '../components/Icon';
 import { Icon as PlatformGlyph, type IconName } from '../components/ui/Icon';
+import { Badge } from '../components/ui/Badge';
 import { usePlatform } from '../lib/usePlatform';
 import { PlatformFilter } from '../components/PlatformFilter';
 import { useConfirm } from '../components/ui/ConfirmDialog';
@@ -173,6 +174,13 @@ function StrategyRow({
                 {s.meta_account.username ? '@' + s.meta_account.username : s.meta_account.platform}
               </span>
             : <span style={{ color: 'var(--color-ink-dim)' }}>—</span>}
+        {s.needs_bot && (
+          <div style={{ marginTop: 6 }} title="This channel has no bot bound and no default bot exists, so this strategy cannot publish.">
+            <Badge tone="warning">
+              <Icon name="warning" size={11} /> No bot — add or set a default bot to publish
+            </Badge>
+          </div>
+        )}
       </td>
       <td style={{ fontVariantNumeric: 'tabular-nums', color: 'var(--color-ink-muted)' }}>{s.schedule}</td>
       <td>
