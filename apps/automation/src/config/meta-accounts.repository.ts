@@ -22,6 +22,8 @@ export interface MetaAccountRow {
   last_verified_at:  Date | null;
   verify_error:      string | null;
   created_at:        Date;
+  // Group of related accounts (same brand's FB/IG/Threads) for publish fan-out.
+  group_id:          string | null;
   landing_visible:   boolean;
   landing_order:     number;
   // Derived from Graph debug_token on Verify — the token value is NEVER stored.
@@ -93,6 +95,14 @@ export class MetaAccountsRepository {
     );
   }
 
+  /** Persist the authoritative target id resolved from the token (Threads
+   *  `/me`), self-healing a wrong/stale value so publishing uses the right id. */
+  async setTargetId(id: string, targetId: string): Promise<void> {
+    await this.pool.query(
+      `UPDATE meta_accounts SET target_id = $2::text WHERE id = $1`, [id, targetId],
+    );
+  }
+
   async markVerified(id: string, meta: MetaVerifyMeta): Promise<void> {
     await this.pool.query(
       `UPDATE meta_accounts
@@ -137,6 +147,39 @@ export class MetaAccountsRepository {
 
   async setActive(id: string, active: boolean): Promise<void> {
     await this.pool.query(`UPDATE meta_accounts SET active = $2 WHERE id = $1`, [id, active]);
+  }
+
+  /** Assign (or clear) the account's group. The partial unique index enforces at
+   *  most one account per platform per group, so a clashing assignment errors. */
+  async setGroup(id: string, groupId: string | null): Promise<void> {
+    await this.pool.query(`UPDATE meta_accounts SET group_id = $2 WHERE id = $1`, [id, groupId]);
+  }
+
+  /** All ACTIVE Meta accounts in a group (any platform). Empty for a missing
+   *  or empty group. Drives group fan-out target resolution. */
+  async findActiveByGroup(groupId: string): Promise<MetaAccountRow[]> {
+    const { rows } = await this.pool.query<MetaAccountRow>(
+      `SELECT * FROM meta_accounts WHERE group_id = $1 AND active ORDER BY platform`,
+      [groupId],
+    );
+    return rows;
+  }
+
+  /** Active accounts in the SAME group as `id`, excluding `id` itself. Empty
+   *  when the account is ungrouped or has no active siblings. Drives the
+   *  Facebook → Instagram + Threads publish fan-out. */
+  async findActiveGroupSiblings(id: string): Promise<MetaAccountRow[]> {
+    const { rows } = await this.pool.query<MetaAccountRow>(
+      `SELECT s.* FROM meta_accounts s
+         JOIN meta_accounts a ON a.id = $1
+        WHERE s.active
+          AND s.group_id IS NOT NULL
+          AND s.group_id = a.group_id
+          AND s.id <> a.id
+        ORDER BY s.platform`,
+      [id],
+    );
+    return rows;
   }
 
   async setLanding(id: string, opts: { visible: boolean; order: number }): Promise<void> {

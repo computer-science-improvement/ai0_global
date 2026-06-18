@@ -22,6 +22,9 @@ export interface TrackedChannel {
   kind:           string | null;
   /** UUID of `my_bots` row publishing into this channel. Null when external. */
   botId:          string | null;
+  /** Brand group (meta_account_groups) this channel belongs to; null = none.
+   *  Organizational only — does not affect publishing. */
+  groupId:        string | null;
   /** Phase 4 themes assigned for recommendations / matching. */
   themes:         string[];
   /** Per-channel publishing kill switch. When true, publisher refuses to send. */
@@ -217,10 +220,12 @@ export class TrackedChannelsRepository {
     pollTier?:      PollTier;
     themes?:        string[];
     publishPaused?: boolean;
+    groupId?:       string | null;
   }): Promise<boolean> {
     const sets: string[] = [];
     const args: unknown[] = [id];
     let i = 2;
+    if (patch.groupId       !== undefined) { sets.push(`group_id = $${i++}`);       args.push(patch.groupId); }
     if (patch.title         !== undefined) { sets.push(`title = $${i++}`);          args.push(patch.title); }
     if (patch.isMine        !== undefined) { sets.push(`is_mine = $${i++}`);        args.push(patch.isMine); }
     if (patch.botId         !== undefined) { sets.push(`bot_id = $${i++}`);         args.push(patch.botId); }
@@ -301,6 +306,23 @@ export class TrackedChannelsRepository {
     }));
   }
 
+  /** The single Telegram channel linked to a group (migration 034: <=1 per
+   *  group via the partial unique index). Null when the group has none. */
+  async findByGroupId(groupId: string): Promise<TrackedChannel | null> {
+    const r = await this.pool.query<any>(
+      `SELECT * FROM tracked_channels WHERE group_id = $1 LIMIT 1`, [groupId],
+    );
+    return r.rows[0] ? this.toEntity(r.rows[0]) : null;
+  }
+
+  /** The group a Telegram channel belongs to (by channel_key), or null. */
+  async findGroupIdByChannelKey(channelKey: string): Promise<string | null> {
+    const { rows } = await this.pool.query<{ group_id: string | null }>(
+      `SELECT group_id FROM tracked_channels WHERE channel_key = $1 LIMIT 1`, [channelKey],
+    );
+    return rows[0]?.group_id ?? null;
+  }
+
   private toEntity(r: any): TrackedChannel {
     return {
       id:           r.id,
@@ -318,6 +340,7 @@ export class TrackedChannelsRepository {
       channelKey:   r.channel_key ?? null,
       kind:         r.kind ?? null,
       botId:        r.bot_id ?? null,
+      groupId:      r.group_id ?? null,
       themes:       Array.isArray(r.themes) ? r.themes : [],
       publishPaused: !!r.publish_paused,
       trackingStatus:    r.tracking_status ?? 'unknown',
