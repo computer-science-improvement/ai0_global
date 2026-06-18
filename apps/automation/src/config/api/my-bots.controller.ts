@@ -1,7 +1,7 @@
 // apps/automation/src/config/api/my-bots.controller.ts
 import {
   BadRequestException, Body, ConflictException, Controller, Delete, Get,
-  HttpCode, NotFoundException, Param, Patch, Post, UseGuards,
+  HttpCode, NotFoundException, Param, Patch, Post, Query, UseGuards,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { TrackingAuthGuard } from '../../tracking/api/tracking-auth.guard';
@@ -109,9 +109,18 @@ export class MyBotsController {
 
   @Delete(':id')
   @HttpCode(204)
-  async remove(@Param('id') id: string) {
-    // Atomic: count + delete happen under a row-level FOR UPDATE lock,
-    // so a concurrent rebind to this bot can't slip between the two queries.
+  async remove(@Param('id') id: string, @Query('unbind') unbind?: string) {
+    // unbind=true: delete a bound bot — its channels fall back to the default
+    // bot (bot_id → NULL) and scheduled posts are detached, all in one tx.
+    if (unbind === 'true') {
+      const ok = await this.bots.deleteWithUnbind(id);
+      if (!ok) throw new NotFoundException(`Bot ${id} not found`);
+      await this.publisher.publish('bot', id);
+      return;
+    }
+    // Default: refuse to delete a bot still bound to channels. Atomic: count +
+    // delete happen under a row-level FOR UPDATE lock, so a concurrent rebind
+    // can't slip between the two queries.
     const result = await this.bots.deleteIfUnbound(id);
     if (!result.ok) {
       throw new ConflictException(`Bot still bound to ${result.bound} channel(s) — reassign first`);

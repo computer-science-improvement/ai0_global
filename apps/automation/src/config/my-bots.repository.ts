@@ -134,6 +134,29 @@ export class MyBotsRepository {
     return (rowCount ?? 0) > 0;
   }
 
+  /**
+   * Delete a bot AND unbind whatever still references it, in one transaction:
+   * channels (`bot_id → NULL`, so they fall back to the default bot) and any
+   * scheduled publications (that FK has no cascade and would otherwise block
+   * the DELETE). Returns false if the bot did not exist.
+   */
+  async deleteWithUnbind(id: string): Promise<boolean> {
+    const client = await this.pool.connect();
+    try {
+      await client.query('BEGIN');
+      await client.query(`UPDATE tracked_channels       SET bot_id = NULL WHERE bot_id = $1`, [id]);
+      await client.query(`UPDATE scheduled_publications SET bot_id = NULL WHERE bot_id = $1`, [id]);
+      const { rowCount } = await client.query(`DELETE FROM my_bots WHERE id = $1`, [id]);
+      await client.query('COMMIT');
+      return (rowCount ?? 0) > 0;
+    } catch (err) {
+      try { await client.query('ROLLBACK'); } catch { /* connection may be dead */ }
+      throw err;
+    } finally {
+      client.release();
+    }
+  }
+
   async countChannelsBound(id: string): Promise<number> {
     const { rows } = await this.pool.query<{ count: string }>(
       `SELECT count(*)::text FROM tracked_channels WHERE bot_id = $1`, [id],

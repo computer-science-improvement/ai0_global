@@ -9,6 +9,7 @@ import { Icon } from '../Icon';
 import { Badge } from '../ui/Badge';
 import { useConfirm } from '../ui/ConfirmDialog';
 import { useBots, useDeleteBot, useSetDefaultBot, useToggleBotActive, useVerifyBot } from '../../api/bots';
+import { trackingApi } from '../../api/tracking';
 import { BOT_STATUS_HELP } from '../../lib/labels';
 
 export function BotsManager() {
@@ -121,7 +122,36 @@ export function BotsManager() {
                       </button>
                       <button
                         onClick={async () => {
-                          if (await confirm(`delete bot ${b.username ? `@${b.username}` : b.bot_id}`)) remove.mutate(b.id);
+                          const label = b.username ? `@${b.username}` : b.bot_id;
+                          let bound: Array<{ id: string; channelKey?: string | null; title?: string | null; username?: string | null }> = [];
+                          try {
+                            const res = await trackingApi.listChannels({ filter: 'mine', bot: b.id, pageSize: 200 });
+                            bound = (res.items ?? []).filter((c) => c.botId === b.id);
+                          } catch { /* listing failed — fall back to a plain confirm */ }
+                          if (bound.length === 0) {
+                            if (await confirm(`delete bot ${label}`)) remove.mutate({ id: b.id });
+                            return;
+                          }
+                          const n = bound.length;
+                          const ok = await confirm(
+                            `delete bot ${label} and unbind ${n} channel${n === 1 ? '' : 's'}`,
+                            {
+                              confirmLabel: 'Delete + unbind',
+                              details: (
+                                <div>
+                                  <p className="text-micro" style={{ margin: '0 0 8px', color: 'var(--color-ink-muted)' }}>
+                                    These channels will fall back to the default bot (or stop publishing if no default is set):
+                                  </p>
+                                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+                                    {bound.map((c) => (
+                                      <span key={c.id} className="chip">{c.channelKey ?? c.title ?? c.username ?? c.id}</span>
+                                    ))}
+                                  </div>
+                                </div>
+                              ),
+                            },
+                          );
+                          if (ok) remove.mutate({ id: b.id, unbind: true });
                         }}
                         className="btn-tiny-danger"
                       >

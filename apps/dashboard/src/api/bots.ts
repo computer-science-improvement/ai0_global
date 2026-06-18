@@ -45,8 +45,15 @@ export function useToggleBotActive() {
 export function useDeleteBot() {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: (id: string) => api<void>(`/api/my-bots/${id}`, { method: 'DELETE' }),
-    onSuccess: () => qc.invalidateQueries({ queryKey: ['bots'] }),
+    mutationFn: ({ id, unbind }: { id: string; unbind?: boolean }) =>
+      api<void>(`/api/my-bots/${id}${unbind ? '?unbind=true' : ''}`, { method: 'DELETE' }),
+    // unbind nulls channels' bot_id (→ default-bot fallback) + detaches scheduled
+    // posts, so refresh channels + strategies (needs-bot) alongside the bot list.
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['bots'] });
+      qc.invalidateQueries({ queryKey: ['channels'] });
+      qc.invalidateQueries({ queryKey: ['strategies'] });
+    },
   });
 }
 
