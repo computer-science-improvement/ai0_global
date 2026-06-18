@@ -152,6 +152,20 @@ export interface TrackingSession {
 
 export interface TrackingSessionsResponse { sessions: TrackingSession[]; }
 
+/** A dashboard-managed MTProto session stored ENCRYPTED in the DB. The session
+ *  string itself is never returned by the API — only safe display fields. */
+export interface MtprotoSession {
+  id:               string;
+  label:            string;
+  active:           boolean;
+  username:         string | null;
+  phone:            string | null;
+  tg_user_id:       string | null;
+  last_verified_at: string | null;
+  verify_error:     string | null;
+  created_at:       string;
+}
+
 export interface TelegraphAccount {
   id:               string;
   account_id:       string;

@@ -4,6 +4,8 @@ import { TelegramClient, Api } from 'telegram';
 import { StringSession }       from 'telegram/sessions';
 import { CustomFile }          from 'telegram/client/uploads';
 import { ChannelConfigService } from '../config/channel-config.service';
+import { MtprotoSessionsRepository } from '../config/mtproto-sessions.repository';
+import { SecretsService } from '../common/crypto/secrets.service';
 
 export interface ChannelInfo {
   subscribers: number | null;
@@ -37,7 +39,21 @@ export class TelegramStatsClient implements OnModuleInit {
   constructor(
     private readonly config:        ConfigService,
     private readonly channelConfig: ChannelConfigService,
+    private readonly sessions:      MtprotoSessionsRepository,
+    private readonly secrets:       SecretsService,
   ) {}
+
+  /**
+   * The session string to connect with. Prefers the first ACTIVE encrypted DB
+   * session (dashboard-managed); falls back to the EXACT existing .env value
+   * (TELEGRAM_SESSION_STRING) when there is none. With no active DB session,
+   * behavior is identical to before.
+   */
+  private async resolveSessionString(): Promise<string> {
+    const dbSession = await this.sessions.activeSessionString(this.secrets);
+    if (dbSession) return dbSession;
+    return this.config.get<string>('TELEGRAM_SESSION_STRING') ?? '';
+  }
 
   /**
    * Resolve a channel reference into the address gramjs accepts:
@@ -88,7 +104,8 @@ export class TelegramStatsClient implements OnModuleInit {
   async onModuleInit(): Promise<void> {
     const apiId   = parseInt(this.config.get<string>('TELEGRAM_API_ID') ?? '', 10);
     const apiHash = this.config.get<string>('TELEGRAM_API_HASH') ?? '';
-    const session = this.config.get<string>('TELEGRAM_SESSION_STRING') ?? '';
+    // Active DB session (encrypted) wins; otherwise the existing .env value.
+    const session = await this.resolveSessionString();
 
     if (!apiId || !apiHash || !session) {
       this.logger.warn(

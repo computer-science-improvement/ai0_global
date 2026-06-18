@@ -8,6 +8,8 @@ import { ConfigCacheService } from './config-cache.service';
 import { ConfigEventsPublisher } from './config-events.publisher';
 import { JsonImporterService } from './json-importer.service';
 import { MyBotsRepository } from './my-bots.repository';
+import { MtprotoSessionsRepository } from './mtproto-sessions.repository';
+import { MtprotoVerifyClient } from './mtproto-verify.client';
 import { TrackedChannelsConfigRepository } from './tracked-channels.repository';
 import { StrategyBindingsRepository } from './strategy-bindings.repository';
 import { StrategyRunsRepository } from './strategy-runs.repository';
@@ -22,6 +24,7 @@ import { MetaCrosspostTargetsRepository } from './meta-crosspost-targets.reposit
 import { TikTokAccountsRepository } from './tiktok-accounts.repository';
 import { TikTokTokenService } from './tiktok-token.service';
 import { MyBotsController } from './api/my-bots.controller';
+import { MtprotoSessionsController } from './api/mtproto-sessions.controller';
 import { TelegraphAccountsController } from './api/telegraph-accounts.controller';
 import { MetaAccountsController } from './api/meta-accounts.controller';
 import { MetaCrosspostsController } from './api/meta-crossposts.controller';
@@ -39,13 +42,15 @@ import { ContentRunwayModule } from '../common/content-runway/content-runway.mod
 @Global()
 @Module({
   imports: [NestConfigModule, DatabaseModule, TrackingModule, AuthModule, ContentRunwayModule],
-  controllers: [MyBotsController, TelegraphAccountsController, MetaAccountsController, MetaCrosspostsController, StrategiesController, ForwardRoutesController, TikTokAccountsController, TikTokOAuthController, LandingController, LandingAdminController],
+  controllers: [MyBotsController, MtprotoSessionsController, TelegraphAccountsController, MetaAccountsController, MetaCrosspostsController, StrategiesController, ForwardRoutesController, TikTokAccountsController, TikTokOAuthController, LandingController, LandingAdminController],
   providers: [
     ChannelConfigService,
     ConfigCacheService,
     ConfigEventsPublisher,
     JsonImporterService,
     MyBotsRepository,
+    MtprotoSessionsRepository,
+    MtprotoVerifyClient,
     TrackedChannelsConfigRepository,
     StrategyBindingsRepository,
     StrategyRunsRepository,
@@ -67,6 +72,7 @@ import { ContentRunwayModule } from '../common/content-runway/content-runway.mod
     ConfigCacheService,
     ConfigEventsPublisher,
     MyBotsRepository,
+    MtprotoSessionsRepository,
     TrackedChannelsConfigRepository,
     StrategyBindingsRepository,
     StrategyRunsRepository,
