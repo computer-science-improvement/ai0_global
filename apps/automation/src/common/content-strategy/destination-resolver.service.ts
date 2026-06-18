@@ -8,6 +8,8 @@ import { TikTokAccountsRepository } from '../../config/tiktok-accounts.repositor
 import { SecretsService } from '../crypto/secrets.service';
 import type { ResolvedStrategyBinding } from '../../config/channel-config.service';
 import { PublishDestination, META_POSTED_PREFIX } from './publish-destination';
+import { MetaAccountGroupsRepository } from '../../config/meta-account-groups.repository';
+import { TrackedChannelsRepository } from '../../tracking/repositories/tracked-channels.repository';
 
 @Injectable()
 export class DestinationResolver {
@@ -16,6 +18,8 @@ export class DestinationResolver {
     private readonly config: ConfigService,
     private readonly tiktok: TikTokAccountsRepository,
     private readonly secrets: SecretsService,
+    private readonly groups: MetaAccountGroupsRepository,
+    private readonly channels: TrackedChannelsRepository,
   ) {}
 
   async resolve(b: ResolvedStrategyBinding): Promise<PublishDestination> {
@@ -63,5 +67,110 @@ export class DestinationResolver {
       postedKey: `${META_POSTED_PREFIX[acct.platform]}:${acct.id}`,
       throttleKey: `meta:${acct.id}`,
     };
+  }
+
+  /**
+   * Destinations for the active Meta accounts grouped WITH `metaAccountId` (its
+   * Instagram / Threads siblings of the same brand) — used to fan a Facebook
+   * publish out to the rest of the group. Each sibling whose token resolves
+   * becomes a full PublishDestination (same shape as `resolve`); siblings with
+   * no usable token are skipped (logged by the caller is unnecessary — they
+   * simply don't receive the post). Empty when the account is ungrouped.
+   */
+  async resolveMetaSiblings(metaAccountId: string): Promise<PublishDestination[]> {
+    const siblings = await this.metaAccounts.findActiveGroupSiblings(metaAccountId);
+    const out: PublishDestination[] = [];
+    for (const acct of siblings) {
+      const token = this.secrets.resolveToken(
+        { enc: acct.token_enc, env: acct.token_env }, (k) => this.config.get<string>(k),
+      );
+      if (!token) continue; // no usable token → can't publish to this sibling
+      out.push({
+        platform: acct.platform,
+        targetId: acct.target_id,
+        token,
+        metaAccountId: acct.id,
+        postedKey: `${META_POSTED_PREFIX[acct.platform]}:${acct.id}`,
+        throttleKey: `meta:${acct.id}`,
+      });
+    }
+    return out;
+  }
+
+  /**
+   * Resolve the group a publish destination belongs to and whether THIS dest is
+   * the group's designated fan-out source. Returns null when the dest is not in
+   * any group (then no fan-out happens).
+   */
+  async resolveGroupForDest(
+    dest: PublishDestination,
+  ): Promise<{ groupId: string; sourcePlatform: string; isSource: boolean } | null> {
+    let groupId: string | null = null;
+    let memberPlatform: string = dest.platform;
+
+    if (dest.platform === 'telegram') {
+      groupId = await this.channels.findGroupIdByChannelKey(dest.targetId);
+      memberPlatform = 'telegram';
+    } else if (dest.metaAccountId) {
+      const acct = await this.metaAccounts.findById(dest.metaAccountId);
+      groupId = acct?.group_id ?? null;
+      memberPlatform = acct?.platform ?? dest.platform;
+    }
+    if (!groupId) return null;
+
+    const group = await this.groups.findById(groupId);
+    if (!group) return null;
+    return {
+      groupId,
+      sourcePlatform: group.source_platform,
+      isSource: group.source_platform === memberPlatform,
+    };
+  }
+
+  /**
+   * Every OTHER active member of a group as a ready-to-publish destination —
+   * the Meta accounts (with resolved tokens) and the linked Telegram channel.
+   * `excludePlatform` is the source's platform (its own member is skipped).
+   * Meta members with no usable token are skipped. The Telegram member is
+   * skipped when the group has none. The Telegram destination's bot is resolved
+   * later by TelegramPublisher (via channel config), so no token is attached.
+   */
+  async resolveGroupTargets(
+    groupId: string,
+    excludePlatform: string,
+  ): Promise<PublishDestination[]> {
+    const out: PublishDestination[] = [];
+
+    const metas = await this.metaAccounts.findActiveByGroup(groupId);
+    for (const acct of metas) {
+      if (acct.platform === excludePlatform) continue;
+      const token = this.secrets.resolveToken(
+        { enc: acct.token_enc, env: acct.token_env }, (k) => this.config.get<string>(k),
+      );
+      if (!token) continue;
+      out.push({
+        platform: acct.platform,
+        targetId: acct.target_id,
+        token,
+        metaAccountId: acct.id,
+        postedKey: `${META_POSTED_PREFIX[acct.platform]}:${acct.id}`,
+        throttleKey: `meta:${acct.id}`,
+      });
+    }
+
+    if (excludePlatform !== 'telegram') {
+      const ch = await this.channels.findByGroupId(groupId);
+      if (ch?.channelKey) {
+        out.push({
+          platform: 'telegram',
+          targetId: ch.channelKey,
+          metaAccountId: null,
+          postedKey: 'TELEGRAM',
+          throttleKey: ch.channelKey,
+        });
+      }
+    }
+
+    return out;
   }
 }

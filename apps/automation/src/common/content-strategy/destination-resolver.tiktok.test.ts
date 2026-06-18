@@ -6,7 +6,7 @@ import { SecretsService } from '../crypto/secrets.service';
 function build(account: any) {
   const tiktok = { findById: async (id: string) => (account && account.id === id ? account : null) };
   const secrets = new SecretsService({ get: () => undefined } as any);
-  const resolver = new DestinationResolver({ findById: async () => null } as any, { get: () => undefined } as any, tiktok as any, secrets);
+  const resolver = new DestinationResolver({ findById: async () => null } as any, { get: () => undefined } as any, tiktok as any, secrets, null as any, null as any);
   return resolver;
 }
 

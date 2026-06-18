@@ -27,7 +27,7 @@ const account = {
 function make(over: { account?: any; env?: Record<string, string> } = {}) {
   const repo = { findById: async (_id: string) => (over.account === undefined ? account : over.account) };
   const config = { get: (k: string) => (over.env ?? { INSTAGRAM_TOKEN: 'tok-123' })[k] };
-  return new DestinationResolver(repo as any, config as any, { findById: async () => null } as any, secrets());
+  return new DestinationResolver(repo as any, config as any, { findById: async () => null } as any, secrets(), null as any, null as any);
 }
 
 test('telegram binding maps to channel destination', async () => {
