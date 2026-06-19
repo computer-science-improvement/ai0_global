@@ -17,6 +17,17 @@ import { Inject, Injectable, Logger } from '@nestjs/common';
 import { Pool } from 'pg';
 import { DB_POOL } from '../database/database.module';
 import { StrategyBindingsRepository, StrategyBindingRow } from './strategy-bindings.repository';
+import { DestinationResolver } from '../common/content-strategy/destination-resolver.service';
+import {
+  buildRecipeCaptionParts, renderParts, type CaptionPart, type MetaCaptionOverrides,
+} from '../strategies/recipe-carousel/recipe-caption-parts';
+import type { RecipeRow } from '../strategies/recipes/recipes.repository';
+import type { DestinationPlatform } from '../common/content-strategy/publish-destination';
+
+export interface RecipePostPreview {
+  parts:    CaptionPart[];
+  rendered: Record<'facebook' | 'instagram' | 'threads' | 'telegram', string>;
+}
 
 export interface PreviewItem {
   title?:       string;
@@ -41,7 +52,47 @@ export class StrategyPreviewService {
   constructor(
     @Inject(DB_POOL) private readonly pool: Pool,
     private readonly bindings: StrategyBindingsRepository,
+    private readonly destinations: DestinationResolver,
   ) {}
+
+  /**
+   * Caption "parts" + per-platform rendered captions for a recipe-carousel
+   * binding — the source of the Post-Preview editor. Uses the latest translated
+   * recipe as the sample, the binding's `params.metaCaption` overrides, and the
+   * group's resolved Telegram link. Returns null for a non-recipe binding.
+   */
+  async recipePostPreview(bindingId: string): Promise<RecipePostPreview | null> {
+    const binding = await this.bindings.findById(bindingId);
+    if (!binding || binding.type !== 'recipe-carousel') return null;
+
+    const { rows } = await this.pool.query<RecipeRow>(
+      `SELECT title_uk, category, kcal, protein_g, fat_g, carbs_g FROM recipes
+        WHERE title_uk IS NOT NULL ORDER BY created_at DESC LIMIT 1`,
+    );
+    const row = (rows[0] ?? { title_uk: 'Назва рецепта', category: 'категорія' }) as RecipeRow;
+
+    // Resolve the group's Telegram link the same way publishing does (meta
+    // bindings only; null otherwise — the preview just omits the link part).
+    let telegramLink: string | null = null;
+    if (binding.meta_account_id) {
+      telegramLink = await this.destinations.resolveGroupTelegramLink({
+        platform: binding.platform as DestinationPlatform, targetId: '',
+        metaAccountId: binding.meta_account_id, postedKey: '', throttleKey: '',
+      }).catch(() => null);
+    }
+
+    const overrides = (binding.params?.metaCaption ?? undefined) as MetaCaptionOverrides | undefined;
+    const parts = buildRecipeCaptionParts(row, { overrides, telegramLink });
+    return {
+      parts,
+      rendered: {
+        facebook:  renderParts(parts, 'facebook'),
+        instagram: renderParts(parts, 'instagram'),
+        threads:   renderParts(parts, 'threads'),
+        telegram:  renderParts(parts, 'telegram'),
+      },
+    };
+  }
 
   async previewById(strategyId: string): Promise<StrategyPreview | null> {
     const binding = await this.bindings.findById(strategyId);

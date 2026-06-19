@@ -168,6 +168,15 @@ export class StrategiesController {
     return this.runsRepo.recent(id, 20);
   }
 
+  /** Caption parts + per-platform rendered captions for a recipe-carousel
+   *  binding — drives the editable Post-Preview. 404 for non-recipe bindings. */
+  @Get(':id/post-preview')
+  async postPreview(@Param('id') id: string) {
+    const preview = await this.preview.recipePostPreview(id);
+    if (!preview) throw new NotFoundException('Post-preview only available for recipe-carousel strategies');
+    return preview;
+  }
+
   /**
    * Sample of what this strategy would publish next — the next un-posted
    * DB row for table-backed strategies, the recent dedup log for feed-driven

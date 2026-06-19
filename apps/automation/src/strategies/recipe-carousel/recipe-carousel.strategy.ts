@@ -11,7 +11,7 @@ import { toCarouselRecipe, buildCarouselCaption } from './recipe-carousel.map';
 import { GroupFanOutService } from '../../common/content-strategy/group-fanout.service';
 import { DestinationResolver } from '../../common/content-strategy/destination-resolver.service';
 import { RunTracer } from '../../common/observability/run-tracer.service';
-import { composeMetaCaption, recipeHashtags } from '../../common/content-strategy/meta-caption.util';
+import { buildRecipeCaptionParts, renderParts, type MetaCaptionOverrides } from './recipe-caption-parts';
 import { TelegramPublisher } from '../../publishers/telegram.publisher';
 import type { PublishDestination, DestinationPlatform } from '../../common/content-strategy/publish-destination';
 import type { RecipeRow } from '../recipes/recipes.repository';
@@ -50,37 +50,34 @@ export class RecipeCarouselStrategy implements ContentStrategy, OnModuleInit {
   onModuleInit() { this.registry.register(this); }
 
   /**
-   * Per-platform caption: the Ukrainian recipe caption + English food hashtags
-   * on all Meta platforms, plus a link to the group's Telegram channel on
-   * Facebook & Threads only. Telegram itself keeps the plain caption (no
-   * self-link). `dest` resolves the group → its Telegram channel link.
+   * Per-platform caption built from the shared recipe caption PARTS, so the
+   * output is identical to the dashboard Post-Preview. Recipe parts (title /
+   * category / macros) are fixed; cta / hashtags / intro / outro / tg-link
+   * label come from the binding's `params.metaCaption` overrides (defaults
+   * reproduce the prior output). The Telegram-channel link is resolved from the
+   * dest's group and rendered on Facebook & Threads only.
    */
   private async buildCaptionFor(
-    dest: PublishDestination, row: RecipeRow, caption: string,
+    dest: PublishDestination, row: RecipeRow, params?: StrategyParams,
   ): Promise<(platform: DestinationPlatform) => string> {
-    const hashtags = recipeHashtags(row.category);
     const telegramLink = await this.destinations.resolveGroupTelegramLink(dest);
-    return (platform) =>
-      platform === 'telegram'
-        ? caption
-        : composeMetaCaption(platform, {
-            base: caption, hashtags, telegramLink,
-            linkLabel: '📲 Більше рецептів у Telegram:',
-          });
+    const overrides = (params?.metaCaption ?? undefined) as MetaCaptionOverrides | undefined;
+    const parts = buildRecipeCaptionParts(row, { overrides, telegramLink });
+    return (platform) => renderParts(parts, platform);
   }
 
   getSkills(_params: StrategyParams): Skill[] { return []; }
   async fetch(_params: StrategyParams, _channelId: string): Promise<StrategyFetchResult | null> { return null; }
   async generate(_data: StrategyFetchResult, _params: StrategyParams): Promise<StrategyPost | 'SKIP_POST' | null> { return null; }
 
-  async execute(_channelId: string, _params: StrategyParams, dest?: PublishDestination): Promise<void> {
+  async execute(_channelId: string, params: StrategyParams, dest?: PublishDestination): Promise<void> {
     if (!dest) {
       this.logger.warn('recipe-carousel: no destination');
       return;
     }
 
     if (dest.platform === 'telegram') {
-      await this.executeTelegramSource(dest);
+      await this.executeTelegramSource(dest, params);
       return;
     }
 
@@ -116,7 +113,6 @@ export class RecipeCarouselStrategy implements ContentStrategy, OnModuleInit {
     if (!row) { this.logger.debug('No carousel-eligible recipes'); return; }
 
     const recipe  = toCarouselRecipe(row);
-    const caption = buildCarouselCaption(row);
 
     const imageBuffer = await this.tracer.span('Image', 'download', () => this.images.download(row.image_url));
     if (!imageBuffer) throw new Error(`Carousel image download failed (${row.id})`);
@@ -125,7 +121,7 @@ export class RecipeCarouselStrategy implements ContentStrategy, OnModuleInit {
     const keyPrefix = `carousel/${dest.platform}/${dest.metaAccountId}/${row.id}`;
     const hosted = await this.tracer.span('Hosting', 'upload', () => this.hosting.upload(slides, keyPrefix));
 
-    const captionFor = await this.buildCaptionFor(dest, row, caption);
+    const captionFor = await this.buildCaptionFor(dest, row, params);
 
     try {
       const id = await this.tracer.span(dest.platform, 'publishCarousel', () => this.dispatcher.publishCarousel(
@@ -139,7 +135,7 @@ export class RecipeCarouselStrategy implements ContentStrategy, OnModuleInit {
 
       await this.groupFanOut.fanOut(
         dest,
-        { caption, captionFor, tags: row.category ? [row.category] : [], imageUrls: hosted.map(h => h.url), carousel: true },
+        { caption: captionFor('telegram'), captionFor, tags: row.category ? [row.category] : [], imageUrls: hosted.map(h => h.url), carousel: true },
         (key) => this.repo.markPosted(row.id, key),
       );
     } catch (err: any) {
@@ -159,22 +155,21 @@ export class RecipeCarouselStrategy implements ContentStrategy, OnModuleInit {
   /** Telegram is this group's source: publish the recipe cover + caption to the
    *  Telegram channel, then fan the rendered carousel out to the group's Meta
    *  members. Slides stay hosted until fan-out completes. */
-  private async executeTelegramSource(dest: PublishDestination): Promise<void> {
+  private async executeTelegramSource(dest: PublishDestination, params?: StrategyParams): Promise<void> {
     const row = await this.tracer.span('Recipes', 'select', () => this.repo.getNextForCarousel(dest.postedKey)); // postedKey === 'TELEGRAM'
     if (!row) { this.logger.debug('No carousel-eligible recipes'); return; }
 
     const recipe  = toCarouselRecipe(row);
-    const caption = buildCarouselCaption(row);
     const imageBuffer = await this.tracer.span('Image', 'download', () => this.images.download(row.image_url));
     if (!imageBuffer) throw new Error(`Carousel image download failed (${row.id})`);
 
     const slides = await this.tracer.span('Renderer', 'render', () => this.renderer.render(recipe, imageBuffer));
     const hosted = await this.tracer.span('Hosting', 'upload', () => this.hosting.upload(slides, `carousel/telegram/${dest.targetId}/${row.id}`));
-    const captionFor = await this.buildCaptionFor(dest, row, caption);
+    const captionFor = await this.buildCaptionFor(dest, row, params);
 
     try {
       const mid = await this.tracer.span('telegram', 'publish', () => this.telegramPub.publish(
-        { text: caption, imageUrl: hosted[0].url, source: '', tags: row.category ? [row.category] : [] },
+        { text: captionFor('telegram'), imageUrl: hosted[0].url, source: '', tags: row.category ? [row.category] : [] },
         { id: dest.targetId, token: '' },
       ));
       await this.repo.markPosted(row.id, dest.postedKey);
@@ -182,7 +177,7 @@ export class RecipeCarouselStrategy implements ContentStrategy, OnModuleInit {
 
       await this.groupFanOut.fanOut(
         dest,
-        { caption, captionFor, tags: row.category ? [row.category] : [], imageUrls: hosted.map(h => h.url), carousel: true },
+        { caption: captionFor('telegram'), captionFor, tags: row.category ? [row.category] : [], imageUrls: hosted.map(h => h.url), carousel: true },
         (key) => this.repo.markPosted(row.id, key),
       );
     } catch (err: any) {
