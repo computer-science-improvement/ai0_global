@@ -21,6 +21,37 @@ export function useStrategyPreview(strategyId: string | null) {
   });
 }
 
+export type CaptionPartSource = 'recipe' | 'computed' | 'static' | 'generated' | 'custom';
+export interface CaptionPart {
+  key:       string;
+  label:     string;
+  source:    CaptionPartSource;
+  value:     string;
+  platforms: string[];
+  editable:  boolean;
+}
+export interface RecipePostPreview {
+  parts:    CaptionPart[];
+  rendered: Record<'facebook' | 'instagram' | 'threads' | 'telegram', string>;
+}
+export interface MetaCaptionOverrides {
+  cta?:         string;
+  hashtags?:    string[];
+  intro?:       string;
+  outro?:       string;
+  tgLinkLabel?: string;
+}
+
+/** Caption parts + per-platform rendered captions for a recipe-carousel binding. */
+export function useRecipePostPreview(strategyId: string | null, enabled: boolean) {
+  return useQuery({
+    queryKey: ['recipe-post-preview', strategyId],
+    queryFn:  () => api<RecipePostPreview>(`/api/strategies/${strategyId}/post-preview`),
+    enabled:  !!strategyId && enabled,
+    staleTime: 30_000,
+  });
+}
+
 export function useStrategies() {
   return useQuery({
     queryKey: ['strategies'],
