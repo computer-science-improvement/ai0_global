@@ -1,15 +1,18 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
 import { useEffect, useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { PageHeader } from '../components/ui/PageHeader';
 import { Panel } from '../components/ui/Card';
 import { Icon } from '../components/Icon';
 import { TelegramPreview } from '../components/post/TelegramPreview';
+import { SegmentedTabs } from '../components/SegmentedTabs';
+import { Badge } from '../components/ui/Badge';
 import { SchedulePicker } from '../components/SchedulePicker';
 import { CrosspostSection } from '../components/CrosspostSection';
 import { trackingApi } from '../api/tracking';
 import { ApiError } from '../api/client';
-import { useStrategies, useStrategyPreview, usePatchStrategy } from '../api/strategies';
+import { useStrategies, useStrategyPreview, usePatchStrategy, useRecipePostPreview } from '../api/strategies';
+import type { CaptionPart, MetaCaptionOverrides } from '../api/strategies';
 import {
   STRATEGY_STATUS_HELP, RUN_STATUS_HELP, describeStrategy, SOURCE_KIND_LABEL,
   STRATEGY_DESCRIPTIONS, channelOptionLabel,
@@ -64,6 +67,9 @@ function StrategyDetail({ strategy: s }: { strategy: Strategy }) {
         <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
           <ConfigPanel strategy={s} meta={meta} />
           <ExamplePostPanel strategyId={s.id} />
+          {s.type === 'recipe-carousel' && (
+            <PostPreviewPanel strategy={s} />
+          )}
         </div>
       </div>
     </div>
@@ -455,6 +461,285 @@ function toPost(text: string, imageUrl: string | undefined): ComposedPostInput {
 
 function escapeHtml(s: string): string {
   return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+// ─── Post-Preview Panel (recipe-carousel only) ────────────────────────────────
+
+type Platform = 'facebook' | 'instagram' | 'threads' | 'telegram';
+
+const PLATFORM_OPTIONS: ReadonlyArray<{ key: Platform; label: string }> = [
+  { key: 'facebook',  label: 'Facebook' },
+  { key: 'instagram', label: 'Instagram' },
+  { key: 'threads',   label: 'Threads' },
+  { key: 'telegram',  label: 'Telegram' },
+];
+
+/** Map CaptionPart source to a Badge tone. */
+function sourceTone(source: CaptionPart['source']): 'neutral' | 'accent' | 'success' {
+  if (source === 'custom') return 'accent';
+  if (source === 'generated') return 'success';
+  return 'neutral';
+}
+
+/** Human-readable source label. */
+function sourceLabel(source: CaptionPart['source']): string {
+  switch (source) {
+    case 'recipe':   return 'recipe DB';
+    case 'computed': return 'computed';
+    case 'static':   return 'static';
+    case 'generated': return 'AI';
+    case 'custom':   return 'custom';
+  }
+}
+
+/** Parse a space/comma-separated hashtag string into a clean string[]. */
+function parseHashtags(raw: string): string[] {
+  return raw
+    .split(/[\s,]+/)
+    .map(t => t.replace(/^#+/, '').trim())
+    .filter(Boolean);
+}
+
+/** Assemble MetaCaptionOverrides from local state, omitting empty/default fields. */
+function buildOverrides(
+  intro: string,
+  cta: string,
+  outro: string,
+  hashtagsRaw: string,
+  tgLinkLabel: string,
+): MetaCaptionOverrides {
+  const overrides: MetaCaptionOverrides = {};
+  if (intro.trim())        overrides.intro       = intro.trim();
+  if (cta.trim())          overrides.cta         = cta.trim();
+  if (outro.trim())        overrides.outro        = outro.trim();
+  if (tgLinkLabel.trim())  overrides.tgLinkLabel  = tgLinkLabel.trim();
+  const tags = parseHashtags(hashtagsRaw);
+  if (tags.length > 0)     overrides.hashtags    = tags;
+  return overrides;
+}
+
+function PostPreviewPanel({ strategy }: { strategy: Strategy }) {
+  const isRecipeCarousel = strategy.type === 'recipe-carousel';
+  const { data: preview, isLoading, error } = useRecipePostPreview(strategy.id, isRecipeCarousel);
+  const patch   = usePatchStrategy();
+  const qc      = useQueryClient();
+
+  const existingMeta = (strategy.params as Record<string, unknown>)?.metaCaption as MetaCaptionOverrides | undefined;
+
+  const [platform,     setPlatform]     = useState<Platform>('facebook');
+  const [intro,        setIntro]        = useState(existingMeta?.intro        ?? '');
+  const [cta,          setCta]          = useState(existingMeta?.cta          ?? '');
+  const [outro,        setOutro]        = useState(existingMeta?.outro        ?? '');
+  const [hashtagsRaw,  setHashtagsRaw]  = useState(existingMeta?.hashtags?.join(' ') ?? '');
+  const [tgLinkLabel,  setTgLinkLabel]  = useState(existingMeta?.tgLinkLabel  ?? '');
+  const [saved,        setSaved]        = useState(false);
+
+  // Re-seed when the strategy binding changes (background refetch / route navigation).
+  useEffect(() => {
+    const m = (strategy.params as Record<string, unknown>)?.metaCaption as MetaCaptionOverrides | undefined;
+    setIntro(m?.intro ?? '');
+    setCta(m?.cta ?? '');
+    setOutro(m?.outro ?? '');
+    setHashtagsRaw(m?.hashtags?.join(' ') ?? '');
+    setTgLinkLabel(m?.tgLinkLabel ?? '');
+    setSaved(false);
+  }, [strategy.id]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const handleSave = async () => {
+    setSaved(false);
+    const metaCaption = buildOverrides(intro, cta, outro, hashtagsRaw, tgLinkLabel);
+    const currentParams = (strategy.params ?? {}) as Record<string, unknown>;
+    await patch.mutateAsync({
+      id:    strategy.id,
+      patch: { params: { ...currentParams, metaCaption } },
+    });
+    // Also invalidate the recipe-post-preview so rendered text refreshes.
+    await qc.invalidateQueries({ queryKey: ['recipe-post-preview', strategy.id] });
+    setSaved(true);
+  };
+
+  return (
+    <Panel title="Post Preview">
+      {/* Informational note */}
+      <div className="callout-warning" style={{ marginBottom: 16 }}>
+        <Icon name="info" size={14} />
+        <span className="text-micro">
+          Parts from the recipe DB (title, category, macros) are <strong>read-only</strong>.
+          The rest (intro, cta, outro, hashtags, Telegram link label) are editable and saved per-binding.
+          Instagram omits the Telegram link.
+        </span>
+      </div>
+
+      {isLoading && (
+        <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)', margin: 0 }}>Loading preview…</p>
+      )}
+      {error && (
+        <p className="text-body-sm" style={{ color: 'var(--color-danger)', margin: 0 }}>
+          {(error as Error).message}
+        </p>
+      )}
+
+      {preview && (
+        <>
+          {/* Platform tabs */}
+          <div style={{ marginBottom: 16 }}>
+            <SegmentedTabs<Platform>
+              value={platform}
+              onChange={setPlatform}
+              options={PLATFORM_OPTIONS}
+              size="sm"
+            />
+          </div>
+
+          {/* Parts breakdown */}
+          <div style={{ marginBottom: 16 }}>
+            <div className="text-eyebrow" style={{ marginBottom: 8 }}>Caption parts</div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+              {preview.parts.map(part => {
+                const activePlatform = part.platforms.includes(platform);
+                return (
+                  <div
+                    key={part.key}
+                    style={{
+                      padding: '10px 12px',
+                      background:    'var(--color-surface-2)',
+                      borderRadius:  'var(--radius-md)',
+                      opacity:       activePlatform ? 1 : 0.45,
+                      borderLeft:    activePlatform
+                        ? '2px solid var(--color-accent)'
+                        : '2px solid var(--color-surface-3)',
+                      transition: 'opacity .15s',
+                    }}
+                  >
+                    {/* Part header: label + source chip + platform note */}
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
+                      <span className="text-micro" style={{ color: 'var(--color-ink-muted)', fontWeight: 600 }}>
+                        {part.label}
+                      </span>
+                      <Badge tone={sourceTone(part.source)}>{sourceLabel(part.source)}</Badge>
+                      {!activePlatform && (
+                        <span className="text-micro" style={{ color: 'var(--color-ink-dim)', marginLeft: 'auto' }}>
+                          not on {platform}
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Value: editable or read-only */}
+                    {part.editable ? (
+                      part.key === 'hashtags' ? (
+                        <input
+                          value={hashtagsRaw}
+                          onChange={e => { setHashtagsRaw(e.target.value); setSaved(false); }}
+                          placeholder="fashion style beauty (space or comma separated)"
+                          className="input-field"
+                          style={{ width: '100%', fontSize: 12 }}
+                        />
+                      ) : part.key === 'tgLink' ? (
+                        <input
+                          value={tgLinkLabel}
+                          onChange={e => { setTgLinkLabel(e.target.value); setSaved(false); }}
+                          placeholder={part.value || 'Link label…'}
+                          className="input-field"
+                          style={{ width: '100%', fontSize: 12 }}
+                        />
+                      ) : part.key === 'intro' ? (
+                        <textarea
+                          value={intro}
+                          onChange={e => { setIntro(e.target.value); setSaved(false); }}
+                          placeholder={part.value || 'Intro text…'}
+                          className="input-field"
+                          rows={2}
+                          style={{ width: '100%', fontSize: 12, resize: 'vertical' }}
+                        />
+                      ) : part.key === 'cta' ? (
+                        <input
+                          value={cta}
+                          onChange={e => { setCta(e.target.value); setSaved(false); }}
+                          placeholder={part.value || 'Call to action…'}
+                          className="input-field"
+                          style={{ width: '100%', fontSize: 12 }}
+                        />
+                      ) : part.key === 'outro' ? (
+                        <textarea
+                          value={outro}
+                          onChange={e => { setOutro(e.target.value); setSaved(false); }}
+                          placeholder={part.value || 'Outro text…'}
+                          className="input-field"
+                          rows={2}
+                          style={{ width: '100%', fontSize: 12, resize: 'vertical' }}
+                        />
+                      ) : (
+                        <div className="text-body-sm" style={{ color: 'var(--color-ink)', whiteSpace: 'pre-wrap' }}>
+                          {part.value || <span style={{ color: 'var(--color-ink-dim)' }}>—</span>}
+                        </div>
+                      )
+                    ) : (
+                      <div
+                        className="text-body-sm"
+                        style={{ color: 'var(--color-ink-muted)', whiteSpace: 'pre-wrap', fontStyle: 'italic' }}
+                      >
+                        {part.value || <span style={{ color: 'var(--color-ink-dim)' }}>—</span>}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Live rendered caption */}
+          <div style={{ marginBottom: 16 }}>
+            <div className="text-eyebrow" style={{ marginBottom: 8 }}>
+              Rendered caption — {platform}
+            </div>
+            <div
+              style={{
+                background:    'var(--color-surface-2)',
+                borderRadius:  'var(--radius-md)',
+                padding:       '12px 14px',
+                fontFamily:    'ui-monospace, SFMono-Regular, Menlo, monospace',
+                fontSize:      12,
+                lineHeight:    1.6,
+                color:         'var(--color-ink)',
+                whiteSpace:    'pre-wrap',
+                wordBreak:     'break-word',
+                maxHeight:     320,
+                overflowY:     'auto',
+              }}
+            >
+              {preview.rendered[platform] || (
+                <span style={{ color: 'var(--color-ink-dim)' }}>(empty)</span>
+              )}
+            </div>
+            <p className="text-micro" style={{ color: 'var(--color-ink-dim)', margin: '6px 0 0' }}>
+              This is the exact text that will publish. Save overrides above, then reload to see changes.
+            </p>
+          </div>
+
+          {/* Save button */}
+          {patch.error && (
+            <p className="text-body-sm" style={{ color: 'var(--color-danger)', marginBottom: 12 }}>
+              {(patch.error as Error).message}
+            </p>
+          )}
+          <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: 12 }}>
+            {saved && !patch.isPending && (
+              <span className="text-micro" style={{ color: 'var(--color-success, var(--color-accent))' }}>
+                <Icon name="check" size={12} style={{ marginRight: 4 }} />Saved
+              </span>
+            )}
+            <button
+              onClick={handleSave}
+              disabled={patch.isPending}
+              className="btn-primary"
+            >
+              {patch.isPending ? 'Saving…' : 'Save caption overrides'}
+            </button>
+          </div>
+        </>
+      )}
+    </Panel>
+  );
 }
 
 function destinationLabel(s: Strategy): React.ReactNode {
