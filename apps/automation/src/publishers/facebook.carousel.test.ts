@@ -21,6 +21,8 @@ function makeRecorder() {
 class TestFb extends FacebookPublisher {
   constructor(private readonly rec: any) { super(fakeConfig()); }
   protected post(url: string, params: Record<string, string>) { return this.rec.post(url, params); }
+  // Skip the network page-token derivation in tests — use the supplied token.
+  protected async pageToken(_pageId: string, token: string) { return token; }
 }
 
 const PAYLOAD: PostPayload = { text: 'Hello', tags: ['food'], source: '' };
@@ -50,6 +52,21 @@ test('facebook publishCarousel uploads unpublished photos then a feed post with 
   assert.equal(id, 'fb_post');
 });
 
+test('facebook publishCarousel posts with the DERIVED page token, not the raw token', async () => {
+  const rec = makeRecorder();
+  // Derive a distinct page token from the supplied (e.g. system-user) token.
+  class DeriveFb extends FacebookPublisher {
+    constructor() { super(fakeConfig()); }
+    protected post(url: string, params: Record<string, string>) { return rec.post(url, params); }
+    protected async pageToken(_pageId: string, _token: string) { return 'PAGE_TOKEN'; }
+  }
+  await new DeriveFb().publishCarousel(PAYLOAD, ['u1', 'u2'], { id: 'PAGE123', token: 'sys_user_tok' });
+  // every Graph call carries the derived page token, never the raw system-user token
+  for (const c of rec.calls) {
+    assert.equal(c.params.access_token, 'PAGE_TOKEN');
+  }
+});
+
 test('facebook publishCarousel rejects when a photo upload fails (no feed post)', async () => {
   const calls: any[] = [];
   class FailFb extends FacebookPublisher {
@@ -59,6 +76,7 @@ test('facebook publishCarousel rejects when a photo upload fails (no feed post)'
       if (url.endsWith('/photos') && calls.length === 2) throw new Error('bad photo');
       return Promise.resolve({ id: 'x' });
     }
+    protected async pageToken(_pageId: string, token: string) { return token; }
   }
   await assert.rejects(() => new FailFb().publishCarousel(PAYLOAD, ['u1', 'u2', 'u3'], TARGET), /bad photo/);
   // only the 2 photo attempts happened — no feed post

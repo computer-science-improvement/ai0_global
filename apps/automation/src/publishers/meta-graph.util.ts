@@ -58,3 +58,18 @@ export async function graphPost(
     throw new Error(redactToken(String(desc), token));
   }
 }
+
+export async function graphGet(
+  url: string,
+  params: Record<string, string>,
+  timeout: number,
+  token: string,
+): Promise<any> {
+  try {
+    const res = await axios.get(url, { params, timeout });
+    return res.data;
+  } catch (err: any) {
+    const desc = err?.response?.data?.error?.message ?? err?.message ?? 'unknown';
+    throw new Error(redactToken(String(desc), token));
+  }
+}
