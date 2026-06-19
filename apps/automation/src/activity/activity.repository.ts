@@ -20,10 +20,20 @@ export interface ActivityRow {
 
 export type ActivityType = ActivityRow['type'];
 
-export interface ActivityListParams {
+export interface ActivityFilter {
   /** Concrete binding platforms to include, e.g. ['telegram'] or ['instagram','facebook','threads']. */
   platforms: string[];
-  type?:   ActivityType | null;
+  type?:     ActivityType | null;
+  /** Inclusive ISO lower/upper bound on the event time. */
+  from?:     string | null;
+  to?:       string | null;
+  /** Filter to one strategy by its ext_id slug. */
+  strategy?: string | null;
+  /** Filter to one resolved channel/account UUID. */
+  channelId?: string | null;
+}
+
+export interface ActivityListParams extends ActivityFilter {
   limit:   number;
   offset:  number;
 }
@@ -32,15 +42,9 @@ export interface ActivityListParams {
 export class ActivityRepository {
   constructor(@Inject(DB_POOL) private readonly pool: Pool) {}
 
-  /**
-   * Read-only activity feed unioning strategy executions and operator one-off
-   * scheduled posts. Both sources project the same normalized columns; channel
-   * labels resolve via LEFT JOIN so a deleted/private channel still renders.
-   * Fetches `limit + 1` rows so the caller can compute `hasMore` without COUNT.
-   */
-  async list({ platforms, type, limit, offset }: ActivityListParams): Promise<ActivityRow[]> {
-    const { rows } = await this.pool.query<ActivityRow>(
-      `SELECT * FROM (
+  /** The normalized event UNION (strategy runs + operator scheduled posts) —
+   *  shared by list() and count(). */
+  private static readonly EVENTS_SQL = `
          SELECT
            'strategy_run'                                    AS source,
            sr.id::text                                       AS row_id,
@@ -88,14 +92,46 @@ export class ActivityRepository {
            sp.error                                          AS detail,
            NULL::int                                         AS duration_ms
          FROM scheduled_publications sp
-         LEFT JOIN tracked_channels tc ON tc.id = sp.channel_id
-       ) ev
-       WHERE ev.platform = ANY($1::text[])
-         AND ($2::text IS NULL OR ev.type = $2)
+         LEFT JOIN tracked_channels tc ON tc.id = sp.channel_id`;
+
+  /** Build the shared WHERE clause + positional params from a filter. */
+  private buildWhere(f: ActivityFilter): { where: string; params: unknown[] } {
+    const params: unknown[] = [];
+    const cond: string[] = [];
+    params.push(f.platforms);            cond.push(`ev.platform = ANY($${params.length}::text[])`);
+    if (f.type)      { params.push(f.type);      cond.push(`ev.type = $${params.length}`); }
+    if (f.from)      { params.push(f.from);      cond.push(`ev.at >= $${params.length}::timestamptz`); }
+    if (f.to)        { params.push(f.to);        cond.push(`ev.at <= $${params.length}::timestamptz`); }
+    if (f.strategy)  { params.push(f.strategy);  cond.push(`ev.strategy = $${params.length}`); }
+    if (f.channelId) { params.push(f.channelId); cond.push(`ev.channel_id = $${params.length}`); }
+    return { where: cond.join(' AND '), params };
+  }
+
+  /**
+   * Read-only activity feed unioning strategy executions and operator one-off
+   * scheduled posts. Channel labels resolve via LEFT JOIN so a deleted/private
+   * channel still renders. Fetches `limit + 1` rows so the caller can compute
+   * `hasMore` without a COUNT.
+   */
+  async list({ limit, offset, ...filter }: ActivityListParams): Promise<ActivityRow[]> {
+    const { where, params } = this.buildWhere(filter);
+    const { rows } = await this.pool.query<ActivityRow>(
+      `SELECT * FROM (${ActivityRepository.EVENTS_SQL}) ev
+       WHERE ${where}
        ORDER BY ev.at DESC
-       LIMIT $3 OFFSET $4`,
-      [platforms, type ?? null, limit + 1, offset],
+       LIMIT $${params.length + 1} OFFSET $${params.length + 2}`,
+      [...params, limit + 1, offset],
     );
     return rows;
+  }
+
+  /** Total events matching a filter — drives the page count. */
+  async count(filter: ActivityFilter): Promise<number> {
+    const { where, params } = this.buildWhere(filter);
+    const { rows } = await this.pool.query<{ count: string }>(
+      `SELECT count(*)::int AS count FROM (${ActivityRepository.EVENTS_SQL}) ev WHERE ${where}`,
+      params,
+    );
+    return Number(rows[0]?.count ?? 0);
   }
 }

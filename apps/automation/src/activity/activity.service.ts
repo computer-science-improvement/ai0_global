@@ -18,6 +18,7 @@ export interface ActivityEvent {
 export interface ActivityListResult {
   items:   ActivityEvent[];
   hasMore: boolean;
+  total:   number;
 }
 
 /** UI platform tab → the concrete binding platforms it covers. */
@@ -34,11 +35,22 @@ export class ActivityService {
   async list(opts: {
     platform: string;
     type?:    ActivityType | null;
+    from?:    string | null;
+    to?:      string | null;
+    strategy?: string | null;
+    channelId?: string | null;
     limit:    number;
     offset:   number;
   }): Promise<ActivityListResult> {
     const platforms = PLATFORM_SETS[opts.platform] ?? ['telegram'];
-    const rows = await this.repo.list({ platforms, type: opts.type ?? null, limit: opts.limit, offset: opts.offset });
+    const filter = {
+      platforms, type: opts.type ?? null, from: opts.from ?? null, to: opts.to ?? null,
+      strategy: opts.strategy ?? null, channelId: opts.channelId ?? null,
+    };
+    const [rows, total] = await Promise.all([
+      this.repo.list({ ...filter, limit: opts.limit, offset: opts.offset }),
+      this.repo.count(filter),
+    ]);
     const hasMore = rows.length > opts.limit;
     const items = rows.slice(0, opts.limit).map((r): ActivityEvent => ({
       id:         `${r.source}:${r.row_id}`,
@@ -53,6 +65,6 @@ export class ActivityService {
       detail:     r.detail,
       durationMs: r.duration_ms != null ? Math.round(r.duration_ms) : null,
     }));
-    return { items, hasMore };
+    return { items, hasMore, total };
   }
 }
