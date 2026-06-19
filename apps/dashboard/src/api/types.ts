@@ -15,6 +15,8 @@ export interface TrackedChannel {
   /** Numeric Telegram chat id (-100…). Required for private channels. */
   tgChatId?:     string | null;
   botId?:        string | null;
+  /** Brand group (meta_account_groups) this channel belongs to; null = none. */
+  groupId?:      string | null;
   bot?:          ChannelBotRef | null;
   themes?:       string[];
   /** Per-channel publishing kill switch. When true, all publishes are blocked. */
@@ -161,6 +163,10 @@ export interface MtprotoSession {
   username:         string | null;
   phone:            string | null;
   tg_user_id:       string | null;
+  /** Telegram app id (api_id). Not secret; null when relying on the env fallback. */
+  api_id:           string | null;
+  /** True when this session carries its own encrypted app credentials. */
+  has_api_creds:    boolean;
   last_verified_at: string | null;
   verify_error:     string | null;
   created_at:       string;
@@ -281,6 +287,8 @@ export interface ScheduledPost extends ComposedPostInput {
 export interface AppSettings {
   telegram: {
     trackingEnabled:      boolean;
+    /** Owner chat id for admin notifications; '' when unset. */
+    ownerId:              string;
     trackingShareSession: boolean;
     statsPostAgeDays:     number;
     postingCooldownMin:   number;
@@ -313,6 +321,8 @@ export interface MetaAccount {
   last_verified_at: string | null;
   verify_error:     string | null;
   created_at:       string;
+  /** Meta account group (brand FB/IG/Threads link for publish fan-out); null = ungrouped. */
+  group_id:         string | null;
   // Derived access-token metadata (debug_token) — never the token value itself.
   token_type:                   string | null;
   token_expires_at:             string | null;
@@ -354,10 +364,23 @@ export interface ActivityEvent {
 export interface ActivityListResult {
   items:   ActivityEvent[];
   hasMore: boolean;
+  total:   number;
+}
+
+/** One step in a strategy run's execution trace (strategy_runs.steps). */
+export interface RunStep {
+  seq:        number;
+  service:    string;
+  action:     string;
+  status:     'ok' | 'error' | 'skipped';
+  durationMs: number;
+  detail?:    string;
+  error?:     string;
 }
 
 export interface SettingsPatch {
   trackingEnabled?:      boolean;
+  telegramOwnerId?:      string;
   trackingShareSession?: boolean;
   statsPostAgeDays?:     number;
   postingCooldownMin?:   number;
