@@ -33,26 +33,28 @@ export class StrategyRunsRepository {
     return rows[0].id;
   }
 
-  async finishOk(runId: string): Promise<void> {
+  async finishOk(runId: string, steps?: unknown[]): Promise<void> {
     await this.pool.query(
       `UPDATE strategy_runs
          SET finished_at = now(),
              status      = 'ok',
+             steps       = COALESCE($2::jsonb, steps),
              duration_ms = EXTRACT(EPOCH FROM (now() - started_at)) * 1000
        WHERE id = $1`,
-      [runId],
+      [runId, steps ? JSON.stringify(steps) : null],
     );
   }
 
-  async finishError(runId: string, error: string): Promise<void> {
+  async finishError(runId: string, error: string, steps?: unknown[]): Promise<void> {
     await this.pool.query(
       `UPDATE strategy_runs
          SET finished_at = now(),
              status      = 'error',
              error       = $2,
+             steps       = COALESCE($3::jsonb, steps),
              duration_ms = EXTRACT(EPOCH FROM (now() - started_at)) * 1000
        WHERE id = $1`,
-      [runId, error.slice(0, 1000)],
+      [runId, error.slice(0, 1000), steps ? JSON.stringify(steps) : null],
     );
   }
 
@@ -61,16 +63,25 @@ export class StrategyRunsRepository {
    * 'skipped' insert (recordSkipped) which is used when the strategy
    * was guarded out by the inFlight check before start() ran.
    */
-  async finishSkipped(runId: string, reason: string): Promise<void> {
+  async finishSkipped(runId: string, reason: string, steps?: unknown[]): Promise<void> {
     await this.pool.query(
       `UPDATE strategy_runs
          SET finished_at = now(),
              status      = 'skipped',
              error       = $2,
+             steps       = COALESCE($3::jsonb, steps),
              duration_ms = EXTRACT(EPOCH FROM (now() - started_at)) * 1000
        WHERE id = $1`,
-      [runId, reason.slice(0, 1000)],
+      [runId, reason.slice(0, 1000), steps ? JSON.stringify(steps) : null],
     );
+  }
+
+  /** The execution-trace steps[] for a run (lazy-loaded when a log row expands). */
+  async stepsFor(runId: string): Promise<unknown[]> {
+    const { rows } = await this.pool.query<{ steps: unknown[] }>(
+      `SELECT steps FROM strategy_runs WHERE id = $1`, [runId],
+    );
+    return rows[0]?.steps ?? [];
   }
 
   /**

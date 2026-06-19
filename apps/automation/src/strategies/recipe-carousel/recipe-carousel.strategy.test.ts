@@ -74,6 +74,7 @@ function build(over: any = {}) {
     groupFanOut as any,
     telegramPub as any,
     { resolveGroupTelegramLink: async () => over.telegramLink ?? null } as any,
+    { span: (_s: any, _a: any, f: any) => f(), event() {}, steps: () => [], describeError: (e: any) => String(e?.message ?? e) } as any,
   );
   return { s, calls };
 }

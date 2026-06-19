@@ -17,6 +17,7 @@ import { PublicationsRepository }   from '../../stats/publications.repository';
 import { PublisherDispatcher }      from '../../publishers/publisher-dispatcher.service';
 import { GroupFanOutService }       from '../../common/content-strategy/group-fanout.service';
 import { DestinationResolver }      from '../../common/content-strategy/destination-resolver.service';
+import { RunTracer }                from '../../common/observability/run-tracer.service';
 import { composeMetaCaption, promptHashtags } from '../../common/content-strategy/meta-caption.util';
 import { isPermanentMetaMediaError } from '../../publishers/meta-graph.util';
 import type { PublishDestination, DestinationPlatform }  from '../../common/content-strategy/publish-destination';
@@ -43,6 +44,7 @@ export class Ai0PromptsStrategy implements ContentStrategy, OnModuleInit {
     private readonly dispatcher: PublisherDispatcher,
     private readonly groupFanOut: GroupFanOutService,
     private readonly destinations: DestinationResolver,
+    private readonly tracer:     RunTracer,
   ) {}
 
   /** Meta publishing is fashion-only (per requirement). Telegram keeps the
@@ -87,7 +89,7 @@ export class Ai0PromptsStrategy implements ContentStrategy, OnModuleInit {
     this.logger.debug(`Selected category: ${category}`);
 
     // 2. Get next unposted prompt from DB
-    const row = await this.db.getNext(category, postedKey);
+    const row = await this.tracer.span('Prompts', 'select', () => this.db.getNext(category, postedKey));
     if (!row) {
       this.logger.debug(`No unposted prompts for category: ${category}`);
       return;
@@ -149,11 +151,11 @@ export class Ai0PromptsStrategy implements ContentStrategy, OnModuleInit {
             });
 
       try {
-        const id = await this.dispatcher.publish(
+        const id = await this.tracer.span(dest.platform, 'publish', () => this.dispatcher.publish(
           dest.platform as MetaPlatform,
           { text: captionFor(dest.platform), imageUrl: row.id, source: '', tags: [category] },
-          { id: dest.targetId, token: dest.token },
-        );
+          { id: dest.targetId, token: dest.token! },
+        ));
         await this.db.markPosted(row.id, postedKey);
         this.logger.debug(`Published prompt to ${dest.platform} (${id})`);
 
@@ -193,14 +195,15 @@ export class Ai0PromptsStrategy implements ContentStrategy, OnModuleInit {
 
     // 7. Publish
     try {
-      const messageId = await this.telegram.publishPrompt(
+      const buf = imageBuffer; // narrowed Buffer (catch above returns) — closure loses the narrowing
+      const messageId = await this.tracer.span('telegram', 'publish', () => this.telegram.publishPrompt(
         {
-          imageBuffer,
+          imageBuffer: buf,
           caption: message.caption,
           replyText: message.replyText ?? undefined,
         },
         { id: channelId },
-      );
+      ));
       await this.db.markPosted(row.id, postedKey);
       await this.notifier.notifyPublished(channelId, messageId);
       await this.publications.insert({

@@ -7,6 +7,7 @@ import { StrategyRunsRepository }  from '../config/strategy-runs.repository';
 import { ContentStrategyRunner }   from '../common/content-strategy/content-strategy.runner';
 import { ContentStrategyRegistry } from '../common/content-strategy/content-strategy.registry';
 import { DestinationResolver } from '../common/content-strategy/destination-resolver.service';
+import { RunTracer } from '../common/observability/run-tracer.service';
 import { CONFIG_CHANGED_CHANNEL, ConfigChangedEvent } from '../config/config-events.types';
 import { REDIS_CLIENT } from '../tracking/redis.provider';
 import { isChannelPausedError } from '../publishers/errors';
@@ -43,6 +44,7 @@ export class SchedulerService implements OnApplicationBootstrap, OnModuleDestroy
     private readonly strategyRunner:   ContentStrategyRunner,
     private readonly strategyRegistry: ContentStrategyRegistry,
     private readonly destinationResolver: DestinationResolver,
+    private readonly tracer:           RunTracer,
     @Inject(REDIS_CLIENT) private readonly redis: Redis,
   ) {}
 
@@ -213,31 +215,40 @@ export class SchedulerService implements OnApplicationBootstrap, OnModuleDestroy
       }
 
       try {
-        await this.strategyRunner.run(strategy, fresh.channelId, fresh.params, fresh.id, dest);
-        if (runId) {
-          await this.runsRepo.finishOk(runId).catch(err =>
-            this.logger.warn(`run-log finishOk failed for ${name}: ${err.message}`),
-          );
-        }
-      } catch (err: any) {
-        // A paused channel is an expected "do nothing" — record as
-        // 'skipped' rather than 'error' so the run log stays clean and the
-        // last-run chip on /strategies shows yellow not red.
-        if (isChannelPausedError(err)) {
-          this.logger.log(`${name} skipped: ${err.message}`);
-          if (runId) {
-            await this.runsRepo.finishSkipped(runId, err.message).catch(e =>
-              this.logger.warn(`run-log finishSkipped failed for ${name}: ${e.message}`),
-            );
+        // Establish a trace store around the whole run so deep services
+        // (publishers, fan-out) record their steps; persist the chain on every
+        // terminal path so the activity log can show what ran and where it broke.
+        const steps = await this.tracer.run(async () => {
+          try {
+            await this.strategyRunner.run(strategy, fresh.channelId, fresh.params, fresh.id, dest);
+            if (runId) {
+              await this.runsRepo.finishOk(runId, this.tracer.steps()).catch(err =>
+                this.logger.warn(`run-log finishOk failed for ${name}: ${err.message}`),
+              );
+            }
+          } catch (err: any) {
+            const desc = this.tracer.describeError(err);
+            // A paused channel is an expected "do nothing" — record as
+            // 'skipped' rather than 'error' so the run log stays clean and the
+            // last-run chip on /strategies shows yellow not red.
+            if (isChannelPausedError(err)) {
+              this.logger.log(`${name} skipped: ${desc}`);
+              if (runId) {
+                await this.runsRepo.finishSkipped(runId, desc, this.tracer.steps()).catch(e =>
+                  this.logger.warn(`run-log finishSkipped failed for ${name}: ${e.message}`),
+                );
+              }
+            } else {
+              this.logger.error(`${name} failed: ${desc}`);
+              if (runId) {
+                await this.runsRepo.finishError(runId, desc, this.tracer.steps()).catch(e =>
+                  this.logger.warn(`run-log finishError failed for ${name}: ${e.message}`),
+                );
+              }
+            }
           }
-        } else {
-          this.logger.error(`${name} failed: ${err.message}`);
-          if (runId) {
-            await this.runsRepo.finishError(runId, err.message ?? String(err)).catch(e =>
-              this.logger.warn(`run-log finishError failed for ${name}: ${e.message}`),
-            );
-          }
-        }
+        });
+        void steps;
       } finally {
         this.inFlight.delete(name);
       }

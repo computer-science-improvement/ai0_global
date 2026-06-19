@@ -9,6 +9,7 @@ import { DestinationResolver } from './destination-resolver.service';
 import { PublisherDispatcher } from '../../publishers/publisher-dispatcher.service';
 import { TelegramPublisher } from '../../publishers/telegram.publisher';
 import { isPermanentMetaMediaError } from '../../publishers/meta-graph.util';
+import { RunTracer } from '../observability/run-tracer.service';
 import type { PublishDestination, DestinationPlatform } from './publish-destination';
 import type { MetaPlatform } from '../../config/meta-accounts.repository';
 
@@ -33,6 +34,7 @@ export class GroupFanOutService {
     private readonly resolver:   DestinationResolver,
     private readonly dispatcher: PublisherDispatcher,
     private readonly telegram:   TelegramPublisher,
+    private readonly tracer:     RunTracer,
   ) {}
 
   /**
@@ -74,9 +76,14 @@ export class GroupFanOutService {
         }
         await markPosted(t.postedKey);
         this.logger.debug(`Fan-out → ${t.platform} (${id})`);
+        // Record the (previously invisible) per-target outcome in the run trace.
+        this.tracer.event('GroupFanOut', `publish:${t.platform}`, 'ok', id);
       } catch (err: any) {
         const msg = err?.message ?? String(err);
         this.logger.error(`Fan-out failed → ${t.platform}: ${msg}`);
+        // Isolated failure: never rethrown, but now surfaced as an error step so
+        // a failed IG/Threads/FB mirror is visible in the activity log.
+        this.tracer.event('GroupFanOut', `publish:${t.platform}`, 'error', err);
         if (isPermanentMetaMediaError(msg)) {
           try { await markPosted(t.postedKey); } catch { /* best-effort */ }
         }

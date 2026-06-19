@@ -10,6 +10,7 @@ import { TikTokCarouselPublisher } from '../../publishers/tiktok/tiktok-carousel
 import { toCarouselRecipe, buildCarouselCaption } from './recipe-carousel.map';
 import { GroupFanOutService } from '../../common/content-strategy/group-fanout.service';
 import { DestinationResolver } from '../../common/content-strategy/destination-resolver.service';
+import { RunTracer } from '../../common/observability/run-tracer.service';
 import { composeMetaCaption, recipeHashtags } from '../../common/content-strategy/meta-caption.util';
 import { TelegramPublisher } from '../../publishers/telegram.publisher';
 import type { PublishDestination, DestinationPlatform } from '../../common/content-strategy/publish-destination';
@@ -43,6 +44,7 @@ export class RecipeCarouselStrategy implements ContentStrategy, OnModuleInit {
     private readonly groupFanOut:  GroupFanOutService,
     private readonly telegramPub:  TelegramPublisher,
     private readonly destinations: DestinationResolver,
+    private readonly tracer:       RunTracer,
   ) {}
 
   onModuleInit() { this.registry.register(this); }
@@ -110,28 +112,28 @@ export class RecipeCarouselStrategy implements ContentStrategy, OnModuleInit {
       return;
     }
 
-    const row = await this.repo.getNextForCarousel(dest.postedKey);
+    const row = await this.tracer.span('Recipes', 'select', () => this.repo.getNextForCarousel(dest.postedKey));
     if (!row) { this.logger.debug('No carousel-eligible recipes'); return; }
 
     const recipe  = toCarouselRecipe(row);
     const caption = buildCarouselCaption(row);
 
-    const imageBuffer = await this.images.download(row.image_url);
+    const imageBuffer = await this.tracer.span('Image', 'download', () => this.images.download(row.image_url));
     if (!imageBuffer) throw new Error(`Carousel image download failed (${row.id})`);
 
-    const slides = await this.renderer.render(recipe, imageBuffer);
+    const slides = await this.tracer.span('Renderer', 'render', () => this.renderer.render(recipe, imageBuffer));
     const keyPrefix = `carousel/${dest.platform}/${dest.metaAccountId}/${row.id}`;
-    const hosted = await this.hosting.upload(slides, keyPrefix);
+    const hosted = await this.tracer.span('Hosting', 'upload', () => this.hosting.upload(slides, keyPrefix));
 
     const captionFor = await this.buildCaptionFor(dest, row, caption);
 
     try {
-      const id = await this.dispatcher.publishCarousel(
+      const id = await this.tracer.span(dest.platform, 'publishCarousel', () => this.dispatcher.publishCarousel(
         dest.platform as MetaPlatform,
         { text: captionFor(dest.platform), tags: row.category ? [row.category] : [], source: '' },
         hosted.map(h => h.url),
-        { id: dest.targetId, token: dest.token },
-      );
+        { id: dest.targetId, token: dest.token! },
+      ));
       await this.repo.markPosted(row.id, dest.postedKey);
       this.logger.debug(`Published carousel ${row.id} → ${dest.platform} (${id})`);
 
@@ -158,23 +160,23 @@ export class RecipeCarouselStrategy implements ContentStrategy, OnModuleInit {
    *  Telegram channel, then fan the rendered carousel out to the group's Meta
    *  members. Slides stay hosted until fan-out completes. */
   private async executeTelegramSource(dest: PublishDestination): Promise<void> {
-    const row = await this.repo.getNextForCarousel(dest.postedKey); // postedKey === 'TELEGRAM'
+    const row = await this.tracer.span('Recipes', 'select', () => this.repo.getNextForCarousel(dest.postedKey)); // postedKey === 'TELEGRAM'
     if (!row) { this.logger.debug('No carousel-eligible recipes'); return; }
 
     const recipe  = toCarouselRecipe(row);
     const caption = buildCarouselCaption(row);
-    const imageBuffer = await this.images.download(row.image_url);
+    const imageBuffer = await this.tracer.span('Image', 'download', () => this.images.download(row.image_url));
     if (!imageBuffer) throw new Error(`Carousel image download failed (${row.id})`);
 
-    const slides = await this.renderer.render(recipe, imageBuffer);
-    const hosted = await this.hosting.upload(slides, `carousel/telegram/${dest.targetId}/${row.id}`);
+    const slides = await this.tracer.span('Renderer', 'render', () => this.renderer.render(recipe, imageBuffer));
+    const hosted = await this.tracer.span('Hosting', 'upload', () => this.hosting.upload(slides, `carousel/telegram/${dest.targetId}/${row.id}`));
     const captionFor = await this.buildCaptionFor(dest, row, caption);
 
     try {
-      const mid = await this.telegramPub.publish(
+      const mid = await this.tracer.span('telegram', 'publish', () => this.telegramPub.publish(
         { text: caption, imageUrl: hosted[0].url, source: '', tags: row.category ? [row.category] : [] },
         { id: dest.targetId, token: '' },
-      );
+      ));
       await this.repo.markPosted(row.id, dest.postedKey);
       this.logger.debug(`Published carousel cover ${row.id} → telegram (${mid})`);
 

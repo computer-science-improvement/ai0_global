@@ -21,7 +21,8 @@ function make(overrides: any = {}) {
   const telegram = {
     publish: async (_pay: any, t: any) => { calls.telegram.push(t.id); return 'tg-1'; },
   };
-  const svc = new GroupFanOutService(resolver as any, dispatcher as any, telegram as any);
+  const tracer = { span: (_s: any, _a: any, f: any) => f(), event() {}, steps: () => [], describeError: (e: any) => String(e?.message ?? e) };
+  const svc = new GroupFanOutService(resolver as any, dispatcher as any, telegram as any, tracer as any);
   const markPosted = async (key: string) => { calls.posted.push(key); };
   return { svc, calls, markPosted };
 }

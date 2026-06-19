@@ -33,6 +33,7 @@ test('meta destination publishes prompthero image url via dispatcher', async () 
     dispatcher as any,                         // dispatcher
     { fanOut: async () => {} } as any,         // groupFanOut (no fan-out)
     { resolveGroupTelegramLink: async () => null } as any, // destinations
+    { span: (_s: any, _a: any, f: any) => f(), event() {}, steps: () => [], describeError: (e: any) => String(e?.message ?? e) } as any, // tracer
   );
 
   const dest = {
@@ -66,6 +67,7 @@ function failingStrategy(publishError: string) {
     { afterPublish: async () => {} } as any, dispatcher as any,
     { fanOut: async () => {} } as any,
     { resolveGroupTelegramLink: async () => null } as any,
+    { span: (_s: any, _a: any, f: any) => f(), event() {}, steps: () => [], describeError: (e: any) => String(e?.message ?? e) } as any,
   );
   return { s, calls };
 }
@@ -122,6 +124,7 @@ test('FB publish delegates fan-out to GroupFanOutService with correct args', asy
     scraper as any, { notifyPublished: async () => {} } as any, { insert: async () => {} } as any,
     { afterPublish: async () => {} } as any, dispatcher as any, groupFanOut as any,
     { resolveGroupTelegramLink: async () => null } as any,
+    { span: (_s: any, _a: any, f: any) => f(), event() {}, steps: () => [], describeError: (e: any) => String(e?.message ?? e) } as any,
   );
 
   const fbDest = { platform: 'facebook', targetId: 'FB1', token: 'fbtok', metaAccountId: 'fb', postedKey: 'FB:fb', throttleKey: 'meta:fb' };

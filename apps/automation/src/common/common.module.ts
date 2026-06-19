@@ -22,6 +22,7 @@ import { ContentStrategyRunner }     from './content-strategy/content-strategy.r
 import { ContentStrategyRegistry }   from './content-strategy/content-strategy.registry';
 import { DestinationResolver }       from './content-strategy/destination-resolver.service';
 import { GroupFanOutService }        from './content-strategy/group-fanout.service';
+import { RunTracer }                 from './observability/run-tracer.service';
 import { RecipeCarouselRendererService } from './carousel/recipe-carousel-renderer.service';
 
 const VALIDATORS = [
@@ -54,6 +55,7 @@ const SERVICES = [
   ContentStrategyRegistry,
   DestinationResolver,
   GroupFanOutService,
+  RunTracer,
   RecipeCarouselRendererService,
 ];
 
