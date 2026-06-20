@@ -14,6 +14,7 @@ import { Icon, type IconName } from '../components/ui/Icon';
 import { SectionCard, EmptyState, StatusDot, type Tone } from '../components/ui/primitives';
 import { activityApi } from '../api/activity';
 import { useStrategies } from '../api/strategies';
+import { useMetaAccounts } from '../api/meta-accounts';
 import { fmtDate } from '../lib/format';
 import type { ActivityEvent, ActivityType, RunStep } from '../api/types';
 
@@ -197,19 +198,35 @@ function LogsPage() {
   const [page, setPage] = useState(1);
 
   const { data: strategies } = useStrategies();
+  const { data: metaAccounts } = useMetaAccounts();
 
-  // Distinct strategy ext_ids and (telegram) channels for the filter selectors.
+  // Which concrete binding platforms the active tab covers.
+  const tabPlatforms = platform === 'meta' ? ['instagram', 'facebook', 'threads']
+    : platform === 'tiktok' ? ['tiktok'] : ['telegram'];
+
+  // Strategy options scoped to the active platform tab (e.g. Meta tab → only
+  // Meta-publishing strategies).
   const strategyOptions = useMemo(
-    () => (strategies ?? []).map((s) => s.ext_id).sort(),
-    [strategies],
+    () => (strategies ?? []).filter((s) => tabPlatforms.includes(s.platform)).map((s) => s.ext_id).sort(),
+    [strategies, platform],
   );
-  const channelOptions = useMemo(() => {
-    const map = new Map<string, string>();
-    for (const s of strategies ?? []) {
-      if (s.channel_id) map.set(s.channel_id, s.channel_key ?? s.channel_id);
+
+  // The resource selector adapts to the tab: Telegram → channels, Meta → Meta
+  // accounts (IG/FB/Threads), TikTok → its accounts. There are no "channels"
+  // for Meta/TikTok, so we never offer them there.
+  const resourceLabel = platform === 'meta' ? 'All accounts' : platform === 'tiktok' ? 'All TikTok accounts' : 'All channels';
+  const resourceOptions = useMemo(() => {
+    if (platform === 'telegram') {
+      const map = new Map<string, string>();
+      for (const s of strategies ?? []) {
+        if (s.platform === 'telegram' && s.channel_id) map.set(s.channel_id, s.channel_key ?? s.channel_id);
+      }
+      return [...map.entries()].map(([id, label]) => ({ id, label }));
     }
-    return [...map.entries()].map(([id, label]) => ({ id, label })).sort((a, b) => a.label.localeCompare(b.label));
-  }, [strategies]);
+    return (metaAccounts ?? [])
+      .filter((a) => tabPlatforms.includes(a.platform))
+      .map((a) => ({ id: a.id, label: a.username ? `@${a.username}` : a.account_id }));
+  }, [strategies, metaAccounts, platform]);
 
   // Resolve the time-range preset → ISO `from` (recomputed only when the preset
   // changes). Custom range uses the date inputs directly.
@@ -256,7 +273,11 @@ function LogsPage() {
 
       {/* Filter row 1: platform + type */}
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, alignItems: 'center', marginBottom: 10 }}>
-        <SegmentedTabs value={platform} onChange={resetPage(setPlatform)} options={PLATFORM_TABS} />
+        <SegmentedTabs
+          value={platform}
+          onChange={(p) => { setPlatform(p); setStrategy(''); setChannelId(''); setPage(1); }}
+          options={PLATFORM_TABS}
+        />
         <div style={{ overflowX: 'auto', paddingBottom: 2 }}>
           <SegmentedTabs value={type} onChange={resetPage(setType)} options={TYPE_TABS} />
         </div>
@@ -281,9 +302,16 @@ function LogsPage() {
           <option value="">All strategies</option>
           {strategyOptions.map((s) => <option key={s} value={s}>{s}</option>)}
         </select>
-        <select value={channelId} onChange={(e) => resetPage(setChannelId)(e.target.value)} className="input-field" style={selectStyle}>
-          <option value="">All channels</option>
-          {channelOptions.map((c) => <option key={c.id} value={c.id}>{c.label}</option>)}
+        <select
+          value={channelId}
+          onChange={(e) => resetPage(setChannelId)(e.target.value)}
+          className="input-field"
+          style={{ ...selectStyle, opacity: resourceOptions.length ? 1 : 0.5 }}
+          disabled={resourceOptions.length === 0}
+          title={resourceOptions.length === 0 ? 'No accounts for this platform' : undefined}
+        >
+          <option value="">{resourceLabel}</option>
+          {resourceOptions.map((c) => <option key={c.id} value={c.id}>{c.label}</option>)}
         </select>
       </div>
 

@@ -6,17 +6,16 @@ import { trackingApi } from '../api/tracking';
 import { useStrategies } from '../api/strategies';
 import { useMetaAccounts, useRefreshMetaStats } from '../api/meta-accounts';
 import { PageHeader } from '../components/ui/PageHeader';
-import { StatCard } from '../components/ui/StatCard';
-import { Panel } from '../components/ui/Card';
 import { Badge } from '../components/ui/Badge';
 import { Icon } from '../components/Icon';
 import { Icon as PlatformGlyph } from '../components/ui/Icon';
+import { StatTile, SectionCard, EmptyState, StatusDot, type Tone } from '../components/ui/primitives';
 
 export const Route = createFileRoute('/app/')({ component: OverviewPage });
 
-type Tone = 'neutral' | 'success' | 'warning' | 'danger' | 'accent';
 const STATUS_TONE: Record<string, Tone> = { ok: 'success', error: 'danger', skipped: 'warning', running: 'neutral' };
 const STATUS_LABEL: Record<string, string> = { ok: 'ok', error: 'error', skipped: 'skipped', running: 'running' };
+const STATUS_DOT_TONE: Record<string, Tone> = { ok: 'success', error: 'danger', skipped: 'warning', running: 'neutral' };
 
 function rel(iso: string): string {
   try { return formatDistanceToNow(new Date(iso), { addSuffix: true }); } catch { return iso; }
@@ -55,49 +54,74 @@ function OverviewPage() {
     .sort((a, b) => (b.last_run!.started_at > a.last_run!.started_at ? 1 : -1))
     .slice(0, 6);
 
-  const cell: CSSProperties = { display: 'flex', alignItems: 'center', gap: 8, padding: '8px 0', borderTop: '1px solid var(--color-hairline)', fontSize: 12.5 };
-  const metaRow: CSSProperties = { ...cell, textDecoration: 'none', color: 'inherit' };
+  // Shared row treatment: hairline divider, hover-lift via inline transition.
+  const rowBase: CSSProperties = {
+    display: 'flex', alignItems: 'center', gap: 10, padding: '9px 8px',
+    borderTop: '1px solid var(--color-hairline)', fontSize: 12.5,
+    borderRadius: 'var(--radius-sm)', transition: 'background 0.13s ease',
+  };
+  const onRowEnter = (e: React.MouseEvent<HTMLElement>) => { e.currentTarget.style.background = 'var(--color-surface-3)'; };
+  const onRowLeave = (e: React.MouseEvent<HTMLElement>) => { e.currentTarget.style.background = ''; };
 
   return (
     <div>
       <PageHeader title="Overview" subtitle="Telegram + Meta · audience, publishing, status" />
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: 12, marginBottom: 12 }}>
-        <StatCard label="Subscribers (Telegram)" value={channelsQ.isLoading ? '…' : totalSubs.toLocaleString('en-US')} />
-        <StatCard label="Followers (Meta)" value={metaQ.isLoading ? '…' : metaFollowers.toLocaleString('en-US')} />
-        <StatCard label="Meta Δ 24h" value={metaQ.isLoading ? '…' : deltaText(metaDelta24)} deltaTone={metaDelta24 > 0 ? 'up' : metaDelta24 < 0 ? 'down' : 'neutral'} />
-        <StatCard label="Active strategies" value={strategiesQ.isLoading ? '…' : active.length} />
-        <StatCard label="Errors" value={errors.length} deltaTone={errors.length ? 'down' : 'neutral'} delta={errors.length ? 'needs attention' : undefined} />
+      <div className="stat-grid" style={{ marginBottom: 14 }}>
+        <StatTile icon="channels" label="Subscribers (Telegram)" value={channelsQ.isLoading ? '—' : totalSubs.toLocaleString('en-US')} />
+        <StatTile icon="connections" label="Followers (Meta)" value={metaQ.isLoading ? '—' : metaFollowers.toLocaleString('en-US')} />
+        <StatTile
+          icon="analytics" label="Meta Δ 24h"
+          value={metaQ.isLoading ? '—' : deltaText(metaDelta24)}
+          delta={metaQ.isLoading ? undefined : deltaText(metaDelta24)}
+          deltaTone={metaDelta24 > 0 ? 'success' : metaDelta24 < 0 ? 'danger' : 'neutral'}
+        />
+        <StatTile icon="strategies" label="Active strategies" value={strategiesQ.isLoading ? '—' : active.length} />
+        <StatTile
+          icon="warning" label="Errors" value={errors.length}
+          delta={errors.length ? 'needs attention' : 'all clear'}
+          deltaTone={errors.length ? 'danger' : 'neutral'}
+        />
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 12 }}>
-        <Panel title="Upcoming runs">
-          {upcoming.length === 0
-            ? <p style={{ color: 'var(--color-ink-muted)', fontSize: 12.5, margin: 0 }}>No scheduled runs.</p>
-            : upcoming.map(s => (
-              <div key={s.id} style={cell}>
-                <span style={{ color: 'var(--color-ink)' }}>{s.ext_id}</span>
-                <span style={{ color: 'var(--color-ink-dim)' }}>{s.channel_key ?? ''}</span>
-                <span style={{ marginLeft: 'auto', color: 'var(--color-ink-muted)' }}>{s.next_run_at ? rel(s.next_run_at) : ''}</span>
-              </div>
-            ))}
-        </Panel>
+        <SectionCard delay={5 * 60} icon="calendar" title="Upcoming runs">
+          {strategiesQ.isLoading
+            ? <EmptyState icon="calendar" title="Loading scheduled runs…" />
+            : upcoming.length === 0
+              ? <EmptyState icon="calendar" title="No scheduled runs" note="Enable a strategy with a cron to see it queued here." />
+              : upcoming.map((s, idx) => (
+                <div key={s.id} style={idx === 0 ? { ...rowBase, borderTop: 'none' } : rowBase} onMouseEnter={onRowEnter} onMouseLeave={onRowLeave}>
+                  <span style={{ color: 'var(--color-ink)', fontWeight: 500, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: 160 }}>{s.ext_id}</span>
+                  {s.channel_key && <span className="text-micro" style={{ color: 'var(--color-ink-dim)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{s.channel_key}</span>}
+                  <span className="text-micro" style={{ marginLeft: 'auto', color: 'var(--color-ink-muted)', whiteSpace: 'nowrap' }}>{s.next_run_at ? rel(s.next_run_at) : ''}</span>
+                </div>
+              ))}
+        </SectionCard>
 
-        <Panel title="Strategy status">
-          {recent.length === 0
-            ? <p style={{ color: 'var(--color-ink-muted)', fontSize: 12.5, margin: 0 }}>No runs yet.</p>
-            : recent.map(s => (
-              <div key={s.id} style={cell}>
-                <Badge tone={STATUS_TONE[s.last_run!.status] ?? 'neutral'}>{STATUS_LABEL[s.last_run!.status] ?? s.last_run!.status}</Badge>
-                <span style={{ color: 'var(--color-ink)' }}>{s.ext_id}</span>
-                {s.last_run!.error && <span style={{ color: 'var(--color-danger)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: 160 }} title={s.last_run!.error}>{s.last_run!.error}</span>}
-                <span style={{ marginLeft: 'auto', color: 'var(--color-ink-muted)' }}>{s.last_run!.finished_at ? rel(s.last_run!.finished_at) : ''}</span>
-              </div>
-            ))}
-        </Panel>
+        <SectionCard delay={6 * 60} icon="strategies" title="Strategy status">
+          {strategiesQ.isLoading
+            ? <EmptyState icon="strategies" title="Loading recent runs…" />
+            : recent.length === 0
+              ? <EmptyState icon="strategies" title="No runs yet" note="Strategy outcomes will appear here once they fire." />
+              : recent.map((s, idx) => {
+                const status = s.last_run!.status;
+                return (
+                  <div key={s.id} style={idx === 0 ? { ...rowBase, borderTop: 'none' } : rowBase} onMouseEnter={onRowEnter} onMouseLeave={onRowLeave}>
+                    <StatusDot tone={STATUS_DOT_TONE[status] ?? 'neutral'} size={7} />
+                    <span style={{ color: 'var(--color-ink)', fontWeight: 500, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: 150 }}>{s.ext_id}</span>
+                    <Badge tone={STATUS_TONE[status] ?? 'neutral'}>{STATUS_LABEL[status] ?? status}</Badge>
+                    {s.last_run!.error && <span className="text-micro" style={{ color: 'var(--color-danger)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: 140 }} title={s.last_run!.error}>{s.last_run!.error}</span>}
+                    <span className="text-micro" style={{ marginLeft: 'auto', color: 'var(--color-ink-muted)', whiteSpace: 'nowrap' }}>{s.last_run!.finished_at ? rel(s.last_run!.finished_at) : ''}</span>
+                  </div>
+                );
+              })}
+        </SectionCard>
       </div>
 
-      <Panel
+      <SectionCard
+        delay={7 * 60}
+        icon="connections"
         title="Meta accounts"
         action={
           metaAccounts.length > 0 ? (
@@ -108,22 +132,37 @@ function OverviewPage() {
         }
       >
         {metaQ.isLoading
-          ? <p style={{ color: 'var(--color-ink-muted)', fontSize: 12.5, margin: 0 }}>Loading…</p>
+          ? <EmptyState icon="connections" title="Loading Meta accounts…" />
           : metaAccounts.length === 0
-            ? <p style={{ color: 'var(--color-ink-muted)', fontSize: 12.5, margin: 0 }}>No Meta accounts — connect one on the Meta page.</p>
-            : metaAccounts.map(a => {
+            ? <EmptyState icon="connections" title="No Meta accounts yet" note="Connect Facebook, Instagram or Threads on the Meta page to track followers here." />
+            : metaAccounts.map((a, idx) => {
                 const d = a.followers_delta_24h ?? null;
-                const dTone = d == null || d === 0 ? 'var(--color-ink-muted)' : d > 0 ? 'var(--color-success)' : 'var(--color-danger)';
+                const dTone = d == null || d === 0 ? 'var(--color-ink-dim)' : d > 0 ? 'var(--color-success)' : 'var(--color-danger)';
                 return (
-                  <Link key={a.id} to={'/app/connections/meta/$accountId' as any} params={{ accountId: a.id } as any} style={metaRow}>
-                    <PlatformGlyph name={a.platform as any} size={14} />
-                    <span style={{ color: 'var(--color-ink)' }}>{a.username ? `@${a.username}` : a.account_id}</span>
-                    <span style={{ marginLeft: 'auto', color: 'var(--color-ink-muted)' }}>{a.followers != null ? `${a.followers.toLocaleString('en-US')} followers` : '—'}</span>
-                    <span style={{ color: dTone, minWidth: 56, textAlign: 'right' }}>{d == null ? '' : deltaText(d)}</span>
+                  <Link
+                    key={a.id}
+                    to={'/app/connections/meta/$accountId' as any}
+                    params={{ accountId: a.id } as any}
+                    style={idx === 0 ? { ...rowBase, borderTop: 'none', textDecoration: 'none', color: 'inherit' } : { ...rowBase, textDecoration: 'none', color: 'inherit' }}
+                    onMouseEnter={onRowEnter}
+                    onMouseLeave={onRowLeave}
+                  >
+                    <span style={{
+                      width: 24, height: 24, flexShrink: 0,
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      borderRadius: 'var(--radius-sm)',
+                      background: 'var(--color-surface-2)', border: '1px solid var(--color-hairline)',
+                      color: 'var(--color-ink-muted)',
+                    }}>
+                      <PlatformGlyph name={a.platform as any} size={13} />
+                    </span>
+                    <span style={{ color: 'var(--color-ink)', fontWeight: 500 }}>{a.username ? `@${a.username}` : a.account_id}</span>
+                    <span className="text-micro" style={{ marginLeft: 'auto', color: 'var(--color-ink-muted)', whiteSpace: 'nowrap' }}>{a.followers != null ? `${a.followers.toLocaleString('en-US')} followers` : '—'}</span>
+                    <span style={{ color: dTone, minWidth: 56, textAlign: 'right', fontSize: 12, fontWeight: 500, fontVariantNumeric: 'tabular-nums' }}>{d == null ? '' : deltaText(d)}</span>
                   </Link>
                 );
               })}
-      </Panel>
+      </SectionCard>
     </div>
   );
 }

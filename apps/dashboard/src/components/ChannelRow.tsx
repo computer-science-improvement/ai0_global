@@ -118,11 +118,11 @@ export function ChannelRow({ c, lowContentIds }: { c: TrackedChannel; lowContent
             {c.isMine && (
               <button
                 onClick={(e) => { e.preventDefault(); e.stopPropagation(); setEditing(true); }}
-                className="btn-icon"
-                style={{ width: 28, height: 28, color: 'var(--color-ink-muted)' }}
+                className="btn-act"
                 title="Edit channel config"
+                aria-label="Edit channel config"
               >
-                <Icon name="pencil" size={12} />
+                <Icon name="pencil" size={14} />
               </button>
             )}
           </div>

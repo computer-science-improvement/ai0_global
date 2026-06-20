@@ -32,7 +32,7 @@ function RecommendationsPage() {
 
       {/* ── Control panel ────────────────────────────────────────── */}
       <SectionCard title="Find placements" icon="discovery" delay={40} style={{ marginBottom: 20 }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', gap: 20, alignItems: 'end' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', gap: 20, alignItems: 'start' }}>
           <div>
             <label className="text-eyebrow" style={{ display: 'block', marginBottom: 6 }}>
               Target channel
