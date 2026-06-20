@@ -5,14 +5,25 @@ const ENTITIES: Record<string, string> = {
   '&amp;': '&', '&lt;': '<', '&gt;': '>', '&quot;': '"', '&#39;': "'", '&nbsp;': ' ',
 };
 
-/** Strip Telegram/HTML markup to plain text, preserving anchor inner text and
- *  line breaks. `<br>` → newline, `</p>`/`</div>` → blank line; tags removed;
- *  HTML entities decoded; runs of 3+ newlines collapsed to 2. */
+/** Strip Telegram/HTML markup to plain text, preserving line breaks AND anchor
+ *  URLs. `<a href="URL">TEXT</a>` becomes `TEXT (URL)` so source attribution
+ *  (e.g. a news article's "Джерело" link) survives the cross-post to Meta, where
+ *  HTML anchors don't render and would otherwise drop the URL silently. `<br>` →
+ *  newline, `</p>`/`</div>` → blank line; other tags removed; HTML entities
+ *  decoded; runs of 3+ newlines collapsed to 2. */
 export function htmlToPlainText(html: string): string {
   if (!html) return '';
   let s = html
     .replace(/<\s*br\s*\/?\s*>/gi, '\n')
     .replace(/<\s*\/\s*(p|div)\s*>/gi, '\n\n')
+    // Anchors → "text (url)", keeping the destination. Drop the parenthetical
+    // when the visible text already is the URL (avoids "https://x (https://x)").
+    .replace(/<a\b[^>]*\bhref\s*=\s*["']([^"']+)["'][^>]*>(.*?)<\/a>/gis, (_m, url, inner) => {
+      const text = String(inner).replace(/<[^>]+>/g, '').trim();
+      if (!url) return text;
+      if (!text || text === url) return url;
+      return text.includes(url) ? text : `${text} (${url})`;
+    })
     .replace(/<[^>]+>/g, '');
   for (const [ent, ch] of Object.entries(ENTITIES)) s = s.split(ent).join(ch);
   // numeric entities (&#1234;)

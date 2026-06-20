@@ -3,8 +3,19 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { htmlToPlainText, toHashtag, buildCaption } from './meta-content';
 
-test('htmlToPlainText strips tags and keeps anchor text', () => {
-  assert.equal(htmlToPlainText('<b>Hi</b> <a href="https://x">there</a>'), 'Hi there');
+test('htmlToPlainText strips tags and preserves anchor url as "text (url)"', () => {
+  assert.equal(htmlToPlainText('<b>Hi</b> <a href="https://x">there</a>'), 'Hi there (https://x)');
+});
+
+test('htmlToPlainText keeps source attribution url for Meta cross-posts', () => {
+  assert.equal(
+    htmlToPlainText('Новина текст\n\n<a href="https://theverge.com/a">Джерело</a>'),
+    'Новина текст\n\nДжерело (https://theverge.com/a)',
+  );
+});
+
+test('htmlToPlainText does not double-print when anchor text already is the url', () => {
+  assert.equal(htmlToPlainText('<a href="https://x">https://x</a>'), 'https://x');
 });
 
 test('htmlToPlainText converts <br> and </p> to newlines, decodes entities', () => {
