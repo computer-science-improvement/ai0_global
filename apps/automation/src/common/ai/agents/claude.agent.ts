@@ -46,6 +46,10 @@ export class ClaudeAgent implements OnModuleInit {
       const res = await this.client.messages.create({
         model,
         max_tokens: options?.maxTokens ?? 1024,
+        // NOTE: Anthropic prompt caching (cache_control on the system block)
+        // would cut repeated-call cost here, but the pinned @anthropic-ai/sdk
+        // version's TextBlockParam type doesn't support it yet — deferred to an
+        // SDK upgrade so it can be verified against the live API.
         ...(system ? { system } : {}),
         messages: conv,
       });

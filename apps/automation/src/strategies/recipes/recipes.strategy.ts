@@ -193,7 +193,13 @@ export class RecipesStrategy implements ContentStrategy, OnModuleInit {
     const raw = await this.claude.chat([
       { role: 'system', content: RECIPE_TRANSLATE_PROMPT.system },
       { role: 'user',   content: buildRecipeTranslateUserMessage(row) },
-    ], { model: TRANSLATE_MODEL });
+    ], {
+      model: TRANSLATE_MODEL,
+      // A full recipe (title + ingredients + instructions JSON) easily exceeds
+      // the 1024 default; without headroom it truncates, the validator rejects
+      // the broken JSON, and the row gets a permanent skip sentinel.
+      maxTokens: Number(process.env.RECIPE_TRANSLATE_MAX_TOKENS) || 3000,
+    });
 
     const fail = async (why: string) => {
       this.logger.warn(`Translation rejected (${row.id}): ${why} — writing skip sentinel`);
