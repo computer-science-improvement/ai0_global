@@ -5,7 +5,8 @@ import { Icon } from '../components/Icon';
 import { Icon as PlatformGlyph, type IconName } from '../components/ui/Icon';
 import { Badge } from '../components/ui/Badge';
 import { PageHeader } from '../components/ui/PageHeader';
-import { TableAction, RowActions, ActionsTh } from '../components/ui/table';
+import { SectionCard, EmptyState, StatusDot, type Tone } from '../components/ui/primitives';
+import { TableAction, RowActions } from '../components/ui/table';
 import { usePlatform } from '../lib/usePlatform';
 import { PlatformFilter } from '../components/PlatformFilter';
 import { useConfirm } from '../components/ui/ConfirmDialog';
@@ -76,131 +77,146 @@ function StrategiesPage() {
       {error && <p className="text-body-sm" style={{ color: 'var(--color-danger)' }}>{(error as Error).message}</p>}
 
       {data && rows.length === 0 && (
-        <div className="card" style={{ textAlign: 'center', padding: 48 }}>
-          <p className="text-body" style={{ color: 'var(--color-ink-muted)', margin: 0 }}>
-            {platform === 'meta'
-              ? 'No Meta-enabled strategies — add a cross-post target on a strategy (Edit → Cross-post).'
-              : 'No strategies yet — add one to start scheduled publishing.'}
-          </p>
-        </div>
+        <EmptyState
+          icon="strategies"
+          title={platform === 'meta' ? 'No Meta-enabled strategies' : 'No strategies yet'}
+          note={platform === 'meta'
+            ? 'Add a cross-post target on a strategy (Edit → Cross-post) to surface it here.'
+            : 'Add one to start scheduled publishing.'}
+        />
       )}
 
       {data && rows.length > 0 && (
-        <div className="table-wrap">
-          <table className="table">
-            <thead>
-              <tr>
-                <th style={{ width: 30 }}></th>
-                <th>Id</th>
-                <th>Type</th>
-                <th>Destination</th>
-                <th>Schedule</th>
-                <th>Next run</th>
-                <th>Last run</th>
-                <th>Status</th>
-                <ActionsTh />
-              </tr>
-            </thead>
-            <tbody>
-              {rows.map(s => {
-                const isOpen = expanded === s.id;
-                return (
-                  <>
-                    <StrategyRow
-                      key={s.id}
-                      s={s}
-                      showIcons={showIcons}
-                      open={isOpen}
-                      onToggleOpen={() => setExpanded(isOpen ? null : s.id)}
-                      onToggle={() => patch.mutate({ id: s.id, patch: { enabled: !s.enabled } })}
-                      onDelete={async () => {
-                        if (await confirm(`delete strategy ${s.ext_id}`)) remove.mutate(s.id);
+        <SectionCard title="Strategies" icon="strategies" delay={60}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+            {rows.map((s, i) => {
+              const isOpen = expanded === s.id;
+              return (
+                <div key={s.id}>
+                  <StrategyRow
+                    s={s}
+                    index={i}
+                    showIcons={showIcons}
+                    open={isOpen}
+                    onToggleOpen={() => setExpanded(isOpen ? null : s.id)}
+                    onToggle={() => patch.mutate({ id: s.id, patch: { enabled: !s.enabled } })}
+                    onDelete={async () => {
+                      if (await confirm(`delete strategy ${s.ext_id}`)) remove.mutate(s.id);
+                    }}
+                  />
+                  {isOpen && (
+                    <div
+                      className="compose-rise"
+                      style={{
+                        marginTop: 8,
+                        border: '1px solid var(--color-hairline)',
+                        borderRadius: 'var(--radius-md)',
+                        background: 'var(--color-canvas)',
+                        overflow: 'hidden',
                       }}
-                    />
-                    {isOpen && (
-                      <tr key={s.id + '-details'}>
-                        <td colSpan={9} style={{ padding: 0, background: 'var(--color-canvas)' }}>
-                          <ExpandedDetails strategy={s} />
-                        </td>
-                      </tr>
-                    )}
-                  </>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
+                    >
+                      <ExpandedDetails strategy={s} />
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </SectionCard>
       )}
     </div>
   );
 }
 
 function StrategyRow({
-  s, showIcons, open, onToggleOpen, onToggle, onDelete,
+  s, index, showIcons, open, onToggleOpen, onToggle, onDelete,
 }: {
-  s: Strategy; showIcons: boolean; open: boolean; onToggleOpen: () => void;
+  s: Strategy; index: number; showIcons: boolean; open: boolean; onToggleOpen: () => void;
   onToggle: () => void; onDelete: () => void;
 }) {
+  const m = describeStrategy(s.type);
+  const typeTip = m ? `${m.title} (${SOURCE_KIND_LABEL[m.source]})\n\n${m.description}` : s.type;
+  // Status dot is the at-a-glance signal: paused → neutral, last error → danger,
+  // otherwise healthy/enabled → success.
+  const dotTone: Tone = !s.enabled ? 'neutral' : s.last_run?.status === 'error' ? 'danger' : 'success';
+
   return (
-    <tr style={{ cursor: 'pointer' }} onClick={onToggleOpen}>
-      <td style={{ color: 'var(--color-ink-muted)' }}>
-        <Icon name={open ? 'chevron-right' : 'chevron-right'} size={14}
-          style={{ transform: open ? 'rotate(90deg)' : 'rotate(0deg)', transition: 'transform 0.12s ease' }} />
-      </td>
-      <td style={{ fontVariantNumeric: 'tabular-nums', color: 'var(--color-ink)' }}>
-        {s.ext_id}
-      </td>
-      <td>
-        <span
-          className="chip"
-          title={(() => {
-            const m = describeStrategy(s.type);
-            return m ? `${m.title} (${SOURCE_KIND_LABEL[m.source]})\n\n${m.description}` : s.type;
-          })()}
-        >
-          {s.type}
-        </span>
-        {showIcons && <PlatformIcons platforms={s.platforms} />}
-      </td>
-      <td style={{ color: 'var(--color-ink-muted)' }}>
-        {s.channel_key
-          ? <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}>
+    <div
+      className="card row-lift compose-rise"
+      style={{
+        display: 'flex', alignItems: 'center', gap: 16,
+        padding: '13px 18px', cursor: 'pointer',
+        animationDelay: `${Math.min(index, 12) * 34}ms`,
+      }}
+      onClick={onToggleOpen}
+    >
+      {/* Expand chevron */}
+      <Icon
+        name="chevron-right" size={14}
+        style={{
+          flexShrink: 0, color: 'var(--color-ink-muted)',
+          transform: open ? 'rotate(90deg)' : 'rotate(0deg)', transition: 'transform 0.12s ease',
+        }}
+      />
+
+      {/* Status dot */}
+      <span style={{ display: 'inline-flex', flexShrink: 0 }}
+        title={s.enabled ? STRATEGY_STATUS_HELP.enabled : STRATEGY_STATUS_HELP.paused}>
+        <StatusDot tone={dotTone} />
+      </span>
+
+      {/* Identity + destination */}
+      <div style={{ minWidth: 0, flex: 1 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
+          <span className="text-body" style={{ color: 'var(--color-ink)', fontWeight: 500, fontVariantNumeric: 'tabular-nums' }}>
+            {s.ext_id}
+          </span>
+          <span className="chip" title={typeTip}>{s.type}</span>
+          {showIcons && <PlatformIcons platforms={s.platforms} />}
+          {!s.enabled && <span className="chip" title={STRATEGY_STATUS_HELP.paused}>paused</span>}
+          {s.needs_bot && (
+            <span title="This channel has no bot bound and no default bot exists, so this strategy cannot publish.">
+              <Badge tone="warning">
+                <Icon name="warning" size={11} /> No bot
+              </Badge>
+            </span>
+          )}
+        </div>
+
+        {/* Meta line — destination · schedule · next run */}
+        <div className="text-micro" style={{
+          color: 'var(--color-ink-muted)', marginTop: 4,
+          display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap',
+        }}>
+          {s.channel_key ? (
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}>
               <PlatformGlyph name={PLATFORM_GLYPH[s.platform] ?? 'telegram'} size={12} className="" />
               {s.channel_key}
             </span>
-          : s.meta_account
-            ? <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}>
-                <PlatformGlyph name={PLATFORM_GLYPH[s.meta_account.platform] ?? 'instagram'} size={12} className="" />
-                {s.meta_account.username ? '@' + s.meta_account.username : s.meta_account.platform}
-              </span>
-            : <span style={{ color: 'var(--color-ink-dim)' }}>—</span>}
-        {s.needs_bot && (
-          <div style={{ marginTop: 6 }} title="This channel has no bot bound and no default bot exists, so this strategy cannot publish.">
-            <Badge tone="warning">
-              <Icon name="warning" size={11} /> No bot — add or set a default bot to publish
-            </Badge>
-          </div>
-        )}
-      </td>
-      <td style={{ fontVariantNumeric: 'tabular-nums', color: 'var(--color-ink-muted)' }}>{s.schedule}</td>
-      <td>
-        {s.enabled && s.next_run_at
-          ? <span className="text-body-sm" style={{ color: 'var(--color-ink)', fontVariantNumeric: 'tabular-nums' }}>
-              {formatRelative(s.next_run_at)}
+          ) : s.meta_account ? (
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}>
+              <PlatformGlyph name={PLATFORM_GLYPH[s.meta_account.platform] ?? 'instagram'} size={12} className="" />
+              {s.meta_account.username ? '@' + s.meta_account.username : s.meta_account.platform}
             </span>
-          : <span className="text-body-sm" style={{ color: 'var(--color-ink-dim)' }}>—</span>}
-      </td>
-      <td>
+          ) : (
+            <span style={{ color: 'var(--color-ink-dim)' }}>no destination</span>
+          )}
+          <span style={{ color: 'var(--color-ink-dim)' }}>·</span>
+          <span style={{ fontVariantNumeric: 'tabular-nums' }} title="Cron schedule">{s.schedule}</span>
+          {s.enabled && s.next_run_at && (
+            <>
+              <span style={{ color: 'var(--color-ink-dim)' }}>·</span>
+              <span style={{ fontVariantNumeric: 'tabular-nums' }} title="Next scheduled run">
+                next {formatRelative(s.next_run_at)}
+              </span>
+            </>
+          )}
+        </div>
+      </div>
+
+      {/* Last run + actions */}
+      <div style={{ flexShrink: 0, display: 'flex', alignItems: 'center', gap: 14 }} onClick={(e) => e.stopPropagation()}>
         <LastRunCell last={s.last_run} />
-      </td>
-      <td>
-        {s.enabled
-          ? <Badge tone="success" title={STRATEGY_STATUS_HELP.enabled}>
-              <Icon name="check" size={12} style={{ marginRight: 4 }} />enabled
-            </Badge>
-          : <span className="chip" title={STRATEGY_STATUS_HELP.paused}>paused</span>}
-      </td>
-      <td style={{ textAlign: 'right' }} onClick={(e) => e.stopPropagation()}>
         <RowActions>
           <Link
             to={'/app/strategies/$id' as never}
@@ -208,7 +224,6 @@ function StrategyRow({
             className="btn-act"
             title="Edit strategy + see example post"
             aria-label="Edit strategy"
-            onClick={(e) => e.stopPropagation()}
           >
             <PlatformGlyph name="pencil" size={14} />
           </Link>
@@ -219,8 +234,8 @@ function StrategyRow({
           <span className="row-actions-sep" aria-hidden />
           <TableAction action="delete" onClick={onDelete} />
         </RowActions>
-      </td>
-    </tr>
+      </div>
+    </div>
   );
 }
 
