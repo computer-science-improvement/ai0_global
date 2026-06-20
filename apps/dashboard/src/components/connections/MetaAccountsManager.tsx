@@ -7,12 +7,14 @@ import { useState, type ReactNode } from 'react';
 import { Link } from '@tanstack/react-router';
 import { Icon } from '../ui/Icon';
 import { Badge } from '../ui/Badge';
+import { TableAction, RowActions } from '../ui/table';
+import { EmptyState } from '../ui/primitives';
 import { fmtDate } from '../../lib/format';
 import { useConfirm } from '../ui/ConfirmDialog';
 import { AddMetaAccountModal } from './AddMetaAccountModal';
 import {
   useMetaAccounts, useVerifyMetaAccount, useToggleMetaAccount, useDeleteMetaAccount,
-  useRefreshThreadsToken,
+  useRefreshThreadsToken, useMetaAccountGroups,
 } from '../../api/meta-accounts';
 import { useStrategies } from '../../api/strategies';
 import type { MetaAccount, MetaPlatform, Strategy } from '../../api/types';
@@ -28,6 +30,8 @@ const PLATFORM_LABEL: Record<MetaPlatform, string> = {
 export function MetaAccountsManager({ platform }: { platform: MetaPlatform }) {
   const { data, isLoading, error } = useMetaAccounts();
   const { data: strategies } = useStrategies();
+  const { data: groups } = useMetaAccountGroups();
+  const groupName = new Map((groups ?? []).map(g => [g.id, g.name]));
   const verify = useVerifyMetaAccount();
   const toggle = useToggleMetaAccount();
   const remove = useDeleteMetaAccount();
@@ -60,11 +64,11 @@ export function MetaAccountsManager({ platform }: { platform: MetaPlatform }) {
       )}
 
       {!isLoading && accounts.length === 0 && (
-        <div className="card" style={{ textAlign: 'center', padding: 40 }}>
-          <p className="text-body" style={{ color: 'var(--color-ink-muted)', margin: 0 }}>
-            No {PLATFORM_LABEL[platform]} accounts yet — add one to connect.
-          </p>
-        </div>
+        <EmptyState
+          icon={PLATFORM_ICON[platform]}
+          title={`No ${PLATFORM_LABEL[platform]} accounts yet`}
+          note="Add one to connect and start publishing."
+        />
       )}
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
@@ -72,6 +76,7 @@ export function MetaAccountsManager({ platform }: { platform: MetaPlatform }) {
           <AccountCard
             key={a.id}
             account={a}
+            groupName={a.group_id ? groupName.get(a.group_id) ?? null : null}
             onVerify={() => verify.mutate(a.id)}
             onRefreshToken={() => refreshToken.mutate(a.id)}
             refreshing={refreshToken.isPending && refreshToken.variables === a.id}
@@ -127,8 +132,9 @@ function AttachedStrategiesList({ strategies }: { strategies: Strategy[] }) {
   );
 }
 
-function AccountCard({ account: a, onVerify, onToggle, onDelete, onRefreshToken, refreshing, refreshError }: {
+function AccountCard({ account: a, groupName, onVerify, onToggle, onDelete, onRefreshToken, refreshing, refreshError }: {
   account: MetaAccount;
+  groupName: string | null;
   onVerify: () => void; onToggle: () => void; onDelete: () => void;
   onRefreshToken: () => void; refreshing: boolean; refreshError: string | null;
 }) {
@@ -148,6 +154,11 @@ function AccountCard({ account: a, onVerify, onToggle, onDelete, onRefreshToken,
           </span>
           {a.username && <span className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>@{a.username}</span>}
           {!a.active && <Badge tone="neutral">inactive</Badge>}
+          {groupName && (
+            <span title="Meta group — manage on the Groups tab" style={{ display: 'inline-flex' }}>
+              <Badge tone="accent"><Icon name="connections" size={11} /> {groupName}</Badge>
+            </span>
+          )}
         </div>
         <div className="text-caption" style={{ color: 'var(--color-ink-dim)', marginTop: 4 }}>
           {a.followers != null && <>{a.followers.toLocaleString()} followers · </>}
@@ -165,18 +176,22 @@ function AccountCard({ account: a, onVerify, onToggle, onDelete, onRefreshToken,
       </Link>
 
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 6 }}>
-        <div style={{ display: 'inline-flex', gap: 6 }}>
-          <button onClick={onVerify} className="btn-tiny" title="Verify token"><Icon name="refresh" size={12} /> Verify</button>
+        <RowActions danger={<TableAction action="delete" onClick={onDelete} />}>
+          <TableAction action="verify" onClick={onVerify} title="Verify token" />
           {/* Threads tokens are short-lived (~60d) and refreshable with only the
-              current token. Refresh re-encrypts the new token + updates the expiry. */}
+              current token. Refresh re-encrypts the new token + updates the expiry.
+              Kept labelled (vs icon-only) so it isn't confused with Verify. */}
           {a.platform === 'threads' && (
-            <button onClick={onRefreshToken} className="btn-tiny" disabled={refreshing} title="Refresh the Threads long-lived token">
-              <Icon name="refresh" size={12} /> {refreshing ? 'Refreshing…' : 'Refresh token'}
-            </button>
+            <TableAction
+              icon="refresh"
+              label={refreshing ? 'Refreshing…' : 'Refresh token'}
+              onClick={onRefreshToken}
+              disabled={refreshing}
+              title="Refresh the Threads long-lived token"
+            />
           )}
-          <button onClick={onToggle} className="btn-tiny">{a.active ? 'Pause' : 'Activate'}</button>
-          <button onClick={onDelete} className="btn-tiny-danger"><Icon name="trash" size={12} /> Delete</button>
-        </div>
+          <TableAction action={a.active ? 'pause' : 'enable'} onClick={onToggle} />
+        </RowActions>
         {refreshError && (
           <span className="text-micro" style={{ color: 'var(--color-danger)', maxWidth: 240, textAlign: 'right' }}>
             {refreshError}
