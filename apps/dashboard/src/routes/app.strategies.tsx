@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Icon } from '../components/Icon';
 import { Icon as PlatformGlyph, type IconName } from '../components/ui/Icon';
 import { Badge } from '../components/ui/Badge';
+import { PageHeader } from '../components/ui/PageHeader';
 import { TableAction, RowActions, ActionsTh } from '../components/ui/table';
 import { usePlatform } from '../lib/usePlatform';
 import { PlatformFilter } from '../components/PlatformFilter';
@@ -56,17 +57,15 @@ function StrategiesPage() {
 
   return (
     <div>
-      <header style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 24 }}>
-        <div>
-          <h1 className="text-display-md" style={{ margin: 0 }}>Strategies</h1>
-          <p className="text-caption" style={{ margin: '6px 0 0', color: 'var(--color-ink-muted)' }}>
-            Cron-scheduled content generators bound to channels. Click a row to see its execution log.
-          </p>
-        </div>
-        <Link to={'/app/strategies/new' as never} className="btn-primary" style={{ gap: 6, display: 'inline-flex', alignItems: 'center' }}>
-          <Icon name="plus" size={14} /> Add strategy
-        </Link>
-      </header>
+      <PageHeader
+        title="Strategies"
+        subtitle="Cron-scheduled content generators bound to channels. Click a row to see its execution log."
+        actions={
+          <Link to={'/app/strategies/new' as never} className="btn-primary" style={{ gap: 6, display: 'inline-flex', alignItems: 'center' }}>
+            <Icon name="plus" size={14} /> Add strategy
+          </Link>
+        }
+      />
 
       {/* Destination filter — strategies are the only view this affects. */}
       <div style={{ marginBottom: 20 }}>
