@@ -3,29 +3,35 @@ import { ConfigService } from '@nestjs/config';
 import axios from 'axios';
 import { ChannelConfigService } from '../config/channel-config.service';
 import { ConfigCacheService } from '../config/config-cache.service';
+import { SettingsService } from '../settings/settings.service';
 
 /**
  * Sends admin notifications to the bot owner via Telegram.
- * Requires TELEGRAM_BOT_TOKEN and TELEGRAM_OWNER_ID env vars.
- * Silently skips if either is missing.
+ * Requires TELEGRAM_BOT_TOKEN (env) and an owner chat id. The owner id is read
+ * live from SettingsService (DB override ?? env TELEGRAM_OWNER_ID), so it can be
+ * set from the dashboard without a restart. Silently skips if either is missing.
  */
 @Injectable()
 export class TelegramNotifier implements OnModuleInit {
   private readonly logger = new Logger(TelegramNotifier.name);
   private botToken: string | null = null;
-  private ownerId:  string | null = null;
 
   constructor(
     private readonly config:        ConfigService,
     private readonly channelConfig: ChannelConfigService,
     private readonly cache:         ConfigCacheService,
+    private readonly settings:      SettingsService,
   ) {}
+
+  /** The owner chat id (DB override ?? env), or null when unset. */
+  private ownerId(): string | null {
+    return this.settings.telegramOwnerId() || null;
+  }
 
   onModuleInit() {
     this.botToken = this.config.get<string>('TELEGRAM_BOT_TOKEN') ?? null;
-    this.ownerId  = this.config.get<string>('TELEGRAM_OWNER_ID') ?? null;
 
-    if (!this.botToken || !this.ownerId) {
+    if (!this.botToken || !this.ownerId()) {
       this.logger.warn('TelegramNotifier disabled: TELEGRAM_BOT_TOKEN or TELEGRAM_OWNER_ID not set');
     }
   }
@@ -60,6 +66,14 @@ export class TelegramNotifier implements OnModuleInit {
    */
   async notifySkipped(channelId: string, reason: string): Promise<void> {
     const text = `ℹ️ ${this.resolveName(channelId)} skipped: ${reason}`;
+    await this.send(text);
+  }
+
+  /**
+   * Operational alert to the owner (broken tokens, repeated strategy failures,
+   * stuck runs, platform bans). Free-form text; no channel context required.
+   */
+  async notifyAlert(text: string): Promise<void> {
     await this.send(text);
   }
 
@@ -99,13 +113,14 @@ export class TelegramNotifier implements OnModuleInit {
   }
 
   private async send(text: string): Promise<void> {
-    if (!this.botToken || !this.ownerId) return;
+    const ownerId = this.ownerId();
+    if (!this.botToken || !ownerId) return;
 
     try {
       await axios.post(
         `https://api.telegram.org/bot${this.botToken}/sendMessage`,
         {
-          chat_id:              this.ownerId,
+          chat_id:              ownerId,
           text,
           link_preview_options: { is_disabled: true },
         },

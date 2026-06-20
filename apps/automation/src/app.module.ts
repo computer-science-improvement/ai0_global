@@ -7,6 +7,7 @@ import { LoggingModule }        from './common/logging/logging.module';
 import { CommonModule }         from './common/common.module';
 import { CryptoModule }         from './common/crypto/crypto.module';
 import { RetentionModule }      from './common/retention/retention.module';
+import { AlertingModule }       from './common/alerting/alerting.module';
 import { PublishersModule }     from './publishers/publishers.module';
 import { SchedulerModule }      from './scheduler/scheduler.module';
 import { OnThisDayStrategyModule }   from './strategies/on-this-day/on-this-day-strategy.module';
@@ -44,6 +45,7 @@ import { ActivityModule }       from './activity/activity.module';
     CryptoModule,
     CommonModule,
     RetentionModule,
+    AlertingModule,
     StatsModule,
     PublishersModule,
     SchedulerModule,

@@ -137,4 +137,52 @@ export class StrategyRunsRepository {
     for (const r of rows) m.set(r.strategy_id, r);
     return m;
   }
+
+  /**
+   * Strategies whose most-recent runs are a streak of `>= threshold` errors
+   * (i.e. every error since the last ok/skipped). Used by the alerting watcher
+   * to ping the owner about a strategy that keeps failing.
+   */
+  async consecutiveErrorStrategies(
+    threshold: number,
+  ): Promise<Array<{ ext_id: string; consecutive_errors: number; last_error: string | null; last_at: Date }>> {
+    const { rows } = await this.pool.query(
+      `WITH last_ok AS (
+         SELECT ext_id, max(started_at) AS ts
+         FROM strategy_runs
+         WHERE status IN ('ok','skipped')
+         GROUP BY ext_id
+       )
+       SELECT r.ext_id,
+              count(*)::int                                        AS consecutive_errors,
+              (array_agg(r.error ORDER BY r.started_at DESC))[1]   AS last_error,
+              max(r.started_at)                                    AS last_at
+       FROM strategy_runs r
+       LEFT JOIN last_ok l ON l.ext_id = r.ext_id
+       WHERE r.status = 'error'
+         AND (l.ts IS NULL OR r.started_at > l.ts)
+       GROUP BY r.ext_id
+       HAVING count(*) >= $1
+       ORDER BY consecutive_errors DESC`,
+      [threshold],
+    );
+    return rows as any;
+  }
+
+  /**
+   * Runs still marked 'running' for longer than `minutes` — a dead leftover (a
+   * crash mid-run, or a timeout/guard that didn't fire). Surfaced by the alerting
+   * watcher so a stuck queue is noticed without opening the dashboard.
+   */
+  async stuckRunning(minutes: number): Promise<Array<{ ext_id: string; started_at: Date }>> {
+    const { rows } = await this.pool.query(
+      `SELECT ext_id, started_at
+       FROM strategy_runs
+       WHERE status = 'running'
+         AND started_at < now() - ($1 * interval '1 minute')
+       ORDER BY started_at ASC`,
+      [minutes],
+    );
+    return rows as any;
+  }
 }
