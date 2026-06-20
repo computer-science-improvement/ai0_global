@@ -258,7 +258,7 @@ function LastRunCell({ last }: { last: StrategyRunSummary | null }) {
       ) : last.status === 'skipped' ? (
         <Badge tone="warning" title={tooltip}>{last.status}</Badge>
       ) : (
-        <span className="chip" title={tooltip}>{last.status}</span>
+        <Badge tone="neutral" title={tooltip}>{last.status}</Badge>
       )}
       <span className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>
         {ago}{meta && ` · ${meta}`}
@@ -453,7 +453,7 @@ function RunsPanel({ strategyId }: { strategyId: string }) {
               ) : r.status === 'skipped' ? (
                 <Badge tone="warning" title={RUN_STATUS_HELP[r.status] ?? r.status}>{r.status}</Badge>
               ) : (
-                <span className="chip" title={RUN_STATUS_HELP[r.status] ?? r.status}>{r.status}</span>
+                <Badge tone="neutral" title={RUN_STATUS_HELP[r.status] ?? r.status}>{r.status}</Badge>
               )}
               <span style={{ color: 'var(--color-ink-muted)', fontVariantNumeric: 'tabular-nums', textAlign: 'right' }}>
                 {r.duration_ms ? `${(r.duration_ms / 1000).toFixed(1)}s` : '—'}
