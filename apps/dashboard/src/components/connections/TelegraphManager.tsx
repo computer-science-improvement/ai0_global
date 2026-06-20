@@ -89,6 +89,7 @@ export function TelegraphManager() {
                         action={a.active ? 'pause' : 'enable'}
                         onClick={() => toggle.mutate({ id: a.id, active: !a.active })}
                       />
+                      <span className="row-actions-sep" aria-hidden />
                       <TableAction
                         action="delete"
                         onClick={async () => {

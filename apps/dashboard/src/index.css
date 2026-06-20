@@ -225,15 +225,38 @@ a:hover { opacity: 0.85; }
 }
 .btn-icon:hover { background: var(--color-surface-2); color: var(--color-ink); }
 
+/* Bordered square action icon-button — the standard row / card action control
+   (see CLAUDE.md "Tables"). Replaces bare/borderless icons so destructive and
+   normal actions are clearly separated and obviously clickable. */
+.btn-act {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 30px; height: 30px; flex: none;
+  background: var(--color-surface-2); color: var(--color-ink-muted);
+  border: 1px solid var(--color-hairline); border-radius: var(--radius-sm);
+  cursor: pointer; transition: background .12s ease, color .12s ease, border-color .12s ease;
+}
+.btn-act:hover { background: var(--color-surface-3); color: var(--color-ink); border-color: var(--color-hairline-strong); }
+.btn-act:disabled { opacity: .45; cursor: default; }
+.btn-act-danger { color: var(--color-danger); border-color: color-mix(in srgb, var(--color-danger) 32%, transparent); }
+.btn-act-danger:hover { background: var(--color-danger-soft); color: var(--color-danger); border-color: var(--color-danger); }
+/* Thin separator placed before the destructive action in a RowActions group. */
+.row-actions-sep { width: 1px; height: 18px; background: var(--color-hairline); margin: 0 2px; flex: none; }
+
 /* ----------------------------------------------------------------------------
  * Cards & containers — surfaces lift from canvas in two steps.
  * ------------------------------------------------------------------------- */
 
 .card {
-  background: var(--color-surface-2);
+  position: relative;
+  /* faint top-left accent wash + light edge — the Groups-page card treatment,
+   * now the baseline for every card so the whole app reads consistently. */
+  background:
+    radial-gradient(130% 150% at 0% 0%, rgba(62, 207, 142, 0.035), transparent 46%),
+    var(--color-surface-2);
   border: 1px solid var(--color-hairline);
   border-radius: var(--radius-md);
   padding: 20px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
 }
 .card-featured {
   background: var(--color-surface-2);
@@ -243,6 +266,104 @@ a:hover { opacity: 0.85; }
 
 .hairline      { border: 1px solid var(--color-hairline); }
 .hairline-soft { border: 1px solid var(--color-hairline-soft); }
+
+/* Lining figures for aligned numbers in tables, stats, timestamps. Referenced
+ * by className across the app (charts, stat tiles, rows) — define it once here. */
+.tabular-nums { font-variant-numeric: tabular-nums; }
+
+/* ----------------------------------------------------------------------------
+ * Shared "patch-bay" primitives — the Groups-page visual language, generalized
+ * for use across every page so the whole app reads consistently. Backed by the
+ * React wrappers in components/ui/primitives.tsx (HubGlyph / StatTile /
+ * SectionCard / EmptyState / StatusDot).
+ * ------------------------------------------------------------------------- */
+
+/* Elevated panel — accent wash + soft hover lift. For top-level/section cards. */
+.panel {
+  position: relative;
+  background:
+    radial-gradient(120% 140% at 0% 0%, rgba(62, 207, 142, 0.05), transparent 42%),
+    var(--color-surface-2);
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-lg);
+  padding: 18px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.panel.is-interactive:hover {
+  border-color: var(--color-hairline-strong);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
+}
+
+/* Section header: tinted glyph tile + title (+ optional right action). */
+.section-head { display: flex; align-items: center; gap: 11px; margin-bottom: 16px; }
+.section-glyph {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 30px; height: 30px; flex-shrink: 0;
+  border-radius: var(--radius-md);
+  background: var(--color-surface-3); color: var(--color-ink-muted);
+}
+
+/* Hub glyph — green-tinted node for a brand initial or icon. */
+.hub-glyph {
+  width: 38px; height: 38px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: var(--radius-md);
+  background: linear-gradient(150deg, rgba(62, 207, 142, 0.22), rgba(62, 207, 142, 0.06));
+  border: 1px solid rgba(62, 207, 142, 0.30);
+  color: var(--color-accent);
+  font-weight: 600; font-size: 16px; letter-spacing: -0.02em;
+}
+
+/* KPI tile + responsive grid. */
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(184px, 1fr)); gap: 12px; }
+.stat-tile {
+  position: relative;
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  transition: transform 0.14s ease, border-color 0.14s ease, box-shadow 0.14s ease;
+}
+.stat-tile:hover { transform: translateY(-2px); border-color: var(--color-hairline-strong); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.24); }
+.stat-tile.is-accent {
+  background:
+    radial-gradient(120% 140% at 0% 0%, rgba(62, 207, 142, 0.10), transparent 50%),
+    var(--color-surface-2);
+  border-color: rgba(62, 207, 142, 0.30);
+}
+
+/* Status dot with a soft halo (tone set inline via --dot). */
+.status-dot {
+  width: 8px; height: 8px; border-radius: 999px; flex-shrink: 0;
+  display: inline-block;
+  background: var(--dot, var(--color-ink-dim));
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--dot, var(--color-ink-dim)) 16%, transparent);
+}
+
+/* Crafted empty state — dashed medallion + copy. */
+.empty-state {
+  text-align: center; padding: 44px 32px;
+  border: 1px dashed var(--color-hairline-strong);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-1);
+}
+.empty-medallion {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 46px; height: 46px; margin: 0 auto 12px;
+  border-radius: var(--radius-md);
+  border: 1px dashed var(--color-hairline-strong);
+  color: var(--color-ink-muted);
+}
+
+/* Hover-lift utility for list rows / link cards. */
+.row-lift { transition: transform 0.13s ease, border-color 0.13s ease, background 0.13s ease; }
+.row-lift:hover { transform: translateY(-1px); border-color: var(--color-hairline-strong); }
+
+@media (prefers-reduced-motion: reduce) {
+  .stat-tile:hover, .row-lift:hover, .panel.is-interactive:hover { transform: none; }
+}
 
 /* ----------------------------------------------------------------------------
  * Inputs — surface-1 backdrop, blue focus ring (the only chromatic depth signal).
@@ -279,17 +400,37 @@ a:hover { opacity: 0.85; }
 }
 
 .modal-shell {
+  position: relative;
   width: 100%; max-width: 480px;
-  background: var(--color-surface-2);
+  /* faint top-left accent wash — matches the .card / .panel treatment */
+  background:
+    radial-gradient(120% 130% at 0% 0%, rgba(62, 207, 142, 0.06), transparent 44%),
+    var(--color-surface-2);
+  border: 1px solid var(--color-hairline);
   border-radius: var(--radius-xl);
-  padding: 24px;
+  padding: 22px;
+  max-height: calc(100vh - 32px);
+  overflow-y: auto;
   /* level-2 elevation: light edge + drop shadow */
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.06),
-    0 16px 48px rgba(0, 0, 0, 0.50);
+    0 18px 52px rgba(0, 0, 0, 0.52);
   animation: modal-lift-in 160ms cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 .modal-shell-lg { max-width: 640px; }
+
+/* Modal header: tinted glyph + title/subtitle + close, divided by a hairline. */
+.modal-head {
+  display: flex; align-items: flex-start; gap: 11px;
+  padding-bottom: 14px; margin-bottom: 16px;
+  border-bottom: 1px solid var(--color-hairline-soft);
+}
+/* Modal footer: action row pinned under a hairline for a consistent base. */
+.modal-foot {
+  display: flex; justify-content: flex-end; gap: 8px;
+  padding-top: 16px; margin-top: 18px;
+  border-top: 1px solid var(--color-hairline-soft);
+}
 
 @keyframes modal-fade-in {
   from { opacity: 0; } to { opacity: 1; }
@@ -310,32 +451,154 @@ a:hover { opacity: 0.85; }
 }
 
 /* ----------------------------------------------------------------------------
- * Segmented pill control — the Framer pricing-tab recipe.
- * Use: <div class="tabs-pill"><button class="tabs-pill-item is-selected">…
+ * Groups — brand "patch-bay": a hub card whose platforms are ports on a rail,
+ * Facebook the source that fans out. Restrained: gray surfaces + one green
+ * accent, with a per-platform tint dot as the only added colour.
+ * ------------------------------------------------------------------------- */
+
+@keyframes group-rise {
+  from { opacity: 0; transform: translateY(10px) scale(0.99); }
+  to   { opacity: 1; transform: translateY(0)    scale(1); }
+}
+
+.group-card {
+  position: relative;
+  background:
+    radial-gradient(120% 140% at 0% 0%, rgba(62, 207, 142, 0.05), transparent 42%),
+    var(--color-surface-2);
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-lg);
+  padding: 18px;
+  opacity: 0;
+  animation: group-rise 420ms cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.group-card:hover {
+  border-color: var(--color-hairline-strong);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
+}
+
+/* Hub glyph — the brand initial in a green-tinted node. */
+.group-hub {
+  width: 38px; height: 38px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: var(--radius-md);
+  background: linear-gradient(150deg, rgba(62, 207, 142, 0.22), rgba(62, 207, 142, 0.06));
+  border: 1px solid rgba(62, 207, 142, 0.30);
+  color: var(--color-accent);
+  font-weight: 600; font-size: 16px; letter-spacing: -0.02em;
+}
+
+/* Ports rail — one tile per destination. */
+.group-rail {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(168px, 1fr));
+  gap: 10px;
+}
+
+.group-port {
+  position: relative;
+  background: var(--color-surface-3);
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-md);
+  padding: 11px 12px;
+  min-height: 74px;
+  display: flex; flex-direction: column; gap: 8px;
+  transition: transform 0.13s ease, border-color 0.13s ease, background 0.13s ease;
+}
+.group-port:hover { transform: translateY(-2px); border-color: var(--color-hairline-strong); }
+.group-port.is-empty {
+  background: transparent;
+  border-style: dashed;
+  border-color: var(--color-hairline-soft);
+}
+.group-port.is-source {
+  border-color: rgba(62, 207, 142, 0.45);
+  box-shadow: inset 0 0 0 1px rgba(62, 207, 142, 0.12);
+}
+.group-port.is-source::after {
+  /* the "fan-out" tick — a small accent notch on the source port */
+  content: ''; position: absolute; top: -1px; right: 14px;
+  width: 22px; height: 2px; border-radius: 2px;
+  background: var(--color-accent);
+}
+
+.group-port-head {
+  display: flex; align-items: center; gap: 7px;
+  font-size: 11px; font-weight: 500; letter-spacing: 0.02em;
+  color: var(--color-ink-muted); text-transform: uppercase;
+}
+.group-port-dot { width: 7px; height: 7px; border-radius: 999px; flex-shrink: 0; }
+
+/* Ghost select used inside an empty port. */
+.group-assign {
+  width: 100%;
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-sm);
+  padding: 6px 8px; font-size: 12.5px;
+  transition: border-color 0.12s ease;
+}
+.group-assign:hover  { border-color: var(--color-hairline-strong); }
+.group-assign:focus  { outline: none; border-color: var(--color-accent); }
+
+/* Reveal-on-hover remove control on a filled port. */
+.group-x {
+  background: none; border: none; cursor: pointer; padding: 2px;
+  color: var(--color-ink-dim); line-height: 0; border-radius: var(--radius-xs);
+  opacity: 0; transition: opacity 0.12s ease, color 0.12s ease, background 0.12s ease;
+}
+.group-port:hover .group-x { opacity: 1; }
+.group-x:hover { color: var(--color-danger); background: var(--color-danger-soft); }
+
+/* Delete-group: ghost icon that warms to danger on hover. */
+.group-del {
+  background: none; border: none; cursor: pointer;
+  color: var(--color-ink-dim); padding: 6px; border-radius: var(--radius-sm);
+  display: inline-flex; transition: color 0.12s ease, background 0.12s ease;
+}
+.group-del:hover { color: var(--color-danger); background: var(--color-danger-soft); }
+
+@media (prefers-reduced-motion: reduce) {
+  .group-card { animation: none; opacity: 1; }
+  .group-port:hover, .group-card:hover { transform: none; }
+}
+
+/* ----------------------------------------------------------------------------
+ * Segmented tabs — ONE control across the whole app (the green-accent style
+ * from the Strategies platform filter). Flat bordered buttons; the selected
+ * one gets a soft-green fill + accent text + green hairline. Optional leading
+ * icon + disabled ("soon") state. Use: <SegmentedTabs/> (components/SegmentedTabs).
  * ------------------------------------------------------------------------- */
 
 .tabs-pill {
   display: inline-flex;
-  background: var(--color-surface-1);
-  border-radius: var(--radius-pill);
-  padding: 4px;
-  gap: 2px;
+  flex-wrap: wrap;
+  gap: 6px;
 }
 .tabs-pill-item {
+  display: inline-flex; align-items: center; gap: 6px;
   background: transparent;
   color: var(--color-ink-muted);
-  border-radius: var(--radius-pill);
-  padding: 6px 14px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  padding: 6px 12px;
   font-size: 13px; font-weight: 500; line-height: 1; letter-spacing: -0.13px;
-  border: none;
   cursor: pointer;
-  transition: background 0.15s ease, color 0.15s ease;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
-.tabs-pill-item:hover     { color: var(--color-ink); }
-.tabs-pill-item.is-selected {
-  background: var(--color-surface-2);
+.tabs-pill-item:hover:not(:disabled):not(.is-selected) {
   color: var(--color-ink);
+  background: var(--color-surface-2);
 }
+.tabs-pill-item.is-selected {
+  background: var(--color-success-soft);
+  color: var(--color-accent);
+  border-color: rgba(62, 207, 142, 0.30);
+}
+.tabs-pill-item:disabled { color: var(--color-ink-dim); opacity: 0.6; cursor: not-allowed; }
+.tabs-pill-item.is-sm { padding: 5px 10px; font-size: 12px; }
 
 /* ----------------------------------------------------------------------------
  * Chips — small inline tags. Default neutral; `is-active` for matched themes.

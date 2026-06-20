@@ -100,18 +100,18 @@ export function BotsManager() {
                     <RowActions>
                       <TableAction
                         icon="check"
+                        label={b.is_default ? 'Default' : 'Set default'}
                         onClick={() => setDefault.mutate({ id: b.id, default: !b.is_default })}
                         title={b.is_default
                           ? 'This bot is the default fallback publisher. Click to unset.'
                           : 'Make this the default fallback publisher for channels with no bot.'}
-                      >
-                        {b.is_default ? 'Default' : 'Set default'}
-                      </TableAction>
+                      />
                       <TableAction action="verify" onClick={() => verify.mutate(b.id)} title="Re-run getMe" />
                       <TableAction
                         action={b.active ? 'pause' : 'enable'}
                         onClick={() => toggle.mutate({ id: b.id, active: !b.active })}
                       />
+                      <span className="row-actions-sep" aria-hidden />
                       <TableAction
                         action="delete"
                         onClick={async () => {

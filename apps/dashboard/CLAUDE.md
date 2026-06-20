@@ -24,9 +24,9 @@ All data tables follow ONE structure. The shared helpers are in **`src/component
         <td>…</td>
         <td className="num">…</td>
         <td style={{ textAlign: 'right' }}>
-          <RowActions>
+          <RowActions danger={<TableAction action="delete" onClick={…} />}>
             <TableAction action="edit"   onClick={…} />
-            <TableAction action="delete" onClick={…} />
+            <TableAction action="enable" onClick={…} />
           </RowActions>
         </td>
       </tr>
@@ -35,7 +35,7 @@ All data tables follow ONE structure. The shared helpers are in **`src/component
 </div>
 ```
 
-**Row actions** — always `<TableAction>` from `ui/table`. The canonical vocabulary (one icon + label per semantic action) is the `ACTION` map; never pick a different icon/label for these:
+**Row actions** — always `<TableAction>` from `ui/table`. It renders a bordered square **icon button** (`.btn-act`); the label is a hover tooltip (pass `label` only when you want the text shown too, which tables normally don't). The **destructive action goes in `<RowActions danger={…}>`** — it's rendered after a divider so it can't be misclicked next to Enable/Pause. The canonical vocabulary (one icon + tooltip per semantic action) is the `ACTION` map; never pick a different icon for these:
 
 | Action | `action` key | Icon | Label | Variant |
 |---|---|---|---|---|

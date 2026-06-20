@@ -161,14 +161,13 @@ function RecommendationRow({ item: r, idx, targetSet }: {
         <RowActions>
           <TableAction
             icon="plus"
+            label="Track"
             onClick={() => track.mutate()}
             disabled={!username || track.isPending}
             title={username
               ? 'Add this channel to /channels and open its detail page'
               : 'Private invite link — add manually via the Add Channel modal'}
-          >
-            Track
-          </TableAction>
+          />
           <a
             href={teleadsUrl(r.slug)}
             target="_blank"

@@ -30,12 +30,14 @@ export function ActionsTh() {
 }
 
 /**
- * A standard table row-action button (icon + label). Pass a canonical `action`
- * (which sets icon + label + danger) — or override with `icon`/`children`/
- * `danger`. Destructive actions render the `.btn-tiny-danger` variant.
+ * The standard row / card action control — a bordered square ICON button
+ * (`.btn-act`), with the label as a hover tooltip. Pass a canonical `action`
+ * (sets icon + tooltip + danger) or override with `icon`/`title`/`danger`.
+ * Set `label` to also render the text beside the icon (rare; tables stay
+ * icon-only for density). Destructive actions use the `.btn-act-danger` variant.
  */
 export function TableAction({
-  action, icon, danger, title, disabled, onClick, children, style,
+  action, icon, danger, title, disabled, onClick, label, style,
 }: {
   action?:   ActionKey;
   icon?:     IconName;
@@ -43,34 +45,41 @@ export function TableAction({
   title?:    string;
   disabled?: boolean;
   onClick?:  () => void;
-  /** Override the label; defaults to the canonical action label. */
-  children?: ReactNode;
+  /** Render the text label beside the icon (default: tooltip only). */
+  label?:    ReactNode;
   style?:    CSSProperties;
 }) {
   const a = action ? ACTION[action] : undefined;
   const useIcon = icon ?? a?.icon;
   const isDanger = danger ?? a?.danger ?? false;
-  const label = children !== undefined ? children : a?.label;
+  const tip = title ?? (typeof a?.label === 'string' ? a.label : undefined);
+  const labelled = label !== undefined;
   return (
     <button
       type="button"
-      className={isDanger ? 'btn-tiny-danger' : 'btn-tiny'}
-      title={title}
+      className={isDanger ? 'btn-act btn-act-danger' : 'btn-act'}
+      title={tip}
+      aria-label={tip}
       disabled={disabled}
       onClick={onClick}
-      style={{ display: 'inline-flex', alignItems: 'center', gap: 4, ...style }}
+      style={labelled ? { width: 'auto', gap: 6, padding: '0 10px', ...style } : style}
     >
-      {useIcon && <Icon name={useIcon} size={12} />}
-      {label}
+      {useIcon && <Icon name={useIcon} size={14} />}
+      {labelled && (label ?? a?.label)}
     </button>
   );
 }
 
-/** Right-aligned container for an Actions cell — consistent gap + wrapping. */
-export function RowActions({ children }: { children: ReactNode }) {
+/**
+ * Right-aligned container for an Actions cell. Put the destructive action in the
+ * `danger` slot — it's rendered after a divider so it can't be misclicked next
+ * to Enable/Pause.
+ */
+export function RowActions({ children, danger }: { children?: ReactNode; danger?: ReactNode }) {
   return (
-    <div style={{ display: 'inline-flex', gap: 6, justifyContent: 'flex-end', flexWrap: 'wrap', alignItems: 'center' }}>
+    <div style={{ display: 'inline-flex', gap: 6, justifyContent: 'flex-end', alignItems: 'center' }}>
       {children}
+      {danger != null && <><span className="row-actions-sep" aria-hidden />{danger}</>}
     </div>
   );
 }

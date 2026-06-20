@@ -205,18 +205,18 @@ function StrategyRow({
           <Link
             to={'/app/strategies/$id' as never}
             params={{ id: s.id } as never}
-            className="btn-tiny"
+            className="btn-act"
             title="Edit strategy + see example post"
+            aria-label="Edit strategy"
             onClick={(e) => e.stopPropagation()}
-            style={{ display: 'inline-flex', alignItems: 'center', gap: 4, textDecoration: 'none' }}
           >
-            <PlatformGlyph name="pencil" size={12} />
-            Edit
+            <PlatformGlyph name="pencil" size={14} />
           </Link>
           <TableAction
             action={s.enabled ? 'pause' : 'enable'}
             onClick={onToggle}
           />
+          <span className="row-actions-sep" aria-hidden />
           <TableAction action="delete" onClick={onDelete} />
         </RowActions>
       </td>
