@@ -7,7 +7,8 @@ import { AddTelegraphAccountModal } from '../AddTelegraphAccountModal';
 import { Icon } from '../Icon';
 import { Badge } from '../ui/Badge';
 import { useConfirm } from '../ui/ConfirmDialog';
-import { TableAction, RowActions, ActionsTh } from '../ui/table';
+import { TableAction, RowActions } from '../ui/table';
+import { EmptyState } from '../ui/primitives';
 import {
   useTelegraphAccounts, useDeleteTelegraphAccount,
   useToggleTelegraphActive, useVerifyTelegraphAccount,
@@ -39,69 +40,84 @@ export function TelegraphManager() {
       {error && <p className="text-body-sm" style={{ color: 'var(--color-danger)' }}>{(error as Error).message}</p>}
 
       {data && data.length === 0 && (
-        <div className="card" style={{ textAlign: 'center', padding: 40 }}>
-          <p className="text-body" style={{ color: 'var(--color-ink-muted)', margin: 0 }}>
-            No Telegraph accounts yet — add one to publish recipe articles.
-          </p>
-        </div>
+        <EmptyState
+          icon="telegraph"
+          title="No Telegraph accounts yet"
+          note="Add one to publish recipe articles with Instant View."
+        />
       )}
 
       {data && data.length > 0 && (
-        <div className="table-wrap">
-          <table className="table">
-            <thead>
-              <tr>
-                <th>Account id</th>
-                <th>Short name</th>
-                <th>Token env</th>
-                <th>Status</th>
-                <th>Last verified</th>
-                <ActionsTh />
-              </tr>
-            </thead>
-            <tbody>
-              {data.map(a => (
-                <tr key={a.id}>
-                  <td style={{ fontVariantNumeric: 'tabular-nums', color: 'var(--color-ink)' }}>{a.account_id}</td>
-                  <td>{a.short_name ?? <span style={{ color: 'var(--color-ink-dim)' }}>—</span>}</td>
-                  <td style={{ fontVariantNumeric: 'tabular-nums', color: 'var(--color-ink-muted)' }}>{a.token_env}</td>
-                  <td>
-                    {a.verify_error
-                      ? <Badge tone="danger" title={a.verify_error}>
-                          <Icon name="warning" size={12} style={{ marginRight: 4 }} />
-                          {a.verify_error.slice(0, 40)}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+          {data.map((a, i) => (
+            <div
+              key={a.id}
+              className="card row-lift compose-rise"
+              style={{
+                display: 'flex', alignItems: 'center', gap: 16,
+                padding: '13px 18px',
+                animationDelay: `${Math.min(i, 12) * 34}ms`,
+              }}
+            >
+              {/* Avatar */}
+              <span style={{
+                width: 34, height: 34, flexShrink: 0,
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                borderRadius: 'var(--radius-md)',
+                background: 'var(--color-surface-3)', border: '1px solid var(--color-hairline)',
+                color: 'var(--color-ink-muted)',
+              }}>
+                <Icon name="telegraph" size={16} />
+              </span>
+
+              {/* Identity + status */}
+              <div style={{ minWidth: 0, flex: 1 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
+                  <span className="text-body" style={{ color: 'var(--color-ink)', fontWeight: 500, fontVariantNumeric: 'tabular-nums' }}>
+                    {a.account_id}
+                  </span>
+                  {a.short_name && <span className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>{a.short_name}</span>}
+                  {a.verify_error
+                    ? <Badge tone="danger" title={a.verify_error}>
+                        <Icon name="warning" size={11} /> {a.verify_error.slice(0, 40)}
+                      </Badge>
+                    : a.short_name
+                      ? <Badge tone="success" title="getAccountInfo succeeded — token works.">
+                          <Icon name="check" size={11} /> verified
                         </Badge>
-                      : a.short_name
-                        ? <Badge tone="success" title="getAccountInfo succeeded — token works.">
-                            <Icon name="check" size={12} style={{ marginRight: 4 }} />
-                            verified
-                          </Badge>
-                        : <span className="chip" title="Never verified. Click Verify to confirm the token.">unverified</span>}
-                    {!a.active && <span className="chip" title="Account is paused — not used for publishing." style={{ marginLeft: 6 }}>inactive</span>}
-                  </td>
-                  <td className="meta">
-                    {a.last_verified_at ? new Date(a.last_verified_at).toLocaleString() : '—'}
-                  </td>
-                  <td style={{ textAlign: 'right' }}>
-                    <RowActions>
-                      <TableAction action="verify" onClick={() => verify.mutate(a.id)} title="Re-run getAccountInfo" />
-                      <TableAction
-                        action={a.active ? 'pause' : 'enable'}
-                        onClick={() => toggle.mutate({ id: a.id, active: !a.active })}
-                      />
-                      <span className="row-actions-sep" aria-hidden />
-                      <TableAction
-                        action="delete"
-                        onClick={async () => {
-                          if (await confirm(`delete Telegraph account ${a.account_id}`)) remove.mutate(a.id);
-                        }}
-                      />
-                    </RowActions>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                      : <Badge tone="neutral" title="Never verified. Click Verify to confirm the token.">unverified</Badge>}
+                  {!a.active && <Badge tone="neutral" title="Account is paused — not used for publishing.">inactive</Badge>}
+                </div>
+                <div className="text-micro" style={{ color: 'var(--color-ink-muted)', marginTop: 4, display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>
+                  {a.token_env && (
+                    <>
+                      <span style={{ fontVariantNumeric: 'tabular-nums' }}>env: {a.token_env}</span>
+                      <span style={{ color: 'var(--color-ink-dim)' }}>·</span>
+                    </>
+                  )}
+                  <span>verified {a.last_verified_at ? new Date(a.last_verified_at).toLocaleString() : 'never'}</span>
+                </div>
+              </div>
+
+              {/* Actions */}
+              <div style={{ flexShrink: 0 }}>
+                <RowActions>
+                  <TableAction action="verify" onClick={() => verify.mutate(a.id)} title="Re-run getAccountInfo" />
+                  <TableAction
+                    action={a.active ? 'pause' : 'enable'}
+                    onClick={() => toggle.mutate({ id: a.id, active: !a.active })}
+                  />
+                  <span className="row-actions-sep" aria-hidden />
+                  <TableAction
+                    action="delete"
+                    onClick={async () => {
+                      if (await confirm(`delete Telegraph account ${a.account_id}`)) remove.mutate(a.id);
+                    }}
+                  />
+                </RowActions>
+              </div>
+            </div>
+          ))}
         </div>
       )}
 
