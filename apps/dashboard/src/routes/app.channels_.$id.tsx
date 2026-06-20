@@ -19,6 +19,7 @@ import { InlineScheduleEditor } from '../components/InlineScheduleEditor';
 import { useChannelThemes } from '../api/discovery';
 import { Icon } from '../components/Icon';
 import { Badge } from '../components/ui/Badge';
+import { StatTile, SectionCard, EmptyState } from '../components/ui/primitives';
 import { FINITE_POOL_TYPES, isLowContent } from '../lib/runway';
 import {
   POLL_TIER_HELP, CHANNEL_KIND_HELP, CHANNEL_FLAG_HELP, STRATEGY_STATUS_HELP,
@@ -78,9 +79,24 @@ function ChannelDetailPage() {
   const themesQ     = useChannelThemes(id);
   const strategiesQ = useStrategies();
 
-  if (channelQ.isLoading) return <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>Loading…</p>;
-  if (channelQ.error)     return <p className="text-body-sm" style={{ color: 'var(--color-danger)' }}>{(channelQ.error as Error).message}</p>;
-  if (!channelQ.data)     return null;
+  if (channelQ.isLoading) {
+    return (
+      <div className="panel compose-rise" style={{ textAlign: 'center', padding: 56, color: 'var(--color-ink-muted)' }}>
+        <div style={{
+          display: 'inline-flex', padding: 16, borderRadius: 'var(--radius-pill)',
+          border: '1px dashed var(--color-hairline-strong)', background: 'var(--color-surface-2)',
+          marginBottom: 16, opacity: 0.6,
+        }}>
+          <Icon name="refresh" size={24} />
+        </div>
+        <p className="text-body-sm" style={{ margin: 0 }}>Loading channel…</p>
+      </div>
+    );
+  }
+  if (channelQ.error) {
+    return <EmptyState icon="warning" title="Couldn’t load channel" note={(channelQ.error as Error).message} />;
+  }
+  if (!channelQ.data) return null;
 
   const c = channelQ.data;
 
@@ -102,8 +118,16 @@ function ChannelDetailPage() {
   const nextRun = soonestNextRun(allBound);
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
-      <header style={{ display: 'flex', alignItems: 'flex-start', gap: isMobile ? 12 : 18 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 28 }}>
+      <header
+        className="card-featured compose-rise"
+        style={{
+          display: 'flex',
+          alignItems: 'flex-start',
+          gap: isMobile ? 14 : 20,
+          animationDelay: '0ms',
+        }}
+      >
         <ChannelAvatar
           name={c.title ?? c.username ?? c.channelKey}
           src={null}
@@ -111,24 +135,37 @@ function ChannelDetailPage() {
           title={c.title ?? c.username ?? id}
         />
         <div style={{ flex: 1, minWidth: 0 }}>
-        <h1 className="text-display-md" style={{ margin: 0 }}>
-          {c.title ?? c.channelKey ?? (c.username ? `@${c.username}` : id)}
-        </h1>
-        <div style={{ marginTop: 8, display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
+          <h1 className="text-display-md" style={{ margin: 0 }}>
+            {c.title ?? c.channelKey ?? (c.username ? `@${c.username}` : id)}
+          </h1>
+          {c.publishPaused && (
+            <span className="chip chip-warning" title={CHANNEL_FLAG_HELP.publishPaused}>
+              <Icon name="pause" size={11} style={{ marginRight: 4, verticalAlign: 'middle' }} />paused
+            </span>
+          )}
+          {c.trackingStatus === 'not_subscribed' && (
+            <span className="chip chip-danger" title="The publishing bot is not subscribed to this channel.">not subscribed</span>
+          )}
+          {c.kind && (
+            <span className="chip" title={CHANNEL_KIND_HELP[c.kind as 'public' | 'private'] ?? c.kind}>{c.kind}</span>
+          )}
+        </div>
+        <div style={{ marginTop: 8, display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
           {c.kind === 'private' && c.tgChatId && (
-            <span className="text-body-sm" style={{ color: 'var(--color-ink-muted)', fontVariantNumeric: 'tabular-nums' }}>
+            <span className="text-body-sm tabular-nums" style={{ color: 'var(--color-ink-muted)' }}>
               {c.tgChatId}
             </span>
           )}
           {c.kind !== 'private' && c.username && (
             <span className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>@{c.username}</span>
           )}
-          <span className="text-body-sm" style={{ color: 'var(--color-ink-dim)' }}>·</span>
           <span className="text-body-sm" style={{ color: 'var(--color-ink)' }}>
-            <span style={{ fontVariantNumeric: 'tabular-nums' }}>{fmtNumber(c.subsCount)}</span>
-            <span style={{ color: 'var(--color-ink-muted)' }}> subs</span>
+            <span className="tabular-nums">{fmtNumber(c.subsCount)}</span>
+            <span style={{ color: 'var(--color-ink-muted)' }}> subscribers</span>
           </span>
           <span className="text-body-sm" style={{ color: 'var(--color-ink-dim)' }}>·</span>
+          <span className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>poll</span>
           <select
             value={c.pollTier}
             onChange={async (e) => {
@@ -141,7 +178,7 @@ function ChannelDetailPage() {
             }}
             disabled={setTier.isPending}
             title={POLL_TIER_HELP[c.pollTier]}
-            className="input-field"
+            className="input-field tabular-nums"
             style={{ padding: '2px 8px', fontSize: 12, width: 'auto' }}
           >
             <option value="hot">hot</option>
@@ -153,7 +190,7 @@ function ChannelDetailPage() {
           <div style={{
             marginLeft: isMobile ? 0 : 'auto',
             width: isMobile ? '100%' : 'auto',
-            marginTop: isMobile ? 4 : 0,
+            marginTop: isMobile ? 6 : 0,
             display: 'flex', flexWrap: 'wrap', gap: 6,
           }}>
             <button
@@ -195,7 +232,7 @@ function ChannelDetailPage() {
           </div>
         </div>
         {c.about && (
-          <p className="text-body" style={{ marginTop: 12, maxWidth: 720, color: 'var(--color-ink-muted)', lineHeight: 1.5 }}>
+          <p className="text-body" style={{ marginTop: 14, maxWidth: 720, color: 'var(--color-ink-muted)', lineHeight: 1.5 }}>
             {c.about}
           </p>
         )}
@@ -222,50 +259,60 @@ function ChannelDetailPage() {
       )}
 
       {c.isMine && (
-        <Section title="Publishing strategies">
+        <SectionCard title="Publishing strategies" icon="strategies" action={<SectionCaption>primary + forward bindings</SectionCaption>} delay={120}>
           <StrategiesPanel
             primary={primaryStrategies}
             forwards={forwardStrategies}
             isLoading={strategiesQ.isLoading}
           />
-        </Section>
+        </SectionCard>
       )}
 
       {c.isMine && (
-        <Section title="Forward routes">
+        <SectionCard title="Forward routes" icon="connections" delay={160}>
           <ForwardRoutesPanel sourceChannelId={id} />
-        </Section>
+        </SectionCard>
       )}
 
-      <Section title="ROI estimate">
+      <SectionCard title="ROI estimate" icon="recommendations" delay={200}>
         <RoiPanel channelId={id} />
-      </Section>
+      </SectionCard>
 
-      <Section title="Subscribers over time">
+      <SectionCard title="Subscribers over time" icon="graph" action={<SectionCaption>full history</SectionCaption>} delay={240}>
         {subsQ.data && subsQ.data.points.length > 0
           ? <SubsHistoryChart points={subsQ.data.points} />
-          : <Empty>No history yet — wait for the next poll cycle.</Empty>}
-      </Section>
+          : subsQ.isLoading
+            ? <LoadingState note="Loading history…" />
+            : <EmptyState icon="graph" title="No history yet" note="Wait for the next poll cycle." />}
+      </SectionCard>
 
-      <Section title="Views per post (last 30)">
+      <SectionCard title="Views per post" icon="channels" action={<SectionCaption>last 30</SectionCaption>} delay={280}>
         {postsQ.data && postsQ.data.items.length > 0
           ? <ViewsBarChart posts={postsQ.data.items} />
-          : <Empty>No posts yet.</Empty>}
-      </Section>
+          : postsQ.isLoading
+            ? <LoadingState note="Loading posts…" />
+            : <EmptyState icon="channels" title="No posts yet" />}
+      </SectionCard>
 
-      <Section title="Engagement rate">
+      <SectionCard title="Engagement rate" icon="analytics" action={<SectionCaption>reactions + forwards / views</SectionCaption>} delay={320}>
         {postsQ.data && postsQ.data.items.length > 0
           ? <EngagementChart posts={postsQ.data.items} />
-          : <Empty>No data.</Empty>}
-      </Section>
+          : postsQ.isLoading
+            ? <LoadingState note="Loading posts…" />
+            : <EmptyState icon="analytics" title="No data" />}
+      </SectionCard>
 
-      <Section title="Top 5 posts by views">
-        {topQ.data && <PostsList posts={topQ.data.items} />}
-      </Section>
+      <SectionCard title="Top posts by views" icon="graph" action={<SectionCaption>top 5</SectionCaption>} delay={360}>
+        {topQ.data
+          ? <PostsList posts={topQ.data.items} />
+          : <LoadingState note="Loading top posts…" />}
+      </SectionCard>
 
-      <Section title="Recent posts">
-        {postsQ.data && <PostsList posts={postsQ.data.items} />}
-      </Section>
+      <SectionCard title="Recent posts" icon="channels" action={<SectionCaption>latest first</SectionCaption>} delay={400}>
+        {postsQ.data
+          ? <PostsList posts={postsQ.data.items} />
+          : <LoadingState note="Loading posts…" />}
+      </SectionCard>
     </div>
   );
 }
@@ -275,68 +322,72 @@ function ChannelDetailPage() {
 function StatStrip({
   channel, strategiesCount, nextRunAt,
 }: { channel: TrackedChannel; strategiesCount: number; nextRunAt: string | null }) {
+  const themes = channel.themes ?? [];
   return (
-    <div
-      style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(170px, 1fr))',
-        gap: 12,
-      }}
-    >
-      <Stat label="Bot" help="Telegram bot account that publishes content into this channel. Bound via channel config.">
-        {channel.bot
-          ? <span
-              className="text-body-sm"
-              style={{ color: 'var(--color-ink)' }}
-              title={`${channel.bot.bot_id}${channel.bot.username ? ` (@${channel.bot.username})` : ''}${!channel.bot.active ? ' — ' + BOT_STATUS_HELP.inactive : ''}`}
-            >
-              <Icon name="bots" size={12} style={{ marginRight: 4, verticalAlign: 'middle' }} />
-              {channel.bot.username ?? channel.bot.bot_id}
-              {!channel.bot.active && <span className="text-micro" style={{ color: 'var(--color-ink-dim)', marginLeft: 6 }}>inactive</span>}
-            </span>
-          : <span className="text-body-sm" style={{ color: 'var(--color-ink-dim)' }}>— none</span>}
-      </Stat>
-      <Stat label="Channel key" help="Address used to publish into this channel — '@username' for public, '-100…' numeric id for private.">
-        <span className="text-body-sm" style={{ color: 'var(--color-ink)', fontVariantNumeric: 'tabular-nums' }}>
-          {channel.channelKey ?? <span style={{ color: 'var(--color-ink-dim)' }}>—</span>}
-        </span>
-      </Stat>
-      <Stat label="Kind" help={channel.kind ? CHANNEL_KIND_HELP[channel.kind as 'public' | 'private'] : 'Whether the channel is public (@username) or private (numeric id).'}>
-        <span className="text-body-sm" style={{ color: 'var(--color-ink)' }}>
-          {channel.kind ?? <span style={{ color: 'var(--color-ink-dim)' }}>—</span>}
-        </span>
-      </Stat>
-      <Stat label="Strategies" help="Number of strategy bindings that publish content into this channel — primary bindings + forward-route inheritance.">
-        <span className="text-body-sm" style={{ color: 'var(--color-ink)', fontVariantNumeric: 'tabular-nums' }}>
-          {strategiesCount}
-        </span>
-      </Stat>
-      <Stat label="Next post" help="Soonest scheduled fire across all enabled strategies bound to this channel. Computed server-side from cron expressions.">
-        {nextRunAt
-          ? <span className="text-body-sm" style={{ color: 'var(--color-ink)', fontVariantNumeric: 'tabular-nums' }} title={new Date(nextRunAt).toLocaleString()}>
-              {formatRelativeFuture(nextRunAt)}
-            </span>
-          : <span className="text-body-sm" style={{ color: 'var(--color-ink-dim)' }}>— paused</span>}
-      </Stat>
-      <Stat label="Themes" help="Tags assigned to this channel for the Phase 4 Recommendations matching. Edit via the Themes button.">
-        <span className="text-body-sm" style={{ color: 'var(--color-ink)' }}>
-          {(channel.themes ?? []).length === 0
-            ? <span style={{ color: 'var(--color-ink-dim)' }}>none</span>
-            : (channel.themes ?? []).slice(0, 3).join(', ') + ((channel.themes ?? []).length > 3 ? ` +${(channel.themes ?? []).length - 3}` : '')}
-        </span>
-      </Stat>
-    </div>
-  );
-}
-
-function Stat({ label, help, children }: { label: string; help?: string; children: React.ReactNode }) {
-  return (
-    <div className="card" style={{ padding: '12px 14px' }} title={help}>
-      <div className="text-micro" style={{ color: 'var(--color-ink-muted)', marginBottom: 4, display: 'flex', alignItems: 'center', gap: 4 }}>
-        {label}
-        {help && <Icon name="info" size={11} style={{ color: 'var(--color-ink-dim)', verticalAlign: 'middle' }} />}
-      </div>
-      <div style={{ minHeight: 18 }}>{children}</div>
+    <div className="stat-grid">
+      <StatTile
+        label="Subscribers"
+        icon="recommendations"
+        value={fmtNumber(channel.subsCount)}
+      />
+      <StatTile
+        label="Strategies"
+        icon="strategies"
+        accent={strategiesCount > 0}
+        value={
+          <span style={{ color: strategiesCount > 0 ? 'var(--color-ink)' : 'var(--color-ink-dim)' }}>
+            {strategiesCount}
+          </span>
+        }
+      />
+      <StatTile
+        label="Next post"
+        icon="calendar"
+        value={
+          nextRunAt
+            ? <span className="text-body-sm tabular-nums" style={{ color: 'var(--color-accent)', fontWeight: 600 }} title={new Date(nextRunAt).toLocaleString()}>
+                {formatRelativeFuture(nextRunAt)}
+              </span>
+            : <span className="text-body-sm" style={{ color: 'var(--color-ink-dim)' }}>paused</span>
+        }
+      />
+      <StatTile
+        label="Bot"
+        icon="bots"
+        value={
+          channel.bot
+            ? <span
+                className="text-body-sm"
+                style={{ color: channel.bot.active ? 'var(--color-ink)' : 'var(--color-ink-muted)' }}
+                title={`${channel.bot.bot_id}${channel.bot.username ? ` (@${channel.bot.username})` : ''}${!channel.bot.active ? ' — ' + BOT_STATUS_HELP.inactive : ''}`}
+              >
+                {channel.bot.username ?? channel.bot.bot_id}
+                {!channel.bot.active && <span className="text-micro" style={{ color: 'var(--color-ink-dim)', marginLeft: 6 }}>inactive</span>}
+              </span>
+            : <span className="text-body-sm" style={{ color: 'var(--color-ink-dim)' }}>none</span>
+        }
+      />
+      <StatTile
+        label="Channel key"
+        icon="channels"
+        value={
+          <span className="text-body-sm tabular-nums" style={{ color: 'var(--color-ink)' }}>
+            {channel.channelKey ?? <span style={{ color: 'var(--color-ink-dim)' }}>—</span>}
+          </span>
+        }
+      />
+      <StatTile
+        label="Themes"
+        icon="discovery"
+        value={
+          themes.length === 0
+            ? <span className="text-body-sm" style={{ color: 'var(--color-ink-dim)' }}>none</span>
+            : <span style={{ display: 'flex', flexWrap: 'wrap', gap: 4 }}>
+                {themes.slice(0, 3).map(t => <span key={t} className="chip">{t}</span>)}
+                {themes.length > 3 && <span className="chip" style={{ color: 'var(--color-ink-muted)' }}>+{themes.length - 3}</span>}
+              </span>
+        }
+      />
     </div>
   );
 }
@@ -351,14 +402,17 @@ function StrategiesPanel({
   const [editingId, setEditingId] = useState<string | null>(null);
 
   if (isLoading) {
-    return <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>Loading…</p>;
+    return <LoadingState note="Loading strategies…" />;
   }
   const total = primary.length + forwards.length;
   if (total === 0) {
     return (
-      <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)', margin: 0 }}>
-        No strategies publish to this channel. <Link to="/app/strategies" className="link-accent">Add one</Link>.
-      </p>
+      <EmptyState
+        icon="strategies"
+        title="No strategies"
+        note="No strategies publish to this channel."
+        action={<Link to="/app/strategies" className="link-accent">Add a strategy</Link>}
+      />
     );
   }
   return (
@@ -452,22 +506,19 @@ function StrategyTableRow({
           : <span className="text-body-sm" style={{ color: 'var(--color-ink-dim)' }}>—</span>}
       </td>
       <td>
-        {s.last_run ? (
-          <span
-            className={
-              s.last_run.status === 'ok'    ? 'chip chip-success'
-            : s.last_run.status === 'error' ? 'chip chip-danger'
-            : s.last_run.status === 'skipped' ? 'chip chip-warning'
-            : 'chip'
-            }
-            title={
-              (RUN_STATUS_HELP[s.last_run.status] ?? s.last_run.status)
-              + (s.last_run.error ? `\n\n${s.last_run.error}` : '')
-            }
-          >
-            {s.last_run.status}
-          </span>
-        ) : <span className="text-body-sm" style={{ color: 'var(--color-ink-dim)' }} title="No execution recorded yet.">never</span>}
+        {s.last_run ? (() => {
+          const tooltip = (RUN_STATUS_HELP[s.last_run.status] ?? s.last_run.status)
+            + (s.last_run.error ? `\n\n${s.last_run.error}` : '');
+          return s.last_run.status === 'ok' ? (
+            <Badge tone="success" title={tooltip}>{s.last_run.status}</Badge>
+          ) : s.last_run.status === 'error' ? (
+            <Badge tone="danger" title={tooltip}>{s.last_run.status}</Badge>
+          ) : s.last_run.status === 'skipped' ? (
+            <Badge tone="warning" title={tooltip}>{s.last_run.status}</Badge>
+          ) : (
+            <span className="chip" title={tooltip}>{s.last_run.status}</span>
+          );
+        })() : <span className="text-body-sm" style={{ color: 'var(--color-ink-dim)' }} title="No execution recorded yet.">never</span>}
       </td>
       <td style={{ fontVariantNumeric: 'tabular-nums' }}>
         {!FINITE_POOL_TYPES.has(s.type) || s.content_remaining == null ? (
@@ -484,7 +535,7 @@ function StrategyTableRow({
       </td>
       <td>
         {s.enabled
-          ? <span className="chip chip-success" title={STRATEGY_STATUS_HELP.enabled}><Icon name="check" size={12} style={{ marginRight: 4 }} />enabled</span>
+          ? <Badge tone="success" title={STRATEGY_STATUS_HELP.enabled}><Icon name="check" size={12} style={{ marginRight: 4 }} />enabled</Badge>
           : <span className="chip" title={STRATEGY_STATUS_HELP.paused}>paused</span>}
       </td>
     </tr>
@@ -519,17 +570,37 @@ function formatRelativeFuture(iso: string): string {
   return `in ${d}d ${h - d * 24}h`;
 }
 
-/** Section heading uses .text-eyebrow (caption tier, ink-muted) — no uppercase
- *  + weight-bump anti-pattern. Hierarchy comes from size + tracking. */
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
+/** Right-aligned muted caption for a SectionCard header action slot. */
+function SectionCaption({ children }: { children: React.ReactNode }) {
   return (
-    <section>
-      <h2 className="text-eyebrow" style={{ margin: 0, marginBottom: 10 }}>{title}</h2>
+    <span className="text-caption" style={{ color: 'var(--color-ink-dim)', fontSize: 11 }}>
       {children}
-    </section>
+    </span>
   );
 }
 
-function Empty({ children }: { children: React.ReactNode }) {
-  return <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>{children}</p>;
+/** Dashed-icon in-card loading state (kept distinct from the empty state). */
+function LoadingState({ note }: { note: string }) {
+  return (
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: 10,
+        padding: '36px 16px',
+        minHeight: 120,
+        border: '1px dashed var(--color-hairline-strong)',
+        borderRadius: 'var(--radius-md)',
+        color: 'var(--color-ink-muted)',
+        textAlign: 'center',
+      }}
+    >
+      <span style={{ display: 'inline-flex', opacity: 0.5 }}>
+        <Icon name="refresh" size={20} />
+      </span>
+      <span className="text-body-sm" style={{ margin: 0 }}>{note}</span>
+    </div>
+  );
 }

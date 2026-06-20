@@ -8,6 +8,7 @@ import { AddBotModal } from '../AddBotModal';
 import { Icon } from '../Icon';
 import { Badge } from '../ui/Badge';
 import { useConfirm } from '../ui/ConfirmDialog';
+import { TableAction, RowActions, ActionsTh } from '../ui/table';
 import { useBots, useDeleteBot, useSetDefaultBot, useToggleBotActive, useVerifyBot } from '../../api/bots';
 import { trackingApi } from '../../api/tracking';
 import { BOT_STATUS_HELP } from '../../lib/labels';
@@ -63,7 +64,7 @@ export function BotsManager() {
                 <th>Token env</th>
                 <th>Status</th>
                 <th>Last verified</th>
-                <th style={{ width: 260, textAlign: 'right' }}>Actions</th>
+                <ActionsTh />
               </tr>
             </thead>
             <tbody>
@@ -74,15 +75,15 @@ export function BotsManager() {
                   <td style={{ fontVariantNumeric: 'tabular-nums', color: 'var(--color-ink-muted)' }}>{b.token_env}</td>
                   <td>
                     {b.verify_error
-                      ? <span className="chip chip-danger" title={`${BOT_STATUS_HELP.error}\n\n${b.verify_error}`}>
+                      ? <Badge tone="danger" title={`${BOT_STATUS_HELP.error}\n\n${b.verify_error}`}>
                           <Icon name="warning" size={12} style={{ marginRight: 4 }} />
                           {b.verify_error.slice(0, 40)}
-                        </span>
+                        </Badge>
                       : b.username
-                        ? <span className="chip chip-success" title={BOT_STATUS_HELP.verified}>
+                        ? <Badge tone="success" title={BOT_STATUS_HELP.verified}>
                             <Icon name="check" size={12} style={{ marginRight: 4 }} />
                             verified
-                          </span>
+                          </Badge>
                         : <span className="chip" title={BOT_STATUS_HELP.unverified}>unverified</span>}
                     {!b.active && <span className="chip" title={BOT_STATUS_HELP.inactive} style={{ marginLeft: 6 }}>inactive</span>}
                     {b.is_default && (
@@ -96,31 +97,23 @@ export function BotsManager() {
                     {b.last_verified_at ? new Date(b.last_verified_at).toLocaleString() : '—'}
                   </td>
                   <td style={{ textAlign: 'right' }} onClick={(e) => e.stopPropagation()}>
-                    <div style={{ display: 'inline-flex', gap: 6 }}>
-                      <button
+                    <RowActions>
+                      <TableAction
+                        icon="check"
                         onClick={() => setDefault.mutate({ id: b.id, default: !b.is_default })}
-                        className="btn-tiny"
                         title={b.is_default
                           ? 'This bot is the default fallback publisher. Click to unset.'
                           : 'Make this the default fallback publisher for channels with no bot.'}
                       >
-                        {b.is_default
-                          ? <><Icon name="check" size={12} style={{ marginRight: 4 }} />Default</>
-                          : 'Set default'}
-                      </button>
-                      <button onClick={() => verify.mutate(b.id)} className="btn-tiny" title="Re-run getMe">
-                        <Icon name="refresh" size={12} style={{ marginRight: 4 }} />
-                        Verify
-                      </button>
-                      <button
+                        {b.is_default ? 'Default' : 'Set default'}
+                      </TableAction>
+                      <TableAction action="verify" onClick={() => verify.mutate(b.id)} title="Re-run getMe" />
+                      <TableAction
+                        action={b.active ? 'pause' : 'enable'}
                         onClick={() => toggle.mutate({ id: b.id, active: !b.active })}
-                        className="btn-tiny"
-                      >
-                        {b.active
-                          ? <><Icon name="pause" size={12} style={{ marginRight: 4 }} />Pause</>
-                          : <><Icon name="play"  size={12} style={{ marginRight: 4 }} />Activate</>}
-                      </button>
-                      <button
+                      />
+                      <TableAction
+                        action="delete"
                         onClick={async () => {
                           const label = b.username ? `@${b.username}` : b.bot_id;
                           let bound: Array<{ id: string; channelKey?: string | null; title?: string | null; username?: string | null }> = [];
@@ -153,12 +146,8 @@ export function BotsManager() {
                           );
                           if (ok) remove.mutate({ id: b.id, unbind: true });
                         }}
-                        className="btn-tiny-danger"
-                      >
-                        <Icon name="trash" size={12} style={{ marginRight: 4 }} />
-                        Delete
-                      </button>
-                    </div>
+                      />
+                    </RowActions>
                   </td>
                 </tr>
               ))}

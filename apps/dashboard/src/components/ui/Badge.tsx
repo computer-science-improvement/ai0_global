@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import type { CSSProperties, ReactNode } from 'react';
 
 type Tone = 'neutral' | 'success' | 'warning' | 'danger' | 'accent';
 
@@ -10,14 +10,25 @@ const STYLE: Record<Tone, { bg: string; fg: string }> = {
   accent:  { bg: 'var(--color-accent)',       fg: 'var(--color-on-accent)' },
 };
 
-export function Badge({ tone = 'neutral', children }: { tone?: Tone; children: ReactNode }) {
+export function Badge({
+  tone = 'neutral', children, title, style,
+}: {
+  tone?: Tone;
+  children: ReactNode;
+  title?: string;
+  style?: CSSProperties;
+}) {
   const s = STYLE[tone];
   return (
-    <span style={{
-      display: 'inline-flex', alignItems: 'center', gap: 4,
-      background: s.bg, color: s.fg,
-      fontSize: 10, fontWeight: 500, padding: '2px 8px',
-      borderRadius: 'var(--radius-pill)', lineHeight: 1.6,
-    }}>{children}</span>
+    <span
+      title={title}
+      style={{
+        display: 'inline-flex', alignItems: 'center', gap: 4,
+        background: s.bg, color: s.fg,
+        fontSize: 10, fontWeight: 500, padding: '2px 8px',
+        borderRadius: 'var(--radius-pill)', lineHeight: 1.6,
+        ...style,
+      }}
+    >{children}</span>
   );
 }

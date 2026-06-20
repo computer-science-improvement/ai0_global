@@ -5,7 +5,9 @@
 import { useState } from 'react';
 import { AddTelegraphAccountModal } from '../AddTelegraphAccountModal';
 import { Icon } from '../Icon';
+import { Badge } from '../ui/Badge';
 import { useConfirm } from '../ui/ConfirmDialog';
+import { TableAction, RowActions, ActionsTh } from '../ui/table';
 import {
   useTelegraphAccounts, useDeleteTelegraphAccount,
   useToggleTelegraphActive, useVerifyTelegraphAccount,
@@ -54,7 +56,7 @@ export function TelegraphManager() {
                 <th>Token env</th>
                 <th>Status</th>
                 <th>Last verified</th>
-                <th style={{ width: 260, textAlign: 'right' }}>Actions</th>
+                <ActionsTh />
               </tr>
             </thead>
             <tbody>
@@ -65,15 +67,15 @@ export function TelegraphManager() {
                   <td style={{ fontVariantNumeric: 'tabular-nums', color: 'var(--color-ink-muted)' }}>{a.token_env}</td>
                   <td>
                     {a.verify_error
-                      ? <span className="chip chip-danger" title={a.verify_error}>
+                      ? <Badge tone="danger" title={a.verify_error}>
                           <Icon name="warning" size={12} style={{ marginRight: 4 }} />
                           {a.verify_error.slice(0, 40)}
-                        </span>
+                        </Badge>
                       : a.short_name
-                        ? <span className="chip chip-success" title="getAccountInfo succeeded — token works.">
+                        ? <Badge tone="success" title="getAccountInfo succeeded — token works.">
                             <Icon name="check" size={12} style={{ marginRight: 4 }} />
                             verified
-                          </span>
+                          </Badge>
                         : <span className="chip" title="Never verified. Click Verify to confirm the token.">unverified</span>}
                     {!a.active && <span className="chip" title="Account is paused — not used for publishing." style={{ marginLeft: 6 }}>inactive</span>}
                   </td>
@@ -81,29 +83,19 @@ export function TelegraphManager() {
                     {a.last_verified_at ? new Date(a.last_verified_at).toLocaleString() : '—'}
                   </td>
                   <td style={{ textAlign: 'right' }}>
-                    <div style={{ display: 'inline-flex', gap: 6 }}>
-                      <button onClick={() => verify.mutate(a.id)} className="btn-tiny" title="Re-run getAccountInfo">
-                        <Icon name="refresh" size={12} style={{ marginRight: 4 }} />
-                        Verify
-                      </button>
-                      <button
+                    <RowActions>
+                      <TableAction action="verify" onClick={() => verify.mutate(a.id)} title="Re-run getAccountInfo" />
+                      <TableAction
+                        action={a.active ? 'pause' : 'enable'}
                         onClick={() => toggle.mutate({ id: a.id, active: !a.active })}
-                        className="btn-tiny"
-                      >
-                        {a.active
-                          ? <><Icon name="pause" size={12} style={{ marginRight: 4 }} />Pause</>
-                          : <><Icon name="play"  size={12} style={{ marginRight: 4 }} />Activate</>}
-                      </button>
-                      <button
+                      />
+                      <TableAction
+                        action="delete"
                         onClick={async () => {
                           if (await confirm(`delete Telegraph account ${a.account_id}`)) remove.mutate(a.id);
                         }}
-                        className="btn-tiny-danger"
-                      >
-                        <Icon name="trash" size={12} style={{ marginRight: 4 }} />
-                        Delete
-                      </button>
-                    </div>
+                      />
+                    </RowActions>
                   </td>
                 </tr>
               ))}

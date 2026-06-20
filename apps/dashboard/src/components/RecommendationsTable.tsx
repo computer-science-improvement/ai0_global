@@ -9,6 +9,7 @@ import { useNavigate } from '@tanstack/react-router';
 import { trackingApi } from '../api/tracking';
 import { Icon } from './Icon';
 import { ChannelAvatar } from './ChannelAvatar';
+import { TableAction, RowActions, ActionsTh } from './ui/table';
 import type { RecommendationItem } from '../api/types';
 
 interface Props {
@@ -66,7 +67,7 @@ export function RecommendationsTable({ items, targetThemes }: Props) {
             <th className="num">Price (UAH)</th>
             <th className="num">Subs/ad</th>
             <th className="num">F/M</th>
-            <th style={{ width: 200, textAlign: 'right' }}>Actions</th>
+            <ActionsTh />
           </tr>
         </thead>
         <tbody>
@@ -157,18 +158,17 @@ function RecommendationRow({ item: r, idx, targetSet }: {
           : `${r.sexRatio}/${100 - r.sexRatio}`}
       </td>
       <td style={{ textAlign: 'right' }}>
-        <div style={{ display: 'inline-flex', gap: 6 }}>
-          <button
+        <RowActions>
+          <TableAction
+            icon="plus"
             onClick={() => track.mutate()}
             disabled={!username || track.isPending}
-            className="btn-tiny"
             title={username
               ? 'Add this channel to /channels and open its detail page'
               : 'Private invite link — add manually via the Add Channel modal'}
           >
-            <Icon name="plus" size={12} style={{ marginRight: 4 }} />
             Track
-          </button>
+          </TableAction>
           <a
             href={teleadsUrl(r.slug)}
             target="_blank"
@@ -190,7 +190,7 @@ function RecommendationRow({ item: r, idx, targetSet }: {
             <Icon name="channels" size={12} style={{ marginRight: 4 }} />
             TG ↗
           </a>
-        </div>
+        </RowActions>
       </td>
     </tr>
   );

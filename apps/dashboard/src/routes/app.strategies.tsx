@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Icon } from '../components/Icon';
 import { Icon as PlatformGlyph, type IconName } from '../components/ui/Icon';
 import { Badge } from '../components/ui/Badge';
+import { TableAction, RowActions, ActionsTh } from '../components/ui/table';
 import { usePlatform } from '../lib/usePlatform';
 import { PlatformFilter } from '../components/PlatformFilter';
 import { useConfirm } from '../components/ui/ConfirmDialog';
@@ -98,7 +99,7 @@ function StrategiesPage() {
                 <th>Next run</th>
                 <th>Last run</th>
                 <th>Status</th>
-                <th style={{ width: 260, textAlign: 'right' }}>Actions</th>
+                <ActionsTh />
               </tr>
             </thead>
             <tbody>
@@ -195,33 +196,30 @@ function StrategyRow({
       </td>
       <td>
         {s.enabled
-          ? <span className="chip chip-success" title={STRATEGY_STATUS_HELP.enabled}>
+          ? <Badge tone="success" title={STRATEGY_STATUS_HELP.enabled}>
               <Icon name="check" size={12} style={{ marginRight: 4 }} />enabled
-            </span>
+            </Badge>
           : <span className="chip" title={STRATEGY_STATUS_HELP.paused}>paused</span>}
       </td>
       <td style={{ textAlign: 'right' }} onClick={(e) => e.stopPropagation()}>
-        <div style={{ display: 'inline-flex', gap: 6 }}>
+        <RowActions>
           <Link
             to={'/app/strategies/$id' as never}
             params={{ id: s.id } as never}
             className="btn-tiny"
             title="Edit strategy + see example post"
             onClick={(e) => e.stopPropagation()}
+            style={{ display: 'inline-flex', alignItems: 'center', gap: 4, textDecoration: 'none' }}
           >
-            <Icon name="pencil" size={12} style={{ marginRight: 4 }} />
+            <PlatformGlyph name="pencil" size={12} />
             Edit
           </Link>
-          <button onClick={onToggle} className="btn-tiny">
-            {s.enabled
-              ? <><Icon name="pause" size={12} style={{ marginRight: 4 }} />Pause</>
-              : <><Icon name="play"  size={12} style={{ marginRight: 4 }} />Enable</>}
-          </button>
-          <button onClick={onDelete} className="btn-tiny-danger">
-            <Icon name="trash" size={12} style={{ marginRight: 4 }} />
-            Delete
-          </button>
-        </div>
+          <TableAction
+            action={s.enabled ? 'pause' : 'enable'}
+            onClick={onToggle}
+          />
+          <TableAction action="delete" onClick={onDelete} />
+        </RowActions>
       </td>
     </tr>
   );
@@ -235,16 +233,19 @@ function LastRunCell({ last }: { last: StrategyRunSummary | null }) {
   const tooltip = last.error ? `${help}\n\n${last.error}` : help;
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-      <span className={
-        last.status === 'ok'      ? 'chip chip-success' :
-        last.status === 'error'   ? 'chip chip-danger'  :
-        last.status === 'skipped' ? 'chip chip-warning' :
-        'chip'
-      } title={tooltip}>
-        {last.status === 'ok' && <Icon name="check"  size={12} style={{ marginRight: 4 }} />}
-        {last.status === 'error' && <Icon name="warning" size={12} style={{ marginRight: 4 }} />}
-        {last.status}
-      </span>
+      {last.status === 'ok' ? (
+        <Badge tone="success" title={tooltip}>
+          <Icon name="check"  size={12} style={{ marginRight: 4 }} />{last.status}
+        </Badge>
+      ) : last.status === 'error' ? (
+        <Badge tone="danger" title={tooltip}>
+          <Icon name="warning" size={12} style={{ marginRight: 4 }} />{last.status}
+        </Badge>
+      ) : last.status === 'skipped' ? (
+        <Badge tone="warning" title={tooltip}>{last.status}</Badge>
+      ) : (
+        <span className="chip" title={tooltip}>{last.status}</span>
+      )}
       <span className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>
         {ago}{meta && ` · ${meta}`}
       </span>
@@ -290,13 +291,15 @@ function ChannelsPanel({ strategy }: { strategy: Strategy }) {
               borderRadius: 'var(--radius-md)',
             }}
           >
-            <span
-              className={c.role === 'primary' ? 'chip chip-success' : 'chip'}
-              style={{ minWidth: 64, justifyContent: 'center' }}
-              title={STRATEGY_ROLE_HELP[c.role]}
-            >
-              {c.role}
-            </span>
+            {c.role === 'primary' ? (
+              <Badge tone="success" title={STRATEGY_ROLE_HELP[c.role]} style={{ minWidth: 64, justifyContent: 'center' }}>
+                {c.role}
+              </Badge>
+            ) : (
+              <span className="chip" style={{ minWidth: 64, justifyContent: 'center' }} title={STRATEGY_ROLE_HELP[c.role]}>
+                {c.role}
+              </span>
+            )}
             <span className="text-body-sm" style={{ color: 'var(--color-ink)' }}>
               {c.title ?? c.channel_key ?? c.id}
             </span>
@@ -429,17 +432,15 @@ function RunsPanel({ strategyId }: { strategyId: string }) {
               <span style={{ color: 'var(--color-ink-muted)', fontVariantNumeric: 'tabular-nums' }}>
                 {formatRelativePast(r.started_at)}
               </span>
-              <span
-                className={
-                  r.status === 'ok'      ? 'chip chip-success' :
-                  r.status === 'error'   ? 'chip chip-danger'  :
-                  r.status === 'skipped' ? 'chip chip-warning' :
-                  'chip'
-                }
-                title={RUN_STATUS_HELP[r.status] ?? r.status}
-              >
-                {r.status}
-              </span>
+              {r.status === 'ok' ? (
+                <Badge tone="success" title={RUN_STATUS_HELP[r.status] ?? r.status}>{r.status}</Badge>
+              ) : r.status === 'error' ? (
+                <Badge tone="danger" title={RUN_STATUS_HELP[r.status] ?? r.status}>{r.status}</Badge>
+              ) : r.status === 'skipped' ? (
+                <Badge tone="warning" title={RUN_STATUS_HELP[r.status] ?? r.status}>{r.status}</Badge>
+              ) : (
+                <span className="chip" title={RUN_STATUS_HELP[r.status] ?? r.status}>{r.status}</span>
+              )}
               <span style={{ color: 'var(--color-ink-muted)', fontVariantNumeric: 'tabular-nums', textAlign: 'right' }}>
                 {r.duration_ms ? `${(r.duration_ms / 1000).toFixed(1)}s` : '—'}
               </span>
