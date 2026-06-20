@@ -11,6 +11,16 @@ import { RunTracer } from '../common/observability/run-tracer.service';
 import { CONFIG_CHANGED_CHANNEL, ConfigChangedEvent } from '../config/config-events.types';
 import { REDIS_CLIENT } from '../tracking/redis.provider';
 import { isChannelPausedError } from '../publishers/errors';
+import { withTimeout } from '../common/with-timeout';
+
+/**
+ * Hard wall-clock ceiling for a single strategy run. A hung external call (Graph
+ * API, MTProto, hosting) with no client timeout would otherwise leave the run
+ * row stuck 'running' forever and keep the in-flight guard set, so the strategy
+ * never fires again until a restart. On timeout the run is recorded as an error
+ * and the guard is released. Override via STRATEGY_RUN_TIMEOUT_MS.
+ */
+const DEFAULT_RUN_TIMEOUT_MS = 5 * 60_000;
 
 interface JobMeta { extId: string; uuid: string; }
 
@@ -218,9 +228,14 @@ export class SchedulerService implements OnApplicationBootstrap, OnModuleDestroy
         // Establish a trace store around the whole run so deep services
         // (publishers, fan-out) record their steps; persist the chain on every
         // terminal path so the activity log can show what ran and where it broke.
+        const timeoutMs = Number(process.env.STRATEGY_RUN_TIMEOUT_MS) || DEFAULT_RUN_TIMEOUT_MS;
         const steps = await this.tracer.run(async () => {
           try {
-            await this.strategyRunner.run(strategy, fresh.channelId, fresh.params, fresh.id, dest);
+            await withTimeout(
+              this.strategyRunner.run(strategy, fresh.channelId, fresh.params, fresh.id, dest),
+              timeoutMs,
+              `strategy ${name}`,
+            );
             if (runId) {
               await this.runsRepo.finishOk(runId, this.tracer.steps()).catch(err =>
                 this.logger.warn(`run-log finishOk failed for ${name}: ${err.message}`),
