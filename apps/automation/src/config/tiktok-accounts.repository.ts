@@ -1,6 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Pool } from 'pg';
 import { DB_POOL } from '../database/database.module';
+import { SecretsService } from '../common/crypto/secrets.service';
 import type { TikTokTokenSet } from './tiktok-token.util';
 
 export interface TikTokAccountRow {
@@ -30,27 +31,44 @@ export interface TikTokUpsertInput extends TikTokTokenSet {
 
 @Injectable()
 export class TikTokAccountsRepository {
-  constructor(@Inject(DB_POOL) private readonly pool: Pool) {}
+  constructor(
+    @Inject(DB_POOL) private readonly pool: Pool,
+    private readonly secrets: SecretsService,
+  ) {}
+
+  /**
+   * Decrypt the at-rest token columns so callers always see plaintext (the
+   * contract is unchanged). `maybeDecrypt` passes legacy plaintext rows through
+   * untouched, so this is safe for rows written before encryption was enabled.
+   */
+  private decode<T extends Partial<TikTokAccountRow>>(row: T): T {
+    if (!row) return row;
+    return {
+      ...row,
+      ...(typeof row.access_token === 'string'  ? { access_token:  this.secrets.maybeDecrypt(row.access_token) }  : {}),
+      ...(typeof row.refresh_token === 'string' ? { refresh_token: this.secrets.maybeDecrypt(row.refresh_token) } : {}),
+    };
+  }
 
   async list(): Promise<TikTokAccountRow[]> {
     const { rows } = await this.pool.query<TikTokAccountRow>(
       `SELECT * FROM tiktok_accounts ORDER BY created_at`,
     );
-    return rows;
+    return rows.map(r => this.decode(r));
   }
 
   async findById(id: string): Promise<TikTokAccountRow | null> {
     const { rows } = await this.pool.query<TikTokAccountRow>(
       `SELECT * FROM tiktok_accounts WHERE id = $1`, [id],
     );
-    return rows[0] ?? null;
+    return rows[0] ? this.decode(rows[0]) : null;
   }
 
   async findByOpenId(openId: string): Promise<TikTokAccountRow | null> {
     const { rows } = await this.pool.query<TikTokAccountRow>(
       `SELECT * FROM tiktok_accounts WHERE open_id = $1`, [openId],
     );
-    return rows[0] ?? null;
+    return rows[0] ? this.decode(rows[0]) : null;
   }
 
   /** Insert or, on open_id conflict, re-auth an existing account. Clears errors, re-activates. */
@@ -69,10 +87,12 @@ export class TikTokAccountsRepository {
          refresh_error            = NULL,
          last_refreshed_at        = now()
        RETURNING *`,
-      [input.openId, input.accessToken, input.refreshToken,
+      [input.openId,
+       this.secrets.encryptIfConfigured(input.accessToken),
+       this.secrets.encryptIfConfigured(input.refreshToken),
        input.accessTokenExpiresAt, input.refreshTokenExpiresAt, input.scope],
     );
-    return rows[0];
+    return this.decode(rows[0]);
   }
 
   /** Persist rotated tokens after a successful refresh. */
@@ -86,7 +106,10 @@ export class TikTokAccountsRepository {
          refresh_error            = NULL,
          last_refreshed_at        = now()
        WHERE id = $1`,
-      [id, t.accessToken, t.refreshToken, t.accessTokenExpiresAt, t.refreshTokenExpiresAt],
+      [id,
+       this.secrets.encryptIfConfigured(t.accessToken),
+       this.secrets.encryptIfConfigured(t.refreshToken),
+       t.accessTokenExpiresAt, t.refreshTokenExpiresAt],
     );
   }
 
@@ -111,7 +134,7 @@ export class TikTokAccountsRepository {
     const { rows } = await this.pool.query<TikTokAccountRow>(
       `SELECT * FROM tiktok_accounts WHERE landing_visible AND active ORDER BY landing_order, created_at`,
     );
-    return rows;
+    return rows.map(r => this.decode(r));
   }
 
   async delete(id: string): Promise<boolean> {

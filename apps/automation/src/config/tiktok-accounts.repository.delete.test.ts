@@ -1,6 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { TikTokAccountsRepository } from './tiktok-accounts.repository';
+const secretsPassthrough = { encryptIfConfigured: (v: string) => v, maybeDecrypt: (v: string) => v } as any;
 
 function fakePool(rowCount: number) {
   const calls: Array<{ sql: string; params: any[] }> = [];
@@ -10,7 +11,7 @@ function fakePool(rowCount: number) {
 
 test('delete issues DELETE with the id and returns true when a row was removed', async () => {
   const { pool, calls } = fakePool(1);
-  const repo = new TikTokAccountsRepository(pool as any);
+  const repo = new TikTokAccountsRepository(pool as any, secretsPassthrough);
   assert.equal(await repo.delete('a1'), true);
   assert.match(calls[0].sql, /DELETE FROM tiktok_accounts WHERE id = \$1/);
   assert.deepEqual(calls[0].params, ['a1']);
@@ -18,6 +19,6 @@ test('delete issues DELETE with the id and returns true when a row was removed',
 
 test('delete returns false when no row matched', async () => {
   const { pool } = fakePool(0);
-  const repo = new TikTokAccountsRepository(pool as any);
+  const repo = new TikTokAccountsRepository(pool as any, secretsPassthrough);
   assert.equal(await repo.delete('missing'), false);
 });

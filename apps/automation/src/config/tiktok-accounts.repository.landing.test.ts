@@ -1,6 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { TikTokAccountsRepository } from './tiktok-accounts.repository';
+const secretsPassthrough = { encryptIfConfigured: (v: string) => v, maybeDecrypt: (v: string) => v } as any;
 
 function fakePool() {
   const calls: Array<{ sql: string; params: any[] }> = [];
@@ -16,7 +17,7 @@ const norm = (s: string) => s.replace(/\s+/g, ' ').trim();
 
 test('setLanding issues UPDATE with [id, visible, order]', async () => {
   const { pool, calls } = fakePool();
-  const repo = new TikTokAccountsRepository(pool as any);
+  const repo = new TikTokAccountsRepository(pool as any, secretsPassthrough);
   await repo.setLanding('a1', { visible: true, order: 5 });
   const { sql, params } = calls[0];
   assert.match(sql, /UPDATE tiktok_accounts/);
@@ -28,7 +29,7 @@ test('setLanding issues UPDATE with [id, visible, order]', async () => {
 test('listFeatured selects landing_visible AND active ORDER BY landing_order, returns rows', async () => {
   const { pool, calls } = fakePool();
   (pool as any).__setRows([{ id: 'a1', landing_visible: true, landing_order: 2 }]);
-  const repo = new TikTokAccountsRepository(pool as any);
+  const repo = new TikTokAccountsRepository(pool as any, secretsPassthrough);
   const rows = await repo.listFeatured();
   assert.deepEqual(rows, [{ id: 'a1', landing_visible: true, landing_order: 2 }]);
   const sql = norm(calls[0].sql);

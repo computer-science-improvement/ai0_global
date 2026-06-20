@@ -33,6 +33,17 @@ export class SecretsService {
     return encryptToken(plaintext, key);
   }
 
+  /**
+   * Encrypt for storage WHEN a master key is configured; otherwise return the
+   * plaintext unchanged. Lets DB-only token stores (e.g. TikTok OAuth, which has
+   * no env-var fallback) upgrade to at-rest encryption once TOKEN_ENCRYPTION_KEY
+   * is set, without breaking setups that never configured a key — those keep
+   * storing plaintext exactly as before, and `maybeDecrypt` reads both back.
+   */
+  encryptIfConfigured(plaintext: string): string {
+    return this.key() ? encryptToken(plaintext, this.key()!) : plaintext;
+  }
+
   /** Decrypt a stored enc:v1 blob. Requires the master key. */
   decrypt(blob: string): string {
     const key = this.key();
