@@ -8,6 +8,10 @@ import { AgentActionsRepository } from './agent-actions.repository';
 import { AgentReplySender } from './agent-reply-sender.service';
 import { AgentScheduleExecutor } from './agent-schedule.executor';
 import { AgentActionsService } from './agent-actions.service';
+import { AgentChatClassifier } from './agent-chat-classifier.service';
+import { AgentMonitoredChatsRepository } from './agent-monitored-chats.repository';
+import { AgentOpportunitiesRepository } from './agent-opportunities.repository';
+import { AgentChatPoller } from './agent-chat.poller';
 import { ScheduledPostsModule } from '../scheduled-posts/scheduled-posts.module';
 
 // DB_POOL, SecretsService, ClaudeAgent, MtprotoSessionsRepository all come from
@@ -25,6 +29,10 @@ import { ScheduledPostsModule } from '../scheduled-posts/scheduled-posts.module'
     AgentReplySender,
     AgentScheduleExecutor,
     AgentActionsService,
+    AgentChatClassifier,
+    AgentMonitoredChatsRepository,
+    AgentOpportunitiesRepository,
+    AgentChatPoller,
   ],
   exports: [AgentInboxRepository, AgentActionsRepository],
 })
