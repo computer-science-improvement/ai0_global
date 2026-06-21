@@ -11,7 +11,20 @@ function make() {
   } as any;
   const client = { hasSession: async () => true } as any;
   const config = { get: (k: string) => (k === 'AGENT_ENABLED' ? 'true' : '*/5 * * * *') } as any;
-  return { ctrl: new AgentController(repo, client, config), calls };
+  const actionsRepo = { list: async () => [], create: async () => ({}) } as any;
+  const actionsSvc = { approve: async () => ({}), reject: async () => ({}) } as any;
+  return { ctrl: new AgentController(repo, client, config, actionsRepo, actionsSvc), calls };
+}
+
+function makeCtrlWithActions(actionsRepo: any, actionsSvc: any) {
+  const repo = {
+    list: async () => [],
+    setStatus: async () => {},
+    lastPolledAt: async () => new Date(),
+  } as any;
+  const client = { hasSession: async () => true } as any;
+  const config = { get: () => 'true' } as any;
+  return new AgentController(repo, client, config, actionsRepo, actionsSvc);
 }
 
 test('GET inbox passes status+category filter through', async () => {
@@ -32,4 +45,22 @@ test('GET status reports enabled + hasSession', async () => {
   const s = await ctrl.status();
   assert.equal(s.enabled, true);
   assert.equal(s.hasAgentSession, true);
+});
+
+test('GET actions lists by status', async () => {
+  const calls: any[] = [];
+  const actionsRepo = { list: async (s: any) => { calls.push(['list', s]); return [{ id: 'a' }]; } } as any;
+  const actionsSvc = {} as any;
+  const ctrl = makeCtrlWithActions(actionsRepo, actionsSvc);
+  const r = await ctrl.actions('pending');
+  assert.deepEqual(calls[0], ['list', 'pending']);
+  assert.equal(r.length, 1);
+});
+
+test('POST approve calls service.approve', async () => {
+  const calls: any[] = [];
+  const actionsSvc = { approve: async (id: string) => { calls.push(['approve', id]); return { id, status: 'done' }; } } as any;
+  const ctrl = makeCtrlWithActions({} as any, actionsSvc);
+  const r = await ctrl.approveAction('a');
+  assert.equal(r.status, 'done');
 });
