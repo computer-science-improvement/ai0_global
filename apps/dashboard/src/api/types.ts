@@ -392,6 +392,23 @@ export interface SettingsPatch {
 
 export type AgentCategory = 'ad' | 'vp' | 'question' | 'spam' | 'other';
 
+// ─── Agent Actions (SP2) ──────────────────────────────────────────────────────
+
+export type AgentActionType   = 'reply' | 'schedule_post';
+export type AgentActionStatus = 'pending' | 'approved' | 'done' | 'rejected' | 'failed';
+
+export interface AgentAction {
+  id:          string;
+  type:        AgentActionType;
+  status:      AgentActionStatus;
+  thread_id:   string | null;
+  payload:     Record<string, any>;
+  error:       string | null;
+  executed_at: string | null;
+  created_at:  string;
+  updated_at:  string;
+}
+
 export interface AgentThread {
   id:              string;
   peer_id:         string;
