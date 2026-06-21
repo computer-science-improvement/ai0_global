@@ -41,6 +41,7 @@ export interface MtprotoSessionInsertInput {
   // an already-encrypted blob (callers encrypt before insert). Null → env fallback.
   api_id?:      string | null;
   api_hash_enc?: string | null;
+  role?:        'tracker' | 'agent';
 }
 
 /** The active session resolved for in-memory use by the tracker/stats clients:
@@ -73,10 +74,10 @@ export class MtprotoSessionsRepository {
 
   async insert(input: MtprotoSessionInsertInput): Promise<MtprotoSessionRow> {
     const { rows } = await this.pool.query<MtprotoSessionRow>(
-      `INSERT INTO mtproto_sessions (label, session_enc, api_id, api_hash_enc)
-       VALUES ($1, $2, $3, $4)
+      `INSERT INTO mtproto_sessions (label, session_enc, api_id, api_hash_enc, role)
+       VALUES ($1, $2, $3, $4, $5)
        RETURNING *`,
-      [input.label, input.session_enc, input.api_id ?? null, input.api_hash_enc ?? null],
+      [input.label, input.session_enc, input.api_id ?? null, input.api_hash_enc ?? null, input.role ?? 'tracker'],
     );
     return rows[0];
   }

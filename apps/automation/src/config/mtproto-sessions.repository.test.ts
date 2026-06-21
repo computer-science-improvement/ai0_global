@@ -46,15 +46,15 @@ test('insert() stores label + session_enc + api creds and returns the row', asyn
   const repo = new MtprotoSessionsRepository(pool as any);
   const row = await repo.insert({ label: 'L', session_enc: 'enc:v1:xyz', api_id: '123', api_hash_enc: 'enc:v1:hash' });
   assert.equal(row.id, 'new');
-  assert.match(norm(calls[0].sql), /INSERT INTO mtproto_sessions \(label, session_enc, api_id, api_hash_enc\)/i);
-  assert.deepEqual(calls[0].params, ['L', 'enc:v1:xyz', '123', 'enc:v1:hash']);
+  assert.match(norm(calls[0].sql), /INSERT INTO mtproto_sessions \(label, session_enc, api_id, api_hash_enc, role\)/i);
+  assert.deepEqual(calls[0].params, ['L', 'enc:v1:xyz', '123', 'enc:v1:hash', 'tracker']);
 });
 
 test('insert() defaults missing api creds to null (env fallback)', async () => {
   const { pool, calls } = fakePool([[{ id: 'new' }]]);
   const repo = new MtprotoSessionsRepository(pool as any);
   await repo.insert({ label: 'L', session_enc: 'enc:v1:xyz' });
-  assert.deepEqual(calls[0].params, ['L', 'enc:v1:xyz', null, null]);
+  assert.deepEqual(calls[0].params, ['L', 'enc:v1:xyz', null, null, 'tracker']);
 });
 
 test('delete() returns true when a row was deleted', async () => {
@@ -130,6 +130,21 @@ test('activeSessionString() shim returns just the decrypted session', async () =
   const repo = new MtprotoSessionsRepository(pool as any);
   const secrets = { maybeDecrypt: (v: string) => (v === 'enc:v1:blob' ? 'PLAIN_SESSION' : 'WRONG') };
   assert.equal(await repo.activeSessionString(secrets as any), 'PLAIN_SESSION');
+});
+
+test('insert() includes role in column list and params when specified', async () => {
+  const { pool, calls } = fakePool([[{ id: 'new', label: 'L', session_enc: 'enc:v1:xyz', role: 'agent' }]]);
+  const repo = new MtprotoSessionsRepository(pool as any);
+  await repo.insert({ label: 'L', session_enc: 'enc:v1:xyz', role: 'agent' });
+  assert.match(norm(calls[0].sql), /INSERT INTO mtproto_sessions \(label, session_enc, api_id, api_hash_enc, role\)/i);
+  assert.equal(calls[0].params?.[4], 'agent');
+});
+
+test('insert() defaults role to tracker when omitted', async () => {
+  const { pool, calls } = fakePool([[{ id: 'new' }]]);
+  const repo = new MtprotoSessionsRepository(pool as any);
+  await repo.insert({ label: 'L', session_enc: 'enc:v1:xyz' });
+  assert.equal(calls[0].params?.[4], 'tracker');
 });
 
 test('activeSession filters by role (default tracker)', async () => {

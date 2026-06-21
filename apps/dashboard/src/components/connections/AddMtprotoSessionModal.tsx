@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useAddMtprotoSession } from '../../api/mtproto-sessions';
 import { Modal } from '../Modal';
 import { Icon } from '../Icon';
+import { Field } from '../ui/primitives';
 
 interface Props {
   open:    boolean;
@@ -11,13 +12,29 @@ interface Props {
 export function AddMtprotoSessionModal({ open, onClose }: Props) {
   const [label, setLabel]     = useState('');
   const [session, setSession] = useState('');
+  const [apiId, setApiId]     = useState('');
+  const [apiHash, setApiHash] = useState('');
+  const [role, setRole]       = useState<'tracker' | 'agent'>('tracker');
   const create = useAddMtprotoSession();
 
+  // apiId/apiHash are paired: provide both, or neither (then the .env app
+  // credentials are used). A numeric api_id is required if either is filled.
+  const apiIdValid = /^\d*$/.test(apiId.trim());
+  const credsHalfFilled = (!!apiId.trim()) !== (!!apiHash.trim());
+  const canSubmit =
+    !!label.trim() && !!session.trim() && apiIdValid && !credsHalfFilled && !create.isPending;
+
   const submit = async () => {
-    if (!label.trim() || !session.trim()) return;
+    if (!canSubmit) return;
     try {
-      await create.mutateAsync({ label: label.trim(), session: session.trim() });
-      setLabel(''); setSession('');
+      await create.mutateAsync({
+        label: label.trim(),
+        session: session.trim(),
+        apiId: apiId.trim() || undefined,
+        apiHash: apiHash.trim() || undefined,
+        role,
+      });
+      setLabel(''); setSession(''); setApiId(''); setApiHash(''); setRole('tracker');
       onClose();
     } catch {
       // Error shown via create.error below; modal stays open.
@@ -25,7 +42,7 @@ export function AddMtprotoSessionModal({ open, onClose }: Props) {
   };
 
   return (
-    <Modal open={open} onClose={onClose} title="Add MTProto session">
+    <Modal open={open} onClose={onClose} title="Add MTProto session" icon="telegram">
       <Field label="Label">
         <input
           value={label}
@@ -49,13 +66,70 @@ export function AddMtprotoSessionModal({ open, onClose }: Props) {
         />
       </Field>
 
+      <Field label="Role">
+        <select
+          value={role}
+          onChange={e => setRole(e.target.value as 'tracker' | 'agent')}
+          className="input-field"
+          style={{ width: '100%' }}
+        >
+          <option value="tracker">Tracker — stats / competitor tracking</option>
+          <option value="agent">Agent — read-only DM triage (SP1)</option>
+        </select>
+        <p className="text-micro" style={{ margin: '4px 0 0', color: 'var(--color-ink-dim)' }}>
+          Agent = read-only DM triage; Tracker = stats/competitor tracking.
+        </p>
+      </Field>
+
+      <div style={{ display: 'flex', gap: 12 }}>
+        <div style={{ flex: '0 0 140px' }}>
+          <Field label="API ID">
+            <input
+              value={apiId}
+              onChange={e => setApiId(e.target.value)}
+              placeholder="1234567"
+              inputMode="numeric"
+              autoComplete="off"
+              className="input-field"
+              style={{ width: '100%', fontVariantNumeric: 'tabular-nums' }}
+            />
+          </Field>
+        </div>
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <Field label="API hash">
+            <input
+              value={apiHash}
+              onChange={e => setApiHash(e.target.value)}
+              placeholder="from my.telegram.org"
+              autoComplete="off"
+              spellCheck={false}
+              className="input-field"
+              style={{ width: '100%', fontFamily: 'var(--font-mono, monospace)', WebkitTextSecurity: 'disc' } as React.CSSProperties}
+            />
+          </Field>
+        </div>
+      </div>
+
+      {!apiIdValid && (
+        <p className="text-micro" style={{ color: 'var(--color-danger)', margin: '-4px 0 10px' }}>
+          API ID must be numeric.
+        </p>
+      )}
+      {credsHalfFilled && (
+        <p className="text-micro" style={{ color: 'var(--color-danger)', margin: '-4px 0 10px' }}>
+          Provide both API ID and API hash, or leave both empty to use the <code>.env</code> credentials.
+        </p>
+      )}
+
       <div className="callout-warning" style={{ marginBottom: 16 }}>
         <Icon name="info" size={14} />
         <span className="text-micro">
-          The session string is encrypted on save — it is never stored in plaintext,
-          logged, or shown again. After saving, click <b>Verify</b> to confirm the
-          account it logs in as. The active session is used by the tracker and stats
-          collectors (no restart needed on next read).
+          The session string and API hash are encrypted on save — never stored in
+          plaintext, logged, or shown again. The API ID/hash come from{' '}
+          <b>my.telegram.org</b>; leave them empty to reuse the <code>.env</code>{' '}
+          <code>TELEGRAM_API_ID</code> / <code>TELEGRAM_API_HASH</code>. After saving,
+          click <b>Verify</b> to confirm the account it logs in as. The active session
+          is used by the tracker and stats collectors (no restart needed on next read).
         </span>
       </div>
 
@@ -65,25 +139,16 @@ export function AddMtprotoSessionModal({ open, onClose }: Props) {
         </p>
       )}
 
-      <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 8 }}>
+      <div className="modal-foot">
         <button onClick={onClose} className="btn-secondary">Cancel</button>
         <button
           onClick={submit}
-          disabled={!label.trim() || !session.trim() || create.isPending}
+          disabled={!canSubmit}
           className="btn-primary"
         >
           {create.isPending ? 'Saving…' : 'Save'}
         </button>
       </div>
     </Modal>
-  );
-}
-
-function Field({ label, children }: { label: string; children: React.ReactNode }) {
-  return (
-    <label style={{ display: 'block', marginBottom: 12 }}>
-      <span className="text-eyebrow" style={{ display: 'block', marginBottom: 6 }}>{label}</span>
-      {children}
-    </label>
   );
 }

@@ -15,8 +15,9 @@ export function useMtprotoSessions() {
 export function useAddMtprotoSession() {
   const qc = useQueryClient();
   return useMutation({
-    // The session string is encrypted server-side; never echoed back.
-    mutationFn: (input: { label: string; session: string }) =>
+    // The session string + apiHash are encrypted server-side; never echoed back.
+    // apiId/apiHash are optional — omit to fall back to the env app credentials.
+    mutationFn: (input: { label: string; session: string; apiId?: string; apiHash?: string; role?: 'tracker' | 'agent' }) =>
       api<MtprotoSession>('/api/mtproto-sessions', {
         method: 'POST', body: JSON.stringify(input),
       }),

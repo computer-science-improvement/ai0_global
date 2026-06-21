@@ -160,6 +160,7 @@ export interface MtprotoSession {
   id:               string;
   label:            string;
   active:           boolean;
+  role:             'tracker' | 'agent';
   username:         string | null;
   phone:            string | null;
   tg_user_id:       string | null;

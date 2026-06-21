@@ -117,6 +117,9 @@ function SessionCard({
                 </Badge>
               : <Badge tone="neutral" title="Not verified yet — click Verify">unverified</Badge>}
           {!s.active && <Badge tone="neutral">inactive</Badge>}
+          <Badge tone={s.role === 'agent' ? 'accent' : 'neutral'} title={s.role === 'agent' ? 'Agent — read-only DM triage (SP1)' : 'Tracker — stats/competitor tracking'}>
+            {s.role ?? 'tracker'}
+          </Badge>
           {inUse && (
             <Badge tone="success" title="This active session is the one the tracker/stats use.">in use</Badge>
           )}
