@@ -13,8 +13,12 @@ import {
   useCreateAgentAction,
   useApproveAgentAction,
   useRejectAgentAction,
+  useAgentChats,
+  useSetChatMonitor,
+  useAgentOpportunities,
+  usePatchOpportunity,
 } from '../api/agent';
-import type { AgentCategory, AgentAction } from '../api/types';
+import type { AgentCategory, AgentAction, OpportunityKind } from '../api/types';
 
 export const Route = createFileRoute('/app/agent')({ component: AgentPage });
 
@@ -36,6 +40,26 @@ const TABS: ReadonlyArray<{ key: CatFilter; label: string }> = [
   { key: 'spam',     label: 'Spam' },
   { key: 'other',    label: 'Other' },
 ];
+
+const KIND_TONE: Record<OpportunityKind, 'accent' | 'success' | 'neutral'> = {
+  ad_offer:   'accent',
+  vp_request: 'success',
+  pricing:    'neutral',
+  other:      'neutral',
+};
+
+const KIND_LABEL: Record<OpportunityKind, string> = {
+  ad_offer:   'Ad offer',
+  vp_request: 'ВП request',
+  pricing:    'Pricing',
+  other:      'Other',
+};
+
+const ACTION_LABEL: Record<string, string> = {
+  advertise: 'Advertise',
+  do_vp:     'Do ВП',
+  skip:      'Skip',
+};
 
 // ─── Pending action card row ───────────────────────────────────────────────────
 
@@ -147,6 +171,137 @@ function PendingActionRow({ action }: { action: AgentAction }) {
   );
 }
 
+// ─── Chat intel section ───────────────────────────────────────────────────────
+
+function ChatIntelSection() {
+  const chats       = useAgentChats();
+  const setMonitor  = useSetChatMonitor();
+  const opps        = useAgentOpportunities('new');
+  const patchOpp    = usePatchOpportunity();
+
+  return (
+    <SectionCard title="Chat intel" icon="bots" delay={30} style={{ marginBottom: 16 }}>
+      {/* ── Monitored chats ── */}
+      <div style={{ marginBottom: 16 }}>
+        <div
+          className="text-eyebrow"
+          style={{ color: 'var(--color-ink-dim)', marginBottom: 10, textTransform: 'uppercase', letterSpacing: '0.04em', fontSize: 10 }}
+        >
+          Monitored chats
+        </div>
+        {chats.data && chats.data.length === 0 && (
+          <EmptyState
+            icon="bots"
+            title="No joined groups"
+            note="Add the agent account to chats in Telegram first, then refresh."
+          />
+        )}
+        {chats.data && chats.data.length > 0 && (
+          <div className="table-wrap">
+            <table className="table">
+              <thead>
+                <tr>
+                  <th>Group</th>
+                  <th style={{ width: 80, textAlign: 'right' }}>Monitor</th>
+                </tr>
+              </thead>
+              <tbody>
+                {chats.data.map((c) => (
+                  <tr key={c.chatId}>
+                    <td className="text-body-sm" style={{ color: 'var(--color-ink)' }}>
+                      {c.title}
+                    </td>
+                    <td style={{ textAlign: 'right' }}>
+                      <input
+                        type="checkbox"
+                        checked={c.enabled}
+                        disabled={setMonitor.isPending}
+                        onChange={(e) =>
+                          setMonitor.mutate({ chatId: c.chatId, enabled: e.target.checked })
+                        }
+                        title={c.enabled ? 'Disable monitoring' : 'Enable monitoring'}
+                        style={{ cursor: 'pointer', width: 16, height: 16 }}
+                      />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
+
+      {/* ── Opportunities feed ── */}
+      <div>
+        <div
+          className="text-eyebrow"
+          style={{ color: 'var(--color-ink-dim)', marginBottom: 10, textTransform: 'uppercase', letterSpacing: '0.04em', fontSize: 10 }}
+        >
+          New opportunities
+        </div>
+        {opps.data && opps.data.length === 0 && (
+          <div className="text-body-sm" style={{ color: 'var(--color-ink-dim)', padding: '4px 0' }}>
+            No new opportunities.
+          </div>
+        )}
+        {opps.data && opps.data.length > 0 && (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+            {opps.data.map((o) => (
+              <div
+                key={o.id}
+                className="card"
+                style={{ display: 'flex', alignItems: 'flex-start', gap: 16, padding: '13px 18px' }}
+              >
+                <div style={{ minWidth: 0, flex: 1 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', marginBottom: 4 }}>
+                    <Badge tone={KIND_TONE[o.kind]}>{KIND_LABEL[o.kind]}</Badge>
+                    <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>
+                      score {o.score}
+                    </span>
+                    {o.chat_title && (
+                      <span className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>
+                        {o.chat_title}
+                      </span>
+                    )}
+                    {o.suggested_action && (
+                      <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>
+                        → {ACTION_LABEL[o.suggested_action] ?? o.suggested_action}
+                      </span>
+                    )}
+                  </div>
+                  {o.summary && (
+                    <div className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>
+                      {o.summary}
+                    </div>
+                  )}
+                </div>
+                <RowActions
+                  danger={
+                    <TableAction
+                      icon="trash"
+                      danger
+                      title="Archive"
+                      disabled={patchOpp.isPending}
+                      onClick={() => patchOpp.mutate({ id: o.id, status: 'archived' })}
+                    />
+                  }
+                >
+                  <TableAction
+                    icon="check"
+                    title="Mark reviewed"
+                    disabled={patchOpp.isPending}
+                    onClick={() => patchOpp.mutate({ id: o.id, status: 'reviewed' })}
+                  />
+                </RowActions>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </SectionCard>
+  );
+}
+
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 function AgentPage() {
@@ -181,6 +336,9 @@ function AgentPage() {
           </div>
         )}
       </SectionCard>
+
+      {/* ── Chat intel ──────────────────────────────────────────────────────── */}
+      <ChatIntelSection />
 
       {/* ── Pending actions ─────────────────────────────────────────────────── */}
       <SectionCard
