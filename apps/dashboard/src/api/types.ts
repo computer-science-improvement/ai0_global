@@ -386,3 +386,29 @@ export interface SettingsPatch {
   postingCooldownMin?:   number;
   fetchTimeoutMs?:       number;
 }
+
+// ─── Agent DM Inbox (SP1) ─────────────────────────────────────────────────────
+
+export type AgentCategory = 'ad' | 'vp' | 'question' | 'spam' | 'other';
+
+export interface AgentThread {
+  id:              string;
+  peer_id:         string;
+  peer_username:   string | null;
+  peer_name:       string | null;
+  last_message_at: string;
+  last_text:       string | null;
+  category:        AgentCategory;
+  summary:         string | null;
+  fields:          { channel?: string; budget?: string; dates?: string };
+  draft_reply:     string | null;
+  score:           number;
+  status:          'new' | 'reviewed' | 'archived';
+}
+
+export interface AgentStatus {
+  enabled:         boolean;
+  hasAgentSession: boolean;
+  lastPolledAt:    string | null;
+  cadence:         string;
+}
