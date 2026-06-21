@@ -26,6 +26,6 @@ import { ScheduledPostsModule } from '../scheduled-posts/scheduled-posts.module'
     AgentScheduleExecutor,
     AgentActionsService,
   ],
-  exports: [AgentInboxRepository],
+  exports: [AgentInboxRepository, AgentActionsRepository],
 })
 export class AgentModule {}

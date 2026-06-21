@@ -35,6 +35,7 @@ import { ScheduledPostsModule } from './scheduled-posts/scheduled-posts.module';
 import { SettingsModule }       from './settings/settings.module';
 import { ActivityModule }       from './activity/activity.module';
 import { AgentModule }          from './agent/agent.module';
+import { PaymentsModule }       from './payments/payments.module';
 
 @Module({
   imports: [
@@ -48,6 +49,7 @@ import { AgentModule }          from './agent/agent.module';
     RetentionModule,
     AlertingModule,
     AgentModule,
+    PaymentsModule,
     StatsModule,
     PublishersModule,
     SchedulerModule,
