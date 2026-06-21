@@ -17,6 +17,7 @@ const GROUPS: NavGroup[] = [
   { title: 'Analytics', items: [
     { to: '/app/analytics', label: 'Analytics', icon: 'analytics' },
     { to: '/app/logs',      label: 'Logs',       icon: 'logs' },
+    { to: '/app/agent',     label: 'Agent',      icon: 'bots' },
   ]},
   { title: 'Intelligence', items: [
     { to: '/app/discovery',       label: 'Discovery',     icon: 'discovery' },
@@ -25,9 +26,8 @@ const GROUPS: NavGroup[] = [
     { to: '/app/recommendations', label: 'Recommendations',  icon: 'recommendations' },
   ]},
   { title: 'Connections', items: [
-    { to: '/app/connections',        label: 'Telegram', icon: 'telegram', exact: true },
-    { to: '/app/connections/meta',   label: 'Meta',     icon: 'facebook' },
-    { to: '/app/connections/tiktok', label: 'TikTok',   icon: 'tiktok' },
+    { to: '/app/connections',        label: 'Connections', icon: 'connections', exact: true },
+    { to: '/app/connections/groups', label: 'Groups', icon: 'facebook' },
   ]},
   { title: 'Marketing', items: [
     { to: '/app/landing', label: 'Landing', icon: 'recommendations' },
