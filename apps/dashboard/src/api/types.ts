@@ -431,6 +431,31 @@ export interface AgentStatus {
   cadence:         string;
 }
 
+// ─── Chat Intel (SP4) ─────────────────────────────────────────────────────────
+
+export type OpportunityKind   = 'ad_offer' | 'vp_request' | 'pricing' | 'other';
+export type SuggestedAction   = 'advertise' | 'do_vp' | 'skip';
+
+export interface MonitoredChat {
+  chatId:  string;
+  title:   string;
+  enabled: boolean;
+}
+
+export interface AgentOpportunity {
+  id:              string;
+  chat_id:         string;
+  chat_title:      string | null;
+  message_id:      string;
+  message_text:    string | null;
+  kind:            OpportunityKind;
+  summary:         string | null;
+  score:           number;
+  suggested_action: SuggestedAction;
+  status:          'new' | 'reviewed' | 'archived';
+  created_at:      string;
+}
+
 // ─── Ad Orders (SP3) ──────────────────────────────────────────────────────────
 
 export type AdOrderStatus = 'draft' | 'awaiting_payment' | 'paid' | 'scheduled' | 'canceled';

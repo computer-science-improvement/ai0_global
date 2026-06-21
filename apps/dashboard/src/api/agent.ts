@@ -1,6 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { api } from './client';
-import type { AgentThread, AgentStatus, AgentCategory, AgentAction, AgentActionStatus, AgentActionType } from './types';
+import type { AgentThread, AgentStatus, AgentCategory, AgentAction, AgentActionStatus, AgentActionType, MonitoredChat, AgentOpportunity, OpportunityKind } from './types';
 
 export function useAgentInbox(filter: { status?: string; category?: AgentCategory } = {}) {
   const qs = new URLSearchParams();
@@ -79,5 +79,50 @@ export function useRejectAgentAction() {
     mutationFn: (id: string) =>
       api<AgentAction>(`/api/agent/actions/${id}/reject`, { method: 'POST' }),
     onSuccess: () => qc.invalidateQueries({ queryKey: ['agent', 'actions'] }),
+  });
+}
+
+// ─── Chat Intel (SP4) ─────────────────────────────────────────────────────────
+
+export function useAgentChats() {
+  return useQuery({
+    queryKey: ['agent', 'chats'],
+    queryFn:  () => api<MonitoredChat[]>('/api/agent/chats'),
+    refetchInterval: 60_000,
+  });
+}
+
+export function useSetChatMonitor() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (v: { chatId: string; enabled: boolean }) =>
+      api<{ ok: boolean }>(`/api/agent/chats/${v.chatId}/monitor`, {
+        method: 'POST',
+        body:   JSON.stringify({ enabled: v.enabled }),
+      }),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ['agent', 'chats'] }),
+  });
+}
+
+export function useAgentOpportunities(status?: string, kind?: OpportunityKind) {
+  const qs = new URLSearchParams();
+  if (status) qs.set('status', status);
+  if (kind)   qs.set('kind', kind);
+  return useQuery({
+    queryKey: ['agent', 'opportunities', status, kind],
+    queryFn:  () => api<AgentOpportunity[]>(`/api/agent/opportunities?${qs.toString()}`),
+    refetchInterval: 30_000,
+  });
+}
+
+export function usePatchOpportunity() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (v: { id: string; status: 'reviewed' | 'archived' | 'new' }) =>
+      api<{ ok: boolean }>(`/api/agent/opportunities/${v.id}`, {
+        method: 'PATCH',
+        body:   JSON.stringify({ status: v.status }),
+      }),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ['agent', 'opportunities'] }),
   });
 }
