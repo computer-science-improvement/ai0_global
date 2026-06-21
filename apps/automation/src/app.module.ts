@@ -34,6 +34,7 @@ import { DiscoveryModule }      from './discovery/discovery.module';
 import { ScheduledPostsModule } from './scheduled-posts/scheduled-posts.module';
 import { SettingsModule }       from './settings/settings.module';
 import { ActivityModule }       from './activity/activity.module';
+import { AgentModule }          from './agent/agent.module';
 
 @Module({
   imports: [
@@ -46,6 +47,7 @@ import { ActivityModule }       from './activity/activity.module';
     CommonModule,
     RetentionModule,
     AlertingModule,
+    AgentModule,
     StatsModule,
     PublishersModule,
     SchedulerModule,
