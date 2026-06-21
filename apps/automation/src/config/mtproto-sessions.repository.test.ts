@@ -41,13 +41,20 @@ test('findById() returns null when no row', async () => {
   assert.equal(await repo.findById('nope'), null);
 });
 
-test('insert() stores label + session_enc and returns the row', async () => {
+test('insert() stores label + session_enc + api creds and returns the row', async () => {
   const { pool, calls } = fakePool([[{ id: 'new', label: 'L', session_enc: 'enc:v1:xyz' }]]);
   const repo = new MtprotoSessionsRepository(pool as any);
-  const row = await repo.insert({ label: 'L', session_enc: 'enc:v1:xyz' });
+  const row = await repo.insert({ label: 'L', session_enc: 'enc:v1:xyz', api_id: '123', api_hash_enc: 'enc:v1:hash' });
   assert.equal(row.id, 'new');
-  assert.match(norm(calls[0].sql), /INSERT INTO mtproto_sessions \(label, session_enc\)/i);
-  assert.deepEqual(calls[0].params, ['L', 'enc:v1:xyz']);
+  assert.match(norm(calls[0].sql), /INSERT INTO mtproto_sessions \(label, session_enc, api_id, api_hash_enc\)/i);
+  assert.deepEqual(calls[0].params, ['L', 'enc:v1:xyz', '123', 'enc:v1:hash']);
+});
+
+test('insert() defaults missing api creds to null (env fallback)', async () => {
+  const { pool, calls } = fakePool([[{ id: 'new' }]]);
+  const repo = new MtprotoSessionsRepository(pool as any);
+  await repo.insert({ label: 'L', session_enc: 'enc:v1:xyz' });
+  assert.deepEqual(calls[0].params, ['L', 'enc:v1:xyz', null, null]);
 });
 
 test('delete() returns true when a row was deleted', async () => {
@@ -91,22 +98,48 @@ test('markVerifyError() stores the error message', async () => {
   assert.deepEqual(calls[0].params, ['s1', 'AUTH_KEY_UNREGISTERED']);
 });
 
-// ── activeSessionString: the bridge the tracker/stats clients use ─────────────
+// ── activeSession: the bridge the tracker/stats clients use ───────────────────
 
-test('activeSessionString() decrypts the first active row', async () => {
-  // first active row only
-  const { pool, calls } = fakePool([[{ id: 's1', session_enc: 'enc:v1:blob' }]]);
+test('activeSession() decrypts the session + api_hash and parses api_id', async () => {
+  const { pool, calls } = fakePool([[{ id: 's1', session_enc: 'enc:v1:blob', api_id: '42', api_hash_enc: 'enc:v1:hash' }]]);
   const repo = new MtprotoSessionsRepository(pool as any);
-  const secrets = { maybeDecrypt: (v: string) => (v === 'enc:v1:blob' ? 'PLAIN_SESSION' : 'WRONG') };
-  const out = await repo.activeSessionString(secrets as any);
-  assert.equal(out, 'PLAIN_SESSION');
+  const secrets = { maybeDecrypt: (v: string) => (v === 'enc:v1:blob' ? 'PLAIN_SESSION' : v === 'enc:v1:hash' ? 'PLAIN_HASH' : 'WRONG') };
+  const out = await repo.activeSession(secrets as any);
+  assert.deepEqual(out, { session: 'PLAIN_SESSION', apiId: 42, apiHash: 'PLAIN_HASH' });
   // Must filter to active rows.
   assert.match(norm(calls[0].sql), /WHERE active/i);
 });
 
-test('activeSessionString() returns null when there is no active row', async () => {
+test('activeSession() leaves api creds null when the row has none (env fallback)', async () => {
+  const { pool } = fakePool([[{ id: 's1', session_enc: 'enc:v1:blob', api_id: null, api_hash_enc: null }]]);
+  const repo = new MtprotoSessionsRepository(pool as any);
+  const secrets = { maybeDecrypt: (v: string) => (v === 'enc:v1:blob' ? 'PLAIN_SESSION' : 'WRONG') };
+  const out = await repo.activeSession(secrets as any);
+  assert.deepEqual(out, { session: 'PLAIN_SESSION', apiId: null, apiHash: null });
+});
+
+test('activeSession() returns null when there is no active row', async () => {
   const { pool } = fakePool([[]]);
   const repo = new MtprotoSessionsRepository(pool as any);
   const secrets = { maybeDecrypt: () => 'should-not-be-called' };
-  assert.equal(await repo.activeSessionString(secrets as any), null);
+  assert.equal(await repo.activeSession(secrets as any), null);
+});
+
+test('activeSessionString() shim returns just the decrypted session', async () => {
+  const { pool } = fakePool([[{ id: 's1', session_enc: 'enc:v1:blob', api_id: null, api_hash_enc: null }]]);
+  const repo = new MtprotoSessionsRepository(pool as any);
+  const secrets = { maybeDecrypt: (v: string) => (v === 'enc:v1:blob' ? 'PLAIN_SESSION' : 'WRONG') };
+  assert.equal(await repo.activeSessionString(secrets as any), 'PLAIN_SESSION');
+});
+
+test('activeSession filters by role (default tracker)', async () => {
+  const calls: any[] = [];
+  const pool = { query: async (sql: string, params: any[]) => { calls.push({ sql, params }); return { rows: [] }; } } as any;
+  const secrets = { maybeDecrypt: (v: string) => v } as any;
+  const repo = new MtprotoSessionsRepository(pool);
+  await repo.activeSession(secrets);
+  assert.match(calls[0].sql, /role = \$1/);
+  assert.deepEqual(calls[0].params, ['tracker']);
+  await repo.activeSession(secrets, 'agent');
+  assert.deepEqual(calls[1].params, ['agent']);
 });
