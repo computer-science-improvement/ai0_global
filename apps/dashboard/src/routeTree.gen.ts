@@ -29,10 +29,13 @@ import { Route as AppChannelsRouteImport } from './routes/app.channels'
 import { Route as AppCalendarRouteImport } from './routes/app.calendar'
 import { Route as AppBotsRouteImport } from './routes/app.bots'
 import { Route as AppAnalyticsRouteImport } from './routes/app.analytics'
+import { Route as AppAgentRouteImport } from './routes/app.agent'
+import { Route as AppAdsRouteImport } from './routes/app.ads'
 import { Route as AppStrategiesNewRouteImport } from './routes/app.strategies_.new'
 import { Route as AppStrategiesIdRouteImport } from './routes/app.strategies_.$id'
 import { Route as AppConnectionsTiktokRouteImport } from './routes/app.connections_.tiktok'
 import { Route as AppConnectionsMetaRouteImport } from './routes/app.connections_.meta'
+import { Route as AppConnectionsGroupsRouteImport } from './routes/app.connections_.groups'
 import { Route as AppConnectionsPlatformRouteImport } from './routes/app.connections.$platform'
 import { Route as AppChannelsIdRouteImport } from './routes/app.channels_.$id'
 import { Route as AppConnectionsMetaAccountIdRouteImport } from './routes/app.connections_.meta_.$accountId'
@@ -137,6 +140,16 @@ const AppAnalyticsRoute = AppAnalyticsRouteImport.update({
   path: '/analytics',
   getParentRoute: () => AppRoute,
 } as any)
+const AppAgentRoute = AppAgentRouteImport.update({
+  id: '/agent',
+  path: '/agent',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppAdsRoute = AppAdsRouteImport.update({
+  id: '/ads',
+  path: '/ads',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppStrategiesNewRoute = AppStrategiesNewRouteImport.update({
   id: '/strategies_/new',
   path: '/strategies/new',
@@ -155,6 +168,11 @@ const AppConnectionsTiktokRoute = AppConnectionsTiktokRouteImport.update({
 const AppConnectionsMetaRoute = AppConnectionsMetaRouteImport.update({
   id: '/connections_/meta',
   path: '/connections/meta',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppConnectionsGroupsRoute = AppConnectionsGroupsRouteImport.update({
+  id: '/connections_/groups',
+  path: '/connections/groups',
   getParentRoute: () => AppRoute,
 } as any)
 const AppConnectionsPlatformRoute = AppConnectionsPlatformRouteImport.update({
@@ -178,6 +196,8 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
   '/login': typeof LoginRoute
+  '/app/ads': typeof AppAdsRoute
+  '/app/agent': typeof AppAgentRoute
   '/app/analytics': typeof AppAnalyticsRoute
   '/app/bots': typeof AppBotsRoute
   '/app/calendar': typeof AppCalendarRoute
@@ -197,6 +217,7 @@ export interface FileRoutesByFullPath {
   '/app/': typeof AppIndexRoute
   '/app/channels/$id': typeof AppChannelsIdRoute
   '/app/connections/$platform': typeof AppConnectionsPlatformRoute
+  '/app/connections/groups': typeof AppConnectionsGroupsRoute
   '/app/connections/meta': typeof AppConnectionsMetaRoute
   '/app/connections/tiktok': typeof AppConnectionsTiktokRoute
   '/app/strategies/$id': typeof AppStrategiesIdRoute
@@ -206,6 +227,8 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
+  '/app/ads': typeof AppAdsRoute
+  '/app/agent': typeof AppAgentRoute
   '/app/analytics': typeof AppAnalyticsRoute
   '/app/bots': typeof AppBotsRoute
   '/app/calendar': typeof AppCalendarRoute
@@ -225,6 +248,7 @@ export interface FileRoutesByTo {
   '/app': typeof AppIndexRoute
   '/app/channels/$id': typeof AppChannelsIdRoute
   '/app/connections/$platform': typeof AppConnectionsPlatformRoute
+  '/app/connections/groups': typeof AppConnectionsGroupsRoute
   '/app/connections/meta': typeof AppConnectionsMetaRoute
   '/app/connections/tiktok': typeof AppConnectionsTiktokRoute
   '/app/strategies/$id': typeof AppStrategiesIdRoute
@@ -236,6 +260,8 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
   '/login': typeof LoginRoute
+  '/app/ads': typeof AppAdsRoute
+  '/app/agent': typeof AppAgentRoute
   '/app/analytics': typeof AppAnalyticsRoute
   '/app/bots': typeof AppBotsRoute
   '/app/calendar': typeof AppCalendarRoute
@@ -255,6 +281,7 @@ export interface FileRoutesById {
   '/app/': typeof AppIndexRoute
   '/app/channels_/$id': typeof AppChannelsIdRoute
   '/app/connections/$platform': typeof AppConnectionsPlatformRoute
+  '/app/connections_/groups': typeof AppConnectionsGroupsRoute
   '/app/connections_/meta': typeof AppConnectionsMetaRoute
   '/app/connections_/tiktok': typeof AppConnectionsTiktokRoute
   '/app/strategies_/$id': typeof AppStrategiesIdRoute
@@ -267,6 +294,8 @@ export interface FileRouteTypes {
     | '/'
     | '/app'
     | '/login'
+    | '/app/ads'
+    | '/app/agent'
     | '/app/analytics'
     | '/app/bots'
     | '/app/calendar'
@@ -286,6 +315,7 @@ export interface FileRouteTypes {
     | '/app/'
     | '/app/channels/$id'
     | '/app/connections/$platform'
+    | '/app/connections/groups'
     | '/app/connections/meta'
     | '/app/connections/tiktok'
     | '/app/strategies/$id'
@@ -295,6 +325,8 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/login'
+    | '/app/ads'
+    | '/app/agent'
     | '/app/analytics'
     | '/app/bots'
     | '/app/calendar'
@@ -314,6 +346,7 @@ export interface FileRouteTypes {
     | '/app'
     | '/app/channels/$id'
     | '/app/connections/$platform'
+    | '/app/connections/groups'
     | '/app/connections/meta'
     | '/app/connections/tiktok'
     | '/app/strategies/$id'
@@ -324,6 +357,8 @@ export interface FileRouteTypes {
     | '/'
     | '/app'
     | '/login'
+    | '/app/ads'
+    | '/app/agent'
     | '/app/analytics'
     | '/app/bots'
     | '/app/calendar'
@@ -343,6 +378,7 @@ export interface FileRouteTypes {
     | '/app/'
     | '/app/channels_/$id'
     | '/app/connections/$platform'
+    | '/app/connections_/groups'
     | '/app/connections_/meta'
     | '/app/connections_/tiktok'
     | '/app/strategies_/$id'
@@ -498,6 +534,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppAnalyticsRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/agent': {
+      id: '/app/agent'
+      path: '/agent'
+      fullPath: '/app/agent'
+      preLoaderRoute: typeof AppAgentRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/ads': {
+      id: '/app/ads'
+      path: '/ads'
+      fullPath: '/app/ads'
+      preLoaderRoute: typeof AppAdsRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/strategies_/new': {
       id: '/app/strategies_/new'
       path: '/strategies/new'
@@ -524,6 +574,13 @@ declare module '@tanstack/react-router' {
       path: '/connections/meta'
       fullPath: '/app/connections/meta'
       preLoaderRoute: typeof AppConnectionsMetaRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/connections_/groups': {
+      id: '/app/connections_/groups'
+      path: '/connections/groups'
+      fullPath: '/app/connections/groups'
+      preLoaderRoute: typeof AppConnectionsGroupsRouteImport
       parentRoute: typeof AppRoute
     }
     '/app/connections/$platform': {
@@ -563,6 +620,8 @@ const AppConnectionsRouteWithChildren = AppConnectionsRoute._addFileChildren(
 )
 
 interface AppRouteChildren {
+  AppAdsRoute: typeof AppAdsRoute
+  AppAgentRoute: typeof AppAgentRoute
   AppAnalyticsRoute: typeof AppAnalyticsRoute
   AppBotsRoute: typeof AppBotsRoute
   AppCalendarRoute: typeof AppCalendarRoute
@@ -581,6 +640,7 @@ interface AppRouteChildren {
   AppTrackedRoute: typeof AppTrackedRoute
   AppIndexRoute: typeof AppIndexRoute
   AppChannelsIdRoute: typeof AppChannelsIdRoute
+  AppConnectionsGroupsRoute: typeof AppConnectionsGroupsRoute
   AppConnectionsMetaRoute: typeof AppConnectionsMetaRoute
   AppConnectionsTiktokRoute: typeof AppConnectionsTiktokRoute
   AppStrategiesIdRoute: typeof AppStrategiesIdRoute
@@ -589,6 +649,8 @@ interface AppRouteChildren {
 }
 
 const AppRouteChildren: AppRouteChildren = {
+  AppAdsRoute: AppAdsRoute,
+  AppAgentRoute: AppAgentRoute,
   AppAnalyticsRoute: AppAnalyticsRoute,
   AppBotsRoute: AppBotsRoute,
   AppCalendarRoute: AppCalendarRoute,
@@ -607,6 +669,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppTrackedRoute: AppTrackedRoute,
   AppIndexRoute: AppIndexRoute,
   AppChannelsIdRoute: AppChannelsIdRoute,
+  AppConnectionsGroupsRoute: AppConnectionsGroupsRoute,
   AppConnectionsMetaRoute: AppConnectionsMetaRoute,
   AppConnectionsTiktokRoute: AppConnectionsTiktokRoute,
   AppStrategiesIdRoute: AppStrategiesIdRoute,

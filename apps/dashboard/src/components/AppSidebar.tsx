@@ -31,6 +31,7 @@ const GROUPS: NavGroup[] = [
   ]},
   { title: 'Marketing', items: [
     { to: '/app/landing', label: 'Landing', icon: 'recommendations' },
+    { to: '/app/ads',     label: 'Ads',     icon: 'connections' },
   ]},
   { title: 'System', items: [
     { to: '/app/settings', label: 'Settings', icon: 'settings' },
