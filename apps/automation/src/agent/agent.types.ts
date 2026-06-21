@@ -1,6 +1,20 @@
 // apps/automation/src/agent/agent.types.ts
 export type AgentCategory = 'ad' | 'vp' | 'question' | 'spam' | 'other';
 
+export type AgentActionType = 'reply' | 'schedule_post';
+export type AgentActionStatus = 'pending' | 'approved' | 'done' | 'rejected' | 'failed';
+export interface AgentActionRow {
+  id:          string;
+  type:        AgentActionType;
+  status:      AgentActionStatus;
+  thread_id:   string | null;
+  payload:     Record<string, any>; // reply: {text}; schedule_post: {text, channelId, scheduledAt, scheduledPostId?}
+  error:       string | null;
+  created_at:  Date;
+  updated_at:  Date;
+  executed_at: Date | null;
+}
+
 export interface TriageResult {
   category:   AgentCategory;
   summary:    string;
