@@ -13,5 +13,6 @@ import { ScheduledPostsWorker } from './scheduled-posts.worker';
   imports: [ConfigModule, DatabaseModule, AuthModule, ChannelConfigModule, PublishersModule],
   controllers: [ScheduledPostsController],
   providers: [ScheduledPostsRepository, ScheduledPostsService, ScheduledPostsWorker],
+  exports:   [ScheduledPostsRepository],
 })
 export class ScheduledPostsModule {}
