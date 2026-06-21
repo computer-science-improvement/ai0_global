@@ -13,7 +13,9 @@ function make() {
   const config = { get: (k: string) => (k === 'AGENT_ENABLED' ? 'true' : '*/5 * * * *') } as any;
   const actionsRepo = { list: async () => [], create: async () => ({}) } as any;
   const actionsSvc = { approve: async () => ({}), reject: async () => ({}) } as any;
-  return { ctrl: new AgentController(repo, client, config, actionsRepo, actionsSvc), calls };
+  const chatsRepo = { list: async () => [] } as any;
+  const oppsRepo = { list: async () => [] } as any;
+  return { ctrl: new AgentController(repo, client, config, actionsRepo, actionsSvc, chatsRepo, oppsRepo), calls };
 }
 
 function makeCtrlWithActions(actionsRepo: any, actionsSvc: any) {
@@ -24,7 +26,9 @@ function makeCtrlWithActions(actionsRepo: any, actionsSvc: any) {
   } as any;
   const client = { hasSession: async () => true } as any;
   const config = { get: () => 'true' } as any;
-  return new AgentController(repo, client, config, actionsRepo, actionsSvc);
+  const chatsRepo = { list: async () => [] } as any;
+  const oppsRepo = { list: async () => [] } as any;
+  return new AgentController(repo, client, config, actionsRepo, actionsSvc, chatsRepo, oppsRepo);
 }
 
 test('GET inbox passes status+category filter through', async () => {
@@ -63,4 +67,40 @@ test('POST approve calls service.approve', async () => {
   const ctrl = makeCtrlWithActions({} as any, actionsSvc);
   const r = await ctrl.approveAction('a');
   assert.equal(r.status, 'done');
+});
+
+function makeCtrlWithChatIntel(client: any, chatsRepo: any, oppsRepo: any) {
+  const repo = {
+    list: async () => [],
+    setStatus: async () => {},
+    lastPolledAt: async () => new Date(),
+  } as any;
+  const config = { get: () => 'true' } as any;
+  const actionsRepo = { list: async () => [], create: async () => ({}) } as any;
+  const actionsSvc = { approve: async () => ({}), reject: async () => ({}) } as any;
+  return new AgentController(repo, client, config, actionsRepo, actionsSvc, chatsRepo, oppsRepo);
+}
+
+test('GET chats merges joined groups with monitored flags', async () => {
+  const client = { listGroups: async () => [{ chatId: 'c1', title: 'One' }, { chatId: 'c2', title: 'Two' }] } as any;
+  const chatsRepo = { list: async () => [{ chat_id: 'c1', enabled: true }] } as any;
+  const ctrl = makeCtrlWithChatIntel(client, chatsRepo, {} as any);
+  const r = await ctrl.chats();
+  assert.equal(r.length, 2);
+  assert.equal(r.find((x: any) => x.chatId === 'c1')!.enabled, true);
+  assert.equal(r.find((x: any) => x.chatId === 'c2')!.enabled, false);
+});
+test('POST monitor upserts + sets enabled', async () => {
+  const calls: any[] = [];
+  const client = { listGroups: async () => [{ chatId: 'c1', title: 'One' }] } as any;
+  const chatsRepo = { upsert: async (id: string, t: string) => calls.push(['upsert', id, t]), setEnabled: async (id: string, e: boolean) => calls.push(['enable', id, e]) } as any;
+  const ctrl = makeCtrlWithChatIntel(client, chatsRepo, {} as any);
+  await ctrl.monitor('c1', { enabled: true });
+  assert.ok(calls.some(c => c[0] === 'enable' && c[2] === true));
+});
+test('GET opportunities lists by status/kind', async () => {
+  const oppsRepo = { list: async (f: any) => [{ id: 'o1' }] } as any;
+  const ctrl = makeCtrlWithChatIntel({} as any, {} as any, oppsRepo);
+  const r = await ctrl.opportunities('new', 'ad_offer');
+  assert.equal(r.length, 1);
 });

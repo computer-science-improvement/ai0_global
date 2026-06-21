@@ -5,9 +5,12 @@ import { AgentInboxRepository } from './agent-inbox.repository';
 import { AgentMtprotoClient } from './agent-mtproto.client';
 import { AgentActionsRepository } from './agent-actions.repository';
 import { AgentActionsService } from './agent-actions.service';
+import { AgentMonitoredChatsRepository } from './agent-monitored-chats.repository';
+import { AgentOpportunitiesRepository } from './agent-opportunities.repository';
 import { PatchThreadDto } from './dto/patch-thread.dto';
 import { CreateActionDto } from './dto/create-action.dto';
-import type { AgentActionStatus, AgentCategory } from './agent.types';
+import { MonitorChatDto } from './dto/monitor-chat.dto';
+import type { AgentActionStatus, AgentCategory, OpportunityKind } from './agent.types';
 
 @Controller('api/agent')
 @UseGuards(TrackingAuthGuard)
@@ -18,6 +21,8 @@ export class AgentController {
     private readonly config:      ConfigService,
     private readonly actionsRepo: AgentActionsRepository,
     private readonly actionsSvc:  AgentActionsService,
+    private readonly chatsRepo:   AgentMonitoredChatsRepository,
+    private readonly oppsRepo:    AgentOpportunitiesRepository,
   ) {}
 
   @Get('inbox')
@@ -59,5 +64,32 @@ export class AgentController {
   @Post('actions/:id/reject')
   rejectAction(@Param('id') id: string) {
     return this.actionsSvc.reject(id);
+  }
+
+  @Get('chats')
+  async chats() {
+    const [groups, monitored] = await Promise.all([this.client.listGroups(), this.chatsRepo.list()]);
+    const enabledMap = new Map(monitored.map(m => [m.chat_id, m.enabled]));
+    return groups.map(g => ({ chatId: g.chatId, title: g.title, enabled: enabledMap.get(g.chatId) ?? false }));
+  }
+
+  @Post('chats/:chatId/monitor')
+  async monitor(@Param('chatId') chatId: string, @Body() dto: MonitorChatDto) {
+    const groups = await this.client.listGroups();
+    const g = groups.find(x => x.chatId === chatId);
+    await this.chatsRepo.upsert(chatId, g?.title ?? chatId);
+    await this.chatsRepo.setEnabled(chatId, dto.enabled);
+    return { ok: true };
+  }
+
+  @Get('opportunities')
+  opportunities(@Query('status') status?: string, @Query('kind') kind?: OpportunityKind) {
+    return this.oppsRepo.list({ status, kind });
+  }
+
+  @Patch('opportunities/:id')
+  async patchOpp(@Param('id') id: string, @Body() dto: PatchThreadDto) {
+    await this.oppsRepo.setStatus(id, dto.status);
+    return { ok: true };
   }
 }
