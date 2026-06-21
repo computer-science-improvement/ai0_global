@@ -1,12 +1,12 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { TelegramClient } from 'telegram';
+import { Api, TelegramClient } from 'telegram';
 import { StringSession } from 'telegram/sessions';
 import { LogLevel } from 'telegram/extensions/Logger';
 import { MtprotoSessionsRepository } from '../config/mtproto-sessions.repository';
 import { SecretsService } from '../common/crypto/secrets.service';
 import { withTimeout } from '../common/with-timeout';
-import type { RawDm } from './agent.types';
+import type { ChatMessage, JoinedGroup, RawDm } from './agent.types';
 
 const FLOOD_WAIT_RE = /A wait of (\d+) seconds is required/;
 
@@ -63,6 +63,73 @@ export class AgentMtprotoClient {
       const msg = err?.errorMessage ?? err?.message ?? String(err);
       if (FLOOD_WAIT_RE.test(msg)) this.logger.warn(`agent: FLOOD_WAIT — backing off`);
       else this.logger.warn(`agent fetchRecentDialogs failed: ${msg}`);
+      return [];
+    } finally {
+      try { await client.disconnect(); } catch { /* ignore */ }
+    }
+  }
+
+  /**
+   * Joined GROUP/megagroup dialogs (for the monitoring allow-list). No DMs. No join.
+   * Read-only: enumerates already-joined membership only.
+   */
+  async listGroups(limit = 100): Promise<JoinedGroup[]> {
+    const active = await this.sessions.activeSession(this.secrets, 'agent');
+    if (!active) return [];
+    const apiId   = active.apiId  ?? Number(this.config.get('TELEGRAM_API_ID'));
+    const apiHash = active.apiHash ?? this.config.get<string>('TELEGRAM_API_HASH') ?? '';
+    if (!apiId || !apiHash) { this.logger.warn('agent: missing api credentials'); return []; }
+
+    const client = new TelegramClient(new StringSession(active.session), apiId, apiHash, { connectionRetries: 2 });
+    client.setLogLevel(LogLevel.NONE);
+    try {
+      await client.connect();
+      const dialogs = await withTimeout(client.getDialogs({ limit }), 15_000, 'agent listGroups');
+      const out: JoinedGroup[] = [];
+      for (const d of dialogs as any[]) {
+        if (!(d.isGroup || d.isChannel) || d.isUser) continue;
+        const ent: any = d.entity;
+        out.push({ chatId: String(ent?.id ?? d.id), title: d.title ?? ent?.title ?? String(d.id) });
+      }
+      return out;
+    } catch (err: any) {
+      const msg = err?.errorMessage ?? err?.message ?? String(err);
+      if (FLOOD_WAIT_RE.test(msg)) this.logger.warn(`agent: FLOOD_WAIT — backing off`);
+      else this.logger.warn(`agent listGroups failed: ${msg}`);
+      return [];
+    } finally {
+      try { await client.disconnect(); } catch { /* ignore */ }
+    }
+  }
+
+  /**
+   * New messages in a chat since minId (read-only).
+   * No join, no send — pure history fetch on already-joined chats.
+   */
+  async fetchChatMessages(chatId: string, minId: number, limit = 50): Promise<ChatMessage[]> {
+    const active = await this.sessions.activeSession(this.secrets, 'agent');
+    if (!active) return [];
+    const apiId   = active.apiId  ?? Number(this.config.get('TELEGRAM_API_ID'));
+    const apiHash = active.apiHash ?? this.config.get<string>('TELEGRAM_API_HASH') ?? '';
+    if (!apiId || !apiHash) { this.logger.warn('agent: missing api credentials'); return []; }
+
+    const client = new TelegramClient(new StringSession(active.session), apiId, apiHash, { connectionRetries: 2 });
+    client.setLogLevel(LogLevel.NONE);
+    try {
+      await client.connect();
+      const entity = await client.getEntity(chatId);
+      const res: any = await withTimeout(
+        client.invoke(new Api.messages.GetHistory({ peer: entity as any, limit, minId, offsetId: 0 })),
+        15_000, 'agent fetchChatMessages',
+      );
+      const msgs: any[] = res?.messages ?? [];
+      return msgs
+        .filter(m => m && m.id && typeof m.message === 'string')
+        .map(m => ({ messageId: Number(m.id), text: String(m.message), date: m.date ? new Date(m.date * 1000) : new Date() }));
+    } catch (err: any) {
+      const msg = err?.errorMessage ?? err?.message ?? String(err);
+      if (FLOOD_WAIT_RE.test(msg)) this.logger.warn(`agent: FLOOD_WAIT — backing off`);
+      else this.logger.warn(`agent fetchChatMessages failed: ${msg}`);
       return [];
     } finally {
       try { await client.disconnect(); } catch { /* ignore */ }
