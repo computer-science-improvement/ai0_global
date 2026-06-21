@@ -70,4 +70,20 @@ export class AgentInboxRepository {
     );
     return rows[0]?.last_polled_at ?? null;
   }
+
+  /** Return the peer contact info for a thread (used by AgentActionsService to send a reply). */
+  async threadPeer(id: string): Promise<{ peer_id: string; peer_username: string | null } | null> {
+    const { rows } = await this.pool.query<{ peer_id: string; peer_username: string | null }>(
+      `SELECT peer_id, peer_username FROM agent_dm_threads WHERE id = $1`, [id],
+    );
+    return rows[0] ?? null;
+  }
+
+  /** Record that a reply was sent: stamp replied_at, store sent text, flip status to reviewed. */
+  async stampReplied(id: string, text: string): Promise<void> {
+    await this.pool.query(
+      `UPDATE agent_dm_threads SET replied_at = now(), sent_reply = $2, status = 'reviewed', updated_at = now() WHERE id = $1`,
+      [id, text],
+    );
+  }
 }

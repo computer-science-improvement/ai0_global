@@ -46,3 +46,23 @@ test('lastMessageIdFor returns 0 when no row', async () => {
   const repo = new AgentInboxRepository(pool);
   assert.equal(await repo.lastMessageIdFor('42'), 0);
 });
+
+test('threadPeer queries peer_id + peer_username by thread id', async () => {
+  const { pool, calls, setRows } = fakePool();
+  setRows([{ peer_id: '99', peer_username: 'alice' }]);
+  const repo = new AgentInboxRepository(pool);
+  const peer = await repo.threadPeer('thread-1');
+  assert.match(calls[0].sql, /SELECT peer_id, peer_username FROM agent_dm_threads/);
+  assert.equal(calls[0].params[0], 'thread-1');
+  assert.equal(peer?.peer_id, '99');
+  assert.equal(peer?.peer_username, 'alice');
+});
+
+test('stampReplied updates replied_at, sent_reply, status', async () => {
+  const { pool, calls } = fakePool();
+  const repo = new AgentInboxRepository(pool);
+  await repo.stampReplied('thread-2', 'Hello');
+  assert.match(calls[0].sql, /replied_at = now\(\)/);
+  assert.match(calls[0].sql, /status = 'reviewed'/);
+  assert.deepEqual(calls[0].params, ['thread-2', 'Hello']);
+});
