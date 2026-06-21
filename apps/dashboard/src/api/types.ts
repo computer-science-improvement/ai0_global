@@ -430,3 +430,23 @@ export interface AgentStatus {
   lastPolledAt:    string | null;
   cadence:         string;
 }
+
+// ─── Ad Orders (SP3) ──────────────────────────────────────────────────────────
+
+export type AdOrderStatus = 'draft' | 'awaiting_payment' | 'paid' | 'scheduled' | 'canceled';
+
+export interface AdOrder {
+  id:               string;
+  advertiser:       string;
+  channel_id:       string | null;
+  /** Decimal string, e.g. "500.00" */
+  amount:           string;
+  currency:         string;
+  description:      string | null;
+  status:           AdOrderStatus;
+  liqpay_order_id:  string | null;
+  action_id:        string | null;
+  paid_at:          string | null;
+  created_at:       string;
+  updated_at:       string;
+}
