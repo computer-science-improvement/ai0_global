@@ -249,8 +249,8 @@ export class TrackingService {
     const nodeIds = new Set<string>();
     edges.forEach((e) => { nodeIds.add(e.source_channel_id); if (e.target_channel_id) nodeIds.add(e.target_channel_id); });
 
-    const nodeRows = await Promise.all([...nodeIds].map((id) => this.channels.getById(id)));
-    const nodeMap = new Map(nodeRows.filter((n) => n != null).map((n) => [n!.id, n!]));
+    const nodeRows = await this.channels.getByIds([...nodeIds]);
+    const nodeMap = new Map(nodeRows.map((n) => [n.id, n]));
 
     const filteredEdges = edges.filter((e) => {
       if (kinds && !kinds.has(e.target_kind)) return false;

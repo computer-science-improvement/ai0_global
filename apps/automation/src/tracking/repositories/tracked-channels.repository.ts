@@ -60,6 +60,20 @@ export class TrackedChannelsRepository {
     return r.rows[0] ? this.toEntity(r.rows[0]) : null;
   }
 
+  /**
+   * Batch-load channels by id in a single query. Used by the graph endpoint
+   * to resolve every node at once — a per-id `getById` fan-out (Promise.all)
+   * fires one round-trip per node and can exhaust the connection pool on a
+   * large graph, stalling the whole service.
+   */
+  async getByIds(ids: string[]): Promise<TrackedChannel[]> {
+    if (ids.length === 0) return [];
+    const r = await this.pool.query<any>(
+      `SELECT * FROM tracked_channels WHERE id = ANY($1)`, [ids],
+    );
+    return r.rows.map((row) => this.toEntity(row));
+  }
+
   async getByUsername(username: string): Promise<TrackedChannel | null> {
     const r = await this.pool.query<any>(
       `SELECT * FROM tracked_channels WHERE LOWER(username) = LOWER($1)`, [username],

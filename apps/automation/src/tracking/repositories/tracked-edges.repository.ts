@@ -56,13 +56,26 @@ export class TrackedEdgesRepository {
     );
   }
 
-  async graph(from: Date | null, to: Date | null, minWeight: number): Promise<EdgeRow[]> {
+  /**
+   * Upper bound on edges returned by the graph endpoint. Without it, a large
+   * network returns every edge (and every distinct node), which both exhausts
+   * the connection pool on node resolution and overwhelms the client-side
+   * layout — the strongest relationships are what matter for the visual anyway.
+   */
+  static readonly GRAPH_MAX_EDGES = 2000;
+
+  async graph(
+    from: Date | null, to: Date | null, minWeight: number,
+    maxEdges: number = TrackedEdgesRepository.GRAPH_MAX_EDGES,
+  ): Promise<EdgeRow[]> {
     const args: unknown[] = [minWeight];
     let where = `ad_post_count >= $1`;
     if (from) { args.push(from); where += ` AND last_seen_at >= $${args.length}`; }
     if (to)   { args.push(to);   where += ` AND first_seen_at <= $${args.length}`; }
+    args.push(maxEdges);
     const r = await this.pool.query<EdgeRow>(
-      `SELECT * FROM tracked_ad_edges WHERE ${where}`, args,
+      `SELECT * FROM tracked_ad_edges WHERE ${where}
+         ORDER BY ad_post_count DESC LIMIT $${args.length}`, args,
     );
     return r.rows;
   }
