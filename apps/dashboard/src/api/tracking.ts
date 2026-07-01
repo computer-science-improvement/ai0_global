@@ -11,6 +11,7 @@ export interface PatchChannelInput {
   pollTier?:      'hot' | 'warm' | 'cold';
   themes?:        string[];
   publishPaused?: boolean;
+  groupId?:       string | null;
 }
 
 export interface CreateFullChannelInput {

@@ -1,4 +1,4 @@
-import { Injectable, Logger, NotFoundException } from '@nestjs/common';
+import { ConflictException, Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { TrackedChannelsRepository, TrackedChannel } from '../repositories/tracked-channels.repository';
 import { TrackedPostsRepository } from '../repositories/tracked-posts.repository';
@@ -102,10 +102,19 @@ export class TrackingService {
     pollTier?:      PollTier;
     themes?:        string[];
     publishPaused?: boolean;
+    groupId?:       string | null;
   }): Promise<TrackedChannelDto> {
     const exists = await this.channels.getById(id);
     if (!exists) throw new NotFoundException(`Channel ${id} not found`);
-    await this.channels.patch(id, patch);
+    try {
+      await this.channels.patch(id, patch);
+    } catch (err: any) {
+      // Partial unique index on group_id: the group already has a Telegram channel.
+      if (err?.code === '23505') {
+        throw new ConflictException('That group already has a Telegram channel — one per group.');
+      }
+      throw err;
+    }
     await this.configEvents.publish('channel', id);
     const updated = await this.channels.getById(id);
     return this.toDto(updated!, this.strategiesForChannel(id));
@@ -314,6 +323,7 @@ export class TrackingService {
       tgChatId:      c.tgChatId,
       kind:          c.kind,
       botId:         c.botId,
+      groupId:       c.groupId,
       bot,
       // No specific bot bound AND no default bot to fall back to → publishing
       // into this channel would stop. The dashboard surfaces this as a prompt.

@@ -7,7 +7,9 @@
 // surfaces, three different radii before.
 
 import { useEffect, type ReactNode } from 'react';
+import { createPortal } from 'react-dom';
 import { Icon } from './Icon';
+import { Icon as UiIcon, type IconName } from './ui/Icon';
 
 interface Props {
   open:     boolean;
@@ -15,12 +17,14 @@ interface Props {
   title?:   string;
   /** Optional secondary line under the title (e.g. context). */
   subtitle?: string;
+  /** Optional leading glyph in the header — matches the SectionCard headers. */
+  icon?:    IconName;
   /** Wider variant for theme-pickers and similar dense modals. */
   size?:    'md' | 'lg';
   children: ReactNode;
 }
 
-export function Modal({ open, onClose, title, subtitle, size = 'md', children }: Props) {
+export function Modal({ open, onClose, title, subtitle, icon, size = 'md', children }: Props) {
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
@@ -30,7 +34,11 @@ export function Modal({ open, onClose, title, subtitle, size = 'md', children }:
 
   if (!open) return null;
 
-  return (
+  // Portal to <body> so the fixed backdrop escapes any transformed ancestor
+  // (a CSS transform on a parent — e.g. row hover-lift / entrance animation —
+  // would otherwise become the containing block and trap this fixed overlay
+  // inside the row instead of covering the viewport).
+  return createPortal(
     <div className="modal-backdrop" onClick={onClose}>
       <div
         className={size === 'lg' ? 'modal-shell modal-shell-lg' : 'modal-shell'}
@@ -40,28 +48,33 @@ export function Modal({ open, onClose, title, subtitle, size = 'md', children }:
         aria-label={title}
       >
         {title !== undefined && (
-          <div style={{
-            display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between',
-            marginBottom: subtitle ? 4 : 16, gap: 12,
-          }}>
-            {title && <h2 className="text-headline" style={{ margin: 0 }}>{title}</h2>}
+          <div className="modal-head">
+            {icon && <span className="section-glyph"><UiIcon name={icon} size={15} /></span>}
+            <div style={{ flex: 1, minWidth: 0 }}>
+              {title && (
+                <h2 style={{ margin: 0, fontSize: 17, fontWeight: 600, letterSpacing: '-0.02em', color: 'var(--color-ink)' }}>
+                  {title}
+                </h2>
+              )}
+              {subtitle && (
+                <p className="text-micro" style={{ margin: '3px 0 0', color: 'var(--color-ink-muted)' }}>
+                  {subtitle}
+                </p>
+              )}
+            </div>
             <button
               onClick={onClose}
               aria-label="Close"
               className="btn-icon"
-              style={{ width: 32, height: 32 }}
+              style={{ width: 32, height: 32, flexShrink: 0 }}
             >
               <Icon name="x" size={16} />
             </button>
           </div>
         )}
-        {subtitle && (
-          <p className="text-caption" style={{ margin: 0, marginBottom: 16, color: 'var(--color-ink-muted)' }}>
-            {subtitle}
-          </p>
-        )}
         {children}
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }

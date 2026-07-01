@@ -30,14 +30,19 @@ export class MtprotoVerifyClient {
 
   /**
    * Connect with the given plaintext session and return the account identity.
-   * Throws with a sanitized message on failure (missing creds, bad session,
-   * connect/getMe error). The session string is never included in the message.
+   * The session's own app credentials (passed in `creds`) win; otherwise the
+   * env TELEGRAM_API_ID / TELEGRAM_API_HASH are used. Throws with a sanitized
+   * message on failure (missing creds, bad session, connect/getMe error). The
+   * session string is never included in the message.
    */
-  async verify(session: string): Promise<MtprotoVerifyResult> {
-    const apiId   = parseInt(this.config.get<string>('TELEGRAM_API_ID') ?? '', 10);
-    const apiHash = this.config.get<string>('TELEGRAM_API_HASH') ?? '';
+  async verify(
+    session: string,
+    creds?: { apiId?: number; apiHash?: string },
+  ): Promise<MtprotoVerifyResult> {
+    const apiId   = creds?.apiId   ?? parseInt(this.config.get<string>('TELEGRAM_API_ID') ?? '', 10);
+    const apiHash = creds?.apiHash ?? this.config.get<string>('TELEGRAM_API_HASH') ?? '';
     if (!apiId || !apiHash) {
-      throw new Error('TELEGRAM_API_ID / TELEGRAM_API_HASH not set — cannot verify session');
+      throw new Error('TELEGRAM_API_ID / TELEGRAM_API_HASH not set — set them on the session or in .env');
     }
 
     const client = new TelegramClient(new StringSession(session), apiId, apiHash, {

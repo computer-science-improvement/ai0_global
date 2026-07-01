@@ -59,6 +59,7 @@ export class MetaAccountsController {
       followers_delta_24h: followersDelta24h,
       active: r.active, last_verified_at: r.last_verified_at,
       verify_error: r.verify_error, created_at: r.created_at,
+      group_id: r.group_id,
       // Derived token metadata only — never the token value.
       token_type: r.token_type, token_expires_at: r.token_expires_at,
       token_data_access_expires_at: r.token_data_access_expires_at,
@@ -174,6 +175,11 @@ export class MetaAccountsController {
 
     try {
       const r = await this.graph.verify(acc.platform, acc.target_id, token);
+      // Threads `/me` returns the token's authoritative user id — persist it so a
+      // wrong/stale target id self-heals and publishing uses the correct node.
+      if (r.resolvedTargetId && r.resolvedTargetId !== acc.target_id) {
+        await this.accounts.setTargetId(id, r.resolvedTargetId);
+      }
       await this.accounts.markVerified(id, {
         username: r.username, display_name: r.displayName,
         followers: r.followers, picture_url: r.pictureUrl,
@@ -190,6 +196,20 @@ export class MetaAccountsController {
     const acc = await this.accounts.findById(id);
     if (!acc) throw new NotFoundException(`Meta account ${id} not found`);
     if (typeof body.active === 'boolean') await this.accounts.setActive(id, body.active);
+    if (body.groupId !== undefined) {
+      try {
+        await this.accounts.setGroup(id, body.groupId);
+      } catch (err: any) {
+        // Partial unique index (group_id, platform): a group already has an
+        // account of this platform.
+        if (err?.code === '23505') {
+          throw new ConflictException(
+            `That group already has a ${acc.platform} account — one per platform per group.`,
+          );
+        }
+        throw err;
+      }
+    }
     return { ok: true };
   }
 

@@ -18,6 +18,8 @@ export interface TrackedChannelDto {
   tgChatId:     string | null;
   kind:         string | null;
   botId:        string | null;
+  /** Brand group (meta_account_groups) this channel belongs to; null = none. */
+  groupId:      string | null;
   /** Per-channel publishing kill switch. When true, all strategies + forwards
    *  into this channel are blocked at publish time. */
   publishPaused: boolean;

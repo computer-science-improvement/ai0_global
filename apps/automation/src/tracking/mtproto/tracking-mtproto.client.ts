@@ -80,30 +80,38 @@ export class TrackingMtprotoClient implements OnModuleInit {
   ) {}
 
   /**
-   * The session string to connect with. Prefers the first ACTIVE encrypted DB
-   * session (dashboard-managed); falls back to the EXACT existing .env behavior
-   * when there is none — dedicated TELEGRAM_TRACKING_SESSION_STRING, else the
-   * shared TELEGRAM_SESSION_STRING when sharing is enabled. With no active DB
+   * The session + app credentials to connect with. Prefers the first ACTIVE
+   * encrypted DB session (dashboard-managed), using its OWN api_id/api_hash when
+   * set and falling back to the env app credentials for any it omits. With no
+   * active DB session, falls back to the EXACT existing .env behavior — dedicated
+   * TELEGRAM_TRACKING_SESSION_STRING, else the shared TELEGRAM_SESSION_STRING
+   * when sharing is enabled, with env api_id/api_hash. So with no active DB
    * session, behavior is identical to before.
    */
-  private async resolveSessionString(): Promise<string> {
-    const dbSession = await this.sessions.activeSessionString(this.secrets);
-    if (dbSession) return dbSession;
+  private async resolveConnection(): Promise<{ session: string; apiId: number; apiHash: string }> {
+    const envApiId   = parseInt(this.config.get<string>('TELEGRAM_API_ID') ?? '', 10);
+    const envApiHash = this.config.get<string>('TELEGRAM_API_HASH') ?? '';
+    const active     = await this.sessions.activeSession(this.secrets);
+    if (active) {
+      return {
+        session: active.session,
+        apiId:   active.apiId   ?? envApiId,
+        apiHash: active.apiHash ?? envApiHash,
+      };
+    }
     const dedicated = this.config.get<string>('TELEGRAM_TRACKING_SESSION_STRING') ?? '';
     const shared    = this.settings.trackingShareSession()
       ? (this.config.get<string>('TELEGRAM_SESSION_STRING') ?? '')
       : '';
-    return dedicated || shared;
+    return { session: dedicated || shared, apiId: envApiId, apiHash: envApiHash };
   }
 
   async onModuleInit(): Promise<void> {
     // Wait for DB overrides so a dashboard-set TELEGRAM_TRACKING_SHARE_SESSION
     // wins over .env on this (restart-time) read.
     await this.settings.whenLoaded();
-    const apiId   = parseInt(this.config.get<string>('TELEGRAM_API_ID') ?? '', 10);
-    const apiHash = this.config.get<string>('TELEGRAM_API_HASH') ?? '';
-    // Active DB session (encrypted) wins; otherwise the existing .env value.
-    const session = await this.resolveSessionString();
+    // Active DB session (encrypted) wins, with its own api creds; otherwise env.
+    const { session, apiId, apiHash } = await this.resolveConnection();
 
     if (!apiId || !apiHash || !session) {
       this.logger.warn(

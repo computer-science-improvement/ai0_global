@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useCreateBot } from '../api/bots';
 import { Modal } from './Modal';
 import { Icon } from './Icon';
+import { Field } from './ui/primitives';
 
 interface Props {
   open:    boolean;
@@ -34,7 +35,7 @@ export function AddBotModal({ open, onClose }: Props) {
   };
 
   return (
-    <Modal open={open} onClose={onClose} title="Add bot">
+    <Modal open={open} onClose={onClose} title="Add bot" icon="bots">
       <Field label="Bot id (logical name)">
         <input
           value={botId}
@@ -83,7 +84,7 @@ export function AddBotModal({ open, onClose }: Props) {
         </p>
       )}
 
-      <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 8 }}>
+      <div className="modal-foot">
         <button onClick={onClose} className="btn-secondary">Cancel</button>
         <button
           onClick={submit}
@@ -94,14 +95,5 @@ export function AddBotModal({ open, onClose }: Props) {
         </button>
       </div>
     </Modal>
-  );
-}
-
-function Field({ label, children }: { label: string; children: React.ReactNode }) {
-  return (
-    <label style={{ display: 'block', marginBottom: 12 }}>
-      <span className="text-eyebrow" style={{ display: 'block', marginBottom: 6 }}>{label}</span>
-      {children}
-    </label>
   );
 }

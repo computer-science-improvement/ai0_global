@@ -44,15 +44,25 @@ export class TelegramStatsClient implements OnModuleInit {
   ) {}
 
   /**
-   * The session string to connect with. Prefers the first ACTIVE encrypted DB
-   * session (dashboard-managed); falls back to the EXACT existing .env value
-   * (TELEGRAM_SESSION_STRING) when there is none. With no active DB session,
-   * behavior is identical to before.
+   * The session + app credentials to connect with. Prefers the first ACTIVE
+   * encrypted DB session (dashboard-managed), using its OWN api_id/api_hash when
+   * set and falling back to env for any it omits. Falls back to the EXACT
+   * existing .env values (TELEGRAM_SESSION_STRING + env api creds) when there is
+   * no active DB session. With no active DB session, behavior is identical to
+   * before.
    */
-  private async resolveSessionString(): Promise<string> {
-    const dbSession = await this.sessions.activeSessionString(this.secrets);
-    if (dbSession) return dbSession;
-    return this.config.get<string>('TELEGRAM_SESSION_STRING') ?? '';
+  private async resolveConnection(): Promise<{ session: string; apiId: number; apiHash: string }> {
+    const envApiId   = parseInt(this.config.get<string>('TELEGRAM_API_ID') ?? '', 10);
+    const envApiHash = this.config.get<string>('TELEGRAM_API_HASH') ?? '';
+    const active     = await this.sessions.activeSession(this.secrets);
+    if (active) {
+      return {
+        session: active.session,
+        apiId:   active.apiId   ?? envApiId,
+        apiHash: active.apiHash ?? envApiHash,
+      };
+    }
+    return { session: this.config.get<string>('TELEGRAM_SESSION_STRING') ?? '', apiId: envApiId, apiHash: envApiHash };
   }
 
   /**
@@ -102,10 +112,8 @@ export class TelegramStatsClient implements OnModuleInit {
   }
 
   async onModuleInit(): Promise<void> {
-    const apiId   = parseInt(this.config.get<string>('TELEGRAM_API_ID') ?? '', 10);
-    const apiHash = this.config.get<string>('TELEGRAM_API_HASH') ?? '';
-    // Active DB session (encrypted) wins; otherwise the existing .env value.
-    const session = await this.resolveSessionString();
+    // Active DB session (encrypted) wins, with its own api creds; otherwise env.
+    const { session, apiId, apiHash } = await this.resolveConnection();
 
     if (!apiId || !apiHash || !session) {
       this.logger.warn(

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Modal } from '../Modal';
 import { Icon } from '../ui/Icon';
+import { Field } from '../ui/primitives';
 import { useCreateMetaAccount } from '../../api/meta-accounts';
 import type { MetaPlatform } from '../../api/types';
 
@@ -27,8 +28,17 @@ export function AddMetaAccountModal({ open, platform, onClose }: Props) {
   // Require either the token value or the legacy env-var name.
   const hasSecret = !!token.trim() || !!tokenEnv.trim();
 
+  // The logical identifier is a slug, not a display name — mirror the server
+  // rule (letters, digits, . _ -) client-side so a bad value (e.g. a space)
+  // is caught inline instead of bouncing off a 400.
+  const ID_RE = /^[A-Za-z0-9._-]+$/;
+  const trimmedId = accountId.trim();
+  const idValid = ID_RE.test(trimmedId);
+  const idError = trimmedId.length > 0 && !idValid;
+  const canSubmit = idValid && hasSecret && !!targetId.trim() && !create.isPending;
+
   const submit = async () => {
-    if (!hasSecret) return;
+    if (!canSubmit) return;
     try {
       await create.mutateAsync({
         platform,
@@ -44,10 +54,16 @@ export function AddMetaAccountModal({ open, platform, onClose }: Props) {
   };
 
   return (
-    <Modal open={open} onClose={onClose} title={`Add ${d.label}`}>
+    <Modal open={open} onClose={onClose} title={`Add ${d.label}`} icon={platform}>
       <Field label="Name (logical identifier)">
         <input value={accountId} onChange={e => setAccountId(e.target.value)}
-          placeholder="my_page" className="input-field" style={{ width: '100%' }} />
+          placeholder="my_page" className="input-field"
+          style={{ width: '100%', borderColor: idError ? 'var(--color-danger)' : undefined }} />
+        <span className="text-micro" style={{ display: 'block', marginTop: 4, color: idError ? 'var(--color-danger)' : 'var(--color-ink-dim)' }}>
+          {idError
+            ? 'Only letters, digits, . _ - — no spaces (e.g. ai0-recipes).'
+            : 'A slug, not a display name. Letters, digits, . _ - only.'}
+        </span>
       </Field>
 
       <Field label="Token (value)">
@@ -83,21 +99,12 @@ export function AddMetaAccountModal({ open, platform, onClose }: Props) {
         </p>
       )}
 
-      <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 8 }}>
+      <div className="modal-foot">
         <button onClick={onClose} className="btn-secondary">Cancel</button>
-        <button onClick={submit} disabled={!accountId || !hasSecret || !targetId || create.isPending} className="btn-primary">
+        <button onClick={submit} disabled={!canSubmit} className="btn-primary">
           {create.isPending ? 'Saving…' : 'Save'}
         </button>
       </div>
     </Modal>
-  );
-}
-
-function Field({ label, children }: { label: string; children: React.ReactNode }) {
-  return (
-    <label style={{ display: 'block', marginBottom: 12 }}>
-      <span className="text-eyebrow" style={{ display: 'block', marginBottom: 6 }}>{label}</span>
-      {children}
-    </label>
   );
 }

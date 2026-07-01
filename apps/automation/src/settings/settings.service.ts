@@ -20,6 +20,7 @@ import { DB_POOL } from '../database/database.module';
 /** Editable keys + their built-in fallbacks (used when neither DB nor env set). */
 const DEFAULTS: Record<string, string> = {
   TRACKING_ENABLED:                'false',
+  TELEGRAM_OWNER_ID:               '',
   TELEGRAM_TRACKING_SHARE_SESSION: 'false',
   STATS_POST_AGE_DAYS:             '30',
   POSTING_COOLDOWN_MIN:            '20',
@@ -31,6 +32,7 @@ const DEFAULTS: Record<string, string> = {
 
 export interface SettingsPatch {
   trackingEnabled?:      boolean;
+  telegramOwnerId?:      string;
   trackingShareSession?: boolean;
   statsPostAgeDays?:     number;
   postingCooldownMin?:   number;
@@ -40,6 +42,7 @@ export interface SettingsPatch {
 /** Maps a patch field → its underlying env key + string serialisation. */
 const FIELD_TO_KEY: Record<keyof SettingsPatch, string> = {
   trackingEnabled:      'TRACKING_ENABLED',
+  telegramOwnerId:      'TELEGRAM_OWNER_ID',
   trackingShareSession: 'TELEGRAM_TRACKING_SHARE_SESSION',
   statsPostAgeDays:     'STATS_POST_AGE_DAYS',
   postingCooldownMin:   'POSTING_COOLDOWN_MIN',
@@ -86,6 +89,8 @@ export class SettingsService {
   // ── Typed getters (consumers read these, never process.env directly) ──────
   trackingEnabled():      boolean { return this.raw('TRACKING_ENABLED') === 'true'; }
   trackingShareSession(): boolean { return this.raw('TELEGRAM_TRACKING_SHARE_SESSION') === 'true'; }
+  /** Owner chat id for admin notifications (TELEGRAM_OWNER_ID); '' when unset. */
+  telegramOwnerId():      string  { return this.raw('TELEGRAM_OWNER_ID'); }
   statsPostAgeDays():     number  { return this.intRaw('STATS_POST_AGE_DAYS', 30); }
   postingCooldownMin():   number  { return Math.max(1, this.intRaw('POSTING_COOLDOWN_MIN', 20)); }
   fetchTimeoutMs():       number  { return this.intRaw('FETCH_TIMEOUT', 15000); }
@@ -108,6 +113,7 @@ export class SettingsService {
     return {
       telegram: {
         trackingEnabled:      this.trackingEnabled(),
+        ownerId:              this.telegramOwnerId(),
         trackingShareSession: this.trackingShareSession(),
         statsPostAgeDays:     this.statsPostAgeDays(),
         postingCooldownMin:   this.postingCooldownMin(),

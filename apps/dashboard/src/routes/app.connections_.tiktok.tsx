@@ -1,26 +1,14 @@
-// TikTok connections page — lives at /connections/tiktok as a ROOT-level route
-// (filename `connections_.tiktok`), so the static path wins over the generic
-// /connections/$platform placeholder. Reads ?tiktok=connected|error set by the
-// OAuth callback redirect to show a result banner.
+// Legacy /connections/tiktok route — now redirects into the unified Connections
+// workspace (?section=tiktok), preserving the ?tiktok=connected|error banner set
+// by the OAuth callback redirect. Kept so the TikTok OAuth return keeps working
+// after the sidebar collapse.
 
-import { createFileRoute } from '@tanstack/react-router';
-import { PageHeader } from '../components/ui/PageHeader';
-import { TikTokAccountsManager } from '../components/connections/TikTokAccountsManager';
-
-interface Search { tiktok?: 'connected' | 'error'; }
+import { createFileRoute, redirect } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/app/connections_/tiktok')({
-  validateSearch: (s: Record<string, unknown>): Search =>
-    (s.tiktok === 'connected' || s.tiktok === 'error') ? { tiktok: s.tiktok } : {},
-  component: TikTokConnectionsPage,
+  validateSearch: (s: Record<string, unknown>): { tiktok?: 'connected' | 'error' } =>
+    s.tiktok === 'connected' || s.tiktok === 'error' ? { tiktok: s.tiktok } : {},
+  beforeLoad: ({ search }) => {
+    throw redirect({ to: '/app/connections', search: { section: 'tiktok', tiktok: search.tiktok } });
+  },
 });
-
-function TikTokConnectionsPage() {
-  const { tiktok } = Route.useSearch();
-  return (
-    <div>
-      <PageHeader title="Connections · TikTok" subtitle="Connect a TikTok creator account for carousels" />
-      <TikTokAccountsManager notice={tiktok} />
-    </div>
-  );
-}

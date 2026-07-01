@@ -9,6 +9,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { trackingApi, PatchChannelInput } from '../api/tracking';
 import { useBots, useSetDefaultBot } from '../api/bots';
 import { Modal } from './Modal';
+import { Field } from './ui/primitives';
 import type { TrackedChannel } from '../api/types';
 
 interface Props {
@@ -71,6 +72,7 @@ export function EditChannelModal({ channel, open, onClose }: Props) {
       onClose={onClose}
       title="Edit channel"
       subtitle={channel.title ?? channel.username ?? channel.id}
+      icon="channels"
     >
       <Field label="Name" hint="display title shown across the dashboard">
         <input
@@ -199,24 +201,12 @@ export function EditChannelModal({ channel, open, onClose }: Props) {
         </p>
       )}
 
-      <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 8 }}>
+      <div className="modal-foot">
         <button onClick={onClose} className="btn-secondary">Cancel</button>
         <button onClick={submit} disabled={save.isPending} className="btn-primary">
           {save.isPending ? 'Saving…' : 'Save'}
         </button>
       </div>
     </Modal>
-  );
-}
-
-function Field({ label, hint, children }: { label: string; hint?: string; children: React.ReactNode }) {
-  return (
-    <div style={{ marginBottom: 16 }}>
-      <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 6 }}>
-        <span className="text-eyebrow">{label}</span>
-        {hint && <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>{hint}</span>}
-      </div>
-      {children}
-    </div>
   );
 }

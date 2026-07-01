@@ -41,7 +41,7 @@ export function EditThemesModal({ channelId, channelTitle, open, onClose }: Prop
   };
 
   return (
-    <Modal open={open} onClose={onClose} title="Edit themes" subtitle={channelTitle}>
+    <Modal open={open} onClose={onClose} title="Edit themes" subtitle={channelTitle} icon="recommendations">
       <input
         type="text"
         placeholder="Filter themes…"
@@ -96,7 +96,7 @@ export function EditThemesModal({ channelId, channelTitle, open, onClose }: Prop
         )}
       </div>
 
-      <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 8 }}>
+      <div className="modal-foot">
         <button onClick={onClose} className="btn-secondary">Cancel</button>
         <button
           disabled={update.isPending}

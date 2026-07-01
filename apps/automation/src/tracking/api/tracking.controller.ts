@@ -1,7 +1,7 @@
 import {
   Body, Controller, Delete, Get, Param, ParseUUIDPipe, Patch, Post, Query, UseGuards,
 } from '@nestjs/common';
-import { IsArray, IsBoolean, IsIn, IsOptional, IsString, IsUUID, MaxLength } from 'class-validator';
+import { IsArray, IsBoolean, IsIn, IsOptional, IsString, IsUUID, MaxLength, ValidateIf } from 'class-validator';
 import { TrackingService } from './tracking.service';
 import { TrackingAuthGuard } from './tracking-auth.guard';
 import { AddChannelDto } from './dto/add-channel.dto';
@@ -17,6 +17,9 @@ class PatchChannelDto {
   @IsOptional() @IsIn(['hot', 'warm', 'cold']) pollTier?:     PollTier;
   @IsOptional() @IsArray() @IsString({ each: true }) themes?: string[];
   @IsOptional() @IsBoolean()                  publishPaused?: boolean;
+  // Brand group (meta_account_groups UUID), or null to un-group. Organizational
+  // only — does not affect publishing. One Telegram channel per group (409 clash).
+  @IsOptional() @IsUUID() @ValidateIf((_o, v) => v !== null) groupId?: string | null;
 }
 
 class CreateFullChannelDto {

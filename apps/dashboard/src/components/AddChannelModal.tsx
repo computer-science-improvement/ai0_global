@@ -17,6 +17,7 @@ import { trackingApi, CreateFullChannelInput } from '../api/tracking';
 import { useBots, useSetDefaultBot } from '../api/bots';
 import { Modal } from './Modal';
 import { Icon } from './Icon';
+import { Field } from './ui/primitives';
 import { CHANNEL_KIND_HELP, POLL_TIER_HELP, CHANNEL_FLAG_HELP } from '../lib/labels';
 
 type Kind = 'public' | 'private';
@@ -107,9 +108,9 @@ export function AddChannelModal({ open, onClose, ownership = 'mine' }: {
     : chatId.trim().startsWith('-');
 
   return (
-    <Modal open={open} onClose={onClose} title="Add channel" size="lg">
+    <Modal open={open} onClose={onClose} title="Add channel" icon="channels" size="lg">
       <form onSubmit={submit} style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-        <Field label="Kind" help={`${CHANNEL_KIND_HELP.public}\n\nvs\n\n${CHANNEL_KIND_HELP.private}`}>
+        <Field label="Kind" hint={`${CHANNEL_KIND_HELP.public} vs ${CHANNEL_KIND_HELP.private}`}>
           <div className="tabs-pill" style={{ width: 'fit-content' }}>
             {(['private', 'public'] as Kind[]).map(k => (
               <button
@@ -158,7 +159,7 @@ export function AddChannelModal({ open, onClose, ownership = 'mine' }: {
           />
         </Field>
 
-        <Field label="Bot" help="Telegram bot account that will publish content to this channel. If none is chosen, the default bot is used as a fallback.">
+        <Field label="Bot" hint="Telegram bot account that will publish content to this channel. If none is chosen, the default bot is used as a fallback.">
           <div style={{ display: 'flex', gap: 8 }}>
             <select
               value={botId}
@@ -186,7 +187,7 @@ export function AddChannelModal({ open, onClose, ownership = 'mine' }: {
           </div>
         </Field>
 
-        <Field label="Poll tier" help={`hot: ${POLL_TIER_HELP.hot}\n\nwarm: ${POLL_TIER_HELP.warm}\n\ncold: ${POLL_TIER_HELP.cold}`}>
+        <Field label="Poll tier" hint={`hot: ${POLL_TIER_HELP.hot} · warm: ${POLL_TIER_HELP.warm} · cold: ${POLL_TIER_HELP.cold}`}>
           <div className="tabs-pill" style={{ width: 'fit-content' }}>
             {(['hot', 'warm', 'cold'] as const).map(t => (
               <button
@@ -201,7 +202,7 @@ export function AddChannelModal({ open, onClose, ownership = 'mine' }: {
           </div>
         </Field>
 
-        <Field label="Ownership" help={`mine: ${CHANNEL_FLAG_HELP.mine}`}>
+        <Field label="Ownership" hint={`mine: ${CHANNEL_FLAG_HELP.mine}`}>
           <label style={{ display: 'inline-flex', alignItems: 'center', gap: 8, cursor: 'not-allowed', opacity: 0.85 }}>
             <input
               type="checkbox"
@@ -224,7 +225,7 @@ export function AddChannelModal({ open, onClose, ownership = 'mine' }: {
           </p>
         )}
 
-        <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 8 }}>
+        <div className="modal-foot">
           <button type="button" onClick={onClose} className="btn-secondary">Cancel</button>
           <button type="submit" disabled={!valid || pending} className="btn-primary">
             {pending ? 'Adding…' : (
@@ -237,18 +238,5 @@ export function AddChannelModal({ open, onClose, ownership = 'mine' }: {
         </div>
       </form>
     </Modal>
-  );
-}
-
-function Field({ label, hint, help, children }: { label: string; hint?: string; help?: string; children: React.ReactNode }) {
-  return (
-    <label style={{ display: 'block' }} title={help}>
-      <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 6 }}>
-        <span className="text-eyebrow">{label}</span>
-        {help && <Icon name="info" size={11} style={{ color: 'var(--color-ink-dim)', verticalAlign: 'middle' }} />}
-        {hint && <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>{hint}</span>}
-      </div>
-      {children}
-    </label>
   );
 }

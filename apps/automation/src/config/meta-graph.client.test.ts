@@ -105,6 +105,67 @@ test('inspectToken returns null on error (best-effort) and does not leak the tok
   assert.equal(logged.includes('SECRET_TOKEN_VALUE'), false);
 });
 
+// ── verify field tolerance ────────────────────────────────────────────────────
+
+/** An axios-shaped Graph error carrying error.message (what the client reads). */
+function graphError(message: string) {
+  const e: any = new Error(message);
+  e.response = { data: { error: { message } } };
+  return e;
+}
+
+test('verify drops a #100 "nonexisting field" and retries with the remaining fields', async () => {
+  const seen: string[] = [];
+  mock.method(axios, 'get', async (_url: string, opts: any) => {
+    const fields = String(opts.params.fields);
+    seen.push(fields);
+    // FB Page target that doesn't expose picture (e.g. an IG node id).
+    if (fields.includes('picture')) {
+      throw graphError('(#100) Tried accessing nonexisting field (picture) on node type Page');
+    }
+    return { data: { name: 'ai0', username: 'ai0.global', followers_count: 12 } };
+  });
+  const out = await client().verify('facebook', '1784148', 'tok');
+  assert.deepEqual(out, { username: 'ai0.global', displayName: 'ai0', followers: 12, pictureUrl: null, resolvedTargetId: null });
+  // First attempt included picture; the retry dropped it.
+  assert.ok(seen[0].includes('picture'), 'first attempt requests picture');
+  assert.ok(!seen[seen.length - 1].includes('picture'), 'retry omits the rejected field');
+});
+
+test('verify (threads) queries /me on graph.threads.net and resolves the target id from the token', async () => {
+  let calledUrl = '';
+  mock.method(axios, 'get', async (url: string) => {
+    calledUrl = url;
+    return { data: { id: '1269694731905876', username: 'ai0.global.recipes', name: 'Recipes', threads_profile_picture_url: 'http://pic' } };
+  });
+  // The supplied target id is wrong/stale — /me ignores it and resolves the real one.
+  const out = await client().verify('threads', 'WRONG_ID', 'th_tok');
+  assert.match(calledUrl, /graph\.threads\.net\/v1\.0\/me$/);
+  assert.equal(out.resolvedTargetId, '1269694731905876');
+  assert.equal(out.username, 'ai0.global.recipes');
+  assert.equal(out.pictureUrl, 'http://pic');
+});
+
+test('verify (threads) works even with an empty target id (token is user-scoped)', async () => {
+  mock.method(axios, 'get', async () => ({ data: { id: '999', username: 'u' } }));
+  const out = await client().verify('threads', '', 'th_tok');
+  assert.equal(out.resolvedTargetId, '999');
+});
+
+test('verify propagates a non-#100 error (token/permission) redacting the token', async () => {
+  mock.method(axios, 'get', async () => {
+    throw graphError('Invalid OAuth access token for access_token=SECRET_TOKEN_VALUE');
+  });
+  await assert.rejects(
+    () => client().verify('facebook', '123', 'SECRET_TOKEN_VALUE'),
+    (err: Error) => {
+      assert.match(err.message, /verify failed/);
+      assert.equal(err.message.includes('SECRET_TOKEN_VALUE'), false, 'token must be redacted');
+      return true;
+    },
+  );
+});
+
 // ── refreshThreadsToken (Part 2) ──────────────────────────────────────────────
 
 test('refreshThreadsToken returns the new token + expiry from graph.threads.net', async () => {

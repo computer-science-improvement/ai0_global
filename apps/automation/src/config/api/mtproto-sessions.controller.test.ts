@@ -13,6 +13,7 @@ const SAMPLE_SESSION_ENC = encSecrets().encrypt('SAMPLE_SESSION');
 function fullRow(over: any = {}) {
   return {
     id: 's1', label: 'Tracker', session_enc: SAMPLE_SESSION_ENC, active: true,
+    api_id: null, api_hash_enc: null,
     username: 'acct', phone: '+380', tg_user_id: '42',
     last_verified_at: new Date('2026-06-17T00:00:00Z'), verify_error: null,
     created_at: new Date('2026-06-01T00:00:00Z'),
@@ -34,20 +35,26 @@ function make(over: any = {}) {
     markVerified: async (id: string, meta: any) => { markVerifiedCalls.push({ id, meta }); },
     markVerifyError: async (id: string, msg: string) => { markVerifyErrorCalls.push({ id, msg }); },
   };
+  const verifyCalls: any[] = [];
   const verifyClient = {
-    verify: over.verify ?? (async () => ({ username: 'acct', phone: '+380', tgUserId: '42' })),
+    verify: async (s: string, creds?: any) => {
+      verifyCalls.push({ s, creds });
+      return over.verify ? over.verify(s, creds) : { username: 'acct', phone: '+380', tgUserId: '42' };
+    },
   };
   const secrets = over.secrets ?? encSecrets();
   const c = new MtprotoSessionsController(repo as any, verifyClient as any, secrets);
-  return { c, insertCalls, markVerifiedCalls, markVerifyErrorCalls, setActiveCalls, secrets };
+  return { c, insertCalls, markVerifiedCalls, markVerifyErrorCalls, setActiveCalls, verifyCalls, secrets };
 }
 
-test('list() projection NEVER includes session_enc', async () => {
-  const { c } = make();
+test('list() projection NEVER includes session_enc or api_hash_enc', async () => {
+  const { c } = make({ list: [fullRow({ api_id: '123', api_hash_enc: 'enc:v1:hash' })] });
   const out = (await c.list()) as any[];
   assert.equal(out.length, 1);
   assert.equal('session_enc' in out[0], false, 'session_enc must never be exposed');
   assert.equal('session' in out[0], false);
+  assert.equal('api_hash_enc' in out[0], false, 'api_hash_enc must never be exposed');
+  assert.equal('apiHash' in out[0], false);
   // Safe display fields are present.
   assert.equal(out[0].id, 's1');
   assert.equal(out[0].label, 'Tracker');
@@ -55,7 +62,52 @@ test('list() projection NEVER includes session_enc', async () => {
   assert.equal(out[0].phone, '+380');
   assert.equal(out[0].tg_user_id, '42');
   assert.equal(out[0].active, true);
+  // api_id is safe to show; has_api_creds reflects a per-session secret being set.
+  assert.equal(out[0].api_id, '123');
+  assert.equal(out[0].has_api_creds, true);
   assert.ok(out[0].created_at instanceof Date);
+});
+
+test('list() reports has_api_creds=false when the row relies on env creds', async () => {
+  const { c } = make({ list: [fullRow({ api_id: null, api_hash_enc: null })] });
+  const out = (await c.list()) as any[];
+  assert.equal(out[0].api_id, null);
+  assert.equal(out[0].has_api_creds, false);
+});
+
+test('create() with api creds: api_id stored plaintext, api_hash encrypted, never returned', async () => {
+  const { c, insertCalls, secrets } = make();
+  const out = (await c.create({
+    label: 'Tracker', session: 'RAW', apiId: '  12345  ', apiHash: '  deadbeef  ',
+  } as any)) as any;
+  assert.equal(insertCalls[0].api_id, '12345');
+  assert.ok(insertCalls[0].api_hash_enc.startsWith('enc:v1:'), 'api_hash must be encrypted at rest');
+  assert.equal(secrets.decrypt(insertCalls[0].api_hash_enc), 'deadbeef');
+  // Response never leaks the hash (plaintext or ciphertext).
+  assert.equal('apiHash' in out, false);
+  assert.equal('api_hash_enc' in out, false);
+});
+
+test('create() without api creds stores nulls (env fallback)', async () => {
+  const { c, insertCalls } = make();
+  await c.create({ label: 'Tracker', session: 'RAW' } as any);
+  assert.equal(insertCalls[0].api_id, null);
+  assert.equal(insertCalls[0].api_hash_enc, null);
+});
+
+test('verify() passes the session-row app credentials to the verify client', async () => {
+  const apiHashEnc = encSecrets().encrypt('SESSION_HASH');
+  const { c, verifyCalls } = make({ row: fullRow({ api_id: '777', api_hash_enc: apiHashEnc }) });
+  await c.verify('s1');
+  assert.equal(verifyCalls[0].creds.apiId, 777);
+  assert.equal(verifyCalls[0].creds.apiHash, 'SESSION_HASH');
+});
+
+test('verify() passes undefined creds when the row has none (env fallback)', async () => {
+  const { c, verifyCalls } = make({ row: fullRow({ api_id: null, api_hash_enc: null }) });
+  await c.verify('s1');
+  assert.equal(verifyCalls[0].creds.apiId, undefined);
+  assert.equal(verifyCalls[0].creds.apiHash, undefined);
 });
 
 test('create() encrypts the session and never returns it', async () => {
