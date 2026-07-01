@@ -7,7 +7,7 @@
 //
 // Secrets are returned to callers for in-memory use only. This service never
 // logs a plaintext token, and errors deliberately omit the secret value.
-import { Injectable } from '@nestjs/common';
+import { Injectable, ServiceUnavailableException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { encryptToken, decryptToken, isEncrypted, maybeDecrypt } from './token-crypto';
 
@@ -21,13 +21,22 @@ export class SecretsService {
     return this.config.get<string>(TOKEN_ENCRYPTION_KEY);
   }
 
-  /** Encrypt a plaintext secret for storage. Requires the master key. */
+  /**
+   * Encrypt a plaintext secret for storage. Requires the master key.
+   *
+   * When the key is unset this is a SERVER misconfiguration, not a bad request:
+   * throwing a Nest `ServiceUnavailableException` (503) makes every connection-add
+   * path (MTProto sessions, bots, telegraph, meta, tiktok) return a clear,
+   * actionable message instead of an opaque 500 (Nest hides a raw Error's message
+   * behind a generic "Internal server error"). The message keeps the exact
+   * `TOKEN_ENCRYPTION_KEY is not set` phrase so operators can grep logs for it.
+   */
   encrypt(plaintext: string): string {
     const key = this.key();
     if (!key) {
-      throw new Error(
-        `${TOKEN_ENCRYPTION_KEY} is not set — cannot store an encrypted token. ` +
-        `Set it in .env to enable token encryption.`,
+      throw new ServiceUnavailableException(
+        `${TOKEN_ENCRYPTION_KEY} is not set — the server cannot store an encrypted secret. ` +
+        `Set ${TOKEN_ENCRYPTION_KEY} in the environment to enable token encryption.`,
       );
     }
     return encryptToken(plaintext, key);

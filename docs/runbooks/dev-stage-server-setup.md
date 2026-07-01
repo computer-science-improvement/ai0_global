@@ -228,6 +228,14 @@ POSTGRES_DB=ai0global
 POSTGRES_USER=ai0
 POSTGRES_PASSWORD=<fresh-dev-password>   # do NOT reuse prod
 
+# Secrets-at-rest — REQUIRED. Every connection you add (MTProto session, bot,
+# Meta / Telegraph / TikTok token) is encrypted before storage. If this is
+# unset/empty, saving any of them returns 503 "TOKEN_ENCRYPTION_KEY is not set"
+# (previously an opaque 500). Generate ONCE with `openssl rand -base64 32` and
+# NEVER change it afterwards — rotating the key makes every already-stored
+# secret undecryptable. Back it up alongside the DB password.
+TOKEN_ENCRYPTION_KEY=<openssl rand -base64 32>
+
 # Telegram bot — DEDICATED dev bot from @BotFather
 TELEGRAM_BOT_TOKEN=<dev-bot-token>
 TELEGRAM_OWNER_ID=<your-numeric-telegram-id>   # gates the admin bot commands
@@ -256,7 +264,7 @@ FACEBOOK_PAGE_ID=
 Sanity check after editing:
 
 ```bash
-grep -E '^(NODE_ENV|AUTOMATION_IMAGE|POSTGRES_HOST|TELEGRAM_BOT_TOKEN|TELEGRAM_OWNER_ID|ANTHROPIC_API_KEY)=' /opt/ai0_global/.env
+grep -E '^(NODE_ENV|AUTOMATION_IMAGE|POSTGRES_HOST|TOKEN_ENCRYPTION_KEY|TELEGRAM_BOT_TOKEN|TELEGRAM_OWNER_ID|ANTHROPIC_API_KEY)=' /opt/ai0_global/.env
 ```
 
 Every line must be present with a non-empty value.
