@@ -13,14 +13,19 @@ import { AgentMonitoredChatsRepository } from './agent-monitored-chats.repositor
 import { AgentOpportunitiesRepository } from './agent-opportunities.repository';
 import { AgentChatPoller } from './agent-chat.poller';
 import { ScheduledPostsModule } from '../scheduled-posts/scheduled-posts.module';
+import { AuthModule } from '../auth/auth.module';
+import { TrackingAuthGuard } from '../tracking/api/tracking-auth.guard';
 
 // DB_POOL, SecretsService, ClaudeAgent, MtprotoSessionsRepository all come from
 // @Global modules (DatabaseModule, CryptoModule, CommonModule, ChannelConfigModule).
 // ScheduledPostsRepository is NOT global — imported via ScheduledPostsModule.
+// AuthModule (exports AuthService) is required because AgentController is guarded
+// by TrackingAuthGuard, which injects AuthService — same pattern as SettingsModule.
 @Module({
-  imports:     [ScheduledPostsModule],
+  imports:     [ScheduledPostsModule, AuthModule],
   controllers: [AgentController],
   providers:   [
+    TrackingAuthGuard,
     AgentTriageService,
     AgentInboxRepository,
     AgentMtprotoClient,

@@ -1,4 +1,4 @@
-import { Inject, Injectable, Logger, OnApplicationBootstrap } from '@nestjs/common';
+import { Inject, Injectable, Logger, OnModuleInit } from '@nestjs/common';
 import { readdirSync, readFileSync } from 'fs';
 import { join }                      from 'path';
 import { Pool }                      from 'pg';
@@ -14,18 +14,22 @@ import { DB_POOL }                   from './database.tokens';
  *   adds new DDL.
  * - The whole run is serialized with a Postgres advisory lock so a rolling
  *   deploy that briefly boots two instances can't run the same migration twice.
+ * - Runs at `onModuleInit` of the @Global DatabaseModule, i.e. BEFORE any
+ *   feature module's `onModuleInit`. This ordering matters: e.g. the tracking
+ *   MTProto client reads a column added by a migration in its own onModuleInit,
+ *   so the schema must already be current by then.
  */
 // Arbitrary fixed key for the boot-migration advisory lock — shared by every
 // instance so they queue rather than race.
 const MIGRATION_LOCK_KEY = 778_899_001;
 
 @Injectable()
-export class MigrationRunnerService implements OnApplicationBootstrap {
+export class MigrationRunnerService implements OnModuleInit {
   private readonly logger = new Logger(MigrationRunnerService.name);
 
   constructor(@Inject(DB_POOL) private readonly pool: Pool) {}
 
-  async onApplicationBootstrap(): Promise<void> {
+  async onModuleInit(): Promise<void> {
     const dir = this.resolveMigrationsDir();
     let files: string[];
     try {
