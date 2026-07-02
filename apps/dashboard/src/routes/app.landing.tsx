@@ -4,12 +4,15 @@
 // ResourceShowcase fed the currently-visible set, sorted by landingOrder.
 //
 // Ordering is a SINGLE flat list across all platforms (the public landing is
-// one ordered grid). Moving an item up/down swaps its landingOrder with the
-// adjacent VISIBLE item via TWO setFeatured mutations — one per item. All
-// actions are disabled while a mutation is in flight so a double-click can't
-// interleave two half-finished swaps.
+// one ordered grid). Moving an item up/down RENUMBERS the whole visible list
+// to sequential indexes (only rows whose stored order changed get PATCHed) —
+// a naive two-row swap breaks on the default data where every row still has
+// landing_order = 0: swapping 0 with 0 is a no-op and the arrows appear dead.
+// All actions are disabled while a mutation is in flight so a double-click
+// can't interleave two half-finished reorders.
 
 import type { JSX } from 'react';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { createFileRoute } from '@tanstack/react-router';
 import { PageHeader } from '../components/ui/PageHeader';
 import { Panel } from '../components/ui/Card';
@@ -19,7 +22,7 @@ import { EmptyState } from '../components/ui/primitives';
 import { Icon, type IconName } from '../components/ui/Icon';
 import { ResourceShowcase } from '../components/landing/ResourceShowcase';
 import {
-  useLandingAdmin, useSetFeatured,
+  landingApi, useLandingAdmin, useSetFeatured,
   type LandingAdminResource, type LandingPlatform,
 } from '../api/landing';
 
@@ -47,7 +50,7 @@ function fmtFollowers(n: number): string {
 function LandingAdminPage(): JSX.Element {
   const { data, isLoading, error } = useLandingAdmin();
   const setFeatured = useSetFeatured();
-  const pending = setFeatured.isPending;
+  const qc = useQueryClient();
 
   const all = data ?? [];
 
@@ -61,29 +64,52 @@ function LandingAdminPage(): JSX.Element {
   // reads LandingResource fields; the extra id/landingVisible are harmless).
   const preview = visibleSorted;
 
+  // Batched reorder: PATCH every row whose stored order changed, then refetch
+  // ONCE. One react-query mutation → one pending flag, no interleaving.
+  const reorder = useMutation({
+    mutationFn: async (updates: Array<{ platform: LandingPlatform; id: string; landingOrder: number }>) => {
+      for (const u of updates) {
+        await landingApi.setFeatured(u.platform, u.id, { landingVisible: true, landingOrder: u.landingOrder });
+      }
+    },
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['landing', 'admin'] });
+      qc.invalidateQueries({ queryKey: ['landing', 'resources'] });
+    },
+  });
+
+  const pending = setFeatured.isPending || reorder.isPending;
+
   const toggleVisible = (r: LandingAdminResource) => {
+    // Newly-featured resources append at the END of the flat order (max+1) —
+    // keeping r.order would drop them at 0 and shuffle the existing grid.
+    const nextOrder = r.landingVisible
+      ? r.order
+      : visibleSorted.length > 0
+        ? Math.max(...visibleSorted.map((v) => v.order)) + 1
+        : 0;
     setFeatured.mutate({
       platform: r.platform,
       id: r.id,
       landingVisible: !r.landingVisible,
-      landingOrder: r.order,
+      landingOrder: nextOrder,
     });
   };
 
-  // Swap landingOrder with the adjacent visible item via two mutations.
+  // Move = swap positions in the list, then renumber EVERY visible row to its
+  // index. Renumbering (instead of swapping two order values) also heals the
+  // degenerate default state where all rows share landing_order = 0.
   const move = (r: LandingAdminResource, dir: -1 | 1) => {
     const idx = visibleSorted.findIndex((v) => v.platform === r.platform && v.id === r.id);
-    if (idx < 0) return;
-    const neighbor = visibleSorted[idx + dir];
-    if (!neighbor) return;
-    setFeatured.mutate({
-      platform: r.platform, id: r.id,
-      landingVisible: r.landingVisible, landingOrder: neighbor.order,
-    });
-    setFeatured.mutate({
-      platform: neighbor.platform, id: neighbor.id,
-      landingVisible: neighbor.landingVisible, landingOrder: r.order,
-    });
+    const j = idx + dir;
+    if (idx < 0 || j < 0 || j >= visibleSorted.length) return;
+    const next = [...visibleSorted];
+    [next[idx], next[j]] = [next[j], next[idx]];
+    const updates = next
+      .map((v, i) => ({ platform: v.platform, id: v.id, landingOrder: i, stored: v.order }))
+      .filter((u) => u.stored !== u.landingOrder)
+      .map(({ platform, id, landingOrder }) => ({ platform, id, landingOrder }));
+    if (updates.length > 0) reorder.mutate(updates);
   };
 
   // Group all candidate resources by platform, preserving PLATFORM_ORDER.
