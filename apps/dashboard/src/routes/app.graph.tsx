@@ -1,16 +1,15 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { useQuery } from '@tanstack/react-query';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { trackingApi } from '../api/tracking';
-import { GraphCanvas } from '../components/GraphCanvas';
+import { GraphCanvas, type GraphLayout } from '../components/GraphCanvas';
 import { GraphFilters } from '../components/GraphFilters';
 import { ChannelDialog } from '../components/ChannelDialog';
 import { EdgePanel } from '../components/EdgePanel';
 import { SegmentedTabs } from '../components/SegmentedTabs';
 import { PageHeader } from '../components/ui/PageHeader';
 import { Icon } from '../components/Icon';
-import type { GraphEdge } from '../api/types';
-import type { LayoutDirection } from '../lib/graph-layout';
+import { makeSyntheticGraph } from '../lib/graph-synthetic';
 
 export const Route = createFileRoute('/app/graph')({ component: GraphPage });
 
@@ -18,9 +17,20 @@ function GraphPage() {
   const [filters, setFilters] = useState({
     from: '', to: '', minWeight: 1, kinds: [] as string[], includeMine: true,
   });
-  const [direction, setDirection]     = useState<LayoutDirection>('TB');
+  const [layout, setLayout]           = useState<GraphLayout>('force');
   const [openChannel, setOpenChannel] = useState<string | null>(null);
   const [openEdge, setOpenEdge]       = useState<{ sourceId: string; targetUsername: string } | null>(null);
+
+  // DEV-only perf harness: /app/graph?synthetic=2000 renders a generated
+  // graph of that many edges instead of calling the API. Dead-code-eliminated
+  // from production bundles (see lib/graph-synthetic.ts).
+  const syntheticN = import.meta.env.DEV
+    ? Number(new URLSearchParams(window.location.search).get('synthetic') ?? 0) || 0
+    : 0;
+  const syntheticData = useMemo(
+    () => (syntheticN ? makeSyntheticGraph(syntheticN) : null),
+    [syntheticN],
+  );
 
   const q = useQuery({
     queryKey: ['graph', filters],
@@ -31,9 +41,11 @@ function GraphPage() {
       kind:            filters.kinds.length ? filters.kinds : undefined,
       include_mine:    filters.includeMine,
     }),
+    enabled: !syntheticData,
   });
 
-  const isEmpty = !!q.data && q.data.nodes.length === 0;
+  const data = syntheticData ?? q.data;
+  const isEmpty = !!data && data.nodes.length === 0;
 
   return (
     <div>
@@ -44,8 +56,8 @@ function GraphPage() {
 
       <GraphFilters {...filters} onChange={(patch) => setFilters((f) => ({ ...f, ...patch }))} />
 
-      {q.isLoading && <LoadingState />}
-      {q.error && (
+      {!syntheticData && q.isLoading && <LoadingState />}
+      {!syntheticData && q.error && (
         <StatusCard
           icon="warning"
           tone="danger"
@@ -62,7 +74,7 @@ function GraphPage() {
         />
       )}
 
-      {q.data && !isEmpty && (
+      {data && !isEmpty && (
         <>
           <div
             style={{
@@ -75,32 +87,32 @@ function GraphPage() {
             }}
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-              <Metric value={q.data.nodes.length} label="nodes" />
+              <Metric value={data.nodes.length} label="nodes" />
               <span style={{ width: 1, height: 22, background: 'var(--color-hairline)' }} />
-              <Metric value={q.data.edges.length} label="edges" />
-              <span style={{ width: 1, height: 22, background: 'var(--color-hairline)' }} />
-              <span className="text-caption" style={{ color: 'var(--color-ink-dim)' }}>tree layout</span>
+              <Metric value={data.edges.length} label="edges" />
             </div>
 
             <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-              <span className="text-caption" style={{ color: 'var(--color-ink-dim)' }}>Direction</span>
-              <SegmentedTabs<LayoutDirection>
-                value={direction}
-                onChange={setDirection}
+              <span className="text-caption" style={{ color: 'var(--color-ink-dim)' }}>Layout</span>
+              <SegmentedTabs<GraphLayout>
+                value={layout}
+                onChange={setLayout}
                 size="sm"
                 options={[
-                  { key: 'TB', label: 'Top → Down' },
-                  { key: 'LR', label: 'Left → Right' },
+                  { key: 'force', label: 'Force' },
+                  { key: 'td',    label: 'Tree ↓' },
+                  { key: 'lr',    label: 'Tree →' },
                 ]}
               />
             </div>
           </div>
 
           <GraphCanvas
-            data={q.data}
-            direction={direction}
+            data={data}
+            layout={layout}
             onNodeClick={(id) => setOpenChannel(id)}
-            onEdgeClick={(e) => setOpenEdge({ sourceId: e.source, targetUsername: (e.data as GraphEdge).target_username })}
+            onEdgeClick={(e) => setOpenEdge({ sourceId: e.source, targetUsername: e.target_username })}
+            onLayoutFallback={() => setLayout('force')}
           />
         </>
       )}

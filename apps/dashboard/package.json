@@ -21,17 +21,15 @@
     "vite": "^8.0.12"
   },
   "dependencies": {
-    "@dagrejs/dagre": "^3.0.0",
     "@tanstack/react-query": "^5.100.10",
     "@tanstack/react-router": "^1.169.2",
     "@vitejs/plugin-react": "^6.0.1",
-    "d3-force": "^3.0.0",
     "date-fns": "^4.1.0",
+    "force-graph": "^1.51.4",
     "lucide-react": "^1.17.0",
     "motion": "^12.40.0",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
-    "reactflow": "^11.11.4",
     "recharts": "^3.8.1"
   }
 }
