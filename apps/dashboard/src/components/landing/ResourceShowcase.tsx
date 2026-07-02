@@ -1,6 +1,13 @@
 import type { CSSProperties, JSX } from 'react';
+import { motion } from 'motion/react';
 import type { LandingPlatform, LandingResource } from '../../api/landing';
 import { Icon, type IconName } from '../ui/Icon';
+
+// Card entrance — parent staggers children (see rs-grid below).
+const cardVariants = {
+  hidden: { opacity: 0, y: 14 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.2, 0.7, 0.2, 1] as const } },
+};
 
 // ── Platform metadata ──────────────────────────────────────────────────────
 // Each platform maps to its Icon glyph, a human label, and a brand-ish accent
@@ -74,17 +81,18 @@ function ResourceCard({ r }: { r: LandingResource }): JSX.Element {
 
   if (r.url) {
     return (
-      <a
+      <motion.a
         href={r.url}
         target="_blank"
         rel="noopener noreferrer"
         className="rs-card rs-card-link"
+        variants={cardVariants}
       >
         {inner}
-      </a>
+      </motion.a>
     );
   }
-  return <div className="rs-card">{inner}</div>;
+  return <motion.div className="rs-card" variants={cardVariants}>{inner}</motion.div>;
 }
 
 /**
@@ -107,11 +115,17 @@ export function ResourceShowcase({ resources }: { resources: LandingResource[] }
 
   return (
     <>
-      <div className="rs-grid">
+      <motion.div
+        className="rs-grid"
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, margin: '-60px' }}
+        variants={{ hidden: {}, show: { transition: { staggerChildren: 0.06 } } }}
+      >
         {resources.map((r) => (
           <ResourceCard key={`${r.platform}:${r.handle ?? r.order}`} r={r} />
         ))}
-      </div>
+      </motion.div>
 
       {/* Scoped styles — keeps the component self-contained for both consumers. */}
       <style>{`
