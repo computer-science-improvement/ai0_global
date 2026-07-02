@@ -11,7 +11,12 @@ import {
 } from '../lib/labels';
 import type { TrackedChannel } from '../api/types';
 
-export function ChannelRow({ c, lowContentIds }: { c: TrackedChannel; lowContentIds?: Set<string> }) {
+export function ChannelRow({ c, lowContentIds, onDelete }: {
+  c: TrackedChannel;
+  lowContentIds?: Set<string>;
+  /** When provided, renders a danger delete action (used by the Tracked page). */
+  onDelete?: () => void;
+}) {
   const strategies = c.strategies ?? [];
   const [editing, setEditing] = useState(false);
 
@@ -46,12 +51,13 @@ export function ChannelRow({ c, lowContentIds }: { c: TrackedChannel; lowContent
               {c.kind && (
                 <span className="chip" title={`Kind: ${c.kind} channel`}>{c.kind}</span>
               )}
-              {c.isMine        && <span className="chip chip-success" title={CHANNEL_FLAG_HELP.mine}>mine</span>}
-              {c.isClosed      && <span className="chip" title={CHANNEL_FLAG_HELP.closed}>closed</span>}
+              {c.isMine        && <span title={CHANNEL_FLAG_HELP.mine}><Badge tone="success">mine</Badge></span>}
+              {c.isClosed      && <span title={CHANNEL_FLAG_HELP.closed}><Badge tone="neutral">closed</Badge></span>}
               {c.publishPaused && (
-                <span className="chip chip-warning" title={CHANNEL_FLAG_HELP.publishPaused}>
-                  <Icon name="pause" size={11} style={{ marginRight: 4 }} />
-                  paused
+                <span title={CHANNEL_FLAG_HELP.publishPaused}>
+                  <Badge tone="warning">
+                    <Icon name="pause" size={11} /> paused
+                  </Badge>
                 </span>
               )}
               {c.bot && (
@@ -123,6 +129,16 @@ export function ChannelRow({ c, lowContentIds }: { c: TrackedChannel; lowContent
                 aria-label="Edit channel config"
               >
                 <Icon name="pencil" size={14} />
+              </button>
+            )}
+            {onDelete && (
+              <button
+                onClick={(e) => { e.preventDefault(); e.stopPropagation(); onDelete(); }}
+                className="btn-act btn-act-danger"
+                title="Delete channel"
+                aria-label="Delete channel"
+              >
+                <Icon name="trash" size={14} />
               </button>
             )}
           </div>

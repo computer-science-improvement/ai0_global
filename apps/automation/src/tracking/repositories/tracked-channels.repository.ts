@@ -214,7 +214,14 @@ export class TrackedChannelsRepository {
     };
   }
 
-  async softDelete(id: string): Promise<void> {
+  /**
+   * Hard-delete a tracked channel. FK cascades clean up the dependents:
+   * tracked_posts / channel subs history / roi cache / scheduled publications
+   * are CASCADE-deleted; tracked_ad_edges rows where this channel was the
+   * SOURCE cascade too, while edges where it was the TARGET keep the ad-network
+   * record and revert to an unresolved external ref (target_channel_id SET NULL).
+   */
+  async hardDelete(id: string): Promise<void> {
     await this.pool.query(`DELETE FROM tracked_channels WHERE id = $1`, [id]);
   }
 

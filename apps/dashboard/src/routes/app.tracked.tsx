@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import { trackingApi } from '../api/tracking';
 import { ChannelRow } from '../components/ChannelRow';
@@ -8,6 +8,7 @@ import { AddChannelModal } from '../components/AddChannelModal';
 import { PageHeader } from '../components/ui/PageHeader';
 import { Icon } from '../components/Icon';
 import { StatTile, StatusDot, EmptyState, type Tone } from '../components/ui/primitives';
+import { useConfirm } from '../components/ui/ConfirmDialog';
 import type { TrackedChannel } from '../api/types';
 
 const PAGE_SIZE = 50;
@@ -41,6 +42,8 @@ function TrackedPage() {
   const { page, q } = Route.useSearch();
   const navigate = Route.useNavigate();
   const [modalOpen, setModalOpen] = useState(false);
+  const confirm = useConfirm();
+  const queryClient = useQueryClient();
   const setSearch = (patch: Partial<Search>) =>
     navigate({ search: (old: Search) => ({ ...old, ...patch }) });
 
@@ -48,6 +51,26 @@ function TrackedPage() {
     queryKey: ['channels', 'external', page, q],
     queryFn:  () => trackingApi.listChannels({ filter: 'external', q: q || undefined, page, pageSize: PAGE_SIZE }),
   });
+
+  // Deleting a tracked channel drops its posts / subs history / ad edges via
+  // DB cascades (edges where it was the *target* revert to unresolved external
+  // refs). The graph query is invalidated so nodes disappear immediately.
+  const del = useMutation({
+    mutationFn: (id: string) => trackingApi.deleteChannel(id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['channels'] });
+      queryClient.invalidateQueries({ queryKey: ['graph'] });
+    },
+  });
+
+  const askDelete = async (c: TrackedChannel) => {
+    const name = c.title ?? (c.username ? `@${c.username}` : c.channelKey);
+    const ok = await confirm(`delete “${name}” and all its collected stats (posts, subscriber history, ad edges)`, {
+      danger: true,
+      confirmLabel: 'Delete channel',
+    });
+    if (ok) del.mutate(c.id);
+  };
 
   const items = data?.items ?? [];
   const okCount   = items.filter((c) => c.trackingStatus === 'ok').length;
@@ -210,6 +233,24 @@ function TrackedPage() {
         />
       )}
 
+      {/* Delete failed — surfaced inline so the row doesn't just "not disappear". */}
+      {del.isError && (
+        <div
+          className="card"
+          style={{
+            display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12,
+            borderColor: 'var(--color-danger-soft)', background: 'var(--color-danger-soft)',
+          }}
+        >
+          <span style={{ color: 'var(--color-danger)', display: 'flex' }}>
+            <Icon name="warning" size={14} />
+          </span>
+          <span className="text-body-sm" style={{ color: 'var(--color-ink)' }}>
+            Couldn’t delete the channel: {(del.error as Error).message}
+          </span>
+        </div>
+      )}
+
       {/* List — existing ChannelRow, now with a staggered entrance. */}
       {data && data.total > 0 && (
         <>
@@ -220,7 +261,7 @@ function TrackedPage() {
                 className="compose-rise"
                 style={{ animationDelay: `${Math.min(i, 12) * 28}ms` }}
               >
-                <ChannelRow c={c} />
+                <ChannelRow c={c} onDelete={() => askDelete(c)} />
               </div>
             ))}
           </div>

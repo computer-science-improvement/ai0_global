@@ -213,7 +213,7 @@ export class TrackingService {
     return this.getChannel(id);
   }
 
-  async deleteChannel(id: string): Promise<void> { await this.channels.softDelete(id); }
+  async deleteChannel(id: string): Promise<void> { await this.channels.hardDelete(id); }
 
   async listPosts(channelId: string, from: Date | null, to: Date | null, limit: number, offset: number):
     Promise<{ items: TrackedPostDto[]; total: number }> {
