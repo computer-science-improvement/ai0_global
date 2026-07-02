@@ -87,7 +87,12 @@ export function PostComposer({ editing, onDone }:
     channelId: '', sender: 'bot', botId: null, text: '', mediaType: 'none',
     mediaUrl: null, mediaPlacement: 'above', buttons: [], scheduledAt: '',
   });
-  useEffect(() => { if (editing) setPost(pick(editing)); }, [editing]);
+  // Re-sync ONLY when a different post is opened (id change) — depending on
+  // the object identity would clobber in-progress edits every time the
+  // scheduled-posts query refetches (e.g. on window refocus) and hands the
+  // parent a fresh object for the same post.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => { if (editing) setPost(pick(editing)); }, [editing?.id]);
 
   const hasButtons = post.buttons.some(r => r.buttons.length > 0);
   const len = visibleLen(post.text);

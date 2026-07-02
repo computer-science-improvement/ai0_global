@@ -5,11 +5,12 @@
  * GET /trigger/:strategyType   — run a strategy once for the first matching binding
  * GET /health                  — basic health check
  */
-import { Controller, Get, Param, NotFoundException } from '@nestjs/common';
+import { Controller, Get, Param, NotFoundException, UseGuards } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { ContentStrategyRunner }   from './common/content-strategy/content-strategy.runner';
 import { ContentStrategyRegistry } from './common/content-strategy/content-strategy.registry';
 import { ChannelConfigService }    from './config/channel-config.service';
+import { TrackingAuthGuard }       from './tracking/api/tracking-auth.guard';
 
 @Controller()
 export class DevController {
@@ -25,7 +26,10 @@ export class DevController {
     return { status: 'ok', env: this.config.get('NODE_ENV', 'development') };
   }
 
+  // Auth-guarded: NODE_ENV gating alone left this open on dev-stage, where an
+  // unauthenticated request could trigger a real publish to real channels.
   @Get('trigger/:type')
+  @UseGuards(TrackingAuthGuard)
   async triggerStrategy(@Param('type') type: string) {
     if (this.config.get('NODE_ENV') === 'production') {
       throw new NotFoundException();

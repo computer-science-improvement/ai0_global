@@ -104,7 +104,7 @@ function RecommendationRow({ item: r, idx, targetSet }: {
     },
     onSuccess: (res) => {
       qc.invalidateQueries({ queryKey: ['channels'] });
-      navigate({ to: '/app/channels/$id' as any, params: { id: res.id } as any });
+      navigate({ to: '/app/channels/$id', params: { id: res.id } });
     },
   });
 

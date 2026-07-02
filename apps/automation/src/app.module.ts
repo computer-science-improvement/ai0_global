@@ -28,6 +28,7 @@ import { MotivationBiographyStrategyModule }  from './strategies/motivation-biog
 import { AssetsStrategyModule }              from './strategies/assets/assets-strategy.module';
 import { StatsModule }          from './stats/stats.module';
 import { DevController }        from './dev.controller';
+import { TrackingAuthGuard }    from './tracking/api/tracking-auth.guard';
 import { TrackingModule }       from './tracking/tracking.module';
 import { AuthModule }           from './auth/auth.module';
 import { DiscoveryModule }      from './discovery/discovery.module';
@@ -77,5 +78,8 @@ import { PaymentsModule }       from './payments/payments.module';
     DiscoveryModule,
   ],
   controllers: [DevController],
+  // TrackingAuthGuard is used by DevController's /trigger endpoint (AuthModule
+  // above supplies its AuthService dependency).
+  providers: [TrackingAuthGuard],
 })
 export class AppModule {}
