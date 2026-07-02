@@ -5,13 +5,17 @@
 //
 // Ordering is a SINGLE flat list across all platforms (the public landing is
 // one ordered grid). Moving an item up/down swaps its landingOrder with the
-// adjacent VISIBLE item via TWO setFeatured mutations — one per item.
+// adjacent VISIBLE item via TWO setFeatured mutations — one per item. All
+// actions are disabled while a mutation is in flight so a double-click can't
+// interleave two half-finished swaps.
 
 import type { JSX } from 'react';
 import { createFileRoute } from '@tanstack/react-router';
 import { PageHeader } from '../components/ui/PageHeader';
 import { Panel } from '../components/ui/Card';
-import { Button } from '../components/ui/Button';
+import { Badge } from '../components/ui/Badge';
+import { TableAction } from '../components/ui/table';
+import { EmptyState } from '../components/ui/primitives';
 import { Icon, type IconName } from '../components/ui/Icon';
 import { ResourceShowcase } from '../components/landing/ResourceShowcase';
 import {
@@ -43,6 +47,7 @@ function fmtFollowers(n: number): string {
 function LandingAdminPage(): JSX.Element {
   const { data, isLoading, error } = useLandingAdmin();
   const setFeatured = useSetFeatured();
+  const pending = setFeatured.isPending;
 
   const all = data ?? [];
 
@@ -90,100 +95,162 @@ function LandingAdminPage(): JSX.Element {
     visibleSorted.findIndex((v) => v.platform === r.platform && v.id === r.id);
 
   return (
-    <div className="la-wrap">
-      <div className="la-editor">
-        <PageHeader
-          title="Landing"
-          subtitle="Choose which resources appear on the public landing page and their order."
-        />
+    <div>
+      <PageHeader
+        title="Landing"
+        subtitle="Choose which resources appear on the public landing page and their order."
+        actions={
+          <a href="/" target="_blank" rel="noopener noreferrer" className="btn-ghost" style={{ gap: 6 }}>
+            Open live page <span aria-hidden>↗</span>
+          </a>
+        }
+      />
 
-        {isLoading && (
-          <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>Loading…</p>
-        )}
-        {error && (
-          <p className="text-body-sm" style={{ color: 'var(--color-danger)' }}>
-            {(error as Error).message}
-          </p>
-        )}
+      <div className="la-wrap">
+        <div className="la-editor">
+          {/* Loading — skeleton rows mirroring the editor-row rhythm. */}
+          {isLoading && (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+              {Array.from({ length: 5 }).map((_, i) => (
+                <div key={i} className="la-skeleton" style={{ animationDelay: `${i * 60}ms` }} />
+              ))}
+            </div>
+          )}
 
-        {!isLoading && !error && groups.length === 0 && (
-          <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>
-            No candidate resources yet.
-          </p>
-        )}
+          {/* Error — contained danger card, same pattern as the list pages. */}
+          {error && (
+            <div
+              className="card"
+              style={{
+                display: 'flex', alignItems: 'flex-start', gap: 12,
+                borderColor: 'var(--color-danger-soft)', background: 'var(--color-danger-soft)',
+              }}
+            >
+              <span style={{ color: 'var(--color-danger)', display: 'flex', marginTop: 1 }}>
+                <Icon name="warning" size={16} />
+              </span>
+              <div>
+                <div className="text-body" style={{ color: 'var(--color-ink)', fontWeight: 500 }}>
+                  Couldn’t load landing resources
+                </div>
+                <div className="text-body-sm" style={{ color: 'var(--color-ink-muted)', marginTop: 2 }}>
+                  {(error as Error).message}
+                </div>
+              </div>
+            </div>
+          )}
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-          {groups.map((g) => {
-            const meta = PLATFORM_META[g.platform];
-            return (
-              <Panel
-                key={g.platform}
-                title={`${meta.label} · ${g.items.length}`}
-              >
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                  {g.items.map((r) => {
-                    const vIdx = visibleIndex(r);
-                    const isFirst = vIdx === 0;
-                    const isLast = vIdx === visibleSorted.length - 1;
-                    return (
-                      <div key={r.id} className="la-row">
-                        <span className="la-row-icon"><Icon name={meta.icon} size={16} /></span>
+          {!isLoading && !error && groups.length === 0 && (
+            <EmptyState
+              icon="connections"
+              title="No candidate resources yet"
+              note="Connect channels and accounts under Connections — anything with a public profile becomes a landing candidate."
+            />
+          )}
 
-                        <div className="la-row-main">
-                          <span className="text-body-sm la-row-name">
-                            {r.displayName ?? (r.handle ? `@${r.handle}` : meta.label)}
-                          </span>
-                          <span className="text-micro la-row-sub">
-                            {r.handle && <span>@{r.handle}</span>}
-                            {r.followerCount !== null && (
-                              <span>{r.handle ? ' · ' : ''}{fmtFollowers(r.followerCount)} followers</span>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+            {groups.map((g) => {
+              const meta = PLATFORM_META[g.platform];
+              const featuredCount = g.items.filter((r) => r.landingVisible).length;
+              return (
+                <Panel
+                  key={g.platform}
+                  title={meta.label}
+                  action={
+                    <span className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>
+                      {featuredCount}/{g.items.length} featured
+                    </span>
+                  }
+                >
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                    {g.items.map((r) => {
+                      const vIdx = visibleIndex(r);
+                      const isFirst = vIdx === 0;
+                      const isLast = vIdx === visibleSorted.length - 1;
+                      return (
+                        <div key={r.id} className={`la-row${r.landingVisible ? ' la-row-featured' : ''}`}>
+                          <span className="la-avatar">
+                            {r.avatarUrl ? (
+                              <img src={r.avatarUrl} alt="" className="la-avatar-img" loading="lazy" />
+                            ) : (
+                              <Icon name={meta.icon} size={15} />
                             )}
                           </span>
-                        </div>
 
-                        <div className="la-row-actions">
-                          {r.landingVisible && (
-                            <>
-                              <Button
-                                variant="tiny"
-                                title="Move up"
-                                disabled={isFirst}
-                                onClick={() => move(r, -1)}
-                              >▲</Button>
-                              <Button
-                                variant="tiny"
-                                title="Move down"
-                                disabled={isLast}
-                                onClick={() => move(r, 1)}
-                              >▼</Button>
-                            </>
-                          )}
-                          <Button
-                            variant={r.landingVisible ? 'secondary' : 'tiny'}
-                            onClick={() => toggleVisible(r)}
-                          >
-                            {r.landingVisible ? (
-                              <><Icon name="check" size={12} /> Featured</>
-                            ) : 'Feature'}
-                          </Button>
+                          <div className="la-row-main">
+                            <span className="text-body-sm la-row-name">
+                              {r.displayName ?? (r.handle ? `@${r.handle}` : meta.label)}
+                            </span>
+                            <span className="text-micro la-row-sub">
+                              {r.handle && <span>@{r.handle}</span>}
+                              {r.followerCount !== null && (
+                                <span>{r.handle ? ' · ' : ''}{fmtFollowers(r.followerCount)} followers</span>
+                              )}
+                            </span>
+                          </div>
+
+                          <div className="la-row-actions">
+                            {r.landingVisible && (
+                              <>
+                                <span title="Position on the public landing (one flat order across platforms)">
+                                  <Badge tone="accent">#{vIdx + 1} on landing</Badge>
+                                </span>
+                                <TableAction
+                                  icon="chevron-up"
+                                  title="Move up"
+                                  disabled={isFirst || pending}
+                                  onClick={() => move(r, -1)}
+                                />
+                                <TableAction
+                                  icon="chevron-down"
+                                  title="Move down"
+                                  disabled={isLast || pending}
+                                  onClick={() => move(r, 1)}
+                                />
+                                <TableAction
+                                  action="pause"
+                                  title="Hide from the landing"
+                                  disabled={pending}
+                                  onClick={() => toggleVisible(r)}
+                                />
+                              </>
+                            )}
+                            {!r.landingVisible && (
+                              <TableAction
+                                action="enable"
+                                title="Feature on the landing"
+                                disabled={pending}
+                                onClick={() => toggleVisible(r)}
+                              />
+                            )}
+                          </div>
                         </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </Panel>
-            );
-          })}
+                      );
+                    })}
+                  </div>
+                </Panel>
+              );
+            })}
+          </div>
         </div>
-      </div>
 
-      <div className="la-preview">
-        <Panel title="Live preview">
-          <p className="text-micro" style={{ margin: '0 0 12px', color: 'var(--color-ink-dim)' }}>
-            Mirrors the public landing page at <code>/</code>.
-          </p>
-          <ResourceShowcase resources={preview} />
-        </Panel>
+        <div className="la-preview">
+          <Panel
+            title="Live preview"
+            action={
+              preview.length > 0 ? (
+                <span className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>
+                  {preview.length} featured
+                </span>
+              ) : undefined
+            }
+          >
+            <p className="text-micro" style={{ margin: '0 0 12px', color: 'var(--color-ink-dim)' }}>
+              Mirrors the public landing page at <code>/</code> — same component, same order.
+            </p>
+            <ResourceShowcase resources={preview} />
+          </Panel>
+        </div>
       </div>
 
       <style>{`
@@ -203,14 +270,24 @@ function LandingAdminPage(): JSX.Element {
           background: var(--color-surface-2);
           border: 1px solid var(--color-hairline);
           border-radius: var(--radius-md);
+          transition: opacity 0.15s ease, border-color 0.15s ease;
         }
-        .la-row-icon {
+        /* Hidden-from-landing rows recede; featured rows carry a faint accent edge. */
+        .la-row:not(.la-row-featured) { opacity: 0.72; }
+        .la-row:not(.la-row-featured):hover { opacity: 1; }
+        .la-row-featured {
+          border-color: color-mix(in srgb, var(--color-accent) 30%, var(--color-hairline));
+        }
+        .la-avatar {
           display: inline-flex; align-items: center; justify-content: center;
           width: 32px; height: 32px; flex-shrink: 0;
           border-radius: var(--radius-sm);
           background: var(--color-surface-3);
+          border: 1px solid var(--color-hairline);
           color: var(--color-ink-muted);
+          overflow: hidden;
         }
+        .la-avatar-img { width: 100%; height: 100%; object-fit: cover; }
         .la-row-main {
           flex: 1; min-width: 0;
           display: flex; flex-direction: column; gap: 2px;
@@ -223,6 +300,14 @@ function LandingAdminPage(): JSX.Element {
         .la-row-actions {
           display: inline-flex; align-items: center; gap: 6px; flex-shrink: 0;
         }
+        .la-skeleton {
+          height: 54px; border-radius: var(--radius-md);
+          background: linear-gradient(90deg, var(--color-surface-2) 25%, var(--color-surface-3) 50%, var(--color-surface-2) 75%);
+          background-size: 200% 100%;
+          border: 1px solid var(--color-hairline);
+          animation: la-shimmer 1.6s ease-in-out infinite;
+        }
+        @keyframes la-shimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }
       `}</style>
     </div>
   );
