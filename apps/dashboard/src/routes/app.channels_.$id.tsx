@@ -140,12 +140,14 @@ function ChannelDetailPage() {
             {c.title ?? c.channelKey ?? (c.username ? `@${c.username}` : id)}
           </h1>
           {c.publishPaused && (
-            <span className="chip chip-warning" title={CHANNEL_FLAG_HELP.publishPaused}>
-              <Icon name="pause" size={11} style={{ marginRight: 4, verticalAlign: 'middle' }} />paused
+            <span title={CHANNEL_FLAG_HELP.publishPaused}>
+              <Badge tone="warning"><Icon name="pause" size={11} /> paused</Badge>
             </span>
           )}
           {c.trackingStatus === 'not_subscribed' && (
-            <span className="chip chip-danger" title="The publishing bot is not subscribed to this channel.">not subscribed</span>
+            <span title="The publishing bot is not subscribed to this channel.">
+              <Badge tone="danger">not subscribed</Badge>
+            </span>
           )}
           {c.kind && (
             <span className="chip" title={CHANNEL_KIND_HELP[c.kind as 'public' | 'private'] ?? c.kind}>{c.kind}</span>

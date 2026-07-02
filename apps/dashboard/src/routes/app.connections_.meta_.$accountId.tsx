@@ -5,6 +5,7 @@ import { MetaReachImpressionsChart } from '../components/MetaReachImpressionsCha
 import { MetaProfileViewsChart } from '../components/MetaProfileViewsChart';
 import { SubsHistoryChart } from '../components/SubsHistoryChart';
 import { StatTile, SectionCard, EmptyState, StatusDot, HubGlyph, type Tone } from '../components/ui/primitives';
+import { Badge } from '../components/ui/Badge';
 import { fmtDate } from '../lib/format';
 import { Icon } from '../components/Icon';
 import type { MetaAccount } from '../api/types';
@@ -19,11 +20,6 @@ const PLATFORM_LABEL: Record<string, string> = {
 // USER tokens work but are shorter-lived / less appropriate (warning).
 const TOKEN_TYPE_TONE: Record<string, Tone> = {
   PAGE: 'success', SYSTEM_USER: 'neutral', USER: 'warning',
-};
-
-const CHIP_CLASS: Record<Tone, string> = {
-  success: 'chip chip-success', warning: 'chip chip-warning', danger: 'chip chip-danger',
-  accent: 'chip', neutral: 'chip',
 };
 
 /** Whole days from now until `iso` (negative = already past). */
@@ -92,7 +88,7 @@ function TokenPanel({ account: a }: { account: MetaAccount }) {
     <SectionCard title="Access token" icon="info" delay={60} style={{ marginBottom: 24 }}>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 24, rowGap: 16 }}>
         <Field label="Type">
-          <span className={CHIP_CLASS[tokenTone]}>{a.token_type ?? 'unknown'}</span>
+          <Badge tone={tokenTone}>{a.token_type ?? 'unknown'}</Badge>
         </Field>
 
         <Field label="Expiry">
@@ -172,13 +168,13 @@ function MetaAccountDetailPage() {
             {platformLabel && <span className="chip">{platformLabel}</span>}
             {acc && (
               acc.active
-                ? <span className="chip chip-success">Active</span>
-                : <span className="chip">Paused</span>
+                ? <Badge tone="success">Active</Badge>
+                : <Badge tone="neutral">Paused</Badge>
             )}
             {acc?.verify_error
-              ? <span className="chip chip-danger" title={acc.verify_error}>Verify error</span>
+              ? <span title={acc.verify_error}><Badge tone="danger">Verify error</Badge></span>
               : acc?.username
-                ? <span className="chip chip-success">Verified</span>
+                ? <Badge tone="success">Verified</Badge>
                 : null}
           </div>
         </div>

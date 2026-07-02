@@ -91,7 +91,7 @@ function Toggle({ checked, onChange }: { checked: boolean; onChange: (v: boolean
         display: 'flex', justifyContent: checked ? 'flex-end' : 'flex-start',
       }}
     >
-      <span style={{ width: 16, height: 16, borderRadius: 999, background: '#fff', transition: 'all 0.15s ease' }} />
+      <span style={{ width: 16, height: 16, borderRadius: 999, background: 'var(--color-ink)', transition: 'all 0.15s ease' }} />
     </button>
   );
 }

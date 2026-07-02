@@ -97,25 +97,24 @@ function ConfigPanel({ strategy: s, meta }: { strategy: Strategy; meta: ReturnTy
         <Term>Status</Term>
         <Def>
           {s.enabled
-            ? <span className="chip chip-success" title={STRATEGY_STATUS_HELP.enabled}>
-                <Icon name="check" size={12} style={{ marginRight: 4 }} />enabled
+            ? <span title={STRATEGY_STATUS_HELP.enabled}>
+                <Badge tone="success"><Icon name="check" size={12} /> enabled</Badge>
               </span>
-            : <span className="chip" title={STRATEGY_STATUS_HELP.paused}>paused</span>}
+            : <span title={STRATEGY_STATUS_HELP.paused}><Badge tone="neutral">paused</Badge></span>}
         </Def>
 
         <Term>Last run</Term>
         <Def>
           {s.last_run ? (
-            <span
-              className={
-                s.last_run.status === 'ok'      ? 'chip chip-success' :
-                s.last_run.status === 'error'   ? 'chip chip-danger'  :
-                s.last_run.status === 'skipped' ? 'chip chip-warning' :
-                'chip'
-              }
-              title={(RUN_STATUS_HELP[s.last_run.status] ?? s.last_run.status) + (s.last_run.error ? `\n\n${s.last_run.error}` : '')}
-            >
-              {s.last_run.status}
+            <span title={(RUN_STATUS_HELP[s.last_run.status] ?? s.last_run.status) + (s.last_run.error ? `\n\n${s.last_run.error}` : '')}>
+              <Badge tone={
+                s.last_run.status === 'ok'      ? 'success' :
+                s.last_run.status === 'error'   ? 'danger'  :
+                s.last_run.status === 'skipped' ? 'warning' :
+                'neutral'
+              }>
+                {s.last_run.status}
+              </Badge>
             </span>
           ) : <span className="text-body-sm" style={{ color: 'var(--color-ink-dim)' }}>never</span>}
         </Def>

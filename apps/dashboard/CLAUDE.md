@@ -48,11 +48,28 @@ All data tables follow ONE structure. The shared helpers are in **`src/component
 
 For an action outside this list, pass `icon` + children to `<TableAction>` (still uses `.btn-tiny`); add it to `ACTION` if it recurs. Destructive actions use `danger`/`.btn-tiny-danger`. The page-level "Add X" button stays the larger `.btn-primary` (the `add` row-action is for in-table use).
 
-**Status cells** — always the `<Badge tone>` component (`ui/Badge`), tone `success | warning | danger | accent | neutral`. Do **not** use the legacy `.chip chip-*` classes in tables.
+**Status cells** — always the `<Badge tone>` component (`ui/Badge`), tone `success | warning | danger | accent | neutral`. Do **not** use the legacy `.chip chip-*` classes anywhere a status is shown — tables, card-rows, detail pages. (Neutral `.chip` is still fine for non-status metadata tags like a channel kind.)
 
 **Numeric columns** — add `className="num"` to both the `<th>` and `<td>` (right-aligns, tabular figures).
 
 **Actions column** — always the last column, rendered via `<ActionsTh>` (header) + a right-aligned `<td>` wrapping `<RowActions>`. Fixed width `ACTIONS_COL_WIDTH` (240).
+
+## Card-row lists
+
+Connection/entity managers (Strategies, Bots, Telegraph, MTProto sessions, Meta
+accounts, Tracked channels) render **card-rows, not tables**: one `card row-lift`
+(or surface-1 rounded) row per entity inside a `SectionCard`/page list — flex
+layout, identity block left (title + `<Badge>` statuses + muted meta line),
+numbers and `RowActions`/icon-only `btn-act` buttons right, destructive action
+last with the `btn-act-danger` variant behind a `useConfirm()` dialog. Use a
+staggered `compose-rise` entrance for lists. Tables (`ui/table.tsx`) remain for
+dense, column-oriented data (logs, recommendations).
+
+## Graph page
+
+`components/GraphCanvas.tsx` renders via `force-graph` on a single canvas —
+never introduce per-node DOM/SVG rendering there (that's what froze the page at
+scale). Perf harness: `/app/graph?synthetic=2000` in dev builds.
 
 ## General
 

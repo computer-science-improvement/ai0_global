@@ -3,6 +3,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { PageHeader } from '../components/ui/PageHeader';
 import { Icon } from '../components/ui/Icon';
 import { SectionCard, StatTile, EmptyState, StatusDot, type Tone } from '../components/ui/primitives';
+import { Badge } from '../components/ui/Badge';
 import { scheduledPostsApi } from '../api/scheduled-posts';
 import { trackingApi } from '../api/tracking';
 import { useConfirm } from '../components/ui/ConfirmDialog';
@@ -18,15 +19,6 @@ const STATUS_TONE: Record<ScheduledPost['status'], Tone> = {
   sent:     'success',
   failed:   'danger',
   canceled: 'warning',
-};
-
-/** chip class per status. */
-const STATUS_CHIP: Record<ScheduledPost['status'], string> = {
-  pending:  'chip',
-  sending:  'chip',
-  sent:     'chip chip-success',
-  failed:   'chip chip-danger',
-  canceled: 'chip chip-warning',
 };
 
 function ScheduledPage() {
@@ -166,7 +158,7 @@ function PostRow({
           <span className="text-body-sm" style={{ color: 'var(--color-ink)' }}>{channelLabel(p.channelId)}</span>
         </span>
         <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
-          <span className={STATUS_CHIP[p.status]}>{p.status}</span>
+          <Badge tone={STATUS_TONE[p.status]}>{p.status}</Badge>
           {p.error && (
             <span title={p.error} style={{ display: 'inline-flex', color: 'var(--color-danger)' }}>
               <Icon name="warning" size={12} />
