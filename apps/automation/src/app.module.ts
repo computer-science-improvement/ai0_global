@@ -27,6 +27,8 @@ import { PdrQuizStrategyModule }              from './strategies/pdr-quiz/pdr-qu
 import { MotivationBiographyStrategyModule }  from './strategies/motivation-biography/motivation-biography-strategy.module';
 import { AssetsStrategyModule }              from './strategies/assets/assets-strategy.module';
 import { StatsModule }          from './stats/stats.module';
+import { NetworkDigestStrategyModule } from './strategies/network-digest/network-digest-strategy.module';
+import { TopicDigestStrategyModule }   from './strategies/topic-digest/topic-digest-strategy.module';
 import { DevController }        from './dev.controller';
 import { TrackingAuthGuard }    from './tracking/api/tracking-auth.guard';
 import { TrackingModule }       from './tracking/tracking.module';
@@ -70,6 +72,8 @@ import { PaymentsModule }       from './payments/payments.module';
     PdrQuizStrategyModule,
     MotivationBiographyStrategyModule,
     AssetsStrategyModule,
+    NetworkDigestStrategyModule,
+    TopicDigestStrategyModule,
     TrackingModule,
     ScheduledPostsModule,
     SettingsModule,
