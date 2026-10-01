@@ -22,6 +22,8 @@ import { EditorChannelsRepository } from './repo/editor-channels.repository';
 import { EditorPlansRepository } from './repo/editor-plans.repository';
 import { EditorMemoryRepository } from './repo/editor-memory.repository';
 import { TelegramEditorPublisher } from './publish/telegram-editor.publisher';
+import { SponsoredPublisher } from './publish/sponsored.publisher';
+import { AdOrdersRepository } from '../payments/ad-orders.repository';
 import { EditorRunnerService } from './roles/editor-runner.service';
 import { EditorScheduler } from './editor.scheduler';
 import { htmlToPlain } from './post/inline-markup';
@@ -126,13 +128,28 @@ export const EDITOR_PROVIDERS = [
     },
     {
       provide: EDITOR_SCHEDULER,
-      inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_RUNNER, TelegramNotifier],
-      useFactory: (pool: Pool, cfg: ConfigService, repos: EditorRepos, runner: EditorRunnerService, notifier: TelegramNotifier) => {
+      inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_RUNNER, TelegramNotifier, ChannelConfigService, PostingThrottleService],
+      useFactory: (
+        pool: Pool, cfg: ConfigService, repos: EditorRepos, runner: EditorRunnerService, notifier: TelegramNotifier,
+        channelConfig: ChannelConfigService, throttle: PostingThrottleService,
+      ) => {
         const logger = new Logger('EditorScheduler');
+        const notify = (t: string) => notifier.notifyAlert(t);
+        // Paid ads (spec 008): reserved slots publish deterministically, without the LLM.
+        const reserved = new SponsoredPublisher({
+          plans: repos.plans, channels: repos.channels, orders: new AdOrdersRepository(pool),
+          publisher: new TelegramEditorPublisher({
+            resolveChannel:     (k) => channelConfig.resolveChannel(k),
+            isPublishPausedFor: (k) => channelConfig.isPublishPausedFor(k),
+          }),
+          recordPublish: (k) => throttle.recordPublish(k),
+          notify,
+          log: (m) => logger.warn(m),
+        });
         return new EditorScheduler({
-          pool, channels: repos.channels, plans: repos.plans, runner,
+          pool, channels: repos.channels, plans: repos.plans, runner, reserved,
           enabled: () => isEnabled(cfg),
-          notify: (t) => notifier.notifyAlert(t),
+          notify,
           log: (m) => logger.warn(m),
         });
       },

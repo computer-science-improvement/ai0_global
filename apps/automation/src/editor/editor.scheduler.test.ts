@@ -2,8 +2,9 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { EditorScheduler, PLANNER_RETRY_MS } from './editor.scheduler';
 import { makeCard } from './post/testing/fixtures';
+import { RESERVED_ONLY_RATIONALE } from './repo/editor-plans.repository';
 
-function setup(opts: { activePlan?: boolean; due?: any[]; cards?: any[]; reviewedRecently?: boolean; failures?: number; enabled?: boolean } = {}) {
+function setup(opts: { activePlan?: boolean; planRationale?: string | null; due?: any[]; cards?: any[]; reviewedRecently?: boolean; failures?: number; enabled?: boolean; reserved?: boolean } = {}) {
   const calls: string[] = [];
   const notes: string[] = [];
   const cards = opts.cards ?? [{ ...makeCard({ planHour: 6 }), createdAt: new Date('2026-01-01') }];
@@ -11,7 +12,7 @@ function setup(opts: { activePlan?: boolean; due?: any[]; cards?: any[]; reviewe
     pool: { query: async () => ({ rows: opts.reviewedRecently ? [{}] : [] }) } as any,
     channels: { listActive: async () => cards },
     plans: {
-      getActivePlan: async () => (opts.activePlan ? { id: 'p', rationale: null } : null),
+      getActivePlan: async () => (opts.activePlan ? { id: 'p', rationale: opts.planRationale ?? null } : null),
       claimDue: async () => opts.due ?? [],
       skipStale: async () => { calls.push('skipStale'); return 0; },
       sweepStuck: async () => { calls.push('sweep'); return []; },
@@ -24,6 +25,7 @@ function setup(opts: { activePlan?: boolean; due?: any[]; cards?: any[]; reviewe
     },
     enabled: () => opts.enabled ?? true,
     notify: async (t) => { notes.push(t); },
+    ...(opts.reserved ? { reserved: { publishDue: async () => { calls.push('reserved'); return 1; } } } : {}),
   });
   return { s, calls, notes };
 }
@@ -78,4 +80,20 @@ test('cronTick is a no-op when disabled', async () => {
   const { s, calls } = setup({ enabled: false });
   await s.cronTick();
   assert.equal(calls.length, 0);
+});
+
+test('a reserved-only plan does not stop the planner from planning the day', async () => {
+  const { s, calls } = setup({ activePlan: true, planRationale: RESERVED_ONLY_RATIONALE });
+  await s.tick(THU_0700);
+  assert.ok(calls.includes('plan:@chan'));
+});
+
+test('reserved (paid) slots publish on every cronTick, even when EDITOR_ENABLED is false', async () => {
+  const off = setup({ enabled: false, reserved: true });
+  await off.s.cronTick();
+  assert.deepEqual(off.calls, ['reserved']);
+  const on = setup({ enabled: true, reserved: true, activePlan: true });
+  await on.s.cronTick();
+  assert.equal(on.calls[0], 'reserved');
+  assert.ok(on.calls.includes('skipStale'));
 });

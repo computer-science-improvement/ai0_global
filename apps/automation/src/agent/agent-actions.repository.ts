@@ -48,6 +48,13 @@ export class AgentActionsRepository {
     );
   }
 
+  /** A pending action of this type already waits for the owner on the thread (dedup for drafts). */
+  async hasPending(threadId: string, type: AgentActionType): Promise<boolean> {
+    const { rows } = await this.pool.query(
+      `SELECT 1 FROM agent_actions WHERE thread_id = $1 AND type = $2 AND status = 'pending' LIMIT 1`, [threadId, type]);
+    return rows.length > 0;
+  }
+
   async countRepliesSince(hours: number): Promise<number> {
     const { rows } = await this.pool.query<{ n: string }>(
       `SELECT count(*)::int AS n FROM agent_actions

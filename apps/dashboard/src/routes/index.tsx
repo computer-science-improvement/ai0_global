@@ -4,6 +4,7 @@ import { motion } from 'motion/react';
 import { Badge } from '../components/ui/Badge';
 import { Icon, type IconName } from '../components/ui/Icon';
 import { ResourceShowcase } from '../components/landing/ResourceShowcase';
+import { MediaKit } from '../components/landing/MediaKit';
 import { useLandingResources } from '../api/landing';
 
 export const Route = createFileRoute('/')({ component: LandingPage });
@@ -281,8 +282,10 @@ function LandingPage() {
               <h2 className="text-display-md lp-ad-title">Advertise with us</h2>
               <p className="text-body lp-ad-sub">
                 Reach engaged audiences across our entire multi-platform network from one place.
-                Self-serve placements are in the works — for direct buys, reach out now.
+                Every placement is labelled #реклама and comes with a 24 h and 72 h stats report.
               </p>
+              {/* Media kit: live channel stats + the current price list (renders only when prices exist). */}
+              <MediaKit />
               <a
                 href="mailto:gm.tupota.valik@gmail.com?subject=Ad%20placement%20—%20ai0%20network"
                 className="lp-hero-cta-primary"

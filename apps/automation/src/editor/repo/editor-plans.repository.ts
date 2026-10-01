@@ -23,6 +23,21 @@ export interface EditorSlot {
   error:           string | null;
 }
 
+/** Rationale of a plan created only to hold reserved (ad) slots; the planner still plans that day. */
+export const RESERVED_ONLY_RATIONALE = 'reserved only';
+
+export interface ReserveSlotInput {
+  channelKey:  string;
+  planDate:    string;
+  scheduledAt: Date;
+  format:      string;
+  topic:       string;
+  /** Traceability, e.g. ['ad_order:<uuid>']. */
+  sourceHints: string[];
+  /** Snapshot of the approved creative; published as-is. */
+  postSpec:    unknown;
+}
+
 export function rowToSlot(r: any): EditorSlot {
   return {
     id: r.id, planId: r.plan_id, channelKey: r.channel_key, scheduledAt: new Date(r.scheduled_at),
@@ -77,6 +92,52 @@ export class EditorPlansRepository {
       `SELECT * FROM editor_slots WHERE channel_key = $1 AND kind = 'reserved'
           AND status IN ('planned','running') AND scheduled_at >= $2 AND scheduled_at < $3 ORDER BY scheduled_at`,
       [channelKey, from, to]);
+    return rows.map(rowToSlot);
+  }
+
+  /**
+   * Put a reserved (paid ad) slot into the day's active plan. When the day has
+   * no plan yet, a plan with RESERVED_ONLY_RATIONALE is created; the scheduler
+   * still runs the planner for such a day and createPlan moves the reserved
+   * slot into the real plan.
+   */
+  async reserveSlot(i: ReserveSlotInput): Promise<string> {
+    const client = await this.pool.connect();
+    try {
+      await client.query('BEGIN');
+      await client.query(
+        `INSERT INTO editor_plans (channel_key, plan_date, rationale) VALUES ($1, $2, $3)
+         ON CONFLICT (channel_key, plan_date) WHERE status = 'active' DO NOTHING`,
+        [i.channelKey, i.planDate, RESERVED_ONLY_RATIONALE]);
+      const plan = await client.query(
+        `SELECT id FROM editor_plans WHERE channel_key = $1 AND plan_date = $2 AND status = 'active' FOR UPDATE`,
+        [i.channelKey, i.planDate]);
+      const { rows } = await client.query(
+        `INSERT INTO editor_slots (plan_id, channel_key, scheduled_at, kind, format, topic, source_hints, post_spec)
+         VALUES ($1, $2, $3, 'reserved', $4, $5, $6, $7) RETURNING id`,
+        [plan.rows[0].id, i.channelKey, i.scheduledAt, i.format, i.topic, JSON.stringify(i.sourceHints), JSON.stringify(i.postSpec)]);
+      await client.query('COMMIT');
+      return rows[0].id;
+    } catch (err) {
+      await client.query('ROLLBACK');
+      throw err;
+    } finally {
+      client.release();
+    }
+  }
+
+  /** Atomically move due reserved (ad) slots planned → running. Executed by code, never by the LLM. */
+  async claimDueReserved(now: Date, limit: number): Promise<EditorSlot[]> {
+    const { rows } = await this.pool.query(
+      `UPDATE editor_slots SET status = 'running', attempts = attempts + 1, updated_at = now()
+        WHERE id IN (
+          SELECT id FROM editor_slots
+           WHERE status = 'planned' AND kind = 'reserved' AND scheduled_at <= $1
+           ORDER BY scheduled_at
+           LIMIT $2
+           FOR UPDATE SKIP LOCKED)
+        RETURNING *`,
+      [now, limit]);
     return rows.map(rowToSlot);
   }
 
@@ -279,13 +340,15 @@ export class EditorPlansRepository {
 
   async insertPublication(i: {
     channelKey: string; messageId: number; sourceUrl: string | null; title: string; tags: string[]; format: string; slotId: string;
+    /** 'editor' for agent posts, 'ad' for reserved sponsored posts. */
+    strategyType?: 'editor' | 'ad';
   }): Promise<number> {
     const { rows } = await this.pool.query(
       `INSERT INTO published_posts (channel_id, message_id, source_url, title, strategy_type, tags, format, editor_slot_id)
-       VALUES ($1, $2, $3, $4, 'editor', $5, $6, $7)
+       VALUES ($1, $2, $3, $4, $8, $5, $6, $7)
        ON CONFLICT (channel_id, message_id) DO UPDATE SET editor_slot_id = EXCLUDED.editor_slot_id
        RETURNING id`,
-      [i.channelKey, i.messageId, i.sourceUrl, i.title, i.tags, i.format, i.slotId]);
+      [i.channelKey, i.messageId, i.sourceUrl, i.title, i.tags, i.format, i.slotId, i.strategyType ?? 'editor']);
     return Number(rows[0].id);
   }
 }

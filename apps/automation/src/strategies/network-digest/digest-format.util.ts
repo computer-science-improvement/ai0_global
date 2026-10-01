@@ -80,6 +80,10 @@ export interface DigestRenderOptions {
 // Re-exported for existing importers; the implementation lives in common/html.
 export { escapeHtml };
 
+function escapeAttr(s: string): string {
+  return escapeHtml(s).replace(/"/g, '&quot;');
+}
+
 export function truncate(s: string, max: number): string {
   return s.length <= max ? s : `${s.slice(0, max - 1)}…`;
 }
@@ -125,7 +129,7 @@ export function renderDigest(opts: DigestRenderOptions): { text: string; itemsUs
   if (opts.ctaText)   footerParts.push(escapeHtml(opts.ctaText));
   if (opts.sponsor) {
     footerParts.push(
-      `—\n<b>Партнер дайджесту:</b> ${escapeHtml(opts.sponsor.text)} → ${escapeHtml(opts.sponsor.url)}  <i>#реклама</i>`,
+      `—\n<b>Партнер дайджесту:</b> <a href="${escapeAttr(opts.sponsor.url)}">${escapeHtml(opts.sponsor.text)}</a>  <i>#реклама</i>`,
     );
   }
 

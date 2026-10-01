@@ -47,13 +47,22 @@ export class AgentActionsService {
     }
 
     // schedule_post
-    const { text, channelId, scheduledAt } = a.payload as any;
+    // schedule_post. With payload.orderId (ad order, spec 008) the executor
+    // reserves an editor slot or falls back to scheduled_posts — see AdPlacement.
+    const { text, channelId, scheduledAt, orderId } = a.payload as any;
     if (!text || !channelId || !scheduledAt) {
       await this.repo.setStatus(id, 'failed', { error: 'missing text/channelId/scheduledAt' });
       return { ...a, status: 'failed', error: 'missing fields' };
     }
-    const spId = await this.exec.schedule({ channelId, text, scheduledAt });
-    await this.repo.mergePayload(id, { scheduledPostId: spId });
+    let placed;
+    try {
+      placed = await this.exec.schedule({ channelId, text, scheduledAt, orderId: orderId ?? null });
+    } catch (err: any) {
+      const error = `schedule failed: ${err?.message ?? err}`;
+      await this.repo.setStatus(id, 'failed', { error });
+      return { ...a, status: 'failed', error };
+    }
+    await this.repo.mergePayload(id, placed.kind === 'reserved_slot' ? { editorSlotId: placed.id } : { scheduledPostId: placed.id });
     await this.repo.setStatus(id, 'done', { executedAt: true });
     return { ...a, status: 'done' };
   }

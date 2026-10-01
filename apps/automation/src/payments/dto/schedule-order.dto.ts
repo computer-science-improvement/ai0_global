@@ -1,6 +1,8 @@
-import { IsString } from 'class-validator';
+import { IsISO8601, IsOptional, IsString } from 'class-validator';
+
+/** Every field falls back to the order: channel_id, creative (or this legacy text), publish_at. */
 export class ScheduleOrderDto {
-  @IsString() channelId!: string;
-  @IsString() text!: string;
-  @IsString() scheduledAt!: string; // ISO
+  @IsOptional() @IsString() channelId?: string;
+  @IsOptional() @IsString() text?: string;
+  @IsOptional() @IsISO8601() scheduledAt?: string;
 }

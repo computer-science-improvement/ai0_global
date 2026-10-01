@@ -24,7 +24,8 @@ export class NetworkDigestRepository {
    * Posts our own channels published in the last `windowHours`, joined with
    * the channel's username (for t.me links) and the LATEST view snapshot.
    * Digest posts themselves are excluded so today's digest never advertises
-   * yesterday's digest. `published_posts.channel_id` stores the channel_key.
+   * yesterday's digest, and paid ad posts (strategy_type 'ad') are never
+   * re-promoted for free. `published_posts.channel_id` stores the channel_key.
    */
   async postsInWindow(windowHours: number, includeChannels?: string[]): Promise<DigestPostRow[]> {
     const args: unknown[] = [windowHours];
@@ -51,7 +52,7 @@ export class NetworkDigestRepository {
             LIMIT 1
          ) s ON TRUE
         WHERE p.posted_at >= now() - ($1 || ' hours')::interval
-          AND COALESCE(p.strategy_type, '') NOT IN ('network-digest', 'topic-digest')
+          AND COALESCE(p.strategy_type, '') NOT IN ('network-digest', 'topic-digest', 'ad')
           AND COALESCE(p.title, '') <> ''
           ${channelFilter}
         ORDER BY p.posted_at DESC`,

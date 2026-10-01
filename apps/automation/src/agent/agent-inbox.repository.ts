@@ -7,8 +7,9 @@ import type { AgentCategory, AgentThreadRow, RawDm, TriageResult } from './agent
 export class AgentInboxRepository {
   constructor(@Inject(DB_POOL) private readonly pool: Pool) {}
 
-  async upsertThread(dm: RawDm, t: TriageResult): Promise<void> {
-    await this.pool.query(
+  /** Insert or refresh a thread; returns its id. */
+  async upsertThread(dm: RawDm, t: TriageResult): Promise<string> {
+    const { rows } = await this.pool.query(
       `INSERT INTO agent_dm_threads
          (peer_id, peer_username, peer_name, last_message_id, last_message_at, last_text,
           category, summary, fields, draft_reply, score, status, updated_at)
@@ -25,10 +26,12 @@ export class AgentInboxRepository {
          draft_reply     = EXCLUDED.draft_reply,
          score           = EXCLUDED.score,
          status          = 'new',
-         updated_at      = now()`,
+         updated_at      = now()
+       RETURNING id`,
       [dm.peerId, dm.peerUsername, dm.peerName, dm.messageId, dm.date, dm.text,
        t.category, t.summary, JSON.stringify(t.fields), t.draftReply, t.score],
     );
+    return rows[0]?.id;
   }
 
   async list(filter: { status?: string; category?: AgentCategory } = {}): Promise<AgentThreadRow[]> {

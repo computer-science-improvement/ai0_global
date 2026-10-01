@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { NetworkDigestStrategy } from './network-digest.strategy';
 import type { DigestPostRow } from './network-digest.repository';
 
-function make(rows: DigestPostRow[], opts: { alreadyPosted?: boolean; subsDelta?: number } = {}) {
+function make(rows: DigestPostRow[], opts: { alreadyPosted?: boolean; subsDelta?: number; paid?: any; publishFails?: boolean } = {}) {
   const published: any[] = [];
   const marked: any[] = [];
   const registry = { register() {} };
@@ -15,14 +15,23 @@ function make(rows: DigestPostRow[], opts: { alreadyPosted?: boolean; subsDelta?
     filterUnposted: async (items: any[]) => (opts.alreadyPosted ? [] : items),
     markPosted: async (...args: any[]) => { marked.push(args); },
   };
-  const telegram = { publish: async (payload: any) => { published.push(payload); return '777'; } };
+  const telegram = { publish: async (payload: any) => {
+    if (opts.publishFails) throw new Error('boom');
+    published.push(payload); return '777';
+  } };
+  const sponsorMarks: any[] = [];
+  const sponsorLookups: any[] = [];
+  const sponsors = {
+    findForDay: async (...a: any[]) => { sponsorLookups.push(a); return opts.paid ?? null; },
+    markPublished: async (...a: any[]) => { sponsorMarks.push(a); },
+  };
   const notifier = { notifyPublished: async () => {}, notifyFailed: async () => {} };
   const publications = { insert: async () => {} };
   const s = new NetworkDigestStrategy(
     registry as any, repo as any, dedup as any, telegram as any,
-    notifier as any, publications as any,
+    notifier as any, publications as any, sponsors as any,
   );
-  return { s, published, marked };
+  return { s, published, marked, sponsorMarks, sponsorLookups };
 }
 
 const row = (over: Partial<DigestPostRow> = {}): DigestPostRow => ({
@@ -68,11 +77,30 @@ test('ranks by views/hour, not raw views (old high-view post loses to fresh rise
   assert.ok(text.indexOf('FRESH') < text.indexOf('OLD'), 'fresh riser must rank above old accumulator');
 });
 
-test('sponsor param renders the partner slot with #реклама', async () => {
+test('sponsor param renders the partner slot as a UTM link with #реклама', async () => {
   const { s, published } = make([row({ messageId: 1 }), row({ messageId: 2 }), row({ messageId: 3 })]);
   await s.execute('@digest_hub', { sponsor: { text: 'Курс', url: 'https://x.ua' } });
   assert.match(published[0].text, /Партнер дайджесту/);
+  assert.match(published[0].text, /<a href="https:\/\/x\.ua\/\?utm_source=ai0&amp;utm_medium=telegram&amp;utm_campaign=digest">Курс<\/a>/);
   assert.match(published[0].text, /#реклама/);
+});
+
+test('a paid digest_sponsor order for today wins over the static param and is marked published', async () => {
+  const paid = { orderId: '0f3a9c12-aaaa-bbbb-cccc-000000000000', text: 'Школа англійської', url: 'https://school.ua' };
+  const { s, published, sponsorMarks, sponsorLookups } = make([row({ messageId: 1 }), row({ messageId: 2 }), row({ messageId: 3 })], { paid });
+  await s.execute('@digest_hub', { sponsor: { text: 'Статичний', url: 'https://x.ua' } });
+  assert.equal(sponsorLookups[0][0], '@digest_hub');
+  assert.match(sponsorLookups[0][1], /^\d{4}-\d{2}-\d{2}$/);
+  assert.match(published[0].text, /utm_campaign=0f3a9c12">Школа англійської<\/a>/);
+  assert.doesNotMatch(published[0].text, /Статичний/);
+  assert.deepEqual(sponsorMarks, [[paid.orderId, '@digest_hub', '777']]);
+});
+
+test('paid sponsor is not marked published when the digest publish fails', async () => {
+  const paid = { orderId: 'o1', text: 'S', url: 'https://s.ua' };
+  const { s, sponsorMarks } = make([row({ messageId: 1 }), row({ messageId: 2 }), row({ messageId: 3 })], { paid, publishFails: true });
+  await s.execute('@digest_hub', {});
+  assert.equal(sponsorMarks.length, 0);
 });
 
 test('subs delta appears in the stats line when positive', async () => {

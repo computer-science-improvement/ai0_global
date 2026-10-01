@@ -52,7 +52,7 @@ test('renderDigest: header, linked items with view counts, stats, cta, sponsor w
   assert.match(text, /<a href="https:\/\/t\.me\/chan\/42">A &amp; B<\/a>/);
   assert.match(text, /👁 1[\s .,]?500/);
   assert.match(text, /📈 \+12 підписників · 9 постів/);
-  assert.match(text, /Партнер дайджесту:<\/b> Курс з ШІ → https:\/\/example\.com/);
+  assert.match(text, /Партнер дайджесту:<\/b> <a href="https:\/\/example\.com">Курс з ШІ<\/a>/);
   assert.match(text, /#реклама/);
 });
 
@@ -73,6 +73,12 @@ test('renderDigest: stays under budget with many long items (fits, never splits)
   assert.ok(text.length <= DIGEST_CHAR_BUDGET, `len=${text.length}`);
   assert.ok(text.length <= 4096);
   assert.match(text, /#реклама/, 'footer must survive even when items overflow');
+});
+
+test('renderDigest: sponsor url with quotes cannot break out of the href; #реклама is the last line', () => {
+  const { text } = renderDigest({ header: 'H', items: [item()], sponsor: { text: '<b>x</b>', url: 'https://s.ua/?a="1"&b=2' } });
+  assert.match(text, /<a href="https:\/\/s\.ua\/\?a=&quot;1&quot;&amp;b=2">&lt;b&gt;x&lt;\/b&gt;<\/a>/);
+  assert.match(text.split('\n').at(-1)!, /#реклама<\/i>$/);
 });
 
 test('renderDigest: no sponsor → no #реклама', () => {
