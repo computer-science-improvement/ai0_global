@@ -1,12 +1,21 @@
 name: CI feature branches
 
-# Cheap checks on every feature/* push: lint and TS type-check only.
-# Intentionally no Docker build, no deploy — those run on develop/main.
+# Cheap checks on every work-branch push and every PR: lint, type-check and
+# the offline unit tests (node:test, fakes only — no service start, no
+# external/paid API calls). Intentionally no Docker build, no deploy — those
+# run on develop/main.
 
 on:
   push:
     branches:
+      - 'feat/**'
+      - 'fix/**'
       - 'feature/**'
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   checks:
@@ -14,25 +23,36 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
       - name: Setup pnpm
         uses: pnpm/action-setup@v3
         with:
           version: 9.15.0
           run_install: false
 
-      - name: Install dependencies (automation workspace only)
-        run: pnpm install --frozen-lockfile --filter automation...
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: pnpm
 
-      - name: Lint
+      - name: Install dependencies (automation + dashboard)
+        run: pnpm install --frozen-lockfile --filter automation... --filter dashboard...
+
+      - name: Lint (automation)
         run: pnpm --filter automation run lint
 
-      - name: Type-check (no emit)
-        # `nest build` would also emit; we only want type-checking to keep this
-        # job fast. tsc with --noEmit walks the workspace and fails on any TS
-        # error without producing dist/.
-        run: pnpm --filter automation exec tsc --noEmit
+      - name: Type-check automation (no emit)
+        # `nest build` would also emit; tsc --noEmit only type-checks.
+        run: pnpm --filter automation exec tsc --noEmit -p tsconfig.json
+
+      - name: Unit tests (automation)
+        # Offline by construction (fakes for LLM/Telegram/HTTP). The dead proxy
+        # makes any accidental outbound HTTP fail fast instead of going out.
+        env:
+          HTTP_PROXY: http://127.0.0.1:9
+          HTTPS_PROXY: http://127.0.0.1:9
+        run: pnpm --filter automation test
+
+      - name: Type-check dashboard (no emit)
+        # Same tsc the dashboard `build` script runs before `vite build`.
+        run: pnpm --filter dashboard exec tsc --noEmit -p tsconfig.json

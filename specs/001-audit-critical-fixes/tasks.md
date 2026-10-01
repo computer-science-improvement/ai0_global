@@ -28,7 +28,7 @@ Verify after each phase with: `pnpm --filter automation test && (cd apps/automat
 - [x] T015 [P] Untrack the PDR `auth.json` and add it to `.gitignore` (FR-009).
 
 ## Phase 6: CI (US5)
-- [ ] T016 Rewrite `ci-feature.yml`: new triggers, plus tests and dashboard tsc steps (FR-010).
+- [x] T016 Rewrite `ci-feature.yml`: new triggers, plus tests and dashboard tsc steps (FR-010).
 
 ## Done when
 All tasks are checked, every test passes, and `tsc` is clean for automation and the dashboard.
