@@ -20,13 +20,20 @@ function fakePool(count: string) {
   return { pool, captured };
 }
 
-test('recipes.countEligible parses count and keeps TELEGRAM + kcal + title_uk predicates', async () => {
+test('recipes.countEligible parses count and keeps posted-key + kcal + title_uk predicates', async () => {
   const { pool, captured } = fakePool('42');
   assert.equal(await new RecipesRepository(pool as any).countEligible(), 42);
   assert.match(captured.sql!, /count\(\*\)/);
-  assert.match(captured.sql!, /NOT \(posted \? 'TELEGRAM'\)/);
+  assert.match(captured.sql!, /NOT \(posted \? \$1\)/);
+  assert.deepEqual(captured.params, ['TELEGRAM'], 'defaults to the Telegram key');
   assert.match(captured.sql!, /kcal IS NOT NULL/);
   assert.match(captured.sql!, /title_uk IS DISTINCT FROM ''/);
+});
+
+test('recipes.countEligible binds the destination postedKey (002 T009)', async () => {
+  const { pool, captured } = fakePool('7');
+  assert.equal(await new RecipesRepository(pool as any).countEligible('FB:acct-9'), 7);
+  assert.deepEqual(captured.params, ['FB:acct-9']);
 });
 
 test('quotes.countEligible binds channel key, appends category when present', async () => {

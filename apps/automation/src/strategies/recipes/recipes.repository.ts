@@ -80,13 +80,15 @@ export class RecipesRepository {
     return rows[0] ?? null;
   }
 
-  async countEligible(): Promise<number> {
+  /** Runway for one destination — mirrors getNext(postedKey). */
+  async countEligible(postedKey = 'TELEGRAM'): Promise<number> {
     const { rows } = await this.pool.query<{ count: string }>(
       `SELECT count(*) AS count
        FROM recipes
-       WHERE NOT (posted ? 'TELEGRAM')
+       WHERE NOT (posted ? $1)
          AND title_uk IS DISTINCT FROM ''
          AND kcal IS NOT NULL`,
+      [postedKey],
     );
     return Number(rows[0]?.count ?? 0);
   }

@@ -12,6 +12,7 @@ import { StrategyPreviewService } from '../strategy-preview.service';
 import { ConfigCacheService } from '../config-cache.service';
 import { ConfigEventsPublisher } from '../config-events.publisher';
 import { ContentRunwayService } from '../../common/content-runway/content-runway.service';
+import { bindingPostedKey } from '../../common/content-strategy/publish-destination';
 import { MetaAccountsRepository } from '../meta-accounts.repository';
 import { ContentStrategyRegistry } from '../../common/content-strategy/content-strategy.registry';
 import { TikTokAccountsRepository } from '../tiktok-accounts.repository';
@@ -146,7 +147,10 @@ export class StrategiesController {
           duration_ms: last.duration_ms,
           error:       last.error,
         } : null,
-        content_remaining:     await this.runway.remainingFor(r.type, channel?.channel_key ?? r.channel_id, r.params),
+        content_remaining:     await this.runway.remainingFor(
+          r.type, channel?.channel_key ?? r.channel_id, r.params,
+          bindingPostedKey(r.platform, metaAccount?.platform ?? null, r.meta_account_id, r.tiktok_account_id),
+        ),
         low_content_threshold: this.runway.effectiveThreshold(r.low_content_threshold),
       };
     }));
