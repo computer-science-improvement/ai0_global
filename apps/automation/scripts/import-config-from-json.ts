@@ -13,7 +13,7 @@
 //
 // Usage:
 //   pnpm --filter automation exec tsx scripts/import-config-from-json.ts \
-//     --file config/channels.local.full-backup.json \
+//     --file config/channels.local.json \
 //     [--strategies-enabled false]   # default false
 //
 // Reads DB credentials from the SAME env vars the automation service uses
