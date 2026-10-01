@@ -19,8 +19,8 @@ interface Props {
   subtitle?: string;
   /** Optional leading glyph in the header — matches the SectionCard headers. */
   icon?:    IconName;
-  /** Wider variant for theme-pickers and similar dense modals. */
-  size?:    'md' | 'lg';
+  /** Wider variants: lg for theme-pickers and dense forms, xl for side-by-side editors. */
+  size?:    'md' | 'lg' | 'xl';
   children: ReactNode;
 }
 
@@ -41,7 +41,7 @@ export function Modal({ open, onClose, title, subtitle, icon, size = 'md', child
   return createPortal(
     <div className="modal-backdrop" onClick={onClose}>
       <div
-        className={size === 'lg' ? 'modal-shell modal-shell-lg' : 'modal-shell'}
+        className={size === 'md' ? 'modal-shell' : `modal-shell modal-shell-${size}`}
         onClick={(e) => e.stopPropagation()}
         role="dialog"
         aria-modal="true"

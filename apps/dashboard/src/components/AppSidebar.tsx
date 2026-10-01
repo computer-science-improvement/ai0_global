@@ -12,6 +12,7 @@ const GROUPS: NavGroup[] = [
   { title: 'Publishing', items: [
     { to: '/app/strategies', label: 'Strategies', icon: 'strategies' },
     { to: '/app/editor',     label: 'Editor',     icon: 'sparkles' },
+    { to: '/app/agents',     label: 'Agents',     icon: 'agents' },
     { to: '/app/chat',       label: 'Chat',       icon: 'chat' },
     { to: '/app/scheduled',  label: 'Scheduled', icon: 'calendar' },
     { to: '/app/channels',   label: 'My channels', icon: 'channels', search: { filter: 'mine' } },

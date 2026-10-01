@@ -32,6 +32,7 @@ import { Route as AppChannelsRouteImport } from './routes/app.channels'
 import { Route as AppCalendarRouteImport } from './routes/app.calendar'
 import { Route as AppBotsRouteImport } from './routes/app.bots'
 import { Route as AppAnalyticsRouteImport } from './routes/app.analytics'
+import { Route as AppAgentsRouteImport } from './routes/app.agents'
 import { Route as AppAgentRouteImport } from './routes/app.agent'
 import { Route as AppAdsRouteImport } from './routes/app.ads'
 import { Route as AppStrategiesNewRouteImport } from './routes/app.strategies_.new'
@@ -42,6 +43,8 @@ import { Route as AppConnectionsMetaRouteImport } from './routes/app.connections
 import { Route as AppConnectionsGroupsRouteImport } from './routes/app.connections_.groups'
 import { Route as AppConnectionsPlatformRouteImport } from './routes/app.connections.$platform'
 import { Route as AppChannelsIdRouteImport } from './routes/app.channels_.$id'
+import { Route as AppAgentsInboxRouteImport } from './routes/app.agents_.inbox'
+import { Route as AppAgentsHandleRouteImport } from './routes/app.agents_.$handle'
 import { Route as AppEditorSlotIdRouteImport } from './routes/app.editor_.slot.$id'
 import { Route as AppEditorRunIdRouteImport } from './routes/app.editor_.run.$id'
 import { Route as AppConnectionsMetaAccountIdRouteImport } from './routes/app.connections_.meta_.$accountId'
@@ -161,6 +164,11 @@ const AppAnalyticsRoute = AppAnalyticsRouteImport.update({
   path: '/analytics',
   getParentRoute: () => AppRoute,
 } as any)
+const AppAgentsRoute = AppAgentsRouteImport.update({
+  id: '/agents',
+  path: '/agents',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppAgentRoute = AppAgentRouteImport.update({
   id: '/agent',
   path: '/agent',
@@ -211,6 +219,16 @@ const AppChannelsIdRoute = AppChannelsIdRouteImport.update({
   path: '/channels/$id',
   getParentRoute: () => AppRoute,
 } as any)
+const AppAgentsInboxRoute = AppAgentsInboxRouteImport.update({
+  id: '/agents_/inbox',
+  path: '/agents/inbox',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppAgentsHandleRoute = AppAgentsHandleRouteImport.update({
+  id: '/agents_/$handle',
+  path: '/agents/$handle',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppEditorSlotIdRoute = AppEditorSlotIdRouteImport.update({
   id: '/editor_/slot/$id',
   path: '/editor/slot/$id',
@@ -234,6 +252,7 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/app/ads': typeof AppAdsRoute
   '/app/agent': typeof AppAgentRoute
+  '/app/agents': typeof AppAgentsRoute
   '/app/analytics': typeof AppAnalyticsRoute
   '/app/bots': typeof AppBotsRoute
   '/app/calendar': typeof AppCalendarRoute
@@ -254,6 +273,8 @@ export interface FileRoutesByFullPath {
   '/app/tracked': typeof AppTrackedRoute
   '/report/$token': typeof ReportTokenRoute
   '/app/': typeof AppIndexRoute
+  '/app/agents/$handle': typeof AppAgentsHandleRoute
+  '/app/agents/inbox': typeof AppAgentsInboxRoute
   '/app/channels/$id': typeof AppChannelsIdRoute
   '/app/connections/$platform': typeof AppConnectionsPlatformRoute
   '/app/connections/groups': typeof AppConnectionsGroupsRoute
@@ -271,6 +292,7 @@ export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/app/ads': typeof AppAdsRoute
   '/app/agent': typeof AppAgentRoute
+  '/app/agents': typeof AppAgentsRoute
   '/app/analytics': typeof AppAnalyticsRoute
   '/app/bots': typeof AppBotsRoute
   '/app/calendar': typeof AppCalendarRoute
@@ -291,6 +313,8 @@ export interface FileRoutesByTo {
   '/app/tracked': typeof AppTrackedRoute
   '/report/$token': typeof ReportTokenRoute
   '/app': typeof AppIndexRoute
+  '/app/agents/$handle': typeof AppAgentsHandleRoute
+  '/app/agents/inbox': typeof AppAgentsInboxRoute
   '/app/channels/$id': typeof AppChannelsIdRoute
   '/app/connections/$platform': typeof AppConnectionsPlatformRoute
   '/app/connections/groups': typeof AppConnectionsGroupsRoute
@@ -310,6 +334,7 @@ export interface FileRoutesById {
   '/login': typeof LoginRoute
   '/app/ads': typeof AppAdsRoute
   '/app/agent': typeof AppAgentRoute
+  '/app/agents': typeof AppAgentsRoute
   '/app/analytics': typeof AppAnalyticsRoute
   '/app/bots': typeof AppBotsRoute
   '/app/calendar': typeof AppCalendarRoute
@@ -330,6 +355,8 @@ export interface FileRoutesById {
   '/app/tracked': typeof AppTrackedRoute
   '/report/$token': typeof ReportTokenRoute
   '/app/': typeof AppIndexRoute
+  '/app/agents_/$handle': typeof AppAgentsHandleRoute
+  '/app/agents_/inbox': typeof AppAgentsInboxRoute
   '/app/channels_/$id': typeof AppChannelsIdRoute
   '/app/connections/$platform': typeof AppConnectionsPlatformRoute
   '/app/connections_/groups': typeof AppConnectionsGroupsRoute
@@ -350,6 +377,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/app/ads'
     | '/app/agent'
+    | '/app/agents'
     | '/app/analytics'
     | '/app/bots'
     | '/app/calendar'
@@ -370,6 +398,8 @@ export interface FileRouteTypes {
     | '/app/tracked'
     | '/report/$token'
     | '/app/'
+    | '/app/agents/$handle'
+    | '/app/agents/inbox'
     | '/app/channels/$id'
     | '/app/connections/$platform'
     | '/app/connections/groups'
@@ -387,6 +417,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/app/ads'
     | '/app/agent'
+    | '/app/agents'
     | '/app/analytics'
     | '/app/bots'
     | '/app/calendar'
@@ -407,6 +438,8 @@ export interface FileRouteTypes {
     | '/app/tracked'
     | '/report/$token'
     | '/app'
+    | '/app/agents/$handle'
+    | '/app/agents/inbox'
     | '/app/channels/$id'
     | '/app/connections/$platform'
     | '/app/connections/groups'
@@ -425,6 +458,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/app/ads'
     | '/app/agent'
+    | '/app/agents'
     | '/app/analytics'
     | '/app/bots'
     | '/app/calendar'
@@ -445,6 +479,8 @@ export interface FileRouteTypes {
     | '/app/tracked'
     | '/report/$token'
     | '/app/'
+    | '/app/agents_/$handle'
+    | '/app/agents_/inbox'
     | '/app/channels_/$id'
     | '/app/connections/$platform'
     | '/app/connections_/groups'
@@ -628,6 +664,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppAnalyticsRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/agents': {
+      id: '/app/agents'
+      path: '/agents'
+      fullPath: '/app/agents'
+      preLoaderRoute: typeof AppAgentsRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/agent': {
       id: '/app/agent'
       path: '/agent'
@@ -698,6 +741,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppChannelsIdRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/agents_/inbox': {
+      id: '/app/agents_/inbox'
+      path: '/agents/inbox'
+      fullPath: '/app/agents/inbox'
+      preLoaderRoute: typeof AppAgentsInboxRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/agents_/$handle': {
+      id: '/app/agents_/$handle'
+      path: '/agents/$handle'
+      fullPath: '/app/agents/$handle'
+      preLoaderRoute: typeof AppAgentsHandleRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/editor_/slot/$id': {
       id: '/app/editor_/slot/$id'
       path: '/editor/slot/$id'
@@ -737,6 +794,7 @@ const AppConnectionsRouteWithChildren = AppConnectionsRoute._addFileChildren(
 interface AppRouteChildren {
   AppAdsRoute: typeof AppAdsRoute
   AppAgentRoute: typeof AppAgentRoute
+  AppAgentsRoute: typeof AppAgentsRoute
   AppAnalyticsRoute: typeof AppAnalyticsRoute
   AppBotsRoute: typeof AppBotsRoute
   AppCalendarRoute: typeof AppCalendarRoute
@@ -756,6 +814,8 @@ interface AppRouteChildren {
   AppTelegraphRoute: typeof AppTelegraphRoute
   AppTrackedRoute: typeof AppTrackedRoute
   AppIndexRoute: typeof AppIndexRoute
+  AppAgentsHandleRoute: typeof AppAgentsHandleRoute
+  AppAgentsInboxRoute: typeof AppAgentsInboxRoute
   AppChannelsIdRoute: typeof AppChannelsIdRoute
   AppConnectionsGroupsRoute: typeof AppConnectionsGroupsRoute
   AppConnectionsMetaRoute: typeof AppConnectionsMetaRoute
@@ -771,6 +831,7 @@ interface AppRouteChildren {
 const AppRouteChildren: AppRouteChildren = {
   AppAdsRoute: AppAdsRoute,
   AppAgentRoute: AppAgentRoute,
+  AppAgentsRoute: AppAgentsRoute,
   AppAnalyticsRoute: AppAnalyticsRoute,
   AppBotsRoute: AppBotsRoute,
   AppCalendarRoute: AppCalendarRoute,
@@ -790,6 +851,8 @@ const AppRouteChildren: AppRouteChildren = {
   AppTelegraphRoute: AppTelegraphRoute,
   AppTrackedRoute: AppTrackedRoute,
   AppIndexRoute: AppIndexRoute,
+  AppAgentsHandleRoute: AppAgentsHandleRoute,
+  AppAgentsInboxRoute: AppAgentsInboxRoute,
   AppChannelsIdRoute: AppChannelsIdRoute,
   AppConnectionsGroupsRoute: AppConnectionsGroupsRoute,
   AppConnectionsMetaRoute: AppConnectionsMetaRoute,
