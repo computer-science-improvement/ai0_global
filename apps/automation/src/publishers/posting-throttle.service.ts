@@ -3,6 +3,14 @@ import { ConfigService } from '@nestjs/config';
 import { SettingsService } from '../settings/settings.service';
 
 /**
+ * Max age of an in-flight lock. A holder that never calls recordPublish()/
+ * releaseLock() (a crash path, a hung await past the scheduler's run timeout)
+ * must not block the channel forever: after the TTL the lock counts as leaked
+ * and the next tryLock() takes it over.
+ */
+export const LOCK_TTL_MS = 10 * 60_000;
+
+/**
  * Two-stage per-channel coordination:
  *
  *   1. **Lock** (in-flight set) — exclusive access while a strategy is
@@ -34,7 +42,8 @@ import { SettingsService } from '../settings/settings.service';
 @Injectable()
 export class PostingThrottleService {
   private readonly logger = new Logger(PostingThrottleService.name);
-  private readonly locks  = new Set<string>();
+  /** channelId → lock acquisition time (ms). */
+  private readonly locks  = new Map<string, number>();
   private readonly lastPublishedAt = new Map<string, number>();
 
   constructor(
@@ -58,7 +67,7 @@ export class PostingThrottleService {
    * preview).
    */
   canPublish(channelId: string, cooldownMs: number = this.cooldownMs()): boolean {
-    if (this.locks.has(channelId)) return false;
+    if (this.isLocked(channelId)) return false;
     const last = this.lastPublishedAt.get(channelId);
     if (last === undefined) return true;
     return Date.now() - last >= cooldownMs;
@@ -71,8 +80,18 @@ export class PostingThrottleService {
    */
   tryLock(channelId: string, cooldownMs: number = this.cooldownMs()): boolean {
     if (!this.canPublish(channelId, cooldownMs)) return false;
-    this.locks.add(channelId);
+    this.locks.set(channelId, Date.now());
     return true;
+  }
+
+  /** Held and younger than LOCK_TTL_MS. A stale lock is dropped (and logged). */
+  private isLocked(channelId: string): boolean {
+    const at = this.locks.get(channelId);
+    if (at === undefined) return false;
+    if (Date.now() - at < LOCK_TTL_MS) return true;
+    this.logger.warn(`Lock on ${channelId} expired after ${Math.round(LOCK_TTL_MS / 60_000)}min — treating as leaked`);
+    this.locks.delete(channelId);
+    return false;
   }
 
   /**
@@ -101,7 +120,7 @@ export class PostingThrottleService {
 
   logCooldown(strategyId: string, channelId: string): void {
     const remaining = Math.ceil(this.remainingMs(channelId) / 1000 / 60);
-    const locked = this.locks.has(channelId);
+    const locked = this.isLocked(channelId);
     const reason = locked ? 'in-flight strategy' : `${remaining}min cooldown`;
     this.logger.debug(`[${strategyId}] Skipped — ${reason} on ${channelId}`);
   }

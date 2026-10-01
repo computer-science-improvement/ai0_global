@@ -100,10 +100,30 @@ export class ContentStrategyRunner {
       return;
     }
 
+    // Generic pipeline. EVERY exit — early return, skip, or a throw from
+    // fetch/dedup/generate/review/publish — goes through the finally, which
+    // frees the lock unless a publish was recorded (recordPublish already
+    // released it and started the cooldown; remainingMs > 0 tells us so).
+    try {
+      await this.runGeneric(strategy, channelId, params, tag);
+    } finally {
+      if (this.throttle.remainingMs(lockKey) === 0) {
+        this.throttle.releaseLock(lockKey);
+      }
+    }
+  }
+
+  /** fetch → dedup → generate → review → publish → mark posted. Lock-free:
+   *  the caller owns lock release. */
+  private async runGeneric(
+    strategy: ContentStrategy,
+    channelId: string,
+    params: StrategyParams,
+    tag: string,
+  ): Promise<void> {
     // 1. Fetch
     const fetchResult = await strategy.fetch(params, channelId);
     if (!fetchResult) {
-      this.throttle.releaseLock(lockKey);
       this.logger.log(`${tag} Nothing to publish`);
       return;
     }
@@ -124,7 +144,6 @@ export class ContentStrategyRunner {
     );
 
     if (!unposted.length) {
-      this.throttle.releaseLock(lockKey);
       this.logger.log(`${tag} Already posted: ${fetchResult.title}`);
       return;
     }
@@ -133,7 +152,6 @@ export class ContentStrategyRunner {
     const post = await strategy.generate(fetchResult, params);
 
     if (post === 'SKIP_POST') {
-      this.throttle.releaseLock(lockKey);
       this.logger.warn(`${tag} SKIP_POST signalled — marking as posted`);
       await this.dedup.markPosted(
         fetchResult.sourceUrl, fetchResult.title, channelId, fetchResult.contentType,
@@ -142,7 +160,6 @@ export class ContentStrategyRunner {
     }
 
     if (!post) {
-      this.throttle.releaseLock(lockKey);
       this.logger.warn(`${tag} Generation failed — will retry next run`);
       return;
     }
@@ -201,7 +218,6 @@ export class ContentStrategyRunner {
         mirror: { text: reviewed, tags: [post.contentType], imageUrl: post.imageUrl },
       });
     } catch (err) {
-      this.throttle.releaseLock(lockKey);
       this.logger.error(`${tag} Publish failed: ${err.message}`);
       await this.notifier.notifyFailed(channelId, err.message, post.sourceUrl);
     }
