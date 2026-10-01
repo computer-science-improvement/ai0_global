@@ -1,7 +1,9 @@
 import { useInfiniteQuery, useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { api, ApiError } from './client';
 import { toast } from '../components/ui/Toast';
-import type { EditorMemoryEntry, EditorMode, EditorRunStatus } from './types';
+import type { EditorMemoryEntry, EditorMode, EditorRunStatus, PendingAction } from './types';
+
+export type { PendingAction } from './types';
 
 // Agent registry (spec 017 FR-010/FR-011). Responses are camelCase, PATCH/PUT
 // bodies snake_case. Handles are [a-z0-9_] but are still URL-encoded.
@@ -305,5 +307,94 @@ export function useMarkInboxRead() {
     mutationFn: (ids: number[] | 'all') =>
       api<{ marked: number }>('/api/agents/inbox/read', { method: 'POST', body: JSON.stringify({ ids }) }),
     onSuccess: () => qc.invalidateQueries({ queryKey: [...KEY, 'inbox'] }),
+  });
+}
+
+// ── spec 018: mentionable handles, confirmation cards, resource profile ──
+
+/** A top-level agent that can be @mentioned in the chat. */
+export interface AgentHandle {
+  handle:  string;
+  name:    string;
+  emoji:   string | null;
+  kind:    AgentKind;
+  scope:   AgentScope;
+  scopeId: string | null;
+  mode:    AgentMode;
+}
+
+export function useAgentHandles() {
+  return useQuery({
+    queryKey: [...KEY, 'handles'],
+    queryFn:  () => api<{ agents: AgentHandle[] }>('/api/agents/handles'),
+    staleTime: 60_000,
+  });
+}
+
+/**
+ * [Apply] / [Discard] on a confirmation card. A failed apply is not an HTTP
+ * error (the card comes back `failed` with the reason); 409 means the card was
+ * already decided elsewhere — the caller shows it and the chat is refreshed.
+ */
+export function useDecideAction() {
+  const qc = useQueryClient();
+  return useMutation({
+    meta: { silentError: true },
+    mutationFn: (v: { id: string; decision: 'apply' | 'discard' }) =>
+      api<{ action: PendingAction }>(`/api/agents/actions/${enc(v.id)}/${v.decision}`, { method: 'POST' }),
+    onSettled: () => {
+      qc.invalidateQueries({ queryKey: KEY });
+      qc.invalidateQueries({ queryKey: ['editor-chat', 'chat'] });
+    },
+  });
+}
+
+export const KPI_GOALS = ['growth', 'engagement', 'transitions', 'revenue'] as const;
+export type KpiGoal = typeof KPI_GOALS[number];
+
+/** What an agent's resource is about (spec 018 FR-006). Mirrors ResourceProfileSchema on the server. */
+export interface ResourceProfile {
+  topic:           string;
+  audience:        { who: string; age?: string; region?: string };
+  language:        string;
+  goals:           KpiGoal[];
+  tone?:           string;
+  taboo:           string[];
+  sources:         string[];
+  frequency_hint?: string;
+  ads_allowed:     { allowed: boolean; categories: string[] };
+  examples:        string[];
+  notes?:          string;
+}
+
+export type HealthState = 'ok' | 'no_access' | 'token_expiring' | 'token_invalid' | 'rate_limited' | 'unknown';
+export interface ResourceHealth { state: HealthState; detail?: string | null; checkedAt: string }
+
+export interface ResourceProfileResponse {
+  ref:       string | null;
+  profile:   ResourceProfile | null;
+  health:    ResourceHealth | null;
+  updatedAt: string | null;
+}
+
+export function useResourceProfile(handle: string, enabled = true) {
+  return useQuery({
+    queryKey: [...KEY, 'profile', handle],
+    queryFn:  () => api<ResourceProfileResponse>(`/api/agents/${enc(handle)}/profile`),
+    enabled,
+  });
+}
+
+/** Save the profile. Validation issues (400 invalid_body) are shown inline by the form. */
+export function usePutResourceProfile(handle: string) {
+  const qc = useQueryClient();
+  return useMutation({
+    meta: { silentError: true },
+    mutationFn: (p: ResourceProfile) =>
+      api<ResourceProfileResponse>(`/api/agents/${enc(handle)}/profile`, { method: 'PUT', body: JSON.stringify(p) }),
+    onSuccess: (r) => {
+      qc.setQueryData([...KEY, 'profile', handle], r);
+      qc.invalidateQueries({ queryKey: [...KEY, 'profile'] });
+    },
   });
 }

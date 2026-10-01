@@ -44,7 +44,7 @@ export function describeError(err: unknown): string {
   if (!body || typeof body !== 'object') return err.message || `Request failed (${err.status})`;
   const head = typeof body.error === 'string' ? body.error : `Request failed (${err.status})`;
   if (Array.isArray(body.issues) && body.issues.length) {
-    const list = body.issues.slice(0, 3).map((i: any) => `${(i.path ?? []).join('.') || 'body'}: ${i.message}`).join('; ');
+    const list = body.issues.slice(0, 3).map((i: any) => `${(Array.isArray(i.path) ? i.path.join('.') : i.path) || 'body'}: ${i.message}`).join('; ');
     return `${head}: ${list}`;
   }
   if (typeof body.details === 'string') return `${head}: ${body.details}`;

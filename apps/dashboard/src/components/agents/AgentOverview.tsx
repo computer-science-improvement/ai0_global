@@ -1,6 +1,7 @@
-// Overview tab of /app/agents/$handle: stat tiles, mode, the profile form
-// (name, handle, emoji, description, model, effort, budget, schedule) and the
-// role children of an orchestrator.
+// Overview tab of /app/agents/$handle: stat tiles, mode, an orchestrator's
+// resource (health + profile, spec 018), the profile form (name, handle, emoji,
+// description, model, effort, budget, schedule) and the role children of an
+// orchestrator.
 
 import { Link, useNavigate } from '@tanstack/react-router';
 import { useState, type CSSProperties, type ReactNode } from 'react';
@@ -11,6 +12,7 @@ import { describeError, toast } from '../ui/Toast';
 import { fmtUsd } from '../editor/EditorUi';
 import { fmtDate, fmtRelative } from '../../lib/format';
 import { AgentGlyph, AgentModeSwitch, KIND_LABEL, LastRun, ScopeChip, runsLabel } from './AgentsUi';
+import { ResourceSection } from './ResourceProfile';
 import { errorBody, usePatchAgent, type AgentDetail, type AgentPatch, type ReasoningEffort } from '../../api/agents';
 
 const HANDLE_RE = /^[a-z][a-z0-9_]{2,31}$/;
@@ -89,6 +91,8 @@ export function AgentOverview({ data }: { data: AgentDetail }) {
           {act?.lastRunAt && <div className="text-micro tabular-nums" style={{ marginTop: 8, color: 'var(--color-ink-dim)' }}>{fmtDate(act.lastRunAt)}</div>}
         </div>
       </div>
+
+      {a.kind === 'orchestrator' && a.scopeId && <ResourceSection handle={a.handle} />}
 
       <ProfileForm key={`${a.id}:${a.updatedAt}`} data={data} />
 

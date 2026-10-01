@@ -729,6 +729,8 @@ export interface EditorChat {
   title:     string;
   createdAt: string;
   updatedAt: string;
+  /** The chat's last addressed agent (spec 018); absent/null → the composer. */
+  agentId?:  string | null;
 }
 
 export interface EditorChatMessage {
@@ -739,12 +741,42 @@ export interface EditorChatMessage {
   draftIds:  string[];
   runId:     string | null;
   createdAt: string;
+  /** The agent the message was addressed to / answered by (spec 018). */
+  agentId?:  string | null;
+}
+
+/** The addressee of a chat turn (spec 018 `agent` stream event). */
+export interface ChatAgentRef {
+  id:     string;
+  handle: string;
+  name:   string;
+  emoji:  string | null;
+  kind:   string;
+}
+
+export type PendingActionStatus = 'pending' | 'applied' | 'discarded' | 'expired' | 'failed';
+
+/** A confirmation card proposed by an agent in chat (spec 018 FR-005). */
+export interface PendingAction {
+  id:        string;
+  chatId:    string | null;
+  agentId:   string | null;
+  kind:      'create_agent' | 'update_agent' | 'set_brief' | 'set_resource_profile' | 'write_skill' | 'attach_skill' | 'detach_skill' | (string & {});
+  payload:   Record<string, unknown>;
+  summary:   string;
+  status:    PendingActionStatus;
+  result:    unknown;
+  error:     string | null;
+  createdAt: string;
+  decidedAt: string | null;
 }
 
 export interface EditorChatDetail {
   chat:     EditorChat;
   messages: EditorChatMessage[];
   drafts:   EditorDraft[];
+  /** Confirmation cards of this chat (spec 018). */
+  actions?: PendingAction[];
   /** false when the server has no OPENROUTER_API_KEY. */
   enabled:  boolean;
 }
@@ -763,5 +795,7 @@ export type EditorChatEvent =
   | { type: 'tool_result'; name: string; ok: boolean; summary: string }
   | { type: 'draft';       draft: EditorDraft }
   | { type: 'message';     message: EditorChatMessage }
+  | { type: 'agent';       agent: ChatAgentRef }
+  | { type: 'action';      action: PendingAction }
   | { type: 'error';       error: string }
   | { type: 'done' };

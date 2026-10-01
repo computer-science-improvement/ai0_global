@@ -1,5 +1,5 @@
-import { createFileRoute } from '@tanstack/react-router';
-import { useEffect, useMemo, useRef, useState, type KeyboardEvent } from 'react';
+import { createFileRoute, Link } from '@tanstack/react-router';
+import { Fragment, useEffect, useMemo, useRef, useState, type KeyboardEvent, type MutableRefObject } from 'react';
 import { Icon } from '../components/ui/Icon';
 import { Badge } from '../components/ui/Badge';
 import { EmptyState } from '../components/ui/primitives';
@@ -7,6 +7,9 @@ import { useConfirm } from '../components/ui/ConfirmDialog';
 import { describeError, toast } from '../components/ui/Toast';
 import { DraftCard, DRAFT_TONE } from '../components/chat/DraftCard';
 import { ToolChips, type ToolActivity } from '../components/chat/ToolChips';
+import { ActionCard } from '../components/chat/ActionCard';
+import { MENTION_LIST_ID, MentionMenu, useMentionMenu } from '../components/chat/MentionMenu';
+import { indexTree } from '../components/agents/AgentsUi';
 import { MarkdownLite } from '../lib/markdown-lite';
 import { fmtKyiv } from '../lib/kyiv-time';
 import { fmtRelative } from '../lib/format';
@@ -14,11 +17,15 @@ import { useMediaQuery } from '../lib/useMediaQuery';
 import {
   streamChatMessage, useChat, useChatChannels, useChats, useCreateChat, useDeleteChat, useDrafts, useInvalidateChat,
 } from '../api/chat';
-import type { EditorChatEvent, EditorChatMessage, EditorDraft } from '../api/types';
+import { useAgentHandles, useAgentTree } from '../api/agents';
+import type { ChatAgentRef, EditorChatEvent, EditorChatMessage, EditorDraft, PendingAction } from '../api/types';
 
 // Editor chat (spec 010): a Claude-style conversation with the composer agent.
 // Left: chats + upcoming scheduled posts. Centre: the thread with live tool
 // chips and draft cards (publish now / schedule / cancel). Bottom: the composer.
+// Spec 018: `@handle` addresses an agent (the manager, the @ai0 builder, an
+// orchestrator); the header shows the current addressee, bubbles show who
+// answered and agents' confirmation cards render with [Apply] / [Discard].
 
 export const Route = createFileRoute('/app/chat')({
   validateSearch: (s: Record<string, unknown>): { c?: string } => ({ c: typeof s.c === 'string' ? s.c : undefined }),
@@ -30,9 +37,15 @@ interface LiveTurn {
   activities: ToolActivity[];
   text:       string;
   drafts:     Record<string, EditorDraft>;
+  actions:    Record<string, PendingAction>;
+  agent:      ChatAgentRef | null;
   /** How many saved messages existed when this turn started (later ones belong to the turn). */
   base:       number;
 }
+
+type AgentIndex = Map<string, ChatAgentRef>;
+
+const ts = (iso: string) => { const t = Date.parse(iso); return Number.isFinite(t) ? t : 0; };
 
 const EXAMPLES = [
   'Зроби пост про найсвіжішу новину з космосу',
@@ -49,17 +62,36 @@ function ChatPage() {
   const chat = useChat(chatId);
   const createChat = useCreateChat();
   const invalidate = useInvalidateChat();
+  const tree = useAgentTree();
+  const handles = useAgentHandles();
 
   const [input, setInput] = useState('');
   const [channel, setChannel] = useState('');
   const [live, setLive] = useState<LiveTurn | null>(null);
   const [activityByMsg, setActivityByMsg] = useState<Record<number, ToolActivity[]>>({});
+  // Addressees seen in this session's streams (a just-created agent may not be in the tree yet).
+  const [seen, setSeen] = useState<Record<string, ChatAgentRef>>({});
+  const [lastAgent, setLastAgent] = useState<{ chatId: string; agent: ChatAgentRef } | null>(null);
   const activitiesRef = useRef<ToolActivity[]>([]);
   const abortRef = useRef<AbortController | null>(null);
   const endRef = useRef<HTMLDivElement | null>(null);
+  const textareaRef = useRef<HTMLTextAreaElement | null>(null);
 
   const messages = chat.data?.messages ?? [];
   const shown = live ? messages.slice(0, live.base) : messages;
+
+  // agentId → who (the registry tree, overlaid with addressees seen in streams).
+  const agentIndex: AgentIndex = useMemo(() => {
+    const m: AgentIndex = new Map();
+    for (const [id, n] of indexTree(tree.data?.agents)) m.set(id, { id, handle: n.handle, name: n.name, emoji: n.emoji, kind: n.kind });
+    for (const a of Object.values(seen)) m.set(a.id, a);
+    return m;
+  }, [tree.data?.agents, seen]);
+
+  const chatAgentId = chat.data?.chat?.agentId ?? null;
+  const addressee: ChatAgentRef | null = live?.agent
+    ?? (lastAgent && lastAgent.chatId === chatId ? lastAgent.agent : null)
+    ?? (chatAgentId ? agentIndex.get(chatAgentId) ?? null : null);
 
   // Drafts by id: server state, overlaid with the live turn's fresher copies.
   const drafts = useMemo(() => {
@@ -75,17 +107,34 @@ function ChatPage() {
     return m;
   }, [shown]);
 
+  // Action cards in place: a card belongs to the reply of the turn that proposed it
+  // (the first assistant message at/after its createdAt). A card with no later reply
+  // (an aborted turn) stands alone at its time among the messages.
+  const placement = useMemo(() => {
+    const byMsg: Record<number, PendingAction[]> = {};
+    const loose: PendingAction[] = [];
+    const acts = (chat.data?.actions ?? []).filter((a) => !live?.actions[a.id]).sort((x, y) => ts(x.createdAt) - ts(y.createdAt));
+    for (const a of acts) {
+      const host = shown.find((m) => m.role === 'assistant' && ts(m.createdAt) >= ts(a.createdAt));
+      if (host) (byMsg[host.id] ??= []).push(a);
+      else loose.push(a);
+    }
+    return { byMsg, loose };
+  }, [chat.data?.actions, live?.actions, shown]);
+
   // The chat's channel defaults to its latest draft's channel.
   useEffect(() => {
     const latest = [...(chat.data?.drafts ?? [])].sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))[0];
     setChannel(latest?.channelKey ?? '');
   }, [chatId, chat.data?.drafts]);
 
-  useEffect(() => { endRef.current?.scrollIntoView({ block: 'end' }); }, [shown.length, live?.activities.length, live?.text, chatId]);
+  useEffect(() => {
+    endRef.current?.scrollIntoView({ block: 'end' });
+  }, [shown.length, live?.activities.length, live?.text, live && Object.keys(live.actions).length, chatId]);
   useEffect(() => () => abortRef.current?.abort(), []);
 
   const gotReplyRef = useRef(false);
-  const onEvent = (e: EditorChatEvent) => {
+  const onEvent = (e: EditorChatEvent, forChat: string) => {
     if (e.type === 'message' || e.type === 'error') gotReplyRef.current = true;
     if (e.type === 'tool_call') {
       const a: ToolActivity = { id: activitiesRef.current.length + 1, name: e.name, args: e.args };
@@ -98,6 +147,9 @@ function ChatPage() {
     } else if (e.type === 'message') {
       const acts = activitiesRef.current;
       if (acts.length) setActivityByMsg((m) => ({ ...m, [e.message.id]: acts }));
+    } else if (e.type === 'agent') {
+      setSeen((s) => ({ ...s, [e.agent.id]: e.agent }));
+      setLastAgent({ chatId: forChat, agent: e.agent });
     } else if (e.type === 'error') {
       toast.error(`Agent: ${e.error}`);
     }
@@ -105,6 +157,8 @@ function ChatPage() {
       if (!t) return t;
       if (e.type === 'text') return { ...t, text: e.text };
       if (e.type === 'draft') return { ...t, drafts: { ...t.drafts, [e.draft.id]: e.draft } };
+      if (e.type === 'action') return { ...t, actions: { ...t.actions, [e.action.id]: e.action } };
+      if (e.type === 'agent') return { ...t, agent: e.agent };
       return { ...t, activities: activitiesRef.current };
     });
   };
@@ -124,15 +178,19 @@ function ChatPage() {
       return;
     }
     const first = !id || !messages.length || id !== chatId;
-    const full = first && channel && !text.includes(channel) ? `Канал: ${channel}\n${text}` : text;
+    // A message to an agent goes without the "Канал:" line — its @channel would read as a mention.
+    const known = new Set((handles.data?.agents ?? []).map((a) => a.handle.toLowerCase()));
+    const toAgent = [...text.matchAll(/(^|[^\p{L}\p{N}_@])@([A-Za-z][A-Za-z0-9_]{1,63})/gu)].some((m) => known.has(m[2].toLowerCase()));
+    const full = first && channel && !toAgent && !text.includes(channel) ? `Канал: ${channel}\n${text}` : text;
     setInput('');
     activitiesRef.current = [];
-    setLive({ userText: full, activities: [], text: '', drafts: {}, base: id === chatId ? messages.length : 0 });
+    setLive({ userText: full, activities: [], text: '', drafts: {}, actions: {}, agent: null, base: id === chatId ? messages.length : 0 });
     const ctrl = new AbortController();
     abortRef.current = ctrl;
     gotReplyRef.current = false;
+    const forChat = id;
     try {
-      await streamChatMessage(id, { text: full, channel: channel || null }, onEvent, ctrl.signal);
+      await streamChatMessage(id, { text: full, channel: channel || null }, (e) => onEvent(e, forChat), ctrl.signal);
       // The stream closed without a reply or an error (server restarted mid-run, proxy cut it…):
       // never let the user's text vanish silently.
       if (!gotReplyRef.current) {
@@ -156,8 +214,23 @@ function ChatPage() {
 
   const stop = () => abortRef.current?.abort();
 
+  const pick = (x: string) => {
+    setInput(x);
+    requestAnimationFrame(() => {
+      const el = textareaRef.current;
+      if (el) { el.focus(); el.setSelectionRange(x.length, x.length); }
+    });
+  };
+
   const sidebar = <ChatSidebar activeId={chatId} onPick={(id) => { setListOpen(false); navigate({ search: { c: id } }); }}
     onNew={() => { setListOpen(false); navigate({ search: {} }); }} />;
+
+  const firstOrch = (handles.data?.agents ?? []).find((a) => a.kind === 'orchestrator');
+  const agentExamples = [
+    '@ai0 створи агента для мого нового каналу',
+    '@manager що зараз найгірше в мережі?',
+    ...(firstOrch ? [`@${firstOrch.handle} чому вчора пропустив слот?`] : []),
+  ];
 
   return (
     <div style={{
@@ -176,16 +249,19 @@ function ChatPage() {
       )}
 
       <section style={{ display: 'flex', flexDirection: 'column', minWidth: 0, minHeight: 0 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8, paddingBottom: 10, borderBottom: '1px solid var(--color-hairline-soft)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, paddingBottom: 10, borderBottom: '1px solid var(--color-hairline-soft)', minWidth: 0 }}>
           {isMobile && (
-            <button className="btn-icon" onClick={() => setListOpen(true)} aria-label="Chats" style={{ width: 34, height: 34 }}>
+            <button className="btn-icon" onClick={() => setListOpen(true)} aria-label="Chats" style={{ width: 34, height: 34, flexShrink: 0 }}>
               <Icon name="panel-left" size={16} />
             </button>
           )}
-          <h1 className="text-subhead" style={{ margin: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+          <h1 className="text-subhead" style={{ margin: 0, minWidth: 0, flex: '1 1 auto', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
             {chat.data?.chat?.title ?? 'New chat'}
           </h1>
-          {live && <span className="text-micro" style={{ color: 'var(--color-ink-muted)', marginLeft: 'auto' }}>agent is working…</span>}
+          <span style={{ marginLeft: 'auto', display: 'inline-flex', alignItems: 'center', gap: 8, minWidth: 0, flexShrink: 0, maxWidth: isMobile ? '55%' : '50%' }}>
+            {live && <span className="text-micro" style={{ color: 'var(--color-ink-muted)', whiteSpace: 'nowrap' }}>{live.agent ? `${live.agent.name} is working…` : 'agent is working…'}</span>}
+            {addressee && !live && <Addressee agent={addressee} compact={isMobile} />}
+          </span>
         </div>
 
         <div style={{ flex: 1, overflowY: 'auto', padding: '16px 2px' }}>
@@ -200,26 +276,44 @@ function ChatPage() {
             <EmptyState icon="chat" title="What are we writing?"
               note="Name a channel and a topic. The agent researches sources, saves a draft and shows a preview. It publishes or schedules only when you ask explicitly or press a button. Write to it in Ukrainian."
               action={
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, justifyContent: 'center' }}>
-                  {EXAMPLES.map((x) => <button key={x} className="btn-tiny" onClick={() => setInput(x)}>{x}</button>)}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 14, alignItems: 'center' }}>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, justifyContent: 'center' }}>
+                    {EXAMPLES.map((x) => <button key={x} className="btn-tiny" onClick={() => pick(x)}>{x}</button>)}
+                  </div>
+                  <div className="text-micro" style={{ color: 'var(--color-ink-muted)', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+                    <Icon name="agents" size={13} /> Type <kbd className="chip" style={{ padding: '0 6px', fontFamily: 'inherit' }}>@</kbd> to talk to an agent
+                  </div>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, justifyContent: 'center' }}>
+                    {agentExamples.map((x) => <button key={x} className="btn-tiny" onClick={() => pick(x)}>{x}</button>)}
+                  </div>
                 </div>
               } />
           )}
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: 18, maxWidth: 780, margin: '0 auto' }}>
-            {shown.map((m) => (
-              <Message key={m.id} m={m} drafts={drafts} lastMention={lastMention} activities={activityByMsg[m.id] ?? []} />
-            ))}
+            {shown.map((m, i) => {
+              const before = placement.loose.filter((a) => ts(a.createdAt) < ts(m.createdAt) && (i === 0 || ts(a.createdAt) >= ts(shown[i - 1].createdAt)));
+              return (
+                <Fragment key={m.id}>
+                  {before.map((a) => <LooseAction key={a.id} action={a} />)}
+                  <Message m={m} drafts={drafts} lastMention={lastMention} activities={activityByMsg[m.id] ?? []}
+                    agent={m.agentId ? agentIndex.get(m.agentId) ?? null : null} actions={placement.byMsg[m.id] ?? []} />
+                </Fragment>
+              );
+            })}
+            {placement.loose.filter((a) => !shown.length || ts(a.createdAt) >= ts(shown[shown.length - 1].createdAt)).map((a) => <LooseAction key={a.id} action={a} />)}
             {live && (
               <>
                 <UserBubble text={live.userText} />
                 <div style={{ display: 'flex', gap: 10 }}>
-                  <AgentGlyph />
+                  <BotGlyph agent={live.agent} />
                   <div style={{ minWidth: 0, flex: 1 }}>
+                    {live.agent && <AgentLine agent={live.agent} />}
                     <ToolChips items={live.activities} />
                     {live.text && <div className="text-body-sm" style={{ color: 'var(--color-ink-muted)', marginBottom: 8 }}><MarkdownLite text={live.text} /></div>}
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
                       {Object.values(live.drafts).map((d) => <DraftCard key={d.id} draft={d} />)}
+                      {Object.values(live.actions).map((a) => <ActionCard key={a.id} action={a} />)}
                     </div>
                     <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>…</span>
                   </div>
@@ -231,19 +325,54 @@ function ChatPage() {
         </div>
 
         <Composer value={input} onChange={setInput} onSend={() => send()} onStop={stop} busy={!!live}
-          channel={channel} onChannel={setChannel} disabled={chat.data?.enabled === false} />
+          channel={channel} onChannel={setChannel} disabled={chat.data?.enabled === false}
+          textareaRef={textareaRef} isMobile={isMobile} />
       </section>
     </div>
   );
 }
 
-function AgentGlyph() {
+/** "Talking to 🚀 Космос щодня @space_daily" — links to the agent's page. */
+function Addressee({ agent, compact }: { agent: ChatAgentRef; compact: boolean }) {
+  return (
+    <Link to="/app/agents/$handle" params={{ handle: agent.handle }} className="chip row-lift"
+      title={`Talking to ${agent.name} @${agent.handle} — mention @someone to switch`}
+      style={{ gap: 6, textDecoration: 'none', minWidth: 0, maxWidth: '100%', padding: '3px 10px', color: 'var(--color-ink)', whiteSpace: 'nowrap' }}>
+        {!compact && <span style={{ color: 'var(--color-ink-dim)', flexShrink: 0 }}>Talking to</span>}
+        <span aria-hidden style={{ flexShrink: 0 }}>{agent.emoji ?? '🤖'}</span>
+        <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{agent.name}</span>
+        <span style={{ color: 'var(--color-accent)', flexShrink: 0 }}>@{agent.handle}</span>
+    </Link>
+  );
+}
+
+function BotGlyph({ agent }: { agent?: ChatAgentRef | null }) {
   return (
     <div aria-hidden style={{
       width: 28, height: 28, flexShrink: 0, borderRadius: 'var(--radius-pill)', display: 'grid', placeItems: 'center',
-      background: 'var(--color-success-soft)', color: 'var(--color-accent)',
+      background: 'var(--color-success-soft)', color: 'var(--color-accent)', fontSize: 15, lineHeight: 1,
     }}>
-      <Icon name="sparkles" size={14} />
+      {agent?.emoji ? agent.emoji : <Icon name="sparkles" size={14} />}
+    </div>
+  );
+}
+
+/** Who answered: name + @handle above an assistant bubble. */
+function AgentLine({ agent }: { agent: ChatAgentRef }) {
+  return (
+    <div className="text-micro" style={{ display: 'flex', alignItems: 'baseline', gap: 6, marginBottom: 4, minWidth: 0 }}>
+      <span style={{ color: 'var(--color-ink)', fontWeight: 600, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{agent.name}</span>
+      <Link to="/app/agents/$handle" params={{ handle: agent.handle }} className="link-accent" style={{ flexShrink: 0 }}>@{agent.handle}</Link>
+    </div>
+  );
+}
+
+/** A card without a reply after it (the turn was stopped): shown alone at its time. */
+function LooseAction({ action }: { action: PendingAction }) {
+  return (
+    <div style={{ display: 'flex', gap: 10 }}>
+      <div style={{ width: 28, flexShrink: 0 }} />
+      <div style={{ minWidth: 0, flex: 1 }}><ActionCard action={action} /></div>
     </div>
   );
 }
@@ -259,20 +388,22 @@ function UserBubble({ text }: { text: string }) {
   );
 }
 
-function Message({ m, drafts, lastMention, activities }: {
+function Message({ m, drafts, lastMention, activities, agent, actions }: {
   m: EditorChatMessage; drafts: Record<string, EditorDraft>; lastMention: Record<string, number>; activities: ToolActivity[];
+  agent: ChatAgentRef | null; actions: PendingAction[];
 }) {
   if (m.role === 'user') return <UserBubble text={m.content} />;
   const own = m.draftIds.filter((id) => drafts[id]);
   return (
     <div style={{ display: 'flex', gap: 10 }}>
-      <AgentGlyph />
+      <BotGlyph agent={agent} />
       <div style={{ minWidth: 0, flex: 1 }}>
+        {agent && <AgentLine agent={agent} />}
         <ToolChips items={activities} />
         <div className="text-body-sm" style={{ color: 'var(--color-ink)', lineHeight: 1.55, wordBreak: 'break-word' }}>
           <MarkdownLite text={m.content} />
         </div>
-        {own.length > 0 && (
+        {(own.length > 0 || actions.length > 0) && (
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginTop: 6 }}>
             {own.map((id) => (lastMention[id] === m.id
               ? <DraftCard key={id} draft={drafts[id]} />
@@ -281,6 +412,7 @@ function Message({ m, drafts, lastMention, activities }: {
                   <Icon name="pencil" size={11} /> draft “{drafts[id].spec.title ?? id.slice(0, 8)}” — updated version below
                 </span>
               )))}
+            {actions.map((a) => <ActionCard key={a.id} action={a} />)}
           </div>
         )}
       </div>
@@ -288,34 +420,47 @@ function Message({ m, drafts, lastMention, activities }: {
   );
 }
 
-function Composer({ value, onChange, onSend, onStop, busy, channel, onChannel, disabled }: {
+function Composer({ value, onChange, onSend, onStop, busy, channel, onChannel, disabled, textareaRef, isMobile }: {
   value: string; onChange: (v: string) => void; onSend: () => void; onStop: () => void; busy: boolean;
   channel: string; onChannel: (v: string) => void; disabled: boolean;
+  textareaRef: MutableRefObject<HTMLTextAreaElement | null>; isMobile: boolean;
 }) {
   const channels = useChatChannels();
-  const ref = useRef<HTMLTextAreaElement | null>(null);
+  const handles = useAgentHandles();
+  const ref = textareaRef;
+  const mention = useMentionMenu({ value, onChange, handles: handles.data?.agents ?? [], disabled, textarea: () => ref.current });
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
     // Measure from 0 — with 'auto' the layout can report the stretched box, not the content (was always 200px).
     el.style.height = '0px';
     el.style.height = `${Math.max(48, Math.min(el.scrollHeight, 200))}px`;
-  }, [value]);
+  }, [value, ref]);
   const onKey = (e: KeyboardEvent<HTMLTextAreaElement>) => {
+    if (mention.onKeyDown(e)) return;
     if (e.key === 'Enter' && !e.shiftKey && !e.nativeEvent.isComposing) {
       e.preventDefault();
       if (!busy && !disabled) onSend();
     }
   };
   return (
-    <div className="panel" style={{ padding: 10, marginTop: 6 }}>
-      <textarea ref={ref} value={value} onChange={(e) => onChange(e.target.value)} onKeyDown={onKey} rows={2} disabled={disabled}
-        placeholder="Describe the post you want… Enter to send, Shift+Enter for a new line"
+    <div className="panel" style={{ padding: 10, marginTop: 6, position: 'relative' }}>
+      {mention.open && (
+        <MentionMenu matches={mention.matches} hi={mention.hi} onHover={mention.setHi} onPick={mention.insert} isMobile={isMobile} />
+      )}
+      <textarea ref={ref} value={value} rows={2} disabled={disabled}
+        onChange={(e) => { onChange(e.target.value); mention.track(e.target); }}
+        onSelect={(e) => mention.track(e.currentTarget)}
+        onKeyDown={onKey}
+        role="combobox" aria-expanded={mention.open} aria-autocomplete="list" aria-haspopup="listbox"
+        aria-controls={mention.open ? MENTION_LIST_ID : undefined}
+        aria-activedescendant={mention.open && mention.matches[mention.hi] ? `mention-${mention.matches[mention.hi].handle}` : undefined}
+        placeholder="Describe the post, or type @ to talk to an agent… Enter to send, Shift+Enter for a new line"
         className="text-body-sm"
         style={{ width: '100%', resize: 'none', border: 'none', outline: 'none', background: 'transparent', color: 'var(--color-ink)', lineHeight: 1.5, padding: '4px 4px 8px' }} />
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
         <select className="input-field" value={channel} onChange={(e) => onChannel(e.target.value)} disabled={busy}
-          style={{ padding: '5px 10px', fontSize: 13, maxWidth: 240 }} aria-label="Channel">
+          style={{ padding: '5px 10px', fontSize: 13, maxWidth: 240, minWidth: 0 }} aria-label="Channel">
           <option value="">Channel: agent will ask</option>
           {(channels.data ?? []).map((c) => (
             <option key={c.channelKey} value={c.channelKey}>
