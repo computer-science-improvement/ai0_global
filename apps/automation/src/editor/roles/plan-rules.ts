@@ -10,6 +10,7 @@ export const PlanSlotInput = z.object({
   angle:         z.string().max(400).optional().describe('Кут подачі / що саме підкреслити'),
   source_hints:  z.array(z.string().max(300)).max(5).default([]).describe('id джерел з картки, таблиці бібліотеки (library:recipes) або URL'),
   is_experiment: z.boolean().default(false),
+  idea_id:       z.string().uuid().optional().describe('id прийнятої ідеї з пулу (list_ideas), якщо слот її реалізує'),
 });
 export const SubmitPlanInput = z.object({
   rationale: z.string().min(10).max(1500),
@@ -24,6 +25,7 @@ export interface PlannedSlot {
   angle:        string | null;
   sourceHints:  string[];
   isExperiment: boolean;
+  ideaId?:      string | null;
 }
 
 export type PlanVerdict = { ok: true; slots: PlannedSlot[] } | { ok: false; errors: string[] };
@@ -87,7 +89,7 @@ export function validatePlan(
       if (Math.abs(at.getTime() - r.getTime()) < gapMs) errors.push(`${label}: занадто близько до резервного слоту`);
     }
     prev = at;
-    slots.push({ scheduledAt: at, format: s.format, topic: s.topic, angle: s.angle ?? null, sourceHints: s.source_hints, isExperiment: s.is_experiment });
+    slots.push({ scheduledAt: at, format: s.format, topic: s.topic, angle: s.angle ?? null, sourceHints: s.source_hints, isExperiment: s.is_experiment, ...(s.idea_id ? { ideaId: s.idea_id } : {}) });
   });
 
   return errors.length ? { ok: false, errors } : { ok: true, slots };

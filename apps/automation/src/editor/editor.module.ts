@@ -80,6 +80,11 @@ import type { PublishPlatformDeps } from './platform/publish-platform';
 import { buildPlatformTools } from './platform/platform-tools';
 import { PlatformStatsCollector } from './platform/platform-stats.collector';
 import { ResourceHealthService } from './platform/resource-health.service';
+import { NetworkRepository } from './network/network.repository';
+import { NetworkRunner } from './network/network-runner';
+import { buildNetworkTools } from './network/network-tools';
+import { NetworkService } from './network/network.service';
+import { NETWORK_SERVICE, NetworkController } from './network/network.controller';
 import { TrackingAuthGuard } from '../tracking/api/tracking-auth.guard';
 
 export const EDITOR_RUNNER    = 'EDITOR_RUNNER';
@@ -89,6 +94,11 @@ export const EDITOR_SKILLS    = 'EDITOR_SKILLS';
 export const EDITOR_REGISTRY  = 'EDITOR_REGISTRY';
 /** Live publish ports shared by publish_post and the chat (Telegram sender, media stage, mirrors). */
 export const EDITOR_PUBLISH   = 'EDITOR_PUBLISH';
+/** Orchestrator-level runs and the idea pool (spec 020). */
+export const EDITOR_NETWORK   = 'EDITOR_NETWORK';
+/** The AgentLoop of scheduled runs (shared by the editor roles and the orchestrator runs). */
+export const EDITOR_LOOP      = 'EDITOR_LOOP';
+
 /** Native multi-platform publishing (spec 019): repository, publish path, stats, health. */
 export const PLATFORM_INFRA   = 'PLATFORM_INFRA';
 
@@ -326,11 +336,11 @@ export const EDITOR_PROVIDERS = [
     {
       provide: EDITOR_PUBLISH,
       inject: [
-        ChannelConfigService, RecipeCarouselRendererService, SlideHostingService, TelegraphService, CrossPostService, GroupFanOutService,
+        ChannelConfigService, RecipeCarouselRendererService, SlideHostingService, TelegraphService, CrossPostService, GroupFanOutService, DB_POOL,
       ],
       useFactory: (
         channelConfig: ChannelConfigService, renderer: RecipeCarouselRendererService, hosting: SlideHostingService,
-        telegraph: TelegraphService, crossPost: CrossPostService, groupFanOut: GroupFanOutService,
+        telegraph: TelegraphService, crossPost: CrossPostService, groupFanOut: GroupFanOutService, pool: Pool,
       ): PublishPorts => ({
         publisher: new TelegramEditorPublisher({
           resolveChannel:     (k) => channelConfig.resolveChannel(k),
@@ -350,6 +360,7 @@ export const EDITOR_PROVIDERS = [
         crosspost: new EditorCrossPoster({
           crossPost, groupFanOut,
           postLink: (k, id) => tgPostLink(channelConfig.getChannelMeta(k)?.username ?? null, id),
+          isOrchestrated: async (k) => (await new NetworkRepository(pool).groupOfChannel(k))?.mode === 'orchestrated',
         }),
       }),
     },
@@ -455,6 +466,7 @@ export const EDITOR_PROVIDERS = [
             agents: infra.agents, catalog: infra.catalog, profiles: infra.profiles, creator: infra.creator, skills: infra.skills, actions: infra.actions,
           }),
           ...buildAgentChatTools({ pool, memory: repos.memory, skills: infra.skills, actions: infra.actions }),
+          ...buildNetworkTools({ repo: new NetworkRepository(pool), plans: repos.plans, memory: repos.memory, inbox: infra.inbox }),
           ...buildPlatformTools({
             pool, publish: platform.publish, plans: repos.plans,
             notifyPreview: env('EDITOR_SHADOW_PREVIEW') === 'false' ? undefined : (ref, text) => notifier.notifyAlert(`👁 Shadow-превʼю ${ref}\n\n${text}`),
@@ -463,34 +475,60 @@ export const EDITOR_PROVIDERS = [
       },
     },
     {
-      provide: EDITOR_RUNNER,
-      inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_SKILLS, EDITOR_REGISTRY, TelegramNotifier, AGENT_INFRA],
-      useFactory: (
-        pool: Pool, cfg: ConfigService, repos: EditorRepos, skills: SkillLibrary, registry: ToolRegistry, notifier: TelegramNotifier,
-        infra: AgentInfra,
-      ): EditorRunnerService => {
+      provide: EDITOR_LOOP,
+      inject: [DB_POOL, ConfigService, TelegramNotifier],
+      useFactory: (pool: Pool, cfg: ConfigService, notifier: TelegramNotifier): AgentLoop => {
         const logger = new Logger('Editor');
         const env = (k: string) => cfg.get<string>(k) ?? undefined;
-        const notify = (text: string) => notifier.notifyAlert(text);
-        const loop = new AgentLoop({
+        return new AgentLoop({
           llm: new OpenRouterClient({ apiKey: env('OPENROUTER_API_KEY'), baseUrl: env('OPENROUTER_BASE_URL') }),
           recorder: new PgRunRecorder(pool, (m) => logger.warn(m)),
           budget: new BudgetService(pool, {
             globalDailyUsd:  Number(env('EDITOR_DAILY_BUDGET_USD') ?? 3),
             channelDailyUsd: Number(env('EDITOR_CHANNEL_DAILY_BUDGET_USD') ?? 0.5),
-          }, notify),
+          }, (text) => notifier.notifyAlert(text)),
           enabled: () => isEnabled(cfg),
         });
+      },
+    },
+    {
+      provide: EDITOR_NETWORK,
+      inject: [DB_POOL, ConfigService, EDITOR_LOOP, EDITOR_REPOS, EDITOR_REGISTRY, AGENT_INFRA, PLATFORM_INFRA, TelegramNotifier],
+      useFactory: (
+        pool: Pool, cfg: ConfigService, loop: AgentLoop, repos: EditorRepos, registry: ToolRegistry, infra: AgentInfra, platform: PlatformInfra,
+        notifier: TelegramNotifier,
+      ): NetworkRunner => new NetworkRunner({
+        loop, registry, runtime: infra.runtime, memory: repos.memory, repo: new NetworkRepository(pool), plans: repos.plans, profiles: infra.profiles,
+        usable: (ref) => platform.health.usable(ref),
+        env: (k) => cfg.get<string>(k) ?? undefined,
+        notify: (t) => notifier.notifyAlert(t),
+      }),
+    },
+    {
+      provide: EDITOR_RUNNER,
+      inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_SKILLS, EDITOR_REGISTRY, TelegramNotifier, AGENT_INFRA, EDITOR_LOOP, EDITOR_NETWORK],
+      useFactory: (
+        pool: Pool, cfg: ConfigService, repos: EditorRepos, skills: SkillLibrary, registry: ToolRegistry, notifier: TelegramNotifier,
+        infra: AgentInfra, loop: AgentLoop, network: NetworkRunner,
+      ): EditorRunnerService => {
+        const logger = new Logger('Editor');
+        const env = (k: string) => cfg.get<string>(k) ?? undefined;
+        const notify = (text: string) => notifier.notifyAlert(text);
+        const ideas = new NetworkRepository(pool);
         logger.log(`editor ${isEnabled(cfg) ? 'ENABLED' : 'disabled'}: ${registry.all().length} tools, ${skills.list().length} skills`);
-        return new EditorRunnerService({ loop, registry, skills, runtime: infra.runtime, plans: repos.plans, memory: repos.memory, env, notify });
+        return new EditorRunnerService({
+          loop, registry, skills, runtime: infra.runtime, plans: repos.plans, memory: repos.memory, env, notify,
+          network, platformContext: (slot, orchId) => network.platformContext(slot, orchId),
+          onSlotDone: async (slot) => { if (slot.ideaId) await ideas.settleIdea(slot.ideaId); },
+        });
       },
     },
     {
       provide: EDITOR_SCHEDULER,
-      inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_RUNNER, EDITOR_PUBLISH, EDITOR_DRAFTS, TelegramNotifier, PostingThrottleService],
+      inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_RUNNER, EDITOR_PUBLISH, EDITOR_DRAFTS, TelegramNotifier, PostingThrottleService, EDITOR_NETWORK],
       useFactory: (
         pool: Pool, cfg: ConfigService, repos: EditorRepos, runner: EditorRunnerService, ports: PublishPorts, drafts: DraftsService,
-        notifier: TelegramNotifier, throttle: PostingThrottleService,
+        notifier: TelegramNotifier, throttle: PostingThrottleService, network: NetworkRunner,
       ) => {
         const logger = new Logger('EditorScheduler');
         const notify = (t: string) => notifier.notifyAlert(t);
@@ -510,6 +548,7 @@ export const EDITOR_PROVIDERS = [
         return new EditorScheduler({
           pool, channels: repos.channels, plans: repos.plans, runner, reserved,
           enabled: () => isEnabled(cfg),
+          orchestrate: cfg.get<string>('EDITOR_ORCHESTRATION') === 'off' ? undefined : (card) => network.runOrchestrator(card),
           notify,
           log: (m) => logger.warn(m),
         });
@@ -570,8 +609,8 @@ export const EDITOR_PROVIDERS = [
     },
     {
       provide: AGENTS_SERVICE,
-      inject: [DB_POOL, AGENT_INFRA, EDITOR_REPOS, EDITOR_OPS, EDITOR_RUNNER],
-      useFactory: (pool: Pool, infra: AgentInfra, repos: EditorRepos, ops: EditorOpsService, runner: EditorRunnerService) => {
+      inject: [DB_POOL, AGENT_INFRA, EDITOR_REPOS, EDITOR_OPS, EDITOR_RUNNER, EDITOR_NETWORK],
+      useFactory: (pool: Pool, infra: AgentInfra, repos: EditorRepos, ops: EditorOpsService, runner: EditorRunnerService, network: NetworkRunner) => {
         const logger = new Logger('Agents');
         const svc: AgentsService = new AgentsService({
           pool, agents: infra.agents, skills: infra.skills, inbox: infra.inbox, profiles: infra.profiles, actions: infra.actions,
@@ -596,7 +635,25 @@ export const EDITOR_PROVIDERS = [
           },
         });
         registerAgentActions(infra, svc, ops);
+        svc.setBriefHook(async (agent, brief) => {
+          const key = telegramKeyOf(agent);
+          const card = key ? await repos.channels.get(key) : null;
+          if (card) void network.runPlaybookBuild(card, brief).catch((err) => logger.warn(`playbook build failed: ${err?.message ?? err}`));
+        });
         return svc;
+      },
+    },
+    {
+      provide: NETWORK_SERVICE,
+      inject: [DB_POOL, AGENT_INFRA, EDITOR_REPOS, EDITOR_NETWORK, PLATFORM_INFRA],
+      useFactory: (pool: Pool, infra: AgentInfra, repos: EditorRepos, network: NetworkRunner, platform: PlatformInfra) => {
+        const logger = new Logger('Network');
+        return new NetworkService({
+          pool, agents: infra.agents, repo: new NetworkRepository(pool), inbox: infra.inbox,
+          card: (k) => repos.channels.get(k), usable: (ref) => platform.health.usable(ref),
+          rebuild: (card, brief) => network.runPlaybookBuild(card, brief),
+          log: (m) => logger.warn(m),
+        });
       },
     },
     EditorCron,
@@ -606,7 +663,7 @@ export const EDITOR_PROVIDERS = [
 @Module({
   // AuthModule: EditorController is guarded by TrackingAuthGuard, which injects AuthService.
   imports:     [ChannelConfigModule, PublishersModule, AuthModule],
-  controllers: [EditorController, EditorChatController, AgentsController],
+  controllers: [EditorController, EditorChatController, AgentsController, NetworkController],
   providers:   [...EDITOR_PROVIDERS, TrackingAuthGuard],
   exports:     [EDITOR_REPOS, EDITOR_RUNNER, AGENT_INFRA, PLATFORM_INFRA],
 })

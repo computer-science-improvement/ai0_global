@@ -152,6 +152,24 @@ export class EditorPlansRepository {
    * still-planned content slots → skipped, reserved slots move to the new plan.
    */
   async createPlan(channelKey: string, planDate: string, rationale: string, runId: string | null, slots: PlannedSlot[]): Promise<string> {
+    return this.replacePlan(channelKey, planDate, rationale, runId, async (client, planId) => {
+      for (const s of slots) {
+        await client.query(
+          s.ideaId
+            ? `INSERT INTO editor_slots (plan_id, channel_key, scheduled_at, format, topic, angle, source_hints, is_experiment, idea_id)
+               VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`
+            : `INSERT INTO editor_slots (plan_id, channel_key, scheduled_at, format, topic, angle, source_hints, is_experiment)
+               VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`,
+          [planId, channelKey, s.scheduledAt, s.format, s.topic, s.angle, JSON.stringify(s.sourceHints), s.isExperiment, ...(s.ideaId ? [s.ideaId] : [])]);
+      }
+    });
+  }
+
+  /** One transaction: supersede the day's active plan, move its reserved slots, insert the new slots. */
+  private async replacePlan(
+    channelKey: string, planDate: string, rationale: string, runId: string | null,
+    insertSlots: (client: { query: Pool['query'] }, planId: string) => Promise<void>,
+  ): Promise<string> {
     const client = await this.pool.connect();
     try {
       await client.query('BEGIN');
@@ -160,7 +178,7 @@ export class EditorPlansRepository {
         [channelKey, planDate]);
       const { rows } = await client.query(
         `INSERT INTO editor_plans (channel_key, plan_date, rationale, run_id) VALUES ($1, $2, $3, $4) RETURNING id`,
-        [channelKey, planDate, rationale, runId]);
+        [channelKey, planDate, rationale, runId && /^[0-9a-f-]{36}$/i.test(runId) ? runId : null]);
       const planId: string = rows[0].id;
       for (const o of old.rows) {
         await client.query(
@@ -168,12 +186,7 @@ export class EditorPlansRepository {
             WHERE plan_id = $1 AND status = 'planned' AND kind = 'content'`, [o.id]);
         await client.query(`UPDATE editor_slots SET plan_id = $2, updated_at = now() WHERE plan_id = $1 AND kind = 'reserved'`, [o.id, planId]);
       }
-      for (const s of slots) {
-        await client.query(
-          `INSERT INTO editor_slots (plan_id, channel_key, scheduled_at, format, topic, angle, source_hints, is_experiment)
-           VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`,
-          [planId, channelKey, s.scheduledAt, s.format, s.topic, s.angle, JSON.stringify(s.sourceHints), s.isExperiment]);
-      }
+      await insertSlots(client as any, planId);
       await client.query('COMMIT');
       return planId;
     } catch (err) {
@@ -182,6 +195,26 @@ export class EditorPlansRepository {
     } finally {
       client.release();
     }
+  }
+
+  /**
+   * A network day plan (spec 020): the anchor channel's plan holds slots for
+   * every resource of the network; non-Telegram slots carry resource_ref.
+   * Supersedes the day's active plan exactly like createPlan.
+   */
+  async createNetworkPlan(
+    channelKey: string, planDate: string, rationale: string, runId: string | null,
+    slots: Array<{ resourceRef: string; scheduledAt: Date; format: string; topic: string; angle: string | null; ideaId: string | null; sourceHints: string[] }>,
+  ): Promise<string> {
+    return this.replacePlan(channelKey, planDate, rationale, runId, async (client, planId) => {
+      for (const s of slots) {
+        const isAnchor = s.resourceRef === `telegram:${channelKey}`;
+        await client.query(
+          `INSERT INTO editor_slots (plan_id, channel_key, scheduled_at, format, topic, angle, source_hints, is_experiment, resource_ref, idea_id)
+           VALUES ($1, $2, $3, $4, $5, $6, $7, false, $8, $9)`,
+          [planId, channelKey, s.scheduledAt, s.format, s.topic, s.angle, JSON.stringify(s.sourceHints), isAnchor ? null : s.resourceRef, s.ideaId]);
+      }
+    });
   }
 
   /** Atomically move due content slots planned → running (single-instance safe, and multi-instance safe too). */

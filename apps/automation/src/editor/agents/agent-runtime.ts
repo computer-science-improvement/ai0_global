@@ -22,7 +22,7 @@ export interface AgentRuntimeDeps {
   now?:     () => Date;
 }
 
-const CARD_KINDS: Partial<Record<EditorRole, AgentKind>> = { planner: 'planner', executor: 'executor', reviewer: 'reviewer' };
+const CARD_KINDS: Partial<Record<EditorRole, AgentKind>> = { planner: 'planner', executor: 'executor', reviewer: 'reviewer', idea_reviewer: 'idea_reviewer' };
 
 /**
  * Resolves the registry agent and its DB skills for a run (spec 017 FR-003 /

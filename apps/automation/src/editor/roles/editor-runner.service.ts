@@ -30,6 +30,13 @@ export interface EditorRunnerDeps {
    * executor works from the slot and the capability matrix only.
    */
   platformContext?: (slot: EditorSlot, orchestratorId: string | null) => Promise<{ playbook?: string | null; profile?: string | null; maxPerDay?: number | null; vocabulary?: string[]; idea?: string | null } | null>;
+  /** Spec 020: network planner and the idea pool for the single-channel planner. */
+  network?: {
+    runNetworkPlanner(card: EditorCard): Promise<AgentLoopResult | null>;
+    plannerExtras(card: EditorCard): Promise<{ network: unknown; excludeTools: Set<string>; ideasNote: string | null } | null>;
+  };
+  /** Called after an executor run (spec 020: an idea becomes `used` once all its slots are done). */
+  onSlotDone?: (slot: EditorSlot) => Promise<void>;
 }
 
 /** Telegram-only tools that must never run on a slot of another platform, and vice versa. */
@@ -91,8 +98,16 @@ export class EditorRunnerService {
     const ctx = await this.agentOf(card, 'planner');
     const off = this.paused(ctx);
     if (off) return off;
+    if (this.d.network) {
+      const net = await this.d.network.runNetworkPlanner(card).catch(() => null);
+      if (net) return net;
+    }
+    const extra = this.d.network ? await this.d.network.plannerExtras(card).catch(() => null) : null;
     const reserved = await this.d.plans.reservedSlots(card.channelKey, dayStart, new Date(dayStart.getTime() + 86_400_000));
-    const res = await this.run('planner', card, plannerUserPrompt(card, now, reserved), null, { planDate }, ctx);
+    const user = [plannerUserPrompt(card, now, reserved), extra?.ideasNote].filter(Boolean).join('\n');
+    const res = await this.run('planner', card, user, null, {
+      planDate, ...(extra ? { network: extra.network, excludeTools: extra.excludeTools } : { excludeTools: new Set(['submit_network_plan']) }),
+    }, ctx);
     if (res.terminalTool !== 'submit_plan') {
       await this.safeNotify(`🗓 Editor: планувальник ${card.channelKey} не склав план (${res.status}${res.error ? `: ${res.error}` : ''}).`);
     }
@@ -109,7 +124,8 @@ export class EditorRunnerService {
     const target = slot.resourceRef ? parseResourceRef(slot.resourceRef) : null;
     const res = target && target.platform !== 'telegram'
       ? await this.runPlatformExecutor(slot, card, ctx, target.platform)
-      : await this.run('executor', card, executorUserPrompt(card, slot, this.now()), slot.id, { excludeTools: PLATFORM_ONLY }, ctx);
+      : await this.run('executor', card, await this.executorUser(card, slot, ctx), slot.id, { excludeTools: PLATFORM_ONLY }, ctx);
+    if (this.d.onSlotDone) await this.d.onSlotDone(slot).catch(() => {});
     await this.d.plans.updateSlot(slot.id, { runId: res.runId });
 
     const after = await this.d.plans.getSlot(slot.id);
@@ -125,6 +141,14 @@ export class EditorRunnerService {
       }
     }
     return res;
+  }
+
+  /** The Telegram executor prompt, plus the pool idea the slot realises (spec 020). */
+  private async executorUser(card: EditorCard, slot: EditorSlot, ctx: RunAgentContext | null): Promise<string> {
+    const base = executorUserPrompt(card, slot, this.now());
+    if (!slot.ideaId || !this.d.platformContext) return base;
+    const pc = await this.d.platformContext(slot, ctx?.orchestrator?.id ?? null).catch(() => null);
+    return pc?.idea ? `${base}\nІдея з пулу: ${pc.idea}` : base;
   }
 
   /** A slot that targets Instagram / Facebook / Threads / TikTok of the channel's network (spec 019 FR-008). */

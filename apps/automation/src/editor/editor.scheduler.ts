@@ -20,6 +20,11 @@ export interface EditorSchedulerDeps {
    * channel's publish_paused still applies inside the publisher.
    */
   reserved?: { publishDue(now: Date): Promise<number> };
+  /**
+   * Spec 020: the orchestrator's daily run (directives, idea pool, playbook
+   * upkeep), once per channel-day before planning. Optional.
+   */
+  orchestrate?: (card: EditorCard) => Promise<unknown>;
 }
 
 export const STALE_MS          = 3 * 3600_000;
@@ -67,6 +72,7 @@ export class EditorScheduler {
     const byKey = new Map(cards.map((c) => [c.channelKey, c]));
 
     for (const card of cards) {
+      await this.maybeOrchestrate(card, now);
       await this.maybePlan(card, now);
       await this.maybeReview(card as EditorCard & { createdAt?: Date }, now);
     }
@@ -76,6 +82,21 @@ export class EditorScheduler {
       await this.d.runner.runExecutor(slot, byKey.get(slot.channelKey)!);
       await this.checkFailures(slot.channelKey, now);
     });
+  }
+
+  private readonly orchestrated = new Set<string>();
+
+  private async maybeOrchestrate(card: EditorCard, now: Date): Promise<void> {
+    if (!this.d.orchestrate) return;
+    if (localHour(now, card.timezone) < card.planHour) return;
+    const key = `${card.channelKey}:${localDate(now, card.timezone)}`;
+    if (this.orchestrated.has(key)) return;
+    this.orchestrated.add(key);
+    const { rows } = await this.d.pool.query(
+      `SELECT 1 FROM editor_runs WHERE role = 'orchestrator' AND channel_key = $1
+          AND (started_at AT TIME ZONE 'Europe/Kyiv')::date = (now() AT TIME ZONE 'Europe/Kyiv')::date LIMIT 1`, [card.channelKey]);
+    if (rows.length) return;
+    try { await this.d.orchestrate(card); } catch (err: any) { this.d.log?.(`orchestrator ${card.channelKey} failed: ${err?.message ?? err}`); }
   }
 
   private async maybePlan(card: EditorCard, now: Date): Promise<void> {
