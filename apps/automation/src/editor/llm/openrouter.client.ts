@@ -43,6 +43,10 @@ export class OpenRouterClient implements LlmClient {
       ...(req.tools?.length ? {
         tools: req.tools.map((t) => ({ type: 'function', function: { name: t.name, description: t.description, parameters: t.parameters } })),
         tool_choice: 'auto',
+        // Route only to providers of this model that support every parameter we
+        // send (tools above all) — otherwise OpenRouter may pick a provider that
+        // silently ignores tools and the loop degrades to plain text.
+        provider: { require_parameters: true },
       } : {}),
       ...(req.maxTokens   !== undefined ? { max_tokens:  req.maxTokens }   : {}),
       ...(req.temperature !== undefined ? { temperature: req.temperature } : {}),

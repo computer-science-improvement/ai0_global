@@ -20,7 +20,9 @@ Everything runs on OpenRouter (`z-ai/glm-5.3-flash` by default, about $0.006 per
    EDITOR_DAILY_BUDGET_USD=3
    EDITOR_CHANNEL_DAILY_BUDGET_USD=0.5
    ```
-3. Restart automation. The log shows `editor ENABLED: N tools, M skills`.
+3. Before the first run, check the model on your key (< $0.001, publishes nothing):
+   `cd apps/automation && pnpm editor:smoke` → expect `✅ OK`.
+4. Restart automation. The log shows `editor ENABLED: N tools, M skills`.
 
 `EDITOR_ENABLED` is the global kill switch for the agents. With it set to `false`, no planner, executor or reviewer runs, including content slots that are already planned. The one exception is paid ads already reserved in the plan (see section 5): they still publish, because they run without the LLM.
 
