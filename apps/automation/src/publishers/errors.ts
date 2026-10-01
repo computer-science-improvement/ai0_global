@@ -25,3 +25,43 @@ export class ChannelPausedError extends Error {
 export function isChannelPausedError(err: unknown): err is ChannelPausedError {
   return err instanceof Error && (err as Error).name === 'ChannelPausedError';
 }
+
+/**
+ * Thrown by ContentStrategyRunner when a run did nothing on purpose before
+ * touching the strategy — the channel's posting lock is held by another
+ * in-flight strategy or its post-publish cooldown is active. Recorded as
+ * `strategy_runs.status = 'skipped'` so the run log doesn't claim `ok` for
+ * a tick that never ran.
+ */
+export class RunSkippedError extends Error {
+  constructor(reason: string) {
+    super(reason);
+    this.name = 'RunSkippedError';
+  }
+}
+
+export function isRunSkippedError(err: unknown): err is RunSkippedError {
+  return err instanceof Error && (err as Error).name === 'RunSkippedError';
+}
+
+/**
+ * Telegram rejections that will fail again for the same content, whatever the
+ * retry: the caption/text itself, the media file, or our own guardText block.
+ * Channel-level problems (chat not found, bot not admin, flood wait, 5xx,
+ * timeouts) are NOT permanent — retrying the item later is correct, and
+ * marking it would burn content during an outage or misconfiguration.
+ */
+const PERMANENT_TELEGRAM_ERROR =
+  /can't parse entities|caption is too long|message is too long|text must be non-empty|message text is empty|PHOTO_INVALID|IMAGE_PROCESS_FAILED|wrong file identifier|failed to get HTTP URL content|wrong type of the web page content|wrong remote file|Publish blocked:/i;
+
+export function isPermanentTelegramError(err: unknown): boolean {
+  if (isChannelPausedError(err)) return false;
+  const e = err as { message?: unknown; response?: { data?: { description?: unknown } } } | null;
+  const text = `${e?.response?.data?.description ?? ''} ${e?.message ?? String(err)}`;
+  return PERMANENT_TELEGRAM_ERROR.test(text);
+}
+
+/** strategy_runs status for a run that threw: soft skips vs real failures. */
+export function runOutcomeForError(err: unknown): 'skipped' | 'error' {
+  return isChannelPausedError(err) || isRunSkippedError(err) ? 'skipped' : 'error';
+}

@@ -9,6 +9,8 @@ import { StructuredLoggerService } from '../common/logging/structured-logger.ser
 import { readdirSync, readFileSync } from 'fs';
 import { join } from 'path';
 import { PostingThrottleService } from './posting-throttle.service';
+import { isRunSkippedError } from './errors';
+import { escapeHtml } from '../common/html';
 
 interface InlineKeyboardButton {
   text: string;
@@ -364,8 +366,12 @@ export class AdminBotService implements OnModuleInit, OnModuleDestroy {
     try {
       await this.strategyRunner.run(strategy, binding.channelId, binding.params, binding.id);
     } catch (err: any) {
-      await this.sendText(chatId, `❌ <code>${binding.id}</code>: ${err.message}`, 'HTML');
-      return;
+      // Cooldown / in-flight skip: fall through to the summary, which already
+      // explains the cooldown via the onCooldown pre-check above.
+      if (!isRunSkippedError(err)) {
+        await this.sendText(chatId, `❌ <code>${binding.id}</code>: ${escapeHtml(err.message)}`, 'HTML');
+        return;
+      }
     }
 
     // Inspect what actually happened during this run by reading the structured log

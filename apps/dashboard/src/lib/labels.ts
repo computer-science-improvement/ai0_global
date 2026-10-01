@@ -24,9 +24,9 @@ export const STRATEGY_STATUS_HELP: Record<'enabled' | 'paused', string> = {
 
 // ─── Strategy run status ───────────────────────────────────────────────
 export const RUN_STATUS_HELP: Record<'ok' | 'error' | 'skipped' | 'running', string> = {
-  ok:      'Strategy ran to completion and published.',
-  error:   'Strategy threw. Hover the row for the message; most-recent error is also stored.',
-  skipped: 'Cron fired but the previous tick of the same strategy was still running. We skipped to avoid double-publishing.',
+  ok:      'Strategy ran to completion (published, or found nothing new to publish).',
+  error:   'Strategy threw or its publish failed. Hover the row for the message; most-recent error is also stored.',
+  skipped: 'Cron fired but did nothing on purpose: the previous tick was still running, the channel is in its posting cooldown / locked by another strategy, or publishing is paused.',
   running: 'Currently executing. AI generation can take 30–90s.',
 };
 

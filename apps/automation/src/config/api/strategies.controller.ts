@@ -3,7 +3,7 @@ import {
   BadRequestException, Body, ConflictException, Controller, Delete, Get,
   HttpCode, NotFoundException, Param, Patch, Post, UseGuards,
 } from '@nestjs/common';
-import { CronJob } from 'cron';
+import { makeCronJob } from '../../scheduler/schedule-time-zone';
 import { TrackingAuthGuard } from '../../tracking/api/tracking-auth.guard';
 import { StrategyBindingsRepository } from '../strategy-bindings.repository';
 import { StrategyRunsRepository } from '../strategy-runs.repository';
@@ -12,6 +12,7 @@ import { StrategyPreviewService } from '../strategy-preview.service';
 import { ConfigCacheService } from '../config-cache.service';
 import { ConfigEventsPublisher } from '../config-events.publisher';
 import { ContentRunwayService } from '../../common/content-runway/content-runway.service';
+import { bindingPostedKey } from '../../common/content-strategy/publish-destination';
 import { MetaAccountsRepository } from '../meta-accounts.repository';
 import { ContentStrategyRegistry } from '../../common/content-strategy/content-strategy.registry';
 import { TikTokAccountsRepository } from '../tiktok-accounts.repository';
@@ -23,7 +24,7 @@ import { CreateStrategyDto, PatchStrategyDto } from './dto/strategies.dto';
  */
 function assertCronOrThrow(schedule: string): void {
   try {
-    new CronJob(schedule, () => {});
+    makeCronJob(schedule, () => {});
   } catch (err: any) {
     throw new BadRequestException(`Invalid cron expression: ${err?.message ?? schedule}`);
   }
@@ -36,7 +37,7 @@ function assertCronOrThrow(schedule: string): void {
  */
 function nextRunOrNull(schedule: string): string | null {
   try {
-    const job = new CronJob(schedule, () => {});
+    const job = makeCronJob(schedule, () => {}); // same zone as the scheduler
     const next = job.nextDate(); // Luxon DateTime
     return next.toJSDate().toISOString();
   } catch {
@@ -146,7 +147,10 @@ export class StrategiesController {
           duration_ms: last.duration_ms,
           error:       last.error,
         } : null,
-        content_remaining:     await this.runway.remainingFor(r.type, channel?.channel_key ?? r.channel_id, r.params),
+        content_remaining:     await this.runway.remainingFor(
+          r.type, channel?.channel_key ?? r.channel_id, r.params,
+          bindingPostedKey(r.platform, metaAccount?.platform ?? null, r.meta_account_id, r.tiktok_account_id),
+        ),
         low_content_threshold: this.runway.effectiveThreshold(r.low_content_threshold),
       };
     }));

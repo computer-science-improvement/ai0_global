@@ -279,7 +279,7 @@ export interface ComposedPostInput {
   mediaPlacement: SchedPlacement; buttons: SchedButtonRow[]; scheduledAt: string;
 }
 export interface ScheduledPost extends ComposedPostInput {
-  id: string; status: 'pending'|'sending'|'sent'|'failed'|'canceled';
+  id: string; status: 'pending'|'sending'|'sent'|'failed'|'canceled'|'unknown';
   messageId: number | null; error: string | null; createdAt: string; updatedAt: string;
 }
 

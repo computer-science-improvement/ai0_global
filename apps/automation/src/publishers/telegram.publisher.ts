@@ -198,7 +198,9 @@ export class TelegramPublisher extends BasePublisher {
     text:    string,
   ): Promise<string> {
     const photoMessageId = await this.sendPhoto(base, chatId, photo);
-    await this.sendReply(base, chatId, text, photoMessageId);
+    // The photo is live from here on — a failed reply must not turn this into
+    // a "failed publish" (callers would retry and post the photo again).
+    await this.sendReplyBestEffort(base, chatId, text, photoMessageId);
     return photoMessageId;
   }
 
@@ -283,7 +285,7 @@ export class TelegramPublisher extends BasePublisher {
     this.logger.log(`Video sent to ${chatId}, message_id: ${messageId}`);
 
     if (payload.replyText) {
-      await this.sendReply(base, chatId, payload.replyText, messageId);
+      await this.sendReplyBestEffort(base, chatId, payload.replyText, messageId);
     }
     return messageId;
   }
@@ -313,10 +315,29 @@ export class TelegramPublisher extends BasePublisher {
     this.logger.log(`Prompt photo sent to ${chatId}, message_id: ${messageId}`);
 
     if (payload.replyText) {
-      await this.sendReply(base, chatId, payload.replyText, messageId);
+      await this.sendReplyBestEffort(base, chatId, payload.replyText, messageId);
     }
 
     return messageId;
+  }
+
+  /**
+   * Reply sent AFTER the main media message is already live. A failure here is
+   * logged as a warning and swallowed: the publish succeeded (the media id is
+   * returned and recorded), and throwing would make strategies that mark their
+   * row after publish retry the row → the same photo/video posted again.
+   */
+  private async sendReplyBestEffort(
+    base: string, chatId: string, text: string, replyToMessageId: string,
+  ): Promise<void> {
+    try {
+      await this.sendReply(base, chatId, text, replyToMessageId);
+    } catch (err: any) {
+      const reason = err?.response?.data?.description ?? err?.message ?? String(err);
+      this.logger.warn(
+        `Reply to ${chatId}/${replyToMessageId} failed after the media went live: ${reason} — keeping the publish`,
+      );
+    }
   }
 
   private async sendReply(base: string, chatId: string, text: string, replyToMessageId: string): Promise<void> {

@@ -20,6 +20,7 @@ import { DestinationResolver }      from '../../common/content-strategy/destinat
 import { RunTracer }                from '../../common/observability/run-tracer.service';
 import { composeMetaCaption, promptHashtags } from '../../common/content-strategy/meta-caption.util';
 import { isPermanentMetaMediaError } from '../../publishers/meta-graph.util';
+import { isPermanentTelegramError } from '../../publishers/errors';
 import type { PublishDestination, DestinationPlatform }  from '../../common/content-strategy/publish-destination';
 import type { MetaPlatform }       from '../../config/meta-accounts.repository';
 import { PromptsRepository }        from './prompts.repository';
@@ -95,6 +96,14 @@ export class Ai0PromptsStrategy implements ContentStrategy, OnModuleInit {
       return;
     }
 
+    // Poisoned rows are marked errored for this destination (posted
+    // ["error:<key>"]) so getNext moves past them; transient failures (timeouts,
+    // 5xx, rate limits) return unmarked and the row is retried next tick.
+    const markError = (reason: string) => {
+      this.logger.warn(`Prompt ${row.id} unpublishable (${reason}) — marking errored for ${postedKey}`);
+      return this.db.markError(row.id, postedKey, reason);
+    };
+
     // 3. Fetch and scrape the prompthero page
     let html: string | null = null;
     try {
@@ -104,29 +113,28 @@ export class Ai0PromptsStrategy implements ContentStrategy, OnModuleInit {
       });
       html = typeof res.data === 'string' ? res.data : null;
     } catch (err) {
+      if (isGone(err)) { await markError(`dead page (HTTP ${err.response.status})`); return; }
       this.logger.warn('Page fetch failed: ' + err.message);
       return;
     }
-    if (!html) return;
+    if (!html) { await markError('page body is not HTML'); return; }
 
     const meta = this.scraper.extractMeta(html);
     if (!meta) {
-      this.logger.warn('Failed to extract meta from page');
+      await markError('no prompt metadata on page');
       return;
     }
 
     // 4. Validate prompt length
     if (meta.prompt.length < MIN_PROMPT_LENGTH) {
-      this.logger.debug(`Prompt too short (${meta.prompt.length}), marking as error`);
-      await this.db.markError(row.id);
+      await markError(`prompt too short (${meta.prompt.length})`);
       return;
     }
 
     // 5. Build message
     const message = this.scraper.buildMessage(meta);
     if (message.isError) {
-      this.logger.warn('Message build returned error');
-      await this.db.markError(row.id);
+      await markError('message build failed');
       return;
     }
 
@@ -189,6 +197,7 @@ export class Ai0PromptsStrategy implements ContentStrategy, OnModuleInit {
       });
       imageBuffer = Buffer.from(res.data);
     } catch (err) {
+      if (isGone(err)) { await markError(`dead image (HTTP ${err.response.status})`); return; }
       this.logger.warn('Image download failed: ' + err.message);
       return;
     }
@@ -228,6 +237,17 @@ export class Ai0PromptsStrategy implements ContentStrategy, OnModuleInit {
       );
     } catch (err) {
       this.logger.error('Publish failed: ' + err.message);
+      // Telegram rejected this image/caption itself (bad dimensions, unparseable
+      // HTML…) — it would fail the same way every tick and block the category.
+      if (isPermanentTelegramError(err)) {
+        await markError(`publish: ${err.response?.data?.description ?? err.message}`);
+      }
     }
   }
+}
+
+/** The resource is gone for good (404 Not Found / 410 Gone), not just flaky. */
+function isGone(err: any): boolean {
+  const status = err?.response?.status;
+  return status === 404 || status === 410;
 }

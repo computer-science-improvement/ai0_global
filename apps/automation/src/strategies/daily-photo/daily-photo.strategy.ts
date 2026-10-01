@@ -7,11 +7,13 @@ import { DailyPhotoItem }           from '../../workflows/daily-photo/types';
 import { APOD_PROMPT, buildApodUserMessage } from '../../common/ai/prompts/daily-photo.prompts';
 import { DAILY_PHOTO_CHANNEL_SKILL } from '../../common/ai/skills/daily-photo-channel.skill';
 import { Skill }                    from '../../common/ai/skills/skill.interface';
+import { escapeHtml }               from '../../common/html';
 import {
   ContentStrategy,
   StrategyFetchResult,
   StrategyPost,
   StrategyParams,
+  StrategyRejection,
 } from '../../common/content-strategy/content-strategy.interface';
 
 @Injectable()
@@ -56,7 +58,7 @@ export class DailyPhotoStrategy implements ContentStrategy, OnModuleInit {
   async generate(
     fetchResult: StrategyFetchResult,
     _params: StrategyParams,
-  ): Promise<StrategyPost | 'SKIP_POST' | null> {
+  ): Promise<StrategyPost | 'SKIP_POST' | StrategyRejection | null> {
     const item = fetchResult.data as DailyPhotoItem;
 
     if (!this.claude.available) {
@@ -74,23 +76,28 @@ export class DailyPhotoStrategy implements ContentStrategy, OnModuleInit {
       return 'SKIP_POST';
     }
 
-    if (!this.validator.check(translated, 'daily-photo')) return null;
+    // Permanent rejections (refusal, too short, …) mark the source errored in
+    // the runner; transient ones (no response, rate limit) return null → retry.
+    const verdict = this.validator.validate(translated);
+    if (!verdict.valid) return this.validator.reject(verdict, 'daily-photo');
 
-    const lines = [`<b>${item.title}</b>`, '', translated!];
-    if (item.copyright) {
-      lines.push('', `© ${item.copyright}`);
+    const header    = `<b>${escapeHtml(item.title)}</b>`;
+    const copyright = item.copyright ? `© ${escapeHtml(item.copyright)}` : null;
+    const lines = [header, '', translated!];
+    if (copyright) {
+      lines.push('', copyright);
     }
 
     let message = lines.join('\n');
 
     if (message.length > 900) {
-      const copyrightSuffix = item.copyright ? `\n\n© ${item.copyright}` : '';
-      const maxExplanation = 900 - `<b>${item.title}</b>`.length - 2 - copyrightSuffix.length;
+      const copyrightSuffix = copyright ? `\n\n${copyright}` : '';
+      const maxExplanation = 900 - header.length - 2 - copyrightSuffix.length;
       message = [
-        `<b>${item.title}</b>`,
+        header,
         '',
         translated!.slice(0, maxExplanation - 3) + '...',
-        ...(item.copyright ? ['', `© ${item.copyright}`] : []),
+        ...(copyright ? ['', copyright] : []),
       ].join('\n');
     }
 

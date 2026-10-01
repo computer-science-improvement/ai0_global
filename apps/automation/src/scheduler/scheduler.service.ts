@@ -1,6 +1,6 @@
 import { Inject, Injectable, Logger, OnApplicationBootstrap, OnModuleDestroy } from '@nestjs/common';
 import { SchedulerRegistry } from '@nestjs/schedule';
-import { CronJob } from 'cron';
+import { makeCronJob } from './schedule-time-zone';
 import { Redis } from 'ioredis';
 import { ChannelConfigService }    from '../config/channel-config.service';
 import { StrategyRunsRepository }  from '../config/strategy-runs.repository';
@@ -10,7 +10,7 @@ import { DestinationResolver } from '../common/content-strategy/destination-reso
 import { RunTracer } from '../common/observability/run-tracer.service';
 import { CONFIG_CHANGED_CHANNEL, ConfigChangedEvent } from '../config/config-events.types';
 import { REDIS_CLIENT } from '../tracking/redis.provider';
-import { isChannelPausedError } from '../publishers/errors';
+import { runOutcomeForError } from '../publishers/errors';
 import { withTimeout } from '../common/with-timeout';
 
 /**
@@ -182,7 +182,8 @@ export class SchedulerService implements OnApplicationBootstrap, OnModuleDestroy
   }
 
   private startJob(name: string, job: ScheduledJob): void {
-    const cronJob = new CronJob(job.schedule, async () => {
+    // Evaluated in SCHEDULE_TIME_ZONE (Europe/Kyiv by default), not the process TZ.
+    const cronJob = makeCronJob(job.schedule, async () => {
       // Guard 1: previous tick of THIS strategy still running.
       if (this.inFlight.has(name)) {
         this.logger.warn(`Skipping ${name}: previous run still in flight`);
@@ -243,10 +244,11 @@ export class SchedulerService implements OnApplicationBootstrap, OnModuleDestroy
             }
           } catch (err: any) {
             const desc = this.tracer.describeError(err);
-            // A paused channel is an expected "do nothing" — record as
-            // 'skipped' rather than 'error' so the run log stays clean and the
-            // last-run chip on /strategies shows yellow not red.
-            if (isChannelPausedError(err)) {
+            // A paused channel or a cooldown/in-flight lock is an expected
+            // "do nothing" — record as 'skipped' rather than 'error' so the run
+            // log stays clean and the last-run chip on /strategies shows
+            // yellow not red.
+            if (runOutcomeForError(err) === 'skipped') {
               this.logger.log(`${name} skipped: ${desc}`);
               if (runId) {
                 await this.runsRepo.finishSkipped(runId, desc, this.tracer.steps()).catch(e =>

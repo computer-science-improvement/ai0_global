@@ -12,18 +12,46 @@ function target(platform: string, mode: 'mirror' | 'teaser' = 'mirror') {
   };
 }
 
-function build(targets: any[]) {
-  const published: Array<{ platform: string; imageUrl?: string }> = [];
+/** Same contract as SecretsService.resolveToken: enc wins, else env via configGet. */
+const fakeSecrets = {
+  resolveToken: (o: { enc?: string | null; env?: string | null }, get: (k: string) => string | undefined) =>
+    o.enc ? `dec(${o.enc})` : o.env ? get(o.env) : undefined,
+};
+
+function build(targets: any[], config: any = { get: () => 'token' }) {
+  const published: Array<{ platform: string; imageUrl?: string; token?: string }> = [];
   const svc = new CrossPostService(
     { listEnabledResolved: async () => targets } as any,                       // targets repo
     { getChannelMeta: () => ({ id: 'ch1', username: 'chan' }) } as any,        // channel config
-    { publish: async (p: string, payload: any) => { published.push({ platform: p, imageUrl: payload.imageUrl }); return 'mid'; } } as any, // dispatcher
+    { publish: async (p: string, payload: any, target: any) => { published.push({ platform: p, imageUrl: payload.imageUrl, token: target.token }); return 'mid'; } } as any, // dispatcher
     { tryLock: () => true, recordPublish: () => {}, releaseLock: () => {} } as any, // throttle
     { metaCooldownMin: () => 0 } as any,                                       // settings
-    { get: () => 'token' } as any,                                             // config
+    config,                                                                    // config
+    fakeSecrets as any,                                                        // secrets
   );
   return { svc, published };
 }
+
+test('token: an encrypted account token (token_enc) is used even with no env var set', async () => {
+  const t = { ...target('facebook'), account_token_env: null, account_token_enc: 'enc:v1:abc' };
+  const { svc, published } = build([t], { get: () => undefined });
+  await svc.afterPublish({ channelKey: '@c', messageId: 1, mirror: { text: 'hello', tags: [] } });
+  assert.deepEqual(published.map(p => p.token), ['dec(enc:v1:abc)']);
+});
+
+test('token: falls back to the legacy token_env when token_enc is null', async () => {
+  const t = { ...target('facebook'), account_token_enc: null };
+  const { svc, published } = build([t], { get: (k: string) => (k === 'TOK_ENV' ? 'env-token' : undefined) });
+  await svc.afterPublish({ channelKey: '@c', messageId: 1, mirror: { text: 'hello', tags: [] } });
+  assert.deepEqual(published.map(p => p.token), ['env-token']);
+});
+
+test('token: neither enc nor env resolves → target skipped, nothing published', async () => {
+  const t = { ...target('facebook'), account_token_enc: null, account_token_env: null };
+  const { svc, published } = build([t], { get: () => undefined });
+  await svc.afterPublish({ channelKey: '@c', messageId: 1, mirror: { text: 'hello', tags: [] } });
+  assert.deepEqual(published, []);
+});
 
 test('imageless mirror: instagram skipped, threads/facebook still publish', async () => {
   const { svc, published } = build([target('instagram'), target('threads'), target('facebook')]);

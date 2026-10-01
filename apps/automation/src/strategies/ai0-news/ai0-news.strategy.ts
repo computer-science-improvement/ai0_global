@@ -24,6 +24,7 @@ import { TelegramPublisher }        from '../../publishers/telegram.publisher';
 import { TelegramNotifier }         from '../../publishers/telegram-notifier.service';
 import { CrossPostService }         from '../../publishers/cross-post.service';
 import { SourceConfig }             from '../../common/types';
+import { escapeAttr } from '../../common/html';
 
 @Injectable()
 export class Ai0NewsStrategy implements ContentStrategy, OnModuleInit {
@@ -263,10 +264,7 @@ export class Ai0NewsStrategy implements ContentStrategy, OnModuleInit {
       .map(t => '#' + String(t).trim().replace(/[\s\-\.]+/g, '_').toLowerCase())
       .join(' ');
 
-    const safeSource = item.source
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;');
+    const safeSource = escapeAttr(item.source);
 
     return clean + '\n\n' + tags + '\n\n<a href="' + safeSource + '">Посилання</a>';
   }

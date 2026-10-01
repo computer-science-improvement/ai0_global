@@ -24,3 +24,21 @@ export const META_POSTED_PREFIX: Record<MetaPlatform, string> = {
   facebook:  'FB',
   threads:   'TH',
 };
+
+/**
+ * The `posted` JSONB key a binding's destination dedups on — the same value
+ * DestinationResolver.resolve() puts in `postedKey`, computed without a DB
+ * round-trip (for runway counts). `metaPlatform` is the Meta account's own
+ * platform (falls back to the binding platform). Null when not resolvable.
+ */
+export function bindingPostedKey(
+  platform: DestinationPlatform,
+  metaPlatform: MetaPlatform | null,
+  metaAccountId: string | null,
+  tiktokAccountId: string | null,
+): string | null {
+  if (platform === 'telegram') return 'TELEGRAM';
+  if (platform === 'tiktok') return tiktokAccountId ? `TT:${tiktokAccountId}` : null;
+  const p = metaPlatform ?? platform;
+  return metaAccountId ? `${META_POSTED_PREFIX[p]}:${metaAccountId}` : null;
+}

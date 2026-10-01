@@ -9,11 +9,13 @@ import { MOVIE_PROMPT, buildMovieUserMessage, buildMoviePost } from '../../commo
 import { MOVIES_CHANNEL_SKILL }     from '../../common/ai/skills/movies-channel.skill';
 import { Skill }                    from '../../common/ai/skills/skill.interface';
 import { RawItem }                  from '../../common/types';
+import { escapeAttr }               from '../../common/html';
 import {
   ContentStrategy,
   StrategyFetchResult,
   StrategyPost,
   StrategyParams,
+  StrategyRejection,
 } from '../../common/content-strategy/content-strategy.interface';
 
 @Injectable()
@@ -74,7 +76,7 @@ export class MoviesStrategy implements ContentStrategy, OnModuleInit {
   async generate(
     fetchResult: StrategyFetchResult,
     _params: StrategyParams,
-  ): Promise<StrategyPost | 'SKIP_POST' | null> {
+  ): Promise<StrategyPost | 'SKIP_POST' | StrategyRejection | null> {
     const item = fetchResult.data as MovieItem;
 
     if (!this.claude.available) {
@@ -92,14 +94,17 @@ export class MoviesStrategy implements ContentStrategy, OnModuleInit {
       return 'SKIP_POST';
     }
 
-    if (!this.validator.check(aiText, 'movies')) return null;
+    // Permanent rejections (refusal, too short, …) mark the source errored in
+    // the runner; transient ones (no response, rate limit) return null → retry.
+    const verdict = this.validator.validate(aiText);
+    if (!verdict.valid) return this.validator.reject(verdict, 'movies');
 
-    let text = buildMoviePost(item, aiText!);
-    text = text + '\n\n<a href="' + item.source + '">TMDB</a>';
+    const link = '\n\n<a href="' + escapeAttr(item.source) + '">TMDB</a>';
+    let text = buildMoviePost(item, aiText!) + link;
 
     if (text.length > 900) {
       const truncated = aiText!.slice(0, aiText!.length - (text.length - 890)) + '...';
-      text = buildMoviePost(item, truncated) + '\n\n<a href="' + item.source + '">TMDB</a>';
+      text = buildMoviePost(item, truncated) + link;
     }
 
     return {

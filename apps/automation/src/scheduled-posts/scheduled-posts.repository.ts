@@ -72,13 +72,21 @@ export class ScheduledPostsRepository {
     return rows[0] ? toEntity(rows[0]) : null;
   }
 
-  /** Recover posts claimed but never finished (process crash between claim and
-   *  markSent): flip stale 'sending' rows back to 'pending' so they get retried. */
-  async rependStale(): Promise<number> {
-    const { rowCount } = await this.pool.query(
-      `UPDATE scheduled_publications SET status='pending', updated_at=now()
-       WHERE status='sending' AND updated_at < now() - interval '5 minutes'`);
-    return rowCount ?? 0;
+  /**
+   * Posts claimed but never finished (process crash / hang between claim and
+   * markSent). We cannot know whether Telegram delivered them — re-sending
+   * risks a duplicate public post — so they become 'unknown' for the owner to
+   * check, instead of going back to 'pending'. Returns the affected rows.
+   */
+  async markStaleUnknown(): Promise<ScheduledPost[]> {
+    const { rows } = await this.pool.query(
+      `UPDATE scheduled_publications
+          SET status='unknown',
+              error='claimed for sending but never confirmed (crash or hang) — delivery unknown, check the channel',
+              updated_at=now()
+        WHERE status='sending' AND updated_at < now() - interval '5 minutes'
+        RETURNING *`);
+    return rows.map(toEntity);
   }
 
   async markSent(id: string, messageId: number): Promise<void> {

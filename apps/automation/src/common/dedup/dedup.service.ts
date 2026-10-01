@@ -59,11 +59,32 @@ export class DedupService {
     });
   }
 
+  /**
+   * Mark a source as permanently unpublishable for this channel (validator
+   * rejection, empty draft, permanent publish error). Same ledger as
+   * markPosted — filterUnposted skips it globally — but content_type = 'error'
+   * and the title carries the reason, so it is distinguishable and the
+   * fair-mix rotation (getLastPostedType) ignores it. Undo by deleting the row.
+   */
+  async markError(sourceUrl: string, title: string | null, channelId: string, reason: string): Promise<void> {
+    const label = `[error: ${reason}] ${title ?? ''}`.trim().slice(0, 500);
+    await this.pool.query(
+      `INSERT INTO posted_news (source_url, title, channel_id, content_type)
+       VALUES ($1, $2, $3, $4)
+       ON CONFLICT (source_url, channel_id) DO NOTHING`,
+      [sourceUrl, label, channelId, 'error'],
+    );
+    this.structured.db({
+      op: 'markError', table: 'posted_news', channelId,
+      detail: { sourceUrl, title, reason },
+    });
+  }
+
   /** Get the content_type of the most recently posted item to a channel */
   async getLastPostedType(channelId: string): Promise<string | null> {
     const { rows } = await this.pool.query(
       `SELECT content_type FROM posted_news
-       WHERE channel_id = $1 AND content_type IS NOT NULL
+       WHERE channel_id = $1 AND content_type IS NOT NULL AND content_type <> 'error'
        ORDER BY created_at DESC LIMIT 1`,
       [channelId],
     );

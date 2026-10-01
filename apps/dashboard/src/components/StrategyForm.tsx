@@ -13,7 +13,7 @@ import { trackingApi } from '../api/tracking';
 import { useCreateStrategy, useStrategyTypes } from '../api/strategies';
 import { useMetaAccounts } from '../api/meta-accounts';
 import { useTikTokAccounts } from '../api/tiktok-accounts';
-import { strategyTypesForPlatform, groupStrategyTypes } from '../lib/strategy-types';
+import { strategyTypesForPlatform, groupStrategyTypes, DEFAULT_SCHEDULE_BY_TYPE } from '../lib/strategy-types';
 import { Icon } from './Icon';
 import { STRATEGY_DESCRIPTIONS, describeStrategy, SOURCE_KIND_LABEL, channelOptionLabel } from '../lib/labels';
 import { SchedulePicker } from './SchedulePicker';
@@ -170,7 +170,12 @@ export function StrategyForm({ onCreated, onCancel }: Props) {
       <Field label="Type" hint={platform ? 'strategies available for this destination' : 'pick a destination first'}>
         <select
           value={type}
-          onChange={e => setType(e.target.value)}
+          onChange={e => {
+            setType(e.target.value);
+            // Pre-fill the recommended schedule for types that have one.
+            const dflt = DEFAULT_SCHEDULE_BY_TYPE[e.target.value];
+            if (dflt) setSchedule(dflt);
+          }}
           className="input-field"
           style={{ width: '100%' }}
           disabled={!platform || availableTypes.length === 0}

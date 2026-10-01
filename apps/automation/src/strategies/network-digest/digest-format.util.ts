@@ -5,6 +5,48 @@
 // its 1024-token output cap would truncate a multi-link digest and an AI pass
 // can mangle <a href> URLs. Titles were already AI-written and reviewed by the
 // source strategies, so the digest only assembles and escapes them.
+import { escapeHtml } from '../../common/html';
+
+/**
+ * Recommended binding schedule for network-digest / topic-digest: every 10 min
+ * from 19:00 to 20:50 (Kyiv — the scheduler's zone). A single "0 19 * * *"
+ * tick loses the whole day whenever the channel's 20-min posting cooldown or
+ * another strategy's in-flight lock happens to be active at 19:00; the window
+ * retries, and the date-keyed posted_news sentinel turns every tick after the
+ * first successful publish into a cheap no-op. Suggested by the dashboard's
+ * new-strategy form for both digest types.
+ */
+export const DIGEST_RETRY_SCHEDULE = '*/10 19-20 * * *';
+
+/** Prefix for titles of non-news strategies, whose published_posts.title is
+ *  not a headline (quotes store the author, prompts the raw prompt text…). */
+const TITLE_PREFIX: Record<string, string> = {
+  'quotes':            'Цитата',
+  'ai0-prompts':       'Промпт',
+  'curated-prompts':   'Промпт',
+  'recipes':           'Рецепт',
+  'recipe-carousel':   'Рецепт',
+  'birthday-strategy': 'Біографія',
+  'pdr-quiz':          'Тест ПДР',
+};
+
+/**
+ * Digest line title from a published_posts row: HTML tags stripped, whitespace
+ * collapsed, and a type label for strategies whose stored title isn't a
+ * headline (e.g. quotes → "Цитата: <author>"). Escaping happens at render.
+ */
+export function digestTitle(title: string, strategyType: string | null | undefined): string {
+  const clean = title.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+  const prefix = strategyType ? TITLE_PREFIX[strategyType] : undefined;
+  if (!prefix) return clean;
+  if (strategyType === 'quotes' && (!clean || clean.toLowerCase() === 'quote')) return 'Цитата дня';
+  return clean ? `${prefix}: ${clean}` : prefix;
+}
+
+/** True when the item's channel can be deep-linked (public @username). */
+export function isLinkable(it: Pick<DigestItem, 'channelKey' | 'username'>): boolean {
+  return linkUsername(it.channelKey, it.username) !== null;
+}
 
 /** Telegram hard message limit is 4096; leave headroom for safety. */
 export const DIGEST_CHAR_BUDGET = 3800;
@@ -35,9 +77,8 @@ export interface DigestRenderOptions {
   charBudget?: number;
 }
 
-export function escapeHtml(s: string): string {
-  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-}
+// Re-exported for existing importers; the implementation lives in common/html.
+export { escapeHtml };
 
 export function truncate(s: string, max: number): string {
   return s.length <= max ? s : `${s.slice(0, max - 1)}…`;

@@ -14,6 +14,7 @@ import { TelegramPublisher }       from '../../publishers/telegram.publisher';
 import { TelegramNotifier }        from '../../publishers/telegram-notifier.service';
 import { PublicationsRepository }  from '../../stats/publications.repository';
 import { CrossPostService } from '../../publishers/cross-post.service';
+import { isPermanentTelegramError } from '../../publishers/errors';
 import { AssetsRepository }        from './assets.repository';
 import {
   ACADEMY_SYSTEM_PROMPT,
@@ -96,8 +97,17 @@ export class AssetsStrategy implements ContentStrategy, OnModuleInit {
 
     // 2. Generate AI text
     const aiText = await this.generateText(dataSource, row);
-    if (!aiText) {
+    if (aiText === null || aiText === undefined) {
+      // The AI call failed / agent down — transient, retry next tick.
       this.logger.warn(`AI generation returned null for asset id=${row.id}`);
+      return;
+    }
+    if (!aiText.trim() || aiText.trim() === 'SKIP_POST') {
+      // The model's verdict on this asset: never retry (it would never pass
+      // guardText either, and loops forever on the same row).
+      const reason = aiText.trim() ? 'SKIP_POST' : 'empty draft';
+      this.logger.warn(`${reason} for asset id=${row.id} — marking errored`);
+      await this.db.markError(row.id, channelId, reason);
       return;
     }
 
@@ -130,6 +140,10 @@ export class AssetsStrategy implements ContentStrategy, OnModuleInit {
       const message = err instanceof Error ? err.message : String(err);
       this.logger.error(`Publish failed for asset id=${row.id}: ${message}`);
       await this.notifier.notifyFailed(channelId, message, row.title);
+      if (isPermanentTelegramError(err)) {
+        const desc = (err as { response?: { data?: { description?: string } } })?.response?.data?.description;
+        await this.db.markError(row.id, channelId, `publish: ${desc ?? message}`);
+      }
     }
   }
 

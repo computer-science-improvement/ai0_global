@@ -1,4 +1,5 @@
 import { AssetRow } from '../../../strategies/assets/assets.repository';
+import { escapeAttr, escapeHtml } from '../../html';
 
 // ─── System prompts ───────────────────────────────────────────────────────────
 
@@ -117,12 +118,6 @@ export function buildPromptsUserMessage(row: AssetRow): string {
 
 // ─── Telegram message formatters ──────────────────────────────────────────────
 
-function escapeHtml(s: string): string {
-  return s
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;');
-}
 
 /** Convert Markdown inline-code backticks to <code> tags (after HTML-escaping) */
 function mdInlineCode(s: string): string {
@@ -146,7 +141,7 @@ export function buildAcademyMessage(aiText: string, row: AssetRow, tag: string):
   parts.push(tag);
   if (row.link) {
     parts.push('');
-    parts.push(`<a href="${escapeHtml(row.link)}">Посилання</a>`);
+    parts.push(`<a href="${escapeAttr(row.link)}">Посилання</a>`);
   }
   return parts.join('\n');
 }
@@ -170,7 +165,7 @@ export function buildMcpMessage(aiText: string, row: AssetRow, tag: string): str
   parts.push(tag);
   if (row.link) {
     parts.push('');
-    parts.push(`<a href="${escapeHtml(row.link)}">Посилання</a>`);
+    parts.push(`<a href="${escapeAttr(row.link)}">Посилання</a>`);
   }
   return parts.join('\n');
 }
@@ -196,7 +191,7 @@ export function buildPromptsMessage(aiText: string, row: AssetRow, tag: string):
   parts.push(tag);
   if (row.link) {
     parts.push('');
-    parts.push(`<a href="${escapeHtml(row.link)}">Посилання</a>`);
+    parts.push(`<a href="${escapeAttr(row.link)}">Посилання</a>`);
   }
   return parts.join('\n');
 }

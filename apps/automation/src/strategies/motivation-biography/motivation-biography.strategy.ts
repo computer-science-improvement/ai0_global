@@ -4,6 +4,7 @@ import { TelegramPublisher }                from '../../publishers/telegram.publ
 import { TelegramNotifier }                 from '../../publishers/telegram-notifier.service';
 import { PublicationsRepository }           from '../../stats/publications.repository';
 import { CrossPostService } from '../../publishers/cross-post.service';
+import { isPermanentTelegramError } from '../../publishers/errors';
 import { ClaudeAgent }                      from '../../common/ai/agents/claude.agent';
 import { ReviewAgent }                      from '../../common/ai/agents/review.agent';
 import { PostValidator }                    from '../../common/ai/validators/post.validator';
@@ -62,8 +63,8 @@ export class MotivationBiographyStrategy implements ContentStrategy, OnModuleIni
     const wiki = await this.wikipedia.getSummary(person.name);
 
     if (!wiki || !wiki.extract) {
-      this.logger.warn(`No Wikipedia data for "${person.name}" — skipping`);
-      await this.db.markPosted(person.id, channelId);
+      this.logger.warn(`No Wikipedia data for "${person.name}" — marking errored`);
+      await this.db.markError(person.id, channelId, 'no wikipedia data');
       return;
     }
 
@@ -81,8 +82,17 @@ export class MotivationBiographyStrategy implements ContentStrategy, OnModuleIni
       { role: 'user',   content: userMessage },
     ]);
 
-    if (!draft || draft.trim() === 'SKIP_POST') {
-      this.logger.warn(`Claude returned no content for "${person.name}"`);
+    if (draft === null || draft === undefined) {
+      // The AI call failed (or the agent is down) — transient, retry next tick.
+      this.logger.warn(`Claude returned no content for "${person.name}" — will retry`);
+      return;
+    }
+    if (!draft.trim() || draft.trim() === 'SKIP_POST') {
+      // The model's verdict on this person: never retry it (each retry is a
+      // paid call that fails the same way and blocks today's queue).
+      const reason = draft.trim() ? 'SKIP_POST' : 'empty draft';
+      this.logger.warn(`${reason} for "${person.name}" — marking errored`);
+      await this.db.markError(person.id, channelId, reason);
       return;
     }
 
@@ -117,6 +127,13 @@ export class MotivationBiographyStrategy implements ContentStrategy, OnModuleIni
       this.logger.log(`Biography published: "${person.name}" → ${channelId}`);
     } catch (err: any) {
       this.logger.error(`Publish failed: ${err.message}`);
+      // Telegram rejected the content itself — it would fail identically on
+      // every retry. Transient failures stay unmarked and retry next tick.
+      if (isPermanentTelegramError(err)) {
+        await this.db.markError(
+          person.id, channelId, `publish: ${err.response?.data?.description ?? err.message}`,
+        );
+      }
     }
   }
 }

@@ -3,6 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import { MetaCrosspostTargetsRepository } from '../config/meta-crosspost-targets.repository';
 import { ChannelConfigService } from '../config/channel-config.service';
 import { SettingsService } from '../settings/settings.service';
+import { SecretsService } from '../common/crypto/secrets.service';
 import { PostingThrottleService } from './posting-throttle.service';
 import { PublisherDispatcher } from './publisher-dispatcher.service';
 import { buildMirrorCaption, buildTeaserCaption, tgPostLink } from './crosspost-content';
@@ -34,6 +35,7 @@ export class CrossPostService {
     private readonly throttle:   PostingThrottleService,
     private readonly settings:   SettingsService,
     private readonly config:     ConfigService,
+    private readonly secrets:    SecretsService,
   ) {}
 
   async afterPublish(input: CrossPostInput): Promise<void> {
@@ -54,8 +56,15 @@ export class CrossPostService {
     for (const t of targets) {
       try {
         if (!t.account_active) { this.logger.debug(`crosspost skip ${t.platform}: account inactive`); continue; }
-        const token = this.config.get<string>(t.account_token_env);
-        if (!token) { this.logger.warn(`crosspost skip ${t.platform}: env ${t.account_token_env} not set`); continue; }
+        // Same resolution as DestinationResolver: encrypted token_enc first,
+        // legacy token_env → env var as the fallback.
+        const token = this.secrets.resolveToken(
+          { enc: t.account_token_enc, env: t.account_token_env }, (k) => this.config.get<string>(k),
+        );
+        if (!token) {
+          this.logger.warn(`crosspost skip ${t.platform}: no token (token_enc empty, env ${t.account_token_env ?? '-'} not set)`);
+          continue;
+        }
 
         // Build content for this target's mode; skip if the caller didn't supply it.
         let text: string;

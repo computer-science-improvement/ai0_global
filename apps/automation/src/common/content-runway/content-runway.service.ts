@@ -11,7 +11,11 @@ import { AssetsRepository } from '../../strategies/assets/assets.repository';
 /** Default low-content alert threshold (posts) when a binding has no override. */
 export const LOW_CONTENT_DEFAULT = 100;
 
-type Counter = (channelKey: string | null, params: Record<string, unknown>) => Promise<number | null>;
+type Counter = (
+  channelKey: string | null,
+  params: Record<string, unknown>,
+  postedKey?: string | null,
+) => Promise<number | null>;
 
 /**
  * Computes the remaining unpublished content ("runway") for finite-pool
@@ -40,7 +44,9 @@ export class ContentRunwayService {
       (key, params) => (key ? fn(key, params) : Promise.resolve(null));
 
     this.counters = {
-      recipes:                () => this.recipes.countEligible(),
+      // recipes dedups on the destination postedKey ('TELEGRAM' | 'IG:<uuid>' …),
+      // not the channel key — count against the binding's own key.
+      recipes:                (_key, _p, postedKey) => this.recipes.countEligible(postedKey ?? 'TELEGRAM'),
       'curated-prompts':      (_key, p) => this.curated.countEligible({ provider: p.provider as string | undefined, mediaType: p.mediaType as string | undefined }),
       'ai0-prompts':          () => this.ai0Prompts.countEligibleAll(),
       quotes:                 needKey((key, p) => this.quotes.countEligible(key, p.category as string | undefined)),
@@ -52,11 +58,16 @@ export class ContentRunwayService {
   }
 
   /** Remaining unpublished posts, or null for non-finite-pool types / errors. */
-  async remainingFor(type: string, channelKey: string | null, params: Record<string, unknown>): Promise<number | null> {
+  async remainingFor(
+    type: string,
+    channelKey: string | null,
+    params: Record<string, unknown>,
+    postedKey?: string | null,
+  ): Promise<number | null> {
     const counter = this.counters[type];
     if (!counter) return null;
     try {
-      return await counter(channelKey, params ?? {});
+      return await counter(channelKey, params ?? {}, postedKey);
     } catch {
       return null; // a count failure must never break the strategies list
     }

@@ -1,6 +1,7 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { Pool } from 'pg';
 import { DB_POOL } from '../../database/database.module';
+import { MARK_ERROR_SET, postedErrorKey } from '../../common/dedup/posted-error';
 
 export interface PromptRow {
   id:             string; // image URL
@@ -14,7 +15,8 @@ export interface PromptRow {
 export class PromptsRepository {
   constructor(@Inject(DB_POOL) private readonly pool: Pool) {}
 
-  /** Get first unposted prompt for this category */
+  /** First unposted, non-errored prompt for this category (oldest first —
+   *  deterministic, so a poisoned row can't randomly shadow the rest). */
   async getNext(category: string, postedKey = 'TELEGRAM'): Promise<PromptRow | null> {
     const { rows } = await this.pool.query<PromptRow>(
       `SELECT id, prompt_source, category, status, posted
@@ -23,8 +25,10 @@ export class PromptsRepository {
          AND provider = 'prompthero'
          AND status IS NULL
          AND NOT (posted ? $2)
+         AND NOT (posted ? $3)
+       ORDER BY created_at, id
        LIMIT 1`,
-      [category, postedKey],
+      [category, postedKey, postedErrorKey(postedKey)],
     );
     return rows[0] ?? null;
   }
@@ -35,7 +39,8 @@ export class PromptsRepository {
        FROM prompts
        WHERE provider = 'prompthero'
          AND status IS NULL
-         AND NOT (posted ? 'TELEGRAM')`,
+         AND NOT (posted ? 'TELEGRAM')
+         AND NOT (posted ? 'error:TELEGRAM')`,
     );
     return Number(rows[0]?.count ?? 0);
   }
@@ -48,11 +53,15 @@ export class PromptsRepository {
     );
   }
 
-  /** Mark prompt as error (skip on future runs) */
-  async markError(id: string): Promise<void> {
+  /**
+   * Mark a prompt unpublishable for this destination (dead page/image, invalid
+   * prompt, permanent publish error) — `posted["error:<key>"] = {at, reason}`,
+   * excluded by getNext. Legacy rows with status = 'ERROR' stay excluded too.
+   */
+  async markError(id: string, postedKey: string, reason: string): Promise<void> {
     await this.pool.query(
-      `UPDATE prompts SET status = 'ERROR' WHERE id = $1`,
-      [id],
+      `UPDATE prompts SET ${MARK_ERROR_SET} WHERE id = $1`,
+      [id, postedErrorKey(postedKey), reason],
     );
   }
 }

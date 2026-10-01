@@ -7,9 +7,11 @@ import { TelegramNotifier }       from '../../publishers/telegram-notifier.servi
 import { PostingThrottleService } from '../../publishers/posting-throttle.service';
 import { CrossPostService }       from '../../publishers/cross-post.service';
 import { PublicationsRepository } from '../../stats/publications.repository';
+import { RunSkippedError, isChannelPausedError, isPermanentTelegramError } from '../../publishers/errors';
 import {
   ContentStrategy,
   StrategyParams,
+  isStrategyRejection,
 } from './content-strategy.interface';
 import type { PublishDestination } from './publish-destination';
 
@@ -49,8 +51,10 @@ export class ContentStrategyRunner {
     // on every skip/error path so the next cron tick can immediately retry
     // without bumping the 20-min cooldown timestamp.
     if (!this.throttle.tryLock(lockKey)) {
-      this.throttle.logCooldown(strategyId, lockKey);
-      return;
+      const reason = this.throttle.logCooldown(strategyId, lockKey) ?? 'posting cooldown / in-flight lock';
+      // Not a silent return: the scheduler records this tick as 'skipped'
+      // (not 'ok') so the run log says what actually happened.
+      throw new RunSkippedError(`Skipped — ${reason} on ${lockKey}`);
     }
 
     this.logger.log(`${tag} Starting`);
@@ -66,12 +70,11 @@ export class ContentStrategyRunner {
         await strategy.execute(channelId, params, dest);
       } catch (err: any) {
         this.logger.error(`${tag} Strategy execute failed: ${err.message}`);
-        // Telegram strategies own their error handling and stay non-throwing,
-        // so a failed publish doesn't error the whole run. A Meta destination
-        // has no such internal recovery path — surface the failure so the
-        // scheduler records the run as an error (visible in the activity log
-        // + the Errors stat). The finally below still releases the lock first.
-        if (dest && dest.platform !== 'telegram') throw err;
+        // Surface every escaped error (Telegram and Meta alike) so the
+        // scheduler records the run as an error — not 'ok' — in strategy_runs.
+        // Strategies still handle their own expected failures internally; this
+        // is only what escapes them. The finally below releases the lock first.
+        throw err;
       } finally {
         // tryLock() invariant: we got here only because canPublish() was
         // true (no prior publish in the window). If the strategy published
@@ -100,10 +103,30 @@ export class ContentStrategyRunner {
       return;
     }
 
+    // Generic pipeline. EVERY exit — early return, skip, or a throw from
+    // fetch/dedup/generate/review/publish — goes through the finally, which
+    // frees the lock unless a publish was recorded (recordPublish already
+    // released it and started the cooldown; remainingMs > 0 tells us so).
+    try {
+      await this.runGeneric(strategy, channelId, params, tag);
+    } finally {
+      if (this.throttle.remainingMs(lockKey) === 0) {
+        this.throttle.releaseLock(lockKey);
+      }
+    }
+  }
+
+  /** fetch → dedup → generate → review → publish → mark posted. Lock-free:
+   *  the caller owns lock release. */
+  private async runGeneric(
+    strategy: ContentStrategy,
+    channelId: string,
+    params: StrategyParams,
+    tag: string,
+  ): Promise<void> {
     // 1. Fetch
     const fetchResult = await strategy.fetch(params, channelId);
     if (!fetchResult) {
-      this.throttle.releaseLock(lockKey);
       this.logger.log(`${tag} Nothing to publish`);
       return;
     }
@@ -124,7 +147,6 @@ export class ContentStrategyRunner {
     );
 
     if (!unposted.length) {
-      this.throttle.releaseLock(lockKey);
       this.logger.log(`${tag} Already posted: ${fetchResult.title}`);
       return;
     }
@@ -133,7 +155,6 @@ export class ContentStrategyRunner {
     const post = await strategy.generate(fetchResult, params);
 
     if (post === 'SKIP_POST') {
-      this.throttle.releaseLock(lockKey);
       this.logger.warn(`${tag} SKIP_POST signalled — marking as posted`);
       await this.dedup.markPosted(
         fetchResult.sourceUrl, fetchResult.title, channelId, fetchResult.contentType,
@@ -142,8 +163,17 @@ export class ContentStrategyRunner {
     }
 
     if (!post) {
-      this.throttle.releaseLock(lockKey);
       this.logger.warn(`${tag} Generation failed — will retry next run`);
+      return;
+    }
+
+    if (isStrategyRejection(post)) {
+      // Permanent: this item will never yield a valid post. Mark it errored so
+      // the next tick moves on instead of regenerating it forever.
+      this.logger.warn(`${tag} Rejected (${post.rejected}) — marking source as errored`);
+      await this.dedup.markError(
+        fetchResult.sourceUrl, fetchResult.title, channelId, post.rejected,
+      );
       return;
     }
 
@@ -158,8 +188,8 @@ export class ContentStrategyRunner {
     }
 
     // 6. Publish
+    let messageId: string;
     try {
-      let messageId: string;
       if (imageBuffer && reviewed.length <= 1024) {
         messageId = await this.telegram.publishPrompt(
           { imageBuffer, caption: reviewed },
@@ -178,32 +208,43 @@ export class ContentStrategyRunner {
           { id: channelId },
         );
       }
-
-      await this.dedup.markPosted(
-        post.sourceUrl, post.title, channelId, post.contentType,
-      );
-      this.logger.log(`${tag} Published: ${post.title}`);
-      await this.notifier.notifyPublished(channelId, messageId);
-      await this.publications.insert({
-        channelId,
-        messageId,
-        sourceUrl:    post.sourceUrl,
-        title:        post.title,
-        strategyType: strategy.type,
-        tags:         [post.contentType],
-      });
-
-      // Fan out to any configured Meta cross-post targets for this channel
-      // (mirror mode). Never throws — Meta failures are isolated + logged.
-      await this.crossPost.afterPublish({
-        channelKey: channelId,
-        messageId,
-        mirror: { text: reviewed, tags: [post.contentType], imageUrl: post.imageUrl },
-      });
     } catch (err) {
-      this.throttle.releaseLock(lockKey);
       this.logger.error(`${tag} Publish failed: ${err.message}`);
-      await this.notifier.notifyFailed(channelId, err.message, post.sourceUrl);
+      // A paused channel is an expected skip, not a failure worth a DM.
+      if (!isChannelPausedError(err)) {
+        await this.notifier.notifyFailed(channelId, err.message, post.sourceUrl);
+      }
+      // Telegram rejected this content itself (unparseable HTML, bad media…):
+      // retrying the same source would fail the same way every tick.
+      if (isPermanentTelegramError(err)) {
+        const reason = err.response?.data?.description ?? err.message;
+        await this.dedup.markError(post.sourceUrl, post.title, channelId, `publish: ${reason}`);
+      }
+      // Rethrow so strategy_runs records 'error' (or 'skipped' when paused)
+      // instead of 'ok'. The caller's finally still releases the lock.
+      throw err;
     }
+
+    await this.dedup.markPosted(
+      post.sourceUrl, post.title, channelId, post.contentType,
+    );
+    this.logger.log(`${tag} Published: ${post.title}`);
+    await this.notifier.notifyPublished(channelId, messageId);
+    await this.publications.insert({
+      channelId,
+      messageId,
+      sourceUrl:    post.sourceUrl,
+      title:        post.title,
+      strategyType: strategy.type,
+      tags:         [post.contentType],
+    });
+
+    // Fan out to any configured Meta cross-post targets for this channel
+    // (mirror mode). Never throws — Meta failures are isolated + logged.
+    await this.crossPost.afterPublish({
+      channelKey: channelId,
+      messageId,
+      mirror: { text: reviewed, tags: [post.contentType], imageUrl: post.imageUrl },
+    });
   }
 }

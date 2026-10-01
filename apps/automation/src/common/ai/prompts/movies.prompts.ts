@@ -3,6 +3,7 @@ import { HUMAN_VOICE_SKILL }       from '../skills/human-voice.skill';
 import { ANTI_SLOP_SKILL }         from '../skills/anti-slop.skill';
 import { MOVIES_CHANNEL_SKILL }    from '../skills/movies-channel.skill';
 import { MovieItem }               from '../../../workflows/movies/types';
+import { escapeHtml }              from '../../html';
 
 // ─── Base prompt ─────────────────────────────────────────────────────────────
 
@@ -43,7 +44,7 @@ export function buildMoviePost(item: MovieItem, description: string): string {
   const year = item.releaseDate ? new Date(item.releaseDate).getFullYear() : '';
   const lines: string[] = [];
 
-  lines.push(`<b>${item.title}</b>${year ? ` (${year})` : ''}`);
+  lines.push(`<b>${escapeHtml(item.title)}</b>${year ? ` (${year})` : ''}`);
   lines.push('');
 
   if (description) lines.push(description);
@@ -51,7 +52,7 @@ export function buildMoviePost(item: MovieItem, description: string): string {
 
   lines.push(`\u2B50 ${item.voteAverage}/10 (${item.voteCount.toLocaleString('en-US')} votes)`);
   if (item.genreNames.length) {
-    lines.push(`\uD83C\uDFAC ${item.genreNames.join(', ')}`);
+    lines.push(`\uD83C\uDFAC ${escapeHtml(item.genreNames.join(', '))}`);
   }
 
   return lines.join('\n');

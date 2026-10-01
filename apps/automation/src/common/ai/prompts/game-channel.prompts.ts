@@ -4,6 +4,7 @@ import { HUMAN_VOICE_SKILL }   from '../skills/human-voice.skill';
 import { ANTI_SLOP_SKILL }     from '../skills/anti-slop.skill';
 import { GAMING_CHANNEL_SKILL } from '../skills/gaming-channel.skill';
 import { GameChannelItem }     from '../../../workflows/game-channel/types';
+import { escapeHtml }          from '../../html';
 
 // ─── Base prompts (structure + goal only) ────────────────────────────────────
 
@@ -95,7 +96,7 @@ export function buildGameChannelUserMessage(item: GameChannelItem): string {
 export function buildDealPost(item: GameChannelItem, description: string): string {
   const lines: string[] = [];
 
-  lines.push(`<b>${item.title} зі знижкою ${item.discount}%</b>`);
+  lines.push(`<b>${escapeHtml(item.title)} зі знижкою ${item.discount}%</b>`);
   lines.push('');
 
   if (description) lines.push(description);

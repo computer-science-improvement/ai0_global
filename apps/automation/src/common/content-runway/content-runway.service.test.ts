@@ -5,7 +5,7 @@ import { ContentRunwayService, LOW_CONTENT_DEFAULT } from './content-runway.serv
 function build() {
   const calls: any = {};
   const svc = new ContentRunwayService(
-    { countEligible: async () => 5 } as any,                                                       // recipes
+    { countEligible: async (key?: string) => { calls.recipes = key; return 5; } } as any,          // recipes
     { countEligible: async (k: string, c?: string) => { calls.quotes = { k, c }; return 7; } } as any, // quotes
     { countEligible: async (k: string) => { calls.facts = k; return 3; } } as any,                 // facts
     { countEligible: async () => 9 } as any,                                                       // curated-prompts
@@ -23,9 +23,12 @@ test('remainingFor returns null for RSA/unknown types', async () => {
   assert.equal(await svc.remainingFor('daily-photo', '@c', {}), null);
 });
 
-test('recipes ignores the channel key', async () => {
-  const { svc } = build();
+test('recipes ignores the channel key and counts against the binding postedKey', async () => {
+  const { svc, calls } = build();
   assert.equal(await svc.remainingFor('recipes', null, {}), 5);
+  assert.equal(calls.recipes, 'TELEGRAM', 'telegram binding (no postedKey) → TELEGRAM');
+  assert.equal(await svc.remainingFor('recipes', '@c', {}, 'IG:acct-1'), 5);
+  assert.equal(calls.recipes, 'IG:acct-1', 'meta binding → its own posted key');
 });
 
 test('channel-keyed type returns null when key missing, number when present', async () => {

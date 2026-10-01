@@ -1,5 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import * as cheerio from 'cheerio';
+import { escapeHtml } from '../../common/html';
 
 export interface PromptMeta {
   prompt:       string;
@@ -24,12 +25,6 @@ const PARAM_BY_PATH: Array<{ prefix: string; label: string; emoji: string }> = [
   { prefix: 'M14 9.536',  label: 'Seed',        emoji: '🌱' },
 ];
 
-function escapeHtml(s: string): string {
-  return String(s ?? '')
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;');
-}
 
 function resolveParam(pathD: string): { label: string; emoji: string } | null {
   for (const entry of PARAM_BY_PATH) {
