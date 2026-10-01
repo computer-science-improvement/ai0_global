@@ -31,7 +31,7 @@ issues — до 5 конкретних проблем коротко, украї
 export async function judgePost(apiKey: string, model: string, i: JudgeInput): Promise<JudgeScore | { error: string }> {
   const llm = new OpenRouterClient({ apiKey });
   const res = await llm.chat({
-    model, maxTokens: 1500, temperature: 0,
+    model, maxTokens: 4000, temperature: 0, reasoningEffort: 'low',
     messages: [
       { role: 'system', content: RUBRIC },
       { role: 'user', content: `Канал: ${i.channelBrief}\nТема слоту: ${i.slotTopic}\n\n=== ДЖЕРЕЛО ===\n${i.sourceText.slice(0, 6000) || '(немає — власний текст)'}\n\n=== ПОСТ ===\n${i.post}` },

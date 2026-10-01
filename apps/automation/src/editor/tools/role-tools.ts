@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { defineTool, EditorTool, ToolContext } from '../harness/tool';
 import { PostSpecSchema, PostSpec } from '../post/post-spec';
 import { lintPost } from '../post/lint-post';
+import { checkQuizGroundTruth } from '../post/quiz-ground-truth';
 import { renderTelegram } from '../post/render-telegram';
 import { similarity } from '../post/similarity';
 import { SubmitPlanInput, validatePlan } from '../roles/plan-rules';
@@ -53,6 +54,8 @@ export async function checkPublishGuards(d: RoleToolDeps, ctx: ToolContext, spec
 
   const lint = lintPost(spec, card);
   if (!lint.ok) return { error: 'lint_failed', details: lint.errors };
+  const truth = await checkQuizGroundTruth(d.pool, spec);
+  if (truth) return truth;
 
   const rendered = renderTelegram(spec, card);
   const corpus = await d.plans.recentTexts(channelKey);

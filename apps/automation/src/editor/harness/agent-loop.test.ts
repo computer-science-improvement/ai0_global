@@ -140,3 +140,22 @@ test('tools are sent as JSON-schema specs', async () => {
   assert.deepEqual(names, ['echo', 'boom', 'slow', 'publish']);
   assert.equal((llm.requests[0].tools![0].parameters as any).properties.text.type, 'string');
 });
+
+test('empty answer cut by max_tokens (reasoning ate the budget) is retried, not treated as final', async () => {
+  const llm = new FakeLlm([
+    { text: '', finish: 'length' },
+    { calls: [{ name: 'publish', args: { title: 'ok' } }] },
+  ]);
+  const res = await loop(llm).l.run(input());
+  assert.equal(res.status, 'ok');
+  assert.equal(res.terminalTool, 'publish');
+  assert.match((llm.requests[1].messages.at(-1) as any).content, /обірвалась/);
+  assert.equal(llm.requests[0].reasoningEffort, 'low');
+});
+
+test('truncation retries are capped', async () => {
+  const llm = new FakeLlm([{ text: '', finish: 'length' }, { text: '', finish: 'length' }, { text: '', finish: 'length' }, { text: 'все' }]);
+  const res = await loop(llm).l.run(input());
+  assert.equal(llm.requests.length, 4); // 2 truncation retries + 1 nudge + final
+  assert.equal(res.status, 'ok');
+});

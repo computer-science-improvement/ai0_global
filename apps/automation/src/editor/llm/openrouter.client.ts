@@ -50,6 +50,7 @@ export class OpenRouterClient implements LlmClient {
       } : {}),
       ...(req.maxTokens   !== undefined ? { max_tokens:  req.maxTokens }   : {}),
       ...(req.temperature !== undefined ? { temperature: req.temperature } : {}),
+      ...(req.reasoningEffort ? { reasoning: { effort: req.reasoningEffort } } : {}),
     };
 
     const data = await this.postWithRetry(body);

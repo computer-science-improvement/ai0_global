@@ -6,7 +6,7 @@ import type { RunRecorder, RunStart, RunStatus, RunTotals } from '../run-recorde
 export class FakeLlm implements LlmClient {
   readonly requests: LlmRequest[] = [];
   private i = 0;
-  constructor(private readonly turns: Array<{ text?: string | null; calls?: Array<{ name: string; args: unknown; id?: string }>; cost?: number } | Error>) {}
+  constructor(private readonly turns: Array<{ text?: string | null; calls?: Array<{ name: string; args: unknown; id?: string }>; cost?: number; finish?: string } | Error>) {}
 
   async chat(req: LlmRequest): Promise<LlmResponse> {
     this.requests.push(JSON.parse(JSON.stringify(req)));
@@ -19,7 +19,7 @@ export class FakeLlm implements LlmClient {
     }));
     return {
       message: { role: 'assistant', content: t.text ?? null, ...(toolCalls ? { toolCalls } : {}) },
-      finishReason: toolCalls ? 'tool_calls' : 'stop',
+      finishReason: t.finish ?? (toolCalls ? 'tool_calls' : 'stop'),
       usage: { promptTokens: 100, completionTokens: 10, costUsd: t.cost ?? 0.0001 },
     };
   }

@@ -28,7 +28,7 @@ test('sends OpenAI-shaped request with tools and maps messages', async () => {
   const http = fakeHttp([ok({ role: 'assistant', content: 'hi' })]);
   await client(http).chat({
     model: 'z-ai/glm-5.3-flash',
-    maxTokens: 500, temperature: 0.5,
+    maxTokens: 500, temperature: 0.5, reasoningEffort: 'low',
     messages: [
       { role: 'system', content: 'sys' },
       { role: 'assistant', content: null, toolCalls: [{ id: 'c1', name: 't', arguments: '{}' }] },
@@ -41,6 +41,7 @@ test('sends OpenAI-shaped request with tools and maps messages', async () => {
   assert.equal(headers.Authorization, 'Bearer k');
   assert.equal(body.model, 'z-ai/glm-5.3-flash');
   assert.equal(body.max_tokens, 500);
+  assert.deepEqual(body.reasoning, { effort: 'low' });
   assert.equal(body.tools[0].type, 'function');
   assert.deepEqual(body.provider, { require_parameters: true });
   assert.equal(body.tools[0].function.name, 't');
