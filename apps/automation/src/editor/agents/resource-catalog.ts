@@ -92,6 +92,44 @@ export class ResourceCatalog {
     return (await this.list()).find((r) => r.ref === ref) ?? null;
   }
 
+  /** Can we publish there right now (spec 019 FR-011)? Never throws. */
+  async access(ref: string): Promise<AccessCheck> {
+    const parsed = parseResourceRef(ref);
+    if (!parsed) return { state: 'unknown', detail: 'invalid ref' };
+    try {
+      if (parsed.platform === 'telegram') {
+        return this.d.telegramAccess
+          ? await this.d.telegramAccess(parsed.id).catch((e: any) => ({ state: 'unknown' as const, detail: String(e?.message ?? e) }))
+          : { state: 'unknown', detail: 'перевірка доступу недоступна' };
+      }
+      if (parsed.platform === 'instagram' || parsed.platform === 'facebook' || parsed.platform === 'threads') {
+        const { rows } = await this.d.pool.query(`SELECT active, last_verified_at, verify_error FROM meta_accounts WHERE id::text = $1`, [parsed.id]);
+        const r = rows[0];
+        return !r ? { state: 'no_access', detail: 'акаунт не знайдено' }
+          : !r.active ? { state: 'no_access', detail: 'акаунт вимкнено' }
+          : r.verify_error ? { state: 'token_invalid', detail: String(r.verify_error) }
+          : r.last_verified_at ? { state: 'ok', detail: `перевірено ${new Date(r.last_verified_at).toISOString().slice(0, 10)}` }
+          : { state: 'unknown', detail: 'ще не перевірявся' };
+      }
+      if (parsed.platform === 'tiktok') {
+        const { rows } = await this.d.pool.query(`SELECT active, refresh_token_expires_at, refresh_error FROM tiktok_accounts WHERE id::text = $1`, [parsed.id]);
+        const r = rows[0];
+        const refreshLeft = r ? new Date(r.refresh_token_expires_at).getTime() - this.now().getTime() : -1;
+        return !r ? { state: 'no_access', detail: 'акаунт не знайдено' }
+          : !r.active ? { state: 'no_access', detail: 'акаунт вимкнено' }
+          : r.refresh_error ? { state: 'token_invalid', detail: String(r.refresh_error) }
+          : refreshLeft < 0 ? { state: 'token_invalid', detail: 'refresh token прострочений' }
+          : refreshLeft < 7 * DAY ? { state: 'token_expiring', detail: `refresh token спливає ${new Date(r.refresh_token_expires_at).toISOString().slice(0, 10)}` }
+          : { state: 'ok', detail: 'токен дійсний' };
+      }
+      const { rows } = await this.d.pool.query(`SELECT active, expires_at FROM youtube_accounts WHERE id::text = $1`, [parsed.id]);
+      return !rows[0] ? { state: 'no_access', detail: 'акаунт не знайдено' } : { state: 'unknown', detail: 'YouTube — 019b' };
+    } catch (err: any) {
+      return { state: 'unknown', detail: String(err?.message ?? err) };
+    }
+  }
+
+
   async inspect(ref: string): Promise<ResourceInspection | { error: string; details?: string }> {
     const parsed = parseResourceRef(ref);
     if (!parsed) return { error: 'invalid_ref', details: 'формат <platform>:<id>, напр. telegram:@my_channel' };
@@ -115,9 +153,7 @@ export class ResourceCatalog {
         posts = tp.map((r) => ({ at: new Date(r.posted_at).toISOString(), text: clip(String(r.text), 200), views: r.views == null ? null : Number(r.views) }));
       }
       const viewed = posts.filter((p) => p.views != null);
-      const access = this.d.telegramAccess
-        ? await this.d.telegramAccess(key).catch((e: any) => ({ state: 'unknown' as const, detail: String(e?.message ?? e) }))
-        : { state: 'unknown' as const, detail: 'перевірка доступу недоступна' };
+      const access = await this.access(ref);
       return {
         resource, about: tc[0]?.about ?? null, themes: tc[0]?.themes ?? [],
         stats: {
@@ -130,25 +166,8 @@ export class ResourceCatalog {
       };
     }
 
-    // Meta / TikTok / YouTube: account state from the connection tables; posts arrive with 019 (platform_posts).
-    let access: AccessCheck = { state: 'unknown', detail: '' };
-    if (parsed.platform === 'instagram' || parsed.platform === 'facebook' || parsed.platform === 'threads') {
-      const { rows } = await this.d.pool.query(`SELECT active, last_verified_at, verify_error FROM meta_accounts WHERE id = $1`, [parsed.id]);
-      const r = rows[0];
-      access = !r ? { state: 'no_access', detail: 'акаунт не знайдено' }
-        : r.verify_error ? { state: 'token_invalid', detail: String(r.verify_error) }
-        : r.last_verified_at ? { state: 'ok', detail: `перевірено ${new Date(r.last_verified_at).toISOString().slice(0, 10)}` }
-        : { state: 'unknown', detail: 'ще не перевірявся' };
-    } else if (parsed.platform === 'tiktok') {
-      const { rows } = await this.d.pool.query(`SELECT access_token_expires_at, refresh_token_expires_at, refresh_error FROM tiktok_accounts WHERE id = $1`, [parsed.id]);
-      const r = rows[0];
-      const refreshLeft = r ? new Date(r.refresh_token_expires_at).getTime() - this.now().getTime() : -1;
-      access = !r ? { state: 'no_access', detail: 'акаунт не знайдено' }
-        : r.refresh_error ? { state: 'token_invalid', detail: String(r.refresh_error) }
-        : refreshLeft < 0 ? { state: 'token_invalid', detail: 'refresh token прострочений' }
-        : refreshLeft < 7 * DAY ? { state: 'token_expiring', detail: `refresh token спливає ${new Date(r.refresh_token_expires_at).toISOString().slice(0, 10)}` }
-        : { state: 'ok', detail: 'токен дійсний' };
-    }
+    // Meta / TikTok / YouTube: account state from the connection tables; posts from platform_posts (019).
+    const access = await this.access(ref);
     const { rows: hasPp } = await this.d.pool.query(`SELECT to_regclass('public.platform_posts') IS NOT NULL AS ok`);
     let posts: Array<{ at: string; text: string; views: number | null }> = [];
     if (hasPp[0]?.ok) {

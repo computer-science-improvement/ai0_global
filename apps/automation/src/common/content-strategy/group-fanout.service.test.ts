@@ -84,3 +84,22 @@ test('render: per-target content, null skips, outcomes returned', async () => {
   assert.deepEqual(calls.single, ['facebook']); // one image never goes out as a carousel
   assert.deepEqual(out.map((o) => [o.platform, o.status]), [['instagram', 'skipped'], ['threads', 'ok'], ['facebook', 'ok']]);
 });
+
+test('spec 019: a TikTok member of the group gets a photo post with plain (unescaped) text; no publisher → skipped', async () => {
+  const TT = { platform: 'tiktok', targetId: 'tt-acc', metaAccountId: null, postedKey: 'TT:tt-acc', throttleKey: 'tiktok:tt-acc' };
+  const resolver = {
+    resolveGroupForDest: async () => ({ groupId: 'g1', sourcePlatform: 'telegram', isSource: true }),
+    resolveGroupTargets: async () => [TT],
+  };
+  const tracer = { span: (_s: any, _a: any, f: any) => f(), event() {}, steps: () => [], describeError: (e: any) => String(e?.message ?? e) };
+  const sent: any[] = [];
+  const tiktok = { publishCarousel: async (acc: string, urls: string[], cap: string) => { sent.push([acc, urls, cap]); return 'pub-1'; } };
+  const svc = new GroupFanOutService(resolver as any, {} as any, {} as any, tracer as any, tiktok as any);
+  const out = await svc.fanOut({ platform: 'telegram', targetId: '@x', metaAccountId: null, postedKey: 'TELEGRAM', throttleKey: '@x' } as any,
+    { caption: '', tags: [], imageUrls: [], carousel: false, render: () => ({ caption: 'Tom &amp; Jerry', imageUrls: ['u1', 'u2'], carousel: true }) }, async () => {});
+  assert.deepEqual(sent, [['tt-acc', ['u1', 'u2'], 'Tom & Jerry']]);
+  assert.equal(out[0].status, 'ok');
+  const none = new GroupFanOutService(resolver as any, {} as any, {} as any, tracer as any);
+  const o2 = await none.fanOut({ platform: 'telegram', targetId: '@x' } as any, { caption: 'c', tags: [], imageUrls: ['u'], carousel: false }, async () => {});
+  assert.equal(o2[0].status, 'skipped');
+});

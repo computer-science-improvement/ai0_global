@@ -68,6 +68,18 @@ import { AgentCreator } from './agents/agent-creator';
 import { buildBuilderTools } from './agents/builder-tools';
 import { buildAgentChatTools } from './agents/agent-chat-tools';
 import type { AgentChatPort } from './chat/editor-chat.service';
+import { MetaAccountsRepository } from '../config/meta-accounts.repository';
+import { TikTokTokenService } from '../config/tiktok-token.service';
+import { SecretsService } from '../common/crypto/secrets.service';
+import { PublisherDispatcher } from '../publishers/publisher-dispatcher.service';
+import { TikTokCarouselPublisher } from '../publishers/tiktok/tiktok-carousel.publisher';
+import { FACEBOOK_GRAPH, THREADS_GRAPH, graphGet, graphPost, graphVersion, threadsVersion } from '../publishers/meta-graph.util';
+import { PlatformPostsRepository } from './platform/platform-posts.repository';
+import { ResourcePublisher } from './platform/resource-publisher';
+import type { PublishPlatformDeps } from './platform/publish-platform';
+import { buildPlatformTools } from './platform/platform-tools';
+import { PlatformStatsCollector } from './platform/platform-stats.collector';
+import { ResourceHealthService } from './platform/resource-health.service';
 import { TrackingAuthGuard } from '../tracking/api/tracking-auth.guard';
 
 export const EDITOR_RUNNER    = 'EDITOR_RUNNER';
@@ -77,6 +89,16 @@ export const EDITOR_SKILLS    = 'EDITOR_SKILLS';
 export const EDITOR_REGISTRY  = 'EDITOR_REGISTRY';
 /** Live publish ports shared by publish_post and the chat (Telegram sender, media stage, mirrors). */
 export const EDITOR_PUBLISH   = 'EDITOR_PUBLISH';
+/** Native multi-platform publishing (spec 019): repository, publish path, stats, health. */
+export const PLATFORM_INFRA   = 'PLATFORM_INFRA';
+
+export interface PlatformInfra {
+  posts:   PlatformPostsRepository;
+  publish: PublishPlatformDeps;
+  stats:   PlatformStatsCollector;
+  health:  ResourceHealthService;
+}
+
 /** Agent registry infrastructure (spec 017): repository, DB skills, owner inbox, scope KPI, run-time resolver. */
 export const AGENT_INFRA      = 'AGENT_INFRA';
 
@@ -134,7 +156,25 @@ export class AgentsUpkeep implements OnModuleInit {
     @Inject(AGENT_INFRA) private readonly infra: AgentInfra,
     @Inject(EDITOR_SKILLS) private readonly files: SkillLibrary,
     @Inject(EDITOR_REPOS) private readonly repos: EditorRepos,
+    @Inject(PLATFORM_INFRA) private readonly platform: PlatformInfra,
   ) {}
+
+  /** Platform post metrics + daily follower rollup (spec 019 FR-009). */
+  @Cron('35 */3 * * *', { name: 'platform-stats' })
+  async platformStats(): Promise<void> {
+    try {
+      const r = await this.platform.stats.run();
+      if (r.posts || r.failed) this.logger.log(`platform stats: ${r.posts} posts, ${r.failed} failed, ${r.resources} resources`);
+    } catch (err: any) {
+      this.logger.warn(`platform stats failed: ${err?.message ?? err}`);
+    }
+  }
+
+  /** Daily access check of every resource (spec 019 FR-011). */
+  @Cron('10 6 * * *', { name: 'resource-health' })
+  async resourceHealth(): Promise<void> {
+    try { await this.platform.health.run(); } catch (err: any) { this.logger.warn(`resource health failed: ${err?.message ?? err}`); }
+  }
 
   async onModuleInit(): Promise<void> {
     await this.sync();
@@ -314,6 +354,64 @@ export const EDITOR_PROVIDERS = [
       }),
     },
     {
+      provide: PLATFORM_INFRA,
+      inject: [
+        DB_POOL, ConfigService, EDITOR_PUBLISH, AGENT_INFRA, PostingThrottleService,
+        { token: MetaAccountsRepository, optional: true }, { token: SecretsService, optional: true },
+        { token: PublisherDispatcher, optional: true }, { token: TikTokCarouselPublisher, optional: true },
+        { token: TikTokTokenService, optional: true },
+      ],
+      useFactory: (
+        pool: Pool, cfg: ConfigService, ports: PublishPorts, infra: AgentInfra, throttle: PostingThrottleService,
+        metaRepo?: MetaAccountsRepository, secrets?: SecretsService, dispatcher?: PublisherDispatcher,
+        tiktok?: TikTokCarouselPublisher, tiktokTokens?: TikTokTokenService,
+      ): PlatformInfra => {
+        const logger = new Logger('Platforms');
+        const posts = new PlatformPostsRepository(pool);
+        const metaToken = async (id: string): Promise<string | null> => {
+          const a = metaRepo ? await metaRepo.findById(id) : null;
+          if (!a || !secrets) return null;
+          return secrets.resolveToken({ enc: a.token_enc, env: a.token_env }, (k) => cfg.get<string>(k)) ?? null;
+        };
+        const unavailable = () => { throw new Error('platform publishers are not available in this process'); };
+        const publisher = new ResourcePublisher({
+          metaAccount: async (id) => {
+            const a = metaRepo ? await metaRepo.findById(id) : null;
+            if (!a) return null;
+            return { platform: a.platform, targetId: a.target_id, token: await metaToken(id), active: a.active, username: a.username ?? null };
+          },
+          dispatcher: dispatcher ?? { publish: unavailable, publishCarousel: unavailable } as any,
+          tiktok: tiktok ?? { publishCarousel: unavailable } as any,
+          igComment: async (mediaId, token, message) => {
+            await graphPost(`${FACEBOOK_GRAPH}/${graphVersion(cfg)}/${mediaId}/comments`, { message, access_token: token }, 15_000, token);
+          },
+        });
+        const publish: PublishPlatformDeps = {
+          posts, publisher, pool,
+          hostSlides: (slides, key) => (ports.media as EditorMediaPreparer).hostSlides(slides, key),
+          health: async (ref) => (await infra.profiles.get(ref))?.health ?? null,
+          recordPublish: (k) => throttle.recordPublish(k),
+        };
+        const stats = new PlatformStatsCollector({
+          pool, posts, metaToken,
+          graphGet: (url, params) => graphGet(url, params, 15_000, params.access_token ?? ''),
+          graphBase: { facebook: `${FACEBOOK_GRAPH}/${graphVersion(cfg)}`, threads: `${THREADS_GRAPH}/${threadsVersion(cfg)}` },
+          tiktokFollowers: tiktokTokens ? async (id) => {
+            const token = await tiktokTokens.getValidAccessToken(id);
+            const res = await fetch('https://open.tiktokapis.com/v2/user/info/?fields=follower_count', {
+              headers: { Authorization: `Bearer ${token}` }, signal: AbortSignal.timeout(15_000),
+            });
+            const body: any = await res.json();
+            const n = body?.data?.user?.follower_count;
+            return typeof n === 'number' ? n : null;
+          } : undefined,
+          log: (m) => logger.warn(m),
+        });
+        const health = new ResourceHealthService({ catalog: infra.catalog, profiles: infra.profiles, inbox: infra.inbox });
+        return { posts, publish, stats, health };
+      },
+    },
+    {
       // Deterministic draft actions of the editor chat (spec 010): composer tools, REST buttons, scheduled path.
       provide: EDITOR_DRAFTS,
       inject: [DB_POOL, EDITOR_REPOS, EDITOR_PUBLISH, ChannelConfigService, TelegramNotifier, PostingThrottleService],
@@ -334,10 +432,10 @@ export const EDITOR_PROVIDERS = [
     {
       // One registry for the runner, the chat and the ops surface (REST tools endpoint → MCP).
       provide: EDITOR_REGISTRY,
-      inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_SKILLS, EDITOR_PUBLISH, EDITOR_DRAFTS, TelegramNotifier, PostingThrottleService, AGENT_INFRA],
+      inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_SKILLS, EDITOR_PUBLISH, EDITOR_DRAFTS, TelegramNotifier, PostingThrottleService, AGENT_INFRA, PLATFORM_INFRA],
       useFactory: (
         pool: Pool, cfg: ConfigService, repos: EditorRepos, skills: SkillLibrary, ports: PublishPorts, drafts: DraftsService,
-        notifier: TelegramNotifier, throttle: PostingThrottleService, infra: AgentInfra,
+        notifier: TelegramNotifier, throttle: PostingThrottleService, infra: AgentInfra, platform: PlatformInfra,
       ): ToolRegistry => {
         const env = (k: string) => cfg.get<string>(k) ?? undefined;
         return new ToolRegistry([
@@ -357,6 +455,10 @@ export const EDITOR_PROVIDERS = [
             agents: infra.agents, catalog: infra.catalog, profiles: infra.profiles, creator: infra.creator, skills: infra.skills, actions: infra.actions,
           }),
           ...buildAgentChatTools({ pool, memory: repos.memory, skills: infra.skills, actions: infra.actions }),
+          ...buildPlatformTools({
+            pool, publish: platform.publish, plans: repos.plans,
+            notifyPreview: env('EDITOR_SHADOW_PREVIEW') === 'false' ? undefined : (ref, text) => notifier.notifyAlert(`👁 Shadow-превʼю ${ref}\n\n${text}`),
+          }),
         ]);
       },
     },
@@ -506,6 +608,6 @@ export const EDITOR_PROVIDERS = [
   imports:     [ChannelConfigModule, PublishersModule, AuthModule],
   controllers: [EditorController, EditorChatController, AgentsController],
   providers:   [...EDITOR_PROVIDERS, TrackingAuthGuard],
-  exports:     [EDITOR_REPOS, EDITOR_RUNNER, AGENT_INFRA],
+  exports:     [EDITOR_REPOS, EDITOR_RUNNER, AGENT_INFRA, PLATFORM_INFRA],
 })
 export class EditorModule {}

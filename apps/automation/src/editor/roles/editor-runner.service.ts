@@ -8,6 +8,9 @@ import type { AgentRuntime, RunAgentContext } from '../agents/agent-runtime';
 import type { EditorPlansRepository, EditorSlot } from '../repo/editor-plans.repository';
 import type { EditorMemoryRepository } from '../repo/editor-memory.repository';
 import { buildSystemPrompt, executorUserPrompt, plannerUserPrompt, reviewerUserPrompt } from './prompts';
+import { parseResourceRef } from '../agents/agent.types';
+import { capabilitiesSummary, implementedFormats } from '../platform/capabilities';
+import type { PlatformSlotExtras } from '../platform/platform-tools';
 import { isQuietHour, localDate, localHour, zonedToUtc } from './time';
 
 export interface EditorRunnerDeps {
@@ -21,7 +24,17 @@ export interface EditorRunnerDeps {
   env:      (key: string) => string | undefined;
   notify:   (text: string) => Promise<void>;
   now?:     () => Date;
+  /**
+   * Network context of a non-Telegram slot (spec 020): the playbook section for
+   * the resource, its profile and limits. Optional; without it the platform
+   * executor works from the slot and the capability matrix only.
+   */
+  platformContext?: (slot: EditorSlot, orchestratorId: string | null) => Promise<{ playbook?: string | null; profile?: string | null; maxPerDay?: number | null; vocabulary?: string[]; idea?: string | null } | null>;
 }
+
+/** Telegram-only tools that must never run on a slot of another platform, and vice versa. */
+const TELEGRAM_ONLY = new Set(['publish_post', 'lint_post', 'preview_post']);
+const PLATFORM_ONLY = new Set(['publish_platform_post']);
 
 export const MAX_SLOT_ATTEMPTS = 2;
 export const RETRY_DELAY_MS = 15 * 60_000;
@@ -52,13 +65,14 @@ export class EditorRunnerService {
       model: resolveModel(role, this.d.env, agentModel ? { ...card.models, [role]: agentModel } : card.models),
       system: buildSystemPrompt(role, card, memory, skills),
       user,
-      tools: this.d.registry.forRole(role, card.toolsAllow),
+      tools: this.d.registry.forRole(role, card.toolsAllow).filter((t) => !(extras.excludeTools as Set<string> | undefined)?.has(t.name)),
       maxSteps: MAX_STEPS[role],
       channelBudgetUsd: card.dailyBudgetUsd,
       agent: ctx?.agent
         ? { id: ctx.agent.id, handle: ctx.agent.handle, limitUsd: ctx.agent.dailyBudgetUsd ?? ctx.orchestrator?.dailyBudgetUsd ?? null }
         : null,
       extras: { card, skills, agent: ctx?.agent ?? null, orchestrator: ctx?.orchestrator ?? null, ...extras },
+      ...(extras.systemOverride ? { system: String(extras.systemOverride) } : {}),
     });
   }
 
@@ -92,7 +106,10 @@ export class EditorRunnerService {
       await this.d.plans.updateSlot(slot.id, { status: 'skipped', error: off.error ?? 'agent paused' });
       return off;
     }
-    const res = await this.run('executor', card, executorUserPrompt(card, slot, this.now()), slot.id, {}, ctx);
+    const target = slot.resourceRef ? parseResourceRef(slot.resourceRef) : null;
+    const res = target && target.platform !== 'telegram'
+      ? await this.runPlatformExecutor(slot, card, ctx, target.platform)
+      : await this.run('executor', card, executorUserPrompt(card, slot, this.now()), slot.id, { excludeTools: PLATFORM_ONLY }, ctx);
     await this.d.plans.updateSlot(slot.id, { runId: res.runId });
 
     const after = await this.d.plans.getSlot(slot.id);
@@ -108,6 +125,46 @@ export class EditorRunnerService {
       }
     }
     return res;
+  }
+
+  /** A slot that targets Instagram / Facebook / Threads / TikTok of the channel's network (spec 019 FR-008). */
+  private async runPlatformExecutor(slot: EditorSlot, card: EditorCard, ctx: RunAgentContext | null, platform: string): Promise<AgentLoopResult> {
+    const pc = this.d.platformContext ? await this.d.platformContext(slot, ctx?.orchestrator?.id ?? null).catch(() => null) : null;
+    const skills = ctx?.skills ?? this.d.skills;
+    const skill = skills.get(`platform-${platform}`);
+    const memory = await this.d.memory.listActive(card.channelKey);
+    const mode = (ctx?.orchestrator?.mode ?? card.mode) === 'live' && card.mode === 'live' ? 'live' : 'shadow';
+    const system = [
+      `Ти — автор нативних постів для ${platform} у мережі ai0 (ресурс ${slot.resourceRef}). Пишеш НЕ переробку Telegram-поста, а пост, що працює саме на цій платформі.`,
+      'Усі тексти — українською, живою мовою, без AI-штампів. Факти — лише з джерел, які ти прочитав. Код перевіряє ліміти — якщо інструмент повернув error, виправ.',
+      'Порядок: дослідження (джерела, бібліотека, стат), потім lint_platform_post, потім publish_platform_post. Слабкий чи неперевірений пост — skip_slot.',
+      '',
+      '## Можливості платформи',
+      capabilitiesSummary([platform as any]),
+      `Доступні формати зараз: ${implementedFormats(platform as any).join(', ')}.`,
+      ...(pc?.profile ? ['', '## Профіль ресурсу', pc.profile] : []),
+      ...(pc?.playbook ? ['', '## Плейбук для цього ресурсу', pc.playbook] : []),
+      '',
+      '## Памʼять мережі (правила власника і висновки)',
+      memory.length ? memory.map((m) => `- [${m.kind}${m.createdBy === 'owner' ? ', власник' : ''}] ${m.text}`).join('\n') : '- (порожня)',
+      '',
+      '## Скіли',
+      skill ? `### skill: ${skill.name}\n${skill.body}` : '- немає скіла платформи',
+      skills.list('executor').filter((s) => s.name !== skill?.name).map((s) => `- ${s.name}: ${s.description}`).join('\n'),
+    ].join('\n');
+    const user = [
+      `Слот на ${slot.scheduledAt.toISOString()} для ${slot.resourceRef}. Формат: ${slot.format}. Тема: ${slot.topic}.`,
+      slot.angle ? `Кут подачі: ${slot.angle}` : '',
+      pc?.idea ? `Ідея з пулу: ${pc.idea}` : '',
+      slot.sourceHints.length ? `Підказки джерел: ${slot.sourceHints.join('; ')}` : '',
+      mode === 'shadow' ? 'Режим shadow: пост збережеться як превʼю, нічого не публікується.' : '',
+      'Підготуй пост і заверши publish_platform_post (після lint_platform_post) або skip_slot з причиною.',
+    ].filter(Boolean).join('\n');
+    const platformSlot: PlatformSlotExtras = {
+      resourceRef: slot.resourceRef!, mode, maxPerDay: pc?.maxPerDay ?? null, vocabulary: pc?.vocabulary ?? [], bannedTerms: card.bannedTerms,
+      agentId: ctx?.agent?.id ?? null,
+    };
+    return this.run('executor', card, user, slot.id, { excludeTools: TELEGRAM_ONLY, systemOverride: system, platformSlot }, ctx);
   }
 
   async runReviewer(card: EditorCard): Promise<AgentLoopResult> {

@@ -4,7 +4,8 @@
 // targets go through the dispatcher (full carousel or single); the Telegram
 // target gets the cover image + caption (the bot API has no album). Each target
 // is isolated: one failure never blocks the others or the primary publish.
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable, Logger, Optional } from '@nestjs/common';
+import { TikTokCarouselPublisher } from '../../publishers/tiktok/tiktok-carousel.publisher';
 import { DestinationResolver } from './destination-resolver.service';
 import { PublisherDispatcher } from '../../publishers/publisher-dispatcher.service';
 import { TelegramPublisher } from '../../publishers/telegram.publisher';
@@ -47,6 +48,7 @@ export class GroupFanOutService {
     private readonly dispatcher: PublisherDispatcher,
     private readonly telegram:   TelegramPublisher,
     private readonly tracer:     RunTracer,
+    @Optional() private readonly tiktok?: TikTokCarouselPublisher,
   ) {}
 
   /**
@@ -76,7 +78,14 @@ export class GroupFanOutService {
           ({ caption: text, imageUrls, carousel } = r);
           carousel = carousel && imageUrls.length >= 2;
         }
-        if (t.platform === 'telegram') {
+        if (t.platform === 'tiktok') {
+          // TikTok photo mode: needs at least one hosted image (spec 019 — the mirror gap fix).
+          if (!this.tiktok) { outcomes.push({ platform: t.platform, status: 'skipped', detail: 'tiktok publisher unavailable' }); continue; }
+          if (!imageUrls.length) { outcomes.push({ platform: t.platform, status: 'skipped', detail: 'tiktok needs an image' }); continue; }
+          // Meta-bound captions arrive HTML-escaped (their publishers strip HTML); TikTok takes plain text.
+          const plain = text.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&amp;/g, '&');
+          id = await this.tiktok.publishCarousel(t.targetId, imageUrls, plain);
+        } else if (t.platform === 'telegram') {
           id = await this.telegram.publish(
             { text, imageUrl: imageUrls[0], source: '', tags: content.tags },
             { id: t.targetId, token: '' },

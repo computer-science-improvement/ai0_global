@@ -44,14 +44,7 @@ export class EditorMediaPreparer {
     if (spec.format === 'carousel') {
       const slides = spec.slides ?? [];
       if (slides.length < 2) throw new Error('carousel needs 2–10 slides');
-      if (!(await this.d.hosting.available())) throw new Error('slide hosting is not configured (SUPABASE_URL / SUPABASE_SERVICE_KEY / SUPABASE_CAROUSEL_BUCKET)');
-      const images = await Promise.all(slides.map((s) => (s.image ? this.d.fetchImage(s.image).catch(() => null) : Promise.resolve(null))));
-      const pngs = await this.d.renderSlides(slides.map((s, i) => ({ title: s.title, text: s.text, image: images[i] })));
-      const hosted = await this.d.hosting.upload(pngs, `editor/${keySafe(key.channelKey)}/${keySafe(key.slotId)}`);
-      return {
-        prepared: { slideUrls: hosted.map((h) => h.url) },
-        cleanup: async () => { try { await this.d.hosting.delete(hosted.map((h) => h.path)); } catch { /* best-effort */ } },
-      };
+      return this.hostSlides(slides, key);
     }
     if (spec.format === 'longread') {
       if (!spec.longread) throw new Error('longread spec has no article');
@@ -62,5 +55,18 @@ export class EditorMediaPreparer {
       return { prepared: { longreadUrl: page.url }, cleanup: noop };
     }
     return { prepared: {}, cleanup: noop };
+  }
+
+  /** Render and host 1–10 slides (carousels here; native platform posts in spec 019). */
+  async hostSlides(slides: Array<{ title: string; text: string; image?: string }>, key: { channelKey: string; slotId: string }): Promise<PreparedPublish> {
+    if (!slides.length) throw new Error('no slides to render');
+    if (!(await this.d.hosting.available())) throw new Error('slide hosting is not configured (SUPABASE_URL / SUPABASE_SERVICE_KEY / SUPABASE_CAROUSEL_BUCKET)');
+    const images = await Promise.all(slides.map((s) => (s.image ? this.d.fetchImage(s.image).catch(() => null) : Promise.resolve(null))));
+    const pngs = await this.d.renderSlides(slides.map((s, i) => ({ title: s.title, text: s.text, image: images[i] })));
+    const hosted = await this.d.hosting.upload(pngs, `editor/${keySafe(key.channelKey)}/${keySafe(key.slotId)}`);
+    return {
+      prepared: { slideUrls: hosted.map((h) => h.url) },
+      cleanup: async () => { try { await this.d.hosting.delete(hosted.map((h) => h.path)); } catch { /* best-effort */ } },
+    };
   }
 }

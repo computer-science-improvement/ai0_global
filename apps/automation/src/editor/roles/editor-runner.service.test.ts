@@ -127,3 +127,32 @@ test('agent runtime (spec 017): a paused agent skips the slot without an LLM cal
   assert.equal((await runner.runPlanner(makeCard())).status, 'disabled');
   assert.equal(runs.length, 0);
 });
+
+test('platform slot (spec 019): platform executor prompt, no Telegram publish tools, slot extras', async () => {
+  const runs: any[] = [];
+  const tools = ['publish_post', 'lint_post', 'preview_post', 'publish_platform_post', 'lint_platform_post', 'skip_slot', 'web_fetch'].map((name) => ({ name }));
+  const runner = new EditorRunnerService({
+    loop: { run: async (i: any) => { runs.push(i); return { runId: 'r', status: 'ok', terminalTool: 'publish_platform_post' } as any; } },
+    registry: { forRole: () => tools as any },
+    skills: new SkillLibrary(),
+    plans: { reservedSlots: async () => [], getSlot: async () => ({ ...slot, status: 'shadowed' }), updateSlot: async () => {} },
+    memory: { listActive: async () => [] },
+    platformContext: async () => ({ playbook: 'Instagram — каруселі 5–8 слайдів', profile: 'Тема: космос', maxPerDay: 2, vocabulary: ['космос'], idea: 'Пʼять фактів про Марс' }),
+    env: () => undefined, notify: async () => {}, now: () => NOW,
+  });
+  await runner.runExecutor({ ...slot, resourceRef: 'instagram:ig1', format: 'ig_carousel' }, makeCard({ mode: 'live' }));
+  const i = runs[0];
+  const names = i.tools.map((t: any) => t.name);
+  assert.ok(!names.includes('publish_post') && !names.includes('lint_post'));
+  assert.ok(names.includes('publish_platform_post'));
+  assert.match(i.system, /нативних постів для instagram/);
+  assert.match(i.system, /skill: platform-instagram/);
+  assert.match(i.system, /Instagram — каруселі 5–8/);
+  assert.match(i.user, /Пʼять фактів про Марс/);
+  assert.deepEqual(i.extras.platformSlot, { resourceRef: 'instagram:ig1', mode: 'live', maxPerDay: 2, vocabulary: ['космос'], bannedTerms: [], agentId: null });
+
+  // A Telegram slot never sees the platform publish tool.
+  runs.length = 0;
+  await runner.runExecutor(slot, makeCard());
+  assert.ok(!runs[0].tools.some((t: any) => t.name === 'publish_platform_post'));
+});

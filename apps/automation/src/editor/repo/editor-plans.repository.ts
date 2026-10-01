@@ -21,6 +21,10 @@ export interface EditorSlot {
   postSpec:        unknown;
   renderedPreview: string | null;
   error:           string | null;
+  /** Non-Telegram target of a network slot (`<platform>:<id>`, spec 019/020); null = the channel itself. */
+  resourceRef?:    string | null;
+  /** The pool idea the slot realises (spec 020). */
+  ideaId?:         string | null;
 }
 
 /** Rationale of a plan created only to hold reserved (ad) slots; the planner still plans that day. */
@@ -45,6 +49,8 @@ export function rowToSlot(r: any): EditorSlot {
     isExperiment: !!r.is_experiment, status: r.status, attempts: Number(r.attempts), runId: r.run_id ?? null,
     publishedPostId: r.published_post_id == null ? null : Number(r.published_post_id),
     postSpec: r.post_spec ?? null, renderedPreview: r.rendered_preview ?? null, error: r.error ?? null,
+    ...(r.resource_ref ? { resourceRef: r.resource_ref } : {}),
+    ...(r.idea_id ? { ideaId: r.idea_id } : {}),
   };
 }
 

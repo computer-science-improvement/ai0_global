@@ -57,6 +57,14 @@ export class TikTokAccountsRepository {
     return rows.map(r => this.decode(r));
   }
 
+  /** Active TikTok accounts of an account group (network) — spec 019. */
+  async findActiveByGroup(groupId: string): Promise<TikTokAccountRow[]> {
+    const { rows } = await this.pool.query<TikTokAccountRow>(
+      `SELECT * FROM tiktok_accounts WHERE group_id = $1 AND active ORDER BY created_at`, [groupId],
+    );
+    return rows.map(r => this.decode(r));
+  }
+
   async findById(id: string): Promise<TikTokAccountRow | null> {
     const { rows } = await this.pool.query<TikTokAccountRow>(
       `SELECT * FROM tiktok_accounts WHERE id = $1`, [id],

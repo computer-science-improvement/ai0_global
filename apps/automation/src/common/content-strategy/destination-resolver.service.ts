@@ -144,6 +144,19 @@ export class DestinationResolver {
       });
     }
 
+    // TikTok accounts can join a network too (spec 019); they get photo posts through the TikTok publisher.
+    if (excludePlatform !== 'tiktok' && typeof this.tiktok.findActiveByGroup === 'function') {
+      for (const acct of await this.tiktok.findActiveByGroup(groupId)) {
+        out.push({
+          platform: 'tiktok',
+          targetId: acct.id,
+          metaAccountId: null,
+          postedKey: `TT:${acct.id}`,
+          throttleKey: `tiktok:${acct.id}`,
+        });
+      }
+    }
+
     if (excludePlatform !== 'telegram') {
       const ch = await this.channels.findByGroupId(groupId);
       if (ch?.channelKey) {
