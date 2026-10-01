@@ -42,6 +42,7 @@ test('sends OpenAI-shaped request with tools and maps messages', async () => {
   assert.equal(body.model, 'z-ai/glm-5.3-flash');
   assert.equal(body.max_tokens, 500);
   assert.equal(body.tools[0].type, 'function');
+  assert.deepEqual(body.provider, { require_parameters: true });
   assert.equal(body.tools[0].function.name, 't');
   assert.deepEqual(body.messages[1].tool_calls, [{ id: 'c1', type: 'function', function: { name: 't', arguments: '{}' } }]);
   assert.deepEqual(body.messages[2], { role: 'tool', tool_call_id: 'c1', content: '{"ok":true}' });
