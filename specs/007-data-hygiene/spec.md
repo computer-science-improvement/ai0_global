@@ -3,7 +3,7 @@
 **Status:** TODO · **Depends on:** none
 
 ## Requirements and tasks
-- [ ] T001 **Untrack `.pnpm-store/`** (3,094 files): `git rm -r --cached .pnpm-store` and add it to `.gitignore`. History purge (77 MB pack) is the owner's decision, using `git filter-repo`, documented only.
+- [x] T001 **Untrack `.pnpm-store/`** (3,094 files): `git rm -r --cached .pnpm-store` and add it to `.gitignore`. History purge (77 MB pack) is the owner's decision, using `git filter-repo`, documented only.
 - [ ] T002 **Raw data out of git and image:**
   - Move `apps/pipeline/raw-data` (~166 MB, recipes stored three times) to object storage or a release asset, with a fetch script.
   - Keep one canonical copy.
