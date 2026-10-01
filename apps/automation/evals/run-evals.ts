@@ -18,10 +18,11 @@ import { judgePost, JudgeScore } from './lib/judge';
 import type { CaseOutcome, EvalCase } from './lib/case';
 import { EXECUTOR_CASES } from './cases/executor';
 import { PLANNER_REVIEWER_CASES } from './cases/planner-reviewer';
+import { CHAT_CASES } from './cases/chat';
 import { localDate, zonedToUtc } from '../src/editor/roles/time';
 import { resolveModel } from '../src/editor/llm/model-registry';
 
-const ALL: EvalCase[] = [...EXECUTOR_CASES, ...PLANNER_REVIEWER_CASES];
+const ALL: EvalCase[] = [...EXECUTOR_CASES, ...PLANNER_REVIEWER_CASES, ...CHAT_CASES];
 
 function arg(name: string): string | undefined {
   const i = process.argv.indexOf(`--${name}`);

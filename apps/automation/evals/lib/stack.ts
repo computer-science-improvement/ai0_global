@@ -15,6 +15,10 @@ import { EditorPlansRepository } from '../../src/editor/repo/editor-plans.reposi
 import { EditorMemoryRepository } from '../../src/editor/repo/editor-memory.repository';
 import { EditorRunnerService } from '../../src/editor/roles/editor-runner.service';
 import type { TgMessage } from '../../src/editor/post/render-telegram';
+import { EditorChatRepository } from '../../src/editor/repo/editor-chat.repository';
+import { DraftsService } from '../../src/editor/chat/drafts.service';
+import { buildComposerTools } from '../../src/editor/chat/composer-tools';
+import { EditorChatService } from '../../src/editor/chat/editor-chat.service';
 import type { FakeWeb } from './fake-web';
 
 /** Counts LLM calls/cost of the agent under test (separately from the judge). */
@@ -36,6 +40,10 @@ export interface EvalStack {
   plans:    EditorPlansRepository;
   memory:   EditorMemoryRepository;
   runner:   EditorRunnerService;
+  /** Editor chat (spec 010): the same service the REST controller uses. */
+  chat:     EditorChatService;
+  chatRepo: EditorChatRepository;
+  drafts:   DraftsService;
   llm:      CountingLlm;
   sent:     Array<{ channelKey: string; messages: TgMessage[] }>;
   previews: string[];
@@ -58,15 +66,23 @@ export function buildStack(o: { pool: Pool; web: FakeWeb; now: () => Date; apiKe
   const notes: string[] = [];
   let msgId = 50_000;
 
+  const publisher = {
+    send: async (channelKey: string, messages: TgMessage[]) => { sent.push({ channelKey, messages }); return { messageIds: messages.map(() => msgId++) }; },
+  };
+  const chatRepo = new EditorChatRepository(pool);
+  const drafts = new DraftsService({
+    pool, repo: chatRepo, channels, plans, publisher, recordPublish: () => {}, isPaused: () => false,
+    notify: async (t) => { notes.push(t); }, now,
+  });
   const registry = new ToolRegistry([
     ...buildReadTools({ pool, readonly: new ReadonlyQueryService(pool), skills, http: web.http }),
     ...buildComposeTools({ http: web.http }),
     ...buildRoleTools({
-      pool, plans, memory, channels, now,
-      publisher: { send: async (channelKey, messages) => { sent.push({ channelKey, messages }); return { messageIds: messages.map(() => msgId++) }; } },
+      pool, plans, memory, channels, now, publisher,
       recordPublish: () => {},
       notifyPreview: async (_k, html) => { previews.push(html); },
     }),
+    ...buildComposerTools({ drafts, repo: chatRepo }),
   ]);
 
   const llm = new CountingLlm(new OpenRouterClient({ apiKey: o.apiKey, baseUrl: o.env('OPENROUTER_BASE_URL') }));
@@ -81,5 +97,8 @@ export function buildStack(o: { pool: Pool; web: FakeWeb; now: () => Date; apiKe
     env: o.env,
     notify: async (t) => { notes.push(t); },
   });
-  return { pool, channels, plans, memory, runner, llm, sent, previews, notes };
+  const chat = new EditorChatService({
+    repo: chatRepo, drafts, memory, loop, registry, skills, env: o.env, enabled: () => true, now,
+  });
+  return { pool, channels, plans, memory, runner, chat, chatRepo, drafts, llm, sent, previews, notes };
 }

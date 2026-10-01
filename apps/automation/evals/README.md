@@ -22,6 +22,8 @@ Every case is graded by **hard checks in code**. A failure means a regression. S
 | `executor-recipe-from-library` | executor | Recipe from the library: written in the agent's own words (longest copied run < 80 chars), with the recipe image and `library_ref`. |
 | `planner-daily-plan` | planner | Builds a valid 3–5 slot plan that uses the best hour (19:00) and the best format (quiz), after reading the stats. |
 | `reviewer-weekly-insights` | reviewer | Finds that quizzes outperform and writes concrete memory entries. Does not lower the quiz weight. |
+| `chat-schedule-tomorrow` | composer (chat, fake TG) | "Make a post about <article> for @eval_chat and schedule it for tomorrow 19:00" leads to a scheduled draft whose reserved slot is at tomorrow 19:00 Kyiv. Nothing is sent. The channel has no card, so the default card and the minimal `off` card are exercised. |
+| `chat-draft-only` | composer (chat) | "Prepare a post" without a publish request produces a draft only: status `draft`, no reserved slot, nothing sent. |
 
 ## Run
 
