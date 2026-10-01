@@ -33,6 +33,8 @@ export interface LlmRequest {
   tools?:       ToolSpec[];
   maxTokens?:   number;
   temperature?: number;
+  /** Reasoning budget for reasoning models (GLM 5.3 reasoning is mandatory and otherwise eats max_tokens). */
+  reasoningEffort?: 'low' | 'medium' | 'high';
 }
 
 export interface LlmUsage {

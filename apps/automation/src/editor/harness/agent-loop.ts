@@ -67,6 +67,7 @@ function summarize(output: unknown): string {
   return s.length > SUMMARY_CHARS ? `${s.slice(0, SUMMARY_CHARS)}…` : s;
 }
 const MAX_FINISH_NUDGES = 1;
+const MAX_TRUNCATION_RETRIES = 2;
 
 /**
  * The editor's tool-calling loop. Model proposes tool calls; this loop
@@ -115,6 +116,7 @@ export class AgentLoop {
       try { input.onEvent(e); } catch { /* a listener (e.g. a closed HTTP stream) never breaks the run */ }
     };
     let nudges = 0;
+    let truncations = 0;
 
     try {
       for (let turn = 0; turn < maxSteps; turn++) {
@@ -124,7 +126,7 @@ export class AgentLoop {
         const t0 = now();
         const res = await this.deps.llm.chat({
           model: input.model.model, messages, tools: specs,
-          maxTokens: input.model.maxTokens, temperature: input.model.temperature,
+          maxTokens: input.model.maxTokens, temperature: input.model.temperature, reasoningEffort: input.model.reasoningEffort,
         });
         totals.promptTokens     += res.usage.promptTokens;
         totals.completionTokens += res.usage.completionTokens;
@@ -134,6 +136,13 @@ export class AgentLoop {
         if (res.message.content?.trim()) emit({ type: 'llm_text', text: res.message.content });
 
         const calls = res.message.toolCalls ?? [];
+        if (!calls.length && res.finishReason === 'length' && !(res.message.content ?? '').trim() && truncations < MAX_TRUNCATION_RETRIES) {
+          // Reasoning models can spend the whole max_tokens thinking and return nothing — that is not an answer.
+          truncations++;
+          messages.pop();
+          messages.push({ role: 'user', content: 'Відповідь обірвалась до результату. Думай коротше і одразу дій: виклич потрібний інструмент.' });
+          continue;
+        }
         if (!calls.length) {
           if (terminalNames.length && nudges < MAX_FINISH_NUDGES) {
             nudges++;

@@ -8,6 +8,8 @@ export interface ModelProfile {
   outPerM:     number;
   maxTokens:   number;
   temperature: number;
+  /** Reasoning effort; low keeps GLM's mandatory thinking from consuming the whole max_tokens (measured: ~10x fewer tokens). */
+  reasoningEffort: 'low' | 'medium' | 'high';
 }
 
 export const DEFAULT_EDITOR_MODEL = 'z-ai/glm-5.3-flash';
@@ -19,12 +21,13 @@ const PRICES: Record<string, { inPerM: number; outPerM: number }> = {
   'z-ai/glm-5.3':        { inPerM: 0.22, outPerM: 3.39 },
 };
 
-const ROLE_DEFAULTS: Record<EditorRole, { maxTokens: number; temperature: number }> = {
-  planner:  { maxTokens: 2500, temperature: 0.6 },
-  executor: { maxTokens: 3000, temperature: 0.7 },
-  reviewer: { maxTokens: 2500, temperature: 0.3 },
-  checker:  { maxTokens: 800,  temperature: 0.0 },
-  composer: { maxTokens: 3000, temperature: 0.6 },
+// max_tokens includes reasoning tokens on reasoning models, so leave headroom above the visible output.
+const ROLE_DEFAULTS: Record<EditorRole, { maxTokens: number; temperature: number; reasoningEffort: 'low' | 'medium' | 'high' }> = {
+  planner:  { maxTokens: 8000, temperature: 0.6, reasoningEffort: 'medium' },
+  executor: { maxTokens: 6000, temperature: 0.7, reasoningEffort: 'low' },
+  reviewer: { maxTokens: 8000, temperature: 0.3, reasoningEffort: 'medium' },
+  checker:  { maxTokens: 2000, temperature: 0.0, reasoningEffort: 'low' },
+  composer: { maxTokens: 6000, temperature: 0.6, reasoningEffort: 'low' },
 };
 
 /**
@@ -40,7 +43,9 @@ export function resolveModel(
     ?? env(`EDITOR_MODEL_${role.toUpperCase()}`)
     ?? DEFAULT_EDITOR_MODEL;
   const price = PRICES[model] ?? PRICES[DEFAULT_EDITOR_MODEL];
-  return { model, ...price, ...ROLE_DEFAULTS[role] };
+  const effort = env(`EDITOR_REASONING_${role.toUpperCase()}`) ?? env('EDITOR_REASONING');
+  const d = ROLE_DEFAULTS[role];
+  return { model, ...price, ...d, reasoningEffort: effort === 'low' || effort === 'medium' || effort === 'high' ? effort : d.reasoningEffort };
 }
 
 export function estimateCostUsd(p: Pick<ModelProfile, 'inPerM' | 'outPerM'>, promptTokens: number, completionTokens: number): number {

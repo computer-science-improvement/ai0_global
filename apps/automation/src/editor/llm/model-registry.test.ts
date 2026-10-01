@@ -8,7 +8,8 @@ test('defaults to glm-5.3-flash with role limits', () => {
   const p = resolveModel('executor', noEnv);
   assert.equal(p.model, DEFAULT_EDITOR_MODEL);
   assert.equal(p.inPerM, 0.15);
-  assert.equal(p.maxTokens, 3000);
+  assert.equal(p.maxTokens, 6000);
+  assert.equal(p.reasoningEffort, 'low');
 });
 
 test('env override beats default', () => {
@@ -30,4 +31,11 @@ test('unknown model falls back to default price', () => {
 
 test('estimateCostUsd', () => {
   assert.equal(estimateCostUsd({ inPerM: 0.15, outPerM: 0.5 }, 1_000_000, 2_000_000), 1.15);
+});
+
+test('reasoning effort: role default, global env, per-role env', () => {
+  assert.equal(resolveModel('planner', () => undefined).reasoningEffort, 'medium');
+  assert.equal(resolveModel('planner', (k) => (k === 'EDITOR_REASONING' ? 'low' : undefined)).reasoningEffort, 'low');
+  assert.equal(resolveModel('planner', (k) => ({ EDITOR_REASONING: 'low', EDITOR_REASONING_PLANNER: 'high' } as any)[k]).reasoningEffort, 'high');
+  assert.equal(resolveModel('executor', () => 'bogus').reasoningEffort, 'low');
 });

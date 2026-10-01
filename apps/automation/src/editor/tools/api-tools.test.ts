@@ -27,7 +27,7 @@ function fakeHttp(route: Route, env: Record<string, string> = {}) {
 test('fetch_api is a read tool for every role, with all sources in its description', () => {
   const { tool } = fakeHttp(() => undefined);
   assert.equal(tool.kind, 'read');
-  assert.deepEqual(tool.roles, ['planner', 'executor', 'reviewer']);
+  assert.deepEqual(tool.roles, ['planner', 'executor', 'reviewer', 'composer']);
   for (const s of ['nasa_apod', 'spaceflight_news', 'tmdb_trending', 'epic_free_games', 'steam_deals', 'gamerpower_giveaways', 'on_this_day']) {
     assert.match(tool.description, new RegExp(s));
   }
