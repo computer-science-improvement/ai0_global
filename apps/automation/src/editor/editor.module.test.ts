@@ -8,6 +8,9 @@ import { DB_POOL } from '../database/database.module';
 import { ChannelConfigService } from '../config/channel-config.service';
 import { TelegramNotifier } from '../publishers/telegram-notifier.service';
 import { PostingThrottleService } from '../publishers/posting-throttle.service';
+import { TelegraphService } from '../publishers/telegraph.service';
+import { SlideHostingService } from '../publishers/hosting/slide-hosting.service';
+import { RecipeCarouselRendererService } from '../common/carousel/recipe-carousel-renderer.service';
 import { EDITOR_OPS, EDITOR_PROVIDERS, EDITOR_RUNNER, EditorCron } from './editor.module';
 import { EditorOpsService } from './api/editor-ops.service';
 import { EditorRunnerService } from './roles/editor-runner.service';
@@ -21,6 +24,9 @@ test('EditorModule providers resolve with stubbed external deps', async () => {
       { provide: ChannelConfigService, useValue: { resolveChannel: () => ({}), isPublishPausedFor: () => false } },
       { provide: TelegramNotifier, useValue: { notifyAlert: async () => {} } },
       { provide: PostingThrottleService, useValue: { recordPublish: () => {} } },
+      { provide: RecipeCarouselRendererService, useValue: { renderSlides: async () => [] } },
+      { provide: SlideHostingService, useValue: { available: async () => false, upload: async () => [], delete: async () => {} } },
+      { provide: TelegraphService, useValue: { createPage: async () => ({ url: '', path: '' }) } },
     ],
   })
   class TestEditorModule {}

@@ -65,3 +65,14 @@ test('bad image buffer falls back to solid background (no throw)', async () => {
   assert.equal(slides.length, 3);
   for (const s of slides) assert.ok(isPng(s));
 });
+
+test('renderSlides: one PNG per generic slide, with and without a background image', async () => {
+  const svc = new RecipeCarouselRendererService();
+  const slides = await svc.renderSlides([
+    { title: 'Крок 1', text: 'Розігрійте духовку до 180 градусів.', image: PNG_1x1 },
+    { title: 'Дуже довгий заголовок слайда, який має зменшитися', text: 'Текст '.repeat(60), image: null },
+  ], { width: 540, height: 675 });
+  assert.equal(slides.length, 2);
+  for (const s of slides) assert.ok(isPng(s));
+  assert.equal(slides[0].readUInt32BE(16), 540);
+});

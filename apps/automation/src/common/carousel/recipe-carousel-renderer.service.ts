@@ -20,6 +20,14 @@ export interface CarouselRecipe {
 
 export interface CarouselRenderOpts { width?: number; height?: number; }
 
+/** A generic text slide (editor carousel format, spec 009 T002): title + text over an optional photo. */
+export interface GenericSlide {
+  title: string;
+  text:  string;
+  /** PNG/JPEG background; null or undecodable bytes → solid background. */
+  image: Buffer | null;
+}
+
 type SatoriFn = (element: any, options: any) => Promise<string>;
 
 // Full static TTFs (Latin + Cyrillic in one file) — satori does not merge split
@@ -77,6 +85,38 @@ export class RecipeCarouselRendererService {
       out.push(new Resvg(svg).render().asPng());
     }
     return out;
+  }
+
+  /**
+   * Render generic slides (one PNG per slide, same order). Same fonts, frame and
+   * scrim as the recipe slides, with an "i/N" chip, a title and a text panel.
+   */
+  async renderSlides(slides: GenericSlide[], opts: CarouselRenderOpts = {}): Promise<Buffer[]> {
+    const width = opts.width ?? 1080;
+    const height = opts.height ?? 1350;
+    const satori = await this.getSatori();
+    const out: Buffer[] = [];
+    for (let i = 0; i < slides.length; i++) {
+      const tree = this.genericSlide(slides[i], i, slides.length, width, height);
+      const svg = await satori(tree, { width, height, fonts: this.fonts });
+      out.push(new Resvg(svg).render().asPng());
+    }
+    return out;
+  }
+
+  private genericSlide(s: GenericSlide, index: number, total: number, w: number, h2: number): any {
+    const bg = this.backgroundStyle(s.image ?? Buffer.alloc(0));
+    const titleSize = s.title.length > 50 ? 56 : s.title.length > 28 ? 68 : 80;
+    const textSize = s.text.length > 280 ? 32 : s.text.length > 160 ? 38 : 44;
+    const panel = h('div', {
+      display: 'flex', flexDirection: 'column',
+      backgroundColor: 'rgba(10,12,9,0.72)', borderRadius: 28, padding: 48,
+    }, [
+      this.chip(`${index + 1}/${total}`),
+      h('div', { display: 'flex', fontSize: titleSize, fontWeight: 700, lineHeight: 1.08, letterSpacing: '-0.02em', marginBottom: 24 }, s.title),
+      h('div', { display: 'flex', fontSize: textSize, lineHeight: 1.3, color: SUB }, s.text),
+    ]);
+    return this.frame(w, h2, bg, panel);
   }
 
   private backgroundStyle(buf: Buffer): Record<string, unknown> {

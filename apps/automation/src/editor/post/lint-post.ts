@@ -17,8 +17,28 @@ export const GLOBAL_BANNED = [
 
 const EMOJI_RE = /\p{Extended_Pictographic}/gu;
 
+const blocksPlain = (blocks: PostSpec['body']): string =>
+  blocks.map((b) => (b.type === 'list' ? b.items.join('\n') : b.text)).map(inlineToPlain).join('\n');
+
 function bodyPlain(spec: PostSpec): string {
-  return spec.body.map((b) => (b.type === 'list' ? b.items.join('\n') : b.text)).map(inlineToPlain).join('\n');
+  return blocksPlain(spec.body);
+}
+
+/** Everything the reader sees as text: post body plus carousel slides and the longread article. */
+function readerPlain(spec: PostSpec): string {
+  const parts = [bodyPlain(spec)];
+  if (spec.format === 'carousel') for (const s of spec.slides ?? []) parts.push(s.title, s.text);
+  if (spec.format === 'longread' && spec.longread) parts.push(spec.longread.title, blocksPlain(spec.longread.blocks));
+  return parts.filter(Boolean).join('\n');
+}
+
+/** Longread teaser limit: the post is a hook for the Telegraph article, not the article. */
+export const TEASER_LIMIT = 600;
+
+/** A Bot API sendVideo needs a direct file: an explicit kind 'video' or a .mp4 path. */
+export function isDirectVideo(m: { url: string; kind?: 'image' | 'video' }): boolean {
+  if (m.kind === 'video') return true;
+  try { return /\.mp4$/i.test(new URL(m.url).pathname); } catch { return false; }
 }
 
 function cyrillicShare(text: string): number {
@@ -66,8 +86,31 @@ export function lintPost(spec: PostSpec, card: LintCard): LintResult {
   if (spec.format === 'photo' && n !== 1) err('media_count', `photo потребує рівно 1 зображення, зараз ${n}`);
   if (spec.format === 'album' && (n < 2 || n > 10)) err('media_count', `album потребує 2–10 зображень, зараз ${n}`);
   if ((spec.format === 'text' || spec.format === 'poll' || spec.format === 'quiz') && n > 1) err('media_count', `${spec.format}: максимум 1 зображення (як прев’ю)`);
-  if (spec.format === 'album' && (spec.buttons.length || spec.cta || card.linkStyle === 'button' && spec.source)) {
-    err('album_with_buttons', 'альбом не підтримує кнопки — прибери cta/buttons або обери інший формат');
+  if (spec.format === 'longread' && n > 1) err('media_count', 'longread: максимум 1 зображення (обкладинка статті)');
+  if (spec.format === 'carousel' && n > 0) err('media_count', 'carousel: зображення задаються в slides[].image, media має бути порожнім');
+  if (spec.format === 'video') {
+    if (n !== 1) err('media_count', `video потребує рівно 1 відео, зараз ${n}`);
+    else if (!isDirectVideo(spec.media[0])) err('video_url', 'video: потрібне пряме посилання на файл .mp4 (або media[0].kind="video"), не сторінка YouTube/соцмережі');
+  } else if (spec.media.some((m) => m.kind === 'video')) {
+    err('media_kind', 'відео (kind="video") можна лише у format=video');
+  }
+  if ((spec.format === 'album' || spec.format === 'carousel') && (spec.buttons.length || spec.cta || card.linkStyle === 'button' && spec.source)) {
+    err('album_with_buttons', `${spec.format === 'album' ? 'альбом' : 'карусель'} не підтримує кнопки — прибери cta/buttons або обери інший формат`);
+  }
+
+  // ── carousel / longread payloads ──────────────────────────────────────────
+  if (spec.format === 'carousel') {
+    const k = spec.slides?.length ?? 0;
+    if (k < 2 || k > 10) err('slides_count', `carousel потребує 2–10 слайдів, зараз ${k}`);
+  } else if (spec.slides?.length) {
+    warn('slides_ignored', 'поле slides використовується лише у format=carousel');
+  }
+  if (spec.format === 'longread') {
+    if (!spec.longread) err('longread_missing', 'longread потребує поля longread {title, blocks}');
+    const teaser = bodyPlain(spec).length;
+    if (teaser > TEASER_LIMIT) err('teaser_too_long', `тизер лонгріду ${teaser} > ${TEASER_LIMIT} символів — повний текст іде в longread.blocks`);
+  } else if (spec.longread) {
+    warn('longread_ignored', 'поле longread використовується лише у format=longread');
   }
 
   // ── poll / quiz ───────────────────────────────────────────────────────────
@@ -86,7 +129,7 @@ export function lintPost(spec: PostSpec, card: LintCard): LintResult {
   }
 
   // ── body / length ─────────────────────────────────────────────────────────
-  if ((spec.format === 'text' || spec.format === 'photo' || spec.format === 'album') && !spec.body.length) {
+  if (['text', 'photo', 'album', 'carousel', 'longread', 'video'].includes(spec.format) && !spec.body.length) {
     err('empty_body', 'порожній текст поста');
   }
   if (errors.every((e) => e.code !== 'format_not_supported_yet' && e.code !== 'poll_missing')) {
@@ -94,6 +137,7 @@ export function lintPost(spec: PostSpec, card: LintCard): LintResult {
     for (const m of rendered.messages) {
       if (m.method === 'sendMessage' && visibleLength(m.text) > TEXT_LIMIT) err('too_long', `текст ${visibleLength(m.text)} > ${TEXT_LIMIT} символів`);
       if (m.method === 'sendMediaGroup' && visibleLength(m.caption) > CAPTION_LIMIT) err('too_long', `підпис альбому ${visibleLength(m.caption)} > ${CAPTION_LIMIT}`);
+      if (m.method === 'sendVideo' && visibleLength(m.caption) > CAPTION_LIMIT) err('too_long', `підпис відео ${visibleLength(m.caption)} > ${CAPTION_LIMIT}`);
     }
   }
   if (spec.body.length && spec.body[0].type !== 'lead' && spec.format !== 'poll' && spec.format !== 'quiz') {
@@ -101,13 +145,13 @@ export function lintPost(spec: PostSpec, card: LintCard): LintResult {
   }
 
   // ── language, banned terms, emoji ─────────────────────────────────────────
-  const plain = [spec.title, bodyPlain(spec), spec.poll?.question ?? '', ...(spec.poll?.options ?? [])].join('\n');
-  if (card.language === 'uk' && cyrillicShare(bodyPlain(spec) || plain) < 0.6) err('not_ukrainian', 'текст має бути українською');
+  const plain = [spec.title, readerPlain(spec), spec.poll?.question ?? '', ...(spec.poll?.options ?? [])].join('\n');
+  if (card.language === 'uk' && cyrillicShare(readerPlain(spec) || plain) < 0.6) err('not_ukrainian', 'текст має бути українською');
   const low = plain.toLowerCase();
   for (const term of [...GLOBAL_BANNED, ...card.bannedTerms.map((t) => t.toLowerCase())]) {
     if (term && low.includes(term)) err('banned_term', `заборонена фраза: "${term}"`);
   }
-  const emoji = (bodyPlain(spec).match(EMOJI_RE) ?? []).length;
+  const emoji = (readerPlain(spec).match(EMOJI_RE) ?? []).length;
   if (card.emojiPolicy === 'none' && emoji > 0) err('emoji_policy', 'у цьому каналі без емодзі');
   if (card.emojiPolicy === 'sparse' && emoji > 3) err('emoji_policy', `забагато емодзі (${emoji}), максимум 3`);
 

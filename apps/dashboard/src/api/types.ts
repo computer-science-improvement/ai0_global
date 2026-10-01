@@ -538,7 +538,7 @@ export type EditorMode = 'off' | 'shadow' | 'live';
 export type EditorSlotStatus = 'planned' | 'running' | 'published' | 'shadowed' | 'skipped' | 'failed';
 export type EditorRunStatus = 'running' | 'ok' | 'error' | 'budget_exceeded' | 'max_steps' | 'disabled';
 export type EditorRole = 'planner' | 'executor' | 'reviewer' | 'checker';
-export type EditorFormat = 'text' | 'photo' | 'album' | 'poll' | 'quiz';
+export type EditorFormat = 'text' | 'photo' | 'album' | 'poll' | 'quiz' | 'video' | 'carousel' | 'longread';
 
 export interface EditorSource {
   id:    string;

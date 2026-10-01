@@ -41,6 +41,23 @@ test('sendPhoto caption position, media group caption on first only', async () =
   assert.equal(calls[1].body.media[1].caption, undefined);
 });
 
+test('sendVideo with caption position and keyboard', async () => {
+  const { calls, pub } = setup([{ ok: true, result: { message_id: 21 } }]);
+  const r = await pub.send('@c', [{ method: 'sendVideo', video: 'https://cdn.example/v.mp4', caption: '<b>v</b>', captionAboveMedia: true, buttons: [[{ text: 'Go', url: 'https://x.example' }]] }]);
+  assert.deepEqual(r.messageIds, [21]);
+  assert.equal(calls[0].url, 'https://api.telegram.org/botTOKEN/sendVideo');
+  assert.equal(calls[0].body.video, 'https://cdn.example/v.mp4');
+  assert.equal(calls[0].body.show_caption_above_media, true);
+  assert.equal(calls[0].body.parse_mode, 'HTML');
+  assert.deepEqual(calls[0].body.reply_markup, { inline_keyboard: [[{ text: 'Go', url: 'https://x.example' }]] });
+});
+
+test('a media group without prepared photos is refused before any call', async () => {
+  const { calls, pub } = setup([]);
+  await assert.rejects(pub.send('@c', [{ method: 'sendMediaGroup', photos: [], caption: 'c' }]), /needs 2–10 photos/);
+  assert.equal(calls.length, 0);
+});
+
 test('quiz poll payload', async () => {
   const { calls, pub } = setup([{ ok: true, result: { message_id: 9 } }]);
   await pub.send('@c', [{ method: 'sendPoll', question: 'Q?', options: ['a', 'b'], quiz: true, correctIndex: 1, explanation: 'bo', anonymous: true }]);

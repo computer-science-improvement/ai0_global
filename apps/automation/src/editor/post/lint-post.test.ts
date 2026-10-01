@@ -11,7 +11,7 @@ test('green case', () => {
 });
 
 test('format rules', () => {
-  assert.ok(codes(makeSpec({ format: 'video' })).includes('format_not_supported_yet'));
+  assert.ok(codes(makeSpec({ format: 'video' })).includes('format_not_allowed'));
   assert.ok(codes(makeSpec(), makeCard({ formats: { text: 1 } })).includes('format_not_allowed'));
   assert.ok(!codes(makeSpec(), makeCard({ formats: { text: 1, photo: 0.1 } })).includes('format_not_allowed'));
 });

@@ -10,7 +10,7 @@ import { describeError } from '../ui/Toast';
 import { useUpsertEditorCard } from '../../api/editor';
 import type { EditorCard, EditorCardFields, EditorFormat, EditorSource } from '../../api/types';
 
-const FORMATS: EditorFormat[] = ['text', 'photo', 'album', 'poll', 'quiz'];
+const FORMATS: EditorFormat[] = ['text', 'photo', 'album', 'poll', 'quiz', 'video', 'carousel', 'longread'];
 
 const SOURCE_PLACEHOLDER: Record<EditorSource['kind'], string> = {
   rss: 'https://…', url: 'https://…', library: 'table, e.g. facts',

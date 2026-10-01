@@ -108,3 +108,61 @@ test('reviewer: memory cap, retire rules, weight step', async () => {
   assert.equal(((await tools.set_format_weights.execute({ weights: { video: 0.5 } }, c)) as any).error, 'unknown_format');
   assert.equal(((await tools.set_format_weights.execute({ weights: { album: 0.6 } }, c)) as any).ok, true);
 });
+
+// ── phase-2 formats (spec 009 T002) ─────────────────────────────────────────
+const P2 = { formats: { text: 1, photo: 1, carousel: 1, longread: 1 } };
+const carouselSpec = () => makeSpec({
+  format: 'carousel', media: [],
+  slides: [{ title: 'Перший', text: 'Телескоп зняв туманність у інфрачервоному світлі.' }, { title: 'Другий', text: 'Оболонки газу розлітаються від зорі.' }],
+});
+function fakeMedia(fail = false) {
+  const calls: string[] = [];
+  return {
+    calls,
+    media: {
+      prepare: async (spec: any, key: any) => {
+        calls.push(`prepare:${spec.format}:${key.slotId}`);
+        if (fail) throw new Error('hosting down');
+        return {
+          prepared: spec.format === 'carousel' ? { slideUrls: ['https://cdn.example/1.png', 'https://cdn.example/2.png'] } : { longreadUrl: 'https://telegra.ph/x' },
+          cleanup: async () => { calls.push('cleanup'); },
+        };
+      },
+    },
+  };
+}
+
+test('carousel in shadow: no media preparation, textual slide preview', async () => {
+  const m = fakeMedia();
+  const { tools, sent, updates } = deps({}, { media: m.media });
+  const r: any = await tools.publish_post.execute({ spec: carouselSpec() }, ctx('shadow', P2));
+  assert.equal(r.ok, true);
+  assert.deepEqual(m.calls, []);
+  assert.equal(sent.length, 0);
+  assert.match(updates[0][1].renderedPreview, /Карусель: 2 слайди/);
+});
+
+test('carousel live: slides prepared, sent as a media group, cleaned up after the send', async () => {
+  const m = fakeMedia();
+  const { tools, sent, updates } = deps({}, { media: m.media });
+  const r: any = await tools.publish_post.execute({ spec: carouselSpec() }, ctx('live', P2));
+  assert.equal(r.ok, true);
+  assert.deepEqual(sent[0][0].photos, ['https://cdn.example/1.png', 'https://cdn.example/2.png']);
+  assert.deepEqual(m.calls, ['prepare:carousel:slot-1', 'cleanup']);
+  assert.equal(updates.at(-1)[1].status, 'published');
+});
+
+test('longread live: Telegraph URL becomes preview + "Читати"; failures are recoverable errors', async () => {
+  const spec = makeSpec({ format: 'longread', media: [], longread: { title: 'Про туманність Кільце', blocks: [{ type: 'p', text: 'Довгий текст про туманність.' }] } });
+  const ok = deps({}, { media: fakeMedia().media });
+  await ok.tools.publish_post.execute({ spec }, ctx('live', P2));
+  assert.deepEqual(ok.sent[0][0].buttons[0], [{ text: 'Читати', url: 'https://telegra.ph/x' }]);
+
+  const none = deps();
+  assert.equal(((await none.tools.publish_post.execute({ spec }, ctx('live', P2))) as any).error, 'format_unavailable');
+  const broken = deps({}, { media: fakeMedia(true).media });
+  const r: any = await broken.tools.publish_post.execute({ spec }, ctx('live', P2));
+  assert.equal(r.error, 'prepare_failed');
+  assert.match(r.details, /hosting down/);
+  assert.equal(broken.sent.length + none.sent.length, 0);
+});

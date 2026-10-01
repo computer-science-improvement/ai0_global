@@ -8,6 +8,9 @@ import { ChannelConfigService } from '../config/channel-config.service';
 import { PublishersModule } from '../publishers/publishers.module';
 import { TelegramNotifier } from '../publishers/telegram-notifier.service';
 import { PostingThrottleService } from '../publishers/posting-throttle.service';
+import { TelegraphService } from '../publishers/telegraph.service';
+import { SlideHostingService } from '../publishers/hosting/slide-hosting.service';
+import { RecipeCarouselRendererService } from '../common/carousel/recipe-carousel-renderer.service';
 import { OpenRouterClient } from './llm/openrouter.client';
 import { AgentLoop } from './harness/agent-loop';
 import { ToolRegistry } from './harness/tool-registry';
@@ -24,6 +27,8 @@ import { EditorPlansRepository } from './repo/editor-plans.repository';
 import { EditorMemoryRepository } from './repo/editor-memory.repository';
 import { TelegramEditorPublisher } from './publish/telegram-editor.publisher';
 import { SponsoredPublisher } from './publish/sponsored.publisher';
+import { EditorMediaPreparer } from './publish/prepare-media';
+import { safeGetBytes } from './net/safe-http';
 import { AdOrdersRepository } from '../payments/ad-orders.repository';
 import { EditorRunnerService } from './roles/editor-runner.service';
 import { EditorScheduler } from './editor.scheduler';
@@ -82,15 +87,29 @@ export const EDITOR_PROVIDERS = [
     {
       // One registry for the runner and the ops surface (REST tools endpoint → MCP).
       provide: EDITOR_REGISTRY,
-      inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_SKILLS, ChannelConfigService, TelegramNotifier, PostingThrottleService],
+      inject: [
+        DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_SKILLS, ChannelConfigService, TelegramNotifier, PostingThrottleService,
+        RecipeCarouselRendererService, SlideHostingService, TelegraphService,
+      ],
       useFactory: (
         pool: Pool, cfg: ConfigService, repos: EditorRepos, skills: SkillLibrary, channelConfig: ChannelConfigService,
         notifier: TelegramNotifier, throttle: PostingThrottleService,
+        renderer: RecipeCarouselRendererService, hosting: SlideHostingService, telegraph: TelegraphService,
       ): ToolRegistry => {
         const env = (k: string) => cfg.get<string>(k) ?? undefined;
         const publisher = new TelegramEditorPublisher({
           resolveChannel:     (k) => channelConfig.resolveChannel(k),
           isPublishPausedFor: (k) => channelConfig.isPublishPausedFor(k),
+        });
+        // Carousel slides and longread pages are produced only by a live publish_post (spec 009 T002).
+        const media = new EditorMediaPreparer({
+          renderSlides: (slides) => renderer.renderSlides(slides),
+          hosting,
+          createPage:   (a) => telegraph.createPage(a),
+          fetchImage:   async (url) => {
+            const r = await safeGetBytes(url);
+            return r.status < 400 ? r.body : null;
+          },
         });
         return new ToolRegistry([
           ...buildReadTools({ pool, readonly: new ReadonlyQueryService(pool), skills }),
@@ -99,6 +118,7 @@ export const EDITOR_PROVIDERS = [
           ...buildRoleTools({
             pool, plans: repos.plans, memory: repos.memory, channels: repos.channels, publisher,
             recordPublish: (k) => throttle.recordPublish(k),
+            media,
             notifyPreview: env('EDITOR_SHADOW_PREVIEW') === 'false'
               ? undefined
               : (k, html) => notifier.notifyAlert(previewMessage(k, html)),

@@ -73,7 +73,16 @@ export class TelegramEditorPublisher {
           show_caption_above_media: m.captionAboveMedia, ...keyboard(m.buttons),
         };
         break;
+      case 'sendVideo':
+        method = 'sendVideo';
+        body = {
+          chat_id: chatId, video: m.video, caption: m.caption, parse_mode: 'HTML', supports_streaming: true,
+          show_caption_above_media: m.captionAboveMedia, ...keyboard(m.buttons),
+        };
+        break;
       case 'sendMediaGroup':
+        // A carousel whose slides were never prepared (hosted) must not go out as an empty group.
+        if (m.photos.length < 2) throw new Error(`sendMediaGroup needs 2–10 photos, got ${m.photos.length}`);
         method = 'sendMediaGroup';
         body = {
           chat_id: chatId,

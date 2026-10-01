@@ -46,14 +46,14 @@ test('rejects bad mode, timezone, formats, hashtags, sources and budget', () => 
   const r = mergeCard('@chan', makeCard(), {
     mode: 'on' as any,
     timezone: 'Mars/Olympus',
-    formats: { video: 1 } as any,
+    formats: { story: 1 } as any,
     hashtags: ['#космос'],
     sources: [{ id: 'x', kind: 'rss', ref: 'ftp://feed' }],
     dailyBudgetUsd: -1,
     exploreRatio: 1.5,
   });
   const p = issues(r);
-  for (const k of ['mode', 'timezone', 'formats.video', 'hashtags.0', 'sources.0.ref', 'dailyBudgetUsd', 'exploreRatio']) {
+  for (const k of ['mode', 'timezone', 'formats.story', 'hashtags.0', 'sources.0.ref', 'dailyBudgetUsd', 'exploreRatio']) {
     assert.ok(p.includes(k), `expected issue at ${k}, got ${p.join(',')}`);
   }
 });

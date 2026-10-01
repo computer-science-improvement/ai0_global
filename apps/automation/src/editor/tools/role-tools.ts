@@ -11,6 +11,7 @@ import type { EditorPlansRepository } from '../repo/editor-plans.repository';
 import type { EditorMemoryRepository } from '../repo/editor-memory.repository';
 import type { EditorChannelsRepository } from '../repo/editor-channels.repository';
 import type { SendResult } from '../publish/telegram-editor.publisher';
+import { NEEDS_PREPARE, PreparedPublish } from '../publish/prepare-media';
 import type { TgMessage } from '../post/render-telegram';
 import { cardFrom } from './compose-tools';
 
@@ -27,6 +28,8 @@ export interface RoleToolDeps {
   publisher: { send(channelKey: string, messages: TgMessage[]): Promise<SendResult> };
   recordPublish: (channelKey: string) => void;
   notifyPreview?: (channelKey: string, html: string) => Promise<void>;
+  /** Live-only media stage for carousel (render + host slides) and longread (Telegraph page). */
+  media?: { prepare(spec: PostSpec, key: { channelKey: string; slotId: string }): Promise<PreparedPublish> };
   now?: () => Date;
 }
 
@@ -113,17 +116,32 @@ export function buildRoleTools(d: RoleToolDeps): EditorTool[] {
         return { ok: true, shadow: true, warnings: g.lint.warnings };
       }
 
-      const sent = await d.publisher.send(channelKey, g.rendered.messages);
-      const messageId = sent.messageIds[g.rendered.primary] ?? sent.messageIds[0];
-      const postId = await d.plans.insertPublication({
-        channelKey, messageId, sourceUrl: g.ref, title: spec.title, tags: spec.hashtags, format: spec.format, slotId,
-      });
-      d.recordPublish(channelKey);
-      await d.plans.updateSlot(slotId, {
-        status: 'published', publishedPostId: postId, postSpec: spec, renderedPreview: g.rendered.preview,
-        error: sent.partialError ? `partial: ${sent.partialError}` : null,
-      });
-      return { ok: true, shadow: false, message_id: messageId, ...(sent.partialError ? { partial_error: sent.partialError } : {}) };
+      // Live only, after every guard: the one place that uploads slides or creates Telegraph pages.
+      let prep: PreparedPublish = { prepared: {}, cleanup: async () => {} };
+      if (NEEDS_PREPARE.has(spec.format)) {
+        if (!d.media) return { error: 'format_unavailable', details: `${spec.format}: підготовка медіа не налаштована — обери інший формат` };
+        try {
+          prep = await d.media.prepare(spec, { channelKey, slotId });
+        } catch (err: any) {
+          return { error: 'prepare_failed', details: `${spec.format}: ${err?.message ?? err} — обери інший формат або пропусти слот` };
+        }
+      }
+      try {
+        const rendered = renderTelegram(spec, card, prep.prepared);
+        const sent = await d.publisher.send(channelKey, rendered.messages);
+        const messageId = sent.messageIds[rendered.primary] ?? sent.messageIds[0];
+        const postId = await d.plans.insertPublication({
+          channelKey, messageId, sourceUrl: g.ref, title: spec.title, tags: spec.hashtags, format: spec.format, slotId,
+        });
+        d.recordPublish(channelKey);
+        await d.plans.updateSlot(slotId, {
+          status: 'published', publishedPostId: postId, postSpec: spec, renderedPreview: rendered.preview,
+          error: sent.partialError ? `partial: ${sent.partialError}` : null,
+        });
+        return { ok: true, shadow: false, message_id: messageId, ...(sent.partialError ? { partial_error: sent.partialError } : {}) };
+      } finally {
+        await prep.cleanup();
+      }
     },
   });
 

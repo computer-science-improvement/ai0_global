@@ -7,6 +7,7 @@ export interface UrlButton { text: string; url: string }
 export type TgMessage =
   | { method: 'sendMessage'; text: string; preview: { url: string; showAboveText: boolean } | null; buttons: UrlButton[][] }
   | { method: 'sendPhoto'; photo: string; caption: string; captionAboveMedia: boolean; buttons: UrlButton[][] }
+  | { method: 'sendVideo'; video: string; caption: string; captionAboveMedia: boolean; buttons: UrlButton[][] }
   | { method: 'sendMediaGroup'; photos: string[]; caption: string }
   | { method: 'sendPoll'; question: string; options: string[]; quiz: boolean; correctIndex: number | null; explanation: string | null; anonymous: boolean };
 
@@ -18,6 +19,17 @@ export interface RenderResult {
   preview:  string;
 }
 
+/**
+ * Output of the async "prepare media" step of a LIVE publish (publish/prepare-media.ts):
+ * carousel slides rendered and hosted, the longread's Telegraph page created.
+ * Absent in shadow mode and in previews, where nothing may be uploaded.
+ */
+export interface PreparedMedia {
+  slideUrls?:   string[];
+  longreadUrl?: string;
+}
+
+export const READ_BUTTON = 'Читати';
 export const CAPTION_LIMIT = 1024;
 export const TEXT_LIMIT    = 4096;
 
@@ -62,12 +74,38 @@ function composeButtons(spec: PostSpec, card: Pick<EditorCard, 'linkStyle'>): Ur
   return [...rows, ...spec.buttons.map((r) => r.map((b) => ({ text: b.text, url: b.url })))];
 }
 
+/** Ukrainian plural: 1 слайд, 2 слайди, 5 слайдів. */
+export function pluralUk(n: number, one: string, few: string, many: string): string {
+  const d = n % 10;
+  const dd = n % 100;
+  if (d === 1 && dd !== 11) return one;
+  if (d >= 2 && d <= 4 && (dd < 12 || dd > 14)) return few;
+  return many;
+}
+
+/** Text description of carousel slides for previews (nothing is rendered or uploaded). */
+function slidesPreview(spec: PostSpec): string {
+  const slides = spec.slides ?? [];
+  const lines = slides.map((s, i) => `${i + 1}. <b>${escapeHtml(s.title)}</b> — ${escapeHtml(s.text)}${s.image ? `\n   🖼 ${escapeHtml(s.image)}` : ''}`);
+  return `🖼 Карусель: ${slides.length} ${pluralUk(slides.length, 'слайд', 'слайди', 'слайдів')}\n${lines.join('\n')}`;
+}
+
+/** Text outline of the longread for previews (the Telegraph page is only created on a live publish). */
+function longreadPreview(spec: PostSpec, url: string | undefined): string {
+  const lr = spec.longread;
+  if (!lr) return '📖 Лонгрід: (немає статті)';
+  const n = lr.blocks.length;
+  const outline = lr.blocks.slice(0, 6).map(renderBlock).join('\n\n');
+  const more = n > 6 ? `\n\n… ще ${n - 6} ${pluralUk(n - 6, 'блок', 'блоки', 'блоків')}` : '';
+  return `📖 Лонгрід «${escapeHtml(lr.title)}»: ${n} ${pluralUk(n, 'блок', 'блоки', 'блоків')}${url ? ` → ${escapeHtml(url)}` : ''}\n\n${outline}${more}`;
+}
+
 /**
  * Pure PostSpec → Telegram Bot API calls. Limits are enforced by lintPost;
  * the renderer only picks the right shape (e.g. a long "photo" post becomes a
  * text message with a large image preview so nothing is truncated).
  */
-export function renderTelegram(spec: PostSpec, card: Pick<EditorCard, 'footer' | 'linkStyle'>): RenderResult {
+export function renderTelegram(spec: PostSpec, card: Pick<EditorCard, 'footer' | 'linkStyle'>, prepared: PreparedMedia = {}): RenderResult {
   const text = composeText(spec, card);
   const buttons = composeButtons(spec, card);
   const image = spec.media[0]?.url ?? null;
@@ -81,6 +119,31 @@ export function renderTelegram(spec: PostSpec, card: Pick<EditorCard, 'footer' |
     }
     case 'album':
       return { messages: [{ method: 'sendMediaGroup', photos: spec.media.map((m) => m.url), caption: text }], primary: 0, preview: text };
+    case 'carousel':
+      // Slides become hosted images only in the live publish path; until then the group has no photos.
+      return {
+        messages: [{ method: 'sendMediaGroup', photos: prepared.slideUrls ?? [], caption: text }],
+        primary: 0,
+        preview: `${text}\n\n${slidesPreview(spec)}`,
+      };
+    case 'longread': {
+      const url = prepared.longreadUrl;
+      return {
+        messages: [{
+          method: 'sendMessage', text,
+          preview: url ? { url, showAboveText: spec.placement === 'above' } : null,
+          buttons: url ? [[{ text: READ_BUTTON, url }], ...buttons] : buttons,
+        }],
+        primary: 0,
+        preview: `${text}\n\n${longreadPreview(spec, url)}`,
+      };
+    }
+    case 'video':
+      return {
+        messages: [{ method: 'sendVideo', video: spec.media[0]?.url ?? '', caption: text, captionAboveMedia: spec.placement === 'below', buttons }],
+        primary: 0,
+        preview: `${text}\n\n🎬 ${escapeHtml(spec.media[0]?.url ?? '(немає відео)')}`,
+      };
     case 'poll':
     case 'quiz': {
       const p = spec.poll;

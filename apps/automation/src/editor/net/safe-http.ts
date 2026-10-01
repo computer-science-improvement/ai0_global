@@ -8,19 +8,25 @@ export interface SafeGetResult {
   body:        string;
 }
 
+export interface SafeGetBytesResult {
+  url:         string;
+  status:      number;
+  contentType: string;
+  body:        Buffer;
+}
+
 export type RawGet = (url: string, cfg: Record<string, unknown>) => Promise<{ status: number; headers: Record<string, any>; data: any }>;
 
 const MAX_REDIRECTS = 3;
 const MAX_BYTES     = 2_000_000;
 
+interface SafeOpts { lookup?: Lookup; get?: RawGet; timeoutMs?: number; accept?: string; maxBytes?: number }
+
 /**
- * GET with SSRF protection on every hop: redirects are followed manually so
- * each Location is re-validated (axios' built-in follow would skip the check).
+ * Redirects are followed manually so each Location is re-validated (axios'
+ * built-in follow would skip the check).
  */
-export async function safeGet(
-  raw: string,
-  opts: { lookup?: Lookup; get?: RawGet; timeoutMs?: number; accept?: string } = {},
-): Promise<SafeGetResult> {
+async function guardedGet(raw: string, opts: SafeOpts, responseType: 'text' | 'arraybuffer') {
   const get: RawGet = opts.get ?? ((u, c) => axios.get(u, c));
   let current = raw;
   for (let hop = 0; hop <= MAX_REDIRECTS; hop++) {
@@ -28,8 +34,8 @@ export async function safeGet(
     const res = await get(url.toString(), {
       timeout:          opts.timeoutMs ?? 10_000,
       maxRedirects:     0,
-      maxContentLength: MAX_BYTES,
-      responseType:     'text',
+      maxContentLength: opts.maxBytes ?? MAX_BYTES,
+      responseType,
       transformResponse: (d: unknown) => d,
       validateStatus:   () => true,
       headers: {
@@ -41,12 +47,36 @@ export async function safeGet(
       current = new URL(String(res.headers.location), url).toString();
       continue;
     }
-    return {
-      url:         url.toString(),
-      status:      res.status,
-      contentType: String(res.headers?.['content-type'] ?? ''),
-      body:        typeof res.data === 'string' ? res.data : JSON.stringify(res.data ?? ''),
-    };
+    return { url: url.toString(), res };
   }
   throw new Error(`too many redirects (>${MAX_REDIRECTS})`);
+}
+
+/** GET with SSRF protection on every hop. */
+export async function safeGet(
+  raw: string,
+  opts: { lookup?: Lookup; get?: RawGet; timeoutMs?: number; accept?: string } = {},
+): Promise<SafeGetResult> {
+  const { url, res } = await guardedGet(raw, opts, 'text');
+  return {
+    url,
+    status:      res.status,
+    contentType: String(res.headers?.['content-type'] ?? ''),
+    body:        typeof res.data === 'string' ? res.data : JSON.stringify(res.data ?? ''),
+  };
+}
+
+/** Binary GET (images for rendered slides) with the same SSRF protection; default cap 8 MB. */
+export async function safeGetBytes(
+  raw: string,
+  opts: { lookup?: Lookup; get?: RawGet; timeoutMs?: number; accept?: string; maxBytes?: number } = {},
+): Promise<SafeGetBytesResult> {
+  const { url, res } = await guardedGet(raw, { accept: 'image/png,image/jpeg,image/*;q=0.8', maxBytes: 8_000_000, ...opts }, 'arraybuffer');
+  const d = res.data;
+  return {
+    url,
+    status:      res.status,
+    contentType: String(res.headers?.['content-type'] ?? ''),
+    body:        Buffer.isBuffer(d) ? d : d instanceof ArrayBuffer ? Buffer.from(d) : Buffer.from(typeof d === 'string' ? d : ''),
+  };
 }
