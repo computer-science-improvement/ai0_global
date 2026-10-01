@@ -1,0 +1,142 @@
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import { z } from 'zod';
+import { AgentLoop } from './agent-loop';
+import { defineTool } from './tool';
+import { FakeBudget, FakeLlm, MemoryRecorder } from './testing/fakes';
+import { resolveModel } from '../llm/model-registry';
+
+const model = resolveModel('executor', () => undefined);
+
+const echo = defineTool({
+  name: 'echo', description: 'echo back', kind: 'read', roles: ['executor'],
+  input: z.object({ text: z.string() }),
+  execute: async ({ text }) => ({ echoed: text }),
+});
+const boom = defineTool({
+  name: 'boom', description: 'throws', kind: 'read', roles: ['executor'],
+  input: z.object({}), execute: async () => { throw new Error('kaput'); },
+});
+const slow = defineTool({
+  name: 'slow', description: 'never resolves', kind: 'read', roles: ['executor'],
+  input: z.object({}), execute: () => new Promise(() => {}),
+});
+let published: any[] = [];
+const publish = defineTool({
+  name: 'publish', description: 'terminal', kind: 'terminal', roles: ['executor'],
+  input: z.object({ title: z.string().min(1) }),
+  execute: async (i) => { if (i.title === 'bad') return { error: 'lint_failed' }; published.push(i); return { ok: true, id: 7 }; },
+});
+
+function loop(llm: FakeLlm, opts: { budget?: FakeBudget; enabled?: boolean; toolTimeoutMs?: number } = {}) {
+  const recorder = new MemoryRecorder();
+  const l = new AgentLoop({ llm, recorder, budget: opts.budget ?? new FakeBudget(), enabled: () => opts.enabled ?? true, toolTimeoutMs: opts.toolTimeoutMs });
+  return { l, recorder };
+}
+const input = (extra: any = {}) => ({ role: 'executor' as const, channelKey: 'ch', model, system: 's', user: 'u', tools: [echo, boom, slow, publish], ...extra });
+
+test('stops on successful terminal tool and records totals', async () => {
+  published = [];
+  const llm = new FakeLlm([
+    { calls: [{ name: 'echo', args: { text: 'a' } }] },
+    { calls: [{ name: 'publish', args: { title: 'Hello' } }] },
+  ]);
+  const { l, recorder } = loop(llm);
+  const res = await l.run(input());
+  assert.equal(res.status, 'ok');
+  assert.equal(res.terminalTool, 'publish');
+  assert.deepEqual(res.terminalResult, { ok: true, id: 7 });
+  assert.equal(published.length, 1);
+  assert.equal(recorder.runs[0].status, 'ok');
+  assert.equal(recorder.runs[0].totals!.steps, 4); // 2 llm + 2 tool
+  assert.equal(res.totals.promptTokens, 200);
+  // tool result fed back to the model
+  const second = llm.requests[1].messages;
+  assert.equal(second[second.length - 1].role, 'tool');
+  assert.match((second[second.length - 1] as any).content, /echoed/);
+});
+
+test('terminal tool returning an error does not end the run', async () => {
+  const llm = new FakeLlm([
+    { calls: [{ name: 'publish', args: { title: 'bad' } }] },
+    { calls: [{ name: 'publish', args: { title: 'good' } }] },
+  ]);
+  const res = await loop(llm).l.run(input());
+  assert.equal(res.status, 'ok');
+  assert.equal(llm.requests.length, 2);
+});
+
+test('invalid args, invalid json, unknown tool and throwing tool are returned as errors', async () => {
+  const llm = new FakeLlm([
+    { calls: [
+      { name: 'echo', args: { text: 5 } },
+      { name: 'echo', args: '{not json' },
+      { name: 'rm_rf', args: {} },
+      { name: 'boom', args: {} },
+    ] },
+    { calls: [{ name: 'publish', args: { title: 'ok' } }] },
+  ]);
+  const { l, recorder } = loop(llm);
+  const res = await l.run(input());
+  assert.equal(res.status, 'ok');
+  const errs = recorder.steps.filter((s) => s.type === 'tool' && s.isError).map((s) => (s.output as any).error);
+  assert.deepEqual(errs, ['invalid_args', 'invalid_json', 'tool_not_allowed', 'tool_failed']);
+});
+
+test('tool timeout becomes tool_failed', async () => {
+  const llm = new FakeLlm([
+    { calls: [{ name: 'slow', args: {} }] },
+    { calls: [{ name: 'publish', args: { title: 'ok' } }] },
+  ]);
+  const { l, recorder } = loop(llm, { toolTimeoutMs: 20 });
+  await l.run(input());
+  const step = recorder.steps.find((s) => s.tool === 'slow')!;
+  assert.match((step.output as any).details, /timed out/);
+});
+
+test('max steps', async () => {
+  const llm = new FakeLlm(Array.from({ length: 3 }, () => ({ calls: [{ name: 'echo', args: { text: 'x' } }] })));
+  const res = await loop(llm).l.run(input({ maxSteps: 3 }));
+  assert.equal(res.status, 'max_steps');
+});
+
+test('budget exhausted mid-run stops before next LLM call', async () => {
+  const llm = new FakeLlm([{ calls: [{ name: 'echo', args: { text: 'x' } }] }]);
+  const budget = new FakeBudget([{ ok: true }, { ok: false, scope: 'channel', spentUsd: 0.6, limitUsd: 0.5 }]);
+  const { l, recorder } = loop(llm, { budget });
+  const res = await l.run(input());
+  assert.equal(res.status, 'budget_exceeded');
+  assert.equal(llm.requests.length, 1);
+  assert.equal(recorder.runs[0].status, 'budget_exceeded');
+});
+
+test('text answer gets one nudge, then ends ok with finalText', async () => {
+  const llm = new FakeLlm([{ text: 'я думаю…' }, { text: 'все' }]);
+  const res = await loop(llm).l.run(input());
+  assert.equal(res.status, 'ok');
+  assert.equal(res.finalText, 'все');
+  assert.equal(res.terminalTool, undefined);
+  assert.match((llm.requests[1].messages.at(-1) as any).content, /publish/);
+});
+
+test('LLM failure ends the run as error without throwing', async () => {
+  const llm = new FakeLlm([new Error('OpenRouter request failed (500)')]);
+  const res = await loop(llm).l.run(input());
+  assert.equal(res.status, 'error');
+  assert.match(res.error!, /500/);
+});
+
+test('disabled harness does not start a run', async () => {
+  const { l, recorder } = loop(new FakeLlm([]), { enabled: false });
+  const res = await l.run(input());
+  assert.equal(res.status, 'disabled');
+  assert.equal(recorder.runs.length, 0);
+});
+
+test('tools are sent as JSON-schema specs', async () => {
+  const llm = new FakeLlm([{ calls: [{ name: 'publish', args: { title: 'x' } }] }]);
+  await loop(llm).l.run(input());
+  const names = llm.requests[0].tools!.map((t) => t.name);
+  assert.deepEqual(names, ['echo', 'boom', 'slow', 'publish']);
+  assert.equal((llm.requests[0].tools![0].parameters as any).properties.text.type, 'string');
+});
