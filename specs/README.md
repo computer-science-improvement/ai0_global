@@ -25,8 +25,16 @@ Each feature directory has `spec.md` (what and why), `plan.md` (how, plus Consti
 | 014 | [Cross-promo engine](014-cross-promo/spec.md): evaluate, negotiate, verify ВП | P2 | 011, tracking | SPEC |
 | 015 | [Deal → paid post](015-deal-to-post/spec.md): quote, hold, invoice, creative, schedule | P1 | 008, 011 | SPEC |
 | 016 | [Video bridge](016-video-bridge/spec.md): shorts-studio → editor video posts | P2 | 009 | SPEC |
+| 017 | [Agent registry](017-agent-platform/spec.md): named agents, agent pages, DB skills with versions and self-edit ([platform design](017-agent-platform/design.md)) | P1 | 003–010 | SPEC |
+| 018 | [Agent chat and builder](018-agent-chat-builder/spec.md): `@handle` in the chat, `@ai0` creates and changes agents, resource profiles | P1 | 017 | SPEC |
+| 019 | [Native multi-platform publishing](019-native-multiplatform/spec.md): capability matrix, per-platform variants, TikTok fix, platform stats; 019b video | P1 | 009, 017 | SPEC |
+| 020 | [Playbook, ideas, day planner](020-playbook-ideas-planner/spec.md): brief → playbook, series, idea reviewer, network plan | P1 | 017, 019 | SPEC |
+| 021 | [MANAGER and directives](021-manager-directives/spec.md): KPI digest, directives, owner cards, effect evaluation | P1 | 020 | SPEC |
+| 022 | [Network cross-promo](022-network-cross-promo/spec.md): own-resource promo and reposts, tracked links, transitions KPI | P2 | 021 | SPEC |
 
 Suggested order for the next wave: 012 → 011 (phases 0–1) → 015 → 013 → 014; 016 is independent.
+
+Agent platform wave: 017 → 018 ∥ 019 → 020 → 021 → 022 (019b after 016).
 
 Order of execution (first wave): 001 ∥ 003 → 004 → 005 → 006 → 002 (only for strategies still live) → 007 → 008 → 009 → 010.
 
