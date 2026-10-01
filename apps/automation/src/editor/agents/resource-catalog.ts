@@ -80,11 +80,20 @@ export class ResourceCatalog {
       for (const r of yt) out.push({ ref: resourceRef('youtube', r.id), platform: 'youtube', title: r.title ?? null, username: null, followers: null, groupId: null, groupName: null, agent: null });
     }
 
-    // Which agent runs each resource: its own orchestrator, else its network's.
+    // Which agent runs each resource: its own orchestrator, else — in an orchestrated
+    // network — the orchestrator of the network's Telegram channel (spec 020).
     const { rows: ag } = await this.d.pool.query(
       `SELECT scope, scope_id, handle FROM agents WHERE parent_id IS NULL AND kind = 'orchestrator'`);
     const byScope = new Map(ag.map((a) => [`${a.scope}:${a.scope_id}`, a.handle as string]));
-    for (const r of out) r.agent = byScope.get(`resource:${r.ref}`) ?? (r.groupId ? byScope.get(`network:${r.groupId}`) ?? null : null);
+    const { rows: groups } = await this.d.pool.query(
+      `SELECT g.id, g.mode, (SELECT channel_key FROM tracked_channels t WHERE t.group_id = g.id AND t.channel_key IS NOT NULL LIMIT 1) AS anchor
+         FROM meta_account_groups g`).catch(() => ({ rows: [] as any[] }));
+    const anchorOf = new Map(groups.filter((g) => g.mode === 'orchestrated' && g.anchor).map((g) => [g.id as string, `telegram:${g.anchor}`]));
+    for (const r of out) {
+      const anchor = r.groupId ? anchorOf.get(r.groupId) : undefined;
+      r.agent = byScope.get(`resource:${r.ref}`) ?? (anchor ? byScope.get(`resource:${anchor}`) ?? null : null)
+        ?? (r.groupId ? byScope.get(`network:${r.groupId}`) ?? null : null);
+    }
     return out;
   }
 

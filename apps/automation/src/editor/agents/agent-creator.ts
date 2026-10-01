@@ -66,10 +66,13 @@ export class AgentCreator {
       if (!parseResourceRef(input.resource_ref)) return { error: 'invalid_ref' };
       return { ok: true, input, scope: 'resource', scopeId: input.resource_ref };
     }
+    // A network is run by the orchestrator of its Telegram channel (spec 020): create that one.
     const members = resources.filter((x) => x.groupId === input.network_id);
     if (!members.length) return { error: 'network_not_found', details: 'група акаунтів порожня або не існує' };
-    if (await this.d.agents.findTop('orchestrator', 'network', input.network_id!)) return { error: 'network_has_agent' };
-    return { ok: true, input, scope: 'network', scopeId: input.network_id! };
+    const anchor = members.find((x) => x.platform === 'telegram');
+    if (!anchor) return { error: 'network_needs_telegram', details: 'мережу веде агент її Telegram-каналу — додайте канал у групу' };
+    if (anchor.agent) return { error: 'network_has_agent', details: `канал мережі вже веде @${anchor.agent} — увімкніть режим мережі на його сторінці` };
+    return { ok: true, input: { ...input, resource_ref: anchor.ref, network_id: undefined }, scope: 'resource', scopeId: anchor.ref };
   }
 
   async create(raw: unknown): Promise<{ agent: Agent; cardCreated: boolean } | { error: string; details?: unknown }> {
