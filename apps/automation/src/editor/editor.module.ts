@@ -38,6 +38,13 @@ import { EditorRunnerService } from './roles/editor-runner.service';
 import { EditorScheduler } from './editor.scheduler';
 import { htmlToPlain } from './post/inline-markup';
 import { EditorRunsRepository } from './repo/editor-runs.repository';
+import { EditorChatRepository } from './repo/editor-chat.repository';
+import { ReservedDispatcher } from './publish/reserved-dispatcher';
+import type { PublishSpecDeps } from './publish/publish-spec';
+import { DraftsService } from './chat/drafts.service';
+import { buildComposerTools } from './chat/composer-tools';
+import { EditorChatService } from './chat/editor-chat.service';
+import { EDITOR_CHAT, EDITOR_DRAFTS, EditorChatController } from './api/editor-chat.controller';
 import { EditorOpsService } from './api/editor-ops.service';
 import { EDITOR_OPS, EditorController } from './api/editor.controller';
 import { AuthModule } from '../auth/auth.module';
@@ -48,13 +55,18 @@ export const EDITOR_SCHEDULER = 'EDITOR_SCHEDULER';
 export const EDITOR_REPOS     = 'EDITOR_REPOS';
 export const EDITOR_SKILLS    = 'EDITOR_SKILLS';
 export const EDITOR_REGISTRY  = 'EDITOR_REGISTRY';
-export { EDITOR_OPS };
+/** Live publish ports shared by publish_post and the chat (Telegram sender, media stage, mirrors). */
+export const EDITOR_PUBLISH   = 'EDITOR_PUBLISH';
+export { EDITOR_OPS, EDITOR_CHAT, EDITOR_DRAFTS };
+
+type PublishPorts = Pick<PublishSpecDeps, 'publisher' | 'media' | 'crosspost'>;
 
 export interface EditorRepos {
   channels: EditorChannelsRepository;
   plans:    EditorPlansRepository;
   memory:   EditorMemoryRepository;
   runs:     EditorRunsRepository;
+  chat:     EditorChatRepository;
 }
 
 const isEnabled = (cfg: ConfigService) => cfg.get<string>('EDITOR_ENABLED') === 'true';
@@ -85,29 +97,25 @@ export const EDITOR_PROVIDERS = [
         plans:    new EditorPlansRepository(pool),
         memory:   new EditorMemoryRepository(pool),
         runs:     new EditorRunsRepository(pool),
+        chat:     new EditorChatRepository(pool),
       }),
     },
     { provide: EDITOR_SKILLS, useFactory: () => new SkillLibrary() },
     {
-      // One registry for the runner and the ops surface (REST tools endpoint → MCP).
-      provide: EDITOR_REGISTRY,
+      provide: EDITOR_PUBLISH,
       inject: [
-        DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_SKILLS, ChannelConfigService, TelegramNotifier, PostingThrottleService,
-        RecipeCarouselRendererService, SlideHostingService, TelegraphService, CrossPostService, GroupFanOutService,
+        ChannelConfigService, RecipeCarouselRendererService, SlideHostingService, TelegraphService, CrossPostService, GroupFanOutService,
       ],
       useFactory: (
-        pool: Pool, cfg: ConfigService, repos: EditorRepos, skills: SkillLibrary, channelConfig: ChannelConfigService,
-        notifier: TelegramNotifier, throttle: PostingThrottleService,
-        renderer: RecipeCarouselRendererService, hosting: SlideHostingService, telegraph: TelegraphService,
-        crossPost: CrossPostService, groupFanOut: GroupFanOutService,
-      ): ToolRegistry => {
-        const env = (k: string) => cfg.get<string>(k) ?? undefined;
-        const publisher = new TelegramEditorPublisher({
+        channelConfig: ChannelConfigService, renderer: RecipeCarouselRendererService, hosting: SlideHostingService,
+        telegraph: TelegraphService, crossPost: CrossPostService, groupFanOut: GroupFanOutService,
+      ): PublishPorts => ({
+        publisher: new TelegramEditorPublisher({
           resolveChannel:     (k) => channelConfig.resolveChannel(k),
           isPublishPausedFor: (k) => channelConfig.isPublishPausedFor(k),
-        });
-        // Carousel slides and longread pages are produced only by a live publish_post (spec 009 T002).
-        const media = new EditorMediaPreparer({
+        }),
+        // Carousel slides and longread pages are produced only by a live publish (spec 009 T002).
+        media: new EditorMediaPreparer({
           renderSlides: (slides) => renderer.renderSlides(slides),
           hosting,
           createPage:   (a) => telegraph.createPage(a),
@@ -115,25 +123,53 @@ export const EDITOR_PROVIDERS = [
             const r = await safeGetBytes(url);
             return r.status < 400 ? r.body : null;
           },
-        });
+        }),
         // Live posts are mirrored like the legacy strategies' (spec 009 T003); card.crosspost=false opts out.
-        const crosspost = new EditorCrossPoster({
+        crosspost: new EditorCrossPoster({
           crossPost, groupFanOut,
           postLink: (k, id) => tgPostLink(channelConfig.getChannelMeta(k)?.username ?? null, id),
+        }),
+      }),
+    },
+    {
+      // Deterministic draft actions of the editor chat (spec 010): composer tools, REST buttons, scheduled path.
+      provide: EDITOR_DRAFTS,
+      inject: [DB_POOL, EDITOR_REPOS, EDITOR_PUBLISH, ChannelConfigService, TelegramNotifier, PostingThrottleService],
+      useFactory: (
+        pool: Pool, repos: EditorRepos, ports: PublishPorts, channelConfig: ChannelConfigService,
+        notifier: TelegramNotifier, throttle: PostingThrottleService,
+      ): DraftsService => {
+        const logger = new Logger('EditorDrafts');
+        return new DraftsService({
+          pool, repo: repos.chat, channels: repos.channels, plans: repos.plans, ...ports,
+          recordPublish: (k) => throttle.recordPublish(k),
+          isPaused: (k) => channelConfig.isPublishPausedFor(k),
+          notify: (t) => notifier.notifyAlert(t),
+          log: (m) => logger.warn(m),
         });
+      },
+    },
+    {
+      // One registry for the runner, the chat and the ops surface (REST tools endpoint → MCP).
+      provide: EDITOR_REGISTRY,
+      inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_SKILLS, EDITOR_PUBLISH, EDITOR_DRAFTS, TelegramNotifier, PostingThrottleService],
+      useFactory: (
+        pool: Pool, cfg: ConfigService, repos: EditorRepos, skills: SkillLibrary, ports: PublishPorts, drafts: DraftsService,
+        notifier: TelegramNotifier, throttle: PostingThrottleService,
+      ): ToolRegistry => {
+        const env = (k: string) => cfg.get<string>(k) ?? undefined;
         return new ToolRegistry([
           ...buildReadTools({ pool, readonly: new ReadonlyQueryService(pool), skills }),
           ...buildComposeTools(),
           ...buildApiTools({ env }),
           ...buildRoleTools({
-            pool, plans: repos.plans, memory: repos.memory, channels: repos.channels, publisher,
+            pool, plans: repos.plans, memory: repos.memory, channels: repos.channels, ...ports,
             recordPublish: (k) => throttle.recordPublish(k),
-            media,
-            crosspost,
             notifyPreview: env('EDITOR_SHADOW_PREVIEW') === 'false'
               ? undefined
               : (k, html) => notifier.notifyAlert(previewMessage(k, html)),
           }),
+          ...buildComposerTools({ drafts, repo: repos.chat }),
         ]);
       },
     },
@@ -161,22 +197,24 @@ export const EDITOR_PROVIDERS = [
     },
     {
       provide: EDITOR_SCHEDULER,
-      inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_RUNNER, TelegramNotifier, ChannelConfigService, PostingThrottleService],
+      inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_RUNNER, EDITOR_PUBLISH, EDITOR_DRAFTS, TelegramNotifier, PostingThrottleService],
       useFactory: (
-        pool: Pool, cfg: ConfigService, repos: EditorRepos, runner: EditorRunnerService, notifier: TelegramNotifier,
-        channelConfig: ChannelConfigService, throttle: PostingThrottleService,
+        pool: Pool, cfg: ConfigService, repos: EditorRepos, runner: EditorRunnerService, ports: PublishPorts, drafts: DraftsService,
+        notifier: TelegramNotifier, throttle: PostingThrottleService,
       ) => {
         const logger = new Logger('EditorScheduler');
         const notify = (t: string) => notifier.notifyAlert(t);
-        // Paid ads (spec 008): reserved slots publish deterministically, without the LLM.
-        const reserved = new SponsoredPublisher({
-          plans: repos.plans, channels: repos.channels, orders: new AdOrdersRepository(pool),
-          publisher: new TelegramEditorPublisher({
-            resolveChannel:     (k) => channelConfig.resolveChannel(k),
-            isPublishPausedFor: (k) => channelConfig.isPublishPausedFor(k),
+        const orders = new AdOrdersRepository(pool);
+        // Reserved slots publish deterministically, without the LLM: paid ads (spec 008) and scheduled chat posts (spec 010).
+        const reserved = new ReservedDispatcher({
+          plans: repos.plans, orders,
+          sponsored: new SponsoredPublisher({
+            plans: repos.plans, channels: repos.channels, orders, publisher: ports.publisher,
+            recordPublish: (k) => throttle.recordPublish(k),
+            notify,
+            log: (m) => logger.warn(m),
           }),
-          recordPublish: (k) => throttle.recordPublish(k),
-          notify,
+          manual: drafts,
           log: (m) => logger.warn(m),
         });
         return new EditorScheduler({
@@ -184,6 +222,31 @@ export const EDITOR_PROVIDERS = [
           enabled: () => isEnabled(cfg),
           notify,
           log: (m) => logger.warn(m),
+        });
+      },
+    },
+    {
+      // Editor chat (spec 010): needs only an LLM key, independent of EDITOR_ENABLED.
+      provide: EDITOR_CHAT,
+      inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_SKILLS, EDITOR_REGISTRY, EDITOR_DRAFTS, TelegramNotifier],
+      useFactory: (
+        pool: Pool, cfg: ConfigService, repos: EditorRepos, skills: SkillLibrary, registry: ToolRegistry, drafts: DraftsService,
+        notifier: TelegramNotifier,
+      ): EditorChatService => {
+        const logger = new Logger('EditorChat');
+        const env = (k: string) => cfg.get<string>(k) ?? undefined;
+        const enabled = () => !!env('OPENROUTER_API_KEY');
+        const loop = new AgentLoop({
+          llm: new OpenRouterClient({ apiKey: env('OPENROUTER_API_KEY'), baseUrl: env('OPENROUTER_BASE_URL') }),
+          recorder: new PgRunRecorder(pool, (m) => logger.warn(m)),
+          budget: new BudgetService(pool, {
+            globalDailyUsd:  Number(env('EDITOR_DAILY_BUDGET_USD') ?? 3),
+            channelDailyUsd: Number(env('EDITOR_CHANNEL_DAILY_BUDGET_USD') ?? 0.5),
+          }, (t) => notifier.notifyAlert(t)),
+          enabled,
+        });
+        return new EditorChatService({
+          repo: repos.chat, drafts, memory: repos.memory, loop, registry, skills, env, enabled,
         });
       },
     },
@@ -206,7 +269,7 @@ export const EDITOR_PROVIDERS = [
 @Module({
   // AuthModule: EditorController is guarded by TrackingAuthGuard, which injects AuthService.
   imports:     [ChannelConfigModule, PublishersModule, AuthModule],
-  controllers: [EditorController],
+  controllers: [EditorController, EditorChatController],
   providers:   [...EDITOR_PROVIDERS, TrackingAuthGuard],
   exports:     [EDITOR_REPOS, EDITOR_RUNNER],
 })
