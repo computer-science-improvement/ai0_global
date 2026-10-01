@@ -79,6 +79,11 @@ export class EditorChatService {
     return this.d.repo.listChats(100);
   }
 
+  /** Channels the chat can post to (the UI's channel picker; same list as list_my_channels). */
+  async listChannels() {
+    return this.d.repo.myChannels();
+  }
+
   async getChat(id: string) {
     const chat = await this.d.repo.getChat(id);
     if (!chat) throw new NotFoundException({ error: 'chat_not_found' });

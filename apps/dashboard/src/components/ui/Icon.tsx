@@ -6,6 +6,7 @@ import {
   Check, X, Play, Pause, Info, TriangleAlert, ChevronLeft, ChevronRight,
   ChevronUp, ChevronDown, Send, Camera, Music2, AtSign, ThumbsUp, Menu,
   ScrollText, Sparkles, Rocket, SkipForward, CalendarSync, Eye,
+  MessageSquare, Square, ArrowUp, Globe, Wrench, Clock, Ban, Database, BookOpen, PanelLeft,
   type LucideIcon,
 } from 'lucide-react';
 
@@ -21,6 +22,8 @@ const ICONS = {
   tiktok: Music2, threads: AtSign, facebook: ThumbsUp, menu: Menu,
   logs: ScrollText, sparkles: Sparkles, rocket: Rocket, 'skip-forward': SkipForward,
   'calendar-sync': CalendarSync, eye: Eye,
+  chat: MessageSquare, stop: Square, 'arrow-up': ArrowUp, globe: Globe, wrench: Wrench,
+  clock: Clock, ban: Ban, database: Database, book: BookOpen, 'panel-left': PanelLeft,
 } satisfies Record<string, LucideIcon>;
 
 export type IconName = keyof typeof ICONS;

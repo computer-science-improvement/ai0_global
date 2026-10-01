@@ -27,6 +27,7 @@ import { Route as AppEditorRouteImport } from './routes/app.editor'
 import { Route as AppDiscoveryRouteImport } from './routes/app.discovery'
 import { Route as AppConnectionsRouteImport } from './routes/app.connections'
 import { Route as AppComposeRouteImport } from './routes/app.compose'
+import { Route as AppChatRouteImport } from './routes/app.chat'
 import { Route as AppChannelsRouteImport } from './routes/app.channels'
 import { Route as AppCalendarRouteImport } from './routes/app.calendar'
 import { Route as AppBotsRouteImport } from './routes/app.bots'
@@ -135,6 +136,11 @@ const AppComposeRoute = AppComposeRouteImport.update({
   path: '/compose',
   getParentRoute: () => AppRoute,
 } as any)
+const AppChatRoute = AppChatRouteImport.update({
+  id: '/chat',
+  path: '/chat',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppChannelsRoute = AppChannelsRouteImport.update({
   id: '/channels',
   path: '/channels',
@@ -232,6 +238,7 @@ export interface FileRoutesByFullPath {
   '/app/bots': typeof AppBotsRoute
   '/app/calendar': typeof AppCalendarRoute
   '/app/channels': typeof AppChannelsRoute
+  '/app/chat': typeof AppChatRoute
   '/app/compose': typeof AppComposeRoute
   '/app/connections': typeof AppConnectionsRouteWithChildren
   '/app/discovery': typeof AppDiscoveryRoute
@@ -268,6 +275,7 @@ export interface FileRoutesByTo {
   '/app/bots': typeof AppBotsRoute
   '/app/calendar': typeof AppCalendarRoute
   '/app/channels': typeof AppChannelsRoute
+  '/app/chat': typeof AppChatRoute
   '/app/compose': typeof AppComposeRoute
   '/app/connections': typeof AppConnectionsRouteWithChildren
   '/app/discovery': typeof AppDiscoveryRoute
@@ -306,6 +314,7 @@ export interface FileRoutesById {
   '/app/bots': typeof AppBotsRoute
   '/app/calendar': typeof AppCalendarRoute
   '/app/channels': typeof AppChannelsRoute
+  '/app/chat': typeof AppChatRoute
   '/app/compose': typeof AppComposeRoute
   '/app/connections': typeof AppConnectionsRouteWithChildren
   '/app/discovery': typeof AppDiscoveryRoute
@@ -345,6 +354,7 @@ export interface FileRouteTypes {
     | '/app/bots'
     | '/app/calendar'
     | '/app/channels'
+    | '/app/chat'
     | '/app/compose'
     | '/app/connections'
     | '/app/discovery'
@@ -381,6 +391,7 @@ export interface FileRouteTypes {
     | '/app/bots'
     | '/app/calendar'
     | '/app/channels'
+    | '/app/chat'
     | '/app/compose'
     | '/app/connections'
     | '/app/discovery'
@@ -418,6 +429,7 @@ export interface FileRouteTypes {
     | '/app/bots'
     | '/app/calendar'
     | '/app/channels'
+    | '/app/chat'
     | '/app/compose'
     | '/app/connections'
     | '/app/discovery'
@@ -581,6 +593,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppComposeRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/chat': {
+      id: '/app/chat'
+      path: '/chat'
+      fullPath: '/app/chat'
+      preLoaderRoute: typeof AppChatRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/channels': {
       id: '/app/channels'
       path: '/channels'
@@ -722,6 +741,7 @@ interface AppRouteChildren {
   AppBotsRoute: typeof AppBotsRoute
   AppCalendarRoute: typeof AppCalendarRoute
   AppChannelsRoute: typeof AppChannelsRoute
+  AppChatRoute: typeof AppChatRoute
   AppComposeRoute: typeof AppComposeRoute
   AppConnectionsRoute: typeof AppConnectionsRouteWithChildren
   AppDiscoveryRoute: typeof AppDiscoveryRoute
@@ -755,6 +775,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppBotsRoute: AppBotsRoute,
   AppCalendarRoute: AppCalendarRoute,
   AppChannelsRoute: AppChannelsRoute,
+  AppChatRoute: AppChatRoute,
   AppComposeRoute: AppComposeRoute,
   AppConnectionsRoute: AppConnectionsRouteWithChildren,
   AppDiscoveryRoute: AppDiscoveryRoute,

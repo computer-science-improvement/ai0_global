@@ -56,6 +56,12 @@ export class EditorChatController {
     return this.chat.createChat();
   }
 
+  /** Own channels + carded channels for the chat's channel picker. */
+  @Get('chat-channels')
+  chatChannels() {
+    return this.chat.listChannels();
+  }
+
   @Get('chats/:id')
   getChat(@Param('id', ParseUUIDPipe) id: string) {
     return this.chat.getChat(id);

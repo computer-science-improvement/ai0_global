@@ -537,7 +537,7 @@ export interface MediaKitChannel {
 export type EditorMode = 'off' | 'shadow' | 'live';
 export type EditorSlotStatus = 'planned' | 'running' | 'published' | 'shadowed' | 'skipped' | 'failed';
 export type EditorRunStatus = 'running' | 'ok' | 'error' | 'budget_exceeded' | 'max_steps' | 'disabled';
-export type EditorRole = 'planner' | 'executor' | 'reviewer' | 'checker';
+export type EditorRole = 'planner' | 'executor' | 'reviewer' | 'checker' | 'composer';
 export type EditorFormat = 'text' | 'photo' | 'album' | 'poll' | 'quiz' | 'video' | 'carousel' | 'longread';
 
 export interface EditorSource {
@@ -699,3 +699,69 @@ export interface EditorRunOutcome {
   slotId?: string;
   result?: { runId: string | null; status: EditorRunStatus; terminalTool?: string; error?: string };
 }
+
+// ─── Editor chat (spec 010, /api/editor/chats, /api/editor/drafts) ──────────
+
+export type EditorDraftStatus = 'draft' | 'scheduled' | 'published' | 'failed' | 'canceled';
+
+export interface EditorLintIssue { code: string; message: string }
+
+export interface EditorDraft {
+  id:              string;
+  chatId:          string | null;
+  channelKey:      string;
+  /** The PostSpec (format, title, body, media…). */
+  spec:            { format?: EditorFormat; title?: string } & Record<string, unknown>;
+  /** Telegram HTML of the rendered post (sanitize before display). */
+  preview:         string | null;
+  lint:            { ok: boolean; errors: EditorLintIssue[]; warnings: EditorLintIssue[] } | null;
+  status:          EditorDraftStatus;
+  scheduledAt:     string | null;
+  slotId:          string | null;
+  publishedPostId: number | null;
+  error:           string | null;
+  createdAt:       string;
+  updatedAt:       string;
+}
+
+export interface EditorChat {
+  id:        string;
+  title:     string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface EditorChatMessage {
+  id:        number;
+  chatId:    string;
+  role:      'user' | 'assistant';
+  content:   string;
+  draftIds:  string[];
+  runId:     string | null;
+  createdAt: string;
+}
+
+export interface EditorChatDetail {
+  chat:     EditorChat;
+  messages: EditorChatMessage[];
+  drafts:   EditorDraft[];
+  /** false when the server has no OPENROUTER_API_KEY. */
+  enabled:  boolean;
+}
+
+export interface EditorChatChannel {
+  channelKey: string;
+  title:      string | null;
+  hasCard:    boolean;
+  mode:       EditorMode | null;
+}
+
+/** One NDJSON line of POST /api/editor/chats/:id/messages. */
+export type EditorChatEvent =
+  | { type: 'text';        text: string }
+  | { type: 'tool_call';   name: string; args: unknown }
+  | { type: 'tool_result'; name: string; ok: boolean; summary: string }
+  | { type: 'draft';       draft: EditorDraft }
+  | { type: 'message';     message: EditorChatMessage }
+  | { type: 'error';       error: string }
+  | { type: 'done' };

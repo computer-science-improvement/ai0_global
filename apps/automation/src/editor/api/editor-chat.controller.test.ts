@@ -22,7 +22,7 @@ const DRAFT = '2b4e28ba-2fa1-11d2-883f-0016d3cca427';
 const calls: unknown[][] = [];
 
 const chat = {
-  listChats: async () => [], createChat: async () => ({ id: CHAT }), getChat: async (id: string) => ({ chat: { id } }), deleteChat: async () => ({ ok: true }),
+  listChats: async () => [], listChannels: async () => [{ channelKey: '@space', title: 'Космос', hasCard: false, mode: null }], createChat: async () => ({ id: CHAT }), getChat: async (id: string) => ({ chat: { id } }), deleteChat: async () => ({ ok: true }),
   validateSend: async (_id: string, text: unknown) => {
     if (typeof text !== 'string' || !text.trim()) throw new BadRequestException({ error: 'invalid_text' });
     return text.trim();
@@ -88,6 +88,8 @@ test('chat routes require the tracking token', async () => {
   assert.equal((await call('GET', '/api/editor/chats', undefined, null)).status, 401);
   assert.equal((await call('POST', `/api/editor/chats/${CHAT}/messages`, { text: 'hi' }, null)).status, 401);
   assert.equal((await call('GET', '/api/editor/chats')).status, 200);
+  const ch = await call('GET', '/api/editor/chat-channels');
+  assert.equal(JSON.parse(ch.text)[0].channelKey, '@space');
 });
 
 test('a chat message streams NDJSON events and ends with done', async () => {
