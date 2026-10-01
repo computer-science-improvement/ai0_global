@@ -1,6 +1,7 @@
 import { Injectable, Logger, Optional } from '@nestjs/common';
 import { query } from '@anthropic-ai/claude-agent-sdk';
 import { join } from 'path';
+import { lockedAgentOptions } from '../ai/locked-agent-options';
 import { PublicationsRepository } from '../../stats/publications.repository';
 import { ChannelConfigService } from '../../config/channel-config.service';
 import { AiLoggerService } from '../ai/ai-logger.service';
@@ -26,6 +27,24 @@ export interface IncomingItem {
  * If the repository isn't wired (stats module disabled) or the window is 0,
  * this service short-circuits to NEW.
  */
+/**
+ * Exact-token verdict parser. Explicit negations ("NOT A DUPLICATE",
+ * "NOT_DUPLICATE", "not an update", "UNIQUE") mean NEW; otherwise the FIRST
+ * word must be exactly DUPLICATE or UPDATE. Anything else — including prose
+ * that merely mentions "duplicate" — fails open to NEW so a chatty model can
+ * never silently block publishing. (The old `includes('DUPLICATE')` turned
+ * "NOT A DUPLICATE" into DUPLICATE.)
+ */
+export function parseVerdict(raw: string | null): NoveltyVerdict {
+  if (!raw) return 'NEW';
+  const upper = raw.toUpperCase();
+  if (/\bNOT[\s_-]+(?:AN?[\s_-]+)?(?:DUPLICATE|UPDATE)\b|\bUNIQUE\b/.test(upper)) return 'NEW';
+  const first = /[A-Z_]+/.exec(upper)?.[0];
+  if (first === 'DUPLICATE') return 'DUPLICATE';
+  if (first === 'UPDATE')    return 'UPDATE';
+  return 'NEW';
+}
+
 @Injectable()
 export class SemanticDedupService {
   private readonly logger = new Logger(SemanticDedupService.name);
@@ -53,14 +72,9 @@ export class SemanticDedupService {
     try {
       for await (const msg of query({
         prompt,
-        options: {
-          cwd:                             this.cwd,
-          settingSources:                  ['project'],
-          agent:                           'topic-novelty-checker',
-          permissionMode:                  'bypassPermissions',
-          allowDangerouslySkipPermissions: true,
-          maxTurns:                        2,
-        },
+        // No tools, no project settings, no permission bypass — see
+        // locked-agent-options.ts (the input here is untrusted).
+        options: lockedAgentOptions(this.cwd, 'topic-novelty-checker', 2),
       })) {
         if (msg.type === 'result' && msg.subtype === 'success') {
           raw = msg.result?.trim() ?? null;
@@ -71,7 +85,7 @@ export class SemanticDedupService {
       return 'NEW';
     }
 
-    verdict = this.parseVerdict(raw);
+    verdict = parseVerdict(raw);
 
     await this.aiLogger.log({
       agent:  'topic-novelty-checker',
@@ -85,14 +99,6 @@ export class SemanticDedupService {
 
     this.logger.debug(`[${channelId}] novelty=${verdict} (${recent.length} recent, ${hours}h)`);
     return verdict;
-  }
-
-  private parseVerdict(raw: string | null): NoveltyVerdict {
-    if (!raw) return 'NEW'; // fail-open: don't block publishing on parse error
-    const upper = raw.toUpperCase();
-    if (upper.includes('DUPLICATE')) return 'DUPLICATE';
-    if (upper.includes('UPDATE'))    return 'UPDATE';
-    return 'NEW';
   }
 
   private buildPrompt(

@@ -44,3 +44,6 @@ apps/pipeline/src/data/**/recipes_scraped.json
 
 # Nightly pg_dump output from the compose `backup` profile — never commit
 backups/
+
+# PDR scraper browser session (written by pdr-login.ts) — a live credential, never commit
+apps/pipeline/src/data/normalized/pdr/auth.json

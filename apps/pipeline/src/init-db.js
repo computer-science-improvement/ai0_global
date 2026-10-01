@@ -5,6 +5,9 @@
  * Usage:
  *   pnpm run init-db
  *   pnpm run init-db --reset   (DROP all tables first, then recreate)
+ *
+ * --reset is destructive and guarded: it refuses to run unless
+ * ALLOW_DB_RESET=yes is set AND NODE_ENV is not "production".
  */
 import { readFileSync } from 'fs';
 import { join, dirname } from 'path';
@@ -16,7 +19,24 @@ const INIT_SQL  = join(__dirname, '..', '..', '..', 'database', 'init.sql');
 
 const isReset = process.argv.includes('--reset');
 
+/** Returns a refusal reason, or null when a --reset may proceed. */
+function resetRefusal(env = process.env) {
+  if (env.NODE_ENV === 'production') return 'NODE_ENV=production — --reset is never allowed here';
+  if (env.ALLOW_DB_RESET !== 'yes') return 'set ALLOW_DB_RESET=yes to confirm dropping ALL tables';
+  return null;
+}
+
 async function init() {
+  if (isReset) {
+    const refusal = resetRefusal();
+    if (refusal) {
+      console.error(`Refusing to reset the database: ${refusal}.`);
+      process.exitCode = 1;
+      await pool.end();
+      return;
+    }
+  }
+
   const client = await pool.connect();
   try {
     if (isReset) {

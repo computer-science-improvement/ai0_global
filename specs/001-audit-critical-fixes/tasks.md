@@ -22,10 +22,10 @@ Verify after each phase with: `pnpm --filter automation test && (cd apps/automat
 - [x] T011 Use it in `agent-mtproto.client.ts` and `tracking-mtproto.client.ts`, adding a `floodUntil` skip window (FR-005).
 
 ## Phase 5: Agent SDK and data safety
-- [ ] T012 Lock down permissions on the semantic-dedup and topic-router SDK options (FR-006).
-- [ ] T013 Make `parseVerdict` match exact tokens, with tests (FR-007).
-- [ ] T014 [P] Add a guard to `init-db --reset` (FR-008).
-- [ ] T015 [P] Untrack the PDR `auth.json` and add it to `.gitignore` (FR-009).
+- [x] T012 Lock down permissions on the semantic-dedup and topic-router SDK options (FR-006).
+- [x] T013 Make `parseVerdict` match exact tokens, with tests (FR-007).
+- [x] T014 [P] Add a guard to `init-db --reset` (FR-008).
+- [x] T015 [P] Untrack the PDR `auth.json` and add it to `.gitignore` (FR-009).
 
 ## Phase 6: CI (US5)
 - [ ] T016 Rewrite `ci-feature.yml`: new triggers, plus tests and dashboard tsc steps (FR-010).
