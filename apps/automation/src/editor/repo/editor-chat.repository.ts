@@ -1,8 +1,8 @@
 import type { Pool } from 'pg';
 import type { LintResult } from '../post/lint-post';
 
-export type DraftStatus = 'draft' | 'scheduled' | 'published' | 'failed' | 'canceled';
-export const DRAFT_STATUSES: readonly DraftStatus[] = ['draft', 'scheduled', 'published', 'failed', 'canceled'];
+export const DRAFT_STATUSES = ['draft', 'scheduled', 'published', 'failed', 'canceled'] as const;
+export type DraftStatus = typeof DRAFT_STATUSES[number];
 
 export interface EditorChat {
   id:        string;

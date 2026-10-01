@@ -1,7 +1,7 @@
 ---
 name: format-media-placement
 description: Зображення над чи під текстом, photo vs text-з-превʼю, вибір і якість картинки, ліміт підпису 1024.
-applies_to: [executor, planner]
+applies_to: [executor, planner, composer]
 ---
 # Зображення і їх розташування
 

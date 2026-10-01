@@ -1,7 +1,7 @@
 ---
 name: grammar-ua
 description: Ukrainian grammar and orthography rules for proofreading posts. Apply only in grammar-review contexts, not during initial writing.
-applies_to: [executor, reviewer]
+applies_to: [executor, reviewer, composer]
 ---
 
 # Ukrainian Grammar — Proofread Checklist

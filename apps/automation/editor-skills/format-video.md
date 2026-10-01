@@ -1,7 +1,7 @@
 ---
 name: format-video
 description: Відео — один прямий файл .mp4 з підписом ≤1024; що підходить (а YouTube ні), ліцензії, підпис над чи під відео.
-applies_to: [executor, planner]
+applies_to: [executor, planner, composer]
 ---
 # Відео (video)
 

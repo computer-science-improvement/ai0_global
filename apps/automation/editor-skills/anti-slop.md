@@ -1,7 +1,7 @@
 ---
 name: anti-slop
 description: Forbidden AI-tells in Ukrainian text. Apply when writing or reviewing posts — catches signature AI phrasings before they ship.
-applies_to: [executor, reviewer]
+applies_to: [executor, reviewer, composer]
 ---
 
 # Anti-Slop — Ukrainian

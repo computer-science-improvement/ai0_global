@@ -1,7 +1,7 @@
 ---
 name: format-album-slider
 description: Альбом/слайдер (2–10 фото) — коли використовувати, порядок кадрів, підпис лише під першим, без кнопок.
-applies_to: [executor, planner]
+applies_to: [executor, planner, composer]
 ---
 # Альбом (слайдер)
 

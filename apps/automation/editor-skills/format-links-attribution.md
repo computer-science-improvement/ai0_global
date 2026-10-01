@@ -1,7 +1,7 @@
 ---
 name: format-links-attribution
 description: Посилання й атрибуція — коли source обовʼязковий, як підписувати, inline-лінки в тексті, library_ref для бібліотеки.
-applies_to: [executor, reviewer]
+applies_to: [executor, reviewer, composer]
 ---
 # Посилання та атрибуція
 

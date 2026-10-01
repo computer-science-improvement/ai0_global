@@ -1,7 +1,7 @@
 ---
 name: format-hashtags
 description: Як ставити хештеги — лише зі словника каналу, кількість у межах картки, завжди в кінці поста.
-applies_to: [executor, reviewer]
+applies_to: [executor, reviewer, composer]
 ---
 # Хештеги
 

@@ -1,7 +1,7 @@
 ---
 name: format-carousel
 description: Карусель — 2–10 слайдів-картинок, які малює код (заголовок + короткий текст + фон); коли краща за альбом і текст, як писати слайди.
-applies_to: [executor, planner]
+applies_to: [executor, planner, composer]
 ---
 # Карусель (carousel)
 

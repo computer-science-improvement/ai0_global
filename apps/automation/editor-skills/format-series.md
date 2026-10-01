@@ -1,7 +1,7 @@
 ---
 name: format-series
 description: Рубрики й серії — як робити впізнавані повторювані формати (Фото дня, Рецепт тижня, Вікторина пʼятниці) і тримати їх однаковими.
-applies_to: [planner, executor, reviewer]
+applies_to: [planner, executor, reviewer, composer]
 ---
 # Рубрики і серії
 

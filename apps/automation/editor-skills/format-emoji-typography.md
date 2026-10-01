@@ -1,7 +1,7 @@
 ---
 name: format-emoji-typography
 description: Типографіка поста — блоки (lead/p/list/quote), довжина абзаців, жирний/курсив/спойлер, емодзі за політикою каналу.
-applies_to: [executor, reviewer]
+applies_to: [executor, reviewer, composer]
 ---
 # Типографіка
 

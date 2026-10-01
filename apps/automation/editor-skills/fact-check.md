@@ -1,7 +1,7 @@
 ---
 name: fact-check
 description: Перевірка фактів перед публікацією — що перевіряти, як (web_fetch першоджерела), що робити при сумніві.
-applies_to: [executor, reviewer]
+applies_to: [executor, reviewer, composer]
 ---
 # Фактчек
 

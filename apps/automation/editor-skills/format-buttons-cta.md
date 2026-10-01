@@ -1,7 +1,7 @@
 ---
 name: format-buttons-cta
 description: Кнопки під постом і заклик до дії — коли ставити cta, скільки кнопок, тексти кнопок.
-applies_to: [executor]
+applies_to: [executor, composer]
 ---
 # Кнопки і CTA
 

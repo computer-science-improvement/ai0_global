@@ -1,7 +1,7 @@
 ---
 name: human-voice
 description: Rules for human-sounding Ukrainian writing. Apply when writing or reviewing any Ukrainian post — turns AI-sounding text into natural prose.
-applies_to: [executor, reviewer]
+applies_to: [executor, reviewer, composer]
 ---
 
 # Human Voice — Ukrainian

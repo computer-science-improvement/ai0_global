@@ -1,7 +1,7 @@
 ---
 name: format-longread
 description: Лонгрід — стаття на Telegraph (до 60 блоків) і короткий пост-тизер ≤600 з кнопкою «Читати»; коли варто і як писати тизер.
-applies_to: [executor, planner]
+applies_to: [executor, planner, composer]
 ---
 # Лонгрід (longread)
 
