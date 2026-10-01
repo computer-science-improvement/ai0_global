@@ -19,6 +19,7 @@ const STATUS_TONE: Record<ScheduledPost['status'], Tone> = {
   sent:     'success',
   failed:   'danger',
   canceled: 'warning',
+  unknown:  'warning', // was mid-send when the service died — delivery unconfirmed
 };
 
 function ScheduledPage() {

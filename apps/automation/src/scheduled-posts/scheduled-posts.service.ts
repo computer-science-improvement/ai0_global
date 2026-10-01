@@ -6,6 +6,8 @@ import type { ComposedPost, ScheduledPost } from './scheduled-posts.types';
 import { ConfigCacheService } from '../config/config-cache.service';
 import { ComposedSenderService } from '../publishers/composed-sender.service';
 import { SecretsService } from '../common/crypto/secrets.service';
+import { TelegramNotifier } from '../publishers/telegram-notifier.service';
+import { PublicationsRepository } from '../stats/publications.repository';
 
 @Injectable()
 export class ScheduledPostsService {
@@ -16,6 +18,8 @@ export class ScheduledPostsService {
     private readonly config:      ConfigService,
     private readonly sender:      ComposedSenderService,
     private readonly secrets:     SecretsService,
+    private readonly notifier:    TelegramNotifier,
+    private readonly publications: PublicationsRepository,
   ) {}
 
   private validate(p: ComposedPost): void {
@@ -34,8 +38,16 @@ export class ScheduledPostsService {
   /** Called by the worker: claim + publish every due post this tick. */
   async publishDue(): Promise<void> {
     const now = new Date();
-    // Recover any rows stuck in 'sending' from a prior crash before claiming.
-    await this.repo.rependStale();
+    // Rows stuck in 'sending' (a prior crash/hang) may or may not have been
+    // delivered: mark them 'unknown' and alert — never re-send them.
+    const stale = await this.repo.markStaleUnknown();
+    for (const p of stale) {
+      this.logger.warn(`scheduled post ${p.id} stuck in 'sending' → unknown`);
+      await this.notifier.notifyAlert(
+        `⚠️ Scheduled post ${p.id} (due ${p.scheduledAt}) was stuck in 'sending' — marked unknown, ` +
+        `NOT re-sent. Check the channel; re-schedule it manually if it is missing.`,
+      ).catch((e: any) => this.logger.warn(`alert for ${p.id} failed: ${e?.message ?? e}`));
+    }
     // claim loop — claimDue returns one at a time (skip-locked), null when drained.
     for (let post = await this.repo.claimDue(now); post; post = await this.repo.claimDue(now)) {
       await this.publishOne(post);
@@ -68,10 +80,26 @@ export class ScheduledPostsService {
       });
       await this.repo.markSent(post.id, messageId);
       this.logger.log(`scheduled post ${post.id} sent → msg ${messageId}`);
+      // Index it like every strategy publication (stats collector, digests).
+      // published_posts.channel_id holds the channel_key. Never throws.
+      await this.publications.insert({
+        channelId:    ch.channel_key ?? String(chatId),
+        messageId,
+        sourceUrl:    null,
+        title:        postTitle(post.text),
+        strategyType: 'scheduled-post',
+        tags:         null,
+      });
     } catch (err: any) {
       const msg = err?.message ?? String(err);
       await this.repo.markFailed(post.id, msg);
       this.logger.warn(`scheduled post ${post.id} failed: ${msg}`);
     }
   }
+}
+
+/** First line of the post as plain text (tags stripped), for published_posts.title. */
+function postTitle(text: string): string | null {
+  const first = (text ?? '').split('\n').map((l) => l.replace(/<[^>]*>/g, '').trim()).find(Boolean);
+  return first ? first.slice(0, 200) : null;
 }

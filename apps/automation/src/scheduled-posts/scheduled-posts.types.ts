@@ -18,7 +18,8 @@ export interface ComposedPost {
 
 export interface ScheduledPost extends ComposedPost {
   id:        string;
-  status:    'pending' | 'sending' | 'sent' | 'failed' | 'canceled';
+  /** 'unknown' = was 'sending' when the process died; delivery unconfirmed. */
+  status:    'pending' | 'sending' | 'sent' | 'failed' | 'canceled' | 'unknown';
   messageId: number | null;
   error:     string | null;
   createdAt: string;
