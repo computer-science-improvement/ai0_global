@@ -78,7 +78,8 @@ test('motivation-biography.countEligible counts ALL unposted (no today filter)',
   assert.equal(await new MotivationBiographyRepository(pool as any).countEligible('@c'), 6);
   assert.match(captured.sql!, /FROM birthdays/);
   assert.doesNotMatch(captured.sql!, /CURRENT_DATE/);
-  assert.deepEqual(captured.params, ['@c']);
+  // Errored rows (posted["error:@c"], 002 T004) are excluded from the runway.
+  assert.deepEqual(captured.params, ['@c', 'error:@c']);
 });
 
 test('assets.countEligible binds data_source + channel key', async () => {
@@ -86,7 +87,7 @@ test('assets.countEligible binds data_source + channel key', async () => {
   assert.equal(await new AssetsRepository(pool as any).countEligible('epic', '@c'), 8);
   assert.match(captured.sql!, /data_source = \$1/);
   assert.match(captured.sql!, /NOT \(posted \? \$2\)/);
-  assert.deepEqual(captured.params, ['epic', '@c']);
+  assert.deepEqual(captured.params, ['epic', '@c', 'error:@c']);
 });
 
 test('countEligible returns 0 when no rows', async () => {

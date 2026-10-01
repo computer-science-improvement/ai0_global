@@ -166,7 +166,17 @@ export class GameChannelStrategy implements ContentStrategy, OnModuleInit {
       return;
     }
 
-    if (!this.validator.check(aiText, 'game-channel / ' + item.type)) return;
+    const verdict = this.validator.validate(aiText);
+    if (!verdict.valid) {
+      // Permanent (refusal, too short, …): mark the source errored so the next
+      // tick doesn't pick the same item and pay for the same rejection again.
+      // Transient (no response, rate limit): leave it for the next tick.
+      const rejection = this.validator.reject(verdict, 'game-channel / ' + item.type);
+      if (rejection) {
+        await this.dedup.markError(item.source, item.title, channelId, rejection.rejected);
+      }
+      return;
+    }
 
     // 5. Review + build text
     let text: string;

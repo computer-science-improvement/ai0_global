@@ -7,10 +7,11 @@ import { TelegramNotifier }       from '../../publishers/telegram-notifier.servi
 import { PostingThrottleService } from '../../publishers/posting-throttle.service';
 import { CrossPostService }       from '../../publishers/cross-post.service';
 import { PublicationsRepository } from '../../stats/publications.repository';
-import { RunSkippedError, isChannelPausedError } from '../../publishers/errors';
+import { RunSkippedError, isChannelPausedError, isPermanentTelegramError } from '../../publishers/errors';
 import {
   ContentStrategy,
   StrategyParams,
+  isStrategyRejection,
 } from './content-strategy.interface';
 import type { PublishDestination } from './publish-destination';
 
@@ -166,6 +167,16 @@ export class ContentStrategyRunner {
       return;
     }
 
+    if (isStrategyRejection(post)) {
+      // Permanent: this item will never yield a valid post. Mark it errored so
+      // the next tick moves on instead of regenerating it forever.
+      this.logger.warn(`${tag} Rejected (${post.rejected}) — marking source as errored`);
+      await this.dedup.markError(
+        fetchResult.sourceUrl, fetchResult.title, channelId, post.rejected,
+      );
+      return;
+    }
+
     // 4. Review
     const skills   = strategy.getSkills(params);
     const reviewed = await this.reviewer.review(post.text, skills);
@@ -177,8 +188,8 @@ export class ContentStrategyRunner {
     }
 
     // 6. Publish
+    let messageId: string;
     try {
-      let messageId: string;
       if (imageBuffer && reviewed.length <= 1024) {
         messageId = await this.telegram.publishPrompt(
           { imageBuffer, caption: reviewed },
@@ -197,37 +208,43 @@ export class ContentStrategyRunner {
           { id: channelId },
         );
       }
-
-      await this.dedup.markPosted(
-        post.sourceUrl, post.title, channelId, post.contentType,
-      );
-      this.logger.log(`${tag} Published: ${post.title}`);
-      await this.notifier.notifyPublished(channelId, messageId);
-      await this.publications.insert({
-        channelId,
-        messageId,
-        sourceUrl:    post.sourceUrl,
-        title:        post.title,
-        strategyType: strategy.type,
-        tags:         [post.contentType],
-      });
-
-      // Fan out to any configured Meta cross-post targets for this channel
-      // (mirror mode). Never throws — Meta failures are isolated + logged.
-      await this.crossPost.afterPublish({
-        channelKey: channelId,
-        messageId,
-        mirror: { text: reviewed, tags: [post.contentType], imageUrl: post.imageUrl },
-      });
     } catch (err) {
       this.logger.error(`${tag} Publish failed: ${err.message}`);
       // A paused channel is an expected skip, not a failure worth a DM.
       if (!isChannelPausedError(err)) {
         await this.notifier.notifyFailed(channelId, err.message, post.sourceUrl);
       }
+      // Telegram rejected this content itself (unparseable HTML, bad media…):
+      // retrying the same source would fail the same way every tick.
+      if (isPermanentTelegramError(err)) {
+        const reason = err.response?.data?.description ?? err.message;
+        await this.dedup.markError(post.sourceUrl, post.title, channelId, `publish: ${reason}`);
+      }
       // Rethrow so strategy_runs records 'error' (or 'skipped' when paused)
       // instead of 'ok'. The caller's finally still releases the lock.
       throw err;
     }
+
+    await this.dedup.markPosted(
+      post.sourceUrl, post.title, channelId, post.contentType,
+    );
+    this.logger.log(`${tag} Published: ${post.title}`);
+    await this.notifier.notifyPublished(channelId, messageId);
+    await this.publications.insert({
+      channelId,
+      messageId,
+      sourceUrl:    post.sourceUrl,
+      title:        post.title,
+      strategyType: strategy.type,
+      tags:         [post.contentType],
+    });
+
+    // Fan out to any configured Meta cross-post targets for this channel
+    // (mirror mode). Never throws — Meta failures are isolated + logged.
+    await this.crossPost.afterPublish({
+      channelKey: channelId,
+      messageId,
+      mirror: { text: reviewed, tags: [post.contentType], imageUrl: post.imageUrl },
+    });
   }
 }

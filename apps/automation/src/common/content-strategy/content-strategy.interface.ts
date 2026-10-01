@@ -51,7 +51,7 @@ export interface ContentStrategy {
   generate(
     data: StrategyFetchResult,
     params: StrategyParams,
-  ): Promise<StrategyPost | 'SKIP_POST' | null>;
+  ): Promise<StrategyPost | 'SKIP_POST' | StrategyRejection | null>;
 
   /**
    * Optional: full pipeline control.
@@ -72,6 +72,20 @@ export interface StrategyFetchResult {
   contentType: string;
   /** Strategy-specific payload — passed back to generate() */
   data: unknown;
+}
+
+/**
+ * generate() outcome for an item that can never produce a valid post (the
+ * model refused, returned an empty/too-short draft, …). The runner marks the
+ * item as errored (DedupService.markError) so the next tick moves on instead
+ * of regenerating it forever. Return null instead for transient failures.
+ */
+export interface StrategyRejection {
+  rejected: string;
+}
+
+export function isStrategyRejection(x: unknown): x is StrategyRejection {
+  return typeof x === 'object' && x !== null && typeof (x as StrategyRejection).rejected === 'string';
 }
 
 export interface StrategyPost {

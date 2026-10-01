@@ -15,6 +15,7 @@ import {
   StrategyFetchResult,
   StrategyPost,
   StrategyParams,
+  StrategyRejection,
 } from '../../common/content-strategy/content-strategy.interface';
 
 @Injectable()
@@ -75,7 +76,7 @@ export class SpaceStrategy implements ContentStrategy, OnModuleInit {
   async generate(
     fetchResult: StrategyFetchResult,
     _params: StrategyParams,
-  ): Promise<StrategyPost | 'SKIP_POST' | null> {
+  ): Promise<StrategyPost | 'SKIP_POST' | StrategyRejection | null> {
     const item = fetchResult.data as SpaceItem;
 
     if (!this.claude.available) {
@@ -93,7 +94,10 @@ export class SpaceStrategy implements ContentStrategy, OnModuleInit {
       return 'SKIP_POST';
     }
 
-    if (!this.validator.check(text, 'space-news')) return null;
+    // Permanent rejections (refusal, too short, …) mark the source errored in
+    // the runner; transient ones (no response, rate limit) return null → retry.
+    const verdict = this.validator.validate(text);
+    if (!verdict.valid) return this.validator.reject(verdict, 'space-news');
 
     const finalText = text + '\n\n<a href="' + escapeAttr(item.source) + '">Посилання</a>';
 

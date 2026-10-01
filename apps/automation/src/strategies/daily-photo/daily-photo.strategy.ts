@@ -13,6 +13,7 @@ import {
   StrategyFetchResult,
   StrategyPost,
   StrategyParams,
+  StrategyRejection,
 } from '../../common/content-strategy/content-strategy.interface';
 
 @Injectable()
@@ -57,7 +58,7 @@ export class DailyPhotoStrategy implements ContentStrategy, OnModuleInit {
   async generate(
     fetchResult: StrategyFetchResult,
     _params: StrategyParams,
-  ): Promise<StrategyPost | 'SKIP_POST' | null> {
+  ): Promise<StrategyPost | 'SKIP_POST' | StrategyRejection | null> {
     const item = fetchResult.data as DailyPhotoItem;
 
     if (!this.claude.available) {
@@ -75,7 +76,10 @@ export class DailyPhotoStrategy implements ContentStrategy, OnModuleInit {
       return 'SKIP_POST';
     }
 
-    if (!this.validator.check(translated, 'daily-photo')) return null;
+    // Permanent rejections (refusal, too short, …) mark the source errored in
+    // the runner; transient ones (no response, rate limit) return null → retry.
+    const verdict = this.validator.validate(translated);
+    if (!verdict.valid) return this.validator.reject(verdict, 'daily-photo');
 
     const header    = `<b>${escapeHtml(item.title)}</b>`;
     const copyright = item.copyright ? `© ${escapeHtml(item.copyright)}` : null;

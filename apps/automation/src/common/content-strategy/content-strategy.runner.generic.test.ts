@@ -99,6 +99,45 @@ test('generic path: a failed publish is notified, then rethrown so the run is re
   assert.equal(t.canPublish('@c'), true);
 });
 
+test('generic path: a permanent rejection from generate() marks the source errored (no publish, no markPosted)', async () => {
+  const t = throttle();
+  let published = false;
+  const { d, calls } = deps({
+    telegram: { publish: async () => { published = true; return '1'; }, publishPrompt: async () => '1' },
+  });
+  await runner(d, t).run(strategy({ generate: async () => ({ rejected: 'refusal: unable' }) }), '@c', {}, 's1');
+  assert.equal(published, false);
+  assert.deepEqual(calls.markPosted, []);
+  assert.deepEqual(calls.markError, [['https://src/1', 'T', '@c', 'refusal: unable']]);
+  assert.equal(t.canPublish('@c'), true);
+});
+
+test('generic path: a transient generate() failure (null) marks nothing — retried next tick', async () => {
+  const t = throttle();
+  const { d, calls } = deps();
+  await runner(d, t).run(strategy({ generate: async () => null }), '@c', {}, 's1');
+  assert.deepEqual(calls.markError, []);
+  assert.deepEqual(calls.markPosted, []);
+});
+
+test('generic path: a permanent Telegram rejection marks the source errored before rethrowing', async () => {
+  const t = throttle();
+  const { d, calls } = deps({
+    telegram: {
+      publish: async () => {
+        throw Object.assign(new Error('Request failed with status code 400'), {
+          response: { data: { description: "Bad Request: can't parse entities" } },
+        });
+      },
+      publishPrompt: async () => '1',
+    },
+  });
+  await assert.rejects(() => runner(d, t).run(strategy(), '@c', {}, 's1'));
+  assert.equal(calls.markError.length, 1);
+  assert.equal(calls.markError[0][0], 'https://src/1');
+  assert.match(calls.markError[0][3], /can't parse entities/);
+});
+
 test('generic path: a paused channel rethrows ChannelPausedError without a failure notification', async () => {
   const t = throttle();
   const { d, calls } = deps({

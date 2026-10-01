@@ -8,6 +8,7 @@ import {
   StrategyFetchResult,
   StrategyPost,
   StrategyParams,
+  StrategyRejection,
 } from '../../common/content-strategy/content-strategy.interface';
 import { ContentStrategyRegistry } from '../../common/content-strategy/content-strategy.registry';
 import { Skill } from '../../common/ai/skills/skill.interface';
@@ -57,7 +58,7 @@ export class OnThisDayStrategy implements ContentStrategy, OnModuleInit {
   async generate(
     fetchResult: StrategyFetchResult,
     _params: StrategyParams,
-  ): Promise<StrategyPost | 'SKIP_POST' | null> {
+  ): Promise<StrategyPost | 'SKIP_POST' | StrategyRejection | null> {
     if (!this.claude.available) {
       this.logger.warn('Claude not available');
       return null;
@@ -78,7 +79,10 @@ export class OnThisDayStrategy implements ContentStrategy, OnModuleInit {
       return 'SKIP_POST';
     }
 
-    if (!this.validator.check(draft, 'on-this-day')) return null;
+    // Permanent rejections (refusal, too short, …) mark the source errored in
+    // the runner; transient ones (no response, rate limit) return null → retry.
+    const verdict = this.validator.validate(draft);
+    if (!verdict.valid) return this.validator.reject(verdict, 'on-this-day');
 
     return {
       text:        draft!,
