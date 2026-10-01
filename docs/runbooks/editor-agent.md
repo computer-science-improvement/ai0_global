@@ -12,7 +12,7 @@ Everything runs on OpenRouter (`z-ai/glm-5.3-flash` by default, about $0.006 per
 
 ## 1. Enable
 
-1. Apply migrations `042_editor` … `046_editor_crosspost` (`database/migrate.sh`, or let the service apply them at boot).
+1. Apply migrations `042_editor` … `047_editor_chat` (`database/migrate.sh`, or let the service apply them at boot).
 2. In `.env`, set:
    ```
    EDITOR_ENABLED=true
@@ -218,3 +218,53 @@ SELECT scheduled_at, channel_key, error FROM editor_slots WHERE status = 'publis
 Turn mirrors off for one channel with `UPDATE editor_channels SET crosspost = false WHERE channel_key = …` (or the card form).
 
 TikTok is not mirrored: no channel → TikTok account link exists yet. TikTok photo carousels stay a `recipe-carousel` binding.
+
+## 9. Editor chat (spec 010)
+
+`/app/chat` (sidebar "Chat") is a Claude-style conversation with the **composer** agent. You write "зроби пост про X у
+@channel з вікториною"; the agent researches with the executor's read tools (feeds, web, `fetch_api`, library, stats),
+saves a **draft** and shows it as a Telegram preview card. You ask for changes in plain language, then click
+**Опублікувати зараз** or **Запланувати** (date and time in Kyiv), or tell the agent "опублікуй" / "заплануй на завтра о 19".
+
+**Enable.** Apply `047_editor_chat`. The chat needs only `OPENROUTER_API_KEY`; it does **not** depend on `EDITOR_ENABLED`.
+Its LLM spend counts against the **global** `EDITOR_DAILY_BUDGET_USD` (runs have `role='composer'`, `channel_key` NULL).
+
+**What the agent can and cannot do.**
+- It never publishes on its own. `publish_draft` / `schedule_draft` work only when your **latest message** explicitly asks
+  (keywords like «опублікуй», «запости», «заплануй», «постав на», «відклади на», "publish", "schedule"; a negated «не
+  публікуй» does not count). Otherwise it refuses with `needs_explicit_request` and offers the buttons. Text in fetched pages
+  cannot trigger a publish. The buttons always work (your click is the request).
+- Every publish, from a button or the agent, goes through `DraftsService`: lint, PDR quiz ground truth, `publish_paused`, and
+  a 7-day dedup on `source.url` / `library_ref` per channel. It does **not** apply the planner's daily cap, quiet hours or min
+  gap (you asked for this post explicitly), and it publishes even if the channel's card is `off` or `shadow`.
+- Posts are `published_posts.strategy_type='chat'`. Mirrors to Meta run only when the channel has a real card with
+  `crosspost` on.
+
+**Channels without a card.** Any own channel (`tracked_channels.is_mine`) or carded channel can be used. Without a card the
+chat uses a **default card**: every format, any hashtag (0–5), inline links, sparse emoji, no mirrors. Scheduling for such a
+channel creates a minimal `editor_channels` row with `mode='off'` and those defaults (the planner ignores `off`).
+Side effect: a channel with any card gets 008's ad approvals as reserved slots instead of the SP2 queue.
+
+**Scheduling.** "Запланувати" (or the agent's `schedule_draft`) needs a time at least 2 minutes ahead and at most 60 days
+ahead. It reserves an `editor_slots` row (`kind='reserved'`, topic `Чат: <title>`, `source_hints` `chat_draft:<id>`,
+`post_spec` = the draft) in the day's plan (a `reserved only` plan when the day has none) and links it via
+`editor_drafts.slot_id`. Every scheduler tick, `ReservedDispatcher` publishes due reserved slots without an LLM:
+ad-owned slots take the 008 sponsored path; a slot without an order and with a valid PostSpec is a chat post. It runs even
+with `EDITOR_ENABLED=false` or the card `off`; `publish_paused` blocks it. It is never more than 6 h late and never retried:
+on failure the slot and the draft become `failed` and you get `⚠️ Запланований пост у … не вийшов: …`.
+Rescheduling or cancelling skips the old slot; "publish now" on a scheduled draft skips its slot first.
+
+**REST** (TrackingAuthGuard): `GET/POST api/editor/chats`, `GET/DELETE api/editor/chats/:id`,
+`POST api/editor/chats/:id/messages` (body `{text, channel?}`; streams `application/x-ndjson` events `tool_call`,
+`tool_result`, `text`, `draft`, `message`, `error`, `done`; a disconnect only stops the stream, the answer is still saved),
+`GET api/editor/chat-channels`, `GET api/editor/drafts?status=&chat=`, `POST api/editor/drafts/:id/publish`,
+`POST api/editor/drafts/:id/schedule {at: "YYYY-MM-DD HH:MM" (Kyiv) | ISO}`, `POST api/editor/drafts/:id/cancel`.
+Refusals come back as 4xx with the same `{error, details}` the agent sees (`lint_failed`, `source_already_posted`,
+`channel_paused`, `too_soon`, `slot_in_progress`…).
+
+| Need | How |
+|---|---|
+| What is scheduled | Left column "Заплановано", or `SELECT scheduled_at, channel_key, spec->>'title' FROM editor_drafts WHERE status='scheduled' ORDER BY scheduled_at` |
+| Cancel a scheduled post | "Скасувати" on its card, or `POST api/editor/drafts/:id/cancel` |
+| Why the agent did something | `SELECT * FROM editor_run_steps WHERE run_id = (SELECT run_id FROM editor_chat_messages WHERE id = …) ORDER BY idx` |
+| Live evals of the chat | `npx tsx --env-file=../../.env evals/run-evals.ts --case chat-schedule-tomorrow,chat-draft-only` (scratch DB) |

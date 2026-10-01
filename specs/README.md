@@ -18,8 +18,9 @@ Each feature directory has `spec.md` (what and why), `plan.md` (how, plus Consti
 | 007 | [Data hygiene](007-data-hygiene/spec.md): repo bloat, retention, backups, licensing | P1 | — | DONE (T002 partial: raw data still tracked) |
 | 008 | [Revenue path](008-revenue-path/spec.md): ad label, order→post→report | P1 | 001, 005 | DONE (T007 partial: invoice drafts stay manual) |
 | 009 | [Strategy retirement](009-strategy-retirement/spec.md): migrate channels to the editor | P2 | 005 + shadow results | T001–T003 DONE; T004–T006 owner-gated |
+| 010 | [Editor chat](010-editor-chat/spec.md): Claude-style chat with the agent, publish now or schedule | P1 | 003–006, 008, 009 | DONE (owner runs live evals and verifies live) |
 
-Order of execution: 001 ∥ 003 → 004 → 005 → 006 → 002 (only for strategies still live) → 007 → 008 → 009.
+Order of execution: 001 ∥ 003 → 004 → 005 → 006 → 002 (only for strategies still live) → 007 → 008 → 009 → 010.
 
 **Standing constraint for executors:** no service start, no publishes, no paid API calls.
 Verification is limited to `pnpm --filter automation test`, `tsc --noEmit` and lint.
