@@ -15,6 +15,7 @@ import { AgentChatPoller } from './agent-chat.poller';
 import { ScheduledPostsModule } from '../scheduled-posts/scheduled-posts.module';
 import { AuthModule } from '../auth/auth.module';
 import { TrackingAuthGuard } from '../tracking/api/tracking-auth.guard';
+import { AdPricesRepository } from '../payments/ad-prices.repository';
 
 // DB_POOL, SecretsService, ClaudeAgent, MtprotoSessionsRepository all come from
 // @Global modules (DatabaseModule, CryptoModule, CommonModule, ChannelConfigModule).
@@ -38,6 +39,8 @@ import { TrackingAuthGuard } from '../tracking/api/tracking-auth.guard';
     AgentMonitoredChatsRepository,
     AgentOpportunitiesRepository,
     AgentChatPoller,
+    // Read-only price list for the sales draft (spec 008 T007); stateless, DB_POOL only.
+    AdPricesRepository,
   ],
   exports: [AgentInboxRepository, AgentActionsRepository],
 })
