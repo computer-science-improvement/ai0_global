@@ -9,6 +9,7 @@ import { SPACE_NEWS_PROMPT, buildSpaceUserMessage } from '../../common/ai/prompt
 import { SPACE_CHANNEL_SKILL }      from '../../common/ai/skills/space-channel.skill';
 import { Skill }                    from '../../common/ai/skills/skill.interface';
 import { RawItem }                  from '../../common/types';
+import { escapeAttr }               from '../../common/html';
 import {
   ContentStrategy,
   StrategyFetchResult,
@@ -94,7 +95,7 @@ export class SpaceStrategy implements ContentStrategy, OnModuleInit {
 
     if (!this.validator.check(text, 'space-news')) return null;
 
-    const finalText = text + '\n\n<a href="' + item.source + '">Посилання</a>';
+    const finalText = text + '\n\n<a href="' + escapeAttr(item.source) + '">Посилання</a>';
 
     return {
       text:        finalText,

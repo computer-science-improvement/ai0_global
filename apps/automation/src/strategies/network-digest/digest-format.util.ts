@@ -5,6 +5,7 @@
 // its 1024-token output cap would truncate a multi-link digest and an AI pass
 // can mangle <a href> URLs. Titles were already AI-written and reviewed by the
 // source strategies, so the digest only assembles and escapes them.
+import { escapeHtml } from '../../common/html';
 
 /** Telegram hard message limit is 4096; leave headroom for safety. */
 export const DIGEST_CHAR_BUDGET = 3800;
@@ -35,9 +36,8 @@ export interface DigestRenderOptions {
   charBudget?: number;
 }
 
-export function escapeHtml(s: string): string {
-  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-}
+// Re-exported for existing importers; the implementation lives in common/html.
+export { escapeHtml };
 
 export function truncate(s: string, max: number): string {
   return s.length <= max ? s : `${s.slice(0, max - 1)}…`;

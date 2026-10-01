@@ -18,6 +18,7 @@ import { BotLoggerService }         from '../../common/logger/bot-logger.service
 import { RawItem, PostPayload }     from '../../common/types';
 import { TelegramPublisher }        from '../../publishers/telegram.publisher';
 import { CrossPostService } from '../../publishers/cross-post.service';
+import { escapeAttr } from '../../common/html';
 
 @Injectable()
 export class UaNewsStrategy implements ContentStrategy, OnModuleInit {
@@ -223,10 +224,7 @@ export class UaNewsStrategy implements ContentStrategy, OnModuleInit {
       .map(t => '#' + String(t).trim().replace(/[\s\-\.]+/g, '_').toLowerCase())
       .join(' ');
 
-    const safeSource = item.source
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;');
+    const safeSource = escapeAttr(item.source);
 
     return clean + '\n\n' + allTags + '\n\n<a href="' + safeSource + '">Джерело</a>';
   }

@@ -12,6 +12,7 @@ import {
   StrategyParams,
 } from '../../common/content-strategy/content-strategy.interface';
 import { QuotesRepository } from './quotes.repository';
+import { escapeHtml } from '../../common/html';
 
 @Injectable()
 export class QuotesStrategy implements ContentStrategy, OnModuleInit {
@@ -70,12 +71,12 @@ export class QuotesStrategy implements ContentStrategy, OnModuleInit {
       : false;
 
     const authorLine = quote.author
-      ? `— <i>${quote.author}</i>${isBirthday ? '  🎂' : ''}`
+      ? `— <i>${escapeHtml(quote.author)}</i>${isBirthday ? '  🎂' : ''}`
       : null;
 
     const text = authorLine
-      ? `«${clean}»\n\n${authorLine}`
-      : `«${clean}»`;
+      ? `«${escapeHtml(clean)}»\n\n${authorLine}`
+      : `«${escapeHtml(clean)}»`;
 
     try {
       const messageId = await this.telegram.publish(

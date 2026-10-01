@@ -9,6 +9,7 @@ import { MOVIE_PROMPT, buildMovieUserMessage, buildMoviePost } from '../../commo
 import { MOVIES_CHANNEL_SKILL }     from '../../common/ai/skills/movies-channel.skill';
 import { Skill }                    from '../../common/ai/skills/skill.interface';
 import { RawItem }                  from '../../common/types';
+import { escapeAttr }               from '../../common/html';
 import {
   ContentStrategy,
   StrategyFetchResult,
@@ -94,12 +95,12 @@ export class MoviesStrategy implements ContentStrategy, OnModuleInit {
 
     if (!this.validator.check(aiText, 'movies')) return null;
 
-    let text = buildMoviePost(item, aiText!);
-    text = text + '\n\n<a href="' + item.source + '">TMDB</a>';
+    const link = '\n\n<a href="' + escapeAttr(item.source) + '">TMDB</a>';
+    let text = buildMoviePost(item, aiText!) + link;
 
     if (text.length > 900) {
       const truncated = aiText!.slice(0, aiText!.length - (text.length - 890)) + '...';
-      text = buildMoviePost(item, truncated) + '\n\n<a href="' + item.source + '">TMDB</a>';
+      text = buildMoviePost(item, truncated) + link;
     }
 
     return {

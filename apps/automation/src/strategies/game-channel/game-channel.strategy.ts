@@ -30,6 +30,7 @@ import { SteamDealsFetcher }        from '../../workflows/game-channel/fetchers/
 import { GameNewsFetcher }          from '../../workflows/game-channel/fetchers/game-news.fetcher';
 import { GameChannelItem }          from '../../workflows/game-channel/types';
 import { extractPreloadImage }      from './article-image';
+import { escapeAttr }               from '../../common/html';
 
 @Injectable()
 export class GameChannelStrategy implements ContentStrategy, OnModuleInit {
@@ -275,7 +276,7 @@ export class GameChannelStrategy implements ContentStrategy, OnModuleInit {
 
   private appendLink(text: string, item: GameChannelItem): string {
     if (!item.source) return text;
-    return text + '\n\n<a href="' + item.source + '">Посилання</a>';
+    return text + '\n\n<a href="' + escapeAttr(item.source) + '">Посилання</a>';
   }
 
   /**

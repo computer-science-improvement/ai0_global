@@ -21,6 +21,7 @@ import {
   ContentStrategy, StrategyFetchResult, StrategyPost, StrategyParams,
 } from '../../common/content-strategy/content-strategy.interface';
 import { RecipesRepository, RecipeRow } from './recipes.repository';
+import { escapeAttr, escapeHtml, trimBrokenEntity } from '../../common/html';
 
 const CAPTION_MAX = 1024;
 const REPLY_MAX   = 4096;
@@ -31,10 +32,6 @@ const TRANSLATE_MODEL = process.env.RECIPE_TRANSLATE_MODEL || 'claude-sonnet-4-5
 const USER_AGENT  =
   'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36';
 
-/** Escape the 3 chars that break Telegram HTML parse_mode. */
-function escapeHtml(s: string): string {
-  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-}
 
 @Injectable()
 export class RecipesStrategy implements ContentStrategy, OnModuleInit {
@@ -287,28 +284,31 @@ export class RecipesStrategy implements ContentStrategy, OnModuleInit {
     const parts = [`<b>${escapeHtml(title)}</b>`];
     if (category) parts.push(`🍽️ ${escapeHtml(category)}`);
     if (nutri)    parts.push(escapeHtml(nutri));
-    parts.push(`📖 <a href="${escapeHtml(url)}">Повний рецепт</a>`);
+    parts.push(`📖 <a href="${escapeAttr(url)}">Повний рецепт</a>`);
     return parts.join('\n\n');
   }
 
+  /** Inline caption (Telegraph fallback / Meta). Every field is escaped; the
+   *  ingredient budget is measured on the escaped text so the 1024 limit holds. */
   private buildCaption(title: string, category: string | null, ingredients: string, nutri: string): string {
-    const header = `<b>${title}</b>`;
-    const meta   = category ? `🍽️ ${category}` : '';
-    const nut    = nutri || '';
+    const header = `<b>${escapeHtml(title)}</b>`;
+    const meta   = category ? `🍽️ ${escapeHtml(category)}` : '';
+    const nut    = nutri ? escapeHtml(nutri) : '';
     const ingHdr = '📝 Інгредієнти:';
     const fixed  = [header, meta, nut, `${ingHdr}\n`].filter(Boolean).join('\n\n');
     const budget = CAPTION_MAX - fixed.length;
-    const lines  = this.fitLines(ingredients, budget);
+    const lines  = this.fitLines(escapeHtml(ingredients), budget);
     return [header, meta, nut, `${ingHdr}\n${lines}`].filter(Boolean).join('\n\n');
   }
 
   private buildReply(instructions: string): string {
     const head = '👨‍🍳 Приготування:\n';
-    const full = head + (instructions ?? '');
+    const full = head + escapeHtml(instructions);
     if (full.length <= REPLY_MAX) return full;
     const sliced = full.slice(0, REPLY_MAX - 1);
     const nl = sliced.lastIndexOf('\n');
-    return (nl > head.length ? sliced.slice(0, nl) : sliced) + '…';
+    // A hard cut (no newline to break at) may split an entity like `&amp;`.
+    return (nl > head.length ? sliced.slice(0, nl) : trimBrokenEntity(sliced)) + '…';
   }
 
   /** Keep whole '\n'-separated lines that fit within budget. */

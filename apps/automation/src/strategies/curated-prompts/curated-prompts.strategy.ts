@@ -14,15 +14,13 @@ import { PublisherDispatcher } from '../../publishers/publisher-dispatcher.servi
 import { isPermanentMetaMediaError } from '../../publishers/meta-graph.util';
 import type { PublishDestination, DestinationPlatform } from '../../common/content-strategy/publish-destination';
 import type { MetaPlatform } from '../../config/meta-accounts.repository';
+import { escapeHtml } from '../../common/html';
 
 const CAPTION_MAX = 1024;
 const REPLY_MAX   = 4096;
 const USER_AGENT  =
   'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36';
 
-function escapeHtml(s: string): string {
-  return String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-}
 
 function hashtag(category: string | null): string {
   if (!category) return '';
