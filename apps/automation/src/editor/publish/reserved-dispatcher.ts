@@ -9,6 +9,8 @@ export interface ReservedDispatcherDeps {
   sponsored: { publishClaimed(slot: EditorSlot, now: Date): Promise<boolean> };
   /** 010 manual path (DraftsService): a scheduled chat post. */
   manual:    { publishScheduled(slot: EditorSlot, now: Date): Promise<boolean> };
+  /** 022 promo path: a cross-promo or repost between own resources. */
+  promo?:    { publishPromo(slot: EditorSlot, now: Date): Promise<boolean> };
   log?:      (msg: string) => void;
 }
 
@@ -26,6 +28,10 @@ export class ReservedDispatcher {
     const slots = await this.d.plans.claimDueReserved(now, RESERVED_CLAIM_BATCH);
     let published = 0;
     for (const slot of slots) {
+      if (slot.promo && this.d.promo) {
+        try { if (await this.d.promo.publishPromo(slot, now)) published++; } catch (err: any) { this.d.log?.(`promo slot ${slot.id} failed: ${err?.message ?? err}`); }
+        continue;
+      }
       let manual = false;
       try {
         manual = !(await this.d.orders.findBySlot(slot.id)) && PostSpecSchema.safeParse(slot.postSpec).success;

@@ -1,4 +1,5 @@
 import { Injectable, Logger, OnModuleInit, OnModuleDestroy } from '@nestjs/common';
+import { emitChatMember } from './chat-member-bus';
 import { ConfigService } from '@nestjs/config';
 import axios from 'axios';
 import { LogAnalyzerAgent } from '../common/logging/log-analyzer.agent';
@@ -87,7 +88,8 @@ export class AdminBotService implements OnModuleInit, OnModuleDestroy {
         const res = await axios.get(
           `https://api.telegram.org/bot${this.botToken}/getUpdates`,
           {
-            params:  { offset: this.offset, timeout: 25, allowed_updates: ['message', 'callback_query'] },
+            // chat_member: joins through tracked invite links (spec 022) — needs the bot to be a channel admin.
+            params:  { offset: this.offset, timeout: 25, allowed_updates: JSON.stringify(['message', 'callback_query', 'chat_member']) },
             timeout: 30_000,
           },
         );
@@ -97,6 +99,7 @@ export class AdminBotService implements OnModuleInit, OnModuleDestroy {
           try {
             if (u.message)        await this.handleMessage(u.message);
             if (u.callback_query) await this.handleCallback(u.callback_query);
+            if ((u as any).chat_member) await emitChatMember((u as any).chat_member);
           } catch (err: any) {
             this.logger.warn(`update handler failed: ${err.message}`);
           }

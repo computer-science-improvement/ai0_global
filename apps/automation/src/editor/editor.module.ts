@@ -91,6 +91,13 @@ import { ManagerRunner } from './manager/manager-runner';
 import { buildDirectiveTools, fileDirective, FileDirectiveInput } from './manager/directive-tools';
 import { ManagerService } from './manager/manager.service';
 import { MANAGER_SERVICE, ManagerController } from './manager/manager.controller';
+import { TrackedLinks } from './promo/tracked-links';
+import { PromoPlanner } from './promo/promo-planner';
+import { PromoExecutor } from './promo/promo-executor';
+import { PromoService } from './promo/promo.service';
+import { PROMO_SERVICE, PromoController, PromoRedirectController } from './promo/promo.controller';
+import { onChatMember } from '../publishers/chat-member-bus';
+import { createHash } from 'crypto';
 import { TrackingAuthGuard } from '../tracking/api/tracking-auth.guard';
 
 export const EDITOR_RUNNER    = 'EDITOR_RUNNER';
@@ -100,6 +107,26 @@ export const EDITOR_SKILLS    = 'EDITOR_SKILLS';
 export const EDITOR_REGISTRY  = 'EDITOR_REGISTRY';
 /** Live publish ports shared by publish_post and the chat (Telegram sender, media stage, mirrors). */
 export const EDITOR_PUBLISH   = 'EDITOR_PUBLISH';
+/** Cross-promo between own resources and tracked links (spec 022). */
+export const PROMO_INFRA      = 'PROMO_INFRA';
+
+export interface PromoInfra {
+  links:   TrackedLinks;
+  planner: PromoPlanner;
+}
+
+/** Bot API call on a channel's bot (invite links, forwards). */
+async function botCall(channelConfig: ChannelConfigService, channelKey: string, method: string, params: Record<string, unknown>): Promise<any> {
+  const ch = channelConfig.resolveChannel(channelKey);
+  const res = await fetch(`https://api.telegram.org/bot${ch.botToken}/${method}`, {
+    method: 'POST', headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({ chat_id: ch.chatId, ...params }), signal: AbortSignal.timeout(15_000),
+  });
+  const body: any = await res.json();
+  if (!body?.ok) throw new Error(body?.description ?? `${method} failed`);
+  return body.result;
+}
+
 /** The MANAGER, its digest and directives (spec 021). */
 export const EDITOR_MANAGER   = 'EDITOR_MANAGER';
 
@@ -183,6 +210,7 @@ export class AgentsUpkeep implements OnModuleInit {
     @Inject(EDITOR_REPOS) private readonly repos: EditorRepos,
     @Inject(PLATFORM_INFRA) private readonly platform: PlatformInfra,
     @Inject(EDITOR_MANAGER) private readonly manager: ManagerInfra,
+    @Inject(PROMO_INFRA) private readonly promo: PromoInfra,
   ) {}
 
   /** Owner-card timeouts, unresolved expiry and directive effect evaluation (spec 021). */
@@ -214,6 +242,13 @@ export class AgentsUpkeep implements OnModuleInit {
   }
 
   async onModuleInit(): Promise<void> {
+    // Joins through tracked invite links (spec 022): the admin bot forwards chat_member updates.
+    onChatMember(async (u) => {
+      await this.promo.links.recordJoin({
+        inviteLinkUrl: u.invite_link?.invite_link ?? null, inviteLinkName: u.invite_link?.name ?? null,
+        userId: u.new_chat_member.user.id, status: u.new_chat_member.status,
+      });
+    });
     await this.sync();
   }
 
@@ -539,16 +574,47 @@ export const EDITOR_PROVIDERS = [
       },
     },
     {
+      provide: PROMO_INFRA,
+      inject: [DB_POOL, ConfigService, AGENT_INFRA, PLATFORM_INFRA, EDITOR_REPOS, EDITOR_MANAGER, ChannelConfigService],
+      useFactory: (
+        pool: Pool, cfg: ConfigService, infra: AgentInfra, platform: PlatformInfra, repos: EditorRepos, manager: ManagerInfra, channelConfig: ChannelConfigService,
+      ): PromoInfra => {
+        const env = (k: string) => cfg.get<string>(k) ?? undefined;
+        const salt = env('PROMO_HASH_SALT') ?? createHash('sha256').update(`ai0-promo:${env('TOKEN_ENCRYPTION_KEY') ?? ''}`).digest('hex');
+        const links = new TrackedLinks({
+          pool, salt, redirectBase: env('PUBLIC_BASE_URL') ?? env('DASHBOARD_URL') ?? null,
+          createInvite: async (key, name) => (await botCall(channelConfig, key, 'createChatInviteLink', { name })).invite_link,
+        });
+        const network = new NetworkRepository(pool);
+        const planner = new PromoPlanner({
+          pool, plans: repos.plans, catalog: infra.catalog, profiles: infra.profiles, links, directives: manager.repo,
+          card: (k) => repos.channels.get(k), usable: (ref) => platform.health.usable(ref),
+          bestHours: async (orch, ref) => (await network.activePlaybook(orch.id))?.body.platforms.find((x) => x.resource_ref === ref)?.best_hours ?? [],
+        });
+        return { links, planner };
+      },
+    },
+    {
       provide: EDITOR_NETWORK,
-      inject: [DB_POOL, ConfigService, EDITOR_LOOP, EDITOR_REPOS, EDITOR_REGISTRY, AGENT_INFRA, PLATFORM_INFRA, TelegramNotifier, EDITOR_MANAGER],
+      inject: [DB_POOL, ConfigService, EDITOR_LOOP, EDITOR_REPOS, EDITOR_REGISTRY, AGENT_INFRA, PLATFORM_INFRA, TelegramNotifier, EDITOR_MANAGER, PROMO_INFRA],
       useFactory: (
         pool: Pool, cfg: ConfigService, loop: AgentLoop, repos: EditorRepos, registry: ToolRegistry, infra: AgentInfra, platform: PlatformInfra,
-        notifier: TelegramNotifier, manager: ManagerInfra,
+        notifier: TelegramNotifier, manager: ManagerInfra, promo: PromoInfra,
       ): NetworkRunner => new NetworkRunner({
         loop, registry, runtime: infra.runtime, memory: repos.memory, repo: new NetworkRepository(pool), plans: repos.plans, profiles: infra.profiles,
         usable: (ref) => platform.health.usable(ref),
         directives: (orch) => manager.runner.deliver(orch),
-        afterOrchestration: (orch) => manager.runner.afterOrchestration(orch),
+        afterOrchestration: async (orch) => {
+          await manager.runner.afterOrchestration(orch);
+          // Accepted cross-promo / repost directives become reserved promo slots (spec 022).
+          const key = telegramKeyOf(orch);
+          if (!key) return;
+          for (const dir of await manager.repo.list({ status: ['accepted'], toAgentId: orch.id })) {
+            if (dir.kind !== 'cross_promo' && dir.kind !== 'repost') continue;
+            const r = await promo.planner.schedule(dir, orch, key);
+            if ('ok' in r) await manager.runner.recordBaseline((await manager.repo.get(dir.id))!, null);
+          }
+        },
         env: (k) => cfg.get<string>(k) ?? undefined,
         notify: (t) => notifier.notifyAlert(t),
       }),
@@ -574,10 +640,11 @@ export const EDITOR_PROVIDERS = [
     },
     {
       provide: EDITOR_SCHEDULER,
-      inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_RUNNER, EDITOR_PUBLISH, EDITOR_DRAFTS, TelegramNotifier, PostingThrottleService, EDITOR_NETWORK, EDITOR_MANAGER],
+      inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_RUNNER, EDITOR_PUBLISH, EDITOR_DRAFTS, TelegramNotifier, PostingThrottleService, EDITOR_NETWORK, EDITOR_MANAGER, AGENT_INFRA, ChannelConfigService],
       useFactory: (
         pool: Pool, cfg: ConfigService, repos: EditorRepos, runner: EditorRunnerService, ports: PublishPorts, drafts: DraftsService,
-        notifier: TelegramNotifier, throttle: PostingThrottleService, network: NetworkRunner, manager: ManagerInfra,
+        notifier: TelegramNotifier, throttle: PostingThrottleService, network: NetworkRunner, manager: ManagerInfra, infra: AgentInfra,
+        channelConfig: ChannelConfigService,
       ) => {
         const logger = new Logger('EditorScheduler');
         const notify = (t: string) => notifier.notifyAlert(t);
@@ -592,6 +659,12 @@ export const EDITOR_PROVIDERS = [
             log: (m) => logger.warn(m),
           }),
           manual: drafts,
+          promo: new PromoExecutor({
+            plans: repos.plans, card: (k) => repos.channels.get(k), catalog: infra.catalog, profiles: infra.profiles,
+            runExecutor: (slot, card, note) => runner.runExecutor(slot, card, note),
+            forward: async (to, from, messageId) => (await botCall(channelConfig, to, 'forwardMessage', { from_chat_id: from, message_id: messageId })).message_id,
+            log: (m) => logger.warn(m),
+          }),
           log: (m) => logger.warn(m),
         });
         return new EditorScheduler({
@@ -735,6 +808,12 @@ export const EDITOR_PROVIDERS = [
         return new ManagerService({ repo: manager.repo, agents: infra.agents, digest: manager.digest, runner: manager.runner, log: (m) => logger.warn(m) });
       },
     },
+    {
+      provide: PROMO_SERVICE,
+      inject: [DB_POOL, AGENT_INFRA, PROMO_INFRA],
+      useFactory: (pool: Pool, infra: AgentInfra, promo: PromoInfra) =>
+        new PromoService({ pool, agents: infra.agents, network: new NetworkRepository(pool), links: promo.links }),
+    },
     EditorCron,
     AgentsUpkeep,
 ];
@@ -742,7 +821,7 @@ export const EDITOR_PROVIDERS = [
 @Module({
   // AuthModule: EditorController is guarded by TrackingAuthGuard, which injects AuthService.
   imports:     [ChannelConfigModule, PublishersModule, AuthModule],
-  controllers: [EditorController, EditorChatController, AgentsController, NetworkController, ManagerController],
+  controllers: [EditorController, EditorChatController, AgentsController, NetworkController, ManagerController, PromoController, PromoRedirectController],
   providers:   [...EDITOR_PROVIDERS, TrackingAuthGuard],
   exports:     [EDITOR_REPOS, EDITOR_RUNNER, AGENT_INFRA, PLATFORM_INFRA, EDITOR_MANAGER],
 })

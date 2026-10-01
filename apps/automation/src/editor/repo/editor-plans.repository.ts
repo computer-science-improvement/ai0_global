@@ -25,6 +25,8 @@ export interface EditorSlot {
   resourceRef?:    string | null;
   /** The pool idea the slot realises (spec 020). */
   ideaId?:         string | null;
+  /** Promo between own resources (spec 022). */
+  promo?:          Record<string, unknown> | null;
 }
 
 /** Rationale of a plan created only to hold reserved (ad) slots; the planner still plans that day. */
@@ -40,6 +42,10 @@ export interface ReserveSlotInput {
   sourceHints: string[];
   /** Snapshot of the approved creative; published as-is. */
   postSpec:    unknown;
+  /** Spec 022: a promo between own resources (written by the agent at its time). */
+  promo?:      Record<string, unknown> | null;
+  /** Spec 022: the promo is posted on another resource of the network. */
+  resourceRef?: string | null;
 }
 
 export function rowToSlot(r: any): EditorSlot {
@@ -51,6 +57,7 @@ export function rowToSlot(r: any): EditorSlot {
     postSpec: r.post_spec ?? null, renderedPreview: r.rendered_preview ?? null, error: r.error ?? null,
     ...(r.resource_ref ? { resourceRef: r.resource_ref } : {}),
     ...(r.idea_id ? { ideaId: r.idea_id } : {}),
+    ...(r.promo ? { promo: r.promo } : {}),
   };
 }
 
@@ -119,9 +126,13 @@ export class EditorPlansRepository {
         `SELECT id FROM editor_plans WHERE channel_key = $1 AND plan_date = $2 AND status = 'active' FOR UPDATE`,
         [i.channelKey, i.planDate]);
       const { rows } = await client.query(
-        `INSERT INTO editor_slots (plan_id, channel_key, scheduled_at, kind, format, topic, source_hints, post_spec)
-         VALUES ($1, $2, $3, 'reserved', $4, $5, $6, $7) RETURNING id`,
-        [plan.rows[0].id, i.channelKey, i.scheduledAt, i.format, i.topic, JSON.stringify(i.sourceHints), JSON.stringify(i.postSpec)]);
+        i.promo
+          ? `INSERT INTO editor_slots (plan_id, channel_key, scheduled_at, kind, format, topic, source_hints, post_spec, promo, resource_ref)
+             VALUES ($1, $2, $3, 'reserved', $4, $5, $6, $7, $8, $9) RETURNING id`
+          : `INSERT INTO editor_slots (plan_id, channel_key, scheduled_at, kind, format, topic, source_hints, post_spec)
+             VALUES ($1, $2, $3, 'reserved', $4, $5, $6, $7) RETURNING id`,
+        [plan.rows[0].id, i.channelKey, i.scheduledAt, i.format, i.topic, JSON.stringify(i.sourceHints), JSON.stringify(i.postSpec),
+          ...(i.promo ? [JSON.stringify(i.promo), i.resourceRef ?? null] : [])]);
       await client.query('COMMIT');
       return rows[0].id;
     } catch (err) {

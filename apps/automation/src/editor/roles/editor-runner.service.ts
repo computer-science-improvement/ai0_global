@@ -114,7 +114,8 @@ export class EditorRunnerService {
     return res;
   }
 
-  async runExecutor(slot: EditorSlot, card: EditorCard): Promise<AgentLoopResult> {
+  /** `note` (spec 022): an extra instruction for this slot, e.g. a promo brief with its tracked link. */
+  async runExecutor(slot: EditorSlot, card: EditorCard, note?: string | null): Promise<AgentLoopResult> {
     const ctx = await this.agentOf(card, 'executor');
     const off = this.paused(ctx);
     if (off) {
@@ -123,8 +124,8 @@ export class EditorRunnerService {
     }
     const target = slot.resourceRef ? parseResourceRef(slot.resourceRef) : null;
     const res = target && target.platform !== 'telegram'
-      ? await this.runPlatformExecutor(slot, card, ctx, target.platform)
-      : await this.run('executor', card, await this.executorUser(card, slot, ctx), slot.id, { excludeTools: PLATFORM_ONLY }, ctx);
+      ? await this.runPlatformExecutor(slot, card, ctx, target.platform, note ?? null)
+      : await this.run('executor', card, [await this.executorUser(card, slot, ctx), note].filter(Boolean).join('\n'), slot.id, { excludeTools: PLATFORM_ONLY }, ctx);
     if (this.d.onSlotDone) await this.d.onSlotDone(slot).catch(() => {});
     await this.d.plans.updateSlot(slot.id, { runId: res.runId });
 
@@ -152,7 +153,7 @@ export class EditorRunnerService {
   }
 
   /** A slot that targets Instagram / Facebook / Threads / TikTok of the channel's network (spec 019 FR-008). */
-  private async runPlatformExecutor(slot: EditorSlot, card: EditorCard, ctx: RunAgentContext | null, platform: string): Promise<AgentLoopResult> {
+  private async runPlatformExecutor(slot: EditorSlot, card: EditorCard, ctx: RunAgentContext | null, platform: string, note: string | null = null): Promise<AgentLoopResult> {
     const pc = this.d.platformContext ? await this.d.platformContext(slot, ctx?.orchestrator?.id ?? null).catch(() => null) : null;
     const skills = ctx?.skills ?? this.d.skills;
     const skill = skills.get(`platform-${platform}`);
@@ -182,6 +183,7 @@ export class EditorRunnerService {
       pc?.idea ? `Ідея з пулу: ${pc.idea}` : '',
       slot.sourceHints.length ? `Підказки джерел: ${slot.sourceHints.join('; ')}` : '',
       mode === 'shadow' ? 'Режим shadow: пост збережеться як превʼю, нічого не публікується.' : '',
+      note ?? '',
       'Підготуй пост і заверши publish_platform_post (після lint_platform_post) або skip_slot з причиною.',
     ].filter(Boolean).join('\n');
     const platformSlot: PlatformSlotExtras = {
