@@ -283,8 +283,9 @@ function Composer({ value, onChange, onSend, onStop, busy, channel, onChannel, d
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    el.style.height = 'auto';
-    el.style.height = `${Math.min(el.scrollHeight, 200)}px`;
+    // Measure from 0 — with 'auto' the layout can report the stretched box, not the content (was always 200px).
+    el.style.height = '0px';
+    el.style.height = `${Math.max(48, Math.min(el.scrollHeight, 200))}px`;
   }, [value]);
   const onKey = (e: KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === 'Enter' && !e.shiftKey && !e.nativeEvent.isComposing) {
