@@ -1,5 +1,5 @@
 import type { Pool } from 'pg';
-import type { EditorCard } from '../card';
+import type { ChannelMode, EditorCard } from '../card';
 
 export function rowToCard(r: any): EditorCard & { createdAt: Date } {
   return {
@@ -65,5 +65,57 @@ export class EditorChannelsRepository {
       [channelKey, JSON.stringify(next)],
     );
     return next;
+  }
+
+  /**
+   * Owner upsert (006). Writes every card field; a mode change is audited in
+   * editor_channel_memory as an owner `rule` in the same transaction. The audit
+   * row is stored inactive so it stays out of the agents' prompts.
+   */
+  async upsert(c: EditorCard): Promise<{ card: EditorCard & { createdAt: Date }; previousMode: ChannelMode | null }> {
+    const client = await this.pool.connect();
+    try {
+      await client.query('BEGIN');
+      const prev = await client.query(`SELECT mode FROM editor_channels WHERE channel_key = $1 FOR UPDATE`, [c.channelKey]);
+      const previousMode: ChannelMode | null = prev.rows[0]?.mode ?? null;
+      const { rows } = await client.query(
+        `INSERT INTO editor_channels (
+           channel_key, mode, title, language, timezone, posts_per_day_min, posts_per_day_max,
+           quiet_start_hour, quiet_end_hour, min_gap_minutes, plan_hour, brief, formats, hashtags,
+           hashtag_min, hashtag_max, footer, link_style, emoji_policy, skills, sources, tools_allow,
+           explore_ratio, daily_budget_usd, models, banned_terms)
+         VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21,$22,$23,$24,$25,$26)
+         ON CONFLICT (channel_key) DO UPDATE SET
+           mode = EXCLUDED.mode, title = EXCLUDED.title, language = EXCLUDED.language, timezone = EXCLUDED.timezone,
+           posts_per_day_min = EXCLUDED.posts_per_day_min, posts_per_day_max = EXCLUDED.posts_per_day_max,
+           quiet_start_hour = EXCLUDED.quiet_start_hour, quiet_end_hour = EXCLUDED.quiet_end_hour,
+           min_gap_minutes = EXCLUDED.min_gap_minutes, plan_hour = EXCLUDED.plan_hour, brief = EXCLUDED.brief,
+           formats = EXCLUDED.formats, hashtags = EXCLUDED.hashtags, hashtag_min = EXCLUDED.hashtag_min,
+           hashtag_max = EXCLUDED.hashtag_max, footer = EXCLUDED.footer, link_style = EXCLUDED.link_style,
+           emoji_policy = EXCLUDED.emoji_policy, skills = EXCLUDED.skills, sources = EXCLUDED.sources,
+           tools_allow = EXCLUDED.tools_allow, explore_ratio = EXCLUDED.explore_ratio,
+           daily_budget_usd = EXCLUDED.daily_budget_usd, models = EXCLUDED.models,
+           banned_terms = EXCLUDED.banned_terms, updated_at = now()
+         RETURNING *`,
+        [c.channelKey, c.mode, c.title, c.language, c.timezone, c.postsPerDayMin, c.postsPerDayMax,
+          c.quietStartHour, c.quietEndHour, c.minGapMinutes, c.planHour, c.brief, JSON.stringify(c.formats), c.hashtags,
+          c.hashtagMin, c.hashtagMax, c.footer, c.linkStyle, c.emojiPolicy, c.skills, JSON.stringify(c.sources), c.toolsAllow,
+          c.exploreRatio, c.dailyBudgetUsd, JSON.stringify(c.models), c.bannedTerms]);
+      const from = previousMode ?? 'off';
+      if (from !== c.mode) {
+        await client.query(
+          `INSERT INTO editor_channel_memory (channel_key, kind, text, evidence, created_by, active)
+           VALUES ($1, 'rule', $2, $3, 'owner', false)`,
+          [c.channelKey, `mode changed ${from}→${c.mode} by owner`,
+            JSON.stringify({ audit: 'mode_change', from: previousMode, to: c.mode })]);
+      }
+      await client.query('COMMIT');
+      return { card: rowToCard(rows[0]), previousMode };
+    } catch (err) {
+      await client.query('ROLLBACK');
+      throw err;
+    } finally {
+      client.release();
+    }
   }
 }
