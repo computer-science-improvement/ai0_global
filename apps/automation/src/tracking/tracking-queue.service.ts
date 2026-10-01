@@ -1,10 +1,53 @@
 import { Inject, Injectable, Logger, OnModuleDestroy, OnModuleInit } from '@nestjs/common';
-import { Queue, Worker, Job, WorkerOptions } from 'bullmq';
+import { Queue, Worker, Job, WorkerOptions, DelayedError } from 'bullmq';
 import IORedis from 'ioredis';
 import { REDIS } from './tracking.tokens';
+import { isFloodWait } from '../common/telegram/flood-wait';
 import {
   TRACKING_QUEUES, PollMetaJob, PollPostsJob, RefreshMetricsJob, ResolveDiscoveryJob,
 } from './types';
+
+/**
+ * What a worker does with a job that hit (or was skipped by) a Telegram
+ * FLOOD_WAIT:
+ *   delay — park it as DELAYED for exactly the wait (one-shot jobs that would
+ *           otherwise be lost, e.g. resolve-discovery);
+ *   skip  — complete it, logged (periodic polls: the tier scheduler re-enqueues
+ *           the channel next cycle since it wasn't marked polled — delaying
+ *           those would pile up duplicates that all fire when the flood ends).
+ */
+export type FloodWaitPolicy = 'delay' | 'skip';
+
+/**
+ * Wrap a processor so a Telegram FLOOD_WAIT (from the MTProto client) is
+ * handled per `policy` instead of failing into the normal 5s/10s exponential
+ * backoff, which would hit Telegram again mid-flood and burn the job's
+ * attempts. Other errors pass through untouched.
+ */
+export function withFloodWaitPolicy<T>(
+  queueName: string,
+  processor: (job: Job<T>) => Promise<unknown>,
+  logger?: Logger,
+  now: () => number = Date.now,
+  policy: FloodWaitPolicy = 'delay',
+): (job: Job<T>, token?: string) => Promise<unknown> {
+  return async (job, token) => {
+    try {
+      return await processor(job);
+    } catch (err) {
+      const seconds = isFloodWait(err);
+      if (seconds === null) throw err;
+      if (policy === 'skip') {
+        logger?.warn(`[${queueName}] job ${job.id} skipped — FLOOD_WAIT ${seconds}s`);
+        return undefined;
+      }
+      if (!token) throw err;
+      logger?.warn(`[${queueName}] job ${job.id} FLOOD_WAIT — delayed ${seconds}s`);
+      await job.moveToDelayed(now() + seconds * 1000, token);
+      throw new DelayedError();
+    }
+  };
+}
 
 @Injectable()
 export class TrackingQueueService implements OnModuleInit, OnModuleDestroy {
@@ -57,9 +100,11 @@ export class TrackingQueueService implements OnModuleInit, OnModuleDestroy {
     queueName: string,
     processor: (job: Job<T>) => Promise<unknown>,
     concurrency = 5,
+    onFloodWait: FloodWaitPolicy = 'delay',
   ): void {
     const opts: WorkerOptions = { connection: this.redis, concurrency };
-    const w = new Worker<T>(queueName, processor, opts);
+    const wrapped = withFloodWaitPolicy(queueName, processor, this.logger, Date.now, onFloodWait);
+    const w = new Worker<T>(queueName, wrapped, opts);
     w.on('failed', (job, err) => this.logger.warn(`[${queueName}] job ${job?.id} failed: ${err.message}`));
     this.workers.push(w);
   }

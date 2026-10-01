@@ -16,10 +16,13 @@ export class PollMetaWorker implements OnModuleInit {
   ) {}
 
   onModuleInit(): void {
+    // FLOOD_WAIT → skip: the channel isn't marked polled, so the tier
+    // scheduler re-enqueues it next cycle.
     this.queue.registerWorker<PollMetaJob>(
       TRACKING_QUEUES.POLL_META,
       (job) => this.handle(job),
       3,
+      'skip',
     );
   }
 

@@ -6,13 +6,15 @@ import { LogLevel } from 'telegram/extensions/Logger';
 import { MtprotoSessionsRepository } from '../config/mtproto-sessions.repository';
 import { SecretsService } from '../common/crypto/secrets.service';
 import { withTimeout } from '../common/with-timeout';
+import { FloodWindow, isFloodWait } from '../common/telegram/flood-wait';
 import type { ChatMessage, JoinedGroup, RawDm } from './agent.types';
-
-const FLOOD_WAIT_RE = /A wait of (\d+) seconds is required/;
 
 @Injectable()
 export class AgentMtprotoClient {
   private readonly logger = new Logger(AgentMtprotoClient.name);
+  /** FLOOD_WAIT window for the agent account: while open, every read returns
+   *  [] without connecting, so the pollers don't keep hitting Telegram. */
+  private flood = new FloodWindow();
 
   constructor(
     private readonly sessions: MtprotoSessionsRepository,
@@ -31,6 +33,7 @@ export class AgentMtprotoClient {
    * session, on FLOOD_WAIT, or on any error — the poller treats [] as "nothing".
    */
   async fetchRecentDialogs(limit = 50): Promise<RawDm[]> {
+    if (this.flooded('fetchRecentDialogs')) return [];
     const active = await this.sessions.activeSession(this.secrets, 'agent');
     if (!active) return [];
     const apiId   = active.apiId  ?? Number(this.config.get('TELEGRAM_API_ID'));
@@ -60,9 +63,9 @@ export class AgentMtprotoClient {
       }
       return out;
     } catch (err: any) {
-      const msg = err?.errorMessage ?? err?.message ?? String(err);
-      if (FLOOD_WAIT_RE.test(msg)) this.logger.warn(`agent: FLOOD_WAIT — backing off`);
-      else this.logger.warn(`agent fetchRecentDialogs failed: ${msg}`);
+      if (!this.noteFlood(err, 'fetchRecentDialogs')) {
+        this.logger.warn(`agent fetchRecentDialogs failed: ${err?.errorMessage ?? err?.message ?? String(err)}`);
+      }
       return [];
     } finally {
       try { await client.disconnect(); } catch { /* ignore */ }
@@ -74,6 +77,7 @@ export class AgentMtprotoClient {
    * Read-only: enumerates already-joined membership only.
    */
   async listGroups(limit = 100): Promise<JoinedGroup[]> {
+    if (this.flooded('listGroups')) return [];
     const active = await this.sessions.activeSession(this.secrets, 'agent');
     if (!active) return [];
     const apiId   = active.apiId  ?? Number(this.config.get('TELEGRAM_API_ID'));
@@ -93,9 +97,9 @@ export class AgentMtprotoClient {
       }
       return out;
     } catch (err: any) {
-      const msg = err?.errorMessage ?? err?.message ?? String(err);
-      if (FLOOD_WAIT_RE.test(msg)) this.logger.warn(`agent: FLOOD_WAIT — backing off`);
-      else this.logger.warn(`agent listGroups failed: ${msg}`);
+      if (!this.noteFlood(err, 'listGroups')) {
+        this.logger.warn(`agent listGroups failed: ${err?.errorMessage ?? err?.message ?? String(err)}`);
+      }
       return [];
     } finally {
       try { await client.disconnect(); } catch { /* ignore */ }
@@ -107,6 +111,7 @@ export class AgentMtprotoClient {
    * No join, no send — pure history fetch on already-joined chats.
    */
   async fetchChatMessages(chatId: string, minId: number, limit = 50): Promise<ChatMessage[]> {
+    if (this.flooded('fetchChatMessages')) return [];
     const active = await this.sessions.activeSession(this.secrets, 'agent');
     if (!active) return [];
     const apiId   = active.apiId  ?? Number(this.config.get('TELEGRAM_API_ID'));
@@ -127,12 +132,28 @@ export class AgentMtprotoClient {
         .filter(m => m && m.id && typeof m.message === 'string')
         .map(m => ({ messageId: Number(m.id), text: String(m.message), date: m.date ? new Date(m.date * 1000) : new Date() }));
     } catch (err: any) {
-      const msg = err?.errorMessage ?? err?.message ?? String(err);
-      if (FLOOD_WAIT_RE.test(msg)) this.logger.warn(`agent: FLOOD_WAIT — backing off`);
-      else this.logger.warn(`agent fetchChatMessages failed: ${msg}`);
+      if (!this.noteFlood(err, 'fetchChatMessages')) {
+        this.logger.warn(`agent fetchChatMessages failed: ${err?.errorMessage ?? err?.message ?? String(err)}`);
+      }
       return [];
     } finally {
       try { await client.disconnect(); } catch { /* ignore */ }
     }
+  }
+
+  /** True (and logged) while the agent account's flood window is open. */
+  private flooded(where: string): boolean {
+    const left = this.flood.remaining();
+    if (left > 0) this.logger.debug(`agent ${where}: skipped — FLOOD_WAIT ${left}s left`);
+    return left > 0;
+  }
+
+  /** If `err` is a FLOOD_WAIT, open the skip window and return true. */
+  private noteFlood(err: unknown, where: string): boolean {
+    const seconds = isFloodWait(err);
+    if (seconds === null) return false;
+    this.flood.trip(seconds);
+    this.logger.warn(`agent ${where}: FLOOD_WAIT ${seconds}s — pausing agent MTProto reads`);
+    return true;
   }
 }

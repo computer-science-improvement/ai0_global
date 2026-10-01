@@ -1,6 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { query } from '@anthropic-ai/claude-agent-sdk';
 import { join } from 'path';
+import { lockedAgentOptions } from '../ai/locked-agent-options';
 import { ChannelConfigService, ForwardRoute } from '../../config/channel-config.service';
 import { AiLoggerService } from '../ai/ai-logger.service';
 
@@ -33,14 +34,9 @@ export class TopicRouterService {
     try {
       for await (const msg of query({
         prompt,
-        options: {
-          cwd:                             this.cwd,
-          settingSources:                  ['project'],
-          agent:                           'topic-router',
-          permissionMode:                  'bypassPermissions',
-          allowDangerouslySkipPermissions: true,
-          maxTurns:                        2,
-        },
+        // No tools, no project settings, no permission bypass — see
+        // locked-agent-options.ts (the input here is untrusted).
+        options: lockedAgentOptions(this.cwd, 'topic-router', 2),
       })) {
         if (msg.type === 'result' && msg.subtype === 'success') {
           raw = msg.result?.trim() ?? null;

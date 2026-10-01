@@ -15,7 +15,10 @@ export const RedisProvider: Provider = {
   inject:  [ConfigService],
   useFactory: (config: ConfigService) => {
     const url = config.get<string>('REDIS_URL') ?? 'redis://localhost:6379';
-    const client = new IORedis(url, { maxRetriesPerRequest: null });
+    // Optional auth (compose adds --requirepass when REDIS_PASSWORD is set). A
+    // password embedded in REDIS_URL still wins — ioredis prefers URL fields.
+    const password = config.get<string>('REDIS_PASSWORD') || undefined;
+    const client = new IORedis(url, { maxRetriesPerRequest: null, ...(password ? { password } : {}) });
     const logger = new Logger('Redis');
     client.on('connect', () => logger.log(`connected to ${url}`));
     client.on('error',   (e) => logger.warn(`error: ${e.message}`));

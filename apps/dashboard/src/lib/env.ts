@@ -1,4 +1,8 @@
-export const API_BASE = (import.meta.env.VITE_API_BASE_URL as string) ?? '/api';
+// Every api() path already carries its full backend prefix (`/api/strategies`,
+// `/tracking/…`), and both the vite dev proxy and the prod nginx forward those
+// paths unchanged — so the base is empty by default. Set VITE_API_BASE_URL only
+// to point at a different origin (e.g. `https://api.example.com`).
+export const API_BASE = (import.meta.env.VITE_API_BASE_URL as string) ?? '';
 export const AUTH_BASE = (import.meta.env.VITE_AUTH_BASE_URL as string) ?? '/auth';
 export const TG_BOT_USERNAME = (import.meta.env.VITE_TG_BOT_USERNAME as string) ?? '';
 

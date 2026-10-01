@@ -1,6 +1,7 @@
 import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { AuthService } from '../../auth/auth.service';
+import { safeEqual } from '../../common/crypto/safe-equal';
 
 @Injectable()
 export class TrackingAuthGuard implements CanActivate {
@@ -16,7 +17,7 @@ export class TrackingAuthGuard implements CanActivate {
     const expected = this.config.get<string>('TRACKING_TOKEN') ?? '';
     const auth = req.headers['authorization'] ?? '';
     const got = typeof auth === 'string' ? auth.replace(/^Bearer\s+/i, '').trim() : '';
-    if (expected && got === expected) return true;
+    if (expected && safeEqual(got, expected)) return true;
 
     // 2. JWT cookie (production path)
     const token = req.cookies?.tracking_jwt;

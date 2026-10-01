@@ -21,7 +21,8 @@ export class PollPostsWorker implements OnModuleInit {
   ) {}
 
   onModuleInit(): void {
-    this.queue.registerWorker<PollPostsJob>(TRACKING_QUEUES.POLL_POSTS, (job) => this.handle(job), 5);
+    // FLOOD_WAIT → skip: the tier scheduler re-enqueues the channel next cycle.
+    this.queue.registerWorker<PollPostsJob>(TRACKING_QUEUES.POLL_POSTS, (job) => this.handle(job), 5, 'skip');
   }
 
   private async handle(job: Job<PollPostsJob>): Promise<void> {

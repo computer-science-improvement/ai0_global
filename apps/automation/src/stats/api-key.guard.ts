@@ -7,6 +7,7 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { safeEqual } from '../common/crypto/safe-equal';
 
 /**
  * Header-based API key guard. Compares `X-API-Key` against `STATS_API_KEY`.
@@ -32,7 +33,7 @@ export class ApiKeyGuard implements CanActivate {
       (req.headers['x-api-key'] as string | undefined) ??
       (req.headers['X-API-Key'] as string | undefined);
 
-    if (provided !== expected) {
+    if (!safeEqual(provided, expected)) {
       throw new UnauthorizedException('Invalid or missing X-API-Key');
     }
     return true;
