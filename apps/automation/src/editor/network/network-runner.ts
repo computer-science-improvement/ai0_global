@@ -28,6 +28,8 @@ export interface NetworkRunnerDeps {
   usable?:  NetworkContextDeps['usable'];
   /** Spec 021: open directives for the orchestrator, rendered for the prompt (null when none). */
   directives?: (orch: Agent) => Promise<string | null>;
+  /** Spec 021: after an orchestrator run, accepted directives become applied. */
+  afterOrchestration?: (orch: Agent) => Promise<unknown>;
   env:      (key: string) => string | undefined;
   notify:   (text: string) => Promise<void>;
   now?:     () => Date;
@@ -94,6 +96,7 @@ export class NetworkRunner {
       orchestratorSystemPrompt({ net, card, profile: await this.profileText(net), memory, skills: c!.agentCtx.skills, directives }),
       orchestratorDailyPrompt({ net, card, now: this.now(), open, target, hasDirectives: !!directives }),
       STEPS.orchestrate, { brief: card.brief });
+    if (this.d.afterOrchestration) await this.d.afterOrchestration(net.orchestrator).catch(() => {});
     await this.runIdeaReview(card);
     return res;
   }

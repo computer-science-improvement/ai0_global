@@ -85,6 +85,12 @@ import { NetworkRunner } from './network/network-runner';
 import { buildNetworkTools } from './network/network-tools';
 import { NetworkService } from './network/network.service';
 import { NETWORK_SERVICE, NetworkController } from './network/network.controller';
+import { DirectivesRepository } from './manager/directives.repository';
+import { KpiDigestService } from './manager/kpi-digest.service';
+import { ManagerRunner } from './manager/manager-runner';
+import { buildDirectiveTools, fileDirective, FileDirectiveInput } from './manager/directive-tools';
+import { ManagerService } from './manager/manager.service';
+import { MANAGER_SERVICE, ManagerController } from './manager/manager.controller';
 import { TrackingAuthGuard } from '../tracking/api/tracking-auth.guard';
 
 export const EDITOR_RUNNER    = 'EDITOR_RUNNER';
@@ -94,6 +100,15 @@ export const EDITOR_SKILLS    = 'EDITOR_SKILLS';
 export const EDITOR_REGISTRY  = 'EDITOR_REGISTRY';
 /** Live publish ports shared by publish_post and the chat (Telegram sender, media stage, mirrors). */
 export const EDITOR_PUBLISH   = 'EDITOR_PUBLISH';
+/** The MANAGER, its digest and directives (spec 021). */
+export const EDITOR_MANAGER   = 'EDITOR_MANAGER';
+
+export interface ManagerInfra {
+  repo:   DirectivesRepository;
+  digest: KpiDigestService;
+  runner: ManagerRunner;
+}
+
 /** Orchestrator-level runs and the idea pool (spec 020). */
 export const EDITOR_NETWORK   = 'EDITOR_NETWORK';
 /** The AgentLoop of scheduled runs (shared by the editor roles and the orchestrator runs). */
@@ -167,7 +182,19 @@ export class AgentsUpkeep implements OnModuleInit {
     @Inject(EDITOR_SKILLS) private readonly files: SkillLibrary,
     @Inject(EDITOR_REPOS) private readonly repos: EditorRepos,
     @Inject(PLATFORM_INFRA) private readonly platform: PlatformInfra,
+    @Inject(EDITOR_MANAGER) private readonly manager: ManagerInfra,
   ) {}
+
+  /** Owner-card timeouts, unresolved expiry and directive effect evaluation (spec 021). */
+  @Cron('47 * * * *', { name: 'directives-housekeeping' })
+  async directives(): Promise<void> {
+    try {
+      const r = await this.manager.runner.housekeeping();
+      if (r.timedOut || r.expired || r.evaluated) this.logger.log(`directives: timed out ${r.timedOut}, expired ${r.expired}, evaluated ${r.evaluated}`);
+    } catch (err: any) {
+      this.logger.warn(`directives housekeeping failed: ${err?.message ?? err}`);
+    }
+  }
 
   /** Platform post metrics + daily follower rollup (spec 019 FR-009). */
   @Cron('35 */3 * * *', { name: 'platform-stats' })
@@ -467,6 +494,11 @@ export const EDITOR_PROVIDERS = [
           }),
           ...buildAgentChatTools({ pool, memory: repos.memory, skills: infra.skills, actions: infra.actions }),
           ...buildNetworkTools({ repo: new NetworkRepository(pool), plans: repos.plans, memory: repos.memory, inbox: infra.inbox }),
+          ...buildDirectiveTools({
+            repo: new DirectivesRepository(pool), agents: infra.agents, inbox: infra.inbox, memory: repos.memory, actions: infra.actions,
+            digest: new KpiDigestService({ pool, catalog: infra.catalog, globalCapUsd: Number(env('EDITOR_DAILY_BUDGET_USD') ?? 3) }),
+            channelKeyOf: (a) => infra.channelKeyOf(a),
+          }),
           ...buildPlatformTools({
             pool, publish: platform.publish, plans: repos.plans,
             notifyPreview: env('EDITOR_SHADOW_PREVIEW') === 'false' ? undefined : (ref, text) => notifier.notifyAlert(`👁 Shadow-превʼю ${ref}\n\n${text}`),
@@ -492,14 +524,31 @@ export const EDITOR_PROVIDERS = [
       },
     },
     {
+      provide: EDITOR_MANAGER,
+      inject: [DB_POOL, ConfigService, EDITOR_LOOP, EDITOR_REGISTRY, AGENT_INFRA],
+      useFactory: (pool: Pool, cfg: ConfigService, loop: AgentLoop, registry: ToolRegistry, infra: AgentInfra): ManagerInfra => {
+        const env = (k: string) => cfg.get<string>(k) ?? undefined;
+        const repo = new DirectivesRepository(pool);
+        const digest = new KpiDigestService({ pool, catalog: infra.catalog, globalCapUsd: Number(env('EDITOR_DAILY_BUDGET_USD') ?? 3) });
+        const runner = new ManagerRunner({
+          loop, registry, runtime: infra.runtime, agents: infra.agents, repo, digest, inbox: infra.inbox, env,
+          timeoutHours: Number(env('DIRECTIVE_TIMEOUT_HOURS') ?? 12),
+          timeoutApplyKinds: (env('DIRECTIVE_TIMEOUT_APPLY_KINDS') ?? '').split(',').map((x) => x.trim()).filter(Boolean),
+        });
+        return { repo, digest, runner };
+      },
+    },
+    {
       provide: EDITOR_NETWORK,
-      inject: [DB_POOL, ConfigService, EDITOR_LOOP, EDITOR_REPOS, EDITOR_REGISTRY, AGENT_INFRA, PLATFORM_INFRA, TelegramNotifier],
+      inject: [DB_POOL, ConfigService, EDITOR_LOOP, EDITOR_REPOS, EDITOR_REGISTRY, AGENT_INFRA, PLATFORM_INFRA, TelegramNotifier, EDITOR_MANAGER],
       useFactory: (
         pool: Pool, cfg: ConfigService, loop: AgentLoop, repos: EditorRepos, registry: ToolRegistry, infra: AgentInfra, platform: PlatformInfra,
-        notifier: TelegramNotifier,
+        notifier: TelegramNotifier, manager: ManagerInfra,
       ): NetworkRunner => new NetworkRunner({
         loop, registry, runtime: infra.runtime, memory: repos.memory, repo: new NetworkRepository(pool), plans: repos.plans, profiles: infra.profiles,
         usable: (ref) => platform.health.usable(ref),
+        directives: (orch) => manager.runner.deliver(orch),
+        afterOrchestration: (orch) => manager.runner.afterOrchestration(orch),
         env: (k) => cfg.get<string>(k) ?? undefined,
         notify: (t) => notifier.notifyAlert(t),
       }),
@@ -525,10 +574,10 @@ export const EDITOR_PROVIDERS = [
     },
     {
       provide: EDITOR_SCHEDULER,
-      inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_RUNNER, EDITOR_PUBLISH, EDITOR_DRAFTS, TelegramNotifier, PostingThrottleService, EDITOR_NETWORK],
+      inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_RUNNER, EDITOR_PUBLISH, EDITOR_DRAFTS, TelegramNotifier, PostingThrottleService, EDITOR_NETWORK, EDITOR_MANAGER],
       useFactory: (
         pool: Pool, cfg: ConfigService, repos: EditorRepos, runner: EditorRunnerService, ports: PublishPorts, drafts: DraftsService,
-        notifier: TelegramNotifier, throttle: PostingThrottleService, network: NetworkRunner,
+        notifier: TelegramNotifier, throttle: PostingThrottleService, network: NetworkRunner, manager: ManagerInfra,
       ) => {
         const logger = new Logger('EditorScheduler');
         const notify = (t: string) => notifier.notifyAlert(t);
@@ -549,6 +598,15 @@ export const EDITOR_PROVIDERS = [
           pool, channels: repos.channels, plans: repos.plans, runner, reserved,
           enabled: () => isEnabled(cfg),
           orchestrate: cfg.get<string>('EDITOR_ORCHESTRATION') === 'off' ? undefined : (card) => network.runOrchestrator(card),
+          // The MANAGER at its times; an event run for orchestrators with fresh directives (spec 021).
+          afterTick: async () => {
+            await manager.runner.tick();
+            for (const orch of await manager.runner.orchestratorsToWake()) {
+              const key = telegramKeyOf(orch);
+              const card = key ? await repos.channels.get(key) : null;
+              if (card && card.mode !== 'off') await network.runOrchestrator(card);
+            }
+          },
           notify,
           log: (m) => logger.warn(m),
         });
@@ -557,10 +615,10 @@ export const EDITOR_PROVIDERS = [
     {
       // Editor chat (spec 010): needs only an LLM key, independent of EDITOR_ENABLED.
       provide: EDITOR_CHAT,
-      inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_SKILLS, EDITOR_REGISTRY, EDITOR_DRAFTS, TelegramNotifier, AGENT_INFRA],
+      inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_SKILLS, EDITOR_REGISTRY, EDITOR_DRAFTS, TelegramNotifier, AGENT_INFRA, EDITOR_MANAGER],
       useFactory: (
         pool: Pool, cfg: ConfigService, repos: EditorRepos, skills: SkillLibrary, registry: ToolRegistry, drafts: DraftsService,
-        notifier: TelegramNotifier, infra: AgentInfra,
+        notifier: TelegramNotifier, infra: AgentInfra, manager: ManagerInfra,
       ): EditorChatService => {
         const logger = new Logger('EditorChat');
         const env = (k: string) => cfg.get<string>(k) ?? undefined;
@@ -588,6 +646,7 @@ export const EDITOR_PROVIDERS = [
             .map((a) => `- @${a.handle} ${a.emoji ?? ''} ${a.name} · ${a.kind} · ${a.scopeId ?? a.scope} · ${a.mode}${a.status === 'paused' || a.pausedUntil ? ' · пауза' : ''}`).join('\n'),
           handles: async () => (await infra.agents.list()).filter((a) => !a.parentId).map((a) => a.handle),
           actionsForChat: (chatId) => infra.actionsRepo.listForChat(chatId),
+          managerDigest: async () => manager.digest.render(await manager.digest.build()),
         };
         return new EditorChatService({
           repo: repos.chat, drafts, memory: repos.memory, loop, registry, skills, env, enabled, agents: agentsPort,
@@ -609,8 +668,10 @@ export const EDITOR_PROVIDERS = [
     },
     {
       provide: AGENTS_SERVICE,
-      inject: [DB_POOL, AGENT_INFRA, EDITOR_REPOS, EDITOR_OPS, EDITOR_RUNNER, EDITOR_NETWORK],
-      useFactory: (pool: Pool, infra: AgentInfra, repos: EditorRepos, ops: EditorOpsService, runner: EditorRunnerService, network: NetworkRunner) => {
+      inject: [DB_POOL, AGENT_INFRA, EDITOR_REPOS, EDITOR_OPS, EDITOR_RUNNER, EDITOR_NETWORK, EDITOR_MANAGER],
+      useFactory: (
+        pool: Pool, infra: AgentInfra, repos: EditorRepos, ops: EditorOpsService, runner: EditorRunnerService, network: NetworkRunner, manager: ManagerInfra,
+      ) => {
         const logger = new Logger('Agents');
         const svc: AgentsService = new AgentsService({
           pool, agents: infra.agents, skills: infra.skills, inbox: infra.inbox, profiles: infra.profiles, actions: infra.actions,
@@ -635,6 +696,16 @@ export const EDITOR_PROVIDERS = [
           },
         });
         registerAgentActions(infra, svc, ops);
+        // A directive the owner approved in the chat with @manager (spec 021): filed as owner-approved, never shadow.
+        infra.actions.register('file_directive', async (p) => {
+          const input = FileDirectiveInput.parse(p);
+          const r = await fileDirective({
+            repo: manager.repo, agents: infra.agents, digest: manager.digest, inbox: infra.inbox, memory: repos.memory, actions: infra.actions,
+            channelKeyOf: (a) => infra.channelKeyOf(a),
+          }, input, { from: await manager.runner.manager(), runId: null, shadow: false, ownerApproved: true });
+          if ('error' in r) throw new Error(`${r.error}: ${r.details ?? ''}`);
+          return { id: r.directive.id, status: r.directive.status };
+        });
         svc.setBriefHook(async (agent, brief) => {
           const key = telegramKeyOf(agent);
           const card = key ? await repos.channels.get(key) : null;
@@ -656,6 +727,14 @@ export const EDITOR_PROVIDERS = [
         });
       },
     },
+    {
+      provide: MANAGER_SERVICE,
+      inject: [AGENT_INFRA, EDITOR_MANAGER],
+      useFactory: (infra: AgentInfra, manager: ManagerInfra) => {
+        const logger = new Logger('Manager');
+        return new ManagerService({ repo: manager.repo, agents: infra.agents, digest: manager.digest, runner: manager.runner, log: (m) => logger.warn(m) });
+      },
+    },
     EditorCron,
     AgentsUpkeep,
 ];
@@ -663,8 +742,8 @@ export const EDITOR_PROVIDERS = [
 @Module({
   // AuthModule: EditorController is guarded by TrackingAuthGuard, which injects AuthService.
   imports:     [ChannelConfigModule, PublishersModule, AuthModule],
-  controllers: [EditorController, EditorChatController, AgentsController, NetworkController],
+  controllers: [EditorController, EditorChatController, AgentsController, NetworkController, ManagerController],
   providers:   [...EDITOR_PROVIDERS, TrackingAuthGuard],
-  exports:     [EDITOR_REPOS, EDITOR_RUNNER, AGENT_INFRA, PLATFORM_INFRA],
+  exports:     [EDITOR_REPOS, EDITOR_RUNNER, AGENT_INFRA, PLATFORM_INFRA, EDITOR_MANAGER],
 })
 export class EditorModule {}

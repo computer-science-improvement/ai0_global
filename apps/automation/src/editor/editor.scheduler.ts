@@ -25,6 +25,8 @@ export interface EditorSchedulerDeps {
    * upkeep), once per channel-day before planning. Optional.
    */
   orchestrate?: (card: EditorCard) => Promise<unknown>;
+  /** Spec 021: the MANAGER's schedule and directive deliveries, once per tick after planning. */
+  afterTick?: (now: Date) => Promise<void>;
 }
 
 export const STALE_MS          = 3 * 3600_000;
@@ -75,6 +77,10 @@ export class EditorScheduler {
       await this.maybeOrchestrate(card, now);
       await this.maybePlan(card, now);
       await this.maybeReview(card as EditorCard & { createdAt?: Date }, now);
+    }
+
+    if (this.d.afterTick) {
+      try { await this.d.afterTick(now); } catch (err: any) { this.d.log?.(`after-tick hook failed: ${err?.message ?? err}`); }
     }
 
     const due = (await this.d.plans.claimDue(now, CLAIM_BATCH)).filter((s) => byKey.has(s.channelKey));
