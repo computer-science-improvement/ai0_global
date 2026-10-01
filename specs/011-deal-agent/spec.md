@@ -63,6 +63,32 @@ The agent writes only:
 
 It never sends unsolicited DMs to strangers. Mass DMs are the fastest way to get a user account banned.
 
+### 2.6 The counterpart asks to stop (opt-out)
+If the person asks to stop the communication, the agent stops for good in that chat. Examples: «не пишіть мені більше»,
+«відпишіться», «більше не турбуйте», «stop messaging me», «відстаньте».
+- **Classification.** A deterministic phrase list plus a checker classifier.
+  - Explicit opt-out → stop.
+  - Ambiguous «стоп» inside a negotiation («стоп, не та дата») → no stop. The checker decides.
+  - Unsure → pause (no message) and notify the owner.
+- **Agent action.**
+  - At most **one** short confirmation: «Зрозумів, більше не турбуватиму. Якщо знадобиться реклама — пишіть.» It is
+    owner-editable, and can be turned off with `deal_policy.optout_ack=false`.
+  - Then `control='closed'`, `state='lost'`, `paused_by='peer_optout'`.
+  - The outbox is canceled and follow-ups are cleared.
+  - A **peer-level `do_not_contact`** flag is set in `deal_memory` (kind `risk`, source `agent`, with the evidence message id).
+- **Notification.** The owner gets a **separate dedicated control-bot message**, distinct from escalations:
+  > 🛑 Комунікацію зупинено на прохання співрозмовника · @user · «<their message>» · стадія угоди: quoted
+  > `[📂 Відкрити історію] [↩️ Відновити (лише якщо людина напише сама)]`
+- **Afterwards.**
+  - The history stays.
+  - The agent never writes to this peer again: the gate blocks every outbound message to a `do_not_contact` peer, including
+    follow-ups, reports and group-sourced DM openers (013).
+  - If the person writes again on their own, a new conversation opens. The owner gets a card «@user знову написав після
+    відмови» and the agent may answer that message (the flag is cleared only by that inbound message or by the owner).
+- **Money in flight.** If an order is `invoiced` or `paid` at the moment of the opt-out, the agent sends **no**
+  confirmation. Instead: pause, plus a critical card «зупинено під час активного замовлення — потрібне ваше рішення», because
+  refunds and cancellations are always the owner's.
+
 ## 3. Architecture
 
 ```
@@ -160,7 +186,7 @@ counterpart sends one; retention spec 007 gets a `DEAL_MESSAGES_TTL_DAYS` (defau
 ## 7. DealSpeechGate (deterministic, runs before every outbound message)
 
 **Blocks**: the message is not sent. The agent sees the reason; serious cases escalate.
-1. `control != 'agent'`. The conversation is paused, owner-controlled or closed.
+1. `control != 'agent'` (the conversation is paused, owner-controlled or closed), or the peer has `do_not_contact` (§2.6).
 2. A limit is exceeded (§5), or Telegram flood-wait is active.
 3. Policy:
    - a price that is not in the price list or the allowed discount;
@@ -177,6 +203,7 @@ counterpart sends one; retention spec 007 gets a `DEAL_MESSAGES_TTL_DAYS` (defau
 
 **Inbound triggers**: pause, then escalate (also listed in [threat-model.md](threat-model.md)):
 - the counterpart asks to talk to a human, the owner or "живу людину" (after the honest answer in §2.1);
+- the counterpart asks to stop the communication → the opt-out flow (§2.6), with a separate owner message;
 - the counterpart claims to be the owner, Telegram support, the bank or LiqPay;
 - money issues: a refund demand, a payment dispute or chargeback, or "I paid but…" without a callback;
 - legal or abusive messages: threats, legal language (суд, юрист, претензія), harassment or insults;
@@ -283,6 +310,7 @@ The phase moves forward only when the owner switches it, after evals pass and �
   | troll | Escalated after abuse. |
   | ВП partner | Goes through the 014 evaluation. |
   | ghost | Exactly ≤ 3 follow-ups. |
+  | opt-out | One confirmation at most, then closed with `do_not_contact`; a dedicated owner message; no later outbound. |
   | ru speaker | Handled per policy. |
   | owner takeover | Agent is silent. |
 

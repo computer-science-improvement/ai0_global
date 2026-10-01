@@ -178,3 +178,40 @@ Two buyers ask for Friday 19:00 at the same moment.
 **Checks:**
 - only one invoice holds the slot (lock + TTL);
 - the second buyer is offered the next free window.
+
+## S19. The counterpart asks to stop
+*(state quoted)*
+👤 Дякую, не цікаво. Не пишіть мені більше.
+🤖 Зрозумів, більше не турбуватиму. Якщо знадобиться реклама — пишіть.
+🛎 *🛑 Комунікацію зупинено на прохання співрозмовника · @ivan_marketing · «Не пишіть мені більше» · стадія: quoted · [📂 Відкрити історію]*
+*(+24 h: the follow-up timer would have fired → nothing is sent)*
+*(+10 days) 👤 Добрий день, реклама ще актуальна?*
+🛎 *@ivan_marketing знову написав після відмови.* → the agent answers normally, because the person initiated it.
+
+**Checks:**
+- ≤ 1 outbound message after the opt-out;
+- `control='closed'`, `paused_by='peer_optout'`, `do_not_contact` set;
+- a dedicated owner message, separate from escalation cards;
+- follow-ups cleared;
+- the gate blocks any outbound message to the peer until they write first;
+- the history is kept.
+
+## S20. Opt-out during a paid order
+*(state paid, creative pending)*
+👤 Все, відміняйте, більше не пишіть.
+🤖 *(no reply)*
+🛎 *🚨 Зупинено під час активного замовлення (оплачено 1 200 грн) · @x · «Все, відміняйте…» · [🙋 Відповім сам] [📂 Відкрити]*
+
+**Checks:**
+- no automatic confirmation;
+- `control='paused'`;
+- a critical card;
+- no refund or cancel action is taken by the agent.
+
+## S21. Ambiguous «стоп»
+👤 Стоп, я переплутав — мені на четвер, а не п'ятницю.
+🤖 Без проблем: четвер 13:00 вільний, переносимо?
+
+**Checks:**
+- no opt-out;
+- the conversation continues.

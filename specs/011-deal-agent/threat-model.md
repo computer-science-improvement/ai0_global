@@ -57,6 +57,8 @@ Each row lists the mitigation, where it is enforced, and what the owner sees.
 | D10 | LLM outage or budget exhausted mid-conversation | M | <ul><li>No reply</li><li>The conversation shows "очікує"</li><li>The owner is alerted when the delay exceeds 30 min during working hours</li></ul> |
 | D11 | The model contradicts something it said earlier (price, date) | H | <ul><li>Facts come from tools; the agent cannot set a price</li><li>The gate compares numbers with the active quote</li></ul> |
 | D12 | The counterpart asks to switch platform (WhatsApp, email, a call) | M | Polite refusal or escalation; contacts are owner-only |
+| D13 | The counterpart asks to stop the communication | H | Opt-out flow (spec §2.6): ≤ 1 confirmation, `closed` + `do_not_contact`, a dedicated owner message. During a paid order: no auto-reply, critical card. The gate blocks all later outbound messages until the person writes again. |
+| D14 | Ambiguous «стоп» or «досить» inside a negotiation | M | The checker classifies it. Unsure → pause + owner card, with no message sent. |
 
 ## E. Privacy and data
 
