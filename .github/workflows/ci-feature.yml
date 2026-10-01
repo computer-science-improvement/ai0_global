@@ -56,3 +56,34 @@ jobs:
       - name: Type-check dashboard (no emit)
         # Same tsc the dashboard `build` script runs before `vite build`.
         run: pnpm --filter dashboard exec tsc --noEmit -p tsconfig.json
+
+  schema-bootstrap:
+    # Builds a fresh Postgres 16 from database/init.sql + every migration in
+    # order and re-applies the recent ones to prove idempotency (spec 007 T004).
+    # Throwaway service container — no secrets, no external calls.
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: ai0
+          POSTGRES_PASSWORD: ci
+          POSTGRES_DB: ai0_ci
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U ai0 -d ai0_ci"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      PGHOST: localhost
+      PGPORT: '5432'
+      PGUSER: ai0
+      PGPASSWORD: ci
+      PGDATABASE: ai0_ci
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Apply init.sql + migrations, re-apply 042+
+        run: bash database/ci-bootstrap-check.sh

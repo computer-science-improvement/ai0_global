@@ -77,7 +77,7 @@ pnpm db:up / db:down             # Start/stop postgres
 pnpm dev:automation              # NestJS watch mode
 pnpm prod:up / prod:down         # Production docker
 pnpm pipeline:sync               # parse + load:all in docker
-pnpm migrate                     # init-db in pipeline
+pnpm db:init                     # init-db in pipeline (was `pnpm migrate`)
 ```
 
 ## Pipeline Data Lifecycle

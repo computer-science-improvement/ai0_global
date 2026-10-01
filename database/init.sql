@@ -152,7 +152,7 @@ create table if not exists recipes (
 create unique index if not exists idx_recipes_slug     on recipes (slug);
 create index if not exists idx_recipes_category        on recipes (category);
 create index if not exists idx_recipes_posted          on recipes using gin (posted);
-CREATE INDEX idx_recipes_untranslated ON recipes (created_at) WHERE title_uk IS NULL;
+create index if not exists idx_recipes_untranslated on recipes (created_at) where title_uk is null;
 
 -- ─── Infrastructure: posted_news (dedup tracking) ──────────────────────────
 
