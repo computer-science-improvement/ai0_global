@@ -19,7 +19,10 @@ export interface MetaCrosspostTargetRow {
 /** A cross-post target joined with the resolved Meta account it publishes to. */
 export interface ResolvedCrosspostTarget extends MetaCrosspostTargetRow {
   account_active:    boolean;
-  account_token_env: string;
+  /** Legacy env-var NAME holding the token (nullable since 029). */
+  account_token_env: string | null;
+  /** Encrypted token (enc:v1:…) — preferred over account_token_env. */
+  account_token_enc: string | null;
   account_target_id: string;
 }
 
@@ -46,7 +49,7 @@ export class MetaCrosspostTargetsRepository {
   async listEnabledResolved(channelId: string): Promise<ResolvedCrosspostTarget[]> {
     const { rows } = await this.pool.query<ResolvedCrosspostTarget>(
       `SELECT t.*, a.active AS account_active, a.token_env AS account_token_env,
-              a.target_id AS account_target_id
+              a.token_enc AS account_token_enc, a.target_id AS account_target_id
        FROM meta_crosspost_targets t
        JOIN meta_accounts a ON a.id = t.meta_account_id
        WHERE t.channel_id = $1 AND t.enabled = true
