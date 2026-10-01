@@ -18,12 +18,20 @@ const fakeSecrets = {
     o.enc ? `dec(${o.enc})` : o.env ? get(o.env) : undefined,
 };
 
-function build(targets: any[], config: any = { get: () => 'token' }) {
-  const published: Array<{ platform: string; imageUrl?: string; token?: string }> = [];
+function build(targets: any[], config: any = { get: () => 'token' }, fail: string[] = []) {
+  const published: Array<{ platform: string; imageUrl?: string; token?: string; text?: string; carousel?: string[] }> = [];
   const svc = new CrossPostService(
     { listEnabledResolved: async () => targets } as any,                       // targets repo
     { getChannelMeta: () => ({ id: 'ch1', username: 'chan' }) } as any,        // channel config
-    { publish: async (p: string, payload: any, target: any) => { published.push({ platform: p, imageUrl: payload.imageUrl, token: target.token }); return 'mid'; } } as any, // dispatcher
+    { // dispatcher
+      publish: async (p: string, payload: any, target: any) => {
+        if (fail.includes(p)) throw new Error(`${p} rejected`);
+        published.push({ platform: p, imageUrl: payload.imageUrl, token: target.token, text: payload.text }); return 'mid';
+      },
+      publishCarousel: async (p: string, payload: any, urls: string[], target: any) => {
+        published.push({ platform: p, token: target.token, text: payload.text, carousel: urls }); return 'cid';
+      },
+    } as any,
     { tryLock: () => true, recordPublish: () => {}, releaseLock: () => {} } as any, // throttle
     { metaCooldownMin: () => 0 } as any,                                       // settings
     config,                                                                    // config
@@ -70,4 +78,35 @@ test('imageless teaser: instagram skipped, facebook publishes', async () => {
   const { svc, published } = build([target('instagram', 'teaser'), target('facebook', 'teaser')]);
   await svc.afterPublish({ channelKey: '@c', messageId: 1, teaser: { lines: ['a', 'b'] } });
   assert.deepEqual(published.map(p => p.platform), ['facebook']);
+});
+
+test('render: per-platform caption and images override mode; null skips; carousel uses publishCarousel', async () => {
+  const { svc, published } = build([target('instagram', 'teaser'), target('facebook'), target('threads')]);
+  const seen: Array<[string, string | null]> = [];
+  const out = await svc.afterPublish({
+    channelKey: '@c', messageId: 7,
+    render: (platform, link) => {
+      seen.push([platform, link]);
+      if (platform === 'threads') return null;
+      return platform === 'instagram'
+        ? { caption: 'ig text', imageUrls: ['https://cdn/1.png', 'https://cdn/2.png'], carousel: true }
+        : { caption: 'fb text', imageUrls: [], carousel: false };
+    },
+  });
+  assert.deepEqual(seen.map((s) => s[1]), ['https://t.me/chan/7', 'https://t.me/chan/7', 'https://t.me/chan/7']);
+  assert.deepEqual(published, [
+    { platform: 'instagram', token: 'token', text: 'ig text', carousel: ['https://cdn/1.png', 'https://cdn/2.png'] },
+    { platform: 'facebook', imageUrl: undefined, token: 'token', text: 'fb text' },
+  ]);
+  assert.deepEqual(out.map((o) => [o.platform, o.status]), [['instagram', 'ok'], ['facebook', 'ok'], ['threads', 'skipped']]);
+});
+
+test('outcomes report failures without throwing', async () => {
+  const noToken = { ...target('threads'), account_token_enc: null, account_token_env: null };
+  const { svc } = build([target('facebook'), noToken], { get: (k: string) => (k === 'TOK_ENV' ? 'token' : undefined) }, ['facebook']);
+  const out = await svc.afterPublish({ channelKey: '@c', messageId: 1, mirror: { text: 'hello', tags: [] } });
+  assert.deepEqual(out, [
+    { platform: 'facebook', status: 'failed', detail: 'facebook rejected' },
+    { platform: 'threads', status: 'failed', detail: 'no access token' },
+  ]);
 });

@@ -21,7 +21,7 @@ const DEFAULTS: Omit<EditorCardFields, 'mode'> = {
   title: null, language: 'uk', timezone: 'Europe/Kyiv', postsPerDayMin: 2, postsPerDayMax: 6,
   quietStartHour: 23, quietEndHour: 8, minGapMinutes: 60, planHour: 6, brief: '', formats: { text: 1, photo: 1 },
   hashtags: [], hashtagMin: 1, hashtagMax: 3, footer: null, linkStyle: 'inline', emojiPolicy: 'sparse', skills: [],
-  sources: [], toolsAllow: null, exploreRatio: 0.2, dailyBudgetUsd: null, models: {}, bannedTerms: [],
+  sources: [], toolsAllow: null, exploreRatio: 0.2, dailyBudgetUsd: null, models: {}, bannedTerms: [], crosspost: true,
 };
 
 const list = (s: string) => s.split(',').map((x) => x.trim().replace(/^#/, '')).filter(Boolean);
@@ -37,6 +37,7 @@ interface FormState {
   footer: string; linkStyle: EditorCardFields['linkStyle']; emojiPolicy: EditorCardFields['emojiPolicy'];
   sources: EditorSource[]; skills: string; bannedTerms: string; toolsAllow: string;
   exploreRatio: string; dailyBudgetUsd: string; models: { planner: string; executor: string; reviewer: string };
+  crosspost: boolean;
 }
 
 function toForm(key: string, c: Omit<EditorCardFields, 'mode'>): FormState {
@@ -52,6 +53,7 @@ function toForm(key: string, c: Omit<EditorCardFields, 'mode'>): FormState {
     toolsAllow: (c.toolsAllow ?? []).join(', '), exploreRatio: String(c.exploreRatio),
     dailyBudgetUsd: c.dailyBudgetUsd == null ? '' : String(c.dailyBudgetUsd),
     models: { planner: c.models.planner ?? '', executor: c.models.executor ?? '', reviewer: c.models.reviewer ?? '' },
+    crosspost: c.crosspost !== false,
   };
 }
 
@@ -70,7 +72,7 @@ function toPatch(f: FormState): Partial<EditorCardFields> {
     skills: list(f.skills), bannedTerms: list(f.bannedTerms),
     toolsAllow: list(f.toolsAllow).length ? list(f.toolsAllow) : null,
     exploreRatio: n(f.exploreRatio), dailyBudgetUsd: f.dailyBudgetUsd.trim() === '' ? null : n(f.dailyBudgetUsd),
-    models,
+    models, crosspost: f.crosspost,
   };
 }
 
@@ -179,6 +181,10 @@ export function CardEditorModal({ open, onClose, card }: { open: boolean; onClos
         <Field label="Banned terms" hint="comma-separated">
           <input className="input-field" style={inputStyle} value={f.bannedTerms} onChange={(e) => set('bannedTerms', e.target.value)} />
         </Field>
+        <label className="text-caption" style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 4 }}>
+          <input type="checkbox" checked={f.crosspost} onChange={(e) => set('crosspost', e.target.checked)} />
+          Cross-post live posts to the channel's Meta targets (Instagram / Facebook / Threads)
+        </label>
       </Group>
 
       <Group title="Sources">

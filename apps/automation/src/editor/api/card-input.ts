@@ -9,7 +9,7 @@ export const CARD_DEFAULTS: Omit<EditorCard, 'channelKey'> = {
   postsPerDayMin: 2, postsPerDayMax: 6, quietStartHour: 23, quietEndHour: 8, minGapMinutes: 60, planHour: 6,
   brief: '', formats: { text: 1, photo: 1 }, hashtags: [], hashtagMin: 1, hashtagMax: 3, footer: null,
   linkStyle: 'inline', emojiPolicy: 'sparse', skills: [], sources: [], toolsAllow: null,
-  exploreRatio: 0.2, dailyBudgetUsd: null, models: {}, bannedTerms: [],
+  exploreRatio: 0.2, dailyBudgetUsd: null, models: {}, bannedTerms: [], crosspost: true,
 };
 
 const isTimeZone = (tz: string) => {
@@ -65,6 +65,7 @@ const CardFields = z.object({
   dailyBudgetUsd: z.number().min(0).max(1000).nullable(),
   models:         z.partialRecord(z.enum(['planner', 'executor', 'reviewer', 'checker']), z.string().trim().min(1).max(200)),
   bannedTerms:    z.array(z.string().trim().min(1).max(100)).max(100),
+  crosspost:      z.boolean(),
 }).strict();
 
 /** Body of PUT /api/editor/channels/:key — any subset of the card fields. */

@@ -8,7 +8,7 @@ export function makeCard(over: Partial<EditorCard> = {}): EditorCard {
     brief: 'Канал про космос', formats: { text: 1, photo: 1, album: 0.5, poll: 0.3, quiz: 0.3 },
     hashtags: ['космос', 'nasa', 'фото'], hashtagMin: 1, hashtagMax: 3, footer: null,
     linkStyle: 'inline', emojiPolicy: 'sparse', skills: [], sources: [], toolsAllow: null,
-    exploreRatio: 0.2, dailyBudgetUsd: null, models: {}, bannedTerms: [],
+    exploreRatio: 0.2, dailyBudgetUsd: null, models: {}, bannedTerms: [], crosspost: true,
     ...over,
   };
 }

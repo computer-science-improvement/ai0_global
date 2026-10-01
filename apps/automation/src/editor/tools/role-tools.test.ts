@@ -166,3 +166,46 @@ test('longread live: Telegraph URL becomes preview + "Читати"; failures ar
   assert.match(r.details, /hosting down/);
   assert.equal(broken.sent.length + none.sent.length, 0);
 });
+
+// ── cross-posting (spec 009 T003) ───────────────────────────────────────────
+function fakeCrosspost(result: string[] | Error = []) {
+  const calls: any[] = [];
+  return { calls, crosspost: { fanOut: async (r: any) => { calls.push(r); if (result instanceof Error) throw result; return result; } } };
+}
+
+test('live publish fans out to mirrors after the slot is published, with prepared media', async () => {
+  const cp = fakeCrosspost();
+  const m = fakeMedia();
+  const { tools, updates } = deps({}, { crosspost: cp.crosspost, media: m.media });
+  const r: any = await tools.publish_post.execute({ spec: carouselSpec() }, ctx('live', P2));
+  assert.equal(r.ok, true);
+  assert.equal(cp.calls.length, 1);
+  assert.equal(cp.calls[0].messageId, 900);
+  assert.deepEqual(cp.calls[0].prepared.slideUrls, ['https://cdn.example/1.png', 'https://cdn.example/2.png']);
+  assert.deepEqual(m.calls, ['prepare:carousel:slot-1', 'cleanup']); // slides stay hosted until the mirrors took them
+  assert.equal(updates.at(-1)[1].status, 'published');
+  assert.equal(r.crosspost_warnings, undefined);
+});
+
+test('mirror failures never fail the publish: recorded as a crosspost warning on the slot', async () => {
+  const cp = fakeCrosspost(['crosspost: instagram: media expired']);
+  const { tools, updates } = deps({}, { crosspost: cp.crosspost });
+  const r: any = await tools.publish_post.execute({ spec: makeSpec() }, ctx());
+  assert.equal(r.ok, true);
+  assert.deepEqual(r.crosspost_warnings, ['crosspost: instagram: media expired']);
+  assert.deepEqual(updates.at(-1), ['slot-1', { error: 'crosspost: instagram: media expired' }]);
+
+  const boom = deps({}, { crosspost: fakeCrosspost(new Error('meta down')).crosspost });
+  const r2: any = await boom.tools.publish_post.execute({ spec: makeSpec() }, ctx());
+  assert.equal(r2.ok, true);
+  assert.match(boom.updates.at(-1)[1].error, /^crosspost: meta down/);
+});
+
+test('no fan-out in shadow mode or when the card has crosspost=false', async () => {
+  const shadow = fakeCrosspost();
+  await deps({}, { crosspost: shadow.crosspost }).tools.publish_post.execute({ spec: makeSpec() }, ctx('shadow'));
+  const off = fakeCrosspost();
+  const r: any = await deps({}, { crosspost: off.crosspost }).tools.publish_post.execute({ spec: makeSpec() }, ctx('live', { crosspost: false }));
+  assert.equal(r.ok, true);
+  assert.equal(shadow.calls.length + off.calls.length, 0);
+});

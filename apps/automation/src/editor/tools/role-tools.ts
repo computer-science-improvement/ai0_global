@@ -12,6 +12,7 @@ import type { EditorMemoryRepository } from '../repo/editor-memory.repository';
 import type { EditorChannelsRepository } from '../repo/editor-channels.repository';
 import type { SendResult } from '../publish/telegram-editor.publisher';
 import { NEEDS_PREPARE, PreparedPublish } from '../publish/prepare-media';
+import type { CrossPostRequest } from '../publish/editor-crosspost';
 import type { TgMessage } from '../post/render-telegram';
 import { cardFrom } from './compose-tools';
 
@@ -30,6 +31,8 @@ export interface RoleToolDeps {
   notifyPreview?: (channelKey: string, html: string) => Promise<void>;
   /** Live-only media stage for carousel (render + host slides) and longread (Telegraph page). */
   media?: { prepare(spec: PostSpec, key: { channelKey: string; slotId: string }): Promise<PreparedPublish> };
+  /** Live-only fan-out to the channel's Meta mirrors; returns warnings, never throws (EditorCrossPoster). */
+  crosspost?: { fanOut(r: CrossPostRequest): Promise<string[]> };
   now?: () => Date;
 }
 
@@ -134,11 +137,30 @@ export function buildRoleTools(d: RoleToolDeps): EditorTool[] {
           channelKey, messageId, sourceUrl: g.ref, title: spec.title, tags: spec.hashtags, format: spec.format, slotId,
         });
         d.recordPublish(channelKey);
+        const partial = sent.partialError ? `partial: ${sent.partialError}` : null;
         await d.plans.updateSlot(slotId, {
-          status: 'published', publishedPostId: postId, postSpec: spec, renderedPreview: rendered.preview,
-          error: sent.partialError ? `partial: ${sent.partialError}` : null,
+          status: 'published', publishedPostId: postId, postSpec: spec, renderedPreview: rendered.preview, error: partial,
         });
-        return { ok: true, shadow: false, message_id: messageId, ...(sent.partialError ? { partial_error: sent.partialError } : {}) };
+
+        // Mirrors (spec 009 T003). The Telegram post is already out: a mirror failure is a warning on the slot, never an error.
+        let mirrorWarnings: string[] = [];
+        if (card.crosspost !== false && d.crosspost) {
+          try {
+            mirrorWarnings = await d.crosspost.fanOut({ channelKey, messageId, spec, card, prepared: prep.prepared });
+          } catch (err: any) {
+            mirrorWarnings = [`crosspost: ${err?.message ?? err}`];
+          }
+          if (mirrorWarnings.length) {
+            try {
+              await d.plans.updateSlot(slotId, { error: [partial, ...mirrorWarnings].filter(Boolean).join(' | ').slice(0, 2000) });
+            } catch { /* best-effort note on an already published slot */ }
+          }
+        }
+        return {
+          ok: true, shadow: false, message_id: messageId,
+          ...(sent.partialError ? { partial_error: sent.partialError } : {}),
+          ...(mirrorWarnings.length ? { crosspost_warnings: mirrorWarnings } : {}),
+        };
       } finally {
         await prep.cleanup();
       }

@@ -24,6 +24,18 @@ export interface GroupContent {
   imageUrls: string[];
   /** Whether Meta targets receive a multi-image carousel/album. */
   carousel: boolean;
+  /**
+   * Optional per-target content (editor agent): when set it replaces caption /
+   * images / carousel for that target; null skips the target.
+   */
+  render?: (platform: DestinationPlatform) => { caption: string; imageUrls: string[]; carousel: boolean } | null;
+}
+
+/** Per-target result. Strategies ignore it; the editor records failures on the slot. */
+export interface FanOutOutcome {
+  platform: string;
+  status:   'ok' | 'skipped' | 'failed';
+  detail?:  string;
 }
 
 @Injectable()
@@ -46,35 +58,45 @@ export class GroupFanOutService {
     source: PublishDestination,
     content: GroupContent,
     markPosted: (postedKey: string) => Promise<void>,
-  ): Promise<void> {
+  ): Promise<FanOutOutcome[]> {
+    const outcomes: FanOutOutcome[] = [];
     const group = await this.resolver.resolveGroupForDest(source);
-    if (!group || !group.isSource) return; // not a source publish → nothing to mirror
+    if (!group || !group.isSource) return outcomes; // not a source publish → nothing to mirror
 
     const targets = await this.resolver.resolveGroupTargets(group.groupId, source.platform);
     for (const t of targets) {
       try {
         let id: string;
-        const text = content.captionFor ? content.captionFor(t.platform) : content.caption;
+        let text = content.captionFor ? content.captionFor(t.platform) : content.caption;
+        let imageUrls = content.imageUrls;
+        let carousel = content.carousel;
+        if (content.render) {
+          const r = content.render(t.platform);
+          if (!r) { outcomes.push({ platform: t.platform, status: 'skipped', detail: 'not supported for this post' }); continue; }
+          ({ caption: text, imageUrls, carousel } = r);
+          carousel = carousel && imageUrls.length >= 2;
+        }
         if (t.platform === 'telegram') {
           id = await this.telegram.publish(
-            { text, imageUrl: content.imageUrls[0], source: '', tags: content.tags },
+            { text, imageUrl: imageUrls[0], source: '', tags: content.tags },
             { id: t.targetId, token: '' },
           );
-        } else if (content.carousel) {
+        } else if (carousel) {
           id = await this.dispatcher.publishCarousel(
             t.platform as MetaPlatform,
             { text, tags: content.tags, source: '' },
-            content.imageUrls,
+            imageUrls,
             { id: t.targetId, token: t.token! },
           );
         } else {
           id = await this.dispatcher.publish(
             t.platform as MetaPlatform,
-            { text, imageUrl: content.imageUrls[0], source: '', tags: content.tags },
+            { text, imageUrl: imageUrls[0], source: '', tags: content.tags },
             { id: t.targetId, token: t.token! },
           );
         }
         await markPosted(t.postedKey);
+        outcomes.push({ platform: t.platform, status: 'ok', detail: String(id) });
         this.logger.debug(`Fan-out → ${t.platform} (${id})`);
         // Record the (previously invisible) per-target outcome in the run trace.
         this.tracer.event('GroupFanOut', `publish:${t.platform}`, 'ok', id);
@@ -84,10 +106,12 @@ export class GroupFanOutService {
         // Isolated failure: never rethrown, but now surfaced as an error step so
         // a failed IG/Threads/FB mirror is visible in the activity log.
         this.tracer.event('GroupFanOut', `publish:${t.platform}`, 'error', err);
+        outcomes.push({ platform: t.platform, status: 'failed', detail: msg });
         if (isPermanentMetaMediaError(msg)) {
           try { await markPosted(t.postedKey); } catch { /* best-effort */ }
         }
       }
     }
+    return outcomes;
   }
 }

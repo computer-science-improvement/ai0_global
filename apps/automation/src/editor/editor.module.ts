@@ -11,6 +11,9 @@ import { PostingThrottleService } from '../publishers/posting-throttle.service';
 import { TelegraphService } from '../publishers/telegraph.service';
 import { SlideHostingService } from '../publishers/hosting/slide-hosting.service';
 import { RecipeCarouselRendererService } from '../common/carousel/recipe-carousel-renderer.service';
+import { CrossPostService } from '../publishers/cross-post.service';
+import { tgPostLink } from '../publishers/crosspost-content';
+import { GroupFanOutService } from '../common/content-strategy/group-fanout.service';
 import { OpenRouterClient } from './llm/openrouter.client';
 import { AgentLoop } from './harness/agent-loop';
 import { ToolRegistry } from './harness/tool-registry';
@@ -28,6 +31,7 @@ import { EditorMemoryRepository } from './repo/editor-memory.repository';
 import { TelegramEditorPublisher } from './publish/telegram-editor.publisher';
 import { SponsoredPublisher } from './publish/sponsored.publisher';
 import { EditorMediaPreparer } from './publish/prepare-media';
+import { EditorCrossPoster } from './publish/editor-crosspost';
 import { safeGetBytes } from './net/safe-http';
 import { AdOrdersRepository } from '../payments/ad-orders.repository';
 import { EditorRunnerService } from './roles/editor-runner.service';
@@ -89,12 +93,13 @@ export const EDITOR_PROVIDERS = [
       provide: EDITOR_REGISTRY,
       inject: [
         DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_SKILLS, ChannelConfigService, TelegramNotifier, PostingThrottleService,
-        RecipeCarouselRendererService, SlideHostingService, TelegraphService,
+        RecipeCarouselRendererService, SlideHostingService, TelegraphService, CrossPostService, GroupFanOutService,
       ],
       useFactory: (
         pool: Pool, cfg: ConfigService, repos: EditorRepos, skills: SkillLibrary, channelConfig: ChannelConfigService,
         notifier: TelegramNotifier, throttle: PostingThrottleService,
         renderer: RecipeCarouselRendererService, hosting: SlideHostingService, telegraph: TelegraphService,
+        crossPost: CrossPostService, groupFanOut: GroupFanOutService,
       ): ToolRegistry => {
         const env = (k: string) => cfg.get<string>(k) ?? undefined;
         const publisher = new TelegramEditorPublisher({
@@ -111,6 +116,11 @@ export const EDITOR_PROVIDERS = [
             return r.status < 400 ? r.body : null;
           },
         });
+        // Live posts are mirrored like the legacy strategies' (spec 009 T003); card.crosspost=false opts out.
+        const crosspost = new EditorCrossPoster({
+          crossPost, groupFanOut,
+          postLink: (k, id) => tgPostLink(channelConfig.getChannelMeta(k)?.username ?? null, id),
+        });
         return new ToolRegistry([
           ...buildReadTools({ pool, readonly: new ReadonlyQueryService(pool), skills }),
           ...buildComposeTools(),
@@ -119,6 +129,7 @@ export const EDITOR_PROVIDERS = [
             pool, plans: repos.plans, memory: repos.memory, channels: repos.channels, publisher,
             recordPublish: (k) => throttle.recordPublish(k),
             media,
+            crosspost,
             notifyPreview: env('EDITOR_SHADOW_PREVIEW') === 'false'
               ? undefined
               : (k, html) => notifier.notifyAlert(previewMessage(k, html)),

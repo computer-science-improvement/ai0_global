@@ -71,3 +71,16 @@ test('a failing target never blocks the others and is not marked posted', async 
   assert.deepEqual(calls.carousel, ['instagram']);
   assert.deepEqual(calls.posted, ['X:ig']);
 });
+
+test('render: per-target content, null skips, outcomes returned', async () => {
+  const { svc, calls } = make({ targets: [META_TARGET('instagram', 'ig'), META_TARGET('threads', 'th'), META_TARGET('facebook', 'fb')] });
+  const out = await svc.fanOut(SOURCE_FB, {
+    ...CONTENT,
+    render: (p) => (p === 'instagram' ? null : p === 'threads'
+      ? { caption: 'th', imageUrls: ['a', 'b'], carousel: true }
+      : { caption: 'fb', imageUrls: ['only-one'], carousel: true }),
+  }, async () => {});
+  assert.deepEqual(calls.carousel, ['threads']);
+  assert.deepEqual(calls.single, ['facebook']); // one image never goes out as a carousel
+  assert.deepEqual(out.map((o) => [o.platform, o.status]), [['instagram', 'skipped'], ['threads', 'ok'], ['facebook', 'ok']]);
+});

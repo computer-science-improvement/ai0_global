@@ -11,6 +11,8 @@ import { PostingThrottleService } from '../publishers/posting-throttle.service';
 import { TelegraphService } from '../publishers/telegraph.service';
 import { SlideHostingService } from '../publishers/hosting/slide-hosting.service';
 import { RecipeCarouselRendererService } from '../common/carousel/recipe-carousel-renderer.service';
+import { CrossPostService } from '../publishers/cross-post.service';
+import { GroupFanOutService } from '../common/content-strategy/group-fanout.service';
 import { EDITOR_OPS, EDITOR_PROVIDERS, EDITOR_RUNNER, EditorCron } from './editor.module';
 import { EditorOpsService } from './api/editor-ops.service';
 import { EditorRunnerService } from './roles/editor-runner.service';
@@ -27,6 +29,8 @@ test('EditorModule providers resolve with stubbed external deps', async () => {
       { provide: RecipeCarouselRendererService, useValue: { renderSlides: async () => [] } },
       { provide: SlideHostingService, useValue: { available: async () => false, upload: async () => [], delete: async () => {} } },
       { provide: TelegraphService, useValue: { createPage: async () => ({ url: '', path: '' }) } },
+      { provide: CrossPostService, useValue: { afterPublish: async () => [] } },
+      { provide: GroupFanOutService, useValue: { fanOut: async () => [] } },
     ],
   })
   class TestEditorModule {}

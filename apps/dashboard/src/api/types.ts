@@ -575,6 +575,8 @@ export interface EditorCardFields {
   dailyBudgetUsd: number | null;
   models:         Partial<Record<EditorRole, string>>;
   bannedTerms:    string[];
+  /** Mirror live posts to the channel's Meta cross-post targets / account group (spec 009). */
+  crosspost:      boolean;
 }
 
 export interface EditorCard extends EditorCardFields {

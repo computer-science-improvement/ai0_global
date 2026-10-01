@@ -29,6 +29,7 @@ export function rowToCard(r: any): EditorCard & { createdAt: Date } {
     dailyBudgetUsd: r.daily_budget_usd == null ? null : Number(r.daily_budget_usd),
     models:         r.models ?? {},
     bannedTerms:    r.banned_terms ?? [],
+    crosspost:      r.crosspost ?? true,
     createdAt:      r.created_at,
   };
 }
@@ -83,8 +84,8 @@ export class EditorChannelsRepository {
            channel_key, mode, title, language, timezone, posts_per_day_min, posts_per_day_max,
            quiet_start_hour, quiet_end_hour, min_gap_minutes, plan_hour, brief, formats, hashtags,
            hashtag_min, hashtag_max, footer, link_style, emoji_policy, skills, sources, tools_allow,
-           explore_ratio, daily_budget_usd, models, banned_terms)
-         VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21,$22,$23,$24,$25,$26)
+           explore_ratio, daily_budget_usd, models, banned_terms, crosspost)
+         VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21,$22,$23,$24,$25,$26,$27)
          ON CONFLICT (channel_key) DO UPDATE SET
            mode = EXCLUDED.mode, title = EXCLUDED.title, language = EXCLUDED.language, timezone = EXCLUDED.timezone,
            posts_per_day_min = EXCLUDED.posts_per_day_min, posts_per_day_max = EXCLUDED.posts_per_day_max,
@@ -95,12 +96,12 @@ export class EditorChannelsRepository {
            emoji_policy = EXCLUDED.emoji_policy, skills = EXCLUDED.skills, sources = EXCLUDED.sources,
            tools_allow = EXCLUDED.tools_allow, explore_ratio = EXCLUDED.explore_ratio,
            daily_budget_usd = EXCLUDED.daily_budget_usd, models = EXCLUDED.models,
-           banned_terms = EXCLUDED.banned_terms, updated_at = now()
+           banned_terms = EXCLUDED.banned_terms, crosspost = EXCLUDED.crosspost, updated_at = now()
          RETURNING *`,
         [c.channelKey, c.mode, c.title, c.language, c.timezone, c.postsPerDayMin, c.postsPerDayMax,
           c.quietStartHour, c.quietEndHour, c.minGapMinutes, c.planHour, c.brief, JSON.stringify(c.formats), c.hashtags,
           c.hashtagMin, c.hashtagMax, c.footer, c.linkStyle, c.emojiPolicy, c.skills, JSON.stringify(c.sources), c.toolsAllow,
-          c.exploreRatio, c.dailyBudgetUsd, JSON.stringify(c.models), c.bannedTerms]);
+          c.exploreRatio, c.dailyBudgetUsd, JSON.stringify(c.models), c.bannedTerms, c.crosspost ?? true]);
       const from = previousMode ?? 'off';
       if (from !== c.mode) {
         await client.query(

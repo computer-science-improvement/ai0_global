@@ -51,6 +51,12 @@ test('channels.upsert: create, update, and mode changes audited as inactive owne
   assert.equal(updated.card.dailyBudgetUsd, 0.25);
   assert.deepEqual(updated.card.models, { executor: 'x/y' });
 
+  assert.equal(updated.card.crosspost, true, 'crosspost defaults to true (046)');
+  const noMirrors = await repo.upsert({ ...updated.card, crosspost: false, sources: [{ id: 'apod', kind: 'api', ref: 'nasa_apod' }] });
+  assert.equal(noMirrors.card.crosspost, false);
+  assert.equal((await repo.get(CH))!.crosspost, false);
+  assert.deepEqual(noMirrors.card.sources, [{ id: 'apod', kind: 'api', ref: 'nasa_apod' }]);
+
   await repo.upsert({ ...updated.card, brief: 'друга' }); // same mode → no audit row
   const all = await memory.listAll(CH);
   assert.equal(all.length, 1);

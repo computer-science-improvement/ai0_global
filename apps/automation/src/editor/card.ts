@@ -39,6 +39,8 @@ export interface EditorCard {
   dailyBudgetUsd:  number | null;
   models:          Partial<Record<EditorRole, string>>;
   bannedTerms:     string[];
+  /** Mirror live posts to the channel's Meta cross-post targets / account group (spec 009 T003). */
+  crosspost:       boolean;
 }
 
 /** What each platform can render natively — shown to agents with the card. */
