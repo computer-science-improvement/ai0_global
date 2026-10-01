@@ -67,3 +67,11 @@ test('warnings do not fail', () => {
   assert.equal(r.ok, true);
   assert.ok(r.warnings.some((w) => w.code === 'lead_missing'));
 });
+
+test('library_ref accepts UUID and text ids (all library tables use uuid/text keys)', () => {
+  const uuid = makeSpec({ origin: 'library', source: undefined, library_ref: 'library://recipes/3f2b8c1e-9a4d-4e2b-8f7a-1c2d3e4f5a6b' });
+  assert.equal(lintPost(uuid, makeCard()).ok, true);
+  const text = makeSpec({ origin: 'library', source: undefined, library_ref: 'library://prompts/ph_12345' });
+  assert.equal(lintPost(text, makeCard()).ok, true);
+  assert.throws(() => makeSpec({ library_ref: 'library://recipes/../../etc' }));
+});

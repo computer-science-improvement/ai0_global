@@ -18,7 +18,7 @@ export const PostSpecSchema = z.object({
   format:      z.enum(POST_FORMATS),
   title:       z.string().min(3).max(120).describe('Короткий внутрішній заголовок (для аналітики й дайджесту), українською'),
   origin:      z.enum(['external', 'library', 'original']).describe('external — з веб/RSS джерела; library — з бібліотеки БД; original — власний текст'),
-  library_ref: z.string().regex(/^library:\/\/[a-z_]+\/\d+$/).optional().describe('Обовʼязково для origin=library: значення library_ref з search_library'),
+  library_ref: z.string().regex(/^library:\/\/[a-z_]+\/[A-Za-z0-9_.:-]{1,200}$/).optional().describe('Обовʼязково для origin=library: значення library_ref з search_library'),
   body:        z.array(BlockSchema).max(30).default([]),
   media:       z.array(z.object({ url: httpUrl, alt: z.string().max(200).optional(), credit: z.string().max(120).optional() })).max(10).default([]),
   placement:   z.enum(['above', 'below']).default('above').describe('Зображення над текстом (above) чи під ним (below)'),
