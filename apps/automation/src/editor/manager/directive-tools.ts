@@ -120,7 +120,7 @@ export function buildDirectiveTools(d: DirectiveToolDeps): EditorTool[] {
     execute: async ({ status, limit }, ctx) => {
       const me = agentOf(ctx);
       const toAgentId = ctx.role === 'orchestrator' ? (ctx.extras?.orchestrator as Agent | undefined)?.id ?? me?.id ?? null : null;
-      const list = await d.repo.list({ status: status ?? null, toAgentId, limit });
+      const list = (await d.repo.list({ status: status ?? null, toAgentId, limit })).filter((x) => !(toAgentId && x.shadow));
       return { directives: list.map((x) => ({ id: x.id, kind: x.kind, status: x.status, body: x.body, rationale: x.rationale, expected: x.expected, outcome: x.outcome, resolution: x.resolution, created_at: x.createdAt })) };
     },
   });
@@ -164,11 +164,14 @@ export function buildDirectiveTools(d: DirectiveToolDeps): EditorTool[] {
     name: 'accept_directive',
     description: 'Прийняти директиву менеджера з конкретним планом (що зміниш і коли). Перелічи id правил власника, з якими вона конфліктує (якщо такі є — прийняти не можна, відхили).',
     kind: 'act', roles: ['orchestrator'],
-    input: z.object({ id: z.string().uuid(), plan: z.string().min(15).max(800), conflicting_rule_ids: z.array(z.number().int()).max(10).default([]) }),
+    input: z.object({
+      id: z.string().uuid(), plan: z.string().min(15).max(800),
+      conflicting_rule_ids: z.array(z.number().int()).max(10).describe('id правил власника з памʼяті (#N), які суперечать директиві; [] — якщо таких немає. Обовʼязкове поле: переглянь правила перед відповіддю.'),
+    }),
     execute: async (i, ctx) => {
       const orch = (ctx.extras?.orchestrator as Agent | undefined) ?? agentOf(ctx);
       const dir = await d.repo.get(i.id);
-      if (!dir || !orch || dir.toAgentId !== orch.id) return { error: 'directive_not_found' };
+      if (!dir || !orch || dir.toAgentId !== orch.id || dir.shadow) return { error: 'directive_not_found' };
       if (dir.status !== 'new') return { error: 'not_open', details: dir.status };
       if (i.conflicting_rule_ids.length) {
         const key = await d.channelKeyOf(orch);

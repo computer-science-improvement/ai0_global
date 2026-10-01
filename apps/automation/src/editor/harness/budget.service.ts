@@ -40,7 +40,9 @@ export class BudgetService implements BudgetGate {
       `SELECT
          COALESCE(SUM(s.cost_usd), 0)                                      AS global_usd,
          COALESCE(SUM(s.cost_usd) FILTER (WHERE r.channel_key = $1), 0)    AS channel_usd,
-         COALESCE(SUM(s.cost_usd) FILTER (WHERE r.agent_id = $2), 0)       AS agent_usd,
+         COALESCE(SUM(s.cost_usd) FILTER (WHERE r.agent_id IN (
+           SELECT a.id FROM agents a, (SELECT COALESCE(parent_id, id) AS root FROM agents WHERE id = $2) x
+            WHERE a.id = x.root OR a.parent_id = x.root)), 0)                AS agent_usd,
          (now() AT TIME ZONE 'Europe/Kyiv')::date::text                    AS day
        FROM editor_run_steps s
        JOIN editor_runs r ON r.id = s.run_id

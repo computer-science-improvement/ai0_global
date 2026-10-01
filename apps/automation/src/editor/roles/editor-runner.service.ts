@@ -120,13 +120,13 @@ export class EditorRunnerService {
     const off = this.paused(ctx);
     if (off) {
       await this.d.plans.updateSlot(slot.id, { status: 'skipped', error: off.error ?? 'agent paused' });
+      if (this.d.onSlotDone) await this.d.onSlotDone(slot).catch(() => {});
       return off;
     }
     const target = slot.resourceRef ? parseResourceRef(slot.resourceRef) : null;
     const res = target && target.platform !== 'telegram'
       ? await this.runPlatformExecutor(slot, card, ctx, target.platform, note ?? null)
       : await this.run('executor', card, [await this.executorUser(card, slot, ctx), note].filter(Boolean).join('\n'), slot.id, { excludeTools: PLATFORM_ONLY }, ctx);
-    if (this.d.onSlotDone) await this.d.onSlotDone(slot).catch(() => {});
     await this.d.plans.updateSlot(slot.id, { runId: res.runId });
 
     const after = await this.d.plans.getSlot(slot.id);
@@ -141,6 +141,7 @@ export class EditorRunnerService {
         await this.d.plans.updateSlot(slot.id, { status: 'failed', error: reason });
       }
     }
+    if (this.d.onSlotDone) await this.d.onSlotDone(slot).catch(() => {});
     return res;
   }
 

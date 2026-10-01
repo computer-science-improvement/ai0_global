@@ -87,7 +87,20 @@ export class PendingActionsService {
     return this.repo.create(a);
   }
 
+  private readonly applying = new Set<string>();
+
   async apply(id: string): Promise<PendingAction> {
+    // Single instance (constitution): an in-process claim makes a double click or a retried POST run the handler once.
+    if (this.applying.has(id)) throw Object.assign(new Error('action_in_progress'), { status: 409 });
+    this.applying.add(id);
+    try {
+      return await this.applyOnce(id);
+    } finally {
+      this.applying.delete(id);
+    }
+  }
+
+  private async applyOnce(id: string): Promise<PendingAction> {
     const a = await this.repo.get(id);
     if (!a) throw Object.assign(new Error('action_not_found'), { status: 404 });
     if (a.status === 'applied') return a; // idempotent

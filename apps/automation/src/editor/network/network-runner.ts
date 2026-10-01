@@ -85,7 +85,9 @@ export class NetworkRunner {
     const c = await this.context(card);
     if (this.paused(c)) return null;
     const { net } = c!;
-    if (!net.playbook && !(await this.d.repo.pendingPlaybook(net.orchestrator.id))) {
+    const directives = this.d.directives ? await this.d.directives(net.orchestrator) : null;
+    // Directives are always answered first; a playbook build waits for a run without them.
+    if (!directives && !net.playbook && !(await this.d.repo.pendingPlaybook(net.orchestrator.id))) {
       // A playbook the owner rejected recently is not rebuilt every day: ideas go on without one until the owner asks.
       const last = (await this.d.repo.playbookHistory(net.orchestrator.id, 1))[0];
       const recentlyRejected = last?.status === 'rejected' && last.decidedAt && this.now().getTime() - last.decidedAt.getTime() < 7 * 86_400_000;
@@ -95,7 +97,7 @@ export class NetworkRunner {
     const open = await this.d.repo.listIdeas(net.orchestrator.id, ['new', 'accepted', 'needs_revision'], 200);
     const perDay = net.playbook ? net.playbook.platforms.reduce((a, s) => a + s.per_day.max, 0) : card.postsPerDayMax;
     const target = Math.max(3, Math.ceil(perDay * 2 / Math.max(1, net.resources.length)));
-    const directives = this.d.directives ? await this.d.directives(net.orchestrator) : null;
+    await this.d.repo.releaseStalePlanned(net.orchestrator.id);
     const memory = await this.d.memory.listActive(card.channelKey);
     const res = await this.run('orchestrator', card, c!,
       orchestratorSystemPrompt({ net, card, profile: await this.profileText(net), memory, skills: c!.agentCtx.skills, directives }),

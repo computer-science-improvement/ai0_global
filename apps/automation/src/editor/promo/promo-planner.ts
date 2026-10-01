@@ -7,7 +7,7 @@ import type { EditorPlansRepository } from '../repo/editor-plans.repository';
 import { localDate, zonedToUtc, isQuietHour } from '../roles/time';
 import type { EditorCard } from '../card';
 import type { Directive, DirectivesRepository } from '../manager/directives.repository';
-import type { TrackedLinks } from './tracked-links';
+import { publicUrlOf, TrackedLinks } from './tracked-links';
 
 export const PAIR_COOLDOWN_DAYS = 14;
 export const MAX_PROMO_PER_RESOURCE_DAY = 1;
@@ -71,6 +71,7 @@ export class PromoPlanner {
   private now(): Date { return (this.d.now ?? (() => new Date()))(); }
 
   async schedule(dir: Directive, orch: Agent, anchorKey: string): Promise<PromoResult> {
+    if (dir.shadow) return { error: 'shadow_directive', details: 'директиви shadow-менеджера не виконуються' };
     const r = await this.plan(dir, orch, anchorKey);
     if ('error' in r) {
       await this.d.directives.update(dir.id, { status: 'rejected', resolution: `${r.error}: ${r.details}`, reasonKind: 'data' }, ['accepted']);
@@ -91,6 +92,12 @@ export class PromoPlanner {
     const src = resources.find((x) => x.ref === sourceRef);
     const tgt = resources.find((x) => x.ref === targetRef);
     if (!src || !tgt) return { error: 'not_own_resource', details: 'обидва ресурси мають бути нашими (зовнішній взаємопіар — спека 014)' };
+    // The promo is posted by THIS orchestrator: its source must be its anchor channel or a resource of its network.
+    const anchorRef = `telegram:${anchorKey}`;
+    const anchor = resources.find((x) => x.ref === anchorRef);
+    const inNetwork = sourceRef === anchorRef || (!!anchor?.groupId && src.groupId === anchor.groupId);
+    if (!inNetwork) return { error: 'source_not_in_network', details: `${sourceRef} не належить мережі ${anchorKey} — директиву має отримати оркестратор джерела` };
+    if (kind === 'repost' && sourceRef !== anchorRef) return { error: 'repost_into_anchor_only', details: `репост можна лише в ${anchorRef}` };
     if (!(await this.d.usable(sourceRef)) || !(await this.d.usable(targetRef))) return { error: 'resource_unhealthy', details: 'один із ресурсів недоступний (токен/права)' };
     if (kind === 'repost' && (parseResourceRef(sourceRef)!.platform !== 'telegram' || parseResourceRef(targetRef)!.platform !== 'telegram')) {
       return { error: 'repost_telegram_only', details: 'нативне пересилання — лише Telegram → Telegram; для інших платформ — cross_promo' };
@@ -149,7 +156,7 @@ export class PromoPlanner {
     if (kind === 'cross_promo') {
       // Shadow never touches Telegram: no invite link is created, the public link stands in.
       const l = live
-        ? await this.d.links.forPromo({ targetRef, sourceRef, slotId, directiveId: dir.id, username: tgt.username })
+        ? await this.d.links.forPromo({ targetRef, sourceRef, slotId, directiveId: dir.id, username: tgt.username, targetUrl: publicUrlOf(tgt) })
         : { link: null, url: tgt.username ? `https://t.me/${tgt.username}` : null, tracked: false, note: 'shadow — трекінгове посилання не створюється' };
       tracked = l.tracked;
       linkNote = l.note;

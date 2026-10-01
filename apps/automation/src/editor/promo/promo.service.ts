@@ -11,7 +11,7 @@ export class PromoService {
     links: Pick<TrackedLinks, 'click' | 'stats'>;
   }) {}
 
-  click(code: string) { return this.d.links.click(code); }
+  click(code: string, v: { userAgent?: string | null; ip?: string | null } = {}) { return this.d.links.click(code, v); }
 
   async overview(handle: string) {
     const a = await this.d.agents.getByHandle(handle);

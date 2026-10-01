@@ -202,4 +202,9 @@ test('brief → playbook → orchestrated network → ideas → plan → native 
   await pool.query(`UPDATE editor_slots SET status = 'shadowed' WHERE id = $1`, [day.slots[0].id]);
   await repo.settleIdea(accepted[0].id);
   assert.equal((await repo.idea(accepted[0].id))!.status, 'used');
+
+  // Review fix: an idea left `planned` without slots (replanned / stale) goes back to the pool.
+  const orphan = await repo.addIdea({ agentId: orch.id, title: 'Сироту повертаємо в пул', sources: ['https://x'], variants: [], origin: 'owner', expiresAt: new Date(Date.now() + 86_400_000), status: 'planned' });
+  assert.equal(await repo.releaseStalePlanned(orch.id), 1);
+  assert.equal((await repo.idea(orphan.id))!.status, 'accepted');
 });

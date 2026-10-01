@@ -36,6 +36,27 @@ export function utmUrl(base: string, p: { source: string; medium: string; campai
   return u.toString();
 }
 
+const CRAWLER_RE = /bot|crawler|spider|preview|facebookexternalhit|telegrambot|whatsapp|slack|discord|twitterbot|linkedin|embedly|curl|wget|python-requests|headless/i;
+
+/** Link-preview bots and scripts do not count as clicks. */
+export function isCrawler(ua: string | null | undefined): boolean {
+  return !ua || CRAWLER_RE.test(ua);
+}
+
+/** The public page of a resource (UTM destination) — null when we cannot build one. */
+export function publicUrlOf(r: { platform: string; username: string | null }): string | null {
+  const u = r.username?.replace(/^@/, '');
+  if (!u) return null;
+  switch (r.platform) {
+    case 'telegram':  return `https://t.me/${u}`;
+    case 'instagram': return `https://www.instagram.com/${u}/`;
+    case 'threads':   return `https://www.threads.net/@${u}`;
+    case 'facebook':  return `https://www.facebook.com/${u}`;
+    case 'tiktok':    return `https://www.tiktok.com/@${u}`;
+    default:          return null;
+  }
+}
+
 /** Salted, non-reversible user hash (no Telegram user ids are stored). */
 export function userHash(userId: number | string, salt: string): string {
   return createHash('sha256').update(`${salt}:${userId}`).digest('hex').slice(0, 32);
@@ -99,11 +120,18 @@ export class TrackedLinks {
     return (rowCount ?? 0) > 0;
   }
 
-  /** A UTM redirect hit: count the click and return the destination. */
-  async click(code: string): Promise<string | null> {
+  /**
+   * A UTM redirect hit: returns the destination; counts a click unless it is a
+   * link-preview crawler, and at most once per visitor (hashed IP) per hour.
+   */
+  async click(code: string, v: { userAgent?: string | null; ip?: string | null } = {}): Promise<string | null> {
     const { rows } = await this.d.pool.query(`SELECT id, url FROM tracked_links WHERE code = $1 AND kind = 'utm' AND status = 'active'`, [code]);
     if (!rows[0]) return null;
-    await this.d.pool.query(`INSERT INTO link_joins (link_id) VALUES ($1)`, [rows[0].id]);
+    if (!isCrawler(v.userAgent)) {
+      const hour = new Date().toISOString().slice(0, 13);
+      await this.d.pool.query(`INSERT INTO link_joins (link_id, tg_user_hash) VALUES ($1, $2) ON CONFLICT DO NOTHING`,
+        [rows[0].id, userHash(`${v.ip ?? 'unknown'}:${hour}`, this.d.salt)]);
+    }
     return rows[0].url;
   }
 

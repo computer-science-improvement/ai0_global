@@ -86,6 +86,17 @@ test('cross-promo: scheduled with a tracked invite link; pair cooldown, relevanc
   await directives.update(d3.id, { status: 'accepted' });
   assert.equal(((await planner.schedule((await directives.get(d3.id))!, orch, A)) as any).error, 'low_relevance');
 
+  // Review fix: the source must belong to this orchestrator's network; a repost goes only into its own channel.
+  const foreign = await directives.insert({
+    fromAgentId: null, toAgentId: orch.id, kind: 'cross_promo', structural: true, body: 'чужий ресурс', params: { source_ref: `telegram:${B}`, target_ref: `telegram:${A}` },
+    rationale: 'перевірка меж мережі', evidence: { x: 1 }, expected: null, reviewAt: null, status: 'new', shadow: false,
+  });
+  await directives.update(foreign.id, { status: 'accepted' });
+  assert.equal(((await planner.schedule((await directives.get(foreign.id))!, orch, A)) as any).error, 'source_not_in_network');
+  const shadowDir = await file(B);
+  await pool.query(`UPDATE agent_directives SET shadow = true, status = 'accepted' WHERE id = $1`, [shadowDir.id]);
+  assert.equal(((await planner.schedule((await directives.get(shadowDir.id))!, orch, A)) as any).error, 'shadow_directive');
+
   // Joins through the invite link (hashed, once per user) feed the transitions KPI of the target.
   const name = (await pool.query(`SELECT tg_invite_name FROM tracked_links WHERE target_ref = $1`, [`telegram:${B}`])).rows[0].tg_invite_name;
   assert.equal(await links.recordJoin({ inviteLinkName: name, userId: 1, status: 'member' }), true);

@@ -27,7 +27,7 @@ export class ManagerService {
     if (!dir) throw new NotFoundException({ error: 'directive_not_found' });
     if (dir.status !== 'awaiting_owner') throw new ConflictException({ error: 'not_awaiting_owner', details: dir.status });
     const out = await this.d.repo.update(id, approve
-      ? { status: 'new', ownerDecision: 'approved' }
+      ? { status: 'new', ownerDecision: 'approved', shadow: false }
       : { status: 'rejected', ownerDecision: 'declined', resolution: 'owner declined', reasonKind: 'owner_rule' }, ['awaiting_owner']);
     return { directive: out };
   }

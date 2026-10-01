@@ -1,5 +1,5 @@
-import { Controller, Get, Inject, NotFoundException, Param, Res, UseGuards } from '@nestjs/common';
-import type { Response } from 'express';
+import { Controller, Get, Inject, NotFoundException, Param, Req, Res, UseGuards } from '@nestjs/common';
+import type { Request, Response } from 'express';
 import { TrackingAuthGuard } from '../../tracking/api/tracking-auth.guard';
 import type { PromoService } from './promo.service';
 
@@ -11,9 +11,10 @@ export class PromoRedirectController {
   constructor(@Inject(PROMO_SERVICE) private readonly svc: PromoService) {}
 
   @Get(':code')
-  async go(@Param('code') code: string, @Res() res: Response): Promise<void> {
+  async go(@Param('code') code: string, @Req() req: Request, @Res() res: Response): Promise<void> {
     if (!/^[a-f0-9]{6,20}$/.test(code)) throw new NotFoundException();
-    const url = await this.svc.click(code);
+    const ip = String(req.headers['x-forwarded-for'] ?? '').split(',')[0].trim() || req.ip || null;
+    const url = await this.svc.click(code, { userAgent: req.headers['user-agent'] ?? null, ip });
     if (!url) throw new NotFoundException();
     res.redirect(302, url);
   }

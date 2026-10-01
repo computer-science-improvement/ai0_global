@@ -27,7 +27,7 @@ function skillsBlock(skills: SkillSource, role: EditorRole, inlineNames: string[
 }
 
 function memoryBlock(memory: MemoryEntry[]): string {
-  return memory.length ? memory.map((m) => `- [${m.kind}${m.createdBy === 'owner' ? ', власник' : ''}] ${m.text}`).join('\n') : '- (порожня)';
+  return memory.length ? memory.map((m) => `- #${m.id} [${m.kind}${m.createdBy === 'owner' ? ', власник' : ''}] ${m.text}`).join('\n') : '- (порожня)';
 }
 
 export function resourcesBlock(net: NetworkCtx): string {

@@ -106,7 +106,8 @@ export class DirectivesRepository {
     await this.pool.query(`UPDATE agent_directives SET delivered_at = COALESCE(delivered_at, now()), updated_at = now() WHERE id = ANY($1::uuid[])`, [ids]);
   }
 
-  async update(id: string, p: Partial<{ status: DirectiveStatus; resolution: string | null; reasonKind: string | null; ownerDecision: string; outcome: DirectiveOutcome; outcomeDetail: unknown; appliedAt: Date; reviewAt: Date }>, onlyIf?: DirectiveStatus[]): Promise<Directive | null> {
+  async update(id: string, p: Partial<{ status: DirectiveStatus; resolution: string | null; reasonKind: string | null; ownerDecision: string; outcome: DirectiveOutcome; outcomeDetail: unknown; appliedAt: Date; reviewAt: Date; shadow: boolean }>, onlyIf?: DirectiveStatus[]): Promise<Directive | null> {
+    if (p.shadow !== undefined) await this.pool.query(`UPDATE agent_directives SET shadow = $2 WHERE id = $1`, [id, p.shadow]);
     const { rows } = await this.pool.query(
       `UPDATE agent_directives SET
          status = COALESCE($2, status), resolution = COALESCE($3, resolution), reason_kind = COALESCE($4, reason_kind),
@@ -129,13 +130,15 @@ export class DirectivesRepository {
   async expireUnresolved(maxAgeMs: number): Promise<number> {
     const { rowCount } = await this.pool.query(
       `UPDATE agent_directives SET status = 'expired', resolution = 'not resolved within 24 h', updated_at = now()
-        WHERE status = 'new' AND delivered_at IS NOT NULL AND delivered_at < now() - ($1 || ' milliseconds')::interval`, [String(maxAgeMs)]);
+        WHERE status = 'new' AND (
+          (delivered_at IS NOT NULL AND delivered_at < now() - ($1 || ' milliseconds')::interval)
+          OR (delivered_at IS NULL AND created_at < now() - ($1 || ' milliseconds')::interval * 2))`, [String(maxAgeMs)]);
     return rowCount ?? 0;
   }
 
   async awaitingOwnerOlderThan(ms: number): Promise<Directive[]> {
     const { rows } = await this.pool.query(
-      `SELECT * FROM agent_directives WHERE status = 'awaiting_owner' AND created_at < now() - ($1 || ' milliseconds')::interval`, [String(ms)]);
+      `SELECT * FROM agent_directives WHERE status = 'awaiting_owner' AND NOT shadow AND created_at < now() - ($1 || ' milliseconds')::interval`, [String(ms)]);
     return rows.map(toDirective);
   }
 
@@ -149,7 +152,7 @@ export class DirectivesRepository {
   async applyAccepted(toAgentId: string, except: DirectiveKind[]): Promise<Directive[]> {
     const { rows } = await this.pool.query(
       `UPDATE agent_directives SET status = 'applied', applied_at = now(), updated_at = now()
-        WHERE to_agent_id = $1 AND status = 'accepted' AND NOT (kind = ANY($2::text[])) RETURNING *`, [toAgentId, except]);
+        WHERE to_agent_id = $1 AND status = 'accepted' AND NOT shadow AND NOT (kind = ANY($2::text[])) RETURNING *`, [toAgentId, except]);
     return rows.map(toDirective);
   }
 
@@ -197,7 +200,7 @@ export class DirectivesRepository {
   /** Structural directives dropped by owner timeout in a row (the "owner is not responding" lesson). */
   async droppedInARow(): Promise<number> {
     const { rows } = await this.pool.query(
-      `SELECT owner_decision FROM agent_directives WHERE structural AND owner_decision IS NOT NULL ORDER BY updated_at DESC LIMIT 10`);
+      `SELECT owner_decision FROM agent_directives WHERE structural AND NOT shadow AND owner_decision IS NOT NULL ORDER BY updated_at DESC LIMIT 10`);
     let n = 0;
     for (const r of rows) { if (r.owner_decision === 'timeout_dropped') n++; else break; }
     return n;

@@ -13,6 +13,7 @@ import type { ScopeKpis } from './kpi-math';
 
 export const DEFAULT_MANAGER_TIMES = ['08:00', '13:00', '18:00', '22:30'];
 export const DELIVERY_DEBOUNCE_MS = 10 * 60_000;
+export const WAKE_INTERVAL_MS = 60 * 60_000;
 export const RESOLVE_WITHIN_MS = 24 * 3600_000;
 export const NOT_RESPONDING_AFTER = 5;
 
@@ -122,12 +123,17 @@ export class ManagerRunner {
   }
 
   /** Orchestrators that have fresh directives (debounced) — the scheduler gives them an event run. */
+  private readonly woken = new Map<string, number>();
+
+  /** At most one event run per orchestrator per WAKE_INTERVAL_MS, whatever the outcome of the last one. */
   async orchestratorsToWake(): Promise<Agent[]> {
     const ids = await this.d.repo.undeliveredTargets(DELIVERY_DEBOUNCE_MS);
     const out: Agent[] = [];
+    const t = this.now().getTime();
     for (const id of ids) {
+      if (t - (this.woken.get(id) ?? 0) < WAKE_INTERVAL_MS) continue;
       const a = await this.d.agents.get(id);
-      if (a && !isPaused(a, this.now())) out.push(a);
+      if (a && !isPaused(a, this.now())) { out.push(a); this.woken.set(id, t); }
     }
     return out;
   }

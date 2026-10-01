@@ -49,16 +49,34 @@ export class EditorScheduler {
 
   constructor(private readonly d: EditorSchedulerDeps) {}
 
+  private reservedBusy = false;
+
+  /**
+   * Reserved slots (paid ads, scheduled chat posts, promos) have their own lock:
+   * a long orchestrator / planner / manager tick never delays them (spec 022 review).
+   */
   async cronTick(): Promise<void> {
-    if (this.busy) return;
-    if (!this.d.enabled() && !this.d.reserved) return;
-    this.busy = true;
     const now = new Date();
+    await Promise.all([this.reservedTick(now), this.mainTick(now)]);
+  }
+
+  private async reservedTick(now: Date): Promise<void> {
+    if (!this.d.reserved || this.reservedBusy) return;
+    this.reservedBusy = true;
     try {
-      if (this.d.reserved) {
-        try { await this.d.reserved.publishDue(now); } catch (err: any) { this.d.log?.(`reserved slots failed: ${err?.message ?? err}`); }
-      }
-      if (this.d.enabled()) await this.tick(now);
+      await this.d.reserved.publishDue(now);
+    } catch (err: any) {
+      this.d.log?.(`reserved slots failed: ${err?.message ?? err}`);
+    } finally {
+      this.reservedBusy = false;
+    }
+  }
+
+  private async mainTick(now: Date): Promise<void> {
+    if (this.busy || !this.d.enabled()) return;
+    this.busy = true;
+    try {
+      await this.tick(now);
     } catch (err: any) {
       this.d.log?.(`editor tick failed: ${err?.message ?? err}`);
     } finally {

@@ -97,7 +97,7 @@ import { PromoExecutor } from './promo/promo-executor';
 import { PromoService } from './promo/promo.service';
 import { PROMO_SERVICE, PromoController, PromoRedirectController } from './promo/promo.controller';
 import { onChatMember } from '../publishers/chat-member-bus';
-import { createHash } from 'crypto';
+import { createHash, randomBytes } from 'crypto';
 import { TrackingAuthGuard } from '../tracking/api/tracking-auth.guard';
 
 export const EDITOR_RUNNER    = 'EDITOR_RUNNER';
@@ -580,7 +580,10 @@ export const EDITOR_PROVIDERS = [
         pool: Pool, cfg: ConfigService, infra: AgentInfra, platform: PlatformInfra, repos: EditorRepos, manager: ManagerInfra, channelConfig: ChannelConfigService,
       ): PromoInfra => {
         const env = (k: string) => cfg.get<string>(k) ?? undefined;
-        const salt = env('PROMO_HASH_SALT') ?? createHash('sha256').update(`ai0-promo:${env('TOKEN_ENCRYPTION_KEY') ?? ''}`).digest('hex');
+        // Never a public constant: without a configured secret, a per-process random salt (dedupe only within a run).
+        const secret = env('PROMO_HASH_SALT') ?? env('TOKEN_ENCRYPTION_KEY');
+        const salt = secret ? createHash('sha256').update(`ai0-promo:${secret}`).digest('hex') : randomBytes(32).toString('hex');
+        if (!secret) new Logger('Promo').warn('PROMO_HASH_SALT / TOKEN_ENCRYPTION_KEY not set — join dedupe resets on restart');
         const links = new TrackedLinks({
           pool, salt, redirectBase: env('PUBLIC_BASE_URL') ?? env('DASHBOARD_URL') ?? null,
           createInvite: async (key, name) => (await botCall(channelConfig, key, 'createChatInviteLink', { name })).invite_link,

@@ -88,17 +88,30 @@ export class NetworkRepository {
    * pending draft); `pending_owner` supersedes an older pending draft.
    */
   async insertPlaybook(p: { agentId: string; status: 'pending_owner' | 'active'; brief: string | null; body: Playbook; review?: unknown; rationale: string | null; createdBy: 'orchestrator' | 'owner'; runId?: string | null }): Promise<PlaybookRow> {
-    const { rows: v } = await this.pool.query(`SELECT COALESCE(max(version), 0) + 1 AS v FROM playbooks WHERE agent_id = $1`, [p.agentId]);
-    if (p.status === 'active') {
-      await this.pool.query(`UPDATE playbooks SET status = 'superseded', decided_at = now() WHERE agent_id = $1 AND status IN ('active','pending_owner')`, [p.agentId]);
-    } else {
-      await this.pool.query(`UPDATE playbooks SET status = 'superseded', decided_at = now() WHERE agent_id = $1 AND status = 'pending_owner'`, [p.agentId]);
+    // One transaction: never leave a network without an active playbook. An orchestrator's minor change keeps
+    // the owner's pending draft (it is decided separately); an owner edit supersedes it (owner precedence).
+    const conn = (this.pool as Partial<Pool>).connect ? await (this.pool as Pool).connect() : null;
+    const q = conn ?? this.pool;
+    try {
+      if (conn) await conn.query('BEGIN');
+      await q.query(`SELECT pg_advisory_xact_lock(hashtext($1))`, [`playbook:${p.agentId}`]).catch(() => {});
+      const { rows: v } = await q.query(`SELECT COALESCE(max(version), 0) + 1 AS v FROM playbooks WHERE agent_id = $1`, [p.agentId]);
+      const supersede = p.status === 'active'
+        ? (p.createdBy === 'owner' ? ['active', 'pending_owner'] : ['active'])
+        : ['pending_owner'];
+      await q.query(`UPDATE playbooks SET status = 'superseded', decided_at = now() WHERE agent_id = $1 AND status = ANY($2::text[])`, [p.agentId, supersede]);
+      const { rows } = await q.query(
+        `INSERT INTO playbooks (agent_id, version, status, brief, body, review, rationale, created_by, run_id, decided_at)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, CASE WHEN $3 = 'active' THEN now() END) RETURNING *`,
+        [p.agentId, Number(v[0].v), p.status, p.brief, JSON.stringify(p.body), p.review == null ? null : JSON.stringify(p.review), p.rationale, p.createdBy, UUID_RE.test(p.runId ?? "") ? p.runId : null]);
+      if (conn) await conn.query('COMMIT');
+      return toPlaybook(rows[0]);
+    } catch (err) {
+      if (conn) await conn.query('ROLLBACK').catch(() => {});
+      throw err;
+    } finally {
+      conn?.release();
     }
-    const { rows } = await this.pool.query(
-      `INSERT INTO playbooks (agent_id, version, status, brief, body, review, rationale, created_by, run_id, decided_at)
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, CASE WHEN $3 = 'active' THEN now() END) RETURNING *`,
-      [p.agentId, Number(v[0].v), p.status, p.brief, JSON.stringify(p.body), p.review == null ? null : JSON.stringify(p.review), p.rationale, p.createdBy, UUID_RE.test(p.runId ?? "") ? p.runId : null]);
-    return toPlaybook(rows[0]);
   }
 
   async setPlaybookReview(id: string, review: unknown): Promise<void> {
@@ -165,6 +178,19 @@ export class NetworkRepository {
       `UPDATE content_ideas SET status = 'used', updated_at = now()
         WHERE id = $1 AND status = 'planned'
           AND NOT EXISTS (SELECT 1 FROM editor_slots WHERE idea_id = $1 AND status IN ('planned','running'))`, [ideaId]);
+  }
+
+  /**
+   * Ideas left `planned` with no pending slot (replanned, skipped as stale, paused):
+   * used when any slot of theirs went out, otherwise back to the pool.
+   */
+  async releaseStalePlanned(agentId: string): Promise<number> {
+    const { rowCount } = await this.pool.query(
+      `UPDATE content_ideas i SET updated_at = now(),
+              status = CASE WHEN EXISTS (SELECT 1 FROM editor_slots s WHERE s.idea_id = i.id AND s.status IN ('published','shadowed')) THEN 'used' ELSE 'accepted' END
+        WHERE i.agent_id = $1 AND i.status = 'planned'
+          AND NOT EXISTS (SELECT 1 FROM editor_slots s WHERE s.idea_id = i.id AND s.status IN ('planned','running'))`, [agentId]);
+    return rowCount ?? 0;
   }
 
   /** Rejections by reason code in the last 14 days (avoid-pattern learning). */
