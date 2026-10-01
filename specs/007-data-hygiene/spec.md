@@ -4,7 +4,7 @@
 
 ## Requirements and tasks
 - [x] T001 **Untrack `.pnpm-store/`** (3,094 files): `git rm -r --cached .pnpm-store` and add it to `.gitignore`. History purge (77 MB pack) is the owner's decision, using `git filter-repo`, documented only.
-- [ ] T002 **Raw data out of git and image:**
+- [~] T002 **Raw data out of git and image:** *(partial: the `.dockerignore` part and the read-only compose mount are done. The move to object storage, the fetch script and the single canonical copy are blocked: the owner kept the files tracked and there is no object-storage access. The measured duplication and the proposed migration are in `docs/runbooks/raw-data.md`.)*
   - Move `apps/pipeline/raw-data` (~166 MB, recipes stored three times) to object storage or a release asset, with a fetch script.
   - Keep one canonical copy.
   - Add `raw-data` to the pipeline `.dockerignore`.

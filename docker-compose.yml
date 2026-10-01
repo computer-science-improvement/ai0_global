@@ -177,6 +177,9 @@ services:
       # Mount data dirs so parsed JSON is accessible on host (WORKDIR is /repo/apps/pipeline)
       - ./apps/pipeline/src/data:/repo/apps/pipeline/src/data
       - ./apps/pipeline/src/tools/additional-data:/repo/apps/pipeline/src/tools/additional-data
+      # Raw scraped sources (~161 MB) are .dockerignored so they don't bloat the
+      # image; parsers (recipes-epicure, prompts-github) read them from here.
+      - ./apps/pipeline/src/raw-data:/repo/apps/pipeline/src/raw-data:ro
 
 volumes:
   pgdata:

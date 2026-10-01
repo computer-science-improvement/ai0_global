@@ -9,3 +9,23 @@ node_modules
 .DS_Store
 apps/pipeline/src/data
 apps/pipeline/src/tools/additional-data
+# Raw scraped datasets (~161 MB, spec 007 T002). Not baked into the pipeline
+# image; docker-compose mounts the host copy read-only for the parsers.
+# See docs/runbooks/raw-data.md.
+apps/pipeline/src/raw-data
+# Never part of any image: pnpm store, agent worktrees (full repo copies),
+# local tooling/docs/scratch and backups. Root-level only — apps/automation/.claude
+# is still sent (the automation Dockerfile copies it).
+.pnpm-store
+.claude
+.cursor
+.agents
+.specify
+docs
+specs
+plans
+tasks
+tmp
+deprecated
+backups
+.tmp-*.html
