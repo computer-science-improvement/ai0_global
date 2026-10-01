@@ -39,6 +39,7 @@ import { SettingsModule }       from './settings/settings.module';
 import { ActivityModule }       from './activity/activity.module';
 import { AgentModule }          from './agent/agent.module';
 import { PaymentsModule }       from './payments/payments.module';
+import { EditorModule }         from './editor/editor.module';
 
 @Module({
   imports: [
@@ -53,6 +54,7 @@ import { PaymentsModule }       from './payments/payments.module';
     AlertingModule,
     AgentModule,
     PaymentsModule,
+    EditorModule,
     StatsModule,
     PublishersModule,
     SchedulerModule,

@@ -19,7 +19,7 @@ export function inlineToHtml(src: string): string {
   const links: string[] = [];
   const withTokens = (src ?? '').replace(LINK_RE, (_m, label: string, url: string) => {
     links.push(`<a href="${escapeAttr(url)}">${escapeHtml(label)}</a>`);
-    return `\u0000${links.length - 1}\u0000`;
+    return `\uE000${links.length - 1}\uE001`;
   });
 
   let out = escapeHtml(withTokens)
@@ -27,7 +27,7 @@ export function inlineToHtml(src: string): string {
     .replace(/\|\|([^|\n][^|]*?)\|\|/g, '<tg-spoiler>$1</tg-spoiler>')
     .replace(/(^|[\s(«"])_([^_\n]+?)_(?=$|[\s.,!?:;)»"])/g, '$1<i>$2</i>');
 
-  out = out.replace(/\u0000(\d+)\u0000/g, (_m, i) => links[Number(i)]);
+  out = out.replace(/\uE000(\d+)\uE001/g, (_m, i) => links[Number(i)]);
   return out;
 }
 
@@ -46,4 +46,13 @@ export function visibleLength(html: string): number {
     .replace(/<[^>]*>/g, '')
     .replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&amp;/g, '&')
     .length;
+}
+
+/** Telegram HTML → readable plain text (links become "label (url)") for plain-text channels like owner alerts. */
+export function htmlToPlain(html: string): string {
+  return html
+    .replace(/<a href="([^"]*)">([\s\S]*?)<\/a>/g, (_m, url: string, label: string) => `${label} (${url.replace(/&quot;/g, '"').replace(/&amp;/g, '&')})`)
+    .replace(/<blockquote>/g, '« ').replace(/<\/blockquote>/g, ' »')
+    .replace(/<[^>]*>/g, '')
+    .replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&amp;/g, '&');
 }

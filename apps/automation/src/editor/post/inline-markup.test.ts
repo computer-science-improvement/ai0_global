@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { escapeAttr, inlineToHtml, inlineToPlain, visibleLength } from './inline-markup';
+import { escapeAttr, htmlToPlain, inlineToHtml, inlineToPlain, visibleLength } from './inline-markup';
 
 test('escapes raw HTML and entities', () => {
   assert.equal(inlineToHtml('a < b & <script>x</script>'), 'a &lt; b &amp; &lt;script&gt;x&lt;/script&gt;');
@@ -28,4 +28,8 @@ test('plain and visible length', () => {
   assert.equal(inlineToPlain('**A** [b](https://x.y) ||c||'), 'A b c');
   assert.equal(visibleLength('<b>A&amp;B</b>'), 3);
   assert.equal(escapeAttr('"'), '&quot;');
+});
+
+test('htmlToPlain', () => {
+  assert.equal(htmlToPlain('<b>A&amp;B</b> <a href="https://x.y/?a=1&amp;b=2">NASA</a>'), 'A&B NASA (https://x.y/?a=1&b=2)');
 });

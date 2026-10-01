@@ -1,0 +1,220 @@
+import type { Pool } from 'pg';
+import type { PlannedSlot } from '../roles/plan-rules';
+
+export type SlotStatus = 'planned' | 'running' | 'published' | 'shadowed' | 'skipped' | 'failed';
+
+export interface EditorSlot {
+  id:              string;
+  planId:          string;
+  channelKey:      string;
+  scheduledAt:     Date;
+  kind:            'content' | 'reserved';
+  format:          string;
+  topic:           string;
+  angle:           string | null;
+  sourceHints:     string[];
+  isExperiment:    boolean;
+  status:          SlotStatus;
+  attempts:        number;
+  runId:           string | null;
+  publishedPostId: number | null;
+  postSpec:        unknown;
+  renderedPreview: string | null;
+  error:           string | null;
+}
+
+export function rowToSlot(r: any): EditorSlot {
+  return {
+    id: r.id, planId: r.plan_id, channelKey: r.channel_key, scheduledAt: new Date(r.scheduled_at),
+    kind: r.kind, format: r.format, topic: r.topic, angle: r.angle ?? null, sourceHints: r.source_hints ?? [],
+    isExperiment: !!r.is_experiment, status: r.status, attempts: Number(r.attempts), runId: r.run_id ?? null,
+    publishedPostId: r.published_post_id == null ? null : Number(r.published_post_id),
+    postSpec: r.post_spec ?? null, renderedPreview: r.rendered_preview ?? null, error: r.error ?? null,
+  };
+}
+
+export interface SlotResultPatch {
+  status?:          SlotStatus;
+  runId?:           string | null;
+  publishedPostId?: number | null;
+  postSpec?:        unknown;
+  renderedPreview?: string | null;
+  error?:           string | null;
+  scheduledAt?:     Date;
+}
+
+export class EditorPlansRepository {
+  constructor(private readonly pool: Pool) {}
+
+  async getActivePlan(channelKey: string, planDate: string): Promise<{ id: string; rationale: string | null } | null> {
+    const { rows } = await this.pool.query(
+      `SELECT id, rationale FROM editor_plans WHERE channel_key = $1 AND plan_date = $2 AND status = 'active'`,
+      [channelKey, planDate]);
+    return rows[0] ?? null;
+  }
+
+  /** Reserved (ad) slots of the day — fixed points the planner must plan around. */
+  async reservedSlots(channelKey: string, from: Date, to: Date): Promise<EditorSlot[]> {
+    const { rows } = await this.pool.query(
+      `SELECT * FROM editor_slots WHERE channel_key = $1 AND kind = 'reserved'
+          AND status IN ('planned','running') AND scheduled_at >= $2 AND scheduled_at < $3 ORDER BY scheduled_at`,
+      [channelKey, from, to]);
+    return rows.map(rowToSlot);
+  }
+
+  /**
+   * Replace the day's plan atomically: old active plan → superseded, its
+   * still-planned content slots → skipped, reserved slots move to the new plan.
+   */
+  async createPlan(channelKey: string, planDate: string, rationale: string, runId: string | null, slots: PlannedSlot[]): Promise<string> {
+    const client = await this.pool.connect();
+    try {
+      await client.query('BEGIN');
+      const old = await client.query(
+        `UPDATE editor_plans SET status = 'superseded' WHERE channel_key = $1 AND plan_date = $2 AND status = 'active' RETURNING id`,
+        [channelKey, planDate]);
+      const { rows } = await client.query(
+        `INSERT INTO editor_plans (channel_key, plan_date, rationale, run_id) VALUES ($1, $2, $3, $4) RETURNING id`,
+        [channelKey, planDate, rationale, runId]);
+      const planId: string = rows[0].id;
+      for (const o of old.rows) {
+        await client.query(
+          `UPDATE editor_slots SET status = 'skipped', error = 'superseded by a new plan', updated_at = now()
+            WHERE plan_id = $1 AND status = 'planned' AND kind = 'content'`, [o.id]);
+        await client.query(`UPDATE editor_slots SET plan_id = $2, updated_at = now() WHERE plan_id = $1 AND kind = 'reserved'`, [o.id, planId]);
+      }
+      for (const s of slots) {
+        await client.query(
+          `INSERT INTO editor_slots (plan_id, channel_key, scheduled_at, format, topic, angle, source_hints, is_experiment)
+           VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`,
+          [planId, channelKey, s.scheduledAt, s.format, s.topic, s.angle, JSON.stringify(s.sourceHints), s.isExperiment]);
+      }
+      await client.query('COMMIT');
+      return planId;
+    } catch (err) {
+      await client.query('ROLLBACK');
+      throw err;
+    } finally {
+      client.release();
+    }
+  }
+
+  /** Atomically move due content slots planned → running (single-instance safe, and multi-instance safe too). */
+  async claimDue(now: Date, limit: number): Promise<EditorSlot[]> {
+    const { rows } = await this.pool.query(
+      `UPDATE editor_slots SET status = 'running', attempts = attempts + 1, updated_at = now()
+        WHERE id IN (
+          SELECT id FROM editor_slots
+           WHERE status = 'planned' AND kind = 'content' AND scheduled_at <= $1
+           ORDER BY scheduled_at
+           LIMIT $2
+           FOR UPDATE SKIP LOCKED)
+        RETURNING *`,
+      [now, limit]);
+    return rows.map(rowToSlot);
+  }
+
+  /** Planned slots that are more than `maxLateMs` overdue are skipped instead of posted late. */
+  async skipStale(now: Date, maxLateMs: number): Promise<number> {
+    const { rowCount } = await this.pool.query(
+      `UPDATE editor_slots SET status = 'skipped', error = 'stale: missed its time window', updated_at = now()
+        WHERE status = 'planned' AND kind = 'content' AND scheduled_at < $1`,
+      [new Date(now.getTime() - maxLateMs)]);
+    return rowCount ?? 0;
+  }
+
+  /** Slots stuck in running (process crash mid-run) → failed. */
+  async sweepStuck(now: Date, stuckMs: number): Promise<EditorSlot[]> {
+    const { rows } = await this.pool.query(
+      `UPDATE editor_slots SET status = 'failed', error = COALESCE(error, 'stuck in running (crash?)'), updated_at = now()
+        WHERE status = 'running' AND updated_at < $1 RETURNING *`,
+      [new Date(now.getTime() - stuckMs)]);
+    await this.pool.query(
+      `UPDATE editor_runs SET status = 'error', error = COALESCE(error, 'stuck (swept)'), finished_at = now()
+        WHERE status = 'running' AND started_at < $1`,
+      [new Date(now.getTime() - stuckMs)]);
+    return rows.map(rowToSlot);
+  }
+
+  async getSlot(id: string): Promise<EditorSlot | null> {
+    const { rows } = await this.pool.query(`SELECT * FROM editor_slots WHERE id = $1`, [id]);
+    return rows[0] ? rowToSlot(rows[0]) : null;
+  }
+
+  async listSlots(channelKey: string, planId: string): Promise<EditorSlot[]> {
+    const { rows } = await this.pool.query(
+      `SELECT * FROM editor_slots WHERE channel_key = $1 AND plan_id = $2 ORDER BY scheduled_at`, [channelKey, planId]);
+    return rows.map(rowToSlot);
+  }
+
+  async updateSlot(id: string, p: SlotResultPatch): Promise<void> {
+    const sets: string[] = [];
+    const params: unknown[] = [id];
+    const add = (col: string, v: unknown) => { params.push(v); sets.push(`${col} = $${params.length}`); };
+    if (p.status !== undefined)          add('status', p.status);
+    if (p.runId !== undefined)           add('run_id', p.runId);
+    if (p.publishedPostId !== undefined) add('published_post_id', p.publishedPostId);
+    if (p.postSpec !== undefined)        add('post_spec', p.postSpec === null ? null : JSON.stringify(p.postSpec));
+    if (p.renderedPreview !== undefined) add('rendered_preview', p.renderedPreview);
+    if (p.error !== undefined)           add('error', p.error);
+    if (p.scheduledAt !== undefined)     add('scheduled_at', p.scheduledAt);
+    if (!sets.length) return;
+    await this.pool.query(`UPDATE editor_slots SET ${sets.join(', ')}, updated_at = now() WHERE id = $1`, params);
+  }
+
+  /** How many of the channel's most recent finished slots failed in a row. */
+  async consecutiveFailures(channelKey: string): Promise<number> {
+    const { rows } = await this.pool.query(
+      `SELECT status FROM editor_slots WHERE channel_key = $1 AND status IN ('published','shadowed','skipped','failed')
+        ORDER BY updated_at DESC LIMIT 5`, [channelKey]);
+    let n = 0;
+    for (const r of rows) { if (r.status === 'failed') n++; else break; }
+    return n;
+  }
+
+  // ── facts the publish guards need (all channels' publications, any source) ──
+
+  async countPublishedSince(channelKey: string, since: Date): Promise<number> {
+    const { rows } = await this.pool.query(
+      `SELECT COUNT(*)::int AS n FROM published_posts WHERE channel_id = $1 AND posted_at >= $2`, [channelKey, since]);
+    return rows[0]?.n ?? 0;
+  }
+
+  async lastPostAt(channelKey: string): Promise<Date | null> {
+    const { rows } = await this.pool.query(`SELECT MAX(posted_at) AS at FROM published_posts WHERE channel_id = $1`, [channelKey]);
+    return rows[0]?.at ? new Date(rows[0].at) : null;
+  }
+
+  async sourceAlreadyPosted(channelKey: string, sourceUrl: string): Promise<boolean> {
+    const { rows } = await this.pool.query(
+      `SELECT 1 FROM published_posts WHERE channel_id = $1 AND source_url = $2
+       UNION ALL
+       SELECT 1 FROM editor_slots WHERE channel_key = $1 AND status = 'shadowed'
+          AND (post_spec->'source'->>'url' = $2 OR post_spec->>'library_ref' = $2)
+       LIMIT 1`, [channelKey, sourceUrl]);
+    return rows.length > 0;
+  }
+
+  async recentTexts(channelKey: string): Promise<string[]> {
+    const { rows } = await this.pool.query(
+      `(SELECT COALESCE(rendered_preview, topic) AS text FROM editor_slots
+         WHERE channel_key = $1 AND status IN ('published','shadowed') ORDER BY updated_at DESC LIMIT 60)
+       UNION ALL
+       (SELECT title AS text FROM published_posts
+         WHERE channel_id = $1 AND title IS NOT NULL AND editor_slot_id IS NULL ORDER BY posted_at DESC LIMIT 60)`,
+      [channelKey]);
+    return rows.map((r) => String(r.text ?? ''));
+  }
+
+  async insertPublication(i: {
+    channelKey: string; messageId: number; sourceUrl: string | null; title: string; tags: string[]; format: string; slotId: string;
+  }): Promise<number> {
+    const { rows } = await this.pool.query(
+      `INSERT INTO published_posts (channel_id, message_id, source_url, title, strategy_type, tags, format, editor_slot_id)
+       VALUES ($1, $2, $3, $4, 'editor', $5, $6, $7)
+       ON CONFLICT (channel_id, message_id) DO UPDATE SET editor_slot_id = EXCLUDED.editor_slot_id
+       RETURNING id`,
+      [i.channelKey, i.messageId, i.sourceUrl, i.title, i.tags, i.format, i.slotId]);
+    return Number(rows[0].id);
+  }
+}

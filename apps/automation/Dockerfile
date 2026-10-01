@@ -31,6 +31,7 @@ RUN pnpm install --frozen-lockfile --filter automation... --prod
 COPY --from=builder /repo/apps/automation/dist ./apps/automation/dist
 COPY apps/automation/config ./apps/automation/config
 COPY apps/automation/.claude ./apps/automation/.claude
+COPY apps/automation/editor-skills ./apps/automation/editor-skills
 COPY database/migrations ./database/migrations
 
 WORKDIR /repo/apps/automation

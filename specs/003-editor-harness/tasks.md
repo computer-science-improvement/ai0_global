@@ -5,7 +5,7 @@ Test: `cd apps/automation && npx tsx --test "src/editor/**/*.test.ts"`. Type-che
 ## Phase 1: Setup
 - [x] T001 Add `zod@4.3.6` to automation dependencies (it is already in the lockfile).
 - [x] T002 Write migration `database/migrations/042_editor.sql` per data-model.md: tables, views, the `editor_ro` role and guarded grants. Make it idempotent and have it record its own version.
-- [ ] T003 Add env docs to `.env.example`: `EDITOR_ENABLED`, `OPENROUTER_API_KEY`, `OPENROUTER_BASE_URL`, `EDITOR_MODEL_*`, `EDITOR_DAILY_BUDGET_USD`, `EDITOR_CHANNEL_DAILY_BUDGET_USD`.
+- [x] T003 Add env docs to `.env.example`: `EDITOR_ENABLED`, `OPENROUTER_API_KEY`, `OPENROUTER_BASE_URL`, `EDITOR_MODEL_*`, `EDITOR_DAILY_BUDGET_USD`, `EDITOR_CHANNEL_DAILY_BUDGET_USD`.
 
 ## Phase 2: LLM (US1)
 - [x] T004 [P] `llm/llm.types.ts`.
@@ -34,7 +34,7 @@ Test: `cd apps/automation && npx tsx --test "src/editor/**/*.test.ts"`. Type-che
   - `fetch_feed`
   - `check_similarity`
   - `list_skills` and `load_skill`
-- [ ] T017 `editor.module.ts`: wire the providers and the `EDITOR_TOOLS` multi-provider, and register the module in `app.module.ts` behind `EDITOR_ENABLED`. The module is always imported, and the loop refuses to run when disabled.
+- [x] T017 `editor.module.ts`: wire the providers and the `EDITOR_TOOLS` multi-provider, and register the module in `app.module.ts` behind `EDITOR_ENABLED`. The module is always imported, and the loop refuses to run when disabled.
 
 ## Done when
 SC-1, SC-2 and SC-3 all pass, the full automation suite is green, and `tsc` is clean.
