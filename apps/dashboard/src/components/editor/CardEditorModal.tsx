@@ -12,6 +12,11 @@ import type { EditorCard, EditorCardFields, EditorFormat, EditorSource } from '.
 
 const FORMATS: EditorFormat[] = ['text', 'photo', 'album', 'poll', 'quiz'];
 
+const SOURCE_PLACEHOLDER: Record<EditorSource['kind'], string> = {
+  rss: 'https://…', url: 'https://…', library: 'table, e.g. facts',
+  api: 'nasa_apod | spaceflight_news | tmdb_trending | epic_free_games | steam_deals | gamerpower_giveaways | on_this_day',
+};
+
 const DEFAULTS: Omit<EditorCardFields, 'mode'> = {
   title: null, language: 'uk', timezone: 'Europe/Kyiv', postsPerDayMin: 2, postsPerDayMax: 6,
   quietStartHour: 23, quietEndHour: 8, minGapMinutes: 60, planHour: 6, brief: '', formats: { text: 1, photo: 1 },
@@ -182,9 +187,9 @@ export function CardEditorModal({ open, onClose, card }: { open: boolean; onClos
             <div key={i} style={{ display: 'grid', gridTemplateColumns: '110px 100px 1fr 32px', gap: 8, alignItems: 'center' }}>
               <input className="input-field" style={inputStyle} placeholder="id" value={s.id} onChange={(e) => setSource(i, { id: e.target.value })} />
               <select className="input-field" style={inputStyle} value={s.kind} onChange={(e) => setSource(i, { kind: e.target.value as EditorSource['kind'] })}>
-                <option value="rss">rss</option><option value="url">url</option><option value="library">library</option>
+                <option value="rss">rss</option><option value="url">url</option><option value="library">library</option><option value="api">api</option>
               </select>
-              <input className="input-field" style={inputStyle} placeholder={s.kind === 'library' ? 'table, e.g. facts' : 'https://…'} value={s.ref} onChange={(e) => setSource(i, { ref: e.target.value })} />
+              <input className="input-field" style={inputStyle} placeholder={SOURCE_PLACEHOLDER[s.kind]} value={s.ref} onChange={(e) => setSource(i, { ref: e.target.value })} />
               <TableAction action="delete" title="Remove source" onClick={() => set('sources', f.sources.filter((_, j) => j !== i))} />
             </div>
           ))}

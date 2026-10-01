@@ -2,8 +2,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import axios from 'axios';
 import { DailyPhotoItem } from '../types';
-
-const APOD_URL = 'https://api.nasa.gov/planetary/apod';
+import { APOD_URL, mapApod } from '../../../common/fetchers/apis/nasa-apod.api';
 
 @Injectable()
 export class NasaApodFetcher {
@@ -20,22 +19,12 @@ export class NasaApodFetcher {
         timeout: 15_000,
       });
 
-      const data = res.data;
-
-      if (data.media_type !== 'image') {
-        this.logger.log(`Skipping non-image APOD (media_type: ${data.media_type})`);
+      const item = mapApod(res.data);
+      if (!item) {
+        this.logger.log(`Skipping non-image APOD (media_type: ${res.data?.media_type})`);
         return null;
       }
-
-      return {
-        title:       data.title,
-        explanation: data.explanation,
-        imageUrl:    data.url,
-        hdUrl:       data.hdurl ?? null,
-        date:        data.date,
-        mediaType:   data.media_type,
-        copyright:   data.copyright ?? null,
-      };
+      return item;
     } catch (err) {
       this.logger.error(`NASA APOD fetch failed: ${err.message}`);
       return null;

@@ -6,8 +6,8 @@ export type EmojiPolicy = 'none' | 'sparse' | 'free';
 
 export interface CardSource {
   id:    string;
-  kind:  'rss' | 'url' | 'library';
-  ref:   string;          // feed URL, page URL, or library table name
+  kind:  'rss' | 'url' | 'library' | 'api';
+  ref:   string;          // feed URL, page URL, library table name, or fetch_api source name
   note?: string;
 }
 

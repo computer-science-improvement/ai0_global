@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import type { EditorCard } from '../card';
 import { SUPPORTED_FORMATS } from '../post/post-spec';
+import { API_SOURCE_NAMES } from '../tools/api-adapters/names';
 
 /** Column defaults of editor_channels (migration 042), used when a card is created through the API. */
 export const CARD_DEFAULTS: Omit<EditorCard, 'channelKey'> = {
@@ -21,15 +22,18 @@ const name = z.string().trim().min(1).max(100);
 
 const SourceSchema = z.object({
   id:   z.string().trim().min(1).max(64),
-  kind: z.enum(['rss', 'url', 'library']),
+  kind: z.enum(['rss', 'url', 'library', 'api']),
   ref:  z.string().trim().min(1).max(2000),
   note: z.string().max(300).optional(),
 }).strict().superRefine((s, ctx) => {
-  if (s.kind !== 'library' && !/^https?:\/\/\S+$/i.test(s.ref)) {
+  if ((s.kind === 'rss' || s.kind === 'url') && !/^https?:\/\/\S+$/i.test(s.ref)) {
     ctx.addIssue({ code: 'custom', path: ['ref'], message: 'rss/url sources need an http(s) URL' });
   }
   if (s.kind === 'library' && !/^[a-z_]+$/.test(s.ref)) {
     ctx.addIssue({ code: 'custom', path: ['ref'], message: 'library sources take a table name' });
+  }
+  if (s.kind === 'api' && !(API_SOURCE_NAMES as readonly string[]).includes(s.ref)) {
+    ctx.addIssue({ code: 'custom', path: ['ref'], message: `api sources take a fetch_api source: ${API_SOURCE_NAMES.join(', ')}` });
   }
 });
 

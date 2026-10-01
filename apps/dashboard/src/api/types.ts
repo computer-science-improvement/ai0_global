@@ -542,7 +542,8 @@ export type EditorFormat = 'text' | 'photo' | 'album' | 'poll' | 'quiz';
 
 export interface EditorSource {
   id:    string;
-  kind:  'rss' | 'url' | 'library';
+  kind:  'rss' | 'url' | 'library' | 'api';
+  /** Feed/page URL, library table, or fetch_api source (nasa_apod, tmdb_trending…). */
   ref:   string;
   note?: string;
 }

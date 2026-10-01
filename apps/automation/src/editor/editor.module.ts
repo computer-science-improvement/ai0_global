@@ -18,6 +18,7 @@ import { SkillLibrary } from './skills/skill-library';
 import { buildReadTools } from './tools/read-tools';
 import { buildComposeTools } from './tools/compose-tools';
 import { buildRoleTools } from './tools/role-tools';
+import { buildApiTools } from './tools/api-tools';
 import { EditorChannelsRepository } from './repo/editor-channels.repository';
 import { EditorPlansRepository } from './repo/editor-plans.repository';
 import { EditorMemoryRepository } from './repo/editor-memory.repository';
@@ -94,6 +95,7 @@ export const EDITOR_PROVIDERS = [
         return new ToolRegistry([
           ...buildReadTools({ pool, readonly: new ReadonlyQueryService(pool), skills }),
           ...buildComposeTools(),
+          ...buildApiTools({ env }),
           ...buildRoleTools({
             pool, plans: repos.plans, memory: repos.memory, channels: repos.channels, publisher,
             recordPublish: (k) => throttle.recordPublish(k),

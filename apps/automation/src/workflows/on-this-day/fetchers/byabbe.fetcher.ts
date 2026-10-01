@@ -1,8 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import axios from 'axios';
-import { OnThisDayItem, OnThisDayEvent } from '../types';
-
-const BASE_URL = 'https://byabbe.se/on-this-day';
+import { OnThisDayItem } from '../types';
+import { byabbeUrl, mapByabbeEntries } from '../../../common/fetchers/apis/byabbe.api';
 
 @Injectable()
 export class ByabbeFetcher {
@@ -15,26 +14,12 @@ export class ByabbeFetcher {
       const day = now.getDate();
 
       const [eventsRes, birthsRes] = await Promise.all([
-        axios.get(`${BASE_URL}/${month}/${day}/events.json`, { timeout: 15_000 }),
-        axios.get(`${BASE_URL}/${month}/${day}/births.json`, { timeout: 15_000 }),
+        axios.get(byabbeUrl(month, day, 'events'), { timeout: 15_000 }),
+        axios.get(byabbeUrl(month, day, 'births'), { timeout: 15_000 }),
       ]);
 
-      const rawEvents: any[] = eventsRes.data?.events ?? [];
-      const rawBirths: any[] = birthsRes.data?.births ?? [];
-
-      const events: OnThisDayEvent[] = rawEvents
-        .slice(0, 5)
-        .map((e) => ({
-          year:        String(e.year ?? ''),
-          description: e.description ?? e.wikipedia?.[0]?.title ?? '',
-        }));
-
-      const births: OnThisDayEvent[] = rawBirths
-        .slice(0, 3)
-        .map((b) => ({
-          year:        String(b.year ?? ''),
-          description: b.description ?? b.wikipedia?.[0]?.title ?? '',
-        }));
+      const events = mapByabbeEntries(eventsRes.data?.events, 5);
+      const births = mapByabbeEntries(birthsRes.data?.births, 3);
 
       this.logger.debug(`Fetched ${events.length} events, ${births.length} births for ${month}/${day}`);
 

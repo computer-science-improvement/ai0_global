@@ -64,6 +64,11 @@ test('formats must not be empty; library sources take a table name', () => {
   assert.equal(ok.ok, true);
 });
 
+test('api sources take a fetch_api source name', () => {
+  assert.equal(mergeCard('@chan', makeCard(), { sources: [{ id: 'apod', kind: 'api', ref: 'nasa_apod' }] }).ok, true);
+  assert.ok(issues(mergeCard('@chan', makeCard(), { sources: [{ id: 'x', kind: 'api', ref: 'https://api.nasa.gov' }] })).includes('sources.0.ref'));
+});
+
 test('nullable fields accept null and explore ratio is rounded to 2 decimals', () => {
   const r = mergeCard('@chan', makeCard({ dailyBudgetUsd: 1, footer: 'x', toolsAllow: ['web_fetch'] }), {
     dailyBudgetUsd: null, footer: null, toolsAllow: null, title: null, exploreRatio: 0.333,

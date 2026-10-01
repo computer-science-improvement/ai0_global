@@ -1,21 +1,8 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { SpaceItem } from '../types';
+import { mapSpaceflightArticles, spaceflightArticlesUrl } from '../../../common/fetchers/apis/spaceflight-news.api';
 
-const API_URL =
-  'https://api.spaceflightnewsapi.net/v4/articles/?limit=10&ordering=-published_at';
-
-interface SpaceflightArticle {
-  id:           number;
-  title:        string;
-  url:          string;
-  image_url:    string;
-  summary:      string;
-  published_at: string;
-}
-
-interface SpaceflightResponse {
-  results: SpaceflightArticle[];
-}
+const API_URL = spaceflightArticlesUrl(10);
 
 @Injectable()
 export class SpaceNewsFetcher {
@@ -29,17 +16,7 @@ export class SpaceNewsFetcher {
         return [];
       }
 
-      const data: SpaceflightResponse = await res.json();
-      if (!data.results?.length) return [];
-
-      return data.results.map((a) => ({
-        title:       a.title,
-        description: a.summary,
-        source:      a.url,
-        imageUrl:    a.image_url ?? null,
-        publishedAt: a.published_at ?? null,
-        contentType: 'news' as const,
-      }));
+      return mapSpaceflightArticles(await res.json());
     } catch (err) {
       this.logger.warn(`Spaceflight News fetch failed: ${err.message}`);
       return [];
