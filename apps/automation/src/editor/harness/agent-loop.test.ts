@@ -140,3 +140,57 @@ test('tools are sent as JSON-schema specs', async () => {
   assert.deepEqual(names, ['echo', 'boom', 'slow', 'publish']);
   assert.equal((llm.requests[0].tools![0].parameters as any).properties.text.type, 'string');
 });
+
+// ── multi-turn history and streaming events (spec 010 FR-002) ───────────────
+
+test('history turns sit between the system prompt and the new user message', async () => {
+  const llm = new FakeLlm([{ text: 'Готово' }]);
+  const { l } = loop(llm);
+  const res = await l.run(input({
+    tools: [echo],
+    history: [{ role: 'user', content: 'перше питання' }, { role: 'assistant', content: 'перша відповідь' }],
+    user: 'друге питання',
+  }));
+  assert.equal(res.status, 'ok');
+  assert.equal(res.finalText, 'Готово');
+  const msgs = llm.requests[0].messages.map((m: any) => [m.role, m.content]);
+  assert.deepEqual(msgs, [['system', 's'], ['user', 'перше питання'], ['assistant', 'перша відповідь'], ['user', 'друге питання']]);
+});
+
+test('history drops non-text turns and keeps only the last 20', async () => {
+  const llm = new FakeLlm([{ text: 'ok' }]);
+  const { l } = loop(llm);
+  const history: any[] = Array.from({ length: 25 }, (_, i) => ({ role: i % 2 ? 'assistant' : 'user', content: `m${i}` }));
+  history.push({ role: 'system', content: 'sneaky' }, { role: 'tool', toolCallId: 'x', content: 'y' });
+  await l.run(input({ tools: [], history }));
+  const msgs = llm.requests[0].messages;
+  assert.equal(msgs.length, 1 + 20 + 1);
+  assert.equal((msgs[1] as any).content, 'm5');
+  assert.ok(msgs.slice(1, -1).every((m: any) => m.role === 'user' || m.role === 'assistant'));
+});
+
+test('onEvent streams text, tool calls and tool results; no terminal tools means text ends the run', async () => {
+  const events: any[] = [];
+  const llm = new FakeLlm([
+    { text: 'Шукаю…', calls: [{ name: 'echo', args: { text: 'a' } }, { name: 'boom', args: {} }] },
+    { text: 'Ось чернетка' },
+  ]);
+  const { l } = loop(llm);
+  const res = await l.run(input({ tools: [echo, boom], onEvent: (e: any) => { events.push(e); } }));
+  assert.equal(res.status, 'ok');
+  assert.equal(res.finalText, 'Ось чернетка');
+  assert.deepEqual(events.map((e) => e.type), ['llm_text', 'tool_call', 'tool_result', 'tool_call', 'tool_result', 'llm_text']);
+  assert.deepEqual(events[1], { type: 'tool_call', name: 'echo', args: { text: 'a' } });
+  assert.equal(events[2].ok, true);
+  assert.match(events[2].summary, /echoed/);
+  assert.deepEqual([events[4].name, events[4].ok], ['boom', false]);
+  assert.match(events[4].summary, /tool_failed/);
+});
+
+test('a throwing onEvent never breaks the run', async () => {
+  const llm = new FakeLlm([{ calls: [{ name: 'echo', args: { text: 'a' } }] }, { text: 'done' }]);
+  const { l } = loop(llm);
+  const res = await l.run(input({ tools: [echo], onEvent: () => { throw new Error('client gone'); } }));
+  assert.equal(res.status, 'ok');
+  assert.equal(res.finalText, 'done');
+});

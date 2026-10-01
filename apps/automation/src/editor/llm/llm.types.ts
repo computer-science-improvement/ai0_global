@@ -3,7 +3,9 @@
  * OpenAI chat-completions wire format, which OpenRouter speaks for every model.
  */
 
-export type EditorRole = 'planner' | 'executor' | 'reviewer' | 'checker';
+export type EditorRole = 'planner' | 'executor' | 'reviewer' | 'checker' | 'composer';
+/** Roles that run for one channel with its editorial card (the scheduler's roles). */
+export type CardRole = 'planner' | 'executor' | 'reviewer';
 
 export interface ToolCall {
   id:        string;

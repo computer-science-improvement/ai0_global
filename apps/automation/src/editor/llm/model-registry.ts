@@ -24,6 +24,7 @@ const ROLE_DEFAULTS: Record<EditorRole, { maxTokens: number; temperature: number
   executor: { maxTokens: 3000, temperature: 0.7 },
   reviewer: { maxTokens: 2500, temperature: 0.3 },
   checker:  { maxTokens: 800,  temperature: 0.0 },
+  composer: { maxTokens: 3000, temperature: 0.6 },
 };
 
 /**

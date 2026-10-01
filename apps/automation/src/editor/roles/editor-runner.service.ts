@@ -2,7 +2,7 @@ import type { EditorCard } from '../card';
 import type { AgentLoop, AgentLoopResult } from '../harness/agent-loop';
 import type { ToolRegistry } from '../harness/tool-registry';
 import { resolveModel } from '../llm/model-registry';
-import type { EditorRole } from '../llm/llm.types';
+import type { CardRole } from '../llm/llm.types';
 import type { SkillLibrary } from '../skills/skill-library';
 import type { EditorPlansRepository, EditorSlot } from '../repo/editor-plans.repository';
 import type { EditorMemoryRepository } from '../repo/editor-memory.repository';
@@ -23,7 +23,7 @@ export interface EditorRunnerDeps {
 export const MAX_SLOT_ATTEMPTS = 2;
 export const RETRY_DELAY_MS = 15 * 60_000;
 
-const MAX_STEPS: Record<Exclude<EditorRole, 'checker'>, number> = { planner: 10, executor: 14, reviewer: 14 };
+const MAX_STEPS: Record<CardRole, number> = { planner: 10, executor: 14, reviewer: 14 };
 
 /** Runs one role over the AgentLoop and applies the slot state machine around it. */
 export class EditorRunnerService {
@@ -31,7 +31,7 @@ export class EditorRunnerService {
 
   private now(): Date { return (this.d.now ?? (() => new Date()))(); }
 
-  private async run(role: Exclude<EditorRole, 'checker'>, card: EditorCard, user: string, slotId: string | null, extras: Record<string, unknown> = {}): Promise<AgentLoopResult> {
+  private async run(role: CardRole, card: EditorCard, user: string, slotId: string | null, extras: Record<string, unknown> = {}): Promise<AgentLoopResult> {
     const memory = await this.d.memory.listActive(card.channelKey);
     return this.d.loop.run({
       role,

@@ -1,11 +1,11 @@
-import type { EditorRole } from '../llm/llm.types';
+import type { CardRole } from '../llm/llm.types';
 import { cardSummary, EditorCard } from '../card';
 import type { SkillLibrary } from '../skills/skill-library';
 import type { MemoryEntry } from '../repo/editor-memory.repository';
 import type { EditorSlot } from '../repo/editor-plans.repository';
 import { localDate, localTimeLabel, localWeekday } from './time';
 
-const ROLE_TITLE: Record<Exclude<EditorRole, 'checker'>, string> = {
+const ROLE_TITLE: Record<CardRole, string> = {
   planner:  'редактор-планувальник',
   executor: 'автор і випусковий редактор',
   reviewer: 'аналітик-рецензент',
@@ -19,7 +19,7 @@ const INLINE_SKILLS_BUDGET = 8_000;
  * skill and the channel's own skills inline; every other skill is only listed
  * (name + description) and loaded on demand via load_skill.
  */
-export function buildSystemPrompt(role: Exclude<EditorRole, 'checker'>, card: EditorCard, memory: MemoryEntry[], skills: SkillLibrary): string {
+export function buildSystemPrompt(role: CardRole, card: EditorCard, memory: MemoryEntry[], skills: SkillLibrary): string {
   const inlineNames = [`editor-${role}-workflow`, ...card.skills];
   let budget = INLINE_SKILLS_BUDGET;
   const inline: string[] = [];

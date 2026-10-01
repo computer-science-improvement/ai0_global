@@ -14,6 +14,15 @@ export interface AgentLoopDeps {
   now?:           () => number;
 }
 
+/** Streaming events for a live UI (spec 010). Delivered best-effort: a throwing listener never breaks the run. */
+export type AgentLoopEvent =
+  | { type: 'llm_text';    text: string }
+  | { type: 'tool_call';   name: string; args: unknown }
+  | { type: 'tool_result'; name: string; ok: boolean; summary: string };
+
+/** Prior text turns of a conversation (only user / assistant text is kept). */
+export const MAX_HISTORY_TURNS = 20;
+
 export interface AgentLoopInput {
   role:              EditorRole;
   channelKey:        string | null;
@@ -25,6 +34,9 @@ export interface AgentLoopInput {
   maxSteps?:         number;
   channelBudgetUsd?: number | null;
   extras?:           Record<string, unknown>;
+  /** Prior user/assistant text turns, inserted between the system prompt and `user` (last MAX_HISTORY_TURNS). */
+  history?:          ChatMessage[];
+  onEvent?:          (e: AgentLoopEvent) => void;
 }
 
 export interface AgentLoopResult {
@@ -38,6 +50,22 @@ export interface AgentLoopResult {
 }
 
 const DEFAULT_MAX_STEPS = 12;
+const SUMMARY_CHARS = 160;
+
+function parseArgs(raw: string): unknown {
+  try { return raw?.trim() ? JSON.parse(raw) : {}; } catch { return raw; }
+}
+
+/** One short line about a tool result for a live UI: the error code (+details) or the start of the JSON. */
+function summarize(output: unknown): string {
+  if (isToolError(output)) {
+    const d = output.details === undefined ? '' : `: ${typeof output.details === 'string' ? output.details : JSON.stringify(output.details)}`;
+    return `${output.error}${d}`.slice(0, SUMMARY_CHARS);
+  }
+  let s: string;
+  try { s = JSON.stringify(output) ?? ''; } catch { s = String(output); }
+  return s.length > SUMMARY_CHARS ? `${s.slice(0, SUMMARY_CHARS)}…` : s;
+}
 const MAX_FINISH_NUDGES = 1;
 
 /**
@@ -73,10 +101,19 @@ export class AgentLoop {
     };
 
     const ctx: ToolContext = { runId, role: input.role, channelKey: input.channelKey, slotId: input.slotId ?? null, extras: input.extras };
+    const history = (input.history ?? [])
+      .filter((m) => (m.role === 'user' || m.role === 'assistant') && typeof m.content === 'string' && m.content.length > 0)
+      .map((m) => ({ role: m.role, content: m.content as string }) as ChatMessage)
+      .slice(-MAX_HISTORY_TURNS);
     const messages: ChatMessage[] = [
       { role: 'system', content: input.system },
+      ...history,
       { role: 'user', content: input.user },
     ];
+    const emit = (e: AgentLoopEvent) => {
+      if (!input.onEvent) return;
+      try { input.onEvent(e); } catch { /* a listener (e.g. a closed HTTP stream) never breaks the run */ }
+    };
     let nudges = 0;
 
     try {
@@ -94,6 +131,7 @@ export class AgentLoop {
         totals.costUsd          += res.usage.costUsd;
         await this.deps.recorder.llmStep(runId, totals.steps++, res, now() - t0);
         messages.push(res.message);
+        if (res.message.content?.trim()) emit({ type: 'llm_text', text: res.message.content });
 
         const calls = res.message.toolCalls ?? [];
         if (!calls.length) {
@@ -106,7 +144,9 @@ export class AgentLoop {
         }
 
         for (const call of calls) {
+          if (input.onEvent) emit({ type: 'tool_call', name: call.name, args: parseArgs(call.arguments) });
           const outcome = await this.runTool(call, byName, ctx, toolTimeoutMs);
+          if (input.onEvent) emit({ type: 'tool_result', name: call.name, ok: !outcome.isError, summary: summarize(outcome.output) });
           // Paid tools (e.g. web_search) report their own spend so it counts against the budget.
           const toolCost = typeof (outcome.output as any)?._costUsd === 'number' ? (outcome.output as any)._costUsd as number : 0;
           totals.costUsd += toolCost;
