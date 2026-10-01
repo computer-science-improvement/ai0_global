@@ -393,7 +393,7 @@ All hooks live in `apps/dashboard/src/api/discovery.ts`.
 
 ### UI library — match existing style
 
-`feat/graph-and-roi` uses Framer-style tokens (DESIGN.md). The new page must
+`feat/graph-and-roi` uses Framer-style tokens (docs/reference/framer-design-reference.md, formerly DESIGN.md). The new page must
 look at home with `/channels` and `/graph`. Same pill buttons, same canvas
 tokens. Re-use `<Pagination />`, `<Layout />`, `<ChannelRow />` where it
 fits.

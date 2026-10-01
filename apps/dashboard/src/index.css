@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /* ============================================================================
- * Framer-style design tokens (see DESIGN.md at repo root).
+ * Framer-style design tokens (see docs/reference/framer-design-reference.md).
  * Single canvas + two surface lifts, monochrome with one chromatic accent.
  * Tokens live in @theme so they're available both as CSS vars and as
  * Tailwind utility classes (`text-ink`, `bg-surface-1`, etc.).

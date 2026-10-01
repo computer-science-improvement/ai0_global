@@ -1,6 +1,6 @@
 # 007: Data hygiene
 
-**Status:** TODO · **Depends on:** none
+**Status:** DONE except T002 (raw data stays tracked: owner decision, no object storage) · **Depends on:** none
 
 ## Requirements and tasks
 - [x] T001 **Untrack `.pnpm-store/`** (3,094 files): `git rm -r --cached .pnpm-store` and add it to `.gitignore`. History purge (77 MB pack) is the owner's decision, using `git filter-repo`, documented only.
@@ -29,8 +29,8 @@
   - Add `source_name`, `source_url`, `license` (`unknown|permitted|own|cc-by|pd`) columns to the library tables.
   - The `source-licensing` skill (004) tells the executor to write original text and attribute when `license='unknown'`.
   - Stop republishing Epicure recipes verbatim (009 handles the cutover).
-- [ ] T009 **Config clutter:** delete `channels.local.full-backup.json` and `channels.local.before-discovery.json`, and mark `channels.json` as legacy in the README.
-- [ ] T010 **Docs:**
+- [x] T009 **Config clutter:** delete `channels.local.full-backup.json` and `channels.local.before-discovery.json`, and mark `channels.json` as legacy in the README.
+- [x] T010 **Docs:** *(the `plans/README.md` statuses are reconciled, but `plans/` is untracked and outside the worktree, so the updated file was handed to the owner to copy in. It is not committed.)*
   - README (real scripts, dashboard, migrations, editor).
   - Move `DESIGN.md` (Framer reference) to `docs/reference/`.
   - Update `plans/README.md` statuses, or archive it in favour of `specs/`.
