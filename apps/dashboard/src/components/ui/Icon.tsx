@@ -5,7 +5,7 @@ import {
   Star, Bot, FileText, Plug, Settings, Plus, Pencil, Trash2, RefreshCw,
   Check, X, Play, Pause, Info, TriangleAlert, ChevronLeft, ChevronRight,
   ChevronUp, ChevronDown, Send, Camera, Music2, AtSign, ThumbsUp, Menu,
-  ScrollText,
+  ScrollText, Sparkles, Rocket, SkipForward, CalendarSync, Eye,
   type LucideIcon,
 } from 'lucide-react';
 
@@ -19,7 +19,8 @@ const ICONS = {
   'chevron-right': ChevronRight, 'chevron-up': ChevronUp,
   'chevron-down': ChevronDown, telegram: Send, instagram: Camera,
   tiktok: Music2, threads: AtSign, facebook: ThumbsUp, menu: Menu,
-  logs: ScrollText,
+  logs: ScrollText, sparkles: Sparkles, rocket: Rocket, 'skip-forward': SkipForward,
+  'calendar-sync': CalendarSync, eye: Eye,
 } satisfies Record<string, LucideIcon>;
 
 export type IconName = keyof typeof ICONS;

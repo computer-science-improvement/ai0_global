@@ -33,6 +33,24 @@ export function rowToSlot(r: any): EditorSlot {
   };
 }
 
+export interface EditorPlan {
+  id:         string;
+  channelKey: string;
+  planDate:   string;
+  status:     'active' | 'superseded';
+  rationale:  string | null;
+  runId:      string | null;
+  createdAt:  Date;
+  slots:      EditorSlot[];
+}
+
+export interface SlotStatusCount {
+  channelKey: string;
+  planDate:   string;
+  status:     SlotStatus;
+  n:          number;
+}
+
 export interface SlotResultPatch {
   status?:          SlotStatus;
   runId?:           string | null;
@@ -134,6 +152,59 @@ export class EditorPlansRepository {
         WHERE status = 'running' AND started_at < $1`,
       [new Date(now.getTime() - stuckMs)]);
     return rows.map(rowToSlot);
+  }
+
+  /**
+   * Owner "run now" (006): claim ONE planned content slot regardless of its
+   * time. Same transition as claimDue (planned → running, attempts+1), so the
+   * scheduler can never run it a second time.
+   */
+  async claimSlot(id: string): Promise<EditorSlot | null> {
+    const { rows } = await this.pool.query(
+      `UPDATE editor_slots SET status = 'running', attempts = attempts + 1, updated_at = now()
+        WHERE id = $1 AND status = 'planned' AND kind = 'content'
+        RETURNING *`, [id]);
+    return rows[0] ? rowToSlot(rows[0]) : null;
+  }
+
+  /** Owner skip (006): only a slot that is still planned can be skipped. */
+  async skipPlannedSlot(id: string, reason: string): Promise<EditorSlot | null> {
+    const { rows } = await this.pool.query(
+      `UPDATE editor_slots SET status = 'skipped', error = $2, updated_at = now()
+        WHERE id = $1 AND status = 'planned'
+        RETURNING *`, [id, reason]);
+    return rows[0] ? rowToSlot(rows[0]) : null;
+  }
+
+  /** Plans of one date (active first), each with its slots. */
+  async listPlans(planDate: string, channelKey?: string | null): Promise<EditorPlan[]> {
+    const { rows: plans } = await this.pool.query(
+      `SELECT id, channel_key, plan_date::text AS plan_date, status, rationale, run_id, created_at FROM editor_plans
+        WHERE plan_date = $1 AND ($2::text IS NULL OR channel_key = $2)
+        ORDER BY channel_key, (status = 'active') DESC, created_at DESC`,
+      [planDate, channelKey ?? null]);
+    if (!plans.length) return [];
+    const { rows: slots } = await this.pool.query(
+      `SELECT * FROM editor_slots WHERE plan_id = ANY($1::uuid[]) ORDER BY scheduled_at`, [plans.map((p) => p.id)]);
+    const byPlan = new Map<string, EditorSlot[]>();
+    for (const r of slots) {
+      const s = rowToSlot(r);
+      byPlan.set(s.planId, [...(byPlan.get(s.planId) ?? []), s]);
+    }
+    return plans.map((p) => ({
+      id: p.id, channelKey: p.channel_key, planDate: p.plan_date, status: p.status, rationale: p.rationale ?? null,
+      runId: p.run_id ?? null, createdAt: p.created_at, slots: byPlan.get(p.id) ?? [],
+    }));
+  }
+
+  /** Slot counts per status of every active plan dated on or after `sinceDate`. */
+  async slotStatusCounts(sinceDate: string): Promise<SlotStatusCount[]> {
+    const { rows } = await this.pool.query(
+      `SELECT p.channel_key, p.plan_date::text AS plan_date, s.status, COUNT(*)::int AS n
+         FROM editor_plans p JOIN editor_slots s ON s.plan_id = p.id
+        WHERE p.status = 'active' AND p.plan_date >= $1
+        GROUP BY 1, 2, 3`, [sinceDate]);
+    return rows.map((r) => ({ channelKey: r.channel_key, planDate: r.plan_date, status: r.status, n: Number(r.n) }));
   }
 
   async getSlot(id: string): Promise<EditorSlot | null> {

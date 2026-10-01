@@ -14,7 +14,7 @@ Each feature directory has `spec.md` (what and why), `plan.md` (how, plus Consti
 | 003 | [Editor harness core](003-editor-harness/spec.md): LLM client, loop, tools, budget, trace | P0 | — | DONE |
 | 004 | [PostSpec, renderers, lint, format skills](004-post-spec-and-skills/spec.md) | P0 | 003 | DONE |
 | 005 | [Editor roles](005-editor-roles/spec.md): planner, executor, reviewer, scheduler, shadow mode | P0 | 003, 004 | DONE (shadow-ready; live after owner review) |
-| 006 | [Editor ops surface](006-editor-ops-surface/spec.md): REST API, dashboard page, MCP server | P1 | 005 | TODO |
+| 006 | [Editor ops surface](006-editor-ops-surface/spec.md): REST API, dashboard page, MCP server | P1 | 005 | DONE (shadow-safe; owner verifies in a live session) |
 | 007 | [Data hygiene](007-data-hygiene/spec.md): repo bloat, retention, backups, licensing | P1 | — | DONE (T002 partial: raw data still tracked) |
 | 008 | [Revenue path](008-revenue-path/spec.md): ad label, order→post→report | P1 | 001, 005 | TODO |
 | 009 | [Strategy retirement](009-strategy-retirement/spec.md): migrate channels to the editor | P2 | 005 + shadow results | TODO |

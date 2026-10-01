@@ -22,6 +22,7 @@ import { Route as AppRecommendationsRouteImport } from './routes/app.recommendat
 import { Route as AppLogsRouteImport } from './routes/app.logs'
 import { Route as AppLandingRouteImport } from './routes/app.landing'
 import { Route as AppGraphRouteImport } from './routes/app.graph'
+import { Route as AppEditorRouteImport } from './routes/app.editor'
 import { Route as AppDiscoveryRouteImport } from './routes/app.discovery'
 import { Route as AppConnectionsRouteImport } from './routes/app.connections'
 import { Route as AppComposeRouteImport } from './routes/app.compose'
@@ -33,11 +34,14 @@ import { Route as AppAgentRouteImport } from './routes/app.agent'
 import { Route as AppAdsRouteImport } from './routes/app.ads'
 import { Route as AppStrategiesNewRouteImport } from './routes/app.strategies_.new'
 import { Route as AppStrategiesIdRouteImport } from './routes/app.strategies_.$id'
+import { Route as AppEditorChannelRouteImport } from './routes/app.editor_.$channel'
 import { Route as AppConnectionsTiktokRouteImport } from './routes/app.connections_.tiktok'
 import { Route as AppConnectionsMetaRouteImport } from './routes/app.connections_.meta'
 import { Route as AppConnectionsGroupsRouteImport } from './routes/app.connections_.groups'
 import { Route as AppConnectionsPlatformRouteImport } from './routes/app.connections.$platform'
 import { Route as AppChannelsIdRouteImport } from './routes/app.channels_.$id'
+import { Route as AppEditorSlotIdRouteImport } from './routes/app.editor_.slot.$id'
+import { Route as AppEditorRunIdRouteImport } from './routes/app.editor_.run.$id'
 import { Route as AppConnectionsMetaAccountIdRouteImport } from './routes/app.connections_.meta_.$accountId'
 
 const LoginRoute = LoginRouteImport.update({
@@ -105,6 +109,11 @@ const AppGraphRoute = AppGraphRouteImport.update({
   path: '/graph',
   getParentRoute: () => AppRoute,
 } as any)
+const AppEditorRoute = AppEditorRouteImport.update({
+  id: '/editor',
+  path: '/editor',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppDiscoveryRoute = AppDiscoveryRouteImport.update({
   id: '/discovery',
   path: '/discovery',
@@ -160,6 +169,11 @@ const AppStrategiesIdRoute = AppStrategiesIdRouteImport.update({
   path: '/strategies/$id',
   getParentRoute: () => AppRoute,
 } as any)
+const AppEditorChannelRoute = AppEditorChannelRouteImport.update({
+  id: '/editor_/$channel',
+  path: '/editor/$channel',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppConnectionsTiktokRoute = AppConnectionsTiktokRouteImport.update({
   id: '/connections_/tiktok',
   path: '/connections/tiktok',
@@ -185,6 +199,16 @@ const AppChannelsIdRoute = AppChannelsIdRouteImport.update({
   path: '/channels/$id',
   getParentRoute: () => AppRoute,
 } as any)
+const AppEditorSlotIdRoute = AppEditorSlotIdRouteImport.update({
+  id: '/editor_/slot/$id',
+  path: '/editor/slot/$id',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppEditorRunIdRoute = AppEditorRunIdRouteImport.update({
+  id: '/editor_/run/$id',
+  path: '/editor/run/$id',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppConnectionsMetaAccountIdRoute =
   AppConnectionsMetaAccountIdRouteImport.update({
     id: '/connections_/meta_/$accountId',
@@ -205,6 +229,7 @@ export interface FileRoutesByFullPath {
   '/app/compose': typeof AppComposeRoute
   '/app/connections': typeof AppConnectionsRouteWithChildren
   '/app/discovery': typeof AppDiscoveryRoute
+  '/app/editor': typeof AppEditorRoute
   '/app/graph': typeof AppGraphRoute
   '/app/landing': typeof AppLandingRoute
   '/app/logs': typeof AppLogsRoute
@@ -220,9 +245,12 @@ export interface FileRoutesByFullPath {
   '/app/connections/groups': typeof AppConnectionsGroupsRoute
   '/app/connections/meta': typeof AppConnectionsMetaRoute
   '/app/connections/tiktok': typeof AppConnectionsTiktokRoute
+  '/app/editor/$channel': typeof AppEditorChannelRoute
   '/app/strategies/$id': typeof AppStrategiesIdRoute
   '/app/strategies/new': typeof AppStrategiesNewRoute
   '/app/connections/meta/$accountId': typeof AppConnectionsMetaAccountIdRoute
+  '/app/editor/run/$id': typeof AppEditorRunIdRoute
+  '/app/editor/slot/$id': typeof AppEditorSlotIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -236,6 +264,7 @@ export interface FileRoutesByTo {
   '/app/compose': typeof AppComposeRoute
   '/app/connections': typeof AppConnectionsRouteWithChildren
   '/app/discovery': typeof AppDiscoveryRoute
+  '/app/editor': typeof AppEditorRoute
   '/app/graph': typeof AppGraphRoute
   '/app/landing': typeof AppLandingRoute
   '/app/logs': typeof AppLogsRoute
@@ -251,9 +280,12 @@ export interface FileRoutesByTo {
   '/app/connections/groups': typeof AppConnectionsGroupsRoute
   '/app/connections/meta': typeof AppConnectionsMetaRoute
   '/app/connections/tiktok': typeof AppConnectionsTiktokRoute
+  '/app/editor/$channel': typeof AppEditorChannelRoute
   '/app/strategies/$id': typeof AppStrategiesIdRoute
   '/app/strategies/new': typeof AppStrategiesNewRoute
   '/app/connections/meta/$accountId': typeof AppConnectionsMetaAccountIdRoute
+  '/app/editor/run/$id': typeof AppEditorRunIdRoute
+  '/app/editor/slot/$id': typeof AppEditorSlotIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -269,6 +301,7 @@ export interface FileRoutesById {
   '/app/compose': typeof AppComposeRoute
   '/app/connections': typeof AppConnectionsRouteWithChildren
   '/app/discovery': typeof AppDiscoveryRoute
+  '/app/editor': typeof AppEditorRoute
   '/app/graph': typeof AppGraphRoute
   '/app/landing': typeof AppLandingRoute
   '/app/logs': typeof AppLogsRoute
@@ -284,9 +317,12 @@ export interface FileRoutesById {
   '/app/connections_/groups': typeof AppConnectionsGroupsRoute
   '/app/connections_/meta': typeof AppConnectionsMetaRoute
   '/app/connections_/tiktok': typeof AppConnectionsTiktokRoute
+  '/app/editor_/$channel': typeof AppEditorChannelRoute
   '/app/strategies_/$id': typeof AppStrategiesIdRoute
   '/app/strategies_/new': typeof AppStrategiesNewRoute
   '/app/connections_/meta_/$accountId': typeof AppConnectionsMetaAccountIdRoute
+  '/app/editor_/run/$id': typeof AppEditorRunIdRoute
+  '/app/editor_/slot/$id': typeof AppEditorSlotIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -303,6 +339,7 @@ export interface FileRouteTypes {
     | '/app/compose'
     | '/app/connections'
     | '/app/discovery'
+    | '/app/editor'
     | '/app/graph'
     | '/app/landing'
     | '/app/logs'
@@ -318,9 +355,12 @@ export interface FileRouteTypes {
     | '/app/connections/groups'
     | '/app/connections/meta'
     | '/app/connections/tiktok'
+    | '/app/editor/$channel'
     | '/app/strategies/$id'
     | '/app/strategies/new'
     | '/app/connections/meta/$accountId'
+    | '/app/editor/run/$id'
+    | '/app/editor/slot/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -334,6 +374,7 @@ export interface FileRouteTypes {
     | '/app/compose'
     | '/app/connections'
     | '/app/discovery'
+    | '/app/editor'
     | '/app/graph'
     | '/app/landing'
     | '/app/logs'
@@ -349,9 +390,12 @@ export interface FileRouteTypes {
     | '/app/connections/groups'
     | '/app/connections/meta'
     | '/app/connections/tiktok'
+    | '/app/editor/$channel'
     | '/app/strategies/$id'
     | '/app/strategies/new'
     | '/app/connections/meta/$accountId'
+    | '/app/editor/run/$id'
+    | '/app/editor/slot/$id'
   id:
     | '__root__'
     | '/'
@@ -366,6 +410,7 @@ export interface FileRouteTypes {
     | '/app/compose'
     | '/app/connections'
     | '/app/discovery'
+    | '/app/editor'
     | '/app/graph'
     | '/app/landing'
     | '/app/logs'
@@ -381,9 +426,12 @@ export interface FileRouteTypes {
     | '/app/connections_/groups'
     | '/app/connections_/meta'
     | '/app/connections_/tiktok'
+    | '/app/editor_/$channel'
     | '/app/strategies_/$id'
     | '/app/strategies_/new'
     | '/app/connections_/meta_/$accountId'
+    | '/app/editor_/run/$id'
+    | '/app/editor_/slot/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -485,6 +533,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppGraphRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/editor': {
+      id: '/app/editor'
+      path: '/editor'
+      fullPath: '/app/editor'
+      preLoaderRoute: typeof AppEditorRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/discovery': {
       id: '/app/discovery'
       path: '/discovery'
@@ -562,6 +617,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppStrategiesIdRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/editor_/$channel': {
+      id: '/app/editor_/$channel'
+      path: '/editor/$channel'
+      fullPath: '/app/editor/$channel'
+      preLoaderRoute: typeof AppEditorChannelRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/connections_/tiktok': {
       id: '/app/connections_/tiktok'
       path: '/connections/tiktok'
@@ -597,6 +659,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppChannelsIdRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/editor_/slot/$id': {
+      id: '/app/editor_/slot/$id'
+      path: '/editor/slot/$id'
+      fullPath: '/app/editor/slot/$id'
+      preLoaderRoute: typeof AppEditorSlotIdRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/editor_/run/$id': {
+      id: '/app/editor_/run/$id'
+      path: '/editor/run/$id'
+      fullPath: '/app/editor/run/$id'
+      preLoaderRoute: typeof AppEditorRunIdRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/connections_/meta_/$accountId': {
       id: '/app/connections_/meta_/$accountId'
       path: '/connections/meta/$accountId'
@@ -629,6 +705,7 @@ interface AppRouteChildren {
   AppComposeRoute: typeof AppComposeRoute
   AppConnectionsRoute: typeof AppConnectionsRouteWithChildren
   AppDiscoveryRoute: typeof AppDiscoveryRoute
+  AppEditorRoute: typeof AppEditorRoute
   AppGraphRoute: typeof AppGraphRoute
   AppLandingRoute: typeof AppLandingRoute
   AppLogsRoute: typeof AppLogsRoute
@@ -643,9 +720,12 @@ interface AppRouteChildren {
   AppConnectionsGroupsRoute: typeof AppConnectionsGroupsRoute
   AppConnectionsMetaRoute: typeof AppConnectionsMetaRoute
   AppConnectionsTiktokRoute: typeof AppConnectionsTiktokRoute
+  AppEditorChannelRoute: typeof AppEditorChannelRoute
   AppStrategiesIdRoute: typeof AppStrategiesIdRoute
   AppStrategiesNewRoute: typeof AppStrategiesNewRoute
   AppConnectionsMetaAccountIdRoute: typeof AppConnectionsMetaAccountIdRoute
+  AppEditorRunIdRoute: typeof AppEditorRunIdRoute
+  AppEditorSlotIdRoute: typeof AppEditorSlotIdRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
@@ -658,6 +738,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppComposeRoute: AppComposeRoute,
   AppConnectionsRoute: AppConnectionsRouteWithChildren,
   AppDiscoveryRoute: AppDiscoveryRoute,
+  AppEditorRoute: AppEditorRoute,
   AppGraphRoute: AppGraphRoute,
   AppLandingRoute: AppLandingRoute,
   AppLogsRoute: AppLogsRoute,
@@ -672,9 +753,12 @@ const AppRouteChildren: AppRouteChildren = {
   AppConnectionsGroupsRoute: AppConnectionsGroupsRoute,
   AppConnectionsMetaRoute: AppConnectionsMetaRoute,
   AppConnectionsTiktokRoute: AppConnectionsTiktokRoute,
+  AppEditorChannelRoute: AppEditorChannelRoute,
   AppStrategiesIdRoute: AppStrategiesIdRoute,
   AppStrategiesNewRoute: AppStrategiesNewRoute,
   AppConnectionsMetaAccountIdRoute: AppConnectionsMetaAccountIdRoute,
+  AppEditorRunIdRoute: AppEditorRunIdRoute,
+  AppEditorSlotIdRoute: AppEditorSlotIdRoute,
 }
 
 const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)

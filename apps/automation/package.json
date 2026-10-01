@@ -9,7 +9,8 @@
     "start:dev": "NODE_ENV=local-development nest start --watch",
     "start:debug": "NODE_ENV=local-development nest start --debug --watch",
     "lint": "eslint \"{src,test}/**/*.ts\"",
-    "test": "tsx --test \"src/**/*.test.ts\""
+    "test": "tsx --test \"src/**/*.test.ts\"",
+    "editor:mcp": "tsx src/editor/mcp/main.ts"
   },
   "dependencies": {
     "@anthropic-ai/claude-agent-sdk": "^0.2.119",

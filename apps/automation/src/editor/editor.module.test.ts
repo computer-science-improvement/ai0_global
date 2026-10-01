@@ -8,7 +8,8 @@ import { DB_POOL } from '../database/database.module';
 import { ChannelConfigService } from '../config/channel-config.service';
 import { TelegramNotifier } from '../publishers/telegram-notifier.service';
 import { PostingThrottleService } from '../publishers/posting-throttle.service';
-import { EDITOR_PROVIDERS, EDITOR_RUNNER, EditorCron } from './editor.module';
+import { EDITOR_OPS, EDITOR_PROVIDERS, EDITOR_RUNNER, EditorCron } from './editor.module';
+import { EditorOpsService } from './api/editor-ops.service';
 import { EditorRunnerService } from './roles/editor-runner.service';
 
 test('EditorModule providers resolve with stubbed external deps', async () => {
@@ -27,6 +28,13 @@ test('EditorModule providers resolve with stubbed external deps', async () => {
   const app = await NestFactory.createApplicationContext(TestEditorModule, { logger: false });
   try {
     assert.ok(app.get(EDITOR_RUNNER) instanceof EditorRunnerService);
+    const ops = app.get<EditorOpsService>(EDITOR_OPS);
+    assert.ok(ops instanceof EditorOpsService);
+    const exposed = ops.listTools().map((t) => t.name);
+    assert.ok(exposed.includes('lint_post') && exposed.includes('preview_post') && exposed.includes('sql_readonly'));
+    for (const forbidden of ['publish_post', 'submit_plan', 'skip_slot', 'add_memory', 'set_format_weights']) {
+      assert.ok(!exposed.includes(forbidden), `${forbidden} must not be exposed`);
+    }
     const cron = app.get(EditorCron);
     await cron.tick(); // disabled → no-op, must not throw
   } finally {

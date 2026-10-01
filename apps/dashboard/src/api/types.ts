@@ -475,3 +475,168 @@ export interface AdOrder {
   created_at:       string;
   updated_at:       string;
 }
+
+// ─── Editor agent ops surface (spec 006, /api/editor) ────────────────────────
+
+export type EditorMode = 'off' | 'shadow' | 'live';
+export type EditorSlotStatus = 'planned' | 'running' | 'published' | 'shadowed' | 'skipped' | 'failed';
+export type EditorRunStatus = 'running' | 'ok' | 'error' | 'budget_exceeded' | 'max_steps' | 'disabled';
+export type EditorRole = 'planner' | 'executor' | 'reviewer' | 'checker';
+export type EditorFormat = 'text' | 'photo' | 'album' | 'poll' | 'quiz';
+
+export interface EditorSource {
+  id:    string;
+  kind:  'rss' | 'url' | 'library';
+  ref:   string;
+  note?: string;
+}
+
+/** Editable card fields (PUT /api/editor/channels/:key takes any subset). */
+export interface EditorCardFields {
+  mode:           EditorMode;
+  title:          string | null;
+  language:       string;
+  timezone:       string;
+  postsPerDayMin: number;
+  postsPerDayMax: number;
+  quietStartHour: number;
+  quietEndHour:   number;
+  minGapMinutes:  number;
+  planHour:       number;
+  brief:          string;
+  formats:        Partial<Record<EditorFormat, number>>;
+  hashtags:       string[];
+  hashtagMin:     number;
+  hashtagMax:     number;
+  footer:         string | null;
+  linkStyle:      'inline' | 'footer' | 'button';
+  emojiPolicy:    'none' | 'sparse' | 'free';
+  skills:         string[];
+  sources:        EditorSource[];
+  toolsAllow:     string[] | null;
+  exploreRatio:   number;
+  dailyBudgetUsd: number | null;
+  models:         Partial<Record<EditorRole, string>>;
+  bannedTerms:    string[];
+}
+
+export interface EditorCard extends EditorCardFields {
+  channelKey: string;
+  createdAt:  string;
+}
+
+export interface EditorChannel extends EditorCard {
+  today: {
+    date:     string;
+    spendUsd: number;
+    runs:     number;
+    slots:    Partial<Record<EditorSlotStatus, number>>;
+  };
+}
+
+export interface EditorChannelsResponse {
+  enabled:  boolean;
+  date:     string;
+  channels: EditorChannel[];
+}
+
+export interface EditorSlot {
+  id:              string;
+  planId:          string;
+  channelKey:      string;
+  scheduledAt:     string;
+  kind:            'content' | 'reserved';
+  format:          string;
+  topic:           string;
+  angle:           string | null;
+  sourceHints:     string[];
+  isExperiment:    boolean;
+  status:          EditorSlotStatus;
+  attempts:        number;
+  runId:           string | null;
+  publishedPostId: number | null;
+  postSpec:        unknown;
+  renderedPreview: string | null;
+  error:           string | null;
+}
+
+export interface EditorPlan {
+  id:         string;
+  channelKey: string;
+  planDate:   string;
+  status:     'active' | 'superseded';
+  rationale:  string | null;
+  runId:      string | null;
+  createdAt:  string;
+  slots:      EditorSlot[];
+}
+
+export interface EditorPlansResponse {
+  date:  string;
+  plans: EditorPlan[];
+}
+
+export interface EditorRun {
+  id:               string;
+  role:             EditorRole;
+  channelKey:       string | null;
+  slotId:           string | null;
+  model:            string;
+  status:           EditorRunStatus;
+  steps:            number;
+  promptTokens:     number;
+  completionTokens: number;
+  costUsd:          number;
+  error:            string | null;
+  startedAt:        string;
+  finishedAt:       string | null;
+}
+
+export interface EditorRunStep {
+  id:               number;
+  idx:              number;
+  type:             'llm' | 'tool';
+  toolName:         string | null;
+  input:            unknown;
+  output:           unknown;
+  isError:          boolean;
+  promptTokens:     number | null;
+  completionTokens: number | null;
+  costUsd:          number | null;
+  durationMs:       number | null;
+  createdAt:        string;
+}
+
+export interface EditorRunDetail {
+  run:   EditorRun;
+  steps: EditorRunStep[];
+}
+
+export interface EditorMemoryEntry {
+  id:        number;
+  kind:      'insight' | 'rule' | 'avoid';
+  text:      string;
+  evidence:  unknown;
+  createdBy: 'reviewer' | 'owner';
+  createdAt: string;
+  active:    boolean;
+}
+
+export interface EditorSpendRow {
+  day:        string;
+  channelKey: string | null;
+  usd:        number;
+  runs:       number;
+}
+
+export interface EditorSpendResponse {
+  days:     number;
+  totalUsd: number;
+  rows:     EditorSpendRow[];
+}
+
+export interface EditorRunOutcome {
+  started: true;
+  slotId?: string;
+  result?: { runId: string | null; status: EditorRunStatus; terminalTool?: string; error?: string };
+}
