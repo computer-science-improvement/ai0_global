@@ -25,7 +25,7 @@
 - [x] T007 **Dead data:**
   - Drop the `tg:adapt-*` scripts (the editor replaces them).
   - Mark `tg_posts`, `jokes`, `name_days` and `articles` as editor library sources (they are granted to `editor_ro` in 003), so they become useful instead of dead.
-- [ ] T008 **Licensing:**
+- [x] T008 **Licensing:** *(migration `043_library_provenance.sql` adds the columns with a guarded CHECK and cheap `source_name`/`source_url` backfills; every license stays `unknown`. `search_library` returns `license`/`source_name` in `extra`, and the `source-licensing` skill now acts on them. The verbatim-Epicure cutover for the legacy recipes strategy remains in 009.)*
   - Add `source_name`, `source_url`, `license` (`unknown|permitted|own|cc-by|pd`) columns to the library tables.
   - The `source-licensing` skill (004) tells the executor to write original text and attribute when `license='unknown'`.
   - Stop republishing Epicure recipes verbatim (009 handles the cutover).

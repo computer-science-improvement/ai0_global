@@ -14,7 +14,7 @@ export interface LibraryTable {
   today?:   string;
 }
 
-export const LIBRARY_TABLES: Record<string, LibraryTable> = {
+const BASE_TABLES: Record<string, LibraryTable> = {
   recipes: {
     title: `COALESCE(title_uk, title)`,
     text: `CONCAT_WS(E'\\n', description::text, COALESCE(ingredients_uk::text, ingredients::text))`,
@@ -39,6 +39,20 @@ export const LIBRARY_TABLES: Record<string, LibraryTable> = {
   jokes:    { title: 'title', text: 'content', url: 'url' },
   name_days: { title: 'name', text: `CONCAT('Іменини ', day, '.', month)`, today: 'month = $M AND day = $D' },
 };
+
+/**
+ * Provenance columns (migration 043_library_provenance) merged into every item's
+ * `extra`, so the executor can apply the source-licensing skill: write original
+ * text and attribute `source_name` when `license` is 'unknown'.
+ */
+export const PROVENANCE_EXTRA = `jsonb_build_object('license', license, 'source_name', source_name)`;
+
+export const LIBRARY_TABLES: Record<string, LibraryTable> = Object.fromEntries(
+  Object.entries(BASE_TABLES).map(([name, t]) => [
+    name,
+    { ...t, extra: t.extra ? `(${t.extra}) || ${PROVENANCE_EXTRA}` : PROVENANCE_EXTRA },
+  ]),
+);
 
 export const LIBRARY_TABLE_NAMES = Object.keys(LIBRARY_TABLES) as [string, ...string[]];
 
