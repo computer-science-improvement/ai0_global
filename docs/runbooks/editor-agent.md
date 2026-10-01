@@ -85,6 +85,25 @@ Optional fields:
 | Teach the agent a rule | Insert into `editor_channel_memory` with `created_by='owner'`. The reviewer cannot retire it. |
 | Spend today | `SELECT channel_key, SUM(cost_usd) FROM editor_runs WHERE started_at > current_date GROUP BY 1` |
 
+### Dashboard, REST and MCP (spec 006)
+
+Everything above can be done without SQL:
+
+- **Dashboard `/app/editor`:** channel cards with the off/shadow/live switch (live asks for confirmation),
+  today's slots (run now / skip), spend for 30 days. A channel page has the card editor, the memory list,
+  the day's plan and recent runs; slot and run pages show the preview, the PostSpec and the full trace.
+- **REST `api/editor/*`** (TrackingAuthGuard): `channels`, `channels/:key` (PUT = upsert; a mode change is
+  recorded in `editor_channel_memory` as an inactive owner `rule`), `channels/:key/replan`,
+  `channels/:key/memory`, `plans?date=&channel=`, `slots/:id`, `slots/:id/run`, `slots/:id/skip`,
+  `runs?channel=&slot=&limit=`, `runs/:id`, `spend?days=`, `tools`, `tools/:name` (read tools only).
+  `replan` and `run` return at once; add `?wait=true` to wait for the agent run.
+  "Run now" claims the slot (planned → running) and goes through the normal executor, so every
+  publish guard still applies. Both refuse while `EDITOR_ENABLED` is not `true` or the channel is `off`.
+- **MCP for Claude Code:** copy `.mcp.json.example` to `.mcp.json`; the server runs
+  `pnpm --silent --filter automation editor:mcp` and talks to `EDITOR_API_URL` with `TRACKING_TOKEN`.
+  It can read everything, replan, run slots of **shadow** channels and set mode `off`/`shadow`. It cannot
+  switch a channel to live or publish. Skill: `apps/automation/.claude/skills/operate-ai0-network`.
+
 ## 5. Alerts you will get (admin bot)
 
 - Budget exhausted (global or per channel), once a day.

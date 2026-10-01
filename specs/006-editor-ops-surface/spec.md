@@ -1,6 +1,6 @@
 # 006: Editor ops surface: REST, dashboard, MCP
 
-**Status:** In progress · **Depends on:** 005
+**Status:** DONE · **Depends on:** 005
 
 ## Why
 The owner needs to see and steer the editor: cards, today's plans, slot outcomes, run traces, spend and memory.
@@ -19,11 +19,11 @@ through an MCP server, so the network can be operated conversationally.
 - [x] T006 `GET /api/editor/spend?days=30` returns USD per day per channel.
 
 ### Dashboard (`/app/editor`)
-- [ ] T007 Channel list with a mode switch (off/shadow/live, with confirmation for live), today's slots timeline and spend.
-- [ ] T008 Slot detail: rendered preview (`rendered_preview`), PostSpec JSON, link to the run trace.
-- [ ] T009 Run trace viewer: steps with tool name, args, result, tokens and $.
-- [ ] T010 Card editor form (brief, formats/weights, hashtags, limits, sources, skills) and memory list.
-- [ ] T011 Global `onError` toast for mutations (also fixes the audit finding "56 mutations without onError").
+- [x] T007 Channel list with a mode switch (off/shadow/live, with confirmation for live), today's slots timeline and spend.
+- [x] T008 Slot detail: rendered preview (`rendered_preview`), PostSpec JSON, link to the run trace.
+- [x] T009 Run trace viewer: steps with tool name, args, result, tokens and $.
+- [x] T010 Card editor form (brief, formats/weights, hashtags, limits, sources, skills) and memory list.
+- [x] T011 Global `onError` toast for mutations (also fixes the audit finding "56 mutations without onError").
 
 ### MCP server (`apps/automation/src/editor/mcp/`)
 - [x] T012 stdio MCP server (`pnpm --filter automation editor:mcp`) that reuses the same `EditorTool` registry.
