@@ -1,6 +1,8 @@
 # Env
 .env
 .env.local
+# Local MCP client config (copy of .mcp.json.example) — may carry env overrides
+.mcp.json
 
 # Local-development channels overlay — user-owned, gitignored so the laptop's
 # bot tokens / chat IDs never land in the repo. Used only when

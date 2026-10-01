@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "ai0-editor": {
+      "command": "pnpm",
+      "args": ["--silent", "--filter", "automation", "editor:mcp"],
+      "env": {
+        "EDITOR_API_URL": "http://localhost:3000"
+      }
+    }
+  }
+}

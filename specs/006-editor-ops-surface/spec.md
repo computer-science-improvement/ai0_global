@@ -26,10 +26,10 @@ through an MCP server, so the network can be operated conversationally.
 - [ ] T011 Global `onError` toast for mutations (also fixes the audit finding "56 mutations without onError").
 
 ### MCP server (`apps/automation/src/editor/mcp/`)
-- [ ] T012 stdio MCP server (`pnpm --filter automation editor:mcp`) that reuses the same `EditorTool` registry.
+- [x] T012 stdio MCP server (`pnpm --filter automation editor:mcp`) that reuses the same `EditorTool` registry.
   - Exposes the read tools, `preview_post` and `lint_post`, plus owner tools: `list_plans`, `replan`, `run_slot` (shadow only unless a flag is set), `set_mode` (off/shadow only; live stays dashboard-only).
   - Authenticates with `TRACKING_TOKEN` against the REST API, so it does not touch the DB directly.
-- [ ] T013 `.mcp.json` example and a skill `operate-ai0-network` for Claude Code.
+- [x] T013 `.mcp.json` example and a skill `operate-ai0-network` for Claude Code.
 
 Constitution Check:
 - I: owner actions go through the same guards.
