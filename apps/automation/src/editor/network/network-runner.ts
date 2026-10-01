@@ -85,7 +85,12 @@ export class NetworkRunner {
     const c = await this.context(card);
     if (this.paused(c)) return null;
     const { net } = c!;
-    if (!net.playbook && !(await this.d.repo.pendingPlaybook(net.orchestrator.id))) return this.runPlaybookBuild(card, card.brief || null);
+    if (!net.playbook && !(await this.d.repo.pendingPlaybook(net.orchestrator.id))) {
+      // A playbook the owner rejected recently is not rebuilt every day: ideas go on without one until the owner asks.
+      const last = (await this.d.repo.playbookHistory(net.orchestrator.id, 1))[0];
+      const recentlyRejected = last?.status === 'rejected' && last.decidedAt && this.now().getTime() - last.decidedAt.getTime() < 7 * 86_400_000;
+      if (!recentlyRejected) return this.runPlaybookBuild(card, card.brief || null);
+    }
     await this.d.repo.expireIdeas(net.orchestrator.id, this.now());
     const open = await this.d.repo.listIdeas(net.orchestrator.id, ['new', 'accepted', 'needs_revision'], 200);
     const perDay = net.playbook ? net.playbook.platforms.reduce((a, s) => a + s.per_day.max, 0) : card.postsPerDayMax;

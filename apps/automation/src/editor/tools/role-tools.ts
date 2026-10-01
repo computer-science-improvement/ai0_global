@@ -101,6 +101,11 @@ export function buildRoleTools(d: RoleToolDeps): EditorTool[] {
       const v = validatePlan(plan, card, planDate, t, reserved.map((r) => r.scheduledAt));
       if (!v.ok) return { error: 'plan_invalid', details: v.errors };
       const planId = await d.plans.createPlan(card.channelKey, planDate, plan.rationale, ctx.runId, v.slots);
+      // Pool ideas taken into the plan (spec 020) leave the pool; they become `used` once their slots are done.
+      const ideaIds = [...new Set(v.slots.map((s) => s.ideaId).filter(Boolean))];
+      if (ideaIds.length) {
+        await d.pool.query(`UPDATE content_ideas SET status = 'planned', updated_at = now() WHERE id = ANY($1::uuid[]) AND status = 'accepted'`, [ideaIds]).catch(() => {});
+      }
       return { ok: true, plan_id: planId, slots: v.slots.length };
     },
   });
