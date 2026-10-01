@@ -53,3 +53,7 @@ backups/
 
 # PDR scraper browser session (written by pdr-login.ts) — a live credential, never commit
 apps/pipeline/src/data/normalized/pdr/auth.json
+
+# editor eval run outputs (baseline-*.md is committed)
+apps/automation/evals/results/*
+!apps/automation/evals/results/baseline-*.md
