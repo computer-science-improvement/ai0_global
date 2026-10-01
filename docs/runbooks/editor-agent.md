@@ -22,7 +22,7 @@ Everything runs on OpenRouter (`z-ai/glm-5.3-flash` by default, about $0.006 per
    ```
 3. Restart automation. The log shows `editor ENABLED: N tools, M skills`.
 
-`EDITOR_ENABLED` is the global kill switch. With it set to `false`, nothing runs, including slots that are already planned.
+`EDITOR_ENABLED` is the global kill switch for the agents. With it set to `false`, no planner, executor or reviewer runs, including content slots that are already planned. The one exception is paid ads already reserved in the plan (see section 5): they still publish, because they run without the LLM.
 
 ## 2. Create a channel card (example)
 
@@ -104,14 +104,43 @@ Everything above can be done without SQL:
   It can read everything, replan, run slots of **shadow** channels and set mode `off`/`shadow`. It cannot
   switch a channel to live or publish. Skill: `apps/automation/.claude/skills/operate-ai0-network`.
 
-## 5. Alerts you will get (admin bot)
+## 5. Paid ads: reserved slots (spec 008)
+
+The full owner flow (price → invoice → payment → slot → report) is in [ad-sales.md](ad-sales.md). What matters
+for the editor:
+
+- **Where an ad goes.** When you approve an ad order's `schedule_post` action, the post becomes a
+  **reserved slot** (`editor_slots.kind='reserved'`) only if `EDITOR_ENABLED=true` **and** the channel has an
+  `editor_channels` card (any mode, even `off`). Otherwise it goes to the old SP2 `scheduled_publications` queue.
+- **Who publishes it.** No LLM. Every scheduler tick, `SponsoredPublisher` claims due reserved slots and sends
+  the approved creative (snapshot in `editor_slots.post_spec`) with `#реклама` as the last line.
+- **Precedence of switches for reserved slots:**
+
+  | Switch | Effect on a reserved (paid) slot |
+  |---|---|
+  | `EDITOR_ENABLED=false` | **Still publishes.** It stops the LLM roles only; a slot that was already reserved goes out. New approvals use the SP2 queue instead. |
+  | Channel `mode` off / shadow | **Still publishes.** A paid ad is not a shadow experiment. |
+  | `tracked_channels.publish_paused=true` | **Blocks.** The slot fails, you get an alert, reschedule the order. |
+  | Skip the slot (`/app/editor`, `slots/:id/skip`) | Cancels this placement; the order stays `scheduled`. |
+  | More than 6 h late (service was down) | Slot fails with `missed window` and alerts you. It is never posted hours late. |
+
+- **Planning around ads.** The planner sees reserved slots as fixed points (min gap applies around them) and a
+  re-plan never skips them. If the day had no plan yet, a plan with rationale `reserved only` holds the slot; the
+  planner still plans that day and moves the slot into its plan.
+- **Counting.** Ad posts are `published_posts.strategy_type='ad'`: they count toward the daily cap and min gap
+  for content slots, and the network digest never re-promotes them.
+
+## 6. Alerts you will get (admin bot)
 
 - Budget exhausted (global or per channel), once a day.
 - The planner failed to produce a plan.
 - 3 slots in a row failed on a channel.
 - Weekly reviewer summary (Mondays).
+- A paid ad was published (`💰 …`; for a `pin_24h` order it reminds you to pin the post for 24 h).
+- A paid ad did not go out (`⚠️ Реклама … не вийшла`): channel paused, missed window, invalid creative or a Telegram error.
+- An advertiser report is ready but the order has no DM thread, so you send the link yourself.
 
-## 6. Safety model (what the model cannot do)
+## 7. Safety model (what the model cannot do)
 
 - **Publishing.** The only publishing path is `publish_post`. In code it enforces:
   - slot state and lint
