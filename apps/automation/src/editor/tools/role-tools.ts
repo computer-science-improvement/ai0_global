@@ -4,6 +4,7 @@ import { channelOf, defineTool, EditorTool, ToolContext } from '../harness/tool'
 import { PostSpecSchema, PostSpec } from '../post/post-spec';
 import { lintPost } from '../post/lint-post';
 import { checkQuizGroundTruth } from '../post/quiz-ground-truth';
+import { checkVerbatim } from '../post/verbatim-guard';
 import { renderTelegram } from '../post/render-telegram';
 import { similarity } from '../post/similarity';
 import { SubmitPlanInput, validatePlan } from '../roles/plan-rules';
@@ -57,6 +58,8 @@ export async function checkPublishGuards(d: RoleToolDeps, ctx: ToolContext, spec
   if (!lint.ok) return { error: 'lint_failed', details: lint.errors };
   const truth = await checkQuizGroundTruth(d.pool, spec);
   if (truth) return truth;
+  const verbatim = await checkVerbatim(d.pool, spec);
+  if (verbatim) return verbatim;
 
   const rendered = renderTelegram(spec, card);
   const corpus = await d.plans.recentTexts(channelKey);

@@ -1,6 +1,6 @@
 # ai0_global Constitution
 
-Version 1.0.0 · Ratified 2026-10-01
+Version 1.1.0 · Ratified 2026-10-01 · Amended 2026-10-01 (VIII)
 
 ai0_global is an owner-operated, ad-monetized Ukrainian media network: Telegram channels first,
 with Meta and TikTok mirrors. It is not a SaaS product and runs as a single instance.
@@ -39,6 +39,12 @@ paid or external APIs. The owner runs live tests and applies migrations.
 ### VII. Simplicity
 The project has one maintainer. Prefer a 200-line loop over a framework, Postgres over a new store,
 and a migration over a new service. YAGNI.
+
+### VIII. Honest, professional automation toward people
+Agents that talk to third parties on the owner's behalf are professional and to the point: no small talk, no invented
+feelings or biography. They never claim to be human or deny being an AI. A sincere "are you a bot / AI?" gets a truthful
+answer from an owner-approved template plus an offer of a human, and the owner is notified. Money, legal and identity
+disputes always go to the owner.
 
 ## Constraints
 

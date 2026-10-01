@@ -4,6 +4,7 @@ import { PostSpec, PostSpecSchema } from '../post/post-spec';
 import { lintPost, LintResult } from '../post/lint-post';
 import { renderTelegram } from '../post/render-telegram';
 import { checkQuizGroundTruth } from '../post/quiz-ground-truth';
+import { checkVerbatim } from '../post/verbatim-guard';
 import { publishSpecNow, PublishSpecDeps } from '../publish/publish-spec';
 import { ChannelPausedForEditorError } from '../publish/telegram-editor.publisher';
 import { RESERVED_MAX_LATE_MS } from '../publish/sponsored.publisher';
@@ -51,7 +52,7 @@ function previewOf(spec: PostSpec, card: EditorCard, lint: LintResult): string |
  * Deterministic draft actions of the editor chat (spec 010 FR-004). The
  * composer's tools and the owner's REST buttons both call this service, so a
  * post from the chat passes the same guards whoever triggers it: lint, quiz
- * ground truth, publish_paused, and a 7-day dedup on source.url / library_ref.
+ * ground truth, verbatim copy of retold library content, publish_paused, and a 7-day dedup on source.url / library_ref.
  * Scheduling reuses 008's reserved slots; ReservedDispatcher publishes them.
  */
 export class DraftsService {
@@ -114,6 +115,8 @@ export class DraftsService {
     if (!lint.ok) return { error: 'lint_failed', details: lint.errors };
     const truth = await checkQuizGroundTruth(this.d.pool, spec);
     if (truth) return truth;
+    const verbatim = await checkVerbatim(this.d.pool, spec);
+    if (verbatim) return verbatim;
     if (this.d.isPaused(channelKey)) return { error: 'channel_paused', details: `${channelKey}: publish_paused=true` };
     const since = new Date(now.getTime() - DEDUP_DAYS * 86_400_000);
     if (spec.library_ref && await this.d.plans.sourcePostedSince(channelKey, spec.library_ref, since)) {

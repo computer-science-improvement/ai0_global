@@ -9,7 +9,7 @@ import { ChannelPausedForEditorError } from '../publish/telegram-editor.publishe
 const NOW = new Date('2026-10-01T09:00:00Z'); // 12:00 Kyiv
 
 /** In-memory fakes for every port of DraftsService. */
-function setup(o: { card?: any; mine?: Array<{ channelKey: string; title: string | null }>; paused?: boolean; posted?: string[]; sendError?: Error; skipFails?: boolean } = {}) {
+function setup(o: { card?: any; mine?: Array<{ channelKey: string; title: string | null }>; paused?: boolean; posted?: string[]; sendError?: Error; skipFails?: boolean; libraryText?: string } = {}) {
   const drafts = new Map<string, EditorDraft>();
   const slots = new Map<string, any>();
   const sent: any[] = [];
@@ -23,7 +23,7 @@ function setup(o: { card?: any; mine?: Array<{ channelKey: string; title: string
   let n = 0;
   const cards = new Map<string, any>(o.card ? [[o.card.channelKey, o.card]] : []);
   const d: DraftsDeps = {
-    pool: { query: async () => ({ rows: [] }) } as any,
+    pool: { query: async () => ({ rows: o.libraryText ? [{ src: o.libraryText }] : [] }) } as any,
     repo: {
       insertDraft: async (x) => {
         const id = `d${++n}`;
@@ -108,7 +108,7 @@ test('save: default card for an own channel without a card (any hashtag, every f
   assert.equal(invalid.error, 'invalid_spec');
 });
 
-test('publish: guards (lint, paused, dedup 7 days) then sends with strategy chat and marks the draft published', async () => {
+test('publish: guards (lint, paused, dedup 7 days, verbatim copy) then sends with strategy chat and marks the draft published', async () => {
   const lintFail = setup({ card: CARD });
   const bad = await save(lintFail, makeSpec({ hashtags: ['мода'] }));
   assert.equal(((await lintFail.svc.publish(bad.id)) as any).error, 'lint_failed');
@@ -121,7 +121,11 @@ test('publish: guards (lint, paused, dedup 7 days) then sends with strategy chat
   const libDup = setup({ card: CARD, posted: ['library://facts/42'] });
   const lib = await save(libDup, makeSpec({ origin: 'library', library_ref: 'library://facts/42', source: undefined }));
   assert.equal(((await libDup.svc.publish(lib.id)) as any).error, 'library_item_already_posted');
-  for (const x of [lintFail, paused, dup, libDup]) assert.equal(x.sent.length, 0);
+  const copied = 'Телескоп Вебб показав туманність Кільце. На знімку видно оболонки газу, які зоря скинула тисячі років тому.';
+  const verbatim = setup({ card: CARD, libraryText: copied });
+  const v = await save(verbatim, makeSpec({ origin: 'library', library_ref: 'library://recipes/7', source: undefined, body: [{ type: 'p', text: copied }] }));
+  assert.equal(((await verbatim.svc.publish(v.id)) as any).error, 'too_verbatim');
+  for (const x of [lintFail, paused, dup, libDup, verbatim]) assert.equal(x.sent.length, 0);
 
   const s = setup({ card: CARD });
   const draft = await save(s);

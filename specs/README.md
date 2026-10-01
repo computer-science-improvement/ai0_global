@@ -19,8 +19,16 @@ Each feature directory has `spec.md` (what and why), `plan.md` (how, plus Consti
 | 008 | [Revenue path](008-revenue-path/spec.md): ad label, order→post→report | P1 | 001, 005 | DONE (T007 partial: invoice drafts stay manual) |
 | 009 | [Strategy retirement](009-strategy-retirement/spec.md): migrate channels to the editor | P2 | 005 + shadow results | T001–T003 DONE; T004–T006 owner-gated |
 | 010 | [Editor chat](010-editor-chat/spec.md): Claude-style chat with the agent, publish now or schedule | P1 | 003–006, 008, 009 | DONE (owner runs live evals and verifies live) |
+| 011 | [Deal agent](011-deal-agent/spec.md): real Telegram profile, DMs, deals ([threat model](011-deal-agent/threat-model.md), [scenarios](011-deal-agent/scenarios.md)) | P1 | 008, 010 | SPEC |
+| 012 | [Owner control bot](012-owner-control-bot/spec.md): notify, stop, resume, take over, approve | P1 | 011 | SPEC |
+| 013 | [Group presence](013-group-presence/spec.md): admin / ad-exchange chats | P2 | 011, 012 | SPEC |
+| 014 | [Cross-promo engine](014-cross-promo/spec.md): evaluate, negotiate, verify ВП | P2 | 011, tracking | SPEC |
+| 015 | [Deal → paid post](015-deal-to-post/spec.md): quote, hold, invoice, creative, schedule | P1 | 008, 011 | SPEC |
+| 016 | [Video bridge](016-video-bridge/spec.md): shorts-studio → editor video posts | P2 | 009 | SPEC |
 
-Order of execution: 001 ∥ 003 → 004 → 005 → 006 → 002 (only for strategies still live) → 007 → 008 → 009 → 010.
+Suggested order for the next wave: 012 → 011 (phases 0–1) → 015 → 013 → 014; 016 is independent.
+
+Order of execution (first wave): 001 ∥ 003 → 004 → 005 → 006 → 002 (only for strategies still live) → 007 → 008 → 009 → 010.
 
 **Standing constraint for executors:** no service start, no publishes, no paid API calls.
 Verification is limited to `pnpm --filter automation test`, `tsc --noEmit` and lint.

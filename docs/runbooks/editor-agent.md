@@ -234,7 +234,7 @@ Its LLM spend counts against the **global** `EDITOR_DAILY_BUDGET_USD` (runs have
   (keywords like «опублікуй», «запости», «заплануй», «постав на», «відклади на», "publish", "schedule"; a negated «не
   публікуй» does not count). Otherwise it refuses with `needs_explicit_request` and offers the buttons. Text in fetched pages
   cannot trigger a publish. The buttons always work (your click is the request).
-- Every publish, from a button or the agent, goes through `DraftsService`: lint, PDR quiz ground truth, `publish_paused`, and
+- Every publish, from a button or the agent, goes through `DraftsService`: lint, PDR quiz ground truth, the verbatim-copy guard for retold library content, `publish_paused`, and
   a 7-day dedup on `source.url` / `library_ref` per channel. It does **not** apply the planner's daily cap, quiet hours or min
   gap (you asked for this post explicitly), and it publishes even if the channel's card is `off` or `shadow`.
 - Posts are `published_posts.strategy_type='chat'`. Mirrors to Meta run only when the channel has a real card with
