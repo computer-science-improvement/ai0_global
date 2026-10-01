@@ -9,7 +9,7 @@
 // their source strategies, so it publishes directly. Dedup goes through the
 // shared posted_news ledger with a date-keyed sentinel URL, making reruns
 // the same day per-channel no-ops.
-import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
+import { Injectable, Logger, OnModuleInit, Optional } from '@nestjs/common';
 import { ContentStrategyRegistry } from '../../common/content-strategy/content-strategy.registry';
 import { DedupService }            from '../../common/dedup/dedup.service';
 import { TelegramPublisher }       from '../../publishers/telegram.publisher';
@@ -20,6 +20,8 @@ import {
   ContentStrategy, StrategyFetchResult, StrategyParams, StrategyPost,
 } from '../../common/content-strategy/content-strategy.interface';
 import { NetworkDigestRepository } from './network-digest.repository';
+import { DigestSponsorsRepository } from '../../payments/digest-sponsors.repository';
+import { resolveDigestSponsor } from './digest-sponsor';
 import {
   DigestItem, SponsorSlot, kyivDate, renderDigest, viewsPerHour,
 } from './digest-format.util';
@@ -72,6 +74,7 @@ export class NetworkDigestStrategy implements ContentStrategy, OnModuleInit {
     private readonly telegram:     TelegramPublisher,
     private readonly notifier:     TelegramNotifier,
     private readonly publications: PublicationsRepository,
+    @Optional() private readonly sponsors?: DigestSponsorsRepository,
   ) {}
 
   onModuleInit() {
@@ -116,12 +119,15 @@ export class NetworkDigestStrategy implements ContentStrategy, OnModuleInit {
       statsLine = `Мережа за добу: ${deltaPart}${rows.length} постів`;
     }
 
+    // Paid digest_sponsor order for today (spec 008 T006) wins over the static param.
+    const sponsor = await resolveDigestSponsor(this.sponsors, channelId, kyivDate(now), params.sponsor, (m) => this.logger.warn(m));
+
     const { text, itemsUsed } = renderDigest({
       header: params.headerTitle,
       items,
       statsLine,
       ctaText: params.ctaText,
-      sponsor: params.sponsor,
+      sponsor: sponsor.slot,
     });
 
     if (itemsUsed < params.minItems) {
@@ -142,6 +148,10 @@ export class NetworkDigestStrategy implements ContentStrategy, OnModuleInit {
         strategyType: this.type,
         tags: ['digest'],
       });
+      if (sponsor.orderId && this.sponsors) {
+        await this.sponsors.markPublished(sponsor.orderId, channelId, messageId)
+          .catch((e: any) => this.logger.warn(`sponsor order ${sponsor.orderId} not marked published: ${e?.message ?? e}`));
+      }
       // No crossPost fan-out: the digest is t.me deep links — dead weight on
       // Meta surfaces. Telegram-only by design.
       this.logger.log(`Published network digest (${itemsUsed} items) to ${channelId}`);

@@ -3,7 +3,8 @@ import assert from 'node:assert/strict';
 import { TopicDigestStrategy, parseRewrite } from './topic-digest.strategy';
 import type { DigestPostRow } from '../network-digest/network-digest.repository';
 
-function make(rows: DigestPostRow[], claude: { available: boolean; reply?: string | null }) {
+function make(rows: DigestPostRow[], claude: { available: boolean; reply?: string | null }, paid: any = null) {
+  const sponsorMarks: any[] = [];
   const published: any[] = [];
   const chats: any[] = [];
   const s = new TopicDigestStrategy(
@@ -17,8 +18,9 @@ function make(rows: DigestPostRow[], claude: { available: boolean; reply?: strin
       get available() { return claude.available; },
       chat: async (...args: any[]) => { chats.push(args); return claude.reply ?? null; },
     } as any,
+    { findForDay: async () => paid, markPublished: async (...a: any[]) => { sponsorMarks.push(a); } } as any,
   );
-  return { s, published, chats };
+  return { s, published, chats, sponsorMarks };
 }
 
 const row = (i: number, title = `Заголовок ${i}`): DigestPostRow => ({
@@ -69,4 +71,13 @@ test('skips under minItems; dedup sentinel is topic-scoped and date-keyed', asyn
   const { s: s2, published: p2 } = make([row(3), row(2), row(1)], { available: false });
   await s2.execute('@topic_hub', {});
   assert.match(p2[0].source, /^digest:\/\/topic\/@topic_hub\/\d{4}-\d{2}-\d{2}$/);
+});
+
+test('paid digest_sponsor order renders as a UTM link and is marked published with the digest message', async () => {
+  const paid = { orderId: 'abcdef12-0000-0000-0000-000000000000', text: 'Партнер', url: 'https://p.ua/x' };
+  const { s, published, sponsorMarks } = make([row(3), row(2), row(1)], { available: false }, paid);
+  await s.execute('@topic_hub', {});
+  assert.match(published[0].text, /<a href="https:\/\/p\.ua\/x\?utm_source=ai0&amp;utm_medium=telegram&amp;utm_campaign=abcdef12">Партнер<\/a>/);
+  assert.match(published[0].text, /#реклама/);
+  assert.deepEqual(sponsorMarks, [[paid.orderId, '@topic_hub', '1']]);
 });

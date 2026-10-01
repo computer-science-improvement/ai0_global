@@ -9,7 +9,7 @@
 // down, returns garbage, or breaks the JSON contract. Custom execute() for
 // the same reason as network-digest (ReviewAgent's 1024-token cap would
 // truncate multi-link HTML).
-import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
+import { Injectable, Logger, OnModuleInit, Optional } from '@nestjs/common';
 import { ContentStrategyRegistry } from '../../common/content-strategy/content-strategy.registry';
 import { DedupService }            from '../../common/dedup/dedup.service';
 import { TelegramPublisher }       from '../../publishers/telegram.publisher';
@@ -24,6 +24,8 @@ import {
   ContentStrategy, StrategyFetchResult, StrategyParams, StrategyPost,
 } from '../../common/content-strategy/content-strategy.interface';
 import { TopicDigestRepository } from './topic-digest.repository';
+import { DigestSponsorsRepository } from '../../payments/digest-sponsors.repository';
+import { resolveDigestSponsor } from '../network-digest/digest-sponsor';
 import {
   DigestItem, SponsorSlot, kyivDate, renderDigest, truncate,
 } from '../network-digest/digest-format.util';
@@ -102,6 +104,7 @@ export class TopicDigestStrategy implements ContentStrategy, OnModuleInit {
     private readonly notifier:     TelegramNotifier,
     private readonly publications: PublicationsRepository,
     private readonly claude:       ClaudeAgent,
+    @Optional() private readonly sponsors?: DigestSponsorsRepository,
   ) {}
 
   onModuleInit() {
@@ -143,12 +146,15 @@ export class TopicDigestStrategy implements ContentStrategy, OnModuleInit {
       title: lines[i] ?? r.title,
     }));
 
+    // Paid digest_sponsor order for today (spec 008 T006) wins over the static param.
+    const sponsor = await resolveDigestSponsor(this.sponsors, channelId, kyivDate(now), params.sponsor, (m) => this.logger.warn(m));
+
     const { text, itemsUsed } = renderDigest({
       header: `${params.headerTopicLabel} за день: головне`,
       items,
       statsLine: null,
       ctaText: null,
-      sponsor: params.sponsor,
+      sponsor: sponsor.slot,
     });
 
     if (itemsUsed < params.minItems) {
@@ -167,6 +173,10 @@ export class TopicDigestStrategy implements ContentStrategy, OnModuleInit {
         channelId, messageId, sourceUrl, title,
         strategyType: this.type, tags: ['digest'],
       });
+      if (sponsor.orderId && this.sponsors) {
+        await this.sponsors.markPublished(sponsor.orderId, channelId, messageId)
+          .catch((e: any) => this.logger.warn(`sponsor order ${sponsor.orderId} not marked published: ${e?.message ?? e}`));
+      }
       this.logger.log(`Published topic digest (${itemsUsed} items) to ${channelId}`);
     } catch (err: any) {
       this.logger.error(`Topic digest publish failed: ${err.message}`);
