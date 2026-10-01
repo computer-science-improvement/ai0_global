@@ -19,7 +19,7 @@ import {
   type HealthState, type KpiGoal, type ResourceHealth, type ResourceProfile,
 } from '../../api/agents';
 
-const HEALTH: Record<HealthState, { tone: Tone; label: string }> = {
+export const HEALTH: Record<HealthState, { tone: Tone; label: string }> = {
   ok:             { tone: 'success', label: 'healthy' },
   no_access:      { tone: 'danger',  label: 'no access' },
   token_expiring: { tone: 'warning', label: 'token expiring' },

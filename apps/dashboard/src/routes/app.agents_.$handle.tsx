@@ -13,37 +13,49 @@ import { AgentHistory, AgentMemory } from '../components/agents/AgentMemoryHisto
 import { AgentPlaybook } from '../components/agents/AgentPlaybook';
 import { AgentIdeas } from '../components/agents/AgentIdeas';
 import { AgentPlan } from '../components/agents/AgentPlan';
+import { AgentInbox, ManagerDirectives } from '../components/agents/Directives';
+import { ManagerReviews } from '../components/agents/ManagerReviews';
+import { AgentPromo } from '../components/agents/AgentPromo';
 import { errorBody, useAgent, useRunAgent } from '../api/agents';
+import { useRunManager } from '../api/manager';
 
-const TABS = ['overview', 'skills', 'memory', 'history', 'playbook', 'ideas', 'plan'] as const;
-const NETWORK_TABS: readonly Tab[] = ['playbook', 'ideas', 'plan'];
+const TABS = ['overview', 'reviews', 'directives', 'skills', 'memory', 'history', 'playbook', 'ideas', 'plan', 'inbox', 'promo'] as const;
 type Tab = typeof TABS[number];
+const NETWORK_TABS: readonly Tab[] = ['playbook', 'ideas', 'plan', 'inbox', 'promo'];
+const MANAGER_TABS: readonly Tab[] = ['reviews', 'directives'];
 
 const TAB_OPTIONS = [
   { key: 'overview' as const, label: 'Overview', icon: 'overview' as const },
+  { key: 'reviews' as const,  label: 'Reviews',  icon: 'history' as const },
+  { key: 'directives' as const, label: 'Directives', icon: 'agents' as const },
   { key: 'skills' as const,   label: 'Skills',   icon: 'book' as const },
   { key: 'memory' as const,   label: 'Memory',   icon: 'bots' as const },
   { key: 'history' as const,  label: 'History',  icon: 'history' as const },
   { key: 'playbook' as const, label: 'Playbook', icon: 'logs' as const },
   { key: 'ideas' as const,    label: 'Ideas',    icon: 'sparkles' as const },
   { key: 'plan' as const,     label: 'Plan',     icon: 'calendar' as const },
+  { key: 'inbox' as const,    label: 'Inbox',    icon: 'inbox' as const },
+  { key: 'promo' as const,    label: 'Promo',    icon: 'megaphone' as const },
 ];
 
 export const Route = createFileRoute('/app/agents_/$handle')({
-  validateSearch: (s: Record<string, unknown>): { tab?: Tab; idea?: string } => ({
+  validateSearch: (s: Record<string, unknown>): { tab?: Tab; idea?: string; directive?: string } => ({
     tab: (TABS as readonly string[]).includes(String(s.tab)) ? (s.tab as Tab) : undefined,
     // Ideas tab: an idea to scroll to (from a plan slot).
     idea: typeof s.idea === 'string' && s.idea ? s.idea : undefined,
+    // Directives tab (@manager): a directive to scroll to (from a review).
+    directive: typeof s.directive === 'string' && s.directive ? s.directive : undefined,
   }),
   component: AgentPage,
 });
 
 function AgentPage() {
   const { handle } = Route.useParams();
-  const { tab: rawTab = 'overview', idea } = Route.useSearch();
+  const { tab: rawTab = 'overview', idea, directive } = Route.useSearch();
   const navigate = useNavigate({ from: Route.fullPath });
   const q = useAgent(handle);
   const run = useRunAgent();
+  const runManager = useRunManager();
   const setTab = (t: Tab) => navigate({ search: { tab: t === 'overview' ? undefined : t }, replace: true });
   const openIdea = (id: string) => navigate({ search: { tab: 'ideas', idea: id }, replace: false });
 
@@ -72,8 +84,10 @@ function AgentPage() {
   // Playbook / ideas / plan belong to a network orchestrator; its role agents show the same.
   const networked = a.kind === 'orchestrator' || (!!d.parent && a.parentId != null);
   const orchestrator = a.kind === 'orchestrator' ? a.handle : d.parent?.handle ?? a.handle;
-  const tab: Tab = !networked && NETWORK_TABS.includes(rawTab) ? 'overview' : rawTab;
-  const tabOptions = networked ? TAB_OPTIONS : TAB_OPTIONS.filter((o) => !NETWORK_TABS.includes(o.key));
+  const manager = a.kind === 'manager';
+  const hidden = (t: Tab) => (!networked && NETWORK_TABS.includes(t)) || (!manager && MANAGER_TABS.includes(t));
+  const tab: Tab = hidden(rawTab) ? 'overview' : rawTab;
+  const tabOptions = TAB_OPTIONS.filter((o) => !hidden(o.key));
   const edit = () => {
     setTab('overview');
     setTimeout(() => {
@@ -83,9 +97,18 @@ function AgentPage() {
     }, 60);
   };
 
-  const runNow = () => run.mutate(a.handle, {
-    onError: (e) => toast.error(errorBody(e)?.error === 'agent_paused' ? `@${a.handle} is paused — resume it first` : describeError(e)),
-  });
+  const runNow = () => manager
+    // The MANAGER has its own run endpoint (reads the KPI digest; may file directives).
+    ? runManager.mutate(undefined, {
+        onSuccess: () => toast.success('@manager run started — its review appears on the Reviews tab in a minute'),
+        onError: (e) => toast.error(errorBody(e)?.error === 'manager_off'
+          ? '@manager is off — switch it to Shadow or Live on the Overview tab first'
+          : describeError(e)),
+      })
+    : run.mutate(a.handle, {
+        onError: (e) => toast.error(errorBody(e)?.error === 'agent_paused' ? `@${a.handle} is paused — resume it first` : describeError(e)),
+      });
+  const running = manager ? runManager.isPending : run.isPending;
 
   return (
     <div>
@@ -106,7 +129,7 @@ function AgentPage() {
             subtitle={`@${a.handle} · ${KIND_LABEL[a.kind]}`}
             actions={<>
               <button className="btn-secondary" style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}
-                disabled={run.isPending || a.paused} title={a.paused ? 'Resume the agent first' : 'Start a run now'} onClick={runNow}>
+                disabled={running || a.paused} title={a.paused ? 'Resume the agent first' : 'Start a run now'} onClick={runNow}>
                 <Icon name="rocket" size={14} /> Run now
               </button>
               <PauseButton agent={a} />
@@ -130,13 +153,24 @@ function AgentPage() {
         <SegmentedTabs value={tab} onChange={setTab} options={tabOptions} />
       </div>
 
+      {manager && a.mode === 'off' && MANAGER_TABS.includes(tab) && (
+        <div className="callout-warning" style={{ marginBottom: 14, alignItems: 'center', flexWrap: 'wrap', gap: 10 }}>
+          <span style={{ flex: '1 1 240px' }}>@manager is <strong>off</strong>: no scheduled reviews and no new directives. Switch it to Shadow (directives are filed but nothing structural acts) or Live on the Overview tab.</span>
+          <button type="button" className="btn-tiny" onClick={() => setTab('overview')}>Open Overview</button>
+        </div>
+      )}
+
       {tab === 'overview' && <AgentOverview data={d} />}
+      {tab === 'reviews' && <ManagerReviews />}
+      {tab === 'directives' && <ManagerDirectives focus={directive} />}
       {tab === 'skills' && <AgentSkills data={d} />}
       {tab === 'memory' && <AgentMemory data={d} />}
       {tab === 'history' && <AgentHistory data={d} />}
       {tab === 'playbook' && <AgentPlaybook handle={a.handle} orchestrator={orchestrator} />}
       {tab === 'ideas' && <AgentIdeas handle={a.handle} focus={idea} />}
       {tab === 'plan' && <AgentPlan handle={a.handle} onIdea={openIdea} />}
+      {tab === 'inbox' && <AgentInbox handle={orchestrator} />}
+      {tab === 'promo' && <AgentPromo handle={a.handle} />}
     </div>
   );
 }

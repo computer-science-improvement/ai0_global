@@ -10,6 +10,7 @@ import { Badge } from '../components/ui/Badge';
 import { Icon } from '../components/Icon';
 import { Icon as PlatformGlyph } from '../components/ui/Icon';
 import { StatTile, SectionCard, EmptyState, StatusDot, type Tone } from '../components/ui/primitives';
+import { NetworkHealthCard } from '../components/agents/NetworkHealth';
 
 export const Route = createFileRoute('/app/')({ component: OverviewPage });
 
@@ -84,7 +85,9 @@ function OverviewPage() {
         />
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 12 }}>
+      <NetworkHealthCard delay={4 * 60} />
+
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))', gap: 12, marginBottom: 12 }}>
         <SectionCard delay={5 * 60} icon="calendar" title="Upcoming runs">
           {strategiesQ.isLoading
             ? <EmptyState icon="calendar" title="Loading scheduled runs…" />
