@@ -12,7 +12,7 @@ Everything runs on OpenRouter (`z-ai/glm-5.3-flash` by default, about $0.006 per
 
 ## 1. Enable
 
-1. Apply migration `042_editor` (`database/migrate.sh`, or let the service apply it at boot).
+1. Apply migrations `042_editor` … `046_editor_crosspost` (`database/migrate.sh`, or let the service apply them at boot).
 2. In `.env`, set:
    ```
    EDITOR_ENABLED=true
@@ -44,7 +44,8 @@ INSERT INTO editor_channels (
   '{космос,nasa,фото,вікторина,новини}', 1, 2, NULL, 'inline', 'sparse',
   '[{"id":"nasa_rss","kind":"rss","ref":"https://www.nasa.gov/feed/"},
     {"id":"esa_rss","kind":"rss","ref":"https://www.esa.int/rssfeed/Our_Activities/Space_Science"},
-    {"id":"library_facts","kind":"library","ref":"facts"}]',
+    {"id":"library_facts","kind":"library","ref":"facts"},
+    {"id":"apod","kind":"api","ref":"nasa_apod"}]',
   0.20, '{астрологія,гороскоп}'
 );
 
@@ -59,6 +60,10 @@ Optional fields:
 - `tools_allow`: narrows which tools are available. NULL means the role defaults.
 - `models`: `{"executor":"z-ai/glm-5.3"}` gives this channel a stronger writer.
 - `daily_budget_usd`: per-channel spend cap.
+- `crosspost` (default `true`): mirror live posts to the channel's Meta targets (section 8). `false` keeps the channel Telegram-only.
+
+Source kinds: `rss` (feed URL, read with `fetch_feed`), `url` (a page, `web_fetch`), `library` (a table, `search_library`)
+and `api` (a `fetch_api` source name, section 8).
 
 ## 3. Shadow, then live
 
@@ -150,5 +155,66 @@ for the editor:
   - in live mode only: daily cap, quiet hours and min gap
 - **HTML.** The model never writes HTML. The renderer escapes everything.
 - **Database.** `sql_readonly` runs as the `editor_ro` role inside a READ ONLY transaction with a 3 s timeout. That role cannot see `my_bots`, `meta_accounts`, `mtproto_sessions`, `app_settings`, `ad_orders`, `agent_*` or the logs.
-- **Web access.** `web_fetch`, `fetch_feed` and `extract_images` are SSRF-guarded on every redirect hop.
+- **Web access.** `web_fetch`, `fetch_feed`, `extract_images` and `fetch_api` are SSRF-guarded on every redirect hop. `fetch_api` only calls fixed public APIs; keys never appear in tool output.
+- **Uploads and mirrors.** Slide hosting, Telegraph pages and Meta cross-posts happen only inside a **live** `publish_post`, after every guard has passed. Shadow mode never uploads or mirrors anything.
 - **No other powers.** Runtime agents have no shell, no file writes and no account actions.
+
+## 8. Formats, API sources and cross-posting (spec 009)
+
+### API sources (`fetch_api`)
+
+Put `{"id":"…","kind":"api","ref":"<source>"}` in the card's `sources`; the agents call `fetch_api({source, params})`.
+Every source returns `{items:[{title, summary, url, image, date, extra}]}` (texts mostly in English; the agent translates).
+
+| Source | What | Key (`.env`) | Params |
+|---|---|---|---|
+| `nasa_apod` | NASA astronomy picture of the day | `NASA_API_KEY` (falls back to `DEMO_KEY`) | `date?` |
+| `spaceflight_news` | Spaceflight News API, newest first | — | `limit?`, `search?` |
+| `tmdb_trending` | TMDB trending movies/series | `TMDB_API_KEY` (required) | `media?`, `window?`, `language?`, `limit?`, `min_votes?` |
+| `epic_free_games` | Games free right now on Epic | — | — |
+| `steam_deals` | Steam specials ≥ N % off | — | `min_discount?`, `limit?`, `enrich?` |
+| `gamerpower_giveaways` | Active giveaways, all stores | — | `platform?`, `type?`, `limit?` |
+| `on_this_day` | Byabbe "on this day" (Wikipedia) | — | `kind?`, `month?`, `day?`, `limit?` |
+
+These are the same endpoints and mappings the legacy daily-photo, space, movies, game-channel and on-this-day strategies use
+(`src/common/fetchers/apis`).
+
+### Formats: carousel, longread, video
+
+Enable them per card with a weight, like any other format (`"carousel":0.3`). Previews in shadow mode describe the slides or the
+article as text; nothing is rendered, uploaded or created until the channel is live.
+
+| Format | What goes out | Needs |
+|---|---|---|
+| `carousel` | 2–10 slides rendered by code (title + text over a photo), sent as a Telegram album with the caption on the first | Slide hosting: `SUPABASE_URL`, `SUPABASE_SERVICE_KEY`, `SUPABASE_CAROUSEL_BUCKET` (public bucket). Slides are deleted after the publish. |
+| `longread` | A Telegraph page (up to 60 blocks) plus a teaser post (≤ 600 chars) with a large preview and a «Читати» button | An active Telegraph account (`/app/connections` → Telegraph), the same one the recipes strategy uses |
+| `video` | `sendVideo` with a caption ≤ 1024 | A direct `.mp4` URL (`media[0].kind="video"`); YouTube links are rejected by lint |
+
+If the hosting or Telegraph account is missing, `publish_post` returns `prepare_failed` and the agent picks another format or
+skips the slot.
+
+### Cross-posting to Meta
+
+After a **live** publish, the post is mirrored through the same mechanisms the legacy strategies use:
+- `meta_crosspost_targets` of the channel (dashboard: `/app/strategies` → edit a strategy of that channel → Cross-post), any
+  mode (`mirror` and `teaser` targets both get the editor's own per-platform text);
+- the channel's account group, when Telegram is the group's source (`meta_account_groups.source_platform='telegram'`).
+
+What each platform gets:
+
+| Post format | Facebook / Threads | Instagram |
+|---|---|---|
+| text, photo | plain text, links as `label (url)`, `Джерело: url`, link back to the Telegram post, hashtags; the image if any | needs an image: caption without links, «Посилання в біо» if there is a source, hashtags |
+| album, carousel | carousel of the photos / rendered slides | carousel |
+| poll, quiz | question, options as a list and «А ви як думаєте?» (no answer revealed) | skipped |
+| longread | teaser + `Читати: <telegra.ph link>` | skipped |
+| video | text only | skipped |
+
+Mirrors respect the per-account cooldown (`metaCooldownMin`). A failed mirror never fails the Telegram post: it is recorded on
+the slot as a warning:
+```sql
+SELECT scheduled_at, channel_key, error FROM editor_slots WHERE status = 'published' AND error LIKE '%crosspost:%' ORDER BY scheduled_at DESC LIMIT 20;
+```
+Turn mirrors off for one channel with `UPDATE editor_channels SET crosspost = false WHERE channel_key = …` (or the card form).
+
+TikTok is not mirrored: no channel → TikTok account link exists yet. TikTok photo carousels stay a `recipe-carousel` binding.
