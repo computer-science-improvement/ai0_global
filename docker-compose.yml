@@ -1,3 +1,6 @@
+# Published ports bind to ${BIND_ADDR:-127.0.0.1} (loopback) by default, so
+# Postgres, Redis and the raw API are never reachable from the internet. Set
+# BIND_ADDR=0.0.0.0 in .env only if you really need remote access (e.g. psql).
 services:
 
   # ─── Database ───────────────────────────────────────────────────────────────
@@ -10,7 +13,7 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
     ports:
       # 5433 on host to avoid conflict with a local postgres
-      - "${POSTGRES_PORT:-5433}:5432"
+      - "${BIND_ADDR:-127.0.0.1}:${POSTGRES_PORT:-5433}:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
       - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
@@ -24,12 +27,19 @@ services:
   redis:
     image: redis:7-alpine
     restart: unless-stopped
+    # Password is optional: when REDIS_PASSWORD is empty Redis runs without
+    # auth (loopback-only dev); when set, --requirepass is added. Expanded by the
+    # container shell ($$) so an empty value never leaves a dangling flag; the
+    # image entrypoint is re-invoked so redis still drops to the `redis` user.
+    environment:
+      REDIS_PASSWORD: ${REDIS_PASSWORD:-}
+    command: ["sh", "-c", "exec docker-entrypoint.sh redis-server $${REDIS_PASSWORD:+--requirepass \"$$REDIS_PASSWORD\"}"]
     ports:
-      - "${REDIS_PORT:-6379}:6379"
+      - "${BIND_ADDR:-127.0.0.1}:${REDIS_PORT:-6379}:6379"
     volumes:
       - redisdata:/data
     healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
+      test: ["CMD-SHELL", "redis-cli $${REDIS_PASSWORD:+-a \"$$REDIS_PASSWORD\" --no-auth-warning} ping | grep -q PONG"]
       interval: 5s
       timeout: 3s
       retries: 5
@@ -42,13 +52,18 @@ services:
   # has tight RAM and OOMs during a local TS compile. To rebuild locally
   # (e.g. for dev testing), set AUTOMATION_IMAGE to an empty string and add
   # back the `build:` block.
+  #
+  # SINGLE INSTANCE ONLY. Never scale this service (`--scale automation=N`) or
+  # run a second replica anywhere against the same Postgres/Redis: schedulers,
+  # in-process locks, MTProto sessions and Telegram bot polling all assume
+  # exactly one automation process.
   automation:
     profiles: ["prod"]
     image: ${AUTOMATION_IMAGE:-ghcr.io/computer-science-improvement/ai0_global-automation:latest}
     restart: unless-stopped
     ports:
       # 3001 на хості, якщо локально вже зайнятий 3000
-      - "${AUTOMATION_PORT:-3001}:3000"
+      - "${BIND_ADDR:-127.0.0.1}:${AUTOMATION_PORT:-3001}:3000"
     environment:
       # Host's .env decides which environment this container runs as.
       # Valid values: production | dev-stage | local-development.
@@ -61,6 +76,7 @@ services:
       POSTGRES_USER:     ${POSTGRES_USER:-ai0}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
       REDIS_URL:         redis://redis:6379
+      REDIS_PASSWORD:    ${REDIS_PASSWORD:-}
     env_file: .env
     volumes:
       # Persist structured Winston logs across container restarts; read by LogAnalyzerAgent
@@ -88,7 +104,10 @@ services:
         VITE_TG_BOT_USERNAME: ${VITE_TG_BOT_USERNAME:-}
     restart: unless-stopped
     ports:
-      - "${DASHBOARD_PORT:-8080}:80"
+      # Loopback by default: the host Caddy proxies to localhost:${DASHBOARD_PORT}.
+      # If Caddy runs in a container that reaches the host over the docker
+      # bridge, set DASHBOARD_BIND_ADDR to the bridge IP (or 0.0.0.0 + firewall).
+      - "${DASHBOARD_BIND_ADDR:-127.0.0.1}:${DASHBOARD_PORT:-8080}:80"
     depends_on:
       automation:
         condition: service_started
@@ -98,6 +117,43 @@ services:
   # We do NOT run our own Caddy here — it would collide on those ports. Add a
   # vhost to that Caddy: `dev.ai0.global { reverse_proxy <host>:${DASHBOARD_PORT} }`.
   # The dashboard publishes host port ${DASHBOARD_PORT:-8080} for that proxy.
+
+  # ─── Backup (nightly pg_dump sidecar) ─────────────────────────────────────────
+  # Opt-in: docker compose --profile prod --profile backup up -d
+  # Writes ./backups/postgres/ai0-YYYY-MM-DD.sql.gz once a day and keeps the 14
+  # newest. This is ON-BOX only — copy it off the box (see
+  # docs/runbooks/backup-restore.md for the off-box copy and restore steps).
+  backup:
+    profiles: ["backup"]
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      PGHOST:     postgres
+      PGPORT:     5432
+      PGDATABASE: ${POSTGRES_DB:-ai0global}
+      PGUSER:     ${POSTGRES_USER:-ai0}
+      PGPASSWORD: ${POSTGRES_PASSWORD:-changeme}
+    volumes:
+      - ./backups/postgres:/backups
+    entrypoint: ["sh", "-c"]
+    command:
+      - |
+        set -u -o pipefail
+        while true; do
+          f="/backups/ai0-$$(date +%F).sql.gz"
+          if pg_dump --no-owner --no-privileges | gzip > "$$f.tmp"; then
+            mv "$$f.tmp" "$$f"
+            echo "[backup] wrote $$f ($$(du -h "$$f" | cut -f1))"
+          else
+            echo "[backup] pg_dump FAILED" >&2
+            rm -f "$$f.tmp"
+          fi
+          ls -1t /backups/ai0-*.sql.gz 2>/dev/null | tail -n +15 | xargs -r rm -f
+          sleep 86400
+        done
+    depends_on:
+      postgres:
+        condition: service_healthy
 
   # ─── Pipeline (job — run on demand or via cron) ──────────────────────────────
   pipeline:

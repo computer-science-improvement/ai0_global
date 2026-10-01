@@ -3,9 +3,9 @@
 Verify after each phase with: `pnpm --filter automation test && (cd apps/automation && npx tsc --noEmit)`.
 
 ## Phase 1: Infra (US1)
-- [ ] T001 [P] Bind postgres, redis and automation (and the dashboard port) to `${BIND_ADDR:-127.0.0.1}` in `docker-compose.yml`. Add the single-instance comment on `automation` (FR-001, FR-015).
-- [ ] T002 [P] Redis optional password: set the compose `command` and add `REDIS_PASSWORD` to every ioredis/BullMQ connection factory in `apps/automation/src`. Add it to `.env.example` (FR-001).
-- [ ] T003 [P] Add the `backup` profile service plus `docs/runbooks/backup-restore.md` (FR-014).
+- [x] T001 [P] Bind postgres, redis and automation (and the dashboard port) to `${BIND_ADDR:-127.0.0.1}` in `docker-compose.yml`. Add the single-instance comment on `automation` (FR-001, FR-015).
+- [x] T002 [P] Redis optional password: set the compose `command` and add `REDIS_PASSWORD` to every ioredis/BullMQ connection factory in `apps/automation/src`. Add it to `.env.example` (FR-001).
+- [x] T003 [P] Add the `backup` profile service plus `docs/runbooks/backup-restore.md` (FR-014).
 
 ## Phase 2: Auth (US2)
 - [ ] T004 Make the Telegram-login allowlist fail closed, with a test (FR-002).
