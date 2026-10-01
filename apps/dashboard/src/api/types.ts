@@ -458,7 +458,18 @@ export interface AgentOpportunity {
 
 // ─── Ad Orders (SP3) ──────────────────────────────────────────────────────────
 
-export type AdOrderStatus = 'draft' | 'awaiting_payment' | 'paid' | 'scheduled' | 'canceled';
+export type AdOrderStatus = 'draft' | 'awaiting_payment' | 'paid' | 'scheduled' | 'published' | 'reported' | 'canceled';
+export type AdFormat = 'post' | 'pin_24h' | 'digest_sponsor';
+
+/** Sponsored creative — a PostSpec subset (spec 008). Markup: **bold**, _italic_, [text](url). */
+export interface AdCreative {
+  format:     'text' | 'photo';
+  body:       Array<{ type: 'lead' | 'p' | 'quote'; text: string } | { type: 'list'; items: string[] }>;
+  media?:     Array<{ url: string; alt?: string }>;
+  placement?: 'above' | 'below';
+  cta?:       { url: string; label: string };
+  buttons?:   Array<Array<{ text: string; url: string }>>;
+}
 
 export interface AdOrder {
   id:               string;
@@ -474,6 +485,51 @@ export interface AdOrder {
   paid_at:          string | null;
   created_at:       string;
   updated_at:       string;
+  // 008 revenue path
+  price_id:          string | null;
+  creative:          AdCreative | null;
+  sponsor_label:     string | null;
+  publish_at:        string | null;
+  editor_slot_id:    string | null;
+  published_post_id: string | null;
+  thread_id:         string | null;
+  report:            AdReport | null;
+  reported_at:       string | null;
+  report_token:      string | null;
+}
+
+export interface AdPrice {
+  id:          string;
+  channel_key: string;
+  format:      AdFormat;
+  price_uah:   number;
+  active:      boolean;
+  note:        string | null;
+  created_at:  string;
+}
+
+/** Public advertiser report (GET /api/ads/report/:token). */
+export interface AdReport {
+  stage:       '24h' | '72h';
+  generatedAt: string;
+  advertiser:  string;
+  channel:     { key: string; title: string | null; url: string | null; subscribers: number | null };
+  post:        { url: string | null; publishedAt: string; format: string | null };
+  metrics:     { views: number | null; forwards: number | null; reactions: number | null; replies: number | null; capturedAt: string | null };
+  reachRate:   number | null;
+  link:        { url: string; utm: boolean } | null;
+  curve:       Array<{ hours: number; views: number | null }>;
+}
+
+/** Public media kit row (GET /api/landing/media-kit). */
+export interface MediaKitChannel {
+  channelKey:  string;
+  title:       string | null;
+  url:         string | null;
+  subscribers: number | null;
+  avgViews30d: number | null;
+  posts30d:    number;
+  prices:      Array<{ format: AdFormat; priceUah: number; note: string | null }>;
 }
 
 // ─── Editor agent ops surface (spec 006, /api/editor) ────────────────────────

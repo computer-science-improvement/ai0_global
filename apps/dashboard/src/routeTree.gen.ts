@@ -13,6 +13,7 @@ import { Route as LoginRouteImport } from './routes/login'
 import { Route as AppRouteImport } from './routes/app'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppIndexRouteImport } from './routes/app.index'
+import { Route as ReportTokenRouteImport } from './routes/report.$token'
 import { Route as AppTrackedRouteImport } from './routes/app.tracked'
 import { Route as AppTelegraphRouteImport } from './routes/app.telegraph'
 import { Route as AppStrategiesRouteImport } from './routes/app.strategies'
@@ -63,6 +64,11 @@ const AppIndexRoute = AppIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => AppRoute,
+} as any)
+const ReportTokenRoute = ReportTokenRouteImport.update({
+  id: '/report/$token',
+  path: '/report/$token',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const AppTrackedRoute = AppTrackedRouteImport.update({
   id: '/tracked',
@@ -239,6 +245,7 @@ export interface FileRoutesByFullPath {
   '/app/strategies': typeof AppStrategiesRoute
   '/app/telegraph': typeof AppTelegraphRoute
   '/app/tracked': typeof AppTrackedRoute
+  '/report/$token': typeof ReportTokenRoute
   '/app/': typeof AppIndexRoute
   '/app/channels/$id': typeof AppChannelsIdRoute
   '/app/connections/$platform': typeof AppConnectionsPlatformRoute
@@ -274,6 +281,7 @@ export interface FileRoutesByTo {
   '/app/strategies': typeof AppStrategiesRoute
   '/app/telegraph': typeof AppTelegraphRoute
   '/app/tracked': typeof AppTrackedRoute
+  '/report/$token': typeof ReportTokenRoute
   '/app': typeof AppIndexRoute
   '/app/channels/$id': typeof AppChannelsIdRoute
   '/app/connections/$platform': typeof AppConnectionsPlatformRoute
@@ -311,6 +319,7 @@ export interface FileRoutesById {
   '/app/strategies': typeof AppStrategiesRoute
   '/app/telegraph': typeof AppTelegraphRoute
   '/app/tracked': typeof AppTrackedRoute
+  '/report/$token': typeof ReportTokenRoute
   '/app/': typeof AppIndexRoute
   '/app/channels_/$id': typeof AppChannelsIdRoute
   '/app/connections/$platform': typeof AppConnectionsPlatformRoute
@@ -349,6 +358,7 @@ export interface FileRouteTypes {
     | '/app/strategies'
     | '/app/telegraph'
     | '/app/tracked'
+    | '/report/$token'
     | '/app/'
     | '/app/channels/$id'
     | '/app/connections/$platform'
@@ -384,6 +394,7 @@ export interface FileRouteTypes {
     | '/app/strategies'
     | '/app/telegraph'
     | '/app/tracked'
+    | '/report/$token'
     | '/app'
     | '/app/channels/$id'
     | '/app/connections/$platform'
@@ -420,6 +431,7 @@ export interface FileRouteTypes {
     | '/app/strategies'
     | '/app/telegraph'
     | '/app/tracked'
+    | '/report/$token'
     | '/app/'
     | '/app/channels_/$id'
     | '/app/connections/$platform'
@@ -438,6 +450,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AppRoute: typeof AppRouteWithChildren
   LoginRoute: typeof LoginRoute
+  ReportTokenRoute: typeof ReportTokenRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -469,6 +482,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/app/'
       preLoaderRoute: typeof AppIndexRouteImport
       parentRoute: typeof AppRoute
+    }
+    '/report/$token': {
+      id: '/report/$token'
+      path: '/report/$token'
+      fullPath: '/report/$token'
+      preLoaderRoute: typeof ReportTokenRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/app/tracked': {
       id: '/app/tracked'
@@ -767,6 +787,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AppRoute: AppRouteWithChildren,
   LoginRoute: LoginRoute,
+  ReportTokenRoute: ReportTokenRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
