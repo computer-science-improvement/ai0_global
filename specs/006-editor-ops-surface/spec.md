@@ -1,6 +1,6 @@
 # 006: Editor ops surface: REST, dashboard, MCP
 
-**Status:** TODO · **Depends on:** 005
+**Status:** In progress · **Depends on:** 005
 
 ## Why
 The owner needs to see and steer the editor: cards, today's plans, slot outcomes, run traces, spend and memory.
@@ -9,14 +9,14 @@ through an MCP server, so the network can be operated conversationally.
 
 ## Requirements and tasks
 ### REST (`api/editor`, behind `TrackingAuthGuard`)
-- [ ] T001 `GET /api/editor/channels` returns the cards plus today's spend and slot counts.
+- [x] T001 `GET /api/editor/channels` returns the cards plus today's spend and slot counts.
   `PUT /api/editor/channels/:key` upserts a card (zod-validated; `mode` changes are audited in `editor_channel_memory` as owner `rule`).
-- [ ] T002 `GET /api/editor/plans?date=YYYY-MM-DD&channel=` returns plans and slots.
+- [x] T002 `GET /api/editor/plans?date=YYYY-MM-DD&channel=` returns plans and slots.
   `POST /api/editor/channels/:key/replan` runs the planner now.
-- [ ] T003 `POST /api/editor/slots/:id/run` executes a slot now, subject to the normal guards; `POST /api/editor/slots/:id/skip` skips it.
-- [ ] T004 `GET /api/editor/runs?channel=&limit=` lists runs; `GET /api/editor/runs/:id` returns a run with its steps (trace viewer).
-- [ ] T005 `GET/POST/DELETE /api/editor/channels/:key/memory` manages owner-created memory entries.
-- [ ] T006 `GET /api/editor/spend?days=30` returns USD per day per channel.
+- [x] T003 `POST /api/editor/slots/:id/run` executes a slot now, subject to the normal guards; `POST /api/editor/slots/:id/skip` skips it.
+- [x] T004 `GET /api/editor/runs?channel=&limit=` lists runs; `GET /api/editor/runs/:id` returns a run with its steps (trace viewer).
+- [x] T005 `GET/POST/DELETE /api/editor/channels/:key/memory` manages owner-created memory entries.
+- [x] T006 `GET /api/editor/spend?days=30` returns USD per day per channel.
 
 ### Dashboard (`/app/editor`)
 - [ ] T007 Channel list with a mode switch (off/shadow/live, with confirmation for live), today's slots timeline and spend.

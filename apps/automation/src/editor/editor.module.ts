@@ -25,15 +25,24 @@ import { TelegramEditorPublisher } from './publish/telegram-editor.publisher';
 import { EditorRunnerService } from './roles/editor-runner.service';
 import { EditorScheduler } from './editor.scheduler';
 import { htmlToPlain } from './post/inline-markup';
+import { EditorRunsRepository } from './repo/editor-runs.repository';
+import { EditorOpsService } from './api/editor-ops.service';
+import { EDITOR_OPS, EditorController } from './api/editor.controller';
+import { AuthModule } from '../auth/auth.module';
+import { TrackingAuthGuard } from '../tracking/api/tracking-auth.guard';
 
 export const EDITOR_RUNNER    = 'EDITOR_RUNNER';
 export const EDITOR_SCHEDULER = 'EDITOR_SCHEDULER';
 export const EDITOR_REPOS     = 'EDITOR_REPOS';
+export const EDITOR_SKILLS    = 'EDITOR_SKILLS';
+export const EDITOR_REGISTRY  = 'EDITOR_REGISTRY';
+export { EDITOR_OPS };
 
 export interface EditorRepos {
   channels: EditorChannelsRepository;
   plans:    EditorPlansRepository;
   memory:   EditorMemoryRepository;
+  runs:     EditorRunsRepository;
 }
 
 const isEnabled = (cfg: ConfigService) => cfg.get<string>('EDITOR_ENABLED') === 'true';
@@ -52,7 +61,7 @@ export class EditorCron {
 }
 
 /**
- * Editor agent (specs/003–005). Always imported; does nothing unless
+ * Editor agent (specs/003–006). Always imported; does nothing unless
  * EDITOR_ENABLED=true AND a channel's editorial card has mode shadow/live.
  */
 export const EDITOR_PROVIDERS = [
@@ -63,24 +72,24 @@ export const EDITOR_PROVIDERS = [
         channels: new EditorChannelsRepository(pool),
         plans:    new EditorPlansRepository(pool),
         memory:   new EditorMemoryRepository(pool),
+        runs:     new EditorRunsRepository(pool),
       }),
     },
+    { provide: EDITOR_SKILLS, useFactory: () => new SkillLibrary() },
     {
-      provide: EDITOR_RUNNER,
-      inject: [DB_POOL, ConfigService, EDITOR_REPOS, ChannelConfigService, TelegramNotifier, PostingThrottleService],
+      // One registry for the runner and the ops surface (REST tools endpoint → MCP).
+      provide: EDITOR_REGISTRY,
+      inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_SKILLS, ChannelConfigService, TelegramNotifier, PostingThrottleService],
       useFactory: (
-        pool: Pool, cfg: ConfigService, repos: EditorRepos, channelConfig: ChannelConfigService,
+        pool: Pool, cfg: ConfigService, repos: EditorRepos, skills: SkillLibrary, channelConfig: ChannelConfigService,
         notifier: TelegramNotifier, throttle: PostingThrottleService,
-      ): EditorRunnerService => {
-        const logger = new Logger('Editor');
+      ): ToolRegistry => {
         const env = (k: string) => cfg.get<string>(k) ?? undefined;
-        const notify = (text: string) => notifier.notifyAlert(text);
-        const skills = new SkillLibrary();
         const publisher = new TelegramEditorPublisher({
           resolveChannel:     (k) => channelConfig.resolveChannel(k),
           isPublishPausedFor: (k) => channelConfig.isPublishPausedFor(k),
         });
-        const registry = new ToolRegistry([
+        return new ToolRegistry([
           ...buildReadTools({ pool, readonly: new ReadonlyQueryService(pool), skills }),
           ...buildComposeTools(),
           ...buildRoleTools({
@@ -91,6 +100,17 @@ export const EDITOR_PROVIDERS = [
               : (k, html) => notifier.notifyAlert(previewMessage(k, html)),
           }),
         ]);
+      },
+    },
+    {
+      provide: EDITOR_RUNNER,
+      inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_SKILLS, EDITOR_REGISTRY, TelegramNotifier],
+      useFactory: (
+        pool: Pool, cfg: ConfigService, repos: EditorRepos, skills: SkillLibrary, registry: ToolRegistry, notifier: TelegramNotifier,
+      ): EditorRunnerService => {
+        const logger = new Logger('Editor');
+        const env = (k: string) => cfg.get<string>(k) ?? undefined;
+        const notify = (text: string) => notifier.notifyAlert(text);
         const loop = new AgentLoop({
           llm: new OpenRouterClient({ apiKey: env('OPENROUTER_API_KEY'), baseUrl: env('OPENROUTER_BASE_URL') }),
           recorder: new PgRunRecorder(pool, (m) => logger.warn(m)),
@@ -117,12 +137,27 @@ export const EDITOR_PROVIDERS = [
         });
       },
     },
+    {
+      provide: EDITOR_OPS,
+      inject: [ConfigService, EDITOR_REPOS, EDITOR_RUNNER, EDITOR_REGISTRY, EDITOR_SKILLS],
+      useFactory: (cfg: ConfigService, repos: EditorRepos, runner: EditorRunnerService, registry: ToolRegistry, skills: SkillLibrary) => {
+        const logger = new Logger('EditorOps');
+        return new EditorOpsService({
+          channels: repos.channels, plans: repos.plans, memory: repos.memory, runs: repos.runs,
+          runner, registry, skills,
+          enabled: () => isEnabled(cfg),
+          log: (m) => logger.warn(m),
+        });
+      },
+    },
     EditorCron,
 ];
 
 @Module({
-  imports:   [ChannelConfigModule, PublishersModule],
-  providers: EDITOR_PROVIDERS,
-  exports:   [EDITOR_REPOS, EDITOR_RUNNER],
+  // AuthModule: EditorController is guarded by TrackingAuthGuard, which injects AuthService.
+  imports:     [ChannelConfigModule, PublishersModule, AuthModule],
+  controllers: [EditorController],
+  providers:   [...EDITOR_PROVIDERS, TrackingAuthGuard],
+  exports:     [EDITOR_REPOS, EDITOR_RUNNER],
 })
 export class EditorModule {}
