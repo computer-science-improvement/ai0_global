@@ -16,11 +16,11 @@
   - Add `IF NOT EXISTS` to `init.sql:155`.
   - Add a CI job that builds a fresh Postgres from `init.sql` + `migrations/*` and fails on error.
   - Rename root scripts `migrate`→`db:init` to remove the confusion with `db:migrate`.
-- [ ] T005 **Fix the seed:**
+- [x] T005 **Fix the seed:** *(`recipes-epicure` got a default export, so `parse`/`sync` regenerates the gitignored `recipes.json`. It skips when raw-data is absent, and `load:recipes` warns and skips when `recipes.json` is missing, so `load:all` no longer aborts halfway.)*
   - `run-parsers.js` ignores `*.test.js`.
   - `recipes-epicure.js` gets a default export, or `load:all` drops it.
   - `load:all` includes `prompts-github` and `treatfield`.
-- [ ] T006 **Destructive scripts:**
+- [x] T006 **Destructive scripts:**
   - `load:recipes:fresh` requires `ALLOW_TRUNCATE=yes` and keeps translations and `posted` (an upsert instead of TRUNCATE).
 - [ ] T007 **Dead data:**
   - Drop the `tg:adapt-*` scripts (the editor replaces them).

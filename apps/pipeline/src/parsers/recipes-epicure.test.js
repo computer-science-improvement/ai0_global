@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import {
+import run, {
   slugify, buildIngredientsText, buildInstructionsText, mapRecipe, normalizeAll,
 } from './recipes-epicure.js';
 
@@ -66,4 +66,10 @@ test('normalizeAll drops malformed entries and exact dupes, uniquifies slug coll
   assert.equal(recipes.length, 2);
   assert.equal(skipped, 1);
   assert.notEqual(recipes[0].slug, recipes[1].slug);
+});
+
+test('default export: run-parsers can call it, and it skips (no exit) when raw data is absent', async () => {
+  assert.equal(typeof run, 'function');
+  const res = await run({ rawDir: '/nonexistent/raw-data/recipes' });
+  assert.deepEqual(res, { skipped: true });
 });

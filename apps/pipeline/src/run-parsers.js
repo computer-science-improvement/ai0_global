@@ -1,19 +1,25 @@
 /**
  * Run all parsers and write JSON files to data/.
- * Add new parsers here or in config and call them.
+ * Every parsers/*.js with a default export is run, except templates
+ * (`_*.js`, example-parser.js) and node:test files (`*.test.js`).
  */
 import { readdirSync } from 'fs';
 import { join, dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { fileURLToPath, pathToFileURL } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PARSERS_DIR = join(__dirname, 'parsers');
 
+/** True for files run-parsers should import and run. */
+export function isParserFile(name) {
+  return name.endsWith('.js')
+    && !name.endsWith('.test.js')
+    && !name.startsWith('_')
+    && name !== 'example-parser.js';
+}
+
 async function runAll() {
-  const files = readdirSync(PARSERS_DIR).filter(
-    (f) => f.endsWith('.js') && !f.startsWith('_') && f !== 'example-parser.js'
-  );
-  const parsers = files;
+  const parsers = readdirSync(PARSERS_DIR).filter(isParserFile);
 
   for (const name of parsers) {
     const mod = await import(`./parsers/${name}`);
@@ -24,7 +30,10 @@ async function runAll() {
   }
 }
 
-runAll().catch((err) => {
-  console.error(err);
-  process.exit(1);
-});
+// Run only when invoked directly (`pnpm run parse`), not when imported by tests.
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  runAll().catch((err) => {
+    console.error(err);
+    process.exit(1);
+  });
+}

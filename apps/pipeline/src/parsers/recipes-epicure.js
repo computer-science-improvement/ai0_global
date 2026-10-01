@@ -7,6 +7,7 @@
  * post time. Dedupes exact duplicates and uniquifies slug collisions.
  */
 import { createHash } from 'crypto';
+import { existsSync } from 'fs';
 import { readFile, writeFile, readdir, mkdir } from 'fs/promises';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
@@ -101,26 +102,43 @@ export function normalizeAll(rawRecipes) {
   return { recipes, skipped };
 }
 
-async function main() {
-  const files = (await readdir(RAW_DIR))
+/**
+ * Parse every raw chunk into OUT_FILE. Default export so `run-parsers`
+ * (`pnpm run parse` / `sync`) regenerates the gitignored recipes.json that
+ * `load:recipes` reads.
+ *
+ * When the raw directory is absent (slim checkout, or a pipeline image without
+ * the raw-data mount, see docs/runbooks/raw-data.md) it logs and returns
+ * `{ skipped: true }` instead of killing the whole parser run.
+ */
+export default async function run({ rawDir = RAW_DIR, outFile = OUT_FILE } = {}) {
+  if (!existsSync(rawDir)) {
+    console.warn(`recipes-epicure: raw dir not found (${rawDir}), skipping`);
+    return { skipped: true };
+  }
+  const files = (await readdir(rawDir))
     .filter((f) => /^recipes_\d+\.json$/.test(f))
     .sort();
-  if (!files.length) { console.error(`No recipe chunks in ${RAW_DIR}`); process.exit(1); }
+  if (!files.length) throw new Error(`No recipe chunks in ${rawDir}`);
 
   const all = [];
   for (const f of files) {
-    const data = JSON.parse(await readFile(join(RAW_DIR, f), 'utf-8'));
+    const data = JSON.parse(await readFile(join(rawDir, f), 'utf-8'));
     const arr = data.recipes ?? data;
     if (Array.isArray(arr)) all.push(...arr);
   }
 
   const { recipes, skipped } = normalizeAll(all);
-  await mkdir(dirname(OUT_FILE), { recursive: true });
-  await writeFile(OUT_FILE, JSON.stringify({ recipes }, null, 2), 'utf-8');
-  console.log(`Parsed ${all.length} raw → ${recipes.length} normalized (${skipped} skipped) → ${OUT_FILE}`);
+  await mkdir(dirname(outFile), { recursive: true });
+  await writeFile(outFile, JSON.stringify({ recipes }, null, 2), 'utf-8');
+  console.log(`Parsed ${all.length} raw → ${recipes.length} normalized (${skipped} skipped) → ${outFile}`);
+  return { skipped: false, parsed: all.length, written: recipes.length };
 }
 
-// Run only when invoked directly, not when imported by the test.
+// Run only when invoked directly (`pnpm run parse:recipes`), not when imported
+// by run-parsers or the test. Invoked directly, missing raw data is an error.
 if (process.argv[1] && process.argv[1].endsWith('recipes-epicure.js')) {
-  main().catch((err) => { console.error(err); process.exit(1); });
+  run()
+    .then((res) => { if (res.skipped) process.exit(1); })
+    .catch((err) => { console.error(err); process.exit(1); });
 }

@@ -37,7 +37,7 @@
     "load:pdr": "node --env-file=../../.env src/loaders/pdr.js",
     "load:tg-posts": "node --env-file=../../.env src/loaders/tg-posts.js",
     "load:tg-posts:test": "LOAD_LIMIT=5 node --env-file=../../.env src/loaders/tg-posts.js",
-    "load:all": "pnpm run load && pnpm run load:prompts && pnpm run load:daytoday && pnpm run load:recipes && pnpm run load:facts && pnpm run load:pdr && pnpm run load:tg-posts",
+    "load:all": "pnpm run load && pnpm run load:prompts && pnpm run load:prompts-github && pnpm run load:daytoday && pnpm run load:treatfield && pnpm run load:recipes && pnpm run load:facts && pnpm run load:pdr && pnpm run load:tg-posts",
     "db:seed": "pnpm run init-db && pnpm run load:all",
     "db:reset": "pnpm run init-db:reset && pnpm run load:all",
     "sync": "pnpm run parse && pnpm run load:all",
