@@ -46,7 +46,8 @@ export async function runExecutor(ctx: CaseCtx, channel: string, slot: { format:
   const after = (await ctx.stack.plans.getSlot(s.id))!;
   const steps = await stepsOf(ctx.pool, res.runId);
   const spec = (after.postSpec ?? null) as PostSpec | null;
-  const post = after.renderedPreview ? htmlToPlain(after.renderedPreview) : '';
+  // The owner preview marks the quiz answer with ✅; readers don't see that, so the judge must not either.
+  const post = after.renderedPreview ? htmlToPlain(after.renderedPreview).replace(/✅/g, '▫️') : '';
   return {
     card, res, after, spec, post, steps,
     toolErrors: toolErrors(steps),

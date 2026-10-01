@@ -114,7 +114,7 @@ export const executorQuizFromLibrary: EvalCase = {
         check('explanation ≤ 200 chars', !spec?.poll?.explanation || spec.poll.explanation.length <= 200, String(spec?.poll?.explanation?.length ?? 0)),
         check('used search_library', r.toolsUsed.includes('search_library'), r.toolsUsed.join(' → ')),
       ],
-      judge: spec ? { channelBrief: 'ПДР України', slotTopic: 'Вікторина з ПДР', sourceText: rows.map((x) => `${x.text}\n${x.answers.join(' | ')}\nПравильна: ${x.answers[x.correct - 1]}\n${x.explanation}`).join('\n\n'), post: r.post } : undefined,
+      judge: spec ? { channelBrief: 'ПДР України', slotTopic: 'Вікторина з ПДР', sourceText: rows.map((x) => `${x.text}\n${x.answers.join(' | ')}\nПравильна: ${x.answers[x.correct - 1]}\n${x.explanation}`).join('\n\n'), post: `${r.post}\n\n[Це нативна вікторина Telegram: читач голосує, після відповіді бачить правильний варіант і пояснення: «${spec.poll?.explanation ?? ''}»]` } : undefined,
     };
   },
 };
