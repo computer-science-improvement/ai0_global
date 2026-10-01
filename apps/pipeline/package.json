@@ -41,13 +41,7 @@
     "db:seed": "pnpm run init-db && pnpm run load:all",
     "db:reset": "pnpm run init-db:reset && pnpm run load:all",
     "sync": "pnpm run parse && pnpm run load:all",
-    "calculator": "node --env-file=../../.env src/calculator/server.js",
-    "tg:adapt-motivation": "node --env-file=../../.env src/tg/adapt-motivation.js",
-    "tg:adapt-motivation:test": "ADAPT_LIMIT=3 node --env-file=../../.env src/tg/adapt-motivation.js",
-    "tg:adapt-samorozvytok": "node src/tg/adapt-samorozvytok.js",
-    "tg:adapt-samorozvytok:test": "ADAPT_LIMIT=3 node src/tg/adapt-samorozvytok.js",
-    "tg:adapt-biographies": "node --env-file=../../.env src/tg/adapt-biographies.js",
-    "tg:adapt-biographies:test": "ADAPT_LIMIT=3 node --env-file=../../.env src/tg/adapt-biographies.js"
+    "calculator": "node --env-file=../../.env src/calculator/server.js"
   },
   "keywords": [
     "parser",

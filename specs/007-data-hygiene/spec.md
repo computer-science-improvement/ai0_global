@@ -22,7 +22,7 @@
   - `load:all` includes `prompts-github` and `treatfield`.
 - [x] T006 **Destructive scripts:**
   - `load:recipes:fresh` requires `ALLOW_TRUNCATE=yes` and keeps translations and `posted` (an upsert instead of TRUNCATE).
-- [ ] T007 **Dead data:**
+- [x] T007 **Dead data:**
   - Drop the `tg:adapt-*` scripts (the editor replaces them).
   - Mark `tg_posts`, `jokes`, `name_days` and `articles` as editor library sources (they are granted to `editor_ro` in 003), so they become useful instead of dead.
 - [ ] T008 **Licensing:**

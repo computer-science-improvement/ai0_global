@@ -67,3 +67,22 @@ to the lifecycle layout.
 - `data/tg/biography-posts.json` -> `data/publish-ready/tg/biography-posts.json`
 - `data/tg/motivation-posts.json` -> `data/publish-ready/tg/motivation-posts.json`
 - `data/tg/samorozvytok-posts.json` -> `data/publish-ready/tg/samorozvytok-posts.json`
+
+## Editor library sources (spec 007, T007)
+
+The `tg:adapt-*` scripts (pre-generating Telegram posts with an LLM into
+`data/publish-ready/tg/*.json`) were removed. The editor agent (specs 003-005)
+writes posts at decision time instead. These tables are now **editor library
+sources**: `editor_ro` has SELECT on them (migration `042_editor.sql`), and the
+executor reads them through the `search_library` tool:
+
+| Table | Loaded by | Library mapping |
+|-------|-----------|-----------------|
+| `tg_posts` | `load:tg-posts` (existing `publish-ready/tg/*.json`) | title / post / image / source_url |
+| `jokes` | `load:daytoday` | title / content / url |
+| `name_days` | `load:daytoday` | name, `today_only` |
+| `articles` | `load:daytoday`, `load:treatfield` | title / excerpt or content / url |
+
+The `src/tg/adapt-*.js` sources are kept for reference only (marked DEPRECATED).
+Every library row carries `source_name` / `source_url` / `license` (migration
+`043_library_provenance.sql`). The `source-licensing` editor skill uses them.

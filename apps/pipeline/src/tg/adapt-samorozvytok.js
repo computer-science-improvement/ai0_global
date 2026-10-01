@@ -1,3 +1,9 @@
+// DEPRECATED (spec 007 T007): the `tg:adapt-*` package scripts were removed.
+// The editor agent (specs 003-005) now writes posts at decision time from the
+// library tables (tg_posts, jokes, name_days, articles, birthdays, ...) via
+// search_library. Kept only as a reference for the existing
+// data/publish-ready/tg/*.json files that `load:tg-posts` still loads.
+// Pre-generated content pools are a legacy pattern (constitution, principle II).
 /**
  * Адаптує статті із data/normalized/samorozvytok/motivatory.json для Telegram-каналу мотивації.
  * Використовує Claude CLI (підписка, не API).
