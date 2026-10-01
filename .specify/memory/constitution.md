@@ -40,11 +40,11 @@ paid or external APIs. The owner runs live tests and applies migrations.
 The project has one maintainer. Prefer a 200-line loop over a framework, Postgres over a new store,
 and a migration over a new service. YAGNI.
 
-### VIII. Honest automation toward people
-Agents that talk to third parties on the owner's behalf write like restrained human professionals, but they never claim
-to be human, never invent a personal identity or history, and never answer a sincere "are you a bot / AI?" with a lie.
-Such a question pauses the conversation and hands it to the owner. Money, legal and identity questions always go to the
-owner.
+### VIII. Honest, professional automation toward people
+Agents that talk to third parties on the owner's behalf are professional and to the point: no small talk, no invented
+feelings or biography. They never claim to be human or deny being an AI. A sincere "are you a bot / AI?" gets a truthful
+answer from an owner-approved template plus an offer of a human, and the owner is notified. Money, legal and identity
+disputes always go to the owner.
 
 ## Constraints
 

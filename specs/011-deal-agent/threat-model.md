@@ -45,8 +45,8 @@ Each row lists the mitigation, where it is enforced, and what the owner sees.
 
 | # | Case | Sev | Mitigation |
 |---|---|---|---|
-| D1 | Sincere question "ти бот?" | H | Pause + owner decision (spec §2.1). Never lie, never answer. |
-| D2 | Joking or rhetorical "ти що, бот?" during a heated exchange | M | The checker classifies it as sincere or rhetorical. When unsure → treat as sincere. |
+| D1 | Sincere question "ти бот?" | H | An honest answer from the approved template plus an offer of a human (spec §2.1). The owner is notified. The gate blocks any denial. |
+| D2 | Joking or rhetorical "ти що, бот?" during a heated exchange | M | When unsure → treat as sincere and answer honestly. A heated exchange → escalate (D8). |
 | D3 | A voice message, a video note or a sticker-only message | M | <ul><li>Voice: optional transcription (off by default) → escalate "голосове повідомлення"</li><li>Stickers: ignored unless alone in a new chat (then a short "Вітаю! Чим можу допомогти?")</li></ul> |
 | D4 | Languages: ru, mixed, en | M | Policy (§5). Mirror en. ru → policy action. |
 | D5 | The counterpart goes silent | M | ≤ 3 follow-ups (24 h, 72 h, 7 d), then `lost`. Never after `lost`. |
