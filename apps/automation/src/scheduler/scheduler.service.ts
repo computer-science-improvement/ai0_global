@@ -1,6 +1,6 @@
 import { Inject, Injectable, Logger, OnApplicationBootstrap, OnModuleDestroy } from '@nestjs/common';
 import { SchedulerRegistry } from '@nestjs/schedule';
-import { CronJob } from 'cron';
+import { makeCronJob } from './schedule-time-zone';
 import { Redis } from 'ioredis';
 import { ChannelConfigService }    from '../config/channel-config.service';
 import { StrategyRunsRepository }  from '../config/strategy-runs.repository';
@@ -182,7 +182,8 @@ export class SchedulerService implements OnApplicationBootstrap, OnModuleDestroy
   }
 
   private startJob(name: string, job: ScheduledJob): void {
-    const cronJob = new CronJob(job.schedule, async () => {
+    // Evaluated in SCHEDULE_TIME_ZONE (Europe/Kyiv by default), not the process TZ.
+    const cronJob = makeCronJob(job.schedule, async () => {
       // Guard 1: previous tick of THIS strategy still running.
       if (this.inFlight.has(name)) {
         this.logger.warn(`Skipping ${name}: previous run still in flight`);

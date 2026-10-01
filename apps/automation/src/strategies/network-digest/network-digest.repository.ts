@@ -12,6 +12,8 @@ export interface DigestPostRow {
   title:      string;
   views:      number | null;
   postedAt:   Date;
+  /** published_posts.strategy_type — drives digestTitle() cleanup. */
+  strategyType?: string | null;
 }
 
 @Injectable()
@@ -37,7 +39,8 @@ export class NetworkDigestRepository {
               p.message_id                 AS message_id,
               COALESCE(p.title, '')        AS title,
               s.views                      AS views,
-              p.posted_at                  AS posted_at
+              p.posted_at                  AS posted_at,
+              p.strategy_type              AS strategy_type
          FROM published_posts p
          JOIN tracked_channels tc
            ON tc.channel_key = p.channel_id AND tc.is_mine = TRUE
@@ -61,6 +64,7 @@ export class NetworkDigestRepository {
       title:      row.title,
       views:      row.views == null ? null : Number(row.views),
       postedAt:   new Date(row.posted_at),
+      strategyType: row.strategy_type ?? null,
     }));
   }
 

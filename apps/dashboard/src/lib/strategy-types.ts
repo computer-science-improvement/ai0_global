@@ -10,6 +10,18 @@ export function strategyTypesForPlatform(
   return types.filter(t => t.supportedPlatforms.includes(platform));
 }
 
+// ── Binding defaults ───────────────────────────────────────────────────────
+// Schedule pre-filled in the new-strategy form when a type is picked. Cron is
+// evaluated in Europe/Kyiv by the scheduler (SCHEDULER_TZ).
+//   Digests: every 10 min, 19:00–20:50. A single 19:00 tick loses the day when
+//   the channel's 20-min posting cooldown is active at that minute; the
+//   date-keyed dedup sentinel makes every later tick a no-op once one lands.
+//   Mirrors DIGEST_RETRY_SCHEDULE in automation's digest-format.util.ts.
+export const DEFAULT_SCHEDULE_BY_TYPE: Record<string, string> = {
+  'network-digest': '*/10 19-20 * * *',
+  'topic-digest':   '*/10 19-20 * * *',
+};
+
 // ── Type select grouping ───────────────────────────────────────────────────
 // Taxonomy for the Type <select> optgroups. Unmapped types fall into 'other'.
 //   rss    — pulled from news feeds (RSS/feed aggregators)

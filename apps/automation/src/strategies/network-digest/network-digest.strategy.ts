@@ -21,7 +21,7 @@ import {
 } from '../../common/content-strategy/content-strategy.interface';
 import { NetworkDigestRepository } from './network-digest.repository';
 import {
-  DigestItem, SponsorSlot, kyivDate, renderDigest, viewsPerHour,
+  DigestItem, SponsorSlot, digestTitle, isLinkable, kyivDate, renderDigest, viewsPerHour,
 } from './digest-format.util';
 
 interface NetworkDigestParams {
@@ -35,14 +35,16 @@ interface NetworkDigestParams {
   sponsor: SponsorSlot | null;
 }
 
-function normalizeParams(params: StrategyParams): NetworkDigestParams {
+export function normalizeParams(params: StrategyParams): NetworkDigestParams {
   const p = params as Record<string, unknown>;
   const num = (v: unknown, dflt: number) => (typeof v === 'number' && Number.isFinite(v) ? v : dflt);
   const sponsor = p.sponsor as { text?: unknown; url?: unknown } | null | undefined;
+  const maxItems = Math.min(Math.max(num(p.maxItems, 8), 3), 8);
   return {
     windowHours: Math.min(Math.max(num(p.windowHours, 24), 1), 24 * 7),
-    maxItems:    Math.min(Math.max(num(p.maxItems, 8), 3), 8),
-    minItems:    Math.max(num(p.minItems, 3), 1),
+    maxItems,
+    // minItems > maxItems could never be satisfied → the digest would never post.
+    minItems:    Math.min(Math.max(num(p.minItems, 3), 1), maxItems),
     includeChannels: Array.isArray(p.includeChannels) && p.includeChannels.length > 0
       ? p.includeChannels.filter((c): c is string => typeof c === 'string')
       : undefined,
@@ -104,8 +106,12 @@ export class NetworkDigestStrategy implements ContentStrategy, OnModuleInit {
       return;
     }
 
+    // Drop posts from channels that can't be deep-linked BEFORE taking the
+    // top N — otherwise high-ranked private-channel posts eat the slots and
+    // renderDigest silently renders fewer (or zero) lines.
     const items: DigestItem[] = rows
-      .map((r) => ({ ...r }))
+      .filter(isLinkable)
+      .map((r) => ({ ...r, title: digestTitle(r.title, r.strategyType) }))
       .sort((a, b) => viewsPerHour(b.views, b.postedAt, now) - viewsPerHour(a.views, a.postedAt, now))
       .slice(0, params.maxItems);
 

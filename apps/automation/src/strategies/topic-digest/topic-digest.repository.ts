@@ -28,7 +28,8 @@ export class TopicDigestRepository {
               p.message_id          AS message_id,
               COALESCE(p.title, '') AS title,
               NULL::int             AS views,
-              p.posted_at           AS posted_at
+              p.posted_at           AS posted_at,
+              p.strategy_type       AS strategy_type
          FROM published_posts p
          JOIN tracked_channels tc ON tc.channel_key = p.channel_id
         WHERE p.posted_at >= now() - ($1 || ' hours')::interval
@@ -45,6 +46,7 @@ export class TopicDigestRepository {
       title:      row.title,
       views:      null,
       postedAt:   new Date(row.posted_at),
+      strategyType: row.strategy_type ?? null,
     }));
   }
 }

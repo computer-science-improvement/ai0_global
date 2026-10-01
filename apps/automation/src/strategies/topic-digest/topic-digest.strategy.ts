@@ -25,7 +25,7 @@ import {
 } from '../../common/content-strategy/content-strategy.interface';
 import { TopicDigestRepository } from './topic-digest.repository';
 import {
-  DigestItem, SponsorSlot, kyivDate, renderDigest, truncate,
+  DigestItem, SponsorSlot, digestTitle, isLinkable, kyivDate, renderDigest, truncate,
 } from '../network-digest/digest-format.util';
 
 const REWRITE_BASE = `ROLE: Ти редактор українського Telegram-дайджесту.
@@ -45,16 +45,18 @@ interface TopicDigestParams {
   sponsor: SponsorSlot | null;
 }
 
-function normalizeParams(params: StrategyParams): TopicDigestParams {
+export function normalizeParams(params: StrategyParams): TopicDigestParams {
   const p = params as Record<string, unknown>;
   const num = (v: unknown, dflt: number) => (typeof v === 'number' && Number.isFinite(v) ? v : dflt);
   const strArr = (v: unknown): string[] | undefined =>
     Array.isArray(v) && v.length > 0 ? v.filter((s): s is string => typeof s === 'string') : undefined;
   const sponsor = p.sponsor as { text?: unknown; url?: unknown } | null | undefined;
+  const maxItems = Math.min(Math.max(num(p.maxItems, 7), 3), 8);
   return {
     windowHours: Math.min(Math.max(num(p.windowHours, 24), 1), 24 * 7),
-    maxItems:    Math.min(Math.max(num(p.maxItems, 7), 3), 8),
-    minItems:    Math.max(num(p.minItems, 3), 1),
+    maxItems,
+    // minItems > maxItems could never be satisfied → the digest would never post.
+    minItems:    Math.min(Math.max(num(p.minItems, 3), 1), maxItems),
     strategyTypes: strArr(p.strategyTypes) ?? ['ai0-news', 'ua-news'],
     sourceChannels: strArr(p.sourceChannels),
     headerTopicLabel: typeof p.headerTopicLabel === 'string' && p.headerTopicLabel.trim()
@@ -135,7 +137,16 @@ export class TopicDigestStrategy implements ContentStrategy, OnModuleInit {
       return;
     }
 
-    const picked = rows.slice(-params.maxItems); // newest tail, chronological
+    // Unlinkable (private) channels are dropped BEFORE taking the newest tail,
+    // so they can't crowd out linkable posts.
+    const picked = rows
+      .filter(isLinkable)
+      .map((r) => ({ ...r, title: digestTitle(r.title, r.strategyType) }))
+      .slice(-params.maxItems); // newest tail, chronological
+    if (picked.length < params.minItems) {
+      this.logger.log(`Only ${picked.length} linkable posts in window (< ${params.minItems}) — skipping topic digest`);
+      return;
+    }
     const lines = await this.rewriteLines(picked.map((r) => r.title), params.rewriteWithAi);
 
     const items: DigestItem[] = picked.map((r, i) => ({

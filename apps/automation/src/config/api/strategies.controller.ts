@@ -3,7 +3,7 @@ import {
   BadRequestException, Body, ConflictException, Controller, Delete, Get,
   HttpCode, NotFoundException, Param, Patch, Post, UseGuards,
 } from '@nestjs/common';
-import { CronJob } from 'cron';
+import { makeCronJob } from '../../scheduler/schedule-time-zone';
 import { TrackingAuthGuard } from '../../tracking/api/tracking-auth.guard';
 import { StrategyBindingsRepository } from '../strategy-bindings.repository';
 import { StrategyRunsRepository } from '../strategy-runs.repository';
@@ -24,7 +24,7 @@ import { CreateStrategyDto, PatchStrategyDto } from './dto/strategies.dto';
  */
 function assertCronOrThrow(schedule: string): void {
   try {
-    new CronJob(schedule, () => {});
+    makeCronJob(schedule, () => {});
   } catch (err: any) {
     throw new BadRequestException(`Invalid cron expression: ${err?.message ?? schedule}`);
   }
@@ -37,7 +37,7 @@ function assertCronOrThrow(schedule: string): void {
  */
 function nextRunOrNull(schedule: string): string | null {
   try {
-    const job = new CronJob(schedule, () => {});
+    const job = makeCronJob(schedule, () => {}); // same zone as the scheduler
     const next = job.nextDate(); // Luxon DateTime
     return next.toJSDate().toISOString();
   } catch {
