@@ -1,6 +1,6 @@
 import type { CardRole } from '../llm/llm.types';
 import { cardSummary, EditorCard } from '../card';
-import type { SkillLibrary } from '../skills/skill-library';
+import type { SkillSource } from '../skills/skill-library';
 import type { MemoryEntry } from '../repo/editor-memory.repository';
 import type { EditorSlot } from '../repo/editor-plans.repository';
 import { localDate, localTimeLabel, localWeekday } from './time';
@@ -19,8 +19,8 @@ const INLINE_SKILLS_BUDGET = 8_000;
  * skill and the channel's own skills inline; every other skill is only listed
  * (name + description) and loaded on demand via load_skill.
  */
-export function buildSystemPrompt(role: CardRole, card: EditorCard, memory: MemoryEntry[], skills: SkillLibrary): string {
-  const inlineNames = [`editor-${role}-workflow`, ...card.skills];
+export function buildSystemPrompt(role: CardRole, card: EditorCard, memory: MemoryEntry[], skills: SkillSource): string {
+  const inlineNames = [...new Set([`editor-${role}-workflow`, ...card.skills, ...(skills.inlineNames?.() ?? [])])];
   let budget = INLINE_SKILLS_BUDGET;
   const inline: string[] = [];
   for (const name of inlineNames) {
@@ -59,11 +59,11 @@ export function buildSystemPrompt(role: CardRole, card: EditorCard, memory: Memo
  * (named by the owner, picked in the UI, or set by save_draft in an earlier turn).
  */
 export function buildComposerSystemPrompt(o: {
-  now: Date; card: EditorCard | null; hasCard: boolean; memory: MemoryEntry[]; skills: SkillLibrary;
+  now: Date; card: EditorCard | null; hasCard: boolean; memory: MemoryEntry[]; skills: SkillSource;
 }): string {
   const tz = 'Europe/Kyiv';
   const tomorrow = new Date(o.now.getTime() + 86_400_000);
-  const inlineNames = ['editor-composer-workflow', ...(o.hasCard && o.card ? o.card.skills : [])];
+  const inlineNames = [...new Set(['editor-composer-workflow', ...(o.hasCard && o.card ? o.card.skills : []), ...(o.skills.inlineNames?.() ?? [])])];
   let budget = INLINE_SKILLS_BUDGET;
   const inline: string[] = [];
   for (const name of inlineNames) {

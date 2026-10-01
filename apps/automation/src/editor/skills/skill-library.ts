@@ -9,7 +9,20 @@ export interface SkillMeta {
 }
 
 export interface Skill extends SkillMeta {
-  body: string;
+  body:    string;
+  /** `safety: true` in the frontmatter: agents can never override or edit it (spec 017 FR-005). */
+  safety?: boolean;
+}
+
+/**
+ * What prompts and the skill tools read: the file library (tests, MCP) or an
+ * agent's resolved DB view (spec 017 FR-006). `inlineNames` are skills the
+ * agent keeps always in context in addition to the role workflow.
+ */
+export interface SkillSource {
+  list(role?: EditorRole): SkillMeta[];
+  get(name: string): Skill | undefined;
+  inlineNames?(): string[];
 }
 
 /** apps/automation/editor-skills — same relative depth from src/ and dist/. */
@@ -27,7 +40,7 @@ export function parseSkill(fileName: string, text: string): Skill {
   if (!meta.name || !meta.description) throw new Error(`skill ${fileName}: name and description are required`);
   const appliesTo = (meta.applies_to ?? '[planner, executor, reviewer]')
     .replace(/[[\]]/g, '').split(',').map((s) => s.trim()).filter(Boolean) as EditorRole[];
-  return { name: meta.name, description: meta.description, appliesTo, body: m[2].trim() };
+  return { name: meta.name, description: meta.description, appliesTo, body: m[2].trim(), ...(meta.safety === 'true' ? { safety: true } : {}) };
 }
 
 /**
@@ -35,7 +48,7 @@ export function parseSkill(fileName: string, text: string): Skill {
  * the prompt lists names + descriptions, the body costs tokens only when a
  * skill is actually loaded). Read once at construction; files are static.
  */
-export class SkillLibrary {
+export class SkillLibrary implements SkillSource {
   private readonly skills = new Map<string, Skill>();
 
   constructor(dir: string = DEFAULT_SKILLS_DIR) {
@@ -55,5 +68,32 @@ export class SkillLibrary {
 
   get(name: string): Skill | undefined {
     return this.skills.get(name);
+  }
+
+  all(): Skill[] {
+    return [...this.skills.values()];
+  }
+}
+
+/** An agent's effective skill set, resolved from the DB before a run (synchronous afterwards). */
+export class SkillView implements SkillSource {
+  private readonly byName: Map<string, Skill>;
+
+  constructor(skills: Skill[], private readonly inline: string[] = []) {
+    this.byName = new Map(skills.map((s) => [s.name, s]));
+  }
+
+  list(role?: EditorRole): SkillMeta[] {
+    return [...this.byName.values()]
+      .filter((s) => !role || s.appliesTo.includes(role))
+      .map(({ name, description, appliesTo }) => ({ name, description, appliesTo }));
+  }
+
+  get(name: string): Skill | undefined {
+    return this.byName.get(name);
+  }
+
+  inlineNames(): string[] {
+    return this.inline.filter((n) => this.byName.has(n));
   }
 }

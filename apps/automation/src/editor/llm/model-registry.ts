@@ -28,11 +28,18 @@ const ROLE_DEFAULTS: Record<EditorRole, { maxTokens: number; temperature: number
   reviewer: { maxTokens: 8000, temperature: 0.3, reasoningEffort: 'medium' },
   checker:  { maxTokens: 2000, temperature: 0.0, reasoningEffort: 'low' },
   composer: { maxTokens: 6000, temperature: 0.6, reasoningEffort: 'low' },
+  orchestrator:  { maxTokens: 8000, temperature: 0.6, reasoningEffort: 'medium' },
+  idea_reviewer: { maxTokens: 6000, temperature: 0.2, reasoningEffort: 'low' },
+  manager:       { maxTokens: 8000, temperature: 0.3, reasoningEffort: 'medium' },
+  builder:       { maxTokens: 6000, temperature: 0.4, reasoningEffort: 'low' },
 };
 
+/** Roles whose default model is not DEFAULT_EDITOR_MODEL (the idea reviewer judges, so it uses the stronger model). */
+const ROLE_MODEL_DEFAULTS: Partial<Record<EditorRole, string>> = { idea_reviewer: 'z-ai/glm-5.3' };
+
 /**
- * Resolve the model for a role. Precedence: per-channel override (card.models)
- * → env EDITOR_MODEL_<ROLE> → DEFAULT_EDITOR_MODEL.
+ * Resolve the model for a role. Precedence: per-channel / per-agent override
+ * → env EDITOR_MODEL_<ROLE> → the role's default → DEFAULT_EDITOR_MODEL.
  */
 export function resolveModel(
   role: EditorRole,
@@ -41,6 +48,7 @@ export function resolveModel(
 ): ModelProfile {
   const model = channelOverrides?.[role]
     ?? env(`EDITOR_MODEL_${role.toUpperCase()}`)
+    ?? ROLE_MODEL_DEFAULTS[role]
     ?? DEFAULT_EDITOR_MODEL;
   const price = PRICES[model] ?? PRICES[DEFAULT_EDITOR_MODEL];
   const effort = env(`EDITOR_REASONING_${role.toUpperCase()}`) ?? env('EDITOR_REASONING');

@@ -3,7 +3,7 @@ import { z } from 'zod';
 import Parser from 'rss-parser';
 import { channelOf, defineTool, EditorTool, ToolContext } from '../harness/tool';
 import type { ReadonlyQueryService } from '../db/readonly-query.service';
-import type { SkillLibrary } from '../skills/skill-library';
+import type { SkillSource } from '../skills/skill-library';
 import { safeGet, RawGet } from '../net/safe-http';
 import type { Lookup } from '../net/ssrf-guard';
 import { extractPage } from '../net/extract-page';
@@ -13,14 +13,14 @@ import { LIBRARY_TABLES, LIBRARY_TABLE_NAMES, libraryRef } from './library-table
 export interface ReadToolDeps {
   pool:      Pool;
   readonly:  ReadonlyQueryService;
-  skills:    SkillLibrary;
+  skills:    SkillSource;
   /** Test seams for network tools. */
   http?:     { lookup?: Lookup; get?: RawGet };
   /** Kyiv-local month/day for "today" filters; injectable for tests. */
   today?:    () => { month: number; day: number };
 }
 
-const ALL_ROLES = ['planner', 'executor', 'reviewer', 'composer'] as const;
+const ALL_ROLES = ['planner', 'executor', 'reviewer', 'composer', 'orchestrator', 'idea_reviewer', 'manager', 'builder'] as const;
 
 function kyivToday(): { month: number; day: number } {
   const parts = new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Kyiv', month: 'numeric', day: 'numeric' }).formatToParts(new Date());
@@ -210,12 +210,15 @@ export function buildReadTools(d: ReadToolDeps): EditorTool[] {
     },
   });
 
+  // An agent run carries its resolved DB skill view (spec 017); otherwise the file library.
+  const skillsOf = (ctx: ToolContext): SkillSource => (ctx.extras?.skills as SkillSource | undefined) ?? d.skills;
+
   const listSkills = defineTool({
     name: 'list_skills',
     description: 'Перелік доступних скілів (інструкцій) для твоєї ролі.',
     kind: 'read', roles: [...ALL_ROLES],
     input: z.object({}),
-    execute: async (_i, ctx) => ({ skills: d.skills.list(ctx.role).map(({ name, description }) => ({ name, description })) }),
+    execute: async (_i, ctx) => ({ skills: skillsOf(ctx).list(ctx.role).map(({ name, description }) => ({ name, description })) }),
   });
 
   const loadSkill = defineTool({
@@ -223,8 +226,8 @@ export function buildReadTools(d: ReadToolDeps): EditorTool[] {
     description: 'Завантажити повний текст скіла за назвою (правила форматування, голосу, фактчеку тощо). Завантажуй перед тим, як використовувати відповідний формат.',
     kind: 'read', roles: [...ALL_ROLES],
     input: z.object({ name: z.string().min(1).max(100) }),
-    execute: async ({ name }) => {
-      const s = d.skills.get(name);
+    execute: async ({ name }, ctx) => {
+      const s = skillsOf(ctx).get(name);
       return s ? { name: s.name, body: s.body } : { error: 'unknown_skill', details: `no skill "${name}" — call list_skills` };
     },
   });

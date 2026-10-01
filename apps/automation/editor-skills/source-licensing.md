@@ -2,6 +2,7 @@
 name: source-licensing
 description: Як не порушити авторське право — переказ замість копіювання, атрибуція, з якими джерелами обережно, використання зображень.
 applies_to: [executor, reviewer, composer]
+safety: true
 ---
 # Авторське право і джерела
 

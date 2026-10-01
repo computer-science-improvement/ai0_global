@@ -1,6 +1,6 @@
 import type { ChatMessage, EditorRole, LlmClient, ToolCall } from '../llm/llm.types';
 import type { ModelProfile } from '../llm/model-registry';
-import type { BudgetGate } from './budget.service';
+import type { AgentBudget, BudgetGate } from './budget.service';
 import type { RunRecorder, RunStatus, RunTotals } from './run-recorder';
 import { EditorTool, ToolContext, isToolError, toToolSpec } from './tool';
 import { toToolContent } from './truncate';
@@ -37,6 +37,8 @@ export interface AgentLoopInput {
   /** Prior user/assistant text turns, inserted between the system prompt and `user` (last MAX_HISTORY_TURNS). */
   history?:          ChatMessage[];
   onEvent?:          (e: AgentLoopEvent) => void;
+  /** Registry agent of this run (spec 017): recorded on the run and checked against its own daily budget. */
+  agent?:            AgentBudget | null;
 }
 
 export interface AgentLoopResult {
@@ -91,7 +93,9 @@ export class AgentLoop {
 
     let runId: string;
     try {
-      runId = await this.deps.recorder.start({ role: input.role, channelKey: input.channelKey, slotId: input.slotId, model: input.model.model });
+      runId = await this.deps.recorder.start({
+        role: input.role, channelKey: input.channelKey, slotId: input.slotId, model: input.model.model, agentId: input.agent?.id ?? null,
+      });
     } catch (err: any) {
       return { runId: null, status: 'error', totals, error: `run start failed: ${err.message}` };
     }
@@ -120,7 +124,7 @@ export class AgentLoop {
 
     try {
       for (let turn = 0; turn < maxSteps; turn++) {
-        const verdict = await this.deps.budget.check(input.channelKey, input.channelBudgetUsd);
+        const verdict = await this.deps.budget.check(input.channelKey, input.channelBudgetUsd, input.agent ?? null);
         if (!verdict.ok) return finish('budget_exceeded', { error: `${verdict.scope} budget: $${verdict.spentUsd.toFixed(4)} >= $${verdict.limitUsd}` });
 
         const t0 = now();

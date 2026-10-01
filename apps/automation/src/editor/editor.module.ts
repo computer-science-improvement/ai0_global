@@ -1,4 +1,4 @@
-import { Inject, Injectable, Logger, Module } from '@nestjs/common';
+import { Inject, Injectable, Logger, Module, OnModuleInit } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Cron } from '@nestjs/schedule';
 import type { Pool } from 'pg';
@@ -48,6 +48,18 @@ import { EDITOR_CHAT, EDITOR_DRAFTS, EditorChatController } from './api/editor-c
 import { EditorOpsService } from './api/editor-ops.service';
 import { EDITOR_OPS, EditorController } from './api/editor.controller';
 import { AuthModule } from '../auth/auth.module';
+import { AgentsRepository } from './agents/agents.repository';
+import { SkillStore } from './agents/skill-store';
+import { OwnerInbox } from './agents/owner-inbox';
+import { TelegramScopeKpi } from './agents/scope-kpi';
+import type { ScopeKpi } from './agents/scope-kpi';
+import { AgentRuntime } from './agents/agent-runtime';
+import { AgentRegistrySync } from './agents/agent-registry-sync';
+import { SkillVersionEvaluator } from './agents/skill-version-evaluator';
+import { buildAgentSkillTools } from './agents/agent-skill-tools';
+import { AgentsService } from './agents/agents.service';
+import { AGENTS_SERVICE, AgentsController } from './agents/agents.controller';
+import { telegramKeyOf } from './agents/agent.types';
 import { TrackingAuthGuard } from '../tracking/api/tracking-auth.guard';
 
 export const EDITOR_RUNNER    = 'EDITOR_RUNNER';
@@ -57,6 +69,17 @@ export const EDITOR_SKILLS    = 'EDITOR_SKILLS';
 export const EDITOR_REGISTRY  = 'EDITOR_REGISTRY';
 /** Live publish ports shared by publish_post and the chat (Telegram sender, media stage, mirrors). */
 export const EDITOR_PUBLISH   = 'EDITOR_PUBLISH';
+/** Agent registry infrastructure (spec 017): repository, DB skills, owner inbox, scope KPI, run-time resolver. */
+export const AGENT_INFRA      = 'AGENT_INFRA';
+
+export interface AgentInfra {
+  agents:   AgentsRepository;
+  skills:   SkillStore;
+  inbox:    OwnerInbox;
+  kpi:      ScopeKpi;
+  runtime:  AgentRuntime;
+  registry: AgentRegistrySync;
+}
 export { EDITOR_OPS, EDITOR_CHAT, EDITOR_DRAFTS };
 
 type PublishPorts = Pick<PublishSpecDeps, 'publisher' | 'media' | 'crosspost'>;
@@ -85,6 +108,56 @@ export class EditorCron {
 }
 
 /**
+ * Agent registry upkeep (spec 017): builtin skills and card → agent sync at
+ * boot and hourly; the daily evaluation of agent skill self-edits.
+ */
+@Injectable()
+export class AgentsUpkeep implements OnModuleInit {
+  private readonly logger = new Logger('Agents');
+
+  constructor(
+    @Inject(AGENT_INFRA) private readonly infra: AgentInfra,
+    @Inject(EDITOR_SKILLS) private readonly files: SkillLibrary,
+    @Inject(EDITOR_REPOS) private readonly repos: EditorRepos,
+  ) {}
+
+  async onModuleInit(): Promise<void> {
+    await this.sync();
+  }
+
+  @Cron('17 * * * *', { name: 'agents-sync' })
+  async sync(): Promise<void> {
+    try {
+      const s = await this.infra.skills.syncBuiltins(this.files);
+      const r = await this.infra.registry.run();
+      if (s.inserted || s.updated || r.created || r.updated) {
+        this.logger.log(`skills +${s.inserted}/~${s.updated}; agents +${r.created}/~${r.updated}; runs linked ${r.linkedRuns}`);
+      }
+    } catch (err: any) {
+      this.logger.warn(`agent registry sync failed: ${err?.message ?? err}`);
+    }
+  }
+
+  @Cron('40 5 * * *', { name: 'agents-skill-review' })
+  async reviewSkills(): Promise<void> {
+    try {
+      const evaluator = new SkillVersionEvaluator({
+        skills: this.infra.skills, agents: this.infra.agents, kpi: this.infra.kpi, inbox: this.infra.inbox,
+        remember: async (agent, text, evidence) => {
+          const key = telegramKeyOf(agent.parentId ? (await this.infra.agents.get(agent.parentId)) ?? agent : agent);
+          if (key) await this.repos.memory.add(key, 'avoid', text, evidence, 'reviewer');
+        },
+        log: (m) => this.logger.warn(m),
+      });
+      const r = await evaluator.run();
+      if (r.kept || r.rolledBack || r.postponed) this.logger.log(`skill self-edits: kept ${r.kept}, rolled back ${r.rolledBack}, postponed ${r.postponed}`);
+    } catch (err: any) {
+      this.logger.warn(`skill evaluation failed: ${err?.message ?? err}`);
+    }
+  }
+}
+
+/**
  * Editor agent (specs/003–006). Always imported; does nothing unless
  * EDITOR_ENABLED=true AND a channel's editorial card has mode shadow/live.
  */
@@ -101,6 +174,22 @@ export const EDITOR_PROVIDERS = [
       }),
     },
     { provide: EDITOR_SKILLS, useFactory: () => new SkillLibrary() },
+    {
+      provide: AGENT_INFRA,
+      inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_SKILLS, TelegramNotifier],
+      useFactory: (pool: Pool, cfg: ConfigService, repos: EditorRepos, files: SkillLibrary, notifier: TelegramNotifier): AgentInfra => {
+        const logger = new Logger('Agents');
+        const agents = new AgentsRepository(pool);
+        const skills = new SkillStore(pool);
+        return {
+          agents, skills,
+          inbox: new OwnerInbox(pool, (t) => notifier.notifyAlert(t), cfg.get<string>('DASHBOARD_URL') ?? null),
+          kpi: new TelegramScopeKpi(pool),
+          runtime: new AgentRuntime({ agents, store: skills, fallback: files, log: (m) => logger.warn(m) }),
+          registry: new AgentRegistrySync({ agents, channels: repos.channels, log: (m) => logger.log(m) }),
+        };
+      },
+    },
     {
       provide: EDITOR_PUBLISH,
       inject: [
@@ -152,10 +241,10 @@ export const EDITOR_PROVIDERS = [
     {
       // One registry for the runner, the chat and the ops surface (REST tools endpoint → MCP).
       provide: EDITOR_REGISTRY,
-      inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_SKILLS, EDITOR_PUBLISH, EDITOR_DRAFTS, TelegramNotifier, PostingThrottleService],
+      inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_SKILLS, EDITOR_PUBLISH, EDITOR_DRAFTS, TelegramNotifier, PostingThrottleService, AGENT_INFRA],
       useFactory: (
         pool: Pool, cfg: ConfigService, repos: EditorRepos, skills: SkillLibrary, ports: PublishPorts, drafts: DraftsService,
-        notifier: TelegramNotifier, throttle: PostingThrottleService,
+        notifier: TelegramNotifier, throttle: PostingThrottleService, infra: AgentInfra,
       ): ToolRegistry => {
         const env = (k: string) => cfg.get<string>(k) ?? undefined;
         return new ToolRegistry([
@@ -170,14 +259,16 @@ export const EDITOR_PROVIDERS = [
               : (k, html) => notifier.notifyAlert(previewMessage(k, html)),
           }),
           ...buildComposerTools({ drafts, repo: repos.chat }),
+          ...buildAgentSkillTools({ agents: infra.agents, skills: infra.skills, kpi: infra.kpi, inbox: infra.inbox }),
         ]);
       },
     },
     {
       provide: EDITOR_RUNNER,
-      inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_SKILLS, EDITOR_REGISTRY, TelegramNotifier],
+      inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_SKILLS, EDITOR_REGISTRY, TelegramNotifier, AGENT_INFRA],
       useFactory: (
         pool: Pool, cfg: ConfigService, repos: EditorRepos, skills: SkillLibrary, registry: ToolRegistry, notifier: TelegramNotifier,
+        infra: AgentInfra,
       ): EditorRunnerService => {
         const logger = new Logger('Editor');
         const env = (k: string) => cfg.get<string>(k) ?? undefined;
@@ -192,7 +283,7 @@ export const EDITOR_PROVIDERS = [
           enabled: () => isEnabled(cfg),
         });
         logger.log(`editor ${isEnabled(cfg) ? 'ENABLED' : 'disabled'}: ${registry.all().length} tools, ${skills.list().length} skills`);
-        return new EditorRunnerService({ loop, registry, skills, plans: repos.plans, memory: repos.memory, env, notify });
+        return new EditorRunnerService({ loop, registry, skills, runtime: infra.runtime, plans: repos.plans, memory: repos.memory, env, notify });
       },
     },
     {
@@ -263,14 +354,44 @@ export const EDITOR_PROVIDERS = [
         });
       },
     },
+    {
+      provide: AGENTS_SERVICE,
+      inject: [DB_POOL, AGENT_INFRA, EDITOR_REPOS, EDITOR_OPS, EDITOR_RUNNER],
+      useFactory: (pool: Pool, infra: AgentInfra, repos: EditorRepos, ops: EditorOpsService, runner: EditorRunnerService) => {
+        const logger = new Logger('Agents');
+        return new AgentsService({
+          pool, agents: infra.agents, skills: infra.skills, inbox: infra.inbox,
+          setChannelMode: (key, mode) => ops.upsertChannel(key, { mode }),
+          memory: (key) => repos.memory.listActive(key, 100),
+          sync: () => infra.registry.run(),
+          log: (m) => logger.warn(m),
+          runNow: async (agent, orch) => {
+            const key = telegramKeyOf(orch);
+            if (agent.kind === 'orchestrator' || agent.kind === 'planner') {
+              if (!key) return { started: false, what: 'no channel' };
+              await ops.replan(key, { wait: false });
+              return { started: true, what: 'planner' };
+            }
+            if (agent.kind === 'reviewer' && key) {
+              const card = await repos.channels.get(key);
+              if (!card) return { started: false, what: 'no card' };
+              void runner.runReviewer(card).catch((err) => logger.warn(`reviewer run failed: ${err?.message ?? err}`));
+              return { started: true, what: 'reviewer' };
+            }
+            return { started: false, what: `${agent.kind} runs on its own schedule` };
+          },
+        });
+      },
+    },
     EditorCron,
+    AgentsUpkeep,
 ];
 
 @Module({
   // AuthModule: EditorController is guarded by TrackingAuthGuard, which injects AuthService.
   imports:     [ChannelConfigModule, PublishersModule, AuthModule],
-  controllers: [EditorController, EditorChatController],
+  controllers: [EditorController, EditorChatController, AgentsController],
   providers:   [...EDITOR_PROVIDERS, TrackingAuthGuard],
-  exports:     [EDITOR_REPOS, EDITOR_RUNNER],
+  exports:     [EDITOR_REPOS, EDITOR_RUNNER, AGENT_INFRA],
 })
 export class EditorModule {}

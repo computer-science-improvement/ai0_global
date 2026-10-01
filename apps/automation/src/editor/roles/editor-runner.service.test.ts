@@ -81,3 +81,49 @@ test('reviewer: forwards summary to owner', async () => {
   await runner.runReviewer(makeCard());
   assert.match(notes[0], /Вікторини працюють/);
 });
+
+test('agent runtime (spec 017): the run is recorded on the role agent with its skills, model and budget', async () => {
+  const runs: any[] = [];
+  const { SkillView } = await import('../skills/skill-library');
+  const lib = new SkillLibrary();
+  const view = new SkillView([...lib.all(), { name: 'kira-voice', description: 'Голос Кіри', appliesTo: ['executor'], body: 'Пиши як Кіра.' }], ['kira-voice']);
+  const orch: any = { id: 'o1', handle: 'kira', model: 'z-ai/glm-5.3', dailyBudgetUsd: 0.4 };
+  const exec: any = { id: 'e1', handle: 'kira_executor', model: null, dailyBudgetUsd: null };
+  const runner = new EditorRunnerService({
+    loop: { run: async (i: any) => { runs.push(i); return { runId: 'r', status: 'ok', terminalTool: 'publish_post' }; } },
+    registry: { forRole: () => [] as any },
+    skills: lib,
+    runtime: { forChannel: async () => ({ agent: exec, orchestrator: orch, skills: view, paused: false }) },
+    plans: { reservedSlots: async () => [], getSlot: async () => ({ ...slot, status: 'published' }), updateSlot: async () => {} },
+    memory: { listActive: async () => [] },
+    env: () => undefined, notify: async () => {}, now: () => NOW,
+  });
+  await runner.runExecutor(slot, makeCard());
+  const i = runs[0];
+  assert.deepEqual(i.agent, { id: 'e1', handle: 'kira_executor', limitUsd: 0.4 });
+  assert.equal(i.model.model, 'z-ai/glm-5.3', 'the orchestrator model applies to its roles');
+  assert.match(i.system, /skill: kira-voice/, 'inline DB skill');
+  assert.equal(i.extras.skills, view);
+  assert.equal(i.extras.agent, exec);
+});
+
+test('agent runtime (spec 017): a paused agent skips the slot without an LLM call', async () => {
+  const runs: any[] = [];
+  const updates: any[] = [];
+  const runner = new EditorRunnerService({
+    loop: { run: async (i: any) => { runs.push(i); return { runId: 'r', status: 'ok' }; } },
+    registry: { forRole: () => [] as any },
+    skills: new SkillLibrary(),
+    runtime: { forChannel: async () => ({ agent: { handle: 'x_exec' } as any, orchestrator: { handle: 'x' } as any, skills: new SkillLibrary(), paused: true }) },
+    plans: { reservedSlots: async () => [], getSlot: async () => null, updateSlot: async (id: string, p: any) => { updates.push([id, p]); } },
+    memory: { listActive: async () => [] },
+    env: () => undefined, notify: async () => {}, now: () => NOW,
+  });
+  const r = await runner.runExecutor(slot, makeCard());
+  assert.equal(r.status, 'disabled');
+  assert.equal(runs.length, 0);
+  assert.equal(updates[0][1].status, 'skipped');
+  assert.match(updates[0][1].error, /@x is paused/);
+  assert.equal((await runner.runPlanner(makeCard())).status, 'disabled');
+  assert.equal(runs.length, 0);
+});
