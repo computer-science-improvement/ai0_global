@@ -1,7 +1,7 @@
 import type { Pool } from 'pg';
 import { z } from 'zod';
 import Parser from 'rss-parser';
-import { defineTool, EditorTool } from '../harness/tool';
+import { channelOf, defineTool, EditorTool, ToolContext } from '../harness/tool';
 import type { ReadonlyQueryService } from '../db/readonly-query.service';
 import type { SkillLibrary } from '../skills/skill-library';
 import { safeGet, RawGet } from '../net/safe-http';
@@ -20,15 +20,16 @@ export interface ReadToolDeps {
   today?:    () => { month: number; day: number };
 }
 
-const ALL_ROLES = ['planner', 'executor', 'reviewer'] as const;
+const ALL_ROLES = ['planner', 'executor', 'reviewer', 'composer'] as const;
 
 function kyivToday(): { month: number; day: number } {
   const parts = new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Kyiv', month: 'numeric', day: 'numeric' }).formatToParts(new Date());
   return { month: Number(parts.find((p) => p.type === 'month')!.value), day: Number(parts.find((p) => p.type === 'day')!.value) };
 }
 
-function requireChannel(channelKey: string | null): string {
-  if (!channelKey) throw new Error('this tool needs a channel context');
+function requireChannel(ctx: ToolContext): string {
+  const channelKey = channelOf(ctx);
+  if (!channelKey) throw new Error('this tool needs a channel context (in the chat: name the channel first, see list_my_channels)');
   return channelKey;
 }
 
@@ -44,7 +45,7 @@ export function buildReadTools(d: ReadToolDeps): EditorTool[] {
     kind: 'read', roles: [...ALL_ROLES],
     input: z.object({ days: z.number().int().min(1).max(90).default(14) }),
     execute: async ({ days }, ctx) => {
-      const ch = requireChannel(ctx.channelKey);
+      const ch = requireChannel(ctx);
       const [subs, posts, hours] = await Promise.all([
         d.pool.query(
           `SELECT (SELECT subscribers FROM channel_stats_snapshots WHERE channel_id = $1 ORDER BY captured_at DESC LIMIT 1) AS now,
@@ -81,7 +82,7 @@ export function buildReadTools(d: ReadToolDeps): EditorTool[] {
       const { rows } = await d.pool.query(
         `SELECT title, format, strategy_type, tags, source_url, posted_at, views, views_per_hour
            FROM editor_v_post_performance WHERE channel_id = $1 ORDER BY posted_at DESC LIMIT $2`,
-        [requireChannel(ctx.channelKey), limit]);
+        [requireChannel(ctx), limit]);
       return { posts: rows };
     },
   });
@@ -101,7 +102,7 @@ export function buildReadTools(d: ReadToolDeps): EditorTool[] {
            FROM editor_v_post_performance
           WHERE channel_id = $1 AND posted_at >= now() - ($2 || ' days')::interval
           ORDER BY ${metric} DESC NULLS LAST LIMIT $3`,
-        [requireChannel(ctx.channelKey), days, limit]);
+        [requireChannel(ctx), days, limit]);
       return { metric, posts: rows };
     },
   });
@@ -138,8 +139,9 @@ export function buildReadTools(d: ReadToolDeps): EditorTool[] {
         const { month, day } = today();
         where.push(t.today.replace('$M', p(month)).replace('$D', p(day)));
       }
-      if (!i.include_used && ctx.channelKey) {
-        where.push(`NOT EXISTS (SELECT 1 FROM published_posts pp WHERE pp.channel_id = ${p(ctx.channelKey)}
+      const channelKey = channelOf(ctx);
+      if (!i.include_used && channelKey) {
+        where.push(`NOT EXISTS (SELECT 1 FROM published_posts pp WHERE pp.channel_id = ${p(channelKey)}
                                AND pp.source_url = 'library://${i.table}/' || x.id::text)`);
       }
       const sql = `SELECT x.id, ${t.title} AS title, LEFT((${t.text})::text, 800) AS text,
@@ -191,10 +193,10 @@ export function buildReadTools(d: ReadToolDeps): EditorTool[] {
   const checkSimilarity = defineTool({
     name: 'check_similarity',
     description: 'Перевірити, чи чернетка не повторює нещодавні пости каналу (останні 60). score ≥ 0.6 — майже дубль, обери інший кут або тему.',
-    kind: 'read', roles: ['executor', 'planner'],
+    kind: 'read', roles: ['executor', 'planner', 'composer'],
     input: z.object({ text: z.string().min(1).max(8000) }),
     execute: async ({ text }, ctx) => {
-      const ch = requireChannel(ctx.channelKey);
+      const ch = requireChannel(ctx);
       const { rows } = await d.pool.query(
         `(SELECT COALESCE(rendered_preview, topic) AS text, updated_at AS at FROM editor_slots
            WHERE channel_key = $1 AND status IN ('published','shadowed') ORDER BY updated_at DESC LIMIT 60)

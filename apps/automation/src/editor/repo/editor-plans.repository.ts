@@ -339,9 +339,9 @@ export class EditorPlansRepository {
   }
 
   async insertPublication(i: {
-    channelKey: string; messageId: number; sourceUrl: string | null; title: string; tags: string[]; format: string; slotId: string;
-    /** 'editor' for agent posts, 'ad' for reserved sponsored posts. */
-    strategyType?: 'editor' | 'ad';
+    channelKey: string; messageId: number; sourceUrl: string | null; title: string; tags: string[]; format: string; slotId: string | null;
+    /** 'editor' for agent posts, 'ad' for reserved sponsored posts, 'chat' for posts from the editor chat (010). */
+    strategyType?: 'editor' | 'ad' | 'chat';
   }): Promise<number> {
     const { rows } = await this.pool.query(
       `INSERT INTO published_posts (channel_id, message_id, source_url, title, strategy_type, tags, format, editor_slot_id)

@@ -16,7 +16,7 @@ export function buildApiTools(d: ApiToolDeps): EditorTool[] {
       ...API_SOURCE_NAMES.map((n) => `• ${API_ADAPTERS[n].description}`),
       'Тексти здебільшого англійською — перекладай і переказуй своїми словами; url — це source.url для PostSpec.',
     ].join('\n'),
-    kind: 'read', roles: ['planner', 'executor', 'reviewer'],
+    kind: 'read', roles: ['planner', 'executor', 'reviewer', 'composer'],
     input: z.object({
       source: z.enum(API_SOURCE_NAMES),
       params: z.record(z.string(), z.unknown()).default({}).describe('Параметри джерела (див. опис); {} — типові'),

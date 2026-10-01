@@ -43,6 +43,15 @@ export function defineTool<S extends z.ZodType, O>(t: {
   return t as unknown as EditorTool<z.infer<S>, O>;
 }
 
+/**
+ * The channel a tool works on. Scheduled roles have a fixed ctx.channelKey; the
+ * chat composer (010) has none and works on the chat's current channel, kept in
+ * the mutable per-run ctx.extras.chat (save_draft switches it).
+ */
+export function channelOf(ctx: ToolContext): string | null {
+  return ctx.channelKey ?? ((ctx.extras?.chat as { channelKey?: string | null } | undefined)?.channelKey ?? null);
+}
+
 export function isToolError(v: unknown): v is ToolError {
   return !!v && typeof v === 'object' && typeof (v as any).error === 'string';
 }

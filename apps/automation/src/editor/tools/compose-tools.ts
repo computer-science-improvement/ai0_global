@@ -15,7 +15,7 @@ export interface ComposeToolDeps {
 /** The runner puts the channel card into ctx.extras.card for every run. */
 export function cardFrom(ctx: ToolContext): EditorCard {
   const card = ctx.extras?.card as EditorCard | undefined;
-  if (!card) throw new Error('no channel card in context');
+  if (!card) throw new Error('no channel card in context (in the chat: name the channel first, see list_my_channels)');
   return card;
 }
 
@@ -23,7 +23,7 @@ export function buildComposeTools(d: ComposeToolDeps = {}): EditorTool[] {
   const getChannelCard = defineTool({
     name: 'get_channel_card',
     description: 'Редакційна картка каналу: тематика, формати з вагами, словник хештегів, стиль посилань, футер, політика емодзі, джерела, ліміти, можливості Telegram.',
-    kind: 'read', roles: ['planner', 'executor', 'reviewer'],
+    kind: 'read', roles: ['planner', 'executor', 'reviewer', 'composer'],
     input: z.object({}),
     execute: async (_i, ctx) => cardSummary(cardFrom(ctx)),
   });
@@ -31,7 +31,7 @@ export function buildComposeTools(d: ComposeToolDeps = {}): EditorTool[] {
   const lint = defineTool({
     name: 'lint_post',
     description: 'Перевірити PostSpec за правилами каналу (формат, хештеги, атрибуція, довжина, мова, заборонені фрази, емодзі). Виправ усі errors перед publish_post.',
-    kind: 'read', roles: ['executor'],
+    kind: 'read', roles: ['executor', 'composer'],
     input: z.object({ spec: PostSpecSchema }),
     execute: async ({ spec }, ctx) => lintPost(spec, cardFrom(ctx)),
   });
@@ -39,7 +39,7 @@ export function buildComposeTools(d: ComposeToolDeps = {}): EditorTool[] {
   const preview = defineTool({
     name: 'preview_post',
     description: 'Показати, як PostSpec виглядатиме в Telegram після рендеру (HTML/текст), разом із результатом lint.',
-    kind: 'read', roles: ['executor'],
+    kind: 'read', roles: ['executor', 'composer'],
     input: z.object({ spec: PostSpecSchema }),
     execute: async ({ spec }, ctx) => {
       const card = cardFrom(ctx);
@@ -53,7 +53,7 @@ export function buildComposeTools(d: ComposeToolDeps = {}): EditorTool[] {
   const extractImages = defineTool({
     name: 'extract_images',
     description: 'Знайти зображення на сторінці (og:image і картинки зі статті). Використовуй лише зображення з джерела, яке цитуєш.',
-    kind: 'read', roles: ['executor'],
+    kind: 'read', roles: ['executor', 'composer'],
     input: z.object({ url: z.string().url() }),
     execute: async ({ url }) => {
       const res = await safeGet(url, { lookup: d.http?.lookup, get: d.http?.get });

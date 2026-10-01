@@ -1,6 +1,6 @@
 import type { Pool } from 'pg';
 import { z } from 'zod';
-import { defineTool, EditorTool, ToolContext } from '../harness/tool';
+import { channelOf, defineTool, EditorTool, ToolContext } from '../harness/tool';
 import { PostSpecSchema, PostSpec } from '../post/post-spec';
 import { lintPost } from '../post/lint-post';
 import { renderTelegram } from '../post/render-telegram';
@@ -11,7 +11,8 @@ import type { EditorPlansRepository } from '../repo/editor-plans.repository';
 import type { EditorMemoryRepository } from '../repo/editor-memory.repository';
 import type { EditorChannelsRepository } from '../repo/editor-channels.repository';
 import type { SendResult } from '../publish/telegram-editor.publisher';
-import { NEEDS_PREPARE, PreparedPublish } from '../publish/prepare-media';
+import type { PreparedPublish } from '../publish/prepare-media';
+import { publishSpecNow } from '../publish/publish-spec';
 import type { CrossPostRequest } from '../publish/editor-crosspost';
 import type { TgMessage } from '../post/render-telegram';
 import { cardFrom } from './compose-tools';
@@ -119,51 +120,28 @@ export function buildRoleTools(d: RoleToolDeps): EditorTool[] {
         return { ok: true, shadow: true, warnings: g.lint.warnings };
       }
 
-      // Live only, after every guard: the one place that uploads slides or creates Telegraph pages.
-      let prep: PreparedPublish = { prepared: {}, cleanup: async () => {} };
-      if (NEEDS_PREPARE.has(spec.format)) {
-        if (!d.media) return { error: 'format_unavailable', details: `${spec.format}: підготовка медіа не налаштована — обери інший формат` };
+      // Live only, after every guard (media stage, send, publication row, mirrors: publishSpecNow).
+      const res = await publishSpecNow(d, {
+        channelKey, spec, card, sourceRef: g.ref, mediaKey: slotId, slotId,
+        onPublished: async (p) => {
+          await d.plans.updateSlot(slotId, {
+            status: 'published', publishedPostId: p.postId, postSpec: spec, renderedPreview: p.preview,
+            error: p.partialError ? `partial: ${p.partialError}` : null,
+          });
+        },
+      });
+      if ('error' in res) return res;
+      if (res.mirrorWarnings.length) {
+        const partial = res.partialError ? `partial: ${res.partialError}` : null;
         try {
-          prep = await d.media.prepare(spec, { channelKey, slotId });
-        } catch (err: any) {
-          return { error: 'prepare_failed', details: `${spec.format}: ${err?.message ?? err} — обери інший формат або пропусти слот` };
-        }
+          await d.plans.updateSlot(slotId, { error: [partial, ...res.mirrorWarnings].filter(Boolean).join(' | ').slice(0, 2000) });
+        } catch { /* best-effort note on an already published slot */ }
       }
-      try {
-        const rendered = renderTelegram(spec, card, prep.prepared);
-        const sent = await d.publisher.send(channelKey, rendered.messages);
-        const messageId = sent.messageIds[rendered.primary] ?? sent.messageIds[0];
-        const postId = await d.plans.insertPublication({
-          channelKey, messageId, sourceUrl: g.ref, title: spec.title, tags: spec.hashtags, format: spec.format, slotId,
-        });
-        d.recordPublish(channelKey);
-        const partial = sent.partialError ? `partial: ${sent.partialError}` : null;
-        await d.plans.updateSlot(slotId, {
-          status: 'published', publishedPostId: postId, postSpec: spec, renderedPreview: rendered.preview, error: partial,
-        });
-
-        // Mirrors (spec 009 T003). The Telegram post is already out: a mirror failure is a warning on the slot, never an error.
-        let mirrorWarnings: string[] = [];
-        if (card.crosspost !== false && d.crosspost) {
-          try {
-            mirrorWarnings = await d.crosspost.fanOut({ channelKey, messageId, spec, card, prepared: prep.prepared });
-          } catch (err: any) {
-            mirrorWarnings = [`crosspost: ${err?.message ?? err}`];
-          }
-          if (mirrorWarnings.length) {
-            try {
-              await d.plans.updateSlot(slotId, { error: [partial, ...mirrorWarnings].filter(Boolean).join(' | ').slice(0, 2000) });
-            } catch { /* best-effort note on an already published slot */ }
-          }
-        }
-        return {
-          ok: true, shadow: false, message_id: messageId,
-          ...(sent.partialError ? { partial_error: sent.partialError } : {}),
-          ...(mirrorWarnings.length ? { crosspost_warnings: mirrorWarnings } : {}),
-        };
-      } finally {
-        await prep.cleanup();
-      }
+      return {
+        ok: true, shadow: false, message_id: res.messageId,
+        ...(res.partialError ? { partial_error: res.partialError } : {}),
+        ...(res.mirrorWarnings.length ? { crosspost_warnings: res.mirrorWarnings } : {}),
+      };
     },
   });
 
@@ -183,11 +161,12 @@ export function buildRoleTools(d: RoleToolDeps): EditorTool[] {
   const getMemory = defineTool({
     name: 'get_channel_memory',
     description: 'Памʼять каналу: правила власника і висновки рецензента (insight / rule / avoid), найсвіжіші першими.',
-    kind: 'read', roles: ['planner', 'executor', 'reviewer'],
+    kind: 'read', roles: ['planner', 'executor', 'reviewer', 'composer'],
     input: z.object({}),
     execute: async (_i, ctx) => {
-      if (!ctx.channelKey) return { error: 'no_channel' };
-      return { memory: await d.memory.listActive(ctx.channelKey) };
+      const channelKey = channelOf(ctx);
+      if (!channelKey) return { error: 'no_channel' };
+      return { memory: await d.memory.listActive(channelKey) };
     },
   });
 
