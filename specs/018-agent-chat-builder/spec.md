@@ -1,6 +1,6 @@
 # 018: Agent chat and builder: `@handle` routing, `@ai0` creates and changes agents, resource profiles
 
-**Status:** SPEC · **Depends on:** 010, 017 · **Design:** [../017-agent-platform/design.md](../017-agent-platform/design.md) ·
+**Status:** DONE (shadow-safe; owner verifies live) · **Depends on:** 010, 017 · **Design:** [../017-agent-platform/design.md](../017-agent-platform/design.md) ·
 **Migration:** `050_agent_chat.sql`
 
 ## Why
@@ -54,3 +54,16 @@ agent must start from a **description of its resource**, so that it knows what i
   card and profile rows exist in shadow mode.
 - Live evals (owner key): `builder-onboarding` (asks for missing fields and invents nothing) and `mention-explain`
   (answers from the run history).
+
+## Implementation status (2026-10-02)
+DONE, shadow-safe. Backend `agents/{mentions,builder-tools,agent-chat-tools,pending-actions,agent-creator,resource-catalog,resource-profile}.ts` and the `EditorChatService` routing; migration `050_agent_chat.sql`; dashboard chat `@` autocomplete, action cards and the Resource section.
+
+**Deviations:**
+- A new chat without a mention goes to the 010 composer, not to `@ai0`. This keeps "зроби пост…" working; `@ai0` answers only when it is mentioned.
+- A network agent is the orchestrator of the network's Telegram channel (see 020).
+- `resource_health` lives in `resource_profiles`.
+
+**Tests:**
+- unit: `agent-chat.test.ts`;
+- PG: `agent-builder.pg.test.ts`;
+- live evals: `builder-onboarding`, `mention-explain`.

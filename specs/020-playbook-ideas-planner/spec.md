@@ -1,6 +1,6 @@
 # 020: Playbook, series, idea pool, idea reviewer, network day planner
 
-**Status:** SPEC · **Depends on:** 017, 019 · **Design:** [../017-agent-platform/design.md](../017-agent-platform/design.md) ·
+**Status:** DONE (shadow-safe; owner verifies live) · **Depends on:** 017, 019 · **Design:** [../017-agent-platform/design.md](../017-agent-platform/design.md) ·
 **Migration:** `052_playbooks_ideas.sql`
 
 ## Why
@@ -54,3 +54,17 @@ An orchestrator must decide what goes where on its own:
   - `idea-review-duplicate` (rejects);
   - `idea-review-unverifiable` (rejects);
   - `network-plan-staggered` (variants on distinct resources, Telegram first, valid).
+
+## Implementation status (2026-10-02)
+DONE, shadow-safe. Backend `src/editor/network/*`; migration `052_playbooks_ideas.sql`; dashboard Playbook, Ideas and Plan tabs.
+
+**Deviations:**
+- An orchestrated network is run by the orchestrator of its Telegram channel. Its day plan is that channel's `editor_plans` row, and slots for other resources carry `resource_ref`. There is no `network_plans` table, so a network needs a Telegram channel.
+- The idea reviewer reviews pending playbooks with `review_playbook`.
+- Added rule: an idea taken into the plan must cover every variant whose resource still has room. Evals showed the planner otherwise drops platform variants.
+- Mirrors stop for orchestrated networks.
+
+**Tests:**
+- unit: `network.test.ts`;
+- PG e2e: `network.e2e.pg.test.ts` (brief → plan → shadow posts);
+- live evals: `playbook-from-brief`, `idea-review`, `network-plan-staggered`.

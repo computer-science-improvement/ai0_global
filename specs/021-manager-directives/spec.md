@@ -1,6 +1,6 @@
 # 021: MANAGER and directives: KPI digest, `@manager`, directive lifecycle, owner cards, effect evaluation
 
-**Status:** SPEC · **Depends on:** 017, 019, 020 · **Design:** [../017-agent-platform/design.md](../017-agent-platform/design.md) ·
+**Status:** DONE (shadow-safe; owner verifies live) · **Depends on:** 017, 019, 020 · **Design:** [../017-agent-platform/design.md](../017-agent-platform/design.md) ·
 **Migration:** `053_directives.sql`
 
 ## Why
@@ -46,3 +46,18 @@ tasks, not micromanagement. **"Continue as before" is a first-class answer.**
 - **Simulation:** 14 synthetic days with noise. The manager files at most 1 directive per 3 days on a stable network
   (no flapping) and reacts within 1 day to a 30% drop.
 - Live evals: `manager-stable-continue`, `manager-drop-directive` and `manager-cross-promo-structural`.
+
+## Implementation status (2026-10-02)
+DONE. `@manager` starts in mode `off`; switch it to shadow, then live. Backend `src/editor/manager/*`; migration `053_directives.sql`.
+
+**Deviations:**
+- **Anomaly rule.** An anomaly is (|z| ≥ 2 **and** |Δ| ≥ 10 %) or Δ ≤ −25 %. Without the effect-size floor, noise was flagged.
+- **Detection speed.** With 7-day windows, a sustained 30 % drop is flagged within ≤ 4 days, not 1. The simulation test documents this.
+- **Delivery.** Directives reach orchestrators through their prompt, with debounced event runs.
+- **Manager memory.** It lives in `agent_memory`.
+- **Effect evaluation.** It compares 7-day KPI windows: the window at applying vs the window at the review date.
+
+**Tests:**
+- unit: `manager.test.ts`, including the simulation;
+- PG: `manager.pg.test.ts`;
+- live evals: `manager-stable-continue`, `manager-drop-directive`.

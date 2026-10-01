@@ -1,6 +1,6 @@
 # 017: Agent registry: named agents, agent pages, DB skills with versions and self-edit
 
-**Status:** SPEC · **Depends on:** 003–010 · **Design:** [design.md](design.md) · **Migration:** `049_agents.sql`
+**Status:** DONE (shadow-safe; owner verifies live) · **Depends on:** 003–010 · **Design:** [design.md](design.md) · **Migration:** `049_agents.sql`
 
 ## Why
 Today an "agent" is implicit: a channel card plus three roles. The owner wants to see every agent as an entity:
@@ -62,3 +62,17 @@ This spec is the foundation for 018–022.
 - A PG test for the migration and the backfill on the scratch DB.
 - The dashboard builds and is checked in a browser against the mock API, including at 375 px.
 - No behaviour change for existing channels: all editor tests and the existing evals pass unchanged.
+
+## Implementation status (2026-10-02)
+DONE, shadow-safe; the owner verifies it live. Backend `src/editor/agents/*`, migration `049_agents.sql`, dashboard `/app/agents`.
+
+**Deviations:**
+- The backfill runs in code (`AgentRegistrySync`, at boot and hourly) instead of in the migration. Code handles handle collisions and also covers cards created later. The migration seeds only `@manager` and `@ai0`.
+- The handle aliases table and an owner inbox (`agent_inbox`) were added in 049. The inbox stands in for spec 012's bot cards until 012 exists.
+- New skills are created with `PUT /api/agents/:handle/skills/:name`; there is no separate POST.
+- Role children inherit their orchestrator's skills and toggles.
+- The self-edit KPI is views per post of the scope's Telegram channels (`TelegramScopeKpi`). Spec 021's digest is richer.
+
+**Tests:**
+- unit: `agents-core.test.ts`, runner and budget tests;
+- PG: `agents.pg.test.ts`.

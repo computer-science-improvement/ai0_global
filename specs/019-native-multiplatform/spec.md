@@ -1,6 +1,6 @@
 # 019: Native multi-platform publishing: capability matrix, per-platform variants and executors, platform stats
 
-**Status:** SPEC · **Depends on:** 009, 017 (019b also needs 016) · **Design:** [../017-agent-platform/design.md](../017-agent-platform/design.md)
+**Status:** DONE (019b pending 016) · **Depends on:** 009, 017 (019b also needs 016) · **Design:** [../017-agent-platform/design.md](../017-agent-platform/design.md)
 · **Migration:** `051_platform_posts.sql`
 
 ## Why
@@ -56,3 +56,16 @@ need native per-platform posts, decided by agents and validated by code.
 - PG tests: the migration and the `network_posts` view.
 - Eval: `platform-native-variants`. One idea is turned into Instagram carousel, Threads text and TikTok photo variants
   that pass lint and are not copies of each other (similarity below 0.6).
+
+## Implementation status (2026-10-02)
+019 DONE, shadow-safe. **019b is not implemented** because it depends on 016. Backend `src/editor/platform/*`; migration `051_platform_posts.sql`; TikTok joins account groups (`tiktok_accounts.group_id`) and the fan-out routes TikTok members to the TikTok publisher.
+
+**Deviations and limits:**
+- Per-post TikTok metrics are not collected; only TikTok followers are.
+- The Instagram first comment is best effort.
+- `editor_ro` cannot read `youtube_accounts`.
+
+**Tests:**
+- unit: `platform.test.ts` and the fan-out and runner tests;
+- PG: `platform.pg.test.ts`;
+- live eval: `platform-native-variant`.

@@ -1,6 +1,6 @@
 # 022: Network cross-promo and reposts between own resources, tracked links, transitions KPI
 
-**Status:** SPEC · **Depends on:** 019, 020, 021 · **Design:** [../017-agent-platform/design.md](../017-agent-platform/design.md) ·
+**Status:** DONE (shadow-safe; owner verifies live) · **Depends on:** 019, 020, 021 · **Design:** [../017-agent-platform/design.md](../017-agent-platform/design.md) ·
 **Migration:** `054_network_promo.sql`
 
 ## Why
@@ -43,3 +43,16 @@ people's channels is 014 (the deal agent). This spec covers **our own resources*
   publishes in shadow with the tracked link → simulated joins → the evaluator marks `worked`.
 - Live eval: `manager-cross-promo-relevance`. An irrelevant pair is refused with a reason; a relevant pair leads to a
   directive with an `expected` value.
+
+## Implementation status (2026-10-02)
+DONE, shadow-safe. Backend `src/editor/promo/*` and the admin bot's `chat_member` updates; migration `054_network_promo.sql`; redirect `/r/:code`, added to nginx and the vite proxy.
+
+**Deviations and limits:**
+- **Relevance** is a deterministic topic overlap of the two resource profiles (1–5), not an LLM call.
+- **Invite links** are created only when both the agent and the card are live; shadow uses the public link.
+- **Joins** are counted only for channels administered by `TELEGRAM_BOT_TOKEN`. The MTProto fallback is not implemented, so joins on other channels are unknown.
+- **Instagram bio** links are not changed automatically.
+
+**Tests:**
+- unit: `promo.test.ts`;
+- PG: `promo.pg.test.ts`.

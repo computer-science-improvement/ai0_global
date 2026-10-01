@@ -20,7 +20,7 @@ export default defineConfig({
     // ("Cannot GET /strategies"). Each bare-root controller the dashboard calls
     // needs its own entry — and the SAME entry in nginx.conf (prod).
     proxy: Object.fromEntries(
-      ['/api', '/auth', '/tracking', '/activity', '/scheduled-posts', '/settings', '/stats'].map(
+      ['/api', '/auth', '/tracking', '/activity', '/scheduled-posts', '/settings', '/stats', '/r/'].map(
         (prefix) => [prefix, { target: 'http://localhost:3000', changeOrigin: true }],
       ),
     ),
