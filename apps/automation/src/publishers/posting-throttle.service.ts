@@ -118,10 +118,12 @@ export class PostingThrottleService {
     return Math.max(0, this.cooldownMs() - (Date.now() - last));
   }
 
-  logCooldown(strategyId: string, channelId: string): void {
+  /** Debug-log why a tryLock() was refused; returns that reason. */
+  logCooldown(strategyId: string, channelId: string): string {
     const remaining = Math.ceil(this.remainingMs(channelId) / 1000 / 60);
     const locked = this.isLocked(channelId);
     const reason = locked ? 'in-flight strategy' : `${remaining}min cooldown`;
     this.logger.debug(`[${strategyId}] Skipped — ${reason} on ${channelId}`);
+    return reason;
   }
 }

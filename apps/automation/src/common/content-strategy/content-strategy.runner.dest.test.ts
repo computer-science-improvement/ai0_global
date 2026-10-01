@@ -2,6 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { ContentStrategyRunner } from './content-strategy.runner';
 import type { PublishDestination } from './publish-destination';
+import { isRunSkippedError } from '../../publishers/errors';
 
 function makeThrottle() {
   const calls: { lock: string[]; release: string[] } = { lock: [], release: [] };
@@ -68,11 +69,23 @@ test('meta destination: a throwing execute propagates so the run is recorded as 
   assert.deepEqual(throttle.calls.release, ['meta:a']);
 });
 
-test('telegram destination: a throwing execute is swallowed (run stays ok)', async () => {
+test('telegram destination: a throwing execute propagates so the run is recorded as error', async () => {
   const throttle = makeThrottle();
   const r = runner(throttle);
   const strategy: any = { type: 'recipes', execute: async () => { throw new Error('boom'); } };
-  // Must NOT reject — Telegram strategies own their error handling.
-  await r.run(strategy, '@ch', {}, 'recipes-tg');
+  await assert.rejects(() => r.run(strategy, '@ch', {}, 'recipes-tg'), /boom/);
+  // Lock is still released (finally) before the error propagates.
   assert.deepEqual(throttle.calls.release, ['@ch']);
+});
+
+test('cooldown / in-flight lock: run rejects with RunSkippedError (recorded as skipped, not ok)', async () => {
+  const throttle = { ...makeThrottle(), tryLock: () => false };
+  const r = runner(throttle);
+  let executed = false;
+  const strategy: any = { type: 'recipes', execute: async () => { executed = true; } };
+  await assert.rejects(
+    () => r.run(strategy, '@ch', {}, 'recipes-tg'),
+    (err: unknown) => isRunSkippedError(err) && /cooldown|in-flight/.test((err as Error).message),
+  );
+  assert.equal(executed, false);
 });

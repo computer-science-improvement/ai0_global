@@ -7,6 +7,7 @@ import { TelegramNotifier }       from '../../publishers/telegram-notifier.servi
 import { PostingThrottleService } from '../../publishers/posting-throttle.service';
 import { CrossPostService }       from '../../publishers/cross-post.service';
 import { PublicationsRepository } from '../../stats/publications.repository';
+import { RunSkippedError, isChannelPausedError } from '../../publishers/errors';
 import {
   ContentStrategy,
   StrategyParams,
@@ -49,8 +50,10 @@ export class ContentStrategyRunner {
     // on every skip/error path so the next cron tick can immediately retry
     // without bumping the 20-min cooldown timestamp.
     if (!this.throttle.tryLock(lockKey)) {
-      this.throttle.logCooldown(strategyId, lockKey);
-      return;
+      const reason = this.throttle.logCooldown(strategyId, lockKey) ?? 'posting cooldown / in-flight lock';
+      // Not a silent return: the scheduler records this tick as 'skipped'
+      // (not 'ok') so the run log says what actually happened.
+      throw new RunSkippedError(`Skipped — ${reason} on ${lockKey}`);
     }
 
     this.logger.log(`${tag} Starting`);
@@ -66,12 +69,11 @@ export class ContentStrategyRunner {
         await strategy.execute(channelId, params, dest);
       } catch (err: any) {
         this.logger.error(`${tag} Strategy execute failed: ${err.message}`);
-        // Telegram strategies own their error handling and stay non-throwing,
-        // so a failed publish doesn't error the whole run. A Meta destination
-        // has no such internal recovery path — surface the failure so the
-        // scheduler records the run as an error (visible in the activity log
-        // + the Errors stat). The finally below still releases the lock first.
-        if (dest && dest.platform !== 'telegram') throw err;
+        // Surface every escaped error (Telegram and Meta alike) so the
+        // scheduler records the run as an error — not 'ok' — in strategy_runs.
+        // Strategies still handle their own expected failures internally; this
+        // is only what escapes them. The finally below releases the lock first.
+        throw err;
       } finally {
         // tryLock() invariant: we got here only because canPublish() was
         // true (no prior publish in the window). If the strategy published
@@ -219,7 +221,13 @@ export class ContentStrategyRunner {
       });
     } catch (err) {
       this.logger.error(`${tag} Publish failed: ${err.message}`);
-      await this.notifier.notifyFailed(channelId, err.message, post.sourceUrl);
+      // A paused channel is an expected skip, not a failure worth a DM.
+      if (!isChannelPausedError(err)) {
+        await this.notifier.notifyFailed(channelId, err.message, post.sourceUrl);
+      }
+      // Rethrow so strategy_runs records 'error' (or 'skipped' when paused)
+      // instead of 'ok'. The caller's finally still releases the lock.
+      throw err;
     }
   }
 }

@@ -10,7 +10,7 @@ import { DestinationResolver } from '../common/content-strategy/destination-reso
 import { RunTracer } from '../common/observability/run-tracer.service';
 import { CONFIG_CHANGED_CHANNEL, ConfigChangedEvent } from '../config/config-events.types';
 import { REDIS_CLIENT } from '../tracking/redis.provider';
-import { isChannelPausedError } from '../publishers/errors';
+import { runOutcomeForError } from '../publishers/errors';
 import { withTimeout } from '../common/with-timeout';
 
 /**
@@ -243,10 +243,11 @@ export class SchedulerService implements OnApplicationBootstrap, OnModuleDestroy
             }
           } catch (err: any) {
             const desc = this.tracer.describeError(err);
-            // A paused channel is an expected "do nothing" — record as
-            // 'skipped' rather than 'error' so the run log stays clean and the
-            // last-run chip on /strategies shows yellow not red.
-            if (isChannelPausedError(err)) {
+            // A paused channel or a cooldown/in-flight lock is an expected
+            // "do nothing" — record as 'skipped' rather than 'error' so the run
+            // log stays clean and the last-run chip on /strategies shows
+            // yellow not red.
+            if (runOutcomeForError(err) === 'skipped') {
               this.logger.log(`${name} skipped: ${desc}`);
               if (runId) {
                 await this.runsRepo.finishSkipped(runId, desc, this.tracer.steps()).catch(e =>

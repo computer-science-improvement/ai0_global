@@ -2,6 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { ContentStrategyRunner } from './content-strategy.runner';
 import { PostingThrottleService } from '../../publishers/posting-throttle.service';
+import { ChannelPausedError, isChannelPausedError } from '../../publishers/errors';
 
 /** Real throttle (no settings → 20-min default cooldown) so lock state is observable. */
 function throttle() {
@@ -86,4 +87,23 @@ test('generic path: a successful publish keeps the cooldown (lock not re-opened)
   await runner(d, t).run(strategy(), '@c', {}, 's1');
   assert.equal(t.canPublish('@c'), false, 'cooldown active after publish');
   assert.ok(t.remainingMs('@c') > 0);
+});
+
+test('generic path: a failed publish is notified, then rethrown so the run is recorded as error', async () => {
+  const t = throttle();
+  const { d, calls } = deps({
+    telegram: { publish: async () => { throw new Error('Bad Request: chat not found'); }, publishPrompt: async () => '1' },
+  });
+  await assert.rejects(() => runner(d, t).run(strategy(), '@c', {}, 's1'), /chat not found/);
+  assert.equal(calls.notifyFailed.length, 1);
+  assert.equal(t.canPublish('@c'), true);
+});
+
+test('generic path: a paused channel rethrows ChannelPausedError without a failure notification', async () => {
+  const t = throttle();
+  const { d, calls } = deps({
+    telegram: { publish: async () => { throw new ChannelPausedError('@c'); }, publishPrompt: async () => '1' },
+  });
+  await assert.rejects(() => runner(d, t).run(strategy(), '@c', {}, 's1'), (e: unknown) => isChannelPausedError(e));
+  assert.equal(calls.notifyFailed.length, 0);
 });
