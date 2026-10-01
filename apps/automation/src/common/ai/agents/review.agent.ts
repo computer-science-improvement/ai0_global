@@ -3,8 +3,12 @@ import { ClaudeAgent } from './claude.agent';
 import { Skill } from '../skills/skill.interface';
 import { REVIEW_SKILL } from '../skills/review.skill';
 import { buildPrompt } from '../prompt-builder';
+import { cleanFinalText } from '../post-generation.helpers';
+import { validatePost } from '../validators/post.validator';
 
 const REVIEW_MODEL = 'claude-sonnet-4-6';
+/** Ukrainian posts run ~2–3 chars/token; 2048 covers the 4096-char Telegram max. */
+const REVIEW_MAX_TOKENS = 2048;
 
 const REVIEW_BASE = `ROLE: You are a Ukrainian text proofreader for a Telegram channel.
 Apply the rules below. Return the corrected post and nothing else.`;
@@ -27,12 +31,12 @@ export class ReviewAgent {
     const prompt = buildPrompt(REVIEW_BASE, [REVIEW_SKILL, ...skills]);
     this.logger.debug(`Review skills: [${prompt.appliedSkills.join(', ')}]`);
 
-    const result = await this.claude.chat(
+    const { text: result, stopReason } = await this.claude.chatWithMeta(
       [
         { role: 'system', content: prompt.system },
         { role: 'user',   content: text },
       ],
-      { model: REVIEW_MODEL, maxTokens: 1024 },
+      { model: REVIEW_MODEL, maxTokens: REVIEW_MAX_TOKENS },
     );
 
     if (!result) {
@@ -40,12 +44,23 @@ export class ReviewAgent {
       return text;
     }
 
-    // Guard: reviewer must never return SKIP_POST or garbage
-    if (result.trim() === 'SKIP_POST' || result.trim().length < 20) {
-      this.logger.warn('Review returned invalid text — using original');
+    // A review cut off at the token cap is a truncated post — publishing it
+    // would silently drop the ending. Keep the (already valid) draft instead.
+    if (stopReason === 'max_tokens') {
+      this.logger.warn(`Review truncated (stop_reason=max_tokens, cap ${REVIEW_MAX_TOKENS}) — using original`);
       return text;
     }
 
-    return result;
+    // Same cleanup + validation the generation path applies: strip preambles /
+    // stray markdown, then reject refusals, meta-commentary, SKIP_POST, empty
+    // or too-short/too-long output. The reviewer may only ever improve a draft.
+    const cleaned = cleanFinalText(result);
+    const verdict = validatePost(cleaned);
+    if (!verdict.valid) {
+      this.logger.warn(`Review output rejected (${verdict.reason}) — using original`);
+      return text;
+    }
+
+    return cleaned;
   }
 }

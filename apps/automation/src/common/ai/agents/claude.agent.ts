@@ -30,9 +30,21 @@ export class ClaudeAgent implements OnModuleInit {
   }
 
   async chat(messages: AiChatMessage[], options?: AiChatOptions): Promise<string | null> {
+    return (await this.chatWithMeta(messages, options)).text;
+  }
+
+  /**
+   * chat() plus the model's stop_reason ('end_turn' | 'max_tokens' | …), so a
+   * caller can tell a complete answer from one cut off at the token cap.
+   * `text` is null on failure / inactive agent (stopReason null then).
+   */
+  async chatWithMeta(
+    messages: AiChatMessage[],
+    options?: AiChatOptions,
+  ): Promise<{ text: string | null; stopReason: string | null }> {
     if (!this.client) {
       this.logger.warn('Claude agent inactive');
-      return null;
+      return { text: null, stopReason: null };
     }
 
     const model  = options?.model ?? this.defaultModel;
@@ -57,11 +69,11 @@ export class ClaudeAgent implements OnModuleInit {
       const block  = res.content[0];
       const output = block.type === 'text' ? block.text : null;
       await this.aiLogger.log({ agent: 'claude', model, status: 'success', input: messages, output, durationMs: Date.now() - start });
-      return output;
+      return { text: output, stopReason: res.stop_reason ?? null };
     } catch (err) {
       this.logger.error(`Chat failed: ${err.message}`);
       await this.aiLogger.log({ agent: 'claude', model, status: 'error', input: messages, error: err.message, durationMs: Date.now() - start });
-      return null;
+      return { text: null, stopReason: null };
     }
   }
 }
