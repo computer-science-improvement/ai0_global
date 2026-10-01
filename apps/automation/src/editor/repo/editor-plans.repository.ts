@@ -327,6 +327,14 @@ export class EditorPlansRepository {
     return rows.length > 0;
   }
 
+  /** Chat dedup (spec 010): was this source URL / library_ref published to the channel since `since`? */
+  async sourcePostedSince(channelKey: string, sourceUrl: string, since: Date): Promise<boolean> {
+    const { rows } = await this.pool.query(
+      `SELECT 1 FROM published_posts WHERE channel_id = $1 AND source_url = $2 AND posted_at >= $3 LIMIT 1`,
+      [channelKey, sourceUrl, since]);
+    return rows.length > 0;
+  }
+
   async recentTexts(channelKey: string): Promise<string[]> {
     const { rows } = await this.pool.query(
       `(SELECT COALESCE(rendered_preview, topic) AS text FROM editor_slots

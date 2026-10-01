@@ -52,6 +52,26 @@ export class EditorChannelsRepository {
     return rows.map(rowToCard);
   }
 
+  /**
+   * Create a card only when the channel has none (the chat's minimal card, spec
+   * 010). Never touches an existing card. Returns true when a row was inserted.
+   */
+  async insertIfMissing(c: EditorCard): Promise<boolean> {
+    const { rowCount } = await this.pool.query(
+      `INSERT INTO editor_channels (
+         channel_key, mode, title, language, timezone, posts_per_day_min, posts_per_day_max,
+         quiet_start_hour, quiet_end_hour, min_gap_minutes, plan_hour, brief, formats, hashtags,
+         hashtag_min, hashtag_max, footer, link_style, emoji_policy, skills, sources, tools_allow,
+         explore_ratio, daily_budget_usd, models, banned_terms, crosspost)
+       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20,$21,$22,$23,$24,$25,$26,$27)
+       ON CONFLICT (channel_key) DO NOTHING`,
+      [c.channelKey, c.mode, c.title, c.language, c.timezone, c.postsPerDayMin, c.postsPerDayMax,
+        c.quietStartHour, c.quietEndHour, c.minGapMinutes, c.planHour, c.brief, JSON.stringify(c.formats), c.hashtags,
+        c.hashtagMin, c.hashtagMax, c.footer, c.linkStyle, c.emojiPolicy, c.skills, JSON.stringify(c.sources), c.toolsAllow,
+        c.exploreRatio, c.dailyBudgetUsd, JSON.stringify(c.models), c.bannedTerms, c.crosspost ?? true]);
+    return (rowCount ?? 0) > 0;
+  }
+
   /** Reviewer-bounded write: only weights of formats already present in the card, clamped to 0.05..1. */
   async setFormatWeights(channelKey: string, weights: Record<string, number>): Promise<Record<string, number> | null> {
     const card = await this.get(channelKey);

@@ -53,13 +53,18 @@ export class SponsoredPublisher {
     const slots = await this.d.plans.claimDueReserved(now, RESERVED_CLAIM_BATCH);
     let published = 0;
     for (const slot of slots) {
-      try {
-        if (await this.publishSlot(slot, now)) published++;
-      } catch (err: any) {
-        await this.fail(slot, `crashed: ${err?.message ?? err}`);
-      }
+      if (await this.publishClaimed(slot, now)) published++;
     }
     return published;
+  }
+
+  /** Publish one already-claimed (running) reserved slot through the ad path. Never throws. */
+  async publishClaimed(slot: EditorSlot, now: Date): Promise<boolean> {
+    try {
+      return await this.publishSlot(slot, now);
+    } catch (err: any) {
+      return this.fail(slot, `crashed: ${err?.message ?? err}`);
+    }
   }
 
   private async publishSlot(slot: EditorSlot, now: Date): Promise<boolean> {
