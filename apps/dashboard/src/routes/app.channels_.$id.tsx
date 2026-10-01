@@ -347,7 +347,7 @@ function StatStrip({
         icon="calendar"
         value={
           nextRunAt
-            ? <span className="text-body-sm tabular-nums" style={{ color: 'var(--color-accent)', fontWeight: 600 }} title={new Date(nextRunAt).toLocaleString()}>
+            ? <span className="text-body-sm tabular-nums" style={{ color: 'var(--color-accent)', fontWeight: 600 }} title={fmtDate(nextRunAt)}>
                 {formatRelativeFuture(nextRunAt)}
               </span>
             : <span className="text-body-sm" style={{ color: 'var(--color-ink-dim)' }}>paused</span>
@@ -502,7 +502,7 @@ function StrategyTableRow({
       </td>
       <td>
         {s.enabled && s.next_run_at
-          ? <span className="text-body-sm" style={{ color: 'var(--color-ink)', fontVariantNumeric: 'tabular-nums' }} title={new Date(s.next_run_at).toLocaleString()}>
+          ? <span className="text-body-sm" style={{ color: 'var(--color-ink)', fontVariantNumeric: 'tabular-nums' }} title={fmtDate(s.next_run_at)}>
               {formatRelativeFuture(s.next_run_at)}
             </span>
           : <span className="text-body-sm" style={{ color: 'var(--color-ink-dim)' }}>—</span>}

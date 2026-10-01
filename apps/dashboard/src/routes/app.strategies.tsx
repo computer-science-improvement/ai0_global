@@ -17,6 +17,7 @@ import {
   STRATEGY_STATUS_HELP, RUN_STATUS_HELP, STRATEGY_ROLE_HELP, describeStrategy, SOURCE_KIND_LABEL,
 } from '../lib/labels';
 import type { Strategy, StrategyRunSummary, PreviewItem } from '../api/types';
+import { fmtDate } from '../lib/format';
 
 export const Route = createFileRoute('/app/strategies')({ component: StrategiesPage });
 
@@ -459,7 +460,7 @@ function RunsPanel({ strategyId }: { strategyId: string }) {
                 {r.duration_ms ? `${(r.duration_ms / 1000).toFixed(1)}s` : '—'}
               </span>
               <span style={{ color: r.error ? 'var(--color-danger)' : 'var(--color-ink-dim)', minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                {r.error ?? new Date(r.started_at).toLocaleString()}
+                {r.error ?? fmtDate(r.started_at)}
               </span>
             </div>
           ))}

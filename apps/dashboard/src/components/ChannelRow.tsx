@@ -1,6 +1,6 @@
 import { Link } from '@tanstack/react-router';
 import { useState } from 'react';
-import { fmtNumber, fmtRelative } from '../lib/format';
+import { fmtNumber, fmtRelative, fmtDate } from '../lib/format';
 import { Icon } from './Icon';
 import { Badge } from './ui/Badge';
 import { EditChannelModal } from './EditChannelModal';
@@ -116,7 +116,7 @@ export function ChannelRow({ c, lowContentIds, onDelete }: {
               className="text-body-sm"
               style={{ color: 'var(--color-ink-muted)' }}
               title={c.lastPolledAt
-                ? `Last polled: ${new Date(c.lastPolledAt).toLocaleString()}`
+                ? `Last polled: ${fmtDate(c.lastPolledAt)}`
                 : 'Never polled — the tracker hasn’t fetched stats for this channel yet.'}
             >
               {fmtRelative(c.lastPolledAt)}

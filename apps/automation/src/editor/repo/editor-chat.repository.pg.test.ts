@@ -33,7 +33,7 @@ after(async () => {
 test('chats, messages and drafts round-trip; deleting a chat keeps its drafts', { skip }, async () => {
   const repo = new EditorChatRepository(pool);
   const chat = await repo.createChat();
-  assert.equal(chat.title, 'Новий чат');
+  assert.equal(chat.title, 'New chat');
   await repo.touchChat(chat.id, 'Перше повідомлення');
   await repo.touchChat(chat.id, 'Друге');
   assert.equal((await repo.getChat(chat.id))!.title, 'Перше повідомлення', 'the title is set once');

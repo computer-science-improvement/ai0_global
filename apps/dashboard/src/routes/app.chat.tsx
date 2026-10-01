@@ -84,7 +84,9 @@ function ChatPage() {
   useEffect(() => { endRef.current?.scrollIntoView({ block: 'end' }); }, [shown.length, live?.activities.length, live?.text, chatId]);
   useEffect(() => () => abortRef.current?.abort(), []);
 
+  const gotReplyRef = useRef(false);
   const onEvent = (e: EditorChatEvent) => {
+    if (e.type === 'message' || e.type === 'error') gotReplyRef.current = true;
     if (e.type === 'tool_call') {
       const a: ToolActivity = { id: activitiesRef.current.length + 1, name: e.name, args: e.args };
       activitiesRef.current = [...activitiesRef.current, a];
@@ -97,7 +99,7 @@ function ChatPage() {
       const acts = activitiesRef.current;
       if (acts.length) setActivityByMsg((m) => ({ ...m, [e.message.id]: acts }));
     } else if (e.type === 'error') {
-      toast.error(`Агент: ${e.error}`);
+      toast.error(`Agent: ${e.error}`);
     }
     setLive((t) => {
       if (!t) return t;
@@ -114,9 +116,13 @@ function ChatPage() {
     try {
       if (!id) {
         id = (await createChat.mutateAsync()).id;
+        if (!id) throw new Error('the server did not return a chat id');
         navigate({ search: { c: id } });
       }
-    } catch { return; }
+    } catch (err: any) {
+      toast.error(`Could not start a chat: ${describeError(err)}`);
+      return;
+    }
     const first = !id || !messages.length || id !== chatId;
     const full = first && channel && !text.includes(channel) ? `Канал: ${channel}\n${text}` : text;
     setInput('');
@@ -124,13 +130,21 @@ function ChatPage() {
     setLive({ userText: full, activities: [], text: '', drafts: {}, base: id === chatId ? messages.length : 0 });
     const ctrl = new AbortController();
     abortRef.current = ctrl;
+    gotReplyRef.current = false;
     try {
       await streamChatMessage(id, { text: full, channel: channel || null }, onEvent, ctrl.signal);
+      // The stream closed without a reply or an error (server restarted mid-run, proxy cut it…):
+      // never let the user's text vanish silently.
+      if (!gotReplyRef.current) {
+        setInput(text);
+        toast.error('No reply from the agent — your message is back in the box, try again.');
+      }
     } catch (err: any) {
       if (ctrl.signal.aborted) {
-        toast.success('Зупинено. Агент може дописати відповідь у фоні — вона зʼявиться в чаті.');
+        toast.success('Stopped. The agent may still finish in the background — its reply will appear here.');
         setTimeout(() => invalidate(), 15_000);
       } else {
+        setInput(text);
         toast.error(describeError(err));
       }
     } finally {
@@ -169,22 +183,22 @@ function ChatPage() {
             </button>
           )}
           <h1 className="text-subhead" style={{ margin: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-            {chat.data?.chat.title ?? 'Новий чат'}
+            {chat.data?.chat?.title ?? 'New chat'}
           </h1>
-          {live && <span className="text-micro" style={{ color: 'var(--color-ink-muted)', marginLeft: 'auto' }}>агент працює…</span>}
+          {live && <span className="text-micro" style={{ color: 'var(--color-ink-muted)', marginLeft: 'auto' }}>agent is working…</span>}
         </div>
 
         <div style={{ flex: 1, overflowY: 'auto', padding: '16px 2px' }}>
-          {chat.data && !chat.data.enabled && (
+          {chat.data?.enabled === false && (
             <div className="callout-warning" style={{ marginBottom: 12 }}>
-              <Icon name="warning" size={16} /><span>Чат вимкнено: на сервері не задано <code>OPENROUTER_API_KEY</code>.</span>
+              <Icon name="warning" size={16} /><span>Chat is disabled: <code>OPENROUTER_API_KEY</code> is not set on the server.</span>
             </div>
           )}
           {chat.error && <div className="callout-danger">{describeError(chat.error)}</div>}
 
           {!shown.length && !live && (
-            <EmptyState icon="chat" title="Про що пишемо?"
-              note="Назви канал і тему. Агент дослідить джерела, збереже чернетку й покаже превʼю. Публікує чи планує лише коли ти прямо попросиш або натиснеш кнопку."
+            <EmptyState icon="chat" title="What are we writing?"
+              note="Name a channel and a topic. The agent researches sources, saves a draft and shows a preview. It publishes or schedules only when you ask explicitly or press a button. Write to it in Ukrainian."
               action={
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, justifyContent: 'center' }}>
                   {EXAMPLES.map((x) => <button key={x} className="btn-tiny" onClick={() => setInput(x)}>{x}</button>)}
@@ -264,7 +278,7 @@ function Message({ m, drafts, lastMention, activities }: {
               ? <DraftCard key={id} draft={drafts[id]} />
               : (
                 <span key={id} className="text-micro" style={{ color: 'var(--color-ink-dim)', display: 'inline-flex', alignItems: 'center', gap: 4 }}>
-                  <Icon name="pencil" size={11} /> чернетка «{drafts[id].spec.title ?? id.slice(0, 8)}» — оновлена версія нижче
+                  <Icon name="pencil" size={11} /> draft “{drafts[id].spec.title ?? id.slice(0, 8)}” — updated version below
                 </span>
               )))}
           </div>
@@ -296,30 +310,30 @@ function Composer({ value, onChange, onSend, onStop, busy, channel, onChannel, d
   return (
     <div className="panel" style={{ padding: 10, marginTop: 6 }}>
       <textarea ref={ref} value={value} onChange={(e) => onChange(e.target.value)} onKeyDown={onKey} rows={2} disabled={disabled}
-        placeholder="Напиши, який пост зробити… Enter — надіслати, Shift+Enter — новий рядок"
+        placeholder="Describe the post you want… Enter to send, Shift+Enter for a new line"
         className="text-body-sm"
         style={{ width: '100%', resize: 'none', border: 'none', outline: 'none', background: 'transparent', color: 'var(--color-ink)', lineHeight: 1.5, padding: '4px 4px 8px' }} />
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
         <select className="input-field" value={channel} onChange={(e) => onChannel(e.target.value)} disabled={busy}
           style={{ padding: '5px 10px', fontSize: 13, maxWidth: 240 }} aria-label="Channel">
-          <option value="">Канал: агент запитає</option>
+          <option value="">Channel: agent will ask</option>
           {(channels.data ?? []).map((c) => (
             <option key={c.channelKey} value={c.channelKey}>
-              {c.channelKey}{c.title ? ` · ${c.title}` : ''}{c.hasCard ? '' : ' (без картки)'}
+              {c.channelKey}{c.title ? ` · ${c.title}` : ''}{c.hasCard ? '' : ' (no card)'}
             </option>
           ))}
         </select>
-        <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>Публікує лише на твоє пряме прохання</span>
+        <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>Publishes only when you explicitly ask</span>
         {busy
           ? (
             <button className="btn-secondary" onClick={onStop} style={{ marginLeft: 'auto', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
-              <Icon name="stop" size={13} /> Зупинити
+              <Icon name="stop" size={13} /> Stop
             </button>
           )
           : (
             <button className="btn-primary" onClick={onSend} disabled={!value.trim() || disabled} aria-label="Send"
               style={{ marginLeft: 'auto', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
-              <Icon name="arrow-up" size={14} /> Надіслати
+              <Icon name="arrow-up" size={14} /> Send
             </button>
           )}
       </div>
@@ -336,13 +350,13 @@ function ChatSidebar({ activeId, onPick, onNew }: { activeId?: string; onPick: (
   return (
     <aside style={{ display: 'flex', flexDirection: 'column', gap: 14, minHeight: 0, overflowY: 'auto' }}>
       <button className="btn-primary" onClick={onNew} style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
-        <Icon name="plus" size={14} /> Новий чат
+        <Icon name="plus" size={14} /> New chat
       </button>
 
       <div>
-        <div className="text-eyebrow" style={{ marginBottom: 6 }}>Чати</div>
+        <div className="text-eyebrow" style={{ marginBottom: 6 }}>Chats</div>
         {(chats.data ?? []).length === 0
-          ? <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>{chats.isLoading ? '…' : 'Ще немає розмов'}</span>
+          ? <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>{chats.isLoading ? '…' : 'No conversations yet'}</span>
           : (
             <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
               {chats.data!.map((c) => (
@@ -370,9 +384,9 @@ function ChatSidebar({ activeId, onPick, onNew }: { activeId?: string; onPick: (
       </div>
 
       <div>
-        <div className="text-eyebrow" style={{ marginBottom: 6 }}>Заплановано</div>
+        <div className="text-eyebrow" style={{ marginBottom: 6 }}>Scheduled</div>
         {(scheduled.data ?? []).length === 0
-          ? <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>Немає запланованих постів</span>
+          ? <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>No scheduled posts</span>
           : (
             <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
               {scheduled.data!.map((d) => (

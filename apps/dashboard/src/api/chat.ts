@@ -22,7 +22,9 @@ export function useChat(id: string | undefined) {
     queryFn:  () => api<EditorChatDetail>(`/api/editor/chats/${id}`),
     enabled:  !!id,
     // Scheduled drafts change status on their own (the dispatcher publishes them): keep them fresh.
-    refetchInterval: (q) => (q.state.data?.drafts.some((d) => d.status === 'scheduled') ? 20_000 : false),
+    refetchInterval: (q) => (q.state.data?.drafts?.some((d) => d.status === 'scheduled') ? 20_000 : false),
+    // A deleted / unknown chat id (stale link) is a 404 — show it, don't retry it.
+    retry: (n, err: any) => err?.status !== 404 && n < 2,
   });
 }
 

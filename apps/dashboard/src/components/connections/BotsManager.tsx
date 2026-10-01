@@ -13,6 +13,7 @@ import { EmptyState } from '../ui/primitives';
 import { useBots, useDeleteBot, useSetDefaultBot, useToggleBotActive, useVerifyBot } from '../../api/bots';
 import { trackingApi } from '../../api/tracking';
 import { BOT_STATUS_HELP } from '../../lib/labels';
+import { fmtDate } from '../../lib/format';
 
 export function BotsManager() {
   const { data, isLoading, error } = useBots();
@@ -110,7 +111,7 @@ export function BotsManager() {
                       <span style={{ color: 'var(--color-ink-dim)' }}>·</span>
                     </>
                   )}
-                  <span>verified {b.last_verified_at ? new Date(b.last_verified_at).toLocaleString() : 'never'}</span>
+                  <span>verified {b.last_verified_at ? fmtDate(b.last_verified_at) : 'never'}</span>
                 </div>
               </div>
 

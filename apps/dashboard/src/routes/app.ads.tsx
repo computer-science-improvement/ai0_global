@@ -13,6 +13,7 @@ import {
 import { trackingApi } from '../api/tracking';
 import { useQuery } from '@tanstack/react-query';
 import type { AdCreative, AdFormat, AdOrder, AdOrderStatus, AdPrice } from '../api/types';
+import { fmtDate } from '../lib/format';
 
 export const Route = createFileRoute('/app/ads')({ component: AdsPage });
 
@@ -124,9 +125,9 @@ function PriceList({ prices, channels }: { prices: AdPrice[]; channels: ChannelO
       <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)', marginTop: 0 }}>
         Public on the landing media kit and used for order amounts. Saving a price for the same channel and format replaces the old one (history is kept).
       </p>
-      <form onSubmit={save} style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr 0.8fr 1.4fr auto', gap: '0 16px', alignItems: 'end' }}>
+      <form onSubmit={save} style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '0 16px', alignItems: 'end' }}>
         <Field label="Channel">
-          <select className="input-field" value={channelKey} onChange={e => setChannelKey(e.target.value)} required>
+          <select className="input-field" style={{ width: '100%' }} value={channelKey} onChange={e => setChannelKey(e.target.value)} required>
             <option value="">— pick —</option>
             {channels.filter(c => c.channelKey).map(c => (
               <option key={c.id} value={c.channelKey!}>{c.title ?? c.channelKey}</option>
@@ -134,7 +135,7 @@ function PriceList({ prices, channels }: { prices: AdPrice[]; channels: ChannelO
           </select>
         </Field>
         <Field label="Format">
-          <select className="input-field" value={format} onChange={e => setFormat(e.target.value as AdFormat)}>
+          <select className="input-field" style={{ width: '100%' }} value={format} onChange={e => setFormat(e.target.value as AdFormat)}>
             {FORMATS.map(f => <option key={f} value={f}>{AD_FORMAT_LABEL[f]}</option>)}
           </select>
         </Field>
@@ -230,7 +231,7 @@ function NewOrder({ prices, channels }: { prices: AdPrice[]; channels: ChannelOp
     );
   }
 
-  const grid2 = { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0 24px' } as const;
+  const grid2 = { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '0 24px' } as const;
 
   return (
     <SectionCard title="New order" icon="plus" delay={60}>
@@ -273,7 +274,7 @@ function NewOrder({ prices, channels }: { prices: AdPrice[]; channels: ChannelOp
         <Field label="Ad text" hint="optional now — Ukrainian; blank line = new paragraph; **bold**, [link](https://…). #реклама is added automatically">
           <textarea className="input-field" rows={4} value={text} onChange={e => setText(e.target.value)} style={{ resize: 'vertical' }} />
         </Field>
-        <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 0.8fr 1.4fr', gap: '0 24px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '0 24px' }}>
           <Field label="Image URL" hint="optional, makes it a photo post">
             <input className="input-field" placeholder="https://…" value={imageUrl} onChange={e => setImageUrl(e.target.value)} />
           </Field>
@@ -354,7 +355,7 @@ function OrderRow({
           <div className="text-micro" style={{ color: 'var(--color-ink-dim)', marginTop: 2, display: 'flex', gap: 8, flexWrap: 'wrap' }}>
             {order.channel_id && <span><Icon name="telegram" size={11} /> {channelLabel(order.channel_id)}</span>}
             {price && <span>{AD_FORMAT_LABEL[price.format]}</span>}
-            {order.publish_at && <span><Icon name="calendar" size={11} /> {new Date(order.publish_at).toLocaleString()}</span>}
+            {order.publish_at && <span><Icon name="calendar" size={11} /> {fmtDate(order.publish_at)}</span>}
           </div>
         </div>
 
@@ -413,7 +414,7 @@ function OrderRow({
 
       {order.status === 'paid' && showSched && (
         <form onSubmit={handleSchedule} style={{ marginTop: 12, display: 'flex', flexDirection: 'column', gap: 0 }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0 24px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '0 24px' }}>
             <Field label="Channel">
               <select className="input-field" value={schedChannel} onChange={e => setSchedChannel(e.target.value)} required>
                 <option value="">— pick a channel —</option>

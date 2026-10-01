@@ -5,10 +5,13 @@ export function fmtNumber(n: number | null | undefined): string {
   return String(n);
 }
 
-export function fmtDate(iso: string | null | undefined): string {
-  if (!iso) return '—';
+/** Unambiguous, locale-independent: "1 Oct 2026, 10:00" (no 01/10 vs 10/01 guessing, no seconds). */
+const DATE_TIME = new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: false });
+
+export function fmtDate(iso: string | number | Date | null | undefined): string {
+  if (iso == null || iso === '') return '—';
   const d = new Date(iso);
-  return d.toLocaleString();
+  return Number.isNaN(d.getTime()) ? '—' : DATE_TIME.format(d);
 }
 
 export function fmtRelative(iso: string | null | undefined): string {

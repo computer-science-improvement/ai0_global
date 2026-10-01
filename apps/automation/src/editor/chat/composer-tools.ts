@@ -41,7 +41,7 @@ export function draftBrief(d: EditorDraft) {
 
 const NEEDS_REQUEST = {
   error: 'needs_explicit_request',
-  details: 'власник не просив публікувати чи планувати в останньому повідомленні — покажи чернетку і запропонуй кнопки «Опублікувати зараз» / «Запланувати»',
+  details: 'власник не просив публікувати чи планувати в останньому повідомленні — покажи чернетку і запропонуй кнопки Publish now / Schedule під чернеткою',
 };
 
 export function buildComposerTools(d: ComposerToolDeps): EditorTool[] {

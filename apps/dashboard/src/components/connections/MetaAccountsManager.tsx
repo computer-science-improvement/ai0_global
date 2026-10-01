@@ -163,7 +163,7 @@ function AccountCard({ account: a, groupName, onVerify, onToggle, onDelete, onRe
         <div className="text-caption" style={{ color: 'var(--color-ink-dim)', marginTop: 4 }}>
           {a.followers != null && <>{a.followers.toLocaleString()} followers · </>}
           <code>{a.token_env}</code> · id <code>{a.target_id}</code>
-          {a.last_verified_at && <> · verified {new Date(a.last_verified_at).toLocaleString()}</>}
+          {a.last_verified_at && <> · verified {fmtDate(a.last_verified_at)}</>}
         </div>
         <div style={{ marginTop: 8 }}>
           {a.verify_error

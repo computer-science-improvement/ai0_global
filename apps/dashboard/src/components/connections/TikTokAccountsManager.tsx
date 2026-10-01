@@ -10,6 +10,7 @@ import {
   useTikTokAccounts, useToggleTikTokAccount, useDeleteTikTokAccount, startTikTokOAuth,
 } from '../../api/tiktok-accounts';
 import type { TikTokAccount } from '../../api/tiktok-accounts';
+import { fmtDate } from '../../lib/format';
 
 export function TikTokAccountsManager({ notice }: { notice?: 'connected' | 'error' }) {
   const { data, isLoading, error } = useTikTokAccounts();
@@ -103,7 +104,7 @@ function AccountCard({ account: a, onToggle, onDelete }: {
           {!a.active && <Badge tone="neutral">inactive</Badge>}
         </div>
         <div className="text-caption" style={{ color: 'var(--color-ink-dim)', marginTop: 4 }}>
-          {a.last_refreshed_at && <>token refreshed {new Date(a.last_refreshed_at).toLocaleString()}</>}
+          {a.last_refreshed_at && <>token refreshed {fmtDate(a.last_refreshed_at)}</>}
         </div>
         <div style={{ marginTop: 8 }}>
           {a.refresh_error

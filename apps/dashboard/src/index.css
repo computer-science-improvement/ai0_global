@@ -317,6 +317,8 @@ a:hover { opacity: 0.85; }
 
 /* KPI tile + responsive grid. */
 .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(184px, 1fr)); gap: 12px; }
+/* Phones: two tiles per row instead of a full-screen-tall stack. */
+@media (max-width: 480px) { .stat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; } }
 .stat-tile {
   position: relative;
   background: var(--color-surface-2);

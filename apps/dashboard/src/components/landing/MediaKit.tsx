@@ -27,7 +27,10 @@ export function MediaKit() {
           <ul className="lp-kit-prices">
             {c.prices.map((p) => (
               <li key={p.format}>
-                <span>{AD_FORMAT_LABEL[p.format]}{p.note ? <span className="text-micro"> · {p.note}</span> : null}</span>
+                <span className="lp-kit-fmt">
+                  {AD_FORMAT_LABEL[p.format]}
+                  {p.note ? <span className="text-micro">{p.note}</span> : null}
+                </span>
                 <b className="tabular-nums">{p.priceUah.toLocaleString('en-US')} ₴</b>
               </li>
             ))}
@@ -37,10 +40,12 @@ export function MediaKit() {
       <style>{`
         .lp-kit {
           width: 100%;
-          display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+          /* Few cards must sit centred under the centred heading, not hug the left edge. */
+          display: flex; flex-wrap: wrap; justify-content: center;
           gap: var(--space-md); text-align: left;
         }
         .lp-kit-card {
+          flex: 1 1 260px; max-width: 340px;
           display: flex; flex-direction: column; gap: var(--space-md);
           padding: var(--space-lg);
           background: var(--color-surface-1);
@@ -62,7 +67,9 @@ export function MediaKit() {
           font-size: 13px; color: var(--color-ink-muted);
           padding-top: 6px; border-top: 1px solid var(--color-hairline-soft);
         }
-        .lp-kit-prices b { color: var(--color-ink); }
+        .lp-kit-prices b { color: var(--color-ink); white-space: nowrap; }
+        .lp-kit-fmt { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+        .lp-kit-fmt .text-micro { color: var(--color-ink-dim); }
       `}</style>
     </div>
   );

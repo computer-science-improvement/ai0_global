@@ -30,9 +30,9 @@ function setup(turns: ConstructorParameters<typeof FakeLlm>[0], o: { enabled?: b
     resolveCard: async (k: string) => (k === '@chan' ? { card: makeCard(), hasCard: true } : null),
   };
   const repo: any = {
-    createChat: async () => ({ id: 'c1', title: 'Новий чат', createdAt: NOW, updatedAt: NOW }),
+    createChat: async () => ({ id: 'c1', title: 'New chat', createdAt: NOW, updatedAt: NOW }),
     listChats: async () => [],
-    getChat: async (id: string) => (id === 'c1' ? { id, title: 'Новий чат', createdAt: NOW, updatedAt: NOW } : null),
+    getChat: async (id: string) => (id === 'c1' ? { id, title: 'New chat', createdAt: NOW, updatedAt: NOW } : null),
     deleteChat: async () => true,
     touchChat: async (_id: string, title?: string) => { titles.push(title); },
     addMessage: async (m: any) => { const row = { id: messages.length + 1, chatId: m.chatId, role: m.role, content: m.content, draftIds: m.draftIds ?? [], runId: m.runId ?? null, createdAt: NOW }; messages.push(row); return row; },

@@ -78,7 +78,7 @@ export class EditorChatRepository {
 
   async createChat(title?: string | null): Promise<EditorChat> {
     const { rows } = await this.pool.query(
-      `INSERT INTO editor_chats (title) VALUES (COALESCE($1, 'Новий чат')) RETURNING *`, [title ?? null]);
+      `INSERT INTO editor_chats (title) VALUES (COALESCE($1, 'New chat')) RETURNING *`, [title ?? null]);
     return toChat(rows[0]);
   }
 
@@ -101,7 +101,7 @@ export class EditorChatRepository {
   async touchChat(id: string, title?: string): Promise<void> {
     await this.pool.query(
       `UPDATE editor_chats SET updated_at = now(),
-              title = CASE WHEN $2::text IS NOT NULL AND title = 'Новий чат' THEN $2 ELSE title END
+              title = CASE WHEN $2::text IS NOT NULL AND title IN ('New chat', 'Новий чат') THEN $2 ELSE title END
         WHERE id = $1`, [id, title ?? null]);
   }
 

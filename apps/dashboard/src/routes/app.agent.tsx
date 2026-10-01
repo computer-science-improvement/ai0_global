@@ -19,6 +19,7 @@ import {
   usePatchOpportunity,
 } from '../api/agent';
 import type { AgentCategory, AgentAction, OpportunityKind } from '../api/types';
+import { fmtDate } from '../lib/format';
 
 export const Route = createFileRoute('/app/agent')({ component: AgentPage });
 
@@ -118,7 +119,7 @@ function PendingActionRow({ action }: { action: AgentAction }) {
           </span>
           {action.type === 'schedule_post' && action.payload.scheduledAt && (
             <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>
-              {new Date(action.payload.scheduledAt).toLocaleString()}
+              {fmtDate(action.payload.scheduledAt)}
             </span>
           )}
         </div>
@@ -331,7 +332,7 @@ function AgentPage() {
             Polling {status.data?.enabled ? 'on' : 'off'} · cadence {status.data?.cadence} ·{' '}
             last polled{' '}
             {status.data?.lastPolledAt
-              ? new Date(status.data.lastPolledAt).toLocaleString()
+              ? fmtDate(status.data.lastPolledAt)
               : 'never'}
           </div>
         )}

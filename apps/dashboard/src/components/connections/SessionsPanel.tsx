@@ -19,6 +19,7 @@ import { TableAction, RowActions } from '../ui/table';
 import { EmptyState } from '../ui/primitives';
 import { useConfirm } from '../ui/ConfirmDialog';
 import type { MtprotoSession } from '../../api/types';
+import { fmtDate } from '../../lib/format';
 
 export function SessionsPanel() {
   const [addOpen, setAddOpen] = useState(false);
@@ -152,7 +153,7 @@ function SessionCard({
           </Meta>
           <Meta label="Last verified">
             <span style={{ color: 'var(--color-ink-muted)' }}>
-              {s.last_verified_at ? new Date(s.last_verified_at).toLocaleString() : '—'}
+              {s.last_verified_at ? fmtDate(s.last_verified_at) : '—'}
             </span>
           </Meta>
         </div>

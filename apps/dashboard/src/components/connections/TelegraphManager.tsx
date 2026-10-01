@@ -9,6 +9,7 @@ import { Badge } from '../ui/Badge';
 import { useConfirm } from '../ui/ConfirmDialog';
 import { TableAction, RowActions } from '../ui/table';
 import { EmptyState } from '../ui/primitives';
+import { fmtDate } from '../../lib/format';
 import {
   useTelegraphAccounts, useDeleteTelegraphAccount,
   useToggleTelegraphActive, useVerifyTelegraphAccount,
@@ -95,7 +96,7 @@ export function TelegraphManager() {
                       <span style={{ color: 'var(--color-ink-dim)' }}>·</span>
                     </>
                   )}
-                  <span>verified {a.last_verified_at ? new Date(a.last_verified_at).toLocaleString() : 'never'}</span>
+                  <span>verified {a.last_verified_at ? fmtDate(a.last_verified_at) : 'never'}</span>
                 </div>
               </div>
 

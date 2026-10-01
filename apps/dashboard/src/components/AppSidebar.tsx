@@ -7,7 +7,7 @@ interface NavGroup { title: string; items: NavItem[]; }
 
 const GROUPS: NavGroup[] = [
   { title: 'Home', items: [
-    { to: '/app', label: 'Overview', icon: 'overview' },
+    { to: '/app', label: 'Overview', icon: 'overview', exact: true },
   ]},
   { title: 'Publishing', items: [
     { to: '/app/strategies', label: 'Strategies', icon: 'strategies' },
@@ -23,17 +23,17 @@ const GROUPS: NavGroup[] = [
   ]},
   { title: 'Intelligence', items: [
     { to: '/app/discovery',       label: 'Discovery',     icon: 'discovery' },
-    { to: '/app/tracked',         label: 'Tracked',  icon: 'channels' },
+    { to: '/app/tracked',         label: 'Tracked',  icon: 'radar' },
     { to: '/app/graph',           label: 'Graph',          icon: 'graph' },
     { to: '/app/recommendations', label: 'Recommendations',  icon: 'recommendations' },
   ]},
   { title: 'Connections', items: [
     { to: '/app/connections',        label: 'Connections', icon: 'connections', exact: true },
-    { to: '/app/connections/groups', label: 'Groups', icon: 'facebook' },
+    { to: '/app/connections/groups', label: 'Groups', icon: 'users' },
   ]},
   { title: 'Marketing', items: [
-    { to: '/app/landing', label: 'Landing', icon: 'recommendations' },
-    { to: '/app/ads',     label: 'Ads',     icon: 'connections' },
+    { to: '/app/landing', label: 'Landing', icon: 'globe' },
+    { to: '/app/ads',     label: 'Ads',     icon: 'megaphone' },
   ]},
   { title: 'System', items: [
     { to: '/app/settings', label: 'Settings', icon: 'settings' },

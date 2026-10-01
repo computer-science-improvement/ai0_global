@@ -16,18 +16,42 @@ const n = (v: number | null) => (v == null ? '—' : v.toLocaleString('uk-UA'));
 function Curve({ points }: { points: AdReport['curve'] }) {
   const pts = points.filter((p) => p.views != null) as Array<{ hours: number; views: number }>;
   if (pts.length < 2) return <p className="text-body-sm" style={{ color: 'var(--color-ink-dim)', margin: 0 }}>Замало замірів для графіка.</p>;
-  const W = 640, H = 160, P = 8;
+  // Room for axis labels: left for views, bottom for hours since publication.
+  const W = 640, H = 190, L = 44, R = 12, T = 12, B = 28;
   const maxH = Math.max(...pts.map((p) => p.hours));
   const maxV = Math.max(...pts.map((p) => p.views), 1);
-  const x = (h: number) => P + (h / maxH) * (W - 2 * P);
-  const y = (v: number) => H - P - (v / maxV) * (H - 2 * P);
+  const x = (h: number) => L + (h / maxH) * (W - L - R);
+  const y = (v: number) => H - B - (v / maxV) * (H - B - T);
   const line = pts.map((p) => `${x(p.hours).toFixed(1)},${y(p.views).toFixed(1)}`).join(' ');
+  const fmtV = (v: number) => (v >= 1000 ? `${(v / 1000).toFixed(v >= 10_000 ? 0 : 1)}k` : String(v));
+  const yTicks = [0, Math.round(maxV / 2), maxV];
+  // Thin out crowded early ticks (1 h, 2 h, 3 h…) so labels never overlap; always keep the last one.
+  const xTicks: number[] = [];
+  for (const p of pts) {
+    const prev = xTicks[xTicks.length - 1];
+    if (prev === undefined || x(p.hours) - x(prev) >= 56) xTicks.push(p.hours);
+  }
+  const last = pts[pts.length - 1].hours;
+  if (xTicks[xTicks.length - 1] !== last) { if (x(last) - x(xTicks[xTicks.length - 1]) < 56) xTicks.pop(); xTicks.push(last); }
   return (
     <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label="Перегляди за годинами після публікації" style={{ width: '100%', height: 'auto', display: 'block' }}>
-      <line x1={P} y1={H - P} x2={W - P} y2={H - P} stroke="var(--color-hairline)" />
-      <polyline points={`${x(pts[0].hours)},${H - P} ${line} ${x(pts[pts.length - 1].hours)},${H - P}`}
+      {yTicks.map((v) => (
+        <g key={`y${v}`}>
+          <line x1={L} y1={y(v)} x2={W - R} y2={y(v)} stroke="var(--color-hairline-soft)" strokeDasharray={v === 0 ? undefined : '3 4'} />
+          <text x={L - 8} y={y(v) + 4} textAnchor="end" fontSize={11} fill="var(--color-ink-dim)">{fmtV(v)}</text>
+        </g>
+      ))}
+      {xTicks.map((h) => (
+        <text key={`x${h}`} x={x(h)} y={H - 8} textAnchor="middle" fontSize={11} fill="var(--color-ink-dim)">{h} год</text>
+      ))}
+      <polyline points={`${x(pts[0].hours)},${H - B} ${line} ${x(pts[pts.length - 1].hours)},${H - B}`}
         fill="color-mix(in srgb, var(--color-accent) 14%, transparent)" stroke="none" />
       <polyline points={line} fill="none" stroke="var(--color-accent)" strokeWidth={2} strokeLinejoin="round" />
+      {pts.map((p) => (
+        <circle key={`p${p.hours}`} cx={x(p.hours)} cy={y(p.views)} r={3} fill="var(--color-accent)">
+          <title>{`${p.hours} год — ${p.views.toLocaleString('uk-UA')} переглядів`}</title>
+        </circle>
+      ))}
     </svg>
   );
 }
