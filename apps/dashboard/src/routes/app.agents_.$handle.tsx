@@ -10,9 +10,13 @@ import { AgentGlyph, KIND_LABEL, PauseButton, ScopeChip, StateBadges } from '../
 import { AgentOverview } from '../components/agents/AgentOverview';
 import { AgentSkills } from '../components/agents/AgentSkills';
 import { AgentHistory, AgentMemory } from '../components/agents/AgentMemoryHistory';
+import { AgentPlaybook } from '../components/agents/AgentPlaybook';
+import { AgentIdeas } from '../components/agents/AgentIdeas';
+import { AgentPlan } from '../components/agents/AgentPlan';
 import { errorBody, useAgent, useRunAgent } from '../api/agents';
 
-const TABS = ['overview', 'skills', 'memory', 'history', 'playbook', 'plan'] as const;
+const TABS = ['overview', 'skills', 'memory', 'history', 'playbook', 'ideas', 'plan'] as const;
+const NETWORK_TABS: readonly Tab[] = ['playbook', 'ideas', 'plan'];
 type Tab = typeof TABS[number];
 
 const TAB_OPTIONS = [
@@ -21,23 +25,27 @@ const TAB_OPTIONS = [
   { key: 'memory' as const,   label: 'Memory',   icon: 'bots' as const },
   { key: 'history' as const,  label: 'History',  icon: 'history' as const },
   { key: 'playbook' as const, label: 'Playbook', icon: 'logs' as const },
+  { key: 'ideas' as const,    label: 'Ideas',    icon: 'sparkles' as const },
   { key: 'plan' as const,     label: 'Plan',     icon: 'calendar' as const },
 ];
 
 export const Route = createFileRoute('/app/agents_/$handle')({
-  validateSearch: (s: Record<string, unknown>): { tab?: Tab } => ({
+  validateSearch: (s: Record<string, unknown>): { tab?: Tab; idea?: string } => ({
     tab: (TABS as readonly string[]).includes(String(s.tab)) ? (s.tab as Tab) : undefined,
+    // Ideas tab: an idea to scroll to (from a plan slot).
+    idea: typeof s.idea === 'string' && s.idea ? s.idea : undefined,
   }),
   component: AgentPage,
 });
 
 function AgentPage() {
   const { handle } = Route.useParams();
-  const { tab = 'overview' } = Route.useSearch();
+  const { tab: rawTab = 'overview', idea } = Route.useSearch();
   const navigate = useNavigate({ from: Route.fullPath });
   const q = useAgent(handle);
   const run = useRunAgent();
   const setTab = (t: Tab) => navigate({ search: { tab: t === 'overview' ? undefined : t }, replace: true });
+  const openIdea = (id: string) => navigate({ search: { tab: 'ideas', idea: id }, replace: false });
 
   // A handle alias resolved to the agent's current handle: move the URL along.
   const current = q.data?.agent.handle;
@@ -61,6 +69,11 @@ function AgentPage() {
 
   const d = q.data;
   const a = d.agent;
+  // Playbook / ideas / plan belong to a network orchestrator; its role agents show the same.
+  const networked = a.kind === 'orchestrator' || (!!d.parent && a.parentId != null);
+  const orchestrator = a.kind === 'orchestrator' ? a.handle : d.parent?.handle ?? a.handle;
+  const tab: Tab = !networked && NETWORK_TABS.includes(rawTab) ? 'overview' : rawTab;
+  const tabOptions = networked ? TAB_OPTIONS : TAB_OPTIONS.filter((o) => !NETWORK_TABS.includes(o.key));
   const edit = () => {
     setTab('overview');
     setTimeout(() => {
@@ -114,19 +127,16 @@ function AgentPage() {
       )}
 
       <div style={{ marginBottom: 16, overflowX: 'auto', maxWidth: '100%' }}>
-        <SegmentedTabs value={tab} onChange={setTab} options={TAB_OPTIONS} />
+        <SegmentedTabs value={tab} onChange={setTab} options={tabOptions} />
       </div>
 
       {tab === 'overview' && <AgentOverview data={d} />}
       {tab === 'skills' && <AgentSkills data={d} />}
       {tab === 'memory' && <AgentMemory data={d} />}
       {tab === 'history' && <AgentHistory data={d} />}
-      {tab === 'playbook' && (
-        <EmptyState icon="logs" title="No playbook yet" note="Arrives with spec 020: the owner’s brief becomes a structured, versioned playbook the orchestrator follows." />
-      )}
-      {tab === 'plan' && (
-        <EmptyState icon="calendar" title="No network plan yet" note="Arrives with spec 020: the day plan across platforms (what · how · where · when)." />
-      )}
+      {tab === 'playbook' && <AgentPlaybook handle={a.handle} orchestrator={orchestrator} />}
+      {tab === 'ideas' && <AgentIdeas handle={a.handle} focus={idea} />}
+      {tab === 'plan' && <AgentPlan handle={a.handle} onIdea={openIdea} />}
     </div>
   );
 }
