@@ -4,8 +4,25 @@
     {
       "name": "dashboard",
       "runtimeExecutable": "pnpm",
-      "runtimeArgs": ["--filter", "dashboard", "run", "dev"],
+      "runtimeArgs": [
+        "--filter",
+        "dashboard",
+        "run",
+        "dev"
+      ],
       "port": 5173
+    },
+    {
+      "name": "dashboard-vite",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "apps/dashboard/node_modules/vite/bin/vite.js",
+        "apps/dashboard",
+        "--port",
+        "5174",
+        "--strictPort"
+      ],
+      "port": 5174
     }
   ]
 }
