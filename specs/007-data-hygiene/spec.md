@@ -8,7 +8,7 @@
   - Move `apps/pipeline/raw-data` (~166 MB, recipes stored three times) to object storage or a release asset, with a fetch script.
   - Keep one canonical copy.
   - Add `raw-data` to the pipeline `.dockerignore`.
-- [ ] T003 **Retention:**
+- [x] T003 **Retention:**
   - Turn on `RETENTION_ENABLED` by default in `.env.example`.
   - Extend coverage to `strategy_runs` (90 d), `editor_run_steps` (30 d), `editor_runs` (180 d), `tracked_posts.text` (null after 30 d), `agent_dm_threads`/`agent_opportunities` text (90 d, privacy), `candidate_channels.raw_payload` (30 d).
   - `bot_logs` stays (it is a dedup ledger until 009).
