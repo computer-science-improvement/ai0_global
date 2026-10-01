@@ -42,7 +42,8 @@
     "satori": "^0.26.0",
     "telegram": "^2.26.22",
     "winston": "^3.19.0",
-    "winston-daily-rotate-file": "^5.0.0"
+    "winston-daily-rotate-file": "^5.0.0",
+    "zod": "4.3.6"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
