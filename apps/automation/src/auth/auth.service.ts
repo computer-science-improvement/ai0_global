@@ -1,9 +1,10 @@
 import { ForbiddenException, Injectable, Logger, UnauthorizedException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
-import { createHash, createHmac, timingSafeEqual } from 'crypto';
+import { createHash, createHmac } from 'crypto';
 import { TelegramLoginDto } from './telegram-login.dto';
 import { JwtPayload } from './auth.types';
+import { safeEqual } from '../common/crypto/safe-equal';
 
 @Injectable()
 export class AuthService {
@@ -19,14 +20,21 @@ export class AuthService {
     if (!botToken) throw new UnauthorizedException('Telegram bot not configured');
 
     const expectedHash = this.computeHash(input, botToken);
-    if (expectedHash !== input.hash) throw new UnauthorizedException('Bad signature');
+    if (!safeEqual(expectedHash, input.hash)) throw new UnauthorizedException('Bad signature');
 
     const ageSec = Math.floor(Date.now() / 1000) - input.auth_date;
     if (ageSec > 86_400) throw new UnauthorizedException('Auth payload too old');
 
+    // FAILS CLOSED: an empty/missing allowlist disables Telegram login entirely.
+    // (It used to mean "anyone with a valid widget signature" — i.e. any
+    // Telegram user became admin when the env var was forgotten.)
     const allow = (this.config.get<string>('TRACKING_ALLOWED_TG_USER_IDS') ?? '')
       .split(',').map((s) => parseInt(s.trim(), 10)).filter(Boolean);
-    if (allow.length > 0 && !allow.includes(input.id)) {
+    if (allow.length === 0) {
+      this.logger.warn('Telegram login refused: TRACKING_ALLOWED_TG_USER_IDS is empty');
+      throw new ForbiddenException('Login disabled: TRACKING_ALLOWED_TG_USER_IDS is empty');
+    }
+    if (!allow.includes(input.id)) {
       throw new ForbiddenException('User not in allowlist');
     }
 
@@ -46,19 +54,11 @@ export class AuthService {
   async loginWithToken(provided: string): Promise<{ token: string; payload: JwtPayload }> {
     const expected = this.config.get<string>('TRACKING_TOKEN') ?? '';
     if (!expected) throw new UnauthorizedException('Token auth not configured (TRACKING_TOKEN unset)');
-    if (!this.safeEqual(provided, expected)) throw new UnauthorizedException('Invalid token');
+    if (!safeEqual(provided, expected)) throw new UnauthorizedException('Invalid token');
 
     const payload: JwtPayload = { sub: 0, username: 'token', firstName: 'Operator' };
     const token = await this.jwt.signAsync(payload, { expiresIn: '30d' });
     return { token, payload };
-  }
-
-  /** Constant-time string compare (length mismatch short-circuits to false). */
-  private safeEqual(a: string, b: string): boolean {
-    const ab = Buffer.from(a);
-    const bb = Buffer.from(b);
-    if (ab.length !== bb.length) return false;
-    return timingSafeEqual(ab, bb);
   }
 
   private computeHash(input: TelegramLoginDto, botToken: string): string {

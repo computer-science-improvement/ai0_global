@@ -8,10 +8,10 @@ Verify after each phase with: `pnpm --filter automation test && (cd apps/automat
 - [x] T003 [P] Add the `backup` profile service plus `docs/runbooks/backup-restore.md` (FR-014).
 
 ## Phase 2: Auth (US2)
-- [ ] T004 Make the Telegram-login allowlist fail closed, with a test (FR-002).
-- [ ] T005 [P] Add `safeEqual` with a test, and use it in tracking-auth.guard, api-key.guard and auth.service (FR-013).
-- [ ] T006 [P] Add `RateLimitGuard` with a test, and apply it to the `/auth/token-login` and `/auth/telegram-login` routes (FR-012).
-- [ ] T007 [P] Gate Swagger behind an env check (FR-011).
+- [x] T004 Make the Telegram-login allowlist fail closed, with a test (FR-002).
+- [x] T005 [P] Add `safeEqual` with a test, and use it in tracking-auth.guard, api-key.guard and auth.service (FR-013).
+- [x] T006 [P] Add `RateLimitGuard` with a test, and apply it to the `/auth/token-login` and `/auth/telegram-login` routes (FR-012).
+- [x] T007 [P] Gate Swagger behind an env check (FR-011).
 
 ## Phase 3: Money and routing (US3)
 - [ ] T008 Change LiqPay `PAID_STATUSES` to be config-driven, with a test (FR-004).

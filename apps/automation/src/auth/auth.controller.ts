@@ -1,11 +1,15 @@
-import { Body, Controller, Get, Post, Req, Res } from '@nestjs/common';
+import { Body, Controller, Get, Post, Req, Res, UseGuards } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { AuthService } from './auth.service';
 import { TelegramLoginDto } from './telegram-login.dto';
 import { TokenLoginDto } from './token-login.dto';
+import { RateLimitGuard } from './rate-limit.guard';
 import { ConfigService } from '@nestjs/config';
 
 const COOKIE_NAME = 'tracking_jwt';
+
+/** Shared by both login routes: 10 attempts / minute / IP across the pair. */
+const loginRateLimit = new RateLimitGuard({ limit: 10, windowMs: 60_000 });
 
 @Controller('auth')
 export class AuthController {
@@ -15,6 +19,7 @@ export class AuthController {
   ) {}
 
   @Post('telegram-login')
+  @UseGuards(loginRateLimit)
   async login(@Body() dto: TelegramLoginDto, @Res({ passthrough: true }) res: Response) {
     const { token, payload } = await this.auth.loginWithTelegram(dto);
     this.setSessionCookie(res, token);
@@ -24,6 +29,7 @@ export class AuthController {
   /** Shared-token login — paste the TRACKING_TOKEN secret to get a session
    *  cookie. For HTTP/no-DNS boxes where the Telegram widget can't run. */
   @Post('token-login')
+  @UseGuards(loginRateLimit)
   async tokenLogin(@Body() dto: TokenLoginDto, @Res({ passthrough: true }) res: Response) {
     const { token, payload } = await this.auth.loginWithToken(dto.token);
     this.setSessionCookie(res, token);
