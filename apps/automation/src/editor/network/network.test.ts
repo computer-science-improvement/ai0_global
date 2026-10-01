@@ -111,3 +111,11 @@ test('network plan: no playbook → refused', () => {
   const v = validateNetworkPlan({ rationale: 'без плейбука', slots: [] }, { net: net({ playbook: null }), card, planDate: '2026-10-04', weekday: 0, now: NOW, ideas: new Map(), reservedAt: [] });
   assert.equal(v.ok, false);
 });
+
+test('network plan: a planned idea must cover every variant whose resource still has room', () => {
+  const v = validateNetworkPlan({
+    rationale: 'Лише Telegram', slots: [{ resource_ref: 'telegram:@space', time: '10:00', format: 'longread', topic: 'Кільця', idea_id: I1, source_hints: [] }],
+  }, { net: net(), card, planDate: '2026-10-04', weekday: 1, now: NOW, ideas: new Map([[I1, idea(I1, ['telegram:@space', 'instagram:ig1'])]]), reservedAt: [] });
+  assert.equal(v.ok, false);
+  assert.ok((v as any).errors.some((e: string) => e.includes('не заплановано варіант для instagram:ig1')));
+});

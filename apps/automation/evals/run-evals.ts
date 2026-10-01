@@ -19,10 +19,11 @@ import type { CaseOutcome, EvalCase } from './lib/case';
 import { EXECUTOR_CASES } from './cases/executor';
 import { PLANNER_REVIEWER_CASES } from './cases/planner-reviewer';
 import { CHAT_CASES } from './cases/chat';
+import { AGENT_CASES, cleanupAgentEvals } from './cases/agents';
 import { localDate, zonedToUtc } from '../src/editor/roles/time';
 import { resolveModel } from '../src/editor/llm/model-registry';
 
-const ALL: EvalCase[] = [...EXECUTOR_CASES, ...PLANNER_REVIEWER_CASES, ...CHAT_CASES];
+const ALL: EvalCase[] = [...EXECUTOR_CASES, ...PLANNER_REVIEWER_CASES, ...CHAT_CASES, ...AGENT_CASES];
 
 function arg(name: string): string | undefined {
   const i = process.argv.indexOf(`--${name}`);
@@ -108,6 +109,7 @@ async function main() {
     await resetChannel(pool, c.channel);
   }
   await resetLibrary(pool);
+  await cleanupAgentEvals(pool);
   await pool.end();
 
   const passed = rows.filter((r) => r.pass).length;

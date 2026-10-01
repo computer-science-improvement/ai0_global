@@ -112,6 +112,16 @@ export function validateNetworkPlan(
   }
   for (const [id, slots] of byIdea) {
     const refs = slots.map((s) => s.resourceRef);
+    // A planned idea goes to every resource it has a variant for, while that resource still has room today.
+    const idea = o.ideas.get(id);
+    for (const v of idea?.variants ?? []) {
+      if (refs.includes(v.resource_ref) || !resources.has(v.resource_ref)) continue;
+      const sec = sections.get(v.resource_ref);
+      const used = byResource.get(v.resource_ref)?.length ?? 0;
+      if (sec && used < sec.per_day.max && sec.formats[v.format] > 0) {
+        errors.push(`ідея ${id}: не заплановано варіант для ${v.resource_ref} (${v.format}) — додай слот (≥ ${IDEA_VARIANT_GAP_MIN} хв після попереднього варіанта)`);
+      }
+    }
     if (new Set(refs).size !== refs.length) errors.push(`ідея ${id}: два варіанти на одному ресурсі`);
     const sorted = [...slots].sort((a, b) => a.scheduledAt.getTime() - b.scheduledAt.getTime());
     for (let i = 1; i < sorted.length; i++) {

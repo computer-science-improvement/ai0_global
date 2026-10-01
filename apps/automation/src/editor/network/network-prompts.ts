@@ -134,6 +134,6 @@ export function networkPlannerBlock(o: { net: NetworkCtx; accepted: IdeaRow[]; n
       ? o.accepted.map((i) => `- ${i.id}: «${i.title}»${i.angle ? ` — ${i.angle}` : ''}; варіанти: ${i.variants.map((v) => `${v.resource_ref} ${v.format}`).join(', ')}`).join('\n')
       : '- немає (плануй серії; якщо й їх немає — мінімум постів з бібліотеки через series не можна, тож краще менше постів)',
     '',
-    'Одна ідея → нативні варіанти на різних ресурсах з інтервалом ≥ 90 хв; Telegram (core) — першим. Заверши submit_network_plan.',
+    'Кожну ідею, яку береш у план, став на ВСІ ресурси з її варіантів (нативний формат кожного), з інтервалом ≥ 90 хв; Telegram (core) — першим. Заверши submit_network_plan.',
   ].join('\n');
 }

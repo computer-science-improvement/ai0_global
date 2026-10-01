@@ -57,14 +57,16 @@ export function lintPlatformPost(spec: PlatformPostSpec, c: PlatformLintContext)
   if (!fs) errors.push({ code: 'unknown_format', message: `${spec.format} не підтримується на ${c.platform}` });
   else if (!fs.implemented) errors.push({ code: 'format_not_implemented', message: `${spec.format}: ${fs.note}` });
 
-  const tagsText = spec.hashtags.map((h) => `#${normalizeHashtag(h)}`).join(' ');
   const caption = captionPlain(spec, caps.linksClickable);
+  const inCaption = new Set((caption.match(/#[\p{L}\p{N}_]+/gu) ?? []).map((t) => normalizeHashtag(t.slice(1))));
+  const tagsText = spec.hashtags.map((h) => normalizeHashtag(h)).filter((h) => !inCaption.has(h)).map((h) => `#${h}`).join(' ');
+  const allTags = new Set([...inCaption, ...spec.hashtags.map((h) => normalizeHashtag(h))]);
   const full = [caption, tagsText].filter(Boolean).join('\n\n');
   if (full.length > caps.captionMax) errors.push({ code: 'caption_too_long', message: `підпис ${full.length} > ${caps.captionMax} символів (на ${full.length - caps.captionMax} задовгий)` });
   if (!caption && (spec.format === 'th_text' || spec.format === 'fb_text' || spec.format === 'fb_link')) errors.push({ code: 'empty_caption', message: 'текстовий формат без тексту' });
 
-  if (spec.hashtags.length > caps.hashtags.max) errors.push({ code: 'too_many_hashtags', message: `хештегів ${spec.hashtags.length} > ${caps.hashtags.max}` });
-  else if (spec.hashtags.length > caps.hashtags.recommended[1]) warnings.push({ code: 'hashtags_above_recommended', message: `рекомендовано ${caps.hashtags.recommended.join('–')}` });
+  if (allTags.size > caps.hashtags.max) errors.push({ code: 'too_many_hashtags', message: `хештегів ${allTags.size} > ${caps.hashtags.max}` });
+  else if (allTags.size > caps.hashtags.recommended[1]) warnings.push({ code: 'hashtags_above_recommended', message: `рекомендовано ${caps.hashtags.recommended.join('–')}` });
   for (const h of spec.hashtags) {
     const n = normalizeHashtag(h);
     if (!/^[\p{L}\p{N}_]{2,40}$/u.test(n)) errors.push({ code: 'bad_hashtag', message: `хештег «${h}»` });
@@ -118,7 +120,9 @@ export const LINK_IN_BIO = 'Посилання в біо';
 export function renderPlatform(spec: PlatformPostSpec, platform: Exclude<Platform, 'telegram'>, slideUrls: string[] = []): RenderedPlatformPost {
   const caps = CAPABILITIES[platform];
   const body = captionPlain(spec, caps.linksClickable);
-  const tags = spec.hashtags.map((h) => `#${normalizeHashtag(h)}`).join(' ');
+  // Hashtags the caption already contains are not appended a second time.
+  const present = new Set((body.match(/#[\p{L}\p{N}_]+/gu) ?? []).map((t) => normalizeHashtag(t.slice(1))));
+  const tags = spec.hashtags.map((h) => normalizeHashtag(h)).filter((h) => !present.has(h)).map((h) => `#${h}`).join(' ');
   const linkLine = spec.link
     ? (caps.linksClickable ? (body.includes(spec.link.url) ? '' : `${spec.link.label ? `${spec.link.label}: ` : ''}${spec.link.url}`) : LINK_IN_BIO)
     : '';
