@@ -32,8 +32,8 @@ before(async () => {
   pool = new Pool({ connectionString: url });
   await cleanup();
   const channels = new EditorChannelsRepository(pool);
-  await channels.insertIfMissing({ ...makeDefaultCard(CH), mode: 'shadow', title: 'Агенти ПГ' });
-  await channels.insertIfMissing({ ...makeDefaultCard(CH2), mode: 'off' });
+  await channels.insertIfMissing({ ...makeDefaultCard(CH, 'Агенти ПГ'), mode: 'shadow' });
+  await channels.insertIfMissing({ ...makeDefaultCard(CH2, null), mode: 'off' });
 });
 after(async () => {
   if (!url) return;

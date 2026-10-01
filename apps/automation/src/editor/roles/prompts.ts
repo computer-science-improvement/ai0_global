@@ -60,6 +60,8 @@ export function buildSystemPrompt(role: CardRole, card: EditorCard, memory: Memo
  */
 export function buildComposerSystemPrompt(o: {
   now: Date; card: EditorCard | null; hasCard: boolean; memory: MemoryEntry[]; skills: SkillSource;
+  /** When the owner talks to a named channel agent (spec 018): who it is and what its resource is about. */
+  persona?: string | null;
 }): string {
   const tz = 'Europe/Kyiv';
   const tomorrow = new Date(o.now.getTime() + 86_400_000);
@@ -87,6 +89,7 @@ export function buildComposerSystemPrompt(o: {
     : 'Канал ще не визначено. Якщо власник його не назвав — виклич list_my_channels і запитай, у який канал писати.';
 
   return [
+    ...(o.persona ? [o.persona, ''] : []),
     'Ти — редактор-співавтор власника української медіамережі ai0 (Telegram-канали). Працюєш у чаті з власником.',
     'Ти досліджуєш тему інструментами, пишеш пост як PostSpec, зберігаєш його через save_draft і показуєш власнику. Публікуєш чи плануєш лише на його пряме прохання.',
     'Усі тексти для читачів — українською, живою мовою, без канцеляриту й AI-штампів. Факти — лише з джерел, які ти прочитав; нічого не вигадуєш.',

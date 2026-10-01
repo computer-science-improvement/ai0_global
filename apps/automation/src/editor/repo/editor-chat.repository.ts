@@ -7,6 +7,8 @@ export type DraftStatus = typeof DRAFT_STATUSES[number];
 export interface EditorChat {
   id:        string;
   title:     string;
+  /** The last agent addressed in this chat by @handle (spec 018). */
+  agentId?:  string | null;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -18,6 +20,8 @@ export interface EditorChatMessage {
   content:   string;
   draftIds:  string[];
   runId:     string | null;
+  /** Agent that wrote (assistant) or was addressed (user) — spec 018. */
+  agentId?:  string | null;
   createdAt: Date;
 }
 
@@ -56,11 +60,13 @@ export interface MyChannel {
   mode:       string | null;
 }
 
-const toChat = (r: any): EditorChat => ({ id: r.id, title: r.title, createdAt: r.created_at, updatedAt: r.updated_at });
+const toChat = (r: any): EditorChat => ({
+  id: r.id, title: r.title, createdAt: r.created_at, updatedAt: r.updated_at, ...(r.agent_id ? { agentId: r.agent_id } : {}),
+});
 
 const toMessage = (r: any): EditorChatMessage => ({
   id: Number(r.id), chatId: r.chat_id, role: r.role, content: r.content, draftIds: r.draft_ids ?? [],
-  runId: r.run_id ?? null, createdAt: r.created_at,
+  runId: r.run_id ?? null, createdAt: r.created_at, ...(r.agent_id ? { agentId: r.agent_id } : {}),
 });
 
 export const toDraft = (r: any): EditorDraft => ({
@@ -107,11 +113,20 @@ export class EditorChatRepository {
 
   // ── messages ──────────────────────────────────────────────────────────────
 
-  async addMessage(m: { chatId: string; role: 'user' | 'assistant'; content: string; draftIds?: string[]; runId?: string | null }): Promise<EditorChatMessage> {
-    const { rows } = await this.pool.query(
-      `INSERT INTO editor_chat_messages (chat_id, role, content, draft_ids, run_id) VALUES ($1, $2, $3, $4, $5) RETURNING *`,
-      [m.chatId, m.role, m.content, m.draftIds ?? [], m.runId ?? null]);
+  async addMessage(m: { chatId: string; role: 'user' | 'assistant'; content: string; draftIds?: string[]; runId?: string | null; agentId?: string | null }): Promise<EditorChatMessage> {
+    const { rows } = m.agentId
+      ? await this.pool.query(
+        `INSERT INTO editor_chat_messages (chat_id, role, content, draft_ids, run_id, agent_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`,
+        [m.chatId, m.role, m.content, m.draftIds ?? [], m.runId ?? null, m.agentId])
+      : await this.pool.query(
+        `INSERT INTO editor_chat_messages (chat_id, role, content, draft_ids, run_id) VALUES ($1, $2, $3, $4, $5) RETURNING *`,
+        [m.chatId, m.role, m.content, m.draftIds ?? [], m.runId ?? null]);
     return toMessage(rows[0]);
+  }
+
+  /** Remember the agent the owner addressed last in this chat (spec 018). */
+  async setChatAgent(chatId: string, agentId: string | null): Promise<void> {
+    await this.pool.query(`UPDATE editor_chats SET agent_id = $2 WHERE id = $1`, [chatId, agentId]);
   }
 
   /** The chat's messages in order (the last `limit`). */

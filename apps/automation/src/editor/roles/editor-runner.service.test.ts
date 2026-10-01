@@ -90,7 +90,7 @@ test('agent runtime (spec 017): the run is recorded on the role agent with its s
   const orch: any = { id: 'o1', handle: 'kira', model: 'z-ai/glm-5.3', dailyBudgetUsd: 0.4 };
   const exec: any = { id: 'e1', handle: 'kira_executor', model: null, dailyBudgetUsd: null };
   const runner = new EditorRunnerService({
-    loop: { run: async (i: any) => { runs.push(i); return { runId: 'r', status: 'ok', terminalTool: 'publish_post' }; } },
+    loop: { run: async (i: any) => { runs.push(i); return { runId: 'r', status: 'ok', terminalTool: 'publish_post' } as any; } },
     registry: { forRole: () => [] as any },
     skills: lib,
     runtime: { forChannel: async () => ({ agent: exec, orchestrator: orch, skills: view, paused: false }) },
@@ -111,7 +111,7 @@ test('agent runtime (spec 017): a paused agent skips the slot without an LLM cal
   const runs: any[] = [];
   const updates: any[] = [];
   const runner = new EditorRunnerService({
-    loop: { run: async (i: any) => { runs.push(i); return { runId: 'r', status: 'ok' }; } },
+    loop: { run: async (i: any) => { runs.push(i); return { runId: 'r', status: 'ok' } as any; } },
     registry: { forRole: () => [] as any },
     skills: new SkillLibrary(),
     runtime: { forChannel: async () => ({ agent: { handle: 'x_exec' } as any, orchestrator: { handle: 'x' } as any, skills: new SkillLibrary(), paused: true }) },

@@ -6,6 +6,8 @@ import type { MemoryEntry } from '../repo/editor-memory.repository';
 import { Agent, isPaused, telegramKeyOf, validateHandle } from './agent.types';
 import type { AgentPatch, AgentsRepository } from './agents.repository';
 import type { OwnerInbox } from './owner-inbox';
+import type { PendingActionsService } from './pending-actions';
+import { ResourceProfileSchema, ResourceProfilesRepository } from './resource-profile';
 import type { SkillStore } from './skill-store';
 import { SKILL_ROLES } from './skill-lint';
 
@@ -14,6 +16,8 @@ export interface AgentsServiceDeps {
   agents:  AgentsRepository;
   skills:  SkillStore;
   inbox:   OwnerInbox;
+  profiles?: ResourceProfilesRepository;
+  actions?:  PendingActionsService;
   /** Channel mode changes go through the editor ops (audit row, validation). */
   setChannelMode: (channelKey: string, mode: 'off' | 'shadow' | 'live') => Promise<unknown>;
   /** "Run now" per kind; each returns at once (the run continues in the background). */
@@ -238,6 +242,78 @@ export class AgentsService {
     const a = await this.require(handle);
     const key = telegramKeyOf(await this.orchestratorOf(a));
     return { channelKey: key, memory: key ? await this.d.memory(key) : [] };
+  }
+
+  // ── resource profile (spec 018) ───────────────────────────────────────────
+
+  private profileKey(orch: Agent): string | null {
+    if (!orch.scopeId) return null;
+    return orch.scope === 'network' ? `network:${orch.scopeId}` : orch.scopeId;
+  }
+
+  async getProfile(handle: string) {
+    const orch = await this.orchestratorOf(await this.require(handle));
+    const key = this.profileKey(orch);
+    const stored = key && this.d.profiles ? await this.d.profiles.get(key) : null;
+    return { ref: key, profile: stored?.profile ?? null, health: stored?.health ?? null, updatedAt: stored?.updatedAt ?? null };
+  }
+
+  async putProfile(handle: string, body: unknown) {
+    const orch = await this.orchestratorOf(await this.require(handle));
+    const key = this.profileKey(orch);
+    if (!key) throw new BadRequestException({ error: 'no_resource', details: 'системні агенти не мають профілю ресурсу' });
+    await this.setProfile(key, body, 'owner');
+    return this.getProfile(handle);
+  }
+
+  async setProfile(ref: string, body: unknown, by: 'owner' | 'builder' | 'agent') {
+    if (!this.d.profiles) throw new BadRequestException({ error: 'profiles_unavailable' });
+    const p = ResourceProfileSchema.safeParse(body ?? {});
+    if (!p.success) throw badRequest(p.error);
+    await this.d.profiles.setProfile(ref, p.data, by);
+  }
+
+  private briefHook: ((agent: Agent, brief: string) => Promise<void>) | null = null;
+
+  /** Spec 020 registers the playbook rebuild here. */
+  setBriefHook(fn: (agent: Agent, brief: string) => Promise<void>): void {
+    this.briefHook = fn;
+  }
+
+  async onBrief(agent: Agent, brief: string): Promise<void> {
+    if (!this.briefHook) return;
+    try { await this.briefHook(await this.orchestratorOf(agent), brief); } catch (err: any) { this.d.log?.(`brief hook failed: ${err?.message ?? err}`); }
+  }
+
+  /** Mentionable agents for the chat's @ autocomplete. */
+  async handles() {
+    const all = await this.d.agents.list();
+    return {
+      agents: all.filter((a) => !a.parentId).map((a) => ({ handle: a.handle, name: a.name, emoji: a.emoji, kind: a.kind, scope: a.scope, scopeId: a.scopeId, mode: a.mode })),
+    };
+  }
+
+  // ── confirmation cards (spec 018 FR-005) ──────────────────────────────────
+
+  async applyAction(id: string) {
+    if (!this.d.actions) throw new NotFoundException({ error: 'actions_unavailable' });
+    try {
+      return { action: await this.d.actions.apply(id) };
+    } catch (err: any) {
+      if (err?.status === 404) throw new NotFoundException({ error: 'action_not_found' });
+      if (err?.status === 409) throw new ConflictException({ error: err.message });
+      throw err;
+    }
+  }
+
+  async discardAction(id: string) {
+    if (!this.d.actions) throw new NotFoundException({ error: 'actions_unavailable' });
+    try {
+      return { action: await this.d.actions.discard(id) };
+    } catch (err: any) {
+      if (err?.status === 404) throw new NotFoundException({ error: 'action_not_found' });
+      throw err;
+    }
   }
 
   // ── inbox ─────────────────────────────────────────────────────────────────

@@ -10,6 +10,14 @@ import { buildComposerSystemPrompt } from '../roles/prompts';
 import type { DraftsService } from './drafts.service';
 import type { ComposerExtras } from './composer-tools';
 import { hasPublishIntent, mentionedChannels } from './intent';
+import type { Agent } from '../agents/agent.types';
+import type { RunAgentContext } from '../agents/agent-runtime';
+import type { PendingAction } from '../agents/pending-actions';
+import type { ResourceProfile } from '../agents/resource-profile';
+import type { AgentChatExtras } from '../agents/builder-tools';
+import { hasAgentChangeIntent, parseMentions, startsWithMention } from '../agents/mentions';
+import { agentPersona, buildBuilderPrompt, buildManagerChatPrompt } from '../agents/agent-prompts';
+import type { EditorRole } from '../llm/llm.types';
 
 export const COMPOSER_MAX_STEPS = 16;
 export const MAX_MESSAGE_CHARS = 8000;
@@ -23,12 +31,35 @@ export type ChatStreamEvent =
   | { type: 'tool_result'; name: string; ok: boolean; summary: string }
   | { type: 'draft';       draft: EditorDraft }
   | { type: 'message';     message: EditorChatMessage }
+  | { type: 'agent';       agent: { id: string; handle: string; name: string; emoji: string | null; kind: string } }
+  | { type: 'action';      action: PendingAction }
   | { type: 'error';       error: string }
   | { type: 'done' };
 
+/** The agent registry as the chat sees it (spec 018). Optional: without it the chat is the 010 composer. */
+export interface AgentChatPort {
+  byHandle(handle: string): Promise<Agent | null>;
+  get(id: string): Promise<Agent | null>;
+  forAgent(agent: Agent, role: EditorRole): Promise<RunAgentContext>;
+  profileOf(agent: Agent): Promise<ResourceProfile | null>;
+  /** The Telegram channel an orchestrator publishes to (its resource, or its network's channel). */
+  channelKeyOf(agent: Agent): Promise<string | null>;
+  agentsSummary(): Promise<string>;
+  handles(): Promise<string[]>;
+  managerDigest?(): Promise<string | null>;
+  actionsForChat(chatId: string): Promise<PendingAction[]>;
+}
+
+type Route =
+  | { kind: 'legacy' }
+  | { kind: 'unknown'; handle: string }
+  | { kind: 'agent'; agent: Agent; note: string | null };
+
 export interface EditorChatDeps {
   repo:     Pick<EditorChatRepository,
-    'createChat' | 'listChats' | 'getChat' | 'deleteChat' | 'touchChat' | 'addMessage' | 'listMessages' | 'listDrafts' | 'myChannels'>;
+    'createChat' | 'listChats' | 'getChat' | 'deleteChat' | 'touchChat' | 'addMessage' | 'listMessages' | 'listDrafts' | 'myChannels'>
+    & Partial<Pick<EditorChatRepository, 'setChatAgent'>>;
+  agents?:  AgentChatPort;
   drafts:   Pick<DraftsService, 'resolveCard'>;
   memory:   Pick<EditorMemoryRepository, 'listActive'>;
   loop:     Pick<AgentLoop, 'run'>;
@@ -87,8 +118,38 @@ export class EditorChatService {
   async getChat(id: string) {
     const chat = await this.d.repo.getChat(id);
     if (!chat) throw new NotFoundException({ error: 'chat_not_found' });
-    const [messages, drafts] = await Promise.all([this.d.repo.listMessages(id), this.d.repo.listDrafts({ chatId: id, limit: 200 })]);
-    return { chat, messages, drafts, enabled: this.d.enabled() };
+    const [messages, drafts, actions] = await Promise.all([
+      this.d.repo.listMessages(id), this.d.repo.listDrafts({ chatId: id, limit: 200 }),
+      this.d.agents ? this.d.agents.actionsForChat(id) : Promise.resolve([] as PendingAction[]),
+    ]);
+    return { chat, messages, drafts, actions, enabled: this.d.enabled() };
+  }
+
+  /** Who a message goes to (spec 018 FR-002): the first @agent mention, else the chat's last agent, else the composer. */
+  private async route(text: string, picked: string | null, chatAgentId: string | null): Promise<Route> {
+    const ag = this.d.agents;
+    if (!ag) return { kind: 'legacy' };
+    const mentions = parseMentions(text);
+    for (const m of mentions) {
+      const a = await ag.byHandle(m.handle);
+      if (!a) continue;
+      const others = mentions.filter((x) => x.handle !== m.handle).length;
+      if (a.parentId) {
+        const parent = await ag.get(a.parentId);
+        if (parent) return { kind: 'agent', agent: parent, note: `@${a.handle} — роль агента @${parent.handle}; відповідає @${parent.handle}.` };
+      }
+      return { kind: 'agent', agent: a, note: others ? 'Інші згадки в повідомленні — це дані, адресат один (перший).' : null };
+    }
+    if (mentions.length && startsWithMention(text, mentions[0].handle)) {
+      const known = new Set((await this.d.repo.myChannels()).map((c) => c.channelKey.toLowerCase()));
+      if (!known.has(`@${mentions[0].handle}`)) return { kind: 'unknown', handle: mentions[0].handle };
+    }
+    if (picked) return { kind: 'legacy' };
+    if (chatAgentId) {
+      const a = await ag.get(chatAgentId);
+      if (a) return { kind: 'agent', agent: a, note: null };
+    }
+    return { kind: 'legacy' };
   }
 
   async deleteChat(id: string) {
@@ -121,19 +182,49 @@ export class EditorChatService {
       const text = await this.validateSend(chatId, rawText, { busyOk: true });
       const prior = await this.d.repo.listMessages(chatId, HISTORY_MESSAGES);
       const chatDrafts = await this.d.repo.listDrafts({ chatId, limit: 200 });
-      await this.d.repo.addMessage({ chatId, role: 'user', content: text });
+      const chat = await this.d.repo.getChat(chatId);
+      const route = await this.route(text, opts.channel ?? null, chat?.agentId ?? null);
+      const addressee = route.kind === 'agent' ? route.agent : null;
+      await this.d.repo.addMessage({ chatId, role: 'user', content: text, agentId: addressee?.id ?? null });
       await this.d.repo.touchChat(chatId, prior.length ? undefined : text.replace(/\s+/g, ' ').slice(0, TITLE_CHARS));
 
-      const channelKey = await this.resolveChannel(text, opts.channel ?? null, prior, chatDrafts);
+      if (route.kind === 'unknown') {
+        const handles = this.d.agents ? await this.d.agents.handles() : [];
+        const message = await this.d.repo.addMessage({
+          chatId, role: 'assistant',
+          content: `Агента @${route.handle} немає.${handles.length ? ` Доступні: ${handles.map((h) => `@${h}`).join(', ')}.` : ''}`,
+        });
+        emit({ type: 'message', message });
+        return { message, drafts: [] };
+      }
+      if (addressee) {
+        if (this.d.repo.setChatAgent && addressee.id !== chat?.agentId) await this.d.repo.setChatAgent(chatId, addressee.id);
+        emit({ type: 'agent', agent: { id: addressee.id, handle: addressee.handle, name: addressee.name, emoji: addressee.emoji, kind: addressee.kind } });
+        if (addressee.kind === 'builder' || addressee.kind === 'manager') {
+          return await this.runSystemAgent(chatId, text, addressee, prior, chatDrafts, emit, route.kind === 'agent' ? route.note : null);
+        }
+      }
+
+      const agentKey = addressee && this.d.agents ? await this.d.agents.channelKeyOf(addressee) : null;
+      const channelKey = agentKey ?? await this.resolveChannel(text, opts.channel ?? null, prior, chatDrafts);
       const resolved = channelKey ? await this.d.drafts.resolveCard(channelKey) : null;
       const memory = channelKey && resolved?.hasCard ? await this.d.memory.listActive(channelKey) : [];
+      const agentCtx = addressee && this.d.agents ? await this.d.agents.forAgent(addressee, 'composer') : null;
+      const persona = addressee && this.d.agents
+        ? agentPersona(addressee, await this.d.agents.profileOf(addressee), route.kind === 'agent' && route.note ? [route.note] : [])
+        : null;
 
       const touched = new Map<string, EditorDraft>();
-      const extras: ComposerExtras = {
+      const actions: PendingAction[] = [];
+      const extras: ComposerExtras & AgentChatExtras & Record<string, unknown> = {
         chat: { chatId, channelKey },
         card: resolved?.card,
         userIntent: hasPublishIntent(text),
         onDraft: (draft) => { touched.set(draft.id, draft); emit({ type: 'draft', draft }); },
+        agentIntent: hasAgentChangeIntent(text),
+        ownerText: text,
+        onAction: (a) => { actions.push(a); emit({ type: 'action', action: a }); },
+        ...(agentCtx ? { agent: addressee, skills: agentCtx.skills } : {}),
       };
       const onEvent = (e: AgentLoopEvent) => {
         if (e.type === 'llm_text') emit({ type: 'text', text: e.text });
@@ -143,10 +234,14 @@ export class EditorChatService {
       let res: AgentLoopResult;
       try {
         res = await this.d.loop.run({
-          role: 'composer', channelKey: null, model: resolveModel('composer', this.d.env),
-          system: buildComposerSystemPrompt({ now: this.now(), card: resolved?.card ?? null, hasCard: !!resolved?.hasCard, memory, skills: this.d.skills }),
+          role: 'composer', channelKey: null,
+          model: resolveModel('composer', this.d.env, addressee?.model ? { composer: addressee.model } : null),
+          system: buildComposerSystemPrompt({
+            now: this.now(), card: resolved?.card ?? null, hasCard: !!resolved?.hasCard, memory, skills: agentCtx?.skills ?? this.d.skills, persona,
+          }),
           user: text, history: this.history(prior, chatDrafts), tools: this.d.registry.forRole('composer'),
           maxSteps: COMPOSER_MAX_STEPS, extras: extras as unknown as Record<string, unknown>, onEvent,
+          agent: addressee ? { id: addressee.id, handle: addressee.handle, limitUsd: addressee.dailyBudgetUsd } : null,
         });
       } catch (err: any) {
         res = { runId: null, status: 'error', totals: { steps: 0, promptTokens: 0, completionTokens: 0, costUsd: 0 }, error: err?.message ?? String(err) };
@@ -155,6 +250,7 @@ export class EditorChatService {
       if (!ok) emit({ type: 'error', error: res.error ?? res.status });
       const message = await this.d.repo.addMessage({
         chatId, role: 'assistant', content: ok ? res.finalText!.trim() : failureText(res), draftIds: [...touched.keys()], runId: res.runId,
+        agentId: addressee?.id ?? null,
       });
       await this.d.repo.touchChat(chatId);
       emit({ type: 'message', message });
@@ -162,6 +258,50 @@ export class EditorChatService {
     } finally {
       this.running.delete(chatId);
     }
+  }
+
+  /** @ai0 (builder) and @manager: their own prompts and tools; mutations only as confirmation cards. */
+  private async runSystemAgent(
+    chatId: string, text: string, agent: Agent, prior: EditorChatMessage[], chatDrafts: EditorDraft[],
+    emit: (e: ChatStreamEvent) => void, note: string | null,
+  ): Promise<{ message: EditorChatMessage; drafts: EditorDraft[] }> {
+    const ag = this.d.agents!;
+    const role: EditorRole = agent.kind === 'builder' ? 'builder' : 'manager';
+    const ctx = await ag.forAgent(agent, role);
+    const system = role === 'builder'
+      ? buildBuilderPrompt({ now: this.now(), skills: ctx.skills, agentsSummary: await ag.agentsSummary() })
+      : buildManagerChatPrompt({ now: this.now(), skills: ctx.skills, agent, digest: ag.managerDigest ? await ag.managerDigest() : null });
+    const extras: AgentChatExtras & Record<string, unknown> = {
+      chat: { chatId, channelKey: null },
+      agentIntent: hasAgentChangeIntent(text),
+      ownerText: text,
+      onAction: (a) => emit({ type: 'action', action: a }),
+      agent, skills: ctx.skills,
+    };
+    const onEvent = (e: AgentLoopEvent) => {
+      if (e.type === 'llm_text') emit({ type: 'text', text: e.text });
+      else emit(e);
+    };
+    let res: AgentLoopResult;
+    try {
+      res = await this.d.loop.run({
+        role, channelKey: null, model: resolveModel(role, this.d.env, agent.model ? { [role]: agent.model } : null),
+        system: note ? `${system}\n\n${note}` : system,
+        user: text, history: this.history(prior, chatDrafts), tools: this.d.registry.forRole(role),
+        maxSteps: COMPOSER_MAX_STEPS, extras, onEvent,
+        agent: { id: agent.id, handle: agent.handle, limitUsd: agent.dailyBudgetUsd },
+      });
+    } catch (err: any) {
+      res = { runId: null, status: 'error', totals: { steps: 0, promptTokens: 0, completionTokens: 0, costUsd: 0 }, error: err?.message ?? String(err) };
+    }
+    const ok = res.status === 'ok' && !!res.finalText?.trim();
+    if (!ok) emit({ type: 'error', error: res.error ?? res.status });
+    const message = await this.d.repo.addMessage({
+      chatId, role: 'assistant', content: ok ? res.finalText!.trim() : failureText(res), runId: res.runId, agentId: agent.id,
+    });
+    await this.d.repo.touchChat(chatId);
+    emit({ type: 'message', message });
+    return { message, drafts: [] };
   }
 
   /** Prior text turns; an assistant turn carries a summary of the drafts it touched (ids for later edits). */

@@ -26,6 +26,21 @@ export class AgentsController {
     return this.svc.markRead(body);
   }
 
+  @Get('agents/handles')
+  handles() {
+    return this.svc.handles();
+  }
+
+  @Post('agents/actions/:id/apply')
+  apply(@Param('id', ParseUUIDPipe) id: string) {
+    return this.svc.applyAction(id);
+  }
+
+  @Post('agents/actions/:id/discard')
+  discard(@Param('id', ParseUUIDPipe) id: string) {
+    return this.svc.discardAction(id);
+  }
+
   @Get('agents/:handle')
   get(@Param('handle') handle: string) {
     return this.svc.get(handle);
@@ -44,6 +59,16 @@ export class AgentsController {
   @Get('agents/:handle/runs')
   runs(@Param('handle') handle: string, @Query('before') before?: string, @Query('limit') limit?: string) {
     return this.svc.runs(handle, before || undefined, limit ? Number(limit) : 50);
+  }
+
+  @Get('agents/:handle/profile')
+  profile(@Param('handle') handle: string) {
+    return this.svc.getProfile(handle);
+  }
+
+  @Put('agents/:handle/profile')
+  putProfile(@Param('handle') handle: string, @Body() body: unknown) {
+    return this.svc.putProfile(handle, body);
   }
 
   @Get('agents/:handle/memory')

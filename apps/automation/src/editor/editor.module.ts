@@ -59,7 +59,15 @@ import { SkillVersionEvaluator } from './agents/skill-version-evaluator';
 import { buildAgentSkillTools } from './agents/agent-skill-tools';
 import { AgentsService } from './agents/agents.service';
 import { AGENTS_SERVICE, AgentsController } from './agents/agents.controller';
-import { telegramKeyOf } from './agents/agent.types';
+import { telegramKeyOf, parseResourceRef } from './agents/agent.types';
+import type { Agent } from './agents/agent.types';
+import { ResourceProfilesRepository } from './agents/resource-profile';
+import { ResourceCatalog, makeTelegramAccessCheck } from './agents/resource-catalog';
+import { PendingActionsRepository, PendingActionsService } from './agents/pending-actions';
+import { AgentCreator } from './agents/agent-creator';
+import { buildBuilderTools } from './agents/builder-tools';
+import { buildAgentChatTools } from './agents/agent-chat-tools';
+import type { AgentChatPort } from './chat/editor-chat.service';
 import { TrackingAuthGuard } from '../tracking/api/tracking-auth.guard';
 
 export const EDITOR_RUNNER    = 'EDITOR_RUNNER';
@@ -79,6 +87,13 @@ export interface AgentInfra {
   kpi:      ScopeKpi;
   runtime:  AgentRuntime;
   registry: AgentRegistrySync;
+  profiles: ResourceProfilesRepository;
+  catalog:  ResourceCatalog;
+  actions:  PendingActionsService;
+  actionsRepo: PendingActionsRepository;
+  creator:  AgentCreator;
+  /** The Telegram channel an orchestrator publishes to: its resource, or its network's channel. */
+  channelKeyOf(agent: Agent): Promise<string | null>;
 }
 export { EDITOR_OPS, EDITOR_CHAT, EDITOR_DRAFTS };
 
@@ -138,6 +153,26 @@ export class AgentsUpkeep implements OnModuleInit {
     }
   }
 
+  /** Expire stale confirmation cards; offer "go live" to agents whose shadow period ended (spec 018 FR-007). */
+  @Cron('23 * * * *', { name: 'agents-housekeeping' })
+  async housekeeping(): Promise<void> {
+    try {
+      await this.infra.actionsRepo.expireOld(new Date());
+      for (const a of await this.infra.agents.list()) {
+        if (a.parentId || a.mode !== 'shadow' || !a.shadowUntil || a.shadowUntil.getTime() > Date.now()) continue;
+        await this.infra.inbox.post({
+          agentId: a.id, kind: 'go_live', severity: 'action',
+          title: `🚦 @${a.handle}: shadow-період завершено — перевести в live?`,
+          body: 'Перегляньте shadow-превʼю на сторінці агента і переведіть режим у live, якщо все гаразд.',
+          refType: 'agent', refId: a.handle,
+        });
+        await this.infra.agents.update(a.id, { shadowUntil: null });
+      }
+    } catch (err: any) {
+      this.logger.warn(`agents housekeeping failed: ${err?.message ?? err}`);
+    }
+  }
+
   @Cron('40 5 * * *', { name: 'agents-skill-review' })
   async reviewSkills(): Promise<void> {
     try {
@@ -155,6 +190,41 @@ export class AgentsUpkeep implements OnModuleInit {
       this.logger.warn(`skill evaluation failed: ${err?.message ?? err}`);
     }
   }
+}
+
+/** Owner-confirmed mutations proposed by @ai0 and channel agents in the chat (spec 018 FR-005). */
+function registerAgentActions(infra: AgentInfra, svc: AgentsService, ops: EditorOpsService): void {
+  const a = infra.actions;
+  a.register('create_agent', async (p) => {
+    const r = await infra.creator.create(p);
+    if ('error' in r) throw new Error(`${r.error}${r.details ? `: ${typeof r.details === 'string' ? r.details : JSON.stringify(r.details)}` : ''}`);
+    return { handle: r.agent.handle, id: r.agent.id, cardCreated: r.cardCreated };
+  });
+  a.register('update_agent', async (p) => svc.patch(String(p.handle), p.patch));
+  a.register('set_brief', async (p) => {
+    const agent = await svc.require(String(p.handle));
+    const key = await infra.channelKeyOf(agent);
+    if (key && (!agent.scopeId || parseResourceRef(agent.scopeId)?.platform === 'telegram')) await ops.upsertChannel(key, { brief: String(p.brief) });
+    await svc.onBrief(agent, String(p.brief));
+    return { ok: true, channel: key };
+  });
+  a.register('set_resource_profile', async (p) => {
+    await svc.setProfile(String(p.ref), p.profile, 'owner');
+    return { ok: true };
+  });
+  a.register('write_skill', async (p) => {
+    const r = await svc.putSkill(String(p.handle), String(p.name), { description: p.description, applies_to: p.applies_to, body: p.body });
+    if (p.inline) await svc.patchSkill(String(p.handle), String(p.name), { inline: true });
+    return { version: r.version };
+  });
+  a.register('attach_skill', async (p) => {
+    await svc.patchSkill(String(p.handle), String(p.skill), { enabled: true, ...(p.inline ? { inline: true } : {}) });
+    return { ok: true };
+  });
+  a.register('detach_skill', async (p) => {
+    await svc.patchSkill(String(p.handle), String(p.skill), { enabled: false });
+    return { ok: true };
+  });
 }
 
 /**
@@ -176,17 +246,40 @@ export const EDITOR_PROVIDERS = [
     { provide: EDITOR_SKILLS, useFactory: () => new SkillLibrary() },
     {
       provide: AGENT_INFRA,
-      inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_SKILLS, TelegramNotifier],
-      useFactory: (pool: Pool, cfg: ConfigService, repos: EditorRepos, files: SkillLibrary, notifier: TelegramNotifier): AgentInfra => {
+      inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_SKILLS, TelegramNotifier, ChannelConfigService],
+      useFactory: (
+        pool: Pool, cfg: ConfigService, repos: EditorRepos, files: SkillLibrary, notifier: TelegramNotifier, channelConfig: ChannelConfigService,
+      ): AgentInfra => {
         const logger = new Logger('Agents');
         const agents = new AgentsRepository(pool);
         const skills = new SkillStore(pool);
+        const profiles = new ResourceProfilesRepository(pool);
+        const registry = new AgentRegistrySync({ agents, channels: repos.channels, log: (m) => logger.log(m) });
+        const catalog = new ResourceCatalog({
+          pool,
+          telegramAccess: makeTelegramAccessCheck((key) => {
+            const r = channelConfig.resolveChannel(key);
+            return { chatId: r.chatId, botToken: r.botToken };
+          }),
+        });
+        const actionsRepo = new PendingActionsRepository(pool);
+        const channelKeyOf = async (agent: Agent): Promise<string | null> => {
+          const orch = agent.parentId ? (await agents.get(agent.parentId)) ?? agent : agent;
+          const direct = telegramKeyOf(orch);
+          if (direct) return direct;
+          if (orch.scope === 'network' && orch.scopeId) {
+            const { rows } = await pool.query(`SELECT channel_key FROM tracked_channels WHERE group_id = $1 AND channel_key IS NOT NULL LIMIT 1`, [orch.scopeId]);
+            return rows[0]?.channel_key ?? null;
+          }
+          return null;
+        };
         return {
-          agents, skills,
+          agents, skills, profiles, catalog, registry, actionsRepo, channelKeyOf,
           inbox: new OwnerInbox(pool, (t) => notifier.notifyAlert(t), cfg.get<string>('DASHBOARD_URL') ?? null),
           kpi: new TelegramScopeKpi(pool),
           runtime: new AgentRuntime({ agents, store: skills, fallback: files, log: (m) => logger.warn(m) }),
-          registry: new AgentRegistrySync({ agents, channels: repos.channels, log: (m) => logger.log(m) }),
+          actions: new PendingActionsService(actionsRepo),
+          creator: new AgentCreator({ agents, registry, catalog, profiles, channels: repos.channels }),
         };
       },
     },
@@ -260,6 +353,10 @@ export const EDITOR_PROVIDERS = [
           }),
           ...buildComposerTools({ drafts, repo: repos.chat }),
           ...buildAgentSkillTools({ agents: infra.agents, skills: infra.skills, kpi: infra.kpi, inbox: infra.inbox }),
+          ...buildBuilderTools({
+            agents: infra.agents, catalog: infra.catalog, profiles: infra.profiles, creator: infra.creator, skills: infra.skills, actions: infra.actions,
+          }),
+          ...buildAgentChatTools({ pool, memory: repos.memory, skills: infra.skills, actions: infra.actions }),
         ]);
       },
     },
@@ -319,10 +416,10 @@ export const EDITOR_PROVIDERS = [
     {
       // Editor chat (spec 010): needs only an LLM key, independent of EDITOR_ENABLED.
       provide: EDITOR_CHAT,
-      inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_SKILLS, EDITOR_REGISTRY, EDITOR_DRAFTS, TelegramNotifier],
+      inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_SKILLS, EDITOR_REGISTRY, EDITOR_DRAFTS, TelegramNotifier, AGENT_INFRA],
       useFactory: (
         pool: Pool, cfg: ConfigService, repos: EditorRepos, skills: SkillLibrary, registry: ToolRegistry, drafts: DraftsService,
-        notifier: TelegramNotifier,
+        notifier: TelegramNotifier, infra: AgentInfra,
       ): EditorChatService => {
         const logger = new Logger('EditorChat');
         const env = (k: string) => cfg.get<string>(k) ?? undefined;
@@ -336,8 +433,23 @@ export const EDITOR_PROVIDERS = [
           }, (t) => notifier.notifyAlert(t)),
           enabled,
         });
+        const agentsPort: AgentChatPort = {
+          byHandle: (h) => infra.agents.getByHandle(h),
+          get: (id) => infra.agents.get(id),
+          forAgent: (a, role) => infra.runtime.forAgent(a, role),
+          profileOf: async (a) => {
+            const orch = a.parentId ? (await infra.agents.get(a.parentId)) ?? a : a;
+            if (!orch.scopeId) return null;
+            return (await infra.profiles.get(orch.scope === 'network' ? `network:${orch.scopeId}` : orch.scopeId))?.profile ?? null;
+          },
+          channelKeyOf: (a) => infra.channelKeyOf(a),
+          agentsSummary: async () => (await infra.agents.list()).filter((a) => !a.parentId)
+            .map((a) => `- @${a.handle} ${a.emoji ?? ''} ${a.name} · ${a.kind} · ${a.scopeId ?? a.scope} · ${a.mode}${a.status === 'paused' || a.pausedUntil ? ' · пауза' : ''}`).join('\n'),
+          handles: async () => (await infra.agents.list()).filter((a) => !a.parentId).map((a) => a.handle),
+          actionsForChat: (chatId) => infra.actionsRepo.listForChat(chatId),
+        };
         return new EditorChatService({
-          repo: repos.chat, drafts, memory: repos.memory, loop, registry, skills, env, enabled,
+          repo: repos.chat, drafts, memory: repos.memory, loop, registry, skills, env, enabled, agents: agentsPort,
         });
       },
     },
@@ -359,8 +471,8 @@ export const EDITOR_PROVIDERS = [
       inject: [DB_POOL, AGENT_INFRA, EDITOR_REPOS, EDITOR_OPS, EDITOR_RUNNER],
       useFactory: (pool: Pool, infra: AgentInfra, repos: EditorRepos, ops: EditorOpsService, runner: EditorRunnerService) => {
         const logger = new Logger('Agents');
-        return new AgentsService({
-          pool, agents: infra.agents, skills: infra.skills, inbox: infra.inbox,
+        const svc: AgentsService = new AgentsService({
+          pool, agents: infra.agents, skills: infra.skills, inbox: infra.inbox, profiles: infra.profiles, actions: infra.actions,
           setChannelMode: (key, mode) => ops.upsertChannel(key, { mode }),
           memory: (key) => repos.memory.listActive(key, 100),
           sync: () => infra.registry.run(),
@@ -381,6 +493,8 @@ export const EDITOR_PROVIDERS = [
             return { started: false, what: `${agent.kind} runs on its own schedule` };
           },
         });
+        registerAgentActions(infra, svc, ops);
+        return svc;
       },
     },
     EditorCron,

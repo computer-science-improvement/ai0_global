@@ -39,7 +39,8 @@ export interface Agent {
 }
 
 export const HANDLE_RE = /^[a-z][a-z0-9_]{2,31}$/;
-export const RESERVED_HANDLES = new Set(['ai0', 'manager', 'all', 'owner', 'admin']);
+// System agents, plus REST path words under /api/agents/… that must never be mistaken for a handle.
+export const RESERVED_HANDLES = new Set(['ai0', 'manager', 'all', 'owner', 'admin', 'inbox', 'handles', 'actions']);
 
 /** The EditorRole an agent kind runs as (the AgentLoop role; tools and skills are selected by it). */
 export function roleOfKind(kind: AgentKind): EditorRole {
