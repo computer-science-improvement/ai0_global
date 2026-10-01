@@ -14,8 +14,8 @@ Verify after each phase with: `pnpm --filter automation test && (cd apps/automat
 - [x] T007 [P] Gate Swagger behind an env check (FR-011).
 
 ## Phase 3: Money and routing (US3)
-- [ ] T008 Change LiqPay `PAID_STATUSES` to be config-driven, with a test (FR-004).
-- [ ] T009 Make nginx forward all prefixes without stripping them, and set the dashboard `API_BASE` default to `''` (FR-003).
+- [x] T008 Change LiqPay `PAID_STATUSES` to be config-driven, with a test (FR-004).
+- [x] T009 Make nginx forward all prefixes without stripping them, and set the dashboard `API_BASE` default to `''` (FR-003).
 
 ## Phase 4: MTProto safety (US4)
 - [ ] T010 Add `isFloodWait` helper with tests covering a FloodWaitError-like object, an `errorMessage` of `'FLOOD'` with `seconds`, and a plain Error (FR-005).
