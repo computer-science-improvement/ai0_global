@@ -7,6 +7,7 @@ import { TelegramClient, Api } from 'telegram';
 import { StringSession }       from 'telegram/sessions';
 import { LogLevel }            from 'telegram/extensions/Logger';
 import { withTimeout }         from '../../common/with-timeout';
+import { FloodWaitActiveError, FloodWindow, isFloodWait } from '../../common/telegram/flood-wait';
 
 export interface TgAccountInfo {
   id:        string | null;
@@ -62,8 +63,6 @@ export interface InviteCheckResult {
   alreadyJoined: boolean;
 }
 
-const FLOOD_WAIT_RE = /A wait of (\d+) seconds is required/;
-
 @Injectable()
 export class TrackingMtprotoClient implements OnModuleInit {
   private readonly logger = new Logger(TrackingMtprotoClient.name);
@@ -71,6 +70,10 @@ export class TrackingMtprotoClient implements OnModuleInit {
   private ready  = false;
   /** Epoch ms of the last getDialogs() cache-warm; throttles re-warming. */
   private dialogsWarmedAt = 0;
+  /** Account-wide FLOOD_WAIT window. While open, every API method throws
+   *  FloodWaitActiveError WITHOUT calling Telegram, so the BullMQ worker
+   *  wrapper re-delays the job instead of the account getting hammered. */
+  private flood = new FloodWindow();
 
   constructor(
     private readonly config: ConfigService,
@@ -154,6 +157,7 @@ export class TrackingMtprotoClient implements OnModuleInit {
   async getAccount(): Promise<TgAccountInfo | null> {
     if (!this.ready || !this.client) return null;
     if (this.cachedMe) return this.cachedMe;
+    if (this.flood.remaining() > 0) return null;   // identity is cosmetic — skip while flooded
     try {
       // Bound the call: a "ready" session whose socket has silently died makes
       // getMe() hang forever, which would hang GET /tracking/session and leave
@@ -172,6 +176,8 @@ export class TrackingMtprotoClient implements OnModuleInit {
       };
       return this.cachedMe;
     } catch (err: any) {
+      const s = isFloodWait(err);
+      if (s !== null) this.flood.trip(s);
       this.logger.debug(`getAccount (getMe) failed: ${err?.errorMessage ?? err?.message ?? err}`);
       return null;
     }
@@ -248,6 +254,7 @@ export class TrackingMtprotoClient implements OnModuleInit {
    *  failures are swallowed so a poll never dies on a warm. */
   private async warmDialogs(force = false): Promise<void> {
     if (!this.client) return;
+    if (this.flood.remaining() > 0) return;
     const now = Date.now();
     if (!force && now - this.dialogsWarmedAt < 60_000) return;
     this.dialogsWarmedAt = now;
@@ -255,6 +262,8 @@ export class TrackingMtprotoClient implements OnModuleInit {
       const dialogs = await this.client.getDialogs({ limit: 500 });
       this.logger.debug(`warmDialogs: cached ${dialogs.length} dialogs`);
     } catch (err: any) {
+      const s = isFloodWait(err);
+      if (s !== null) { this.flood.trip(s); this.logger.warn(`warmDialogs: FLOOD_WAIT ${s}s`); return; }
       this.logger.debug(`warmDialogs failed: ${err?.errorMessage ?? err?.message ?? err}`);
     }
   }
@@ -288,6 +297,7 @@ export class TrackingMtprotoClient implements OnModuleInit {
 
   async getFullChannel(usernameOrId: string): Promise<FullChannelResult | 'not_subscribed' | null> {
     if (!this.ready || !this.client) return null;
+    this.assertNotFlooded('getFullChannel');
     const address = this.toAddress(usernameOrId);
     if (address === null) return null;
     try {
@@ -320,6 +330,7 @@ export class TrackingMtprotoClient implements OnModuleInit {
 
   async getHistory(usernameOrId: string, offsetId: number, limit = 50): Promise<RawMessage[]> {
     if (!this.ready || !this.client) return [];
+    this.assertNotFlooded('getHistory');
     const address = this.toAddress(usernameOrId);
     if (address === null) return [];
     try {
@@ -361,6 +372,7 @@ export class TrackingMtprotoClient implements OnModuleInit {
    */
   async checkInvite(hash: string): Promise<InviteCheckResult | null> {
     if (!this.ready || !this.client) return null;
+    this.assertNotFlooded('checkInvite');
     try {
       const res: any = await this.client.invoke(
         new Api.messages.CheckChatInvite({ hash }),
@@ -406,6 +418,7 @@ export class TrackingMtprotoClient implements OnModuleInit {
 
   async resolveUsername(username: string): Promise<ResolveResult | null> {
     if (!this.ready || !this.client) return null;
+    this.assertNotFlooded('resolveUsername');
     try {
       const res = await this.client.invoke(new Api.contacts.ResolveUsername({ username }));
       const ch  = (res as any).chats?.[0];
@@ -457,17 +470,24 @@ export class TrackingMtprotoClient implements OnModuleInit {
     };
   }
 
-  /** Logs the error and re-throws FLOOD_WAIT so BullMQ can delay the job. */
-  private handleApiError(where: string, err: any): void {
-    const msg = err.errorMessage ?? err.message ?? '';
-    const flood = FLOOD_WAIT_RE.exec(msg);
-    if (flood) {
-      this.logger.warn(`${where}: FLOOD_WAIT ${flood[1]}s`);
-      const ts = parseInt(flood[1], 10);
-      const e: any = new Error(`FLOOD_WAIT ${ts}`);
-      e.floodWaitSeconds = ts;
-      throw e;
+  /** Throws (no Telegram call) while the account's flood window is open. */
+  private assertNotFlooded(where: string): void {
+    const left = this.flood.remaining();
+    if (left > 0) {
+      this.logger.debug(`${where}: skipped — FLOOD_WAIT ${left}s left`);
+      throw new FloodWaitActiveError(left, where);
     }
-    this.logger.warn(`${where} failed: ${msg}`);
+  }
+
+  /** Logs the error; on FLOOD_WAIT opens the skip window and re-throws so the
+   *  BullMQ worker wrapper delays the job by `floodWaitSeconds`. */
+  private handleApiError(where: string, err: any): void {
+    const seconds = isFloodWait(err);
+    if (seconds !== null) {
+      this.flood.trip(seconds);
+      this.logger.warn(`${where}: FLOOD_WAIT ${seconds}s — pausing all tracking calls`);
+      throw new FloodWaitActiveError(seconds, where);
+    }
+    this.logger.warn(`${where} failed: ${err?.errorMessage ?? err?.message ?? ''}`);
   }
 }

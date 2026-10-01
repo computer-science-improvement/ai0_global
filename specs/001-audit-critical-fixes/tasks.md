@@ -18,8 +18,8 @@ Verify after each phase with: `pnpm --filter automation test && (cd apps/automat
 - [x] T009 Make nginx forward all prefixes without stripping them, and set the dashboard `API_BASE` default to `''` (FR-003).
 
 ## Phase 4: MTProto safety (US4)
-- [ ] T010 Add `isFloodWait` helper with tests covering a FloodWaitError-like object, an `errorMessage` of `'FLOOD'` with `seconds`, and a plain Error (FR-005).
-- [ ] T011 Use it in `agent-mtproto.client.ts` and `tracking-mtproto.client.ts`, adding a `floodUntil` skip window (FR-005).
+- [x] T010 Add `isFloodWait` helper with tests covering a FloodWaitError-like object, an `errorMessage` of `'FLOOD'` with `seconds`, and a plain Error (FR-005).
+- [x] T011 Use it in `agent-mtproto.client.ts` and `tracking-mtproto.client.ts`, adding a `floodUntil` skip window (FR-005).
 
 ## Phase 5: Agent SDK and data safety
 - [ ] T012 Lock down permissions on the semantic-dedup and topic-router SDK options (FR-006).
