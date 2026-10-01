@@ -1,6 +1,7 @@
 import type { Pool } from 'pg';
 import type { EditorCard } from './card';
 import type { EditorChannelsRepository } from './repo/editor-channels.repository';
+import { RESERVED_ONLY_RATIONALE } from './repo/editor-plans.repository';
 import type { EditorPlansRepository, EditorSlot } from './repo/editor-plans.repository';
 import type { EditorRunnerService } from './roles/editor-runner.service';
 import { localDate, localHour, localWeekday } from './roles/time';
@@ -13,6 +14,12 @@ export interface EditorSchedulerDeps {
   enabled:  () => boolean;
   notify:   (text: string) => Promise<void>;
   log?:     (msg: string) => void;
+  /**
+   * Deterministic publisher of reserved (paid ad) slots — no LLM. Runs on every
+   * tick regardless of EDITOR_ENABLED and channel mode (spec 008 T003); the
+   * channel's publish_paused still applies inside the publisher.
+   */
+  reserved?: { publishDue(now: Date): Promise<number> };
 }
 
 export const STALE_MS          = 3 * 3600_000;
@@ -36,9 +43,20 @@ export class EditorScheduler {
   constructor(private readonly d: EditorSchedulerDeps) {}
 
   async cronTick(): Promise<void> {
-    if (this.busy || !this.d.enabled()) return;
+    if (this.busy) return;
+    if (!this.d.enabled() && !this.d.reserved) return;
     this.busy = true;
-    try { await this.tick(new Date()); } catch (err: any) { this.d.log?.(`editor tick failed: ${err?.message ?? err}`); } finally { this.busy = false; }
+    const now = new Date();
+    try {
+      if (this.d.reserved) {
+        try { await this.d.reserved.publishDue(now); } catch (err: any) { this.d.log?.(`reserved slots failed: ${err?.message ?? err}`); }
+      }
+      if (this.d.enabled()) await this.tick(now);
+    } catch (err: any) {
+      this.d.log?.(`editor tick failed: ${err?.message ?? err}`);
+    } finally {
+      this.busy = false;
+    }
   }
 
   async tick(now: Date): Promise<void> {
@@ -63,7 +81,8 @@ export class EditorScheduler {
   private async maybePlan(card: EditorCard, now: Date): Promise<void> {
     if (localHour(now, card.timezone) < card.planHour) return;
     const date = localDate(now, card.timezone);
-    if (await this.d.plans.getActivePlan(card.channelKey, date)) return;
+    const active = await this.d.plans.getActivePlan(card.channelKey, date);
+    if (active && active.rationale !== RESERVED_ONLY_RATIONALE) return;
     const key = `${card.channelKey}:${date}`;
     const tries = this.plannerTries.get(key) ?? { n: 0, at: 0 };
     if (tries.n >= PLANNER_MAX_TRIES || now.getTime() - tries.at < PLANNER_RETRY_MS) return;

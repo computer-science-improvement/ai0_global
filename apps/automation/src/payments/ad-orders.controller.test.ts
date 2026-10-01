@@ -6,7 +6,9 @@ function make() {
   const calls: any[] = [];
   const repo = { list: async (s: any) => { calls.push(['list', s]); return [{ id: 'o1' }]; },
                  create: async (i: any) => { calls.push(['create', i]); return { id: 'o1' }; } } as any;
-  const svc = { createCheckout: async (id: string) => { calls.push(['checkout', id]); return { data: 'D', signature: 'S', actionUrl: 'U' }; },
+  const svc = { create: async (i: any) => { calls.push(['create', i]); return { id: 'o1' }; },
+                update: async (id: string, i: any) => { calls.push(['update', id, i]); return { id }; },
+                createCheckout: async (id: string) => { calls.push(['checkout', id]); return { data: 'D', signature: 'S', actionUrl: 'U' }; },
                 schedulePost: async (id: string, i: any) => { calls.push(['schedule', id, i]); return { actionId: 'a1' }; } } as any;
   return { ctrl: new AdOrdersController(repo, svc), calls };
 }
@@ -31,4 +33,9 @@ test('POST schedule calls service', async () => {
   const { ctrl, calls } = make();
   const r = await ctrl.schedule('o1', { channelId: 'c1', text: 'x', scheduledAt: '2030-01-01T00:00:00Z' } as any);
   assert.equal(r.actionId, 'a1');
+});
+test('PATCH update goes through the service (creative validation lives there)', async () => {
+  const { ctrl, calls } = make();
+  await ctrl.update('o1', { sponsorLabel: 'ФОП' } as any);
+  assert.deepEqual(calls[0], ['update', 'o1', { sponsorLabel: 'ФОП' }]);
 });

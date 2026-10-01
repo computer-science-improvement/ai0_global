@@ -1,25 +1,51 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+import type { Pool } from 'pg';
+import { DB_POOL } from '../database/database.module';
 import { ScheduledPostsRepository } from '../scheduled-posts/scheduled-posts.repository';
-import type { ComposedPost } from '../scheduled-posts/scheduled-posts.types';
+import { EditorPlansRepository } from '../editor/repo/editor-plans.repository';
+import { EditorChannelsRepository } from '../editor/repo/editor-channels.repository';
+import { AdOrdersRepository } from '../payments/ad-orders.repository';
+import { AdPlacement, AdPlacementPorts, ChannelRef, Placement } from './ad-placement';
 
+/** tracked channel by uuid or channel_key, with the bot that publishes for it (own bot, else the default bot). */
+export async function channelRefFromDb(pool: Pick<Pool, 'query'>, idOrKey: string): Promise<ChannelRef | null> {
+  const { rows } = await pool.query(
+    `SELECT tc.id, tc.channel_key, COALESCE(tc.bot_id, (SELECT id FROM my_bots WHERE is_default LIMIT 1)) AS bot_id
+       FROM tracked_channels tc
+      WHERE tc.id::text = $1 OR tc.channel_key = $1
+      LIMIT 1`,
+    [idOrKey]);
+  const r = rows[0];
+  return r ? { trackedId: r.id, channelKey: r.channel_key ?? null, botId: r.bot_id ?? null } : null;
+}
+
+/** Executes an approved schedule_post action — see AdPlacement for the reserved-slot vs scheduled_posts precedence. */
 @Injectable()
 export class AgentScheduleExecutor {
-  constructor(private readonly posts: ScheduledPostsRepository) {}
+  private readonly placement: AdPlacement;
 
-  /** Insert a minimal text sponsored/ВП post into the existing scheduled queue. */
-  async schedule(input: { channelId: string; text: string; scheduledAt: string }): Promise<string> {
-    const post: ComposedPost = {
-      channelId:      input.channelId,
-      sender:         'bot',
-      botId:          null,
-      text:           input.text,
-      mediaType:      'none',
-      mediaUrl:       null,
-      mediaPlacement: 'below',
-      buttons:        [],
-      scheduledAt:    input.scheduledAt,
+  constructor(
+    posts: ScheduledPostsRepository,
+    @Inject(DB_POOL) pool: Pool,
+    config: ConfigService,
+  ) {
+    const plans = new EditorPlansRepository(pool);
+    const cards = new EditorChannelsRepository(pool);
+    const orders = new AdOrdersRepository(pool);
+    const ports: AdPlacementPorts = {
+      editorEnabled:       () => config.get<string>('EDITOR_ENABLED') === 'true',
+      channelRef:          (k) => channelRefFromDb(pool, k),
+      card:                (k) => cards.get(k),
+      reserveSlot:         (i) => plans.reserveSlot(i),
+      createScheduledPost: (p) => posts.create(p),
+      findOrder:           (id) => orders.findById(id),
+      setPlacement:        (id, p) => orders.setPlacement(id, p),
     };
-    const created = await this.posts.create(post);
-    return created.id;
+    this.placement = new AdPlacement(ports);
+  }
+
+  schedule(input: { channelId: string; text: string; scheduledAt: string; orderId?: string | null }): Promise<Placement> {
+    return this.placement.place(input);
   }
 }

@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { AgentActionsService } from './agent-actions.service';
 
-function harness(opts: { action: any; cap?: number; repliesSoFar?: number }) {
+function harness(opts: { action: any; cap?: number; repliesSoFar?: number; placed?: any; scheduleError?: string }) {
   const calls: any[] = [];
   const repo = {
     findById: async () => opts.action,
@@ -11,7 +11,11 @@ function harness(opts: { action: any; cap?: number; repliesSoFar?: number }) {
     countRepliesSince: async () => opts.repliesSoFar ?? 0,
   } as any;
   const sender = { sendReply: async (...a: any[]) => { calls.push(['send', ...a]); return { ok: true }; } } as any;
-  const exec = { schedule: async (p: any) => { calls.push(['schedule', p]); return 'sp1'; } } as any;
+  const exec = { schedule: async (p: any) => {
+    calls.push(['schedule', p]);
+    if (opts.scheduleError) throw new Error(opts.scheduleError);
+    return opts.placed ?? { kind: 'scheduled_post', id: 'sp1' };
+  } } as any;
   const threads = {
     threadPeer: async () => ({ peer_id: '42', peer_username: null }),
     stampReplied: async (id: string, text: string) => { calls.push(['stamp', id, text]); },
@@ -41,7 +45,28 @@ test('approve(schedule_post) schedules + stores scheduled id', async () => {
   const r = await svc.approve('a');
   assert.equal(r.status, 'done');
   assert.ok(calls.some(c => c[0] === 'schedule'));
-  assert.ok(calls.some(c => c[0] === 'mergePayload'));
+  assert.deepEqual(calls.find(c => c[0] === 'mergePayload')[2], { scheduledPostId: 'sp1' });
+});
+
+test('approve(schedule_post) for an ad order passes orderId and records the reserved slot', async () => {
+  const { svc, calls } = harness({
+    action: { id: 'a', type: 'schedule_post', status: 'pending', thread_id: null, payload: { text: 'Ad', channelId: 'c1', scheduledAt: '2030-01-01T00:00:00Z', orderId: 'o1' } },
+    placed: { kind: 'reserved_slot', id: 'slot1' },
+  });
+  const r = await svc.approve('a');
+  assert.equal(r.status, 'done');
+  assert.equal(calls.find(c => c[0] === 'schedule')[1].orderId, 'o1');
+  assert.deepEqual(calls.find(c => c[0] === 'mergePayload')[2], { editorSlotId: 'slot1' });
+});
+
+test('approve(schedule_post): a placement error marks the action failed instead of throwing', async () => {
+  const { svc } = harness({
+    action: { id: 'a', type: 'schedule_post', status: 'pending', thread_id: null, payload: { text: 'Ad', channelId: 'c1', scheduledAt: '2030-01-01T00:00:00Z', orderId: 'o1' } },
+    scheduleError: 'ad order o1 not found',
+  });
+  const r = await svc.approve('a');
+  assert.equal(r.status, 'failed');
+  assert.match(r.error ?? '', /not found/);
 });
 
 test('approve on a non-pending action is a no-op', async () => {
