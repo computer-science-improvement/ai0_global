@@ -48,7 +48,7 @@ export function isToolError(v: unknown): v is ToolError {
 }
 
 export function toToolSpec(t: EditorTool): ToolSpec {
-  const schema = z.toJSONSchema(t.input as z.ZodType, { unrepresentable: 'any' }) as Record<string, unknown>;
+  const schema = z.toJSONSchema(t.input as z.ZodType, { io: 'input', unrepresentable: 'any' }) as Record<string, unknown>;
   delete schema.$schema;
   return { name: t.name, description: t.description, parameters: schema };
 }
