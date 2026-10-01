@@ -12,7 +12,7 @@ export function strategyTypesForPlatform(
 
 // ── Binding defaults ───────────────────────────────────────────────────────
 // Schedule pre-filled in the new-strategy form when a type is picked. Cron is
-// evaluated in Europe/Kyiv by the scheduler (SCHEDULER_TZ).
+// evaluated in SCHEDULER_TZ by the scheduler (recommended Europe/Kyiv; unset = UTC).
 //   Digests: every 10 min, 19:00–20:50. A single 19:00 tick loses the day when
 //   the channel's 20-min posting cooldown is active at that minute; the
 //   date-keyed dedup sentinel makes every later tick a no-op once one lands.

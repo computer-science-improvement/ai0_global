@@ -1,6 +1,6 @@
 # 002: Publish correctness (legacy strategies)
 
-**Status:** DONE (2026-10-01, branch worktree-agent-a4b0b631c249e8a4b) — migration 043 pending owner apply · **Depends on:** 001
+**Status:** DONE (2026-10-01, branch worktree-agent-a4b0b631c249e8a4b) — migration 045 pending owner apply · **Depends on:** 001
 
 Fixes for strategies that stay live until 009 retires them. Do only the items for strategies still bound to
 live channels at execution time.
@@ -50,7 +50,7 @@ Constitution Check: VI. Every fix gets a regression test first.
   transient errors are retried.
 - **T006.** Cooldown/in-flight refusals throw `RunSkippedError` → `skipped`; escaped custom-execute and generic
   publish errors → `error`.
-- **T007.** Scheduler cron zone is `SCHEDULER_TZ || 'Europe/Kyiv'` for **all** bindings (was the process TZ,
-  UTC in Docker) — existing schedules now fire in Kyiv time. Digest retry window `*/10 19-20 * * *` is
+- **T007.** Scheduler cron zone is `SCHEDULER_TZ` for **all** bindings — opt-in; unset keeps the process TZ (
+  UTC in Docker); set `SCHEDULER_TZ=Europe/Kyiv` after reviewing bindings. Digest retry window `*/10 19-20 * * *` is
   `DIGEST_RETRY_SCHEDULE` and the dashboard form's default for both digest types.
-- **T010.** Needs migration `043_scheduled_publications_unknown.sql` (adds status `unknown`).
+- **T010.** Needs migration `045_scheduled_publications_unknown.sql` (adds status `unknown`).

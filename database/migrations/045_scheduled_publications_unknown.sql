@@ -1,4 +1,4 @@
--- 043_scheduled_publications_unknown.sql — new status 'unknown' for scheduled posts.
+-- 045_scheduled_publications_unknown.sql — new status 'unknown' for scheduled posts.
 --
 -- A row stuck in 'sending' (the process died or hung between claiming it and
 -- recording the Telegram message id) may or may not have been delivered. The
@@ -13,5 +13,5 @@ ALTER TABLE scheduled_publications
   ADD CONSTRAINT scheduled_publications_status_check
   CHECK (status IN ('pending','sending','sent','failed','canceled','unknown'));
 
-INSERT INTO schema_migrations (version) VALUES ('043_scheduled_publications_unknown')
+INSERT INTO schema_migrations (version) VALUES ('045_scheduled_publications_unknown')
   ON CONFLICT (version) DO NOTHING;

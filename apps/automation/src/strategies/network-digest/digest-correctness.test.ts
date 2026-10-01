@@ -108,11 +108,11 @@ test('retry-window default: every 10 min during the 19:00–20:59 Kyiv window', 
   assert.equal(DIGEST_RETRY_SCHEDULE, '*/10 19-20 * * *');
 });
 
-test('scheduler cron jobs run in Europe/Kyiv (overridable via SCHEDULER_TZ)', () => {
-  assert.equal(SCHEDULE_TIME_ZONE, process.env.SCHEDULER_TZ || 'Europe/Kyiv');
+test('scheduler cron zone is opt-in via SCHEDULER_TZ (unset = process TZ)', () => {
+  assert.equal(SCHEDULE_TIME_ZONE, process.env.SCHEDULER_TZ || undefined);
   const job = makeCronJob('0 19 * * *', () => {});
   const next = job.nextDate();
-  assert.equal(next.zoneName, SCHEDULE_TIME_ZONE);
+  if (SCHEDULE_TIME_ZONE) assert.equal(next.zoneName, SCHEDULE_TIME_ZONE);
   assert.equal(next.hour, 19);
   assert.equal(next.minute, 0);
 });
