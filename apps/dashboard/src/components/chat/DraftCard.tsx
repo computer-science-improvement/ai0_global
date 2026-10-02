@@ -1,4 +1,6 @@
-// A draft from the editor chat (spec 010): the sanitized Telegram preview, its
+// A draft from the editor chat (spec 010): a Telegram-style preview of the exact
+// calls the post becomes (photo + caption, poll…; the old HTML preview is the
+// fallback), its
 // channel / format / status and lint notes, with the owner's buttons. The
 // buttons call the same deterministic DraftsService as the agent, so every
 // publish guard applies; "Schedule" picks a date/time in Kyiv time.
@@ -12,6 +14,7 @@ import { Modal } from '../Modal';
 import { Field } from '../ui/primitives';
 import type { Tone } from '../ui/primitives';
 import { sanitizeTelegramHtml } from '../../lib/tg-html';
+import { TelegramPreview } from './TelegramPreview';
 import { KYIV_TZ, fmtKyiv, inputToApi, nextRoundHourKyiv, toKyivInput } from '../../lib/kyiv-time';
 import { useDraftAction } from '../../api/chat';
 import type { EditorDraft, EditorDraftStatus } from '../../api/types';
@@ -33,6 +36,8 @@ export function DraftCard({ draft }: { draft: EditorDraft }) {
   const busy = action.isPending;
   const title = draft.spec.title ?? 'post';
   const done = draft.status === 'published';
+  const postTime = useMemo(() => new Intl.DateTimeFormat('uk-UA', { timeZone: KYIV_TZ, hour: '2-digit', minute: '2-digit' })
+    .format(draft.scheduledAt ? new Date(draft.scheduledAt) : new Date()), [draft.scheduledAt]);
 
   const publish = async () => {
     const ok = await confirm(`publish "${title}" to ${draft.channelKey} now`, {
@@ -71,12 +76,16 @@ export function DraftCard({ draft }: { draft: EditorDraft }) {
         )}
       </div>
 
-      <div style={{ background: 'var(--color-surface-1)', border: '1px solid var(--color-hairline-soft)', borderRadius: 'var(--radius-lg)', padding: 12 }}>
-        {preview
-          ? <div className="text-body-sm" style={{ color: 'var(--color-ink)', whiteSpace: 'pre-wrap', wordBreak: 'break-word', lineHeight: 1.5 }}
-              dangerouslySetInnerHTML={{ __html: preview }} />
-          : <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>Preview unavailable — fix the errors below.</span>}
-      </div>
+      {draft.render?.messages.length
+        ? <TelegramPreview messages={draft.render.messages} channelTitle={draft.render.channelTitle} channelKey={draft.channelKey} time={postTime} />
+        : (
+          <div style={{ background: 'var(--color-surface-1)', border: '1px solid var(--color-hairline-soft)', borderRadius: 'var(--radius-lg)', padding: 12 }}>
+            {preview
+              ? <div className="text-body-sm" style={{ color: 'var(--color-ink)', whiteSpace: 'pre-wrap', wordBreak: 'break-word', lineHeight: 1.5 }}
+                  dangerouslySetInnerHTML={{ __html: preview }} />
+              : <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>Preview unavailable — fix the errors below.</span>}
+          </div>
+        )}
 
       {(draft.lint?.errors.length ?? 0) > 0 && (
         <div className="callout-danger" style={{ marginTop: 10, flexDirection: 'column', alignItems: 'flex-start', gap: 4 }}>

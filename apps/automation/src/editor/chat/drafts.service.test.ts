@@ -264,3 +264,13 @@ test('publishScheduled: late, paused or canceled → never sent; failures alert 
   assert.deepEqual(canceled.slotUpdates.at(-1), ['slot7', { status: 'skipped', error: 'draft canceled' }]);
   for (const x of [late, paused, canceled]) assert.equal(x.sent.length, 0);
 });
+
+test('renderDraft: the Telegram messages of a draft for the preview card; broken specs render null', async () => {
+  const { renderDraft } = await import('./drafts.service');
+  const base: any = { id: 'd', chatId: 'c', channelKey: '@chan', preview: null, lint: null, status: 'draft', scheduledAt: null, slotId: null, publishedPostId: null, error: null, createdAt: new Date(), updatedAt: new Date() };
+  const quiz = makeSpec({ format: 'quiz', body: [], media: [{ url: 'https://pdr.example/a.jpg' }], poll: { question: 'Хто?', options: ['А', 'Б'], correct_index: 0 } });
+  const r = renderDraft({ ...base, spec: quiz }, makeCard({ title: 'Тест' }));
+  assert.deepEqual(r.render!.messages.map((m) => m.method), ['sendPhoto', 'sendPoll']);
+  assert.equal(r.render!.channelTitle, 'Тест');
+  assert.equal(renderDraft({ ...base, spec: { nope: true } }, null).render, null);
+});

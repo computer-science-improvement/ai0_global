@@ -706,6 +706,18 @@ export type EditorDraftStatus = 'draft' | 'scheduled' | 'published' | 'failed' |
 
 export interface EditorLintIssue { code: string; message: string }
 
+export interface TgUrlButton { text: string; url: string }
+
+/** Mirrors the backend's TgMessage (editor/post/render-telegram.ts). Captions/texts are Telegram HTML. */
+export type TgMessage =
+  | { method: 'sendMessage'; text: string; preview: { url: string; showAboveText: boolean } | null; buttons: TgUrlButton[][] }
+  | { method: 'sendPhoto'; photo: string; caption: string; captionAboveMedia: boolean; buttons: TgUrlButton[][] }
+  | { method: 'sendVideo'; video: string; caption: string; captionAboveMedia: boolean; buttons: TgUrlButton[][] }
+  | { method: 'sendMediaGroup'; photos: string[]; caption: string }
+  | { method: 'sendPoll'; question: string; options: string[]; quiz: boolean; correctIndex: number | null; explanation: string | null; anonymous: boolean };
+
+export interface EditorDraftRender { messages: TgMessage[]; channelTitle: string | null }
+
 export interface EditorDraft {
   id:              string;
   chatId:          string | null;
@@ -714,6 +726,8 @@ export interface EditorDraft {
   spec:            { format?: EditorFormat; title?: string } & Record<string, unknown>;
   /** Telegram HTML of the rendered post (sanitize before display). */
   preview:         string | null;
+  /** The exact Telegram calls the post becomes (photo + caption, poll…); null when the spec does not render. */
+  render?:         EditorDraftRender | null;
   lint:            { ok: boolean; errors: EditorLintIssue[]; warnings: EditorLintIssue[] } | null;
   status:          EditorDraftStatus;
   scheduledAt:     string | null;

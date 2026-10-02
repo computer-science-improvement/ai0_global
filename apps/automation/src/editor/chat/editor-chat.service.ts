@@ -8,6 +8,8 @@ import type { EditorMemoryRepository } from '../repo/editor-memory.repository';
 import type { EditorChatMessage, EditorChatRepository, EditorDraft } from '../repo/editor-chat.repository';
 import { buildComposerSystemPrompt } from '../roles/prompts';
 import type { DraftsService } from './drafts.service';
+import { renderDraft } from './drafts.service';
+import type { EditorCard } from '../card';
 import type { ComposerExtras } from './composer-tools';
 import { hasPublishIntent, mentionedChannels } from './intent';
 import type { Agent } from '../agents/agent.types';
@@ -60,7 +62,7 @@ export interface EditorChatDeps {
     'createChat' | 'listChats' | 'getChat' | 'deleteChat' | 'touchChat' | 'addMessage' | 'listMessages' | 'listDrafts' | 'myChannels'>
     & Partial<Pick<EditorChatRepository, 'setChatAgent'>>;
   agents?:  AgentChatPort;
-  drafts:   Pick<DraftsService, 'resolveCard'>;
+  drafts:   Pick<DraftsService, 'resolveCard'> & Partial<Pick<DraftsService, 'withRender'>>;
   memory:   Pick<EditorMemoryRepository, 'listActive'>;
   loop:     Pick<AgentLoop, 'run'>;
   registry: Pick<ToolRegistry, 'forRole'>;
@@ -122,7 +124,8 @@ export class EditorChatService {
       this.d.repo.listMessages(id), this.d.repo.listDrafts({ chatId: id, limit: 200 }),
       this.d.agents ? this.d.agents.actionsForChat(id) : Promise.resolve([] as PendingAction[]),
     ]);
-    return { chat, messages, drafts, actions, enabled: this.d.enabled() };
+    const rendered = this.d.drafts.withRender ? await Promise.all(drafts.map((x) => this.d.drafts.withRender!(x))) : drafts;
+    return { chat, messages, drafts: rendered, actions, enabled: this.d.enabled() };
   }
 
   /** Who a message goes to (spec 018 FR-002): the first @agent mention, else the chat's last agent, else the composer. */
@@ -220,7 +223,8 @@ export class EditorChatService {
         chat: { chatId, channelKey },
         card: resolved?.card,
         userIntent: hasPublishIntent(text),
-        onDraft: (draft) => { touched.set(draft.id, draft); emit({ type: 'draft', draft }); },
+        // The card in extras is the draft's channel card (save_draft switches it), so the preview renders like the post.
+        onDraft: (draft) => { touched.set(draft.id, draft); emit({ type: 'draft', draft: renderDraft(draft, (extras.card as EditorCard | undefined) ?? null) }); },
         agentIntent: hasAgentChangeIntent(text),
         ownerText: text,
         onAction: (a) => { actions.push(a); emit({ type: 'action', action: a }); },

@@ -2,7 +2,7 @@ import type { Pool } from 'pg';
 import type { EditorCard } from '../card';
 import { PostSpec, PostSpecSchema } from '../post/post-spec';
 import { lintPost, LintResult } from '../post/lint-post';
-import { renderTelegram } from '../post/render-telegram';
+import { renderTelegram, TgMessage } from '../post/render-telegram';
 import { checkQuizGroundTruth } from '../post/quiz-ground-truth';
 import { checkVerbatim } from '../post/verbatim-guard';
 import { publishSpecNow, PublishSpecDeps } from '../publish/publish-spec';
@@ -68,6 +68,12 @@ export class DraftsService {
     if (card) return { card, hasCard: true };
     const mine = (await this.d.repo.myChannels()).find((c) => c.channelKey === channelKey);
     return mine ? { card: makeDefaultCard(channelKey, mine.title), hasCard: false } : null;
+  }
+
+  /** A draft plus its Telegram messages for a Telegram-like preview card (dashboard). */
+  async withRender(d: EditorDraft): Promise<RenderedDraft> {
+    const resolved = await this.resolveCard(d.channelKey).catch(() => null);
+    return renderDraft(d, resolved?.card ?? null);
   }
 
   get(id: string): Promise<EditorDraft | null> {
@@ -300,5 +306,24 @@ export class DraftsService {
       await this.d.notify(`⚠️ Запланований пост у ${slot.channelKey} (${localTimeLabel(slot.scheduledAt, CHAT_TIMEZONE)}) не вийшов: ${error}. Відкрий /app/chat.`);
     } catch { /* alerts are best-effort */ }
     return false;
+  }
+}
+
+export interface DraftRender {
+  /** Exactly what would be sent to Telegram (shadow-safe: carousel slides and longread pages are not prepared). */
+  messages:     TgMessage[];
+  channelTitle: string | null;
+}
+export type RenderedDraft = EditorDraft & { render: DraftRender | null };
+
+/** Pure: a draft's Telegram messages from its spec and card; null when the spec cannot be rendered. */
+export function renderDraft(d: EditorDraft, card: EditorCard | null): RenderedDraft {
+  const parsed = PostSpecSchema.safeParse(d.spec);
+  if (!parsed.success) return { ...d, render: null };
+  try {
+    const r = renderTelegram(parsed.data, card ?? makeDefaultCard(d.channelKey, null));
+    return { ...d, render: { messages: r.messages, channelTitle: card?.title ?? null } };
+  } catch {
+    return { ...d, render: null };
   }
 }

@@ -81,3 +81,17 @@ test('escaping: hostile text, label and hashtag', () => {
   assert.match(t, /href="https:\/\/e.example\/\?a=&quot;1&quot;">&lt;i&gt;<\/a>/);
   assert.match(t, /#&lt;b&gt;/);
 });
+
+test('quiz with an image: an intro photo (body as caption) before the poll — polls cannot carry images', () => {
+  const spec = makeSpec({
+    format: 'quiz', body: [{ type: 'p', text: 'Білет 17, питання 4 👇' }], media: [{ url: 'https://pdr.example/17-4.jpg' }],
+    poll: { question: 'Чи може він рухатися крайньою лівою?', options: ['Так', 'Ні', 'Лише для повороту'], correct_index: 2, explanation: 'Для повороту ліворуч.' },
+  });
+  const r = renderTelegram(spec, makeCard());
+  assert.deepEqual(r.messages.map((m) => m.method), ['sendPhoto', 'sendPoll']);
+  assert.equal((r.messages[0] as any).photo, 'https://pdr.example/17-4.jpg');
+  assert.match((r.messages[0] as any).caption, /Білет 17/);
+  assert.equal(r.primary, 1);
+  const noBody = renderTelegram({ ...spec, body: [] }, makeCard());
+  assert.deepEqual(noBody.messages.map((m) => m.method), ['sendPhoto', 'sendPoll'], 'an image alone still gets its photo');
+});

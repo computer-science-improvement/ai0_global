@@ -158,7 +158,15 @@ export function renderTelegram(spec: PostSpec, card: Pick<EditorCard, 'footer' |
         anonymous: p.anonymous,
       };
       const pollPreview = `📊 ${poll.question}\n${poll.options.map((o, i) => `${poll.correctIndex === i ? '✅' : '▫️'} ${o}`).join('\n')}`;
-      if (spec.body.length) {
+      // A Telegram poll cannot carry an image: the picture (e.g. a ПДР situation) is an intro photo right before it.
+      if (image && visibleLength(text) <= CAPTION_LIMIT) {
+        return {
+          messages: [{ method: 'sendPhoto', photo: image, caption: text, captionAboveMedia: spec.placement === 'below', buttons }, poll],
+          primary: 1,
+          preview: `${text ? `${text}\n\n` : ''}${escapeHtml(pollPreview)}`,
+        };
+      }
+      if (spec.body.length || image) {
         return {
           messages: [{ method: 'sendMessage', text, preview: image ? { url: image, showAboveText: spec.placement === 'above' } : null, buttons }, poll],
           primary: 1,

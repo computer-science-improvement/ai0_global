@@ -37,6 +37,7 @@ const chat = {
   },
 };
 const drafts = {
+  withRender: async (d: any) => ({ ...d, render: null }),
   list: async (f: unknown) => { calls.push(['list', f]); return []; },
   publish: async (id: string) => (id === DRAFT ? { ok: true, draft: { id }, messageId: 7, warnings: [] } : { error: 'draft_not_found' }),
   schedule: async (id: string, at: Date) => { calls.push(['schedule', id, at.toISOString()]); return { error: 'too_soon', details: 'x' }; },

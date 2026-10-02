@@ -102,17 +102,18 @@ export class EditorChatController {
   }
 
   @Get('drafts')
-  listDrafts(@Query('status') status?: string, @Query('chat') chat?: string) {
+  async listDrafts(@Query('status') status?: string, @Query('chat') chat?: string) {
     if (status && !(DRAFT_STATUSES as readonly string[]).includes(status)) {
       throw new BadRequestException({ error: 'invalid_status', details: DRAFT_STATUSES.join(', ') });
     }
-    return this.drafts.list({ status: (status as DraftStatus) || null, chatId: chat || null, limit: 100 });
+    const list = await this.drafts.list({ status: (status as DraftStatus) || null, chatId: chat || null, limit: 100 });
+    return Promise.all(list.map((d) => this.drafts.withRender(d)));
   }
 
   @Post('drafts/:id/publish')
   async publish(@Param('id', ParseUUIDPipe) id: string) {
     const r = unwrap(await this.drafts.publish(id));
-    return { draft: r.draft, messageId: r.messageId, warnings: r.warnings };
+    return { draft: await this.drafts.withRender(r.draft), messageId: r.messageId, warnings: r.warnings };
   }
 
   @Post('drafts/:id/schedule')
@@ -121,11 +122,11 @@ export class EditorChatController {
     const when = typeof at === 'string' ? parseKyivTime(at) : null;
     if (!when) throw new BadRequestException({ error: 'invalid_time', details: 'at: "YYYY-MM-DD HH:MM" (Kyiv) or ISO with an offset' });
     const r = unwrap(await this.drafts.schedule(id, when));
-    return { draft: r.draft, local: r.local };
+    return { draft: await this.drafts.withRender(r.draft), local: r.local };
   }
 
   @Post('drafts/:id/cancel')
   async cancel(@Param('id', ParseUUIDPipe) id: string) {
-    return { draft: unwrap(await this.drafts.cancel(id)).draft };
+    return { draft: await this.drafts.withRender(unwrap(await this.drafts.cancel(id)).draft) };
   }
 }
