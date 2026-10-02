@@ -21,7 +21,7 @@ function LoginPage() {
     if (!t || busy) return;
     setBusy(true); setError(null);
     try {
-      await authApi.tokenLogin(t);
+      await authApi.tokenLogin(t.trim());
       await refresh();
       await navigate({ to: '/app' as any });
     } catch {

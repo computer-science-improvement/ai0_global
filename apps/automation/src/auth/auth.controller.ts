@@ -31,7 +31,7 @@ export class AuthController {
   @Post('token-login')
   @UseGuards(loginRateLimit)
   async tokenLogin(@Body() dto: TokenLoginDto, @Res({ passthrough: true }) res: Response) {
-    const { token, payload } = await this.auth.loginWithToken(dto.token);
+    const { token, payload } = await this.auth.loginWithToken(dto.token.trim());
     this.setSessionCookie(res, token);
     return { tgUserId: payload.sub, firstName: payload.firstName, username: payload.username };
   }
