@@ -181,6 +181,13 @@ export interface EditorRepos {
   chat:     EditorChatRepository;
 }
 
+/** A numeric env var; an empty value (e.g. `EDITOR_DAILY_BUDGET_USD=`) means "use the default", never 0. */
+function envNum(env: (k: string) => string | undefined, key: string, def: number): number {
+  const v = env(key)?.trim();
+  const n = v ? Number(v) : NaN;
+  return Number.isFinite(n) ? n : def;
+}
+
 const isEnabled = (cfg: ConfigService) => cfg.get<string>('EDITOR_ENABLED') === 'true';
 
 /** Owner alerts are plain text, so the rendered preview is flattened. */
@@ -531,7 +538,7 @@ export const EDITOR_PROVIDERS = [
           ...buildNetworkTools({ repo: new NetworkRepository(pool), plans: repos.plans, memory: repos.memory, inbox: infra.inbox }),
           ...buildDirectiveTools({
             repo: new DirectivesRepository(pool), agents: infra.agents, inbox: infra.inbox, memory: repos.memory, actions: infra.actions,
-            digest: new KpiDigestService({ pool, catalog: infra.catalog, globalCapUsd: Number(env('EDITOR_DAILY_BUDGET_USD') ?? 3) }),
+            digest: new KpiDigestService({ pool, catalog: infra.catalog, globalCapUsd: envNum(env, 'EDITOR_DAILY_BUDGET_USD', 3) }),
             channelKeyOf: (a) => infra.channelKeyOf(a),
           }),
           ...buildPlatformTools({
@@ -551,8 +558,8 @@ export const EDITOR_PROVIDERS = [
           llm: new OpenRouterClient({ apiKey: env('OPENROUTER_API_KEY'), baseUrl: env('OPENROUTER_BASE_URL') }),
           recorder: new PgRunRecorder(pool, (m) => logger.warn(m)),
           budget: new BudgetService(pool, {
-            globalDailyUsd:  Number(env('EDITOR_DAILY_BUDGET_USD') ?? 3),
-            channelDailyUsd: Number(env('EDITOR_CHANNEL_DAILY_BUDGET_USD') ?? 0.5),
+            globalDailyUsd:  envNum(env, 'EDITOR_DAILY_BUDGET_USD', 3),
+            channelDailyUsd: envNum(env, 'EDITOR_CHANNEL_DAILY_BUDGET_USD', 0.5),
           }, (text) => notifier.notifyAlert(text)),
           enabled: () => isEnabled(cfg),
         });
@@ -564,10 +571,10 @@ export const EDITOR_PROVIDERS = [
       useFactory: (pool: Pool, cfg: ConfigService, loop: AgentLoop, registry: ToolRegistry, infra: AgentInfra): ManagerInfra => {
         const env = (k: string) => cfg.get<string>(k) ?? undefined;
         const repo = new DirectivesRepository(pool);
-        const digest = new KpiDigestService({ pool, catalog: infra.catalog, globalCapUsd: Number(env('EDITOR_DAILY_BUDGET_USD') ?? 3) });
+        const digest = new KpiDigestService({ pool, catalog: infra.catalog, globalCapUsd: envNum(env, 'EDITOR_DAILY_BUDGET_USD', 3) });
         const runner = new ManagerRunner({
           loop, registry, runtime: infra.runtime, agents: infra.agents, repo, digest, inbox: infra.inbox, env,
-          timeoutHours: Number(env('DIRECTIVE_TIMEOUT_HOURS') ?? 12),
+          timeoutHours: envNum(env, 'DIRECTIVE_TIMEOUT_HOURS', 12),
           timeoutApplyKinds: (env('DIRECTIVE_TIMEOUT_APPLY_KINDS') ?? '').split(',').map((x) => x.trim()).filter(Boolean),
         });
         return { repo, digest, runner };
@@ -581,11 +588,11 @@ export const EDITOR_PROVIDERS = [
       ): PromoInfra => {
         const env = (k: string) => cfg.get<string>(k) ?? undefined;
         // Never a public constant: without a configured secret, a per-process random salt (dedupe only within a run).
-        const secret = env('PROMO_HASH_SALT') ?? env('TOKEN_ENCRYPTION_KEY');
+        const secret = env('PROMO_HASH_SALT') || env('TOKEN_ENCRYPTION_KEY');
         const salt = secret ? createHash('sha256').update(`ai0-promo:${secret}`).digest('hex') : randomBytes(32).toString('hex');
         if (!secret) new Logger('Promo').warn('PROMO_HASH_SALT / TOKEN_ENCRYPTION_KEY not set — join dedupe resets on restart');
         const links = new TrackedLinks({
-          pool, salt, redirectBase: env('PUBLIC_BASE_URL') ?? env('DASHBOARD_URL') ?? null,
+          pool, salt, redirectBase: env('PUBLIC_BASE_URL') || env('DASHBOARD_URL') || null,
           createInvite: async (key, name) => (await botCall(channelConfig, key, 'createChatInviteLink', { name })).invite_link,
         });
         const network = new NetworkRepository(pool);
@@ -703,8 +710,8 @@ export const EDITOR_PROVIDERS = [
           llm: new OpenRouterClient({ apiKey: env('OPENROUTER_API_KEY'), baseUrl: env('OPENROUTER_BASE_URL') }),
           recorder: new PgRunRecorder(pool, (m) => logger.warn(m)),
           budget: new BudgetService(pool, {
-            globalDailyUsd:  Number(env('EDITOR_DAILY_BUDGET_USD') ?? 3),
-            channelDailyUsd: Number(env('EDITOR_CHANNEL_DAILY_BUDGET_USD') ?? 0.5),
+            globalDailyUsd:  envNum(env, 'EDITOR_DAILY_BUDGET_USD', 3),
+            channelDailyUsd: envNum(env, 'EDITOR_CHANNEL_DAILY_BUDGET_USD', 0.5),
           }, (t) => notifier.notifyAlert(t)),
           enabled,
         });
