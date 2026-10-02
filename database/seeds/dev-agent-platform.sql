@@ -14,7 +14,7 @@
 INSERT INTO editor_channels (channel_key, mode, title, brief, formats, hashtags, posts_per_day_min, posts_per_day_max)
 SELECT t.channel_key, 'shadow', t.title,
        COALESCE(NULLIF(t.about, ''), 'Канал мережі ai0: ' || COALESCE(t.title, t.channel_key)),
-       '{"text":0.6,"photo":1,"carousel":0.5,"longread":0.4}', '{}', 1, 4
+       '{"text":0.6,"photo":1,"carousel":0.5,"longread":0.4,"poll":0.3,"quiz":0.3}', '{}', 1, 4
   FROM tracked_channels t
  WHERE t.is_mine AND t.channel_key IS NOT NULL AND t.channel_key <> ''
 ON CONFLICT (channel_key) DO NOTHING;

@@ -1,7 +1,7 @@
 ---
 name: format-poll-quiz
 description: Опитування і вікторини — як формулювати питання й варіанти, correct_index, пояснення ≤200, вступний пост.
-applies_to: [executor, planner, composer]
+applies_to: [executor, planner, composer, orchestrator, idea_reviewer]
 ---
 # Опитування (poll) і вікторина (quiz)
 
