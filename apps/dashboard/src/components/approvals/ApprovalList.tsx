@@ -1,5 +1,5 @@
-// «Пости на апрув» (spec 031): waiting and approved posts grouped by resource
-// and day, with «Апрувнути все» per resource-day and per network-day (posts
+// "Posts to approve" (spec 031): waiting and approved posts grouped by resource
+// and day, with "Approve all" per resource-day and per network-day (posts
 // with lint warnings are never bulk-approved). Used on the Inbox page, the
 // agent page and in the agent chat.
 
@@ -23,10 +23,7 @@ function groupOf(items: ApprovalCardData[]): Group[] {
   return [...m.values()].sort((a, b) => a.day.localeCompare(b.day) || a.channelKey.localeCompare(b.channelKey) || a.resourceRef.localeCompare(b.resourceRef));
 }
 
-function ukPosts(n: number): string {
-  const d = n % 10, dd = n % 100;
-  return d === 1 && dd !== 11 ? 'пост' : d >= 2 && d <= 4 && (dd < 12 || dd > 14) ? 'пости' : 'постів';
-}
+const posts = (n: number) => `${n} ${n === 1 ? 'post' : 'posts'}`;
 
 export function ApprovalList({ filter = {}, emptyNote, limit }: { filter?: ApprovalFilter; emptyNote?: string; limit?: number }) {
   const q = useApprovals({ ...filter, status: ['awaiting_approval', 'approved'] });
@@ -45,9 +42,9 @@ export function ApprovalList({ filter = {}, emptyNote, limit }: { filter?: Appro
 
   const approveAll = (body: { channel?: string; resource?: string; date: string }, label: string) => bulk.mutate(body, {
     onSuccess: (r) => {
-      const parts = [`Апрувнуто ${r.approved} ${ukPosts(r.approved)} (${label})`];
-      if (r.skippedWithWarnings) parts.push(`${r.skippedWithWarnings} з попередженнями — перегляньте окремо`);
-      if (r.conflicts) parts.push(`${r.conflicts} вже вирішено`);
+      const parts = [`Approved ${posts(r.approved)} (${label})`];
+      if (r.skippedWithWarnings) parts.push(`${r.skippedWithWarnings} with warnings — review them one by one`);
+      if (r.conflicts) parts.push(`${r.conflicts} already decided`);
       toast.success(parts.join('; '));
     },
     onError: (e) => toast.error(describeError(e)),
@@ -56,8 +53,8 @@ export function ApprovalList({ filter = {}, emptyNote, limit }: { filter?: Appro
   if (q.error) return <div className="callout-danger">{describeError(q.error)}</div>;
   if (!q.data) return <div className="panel compose-rise" style={{ height: 120, opacity: 0.55 }} />;
   if (!items.length) {
-    return <EmptyState icon="check" title="Нічого не чекає апруву"
-      note={emptyNote ?? 'Ресурси в режимі «На апруві» пишуть пости заздалегідь (наступний день — о 20:00), і кожен зʼявляється тут до публікації.'} />;
+    return <EmptyState icon="check" title="Nothing awaiting approval"
+      note={emptyNote ?? 'Resources in approval mode write posts in advance (the next day at 20:00), and each one appears here before it is published.'} />;
   }
 
   let lastNetworkDay = '';
@@ -73,10 +70,10 @@ export function ApprovalList({ filter = {}, emptyNote, limit }: { filter?: Appro
           <Fragment key={g.key}>
             {showNetwork && (
               <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap', padding: '10px 12px', background: 'var(--color-surface-1)', border: '1px solid var(--color-hairline-soft)', borderRadius: 'var(--radius-md)' }}>
-                <span className="text-body-sm" style={{ flex: '1 1 220px' }}>Мережа {g.title} · {fmtDay(g.day)}: пости на кількох ресурсах</span>
-                <button className="btn-secondary" disabled={bulk.isPending} onClick={() => approveAll({ channel: g.channelKey, date: g.day }, `мережа ${g.title}, ${fmtDay(g.day)}`)}
+                <span className="text-body-sm" style={{ flex: '1 1 220px' }}>Network {g.title} · {fmtDay(g.day)}: posts on several resources</span>
+                <button className="btn-secondary" disabled={bulk.isPending} onClick={() => approveAll({ channel: g.channelKey, date: g.day }, `network ${g.title}, ${fmtDay(g.day)}`)}
                   style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
-                  <Icon name="check" size={14} /> Апрувнути все в мережі на {fmtDay(g.day)}
+                  <Icon name="check" size={14} /> Approve all in the network for {fmtDay(g.day)}
                 </button>
               </div>
             )}
@@ -87,15 +84,15 @@ export function ApprovalList({ filter = {}, emptyNote, limit }: { filter?: Appro
                     {g.title}{g.resourceRef !== `telegram:${g.channelKey}` ? ` · ${g.resourceRef}` : ''}
                   </div>
                   <div className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>
-                    {fmtDay(g.day)} · {waiting.length} чекає{g.items.length > waiting.length ? ` · ${g.items.length - waiting.length} апрувнуто` : ''}
+                    {fmtDay(g.day)} · {waiting.length} waiting{g.items.length > waiting.length ? ` · ${g.items.length - waiting.length} approved` : ''}
                   </div>
                 </div>
                 {waiting.length > 0 && (
                   <button className="btn-primary" disabled={bulk.isPending || clean === 0}
-                    title={clean === 0 ? 'Усі пости з попередженнями — апрувніть їх окремо' : undefined}
+                    title={clean === 0 ? 'Every post has warnings — approve them one by one' : undefined}
                     onClick={() => approveAll({ resource: g.resourceRef, date: g.day }, `${g.title}, ${fmtDay(g.day)}`)}
                     style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
-                    <Icon name="check" size={14} /> Апрувнути все на {fmtDay(g.day)}{clean < waiting.length ? ` (${clean})` : ''}
+                    <Icon name="check" size={14} /> Approve all for {fmtDay(g.day)}{clean < waiting.length ? ` (${clean})` : ''}
                   </button>
                 )}
               </div>

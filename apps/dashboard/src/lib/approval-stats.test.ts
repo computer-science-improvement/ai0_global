@@ -22,9 +22,9 @@ test('the waiting-posts choice names what stays for a manual look', () => {
 
 test('switch toast', () => {
   const base = { changed: true, approved: 0, skippedWithWarnings: 0, conflicts: 0, leftWaiting: 0 };
-  assert.equal(switchSummary({ ...base, to: 'approve' }, 'Космос'), 'Космос is back in approval mode — the next written post waits for you');
-  assert.equal(switchSummary({ ...base, to: 'live', approved: 5, skippedWithWarnings: 1, leftWaiting: 1 }, 'Космос'),
-    'Космос is Live — agents publish without approval; 5 waiting posts approved; 1 post with warnings left waiting');
-  assert.equal(switchSummary({ ...base, to: 'live', leftWaiting: 3 }, 'Космос'), 'Космос is Live — agents publish without approval; 3 posts left waiting');
-  assert.equal(switchSummary({ ...base, to: 'live', changed: false }, 'Космос'), 'Космос is already Live');
+  assert.equal(switchSummary({ ...base, to: 'approve' }, 'Space'), 'Space is back in approval mode — the next written post waits for you');
+  assert.equal(switchSummary({ ...base, to: 'live', approved: 5, skippedWithWarnings: 1, leftWaiting: 1 }, 'Space'),
+    'Space is Live — agents publish without approval; 5 waiting posts approved; 1 post with warnings left waiting');
+  assert.equal(switchSummary({ ...base, to: 'live', leftWaiting: 3 }, 'Space'), 'Space is Live — agents publish without approval; 3 posts left waiting');
+  assert.equal(switchSummary({ ...base, to: 'live', changed: false }, 'Space'), 'Space is already Live');
 });
