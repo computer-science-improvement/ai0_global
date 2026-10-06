@@ -21,6 +21,7 @@ const GROUPS: NavGroup[] = [
   ]},
   { title: 'Analytics', items: [
     { to: '/app/analytics', label: 'Analytics', icon: 'analytics' },
+    { to: '/app/spend',     label: 'Spend',      icon: 'spend' },
     { to: '/app/logs',      label: 'Logs',       icon: 'logs' },
     { to: '/app/agent',     label: 'Agent',      icon: 'bots' },
   ]},

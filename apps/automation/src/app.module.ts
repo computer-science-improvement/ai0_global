@@ -41,6 +41,7 @@ import { ActivityModule }       from './activity/activity.module';
 import { AgentModule }          from './agent/agent.module';
 import { PaymentsModule }       from './payments/payments.module';
 import { EditorModule }         from './editor/editor.module';
+import { SpendModule }          from './spend/spend.module';
 
 @Module({
   imports: [
@@ -57,6 +58,7 @@ import { EditorModule }         from './editor/editor.module';
     AgentModule,
     PaymentsModule,
     EditorModule,
+    SpendModule,
     StatsModule,
     PublishersModule,
     SchedulerModule,

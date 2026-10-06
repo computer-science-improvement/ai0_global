@@ -1,7 +1,7 @@
 // "Network health" card on the overview page (spec 021 FR-009): the KPI digest
 // the MANAGER reads — per resource its health and six KPIs (7-day value, delta
-// against the 28-day baseline, anomaly and stale flags), the day's AI spend
-// against the cap and the directives waiting for the owner. On phones the
+// against the 28-day baseline, anomaly and stale flags), a link to the AI spend
+// card (spec 029) and the directives waiting for the owner. On phones the
 // resources without anomalies collapse into one line.
 
 import { Link } from '@tanstack/react-router';
@@ -110,9 +110,7 @@ export function NetworkHealthCard({ delay }: { delay?: number }) {
   const awaiting = dg.directives.open.filter((d) => d.status === 'awaiting_owner').length;
   const open = dg.directives.open.length;
   const anomalies = dg.resources.reduce((s, r) => s + r.anomalies.length, 0);
-  const { spentTodayUsd: spent, capUsd: cap } = dg.budget;
-  const pct = cap > 0 ? Math.min(100, (spent / cap) * 100) : 0;
-  const barColor = pct >= 90 ? 'var(--color-danger)' : pct >= 70 ? 'var(--color-warning)' : 'var(--color-accent)';
+  const spent = dg.budget.spentTodayUsd;
   const sorted = [...dg.resources].sort((a, b) => b.anomalies.length - a.anomalies.length);
   const flagged = sorted.filter((r) => r.anomalies.length > 0);
   const healthy = sorted.length - flagged.length;
@@ -121,16 +119,14 @@ export function NetworkHealthCard({ delay }: { delay?: number }) {
   return (
     <SectionCard delay={delay} icon="analytics" title="Network health" action={head} style={{ marginBottom: 12 }}>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 220px), 1fr))', gap: 10, marginBottom: 12 }}>
-        <div style={{ minWidth: 0 }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', gap: 8, marginBottom: 6 }}>
-            <span className="text-micro" style={{ color: 'var(--color-ink-dim)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>AI spend today</span>
-            <span className="text-micro tabular-nums" style={{ color: 'var(--color-ink)' }}>${spent.toFixed(2)} <span style={{ color: 'var(--color-ink-dim)' }}>/ ${cap.toFixed(2)} cap</span></span>
-          </div>
-          <div role="meter" aria-label="AI spend today" aria-valuemin={0} aria-valuemax={cap} aria-valuenow={spent}
-            style={{ height: 6, borderRadius: 3, background: 'var(--color-surface-3)', overflow: 'hidden' }}>
-            <div style={{ height: '100%', width: `${pct}%`, background: barColor, borderRadius: 3 }} />
-          </div>
-        </div>
+        {/* Spec 029: the spend meter moved to the AI spend card (all LLM calls, not only the agents). */}
+        <a href="#ai-spend" className="link-accent text-micro"
+          onClick={(e) => { const el = document.getElementById('ai-spend'); if (el) { e.preventDefault(); el.scrollIntoView({ behavior: 'smooth', block: 'start' }); } }}
+          style={{ display: 'inline-flex', alignItems: 'center', gap: 5, alignSelf: 'center' }}>
+          <Icon name="spend" size={12} />
+          Agents spent ${spent.toFixed(2)} today · see AI spend
+          <Icon name="chevron-down" size={11} />
+        </a>
         <div style={{ display: 'flex', gap: 14, alignItems: 'center', flexWrap: 'wrap', justifyContent: 'flex-end' }}>
           <span className="text-micro" style={{ display: 'inline-flex', alignItems: 'center', gap: 5, color: anomalies ? 'var(--color-warning)' : 'var(--color-ink-muted)' }}>
             <Icon name={anomalies ? 'warning' : 'check'} size={12} />

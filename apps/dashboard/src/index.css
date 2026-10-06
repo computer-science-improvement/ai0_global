@@ -73,6 +73,16 @@
   --color-grad-coral:    #e5704b;
 }
 
+/* Categorical series for multi-series charts (Spend page, spec 029): the accent,
+   warning, Telegram blue and danger first, then these four. Plain :root so they
+   are emitted even though only inline styles reference them. */
+:root {
+  --color-chart-5: #a78bfa;
+  --color-chart-6: #f472b6;
+  --color-chart-7: #94a3b8;
+  --color-chart-8: #facc15;
+}
+
 :root { color-scheme: dark; }
 
 /* Inter Variable with Framer's OpenType character variants — bespoke voice. */
