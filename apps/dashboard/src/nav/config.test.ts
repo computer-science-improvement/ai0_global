@@ -10,6 +10,7 @@ import { NAV_REGISTRY } from './registry';
 import { defaultConfig, resolveNav } from './resolve';
 import { addCustomLink, hideItem, moveItem, setOverride, togglePin } from './ops';
 import { fullPathsFromRouteTree, makeRouteMatcher } from './routes';
+import { routerSearch } from './model';
 
 const SRC = fileURLToPath(new URL('..', import.meta.url));
 const routeExists = makeRouteMatcher(fullPathsFromRouteTree(readFileSync(`${SRC}routeTree.gen.ts`, 'utf8')));
@@ -55,4 +56,10 @@ test('manual scenario: reorder, rename, hide, pin, add the directives board as "
   const reset = resolveNav(NAV_REGISTRY, null);
   assert.deepEqual(reset.groups[0].items.map((i) => i.id), ['overview', 'approvals']);
   assert.ok(reset.groups.flatMap((g) => g.items).some((i) => i.id === 'strategies'));
+});
+
+test('stored search strings are handed to the router with the types it would parse', () => {
+  assert.equal(routerSearch(undefined), undefined);
+  assert.deepEqual(routerSearch({ filter: 'mine', page: '2', all: 'true', id: '"123"', q: 'crypto news' }),
+    { filter: 'mine', page: 2, all: true, id: '123', q: 'crypto news' });
 });

@@ -35,7 +35,7 @@ const BUILTIN_TITLE = new Map(NAV_GROUPS.map((g) => [g.id as string, g.title]));
 interface Base { revision: string | null; json: string; source: ReturnType<typeof normalizeNav>['source']; unparseable: boolean }
 
 export function NavigationTab({ editId, from }: { editId?: string; from?: string }) {
-  const q = useNavConfig();
+  const q = useNavConfig({ fresh: true });
   const qc = useQueryClient();
   const confirm = useConfirm();
   const routeExists = useRouteExists();
@@ -48,7 +48,9 @@ export function NavigationTab({ editId, from }: { editId?: string; from?: string
   const [iconFor, setIconFor] = useState<string | null>(null);
   const [focusId, setFocusId] = useState<string | null>(null);
 
-  const dirty = !!draft && !!base && JSON.stringify(draft) !== base.json;
+  // Compare canonical forms (normalizeNav fixes key order), so undoing an edit by hand is not "dirty".
+  const draftJson = useMemo(() => (draft ? JSON.stringify(normalizeNav(NAV_REGISTRY, draft).config) : ''), [draft]);
+  const dirty = !!draft && !!base && draftJson !== base.json;
   const dirtyRef = useRef(false);
   dirtyRef.current = dirty;
 

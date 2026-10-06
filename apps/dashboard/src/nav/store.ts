@@ -16,13 +16,15 @@ import type { BadgeCounts } from './badges';
 import { readNavCache as readCache, writeNavCache as writeCache } from './cache';
 
 /** The saved menu. Seeds from the cache (refetched at once), then keeps the cache fresh. */
-export function useNavConfig() {
+export function useNavConfig(opts: { fresh?: boolean } = {}) {
   const q = useQuery({
     queryKey: NAV_CONFIG_KEY,
     queryFn: () => navApi.getConfig(),
     initialData: readCache,
     initialDataUpdatedAt: 0,
     staleTime: 60_000,
+    // The constructor bases its draft on the server's copy: always refetch when it mounts.
+    ...(opts.fresh ? { refetchOnMount: 'always' as const } : {}),
   });
   useEffect(() => { if (q.data && q.isFetchedAfterMount) writeCache(q.data); }, [q.data, q.isFetchedAfterMount]);
   return q;

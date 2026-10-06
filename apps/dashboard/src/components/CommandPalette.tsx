@@ -9,6 +9,7 @@ import { Modal } from './Modal';
 import { Icon } from './ui/Icon';
 import { useAgentHandles } from '../api/agents';
 import { useResolvedNav } from '../nav/store';
+import { routerSearch } from '../nav/model';
 import { buildPaletteEntries, pushRecent, readRecent, searchPalette, type PaletteEntry, type PaletteTarget } from '../nav/palette';
 
 type Action = Extract<PaletteTarget, { type: 'action' }>['action'];
@@ -49,7 +50,7 @@ export function CommandPalette({ open, onClose, onAction }: {
     setRecent(pushRecent(e.key));
     onClose();
     if (e.target.type === 'action') { onAction(e.target.action); return; }
-    void navigate({ to: e.target.to as any, search: e.target.search as any, params: e.target.params as any });
+    void navigate({ to: e.target.to as any, search: routerSearch(e.target.search) as any, params: e.target.params as any });
   };
 
   const onKeyDown = (ev: React.KeyboardEvent) => {

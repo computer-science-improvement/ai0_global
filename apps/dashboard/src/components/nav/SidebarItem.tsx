@@ -1,7 +1,7 @@
 import { Link } from '@tanstack/react-router';
 import { useRef, type MouseEvent as ReactMouseEvent } from 'react';
 import { Icon } from '../ui/Icon';
-import type { ResolvedItem } from '../../nav/model';
+import { routerSearch, type ResolvedItem } from '../../nav/model';
 import { badgeText, type BadgeView } from '../../nav/badges';
 
 const LONG_PRESS_MS = 500;
@@ -74,7 +74,7 @@ export function SidebarItem({ item, collapsed, pinned, badge, onNavigate, onTogg
       ) : (
         <Link
           to={item.to as any}
-          search={item.search as any}
+          search={routerSearch(item.search) as any}
           onClick={onClick}
           activeOptions={item.exact ? { exact: true } : undefined}
           title={title}

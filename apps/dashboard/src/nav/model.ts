@@ -66,3 +66,19 @@ export function hrefOf(item: { to: string; search?: Record<string, string> }): s
   const qs = item.search ? new URLSearchParams(item.search).toString() : '';
   return qs ? `${item.to}?${qs}` : item.to;
 }
+
+/**
+ * Stored search params are strings (they come from a URL). The router parses a
+ * URL's values as JSON when they look like JSON ("2" → 2, "true" → true), so a
+ * link must hand it the same typed values; otherwise "2" would be written as
+ * `%222%22` and a route expecting a number would get a string.
+ */
+export function routerSearch(search?: Record<string, string>): Record<string, unknown> | undefined {
+  if (!search) return undefined;
+  const out: Record<string, unknown> = {};
+  for (const [k, v] of Object.entries(search)) {
+    // Same rule as the router's parser: JSON when it parses ('2' → 2, '"x"' → 'x'), else the raw string.
+    try { out[k] = JSON.parse(v); } catch { out[k] = v; }
+  }
+  return out;
+}
