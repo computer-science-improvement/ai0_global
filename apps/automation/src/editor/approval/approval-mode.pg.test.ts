@@ -75,7 +75,8 @@ test('new agents default to approve; a card created without a mode is approve an
   assert.equal(card.approvalHoldHours, 6);
   assert.equal(card.approvalLeadHours, 12);
   const agents = new AgentsRepository(pool);
-  await new AgentRegistrySync({ agents, channels }).run();
+  // Only this card: a global sync here would race the other pg suites that sync their own cards.
+  await new AgentRegistrySync({ agents, channels: { list: async () => [card] } }).run();
   const orch = await agents.findTop('orchestrator', 'resource', `telegram:${FRESH}`);
   assert.equal(orch?.mode, 'approve');
 });

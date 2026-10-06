@@ -110,11 +110,14 @@ export function buildComposerSystemPrompt(o: {
   ].join('\n');
 }
 
-export function plannerUserPrompt(card: EditorCard, now: Date, reserved: EditorSlot[]): string {
+export function plannerUserPrompt(card: EditorCard, now: Date, reserved: EditorSlot[], planDate?: string): string {
   const tz = card.timezone;
+  const ahead = !!planDate && planDate !== localDate(now, tz);
   return [
     `Сьогодні ${WEEKDAYS[localWeekday(now, tz)]}, ${localDate(now, tz)}, зараз ${localTimeLabel(now, tz)} (${tz}).`,
-    `Склади план публікацій каналу на сьогодні: ${card.postsPerDayMin}–${card.postsPerDayMax} постів з урахуванням резервних.`,
+    ahead
+      ? `Склади план публікацій каналу на ${planDate}: ${card.postsPerDayMin}–${card.postsPerDayMax} постів з урахуванням резервних. Режим апруву: пости напишуть заздалегідь, власник схвалить їх увечері.`
+      : `Склади план публікацій каналу на сьогодні: ${card.postsPerDayMin}–${card.postsPerDayMax} постів з урахуванням резервних.`,
     reserved.length
       ? `Резервні (рекламні) слоти, їх не чіпай і тримай інтервал: ${reserved.map((r) => localTimeLabel(r.scheduledAt, tz)).join(', ')}.`
       : 'Резервних слотів немає.',

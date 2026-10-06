@@ -30,7 +30,24 @@ export interface EditorSlot {
   ideaId?:         string | null;
   /** Promo between own resources (spec 022). */
   promo?:          Record<string, unknown> | null;
+  createdAt?:      Date;
+  // ── approval mode (spec 031); present only when set ──
+  approvedAt?:        Date | null;
+  ownerEdited?:       boolean;
+  rejectReason?:      string | null;
+  /** Telegram: { messages, primary }; platform: { platform, rendered } — exactly what is approved and sent. */
+  renderMessages?:    ApprovalRender | null;
+  preparedMedia?:     { slideUrls?: string[]; longreadUrl?: string } | null;
+  lintWarnings?:      string[] | null;
+  freshnessDeadline?: Date | null;
+  replacesSlotId?:    string | null;
+  platformPostId?:    number | null;
 }
+
+/** The stored payload of a written approval-mode post (render_messages). */
+export type ApprovalRender =
+  | { kind: 'telegram'; messages: unknown[]; primary: number }
+  | { kind: 'platform'; platform: string; rendered: Record<string, unknown> };
 
 /** Rationale of a plan created only to hold reserved (ad) slots; the planner still plans that day. */
 export const RESERVED_ONLY_RATIONALE = 'reserved only';
@@ -61,6 +78,16 @@ export function rowToSlot(r: any): EditorSlot {
     ...(r.resource_ref ? { resourceRef: r.resource_ref } : {}),
     ...(r.idea_id ? { ideaId: r.idea_id } : {}),
     ...(r.promo ? { promo: r.promo } : {}),
+    ...(r.created_at ? { createdAt: new Date(r.created_at) } : {}),
+    ...(r.approved_at ? { approvedAt: new Date(r.approved_at) } : {}),
+    ...(r.owner_edited ? { ownerEdited: true } : {}),
+    ...(r.reject_reason ? { rejectReason: r.reject_reason } : {}),
+    ...(r.render_messages ? { renderMessages: r.render_messages } : {}),
+    ...(r.prepared_media ? { preparedMedia: r.prepared_media } : {}),
+    ...(r.lint_warnings ? { lintWarnings: r.lint_warnings } : {}),
+    ...(r.freshness_deadline ? { freshnessDeadline: new Date(r.freshness_deadline) } : {}),
+    ...(r.replaces_slot_id ? { replacesSlotId: r.replaces_slot_id } : {}),
+    ...(r.platform_post_id != null ? { platformPostId: Number(r.platform_post_id) } : {}),
   };
 }
 
@@ -90,6 +117,12 @@ export interface SlotResultPatch {
   renderedPreview?: string | null;
   error?:           string | null;
   scheduledAt?:     Date;
+  // spec 031
+  renderMessages?:    ApprovalRender | null;
+  preparedMedia?:     { slideUrls?: string[]; longreadUrl?: string } | null;
+  lintWarnings?:      string[] | null;
+  freshnessDeadline?: Date | null;
+  platformPostId?:    number | null;
 }
 
 export class EditorPlansRepository {
@@ -195,9 +228,14 @@ export class EditorPlansRepository {
         [channelKey, planDate, rationale, runId && /^[0-9a-f-]{36}$/i.test(runId) ? runId : null]);
       const planId: string = rows[0].id;
       for (const o of old.rows) {
-        await client.query(
+        // Unwritten slots and (spec 031) posts still waiting for approval go with the old plan; approved ones stay.
+        const dropped = await client.query(
           `UPDATE editor_slots SET status = 'skipped', error = 'superseded by a new plan', updated_at = now()
-            WHERE plan_id = $1 AND status = 'planned' AND kind = 'content'`, [o.id]);
+            WHERE plan_id = $1 AND status IN ('planned','awaiting_approval') AND kind = 'content' RETURNING platform_post_id`, [o.id]);
+        const waitingRows = dropped.rows.map((r: any) => r.platform_post_id).filter((x: unknown) => x != null);
+        if (waitingRows.length) {
+          await client.query(`UPDATE platform_posts SET status = 'canceled', error = 'superseded' WHERE id = ANY($1::bigint[]) AND status = 'awaiting_approval'`, [waitingRows]);
+        }
         await client.query(`UPDATE editor_slots SET plan_id = $2, updated_at = now() WHERE plan_id = $1 AND kind = 'reserved'`, [o.id, planId]);
       }
       await insertSlots(client as any, planId);
@@ -243,6 +281,19 @@ export class EditorPlansRepository {
            FOR UPDATE SKIP LOCKED)
         RETURNING *`,
       [now, limit]);
+    return rows.map(rowToSlot);
+  }
+
+  /**
+   * Spec 031 write-ahead: planned content slots of the given channels due
+   * before `until`, oldest first. The scheduler decides per slot whether its
+   * write time has come and claims it with claimSlot (atomic).
+   */
+  async plannedBefore(channelKeys: string[], until: Date, limit = 50): Promise<EditorSlot[]> {
+    if (!channelKeys.length) return [];
+    const { rows } = await this.pool.query(
+      `SELECT * FROM editor_slots WHERE status = 'planned' AND kind = 'content' AND channel_key = ANY($1::text[]) AND scheduled_at <= $2
+        ORDER BY scheduled_at LIMIT $3`, [channelKeys, until, limit]);
     return rows.map(rowToSlot);
   }
 
@@ -343,6 +394,11 @@ export class EditorPlansRepository {
     if (p.renderedPreview !== undefined) add('rendered_preview', p.renderedPreview);
     if (p.error !== undefined)           add('error', p.error);
     if (p.scheduledAt !== undefined)     add('scheduled_at', p.scheduledAt);
+    if (p.renderMessages !== undefined)  add('render_messages', p.renderMessages === null ? null : JSON.stringify(p.renderMessages));
+    if (p.preparedMedia !== undefined)   add('prepared_media', p.preparedMedia === null ? null : JSON.stringify(p.preparedMedia));
+    if (p.lintWarnings !== undefined)    add('lint_warnings', p.lintWarnings === null ? null : JSON.stringify(p.lintWarnings));
+    if (p.freshnessDeadline !== undefined) add('freshness_deadline', p.freshnessDeadline);
+    if (p.platformPostId !== undefined)  add('platform_post_id', p.platformPostId);
     if (!sets.length) return;
     await this.pool.query(`UPDATE editor_slots SET ${sets.join(', ')}, updated_at = now() WHERE id = $1`, params);
   }
@@ -370,13 +426,19 @@ export class EditorPlansRepository {
     return rows[0]?.at ? new Date(rows[0].at) : null;
   }
 
-  async sourceAlreadyPosted(channelKey: string, sourceUrl: string): Promise<boolean> {
+  /**
+   * Dedup: the source / library item was published to the channel, or is held
+   * by a shadow preview or (spec 031) a post that waits for approval or is
+   * approved. `excludeSlotId` leaves out the slot being re-checked itself.
+   */
+  async sourceAlreadyPosted(channelKey: string, sourceUrl: string, excludeSlotId: string | null = null): Promise<boolean> {
     const { rows } = await this.pool.query(
-      `SELECT 1 FROM published_posts WHERE channel_id = $1 AND source_url = $2
+      `SELECT 1 FROM published_posts WHERE channel_id = $1 AND source_url = $2 AND ($3::uuid IS NULL OR editor_slot_id IS DISTINCT FROM $3)
        UNION ALL
-       SELECT 1 FROM editor_slots WHERE channel_key = $1 AND status = 'shadowed'
+       SELECT 1 FROM editor_slots WHERE channel_key = $1 AND status IN ('shadowed','awaiting_approval','approved')
+          AND ($3::uuid IS NULL OR id <> $3)
           AND (post_spec->'source'->>'url' = $2 OR post_spec->>'library_ref' = $2)
-       LIMIT 1`, [channelKey, sourceUrl]);
+       LIMIT 1`, [channelKey, sourceUrl, excludeSlotId]);
     return rows.length > 0;
   }
 
@@ -388,14 +450,16 @@ export class EditorPlansRepository {
     return rows.length > 0;
   }
 
-  async recentTexts(channelKey: string): Promise<string[]> {
+  /** Recent texts for the similarity guard; waiting and approved posts count too (spec 031). */
+  async recentTexts(channelKey: string, excludeSlotId: string | null = null): Promise<string[]> {
     const { rows } = await this.pool.query(
       `(SELECT COALESCE(rendered_preview, topic) AS text FROM editor_slots
-         WHERE channel_key = $1 AND status IN ('published','shadowed') ORDER BY updated_at DESC LIMIT 60)
+         WHERE channel_key = $1 AND status IN ('published','shadowed','awaiting_approval','approved')
+           AND ($2::uuid IS NULL OR id <> $2) ORDER BY updated_at DESC LIMIT 60)
        UNION ALL
        (SELECT title AS text FROM published_posts
          WHERE channel_id = $1 AND title IS NOT NULL AND editor_slot_id IS NULL ORDER BY posted_at DESC LIMIT 60)`,
-      [channelKey]);
+      [channelKey, excludeSlotId]);
     return rows.map((r) => String(r.text ?? ''));
   }
 

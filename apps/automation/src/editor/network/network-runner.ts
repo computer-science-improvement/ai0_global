@@ -146,18 +146,19 @@ export class NetworkRunner {
    * channel is not the anchor of an orchestrated network with a playbook — the
    * caller then runs the single-channel planner (which can use the idea pool too).
    */
-  async runNetworkPlanner(card: EditorCard): Promise<AgentLoopResult | null> {
+  async runNetworkPlanner(card: EditorCard, planDateIn?: string): Promise<AgentLoopResult | null> {
     const c = await this.context(card, 'planner');
     if (!c || c.net.mode !== 'orchestrated' || !c.net.playbook) return null;
     if (c.agentCtx.paused) return null;
     const now = this.now();
-    const planDate = localDate(now, card.timezone);
+    // Spec 031: approval mode plans the next day ahead (its batch is written at 20:00).
+    const planDate = planDateIn ?? localDate(now, card.timezone);
     const dayStart = zonedToUtc(planDate, '00:00', card.timezone);
     const reserved = await this.d.plans.reservedSlots(card.channelKey, dayStart, new Date(dayStart.getTime() + 86_400_000));
     const accepted = await this.d.repo.listIdeas(c.net.orchestrator.id, ['accepted'], 100);
     const memory = await this.d.memory.listActive(card.channelKey);
     const system = `${buildSystemPrompt('planner', card, memory, c.agentCtx.skills)}\n\n${networkPlannerBlock({ net: c.net, accepted, now, tz: card.timezone })}`;
-    const res = await this.run('planner', card, c, system, plannerUserPrompt(card, now, reserved), STEPS.plan, { planDate }, TERMINAL_EXCLUDE_NETWORK);
+    const res = await this.run('planner', card, c, system, plannerUserPrompt(card, now, reserved, planDate), STEPS.plan, { planDate }, TERMINAL_EXCLUDE_NETWORK);
     if (res.terminalTool !== 'submit_network_plan') {
       await this.safeNotify(`🗓 @${c.net.orchestrator.handle}: план мережі не складено (${res.status}${res.error ? `: ${res.error}` : ''}).`);
     }

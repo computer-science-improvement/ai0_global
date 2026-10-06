@@ -32,7 +32,7 @@ export interface EditorRunnerDeps {
   platformContext?: (slot: EditorSlot, orchestratorId: string | null) => Promise<{ playbook?: string | null; profile?: string | null; maxPerDay?: number | null; vocabulary?: string[]; idea?: string | null } | null>;
   /** Spec 020: network planner and the idea pool for the single-channel planner. */
   network?: {
-    runNetworkPlanner(card: EditorCard): Promise<AgentLoopResult | null>;
+    runNetworkPlanner(card: EditorCard, planDate?: string): Promise<AgentLoopResult | null>;
     plannerExtras(card: EditorCard): Promise<{ network: unknown; excludeTools: Set<string>; ideasNote: string | null } | null>;
   };
   /** Called after an executor run (spec 020: an idea becomes `used` once all its slots are done). */
@@ -91,20 +91,21 @@ export class EditorRunnerService {
     };
   }
 
-  async runPlanner(card: EditorCard): Promise<AgentLoopResult> {
+  /** `planDate` (spec 031): approval mode plans the next day ahead, so its batch is written and approved the evening before. */
+  async runPlanner(card: EditorCard, opts: { planDate?: string } = {}): Promise<AgentLoopResult> {
     const now = this.now();
-    const planDate = localDate(now, card.timezone);
+    const planDate = opts.planDate ?? localDate(now, card.timezone);
     const dayStart = zonedToUtc(planDate, '00:00', card.timezone);
     const ctx = await this.agentOf(card, 'planner');
     const off = this.paused(ctx);
     if (off) return off;
     if (this.d.network) {
-      const net = await this.d.network.runNetworkPlanner(card).catch(() => null);
+      const net = await this.d.network.runNetworkPlanner(card, opts.planDate).catch(() => null);
       if (net) return net;
     }
     const extra = this.d.network ? await this.d.network.plannerExtras(card).catch(() => null) : null;
     const reserved = await this.d.plans.reservedSlots(card.channelKey, dayStart, new Date(dayStart.getTime() + 86_400_000));
-    const user = [plannerUserPrompt(card, now, reserved), extra?.ideasNote].filter(Boolean).join('\n');
+    const user = [plannerUserPrompt(card, now, reserved, planDate), extra?.ideasNote].filter(Boolean).join('\n');
     const res = await this.run('planner', card, user, null, {
       planDate, ...(extra ? { network: extra.network, excludeTools: extra.excludeTools } : { excludeTools: new Set(['submit_network_plan']) }),
     }, ctx);
