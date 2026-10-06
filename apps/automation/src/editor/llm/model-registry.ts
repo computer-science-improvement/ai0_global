@@ -14,7 +14,11 @@ export interface ModelProfile {
 
 export const DEFAULT_EDITOR_MODEL = 'z-ai/glm-5.3-flash';
 
-/** Known prices (OpenRouter, 2026-10). Unknown models fall back to the default's price. */
+/**
+ * Known prices (OpenRouter, 2026-10) — the LAST-resort fallback only: costs come from OpenRouter's usage.cost,
+ * then from the llm_prices table (spec 029, PriceService); this map is used when neither is available.
+ * Unknown models fall back to the default's price.
+ */
 const PRICES: Record<string, { inPerM: number; outPerM: number }> = {
   'z-ai/glm-5.3-flash':  { inPerM: 0.15, outPerM: 0.50 },
   'z-ai/glm-5.3-flashx': { inPerM: 0.37, outPerM: 1.25 },

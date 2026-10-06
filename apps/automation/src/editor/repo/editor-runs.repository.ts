@@ -80,12 +80,31 @@ export class EditorRunsRepository {
   }
 
   /** USD of editor_runs.cost_usd per Kyiv calendar day and channel, for the last `days` days (today included). */
+  /**
+   * Editor spend per Kyiv day and channel from the llm_usage ledger (spec 029:
+   * `feature LIKE 'editor.%'`, LLM calls and paid tool steps). `runs` counts the
+   * runs with ledger rows that day. Days older than the raw retention come from
+   * the llm_usage_daily rollup (channel from resource_ref, runs 0). Same shape
+   * as before for the MCP tool.
+   */
   async spendByDay(days: number): Promise<SpendRow[]> {
     const { rows } = await this.pool.query(
-      `SELECT (started_at AT TIME ZONE 'Europe/Kyiv')::date::text AS day, channel_key,
-              SUM(cost_usd)::float8 AS usd, COUNT(*)::int AS runs
-         FROM editor_runs
-        WHERE (started_at AT TIME ZONE 'Europe/Kyiv')::date > (now() AT TIME ZONE 'Europe/Kyiv')::date - $1::int
+      `WITH b AS (
+         SELECT ((now() AT TIME ZONE 'Europe/Kyiv')::date - ($1::int - 1)) AS from_day,
+                (SELECT (MIN(at) AT TIME ZONE 'Europe/Kyiv')::date FROM llm_usage) AS raw_from
+       )
+       SELECT (u.at AT TIME ZONE 'Europe/Kyiv')::date::text AS day,
+              COALESCE(r.channel_key, CASE WHEN u.resource_ref LIKE 'telegram:%' THEN substr(u.resource_ref, 10) END) AS channel_key,
+              COALESCE(SUM(u.cost_usd), 0)::float8 AS usd, COUNT(DISTINCT u.run_id)::int AS runs
+         FROM llm_usage u
+         LEFT JOIN editor_runs r ON r.id = u.run_id, b
+        WHERE u.feature LIKE 'editor.%' AND u.at >= (b.from_day::timestamp AT TIME ZONE 'Europe/Kyiv')
+        GROUP BY 1, 2
+       UNION ALL
+       SELECT d.day::text, CASE WHEN d.resource_ref LIKE 'telegram:%' THEN substr(d.resource_ref, 10) END,
+              SUM(d.cost_usd)::float8, 0
+         FROM llm_usage_daily d, b
+        WHERE d.feature LIKE 'editor.%' AND d.day >= b.from_day AND (b.raw_from IS NULL OR d.day < b.raw_from)
         GROUP BY 1, 2
         ORDER BY 1, 2 NULLS FIRST`,
       [days]);

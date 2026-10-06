@@ -82,10 +82,27 @@ export interface SendOptions {
 const draftLine = (d: EditorDraft) =>
   `${d.id} · ${d.channelKey} · ${(d.spec as any)?.format ?? '?'} · «${(d.spec as any)?.title ?? ''}» · ${d.status}${d.scheduledAt ? ` на ${d.scheduledAt.toISOString()}` : ''}`;
 
-function failureText(r: AgentLoopResult): string {
+const CAP_LABELS: Record<string, string> = {
+  total:    'загальний денний ліміт AI (AI_DAILY_BUDGET_USD)',
+  global:   'денний ліміт агентів (EDITOR_DAILY_BUDGET_USD)',
+  channel:  'денний ліміт ресурсу (EDITOR_CHANNEL_DAILY_BUDGET_USD або ліміт каналу)',
+  agent:    'денний ліміт агента',
+  feature:  'денний ліміт функції',
+  provider: 'денний ліміт провайдера',
+};
+
+/** The refusal of an owner message over a blocking cap (spec 029 FR-008): names the cap, never silent. */
+export function budgetRefusalText(error: string | null | undefined): string {
+  const m = /^(\w+) budget: \$([\d.]+) >= \$([\d.]+)/.exec(error ?? '');
+  const cap = m ? `${CAP_LABELS[m[1]] ?? m[1]}: витрачено $${Number(m[2]).toFixed(3)} із $${m[3]}` : (error ?? 'денний ліміт');
+  return `Повідомлення не оброблено — вичерпано ${cap} (день за Києвом). `
+    + 'Роботу відновлено опівночі за Києвом або одразу після підняття ліміту на сторінці Spend → Budgets (/app/spend?tab=budgets).';
+}
+
+export function failureText(r: AgentLoopResult): string {
   switch (r.status) {
     case 'disabled':        return 'Чат вимкнено: не задано OPENROUTER_API_KEY.';
-    case 'budget_exceeded': return `Денний бюджет LLM вичерпано (${r.error ?? ''}). Спробуй завтра або підніми EDITOR_DAILY_BUDGET_USD.`;
+    case 'budget_exceeded': return budgetRefusalText(r.error);
     case 'max_steps':       return `Я не встиг завершити за ${COMPOSER_MAX_STEPS} кроків. Напиши «продовжуй» або уточни задачу.`;
     default:                return `Сталася помилка: ${r.error ?? r.status}.`;
   }

@@ -28,7 +28,9 @@ export interface KpiDigest {
 export interface KpiDigestDeps {
   pool:    Pick<Pool, 'query'>;
   catalog: Pick<ResourceCatalog, 'list'>;
+  /** The agents' daily cap; `capUsd` (llm_budgets, owner-editable) wins when given. */
   globalCapUsd: number;
+  capUsd?: () => Promise<number>;
   now?:    () => Date;
 }
 
@@ -102,8 +104,9 @@ export class KpiDigestService {
 
     const { rows: ag } = await this.d.pool.query(
       `SELECT a.id, a.handle, a.mode, a.status, a.paused_until, a.scope_id,
-              COALESCE((SELECT SUM(cost_usd) FROM editor_runs r WHERE r.agent_id IN (SELECT id FROM agents c WHERE c.id = a.id OR c.parent_id = a.id)
-                         AND (r.started_at AT TIME ZONE 'Europe/Kyiv')::date = $1::date), 0)::float8 AS spent
+              COALESCE((SELECT SUM(u.cost_usd) FROM llm_usage u WHERE u.root_agent_id = a.id
+                         AND u.at >= ($1::date::timestamp AT TIME ZONE 'Europe/Kyiv')
+                         AND u.at < (($1::date + 1)::timestamp AT TIME ZONE 'Europe/Kyiv')), 0)::float8 AS spent
          FROM agents a WHERE a.parent_id IS NULL AND a.kind = 'orchestrator' ORDER BY a.handle`, [today]);
     const { rows: slots } = await this.d.pool.query(
       `SELECT 'telegram:' || p.channel_key AS ref, s.status, COUNT(*)::int AS n FROM editor_slots s JOIN editor_plans p ON p.id = s.plan_id
@@ -117,7 +120,11 @@ export class KpiDigestService {
       };
     });
     const { rows: spend } = await this.d.pool.query(
-      `SELECT COALESCE(SUM(cost_usd), 0)::float8 AS usd FROM editor_runs WHERE (started_at AT TIME ZONE 'Europe/Kyiv')::date = $1::date`, [today]);
+      `SELECT COALESCE(SUM(cost_usd), 0)::float8 AS usd FROM llm_usage
+        WHERE feature LIKE 'editor.%'
+          AND at >= ($1::date::timestamp AT TIME ZONE 'Europe/Kyiv') AND at < (($1::date + 1)::timestamp AT TIME ZONE 'Europe/Kyiv')`, [today]);
+    // The spend ledger (spec 029) is the source; the cap is the agents' llm_budgets row.
+    const capUsd = this.d.capUsd ? await this.d.capUsd().catch(() => this.d.globalCapUsd) : this.d.globalCapUsd;
 
     const { rows: open } = await this.d.pool.query(
       `SELECT d.id, a.handle AS to_handle, d.kind, d.status, d.body, d.created_at FROM agent_directives d JOIN agents a ON a.id = d.to_agent_id
@@ -128,7 +135,7 @@ export class KpiDigestService {
 
     const digest: Omit<KpiDigest, 'hash' | 'raw'> = {
       generatedAt: now.toISOString(), today, resources: out, agents,
-      budget: { spentTodayUsd: Math.round(Number(spend[0]?.usd ?? 0) * 10000) / 10000, capUsd: this.d.globalCapUsd },
+      budget: { spentTodayUsd: Math.round(Number(spend[0]?.usd ?? 0) * 10000) / 10000, capUsd },
       directives: {
         open: open.map((o) => ({ id: o.id, to: o.to_handle, kind: o.kind, status: o.status, body: String(o.body).slice(0, 200), createdAt: new Date(o.created_at).toISOString() })),
         outcomes: outcomes.map((o) => ({ to: o.to_handle, kind: o.kind, outcome: o.outcome ?? null, body: String(o.body).slice(0, 160), detail: o.outcome_detail ?? null })),

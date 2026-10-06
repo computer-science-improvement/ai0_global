@@ -4,6 +4,8 @@ import type { AgentBudget, BudgetGate } from './budget.service';
 import type { RunRecorder, RunStatus, RunTotals } from './run-recorder';
 import { EditorTool, ToolContext, isToolError, toToolSpec } from './tool';
 import { toToolContent } from './truncate';
+import { withLlmContext, type LlmContext } from '../../common/ai/usage/llm-context';
+import { editorFeature, telegramResource } from '../../common/ai/usage/features';
 
 export interface AgentLoopDeps {
   llm:            LlmClient;
@@ -68,6 +70,24 @@ function summarize(output: unknown): string {
   try { s = JSON.stringify(output) ?? ''; } catch { s = String(output); }
   return s.length > SUMMARY_CHARS ? `${s.slice(0, SUMMARY_CHARS)}…` : s;
 }
+/**
+ * Spend-ledger attribution of a run (spec 029): editor.<role>, the agent, the
+ * resource and whether it is a shadow run (the runners put the card, the
+ * orchestrator and platform-slot mode into extras; chat and builder runs are owner-initiated, never shadow).
+ */
+function usageAttribution(input: AgentLoopInput, runId: string): LlmContext {
+  const x = (input.extras ?? {}) as { card?: { mode?: string }; orchestrator?: { mode?: string } | null; platformSlot?: { mode?: string; resourceRef?: string } };
+  const shadow = x.platformSlot?.mode ? x.platformSlot.mode === 'shadow'
+    : input.role === 'composer' || input.role === 'builder' ? false
+    : x.card?.mode === 'shadow' || x.orchestrator?.mode === 'shadow';
+  return {
+    feature: editorFeature(input.role), role: input.role, runId,
+    agentId: input.agent?.id ?? null, agentHandle: input.agent?.handle ?? null,
+    resourceRef: x.platformSlot?.resourceRef ?? (input.channelKey ? telegramResource(input.channelKey) : null),
+    shadow,
+  };
+}
+
 const MAX_FINISH_NUDGES = 1;
 const MAX_TRUNCATION_RETRIES = 2;
 
@@ -105,6 +125,7 @@ export class AgentLoop {
       return { runId, status, totals, ...extra };
     };
 
+    const usage = usageAttribution(input, runId);
     const ctx: ToolContext = { runId, role: input.role, channelKey: input.channelKey, slotId: input.slotId ?? null, extras: input.extras };
     const history = (input.history ?? [])
       .filter((m) => (m.role === 'user' || m.role === 'assistant') && typeof m.content === 'string' && m.content.length > 0)
@@ -124,14 +145,14 @@ export class AgentLoop {
 
     try {
       for (let turn = 0; turn < maxSteps; turn++) {
-        const verdict = await this.deps.budget.check(input.channelKey, input.channelBudgetUsd, input.agent ?? null);
+        const verdict = await withLlmContext(usage, () => this.deps.budget.check(input.channelKey, input.channelBudgetUsd, input.agent ?? null));
         if (!verdict.ok) return finish('budget_exceeded', { error: `${verdict.scope} budget: $${verdict.spentUsd.toFixed(4)} >= $${verdict.limitUsd}` });
 
         const t0 = now();
-        const res = await this.deps.llm.chat({
+        const res = await withLlmContext({ ...usage, stepIdx: totals.steps }, () => this.deps.llm.chat({
           model: input.model.model, messages, tools: specs,
           maxTokens: input.model.maxTokens, temperature: input.model.temperature, reasoningEffort: input.model.reasoningEffort,
-        });
+        }));
         totals.promptTokens     += res.usage.promptTokens;
         totals.completionTokens += res.usage.completionTokens;
         totals.costUsd          += res.usage.costUsd;
@@ -158,12 +179,15 @@ export class AgentLoop {
 
         for (const call of calls) {
           if (input.onEvent) emit({ type: 'tool_call', name: call.name, args: parseArgs(call.arguments) });
-          const outcome = await this.runTool(call, byName, ctx, toolTimeoutMs);
+          const stepCtx = { ...usage, stepIdx: totals.steps };
+          // LLM calls a tool makes itself are attributed to the run's feature, but without run/step ids:
+          // (run_id, step_idx) belongs to the tool step row.
+          const outcome = await withLlmContext({ ...usage, runId: null }, () => this.runTool(call, byName, ctx, toolTimeoutMs));
           if (input.onEvent) emit({ type: 'tool_result', name: call.name, ok: !outcome.isError, summary: summarize(outcome.output) });
           // Paid tools (e.g. web_search) report their own spend so it counts against the budget.
           const toolCost = typeof (outcome.output as any)?._costUsd === 'number' ? (outcome.output as any)._costUsd as number : 0;
           totals.costUsd += toolCost;
-          await this.deps.recorder.toolStep(runId, totals.steps++, call, outcome.input, outcome.output, outcome.isError, outcome.durationMs, toolCost || null);
+          await withLlmContext(stepCtx, () => this.deps.recorder.toolStep(runId, totals.steps++, call, outcome.input, outcome.output, outcome.isError, outcome.durationMs, toolCost || null));
           messages.push({ role: 'tool', toolCallId: call.id, content: toToolContent(outcome.output) });
           if (outcome.terminal && !outcome.isError) {
             return finish('ok', { terminalTool: call.name, terminalResult: outcome.output });

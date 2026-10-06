@@ -5,6 +5,7 @@ import { TrackedChannelsRepository } from '../repositories/tracked-channels.repo
 import { TrackedPostsRepository } from '../repositories/tracked-posts.repository';
 import { TrackedRoiCacheRepository } from '../repositories/tracked-roi-cache.repository';
 import { estimateRoi } from './roi-heuristic';
+import { FEATURES } from '../../common/ai/usage/features';
 
 export interface RoiResponse {
   estimated_subs_per_ad: number;
@@ -79,7 +80,7 @@ export class RoiAnalyzerService {
                        posts_count: stats.postsCount, days_history: daysHistory },
             sample_posts: sample,
           }, null, 2) },
-      ], { model: 'claude-haiku-4-5', maxTokens: 600 });
+      ], { feature: FEATURES.trackingRoi, model: 'claude-haiku-4-5', maxTokens: 600 });
 
       if (!raw) throw new Error('Claude returned null');
       const parsed = this.parseClaudeJson(raw);

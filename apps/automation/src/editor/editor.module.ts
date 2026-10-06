@@ -99,6 +99,8 @@ import { PROMO_SERVICE, PromoController, PromoRedirectController } from './promo
 import { onChatMember } from '../publishers/chat-member-bus';
 import { createHash, randomBytes } from 'crypto';
 import { TrackingAuthGuard } from '../tracking/api/tracking-auth.guard';
+import { PriceService } from '../common/ai/usage/price.service';
+import { LlmBudgetService, capDefaults } from '../common/ai/usage/llm-budget.service';
 
 export const EDITOR_RUNNER    = 'EDITOR_RUNNER';
 export const EDITOR_SCHEDULER = 'EDITOR_SCHEDULER';
@@ -186,6 +188,22 @@ function envNum(env: (k: string) => string | undefined, key: string, def: number
   const v = env(key)?.trim();
   const n = v ? Number(v) : NaN;
   return Number.isFinite(n) ? n : def;
+}
+
+/**
+ * The editor's budget gate (spec 029 FR-008): caps come from llm_budgets (seeded from
+ * EDITOR_DAILY_BUDGET_USD $2 / EDITOR_CHANNEL_DAILY_BUDGET_USD $0.30 / AI_DAILY_BUDGET_USD $3);
+ * the env values are only the fallback when the ledger module is absent.
+ */
+function editorBudget(pool: Pool, env: (k: string) => string | undefined, alert: (t: string) => Promise<void>, caps?: LlmBudgetService): BudgetService {
+  const d = capDefaults(env);
+  return new BudgetService(pool, { globalDailyUsd: d.agentsDailyUsd, channelDailyUsd: d.resourceDailyUsd }, alert, caps);
+}
+
+/** The agents' cap (`editor.*` row of llm_budgets) for the KPI digest; the env default without the ledger module. */
+function agentsCapUsd(env: (k: string) => string | undefined, caps?: LlmBudgetService): () => Promise<number> {
+  return async () => (await caps?.caps())?.find((r) => r.scopeKind === 'feature_prefix' && r.scopeKey === 'editor.')?.dailyUsd
+    ?? capDefaults(env).agentsDailyUsd;
 }
 
 const isEnabled = (cfg: ConfigService) => cfg.get<string>('EDITOR_ENABLED') === 'true';
@@ -512,10 +530,10 @@ export const EDITOR_PROVIDERS = [
     {
       // One registry for the runner, the chat and the ops surface (REST tools endpoint → MCP).
       provide: EDITOR_REGISTRY,
-      inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_SKILLS, EDITOR_PUBLISH, EDITOR_DRAFTS, TelegramNotifier, PostingThrottleService, AGENT_INFRA, PLATFORM_INFRA],
+      inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_SKILLS, EDITOR_PUBLISH, EDITOR_DRAFTS, TelegramNotifier, PostingThrottleService, AGENT_INFRA, PLATFORM_INFRA, { token: LlmBudgetService, optional: true }],
       useFactory: (
         pool: Pool, cfg: ConfigService, repos: EditorRepos, skills: SkillLibrary, ports: PublishPorts, drafts: DraftsService,
-        notifier: TelegramNotifier, throttle: PostingThrottleService, infra: AgentInfra, platform: PlatformInfra,
+        notifier: TelegramNotifier, throttle: PostingThrottleService, infra: AgentInfra, platform: PlatformInfra, caps?: LlmBudgetService,
       ): ToolRegistry => {
         const env = (k: string) => cfg.get<string>(k) ?? undefined;
         return new ToolRegistry([
@@ -538,7 +556,7 @@ export const EDITOR_PROVIDERS = [
           ...buildNetworkTools({ repo: new NetworkRepository(pool), plans: repos.plans, memory: repos.memory, inbox: infra.inbox }),
           ...buildDirectiveTools({
             repo: new DirectivesRepository(pool), agents: infra.agents, inbox: infra.inbox, memory: repos.memory, actions: infra.actions,
-            digest: new KpiDigestService({ pool, catalog: infra.catalog, globalCapUsd: envNum(env, 'EDITOR_DAILY_BUDGET_USD', 3) }),
+            digest: new KpiDigestService({ pool, catalog: infra.catalog, globalCapUsd: capDefaults(env).agentsDailyUsd, capUsd: agentsCapUsd(env, caps) }),
             channelKeyOf: (a) => infra.channelKeyOf(a),
           }),
           ...buildPlatformTools({
@@ -550,28 +568,25 @@ export const EDITOR_PROVIDERS = [
     },
     {
       provide: EDITOR_LOOP,
-      inject: [DB_POOL, ConfigService, TelegramNotifier],
-      useFactory: (pool: Pool, cfg: ConfigService, notifier: TelegramNotifier): AgentLoop => {
+      inject: [DB_POOL, ConfigService, TelegramNotifier, { token: PriceService, optional: true }, { token: LlmBudgetService, optional: true }],
+      useFactory: (pool: Pool, cfg: ConfigService, notifier: TelegramNotifier, prices?: PriceService, caps?: LlmBudgetService): AgentLoop => {
         const logger = new Logger('Editor');
         const env = (k: string) => cfg.get<string>(k) ?? undefined;
         return new AgentLoop({
-          llm: new OpenRouterClient({ apiKey: env('OPENROUTER_API_KEY'), baseUrl: env('OPENROUTER_BASE_URL') }),
+          llm: new OpenRouterClient({ apiKey: env('OPENROUTER_API_KEY'), baseUrl: env('OPENROUTER_BASE_URL'), prices }),
           recorder: new PgRunRecorder(pool, (m) => logger.warn(m)),
-          budget: new BudgetService(pool, {
-            globalDailyUsd:  envNum(env, 'EDITOR_DAILY_BUDGET_USD', 3),
-            channelDailyUsd: envNum(env, 'EDITOR_CHANNEL_DAILY_BUDGET_USD', 0.5),
-          }, (text) => notifier.notifyAlert(text)),
+          budget: editorBudget(pool, env, (text) => notifier.notifyAlert(text), caps),
           enabled: () => isEnabled(cfg),
         });
       },
     },
     {
       provide: EDITOR_MANAGER,
-      inject: [DB_POOL, ConfigService, EDITOR_LOOP, EDITOR_REGISTRY, AGENT_INFRA],
-      useFactory: (pool: Pool, cfg: ConfigService, loop: AgentLoop, registry: ToolRegistry, infra: AgentInfra): ManagerInfra => {
+      inject: [DB_POOL, ConfigService, EDITOR_LOOP, EDITOR_REGISTRY, AGENT_INFRA, { token: LlmBudgetService, optional: true }],
+      useFactory: (pool: Pool, cfg: ConfigService, loop: AgentLoop, registry: ToolRegistry, infra: AgentInfra, caps?: LlmBudgetService): ManagerInfra => {
         const env = (k: string) => cfg.get<string>(k) ?? undefined;
         const repo = new DirectivesRepository(pool);
-        const digest = new KpiDigestService({ pool, catalog: infra.catalog, globalCapUsd: envNum(env, 'EDITOR_DAILY_BUDGET_USD', 3) });
+        const digest = new KpiDigestService({ pool, catalog: infra.catalog, globalCapUsd: capDefaults(env).agentsDailyUsd, capUsd: agentsCapUsd(env, caps) });
         const runner = new ManagerRunner({
           loop, registry, runtime: infra.runtime, agents: infra.agents, repo, digest, inbox: infra.inbox, env,
           timeoutHours: envNum(env, 'DIRECTIVE_TIMEOUT_HOURS', 12),
@@ -698,21 +713,18 @@ export const EDITOR_PROVIDERS = [
     {
       // Editor chat (spec 010): needs only an LLM key, independent of EDITOR_ENABLED.
       provide: EDITOR_CHAT,
-      inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_SKILLS, EDITOR_REGISTRY, EDITOR_DRAFTS, TelegramNotifier, AGENT_INFRA, EDITOR_MANAGER],
+      inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_SKILLS, EDITOR_REGISTRY, EDITOR_DRAFTS, TelegramNotifier, AGENT_INFRA, EDITOR_MANAGER, { token: PriceService, optional: true }, { token: LlmBudgetService, optional: true }],
       useFactory: (
         pool: Pool, cfg: ConfigService, repos: EditorRepos, skills: SkillLibrary, registry: ToolRegistry, drafts: DraftsService,
-        notifier: TelegramNotifier, infra: AgentInfra, manager: ManagerInfra,
+        notifier: TelegramNotifier, infra: AgentInfra, manager: ManagerInfra, prices?: PriceService, caps?: LlmBudgetService,
       ): EditorChatService => {
         const logger = new Logger('EditorChat');
         const env = (k: string) => cfg.get<string>(k) ?? undefined;
         const enabled = () => !!env('OPENROUTER_API_KEY');
         const loop = new AgentLoop({
-          llm: new OpenRouterClient({ apiKey: env('OPENROUTER_API_KEY'), baseUrl: env('OPENROUTER_BASE_URL') }),
+          llm: new OpenRouterClient({ apiKey: env('OPENROUTER_API_KEY'), baseUrl: env('OPENROUTER_BASE_URL'), prices }),
           recorder: new PgRunRecorder(pool, (m) => logger.warn(m)),
-          budget: new BudgetService(pool, {
-            globalDailyUsd:  envNum(env, 'EDITOR_DAILY_BUDGET_USD', 3),
-            channelDailyUsd: envNum(env, 'EDITOR_CHANNEL_DAILY_BUDGET_USD', 0.5),
-          }, (t) => notifier.notifyAlert(t)),
+          budget: editorBudget(pool, env, (t) => notifier.notifyAlert(t), caps),
           enabled,
         });
         const agentsPort: AgentChatPort = {

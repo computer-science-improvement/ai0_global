@@ -5,6 +5,7 @@ import { DatabaseModule }      from './database/database.module';
 import { ChannelConfigModule }  from './config/config.module';
 import { LoggingModule }        from './common/logging/logging.module';
 import { CommonModule }         from './common/common.module';
+import { LlmUsageModule }       from './common/ai/usage/llm-usage.module';
 import { CryptoModule }         from './common/crypto/crypto.module';
 import { RetentionModule }      from './common/retention/retention.module';
 import { AlertingModule }       from './common/alerting/alerting.module';
@@ -50,6 +51,7 @@ import { EditorModule }         from './editor/editor.module';
     LoggingModule,
     CryptoModule,
     CommonModule,
+    LlmUsageModule,
     RetentionModule,
     AlertingModule,
     AgentModule,
