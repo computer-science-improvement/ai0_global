@@ -40,12 +40,13 @@ Each feature directory has `spec.md` (what and why), `plan.md` (how, plus Consti
 | 029 | [Agent and AI spend analytics](029-agent-and-ai-spend-analytics/spec.md): every LLM call in a usage ledger, prices, budgets, `/app/spend` (AI0-1) | P2 | 006, 017, 021 | SPEC |
 | 030 | [YouTube + LinkedIn](030-youtube-linkedin/spec.md): Shorts via the video bridge with quota, LinkedIn pages and 5 formats (AI0-56) | P3 | 016, 019, 020 | SPEC (future) |
 | 031 | [Approval mode](031-approval-mode/spec.md): every agent post waits for the owner while a resource is tested; default for new resources, switch to autonomous per resource | P1 | 010, 017–020 | SPEC |
+| 032 | [Unified data store](032-unified-data-store/spec.md): one `data_items` table + editable `data_schemas`, CSV/JSON import without migrations, agents read schemas first | P1 | — | SPEC |
 
 Suggested order for the next wave: 012 → 011 (phases 0–1) → 015 → 013 → 014; 016 is independent.
 
 Agent platform wave: 017 → 018 ∥ 019 → 020 → 021 → 022 (019b after 016).
 
-BRD-comments wave (2026-10-06): 028 ∥ 031 → 023 ∥ 024 → 025 → 029 → 027 → 026; 030 after 016.
+BRD-comments wave (2026-10-06): 028 ∥ 029 ∥ 031 → 032 → 023 ∥ 024 → 025 → 029 → 027 → 026; 030 after 016.
 
 Order of execution (first wave): 001 ∥ 003 → 004 → 005 → 006 → 002 (only for strategies still live) → 007 → 008 → 009 → 010.
 
