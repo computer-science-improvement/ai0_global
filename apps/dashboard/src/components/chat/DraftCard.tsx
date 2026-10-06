@@ -130,7 +130,7 @@ export function DraftCard({ draft }: { draft: EditorDraft }) {
           draft={draft}
           onClose={() => setScheduling(false)}
           onSubmit={(at) => action.mutate({ id: draft.id, action: 'schedule', at }, {
-            onSuccess: (r) => { setScheduling(false); toast.success(`Scheduled for ${r.local ?? fmtKyiv(r.draft.scheduledAt)} (Kyiv)`); },
+            onSuccess: (r) => { setScheduling(false); toast.success(`Scheduled for ${fmtKyiv(r.draft.scheduledAt)} (Kyiv)`); },
           })}
           busy={busy}
         />

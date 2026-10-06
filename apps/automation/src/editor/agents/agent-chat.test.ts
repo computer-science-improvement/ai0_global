@@ -170,7 +170,7 @@ test('a role child is answered by its orchestrator', async () => {
 test('unknown @handle at the start: answered without an LLM call', async () => {
   const s = setup([]);
   const r = await s.svc.sendMessage('c1', '@ghost привіт');
-  assert.match(r.message.content, /Агента @ghost немає\. Доступні: @ai0, @kira/);
+  assert.match(r.message.content, /There is no agent @ghost\. Available: @ai0, @kira/);
   assert.equal(s.llm.requests.length, 0);
 });
 
