@@ -16,7 +16,7 @@ import { AuthService } from '../../auth/auth.service';
 import { TrackingAuthGuard } from '../../tracking/api/tracking-auth.guard';
 import { makeAuth } from '../../auth/testing/fakes';
 import { NavConfigService } from './nav-config.service';
-import { NAV_CONFIG, NavController } from './nav.controller';
+import { NAV_BADGES, NAV_CONFIG, NavController } from './nav.controller';
 
 const TOKEN = 'test-token';
 
@@ -62,6 +62,7 @@ before(async () => {
       { provide: ConfigService, useValue: { get: (k: string) => ({ TRACKING_TOKEN: TOKEN } as any)[k] } },
       { provide: AuthService, useValue: makeAuth({ TRACKING_TOKEN: TOKEN }).auth },
       { provide: NAV_CONFIG, useValue: new NavConfigService(table as any) },
+      { provide: NAV_BADGES, useValue: { get: async () => ({ generatedAt: '2026-10-06T09:00:00.000Z', counts: { agentInboxUnread: 2, slotsFailedToday: null } }) } },
     ],
   })
   class TestModule {}
@@ -104,6 +105,10 @@ test('every nav endpoint requires the tracking token', async () => {
   for (const m of ['GET', 'PUT', 'DELETE']) {
     assert.equal((await call(m, '/api/nav/config', m === 'PUT' ? { config: menu(), baseRevision: null } : undefined, null)).status, 401, m);
   }
+  assert.equal((await call('GET', '/api/nav/badges', undefined, null)).status, 401);
+  const b = await call('GET', '/api/nav/badges');
+  assert.equal(b.status, 200);
+  assert.deepEqual(b.json.counts, { agentInboxUnread: 2, slotsFailedToday: null });
 });
 
 test('save, read back, stale revision → 409 (draft kept by the client), reset', async () => {

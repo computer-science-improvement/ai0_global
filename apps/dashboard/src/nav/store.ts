@@ -4,13 +4,15 @@ import { useCallback, useEffect, useMemo } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from '@tanstack/react-router';
 import { ApiError } from '../api/client';
-import { navApi, NAV_CONFIG_KEY } from '../api/nav';
+import { navApi, NAV_BADGES_KEY, NAV_CONFIG_KEY, takeFreshBadges } from '../api/nav';
+import { useApprovalsCount } from '../api/approvals';
 import { describeError, toast } from '../components/ui/Toast';
 import { isIconName } from '../components/ui/Icon';
 import { NAV_REGISTRY } from './registry';
 import { normalizeNav, resolveNav } from './resolve';
 import { makeRouteMatcher } from './routes';
 import type { NavConfigResponse, NavConfigV1 } from './config';
+import type { BadgeCounts } from './badges';
 import { readNavCache as readCache, writeNavCache as writeCache } from './cache';
 
 /** The saved menu. Seeds from the cache (refetched at once), then keeps the cache fresh. */
@@ -63,6 +65,7 @@ export function useQuickNavEdit() {
   const qc = useQueryClient();
   const m = useMutation({
     mutationFn: (v: { next: NavConfigV1; base: string | null }) => navApi.putConfig(v.next, v.base),
+    meta: { skipNavBadges: true },
     onMutate: async (v) => {
       await qc.cancelQueries({ queryKey: NAV_CONFIG_KEY });
       const prev = qc.getQueryData<NavConfigResponse>(NAV_CONFIG_KEY);
@@ -97,4 +100,22 @@ export function useQuickNavEdit() {
   }, [m, qc]);
 
   return { apply, isPending: m.isPending };
+}
+
+/**
+ * FR-010/FR-011: every menu counter. GET /api/nav/badges every 30 s while the tab
+ * is visible (not in background tabs) and on focus, plus the approvals count
+ * (spec 031, its own endpoint). Unknown sources stay null: no badge.
+ */
+export function useNavBadgeCounts(): BadgeCounts {
+  const q = useQuery({
+    queryKey: NAV_BADGES_KEY,
+    queryFn: () => navApi.getBadges(takeFreshBadges()),
+    refetchInterval: 30_000,
+    refetchIntervalInBackground: false,
+    refetchOnWindowFocus: true,
+    staleTime: 25_000,
+  });
+  const approvals = useApprovalsCount().data?.waiting ?? null;
+  return useMemo(() => ({ ...(q.data?.counts ?? {}), approvalsWaiting: approvals }), [q.data, approvals]);
 }

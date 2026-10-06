@@ -4,9 +4,8 @@ import { Icon } from './ui/Icon';
 import { toast } from './ui/Toast';
 import { SidebarItem } from './nav/SidebarItem';
 import { NavContextMenu } from './nav/NavContextMenu';
-import { useApprovalsCount } from '../api/approvals';
-import { useResolvedNav, useQuickNavEdit } from '../nav/store';
-import { badgeFor, type BadgeCounts } from '../nav/badges';
+import { useNavBadgeCounts, useResolvedNav, useQuickNavEdit } from '../nav/store';
+import { badgeFor, rollup, shownKeys } from '../nav/badges';
 import { canHide, hideItem, togglePin } from '../nav/ops';
 import type { ResolvedItem } from '../nav/model';
 
@@ -49,8 +48,11 @@ export function AppSidebar({ isMobile = false, mobileOpen = false, onNavigate }:
   const [ctx, setCtx] = useState<{ item: ResolvedItem; x: number; y: number } | null>(null);
   const closeCtx = useCallback(() => setCtx(null), []);
 
-  // Spec 031: posts waiting for the owner's approval.
-  const counts: BadgeCounts = { approvalsWaiting: useApprovalsCount().data?.waiting ?? null };
+  // FR-010: live counters (and the spec 031 approvals count).
+  const counts = useNavBadgeCounts();
+  // FR-011: counters of hidden pages roll up into a dot on "Edit menu".
+  // Pages whose count the menu already shows (e.g. the agent inbox inside Agents) are skipped.
+  const hiddenRollup = rollup(nav.hidden, counts, shownKeys([...nav.pinned, ...nav.groups.flatMap((g) => g.items)]));
 
   const pinnedIds = new Set(nav.pinned.map((i) => i.id));
   const pin = (item: ResolvedItem) => {
@@ -138,10 +140,18 @@ export function AppSidebar({ isMobile = false, mobileOpen = false, onNavigate }:
       </nav>
 
       <div style={{ padding: '6px 10px 0' }}>
-        <button onClick={() => editMenu()} className="btn-ghost" title="Edit menu"
+        <button onClick={() => editMenu()} className="btn-ghost"
+          title={hiddenRollup ? `Edit menu. Hidden pages need attention:\n${hiddenRollup.title}` : 'Edit menu'}
           style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: isCollapsed ? 'center' : 'flex-start', gap: 8, fontSize: 12 }}>
-          <Icon name="pencil" size={14} />
+          <span style={{ position: 'relative', display: 'inline-flex' }}>
+            <Icon name="pencil" size={14} />
+            {hiddenRollup && (
+              <span className="nav-dot" aria-hidden
+                style={{ background: hiddenRollup.tone === 'danger' ? 'var(--color-danger)' : 'var(--color-warning)' }} />
+            )}
+          </span>
           {!isCollapsed && <span>Edit menu</span>}
+          {hiddenRollup && <span className="sr-only">. Hidden pages need attention: {hiddenRollup.title}</span>}
         </button>
       </div>
 

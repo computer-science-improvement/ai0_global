@@ -8,6 +8,8 @@ import { Button } from './ui/Button';
 import { Icon } from './ui/Icon';
 import { ConfirmProvider } from './ui/ConfirmDialog';
 import { useMediaQuery } from '../lib/useMediaQuery';
+import { useNavBadgeCounts, useResolvedNav } from '../nav/store';
+import { rollup } from '../nav/badges';
 
 export function AppShell() {
   const { me } = useAuth();
@@ -15,6 +17,11 @@ export function AppShell() {
   const qc = useQueryClient();
   const isMobile = useMediaQuery('(max-width: 860px)');
   const [navOpen, setNavOpen] = useState(false);
+
+  // Spec 027 FR-011/FR-014: any counter (hidden pages included) shows as a dot on the hamburger.
+  const nav = useResolvedNav();
+  const counts = useNavBadgeCounts();
+  const attention = isMobile ? rollup([...nav.pinned, ...nav.groups.flatMap((g) => g.items), ...nav.hidden], counts) : null;
 
   // Collapse the drawer whenever we leave the mobile breakpoint, so resizing
   // a desktop window never leaves a stray overlay open.
@@ -60,10 +67,18 @@ export function AppShell() {
               <button
                 onClick={() => setNavOpen(true)}
                 className="btn-icon"
-                style={{ width: 38, height: 38, flexShrink: 0 }}
-                aria-label="Open menu"
+                style={{ width: 38, height: 38, flexShrink: 0, position: 'relative' }}
+                aria-label={attention ? `Open menu (needs attention: ${attention.title.replace(/\n/g, '; ')})` : 'Open menu'}
+                title={attention?.title}
               >
                 <Icon name="menu" size={18} />
+                {attention && (
+                  <span aria-hidden className="nav-dot" style={{
+                    top: 6, right: 6, width: 8, height: 8,
+                    background: attention.tone === 'danger' ? 'var(--color-danger)' : 'var(--color-warning)',
+                    boxShadow: '0 0 0 2px var(--color-canvas)',
+                  }} />
+                )}
               </button>
             )}
             <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: isMobile ? 8 : 12 }}>

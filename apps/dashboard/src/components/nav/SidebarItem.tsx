@@ -2,7 +2,7 @@ import { Link } from '@tanstack/react-router';
 import { useRef, type MouseEvent as ReactMouseEvent } from 'react';
 import { Icon } from '../ui/Icon';
 import type { ResolvedItem } from '../../nav/model';
-import type { BadgeView } from '../../nav/badges';
+import { badgeText, type BadgeView } from '../../nav/badges';
 
 const LONG_PRESS_MS = 500;
 
@@ -44,7 +44,7 @@ export function SidebarItem({ item, collapsed, pinned, badge, onNavigate, onTogg
   };
 
   const count = badge && badge.count > 0 ? badge.count : 0;
-  const shown = count > 99 ? '99+' : String(count);
+  const shown = badgeText(count);
   const toneVar = badge?.tone === 'danger' ? 'var(--color-danger)' : badge?.tone === 'warning' ? 'var(--color-warning)' : 'var(--color-accent)';
   const title = collapsed
     ? `${item.label}${count ? ` (${badge!.title})` : ''}`

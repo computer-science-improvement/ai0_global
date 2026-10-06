@@ -5,6 +5,7 @@ import { ApiError, setUnauthorizedHandler } from './api/client';
 import { describeError, toast } from './components/ui/Toast';
 import { SESSION_KEY, type SessionInfo } from './auth/session';
 import { createUnauthorizedHandler } from './auth/unauthorized';
+import { NAV_BADGES_KEY, requestFreshBadges } from './api/nav';
 
 const is401 = (e: unknown) => e instanceof ApiError && e.status === 401;
 
@@ -21,6 +22,15 @@ export const queryClient = new QueryClient({
       if (mutation.options.onError || mutation.meta?.silentError) return;
       if (is401(error)) return;
       toast.error(describeError(error));
+    },
+    // Spec 027 FR-011: any successful change may move a menu counter (inbox read,
+    // directive decided, pending action applied, DM thread / agent action handled,
+    // scheduled post edited…): refresh the badges now, past the server's 10 s cache.
+    // Menu edits themselves opt out with meta.skipNavBadges.
+    onSuccess: (_data, _vars, _ctx, mutation) => {
+      if (mutation.meta?.skipNavBadges) return;
+      requestFreshBadges();
+      void queryClient.invalidateQueries({ queryKey: NAV_BADGES_KEY });
     },
   }),
 });

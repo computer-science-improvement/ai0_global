@@ -91,7 +91,7 @@ export function NavigationTab({ editId, from }: { editId?: string; from?: string
 
   const save = useMutation({
     mutationFn: (v: { config: NavConfigV1; base: string | null }) => navApi.putConfig(v.config, v.base),
-    meta: { silentError: true },
+    meta: { silentError: true, skipNavBadges: true },
     onSuccess: (r, v) => {
       const fresh: NavConfigResponse = { config: v.config as unknown as Record<string, unknown>, revision: r.revision };
       qc.setQueryData(NAV_CONFIG_KEY, fresh);
@@ -108,7 +108,7 @@ export function NavigationTab({ editId, from }: { editId?: string; from?: string
 
   const reset = useMutation({
     mutationFn: () => navApi.resetConfig(),
-    meta: { silentError: true },
+    meta: { silentError: true, skipNavBadges: true },
     onSuccess: () => {
       const fresh: NavConfigResponse = { config: null, revision: null };
       qc.setQueryData(NAV_CONFIG_KEY, fresh);
