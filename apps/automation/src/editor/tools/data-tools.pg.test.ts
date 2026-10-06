@@ -29,6 +29,7 @@ let pdrDataRef = '';
 
 async function cleanup() {
   await pool.query(`DELETE FROM published_posts WHERE channel_id = $1`, [CH]);
+  await pool.query(`DELETE FROM content_ledger WHERE resource_ref = $1`, [`telegram:${CH}`]);
   await pool.query(`DELETE FROM pending_actions WHERE kind = 'edit_data_schema' AND payload->>'dataset' = $1`, [K]);
   await pool.query(`DELETE FROM data_items WHERE schema_id IN (SELECT id FROM data_schemas WHERE key LIKE 'pgt032t\\_%')`);
   await pool.query(`DELETE FROM data_imports WHERE schema_id IN (SELECT id FROM data_schemas WHERE key LIKE 'pgt032t\\_%')`);
@@ -96,7 +97,7 @@ test('library_catalog describes the dataset from its schema and live numbers', {
   const all: any = await tools().library_catalog.execute({}, ctx);
   assert.ok(all.datasets.some((x: any) => x.dataset === 'recipes'), 'the moved legacy datasets are in the catalog');
 
-  await pool.query(`INSERT INTO published_posts (channel_id, message_id, source_url) VALUES ($1, 1, 'library://pgt_old_quotes/1')`, [CH]);
+  await new EditorPlansRepository(pool).insertPublication({ channelKey: CH, messageId: 1, sourceUrl: 'library://pgt_old_quotes/1', title: 'q', tags: [], format: 'text', slotId: null });
   assert.equal((await tools().library_catalog.execute({ dataset: K }, ctx) as any).dataset.unposted_here, 2, 'the legacy alias counts as used');
 });
 
@@ -111,8 +112,8 @@ test('publish dedup: a data:// ref and its library:// alias are the same row', {
   const plans = new EditorPlansRepository(pool);
   assert.equal(await plans.sourceAlreadyPosted(CH, `data://${K}/${ids[0]}`), true, 'published as library://, asked as data://');
   assert.equal(await plans.sourceAlreadyPosted(CH, `data://${K}/${ids[1]}`), false);
-  await pool.query(`INSERT INTO published_posts (channel_id, message_id, source_url, posted_at) VALUES ($1, 2, $2, now())`, [CH, `data://${K}/${ids[1]}`]);
-  assert.equal(await plans.sourcePostedSince(CH, `data://${K}/${ids[1]}`, new Date(Date.now() - 3600_000)), true);
+  await plans.insertPublication({ channelKey: CH, messageId: 2, sourceUrl: `data://${K}/${ids[1]}`, title: 'q', tags: [], format: 'text', slotId: null });
+  assert.equal(await plans.sourceUsed(CH, `data://${K}/${ids[1]}`), true);
   assert.equal(await plans.sourceAlreadyPosted(CH, 'library://pgt_old_quotes/1'), true);
   assert.equal(await plans.sourceAlreadyPosted(CH, 'https://example.com/not-a-content-ref'), false);
 });

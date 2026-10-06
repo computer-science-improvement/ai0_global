@@ -1,5 +1,5 @@
 import type { Pool } from 'pg';
-import { refAliases } from '../../data/data-refs';
+import { ContentLedger } from '../../data/content-ledger';
 import { rowToSlot, type EditorSlot } from '../repo/editor-plans.repository';
 import { dropWaitingPosts } from '../repo/editor-channels.repository';
 
@@ -227,14 +227,8 @@ export class ApprovalsRepository {
 
   /** Dedup after approval: the source went out on the channel while the post waited (published posts only). */
   async publishedSource(channelKey: string, ref: string, excludeSlotId: string): Promise<boolean> {
-    const refs = await refAliases(this.pool, ref);
-    const { rows } = await this.pool.query(
-      `SELECT 1 FROM published_posts WHERE channel_id = $1 AND source_url = ANY($2::text[]) AND editor_slot_id IS DISTINCT FROM $3
-       UNION ALL
-       SELECT 1 FROM editor_slots WHERE channel_key = $1 AND status = 'published' AND id <> $3
-          AND (post_spec->'source'->>'url' = ANY($2::text[]) OR post_spec->>'library_ref' = ANY($2::text[]))
-       LIMIT 1`, [channelKey, refs, excludeSlotId]);
-    return rows.length > 0;
+    // Spec 023 FR-010: the content ledger, published rows only (a shadow preview never stops an approved post).
+    return new ContentLedger(this.pool).used(channelKey, ref, { publishedOnly: true, excludeSlotId });
   }
 
   /** Texts published on the channel recently (similarity re-check after approval). */

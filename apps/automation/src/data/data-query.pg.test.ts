@@ -11,6 +11,7 @@ import { DataStore } from './data-store';
 import { queryDataset, type QueryOptions } from './data-query';
 import { refAliases, resolveContentRef } from './data-refs';
 import { DataController } from './data.controller';
+import { EditorPlansRepository } from '../editor/repo/editor-plans.repository';
 import type { DataSchema, FieldDef } from './data.types';
 
 const url = process.env.EDITOR_PG_TEST_URL;
@@ -37,6 +38,7 @@ const FIELDS: FieldDef[] = [
 
 async function cleanup() {
   await pool.query(`DELETE FROM published_posts WHERE channel_id = $1`, [CH]);
+  await pool.query(`DELETE FROM content_ledger WHERE resource_ref = $1`, [`telegram:${CH}`]);
   await pool.query(`DELETE FROM data_items WHERE schema_id IN (SELECT id FROM data_schemas WHERE key LIKE 'pgt032q\\_%')`);
   await pool.query(`DELETE FROM data_imports WHERE schema_id IN (SELECT id FROM data_schemas WHERE key LIKE 'pgt032q\\_%')`);
   await pool.query(`DELETE FROM data_schemas WHERE key LIKE 'pgt032q\\_%'`);
@@ -102,12 +104,14 @@ test('long text is cut to 2000 characters unless full', { skip }, async () => {
   assert.equal((full.rows[0].summary as string).length, 2600);
 });
 
-test('unposted_on drops rows used on the resource: posted markers, data:// and library:// refs', { skip }, async () => {
+test('unposted_on drops rows used on the resource: posted markers, data:// and library:// refs (content ledger)', { skip }, async () => {
   const unposted = async () => titles((await q({ fields: ['title'], unpostedOn: `telegram:${CH}` })).rows);
   assert.equal((await unposted()).length, 4);
+  // A legacy strategy's marker reaches the ledger through the 060 trigger; the editor records its publications.
   await pool.query(`UPDATE data_items SET posted = posted || jsonb_build_object($2::text, now()) WHERE id = $1::bigint`, [ids['1'], CH]);
-  await pool.query(`INSERT INTO published_posts (channel_id, message_id, source_url, title) VALUES ($1, 1, $2, 't'), ($1, 2, 'library://pgt_old_books/77', 't')`,
-    [CH, `data://${K}/${ids['2']}`]);
+  const plans = new EditorPlansRepository(pool);
+  await plans.insertPublication({ channelKey: CH, messageId: 1, sourceUrl: `data://${K}/${ids['2']}`, title: 't', tags: [], format: 'text', slotId: null });
+  await plans.insertPublication({ channelKey: CH, messageId: 2, sourceUrl: 'library://pgt_old_books/77', title: 't', tags: [], format: 'text', slotId: null });
   assert.deepEqual(await unposted(), ['Лісова пісня']);
   assert.equal((await q({ fields: ['title'], unpostedOn: '@someone_else' })).rows.length, 4, 'other resources are not affected');
 });
@@ -145,6 +149,6 @@ test('dashboard: items endpoint with filters, search, paging; hide/unhide; stats
   const list = await c.listSchemas() as any[];
   const mine = list.find((s) => s.key === K);
   assert.equal(mine.rows, 4);
-  assert.equal(mine.unposted_network, 3, 'the posted marker counts network-wide');
+  assert.equal(mine.unposted_network, 1, 'every ledger publication (marker, data:// and library:// refs) counts network-wide');
   assert.ok(mine.stats_at);
 });

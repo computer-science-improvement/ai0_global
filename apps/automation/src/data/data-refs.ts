@@ -6,11 +6,10 @@ import type { Pool } from 'pg';
  * `library://<table>/<old id>` ref in `data_items.legacy_ref`; both refs name the same row, so dedup and
  * history must treat them as aliases.
  *
- * Extension point (spec 023 FR-010): until the content ledger exists, "posted" means one of
- *   • a `data_items.posted` marker keyed by the channel (legacy strategies), or
- *   • a `published_posts.source_url` / waiting `editor_slots.post_spec.library_ref` (Telegram agents), or
- *   • a `platform_posts.source_ref` (other platforms).
- * `usedRefsCte()` is the single place that lists those sources; the ledger replaces it.
+ * "Used on a resource" comes from the content ledger (spec 023 FR-010, migration 060, `content-ledger.ts`):
+ * every publish path records into `content_ledger`, and `content_ledger_used()` applies its rules (error
+ * everywhere, published per the dataset's reuse policy, shadowed for 7 days). Posts that wait for the owner
+ * (spec 031) are not in the ledger yet, so `usedRefsCte()` adds them.
  */
 
 export const DATA_REF_RE = /^data:\/\/([a-z][a-z0-9_]{1,62})\/(\d{1,18})$/;
@@ -87,18 +86,21 @@ export function resourceKeys(ref: string): { channelKey: string; resourceRef: st
 }
 
 /**
- * SQL for a CTE `used(ref)`: every content ref already published (or waiting / approved / shadowed) on one
- * resource. `$ck` and `$rr` are the parameter placeholders of the channel key and the resource ref.
- * The `data_items.posted` markers are checked per row by the caller (`NOT (d.posted ? $ck)`).
+ * SQL for a CTE `used(ref)`: every content ref the ledger stops on one resource, plus the refs of posts
+ * that wait for approval or are approved there. `rr` is the parameter placeholder of the resource ref.
+ * Ledger refs are canonical (`data://`); waiting refs are as the agent wrote them, so callers match a row
+ * by its `data://` ref and by its `legacy_ref`.
  */
-export function usedRefsCte(ck: string, rr: string): string {
+export function usedRefsCte(rr: string): string {
   return `used AS (
-    SELECT source_url AS ref FROM published_posts WHERE channel_id = ${ck} AND source_url IS NOT NULL
+    SELECT ref FROM content_ledger_used(${rr})
     UNION
-    SELECT post_spec->>'library_ref' FROM editor_slots
-     WHERE channel_key = ${ck} AND status IN ('shadowed','awaiting_approval','approved') AND post_spec->>'library_ref' IS NOT NULL
+    SELECT x.ref FROM editor_slots s
+     CROSS JOIN LATERAL (VALUES (s.post_spec->>'library_ref'), (s.platform_spec->>'library_ref')) x(ref)
+     WHERE COALESCE(s.resource_ref, 'telegram:' || s.channel_key) = ${rr}
+       AND s.status IN ('awaiting_approval','approved') AND x.ref IS NOT NULL
     UNION
     SELECT source_ref FROM platform_posts
-     WHERE resource_ref = ${rr} AND status IN ('published','awaiting_approval') AND source_ref IS NOT NULL
+     WHERE resource_ref = ${rr} AND status = 'awaiting_approval' AND source_ref IS NOT NULL
   )`;
 }

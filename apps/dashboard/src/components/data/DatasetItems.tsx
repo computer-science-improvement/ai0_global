@@ -78,7 +78,7 @@ function ItemCard({ item, index, schema, onToggle, busy }: { item: DataItem; ind
       )}
       <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' }}>
         {item.status === 'hidden' && <Badge tone="warning">Hidden</Badge>}
-        {item.posted_count > 0 && <Badge tone="success" title="Posted markers from strategies">Posted {item.posted_count}×</Badge>}
+        {item.posted_count > 0 && <Badge tone="success" title="Resources this row was published on (content ledger)">Posted {item.posted_count}×</Badge>}
         {item.category && <span className="chip">{item.category}</span>}
         {date && <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>{date}</span>}
         <span style={{ marginLeft: 'auto', display: 'inline-flex', gap: 6 }}>

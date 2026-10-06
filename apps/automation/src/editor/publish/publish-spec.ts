@@ -90,9 +90,12 @@ export async function sendRendered(
   const { channelKey, spec, card } = i;
   const sent = await d.publisher.send(channelKey, r.rendered.messages);
   const messageId = sent.messageIds[r.rendered.primary] ?? sent.messageIds[0];
+  // The content ledger gets every source ref of the post; published_posts.source_url keeps only one.
+  const extraRefs = [spec.library_ref, spec.source?.url].filter((x): x is string => !!x && x !== i.sourceRef);
   const postId = await d.plans.insertPublication({
     channelKey, messageId, sourceUrl: i.sourceRef, title: spec.title, tags: spec.hashtags, format: spec.format, slotId: i.slotId,
     ...(i.strategyType ? { strategyType: i.strategyType } : {}),
+    ...(extraRefs.length ? { refs: extraRefs } : {}),
   });
   d.recordPublish(channelKey);
   const published: PublishedPost = {

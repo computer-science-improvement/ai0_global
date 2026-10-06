@@ -27,6 +27,7 @@ import { EditorRunnerService } from '../roles/editor-runner.service';
 import { EditorScheduler } from '../editor.scheduler';
 import type { TgMessage } from '../post/render-telegram';
 import { ApprovalsRepository } from './approvals.repository';
+import { PublicationsRepository } from '../../stats/publications.repository';
 import { ApprovalPublisher } from './approval-publisher';
 import { ApprovalUpkeep } from './approval-upkeep';
 import { syncAgentsFor } from './pg-test-agents';
@@ -44,6 +45,7 @@ async function cleanup() {
   await pool.query(`DELETE FROM editor_runs WHERE channel_key = $1`, [CH]);
   await pool.query(`DELETE FROM published_posts WHERE channel_id = $1`, [CH]);
   await pool.query(`DELETE FROM platform_posts WHERE resource_ref = $1`, [IG]);
+  await pool.query(`DELETE FROM content_ledger WHERE resource_ref = ANY($1::text[])`, [[`telegram:${CH}`, IG]]);
   await pool.query(`DELETE FROM editor_plans WHERE channel_key = $1`, [CH]);
   await pool.query(`DELETE FROM editor_channels WHERE channel_key = $1`, [CH]);
 }
@@ -267,7 +269,8 @@ test('dedup after approval: the source went out while the post waited → skippe
   const h = harness([], clock);
   const src = 'https://src.example/dup';
   const id = await waitingSlot({ at: new Date('2030-03-09T07:59:00Z'), source: src, status: 'approved', topic: 'Дубль' });
-  await pool.query(`INSERT INTO published_posts (channel_id, message_id, source_url, title) VALUES ($1, 777, $2, 'Інший шлях')`, [CH, src]);
+  // Another path (a legacy strategy) publishes the same source; it reaches the content ledger (023 FR-010).
+  await new PublicationsRepository(pool).insert({ channelId: CH, messageId: 777, sourceUrl: src, title: 'Інший шлях', strategyType: 'quotes' });
   await h.upkeep.tick(clock.now);
   const s = (await h.plans.getSlot(id))!;
   assert.equal(s.status, 'skipped');

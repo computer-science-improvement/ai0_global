@@ -187,3 +187,41 @@ rewriting the whole playbook, and cannot be steered from chat. This spec makes t
 - [ ] After phase B, `/app/strategies` redirects and `pnpm --filter automation test` stays green.
 
 **Size:** M · **Depends on:** T6
+
+## Implementation notes (T1, 2026-10-07)
+Built on `feat/editor-agent` after spec 032 (data store) and 031 (approval mode); commit `feat(content): 023-T1 …`.
+
+- **Migration `060_content_ledger.sql`** (059 stays free for T4's schedule rules). Table as in FR-010 plus a `note`
+  column (the reason of an `error` row). The rules live in SQL, so the publish guards and the row filters of
+  `query_data` / `library_catalog` cannot disagree: `content_ledger_blocks()` (one predicate),
+  `content_ledger_blocking()` (guards) and `content_ledger_used()` (query CTE). `content_ref_canonical()` resolves
+  a `library://` alias to `data://` (032 FR-011), lower-cases the scheme and host, drops `utm_*` and the fragment.
+- **Reuse policy from the schema (032 FR-011).** 060 moves the dated datasets (`on_this_day`, `birthdays`,
+  `name_days`) from the 058 seed of 365 days to 300 days when still at the seed value: a 365-day window blocks the
+  same date next year whenever it is posted earlier in the day.
+- **Writers.** `ContentLedger.record()` (TS, best-effort after a send) is called from
+  `EditorPlansRepository.insertPublication` (publish_post, the chat, the approval publisher and the sponsored
+  path; origin editor / chat / manual; every ref of the spec, not only `source_url`), `updateSlot(status: shadowed)`,
+  `PlatformPostsRepository.insert/settle` (origin platform) and `PublicationsRepository.insert` (legacy
+  strategies, the URL). The two legacy ledgers strategies still write feed the ledger through **triggers**:
+  `data_items.posted` (markers written through the 058 views; this records the library row itself, also for Meta /
+  TikTok destinations that never reach `published_posts`) and `posted_news`. Triggers swallow their own errors so
+  a ledger problem never fails a publish.
+- **Checks.** `sourceAlreadyPosted` (publish_post; now ledger + waiting posts of spec 031),
+  `sourceUsed` (chat; replaces `sourcePostedSince` and `DEDUP_DAYS`), `publishedSource` (approval re-check;
+  published only) and the platform `alreadyPosted` (source via the ledger; the same-idea repeat keeps a 7-day
+  window, `PLATFORM_IDEA_DEDUP_DAYS`) all call `ContentLedger.check()`. Waiting / approved posts are not ledger
+  statuses; `check({ waiting: true })` and `usedRefsCte()` still read them from `editor_slots` / `platform_posts`.
+  Behaviour change: a shadow preview now holds its source 7 days (it held it for ever on Telegram and not at all on
+  platforms); the chat's 7-day window became the ledger rules.
+- **Backfill mapping.** `TELEGRAM` → every Telegram channel with a binding of the dataset's strategy types
+  (`recipes`/`recipe-carousel`, `ai0-prompts`/`curated-prompts`, …); with no such binding it becomes the wildcard
+  `telegram:*`, which counts only network-wide. Editor slots (shadowed and published, both refs of the spec) are
+  backfilled too. `query_data`, `search_library`, `library_catalog`, the items browser's "Posted N×" badge, the
+  stats' `unposted_network` and import undo's "used" now read only the ledger.
+- **Not dropped:** `data_items.posted` and `posted_news` stay (strategies still write them and the triggers mirror
+  them); drop them after the strategies are retired (T6/T7), as 032 FR-009 says.
+- **Production migration.** On a synthetic DB with 60k marked rows (175k markers), 100k `published_posts`, 30k
+  `posted_news` and 5k platform posts the backfill wrote 310k rows (108 MB with indexes) in ≈ 14 s on a laptop;
+  the rerun is a no-op (≈ 8.5 s). `content_ledger_used()` for one resource ≈ 0.17 s on that data. 060 runs in one
+  transaction, so the deploy holds writes to the touched tables for that time.
