@@ -23,7 +23,8 @@ import { AgentRegistrySync } from '../agents/agent-registry-sync';
 import { AgentRuntime } from '../agents/agent-runtime';
 import { SkillStore } from '../agents/skill-store';
 import { OwnerInbox } from '../agents/owner-inbox';
-import { ResourceProfilesRepository } from '../agents/resource-profile';
+import { ResourceProfileSchema, ResourceProfilesRepository } from '../agents/resource-profile';
+import { ResourceTime } from '../time/resource-time';
 import { PlatformPostsRepository } from '../platform/platform-posts.repository';
 import { buildPlatformTools } from '../platform/platform-tools';
 import { NetworkRepository } from './network.repository';
@@ -92,6 +93,11 @@ test('brief → playbook → independent network → ideas → plan → native p
   const repo = new NetworkRepository(pool);
   const inbox = new OwnerInbox(pool);
   const profiles = new ResourceProfilesRepository(pool);
+  // Spec 024: a platform resource has its own quiet hours (default 23→8). Match the card's (23→0) so the
+  // test does not depend on the hour it runs at.
+  await profiles.setProfile(IG, ResourceProfileSchema.parse({
+    topic: 'Космос і астрономія для Instagram', audience: { who: 'дорослі, що цікавляться космосом' }, goals: ['growth'], quiet_hours: { start: 23, end: 0 },
+  }), 'owner');
   const posts = new PlatformPostsRepository(pool);
   const files = new SkillLibrary();
   const runtime = new AgentRuntime({ agents, store: new SkillStore(pool), fallback: files });
@@ -152,9 +158,10 @@ test('brief → playbook → independent network → ideas → plan → native p
     }),
   ]);
   const env = () => undefined;
-  const network = new NetworkRunner({ loop, registry, runtime, memory, repo, plans, profiles, env, notify: async () => {} });
+  const time = new ResourceTime({ card: (k) => channels.get(k), profile: (ref) => profiles.rawProfile(ref), warn: async () => {} });
+  const network = new NetworkRunner({ loop, registry, runtime, memory, repo, plans, profiles, env, notify: async () => {}, time });
   const svc = new NetworkService({
-    pool, agents, repo, inbox, card: (k) => channels.get(k), rebuild: (c, b) => network.runPlaybookBuild(c, b),
+    pool, agents, repo, inbox, card: (k) => channels.get(k), rebuild: (c, b) => network.runPlaybookBuild(c, b), time,
   });
   const card = (await channels.get(CH))!;
 
