@@ -9,7 +9,7 @@ applies_to: [executor, reviewer, composer]
 | origin | Що обовʼязково |
 |---|---|
 | `external` (RSS, сайт, web_fetch) | `source: {url, label}` — першоджерело, не агрегатор |
-| `library` (search_library) | `library_ref` з результату пошуку; `source` — якщо в записі є url |
+| `library` (query_data) | `library_ref` = `ref` рядка (`data://…`, або `library_ref` із застарілого search_library); `source` — якщо в записі є url |
 | `original` (власний текст, порада, опитування) | нічого |
 
 Стиль показу задає картка (`link_style`) — рендерер зробить сам:

@@ -1,6 +1,6 @@
 import { EvalCase, runExecutor } from '../lib/case';
 import { FakeWeb, article, rss } from '../lib/fake-web';
-import { createCard, seedPdr, seedRecipe, shadowedPost } from '../lib/seed';
+import { createCard, legacyIdOf, seedPdr, seedRecipe, shadowedPost } from '../lib/seed';
 import { bannedHits, check, isUkrainian, longestCommonRun, specText, ungroundedNumbers } from '../lib/graders';
 import { similarity } from '../../src/editor/post/similarity';
 
@@ -99,7 +99,8 @@ export const executorQuizFromLibrary: EvalCase = {
     const ids = await seedPdr(ctx.pool, rows);
     const r = await runExecutor(ctx, PDR_CH, { format: 'quiz', topic: 'Вікторина з ПДР для водіїв', hints: ['library:pdr_questions'] });
     const spec = r.spec;
-    const refId = spec?.library_ref?.split('/').pop();
+    // Spec 032: the ref may be data://pdr_questions/<id> (query_data) or the legacy library:// alias (search_library).
+    const refId = await legacyIdOf(ctx.pool, spec?.library_ref);
     const idx = refId ? ids.indexOf(refId) : -1;
     const row = idx >= 0 ? rows[idx] : null;
     const chosen = spec?.poll && spec.poll.correct_index !== undefined ? spec.poll.options[spec.poll.correct_index] : undefined;
@@ -112,7 +113,7 @@ export const executorQuizFromLibrary: EvalCase = {
         check('library_ref points to a seeded question', !!row, spec?.library_ref),
         check('correct option = DB answer', !!row && norm(chosen) === norm(row.answers[row.correct - 1]), `chosen="${chosen}" db="${row?.answers[(row?.correct ?? 1) - 1]}"`),
         check('explanation ≤ 200 chars', !spec?.poll?.explanation || spec.poll.explanation.length <= 200, String(spec?.poll?.explanation?.length ?? 0)),
-        check('used search_library', r.toolsUsed.includes('search_library'), r.toolsUsed.join(' → ')),
+        check('used the library (query_data or search_library)', r.toolsUsed.includes('query_data') || r.toolsUsed.includes('search_library'), r.toolsUsed.join(' → ')),
       ],
       judge: spec ? { channelBrief: 'ПДР України', slotTopic: 'Вікторина з ПДР', sourceText: rows.map((x) => `${x.text}\n${x.answers.join(' | ')}\nПравильна: ${x.answers[x.correct - 1]}\n${x.explanation}`).join('\n\n'), post: `${r.post}\n\n[Це нативна вікторина Telegram: читач голосує, після відповіді бачить правильний варіант і пояснення: «${spec.poll?.explanation ?? ''}»]` } : undefined,
     };
@@ -241,7 +242,7 @@ export const executorRecipeFromLibrary: EvalCase = {
       runId: r.res.runId, status: r.res.status, terminalTool: r.res.terminalTool, post: r.post, toolErrors: r.toolErrors, toolsUsed: r.toolsUsed,
       checks: [
         check('shadowed (publish_post ok)', r.after.status === 'shadowed', r.after.status),
-        check('library_ref = seeded recipe', r.spec?.library_ref === `library://recipes/${id}`, r.spec?.library_ref),
+        check('library_ref = seeded recipe', (await legacyIdOf(ctx.pool, r.spec?.library_ref)) === id, r.spec?.library_ref),
         check('origin library', r.spec?.origin === 'library', r.spec?.origin),
         check('uses recipe image', r.spec?.media[0]?.url === RECIPE.image, r.spec?.media[0]?.url),
         check('not verbatim (longest copied run < 80 chars)', run < 80, `${run} chars`),

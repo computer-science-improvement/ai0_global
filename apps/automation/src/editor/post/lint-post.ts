@@ -67,7 +67,7 @@ export function lintPost(spec: PostSpec, card: LintCard): LintResult {
 
   // ── origin / attribution ──────────────────────────────────────────────────
   if (spec.origin === 'external' && !spec.source) err('source_required', 'матеріал із зовнішнього джерела — додай source.url');
-  if (spec.origin === 'library' && !spec.library_ref) err('library_ref_required', 'origin=library — додай library_ref із search_library');
+  if (spec.origin === 'library' && !spec.library_ref) err('library_ref_required', 'origin=library — додай library_ref (ref рядка з query_data або search_library)');
 
   // ── hashtags ──────────────────────────────────────────────────────────────
   const tags = spec.hashtags.map(normalizeHashtag);

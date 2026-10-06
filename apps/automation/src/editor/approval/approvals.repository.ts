@@ -1,4 +1,5 @@
 import type { Pool } from 'pg';
+import { refAliases } from '../../data/data-refs';
 import { rowToSlot, type EditorSlot } from '../repo/editor-plans.repository';
 import { dropWaitingPosts } from '../repo/editor-channels.repository';
 
@@ -226,12 +227,13 @@ export class ApprovalsRepository {
 
   /** Dedup after approval: the source went out on the channel while the post waited (published posts only). */
   async publishedSource(channelKey: string, ref: string, excludeSlotId: string): Promise<boolean> {
+    const refs = await refAliases(this.pool, ref);
     const { rows } = await this.pool.query(
-      `SELECT 1 FROM published_posts WHERE channel_id = $1 AND source_url = $2 AND editor_slot_id IS DISTINCT FROM $3
+      `SELECT 1 FROM published_posts WHERE channel_id = $1 AND source_url = ANY($2::text[]) AND editor_slot_id IS DISTINCT FROM $3
        UNION ALL
        SELECT 1 FROM editor_slots WHERE channel_key = $1 AND status = 'published' AND id <> $3
-          AND (post_spec->'source'->>'url' = $2 OR post_spec->>'library_ref' = $2)
-       LIMIT 1`, [channelKey, ref, excludeSlotId]);
+          AND (post_spec->'source'->>'url' = ANY($2::text[]) OR post_spec->>'library_ref' = ANY($2::text[]))
+       LIMIT 1`, [channelKey, refs, excludeSlotId]);
     return rows.length > 0;
   }
 

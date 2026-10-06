@@ -22,3 +22,12 @@ test('supports object answers and ignores non-pdr quizzes', async () => {
   assert.equal(await checkQuizGroundTruth(pool(null), quiz(['A', 'B'], 0, 'library://facts/x')), null);
   assert.equal((await checkQuizGroundTruth(pool(null), quiz(['A', 'B'], 0)))?.error, 'library_ref_not_found');
 });
+
+test('data://pdr_questions refs are checked against the same answer key', async () => {
+  const calls: any[] = [];
+  const p = { query: async (sql: string, params: unknown[]) => { calls.push({ sql, params }); return { rows: [{ answers: ['A', 'B'], correct_answer_num: '2' }] }; } } as any;
+  assert.equal((await checkQuizGroundTruth(p, quiz(['A', 'B'], 0, 'data://pdr_questions/15')))?.error, 'quiz_answer_mismatch');
+  assert.deepEqual(calls[0].params, ['pdr_questions', null, '15']);
+  assert.equal(await checkQuizGroundTruth(p, quiz(['A', 'B'], 1, 'data://pdr_questions/15')), null);
+  assert.equal(await checkQuizGroundTruth(p, quiz(['A', 'B'], 0, 'data://books/15')), null);
+});

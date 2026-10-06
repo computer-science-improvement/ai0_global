@@ -13,7 +13,6 @@ import { findContentTableRefs } from './content-table-lint';
 const ALLOWED: Record<string, string> = {
   // Legacy readers through the compatibility views (posted markers go through the view triggers).
   'automation/src/config/strategy-preview.service.ts': 'dashboard strategy previews',
-  'automation/src/editor/post/quiz-ground-truth.ts': 'PDR answer-key guard',
   'automation/src/strategies/ai0-prompts/prompts.repository.ts': 'legacy strategy repository',
   'automation/src/strategies/assets/assets.repository.ts': 'legacy strategy repository',
   'automation/src/strategies/curated-prompts/curated-prompts.repository.ts': 'legacy strategy repository',
@@ -28,7 +27,6 @@ const ALLOWED: Record<string, string> = {
   'automation/src/common/content-runway/count-eligible.test.ts': 'asserts legacy repository SQL',
   'automation/src/editor/db/readonly-query.service.test.ts': 'example SQL for the read-only guard',
   'automation/src/editor/db/readonly-sql.test.ts': 'example SQL for the read-only guard',
-  'automation/src/editor/tools/read-tools.test.ts': 'asserts search_library SQL',
   'automation/src/data/data-store.migration.pg.test.ts': 'tests the 058 compatibility views',
   'pipeline/src/lib/loader.test.js': 'checks loader output through the recipes view',
   'automation/src/data/content-table-lint.test.ts': "the lint's own fixtures",

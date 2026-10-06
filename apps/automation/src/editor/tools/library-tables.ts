@@ -1,62 +1,42 @@
 /**
- * How each content table maps onto the generic "library item" shape the
- * agent sees. Column expressions are code-owned constants — the agent only
- * picks a table name from this enum, never writes SQL here.
+ * `search_library` (kept for one release as a wrapper over the data store query, spec 032 FR-010) still
+ * takes one of the 12 legacy dataset keys and answers in its old shape: title / text / image / url /
+ * category from the dataset roles, plus `extra` with a few dataset-specific fields. Prefer
+ * `library_catalog` + `query_data`: they read any dataset and return only the fields asked for.
  */
-export interface LibraryTable {
-  title:    string;
-  text:     string;
-  image?:   string;
-  url?:     string;
-  category?: string;
-  extra?:   string;      // SQL producing a jsonb with table-specific fields
-  /** Expression for "is this row about today's date" (month/day tables). */
-  today?:   string;
-}
 
-const BASE_TABLES: Record<string, LibraryTable> = {
-  recipes: {
-    title: `COALESCE(title_uk, title)`,
-    text: `CONCAT_WS(E'\\n', description::text, COALESCE(ingredients_uk::text, ingredients::text))`,
-    image: 'image_url', url: 'url', category: 'category',
-    extra: `jsonb_build_object('kcal', kcal, 'instructions', LEFT(COALESCE(instructions_uk::text, instructions::text), 1500), 'telegraph_url', telegraph_url)`,
-  },
-  facts:    { title: 'article_title', text: 'content', image: 'image_url', url: 'article_url', category: 'category' },
-  quotes:   { title: 'author', text: 'text', url: 'url', category: 'category' },
-  prompts:  { title: 'title', text: 'prompt_text', image: 'media_url', url: 'page_url', category: 'category',
-              extra: `jsonb_build_object('media_type', media_type, 'provider', provider)` },
-  on_this_day: { title: 'title', text: `COALESCE(description, excerpt)`, image: 'image_url',
-                 extra: `jsonb_build_object('month', month, 'day', day)`, today: 'month = $M AND day = $D' },
-  articles: { title: 'title', text: `COALESCE(excerpt, LEFT(content, 2000))`, image: 'image_url', url: 'url', category: 'category' },
-  pdr_questions: {
-    title: `CONCAT('Білет ', ticket_number, ', питання ', question_num)`, text: 'text', image: 'image_url',
-    extra: `jsonb_build_object('answers', answers, 'correct_answer_num', correct_answer_num, 'explanation', explanation)`,
-  },
-  birthdays: { title: 'name', text: `CONCAT('Народився(лась) ', day, '.', month, '.', year)`,
-               extra: `jsonb_build_object('year', year, 'month', month, 'day', day)`, today: 'month = $M AND day = $D' },
-  assets:   { title: 'title', text: 'description', url: `COALESCE(link, source_url)`, category: 'category' },
-  tg_posts: { title: 'title', text: 'post', image: 'image_url', url: 'source_url' },
-  jokes:    { title: 'title', text: 'content', url: 'url' },
-  name_days: { title: 'name', text: `CONCAT('Іменини ', day, '.', month)`, today: 'month = $M AND day = $D' },
+/** Extra fields per legacy dataset: a field name, or a list of fields where the first non-empty wins. */
+const BASE_EXTRA: Record<string, Record<string, string | string[]>> = {
+  recipes:       { kcal: 'kcal', ingredients: ['ingredients_uk', 'ingredients'], instructions: ['instructions_uk', 'instructions'], telegraph_url: 'telegraph_url' },
+  facts:         {},
+  quotes:        {},
+  prompts:       { media_type: 'media_type', provider: 'provider' },
+  on_this_day:   { month: 'month', day: 'day' },
+  articles:      {},
+  pdr_questions: { ticket_number: 'ticket_number', question_num: 'question_num', answers: 'answers', correct_answer_num: 'correct_answer_num', explanation: 'explanation' },
+  birthdays:     { year: 'year', month: 'month', day: 'day' },
+  assets:        {},
+  tg_posts:      {},
+  jokes:         {},
+  name_days:     { month: 'month', day: 'day' },
 };
 
 /**
- * Provenance columns (migration 043_library_provenance) merged into every item's
- * `extra`, so the executor can apply the source-licensing skill: write original
- * text and attribute `source_name` when `license` is 'unknown'.
+ * Provenance (migration 043) merged into every item's `extra`, so the executor can apply the
+ * source-licensing skill: write original text and attribute `source_name` when `license` is 'unknown'.
  */
-export const PROVENANCE_EXTRA = `jsonb_build_object('license', license, 'source_name', source_name)`;
+export const PROVENANCE_EXTRA: Record<string, string> = { license: 'license', source_name: 'source_name' };
 
-export const LIBRARY_TABLES: Record<string, LibraryTable> = Object.fromEntries(
-  Object.entries(BASE_TABLES).map(([name, t]) => [
-    name,
-    { ...t, extra: t.extra ? `(${t.extra}) || ${PROVENANCE_EXTRA}` : PROVENANCE_EXTRA },
-  ]),
+export const LIBRARY_EXTRA: Record<string, Record<string, string | string[]>> = Object.fromEntries(
+  Object.entries(BASE_EXTRA).map(([name, e]) => [name, { ...e, ...PROVENANCE_EXTRA }]),
 );
 
-export const LIBRARY_TABLE_NAMES = Object.keys(LIBRARY_TABLES) as [string, ...string[]];
+export const LIBRARY_TABLE_NAMES = Object.keys(BASE_EXTRA) as [string, ...string[]];
 
-/** The published_posts.source_url marker for a library row — the single dedup key for library content. */
+/** Long extra texts are cut like the old SQL did (instructions ≤ 1500 characters). */
+export const EXTRA_MAX_CHARS = 1500;
+
+/** The published_posts.source_url marker for a legacy library row (alias of its data:// ref). */
 export function libraryRef(table: string, id: string | number): string {
   return `library://${table}/${id}`;
 }

@@ -8,7 +8,9 @@ import { safeGet, RawGet } from '../net/safe-http';
 import type { Lookup } from '../net/ssrf-guard';
 import { extractPage } from '../net/extract-page';
 import { topMatches } from '../post/similarity';
-import { LIBRARY_TABLES, LIBRARY_TABLE_NAMES, libraryRef } from './library-tables';
+import { EXTRA_MAX_CHARS, LIBRARY_EXTRA, LIBRARY_TABLE_NAMES } from './library-tables';
+import { DataStore } from '../../data/data-store';
+import { queryDataset } from '../../data/data-query';
 
 export interface ReadToolDeps {
   pool:      Pool;
@@ -109,7 +111,7 @@ export function buildReadTools(d: ReadToolDeps): EditorTool[] {
 
   const sqlReadonly = defineTool({
     name: 'sql_readonly',
-    description: 'Довільний SELECT/WITH по БД (тільки читання, ≤50 рядків, 3с). Корисні таблиці/вʼю: editor_v_post_performance, editor_v_channel_daily, published_posts, post_stats_snapshots, channel_stats_snapshots, tracked_channels, tracked_posts, recipes, facts, quotes, prompts, on_this_day, articles, pdr_questions, birthdays, editor_slots. Секретні таблиці недоступні.',
+    description: 'Довільний SELECT/WITH по БД (тільки читання, ≤50 рядків, 3с). Корисні таблиці/вʼю: editor_v_post_performance, editor_v_channel_daily, published_posts, post_stats_snapshots, channel_stats_snapshots, tracked_channels, tracked_posts, editor_slots. Контент: data_schemas (датасети: key, title, description, fields), data_items (рядки: schema_id, data jsonb, title, body, category, event_month, event_day, status, legacy_ref), data_schema_stats. Для вибору матеріалу краще library_catalog + query_data. Секретні таблиці недоступні.',
     kind: 'read', roles: [...ALL_ROLES],
     input: z.object({ query: z.string().min(1).max(4000), limit: z.number().int().min(1).max(50).default(50) }),
     execute: async ({ query, limit }) => d.readonly.run(query, limit),
@@ -117,7 +119,7 @@ export function buildReadTools(d: ReadToolDeps): EditorTool[] {
 
   const searchLibrary = defineTool({
     name: 'search_library',
-    description: 'Пошук матеріалу у власній бібліотеці контенту (рецепти, факти, цитати, промпти, події дня, статті, ПДР, дні народження…). За замовчуванням виключає те, що вже публікувалось у цьому каналі. Якщо публікуєш на основі запису — передай library_ref у PostSpec.',
+    description: 'Застарілий пошук у бібліотеці (12 старих датасетів: рецепти, факти, цитати, промпти, події дня, статті, ПДР, дні народження…), повертає всі поля записів. Краще: library_catalog → query_data лише з потрібними полями. За замовчуванням виключає те, що вже публікувалось у цьому каналі. Якщо публікуєш на основі запису — передай library_ref у PostSpec.',
     kind: 'read', roles: [...ALL_ROLES],
     input: z.object({
       table:        z.enum(LIBRARY_TABLE_NAMES),
@@ -127,31 +129,41 @@ export function buildReadTools(d: ReadToolDeps): EditorTool[] {
       include_used: z.boolean().default(false),
       limit:        z.number().int().min(1).max(20).default(8),
     }),
+    // Spec 032: a wrapper over the data store query (same answer shape as before the store); kept one release.
     execute: async (i, ctx) => {
-      const t = LIBRARY_TABLES[i.table];
-      const params: unknown[] = [];
-      const p = (v: unknown) => { params.push(v); return `$${params.length}`; };
-      const where: string[] = [];
-      if (i.query) { const q = p(`%${i.query}%`); where.push(`(${t.title} ILIKE ${q} OR ${t.text} ILIKE ${q})`); }
-      if (i.category && t.category) where.push(`${t.category} ILIKE ${p(i.category)}`);
-      if (i.today_only) {
-        if (!t.today) return { error: 'today_only_not_supported', details: `table ${i.table} has no date` };
-        const { month, day } = today();
-        where.push(t.today.replace('$M', p(month)).replace('$D', p(day)));
+      const schema = await new DataStore(d.pool).getSchema(i.table);
+      if (!schema || schema.status !== 'active') return { error: 'unknown_table', details: `no active dataset "${i.table}"` };
+      if (i.today_only && !(['date', 'month_day', 'month', 'day'] as const).some((r) => schema.roles?.[r])) {
+        return { error: 'today_only_not_supported', details: `table ${i.table} has no date` };
       }
+      const extra = LIBRARY_EXTRA[i.table] ?? {};
+      const names = new Set(schema.fields.map((f) => f.name));
+      const extraFields = [...new Set(Object.values(extra).flat())].filter((n) => names.has(n));
       const channelKey = channelOf(ctx);
-      if (!i.include_used && channelKey) {
-        where.push(`NOT EXISTS (SELECT 1 FROM published_posts pp WHERE pp.channel_id = ${p(channelKey)}
-                               AND pp.source_url = 'library://${i.table}/' || x.id::text)`);
-      }
-      const sql = `SELECT x.id, ${t.title} AS title, LEFT((${t.text})::text, 800) AS text,
-                          ${t.image ?? 'NULL'} AS image_url, ${t.url ?? 'NULL'} AS url,
-                          ${t.category ?? 'NULL'} AS category, ${t.extra ?? 'NULL::jsonb'} AS extra
-                     FROM ${i.table} x
-                    ${where.length ? `WHERE ${where.join(' AND ')}` : ''}
-                    ORDER BY ${i.query ? 'x.id DESC' : 'random()'} LIMIT ${p(i.limit)}`;
-      const { rows } = await d.pool.query(sql, params);
-      return { table: i.table, items: rows.map((r) => ({ ...r, library_ref: libraryRef(i.table, r.id) })) };
+      const r = await queryDataset(d.pool, schema, {
+        audience: 'owner', fields: extraFields,
+        search: i.query, categoryLike: i.category, todayOnly: i.today_only,
+        unpostedOn: !i.include_used && channelKey ? channelKey : null,
+        order: i.query ? 'newest' : 'random', limit: i.limit, today: today(), bodyChars: 800,
+      });
+      const pickExtra = (data: Record<string, unknown>) => Object.fromEntries(Object.entries(extra).map(([k, src]) => {
+        let v: unknown = null;
+        for (const f of Array.isArray(src) ? src : [src]) {
+          const x = data[f];
+          if (x !== undefined && x !== null && x !== '') { v = x; break; }
+        }
+        return [k, typeof v === 'string' && v.length > EXTRA_MAX_CHARS ? v.slice(0, EXTRA_MAX_CHARS) : v];
+      }));
+      return {
+        table: i.table,
+        items: r.rows.map((row: any) => {
+          const legacyId = typeof row.legacy_ref === 'string' ? row.legacy_ref.slice(`library://${i.table}/`.length) : null;
+          return {
+            id: legacyId ?? row.id, title: row.title, text: row.body, image_url: row.image_url, url: row.url, category: row.category,
+            extra: pickExtra(row.data ?? {}), library_ref: row.legacy_ref ?? row.ref,
+          };
+        }),
+      };
     },
   });
 

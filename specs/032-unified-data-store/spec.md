@@ -172,3 +172,47 @@ Deviations from the text above:
   `main.ts` before Nest's default 100 KB parser.
 - **Open question 1.** No `csv-parse`. The parser is our own (no new dependencies).
 - **Pipeline audit.** Every pipeline `loadData()` call is audited in `data_imports` (source `pipeline`).
+
+## Implementation notes (T5–T6, 2026-10-06)
+Built on `feat/editor-agent` in two commits, `feat(data): 032-T5 …` and `feat(data): 032-T6 …`.
+
+- **T5 dashboard.** `/app/data` (sidebar Content → Data) and `/app/data/$key` with Items, Schema and Imports tabs; the
+  import wizard is a modal on both pages. A dataset drafted from a file is created with status `draft` and goes
+  `active` with its first committed import. Endpoints added: `GET /api/data/:schema/items`,
+  `PATCH /api/data/:schema/items/:id`, `POST /api/data/stats/refresh`, `GET /api/data/suggestions`; the dataset list
+  now carries `unposted_network`, `today_items` and `stats_at` from `data_schema_stats`.
+- **One query builder** (`src/data/data-query.ts`) serves the items browser and `query_data`: filters only on
+  `filterable` fields for both the owner and agents, operators checked against the field type, `ilike` escapes
+  `%`/`_`, search = `simple` full-text over title/body or ILIKE on the title, body and `searchable` fields.
+- **"Used on a resource"** (`unposted_on`, `unposted_here`, undo, dedup) = a `posted` marker keyed by the channel, a
+  `published_posts.source_url`, a waiting/approved/shadowed `editor_slots.post_spec.library_ref`, or a
+  `platform_posts.source_ref`, with `data://` and `library://` treated as aliases. `usedRefsCte()` in
+  `src/data/data-refs.ts` is the one place to swap for the 023 content ledger. `unposted_network` (stats) still
+  counts only the `posted` markers.
+- **`library_catalog` has two levels** to keep tokens down: without arguments a compact overview (description cut to
+  240 characters, field names, rows, unposted here/network, today, 3 top categories); with `dataset` the full entry
+  (field descriptions, types, flags, allowed values, fill %, license, reuse rule, roles). `unposted_here` and
+  `today_items` are counted live; the rest comes from `data_schema_stats`.
+- **`query_data`** requires 1–30 `fields`, `limit` 1–20 (default 5). `unposted_on` defaults to the resource the agent
+  works on (platform slot resource, else the Telegram channel); `null` includes used rows. Extra optional `search`.
+  Only `active` datasets are readable; `contains_personal_data` is flagged in the answer.
+- **`search_library`** keeps its input and answer shape (legacy id, `text` ≤ 800, `extra`, `library_ref` = legacy ref)
+  but reads `data_items`; its default dedup is now the wider "used" definition above. `extra` lists per dataset are in
+  `library-tables.ts`. The recipe `text` is the `body` role (description) and the ingredients moved to `extra`.
+- **Refs.** `PostSpec.library_ref` and the platform spec accept `data://<key>/<id>`. The publish guards
+  (`sourceAlreadyPosted`, `sourcePostedSince`, `publishedSource`, platform `alreadyPosted`) match both aliases. The
+  PDR answer-key guard and the verbatim guard read the store for either form; the verbatim guard still checks only
+  the four legacy retell datasets (recipes, facts, articles, tg_posts). The `quiz-ground-truth` and `read-tools.test`
+  entries left the content-table lint allow-list.
+- **`edit_data_schema`** (kind `act`): the agent passes the current text exactly; stale text, hidden fields and a second
+  pending suggestion for the same text are refused. The card is a normal pending action (chat card when proposed in a
+  chat; always listed on the dataset's Schema tab) and expires after 24 h like every card. Apply re-checks the text
+  and saves a description-only edit (never a version bump).
+- **Stats** refresh nightly at 00:05 Kyiv (`DataStatsCron`), after each import (T4) and from the dashboard button.
+- **Skill** `content-sources` (new) plus edits in the executor, composer, orchestrator, links, fact-check and
+  licensing skills; the orchestrator prompt names `library_catalog`.
+- **Eval `executor-picks-dataset`** (`evals/cases/data.ts`, not run here). "Library data" = the characters of the rows
+  the agent fetched (`query_data`/`search_library` outputs) against what `search_library` returns for the same dataset
+  (8 rows, every field); hard check ≥ 50 % fewer, soft check including the catalog reads. The quiz and recipe evals
+  accept a `data://` ref (resolved to the seeded legacy id). On the scratch DB the fixtures give ≈ 87 % fewer for the
+  rows and ≈ 46 % with the catalog overview (`evals/cases/data.smoke.pg.test.ts`).

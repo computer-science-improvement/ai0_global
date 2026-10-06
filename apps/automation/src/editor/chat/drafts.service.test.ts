@@ -23,7 +23,7 @@ function setup(o: { card?: any; mine?: Array<{ channelKey: string; title: string
   let n = 0;
   const cards = new Map<string, any>(o.card ? [[o.card.channelKey, o.card]] : []);
   const d: DraftsDeps = {
-    pool: { query: async () => ({ rows: o.libraryText ? [{ src: o.libraryText }] : [] }) } as any,
+    pool: { query: async () => ({ rows: o.libraryText ? [{ key: 'recipes', data: { description: o.libraryText } }] : [] }) } as any,
     repo: {
       insertDraft: async (x) => {
         const id = `d${++n}`;
