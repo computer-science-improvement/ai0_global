@@ -18,10 +18,27 @@ export interface MemoryRow extends MemoryEntry {
 export class EditorMemoryRepository {
   constructor(private readonly pool: Pool) {}
 
-  async listActive(channelKey: string, limit = 30): Promise<MemoryEntry[]> {
+  /**
+   * Active entries, owner first. `excludeApprovalPrefs` leaves out the owner
+   * preferences learnt from approvals (spec 031): the role prompts show those
+   * in their own section (ownerPreferences), so they never crowd out the rest.
+   */
+  async listActive(channelKey: string, limit = 30, opts: { excludeApprovalPrefs?: boolean } = {}): Promise<MemoryEntry[]> {
     const { rows } = await this.pool.query(
       `SELECT id, kind, text, evidence, created_by, created_at FROM editor_channel_memory
-        WHERE channel_key = $1 AND active ORDER BY (created_by = 'owner') DESC, created_at DESC LIMIT $2`,
+        WHERE channel_key = $1 AND active
+          AND ($3::bool IS NOT TRUE OR COALESCE(evidence->>'source', '') <> 'approval')
+        ORDER BY (created_by = 'owner') DESC, created_at DESC LIMIT $2`,
+      [channelKey, limit, opts.excludeApprovalPrefs ?? false]);
+    return rows.map((r) => ({ id: Number(r.id), kind: r.kind, text: r.text, evidence: r.evidence, createdBy: r.created_by, createdAt: r.created_at }));
+  }
+
+  /** Spec 031 FR-008: the latest owner preferences learnt from edits and rejections on approval, newest first. */
+  async ownerPreferences(channelKey: string, limit = 20): Promise<MemoryEntry[]> {
+    const { rows } = await this.pool.query(
+      `SELECT id, kind, text, evidence, created_by, created_at FROM editor_channel_memory
+        WHERE channel_key = $1 AND active AND created_by = 'owner' AND evidence->>'source' = 'approval'
+        ORDER BY created_at DESC, id DESC LIMIT $2`,
       [channelKey, limit]);
     return rows.map((r) => ({ id: Number(r.id), kind: r.kind, text: r.text, evidence: r.evidence, createdBy: r.created_by, createdAt: r.created_at }));
   }

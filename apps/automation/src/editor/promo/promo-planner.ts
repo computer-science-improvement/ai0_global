@@ -5,7 +5,7 @@ import type { ResourceCatalog } from '../agents/resource-catalog';
 import type { ResourceProfile, ResourceProfilesRepository } from '../agents/resource-profile';
 import type { EditorPlansRepository } from '../repo/editor-plans.repository';
 import { localDate, zonedToUtc, isQuietHour } from '../roles/time';
-import type { EditorCard } from '../card';
+import { minMode, type EditorCard } from '../card';
 import type { Directive, DirectivesRepository } from '../manager/directives.repository';
 import { publicUrlOf, TrackedLinks } from './tracked-links';
 
@@ -140,7 +140,8 @@ export class PromoPlanner {
     }
     if (!at) return { error: 'no_window', details: `немає вільного часу у вікні ${windowDays} дн. (ліміти промо або реклама)` };
 
-    const live = orch.mode === 'live' && card.mode === 'live';
+    // Spec 031 FR-009: a promo written in approval mode carries a working tracked link too (it waits, then goes out as is).
+    const live = ['approve', 'live'].includes(minMode(orch.mode, card.mode));
     const planDate = localDate(at, card.timezone);
     const promo: Record<string, unknown> = {
       kind, source_ref: sourceRef, target_ref: targetRef, directive_id: dir.id, relevance: score,

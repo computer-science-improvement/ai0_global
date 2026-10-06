@@ -14,6 +14,7 @@ import {
   APPROVE_LATE_MAX_MS, EDIT_LOCK_MS, REPLACEMENT_MIN_LEAD_MS, addDays, expiresAt,
 } from './approval-timing';
 import type { ApprovalItem, ApprovalsRepository } from './approvals.repository';
+import { editPreference, rejectPreference, type OwnerPreference } from './owner-preferences';
 
 export interface ApprovalsServiceDeps {
   repo:  ApprovalsRepository;
@@ -22,6 +23,13 @@ export interface ApprovalsServiceDeps {
   media?: PublishSpecDeps['media'];
   /** Slides of an edited platform post are rendered and hosted again. */
   hostSlides?: (slides: NonNullable<PlatformPostSpec['slides']>, key: { channelKey: string; slotId: string }) => Promise<PreparedPublish>;
+  /**
+   * Spec 031 FR-008: an owner edit (compact before/after) or a reject reason
+   * becomes an owner preference in the channel memory. Best effort: a failed
+   * write never undoes the decision.
+   */
+  remember?: (channelKey: string, pref: OwnerPreference) => Promise<unknown>;
+  log?:  (msg: string) => void;
   now?:  () => Date;
 }
 
@@ -130,6 +138,11 @@ export class ApprovalsService {
     return { waiting: await this.d.repo.waitingCount() };
   }
 
+  private async learn(channelKey: string, pref: OwnerPreference | null): Promise<void> {
+    if (!pref || !this.d.remember) return;
+    try { await this.d.remember(channelKey, pref); } catch (err: any) { this.d.log?.(`owner preference not saved: ${err?.message ?? err}`); }
+  }
+
   private async require(id: string): Promise<ApprovalItem> {
     const it = await this.d.repo.get(id);
     if (!it) throw new NotFoundException({ error: 'slot_not_found' });
@@ -226,6 +239,7 @@ export class ApprovalsService {
     });
     if (!done) throw alreadyDecided(await this.d.repo.get(id));
     if (done.platformPostId && stored.caption !== undefined) await this.d.repo.updateWaitingPlatformPost(done.platformPostId, stored.caption, stored.postSpec);
+    await this.learn(it.channelKey, editPreference({ slotId: it.id, topic: it.topic, resourceRef: it.resourceRef ?? null, before: it.postSpec, after: stored.postSpec }));
     return { card: this.toCard((await this.d.repo.get(id))!), warnings: stored.warnings };
   }
 
@@ -267,6 +281,7 @@ export class ApprovalsService {
     const now = this.now();
     const done = await this.d.repo.reject(id, p.data.reason || null, new Date(now.getTime() + EDIT_LOCK_MS));
     if (!done) throw alreadyDecided(it.status === 'awaiting_approval' ? await this.d.repo.get(id) : it);
+    await this.learn(it.channelKey, rejectPreference({ slotId: it.id, topic: it.topic, resourceRef: it.resourceRef ?? null, reason: p.data.reason || null }));
     let replacementId: string | null = null;
     if (!done.replacesSlotId && done.kind === 'content' && done.scheduledAt.getTime() - now.getTime() >= REPLACEMENT_MIN_LEAD_MS) {
       const note = [

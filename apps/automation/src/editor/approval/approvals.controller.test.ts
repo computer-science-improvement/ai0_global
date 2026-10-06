@@ -15,6 +15,7 @@ import { AuthService } from '../../auth/auth.service';
 import { TrackingAuthGuard } from '../../tracking/api/tracking-auth.guard';
 import { makeAuth } from '../../auth/testing/fakes';
 import { APPROVALS_SERVICE, ApprovalsController } from './approvals.controller';
+import { AUTONOMY_SERVICE, AutonomyController } from './autonomy.controller';
 
 const TOKEN = 'test-token';
 const SLOT = '1b4e28ba-2fa1-11d2-883f-0016d3cca427';
@@ -34,6 +35,12 @@ const svc = {
   reject: async (id: string, b: unknown) => { calls.push(['reject', id, b]); return { card: { id }, replacementId: null }; },
 };
 
+const autonomy = {
+  stats: async (q: unknown) => { calls.push(['stats', q]); return { days: 14, totals: { approved: 3 }, byResource: [] }; },
+  preview: async (q: unknown) => { calls.push(['preview', q]); return { channel: '@chan', mode: 'approve', waiting: 2 }; },
+  switchMode: async (b: unknown) => { calls.push(['switch', b]); return { channel: '@chan', from: 'approve', to: 'live', approved: 2 }; },
+};
+
 let app: INestApplication;
 let port: number;
 
@@ -42,12 +49,14 @@ before(async () => {
   for (const m of ['bulk']) Reflect.defineMetadata('design:paramtypes', [Object], ApprovalsController.prototype, m);
   for (const m of ['edit', 'reschedule', 'reject']) Reflect.defineMetadata('design:paramtypes', [String, Object], ApprovalsController.prototype, m);
   Reflect.defineMetadata('design:paramtypes', [Object], ApprovalsController.prototype, 'list');
+  for (const m of ['stats', 'preview', 'switchMode']) Reflect.defineMetadata('design:paramtypes', [Object], AutonomyController.prototype, m);
   @Module({
-    controllers: [ApprovalsController],
+    controllers: [ApprovalsController, AutonomyController],
     providers: [
       { provide: ConfigService, useValue: { get: (k: string) => ({ TRACKING_TOKEN: TOKEN } as any)[k] } },
       { provide: AuthService, useValue: makeAuth({ TRACKING_TOKEN: TOKEN }).auth },
       { provide: APPROVALS_SERVICE, useValue: svc },
+      { provide: AUTONOMY_SERVICE, useValue: autonomy },
     ],
   })
   class TestModule {}
@@ -98,4 +107,24 @@ test('routes reach the service; a second approve answers 409 already_decided', a
   assert.equal(second.status, 409);
   assert.equal(second.json.error, 'already_decided');
   assert.equal((await call('POST', '/api/editor/approvals/not-a-uuid/approve')).status, 400);
+});
+
+test('autonomy switch (031 T5): owner-only routes; raw body reaches the service', async () => {
+  assert.equal((await call('GET', '/api/editor/approvals/autonomy?channel=%40chan', undefined, null)).status, 401);
+  assert.equal((await call('POST', '/api/editor/approvals/autonomy', { channel: '@chan', mode: 'live' }, 'wrong')).status, 401);
+  calls.length = 0;
+  const p = await call('GET', '/api/editor/approvals/autonomy?channel=%40chan');
+  assert.equal(p.json.waiting, 2);
+  const r = await call('POST', '/api/editor/approvals/autonomy', { channel: '@chan', mode: 'live', approve_waiting: true });
+  assert.equal(r.status, 201);
+  assert.deepEqual(calls, [['preview', { channel: '@chan' }], ['switch', { channel: '@chan', mode: 'live', approve_waiting: true }]]);
+});
+
+test('approval stats (031 T6): owner-only; the 029 Agents card reads it without a filter', async () => {
+  assert.equal((await call('GET', '/api/editor/approvals/stats', undefined, null)).status, 401);
+  calls.length = 0;
+  const r = await call('GET', '/api/editor/approvals/stats?resource=telegram%3A%40chan&days=30');
+  assert.equal(r.json.totals.approved, 3);
+  await call('GET', '/api/editor/approvals/stats');
+  assert.deepEqual(calls, [['stats', { resource: 'telegram:@chan', days: '30' }], ['stats', {}]]);
 });

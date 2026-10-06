@@ -19,7 +19,7 @@ const INLINE_SKILLS_BUDGET = 8_000;
  * skill and the channel's own skills inline; every other skill is only listed
  * (name + description) and loaded on demand via load_skill.
  */
-export function buildSystemPrompt(role: CardRole, card: EditorCard, memory: MemoryEntry[], skills: SkillSource): string {
+export function buildSystemPrompt(role: CardRole, card: EditorCard, memory: MemoryEntry[], skills: SkillSource, prefs: MemoryEntry[] = []): string {
   const inlineNames = [...new Set([`editor-${role}-workflow`, ...card.skills, ...(skills.inlineNames?.() ?? [])])];
   let budget = INLINE_SKILLS_BUDGET;
   const inline: string[] = [];
@@ -44,6 +44,7 @@ export function buildSystemPrompt(role: CardRole, card: EditorCard, memory: Memo
     memory.length
       ? memory.map((m) => `- [${m.kind}${m.createdBy === 'owner' ? ', власник' : ''}] ${m.text}`).join('\n')
       : '- (поки порожня)',
+    ...ownerPreferencesSection(prefs),
     '',
     '## Скіли, завантажені одразу',
     inline.join('\n\n') || '- немає',
@@ -51,6 +52,20 @@ export function buildSystemPrompt(role: CardRole, card: EditorCard, memory: Memo
     '## Інші скіли (завантаж через load_skill, коли потрібні)',
     listed.map((s) => `- ${s.name}: ${s.description}`).join('\n') || '- немає',
   ].join('\n');
+}
+
+/**
+ * Spec 031 FR-008: what the owner changed or rejected on approval, newest first
+ * (the last 20). Empty when there is nothing yet.
+ */
+export function ownerPreferencesSection(prefs: MemoryEntry[]): string[] {
+  if (!prefs.length) return [];
+  return [
+    '',
+    '## Вподобання власника (його правки й відхилення на апруві, найсвіжіші першими)',
+    'Враховуй їх у кожному пості: власник уже виправляв або відхиляв подібне.',
+    ...prefs.map((p) => `- ${p.text}`),
+  ];
 }
 
 /**

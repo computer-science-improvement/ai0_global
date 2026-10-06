@@ -7,7 +7,8 @@ import type { SkillSource } from '../skills/skill-library';
 import type { AgentRuntime, RunAgentContext } from '../agents/agent-runtime';
 import type { EditorPlansRepository, EditorSlot } from '../repo/editor-plans.repository';
 import type { EditorMemoryRepository } from '../repo/editor-memory.repository';
-import { buildSystemPrompt, executorUserPrompt, plannerUserPrompt, reviewerUserPrompt } from './prompts';
+import { buildSystemPrompt, executorUserPrompt, ownerPreferencesSection, plannerUserPrompt, reviewerUserPrompt } from './prompts';
+import { APPROVAL_PREFS_IN_PROMPT } from '../approval/owner-preferences';
 import { parseResourceRef } from '../agents/agent.types';
 import { capabilitiesSummary, implementedFormats } from '../platform/capabilities';
 import type { PlatformSlotExtras } from '../platform/platform-tools';
@@ -20,7 +21,7 @@ export interface EditorRunnerDeps {
   /** Registry agents (spec 017): recorded agent, its DB skills, pause and budget. Optional for tests. */
   runtime?: Pick<AgentRuntime, 'forChannel'>;
   plans:    Pick<EditorPlansRepository, 'reservedSlots' | 'getSlot' | 'updateSlot'>;
-  memory:   Pick<EditorMemoryRepository, 'listActive'>;
+  memory:   Pick<EditorMemoryRepository, 'listActive'> & Partial<Pick<EditorMemoryRepository, 'ownerPreferences'>>;
   env:      (key: string) => string | undefined;
   notify:   (text: string) => Promise<void>;
   now?:     () => Date;
@@ -58,10 +59,17 @@ export class EditorRunnerService {
     return this.d.runtime ? this.d.runtime.forChannel(card.channelKey, role) : null;
   }
 
+  /** Spec 031 FR-008: the last owner preferences from approvals (planner and executor only). */
+  private async prefs(role: CardRole, channelKey: string) {
+    if ((role !== 'planner' && role !== 'executor') || !this.d.memory.ownerPreferences) return [];
+    return this.d.memory.ownerPreferences(channelKey, APPROVAL_PREFS_IN_PROMPT).catch(() => []);
+  }
+
   private async run(
     role: CardRole, card: EditorCard, user: string, slotId: string | null, extras: Record<string, unknown> = {}, agentCtx?: RunAgentContext | null,
   ): Promise<AgentLoopResult> {
-    const memory = await this.d.memory.listActive(card.channelKey);
+    const prefs = await this.prefs(role, card.channelKey);
+    const memory = await this.d.memory.listActive(card.channelKey, 30, { excludeApprovalPrefs: prefs.length > 0 });
     const ctx = agentCtx === undefined ? await this.agentOf(card, role) : agentCtx;
     const skills = ctx?.skills ?? this.d.skills;
     const agentModel = ctx?.agent?.model ?? ctx?.orchestrator?.model ?? null;
@@ -70,7 +78,7 @@ export class EditorRunnerService {
       channelKey: card.channelKey,
       slotId,
       model: resolveModel(role, this.d.env, agentModel ? { ...card.models, [role]: agentModel } : card.models),
-      system: buildSystemPrompt(role, card, memory, skills),
+      system: buildSystemPrompt(role, card, memory, skills, prefs),
       user,
       tools: this.d.registry.forRole(role, card.toolsAllow).filter((t) => !(extras.excludeTools as Set<string> | undefined)?.has(t.name)),
       maxSteps: MAX_STEPS[role],
@@ -161,7 +169,8 @@ export class EditorRunnerService {
     const pc = this.d.platformContext ? await this.d.platformContext(slot, ctx?.orchestrator?.id ?? null).catch(() => null) : null;
     const skills = ctx?.skills ?? this.d.skills;
     const skill = skills.get(`platform-${platform}`);
-    const memory = await this.d.memory.listActive(card.channelKey);
+    const prefs = await this.prefs('executor', card.channelKey);
+    const memory = await this.d.memory.listActive(card.channelKey, 30, { excludeApprovalPrefs: prefs.length > 0 });
     // `card.mode` is already the effective mode (runExecutor); `off` never publishes, so it runs as shadow.
     const mode = card.mode === 'live' || card.mode === 'approve' ? card.mode : 'shadow';
     const system = [
@@ -178,6 +187,7 @@ export class EditorRunnerService {
       '',
       '## Памʼять мережі (правила власника і висновки)',
       memory.length ? memory.map((m) => `- [${m.kind}${m.createdBy === 'owner' ? ', власник' : ''}] ${m.text}`).join('\n') : '- (порожня)',
+      ...ownerPreferencesSection(prefs),
       '',
       '## Скіли',
       skill ? `### skill: ${skill.name}\n${skill.body}` : '- немає скіла платформи',

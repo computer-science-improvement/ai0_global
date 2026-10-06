@@ -12,6 +12,7 @@ import { useConfirm } from '../ui/ConfirmDialog';
 import { describeError, toast } from '../ui/Toast';
 import { MODE_LABEL, MODE_OPTIONS, MODE_TONE, RUN_TONE } from '../editor/EditorUi';
 import { fmtDate, fmtRelative } from '../../lib/format';
+import { AutonomyDialog } from '../approvals/AutonomyDialog';
 import { usePatchAgent, type Agent, type AgentActivity, type AgentKind, type AgentMode, type AgentNode } from '../../api/agents';
 
 export const KIND_LABEL: Record<AgentKind, string> = {
@@ -69,12 +70,19 @@ export function LastRun({ activity }: { activity: AgentActivity | null }) {
   );
 }
 
-/** off / shadow / approve / live. Going live may publish to real resources without approval, so it is confirmed. */
-export function AgentModeSwitch({ agent }: { agent: Pick<Agent, 'handle' | 'mode' | 'scopeId' | 'kind'> }) {
+/**
+ * off / shadow / approve / live. Going live may publish to real resources without
+ * approval: a Telegram resource orchestrator goes through the autonomy dialog
+ * (spec 031 FR-010), any other agent through a confirmation.
+ */
+export function AgentModeSwitch({ agent }: { agent: Pick<Agent, 'handle' | 'mode' | 'scopeId' | 'kind' | 'name'> }) {
   const confirm = useConfirm();
   const patch = usePatchAgent(agent.handle);
+  const [goLive, setGoLive] = useState(false);
+  const channel = agent.kind === 'orchestrator' && agent.scopeId?.startsWith('telegram:') ? agent.scopeId.slice('telegram:'.length) : null;
   const onChange = async (next: AgentMode) => {
     if (next === agent.mode || patch.isPending) return;
+    if (next === 'live' && channel) { setGoLive(true); return; }
     if (next === 'live') {
       const ok = await confirm(`switch @${agent.handle} to LIVE`, {
         danger: true,
@@ -93,7 +101,12 @@ export function AgentModeSwitch({ agent }: { agent: Pick<Agent, 'handle' | 'mode
       onError: (e) => toast.error(describeError(e)),
     });
   };
-  return <SegmentedTabs size="sm" value={agent.mode} onChange={onChange} options={MODE_OPTIONS} />;
+  return (
+    <>
+      <SegmentedTabs size="sm" value={agent.mode} onChange={onChange} options={MODE_OPTIONS} />
+      {goLive && channel && <AutonomyDialog channel={channel} title={agent.name} onClose={() => setGoLive(false)} />}
+    </>
+  );
 }
 
 type PauseChoice = 'indefinite' | '24h' | 'until';

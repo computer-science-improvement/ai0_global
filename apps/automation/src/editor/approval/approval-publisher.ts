@@ -21,6 +21,8 @@ export interface ApprovalPublisherDeps {
   telegram: PublishSpecDeps;
   /** The live platform path (019). */
   platform: PublishPlatformDeps;
+  /** Spec 022: Bot API forwardMessage into `toKey` (an approved repost); returns the new message id. */
+  forward?: (toKey: string, fromKey: string, messageId: number) => Promise<number>;
   /** The owner sees a post dropped after approval (dedup) in the inbox. */
   notice?:  (slot: EditorSlot, title: string, body: string) => Promise<void>;
   /** Spec 020: an idea becomes `used` once its slots are done. */
@@ -78,6 +80,20 @@ export class ApprovalPublisher {
     if (mode === 'off' || mode === 'shadow') return this.skip(slot, 'mode_changed');
     const render = slot.renderMessages;
     if (!render) return this.fail(slot, 'approved post has no stored render');
+
+    if (render.kind === 'forward') {
+      // An approved repost (spec 022): the same native forward the live path makes, at the slot time.
+      if (!this.d.forward) return this.fail(slot, 'forwarding is not available in this process');
+      try {
+        const id = await this.d.forward(slot.channelKey, render.fromKey, render.messageId);
+        await this.d.plans.updateSlot(slot.id, { status: 'published', renderedPreview: `↪️ Переслано ${render.fromKey}/${render.messageId} → ${id}`, error: null });
+        return 'published';
+      } catch (err: any) {
+        const msg = String(err?.message ?? err);
+        if (/not found|message to forward/i.test(msg)) return this.skip(slot, `source_missing: ${msg}`.slice(0, 2000));
+        return this.fail(slot, msg);
+      }
+    }
 
     const target = slot.resourceRef ? parseResourceRef(slot.resourceRef) : null;
     if (target && target.platform !== 'telegram') {

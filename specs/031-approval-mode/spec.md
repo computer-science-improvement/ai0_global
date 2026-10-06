@@ -127,3 +127,31 @@ test); the advice fires only above the threshold.
 (FR-008); the approval stats on the agent page and in the 029 Agents card (FR-011).
 **Acceptance:** a reject reason appears in the next planner prompt (fixture); the stats match a fixture.
 **Size:** M · **Depends on:** T3
+
+## Implementation notes (T5–T6)
+- **T5 switch.** `GET/POST /api/editor/approvals/autonomy` (`AutonomyService`, owner-only). The unit with a mode is a
+  Telegram channel (its card and resource orchestrator); "per network" and "per resource" both resolve to it, and a
+  platform ref answers 400 `resource_follows_network` (platform resources still follow their network, as in T1–T4).
+  approve → live with "approve the waiting posts too" approves every waiting post without lint warnings through the
+  single-flight approve; posts with warnings keep waiting. Every go-live switch in the dashboard (channel pages, agent
+  page) opens the dialog; live → approve stays one click.
+- **T5 "ready for autonomy".** Spec 025 (advice) is not built, so the MANAGER's signal is an info Inbox item
+  `ready_for_autonomy` (daily check at 09:25, deduped per resource per 7 days, `ref_type='channel'`). It never changes
+  a mode.
+- **T5 FR-009.** Promo slots (022) of approval channels are written ahead (approval lane) and wait: a repost is stored
+  as a `forward` render and forwarded by the approval publisher after approval; a cross-promo is written by the
+  executor; both get a working tracked link (the planner creates it in approve as in live). Directive posts are
+  ordinary planner/executor slots, so they wait already; sponsored and chat-scheduled reserved slots are untouched.
+  In approve every schedule change already reaches the owner as a card (agents change times only by a new plan, whose
+  slots are written and wait). Hooks for 023/024: `approval/approval-policy.ts` (`scheduleChangeNeedsCard`,
+  `CUTOVER_TARGET_MODE`, `variantGroupKey`; bulk approve by `idea_id` already serves «Апрувнути всі варіанти»).
+- **T6 learning.** An owner edit (compact before/after: intro, length, removed/added sentences, hashtags, media,
+  links, poll, slides) is an owner `rule`, a reject reason an owner `avoid` in `editor_channel_memory`, tagged
+  `evidence.source='approval'` (no migration). The planner (single and network) and executor prompts show the last 20 in
+  their own section «Вподобання власника»; the general memory block leaves them out. A rejection without a reason is
+  not saved.
+- **T6 stats.** `GET /api/editor/approvals/stats?resource=&channel=&days=` (1–90, default 14; no filter = every
+  resource, for the 029 Agents card): totals and per resource — approval rate = approved / (approved + rejected),
+  edit rate = edited / approved, top reject reasons (grouped case- and punctuation-insensitively), median time to
+  approve (from the end of the run that wrote the post), expired, waiting. A post counts on its decision day; posts
+  dropped by a mode change, a replan or the agent are not decisions. The agent page's «На апрув» tab shows the panel.

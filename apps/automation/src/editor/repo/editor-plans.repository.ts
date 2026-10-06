@@ -47,7 +47,9 @@ export interface EditorSlot {
 /** The stored payload of a written approval-mode post (render_messages). */
 export type ApprovalRender =
   | { kind: 'telegram'; messages: unknown[]; primary: number }
-  | { kind: 'platform'; platform: string; rendered: Record<string, unknown> };
+  | { kind: 'platform'; platform: string; rendered: Record<string, unknown> }
+  // Spec 022 repost in approval mode: a native forward of an own post, sent after approval.
+  | { kind: 'forward'; fromKey: string; messageId: number };
 
 /** Rationale of a plan created only to hold reserved (ad) slots; the planner still plans that day. */
 export const RESERVED_ONLY_RATIONALE = 'reserved only';
@@ -295,6 +297,29 @@ export class EditorPlansRepository {
       `SELECT * FROM editor_slots WHERE status = 'planned' AND kind = 'content' AND channel_key = ANY($1::text[]) AND scheduled_at <= $2
         ORDER BY scheduled_at LIMIT $3`, [channelKeys, until, limit]);
     return rows.map(rowToSlot);
+  }
+
+  /**
+   * Spec 031 FR-009: planned promo slots (spec 022 reposts and cross-promo) of
+   * approval-mode channels due before `until`; they are written ahead like
+   * content slots so the owner can approve them in time.
+   */
+  async plannedPromoBefore(channelKeys: string[], until: Date, limit = 20): Promise<EditorSlot[]> {
+    if (!channelKeys.length) return [];
+    const { rows } = await this.pool.query(
+      `SELECT * FROM editor_slots WHERE status = 'planned' AND kind = 'reserved' AND promo IS NOT NULL
+          AND channel_key = ANY($1::text[]) AND scheduled_at <= $2
+        ORDER BY scheduled_at LIMIT $3`, [channelKeys, until, limit]);
+    return rows.map(rowToSlot);
+  }
+
+  /** Claim ONE planned promo slot ahead of its time (planned → running, attempts+1), like claimDueReserved. */
+  async claimPromoSlot(id: string): Promise<EditorSlot | null> {
+    const { rows } = await this.pool.query(
+      `UPDATE editor_slots SET status = 'running', attempts = attempts + 1, updated_at = now()
+        WHERE id = $1 AND status = 'planned' AND kind = 'reserved' AND promo IS NOT NULL
+        RETURNING *`, [id]);
+    return rows[0] ? rowToSlot(rows[0]) : null;
   }
 
   /** Planned slots that are more than `maxLateMs` overdue are skipped instead of posted late. */

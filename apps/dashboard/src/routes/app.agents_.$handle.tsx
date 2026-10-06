@@ -17,6 +17,7 @@ import { AgentInbox, ManagerDirectives } from '../components/agents/Directives';
 import { ManagerReviews } from '../components/agents/ManagerReviews';
 import { AgentPromo } from '../components/agents/AgentPromo';
 import { ApprovalList } from '../components/approvals/ApprovalList';
+import { ApprovalStatsPanel } from '../components/approvals/ApprovalStatsPanel';
 import { errorBody, useAgent, useRunAgent } from '../api/agents';
 import { useRunManager } from '../api/manager';
 
@@ -163,6 +164,7 @@ function AgentPage() {
       )}
 
       {tab === 'overview' && <AgentOverview data={d} />}
+      {tab === 'approvals' && d.channelKey && <ApprovalStatsPanel channel={d.channelKey} />}
       {tab === 'approvals' && (d.channelKey
         ? <ApprovalList filter={{ channel: d.channelKey }} emptyNote={`Коли @${orchestrator} у режимі «На апруві», його пости чекають тут до публікації.`} />
         : <div className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>У цього агента немає Telegram-каналу.</div>)}

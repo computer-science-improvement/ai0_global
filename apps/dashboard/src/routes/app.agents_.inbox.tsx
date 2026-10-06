@@ -101,6 +101,11 @@ function InboxPage() {
                             Open skills →
                           </Link>
                         )}
+                        {agent && it.kind === 'ready_for_autonomy' && (
+                          <Link to="/app/agents/$handle" params={{ handle: agent.handle }} className="link-accent text-micro" style={{ display: 'inline-block', marginTop: 4 }}>
+                            Review and switch →
+                          </Link>
+                        )}
                         {it.refType === 'run' && it.refId && (
                           <Link to="/app/editor/run/$id" params={{ id: it.refId }} className="link-accent text-micro" style={{ display: 'inline-block', marginTop: 4 }}>
                             Open run →
