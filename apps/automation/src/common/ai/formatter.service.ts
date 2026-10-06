@@ -3,6 +3,7 @@ import { ClaudeAgent }    from './agents/claude.agent';
 import { PostValidator }  from './validators/post.validator';
 import { FORMAT_PROMPTS, UA_NEWS_SYSTEM_PROMPT } from './prompts/format.prompts';
 import { Platform }       from '../types';
+import { FEATURES }     from './usage/features';
 
 @Injectable()
 export class FormatterService {
@@ -37,7 +38,7 @@ export class FormatterService {
     const text = await this.claude.chat([
       { role: 'system', content: UA_NEWS_SYSTEM_PROMPT },
       { role: 'user',   content: userMessage },
-    ]);
+    ], { feature: FEATURES.textFormat });
 
     if (text?.trim() === 'SKIP_POST') {
       this.logger.warn('Model signalled SKIP_POST [ua-news]');
@@ -64,7 +65,7 @@ export class FormatterService {
     const text = await this.claude.chat([
       { role: 'system', content: prompt.system },
       { role: 'user',   content: `Content source: ${content}` },
-    ]);
+    ], { feature: FEATURES.textFormat });
 
     // Model explicitly signalled unformattable content — propagate as sentinel
     if (text?.trim() === 'SKIP_POST') {

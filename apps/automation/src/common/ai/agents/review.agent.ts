@@ -5,6 +5,7 @@ import { REVIEW_SKILL } from '../skills/review.skill';
 import { buildPrompt } from '../prompt-builder';
 import { cleanFinalText } from '../post-generation.helpers';
 import { validatePost } from '../validators/post.validator';
+import { FEATURES } from '../usage/features';
 
 const REVIEW_MODEL = 'claude-sonnet-4-6';
 /** Ukrainian posts run ~2–3 chars/token; 2048 covers the 4096-char Telegram max. */
@@ -36,7 +37,7 @@ export class ReviewAgent {
         { role: 'system', content: prompt.system },
         { role: 'user',   content: text },
       ],
-      { model: REVIEW_MODEL, maxTokens: REVIEW_MAX_TOKENS },
+      { feature: FEATURES.reviewPost, model: REVIEW_MODEL, maxTokens: REVIEW_MAX_TOKENS },
     );
 
     if (!result) {

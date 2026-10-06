@@ -4,6 +4,7 @@ import { PerplexityAgent } from './agents/perplexity.agent';
 import { ClaudeAgent } from './agents/claude.agent';
 import { ArticleExtractorService } from '../processors/article-extractor.service';
 import { RawItem } from '../types';
+import { FEATURES } from './usage/features';
 
 @Injectable()
 export class SummarizerService {
@@ -50,7 +51,7 @@ export class SummarizerService {
           'TASK:\nExtract the key facts in this format:\n- MAIN EVENT: (What happened in 1 sentence)\n- KEY DETAILS: (Bullet points with numbers, dates, names)\n- QUOTES: (Important direct speech if any)\n- CONTEXT: (Background info mentioned in the text)',
         ].join('\n\n'),
       },
-    ]);
+    ], { feature: FEATURES.textSummarize });
   }
 
   /**
@@ -96,7 +97,7 @@ export class SummarizerService {
           '- CONTEXT: (Background info)',
         ].join('\n'),
       },
-    ]);
+    ], { feature: FEATURES.textSummarize });
   }
 
   /**
@@ -173,7 +174,7 @@ export class SummarizerService {
           ].join('\n'),
         },
       ],
-      { maxTokens: 1024 },
+      { feature: FEATURES.textSummarize, maxTokens: 1024 },
     );
 
     if (!summary || summary.trim().length < 80) {

@@ -1,6 +1,8 @@
 import axios from 'axios';
 import type { ChatMessage, LlmClient, LlmRequest, LlmResponse, ToolCall } from './llm.types';
 import { estimateCostUsd, resolveModel } from './model-registry';
+import { llmUsage, type LlmUsageRecorder } from '../../common/ai/usage/llm-usage.service';
+import type { EstimateResult, TokenUsage } from '../../common/ai/usage/price.service';
 
 type HttpPost = (url: string, body: unknown, cfg: { headers: Record<string, string>; timeout: number }) => Promise<{ data: any }>;
 
@@ -11,6 +13,10 @@ export interface OpenRouterClientOptions {
   /** Injected for tests; defaults to axios.post. */
   http?:     { post: HttpPost };
   sleep?:    (ms: number) => Promise<void>;
+  /** Spend ledger (spec 029); defaults to the process-wide recorder. */
+  usage?:    LlmUsageRecorder;
+  /** llm_prices lookup for the fallback estimate when usage.cost is absent. */
+  prices?:   { estimate(provider: string, model: string, u: TokenUsage): Promise<EstimateResult> };
 }
 
 const RETRY_DELAYS_MS = [1_000, 3_000];
@@ -18,8 +24,10 @@ const RETRY_DELAYS_MS = [1_000, 3_000];
 /**
  * OpenRouter chat-completions client (OpenAI wire format). Retries twice on
  * 429 / 5xx / network errors; any other 4xx is a caller bug and throws at once.
- * Cost comes from usage.cost (always present on OpenRouter); the registry
- * price is only a fallback for other OpenAI-compatible endpoints.
+ * Cost comes from usage.cost (always present on OpenRouter); llm_prices and
+ * then the registry PRICES map are only fallbacks for other OpenAI-compatible
+ * endpoints. Every call (ok, error, timeout) writes one llm_usage row; the
+ * editor AgentLoop supplies the attribution context (spec 029).
  */
 export class OpenRouterClient implements LlmClient {
   private readonly baseUrl:   string;
@@ -53,9 +61,26 @@ export class OpenRouterClient implements LlmClient {
       ...(req.reasoningEffort ? { reasoning: { effort: req.reasoningEffort } } : {}),
     };
 
-    const data = await this.postWithRetry(body);
+    const tracker = (this.opts.usage ?? llmUsage()).start({ provider: 'openrouter', model: req.model });
+    let data: any;
+    let attempts: number;
+    try {
+      ({ data, attempts } = await this.postWithRetry(body));
+    } catch (err: any) {
+      tracker.fail(err, { attempts: err?.attempts });
+      throw err;
+    }
+    const promptTokens     = Number(data?.usage?.prompt_tokens ?? 0);
+    const completionTokens = Number(data?.usage?.completion_tokens ?? 0);
+    const cachedTokens     = typeof data?.usage?.prompt_tokens_details?.cached_tokens === 'number' ? data.usage.prompt_tokens_details.cached_tokens : null;
+    const tokens = data?.usage ? { tokensIn: promptTokens, tokensOut: completionTokens, tokensCachedRead: cachedTokens } : {};
+
     const choice = data?.choices?.[0];
-    if (!choice?.message) throw new Error(`OpenRouter: empty response (${JSON.stringify(data)?.slice(0, 300)})`);
+    if (!choice?.message) {
+      const err = new Error(`OpenRouter: empty response (${JSON.stringify(data)?.slice(0, 300)})`);
+      tracker.fail(err, { ...tokens, attempts, ...(typeof data?.usage?.cost === 'number' ? { costUsd: data.usage.cost } : {}) });
+      throw err;
+    }
 
     const toolCalls: ToolCall[] = (choice.message.tool_calls ?? []).map((c: any) => ({
       id:        String(c.id),
@@ -63,11 +88,16 @@ export class OpenRouterClient implements LlmClient {
       arguments: typeof c.function?.arguments === 'string' ? c.function.arguments : JSON.stringify(c.function?.arguments ?? {}),
     }));
 
-    const promptTokens     = Number(data.usage?.prompt_tokens ?? 0);
-    const completionTokens = Number(data.usage?.completion_tokens ?? 0);
-    const costUsd = typeof data.usage?.cost === 'number'
-      ? data.usage.cost
-      : estimateCostUsd(resolveModel('executor', () => req.model), promptTokens, completionTokens);
+    let costUsd: number;
+    if (typeof data.usage?.cost === 'number') {
+      costUsd = data.usage.cost;
+      tracker.ok({ ...tokens, costUsd, attempts });
+    } else {
+      const est = await this.opts.prices?.estimate('openrouter', req.model, { tokensIn: promptTokens, tokensOut: completionTokens, tokensCachedRead: cachedTokens })
+        .catch(() => null);
+      costUsd = est?.costUsd ?? estimateCostUsd(resolveModel('executor', () => req.model), promptTokens, completionTokens);
+      tracker.ok({ ...tokens, costUsd, costSource: 'estimate', attempts });
+    }
 
     return {
       message: { role: 'assistant', content: choice.message.content ?? null, ...(toolCalls.length ? { toolCalls } : {}) },
@@ -76,7 +106,7 @@ export class OpenRouterClient implements LlmClient {
     };
   }
 
-  private async postWithRetry(body: unknown): Promise<any> {
+  private async postWithRetry(body: unknown): Promise<{ data: any; attempts: number }> {
     for (let attempt = 0; ; attempt++) {
       try {
         const res = await this.http.post(`${this.baseUrl}/chat/completions`, body, {
@@ -87,13 +117,15 @@ export class OpenRouterClient implements LlmClient {
           },
           timeout: this.timeoutMs,
         });
-        return res.data;
+        return { data: res.data, attempts: attempt + 1 };
       } catch (err: any) {
         const status: number | undefined = err?.response?.status;
         const retryable = status === undefined || status === 429 || status >= 500;
         if (!retryable || attempt >= RETRY_DELAYS_MS.length) {
           const detail = err?.response?.data?.error?.message ?? err?.message ?? String(err);
-          throw new Error(`OpenRouter request failed${status ? ` (${status})` : ''}: ${detail}`);
+          // status / code / attempts let the spend ledger classify the failure (error vs timeout).
+          throw Object.assign(new Error(`OpenRouter request failed${status ? ` (${status})` : ''}: ${detail}`),
+            { status, code: err?.code, attempts: attempt + 1 });
         }
         await this.sleep(RETRY_DELAYS_MS[attempt]);
       }

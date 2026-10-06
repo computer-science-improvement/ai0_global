@@ -3,6 +3,7 @@ import { readdirSync, readFileSync, statSync } from 'fs';
 import { join } from 'path';
 import { ClaudeAgent } from '../ai/agents/claude.agent';
 import { StructuredLoggerService } from './structured-logger.service';
+import { FEATURES } from '../ai/usage/features';
 
 interface LogLine {
   timestamp?: string;
@@ -120,7 +121,7 @@ export class LogAnalyzerAgent {
           { role: 'system', content: ANALYZER_SYSTEM_PROMPT },
           { role: 'user',   content: userMessage },
         ],
-        { maxTokens: 4096 },
+        { feature: FEATURES.logsAnalyze, maxTokens: 4096 },
       );
     } catch (err: any) {
       return `<b>🧾 Звіт</b>\n\nАналіз не вдався — Claude викликав помилку: <code>${this.escape(err.message)}</code>`;

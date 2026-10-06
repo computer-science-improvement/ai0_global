@@ -17,6 +17,8 @@ export interface CallUsage {
   tokensCachedWrite?: number | null;
   /** Provider-reported USD (OpenRouter usage.cost, Agent SDK total_cost_usd). Absent → priced from llm_prices. */
   costUsd?:           number | null;
+  /** Default 'provider' when costUsd is given, otherwise priced at flush. */
+  costSource?:        CostSource;
   /** Billable requests for a per-request fee (default 1). */
   requests?:          number;
   attempts?:          number;
@@ -30,8 +32,6 @@ export interface LlmUsageEntry extends CallUsage, LlmContext {
   status?:    UsageStatus;
   errorCode?: string | null;
   latencyMs?: number | null;
-  /** Default 'provider' when costUsd is given. */
-  costSource?: CostSource;
   at?:        Date;
 }
 

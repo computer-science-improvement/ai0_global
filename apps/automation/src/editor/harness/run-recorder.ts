@@ -1,6 +1,9 @@
 import type { Pool } from 'pg';
 import type { EditorRole, LlmResponse, ToolCall } from '../llm/llm.types';
 import { truncateJson } from './truncate';
+import { llmUsage, type LlmUsageRecorder } from '../../common/ai/usage/llm-usage.service';
+import { currentLlmContext } from '../../common/ai/usage/llm-context';
+import { editorFeature, telegramResource } from '../../common/ai/usage/features';
 
 export type RunStatus = 'running' | 'ok' | 'error' | 'budget_exceeded' | 'max_steps' | 'disabled';
 
@@ -33,13 +36,22 @@ export interface RunRecorder {
  * so errors are swallowed after logging by the caller-provided `onError`.
  */
 export class PgRunRecorder implements RunRecorder {
-  constructor(private readonly pool: Pool, private readonly onError: (msg: string) => void = () => {}) {}
+  /** Attribution of runs in flight, for the paid-tool ledger rows. */
+  private readonly runs = new Map<string, RunStart>();
+
+  constructor(
+    private readonly pool: Pool,
+    private readonly onError: (msg: string) => void = () => {},
+    /** Spend ledger (spec 029); defaults to the process-wide recorder. LLM rows come from the LLM client. */
+    private readonly usage?: LlmUsageRecorder,
+  ) {}
 
   async start(r: RunStart): Promise<string> {
     const { rows } = await this.pool.query(
       `INSERT INTO editor_runs (role, channel_key, slot_id, model, agent_id) VALUES ($1, $2, $3, $4, $5) RETURNING id`,
       [r.role, r.channelKey, r.slotId ?? null, r.model, r.agentId ?? null],
     );
+    this.runs.set(rows[0].id, r);
     return rows[0].id;
   }
 
@@ -50,9 +62,25 @@ export class PgRunRecorder implements RunRecorder {
 
   async toolStep(runId: string, idx: number, call: ToolCall, input: unknown, output: unknown, isError: boolean, durationMs: number, costUsd?: number | null): Promise<void> {
     await this.insertStep(runId, idx, 'tool', call.name, input, output, isError, null, null, costUsd ?? null, durationMs);
+    if (costUsd) {
+      // Paid tools (BR-EDT-26) are ledger rows of the run's feature, so editor spend stays equal to editor_runs.cost_usd.
+      const run = this.runs.get(runId);
+      const ctx = currentLlmContext();
+      (this.usage ?? llmUsage()).record({
+        provider: 'tool', kind: 'tool', model: call.name, costUsd, costSource: 'provider',
+        runId, stepIdx: idx, status: isError ? 'error' : 'ok', latencyMs: durationMs,
+        // The AgentLoop's context carries the full attribution; the run's own fields fill in without one.
+        ...(run ? {
+          feature: editorFeature(run.role), role: run.role,
+          agentId: ctx.agentId ?? run.agentId ?? null,
+          resourceRef: ctx.resourceRef ?? (run.channelKey ? telegramResource(run.channelKey) : null),
+        } : {}),
+      });
+    }
   }
 
   async finish(runId: string, status: RunStatus, t: RunTotals, error?: string | null): Promise<void> {
+    this.runs.delete(runId);
     await this.pool.query(
       `UPDATE editor_runs
           SET status = $2, steps = $3, prompt_tokens = $4, completion_tokens = $5,

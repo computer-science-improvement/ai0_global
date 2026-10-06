@@ -14,6 +14,8 @@ import {
   isStrategyRejection,
 } from './content-strategy.interface';
 import type { PublishDestination } from './publish-destination';
+import { withLlmContext } from '../ai/usage/llm-context';
+import { strategyFeature, strategyResource } from '../ai/usage/features';
 
 @Injectable()
 export class ContentStrategyRunner {
@@ -33,8 +35,23 @@ export class ContentStrategyRunner {
   /**
    * Execute a content strategy for a specific channel with given params.
    * Pipeline: fetch → dedup → generate → review → publish → mark posted.
+   * Every LLM call inside is attributed to `strategy.<id>.generate` on the
+   * spend ledger (spec 029); sub-steps (review, translation …) override the feature.
    */
-  async run(
+  run(
+    strategy: ContentStrategy,
+    channelId: string,
+    params: StrategyParams,
+    strategyId: string,
+    dest?: PublishDestination,
+  ): Promise<void> {
+    return withLlmContext(
+      { feature: strategyFeature(strategyId), resourceRef: strategyResource(strategyId) },
+      () => this.runAttributed(strategy, channelId, params, strategyId, dest),
+    );
+  }
+
+  private async runAttributed(
     strategy: ContentStrategy,
     channelId: string,
     params: StrategyParams,

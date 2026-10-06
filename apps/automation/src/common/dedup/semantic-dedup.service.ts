@@ -5,6 +5,8 @@ import { lockedAgentOptions } from '../ai/locked-agent-options';
 import { PublicationsRepository } from '../../stats/publications.repository';
 import { ChannelConfigService } from '../../config/channel-config.service';
 import { AiLoggerService } from '../ai/ai-logger.service';
+import { agentSdkAllowed, runTrackedQuery } from '../ai/usage/agent-sdk-usage';
+import { FEATURES } from '../ai/usage/features';
 
 export type NoveltyVerdict = 'NEW' | 'DUPLICATE' | 'UPDATE';
 
@@ -63,23 +65,23 @@ export class SemanticDedupService {
     const recent = await this.publications.listRecentHours(channelId, hours);
     if (recent.length === 0) return 'NEW';
 
+    // A blocking spend cap (spec 029) refuses the check; like any failure it defaults to NEW.
+    if (!(await agentSdkAllowed(FEATURES.dedupNovelty, (m) => this.logger.warn(m)))) return 'NEW';
+
     const prompt = this.buildPrompt(incoming, recent);
     const start  = Date.now();
 
     let verdict: NoveltyVerdict = 'NEW';
-    let raw: string | null = null;
+    let raw: string | null;
 
     try {
-      for await (const msg of query({
+      // One llm_usage row per check (cost and tokens from the result message).
+      raw = await runTrackedQuery(() => query({
         prompt,
         // No tools, no project settings, no permission bypass — see
         // locked-agent-options.ts (the input here is untrusted).
         options: lockedAgentOptions(this.cwd, 'topic-novelty-checker', 2),
-      })) {
-        if (msg.type === 'result' && msg.subtype === 'success') {
-          raw = msg.result?.trim() ?? null;
-        }
-      }
+      }), { feature: FEATURES.dedupNovelty });
     } catch (err: any) {
       this.logger.warn(`novelty check failed for ${channelId}: ${err.message} — defaulting to NEW`);
       return 'NEW';

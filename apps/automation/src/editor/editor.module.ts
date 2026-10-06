@@ -99,6 +99,7 @@ import { PROMO_SERVICE, PromoController, PromoRedirectController } from './promo
 import { onChatMember } from '../publishers/chat-member-bus';
 import { createHash, randomBytes } from 'crypto';
 import { TrackingAuthGuard } from '../tracking/api/tracking-auth.guard';
+import { PriceService } from '../common/ai/usage/price.service';
 
 export const EDITOR_RUNNER    = 'EDITOR_RUNNER';
 export const EDITOR_SCHEDULER = 'EDITOR_SCHEDULER';
@@ -550,12 +551,12 @@ export const EDITOR_PROVIDERS = [
     },
     {
       provide: EDITOR_LOOP,
-      inject: [DB_POOL, ConfigService, TelegramNotifier],
-      useFactory: (pool: Pool, cfg: ConfigService, notifier: TelegramNotifier): AgentLoop => {
+      inject: [DB_POOL, ConfigService, TelegramNotifier, { token: PriceService, optional: true }],
+      useFactory: (pool: Pool, cfg: ConfigService, notifier: TelegramNotifier, prices?: PriceService): AgentLoop => {
         const logger = new Logger('Editor');
         const env = (k: string) => cfg.get<string>(k) ?? undefined;
         return new AgentLoop({
-          llm: new OpenRouterClient({ apiKey: env('OPENROUTER_API_KEY'), baseUrl: env('OPENROUTER_BASE_URL') }),
+          llm: new OpenRouterClient({ apiKey: env('OPENROUTER_API_KEY'), baseUrl: env('OPENROUTER_BASE_URL'), prices }),
           recorder: new PgRunRecorder(pool, (m) => logger.warn(m)),
           budget: new BudgetService(pool, {
             globalDailyUsd:  envNum(env, 'EDITOR_DAILY_BUDGET_USD', 3),
@@ -698,16 +699,16 @@ export const EDITOR_PROVIDERS = [
     {
       // Editor chat (spec 010): needs only an LLM key, independent of EDITOR_ENABLED.
       provide: EDITOR_CHAT,
-      inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_SKILLS, EDITOR_REGISTRY, EDITOR_DRAFTS, TelegramNotifier, AGENT_INFRA, EDITOR_MANAGER],
+      inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_SKILLS, EDITOR_REGISTRY, EDITOR_DRAFTS, TelegramNotifier, AGENT_INFRA, EDITOR_MANAGER, { token: PriceService, optional: true }],
       useFactory: (
         pool: Pool, cfg: ConfigService, repos: EditorRepos, skills: SkillLibrary, registry: ToolRegistry, drafts: DraftsService,
-        notifier: TelegramNotifier, infra: AgentInfra, manager: ManagerInfra,
+        notifier: TelegramNotifier, infra: AgentInfra, manager: ManagerInfra, prices?: PriceService,
       ): EditorChatService => {
         const logger = new Logger('EditorChat');
         const env = (k: string) => cfg.get<string>(k) ?? undefined;
         const enabled = () => !!env('OPENROUTER_API_KEY');
         const loop = new AgentLoop({
-          llm: new OpenRouterClient({ apiKey: env('OPENROUTER_API_KEY'), baseUrl: env('OPENROUTER_BASE_URL') }),
+          llm: new OpenRouterClient({ apiKey: env('OPENROUTER_API_KEY'), baseUrl: env('OPENROUTER_BASE_URL'), prices }),
           recorder: new PgRunRecorder(pool, (m) => logger.warn(m)),
           budget: new BudgetService(pool, {
             globalDailyUsd:  envNum(env, 'EDITOR_DAILY_BUDGET_USD', 3),

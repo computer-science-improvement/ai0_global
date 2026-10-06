@@ -4,6 +4,8 @@ import { join } from 'path';
 import { lockedAgentOptions } from '../ai/locked-agent-options';
 import { ChannelConfigService, ForwardRoute } from '../../config/channel-config.service';
 import { AiLoggerService } from '../ai/ai-logger.service';
+import { agentSdkAllowed, runTrackedQuery } from '../ai/usage/agent-sdk-usage';
+import { FEATURES } from '../ai/usage/features';
 
 /**
  * Classifies a finished post against the source channel's declared
@@ -27,21 +29,21 @@ export class TopicRouterService {
     const routes = this.channelConfig.getForwardRoutes(sourceChannelId);
     if (routes.length === 0) return null;
 
+    // A blocking spend cap (spec 029) refuses routing; like any failure it returns null.
+    if (!(await agentSdkAllowed(FEATURES.routingTopic, (m) => this.logger.warn(m)))) return null;
+
     const prompt = this.buildPrompt(postText, routes);
     const start  = Date.now();
-    let raw: string | null = null;
+    let raw: string | null;
 
     try {
-      for await (const msg of query({
+      // One llm_usage row per routing call (cost and tokens from the result message).
+      raw = await runTrackedQuery(() => query({
         prompt,
         // No tools, no project settings, no permission bypass — see
         // locked-agent-options.ts (the input here is untrusted).
         options: lockedAgentOptions(this.cwd, 'topic-router', 2),
-      })) {
-        if (msg.type === 'result' && msg.subtype === 'success') {
-          raw = msg.result?.trim() ?? null;
-        }
-      }
+      }), { feature: FEATURES.routingTopic });
     } catch (err: any) {
       this.logger.warn(`topic-router failed for ${sourceChannelId}: ${err.message}`);
       return null;

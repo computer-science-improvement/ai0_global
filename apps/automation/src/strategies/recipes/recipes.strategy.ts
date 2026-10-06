@@ -22,6 +22,7 @@ import {
 } from '../../common/content-strategy/content-strategy.interface';
 import { RecipesRepository, RecipeRow } from './recipes.repository';
 import { escapeAttr, escapeHtml, trimBrokenEntity } from '../../common/html';
+import { FEATURES }                from '../../common/ai/usage/features';
 
 const CAPTION_MAX = 1024;
 const REPLY_MAX   = 4096;
@@ -191,6 +192,7 @@ export class RecipesStrategy implements ContentStrategy, OnModuleInit {
       { role: 'system', content: RECIPE_TRANSLATE_PROMPT.system },
       { role: 'user',   content: buildRecipeTranslateUserMessage(row) },
     ], {
+      feature: FEATURES.recipesTranslate,
       model: TRANSLATE_MODEL,
       // A full recipe (title + ingredients + instructions JSON) easily exceeds
       // the 1024 default; without headroom it truncates, the validator rejects

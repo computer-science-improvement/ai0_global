@@ -29,6 +29,7 @@ import { resolveDigestSponsor } from '../network-digest/digest-sponsor';
 import {
   DigestItem, SponsorSlot, digestTitle, isLinkable, kyivDate, renderDigest, truncate,
 } from '../network-digest/digest-format.util';
+import { FEATURES } from '../../common/ai/usage/features';
 
 const REWRITE_BASE = `ROLE: Ти редактор українського Telegram-дайджесту.
 Отримаєш JSON-масив [{i, title}] із заголовками сьогоднішніх постів.
@@ -205,7 +206,7 @@ export class TopicDigestStrategy implements ContentStrategy, OnModuleInit {
         { role: 'system', content: prompt.system },
         { role: 'user',   content: payload },
       ],
-      { maxTokens: 1500 },
+      { feature: FEATURES.topicDigestRewrite, maxTokens: 1500 },
     );
     const map = parseRewrite(reply, titles.length);
     if (!map) {
