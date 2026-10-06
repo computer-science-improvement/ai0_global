@@ -3,6 +3,9 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
+import { AuthSessionsRepository } from './auth-sessions.repository';
+import { AuthEventsRepository } from './auth-events.repository';
+import { SessionService } from './session.service';
 
 /**
  * Resolve the JWT signing secret. FAILS CLOSED in production: a missing
@@ -31,7 +34,7 @@ export function resolveJwtSecret(config: ConfigService): string {
     }),
   ],
   controllers: [AuthController],
-  providers:   [AuthService],
-  exports:     [AuthService],
+  providers:   [AuthService, AuthSessionsRepository, AuthEventsRepository, SessionService],
+  exports:     [AuthService, SessionService],
 })
 export class AuthModule {}
