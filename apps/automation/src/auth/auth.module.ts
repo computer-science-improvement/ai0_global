@@ -6,6 +6,7 @@ import { AuthController } from './auth.controller';
 import { AuthSessionsRepository } from './auth-sessions.repository';
 import { AuthEventsRepository } from './auth-events.repository';
 import { SessionService } from './session.service';
+import { TrackingAuthGuard } from '../tracking/api/tracking-auth.guard';
 
 /**
  * Resolve the JWT signing secret. FAILS CLOSED in production: a missing
@@ -34,7 +35,8 @@ export function resolveJwtSecret(config: ConfigService): string {
     }),
   ],
   controllers: [AuthController],
-  providers:   [AuthService, AuthSessionsRepository, AuthEventsRepository, SessionService],
+  // TrackingAuthGuard guards the /auth/sessions* and /auth/events routes.
+  providers:   [AuthService, AuthSessionsRepository, AuthEventsRepository, SessionService, TrackingAuthGuard],
   exports:     [AuthService, SessionService],
 })
 export class AuthModule {}

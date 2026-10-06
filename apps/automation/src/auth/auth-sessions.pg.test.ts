@@ -11,6 +11,7 @@ import { JwtService } from '@nestjs/jwt';
 import { AuthSessionsRepository } from './auth-sessions.repository';
 import { AuthEventsRepository } from './auth-events.repository';
 import { SessionService } from './session.service';
+import { AuthService } from './auth.service';
 
 const url = process.env.EDITOR_PG_TEST_URL;
 const skip = !url ? 'EDITOR_PG_TEST_URL not set' : false;
@@ -39,6 +40,44 @@ function makeService() {
   const svc = new SessionService(sessions, events, new JwtService({ secret: 'pg-test' }), { get: () => undefined } as any);
   return { sessions, events, svc };
 }
+
+test('login → list → revoke one → revoke-all (others) → events rows, no secret anywhere', { skip }, async () => {
+  const { svc, events } = makeService();
+  const config = { get: (k: string) => ({ TRACKING_TOKEN: 'pg-secret-token-value' } as Record<string, string>)[k] } as any;
+  const auth = new AuthService(config, svc, events);
+  const client = (ip: string) => ({ ip, userAgent: `${UA} ${ip}` });
+
+  const a = await auth.login('token', 'pg-secret-token-value', client('10.1.0.1'));
+  const b = await auth.login('link', 'pg-secret-token-value', client('10.1.0.2'));
+  const c = await auth.login('token', 'pg-secret-token-value', client('10.1.0.3'));
+  await assert.rejects(() => auth.login('token', 'pg-secret-token-wrong', client('10.1.0.4')));
+
+  const mine = (await auth.listSessions(a.session.id)).filter((s) => s.userAgent?.startsWith(UA));
+  assert.equal(mine.length, 3);
+  assert.equal(mine.find((s) => s.current)?.id, a.session.id);
+  assert.equal(mine.find((s) => s.id === b.session.id)?.method, 'link');
+
+  assert.deepEqual(await auth.revokeSession(b.session.id, a.session.id, client('10.1.0.1')), { revoked: true, current: false });
+  const all = await auth.revokeAll(a.session.id, false, client('10.1.0.1'));
+  assert.ok(all.revoked >= 1);
+  const left = (await auth.listSessions(a.session.id)).filter((s) => s.userAgent?.startsWith(UA));
+  assert.deepEqual(left.map((s) => s.id), [a.session.id]);
+  const revokedC = await pool.query(`SELECT revoked_reason FROM auth_sessions WHERE id = $1`, [c.session.id]);
+  assert.equal(revokedC.rows[0].revoked_reason, 'revoke_all');
+
+  const { rows } = await pool.query(
+    `SELECT kind, method, code FROM auth_events WHERE user_agent LIKE $1 OR session_id = ANY($2) ORDER BY id`,
+    [`${UA}%`, [a.session.id, b.session.id, c.session.id]]);
+  assert.deepEqual(rows.map((r) => r.kind), ['login_ok', 'login_ok', 'login_ok', 'login_failed', 'revoked', 'revoke_all']);
+  assert.equal(rows[1].method, 'link');
+  assert.equal(rows[3].code, 'bad_token');
+
+  const dump = JSON.stringify((await pool.query(
+    `SELECT * FROM auth_sessions WHERE user_agent LIKE $1`, [`${UA}%`])).rows)
+    + JSON.stringify((await pool.query(`SELECT * FROM auth_events WHERE user_agent LIKE $1`, [`${UA}%`])).rows);
+  assert.doesNotMatch(dump, /pg-secret/);
+  assert.doesNotMatch(dump, /eyJ/); // no JWT either
+});
 
 test('055: applied, recorded, and the CHECKs hold', { skip }, async () => {
   const { rows } = await pool.query(`SELECT 1 FROM schema_migrations WHERE version = '055_auth_sessions'`);
@@ -74,13 +113,13 @@ test('sessions: issue → verify → list → revoke one → revoke-all others; 
 
   assert.equal(await svc.revoke(b.session.id, 'revoked'), true);
   assert.equal(await svc.revoke(b.session.id, 'revoked'), false);
-  assert.deepEqual(await svc.verify(b.token), { ok: false, code: 'session_revoked' });
+  assert.deepEqual(await svc.verify(b.token), { ok: false, code: 'session_revoked', sid: b.session.id });
 
   const others = await svc.revokeAll(a.session.id, 'revoke_all');
   assert.ok(others.includes(c.session.id));
   assert.ok(!others.includes(a.session.id));
   assert.equal((await svc.verify(a.token)).ok, true);
-  assert.deepEqual(await svc.verify(c.token), { ok: false, code: 'session_revoked' });
+  assert.deepEqual(await svc.verify(c.token), { ok: false, code: 'session_revoked', sid: c.session.id });
 
   // Age the revoked rows past the 30-day grace → purged; the live one stays.
   await pool.query(`UPDATE auth_sessions SET revoked_at = now() - interval '31 days' WHERE id = ANY($1)`, [[b.session.id, c.session.id]]);

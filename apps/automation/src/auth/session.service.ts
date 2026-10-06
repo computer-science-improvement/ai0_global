@@ -39,9 +39,9 @@ export interface SessionClaims {
 
 export type SessionCheck =
   | { ok: true; session: AuthSessionRow; claims: SessionClaims; expiresAt: Date; renewToken?: string }
-  | { ok: false; code: SessionFailCode }
+  | { ok: false; code: SessionFailCode; sid?: string }
   /** The DB could not be read; `jwtUnexpired` lets callers degrade instead of logging the user out. */
-  | { ok: false; code: 'unavailable'; jwtUnexpired: boolean };
+  | { ok: false; code: 'unavailable'; jwtUnexpired: boolean; claims: SessionClaims };
 
 export interface SessionSettings {
   accessTtlMin:    number;
@@ -138,11 +138,12 @@ export class SessionService {
       row = await this.load(claims.sid, renew);
     } catch (err) {
       this.logger.warn(`session lookup failed: ${(err as Error).message}`);
-      return { ok: false, code: 'unavailable', jwtUnexpired: !jwtExpired };
+      return { ok: false, code: 'unavailable', jwtUnexpired: !jwtExpired, claims };
     }
-    if (!row) return { ok: false, code: 'session_expired' };
-    if (row.revokedAt) return { ok: false, code: 'session_revoked' };
-    if (!this.alive(row, now)) return { ok: false, code: 'session_expired' };
+    const sid = claims.sid;
+    if (!row) return { ok: false, code: 'session_expired', sid };
+    if (row.revokedAt) return { ok: false, code: 'session_revoked', sid };
+    if (!this.alive(row, now)) return { ok: false, code: 'session_expired', sid };
 
     if (opts.readOnly) return { ok: true, session: row, claims, expiresAt: this.expiresAt(row) };
 
@@ -218,7 +219,12 @@ export class SessionService {
   }
 
   private sign(claims: SessionClaims): Promise<string> {
+    // iat from our clock (jsonwebtoken derives exp from it), so renewal timing and
+    // the half-life check run on one time source.
     const { iat: _iat, exp: _exp, ...payload } = claims;
-    return this.jwt.signAsync(payload, { expiresIn: Math.round(this.settings.accessTtlMin * 60) });
+    return this.jwt.signAsync(
+      { ...payload, iat: Math.floor(this.clock() / 1000) },
+      { expiresIn: Math.round(this.settings.accessTtlMin * 60) },
+    );
   }
 }

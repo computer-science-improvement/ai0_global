@@ -74,9 +74,9 @@ test('verify: an expired JWT within the idle window is renewed after a DB check'
 
 test('verify: idle expiry — not seen for longer than the idle window', async () => {
   const { svc, advance } = makeSessions();
-  const { token } = await svc.issue(LOGIN);
+  const { token, session } = await svc.issue(LOGIN);
   advance(7 * DAY + MIN);
-  assert.deepEqual(await svc.verify(token), { ok: false, code: 'session_expired' });
+  assert.deepEqual(await svc.verify(token), { ok: false, code: 'session_expired', sid: session.id });
 });
 
 test('verify: absolute cap — 30 days after login even when used daily', async () => {
@@ -91,7 +91,7 @@ test('verify: absolute cap — 30 days after login even when used daily', async 
   }
   assert.ok(repo.rows.get(session.id)!.lastSeenAt.getTime() > Date.now() + 28 * DAY);
   advance(DAY + MIN);
-  assert.deepEqual(await svc.verify(token), { ok: false, code: 'session_expired' });
+  assert.deepEqual(await svc.verify(token), { ok: false, code: 'session_expired', sid: session.id });
 });
 
 test('verify: revoked session; revoke invalidates the cache synchronously', async () => {
@@ -99,7 +99,7 @@ test('verify: revoked session; revoke invalidates the cache synchronously', asyn
   const { token, session } = await svc.issue(LOGIN);
   assert.equal((await svc.verify(token)).ok, true);      // cached
   assert.equal(await svc.revoke(session.id, 'revoked'), true);
-  assert.deepEqual(await svc.verify(token), { ok: false, code: 'session_revoked' });
+  assert.deepEqual(await svc.verify(token), { ok: false, code: 'session_revoked', sid: session.id });
   assert.equal(repo.finds, 1);                             // the cache did not answer
 });
 
@@ -111,8 +111,8 @@ test('revokeAll keeps the excluded session and drops every cache entry', async (
   const ids = await svc.revokeAll(a.session.id, 'revoke_all');
   assert.deepEqual(ids.sort(), [b.session.id, c.session.id].sort());
   assert.equal((await svc.verify(a.token)).ok, true);
-  assert.deepEqual(await svc.verify(b.token), { ok: false, code: 'session_revoked' });
-  assert.deepEqual(await svc.verify(c.token), { ok: false, code: 'session_revoked' });
+  assert.deepEqual(await svc.verify(b.token), { ok: false, code: 'session_revoked', sid: b.session.id });
+  assert.deepEqual(await svc.verify(c.token), { ok: false, code: 'session_revoked', sid: c.session.id });
 });
 
 test('verify: a JWT without sid is session_legacy; a bad signature is session_expired', async () => {
@@ -129,7 +129,7 @@ test('verify: an unknown sid (purged row) is session_expired', async () => {
   const { token, session } = await svc.issue(LOGIN);
   repo.rows.delete(session.id);
   advance(31 * MIN); // force a DB read
-  assert.deepEqual(await svc.verify(token), { ok: false, code: 'session_expired' });
+  assert.deepEqual(await svc.verify(token), { ok: false, code: 'session_expired', sid: session.id });
 });
 
 test('last_seen is written at most every 5 minutes', async () => {
@@ -164,9 +164,11 @@ test('DB error: reports unavailable with whether the JWT itself is still unexpir
   advance(30_000); // cache still warm (< 60 s) → no read → fine
   assert.equal((await svc.verify(token, { readOnly: true })).ok, true);
   advance(10 * MIN); // cache cold, JWT unexpired
-  assert.deepEqual(await svc.verify(token, { readOnly: true }), { ok: false, code: 'unavailable', jwtUnexpired: true });
+  const down = await svc.verify(token, { readOnly: true });
+  assert.ok(!down.ok && down.code === 'unavailable' && down.jwtUnexpired === true && down.claims.sid);
   advance(2 * 3_600_000); // JWT expired
-  assert.deepEqual(await svc.verify(token), { ok: false, code: 'unavailable', jwtUnexpired: false });
+  const downExpired = await svc.verify(token);
+  assert.ok(!downExpired.ok && downExpired.code === 'unavailable' && downExpired.jwtUnexpired === false);
 });
 
 test('purge: events past retention, sessions dead for 30+ days', async () => {
