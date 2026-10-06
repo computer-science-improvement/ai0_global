@@ -1,22 +1,19 @@
 /**
- * Loader: data/normalized/prompts-github/prompts.json → prompts table.
- * Idempotent — ON CONFLICT (id) DO NOTHING. No TRUNCATE (the table also
+ * Loader: data/normalized/prompts-github/prompts.json → the `prompts` dataset (data store, spec 032).
+ * Idempotent — an existing id is skipped. No TRUNCATE (the table also
  * holds prompthero rows).  LOAD_LIMIT=N for test mode.
  */
 import { readFile } from 'fs/promises';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { pool } from '../lib/db.js';
-import { loadRows } from '../lib/loader.js';
+import { loadData, schemaFor, formatLoad } from '../lib/loader.js';
 
 const __dirname  = dirname(fileURLToPath(import.meta.url));
 const INPUT_FILE = join(__dirname, '..', 'data', 'normalized', 'prompts-github', 'prompts.json');
 
 const limitArg = process.env.LOAD_LIMIT || process.argv.find((a) => a.startsWith('--limit='))?.split('=')[1];
 const LIMIT    = limitArg ? parseInt(limitArg, 10) : null;
-
-const COLUMNS  = ['id', 'provider', 'category', 'title', 'prompt_text', 'source', 'media_url', 'media_type', 'prompt_source', 'page_url', 'posted'];
-const CONFLICT = '(id)';
 
 function mapRow(p) {
   return {
@@ -30,7 +27,6 @@ function mapRow(p) {
     media_type:    p.media_type ?? null,
     prompt_source: p.prompt_source ?? p.media_url,
     page_url:      p.page_url ?? null,
-    posted:        '{}',
   };
 }
 
@@ -45,8 +41,8 @@ async function main() {
   if (!rows.length) { console.log('No prompts to load'); await pool.end(); return; }
 
   console.log(`Loading ${rows.length} curated prompts`);
-  const { inserted, skipped } = await loadRows('prompts', rows, { columns: COLUMNS, conflictTarget: CONFLICT });
-  console.log(`Curated prompts — inserted: ${inserted}, skipped: ${skipped}`);
+  const r = await loadData(schemaFor('prompts-github'), rows, { filename: 'prompts-github/prompts.json' });
+  console.log(`Curated prompts — ${formatLoad(r)}`);
   await pool.end();
   console.log('Done.');
 }

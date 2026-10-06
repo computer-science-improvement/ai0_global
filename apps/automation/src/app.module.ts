@@ -42,6 +42,7 @@ import { AgentModule }          from './agent/agent.module';
 import { PaymentsModule }       from './payments/payments.module';
 import { EditorModule }         from './editor/editor.module';
 import { SpendModule }          from './spend/spend.module';
+import { DataModule }           from './data/data.module';
 
 @Module({
   imports: [
@@ -86,6 +87,7 @@ import { SpendModule }          from './spend/spend.module';
     ActivityModule,
     AuthModule,
     DiscoveryModule,
+    DataModule,
   ],
   controllers: [DevController],
   // TrackingAuthGuard is used by DevController's /trigger endpoint (AuthModule

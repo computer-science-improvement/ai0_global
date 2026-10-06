@@ -7,6 +7,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import * as winston                from 'winston';
 import cookieParser                from 'cookie-parser';
 import { AppModule }               from './app.module';
+import { dataRowsJsonBody }        from './data/rows-body.middleware';
 
 const isDev = (process.env.NODE_ENV ?? 'development') !== 'production';
 
@@ -36,6 +37,9 @@ async function bootstrap() {
   app.set('trust proxy', 'loopback, linklocal, uniquelocal');
 
   app.use(cookieParser());
+  // POST /api/data/:schema/rows (spec 032) accepts up to 5 000 rows: its own JSON parser and limit,
+  // registered before Nest's default parser (which then skips the already-parsed body).
+  app.use('/api/data', dataRowsJsonBody);
   app.enableCors({ origin: ['http://localhost:5173'], credentials: true });
 
   // Enforce class-validator decorators on every @Body() DTO. `whitelist`

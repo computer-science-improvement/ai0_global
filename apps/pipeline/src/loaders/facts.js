@@ -1,5 +1,5 @@
 /**
- * Loader: additional-data/datasets/faktypro/articles.json → facts table
+ * Loader: additional-data/datasets/faktypro/articles.json → the `facts` dataset (data store, spec 032)
  *
  * Flattens articles → individual facts (one row per fact).
  * Dedup key: content_hash = md5(content)
@@ -11,7 +11,7 @@ import { readFile }   from 'fs/promises';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { pool }      from '../lib/db.js';
-import { loadRows }  from '../lib/loader.js';
+import { loadData, schemaFor, formatLoad } from '../lib/loader.js';
 
 const __dirname   = dirname(fileURLToPath(import.meta.url));
 const INPUT_FILE  = join(__dirname, '..', 'data', 'normalized', 'faktypro', 'articles.json');
@@ -23,9 +23,6 @@ function md5(text) {
   return createHash('md5').update(text).digest('hex');
 }
 
-const COLUMNS  = ['article_slug', 'article_title', 'article_url', 'image_url', 'content', 'content_hash', 'category', 'posted'];
-const CONFLICT = '(content_hash)';
-
 function mapFact(fact, article) {
   return {
     article_slug:  article.slug,
@@ -35,7 +32,8 @@ function mapFact(fact, article) {
     content:       fact,
     content_hash:  md5(fact),
     category:      article.category ?? null,
-    posted:        '{}',
+    source_name:   'faktypro.com.ua',
+    source_url:    article.url ?? null,
   };
 }
 
@@ -68,8 +66,8 @@ async function main() {
   }
 
   console.log(`Loading ${rows.length} facts from ${slice.length} articles`);
-  const { inserted, skipped } = await loadRows('facts', rows, { columns: COLUMNS, conflictTarget: CONFLICT });
-  console.log(`Facts — inserted: ${inserted}, skipped: ${skipped}`);
+  const r = await loadData(schemaFor('faktypro'), rows, { filename: 'faktypro/articles.json' });
+  console.log(`Facts — ${formatLoad(r)}`);
 
   await pool.end();
   console.log('Done.');

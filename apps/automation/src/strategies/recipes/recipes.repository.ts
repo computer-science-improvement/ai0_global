@@ -1,6 +1,8 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { Pool } from 'pg';
 import { DB_POOL } from '../../database/database.module';
+import { DataStore } from '../../data/data-store';
+import { libraryRef } from '../../editor/tools/library-tables';
 
 export interface RecipeRow {
   id:              string;
@@ -29,7 +31,11 @@ export interface RecipeTranslation {
 
 @Injectable()
 export class RecipesRepository {
-  constructor(@Inject(DB_POOL) private readonly pool: Pool) {}
+  private readonly store: DataStore;
+
+  constructor(@Inject(DB_POOL) private readonly pool: Pool) {
+    this.store = new DataStore(pool);
+  }
 
   /**
    * Next recipe to post: not yet posted to Telegram, not a "skip" sentinel
@@ -93,22 +99,20 @@ export class RecipesRepository {
     return Number(rows[0]?.count ?? 0);
   }
 
-  /** Cache a translation (or the empty-string skip sentinel) on the row. */
+  /**
+   * Cache a translation (or the empty-string skip sentinel) on the row. Data writes go through the data
+   * store (spec 032); reads still use the `recipes` compatibility view.
+   */
   async saveTranslation(id: string, t: RecipeTranslation): Promise<void> {
-    await this.pool.query(
-      `UPDATE recipes
-       SET title_uk = $2, ingredients_uk = $3, instructions_uk = $4, translated_at = now()
-       WHERE id = $1`,
-      [id, t.titleUk, t.ingredientsUk, t.instructionsUk],
-    );
+    await this.store.patchByLegacyRef('recipes', libraryRef('recipes', id), {
+      title_uk: t.titleUk, ingredients_uk: t.ingredientsUk, instructions_uk: t.instructionsUk,
+      translated_at: new Date().toISOString(),
+    });
   }
 
   /** Cache the Telegraph page so it's only created once per recipe. */
   async saveTelegraph(id: string, page: { url: string; path: string }): Promise<void> {
-    await this.pool.query(
-      `UPDATE recipes SET telegraph_url = $2, telegraph_path = $3 WHERE id = $1`,
-      [id, page.url, page.path],
-    );
+    await this.store.patchByLegacyRef('recipes', libraryRef('recipes', id), { telegraph_url: page.url, telegraph_path: page.path });
   }
 
   /** Mark the row published to the given destination (default: Telegram). */

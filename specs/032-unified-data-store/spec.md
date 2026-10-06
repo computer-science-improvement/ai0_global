@@ -139,3 +139,36 @@ wrapper; `sql_readonly` description; the `edit_data_schema` suggestion card; ski
 **Acceptance:** tool validation tests (non-visible field refused, filter on a non-filterable field refused); the
 `executor-picks-dataset` eval with the token comparison.
 **Size:** M · **Depends on:** T2
+
+## Implementation notes (T1–T4, 2026-10-06)
+Built on `feat/editor-agent` in commits `38f5d35` (T1), `a2555a3` (T2), `5056ba0` (T3) and `9bae25d` (T4). T5 and T6 are
+not built; `library-tables.ts` and `search_library` are unchanged and read through the compatibility views.
+
+Deviations from the text above:
+- **Extra columns.** `data_schemas` has `legacy` (`{table, id, id_field?}` for the 12 moved tables) and
+  `contains_personal_data`. `data_imports` also has `schema_version`, `options`, `duplicates`, `preview`, `undo_report`
+  and `undone_at`, and two more statuses: `dry_run` and `expired`. Updated rows are snapshotted in
+  `data_import_snapshots`.
+- **Roles.** A role can be a list of fields (the first non-blank value wins, e.g. recipes `title: [title_uk, title]`).
+  There are also `month` and `day` roles for datasets that keep the month and the day in two int fields.
+- **No targeted `ON CONFLICT` on the views.** Postgres cannot infer a unique index on a view. A plain `INSERT` (or
+  `ON CONFLICT DO NOTHING` with no target) through a view inserts a new row and skips an existing dedup key. The
+  pipeline now uses `loadData()`.
+- **The move copies rows with set-based SQL.** It does not call `data_items_upsert()` row by row. Parity compares
+  every row, legacy table against view (`EXCEPT ALL`), not just 20 samples. The test also samples 20 rows per table.
+- **Posted markers bypass `data_items_upsert()`.** The view trigger writes `posted` (not a data field) straight to
+  `data_items.posted` as a delta, so two writers never lose a marker. Data columns go through `data_items_upsert()`.
+- **Dedup key collisions.** Legacy keys that collide only after lower-casing get `#<old id>` appended, so no row is
+  lost. `lower()` follows the database collation.
+- **Changing a dedup field** through a view `UPDATE` keeps the row's original `external_key`.
+- **"Used" (undo).** Until the 023 ledger exists, a row counts as used when `posted` has a non-`error:` key, or when
+  `published_posts.source_url` is `data://<key>/<id>` or its legacy ref.
+- **Pinned schema version.** Rows are validated against the version pinned at the dry run (zod). The SQL write
+  path still applies the current version's basic checks.
+- **Inference details.** Enum inference also needs values to repeat (distinct ≤ half of the values) and to be
+  ≤ 64 characters. In JSON imports an empty string is a value; in CSV an empty cell counts as missing.
+- **`init.sql`** skips a content table once it is a view, so re-running it after 058 stays safe.
+- **Rows endpoint body limit.** `POST /api/data/:schema/rows` gets its own 10 MB JSON parser, mounted in
+  `main.ts` before Nest's default 100 KB parser.
+- **Open question 1.** No `csv-parse`. The parser is our own (no new dependencies).
+- **Pipeline audit.** Every pipeline `loadData()` call is audited in `data_imports` (source `pipeline`).

@@ -1,15 +1,15 @@
 /**
- * Loader: data/normalized/recipes/recipes.json → recipes table
+ * Loader: data/normalized/recipes/recipes.json → the `recipes` dataset (data store, spec 032)
  *
  * recipes.json is gitignored and produced by `pnpm run parse:recipes` (also part
  * of `pnpm run parse`). If it is missing the loader warns and exits 0, so
  * `load:all` / `db:seed` still load every other table.
  *
  * Modes:
- *   default            — insert new recipes, ON CONFLICT (slug) DO NOTHING.
+ *   default            — insert new recipes; an existing slug is skipped.
  *   LOAD_FRESH=1 / --fresh  (`load:recipes:fresh`)
  *                      — refresh the source columns of existing recipes from the
- *                        dataset (upsert on slug). Requires ALLOW_TRUNCATE=yes.
+ *                        dataset (merge on slug, only REFRESH_COLUMNS). Requires ALLOW_TRUNCATE=yes.
  *                        Never touches translations (title_uk, ingredients_uk,
  *                        instructions_uk, translated_at), Telegraph pages
  *                        (telegraph_url/path), post_text or `posted`. It used to
@@ -23,7 +23,7 @@ import { readFile } from 'fs/promises';
 import { join, dirname } from 'path';
 import { fileURLToPath, pathToFileURL } from 'url';
 import { pool } from '../lib/db.js';
-import { loadRows } from '../lib/loader.js';
+import { loadData, schemaFor, formatLoad } from '../lib/loader.js';
 
 const __dirname    = dirname(fileURLToPath(import.meta.url));
 const RECIPES_FILE = join(__dirname, '..', 'data', 'normalized', 'recipes', 'recipes.json');
@@ -41,8 +41,8 @@ function slugify(text) {
     .slice(0, 120);
 }
 
-export const COLUMNS  = ['title', 'slug', 'url', 'description', 'ingredients', 'instructions', 'image_url', 'category', 'tags', 'post_text', 'posted', 'kcal', 'protein_g', 'fat_g', 'carbs_g', 'serving_size_g', 'raw'];
-const CONFLICT = '(slug)';
+/** Fields the loader writes (the dataset's dedup key is slug). */
+export const COLUMNS  = ['title', 'slug', 'url', 'description', 'ingredients', 'instructions', 'image_url', 'category', 'tags', 'post_text', 'kcal', 'protein_g', 'fat_g', 'carbs_g', 'serving_size_g', 'raw'];
 
 /** Columns a refresh must never overwrite (state owned by strategies/editor, not the dataset). */
 export const PRESERVED_COLUMNS = ['posted', 'post_text', 'title_uk', 'ingredients_uk', 'instructions_uk', 'translated_at', 'telegraph_url', 'telegraph_path'];
@@ -58,13 +58,7 @@ export function freshRefusal(env = process.env) {
   return null;
 }
 
-/** Encode a JS array as a Postgres text[] literal */
-function pgArray(arr) {
-  if (!arr || !arr.length) return '{}';
-  return `{${arr.map((t) => `"${String(t).replace(/\\/g, '\\\\').replace(/"/g, '\\"')}"`).join(',')}}`;
-}
-
-function mapRecipe(recipe) {
+export function mapRecipe(recipe) {
   return {
     title:        recipe.title,
     slug:         recipe.slug || slugify(recipe.title),
@@ -74,9 +68,8 @@ function mapRecipe(recipe) {
     instructions: recipe.instructions ?? null,
     image_url:    recipe.image_url    ?? recipe.imageUrl ?? null,
     category:     recipe.category     ?? null,
-    tags:         pgArray(recipe.tags),
+    tags:         Array.isArray(recipe.tags) ? recipe.tags.map(String) : [],
     post_text:    recipe.post_text    ?? recipe.postText ?? null,
-    posted:       '{}',
     kcal:           recipe.kcal           ?? null,
     protein_g:      recipe.protein_g      ?? null,
     fat_g:          recipe.fat_g          ?? null,
@@ -84,7 +77,7 @@ function mapRecipe(recipe) {
     serving_size_g: recipe.serving_size_g ?? null,
     // Strip NUL escapes — Postgres jsonb (and text) reject . Some source
     // recipes carry a stray null char in free-text fields (e.g. serving tips).
-    raw:          recipe.raw ? JSON.stringify(recipe.raw).replace(/\\u0000/g, '') : null,
+    raw:          recipe.raw ? JSON.parse(JSON.stringify(recipe.raw).replace(/\\u0000/g, '')) : null,
   };
 }
 
@@ -130,12 +123,12 @@ async function main() {
 
   if (FRESH) {
     console.log(`Refreshing ${rows.length} recipes (upsert on slug; translations, Telegraph and posted kept)`);
-    const { inserted } = await loadRows('recipes', rows, { columns: COLUMNS, conflictTarget: CONFLICT, updateColumns: REFRESH_COLUMNS });
-    console.log(`Recipes — inserted or refreshed: ${inserted}`);
+    const r = await loadData(schemaFor('recipes'), rows, { updateFields: REFRESH_COLUMNS, filename: 'recipes/recipes.json (fresh)' });
+    console.log(`Recipes — ${formatLoad(r)}`);
   } else {
     console.log(`Loading ${rows.length} recipes`);
-    const { inserted, skipped } = await loadRows('recipes', rows, { columns: COLUMNS, conflictTarget: CONFLICT });
-    console.log(`Recipes — inserted: ${inserted}, skipped: ${skipped}`);
+    const r = await loadData(schemaFor('recipes'), rows, { filename: 'recipes/recipes.json' });
+    console.log(`Recipes — ${formatLoad(r)}`);
   }
 
   await pool.end();

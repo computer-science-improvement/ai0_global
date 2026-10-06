@@ -1,5 +1,5 @@
 /**
- * Loader: data/*.json → assets table
+ * Loader: data/*.json → the `assets` dataset (data store, spec 032)
  *
  * Dedup key: (data_source, title)
  * LOAD_LIMIT=N — test mode, first N items per file
@@ -8,7 +8,7 @@ import { readdirSync, readFileSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { pool } from '../lib/db.js';
-import { loadRows } from '../lib/loader.js';
+import { loadData, schemaFor, formatLoad } from '../lib/loader.js';
 import { cleanTitleOrDescription } from '../lib/text.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -17,8 +17,10 @@ const DATA_DIR  = join(__dirname, '..', 'data', 'raw', 'assets');
 const limitArg = process.env.LOAD_LIMIT || process.argv.find((a) => a.startsWith('--limit='))?.split('=')[1];
 const LIMIT    = limitArg ? parseInt(limitArg, 10) : null;
 
-const COLUMNS          = ['data_source', 'title', 'description', 'link', 'source_url', 'category', 'extra'];
-const CONFLICT_TARGET  = '(data_source, title)';
+/** Known sources are mapped in load-config.json; any other asset file goes to the `assets` dataset. */
+function datasetFor(dataSource) {
+  try { return schemaFor(dataSource); } catch { return schemaFor('assets'); }
+}
 
 function mapItem(item, dataSource) {
   return {
@@ -28,7 +30,7 @@ function mapItem(item, dataSource) {
     link:        item.link      ?? null,
     source_url:  item.source    ?? null,
     category:    item.category  ?? null,
-    extra:       item.extra ? JSON.stringify(item.extra) : null,
+    extra:       item.extra ?? null,
   };
 }
 
@@ -54,10 +56,10 @@ async function load() {
     const rows = items.map((item) => mapItem(item, dataSource));
 
     console.log(`Loading ${LIMIT ? rows.length + '/' + totalInFile : rows.length} rows from ${file} -> assets`);
-    const { inserted, skipped } = await loadRows('assets', rows, { columns: COLUMNS, conflictTarget: CONFLICT_TARGET });
-    totalInserted += inserted;
-    totalSkipped  += skipped;
-    console.log(`  inserted: ${inserted}, skipped (duplicates): ${skipped}`);
+    const r = await loadData(datasetFor(dataSource), rows, { filename: file });
+    totalInserted += r.inserted;
+    totalSkipped  += r.skipped;
+    console.log(`  ${formatLoad(r)}`);
   }
 
   console.log(`\nDone. Total inserted: ${totalInserted}, skipped: ${totalSkipped}`);

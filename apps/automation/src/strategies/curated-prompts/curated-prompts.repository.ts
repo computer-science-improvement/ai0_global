@@ -1,6 +1,8 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { Pool } from 'pg';
 import { DB_POOL } from '../../database/database.module';
+import { DataStore } from '../../data/data-store';
+import { libraryRef } from '../../editor/tools/library-tables';
 
 export interface CuratedPromptRow {
   id:          string;
@@ -61,6 +63,6 @@ export class CuratedPromptsRepository {
   }
 
   async markError(id: string): Promise<void> {
-    await this.pool.query(`UPDATE prompts SET status = 'ERROR' WHERE id = $1`, [id]);
+    await new DataStore(this.pool).patchByLegacyRef('prompts', libraryRef('prompts', id), { status: 'ERROR' });
   }
 }
