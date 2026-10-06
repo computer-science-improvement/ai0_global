@@ -1,53 +1,16 @@
-import { Link } from '@tanstack/react-router';
-import { useState, type CSSProperties } from 'react';
-import { Icon, type IconName } from './ui/Icon';
-import { useApprovalsCount } from '../api/approvals';
+import { Link, useNavigate, useRouterState } from '@tanstack/react-router';
+import { useCallback, useState, type CSSProperties } from 'react';
+import { Icon } from './ui/Icon';
+import { toast } from './ui/Toast';
+import { SidebarItem } from './nav/SidebarItem';
+import { NavContextMenu } from './nav/NavContextMenu';
+import { useNavBadgeCounts, useResolvedNav, useQuickNavEdit } from '../nav/store';
+import { badgeFor, rollup, shownKeys } from '../nav/badges';
+import { canHide, hideItem, togglePin } from '../nav/ops';
+import type { ResolvedItem } from '../nav/model';
 
-interface NavItem { to: string; label: string; icon: IconName; soon?: boolean; exact?: boolean; search?: Record<string, unknown>; badge?: 'approvals'; }
-interface NavGroup { title: string; items: NavItem[]; }
-
-const GROUPS: NavGroup[] = [
-  { title: 'Home', items: [
-    { to: '/app', label: 'Overview', icon: 'overview', exact: true },
-  ]},
-  { title: 'Publishing', items: [
-    { to: '/app/strategies', label: 'Strategies', icon: 'strategies' },
-    { to: '/app/editor',     label: 'Editor',     icon: 'sparkles' },
-    { to: '/app/agents',     label: 'Agents',     icon: 'agents' },
-    { to: '/app/agents/inbox', label: 'Posts to approve', icon: 'check', search: { tab: 'approvals' }, badge: 'approvals' },
-    { to: '/app/chat',       label: 'Chat',       icon: 'chat' },
-    { to: '/app/scheduled',  label: 'Scheduled', icon: 'calendar' },
-    { to: '/app/channels',   label: 'My channels', icon: 'channels', search: { filter: 'mine' } },
-  ]},
-  { title: 'Content', items: [
-    { to: '/app/data', label: 'Data', icon: 'database' },
-  ]},
-  { title: 'Analytics', items: [
-    { to: '/app/analytics', label: 'Analytics', icon: 'analytics' },
-    { to: '/app/spend',     label: 'Spend',      icon: 'spend' },
-    { to: '/app/logs',      label: 'Logs',       icon: 'logs' },
-    { to: '/app/agent',     label: 'Agent',      icon: 'bots' },
-  ]},
-  { title: 'Intelligence', items: [
-    { to: '/app/discovery',       label: 'Discovery',     icon: 'discovery' },
-    { to: '/app/tracked',         label: 'Tracked',  icon: 'radar' },
-    { to: '/app/graph',           label: 'Graph',          icon: 'graph' },
-    { to: '/app/recommendations', label: 'Recommendations',  icon: 'recommendations' },
-  ]},
-  { title: 'Connections', items: [
-    { to: '/app/connections',        label: 'Connections', icon: 'connections', exact: true },
-    { to: '/app/connections/groups', label: 'Groups', icon: 'users' },
-  ]},
-  { title: 'Marketing', items: [
-    { to: '/app/landing', label: 'Landing', icon: 'globe' },
-    { to: '/app/ads',     label: 'Ads',     icon: 'megaphone' },
-  ]},
-  { title: 'System', items: [
-    { to: '/app/settings', label: 'Settings', icon: 'settings' },
-  ]},
-];
-
-const COLLAPSED_KEY = 'dashboard:sidebar-collapsed';
+// Spec 027: no menu literals here. The menu is the registry (nav/registry.ts)
+// resolved against the owner's saved menu (nav/resolve.ts).
 
 interface Props {
   /** When true the sidebar renders as an off-canvas drawer (mobile). */
@@ -56,19 +19,45 @@ interface Props {
   mobileOpen?: boolean;
   /** Called when a nav link is tapped, so the parent can close the drawer. */
   onNavigate?: () => void;
+  /** Desktop rail state (owned by AppShell so ⌘K can toggle it). */
+  collapsed?: boolean;
+  onToggleCollapsed?: () => void;
 }
 
-export function AppSidebar({ isMobile = false, mobileOpen = false, onNavigate }: Props) {
-  const [collapsed, setCollapsed] = useState<boolean>(() =>
-    typeof localStorage !== 'undefined' && localStorage.getItem(COLLAPSED_KEY) === '1');
-  const toggle = () => setCollapsed(prev => {
-    const next = !prev;
-    try { localStorage.setItem(COLLAPSED_KEY, next ? '1' : '0'); } catch { /* ignore */ }
-    return next;
-  });
+export function AppSidebar({ isMobile = false, mobileOpen = false, onNavigate, collapsed = false, onToggleCollapsed }: Props) {
+  const toggle = () => onToggleCollapsed?.();
 
-  // Spec 031: posts waiting for the owner's approval.
-  const waiting = useApprovalsCount().data?.waiting ?? 0;
+  const nav = useResolvedNav();
+  const navigate = useNavigate();
+  const href = useRouterState({ select: (s) => s.location.href });
+  /** FR-008: the constructor, remembering this page for "Add current page". */
+  const editMenu = (itemId?: string) => {
+    onNavigate?.();
+    void navigate({
+      to: '/app/settings',
+      search: { tab: 'navigation', ...(itemId ? { edit: itemId } : {}), ...(href.startsWith('/app/settings') ? {} : { from: href }) },
+    });
+  };
+  const quick = useQuickNavEdit();
+  const [ctx, setCtx] = useState<{ item: ResolvedItem; x: number; y: number } | null>(null);
+  const closeCtx = useCallback(() => setCtx(null), []);
+
+  // FR-010: live counters (and the spec 031 approvals count).
+  const counts = useNavBadgeCounts();
+  // FR-011: counters of hidden pages roll up into a dot on "Edit menu".
+  // Pages whose count the menu already shows (e.g. the agent inbox inside Agents) are skipped.
+  const hiddenRollup = rollup(nav.hidden, counts, shownKeys([...nav.pinned, ...nav.groups.flatMap((g) => g.items)]));
+
+  const pinnedIds = new Set(nav.pinned.map((i) => i.id));
+  const pin = (item: ResolvedItem) => {
+    if (!pinnedIds.has(item.id) && pinnedIds.size >= 10) { toast.error('You can pin up to 10 pages. Unpin one first.'); return; }
+    quick.apply((c) => togglePin(c, item.id));
+  };
+  const hide = (item: ResolvedItem) => {
+    if (quick.apply((c) => hideItem(c, item.id))) {
+      toast.success(`${item.label} is hidden from the menu. The page still works; find it with ⌘K.`);
+    }
+  };
 
   // On mobile the drawer is always full-width (never the collapsed rail).
   const isCollapsed = isMobile ? false : collapsed;
@@ -94,8 +83,25 @@ export function AppSidebar({ isMobile = false, mobileOpen = false, onNavigate }:
         transition: 'width 160ms cubic-bezier(0.2,0.7,0.2,1)',
       };
 
+  const renderItem = (item: ResolvedItem, where: string) => (
+    <SidebarItem
+      key={`${where}:${item.id}`}
+      item={item}
+      collapsed={isCollapsed}
+      pinned={pinnedIds.has(item.id)}
+      badge={badgeFor(item.badge, counts)}
+      onNavigate={onNavigate}
+      onTogglePin={pin}
+      onContext={(it, x, y) => setCtx({ item: it, x, y })}
+    />
+  );
+
+  const groupTitle = (title: string) => !isCollapsed && (
+    <div style={{ fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.09em', color: 'var(--color-ink-dim)', margin: '12px 8px 4px' }}>{title}</div>
+  );
+
   return (
-    <aside style={style}>
+    <aside style={style} aria-label="Main menu">
       <div style={{ padding: '16px 14px 8px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <Link
           to={'/app' as any}
@@ -113,48 +119,35 @@ export function AppSidebar({ isMobile = false, mobileOpen = false, onNavigate }:
       </div>
 
       <nav style={{ flex: 1, overflowY: 'auto', padding: '4px 10px' }}>
-        {GROUPS.map(g => (
-          <div key={g.title} style={{ marginBottom: 6 }}>
-            {!isCollapsed && (
-              <div style={{ fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.09em', color: 'var(--color-ink-dim)', margin: '12px 8px 4px' }}>{g.title}</div>
-            )}
-            {g.items.map(item => (
-              <Link
-                key={item.to}
-                to={item.to as any}
-                search={item.search as any}
-                onClick={onNavigate}
-                activeOptions={item.exact ? { exact: true } : undefined}
-                title={isCollapsed ? item.label : undefined}
-                style={{
-                  display: 'flex', alignItems: 'center', gap: 9,
-                  padding: '6px 9px', borderRadius: 'var(--radius-sm)',
-                  fontSize: 13, color: 'var(--color-ink-muted)', textDecoration: 'none',
-                  justifyContent: isCollapsed ? 'center' : 'flex-start',
-                }}
-                activeProps={{ style: { background: 'var(--color-surface-3)', color: 'var(--color-ink)' } }}
-              >
-                <span style={{ position: 'relative', display: 'inline-flex' }}>
-                  <Icon name={item.icon} size={16} />
-                  {isCollapsed && item.badge === 'approvals' && waiting > 0 && (
-                    <span aria-label={`${waiting} awaiting approval`} style={{ position: 'absolute', top: -3, right: -4, width: 7, height: 7, borderRadius: 999, background: 'var(--color-warning)' }} />
-                  )}
-                </span>
-                {!isCollapsed && <span>{item.label}</span>}
-                {!isCollapsed && item.badge === 'approvals' && waiting > 0 && (
-                  <span className="tabular-nums" title={`${waiting} ${waiting === 1 ? 'post' : 'posts'} awaiting approval`}
-                    style={{ marginLeft: 'auto', fontSize: 10, fontWeight: 600, color: 'var(--color-ink)', background: 'var(--color-surface-3)', border: '1px solid var(--color-warning)', borderRadius: 999, padding: '0 6px', minWidth: 18, textAlign: 'center' }}>
-                    {waiting > 99 ? '99+' : waiting}
-                  </span>
-                )}
-                {!isCollapsed && item.soon && (
-                  <span style={{ marginLeft: 'auto', fontSize: 9, color: 'var(--color-ink-dim)', border: '1px solid var(--color-hairline-strong)', borderRadius: 999, padding: '0 6px' }}>soon</span>
-                )}
-              </Link>
-            ))}
+        {nav.pinned.length > 0 && (
+          <div style={{ marginBottom: 6, paddingBottom: isCollapsed ? 6 : 0, borderBottom: isCollapsed ? '1px solid var(--color-hairline)' : 'none' }}>
+            {groupTitle('Pinned')}
+            {nav.pinned.map((item) => renderItem(item, 'pinned'))}
+          </div>
+        )}
+        {nav.groups.map(g => (
+          <div key={g.id} style={{ marginBottom: 6 }}>
+            {groupTitle(g.title)}
+            {g.items.map((item) => renderItem(item, g.id))}
           </div>
         ))}
       </nav>
+
+      <div style={{ padding: '6px 10px 0' }}>
+        <button onClick={() => editMenu()} className="btn-ghost"
+          title={hiddenRollup ? `Edit menu. Hidden pages need attention:\n${hiddenRollup.title}` : 'Edit menu'}
+          style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: isCollapsed ? 'center' : 'flex-start', gap: 8, fontSize: 12 }}>
+          <span style={{ position: 'relative', display: 'inline-flex' }}>
+            <Icon name="pencil" size={14} />
+            {hiddenRollup && (
+              <span className="nav-dot" aria-hidden
+                style={{ background: hiddenRollup.tone === 'danger' ? 'var(--color-danger)' : 'var(--color-warning)' }} />
+            )}
+          </span>
+          {!isCollapsed && <span>Edit menu</span>}
+          {hiddenRollup && <span className="sr-only">. Hidden pages need attention: {hiddenRollup.title}</span>}
+        </button>
+      </div>
 
       {!isMobile && (
         <div style={{ padding: '10px' }}>
@@ -163,6 +156,22 @@ export function AppSidebar({ isMobile = false, mobileOpen = false, onNavigate }:
             {!collapsed && <span>Collapse</span>}
           </button>
         </div>
+      )}
+
+      {ctx && (
+        <NavContextMenu
+          x={ctx.x} y={ctx.y} title={ctx.item.label} onClose={closeCtx}
+          actions={[
+            pinnedIds.has(ctx.item.id)
+              ? { label: 'Unpin', icon: 'pin-off', onSelect: () => pin(ctx.item) }
+              : { label: 'Pin to the top', icon: 'pin', onSelect: () => pin(ctx.item), disabled: !!ctx.item.unavailable },
+            {
+              label: 'Hide from the menu', icon: 'eye-off', onSelect: () => hide(ctx.item),
+              disabled: !canHide(ctx.item.id), title: canHide(ctx.item.id) ? undefined : `${ctx.item.label} is always shown`,
+            },
+            { label: 'Rename…', icon: 'pencil', onSelect: () => editMenu(ctx.item.id) },
+          ]}
+        />
       )}
     </aside>
   );

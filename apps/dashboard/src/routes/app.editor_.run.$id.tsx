@@ -1,6 +1,7 @@
-import { createFileRoute, Link } from '@tanstack/react-router';
+import { createFileRoute } from '@tanstack/react-router';
 import { useState } from 'react';
 import { PageHeader } from '../components/ui/PageHeader';
+import { useCrumbs } from '../nav/hooks';
 import { SectionCard, StatTile, EmptyState } from '../components/ui/primitives';
 import { Badge } from '../components/ui/Badge';
 import { Icon } from '../components/ui/Icon';
@@ -14,6 +15,7 @@ export const Route = createFileRoute('/app/editor_/run/$id')({ component: Editor
 
 /** Run trace viewer (spec 006 T009): every LLM turn and tool call with args, result, tokens and $. */
 function EditorRunPage() {
+  const trail = useCrumbs('editor-run');
   const { id } = Route.useParams();
   const q = useEditorRun(id);
 
@@ -24,13 +26,13 @@ function EditorRunPage() {
 
   return (
     <div>
-      <div className="text-micro" style={{ marginBottom: 10, display: 'flex', gap: 12 }}>
-        {run.channelKey
-          ? <Link to="/app/editor/$channel" params={{ channel: run.channelKey }} className="link-accent">← {run.channelKey}</Link>
-          : <Link to="/app/editor" className="link-accent">← Editor</Link>}
-        {run.slotId && <Link to="/app/editor/slot/$id" params={{ id: run.slotId }} className="link-accent">slot</Link>}
-      </div>
-      <PageHeader title={`${run.role} run`} subtitle={`${fmtDate(run.startedAt)} · ${run.model}`} />
+      <PageHeader
+        crumbs={[
+          ...trail,
+          ...(run.channelKey ? [{ label: run.channelKey, to: '/app/editor/$channel', params: { channel: run.channelKey } }] : []),
+          ...(run.slotId ? [{ label: 'Slot', to: '/app/editor/slot/$id', params: { id: run.slotId } }] : []),
+        ]}
+        title={`${run.role} run`} subtitle={`${fmtDate(run.startedAt)} · ${run.model}`} />
 
       <div style={{ display: 'flex', gap: 8, alignItems: 'center', marginBottom: 16 }}>
         <Badge tone={RUN_TONE[run.status]}>{run.status}</Badge>

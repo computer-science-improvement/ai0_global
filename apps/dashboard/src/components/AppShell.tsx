@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { Outlet, useNavigate } from '@tanstack/react-router';
+import { useCallback, useEffect, useState } from 'react';
+import { Outlet, useNavigate, useRouter } from '@tanstack/react-router';
 import { useQueryClient } from '@tanstack/react-query';
 import { useAuth } from '../auth/use-auth';
 import { authApi } from '../api/auth';
@@ -8,6 +8,18 @@ import { Button } from './ui/Button';
 import { Icon } from './ui/Icon';
 import { ConfirmProvider } from './ui/ConfirmDialog';
 import { useMediaQuery } from '../lib/useMediaQuery';
+import { useNavBadgeCounts, useQuickNavEdit, useResolvedNav } from '../nav/store';
+import { rollup } from '../nav/badges';
+import { CommandPalette } from './CommandPalette';
+import { toast } from './ui/Toast';
+import { isTypingTarget } from '../nav/palette';
+import { guessLabel, newNavId, parseNavTarget } from '../nav/config';
+import { hrefOf } from '../nav/model';
+import { menuEntries } from '../nav/registry';
+import { pinPage } from '../nav/ops';
+
+const COLLAPSED_KEY = 'dashboard:sidebar-collapsed';
+const IS_MAC = typeof navigator !== 'undefined' && /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent);
 
 export function AppShell() {
   const { me } = useAuth();
@@ -15,6 +27,60 @@ export function AppShell() {
   const qc = useQueryClient();
   const isMobile = useMediaQuery('(max-width: 860px)');
   const [navOpen, setNavOpen] = useState(false);
+  const router = useRouter();
+  const quick = useQuickNavEdit();
+
+  // Desktop rail state (BR-CORE-13), here so the ⌘K "Collapse sidebar" action can flip it.
+  const [collapsed, setCollapsed] = useState<boolean>(() => {
+    try { return localStorage.getItem(COLLAPSED_KEY) === '1'; } catch { return false; }
+  });
+  const toggleCollapsed = useCallback(() => setCollapsed((prev) => {
+    const next = !prev;
+    try { localStorage.setItem(COLLAPSED_KEY, next ? '1' : '0'); } catch { /* ignore */ }
+    return next;
+  }), []);
+
+  // Spec 027 FR-012: ⌘K / Ctrl+K anywhere in /app, except while typing in a field.
+  const [paletteOpen, setPaletteOpen] = useState(false);
+  const closePalette = useCallback(() => setPaletteOpen(false), []);
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (!(e.metaKey || e.ctrlKey) || e.altKey || e.shiftKey || e.key.toLowerCase() !== 'k') return;
+      if (isTypingTarget(e.target) && !paletteOpen) return;
+      e.preventDefault();
+      setPaletteOpen((o) => !o);
+    };
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
+  }, [paletteOpen]);
+
+  const editMenu = () => {
+    const href = router.state.location.href;
+    void navigate({ to: '/app/settings', search: { tab: 'navigation', ...(href.startsWith('/app/settings') ? {} : { from: href }) } });
+  };
+  /** ⌘K "Pin current page": the registry page at this exact address, or a pin-only custom link. */
+  const pinCurrentPage = () => {
+    const target = parseNavTarget(router.state.location.href);
+    if (!target) { toast.error("This page can't be pinned."); return; }
+    const entry = menuEntries().find((e) => hrefOf(e) === hrefOf(target));
+    const heading = typeof document !== 'undefined' ? document.querySelector('main h1')?.textContent?.trim() : '';
+    const label = entry?.label ?? (heading || guessLabel(target.to));
+    const ok = quick.apply((c) => pinPage(c, target, label, entry?.id ?? null, newNavId('c_')));
+    if (ok) toast.success(`Pinned ${label}`);
+    else if (!quick.isPending) toast.error('Already pinned, or the 10 pins are taken.');
+  };
+  const onPaletteAction = (a: 'new-post' | 'pin-page' | 'edit-menu' | 'collapse-sidebar') => {
+    if (a === 'new-post') void navigate({ to: '/app/compose' });
+    else if (a === 'pin-page') pinCurrentPage();
+    else if (a === 'edit-menu') editMenu();
+    else if (isMobile) setNavOpen(true);
+    else toggleCollapsed();
+  };
+
+  // Spec 027 FR-011/FR-014: any counter (hidden pages included) shows as a dot on the hamburger.
+  const nav = useResolvedNav();
+  const counts = useNavBadgeCounts();
+  const attention = isMobile ? rollup([...nav.pinned, ...nav.groups.flatMap((g) => g.items), ...nav.hidden], counts) : null;
 
   // Collapse the drawer whenever we leave the mobile breakpoint, so resizing
   // a desktop window never leaves a stray overlay open.
@@ -36,6 +102,8 @@ export function AppShell() {
           isMobile={isMobile}
           mobileOpen={navOpen}
           onNavigate={() => setNavOpen(false)}
+          collapsed={collapsed}
+          onToggleCollapsed={toggleCollapsed}
         />
 
         {isMobile && navOpen && (
@@ -60,12 +128,26 @@ export function AppShell() {
               <button
                 onClick={() => setNavOpen(true)}
                 className="btn-icon"
-                style={{ width: 38, height: 38, flexShrink: 0 }}
-                aria-label="Open menu"
+                style={{ width: 38, height: 38, flexShrink: 0, position: 'relative' }}
+                aria-label={attention ? `Open menu (needs attention: ${attention.title.replace(/\n/g, '; ')})` : 'Open menu'}
+                title={attention?.title}
               >
                 <Icon name="menu" size={18} />
+                {attention && (
+                  <span aria-hidden className="nav-dot" style={{
+                    top: 6, right: 6, width: 8, height: 8,
+                    background: attention.tone === 'danger' ? 'var(--color-danger)' : 'var(--color-warning)',
+                    boxShadow: '0 0 0 2px var(--color-canvas)',
+                  }} />
+                )}
               </button>
             )}
+            <button type="button" className="cmdk-trigger" onClick={() => setPaletteOpen(true)}
+              aria-label={`Search pages and actions (${IS_MAC ? '⌘' : 'Ctrl'} K)`} title={`Search (${IS_MAC ? '⌘' : 'Ctrl'} K)`}>
+              <Icon name="search" size={15} />
+              {!isMobile && <span>Search…</span>}
+              {!isMobile && <kbd className="kbd">{IS_MAC ? '⌘' : 'Ctrl'} K</kbd>}
+            </button>
             <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: isMobile ? 8 : 12 }}>
               {me && !isMobile && (
                 <span className="text-caption" style={{ color: 'var(--color-ink-muted)' }}>
@@ -93,6 +175,7 @@ export function AppShell() {
           }}>
             <Outlet />
           </main>
+          <CommandPalette open={paletteOpen} onClose={closePalette} onAction={onPaletteAction} />
         </div>
       </div>
     </ConfirmProvider>

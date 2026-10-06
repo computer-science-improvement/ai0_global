@@ -1,10 +1,10 @@
-import { createFileRoute } from '@tanstack/react-router';
-import { PageHeader } from '../components/ui/PageHeader';
-import { Placeholder } from '../components/ui/Placeholder';
+// Legacy /app/calendar route (spec 027 FR-002): the "Calendar soon" stub is gone;
+// scheduled posts live on /app/scheduled. Redirect-only.
 
-export const Route = createFileRoute('/app/calendar')({ component: () => (
-  <div>
-    <PageHeader title="Calendar / queue" subtitle="Scheduling publications" />
-    <Placeholder icon="calendar" title="Calendar soon" note="Queue and calendar of scheduled posts." />
-  </div>
-)});
+import { createFileRoute, redirect } from '@tanstack/react-router';
+
+export const Route = createFileRoute('/app/calendar')({
+  beforeLoad: () => {
+    throw redirect({ to: '/app/scheduled', replace: true });
+  },
+});

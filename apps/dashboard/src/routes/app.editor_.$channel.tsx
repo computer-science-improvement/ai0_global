@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
 import { useState, type ReactNode } from 'react';
 import { PageHeader } from '../components/ui/PageHeader';
+import { useCrumbs } from '../nav/hooks';
 import { SectionCard, StatTile, EmptyState } from '../components/ui/primitives';
 import { Badge } from '../components/ui/Badge';
 import { Icon } from '../components/ui/Icon';
@@ -18,6 +19,7 @@ import type { EditorChannel, EditorMemoryEntry } from '../api/types';
 export const Route = createFileRoute('/app/editor_/$channel')({ component: EditorChannelPage });
 
 function EditorChannelPage() {
+  const crumbs = useCrumbs('editor-channel');
   const { channel: key } = Route.useParams();
   const ch = useEditorChannel(key);
   const plans = useEditorPlans(ch.data?.today.date, key);
@@ -31,10 +33,8 @@ function EditorChannelPage() {
 
   return (
     <div>
-      <div className="text-micro" style={{ marginBottom: 10 }}>
-        <Link to="/app/editor" className="link-accent">← Editor</Link>
-      </div>
       <PageHeader
+        crumbs={crumbs}
         title={c.title || c.channelKey}
         subtitle={`${c.channelKey} · ${c.timezone} · plan at ${String(c.planHour).padStart(2, '0')}:00`}
         actions={<>

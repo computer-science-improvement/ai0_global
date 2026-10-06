@@ -1,8 +1,9 @@
-// Settings page. Four tabs: Telegram (live values via GET /settings; the
+// Settings page. Five tabs: Telegram (live values via GET /settings; the
 // "Tracking" block is editable and persisted via PATCH /settings), AI (provider
-// keys as read-only set/not-set badges), Meta (placeholder) and Security
-// (dashboard sessions + sign-in audit, spec 028). Active tab in ?tab= for
-// reload/linkability.
+// keys as read-only set/not-set badges), Meta (placeholder), Security
+// (dashboard sessions + sign-in audit, spec 028) and Navigation (the menu
+// constructor, spec 027: ?edit=<item id> focuses an item, ?from=<href> is the
+// page "Add current page" captures). Active tab in ?tab= for reload/linkability.
 //
 // Editing model: every change (toggle flip or number apply) opens a confirm
 // dialog that shows the old → new value before persisting. No batch save.
@@ -18,30 +19,34 @@ import { Button } from '../components/ui/Button';
 import { useConfirm } from '../components/ui/ConfirmDialog';
 import { settingsApi } from '../api/settings';
 import { SecurityTab } from '../components/settings/SecurityTab';
+import { NavigationTab } from '../components/settings/NavigationTab';
 import type { AppSettings, SettingsPatch } from '../api/types';
 
-type Tab = 'telegram' | 'ai' | 'meta' | 'security';
+type Tab = 'telegram' | 'ai' | 'meta' | 'security' | 'navigation';
 
 const TABS: ReadonlyArray<{ key: Tab; label: string }> = [
   { key: 'telegram', label: 'Telegram' },
   { key: 'ai',       label: 'AI' },
   { key: 'meta',     label: 'Meta' },
   { key: 'security', label: 'Security' },
+  { key: 'navigation', label: 'Navigation' },
 ];
 
-const VALID: Tab[] = ['telegram', 'ai', 'meta', 'security'];
+const VALID: Tab[] = ['telegram', 'ai', 'meta', 'security', 'navigation'];
 
-interface Search { tab: Tab; }
+interface Search { tab: Tab; edit?: string; from?: string; }
 
 export const Route = createFileRoute('/app/settings')({
   validateSearch: (s: Record<string, unknown>): Search => ({
     tab: VALID.includes(s.tab as Tab) ? (s.tab as Tab) : 'telegram',
+    ...(typeof s.edit === 'string' && /^[a-z0-9_:-]{1,64}$/.test(s.edit) ? { edit: s.edit } : {}),
+    ...(typeof s.from === 'string' && s.from.startsWith('/app') && s.from.length <= 500 ? { from: s.from } : {}),
   }),
   component: SettingsPage,
 });
 
 function SettingsPage() {
-  const { tab } = Route.useSearch();
+  const { tab, edit, from } = Route.useSearch();
   const navigate = Route.useNavigate();
   const setTab = (t: Tab) => navigate({ search: { tab: t } });
 
@@ -56,6 +61,7 @@ function SettingsPage() {
       {tab === 'telegram' && <TelegramTab />}
       {tab === 'ai'       && <AiTab />}
       {tab === 'security' && <SecurityTab />}
+      {tab === 'navigation' && <NavigationTab editId={edit} from={from} />}
       {tab === 'meta'     && (
         <Placeholder
           icon="facebook"

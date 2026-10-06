@@ -58,17 +58,17 @@ ai0_global — система для власника мережі україн�
 | Publishing | Editor | `/app/editor`, `/$channel`, `/run/$id`, `/slot/$id` | 03 — AI-редактор і чат |
 | Publishing | Agents | `/app/agents`, `/$handle`, `/inbox` | 04 — Платформа агентів |
 | Publishing | Chat | `/app/chat` | 03 |
-| Publishing | Scheduled | `/app/scheduled` (+ `/app/calendar`) | 02 |
+| Publishing | Scheduled | `/app/scheduled` (`/app/calendar` перенаправляє сюди, spec 027) | 02 |
 | Publishing | My channels | `/app/channels?filter=mine`, `/app/channels/$id` | 05 — Канали й аналітика |
 | (кнопка «New post») | Compose | `/app/compose` | 02 |
 | Analytics | Analytics | `/app/analytics` | 05 |
 | Analytics | Logs | `/app/logs` | 05 |
-| Analytics | Agent | `/app/agent` (агент-оператор: DM-тріаж, chat intel) | 03 |
+| Agents | DM inbox | `/app/dm` (агент-оператор: DM-тріаж, chat intel; `/app/agent` перенаправляє сюди, spec 027) | 03 |
 | Intelligence | Discovery | `/app/discovery` | 06 — Розвідка |
 | Intelligence | Tracked | `/app/tracked` | 05 |
 | Intelligence | Graph | `/app/graph` | 06 |
 | Intelligence | Recommendations | `/app/recommendations` | 06 |
-| Connections | Connections | `/app/connections`, `/$platform`, `/meta`, `/meta/$accountId`, `/tiktok`, `/app/bots`, `/app/telegraph` | 07 — Підключення |
+| Connections | Connections | `/app/connections`, `/meta/$accountId`; редиректи `/meta`, `/tiktok`, `/app/bots`, `/app/telegraph` (spec 027) | 07 — Підключення |
 | Connections | Groups | `/app/connections/groups` | 07 |
 | Marketing | Landing | `/app/landing` | 08 — Маркетинг |
 | Marketing | Ads | `/app/ads` | 08 |

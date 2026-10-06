@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
 import { useMemo } from 'react';
 import { PageHeader } from '../components/ui/PageHeader';
+import { useCrumbs } from '../nav/hooks';
 import { SectionCard, EmptyState } from '../components/ui/primitives';
 import { Badge } from '../components/ui/Badge';
 import { Icon } from '../components/ui/Icon';
@@ -14,6 +15,7 @@ import { fmtDate } from '../lib/format';
 export const Route = createFileRoute('/app/editor_/slot/$id')({ component: EditorSlotPage });
 
 function EditorSlotPage() {
+  const trail = useCrumbs('editor-slot');
   const { id } = Route.useParams();
   const slot = useEditorSlot(id);
   const runs = useEditorRuns({ slot: id, limit: 10 });
@@ -33,10 +35,8 @@ function EditorSlotPage() {
 
   return (
     <div>
-      <div className="text-micro" style={{ marginBottom: 10 }}>
-        <Link to="/app/editor/$channel" params={{ channel: s.channelKey }} className="link-accent">← {s.channelKey}</Link>
-      </div>
       <PageHeader
+        crumbs={[...trail, { label: s.channelKey, to: '/app/editor/$channel', params: { channel: s.channelKey } }]}
         title={s.topic}
         subtitle={`${s.channelKey} · ${fmtDate(s.scheduledAt)} · ${s.format}${s.isExperiment ? ' · experiment' : ''}`}
         actions={planned ? <>

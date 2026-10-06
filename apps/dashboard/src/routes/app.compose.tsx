@@ -1,6 +1,7 @@
-import { createFileRoute, Link } from '@tanstack/react-router';
+import { createFileRoute } from '@tanstack/react-router';
 import { useQuery } from '@tanstack/react-query';
 import { PageHeader } from '../components/ui/PageHeader';
+import { useCrumbs } from '../nav/hooks';
 import { Icon } from '../components/ui/Icon';
 import { PostComposer } from '../components/post/PostComposer';
 import { scheduledPostsApi } from '../api/scheduled-posts';
@@ -16,6 +17,7 @@ export const Route = createFileRoute('/app/compose')({
 function ComposePage() {
   const { id } = Route.useSearch();
   const navigate = Route.useNavigate();
+  const crumbs = useCrumbs('compose');
 
   // Edit mode: fetch the post to prefill. Blank compose when no id.
   const postQ = useQuery({
@@ -31,17 +33,9 @@ function ComposePage() {
 
   return (
     <div style={{ maxWidth: 1080 }}>
-      <Link
-        to={'/app/scheduled' as never}
-        className="link-accent text-body-sm compose-rise"
-        style={{ display: 'inline-flex', alignItems: 'center', gap: 6, marginBottom: 16, animationDelay: '0ms' }}
-      >
-        <span style={{ display: 'inline-flex' }}><Icon name="chevron-left" size={15} /></span>
-        Back to scheduled
-      </Link>
-
       <div className="compose-rise" style={{ animationDelay: '40ms' }}>
         <PageHeader
+          crumbs={crumbs}
           title={id ? 'Edit post' : 'New post'}
           subtitle={
             id

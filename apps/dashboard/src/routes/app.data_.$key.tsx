@@ -1,6 +1,8 @@
-import { createFileRoute, Link, useNavigate } from '@tanstack/react-router';
+import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import { useState } from 'react';
 import { PageHeader } from '../components/ui/PageHeader';
+import { Crumbs } from '../components/ui/Crumbs';
+import { useCrumbs } from '../nav/hooks';
 import { Badge } from '../components/ui/Badge';
 import { Icon } from '../components/ui/Icon';
 import { EmptyState, StatTile } from '../components/ui/primitives';
@@ -36,11 +38,9 @@ function DatasetPage() {
   const [importing, setImporting] = useState(false);
   const setTab = (t: Tab) => void navigate({ search: { tab: t === 'items' ? undefined : t }, replace: true });
 
-  const back = (
-    <div className="text-micro" style={{ marginBottom: 10 }}>
-      <Link to="/app/data" className="link-accent">← Data</Link>
-    </div>
-  );
+  // Spec 027 FR-013: breadcrumbs instead of the ad-hoc back link.
+  const crumbs = useCrumbs('dataset');
+  const back = <Crumbs crumbs={crumbs} />;
 
   if (q.error) {
     const notFound = q.error instanceof ApiError && q.error.status === 404;
