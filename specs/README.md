@@ -32,10 +32,10 @@ Each feature directory has `spec.md` (what and why), `plan.md` (how, plus Consti
 | 021 | [MANAGER and directives](021-manager-directives/spec.md): KPI digest, directives, owner cards, effect evaluation | P1 | 020 | DONE (shadow-safe; owner verifies live) |
 | 022 | [Network cross-promo](022-network-cross-promo/spec.md): own-resource promo and reposts, tracked links, transitions KPI | P2 | 021 | DONE (shadow-safe; owner verifies live) |
 | 023 | [Agent-owned content](023-agent-owned-content/spec.md): strategies become agent tools, the agent sets the schedule (chat, manual override), content ledger (Linear AI0-17) | P1 | 009, 018, 020, 021 | IN PROGRESS (T1–T3) |
-| 024 | [Independent resources](024-independent-resources/spec.md): per-resource duplicate / adapt / unique decisions and per-resource time zones (AI0-25) | P1 | 019, 020, 021 | IN PROGRESS (T1–T2) |
+| 024 | [Independent resources](024-independent-resources/spec.md): per-resource duplicate / adapt / unique decisions and per-resource time zones (AI0-25) | P1 | 019, 020, 021 | IN PROGRESS (T1–T2 done) |
 | 025 | [MANAGER directive vs advice](025-manager-directive-vs-advice/spec.md): binding directives vs optional advice, code executors per directive kind (AI0-33) | P2 | 020, 021, 022 | SPEC |
 | 026 | [Landing: AI network + white label](026-landing-ai-network-white-label/spec.md): AI-run network positioning, white-label offer, ads via Telegram DM (AI0-41) | P2 | 008, 017–022 | SPEC |
-| 027 | [Navigation constructor](027-navigation-constructor/spec.md): menu constructor, badges, IA cleanup; `ui.nav` in app_settings (AI0-9) | P2 | 017, 018, 021 | IN PROGRESS |
+| 027 | [Navigation constructor](027-navigation-constructor/spec.md): menu constructor, badges, IA cleanup; `ui.nav` in app_settings (AI0-9) | P2 | 017, 018, 021 | DONE |
 | 028 | [Auth hardening](028-auth-hardening/spec.md): route guard, server-side gating of /app, revocable sessions, no dev mode in production (AI0-48) | P1 | 001 | DONE (live browser flows to verify on deploy) |
 | 029 | [Agent and AI spend analytics](029-agent-and-ai-spend-analytics/spec.md): every LLM call in a usage ledger, prices, budgets, `/app/spend` (AI0-1) | P2 | 006, 017, 021 | DONE |
 | 030 | [YouTube + LinkedIn](030-youtube-linkedin/spec.md): Shorts via the video bridge with quota, LinkedIn pages and 5 formats (AI0-56) | P3 | 016, 019, 020 | SPEC (future) |
