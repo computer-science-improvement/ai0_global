@@ -1,0 +1,184 @@
+# 025: MANAGER: binding directives vs optional advice, and code executors for directive kinds
+
+**Status:** SPEC · **Depends on:** 020, 021, 022 · **Supersedes/extends:** extends 021 (FR-004, FR-006, FR-007, FR-008, FR-009); replaces `applyAccepted` auto-flip ·
+**Migration:** `057_directive_binding.sql`
+
+**Owner comments addressed:** #7
+
+## Why
+Owner comment #7: «менеджер або може дати директиву - це більш приорітетна команда, або пораду - це те чому агент або буде
+слідувати або може відхиляти». Today every MANAGER message is a "directive" that the orchestrator may reject for any listed
+reason, so nothing carries real priority and nothing is marked optional. Worse, "applied" is often untrue: only `cross_promo`
+and `repost` have code behind them, and the evaluator scores effects of changes that may never have happened.
+
+This spec splits MANAGER output into two binding levels:
+- **directive**: a command the orchestrator must carry out, unless a higher layer forbids it;
+- **advice**: optional; the orchestrator follows it or declines it.
+
+Every kind gets a deterministic executor: `applied` means the change exists, `verified` means it was observed in plans and
+publishing (constitution I and IX).
+
+## Current state (as-is)
+- `agent_directives` (`053_directives.sql`) has a `kind` but no binding level. `advice` and `task` are only exempt from `expected` (`BR-AGT-93`).
+- `reject_directive` (`apps/automation/src/editor/manager/directive-tools.ts`) accepts any of `owner_rule|playbook|capability|health|data`, closes the directive silently and starts a 48 h cooldown (`BR-AGT-79`, `BR-AGT-93`).
+- `ManagerRunner.afterOrchestration` → `applyAccepted(orch, ['cross_promo','repost'])` flips every other accepted kind to `applied` after any run, unchecked; `pause_resource` pauses nothing (BRD 04 §3.12). Only `PromoPlanner.schedule` (022) executes anything (`BR-AGT-80`).
+- Precedence is code-checked only on accept (`conflicting_rule_ids`, 021 FR-008); the prompt says "owner rule > directive > own judgment" (`network-prompts.ts:44`), with no place for safety, playbook or advice.
+- Unanswered directives expire after 24 or 48 h without notice (`BR-AGT-96`; open question in BRD §3.10).
+- `components/agents/Directives.tsx` has `structural`/`shadow`/outcome badges and Open/All only; `directive_structural` Inbox entries have no link (BRD §3.13).
+- Reusable mechanics: `network/playbook.ts` (`per_day`, `formats`, `series[].active`, `classifyPlaybookChange`), `validateNetworkPlan`, `editor_slots.is_experiment`, `ResourceHealthService.usable`.
+
+## Precedence (normative)
+1. **Owner rules** (`editor_memory`/`agent_memory` with `created_by='owner'`, owner-locked skills).
+2. **Safety**: code guards (quiet hours, budgets, kill switch, lint, API caps, resource health) and constitution VIII.
+3. **MANAGER directives** (binding).
+4. **The active playbook.**
+5. **MANAGER advice.**
+6. **The orchestrator's own preferences.**
+
+A lower layer never overrides a higher one: a directive that changes the playbook wins (its executor writes the new version);
+advice that conflicts with the playbook may simply be declined.
+
+## Functional requirements
+| ID | Requirement |
+|----|-------------|
+| FR-001 | **Migration `057_directive_binding.sql`** (idempotent, non-destructive). <br>• `agent_directives`: add `binding TEXT NOT NULL DEFAULT 'directive' CHECK (binding IN ('directive','advice'))` and backfill `kind='advice'` → `'advice'`. Add `change JSONB` (executor diff), `exec_attempts SMALLINT NOT NULL DEFAULT 0`, `exec_error TEXT`, `verification JSONB`, `verified_at`, `contested_at TIMESTAMPTZ`. <br>• Widen CHECKs (look up names in `pg_constraint`, drop and re-add; no data changes): `status` + `contested`, `declined`, `failed`; `owner_decision` + `upheld`, `refusal_accepted`. <br>• `playbooks`: add `directive_id UUID NULL REFERENCES agent_directives(id) ON DELETE SET NULL`; `created_by` CHECK gains `'directive'`. <br>• New `resource_pauses(id BIGSERIAL PK, resource_ref TEXT NOT NULL, agent_id UUID, directive_id UUID, reason TEXT NOT NULL, starts_at, until TIMESTAMPTZ NOT NULL, lifted_at, lifted_by TEXT CHECK (lifted_by IN ('schedule','owner')), created_at)`; unique partial index `(resource_ref) WHERE lifted_at IS NULL`. <br>• `GRANT SELECT … TO editor_ro` as in 053. |
+| FR-002 | **Kind × binding matrix** (`directive-kinds.ts`, code only). <br>• `advice`: advice only. <br>• `task`, `format_shift`, `pause_series`, `experiment`, `repost`: either level. <br>• `frequency`: either level below \|change_pct\| 30; at 30 or above it is structural and must be a directive. <br>• `cross_promo`, `pause_resource`, `strategy`: directive only, always structural. <br>`file_directive` gains a required `binding: 'directive' \| 'advice'`. Structural advice → error `structural_must_be_directive`. `advice` filed as a directive → error `advice_kind_is_advice`. |
+| FR-003 | **Directive admission rules** (`fileDirective`), on top of 021 FR-004. A non-structural `binding='directive'` requires that `expected.metric` is flagged `anomaly` for the target scope in the digest, **or** that advice of the same kind to the same target was declined in the last 14 days and the metric has since moved further against `expected` (escalation). Otherwise → error `directive_needs_anomaly`, which tells the MANAGER to file it as advice. At most 2 open binding directives per target. |
+| FR-004 | **Executor dry-run at filing.** Every kind with an executor (FR-010…FR-015) runs `plan(dir, ctx)` before insert. <br>• Invalid params (unknown series, a format outside `implementedFormats(platform)`, a resource outside the network, `per_day.max` above `dailyApiCap`) → error `not_executable`, so impossible directives are never filed. <br>• For playbook kinds the dry-run diff goes through `classifyPlaybookChange`. If it is structural (a format added, per_day ≥ ±30 %), it becomes `structural` and must be a directive. This replaces the param-only `isStructural`. |
+| FR-005 | **Orchestrator response tools** (role `orchestrator`; `reject_directive` is removed from the registry). <br>• `accept_directive({id, plan, conflicting_rule_ids})`: unchanged, both levels; the owner-rule check stays (021 FR-008). <br>• `decline_advice({id, reason ≥ 10 chars, reason_kind: owner_rule\|playbook\|data\|capability\|health\|preference})`: advice only, otherwise error `binding_directive_use_contest`. Status becomes `declined`. No Inbox entry and no cooldown. <br>• `contest_directive({id, reason_kind: owner_rule\|safety\|capability\|health, reason ≥ 20 chars, rule_ids?: int[], resource_ref?: string})`: directives only. After FR-006 checks: `contested` plus an owner card (FR-008). Playbook/data/preference reasons → error `directive_is_binding`. |
+| FR-006 | **Contest checks** (deterministic): `owner_rule` → every `rule_ids` entry is an active owner rule of the orchestrator; `health` → `resource_ref` is in scope and `ResourceHealthService.usable(ref)` is false now; `capability` → re-running the executor's `plan()` fails now; `safety` → accepted but flagged `unverified` on the card. A failed check → `reason_not_verified` (accept, or cite a reason that holds). The result goes to `verification.contest`. |
+| FR-007 | **Non-response.** <br>• A binding directive delivered 24 h ago with no answer, whose target is active and not paused: the code runs its executor (`resolution='auto-applied: no response'`) and posts an Inbox entry `directive_auto_applied` (info). Kinds without an executor (`task`) → `expired` plus an Inbox entry `directive_ignored` (action). <br>• Unanswered advice → `expired` silently, as today. <br>• A target that is paused or `off` → `expired` as today, now with an Inbox entry (info). This answers the BRD §3.10 question. |
+| FR-008 | **Contested card and owner decision.** The Inbox entry is `directive_contested` (severity action, `refType='directive'`). It shows the directive, the refusal, the check result and the precedence layer cited. <br>• `POST /api/directives/:id/uphold`: `owner_decision='upheld'`, then the executor runs. The owner-rule conflict check is skipped because the owner has decided, but health and capability guards still apply (→ `409 not_executable`). <br>• `POST /api/directives/:id/accept-refusal`: `rejected`, `owner_decision='refusal_accepted'`, and the 48 h cooldown starts. <br>• No answer within `DIRECTIVE_CONTEST_TIMEOUT_HOURS` (default 24): the refusal stands (`rejected`, `timeout_dropped`). <br>• A repeat decision → `409 not_contested`. |
+| FR-009 | **Executor framework** (`manager/executors/*.ts`, interface `{plan(dir, ctx): Change \| {error}; apply(change): Promise<Applied>; verify(dir): Promise<{verified: boolean; detail}>}`). <br>• Replaces `applyAccepted`: `afterOrchestration` runs `apply` for every `accepted` row, followed advice included. Success → `applied`, `applied_at`, `change`, baseline (021). Error → `exec_attempts+1`, retried hourly; after 3 → `failed` + Inbox `directive_failed` (action for directives, info for advice). <br>• Hourly housekeeping runs `verify()` on `applied` rows without `verified_at`. <br>• Playbook kinds insert a new active version transactionally (`created_by='directive'`, `directive_id`), keeping any pending owner draft. Single-channel orchestrators without a playbook get `editor_channels.posts_per_day_min/max` / `formats` edited instead. |
+| FR-010 | **`frequency`** (`{resource_ref, change_pct ∈ [-60, 100]}`). Scale `per_day.min/max` (round, clamp 0–24, `min ≤ max`, `max ≥ 1`, platform `dailyApiCap`).  **Applied:** the version is active and re-read. **Verified:** the first plan after `applied_at` for that resource is within the new range; otherwise `adherence='violated'`. |
+| FR-011 | **`format_shift`** (`{resource_ref?, format, weight_delta ∈ [-0.3, 0.3]}`; `resource_ref` defaults to the Telegram anchor). Clamp 0–1, keep one format above 0. **Verified:** over the next 3 plan days the format's share moved in the delta's direction (positive delta: ≥ 1 slot used it); otherwise `adherence='not_followed'`. |
+| FR-012 | **`pause_series`** (`{series, resume_on?: YYYY-MM-DD Kyiv, ≤ 28 days, default 14}`). Set `series.active=false`; housekeeping writes a version with `active=true` on `resume_on`. **Verified:** no `series:<name>` slot planned after `applied_at` (`validateNetworkPlan` already refuses inactive series). |
+| FR-013 | **`pause_resource`** (structural; `{resource_ref, days 1–14, default 7, reason}`). Insert a `resource_pauses` row. While a pause is active: <br>• `networkContext` leaves the resource out, and a paused Telegram anchor is not added back; <br>• single-channel `maybePlan` and `maybeOrchestrate` skip the channel; <br>• `EditorScheduler.tick` sets claimed content slots on that resource to `skipped` with `error='resource_paused'`; <br>• `PromoPlanner.schedule` refuses (`resource_paused`), and `ReservedDispatcher` skips promo slots there; <br>• paid ad slots (`SponsoredPublisher`) are **not** skipped (contractual). <br>Auto-lift at `until`; Inbox `resource_paused` / `resource_resumed` (info); `POST /api/resources/:ref/pause/lift` lifts early. **Verified:** no content slot on the resource published or shadowed in the window. |
+| FR-014 | **`experiment`** (`{resource_ref, angle 10–300, format?, slots 1–3, within_days 1–7}`). <br>• `NetworkSlotInput` and the single-channel plan input gain an optional `directive_id`. <br>• While the quota is open, `validateNetworkPlan` / `validatePlan` require at least 1 slot per plan day with `directive_id` on that resource, provided it has capacity. These slots are stored with `is_experiment=true` and hint `directive:<id>`. Experiment slots from a directive do not count against `explore_ratio`. <br>• **Applied:** the first such slot is planned. **Verified:** `slots` of them are published or shadowed. At `within_days` with a quota still open → `failed`. |
+| FR-015 | **`strategy`** (structural). Run `runPlaybookBuild(card, brief = directive body)`. The resulting `pending_owner` version carries `directive_id`. **Applied** when the owner activates that version. If the owner rejects the version → `rejected`, `owner_decision='declined'`. <br>**`task`**: there is no executor. The new tool `report_directive_done({id, ref_type: idea\|slot\|playbook\|skill, ref_id})` checks that the referenced row exists, belongs to the orchestrator and was created after `delivered_at`. That makes it **applied and verified**. <br>**`repost` / `cross_promo`**: unchanged (`PromoPlanner`). **Verified** when the promo slot is `published` or `shadowed`. <br>**`advice`** (free text): an accepted advice becomes `applied` with `verification={kind:'self_reported'}` and is never evaluated. |
+| FR-016 | **Evaluation** (021 FR-007, changed). Only `verified` directives get `worked/no_effect/hurt`. An `applied` directive that is not verified by `review_at` → `inconclusive` with `outcome_detail.reason='not_verified'`, and its `adherence` is copied into the result. |
+| FR-017 | **MANAGER inputs.** <br>• The digest gains `compliance` per orchestrator over 30 days: advice followed and declined, the last 3 decline reasons, directives contested and auto-applied. <br>• `list_directives` returns `binding`, `verification` and `adherence`. <br>• Skill `manager-workflow` gets a section "порада чи директива": advice is the default; a directive only on an anomaly or an escalation; structural kinds are always directives. <br>• Skill `editor-orchestrator-workflow` and `orchestratorSystemPrompt` get the 6-layer precedence and the rule "a directive is answered with accept or contest; advice with accept or decline". <br>• Delivered text marks each item `ДИРЕКТИВА (обовʼязково)` or `порада (на твій розсуд)`. |
+| FR-018 | **REST.** `GET /api/directives` gains filters `binding=`, `kind=` (csv) and `verified=true\|false`, plus the fields `binding`, `change`, `verification`, `verifiedAt`, `execError` and `contestedAt`. New: `POST …/:id/uphold`, `POST …/:id/accept-refusal`, `GET /api/resources/pauses`, `POST /api/resources/:ref/pause/lift`. |
+| FR-019 | **Dashboard.** <br>• `Directives.tsx`: a binding badge (`DIRECTIVE` with the warning tone, `advice` neutral), badges `contested`, `declined`, `failed`, and a verification chip (`applied · checking`, `verified ✓`, `not followed`, `self-reported`). There is a binding filter (All / Directives / Advice) and a kind multi-select on both the @manager board and the orchestrator Inbox tab. "Awaiting you" holds `awaiting_owner` and `contested`; `declined` and `failed` go to the closed column. <br>• A contested card has the buttons **Uphold**, **Accept refusal** and **Discuss** (opens `/app/chat` with `@manager`). <br>• `/app/agents/inbox`: `directive_*` / `resource_*` kinds get "Open directive →" (`/app/agents/manager?tab=directives&d=<id>`), closing the BRD §3.13 `refType='directive'` gap. <br>• Orchestrator Overview: **Active effects** (paused resources/series with end dates and Lift, experiment quota progress, directive-made playbook versions). |
+| FR-020 | **Shadow.** Shadow MANAGER directives are never delivered, executed or contested (unchanged). A live directive to an orchestrator in shadow mode **is** executed: its config changes are real but publishing stays shadowed. Verification counts `shadowed` slots. |
+
+## Corner cases
+- **Directive vs owner rule.** `accept_directive` is refused (021); the orchestrator must contest with `owner_rule`. If the owner upholds, the executor runs and the card suggests editing the rule.
+- **Two playbook directives at once.** Each executor writes on top of the current active version in the playbook transaction; the evaluator already flags overlaps on the same metric.
+- **The orchestrator reverts an executor's change** with `submit_playbook` before `review_at` → refused with `directive_lock` and the directive id. Advice changes are not locked.
+- **The owner edits the playbook by hand** after a directive: allowed; evaluation gives `inconclusive (owner_override)`.
+- **A pause overlaps a paid ad order.** The ad still runs; the pause card says so.
+- **Escalation loop.** Advice declined → directive by escalation → contested → owner accepts the refusal: the 48 h cooldown applies and MANAGER memory gets "owner sided with @x on <kind>".
+- **Restart between apply and status update.** Executors are idempotent: re-applying is a no-op when the active version already contains `change.after`.
+
+## Non-goals
+- Automatic revert of a `hurt` directive. The Inbox card says "hurt" and the owner or the next MANAGER run decides.
+- New directive kinds, or directives from orchestrators to the MANAGER.
+- Changing how the KPI digest computes metrics, or the 022 promo limits.
+- Moving schedule or frequency ownership out of the playbook. If a later spec moves it, only the `frequency` executor's `apply` changes.
+
+## Success criteria
+- **Unit tests** (`node:test`): the kind × binding matrix and admission rules; dry-run `not_executable` and structural detection; each contest check (pass/fail); the contested state machine (uphold, accept-refusal, timeout) and auto-apply; each executor's `plan`/`apply`/`verify` incl. the single-channel fallback and idempotent re-apply; pause guards (networkContext, scheduler skip, PromoPlanner, paid ads untouched); the experiment quota in both validators; `directive_lock`; the evaluator's `not_verified` path.
+- **PG e2e** (`manager.pg.test.ts`, scripted LLM): binding `format_shift` → accept → playbook version with `directive_id` → planner follows → `verified` → evaluated; advice → `decline_advice` → `declined`, no cooldown, no Inbox; binding `frequency` vs owner rule → `contest_directive` → Inbox → uphold → applied; approved `pause_resource` → slots skipped → auto-lift.
+- **Live evals** (`evals/cases/agents.ts`): `orchestrator-directive-comply` (binding format_shift against playbook weights is accepted), `orchestrator-directive-owner-rule-contest` (contested with the right rule id), `orchestrator-advice-decline` (advice contradicting fresh data is declined with a data reason), `manager-advice-vs-directive` (mild trend → advice or nothing; anomaly → directive). Existing manager evals stay green.
+- After 14 days live, every `applied` row has an executor `change` and a visible verification state.
+
+## Open questions for the owner
+1. **A binding directive the orchestrator ignores for 24 h: auto-apply or escalate?** Default: auto-apply when there is an executor, plus an info Inbox entry (FR-007).
+2. **Contest timeout outcome:** does the agent's refusal stand, or does the directive apply? Default: the refusal stands after 24 h, because the higher layers (owner rule, safety) were cited.
+3. **Should `repost` stay possible as advice?** Default: yes. It is non-structural and cheap, and it only affects the anchor.
+4. **Can an orchestrator revert directive-made playbook changes before review?** Default: no for directives (`directive_lock`), yes for advice.
+
+## Task breakdown
+
+### T1: Add binding levels and directive admission rules
+**Scope:**
+- Migration `057_directive_binding.sql` (FR-001).
+- `directive-kinds.ts` matrix; `file_directive` gets `binding` and the admission rules (FR-002, FR-003).
+- `binding` in the repository, the REST filters and fields (FR-018 read part), and the delivered prompt text.
+- `manager-workflow` skill section "порада чи директива" (FR-017).
+
+**Acceptance:**
+- [ ] The migration runs twice cleanly; existing `advice` rows are backfilled.
+- [ ] Unit tests cover every matrix cell and both admission paths.
+- [ ] `GET /api/directives?binding=advice` filters correctly.
+
+**Size:** M · **Depends on:** 021
+
+### T2: Build the executor framework with playbook executors
+**Scope:**
+- `manager/executors/` interface, registry and dry-run at filing (FR-004, FR-009).
+- `frequency`, `format_shift` and `pause_series` executors, including the single-channel card fallback and auto-resume (FR-010–FR-012).
+- Remove `applyAccepted`; add the retry/`failed` path and hourly `verify()`.
+- Playbook `created_by='directive'` and `directive_id`; `directive_lock` in `submit_playbook`.
+
+**Acceptance:**
+- [ ] An accepted `format_shift` creates an active playbook version linked to the directive, and its `change` holds before/after.
+- [ ] A directive whose plan cannot apply ends `failed` after 3 attempts with an Inbox entry.
+- [ ] Re-running `apply` is a no-op.
+
+**Size:** L · **Depends on:** T1
+
+### T3: Give orchestrators the response tools and owner escalation
+**Scope:**
+- `decline_advice`, `contest_directive` with the code checks, and removal of `reject_directive` (FR-005, FR-006).
+- `contested` state, `uphold` / `accept-refusal` endpoints and the timeout (FR-008).
+- Non-response handling: auto-apply, ignored or expired with Inbox entries (FR-007).
+- 6-layer precedence in `orchestratorSystemPrompt` and the `editor-orchestrator-workflow` skill.
+
+**Acceptance:**
+- [ ] A contest with an unknown rule id → `reason_not_verified`.
+- [ ] A valid contest creates exactly one `directive_contested` Inbox entry.
+- [ ] Uphold runs the executor; accept-refusal starts the cooldown; a declined advice does not.
+
+**Size:** L · **Depends on:** T1, T2
+
+### T4: Make `pause_resource` actually pause
+**Scope:**
+- `ResourcePauseService` over `resource_pauses` (FR-013).
+- Guards in `networkContext`, single-channel planning, `EditorScheduler.tick`, `PromoPlanner` and `ReservedDispatcher`.
+- Auto-lift, the lift endpoint, `GET /api/resources/pauses`, and the Inbox entries.
+
+**Acceptance:**
+- [ ] With an active pause, no content or promo slot on the resource is published or shadowed, and paid ad slots still publish.
+- [ ] The pause lifts at `until` and the resource returns to planning the next day.
+
+**Size:** M · **Depends on:** T2
+
+### T5: Add experiment, strategy and task executors, and make evaluation verification-aware
+**Scope:**
+- `directive_id` in the plan inputs and the quota rule in both validators (FR-014).
+- `strategy` → playbook build linked to the directive; `report_directive_done` for `task` (FR-015).
+- Promo verification on publish or shadow; evaluator `not_verified` and adherence (FR-016).
+- Digest `compliance` block (FR-017).
+
+**Acceptance:**
+- [ ] A plan without the required experiment slot is refused with a Ukrainian error naming the directive.
+- [ ] An unverified applied directive is evaluated `inconclusive (not_verified)`.
+
+**Size:** M · **Depends on:** T2
+
+### T6: Show binding and verification in the dashboard
+**Scope:**
+- Badges, the binding and kind filters, and the column changes in `Directives.tsx` (FR-019).
+- Contested card actions and the Discuss link.
+- Inbox "Open directive →" links for `directive_*` and `resource_*` kinds.
+- Orchestrator Overview **Active effects** with the Lift button.
+
+**Acceptance:**
+- [ ] `tsc` and the build are green.
+- [ ] A contested directive can be upheld from the board and from the Inbox link target.
+- [ ] Filters persist in the URL search params.
+
+**Size:** M · **Depends on:** T1, T3, T4
+
+### T7: Add evals and the PG end-to-end tests
+**Scope:**
+- The four live eval cases from Success criteria, registered in `run-evals.ts`.
+- The PG e2e flows in `manager.pg.test.ts`.
+
+**Acceptance:**
+- [ ] The new evals pass 3 runs out of 3 on the default model.
+- [ ] `pnpm --filter automation test` is green.
+
+**Size:** S · **Depends on:** T3, T4, T5
