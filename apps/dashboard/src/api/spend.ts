@@ -142,7 +142,7 @@ export interface AgentsOverview {
 const KEY = ['spend'] as const;
 
 /** The query string of a breakdown/export request (empty values dropped). */
-export function spendParams(q: Partial<SpendQuery> & { groupBy?: string }): string {
+export function spendParams(q: Omit<Partial<SpendQuery>, 'groupBy'> & { groupBy?: SpendGroupBy | 'raw' }): string {
   const p = new URLSearchParams();
   if (q.from && q.to) { p.set('from', q.from); p.set('to', q.to); } else if (q.range) p.set('range', q.range);
   if (q.groupBy) p.set('groupBy', q.groupBy);
@@ -234,7 +234,7 @@ export function useDeleteBudget() {
 }
 
 /** Download the CSV with the session cookie and save it under the server's file name. */
-export async function downloadSpendCsv(q: Partial<SpendQuery> & { groupBy: SpendGroupBy | 'raw' }): Promise<void> {
+export async function downloadSpendCsv(q: Omit<Partial<SpendQuery>, 'groupBy'> & { groupBy: SpendGroupBy | 'raw' }): Promise<void> {
   const res = await fetch(`${API_BASE}/api/spend/export.csv?${spendParams(q)}`, { credentials: 'include' });
   if (res.status === 401) throw await unauthorized(res);
   if (!res.ok) throw new ApiError(res.status, await res.text());

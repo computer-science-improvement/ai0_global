@@ -78,7 +78,7 @@ test('Spend page URL state, custom ranges and money inputs', () => {
   assert.ok(Number.isNaN(parseUsd('-1')));
   assert.ok(Number.isNaN(parseUsd('abc')));
   assert.equal(spendParams({ range: '7d', groupBy: 'feature', shadow: true, feature: 'editor.' }), 'range=7d&groupBy=feature&feature=editor.&shadow=1');
-  assert.equal(spendParams({ range: '7d', from: '2026-01-01', to: '2026-01-02', groupBy: 'raw' as any }), 'from=2026-01-01&to=2026-01-02&groupBy=raw');
+  assert.equal(spendParams({ range: '7d', from: '2026-01-01', to: '2026-01-02', groupBy: 'raw' }), 'from=2026-01-01&to=2026-01-02&groupBy=raw');
   assert.equal(seriesColor('other', 0), 'var(--color-ink-dim)');
   assert.equal(seriesColor('openrouter', 9), 'var(--color-warning)');
 });
