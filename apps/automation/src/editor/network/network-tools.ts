@@ -80,9 +80,15 @@ export function buildNetworkTools(d: NetworkToolDeps): EditorTool[] {
       await d.inbox.post({
         agentId: net.orchestrator.id, kind: change.structural ? 'playbook_pending' : 'playbook_updated', severity: change.structural ? 'action' : 'info',
         title: change.structural
-          ? `📘 @${net.orchestrator.handle}: плейбук v${pb.version} чекає затвердження`
-          : `📘 @${net.orchestrator.handle}: плейбук оновлено до v${pb.version}`,
-        body: `${rationale}\n\nЗміни: ${change.reasons.join('; ')}`,
+          ? `📘 @${net.orchestrator.handle}: playbook v${pb.version} awaits your approval`
+          : `📘 @${net.orchestrator.handle}: playbook updated to v${pb.version}`,
+        body: `${rationale}\n\nChanges: ${change.reasons.join('; ')}`,
+        alert: {
+          title: change.structural
+            ? `📘 @${net.orchestrator.handle}: плейбук v${pb.version} чекає затвердження`
+            : `📘 @${net.orchestrator.handle}: плейбук оновлено до v${pb.version}`,
+          body: `${rationale}\n\nЗміни: ${change.reasons.join('; ')}`,
+        },
         refType: 'playbook', refId: pb.id,
       });
       return { ok: true, id: pb.id, version: pb.version, status, changes: change.reasons };

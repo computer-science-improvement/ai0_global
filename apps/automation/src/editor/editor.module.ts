@@ -341,8 +341,12 @@ export class AgentsUpkeep implements OnModuleInit {
         if (a.parentId || a.mode !== 'shadow' || !a.shadowUntil || a.shadowUntil.getTime() > Date.now()) continue;
         await this.infra.inbox.post({
           agentId: a.id, kind: 'shadow_ended', severity: 'action',
-          title: `🚦 @${a.handle}: shadow-період завершено — перевести в режим «На апруві»?`,
-          body: 'У режимі апруву агент пише справжні пости, але кожен чекає вашого схвалення. Режим перемикається на сторінці агента.',
+          title: `🚦 @${a.handle}: shadow period ended — switch to approval mode?`,
+          body: 'In approval mode the agent writes real posts, but each one waits for your approval. Switch the mode on the agent page.',
+          alert: {
+            title: `🚦 @${a.handle}: shadow-період завершено — перевести в режим «На апруві»?`,
+            body: 'У режимі апруву агент пише справжні пости, але кожен чекає вашого схвалення. Режим перемикається на сторінці агента.',
+          },
           refType: 'agent', refId: a.handle,
         });
         await this.infra.agents.update(a.id, { shadowUntil: null });
@@ -382,7 +386,7 @@ function registerAgentActions(infra: AgentInfra, svc: AgentsService, ops: Editor
   a.register('update_agent', async (p) => {
     // Spec 031 FR-010: a mode never changes through an agent's card, whatever the stored payload says.
     const { mode: _mode, ...patch } = (p.patch ?? {}) as Record<string, unknown>;
-    if (_mode !== undefined) throw new Error('mode_owner_only: режим перемикає лише власник у дашборді');
+    if (_mode !== undefined) throw new Error('mode_owner_only: only the owner switches the mode, in the dashboard');
     return svc.patch(String(p.handle), patch);
   });
   a.register('set_brief', async (p) => {
@@ -631,9 +635,9 @@ export const EDITOR_PROVIDERS = [
           platform: platform.publish,
           // Spec 022 reposts in approval mode: the approved forward goes out through the same Bot API call as live.
           forward: async (to, from, messageId) => (await botCall(channelConfig, to, 'forwardMessage', { from_chat_id: from, message_id: messageId })).message_id,
-          notice: async (slot, title, body) => {
+          notice: async (slot, title, body, alert) => {
             const orch = await infra.runtime.forChannel(slot.channelKey, 'executor').catch(() => null);
-            await infra.inbox.post({ agentId: orch?.orchestrator?.id ?? null, kind: 'approval_dedup', severity: 'info', title, body, refType: 'slot', refId: slot.id });
+            await infra.inbox.post({ agentId: orch?.orchestrator?.id ?? null, kind: 'approval_dedup', severity: 'info', title, body, alert, refType: 'slot', refId: slot.id });
           },
           onSlotDone: async (slot) => { if (slot.ideaId) await ideas.settleIdea(slot.ideaId); },
           log: (m) => logger.warn(m),

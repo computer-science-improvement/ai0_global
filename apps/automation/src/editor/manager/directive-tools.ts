@@ -85,10 +85,15 @@ export async function fileDirective(d: DirectiveToolDeps, i: FileDirective, o: {
   });
   if (o.ownerApproved) await d.repo.update(dir.id, { ownerDecision: 'approved' });
   if (status === 'awaiting_owner' && !o.shadow) {
+    const expected = i.expected ? `${i.expected.metric} ${i.expected.direction === 'up' ? '↑' : '↓'} ≥ ${i.expected.min_change_pct}%` : '—';
     await d.inbox.post({
       agentId: target.id, kind: 'directive_structural', severity: 'action',
-      title: `🧭 @manager → @${target.handle}: ${i.kind} — потрібне ваше рішення`,
-      body: `${i.body}\n\nЧому: ${i.rationale}\nОчікуємо: ${i.expected ? `${i.expected.metric} ${i.expected.direction === 'up' ? '↑' : '↓'} ≥ ${i.expected.min_change_pct}%` : '—'}\n\nЗастосувати / відхилити — на сторінці @manager → Directives.`,
+      title: `🧭 @manager → @${target.handle}: ${i.kind} — needs your decision`,
+      body: `${i.body}\n\nWhy: ${i.rationale}\nExpected: ${expected}\n\nApply or reject it on the @manager page → Directives.`,
+      alert: {
+        title: `🧭 @manager → @${target.handle}: ${i.kind} — потрібне ваше рішення`,
+        body: `${i.body}\n\nЧому: ${i.rationale}\nОчікуємо: ${expected}\n\nЗастосувати / відхилити — на сторінці @manager → Directives.`,
+      },
       refType: 'directive', refId: dir.id,
     });
   }

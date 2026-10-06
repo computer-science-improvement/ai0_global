@@ -23,8 +23,8 @@ export interface ApprovalPublisherDeps {
   platform: PublishPlatformDeps;
   /** Spec 022: Bot API forwardMessage into `toKey` (an approved repost); returns the new message id. */
   forward?: (toKey: string, fromKey: string, messageId: number) => Promise<number>;
-  /** The owner sees a post dropped after approval (dedup) in the inbox. */
-  notice?:  (slot: EditorSlot, title: string, body: string) => Promise<void>;
+  /** The owner sees a post dropped after approval (dedup) in the inbox (English); `alert` is the Telegram alert's wording. */
+  notice?:  (slot: EditorSlot, title: string, body: string, alert?: { title: string; body: string }) => Promise<void>;
   /** Spec 020: an idea becomes `used` once its slots are done. */
   onSlotDone?: (slot: EditorSlot) => Promise<void>;
   log?:     (msg: string) => void;
@@ -65,10 +65,10 @@ export class ApprovalPublisher {
     return 'failed';
   }
 
-  private async skip(slot: EditorSlot, reason: string, notice?: { title: string; body: string }): Promise<'skipped'> {
+  private async skip(slot: EditorSlot, reason: string, notice?: DedupNotice): Promise<'skipped'> {
     await this.d.plans.updateSlot(slot.id, { status: 'skipped', error: reason });
     if (slot.platformPostId) await this.d.repo.cancelPlatformPosts([slot.platformPostId], reason);
-    if (notice && this.d.notice) await this.d.notice(slot, notice.title, notice.body).catch(() => {});
+    if (notice && this.d.notice) await this.d.notice(slot, notice.title, notice.body, notice.alert).catch(() => {});
     return 'skipped';
   }
 
@@ -86,7 +86,7 @@ export class ApprovalPublisher {
       if (!this.d.forward) return this.fail(slot, 'forwarding is not available in this process');
       try {
         const id = await this.d.forward(slot.channelKey, render.fromKey, render.messageId);
-        await this.d.plans.updateSlot(slot.id, { status: 'published', renderedPreview: `↪️ Переслано ${render.fromKey}/${render.messageId} → ${id}`, error: null });
+        await this.d.plans.updateSlot(slot.id, { status: 'published', renderedPreview: `↪️ Forwarded ${render.fromKey}/${render.messageId} → ${id}`, error: null });
         return 'published';
       } catch (err: any) {
         const msg = String(err?.message ?? err);
@@ -104,7 +104,7 @@ export class ApprovalPublisher {
         resourceRef: slot.resourceRef!, postId: slot.platformPostId, spec: spec.data, rendered: render.rendered as unknown as RenderedPlatformPost,
       });
       if ('error' in r) {
-        if (r.error === 'dedup_after_approval') return this.skip(slot, 'dedup_after_approval', dedupNotice(slot, r.details));
+        if (r.error === 'dedup_after_approval') return this.skip(slot, 'dedup_after_approval', dedupNotice(slot, { en: 'a similar source or idea went out on this resource while the post waited', uk: r.details }));
         return this.fail(slot, `${r.error}${r.details ? `: ${r.details}` : ''}`);
       }
       await this.d.plans.updateSlot(slot.id, { status: 'published', error: r.warnings.length ? r.warnings.join(' | ').slice(0, 2000) : null });
@@ -119,12 +119,12 @@ export class ApprovalPublisher {
     // Dedup after approval: the source or a near-identical text went out while the post waited.
     const ref = spec.library_ref ?? spec.source?.url ?? null;
     if (ref && await this.d.repo.publishedSource(slot.channelKey, ref, slot.id)) {
-      return this.skip(slot, 'dedup_after_approval', dedupNotice(slot, 'це джерело вже опубліковано в каналі'));
+      return this.skip(slot, 'dedup_after_approval', dedupNotice(slot, { en: 'this source was already published in the channel', uk: 'це джерело вже опубліковано в каналі' }));
     }
     const preview = slot.renderedPreview ?? '';
     const maxSim = (await this.d.repo.publishedTexts(slot.channelKey, slot.id)).reduce((m, t) => Math.max(m, similarity(preview, t)), 0);
     if (preview && maxSim >= SIMILARITY_LIMIT) {
-      return this.skip(slot, 'dedup_after_approval', dedupNotice(slot, `схожість ${maxSim.toFixed(2)} з опублікованим постом`));
+      return this.skip(slot, 'dedup_after_approval', dedupNotice(slot, { en: `similarity ${maxSim.toFixed(2)} with a published post`, uk: `схожість ${maxSim.toFixed(2)} з опублікованим постом` }));
     }
     const dayStart = zonedToUtc(localDate(now, card.timezone), '00:00', card.timezone);
     const today = await this.d.plans.countPublishedSince(slot.channelKey, dayStart);
@@ -154,9 +154,17 @@ export class ApprovalPublisher {
   }
 }
 
-function dedupNotice(slot: EditorSlot, details?: string): { title: string; body: string } {
+type DedupNotice = { title: string; body: string; alert: { title: string; body: string } };
+
+/** Inbox copy is English (AI0-79); the Telegram alert keeps its wording. */
+function dedupNotice(slot: EditorSlot, details: { en: string; uk?: string }): DedupNotice {
+  const ref = slot.resourceRef ?? slot.channelKey;
   return {
-    title: `♻️ ${slot.resourceRef ?? slot.channelKey}: апрувнутий пост не вийшов — дубль`,
-    body: `«${slot.topic}» пропущено (dedup_after_approval)${details ? `: ${details}` : ''}.`,
+    title: `♻️ ${ref}: an approved post did not go out — duplicate`,
+    body: `"${slot.topic}" skipped (dedup_after_approval): ${details.en}.`,
+    alert: {
+      title: `♻️ ${ref}: апрувнутий пост не вийшов — дубль`,
+      body: `«${slot.topic}» пропущено (dedup_after_approval)${details.uk ? `: ${details.uk}` : ''}.`,
+    },
   };
 }

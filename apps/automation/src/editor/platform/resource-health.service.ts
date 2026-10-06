@@ -26,7 +26,8 @@ export class ResourceHealthService {
     if (prev !== health.state && BAD.has(health.state)) {
       await this.d.inbox.post({
         kind: 'resource_health', severity: health.state === 'token_expiring' ? 'action' : 'critical',
-        title: `⚠️ ${ref}: ${health.state}`, body: `${health.detail}\nПерепідключіть у /app/connections — до того планувальник не ставить сюди пости.`,
+        title: `⚠️ ${ref}: ${health.state}`, body: `${health.detail}\nReconnect it in /app/connections — until then the planner schedules no posts here.`,
+        alert: { title: `⚠️ ${ref}: ${health.state}`, body: `${health.detail}\nПерепідключіть у /app/connections — до того планувальник не ставить сюди пости.` },
         refType: 'resource', refId: ref,
       });
     }

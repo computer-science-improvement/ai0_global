@@ -17,7 +17,10 @@ export interface BlockInfo {
   scope:    CapScope;
   /** The llm_budgets scope key, channel key or agent id. */
   key:      string;
+  /** Ukrainian label for the owner's Telegram alerts (unchanged until the owner decides on their language). */
   label:    string;
+  /** English label for dashboard copy (Inbox, chat refusals; AI0-79). */
+  labelEn?: string;
   spentUsd: number;
   capUsd:   number;
 }
@@ -81,6 +84,15 @@ export function capLabel(row: Pick<BudgetRow, 'scopeKind' | 'scopeKey'>): string
   if (row.scopeKind === 'feature_prefix') return `ліміт ${row.scopeKey}*`;
   if (row.scopeKind === 'provider') return `ліміт провайдера ${row.scopeKey}`;
   return row.scopeKey === RESOURCE_DEFAULT_SCOPE.scopeKey ? 'ліміт ресурсу (EDITOR_CHANNEL_DAILY_BUDGET_USD)' : `ліміт ресурсу ${row.scopeKey}`;
+}
+
+/** English counterpart of capLabel for the dashboard. */
+export function capLabelEn(row: Pick<BudgetRow, 'scopeKind' | 'scopeKey'>): string {
+  if (row.scopeKind === 'global') return 'total AI cap (AI_DAILY_BUDGET_USD)';
+  if (row.scopeKind === 'feature_prefix' && row.scopeKey === AGENTS_SCOPE.scopeKey) return 'agents cap (EDITOR_DAILY_BUDGET_USD)';
+  if (row.scopeKind === 'feature_prefix') return `${row.scopeKey}* cap`;
+  if (row.scopeKind === 'provider') return `provider cap ${row.scopeKey}`;
+  return row.scopeKey === RESOURCE_DEFAULT_SCOPE.scopeKey ? 'resource cap (EDITOR_CHANNEL_DAILY_BUDGET_USD)' : `resource cap ${row.scopeKey}`;
 }
 
 function scopeOf(row: BudgetRow): CapScope {
@@ -165,7 +177,7 @@ export class LlmBudgetService implements BudgetGuard {
           || (row.scopeKind === 'feature_prefix' && String(s.feature).startsWith(row.scopeKey))
           || (row.scopeKind === 'provider' && s.provider === row.scopeKey))
         .reduce((sum: number, s: any) => sum + Number(s.usd), 0);
-      const info: BlockInfo = { scope: scopeOf(row), key: row.scopeKey, label: capLabel(row), spentUsd: spent, capUsd: row.dailyUsd! };
+      const info: BlockInfo = { scope: scopeOf(row), key: row.scopeKey, label: capLabel(row), labelEn: capLabelEn(row), spentUsd: spent, capUsd: row.dailyUsd! };
       const hit = await this.thresholds(`${row.scopeKind}:${row.scopeKey}`, day, info, row.alertPct, row.enforce);
       if (hit && block.ok) block = { ok: false, ...info };
     }

@@ -72,7 +72,9 @@ export class SkillVersionEvaluator {
         const text = `Самоправку скіла «${name}» відкочено: перегляди на пост ${verdict.deltaPct.toFixed(0)}% (z ${verdict.z.toFixed(1)}) за 7 днів після зміни.`;
         await this.d.inbox.post({
           agentId: scopeAgent.id, kind: 'skill_rolled_back', severity: 'info',
-          title: `↩️ @${scopeAgent.handle}: скіл «${name}» відкочено`, body: `${text}\nПричина зміни була: ${v.reason ?? '—'}`,
+          title: `↩️ @${scopeAgent.handle}: skill "${name}" rolled back`,
+          body: `Self-edit of skill "${name}" rolled back: views per post ${verdict.deltaPct.toFixed(0)}% (z ${verdict.z.toFixed(1)}) over the 7 days after the change.\nReason for the change: ${v.reason ?? '—'}`,
+          alert: { title: `↩️ @${scopeAgent.handle}: скіл «${name}» відкочено`, body: `${text}\nПричина зміни була: ${v.reason ?? '—'}` },
           refType: 'skill', refId: v.skillId,
         });
         if (this.d.remember) {

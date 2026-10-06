@@ -34,7 +34,7 @@ export class NetworkService {
     const orch = a.parentId ? (await this.d.agents.get(a.parentId)) ?? a : a;
     const key = telegramKeyOf(orch);
     const card = key ? await this.d.card(key) : null;
-    if (!card) throw new BadRequestException({ error: 'no_channel_card', details: 'оркестратор без Telegram-каналу не має плейбука' });
+    if (!card) throw new BadRequestException({ error: 'no_channel_card', details: 'an orchestrator without a Telegram channel has no playbook' });
     return { agent: orch, card };
   }
 
@@ -54,7 +54,7 @@ export class NetworkService {
 
   async decide(id: string, approve: boolean) {
     const pb = await this.d.repo.decidePlaybook(id, approve);
-    if (!pb) throw new ConflictException({ error: 'not_pending', details: 'ця версія вже не чекає рішення' });
+    if (!pb) throw new ConflictException({ error: 'not_pending', details: 'this version no longer awaits a decision' });
     return { playbook: pb };
   }
 
@@ -117,17 +117,23 @@ export class NetworkService {
     const p = z.object({ mode: z.enum(['mirror', 'orchestrated']) }).safeParse(body ?? {});
     if (!p.success) throw new BadRequestException({ error: 'invalid_body' });
     const group = await this.d.repo.groupOfChannel(card.channelKey);
-    if (!group) throw new BadRequestException({ error: 'no_network', details: 'канал не входить у групу акаунтів (/app/connections/groups)' });
+    if (!group) throw new BadRequestException({ error: 'no_network', details: 'the channel is not in an account group (/app/connections/groups)' });
     if (p.data.mode === 'orchestrated' && !(await this.d.repo.activePlaybook(agent.id))) {
-      throw new ConflictException({ error: 'no_active_playbook', details: 'спершу затвердіть плейбук' });
+      throw new ConflictException({ error: 'no_active_playbook', details: 'approve a playbook first' });
     }
     await this.d.repo.setGroupMode(group.id, p.data.mode);
     await this.d.inbox.post({
       agentId: agent.id, kind: 'network_mode', severity: 'info',
-      title: `🕸 Мережа «${group.name}» → ${p.data.mode === 'orchestrated' ? 'оркестрована' : 'дзеркало'}`,
+      title: `🕸 Network "${group.name}" → ${p.data.mode === 'orchestrated' ? 'orchestrated' : 'mirror'}`,
       body: p.data.mode === 'orchestrated'
-        ? `@${agent.handle} планує нативні пости для всіх ресурсів мережі (режим агента: ${agent.mode}). Дзеркалення Telegram-постів вимкніть у картці, якщо воно більше не потрібне.`
-        : 'Мережа повернулась до дзеркалення Telegram-постів.',
+        ? `@${agent.handle} plans native posts for every resource in the network (agent mode: ${agent.mode}). Turn off Telegram post mirroring in the card if you no longer need it.`
+        : 'The network is back to mirroring Telegram posts.',
+      alert: {
+        title: `🕸 Мережа «${group.name}» → ${p.data.mode === 'orchestrated' ? 'оркестрована' : 'дзеркало'}`,
+        body: p.data.mode === 'orchestrated'
+          ? `@${agent.handle} планує нативні пости для всіх ресурсів мережі (режим агента: ${agent.mode}). Дзеркалення Telegram-постів вимкніть у картці, якщо воно більше не потрібне.`
+          : 'Мережа повернулась до дзеркалення Telegram-постів.',
+      },
       refType: 'agent', refId: agent.handle,
     });
     return { mode: p.data.mode, group: group.name };
