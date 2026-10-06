@@ -1,66 +1,57 @@
 /**
- * TEMPLATE: новий лоадер
- * Копіюй цей файл, замінюй значення позначені ← ЗМІНИТИ
+ * TEMPLATE: a new loader (spec 032 — content goes into the data store, never into a new table).
+ * Copy this file and replace the values marked ← CHANGE.
  *
  * Checklist:
- *   1. LOADER_ID     — унікальна назва (використовується в логах і npm скрипті)
- *   2. SOURCE_DIR    — де лежать JSON-файли з даними
- *   3. TABLE         — назва таблиці в БД
- *   4. COLUMNS       — колонки таблиці в порядку вставки
- *   5. CONFLICT_TARGET — унікальний ключ для дедублікації
- *   6. mapRow()      — маппінг одного запису JSON → рядок таблиці
- *   7. Якщо нова таблиця — додай міграцію в database/migrations/
- *   8. Додай скрипт у package.json: "load:<name>": "node src/loaders/<name>.js"
+ *   1. SOURCE        — the source name; map it to a dataset in config/load-config.json ("schemaMap")
+ *   2. The dataset   — if it is new, create its schema in the dashboard (/app/data) or with
+ *                      POST /api/data/schemas: fields with plain-English descriptions, roles, dedup key.
+ *                      No migration is needed.
+ *   3. SOURCE_DIR    — where the JSON files are
+ *   4. mapRow()      — one JSON record → one row keyed by the dataset's field names (plain JSON values:
+ *                      arrays for lists, objects for JSON fields; never `posted`)
+ *   5. Add a script to package.json: "load:<name>": "node --env-file=../../.env src/loaders/<name>.js"
+ *
+ * For a one-off file you can skip the loader entirely: import a CSV/JSON/JSONL in the dashboard or
+ * POST it to /api/data/:schema/rows.
  */
-import 'dotenv/config';
 import { readdir, readFile } from 'fs/promises';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { pool } from '../lib/db.js';
-import { loadRows } from '../lib/loader.js';
+import { loadData, schemaFor, formatLoad } from '../lib/loader.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-// ← ЗМІНИТИ: шлях до папки з JSON-файлами
+// ← CHANGE: folder with the JSON files
 const SOURCE_DIR = join(__dirname, '..', 'data');
+
+// ← CHANGE: source name (a key of schemaMap in config/load-config.json)
+const SOURCE = 'my-source';
 
 const limitArg = process.env.LOAD_LIMIT || process.argv.find((a) => a.startsWith('--limit='))?.split('=')[1];
 const LIMIT    = limitArg ? parseInt(limitArg, 10) : null;
 
-// ← ЗМІНИТИ: назва таблиці
-const TABLE = 'my_table';
-
-// ← ЗМІНИТИ: список колонок у порядку вставки (повинні збігатись з ключами в mapRow)
-const COLUMNS = ['id', 'title', 'category'];
-
-// ← ЗМІНИТИ: ON CONFLICT target — колонка або комбінація з унікальним індексом
-// Один ключ:           '(id)'
-// Комбінований ключ:   '(source, title)'
-const CONFLICT_TARGET = '(id)';
-
-// ← ЗМІНИТИ: маппінг одного JSON-запису → об'єкт із ключами з COLUMNS
+// ← CHANGE: one JSON record → one dataset row
 function mapRow(item) {
   return {
-    id:       item.id,
     title:    item.title ?? '',
     category: item.category ?? null,
   };
 }
 
 async function load() {
+  const dataset = schemaFor(SOURCE);
   const files = (await readdir(SOURCE_DIR)).filter((f) => f.endsWith('.json'));
 
   if (LIMIT) console.log(`Test mode: first ${LIMIT} items per file\n`);
-
-  let totalInserted = 0;
-  let totalSkipped  = 0;
 
   for (const file of files) {
     const raw = await readFile(join(SOURCE_DIR, file), 'utf-8');
     let data;
     try { data = JSON.parse(raw); } catch { console.warn(`Skip ${file}: invalid JSON`); continue; }
 
-    // ← ЗМІНИТИ якщо структура файлу інша (наприклад data.items, data.results тощо)
+    // ← CHANGE if the file has another shape (data.items, data.results, …)
     let rows = Array.isArray(data) ? data : (data.items ?? []);
     if (!rows.length) { console.log(`Skip ${file}: no rows`); continue; }
 
@@ -69,14 +60,11 @@ async function load() {
 
     rows = rows.map(mapRow);
 
-    console.log(`Loading ${LIMIT ? rows.length + '/' + totalInFile : rows.length} rows from ${file} -> ${TABLE}`);
-    const { inserted, skipped } = await loadRows(TABLE, rows, { columns: COLUMNS, conflictTarget: CONFLICT_TARGET });
-    totalInserted += inserted;
-    totalSkipped  += skipped;
-    console.log(`  inserted: ${inserted}, skipped (duplicates): ${skipped}`);
+    console.log(`Loading ${LIMIT ? rows.length + '/' + totalInFile : rows.length} rows from ${file} -> ${dataset}`);
+    const r = await loadData(dataset, rows, { filename: file });
+    console.log(`  ${formatLoad(r)}`);
   }
 
-  console.log(`\nDone. Total inserted: ${totalInserted}, skipped: ${totalSkipped}`);
   await pool.end();
 }
 

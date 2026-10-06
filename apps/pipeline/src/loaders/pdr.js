@@ -1,5 +1,5 @@
 /**
- * Loader: additional-data/datasets/pdr/tickets.json → pdr_questions table
+ * Loader: additional-data/datasets/pdr/tickets.json → the `pdr_questions` dataset (data store, spec 032)
  *
  * Flattens tickets → individual questions (one row per question).
  * Dedup key: question_id (unique per question from pdr-online.com.ua)
@@ -15,16 +15,13 @@ import { readFile }        from 'fs/promises';
 import { join, dirname }   from 'path';
 import { fileURLToPath }   from 'url';
 import { pool }            from '../lib/db.js';
-import { loadRows }        from '../lib/loader.js';
+import { loadData, schemaFor, formatLoad } from '../lib/loader.js';
 
 const __dirname  = dirname(fileURLToPath(import.meta.url));
 const INPUT_FILE = join(__dirname, '..', 'data', 'normalized', 'pdr', 'tickets.json');
 
 const TICKET_FROM = process.env.TICKET_FROM ? parseInt(process.env.TICKET_FROM, 10) : 1;
 const TICKET_TO   = process.env.TICKET_TO   ? parseInt(process.env.TICKET_TO,   10) : Infinity;
-
-const COLUMNS  = ['question_id', 'ticket_number', 'question_num', 'text', 'image_url', 'answers', 'correct_answer_num', 'explanation', 'posted'];
-const CONFLICT = '(question_id)';
 
 function mapQuestion(q, ticketNumber) {
   return {
@@ -33,10 +30,10 @@ function mapQuestion(q, ticketNumber) {
     question_num:       q.question_num,
     text:               q.text ?? '',
     image_url:          q.image_url ?? null,
-    answers:            JSON.stringify(q.answers ?? []),
+    answers:            q.answers ?? [],
     correct_answer_num: q.correct_answer_num,
     explanation:        q.explanation ?? '',
-    posted:             '{}',
+    source_name:        'pdr-online.com.ua',
   };
 }
 
@@ -68,8 +65,8 @@ async function main() {
   }
 
   console.log(`Loading ${rows.length} questions from ${tickets.length} tickets (${TICKET_FROM}–${tickets.at(-1)?.ticket_number})`);
-  const { inserted, skipped } = await loadRows('pdr_questions', rows, { columns: COLUMNS, conflictTarget: CONFLICT });
-  console.log(`PDR questions — inserted: ${inserted}, skipped: ${skipped}`);
+  const r = await loadData(schemaFor('pdr'), rows, { filename: 'pdr/tickets.json' });
+  console.log(`PDR questions — ${formatLoad(r)}`);
 
   await pool.end();
   console.log('Done.');

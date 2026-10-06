@@ -1,9 +1,24 @@
 {
-  "tableMap": {
+  "_comment": "Pipeline source → dataset (data_schemas.key, spec 032). Loaders call loadData(schemaFor(source), rows). A new dataset needs a schema row (dashboard /app/data or POST /api/data/schemas) and a line here — no migration.",
+  "schemaMap": {
     "academy-openai": "assets",
     "academy-openai-resources": "assets",
     "prompts-md": "assets",
-    "mcpservers": "assets"
+    "mcpservers": "assets",
+    "assets": "assets",
+    "prompthero": "prompts",
+    "prompts-github": "prompts",
+    "daytoday-events": "on_this_day",
+    "daytoday-articles": "articles",
+    "daytoday-jokes": "jokes",
+    "daytoday-quotes": "quotes",
+    "daytoday-name-days": "name_days",
+    "daytoday-birthdays": "birthdays",
+    "treatfield": "articles",
+    "recipes": "recipes",
+    "faktypro": "facts",
+    "pdr": "pdr_questions",
+    "tg-posts": "tg_posts"
   },
   "options": {
     "assets": { "upsert": false }

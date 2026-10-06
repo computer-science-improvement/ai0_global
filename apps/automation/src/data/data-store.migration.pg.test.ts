@@ -212,6 +212,12 @@ test('recipe translation and telegraph_url updates go through the trigger; envel
     `UPDATE recipes SET title_uk = $2, ingredients_uk = $3, instructions_uk = $4, translated_at = now() WHERE id = $1`,
     [r.id, 'Пиріг', '1 яйце', 'Спекти.']);
   await new RecipesRepository(pool).saveTelegraph(r.id, { url: 'https://telegra.ph/Pyrih-1', path: 'Pyrih-1' });
+  // The repository's translation write goes through the DataStore (T3), the skip sentinel included.
+  const r2 = snapshot.recipes.filter((x) => x.title_uk === null)[1];
+  await new RecipesRepository(pool).saveTranslation(r2.id, { titleUk: '', ingredientsUk: '', instructionsUk: '' });
+  const v2 = (await pool.query(`SELECT title_uk, translated_at FROM recipes WHERE id = $1`, [r2.id])).rows[0];
+  assert.equal(v2.title_uk, '', 'the empty-string sentinel is stored, not dropped');
+  assert.ok(v2.translated_at);
   await new RecipesRepository(pool).markPosted(r.id, 'TELEGRAM');
   const v = (await pool.query(`SELECT title_uk, ingredients_uk, telegraph_url, telegraph_path, translated_at, posted, kcal FROM recipes WHERE id = $1`, [r.id])).rows[0];
   assert.equal(v.title_uk, 'Пиріг');

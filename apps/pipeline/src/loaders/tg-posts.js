@@ -1,5 +1,5 @@
 /**
- * Loader: data/publish-ready/tg/*.json → tg_posts table
+ * Loader: data/publish-ready/tg/*.json → the `tg_posts` dataset (data store, spec 032)
  *
  * Завантажує адаптовані Telegram-пости з усіх файлів у data/publish-ready/tg/.
  * Dedup key: content_hash = md5(post)
@@ -14,7 +14,7 @@ import { readFile }       from 'fs/promises';
 import { join, dirname }  from 'path';
 import { fileURLToPath }  from 'url';
 import { pool }           from '../lib/db.js';
-import { loadRows }       from '../lib/loader.js';
+import { loadData, schemaFor, formatLoad } from '../lib/loader.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const TG_DIR    = join(__dirname, '..', 'data', 'publish-ready', 'tg');
@@ -26,9 +26,6 @@ const SOURCES = [
   { file: 'samorozvytok-posts.json',  source: 'samorozvytok-motivatory'   },
   { file: 'biography-posts.json',     source: 'birthdays-db'              },
 ];
-
-const COLUMNS  = ['source', 'source_url', 'title', 'image_url', 'post', 'content_hash', 'author', 'source_published_at', 'tags', 'posted'];
-const CONFLICT = '(content_hash)';
 
 function md5(text) {
   return createHash('md5').update(text).digest('hex');
@@ -45,7 +42,6 @@ function mapPost(item, source) {
     author:              item.author ?? null,
     source_published_at: item.publishedAt ?? null,
     tags:         item.tags?.length ? item.tags : [],
-    posted:       '{}',
   };
 }
 
@@ -74,9 +70,9 @@ async function loadFile(file, source) {
   if (!rows.length) return 0;
 
   console.log(`  ${file}: ${rows.length} posts`);
-  const { inserted, skipped } = await loadRows('tg_posts', rows, { columns: COLUMNS, conflictTarget: CONFLICT });
-  console.log(`    inserted: ${inserted}, skipped: ${skipped}`);
-  return inserted;
+  const r = await loadData(schemaFor('tg-posts'), rows, { filename: file });
+  console.log(`    ${formatLoad(r)}`);
+  return r.inserted;
 }
 
 async function main() {

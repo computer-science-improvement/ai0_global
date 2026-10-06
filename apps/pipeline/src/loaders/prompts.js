@@ -1,5 +1,5 @@
 /**
- * Loader: additional-data/datasets/*.json → prompts table
+ * Loader: additional-data/datasets/*.json → the `prompts` dataset (data store, spec 032)
  *
  * Dedup key: (id) — id = realImage CDN URL
  * LOAD_LIMIT=N — test mode, first N items per file
@@ -8,7 +8,7 @@ import { readdir, readFile } from 'fs/promises';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { pool } from '../lib/db.js';
-import { loadRows } from '../lib/loader.js';
+import { loadData, schemaFor, formatLoad } from '../lib/loader.js';
 
 const __dirname    = dirname(fileURLToPath(import.meta.url));
 const DATASETS_DIR = join(__dirname, '..', 'data', 'normalized', 'prompts');
@@ -16,15 +16,12 @@ const DATASETS_DIR = join(__dirname, '..', 'data', 'normalized', 'prompts');
 const limitArg = process.env.LOAD_LIMIT || process.argv.find((a) => a.startsWith('--limit='))?.split('=')[1];
 const LIMIT    = limitArg ? parseInt(limitArg, 10) : null;
 
-const COLUMNS         = ['id', 'prompt_source', 'category', 'posted', 'scraped_at', 'page_url'];
-const CONFLICT_TARGET = '(id)';
-
 function mapRow(item) {
   return {
     id:            item.realImage,
     prompt_source: item.href,
     category:      item.category   ?? null,
-    posted:        '{}',
+    provider:      'prompthero',
     scraped_at:    item.scrapedAt  ?? null,
     page_url:      item.pageUrl    ?? null,
   };
@@ -50,10 +47,10 @@ async function load() {
     if (!rows.length) { console.log(`Skip ${file}: no valid rows`); continue; }
 
     console.log(`Loading ${LIMIT ? rows.length + '/' + totalInFile : rows.length} rows from ${file} -> prompts`);
-    const { inserted, skipped } = await loadRows('prompts', rows, { columns: COLUMNS, conflictTarget: CONFLICT_TARGET });
-    totalInserted += inserted;
-    totalSkipped  += skipped;
-    console.log(`  inserted: ${inserted}, skipped (duplicates): ${skipped}`);
+    const r = await loadData(schemaFor('prompthero'), rows, { filename: file });
+    totalInserted += r.inserted;
+    totalSkipped  += r.skipped;
+    console.log(`  ${formatLoad(r)}`);
   }
 
   console.log(`\nDone. Total inserted: ${totalInserted}, skipped: ${totalSkipped}`);

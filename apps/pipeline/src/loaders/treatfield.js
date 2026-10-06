@@ -1,5 +1,5 @@
 /**
- * Loader: additional-data/datasets normalized/treatfield/articles-*.json → articles
+ * Loader: additional-data/datasets normalized/treatfield/articles-*.json → the `articles` dataset (data store, spec 032)
  *
  * Expects the shape from scrape-treatfield-articles.js (`articles` array with
  * title, slug, url, excerpt, content, imageUrl, category, tags).
@@ -10,22 +10,13 @@ import { readdir, readFile } from 'fs/promises';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { pool } from '../lib/db.js';
-import { loadRows } from '../lib/loader.js';
+import { loadData, schemaFor, formatLoad } from '../lib/loader.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DATASETS_DIR = join(__dirname, '..', 'data', 'normalized', 'treatfield');
 
 const limitArg = process.env.LOAD_LIMIT || process.argv.find((a) => a.startsWith('--limit='))?.split('=')[1];
 const LIMIT = limitArg ? parseInt(limitArg, 10) : null;
-
-/** Encode a JS array as a Postgres text[] literal */
-function pgArray(arr) {
-  if (!arr || !arr.length) return '{}';
-  return `{${arr.map((t) => `"${String(t).replace(/\\/g, '\\\\').replace(/"/g, '\\"')}"`).join(',')}}`;
-}
-
-const ARTICLE_COLUMNS = ['title', 'slug', 'url', 'excerpt', 'content', 'image_url', 'category', 'tags', 'posted'];
-const ARTICLE_CONFLICT = '(slug)';
 
 function mapArticle(article) {
   return {
@@ -36,8 +27,7 @@ function mapArticle(article) {
     content: article.content ?? null,
     image_url: article.imageUrl ?? null,
     category: article.category ?? null,
-    tags: pgArray(article.tags),
-    posted: '{}',
+    tags: article.tags ?? [],
   };
 }
 
@@ -63,13 +53,10 @@ async function loadTreatfieldArticles() {
     if (!rows.length) continue;
 
     console.log(`Loading ${rows.length} articles from treatfield/${file}`);
-    const { inserted, skipped } = await loadRows('articles', rows, {
-      columns: ARTICLE_COLUMNS,
-      conflictTarget: ARTICLE_CONFLICT,
-    });
-    totalInserted += inserted;
-    totalSkipped += skipped;
-    console.log(`  inserted: ${inserted}, skipped: ${skipped}`);
+    const r = await loadData(schemaFor('treatfield'), rows, { filename: `treatfield/${file}` });
+    totalInserted += r.inserted;
+    totalSkipped += r.skipped;
+    console.log(`  ${formatLoad(r)}`);
   }
 
   console.log(`Treatfield articles total — inserted: ${totalInserted}, skipped: ${totalSkipped}\n`);
