@@ -1,11 +1,13 @@
-import { createFileRoute, redirect, useLocation, useNavigate } from '@tanstack/react-router';
+import { createFileRoute, redirect, useLocation, useNavigate, useRouter } from '@tanstack/react-router';
 import { useQueryClient } from '@tanstack/react-query';
 import { useEffect, useRef, useState } from 'react';
-import { authApi, type TelegramLoginPayload } from '../api/auth';
-import { TG_BOT_USERNAME, AUTH_MODE } from '../lib/env';
+import { authApi, LoginError, type TelegramLoginPayload } from '../api/auth';
+import { TG_BOT_USERNAME, AUTH_MODE, TOKEN_LOGIN } from '../lib/env';
+import { isLocalHost } from '../lib/auth-mode';
 import { sessionQuery, SESSION_KEY } from '../auth/session';
 import { loginRedirectTarget, parseNext } from '../auth/next';
-import { isLocalHost } from '../lib/auth-mode';
+import { loginErrorMessage, reasonMessage, stripTokenParam } from '../auth/messages';
+import { Icon } from '../components/ui/Icon';
 
 interface LoginSearch { next?: string; reason?: string; token?: string }
 
@@ -25,23 +27,39 @@ export const Route = createFileRoute('/login')({
   component: LoginPage,
 });
 
-const REASONS: Record<string, string> = {
-  session_expired: 'Your session expired. Please sign in again.',
-  session_revoked: 'You were signed out from another device.',
-  session_legacy:  'Please sign in again after the security update.',
-};
-
 declare global { interface Window { onTelegramAuth: (u: TelegramLoginPayload) => void; } }
+
+interface FormError { code: string; until?: number }
+
+/** Re-render every second while a rate-limit countdown is running. */
+function useCountdown(until: number | undefined): number | undefined {
+  const [now, setNow] = useState(() => Date.now());
+  useEffect(() => {
+    if (!until) return;
+    const t = setInterval(() => setNow(Date.now()), 1000);
+    return () => clearInterval(t);
+  }, [until]);
+  return until ? Math.max(0, Math.ceil((until - now) / 1000)) : undefined;
+}
 
 function LoginPage() {
   const navigate = useNavigate();
+  const router = useRouter();
   const qc = useQueryClient();
   const searchStr = useLocation({ select: (l) => l.searchStr });
-  const { reason } = Route.useSearch();
+  const { reason, token: linkToken } = Route.useSearch();
   const widgetRef = useRef<HTMLDivElement>(null);
   const [token, setToken] = useState('');
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<FormError | null>(null);
   const [busy, setBusy] = useState(false);
+  const [showToken, setShowToken] = useState(AUTH_MODE === 'token');
+  const remaining = useCountdown(error?.until);
+  const locked = remaining !== undefined && remaining > 0;
+
+  const fail = (e: unknown) => {
+    const err = e instanceof LoginError ? e : new LoginError('unknown', 0);
+    setError({ code: err.code, until: err.retryAfterSec ? Date.now() + err.retryAfterSec * 1000 : undefined });
+  };
 
   /** After a successful login: drop the cached "signed out" answer, go to `next`. */
   const enter = async () => {
@@ -49,29 +67,30 @@ function LoginPage() {
     await navigate({ href: parseNext(searchStr), replace: true });
   };
 
-  const submitToken = async (value: string) => {
+  const submitToken = async (value: string, via: 'form' | 'link' = 'form') => {
     const t = value.trim();
     if (!t || busy) return;
     setBusy(true); setError(null);
     try {
-      await authApi.tokenLogin(t);
+      await authApi.tokenLogin(t, via);
       await enter();
-    } catch {
-      setError('Invalid token');
+    } catch (e) {
+      fail(e);
     } finally {
       setBusy(false);
     }
   };
 
-  // Telegram Login Widget (telegram mode only).
+  // Telegram Login Widget. Errors show inline under the widget.
   useEffect(() => {
     if (AUTH_MODE !== 'telegram' || !widgetRef.current) return;
     window.onTelegramAuth = async (user) => {
+      setError(null);
       try {
         await authApi.telegramLogin(user);
         await enter();
-      } catch (e: unknown) {
-        setError(`Login failed: ${(e as Error).message}`);
+      } catch (e) {
+        fail(e);
       }
     };
     const s = document.createElement('script');
@@ -85,69 +104,86 @@ function LoginPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // "Authorization link" — /login?token=… auto-submits in token mode so a
-  // bookmarked link signs you straight in.
-  const { token: linkToken } = Route.useSearch();
+  // Authorization link `/login?token=…`: take the token OUT of the address bar
+  // (history.replaceState via the router's history) before submitting it, so
+  // the secret never stays in history; audited as method `link`.
   useEffect(() => {
-    if (AUTH_MODE !== 'token' || !linkToken) return;
-    void submitToken(linkToken);
+    if (!linkToken) return;
+    router.history.replace(`/login${stripTokenParam(searchStr)}`);
+    if (TOKEN_LOGIN) void submitToken(linkToken, 'link');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const reasonText = reason ? REASONS[reason] : undefined;
+  const reasonText = reasonMessage(reason);
+  const errorText = error ? loginErrorMessage(error.code, remaining) : null;
+  const devHere = AUTH_MODE === 'dev' && isLocalHost(window.location.hostname);
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh', alignItems: 'center', justifyContent: 'center', padding: 16 }}>
-      <div className="card-featured" style={{ maxWidth: 400, width: '100%', padding: 32 }}>
-        <h1 className="text-display-md" style={{ marginBottom: 8 }}>Channel Tracker</h1>
+    <div style={{
+      display: 'flex', minHeight: '100vh', alignItems: 'center', justifyContent: 'center',
+      padding: 16, background: 'var(--color-canvas)',
+    }}>
+      <div className="card-featured compose-rise" style={{ maxWidth: 400, width: '100%', padding: 32 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 6 }}>
+          <img src="/favicon.svg" alt="" width={28} height={28} style={{ borderRadius: 'var(--radius-md)' }} />
+          <h1 className="text-display-md" style={{ margin: 0 }}>ai0</h1>
+        </div>
+        <p style={{ margin: '0 0 22px', fontSize: 15, color: 'var(--color-ink-muted)' }}>Sign in to the dashboard.</p>
 
         {reasonText && (
-          <p role="status" style={{ marginBottom: 16, fontSize: 14, color: 'var(--color-ink-muted)' }}>{reasonText}</p>
+          <div role="status" style={{
+            display: 'flex', gap: 8, alignItems: 'flex-start', marginBottom: 18, padding: '10px 12px',
+            borderRadius: 'var(--radius-md)', background: 'var(--color-surface-3)', fontSize: 13, color: 'var(--color-ink)',
+          }}>
+            <Icon name="info" size={15} />
+            <span>{reasonText}</span>
+          </div>
         )}
 
-        {AUTH_MODE === 'telegram' && (
-          <>
-            <p style={{ marginBottom: 24, fontSize: 15, color: 'var(--color-ink-muted)' }}>
-              Sign in with Telegram to continue.
-            </p>
-            <div ref={widgetRef} />
-            {error && <p style={{ marginTop: 12, fontSize: 13, color: 'var(--color-danger)' }}>{error}</p>}
-          </>
+        {AUTH_MODE === 'telegram' && <div ref={widgetRef} style={{ minHeight: 40 }} />}
+
+        {AUTH_MODE === 'telegram' && TOKEN_LOGIN && !showToken && (
+          <button
+            type="button"
+            className="btn-tiny"
+            style={{ marginTop: 18 }}
+            onClick={() => setShowToken(true)}
+            aria-expanded={false}
+          >
+            Use access token
+          </button>
         )}
 
-        {AUTH_MODE === 'token' && (
-          <>
-            <p style={{ marginBottom: 20, fontSize: 15, color: 'var(--color-ink-muted)' }}>
-              Enter your access token to continue.
-            </p>
-            <form
-              onSubmit={(e) => { e.preventDefault(); void submitToken(token); }}
-              style={{ display: 'flex', flexDirection: 'column', gap: 12 }}
-            >
-              <input
-                type="password"
-                autoFocus
-                value={token}
-                onChange={(e) => setToken(e.target.value)}
-                placeholder="Access token"
-                className="input-field"
-                style={{ width: '100%' }}
-                autoComplete="off"
-              />
-              <button type="submit" disabled={busy || !token.trim()} className="btn-primary" style={{ width: '100%' }}>
-                {busy ? 'Checking…' : 'Sign in'}
-              </button>
-            </form>
-            {error && (
-              <p style={{ marginTop: 12, fontSize: 13, color: 'var(--color-danger)' }}>{error}</p>
-            )}
-          </>
+        {TOKEN_LOGIN && showToken && (
+          <form
+            onSubmit={(e) => { e.preventDefault(); void submitToken(token); }}
+            style={{ display: 'flex', flexDirection: 'column', gap: 12, marginTop: AUTH_MODE === 'telegram' ? 18 : 0 }}
+          >
+            <input
+              type="password"
+              autoFocus
+              value={token}
+              onChange={(e) => setToken(e.target.value)}
+              placeholder="Access token"
+              aria-label="Access token"
+              className="input-field"
+              style={{ width: '100%' }}
+              autoComplete="off"
+            />
+            <button type="submit" disabled={busy || locked || !token.trim()} className="btn-primary" style={{ width: '100%' }}>
+              {busy ? 'Checking…' : 'Sign in'}
+            </button>
+          </form>
         )}
 
-        {AUTH_MODE === 'dev' && (isLocalHost(window.location.hostname) ? (
+        {errorText && (
+          <p role="alert" style={{ marginTop: 12, marginBottom: 0, fontSize: 13, color: 'var(--color-danger)' }}>{errorText}</p>
+        )}
+
+        {AUTH_MODE === 'dev' && (devHere ? (
           <>
-            <p style={{ marginBottom: 24, fontSize: 15, color: 'var(--color-ink-muted)' }}>
-              Dev mode — the backend's local no-auth bypass decides access.
+            <p style={{ marginBottom: 20, fontSize: 14, color: 'var(--color-ink-muted)' }}>
+              Local dev build — the backend's local no-auth bypass decides access.
             </p>
             <button className="btn-primary" style={{ width: '100%' }} onClick={() => void enter()}>
               Continue in dev mode

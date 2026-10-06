@@ -1,7 +1,8 @@
-// Settings page. Three tabs: Telegram (live values via GET /settings; the
+// Settings page. Four tabs: Telegram (live values via GET /settings; the
 // "Tracking" block is editable and persisted via PATCH /settings), AI (provider
-// keys as read-only set/not-set badges) and Meta (placeholder). Active tab in
-// ?tab= for reload/linkability.
+// keys as read-only set/not-set badges), Meta (placeholder) and Security
+// (dashboard sessions + sign-in audit, spec 028). Active tab in ?tab= for
+// reload/linkability.
 //
 // Editing model: every change (toggle flip or number apply) opens a confirm
 // dialog that shows the old → new value before persisting. No batch save.
@@ -16,17 +17,19 @@ import { Badge } from '../components/ui/Badge';
 import { Button } from '../components/ui/Button';
 import { useConfirm } from '../components/ui/ConfirmDialog';
 import { settingsApi } from '../api/settings';
+import { SecurityTab } from '../components/settings/SecurityTab';
 import type { AppSettings, SettingsPatch } from '../api/types';
 
-type Tab = 'telegram' | 'ai' | 'meta';
+type Tab = 'telegram' | 'ai' | 'meta' | 'security';
 
 const TABS: ReadonlyArray<{ key: Tab; label: string }> = [
   { key: 'telegram', label: 'Telegram' },
   { key: 'ai',       label: 'AI' },
   { key: 'meta',     label: 'Meta' },
+  { key: 'security', label: 'Security' },
 ];
 
-const VALID: Tab[] = ['telegram', 'ai', 'meta'];
+const VALID: Tab[] = ['telegram', 'ai', 'meta', 'security'];
 
 interface Search { tab: Tab; }
 
@@ -52,6 +55,7 @@ function SettingsPage() {
 
       {tab === 'telegram' && <TelegramTab />}
       {tab === 'ai'       && <AiTab />}
+      {tab === 'security' && <SecurityTab />}
       {tab === 'meta'     && (
         <Placeholder
           icon="facebook"
