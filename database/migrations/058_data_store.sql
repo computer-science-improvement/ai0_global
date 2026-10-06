@@ -701,6 +701,520 @@ BEGIN
   RETURN v_n;
 END $$;
 
+-- ═══ One-time move of the 12 content tables (spec 032 FR-008) ════════════════
+--
+-- For each of recipes, facts, quotes, prompts, on_this_day, articles, pdr_questions, birthdays, assets,
+-- tg_posts, jokes and name_days:
+--   1. seed its schema (curated plain-English descriptions; any real column the list misses is added
+--      automatically, so a drifted production table still moves losslessly);
+--   2. copy every row into data_items with legacy_ref = 'library://<table>/<id>', keeping posted,
+--      created_at, license and source_name;
+--   3. check parity (row counts), rename the table to legacy_<table> (read-only from now on);
+--   4. create a compatibility VIEW with the old name, the same columns, types, order and ids, plus
+--      INSTEAD OF triggers that route INSERT / UPDATE / DELETE into the store;
+--   5. compare every legacy row with its view row (EXCEPT ALL); any difference rolls the migration back.
+-- Re-running is a no-op: a table that is already a view next to legacy_<table> is skipped.
+-- Rollback for 30 days: legacy_<table> still has every row as it was at the move.
+
+CREATE OR REPLACE FUNCTION data_legacy_readonly() RETURNS trigger
+LANGUAGE plpgsql AS $$
+BEGIN
+  RAISE EXCEPTION '% is read-only since migration 058; write through the "%" view or the data store',
+    TG_TABLE_NAME, substr(TG_TABLE_NAME, 8) USING ERRCODE = 'read_only_sql_transaction';
+END $$;
+
+-- INSTEAD OF trigger on a compatibility view. TG_ARGV[0] = schema key (= old table name),
+-- TG_ARGV[1] = id kind ('uuid': the old uuid lives only in legacy_ref; 'text': `id` is a data field).
+--   INSERT  → data_items_upsert(..., update_fields => '{}'): a new row is inserted, an existing dedup key is
+--             skipped (the old loaders' ON CONFLICT DO NOTHING); RETURNING sees the id.
+--   UPDATE  → changed data columns go through data_items_upsert(..., update_fields => changed);
+--             `posted` is applied as a delta on the current value (no lost update between two writers).
+--   DELETE  → deletes the store row.
+CREATE OR REPLACE FUNCTION data_legacy_view_write() RETURNS trigger
+LANGUAGE plpgsql AS $$
+DECLARE
+  v_key     text := TG_ARGV[0];
+  v_kind    text := TG_ARGV[1];
+  v_prefix  text := 'library://' || TG_ARGV[0] || '/';
+  v_new     jsonb;
+  v_old     jsonb;
+  v_row     jsonb;
+  v_res     jsonb;
+  v_lid     text;
+  v_ref     text;
+  v_changed text[];
+  v_item    bigint;
+  v_created timestamptz;
+  v_add     jsonb;
+  v_del     text[];
+BEGIN
+  IF TG_OP = 'INSERT' THEN
+    v_new := to_jsonb(NEW);
+    v_lid := CASE WHEN v_kind = 'uuid' THEN COALESCE(v_new->>'id', gen_random_uuid()::text) ELSE v_new->>'id' END;
+    IF COALESCE(v_lid, '') = '' THEN
+      RAISE EXCEPTION 'null value in column "id" of relation "%"', TG_TABLE_NAME USING ERRCODE = 'not_null_violation';
+    END IF;
+    v_ref := v_prefix || v_lid;
+    v_row := v_new - 'posted' - 'created_at';
+    IF v_kind = 'uuid' THEN v_row := v_row - 'id'; END IF;
+    v_row := data_strip_top_nulls(v_row)
+             || jsonb_build_object('_legacy_ref', v_ref, '_posted', COALESCE(v_new->'posted', '{}'::jsonb));
+    v_res := data_items_upsert(v_key, jsonb_build_array(v_row), NULL, ARRAY[]::text[]);
+    IF jsonb_array_length(v_res->'invalid') > 0 THEN
+      RAISE EXCEPTION '%: invalid row: %', TG_TABLE_NAME, v_res->'invalid' USING ERRCODE = 'check_violation';
+    END IF;
+    IF (v_res->>'inserted')::int = 0 THEN RETURN NULL; END IF;
+    SELECT created_at INTO v_created FROM data_items WHERE legacy_ref = v_ref;
+    NEW.id := v_lid;
+    NEW.created_at := v_created;
+    RETURN NEW;
+  END IF;
+
+  v_old := to_jsonb(OLD);
+  v_ref := v_prefix || (v_old->>'id');
+  SELECT id INTO v_item FROM data_items WHERE legacy_ref = v_ref;
+  IF v_item IS NULL THEN RETURN NULL; END IF;
+
+  IF TG_OP = 'DELETE' THEN
+    DELETE FROM data_items WHERE id = v_item;
+    RETURN OLD;
+  END IF;
+
+  v_new := to_jsonb(NEW);
+  IF v_new->'id' IS DISTINCT FROM v_old->'id' THEN
+    RAISE EXCEPTION '%: id cannot change', TG_TABLE_NAME USING ERRCODE = 'feature_not_supported';
+  END IF;
+  SELECT array_agg(k) INTO v_changed
+    FROM jsonb_object_keys(v_new) k
+   WHERE k NOT IN ('id', 'posted', 'created_at') AND v_new->k IS DISTINCT FROM v_old->k;
+  IF v_changed IS NOT NULL THEN
+    SELECT jsonb_object_agg(k, v_new->k) INTO v_row FROM unnest(v_changed) k;
+    v_res := data_items_upsert(v_key, jsonb_build_array(v_row || jsonb_build_object('_legacy_ref', v_ref)), NULL, v_changed);
+    IF jsonb_array_length(v_res->'invalid') > 0 THEN
+      RAISE EXCEPTION '%: invalid update: %', TG_TABLE_NAME, v_res->'invalid' USING ERRCODE = 'check_violation';
+    END IF;
+  END IF;
+  IF v_new->'posted' IS DISTINCT FROM v_old->'posted' THEN
+    SELECT COALESCE(jsonb_object_agg(e.key, e.value), '{}'::jsonb) INTO v_add
+      FROM jsonb_each(COALESCE(v_new->'posted', '{}'::jsonb)) e
+     WHERE (v_old->'posted'->e.key) IS DISTINCT FROM e.value;
+    SELECT array_agg(k) INTO v_del
+      FROM jsonb_object_keys(COALESCE(v_old->'posted', '{}'::jsonb)) k
+     WHERE NOT COALESCE(v_new->'posted', '{}'::jsonb) ? k;
+    UPDATE data_items SET posted = (posted - COALESCE(v_del, '{}'::text[])) || v_add WHERE id = v_item;
+  END IF;
+  IF v_new->'created_at' IS DISTINCT FROM v_old->'created_at' THEN
+    UPDATE data_items SET created_at = (v_new->>'created_at')::timestamptz WHERE id = v_item;
+  END IF;
+  RETURN NEW;
+END $$;
+
+DO $move$
+DECLARE
+  v_common jsonb := $common$[
+    {"name": "source_name", "type": "text", "filterable": true, "agent_visible": true,
+     "description": "Site or dataset the row came from, e.g. faktypro.com.ua. Credit it when the license is unknown."},
+    {"name": "source_url", "type": "url", "agent_visible": true,
+     "description": "Canonical URL of the original, when known."},
+    {"name": "license", "type": "enum", "required": true, "default": "unknown", "filterable": true, "agent_visible": true,
+     "enum": ["unknown", "permitted", "own", "cc-by", "pd"],
+     "description": "Reuse license. unknown: write original text and credit the source; permitted: the owner has permission; own: our own content; cc-by: reuse with credit; pd: public domain."}
+  ]$common$::jsonb;
+  v_defs jsonb := $defs$ {
+  "recipes": {
+    "title": "Recipes", "entity": "recipe", "language": "en",
+    "description": "International recipes from public recipe datasets (mostly English), with per-serving nutrition. The recipes channel translates a recipe into Ukrainian on first post and caches the translation on the row.",
+    "suitable_for": "Food and cooking channels: recipe posts, carousels with calories and macros, menu ideas.",
+    "dedup_key": ["slug"],
+    "roles": {"title": ["title_uk", "title"], "body": ["description", "ingredients_uk", "ingredients"], "image": "image_url", "url": "url", "category": "category"},
+    "fields": [
+      {"name": "title", "type": "text", "required": true, "searchable": true, "description": "Original recipe name as the source published it (usually English)."},
+      {"name": "slug", "type": "text", "required": true, "agent_visible": false, "description": "URL-safe unique id of the recipe; the dedup key."},
+      {"name": "url", "type": "url", "description": "Link to the original recipe page."},
+      {"name": "description", "type": "long_text", "searchable": true, "description": "Short intro or summary of the dish from the source."},
+      {"name": "ingredients", "type": "long_text", "searchable": true, "description": "Ingredient list in the source language, one item per line."},
+      {"name": "instructions", "type": "long_text", "description": "Cooking steps in the source language."},
+      {"name": "image_url", "type": "image_url", "description": "Photo of the finished dish."},
+      {"name": "category", "type": "text", "filterable": true, "description": "Dish category from the source, e.g. dessert or soup."},
+      {"name": "tags", "type": "text_list", "filterable": true, "description": "Free-form tags from the source."},
+      {"name": "post_text", "type": "long_text", "agent_visible": false, "description": "Legacy pre-written post text; usually empty."},
+      {"name": "title_uk", "type": "text", "searchable": true, "description": "Ukrainian title, filled when the recipe is first translated. An empty string means the translator refused the recipe: skip it."},
+      {"name": "ingredients_uk", "type": "long_text", "description": "Ukrainian ingredient list (filled with title_uk)."},
+      {"name": "instructions_uk", "type": "long_text", "description": "Ukrainian cooking steps (filled with title_uk)."},
+      {"name": "translated_at", "type": "datetime", "agent_visible": false, "description": "When the Ukrainian translation was cached."},
+      {"name": "telegraph_url", "type": "url", "description": "Telegraph page with the full recipe, created once on the first Telegram post."},
+      {"name": "telegraph_path", "type": "text", "agent_visible": false, "description": "Path of the Telegraph page (used to edit it)."},
+      {"name": "kcal", "type": "number", "filterable": true, "description": "Calories per serving."},
+      {"name": "protein_g", "type": "number", "description": "Protein per serving, grams."},
+      {"name": "fat_g", "type": "number", "description": "Total fat per serving, grams."},
+      {"name": "carbs_g", "type": "number", "description": "Total carbohydrates per serving, grams."},
+      {"name": "serving_size_g", "type": "number", "description": "Serving size, grams."},
+      {"name": "raw", "type": "json", "agent_visible": false, "description": "Full original record from the source dataset (detailed nutrition, servings, notes, techniques)."}
+    ]
+  },
+  "facts": {
+    "title": "Interesting facts", "entity": "fact", "language": "uk",
+    "description": "Short interesting facts in Ukrainian, one fact per row, collected from faktypro.com.ua articles. Facts of one article share its title, link and image.",
+    "suitable_for": "General-interest, science and 'did you know' channels: single-fact posts, fact series on one topic.",
+    "dedup_key": ["content_hash"],
+    "roles": {"title": "article_title", "body": "content", "image": "image_url", "url": "article_url", "category": "category"},
+    "fields": [
+      {"name": "article_slug", "type": "text", "required": true, "agent_visible": false, "filterable": true, "description": "Slug of the source article; groups the facts of one article."},
+      {"name": "article_title", "type": "text", "required": true, "searchable": true, "description": "Title of the source article, i.e. the topic of the fact."},
+      {"name": "article_url", "type": "url", "description": "Link to the source article."},
+      {"name": "image_url", "type": "image_url", "description": "Illustration of the source article."},
+      {"name": "content", "type": "long_text", "required": true, "searchable": true, "description": "The fact itself: one paragraph in Ukrainian."},
+      {"name": "content_hash", "type": "text", "required": true, "agent_visible": false, "description": "MD5 of content; the dedup key."},
+      {"name": "category", "type": "text", "filterable": true, "description": "Topic category of the source article."}
+    ]
+  },
+  "quotes": {
+    "title": "Quotes", "entity": "quote", "language": "uk",
+    "description": "Quotes in Ukrainian with their authors, collected from daytoday.ua and cleaned of numbering and quote marks.",
+    "suitable_for": "Motivation and self-development channels: quote of the day, quote cards, quotes by birthday people.",
+    "dedup_key": ["text_hash"],
+    "roles": {"title": "author", "body": "text", "url": "url", "category": "category"},
+    "fields": [
+      {"name": "text", "type": "long_text", "required": true, "searchable": true, "description": "The quote itself."},
+      {"name": "text_hash", "type": "text", "required": true, "agent_visible": false, "description": "MD5 of text; the dedup key."},
+      {"name": "author", "type": "text", "filterable": true, "searchable": true, "description": "Who said or wrote it; may be empty."},
+      {"name": "category", "type": "text", "filterable": true, "description": "Theme of the quote collection."},
+      {"name": "url", "type": "url", "description": "Page the quote was collected from."}
+    ]
+  },
+  "prompts": {
+    "title": "AI image and video prompts", "entity": "prompt", "language": "en",
+    "description": "Prompts for image and video generators. PromptHero rows (provider prompthero) store only the page link and image; the prompt text is scraped at post time. Curated GitHub rows (other providers) store the full prompt text and an example output.",
+    "suitable_for": "AI art and prompt-engineering channels: prompt of the day with the example image or video.",
+    "dedup_key": ["id"],
+    "roles": {"title": "title", "body": "prompt_text", "image": "media_url", "url": "page_url", "category": "category"},
+    "fields": [
+      {"name": "id", "type": "text", "required": true, "agent_visible": false, "description": "Stable id: the image CDN URL for PromptHero rows, a curated id for GitHub prompts. The dedup key."},
+      {"name": "prompt_source", "type": "text", "required": true, "agent_visible": false, "description": "Link to the prompt page (PromptHero) or the media URL (curated)."},
+      {"name": "category", "type": "text", "filterable": true, "description": "Gallery or style category, e.g. anime or architecture."},
+      {"name": "scraped_at", "type": "datetime", "agent_visible": false, "description": "When the row was scraped."},
+      {"name": "page_url", "type": "url", "description": "Page of the prompt on its site."},
+      {"name": "status", "type": "text", "filterable": true, "description": "Processing status; ERROR marks a row that failed to publish."},
+      {"name": "provider", "type": "text", "required": true, "default": "prompthero", "filterable": true, "description": "Where the prompt comes from: prompthero, or the curated collection name (e.g. nanobanana, seedance)."},
+      {"name": "title", "type": "text", "searchable": true, "description": "Short title of a curated prompt."},
+      {"name": "prompt_text", "type": "long_text", "searchable": true, "description": "Full prompt text (curated rows only)."},
+      {"name": "source", "type": "text", "description": "Repository or author a curated prompt was taken from."},
+      {"name": "media_url", "type": "url", "description": "Example image or video produced by the prompt."},
+      {"name": "media_type", "type": "text", "filterable": true, "description": "image or video."}
+    ]
+  },
+  "on_this_day": {
+    "title": "On this day: historical events", "entity": "historical_event", "language": "uk",
+    "description": "Historical events and holidays by calendar day (no year), in Ukrainian, from daytoday.ua.",
+    "suitable_for": "History and 'on this day' channels: today's events, holidays of the day.",
+    "dedup_key": ["month", "day", "slug"],
+    "reuse_policy": {"kind": "after_days", "days": 365},
+    "roles": {"title": "title", "body": ["description", "excerpt"], "image": "image_url", "month": "month", "day": "day"},
+    "fields": [
+      {"name": "day", "type": "int", "required": true, "filterable": true, "description": "Day of the month (1–31) the event is remembered on."},
+      {"name": "month", "type": "int", "required": true, "filterable": true, "description": "Month (1–12) the event is remembered on."},
+      {"name": "title", "type": "text", "required": true, "searchable": true, "description": "Event headline."},
+      {"name": "slug", "type": "text", "required": true, "agent_visible": false, "description": "URL slug of the event on the source site; part of the dedup key."},
+      {"name": "excerpt", "type": "long_text", "searchable": true, "description": "One-paragraph summary."},
+      {"name": "description", "type": "long_text", "description": "Full text about the event."},
+      {"name": "image_url", "type": "image_url", "description": "Illustration."},
+      {"name": "tags", "type": "text_list", "filterable": true, "description": "Tags from the source."}
+    ]
+  },
+  "articles": {
+    "title": "Articles", "entity": "article", "language": "uk",
+    "description": "Long-form articles in Ukrainian from daytoday.ua and treatfield.com (collections, healthy lifestyle, interesting facts, movies, recipes, science, self-development, psychotherapy).",
+    "suitable_for": "Channels that retell or summarise articles: lifestyle, psychology, science, movies.",
+    "dedup_key": ["slug"],
+    "roles": {"title": "title", "body": ["excerpt", "content"], "image": "image_url", "url": "url", "category": "category"},
+    "fields": [
+      {"name": "title", "type": "text", "required": true, "searchable": true, "description": "Article headline."},
+      {"name": "slug", "type": "text", "required": true, "agent_visible": false, "description": "URL slug; the dedup key."},
+      {"name": "url", "type": "url", "required": true, "description": "Link to the article."},
+      {"name": "excerpt", "type": "long_text", "searchable": true, "description": "Lead paragraph or summary."},
+      {"name": "content", "type": "long_text", "description": "Full article text (can be long)."},
+      {"name": "image_url", "type": "image_url", "description": "Cover image."},
+      {"name": "category", "type": "text", "filterable": true, "description": "Section of the source site."},
+      {"name": "tags", "type": "text_list", "filterable": true, "description": "Tags from the source."}
+    ]
+  },
+  "pdr_questions": {
+    "title": "Driving test questions (PDR)", "entity": "quiz_question", "language": "uk",
+    "description": "Official Ukrainian driving-theory exam questions (PDR tickets) with answer options, the correct answer and an explanation, from pdr-online.com.ua.",
+    "suitable_for": "Driving and road-rules channels: quiz polls with the explanation.",
+    "dedup_key": ["question_id"],
+    "roles": {"title": "text", "body": "explanation", "image": "image_url"},
+    "fields": [
+      {"name": "question_id", "type": "int", "required": true, "agent_visible": false, "description": "Question id on pdr-online.com.ua; the dedup key."},
+      {"name": "ticket_number", "type": "int", "required": true, "filterable": true, "description": "Exam ticket number."},
+      {"name": "question_num", "type": "int", "required": true, "description": "Position of the question in its ticket."},
+      {"name": "text", "type": "long_text", "required": true, "searchable": true, "description": "Question text."},
+      {"name": "image_url", "type": "image_url", "description": "Road situation picture, when the question has one."},
+      {"name": "answers", "type": "json", "required": true, "default": [], "description": "Answer options in order: an array of strings or of {text} objects."},
+      {"name": "correct_answer_num", "type": "int", "required": true, "description": "1-based number of the correct option in answers. It is the official answer: never correct it from memory."},
+      {"name": "explanation", "type": "long_text", "required": true, "default": "", "description": "Why the answer is correct, with the rule reference."}
+    ]
+  },
+  "birthdays": {
+    "title": "Birthdays of famous people", "entity": "person", "language": "uk",
+    "description": "Birthdays of well-known people by calendar day, in Ukrainian, from daytoday.ua. Names of real people: personal data.",
+    "suitable_for": "Biography and 'born today' channels; quote channels that pick a quote by today's birthday person.",
+    "dedup_key": ["month", "day", "name"],
+    "reuse_policy": {"kind": "after_days", "days": 365},
+    "contains_personal_data": true,
+    "roles": {"title": "name", "month": "month", "day": "day"},
+    "fields": [
+      {"name": "month", "type": "int", "required": true, "filterable": true, "description": "Birth month (1–12)."},
+      {"name": "day", "type": "int", "required": true, "filterable": true, "description": "Birth day of the month (1–31)."},
+      {"name": "year", "type": "int", "filterable": true, "description": "Birth year; empty when unknown."},
+      {"name": "name", "type": "text", "required": true, "searchable": true, "description": "Full name in Ukrainian."}
+    ]
+  },
+  "assets": {
+    "title": "AI learning resources", "entity": "resource", "language": "en",
+    "description": "Links to AI learning resources: OpenAI Academy courses and resources, prompt collections from Markdown repos, and MCP servers. Each row is one resource with a title, description and link; data_source tells which collection it belongs to.",
+    "suitable_for": "AI and developer channels: resource of the day, tool and course recommendations.",
+    "dedup_key": ["data_source", "title"],
+    "roles": {"title": "title", "body": "description", "url": ["link", "source_url"], "category": "category"},
+    "fields": [
+      {"name": "data_source", "type": "text", "required": true, "filterable": true, "description": "Collection the row belongs to: academy-openai, academy-openai-resources, prompts-md or mcpservers."},
+      {"name": "title", "type": "text", "required": true, "default": "", "searchable": true, "description": "Resource name."},
+      {"name": "description", "type": "long_text", "required": true, "default": "", "searchable": true, "description": "What the resource is and why it is useful."},
+      {"name": "link", "type": "url", "description": "Main link to the resource."},
+      {"name": "source_url", "type": "url", "description": "Page the resource was listed on."},
+      {"name": "category", "type": "text", "filterable": true, "description": "Category inside the collection."},
+      {"name": "extra", "type": "json", "agent_visible": false, "description": "Collection-specific extras (e.g. GitHub stars, tags)."}
+    ]
+  },
+  "tg_posts": {
+    "title": "Ready Telegram posts", "entity": "social_post", "language": "uk",
+    "description": "Pre-written Telegram posts (HTML) adapted by an LLM from self-development articles and biographies. A legacy pool: new posts are written by the editor agents.",
+    "suitable_for": "Motivation and biography channels when a ready post is acceptable.",
+    "dedup_key": ["content_hash"],
+    "roles": {"title": "title", "body": "post", "image": "image_url", "url": "source_url"},
+    "fields": [
+      {"name": "source", "type": "text", "required": true, "filterable": true, "description": "Upstream pool: daytoday-self-development, samorozvytok-motivatory or birthdays-db."},
+      {"name": "source_url", "type": "text", "required": true, "description": "URL of the original article; may be empty."},
+      {"name": "title", "type": "text", "required": true, "searchable": true, "description": "Title of the post or the original article."},
+      {"name": "image_url", "type": "image_url", "description": "Image for the post."},
+      {"name": "post", "type": "long_text", "required": true, "searchable": true, "description": "Ready post text in Telegram HTML."},
+      {"name": "content_hash", "type": "text", "required": true, "agent_visible": false, "description": "MD5 of post; the dedup key."},
+      {"name": "author", "type": "text", "description": "Author of the original article."},
+      {"name": "source_published_at", "type": "datetime", "description": "When the original article was published."},
+      {"name": "tags", "type": "text_list", "filterable": true, "description": "Tags of the post."}
+    ]
+  },
+  "jokes": {
+    "title": "Jokes", "entity": "joke", "language": "uk",
+    "description": "Short jokes in Ukrainian from daytoday.ua.",
+    "suitable_for": "Entertainment channels: joke of the day.",
+    "dedup_key": ["content_hash"],
+    "roles": {"title": "title", "body": "content", "url": "url"},
+    "fields": [
+      {"name": "title", "type": "text", "searchable": true, "description": "Optional title."},
+      {"name": "content", "type": "long_text", "required": true, "searchable": true, "description": "The joke text."},
+      {"name": "content_hash", "type": "text", "required": true, "agent_visible": false, "description": "MD5 of content; the dedup key."},
+      {"name": "url", "type": "url", "description": "Page the joke was collected from."}
+    ]
+  },
+  "name_days": {
+    "title": "Name days", "entity": "name_day", "language": "uk",
+    "description": "Ukrainian name days: which names are celebrated on which calendar day, from daytoday.ua.",
+    "suitable_for": "Calendar and 'today' channels: whose name day it is today.",
+    "dedup_key": ["month", "day", "name"],
+    "reuse_policy": {"kind": "after_days", "days": 365},
+    "roles": {"title": "name", "month": "month", "day": "day"},
+    "fields": [
+      {"name": "month", "type": "int", "required": true, "filterable": true, "description": "Month (1–12)."},
+      {"name": "day", "type": "int", "required": true, "filterable": true, "description": "Day of the month (1–31)."},
+      {"name": "name", "type": "text", "required": true, "searchable": true, "description": "Name celebrated on this day, in Ukrainian."}
+    ]
+  }
+  } $defs$::jsonb;
+  t          text;
+  d          jsonb;
+  v_rel      regclass;
+  v_legacy   regclass;
+  v_relkind  "char";
+  v_idtype   text;
+  v_idkind   text;
+  v_fields   jsonb;
+  v_roles    jsonb;
+  v_sid      uuid;
+  v_prefix   text;
+  v_plen     int;
+  v_has_posted  boolean;
+  v_has_created boolean;
+  v_jsoncols text;
+  v_select   text;
+  v_n_legacy bigint;
+  v_n_store  bigint;
+  v_diff     bigint;
+  c          record;
+BEGIN
+  FOREACH t IN ARRAY ARRAY['recipes','facts','quotes','prompts','on_this_day','articles','pdr_questions',
+                           'birthdays','assets','tg_posts','jokes','name_days'] LOOP
+    d := v_defs->t;
+    v_rel := to_regclass('public.' || t);
+    v_legacy := to_regclass('public.legacy_' || t);
+    SELECT relkind INTO v_relkind FROM pg_class WHERE oid = v_rel;
+
+    IF v_rel IS NOT NULL AND v_relkind = 'v' AND v_legacy IS NOT NULL THEN
+      RAISE NOTICE '058: % already moved to the data store', t;
+      CONTINUE;
+    END IF;
+    IF v_rel IS NULL THEN
+      RAISE NOTICE '058: table % not found, nothing to move', t;
+      CONTINUE;
+    END IF;
+    IF v_relkind <> 'r' THEN RAISE EXCEPTION '058: % is not a table (relkind %)', t, v_relkind; END IF;
+    IF v_legacy IS NOT NULL THEN RAISE EXCEPTION '058: both % and legacy_% exist; resolve by hand', t, t; END IF;
+
+    -- No writes between the copy and the rename.
+    EXECUTE format('LOCK TABLE public.%I IN EXCLUSIVE MODE', t);
+
+    SELECT format_type(atttypid, atttypmod) INTO v_idtype
+      FROM pg_attribute WHERE attrelid = v_rel AND attname = 'id' AND attnum > 0 AND NOT attisdropped;
+    IF v_idtype IS NULL THEN RAISE EXCEPTION '058: % has no id column', t; END IF;
+    v_idkind := CASE WHEN v_idtype = 'uuid' THEN 'uuid' ELSE 'text' END;
+    v_has_posted := EXISTS (SELECT 1 FROM pg_attribute WHERE attrelid = v_rel AND attname = 'posted' AND attnum > 0 AND NOT attisdropped);
+    v_has_created := EXISTS (SELECT 1 FROM pg_attribute WHERE attrelid = v_rel AND attname = 'created_at' AND attnum > 0 AND NOT attisdropped);
+
+    -- 1. Schema: curated fields + provenance fields that exist on the table + any column the list misses.
+    v_fields := COALESCE(d->'fields', '[]'::jsonb);
+    v_fields := v_fields || COALESCE((SELECT jsonb_agg(cf ORDER BY o) FROM jsonb_array_elements(v_common) WITH ORDINALITY x(cf, o)
+                                      WHERE NOT EXISTS (SELECT 1 FROM jsonb_array_elements(v_fields) f WHERE f->>'name' = cf->>'name')), '[]'::jsonb);
+    SELECT COALESCE(jsonb_agg(f ORDER BY o), '[]'::jsonb) INTO v_fields
+      FROM jsonb_array_elements(v_fields) WITH ORDINALITY x(f, o)
+     WHERE EXISTS (SELECT 1 FROM pg_attribute a WHERE a.attrelid = v_rel AND a.attname = f->>'name' AND a.attnum > 0 AND NOT a.attisdropped);
+    v_fields := v_fields || COALESCE((
+      SELECT jsonb_agg(jsonb_build_object(
+               'name', a.attname,
+               'type', CASE
+                         WHEN t2.typname IN ('int2','int4','int8') THEN 'int'
+                         WHEN t2.typname IN ('numeric','float4','float8') THEN 'number'
+                         WHEN t2.typname = 'bool' THEN 'bool'
+                         WHEN t2.typname = 'date' THEN 'date'
+                         WHEN t2.typname IN ('timestamp','timestamptz') THEN 'datetime'
+                         WHEN t2.typname IN ('json','jsonb') THEN 'json'
+                         WHEN t2.typname = '_text' OR t2.typname = '_varchar' THEN 'text_list'
+                         ELSE 'text' END,
+               'required', a.attnotnull,
+               'agent_visible', true,
+               'description', format('Column %s (%s) of the former %s table; not described yet.', a.attname, format_type(a.atttypid, a.atttypmod), t))
+             ORDER BY a.attnum)
+        FROM pg_attribute a JOIN pg_type t2 ON t2.oid = a.atttypid
+       WHERE a.attrelid = v_rel AND a.attnum > 0 AND NOT a.attisdropped
+         AND a.attname NOT IN ('posted', 'created_at')
+         AND NOT (a.attname = 'id' AND v_idkind = 'uuid')
+         AND a.attname ~ '^[a-z][a-z0-9_]{0,62}$'
+         AND NOT EXISTS (SELECT 1 FROM jsonb_array_elements(v_fields) f WHERE f->>'name' = a.attname)), '[]'::jsonb);
+    -- Defaults for every field: agent_visible / searchable / filterable default to visible, not searchable/filterable.
+    SELECT jsonb_agg(jsonb_build_object('agent_visible', true, 'searchable', false, 'filterable', false, 'required', false) || f ORDER BY o)
+      INTO v_fields FROM jsonb_array_elements(v_fields) WITH ORDINALITY x(f, o);
+    v_roles := COALESCE(d->'roles', '{}'::jsonb);
+    IF v_fields @> '[{"name": "source_name"}]' THEN v_roles := v_roles || '{"source_name": "source_name"}'; END IF;
+    IF v_fields @> '[{"name": "source_url"}]'  THEN v_roles := v_roles || '{"source_url": "source_url"}'; END IF;
+    IF v_fields @> '[{"name": "license"}]'     THEN v_roles := v_roles || '{"license": "license"}'; END IF;
+
+    INSERT INTO data_schemas (key, title, description, entity, fields, roles, dedup_key, language, default_license,
+                              reuse_policy, suitable_for, contains_personal_data, legacy, status, created_by)
+    VALUES (t, COALESCE(d->>'title', t), COALESCE(d->>'description', ''), COALESCE(d->>'entity', 'item'), v_fields, v_roles,
+            ARRAY(SELECT jsonb_array_elements_text(COALESCE(d->'dedup_key', '["id"]'::jsonb))),
+            d->>'language', 'unknown', COALESCE(d->'reuse_policy', '{"kind": "never"}'::jsonb),
+            COALESCE(d->>'suitable_for', ''), COALESCE((d->>'contains_personal_data')::boolean, false),
+            jsonb_strip_nulls(jsonb_build_object('table', t, 'id', v_idkind, 'id_field', CASE WHEN v_idkind = 'text' THEN 'id' END)),
+            'active', 'migration:058')
+    ON CONFLICT (key) DO NOTHING;
+    SELECT id INTO v_sid FROM data_schemas WHERE key = t;
+    IF EXISTS (SELECT 1 FROM data_items WHERE schema_id = v_sid) THEN
+      RAISE EXCEPTION '058: data schema % already has rows; refusing to copy % twice', t, t;
+    END IF;
+
+    -- 2. Copy. data = the row without id (uuid tables), posted and created_at; SQL NULLs dropped, but a
+    --    jsonb column holding JSON null keeps it. Rare case-only dedup collisions get '#<old id>'.
+    v_prefix := 'library://' || t || '/';
+    v_plen := length(v_prefix);
+    SELECT string_agg(format(' || CASE WHEN x.%1$I IS NOT NULL THEN jsonb_build_object(%1$L, x.%1$I) ELSE ''{}''::jsonb END', a.attname), '')
+      INTO v_jsoncols
+      FROM pg_attribute a WHERE a.attrelid = v_rel AND a.attnum > 0 AND NOT a.attisdropped
+       AND a.atttypid = 'jsonb'::regtype AND a.attname <> 'posted';
+    EXECUTE format($sql$
+      INSERT INTO data_items (schema_id, schema_version, external_key, data, legacy_ref, posted, created_at, updated_at, status)
+      SELECT %1$L::uuid, 1,
+             CASE WHEN z.rn = 1 AND z.k IS NOT NULL THEN z.k ELSE COALESCE(z.k, '') || '#' || z.lid END,
+             z.d, %2$L || z.lid, z.p, z.c, z.c, 'active'
+        FROM (SELECT s.*, data_external_key(%3$L::text[], s.d) AS k,
+                     row_number() OVER (PARTITION BY data_external_key(%3$L::text[], s.d) ORDER BY s.c, s.lid) AS rn
+                FROM (SELECT data_strip_top_nulls(to_jsonb(x) - 'posted' - 'created_at' %4$s) %5$s AS d,
+                             x.id::text AS lid, %6$s AS p, %7$s AS c
+                        FROM public.%8$I x) s) z
+    $sql$,
+      v_sid, v_prefix, (SELECT dedup_key FROM data_schemas WHERE id = v_sid),
+      CASE WHEN v_idkind = 'uuid' THEN '- ''id''' ELSE '' END,
+      COALESCE(v_jsoncols, ''),
+      CASE WHEN v_has_posted THEN 'COALESCE(x.posted, ''{}''::jsonb)' ELSE '''{}''::jsonb' END,
+      CASE WHEN v_has_created THEN 'COALESCE(x.created_at, now())' ELSE 'now()' END,
+      t);
+
+    -- 3. Parity of counts, then rename and freeze the legacy table.
+    EXECUTE format('SELECT count(*) FROM public.%I', t) INTO v_n_legacy;
+    SELECT count(*) INTO v_n_store FROM data_items WHERE schema_id = v_sid;
+    IF v_n_legacy <> v_n_store THEN
+      RAISE EXCEPTION '058 parity: % has % rows but data_items got %', t, v_n_legacy, v_n_store;
+    END IF;
+    EXECUTE format('ALTER TABLE public.%I RENAME TO %I', t, 'legacy_' || t);
+    EXECUTE format('CREATE TRIGGER legacy_readonly BEFORE INSERT OR UPDATE OR DELETE OR TRUNCATE ON public.%I
+                    FOR EACH STATEMENT EXECUTE FUNCTION data_legacy_readonly()', 'legacy_' || t);
+
+    -- 4. Compatibility view: same columns, order and types; ids from legacy_ref.
+    SELECT string_agg(
+             CASE
+               WHEN a.attname = 'id' THEN format('substr(d.legacy_ref, %s)::%s AS id', v_plen + 1, CASE WHEN v_idkind = 'uuid' THEN 'uuid' ELSE 'text' END)
+               WHEN a.attname = 'posted' THEN format('d.posted::%s AS posted', format_type(a.atttypid, a.atttypmod))
+               WHEN a.attname = 'created_at' THEN format('d.created_at::%s AS created_at', format_type(a.atttypid, a.atttypmod))
+               WHEN a.atttypid = 'jsonb'::regtype THEN format('(d.data -> %L) AS %I', a.attname, a.attname)
+               WHEN a.atttypid = 'json'::regtype THEN format('(d.data -> %L)::json AS %I', a.attname, a.attname)
+               WHEN t2.typcategory = 'A' THEN format('CASE WHEN d.data ? %1$L THEN ARRAY(SELECT jsonb_array_elements_text(d.data -> %1$L))::%2$s END AS %3$I',
+                                                     a.attname, format_type(a.atttypid, a.atttypmod), a.attname)
+               ELSE format('(d.data ->> %L)::%s AS %I', a.attname, format_type(a.atttypid, a.atttypmod), a.attname)
+             END, ', ' ORDER BY a.attnum)
+      INTO v_select
+      FROM pg_attribute a JOIN pg_type t2 ON t2.oid = a.atttypid
+     WHERE a.attrelid = to_regclass('public.legacy_' || t) AND a.attnum > 0 AND NOT a.attisdropped;
+    EXECUTE format('CREATE VIEW public.%I AS SELECT %s FROM data_items d WHERE d.schema_id = %L::uuid AND d.status = ''active''',
+                   t, v_select, v_sid);
+    EXECUTE format('COMMENT ON VIEW public.%I IS %L', t,
+                   format('Compatibility view over data_items (data schema %s, migration 058). Writes go through INSTEAD OF triggers; the old table is legacy_%s.', t, t));
+    FOR c IN SELECT a.attname, pg_get_expr(ad.adbin, ad.adrelid) AS def
+               FROM pg_attribute a JOIN pg_attrdef ad ON ad.adrelid = a.attrelid AND ad.adnum = a.attnum
+              WHERE a.attrelid = to_regclass('public.legacy_' || t) AND a.attnum > 0 AND NOT a.attisdropped LOOP
+      EXECUTE format('ALTER VIEW public.%I ALTER COLUMN %I SET DEFAULT %s', t, c.attname, c.def);
+    END LOOP;
+    EXECUTE format('CREATE TRIGGER data_write INSTEAD OF INSERT OR UPDATE OR DELETE ON public.%I
+                    FOR EACH ROW EXECUTE FUNCTION data_legacy_view_write(%L, %L)', t, t, v_idkind);
+    -- `WHERE id = $1` through the view uses this index.
+    EXECUTE format('CREATE INDEX IF NOT EXISTS %I ON data_items ((substr(legacy_ref, %s)::%s)) WHERE schema_id = %L::uuid',
+                   'idx_data_items_legacy_' || t, v_plen + 1, CASE WHEN v_idkind = 'uuid' THEN 'uuid' ELSE 'text' END, v_sid);
+
+    -- 5. Every legacy row must equal its view row, column by column.
+    EXECUTE format('SELECT count(*) FROM (SELECT * FROM public.%I EXCEPT ALL SELECT * FROM public.%I) z', 'legacy_' || t, t) INTO v_diff;
+    IF v_diff <> 0 THEN
+      RAISE EXCEPTION '058 parity: % rows of % differ between legacy_% and the compatibility view', v_diff, t, t;
+    END IF;
+
+    BEGIN
+      IF EXISTS (SELECT 1 FROM pg_roles WHERE rolname = 'editor_ro') THEN
+        EXECUTE format('GRANT SELECT ON public.%I TO editor_ro', t);
+      END IF;
+    EXCEPTION WHEN insufficient_privilege THEN
+      RAISE NOTICE '058: editor_ro grant on % skipped (insufficient privilege)', t;
+    END;
+    PERFORM data_schema_stats_refresh(v_sid);
+    RAISE NOTICE '058: moved % (% rows)', t, v_n_store;
+  END LOOP;
+END $move$;
+
 -- ─── Read access for agent SQL (editor_ro, migration 042) ────────────────────
 
 DO $$
