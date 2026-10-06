@@ -13,6 +13,7 @@ import { NestFactory } from '@nestjs/core';
 import { ConfigService } from '@nestjs/config';
 import { AuthService } from '../../auth/auth.service';
 import { TrackingAuthGuard } from '../../tracking/api/tracking-auth.guard';
+import { makeAuth } from '../../auth/testing/fakes';
 import { APPROVALS_SERVICE, ApprovalsController } from './approvals.controller';
 
 const TOKEN = 'test-token';
@@ -37,7 +38,7 @@ let app: INestApplication;
 let port: number;
 
 before(async () => {
-  Reflect.defineMetadata('design:paramtypes', [ConfigService, AuthService], TrackingAuthGuard);
+  Reflect.defineMetadata('design:paramtypes', [AuthService], TrackingAuthGuard);
   for (const m of ['bulk']) Reflect.defineMetadata('design:paramtypes', [Object], ApprovalsController.prototype, m);
   for (const m of ['edit', 'reschedule', 'reject']) Reflect.defineMetadata('design:paramtypes', [String, Object], ApprovalsController.prototype, m);
   Reflect.defineMetadata('design:paramtypes', [Object], ApprovalsController.prototype, 'list');
@@ -45,7 +46,7 @@ before(async () => {
     controllers: [ApprovalsController],
     providers: [
       { provide: ConfigService, useValue: { get: (k: string) => ({ TRACKING_TOKEN: TOKEN } as any)[k] } },
-      { provide: AuthService, useValue: { verifyToken: async () => null } },
+      { provide: AuthService, useValue: makeAuth({ TRACKING_TOKEN: TOKEN }).auth },
       { provide: APPROVALS_SERVICE, useValue: svc },
     ],
   })
