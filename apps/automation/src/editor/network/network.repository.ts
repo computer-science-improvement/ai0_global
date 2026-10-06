@@ -1,5 +1,44 @@
 import type { Pool } from 'pg';
+import { ChannelMode, effectiveMode } from '../card';
+import { localDate } from '../roles/time';
 import type { Playbook } from './playbook';
+
+/**
+ * Network modes (spec 024 FR-002): `independent` — every member is its own
+ * resource and the orchestrator decides what each publishes; `legacy_duplicate`
+ * — the pre-024 mirror behaviour for groups the owner has not converted.
+ */
+export const NETWORK_MODES = ['independent', 'legacy_duplicate'] as const;
+export type NetworkMode = typeof NETWORK_MODES[number];
+/** Pre-024 names, accepted for one release (logged as deprecated). */
+export const NETWORK_MODE_ALIASES: Record<string, NetworkMode> = { orchestrated: 'independent', mirror: 'legacy_duplicate' };
+
+/** What the automatic-duplication gate looks at (spec 024 FR-003). */
+export interface AutoDuplicateState {
+  mode:             string;
+  /** The anchor card's mode; null when the anchor has no editor card. */
+  cardMode:         ChannelMode | null;
+  /** The anchor orchestrator's mode; null when the anchor has no orchestrator. */
+  orchestratorMode: ChannelMode | null;
+  orchestratorPaused: boolean;
+  hasPlaybook:      boolean;
+}
+
+/**
+ * The gate itself: automatic duplication stops only when the network is
+ * `independent` AND the anchor orchestrator runs `live` (orchestrator ∧ card,
+ * not paused) AND it has an active playbook. Everything else keeps it on, so
+ * no resource goes silent (020 FR-010).
+ */
+export function autoDuplicateRaw(s: AutoDuplicateState): boolean {
+  if (s.mode !== 'independent' || !s.hasPlaybook) return true;
+  if (!s.cardMode || !s.orchestratorMode || s.orchestratorPaused) return true;
+  return effectiveMode(s.orchestratorMode, s.cardMode) !== 'live';
+}
+
+function safeLocalDate(now: Date, tz: string | null): string {
+  try { return localDate(now, tz || 'Europe/Kyiv'); } catch { return localDate(now, 'Europe/Kyiv'); }
+}
 
 export type PlaybookStatus = 'draft' | 'pending_owner' | 'active' | 'superseded' | 'rejected';
 
@@ -203,15 +242,68 @@ export class NetworkRepository {
 
   // ── network ───────────────────────────────────────────────────────────────
 
-  async groupOfChannel(channelKey: string): Promise<{ id: string; name: string; mode: 'mirror' | 'orchestrated' } | null> {
+  async groupOfChannel(channelKey: string): Promise<{ id: string; name: string; mode: NetworkMode } | null> {
     const { rows } = await this.pool.query(
       `SELECT g.id, g.name, g.mode FROM tracked_channels t JOIN meta_account_groups g ON g.id = t.group_id
         WHERE t.channel_key = $1 LIMIT 1`, [channelKey]);
-    return rows[0] ? { id: rows[0].id, name: rows[0].name, mode: rows[0].mode } : null;
+    return rows[0] ? { id: rows[0].id, name: rows[0].name, mode: NETWORK_MODE_ALIASES[rows[0].mode] ?? rows[0].mode } : null;
   }
 
-  async setGroupMode(groupId: string, mode: 'mirror' | 'orchestrated'): Promise<void> {
+  /** Today's gate is pinned first, so a mode change takes effect at the anchor's next plan day (FR-003). */
+  async setGroupMode(groupId: string, mode: NetworkMode, now: Date = new Date()): Promise<void> {
+    await this.autoDuplicateActive(groupId, now);
     await this.pool.query(`UPDATE meta_account_groups SET mode = $2 WHERE id = $1`, [groupId, mode]);
+  }
+
+  /** The gate inputs of a group: its mode, the anchor card and orchestrator, the playbook, today's pin. */
+  async autoDuplicateState(groupId: string): Promise<(AutoDuplicateState & { tz: string | null; pinnedDay: string | null; pinned: boolean | null }) | null> {
+    const { rows } = await this.pool.query(
+      `SELECT g.mode, g.auto_duplicate_day::text AS pinned_day, g.auto_duplicate AS pinned,
+              ec.mode AS card_mode, ec.timezone, a.mode AS orch_mode, a.status AS orch_status, a.paused_until,
+              EXISTS (SELECT 1 FROM playbooks p WHERE p.agent_id = a.id AND p.status = 'active') AS has_playbook
+         FROM meta_account_groups g
+         LEFT JOIN LATERAL (SELECT channel_key FROM tracked_channels t WHERE t.group_id = g.id AND t.channel_key IS NOT NULL
+                             ORDER BY t.channel_key LIMIT 1) anchor ON true
+         LEFT JOIN editor_channels ec ON ec.channel_key = anchor.channel_key
+         LEFT JOIN agents a ON a.parent_id IS NULL AND a.kind = 'orchestrator' AND a.scope = 'resource'
+                           AND a.scope_id = 'telegram:' || anchor.channel_key
+        WHERE g.id = $1`, [groupId]);
+    const r = rows[0];
+    if (!r) return null;
+    const pausedUntil = r.paused_until ? new Date(r.paused_until) : null;
+    return {
+      mode: NETWORK_MODE_ALIASES[r.mode] ?? r.mode, cardMode: r.card_mode ?? null, orchestratorMode: r.orch_mode ?? null,
+      orchestratorPaused: r.orch_status === 'paused' || (!!pausedUntil && pausedUntil.getTime() > Date.now()),
+      hasPlaybook: !!r.has_playbook, tz: r.timezone ?? null, pinnedDay: r.pinned_day ?? null, pinned: r.pinned ?? null,
+    };
+  }
+
+  /**
+   * One gate for automatic duplication (spec 024 FR-003), used by
+   * EditorCrossPoster and GroupFanOutService. The value is pinned for the
+   * anchor's local plan day on first use (the scheduler touches it every tick),
+   * so a change of mode, agent mode or playbook takes effect the next plan day
+   * and daily caps are not double-counted. Unknown group → true.
+   */
+  async autoDuplicateActive(groupId: string, now: Date = new Date()): Promise<boolean> {
+    const s = await this.autoDuplicateState(groupId);
+    if (!s) return true;
+    const day = safeLocalDate(now, s.tz);
+    if (s.pinnedDay === day && s.pinned != null) return s.pinned;
+    const raw = autoDuplicateRaw(s);
+    const { rows } = await this.pool.query(
+      `UPDATE meta_account_groups SET auto_duplicate_day = $2::date, auto_duplicate = $3
+        WHERE id = $1 AND (auto_duplicate_day IS DISTINCT FROM $2::date OR auto_duplicate IS NULL) RETURNING auto_duplicate`,
+      [groupId, day, raw]);
+    if (rows[0]) return rows[0].auto_duplicate !== false;
+    const again = await this.pool.query(`SELECT auto_duplicate FROM meta_account_groups WHERE id = $1`, [groupId]);
+    return again.rows[0]?.auto_duplicate ?? raw;
+  }
+
+  /** The gate of a channel's network; a channel outside any group always duplicates (its own crosspost targets). */
+  async autoDuplicateActiveForChannel(channelKey: string, now: Date = new Date()): Promise<boolean> {
+    const g = await this.groupOfChannel(channelKey);
+    return g ? this.autoDuplicateActive(g.id, now) : true;
   }
 
   /** Every resource of a group: its Telegram channel, Meta accounts and TikTok accounts. */

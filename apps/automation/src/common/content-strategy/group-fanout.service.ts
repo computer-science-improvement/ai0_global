@@ -4,7 +4,7 @@
 // targets go through the dispatcher (full carousel or single); the Telegram
 // target gets the cover image + caption (the bot API has no album). Each target
 // is isolated: one failure never blocks the others or the primary publish.
-import { Injectable, Logger, Optional } from '@nestjs/common';
+import { Inject, Injectable, Logger, Optional } from '@nestjs/common';
 import { TikTokCarouselPublisher } from '../../publishers/tiktok/tiktok-carousel.publisher';
 import { DestinationResolver } from './destination-resolver.service';
 import { PublisherDispatcher } from '../../publishers/publisher-dispatcher.service';
@@ -32,6 +32,16 @@ export interface GroupContent {
   render?: (platform: DestinationPlatform) => { caption: string; imageUrls: string[]; carousel: boolean } | null;
 }
 
+/**
+ * Spec 024 FR-003: the one gate for automatic duplication
+ * (NetworkRepository.autoDuplicateActive). False → the group is an independent
+ * network whose agent decides per resource, so nothing is mirrored.
+ */
+export interface AutoDuplicateGate {
+  autoDuplicateActive(groupId: string): Promise<boolean>;
+}
+export const AUTO_DUPLICATE_GATE = 'AUTO_DUPLICATE_GATE';
+
 /** Per-target result. Strategies ignore it; the editor records failures on the slot. */
 export interface FanOutOutcome {
   platform: string;
@@ -49,7 +59,19 @@ export class GroupFanOutService {
     private readonly telegram:   TelegramPublisher,
     private readonly tracer:     RunTracer,
     @Optional() private readonly tiktok?: TikTokCarouselPublisher,
+    @Optional() @Inject(AUTO_DUPLICATE_GATE) private readonly gate?: AutoDuplicateGate | null,
   ) {}
+
+  /** Unknown (no gate wired, DB error) → keep mirroring as before. */
+  private async gateOpen(groupId: string): Promise<boolean> {
+    if (!this.gate) return true;
+    try {
+      return await this.gate.autoDuplicateActive(groupId);
+    } catch (err: any) {
+      this.logger.warn(`auto-duplicate gate of group ${groupId} failed, mirroring: ${err?.message ?? err}`);
+      return true;
+    }
+  }
 
   /**
    * @param source     the destination the strategy just published to
@@ -66,6 +88,14 @@ export class GroupFanOutService {
     if (!group || !group.isSource) return outcomes; // not a source publish → nothing to mirror
 
     const targets = await this.resolver.resolveGroupTargets(group.groupId, source.platform);
+    if (!(await this.gateOpen(group.groupId))) {
+      for (const t of targets) {
+        outcomes.push({ platform: t.platform, status: 'skipped', detail: 'independent network' });
+        this.tracer.event('GroupFanOut', `publish:${t.platform}`, 'skipped', 'independent network');
+      }
+      this.logger.debug(`Fan-out skipped for group ${group.groupId}: independent network`);
+      return outcomes;
+    }
     for (const t of targets) {
       try {
         let id: string;

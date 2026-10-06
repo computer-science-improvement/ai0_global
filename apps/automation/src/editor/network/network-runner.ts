@@ -143,13 +143,13 @@ export class NetworkRunner {
   }
 
   /**
-   * The planner of an orchestrated network (FR-007). Returns null when the
-   * channel is not the anchor of an orchestrated network with a playbook — the
+   * The planner of an independent network (020 FR-007, 024 FR-002). Returns null when the
+   * channel is not the anchor of an independent network with a playbook — the
    * caller then runs the single-channel planner (which can use the idea pool too).
    */
   async runNetworkPlanner(card: EditorCard, planDateIn?: string): Promise<AgentLoopResult | null> {
     const c = await this.context(card, 'planner');
-    if (!c || c.net.mode !== 'orchestrated' || !c.net.playbook) return null;
+    if (!c || c.net.mode !== 'independent' || !c.net.playbook) return null;
     if (c.agentCtx.paused) return null;
     const now = this.now();
     // Spec 031: approval mode plans the next day ahead (its batch is written at 20:00).

@@ -201,3 +201,29 @@ Duplication becomes a tool, and every resource gets its own time zone.
 - [ ] Eval `executor-format-prefs`: two resources with different `format_prefs` get differently formatted posts from one source.
 
 **Size:** M · **Depends on:** T3
+
+## Implementation notes
+
+### T1 (2026-10-06)
+- **Migration number:** `061_independent_resources.sql` (not 063/059 as written above; 059–060 belong to another stream).
+- **`resource_tz()` order:** for `telegram:` refs the card zone comes first, then the profile zone, then Kyiv. FR-001 lists the
+  profile first, but FR-004 makes the card authoritative for Telegram; the SQL function and `resource-time.ts` follow FR-004.
+  An invalid stored zone falls back to Kyiv (plpgsql, `invalid_parameter_value`).
+- **Plan-day boundary of the gate:** `meta_account_groups` gains `auto_duplicate_day DATE` + `auto_duplicate BOOLEAN` (not in
+  FR-001). `autoDuplicateActive(groupId, now)` pins the gate value for the anchor's local plan day on first use; the editor
+  scheduler touches it for every active card each tick (`pinGate`), and `setGroupMode` pins today before changing the mode,
+  so a change of network mode, agent mode or playbook takes effect at the next plan day in both directions. If the service
+  is down across midnight, the first evaluation after restart pins that day.
+- **"Live"** = effective mode (orchestrator ∧ card, spec 031 ladder) is `live` and the orchestrator is not paused. `approve`
+  counts as not live (auto-duplication continues), per the literal FR-003; revisit when 024 adds per-resource modes (T3+),
+  since today a mode lives only on the Telegram card and platform refs answer `resource_follows_network` (031).
+- **Fail-open:** if the gate query fails, `EditorCrossPoster` and `GroupFanOutService` keep duplicating (pre-024 behaviour).
+  `GroupFanOutService` gets the gate through the optional `AUTO_DUPLICATE_GATE` provider in `CommonModule`.
+- **Behaviour change for groups already `orchestrated` with a shadow/off orchestrator:** they now auto-duplicate again
+  (FR-003: "no resource goes silent"); with a live orchestrator and a playbook they keep not duplicating.
+- **`network-mode`:** the response adds `deprecated_alias` when `orchestrated`/`mirror` was sent; the Inbox text is English
+  (alert text Ukrainian). `GET …/network` adds `autoDuplicateActive` (FR-012).
+- **Dashboard:** only what the new mode values need: `NetworkMode` type, the Playbook tab switch ("Auto-duplicate (legacy)" /
+  "Independent", no playbook required) and the badge labels. The rest of FR-011 stays in T6.
+- `editor_channels.crosspost` DB default is now false; the repository still writes `card.crosspost ?? true` for card objects
+  without the field (`makeDefaultCard` already sets false).

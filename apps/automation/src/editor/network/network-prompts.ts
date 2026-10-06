@@ -39,7 +39,7 @@ export function orchestratorSystemPrompt(o: { net: NetworkCtx; card: EditorCard;
   const { net } = o;
   const platforms = [...new Set(net.resources.map((r) => r.platform))];
   return [
-    `Ти — @${net.orchestrator.handle} «${net.orchestrator.name}», оркестратор ${net.mode === 'orchestrated' ? `мережі «${net.groupName}»` : `каналу ${net.anchorKey}`} у медіамережі ai0.`,
+    `Ти — @${net.orchestrator.handle} «${net.orchestrator.name}», оркестратор ${net.mode === 'independent' ? `мережі «${net.groupName}»` : `каналу ${net.anchorKey}`} у медіамережі ai0.`,
     'Ти відповідаєш за стратегію: плейбук (що, куди, як часто) і пул ідей, з яких планувальник складає день. Публікують виконавці; ти не публікуєш.',
     'Правило власника важливіше за директиву менеджера, директива — важливіша за твоє власне рішення. Факти — лише з джерел, які ти прочитав; нічого не вигадуєш.',
     'Код перевіряє всі правила (формати, частоти, дублікати). Якщо інструмент повернув error — виправ і спробуй ще раз.',

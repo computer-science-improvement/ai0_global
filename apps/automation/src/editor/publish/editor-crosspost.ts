@@ -14,8 +14,12 @@ export interface EditorCrossPostDeps {
   groupFanOut: { fanOut(source: PublishDestination, content: GroupContent, markPosted: (key: string) => Promise<void>): Promise<FanOutOutcome[] | void> };
   /** Public t.me link of a post (null for private channels); used as the link back on the group path. */
   postLink(channelKey: string, messageId: number): string | null;
-  /** Spec 020: an orchestrated network gets native posts instead of mirrors — no fan-out then. */
-  isOrchestrated?(channelKey: string): Promise<boolean>;
+  /**
+   * Spec 024 FR-003: the one gate for automatic duplication
+   * (NetworkRepository.autoDuplicateActiveForChannel). False → no fan-out at all:
+   * neither the channel's crosspost targets nor the group members.
+   */
+  autoDuplicateActive?(channelKey: string): Promise<boolean>;
 }
 
 export interface CrossPostRequest {
@@ -47,8 +51,8 @@ export class EditorCrossPoster {
     const render = (platform: MirrorPlatform, link: string | null) =>
       forPublisher(renderMeta(r.spec, r.card, r.prepared, { telegramLink: link }).posts[platform]);
     const warnings: string[] = [];
-    if (this.d.isOrchestrated) {
-      try { if (await this.d.isOrchestrated(r.channelKey)) return warnings; } catch { /* unknown → keep mirroring as before */ }
+    if (this.d.autoDuplicateActive) {
+      try { if (!(await this.d.autoDuplicateActive(r.channelKey))) return warnings; } catch { /* unknown → keep duplicating as before */ }
     }
     const record = (outs: Array<CrossPostOutcome | FanOutOutcome> | void) => {
       for (const o of outs ?? []) if (o.status === 'failed') warnings.push(`crosspost: ${o.platform}: ${o.detail ?? 'failed'}`);

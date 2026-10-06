@@ -27,6 +27,11 @@ export interface EditorSchedulerDeps {
    * upkeep), once per channel-day before planning. Optional.
    */
   orchestrate?: (card: EditorCard) => Promise<unknown>;
+  /**
+   * Spec 024 FR-003: pins the auto-duplicate gate of the channel's network for
+   * its plan day, so a change takes effect at the next plan-day boundary.
+   */
+  pinGate?: (card: EditorCard, now: Date) => Promise<unknown>;
   /** Spec 021: the MANAGER's schedule and directive deliveries, once per tick after planning. */
   afterTick?: (now: Date) => Promise<void>;
   /**
@@ -123,6 +128,9 @@ export class EditorScheduler {
     const approving = await this.approvingCards(cards);
 
     for (const card of cards) {
+      if (this.d.pinGate) {
+        try { await this.d.pinGate(card, now); } catch (err: any) { this.d.log?.(`auto-duplicate gate of ${card.channelKey} failed: ${err?.message ?? err}`); }
+      }
       await this.maybeOrchestrate(card, now);
       await this.maybePlan(card, now);
       if (approving.has(card.channelKey)) await this.maybePlanAhead(card, now);

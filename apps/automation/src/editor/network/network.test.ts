@@ -63,7 +63,7 @@ test('series due by weekday', () => {
 });
 
 const net = (o: Partial<NetworkCtx> = {}): NetworkCtx => ({
-  orchestrator: { id: 'o1', handle: 'kira' } as any, anchorKey: '@space', groupId: 'g1', groupName: 'Космос', mode: 'orchestrated',
+  orchestrator: { id: 'o1', handle: 'kira' } as any, anchorKey: '@space', groupId: 'g1', groupName: 'Космос', mode: 'independent',
   resources: RES, playbook: pb(), playbookVersion: 1, telegramFormats: TG_FORMATS, ...o,
 });
 const idea = (id: string, variants: string[]): IdeaRow => ({

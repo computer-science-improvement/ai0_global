@@ -27,7 +27,8 @@ const PLATFORM_ICON: Record<Platform, IconName> = {
   telegram: 'telegram', facebook: 'facebook', instagram: 'instagram', threads: 'threads', tiktok: 'tiktok', youtube: 'globe',
 };
 
-export const NETWORK_MODE_TONE: Record<NetworkMode, Tone> = { single: 'neutral', mirror: 'neutral', orchestrated: 'success' };
+export const NETWORK_MODE_TONE: Record<NetworkMode, Tone> = { single: 'neutral', legacy_duplicate: 'neutral', independent: 'success' };
+export const NETWORK_MODE_LABEL: Record<NetworkMode, string> = { single: 'single', legacy_duplicate: 'auto-duplicate', independent: 'independent' };
 
 export const PLAYBOOK_TONE: Record<PlaybookStatus, Tone> = {
   draft: 'neutral', pending_owner: 'warning', active: 'success', superseded: 'neutral', rejected: 'danger',

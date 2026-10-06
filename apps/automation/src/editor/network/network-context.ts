@@ -2,7 +2,7 @@ import type { Agent, Platform } from '../agents/agent.types';
 import { resourceRef, telegramKeyOf } from '../agents/agent.types';
 import type { EditorCard } from '../card';
 import { implementedFormats } from '../platform/capabilities';
-import type { NetworkRepository } from './network.repository';
+import type { NetworkMode, NetworkRepository } from './network.repository';
 import type { NetworkResource, Playbook } from './playbook';
 
 /** What an orchestrator run knows about its scope (put into ctx.extras.network). */
@@ -11,8 +11,11 @@ export interface NetworkCtx {
   anchorKey:       string;
   groupId:         string | null;
   groupName:       string | null;
-  /** 'orchestrated' → the day plan covers every resource of the group. */
-  mode:            'single' | 'mirror' | 'orchestrated';
+  /**
+   * 'independent' → the day plan covers every resource of the group (spec 024);
+   * 'legacy_duplicate' → only Telegram is planned and its posts are auto-duplicated.
+   */
+  mode:            'single' | NetworkMode;
   resources:       NetworkResource[];
   playbook:        Playbook | null;
   playbookVersion: number | null;

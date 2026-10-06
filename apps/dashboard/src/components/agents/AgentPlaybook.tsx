@@ -1,5 +1,5 @@
 // Playbook tab of /app/agents/$handle (spec 020 FR-011): the network header
-// with the mirror/orchestrated switch, the pending version awaiting approval
+// with the independent / auto-duplicate switch, the pending version awaiting approval
 // (reviewer verdict + a diff vs the active one), the active playbook rendered
 // per resource, "Rebuild from brief", the owner editor and version history.
 
@@ -14,10 +14,10 @@ import { Modal } from '../Modal';
 import { fmtDate, fmtRelative } from '../../lib/format';
 import {
   useAgentNetwork, useDecidePlaybook, usePlaybook, useRebuildPlaybook, useSetNetworkMode,
-  type AgentNetwork, type Playbook, type PlaybookPlatform, type PlaybookRow,
+  type AgentNetwork, type Playbook, type PlaybookPlatform, type PlaybookRow, type GroupNetworkMode,
 } from '../../api/network';
 import {
-  NETWORK_MODE_TONE, NetworkError, PLAYBOOK_TONE, ResourceChip, ResourceLabel, WeightBar, errorText, fmtCadence, hourLabel,
+  NETWORK_MODE_LABEL, NETWORK_MODE_TONE, NetworkError, PLAYBOOK_TONE, ResourceChip, ResourceLabel, WeightBar, errorText, fmtCadence, hourLabel,
 } from './NetworkUi';
 import { diffPlaybooks, type DiffGroup } from './playbookDiff';
 import { PlaybookEditor } from './PlaybookEditor';
@@ -113,13 +113,13 @@ function NetworkHeader({ handle, orchestrator, net, error, hasActive }: { handle
             <h2 style={{ margin: 0, fontSize: 15, fontWeight: 600, color: 'var(--color-ink)', letterSpacing: '-0.01em' }}>
               {grouped ? net.groupName ?? 'Network' : 'No network'}
             </h2>
-            <Badge tone={NETWORK_MODE_TONE[net.mode]}>{net.mode}</Badge>
+            <Badge tone={NETWORK_MODE_TONE[net.mode]}>{NETWORK_MODE_LABEL[net.mode]}</Badge>
           </div>
           <div className="text-micro" style={{ color: 'var(--color-ink-muted)', marginTop: 4 }}>
             {grouped
-              ? net.mode === 'orchestrated'
-                ? <>Native posts for every resource are planned by this orchestrator from <strong style={{ color: 'var(--color-ink)' }}>{net.anchor}</strong>.</>
-                : <>Telegram posts of <strong style={{ color: 'var(--color-ink)' }}>{net.anchor}</strong> are mirrored to the group.</>
+              ? net.mode === 'independent'
+                ? <>Each member is its own resource; the orchestrator of <strong style={{ color: 'var(--color-ink)' }}>{net.anchor}</strong> decides per post: duplicate, adapt, unique or skip.{net.autoDuplicateActive !== false ? ' Telegram posts are still auto-duplicated today.' : ''}</>
+                : <>Telegram posts of <strong style={{ color: 'var(--color-ink)' }}>{net.anchor}</strong> are auto-duplicated to the group.</>
               : <>{net.anchor} is not in an account group. <Link to="/app/connections/groups" className="link-accent">Add it to a group</Link> to plan a network.</>}
           </div>
           <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginTop: 10 }}>
@@ -137,21 +137,21 @@ function NetworkModeSwitch({ handle, orchestrator, net, hasActive, grouped }: { 
   const set = useSetNetworkMode(handle);
   const name = net.groupName ?? 'the network';
 
-  const choose = async (mode: 'mirror' | 'orchestrated') => {
+  const choose = async (mode: GroupNetworkMode) => {
     if (mode === net.mode || set.isPending) return;
-    const ok = mode === 'orchestrated'
-      ? await confirm(`switch «${name}» to orchestrated`, {
-        danger: false, confirmLabel: 'Orchestrate',
+    const ok = mode === 'independent'
+      ? await confirm(`switch «${name}» to independent`, {
+        danger: false, confirmLabel: 'Switch to independent',
         details: (
           <div className="callout-warning" style={{ flexDirection: 'column', gap: 6 }}>
-            <strong>@{orchestrator} will plan native posts for every resource of the group.</strong>
-            <span className="text-micro">Each platform gets its own formats, cadence and wording from the active playbook. Mirroring of Telegram posts to the group stops for this network. The agents keep their own mode — in shadow nothing is published.</span>
+            <strong>Each member becomes its own resource; @{orchestrator} decides per post: duplicate, adapt, unique or skip.</strong>
+            <span className="text-micro">In shadow the agent records decisions as previews and auto-duplication continues; it stops from the next plan day once the agent is live with an active playbook.{hasActive ? '' : ' Until a playbook is approved only Telegram is planned.'}</span>
           </div>
         ),
       })
-      : await confirm(`switch «${name}» back to mirror`, {
-        danger: false, confirmLabel: 'Mirror',
-        details: <p className="text-micro" style={{ margin: 0, color: 'var(--color-ink-muted)' }}>The orchestrator stops planning the other platforms; Telegram posts are mirrored to the group again.</p>,
+      : await confirm(`switch «${name}» to auto-duplicate (legacy)`, {
+        danger: false, confirmLabel: 'Auto-duplicate',
+        details: <p className="text-micro" style={{ margin: 0, color: 'var(--color-ink-muted)' }}>The orchestrator stops planning the other platforms; Telegram posts are auto-duplicated to the group again from the next plan day.</p>,
       });
     if (!ok) return;
     set.mutate(mode, {
@@ -160,7 +160,7 @@ function NetworkModeSwitch({ handle, orchestrator, net, hasActive, grouped }: { 
     });
   };
 
-  const opt = (key: 'mirror' | 'orchestrated', label: string, disabledWhy: string | null) => {
+  const opt = (key: GroupNetworkMode, label: string, disabledWhy: string | null) => {
     const selected = net.mode === key;
     return (
       <button key={key} type="button" role="tab" aria-selected={selected} disabled={!!disabledWhy || set.isPending}
@@ -175,11 +175,11 @@ function NetworkModeSwitch({ handle, orchestrator, net, hasActive, grouped }: { 
     <div style={{ display: 'flex', flexDirection: 'column', gap: 4, alignItems: 'flex-start' }}>
       <span className="text-micro" style={eyebrow}>Network mode</span>
       <div className="tabs-pill" role="tablist" title={noNet ?? undefined}>
-        {opt('mirror', 'Mirror', noNet)}
-        {opt('orchestrated', 'Orchestrated', noNet ?? (hasActive || net.mode === 'orchestrated' ? null : 'Approve a playbook first'))}
+        {opt('legacy_duplicate', 'Auto-duplicate (legacy)', noNet)}
+        {opt('independent', 'Independent', noNet)}
       </div>
-      {grouped && !hasActive && net.mode !== 'orchestrated' && (
-        <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>needs an active playbook</span>
+      {grouped && !hasActive && net.mode === 'independent' && (
+        <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>no active playbook: Telegram only</span>
       )}
     </div>
   );

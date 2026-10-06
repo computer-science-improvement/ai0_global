@@ -500,7 +500,7 @@ export const EDITOR_PROVIDERS = [
         crosspost: new EditorCrossPoster({
           crossPost, groupFanOut,
           postLink: (k, id) => tgPostLink(channelConfig.getChannelMeta(k)?.username ?? null, id),
-          isOrchestrated: async (k) => (await new NetworkRepository(pool).groupOfChannel(k))?.mode === 'orchestrated',
+          autoDuplicateActive: (k) => new NetworkRepository(pool).autoDuplicateActiveForChannel(k),
         }),
       }),
     },
@@ -830,6 +830,8 @@ export const EDITOR_PROVIDERS = [
           pool, channels: repos.channels, plans: repos.plans, runner, reserved,
           enabled: () => isEnabled(cfg),
           orchestrate: cfg.get<string>('EDITOR_ORCHESTRATION') === 'off' ? undefined : (card) => network.runOrchestrator(card),
+          // Spec 024: the auto-duplicate gate is pinned at each anchor's plan-day boundary.
+          pinGate: (card, now) => new NetworkRepository(pool).autoDuplicateActiveForChannel(card.channelKey, now),
           // The MANAGER at its times; an event run for orchestrators with fresh directives (spec 021).
           afterTick: async () => {
             await manager.runner.tick();
