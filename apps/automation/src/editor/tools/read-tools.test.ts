@@ -57,8 +57,8 @@ test('search_library keeps its answer shape: legacy id, text, extra and the libr
   const res: any = await tools(pool).search_library.execute({ table: 'recipes', query: 'борщ', today_only: false, include_used: false, limit: 5 }, ctx);
   const q = calls[1];
   assert.match(q.sql, /FROM data_items d WHERE/);
-  assert.match(q.sql, /NOT \(d\.posted \? \$\d+\)/);
-  assert.ok(q.params.includes('@chan') && q.params.includes('telegram:@chan'));
+  assert.match(q.sql, /content_ledger_used\(\$\d+\)/, 'used rows come from the content ledger (023)');
+    assert.ok(q.params.includes('telegram:@chan'));
   assert.ok(q.params.includes('%борщ%'));
   assert.match(q.sql, /ORDER BY d\.created_at DESC/);
   const it = res.items[0];

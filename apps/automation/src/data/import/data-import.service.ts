@@ -259,9 +259,9 @@ export class DataImportService {
       const hidden = await c.query(
         `UPDATE data_items d SET status = 'hidden'
           WHERE d.import_id = $1 AND d.status = 'active'
-            AND (EXISTS (SELECT 1 FROM jsonb_object_keys(d.posted) k WHERE k NOT LIKE 'error:%')
-                 OR EXISTS (SELECT 1 FROM published_posts pp
-                             WHERE pp.source_url = 'data://' || $2::text || '/' || d.id OR pp.source_url = d.legacy_ref))`,
+            AND EXISTS (SELECT 1 FROM content_ledger l
+                         WHERE l.status IN ('published', 'shadowed')
+                           AND (l.source_ref = 'data://' || $2::text || '/' || d.id OR l.source_ref = d.legacy_ref))`,
         [importId, imp.schema_key]);
       const deleted = await c.query(`DELETE FROM data_items WHERE import_id = $1 AND status = 'active'`, [importId]);
       const restored = await c.query(

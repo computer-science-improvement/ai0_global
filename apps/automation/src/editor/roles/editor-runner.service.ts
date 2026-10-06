@@ -36,6 +36,8 @@ export interface EditorRunnerDeps {
     runNetworkPlanner(card: EditorCard, planDate?: string): Promise<AgentLoopResult | null>;
     plannerExtras(card: EditorCard): Promise<{ network: unknown; excludeTools: Set<string>; ideasNote: string | null } | null>;
   };
+  /** Spec 023 FR-008: the ≤ 1,500-char source catalog for the planner prompt. Optional. */
+  catalogSummary?: (card: EditorCard) => Promise<string | null>;
   /** Called after an executor run (spec 020: an idea becomes `used` once all its slots are done). */
   onSlotDone?: (slot: EditorSlot) => Promise<void>;
 }
@@ -113,7 +115,8 @@ export class EditorRunnerService {
     }
     const extra = this.d.network ? await this.d.network.plannerExtras(card).catch(() => null) : null;
     const reserved = await this.d.plans.reservedSlots(card.channelKey, dayStart, new Date(dayStart.getTime() + 86_400_000));
-    const user = [plannerUserPrompt(card, now, reserved, planDate), extra?.ideasNote].filter(Boolean).join('\n');
+    const catalog = this.d.catalogSummary ? await this.d.catalogSummary(card).catch(() => null) : null;
+    const user = [plannerUserPrompt(card, now, reserved, planDate), extra?.ideasNote, catalog ? `\n${catalog}` : null].filter(Boolean).join('\n');
     const res = await this.run('planner', card, user, null, {
       planDate, ...(extra ? { network: extra.network, excludeTools: extra.excludeTools } : { excludeTools: new Set(['submit_network_plan']) }),
     }, ctx);

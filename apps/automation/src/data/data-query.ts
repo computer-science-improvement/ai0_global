@@ -242,11 +242,9 @@ export async function queryDataset(pool: Pick<Pool, 'query'>, schema: DataSchema
 
   let cte = '';
   if (o.unpostedOn) {
-    const { channelKey, resourceRef } = resourceKeys(o.unpostedOn);
-    const ck = p(channelKey);
-    cte = `WITH ${usedRefsCte(ck, p(resourceRef))} `;
+    const { resourceRef } = resourceKeys(o.unpostedOn);
+    cte = `WITH ${usedRefsCte(p(resourceRef))} `;
     const key = p(schema.key);
-    where.push(`NOT (d.posted ? ${ck})`);
     where.push(`NOT EXISTS (SELECT 1 FROM used u WHERE u.ref = 'data://' || ${key} || '/' || d.id::text)`);
     where.push(`(d.legacy_ref IS NULL OR NOT EXISTS (SELECT 1 FROM used u WHERE u.ref = d.legacy_ref))`);
   }
@@ -256,7 +254,10 @@ export async function queryDataset(pool: Pick<Pool, 'query'>, schema: DataSchema
   const whereSql = where.join(' AND ');
   const sql = `${cte}SELECT d.id::text AS id, d.legacy_ref, d.status, d.title, d.body, d.image_url, d.url, d.category,
                       d.event_date, d.event_month, d.event_day, d.created_at, d.updated_at, d.import_id, d.data,
-                      (SELECT count(*) FROM jsonb_object_keys(d.posted) k WHERE k NOT LIKE 'error:%')::int AS posted_count
+                      (SELECT count(DISTINCT l.resource_ref) FROM content_ledger l
+                        WHERE l.status = 'published'
+                          AND (l.source_ref = (SELECT 'data://' || s.key || '/' || d.id FROM data_schemas s WHERE s.id = d.schema_id)
+                               OR l.source_ref = d.legacy_ref))::int AS posted_count
                  FROM data_items d WHERE ${whereSql}
                 ORDER BY ${order} LIMIT ${p(limit)} OFFSET ${p(Math.max(0, o.offset ?? 0))}`;
   const { rows } = await pool.query(sql, params);

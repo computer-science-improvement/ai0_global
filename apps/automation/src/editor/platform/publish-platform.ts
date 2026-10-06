@@ -9,7 +9,8 @@ import { captionPlain, lintPlatformPost, PlatformLintResult, PlatformPostSpec, r
 import type { PlatformPostsRepository } from './platform-posts.repository';
 import type { ResourcePublisher } from './resource-publisher';
 
-export const PLATFORM_DEDUP_DAYS = 7;
+/** The same idea is a repeat on a resource within this window. Sources go through the content ledger (023 FR-010). */
+export const PLATFORM_IDEA_DEDUP_DAYS = 7;
 export const PLATFORM_SIMILARITY_LIMIT = 0.6;
 export const PLATFORM_MIN_GAP_MIN = 60;
 
@@ -76,11 +77,13 @@ export async function publishPlatformNow(d: PublishPlatformDeps, i: PublishPlatf
   }
 
   const sourceRef = i.spec.library_ref ?? i.spec.source?.url ?? null;
-  const since = new Date(now.getTime() - PLATFORM_DEDUP_DAYS * 86_400_000);
+  const since = new Date(now.getTime() - PLATFORM_IDEA_DEDUP_DAYS * 86_400_000);
   // Approval mode also counts posts that already wait (spec 031), so two waiting posts never share a source.
   const waiting = i.mode === 'approve';
-  if (await d.posts.alreadyPosted(i.resourceRef, { source: sourceRef, ideaId: i.spec.idea_id ?? null }, since, waiting)) {
-    return { error: 'already_posted', details: 'це джерело / ідея вже були на цьому ресурсі за 7 днів' };
+  const secondRef = i.spec.library_ref && i.spec.source?.url ? i.spec.source.url : null;
+  if (await d.posts.alreadyPosted(i.resourceRef, { source: sourceRef, ideaId: i.spec.idea_id ?? null }, since, waiting)
+    || (secondRef && await d.posts.alreadyPosted(i.resourceRef, { source: secondRef }, since, waiting))) {
+    return { error: 'already_posted', details: 'це джерело вже використане на цьому ресурсі (журнал контенту) або ця ідея вже виходила тут за 7 днів' };
   }
   const caption = captionPlain(i.spec, CAPABILITIES[platform].linksClickable);
   const recent = await d.posts.recentCaptions(i.resourceRef, 40, waiting);
@@ -196,7 +199,7 @@ export async function publishApprovedPlatform(d: PublishPlatformDeps, i: Approve
   if (health && BLOCKING_HEALTH.has(health.state)) return { error: 'resource_unavailable', details: `${health.state}: ${health.detail ?? ''}` };
 
   const sourceRef = i.spec.library_ref ?? i.spec.source?.url ?? null;
-  const since = new Date(now.getTime() - PLATFORM_DEDUP_DAYS * 86_400_000);
+  const since = new Date(now.getTime() - PLATFORM_IDEA_DEDUP_DAYS * 86_400_000);
   const recent = await d.posts.recentCaptions(i.resourceRef);
   const maxSim = recent.reduce((m, t) => Math.max(m, similarity(i.rendered.caption, t)), 0);
   if (await d.posts.alreadyPosted(i.resourceRef, { source: sourceRef, ideaId: i.spec.idea_id ?? null }, since)

@@ -57,7 +57,7 @@ test('query_data returns only the asked fields with data:// refs and skips rows 
   assert.deepEqual(r.truncated, ['summary']);
   const items = calls.find((c) => /FROM data_items d WHERE/.test(c.sql))!;
   assert.match(items.sql, /^WITH used AS/);
-  assert.ok(items.params.includes('@books_chan') && items.params.includes('telegram:@books_chan'));
+  assert.ok(items.params.includes('telegram:@books_chan'), 'the ledger is keyed by the resource ref');
 
   const all = fakePool({ items: [] });
   await tools(all.pool).query_data.execute(q({ fields: ['title'], unposted_on: null }), ctx);
@@ -108,10 +108,11 @@ test('library_catalog: one query for schemas+stats, one for live counts scoped t
   assert.deepEqual(d, {
     dataset: 'books', title: 'Books', entity: 'book', description: 'Ukrainian classics for a reading channel', suitable_for: 'book clubs, literature channels',
     language: 'uk', fields: ['title', 'summary', 'genre', 'pages', 'tags', 'birthday', 'raw'], rows: 9, unposted_here: 4, unposted_network: 7,
-    today_items: 1, top_categories: ['poetry'],
-  }, 'the overview: enough to choose, field names only');
+    today_items: 1, top_categories: ['poetry'], last_used_here: null, runway_days: null,
+  }, 'the overview: enough to choose, field names only (plus 023 last use and runway here)');
+  assert.ok(Array.isArray(r.apis) && Array.isArray(r.feeds), 'spec 023: APIs and card feeds');
   assert.match(calls[0].sql, /WHERE s\.status = 'active'/);
-  assert.deepEqual(calls[1].params.slice(1), [3, 9, '@books_chan', 'telegram:@books_chan']);
+  assert.deepEqual(calls[1].params.slice(1), [3, 9, 'telegram:@books_chan']);
 
   const full: any = await tools(pool).library_catalog.execute({ dataset: 'books' }, ctx);
   assert.equal(full.dataset.stats_at, '2026-10-06T00:05:00.000Z');

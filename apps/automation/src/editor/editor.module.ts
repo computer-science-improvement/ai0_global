@@ -86,6 +86,10 @@ import { ResourceHealthService } from './platform/resource-health.service';
 import { NetworkRepository } from './network/network.repository';
 import { NetworkRunner } from './network/network-runner';
 import { buildNetworkTools } from './network/network-tools';
+import { buildSeriesTools } from './network/series-tools';
+import { buildHighlightsTools } from './tools/highlights-tools';
+import { catalogSummaryOf, checkLowRunway } from './tools/catalog-context';
+import { isSeriesLocked, seriesSourceCatalog } from './network/series-edit';
 import { NetworkService } from './network/network.service';
 import { NETWORK_SERVICE, NetworkController } from './network/network.controller';
 import { DirectivesRepository } from './manager/directives.repository';
@@ -602,7 +606,8 @@ export const EDITOR_PROVIDERS = [
         const env = (k: string) => cfg.get<string>(k) ?? undefined;
         return new ToolRegistry([
           ...buildReadTools({ pool, readonly: new ReadonlyQueryService(pool), skills }),
-          ...buildDataTools({ pool, actions: infra.actions }),
+          ...buildDataTools({ pool, actions: infra.actions, env }),
+          ...buildHighlightsTools({ pool }),
           ...buildComposeTools(),
           ...buildApiTools({ env }),
           ...buildRoleTools({
@@ -618,11 +623,17 @@ export const EDITOR_PROVIDERS = [
             agents: infra.agents, catalog: infra.catalog, profiles: infra.profiles, creator: infra.creator, skills: infra.skills, actions: infra.actions,
           }),
           ...buildAgentChatTools({ pool, memory: repos.memory, skills: infra.skills, actions: infra.actions }),
-          ...buildNetworkTools({ repo: new NetworkRepository(pool), plans: repos.plans, memory: repos.memory, inbox: infra.inbox }),
+          ...buildNetworkTools({
+            repo: new NetworkRepository(pool), plans: repos.plans, memory: repos.memory, inbox: infra.inbox,
+            sourceCatalog: (card) => seriesSourceCatalog(pool, card),
+          }),
+          // Spec 023 FR-003: the orchestrator's series tools (one submit path with submit_playbook).
+          ...buildSeriesTools({ repo: new NetworkRepository(pool), inbox: infra.inbox, sourceCatalog: (card) => seriesSourceCatalog(pool, card) }),
           ...buildDirectiveTools({
             repo: new DirectivesRepository(pool), agents: infra.agents, inbox: infra.inbox, memory: repos.memory, actions: infra.actions,
             digest: new KpiDigestService({ pool, catalog: infra.catalog, globalCapUsd: capDefaults(env).agentsDailyUsd, capUsd: agentsCapUsd(env, caps) }),
             channelKeyOf: (a) => infra.channelKeyOf(a),
+            seriesLocked: async (orch, name) => isSeriesLocked((await new NetworkRepository(pool).activePlaybook(orch.id))?.body ?? null, name),
           }),
           ...buildPlatformTools({
             pool, publish: platform.publish, plans: repos.plans,
@@ -783,6 +794,9 @@ export const EDITOR_PROVIDERS = [
         },
         env: (k) => cfg.get<string>(k) ?? undefined,
         notify: (t) => notifier.notifyAlert(t),
+        // Spec 023 FR-008: source catalog in the orchestrator/planner prompts; low_runway after the daily run.
+        catalogSummary: catalogSummaryOf(pool, (k) => cfg.get<string>(k) ?? undefined),
+        runwayCheck: (orch, playbook) => checkLowRunway({ pool, inbox: infra.inbox }, orch, playbook),
       }),
     },
     {
@@ -800,6 +814,7 @@ export const EDITOR_PROVIDERS = [
         return new EditorRunnerService({
           loop, registry, skills, runtime: infra.runtime, plans: repos.plans, memory: repos.memory, env, notify,
           network, platformContext: (slot, orchId) => network.platformContext(slot, orchId),
+          catalogSummary: catalogSummaryOf(pool, env),
           onSlotDone: async (slot) => { if (slot.ideaId) await ideas.settleIdea(slot.ideaId); },
         });
       },

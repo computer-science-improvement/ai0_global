@@ -22,9 +22,8 @@ import {
 import { NetworkDigestRepository } from './network-digest.repository';
 import { DigestSponsorsRepository } from '../../payments/digest-sponsors.repository';
 import { resolveDigestSponsor } from './digest-sponsor';
-import {
-  DigestItem, SponsorSlot, digestTitle, isLinkable, kyivDate, renderDigest, viewsPerHour,
-} from './digest-format.util';
+import { DigestItem, SponsorSlot, kyivDate, renderDigest } from '../../common/digests/digest-format';
+import { pickNetworkHighlights } from '../../common/digests/digest-selection';
 
 interface NetworkDigestParams {
   windowHours: number;
@@ -112,11 +111,7 @@ export class NetworkDigestStrategy implements ContentStrategy, OnModuleInit {
     // Drop posts from channels that can't be deep-linked BEFORE taking the
     // top N — otherwise high-ranked private-channel posts eat the slots and
     // renderDigest silently renders fewer (or zero) lines.
-    const items: DigestItem[] = rows
-      .filter(isLinkable)
-      .map((r) => ({ ...r, title: digestTitle(r.title, r.strategyType) }))
-      .sort((a, b) => viewsPerHour(b.views, b.postedAt, now) - viewsPerHour(a.views, a.postedAt, now))
-      .slice(0, params.maxItems);
+    const items: DigestItem[] = pickNetworkHighlights(rows, now, params.maxItems);
 
     let statsLine: string | null = null;
     if (params.showSubsDelta) {

@@ -4,7 +4,7 @@ import { API_ADAPTERS, API_SOURCE_NAMES, AdapterContextDeps, ApiAdapterError, ma
 
 export type ApiToolDeps = AdapterContextDeps;
 
-/** fetch_api (spec 009 T001): typed adapters over the public APIs the legacy strategies used. */
+/** fetch_api (spec 009 T001): typed adapters over public APIs (the sources the legacy strategies used). */
 export function buildApiTools(d: ApiToolDeps): EditorTool[] {
   const ctx = makeAdapterContext(d);
 

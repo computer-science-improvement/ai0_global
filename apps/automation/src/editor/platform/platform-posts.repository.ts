@@ -1,5 +1,5 @@
 import type { Pool } from 'pg';
-import { refAliases } from '../../data/data-refs';
+import { ContentLedger, specRefs } from '../../data/content-ledger';
 
 export interface PlatformPostRow {
   id:          number;
@@ -24,7 +24,11 @@ const toRow = (r: any): PlatformPostRow => ({
 
 /** platform_posts / platform_post_metrics / resource_daily_stats (051). */
 export class PlatformPostsRepository {
-  constructor(private readonly pool: Pick<Pool, 'query'>) {}
+  private readonly ledger: ContentLedger;
+
+  constructor(private readonly pool: Pick<Pool, 'query'>) {
+    this.ledger = new ContentLedger(pool);
+  }
 
   async insert(p: {
     resourceRef: string; platform: string; externalId?: string | null; url?: string | null; slotId?: string | null; ideaId?: string | null;
@@ -35,7 +39,14 @@ export class PlatformPostsRepository {
        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING *`,
       [p.resourceRef, p.platform, p.externalId ?? null, p.url ?? null, p.slotId ?? null, p.ideaId ?? null, p.format, p.caption,
         JSON.stringify(p.spec), p.sourceRef ?? null, p.status, p.error ?? null, p.agentId ?? null]);
-    return toRow(rows[0]);
+    const row = toRow(rows[0]);
+    if (p.status === 'published' || p.status === 'shadowed') {
+      // Spec 023 FR-010: every source ref of the post goes into the content ledger.
+      await this.ledger.recordRefs([p.sourceRef, ...specRefs(p.spec as any)], {
+        resourceRef: p.resourceRef, origin: 'platform', status: p.status, platformPostId: row.id, slotId: p.slotId ?? null,
+      });
+    }
+    return row;
   }
 
   /**
@@ -44,11 +55,18 @@ export class PlatformPostsRepository {
    * is no longer waiting is left alone.
    */
   async settle(id: number, status: 'published' | 'failed' | 'canceled', p: { externalId?: string | null; url?: string | null; error?: string | null } = {}): Promise<boolean> {
-    const { rowCount } = await this.pool.query(
+    const { rows, rowCount } = await this.pool.query(
       `UPDATE platform_posts SET status = $2, external_id = COALESCE($3, external_id), url = COALESCE($4, url), error = $5,
               posted_at = CASE WHEN $2 = 'published' THEN now() ELSE posted_at END
-        WHERE id = $1 AND status = 'awaiting_approval'`,
+        WHERE id = $1 AND status = 'awaiting_approval'
+        RETURNING resource_ref, source_ref, spec, slot_id`,
       [id, status, p.externalId ?? null, p.url ?? null, p.error ?? null]);
+    if (status === 'published' && rows?.[0]) {
+      const r = rows[0];
+      await this.ledger.recordRefs([r.source_ref, ...specRefs(r.spec)], {
+        resourceRef: r.resource_ref, origin: 'platform', status: 'published', platformPostId: id, slotId: r.slot_id ?? null,
+      });
+    }
     return (rowCount ?? 0) > 0;
   }
 
@@ -58,16 +76,18 @@ export class PlatformPostsRepository {
   }
 
   /**
-   * Same source / library item / idea on this resource within `days` (live
-   * posts; with `waiting`, also posts that wait for approval — spec 031).
+   * Dedup on this resource. The source / library item goes through the content ledger (spec 023 FR-010:
+   * published for ever or within the dataset's reuse window, shadowed 7 days, error anywhere; with
+   * `waiting`, also posts that wait for approval — spec 031). The same idea is a repeat when it went out
+   * here since `since`.
    */
   async alreadyPosted(resourceRef: string, ref: { source?: string | null; ideaId?: string | null }, since: Date, waiting = false): Promise<boolean> {
-    if (!ref.source && !ref.ideaId) return false;
-    const sources = ref.source ? await refAliases(this.pool, ref.source) : null;
+    if (ref.source && await this.ledger.used(resourceRef, ref.source, { waiting })) return true;
+    if (!ref.ideaId) return false;
     const { rows } = await this.pool.query(
-      `SELECT 1 FROM platform_posts WHERE resource_ref = $1 AND (status = 'published' OR ($5 AND status = 'awaiting_approval')) AND posted_at >= $2
-          AND (($3::text[] IS NOT NULL AND source_ref = ANY($3::text[])) OR ($4::uuid IS NOT NULL AND idea_id = $4)) LIMIT 1`,
-      [resourceRef, since, sources, ref.ideaId ?? null, waiting]);
+      `SELECT 1 FROM platform_posts WHERE resource_ref = $1 AND (status = 'published' OR ($4 AND status = 'awaiting_approval')) AND posted_at >= $2
+          AND idea_id = $3 LIMIT 1`,
+      [resourceRef, since, ref.ideaId, waiting]);
     return rows.length > 0;
   }
 

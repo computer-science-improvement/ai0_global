@@ -187,3 +187,99 @@ rewriting the whole playbook, and cannot be steered from chat. This spec makes t
 - [ ] After phase B, `/app/strategies` redirects and `pnpm --filter automation test` stays green.
 
 **Size:** M · **Depends on:** T6
+
+## Implementation notes (T1, 2026-10-07)
+Built on `feat/editor-agent` after spec 032 (data store) and 031 (approval mode); commit `feat(content): 023-T1 …`.
+
+- **Migration `060_content_ledger.sql`** (059 stays free for T4's schedule rules). Table as in FR-010 plus a `note`
+  column (the reason of an `error` row). The rules live in SQL, so the publish guards and the row filters of
+  `query_data` / `library_catalog` cannot disagree: `content_ledger_blocks()` (one predicate),
+  `content_ledger_blocking()` (guards) and `content_ledger_used()` (query CTE). `content_ref_canonical()` resolves
+  a `library://` alias to `data://` (032 FR-011), lower-cases the scheme and host, drops `utm_*` and the fragment.
+- **Reuse policy from the schema (032 FR-011).** 060 moves the dated datasets (`on_this_day`, `birthdays`,
+  `name_days`) from the 058 seed of 365 days to 300 days when still at the seed value: a 365-day window blocks the
+  same date next year whenever it is posted earlier in the day.
+- **Writers.** `ContentLedger.record()` (TS, best-effort after a send) is called from
+  `EditorPlansRepository.insertPublication` (publish_post, the chat, the approval publisher and the sponsored
+  path; origin editor / chat / manual; every ref of the spec, not only `source_url`), `updateSlot(status: shadowed)`,
+  `PlatformPostsRepository.insert/settle` (origin platform) and `PublicationsRepository.insert` (legacy
+  strategies, the URL). The two legacy ledgers strategies still write feed the ledger through **triggers**:
+  `data_items.posted` (markers written through the 058 views; this records the library row itself, also for Meta /
+  TikTok destinations that never reach `published_posts`) and `posted_news`. Triggers swallow their own errors so
+  a ledger problem never fails a publish.
+- **Checks.** `sourceAlreadyPosted` (publish_post; now ledger + waiting posts of spec 031),
+  `sourceUsed` (chat; replaces `sourcePostedSince` and `DEDUP_DAYS`), `publishedSource` (approval re-check;
+  published only) and the platform `alreadyPosted` (source via the ledger; the same-idea repeat keeps a 7-day
+  window, `PLATFORM_IDEA_DEDUP_DAYS`) all call `ContentLedger.check()`. Waiting / approved posts are not ledger
+  statuses; `check({ waiting: true })` and `usedRefsCte()` still read them from `editor_slots` / `platform_posts`.
+  Behaviour change: a shadow preview now holds its source 7 days (it held it for ever on Telegram and not at all on
+  platforms); the chat's 7-day window became the ledger rules.
+- **Backfill mapping.** `TELEGRAM` → every Telegram channel with a binding of the dataset's strategy types
+  (`recipes`/`recipe-carousel`, `ai0-prompts`/`curated-prompts`, …); with no such binding it becomes the wildcard
+  `telegram:*`, which counts only network-wide. Editor slots (shadowed and published, both refs of the spec) are
+  backfilled too. `query_data`, `search_library`, `library_catalog`, the items browser's "Posted N×" badge, the
+  stats' `unposted_network` and import undo's "used" now read only the ledger.
+- **Not dropped:** `data_items.posted` and `posted_news` stay (strategies still write them and the triggers mirror
+  them); drop them after the strategies are retired (T6/T7), as 032 FR-009 says.
+- **Production migration.** On a synthetic DB with 60k marked rows (175k markers), 100k `published_posts`, 30k
+  `posted_news` and 5k platform posts the backfill wrote 310k rows (108 MB with indexes) in ≈ 14 s on a laptop;
+  the rerun is a no-op (≈ 8.5 s). `content_ledger_used()` for one resource ≈ 0.17 s on that data. 060 runs in one
+  transaction, so the deploy holds writes to the touched tables for that time.
+
+## Implementation notes (T2, 2026-10-07)
+Commit `feat(content): 023-T2 …` (committed after T3, which it builds on for series sources). 032 T6 already
+built `library_catalog` from `data_schemas` and `query_data`; T2 adds only what FR-008/FR-009 still needed.
+
+- **Catalog additions** (`editor/tools/catalog-context.ts`): the overview now carries `apis` (name, what it
+  returns, `configured` from the presence of `TMDB_API_KEY` / `NASA_API_KEY` — never a value; NASA counts as
+  configured because it falls back to `DEMO_KEY`) and the card's `feeds` (rss / url sources). Per dataset on the
+  asking resource: `last_used_here` and `runway_days` = unposted here ÷ the larger of (active series that name
+  the dataset as `library` source × instances per day) and (28-day ledger publications ÷ 28) — "larger of"
+  instead of "plus" so a series' own posts are not counted twice. Unposted counts come from the T1 ledger. The
+  overview is cached 10 minutes per resource and card sources; `library_catalog({dataset})` is not cached.
+  032's per-dataset `license` stays; a license mix per row was not added.
+- **Prompt summary** (≤ 1,500 characters, cut with "…"): appended to the orchestrator's daily prompt and to both
+  planners' user prompts through optional `catalogSummary` deps, cached 10 minutes per channel.
+- **`low_runway`**: after each daily orchestrator run (`runwayCheck`), for every active series with a library
+  source; one `agent_inbox` item (`ref_type='dataset'`, `ref_id=<key>`, severity action, English text, Ukrainian
+  Telegram alert) per dataset per 7 days. `ContentRunwayService` is untouched (strategy channels still use it;
+  it goes with T7).
+- **`get_network_highlights`** (`editor/tools/highlights-tools.ts`): the digest query and both picks moved to
+  `src/common/digests/` (`digest-format.ts`, moved from `strategies/network-digest/digest-format.util.ts`,
+  which now re-exports it; `digest-selection.ts`), and the two strategy repositories call the shared query.
+  Without `strategy_types` it is the network digest (own channels, views per hour), with them the topic digest
+  (newest N, chronological). `date` selects a calendar day in the card's time zone (default: the last 24 h);
+  `already_posted_today` reads the legacy `digest://…` sentinel through the ledger. A PostSpec source must be
+  http(s), so the agent's own digest is deduped by its links, not by a `digest://` ref.
+- **Prompts and skills:** `content-sources` lists the other sources (APIs, feeds, highlights, runway); the
+  orchestrator prompt says "content plan" instead of "strategy".
+
+## Implementation notes (T3, 2026-10-07)
+Commit `feat(content): 023-T3 …`. No migration (series live in the playbook JSON; 059 is still free for T4).
+
+- **Series v2** (`network/series.ts`, `SeriesSchema` in `playbook.ts`): cadence, `source`, `source_mode`, `origin`,
+  `locked`, `migrated_from` as in FR-002. Stored bodies are raw JSON, so code reads them through
+  `normalizePlaybook()` (v1 bodies get the defaults). `seriesDue` returns one instance per time.
+- **Validation.** Quiet hours apply to agent submissions only: an owner's own series may sit in quiet hours
+  (owner precedence, as for pins). Library datasets come from active `data_schemas` keys, feeds from the card's
+  rss/url sources (id or ref), APIs from the adapter names. Series instances per weekday are checked against the
+  section's `per_day.max` (paused series do not count).
+- **Classification (with spec 031).** `classifyPlaybookChange(prev, next, { mode })` takes the effective mode
+  (orchestrator × card). A ≤ 90-min shift on the same days and a source change within its kind apply at once in
+  `shadow` and `live`; in `approve` every schedule change, pausing or resuming a series included, is structural
+  (a card). Without a mode a shift stays structural. Change reasons are now English (they reach the Inbox).
+- **One submit path** (`network/series-edit.ts`, `submitPlaybookVersion`): `submit_playbook` and the five series
+  tools validate, guard ownership, classify, store and post the Inbox item the same way. The guard copies
+  `origin` / `locked` / `migrated_from` from the active version (an agent cannot claim or unlock a series) and
+  refuses any edit or removal of a locked series (`series_locked`). A pending draft created by `migration`
+  answers `migration_pending` (the DB check that allows `created_by='migration'` comes with T6).
+- **Owner lock.** `NetworkService.putPlaybook` locks every series the owner adds or edits (`lockOwnerSeries`);
+  unchanged series keep their lock, so only Unlock (T5) hands one back.
+- **Series tools** (`network/series-tools.ts`): `list_series` is also readable by the planner and the manager.
+  The base is the agent's own pending draft when there is one (a minor change on top of a pending structural
+  draft therefore waits for the owner too). The 5-per-run budget counts every mutating call, refused ones
+  included.
+- **`pause_series`.** `accept_directive` answers `owner_rule_conflict` for a locked series (the orchestrator then
+  rejects with `owner_rule`); the prompt and the `editor-orchestrator-workflow` skill say to apply the directive
+  with `set_series_active`.
+- **Dashboard.** Only `fmtCadence` learned the v2 form; the Schedule tab and lock badges are T5.

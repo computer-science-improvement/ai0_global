@@ -10,7 +10,8 @@ import type { OwnerInbox } from '../agents/owner-inbox';
 import type { NetworkCtx } from './network-context';
 import { IDEA_STATUSES, IdeaRow, NetworkRepository } from './network.repository';
 import { SubmitNetworkPlanInput, validateNetworkPlan } from './network-plan';
-import { classifyPlaybookChange, PlaybookSchema, renderPlaybook, validatePlaybook } from './playbook';
+import { PlaybookSchema, renderPlaybook } from './playbook';
+import { submitPlaybookVersion, type SubmitDeps } from './series-edit';
 
 export const IDEA_DEDUP_SIMILARITY = 0.6;
 export const IDEA_MAX_DAYS = 7;
@@ -26,6 +27,8 @@ export interface NetworkToolDeps {
   plans:  Pick<EditorPlansRepository, 'reservedSlots' | 'createNetworkPlan'>;
   memory: Pick<EditorMemoryRepository, 'add'>;
   inbox:  Pick<OwnerInbox, 'post'>;
+  /** Spec 023: datasets and card feeds a series source may name. */
+  sourceCatalog?: SubmitDeps['sourceCatalog'];
   now?:   () => Date;
 }
 
@@ -68,31 +71,8 @@ export function buildNetworkTools(d: NetworkToolDeps): EditorTool[] {
     ].join(' '),
     kind: 'terminal', roles: ['orchestrator'],
     input: z.object({ body: PlaybookSchema, rationale: z.string().min(20).max(2000) }),
-    execute: async ({ body, rationale }, ctx) => {
-      const net = netOf(ctx);
-      const errors = validatePlaybook(body, net.resources, net.telegramFormats);
-      if (errors.length) return { error: 'playbook_invalid', details: errors };
-      const change = classifyPlaybookChange(net.playbook, body);
-      const status = change.structural ? 'pending_owner' : 'active';
-      const pb = await d.repo.insertPlaybook({
-        agentId: net.orchestrator.id, status, brief: (ctx.extras?.brief as string | undefined) ?? null, body, rationale, createdBy: 'orchestrator', runId: ctx.runId,
-      });
-      await d.inbox.post({
-        agentId: net.orchestrator.id, kind: change.structural ? 'playbook_pending' : 'playbook_updated', severity: change.structural ? 'action' : 'info',
-        title: change.structural
-          ? `📘 @${net.orchestrator.handle}: playbook v${pb.version} awaits your approval`
-          : `📘 @${net.orchestrator.handle}: playbook updated to v${pb.version}`,
-        body: `${rationale}\n\nChanges: ${change.reasons.join('; ')}`,
-        alert: {
-          title: change.structural
-            ? `📘 @${net.orchestrator.handle}: плейбук v${pb.version} чекає затвердження`
-            : `📘 @${net.orchestrator.handle}: плейбук оновлено до v${pb.version}`,
-          body: `${rationale}\n\nЗміни: ${change.reasons.join('; ')}`,
-        },
-        refType: 'playbook', refId: pb.id,
-      });
-      return { ok: true, id: pb.id, version: pb.version, status, changes: change.reasons };
-    },
+    // Spec 023: one submit path with the series tools (series v2 checks, owner locks, mode-aware classification).
+    execute: async ({ body, rationale }, ctx) => submitPlaybookVersion(d, netOf(ctx), ctx, body, rationale),
   });
 
   const listIdeas = defineTool({

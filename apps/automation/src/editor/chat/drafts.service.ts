@@ -14,7 +14,6 @@ import type { DraftStatus, EditorChatRepository, EditorDraft } from '../repo/edi
 import { localDate, localTimeLabel } from '../roles/time';
 import { CHAT_TIMEZONE, makeDefaultCard } from './default-card';
 
-export const DEDUP_DAYS = 7;
 export const SCHEDULE_MIN_LEAD_MS = 2 * 60_000;
 export const SCHEDULE_MAX_AHEAD_MS = 60 * 86_400_000;
 export const CHAT_SLOT_HINT = 'chat_draft:';
@@ -23,7 +22,7 @@ export interface DraftsDeps {
   pool:      Pick<Pool, 'query'>;
   repo:      Pick<EditorChatRepository, 'insertDraft' | 'updateDraft' | 'getDraft' | 'findDraftBySlot' | 'listDrafts' | 'myChannels'>;
   channels:  Pick<EditorChannelsRepository, 'get' | 'insertIfMissing'>;
-  plans:     Pick<EditorPlansRepository, 'reserveSlot' | 'skipPlannedSlot' | 'updateSlot' | 'sourcePostedSince' | 'insertPublication'>;
+  plans:     Pick<EditorPlansRepository, 'reserveSlot' | 'skipPlannedSlot' | 'updateSlot' | 'sourceUsed' | 'insertPublication'>;
   publisher: PublishSpecDeps['publisher'];
   recordPublish: (channelKey: string) => void;
   media?:     PublishSpecDeps['media'];
@@ -52,7 +51,7 @@ function previewOf(spec: PostSpec, card: EditorCard, lint: LintResult): string |
  * Deterministic draft actions of the editor chat (spec 010 FR-004). The
  * composer's tools and the owner's REST buttons both call this service, so a
  * post from the chat passes the same guards whoever triggers it: lint, quiz
- * ground truth, verbatim copy of retold library content, publish_paused, and a 7-day dedup on source.url / library_ref.
+ * ground truth, verbatim copy of retold library content, publish_paused, and the content-ledger dedup on source.url / library_ref (spec 023).
  * Scheduling reuses 008's reserved slots; ReservedDispatcher publishes them.
  */
 export class DraftsService {
@@ -124,12 +123,13 @@ export class DraftsService {
     const verbatim = await checkVerbatim(this.d.pool, spec);
     if (verbatim) return verbatim;
     if (this.d.isPaused(channelKey)) return { error: 'channel_paused', details: `${channelKey}: publish_paused=true` };
-    const since = new Date(now.getTime() - DEDUP_DAYS * 86_400_000);
-    if (spec.library_ref && await this.d.plans.sourcePostedSince(channelKey, spec.library_ref, since)) {
-      return { error: 'library_item_already_posted', details: `this library item was already posted in ${channelKey} within ${DEDUP_DAYS} days` };
+    // Spec 023 FR-010: the content ledger decides (a library item once per channel unless its dataset allows a
+    // repeat, a URL once per channel, a shadow preview holds it 7 days, an error-marked item never).
+    if (spec.library_ref && await this.d.plans.sourceUsed(channelKey, spec.library_ref)) {
+      return { error: 'library_item_already_posted', details: `this library item was already used in ${channelKey} (content ledger)` };
     }
-    if (spec.source && await this.d.plans.sourcePostedSince(channelKey, spec.source.url, since)) {
-      return { error: 'source_already_posted', details: `this source was already posted in ${channelKey} within ${DEDUP_DAYS} days` };
+    if (spec.source && await this.d.plans.sourceUsed(channelKey, spec.source.url)) {
+      return { error: 'source_already_posted', details: `this source was already used in ${channelKey} (content ledger)` };
     }
     return { ref: spec.library_ref ?? spec.source?.url ?? null };
   }

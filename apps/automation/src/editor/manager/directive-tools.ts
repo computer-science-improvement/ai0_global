@@ -49,6 +49,8 @@ export interface DirectiveToolDeps {
   actions: Pick<PendingActionsService, 'propose'>;
   /** The orchestrator's channel (owner rules live in its memory). */
   channelKeyOf: (agent: Agent) => Promise<string | null>;
+  /** Spec 023: is this series owner-locked in the orchestrator's active playbook? (pause_series directives) */
+  seriesLocked?: (orch: Agent, name: string) => Promise<boolean>;
   now?:    () => Date;
 }
 
@@ -178,6 +180,11 @@ export function buildDirectiveTools(d: DirectiveToolDeps): EditorTool[] {
       const dir = await d.repo.get(i.id);
       if (!dir || !orch || dir.toAgentId !== orch.id || dir.shadow) return { error: 'directive_not_found' };
       if (dir.status !== 'new') return { error: 'not_open', details: dir.status };
+      // Spec 023: a pause_series directive is applied with set_series_active; an owner-locked series is the owner's rule.
+      const seriesName = dir.kind === 'pause_series' ? String((dir.params as any)?.series ?? (dir.params as any)?.name ?? '') : '';
+      if (seriesName && d.seriesLocked && await d.seriesLocked(orch, seriesName)) {
+        return { error: 'owner_rule_conflict', details: `серію «${seriesName}» заблокував власник — відхили директиву з reason_kind owner_rule` };
+      }
       if (i.conflicting_rule_ids.length) {
         const key = await d.channelKeyOf(orch);
         const rules = key ? await d.memory.listActive(key) : [];

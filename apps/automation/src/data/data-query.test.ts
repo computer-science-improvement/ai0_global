@@ -62,8 +62,9 @@ test('SQL: eq on a list, in, ilike escaping, range casts, is_null, today through
   assert.match(sql, /NOT \(d\.data->'raw' IS NULL/);
   assert.match(sql, /d\.event_month = \$\d+ AND d\.event_day = \$\d+/);
   assert.match(sql, /^WITH used AS/);
-  assert.match(sql, /NOT \(d\.posted \? \$\d+\)/);
-  assert.ok(params.includes('@books') && params.includes('telegram:@books'));
+  assert.match(sql, /content_ledger_used\(\$\d+\)/, 'used rows come from the content ledger (023 FR-010)');
+  assert.doesNotMatch(sql, /d\.posted \?/, 'the legacy posted markers are no longer read directly');
+  assert.ok(params.includes('telegram:@books'));
   assert.match(sql, /ORDER BY d\.created_at DESC/);
 });
 

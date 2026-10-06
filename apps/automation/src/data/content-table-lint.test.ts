@@ -28,6 +28,7 @@ const ALLOWED: Record<string, string> = {
   'automation/src/editor/db/readonly-query.service.test.ts': 'example SQL for the read-only guard',
   'automation/src/editor/db/readonly-sql.test.ts': 'example SQL for the read-only guard',
   'automation/src/data/data-store.migration.pg.test.ts': 'tests the 058 compatibility views',
+  'automation/src/data/content-ledger.migration.pg.test.ts': 'tests the 060 posted-marker trigger through a compatibility view',
   'pipeline/src/lib/loader.test.js': 'checks loader output through the recipes view',
   'automation/src/data/content-table-lint.test.ts': "the lint's own fixtures",
 };

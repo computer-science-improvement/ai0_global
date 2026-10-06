@@ -1,5 +1,5 @@
 import type { Pool } from 'pg';
-import { refAliases } from '../../data/data-refs';
+import { ContentLedger, specRefs } from '../../data/content-ledger';
 import type { PlannedSlot } from '../roles/plan-rules';
 
 export type SlotStatus =
@@ -129,7 +129,12 @@ export interface SlotResultPatch {
 }
 
 export class EditorPlansRepository {
-  constructor(private readonly pool: Pool) {}
+  /** Spec 023 FR-010: every dedup question goes to the content ledger. */
+  private readonly ledger: ContentLedger;
+
+  constructor(private readonly pool: Pool) {
+    this.ledger = new ContentLedger(pool);
+  }
 
   async getActivePlan(channelKey: string, planDate: string): Promise<{ id: string; rationale: string | null } | null> {
     const { rows } = await this.pool.query(
@@ -426,7 +431,14 @@ export class EditorPlansRepository {
     if (p.freshnessDeadline !== undefined) add('freshness_deadline', p.freshnessDeadline);
     if (p.platformPostId !== undefined)  add('platform_post_id', p.platformPostId);
     if (!sets.length) return;
-    await this.pool.query(`UPDATE editor_slots SET ${sets.join(', ')}, updated_at = now() WHERE id = $1`, params);
+    const { rows } = await this.pool.query(
+      `UPDATE editor_slots SET ${sets.join(', ')}, updated_at = now() WHERE id = $1 RETURNING channel_key, resource_ref`, params);
+    // Spec 023 FR-010: a shadow preview holds its sources on the resource for 7 days.
+    if (p.status === 'shadowed' && p.postSpec && rows?.[0]) {
+      await this.ledger.recordRefs(specRefs(p.postSpec as any), {
+        resourceRef: rows[0].resource_ref ?? rows[0].channel_key, origin: 'editor', status: 'shadowed', slotId: id,
+      });
+    }
   }
 
   /** How many of the channel's most recent finished slots failed in a row. */
@@ -453,30 +465,19 @@ export class EditorPlansRepository {
   }
 
   /**
-   * Dedup: the source / library item was published to the channel, or is held
-   * by a shadow preview or (spec 031) a post that waits for approval or is
-   * approved. `excludeSlotId` leaves out the slot being re-checked itself.
+   * Dedup through the content ledger (spec 023 FR-010; the editor, the chat and the reserved path share it):
+   * the source / library item was published on the channel (for ever, or within the dataset's reuse
+   * window), is held by a shadow preview of the last 7 days, is error-marked anywhere, or (spec 031) a post
+   * waits for approval or is approved with it. `excludeSlotId` leaves out the slot being re-checked itself.
+   * A data:// ref and its legacy library:// ref name the same row (spec 032 FR-011).
    */
   async sourceAlreadyPosted(channelKey: string, sourceUrl: string, excludeSlotId: string | null = null): Promise<boolean> {
-    // Spec 032 FR-011: a data:// ref and its legacy library:// ref name the same row.
-    const refs = await refAliases(this.pool, sourceUrl);
-    const { rows } = await this.pool.query(
-      `SELECT 1 FROM published_posts WHERE channel_id = $1 AND source_url = ANY($2::text[]) AND ($3::uuid IS NULL OR editor_slot_id IS DISTINCT FROM $3)
-       UNION ALL
-       SELECT 1 FROM editor_slots WHERE channel_key = $1 AND status IN ('shadowed','awaiting_approval','approved')
-          AND ($3::uuid IS NULL OR id <> $3)
-          AND (post_spec->'source'->>'url' = ANY($2::text[]) OR post_spec->>'library_ref' = ANY($2::text[]))
-       LIMIT 1`, [channelKey, refs, excludeSlotId]);
-    return rows.length > 0;
+    return this.ledger.used(channelKey, sourceUrl, { waiting: true, excludeSlotId });
   }
 
-  /** Chat dedup (spec 010): was this source URL / library_ref published to the channel since `since`? */
-  async sourcePostedSince(channelKey: string, sourceUrl: string, since: Date): Promise<boolean> {
-    const refs = await refAliases(this.pool, sourceUrl);
-    const { rows } = await this.pool.query(
-      `SELECT 1 FROM published_posts WHERE channel_id = $1 AND source_url = ANY($2::text[]) AND posted_at >= $3 LIMIT 1`,
-      [channelKey, refs, since]);
-    return rows.length > 0;
+  /** The chat's dedup (spec 010 → 023 FR-010): the same ledger rules, without the waiting posts. */
+  async sourceUsed(channelKey: string, sourceUrl: string): Promise<boolean> {
+    return this.ledger.used(channelKey, sourceUrl);
   }
 
   /** Recent texts for the similarity guard; waiting and approved posts count too (spec 031). */
@@ -496,6 +497,8 @@ export class EditorPlansRepository {
     channelKey: string; messageId: number; sourceUrl: string | null; title: string; tags: string[]; format: string; slotId: string | null;
     /** 'editor' for agent posts, 'ad' for reserved sponsored posts, 'chat' for posts from the editor chat (010). */
     strategyType?: 'editor' | 'ad' | 'chat';
+    /** Every source ref of the post (library item and source URL); `sourceUrl` keeps only one. */
+    refs?: Array<string | null | undefined>;
   }): Promise<number> {
     const { rows } = await this.pool.query(
       `INSERT INTO published_posts (channel_id, message_id, source_url, title, strategy_type, tags, format, editor_slot_id)
@@ -503,6 +506,12 @@ export class EditorPlansRepository {
        ON CONFLICT (channel_id, message_id) DO UPDATE SET editor_slot_id = EXCLUDED.editor_slot_id
        RETURNING id`,
       [i.channelKey, i.messageId, i.sourceUrl, i.title, i.tags, i.format, i.slotId, i.strategyType ?? 'editor']);
-    return Number(rows[0].id);
+    const postId = Number(rows[0].id);
+    // Spec 023 FR-010: the publication goes into the content ledger (best-effort: the post is already out).
+    await this.ledger.recordRefs([i.sourceUrl, ...(i.refs ?? [])], {
+      resourceRef: i.channelKey, status: 'published', publishedPostId: postId, slotId: i.slotId,
+      origin: i.strategyType === 'chat' ? 'chat' : i.strategyType === 'ad' ? 'manual' : 'editor',
+    });
+    return postId;
   }
 }

@@ -36,6 +36,10 @@ export interface NetworkRunnerDeps {
   env:      (key: string) => string | undefined;
   notify:   (text: string) => Promise<void>;
   now?:     () => Date;
+  /** Spec 023 FR-008: the ≤ 1,500-char source catalog for the orchestrator and planner prompts. */
+  catalogSummary?: (card: EditorCard) => Promise<string | null>;
+  /** Spec 023 FR-008: low_runway Inbox items for datasets the active series use (after the daily run). */
+  runwayCheck?: (orch: Agent, playbook: unknown) => Promise<unknown>;
 }
 
 const STEPS: Record<string, number> = { orchestrate: 30, playbook: 18, ideaReview: 25, plan: 14 };
@@ -79,6 +83,11 @@ export class NetworkRunner {
     });
   }
 
+  /** Spec 023 FR-008: the source catalog summary (best-effort; a prompt never fails on it). */
+  private async catalog(card: EditorCard): Promise<string | null> {
+    return this.d.catalogSummary ? this.d.catalogSummary(card).catch(() => null) : null;
+  }
+
   private paused(c: { agentCtx: RunAgentContext } | null): boolean {
     return !c || c.agentCtx.paused;
   }
@@ -104,9 +113,10 @@ export class NetworkRunner {
     const memory = await this.d.memory.listActive(card.channelKey);
     const res = await this.run('orchestrator', card, c!,
       orchestratorSystemPrompt({ net, card, profile: await this.profileText(net), memory, skills: c!.agentCtx.skills, directives }),
-      orchestratorDailyPrompt({ net, card, now: this.now(), open, target, hasDirectives: !!directives }),
+      [orchestratorDailyPrompt({ net, card, now: this.now(), open, target, hasDirectives: !!directives }), await this.catalog(card)].filter(Boolean).join('\n\n'),
       STEPS.orchestrate, { brief: card.brief });
     if (this.d.afterOrchestration) await this.d.afterOrchestration(net.orchestrator).catch(() => {});
+    if (this.d.runwayCheck) await this.d.runwayCheck(net.orchestrator, net.playbook).catch(() => {});
     await this.runIdeaReview(card);
     return res;
   }
@@ -163,7 +173,8 @@ export class NetworkRunner {
     const prefs = this.d.memory.ownerPreferences ? await this.d.memory.ownerPreferences(card.channelKey, APPROVAL_PREFS_IN_PROMPT).catch(() => []) : [];
     const memory = await this.d.memory.listActive(card.channelKey, 30, { excludeApprovalPrefs: prefs.length > 0 });
     const system = `${buildSystemPrompt('planner', card, memory, c.agentCtx.skills, prefs)}\n\n${networkPlannerBlock({ net: c.net, accepted, now, tz: card.timezone, planDate })}`;
-    const res = await this.run('planner', card, c, system, plannerUserPrompt(card, now, reserved, planDate), STEPS.plan, { planDate }, TERMINAL_EXCLUDE_NETWORK);
+    const user = [plannerUserPrompt(card, now, reserved, planDate), await this.catalog(card)].filter(Boolean).join('\n\n');
+    const res = await this.run('planner', card, c, system, user, STEPS.plan, { planDate }, TERMINAL_EXCLUDE_NETWORK);
     if (res.terminalTool !== 'submit_network_plan') {
       await this.safeNotify(`🗓 @${c.net.orchestrator.handle}: план мережі не складено (${res.status}${res.error ? `: ${res.error}` : ''}).`);
     }

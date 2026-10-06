@@ -14,6 +14,7 @@ async function cleanup() {
   await pool.query(`DELETE FROM platform_posts WHERE resource_ref = $1`, [REF]);
   await pool.query(`DELETE FROM resource_daily_stats WHERE resource_ref = $1`, [REF]);
   await pool.query(`DELETE FROM published_posts WHERE channel_id = $1`, [CH]);
+  await pool.query(`DELETE FROM content_ledger WHERE resource_ref = ANY($1::text[])`, [[REF, `telegram:${CH}`]]);
 }
 
 before(async () => {
@@ -33,7 +34,10 @@ test('platform posts: insert, dedup, caps, metrics; network_posts unions Telegra
   const p = await repo.insert({ resourceRef: REF, platform: 'instagram', externalId: 'pg-m1', format: 'ig_carousel', caption: 'Марс', spec: {}, sourceRef: 'https://src/a', status: 'published' });
   await repo.insert({ resourceRef: REF, platform: 'instagram', format: 'ig_photo', caption: 'тінь', spec: {}, sourceRef: 'https://src/b', status: 'shadowed' });
   assert.equal(await repo.alreadyPosted(REF, { source: 'https://src/a' }, since), true);
-  assert.equal(await repo.alreadyPosted(REF, { source: 'https://src/b' }, since), false, 'shadow posts do not count');
+  assert.equal(await repo.alreadyPosted(REF, { source: 'https://src/b' }, since), true, 'a shadow post holds its source on the resource for 7 days (023 FR-010)');
+  await pool.query(`UPDATE content_ledger SET used_at = now() - interval '8 days' WHERE resource_ref = $1 AND status = 'shadowed'`, [REF]);
+  assert.equal(await repo.alreadyPosted(REF, { source: 'https://src/b' }, since), false, '… and only for 7 days');
+  assert.equal(await repo.alreadyPosted('instagram:pg-test-other', { source: 'https://src/a' }, since), false, 'other resources are not affected');
   assert.equal(await repo.countPublishedSince(REF, since), 1);
   assert.ok(await repo.lastPostAt(REF));
   assert.deepEqual((await repo.recentCaptions(REF)).sort(), ['Марс', 'тінь']);

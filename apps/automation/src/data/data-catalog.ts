@@ -135,11 +135,10 @@ export async function buildCatalog(pool: Pick<Pool, 'query'>, o: CatalogOptions)
   let cte = '';
   let here = 'NULL::int';
   if (o.resource) {
-    const { channelKey, resourceRef } = resourceKeys(o.resource);
-    params.push(channelKey, resourceRef);
-    cte = `WITH ${usedRefsCte('$4', '$5')} `;
-    here = `count(*) FILTER (WHERE NOT (d.posted ? $4)
-              AND NOT EXISTS (SELECT 1 FROM used u WHERE u.ref = 'data://' || s.key || '/' || d.id::text)
+    const { resourceRef } = resourceKeys(o.resource);
+    params.push(resourceRef);
+    cte = `WITH ${usedRefsCte('$4')} `;
+    here = `count(*) FILTER (WHERE NOT EXISTS (SELECT 1 FROM used u WHERE u.ref = 'data://' || s.key || '/' || d.id::text)
               AND (d.legacy_ref IS NULL OR NOT EXISTS (SELECT 1 FROM used u WHERE u.ref = d.legacy_ref)))::int`;
   }
   const { rows: counts } = await pool.query(

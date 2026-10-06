@@ -3,7 +3,9 @@ import { z } from 'zod';
 import { channelOf, defineTool, EditorTool, ToolContext } from '../harness/tool';
 import type { PendingActionsService, PendingAction } from '../agents/pending-actions';
 import { DataStore, DataStoreError } from '../../data/data-store';
-import { buildCatalog, summarize } from '../../data/data-catalog';
+import { buildCatalog } from '../../data/data-catalog';
+import type { CardSource } from '../card';
+import { catalogOverview, ledgerUsage, runwayDays, seriesLibraryUse, TtlCache } from './catalog-context';
 import { DataQueryError, filterSchema, kyivMonthDay, MAX_AGENT_LIMIT, ORDERS, queryDataset, readableFields } from '../../data/data-query';
 import type { DataSchema } from '../../data/data.types';
 
@@ -20,6 +22,8 @@ export interface DataToolDeps {
   actions?: Pick<PendingActionsService, 'propose'>;
   /** Kyiv-local month/day; injectable for tests. */
   today?:   () => { month: number; day: number };
+  /** Spec 023: tells library_catalog which API adapters have their key (presence only). */
+  env?:     (key: string) => string | undefined;
 }
 
 const READ_ROLES = ['planner', 'executor', 'reviewer', 'composer', 'orchestrator', 'idea_reviewer', 'manager', 'builder'] as const;
@@ -108,8 +112,16 @@ export async function applyDataSchemaSuggestion(store: DataStore, payload: Recor
   return { dataset: s.key, version: r.schema.version };
 }
 
+/** Last use and runway of one dataset on a resource (spec 023 FR-008). */
+async function datasetUsage(pool: Pick<Pool, 'query'>, resource: string, key: string, unposted: number | undefined) {
+  const [use, series] = await Promise.all([ledgerUsage(pool, resource), seriesLibraryUse(pool, resource)]);
+  const u = use[key];
+  return { last_used_here: u?.last ? u.last.toISOString() : null, runway_days: runwayDays(unposted, series[key] ?? 0, u?.used28 ?? 0) };
+}
+
 export function buildDataTools(d: DataToolDeps): EditorTool[] {
   const today = d.today ?? kyivMonthDay;
+  const cache = new TtlCache<Awaited<ReturnType<typeof catalogOverview>>>();
 
   const libraryCatalog = defineTool({
     name: 'library_catalog',
@@ -117,12 +129,21 @@ export function buildDataTools(d: DataToolDeps): EditorTool[] {
     kind: 'read', roles: [...READ_ROLES],
     input: z.object({ dataset: z.string().min(2).max(63).optional().describe('Full field details of this dataset') }),
     execute: async ({ dataset }, ctx) => {
-      const entries = await buildCatalog(d.pool, { dataset, resource: currentResource(ctx), today: today() });
+      const resource = currentResource(ctx);
       if (dataset) {
+        const entries = await buildCatalog(d.pool, { dataset, resource, today: today() });
         if (!entries.length) return { error: 'unknown_dataset', details: `no active dataset "${dataset}"` };
-        return { dataset: entries[0], refs: 'rows come back with ref = data://<dataset>/<id>; put it into library_ref when you post from a row' };
+        const extra = resource ? await datasetUsage(d.pool, resource, entries[0].dataset, entries[0].unposted_here) : {};
+        return { dataset: { ...entries[0], ...extra }, refs: 'rows come back with ref = data://<dataset>/<id>; put it into library_ref when you post from a row' };
       }
-      return { datasets: entries.map(summarize), next: 'call library_catalog({dataset}) for field descriptions, then query_data with only the fields you need' };
+      // Spec 023 FR-008: plus the APIs (configured or not, never key values), the card's feeds, last use and runway here; cached 10 min.
+      const card = ctx.extras?.card as { sources?: CardSource[] } | undefined;
+      const c = await cache.get(`${resource ?? '-'}|${(card?.sources ?? []).map((s) => s.id).join(',')}`,
+        () => catalogOverview(d.pool, { resource, env: d.env, feeds: card?.sources ?? null, today: today() }));
+      return {
+        datasets: c.datasets, apis: c.apis, feeds: c.feeds,
+        next: 'call library_catalog({dataset}) for field descriptions, then query_data with only the fields you need; fetch_api / fetch_feed / get_network_highlights for the other sources',
+      };
     },
   });
 

@@ -1,6 +1,7 @@
 import { Inject, Injectable, Logger } from '@nestjs/common';
 import { Pool } from 'pg';
 import { DB_POOL } from '../database/database.module';
+import { ContentLedger } from '../data/content-ledger';
 
 export interface PublicationRecord {
   id:            number;
@@ -44,11 +45,12 @@ export class PublicationsRepository {
     }
 
     try {
-      await this.pool.query(
+      const res = await this.pool.query(
         `INSERT INTO published_posts
            (channel_id, message_id, source_url, title, strategy_type, tags)
          VALUES ($1, $2, $3, $4, $5, $6)
-         ON CONFLICT (channel_id, message_id) DO NOTHING`,
+         ON CONFLICT (channel_id, message_id) DO NOTHING
+         RETURNING id`,
         [
           input.channelId,
           messageIdInt,
@@ -58,6 +60,14 @@ export class PublicationsRepository {
           input.tags       ?? null,
         ],
       );
+      // Spec 023 FR-010: a strategy publication goes into the content ledger too. The library row itself is
+      // recorded by the `posted` marker the strategy writes (migration 060 trigger); this adds the URL.
+      const postId = res?.rows?.[0]?.id;
+      if (postId != null && input.sourceUrl) {
+        await new ContentLedger(this.pool, (m) => this.logger.warn(m)).recordRefs([input.sourceUrl], {
+          resourceRef: input.channelId, origin: 'strategy', status: 'published', publishedPostId: Number(postId),
+        });
+      }
     } catch (err: any) {
       this.logger.warn(`Failed to persist published post: ${err.message}`);
     }

@@ -57,7 +57,7 @@ function setup(o: { card?: any; mine?: Array<{ channelKey: string; title: string
         return s;
       },
       updateSlot: async (id, p) => { slotUpdates.push([id, p]); },
-      sourcePostedSince: async (_k, url) => (o.posted ?? []).includes(url),
+      sourceUsed: async (_k, url) => (o.posted ?? []).includes(url),
       insertPublication: async (i) => { pubs.push(i); return 700 + pubs.length; },
     },
     publisher: { send: async (k, m) => { if (o.sendError) throw o.sendError; sent.push([k, m]); return { messageIds: [900] }; } },
@@ -108,7 +108,7 @@ test('save: default card for an own channel without a card (any hashtag, every f
   assert.equal(invalid.error, 'invalid_spec');
 });
 
-test('publish: guards (lint, paused, dedup 7 days, verbatim copy) then sends with strategy chat and marks the draft published', async () => {
+test('publish: guards (lint, paused, content-ledger dedup, verbatim copy) then sends with strategy chat and marks the draft published', async () => {
   const lintFail = setup({ card: CARD });
   const bad = await save(lintFail, makeSpec({ hashtags: ['мода'] }));
   assert.equal(((await lintFail.svc.publish(bad.id)) as any).error, 'lint_failed');

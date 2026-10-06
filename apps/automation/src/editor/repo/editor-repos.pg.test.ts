@@ -21,6 +21,7 @@ before(async () => {
   pool = new Pool({ connectionString: url });
   await pool.query(`DELETE FROM editor_channels WHERE channel_key = $1`, [CH]);
   await pool.query(`DELETE FROM published_posts WHERE channel_id = $1`, [CH]);
+  await pool.query(`DELETE FROM content_ledger WHERE resource_ref = $1`, [`telegram:${CH}`]);
   await pool.query(`INSERT INTO editor_channels (channel_key, mode, formats) VALUES ($1, 'shadow', '{"text":1,"photo":0.5}')`, [CH]);
 });
 after(async () => {
