@@ -6,17 +6,24 @@ import { useApprovalsCount } from '../api/approvals';
 interface NavItem { to: string; label: string; icon: IconName; soon?: boolean; exact?: boolean; search?: Record<string, unknown>; badge?: 'approvals'; }
 interface NavGroup { title: string; items: NavItem[]; }
 
+// Spec 027 FR-003: the default menu (schema v1), plus the pages that shipped after
+// the spec was written (Posts to approve, Data, Spend).
 const GROUPS: NavGroup[] = [
   { title: 'Home', items: [
     { to: '/app', label: 'Overview', icon: 'overview', exact: true },
+    { to: '/app/agents/inbox', label: 'Posts to approve', icon: 'check', search: { tab: 'approvals' }, badge: 'approvals' },
+  ]},
+  { title: 'Agents', items: [
+    { to: '/app/agents', label: 'Agents', icon: 'agents' },
+    { to: '/app/chat',   label: 'Chat',   icon: 'chat' },
+    { to: '/app/dm',     label: 'DM inbox', icon: 'inbox' },
   ]},
   { title: 'Publishing', items: [
-    { to: '/app/strategies', label: 'Strategies', icon: 'strategies' },
+    { to: '/app/compose',    label: 'Compose',    icon: 'pencil' },
+    { to: '/app/scheduled',  label: 'Scheduled',  icon: 'calendar' },
     { to: '/app/editor',     label: 'Editor',     icon: 'sparkles' },
-    { to: '/app/agents',     label: 'Agents',     icon: 'agents' },
-    { to: '/app/agents/inbox', label: 'Posts to approve', icon: 'check', search: { tab: 'approvals' }, badge: 'approvals' },
-    { to: '/app/chat',       label: 'Chat',       icon: 'chat' },
-    { to: '/app/scheduled',  label: 'Scheduled', icon: 'calendar' },
+    { to: '/app/logs',       label: 'Logs',       icon: 'logs' },
+    { to: '/app/strategies', label: 'Strategies', icon: 'strategies' },
     { to: '/app/channels',   label: 'My channels', icon: 'channels', search: { filter: 'mine' } },
   ]},
   { title: 'Content', items: [
@@ -24,19 +31,17 @@ const GROUPS: NavGroup[] = [
   ]},
   { title: 'Analytics', items: [
     { to: '/app/analytics', label: 'Analytics', icon: 'analytics' },
-    { to: '/app/spend',     label: 'Spend',      icon: 'spend' },
-    { to: '/app/logs',      label: 'Logs',       icon: 'logs' },
-    { to: '/app/agent',     label: 'Agent',      icon: 'bots' },
+    { to: '/app/spend',     label: 'Spend',     icon: 'spend' },
+    { to: '/app/tracked',   label: 'Tracked',   icon: 'radar' },
   ]},
   { title: 'Intelligence', items: [
-    { to: '/app/discovery',       label: 'Discovery',     icon: 'discovery' },
-    { to: '/app/tracked',         label: 'Tracked',  icon: 'radar' },
-    { to: '/app/graph',           label: 'Graph',          icon: 'graph' },
-    { to: '/app/recommendations', label: 'Recommendations',  icon: 'recommendations' },
+    { to: '/app/discovery',       label: 'Discovery',       icon: 'discovery' },
+    { to: '/app/graph',           label: 'Graph',           icon: 'graph' },
+    { to: '/app/recommendations', label: 'Recommendations', icon: 'recommendations' },
   ]},
   { title: 'Connections', items: [
     { to: '/app/connections',        label: 'Connections', icon: 'connections', exact: true },
-    { to: '/app/connections/groups', label: 'Groups', icon: 'users' },
+    { to: '/app/connections/groups', label: 'Groups',      icon: 'users' },
   ]},
   { title: 'Marketing', items: [
     { to: '/app/landing', label: 'Landing', icon: 'globe' },

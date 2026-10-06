@@ -78,12 +78,16 @@
 - Шапка (справа): імʼя користувача `me.firstName · @username` (тільки на десктопі); кнопка `+ New post` (на мобільному — лише іконка) → `/app/compose`; кнопка `Log out` — лише коли `AUTH_MODE !== 'dev'`.
 - Бічне меню (логотип «ai0» → `/app`; кнопка «Collapse/Expand» внизу на десктопі: ширина 234px ↔ 64px, стан у `localStorage` ключ `dashboard:sidebar-collapsed`). Групи та пункти — рівно як у `AppSidebar.tsx`:
 
+Типове меню (spec 027 FR-003, schema v1; з T2 — з реєстру `nav/registry.ts`, власник може змінити його в Settings → Navigation):
+
 | Група | Пункти (підпис → маршрут) |
 |---|---|
-| Home | Overview → `/app` (exact) |
-| Publishing | Strategies → `/app/strategies`; Editor → `/app/editor`; Agents → `/app/agents`; Chat → `/app/chat`; Scheduled → `/app/scheduled`; My channels → `/app/channels?filter=mine` |
-| Analytics | Analytics → `/app/analytics`; Logs → `/app/logs`; Agent → `/app/agent` |
-| Intelligence | Discovery → `/app/discovery`; Tracked → `/app/tracked`; Graph → `/app/graph`; Recommendations → `/app/recommendations` |
+| Home | Overview → `/app` (exact); Posts to approve → `/app/agents/inbox?tab=approvals` (бейдж очікування) |
+| Agents | Agents → `/app/agents`; Chat → `/app/chat`; DM inbox → `/app/dm` |
+| Publishing | Compose → `/app/compose`; Scheduled → `/app/scheduled`; Editor → `/app/editor`; Logs → `/app/logs`; Strategies → `/app/strategies`; My channels → `/app/channels?filter=mine` |
+| Content | Data → `/app/data` |
+| Analytics | Analytics → `/app/analytics`; Spend → `/app/spend`; Tracked → `/app/tracked` |
+| Intelligence | Discovery → `/app/discovery`; Graph → `/app/graph`; Recommendations → `/app/recommendations` |
 | Connections | Connections → `/app/connections` (exact); Groups → `/app/connections/groups` |
 | Marketing | Landing → `/app/landing`; Ads → `/app/ads` |
 | System | Settings → `/app/settings` |
@@ -93,7 +97,7 @@
 **Бізнес-вимоги (as-is).**
 - `BR-CORE-09` Усі маршрути `/app/*` рендеряться лише всередині `AppLayout`; без `me` користувач переспрямовується на `/login` повним перезавантаженням (`window.location.href`).
 - `BR-CORE-10` Поки триває початкова перевірка сесії, `/app/*` показує текст «Loading…» без скелетону.
-- `BR-CORE-11` Бічне меню містить рівно 7 груп і 19 пунктів (таблиця вище); прапорець `soon` у типі пункту є, але жоден пункт його не використовує.
+- `BR-CORE-11` Типове бічне меню містить 9 груп і 23 пункти (таблиця вище, spec 027 FR-003); пункт «Compose» дублює кнопку «New post».
 - `BR-CORE-12` Пункт «My channels» завжди відкриває `/app/channels` з пошуковим параметром `filter=mine`; «Overview» і «Connections» підсвічуються тільки при точному збігу маршруту.
 - `BR-CORE-13` Стан згорнутого меню зберігається в `localStorage` (`dashboard:sidebar-collapsed`); на екранах ≤860px меню завжди повної ширини (264px) як шторка, згортання недоступне.
 - `BR-CORE-14` Кнопка «New post» у шапці присутня на всіх сторінках `/app/*` і веде на `/app/compose`.
@@ -106,7 +110,7 @@
 
 **Фонові процеси.** Немає.
 
-**Звʼязки.** Сторінки, які існують, але НЕ мають пункту в меню: `/app/compose` (лише кнопка «New post»), `/app/bots` і `/app/telegraph` (залишені «для deep-link», канонічний дім — `/app/connections`), `/app/calendar` (заглушка «Calendar soon»), `/app/connections/meta`, `/app/connections/tiktok`, `/app/connections/$platform`, `/app/agents/inbox`, `/app/agents/$handle`, `/app/editor/*`, `/app/strategies/new`, `/app/strategies/$id`, `/app/channels/$id`.
+**Звʼязки.** Після spec 027 T1 (2026-10-06): `/app/bots` і `/app/telegraph` — лише редиректи на `/app/connections?section=telegram&tab=bots|telegraph`; `/app/calendar` — редирект на `/app/scheduled` (заглушку видалено); `/app/connections/$platform` видалено (тепер `/app/connections/instagram` показує сторінку «Page not found» усередині оболонки); `/app/agent` перейменовано на «DM inbox» `/app/dm`, старий шлях перенаправляє туди зі збереженням пошукових параметрів (`?cat=ad`). Будь-який невідомий шлях `/app/*` показує not-found сторінку з посиланням на Overview і підказкою «⌘K». Сторінки без пункту в типовому меню (досяжні з ⌘K та хлібних крихт): `/app/agents/inbox`, `/app/agents/$handle`, `/app/editor/*`, `/app/strategies/new`, `/app/strategies/$id`, `/app/channels/$id`, `/app/data/$key`, `/app/connections/meta/$accountId`.
 
 **Спостереження «як фактично зараз».**
 - Гард суто клієнтський: після `window.location.href` компонент повертає `null`, але реальний захист даних — гарди контролерів на бекенді (див. «Наскрізні правила»).

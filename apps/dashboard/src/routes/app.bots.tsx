@@ -1,16 +1,10 @@
-import { createFileRoute } from '@tanstack/react-router';
-import { PageHeader } from '../components/ui/PageHeader';
-import { BotsManager } from '../components/connections/BotsManager';
+// Legacy /app/bots route (spec 027 FR-002): redirect-only. The canonical home of
+// the bots manager is Connections → Telegram → Bots.
 
-// Standalone bots route kept for deep links; the canonical home is the
-// unified /connections page (Telegram tab).
-export const Route = createFileRoute('/app/bots')({ component: BotsPage });
+import { createFileRoute, redirect } from '@tanstack/react-router';
 
-function BotsPage() {
-  return (
-    <div>
-      <PageHeader title="Bots" subtitle="Telegram bots that publish on your behalf" />
-      <BotsManager />
-    </div>
-  );
-}
+export const Route = createFileRoute('/app/bots')({
+  beforeLoad: () => {
+    throw redirect({ to: '/app/connections', search: { section: 'telegram', tab: 'bots' }, replace: true });
+  },
+});

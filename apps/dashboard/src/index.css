@@ -839,3 +839,6 @@ a:hover { opacity: 0.85; }
 .tg-explain { display: flex; gap: 6px; margin: 4px 0 6px; padding: 6px 8px; border-radius: 8px; background: rgba(255,255,255,0.05); font-size: 13px; line-height: 1.4; }
 .tg-poll-foot { display: flex; justify-content: space-between; align-items: center; padding: 2px 0 6px; font-size: 12px; color: var(--color-tg-meta); }
 .tg-poll-foot button { background: none; border: 0; color: var(--color-tg-link); font: inherit; cursor: pointer; padding: 0; }
+
+/* ─── Navigation (spec 027): keycaps ─── */
+.kbd { display: inline-flex; align-items: center; gap: 2px; padding: 0 5px; min-width: 18px; height: 18px; border-radius: var(--radius-xs); border: 1px solid var(--color-hairline-strong); background: var(--color-surface-2); color: var(--color-ink-muted); font-family: var(--font-mono, ui-monospace, monospace); font-size: 10.5px; line-height: 1; }

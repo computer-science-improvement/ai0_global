@@ -1,16 +1,10 @@
-import { createFileRoute } from '@tanstack/react-router';
-import { PageHeader } from '../components/ui/PageHeader';
-import { TelegraphManager } from '../components/connections/TelegraphManager';
+// Legacy /app/telegraph route (spec 027 FR-002): redirect-only. The canonical
+// home of the Telegraph accounts is Connections → Telegram → Telegraph.
 
-// Standalone Telegraph route kept for deep links; the canonical home is the
-// unified /connections page (Telegraph tab).
-export const Route = createFileRoute('/app/telegraph')({ component: TelegraphPage });
+import { createFileRoute, redirect } from '@tanstack/react-router';
 
-function TelegraphPage() {
-  return (
-    <div>
-      <PageHeader title="Telegraph" subtitle="telegra.ph accounts for long-form posts with Instant View" />
-      <TelegraphManager />
-    </div>
-  );
-}
+export const Route = createFileRoute('/app/telegraph')({
+  beforeLoad: () => {
+    throw redirect({ to: '/app/connections', search: { section: 'telegram', tab: 'telegraph' }, replace: true });
+  },
+});

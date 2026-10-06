@@ -1,5 +1,6 @@
 import { createFileRoute, redirect, useRouter } from '@tanstack/react-router';
 import { AppShell } from '../components/AppShell';
+import { AppNotFound } from '../components/NotFound';
 import { sessionQuery } from '../auth/session';
 import { Button } from '../components/ui/Button';
 
@@ -23,6 +24,8 @@ export const Route = createFileRoute('/app')({
   },
   pendingComponent: AuthPending,
   errorComponent: AuthCheckFailed,
+  // Spec 027 FR-002: unknown /app/* paths render inside the shell.
+  notFoundComponent: AppNotFound,
   component: AppShell,
 });
 

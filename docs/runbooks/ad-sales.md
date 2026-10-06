@@ -39,7 +39,7 @@ subscribers, average views per post over 30 days, prices). A channel without act
 ## 2. Inquiry → price-list reply
 
 When the DM triage classifies a message as `ad`, the agent drafts a **pending `reply` action** with the price list:
-the named channel's prices, or all of them. It never sends anything itself. Approve or reject it on `/app/agent`.
+the named channel's prices, or all of them. It never sends anything itself. Approve or reject it on `/app/dm` (DM inbox).
 `AGENT_REPLY_DAILY_CAP` applies at approval, and a thread never gets a second draft while one is pending.
 
 ## 3. Order and invoice
@@ -65,7 +65,7 @@ On a `paid` order click **Schedule post** (channel and time default to the order
 (media count, length incl. the ad label, URLs) and creates a pending `schedule_post` action whose preview already ends
 with `#реклама`. The order becomes `scheduled`.
 
-Approve the action on `/app/agent`. Then:
+Approve the action on `/app/dm` (DM inbox). Then:
 - **Editor path** (`EDITOR_ENABLED=true` and the channel has a card): a reserved slot appears in that day's plan on
   `/app/editor`, and the order shows "reserved slot". At the agreed time it is published without any LLM, even if
   the channel's editor is `off`/`shadow` or `EDITOR_ENABLED` was switched off later. `publish_paused` blocks it.
@@ -90,7 +90,7 @@ link with a UTM flag. Telegram has no click data, so a UTM-tagged link is the CT
 
 - Public page: `/report/<token>` (JSON at `GET /api/ads/report/:token`). The **Report** button on the order opens it.
 - On the first report the agent drafts a pending `reply` with the link for the order's DM thread. Approve it on
-  `/app/agent`. If the order has no thread, the admin bot sends you the link to forward yourself.
+  `/app/dm`. If the order has no thread, the admin bot sends you the link to forward yourself.
 - The same link shows the final report after 72 h.
 
 Reports need post stats, so the stats collector must be running for the channel.

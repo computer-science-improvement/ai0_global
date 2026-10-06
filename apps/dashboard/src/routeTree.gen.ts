@@ -25,6 +25,7 @@ import { Route as AppLogsRouteImport } from './routes/app.logs'
 import { Route as AppLandingRouteImport } from './routes/app.landing'
 import { Route as AppGraphRouteImport } from './routes/app.graph'
 import { Route as AppEditorRouteImport } from './routes/app.editor'
+import { Route as AppDmRouteImport } from './routes/app.dm'
 import { Route as AppDiscoveryRouteImport } from './routes/app.discovery'
 import { Route as AppDataRouteImport } from './routes/app.data'
 import { Route as AppConnectionsRouteImport } from './routes/app.connections'
@@ -44,7 +45,6 @@ import { Route as AppDataKeyRouteImport } from './routes/app.data_.$key'
 import { Route as AppConnectionsTiktokRouteImport } from './routes/app.connections_.tiktok'
 import { Route as AppConnectionsMetaRouteImport } from './routes/app.connections_.meta'
 import { Route as AppConnectionsGroupsRouteImport } from './routes/app.connections_.groups'
-import { Route as AppConnectionsPlatformRouteImport } from './routes/app.connections.$platform'
 import { Route as AppChannelsIdRouteImport } from './routes/app.channels_.$id'
 import { Route as AppAgentsInboxRouteImport } from './routes/app.agents_.inbox'
 import { Route as AppAgentsHandleRouteImport } from './routes/app.agents_.$handle'
@@ -130,6 +130,11 @@ const AppGraphRoute = AppGraphRouteImport.update({
 const AppEditorRoute = AppEditorRouteImport.update({
   id: '/editor',
   path: '/editor',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDmRoute = AppDmRouteImport.update({
+  id: '/dm',
+  path: '/dm',
   getParentRoute: () => AppRoute,
 } as any)
 const AppDiscoveryRoute = AppDiscoveryRouteImport.update({
@@ -227,11 +232,6 @@ const AppConnectionsGroupsRoute = AppConnectionsGroupsRouteImport.update({
   path: '/connections/groups',
   getParentRoute: () => AppRoute,
 } as any)
-const AppConnectionsPlatformRoute = AppConnectionsPlatformRouteImport.update({
-  id: '/$platform',
-  path: '/$platform',
-  getParentRoute: () => AppConnectionsRoute,
-} as any)
 const AppChannelsIdRoute = AppChannelsIdRouteImport.update({
   id: '/channels_/$id',
   path: '/channels/$id',
@@ -277,9 +277,10 @@ export interface FileRoutesByFullPath {
   '/app/channels': typeof AppChannelsRoute
   '/app/chat': typeof AppChatRoute
   '/app/compose': typeof AppComposeRoute
-  '/app/connections': typeof AppConnectionsRouteWithChildren
+  '/app/connections': typeof AppConnectionsRoute
   '/app/data': typeof AppDataRoute
   '/app/discovery': typeof AppDiscoveryRoute
+  '/app/dm': typeof AppDmRoute
   '/app/editor': typeof AppEditorRoute
   '/app/graph': typeof AppGraphRoute
   '/app/landing': typeof AppLandingRoute
@@ -296,7 +297,6 @@ export interface FileRoutesByFullPath {
   '/app/agents/$handle': typeof AppAgentsHandleRoute
   '/app/agents/inbox': typeof AppAgentsInboxRoute
   '/app/channels/$id': typeof AppChannelsIdRoute
-  '/app/connections/$platform': typeof AppConnectionsPlatformRoute
   '/app/connections/groups': typeof AppConnectionsGroupsRoute
   '/app/connections/meta': typeof AppConnectionsMetaRoute
   '/app/connections/tiktok': typeof AppConnectionsTiktokRoute
@@ -320,9 +320,10 @@ export interface FileRoutesByTo {
   '/app/channels': typeof AppChannelsRoute
   '/app/chat': typeof AppChatRoute
   '/app/compose': typeof AppComposeRoute
-  '/app/connections': typeof AppConnectionsRouteWithChildren
+  '/app/connections': typeof AppConnectionsRoute
   '/app/data': typeof AppDataRoute
   '/app/discovery': typeof AppDiscoveryRoute
+  '/app/dm': typeof AppDmRoute
   '/app/editor': typeof AppEditorRoute
   '/app/graph': typeof AppGraphRoute
   '/app/landing': typeof AppLandingRoute
@@ -339,7 +340,6 @@ export interface FileRoutesByTo {
   '/app/agents/$handle': typeof AppAgentsHandleRoute
   '/app/agents/inbox': typeof AppAgentsInboxRoute
   '/app/channels/$id': typeof AppChannelsIdRoute
-  '/app/connections/$platform': typeof AppConnectionsPlatformRoute
   '/app/connections/groups': typeof AppConnectionsGroupsRoute
   '/app/connections/meta': typeof AppConnectionsMetaRoute
   '/app/connections/tiktok': typeof AppConnectionsTiktokRoute
@@ -365,9 +365,10 @@ export interface FileRoutesById {
   '/app/channels': typeof AppChannelsRoute
   '/app/chat': typeof AppChatRoute
   '/app/compose': typeof AppComposeRoute
-  '/app/connections': typeof AppConnectionsRouteWithChildren
+  '/app/connections': typeof AppConnectionsRoute
   '/app/data': typeof AppDataRoute
   '/app/discovery': typeof AppDiscoveryRoute
+  '/app/dm': typeof AppDmRoute
   '/app/editor': typeof AppEditorRoute
   '/app/graph': typeof AppGraphRoute
   '/app/landing': typeof AppLandingRoute
@@ -384,7 +385,6 @@ export interface FileRoutesById {
   '/app/agents_/$handle': typeof AppAgentsHandleRoute
   '/app/agents_/inbox': typeof AppAgentsInboxRoute
   '/app/channels_/$id': typeof AppChannelsIdRoute
-  '/app/connections/$platform': typeof AppConnectionsPlatformRoute
   '/app/connections_/groups': typeof AppConnectionsGroupsRoute
   '/app/connections_/meta': typeof AppConnectionsMetaRoute
   '/app/connections_/tiktok': typeof AppConnectionsTiktokRoute
@@ -414,6 +414,7 @@ export interface FileRouteTypes {
     | '/app/connections'
     | '/app/data'
     | '/app/discovery'
+    | '/app/dm'
     | '/app/editor'
     | '/app/graph'
     | '/app/landing'
@@ -430,7 +431,6 @@ export interface FileRouteTypes {
     | '/app/agents/$handle'
     | '/app/agents/inbox'
     | '/app/channels/$id'
-    | '/app/connections/$platform'
     | '/app/connections/groups'
     | '/app/connections/meta'
     | '/app/connections/tiktok'
@@ -457,6 +457,7 @@ export interface FileRouteTypes {
     | '/app/connections'
     | '/app/data'
     | '/app/discovery'
+    | '/app/dm'
     | '/app/editor'
     | '/app/graph'
     | '/app/landing'
@@ -473,7 +474,6 @@ export interface FileRouteTypes {
     | '/app/agents/$handle'
     | '/app/agents/inbox'
     | '/app/channels/$id'
-    | '/app/connections/$platform'
     | '/app/connections/groups'
     | '/app/connections/meta'
     | '/app/connections/tiktok'
@@ -501,6 +501,7 @@ export interface FileRouteTypes {
     | '/app/connections'
     | '/app/data'
     | '/app/discovery'
+    | '/app/dm'
     | '/app/editor'
     | '/app/graph'
     | '/app/landing'
@@ -517,7 +518,6 @@ export interface FileRouteTypes {
     | '/app/agents_/$handle'
     | '/app/agents_/inbox'
     | '/app/channels_/$id'
-    | '/app/connections/$platform'
     | '/app/connections_/groups'
     | '/app/connections_/meta'
     | '/app/connections_/tiktok'
@@ -649,6 +649,13 @@ declare module '@tanstack/react-router' {
       path: '/editor'
       fullPath: '/app/editor'
       preLoaderRoute: typeof AppEditorRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/dm': {
+      id: '/app/dm'
+      path: '/dm'
+      fullPath: '/app/dm'
+      preLoaderRoute: typeof AppDmRouteImport
       parentRoute: typeof AppRoute
     }
     '/app/discovery': {
@@ -784,13 +791,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppConnectionsGroupsRouteImport
       parentRoute: typeof AppRoute
     }
-    '/app/connections/$platform': {
-      id: '/app/connections/$platform'
-      path: '/$platform'
-      fullPath: '/app/connections/$platform'
-      preLoaderRoute: typeof AppConnectionsPlatformRouteImport
-      parentRoute: typeof AppConnectionsRoute
-    }
     '/app/channels_/$id': {
       id: '/app/channels_/$id'
       path: '/channels/$id'
@@ -836,18 +836,6 @@ declare module '@tanstack/react-router' {
   }
 }
 
-interface AppConnectionsRouteChildren {
-  AppConnectionsPlatformRoute: typeof AppConnectionsPlatformRoute
-}
-
-const AppConnectionsRouteChildren: AppConnectionsRouteChildren = {
-  AppConnectionsPlatformRoute: AppConnectionsPlatformRoute,
-}
-
-const AppConnectionsRouteWithChildren = AppConnectionsRoute._addFileChildren(
-  AppConnectionsRouteChildren,
-)
-
 interface AppRouteChildren {
   AppAdsRoute: typeof AppAdsRoute
   AppAgentRoute: typeof AppAgentRoute
@@ -858,9 +846,10 @@ interface AppRouteChildren {
   AppChannelsRoute: typeof AppChannelsRoute
   AppChatRoute: typeof AppChatRoute
   AppComposeRoute: typeof AppComposeRoute
-  AppConnectionsRoute: typeof AppConnectionsRouteWithChildren
+  AppConnectionsRoute: typeof AppConnectionsRoute
   AppDataRoute: typeof AppDataRoute
   AppDiscoveryRoute: typeof AppDiscoveryRoute
+  AppDmRoute: typeof AppDmRoute
   AppEditorRoute: typeof AppEditorRoute
   AppGraphRoute: typeof AppGraphRoute
   AppLandingRoute: typeof AppLandingRoute
@@ -898,9 +887,10 @@ const AppRouteChildren: AppRouteChildren = {
   AppChannelsRoute: AppChannelsRoute,
   AppChatRoute: AppChatRoute,
   AppComposeRoute: AppComposeRoute,
-  AppConnectionsRoute: AppConnectionsRouteWithChildren,
+  AppConnectionsRoute: AppConnectionsRoute,
   AppDataRoute: AppDataRoute,
   AppDiscoveryRoute: AppDiscoveryRoute,
+  AppDmRoute: AppDmRoute,
   AppEditorRoute: AppEditorRoute,
   AppGraphRoute: AppGraphRoute,
   AppLandingRoute: AppLandingRoute,
