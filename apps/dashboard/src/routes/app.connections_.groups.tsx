@@ -5,14 +5,17 @@
 
 import { createFileRoute } from '@tanstack/react-router';
 import { PageHeader } from '../components/ui/PageHeader';
+import { useCrumbs } from '../nav/hooks';
 import { MetaGroupsManager } from '../components/connections/MetaGroupsManager';
 
 export const Route = createFileRoute('/app/connections_/groups')({ component: MetaGroupsPage });
 
 function MetaGroupsPage() {
+  const crumbs = useCrumbs('groups');
   return (
     <div>
       <PageHeader
+        crumbs={crumbs}
         title="Groups"
         subtitle="Link a brand's Telegram channel + Facebook, Instagram and Threads accounts"
       />

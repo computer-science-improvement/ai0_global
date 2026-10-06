@@ -1,57 +1,10 @@
 import { Link } from '@tanstack/react-router';
 import { useState, type CSSProperties } from 'react';
-import { Icon, type IconName } from './ui/Icon';
+import { Icon } from './ui/Icon';
 import { useApprovalsCount } from '../api/approvals';
+import { defaultNav } from '../nav/model';
 
-interface NavItem { to: string; label: string; icon: IconName; soon?: boolean; exact?: boolean; search?: Record<string, unknown>; badge?: 'approvals'; }
-interface NavGroup { title: string; items: NavItem[]; }
-
-// Spec 027 FR-003: the default menu (schema v1), plus the pages that shipped after
-// the spec was written (Posts to approve, Data, Spend).
-const GROUPS: NavGroup[] = [
-  { title: 'Home', items: [
-    { to: '/app', label: 'Overview', icon: 'overview', exact: true },
-    { to: '/app/agents/inbox', label: 'Posts to approve', icon: 'check', search: { tab: 'approvals' }, badge: 'approvals' },
-  ]},
-  { title: 'Agents', items: [
-    { to: '/app/agents', label: 'Agents', icon: 'agents' },
-    { to: '/app/chat',   label: 'Chat',   icon: 'chat' },
-    { to: '/app/dm',     label: 'DM inbox', icon: 'inbox' },
-  ]},
-  { title: 'Publishing', items: [
-    { to: '/app/compose',    label: 'Compose',    icon: 'pencil' },
-    { to: '/app/scheduled',  label: 'Scheduled',  icon: 'calendar' },
-    { to: '/app/editor',     label: 'Editor',     icon: 'sparkles' },
-    { to: '/app/logs',       label: 'Logs',       icon: 'logs' },
-    { to: '/app/strategies', label: 'Strategies', icon: 'strategies' },
-    { to: '/app/channels',   label: 'My channels', icon: 'channels', search: { filter: 'mine' } },
-  ]},
-  { title: 'Content', items: [
-    { to: '/app/data', label: 'Data', icon: 'database' },
-  ]},
-  { title: 'Analytics', items: [
-    { to: '/app/analytics', label: 'Analytics', icon: 'analytics' },
-    { to: '/app/spend',     label: 'Spend',     icon: 'spend' },
-    { to: '/app/tracked',   label: 'Tracked',   icon: 'radar' },
-  ]},
-  { title: 'Intelligence', items: [
-    { to: '/app/discovery',       label: 'Discovery',       icon: 'discovery' },
-    { to: '/app/graph',           label: 'Graph',           icon: 'graph' },
-    { to: '/app/recommendations', label: 'Recommendations', icon: 'recommendations' },
-  ]},
-  { title: 'Connections', items: [
-    { to: '/app/connections',        label: 'Connections', icon: 'connections', exact: true },
-    { to: '/app/connections/groups', label: 'Groups',      icon: 'users' },
-  ]},
-  { title: 'Marketing', items: [
-    { to: '/app/landing', label: 'Landing', icon: 'globe' },
-    { to: '/app/ads',     label: 'Ads',     icon: 'megaphone' },
-  ]},
-  { title: 'System', items: [
-    { to: '/app/settings', label: 'Settings', icon: 'settings' },
-  ]},
-];
-
+// Spec 027 FR-001: no menu literals here; the menu comes from nav/registry.ts.
 const COLLAPSED_KEY = 'dashboard:sidebar-collapsed';
 
 interface Props {
@@ -74,6 +27,8 @@ export function AppSidebar({ isMobile = false, mobileOpen = false, onNavigate }:
 
   // Spec 031: posts waiting for the owner's approval.
   const waiting = useApprovalsCount().data?.waiting ?? 0;
+
+  const nav = defaultNav();
 
   // On mobile the drawer is always full-width (never the collapsed rail).
   const isCollapsed = isMobile ? false : collapsed;
@@ -118,14 +73,14 @@ export function AppSidebar({ isMobile = false, mobileOpen = false, onNavigate }:
       </div>
 
       <nav style={{ flex: 1, overflowY: 'auto', padding: '4px 10px' }}>
-        {GROUPS.map(g => (
-          <div key={g.title} style={{ marginBottom: 6 }}>
+        {nav.groups.map(g => (
+          <div key={g.id} style={{ marginBottom: 6 }}>
             {!isCollapsed && (
               <div style={{ fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.09em', color: 'var(--color-ink-dim)', margin: '12px 8px 4px' }}>{g.title}</div>
             )}
             {g.items.map(item => (
               <Link
-                key={item.to}
+                key={item.id}
                 to={item.to as any}
                 search={item.search as any}
                 onClick={onNavigate}
@@ -151,9 +106,6 @@ export function AppSidebar({ isMobile = false, mobileOpen = false, onNavigate }:
                     style={{ marginLeft: 'auto', fontSize: 10, fontWeight: 600, color: 'var(--color-ink)', background: 'var(--color-surface-3)', border: '1px solid var(--color-warning)', borderRadius: 999, padding: '0 6px', minWidth: 18, textAlign: 'center' }}>
                     {waiting > 99 ? '99+' : waiting}
                   </span>
-                )}
-                {!isCollapsed && item.soon && (
-                  <span style={{ marginLeft: 'auto', fontSize: 9, color: 'var(--color-ink-dim)', border: '1px solid var(--color-hairline-strong)', borderRadius: 999, padding: '0 6px' }}>soon</span>
                 )}
               </Link>
             ))}

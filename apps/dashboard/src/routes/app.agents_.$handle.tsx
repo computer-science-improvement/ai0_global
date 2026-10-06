@@ -1,6 +1,8 @@
 import { createFileRoute, Link, useNavigate } from '@tanstack/react-router';
 import { useEffect } from 'react';
 import { PageHeader } from '../components/ui/PageHeader';
+import { Crumbs } from '../components/ui/Crumbs';
+import { useCrumbs } from '../nav/hooks';
 import { EmptyState } from '../components/ui/primitives';
 import { Badge } from '../components/ui/Badge';
 import { Icon } from '../components/ui/Icon';
@@ -68,11 +70,9 @@ function AgentPage() {
     if (current && current !== handle) navigate({ to: '/app/agents/$handle', params: { handle: current }, search: (s) => s, replace: true });
   }, [current, handle, navigate]);
 
-  const back = (
-    <div className="text-micro" style={{ marginBottom: 10 }}>
-      <Link to="/app/agents" className="link-accent">← Agents</Link>
-    </div>
-  );
+  // Spec 027 FR-013: breadcrumbs instead of the ad-hoc back link.
+  const crumbs = useCrumbs('agent-detail');
+  const back = <Crumbs crumbs={crumbs} />;
 
   if (q.error) {
     const notFound = errorBody(q.error)?.error === 'agent_not_found';

@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
 import { useState } from 'react';
 import { PageHeader } from '../components/ui/PageHeader';
+import { useCrumbs } from '../nav/hooks';
 import { SectionCard, EmptyState } from '../components/ui/primitives';
 import { Badge } from '../components/ui/Badge';
 import { Icon } from '../components/ui/Icon';
@@ -29,6 +30,7 @@ function InboxPage() {
   const { tab } = Route.useSearch();
   const navigate = Route.useNavigate();
   const waiting = useApprovalsCount().data?.waiting ?? 0;
+  const crumbs = useCrumbs('agents-inbox');
   const [filterState, setFilterState] = useState<'unread' | 'all'>('unread');
   const view: InboxTab = tab ?? filterState;
   const filter: 'unread' | 'all' = view === 'all' ? 'all' : 'unread';
@@ -46,10 +48,7 @@ function InboxPage() {
 
   return (
     <div>
-      <div className="text-micro" style={{ marginBottom: 10 }}>
-        <Link to="/app/agents" className="link-accent">← Agents</Link>
-      </div>
-      <PageHeader title="Agent inbox" subtitle="What the agents want you to know: skill self-edits, rollbacks and things that need a decision"
+      <PageHeader crumbs={crumbs} title="Agent inbox" subtitle="What the agents want you to know: skill self-edits, rollbacks and things that need a decision"
         actions={
           <button className="btn-secondary" style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }} disabled={mark.isPending || unreadCount === 0} onClick={() => mark.mutate('all')}>
             <Icon name="check" size={14} /> Mark all read

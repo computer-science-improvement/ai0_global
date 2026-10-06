@@ -1,7 +1,9 @@
-import { createFileRoute, Link } from '@tanstack/react-router';
+import { createFileRoute } from '@tanstack/react-router';
 import { useEffect, useState } from 'react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { PageHeader } from '../components/ui/PageHeader';
+import { Crumbs } from '../components/ui/Crumbs';
+import { useCrumbs } from '../nav/hooks';
 import { Panel } from '../components/ui/Card';
 import { Icon } from '../components/Icon';
 import { TelegramPreview } from '../components/post/TelegramPreview';
@@ -31,12 +33,11 @@ function StrategyDetailPage() {
   const { id } = Route.useParams();
   const { data: strategies, isLoading, error } = useStrategies();
   const s = (strategies ?? []).find(x => x.id === id);
+  const crumbs = useCrumbs('strategy-detail');
 
   return (
     <div>
-      <Link to={'/app/strategies' as never} className="link-accent text-body-sm" style={{ display: 'inline-block', marginBottom: 16 }}>
-        ← Back to strategies
-      </Link>
+      <Crumbs crumbs={crumbs} />
 
       {isLoading && <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>Loading…</p>}
       {error && <p className="text-body-sm" style={{ color: 'var(--color-danger)' }}>{(error as Error).message}</p>}

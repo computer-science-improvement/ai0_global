@@ -1,4 +1,6 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
+import { Crumbs } from '../components/ui/Crumbs';
+import { useCrumbs } from '../nav/hooks';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useReducer, useState } from 'react';
 import { trackingApi } from '../api/tracking';
@@ -78,6 +80,7 @@ function ChannelDetailPage() {
   const topQ        = useQuery({ queryKey: ['top', id],     queryFn: () => trackingApi.topPosts(id, 'views', 5) });
   const themesQ     = useChannelThemes(id);
   const strategiesQ = useStrategies();
+  const trail = useCrumbs('channel-detail');
 
   if (channelQ.isLoading) {
     return (
@@ -99,6 +102,8 @@ function ChannelDetailPage() {
   if (!channelQ.data) return null;
 
   const c = channelQ.data;
+  // Spec 027 FR-013: own channels sit under "My channels", the rest under all channels.
+  const crumbs = c.isMine ? trail : [...trail.slice(0, -1), { label: 'Channels', to: '/app/channels' }];
 
   // Filter the full strategies list by this channel. Two memberships count:
   //  • primary  — strategy.channel_id == this.id
@@ -119,6 +124,7 @@ function ChannelDetailPage() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 28 }}>
+      <Crumbs crumbs={crumbs} style={{ marginBottom: -18 }} />
       <header
         className="card-featured compose-rise"
         style={{

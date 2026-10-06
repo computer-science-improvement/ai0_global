@@ -1,5 +1,6 @@
-import { createFileRoute, useNavigate, Link } from '@tanstack/react-router';
+import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import { PageHeader } from '../components/ui/PageHeader';
+import { useCrumbs } from '../nav/hooks';
 import { Card } from '../components/ui/Card';
 import { StrategyForm } from '../components/StrategyForm';
 
@@ -8,13 +9,12 @@ export const Route = createFileRoute('/app/strategies_/new')({ component: NewStr
 function NewStrategyPage() {
   const navigate = useNavigate();
   const back = () => navigate({ to: '/app/strategies' });
+  const crumbs = useCrumbs('strategies-new');
 
   return (
     <div>
-      <Link to={'/app/strategies' as never} className="link-accent text-body-sm" style={{ display: 'inline-block', marginBottom: 16 }}>
-        ← Back to strategies
-      </Link>
       <PageHeader
+        crumbs={crumbs}
         title="New strategy"
         subtitle="Cron-scheduled content generator bound to a channel or account. Starts paused — enable it when ready to publish."
       />

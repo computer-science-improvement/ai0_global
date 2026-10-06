@@ -1,5 +1,7 @@
 import type { ReactNode } from 'react';
-import { createFileRoute, Link } from '@tanstack/react-router';
+import { createFileRoute } from '@tanstack/react-router';
+import { Crumbs } from '../components/ui/Crumbs';
+import { useCrumbs } from '../nav/hooks';
 import { useMetaAccounts, useMetaFollowerHistory, useMetaAccountInsights, useRefreshMetaStats } from '../api/meta-accounts';
 import { MetaReachImpressionsChart } from '../components/MetaReachImpressionsChart';
 import { MetaProfileViewsChart } from '../components/MetaProfileViewsChart';
@@ -132,6 +134,7 @@ function MetaAccountDetailPage() {
   const histQ = useMetaFollowerHistory(accountId);
   const insQ = useMetaAccountInsights(accountId);
   const refresh = useRefreshMetaStats();
+  const trail = useCrumbs('meta-account');
   const insPoints = insQ.data?.points ?? [];
   const insLoading = insQ.isPending;
   const hasReach = insPoints.some(p => p.reach != null || p.impressions != null);
@@ -142,13 +145,13 @@ function MetaAccountDetailPage() {
   const points = histQ.data?.points ?? [];
 
   const title = acc?.display_name ?? acc?.account_id ?? accountId;
+  // Spec 027 FR-013: Connections / Meta accounts (?tab= the account's platform).
+  const crumbs = trail.map((c, i) => (i === trail.length - 1 && acc?.platform ? { ...c, search: { ...c.search, tab: acc.platform } } : c));
   const platformLabel = acc?.platform ? PLATFORM_LABEL[acc.platform] ?? acc.platform : '';
 
   return (
     <div>
-      <Link to={'/app/connections/meta' as any} className="text-micro" style={{ display: 'inline-flex', alignItems: 'center', gap: 4, color: 'var(--color-ink-muted)' }}>
-        <Icon name="chevron-left" size={12} /> Back to Meta accounts
-      </Link>
+      <Crumbs crumbs={crumbs} />
 
       {/* Identity header — avatar + handle + platform / status chips + refresh */}
       <header
