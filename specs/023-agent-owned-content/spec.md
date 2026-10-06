@@ -225,3 +225,33 @@ Built on `feat/editor-agent` after spec 032 (data store) and 031 (approval mode)
   `posted_news` and 5k platform posts the backfill wrote 310k rows (108 MB with indexes) in ≈ 14 s on a laptop;
   the rerun is a no-op (≈ 8.5 s). `content_ledger_used()` for one resource ≈ 0.17 s on that data. 060 runs in one
   transaction, so the deploy holds writes to the touched tables for that time.
+
+## Implementation notes (T3, 2026-10-07)
+Commit `feat(content): 023-T3 …`. No migration (series live in the playbook JSON; 059 is still free for T4).
+
+- **Series v2** (`network/series.ts`, `SeriesSchema` in `playbook.ts`): cadence, `source`, `source_mode`, `origin`,
+  `locked`, `migrated_from` as in FR-002. Stored bodies are raw JSON, so code reads them through
+  `normalizePlaybook()` (v1 bodies get the defaults). `seriesDue` returns one instance per time.
+- **Validation.** Quiet hours apply to agent submissions only: an owner's own series may sit in quiet hours
+  (owner precedence, as for pins). Library datasets come from active `data_schemas` keys, feeds from the card's
+  rss/url sources (id or ref), APIs from the adapter names. Series instances per weekday are checked against the
+  section's `per_day.max` (paused series do not count).
+- **Classification (with spec 031).** `classifyPlaybookChange(prev, next, { mode })` takes the effective mode
+  (orchestrator × card). A ≤ 90-min shift on the same days and a source change within its kind apply at once in
+  `shadow` and `live`; in `approve` every schedule change, pausing or resuming a series included, is structural
+  (a card). Without a mode a shift stays structural. Change reasons are now English (they reach the Inbox).
+- **One submit path** (`network/series-edit.ts`, `submitPlaybookVersion`): `submit_playbook` and the five series
+  tools validate, guard ownership, classify, store and post the Inbox item the same way. The guard copies
+  `origin` / `locked` / `migrated_from` from the active version (an agent cannot claim or unlock a series) and
+  refuses any edit or removal of a locked series (`series_locked`). A pending draft created by `migration`
+  answers `migration_pending` (the DB check that allows `created_by='migration'` comes with T6).
+- **Owner lock.** `NetworkService.putPlaybook` locks every series the owner adds or edits (`lockOwnerSeries`);
+  unchanged series keep their lock, so only Unlock (T5) hands one back.
+- **Series tools** (`network/series-tools.ts`): `list_series` is also readable by the planner and the manager.
+  The base is the agent's own pending draft when there is one (a minor change on top of a pending structural
+  draft therefore waits for the owner too). The 5-per-run budget counts every mutating call, refused ones
+  included.
+- **`pause_series`.** `accept_directive` answers `owner_rule_conflict` for a locked series (the orchestrator then
+  rejects with `owner_rule`); the prompt and the `editor-orchestrator-workflow` skill say to apply the directive
+  with `set_series_active`.
+- **Dashboard.** Only `fmtCadence` learned the v2 form; the Schedule tab and lock badges are T5.

@@ -85,6 +85,8 @@ import { ResourceHealthService } from './platform/resource-health.service';
 import { NetworkRepository } from './network/network.repository';
 import { NetworkRunner } from './network/network-runner';
 import { buildNetworkTools } from './network/network-tools';
+import { buildSeriesTools } from './network/series-tools';
+import { isSeriesLocked, seriesSourceCatalog } from './network/series-edit';
 import { NetworkService } from './network/network.service';
 import { NETWORK_SERVICE, NetworkController } from './network/network.controller';
 import { DirectivesRepository } from './manager/directives.repository';
@@ -607,11 +609,17 @@ export const EDITOR_PROVIDERS = [
             agents: infra.agents, catalog: infra.catalog, profiles: infra.profiles, creator: infra.creator, skills: infra.skills, actions: infra.actions,
           }),
           ...buildAgentChatTools({ pool, memory: repos.memory, skills: infra.skills, actions: infra.actions }),
-          ...buildNetworkTools({ repo: new NetworkRepository(pool), plans: repos.plans, memory: repos.memory, inbox: infra.inbox }),
+          ...buildNetworkTools({
+            repo: new NetworkRepository(pool), plans: repos.plans, memory: repos.memory, inbox: infra.inbox,
+            sourceCatalog: (card) => seriesSourceCatalog(pool, card),
+          }),
+          // Spec 023 FR-003: the orchestrator's series tools (one submit path with submit_playbook).
+          ...buildSeriesTools({ repo: new NetworkRepository(pool), inbox: infra.inbox, sourceCatalog: (card) => seriesSourceCatalog(pool, card) }),
           ...buildDirectiveTools({
             repo: new DirectivesRepository(pool), agents: infra.agents, inbox: infra.inbox, memory: repos.memory, actions: infra.actions,
             digest: new KpiDigestService({ pool, catalog: infra.catalog, globalCapUsd: capDefaults(env).agentsDailyUsd, capUsd: agentsCapUsd(env, caps) }),
             channelKeyOf: (a) => infra.channelKeyOf(a),
+            seriesLocked: async (orch, name) => isSeriesLocked((await new NetworkRepository(pool).activePlaybook(orch.id))?.body ?? null, name),
           }),
           ...buildPlatformTools({
             pool, publish: platform.publish, plans: repos.plans,

@@ -10,6 +10,7 @@ import { localDate } from '../roles/time';
 import { networkContext, NetworkContextDeps } from './network-context';
 import { IDEA_STATUSES, IdeaStatus, NetworkRepository } from './network.repository';
 import { PlaybookSchema, validatePlaybook } from './playbook';
+import { lockOwnerSeries, normalizePlaybook, seriesSourceCatalog } from './series-edit';
 
 export interface NetworkServiceDeps {
   pool:     Pick<Pool, 'query'>;
@@ -64,9 +65,12 @@ export class NetworkService {
     const p = z.object({ body: PlaybookSchema, rationale: z.string().max(2000).optional() }).safeParse(body ?? {});
     if (!p.success) throw new BadRequestException({ error: 'invalid_body', issues: p.error.issues.map((i) => ({ path: i.path.join('.'), message: i.message })) });
     const net = await networkContext({ repo: this.d.repo, usable: this.d.usable }, agent, card);
-    const errors = validatePlaybook(p.data.body, net?.resources ?? [], net?.telegramFormats ?? []);
+    // Spec 023 FR-002: an owner's new or edited series is locked (the agent gets series_locked); quiet hours
+    // are not enforced for the owner's own series (owner precedence, like the owner's pins).
+    const locked = lockOwnerSeries(net?.playbook ? normalizePlaybook(net.playbook) : null, p.data.body);
+    const errors = validatePlaybook(locked, net?.resources ?? [], net?.telegramFormats ?? [], { sources: await seriesSourceCatalog(this.d.pool, card) });
     if (errors.length) throw new BadRequestException({ error: 'playbook_invalid', details: errors });
-    const pb = await this.d.repo.insertPlaybook({ agentId: agent.id, status: 'active', brief: null, body: p.data.body, rationale: p.data.rationale ?? 'owner edit', createdBy: 'owner' });
+    const pb = await this.d.repo.insertPlaybook({ agentId: agent.id, status: 'active', brief: null, body: locked, rationale: p.data.rationale ?? 'owner edit', createdBy: 'owner' });
     return { playbook: pb };
   }
 

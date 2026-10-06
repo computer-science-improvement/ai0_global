@@ -166,10 +166,11 @@ export function fmtExpires(iso: string): string {
 export const hourLabel = (h: number) => `${String(h).padStart(2, '0')}:00`;
 
 const DAY = { mon: 'Mon', tue: 'Tue', wed: 'Wed', thu: 'Thu', fri: 'Fri', sat: 'Sat', sun: 'Sun' } as Record<string, string>;
-/** daily@09:00 → "daily 09:00"; weekly:sun@10:00 → "Sun 10:00". */
+/** daily@09:00 → "daily 09:00"; weekly:sun@10:00 → "Sun 10:00"; series v2 (023): weekly:mon,thu@09:00,19:30 → "Mon, Thu 09:00, 19:30". */
 export function fmtCadence(c: string): string {
-  const m = /^(daily|weekly:(\w{3}))@(\d{2}:\d{2})$/.exec(c);
+  const m = /^(daily|weekly:([a-z]{3}(?:,[a-z]{3})*))@(\d{2}:\d{2}(?:,\d{2}:\d{2})*)$/.exec(c);
   if (!m) return c;
-  return m[1] === 'daily' ? `daily ${m[3]}` : `${DAY[m[2]] ?? m[2]} ${m[3]}`;
+  const times = m[3].split(',').join(', ');
+  return m[1] === 'daily' ? `daily ${times}` : `${m[2].split(',').map((d) => DAY[d] ?? d).join(', ')} ${times}`;
 }
 
