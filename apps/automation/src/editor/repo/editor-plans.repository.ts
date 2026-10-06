@@ -1,4 +1,5 @@
 import type { Pool } from 'pg';
+import { refAliases } from '../../data/data-refs';
 import type { PlannedSlot } from '../roles/plan-rules';
 
 export type SlotStatus =
@@ -457,21 +458,24 @@ export class EditorPlansRepository {
    * approved. `excludeSlotId` leaves out the slot being re-checked itself.
    */
   async sourceAlreadyPosted(channelKey: string, sourceUrl: string, excludeSlotId: string | null = null): Promise<boolean> {
+    // Spec 032 FR-011: a data:// ref and its legacy library:// ref name the same row.
+    const refs = await refAliases(this.pool, sourceUrl);
     const { rows } = await this.pool.query(
-      `SELECT 1 FROM published_posts WHERE channel_id = $1 AND source_url = $2 AND ($3::uuid IS NULL OR editor_slot_id IS DISTINCT FROM $3)
+      `SELECT 1 FROM published_posts WHERE channel_id = $1 AND source_url = ANY($2::text[]) AND ($3::uuid IS NULL OR editor_slot_id IS DISTINCT FROM $3)
        UNION ALL
        SELECT 1 FROM editor_slots WHERE channel_key = $1 AND status IN ('shadowed','awaiting_approval','approved')
           AND ($3::uuid IS NULL OR id <> $3)
-          AND (post_spec->'source'->>'url' = $2 OR post_spec->>'library_ref' = $2)
-       LIMIT 1`, [channelKey, sourceUrl, excludeSlotId]);
+          AND (post_spec->'source'->>'url' = ANY($2::text[]) OR post_spec->>'library_ref' = ANY($2::text[]))
+       LIMIT 1`, [channelKey, refs, excludeSlotId]);
     return rows.length > 0;
   }
 
   /** Chat dedup (spec 010): was this source URL / library_ref published to the channel since `since`? */
   async sourcePostedSince(channelKey: string, sourceUrl: string, since: Date): Promise<boolean> {
+    const refs = await refAliases(this.pool, sourceUrl);
     const { rows } = await this.pool.query(
-      `SELECT 1 FROM published_posts WHERE channel_id = $1 AND source_url = $2 AND posted_at >= $3 LIMIT 1`,
-      [channelKey, sourceUrl, since]);
+      `SELECT 1 FROM published_posts WHERE channel_id = $1 AND source_url = ANY($2::text[]) AND posted_at >= $3 LIMIT 1`,
+      [channelKey, refs, since]);
     return rows.length > 0;
   }
 

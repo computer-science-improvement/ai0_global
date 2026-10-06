@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { CONTENT_REF_RE } from '../../data/data-refs';
 
 export const POST_FORMATS = ['text', 'photo', 'album', 'poll', 'quiz', 'video', 'carousel', 'longread'] as const;
 /** Formats lint accepts. Phase 2 (spec 009 T002) added video, carousel and longread, so this is every format. */
@@ -34,7 +35,7 @@ export const PostSpecSchema = z.object({
   format:      z.enum(POST_FORMATS),
   title:       z.string().min(3).max(120).describe('Короткий внутрішній заголовок (для аналітики й дайджесту), українською'),
   origin:      z.enum(['external', 'library', 'original']).describe('external — з веб/RSS джерела; library — з бібліотеки БД; original — власний текст'),
-  library_ref: z.string().regex(/^library:\/\/[a-z_]+\/[A-Za-z0-9_.:-]{1,200}$/).optional().describe('Обовʼязково для origin=library: значення library_ref з search_library'),
+  library_ref: z.string().regex(CONTENT_REF_RE).optional().describe('Обовʼязково для origin=library: ref рядка з query_data (data://<dataset>/<id>) або library_ref з search_library'),
   body:        z.array(BlockSchema).max(30).default([]),
   media:       z.array(z.object({
     url:    httpUrl,

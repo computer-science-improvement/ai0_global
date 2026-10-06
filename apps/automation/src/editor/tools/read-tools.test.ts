@@ -36,20 +36,48 @@ test('get_top_posts orders by the whitelisted metric only', async () => {
   assert.match(calls[0].sql, /ORDER BY forwards DESC/);
 });
 
-test('search_library excludes used rows, filters, and returns library_ref', async () => {
-  const { pool, calls } = fakePool(() => [{ id: 42, title: 'Борщ' }]);
-  const res: any = await tools(pool).search_library.execute({ table: 'recipes', query: 'борщ', today_only: false, include_used: false, limit: 5 }, ctx);
-  assert.match(calls[0].sql, /FROM recipes x/);
-  assert.match(calls[0].sql, /NOT EXISTS \(SELECT 1 FROM published_posts/);
-  assert.deepEqual(calls[0].params, ['%борщ%', '@chan', 5]);
-  assert.equal(res.items[0].library_ref, 'library://recipes/42');
+// search_library is a wrapper over the data store (spec 032): the dataset schema, then one data_items query.
+const RECIPES_SCHEMA = {
+  id: 's-rec', key: 'recipes', status: 'active', roles: { title: ['title_uk', 'title'], body: 'description', image: 'image_url', category: 'category' },
+  fields: ['title', 'title_uk', 'description', 'kcal', 'ingredients', 'ingredients_uk', 'instructions', 'instructions_uk', 'telegraph_url', 'license', 'source_name', 'image_url', 'category']
+    .map((name) => ({ name, type: 'text', description: '' })),
+};
+const OTD_SCHEMA = { id: 's-otd', key: 'on_this_day', status: 'active', roles: { title: 'title', month: 'month', day: 'day' },
+  fields: ['title', 'month', 'day', 'license', 'source_name'].map((name) => ({ name, type: name === 'month' || name === 'day' ? 'int' : 'text', description: '' })) };
+const libraryPool = (items: any[] = []) => fakePool((sql, params) => {
+  if (/FROM data_schemas WHERE key = \$1/.test(sql)) return [params[0] === 'recipes' ? RECIPES_SCHEMA : OTD_SCHEMA];
+  return items;
 });
 
-test('search_library today_only uses month/day params and rejects tables without dates', async () => {
-  const { pool, calls } = fakePool();
+test('search_library keeps its answer shape: legacy id, text, extra and the library ref; used rows are skipped', async () => {
+  const { pool, calls } = libraryPool([{
+    id: '9001', legacy_ref: 'library://recipes/42', title: 'Борщ', body: 'Класичний борщ', image_url: 'https://x/b.jpg', url: null, category: 'soup',
+    data: { kcal: 300, ingredients: 'буряк', ingredients_uk: 'буряк, капуста', instructions: 'x'.repeat(1700), license: 'unknown', source_name: 'site' },
+  }]);
+  const res: any = await tools(pool).search_library.execute({ table: 'recipes', query: 'борщ', today_only: false, include_used: false, limit: 5 }, ctx);
+  const q = calls[1];
+  assert.match(q.sql, /FROM data_items d WHERE/);
+  assert.match(q.sql, /NOT \(d\.posted \? \$\d+\)/);
+  assert.ok(q.params.includes('@chan') && q.params.includes('telegram:@chan'));
+  assert.ok(q.params.includes('%борщ%'));
+  assert.match(q.sql, /ORDER BY d\.created_at DESC/);
+  const it = res.items[0];
+  assert.equal(res.table, 'recipes');
+  assert.equal(it.id, '42');
+  assert.equal(it.library_ref, 'library://recipes/42');
+  assert.equal(it.text, 'Класичний борщ');
+  assert.equal(it.extra.ingredients, 'буряк, капуста');
+  assert.equal(it.extra.instructions.length, 1500);
+  assert.equal(it.extra.license, 'unknown');
+  assert.equal(it.extra.telegraph_url, null);
+});
+
+test('search_library today_only filters on the envelope month/day and rejects datasets without dates', async () => {
+  const { pool, calls } = libraryPool();
   await tools(pool).search_library.execute({ table: 'on_this_day', today_only: true, include_used: true, limit: 3 }, ctx);
-  assert.match(calls[0].sql, /month = \$1 AND day = \$2/);
-  assert.deepEqual(calls[0].params, [10, 1, 3]);
+  assert.match(calls[1].sql, /d\.event_month = \$\d+ AND d\.event_day = \$\d+/);
+  assert.ok(calls[1].params.includes(10) && calls[1].params.includes(1));
+  assert.doesNotMatch(calls[1].sql, /used AS/, 'include_used: no dedup');
   const r: any = await tools(pool).search_library.execute({ table: 'recipes', today_only: true, include_used: true, limit: 3 }, ctx);
   assert.equal(r.error, 'today_only_not_supported');
 });

@@ -70,7 +70,7 @@ test('every data endpoint the dashboard calls requires the login', async () => {
   for (const [m, p] of [
     ['GET', '/api/data/schemas'], ['GET', '/api/data/schemas/books'], ['POST', '/api/data/schemas'], ['PATCH', '/api/data/schemas/books'],
     ['POST', '/api/data/schemas/books/preview'], ['GET', '/api/data/books/items'], ['PATCH', '/api/data/books/items/7'],
-    ['POST', '/api/data/stats/refresh'], ['GET', '/api/data/imports'], ['POST', '/api/data/imports/x/undo'],
+    ['POST', '/api/data/stats/refresh'], ['GET', '/api/data/imports'], ['POST', '/api/data/imports/x/undo'], ['GET', '/api/data/suggestions'],
   ]) {
     assert.equal((await call(m, p, undefined, null)).status, 401, `${m} ${p}`);
   }

@@ -25,6 +25,8 @@ import { buildReadTools } from './tools/read-tools';
 import { buildComposeTools } from './tools/compose-tools';
 import { buildRoleTools } from './tools/role-tools';
 import { buildApiTools } from './tools/api-tools';
+import { applyDataSchemaSuggestion, buildDataTools } from './tools/data-tools';
+import { DataStore } from '../data/data-store';
 import { EditorChannelsRepository } from './repo/editor-channels.repository';
 import { EditorPlansRepository } from './repo/editor-plans.repository';
 import { EditorMemoryRepository } from './repo/editor-memory.repository';
@@ -585,6 +587,7 @@ export const EDITOR_PROVIDERS = [
         const env = (k: string) => cfg.get<string>(k) ?? undefined;
         return new ToolRegistry([
           ...buildReadTools({ pool, readonly: new ReadonlyQueryService(pool), skills }),
+          ...buildDataTools({ pool, actions: infra.actions }),
           ...buildComposeTools(),
           ...buildApiTools({ env }),
           ...buildRoleTools({
@@ -937,6 +940,8 @@ export const EDITOR_PROVIDERS = [
           if ('error' in r) throw new Error(`${r.error}: ${r.details ?? ''}`);
           return { id: r.directive.id, status: r.directive.status };
         });
+        // Spec 032 FR-010: an agent's description fix for a dataset, applied by the owner (description-only, never a version bump).
+        infra.actions.register('edit_data_schema', (p) => applyDataSchemaSuggestion(new DataStore(pool), p));
         svc.setBriefHook(async (agent, brief) => {
           const key = telegramKeyOf(agent);
           const card = key ? await repos.channels.get(key) : null;

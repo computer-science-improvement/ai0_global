@@ -4,6 +4,7 @@ import { EditorPlansRepository, EditorSlot } from '../../src/editor/repo/editor-
 import { localDate, zonedToUtc } from '../../src/editor/roles/time';
 import { DataStore } from '../../src/data/data-store';
 import { libraryRef } from '../../src/editor/tools/library-tables';
+import { resolveContentRef } from '../../src/data/data-refs';
 
 export const EVAL_SOURCE = 'eval-fixture';
 
@@ -118,4 +119,11 @@ export async function seedRecipe(pool: Pool, r: { title: string; description: st
     instructions: r.instructions, image_url: r.image, tags: [], title_uk: r.title, ingredients_uk: r.ingredients,
     instructions_uk: r.instructions,
   });
+}
+
+/** The legacy library id behind a library_ref in either form (data://… or library://…); null when unknown. */
+export async function legacyIdOf(pool: Pool, ref: string | undefined | null): Promise<string | null> {
+  if (!ref) return null;
+  const r = await resolveContentRef(pool, ref);
+  return r?.legacy?.id ?? (ref.startsWith('library://') ? ref.split('/').pop() ?? null : null);
 }

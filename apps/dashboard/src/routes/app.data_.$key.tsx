@@ -10,6 +10,7 @@ import { DatasetItems } from '../components/data/DatasetItems';
 import { SchemaEditor } from '../components/data/SchemaEditor';
 import { ImportHistory } from '../components/data/ImportHistory';
 import { ImportWizard } from '../components/data/ImportWizard';
+import { DataSuggestions } from '../components/data/DataSuggestions';
 import { fmtDate, fmtRelative } from '../lib/format';
 import { DATASET_STATUS, fmtInt } from '../lib/data-store';
 import { ApiError } from '../api/client';
@@ -89,7 +90,7 @@ function DatasetPage() {
       </div>
 
       {tab === 'items' && <DatasetItems schema={s} />}
-      {tab === 'schema' && <SchemaEditor schema={s} />}
+      {tab === 'schema' && <SchemaEditor schema={s}><DataSuggestions schema={s.key} /></SchemaEditor>}
       {tab === 'imports' && <ImportHistory schema={s.key} />}
 
       {importing && <ImportWizard open onClose={() => setImporting(false)} initialSchema={s.key} />}

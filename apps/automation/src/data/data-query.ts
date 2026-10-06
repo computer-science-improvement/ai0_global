@@ -53,6 +53,10 @@ export interface QueryOptions {
   full?:       boolean;
   today:       { month: number; day: number };
   withTotal?:  boolean;
+  /** Internal (search_library wrapper): envelope category ILIKE, envelope "today", owner body length. */
+  categoryLike?: string;
+  todayOnly?:    boolean;
+  bodyChars?:    number;
 }
 
 export interface QueryResult {
@@ -225,6 +229,9 @@ export async function queryDataset(pool: Pick<Pool, 'query'>, schema: DataSchema
     where.push(filterSql(schema, f, flt, p, o.today));
   }
 
+  if (o.categoryLike?.trim()) where.push(`d.category ILIKE ${p(o.categoryLike.trim())}`);
+  if (o.todayOnly) where.push(`(d.event_month = ${p(o.today.month)} AND d.event_day = ${p(o.today.day)})`);
+
   if (o.search?.trim()) {
     const q = o.search.trim().slice(0, 200);
     const like = p(`%${escapeLike(q)}%`);
@@ -273,7 +280,8 @@ export async function queryDataset(pool: Pick<Pool, 'query'>, schema: DataSchema
       }
       return row;
     }
-    const body = typeof r.body === 'string' && r.body.length > 300 ? `${r.body.slice(0, 300)}…` : r.body;
+    const max = o.bodyChars ?? 300;
+    const body = typeof r.body === 'string' && r.body.length > max ? `${r.body.slice(0, max)}…` : r.body;
     const projected: Record<string, unknown> = {};
     for (const f of fields) {
       const c = clip(data[f.name], !!o.full);

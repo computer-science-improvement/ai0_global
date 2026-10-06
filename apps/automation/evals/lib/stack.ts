@@ -8,6 +8,7 @@ import type { LlmClient, LlmRequest, LlmResponse } from '../../src/editor/llm/ll
 import { ReadonlyQueryService } from '../../src/editor/db/readonly-query.service';
 import { SkillLibrary } from '../../src/editor/skills/skill-library';
 import { buildReadTools } from '../../src/editor/tools/read-tools';
+import { buildDataTools } from '../../src/editor/tools/data-tools';
 import { buildComposeTools } from '../../src/editor/tools/compose-tools';
 import { buildRoleTools } from '../../src/editor/tools/role-tools';
 import { EditorChannelsRepository } from '../../src/editor/repo/editor-channels.repository';
@@ -119,7 +120,7 @@ export function buildStack(o: { pool: Pool; web: FakeWeb; now: () => Date; apiKe
   const creator = new AgentCreator({ agents, registry: registrySync, catalog, profiles, channels, now });
   // Cards are only proposed in evals; the kinds must be known (the module registers the real handlers).
   actions.register('create_agent', async (p) => creator.create(p));
-  for (const k of ['update_agent', 'set_brief', 'set_resource_profile', 'write_skill', 'attach_skill', 'detach_skill', 'file_directive']) {
+  for (const k of ['update_agent', 'set_brief', 'set_resource_profile', 'write_skill', 'attach_skill', 'detach_skill', 'file_directive', 'edit_data_schema']) {
     actions.register(k, async () => { throw new Error('not applied in evals'); });
   }
   const networkRepo = new NetworkRepository(pool);
@@ -139,6 +140,7 @@ export function buildStack(o: { pool: Pool; web: FakeWeb; now: () => Date; apiKe
       notifyPreview: async (_r, text) => { previews.push(text); },
     }),
     ...buildReadTools({ pool, readonly: new ReadonlyQueryService(pool), skills, http: web.http }),
+    ...buildDataTools({ pool, actions }),
     ...buildComposeTools({ http: web.http }),
     ...buildRoleTools({
       pool, plans, memory, channels, now, publisher,

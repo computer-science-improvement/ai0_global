@@ -1,4 +1,5 @@
 import type { Pool } from 'pg';
+import { refAliases } from '../../data/data-refs';
 
 export interface PlatformPostRow {
   id:          number;
@@ -62,10 +63,11 @@ export class PlatformPostsRepository {
    */
   async alreadyPosted(resourceRef: string, ref: { source?: string | null; ideaId?: string | null }, since: Date, waiting = false): Promise<boolean> {
     if (!ref.source && !ref.ideaId) return false;
+    const sources = ref.source ? await refAliases(this.pool, ref.source) : null;
     const { rows } = await this.pool.query(
       `SELECT 1 FROM platform_posts WHERE resource_ref = $1 AND (status = 'published' OR ($5 AND status = 'awaiting_approval')) AND posted_at >= $2
-          AND (($3::text IS NOT NULL AND source_ref = $3) OR ($4::uuid IS NOT NULL AND idea_id = $4)) LIMIT 1`,
-      [resourceRef, since, ref.source ?? null, ref.ideaId ?? null, waiting]);
+          AND (($3::text[] IS NOT NULL AND source_ref = ANY($3::text[])) OR ($4::uuid IS NOT NULL AND idea_id = $4)) LIMIT 1`,
+      [resourceRef, since, sources, ref.ideaId ?? null, waiting]);
     return rows.length > 0;
   }
 

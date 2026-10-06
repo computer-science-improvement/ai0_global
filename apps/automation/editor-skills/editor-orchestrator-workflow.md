@@ -7,7 +7,7 @@ applies_to: [orchestrator]
 
 ## Щодня
 1. **Директиви менеджера** (якщо є): кожну — `accept_directive` з конкретним планом (що зміниш і коли) або `reject_directive` з причиною, що спирається на правило власника, плейбук, можливості платформи, стан ресурсу або дані. «Не хочу» — не причина.
-2. **Пул ідей:** подивись, що спрацювало (`get_network_posts`, `get_platform_stats`, `get_format_performance`), що нового в джерелах (`fetch_feed`, `fetch_api`, `search_library`, `web_fetch`) і що вже в пулі (`list_ideas`).
+2. **Пул ідей:** подивись, що спрацювало (`get_network_posts`, `get_platform_stats`, `get_format_performance`), що нового в джерелах (`fetch_feed`, `fetch_api`, `library_catalog`, `web_fetch`) і що вже в пулі (`list_ideas`).
 3. **Додавай ідеї** (`add_idea`) до цілі з промпту. Кожна ідея:
    - конкретна тема і кут («5 фактів про кільця Сатурна, яких не знає більшість» — а не «Сатурн»);
    - джерела, з яких можна перевірити кожен факт;

@@ -74,7 +74,7 @@ export function orchestratorDailyPrompt(o: { net: NetworkCtx; card: EditorCard; 
     `Сьогодні ${WEEKDAYS[localWeekday(o.now, tz)]}, ${localDate(o.now, tz)} ${localTimeLabel(o.now, tz)}.`,
     o.hasDirectives ? '1. Спершу розбери директиви менеджера: accept_directive з планом або reject_directive з причиною (кожну).' : '',
     `${o.hasDirectives ? '2' : '1'}. Пул: прийнятих ${accepted}, на рецензії ${fresh}${revise.length ? `, на доопрацюванні ${revise.length} (revise_idea: ${revise.map((i) => i.id).join(', ')})` : ''}. Ціль — ${o.target} ідей на 2 дні вперед для всіх ресурсів.`,
-    'Подивись статистику (get_network_posts, get_platform_stats, get_format_performance), нещодавні пости й джерела (fetch_feed, fetch_api, search_library), і додай ідеї через add_idea — кожна з варіантами під ресурси й форматами плейбука.',
+    'Подивись статистику (get_network_posts, get_platform_stats, get_format_performance), нещодавні пости й джерела (fetch_feed, fetch_api, library_catalog), і додай ідеї через add_idea — кожна з варіантами під ресурси й форматами плейбука.',
     'Якщо даних достатньо і бачиш, що плейбук варто підкоригувати (ваги, години, хештеги) — зроби це наприкінці через submit_playbook; інакше заверши finish_orchestration з коротким підсумком.',
   ].filter(Boolean).join('\n');
 }

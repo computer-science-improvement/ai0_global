@@ -228,6 +228,38 @@ export function useSetItemStatus(key: string) {
   });
 }
 
+// ─── agent suggestions (pending action edit_data_schema) ─────────────────────
+
+export interface DataSuggestion {
+  id:         string;
+  dataset:    string;
+  target:     'description' | 'suitable_for' | 'field';
+  field:      string | null;
+  old_text:   string;
+  new_text:   string;
+  evidence:   string;
+  summary:    string;
+  agent:      string | null;
+  created_at: string;
+}
+
+export function useDataSuggestions(schema?: string) {
+  return useQuery({
+    queryKey: ['data', 'suggestions', schema ?? null],
+    queryFn: () => api<DataSuggestion[]>(`/api/data/suggestions${schema ? `?schema=${enc(schema)}` : ''}`),
+  });
+}
+
+/** Apply or discard through the shared pending-actions endpoint; the server re-checks the text is not stale. */
+export function useDecideSuggestion() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (v: { id: string; decision: 'apply' | 'discard' }) =>
+      api<{ action: { status: string; error: string | null } }>(`/api/agents/actions/${enc(v.id)}/${v.decision}`, { method: 'POST' }),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ['data'] }),
+  });
+}
+
 // ─── imports ─────────────────────────────────────────────────────────────────
 
 /** Multipart upload: `api()` always sends JSON, so files go through fetch directly (same cookie, same 401 handling). */

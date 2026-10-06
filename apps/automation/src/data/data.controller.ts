@@ -210,6 +210,29 @@ export class DataController {
     return run(async () => ({ refreshed: await this.store.refreshStats(r.data.schema) }));
   }
 
+  // ─── agent suggestions ─────────────────────────────────────────────────────
+
+  /**
+   * Description edits agents proposed (pending action `edit_data_schema`), newest first. The owner applies
+   * or discards them through the pending-actions API (/api/agents/actions/:id/apply | discard).
+   */
+  @Get('suggestions')
+  listSuggestions(@Query('schema') schema?: string) {
+    return run(async () => {
+      const { rows } = await this.pool.query(
+        `SELECT pa.id, pa.payload, pa.summary, pa.created_at, a.handle AS agent_handle
+           FROM pending_actions pa LEFT JOIN agents a ON a.id = pa.agent_id
+          WHERE pa.kind = 'edit_data_schema' AND pa.status = 'pending'
+            AND ($1::text IS NULL OR pa.payload->>'dataset' = $1)
+          ORDER BY pa.created_at DESC LIMIT 50`, [schema || null]);
+      return rows.map((r: any) => ({
+        id: r.id, dataset: r.payload?.dataset ?? null, target: r.payload?.target ?? null, field: r.payload?.field ?? null,
+        old_text: r.payload?.old_text ?? '', new_text: r.payload?.new_text ?? '', evidence: r.payload?.evidence ?? '',
+        summary: r.summary, agent: r.agent_handle ?? null, created_at: r.created_at,
+      }));
+    });
+  }
+
   // ─── rows (scripts) ────────────────────────────────────────────────────────
 
   /** JSON array of rows keyed by field names (≤ 5 000). `?dry_run=1` validates and counts only. */

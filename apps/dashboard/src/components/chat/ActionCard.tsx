@@ -22,6 +22,7 @@ const KIND_META: Record<string, { label: string; icon: IconName }> = {
   write_skill:          { label: 'Write skill',       icon: 'book' },
   attach_skill:         { label: 'Attach skill',      icon: 'plus' },
   detach_skill:         { label: 'Detach skill',      icon: 'ban' },
+  edit_data_schema:     { label: 'Edit dataset description', icon: 'database' },
 };
 
 export const ACTION_TONE: Record<PendingActionStatus, Tone> = {

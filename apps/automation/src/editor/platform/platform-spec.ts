@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { CONTENT_REF_RE } from '../../data/data-refs';
 import { SlideSchema } from '../post/post-spec';
 import { GLOBAL_BANNED } from '../post/lint-post';
 import { inlineToPlain } from '../post/inline-markup';
@@ -22,7 +23,7 @@ export const PlatformPostSpecSchema = z.object({
   link:          z.object({ url: httpsUrl, label: z.string().min(1).max(60).optional() }).optional(),
   first_comment: z.string().max(1000).optional().describe('Instagram: перший коментар (напр. джерело/посилання), публікується окремо'),
   source:        z.object({ url: z.string().url(), label: z.string().max(60).optional() }).optional(),
-  library_ref:   z.string().regex(/^library:\/\/[a-z_]+\/[A-Za-z0-9_.:-]{1,200}$/).optional(),
+  library_ref:   z.string().regex(CONTENT_REF_RE).optional(),
   idea_id:       z.string().uuid().optional(),
 });
 export type PlatformPostSpec = z.infer<typeof PlatformPostSpecSchema>;
