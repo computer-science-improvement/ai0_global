@@ -11,6 +11,8 @@ import { Icon } from '../components/Icon';
 import { Icon as PlatformGlyph } from '../components/ui/Icon';
 import { StatTile, SectionCard, EmptyState, StatusDot, type Tone } from '../components/ui/primitives';
 import { NetworkHealthCard } from '../components/agents/NetworkHealth';
+import { AgentsCard } from '../components/overview/AgentsCard';
+import { AiSpendCard } from '../components/overview/AiSpendCard';
 
 export const Route = createFileRoute('/app/')({ component: OverviewPage });
 
@@ -83,6 +85,12 @@ function OverviewPage() {
           delta={errors.length ? 'needs attention' : 'all clear'}
           deltaTone={errors.length ? 'danger' : 'neutral'}
         />
+      </div>
+
+      {/* Spec 029 FR-009: agent activity and AI spend (tokens + USD across every LLM call). */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 420px), 1fr))', gap: 12, marginBottom: 12, alignItems: 'start' }}>
+        <AgentsCard delay={3 * 60} />
+        <AiSpendCard delay={3 * 60 + 30} />
       </div>
 
       <NetworkHealthCard delay={4 * 60} />

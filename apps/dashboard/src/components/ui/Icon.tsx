@@ -8,6 +8,7 @@ import {
   ScrollText, Sparkles, Rocket, SkipForward, CalendarSync, Eye,
   MessageSquare, Square, ArrowUp, Globe, Wrench, Clock, Ban, Database, BookOpen, PanelLeft,
   Megaphone, Radar, Users, Workflow, Lock, LockOpen, Inbox, History, ImageOff, ArrowUpRight, Lightbulb,
+  CircleDollarSign, Download,
   type LucideIcon,
 } from 'lucide-react';
 
@@ -28,6 +29,7 @@ const ICONS = {
   megaphone: Megaphone, radar: Radar, users: Users,
   agents: Workflow, lock: Lock, unlock: LockOpen, inbox: Inbox, history: History,
   'image-off': ImageOff, external: ArrowUpRight, hint: Lightbulb,
+  spend: CircleDollarSign, download: Download,
 } satisfies Record<string, LucideIcon>;
 
 export type IconName = keyof typeof ICONS;
