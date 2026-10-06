@@ -266,6 +266,15 @@ export class ApprovalsRepository {
     return rows.map((r) => ({ channelKey: r.channel_key, batchDate: r.batch_date, waiting: Number(r.waiting), title: r.title ?? null }));
   }
 
+  /** Unwritten (planned) content slots of a batch — the alert waits while any of them is due to be written. */
+  async plannedOfBatch(channelKey: string, batchDate: string): Promise<EditorSlot[]> {
+    const { rows } = await this.pool.query(
+      `SELECT s.* FROM editor_slots s JOIN editor_plans p ON p.id = s.plan_id
+        WHERE s.channel_key = $1 AND p.plan_date = $2::date AND p.status = 'active' AND s.status = 'planned' AND s.kind = 'content'`,
+      [channelKey, batchDate]);
+    return rows.map(rowToSlot);
+  }
+
   /** Claim the alert of a batch once, across restarts: true only for the first caller. */
   async claimAlert(channelKey: string, batchDate: string, posts: number): Promise<boolean> {
     const { rows } = await this.pool.query(

@@ -104,6 +104,7 @@ import type { ChannelMode, EditorCard } from './card';
 import { ApprovalsRepository } from './approval/approvals.repository';
 import { ApprovalPublisher } from './approval/approval-publisher';
 import { ApprovalUpkeep } from './approval/approval-upkeep';
+import { ApprovalAlerts } from './approval/approval-alerts';
 import { ApprovalsService } from './approval/approvals.service';
 import { APPROVALS_SERVICE, ApprovalsController } from './approval/approvals.controller';
 
@@ -577,9 +578,10 @@ export const EDITOR_PROVIDERS = [
     },
     {
       provide: APPROVAL_INFRA,
-      inject: [DB_POOL, EDITOR_REPOS, EDITOR_PUBLISH, AGENT_INFRA, PLATFORM_INFRA, PostingThrottleService],
+      inject: [DB_POOL, EDITOR_REPOS, EDITOR_PUBLISH, AGENT_INFRA, PLATFORM_INFRA, PostingThrottleService, ConfigService, TelegramNotifier],
       useFactory: (
         pool: Pool, repos: EditorRepos, ports: PublishPorts, infra: AgentInfra, platform: PlatformInfra, throttle: PostingThrottleService,
+        cfg: ConfigService, notifier: TelegramNotifier,
       ): ApprovalInfra => {
         const logger = new Logger('Approval');
         const repo = new ApprovalsRepository(pool);
@@ -597,7 +599,12 @@ export const EDITOR_PROVIDERS = [
           onSlotDone: async (slot) => { if (slot.ideaId) await ideas.settleIdea(slot.ideaId); },
           log: (m) => logger.warn(m),
         });
-        const upkeep = new ApprovalUpkeep({ repo, publisher, card: (k) => repos.channels.get(k), mode, log: (m) => logger.log(m) });
+        // T4: one Telegram message per resource per batch through the owner's alert channel, deduped in approval_alerts.
+        const alerts = new ApprovalAlerts({
+          repo, card: (k) => repos.channels.get(k), notify: (t) => notifier.notifyAlert(t),
+          dashboardUrl: cfg.get<string>('DASHBOARD_URL') ?? null, log: (m) => logger.warn(m),
+        });
+        const upkeep = new ApprovalUpkeep({ repo, publisher, alerts, card: (k) => repos.channels.get(k), mode, log: (m) => logger.log(m) });
         return { repo, publisher, upkeep, mode };
       },
     },
