@@ -145,7 +145,7 @@ export class AgentLoop {
 
     try {
       for (let turn = 0; turn < maxSteps; turn++) {
-        const verdict = await this.deps.budget.check(input.channelKey, input.channelBudgetUsd, input.agent ?? null);
+        const verdict = await withLlmContext(usage, () => this.deps.budget.check(input.channelKey, input.channelBudgetUsd, input.agent ?? null));
         if (!verdict.ok) return finish('budget_exceeded', { error: `${verdict.scope} budget: $${verdict.spentUsd.toFixed(4)} >= $${verdict.limitUsd}` });
 
         const t0 = now();

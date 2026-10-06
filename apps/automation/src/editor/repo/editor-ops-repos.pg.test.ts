@@ -19,6 +19,7 @@ let pool: Pool;
 const CH = '@pgtest_editor_ops';
 
 const cleanup = async () => {
+  await pool.query(`DELETE FROM llm_usage WHERE resource_ref = 'telegram:' || $1`, [CH]);
   await pool.query(`DELETE FROM editor_runs WHERE channel_key = $1`, [CH]);
   await pool.query(`DELETE FROM editor_channels WHERE channel_key = $1`, [CH]);
 };
@@ -110,9 +111,16 @@ test('plans: claimSlot / skipPlannedSlot only from planned; listPlans and slotSt
 
 test('runs: list, get with steps, spend per Kyiv day', { skip }, async () => {
   const runs = new EditorRunsRepository(pool);
-  const ins = async (startedAt: string, cost: number) => (await pool.query(
-    `INSERT INTO editor_runs (role, channel_key, model, status, cost_usd, started_at, finished_at)
-     VALUES ('executor', $1, 'm', 'ok', $2, $3, $3) RETURNING id`, [CH, cost, startedAt])).rows[0].id as string;
+  // Spend reads the llm_usage ledger (spec 029): each run gets the ledger row its LLM call would have written.
+  const ins = async (startedAt: string, cost: number) => {
+    const id = (await pool.query(
+      `INSERT INTO editor_runs (role, channel_key, model, status, cost_usd, started_at, finished_at)
+       VALUES ('executor', $1, 'm', 'ok', $2, $3, $3) RETURNING id`, [CH, cost, startedAt])).rows[0].id as string;
+    await pool.query(
+      `INSERT INTO llm_usage (at, provider, model, feature, role, run_id, step_idx, resource_ref, cost_usd, cost_source)
+       VALUES ($3, 'openrouter', 'm', 'editor.executor', 'executor', $1, 0, 'telegram:' || $2, $4, 'provider')`, [id, CH, startedAt, cost]);
+    return id;
+  };
   const today = new Date();
   const r1 = await ins(today.toISOString(), 0.01);
   await ins(today.toISOString(), 0.02);

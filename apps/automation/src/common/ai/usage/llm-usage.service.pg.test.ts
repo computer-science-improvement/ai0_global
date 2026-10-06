@@ -28,9 +28,9 @@ before(async () => {
   pool = new Pool({ connectionString: url });
   await cleanup();
   rootId = (await pool.query(
-    `INSERT INTO agents (kind, scope, scope_id, name, handle) VALUES ('orchestrator', 'resource', 'telegram:@pgt029u', 'U root', 'pgt029u_root') RETURNING id`)).rows[0].id;
+    `INSERT INTO agents (kind, scope, scope_id, name, handle) VALUES ('orchestrator', 'network', 'pgt029u', 'U root', 'pgt029u_root') RETURNING id`)).rows[0].id;
   childId = (await pool.query(
-    `INSERT INTO agents (kind, scope, scope_id, parent_id, name, handle) VALUES ('executor', 'resource', 'telegram:@pgt029u', $1, 'U exec', 'pgt029u_exec') RETURNING id`, [rootId])).rows[0].id;
+    `INSERT INTO agents (kind, scope, scope_id, parent_id, name, handle) VALUES ('executor', 'network', 'pgt029u', $1, 'U exec', 'pgt029u_exec') RETURNING id`, [rootId])).rows[0].id;
 });
 after(async () => {
   if (!url) return;

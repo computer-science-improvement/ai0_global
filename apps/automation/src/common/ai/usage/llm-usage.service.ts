@@ -126,7 +126,14 @@ export class LlmUsageService implements LlmUsageRecorder {
   private inflight: Promise<void> = Promise.resolve();
   private readonly localKeys = new Set<string>();
 
-  constructor(private readonly d: LlmUsageServiceDeps) {}
+  private budget?: BudgetGuard;
+
+  constructor(private readonly d: LlmUsageServiceDeps) {
+    this.budget = d.budget;
+  }
+
+  /** Wire the budget gate after construction (it reads spend through this service's flush). */
+  attachBudget(budget: BudgetGuard): void { this.budget = budget; }
 
   private now(): Date { return (this.d.now ?? (() => new Date()))(); }
 
@@ -177,9 +184,9 @@ export class LlmUsageService implements LlmUsageRecorder {
   }
 
   async guard(provider: LlmProvider, explicit: LlmContext = {}): Promise<void> {
-    if (!this.d.budget) return;
+    if (!this.budget) return;
     const ctx = { ...currentLlmContext(), ...definedOnly(explicit) };
-    await this.d.budget.assertWithin(ctx.feature || FEATURES.unattributed, provider, ctx.resourceRef ?? null);
+    await this.budget.assertWithin(ctx.feature || FEATURES.unattributed, provider, ctx.resourceRef ?? null);
   }
 
   /** Write everything buffered so far (also awaited by budget checks so they see the latest spend). */

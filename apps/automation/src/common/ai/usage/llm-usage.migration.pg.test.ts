@@ -28,7 +28,7 @@ async function cleanup() {
   await pool.query(`DELETE FROM editor_slots WHERE channel_key = $1`, [CH]);
   await pool.query(`DELETE FROM editor_plans WHERE channel_key = $1`, [CH]);
   await pool.query(`DELETE FROM editor_channels WHERE channel_key = $1`, [CH]);
-  await pool.query(`DELETE FROM agents WHERE handle IN ('pgt029_root', 'pgt029_exec')`);
+  await pool.query(`DELETE FROM agents WHERE handle IN ('pgt029_root', 'pgt029_exec') OR scope_id = 'telegram:' || $1::text`, [CH]);
   await pool.query(`DELETE FROM llm_budgets WHERE seeded_from = 'pgt029'`);
   await pool.query(`DELETE FROM llm_budget_alerts WHERE key LIKE 'pgt029:%'`);
 }
@@ -55,9 +55,9 @@ before(async () => {
   pool = new Pool({ connectionString: url });
   await cleanup();
   rootId = (await pool.query(
-    `INSERT INTO agents (kind, scope, scope_id, name, handle, mode) VALUES ('orchestrator', 'resource', 'telegram:${CH}', 'PG root', 'pgt029_root', 'shadow') RETURNING id`)).rows[0].id;
+    `INSERT INTO agents (kind, scope, scope_id, name, handle, mode) VALUES ('orchestrator', 'network', 'pgt029:${CH}', 'PG root', 'pgt029_root', 'shadow') RETURNING id`)).rows[0].id;
   childId = (await pool.query(
-    `INSERT INTO agents (kind, scope, scope_id, parent_id, name, handle) VALUES ('executor', 'resource', 'telegram:${CH}', $1, 'PG exec', 'pgt029_exec') RETURNING id`, [rootId])).rows[0].id;
+    `INSERT INTO agents (kind, scope, scope_id, parent_id, name, handle) VALUES ('executor', 'network', 'pgt029:${CH}', $1, 'PG exec', 'pgt029_exec') RETURNING id`, [rootId])).rows[0].id;
   await pool.query(`INSERT INTO editor_channels (channel_key, mode) VALUES ($1, 'shadow')`, [CH]);
   const plan = (await pool.query(`INSERT INTO editor_plans (channel_key, plan_date) VALUES ($1, CURRENT_DATE) RETURNING id`, [CH])).rows[0].id;
   const slot = (await pool.query(
