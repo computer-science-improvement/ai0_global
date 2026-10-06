@@ -38,22 +38,55 @@ export interface StoreUpsertResult extends UpsertResult {
 
 type Queryable = Pick<Pool, 'query'> & Partial<Pick<Pool, 'connect'>>;
 
+export interface SchemaListStats {
+  rows:             number;
+  rows_active:      number;
+  last_import_at:   string | null;
+  unposted_network: number | null;
+  today_items:      number | null;
+  stats_at:         string | null;
+}
+
 const SCHEMA_COLUMNS = `id, key, title, description, entity, version, fields, roles, dedup_key, language, default_license,
   reuse_policy, suitable_for, contains_personal_data, legacy, status, created_by, created_at, updated_at`;
 
 export class DataStore {
   constructor(private readonly pool: Queryable) {}
 
-  async listSchemas(): Promise<Array<DataSchema & { rows: number; rows_active: number; last_import_at: string | null }>> {
+  /**
+   * Every dataset with live row counts and the catalog stats (`data_schema_stats`, refreshed after each
+   * import and nightly): unposted rows network-wide, today's rows, when the stats were computed.
+   */
+  async listSchemas(): Promise<Array<DataSchema & SchemaListStats>> {
     const { rows } = await this.pool.query(
       `SELECT ${SCHEMA_COLUMNS.split(',').map((c) => 's.' + c.trim()).join(', ')},
               COALESCE(c.rows, 0)::int AS rows, COALESCE(c.active, 0)::int AS rows_active,
-              (SELECT max(created_at) FROM data_imports i WHERE i.schema_id = s.id AND i.status = 'committed') AS last_import_at
+              (SELECT max(created_at) FROM data_imports i WHERE i.schema_id = s.id AND i.status = 'committed') AS last_import_at,
+              st.unposted_network::int AS unposted_network, st.today_items::int AS today_items, st.computed_at AS stats_at
          FROM data_schemas s
          LEFT JOIN (SELECT schema_id, count(*) AS rows, count(*) FILTER (WHERE status = 'active') AS active
                       FROM data_items GROUP BY schema_id) c ON c.schema_id = s.id
+         LEFT JOIN data_schema_stats st ON st.schema_id = s.id
         ORDER BY s.key`);
     return rows;
+  }
+
+  /** Hide or unhide one row (hidden rows are never offered to agents). */
+  async setItemStatus(key: string, id: string, status: 'active' | 'hidden'): Promise<{ id: string; status: string }> {
+    const schema = await this.requireSchema(key);
+    if (!/^\d{1,18}$/.test(id)) throw new DataStoreError('not_found', `row ${id} not found in "${key}"`);
+    const { rows } = await this.pool.query(
+      `UPDATE data_items SET status = $3, updated_at = now() WHERE schema_id = $1 AND id = $2::bigint RETURNING id::text AS id, status`,
+      [schema.id, id, status]);
+    if (!rows[0]) throw new DataStoreError('not_found', `row ${id} not found in "${key}"`);
+    return rows[0];
+  }
+
+  /** Recompute `data_schema_stats` for one dataset or all of them; returns how many were refreshed. */
+  async refreshStats(key?: string): Promise<number> {
+    const id = key ? (await this.requireSchema(key)).id : null;
+    const { rows } = await this.pool.query(`SELECT data_schema_stats_refresh($1::uuid) AS n`, [id]);
+    return Number(rows[0]?.n ?? 0);
   }
 
   async getSchema(key: string): Promise<DataSchema | null> {

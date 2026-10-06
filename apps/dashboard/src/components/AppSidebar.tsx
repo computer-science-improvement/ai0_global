@@ -19,6 +19,9 @@ const GROUPS: NavGroup[] = [
     { to: '/app/scheduled',  label: 'Scheduled', icon: 'calendar' },
     { to: '/app/channels',   label: 'My channels', icon: 'channels', search: { filter: 'mine' } },
   ]},
+  { title: 'Content', items: [
+    { to: '/app/data', label: 'Data', icon: 'database' },
+  ]},
   { title: 'Analytics', items: [
     { to: '/app/analytics', label: 'Analytics', icon: 'analytics' },
     { to: '/app/spend',     label: 'Spend',      icon: 'spend' },

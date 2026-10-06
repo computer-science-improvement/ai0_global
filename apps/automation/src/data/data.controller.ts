@@ -8,6 +8,7 @@ import { z } from 'zod';
 import { DB_POOL } from '../database/database.tokens';
 import { TrackingAuthGuard } from '../tracking/api/tracking-auth.guard';
 import { DataStore, DataStoreError } from './data-store';
+import { DataQueryError, filterSchema, kyivMonthDay, ORDERS, queryDataset } from './data-query';
 import { schemaInputSchema, schemaPatchSchema } from './data.types';
 import { DataImportService, MAX_API_ROWS } from './import/data-import.service';
 import { MAX_IMPORT_BYTES } from './import/source-reader';
@@ -28,6 +29,15 @@ function parseFormat(raw: unknown): 'csv' | 'json' | 'jsonl' | undefined {
   return r.data;
 }
 const mappingSchema = z.record(z.string(), z.string().nullable());
+
+const itemsQuerySchema = z.object({
+  q:         z.string().max(200).optional(),
+  filters:   z.string().max(8000).optional(),
+  status:    z.enum(['active', 'hidden', 'all']).default('active'),
+  order:     z.enum(ORDERS).default('newest'),
+  page:      z.coerce.number().int().min(1).max(100_000).default(1),
+  page_size: z.coerce.number().int().min(1).max(100).default(25),
+});
 
 function who(req: any): string {
   const u = req?.user;
@@ -50,6 +60,7 @@ async function run<T>(fn: () => Promise<T>): Promise<T> {
   try {
     return await fn();
   } catch (err: any) {
+    if (err instanceof DataQueryError) throw new BadRequestException({ code: err.code, message: err.message });
     if (err instanceof DataStoreError) {
       const body = { code: err.code, message: err.message, details: err.details };
       if (err.code === 'not_found') throw new NotFoundException(body);
@@ -70,7 +81,7 @@ export class DataController {
   private readonly store: DataStore;
   private readonly imports: DataImportService;
 
-  constructor(@Inject(DB_POOL) pool: Pool) {
+  constructor(@Inject(DB_POOL) private readonly pool: Pool) {
     this.store = new DataStore(pool);
     this.imports = new DataImportService(pool);
   }
@@ -158,6 +169,45 @@ export class DataController {
   @Get('imports/:id')
   getImport(@Param('id') id: string) {
     return run(() => this.imports.getImport(id));
+  }
+
+  // ─── items browser ─────────────────────────────────────────────────────────
+
+  /**
+   * Rows of a dataset for the dashboard: `q` full-text search, `filters` (JSON list of
+   * {field, op, value} on filterable fields), `status` active | hidden | all, `order`, `page`, `page_size`.
+   */
+  @Get(':schema/items')
+  listItems(@Param('schema') key: string, @Query() q: Record<string, unknown>) {
+    const r = itemsQuerySchema.safeParse(q ?? {});
+    if (!r.success) throw new BadRequestException({ code: 'invalid', message: 'invalid items query', details: r.error.issues });
+    const filters = parseJsonField(r.data.filters, z.array(filterSchema).max(20), 'filters') ?? [];
+    const { page, page_size } = r.data;
+    return run(async () => {
+      const schema = await this.store.requireSchema(key);
+      const res = await queryDataset(this.pool, schema, {
+        audience: 'owner', filters, search: r.data.q, status: r.data.status, order: r.data.order,
+        limit: page_size, offset: (page - 1) * page_size, today: kyivMonthDay(), withTotal: true,
+      });
+      return { items: res.rows, total: res.total ?? 0, page, page_size };
+    });
+  }
+
+  /** Hide a row from agents and strategies, or bring it back. */
+  @Patch(':schema/items/:id')
+  setItemStatus(@Param('schema') key: string, @Param('id') id: string, @Body() body: unknown) {
+    const r = z.object({ status: z.enum(['active', 'hidden']) }).strict().safeParse(body);
+    if (!r.success) throw new BadRequestException({ code: 'invalid', message: 'status must be active or hidden' });
+    return run(() => this.store.setItemStatus(key, id, r.data.status));
+  }
+
+  /** Recompute the catalog stats now (they also refresh after each import and nightly). */
+  @Post('stats/refresh')
+  @HttpCode(200)
+  refreshStats(@Body() body: unknown) {
+    const r = z.object({ schema: z.string().max(63).optional() }).safeParse(body ?? {});
+    if (!r.success) throw new BadRequestException({ code: 'invalid', message: 'schema must be a dataset key' });
+    return run(async () => ({ refreshed: await this.store.refreshStats(r.data.schema) }));
   }
 
   // ─── rows (scripts) ────────────────────────────────────────────────────────
