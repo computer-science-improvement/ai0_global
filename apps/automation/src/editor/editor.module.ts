@@ -59,7 +59,7 @@ import { SkillVersionEvaluator } from './agents/skill-version-evaluator';
 import { buildAgentSkillTools } from './agents/agent-skill-tools';
 import { AgentsService } from './agents/agents.service';
 import { AGENTS_SERVICE, AgentsController } from './agents/agents.controller';
-import { telegramKeyOf, parseResourceRef } from './agents/agent.types';
+import { telegramKeyOf, parseResourceRef, resourceRef } from './agents/agent.types';
 import type { Agent } from './agents/agent.types';
 import { ResourceProfilesRepository } from './agents/resource-profile';
 import { ResourceCatalog, makeTelegramAccessCheck } from './agents/resource-catalog';
@@ -109,6 +109,9 @@ import { ApprovalUpkeep } from './approval/approval-upkeep';
 import { ApprovalAlerts } from './approval/approval-alerts';
 import { ApprovalsService } from './approval/approvals.service';
 import { APPROVALS_SERVICE, ApprovalsController } from './approval/approvals.controller';
+import { ApprovalStatsRepository } from './approval/approval-stats';
+import { AutonomyService, ReadyForAutonomy, readyForAutonomyText } from './approval/autonomy';
+import { AUTONOMY_SERVICE, AutonomyController } from './approval/autonomy.controller';
 
 export const EDITOR_RUNNER    = 'EDITOR_RUNNER';
 export const EDITOR_SCHEDULER = 'EDITOR_SCHEDULER';
@@ -160,6 +163,10 @@ export interface ApprovalInfra {
   upkeep:    ApprovalUpkeep;
   /** Effective mode of a channel: its orchestrator's mode ∧ the card's. */
   mode(card: EditorCard): Promise<ChannelMode>;
+  /** Decisions of the last N days (switch dialog, agent page, 029 Agents card). */
+  stats:     ApprovalStatsRepository;
+  /** The MANAGER's weekly "ready for autonomy" signal (an info Inbox item; never a mode change). */
+  ready:     ReadyForAutonomy;
 }
 
 /** Native multi-platform publishing (spec 019): repository, publish path, stats, health. */
@@ -255,7 +262,19 @@ export class AgentsUpkeep implements OnModuleInit {
     @Inject(PLATFORM_INFRA) private readonly platform: PlatformInfra,
     @Inject(EDITOR_MANAGER) private readonly manager: ManagerInfra,
     @Inject(PROMO_INFRA) private readonly promo: PromoInfra,
+    @Inject(APPROVAL_INFRA) private readonly approval: ApprovalInfra,
   ) {}
+
+  /** Spec 031 FR-010: "ready for autonomy" for resources in approval mode (deduped weekly per resource). */
+  @Cron('25 9 * * *', { name: 'ready-for-autonomy' })
+  async readyForAutonomy(): Promise<void> {
+    try {
+      const filed = await this.approval.ready.run();
+      if (filed.length) this.logger.log(`ready for autonomy: ${filed.join(', ')}`);
+    } catch (err: any) {
+      this.logger.warn(`ready-for-autonomy check failed: ${err?.message ?? err}`);
+    }
+  }
 
   /** Owner-card timeouts, unresolved expiry and directive effect evaluation (spec 021). */
   @Cron('47 * * * *', { name: 'directives-housekeeping' })
@@ -596,10 +615,10 @@ export const EDITOR_PROVIDERS = [
     },
     {
       provide: APPROVAL_INFRA,
-      inject: [DB_POOL, EDITOR_REPOS, EDITOR_PUBLISH, AGENT_INFRA, PLATFORM_INFRA, PostingThrottleService, ConfigService, TelegramNotifier],
+      inject: [DB_POOL, EDITOR_REPOS, EDITOR_PUBLISH, AGENT_INFRA, PLATFORM_INFRA, PostingThrottleService, ConfigService, TelegramNotifier, ChannelConfigService],
       useFactory: (
         pool: Pool, repos: EditorRepos, ports: PublishPorts, infra: AgentInfra, platform: PlatformInfra, throttle: PostingThrottleService,
-        cfg: ConfigService, notifier: TelegramNotifier,
+        cfg: ConfigService, notifier: TelegramNotifier, channelConfig: ChannelConfigService,
       ): ApprovalInfra => {
         const logger = new Logger('Approval');
         const repo = new ApprovalsRepository(pool);
@@ -610,6 +629,8 @@ export const EDITOR_PROVIDERS = [
           repo, plans: repos.plans, card: (k) => repos.channels.get(k), mode,
           telegram: { plans: repos.plans, ...ports, recordPublish: (k) => throttle.recordPublish(k) },
           platform: platform.publish,
+          // Spec 022 reposts in approval mode: the approved forward goes out through the same Bot API call as live.
+          forward: async (to, from, messageId) => (await botCall(channelConfig, to, 'forwardMessage', { from_chat_id: from, message_id: messageId })).message_id,
           notice: async (slot, title, body) => {
             const orch = await infra.runtime.forChannel(slot.channelKey, 'executor').catch(() => null);
             await infra.inbox.post({ agentId: orch?.orchestrator?.id ?? null, kind: 'approval_dedup', severity: 'info', title, body, refType: 'slot', refId: slot.id });
@@ -623,7 +644,23 @@ export const EDITOR_PROVIDERS = [
           dashboardUrl: cfg.get<string>('DASHBOARD_URL') ?? null, log: (m) => logger.warn(m),
         });
         const upkeep = new ApprovalUpkeep({ repo, publisher, alerts, card: (k) => repos.channels.get(k), mode, log: (m) => logger.log(m) });
-        return { repo, publisher, upkeep, mode };
+        const stats = new ApprovalStatsRepository(pool);
+        const ready = new ReadyForAutonomy({
+          cards: () => repos.channels.listActive(), mode, stats,
+          filedSince: async (key, since) => (await pool.query(
+            `SELECT 1 FROM agent_inbox WHERE kind = 'ready_for_autonomy' AND ref_type = 'channel' AND ref_id = $1 AND created_at >= $2 LIMIT 1`,
+            [key, since])).rows.length > 0,
+          file: async (card, s) => {
+            const orch = (await infra.runtime.forChannel(card.channelKey, 'executor')).orchestrator;
+            const text = readyForAutonomyText(card, s);
+            await infra.inbox.post({
+              agentId: orch?.id ?? null, kind: 'ready_for_autonomy', severity: 'info', title: text.title, body: text.body,
+              refType: 'channel', refId: card.channelKey,
+            });
+          },
+          log: (m) => logger.warn(m),
+        });
+        return { repo, publisher, upkeep, mode, stats, ready };
       },
     },
     {
@@ -631,6 +668,22 @@ export const EDITOR_PROVIDERS = [
       inject: [EDITOR_REPOS, EDITOR_PUBLISH, APPROVAL_INFRA, PLATFORM_INFRA],
       useFactory: (repos: EditorRepos, ports: PublishPorts, approval: ApprovalInfra, platform: PlatformInfra) => new ApprovalsService({
         repo: approval.repo, card: (k) => repos.channels.get(k), media: ports.media, hostSlides: platform.publish.hostSlides,
+      }),
+    },
+    {
+      // Spec 031 FR-010: the owner's approve ⇄ live switch (dialog numbers + the switch).
+      provide: AUTONOMY_SERVICE,
+      inject: [APPROVALS_SERVICE, APPROVAL_INFRA, AGENT_INFRA, EDITOR_OPS, EDITOR_REPOS],
+      useFactory: (approvals: ApprovalsService, approval: ApprovalInfra, infra: AgentInfra, ops: EditorOpsService, repos: EditorRepos) => new AutonomyService({
+        stats: approval.stats, card: (k) => repos.channels.get(k), mode: (c) => approval.mode(c),
+        setMode: async (key, mode) => {
+          // The card first (audited; leaving approval for shadow/off is not possible here), then its orchestrator.
+          await ops.upsertChannel(key, { mode });
+          const orch = await infra.agents.findTop('orchestrator', 'resource', resourceRef('telegram', key));
+          if (orch && orch.mode !== mode) await infra.agents.update(orch.id, { mode, shadowUntil: null });
+        },
+        waiting: (key) => approval.repo.list({ status: ['awaiting_approval'], channel: key }),
+        approve: (id) => approvals.approve(id),
       }),
     },
     {
@@ -742,6 +795,15 @@ export const EDITOR_PROVIDERS = [
         const notify = (t: string) => notifier.notifyAlert(t);
         const orders = new AdOrdersRepository(pool);
         // Reserved slots publish deterministically, without the LLM: paid ads (spec 008) and scheduled chat posts (spec 010).
+        // Spec 022 promos; in approval mode they wait for the owner (031 FR-009) and are written ahead in the approval lane.
+        const promo = new PromoExecutor({
+          plans: repos.plans, card: (k) => repos.channels.get(k), catalog: infra.catalog, profiles: infra.profiles,
+          runExecutor: (slot, card, note) => runner.runExecutor(slot, card, note),
+          forward: async (to, from, messageId) => (await botCall(channelConfig, to, 'forwardMessage', { from_chat_id: from, message_id: messageId })).message_id,
+          mode: (card) => approval.mode(card),
+          cards: () => repos.channels.listActive(),
+          log: (m) => logger.warn(m),
+        });
         const reserved = new ReservedDispatcher({
           plans: repos.plans, orders,
           sponsored: new SponsoredPublisher({
@@ -751,12 +813,7 @@ export const EDITOR_PROVIDERS = [
             log: (m) => logger.warn(m),
           }),
           manual: drafts,
-          promo: new PromoExecutor({
-            plans: repos.plans, card: (k) => repos.channels.get(k), catalog: infra.catalog, profiles: infra.profiles,
-            runExecutor: (slot, card, note) => runner.runExecutor(slot, card, note),
-            forward: async (to, from, messageId) => (await botCall(channelConfig, to, 'forwardMessage', { from_chat_id: from, message_id: messageId })).message_id,
-            log: (m) => logger.warn(m),
-          }),
+          promo,
           log: (m) => logger.warn(m),
         });
         return new EditorScheduler({
@@ -773,7 +830,14 @@ export const EDITOR_PROVIDERS = [
             }
           },
           // Spec 031: approval channels write ahead; approved posts, expiry and alerts run in their own lane.
-          approval: { mode: (card) => approval.mode(card), tick: (now) => approval.upkeep.tick(now) },
+          approval: {
+            mode: (card) => approval.mode(card),
+            tick: async (now) => {
+              await approval.upkeep.tick(now);
+              const n = await promo.writeAhead(now);
+              if (n) logger.log(`approval: ${n} promo post(s) written ahead`);
+            },
+          },
           notify,
           log: (m) => logger.warn(m),
         });
@@ -912,7 +976,7 @@ export const EDITOR_PROVIDERS = [
 @Module({
   // AuthModule: EditorController is guarded by TrackingAuthGuard, which injects AuthService.
   imports:     [ChannelConfigModule, PublishersModule, AuthModule],
-  controllers: [EditorController, EditorChatController, AgentsController, NetworkController, ManagerController, PromoController, PromoRedirectController, ApprovalsController],
+  controllers: [EditorController, EditorChatController, AgentsController, NetworkController, ManagerController, PromoController, PromoRedirectController, ApprovalsController, AutonomyController],
   providers:   [...EDITOR_PROVIDERS, TrackingAuthGuard],
   exports:     [EDITOR_REPOS, EDITOR_RUNNER, AGENT_INFRA, PLATFORM_INFRA, EDITOR_MANAGER],
 })

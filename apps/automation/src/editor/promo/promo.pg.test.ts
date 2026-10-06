@@ -17,18 +17,21 @@ const skip = !url ? 'EDITOR_PG_TEST_URL not set' : false;
 const A = '@promo_pg_space';
 const B = '@promo_pg_astro';
 const C = '@promo_pg_food';
+// Spec 031 FR-009: a source channel in approval mode and its promo target.
+const D = '@promo_pg_sky_appr';
+const E = '@promo_pg_stars_appr';
 let pool: Pool;
 
 async function cleanup() {
-  const refs = [A, B, C].map((k) => `telegram:${k}`);
+  const refs = [A, B, C, D, E].map((k) => `telegram:${k}`);
   await pool.query(`DELETE FROM link_joins WHERE link_id IN (SELECT id FROM tracked_links WHERE target_ref = ANY($1::text[]))`, [refs]);
   await pool.query(`DELETE FROM tracked_links WHERE target_ref = ANY($1::text[])`, [refs]);
   await pool.query(`DELETE FROM promo_pairs WHERE source_ref = ANY($1::text[]) OR target_ref = ANY($1::text[])`, [refs]);
   await pool.query(`DELETE FROM agent_directives WHERE to_agent_id IN (SELECT id FROM agents WHERE scope_id = ANY($1::text[]))`, [refs]);
   await pool.query(`DELETE FROM agents WHERE scope_id = ANY($1::text[])`, [refs]);
   await pool.query(`DELETE FROM resource_profiles WHERE resource_ref = ANY($1::text[])`, [refs]);
-  await pool.query(`DELETE FROM editor_plans WHERE channel_key = ANY($1::text[])`, [[A, B, C]]);
-  await pool.query(`DELETE FROM editor_channels WHERE channel_key = ANY($1::text[])`, [[A, B, C]]);
+  await pool.query(`DELETE FROM editor_plans WHERE channel_key = ANY($1::text[])`, [[A, B, C, D, E]]);
+  await pool.query(`DELETE FROM editor_channels WHERE channel_key = ANY($1::text[])`, [[A, B, C, D, E]]);
 }
 
 before(async () => {
@@ -37,6 +40,7 @@ before(async () => {
   await cleanup();
   const channels = new EditorChannelsRepository(pool);
   for (const k of [A, B, C]) await channels.insertIfMissing({ ...makeDefaultCard(k, k), mode: 'live', quietStartHour: 23, quietEndHour: 8 });
+  for (const k of [D, E]) await channels.insertIfMissing({ ...makeDefaultCard(k, k), mode: 'approve', quietStartHour: 23, quietEndHour: 8 });
   const profiles = new ResourceProfilesRepository(pool);
   await profiles.setProfile(`telegram:${A}`, ResourceProfileSchema.parse({ topic: 'Космос, астрономія, телескопи і планети', audience: { who: 'дорослі, що цікавляться космосом' }, goals: ['growth'] }), 'owner');
   await profiles.setProfile(`telegram:${B}`, ResourceProfileSchema.parse({ topic: 'Астрономія для початківців: телескопи, планети', audience: { who: 'дорослі новачки в астрономії' }, goals: ['growth'] }), 'owner');
@@ -109,4 +113,33 @@ test('cross-promo: scheduled with a tracked invite link; pair cooldown, relevanc
   assert.equal(stats[0].joins, 1);
   const { rows: hashes } = await pool.query(`SELECT tg_user_hash FROM link_joins`);
   assert.ok(hashes.every((h) => !/^\d+$/.test(h.tg_user_hash ?? '')), 'no raw user ids');
+});
+
+test('approval mode (031 FR-009): a cross-promo of an approval channel gets a working tracked link, not the shadow stand-in', { skip }, async () => {
+  const agents = new AgentsRepository(pool);
+  const orch = await agents.insert({ kind: 'orchestrator', scope: 'resource', scopeId: `telegram:${D}`, name: 'Sky', handle: 'promo_pg_sky_appr', mode: 'approve', createdBy: 'owner' });
+  const profiles = new ResourceProfilesRepository(pool);
+  for (const k of [D, E]) {
+    await profiles.setProfile(`telegram:${k}`, ResourceProfileSchema.parse({ topic: 'Астрономія для початківців: телескопи, планети, зорі', audience: { who: 'дорослі новачки в астрономії' }, goals: ['growth'] }), 'owner');
+  }
+  const directives = new DirectivesRepository(pool);
+  const catalog = { list: async () => [D, E].map((k) => ({ ref: `telegram:${k}`, platform: 'telegram' as const, title: k, username: k.slice(1), followers: null, groupId: null, groupName: null, agent: null })) };
+  const created: string[] = [];
+  const links = new TrackedLinks({ pool, salt: 'test', redirectBase: null, createInvite: async (key, name) => { created.push(`${key}:${name}`); return `https://t.me/+${name.replace(/[^a-z0-9]/gi, '')}`; } });
+  const planner = new PromoPlanner({
+    pool, plans: new EditorPlansRepository(pool), catalog, profiles, links, directives,
+    card: (k) => new EditorChannelsRepository(pool).get(k), usable: async () => true, bestHours: async () => [12],
+  });
+  const d = await directives.insert({
+    fromAgentId: null, toAgentId: orch.id, kind: 'cross_promo', structural: true, body: `Промо ${E}`, params: { source_ref: `telegram:${D}`, target_ref: `telegram:${E}`, window_days: 3 },
+    rationale: 'аудиторії перетинаються', evidence: { x: 1 }, expected: null, reviewAt: null, status: 'new', shadow: false,
+  });
+  await directives.update(d.id, { status: 'accepted' });
+  const r: any = await planner.schedule((await directives.get(d.id))!, orch, D);
+  assert.equal(r.ok, true, JSON.stringify(r));
+  assert.equal(r.tracked, true, 'approval mode creates the real invite link');
+  assert.equal(created.length, 1);
+  const { rows } = await pool.query(`SELECT promo FROM editor_slots WHERE id = $1`, [r.slotId]);
+  assert.equal(rows[0].promo.tracked, true);
+  assert.ok(rows[0].promo.link_url.startsWith('https://t.me/+'));
 });

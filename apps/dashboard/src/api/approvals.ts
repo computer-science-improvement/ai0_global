@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { api } from './client';
-import type { TgMessage } from './types';
+import type { EditorMode, TgMessage } from './types';
 
 // Approval mode (spec 031): posts the agents wrote that wait for the owner.
 // GET /api/editor/approvals, POST /api/editor/approvals/:id/{approve,edit,reschedule,reject}, POST …/bulk.
@@ -14,7 +14,9 @@ export interface RenderedPlatformPost {
 
 export type ApprovalRender =
   | { kind: 'telegram'; messages: TgMessage[]; primary: number }
-  | { kind: 'platform'; platform: string; rendered: RenderedPlatformPost };
+  | { kind: 'platform'; platform: string; rendered: RenderedPlatformPost }
+  // A repost (spec 022) that waits: a native forward of an own post.
+  | { kind: 'forward'; fromKey: string; messageId: number };
 
 export interface ApprovalCardData {
   id:            string;
@@ -116,6 +118,71 @@ export function useBulkApprove() {
         method: 'POST', body: JSON.stringify(b),
       }),
     onSettled: () => qc.invalidateQueries({ queryKey: KEY }),
+  });
+}
+
+// ── approval stats and the approve ⇄ live switch (spec 031 T5/T6) ────────────
+// GET /api/editor/approvals/stats?resource=|channel=&days=, GET/POST /api/editor/approvals/autonomy.
+
+export interface ApprovalStats {
+  approved: number; approvedClean: number; edited: number; rejected: number; expired: number;
+  approvalRate: number | null; editRate: number | null; cleanRate: number | null;
+  medianTimeToApproveSec: number | null;
+  topRejectReasons: Array<{ reason: string; count: number }>;
+  rejectedWithoutReason: number;
+}
+
+export interface ApprovalStatsReport {
+  days: number; from: string; to: string; resource: string | null; channel: string | null;
+  totals: ApprovalStats & { waiting: number };
+  byResource: Array<ApprovalStats & { channelKey: string; resourceRef: string }>;
+}
+
+export interface AutonomyPreview {
+  channel: string; title: string | null; mode: EditorMode; cardMode: EditorMode; days: number;
+  stats: ApprovalStats & { waiting: number };
+  byResource: ApprovalStatsReport['byResource'];
+  waiting: number; waitingWithWarnings: number;
+}
+
+export interface AutonomySwitchResult {
+  channel: string; from: EditorMode; to: 'live' | 'approve'; changed: boolean;
+  approved: number; skippedWithWarnings: number; conflicts: number; leftWaiting: number;
+}
+
+export function useApprovalStats(f: { channel?: string; resource?: string; days?: number }, opts: { enabled?: boolean } = {}) {
+  const qs = new URLSearchParams();
+  if (f.channel)  qs.set('channel', f.channel);
+  if (f.resource) qs.set('resource', f.resource);
+  qs.set('days', String(f.days ?? 14));
+  return useQuery({
+    queryKey: [...KEY, 'stats', f.channel ?? null, f.resource ?? null, f.days ?? 14],
+    queryFn:  () => api<ApprovalStatsReport>(`/api/editor/approvals/stats?${qs.toString()}`),
+    enabled:  opts.enabled ?? true,
+  });
+}
+
+/** The switch dialog's numbers: 14 days of decisions and the posts that wait. */
+export function useAutonomyPreview(channel: string | null) {
+  return useQuery({
+    queryKey: [...KEY, 'autonomy', channel],
+    queryFn:  () => api<AutonomyPreview>(`/api/editor/approvals/autonomy?channel=${encodeURIComponent(channel!)}`),
+    enabled:  !!channel,
+  });
+}
+
+/** approve → live (with or without approving the waiting posts) or live → approve. */
+export function useSwitchAutonomy() {
+  const qc = useQueryClient();
+  return useMutation({
+    meta: { silentError: true },
+    mutationFn: (b: { channel: string; mode: 'live' | 'approve'; approve_waiting?: boolean }) =>
+      api<AutonomySwitchResult>('/api/editor/approvals/autonomy', { method: 'POST', body: JSON.stringify(b) }),
+    onSettled: () => {
+      qc.invalidateQueries({ queryKey: KEY });
+      qc.invalidateQueries({ queryKey: ['editor'] });
+      qc.invalidateQueries({ queryKey: ['agents'] });
+    },
   });
 }
 

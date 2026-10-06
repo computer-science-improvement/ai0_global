@@ -54,7 +54,7 @@ function EditorChannelPage() {
           <div className="text-micro" style={{ color: 'var(--color-ink-dim)', textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: 10 }}>Mode</div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
             <Badge tone={MODE_TONE[c.mode]}>{c.mode}</Badge>
-            <ModeSwitch channelKey={c.channelKey} mode={c.mode} />
+            <ModeSwitch channelKey={c.channelKey} mode={c.mode} title={c.title} />
           </div>
         </div>
         <StatTile label="Spend today" value={fmtUsd(c.today.spendUsd)} icon="analytics" delta={`${c.today.runs} runs · cap ${c.dailyBudgetUsd == null ? 'env default' : fmtUsd(c.dailyBudgetUsd)}`} />

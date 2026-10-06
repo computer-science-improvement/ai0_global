@@ -19,6 +19,7 @@ import { AgentCreator } from '../agents/agent-creator';
 import { EditorRunnerService } from '../roles/editor-runner.service';
 import { makeCard } from '../post/testing/fixtures';
 import type { EditorSlot } from '../repo/editor-plans.repository';
+import { buildEditorMcpTools, type EditorApi } from '../mcp/editor-mcp-tools';
 
 const makeSlot = (o: Partial<EditorSlot> = {}): EditorSlot => ({
   id: 's1', planId: 'p1', channelKey: '@chan', scheduledAt: new Date('2030-03-04T10:00:00Z'), kind: 'content', format: 'photo',
@@ -149,4 +150,35 @@ test('runner: an orchestrator in approve lowers a live card to approve for the e
 
   await runner.runExecutor({ ...makeSlot(), resourceRef: 'instagram:ig1' }, makeCard({ mode: 'live' }));
   assert.equal(seen[1].extras.platformSlot.mode, 'approve', 'platform slots too');
+});
+
+test('T5: the owner\'s approve ⇄ live switch is reachable from no agent or MCP tool', async () => {
+  const any = {} as any;
+  const agentTools: EditorTool[] = [
+    ...buildBuilderTools({ agents: any, catalog: any, profiles: any, creator: any, skills: any, actions: any }),
+    ...buildAgentChatTools({ pool: any, memory: any, skills: any, actions: any }),
+    ...buildAgentSkillTools({ agents: any, skills: any, kpi: any, inbox: any }),
+    ...buildDirectiveTools({ repo: any, agents: any, inbox: any, memory: any, actions: any, digest: any, channelKeyOf: async () => null }),
+    ...buildNetworkTools({ repo: any, plans: any, memory: any, inbox: any }),
+    ...buildPlatformTools({ pool: any, publish: any, plans: any }),
+    ...buildRoleTools({ pool: any, plans: any, memory: any, channels: any, publisher: any, recordPublish: () => {} }),
+  ];
+  for (const t of agentTools) {
+    assert.ok(!/autonomy|set_mode|switch_mode/i.test(t.name), `${t.name} looks like a mode switch`);
+    const params = JSON.stringify(toToolSpec(t).parameters);
+    assert.ok(!/approve_waiting/.test(params), `${t.name} carries the switch dialog's choice`);
+  }
+
+  // The MCP surface (the owner's operator tools): set_mode lowers only; live and approve never reach the API.
+  const calls: string[] = [];
+  const api: EditorApi = {
+    get: async (path) => { calls.push(`GET ${path}`); return path === '/api/editor/tools' ? [] : { channelKey: '@x', mode: 'approve' }; },
+    post: async (path, body) => { calls.push(`POST ${path} ${JSON.stringify(body ?? null)}`); return {}; },
+    put: async (path, body) => { calls.push(`PUT ${path} ${JSON.stringify(body ?? null)}`); return {}; },
+  };
+  const mcp = await buildEditorMcpTools(api);
+  const setMode = mcp.find((t) => t.name === 'set_mode')!;
+  for (const mode of ['live', 'approve']) await assert.rejects(setMode.call({ channel: '@x', mode }), /human-only/);
+  assert.ok(!mcp.some((t) => /autonomy/i.test(t.name)), 'no MCP tool for the switch');
+  assert.ok(!calls.some((c) => /approvals\/autonomy|"mode":"(live|approve)"/.test(c)), calls.join('\n'));
 });

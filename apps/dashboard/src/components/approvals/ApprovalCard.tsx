@@ -50,6 +50,8 @@ export function ApprovalCard({ item, delay = 0 }: { item: ApprovalCardData; dela
   const busy = action.isPending;
   const waiting = item.status === 'awaiting_approval';
   const approved = item.status === 'approved';
+  // A repost (spec 022) is a native forward: it can be approved, moved or rejected, not edited.
+  const forward = item.render?.kind === 'forward';
   const editable = waiting || (approved && new Date(item.editableUntil).getTime() > Date.now());
   const st = STATUS[item.status] ?? { label: item.status, tone: 'neutral' as Tone };
   const title = item.channelTitle || item.channelKey;
@@ -83,7 +85,14 @@ export function ApprovalCard({ item, delay = 0 }: { item: ApprovalCardData; dela
         ? <TelegramPreview messages={item.render.messages} channelTitle={item.channelTitle} channelKey={item.channelKey} time={item.localTime} />
         : item.render?.kind === 'platform'
           ? <PlatformPreview platform={item.platform} title={title} post={item.render.rendered} time={item.localTime} />
-          : <div className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>Превʼю недоступне.</div>}
+          : item.render?.kind === 'forward'
+            ? (
+              <div className="text-body-sm" style={{ padding: '10px 12px', background: 'var(--color-surface-1)', border: '1px solid var(--color-hairline-soft)', borderRadius: 'var(--radius-md)', overflowWrap: 'anywhere' }}>
+                ↪️ Repost of {item.render.fromKey}/{item.render.messageId} into {item.channelKey}
+                <span className="text-micro" style={{ display: 'block', color: 'var(--color-ink-dim)' }}>Forwarded as is at the slot time; it cannot be edited.</span>
+              </div>
+            )
+            : <div className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>Превʼю недоступне.</div>}
 
       <Rationale item={item} />
 
@@ -106,7 +115,7 @@ export function ApprovalCard({ item, delay = 0 }: { item: ApprovalCardData; dela
               <Icon name="check" size={14} /> Апрувнути
             </button>
           )}
-          {editable && (
+          {editable && !forward && (
             <button className="btn-secondary" disabled={busy} onClick={() => setModal('edit')} style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
               <Icon name="pencil" size={14} /> {waiting ? 'Редагувати й апрувнути' : 'Редагувати'}
             </button>

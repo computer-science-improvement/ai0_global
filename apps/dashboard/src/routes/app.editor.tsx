@@ -109,7 +109,7 @@ function ChannelRow({ c, delay }: { c: EditorChannel; delay: number }) {
         <div style={{ fontWeight: 600 }}>{fmtUsd(c.today.spendUsd)}</div>
         <div className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>{c.today.runs} runs today</div>
       </div>
-      <ModeSwitch channelKey={c.channelKey} mode={c.mode} />
+      <ModeSwitch channelKey={c.channelKey} mode={c.mode} title={c.title} />
       <RowActions>
         <TableAction icon="calendar-sync" title="Replan today" disabled={replan.isPending || c.mode === 'off'} onClick={() => replan.mutate(c.channelKey)} />
         <Link to="/app/editor/$channel" params={{ channel: c.channelKey }} className="btn-act" title="Open channel" aria-label="Open channel">

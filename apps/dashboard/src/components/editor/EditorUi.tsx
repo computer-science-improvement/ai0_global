@@ -3,6 +3,8 @@
 // formatters.
 
 import { Link } from '@tanstack/react-router';
+import { useState } from 'react';
+import { AutonomyDialog } from '../approvals/AutonomyDialog';
 import { Badge } from '../ui/Badge';
 import { Icon } from '../ui/Icon';
 import { TableAction, RowActions } from '../ui/table';
@@ -60,32 +62,26 @@ export const MODE_OPTIONS = [
 
 /**
  * off / shadow / approve / live switch. Going live publishes to the real channel
- * without the owner's approval, so it needs an explicit confirmation.
+ * (and every resource of its network) without the owner's approval, so it goes
+ * through the autonomy dialog (spec 031 FR-010: 14 days of decisions and the
+ * waiting posts). live → approve and the other moves are one click.
  */
-export function ModeSwitch({ channelKey, mode }: { channelKey: string; mode: EditorMode }) {
-  const confirm = useConfirm();
+export function ModeSwitch({ channelKey, mode, title }: { channelKey: string; mode: EditorMode; title?: string | null }) {
   const setMode = useSetEditorMode();
+  const [goLive, setGoLive] = useState(false);
 
   const onChange = async (next: EditorMode) => {
     if (next === mode || setMode.isPending) return;
-    if (next === 'live') {
-      const ok = await confirm(`switch ${channelKey} to LIVE`, {
-        danger: true,
-        confirmLabel: 'Go live',
-        details: (
-          <div className="callout-warning" style={{ flexDirection: 'column', gap: 6 }}>
-            <strong>Агент публікуватиме без вашого апруву.</strong>
-            <span className="text-micro">Перед цим: пости в режимі «На апруві» виходили без правок, витрати в межах ліміту, і жодна стара стратегія не постить у цей канал.
-              Пости, що вже чекають апруву, лишаються в «Пости на апрув».</span>
-          </div>
-        ),
-      });
-      if (!ok) return;
-    }
+    if (next === 'live') { setGoLive(true); return; }
     setMode.mutate({ key: channelKey, mode: next });
   };
 
-  return <SegmentedTabs size="sm" value={mode} onChange={onChange} options={MODE_OPTIONS} />;
+  return (
+    <>
+      <SegmentedTabs size="sm" value={mode} onChange={onChange} options={MODE_OPTIONS} />
+      {goLive && <AutonomyDialog channel={channelKey} title={title} onClose={() => setGoLive(false)} />}
+    </>
+  );
 }
 
 /** One slot as a card-row: time, channel, format, topic, status; run/skip while planned. */
