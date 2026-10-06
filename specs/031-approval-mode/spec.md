@@ -2,7 +2,7 @@
 
 **Status:** SPEC · **Depends on:** 010 (chat drafts), 017/018 (agents, Inbox, cards), 019 (platform posts), 020 (planner)
 · **Extends:** 023 (schedule changes), 024 (per-resource variants), 025 (directives), 026 (landing claim), 029 (stats)
-· **Migration:** `063_approval_mode.sql`
+· **Migration:** `057_approval_mode.sql`
 
 **Owner decision (2026-10-06, chat):** «агенти будуть працювати через мій апрув лише на етапі тестування та відлагодження
 платформи, і по дефолту це буде увімкнено для нових ресурсів які я додаватиму, після цього я можу перемкнути і агент буде
@@ -35,7 +35,7 @@ owner switches a resource to autonomous (`live`) when they trust it, and can swi
 ## Functional requirements
 | ID | Requirement |
 |---|---|
-| FR-001 | **Mode `approve` (`063_approval_mode.sql`).** <br>• `approve` is added to `editor_channels.mode` and `agents.mode`. <br>• The slot statuses `awaiting_approval`, `approved` and `expired` are added to `editor_slots`; `awaiting_approval` is added to `platform_posts.status`. <br>• `editor_channels` gets `approval_hold_hours int default 6` and `approval_lead_hours int default 12`. <br>• `editor_slots` gets `approved_at`, `approved_by` (`owner`), `owner_edited bool` and `reject_reason text`. <br>• The effective mode is the lowest of the orchestrator's and the card's mode, in the order `off < shadow < approve < live`. |
+| FR-001 | **Mode `approve` (`057_approval_mode.sql`).** <br>• `approve` is added to `editor_channels.mode` and `agents.mode`. <br>• The slot statuses `awaiting_approval`, `approved` and `expired` are added to `editor_slots`; `awaiting_approval` is added to `platform_posts.status`. <br>• `editor_channels` gets `approval_hold_hours int default 6` and `approval_lead_hours int default 12`. <br>• `editor_slots` gets `approved_at`, `approved_by` (`owner`), `owner_edited bool` and `reject_reason text`. <br>• The effective mode is the lowest of the orchestrator's and the card's mode, in the order `off < shadow < approve < live`. |
 | FR-002 | **Default for new resources.** <br>• Every new resource and agent starts in `approve`. This covers `agent-creator`, connecting a Telegram channel, a Meta/TikTok account, a YouTube or LinkedIn resource (030) and an independent resource (024). <br>• This replaces the 3-day shadow start. <br>• `shadow` stays available as a manual dry-run mode. <br>• The migration does not change the mode of existing resources. |
 | FR-003 | **Lead time.** <br>• In `approve`, the executor writes a slot ahead of time. The batch for the next day is written at 20:00 in the resource's zone. A slot added later is written at least `approval_lead_hours` before it is due, capped at 3 h for slots created less than 12 h ahead. <br>• Time-sensitive formats (news, a feed source) are written 2 h before the slot and carry a `freshness_deadline`. |
 | FR-004 | **Waiting posts.** <br>• In `approve`, `publish_post` and `publish_platform` run every check of a live publish: lint, dedup and a dry render. Media are fully prepared, including carousel slides and album files, so the owner sees exactly what will go out. <br>• The slot then goes to `awaiting_approval`, with the spec, the rendered preview and the `render.messages` used by `TelegramPreview`. <br>• Nothing is sent. The tool returns `{ok: true, awaiting_approval: true}` so the agent ends the run normally. |

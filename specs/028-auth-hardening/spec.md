@@ -1,6 +1,6 @@
 # 028: Auth hardening: route guard, server-side gating of /app, revocable sessions, no dev-mode in production
 
-**Status:** SPEC · **Depends on:** 001 (login rate limit, `safeEqual`, fail-closed `JWT_SECRET`) · **Migration:** `060_auth_sessions.sql`
+**Status:** SPEC · **Depends on:** 001 (login rate limit, `safeEqual`, fail-closed `JWT_SECRET`) · **Migration:** `055_auth_sessions.sql`
 **Owner comments addressed:** #15 (plans/brd-comments-2026-10-06.md)
 
 ## Why
@@ -42,7 +42,7 @@ router, and gives the owner control over sessions.
 ## Functional requirements
 | ID | Requirement |
 |----|-------------|
-| FR-001 | **Migration `060_auth_sessions.sql`.** <br>• `auth_sessions(id uuid pk, method text check in (token, telegram, link), subject_id bigint, first_name text, username text, ip inet, user_agent text, created_at, last_seen_at, revoked_at timestamptz null, revoked_reason text null)`, with an index on `(revoked_at, last_seen_at)`. <br>• `auth_events(id bigserial pk, at timestamptz default now(), kind text check in (login_ok, login_failed, rate_limited, locked_out, logout, revoked, revoke_all, expired), method text null, code text null, subject_id bigint null, session_id uuid null, ip inet, user_agent text)`. <br>Neither table ever stores a token, a token prefix or a widget hash. |
+| FR-001 | **Migration `055_auth_sessions.sql`.** <br>• `auth_sessions(id uuid pk, method text check in (token, telegram, link), subject_id bigint, first_name text, username text, ip inet, user_agent text, created_at, last_seen_at, revoked_at timestamptz null, revoked_reason text null)`, with an index on `(revoked_at, last_seen_at)`. <br>• `auth_events(id bigserial pk, at timestamptz default now(), kind text check in (login_ok, login_failed, rate_limited, locked_out, logout, revoked, revoke_all, expired), method text null, code text null, subject_id bigint null, session_id uuid null, ip inet, user_agent text)`. <br>Neither table ever stores a token, a token prefix or a widget hash. |
 | FR-002 | **Sessions (`SessionService`).** <br>• Login inserts an `auth_sessions` row and signs a JWT `{sub, sid, method, firstName, username, v: 2}` with `exp` = `AUTH_ACCESS_TTL_MIN` (default 60). Cookie `tracking_jwt` keeps its attributes; `maxAge` = the idle window. <br>• **Valid** = not revoked, `last_seen_at + AUTH_IDLE_TTL_DAYS (7)` and `created_at + AUTH_ABSOLUTE_TTL_DAYS (30)` both in the future. <br>• **Sliding renewal:** a guarded request whose JWT is past half-life (or expired but within the idle window) is re-checked in the DB and gets a fresh cookie. <br>• `last_seen_at` written at most every 5 min. In-process cache `sid → state` (TTL 60 s), invalidated synchronously on revoke (single instance, 001 FR-015). Empty env = default. |
 | FR-003 | **One authenticator.** `authenticate(req)` serves `TrackingAuthGuard`, `/auth/me` and `/auth/check`: Bearer `TRACKING_TOKEN` (constant-time) → session cookie → dev bypass (unchanged rules). Returns `{method: bearer|session|dev, identity, sid?}`. 401 body `{code}`: `no_credentials`, `session_expired`, `session_revoked`, `session_legacy` (JWT without `sid`). |
 | FR-004 | **`GET /auth/check`** for nginx: 204/401, empty body, `no-store`; no writes, no cookie re-issue, no rate limit; DB read only on cache miss. On a DB error: 204 if the JWT is unexpired, else 503 (never 401, so an outage is not a logout). |
@@ -109,7 +109,7 @@ router, and gives the owner control over sessions.
 ## Task breakdown
 
 ### T1: Add session and audit schema with SessionService
-**Scope:** `060_auth_sessions.sql`; `auth/session.service.ts` (issue, verify, renew, revoke, cache, `last_seen`
+**Scope:** `055_auth_sessions.sql`; `auth/session.service.ts` (issue, verify, renew, revoke, cache, `last_seen`
 throttle); `auth/auth-events.repository.ts`; TTL env parsing with empty = default; the daily purge cron.
 **Acceptance:** the FR-001 and FR-002 unit tests pass; the PG test applies the migration; no secret columns.
 **Size:** M
