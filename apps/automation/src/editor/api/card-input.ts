@@ -3,9 +3,13 @@ import type { EditorCard } from '../card';
 import { SUPPORTED_FORMATS } from '../post/post-spec';
 import { API_SOURCE_NAMES } from '../tools/api-adapters/names';
 
-/** Column defaults of editor_channels (migration 042), used when a card is created through the API. */
+/**
+ * Defaults of a card created through the API: the editor_channels column
+ * defaults (migration 042), except the mode — a new resource starts in
+ * `approve` (spec 031 FR-002), so its first posts wait for the owner.
+ */
 export const CARD_DEFAULTS: Omit<EditorCard, 'channelKey'> = {
-  mode: 'off', title: null, language: 'uk', timezone: 'Europe/Kyiv',
+  mode: 'approve', title: null, language: 'uk', timezone: 'Europe/Kyiv',
   postsPerDayMin: 2, postsPerDayMax: 6, quietStartHour: 23, quietEndHour: 8, minGapMinutes: 60, planHour: 6,
   brief: '', formats: { text: 1, photo: 1 }, hashtags: [], hashtagMin: 1, hashtagMax: 3, footer: null,
   linkStyle: 'inline', emojiPolicy: 'sparse', skills: [], sources: [], toolsAllow: null,
@@ -39,7 +43,7 @@ const SourceSchema = z.object({
 
 /** Every editable card field, with the editor_channels column constraints. */
 const CardFields = z.object({
-  mode:           z.enum(['off', 'shadow', 'live']),
+  mode:           z.enum(['off', 'shadow', 'approve', 'live']),
   title:          z.string().trim().max(200).nullable(),
   language:       z.string().trim().min(2).max(10),
   timezone:       z.string().refine(isTimeZone, 'unknown IANA time zone'),

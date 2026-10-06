@@ -10,7 +10,7 @@ import { Modal } from '../Modal';
 import { SegmentedTabs } from '../SegmentedTabs';
 import { useConfirm } from '../ui/ConfirmDialog';
 import { describeError, toast } from '../ui/Toast';
-import { MODE_TONE, RUN_TONE } from '../editor/EditorUi';
+import { MODE_LABEL, MODE_OPTIONS, MODE_TONE, RUN_TONE } from '../editor/EditorUi';
 import { fmtDate, fmtRelative } from '../../lib/format';
 import { usePatchAgent, type Agent, type AgentActivity, type AgentKind, type AgentMode, type AgentNode } from '../../api/agents';
 
@@ -48,7 +48,7 @@ export function ScopeChip({ agent }: { agent: Pick<Agent, 'scope' | 'scopeId'> }
 export function StateBadges({ agent }: { agent: Pick<Agent, 'mode' | 'pausedUntil'> & { paused: boolean } }) {
   return (
     <>
-      <Badge tone={MODE_TONE[agent.mode]}>{agent.mode}</Badge>
+      <Badge tone={MODE_TONE[agent.mode]}>{MODE_LABEL[agent.mode]}</Badge>
       {agent.paused && (
         <Badge tone="danger" title={agent.pausedUntil ? `until ${fmtDate(agent.pausedUntil)}` : 'until resumed'}>
           paused{agent.pausedUntil ? ` · until ${fmtDate(agent.pausedUntil)}` : ''}
@@ -69,13 +69,7 @@ export function LastRun({ activity }: { activity: AgentActivity | null }) {
   );
 }
 
-const MODE_OPTIONS = [
-  { key: 'off' as const,    label: 'Off' },
-  { key: 'shadow' as const, label: 'Shadow' },
-  { key: 'live' as const,   label: 'Live' },
-];
-
-/** off / shadow / live. Going live may publish to real resources, so it is confirmed. */
+/** off / shadow / approve / live. Going live may publish to real resources without approval, so it is confirmed. */
 export function AgentModeSwitch({ agent }: { agent: Pick<Agent, 'handle' | 'mode' | 'scopeId' | 'kind'> }) {
   const confirm = useConfirm();
   const patch = usePatchAgent(agent.handle);
@@ -87,8 +81,8 @@ export function AgentModeSwitch({ agent }: { agent: Pick<Agent, 'handle' | 'mode
         confirmLabel: 'Go live',
         details: (
           <div className="callout-warning" style={{ flexDirection: 'column', gap: 6 }}>
-            <strong>The agent will act for real{agent.scopeId ? ` on ${agent.scopeId}` : ''}.</strong>
-            <span className="text-micro">For a Telegram resource orchestrator this is the channel card's publishing switch. Check its shadow previews, spend and that no legacy strategy still posts to the same resource.</span>
+            <strong>Агент публікуватиме сам, без вашого апруву{agent.scopeId ? ` у ${agent.scopeId}` : ''}.</strong>
+            <span className="text-micro">Для оркестратора Telegram-ресурсу це перемикач публікацій картки каналу. Перевірте, що пости на апруві виходили без правок, витрати і що жодна стара стратегія не постить у той самий ресурс.</span>
           </div>
         ),
       });

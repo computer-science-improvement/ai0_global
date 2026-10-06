@@ -110,11 +110,14 @@ export function buildComposerSystemPrompt(o: {
   ].join('\n');
 }
 
-export function plannerUserPrompt(card: EditorCard, now: Date, reserved: EditorSlot[]): string {
+export function plannerUserPrompt(card: EditorCard, now: Date, reserved: EditorSlot[], planDate?: string): string {
   const tz = card.timezone;
+  const ahead = !!planDate && planDate !== localDate(now, tz);
   return [
     `Сьогодні ${WEEKDAYS[localWeekday(now, tz)]}, ${localDate(now, tz)}, зараз ${localTimeLabel(now, tz)} (${tz}).`,
-    `Склади план публікацій каналу на сьогодні: ${card.postsPerDayMin}–${card.postsPerDayMax} постів з урахуванням резервних.`,
+    ahead
+      ? `Склади план публікацій каналу на ${planDate}: ${card.postsPerDayMin}–${card.postsPerDayMax} постів з урахуванням резервних. Режим апруву: пости напишуть заздалегідь, власник схвалить їх увечері.`
+      : `Склади план публікацій каналу на сьогодні: ${card.postsPerDayMin}–${card.postsPerDayMax} постів з урахуванням резервних.`,
     reserved.length
       ? `Резервні (рекламні) слоти, їх не чіпай і тримай інтервал: ${reserved.map((r) => localTimeLabel(r.scheduledAt, tz)).join(', ')}.`
       : 'Резервних слотів немає.',
@@ -131,6 +134,9 @@ export function executorUserPrompt(card: EditorCard, slot: EditorSlot, now: Date
     slot.angle ? `Кут подачі: ${slot.angle}` : '',
     slot.sourceHints.length ? `Підказки джерел: ${slot.sourceHints.join('; ')}` : 'Підказок джерел немає — обери сам із джерел картки або бібліотеки.',
     slot.isExperiment ? 'Це експеримент: зроби його чисто за задумом планувальника, щоб результат можна було оцінити.' : '',
+    card.mode === 'approve'
+      ? 'Режим апруву: пишеш заздалегідь. publish_post нічого не надсилає — пост чекатиме схвалення власника, і код опублікує його в час слота.'
+      : '',
     'Підготуй пост і опублікуй його через publish_post (після lint_post) або пропусти через skip_slot з причиною.',
   ].filter(Boolean).join('\n');
 }

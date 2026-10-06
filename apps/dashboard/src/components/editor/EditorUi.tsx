@@ -1,5 +1,5 @@
 // Shared bits of the editor-agent pages (/app/editor*, spec 006): status tones,
-// the off/shadow/live switch (live behind a confirmation), slot rows and small
+// the off/shadow/approve/live switch (live behind a confirmation), slot rows and small
 // formatters.
 
 import { Link } from '@tanstack/react-router';
@@ -12,17 +12,21 @@ import { useRunSlot, useSetEditorMode, useSkipSlot } from '../../api/editor';
 import type { Tone } from '../ui/primitives';
 import type { EditorMode, EditorRunStatus, EditorSlot, EditorSlotStatus } from '../../api/types';
 
-export const MODE_TONE: Record<EditorMode, Tone> = { off: 'neutral', shadow: 'warning', live: 'success' };
+export const MODE_TONE: Record<EditorMode, Tone> = { off: 'neutral', shadow: 'warning', approve: 'accent', live: 'success' };
+
+/** Owner-facing mode names (spec 031: approval mode is «На апруві»). */
+export const MODE_LABEL: Record<EditorMode, string> = { off: 'Off', shadow: 'Shadow', approve: 'На апруві', live: 'Live' };
 
 export const SLOT_TONE: Record<EditorSlotStatus, Tone> = {
   planned: 'neutral', running: 'warning', shadowed: 'accent', published: 'success', skipped: 'neutral', failed: 'danger',
+  awaiting_approval: 'warning', approved: 'accent', expired: 'neutral',
 };
 
 export const RUN_TONE: Record<EditorRunStatus, Tone> = {
   running: 'warning', ok: 'success', error: 'danger', budget_exceeded: 'danger', max_steps: 'warning', disabled: 'neutral',
 };
 
-export const SLOT_ORDER: EditorSlotStatus[] = ['planned', 'running', 'shadowed', 'published', 'skipped', 'failed'];
+export const SLOT_ORDER: EditorSlotStatus[] = ['planned', 'running', 'awaiting_approval', 'approved', 'shadowed', 'published', 'skipped', 'expired', 'failed'];
 
 export const fmtUsd = (n: number | null | undefined) =>
   n == null ? '—' : `$${n < 0.01 && n > 0 ? n.toFixed(4) : n.toFixed(n < 10 ? 3 : 2)}`;
@@ -47,15 +51,16 @@ export function SlotCounts({ slots }: { slots: Partial<Record<EditorSlotStatus, 
   );
 }
 
-const MODE_OPTIONS = [
-  { key: 'off' as const,    label: 'Off' },
-  { key: 'shadow' as const, label: 'Shadow' },
-  { key: 'live' as const,   label: 'Live' },
+export const MODE_OPTIONS = [
+  { key: 'off' as const,     label: MODE_LABEL.off },
+  { key: 'shadow' as const,  label: MODE_LABEL.shadow },
+  { key: 'approve' as const, label: MODE_LABEL.approve },
+  { key: 'live' as const,    label: MODE_LABEL.live },
 ];
 
 /**
- * off / shadow / live switch. Going live publishes to the real channel, so it
- * needs an explicit confirmation with the go-live checklist (runbook §3).
+ * off / shadow / approve / live switch. Going live publishes to the real channel
+ * without the owner's approval, so it needs an explicit confirmation.
  */
 export function ModeSwitch({ channelKey, mode }: { channelKey: string; mode: EditorMode }) {
   const confirm = useConfirm();
@@ -69,9 +74,9 @@ export function ModeSwitch({ channelKey, mode }: { channelKey: string; mode: Edi
         confirmLabel: 'Go live',
         details: (
           <div className="callout-warning" style={{ flexDirection: 'column', gap: 6 }}>
-            <strong>The editor will publish to the real channel.</strong>
-            <span className="text-micro">Checklist: ≥ 7 days in shadow, ≥ 80% of slots shadowed (not failed), previews read well,
-              spend under the cap, and no legacy strategy still posting to this channel.</span>
+            <strong>Агент публікуватиме без вашого апруву.</strong>
+            <span className="text-micro">Перед цим: пости в режимі «На апруві» виходили без правок, витрати в межах ліміту, і жодна стара стратегія не постить у цей канал.
+              Пости, що вже чекають апруву, лишаються в «Пости на апрув».</span>
           </div>
         ),
       });

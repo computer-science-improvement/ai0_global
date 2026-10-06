@@ -43,7 +43,7 @@ const PROFILE = {
   goals: ['growth', 'engagement'], taboo: ['політика'],
 };
 
-test('catalog → create card → apply → orchestrator, children, profile and a shadow card', { skip }, async () => {
+test('catalog → create card → apply → orchestrator, children, profile and an approval-mode card (spec 031)', { skip }, async () => {
   const agents = new AgentsRepository(pool);
   const channels = new EditorChannelsRepository(pool);
   const registry = new AgentRegistrySync({ agents, channels });
@@ -73,12 +73,13 @@ test('catalog → create card → apply → orchestrator, children, profile and 
 
   const orch = await agents.getByHandle('nomad_pg');
   assert.ok(orch);
-  assert.equal(orch!.mode, 'shadow');
-  assert.ok(orch!.shadowUntil && orch!.shadowUntil.getTime() > Date.now() + 2 * 86_400_000);
+  assert.equal(orch!.mode, 'approve', 'a new resource starts in approval mode');
+  assert.equal(orch!.shadowUntil, null, 'no 3-day shadow start any more');
   assert.equal((await agents.children(orch!.id)).length, 4);
+  assert.ok((await agents.children(orch!.id)).every((k) => k.mode === 'approve'));
   assert.equal((await profiles.get(REF))!.profile!.topic, PROFILE.topic);
   const c = await channels.get(CH);
-  assert.equal(c!.mode, 'shadow');
+  assert.equal(c!.mode, 'approve');
   assert.equal(c!.brief, 'TG — маршрути й поради.');
   assert.deepEqual(c!.bannedTerms, ['політика']);
 

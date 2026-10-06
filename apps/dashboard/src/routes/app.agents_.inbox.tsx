@@ -10,13 +10,32 @@ import { SegmentedTabs } from '../components/SegmentedTabs';
 import { indexTree } from '../components/agents/AgentsUi';
 import { fmtDate, fmtRelative } from '../lib/format';
 import { useAgentInbox, useAgentTree, useMarkInboxRead, type InboxItem } from '../api/agents';
+import { useApprovalsCount } from '../api/approvals';
+import { ApprovalList } from '../components/approvals/ApprovalList';
 
-export const Route = createFileRoute('/app/agents_/inbox')({ component: InboxPage });
+type InboxTab = 'approvals' | 'unread' | 'all';
+
+export const Route = createFileRoute('/app/agents_/inbox')({
+  // ?tab=approvals — «Пости на апрув» (spec 031); the owner's Telegram alert links here.
+  validateSearch: (s: Record<string, unknown>): { tab?: InboxTab } => ({
+    tab: s.tab === 'approvals' || s.tab === 'all' || s.tab === 'unread' ? s.tab : undefined,
+  }),
+  component: InboxPage,
+});
 
 const SEVERITY_TONE: Record<InboxItem['severity'], 'neutral' | 'warning' | 'danger'> = { info: 'neutral', action: 'warning', critical: 'danger' };
 
 function InboxPage() {
-  const [filter, setFilter] = useState<'unread' | 'all'>('unread');
+  const { tab } = Route.useSearch();
+  const navigate = Route.useNavigate();
+  const waiting = useApprovalsCount().data?.waiting ?? 0;
+  const [filterState, setFilterState] = useState<'unread' | 'all'>('unread');
+  const view: InboxTab = tab ?? filterState;
+  const filter: 'unread' | 'all' = view === 'all' ? 'all' : 'unread';
+  const setView = (v: InboxTab) => {
+    if (v !== 'approvals') setFilterState(v);
+    navigate({ search: { tab: v === 'unread' ? undefined : v }, replace: true });
+  };
   const inbox = useAgentInbox(filter === 'unread');
   const unread = useAgentInbox(true);
   const tree = useAgentTree();
@@ -38,16 +57,23 @@ function InboxPage() {
         } />
 
       <div style={{ marginBottom: 16 }}>
-        <SegmentedTabs value={filter} onChange={setFilter} options={[
+        <SegmentedTabs value={view} onChange={setView} options={[
+          { key: 'approvals', label: `Пости на апрув${waiting ? ` · ${waiting}` : ''}` },
           { key: 'unread', label: `Unread${unreadCount ? ` · ${unreadCount}` : ''}` },
           { key: 'all', label: 'All' },
         ]} />
       </div>
 
-      {inbox.error && <div className="callout-danger" style={{ marginBottom: 16 }}>{describeError(inbox.error)}</div>}
-      {!inbox.data && !inbox.error && <div className="panel compose-rise" style={{ height: 120, opacity: 0.55 }} />}
+      {view === 'approvals' && (
+        <SectionCard title="Пости на апрув" icon="check" delay={0}>
+          <ApprovalList />
+        </SectionCard>
+      )}
 
-      {inbox.data && (
+      {view !== 'approvals' && inbox.error && <div className="callout-danger" style={{ marginBottom: 16 }}>{describeError(inbox.error)}</div>}
+      {view !== 'approvals' && !inbox.data && !inbox.error && <div className="panel compose-rise" style={{ height: 120, opacity: 0.55 }} />}
+
+      {view !== 'approvals' && inbox.data && (
         <SectionCard title={filter === 'unread' ? 'Unread' : 'All messages'} icon="inbox" delay={0}>
           {items.length === 0
             ? <EmptyState icon="inbox" title={filter === 'unread' ? 'Nothing unread' : 'The inbox is empty'} note="Agents post here when they change a skill, a change is rolled back, or something needs your decision." />

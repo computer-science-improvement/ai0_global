@@ -1,4 +1,4 @@
-// Editorial card form (spec 006 T010). Creates a card (mode off) or edits an
+// Editorial card form (spec 006 T010). Creates a card (mode approve, spec 031) or edits an
 // existing one. The server validates with the same constraints as the
 // editor_channels table and its errors are shown inline.
 
@@ -109,7 +109,7 @@ export function CardEditorModal({ open, onClose, card }: { open: boolean; onClos
   return (
     <Modal open={open} onClose={onClose} size="lg" icon="sparkles"
       title={isNew ? 'New channel card' : `Edit card · ${card.channelKey}`}
-      subtitle={isNew ? 'Created in mode off — switch it to shadow when ready.' : 'What the editor agents know about this channel.'}>
+      subtitle={isNew ? 'Створюється в режимі «На апруві»: агент пише пости, але кожен чекає вашого схвалення.' : 'What the editor agents know about this channel.'}>
       {isNew && (
         <Field label="Channel key" hint="tracked_channels.channel_key, e.g. @my_channel">
           <input className="input-field" style={inputStyle} value={f.key} onChange={(e) => set('key', e.target.value)} placeholder="@my_channel" />

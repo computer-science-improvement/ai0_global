@@ -7,7 +7,12 @@ import type { AgentRegistrySync } from './agent-registry-sync';
 import type { ResourceCatalog } from './resource-catalog';
 import { ResourceProfileSchema, ResourceProfilesRepository, renderProfile } from './resource-profile';
 
-export const SHADOW_DAYS = 3;
+/**
+ * Spec 031 FR-002: a new resource and its agent start in `approve` — the agent
+ * writes real posts and each one waits for the owner. This replaced the 3-day
+ * shadow start; `shadow` stays a manual dry-run mode.
+ */
+export const NEW_RESOURCE_MODE = 'approve' as const;
 
 export const CreateAgentSchema = z.object({
   resource_ref:     z.string().min(3).max(200).optional(),
@@ -79,12 +84,11 @@ export class AgentCreator {
     const v = await this.validate(raw);
     if ('error' in v) return v;
     const { input, scope, scopeId } = v;
-    const shadowUntil = new Date(this.now().getTime() + SHADOW_DAYS * 86_400_000);
 
     // The agent first: the hourly registry sync then finds it and never creates a duplicate for the new card.
     const agent = await this.d.agents.insert({
       kind: 'orchestrator', scope, scopeId, name: input.name, handle: input.handle, emoji: input.emoji ?? '📣',
-      description: input.description ?? input.profile.topic, mode: 'shadow', shadowUntil,
+      description: input.description ?? input.profile.topic, mode: NEW_RESOURCE_MODE, shadowUntil: null,
       schedule: input.schedule ?? { times: ['06:30'] }, dailyBudgetUsd: input.daily_budget_usd ?? null, model: input.model ?? null,
       createdBy: 'builder',
     });
@@ -95,7 +99,7 @@ export class AgentCreator {
     const tg = scope === 'resource' ? parseResourceRef(scopeId) : null;
     if (tg?.platform === 'telegram' && !(await this.d.channels.get(tg.id))) {
       cardCreated = await this.d.channels.insertIfMissing({
-        ...makeDefaultCard(tg.id, input.name), mode: 'shadow', brief: briefFromProfile(input), bannedTerms: input.profile.taboo.slice(0, 50),
+        ...makeDefaultCard(tg.id, input.name), mode: NEW_RESOURCE_MODE, brief: briefFromProfile(input), bannedTerms: input.profile.taboo.slice(0, 50),
       });
     }
     if (input.brief && this.d.onBrief) {

@@ -5,7 +5,7 @@ import { checkVerbatim } from '../post/verbatim-guard';
 import type { PostSpec } from '../post/post-spec';
 import type { PreparedPublish } from '../publish/prepare-media';
 import { CAPABILITIES } from './capabilities';
-import { captionPlain, lintPlatformPost, PlatformLintResult, PlatformPostSpec, renderPlatform } from './platform-spec';
+import { captionPlain, lintPlatformPost, PlatformLintResult, PlatformPostSpec, renderPlatform, RenderedPlatformPost } from './platform-spec';
 import type { PlatformPostsRepository } from './platform-posts.repository';
 import type { ResourcePublisher } from './resource-publisher';
 
@@ -14,7 +14,8 @@ export const PLATFORM_SIMILARITY_LIMIT = 0.6;
 export const PLATFORM_MIN_GAP_MIN = 60;
 
 export interface PublishPlatformDeps {
-  posts:     Pick<PlatformPostsRepository, 'insert' | 'alreadyPosted' | 'countPublishedSince' | 'lastPostAt' | 'recentCaptions'>;
+  posts:     Pick<PlatformPostsRepository, 'insert' | 'alreadyPosted' | 'countPublishedSince' | 'lastPostAt' | 'recentCaptions'>
+    & Partial<Pick<PlatformPostsRepository, 'settle'>>;
   publisher: Pick<ResourcePublisher, 'publish'>;
   /** Render + host slides (live only). */
   hostSlides?: (slides: NonNullable<PlatformPostSpec['slides']>, key: { channelKey: string; slotId: string }) => Promise<PreparedPublish>;
@@ -28,7 +29,7 @@ export interface PublishPlatformDeps {
 export interface PublishPlatformInput {
   resourceRef:  string;
   spec:         PlatformPostSpec;
-  mode:         'shadow' | 'live';
+  mode:         'shadow' | 'approve' | 'live';
   slotId?:      string | null;
   agentId?:     string | null;
   /** Playbook limits for this resource (020); the matrix cap applies regardless. */
@@ -38,7 +39,11 @@ export interface PublishPlatformInput {
 }
 
 export type PublishPlatformResult =
-  | { ok: true; shadow: boolean; postId: number; externalId: string | null; url: string | null; preview: string; warnings: string[]; lint: PlatformLintResult }
+  | {
+      ok: true; shadow: boolean; postId: number; externalId: string | null; url: string | null; preview: string; warnings: string[]; lint: PlatformLintResult;
+      /** Spec 031: written and waiting for the owner; `rendered` is exactly what will be sent. */
+      awaiting?: boolean; rendered?: RenderedPlatformPost;
+    }
   | { error: string; details?: unknown };
 
 const BLOCKING_HEALTH = new Set(['no_access', 'token_invalid']);
@@ -72,18 +77,42 @@ export async function publishPlatformNow(d: PublishPlatformDeps, i: PublishPlatf
 
   const sourceRef = i.spec.library_ref ?? i.spec.source?.url ?? null;
   const since = new Date(now.getTime() - PLATFORM_DEDUP_DAYS * 86_400_000);
-  if (await d.posts.alreadyPosted(i.resourceRef, { source: sourceRef, ideaId: i.spec.idea_id ?? null }, since)) {
+  // Approval mode also counts posts that already wait (spec 031), so two waiting posts never share a source.
+  const waiting = i.mode === 'approve';
+  if (await d.posts.alreadyPosted(i.resourceRef, { source: sourceRef, ideaId: i.spec.idea_id ?? null }, since, waiting)) {
     return { error: 'already_posted', details: 'це джерело / ідея вже були на цьому ресурсі за 7 днів' };
   }
   const caption = captionPlain(i.spec, CAPABILITIES[platform].linksClickable);
-  const recent = await d.posts.recentCaptions(i.resourceRef);
+  const recent = await d.posts.recentCaptions(i.resourceRef, 40, waiting);
   const maxSim = recent.reduce((m, t) => Math.max(m, similarity(caption, t)), 0);
   if (caption.length > 40 && maxSim >= PLATFORM_SIMILARITY_LIMIT) {
     return { error: 'too_similar', details: `схожість ${maxSim.toFixed(2)} з нещодавнім постом цього ресурсу` };
   }
 
   const preview = renderPlatform(i.spec, platform);
-  if (i.mode === 'shadow') {
+  if (i.mode === 'approve') {
+    // Spec 031 FR-004: every check of a live publish ran above; slides are rendered and hosted now so the
+    // owner approves exactly what goes out. Nothing is sent — publishApprovedPlatform does that after approval.
+    let prepared: PreparedPublish | null = null;
+    try {
+      if (i.spec.slides?.length) {
+        if (!d.hostSlides) return { error: 'slides_unavailable', details: 'рендер слайдів не налаштований' };
+        prepared = await d.hostSlides(i.spec.slides, { channelKey: i.resourceRef, slotId: i.slotId ?? `now-${now.getTime()}` });
+      }
+    } catch (err: any) {
+      return { error: 'prepare_failed', details: String(err?.message ?? err).slice(0, 1000) };
+    }
+    const rendered = renderPlatform(i.spec, platform, prepared?.prepared.slideUrls ?? []);
+    const row = await d.posts.insert({
+      resourceRef: i.resourceRef, platform, slotId: i.slotId ?? null, ideaId: i.spec.idea_id ?? null, format: i.spec.format,
+      caption: rendered.caption, spec: i.spec, sourceRef, status: 'awaiting_approval', agentId: i.agentId ?? null,
+    });
+    return {
+      ok: true, shadow: false, awaiting: true, postId: row.id, externalId: null, url: null, preview: rendered.caption, rendered,
+      warnings: lint.warnings.map((w) => w.message), lint,
+    };
+  }
+  if (i.mode !== 'live') {
     const row = await d.posts.insert({
       resourceRef: i.resourceRef, platform, slotId: i.slotId ?? null, ideaId: i.spec.idea_id ?? null, format: i.spec.format,
       caption: preview.caption, spec: i.spec, sourceRef, status: 'shadowed', agentId: i.agentId ?? null,
@@ -132,5 +161,61 @@ export async function publishPlatformNow(d: PublishPlatformDeps, i: PublishPlatf
     return { error: 'publish_failed', details: String(err?.message ?? err).slice(0, 1000) };
   } finally {
     if (prepared) await prepared.cleanup();
+  }
+}
+
+export interface ApprovedPlatformInput {
+  resourceRef: string;
+  /** The waiting platform_posts row written in approval mode. */
+  postId:      number;
+  spec:        PlatformPostSpec;
+  /** Exactly what the owner approved (stored on the slot). */
+  rendered:    RenderedPlatformPost;
+  maxPerDay?:  number | null;
+}
+
+export type ApprovedPlatformResult =
+  | { ok: true; externalId: string | null; url: string | null; warnings: string[] }
+  | { error: 'dedup_after_approval' | 'daily_cap_reached' | 'resource_unavailable' | 'publish_failed' | 'not_a_platform_resource'; details?: string };
+
+/**
+ * Spec 031: publish a post the owner approved, at its time. Re-runs the
+ * checks that can change while a post waits (resource health, dedup, the
+ * daily cap) and sends the stored render unchanged.
+ */
+export async function publishApprovedPlatform(d: PublishPlatformDeps, i: ApprovedPlatformInput): Promise<ApprovedPlatformResult> {
+  const now = (d.now ?? (() => new Date()))();
+  const ref = parseResourceRef(i.resourceRef);
+  if (!ref || ref.platform === 'telegram') return { error: 'not_a_platform_resource' };
+  const platform = ref.platform as Exclude<Platform, 'telegram'>;
+  const settle = async (status: 'published' | 'failed' | 'canceled', p: { externalId?: string | null; url?: string | null; error?: string | null } = {}) => {
+    try { await d.posts.settle?.(i.postId, status, p); } catch { /* the slot row is what the owner sees */ }
+  };
+
+  const health = await d.health(i.resourceRef);
+  if (health && BLOCKING_HEALTH.has(health.state)) return { error: 'resource_unavailable', details: `${health.state}: ${health.detail ?? ''}` };
+
+  const sourceRef = i.spec.library_ref ?? i.spec.source?.url ?? null;
+  const since = new Date(now.getTime() - PLATFORM_DEDUP_DAYS * 86_400_000);
+  const recent = await d.posts.recentCaptions(i.resourceRef);
+  const maxSim = recent.reduce((m, t) => Math.max(m, similarity(i.rendered.caption, t)), 0);
+  if (await d.posts.alreadyPosted(i.resourceRef, { source: sourceRef, ideaId: i.spec.idea_id ?? null }, since)
+    || (i.rendered.caption.length > 40 && maxSim >= PLATFORM_SIMILARITY_LIMIT)) {
+    await settle('canceled', { error: 'dedup_after_approval' });
+    return { error: 'dedup_after_approval', details: 'за час очікування схоже джерело / ідея вже вийшли на цьому ресурсі' };
+  }
+  const cap = Math.min(CAPABILITIES[platform].dailyApiCap, i.maxPerDay ?? Number.POSITIVE_INFINITY);
+  const done = await d.posts.countPublishedSince(i.resourceRef, new Date(now.getTime() - 24 * 3600_000));
+  if (done >= cap) return { error: 'daily_cap_reached', details: `${done}/${cap} за 24 год` };
+
+  try {
+    const published = await d.publisher.publish(i.resourceRef, i.rendered);
+    await settle('published', { externalId: published.externalId, url: published.url });
+    try { d.recordPublish?.(`${platform}:${ref.id}`); } catch { /* throttle bookkeeping only */ }
+    return { ok: true, externalId: published.externalId, url: published.url, warnings: published.warnings };
+  } catch (err: any) {
+    const msg = String(err?.message ?? err).slice(0, 1000);
+    await settle('failed', { error: msg });
+    return { error: 'publish_failed', details: msg };
   }
 }

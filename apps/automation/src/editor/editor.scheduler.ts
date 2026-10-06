@@ -1,5 +1,6 @@
 import type { Pool } from 'pg';
-import type { EditorCard } from './card';
+import type { ChannelMode, EditorCard } from './card';
+import { batchDateDue, writeAt } from './approval/approval-timing';
 import type { EditorChannelsRepository } from './repo/editor-channels.repository';
 import { RESERVED_ONLY_RATIONALE } from './repo/editor-plans.repository';
 import type { EditorPlansRepository, EditorSlot } from './repo/editor-plans.repository';
@@ -9,7 +10,8 @@ import { localDate, localHour, localWeekday } from './roles/time';
 export interface EditorSchedulerDeps {
   pool:     Pick<Pool, 'query'>;
   channels: Pick<EditorChannelsRepository, 'listActive'>;
-  plans:    Pick<EditorPlansRepository, 'getActivePlan' | 'claimDue' | 'skipStale' | 'sweepStuck' | 'consecutiveFailures'>;
+  plans:    Pick<EditorPlansRepository, 'getActivePlan' | 'claimDue' | 'skipStale' | 'sweepStuck' | 'consecutiveFailures'>
+    & Partial<Pick<EditorPlansRepository, 'plannedBefore' | 'claimSlot'>>;
   runner:   Pick<EditorRunnerService, 'runPlanner' | 'runExecutor' | 'runReviewer'>;
   enabled:  () => boolean;
   notify:   (text: string) => Promise<void>;
@@ -27,7 +29,20 @@ export interface EditorSchedulerDeps {
   orchestrate?: (card: EditorCard) => Promise<unknown>;
   /** Spec 021: the MANAGER's schedule and directive deliveries, once per tick after planning. */
   afterTick?: (now: Date) => Promise<void>;
+  /**
+   * Spec 031 approval mode. `mode` is a channel's effective mode (orchestrator ∧
+   * card); approval channels plan the next day at 20:00 and write slots ahead
+   * (approval-timing). `tick` publishes approved posts, expires stale ones and
+   * sends the batch alert, in its own lane like the reserved slots.
+   */
+  approval?: {
+    mode(card: EditorCard): Promise<ChannelMode>;
+    tick(now: Date): Promise<void>;
+  };
 }
+
+/** How far ahead approval-mode slots are looked at for writing (the evening batch covers the next day). */
+export const WRITE_AHEAD_WINDOW_MS = 36 * 3600_000;
 
 export const STALE_MS          = 3 * 3600_000;
 export const STUCK_MS          = 15 * 60_000;
@@ -57,7 +72,22 @@ export class EditorScheduler {
    */
   async cronTick(): Promise<void> {
     const now = new Date();
-    await Promise.all([this.reservedTick(now), this.mainTick(now)]);
+    await Promise.all([this.reservedTick(now), this.approvalTick(now), this.mainTick(now)]);
+  }
+
+  private approvalBusy = false;
+
+  /** Approved posts go out at their time even while a long planner run holds the main tick (spec 031). */
+  async approvalTick(now: Date): Promise<void> {
+    if (!this.d.approval || this.approvalBusy || !this.d.enabled()) return;
+    this.approvalBusy = true;
+    try {
+      await this.d.approval.tick(now);
+    } catch (err: any) {
+      this.d.log?.(`approval tick failed: ${err?.message ?? err}`);
+    } finally {
+      this.approvalBusy = false;
+    }
   }
 
   private async reservedTick(now: Date): Promise<void> {
@@ -90,10 +120,12 @@ export class EditorScheduler {
 
     const cards = await this.d.channels.listActive();
     const byKey = new Map(cards.map((c) => [c.channelKey, c]));
+    const approving = await this.approvingCards(cards);
 
     for (const card of cards) {
       await this.maybeOrchestrate(card, now);
       await this.maybePlan(card, now);
+      if (approving.has(card.channelKey)) await this.maybePlanAhead(card, now);
       await this.maybeReview(card as EditorCard & { createdAt?: Date }, now);
     }
 
@@ -101,11 +133,56 @@ export class EditorScheduler {
       try { await this.d.afterTick(now); } catch (err: any) { this.d.log?.(`after-tick hook failed: ${err?.message ?? err}`); }
     }
 
-    const due = (await this.d.plans.claimDue(now, CLAIM_BATCH)).filter((s) => byKey.has(s.channelKey));
+    // Approval mode writes ahead of time; everything else (and late approval slots) at the slot time.
+    const early = await this.claimWriteAhead(approving, byKey, now);
+    const rest = early.length < CLAIM_BATCH ? await this.d.plans.claimDue(now, CLAIM_BATCH - early.length) : [];
+    const due = [...early, ...rest].filter((s) => byKey.has(s.channelKey));
     await this.runLimited(due, EXECUTOR_PARALLEL, async (slot) => {
       await this.d.runner.runExecutor(slot, byKey.get(slot.channelKey)!);
       await this.checkFailures(slot.channelKey, now);
     });
+  }
+
+  /** Channels whose effective mode is `approve` (empty without the approval hook). */
+  private async approvingCards(cards: EditorCard[]): Promise<Set<string>> {
+    const out = new Set<string>();
+    if (!this.d.approval) return out;
+    for (const c of cards) {
+      try {
+        if ((await this.d.approval.mode(c)) === 'approve') out.add(c.channelKey);
+      } catch (err: any) {
+        this.d.log?.(`effective mode of ${c.channelKey} failed: ${err?.message ?? err}`);
+      }
+    }
+    return out;
+  }
+
+  /** Approval-mode slots whose write time (approval-timing.writeAt) has come, claimed planned → running. */
+  private async claimWriteAhead(approving: Set<string>, byKey: Map<string, EditorCard>, now: Date): Promise<EditorSlot[]> {
+    if (!approving.size || !this.d.plans.plannedBefore || !this.d.plans.claimSlot) return [];
+    const candidates = await this.d.plans.plannedBefore([...approving], new Date(now.getTime() + WRITE_AHEAD_WINDOW_MS));
+    const out: EditorSlot[] = [];
+    for (const s of candidates) {
+      if (out.length >= CLAIM_BATCH) break;
+      const card = byKey.get(s.channelKey);
+      if (!card || writeAt(s, card).getTime() > now.getTime()) continue;
+      const claimed = await this.d.plans.claimSlot(s.id);
+      if (claimed) out.push(claimed);
+    }
+    return out;
+  }
+
+  /** Approval mode: from 20:00 the next day is planned, so its batch can be written and approved this evening. */
+  private async maybePlanAhead(card: EditorCard, now: Date): Promise<void> {
+    const date = batchDateDue(now, card);
+    if (!date) return;
+    const active = await this.d.plans.getActivePlan(card.channelKey, date);
+    if (active && active.rationale !== RESERVED_ONLY_RATIONALE) return;
+    const key = `${card.channelKey}:${date}`;
+    const tries = this.plannerTries.get(key) ?? { n: 0, at: 0 };
+    if (tries.n >= PLANNER_MAX_TRIES || now.getTime() - tries.at < PLANNER_RETRY_MS) return;
+    this.plannerTries.set(key, { n: tries.n + 1, at: now.getTime() });
+    await this.d.runner.runPlanner(card, { planDate: date });
   }
 
   private readonly orchestrated = new Set<string>();

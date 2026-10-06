@@ -128,7 +128,7 @@ function ownerTools(api: EditorApi, o: ToolOptions): McpTool[] {
         return api.post(`/api/editor/slots/${slot_id}/run?wait=true`);
       }),
 
-    liveIsHumanOnly(tool('set_mode', 'Switch a channel to off or shadow. Going live is human-only: the owner does it in the dashboard.',
+    liveIsHumanOnly(tool('set_mode', 'Switch a channel to off or shadow (a safety stop). Approval mode and live are human-only: the owner switches them in the dashboard.',
       z.object({ channel, mode: z.enum(['off', 'shadow']) }),
       async ({ channel: c, mode }) => {
         await api.get(`/api/editor/channels/${enc(c)}`); // unknown channel → 404 → ToolFailure; never creates a card
@@ -143,6 +143,7 @@ function liveIsHumanOnly(t: McpTool): McpTool {
     ...t,
     call: async (args) => {
       if (args?.mode === 'live') throw new ToolFailure('set_mode live is human-only: the owner switches a channel to live in the dashboard (/app/editor).');
+      if (args?.mode === 'approve') throw new ToolFailure('set_mode approve is human-only: the owner switches a channel to approval mode in the dashboard (/app/editor).');
       return t.call(args);
     },
   };

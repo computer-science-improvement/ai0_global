@@ -14,7 +14,8 @@ import type { EditorMemoryRepository } from '../repo/editor-memory.repository';
 import type { EditorChannelsRepository } from '../repo/editor-channels.repository';
 import type { SendResult } from '../publish/telegram-editor.publisher';
 import type { PreparedPublish } from '../publish/prepare-media';
-import { publishSpecNow } from '../publish/publish-spec';
+import { prepareAndRender, publishSpecNow } from '../publish/publish-spec';
+import { freshnessDeadline } from '../approval/approval-timing';
 import type { CrossPostRequest } from '../publish/editor-crosspost';
 import type { TgMessage } from '../post/render-telegram';
 import { cardFrom } from './compose-tools';
@@ -113,7 +114,7 @@ export function buildRoleTools(d: RoleToolDeps): EditorTool[] {
   // ── executor ──────────────────────────────────────────────────────────────
   const publishPost = defineTool({
     name: 'publish_post',
-    description: 'Опублікувати PostSpec у слот (завершує роботу). У shadow-режимі пост зберігається як превʼю без публікації. Перед цим обовʼязково lint_post.',
+    description: 'Опублікувати PostSpec у слот (завершує роботу). У shadow-режимі пост зберігається як превʼю без публікації; у режимі апруву — повністю готується і чекає схвалення власника. Перед цим обовʼязково lint_post.',
     kind: 'terminal', roles: ['executor'],
     input: z.object({ spec: PostSpecSchema }),
     execute: async ({ spec }, ctx) => {
@@ -123,7 +124,24 @@ export function buildRoleTools(d: RoleToolDeps): EditorTool[] {
       const { channelKey, slotId } = requireSlotCtx(ctx);
       const card = cardFrom(ctx);
 
-      if (card.mode === 'shadow') {
+      if (card.mode === 'approve') {
+        // Spec 031 FR-004: every live check ran above; prepare media and render exactly what will be sent, then wait.
+        // Nothing is sent here — only the approval publisher sends, and only a slot with approved_at.
+        const prep = await prepareAndRender(d, { channelKey, spec, card, mediaKey: slotId });
+        if ('error' in prep) return prep;
+        const slot = await d.plans.getSlot(slotId);
+        const warnings = g.lint.warnings.map((w) => w.message);
+        await d.plans.updateSlot(slotId, {
+          status: 'awaiting_approval', postSpec: spec, renderedPreview: prep.rendered.preview,
+          renderMessages: { kind: 'telegram', messages: prep.rendered.messages, primary: prep.rendered.primary },
+          preparedMedia: prep.prepared, lintWarnings: warnings,
+          freshnessDeadline: slot ? freshnessDeadline(slot, card) : null, error: null,
+        });
+        // Hosted slides stay until the post is published (the owner sees them and the publisher sends them).
+        return { ok: true, awaiting_approval: true, warnings: g.lint.warnings };
+      }
+
+      if (card.mode !== 'live') {
         await d.plans.updateSlot(slotId, { status: 'shadowed', postSpec: spec, renderedPreview: g.rendered.preview, error: null });
         if (d.notifyPreview) {
           try { await d.notifyPreview(channelKey, g.rendered.preview); } catch { /* preview is best-effort */ }

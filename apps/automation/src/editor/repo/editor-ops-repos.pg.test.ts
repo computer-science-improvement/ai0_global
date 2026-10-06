@@ -39,7 +39,7 @@ test('channels.upsert: create, update, and mode changes audited as inactive owne
   const repo = new EditorChannelsRepository(pool);
   const memory = new EditorMemoryRepository(pool);
 
-  const created = await repo.upsert({ channelKey: CH, ...CARD_DEFAULTS, brief: 'перша', hashtags: ['космос'], sources: [{ id: 'f', kind: 'rss', ref: 'https://e.example/feed' }] });
+  const created = await repo.upsert({ channelKey: CH, ...CARD_DEFAULTS, mode: 'off', brief: 'перша', hashtags: ['космос'], sources: [{ id: 'f', kind: 'rss', ref: 'https://e.example/feed' }] });
   assert.equal(created.previousMode, null);
   assert.equal(created.card.brief, 'перша');
   assert.deepEqual(created.card.hashtags, ['космос']);

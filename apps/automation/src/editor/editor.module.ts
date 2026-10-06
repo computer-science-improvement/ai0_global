@@ -101,6 +101,14 @@ import { createHash, randomBytes } from 'crypto';
 import { TrackingAuthGuard } from '../tracking/api/tracking-auth.guard';
 import { PriceService } from '../common/ai/usage/price.service';
 import { LlmBudgetService, capDefaults } from '../common/ai/usage/llm-budget.service';
+import { effectiveMode } from './card';
+import type { ChannelMode, EditorCard } from './card';
+import { ApprovalsRepository } from './approval/approvals.repository';
+import { ApprovalPublisher } from './approval/approval-publisher';
+import { ApprovalUpkeep } from './approval/approval-upkeep';
+import { ApprovalAlerts } from './approval/approval-alerts';
+import { ApprovalsService } from './approval/approvals.service';
+import { APPROVALS_SERVICE, ApprovalsController } from './approval/approvals.controller';
 
 export const EDITOR_RUNNER    = 'EDITOR_RUNNER';
 export const EDITOR_SCHEDULER = 'EDITOR_SCHEDULER';
@@ -142,6 +150,17 @@ export interface ManagerInfra {
 export const EDITOR_NETWORK   = 'EDITOR_NETWORK';
 /** The AgentLoop of scheduled runs (shared by the editor roles and the orchestrator runs). */
 export const EDITOR_LOOP      = 'EDITOR_LOOP';
+
+/** Approval mode (spec 031): storage, the publisher of approved posts and the tick lane. */
+export const APPROVAL_INFRA   = 'APPROVAL_INFRA';
+
+export interface ApprovalInfra {
+  repo:      ApprovalsRepository;
+  publisher: ApprovalPublisher;
+  upkeep:    ApprovalUpkeep;
+  /** Effective mode of a channel: its orchestrator's mode ∧ the card's. */
+  mode(card: EditorCard): Promise<ChannelMode>;
+}
 
 /** Native multi-platform publishing (spec 019): repository, publish path, stats, health. */
 export const PLATFORM_INFRA   = 'PLATFORM_INFRA';
@@ -290,7 +309,11 @@ export class AgentsUpkeep implements OnModuleInit {
     }
   }
 
-  /** Expire stale confirmation cards; offer "go live" to agents whose shadow period ended (spec 018 FR-007). */
+  /**
+   * Expire stale confirmation cards. Spec 031 replaced the 3-day shadow start
+   * (and its "go live" card) with approval mode; an agent still finishing a
+   * legacy shadow period is offered approval mode instead of live.
+   */
   @Cron('23 * * * *', { name: 'agents-housekeeping' })
   async housekeeping(): Promise<void> {
     try {
@@ -298,9 +321,9 @@ export class AgentsUpkeep implements OnModuleInit {
       for (const a of await this.infra.agents.list()) {
         if (a.parentId || a.mode !== 'shadow' || !a.shadowUntil || a.shadowUntil.getTime() > Date.now()) continue;
         await this.infra.inbox.post({
-          agentId: a.id, kind: 'go_live', severity: 'action',
-          title: `🚦 @${a.handle}: shadow-період завершено — перевести в live?`,
-          body: 'Перегляньте shadow-превʼю на сторінці агента і переведіть режим у live, якщо все гаразд.',
+          agentId: a.id, kind: 'shadow_ended', severity: 'action',
+          title: `🚦 @${a.handle}: shadow-період завершено — перевести в режим «На апруві»?`,
+          body: 'У режимі апруву агент пише справжні пости, але кожен чекає вашого схвалення. Режим перемикається на сторінці агента.',
           refType: 'agent', refId: a.handle,
         });
         await this.infra.agents.update(a.id, { shadowUntil: null });
@@ -337,7 +360,12 @@ function registerAgentActions(infra: AgentInfra, svc: AgentsService, ops: Editor
     if ('error' in r) throw new Error(`${r.error}${r.details ? `: ${typeof r.details === 'string' ? r.details : JSON.stringify(r.details)}` : ''}`);
     return { handle: r.agent.handle, id: r.agent.id, cardCreated: r.cardCreated };
   });
-  a.register('update_agent', async (p) => svc.patch(String(p.handle), p.patch));
+  a.register('update_agent', async (p) => {
+    // Spec 031 FR-010: a mode never changes through an agent's card, whatever the stored payload says.
+    const { mode: _mode, ...patch } = (p.patch ?? {}) as Record<string, unknown>;
+    if (_mode !== undefined) throw new Error('mode_owner_only: режим перемикає лише власник у дашборді');
+    return svc.patch(String(p.handle), patch);
+  });
   a.register('set_brief', async (p) => {
     const agent = await svc.require(String(p.handle));
     const key = await infra.channelKeyOf(agent);
@@ -567,6 +595,45 @@ export const EDITOR_PROVIDERS = [
       },
     },
     {
+      provide: APPROVAL_INFRA,
+      inject: [DB_POOL, EDITOR_REPOS, EDITOR_PUBLISH, AGENT_INFRA, PLATFORM_INFRA, PostingThrottleService, ConfigService, TelegramNotifier],
+      useFactory: (
+        pool: Pool, repos: EditorRepos, ports: PublishPorts, infra: AgentInfra, platform: PlatformInfra, throttle: PostingThrottleService,
+        cfg: ConfigService, notifier: TelegramNotifier,
+      ): ApprovalInfra => {
+        const logger = new Logger('Approval');
+        const repo = new ApprovalsRepository(pool);
+        const ideas = new NetworkRepository(pool);
+        const mode = async (card: EditorCard): Promise<ChannelMode> =>
+          effectiveMode((await infra.runtime.forChannel(card.channelKey, 'executor')).orchestrator?.mode ?? null, card.mode);
+        const publisher = new ApprovalPublisher({
+          repo, plans: repos.plans, card: (k) => repos.channels.get(k), mode,
+          telegram: { plans: repos.plans, ...ports, recordPublish: (k) => throttle.recordPublish(k) },
+          platform: platform.publish,
+          notice: async (slot, title, body) => {
+            const orch = await infra.runtime.forChannel(slot.channelKey, 'executor').catch(() => null);
+            await infra.inbox.post({ agentId: orch?.orchestrator?.id ?? null, kind: 'approval_dedup', severity: 'info', title, body, refType: 'slot', refId: slot.id });
+          },
+          onSlotDone: async (slot) => { if (slot.ideaId) await ideas.settleIdea(slot.ideaId); },
+          log: (m) => logger.warn(m),
+        });
+        // T4: one Telegram message per resource per batch through the owner's alert channel, deduped in approval_alerts.
+        const alerts = new ApprovalAlerts({
+          repo, card: (k) => repos.channels.get(k), notify: (t) => notifier.notifyAlert(t),
+          dashboardUrl: cfg.get<string>('DASHBOARD_URL') ?? null, log: (m) => logger.warn(m),
+        });
+        const upkeep = new ApprovalUpkeep({ repo, publisher, alerts, card: (k) => repos.channels.get(k), mode, log: (m) => logger.log(m) });
+        return { repo, publisher, upkeep, mode };
+      },
+    },
+    {
+      provide: APPROVALS_SERVICE,
+      inject: [EDITOR_REPOS, EDITOR_PUBLISH, APPROVAL_INFRA, PLATFORM_INFRA],
+      useFactory: (repos: EditorRepos, ports: PublishPorts, approval: ApprovalInfra, platform: PlatformInfra) => new ApprovalsService({
+        repo: approval.repo, card: (k) => repos.channels.get(k), media: ports.media, hostSlides: platform.publish.hostSlides,
+      }),
+    },
+    {
       provide: EDITOR_LOOP,
       inject: [DB_POOL, ConfigService, TelegramNotifier, { token: PriceService, optional: true }, { token: LlmBudgetService, optional: true }],
       useFactory: (pool: Pool, cfg: ConfigService, notifier: TelegramNotifier, prices?: PriceService, caps?: LlmBudgetService): AgentLoop => {
@@ -665,11 +732,11 @@ export const EDITOR_PROVIDERS = [
     },
     {
       provide: EDITOR_SCHEDULER,
-      inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_RUNNER, EDITOR_PUBLISH, EDITOR_DRAFTS, TelegramNotifier, PostingThrottleService, EDITOR_NETWORK, EDITOR_MANAGER, AGENT_INFRA, ChannelConfigService],
+      inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_RUNNER, EDITOR_PUBLISH, EDITOR_DRAFTS, TelegramNotifier, PostingThrottleService, EDITOR_NETWORK, EDITOR_MANAGER, AGENT_INFRA, ChannelConfigService, APPROVAL_INFRA],
       useFactory: (
         pool: Pool, cfg: ConfigService, repos: EditorRepos, runner: EditorRunnerService, ports: PublishPorts, drafts: DraftsService,
         notifier: TelegramNotifier, throttle: PostingThrottleService, network: NetworkRunner, manager: ManagerInfra, infra: AgentInfra,
-        channelConfig: ChannelConfigService,
+        channelConfig: ChannelConfigService, approval: ApprovalInfra,
       ) => {
         const logger = new Logger('EditorScheduler');
         const notify = (t: string) => notifier.notifyAlert(t);
@@ -705,6 +772,8 @@ export const EDITOR_PROVIDERS = [
               if (card && card.mode !== 'off') await network.runOrchestrator(card);
             }
           },
+          // Spec 031: approval channels write ahead; approved posts, expiry and alerts run in their own lane.
+          approval: { mode: (card) => approval.mode(card), tick: (now) => approval.upkeep.tick(now) },
           notify,
           log: (m) => logger.warn(m),
         });
@@ -843,7 +912,7 @@ export const EDITOR_PROVIDERS = [
 @Module({
   // AuthModule: EditorController is guarded by TrackingAuthGuard, which injects AuthService.
   imports:     [ChannelConfigModule, PublishersModule, AuthModule],
-  controllers: [EditorController, EditorChatController, AgentsController, NetworkController, ManagerController, PromoController, PromoRedirectController],
+  controllers: [EditorController, EditorChatController, AgentsController, NetworkController, ManagerController, PromoController, PromoRedirectController, ApprovalsController],
   providers:   [...EDITOR_PROVIDERS, TrackingAuthGuard],
   exports:     [EDITOR_REPOS, EDITOR_RUNNER, AGENT_INFRA, PLATFORM_INFRA, EDITOR_MANAGER],
 })

@@ -10,7 +10,7 @@ export interface PlatformPostRow {
   ideaId:      string | null;
   format:      string;
   caption:     string | null;
-  status:      'published' | 'shadowed' | 'failed';
+  status:      'published' | 'shadowed' | 'failed' | 'awaiting_approval' | 'canceled';
   error:       string | null;
   postedAt:    Date;
 }
@@ -37,18 +37,35 @@ export class PlatformPostsRepository {
     return toRow(rows[0]);
   }
 
+  /**
+   * Spec 031: settle a waiting (awaiting_approval) row — published with its
+   * external id, failed, or canceled (rejected, expired, dropped). A row that
+   * is no longer waiting is left alone.
+   */
+  async settle(id: number, status: 'published' | 'failed' | 'canceled', p: { externalId?: string | null; url?: string | null; error?: string | null } = {}): Promise<boolean> {
+    const { rowCount } = await this.pool.query(
+      `UPDATE platform_posts SET status = $2, external_id = COALESCE($3, external_id), url = COALESCE($4, url), error = $5,
+              posted_at = CASE WHEN $2 = 'published' THEN now() ELSE posted_at END
+        WHERE id = $1 AND status = 'awaiting_approval'`,
+      [id, status, p.externalId ?? null, p.url ?? null, p.error ?? null]);
+    return (rowCount ?? 0) > 0;
+  }
+
   async get(id: number): Promise<PlatformPostRow | null> {
     const { rows } = await this.pool.query(`SELECT * FROM platform_posts WHERE id = $1`, [id]);
     return rows[0] ? toRow(rows[0]) : null;
   }
 
-  /** Same source / library item / idea on this resource within `days` (live posts only). */
-  async alreadyPosted(resourceRef: string, ref: { source?: string | null; ideaId?: string | null }, since: Date): Promise<boolean> {
+  /**
+   * Same source / library item / idea on this resource within `days` (live
+   * posts; with `waiting`, also posts that wait for approval — spec 031).
+   */
+  async alreadyPosted(resourceRef: string, ref: { source?: string | null; ideaId?: string | null }, since: Date, waiting = false): Promise<boolean> {
     if (!ref.source && !ref.ideaId) return false;
     const { rows } = await this.pool.query(
-      `SELECT 1 FROM platform_posts WHERE resource_ref = $1 AND status = 'published' AND posted_at >= $2
+      `SELECT 1 FROM platform_posts WHERE resource_ref = $1 AND (status = 'published' OR ($5 AND status = 'awaiting_approval')) AND posted_at >= $2
           AND (($3::text IS NOT NULL AND source_ref = $3) OR ($4::uuid IS NOT NULL AND idea_id = $4)) LIMIT 1`,
-      [resourceRef, since, ref.source ?? null, ref.ideaId ?? null]);
+      [resourceRef, since, ref.source ?? null, ref.ideaId ?? null, waiting]);
     return rows.length > 0;
   }
 
@@ -64,10 +81,11 @@ export class PlatformPostsRepository {
     return rows[0]?.at ?? null;
   }
 
-  async recentCaptions(resourceRef: string, limit = 40): Promise<string[]> {
+  /** Recent captions for the similarity guard; with `waiting`, posts that wait for approval count too (spec 031). */
+  async recentCaptions(resourceRef: string, limit = 40, waiting = false): Promise<string[]> {
     const { rows } = await this.pool.query(
-      `SELECT caption FROM platform_posts WHERE resource_ref = $1 AND status IN ('published','shadowed') AND caption IS NOT NULL
-        ORDER BY posted_at DESC LIMIT $2`, [resourceRef, limit]);
+      `SELECT caption FROM platform_posts WHERE resource_ref = $1 AND (status IN ('published','shadowed') OR ($3 AND status = 'awaiting_approval'))
+          AND caption IS NOT NULL ORDER BY posted_at DESC LIMIT $2`, [resourceRef, limit, waiting]);
     return rows.map((r) => String(r.caption));
   }
 

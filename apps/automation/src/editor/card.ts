@@ -1,6 +1,29 @@
 import type { EditorRole } from './llm/llm.types';
 
-export type ChannelMode = 'off' | 'shadow' | 'live';
+/**
+ * How a resource works (spec 031): `off` does nothing, `shadow` writes previews
+ * only, `approve` writes real posts that wait for the owner's approval, `live`
+ * publishes on its own. Ordered: off < shadow < approve < live.
+ */
+export type ChannelMode = 'off' | 'shadow' | 'approve' | 'live';
+export const CHANNEL_MODES: readonly ChannelMode[] = ['off', 'shadow', 'approve', 'live'];
+
+const MODE_RANK: Record<ChannelMode, number> = { off: 0, shadow: 1, approve: 2, live: 3 };
+
+/** The lower (safer) of two modes. Unknown values count as `off`. */
+export function minMode(a: ChannelMode | null | undefined, b: ChannelMode | null | undefined): ChannelMode {
+  const ra = a && a in MODE_RANK ? MODE_RANK[a] : 0;
+  const rb = b && b in MODE_RANK ? MODE_RANK[b] : 0;
+  return CHANNEL_MODES[Math.min(ra, rb)];
+}
+
+/**
+ * The mode a slot actually runs in (FR-001): the lowest of the orchestrator's
+ * and the card's. Without an orchestrator the card decides.
+ */
+export function effectiveMode(orchestratorMode: ChannelMode | null | undefined, cardMode: ChannelMode): ChannelMode {
+  return minMode(orchestratorMode ?? cardMode, cardMode);
+}
 export type LinkStyle   = 'inline' | 'footer' | 'button';
 export type EmojiPolicy = 'none' | 'sparse' | 'free';
 
@@ -41,6 +64,10 @@ export interface EditorCard {
   bannedTerms:     string[];
   /** Mirror live posts to the channel's Meta cross-post targets / account group (spec 009 T003). */
   crosspost:       boolean;
+  /** Spec 031: hours a waiting post may stay unapproved after its slot time before it expires. */
+  approvalHoldHours?: number;
+  /** Spec 031: how long before its time a slot added after the evening batch is written. */
+  approvalLeadHours?: number;
 }
 
 /** What each platform can render natively — shown to agents with the card. */

@@ -554,8 +554,11 @@ export interface MediaKitChannel {
 
 // ─── Editor agent ops surface (spec 006, /api/editor) ────────────────────────
 
-export type EditorMode = 'off' | 'shadow' | 'live';
-export type EditorSlotStatus = 'planned' | 'running' | 'published' | 'shadowed' | 'skipped' | 'failed';
+/** off < shadow < approve < live (spec 031): `approve` writes real posts that wait for the owner. */
+export type EditorMode = 'off' | 'shadow' | 'approve' | 'live';
+export type EditorSlotStatus =
+  | 'planned' | 'running' | 'published' | 'shadowed' | 'skipped' | 'failed'
+  | 'awaiting_approval' | 'approved' | 'expired';
 export type EditorRunStatus = 'running' | 'ok' | 'error' | 'budget_exceeded' | 'max_steps' | 'disabled';
 export type EditorRole = 'planner' | 'executor' | 'reviewer' | 'checker' | 'composer';
 export type EditorFormat = 'text' | 'photo' | 'album' | 'poll' | 'quiz' | 'video' | 'carousel' | 'longread';

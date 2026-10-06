@@ -102,7 +102,7 @@ export interface IdeaRow {
   updatedAt: string;
 }
 
-export type PlanSlotStatus = 'planned' | 'running' | 'published' | 'shadowed' | 'skipped' | 'failed';
+export type PlanSlotStatus = 'planned' | 'running' | 'published' | 'shadowed' | 'skipped' | 'failed' | 'awaiting_approval' | 'approved' | 'expired';
 
 export interface PlanSlot {
   id:          string;

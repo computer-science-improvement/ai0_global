@@ -5,11 +5,12 @@ import { parseResourceRef, Platform } from '../agents/agent.types';
 import type { EditorPlansRepository } from '../repo/editor-plans.repository';
 import { lintPlatformPost, PlatformPostSpecSchema, renderPlatform } from './platform-spec';
 import { publishPlatformNow, PublishPlatformDeps } from './publish-platform';
+import { freshnessDeadline } from '../approval/approval-timing';
 
 /** Per-run data of a platform slot (put into ctx.extras by the runner, spec 019/020). */
 export interface PlatformSlotExtras {
   resourceRef: string;
-  mode:        'shadow' | 'live';
+  mode:        'shadow' | 'approve' | 'live';
   maxPerDay?:  number | null;
   vocabulary?: string[];
   bannedTerms?: string[];
@@ -51,7 +52,7 @@ export function buildPlatformTools(d: PlatformToolDeps): EditorTool[] {
 
   const publishPlatform = defineTool({
     name: 'publish_platform_post',
-    description: 'Опублікувати нативний пост у ресурс слота (Instagram / Facebook / Threads / TikTok) — завершує роботу. У shadow-режимі лише зберігає превʼю. Перед цим lint_platform_post.',
+    description: 'Опублікувати нативний пост у ресурс слота (Instagram / Facebook / Threads / TikTok) — завершує роботу. У shadow-режимі лише зберігає превʼю; у режимі апруву пост готується повністю і чекає схвалення власника. Перед цим lint_platform_post.',
     kind: 'terminal', roles: ['executor'],
     input: z.object({ spec: PlatformPostSpecSchema }),
     execute: async ({ spec }, ctx) => {
@@ -64,6 +65,17 @@ export function buildPlatformTools(d: PlatformToolDeps): EditorTool[] {
         maxPerDay: slot.maxPerDay, vocabulary: slot.vocabulary, bannedTerms: slot.bannedTerms,
       });
       if ('error' in r) return r;
+      if (r.awaiting && r.rendered) {
+        // Spec 031: written and waiting; the approval publisher sends `rendered` after the owner approves.
+        const card = ctx.extras?.card as { sources?: unknown } | undefined;
+        await d.plans.updateSlot(ctx.slotId, {
+          status: 'awaiting_approval', postSpec: spec, renderedPreview: r.preview, error: null,
+          renderMessages: { kind: 'platform', platform: parseResourceRef(slot.resourceRef)!.platform, rendered: r.rendered as unknown as Record<string, unknown> },
+          platformPostId: r.postId, lintWarnings: r.warnings,
+          freshnessDeadline: card?.sources ? freshnessDeadline(s, card as any) : null,
+        });
+        return { ok: true, awaiting_approval: true, warnings: r.warnings };
+      }
       await d.plans.updateSlot(ctx.slotId, {
         status: r.shadow ? 'shadowed' : 'published', renderedPreview: r.preview, error: r.warnings.length ? r.warnings.join(' | ').slice(0, 2000) : null,
       });

@@ -10,6 +10,8 @@ import { ToolChips, type ToolActivity } from '../components/chat/ToolChips';
 import { ActionCard } from '../components/chat/ActionCard';
 import { MENTION_LIST_ID, MentionMenu, useMentionMenu } from '../components/chat/MentionMenu';
 import { indexTree } from '../components/agents/AgentsUi';
+import { ApprovalList } from '../components/approvals/ApprovalList';
+import { useApprovals } from '../api/approvals';
 import { MarkdownLite } from '../lib/markdown-lite';
 import { fmtKyiv } from '../lib/kyiv-time';
 import { fmtRelative } from '../lib/format';
@@ -92,6 +94,15 @@ function ChatPage() {
   const addressee: ChatAgentRef | null = live?.agent
     ?? (lastAgent && lastAgent.chatId === chatId ? lastAgent.agent : null)
     ?? (chatAgentId ? agentIndex.get(chatAgentId) ?? null : null);
+
+  // Spec 031: the addressed agent's channel, for its «Пости на апрув» strip.
+  const approvalChannel = useMemo(() => {
+    const nodes = indexTree(tree.data?.agents);
+    const n = addressee ? nodes.get(addressee.id) : undefined;
+    const orch = n?.parentId ? nodes.get(n.parentId) : n;
+    const ref = orch?.scope === 'resource' ? orch.scopeId : null;
+    return ref?.startsWith('telegram:') ? ref.slice('telegram:'.length) : null;
+  }, [tree.data?.agents, addressee]);
 
   // Drafts by id: server state, overlaid with the live turn's fresher copies.
   const drafts = useMemo(() => {
@@ -265,6 +276,7 @@ function ChatPage() {
         </div>
 
         <div style={{ flex: 1, overflowY: 'auto', padding: '16px 2px' }}>
+          {approvalChannel && <ApprovalStrip channel={approvalChannel} />}
           {chat.data?.enabled === false && (
             <div className="callout-warning" style={{ marginBottom: 12 }}>
               <Icon name="warning" size={16} /><span>Chat is disabled: <code>OPENROUTER_API_KEY</code> is not set on the server.</span>
@@ -329,6 +341,24 @@ function ChatPage() {
           textareaRef={textareaRef} isMobile={isMobile} />
       </section>
     </div>
+  );
+}
+
+/** The addressed agent's posts that wait for approval (spec 031), collapsed above the conversation. */
+function ApprovalStrip({ channel }: { channel: string }) {
+  const q = useApprovals({ channel, status: ['awaiting_approval', 'approved'] });
+  const waiting = (q.data?.items ?? []).filter((i) => i.status === 'awaiting_approval').length;
+  if (!waiting) return null;
+  return (
+    <details style={{ maxWidth: 780, margin: '0 auto 16px', background: 'var(--color-surface-1)', border: '1px solid var(--color-hairline-soft)', borderRadius: 'var(--radius-lg)', padding: '8px 12px' }}>
+      <summary className="text-body-sm" style={{ cursor: 'pointer', color: 'var(--color-ink)', display: 'flex', alignItems: 'center', gap: 8 }}>
+        <Icon name="check" size={14} /> Пости на апрув · {channel}
+        <Badge tone="warning">{waiting}</Badge>
+      </summary>
+      <div style={{ marginTop: 12 }}>
+        <ApprovalList filter={{ channel }} />
+      </div>
+    </details>
   );
 }
 

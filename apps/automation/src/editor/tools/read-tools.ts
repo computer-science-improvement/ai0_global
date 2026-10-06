@@ -199,7 +199,7 @@ export function buildReadTools(d: ReadToolDeps): EditorTool[] {
       const ch = requireChannel(ctx);
       const { rows } = await d.pool.query(
         `(SELECT COALESCE(rendered_preview, topic) AS text, updated_at AS at FROM editor_slots
-           WHERE channel_key = $1 AND status IN ('published','shadowed') ORDER BY updated_at DESC LIMIT 60)
+           WHERE channel_key = $1 AND status IN ('published','shadowed','awaiting_approval','approved') ORDER BY updated_at DESC LIMIT 60)
          UNION ALL
          (SELECT title AS text, posted_at AS at FROM published_posts
            WHERE channel_id = $1 AND title IS NOT NULL AND editor_slot_id IS NULL ORDER BY posted_at DESC LIMIT 60)`,
