@@ -20,7 +20,7 @@ export type PlatformSection = z.infer<typeof PlatformSectionSchema>;
 
 export const SeriesSchema = z.object({
   name:         z.string().min(3).max(80),
-  cadence:      z.string().regex(CADENCE_RE).describe('daily@HH:MM або weekly:sun@HH:MM (Київ)'),
+  cadence:      z.string().regex(CADENCE_RE).describe('daily@HH:MM або weekly:sun@HH:MM (у часовому поясі ресурсу)'),
   resource_ref: z.string().min(3).max(200),
   format:       z.string().min(2).max(30),
   brief:        z.string().min(10).max(600),

@@ -15,6 +15,13 @@ import { EditorChannelsRepository } from '../repo/editor-channels.repository';
 import { makeDefaultCard } from '../chat/default-card';
 import { NetworkRepository } from './network.repository';
 import { PlaybookSchema } from './playbook';
+import { PlatformStatsCollector } from '../platform/platform-stats.collector';
+import { PlatformPostsRepository } from '../platform/platform-posts.repository';
+import { buildPlatformTools } from '../platform/platform-tools';
+import { buildReadTools } from '../tools/read-tools';
+import { KpiDigestService } from '../manager/kpi-digest.service';
+import { ResourceProfilesRepository } from '../agents/resource-profile';
+import { ResourceTime } from '../time/resource-time';
 
 const url = process.env.EDITOR_PG_TEST_URL;
 const skip = !url ? 'EDITOR_PG_TEST_URL not set' : false;
@@ -29,6 +36,12 @@ async function cleanup() {
   await pool.query(`DELETE FROM agents WHERE scope_id = $1`, [`telegram:${CH}`]);
   await pool.query(`DELETE FROM editor_channels WHERE channel_key = $1`, [CH]);
   await pool.query(`DELETE FROM tracked_channels WHERE channel_key = $1`, [CH]);
+  const { rows: ma } = await pool.query(`SELECT id, platform FROM meta_accounts WHERE account_id LIKE 'ir024-%'`);
+  for (const m of ma) {
+    await pool.query(`DELETE FROM resource_daily_stats WHERE resource_ref = $1`, [`${m.platform}:${m.id}`]);
+    await pool.query(`DELETE FROM resource_profiles WHERE resource_ref = $1`, [`${m.platform}:${m.id}`]);
+  }
+  await pool.query(`DELETE FROM meta_accounts WHERE account_id LIKE 'ir024-%'`);
   await pool.query(`DELETE FROM resource_profiles WHERE resource_ref LIKE '%ir024%'`);
   await pool.query(`DELETE FROM meta_account_groups WHERE name LIKE 'ir024%'`);
 }
@@ -142,4 +155,47 @@ test('auto-duplicate gate: legacy + live duplicates, independent + shadow duplic
   assert.equal(await repo.autoDuplicateActive(groupId, at('2026-03-05T08:00:00Z')), true);
   await pool.query(`UPDATE editor_channels SET mode = 'live' WHERE channel_key = $1`, [CH]);
   assert.equal(await repo.autoDuplicateActive(groupId, at('2026-03-06T08:00:00Z')), false);
+});
+
+test('T2: resource_daily_stats.day, the stats window, best hours and KPI series follow resource_tz(); the resolver matches SQL', { skip }, async () => {
+  const ny = (await pool.query(
+    `INSERT INTO meta_accounts (platform, account_id, token_env, target_id, followers, active) VALUES ('instagram', 'ir024-ny', 'X', 't', 120, true) RETURNING id`)).rows[0].id;
+  const kv = (await pool.query(
+    `INSERT INTO meta_accounts (platform, account_id, token_env, target_id, followers, active) VALUES ('threads', 'ir024-kv', 'X', 't', 80, true) RETURNING id`)).rows[0].id;
+  const NY_REF = `instagram:${ny}`;
+  const KV_REF = `threads:${kv}`;
+  const profiles = new ResourceProfilesRepository(pool);
+  await pool.query(`INSERT INTO resource_profiles (resource_ref, profile) VALUES ($1, '{"timezone":"America/New_York"}')`, [NY_REF]);
+
+  // 02:30Z on Oct 7: still Oct 6 in New York, Oct 7 in Kyiv.
+  const at = new Date('2026-10-07T02:30:00Z');
+  const collector = new PlatformStatsCollector({
+    pool, posts: new PlatformPostsRepository(pool), metaToken: async () => null, graphGet: async () => ({}),
+    graphBase: { facebook: 'x', threads: 'y' }, now: () => at,
+  });
+  await collector.rollupDaily();
+  const day = async (ref: string) => (await pool.query(`SELECT day::text AS d FROM resource_daily_stats WHERE resource_ref = $1`, [ref])).rows.map((r) => r.d);
+  assert.deepEqual(await day(NY_REF), ['2026-10-06']);
+  assert.deepEqual(await day(KV_REF), ['2026-10-07']);
+
+  // The TS resolver and SQL resource_tz() agree.
+  const rt = new ResourceTime({ card: (k) => new EditorChannelsRepository(pool).get(k), profile: (r) => profiles.rawProfile(r) });
+  for (const ref of [NY_REF, KV_REF, `telegram:${CH}`]) {
+    assert.equal(await rt.tzOf(ref), (await pool.query(`SELECT resource_tz($1) AS tz`, [ref])).rows[0].tz, ref);
+  }
+
+  // get_platform_stats reads its window in the resource zone (the query must run).
+  const stats = buildPlatformTools({ pool, publish: {} as any, plans: {} as any }).find((t) => t.name === 'get_platform_stats')!;
+  const res: any = await stats.execute({ resource: NY_REF, days: 28 } as any, {} as any);
+  assert.ok(Array.isArray(res.daily));
+  // get_channel_stats best hours in the channel zone (the query must run).
+  const read = buildReadTools({ pool: pool as any, readonly: {} as any, skills: { get: () => null, list: () => [] } as any }).find((t) => t.name === 'get_channel_stats')!;
+  const cs: any = await read.execute({ days: 14 } as any, { channelKey: CH } as any);
+  assert.ok(Array.isArray(cs.bestHours));
+  // The KPI digest buckets per-resource series by resource day (the queries must run).
+  const digest = await new KpiDigestService({
+    pool, catalog: { list: async () => [{ ref: NY_REF, title: 'ny', agent: null }, { ref: KV_REF, title: 'kv', agent: null }] as any }, globalCapUsd: 5, now: () => at,
+  }).build();
+  assert.equal(digest.today, '2026-10-07', 'network/system day stays Kyiv');
+  assert.deepEqual(digest.resources.map((r) => r.ref).sort(), [NY_REF, KV_REF].sort());
 });

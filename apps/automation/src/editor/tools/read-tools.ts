@@ -43,7 +43,7 @@ export function buildReadTools(d: ReadToolDeps): EditorTool[] {
 
   const getChannelStats = defineTool({
     name: 'get_channel_stats',
-    description: 'Статистика каналу за N днів: підписники (зараз і зміна), кількість постів, медіана переглядів/год, найкращі години публікації (Київ).',
+    description: 'Статистика каналу за N днів: підписники (зараз і зміна), кількість постів, медіана переглядів/год, найкращі години публікації (у часовому поясі каналу).',
     kind: 'read', roles: [...ALL_ROLES],
     input: z.object({ days: z.number().int().min(1).max(90).default(14) }),
     execute: async ({ days }, ctx) => {
@@ -58,7 +58,7 @@ export function buildReadTools(d: ReadToolDeps): EditorTool[] {
                   percentile_cont(0.5) WITHIN GROUP (ORDER BY views_per_hour) AS median_vph
              FROM editor_v_post_performance WHERE channel_id = $1 AND posted_at >= now() - ($2 || ' days')::interval`, [ch, days]),
         d.pool.query(
-          `SELECT EXTRACT(HOUR FROM posted_at AT TIME ZONE 'Europe/Kyiv')::int AS hour, COUNT(*)::int AS posts,
+          `SELECT EXTRACT(HOUR FROM posted_at AT TIME ZONE resource_tz('telegram:' || $1))::int AS hour, COUNT(*)::int AS posts,
                   percentile_cont(0.5) WITHIN GROUP (ORDER BY views_per_hour) AS median_vph
              FROM editor_v_post_performance
             WHERE channel_id = $1 AND posted_at >= now() - ($2 || ' days')::interval AND views_per_hour IS NOT NULL

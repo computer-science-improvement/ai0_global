@@ -1,4 +1,5 @@
 import { createHash } from 'crypto';
+import { localDate } from '../roles/time';
 import type { Pool } from 'pg';
 import type { ResourceCatalog } from '../agents/resource-catalog';
 import { compactKpis, computeKpis, DailySeries, dayBefore, ScopeKpis } from './kpi-math';
@@ -56,12 +57,17 @@ export class KpiDigestService {
     const resources = await this.d.catalog.list();
     const refs = resources.map((r) => r.ref);
     const data = new Map(refs.map((r) => [r, series()]));
+    // Spec 024 FR-005: each resource's own series is bucketed by its local day (resource_tz);
+    // the network aggregates below (agents' spend, slots, budget) stay on the Kyiv day.
+    const { rows: zones } = await this.d.pool.query(`SELECT ref, resource_tz(ref) AS tz FROM unnest($1::text[]) AS ref`, [refs]);
+    const tzOf = new Map<string, string>(zones.map((z) => [z.ref as string, z.tz as string]));
+    const localToday = (ref: string) => { try { return localDate(now, tzOf.get(ref) ?? 'Europe/Kyiv'); } catch { return today; } };
 
     const { rows: posts } = await this.d.pool.query(
-      `SELECT resource_ref, (posted_at AT TIME ZONE 'Europe/Kyiv')::date::text AS day, COUNT(*)::int AS n,
+      `SELECT resource_ref, (posted_at AT TIME ZONE resource_tz(resource_ref))::date::text AS day, COUNT(*)::int AS n,
               AVG(views)::float8 AS avg_views, SUM(engagement)::float8 AS eng, SUM(views)::float8 AS views
          FROM network_posts
-        WHERE resource_ref = ANY($1::text[]) AND (posted_at AT TIME ZONE 'Europe/Kyiv')::date >= $2::date
+        WHERE resource_ref = ANY($1::text[]) AND (posted_at AT TIME ZONE resource_tz(resource_ref))::date >= $2::date
         GROUP BY 1, 2`, [refs, from]);
     for (const r of posts) {
       const s = data.get(r.resource_ref);
@@ -75,16 +81,16 @@ export class KpiDigestService {
         WHERE resource_ref = ANY($1::text[]) AND day >= $2::date AND followers_delta IS NOT NULL`, [refs, from]);
     for (const r of followers) data.get(r.resource_ref)?.followerDelta.set(r.day, Number(r.followers_delta));
     const { rows: revenue } = await this.d.pool.query(
-      `SELECT 'telegram:' || channel_id AS ref, (paid_at AT TIME ZONE 'Europe/Kyiv')::date::text AS day, SUM(amount)::float8 AS uah
-         FROM ad_orders WHERE paid_at IS NOT NULL AND (paid_at AT TIME ZONE 'Europe/Kyiv')::date >= $1::date
+      `SELECT 'telegram:' || channel_id AS ref, (paid_at AT TIME ZONE resource_tz('telegram:' || channel_id))::date::text AS day, SUM(amount)::float8 AS uah
+         FROM ad_orders WHERE paid_at IS NOT NULL AND (paid_at AT TIME ZONE resource_tz('telegram:' || channel_id))::date >= $1::date
           AND status NOT IN ('canceled','refunded','failed') GROUP BY 1, 2`, [from]).catch(() => ({ rows: [] as any[] }));
     for (const r of revenue) data.get(r.ref)?.revenue.set(r.day, Number(r.uah));
     const { rows: hasJoins } = await this.d.pool.query(`SELECT to_regclass('public.link_joins') IS NOT NULL AS ok`);
     if (hasJoins[0]?.ok) {
       const { rows: joins } = await this.d.pool.query(
-        `SELECT l.target_ref AS ref, (j.joined_at AT TIME ZONE 'Europe/Kyiv')::date::text AS day, SUM(j.count)::int AS n
+        `SELECT l.target_ref AS ref, (j.joined_at AT TIME ZONE resource_tz(l.target_ref))::date::text AS day, SUM(j.count)::int AS n
            FROM link_joins j JOIN tracked_links l ON l.id = j.link_id
-          WHERE (j.joined_at AT TIME ZONE 'Europe/Kyiv')::date >= $1::date GROUP BY 1, 2`, [from]);
+          WHERE (j.joined_at AT TIME ZONE resource_tz(l.target_ref))::date >= $1::date GROUP BY 1, 2`, [from]);
       for (const r of joins) data.get(r.ref)?.joins.set(r.day, Number(r.n));
     }
 
@@ -94,7 +100,7 @@ export class KpiDigestService {
 
     const raw = new Map<string, ScopeKpis>();
     const out: ResourceDigest[] = resources.map((r) => {
-      const k = computeKpis(data.get(r.ref)!, today);
+      const k = computeKpis(data.get(r.ref)!, localToday(r.ref));
       raw.set(r.ref, k);
       return {
         ref: r.ref, title: r.title, agent: r.agent, health: healthOf.get(r.ref) ?? null, kpis: compactKpis(k),

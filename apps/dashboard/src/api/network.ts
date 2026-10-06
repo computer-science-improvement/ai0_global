@@ -13,7 +13,13 @@ export type Platform = 'telegram' | 'instagram' | 'facebook' | 'threads' | 'tikt
 export type NetworkMode = 'single' | 'independent' | 'legacy_duplicate';
 export type GroupNetworkMode = Exclude<NetworkMode, 'single'>;
 
-export interface NetworkResource { ref: string; platform: Platform }
+export interface NetworkResource {
+  ref: string;
+  platform: Platform;
+  /** Spec 024: the resource's IANA zone (Telegram: the card's) and quiet hours. */
+  timezone?: string | null;
+  quietHours?: { start: number; end: number } | null;
+}
 
 export interface AgentNetwork {
   anchor:    string;

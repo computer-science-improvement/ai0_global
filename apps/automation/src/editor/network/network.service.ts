@@ -18,6 +18,7 @@ export interface NetworkServiceDeps {
   inbox:    Pick<OwnerInbox, 'post'>;
   card:     (channelKey: string) => Promise<EditorCard | null>;
   usable?:  NetworkContextDeps['usable'];
+  time?:    NetworkContextDeps['time'];
   /** Background playbook rebuild (NetworkRunner.runPlaybookBuild). */
   rebuild:  (card: EditorCard, brief: string | null) => Promise<unknown>;
   log?:     (msg: string) => void;
@@ -40,12 +41,14 @@ export class NetworkService {
 
   async network(handle: string) {
     const { agent, card } = await this.orch(handle);
-    const net = await networkContext({ repo: this.d.repo, usable: this.d.usable }, agent, card);
+    const net = await networkContext({ repo: this.d.repo, usable: this.d.usable, time: this.d.time }, agent, card);
     // Spec 024 FR-003/FR-012: whether the anchor's posts are still auto-duplicated today.
     const autoDuplicateActive = net?.groupId && this.d.repo.autoDuplicateActive
       ? await this.d.repo.autoDuplicateActive(net.groupId, (this.d.now ?? (() => new Date()))()).catch(() => true)
       : true;
-    return { anchor: card.channelKey, mode: net?.mode ?? 'single', groupId: net?.groupId ?? null, groupName: net?.groupName ?? null, resources: net?.resources ?? [], autoDuplicateActive };
+    return { anchor: card.channelKey, mode: net?.mode ?? 'single', groupId: net?.groupId ?? null, groupName: net?.groupName ?? null, autoDuplicateActive,
+      // Spec 024 FR-012: each resource's own zone and quiet hours.
+      resources: (net?.resources ?? []).map(({ tz, quiet, ...r }) => ({ ...r, timezone: tz ?? null, quietHours: quiet ?? null })) };
   }
 
   async playbook(handle: string) {
@@ -67,7 +70,7 @@ export class NetworkService {
     const { agent, card } = await this.orch(handle);
     const p = z.object({ body: PlaybookSchema, rationale: z.string().max(2000).optional() }).safeParse(body ?? {});
     if (!p.success) throw new BadRequestException({ error: 'invalid_body', issues: p.error.issues.map((i) => ({ path: i.path.join('.'), message: i.message })) });
-    const net = await networkContext({ repo: this.d.repo, usable: this.d.usable }, agent, card);
+    const net = await networkContext({ repo: this.d.repo, usable: this.d.usable, time: this.d.time }, agent, card);
     const errors = validatePlaybook(p.data.body, net?.resources ?? [], net?.telegramFormats ?? []);
     if (errors.length) throw new BadRequestException({ error: 'playbook_invalid', details: errors });
     const pb = await this.d.repo.insertPlaybook({ agentId: agent.id, status: 'active', brief: null, body: p.data.body, rationale: p.data.rationale ?? 'owner edit', createdBy: 'owner' });

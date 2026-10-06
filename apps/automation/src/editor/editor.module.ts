@@ -34,6 +34,7 @@ import { TelegramEditorPublisher } from './publish/telegram-editor.publisher';
 import { SponsoredPublisher } from './publish/sponsored.publisher';
 import { EditorMediaPreparer } from './publish/prepare-media';
 import { EditorCrossPoster } from './publish/editor-crosspost';
+import { ResourceTime } from './time/resource-time';
 import { safeGetBytes } from './net/safe-http';
 import { AdOrdersRepository } from '../payments/ad-orders.repository';
 import { EditorRunnerService } from './roles/editor-runner.service';
@@ -202,6 +203,16 @@ export interface AgentInfra {
 export { EDITOR_OPS, EDITOR_CHAT, EDITOR_DRAFTS };
 
 type PublishPorts = Pick<PublishSpecDeps, 'publisher' | 'media' | 'crosspost'>;
+
+/** Spec 024 FR-004: one per-resource time resolver (card for Telegram, then the profile, then Kyiv). */
+function resourceTime(repos: Pick<EditorRepos, 'channels'>, profiles: ResourceProfilesRepository): ResourceTime {
+  const logger = new Logger('ResourceTime');
+  return new ResourceTime({
+    card:    (k) => repos.channels.get(k),
+    profile: (ref) => profiles.rawProfile(ref),
+    warn:    async (ref, detail) => { logger.warn(`${ref}: ${detail}`); await profiles.noteHealthDetail(ref, detail); },
+  });
+}
 
 export interface EditorRepos {
   channels: EditorChannelsRepository;
@@ -757,7 +768,7 @@ export const EDITOR_PROVIDERS = [
         notifier: TelegramNotifier, manager: ManagerInfra, promo: PromoInfra,
       ): NetworkRunner => new NetworkRunner({
         loop, registry, runtime: infra.runtime, memory: repos.memory, repo: new NetworkRepository(pool), plans: repos.plans, profiles: infra.profiles,
-        usable: (ref) => platform.health.usable(ref),
+        usable: (ref) => platform.health.usable(ref), time: resourceTime(repos, infra.profiles),
         directives: (orch) => manager.runner.deliver(orch),
         afterOrchestration: async (orch) => {
           await manager.runner.afterOrchestration(orch);
@@ -963,7 +974,7 @@ export const EDITOR_PROVIDERS = [
         const logger = new Logger('Network');
         return new NetworkService({
           pool, agents: infra.agents, repo: new NetworkRepository(pool), inbox: infra.inbox,
-          card: (k) => repos.channels.get(k), usable: (ref) => platform.health.usable(ref),
+          card: (k) => repos.channels.get(k), usable: (ref) => platform.health.usable(ref), time: resourceTime(repos, infra.profiles),
           rebuild: (card, brief) => network.runPlaybookBuild(card, brief),
           log: (m) => logger.warn(m),
         });

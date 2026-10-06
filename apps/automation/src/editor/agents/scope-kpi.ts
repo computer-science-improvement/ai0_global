@@ -45,7 +45,7 @@ export class TelegramScopeKpi implements ScopeKpi {
     if (!keys.length) return null;
     const { rows } = await this.pool.query(
       `WITH p AS (
-         SELECT (posted_at AT TIME ZONE 'Europe/Kyiv')::date AS day, views,
+         SELECT (posted_at AT TIME ZONE CASE WHEN $3 THEN resource_tz('telegram:' || channel_id) ELSE 'Europe/Kyiv' END)::date AS day, views,
                 posted_at >= $2::timestamptz - interval '8 days' AS recent
            FROM editor_v_post_performance
           WHERE channel_id = ANY($1::text[]) AND views IS NOT NULL
@@ -60,7 +60,8 @@ export class TelegramScopeKpi implements ScopeKpi {
          (SELECT SUM(avg_views * n) / NULLIF(SUM(n), 0) FROM d WHERE NOT recent)  AS baseline,
          (SELECT stddev_samp(avg_views) FROM d WHERE NOT recent)                   AS std,
          (SELECT COALESCE(SUM(n), 0) FROM d WHERE NOT recent)                      AS posts_base`,
-      [keys, now]);
+      // Spec 024 FR-005: a resource's own series uses its zone; network/system aggregates stay Kyiv.
+      [keys, now, a.scope === 'resource']);
     const r = rows[0] ?? {};
     const num = (v: unknown) => (v == null ? null : Number(v));
     return {

@@ -128,9 +128,14 @@ test('stats collector: per-post Meta metrics and the daily rollup; errors never 
   const metrics: any[] = [];
   const daily: any[] = [];
   const c = new PlatformStatsCollector({
-    pool: { query: async (sql: string) => {
-      if (/FROM meta_accounts/.test(sql)) return { rows: [{ id: 'ig1', platform: 'instagram', followers: 1200, reach: 3400, impressions: 5000 }] };
-      if (/editor_v_channel_daily/.test(sql)) return { rows: [{ channel_id: '@space', subscribers: 5400 }] };
+    // Spec 024: the day of each resource comes from SQL (resource_tz of the ref at `now`).
+    pool: { query: async (sql: string, params?: any[]) => {
+      if (/FROM meta_accounts/.test(sql)) {
+        assert.match(sql, /resource_tz\(m\.platform \|\| ':' \|\| m\.id\)/);
+        assert.equal(params?.[0]?.toISOString(), '2026-10-02T10:00:00.000Z');
+        return { rows: [{ id: 'ig1', platform: 'instagram', followers: 1200, reach: 3400, impressions: 5000, day: '2026-10-02' }] };
+      }
+      if (/editor_v_channel_daily/.test(sql)) return { rows: [{ channel_id: '@space', subscribers: 5400, day: '2026-10-02' }] };
       return { rows: [] };
     } } as any,
     posts: {

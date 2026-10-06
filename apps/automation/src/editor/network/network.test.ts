@@ -70,7 +70,7 @@ const idea = (id: string, variants: string[]): IdeaRow => ({
   id, agentId: 'o1', title: `Ідея ${id}`, angle: null, sources: ['https://x'], variants: variants.map((r) => ({ resource_ref: r, format: r.startsWith('telegram') ? 'longread' : r.startsWith('instagram') ? 'ig_carousel' : 'th_text' })),
   why: null, evidence: null, origin: 'orchestrator', originRef: null, expiresAt: new Date(), status: 'accepted', revisions: 0, review: null, createdAt: new Date(), updatedAt: new Date(),
 });
-const card = { timezone: 'Europe/Kyiv', quietStartHour: 23, quietEndHour: 8, minGapMinutes: 60 };
+const card = { channelKey: '@space', timezone: 'Europe/Kyiv', quietStartHour: 23, quietEndHour: 8, minGapMinutes: 60 };
 const NOW = new Date('2026-10-04T05:00:00Z'); // Sunday 08:00 Kyiv
 const I1 = '00000000-0000-4000-8000-000000000001';
 

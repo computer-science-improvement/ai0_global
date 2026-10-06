@@ -88,13 +88,13 @@ export function buildPlatformTools(d: PlatformToolDeps): EditorTool[] {
 
   const platformStats = defineTool({
     name: 'get_platform_stats',
-    description: 'Статистика ресурсу будь-якої платформи за N днів: підписники по днях, пости з переглядами/охопленням і залученістю, середні по форматах.',
+    description: 'Статистика ресурсу будь-якої платформи за N днів (дні — у часовому поясі ресурсу): підписники по днях, пости з переглядами/охопленням і залученістю, середні по форматах.',
     kind: 'read', roles: [...READ_ROLES],
     input: z.object({ resource: z.string().min(3).max(200), days: z.number().int().min(1).max(90).default(28) }),
     execute: async ({ resource, days }) => {
       const { rows: daily } = await d.pool.query(
         `SELECT day::text, followers, followers_delta, reach, views, engagement FROM resource_daily_stats
-          WHERE resource_ref = $1 AND day >= (now() AT TIME ZONE 'Europe/Kyiv')::date - $2::int ORDER BY day`, [resource, days]);
+          WHERE resource_ref = $1 AND day >= (now() AT TIME ZONE resource_tz($1))::date - $2::int ORDER BY day`, [resource, days]);
       const { rows: formats } = await d.pool.query(
         `SELECT format, COUNT(*)::int AS posts, ROUND(AVG(views))::int AS avg_views, ROUND(AVG(engagement))::int AS avg_engagement
            FROM network_posts WHERE resource_ref = $1 AND posted_at >= now() - ($2 || ' days')::interval GROUP BY format ORDER BY avg_views DESC NULLS LAST`,

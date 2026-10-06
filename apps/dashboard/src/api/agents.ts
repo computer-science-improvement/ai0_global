@@ -365,6 +365,9 @@ export interface ResourceProfile {
   ads_allowed:     { allowed: boolean; categories: string[] };
   examples:        string[];
   notes?:          string;
+  /** Spec 024: IANA zone (absent = Europe/Kyiv) and quiet hours (absent = 23→8); ignored for Telegram (the card rules). */
+  timezone?:       string;
+  quiet_hours?:    { start: number; end: number };
 }
 
 export type HealthState = 'ok' | 'no_access' | 'token_expiring' | 'token_invalid' | 'rate_limited' | 'unknown';

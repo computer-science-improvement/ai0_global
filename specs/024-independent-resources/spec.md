@@ -227,3 +227,26 @@ Duplication becomes a tool, and every resource gets its own time zone.
   "Independent", no playbook required) and the badge labels. The rest of FR-011 stays in T6.
 - `editor_channels.crosspost` DB default is now false; the repository still writes `card.crosspost ?? true` for card objects
   without the field (`makeDefaultCard` already sets false).
+
+### T2 (2026-10-06)
+- **Resolver:** `editor/time/resource-time.ts` — `ResourceTime.tzOf/quietOf/localDay`, pure `resolveTz/resolveQuiet`,
+  `zonedToUtcStrict` (spring gap → null, autumn ambiguity → earlier instant) and `resourceTimeLines` for prompts. Order as in
+  SQL `resource_tz()` (Telegram card first, see T1). An invalid stored zone falls back to Kyiv, logs and writes
+  `resource_health.detail` (`ResourceProfilesRepository.noteHealthDetail`, the health state is kept).
+- **Profile fields are optional** (`timezone`, `quiet_hours`): absent means Europe/Kyiv and 23→8 through the resolver, so
+  existing profiles and callers that build `ResourceProfile` objects need no change. Reading a stored profile with an invalid
+  zone drops only that field instead of losing the profile. The dashboard profile editor keeps stored `timezone` /
+  `quiet_hours` when saving; the fields themselves arrive with T6.
+- **Planner:** `NetworkCtx.resources[]` carry `tz` + `quiet` (resolved in `networkContext`; without a resolver Telegram uses
+  the card, others Kyiv 23→8). `validateNetworkPlan` converts each slot in its resource zone, checks that resource's quiet
+  hours and counts `per_day` per resource on the plan date in its zone. Platform publishing keeps its rolling-24 h cap (no
+  calendar day there). BR-AGT-72 / "Telegram first" / the 90-min idea gap are untouched until T3.
+- **Series cadence:** the plan date's weekday is the same in every zone, so `seriesDue` is unchanged; the planner prompt
+  prints each due series time with its resource zone, and `SeriesSchema` says «у часовому поясі ресурсу».
+- **SQL on `resource_tz()`:** `get_channel_stats` best hours, `get_platform_stats` window, `rollupDaily` day key (computed per
+  row in SQL), KPI-digest per-resource series (posts, revenue, joins, and each resource's own "today"), and `scope-kpi` for
+  `resource` scopes only — network/system scopes, the digest's agent spend, slots and budget stay on the Kyiv day.
+- **Prompts:** network planner and daily orchestrator prompts add «## Час ресурсів (не Київ)» lines; the composer adds
+  «Час каналу: …» for a non-Kyiv card (owner time stays Kyiv); `renderProfile` prints «Часовий пояс: … (зараз HH:MM)» for
+  non-Kyiv, non-Telegram profiles. `GET …/network` resources carry `timezone` and `quietHours` (FR-012).
+- BR-GEN-01 is updated in `docs/brd/00-overview.md`.
