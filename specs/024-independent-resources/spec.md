@@ -201,3 +201,52 @@ Duplication becomes a tool, and every resource gets its own time zone.
 - [ ] Eval `executor-format-prefs`: two resources with different `format_prefs` get differently formatted posts from one source.
 
 **Size:** M · **Depends on:** T3
+
+## Implementation notes
+
+### T1 (2026-10-06)
+- **Migration number:** `061_independent_resources.sql` (not 063/059 as written above; 059–060 belong to another stream).
+- **`resource_tz()` order:** for `telegram:` refs the card zone comes first, then the profile zone, then Kyiv. FR-001 lists the
+  profile first, but FR-004 makes the card authoritative for Telegram; the SQL function and `resource-time.ts` follow FR-004.
+  An invalid stored zone falls back to Kyiv (plpgsql, `invalid_parameter_value`).
+- **Plan-day boundary of the gate:** `meta_account_groups` gains `auto_duplicate_day DATE` + `auto_duplicate BOOLEAN` (not in
+  FR-001). `autoDuplicateActive(groupId, now)` pins the gate value for the anchor's local plan day on first use; the editor
+  scheduler touches it for every active card each tick (`pinGate`), and `setGroupMode` pins today before changing the mode,
+  so a change of network mode, agent mode or playbook takes effect at the next plan day in both directions. If the service
+  is down across midnight, the first evaluation after restart pins that day.
+- **"Live"** = effective mode (orchestrator ∧ card, spec 031 ladder) is `live` and the orchestrator is not paused. `approve`
+  counts as not live (auto-duplication continues), per the literal FR-003; revisit when 024 adds per-resource modes (T3+),
+  since today a mode lives only on the Telegram card and platform refs answer `resource_follows_network` (031).
+- **Fail-open:** if the gate query fails, `EditorCrossPoster` and `GroupFanOutService` keep duplicating (pre-024 behaviour).
+  `GroupFanOutService` gets the gate through the optional `AUTO_DUPLICATE_GATE` provider in `CommonModule`.
+- **Behaviour change for groups already `orchestrated` with a shadow/off orchestrator:** they now auto-duplicate again
+  (FR-003: "no resource goes silent"); with a live orchestrator and a playbook they keep not duplicating.
+- **`network-mode`:** the response adds `deprecated_alias` when `orchestrated`/`mirror` was sent; the Inbox text is English
+  (alert text Ukrainian). `GET …/network` adds `autoDuplicateActive` (FR-012).
+- **Dashboard:** only what the new mode values need: `NetworkMode` type, the Playbook tab switch ("Auto-duplicate (legacy)" /
+  "Independent", no playbook required) and the badge labels. The rest of FR-011 stays in T6.
+- `editor_channels.crosspost` DB default is now false; the repository still writes `card.crosspost ?? true` for card objects
+  without the field (`makeDefaultCard` already sets false).
+
+### T2 (2026-10-06)
+- **Resolver:** `editor/time/resource-time.ts` — `ResourceTime.tzOf/quietOf/localDay`, pure `resolveTz/resolveQuiet`,
+  `zonedToUtcStrict` (spring gap → null, autumn ambiguity → earlier instant) and `resourceTimeLines` for prompts. Order as in
+  SQL `resource_tz()` (Telegram card first, see T1). An invalid stored zone falls back to Kyiv, logs and writes
+  `resource_health.detail` (`ResourceProfilesRepository.noteHealthDetail`, the health state is kept).
+- **Profile fields are optional** (`timezone`, `quiet_hours`): absent means Europe/Kyiv and 23→8 through the resolver, so
+  existing profiles and callers that build `ResourceProfile` objects need no change. Reading a stored profile with an invalid
+  zone drops only that field instead of losing the profile. The dashboard profile editor keeps stored `timezone` /
+  `quiet_hours` when saving; the fields themselves arrive with T6.
+- **Planner:** `NetworkCtx.resources[]` carry `tz` + `quiet` (resolved in `networkContext`; without a resolver Telegram uses
+  the card, others Kyiv 23→8). `validateNetworkPlan` converts each slot in its resource zone, checks that resource's quiet
+  hours and counts `per_day` per resource on the plan date in its zone. Platform publishing keeps its rolling-24 h cap (no
+  calendar day there). BR-AGT-72 / "Telegram first" / the 90-min idea gap are untouched until T3.
+- **Series cadence:** the plan date's weekday is the same in every zone, so `seriesDue` is unchanged; the planner prompt
+  prints each due series time with its resource zone, and `SeriesSchema` says «у часовому поясі ресурсу».
+- **SQL on `resource_tz()`:** `get_channel_stats` best hours, `get_platform_stats` window, `rollupDaily` day key (computed per
+  row in SQL), KPI-digest per-resource series (posts, revenue, joins, and each resource's own "today"), and `scope-kpi` for
+  `resource` scopes only — network/system scopes, the digest's agent spend, slots and budget stay on the Kyiv day.
+- **Prompts:** network planner and daily orchestrator prompts add «## Час ресурсів (не Київ)» lines; the composer adds
+  «Час каналу: …» for a non-Kyiv card (owner time stays Kyiv); `renderProfile` prints «Часовий пояс: … (зараз HH:MM)» for
+  non-Kyiv, non-Telegram profiles. `GET …/network` resources carry `timezone` and `quietHours` (FR-012).
+- BR-GEN-01 is updated in `docs/brd/00-overview.md`.

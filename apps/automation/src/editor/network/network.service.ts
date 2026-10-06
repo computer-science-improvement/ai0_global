@@ -8,7 +8,7 @@ import type { OwnerInbox } from '../agents/owner-inbox';
 import type { EditorCard } from '../card';
 import { localDate } from '../roles/time';
 import { networkContext, NetworkContextDeps } from './network-context';
-import { IDEA_STATUSES, IdeaStatus, NetworkRepository } from './network.repository';
+import { IDEA_STATUSES, IdeaStatus, NETWORK_MODE_ALIASES, NETWORK_MODES, NetworkMode, NetworkRepository } from './network.repository';
 import { PlaybookSchema, validatePlaybook } from './playbook';
 
 export interface NetworkServiceDeps {
@@ -18,6 +18,7 @@ export interface NetworkServiceDeps {
   inbox:    Pick<OwnerInbox, 'post'>;
   card:     (channelKey: string) => Promise<EditorCard | null>;
   usable?:  NetworkContextDeps['usable'];
+  time?:    NetworkContextDeps['time'];
   /** Background playbook rebuild (NetworkRunner.runPlaybookBuild). */
   rebuild:  (card: EditorCard, brief: string | null) => Promise<unknown>;
   log?:     (msg: string) => void;
@@ -40,8 +41,14 @@ export class NetworkService {
 
   async network(handle: string) {
     const { agent, card } = await this.orch(handle);
-    const net = await networkContext({ repo: this.d.repo, usable: this.d.usable }, agent, card);
-    return { anchor: card.channelKey, mode: net?.mode ?? 'single', groupId: net?.groupId ?? null, groupName: net?.groupName ?? null, resources: net?.resources ?? [] };
+    const net = await networkContext({ repo: this.d.repo, usable: this.d.usable, time: this.d.time }, agent, card);
+    // Spec 024 FR-003/FR-012: whether the anchor's posts are still auto-duplicated today.
+    const autoDuplicateActive = net?.groupId && this.d.repo.autoDuplicateActive
+      ? await this.d.repo.autoDuplicateActive(net.groupId, (this.d.now ?? (() => new Date()))()).catch(() => true)
+      : true;
+    return { anchor: card.channelKey, mode: net?.mode ?? 'single', groupId: net?.groupId ?? null, groupName: net?.groupName ?? null, autoDuplicateActive,
+      // Spec 024 FR-012: each resource's own zone and quiet hours.
+      resources: (net?.resources ?? []).map(({ tz, quiet, ...r }) => ({ ...r, timezone: tz ?? null, quietHours: quiet ?? null })) };
   }
 
   async playbook(handle: string) {
@@ -63,7 +70,7 @@ export class NetworkService {
     const { agent, card } = await this.orch(handle);
     const p = z.object({ body: PlaybookSchema, rationale: z.string().max(2000).optional() }).safeParse(body ?? {});
     if (!p.success) throw new BadRequestException({ error: 'invalid_body', issues: p.error.issues.map((i) => ({ path: i.path.join('.'), message: i.message })) });
-    const net = await networkContext({ repo: this.d.repo, usable: this.d.usable }, agent, card);
+    const net = await networkContext({ repo: this.d.repo, usable: this.d.usable, time: this.d.time }, agent, card);
     const errors = validatePlaybook(p.data.body, net?.resources ?? [], net?.telegramFormats ?? []);
     if (errors.length) throw new BadRequestException({ error: 'playbook_invalid', details: errors });
     const pb = await this.d.repo.insertPlaybook({ agentId: agent.id, status: 'active', brief: null, body: p.data.body, rationale: p.data.rationale ?? 'owner edit', createdBy: 'owner' });
@@ -111,31 +118,42 @@ export class NetworkService {
     };
   }
 
-  /** mirror ↔ orchestrated (FR-010). Orchestrated needs an active playbook; the network starts in shadow like any agent. */
+  /**
+   * independent ↔ legacy_duplicate (spec 024 FR-002). `orchestrated` / `mirror` are
+   * accepted as aliases for one release. No playbook is required: an independent
+   * network without one plans Telegram only and keeps auto-duplicating (FR-003).
+   */
   async setMode(handle: string, body: unknown) {
     const { agent, card } = await this.orch(handle);
-    const p = z.object({ mode: z.enum(['mirror', 'orchestrated']) }).safeParse(body ?? {});
-    if (!p.success) throw new BadRequestException({ error: 'invalid_body' });
+    const p = z.object({ mode: z.enum(['independent', 'legacy_duplicate', 'orchestrated', 'mirror']) }).safeParse(body ?? {});
+    if (!p.success) throw new BadRequestException({ error: 'invalid_body', details: `mode is one of ${NETWORK_MODES.join(', ')}` });
+    const alias = NETWORK_MODE_ALIASES[p.data.mode];
+    const mode: NetworkMode = alias ?? (p.data.mode as NetworkMode);
+    if (alias) this.d.log?.(`network-mode: "${p.data.mode}" is deprecated, use "${alias}" (@${agent.handle})`);
     const group = await this.d.repo.groupOfChannel(card.channelKey);
     if (!group) throw new BadRequestException({ error: 'no_network', details: 'the channel is not in an account group (/app/connections/groups)' });
-    if (p.data.mode === 'orchestrated' && !(await this.d.repo.activePlaybook(agent.id))) {
-      throw new ConflictException({ error: 'no_active_playbook', details: 'approve a playbook first' });
-    }
-    await this.d.repo.setGroupMode(group.id, p.data.mode);
+    const now = (this.d.now ?? (() => new Date()))();
+    await this.d.repo.setGroupMode(group.id, mode, now);
+    const hasPlaybook = !!(await this.d.repo.activePlaybook(agent.id));
+    const independent = mode === 'independent';
     await this.d.inbox.post({
       agentId: agent.id, kind: 'network_mode', severity: 'info',
-      title: `🕸 Network "${group.name}" → ${p.data.mode === 'orchestrated' ? 'orchestrated' : 'mirror'}`,
-      body: p.data.mode === 'orchestrated'
-        ? `@${agent.handle} plans native posts for every resource in the network (agent mode: ${agent.mode}). Turn off Telegram post mirroring in the card if you no longer need it.`
-        : 'The network is back to mirroring Telegram posts.',
+      title: `🕸 Network "${group.name}" → ${independent ? 'independent' : 'auto-duplicate (legacy)'}`,
+      body: independent
+        ? `Each resource is its own unit: @${agent.handle} decides per post whether to duplicate, adapt, write a unique post or skip (agent mode: ${agent.mode}).`
+          + (hasPlaybook ? '' : ' Until a playbook is approved only Telegram is planned and its posts keep being auto-duplicated.')
+          + ' Auto-duplication stops from the next plan day once the agent is live with an active playbook.'
+        : 'Telegram posts are auto-duplicated to the other resources again from the next plan day.',
       alert: {
-        title: `🕸 Мережа «${group.name}» → ${p.data.mode === 'orchestrated' ? 'оркестрована' : 'дзеркало'}`,
-        body: p.data.mode === 'orchestrated'
-          ? `@${agent.handle} планує нативні пости для всіх ресурсів мережі (режим агента: ${agent.mode}). Дзеркалення Telegram-постів вимкніть у картці, якщо воно більше не потрібне.`
-          : 'Мережа повернулась до дзеркалення Telegram-постів.',
+        title: `🕸 Мережа «${group.name}» → ${independent ? 'незалежні ресурси' : 'автодублювання (legacy)'}`,
+        body: independent
+          ? `Кожен ресурс — окрема одиниця: @${agent.handle} вирішує для кожного поста — дублювати, адаптувати, унікальний пост чи пропустити (режим агента: ${agent.mode}).`
+            + (hasPlaybook ? '' : ' Поки плейбук не затверджено, планується лише Telegram і його пости далі автоматично дублюються.')
+            + ' Автодублювання припиняється з наступного дня плану, коли агент у live з активним плейбуком.'
+          : 'Пости Telegram знову автоматично дублюються в інші ресурси з наступного дня плану.',
       },
       refType: 'agent', refId: agent.handle,
     });
-    return { mode: p.data.mode, group: group.name };
+    return { mode, group: group.name, ...(alias ? { deprecated_alias: p.data.mode } : {}) };
   }
 }

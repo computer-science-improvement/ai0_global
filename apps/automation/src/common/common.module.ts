@@ -21,7 +21,9 @@ import { BotLoggerService }          from './logger/bot-logger.service';
 import { ContentStrategyRunner }     from './content-strategy/content-strategy.runner';
 import { ContentStrategyRegistry }   from './content-strategy/content-strategy.registry';
 import { DestinationResolver }       from './content-strategy/destination-resolver.service';
-import { GroupFanOutService }        from './content-strategy/group-fanout.service';
+import { AUTO_DUPLICATE_GATE, GroupFanOutService } from './content-strategy/group-fanout.service';
+import { DB_POOL }                   from '../database/database.tokens';
+import { NetworkRepository }         from '../editor/network/network.repository';
 import { RunTracer }                 from './observability/run-tracer.service';
 import { RecipeCarouselRendererService } from './carousel/recipe-carousel-renderer.service';
 
@@ -59,9 +61,16 @@ const SERVICES = [
   RecipeCarouselRendererService,
 ];
 
+// Spec 024 FR-003: strategy fan-out honours the network's auto-duplicate gate.
+const AUTO_DUPLICATE_GATE_PROVIDER = {
+  provide:    AUTO_DUPLICATE_GATE,
+  inject:     [{ token: DB_POOL, optional: true }],
+  useFactory: (pool?: any) => (pool ? new NetworkRepository(pool) : null),
+};
+
 @Global()
 @Module({
-  providers: [...VALIDATORS, ...AGENTS, ...SERVICES],
+  providers: [...VALIDATORS, ...AGENTS, ...SERVICES, AUTO_DUPLICATE_GATE_PROVIDER],
   exports:   [...VALIDATORS, ...AGENTS, ...SERVICES],
 })
 export class CommonModule {}

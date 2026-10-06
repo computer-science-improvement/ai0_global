@@ -1,14 +1,15 @@
 import { z } from 'zod';
 import type { EditorCard } from '../card';
 import { CAPABILITIES } from '../platform/capabilities';
-import { isQuietHour, zonedToUtc } from '../roles/time';
+import { isQuietHour } from '../roles/time';
+import { zonedToUtcStrict } from '../time/resource-time';
 import type { IdeaRow } from './network.repository';
-import type { NetworkCtx } from './network-context';
+import { NetworkCtx, resourceClock } from './network-context';
 import { seriesDue } from './playbook';
 
 export const NetworkSlotInput = z.object({
   resource_ref: z.string().min(3).max(200),
-  time:         z.string().regex(/^([01]\d|2[0-3]):[0-5]\d$/).describe('HH:MM за Києвом'),
+  time:         z.string().regex(/^([01]\d|2[0-3]):[0-5]\d$/).describe('HH:MM у часовому поясі цього ресурсу на дату плану'),
   format:       z.string().min(2).max(30),
   topic:        z.string().min(5).max(300),
   angle:        z.string().max(400).optional(),
@@ -40,12 +41,15 @@ const LEAD_MIN = 5;
 /**
  * Deterministic validation of a network day plan (spec 020 FR-007). Errors go
  * back to the planner as Ukrainian lines so it can fix and resubmit.
+ * Spec 024 FR-005: a slot's time, quiet hours and per_day are in the slot
+ * resource's own zone on the plan date; a time in the spring DST gap is an
+ * error, an ambiguous autumn time is the earlier instant.
  */
 export function validateNetworkPlan(
   plan: SubmitNetworkPlan,
   o: {
     net: NetworkCtx;
-    card: Pick<EditorCard, 'timezone' | 'quietStartHour' | 'quietEndHour' | 'minGapMinutes'>;
+    card: Pick<EditorCard, 'channelKey' | 'timezone' | 'quietStartHour' | 'quietEndHour' | 'minGapMinutes'>;
     planDate: string;
     weekday: number;
     now: Date;
@@ -70,9 +74,11 @@ export function validateNetworkPlan(
     if (!r) { errors.push(`${label}: ресурс не в мережі або недоступний (є: ${[...resources.keys()].join(', ')})`); return; }
     if (!sec) { errors.push(`${label}: у плейбуку немає секції цього ресурсу`); return; }
     if (!(sec.formats[s.format] > 0)) errors.push(`${label}: формат ${s.format} не дозволений плейбуком (є: ${Object.keys(sec.formats).filter((f) => sec.formats[f] > 0).join(', ')})`);
-    const at = zonedToUtc(o.planDate, s.time, card.timezone);
+    const { tz, quiet } = resourceClock(r, card);
+    const at = zonedToUtcStrict(o.planDate, s.time, tz);
+    if (!at) { errors.push(`${label}: ${s.time} не існує ${o.planDate} у ${tz} (перехід на літній час) — обери інший час`); return; }
     if (at.getTime() < o.now.getTime() + LEAD_MIN * 60_000) errors.push(`${label}: час уже минув`);
-    if (isQuietHour(Number(s.time.slice(0, 2)), card.quietStartHour, card.quietEndHour)) errors.push(`${label}: тихі години`);
+    if (isQuietHour(Number(s.time.slice(0, 2)), quiet.start, quiet.end)) errors.push(`${label}: тихі години ${quiet.start}:00–${quiet.end}:00 (${tz})`);
     if (r.platform === 'telegram') {
       for (const x of o.reservedAt) if (Math.abs(x.getTime() - at.getTime()) < card.minGapMinutes * 60_000) errors.push(`${label}: занадто близько до резервного (рекламного) слоту`);
     }

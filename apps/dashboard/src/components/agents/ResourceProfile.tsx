@@ -226,7 +226,8 @@ export function ProfileModal({ handle, initial, refName, onClose }: {
     setTried(true);
     if (Object.keys(local).length) { setJump((n) => n + 1); return; }
     try {
-      await put.mutateAsync(toBody(f));
+      // The zone and quiet hours have no fields here yet (spec 024 T6); keep the stored ones.
+      await put.mutateAsync({ ...(initial?.timezone ? { timezone: initial.timezone } : {}), ...(initial?.quiet_hours ? { quiet_hours: initial.quiet_hours } : {}), ...toBody(f) });
       toast.success('Resource profile saved');
       onClose();
     } catch { setJump((n) => n + 1); /* issues are shown inline */ }

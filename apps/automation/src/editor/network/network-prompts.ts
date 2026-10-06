@@ -6,6 +6,7 @@ import type { EditorRole } from '../llm/llm.types';
 import { localDate, localTimeLabel, localWeekday } from '../roles/time';
 import { capabilitiesSummary, implementedFormats } from '../platform/capabilities';
 import type { NetworkCtx } from './network-context';
+import { DEFAULT_TZ, resourceTimeLines } from '../time/resource-time';
 import type { IdeaRow } from './network.repository';
 import { renderPlaybook, seriesDue } from './playbook';
 
@@ -34,12 +35,23 @@ export function resourcesBlock(net: NetworkCtx): string {
   return net.resources.map((r) => `- ${r.ref} (${r.platform}): формати ${r.platform === 'telegram' ? net.telegramFormats.join(', ') : implementedFormats(r.platform).join(', ') || 'поки немає'}`).join('\n');
 }
 
+/**
+ * Spec 024 FR-005: the anchor's "now" is in the prompt already; this adds one
+ * line per resource outside Kyiv (`instagram:x — America/New_York, зараз 09:12`).
+ */
+export function resourceClocksBlock(net: NetworkCtx, now: Date): string[] {
+  const lines = resourceTimeLines(net.resources.map((r) => ({ ref: r.ref, tz: r.tz })), now);
+  return lines.length
+    ? ['', '## Час ресурсів (не Київ)', ...lines.map((l) => `- ${l}`), `Решта ресурсів — ${DEFAULT_TZ}. Час слота, найкращі години, тихі години й серії — у часовому поясі свого ресурсу.`]
+    : [];
+}
+
 /** System prompt of an orchestrator run (playbook upkeep, idea pool) — spec 020. */
 export function orchestratorSystemPrompt(o: { net: NetworkCtx; card: EditorCard; profile: string | null; memory: MemoryEntry[]; skills: SkillSource; directives?: string | null }): string {
   const { net } = o;
   const platforms = [...new Set(net.resources.map((r) => r.platform))];
   return [
-    `Ти — @${net.orchestrator.handle} «${net.orchestrator.name}», оркестратор ${net.mode === 'orchestrated' ? `мережі «${net.groupName}»` : `каналу ${net.anchorKey}`} у медіамережі ai0.`,
+    `Ти — @${net.orchestrator.handle} «${net.orchestrator.name}», оркестратор ${net.mode === 'independent' ? `мережі «${net.groupName}»` : `каналу ${net.anchorKey}`} у медіамережі ai0.`,
     'Ти відповідаєш за стратегію: плейбук (що, куди, як часто) і пул ідей, з яких планувальник складає день. Публікують виконавці; ти не публікуєш.',
     'Правило власника важливіше за директиву менеджера, директива — важливіша за твоє власне рішення. Факти — лише з джерел, які ти прочитав; нічого не вигадуєш.',
     'Код перевіряє всі правила (формати, частоти, дублікати). Якщо інструмент повернув error — виправ і спробуй ще раз.',
@@ -71,7 +83,8 @@ export function orchestratorDailyPrompt(o: { net: NetworkCtx; card: EditorCard; 
   const fresh = o.open.filter((i) => i.status === 'new').length;
   const revise = o.open.filter((i) => i.status === 'needs_revision');
   return [
-    `Сьогодні ${WEEKDAYS[localWeekday(o.now, tz)]}, ${localDate(o.now, tz)} ${localTimeLabel(o.now, tz)}.`,
+    `Сьогодні ${WEEKDAYS[localWeekday(o.now, tz)]}, ${localDate(o.now, tz)} ${localTimeLabel(o.now, tz)}${tz === DEFAULT_TZ ? '' : ` (${tz})`}.`,
+    ...resourceClocksBlock(o.net, o.now).slice(1),
     o.hasDirectives ? '1. Спершу розбери директиви менеджера: accept_directive з планом або reject_directive з причиною (кожну).' : '',
     `${o.hasDirectives ? '2' : '1'}. Пул: прийнятих ${accepted}, на рецензії ${fresh}${revise.length ? `, на доопрацюванні ${revise.length} (revise_idea: ${revise.map((i) => i.id).join(', ')})` : ''}. Ціль — ${o.target} ідей на 2 дні вперед для всіх ресурсів.`,
     'Подивись статистику (get_network_posts, get_platform_stats, get_format_performance), нещодавні пости й джерела (fetch_feed, fetch_api, library_catalog), і додай ідеї через add_idea — кожна з варіантами під ресурси й форматами плейбука.',
@@ -116,18 +129,25 @@ export function ideaReviewerUserPrompt(o: { fresh: number; pendingPlaybook: bool
   ].filter(Boolean).join('\n');
 }
 
-/** Extra block for the planner of an orchestrated network (spec 020 FR-007). */
-export function networkPlannerBlock(o: { net: NetworkCtx; accepted: IdeaRow[]; now: Date; tz: string }): string {
-  const due = o.net.playbook ? seriesDue(o.net.playbook, localWeekday(o.now, o.tz)) : [];
+/** Extra block for the planner of an independent network (spec 020 FR-007, 024 FR-005). */
+export function networkPlannerBlock(o: { net: NetworkCtx; accepted: IdeaRow[]; now: Date; tz: string; planDate?: string }): string {
+  // The plan date is one calendar date for every resource, so its weekday is the same in every zone.
+  const planDate = o.planDate ?? localDate(o.now, o.tz);
+  const due = o.net.playbook ? seriesDue(o.net.playbook, new Date(`${planDate}T12:00:00Z`).getUTCDay()) : [];
+  const tzOf = new Map(o.net.resources.map((r) => [r.ref, r.tz]));
   return [
-    `## Мережа «${o.net.groupName}» — плануєш день для ВСІХ ресурсів`,
+    `## Мережа «${o.net.groupName}» — плануєш день ${planDate} для ВСІХ ресурсів`,
     resourcesBlock(o.net),
+    ...resourceClocksBlock(o.net, o.now),
     '',
     '## Плейбук',
     o.net.playbook ? renderPlaybook(o.net.playbook) : '- немає',
     '',
     '## Серії за розкладом сьогодні',
-    due.length ? due.map((d) => `- «${d.series.name}» о ${d.time} → ${d.series.resource_ref} (${d.series.format}): ${d.series.brief}`).join('\n') : '- немає',
+    due.length ? due.map((d) => {
+      const tz = tzOf.get(d.series.resource_ref);
+      return `- «${d.series.name}» о ${d.time}${tz && tz !== DEFAULT_TZ ? ` (${tz})` : ''} → ${d.series.resource_ref} (${d.series.format}): ${d.series.brief}`;
+    }).join('\n') : '- немає',
     '',
     '## Прийняті ідеї',
     o.accepted.length

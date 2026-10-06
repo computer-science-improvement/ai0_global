@@ -4,6 +4,7 @@ import type { SkillSource } from '../skills/skill-library';
 import type { MemoryEntry } from '../repo/editor-memory.repository';
 import type { EditorSlot } from '../repo/editor-plans.repository';
 import { localDate, localTimeLabel, localWeekday } from './time';
+import { resourceTimeLines } from '../time/resource-time';
 
 const ROLE_TITLE: Record<CardRole, string> = {
   planner:  'редактор-планувальник',
@@ -113,6 +114,8 @@ export function buildComposerSystemPrompt(o: {
     'Відповідай власнику коротко. Превʼю чернетки він бачить окремою карткою — не переписуй увесь пост у відповідь.',
     '',
     `Зараз ${WEEKDAYS[localWeekday(o.now, tz)]}, ${localDate(o.now, tz)} ${localTimeLabel(o.now, tz)} (Київ, ${tz}). Завтра — ${WEEKDAYS[localWeekday(tomorrow, tz)]}, ${localDate(tomorrow, tz)}.`,
+    // Spec 024 FR-005: owner time stays Kyiv; a channel in another zone gets its own clock line.
+    ...(o.card ? resourceTimeLines([{ ref: `telegram:${o.card.channelKey}`, tz: o.card.timezone }], o.now).map((l) => `Час каналу: ${l}. Час, який називає власник, — київський, якщо він не вказав інший пояс.`) : []),
     '',
     '## Канал',
     channel,

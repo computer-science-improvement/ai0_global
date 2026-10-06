@@ -1,6 +1,6 @@
 /**
  * Spec 020 end to end on a throwaway Postgres with a scripted LLM:
- * brief → playbook (pending) → owner approves → network orchestrated → ideas →
+ * brief → playbook (pending) → owner approves → network independent → ideas →
  * review → network day plan → Telegram + Instagram executors in shadow → ideas used.
  * Skipped unless EDITOR_PG_TEST_URL is set.
  */
@@ -76,7 +76,7 @@ after(async () => {
   await pool.end();
 });
 
-test('brief → playbook → orchestrated network → ideas → plan → native posts in shadow', { skip }, async () => {
+test('brief → playbook → independent network → ideas → plan → native posts in shadow', { skip }, async () => {
   const IG = `instagram:${igId}`;
   const now = new Date();
   const kyivHour = Number(new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Kyiv', hour: '2-digit', hourCycle: 'h23' }).format(now));
@@ -163,12 +163,15 @@ test('brief → playbook → orchestrated network → ideas → plan → native 
   const pb = await svc.playbook(orch.handle);
   assert.equal(pb.pending?.status, 'pending_owner');
   assert.deepEqual((pb.pending?.review as any)?.comments, ['Відповідає брифу']);
-  await assert.rejects(svc.setMode(orch.handle, { mode: 'orchestrated' }), (e: any) => e.getResponse().error === 'no_active_playbook');
+  // Spec 024: no playbook guard any more — legacy_duplicate first, then independent.
+  assert.deepEqual(await svc.setMode(orch.handle, { mode: 'legacy_duplicate' }), { mode: 'legacy_duplicate', group: 'Космос e2e' });
 
-  // 2. Owner approves; the network becomes orchestrated.
+  // 2. Owner approves; the network becomes independent ('orchestrated' is a deprecated alias).
   await svc.decide(pb.pending!.id, true);
-  await svc.setMode(orch.handle, { mode: 'orchestrated' });
-  assert.equal((await repo.groupOfChannel(CH))!.mode, 'orchestrated');
+  const res = await svc.setMode(orch.handle, { mode: 'orchestrated' });
+  assert.equal(res.mode, 'independent');
+  assert.equal((res as any).deprecated_alias, 'orchestrated');
+  assert.equal((await repo.groupOfChannel(CH))!.mode, 'independent');
 
   // 3. Daily orchestration + idea review.
   await network.runOrchestrator(card);
@@ -176,7 +179,7 @@ test('brief → playbook → orchestrated network → ideas → plan → native 
   assert.equal(accepted.length, 1);
   assert.equal(accepted[0].title, IDEA_TITLE);
 
-  // 4. The planner of an orchestrated network plans both resources.
+  // 4. The planner of an independent network plans both resources.
   const runner = new EditorRunnerService({
     loop, registry, skills: files, runtime, plans, memory, env, notify: async () => {}, network,
     platformContext: (slot, o) => network.platformContext(slot, o),

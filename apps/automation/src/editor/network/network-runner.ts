@@ -27,6 +27,8 @@ export interface NetworkRunnerDeps {
   plans:    Pick<EditorPlansRepository, 'reservedSlots'>;
   profiles: Pick<ResourceProfilesRepository, 'get'>;
   usable?:  NetworkContextDeps['usable'];
+  /** Spec 024: per-resource zones and quiet hours. */
+  time?:    NetworkContextDeps['time'];
   /** Spec 021: open directives for the orchestrator, rendered for the prompt (null when none). */
   directives?: (orch: Agent) => Promise<string | null>;
   /** Spec 021: after an orchestrator run, accepted directives become applied. */
@@ -55,14 +57,14 @@ export class NetworkRunner {
   async context(card: EditorCard, role: EditorRole = 'orchestrator'): Promise<{ agentCtx: RunAgentContext; net: NetworkCtx } | null> {
     const agentCtx = await this.d.runtime.forChannel(card.channelKey, role);
     if (!agentCtx.orchestrator) return null;
-    const net = await networkContext({ repo: this.d.repo, usable: this.d.usable }, agentCtx.orchestrator, card);
+    const net = await networkContext({ repo: this.d.repo, usable: this.d.usable, time: this.d.time }, agentCtx.orchestrator, card);
     return net ? { agentCtx, net } : null;
   }
 
   private async profileText(net: NetworkCtx): Promise<string | null> {
     const p = (await this.d.profiles.get(`telegram:${net.anchorKey}`))?.profile
       ?? (net.groupId ? (await this.d.profiles.get(`network:${net.groupId}`))?.profile : null);
-    return p ? renderProfile(p) : null;
+    return p ? renderProfile(p, { now: this.now(), ref: `telegram:${net.anchorKey}` }) : null;
   }
 
   private async run(role: EditorRole, card: EditorCard, c: { agentCtx: RunAgentContext; net: NetworkCtx }, system: string, user: string, steps: number, extras: Record<string, unknown> = {}, exclude?: Set<string>): Promise<AgentLoopResult> {
@@ -143,13 +145,13 @@ export class NetworkRunner {
   }
 
   /**
-   * The planner of an orchestrated network (FR-007). Returns null when the
-   * channel is not the anchor of an orchestrated network with a playbook — the
+   * The planner of an independent network (020 FR-007, 024 FR-002). Returns null when the
+   * channel is not the anchor of an independent network with a playbook — the
    * caller then runs the single-channel planner (which can use the idea pool too).
    */
   async runNetworkPlanner(card: EditorCard, planDateIn?: string): Promise<AgentLoopResult | null> {
     const c = await this.context(card, 'planner');
-    if (!c || c.net.mode !== 'orchestrated' || !c.net.playbook) return null;
+    if (!c || c.net.mode !== 'independent' || !c.net.playbook) return null;
     if (c.agentCtx.paused) return null;
     const now = this.now();
     // Spec 031: approval mode plans the next day ahead (its batch is written at 20:00).
@@ -160,7 +162,7 @@ export class NetworkRunner {
     // Spec 031 FR-008: the owner's last approval edits and rejections in their own section.
     const prefs = this.d.memory.ownerPreferences ? await this.d.memory.ownerPreferences(card.channelKey, APPROVAL_PREFS_IN_PROMPT).catch(() => []) : [];
     const memory = await this.d.memory.listActive(card.channelKey, 30, { excludeApprovalPrefs: prefs.length > 0 });
-    const system = `${buildSystemPrompt('planner', card, memory, c.agentCtx.skills, prefs)}\n\n${networkPlannerBlock({ net: c.net, accepted, now, tz: card.timezone })}`;
+    const system = `${buildSystemPrompt('planner', card, memory, c.agentCtx.skills, prefs)}\n\n${networkPlannerBlock({ net: c.net, accepted, now, tz: card.timezone, planDate })}`;
     const res = await this.run('planner', card, c, system, plannerUserPrompt(card, now, reserved, planDate), STEPS.plan, { planDate }, TERMINAL_EXCLUDE_NETWORK);
     if (res.terminalTool !== 'submit_network_plan') {
       await this.safeNotify(`🗓 @${c.net.orchestrator.handle}: план мережі не складено (${res.status}${res.error ? `: ${res.error}` : ''}).`);
@@ -188,7 +190,7 @@ export class NetworkRunner {
     const idea = slot.ideaId ? await this.d.repo.idea(slot.ideaId) : null;
     return {
       playbook: sec ? renderSection(sec) : null,
-      profile: profile ? renderProfile(profile) : null,
+      profile: profile ? renderProfile(profile, { now: this.now(), ref: slot.resourceRef ?? undefined }) : null,
       maxPerDay: sec?.per_day.max ?? null,
       vocabulary: sec?.hashtag_policy.vocab ?? [],
       idea: idea ? `«${idea.title}»${idea.angle ? ` — ${idea.angle}` : ''}. Джерела: ${idea.sources.join('; ') || '—'}. ${idea.variants.find((v) => v.resource_ref === slot.resourceRef)?.note ?? ''}` : null,

@@ -30,7 +30,7 @@ export function agentPersona(agent: Agent, profile: ResourceProfile | null, extr
     'Про свої рішення (чому слот пропущено, що опубліковано) відповідай лише через explain_decision. Правила власника записуй через add_owner_rule. Зміни своїх скілів — через edit_my_skill (картка).',
     'Ти — програма-агент, не людина; у постах ніколи не підписуйся і не видавай себе за людину.',
     ...extra,
-    profile ? `\n## Профіль ресурсу\n${renderProfile(profile)}` : '\n## Профіль ресурсу\n- ще не описаний (запропонуй власнику описати його через @ai0)',
+    profile ? `\n## Профіль ресурсу\n${renderProfile(profile, { ref: agent.scopeId ?? undefined })}` : '\n## Профіль ресурсу\n- ще не описаний (запропонуй власнику описати його через @ai0)',
   ].join('\n');
 }
 
