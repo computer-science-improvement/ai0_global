@@ -18,6 +18,8 @@ const ALLOW: Record<string, string[]> = {
   'routes/index.tsx': ['#реклама'],
   // Ad order form: the legal ad label and placeholders for Ukrainian ad content.
   'routes/app.ads.tsx': ['#реклама', 'Реклама. Замовник: …', 'ФОП Коваль', 'Детальніше'],
+  // Import mapping test: a Cyrillic CSV column header from a user's file (data, not UI).
+  'lib/data-store.test.ts': ['Назва'],
 };
 
 /** This guard itself (its own fixtures and allow-list are Cyrillic). */
