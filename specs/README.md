@@ -40,7 +40,7 @@ Each feature directory has `spec.md` (what and why), `plan.md` (how, plus Consti
 | 029 | [Agent and AI spend analytics](029-agent-and-ai-spend-analytics/spec.md): every LLM call in a usage ledger, prices, budgets, `/app/spend` (AI0-1) | P2 | 006, 017, 021 | DONE |
 | 030 | [YouTube + LinkedIn](030-youtube-linkedin/spec.md): Shorts via the video bridge with quota, LinkedIn pages and 5 formats (AI0-56) | P3 | 016, 019, 020 | SPEC (future) |
 | 031 | [Approval mode](031-approval-mode/spec.md): every agent post waits for the owner while a resource is tested; default for new resources, switch to autonomous per resource | P1 | 010, 017–020 | DONE (023/024 hooks in approval-policy.ts) |
-| 032 | [Unified data store](032-unified-data-store/spec.md): one `data_items` table + editable `data_schemas`, CSV/JSON import without migrations, agents read schemas first | P1 | — | IN PROGRESS |
+| 032 | [Unified data store](032-unified-data-store/spec.md): one `data_items` table + editable `data_schemas`, CSV/JSON import without migrations, agents read schemas first | P1 | — | DONE (eval executor-picks-dataset not run yet) |
 
 Suggested order for the next wave: 012 → 011 (phases 0–1) → 015 → 013 → 014; 016 is independent.
 
