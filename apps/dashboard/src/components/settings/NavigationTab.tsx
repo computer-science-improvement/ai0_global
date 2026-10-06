@@ -21,7 +21,7 @@ import { describeError, toast } from '../ui/Toast';
 import { useMediaQuery } from '../../lib/useMediaQuery';
 import { NAV_GROUPS, NAV_REGISTRY, navEntry, FORCED_IDS } from '../../nav/registry';
 import { normalizeNav, renderNav } from '../../nav/resolve';
-import { NAV_LIMITS, newNavId, parseNavTarget, type NavConfigResponse, type NavConfigV1 } from '../../nav/config';
+import { NAV_LIMITS, guessLabel, newNavId, parseNavTarget, type NavConfigResponse, type NavConfigV1 } from '../../nav/config';
 import { hrefOf, type ResolvedNav } from '../../nav/model';
 import { writeNavCache } from '../../nav/cache';
 import { isConflict, useNavConfig, useRouteExists } from '../../nav/store';
@@ -483,13 +483,6 @@ function AddLink({ draft, edit, from, routeExists }: {
     </SectionCard>
   );
 }
-
-function guessLabel(path: string): string {
-  const seg = path.split('/').filter(Boolean).pop() ?? 'Page';
-  const s = decodeURIComponentSafe(seg).replace(/[-_]+/g, ' ').replace(/^@/, '@');
-  return (s.charAt(0).toUpperCase() + s.slice(1)).slice(0, NAV_LIMITS.label);
-}
-function decodeURIComponentSafe(s: string): string { try { return decodeURIComponent(s); } catch { return s; } }
 
 function HiddenPanel({ draft, edit, preview }: { draft: NavConfigV1; edit: (op: (c: NavConfigV1) => NavConfigV1) => void; preview: ResolvedNav | null }) {
   const unavailable = preview?.unavailable ?? [];

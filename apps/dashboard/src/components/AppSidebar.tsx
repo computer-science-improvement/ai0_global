@@ -12,8 +12,6 @@ import type { ResolvedItem } from '../nav/model';
 // Spec 027: no menu literals here. The menu is the registry (nav/registry.ts)
 // resolved against the owner's saved menu (nav/resolve.ts).
 
-const COLLAPSED_KEY = 'dashboard:sidebar-collapsed';
-
 interface Props {
   /** When true the sidebar renders as an off-canvas drawer (mobile). */
   isMobile?:  boolean;
@@ -21,17 +19,13 @@ interface Props {
   mobileOpen?: boolean;
   /** Called when a nav link is tapped, so the parent can close the drawer. */
   onNavigate?: () => void;
+  /** Desktop rail state (owned by AppShell so ⌘K can toggle it). */
+  collapsed?: boolean;
+  onToggleCollapsed?: () => void;
 }
 
-export function AppSidebar({ isMobile = false, mobileOpen = false, onNavigate }: Props) {
-  const [collapsed, setCollapsed] = useState<boolean>(() => {
-    try { return localStorage.getItem(COLLAPSED_KEY) === '1'; } catch { return false; }
-  });
-  const toggle = () => setCollapsed(prev => {
-    const next = !prev;
-    try { localStorage.setItem(COLLAPSED_KEY, next ? '1' : '0'); } catch { /* ignore */ }
-    return next;
-  });
+export function AppSidebar({ isMobile = false, mobileOpen = false, onNavigate, collapsed = false, onToggleCollapsed }: Props) {
+  const toggle = () => onToggleCollapsed?.();
 
   const nav = useResolvedNav();
   const navigate = useNavigate();

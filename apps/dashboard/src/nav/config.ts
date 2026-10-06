@@ -82,3 +82,12 @@ export function parseNavTarget(input: string): { to: string; search?: Record<str
   }
   return n ? { to, search } : { to };
 }
+
+/** A label for a page without one: the last path segment, humanized ("/app/data/recipes" → "Recipes"). */
+export function guessLabel(path: string): string {
+  const seg = path.split(/[?#]/, 1)[0].split('/').filter(Boolean).pop() ?? 'Page';
+  let s = seg;
+  try { s = decodeURIComponent(seg); } catch { /* keep raw */ }
+  s = s.replace(/[-_]+/g, ' ').trim() || 'Page';
+  return (s.charAt(0).toUpperCase() + s.slice(1)).slice(0, NAV_LIMITS.label);
+}

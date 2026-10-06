@@ -165,11 +165,12 @@ export function setOverride(c: NavConfigV1, id: string, patch: NavOverride): Nav
   return n;
 }
 
-/** Add a custom link at the end of `groupId` (or the first group). */
-export function addCustomLink(c: NavConfigV1, link: CustomLink, groupId?: string): NavConfigV1 {
+/** Add a custom link at the end of `groupId` (or the first group); `null` = not in a group (Hidden), e.g. pin-only. */
+export function addCustomLink(c: NavConfigV1, link: CustomLink, groupId?: string | null): NavConfigV1 {
   if (c.custom.length >= NAV_LIMITS.custom) return c;
   const n = clone(c);
   n.custom.push({ ...link, label: link.label.trim().slice(0, NAV_LIMITS.label) || link.to });
+  if (groupId === null) { n.hidden.push(link.id); return n; }
   const g = n.groups.find((x) => x.id === groupId) ?? n.groups.find((x) => !x.hidden) ?? n.groups[0];
   if (g) g.items.push(link.id); else n.hidden.push(link.id);
   return n;
@@ -183,6 +184,22 @@ export function removeRef(c: NavConfigV1, id: string): NavConfigV1 {
   n.custom = n.custom.filter((x) => x.id !== id);
   delete n.overrides[id];
   return n;
+}
+
+/**
+ * ⌘K "Pin current page": pin the registry page at exactly this address, or an
+ * existing custom link to it, or a new pin-only custom link. Same object when
+ * nothing changes (already pinned, or the 10-pin limit).
+ */
+export function pinPage(c: NavConfigV1, target: { to: string; search?: Record<string, string> }, label: string, registryId: string | null, newId: string): NavConfigV1 {
+  const href = (t: { to: string; search?: Record<string, string> }) => {
+    const qs = t.search ? new URLSearchParams(t.search).toString() : '';
+    return qs ? `${t.to}?${qs}` : t.to;
+  };
+  const id = registryId ?? c.custom.find((x) => href(x) === href(target))?.id;
+  if (id) return c.pinned.includes(id) || c.pinned.length >= NAV_LIMITS.pinned ? c : togglePin(c, id);
+  if (c.pinned.length >= NAV_LIMITS.pinned || c.custom.length >= NAV_LIMITS.custom) return c;
+  return togglePin(addCustomLink(c, { id: newId, label, icon: 'link', ...target }, null), newId);
 }
 
 /** Total item references (the server allows 150). */

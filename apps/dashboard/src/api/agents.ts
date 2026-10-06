@@ -323,11 +323,13 @@ export interface AgentHandle {
   mode:    AgentMode;
 }
 
-export function useAgentHandles() {
+export function useAgentHandles(opts: { enabled?: boolean } = {}) {
   return useQuery({
     queryKey: [...KEY, 'handles'],
     queryFn:  () => api<{ agents: AgentHandle[] }>('/api/agents/handles'),
     staleTime: 60_000,
+    // The ⌘K palette loads handles lazily, only once it is open (spec 027 FR-012).
+    enabled: opts.enabled ?? true,
   });
 }
 
