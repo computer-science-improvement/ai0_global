@@ -219,3 +219,16 @@ test('FR-009 hooks: schedule changes need a card in approve (any size), in live 
   assert.equal(variantGroupKey({ id: 's1', ideaId: 'i1' }), variantGroupKey({ id: 's2', ideaId: 'i1' }));
   assert.notEqual(variantGroupKey({ id: 's1' }), variantGroupKey({ id: 's2' }));
 });
+
+test('stats API input: days 1–90 (default 14), resource or channel, nothing else required', async () => {
+  const seen: any[] = [];
+  const svc = new AutonomyService({
+    stats: { report: async (f: any) => { seen.push(f); return { totals: {}, byResource: [] } as any; } },
+    card: async () => null, mode: async () => 'approve', setMode: async () => {}, waiting: async () => [], approve: async () => {}, now: () => NOW,
+  });
+  await svc.stats({});
+  await svc.stats({ resource: 'instagram:42', days: '30' });
+  assert.deepEqual(seen.map((f) => [f.resource, f.channel, f.days]), [[null, null, 14], ['instagram:42', null, 30]]);
+  await assert.rejects(svc.stats({ days: '0' }), (e: any) => e.response?.error === 'invalid_body');
+  await assert.rejects(svc.stats({ days: '91' }), (e: any) => e.response?.error === 'invalid_body');
+});

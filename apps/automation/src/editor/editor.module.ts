@@ -668,6 +668,9 @@ export const EDITOR_PROVIDERS = [
       inject: [EDITOR_REPOS, EDITOR_PUBLISH, APPROVAL_INFRA, PLATFORM_INFRA],
       useFactory: (repos: EditorRepos, ports: PublishPorts, approval: ApprovalInfra, platform: PlatformInfra) => new ApprovalsService({
         repo: approval.repo, card: (k) => repos.channels.get(k), media: ports.media, hostSlides: platform.publish.hostSlides,
+        // Spec 031 FR-008: owner edits and reject reasons become owner preferences in the channel memory.
+        remember: (key, pref) => repos.memory.add(key, pref.kind, pref.text, pref.evidence, 'owner'),
+        log: (m) => new Logger('Approval').warn(m),
       }),
     },
     {

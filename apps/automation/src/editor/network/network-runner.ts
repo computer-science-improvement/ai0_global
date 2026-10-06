@@ -4,6 +4,7 @@ import type { ToolRegistry } from '../harness/tool-registry';
 import { resolveModel } from '../llm/model-registry';
 import type { EditorRole } from '../llm/llm.types';
 import type { EditorMemoryRepository } from '../repo/editor-memory.repository';
+import { APPROVAL_PREFS_IN_PROMPT } from '../approval/owner-preferences';
 import type { EditorPlansRepository, EditorSlot } from '../repo/editor-plans.repository';
 import { buildSystemPrompt, plannerUserPrompt } from '../roles/prompts';
 import { localDate, zonedToUtc } from '../roles/time';
@@ -21,7 +22,7 @@ export interface NetworkRunnerDeps {
   loop:     Pick<AgentLoop, 'run'>;
   registry: Pick<ToolRegistry, 'forRole'>;
   runtime:  Pick<AgentRuntime, 'forChannel'>;
-  memory:   Pick<EditorMemoryRepository, 'listActive'>;
+  memory:   Pick<EditorMemoryRepository, 'listActive'> & Partial<Pick<EditorMemoryRepository, 'ownerPreferences'>>;
   repo:     NetworkRepository;
   plans:    Pick<EditorPlansRepository, 'reservedSlots'>;
   profiles: Pick<ResourceProfilesRepository, 'get'>;
@@ -156,8 +157,10 @@ export class NetworkRunner {
     const dayStart = zonedToUtc(planDate, '00:00', card.timezone);
     const reserved = await this.d.plans.reservedSlots(card.channelKey, dayStart, new Date(dayStart.getTime() + 86_400_000));
     const accepted = await this.d.repo.listIdeas(c.net.orchestrator.id, ['accepted'], 100);
-    const memory = await this.d.memory.listActive(card.channelKey);
-    const system = `${buildSystemPrompt('planner', card, memory, c.agentCtx.skills)}\n\n${networkPlannerBlock({ net: c.net, accepted, now, tz: card.timezone })}`;
+    // Spec 031 FR-008: the owner's last approval edits and rejections in their own section.
+    const prefs = this.d.memory.ownerPreferences ? await this.d.memory.ownerPreferences(card.channelKey, APPROVAL_PREFS_IN_PROMPT).catch(() => []) : [];
+    const memory = await this.d.memory.listActive(card.channelKey, 30, { excludeApprovalPrefs: prefs.length > 0 });
+    const system = `${buildSystemPrompt('planner', card, memory, c.agentCtx.skills, prefs)}\n\n${networkPlannerBlock({ net: c.net, accepted, now, tz: card.timezone })}`;
     const res = await this.run('planner', card, c, system, plannerUserPrompt(card, now, reserved, planDate), STEPS.plan, { planDate }, TERMINAL_EXCLUDE_NETWORK);
     if (res.terminalTool !== 'submit_network_plan') {
       await this.safeNotify(`🗓 @${c.net.orchestrator.handle}: план мережі не складено (${res.status}${res.error ? `: ${res.error}` : ''}).`);

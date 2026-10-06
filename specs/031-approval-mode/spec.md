@@ -145,3 +145,13 @@ test); the advice fires only above the threshold.
   In approve every schedule change already reaches the owner as a card (agents change times only by a new plan, whose
   slots are written and wait). Hooks for 023/024: `approval/approval-policy.ts` (`scheduleChangeNeedsCard`,
   `CUTOVER_TARGET_MODE`, `variantGroupKey`; bulk approve by `idea_id` already serves «Апрувнути всі варіанти»).
+- **T6 learning.** An owner edit (compact before/after: intro, length, removed/added sentences, hashtags, media,
+  links, poll, slides) is an owner `rule`, a reject reason an owner `avoid` in `editor_channel_memory`, tagged
+  `evidence.source='approval'` (no migration). The planner (single and network) and executor prompts show the last 20 in
+  their own section «Вподобання власника»; the general memory block leaves them out. A rejection without a reason is
+  not saved.
+- **T6 stats.** `GET /api/editor/approvals/stats?resource=&channel=&days=` (1–90, default 14; no filter = every
+  resource, for the 029 Agents card): totals and per resource — approval rate = approved / (approved + rejected),
+  edit rate = edited / approved, top reject reasons (grouped case- and punctuation-insensitively), median time to
+  approve (from the end of the run that wrote the post), expired, waiting. A post counts on its decision day; posts
+  dropped by a mode change, a replan or the agent are not decisions. The agent page's «На апрув» tab shows the panel.

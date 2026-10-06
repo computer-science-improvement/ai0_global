@@ -70,6 +70,12 @@ const SwitchSchema = TargetSchema.extend({
   approve_waiting: z.boolean().default(true),
 }).strict();
 
+const StatsQuery = z.object({
+  resource: z.string().trim().min(2).max(200).optional(),
+  channel:  z.string().trim().min(2).max(200).optional(),
+  days:     z.coerce.number().int().min(1).max(90).default(AUTONOMY_WINDOW_DAYS),
+});
+
 const badRequest = (r: z.ZodError) => new BadRequestException({ error: 'invalid_body', issues: r.issues.map((i) => ({ path: i.path.join('.'), message: i.message })) });
 
 export class AutonomyService {
@@ -97,6 +103,17 @@ export class AutonomyService {
     const card = await this.d.card(channelKey);
     if (!card) throw new NotFoundException({ error: 'channel_not_found', channel: channelKey });
     return card;
+  }
+
+  /**
+   * FR-011 stats: approval rate, edit rate, top reject reasons, median time to
+   * approve, expired — in total and per resource. Without a filter: every
+   * resource (the 029 Agents card reads it this way).
+   */
+  async stats(raw: unknown): Promise<ApprovalStatsReport> {
+    const p = StatsQuery.safeParse(raw ?? {});
+    if (!p.success) throw badRequest(p.error);
+    return this.d.stats.report({ resource: p.data.resource ?? null, channel: p.data.channel ?? null, days: p.data.days, now: this.now() });
   }
 
   /** What the confirm dialog shows: the effective mode, 14 days of decisions and the posts that wait. */

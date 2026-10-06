@@ -36,6 +36,7 @@ const svc = {
 };
 
 const autonomy = {
+  stats: async (q: unknown) => { calls.push(['stats', q]); return { days: 14, totals: { approved: 3 }, byResource: [] }; },
   preview: async (q: unknown) => { calls.push(['preview', q]); return { channel: '@chan', mode: 'approve', waiting: 2 }; },
   switchMode: async (b: unknown) => { calls.push(['switch', b]); return { channel: '@chan', from: 'approve', to: 'live', approved: 2 }; },
 };
@@ -48,7 +49,7 @@ before(async () => {
   for (const m of ['bulk']) Reflect.defineMetadata('design:paramtypes', [Object], ApprovalsController.prototype, m);
   for (const m of ['edit', 'reschedule', 'reject']) Reflect.defineMetadata('design:paramtypes', [String, Object], ApprovalsController.prototype, m);
   Reflect.defineMetadata('design:paramtypes', [Object], ApprovalsController.prototype, 'list');
-  for (const m of ['preview', 'switchMode']) Reflect.defineMetadata('design:paramtypes', [Object], AutonomyController.prototype, m);
+  for (const m of ['stats', 'preview', 'switchMode']) Reflect.defineMetadata('design:paramtypes', [Object], AutonomyController.prototype, m);
   @Module({
     controllers: [ApprovalsController, AutonomyController],
     providers: [
@@ -117,4 +118,13 @@ test('autonomy switch (031 T5): owner-only routes; raw body reaches the service'
   const r = await call('POST', '/api/editor/approvals/autonomy', { channel: '@chan', mode: 'live', approve_waiting: true });
   assert.equal(r.status, 201);
   assert.deepEqual(calls, [['preview', { channel: '@chan' }], ['switch', { channel: '@chan', mode: 'live', approve_waiting: true }]]);
+});
+
+test('approval stats (031 T6): owner-only; the 029 Agents card reads it without a filter', async () => {
+  assert.equal((await call('GET', '/api/editor/approvals/stats', undefined, null)).status, 401);
+  calls.length = 0;
+  const r = await call('GET', '/api/editor/approvals/stats?resource=telegram%3A%40chan&days=30');
+  assert.equal(r.json.totals.approved, 3);
+  await call('GET', '/api/editor/approvals/stats');
+  assert.deepEqual(calls, [['stats', { resource: 'telegram:@chan', days: '30' }], ['stats', {}]]);
 });
