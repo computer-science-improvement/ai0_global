@@ -5,6 +5,7 @@ import { authApi, type TelegramLoginPayload } from '../api/auth';
 import { TG_BOT_USERNAME, AUTH_MODE } from '../lib/env';
 import { sessionQuery, SESSION_KEY } from '../auth/session';
 import { loginRedirectTarget, parseNext } from '../auth/next';
+import { isLocalHost } from '../lib/auth-mode';
 
 interface LoginSearch { next?: string; reason?: string; token?: string }
 
@@ -143,7 +144,7 @@ function LoginPage() {
           </>
         )}
 
-        {AUTH_MODE === 'dev' && (
+        {AUTH_MODE === 'dev' && (isLocalHost(window.location.hostname) ? (
           <>
             <p style={{ marginBottom: 24, fontSize: 15, color: 'var(--color-ink-muted)' }}>
               Dev mode — the backend's local no-auth bypass decides access.
@@ -152,8 +153,26 @@ function LoginPage() {
               Continue in dev mode
             </button>
           </>
-        )}
+        ) : <NoSignInMethodBanner />)}
       </div>
+    </div>
+  );
+}
+
+/**
+ * A dev build (no sign-in method) served from a real host: there is nothing to
+ * sign in with, so say so instead of offering a "Continue" that 401-loops.
+ */
+function NoSignInMethodBanner() {
+  return (
+    <div role="alert" style={{
+      padding: '12px 14px', borderRadius: 'var(--radius-md)',
+      background: 'var(--color-danger-soft)', border: '1px solid var(--color-danger)', color: 'var(--color-ink)',
+    }}>
+      <strong style={{ display: 'block', marginBottom: 4, color: 'var(--color-danger)' }}>This build has no sign-in method</strong>
+      <span style={{ fontSize: 13, color: 'var(--color-ink-muted)' }}>
+        The dashboard was built without token or Telegram sign-in. Rebuild it with a sign-in method to use it here.
+      </span>
     </div>
   );
 }
