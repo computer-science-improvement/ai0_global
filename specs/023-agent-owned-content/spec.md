@@ -226,6 +226,34 @@ Built on `feat/editor-agent` after spec 032 (data store) and 031 (approval mode)
   the rerun is a no-op (≈ 8.5 s). `content_ledger_used()` for one resource ≈ 0.17 s on that data. 060 runs in one
   transaction, so the deploy holds writes to the touched tables for that time.
 
+## Implementation notes (T2, 2026-10-07)
+Commit `feat(content): 023-T2 …` (committed after T3, which it builds on for series sources). 032 T6 already
+built `library_catalog` from `data_schemas` and `query_data`; T2 adds only what FR-008/FR-009 still needed.
+
+- **Catalog additions** (`editor/tools/catalog-context.ts`): the overview now carries `apis` (name, what it
+  returns, `configured` from the presence of `TMDB_API_KEY` / `NASA_API_KEY` — never a value; NASA counts as
+  configured because it falls back to `DEMO_KEY`) and the card's `feeds` (rss / url sources). Per dataset on the
+  asking resource: `last_used_here` and `runway_days` = unposted here ÷ the larger of (active series that name
+  the dataset as `library` source × instances per day) and (28-day ledger publications ÷ 28) — "larger of"
+  instead of "plus" so a series' own posts are not counted twice. Unposted counts come from the T1 ledger. The
+  overview is cached 10 minutes per resource and card sources; `library_catalog({dataset})` is not cached.
+  032's per-dataset `license` stays; a license mix per row was not added.
+- **Prompt summary** (≤ 1,500 characters, cut with "…"): appended to the orchestrator's daily prompt and to both
+  planners' user prompts through optional `catalogSummary` deps, cached 10 minutes per channel.
+- **`low_runway`**: after each daily orchestrator run (`runwayCheck`), for every active series with a library
+  source; one `agent_inbox` item (`ref_type='dataset'`, `ref_id=<key>`, severity action, English text, Ukrainian
+  Telegram alert) per dataset per 7 days. `ContentRunwayService` is untouched (strategy channels still use it;
+  it goes with T7).
+- **`get_network_highlights`** (`editor/tools/highlights-tools.ts`): the digest query and both picks moved to
+  `src/common/digests/` (`digest-format.ts`, moved from `strategies/network-digest/digest-format.util.ts`,
+  which now re-exports it; `digest-selection.ts`), and the two strategy repositories call the shared query.
+  Without `strategy_types` it is the network digest (own channels, views per hour), with them the topic digest
+  (newest N, chronological). `date` selects a calendar day in the card's time zone (default: the last 24 h);
+  `already_posted_today` reads the legacy `digest://…` sentinel through the ledger. A PostSpec source must be
+  http(s), so the agent's own digest is deduped by its links, not by a `digest://` ref.
+- **Prompts and skills:** `content-sources` lists the other sources (APIs, feeds, highlights, runway); the
+  orchestrator prompt says "content plan" instead of "strategy".
+
 ## Implementation notes (T3, 2026-10-07)
 Commit `feat(content): 023-T3 …`. No migration (series live in the playbook JSON; 059 is still free for T4).
 

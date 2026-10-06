@@ -26,9 +26,8 @@ import {
 import { TopicDigestRepository } from './topic-digest.repository';
 import { DigestSponsorsRepository } from '../../payments/digest-sponsors.repository';
 import { resolveDigestSponsor } from '../network-digest/digest-sponsor';
-import {
-  DigestItem, SponsorSlot, digestTitle, isLinkable, kyivDate, renderDigest, truncate,
-} from '../network-digest/digest-format.util';
+import { DigestItem, SponsorSlot, kyivDate, renderDigest, truncate } from '../../common/digests/digest-format';
+import { pickTopicHighlights } from '../../common/digests/digest-selection';
 import { FEATURES } from '../../common/ai/usage/features';
 
 const REWRITE_BASE = `ROLE: Ти редактор українського Telegram-дайджесту.
@@ -143,10 +142,7 @@ export class TopicDigestStrategy implements ContentStrategy, OnModuleInit {
 
     // Unlinkable (private) channels are dropped BEFORE taking the newest tail,
     // so they can't crowd out linkable posts.
-    const picked = rows
-      .filter(isLinkable)
-      .map((r) => ({ ...r, title: digestTitle(r.title, r.strategyType) }))
-      .slice(-params.maxItems); // newest tail, chronological
+    const picked = pickTopicHighlights(rows, params.maxItems); // newest tail, chronological
     if (picked.length < params.minItems) {
       this.logger.log(`Only ${picked.length} linkable posts in window (< ${params.minItems}) — skipping topic digest`);
       return;
