@@ -2,6 +2,10 @@
 
 Instructions for building/editing the dashboard (`apps/dashboard`). Follow these so the UI stays consistent. The design system lives in `src/index.css` (CSS variables, dark Supabase theme, single green accent `--color-accent`). Shared primitives are in `src/components/ui/`.
 
+## Language
+
+All interface text is **English**: labels, buttons, tabs, dialogs, toasts, empty states, errors, chart legends and the public pages (landing, `/report/$token`). Dates and times use an English locale (`en-GB`), with the time zone named when it matters. Only content is left as written: post previews, captions and agent replies.
+
 ## Icons
 
 Two icon modules exist — **prefer `components/ui/Icon.tsx`** (typed Lucide wrapper, `name` + `size`, exports `IconName`). The hand-rolled `components/Icon.tsx` also accepts `style`; use it only when you need to spread style onto the SVG. Invalid icon names fail `tsc`, so stick to the `IconName` set.
