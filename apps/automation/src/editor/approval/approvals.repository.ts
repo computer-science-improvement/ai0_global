@@ -15,6 +15,10 @@ export interface ApprovalItem extends EditorSlot {
 
 export interface ApprovalFilter {
   status?:   Array<'awaiting_approval' | 'approved' | 'expired'>;
+  /** The anchor channel: every resource of its network (all its slots). */
+  channel?:  string | null;
+  /** The plan date (YYYY-MM-DD in the resource zone): a day's batch. */
+  planDate?: string | null;
   /** A channel key (@chan) or a resource ref (telegram:@chan, instagram:123). */
   resource?: string | null;
   from?:     Date | null;
@@ -66,9 +70,12 @@ export class ApprovalsRepository {
           AND ($3::timestamptz IS NULL OR s.scheduled_at >= $3)
           AND ($4::timestamptz IS NULL OR s.scheduled_at < $4)
           AND ($5::uuid IS NULL OR s.idea_id = $5)
+          AND ($7::text IS NULL OR s.channel_key = $7)
+          AND ($8::date IS NULL OR p.plan_date = $8::date)
         ORDER BY s.channel_key, s.scheduled_at
         LIMIT $6`,
-      [status, res, f.from ?? null, f.to ?? null, f.ideaId ?? null, Math.min(Math.max(f.limit ?? 300, 1), 1000)]);
+      [status, res, f.from ?? null, f.to ?? null, f.ideaId ?? null, Math.min(Math.max(f.limit ?? 300, 1), 1000),
+        f.channel?.trim() || null, f.planDate ?? null]);
     return rows.map(toItem);
   }
 
@@ -78,12 +85,33 @@ export class ApprovalsRepository {
     return Number(rows[0]?.n ?? 0);
   }
 
-  /** Single-flight approve: only a waiting post can be approved; null when someone decided first. */
-  async approve(id: string): Promise<EditorSlot | null> {
+  /**
+   * Single-flight approve: only a waiting post can be approved; null when
+   * someone decided first. `moveTo` moves a late post in the same statement,
+   * so the publisher never sees it approved at its old, missed time.
+   */
+  async approve(id: string, moveTo: Date | null = null): Promise<EditorSlot | null> {
     const { rows } = await this.pool.query(
-      `UPDATE editor_slots SET status = 'approved', approved_at = now(), approved_by = 'owner', updated_at = now()
-        WHERE id = $1 AND status = 'awaiting_approval' RETURNING *`, [id]);
+      `UPDATE editor_slots SET status = 'approved', approved_at = now(), approved_by = 'owner', updated_at = now(),
+              scheduled_at = COALESCE($2, scheduled_at)
+        WHERE id = $1 AND status = 'awaiting_approval' RETURNING *`, [id, moveTo]);
     return rows[0] ? rowToSlot(rows[0]) : null;
+  }
+
+  /** Times of the channel's other live slots near `at` (spacing check of a reschedule). */
+  async busyTimes(channelKey: string, from: Date, to: Date, excludeId: string): Promise<Date[]> {
+    const { rows } = await this.pool.query(
+      `SELECT scheduled_at FROM editor_slots
+        WHERE channel_key = $1 AND id <> $4 AND resource_ref IS NOT DISTINCT FROM (SELECT resource_ref FROM editor_slots WHERE id = $4)
+          AND status IN ('planned','running','awaiting_approval','approved','published')
+          AND scheduled_at >= $2 AND scheduled_at <= $3`, [channelKey, from, to, excludeId]);
+    return rows.map((r) => new Date(r.scheduled_at));
+  }
+
+  /** An owner edit of a waiting platform post: its platform_posts row follows the slot. */
+  async updateWaitingPlatformPost(id: number, caption: string, spec: unknown): Promise<void> {
+    await this.pool.query(
+      `UPDATE platform_posts SET caption = $2, spec = $3 WHERE id = $1 AND status = 'awaiting_approval'`, [id, caption, JSON.stringify(spec)]);
   }
 
   /**

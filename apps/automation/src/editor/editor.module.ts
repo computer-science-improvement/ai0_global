@@ -104,6 +104,8 @@ import type { ChannelMode, EditorCard } from './card';
 import { ApprovalsRepository } from './approval/approvals.repository';
 import { ApprovalPublisher } from './approval/approval-publisher';
 import { ApprovalUpkeep } from './approval/approval-upkeep';
+import { ApprovalsService } from './approval/approvals.service';
+import { APPROVALS_SERVICE, ApprovalsController } from './approval/approvals.controller';
 
 export const EDITOR_RUNNER    = 'EDITOR_RUNNER';
 export const EDITOR_SCHEDULER = 'EDITOR_SCHEDULER';
@@ -600,6 +602,13 @@ export const EDITOR_PROVIDERS = [
       },
     },
     {
+      provide: APPROVALS_SERVICE,
+      inject: [EDITOR_REPOS, EDITOR_PUBLISH, APPROVAL_INFRA, PLATFORM_INFRA],
+      useFactory: (repos: EditorRepos, ports: PublishPorts, approval: ApprovalInfra, platform: PlatformInfra) => new ApprovalsService({
+        repo: approval.repo, card: (k) => repos.channels.get(k), media: ports.media, hostSlides: platform.publish.hostSlides,
+      }),
+    },
+    {
       provide: EDITOR_LOOP,
       inject: [DB_POOL, ConfigService, TelegramNotifier],
       useFactory: (pool: Pool, cfg: ConfigService, notifier: TelegramNotifier): AgentLoop => {
@@ -884,7 +893,7 @@ export const EDITOR_PROVIDERS = [
 @Module({
   // AuthModule: EditorController is guarded by TrackingAuthGuard, which injects AuthService.
   imports:     [ChannelConfigModule, PublishersModule, AuthModule],
-  controllers: [EditorController, EditorChatController, AgentsController, NetworkController, ManagerController, PromoController, PromoRedirectController],
+  controllers: [EditorController, EditorChatController, AgentsController, NetworkController, ManagerController, PromoController, PromoRedirectController, ApprovalsController],
   providers:   [...EDITOR_PROVIDERS, TrackingAuthGuard],
   exports:     [EDITOR_REPOS, EDITOR_RUNNER, AGENT_INFRA, PLATFORM_INFRA, EDITOR_MANAGER],
 })

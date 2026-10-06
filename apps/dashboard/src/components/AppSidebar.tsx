@@ -1,8 +1,9 @@
 import { Link } from '@tanstack/react-router';
 import { useState, type CSSProperties } from 'react';
 import { Icon, type IconName } from './ui/Icon';
+import { useApprovalsCount } from '../api/approvals';
 
-interface NavItem { to: string; label: string; icon: IconName; soon?: boolean; exact?: boolean; search?: Record<string, unknown>; }
+interface NavItem { to: string; label: string; icon: IconName; soon?: boolean; exact?: boolean; search?: Record<string, unknown>; badge?: 'approvals'; }
 interface NavGroup { title: string; items: NavItem[]; }
 
 const GROUPS: NavGroup[] = [
@@ -13,6 +14,7 @@ const GROUPS: NavGroup[] = [
     { to: '/app/strategies', label: 'Strategies', icon: 'strategies' },
     { to: '/app/editor',     label: 'Editor',     icon: 'sparkles' },
     { to: '/app/agents',     label: 'Agents',     icon: 'agents' },
+    { to: '/app/agents/inbox', label: 'На апрув', icon: 'check', search: { tab: 'approvals' }, badge: 'approvals' },
     { to: '/app/chat',       label: 'Chat',       icon: 'chat' },
     { to: '/app/scheduled',  label: 'Scheduled', icon: 'calendar' },
     { to: '/app/channels',   label: 'My channels', icon: 'channels', search: { filter: 'mine' } },
@@ -60,6 +62,9 @@ export function AppSidebar({ isMobile = false, mobileOpen = false, onNavigate }:
     try { localStorage.setItem(COLLAPSED_KEY, next ? '1' : '0'); } catch { /* ignore */ }
     return next;
   });
+
+  // Spec 031: posts waiting for the owner's approval.
+  const waiting = useApprovalsCount().data?.waiting ?? 0;
 
   // On mobile the drawer is always full-width (never the collapsed rail).
   const isCollapsed = isMobile ? false : collapsed;
@@ -125,8 +130,19 @@ export function AppSidebar({ isMobile = false, mobileOpen = false, onNavigate }:
                 }}
                 activeProps={{ style: { background: 'var(--color-surface-3)', color: 'var(--color-ink)' } }}
               >
-                <Icon name={item.icon} size={16} />
+                <span style={{ position: 'relative', display: 'inline-flex' }}>
+                  <Icon name={item.icon} size={16} />
+                  {isCollapsed && item.badge === 'approvals' && waiting > 0 && (
+                    <span aria-label={`${waiting} чекають апруву`} style={{ position: 'absolute', top: -3, right: -4, width: 7, height: 7, borderRadius: 999, background: 'var(--color-warning)' }} />
+                  )}
+                </span>
                 {!isCollapsed && <span>{item.label}</span>}
+                {!isCollapsed && item.badge === 'approvals' && waiting > 0 && (
+                  <span className="tabular-nums" title={`${waiting} постів чекають апруву`}
+                    style={{ marginLeft: 'auto', fontSize: 10, fontWeight: 600, color: 'var(--color-ink)', background: 'var(--color-surface-3)', border: '1px solid var(--color-warning)', borderRadius: 999, padding: '0 6px', minWidth: 18, textAlign: 'center' }}>
+                    {waiting > 99 ? '99+' : waiting}
+                  </span>
+                )}
                 {!isCollapsed && item.soon && (
                   <span style={{ marginLeft: 'auto', fontSize: 9, color: 'var(--color-ink-dim)', border: '1px solid var(--color-hairline-strong)', borderRadius: 999, padding: '0 6px' }}>soon</span>
                 )}

@@ -12,6 +12,7 @@ import { EditorChannelsRepository } from '../repo/editor-channels.repository';
 import { AgentsRepository } from '../agents/agents.repository';
 import { AgentRegistrySync } from '../agents/agent-registry-sync';
 import { mergeCard } from '../api/card-input';
+import { syncAgentsFor } from './pg-test-agents';
 
 const url = process.env.EDITOR_PG_TEST_URL;
 const skip = !url ? 'EDITOR_PG_TEST_URL not set' : false;
@@ -46,6 +47,7 @@ test('migration 057 is idempotent and never changes the mode of an existing reso
   await pool.query(
     `INSERT INTO agents (kind, scope, scope_id, name, handle, mode, created_by) VALUES ('orchestrator', 'resource', $1, 'Live', 'apm_live_orch', 'live', 'owner')`,
     [`telegram:${LIVE}`]);
+  await syncAgentsFor(pool, [LIVE, SHADOW]);
   await pool.query(readFileSync(MIGRATION, 'utf8'));
   await pool.query(readFileSync(MIGRATION, 'utf8'));
   const { rows } = await pool.query(`SELECT channel_key, mode FROM editor_channels WHERE channel_key = ANY($1::text[]) ORDER BY channel_key`, [[LIVE, SHADOW]]);
@@ -87,6 +89,7 @@ test('approve â†’ shadow drops waiting posts (skipped, mode_changed); approve â†
   assert.ok(base.ok);
   const card = base.ok ? base.card : (null as never);
   await channels.upsert(card);
+  await syncAgentsFor(pool, [WAIT]);
   const plan = await pool.query(`INSERT INTO editor_plans (channel_key, plan_date) VALUES ($1, '2030-01-02') RETURNING id`, [WAIT]);
   const ins = async (status: string) => (await pool.query(
     `INSERT INTO editor_slots (plan_id, channel_key, scheduled_at, format, topic, status, approved_at)

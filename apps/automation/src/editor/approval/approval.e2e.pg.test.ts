@@ -29,6 +29,7 @@ import type { TgMessage } from '../post/render-telegram';
 import { ApprovalsRepository } from './approvals.repository';
 import { ApprovalPublisher } from './approval-publisher';
 import { ApprovalUpkeep } from './approval-upkeep';
+import { syncAgentsFor } from './pg-test-agents';
 
 const url = process.env.EDITOR_PG_TEST_URL;
 const skip = !url ? 'EDITOR_PG_TEST_URL not set' : false;
@@ -54,6 +55,7 @@ before(async () => {
   await pool.query(
     `INSERT INTO editor_channels (channel_key, mode, title, brief, formats, hashtags, posts_per_day_min, posts_per_day_max, plan_hour)
      VALUES ($1, 'approve', 'Космос щодня', 'Короткі пояснення космічних знімків', '{"photo":1,"text":0.5}', '{космос,nasa}', 1, 3, 0)`, [CH]);
+  await syncAgentsFor(pool, [CH]);
 });
 after(async () => {
   if (!url) return;
