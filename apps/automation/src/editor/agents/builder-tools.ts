@@ -55,13 +55,13 @@ const AgentPatchInput = z.object({
   handle:           z.string().trim().max(40).optional(),
   emoji:            z.string().trim().max(8).optional(),
   description:      z.string().trim().max(500).optional(),
-  mode:             z.enum(['off', 'shadow', 'live']).optional(),
+  // No `mode`: only the owner switches a mode, in the dashboard (spec 031 FR-010).
   status:           z.enum(['active', 'paused']).optional(),
   paused_until:     z.string().max(40).nullable().optional().describe('ISO з часовим поясом; null — зняти паузу'),
   model:            z.string().trim().max(100).nullable().optional(),
   schedule:         z.object({ times: z.array(z.string()).max(8) }).optional(),
   daily_budget_usd: z.number().min(0).max(50).nullable().optional(),
-});
+}).strict();
 
 /** Tools of the @ai0 builder (spec 018 FR-004). Mutations only propose cards. */
 export function buildBuilderTools(d: BuilderToolDeps): EditorTool[] {
@@ -107,7 +107,7 @@ export function buildBuilderTools(d: BuilderToolDeps): EditorTool[] {
 
   const listAgents = defineTool({
     name: 'list_agents',
-    description: 'Усі агенти: @handle, імʼя, тип, ресурс чи мережа, режим (off/shadow/live), пауза.',
+    description: 'Усі агенти: @handle, імʼя, тип, ресурс чи мережа, режим (off/shadow/approve/live), пауза.',
     kind: 'read', roles: ['builder', 'manager', 'composer'],
     input: z.object({}),
     execute: async () => ({
@@ -135,7 +135,7 @@ export function buildBuilderTools(d: BuilderToolDeps): EditorTool[] {
     name: 'create_agent',
     description: [
       'Запропонувати створення агента для ресурсу (resource_ref) або мережі (network_id). Обовʼязковий профіль ресурсу (topic, audience.who, goals).',
-      'Агент стартує в shadow на 3 дні. Повертає картку для підтвердження — створення відбудеться лише після кліку власника.',
+      'Агент стартує в режимі апруву: пише справжні пости, але кожен чекає схвалення власника. Повертає картку для підтвердження — створення відбудеться лише після кліку власника.',
     ].join(' '),
     kind: 'act', roles: ['builder'],
     input: z.object({
@@ -155,13 +155,13 @@ export function buildBuilderTools(d: BuilderToolDeps): EditorTool[] {
       if ('error' in v) return v;
       const target = i.resource_ref ?? `network:${i.network_id}`;
       return proposeCard(d, ctx, 'create_agent', i as unknown as Record<string, unknown>,
-        `Створити агента ${i.emoji ?? '📣'} ${i.name} (@${v.input.handle}) для ${target} — shadow на 3 дні. Тема: ${i.profile.topic}`);
+        `Створити агента ${i.emoji ?? '📣'} ${i.name} (@${v.input.handle}) для ${target} — старт у режимі апруву (кожен пост чекає вашого схвалення). Тема: ${i.profile.topic}`);
     },
   });
 
   const updateAgent = defineTool({
     name: 'update_agent',
-    description: 'Запропонувати зміну агента: імʼя, handle, емодзі, опис, режим, пауза (status або paused_until), модель, розклад, бюджет.',
+    description: 'Запропонувати зміну агента: імʼя, handle, емодзі, опис, пауза (status або paused_until), модель, розклад, бюджет. Режим (off/shadow/approve/live) змінює лише власник у дашборді.',
     kind: 'act', roles: ['builder'],
     input: z.object({ handle: z.string().min(2).max(40), patch: AgentPatchInput }),
     execute: async ({ handle, patch }, ctx) => {

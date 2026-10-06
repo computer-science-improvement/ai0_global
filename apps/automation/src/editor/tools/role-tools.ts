@@ -123,7 +123,7 @@ export function buildRoleTools(d: RoleToolDeps): EditorTool[] {
       const { channelKey, slotId } = requireSlotCtx(ctx);
       const card = cardFrom(ctx);
 
-      if (card.mode === 'shadow') {
+      if (card.mode !== 'live') {
         await d.plans.updateSlot(slotId, { status: 'shadowed', postSpec: spec, renderedPreview: g.rendered.preview, error: null });
         if (d.notifyPreview) {
           try { await d.notifyPreview(channelKey, g.rendered.preview); } catch { /* preview is best-effort */ }

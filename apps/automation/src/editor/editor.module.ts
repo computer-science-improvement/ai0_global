@@ -272,7 +272,11 @@ export class AgentsUpkeep implements OnModuleInit {
     }
   }
 
-  /** Expire stale confirmation cards; offer "go live" to agents whose shadow period ended (spec 018 FR-007). */
+  /**
+   * Expire stale confirmation cards. Spec 031 replaced the 3-day shadow start
+   * (and its "go live" card) with approval mode; an agent still finishing a
+   * legacy shadow period is offered approval mode instead of live.
+   */
   @Cron('23 * * * *', { name: 'agents-housekeeping' })
   async housekeeping(): Promise<void> {
     try {
@@ -280,9 +284,9 @@ export class AgentsUpkeep implements OnModuleInit {
       for (const a of await this.infra.agents.list()) {
         if (a.parentId || a.mode !== 'shadow' || !a.shadowUntil || a.shadowUntil.getTime() > Date.now()) continue;
         await this.infra.inbox.post({
-          agentId: a.id, kind: 'go_live', severity: 'action',
-          title: `🚦 @${a.handle}: shadow-період завершено — перевести в live?`,
-          body: 'Перегляньте shadow-превʼю на сторінці агента і переведіть режим у live, якщо все гаразд.',
+          agentId: a.id, kind: 'shadow_ended', severity: 'action',
+          title: `🚦 @${a.handle}: shadow-період завершено — перевести в режим «На апруві»?`,
+          body: 'У режимі апруву агент пише справжні пости, але кожен чекає вашого схвалення. Режим перемикається на сторінці агента.',
           refType: 'agent', refId: a.handle,
         });
         await this.infra.agents.update(a.id, { shadowUntil: null });
@@ -319,7 +323,12 @@ function registerAgentActions(infra: AgentInfra, svc: AgentsService, ops: Editor
     if ('error' in r) throw new Error(`${r.error}${r.details ? `: ${typeof r.details === 'string' ? r.details : JSON.stringify(r.details)}` : ''}`);
     return { handle: r.agent.handle, id: r.agent.id, cardCreated: r.cardCreated };
   });
-  a.register('update_agent', async (p) => svc.patch(String(p.handle), p.patch));
+  a.register('update_agent', async (p) => {
+    // Spec 031 FR-010: a mode never changes through an agent's card, whatever the stored payload says.
+    const { mode: _mode, ...patch } = (p.patch ?? {}) as Record<string, unknown>;
+    if (_mode !== undefined) throw new Error('mode_owner_only: режим перемикає лише власник у дашборді');
+    return svc.patch(String(p.handle), patch);
+  });
   a.register('set_brief', async (p) => {
     const agent = await svc.require(String(p.handle));
     const key = await infra.channelKeyOf(agent);

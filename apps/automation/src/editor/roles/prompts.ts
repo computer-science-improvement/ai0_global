@@ -131,6 +131,9 @@ export function executorUserPrompt(card: EditorCard, slot: EditorSlot, now: Date
     slot.angle ? `Кут подачі: ${slot.angle}` : '',
     slot.sourceHints.length ? `Підказки джерел: ${slot.sourceHints.join('; ')}` : 'Підказок джерел немає — обери сам із джерел картки або бібліотеки.',
     slot.isExperiment ? 'Це експеримент: зроби його чисто за задумом планувальника, щоб результат можна було оцінити.' : '',
+    card.mode === 'approve'
+      ? 'Режим апруву: пишеш заздалегідь. publish_post нічого не надсилає — пост чекатиме схвалення власника, і код опублікує його в час слота.'
+      : '',
     'Підготуй пост і опублікуй його через publish_post (після lint_post) або пропусти через skip_slot з причиною.',
   ].filter(Boolean).join('\n');
 }

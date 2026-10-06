@@ -30,8 +30,25 @@ export function rowToCard(r: any): EditorCard & { createdAt: Date } {
     models:         r.models ?? {},
     bannedTerms:    r.banned_terms ?? [],
     crosspost:      r.crosspost ?? true,
+    ...(r.approval_hold_hours != null ? { approvalHoldHours: Number(r.approval_hold_hours) } : {}),
+    ...(r.approval_lead_hours != null ? { approvalLeadHours: Number(r.approval_lead_hours) } : {}),
     createdAt:      r.created_at,
   };
+}
+
+/**
+ * Waiting and approved (not yet published) posts of a channel become `skipped`
+ * with the reason `mode_changed`; their waiting platform rows are canceled.
+ */
+export async function dropWaitingPosts(db: Pick<Pool, 'query'>, channelKey: string): Promise<number> {
+  const { rows } = await db.query(
+    `UPDATE editor_slots SET status = 'skipped', error = 'mode_changed', updated_at = now()
+      WHERE channel_key = $1 AND status IN ('awaiting_approval','approved') RETURNING platform_post_id`, [channelKey]);
+  const ids = rows.map((r) => r.platform_post_id).filter((x) => x != null);
+  if (ids.length) {
+    await db.query(`UPDATE platform_posts SET status = 'canceled', error = 'mode_changed' WHERE id = ANY($1::bigint[]) AND status = 'awaiting_approval'`, [ids]);
+  }
+  return rows.length;
 }
 
 export class EditorChannelsRepository {
@@ -129,6 +146,8 @@ export class EditorChannelsRepository {
            VALUES ($1, 'rule', $2, $3, 'owner', false)`,
           [c.channelKey, `mode changed ${from}→${c.mode} by owner`,
             JSON.stringify({ audit: 'mode_change', from: previousMode, to: c.mode })]);
+        // Spec 031: leaving approval for shadow/off drops the posts that still wait (nothing may go out).
+        if (from === 'approve' && (c.mode === 'off' || c.mode === 'shadow')) await dropWaitingPosts(client, c.channelKey);
       }
       await client.query('COMMIT');
       return { card: rowToCard(rows[0]), previousMode };

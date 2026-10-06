@@ -3,7 +3,7 @@ import type { Pool } from 'pg';
 import { z } from 'zod';
 import type { EditorRunRow } from '../repo/editor-runs.repository';
 import type { MemoryEntry } from '../repo/editor-memory.repository';
-import { Agent, isPaused, telegramKeyOf, validateHandle } from './agent.types';
+import { Agent, AgentMode, isPaused, telegramKeyOf, validateHandle } from './agent.types';
 import type { AgentPatch, AgentsRepository } from './agents.repository';
 import type { OwnerInbox } from './owner-inbox';
 import type { PendingActionsService } from './pending-actions';
@@ -19,7 +19,7 @@ export interface AgentsServiceDeps {
   profiles?: ResourceProfilesRepository;
   actions?:  PendingActionsService;
   /** Channel mode changes go through the editor ops (audit row, validation). */
-  setChannelMode: (channelKey: string, mode: 'off' | 'shadow' | 'live') => Promise<unknown>;
+  setChannelMode: (channelKey: string, mode: AgentMode) => Promise<unknown>;
   /** "Run now" per kind; each returns at once (the run continues in the background). */
   runNow: (agent: Agent, orchestrator: Agent) => Promise<{ started: boolean; what: string }>;
   memory: (channelKey: string) => Promise<MemoryEntry[]>;
@@ -36,7 +36,7 @@ const PatchSchema = z.object({
   handle:           z.string().trim().toLowerCase().transform((s) => s.replace(/^@/, '')).optional(),
   emoji:            z.string().trim().max(8).nullable().optional(),
   description:      z.string().trim().max(500).nullable().optional(),
-  mode:             z.enum(['off', 'shadow', 'live']).optional(),
+  mode:             z.enum(['off', 'shadow', 'approve', 'live']).optional(),
   status:           z.enum(['active', 'paused']).optional(),
   paused_until:     z.string().datetime({ offset: true }).nullable().optional(),
   model:            z.string().trim().min(3).max(100).nullable().optional(),
@@ -143,7 +143,7 @@ export class AgentsService {
       const key = !a.parentId ? telegramKeyOf(a) : null;
       if (key) await this.d.setChannelMode(key, v.mode);
       patch.mode = v.mode;
-      if (v.mode === 'live') patch.shadowUntil = null;
+      if (v.mode === 'live' || v.mode === 'approve') patch.shadowUntil = null;
     }
     const updated = await this.d.agents.update(a.id, patch);
     return { agent: updated };

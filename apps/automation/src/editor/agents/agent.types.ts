@@ -1,9 +1,11 @@
 import type { EditorRole } from '../llm/llm.types';
+import type { ChannelMode } from '../card';
 
 export const AGENT_KINDS = ['manager', 'builder', 'orchestrator', 'planner', 'ideator', 'idea_reviewer', 'executor', 'reviewer'] as const;
 export type AgentKind = typeof AGENT_KINDS[number];
 export type AgentScope = 'system' | 'network' | 'resource';
-export type AgentMode = 'off' | 'shadow' | 'live';
+/** Same ladder as a channel card (spec 031): off < shadow < approve < live. */
+export type AgentMode = ChannelMode;
 export type AgentStatus = 'active' | 'paused';
 
 /** Child roles every orchestrator gets (spec 017 FR-002); idea_reviewer arrives with spec 020. */

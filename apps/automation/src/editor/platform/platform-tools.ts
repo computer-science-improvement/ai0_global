@@ -9,7 +9,7 @@ import { publishPlatformNow, PublishPlatformDeps } from './publish-platform';
 /** Per-run data of a platform slot (put into ctx.extras by the runner, spec 019/020). */
 export interface PlatformSlotExtras {
   resourceRef: string;
-  mode:        'shadow' | 'live';
+  mode:        'shadow' | 'approve' | 'live';
   maxPerDay?:  number | null;
   vocabulary?: string[];
   bannedTerms?: string[];

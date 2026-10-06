@@ -1,7 +1,10 @@
 import type { Pool } from 'pg';
 import type { PlannedSlot } from '../roles/plan-rules';
 
-export type SlotStatus = 'planned' | 'running' | 'published' | 'shadowed' | 'skipped' | 'failed';
+export type SlotStatus =
+  | 'planned' | 'running' | 'published' | 'shadowed' | 'skipped' | 'failed'
+  // Spec 031 (approval mode): written and waiting for the owner / approved, published at its time / never approved in time.
+  | 'awaiting_approval' | 'approved' | 'expired';
 
 export interface EditorSlot {
   id:              string;

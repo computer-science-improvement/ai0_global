@@ -122,8 +122,8 @@ test('upsertChannel: validates, rejects unknown skills/tools, creates and update
   assert.equal(r.previousMode, 'shadow');
   const created = await svc.upsertChannel('@new', { brief: 'новий' });
   assert.equal(created.previousMode, null);
-  assert.equal(created.card.mode, 'off');
-  assert.deepEqual(calls.filter((c) => c.startsWith('upsert')), ['upsert:@chan:live', 'upsert:@new:off']);
+  assert.equal(created.card.mode, 'approve', 'spec 031: a new resource starts in approval mode');
+  assert.deepEqual(calls.filter((c) => c.startsWith('upsert')), ['upsert:@chan:live', 'upsert:@new:approve']);
 });
 
 test('listPlans: defaults to today in Kyiv, validates the date', async () => {

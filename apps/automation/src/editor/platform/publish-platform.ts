@@ -28,7 +28,7 @@ export interface PublishPlatformDeps {
 export interface PublishPlatformInput {
   resourceRef:  string;
   spec:         PlatformPostSpec;
-  mode:         'shadow' | 'live';
+  mode:         'shadow' | 'approve' | 'live';
   slotId?:      string | null;
   agentId?:     string | null;
   /** Playbook limits for this resource (020); the matrix cap applies regardless. */
@@ -83,7 +83,7 @@ export async function publishPlatformNow(d: PublishPlatformDeps, i: PublishPlatf
   }
 
   const preview = renderPlatform(i.spec, platform);
-  if (i.mode === 'shadow') {
+  if (i.mode !== 'live') {
     const row = await d.posts.insert({
       resourceRef: i.resourceRef, platform, slotId: i.slotId ?? null, ideaId: i.spec.idea_id ?? null, format: i.spec.format,
       caption: preview.caption, spec: i.spec, sourceRef, status: 'shadowed', agentId: i.agentId ?? null,

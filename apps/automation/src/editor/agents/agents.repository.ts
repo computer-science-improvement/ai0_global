@@ -117,7 +117,7 @@ export class AgentsRepository {
       `INSERT INTO agents (kind, scope, scope_id, parent_id, name, handle, emoji, description, mode, schedule, daily_budget_usd, model, shadow_until, created_by)
        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14) RETURNING *`,
       [a.kind, a.scope, a.scopeId, a.parentId ?? null, a.name, a.handle, a.emoji ?? null, a.description ?? null,
-        a.mode ?? 'shadow', JSON.stringify(a.schedule ?? {}), a.dailyBudgetUsd ?? null, a.model ?? null, a.shadowUntil ?? null, a.createdBy]);
+        a.mode ?? 'approve', JSON.stringify(a.schedule ?? {}), a.dailyBudgetUsd ?? null, a.model ?? null, a.shadowUntil ?? null, a.createdBy]);
     return rowToAgent(rows[0]);
   }
 

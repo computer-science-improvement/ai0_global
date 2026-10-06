@@ -1,4 +1,4 @@
-import type { EditorCard } from '../card';
+import { effectiveMode, type EditorCard } from '../card';
 import type { AgentLoop, AgentLoopResult } from '../harness/agent-loop';
 import type { ToolRegistry } from '../harness/tool-registry';
 import { resolveModel } from '../llm/model-registry';
@@ -115,8 +115,10 @@ export class EditorRunnerService {
   }
 
   /** `note` (spec 022): an extra instruction for this slot, e.g. a promo brief with its tracked link. */
-  async runExecutor(slot: EditorSlot, card: EditorCard, note?: string | null): Promise<AgentLoopResult> {
-    const ctx = await this.agentOf(card, 'executor');
+  async runExecutor(slot: EditorSlot, cardIn: EditorCard, note?: string | null): Promise<AgentLoopResult> {
+    const ctx = await this.agentOf(cardIn, 'executor');
+    // Spec 031: the slot runs in the lowest of the orchestrator's and the card's mode; tools read it from the card.
+    const card: EditorCard = { ...cardIn, mode: effectiveMode(ctx?.orchestrator?.mode, cardIn.mode) };
     const off = this.paused(ctx);
     if (off) {
       await this.d.plans.updateSlot(slot.id, { status: 'skipped', error: off.error ?? 'agent paused' });
@@ -159,7 +161,8 @@ export class EditorRunnerService {
     const skills = ctx?.skills ?? this.d.skills;
     const skill = skills.get(`platform-${platform}`);
     const memory = await this.d.memory.listActive(card.channelKey);
-    const mode = (ctx?.orchestrator?.mode ?? card.mode) === 'live' && card.mode === 'live' ? 'live' : 'shadow';
+    // `card.mode` is already the effective mode (runExecutor); `off` never publishes, so it runs as shadow.
+    const mode = card.mode === 'live' || card.mode === 'approve' ? card.mode : 'shadow';
     const system = [
       `Ти — автор нативних постів для ${platform} у мережі ai0 (ресурс ${slot.resourceRef}). Пишеш НЕ переробку Telegram-поста, а пост, що працює саме на цій платформі.`,
       'Усі тексти — українською, живою мовою, без AI-штампів. Факти — лише з джерел, які ти прочитав. Код перевіряє ліміти — якщо інструмент повернув error, виправ.',
@@ -185,6 +188,7 @@ export class EditorRunnerService {
       pc?.idea ? `Ідея з пулу: ${pc.idea}` : '',
       slot.sourceHints.length ? `Підказки джерел: ${slot.sourceHints.join('; ')}` : '',
       mode === 'shadow' ? 'Режим shadow: пост збережеться як превʼю, нічого не публікується.' : '',
+      mode === 'approve' ? 'Режим апруву: пост буде повністю підготовлений і чекатиме схвалення власника; публікує код у час слота після апруву.' : '',
       note ?? '',
       'Підготуй пост і заверши publish_platform_post (після lint_platform_post) або skip_slot з причиною.',
     ].filter(Boolean).join('\n');
