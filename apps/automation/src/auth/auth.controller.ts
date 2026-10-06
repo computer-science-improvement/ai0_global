@@ -3,18 +3,14 @@ import {
   ServiceUnavailableException, UseGuards,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
-import { AuthService, ClientInfo } from './auth.service';
+import { AuthService, ClientInfo, retryAfterOf } from './auth.service';
 import { TelegramLoginDto } from './telegram-login.dto';
 import { TokenLoginDto } from './token-login.dto';
 import { RevokeAllDto } from './revoke-all.dto';
-import { RateLimitGuard } from './rate-limit.guard';
 import { AUTH_REASON_HEADER, clearSessionCookie, setSessionCookie } from './auth-cookie';
 import { clientIp, userAgentOf } from './client-info';
 import { AuthContext, JwtPayload } from './auth.types';
 import { TrackingAuthGuard } from '../tracking/api/tracking-auth.guard';
-
-/** Shared by both login routes: 10 attempts / minute / IP across the pair. */
-const loginRateLimit = new RateLimitGuard({ limit: 10, windowMs: 60_000 });
 
 function clientOf(req: Request): ClientInfo {
   return { ip: clientIp(req), userAgent: userAgentOf(req) };
@@ -33,23 +29,32 @@ function authOf(req: Request): AuthContext | undefined {
 export class AuthController {
   constructor(private readonly auth: AuthService) {}
 
+  // Both login routes share one limiter (AuthService.login → LoginLimiter):
+  // 10 attempts / minute / IP across the pair, lockout after 20 failures / hour.
+
   @Post('telegram-login')
-  @UseGuards(loginRateLimit)
   async login(@Body() dto: TelegramLoginDto, @Req() req: Request, @Res({ passthrough: true }) res: Response) {
-    const { token, identity } = await this.auth.login('telegram', dto, clientOf(req));
-    this.setCookie(res, token);
-    return this.identityBody(identity);
+    return this.runLogin(res, () => this.auth.login('telegram', dto, clientOf(req)));
   }
 
   /** Shared-token login — paste the TRACKING_TOKEN secret to get a session
    *  cookie. For HTTP/no-DNS boxes where the Telegram widget can't run. */
   @Post('token-login')
-  @UseGuards(loginRateLimit)
   async tokenLogin(@Body() dto: TokenLoginDto, @Req() req: Request, @Res({ passthrough: true }) res: Response) {
     const method = dto.via === 'link' ? 'link' : 'token';
-    const { token, identity } = await this.auth.login(method, dto.token.trim(), clientOf(req));
-    this.setCookie(res, token);
-    return this.identityBody(identity);
+    return this.runLogin(res, () => this.auth.login(method, dto.token.trim(), clientOf(req)));
+  }
+
+  private async runLogin(res: Response, login: () => ReturnType<AuthService['login']>) {
+    try {
+      const { token, identity } = await login();
+      this.setCookie(res, token);
+      return this.identityBody(identity);
+    } catch (err) {
+      const retry = retryAfterOf(err);
+      if (retry !== null) res.setHeader('Retry-After', String(retry));
+      throw err;
+    }
   }
 
   /**

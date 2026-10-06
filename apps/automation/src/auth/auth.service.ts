@@ -1,4 +1,4 @@
-import { ForbiddenException, HttpException, Injectable, Logger, UnauthorizedException } from '@nestjs/common';
+import { ForbiddenException, HttpException, HttpStatus, Inject, Injectable, Logger, UnauthorizedException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { createHash, createHmac } from 'crypto';
 import { TelegramLoginDto } from './telegram-login.dto';
@@ -8,7 +8,15 @@ import { SessionService } from './session.service';
 import { AuthEventInput, AuthEventsRepository } from './auth-events.repository';
 import { AuthSessionRow, SessionMethod } from './auth-sessions.repository';
 import { SESSION_COOKIE } from './auth-cookie';
-import { uaFamily } from './client-info';
+import { ipPrefix, uaFamily } from './client-info';
+import { LoginLimiter } from './login-limiter';
+
+/** Sends a plain-text alert to the owner (TelegramNotifier.notifyAlert, or a no-op). */
+export type AuthAlert = (text: string) => Promise<void>;
+export const AUTH_ALERT = 'AUTH_ALERT';
+
+/** A device is "known" if a login from the same network + browser family succeeded this recently. */
+const NEW_DEVICE_LOOKBACK_DAYS = 30;
 
 /** Who is logging in from where — the audit and the session row need it. */
 export interface ClientInfo { ip: string | null; userAgent: string | null }
@@ -30,9 +38,24 @@ export function loginError(code: LoginErrorCode, message: string): HttpException
     case 'telegram_login_disabled':
     case 'not_allowlisted':
       return new ForbiddenException({ statusCode: 403, ...body });
+    case 'rate_limited':
+    case 'locked_out':
+      return new HttpException({ statusCode: 429, ...body }, HttpStatus.TOO_MANY_REQUESTS);
     default:
       return new UnauthorizedException({ statusCode: 401, ...body });
   }
+}
+
+/** A 429 from the limiter: `{code, message, retryAfterSec}` (the controller adds `Retry-After`). */
+export function limitError(code: 'rate_limited' | 'locked_out', retryAfterSec: number): HttpException {
+  const message = code === 'locked_out' ? 'Too many failed sign-in attempts' : 'Too many sign-in attempts';
+  return new HttpException({ statusCode: 429, code, message, retryAfterSec }, HttpStatus.TOO_MANY_REQUESTS);
+}
+
+export function retryAfterOf(err: unknown): number | null {
+  if (!(err instanceof HttpException)) return null;
+  const r = err.getResponse() as any;
+  return r && typeof r.retryAfterSec === 'number' ? r.retryAfterSec : null;
 }
 
 export function loginErrorCode(err: unknown): LoginErrorCode | null {
@@ -54,11 +77,17 @@ export interface AuthEventView {
 @Injectable()
 export class AuthService {
   private readonly logger = new Logger(AuthService.name);
+  /** Last rate_limited / locked_out audit row per IP: one per minute is enough. */
+  private readonly limitAudited = new Map<string, number>();
+  /** The last new-device check (fire-and-forget; tests await it). */
+  lastDeviceCheck: Promise<void> = Promise.resolve();
 
   constructor(
     private readonly config:   ConfigService,
     private readonly sessions: SessionService,
     private readonly events:   AuthEventsRepository,
+    private readonly limiter:  LoginLimiter,
+    @Inject(AUTH_ALERT) private readonly alert: AuthAlert,
   ) {}
 
   get production(): boolean { return this.config.get<string>('NODE_ENV') === 'production'; }
@@ -67,12 +96,19 @@ export class AuthService {
   // ─── Login ────────────────────────────────────────────────────────────────
 
   /**
-   * Check the credentials, open a session and audit the attempt. Throws a
-   * coded HttpException (`loginError`) on failure.
+   * Rate-limit, check the credentials, open a session and audit the attempt.
+   * Throws a coded HttpException (`loginError` / `limitError`) on failure.
    */
   async login(
     method: SessionMethod, input: TelegramLoginDto | string, client: ClientInfo,
   ): Promise<{ token: string; session: AuthSessionRow; identity: JwtPayload }> {
+    const ipKey = client.ip ?? 'unknown';
+    const verdict = await this.limiter.hit(ipKey);
+    if (!verdict.ok) {
+      await this.auditLimit(verdict.code, method, client);
+      throw limitError(verdict.code, verdict.retryAfterSec);
+    }
+
     let identity: JwtPayload;
     try {
       identity = method === 'telegram'
@@ -80,13 +116,60 @@ export class AuthService {
         : this.checkToken(input as string);
     } catch (err) {
       await this.audit({ kind: 'login_failed', method, code: loginErrorCode(err) ?? 'error', ...client });
+      await this.countFailure(ipKey, method, client);
       throw err;
     }
     const { token, session } = await this.sessions.issue({
       method, subjectId: identity.sub, firstName: identity.firstName, username: identity.username ?? null, ...client,
     });
     await this.audit({ kind: 'login_ok', method, subjectId: identity.sub, sessionId: session.id, ...client });
+    this.lastDeviceCheck = this.checkNewDevice(session, client).catch((err) =>
+      this.logger.warn(`new-device check failed: ${(err as Error).message}`));
     return { token, session, identity };
+  }
+
+  private async countFailure(ipKey: string, method: SessionMethod, client: ClientInfo): Promise<void> {
+    const out = await this.limiter.fail(ipKey);
+    if (out.lockedNow) {
+      this.limitAudited.set(`locked_out:${ipKey}`, Date.now());
+      await this.audit({ kind: 'locked_out', method, code: 'locked_out', ...client });
+    }
+    if (out.globalBurst) {
+      await this.notify(
+        '⚠️ ai0 dashboard: 50 failed sign-in attempts in the last hour (all IPs together).\n'
+        + 'Nobody was locked out by this; single IPs are locked after 20 failures.\n'
+        + 'Review: Settings → Security → Recent events.');
+    }
+  }
+
+  /** One rate_limited / locked_out row per IP per minute, so a flood can't flood the table. */
+  private async auditLimit(code: 'rate_limited' | 'locked_out', method: SessionMethod, client: ClientInfo): Promise<void> {
+    const key = `${code}:${client.ip ?? 'unknown'}`;
+    const now = Date.now();
+    if (now - (this.limitAudited.get(key) ?? 0) < 60_000) return;
+    this.limitAudited.set(key, now);
+    if (this.limitAudited.size > 5000) this.limitAudited.clear();
+    await this.audit({ kind: code, method, code, ...client });
+  }
+
+  /**
+   * FR-009: ping the owner when a login comes from a device not seen in the last
+   * 30 days (same IPv4 /24 or IPv6 /48 AND the same browser + OS family).
+   */
+  private async checkNewDevice(session: AuthSessionRow, client: ClientInfo): Promise<void> {
+    const prefix = ipPrefix(client.ip);
+    const family = uaFamily(client.userAgent);
+    const recent = await this.events.recentLogins(NEW_DEVICE_LOOKBACK_DAYS, session.id);
+    if (recent.some((r) => ipPrefix(r.ip) === prefix && uaFamily(r.userAgent) === family)) return;
+    await this.notify(
+      `🔐 New sign-in to the ai0 dashboard\n`
+      + `Method: ${session.method}\nIP: ${client.ip ?? 'unknown'}\nDevice: ${family}\n`
+      + `Not you? Settings → Security → Sign out everywhere.`);
+  }
+
+  private async notify(text: string): Promise<void> {
+    try { await this.alert(text); }
+    catch (err) { this.logger.warn(`auth alert failed: ${(err as Error).message}`); }
   }
 
   /** Telegram Login Widget payload → identity (signature, age, allowlist). */

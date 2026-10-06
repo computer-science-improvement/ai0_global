@@ -12,6 +12,7 @@ import { AuthSessionsRepository } from './auth-sessions.repository';
 import { AuthEventsRepository } from './auth-events.repository';
 import { SessionService } from './session.service';
 import { AuthService } from './auth.service';
+import { LoginLimiter } from './login-limiter';
 
 const url = process.env.EDITOR_PG_TEST_URL;
 const skip = !url ? 'EDITOR_PG_TEST_URL not set' : false;
@@ -44,7 +45,7 @@ function makeService() {
 test('login → list → revoke one → revoke-all (others) → events rows, no secret anywhere', { skip }, async () => {
   const { svc, events } = makeService();
   const config = { get: (k: string) => ({ TRACKING_TOKEN: 'pg-secret-token-value' } as Record<string, string>)[k] } as any;
-  const auth = new AuthService(config, svc, events);
+  const auth = new AuthService(config, svc, events, new LoginLimiter(null), async () => undefined);
   const client = (ip: string) => ({ ip, userAgent: `${UA} ${ip}` });
 
   const a = await auth.login('token', 'pg-secret-token-value', client('10.1.0.1'));
