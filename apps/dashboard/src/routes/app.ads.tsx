@@ -170,7 +170,7 @@ function PriceList({ prices, channels }: { prices: AdPrice[]; channels: ChannelO
                 <tr key={p.id}>
                   <td>{p.channel_key}</td>
                   <td>{AD_FORMAT_LABEL[p.format]}</td>
-                  <td className="num">{p.price_uah.toLocaleString('uk-UA')}</td>
+                  <td className="num">{p.price_uah.toLocaleString('en-GB')}</td>
                   <td style={{ color: 'var(--color-ink-muted)' }}>{p.note ?? '—'}</td>
                   <td style={{ textAlign: 'right' }}>
                     <RowActions danger={

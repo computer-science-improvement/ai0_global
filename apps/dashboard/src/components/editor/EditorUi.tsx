@@ -16,8 +16,8 @@ import type { EditorMode, EditorRunStatus, EditorSlot, EditorSlotStatus } from '
 
 export const MODE_TONE: Record<EditorMode, Tone> = { off: 'neutral', shadow: 'warning', approve: 'accent', live: 'success' };
 
-/** Owner-facing mode names (spec 031: approval mode is «На апруві»). */
-export const MODE_LABEL: Record<EditorMode, string> = { off: 'Off', shadow: 'Shadow', approve: 'На апруві', live: 'Live' };
+/** Owner-facing mode names (spec 031: the approve mode reads "In approval"). */
+export const MODE_LABEL: Record<EditorMode, string> = { off: 'Off', shadow: 'Shadow', approve: 'In approval', live: 'Live' };
 
 export const SLOT_TONE: Record<EditorSlotStatus, Tone> = {
   planned: 'neutral', running: 'warning', shadowed: 'accent', published: 'success', skipped: 'neutral', failed: 'danger',
@@ -34,7 +34,7 @@ export const fmtUsd = (n: number | null | undefined) =>
   n == null ? '—' : `$${n < 0.01 && n > 0 ? n.toFixed(4) : n.toFixed(n < 10 ? 3 : 2)}`;
 
 export const fmtTime = (iso: string) =>
-  new Date(iso).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  new Date(iso).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
 
 export const fmtDuration = (from: string, to: string | null) => {
   if (!to) return '—';

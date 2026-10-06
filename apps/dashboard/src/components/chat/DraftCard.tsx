@@ -36,7 +36,7 @@ export function DraftCard({ draft }: { draft: EditorDraft }) {
   const busy = action.isPending;
   const title = draft.spec.title ?? 'post';
   const done = draft.status === 'published';
-  const postTime = useMemo(() => new Intl.DateTimeFormat('uk-UA', { timeZone: KYIV_TZ, hour: '2-digit', minute: '2-digit' })
+  const postTime = useMemo(() => new Intl.DateTimeFormat('en-GB', { timeZone: KYIV_TZ, hour: '2-digit', minute: '2-digit' })
     .format(draft.scheduledAt ? new Date(draft.scheduledAt) : new Date()), [draft.scheduledAt]);
 
   const publish = async () => {

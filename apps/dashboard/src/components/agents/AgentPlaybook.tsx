@@ -488,7 +488,7 @@ function RebuildModal({ handle, hasActive, onClose }: { handle: string; hasActiv
       subtitle="The orchestrator drafts a new playbook version in the background; the reviewer checks it and it waits here for your approval.">
       <label className="text-eyebrow" htmlFor="pb-brief" style={{ display: 'block', marginBottom: 6 }}>Brief</label>
       <textarea id="pb-brief" className="input-field" value={brief} maxLength={4000} onChange={(e) => setBrief(e.target.value)}
-        placeholder="Напр.: більше коротких відео в TikTok, Instagram — каруселі з фактами, щонеділі дайджест тижня в Telegram…"
+        placeholder="E.g. more short videos on TikTok, fact carousels on Instagram, a weekly digest in Telegram every Sunday…"
         style={{ width: '100%', boxSizing: 'border-box', minHeight: 140, resize: 'vertical', fontFamily: 'inherit' }} />
       <div className="text-micro" style={{ display: 'flex', justifyContent: 'space-between', gap: 8, marginTop: 6, color: 'var(--color-ink-dim)', flexWrap: 'wrap' }}>
         <span>Leave empty to rebuild from the channel card's brief{hasActive ? ' and the current playbook' : ''}.</span>

@@ -29,9 +29,9 @@ export function inputToApi(v: string): string {
   return v.replace('T', ' ').slice(0, 16);
 }
 
-/** "2 жовт., 19:00" in Kyiv time. */
+/** "2 Oct, 19:00" in Kyiv time. */
 export function fmtKyiv(iso: string | null | undefined): string {
   if (!iso) return '—';
-  return new Intl.DateTimeFormat('uk-UA', { timeZone: KYIV_TZ, day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })
+  return new Intl.DateTimeFormat('en-GB', { timeZone: KYIV_TZ, day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })
     .format(new Date(iso));
 }

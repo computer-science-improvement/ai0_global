@@ -279,7 +279,7 @@ function PlatformForm({ s, errors, funnelTargets, onChange }: {
             ))}
           </div>
           <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' }}>
-            <input className="input-field" style={{ ...small, flex: '1 1 120px', minWidth: 0 }} placeholder="#космос" value={tag} maxLength={40}
+            <input className="input-field" style={{ ...small, flex: '1 1 120px', minWidth: 0 }} placeholder="#tag" value={tag} maxLength={40}
               onChange={(e) => setTag(e.target.value)} onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); addTag(); } }} />
             <button type="button" className="btn-tiny" disabled={!tag.trim()} onClick={addTag}><Icon name="plus" size={12} /></button>
             <span className="text-micro" style={{ color: 'var(--color-ink-dim)', display: 'inline-flex', alignItems: 'center', gap: 6 }}>

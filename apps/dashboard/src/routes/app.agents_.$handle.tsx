@@ -28,7 +28,7 @@ const MANAGER_TABS: readonly Tab[] = ['reviews', 'directives'];
 
 const TAB_OPTIONS = [
   { key: 'overview' as const, label: 'Overview', icon: 'overview' as const },
-  { key: 'approvals' as const, label: 'На апрув', icon: 'check' as const },
+  { key: 'approvals' as const, label: 'Posts to approve', icon: 'check' as const },
   { key: 'reviews' as const,  label: 'Reviews',  icon: 'history' as const },
   { key: 'directives' as const, label: 'Directives', icon: 'agents' as const },
   { key: 'skills' as const,   label: 'Skills',   icon: 'book' as const },
@@ -166,8 +166,8 @@ function AgentPage() {
       {tab === 'overview' && <AgentOverview data={d} />}
       {tab === 'approvals' && d.channelKey && <ApprovalStatsPanel channel={d.channelKey} />}
       {tab === 'approvals' && (d.channelKey
-        ? <ApprovalList filter={{ channel: d.channelKey }} emptyNote={`Коли @${orchestrator} у режимі «На апруві», його пости чекають тут до публікації.`} />
-        : <div className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>У цього агента немає Telegram-каналу.</div>)}
+        ? <ApprovalList filter={{ channel: d.channelKey }} emptyNote={`When @${orchestrator} is in approval mode, its posts wait here until they are published.`} />
+        : <div className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>This agent has no Telegram channel.</div>)}
       {tab === 'reviews' && <ManagerReviews />}
       {tab === 'directives' && <ManagerDirectives focus={directive} />}
       {tab === 'skills' && <AgentSkills data={d} />}
