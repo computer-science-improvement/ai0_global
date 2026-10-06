@@ -46,6 +46,8 @@ Suggested order for the next wave: 012 → 011 (phases 0–1) → 015 → 013 �
 
 Agent platform wave: 017 → 018 ∥ 019 → 020 → 021 → 022 (019b after 016).
 
+**UI language (owner rule 2026-10-06):** all interface text is English. Ukrainian button and label texts quoted in specs 023–032 give the meaning; implement them in English (see `apps/dashboard/CLAUDE.md` → Language).
+
 Migration numbers in specs 023–032 are assigned in merge order (landed: 055 auth, 056 llm_usage, 057 approval; planned: 058 data store, 059–060 spec 023, 061 spec 025, 062 spec 026, 063 spec 024, 064 spec 030) and are renumbered if the order changes.
 
 BRD-comments wave (2026-10-06): 028 ∥ 029 ∥ 031 → 032 → 023 ∥ 024 → 025 → 029 → 027 → 026; 030 after 016.
