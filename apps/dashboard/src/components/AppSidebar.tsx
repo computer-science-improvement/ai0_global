@@ -1,4 +1,4 @@
-import { Link } from '@tanstack/react-router';
+import { Link, useNavigate, useRouterState } from '@tanstack/react-router';
 import { useCallback, useState, type CSSProperties } from 'react';
 import { Icon } from './ui/Icon';
 import { toast } from './ui/Toast';
@@ -35,6 +35,16 @@ export function AppSidebar({ isMobile = false, mobileOpen = false, onNavigate }:
   });
 
   const nav = useResolvedNav();
+  const navigate = useNavigate();
+  const href = useRouterState({ select: (s) => s.location.href });
+  /** FR-008: the constructor, remembering this page for "Add current page". */
+  const editMenu = (itemId?: string) => {
+    onNavigate?.();
+    void navigate({
+      to: '/app/settings',
+      search: { tab: 'navigation', ...(itemId ? { edit: itemId } : {}), ...(href.startsWith('/app/settings') ? {} : { from: href }) },
+    });
+  };
   const quick = useQuickNavEdit();
   const [ctx, setCtx] = useState<{ item: ResolvedItem; x: number; y: number } | null>(null);
   const closeCtx = useCallback(() => setCtx(null), []);
@@ -127,6 +137,14 @@ export function AppSidebar({ isMobile = false, mobileOpen = false, onNavigate }:
         ))}
       </nav>
 
+      <div style={{ padding: '6px 10px 0' }}>
+        <button onClick={() => editMenu()} className="btn-ghost" title="Edit menu"
+          style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: isCollapsed ? 'center' : 'flex-start', gap: 8, fontSize: 12 }}>
+          <Icon name="pencil" size={14} />
+          {!isCollapsed && <span>Edit menu</span>}
+        </button>
+      </div>
+
       {!isMobile && (
         <div style={{ padding: '10px' }}>
           <button onClick={toggle} className="btn-secondary" style={{ width: '100%', justifyContent: 'center', gap: 8, fontSize: 12, padding: collapsed ? 8 : '8px 12px' }} title={collapsed ? 'Expand' : 'Collapse'}>
@@ -147,6 +165,7 @@ export function AppSidebar({ isMobile = false, mobileOpen = false, onNavigate }:
               label: 'Hide from the menu', icon: 'eye-off', onSelect: () => hide(ctx.item),
               disabled: !canHide(ctx.item.id), title: canHide(ctx.item.id) ? undefined : `${ctx.item.label} is always shown`,
             },
+            { label: 'Rename…', icon: 'pencil', onSelect: () => editMenu(ctx.item.id) },
           ]}
         />
       )}

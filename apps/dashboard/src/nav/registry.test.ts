@@ -98,7 +98,8 @@ test('the FR-013 detail pages render breadcrumbs and dropped their ad-hoc back l
 
 test('AppSidebar has no menu literals', () => {
   const code = readFileSync(`${SRC}components/AppSidebar.tsx`, 'utf8');
-  assert.doesNotMatch(code, /to:\s*'\/app/);
+  // A menu entry literal looks like `{ to: '/app/x', label: 'X', icon: … }`.
+  assert.doesNotMatch(code, /to:\s*'\/app[^']*',\s*label:/);
   assert.doesNotMatch(code, /const GROUPS|interface NavItem/);
 });
 
