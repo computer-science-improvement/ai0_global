@@ -36,7 +36,7 @@ const CAT_TONE: Record<AgentCategory, 'accent' | 'success' | 'neutral' | 'warnin
 const TABS: ReadonlyArray<{ key: CatFilter; label: string }> = [
   { key: 'all',      label: 'All' },
   { key: 'ad',       label: 'Ad' },
-  { key: 'vp',       label: 'ВП' },
+  { key: 'vp',       label: 'Cross-promo' },
   { key: 'question', label: 'Questions' },
   { key: 'spam',     label: 'Spam' },
   { key: 'other',    label: 'Other' },
@@ -51,14 +51,14 @@ const KIND_TONE: Record<OpportunityKind, 'accent' | 'success' | 'neutral'> = {
 
 const KIND_LABEL: Record<OpportunityKind, string> = {
   ad_offer:   'Ad offer',
-  vp_request: 'ВП request',
+  vp_request: 'Cross-promo request',
   pricing:    'Pricing',
   other:      'Other',
 };
 
 const ACTION_LABEL: Record<string, string> = {
   advertise: 'Advertise',
-  do_vp:     'Do ВП',
+  do_vp:     'Do cross-promo',
   skip:      'Skip',
 };
 

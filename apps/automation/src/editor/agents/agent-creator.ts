@@ -26,7 +26,7 @@ export const CreateAgentSchema = z.object({
   schedule:         z.object({ times: z.array(z.string().regex(/^([01]\d|2[0-3]):[0-5]\d$/)).max(8) }).optional(),
   daily_budget_usd: z.number().min(0).max(50).optional(),
   model:            z.string().trim().min(3).max(100).optional(),
-}).refine((v) => !!v.resource_ref !== !!v.network_id, { message: 'потрібно рівно одне: resource_ref або network_id' });
+}).refine((v) => !!v.resource_ref !== !!v.network_id, { message: 'exactly one of resource_ref or network_id is required' });
 export type CreateAgentInput = z.infer<typeof CreateAgentSchema>;
 
 export interface AgentCreatorDeps {
@@ -61,22 +61,22 @@ export class AgentCreator {
     const input = p.data;
     const herr = validateHandle(input.handle);
     if (herr) return { error: 'invalid_handle', details: herr };
-    if (await this.d.agents.handleTaken(input.handle)) return { error: 'handle_taken', details: `@${input.handle} вже зайнятий` };
+    if (await this.d.agents.handleTaken(input.handle)) return { error: 'handle_taken', details: `@${input.handle} is already taken` };
 
     const resources = await this.d.catalog.list();
     if (input.resource_ref) {
       const r = resources.find((x) => x.ref === input.resource_ref);
-      if (!r) return { error: 'resource_not_connected', details: `${input.resource_ref} не підключений — /app/connections` };
-      if (r.agent) return { error: 'resource_has_agent', details: `ресурс уже веде @${r.agent}` };
+      if (!r) return { error: 'resource_not_connected', details: `${input.resource_ref} is not connected — /app/connections` };
+      if (r.agent) return { error: 'resource_has_agent', details: `the resource is already run by @${r.agent}` };
       if (!parseResourceRef(input.resource_ref)) return { error: 'invalid_ref' };
       return { ok: true, input, scope: 'resource', scopeId: input.resource_ref };
     }
     // A network is run by the orchestrator of its Telegram channel (spec 020): create that one.
     const members = resources.filter((x) => x.groupId === input.network_id);
-    if (!members.length) return { error: 'network_not_found', details: 'група акаунтів порожня або не існує' };
+    if (!members.length) return { error: 'network_not_found', details: 'the account group is empty or does not exist' };
     const anchor = members.find((x) => x.platform === 'telegram');
-    if (!anchor) return { error: 'network_needs_telegram', details: 'мережу веде агент її Telegram-каналу — додайте канал у групу' };
-    if (anchor.agent) return { error: 'network_has_agent', details: `канал мережі вже веде @${anchor.agent} — увімкніть режим мережі на його сторінці` };
+    if (!anchor) return { error: 'network_needs_telegram', details: 'a network is run by the agent of its Telegram channel — add the channel to the group' };
+    if (anchor.agent) return { error: 'network_has_agent', details: `the network's channel is already run by @${anchor.agent} — turn on network mode on its page` };
     return { ok: true, input: { ...input, resource_ref: anchor.ref, network_id: undefined }, scope: 'resource', scopeId: anchor.ref };
   }
 

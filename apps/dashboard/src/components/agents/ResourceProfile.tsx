@@ -238,13 +238,13 @@ export function ProfileModal({ handle, initial, refName, onClose }: {
       <div ref={formRef}>
       <Field label="Topic" hint={`${f.topic.trim().length} / 300 · what the resource is about`}>
         <textarea className="input-field" style={{ ...input, minHeight: 64, resize: 'vertical', fontFamily: 'inherit' }} value={f.topic} maxLength={300}
-          placeholder="Про що ресурс: теми, формат, чим він відрізняється…" onChange={(e) => set('topic', e.target.value)} />
+          placeholder="What the resource is about: topics, format, what sets it apart…" onChange={(e) => set('topic', e.target.value)} />
         {err('topic')}
       </Field>
 
       <div style={grid}>
         <Field label="Audience">
-          <input className="input-field" style={input} value={f.who} maxLength={200} placeholder="Хто читає" onChange={(e) => set('who', e.target.value)} />
+          <input className="input-field" style={input} value={f.who} maxLength={200} placeholder="Who reads it" onChange={(e) => set('who', e.target.value)} />
           {err('who')}
         </Field>
         <Field label="Age" hint="optional">
@@ -252,7 +252,7 @@ export function ProfileModal({ handle, initial, refName, onClose }: {
           {err('age')}
         </Field>
         <Field label="Region" hint="optional">
-          <input className="input-field" style={input} value={f.region} maxLength={80} placeholder="Україна" onChange={(e) => set('region', e.target.value)} />
+          <input className="input-field" style={input} value={f.region} maxLength={80} placeholder="Ukraine" onChange={(e) => set('region', e.target.value)} />
           {err('region')}
         </Field>
       </div>
@@ -284,18 +284,18 @@ export function ProfileModal({ handle, initial, refName, onClose }: {
           {err('language')}
         </Field>
         <Field label="Frequency" hint="optional">
-          <input className="input-field" style={input} value={f.frequency} maxLength={120} placeholder="3–5 постів на день" onChange={(e) => set('frequency', e.target.value)} />
+          <input className="input-field" style={input} value={f.frequency} maxLength={120} placeholder="3–5 posts a day" onChange={(e) => set('frequency', e.target.value)} />
           {err('frequency')}
         </Field>
       </div>
 
       <Field label="Tone" hint="optional">
-        <input className="input-field" style={input} value={f.tone} maxLength={300} placeholder="Дружньо, по суті, без канцеляриту" onChange={(e) => set('tone', e.target.value)} />
+        <input className="input-field" style={input} value={f.tone} maxLength={300} placeholder="Friendly, to the point, no bureaucratese" onChange={(e) => set('tone', e.target.value)} />
         {err('tone')}
       </Field>
 
       <Field label="Taboo" hint="topics to avoid · Enter to add">
-        <ChipInput values={f.taboo} onChange={(v) => set('taboo', v)} max={30} maxLen={80} placeholder="політика" label="taboo" />
+        <ChipInput values={f.taboo} onChange={(v) => set('taboo', v)} max={30} maxLen={80} placeholder="politics" label="taboo" />
         {err('taboo')}
       </Field>
       <Field label="Sources" hint="sites / feeds / channels · Enter to add">
@@ -311,7 +311,7 @@ export function ProfileModal({ handle, initial, refName, onClose }: {
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
           <Toggle checked={f.adsAllowed} onChange={(v) => set('adsAllowed', v)} label={f.adsAllowed ? 'Ads allowed' : 'No ads'} />
           {f.adsAllowed && (
-            <ChipInput values={f.adCategories} onChange={(v) => set('adCategories', v)} max={20} maxLen={60} placeholder="освіта (empty = any category)" label="category" />
+            <ChipInput values={f.adCategories} onChange={(v) => set('adCategories', v)} max={20} maxLen={60} placeholder="education (empty = any category)" label="category" />
           )}
         </div>
         {err('adCategories') ?? err('adsAllowed')}

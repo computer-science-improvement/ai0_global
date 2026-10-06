@@ -12,17 +12,25 @@ import { LlmUsageService, setLlmUsage } from './llm-usage.service';
 import { LlmBudgetService, capDefaults, capSeeds, envNum, type BlockInfo } from './llm-budget.service';
 import { LlmUsageRollup } from './llm-usage-rollup';
 
-/** The Inbox entry + Telegram alert of a blocking cap (spec 029 FR-008). */
+/** The Inbox entry (English) + Telegram alert (unchanged wording) of a blocking cap (spec 029 FR-008). */
 export function blockedNotifier(inbox: Pick<OwnerInbox, 'post'>) {
   return async (b: BlockInfo): Promise<void> => {
     await inbox.post({
       kind: 'budget_blocked', severity: 'critical', refType: 'llm_budget', refId: `${b.scope}:${b.key}`,
-      title: `💸 Бюджет LLM вичерпано: ${b.label}`,
+      title: `💸 LLM budget exhausted: ${b.labelEn ?? b.label}`,
       body: [
-        `Витрачено $${b.spentUsd.toFixed(3)} із $${b.capUsd} за сьогодні (Europe/Kyiv).`,
-        'Виклики, які покриває цей ліміт, заблоковано до опівночі за Києвом або доки ліміт не піднято.',
-        'Підняти ліміт: Spend → Budgets (/app/spend?tab=budgets).',
+        `Spent $${b.spentUsd.toFixed(3)} of $${b.capUsd} today (Europe/Kyiv).`,
+        'Calls covered by this cap are blocked until midnight Kyiv time or until the cap is raised.',
+        'Raise the cap: Spend → Budgets (/app/spend?tab=budgets).',
       ].join('\n'),
+      alert: {
+        title: `💸 Бюджет LLM вичерпано: ${b.label}`,
+        body: [
+          `Витрачено $${b.spentUsd.toFixed(3)} із $${b.capUsd} за сьогодні (Europe/Kyiv).`,
+          'Виклики, які покриває цей ліміт, заблоковано до опівночі за Києвом або доки ліміт не піднято.',
+          'Підняти ліміт: Spend → Budgets (/app/spend?tab=budgets).',
+        ].join('\n'),
+      },
     });
   };
 }

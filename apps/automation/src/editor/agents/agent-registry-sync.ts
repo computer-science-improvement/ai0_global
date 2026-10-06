@@ -9,7 +9,7 @@ export interface RegistrySyncDeps {
 }
 
 const CHILD_NAMES: Record<string, string> = {
-  planner: 'Планувальник', executor: 'Виконавець', reviewer: 'Рецензент', idea_reviewer: 'Рецензент ідей',
+  planner: 'Planner', executor: 'Executor', reviewer: 'Reviewer', idea_reviewer: 'Idea reviewer',
 };
 
 /**

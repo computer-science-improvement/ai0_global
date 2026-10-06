@@ -89,8 +89,8 @@ export function AgentModeSwitch({ agent }: { agent: Pick<Agent, 'handle' | 'mode
         confirmLabel: 'Go live',
         details: (
           <div className="callout-warning" style={{ flexDirection: 'column', gap: 6 }}>
-            <strong>Агент публікуватиме сам, без вашого апруву{agent.scopeId ? ` у ${agent.scopeId}` : ''}.</strong>
-            <span className="text-micro">Для оркестратора Telegram-ресурсу це перемикач публікацій картки каналу. Перевірте, що пости на апруві виходили без правок, витрати і що жодна стара стратегія не постить у той самий ресурс.</span>
+            <strong>The agent will publish on its own, without your approval{agent.scopeId ? ` to ${agent.scopeId}` : ''}.</strong>
+            <span className="text-micro">For the orchestrator of a Telegram resource this is the channel card's publishing switch. Check that posts in approval went out without edits, check the spend, and make sure no old strategy posts to the same resource.</span>
           </div>
         ),
       });

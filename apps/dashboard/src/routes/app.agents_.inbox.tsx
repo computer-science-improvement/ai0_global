@@ -16,7 +16,7 @@ import { ApprovalList } from '../components/approvals/ApprovalList';
 type InboxTab = 'approvals' | 'unread' | 'all';
 
 export const Route = createFileRoute('/app/agents_/inbox')({
-  // ?tab=approvals — «Пости на апрув» (spec 031); the owner's Telegram alert links here.
+  // ?tab=approvals — "Posts to approve" (spec 031); the owner's Telegram alert links here.
   validateSearch: (s: Record<string, unknown>): { tab?: InboxTab } => ({
     tab: s.tab === 'approvals' || s.tab === 'all' || s.tab === 'unread' ? s.tab : undefined,
   }),
@@ -58,14 +58,14 @@ function InboxPage() {
 
       <div style={{ marginBottom: 16 }}>
         <SegmentedTabs value={view} onChange={setView} options={[
-          { key: 'approvals', label: `Пости на апрув${waiting ? ` · ${waiting}` : ''}` },
+          { key: 'approvals', label: `Posts to approve${waiting ? ` · ${waiting}` : ''}` },
           { key: 'unread', label: `Unread${unreadCount ? ` · ${unreadCount}` : ''}` },
           { key: 'all', label: 'All' },
         ]} />
       </div>
 
       {view === 'approvals' && (
-        <SectionCard title="Пости на апрув" icon="check" delay={0}>
+        <SectionCard title="Posts to approve" icon="check" delay={0}>
           <ApprovalList />
         </SectionCard>
       )}

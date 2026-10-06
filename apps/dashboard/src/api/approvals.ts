@@ -218,8 +218,8 @@ export function zonedInputToIso(v: string, tz: string): string {
   return new Date(t).toISOString();
 }
 
-/** "чт, 9 жовт." of a local date string. */
+/** "Thu 9 Oct" of a local date string. */
 export function fmtDay(date: string): string {
   const [y, m, d] = date.split('-').map(Number);
-  return new Intl.DateTimeFormat('uk-UA', { weekday: 'short', day: 'numeric', month: 'short', timeZone: 'UTC' }).format(new Date(Date.UTC(y, m - 1, d)));
+  return new Intl.DateTimeFormat('en-GB', { weekday: 'short', day: 'numeric', month: 'short', timeZone: 'UTC' }).format(new Date(Date.UTC(y, m - 1, d)));
 }

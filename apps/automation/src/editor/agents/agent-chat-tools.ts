@@ -106,7 +106,7 @@ export function buildAgentChatTools(d: AgentChatToolDeps): EditorTool[] {
       const lint = lintSkill({ name: i.name, description: i.description, appliesTo: i.applies_to, body: i.body, inline: i.inline });
       if (!lint.ok) return { error: 'skill_lint_failed', details: lint.errors };
       if ((await d.skills.findShared(i.name))?.safety) return { error: 'safety_skill' };
-      return proposeCard(d, ctx, 'write_skill', { ...i, handle: a.handle }, `Скіл «${i.name}» для @${a.handle}: ${i.description}`, a.id);
+      return proposeCard(d, ctx, 'write_skill', { ...i, handle: a.handle }, `Skill "${i.name}" for @${a.handle}: ${i.description}`, a.id);
     },
   });
 

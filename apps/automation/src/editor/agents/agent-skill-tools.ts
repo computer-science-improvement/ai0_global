@@ -33,7 +33,7 @@ const diffLines = (a: string, b: string): string => {
   const B = new Set(b.split('\n'));
   const removed = a.split('\n').filter((l) => l.trim() && !B.has(l)).slice(0, 12).map((l) => `- ${l}`);
   const added = b.split('\n').filter((l) => l.trim() && !A.has(l)).slice(0, 12).map((l) => `+ ${l}`);
-  return [...removed, ...added].join('\n') || '(лише форматування)';
+  return [...removed, ...added].join('\n');
 };
 
 /**
@@ -91,10 +91,15 @@ export function buildAgentSkillTools(d: AgentSkillToolDeps): EditorTool[] {
         kpiBaseline: baseline, reviewAt: new Date(t.getTime() + SELF_EDIT_REVIEW_DAYS * 86_400_000),
       });
       if ('error' in r) return r;
+      const diff = diffLines(prev?.body ?? '', i.body).slice(0, 1200);
       await d.inbox.post({
         agentId: target.id, kind: 'skill_self_edit', severity: 'info',
-        title: `✏️ @${self.handle} змінив скіл «${i.skill}» (v${r.version})`,
-        body: `Причина: ${i.reason}\n\n${diffLines(prev?.body ?? '', i.body).slice(0, 1200)}\n\nВідкат: сторінка агента → Skills → версії.`,
+        title: `✏️ @${self.handle} changed skill "${i.skill}" (v${r.version})`,
+        body: `Reason: ${i.reason}\n\n${diff || '(formatting only)'}\n\nRoll back: agent page → Skills → versions.`,
+        alert: {
+          title: `✏️ @${self.handle} змінив скіл «${i.skill}» (v${r.version})`,
+          body: `Причина: ${i.reason}\n\n${diff || '(лише форматування)'}\n\nВідкат: сторінка агента → Skills → версії.`,
+        },
         refType: 'skill', refId: r.skill.id,
       });
       return { ok: true, skill: i.skill, version: r.version, review_in_days: SELF_EDIT_REVIEW_DAYS, warnings: r.lint.warnings };

@@ -109,7 +109,7 @@ export function CardEditorModal({ open, onClose, card }: { open: boolean; onClos
   return (
     <Modal open={open} onClose={onClose} size="lg" icon="sparkles"
       title={isNew ? 'New channel card' : `Edit card · ${card.channelKey}`}
-      subtitle={isNew ? 'Створюється в режимі «На апруві»: агент пише пости, але кожен чекає вашого схвалення.' : 'What the editor agents know about this channel.'}>
+      subtitle={isNew ? 'Created in approval mode: the agent writes posts, but each one waits for your approval.' : 'What the editor agents know about this channel.'}>
       {isNew && (
         <Field label="Channel key" hint="tracked_channels.channel_key, e.g. @my_channel">
           <input className="input-field" style={inputStyle} value={f.key} onChange={(e) => set('key', e.target.value)} placeholder="@my_channel" />

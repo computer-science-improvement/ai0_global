@@ -50,7 +50,7 @@ function EditorPage() {
 
       {list.length > 0 && (
         <div className="stat-grid compose-rise" style={{ marginBottom: 18 }}>
-          <StatTile label="Channels" value={list.length} icon="sparkles" accent delta={`${count('live')} live · ${count('approve')} на апруві · ${count('shadow')} shadow · ${count('off')} off`} />
+          <StatTile label="Channels" value={list.length} icon="sparkles" accent delta={`${count('live')} live · ${count('approve')} in approval · ${count('shadow')} shadow · ${count('off')} off`} />
           <StatTile label="Slots today" value={todaySlots.length} icon="calendar" />
           <StatTile label="Failed today" value={failed} icon="warning" deltaTone={failed ? 'danger' : 'neutral'} delta={failed ? 'needs attention' : undefined} />
           <StatTile label="Spend today" value={fmtUsd(spendToday)} icon="analytics" />

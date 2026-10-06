@@ -109,30 +109,30 @@ export class ResourceCatalog {
       if (parsed.platform === 'telegram') {
         return this.d.telegramAccess
           ? await this.d.telegramAccess(parsed.id).catch((e: any) => ({ state: 'unknown' as const, detail: String(e?.message ?? e) }))
-          : { state: 'unknown', detail: 'перевірка доступу недоступна' };
+          : { state: 'unknown', detail: 'access check unavailable' };
       }
       if (parsed.platform === 'instagram' || parsed.platform === 'facebook' || parsed.platform === 'threads') {
         const { rows } = await this.d.pool.query(`SELECT active, last_verified_at, verify_error FROM meta_accounts WHERE id::text = $1`, [parsed.id]);
         const r = rows[0];
-        return !r ? { state: 'no_access', detail: 'акаунт не знайдено' }
-          : !r.active ? { state: 'no_access', detail: 'акаунт вимкнено' }
+        return !r ? { state: 'no_access', detail: 'account not found' }
+          : !r.active ? { state: 'no_access', detail: 'account disabled' }
           : r.verify_error ? { state: 'token_invalid', detail: String(r.verify_error) }
-          : r.last_verified_at ? { state: 'ok', detail: `перевірено ${new Date(r.last_verified_at).toISOString().slice(0, 10)}` }
-          : { state: 'unknown', detail: 'ще не перевірявся' };
+          : r.last_verified_at ? { state: 'ok', detail: `verified ${new Date(r.last_verified_at).toISOString().slice(0, 10)}` }
+          : { state: 'unknown', detail: 'not verified yet' };
       }
       if (parsed.platform === 'tiktok') {
         const { rows } = await this.d.pool.query(`SELECT active, refresh_token_expires_at, refresh_error FROM tiktok_accounts WHERE id::text = $1`, [parsed.id]);
         const r = rows[0];
         const refreshLeft = r ? new Date(r.refresh_token_expires_at).getTime() - this.now().getTime() : -1;
-        return !r ? { state: 'no_access', detail: 'акаунт не знайдено' }
-          : !r.active ? { state: 'no_access', detail: 'акаунт вимкнено' }
+        return !r ? { state: 'no_access', detail: 'account not found' }
+          : !r.active ? { state: 'no_access', detail: 'account disabled' }
           : r.refresh_error ? { state: 'token_invalid', detail: String(r.refresh_error) }
-          : refreshLeft < 0 ? { state: 'token_invalid', detail: 'refresh token прострочений' }
-          : refreshLeft < 7 * DAY ? { state: 'token_expiring', detail: `refresh token спливає ${new Date(r.refresh_token_expires_at).toISOString().slice(0, 10)}` }
-          : { state: 'ok', detail: 'токен дійсний' };
+          : refreshLeft < 0 ? { state: 'token_invalid', detail: 'refresh token expired' }
+          : refreshLeft < 7 * DAY ? { state: 'token_expiring', detail: `refresh token expires ${new Date(r.refresh_token_expires_at).toISOString().slice(0, 10)}` }
+          : { state: 'ok', detail: 'token valid' };
       }
       const { rows } = await this.d.pool.query(`SELECT active, expires_at FROM youtube_accounts WHERE id::text = $1`, [parsed.id]);
-      return !rows[0] ? { state: 'no_access', detail: 'акаунт не знайдено' } : { state: 'unknown', detail: 'YouTube — 019b' };
+      return !rows[0] ? { state: 'no_access', detail: 'account not found' } : { state: 'unknown', detail: 'YouTube — 019b' };
     } catch (err: any) {
       return { state: 'unknown', detail: String(err?.message ?? err) };
     }
@@ -141,9 +141,9 @@ export class ResourceCatalog {
 
   async inspect(ref: string): Promise<ResourceInspection | { error: string; details?: string }> {
     const parsed = parseResourceRef(ref);
-    if (!parsed) return { error: 'invalid_ref', details: 'формат <platform>:<id>, напр. telegram:@my_channel' };
+    if (!parsed) return { error: 'invalid_ref', details: 'format <platform>:<id>, e.g. telegram:@my_channel' };
     const resource = await this.get(ref);
-    if (!resource) return { error: 'resource_not_connected', details: 'ресурс не підключений — підключіть його в /app/connections' };
+    if (!resource) return { error: 'resource_not_connected', details: 'the resource is not connected — connect it in /app/connections' };
     const { rows: prof } = await this.d.pool.query(`SELECT 1 FROM resource_profiles WHERE resource_ref = $1 AND profile <> '{}'::jsonb`, [ref]);
     const since = new Date(this.now().getTime() - 28 * DAY);
 
@@ -203,7 +203,7 @@ export class ResourceCatalog {
 export function makeTelegramAccessCheck(resolve: (key: string) => { chatId: string | number; botToken: string }, fetchImpl: typeof fetch = fetch) {
   return async (channelKey: string): Promise<AccessCheck> => {
     let ch: { chatId: string | number; botToken: string };
-    try { ch = resolve(channelKey); } catch (err: any) { return { state: 'no_access', detail: `канал не налаштований: ${err?.message ?? err}` }; }
+    try { ch = resolve(channelKey); } catch (err: any) { return { state: 'no_access', detail: `channel not configured: ${err?.message ?? err}` }; }
     const call = async (method: string, params: Record<string, unknown>) => {
       const res = await fetchImpl(`https://api.telegram.org/bot${ch.botToken}/${method}`, {
         method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(params), signal: AbortSignal.timeout(10_000),
@@ -212,16 +212,16 @@ export function makeTelegramAccessCheck(resolve: (key: string) => { chatId: stri
     };
     try {
       const me = await call('getMe', {});
-      if (!me?.ok) return { state: 'token_invalid', detail: 'бот-токен не дійсний' };
+      if (!me?.ok) return { state: 'token_invalid', detail: 'bot token invalid' };
       const member = await call('getChatMember', { chat_id: ch.chatId, user_id: me.result.id });
-      if (!member?.ok) return { state: 'no_access', detail: member?.description ?? 'бот не бачить канал' };
+      if (!member?.ok) return { state: 'no_access', detail: member?.description ?? 'the bot cannot see the channel' };
       const m = member.result;
-      if (m.status === 'creator') return { state: 'ok', detail: 'бот — власник' };
-      if (m.status !== 'administrator') return { state: 'no_access', detail: `бот не адміністратор (${m.status})` };
-      if (m.can_post_messages === false) return { state: 'no_access', detail: 'бот адмін, але без права публікувати' };
-      return { state: 'ok', detail: `бот @${me.result.username} — адмін з правом публікації` };
+      if (m.status === 'creator') return { state: 'ok', detail: 'the bot is the owner' };
+      if (m.status !== 'administrator') return { state: 'no_access', detail: `the bot is not an administrator (${m.status})` };
+      if (m.can_post_messages === false) return { state: 'no_access', detail: 'the bot is an admin without the right to post' };
+      return { state: 'ok', detail: `bot @${me.result.username} is an admin with the right to post` };
     } catch (err: any) {
-      return { state: 'unknown', detail: `Bot API недоступний: ${err?.message ?? err}` };
+      return { state: 'unknown', detail: `Bot API unavailable: ${err?.message ?? err}` };
     }
   };
 }

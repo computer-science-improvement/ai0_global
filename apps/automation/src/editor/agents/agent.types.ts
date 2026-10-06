@@ -59,8 +59,8 @@ export function roleOfKind(kind: AgentKind): EditorRole {
 }
 
 export function validateHandle(handle: string, opts: { allowReserved?: boolean } = {}): string | null {
-  if (!HANDLE_RE.test(handle)) return 'handle: 3–32 символи, латиниця в нижньому регістрі, цифри й _, починається з літери';
-  if (!opts.allowReserved && RESERVED_HANDLES.has(handle)) return `handle "${handle}" зарезервований`;
+  if (!HANDLE_RE.test(handle)) return 'handle: 3–32 characters, lowercase Latin letters, digits and _, starting with a letter';
+  if (!opts.allowReserved && RESERVED_HANDLES.has(handle)) return `handle "${handle}" is reserved`;
   return null;
 }
 

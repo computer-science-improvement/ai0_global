@@ -37,7 +37,7 @@ test('env defaults (empty = default) and the seeds they produce', () => {
 test('total cap blocks every feature; one block notification per day, also across a restart', async () => {
   const w = world([{ feature: 'strategy.s1.generate', provider: 'anthropic', usd: 2.5 }, { feature: 'editor.executor', provider: 'openrouter', usd: 0.6 }], [row({})]);
   const v = await w.make().checkFeature('dm.triage', 'anthropic');
-  assert.deepEqual(v, { ok: false, scope: 'total', key: '', label: 'загальний ліміт AI (AI_DAILY_BUDGET_USD)', spentUsd: 3.1, capUsd: 3 });
+  assert.deepEqual(v, { ok: false, scope: 'total', key: '', label: 'загальний ліміт AI (AI_DAILY_BUDGET_USD)', labelEn: 'total AI cap (AI_DAILY_BUDGET_USD)', spentUsd: 3.1, capUsd: 3 });
   await w.make().checkFeature('dm.triage', 'anthropic');      // a "restart": new instance, same persisted keys
   await w.make().assertWithin('tracking.roi', 'anthropic').catch(() => {});
   assert.equal(w.blocks.length, 1);
@@ -113,13 +113,16 @@ test('resourceCap: a concrete resource row wins over the * default', async () =>
   assert.equal((await svc.resourceCap('telegram:@other'))?.capUsd, 0.3);
 });
 
-test('blockedNotifier posts one critical budget_blocked Inbox entry with scope, spend and cap', async () => {
+test('blockedNotifier posts one critical budget_blocked Inbox entry with scope, spend and cap (English; the Telegram alert keeps its wording)', async () => {
   const posted: any[] = [];
-  await blockedNotifier({ post: async (i: any) => { posted.push(i); return 1; } })({ scope: 'total', key: '', label: 'загальний ліміт AI (AI_DAILY_BUDGET_USD)', spentUsd: 3.1234, capUsd: 3 });
+  await blockedNotifier({ post: async (i: any) => { posted.push(i); return 1; } })({ scope: 'total', key: '', label: 'загальний ліміт AI (AI_DAILY_BUDGET_USD)', labelEn: 'total AI cap (AI_DAILY_BUDGET_USD)', spentUsd: 3.1234, capUsd: 3 });
   assert.equal(posted.length, 1);
   assert.equal(posted[0].kind, 'budget_blocked');
   assert.equal(posted[0].severity, 'critical');
-  assert.match(posted[0].title, /AI_DAILY_BUDGET_USD/);
-  assert.match(posted[0].body, /\$3\.123 із \$3/);
-  assert.match(posted[0].body, /опівночі за Києвом/);
+  assert.equal(posted[0].title, '💸 LLM budget exhausted: total AI cap (AI_DAILY_BUDGET_USD)');
+  assert.match(posted[0].body, /Spent \$3\.123 of \$3 today/);
+  assert.match(posted[0].body, /until midnight Kyiv time/);
+  assert.match(posted[0].alert.title, /Бюджет LLM вичерпано: загальний ліміт AI/);
+  assert.match(posted[0].alert.body, /\$3\.123 із \$3/);
+  assert.match(posted[0].alert.body, /опівночі за Києвом/);
 });

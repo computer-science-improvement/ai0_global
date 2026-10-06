@@ -297,7 +297,7 @@ export class SkillStore {
   async rollback(skillId: string, toVersion: number, author: 'owner' | 'agent', reason: string): Promise<WriteSkillResult> {
     const skill = await this.get(skillId);
     if (!skill) return { error: 'skill_not_found' };
-    if (skill.scope === 'builtin') return { error: 'builtin_readonly', details: 'вбудований скіл змінюється лише в репозиторії; відкотіть перевизначення агента' };
+    if (skill.scope === 'builtin') return { error: 'builtin_readonly', details: 'a built-in skill changes only in the repository; roll back the agent override instead' };
     const { rows } = await this.pool.query(`SELECT * FROM skill_versions WHERE skill_id = $1 AND version = $2`, [skillId, toVersion]);
     if (!rows[0]) return { error: 'version_not_found' };
     const v = rowToVersion(rows[0]);

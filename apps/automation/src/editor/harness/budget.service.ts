@@ -81,7 +81,7 @@ export class BudgetService implements BudgetGate {
       const resource = this.caps && channelLimitUsd == null ? await this.caps.resourceCap(`telegram:${channelKey}`) : null;
       const channelLimit = channelLimitUsd ?? resource?.capUsd ?? this.limits.channelDailyUsd;
       const enforce = resource ? resource.row.enforce : true;
-      const info: BlockInfo = { scope: 'channel', key: channelKey, label: `ліміт ресурсу telegram:${channelKey}`, spentUsd: channelUsd, capUsd: channelLimit };
+      const info: BlockInfo = { scope: 'channel', key: channelKey, label: `ліміт ресурсу telegram:${channelKey}`, labelEn: `resource cap telegram:${channelKey}`, spentUsd: channelUsd, capUsd: channelLimit };
       const blocked = this.caps
         ? await this.caps.thresholds(`channel:${channelKey}`, day, info, resource?.row.alertPct ?? 80, enforce)
         : channelUsd >= channelLimit && (await this.alertOnce(`channel:${channelKey}:${day}`, `💸 Editor: бюджет каналу ${channelKey} вичерпано ($${channelUsd.toFixed(3)} / $${channelLimit}).`), true);
@@ -89,7 +89,7 @@ export class BudgetService implements BudgetGate {
     }
 
     if (agent?.limitUsd != null) {
-      const info: BlockInfo = { scope: 'agent', key: agent.id, label: `ліміт агента @${agent.handle ?? agent.id}`, spentUsd: agentUsd, capUsd: agent.limitUsd };
+      const info: BlockInfo = { scope: 'agent', key: agent.id, label: `ліміт агента @${agent.handle ?? agent.id}`, labelEn: `agent cap @${agent.handle ?? agent.id}`, spentUsd: agentUsd, capUsd: agent.limitUsd };
       const blocked = this.caps
         ? await this.caps.thresholds(`agent:${agent.id}`, day, info, 100, true)
         : agentUsd >= agent.limitUsd && (await this.alertOnce(`agent:${agent.id}:${day}`, `💸 Агент @${agent.handle ?? agent.id}: денний бюджет вичерпано ($${agentUsd.toFixed(3)} / $${agent.limitUsd}).`), true);

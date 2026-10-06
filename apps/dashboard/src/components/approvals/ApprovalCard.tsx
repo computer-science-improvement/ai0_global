@@ -19,27 +19,27 @@ import {
 } from '../../api/approvals';
 
 const STATUS: Record<string, { label: string; tone: Tone }> = {
-  awaiting_approval: { label: 'Чекає апруву', tone: 'warning' },
-  approved:          { label: 'Апрувнуто', tone: 'accent' },
-  expired:           { label: 'Прострочено', tone: 'neutral' },
-  skipped:           { label: 'Відхилено', tone: 'neutral' },
-  published:         { label: 'Опубліковано', tone: 'success' },
+  awaiting_approval: { label: 'Awaiting approval', tone: 'warning' },
+  approved:          { label: 'Approved', tone: 'accent' },
+  expired:           { label: 'Expired', tone: 'neutral' },
+  skipped:           { label: 'Rejected', tone: 'neutral' },
+  published:         { label: 'Published', tone: 'success' },
 };
 
 const PLATFORM_ICON: Record<string, IconName> = {
   telegram: 'telegram', instagram: 'instagram', facebook: 'facebook', threads: 'threads', tiktok: 'tiktok', youtube: 'globe',
 };
 
-/** Ukrainian copy for the server's error codes. */
+/** Owner-facing copy for the server's error codes. */
 function explain(err: unknown): string {
   const b = errorBody(err);
   switch (b?.error) {
-    case 'already_decided': return 'Цей пост уже вирішено — в іншій вкладці або минув час. Список оновлено.';
-    case 'lint_failed':     return `Правка не пройшла перевірку: ${Array.isArray(b.details) ? b.details.map((d: any) => d.message ?? d).join('; ') : ''}`;
-    case 'quiet_hours':     return `Тихі години: ${b.details ?? ''}`;
-    case 'too_close':       return `Занадто близько до іншого поста: ${b.details ?? ''}`;
-    case 'too_soon':        return 'Новий час — щонайменше за 5 хвилин.';
-    case 'too_far':         return 'Новий час — не далі 14 днів.';
+    case 'already_decided': return 'This post was already decided — in another tab, or its time ran out. The list is refreshed.';
+    case 'lint_failed':     return `The edit did not pass the checks: ${Array.isArray(b.details) ? b.details.map((d: any) => d.message ?? d).join('; ') : ''}`;
+    case 'quiet_hours':     return `The new time falls in quiet hours: ${b.details ?? ''}`;
+    case 'too_close':       return `Too close to another post: ${b.details ?? ''}`;
+    case 'too_soon':        return 'The new time must be at least 5 minutes from now.';
+    case 'too_far':         return 'The new time must be within 14 days.';
     default:                return describeError(err);
   }
 }
@@ -58,8 +58,8 @@ export function ApprovalCard({ item, delay = 0 }: { item: ApprovalCardData; dela
 
   const approve = () => action.mutate({ id: item.id, action: 'approve' }, {
     onSuccess: (r) => toast.success(r.movedTo
-      ? `Апрувнуто й перенесено на ${toZonedInput(new Date(r.movedTo), item.timezone).replace('T', ' ')} — час слота вже минув`
-      : 'Апрувнуто — вийде в час слота'),
+      ? `Approved and moved to ${toZonedInput(new Date(r.movedTo), item.timezone).replace('T', ' ')} — the slot time has passed`
+      : 'Approved — it goes out at the slot time'),
     onError: (e) => toast.error(explain(e)),
   });
 
@@ -74,9 +74,9 @@ export function ApprovalCard({ item, delay = 0 }: { item: ApprovalCardData; dela
           <Icon name={PLATFORM_ICON[item.platform] ?? 'globe'} size={11} /> {item.platform === 'telegram' ? item.channelKey : item.resourceRef}
         </span>
         <span className="chip">{item.format}</span>
-        {item.ownerEdited && <span className="chip">редаговано</span>}
-        {item.replacesSlotId && <span className="chip">заміна</span>}
-        {item.isExperiment && <span className="chip">експеримент</span>}
+        {item.ownerEdited && <span className="chip">edited</span>}
+        {item.replacesSlotId && <span className="chip">replacement</span>}
+        {item.isExperiment && <span className="chip">experiment</span>}
       </div>
 
       <div className="text-body-sm" style={{ color: 'var(--color-ink)', fontWeight: 600, marginBottom: 8, overflowWrap: 'anywhere' }}>{item.topic}</div>
@@ -92,19 +92,19 @@ export function ApprovalCard({ item, delay = 0 }: { item: ApprovalCardData; dela
                 <span className="text-micro" style={{ display: 'block', color: 'var(--color-ink-dim)' }}>Forwarded as is at the slot time; it cannot be edited.</span>
               </div>
             )
-            : <div className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>Превʼю недоступне.</div>}
+            : <div className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>Preview unavailable.</div>}
 
       <Rationale item={item} />
 
       {item.lintWarnings.length > 0 && (
         <div style={{ marginTop: 8, display: 'flex', flexDirection: 'column', gap: 2 }}>
           {item.lintWarnings.map((w, i) => <span key={i} className="text-micro" style={{ color: 'var(--color-warning)' }}>⚠ {w}</span>)}
-          <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>Пости з попередженнями не входять у «Апрувнути все».</span>
+          <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>Posts with warnings are left out of "Approve all".</span>
         </div>
       )}
       {waiting && (
         <div className="text-micro" style={{ marginTop: 8, color: 'var(--color-ink-dim)' }}>
-          Якщо не апрувнути до {toZonedInput(new Date(item.expiresAt), item.timezone).replace('T', ' ')} ({item.timezone}), пост не вийде.
+          If it is not approved by {toZonedInput(new Date(item.expiresAt), item.timezone).replace('T', ' ')} ({item.timezone}), the post will not go out.
         </div>
       )}
 
@@ -112,25 +112,25 @@ export function ApprovalCard({ item, delay = 0 }: { item: ApprovalCardData; dela
         <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 12 }}>
           {waiting && (
             <button className="btn-primary" disabled={busy} onClick={approve} style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
-              <Icon name="check" size={14} /> Апрувнути
+              <Icon name="check" size={14} /> Approve
             </button>
           )}
           {editable && !forward && (
             <button className="btn-secondary" disabled={busy} onClick={() => setModal('edit')} style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
-              <Icon name="pencil" size={14} /> {waiting ? 'Редагувати й апрувнути' : 'Редагувати'}
+              <Icon name="pencil" size={14} /> {waiting ? 'Edit and approve' : 'Edit'}
             </button>
           )}
           {editable && (
             <button className="btn-secondary" disabled={busy} onClick={() => setModal('reschedule')} style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
-              <Icon name="calendar" size={14} /> Перенести
+              <Icon name="calendar" size={14} /> Reschedule
             </button>
           )}
           {editable && (
             <button className="btn-ghost" disabled={busy} onClick={() => setModal('reject')} style={{ display: 'inline-flex', alignItems: 'center', gap: 6, color: 'var(--color-danger)' }}>
-              <Icon name="ban" size={14} /> Відхилити
+              <Icon name="ban" size={14} /> Reject
             </button>
           )}
-          {approved && !editable && <span className="text-micro" style={{ color: 'var(--color-ink-dim)', alignSelf: 'center' }}>Менше 2 хвилин до публікації — картку заблоковано.</span>}
+          {approved && !editable && <span className="text-micro" style={{ color: 'var(--color-ink-dim)', alignSelf: 'center' }}>Less than 2 minutes to publication — the card is locked.</span>}
         </div>
       )}
 
@@ -144,14 +144,14 @@ export function ApprovalCard({ item, delay = 0 }: { item: ApprovalCardData; dela
 function Rationale({ item }: { item: ApprovalCardData }) {
   const r = item.rationale;
   const rows: Array<[string, React.ReactNode]> = [];
-  if (r.idea) rows.push(['Ідея', <>{r.idea.title}{r.idea.why ? <span style={{ color: 'var(--color-ink-muted)' }}> — {r.idea.why}</span> : null}</>]);
-  if (r.angle) rows.push(['Кут', r.angle]);
+  if (r.idea) rows.push(['Idea', <>{r.idea.title}{r.idea.why ? <span style={{ color: 'var(--color-ink-muted)' }}> — {r.idea.why}</span> : null}</>]);
+  if (r.angle) rows.push(['Angle', r.angle]);
   if (r.source) {
-    rows.push(['Джерело', /^https?:\/\//i.test(r.source.url)
+    rows.push(['Source', /^https?:\/\//i.test(r.source.url)
       ? <a href={r.source.url} target="_blank" rel="noopener noreferrer nofollow" className="link-accent" style={{ wordBreak: 'break-all' }}>{r.source.label || r.source.url}</a>
       : r.source.url]);
   }
-  if (r.plan) rows.push(['Чому цей час', r.plan]);
+  if (r.plan) rows.push(['Why this time', r.plan]);
   if (!rows.length) return null;
   return (
     <div style={{ marginTop: 10, padding: '8px 10px', background: 'var(--color-surface-1)', border: '1px solid var(--color-hairline-soft)', borderRadius: 'var(--radius-md)', display: 'grid', gap: 4 }}>
@@ -231,40 +231,40 @@ function EditModal({ item, onClose }: { item: ApprovalCardData; onClose: () => v
 
   const save = () => {
     let next: unknown;
-    try { next = build(); } catch { setError('JSON не розібрано — перевірте синтаксис.'); return; }
+    try { next = build(); } catch { setError('Could not parse the JSON — check the syntax.'); return; }
     setError(null);
     action.mutate({ id: item.id, action: 'edit', spec: next }, {
-      onSuccess: (r) => { toast.success(`Збережено й апрувнуто${r.warnings?.length ? ` (попередження: ${r.warnings.join('; ')})` : ''}`); onClose(); },
+      onSuccess: (r) => { toast.success(`Saved and approved${r.warnings?.length ? ` (warnings: ${r.warnings.join('; ')})` : ''}`); onClose(); },
       onError: (e) => setError(explain(e)),
     });
   };
 
   return (
-    <Modal open onClose={onClose} title={item.status === 'approved' ? 'Редагувати пост' : 'Редагувати й апрувнути'} subtitle={`${item.resourceRef} · ${item.localTime}`} icon="pencil" size="lg">
+    <Modal open onClose={onClose} title={item.status === 'approved' ? 'Edit post' : 'Edit and approve'} subtitle={`${item.resourceRef} · ${item.localTime}`} icon="pencil" size="lg">
       <div style={{ marginBottom: 10 }}>
         <SegmentedTabs size="sm" value={mode} onChange={setMode}
-          options={isPlatform || hasBody ? [{ key: 'text' as const, label: 'Текст' }, { key: 'json' as const, label: 'JSON' }] : [{ key: 'json' as const, label: 'JSON' }]} />
+          options={isPlatform || hasBody ? [{ key: 'text' as const, label: 'Text' }, { key: 'json' as const, label: 'JSON' }] : [{ key: 'json' as const, label: 'JSON' }]} />
       </div>
       {mode === 'text' ? (
         <>
-          <Field label={isPlatform ? 'Підпис' : 'Текст'} hint={isPlatform ? undefined : 'Абзаци через порожній рядок; «• » — список, «> » — цитата. Перший абзац лишається заголовком, якщо був ним.'}>
+          <Field label={isPlatform ? 'Caption' : 'Text'} hint={isPlatform ? undefined : 'Separate paragraphs with a blank line; "• " starts a list, "> " a quote. The first paragraph stays the headline if it was one.'}>
             <textarea className="input-field" rows={10} value={text} onChange={(e) => setText(e.target.value)} style={{ width: '100%', resize: 'vertical', fontFamily: 'inherit' }} />
           </Field>
-          <Field label="Хештеги" hint="Через пробіл, без #">
+          <Field label="Hashtags" hint="Space-separated, without #">
             <input className="input-field" value={tags} onChange={(e) => setTags(e.target.value)} style={{ width: '100%' }} />
           </Field>
         </>
       ) : (
-        <Field label="PostSpec (JSON)" hint="Повна специфікація поста: опитування, медіа, кнопки.">
+        <Field label="PostSpec (JSON)" hint="The full post spec: poll, media, buttons.">
           <textarea className="input-field" rows={16} value={json} onChange={(e) => setJson(e.target.value)} spellCheck={false}
             style={{ width: '100%', resize: 'vertical', fontFamily: 'var(--font-mono, monospace)', fontSize: 12 }} />
         </Field>
       )}
       {error && <div className="callout-danger" style={{ marginTop: 8 }}><span className="text-micro" style={{ overflowWrap: 'anywhere' }}>{error}</span></div>}
-      <p className="text-micro" style={{ margin: '8px 0 0', color: 'var(--color-ink-muted)' }}>Правка проходить ту саму перевірку, що й пост агента; превʼю оновиться після збереження.</p>
+      <p className="text-micro" style={{ margin: '8px 0 0', color: 'var(--color-ink-muted)' }}>Your edit goes through the same checks as the agent's post; the preview updates after saving.</p>
       <div className="modal-foot">
-        <button className="btn-secondary" onClick={onClose}>Скасувати</button>
-        <button className="btn-primary" disabled={action.isPending} onClick={save}>{item.status === 'approved' ? 'Зберегти' : 'Зберегти й апрувнути'}</button>
+        <button className="btn-secondary" onClick={onClose}>Cancel</button>
+        <button className="btn-primary" disabled={action.isPending} onClick={save}>{item.status === 'approved' ? 'Save' : 'Save and approve'}</button>
       </div>
     </Modal>
   );
@@ -276,19 +276,19 @@ function RescheduleModal({ item, onClose }: { item: ApprovalCardData; onClose: (
   const [error, setError] = useState<string | null>(null);
   const min = useMemo(() => toZonedInput(new Date(Date.now() + 5 * 60_000), item.timezone), [item.timezone]);
   const submit = () => action.mutate({ id: item.id, action: 'reschedule', at: zonedInputToIso(value, item.timezone) }, {
-    onSuccess: () => { toast.success('Час змінено'); onClose(); },
+    onSuccess: () => { toast.success('Time changed'); onClose(); },
     onError: (e) => setError(explain(e)),
   });
   return (
-    <Modal open onClose={onClose} title="Перенести пост" subtitle={`${item.resourceRef} · ${item.topic}`} icon="calendar">
-      <Field label="Дата й час" hint={`Час ресурсу (${item.timezone}). Код перевірить тихі години й інтервал із сусідніми постами.`}>
+    <Modal open onClose={onClose} title="Reschedule post" subtitle={`${item.resourceRef} · ${item.topic}`} icon="calendar">
+      <Field label="Date and time" hint={`The resource's time zone (${item.timezone}). Quiet hours and the gap to neighbouring posts are checked.`}>
         <input className="input-field" type="datetime-local" value={value} min={min} step={300}
           onChange={(e) => setValue(e.target.value)} style={{ width: '100%', colorScheme: 'dark' }} />
       </Field>
       {error && <div className="callout-danger" style={{ marginTop: 8 }}><span className="text-micro">{error}</span></div>}
       <div className="modal-foot">
-        <button className="btn-secondary" onClick={onClose}>Скасувати</button>
-        <button className="btn-primary" disabled={action.isPending || !value} onClick={submit}>Перенести</button>
+        <button className="btn-secondary" onClick={onClose}>Cancel</button>
+        <button className="btn-primary" disabled={action.isPending || !value} onClick={submit}>Reschedule</button>
       </div>
     </Modal>
   );
@@ -299,19 +299,19 @@ function RejectModal({ item, onClose }: { item: ApprovalCardData; onClose: () =>
   const [reason, setReason] = useState('');
   const submit = () => action.mutate({ id: item.id, action: 'reject', reason: reason.trim() || undefined }, {
     onSuccess: (r) => {
-      toast.success(r.replacementId ? 'Відхилено — агент напише заміну, вона теж чекатиме апруву' : 'Відхилено');
+      toast.success(r.replacementId ? 'Rejected — the agent will write a replacement, which will also wait for approval' : 'Rejected');
       onClose();
     },
     onError: (e) => { toast.error(explain(e)); onClose(); },
   });
   return (
-    <Modal open onClose={onClose} title="Відхилити пост" subtitle={`${item.resourceRef} · ${item.topic}`} icon="ban">
-      <Field label="Причина (необовʼязково)" hint="Агент побачить її, коли писатиме заміну.">
+    <Modal open onClose={onClose} title="Reject post" subtitle={`${item.resourceRef} · ${item.topic}`} icon="ban">
+      <Field label="Reason (optional)" hint="The agent sees it when it writes the replacement.">
         <textarea className="input-field" rows={3} maxLength={500} value={reason} onChange={(e) => setReason(e.target.value)} style={{ width: '100%', resize: 'vertical', fontFamily: 'inherit' }} />
       </Field>
       <div className="modal-foot">
-        <button className="btn-secondary" onClick={onClose}>Скасувати</button>
-        <button className="btn-danger" disabled={action.isPending} onClick={submit}>Відхилити</button>
+        <button className="btn-secondary" onClick={onClose}>Cancel</button>
+        <button className="btn-danger" disabled={action.isPending} onClick={submit}>Reject</button>
       </div>
     </Modal>
   );

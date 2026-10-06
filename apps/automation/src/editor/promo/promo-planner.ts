@@ -149,7 +149,7 @@ export class PromoPlanner {
     };
     const slotId = await this.d.plans.reserveSlot({
       channelKey: anchorKey, planDate, scheduledAt: at, format: kind === 'repost' ? 'repost' : 'text',
-      topic: kind === 'repost' ? `Репост ${p.post_ref}` : `Промо ${tgt.title ?? targetRef}`, sourceHints: [`directive:${dir.id}`],
+      topic: kind === 'repost' ? `Repost ${p.post_ref}` : `Promo ${tgt.title ?? targetRef}`, sourceHints: [`directive:${dir.id}`],
       postSpec: null, promo, resourceRef: parseResourceRef(sourceRef)!.platform === 'telegram' ? null : sourceRef,
     });
     let tracked = false;

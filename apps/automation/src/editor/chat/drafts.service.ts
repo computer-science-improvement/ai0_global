@@ -126,10 +126,10 @@ export class DraftsService {
     if (this.d.isPaused(channelKey)) return { error: 'channel_paused', details: `${channelKey}: publish_paused=true` };
     const since = new Date(now.getTime() - DEDUP_DAYS * 86_400_000);
     if (spec.library_ref && await this.d.plans.sourcePostedSince(channelKey, spec.library_ref, since)) {
-      return { error: 'library_item_already_posted', details: `цей запис уже публікувався в ${channelKey} за ${DEDUP_DAYS} днів` };
+      return { error: 'library_item_already_posted', details: `this library item was already posted in ${channelKey} within ${DEDUP_DAYS} days` };
     }
     if (spec.source && await this.d.plans.sourcePostedSince(channelKey, spec.source.url, since)) {
-      return { error: 'source_already_posted', details: `це джерело вже публікувалось у ${channelKey} за ${DEDUP_DAYS} днів` };
+      return { error: 'source_already_posted', details: `this source was already posted in ${channelKey} within ${DEDUP_DAYS} days` };
     }
     return { ref: spec.library_ref ?? spec.source?.url ?? null };
   }
@@ -146,7 +146,7 @@ export class DraftsService {
   // ── publish now ───────────────────────────────────────────────────────────
 
   async publish(draftId: string): Promise<DraftResult<{ draft: EditorDraft; messageId: number; warnings: string[] }>> {
-    if (this.inFlight.has(draftId)) return { error: 'in_progress', details: 'ця чернетка вже публікується' };
+    if (this.inFlight.has(draftId)) return { error: 'in_progress', details: 'this draft is already being published' };
     this.inFlight.add(draftId);
     try {
       const draft = await this.d.repo.getDraft(draftId);
@@ -163,7 +163,7 @@ export class DraftsService {
       if (draft.status === 'scheduled' && draft.slotId) {
         // The scheduled copy must never go out as well.
         const skipped = await this.d.plans.skipPlannedSlot(draft.slotId, 'published from the chat right away');
-        if (!skipped) return { error: 'slot_in_progress', details: 'запланований пост саме публікується' };
+        if (!skipped) return { error: 'slot_in_progress', details: 'the scheduled post is being published right now' };
       }
 
       let res;
@@ -200,8 +200,8 @@ export class DraftsService {
     if (draft.status === 'published') return { error: 'already_published' };
     const now = this.now();
     if (Number.isNaN(at.getTime())) return { error: 'invalid_time' };
-    if (at.getTime() < now.getTime() + SCHEDULE_MIN_LEAD_MS) return { error: 'too_soon', details: 'час має бути щонайменше на 2 хвилини пізніше, ніж зараз — або опублікуй одразу' };
-    if (at.getTime() > now.getTime() + SCHEDULE_MAX_AHEAD_MS) return { error: 'too_far', details: 'не більше ніж на 60 днів наперед' };
+    if (at.getTime() < now.getTime() + SCHEDULE_MIN_LEAD_MS) return { error: 'too_soon', details: 'the time must be at least 2 minutes from now — or publish right away' };
+    if (at.getTime() > now.getTime() + SCHEDULE_MAX_AHEAD_MS) return { error: 'too_far', details: 'at most 60 days ahead' };
     const spec = PostSpecSchema.safeParse(draft.spec);
     if (!spec.success) return { error: 'invalid_spec' };
     const resolved = await this.resolveCard(draft.channelKey);
@@ -213,7 +213,7 @@ export class DraftsService {
     if (!resolved.hasCard) await this.d.channels.insertIfMissing(resolved.card);
     if (draft.status === 'scheduled' && draft.slotId) {
       const skipped = await this.d.plans.skipPlannedSlot(draft.slotId, 'rescheduled from the chat');
-      if (!skipped) return { error: 'slot_in_progress', details: 'запланований пост саме публікується' };
+      if (!skipped) return { error: 'slot_in_progress', details: 'the scheduled post is being published right now' };
     }
     const tz = resolved.card.timezone || CHAT_TIMEZONE;
     const slotId = await this.d.plans.reserveSlot({
@@ -232,7 +232,7 @@ export class DraftsService {
     if (draft.status === 'published') return { error: 'already_published' };
     if (draft.status === 'scheduled' && draft.slotId) {
       const skipped = await this.d.plans.skipPlannedSlot(draft.slotId, 'canceled from the chat');
-      if (!skipped) return { error: 'slot_in_progress', details: 'запланований пост саме публікується' };
+      if (!skipped) return { error: 'slot_in_progress', details: 'the scheduled post is being published right now' };
     }
     const updated = await this.d.repo.updateDraft(draft.id, { status: 'canceled', slotId: null, scheduledAt: null });
     return { ok: true, draft: updated! };

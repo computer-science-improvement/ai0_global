@@ -10,9 +10,15 @@ export interface InboxItemInput {
   refType?:  string | null;
   refId?:    string | null;
   severity?: InboxSeverity;
+  /**
+   * The Telegram alert's own wording when it differs from the stored item:
+   * dashboard copy is English (AI0-79) while the owner's Telegram alerts stay
+   * as they were until the owner decides. Without it the alert repeats title/body.
+   */
+  alert?:    { title: string; body?: string | null } | null;
 }
 
-export interface InboxItem extends Required<Omit<InboxItemInput, 'agentId'>> {
+export interface InboxItem extends Required<Omit<InboxItemInput, 'agentId' | 'alert'>> {
   id:        number;
   agentId:   string | null;
   readAt:    Date | null;
@@ -36,8 +42,10 @@ export class OwnerInbox {
       `INSERT INTO agent_inbox (agent_id, kind, title, body, ref_type, ref_id, severity) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id`,
       [i.agentId ?? null, i.kind, i.title.slice(0, 300), i.body ?? null, i.refType ?? null, i.refId ?? null, i.severity ?? 'info']);
     const link = this.dashboardUrl ? `\n${this.dashboardUrl.replace(/\/$/, '')}/app/agents/inbox` : '';
+    const title = i.alert ? i.alert.title : i.title;
+    const body = i.alert ? i.alert.body : i.body;
     try {
-      await this.alert(`${i.severity === 'critical' ? '🚨' : i.severity === 'action' ? '🟡' : '🤖'} ${i.title}${i.body ? `\n\n${i.body.slice(0, 1500)}` : ''}${link}`);
+      await this.alert(`${i.severity === 'critical' ? '🚨' : i.severity === 'action' ? '🟡' : '🤖'} ${title}${body ? `\n\n${body.slice(0, 1500)}` : ''}${link}`);
     } catch { /* the stored item is what matters */ }
     return Number(rows[0].id);
   }

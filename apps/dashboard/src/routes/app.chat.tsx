@@ -50,9 +50,9 @@ type AgentIndex = Map<string, ChatAgentRef>;
 const ts = (iso: string) => { const t = Date.parse(iso); return Number.isFinite(t) ? t : 0; };
 
 const EXAMPLES = [
-  'Зроби пост про найсвіжішу новину з космосу',
-  'Підготуй вікторину з 4 варіантами на тему фільму тижня',
-  'Зроби пост про цю статтю і заплануй на завтра о 19:00: https://',
+  'Write a post about the latest space news',
+  'Prepare a 4-option quiz about the movie of the week',
+  'Write a post about this article and schedule it for tomorrow at 19:00: https://',
 ];
 
 function ChatPage() {
@@ -95,7 +95,7 @@ function ChatPage() {
     ?? (lastAgent && lastAgent.chatId === chatId ? lastAgent.agent : null)
     ?? (chatAgentId ? agentIndex.get(chatAgentId) ?? null : null);
 
-  // Spec 031: the addressed agent's channel, for its «Пости на апрув» strip.
+  // Spec 031: the addressed agent's channel, for its "Posts to approve" strip.
   const approvalChannel = useMemo(() => {
     const nodes = indexTree(tree.data?.agents);
     const n = addressee ? nodes.get(addressee.id) : undefined;
@@ -189,10 +189,10 @@ function ChatPage() {
       return;
     }
     const first = !id || !messages.length || id !== chatId;
-    // A message to an agent goes without the "Канал:" line — its @channel would read as a mention.
+    // A message to an agent goes without the "Channel:" line — its @channel would read as a mention.
     const known = new Set((handles.data?.agents ?? []).map((a) => a.handle.toLowerCase()));
     const toAgent = [...text.matchAll(/(^|[^\p{L}\p{N}_@])@([A-Za-z][A-Za-z0-9_]{1,63})/gu)].some((m) => known.has(m[2].toLowerCase()));
-    const full = first && channel && !toAgent && !text.includes(channel) ? `Канал: ${channel}\n${text}` : text;
+    const full = first && channel && !toAgent && !text.includes(channel) ? `Channel: ${channel}\n${text}` : text;
     setInput('');
     activitiesRef.current = [];
     setLive({ userText: full, activities: [], text: '', drafts: {}, actions: {}, agent: null, base: id === chatId ? messages.length : 0 });
@@ -238,9 +238,9 @@ function ChatPage() {
 
   const firstOrch = (handles.data?.agents ?? []).find((a) => a.kind === 'orchestrator');
   const agentExamples = [
-    '@ai0 створи агента для мого нового каналу',
-    '@manager що зараз найгірше в мережі?',
-    ...(firstOrch ? [`@${firstOrch.handle} чому вчора пропустив слот?`] : []),
+    '@ai0 create an agent for my new channel',
+    '@manager what is the weakest spot in the network right now?',
+    ...(firstOrch ? [`@${firstOrch.handle} why did you skip a slot yesterday?`] : []),
   ];
 
   return (
@@ -352,7 +352,7 @@ function ApprovalStrip({ channel }: { channel: string }) {
   return (
     <details style={{ maxWidth: 780, margin: '0 auto 16px', background: 'var(--color-surface-1)', border: '1px solid var(--color-hairline-soft)', borderRadius: 'var(--radius-lg)', padding: '8px 12px' }}>
       <summary className="text-body-sm" style={{ cursor: 'pointer', color: 'var(--color-ink)', display: 'flex', alignItems: 'center', gap: 8 }}>
-        <Icon name="check" size={14} /> Пости на апрув · {channel}
+        <Icon name="check" size={14} /> Posts to approve · {channel}
         <Badge tone="warning">{waiting}</Badge>
       </summary>
       <div style={{ marginTop: 12 }}>
@@ -362,7 +362,7 @@ function ApprovalStrip({ channel }: { channel: string }) {
   );
 }
 
-/** "Talking to 🚀 Космос щодня @space_daily" — links to the agent's page. */
+/** "Talking to 🚀 Space Daily @space_daily" — links to the agent's page. */
 function Addressee({ agent, compact }: { agent: ChatAgentRef; compact: boolean }) {
   return (
     <Link to="/app/agents/$handle" params={{ handle: agent.handle }} className="chip row-lift"

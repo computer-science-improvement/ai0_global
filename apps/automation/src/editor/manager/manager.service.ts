@@ -45,7 +45,7 @@ export class ManagerService {
   async runNow() {
     const m = await this.d.runner.manager();
     if (!m) throw new BadRequestException({ error: 'no_manager' });
-    if (m.mode === 'off') throw new ConflictException({ error: 'manager_off', details: 'увімкніть @manager (shadow або live) на його сторінці' });
+    if (m.mode === 'off') throw new ConflictException({ error: 'manager_off', details: 'turn @manager on (shadow or live) on its page' });
     void this.d.runner.run(m).catch((err) => this.d.log?.(`manager run failed: ${err?.message ?? err}`));
     return { started: true };
   }

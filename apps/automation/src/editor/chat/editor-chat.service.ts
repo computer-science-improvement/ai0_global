@@ -74,7 +74,7 @@ export interface EditorChatDeps {
 }
 
 export interface SendOptions {
-  /** Channel picked in the UI (optional; "Канал: @x" in the text works too). */
+  /** Channel picked in the UI (optional; "Channel: @x" or any @channel mention in the text works too). */
   channel?: string | null;
   onEvent?: (e: ChatStreamEvent) => void;
 }
@@ -83,28 +83,29 @@ const draftLine = (d: EditorDraft) =>
   `${d.id} · ${d.channelKey} · ${(d.spec as any)?.format ?? '?'} · «${(d.spec as any)?.title ?? ''}» · ${d.status}${d.scheduledAt ? ` на ${d.scheduledAt.toISOString()}` : ''}`;
 
 const CAP_LABELS: Record<string, string> = {
-  total:    'загальний денний ліміт AI (AI_DAILY_BUDGET_USD)',
-  global:   'денний ліміт агентів (EDITOR_DAILY_BUDGET_USD)',
-  channel:  'денний ліміт ресурсу (EDITOR_CHANNEL_DAILY_BUDGET_USD або ліміт каналу)',
-  agent:    'денний ліміт агента',
-  feature:  'денний ліміт функції',
-  provider: 'денний ліміт провайдера',
+  total:    'total daily AI cap (AI_DAILY_BUDGET_USD)',
+  global:   'agents daily cap (EDITOR_DAILY_BUDGET_USD)',
+  channel:  'resource daily cap (EDITOR_CHANNEL_DAILY_BUDGET_USD or the channel cap)',
+  agent:    'agent daily cap',
+  feature:  'feature daily cap',
+  provider: 'provider daily cap',
 };
 
 /** The refusal of an owner message over a blocking cap (spec 029 FR-008): names the cap, never silent. */
 export function budgetRefusalText(error: string | null | undefined): string {
   const m = /^(\w+) budget: \$([\d.]+) >= \$([\d.]+)/.exec(error ?? '');
-  const cap = m ? `${CAP_LABELS[m[1]] ?? m[1]}: витрачено $${Number(m[2]).toFixed(3)} із $${m[3]}` : (error ?? 'денний ліміт');
-  return `Повідомлення не оброблено — вичерпано ${cap} (день за Києвом). `
-    + 'Роботу відновлено опівночі за Києвом або одразу після підняття ліміту на сторінці Spend → Budgets (/app/spend?tab=budgets).';
+  const what = m ? (CAP_LABELS[m[1]] ?? m[1]) : (error ?? 'daily cap');
+  const spent = m ? `: spent $${Number(m[2]).toFixed(3)} of $${m[3]}` : '';
+  return `Message not processed — ${what} reached${spent} (Kyiv day). `
+    + 'Work resumes at midnight Kyiv time, or as soon as the cap is raised on Spend → Budgets (/app/spend?tab=budgets).';
 }
 
 export function failureText(r: AgentLoopResult): string {
   switch (r.status) {
-    case 'disabled':        return 'Чат вимкнено: не задано OPENROUTER_API_KEY.';
+    case 'disabled':        return 'Chat is off: OPENROUTER_API_KEY is not set.';
     case 'budget_exceeded': return budgetRefusalText(r.error);
-    case 'max_steps':       return `Я не встиг завершити за ${COMPOSER_MAX_STEPS} кроків. Напиши «продовжуй» або уточни задачу.`;
-    default:                return `Сталася помилка: ${r.error ?? r.status}.`;
+    case 'max_steps':       return `I could not finish within ${COMPOSER_MAX_STEPS} steps. Say "continue" or narrow the task down.`;
+    default:                return `Something went wrong: ${r.error ?? r.status}.`;
   }
 }
 
@@ -212,7 +213,7 @@ export class EditorChatService {
         const handles = this.d.agents ? await this.d.agents.handles() : [];
         const message = await this.d.repo.addMessage({
           chatId, role: 'assistant',
-          content: `Агента @${route.handle} немає.${handles.length ? ` Доступні: ${handles.map((h) => `@${h}`).join(', ')}.` : ''}`,
+          content: `There is no agent @${route.handle}.${handles.length ? ` Available: ${handles.map((h) => `@${h}`).join(', ')}.` : ''}`,
         });
         emit({ type: 'message', message });
         return { message, drafts: [] };

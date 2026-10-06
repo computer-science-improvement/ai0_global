@@ -71,6 +71,7 @@ test('agent cap still applies with the ledger; spend query reads llm_usage for t
   assert.deepEqual(await s.svc.check('ch', null, { id: 'a1', handle: 'kira', limitUsd: 0.3 }), { ok: false, scope: 'agent', spentUsd: 0.31, limitUsd: 0.3 });
   assert.ok(s.queries.some((q) => /FROM llm_usage u/.test(q) && /Europe\/Kyiv/.test(q)));
   assert.equal(s.blocks.at(-1)?.label, 'ліміт агента @kira');
+  assert.equal(s.blocks.at(-1)?.labelEn, 'agent cap @kira');
 });
 
 test('enforcement returns the caller\'s null path: the AgentLoop ends budget_exceeded before any LLM call', async () => {
@@ -82,13 +83,13 @@ test('enforcement returns the caller\'s null path: the AgentLoop ends budget_exc
   assert.equal(llm.requests.length, 0);
   // The owner's chat message gets a refusal that names the cap.
   const text = failureText(res);
-  assert.match(text, /загальний денний ліміт AI \(AI_DAILY_BUDGET_USD\): витрачено \$3\.500 із \$3/);
+  assert.match(text, /total daily AI cap \(AI_DAILY_BUDGET_USD\) reached: spent \$3\.500 of \$3/);
   assert.match(text, /Spend → Budgets/);
 });
 
 test('budgetRefusalText names each cap', () => {
-  assert.match(budgetRefusalText('global budget: $2.1000 >= $2'), /ліміт агентів \(EDITOR_DAILY_BUDGET_USD\)/);
-  assert.match(budgetRefusalText('channel budget: $0.3100 >= $0.3'), /ліміт ресурсу/);
-  assert.match(budgetRefusalText('agent budget: $1.0000 >= $1'), /ліміт агента/);
-  assert.match(budgetRefusalText(null), /денний ліміт/);
+  assert.match(budgetRefusalText('global budget: $2.1000 >= $2'), /agents daily cap \(EDITOR_DAILY_BUDGET_USD\)/);
+  assert.match(budgetRefusalText('channel budget: $0.3100 >= $0.3'), /resource daily cap/);
+  assert.match(budgetRefusalText('agent budget: $1.0000 >= $1'), /agent daily cap/);
+  assert.match(budgetRefusalText(null), /daily cap/);
 });
