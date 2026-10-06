@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Outlet, useNavigate } from '@tanstack/react-router';
+import { useQueryClient } from '@tanstack/react-query';
 import { useAuth } from '../auth/use-auth';
 import { authApi } from '../api/auth';
 import { AppSidebar } from './AppSidebar';
@@ -7,11 +8,11 @@ import { Button } from './ui/Button';
 import { Icon } from './ui/Icon';
 import { ConfirmProvider } from './ui/ConfirmDialog';
 import { useMediaQuery } from '../lib/useMediaQuery';
-import { AUTH_MODE } from '../lib/env';
 
 export function AppShell() {
   const { me } = useAuth();
   const navigate = useNavigate();
+  const qc = useQueryClient();
   const isMobile = useMediaQuery('(max-width: 860px)');
   const [navOpen, setNavOpen] = useState(false);
 
@@ -20,11 +21,12 @@ export function AppShell() {
   useEffect(() => { if (!isMobile) setNavOpen(false); }, [isMobile]);
 
   const onLogout = async () => {
-    // Always hard-redirect, even if the request errors — a full reload re-runs
-    // the auth check against the (now-cleared) cookie. `replace` keeps the
-    // authed view out of history.
-    try { await authApi.logout(); } catch { /* ignore */ }
-    window.location.replace('/login');
+    // Revoke the session server-side (spec 028 FR-014), then forget every cached
+    // query — including the session — so neither /login's guard nor the Back
+    // button shows stale data. `replace` keeps the authed view out of history.
+    try { await authApi.logout(); } catch { /* the cookie may already be dead */ }
+    qc.clear();
+    await navigate({ to: '/login', replace: true });
   };
 
   return (
@@ -78,9 +80,9 @@ export function AppShell() {
               >
                 <Icon name="plus" size={14} />{!isMobile && ' New post'}
               </Button>
-              {/* Logout only when real auth is configured (telegram/token) —
-                  in dev-bypass mode there's no session to end. */}
-              {me && AUTH_MODE !== 'dev' && <Button variant="tiny" onClick={onLogout}>Log out</Button>}
+              {/* Hidden only for a server-confirmed dev-bypass identity: there
+                  is no session to end then. */}
+              {me && me.method !== 'dev' && <Button variant="tiny" onClick={onLogout}>Log out</Button>}
             </div>
           </header>
 

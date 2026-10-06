@@ -2,9 +2,12 @@
 // `/tracking/…`), and both the vite dev proxy and the prod nginx forward those
 // paths unchanged — so the base is empty by default. Set VITE_API_BASE_URL only
 // to point at a different origin (e.g. `https://api.example.com`).
-export const API_BASE = (import.meta.env.VITE_API_BASE_URL as string) ?? '';
-export const AUTH_BASE = (import.meta.env.VITE_AUTH_BASE_URL as string) ?? '/auth';
-export const TG_BOT_USERNAME = (import.meta.env.VITE_TG_BOT_USERNAME as string) ?? '';
+// `?? {}`: outside Vite (node:test via tsx) `import.meta.env` is undefined.
+const ENV = (import.meta.env ?? {}) as Record<string, string | undefined>;
+
+export const API_BASE = ENV.VITE_API_BASE_URL ?? '';
+export const AUTH_BASE = ENV.VITE_AUTH_BASE_URL ?? '/auth';
+export const TG_BOT_USERNAME = ENV.VITE_TG_BOT_USERNAME ?? '';
 
 /**
  * How the dashboard authenticates:
@@ -16,5 +19,5 @@ export const TG_BOT_USERNAME = (import.meta.env.VITE_TG_BOT_USERNAME as string) 
  */
 export const AUTH_MODE: 'telegram' | 'token' | 'dev' =
   TG_BOT_USERNAME ? 'telegram'
-  : (import.meta.env.VITE_AUTH_MODE as string) === 'token' ? 'token'
+  : ENV.VITE_AUTH_MODE === 'token' ? 'token'
   : 'dev';

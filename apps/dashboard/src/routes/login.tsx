@@ -1,29 +1,60 @@
-import { createFileRoute, useNavigate } from '@tanstack/react-router';
+import { createFileRoute, redirect, useLocation, useNavigate } from '@tanstack/react-router';
+import { useQueryClient } from '@tanstack/react-query';
 import { useEffect, useRef, useState } from 'react';
 import { authApi, type TelegramLoginPayload } from '../api/auth';
 import { TG_BOT_USERNAME, AUTH_MODE } from '../lib/env';
-import { useAuth } from '../auth/use-auth';
+import { sessionQuery, SESSION_KEY } from '../auth/session';
+import { loginRedirectTarget, parseNext } from '../auth/next';
 
-export const Route = createFileRoute('/login')({ component: LoginPage });
+interface LoginSearch { next?: string; reason?: string; token?: string }
+
+const str = (v: unknown) => (typeof v === 'string' && v ? v : undefined);
+
+export const Route = createFileRoute('/login')({
+  validateSearch: (s: Record<string, unknown>): LoginSearch => ({
+    next: str(s.next), reason: str(s.reason), token: str(s.token),
+  }),
+  // Already signed in (server-confirmed) → straight to the safe `next`. A failed
+  // check (server down) just shows the form.
+  beforeLoad: async ({ context, location }) => {
+    const session = await context.queryClient.ensureQueryData(sessionQuery).catch(() => null);
+    const target = loginRedirectTarget(session, location.searchStr);
+    if (target) throw redirect({ href: target, replace: true });
+  },
+  component: LoginPage,
+});
+
+const REASONS: Record<string, string> = {
+  session_expired: 'Your session expired. Please sign in again.',
+  session_revoked: 'You were signed out from another device.',
+  session_legacy:  'Please sign in again after the security update.',
+};
 
 declare global { interface Window { onTelegramAuth: (u: TelegramLoginPayload) => void; } }
 
 function LoginPage() {
   const navigate = useNavigate();
-  const { refresh } = useAuth();
+  const qc = useQueryClient();
+  const searchStr = useLocation({ select: (l) => l.searchStr });
+  const { reason } = Route.useSearch();
   const widgetRef = useRef<HTMLDivElement>(null);
   const [token, setToken] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+
+  /** After a successful login: drop the cached "signed out" answer, go to `next`. */
+  const enter = async () => {
+    qc.removeQueries({ queryKey: SESSION_KEY });
+    await navigate({ href: parseNext(searchStr), replace: true });
+  };
 
   const submitToken = async (value: string) => {
     const t = value.trim();
     if (!t || busy) return;
     setBusy(true); setError(null);
     try {
-      await authApi.tokenLogin(t.trim());
-      await refresh();
-      await navigate({ to: '/app' as any });
+      await authApi.tokenLogin(t);
+      await enter();
     } catch {
       setError('Invalid token');
     } finally {
@@ -37,10 +68,9 @@ function LoginPage() {
     window.onTelegramAuth = async (user) => {
       try {
         await authApi.telegramLogin(user);
-        await refresh();
-        await navigate({ to: '/app/channels' as any });
+        await enter();
       } catch (e: unknown) {
-        alert(`Login failed: ${(e as Error).message}`);
+        setError(`Login failed: ${(e as Error).message}`);
       }
     };
     const s = document.createElement('script');
@@ -51,21 +81,28 @@ function LoginPage() {
     s.setAttribute('data-onauth', 'onTelegramAuth(user)');
     s.setAttribute('data-request-access', 'write');
     widgetRef.current.appendChild(s);
-  }, [navigate, refresh]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // "Authorization link" — /login?token=… auto-submits in token mode so a
   // bookmarked link signs you straight in.
+  const { token: linkToken } = Route.useSearch();
   useEffect(() => {
-    if (AUTH_MODE !== 'token') return;
-    const t = new URLSearchParams(window.location.search).get('token');
-    if (t) void submitToken(t);
+    if (AUTH_MODE !== 'token' || !linkToken) return;
+    void submitToken(linkToken);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const reasonText = reason ? REASONS[reason] : undefined;
 
   return (
     <div style={{ display: 'flex', minHeight: '100vh', alignItems: 'center', justifyContent: 'center', padding: 16 }}>
       <div className="card-featured" style={{ maxWidth: 400, width: '100%', padding: 32 }}>
         <h1 className="text-display-md" style={{ marginBottom: 8 }}>Channel Tracker</h1>
+
+        {reasonText && (
+          <p role="status" style={{ marginBottom: 16, fontSize: 14, color: 'var(--color-ink-muted)' }}>{reasonText}</p>
+        )}
 
         {AUTH_MODE === 'telegram' && (
           <>
@@ -73,6 +110,7 @@ function LoginPage() {
               Sign in with Telegram to continue.
             </p>
             <div ref={widgetRef} />
+            {error && <p style={{ marginTop: 12, fontSize: 13, color: 'var(--color-danger)' }}>{error}</p>}
           </>
         )}
 
@@ -102,28 +140,17 @@ function LoginPage() {
             {error && (
               <p style={{ marginTop: 12, fontSize: 13, color: 'var(--color-danger)' }}>{error}</p>
             )}
-            <p style={{ marginTop: 12, fontSize: 12, color: 'var(--color-ink-dim)' }}>
-              The token is checked against <code>TRACKING_TOKEN</code> on the server and stored in the session (cookie).
-            </p>
           </>
         )}
 
         {AUTH_MODE === 'dev' && (
           <>
             <p style={{ marginBottom: 24, fontSize: 15, color: 'var(--color-ink-muted)' }}>
-              Dev mode — authorization disabled.
+              Dev mode — the backend's local no-auth bypass decides access.
             </p>
-            <button
-              className="btn-primary"
-              style={{ width: '100%' }}
-              onClick={async () => { await refresh(); await navigate({ to: '/app' as any }); }}
-            >
+            <button className="btn-primary" style={{ width: '100%' }} onClick={() => void enter()}>
               Continue in dev mode
             </button>
-            <p style={{ marginTop: 12, fontSize: 12, color: 'var(--color-ink-dim)' }}>
-              Set <code>VITE_AUTH_MODE=token</code> (+ <code>TRACKING_TOKEN</code>) for token login, or
-              {' '}<code>VITE_TG_BOT_USERNAME</code> for Telegram sign-in.
-            </p>
           </>
         )}
       </div>

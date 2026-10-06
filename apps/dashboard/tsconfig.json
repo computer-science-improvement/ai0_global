@@ -22,5 +22,7 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"]
+  "include": ["src"],
+  // node:test files (run with tsx from the repo root) need Node types the app doesn't have.
+  "exclude": ["src/**/*.test.ts"]
 }

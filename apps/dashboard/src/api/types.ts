@@ -58,7 +58,27 @@ export interface TrackedPost {
 export interface SubsHistoryPoint { at: string; subs: number; }
 export interface PageResp<T> { items: T[]; total: number; }
 
-export interface Me { tgUserId: number; firstName: string; username?: string; }
+export interface Me {
+  tgUserId: number; firstName: string; username?: string;
+  /** How this request authenticated (`dev` = the backend's local no-auth bypass). */
+  method?: 'session' | 'bearer' | 'dev';
+  sessionId?: string;
+  /** When the session dies if unused (ISO). */
+  expiresAt?: string;
+}
+
+/** A live dashboard session (Settings → Security). */
+export interface AuthSession {
+  id: string; method: 'token' | 'telegram' | 'link'; device: string; userAgent: string | null; ip: string | null;
+  createdAt: string; lastSeenAt: string; expiresAt: string; current: boolean;
+}
+
+/** An auth audit row: logins, failures, logouts, revokes, lockouts. */
+export interface AuthEvent {
+  id: number; at: string;
+  kind: 'login_ok' | 'login_failed' | 'rate_limited' | 'locked_out' | 'logout' | 'revoked' | 'revoke_all' | 'expired';
+  method: string | null; code: string | null; ip: string | null; device: string | null; sessionId: string | null;
+}
 
 export interface GraphNode {
   id: string; username: string | null; title: string | null;
