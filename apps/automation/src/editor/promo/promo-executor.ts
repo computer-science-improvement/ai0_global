@@ -45,18 +45,18 @@ export class PromoExecutor {
       if (mode === 'approve') {
         // Spec 031 FR-009: the repost waits for the owner; the approval publisher forwards it at its time.
         await this.d.plans.updateSlot(slot.id, {
-          status: 'awaiting_approval', renderedPreview: `↪️ Репост ${m[1]}/${m[2]} у ${slot.channelKey}`,
+          status: 'awaiting_approval', renderedPreview: `↪️ Repost ${m[1]}/${m[2]} into ${slot.channelKey}`,
           renderMessages: { kind: 'forward', fromKey: m[1], messageId: Number(m[2]) }, lintWarnings: [], error: null,
         });
         return true;
       }
       if (mode !== 'live' || !this.d.forward) {
-        await this.d.plans.updateSlot(slot.id, { status: 'shadowed', renderedPreview: `↪️ Репост ${m[1]}/${m[2]} у ${slot.channelKey} (shadow)`, error: null });
+        await this.d.plans.updateSlot(slot.id, { status: 'shadowed', renderedPreview: `↪️ Repost ${m[1]}/${m[2]} into ${slot.channelKey} (shadow)`, error: null });
         return true;
       }
       try {
         const id = await this.d.forward(slot.channelKey, m[1], Number(m[2]));
-        await this.d.plans.updateSlot(slot.id, { status: 'published', renderedPreview: `↪️ Переслано ${m[1]}/${m[2]} → ${id}`, error: null });
+        await this.d.plans.updateSlot(slot.id, { status: 'published', renderedPreview: `↪️ Forwarded ${m[1]}/${m[2]} → ${id}`, error: null });
         return true;
       } catch (err: any) {
         const msg = String(err?.message ?? err);

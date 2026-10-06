@@ -82,7 +82,7 @@ const BulkSchema = z.object({
   resource: z.string().max(200).optional(),
   date:     z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),
   idea_id:  z.string().uuid().optional(),
-}).strict().refine((b) => !!(b.channel || b.resource || b.idea_id), { message: 'потрібно channel, resource або idea_id' });
+}).strict().refine((b) => !!(b.channel || b.resource || b.idea_id), { message: 'channel, resource or idea_id is required' });
 
 const STATUSES = new Set(['awaiting_approval', 'approved', 'expired']);
 
@@ -90,7 +90,7 @@ const badRequest = (r: z.ZodError) => new BadRequestException({ error: 'invalid_
 
 /** 409 for the second tab: the post was approved, rejected, edited, moved or expired meanwhile. */
 function alreadyDecided(current: ApprovalItem | null) {
-  return new ConflictException({ error: 'already_decided', status: current?.status ?? null, details: 'цей пост уже вирішено (інша вкладка або минув час)' });
+  return new ConflictException({ error: 'already_decided', status: current?.status ?? null, details: 'this post was already decided (another tab, or its time ran out)' });
 }
 
 /**
@@ -212,7 +212,7 @@ export class ApprovalsService {
       if (!lint.ok) throw new BadRequestException({ error: 'lint_failed', details: lint.errors });
       let slideUrls: string[] = [];
       if (parsed.data.slides?.length) {
-        if (!this.d.hostSlides) throw new BadRequestException({ error: 'slides_unavailable', details: 'рендер слайдів не налаштований' });
+        if (!this.d.hostSlides) throw new BadRequestException({ error: 'slides_unavailable', details: 'slide rendering is not configured' });
         slideUrls = (await this.d.hostSlides(parsed.data.slides, { channelKey: it.resourceRef!, slotId: `${it.id}-e${now.getTime()}` })).prepared.slideUrls ?? [];
       }
       const rendered = renderPlatform(parsed.data, platform, slideUrls);
@@ -253,16 +253,16 @@ export class ApprovalsService {
     if (!(it.status === 'awaiting_approval' || (it.status === 'approved' && it.scheduledAt > lockBefore))) throw alreadyDecided(it);
     const card = await this.cardOf(it);
     const at = new Date(p.data.at);
-    if (at.getTime() < now.getTime() + 5 * 60_000) throw new BadRequestException({ error: 'too_soon', details: 'щонайменше за 5 хвилин' });
-    if (at.getTime() > now.getTime() + 14 * 86_400_000) throw new BadRequestException({ error: 'too_far', details: 'не далі 14 днів' });
+    if (at.getTime() < now.getTime() + 5 * 60_000) throw new BadRequestException({ error: 'too_soon', details: 'at least 5 minutes from now' });
+    if (at.getTime() > now.getTime() + 14 * 86_400_000) throw new BadRequestException({ error: 'too_far', details: 'at most 14 days ahead' });
     if (isQuietHour(localHour(at, card.timezone), card.quietStartHour, card.quietEndHour)) {
-      throw new BadRequestException({ error: 'quiet_hours', details: `тихі години ${card.quietStartHour}:00–${card.quietEndHour}:00 (${card.timezone})` });
+      throw new BadRequestException({ error: 'quiet_hours', details: `quiet hours are ${card.quietStartHour}:00–${card.quietEndHour}:00 (${card.timezone})` });
     }
     const gap = card.minGapMinutes * 60_000;
     const busy = await this.d.repo.busyTimes(it.channelKey, new Date(at.getTime() - gap), new Date(at.getTime() + gap), it.id);
     const clash = busy.find((b) => Math.abs(b.getTime() - at.getTime()) < gap);
     if (clash) {
-      throw new BadRequestException({ error: 'too_close', details: `інший пост о ${localTimeLabel(clash, card.timezone)}; мінімальний інтервал ${card.minGapMinutes} хв` });
+      throw new BadRequestException({ error: 'too_close', details: `another post at ${localTimeLabel(clash, card.timezone)}; the minimum gap is ${card.minGapMinutes} min` });
     }
     const done = await this.d.repo.reschedule(id, at, lockBefore);
     if (!done) throw alreadyDecided(await this.d.repo.get(id));

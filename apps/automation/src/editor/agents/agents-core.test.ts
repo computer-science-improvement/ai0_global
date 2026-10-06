@@ -8,10 +8,10 @@ import { SkillLibrary } from '../skills/skill-library';
 test('handles: validation and reserved names', () => {
   assert.equal(validateHandle('kira'), null);
   assert.equal(validateHandle('space_daily_2'), null);
-  assert.match(validateHandle('Kira')!, /латиниця/);
+  assert.match(validateHandle('Kira')!, /lowercase Latin/);
   assert.match(validateHandle('ab')!, /3–32/);
-  assert.match(validateHandle('1abc')!, /літери/);
-  assert.match(validateHandle('manager')!, /зарезерв/);
+  assert.match(validateHandle('1abc')!, /starting with a letter/);
+  assert.match(validateHandle('manager')!, /reserved/);
   assert.equal(validateHandle('manager', { allowReserved: true }), null);
 });
 

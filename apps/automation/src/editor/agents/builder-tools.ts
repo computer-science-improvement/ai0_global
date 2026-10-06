@@ -155,7 +155,7 @@ export function buildBuilderTools(d: BuilderToolDeps): EditorTool[] {
       if ('error' in v) return v;
       const target = i.resource_ref ?? `network:${i.network_id}`;
       return proposeCard(d, ctx, 'create_agent', i as unknown as Record<string, unknown>,
-        `Створити агента ${i.emoji ?? '📣'} ${i.name} (@${v.input.handle}) для ${target} — старт у режимі апруву (кожен пост чекає вашого схвалення). Тема: ${i.profile.topic}`);
+        `Create agent ${i.emoji ?? '📣'} ${i.name} (@${v.input.handle}) for ${target} — it starts in approval mode (every post waits for your approval). Topic: ${i.profile.topic}`);
     },
   });
 
@@ -177,7 +177,7 @@ export function buildBuilderTools(d: BuilderToolDeps): EditorTool[] {
       if (patch.paused_until && Number.isNaN(new Date(patch.paused_until).getTime())) return { error: 'invalid_paused_until' };
       const parts = Object.entries(patch).map(([k, v]) => `${k} → ${typeof v === 'object' ? JSON.stringify(v) : String(v)}`);
       if (!parts.length) return { error: 'empty_patch' };
-      return proposeCard(d, ctx, 'update_agent', { handle: a.handle, patch }, `Змінити @${a.handle}: ${parts.join('; ')}`, a.id);
+      return proposeCard(d, ctx, 'update_agent', { handle: a.handle, patch }, `Change @${a.handle}: ${parts.join('; ')}`, a.id);
     },
   });
 
@@ -189,7 +189,7 @@ export function buildBuilderTools(d: BuilderToolDeps): EditorTool[] {
     execute: async ({ handle, brief }, ctx) => {
       const a = await d.agents.getByHandle(handle);
       if (!a) return { error: 'unknown_agent', details: handle };
-      return proposeCard(d, ctx, 'set_brief', { handle: a.handle, brief }, `Новий бриф для @${a.handle}: ${brief.slice(0, 300)}${brief.length > 300 ? '…' : ''}`, a.id);
+      return proposeCard(d, ctx, 'set_brief', { handle: a.handle, brief }, `New brief for @${a.handle}: ${brief.slice(0, 300)}${brief.length > 300 ? '…' : ''}`, a.id);
     },
   });
 
@@ -200,7 +200,7 @@ export function buildBuilderTools(d: BuilderToolDeps): EditorTool[] {
     input: z.object({ ref: z.string().min(3).max(200), profile: ResourceProfileSchema }),
     execute: async ({ ref, profile }, ctx) => {
       if (!parseResourceRef(ref) && !ref.startsWith('network:')) return { error: 'invalid_ref' };
-      return proposeCard(d, ctx, 'set_resource_profile', { ref, profile }, `Оновити профіль ${ref}: ${profile.topic}`);
+      return proposeCard(d, ctx, 'set_resource_profile', { ref, profile }, `Update the profile of ${ref}: ${profile.topic}`);
     },
   });
 
@@ -224,7 +224,7 @@ export function buildBuilderTools(d: BuilderToolDeps): EditorTool[] {
       const shared = await d.skills.findShared(i.name);
       if (shared?.safety) return { error: 'safety_skill', details: 'системний скіл безпеки змінюється лише на сторінці агента з підтвердженням' };
       return proposeCard(d, ctx, 'write_skill', { ...i, handle: a.handle },
-        `${shared ? 'Перевизначити' : 'Додати'} скіл «${i.name}» для @${a.handle}${i.inline ? ' (завжди в контексті)' : ''}: ${i.description}`, a.id);
+        `${shared ? 'Override' : 'Add'} skill "${i.name}" for @${a.handle}${i.inline ? ' (always in context)' : ''}: ${i.description}`, a.id);
     },
   });
 
@@ -239,7 +239,7 @@ export function buildBuilderTools(d: BuilderToolDeps): EditorTool[] {
       const a = await d.agents.getByHandle(handle);
       if (!a) return { error: 'unknown_agent', details: handle };
       return proposeCard(d, ctx, name, { handle: a.handle, skill, inline },
-        `${name === 'attach_skill' ? 'Увімкнути' : 'Вимкнути'} скіл «${skill}» для @${a.handle}${inline ? ' (завжди в контексті)' : ''}`, a.id);
+        `${name === 'attach_skill' ? 'Enable' : 'Disable'} skill "${skill}" for @${a.handle}${inline ? ' (always in context)' : ''}`, a.id);
     },
   });
 

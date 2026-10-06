@@ -130,7 +130,7 @@ export class AgentsService {
     if (v.paused_until !== undefined) {
       const until = v.paused_until ? new Date(v.paused_until) : null;
       if (until && (until.getTime() <= this.now().getTime() || until.getTime() > this.now().getTime() + 90 * 86_400_000)) {
-        throw new BadRequestException({ error: 'invalid_paused_until', details: 'у майбутньому, не далі 90 днів' });
+        throw new BadRequestException({ error: 'invalid_paused_until', details: 'must be in the future, at most 90 days ahead' });
       }
       patch.pausedUntil = until;
     }
@@ -191,7 +191,7 @@ export class AgentsService {
     if (!p.success) throw badRequest(p.error);
     const shared = await this.d.skills.findShared(name);
     if (shared?.safety && !p.data.force) {
-      throw new ConflictException({ error: 'safety_skill', details: 'це системний скіл безпеки — підтвердіть force: true, якщо розумієте наслідки' });
+      throw new ConflictException({ error: 'safety_skill', details: 'this is a system safety skill — confirm with force: true if you understand the consequences' });
     }
     const r = await this.d.skills.writeAgentSkill({
       agentId: a.id, name, description: p.data.description, appliesTo: p.data.applies_to, body: p.data.body,
@@ -211,7 +211,7 @@ export class AgentsService {
       await this.d.skills.setToggle(a.id, skill.id, { enabled: p.data.enabled, inline: p.data.inline });
     }
     if (p.data.locked !== undefined) {
-      if (skill.scope === 'builtin') throw new BadRequestException({ error: 'builtin_lock', details: 'вбудований скіл не блокується; заблокуйте перевизначення агента' });
+      if (skill.scope === 'builtin') throw new BadRequestException({ error: 'builtin_lock', details: 'a built-in skill cannot be locked; lock the agent override instead' });
       await this.d.skills.setLocked(skill.id, p.data.locked);
     }
     return this.listSkills(handle);
@@ -261,7 +261,7 @@ export class AgentsService {
   async putProfile(handle: string, body: unknown) {
     const orch = await this.orchestratorOf(await this.require(handle));
     const key = this.profileKey(orch);
-    if (!key) throw new BadRequestException({ error: 'no_resource', details: 'системні агенти не мають профілю ресурсу' });
+    if (!key) throw new BadRequestException({ error: 'no_resource', details: 'system agents have no resource profile' });
     await this.setProfile(key, body, 'owner');
     return this.getProfile(handle);
   }
