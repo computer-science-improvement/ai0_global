@@ -33,5 +33,6 @@ export function useDeleteTikTokAccount() {
 /** Begin the OAuth flow: ask the API for the authorize URL, then navigate to it. */
 export async function startTikTokOAuth(): Promise<void> {
   const { url } = await api<{ url: string }>('/api/tiktok/oauth/start');
-  window.location.href = url;
+  // Leaving the app for TikTok's own page: a real document navigation, not a router one.
+  window.location.assign(url);
 }

@@ -452,6 +452,20 @@ a:hover { opacity: 0.85; }
   to   { opacity: 1; transform: translateY(0)   scale(1); }
 }
 
+/* /app session check in progress (routes/app.tsx pendingComponent). */
+@keyframes auth-pulse {
+  0%, 100% { opacity: 0.35; transform: scale(0.85); }
+  50%      { opacity: 1;    transform: scale(1); }
+}
+.auth-pending-dot {
+  width: 8px; height: 8px; border-radius: 999px;
+  background: var(--color-accent);
+  animation: auth-pulse 1.1s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .auth-pending-dot { animation: none; }
+}
+
 /* Subtle entrance for the compose page panes — staggered via animation-delay. */
 @keyframes compose-rise {
   from { opacity: 0; transform: translateY(10px); }

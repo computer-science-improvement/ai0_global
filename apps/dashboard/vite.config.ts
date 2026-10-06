@@ -1,10 +1,30 @@
-import { defineConfig } from 'vite';
+import { defineConfig, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 import { TanStackRouterVite } from '@tanstack/router-vite-plugin';
 import tailwindcss from '@tailwindcss/vite';
+import { devAuthBuildError } from './src/lib/auth-mode';
+
+/**
+ * Spec 028 FR-013: a production `vite build` without a sign-in method would ship
+ * the dev bypass (a 401 loop against a real backend). Fail the build instead,
+ * unless VITE_ALLOW_DEV_AUTH=true. `config.env` holds the VITE_* values from
+ * the process env and the .env files, i.e. exactly what gets baked in.
+ */
+function requireAuthMode(): Plugin {
+  return {
+    name: 'ai0-require-auth-mode',
+    apply: 'build',
+    configResolved(config) {
+      if (config.mode !== 'production') return;
+      const err = devAuthBuildError(config.env as Record<string, string | undefined>);
+      if (err) throw new Error(err);
+    },
+  };
+}
 
 export default defineConfig({
   plugins: [
+    requireAuthMode(),
     TanStackRouterVite({ routesDirectory: 'src/routes', autoCodeSplitting: true }),
     react(),
     tailwindcss(),

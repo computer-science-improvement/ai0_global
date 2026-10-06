@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { API_BASE } from '../lib/env';
-import { ApiError, api } from './client';
+import { ApiError, api, unauthorized } from './client';
 import type {
   EditorChat, EditorChatChannel, EditorChatDetail, EditorChatEvent, EditorDraft, EditorDraftStatus,
 } from './types';
@@ -93,10 +93,7 @@ export async function streamChatMessage(
     body: JSON.stringify(body),
     signal,
   });
-  if (res.status === 401) {
-    window.location.href = '/login';
-    throw new ApiError(401, 'unauthorised');
-  }
+  if (res.status === 401) throw await unauthorized(res);
   if (!res.ok || !res.body) throw new ApiError(res.status, await res.text());
 
   const reader = res.body.getReader();

@@ -14,6 +14,7 @@ import { NestFactory } from '@nestjs/core';
 import { ConfigService } from '@nestjs/config';
 import { AuthService } from '../../auth/auth.service';
 import { TrackingAuthGuard } from '../../tracking/api/tracking-auth.guard';
+import { makeAuth } from '../../auth/testing/fakes';
 import { EDITOR_OPS, EditorController } from './editor.controller';
 
 const TOKEN = 'test-token';
@@ -31,7 +32,7 @@ let port: number;
 
 before(async () => {
   // tsx/esbuild emits no decorator metadata; restore what `nest build` (tsc) emits for the guard.
-  Reflect.defineMetadata('design:paramtypes', [ConfigService, AuthService], TrackingAuthGuard);
+  Reflect.defineMetadata('design:paramtypes', [AuthService], TrackingAuthGuard);
   // `@Body() body: unknown` compiles to Object — the ValidationPipe must leave it alone.
   for (const m of ['upsert', 'addMemory', 'callTool', 'skipSlot']) {
     Reflect.defineMetadata('design:paramtypes', [String, Object], EditorController.prototype, m);
@@ -40,7 +41,7 @@ before(async () => {
     controllers: [EditorController],
     providers: [
       { provide: ConfigService, useValue: { get: (k: string) => ({ TRACKING_TOKEN: TOKEN } as any)[k] } },
-      { provide: AuthService, useValue: { verifyToken: async () => null } },
+      { provide: AuthService, useValue: makeAuth({ TRACKING_TOKEN: TOKEN }).auth },
       { provide: EDITOR_OPS, useValue: ops },
     ],
   })

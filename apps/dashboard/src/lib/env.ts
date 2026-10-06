@@ -1,20 +1,17 @@
+import { resolveAuthMode, tokenFormEnabled } from './auth-mode';
+
+// `?? {}`: outside Vite (node:test via tsx) `import.meta.env` is undefined.
+const ENV = (import.meta.env ?? {}) as Record<string, string | undefined>;
+
 // Every api() path already carries its full backend prefix (`/api/strategies`,
 // `/tracking/…`), and both the vite dev proxy and the prod nginx forward those
 // paths unchanged — so the base is empty by default. Set VITE_API_BASE_URL only
 // to point at a different origin (e.g. `https://api.example.com`).
-export const API_BASE = (import.meta.env.VITE_API_BASE_URL as string) ?? '';
-export const AUTH_BASE = (import.meta.env.VITE_AUTH_BASE_URL as string) ?? '/auth';
-export const TG_BOT_USERNAME = (import.meta.env.VITE_TG_BOT_USERNAME as string) ?? '';
+export const API_BASE = ENV.VITE_API_BASE_URL ?? '';
+export const AUTH_BASE = ENV.VITE_AUTH_BASE_URL ?? '/auth';
+export const TG_BOT_USERNAME = ENV.VITE_TG_BOT_USERNAME ?? '';
 
-/**
- * How the dashboard authenticates:
- *   telegram — Telegram Login Widget (needs a domain + BotFather /setdomain)
- *   token    — paste the shared TRACKING_TOKEN secret (works on plain HTTP)
- *   dev      — no auth; placeholder Dev user (local only)
- * Telegram wins if a bot username is set; otherwise opt into token mode with
- * VITE_AUTH_MODE=token; default is the dev bypass.
- */
-export const AUTH_MODE: 'telegram' | 'token' | 'dev' =
-  TG_BOT_USERNAME ? 'telegram'
-  : (import.meta.env.VITE_AUTH_MODE as string) === 'token' ? 'token'
-  : 'dev';
+/** telegram | token | dev — see lib/auth-mode.ts. Baked in at build time. */
+export const AUTH_MODE = resolveAuthMode(ENV);
+/** Token sign-in available (the main form in token mode, a collapsed extra in Telegram mode). */
+export const TOKEN_LOGIN = tokenFormEnabled(ENV);

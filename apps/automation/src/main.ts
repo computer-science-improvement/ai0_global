@@ -31,7 +31,7 @@ async function bootstrap() {
 
   // Prod chain is host Caddy → dashboard nginx → here, all on loopback/docker
   // private addresses. Trusting only those hops makes `req.ip` the real client
-  // (used by the login RateLimitGuard) while a client-supplied X-Forwarded-For
+  // (used by the login limiter and the auth audit) while a client-supplied X-Forwarded-For
   // from the public internet is still ignored.
   app.set('trust proxy', 'loopback, linklocal, uniquelocal');
 

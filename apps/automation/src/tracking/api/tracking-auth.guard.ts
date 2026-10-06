@@ -1,40 +1,43 @@
-import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
+import { CanActivate, ExecutionContext, Injectable, ServiceUnavailableException, UnauthorizedException } from '@nestjs/common';
 import { AuthService } from '../../auth/auth.service';
-import { safeEqual } from '../../common/crypto/safe-equal';
+import { setSessionCookie } from '../../auth/auth-cookie';
 
+const MESSAGES: Record<string, string> = {
+  no_credentials:  'Invalid or missing credentials',
+  bad_token:       'Invalid or missing credentials',
+  session_expired: 'Session expired',
+  session_revoked: 'Session revoked',
+  session_legacy:  'Session from an older version; sign in again',
+};
+
+/**
+ * Guards the admin API. All the logic lives in `AuthService.authenticate()`
+ * (Bearer TRACKING_TOKEN → session cookie → explicit local dev bypass), shared
+ * with `/auth/me` and `/auth/check` (spec 028 FR-003). A 401 carries `{code}`
+ * so the dashboard can say why; a session past its half-life gets a renewed
+ * cookie on the way through.
+ */
 @Injectable()
 export class TrackingAuthGuard implements CanActivate {
-  constructor(
-    private readonly config: ConfigService,
-    private readonly auth:   AuthService,
-  ) {}
+  constructor(private readonly auth: AuthService) {}
 
   async canActivate(ctx: ExecutionContext): Promise<boolean> {
-    const req = ctx.switchToHttp().getRequest();
+    const http = ctx.switchToHttp();
+    const req = http.getRequest();
+    const r = await this.auth.authenticate(req);
 
-    // 1. Bearer token (dev/debug path)
-    const expected = this.config.get<string>('TRACKING_TOKEN') ?? '';
-    const auth = req.headers['authorization'] ?? '';
-    const got = typeof auth === 'string' ? auth.replace(/^Bearer\s+/i, '').trim() : '';
-    if (expected && safeEqual(got, expected)) return true;
-
-    // 2. JWT cookie (production path)
-    const token = req.cookies?.tracking_jwt;
-    if (token) {
-      const payload = await this.auth.verifyToken(token);
-      if (payload) { req.user = payload; return true; }
+    if (r.ok) {
+      const { ok: _ok, ...auth } = r;
+      req.user = auth.identity;
+      req.auth = auth;
+      if (r.renewToken) {
+        setSessionCookie(http.getResponse(), r.renewToken, this.auth.cookieMaxAgeMs, this.auth.production);
+      }
+      return true;
     }
-
-    // Local bypass — EXPLICIT opt-in only. Never keyed off a missing secret
-    // (that turns a forgotten env var into a wide-open admin API). Requires
-    // ALLOW_NO_AUTH=true and a non-production NODE_ENV, and only when no
-    // credentials were presented at all.
-    const allowNoAuth =
-      this.config.get<string>('ALLOW_NO_AUTH') === 'true' &&
-      this.config.get<string>('NODE_ENV') !== 'production';
-    if (allowNoAuth && !expected && !token) return true;
-
-    throw new UnauthorizedException('Invalid or missing credentials');
+    if (r.code === 'unavailable') {
+      throw new ServiceUnavailableException({ statusCode: 503, code: 'auth_unavailable', message: 'Sign-in check is temporarily unavailable' });
+    }
+    throw new UnauthorizedException({ statusCode: 401, code: r.code, message: MESSAGES[r.code] });
   }
 }

@@ -14,6 +14,7 @@ import { NestFactory } from '@nestjs/core';
 import { ConfigService } from '@nestjs/config';
 import { AuthService } from '../../auth/auth.service';
 import { TrackingAuthGuard } from '../../tracking/api/tracking-auth.guard';
+import { makeAuth } from '../../auth/testing/fakes';
 import { EDITOR_CHAT, EDITOR_DRAFTS, EditorChatController } from './editor-chat.controller';
 
 const TOKEN = 'test-token';
@@ -48,14 +49,14 @@ let app: INestApplication;
 let port: number;
 
 before(async () => {
-  Reflect.defineMetadata('design:paramtypes', [ConfigService, AuthService], TrackingAuthGuard);
+  Reflect.defineMetadata('design:paramtypes', [AuthService], TrackingAuthGuard);
   Reflect.defineMetadata('design:paramtypes', [String, Object, Object], EditorChatController.prototype, 'send');
   Reflect.defineMetadata('design:paramtypes', [String, Object], EditorChatController.prototype, 'schedule');
   @Module({
     controllers: [EditorChatController],
     providers: [
       { provide: ConfigService, useValue: { get: (k: string) => ({ TRACKING_TOKEN: TOKEN } as any)[k] } },
-      { provide: AuthService, useValue: { verifyToken: async () => null } },
+      { provide: AuthService, useValue: makeAuth({ TRACKING_TOKEN: TOKEN }).auth },
       { provide: EDITOR_CHAT, useValue: chat },
       { provide: EDITOR_DRAFTS, useValue: drafts },
     ],
