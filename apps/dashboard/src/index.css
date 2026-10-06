@@ -853,5 +853,28 @@ a:hover { opacity: 0.85; }
   .crumbs-back { display: inline-flex; align-items: center; gap: 4px; }
 }
 
+/* ─── Navigation (spec 027): sidebar rows, counters, star, context menu ─── */
+.nav-row { position: relative; }
+.nav-link { display: flex; align-items: center; gap: 9px; padding: 6px 9px; border-radius: var(--radius-sm); font-size: 13px; color: var(--color-ink-muted); text-decoration: none; transition: padding-right 0.12s ease; }
+.nav-link:hover { color: var(--color-ink); }
+.nav-link-active { background: var(--color-surface-3); color: var(--color-ink); }
+.nav-link-disabled { opacity: 0.45; cursor: not-allowed; text-decoration: line-through; }
+.nav-label { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.nav-badge { margin-left: auto; font-size: 10px; font-weight: 600; color: var(--color-ink); background: var(--color-surface-3); border: 1px solid var(--color-warning); border-radius: var(--radius-pill); padding: 0 6px; min-width: 18px; text-align: center; line-height: 16px; }
+.nav-new { margin-left: auto; font-size: 9px; color: var(--color-accent); border: 1px solid var(--color-accent); border-radius: var(--radius-pill); padding: 0 6px; line-height: 14px; }
+.nav-dot { position: absolute; top: -3px; right: -4px; width: 7px; height: 7px; border-radius: var(--radius-pill); box-shadow: 0 0 0 2px var(--color-surface-1); }
+.nav-star { position: absolute; right: 4px; top: 50%; transform: translateY(-50%); width: 22px; height: 22px; display: inline-flex; align-items: center; justify-content: center; border: 0; border-radius: var(--radius-xs); background: transparent; color: var(--color-ink-dim); cursor: pointer; opacity: 0; transition: opacity 0.12s ease, color 0.12s ease; }
+.nav-star[aria-pressed="true"] { color: var(--color-warning); }
+.nav-star:hover { color: var(--color-ink); background: var(--color-surface-3); }
+.nav-row:hover .nav-star, .nav-star:focus-visible { opacity: 1; }
+.nav-row:hover .nav-link:not(.nav-link-disabled), .nav-row:focus-within .nav-link:not(.nav-link-disabled) { padding-right: 30px; }
+.nav-row-collapsed:hover .nav-link { padding-right: 9px; }
+@media (hover: none) { .nav-star { display: none; } .nav-row:hover .nav-link { padding-right: 9px; } }
+.nav-ctx { position: fixed; z-index: 80; min-width: 190px; padding: 4px; background: var(--color-surface-2); border: 1px solid var(--color-hairline-strong); border-radius: var(--radius-md); box-shadow: 0 12px 32px rgba(0,0,0,0.45); }
+.nav-ctx-title { padding: 6px 10px 4px; font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-ink-dim); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.nav-ctx-item { display: flex; align-items: center; gap: 8px; width: 100%; padding: 7px 10px; border: 0; border-radius: var(--radius-sm); background: transparent; color: var(--color-ink); font: inherit; font-size: 13px; text-align: left; cursor: pointer; }
+.nav-ctx-item:hover:not(:disabled), .nav-ctx-item:focus-visible { background: var(--color-surface-3); outline: none; }
+.nav-ctx-item:disabled { color: var(--color-ink-dim); cursor: not-allowed; }
+
 /* ─── Navigation (spec 027): keycaps ─── */
 .kbd { display: inline-flex; align-items: center; gap: 2px; padding: 0 5px; min-width: 18px; height: 18px; border-radius: var(--radius-xs); border: 1px solid var(--color-hairline-strong); background: var(--color-surface-2); color: var(--color-ink-muted); font-family: var(--font-mono, ui-monospace, monospace); font-size: 10.5px; line-height: 1; }

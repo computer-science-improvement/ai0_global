@@ -1,15 +1,12 @@
 // Spec 027: React glue for the nav registry.
 import type { Crumb } from '../components/ui/Crumbs';
 import { buildCrumbs } from './crumbs';
-
-/** Owner renames by item id (wired to the saved menu in T4). */
-function useNavLabels(): Record<string, string> {
-  return {};
-}
+import { useNavLabels } from './store';
 
 /**
- * Breadcrumbs for page `id`: its registry ancestors, then `extra` (dynamic
- * ancestors). Pass the result to `<PageHeader crumbs>` or `<Crumbs>`.
+ * Breadcrumbs for page `id`: its registry ancestors (with the owner's renamed
+ * labels), then `extra` (dynamic ancestors). Pass the result to
+ * `<PageHeader crumbs>` or `<Crumbs>`.
  */
 export function useCrumbs(id: string, ...extra: Crumb[]): Crumb[] {
   const labels = useNavLabels();

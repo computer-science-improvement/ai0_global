@@ -9,6 +9,7 @@ import {
   MessageSquare, Square, ArrowUp, Globe, Wrench, Clock, Ban, Database, BookOpen, PanelLeft,
   Megaphone, Radar, Users, Workflow, Lock, LockOpen, Inbox, History, ImageOff, ArrowUpRight, Lightbulb,
   CircleDollarSign, Download,
+  EyeOff, GripVertical, Command, Link2, Pin, PinOff, RotateCcw, FolderPlus, CornerDownLeft,
   type LucideIcon,
 } from 'lucide-react';
 
@@ -30,13 +31,24 @@ const ICONS = {
   agents: Workflow, lock: Lock, unlock: LockOpen, inbox: Inbox, history: History,
   'image-off': ImageOff, external: ArrowUpRight, hint: Lightbulb,
   spend: CircleDollarSign, download: Download,
+  // Navigation (spec 027): pin/star, hide, drag handle, palette.
+  star: Star, 'eye-off': EyeOff, grip: GripVertical, command: Command, link: Link2,
+  pin: Pin, 'pin-off': PinOff, reset: RotateCcw, 'folder-plus': FolderPlus, enter: CornerDownLeft, search: Search,
 } satisfies Record<string, LucideIcon>;
 
 export type IconName = keyof typeof ICONS;
 
+/** Every icon name (the menu constructor's icon picker, spec 027). */
+export const ICON_NAMES = Object.keys(ICONS) as IconName[];
+
+export function isIconName(name: string): name is IconName {
+  return Object.prototype.hasOwnProperty.call(ICONS, name);
+}
+
 export function Icon({ name, size = 16, className, strokeWidth = 1.75 }: {
   name: IconName; size?: number; className?: string; strokeWidth?: number;
 }) {
-  const Glyph = ICONS[name];
+  // A name from stored data (a saved menu) may be unknown to this build: fall back.
+  const Glyph = ICONS[name] ?? ICONS.globe;
   return <Glyph size={size} className={className} strokeWidth={strokeWidth} />;
 }
