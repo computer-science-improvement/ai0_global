@@ -250,3 +250,36 @@ Duplication becomes a tool, and every resource gets its own time zone.
   «Час каналу: …» for a non-Kyiv card (owner time stays Kyiv); `renderProfile` prints «Часовий пояс: … (зараз HH:MM)» for
   non-Kyiv, non-Telegram profiles. `GET …/network` resources carry `timezone` and `quietHours` (FR-012).
 - BR-GEN-01 is updated in `docs/brd/00-overview.md`.
+
+### T3 (2026-10-07)
+- **Decision rules** live in `network/plan-decisions.ts` (pure) and are called from `validateNetworkPlan`. Gone: BR-AGT-72
+  "cover every variant", "Telegram core first", the 90-min gap between variants and "the idea must have a variant for this
+  resource" (variants are hints). The 60-min gap between posts of one platform resource stays until T8.
+- **Input:** `treatment` is optional (default `unique`); `reason` is enforced by the rules (not zod) so the planner gets every
+  error at once; `skips` is optional. Added `format_notes` (≤ 500) to `NetworkSlotInput` — not in FR-006, but FR-007's run
+  reads "the agent's format_notes"; stored in `editor_slots.source_post.format_notes`. A derived slot of a series slot (no
+  idea) is allowed when it names the same series; it records no decision (decisions are per idea). A skip must name an idea
+  planned in the same submission.
+- **Persistence:** `createNetworkPlan` inserts sources first, sets `derived_from_slot_id`, and upserts one `content_decisions`
+  row per (idea, resource). A re-plan replaces `planner`/`system` rows; rows from `repurpose_post` or the owner stay and count
+  as decided (`NetworkRepository.decidedElsewhere`). `GET …/plan` adds slot `treatment`, `treatmentReason`, `derivedFrom` and
+  `decisions[]` (for T6).
+- **Hard limits:** `derivedFormatProblem` (`post/duplicate.ts`) — implemented formats, media kind and count per format
+  (Telegram formats get a capacity table), polls. Plan time checks by format; run time re-checks with the source's real media:
+  impossible by format → `unsupported_format`, possible by format but the media are missing → `source_media_gone`.
+- **Execution** is in `EditorRunnerService.runDerived` + `network/derived-slots.ts` (slots run in the editor runner, not in
+  `network-runner.ts`). `claimDue` / `plannedBefore` claim a derived slot only once its source is no longer
+  planned/running/awaiting_approval/approved; `skipStale` names `source_not_published` while the source is still pending after
+  3 h. In approval mode a derived post is written after its source went out and waits for its own approval.
+- **Duplicate:** one short run (≤ 6 steps; tools lint / preview / publish / skip only) with the source spec, the
+  `duplicateSpec()` draft, the target profile, format_prefs (filled by T8), the format notes and the hard limits. **Adapt:** the
+  full executor tool set, 14 steps. No retry: a run without a result fails the slot; lint failing twice → `failed` + Inbox
+  `derived_post_failed` (English). There is no `trace.kind` column: a derived run is the slot's `run_id` with its `treatment`.
+- **Sources:** a Telegram source reads `post_spec`; a platform source reads `post_spec` (`publish_platform_post` now stores the
+  spec on the slot in shadow/live too) or `platform_posts.spec`.
+- **Media lifetime:** `062_resource_formatting.sql` adds `media_holds`; `EditorMediaPreparer.hostSlides` asks
+  `MediaHolds.holdIfDerived` before deleting. Held slides are reused as the duplicate's media and swept after each derived run
+  and on every scheduler tick (24 h at most).
+- The `network-planning` skill and the `network-plan-staggered` eval now describe decisions (T7 adds `resource-decisions`).
+- Tests: the PG suite is not re-runnable on the same database (editor/autonomy e2e leave `content_ledger` rows — pre-existing);
+  use a fresh scratch database.

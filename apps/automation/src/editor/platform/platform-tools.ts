@@ -77,7 +77,8 @@ export function buildPlatformTools(d: PlatformToolDeps): EditorTool[] {
         return { ok: true, awaiting_approval: true, warnings: r.warnings };
       }
       await d.plans.updateSlot(ctx.slotId, {
-        status: r.shadow ? 'shadowed' : 'published', renderedPreview: r.preview, error: r.warnings.length ? r.warnings.join(' | ').slice(0, 2000) : null,
+        // Spec 024: the spec stays on the slot — a derived (duplicate / adapt) slot reads its source from here.
+        status: r.shadow ? 'shadowed' : 'published', postSpec: spec, renderedPreview: r.preview, error: r.warnings.length ? r.warnings.join(' | ').slice(0, 2000) : null,
       });
       if (r.shadow && d.notifyPreview) {
         try { await d.notifyPreview(slot.resourceRef, r.preview); } catch { /* best-effort */ }

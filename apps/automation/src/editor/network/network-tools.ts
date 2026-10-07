@@ -230,8 +230,9 @@ export function buildNetworkTools(d: NetworkToolDeps): EditorTool[] {
   const submitNetworkPlan = defineTool({
     name: 'submit_network_plan',
     description: [
-      'Зберегти план мережі на сьогодні (завершує роботу): слоти по всіх ресурсах — resource_ref, час HH:MM, формат, тема, idea_id прийнятої ідеї або series.',
-      'Одна ідея → кілька нативних варіантів на різних ресурсах з інтервалом ≥ 90 хв, Telegram (core) — першим. Код перевіряє частоти, інтервали, тихі години, формати плейбука.',
+      'Зберегти план мережі на сьогодні (завершує роботу): слоти по всіх ресурсах — resource_ref, час HH:MM (зона ресурсу), формат, тема, idea_id прийнятої ідеї або series.',
+      'Для кожної ідеї в плані — рівно одне рішення на кожен ресурс з секцією плейбука: слот з treatment (unique; duplicate чи adapt з from_slot = номер унікального слота-джерела, не раніше за нього — інтервал обираєш ти, 0 теж можна) і reason, або запис у skips з причиною.',
+      'Ресурс, що вже на per_day.max, код пропускає сам (cadence). Код перевіряє частоти, тихі години, формати плейбука (для unique) і жорсткі ліміти платформ (для duplicate/adapt).',
     ].join(' '),
     kind: 'terminal', roles: ['planner'],
     input: SubmitNetworkPlanInput,
@@ -243,14 +244,20 @@ export function buildNetworkTools(d: NetworkToolDeps): EditorTool[] {
       const dayStart = zonedToUtc(planDate, '00:00', card.timezone);
       const reserved = await d.plans.reservedSlots(net.anchorKey, dayStart, new Date(dayStart.getTime() + 86_400_000));
       const accepted = await d.repo.listIdeas(net.orchestrator.id, ['accepted'], 200);
+      const planned = [...new Set(plan.slots.map((s) => s.idea_id).filter((x): x is string => !!x))];
       const v = validateNetworkPlan(plan, {
         net, card, planDate, weekday: localWeekday(dayStart, card.timezone), now: t,
         ideas: new Map(accepted.map((i) => [i.id, i])), reservedAt: reserved.map((r) => r.scheduledAt),
+        // Spec 024: decisions repurpose_post or the owner already made for these ideas stay.
+        decided: await d.repo.decidedElsewhere(planned),
       });
       if (!v.ok) return { error: 'plan_invalid', details: v.errors };
-      const planId = await d.plans.createNetworkPlan(net.anchorKey, planDate, plan.rationale, ctx.runId, v.slots);
+      const planId = await d.plans.createNetworkPlan(net.anchorKey, planDate, plan.rationale, ctx.runId, v.slots, v.decisions, net.orchestrator.id);
       for (const id of new Set(v.slots.map((s) => s.ideaId).filter(Boolean) as string[])) await d.repo.updateIdea(id, { status: 'planned' });
-      return { ok: true, plan_id: planId, slots: v.slots.length };
+      return {
+        ok: true, plan_id: planId, slots: v.slots.length,
+        decisions: v.decisions.length, auto_skipped: v.decisions.filter((x) => x.decidedBy === 'system').map((x) => `${x.ideaId} → ${x.resourceRef}`),
+      };
     },
   });
 

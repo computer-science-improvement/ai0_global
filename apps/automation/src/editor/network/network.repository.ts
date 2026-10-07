@@ -92,6 +92,28 @@ const toIdea = (r: any): IdeaRow => ({
   status: r.status, revisions: Number(r.revisions ?? 0), review: r.review ?? null, createdAt: r.created_at, updatedAt: r.updated_at,
 });
 
+/** content_decisions (061): one decision per (idea or source, resource). */
+export interface ContentDecisionRow {
+  id:          string;
+  agentId:     string;
+  ideaId:      string | null;
+  sourceKey:   string | null;
+  resourceRef: string;
+  decision:    'unique' | 'duplicate' | 'adapt' | 'skip';
+  reason:      string;
+  reasonCode:  string | null;
+  slotId:      string | null;
+  decidedBy:   'planner' | 'orchestrator' | 'executor' | 'owner' | 'system';
+  runId:       string | null;
+  createdAt:   Date;
+}
+
+const toDecision = (r: any): ContentDecisionRow => ({
+  id: r.id, agentId: r.agent_id, ideaId: r.idea_id ?? null, sourceKey: r.source_key ?? null, resourceRef: r.resource_ref,
+  decision: r.decision, reason: r.reason, reasonCode: r.reason_code ?? null, slotId: r.slot_id ?? null, decidedBy: r.decided_by,
+  runId: r.run_id ?? null, createdAt: r.created_at,
+});
+
 type Q = Pick<Pool, 'query'>;
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
@@ -238,6 +260,31 @@ export class NetworkRepository {
       `SELECT COUNT(*)::int AS n FROM content_ideas
         WHERE agent_id = $1 AND status = 'rejected' AND review->>'reason_code' = $2 AND updated_at > now() - interval '14 days'`, [agentId, reasonCode]);
     return Number(rows[0]?.n ?? 0);
+  }
+
+  // ── content decisions (spec 024) ─────────────────────────────────────────
+
+  /** (idea → resources) decided by repurpose_post, the executor or the owner — a re-plan keeps them. */
+  async decidedElsewhere(ideaIds: string[]): Promise<Map<string, Set<string>>> {
+    const out = new Map<string, Set<string>>();
+    if (!ideaIds.length) return out;
+    const { rows } = await this.pool.query(
+      `SELECT idea_id, resource_ref FROM content_decisions
+        WHERE idea_id = ANY($1::uuid[]) AND decided_by NOT IN ('planner','system')`, [ideaIds]);
+    for (const r of rows) {
+      if (!out.has(r.idea_id)) out.set(r.idea_id, new Set());
+      out.get(r.idea_id)!.add(r.resource_ref);
+    }
+    return out;
+  }
+
+  /** The decisions of an agent (newest first), for the plan view and explain_decision. */
+  async decisions(agentId: string, o: { ideaIds?: string[]; since?: Date; limit?: number } = {}): Promise<ContentDecisionRow[]> {
+    const { rows } = await this.pool.query(
+      `SELECT * FROM content_decisions WHERE agent_id = $1
+          AND ($2::uuid[] IS NULL OR idea_id = ANY($2::uuid[])) AND ($3::timestamptz IS NULL OR created_at >= $3)
+        ORDER BY created_at DESC LIMIT $4`, [agentId, o.ideaIds ?? null, o.since ?? null, o.limit ?? 200]);
+    return rows.map(toDecision);
   }
 
   // ── network ───────────────────────────────────────────────────────────────

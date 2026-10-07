@@ -34,10 +34,12 @@ import { TelegramEditorPublisher } from './publish/telegram-editor.publisher';
 import { SponsoredPublisher } from './publish/sponsored.publisher';
 import { EditorMediaPreparer } from './publish/prepare-media';
 import { EditorCrossPoster } from './publish/editor-crosspost';
+import { MediaHolds } from './publish/media-holds';
+import { DerivedSlots } from './network/derived-slots';
 import { ResourceTime } from './time/resource-time';
 import { safeGetBytes } from './net/safe-http';
 import { AdOrdersRepository } from '../payments/ad-orders.repository';
-import { EditorRunnerService } from './roles/editor-runner.service';
+import { EditorRunnerService, type EditorRunnerDeps } from './roles/editor-runner.service';
 import { EditorScheduler } from './editor.scheduler';
 import { htmlToPlain } from './post/inline-markup';
 import { EditorRunsRepository } from './repo/editor-runs.repository';
@@ -206,7 +208,30 @@ export interface AgentInfra {
 }
 export { EDITOR_OPS, EDITOR_CHAT, EDITOR_DRAFTS };
 
-type PublishPorts = Pick<PublishSpecDeps, 'publisher' | 'media' | 'crosspost'>;
+type PublishPorts = Pick<PublishSpecDeps, 'publisher' | 'media' | 'crosspost'> & {
+  /** Spec 024 FR-007: hosted slides of sources with pending derived slots. */
+  holds?: MediaHolds;
+};
+
+/** Spec 024 FR-007: the runner's derived-slot ports (source resolution, held media, the lint-twice Inbox note). */
+function derivedPorts(pool: Pool, net: NetworkRepository, infra: AgentInfra, holds: MediaHolds | null): NonNullable<EditorRunnerDeps['derived']> {
+  const slots = new DerivedSlots({
+    pool,
+    heldUrls: holds ? (id) => holds.urls(id) : undefined,
+    // Membership regardless of health: a resource that is only unhealthy has not left the network.
+    networkRefs: async (key) => {
+      const g = await net.groupOfChannel(key);
+      return g ? [`telegram:${key}`, ...(await net.groupResources(g.id)).map((r) => r.ref)] : null;
+    },
+  });
+  return {
+    resolve: (slot) => slots.resolve(slot),
+    released: holds ? (id) => holds.sweep(new Date(), id) : undefined,
+    inbox: (n) => infra.inbox.post({
+      agentId: n.agentId, kind: 'derived_post_failed', severity: 'action', title: n.title, body: n.body, refType: 'slot', refId: n.slotId,
+    }),
+  };
+}
 
 /** Spec 024 FR-004: one per-resource time resolver (card for Telegram, then the profile, then Kyiv). */
 function resourceTime(repos: Pick<EditorRepos, 'channels'>, profiles: ResourceProfilesRepository): ResourceTime {
@@ -496,7 +521,10 @@ export const EDITOR_PROVIDERS = [
       useFactory: (
         channelConfig: ChannelConfigService, renderer: RecipeCarouselRendererService, hosting: SlideHostingService,
         telegraph: TelegraphService, crossPost: CrossPostService, groupFanOut: GroupFanOutService, pool: Pool,
-      ): PublishPorts => ({
+      ): PublishPorts => {
+        const holds = new MediaHolds(pool, hosting, (m) => new Logger('MediaHolds').warn(m));
+        return {
+        holds,
         publisher: new TelegramEditorPublisher({
           resolveChannel:     (k) => channelConfig.resolveChannel(k),
           isPublishPausedFor: (k) => channelConfig.isPublishPausedFor(k),
@@ -510,6 +538,7 @@ export const EDITOR_PROVIDERS = [
             const r = await safeGetBytes(url);
             return r.status < 400 ? r.body : null;
           },
+          holds,
         }),
         // Live posts are mirrored like the legacy strategies' (spec 009 T003); card.crosspost=false opts out.
         crosspost: new EditorCrossPoster({
@@ -517,7 +546,8 @@ export const EDITOR_PROVIDERS = [
           postLink: (k, id) => tgPostLink(channelConfig.getChannelMeta(k)?.username ?? null, id),
           autoDuplicateActive: (k) => new NetworkRepository(pool).autoDuplicateActiveForChannel(k),
         }),
-      }),
+        };
+      },
     },
     {
       provide: PLATFORM_INFRA,
@@ -801,10 +831,10 @@ export const EDITOR_PROVIDERS = [
     },
     {
       provide: EDITOR_RUNNER,
-      inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_SKILLS, EDITOR_REGISTRY, TelegramNotifier, AGENT_INFRA, EDITOR_LOOP, EDITOR_NETWORK],
+      inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_SKILLS, EDITOR_REGISTRY, TelegramNotifier, AGENT_INFRA, EDITOR_LOOP, EDITOR_NETWORK, EDITOR_PUBLISH],
       useFactory: (
         pool: Pool, cfg: ConfigService, repos: EditorRepos, skills: SkillLibrary, registry: ToolRegistry, notifier: TelegramNotifier,
-        infra: AgentInfra, loop: AgentLoop, network: NetworkRunner,
+        infra: AgentInfra, loop: AgentLoop, network: NetworkRunner, ports: PublishPorts,
       ): EditorRunnerService => {
         const logger = new Logger('Editor');
         const env = (k: string) => cfg.get<string>(k) ?? undefined;
@@ -816,6 +846,8 @@ export const EDITOR_PROVIDERS = [
           network, platformContext: (slot, orchId) => network.platformContext(slot, orchId),
           catalogSummary: catalogSummaryOf(pool, env),
           onSlotDone: async (slot) => { if (slot.ideaId) await ideas.settleIdea(slot.ideaId); },
+          // Spec 024 FR-007: duplicate / adapt slots — the agent formats every target post itself.
+          derived: derivedPorts(pool, ideas, infra, ports.holds ?? null),
         });
       },
     },
@@ -860,6 +892,8 @@ export const EDITOR_PROVIDERS = [
           pinGate: (card, now) => new NetworkRepository(pool).autoDuplicateActiveForChannel(card.channelKey, now),
           // The MANAGER at its times; an event run for orchestrators with fresh directives (spec 021).
           afterTick: async () => {
+            // Spec 024 FR-007: held slides of sources whose derived slots are done (or waited 24 h).
+            if (ports.holds) await ports.holds.sweep().catch((err) => logger.warn(`media holds sweep failed: ${err?.message ?? err}`));
             await manager.runner.tick();
             for (const orch of await manager.runner.orchestratorsToWake()) {
               const key = telegramKeyOf(orch);

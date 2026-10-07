@@ -111,13 +111,24 @@ export class NetworkService {
       `SELECT id, rationale, created_at FROM editor_plans WHERE channel_key = $1 AND plan_date = $2 AND status = 'active'`, [card.channelKey, day]);
     const plan = plans[0] ?? null;
     const { rows: slots } = plan ? await this.d.pool.query(
-      `SELECT s.id, s.scheduled_at, s.kind, s.format, s.topic, s.angle, s.status, s.error, s.rendered_preview, s.resource_ref, s.idea_id, s.run_id
+      `SELECT s.id, s.scheduled_at, s.kind, s.format, s.topic, s.angle, s.status, s.error, s.rendered_preview, s.resource_ref, s.idea_id, s.run_id,
+              s.treatment, s.treatment_reason, s.derived_from_slot_id
          FROM editor_slots s WHERE s.plan_id = $1 ORDER BY s.scheduled_at`, [plan.id]) : { rows: [] as any[] };
+    // Spec 024 FR-006: the per-(idea, resource) decisions of the ideas in this plan, skips included.
+    const ideaIds = [...new Set(slots.map((s) => s.idea_id).filter(Boolean))] as string[];
+    const { rows: decisions } = ideaIds.length ? await this.d.pool.query(
+      `SELECT idea_id, resource_ref, decision, reason, reason_code, slot_id, decided_by, created_at FROM content_decisions
+        WHERE idea_id = ANY($1::uuid[]) ORDER BY created_at`, [ideaIds]) : { rows: [] as any[] };
     return {
       date: day, anchor: card.channelKey, rationale: plan?.rationale ?? null,
       slots: slots.map((s) => ({
         id: s.id, at: s.scheduled_at, kind: s.kind, format: s.format, topic: s.topic, angle: s.angle, status: s.status, error: s.error,
         preview: s.rendered_preview, resourceRef: s.resource_ref ?? `telegram:${card.channelKey}`, ideaId: s.idea_id, runId: s.run_id,
+        treatment: s.treatment ?? null, treatmentReason: s.treatment_reason ?? null, derivedFrom: s.derived_from_slot_id ?? null,
+      })),
+      decisions: decisions.map((d) => ({
+        ideaId: d.idea_id, resourceRef: d.resource_ref, decision: d.decision, reason: d.reason, reasonCode: d.reason_code ?? null,
+        slotId: d.slot_id ?? null, decidedBy: d.decided_by, at: d.created_at,
       })),
     };
   }

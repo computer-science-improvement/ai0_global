@@ -18,6 +18,11 @@ export interface MediaPrepDeps {
   createPage(args: { title: string; nodes: TelegraphNode[] }): Promise<{ url: string; path: string }>;
   /** SSRF-guarded image download; null when the image cannot be used (the slide gets a plain background). */
   fetchImage(url: string): Promise<Buffer | null>;
+  /**
+   * Spec 024 FR-007: keeps a source slot's hosted slides while its derived
+   * slots are pending (MediaHolds); true = held, not deleted now.
+   */
+  holds?: { holdIfDerived(slotId: string, paths: string[], urls: string[]): Promise<boolean> };
 }
 
 export interface PreparedPublish {
@@ -66,7 +71,13 @@ export class EditorMediaPreparer {
     const hosted = await this.d.hosting.upload(pngs, `editor/${keySafe(key.channelKey)}/${keySafe(key.slotId)}`);
     return {
       prepared: { slideUrls: hosted.map((h) => h.url) },
-      cleanup: async () => { try { await this.d.hosting.delete(hosted.map((h) => h.path)); } catch { /* best-effort */ } },
+      cleanup: async () => {
+        try {
+          const paths = hosted.map((h) => h.path);
+          if (this.d.holds && await this.d.holds.holdIfDerived(key.slotId, paths, hosted.map((h) => h.url)).catch(() => false)) return;
+          await this.d.hosting.delete(paths);
+        } catch { /* best-effort */ }
+      },
     };
   }
 }

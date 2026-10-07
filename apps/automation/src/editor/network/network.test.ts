@@ -77,9 +77,9 @@ const I1 = '00000000-0000-4000-8000-000000000001';
 test('network plan: a staggered idea + the Sunday series pass', () => {
   const v = validateNetworkPlan({
     rationale: 'Космічна неділя', slots: [
-      { resource_ref: 'telegram:@space', time: '10:00', format: 'longread', topic: 'Кільця Сатурна', idea_id: I1, source_hints: [] },
-      { resource_ref: 'instagram:ig1', time: '12:00', format: 'ig_carousel', topic: 'Кільця Сатурна — карусель', idea_id: I1, source_hints: [] },
-      { resource_ref: 'threads:th1', time: '14:00', format: 'th_text', topic: 'Факт про кільця', idea_id: I1, source_hints: [] },
+      { resource_ref: 'telegram:@space', time: '10:00', format: 'longread', topic: 'Кільця Сатурна', idea_id: I1, source_hints: [], reason: 'Ядро мережі: лонгріди дають перегляди' },
+      { resource_ref: 'instagram:ig1', time: '12:00', format: 'ig_carousel', topic: 'Кільця Сатурна — карусель', idea_id: I1, source_hints: [], reason: 'Каруселі в IG — найкращий формат' },
+      { resource_ref: 'threads:th1', time: '14:00', format: 'th_text', topic: 'Факт про кільця', idea_id: I1, source_hints: [], reason: 'Короткий факт для discovery' },
       { resource_ref: 'instagram:ig1', time: '18:30', format: 'ig_carousel', topic: 'Топ тижня', series: 'Топ тижня', source_hints: [] },
     ],
   }, { net: net(), card, planDate: '2026-10-04', weekday: 0, now: NOW, ideas: new Map([[I1, idea(I1, ['telegram:@space', 'instagram:ig1', 'threads:th1'])]]), reservedAt: [] });
@@ -102,9 +102,11 @@ test('network plan: violations come back as a list', () => {
   }, { net: net(), card, planDate: '2026-10-04', weekday: 1, now: NOW, ideas: new Map([[I1, idea(I1, ['telegram:@space', 'instagram:ig1'])]]), reservedAt: [] });
   assert.equal(v.ok, false);
   const e = (v as any).errors.join('\n');
-  for (const frag of ['не дозволений плейбуком', 'тихі години', 'tiktok:x', 'не за розкладом', 'потрібен idea_id', 'інтервал між постами менше 60', '≥ 90 хв', 'Telegram (core) має бути першим']) {
+  for (const frag of ['не дозволений плейбуком', 'тихі години', 'tiktok:x', 'не за розкладом', 'потрібен idea_id', 'потрібен reason', 'немає рішення для threads:th1']) {
     assert.ok(e.includes(frag), `${frag}\n${e}`);
   }
+  // Spec 024: no "Telegram first" and no fixed gap between variants of one idea.
+  assert.ok(!e.includes('першим') && !e.includes('90 хв'), e);
 });
 
 test('network plan: no playbook → refused', () => {
@@ -112,10 +114,20 @@ test('network plan: no playbook → refused', () => {
   assert.equal(v.ok, false);
 });
 
-test('network plan: a planned idea must cover every variant whose resource still has room', () => {
-  const v = validateNetworkPlan({
-    rationale: 'Лише Telegram', slots: [{ resource_ref: 'telegram:@space', time: '10:00', format: 'longread', topic: 'Кільця', idea_id: I1, source_hints: [] }],
-  }, { net: net(), card, planDate: '2026-10-04', weekday: 1, now: NOW, ideas: new Map([[I1, idea(I1, ['telegram:@space', 'instagram:ig1'])]]), reservedAt: [] });
+test('network plan: a planned idea needs one decision on every resource with a playbook section (spec 024)', () => {
+  const tgOnly = { resource_ref: 'telegram:@space', time: '10:00', format: 'longread', topic: 'Кільця', idea_id: I1, source_hints: [], reason: 'Ядро мережі: лонгріди' };
+  const v = validateNetworkPlan({ rationale: 'Лише Telegram', slots: [tgOnly] },
+    { net: net(), card, planDate: '2026-10-04', weekday: 1, now: NOW, ideas: new Map([[I1, idea(I1, ['telegram:@space', 'instagram:ig1'])]]), reservedAt: [] });
   assert.equal(v.ok, false);
-  assert.ok((v as any).errors.some((e: string) => e.includes('не заплановано варіант для instagram:ig1')));
+  const e = (v as any).errors.join('\n');
+  assert.ok(e.includes('немає рішення для instagram:ig1') && e.includes('немає рішення для threads:th1'), e);
+  // Skipping both with reasons is a complete decision set — the idea's variants are only hints.
+  const ok = validateNetworkPlan({ rationale: 'Лише Telegram', slots: [tgOnly], skips: [
+    { idea_id: I1, resource_ref: 'instagram:ig1', reason: 'Профіль IG — візуал, тут лише текст', reason_code: 'format_unfit' },
+    { idea_id: I1, resource_ref: 'threads:th1', reason: 'Threads вже має схожу тему вчора', reason_code: 'cadence' },
+  ] }, { net: net(), card, planDate: '2026-10-04', weekday: 1, now: NOW, ideas: new Map([[I1, idea(I1, ['telegram:@space', 'instagram:ig1'])]]), reservedAt: [] });
+  assert.equal(ok.ok, true, JSON.stringify(ok));
+  if (ok.ok) assert.deepEqual(ok.decisions.map((d) => [d.resourceRef, d.decision, d.reasonCode]), [
+    ['telegram:@space', 'unique', null], ['instagram:ig1', 'skip', 'format_unfit'], ['threads:th1', 'skip', 'cadence'],
+  ]);
 });

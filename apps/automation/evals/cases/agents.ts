@@ -246,7 +246,7 @@ async function orchestratedNetwork(ctx: CaseCtx) {
 
 export const networkPlanStaggered: EvalCase = {
   id: 'network-plan-staggered', role: 'planner', channel: NP,
-  title: 'План мережі: прийнята ідея → нативні варіанти на TG і IG, Telegram першим, ≥ 90 хв між ними',
+  title: 'План мережі: прийнята ідея → рішення на кожен ресурс (TG і IG) з причиною (spec 024)',
   web: ideaWeb,
   async execute(ctx) {
     const { ig, idea, card } = await orchestratedNetwork(ctx);
@@ -258,16 +258,16 @@ export const networkPlanStaggered: EvalCase = {
     const forIdea = rows.filter((r) => r.idea_id === idea.id);
     const tg = forIdea.find((r) => !r.resource_ref);
     const igSlot = forIdea.find((r) => r.resource_ref === ig);
-    const gap = tg && igSlot ? (new Date(igSlot.scheduled_at).getTime() - new Date(tg.scheduled_at).getTime()) / 60_000 : null;
+    const { rows: decisions } = await ctx.pool.query(`SELECT resource_ref, decision, reason FROM content_decisions WHERE idea_id = $1`, [idea.id]);
     return {
       runId: res.runId, status: res.status, terminalTool: res.terminalTool, ...(await trace(ctx, res.runId)),
       post: rows.map((r) => `${new Date(r.scheduled_at).toISOString().slice(11, 16)} ${r.resource_ref ?? 'telegram'} ${r.format} ${r.idea_id ? '(idea)' : ''}`).join('\n'),
       checks: [
         check('submitted a network plan', res.terminalTool === 'submit_network_plan', `${res.status} ${res.error ?? ''}`),
-        check('the idea has a Telegram variant', !!tg),
-        check('the idea has an Instagram variant', !!igSlot),
-        check('Telegram goes first, ≥ 90 min before Instagram', gap != null && gap >= 90, `gap ${gap} min`),
-        check('Instagram slot uses ig_carousel', igSlot?.format === 'ig_carousel', igSlot?.format),
+        check('the idea is planned somewhere', !!tg || !!igSlot),
+        check('one decision per resource (TG and IG)', decisions.length === 2 && new Set(decisions.map((d) => d.resource_ref)).size === 2, decisions.map((d) => `${d.resource_ref}:${d.decision}`).join(', ')),
+        check('every decision has a reason', decisions.every((d) => String(d.reason ?? '').length >= 10)),
+        check('an Instagram slot uses an Instagram format', !igSlot || String(igSlot.format).startsWith('ig_'), igSlot?.format),
         check('idea marked planned', (await ctx.stack.networkRepo.idea(idea.id))!.status === 'planned'),
       ],
     };

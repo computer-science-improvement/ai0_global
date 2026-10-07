@@ -43,6 +43,34 @@ export interface EditorSlot {
   freshnessDeadline?: Date | null;
   replacesSlotId?:    string | null;
   platformPostId?:    number | null;
+  // ── independent resources (spec 024); present only when set ──
+  /** unique / duplicate / adapt; null = a pre-024 or single-channel slot. */
+  treatment?:         'unique' | 'duplicate' | 'adapt' | null;
+  treatmentReason?:   string | null;
+  /** The unique slot a duplicate / adapt slot is made from. */
+  derivedFromSlotId?: string | null;
+  /** A derived slot's non-slot source and the agent's format notes (`{ key?, format_notes?, via? }`). */
+  sourcePost?:        DerivedSourceRef | null;
+}
+
+/** editor_slots.source_post of a derived slot (spec 024). */
+export interface DerivedSourceRef {
+  /** `slot:<uuid>`, `pp:<platform_posts.id>` or `tg:<published_posts.id>`. */
+  key?:          string;
+  format_notes?: string | null;
+  /** 'repurpose' for slots made by repurpose_post (kept across a re-plan of the day). */
+  via?:          'plan' | 'repurpose';
+}
+
+/** A content decision of a plan (spec 024 FR-006): one per (idea, resource). */
+export interface PlanDecisionInput {
+  ideaId:      string;
+  resourceRef: string;
+  decision:    'unique' | 'duplicate' | 'adapt' | 'skip';
+  reason:      string;
+  reasonCode:  string | null;
+  slotIndex:   number | null;
+  decidedBy:   'planner' | 'system';
 }
 
 /** The stored payload of a written approval-mode post (render_messages). */
@@ -91,8 +119,26 @@ export function rowToSlot(r: any): EditorSlot {
     ...(r.freshness_deadline ? { freshnessDeadline: new Date(r.freshness_deadline) } : {}),
     ...(r.replaces_slot_id ? { replacesSlotId: r.replaces_slot_id } : {}),
     ...(r.platform_post_id != null ? { platformPostId: Number(r.platform_post_id) } : {}),
+    ...(r.treatment ? { treatment: r.treatment } : {}),
+    ...(r.treatment_reason ? { treatmentReason: r.treatment_reason } : {}),
+    ...(r.derived_from_slot_id ? { derivedFromSlotId: r.derived_from_slot_id } : {}),
+    ...(r.source_post ? { sourcePost: r.source_post } : {}),
   };
 }
+
+/** Rationale of a plan created by repurpose_post before the day was planned; the planner still plans that day (spec 024). */
+export const REPURPOSE_RATIONALE = 'repurpose';
+
+/** A placeholder plan (reserved slots or repurposed posts only): the scheduler still runs the planner for its day. */
+export function isPlaceholderPlan(rationale: string | null | undefined): boolean {
+  return rationale === RESERVED_ONLY_RATIONALE || rationale === REPURPOSE_RATIONALE;
+}
+
+/** Statuses of a source slot that still may publish: its derived slots wait (spec 024 FR-007). */
+export const SOURCE_PENDING = ['planned', 'running', 'awaiting_approval', 'approved'] as const;
+/** SQL guard for claiming a content slot: a derived slot is due only once its source finished (published, shadowed, failed…). */
+const DERIVED_READY = `(s.derived_from_slot_id IS NULL OR NOT EXISTS (
+    SELECT 1 FROM editor_slots src WHERE src.id = s.derived_from_slot_id AND src.status IN ('planned','running','awaiting_approval','approved')))`;
 
 export interface EditorPlan {
   id:         string;
@@ -264,15 +310,43 @@ export class EditorPlansRepository {
    */
   async createNetworkPlan(
     channelKey: string, planDate: string, rationale: string, runId: string | null,
-    slots: Array<{ resourceRef: string; scheduledAt: Date; format: string; topic: string; angle: string | null; ideaId: string | null; sourceHints: string[] }>,
+    slots: Array<{
+      resourceRef: string; scheduledAt: Date; format: string; topic: string; angle: string | null; ideaId: string | null; sourceHints: string[];
+      // spec 024
+      treatment?: 'unique' | 'duplicate' | 'adapt'; treatmentReason?: string | null; fromIndex?: number | null; formatNotes?: string | null;
+    }>,
+    decisions: PlanDecisionInput[] = [],
+    agentId: string | null = null,
   ): Promise<string> {
     return this.replacePlan(channelKey, planDate, rationale, runId, async (client, planId) => {
-      for (const s of slots) {
+      // Sources first: a derived slot points at its source's row (spec 024 FR-006; no chains, so one pass each).
+      const ids: Array<string | null> = slots.map(() => null);
+      const order = [...slots.keys()].sort((a, b) => Number(slots[a].fromIndex != null) - Number(slots[b].fromIndex != null));
+      for (const k of order) {
+        const s = slots[k];
         const isAnchor = s.resourceRef === `telegram:${channelKey}`;
+        const derived = s.fromIndex != null && (s.treatment === 'duplicate' || s.treatment === 'adapt');
+        const { rows } = await client.query(
+          `INSERT INTO editor_slots (plan_id, channel_key, scheduled_at, format, topic, angle, source_hints, is_experiment, resource_ref, idea_id,
+                                     treatment, treatment_reason, derived_from_slot_id, source_post)
+           VALUES ($1, $2, $3, $4, $5, $6, $7, false, $8, $9, $10, $11, $12, $13) RETURNING id`,
+          [planId, channelKey, s.scheduledAt, s.format, s.topic, s.angle, JSON.stringify(s.sourceHints), isAnchor ? null : s.resourceRef, s.ideaId,
+            s.treatment ?? null, s.treatmentReason ?? null, derived ? ids[s.fromIndex!] : null,
+            derived ? JSON.stringify({ via: 'plan', ...(s.formatNotes ? { format_notes: s.formatNotes } : {}) }) : null]);
+        ids[k] = rows[0].id;
+      }
+      if (!decisions.length || !agentId) return;
+      // A re-plan of the day replaces this planner's earlier decisions; repurpose_post / owner decisions stay (unique index wins).
+      for (const d of decisions) {
         await client.query(
-          `INSERT INTO editor_slots (plan_id, channel_key, scheduled_at, format, topic, angle, source_hints, is_experiment, resource_ref, idea_id)
-           VALUES ($1, $2, $3, $4, $5, $6, $7, false, $8, $9)`,
-          [planId, channelKey, s.scheduledAt, s.format, s.topic, s.angle, JSON.stringify(s.sourceHints), isAnchor ? null : s.resourceRef, s.ideaId]);
+          `INSERT INTO content_decisions (agent_id, idea_id, resource_ref, decision, reason, reason_code, slot_id, decided_by, run_id)
+           VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+           ON CONFLICT (idea_id, resource_ref) WHERE idea_id IS NOT NULL DO UPDATE
+             SET decision = EXCLUDED.decision, reason = EXCLUDED.reason, reason_code = EXCLUDED.reason_code, slot_id = EXCLUDED.slot_id,
+                 decided_by = EXCLUDED.decided_by, run_id = EXCLUDED.run_id, created_at = now()
+           WHERE content_decisions.decided_by IN ('planner','system')`,
+          [agentId, d.ideaId, d.resourceRef, d.decision, d.reason.slice(0, 300) || '—', d.reasonCode, d.slotIndex == null ? null : ids[d.slotIndex],
+            d.decidedBy, runId && /^[0-9a-f-]{36}$/i.test(runId) ? runId : null]);
       }
     });
   }
@@ -282,11 +356,11 @@ export class EditorPlansRepository {
     const { rows } = await this.pool.query(
       `UPDATE editor_slots SET status = 'running', attempts = attempts + 1, updated_at = now()
         WHERE id IN (
-          SELECT id FROM editor_slots
-           WHERE status = 'planned' AND kind = 'content' AND scheduled_at <= $1
-           ORDER BY scheduled_at
+          SELECT s.id FROM editor_slots s
+           WHERE s.status = 'planned' AND s.kind = 'content' AND s.scheduled_at <= $1 AND ${DERIVED_READY}
+           ORDER BY s.scheduled_at
            LIMIT $2
-           FOR UPDATE SKIP LOCKED)
+           FOR UPDATE OF s SKIP LOCKED)
         RETURNING *`,
       [now, limit]);
     return rows.map(rowToSlot);
@@ -300,8 +374,9 @@ export class EditorPlansRepository {
   async plannedBefore(channelKeys: string[], until: Date, limit = 50): Promise<EditorSlot[]> {
     if (!channelKeys.length) return [];
     const { rows } = await this.pool.query(
-      `SELECT * FROM editor_slots WHERE status = 'planned' AND kind = 'content' AND channel_key = ANY($1::text[]) AND scheduled_at <= $2
-        ORDER BY scheduled_at LIMIT $3`, [channelKeys, until, limit]);
+      `SELECT s.* FROM editor_slots s WHERE s.status = 'planned' AND s.kind = 'content' AND s.channel_key = ANY($1::text[]) AND s.scheduled_at <= $2
+          AND ${DERIVED_READY}
+        ORDER BY s.scheduled_at LIMIT $3`, [channelKeys, until, limit]);
     return rows.map(rowToSlot);
   }
 
@@ -330,11 +405,18 @@ export class EditorPlansRepository {
 
   /** Planned slots that are more than `maxLateMs` overdue are skipped instead of posted late. */
   async skipStale(now: Date, maxLateMs: number): Promise<number> {
+    // Spec 024 FR-007: a derived slot whose source never got out in time names why.
+    const derived = await this.pool.query(
+      `UPDATE editor_slots d SET status = 'skipped', error = 'source_not_published', updated_at = now()
+        WHERE d.status = 'planned' AND d.kind = 'content' AND d.scheduled_at < $1
+          AND EXISTS (SELECT 1 FROM editor_slots src WHERE src.id = d.derived_from_slot_id
+                         AND src.status IN ('planned','running','awaiting_approval','approved'))`,
+      [new Date(now.getTime() - maxLateMs)]);
     const { rowCount } = await this.pool.query(
       `UPDATE editor_slots SET status = 'skipped', error = 'stale: missed its time window', updated_at = now()
         WHERE status = 'planned' AND kind = 'content' AND scheduled_at < $1`,
       [new Date(now.getTime() - maxLateMs)]);
-    return rowCount ?? 0;
+    return (rowCount ?? 0) + (derived?.rowCount ?? 0);
   }
 
   /** Slots stuck in running (process crash mid-run) → failed. */
