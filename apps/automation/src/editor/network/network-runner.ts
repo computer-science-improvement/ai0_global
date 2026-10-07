@@ -10,7 +10,7 @@ import { buildSystemPrompt, plannerUserPrompt } from '../roles/prompts';
 import { localDate, zonedToUtc } from '../roles/time';
 import type { AgentRuntime, RunAgentContext } from '../agents/agent-runtime';
 import type { Agent } from '../agents/agent.types';
-import { renderProfile, ResourceProfilesRepository } from '../agents/resource-profile';
+import { renderFormatPrefs, renderProfile, ResourceProfilesRepository } from '../agents/resource-profile';
 import { networkContext, NetworkContextDeps, NetworkCtx } from './network-context';
 import type { NetworkRepository } from './network.repository';
 import {
@@ -25,7 +25,7 @@ export interface NetworkRunnerDeps {
   memory:   Pick<EditorMemoryRepository, 'listActive'> & Partial<Pick<EditorMemoryRepository, 'ownerPreferences'>>;
   repo:     NetworkRepository;
   plans:    Pick<EditorPlansRepository, 'reservedSlots'>;
-  profiles: Pick<ResourceProfilesRepository, 'get'>;
+  profiles: Pick<ResourceProfilesRepository, 'get'> & Partial<Pick<ResourceProfilesRepository, 'formatOf'>>;
   usable?:  NetworkContextDeps['usable'];
   /** Spec 024: per-resource zones and quiet hours. */
   time?:    NetworkContextDeps['time'];
@@ -199,7 +199,10 @@ export class NetworkRunner {
     const sec = pb?.body.platforms.find((p) => p.resource_ref === slot.resourceRef) ?? null;
     const profile = slot.resourceRef ? (await this.d.profiles.get(slot.resourceRef))?.profile ?? null : null;
     const idea = slot.ideaId ? await this.d.repo.idea(slot.ideaId) : null;
+    // Spec 024 FR-013: the target's format_prefs (Telegram slots: the anchor channel's).
+    const fmt = this.d.profiles.formatOf ? await this.d.profiles.formatOf(slot.resourceRef ?? `telegram:${slot.channelKey}`).catch(() => null) : null;
     return {
+      formatPrefs: fmt ? renderFormatPrefs(fmt.prefs, fmt.locks) : null,
       playbook: sec ? renderSection(sec) : null,
       profile: profile ? renderProfile(profile, { now: this.now(), ref: slot.resourceRef ?? undefined }) : null,
       maxPerDay: sec?.per_day.max ?? null,

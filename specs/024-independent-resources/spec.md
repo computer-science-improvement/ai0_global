@@ -250,3 +250,89 @@ Duplication becomes a tool, and every resource gets its own time zone.
   «Час каналу: …» for a non-Kyiv card (owner time stays Kyiv); `renderProfile` prints «Часовий пояс: … (зараз HH:MM)» for
   non-Kyiv, non-Telegram profiles. `GET …/network` resources carry `timezone` and `quietHours` (FR-012).
 - BR-GEN-01 is updated in `docs/brd/00-overview.md`.
+
+### T3 (2026-10-07)
+- **Decision rules** live in `network/plan-decisions.ts` (pure) and are called from `validateNetworkPlan`. Gone: BR-AGT-72
+  "cover every variant", "Telegram core first", the 90-min gap between variants and "the idea must have a variant for this
+  resource" (variants are hints). The 60-min gap between posts of one platform resource stays until T8.
+- **Input:** `treatment` is optional (default `unique`); `reason` is enforced by the rules (not zod) so the planner gets every
+  error at once; `skips` is optional. Added `format_notes` (≤ 500) to `NetworkSlotInput` — not in FR-006, but FR-007's run
+  reads "the agent's format_notes"; stored in `editor_slots.source_post.format_notes`. A derived slot of a series slot (no
+  idea) is allowed when it names the same series; it records no decision (decisions are per idea). A skip must name an idea
+  planned in the same submission.
+- **Persistence:** `createNetworkPlan` inserts sources first, sets `derived_from_slot_id`, and upserts one `content_decisions`
+  row per (idea, resource). A re-plan replaces `planner`/`system` rows; rows from `repurpose_post` or the owner stay and count
+  as decided (`NetworkRepository.decidedElsewhere`). `GET …/plan` adds slot `treatment`, `treatmentReason`, `derivedFrom` and
+  `decisions[]` (for T6).
+- **Hard limits:** `derivedFormatProblem` (`post/duplicate.ts`) — implemented formats, media kind and count per format
+  (Telegram formats get a capacity table), polls. Plan time checks by format; run time re-checks with the source's real media:
+  impossible by format → `unsupported_format`, possible by format but the media are missing → `source_media_gone`.
+- **Execution** is in `EditorRunnerService.runDerived` + `network/derived-slots.ts` (slots run in the editor runner, not in
+  `network-runner.ts`). `claimDue` / `plannedBefore` claim a derived slot only once its source is no longer
+  planned/running/awaiting_approval/approved; `skipStale` names `source_not_published` while the source is still pending after
+  3 h. In approval mode a derived post is written after its source went out and waits for its own approval.
+- **Duplicate:** one short run (≤ 6 steps; tools lint / preview / publish / skip only) with the source spec, the
+  `duplicateSpec()` draft, the target profile, format_prefs (filled by T8), the format notes and the hard limits. **Adapt:** the
+  full executor tool set, 14 steps. No retry: a run without a result fails the slot; lint failing twice → `failed` + Inbox
+  `derived_post_failed` (English). There is no `trace.kind` column: a derived run is the slot's `run_id` with its `treatment`.
+- **Sources:** a Telegram source reads `post_spec`; a platform source reads `post_spec` (`publish_platform_post` now stores the
+  spec on the slot in shadow/live too) or `platform_posts.spec`.
+- **Media lifetime:** `062_resource_formatting.sql` adds `media_holds`; `EditorMediaPreparer.hostSlides` asks
+  `MediaHolds.holdIfDerived` before deleting. Held slides are reused as the duplicate's media and swept after each derived run
+  and on every scheduler tick (24 h at most).
+- The `network-planning` skill and the `network-plan-staggered` eval now describe decisions (T7 adds `resource-decisions`).
+- Tests: the PG suite is not re-runnable on the same database (editor/autonomy e2e leave `content_ledger` rows — pre-existing);
+  use a fresh scratch database.
+
+### T4 (2026-10-07)
+- **Tool** `repurpose_post` (`network/repurpose-tool.ts`, kind `act` — the harness has no `write` kind) for orchestrator,
+  planner and executor; the logic is `RepurposeService.run`, shared with the chat's Apply handler. Error codes: `no_network`,
+  `daily_limit`, `source_not_found`, `source_not_in_network`, `source_not_eligible` (older than 72 h, not out, derived, not
+  today's plan), `not_own_slot`, `not_in_network`, `same_resource`, `duplicate_target`, `no_playbook_section`,
+  `already_decided`, `unsupported_format`, `invalid_time` (DST gap), `time_passed`, `before_source`, `quiet_hours`, `daily_cap`
+  (playbook `per_day.max` on the target's local day, and the platform API cap). On a target error nothing is written; the
+  response lists every target's error.
+- **Input additions:** `targets[].format` (optional, not in FR-008): without it code takes the first playbook format (by
+  weight), then any implemented format, that can technically carry the source. `at` and `delay_min` are exclusive; neither
+  means delay 0. A delay from an already published source that lands in the past becomes "now + 1 min".
+- **Daily cap:** 10 calls per orchestrator per anchor day, counted by `content_decisions.call_id` (migration 062). The owner's
+  chat Apply is outside it.
+- **Writes:** `EditorPlansRepository.createRepurpose` puts the slots into the anchor's active plan of their date (a plan with
+  rationale `repurpose` when the day has none — the scheduler treats it like `reserved only` and still plans the day) and the
+  decisions, in one transaction; a race on the unique index → `already_decided`. A re-plan of the day moves planned
+  repurposed slots (`source_post.via = 'repurpose'`) to the new plan.
+- **Sources:** a slot source (or a platform / Telegram post that has an editor slot) is linked by `derived_from_slot_id`, so
+  the T3 waiting rules apply ("after this is published"); slot-less posts (strategy posts, chat platform posts) carry
+  `source_post.key` (`pp:<id>` / `tg:<id>`). A strategy post has no stored text or media: its title, tags and source URL
+  form the draft, and a target that needs media → `source_media_gone`.
+- **Finding sources:** `get_network_posts` now returns `published_post_id` / `platform_post_id` (062 appends `post_ref` to
+  the `network_posts` view).
+- **Chat:** chat agents get `propose_repurpose` (composer role): it dry-runs the same validation and proposes a `repurpose`
+  card; Apply runs it with `decided_by = 'owner'`, Discard writes nothing.
+- **Per-resource modes** would plug in at `RepurposeService.run` (mode of the target) and in `runDerived` (today the run mode is
+  the anchor's effective mode; platform refs still answer `resource_follows_network`).
+- FR-009's gate in `GroupFanOutService` shipped with T1 (its test stays the coverage); the Groups-page warning is T5.
+
+### T8 (2026-10-07)
+- **Schema:** `format_prefs` (`FormatPrefsSchema`, strict, every field optional; `hashtags.style` optional, `line_breaks` free
+  text) and `format_locks` (field names) in `ResourceProfileSchema`. A stored profile with invalid formatting drops only the
+  formatting. A profile save without these keys keeps the stored ones (the profile form, the builder and old clients never wipe
+  them).
+- **Storage:** format_prefs live in the profile JSON, so a member resource without a full profile can still have them
+  (`profiles.get` stays null for it; `formatOf` reads them). Versions: `resource_profile_versions` (migration 062) — every
+  profile save and every formatting change, with `changed_by`, `agent_id`, `reason`, a field-level `diff` and the snapshot.
+- **Tools:** `update_resource_format {resource_ref, patch, reason}` (orchestrator, planner; `null` clears a field) and the
+  read tool `get_resource_format` (also executor; not in the spec). Errors: `locked_by_owner`, `daily_limit` (3 agent changes
+  per resource per local day via `resource_tz()`), `invalid_patch`, `no_change`, `not_in_network`, `no_network`.
+- **Owner edits:** `GET /api/agents/:handle/formatting` (every resource of the agent's network with prefs, locks and today's
+  agent changes, plus the history) and `PUT /api/agents/:handle/formatting/:ref {format_prefs, format_locks}` (replaces both;
+  outside the daily cap). The UI is a "Formatting" section on the orchestrator's Overview next to "Resource" (not inside the
+  profile modal: member resources have no profile form), with per-field lock toggles and a collapsible change history.
+- **Prompts:** the target's format_prefs (locked fields marked) go into the platform executor's system prompt, the Telegram
+  executor's slot prompt and the duplicate / adapt run; the orchestrator prompt tells it to evolve them from KPIs and from the
+  owner's approval edits (031 owner preferences are in its memory) — a hint, not a separate suggestion card.
+- **Soft defaults → hints:** the 60-min gap between posts of one platform resource is gone from `validateNetworkPlan` and from
+  `publishPlatformNow` (`min_gap`); the planner prompt names the old values as guidance. The Telegram card's `minGapMinutes`
+  (an owner setting) still applies. No fixed hashtag cut or caption trim existed in the agent path (`renderPlatform` trims only
+  at the platform maximum); the strategies' caption helpers are legacy fan-out and stay (non-goal).
+- **Eval** `executor-format-prefs` (`evals/cases/agents.ts`) written, not run; the eval stack now wires derived slots.

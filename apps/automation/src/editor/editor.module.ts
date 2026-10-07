@@ -34,10 +34,12 @@ import { TelegramEditorPublisher } from './publish/telegram-editor.publisher';
 import { SponsoredPublisher } from './publish/sponsored.publisher';
 import { EditorMediaPreparer } from './publish/prepare-media';
 import { EditorCrossPoster } from './publish/editor-crosspost';
+import { MediaHolds } from './publish/media-holds';
+import { DerivedSlots } from './network/derived-slots';
 import { ResourceTime } from './time/resource-time';
 import { safeGetBytes } from './net/safe-http';
 import { AdOrdersRepository } from '../payments/ad-orders.repository';
-import { EditorRunnerService } from './roles/editor-runner.service';
+import { EditorRunnerService, type EditorRunnerDeps } from './roles/editor-runner.service';
 import { EditorScheduler } from './editor.scheduler';
 import { htmlToPlain } from './post/inline-markup';
 import { EditorRunsRepository } from './repo/editor-runs.repository';
@@ -64,7 +66,7 @@ import { AgentsService } from './agents/agents.service';
 import { AGENTS_SERVICE, AgentsController } from './agents/agents.controller';
 import { telegramKeyOf, parseResourceRef, resourceRef } from './agents/agent.types';
 import type { Agent } from './agents/agent.types';
-import { ResourceProfilesRepository } from './agents/resource-profile';
+import { renderFormatPrefs, ResourceProfilesRepository } from './agents/resource-profile';
 import { ResourceCatalog, makeTelegramAccessCheck } from './agents/resource-catalog';
 import { PendingActionsRepository, PendingActionsService } from './agents/pending-actions';
 import { AgentCreator } from './agents/agent-creator';
@@ -86,6 +88,9 @@ import { ResourceHealthService } from './platform/resource-health.service';
 import { NetworkRepository } from './network/network.repository';
 import { NetworkRunner } from './network/network-runner';
 import { buildNetworkTools } from './network/network-tools';
+import { buildRepurposeTools, RepurposeInput, RepurposeService } from './network/repurpose-tool';
+import { buildFormatTools } from './network/format-tools';
+import { networkContext } from './network/network-context';
 import { buildSeriesTools } from './network/series-tools';
 import { buildHighlightsTools } from './tools/highlights-tools';
 import { catalogSummaryOf, checkLowRunway } from './tools/catalog-context';
@@ -223,7 +228,43 @@ export interface AgentInfra {
 }
 export { EDITOR_OPS, EDITOR_CHAT, EDITOR_DRAFTS };
 
-type PublishPorts = Pick<PublishSpecDeps, 'publisher' | 'media' | 'crosspost'>;
+type PublishPorts = Pick<PublishSpecDeps, 'publisher' | 'media' | 'crosspost'> & {
+  /** Spec 024 FR-007: hosted slides of sources with pending derived slots. */
+  holds?: MediaHolds;
+};
+
+/** Spec 024 FR-007: the runner's derived-slot ports (source resolution, held media, the lint-twice Inbox note). */
+function derivedPorts(pool: Pool, net: NetworkRepository, infra: AgentInfra, holds: MediaHolds | null): NonNullable<EditorRunnerDeps['derived']> {
+  const slots = new DerivedSlots({
+    pool,
+    heldUrls: holds ? (id) => holds.urls(id) : undefined,
+    // Membership regardless of health: a resource that is only unhealthy has not left the network.
+    networkRefs: async (key) => {
+      const g = await net.groupOfChannel(key);
+      return g ? [`telegram:${key}`, ...(await net.groupResources(g.id)).map((r) => r.ref)] : null;
+    },
+  });
+  return {
+    resolve: (slot) => slots.resolve(slot),
+    formatPrefs: async (ref) => { const f = await infra.profiles.formatOf(ref); return renderFormatPrefs(f.prefs, f.locks); },
+    released: holds ? (id) => holds.sweep(new Date(), id) : undefined,
+    inbox: (n) => infra.inbox.post({
+      agentId: n.agentId, kind: 'derived_post_failed', severity: 'action', title: n.title, body: n.body, refType: 'slot', refId: n.slotId,
+    }),
+  };
+}
+
+/** Spec 024 FR-008: the network and anchor card of a chat agent (its orchestrator's Telegram anchor). */
+function chatNetwork(pool: Pool, repos: EditorRepos, infra: AgentInfra, usable?: (ref: string) => Promise<boolean>) {
+  return async (agent: Agent) => {
+    const orch = agent.parentId ? (await infra.agents.get(agent.parentId)) ?? agent : agent;
+    const key = telegramKeyOf(orch);
+    const card = key ? await repos.channels.get(key) : null;
+    if (!card) return null;
+    const net = await networkContext({ repo: new NetworkRepository(pool), usable, time: resourceTime(repos, infra.profiles) }, orch, card);
+    return net ? { net, card } : null;
+  };
+}
 
 /** Spec 024 FR-004: one per-resource time resolver (card for Telegram, then the profile, then Kyiv). */
 function resourceTime(repos: Pick<EditorRepos, 'channels'>, profiles: ResourceProfilesRepository): ResourceTime {
@@ -513,7 +554,10 @@ export const EDITOR_PROVIDERS = [
       useFactory: (
         channelConfig: ChannelConfigService, renderer: RecipeCarouselRendererService, hosting: SlideHostingService,
         telegraph: TelegraphService, crossPost: CrossPostService, groupFanOut: GroupFanOutService, pool: Pool,
-      ): PublishPorts => ({
+      ): PublishPorts => {
+        const holds = new MediaHolds(pool, hosting, (m) => new Logger('MediaHolds').warn(m));
+        return {
+        holds,
         publisher: new TelegramEditorPublisher({
           resolveChannel:     (k) => channelConfig.resolveChannel(k),
           isPublishPausedFor: (k) => channelConfig.isPublishPausedFor(k),
@@ -527,6 +571,7 @@ export const EDITOR_PROVIDERS = [
             const r = await safeGetBytes(url);
             return r.status < 400 ? r.body : null;
           },
+          holds,
         }),
         // Live posts are mirrored like the legacy strategies' (spec 009 T003); card.crosspost=false opts out.
         crosspost: new EditorCrossPoster({
@@ -534,7 +579,8 @@ export const EDITOR_PROVIDERS = [
           postLink: (k, id) => tgPostLink(channelConfig.getChannelMeta(k)?.username ?? null, id),
           autoDuplicateActive: (k) => new NetworkRepository(pool).autoDuplicateActiveForChannel(k),
         }),
-      }),
+        };
+      },
     },
     {
       provide: PLATFORM_INFRA,
@@ -671,6 +717,17 @@ export const EDITOR_PROVIDERS = [
             digest: new KpiDigestService({ pool, catalog: infra.catalog, globalCapUsd: capDefaults(env).agentsDailyUsd, capUsd: agentsCapUsd(env, caps) }),
             channelKeyOf: (a) => infra.channelKeyOf(a),
             seriesLocked: async (orch, name) => isSeriesLocked((await new NetworkRepository(pool).activePlaybook(orch.id))?.body ?? null, name),
+          }),
+          // Spec 024 FR-013: agent-owned formatting per resource.
+          ...buildFormatTools({ profiles: infra.profiles }),
+          // Spec 024 FR-008: repurpose_post for the orchestrator, planner and executor; an Apply card for chat agents.
+          ...buildRepurposeTools({
+            service: new RepurposeService({ pool, plans: repos.plans }),
+            networkFor: (orch, card) => networkContext({
+              repo: new NetworkRepository(pool), usable: (ref) => platform.health.usable(ref), time: resourceTime(repos, infra.profiles),
+            }, orch, card),
+            chatNetwork: chatNetwork(pool, repos, infra, (ref) => platform.health.usable(ref)),
+            actions: infra.actions,
           }),
           ...buildPlatformTools({
             pool, publish: platform.publish, plans: repos.plans, schedule,
@@ -838,10 +895,10 @@ export const EDITOR_PROVIDERS = [
     },
     {
       provide: EDITOR_RUNNER,
-      inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_SKILLS, EDITOR_REGISTRY, TelegramNotifier, AGENT_INFRA, EDITOR_LOOP, EDITOR_NETWORK, SCHEDULE_INFRA],
+      inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_SKILLS, EDITOR_REGISTRY, TelegramNotifier, AGENT_INFRA, EDITOR_LOOP, EDITOR_NETWORK, SCHEDULE_INFRA, EDITOR_PUBLISH],
       useFactory: (
         pool: Pool, cfg: ConfigService, repos: EditorRepos, skills: SkillLibrary, registry: ToolRegistry, notifier: TelegramNotifier,
-        infra: AgentInfra, loop: AgentLoop, network: NetworkRunner, schedule: ScheduleService,
+        infra: AgentInfra, loop: AgentLoop, network: NetworkRunner, schedule: ScheduleService, ports: PublishPorts,
       ): EditorRunnerService => {
         const logger = new Logger('Editor');
         const env = (k: string) => cfg.get<string>(k) ?? undefined;
@@ -854,6 +911,8 @@ export const EDITOR_PROVIDERS = [
           catalogSummary: withSchedule(catalogSummaryOf(pool, env), schedule),
           seriesContext: (slot) => schedule.executorContext(slot),
           onSlotDone: async (slot) => { if (slot.ideaId) await ideas.settleIdea(slot.ideaId); },
+          // Spec 024 FR-007: duplicate / adapt slots — the agent formats every target post itself.
+          derived: derivedPorts(pool, ideas, infra, ports.holds ?? null),
         });
       },
     },
@@ -900,6 +959,8 @@ export const EDITOR_PROVIDERS = [
           pins: (card, now) => schedule.materialiseChannel(card, now),
           // The MANAGER at its times; an event run for orchestrators with fresh directives (spec 021).
           afterTick: async () => {
+            // Spec 024 FR-007: held slides of sources whose derived slots are done (or waited 24 h).
+            if (ports.holds) await ports.holds.sweep().catch((err) => logger.warn(`media holds sweep failed: ${err?.message ?? err}`));
             await manager.runner.tick();
             for (const orch of await manager.runner.orchestratorsToWake()) {
               const key = telegramKeyOf(orch);
@@ -1011,6 +1072,17 @@ export const EDITOR_PROVIDERS = [
           }, input, { from: await manager.runner.manager(), runId: null, shadow: false, ownerApproved: true });
           if ('error' in r) throw new Error(`${r.error}: ${r.details ?? ''}`);
           return { id: r.directive.id, status: r.directive.status };
+        });
+        // Spec 024 FR-008: a repurpose the owner applied from the chat (decided_by owner, outside the agent's daily cap).
+        infra.actions.register('repurpose', async (p) => {
+          const { handle, ...rest } = p as Record<string, unknown>;
+          const input = RepurposeInput.parse(rest);
+          const agent = await svc.require(String(handle));
+          const c = await chatNetwork(pool, repos, infra)(agent);
+          if (!c) throw new Error('no_network: this channel is not part of a network');
+          const r = await new RepurposeService({ pool, plans: repos.plans }).run(c.net, c.card, input, { decidedBy: 'owner' });
+          if ('error' in r) throw new Error(`${r.error}: ${typeof r.details === 'string' ? r.details : JSON.stringify(r.details ?? '')}`);
+          return r;
         });
         // Spec 032 FR-010: an agent's description fix for a dataset, applied by the owner (description-only, never a version bump).
         infra.actions.register('edit_data_schema', (p) => applyDataSchemaSuggestion(new DataStore(pool), p));

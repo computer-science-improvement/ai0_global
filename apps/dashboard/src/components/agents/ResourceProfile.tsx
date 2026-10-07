@@ -343,7 +343,7 @@ export function ProfileModal({ handle, initial, refName, onClose }: {
 }
 
 /** Tags with ×; Enter or comma adds, Backspace on empty removes the last; typed text is added on blur. */
-function ChipInput({ values, onChange, max, maxLen, minLen = 1, placeholder, label }: {
+export function ChipInput({ values, onChange, max, maxLen, minLen = 1, placeholder, label }: {
   values: string[]; onChange: (v: string[]) => void; max: number; maxLen: number; minLen?: number; placeholder?: string; label: string;
 }) {
   const [text, setText] = useState('');

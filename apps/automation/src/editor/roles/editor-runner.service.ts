@@ -13,6 +13,8 @@ import { parseResourceRef } from '../agents/agent.types';
 import { capabilitiesSummary, implementedFormats } from '../platform/capabilities';
 import type { PlatformSlotExtras } from '../platform/platform-tools';
 import { isQuietHour, localDate, localHour, zonedToUtc } from './time';
+import { isToolError, type EditorTool } from '../harness/tool';
+import { DERIVED_STEPS, derivedPrompts, slotResource, type DerivedResolution } from '../network/derived-slots';
 
 export interface EditorRunnerDeps {
   loop:     Pick<AgentLoop, 'run'>;
@@ -30,7 +32,11 @@ export interface EditorRunnerDeps {
    * the resource, its profile and limits. Optional; without it the platform
    * executor works from the slot and the capability matrix only.
    */
-  platformContext?: (slot: EditorSlot, orchestratorId: string | null) => Promise<{ playbook?: string | null; profile?: string | null; maxPerDay?: number | null; vocabulary?: string[]; idea?: string | null } | null>;
+  platformContext?: (slot: EditorSlot, orchestratorId: string | null) => Promise<{
+    playbook?: string | null; profile?: string | null; maxPerDay?: number | null; vocabulary?: string[]; idea?: string | null;
+    /** Spec 024 FR-013: the target's format_prefs, rendered for the prompt. */
+    formatPrefs?: string | null;
+  } | null>;
   /** Spec 020: network planner and the idea pool for the single-channel planner. */
   network?: {
     runNetworkPlanner(card: EditorCard, planDate?: string): Promise<AgentLoopResult | null>;
@@ -42,6 +48,18 @@ export interface EditorRunnerDeps {
   seriesContext?: (slot: EditorSlot) => Promise<{ note: string | null; skip?: string }>;
   /** Called after an executor run (spec 020: an idea becomes `used` once all its slots are done). */
   onSlotDone?: (slot: EditorSlot) => Promise<void>;
+  /**
+   * Spec 024 FR-007: derived (duplicate / adapt) slots. `resolve` finds the
+   * source; `formatPrefs` renders the target's format_prefs (FR-013);
+   * `released` runs after the derived slot finished (held media of its source);
+   * `inbox` gets the note when the agent's post failed lint twice.
+   */
+  derived?: {
+    resolve(slot: EditorSlot): Promise<DerivedResolution>;
+    formatPrefs?(ref: string): Promise<string | null>;
+    released?(sourceSlotId: string): Promise<unknown>;
+    inbox?(note: { agentId: string | null; title: string; body: string; slotId: string }): Promise<unknown>;
+  };
 }
 
 /** Telegram-only tools that must never run on a slot of another platform, and vice versa. */
@@ -52,6 +70,31 @@ export const MAX_SLOT_ATTEMPTS = 2;
 export const RETRY_DELAY_MS = 15 * 60_000;
 
 const MAX_STEPS: Record<CardRole, number> = { planner: 10, executor: 14, reviewer: 14 };
+
+/** Tools of a duplicate's short formatting run (FR-007): lint, publish or skip — nothing else. */
+const DUPLICATE_TOOLS: Record<'telegram' | 'platform', Set<string>> = {
+  telegram: new Set(['lint_post', 'preview_post', 'publish_post', 'skip_slot']),
+  platform: new Set(['lint_platform_post', 'publish_platform_post', 'skip_slot']),
+};
+
+/**
+ * FR-007: on a lint failure the agent fixes its own post once; the second
+ * failure of the publish tool ends the slot (`onSecond` marks it failed).
+ */
+export function lintOnce(tool: EditorTool, onSecond: (details: unknown) => Promise<void>): EditorTool {
+  let fails = 0;
+  return {
+    ...tool,
+    execute: async (input, ctx) => {
+      const r = await tool.execute(input, ctx);
+      if (isToolError(r) && r.error === 'lint_failed' && ++fails >= 2) {
+        await onSecond(r.details);
+        return { ok: true, failed: 'lint_failed', details: r.details };
+      }
+      return r;
+    },
+  };
+}
 
 /** Runs one role over the AgentLoop and applies the slot state machine around it. */
 export class EditorRunnerService {
@@ -84,8 +127,11 @@ export class EditorRunnerService {
       model: resolveModel(role, this.d.env, agentModel ? { ...card.models, [role]: agentModel } : card.models),
       system: buildSystemPrompt(role, card, memory, skills, prefs),
       user,
-      tools: this.d.registry.forRole(role, card.toolsAllow).filter((t) => !(extras.excludeTools as Set<string> | undefined)?.has(t.name)),
-      maxSteps: MAX_STEPS[role],
+      tools: ((extras.wrapTools as ((t: EditorTool[]) => EditorTool[]) | undefined) ?? ((t) => t))(
+        this.d.registry.forRole(role, card.toolsAllow)
+          .filter((t) => !(extras.excludeTools as Set<string> | undefined)?.has(t.name))
+          .filter((t) => !(extras.allowTools as Set<string> | undefined) || (extras.allowTools as Set<string>).has(t.name))),
+      maxSteps: typeof extras.maxSteps === 'number' ? extras.maxSteps : MAX_STEPS[role],
       channelBudgetUsd: card.dailyBudgetUsd,
       agent: ctx?.agent
         ? { id: ctx.agent.id, handle: ctx.agent.handle, limitUsd: ctx.agent.dailyBudgetUsd ?? ctx.orchestrator?.dailyBudgetUsd ?? null }
@@ -142,6 +188,7 @@ export class EditorRunnerService {
     const series = this.d.seriesContext ? await this.d.seriesContext(slot).catch(() => null) : null;
     if (series?.skip) return this.skipByCode(slot, series.skip);
     note = [note, series?.note].filter(Boolean).join('\n') || null;
+    if ((slot.treatment === 'duplicate' || slot.treatment === 'adapt') && this.d.derived) return this.runDerived(slot, card, ctx);
     const target = slot.resourceRef ? parseResourceRef(slot.resourceRef) : null;
     const res = target && target.platform !== 'telegram'
       ? await this.runPlatformExecutor(slot, card, ctx, target.platform, note ?? null)
@@ -171,12 +218,90 @@ export class EditorRunnerService {
     return { runId: null, status: 'disabled', error: reason, totals: { steps: 0, promptTokens: 0, completionTokens: 0, costUsd: 0 } };
   }
 
+  /**
+   * Spec 024 FR-007: a duplicate / adapt slot. The agent formats every target
+   * post itself — a short run for a duplicate (source + draft + format_prefs +
+   * its format notes), a native rewrite for an adapt; never a code-only mirror.
+   * No retry: a run without a result fails the slot.
+   */
+  private async runDerived(slot: EditorSlot, card: EditorCard, ctx: RunAgentContext | null): Promise<AgentLoopResult> {
+    const zero = { steps: 0, promptTokens: 0, completionTokens: 0, costUsd: 0 };
+    const r = await this.d.derived!.resolve(slot);
+    if (r.kind === 'wait') {
+      // The source has not finished yet (owner "run now", approval): back to planned, re-checked every tick.
+      await this.d.plans.updateSlot(slot.id, { status: 'planned', error: 'waiting for its source' });
+      return { runId: null, status: 'ok', totals: zero, error: 'waiting for its source' };
+    }
+    if (r.kind === 'skip') {
+      await this.d.plans.updateSlot(slot.id, { status: 'skipped', error: r.details ? `${r.code}: ${r.details}`.slice(0, 500) : r.code });
+      if (this.d.onSlotDone) await this.d.onSlotDone(slot).catch(() => {});
+      return { runId: null, status: 'ok', terminalTool: 'skip_slot', totals: zero, error: r.code };
+    }
+    const targetRef = slotResource(slot);
+    const platform = parseResourceRef(targetRef)?.platform ?? 'telegram';
+    const tg = platform === 'telegram';
+    // A derived slot of a shadowed source is always shadowed.
+    const runCard: EditorCard = r.shadow ? { ...card, mode: 'shadow' } : card;
+    const mode = runCard.mode === 'live' || runCard.mode === 'approve' ? runCard.mode : 'shadow';
+    const pc = this.d.platformContext ? await this.d.platformContext(slot, ctx?.orchestrator?.id ?? null).catch(() => null) : null;
+    const formatPrefs = this.d.derived!.formatPrefs
+      ? await this.d.derived!.formatPrefs(targetRef).catch(() => null)
+      : pc?.formatPrefs ?? null;
+    const prefs = await this.prefs('executor', card.channelKey);
+    const memory = await this.d.memory.listActive(card.channelKey, 30, { excludeApprovalPrefs: prefs.length > 0 });
+    const skills = ctx?.skills ?? this.d.skills;
+    const skill = skills.get(tg ? 'resource-decisions' : `platform-${platform}`) ?? null;
+    const { system, user } = derivedPrompts({
+      slot, ready: r, targetRef, targetPlatform: platform, profile: pc?.profile ?? null, formatPrefs, playbook: pc?.playbook ?? null,
+      memory: memory.map((m) => `- [${m.kind}${m.createdBy === 'owner' ? ', власник' : ''}] ${m.text}`).join('\n'), mode,
+      skill: skill ? `### skill: ${skill.name}\n${skill.body}` : null, ownerPrefs: ownerPreferencesSection(prefs),
+    });
+    let lintFailedTwice = false;
+    const onSecond = async (details: unknown) => {
+      lintFailedTwice = true;
+      const codes = Array.isArray(details) ? details.map((x: any) => x?.code ?? String(x)).join(', ') : String(details ?? '');
+      await this.d.plans.updateSlot(slot.id, { status: 'failed', error: `lint_failed twice: ${codes}`.slice(0, 500) });
+      await this.d.derived!.inbox?.({
+        agentId: ctx?.orchestrator?.id ?? null, slotId: slot.id,
+        title: `A ${r.treatment} for ${targetRef} failed lint twice`,
+        body: `The agent could not fix its ${r.treatment} of ${r.sourceRef} for ${targetRef} (${codes}). The slot is marked failed.`,
+      })?.catch(() => {});
+    };
+    const extras: Record<string, unknown> = {
+      systemOverride: system, maxSteps: DERIVED_STEPS[r.treatment],
+      excludeTools: tg ? PLATFORM_ONLY : TELEGRAM_ONLY,
+      ...(r.treatment === 'duplicate' ? { allowTools: DUPLICATE_TOOLS[tg ? 'telegram' : 'platform'] } : {}),
+      wrapTools: (tools: EditorTool[]) => tools.map((t) => (t.name === 'publish_post' || t.name === 'publish_platform_post' ? lintOnce(t, onSecond) : t)),
+      derived: { treatment: r.treatment, sourceRef: r.sourceRef, sourceSlotId: r.sourceSlotId },
+      ...(tg ? {} : {
+        platformSlot: {
+          resourceRef: targetRef, mode, maxPerDay: pc?.maxPerDay ?? null, vocabulary: pc?.vocabulary ?? [], bannedTerms: card.bannedTerms,
+          agentId: ctx?.agent?.id ?? null,
+        } satisfies PlatformSlotExtras,
+      }),
+    };
+    const res = await this.run('executor', runCard, user, slot.id, extras, ctx);
+    await this.d.plans.updateSlot(slot.id, { runId: res.runId });
+    const after = await this.d.plans.getSlot(slot.id);
+    if (after && after.status === 'running' && !lintFailedTwice) {
+      await this.d.plans.updateSlot(slot.id, { status: 'failed', error: `${res.status}${res.error ? `: ${res.error}` : ''}`.slice(0, 500) });
+    }
+    if (r.sourceSlotId && this.d.derived!.released) await this.d.derived!.released(r.sourceSlotId)?.catch(() => {});
+    if (this.d.onSlotDone) await this.d.onSlotDone(slot).catch(() => {});
+    return res;
+  }
+
   /** The Telegram executor prompt, plus the pool idea the slot realises (spec 020). */
   private async executorUser(card: EditorCard, slot: EditorSlot, ctx: RunAgentContext | null): Promise<string> {
     const base = executorUserPrompt(card, slot, this.now());
-    if (!slot.ideaId || !this.d.platformContext) return base;
+    if (!this.d.platformContext) return base;
     const pc = await this.d.platformContext(slot, ctx?.orchestrator?.id ?? null).catch(() => null);
-    return pc?.idea ? `${base}\nІдея з пулу: ${pc.idea}` : base;
+    return [
+      base,
+      slot.ideaId && pc?.idea ? `Ідея з пулу: ${pc.idea}` : '',
+      // Spec 024 FR-013: the channel's own formatting (agent-owned; fields locked by the owner are binding).
+      pc?.formatPrefs ? `Форматування цього ресурсу (format_prefs):\n${pc.formatPrefs}` : '',
+    ].filter(Boolean).join('\n');
   }
 
   /** A slot that targets Instagram / Facebook / Threads / TikTok of the channel's network (spec 019 FR-008). */
@@ -198,6 +323,9 @@ export class EditorRunnerService {
       capabilitiesSummary([platform as any]),
       `Доступні формати зараз: ${implementedFormats(platform as any).join(', ')}.`,
       ...(pc?.profile ? ['', '## Профіль ресурсу', pc.profile] : []),
+      '',
+      '## Форматування ресурсу (format_prefs)',
+      pc?.formatPrefs || '- не задано: на твій розсуд, за нормами платформи (рекомендовані діапазони вище — орієнтир, не правило)',
       ...(pc?.playbook ? ['', '## Плейбук для цього ресурсу', pc.playbook] : []),
       '',
       '## Памʼять мережі (правила власника і висновки)',
@@ -216,6 +344,7 @@ export class EditorRunnerService {
       mode === 'shadow' ? 'Режим shadow: пост збережеться як превʼю, нічого не публікується.' : '',
       mode === 'approve' ? 'Режим апруву: пост буде повністю підготовлений і чекатиме схвалення власника; публікує код у час слота після апруву.' : '',
       note ?? '',
+      'Якщо цей пост варто також дати на інший ресурс мережі — до завершення виклич repurpose_post з source.slot_id цього слота (вийде після публікації цього поста).',
       'Підготуй пост і заверши publish_platform_post (після lint_platform_post) або skip_slot з причиною.',
     ].filter(Boolean).join('\n');
     const platformSlot: PlatformSlotExtras = {

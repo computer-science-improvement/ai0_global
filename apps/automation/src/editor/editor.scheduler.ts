@@ -2,7 +2,7 @@ import type { Pool } from 'pg';
 import type { ChannelMode, EditorCard } from './card';
 import { batchDateDue, writeAt } from './approval/approval-timing';
 import type { EditorChannelsRepository } from './repo/editor-channels.repository';
-import { RESERVED_ONLY_RATIONALE } from './repo/editor-plans.repository';
+import { isPlaceholderPlan } from './repo/editor-plans.repository';
 import type { EditorPlansRepository, EditorSlot } from './repo/editor-plans.repository';
 import type { EditorRunnerService } from './roles/editor-runner.service';
 import { localDate, localHour, localWeekday } from './roles/time';
@@ -188,7 +188,7 @@ export class EditorScheduler {
     const date = batchDateDue(now, card);
     if (!date) return;
     const active = await this.d.plans.getActivePlan(card.channelKey, date);
-    if (active && active.rationale !== RESERVED_ONLY_RATIONALE) return;
+    if (active && !isPlaceholderPlan(active.rationale)) return;
     const key = `${card.channelKey}:${date}`;
     const tries = this.plannerTries.get(key) ?? { n: 0, at: 0 };
     if (tries.n >= PLANNER_MAX_TRIES || now.getTime() - tries.at < PLANNER_RETRY_MS) return;
@@ -215,7 +215,7 @@ export class EditorScheduler {
     if (localHour(now, card.timezone) < card.planHour) return;
     const date = localDate(now, card.timezone);
     const active = await this.d.plans.getActivePlan(card.channelKey, date);
-    if (active && active.rationale !== RESERVED_ONLY_RATIONALE) return;
+    if (active && !isPlaceholderPlan(active.rationale)) return;
     const key = `${card.channelKey}:${date}`;
     const tries = this.plannerTries.get(key) ?? { n: 0, at: 0 };
     if (tries.n >= PLANNER_MAX_TRIES || now.getTime() - tries.at < PLANNER_RETRY_MS) return;

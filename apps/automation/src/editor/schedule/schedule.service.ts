@@ -10,7 +10,6 @@ import { isQuietHour, localDate, localTimeLabel, zonedToUtc } from '../roles/tim
 import { DEFAULT_TZ } from '../time/resource-time';
 import { networkContext, NetworkContextDeps, NetworkCtx, resourceClock } from '../network/network-context';
 import type { NetworkRepository } from '../network/network.repository';
-import { PLATFORM_GAP_MIN } from '../network/network-plan';
 import { Playbook, validatePlaybook } from '../network/playbook';
 import { instancesOn, parseCadence, SeriesSourceCatalog, seriesSourceLabel, type SeriesSource } from '../network/series';
 import { normalizePlaybook } from '../network/series-edit';
@@ -102,7 +101,9 @@ export class ScheduleService {
     const out: PlanScheduleCtx['clocks'] = {};
     for (const r of sc.net.resources) {
       const c = resourceClock(r, sc.card);
-      out[r.ref] = { tz: c.tz, quiet: c.quiet, gapMin: r.platform === 'telegram' ? sc.card.minGapMinutes : PLATFORM_GAP_MIN };
+      // Spec 024 (owner decision): spacing between platform posts is the agent's choice, so code keeps no gap there;
+      // Telegram keeps the card's own min gap (an owner setting).
+      out[r.ref] = { tz: c.tz, quiet: c.quiet, gapMin: r.platform === 'telegram' ? sc.card.minGapMinutes : 0 };
     }
     return out;
   }

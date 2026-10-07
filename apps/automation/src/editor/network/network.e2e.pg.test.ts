@@ -81,7 +81,7 @@ test('brief → playbook → independent network → ideas → plan → native p
   const IG = `instagram:${igId}`;
   const now = new Date();
   const kyivHour = Number(new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Kyiv', hour: '2-digit', hourCycle: 'h23' }).format(now));
-  if (kyivHour >= 20) return; // the plan needs two slots ≥ 90 min apart before the day ends
+  if (kyivHour >= 20) return; // the plan needs two slots later today
   const hh = (h: number) => String(Math.min(23, kyivHour + h)).padStart(2, '0');
 
   const agents = new AgentsRepository(pool);
@@ -127,8 +127,8 @@ test('brief → playbook → independent network → ideas → plan → native p
     { calls: [{ name: 'finish_idea_review', args: { summary: '1 прийнято' } }] },
     // network planner
     { calls: [{ name: 'submit_network_plan', args: { rationale: 'Сатурн: спершу TG, потім IG', slots: [
-      { resource_ref: `telegram:${CH}`, time: `${hh(1)}:00`, format: 'longread', topic: IDEA_TITLE, idea_id: '__IDEA__' },
-      { resource_ref: IG, time: `${hh(3)}:00`, format: 'ig_carousel', topic: `${IDEA_TITLE} — карусель`, idea_id: '__IDEA__' },
+      { resource_ref: `telegram:${CH}`, time: `${hh(1)}:00`, format: 'longread', topic: IDEA_TITLE, idea_id: '__IDEA__', reason: 'Ядро мережі: лонгріди про космос' },
+      { resource_ref: IG, time: `${hh(3)}:00`, format: 'ig_carousel', topic: `${IDEA_TITLE} — карусель`, idea_id: '__IDEA__', reason: 'Каруселі в IG ведуть у Telegram' },
     ] } }] },
     // IG executor (shadow)
     { calls: [{ name: 'publish_platform_post', args: { spec: {

@@ -370,6 +370,86 @@ export interface ResourceProfile {
   /** Spec 024: IANA zone (absent = Europe/Kyiv) and quiet hours (absent = 23→8); ignored for Telegram (the card rules). */
   timezone?:       string;
   quiet_hours?:    { start: number; end: number };
+  /** Spec 024 FR-013: edited in the Formatting section; the profile form keeps them (the server too). */
+  format_prefs?:   FormatPrefs;
+  format_locks?:   FormatPrefField[];
+}
+
+// ── spec 024 FR-013: agent-owned formatting per resource ──────────────────────
+
+export const FORMAT_PREF_FIELDS = [
+  'tone', 'length', 'emoji', 'hashtags', 'mentions', 'cta', 'links', 'line_breaks', 'signature', 'preferred_formats', 'media', 'notes',
+] as const;
+export type FormatPrefField = typeof FORMAT_PREF_FIELDS[number];
+
+/** Mirrors FormatPrefsSchema on the server: every field optional — empty means "the agent's judgement". */
+export interface FormatPrefs {
+  tone?:              string;
+  length?:            { target: number; max: number };
+  emoji?:             'none' | 'light' | 'rich';
+  hashtags?:          { count: number; style?: string; fixed: string[] };
+  mentions?:          string;
+  cta?:               string;
+  links?:             'inline' | 'bio' | 'first_comment' | 'button';
+  line_breaks?:       string;
+  signature?:         string;
+  preferred_formats?: string[];
+  media?:             { aspect?: string; cover_style?: string };
+  notes?:             string;
+}
+
+export interface FormatResource {
+  ref:          string;
+  platform:     string;
+  title:        string | null;
+  formatPrefs:  FormatPrefs;
+  locks:        FormatPrefField[];
+  updatedAt:    string | null;
+  /** Agent changes on the resource's local day (at most `changesPerDay`). */
+  changesToday: number;
+}
+
+export interface FormatVersion {
+  id:          number;
+  resourceRef: string;
+  version:     number;
+  kind:        'profile' | 'format';
+  changedBy:   'owner' | 'builder' | 'agent' | 'system';
+  agentId:     string | null;
+  agentHandle: string | null;
+  reason:      string | null;
+  diff:        Record<string, { from: unknown; to: unknown }>;
+  createdAt:   string;
+}
+
+export interface FormattingResponse {
+  changesPerDay: number;
+  resources:     FormatResource[];
+  history:       FormatVersion[];
+}
+
+export function useResourceFormatting(handle: string, enabled = true) {
+  return useQuery({
+    queryKey: [...KEY, 'formatting', handle],
+    queryFn:  () => api<FormattingResponse>(`/api/agents/${enc(handle)}/formatting`),
+    enabled,
+  });
+}
+
+/** The owner's edit of one resource: its whole format_prefs and the locked fields. Issues are shown inline. */
+export function usePutResourceFormatting(handle: string) {
+  const qc = useQueryClient();
+  return useMutation({
+    meta: { silentError: true },
+    mutationFn: (b: { ref: string; format_prefs: FormatPrefs; format_locks: FormatPrefField[] }) =>
+      api<FormattingResponse>(`/api/agents/${enc(handle)}/formatting/${enc(b.ref)}`, {
+        method: 'PUT', body: JSON.stringify({ format_prefs: b.format_prefs, format_locks: b.format_locks }),
+      }),
+    onSuccess: (r) => {
+      qc.setQueryData([...KEY, 'formatting', handle], r);
+      qc.invalidateQueries({ queryKey: [...KEY, 'profile'] });
+    },
+  });
 }
 
 export type HealthState = 'ok' | 'no_access' | 'token_expiring' | 'token_invalid' | 'rate_limited' | 'unknown';

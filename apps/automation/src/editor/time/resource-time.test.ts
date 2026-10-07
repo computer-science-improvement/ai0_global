@@ -144,8 +144,10 @@ const netWith = (tz: Record<string, string> = { 'instagram:ny': NY }): NetworkCt
 const card = makeCard({ channelKey: '@space' });
 const idea = { id: IDEA, variants: [{ resource_ref: 'instagram:ny', format: 'ig_carousel' }] } as unknown as IdeaRow;
 const slot = (time: string, o: Record<string, unknown> = {}) => ({ resource_ref: 'instagram:ny', time, format: 'ig_carousel', topic: 'Тема дня про космос', series: 'Вечірній огляд', source_hints: [], ...o });
+// Spec 024 T3: an idea in the plan needs a decision on every resource — Telegram skips it here.
+const TG_SKIP = [{ idea_id: IDEA, resource_ref: 'telegram:@space', reason: 'Для Telegram ця тема вже була сьогодні' }];
 const validate = (slots: any[], planDate: string, now: string, net = netWith()) =>
-  validateNetworkPlan({ rationale: 'план на день для мережі', slots }, {
+  validateNetworkPlan({ rationale: 'план на день для мережі', slots, skips: slots.some((s) => s.idea_id) ? TG_SKIP : [] }, {
     net, card, planDate, weekday: new Date(`${planDate}T12:00:00Z`).getUTCDay(), now: new Date(now), ideas: new Map([[IDEA, idea]]), reservedAt: [],
   });
 
@@ -177,11 +179,11 @@ test('submit_network_plan: quiet hours and per_day are counted in the resource l
   assert.equal(quiet.ok, false);
   assert.match((quiet as any).errors.join('\n'), /тихі години 23:00–8:00 \(America\/New_York\)/);
   // 22:00 New York = 05:00 Kyiv next day: still allowed (not quiet in New York) and on the NY plan date.
-  const late = validate([slot('20:00'), slot('22:00', { series: undefined, idea_id: IDEA })], '2026-07-01', '2026-07-01T00:00:00Z');
+  const late = validate([slot('20:00'), slot('22:00', { series: undefined, idea_id: IDEA, reason: 'Нічна аудиторія Нью-Йорка активна' })], '2026-07-01', '2026-07-01T00:00:00Z');
   assert.ok(late.ok, JSON.stringify(late));
   assert.deepEqual(late.ok && late.slots.map((s) => s.scheduledAt.toISOString()), ['2026-07-02T00:00:00.000Z', '2026-07-02T02:00:00.000Z']);
   // Both count towards the NY day: a third slot exceeds per_day.max 2 although the Kyiv dates differ.
-  const over = validate([slot('10:00'), slot('20:00'), slot('22:00', { series: undefined, idea_id: IDEA })], '2026-07-01', '2026-07-01T00:00:00Z');
+  const over = validate([slot('10:00'), slot('20:00'), slot('22:00', { series: undefined, idea_id: IDEA, reason: 'Нічна аудиторія Нью-Йорка активна' })], '2026-07-01', '2026-07-01T00:00:00Z');
   assert.equal(over.ok, false);
   assert.match((over as any).errors.join('\n'), /instagram:ny: 3 постів > per_day.max 2/);
 });

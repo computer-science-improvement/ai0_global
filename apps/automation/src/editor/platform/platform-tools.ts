@@ -85,7 +85,8 @@ export function buildPlatformTools(d: PlatformToolDeps): EditorTool[] {
         return { ok: true, awaiting_approval: true, warnings: r.warnings };
       }
       await d.plans.updateSlot(ctx.slotId, {
-        status: r.shadow ? 'shadowed' : 'published', renderedPreview: r.preview, error: r.warnings.length ? r.warnings.join(' | ').slice(0, 2000) : null,
+        // Spec 024: the spec stays on the slot — a derived (duplicate / adapt) slot reads its source from here.
+        status: r.shadow ? 'shadowed' : 'published', postSpec: spec, renderedPreview: r.preview, error: r.warnings.length ? r.warnings.join(' | ').slice(0, 2000) : null,
       });
       if (r.shadow && d.notifyPreview) {
         try { await d.notifyPreview(slot.resourceRef, r.preview); } catch { /* best-effort */ }
@@ -123,7 +124,7 @@ export function buildPlatformTools(d: PlatformToolDeps): EditorTool[] {
     }),
     execute: async ({ resource, network, days, limit }) => {
       const { rows } = await d.pool.query(
-        `SELECT np.resource_ref, np.platform, np.format, np.excerpt, np.posted_at, np.views, np.engagement
+        `SELECT np.resource_ref, np.platform, np.format, np.excerpt, np.posted_at, np.views, np.engagement, np.post_ref
            FROM network_posts np
           WHERE np.posted_at >= now() - ($1 || ' days')::interval
             AND ($2::text IS NULL OR np.resource_ref = $2)
@@ -133,7 +134,14 @@ export function buildPlatformTools(d: PlatformToolDeps): EditorTool[] {
                   UNION SELECT 'tiktok:' || id FROM tiktok_accounts WHERE group_id = $3))
           ORDER BY np.posted_at DESC LIMIT $4`,
         [String(days), resource ?? null, network ?? null, limit]);
-      return { posts: rows };
+      // Spec 024: post_ref names a repurpose_post source (tg:<id> → published_post_id, pp:<id> → platform_post_id).
+      return {
+        posts: rows.map(({ post_ref, ...r }) => ({
+          ...r,
+          ...(typeof post_ref === 'string' && post_ref.startsWith('tg:') ? { published_post_id: Number(post_ref.slice(3)) } : {}),
+          ...(typeof post_ref === 'string' && post_ref.startsWith('pp:') ? { platform_post_id: Number(post_ref.slice(3)) } : {}),
+        })),
+      };
     },
   });
 
