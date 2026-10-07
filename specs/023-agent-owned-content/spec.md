@@ -318,3 +318,34 @@ Commit `feat(content): 023-T4 …`. Migration `059_schedule_rules.sql` as in FR-
 - **Reserved slots** are never blocked; the chat's `schedule_draft` result carries `warnings: ['blackout_window']`.
 - **Prompts.** The day's pins, blackouts, frequency and due series reach both planners and the orchestrator
   through the existing catalog-summary hook (no runner change).
+
+## Implementation notes (T5, 2026-10-07)
+Commit `feat(content): 023-T5 …`. No migration.
+
+- **One `ScheduleService`** (`editor/schedule/schedule.service.ts`, built in T4) holds every check the REST, the
+  cards and the tools share. Owner-facing text (card summaries, REST errors, warnings) is English; the agents'
+  tool results stay Ukrainian.
+- **Chat tools** (`schedule-tools.ts`, role `composer` only — the composer and @agent chats; they need a chat
+  context): `get_schedule`, `propose_series_change`, `propose_schedule_rule`, `propose_slot_change`.
+  **Deviation — the explicit-request check** is the agent-change verb check *or* `hasScheduleChangeIntent`:
+  schedule verbs (перенеси, пропусти, скасуй, move, skip…) or a time plus a cadence word, so «рецепти о 20:30
+  по буднях» counts; negations («не переноси») do not.
+- **Cards and staleness.** `series_change` stores the series' content + lock key at propose time and fails as
+  `stale` when it differs at Apply (two cards for one series: the second fails); Apply writes an owner version
+  (`created_by='owner'`, active, the series locked), which supersedes a pending agent draft (existing
+  `insertPlaybook` rule). `schedule_rule` checks the rule's `updated_at`; `slot_change` moves / skips only a
+  slot that is still `planned` at the proposed time (any change → `stale`). Rules from the chat are
+  `created_by='chat'`.
+- **REST** (`schedule.controller.ts`, `TrackingAuthGuard`): `GET /api/agents/:handle/schedule?from&to` (default
+  the anchor's today + 6 days, at most 14 days), `POST/PATCH /api/agents/:handle/schedule-rules[/:id]` (`active:
+  false` disables, `true` re-enables), `PUT /api/agents/:handle/series/:name` (adds the series when the name is
+  new, locks it either way), `POST /api/agents/:handle/series/:name/unlock`. **Unlock also writes an owner
+  version** (so it supersedes a pending agent draft too). The GET response adds `resources[].formats` and
+  `sourceOptions` for the forms.
+- **Schedule tab** (`?tab=schedule`, network tabs only): a 7-day grid, one lane per resource labelled with its
+  zone and offset (series instances take the status of the slot that realises them; pins of their own slot;
+  other slots listed with status); a day list under 760 px; Series (edit → "Save and lock", Unlock) and
+  Rules (add / edit / disable / enable) card-rows with modal forms. Slot moves stay chat-only (not in the
+  REST list of FR-007).
+- **Evals** (written, not run): `chat-series-change` and `planner-honours-pins` (`evals/cases/schedule.ts`); the
+  eval stack wires the ScheduleService into the tools, runner and planners.

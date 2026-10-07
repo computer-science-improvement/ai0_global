@@ -32,6 +32,9 @@ import { PendingActionsRepository, PendingActionsService } from '../../src/edito
 import { AgentCreator } from '../../src/editor/agents/agent-creator';
 import { buildBuilderTools } from '../../src/editor/agents/builder-tools';
 import { buildAgentChatTools } from '../../src/editor/agents/agent-chat-tools';
+import { ScheduleService } from '../../src/editor/schedule/schedule.service';
+import { ScheduleRepository } from '../../src/editor/schedule/schedule.repository';
+import { buildScheduleTools, registerScheduleActions } from '../../src/editor/schedule/schedule-tools';
 import { TelegramScopeKpi } from '../../src/editor/agents/scope-kpi';
 import { buildAgentSkillTools } from '../../src/editor/agents/agent-skill-tools';
 import { telegramKeyOf } from '../../src/editor/agents/agent.types';
@@ -83,6 +86,8 @@ export interface EvalStack {
   directives: DirectivesRepository;
   platformPosts: PlatformPostsRepository;
   profiles: ResourceProfilesRepository;
+  /** Spec 023 T4/T5: owner schedule rules, pins, chat cards. */
+  schedule: ScheduleService;
 }
 
 /**
@@ -128,11 +133,17 @@ export function buildStack(o: { pool: Pool; web: FakeWeb; now: () => Date; apiKe
   const digest = new KpiDigestService({ pool, catalog, globalCapUsd: 50, now });
   const platformPosts = new PlatformPostsRepository(pool);
   const channelKeyOf = async (a: any) => telegramKeyOf(a.parentId ? (await agents.get(a.parentId)) ?? a : a);
+  const schedule = new ScheduleService({
+    pool, rules: new ScheduleRepository(pool), network: networkRepo, agents, card: (k) => channels.get(k), plans, inbox, now,
+  });
+  // The schedule cards are real here: evals check the proposal, and Apply only runs when a case applies it.
+  registerScheduleActions(actions, schedule);
   const registry = new ToolRegistry([
     ...buildBuilderTools({ agents, catalog, profiles, creator, skills: skillStore, actions }),
     ...buildAgentChatTools({ pool, memory, skills: skillStore, actions, now }),
     ...buildAgentSkillTools({ agents, skills: skillStore, kpi: new TelegramScopeKpi(pool), inbox, now }),
-    ...buildNetworkTools({ repo: networkRepo, plans, memory, inbox, now }),
+    ...buildNetworkTools({ repo: networkRepo, plans, memory, inbox, now, schedule }),
+    ...buildScheduleTools({ schedule, actions, now }),
     ...buildDirectiveTools({ repo: directives, agents, digest, inbox, memory, actions, channelKeyOf, now }),
     ...buildPlatformTools({
       pool, plans,
@@ -143,7 +154,7 @@ export function buildStack(o: { pool: Pool; web: FakeWeb; now: () => Date; apiKe
     ...buildDataTools({ pool, actions }),
     ...buildComposeTools({ http: web.http }),
     ...buildRoleTools({
-      pool, plans, memory, channels, now, publisher,
+      pool, plans, memory, channels, now, publisher, schedule,
       recordPublish: () => {},
       notifyPreview: async (_k, html) => { previews.push(html); },
     }),
@@ -161,6 +172,7 @@ export function buildStack(o: { pool: Pool; web: FakeWeb; now: () => Date; apiKe
   const manager = new ManagerRunner({ loop, registry, runtime, agents, repo: directives, digest, inbox, env: o.env, now });
   const network = new NetworkRunner({
     loop, registry, runtime, memory, repo: networkRepo, plans, profiles, env: o.env, now,
+    catalogSummary: (card) => schedule.plannerBlock(card),
     notify: async (t) => { notes.push(t); },
     directives: (orch) => manager.deliver(orch),
     afterOrchestration: (orch) => manager.afterOrchestration(orch),
@@ -168,6 +180,8 @@ export function buildStack(o: { pool: Pool; web: FakeWeb; now: () => Date; apiKe
   const runner = new EditorRunnerService({
     loop, registry, skills, plans, memory, now, runtime, network,
     platformContext: (slot, orchId) => network.platformContext(slot, orchId),
+    catalogSummary: (card) => schedule.plannerBlock(card),
+    seriesContext: (slot) => schedule.executorContext(slot),
     onSlotDone: async (slot) => { if (slot.ideaId) await networkRepo.settleIdea(slot.ideaId); },
     env: o.env,
     notify: async (t) => { notes.push(t); },
@@ -188,6 +202,6 @@ export function buildStack(o: { pool: Pool; web: FakeWeb; now: () => Date; apiKe
   });
   return {
     pool, channels, plans, memory, runner, chat, chatRepo, drafts, llm, sent, previews, notes,
-    agents, registrySync, actions, network, networkRepo, manager, directives, platformPosts, profiles,
+    agents, registrySync, actions, network, networkRepo, manager, directives, platformPosts, profiles, schedule,
   };
 }

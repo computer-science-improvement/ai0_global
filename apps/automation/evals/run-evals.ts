@@ -21,10 +21,11 @@ import { PLANNER_REVIEWER_CASES } from './cases/planner-reviewer';
 import { CHAT_CASES } from './cases/chat';
 import { AGENT_CASES, cleanupAgentEvals } from './cases/agents';
 import { DATA_CASES } from './cases/data';
+import { SCHEDULE_CASES } from './cases/schedule';
 import { localDate, zonedToUtc } from '../src/editor/roles/time';
 import { resolveModel } from '../src/editor/llm/model-registry';
 
-const ALL: EvalCase[] = [...EXECUTOR_CASES, ...PLANNER_REVIEWER_CASES, ...CHAT_CASES, ...AGENT_CASES, ...DATA_CASES];
+const ALL: EvalCase[] = [...EXECUTOR_CASES, ...PLANNER_REVIEWER_CASES, ...CHAT_CASES, ...AGENT_CASES, ...DATA_CASES, ...SCHEDULE_CASES];
 
 function arg(name: string): string | undefined {
   const i = process.argv.indexOf(`--${name}`);

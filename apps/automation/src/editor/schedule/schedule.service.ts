@@ -308,6 +308,7 @@ export class ScheduleService {
     const pb = this.playbookOf(sc);
     const rules = await this.d.rules.list(sc.agent.id);
     const clocks = this.clocks(sc);
+    const cat = this.d.sourceCatalog ? await this.d.sourceCatalog(sc.card).catch(() => null) : null;
     const refs = sc.net.resources.map((r) => r.ref).filter((r) => !o.resourceRef || r === o.resourceRef);
     const items: ScheduleItem[] = [];
     for (const ref of refs) {
@@ -350,6 +351,7 @@ export class ScheduleService {
       now: now.toISOString(), from, to, days,
       resources: sc.net.resources.filter((r) => refs.includes(r.ref)).map((r) => ({
         ref: r.ref, platform: r.platform, timezone: clocks[r.ref].tz, quietHours: clocks[r.ref].quiet,
+        formats: r.platform === 'telegram' ? sc.net.telegramFormats : implementedFormats(r.platform),
         perDay: pb?.platforms.find((p) => p.resource_ref === r.ref)?.per_day ?? (r.ref === anchorRef ? { min: sc.card.postsPerDayMin, max: sc.card.postsPerDayMax } : null),
       })),
       series: (pb?.series ?? []).filter((s) => refs.includes(s.resource_ref)).map((s) => ({
@@ -358,6 +360,8 @@ export class ScheduleService {
       })),
       rules: rules.filter((r) => refs.includes(r.resourceRef)).map(ruleDto),
       items, slots,
+      // What the forms may name as a source (datasets, card feeds, API adapters).
+      sourceOptions: { ...(cat ?? { tables: [], feeds: [] }), apis: [...API_SOURCE_NAMES] },
     };
   }
 
@@ -416,6 +420,16 @@ export class ScheduleService {
       if (reserved.some((s) => (s.resourceRef ?? anchorRef) === i.resource_ref && Math.abs(s.scheduledAt.getTime() - at.getTime()) < gap)) out.push('conflicts_with_reserved');
     }
     return out;
+  }
+
+  /** A rule of this scope's agent (null when absent or another agent's). */
+  async rule(sc: ScheduleScope, id: string): Promise<ScheduleRule | null> {
+    const r = await this.d.rules.get(id);
+    return r && r.agentId === sc.agent.id ? r : null;
+  }
+
+  ruleInput(r: ScheduleRule): ScheduleRuleInput {
+    return ruleToInput(r);
   }
 
   async addRule(sc: ScheduleScope, input: unknown, createdBy: 'owner' | 'chat'): Promise<{ rule: ReturnType<typeof ruleDto>; warnings: string[] } | Fail> {
@@ -546,11 +560,11 @@ export class ScheduleService {
     return { slot, to, summary: `Move ${label}: ${when(slot.scheduledAt)} → ${when(to)} (${clock.tz})`, warnings };
   }
 
-  async applySlotChange(slotId: string, op: 'move' | 'skip', from: Date, to: Date | null): Promise<EditorSlot | Fail> {
+  async applySlotChange(slotId: string, op: 'move' | 'skip', from: Date, to: Date | null): Promise<{ slot: EditorSlot } | Fail> {
     const r = op === 'skip'
       ? await this.d.rules.skipSlot(slotId, from, 'skipped by the owner (chat)')
       : await this.d.rules.moveSlot(slotId, from, to!);
-    return r ?? { error: 'stale', details: 'the slot changed since this card was proposed (moved, started or skipped)', status: 409 };
+    return r ? { slot: r } : { error: 'stale', details: 'the slot changed since this card was proposed (moved, started or skipped)', status: 409 };
   }
 
   /** A rule card's summary (English). */

@@ -120,6 +120,8 @@ import { ApprovalStatsRepository } from './approval/approval-stats';
 import { AutonomyService, ReadyForAutonomy, readyForAutonomyText } from './approval/autonomy';
 import { ScheduleService } from './schedule/schedule.service';
 import { ScheduleRepository } from './schedule/schedule.repository';
+import { buildScheduleTools, registerScheduleActions } from './schedule/schedule-tools';
+import { SCHEDULE_SERVICE, ScheduleController } from './schedule/schedule.controller';
 import { buildCatalog } from '../data/data-catalog';
 import { kyivMonthDay } from '../data/data-query';
 import { AUTONOMY_SERVICE, AutonomyController } from './approval/autonomy.controller';
@@ -181,7 +183,7 @@ export interface ApprovalInfra {
 }
 
 /** Owner schedule rules, pins and series context (spec 023 T4/T5): one ScheduleService. */
-export const SCHEDULE_INFRA   = 'SCHEDULE_INFRA';
+export const SCHEDULE_INFRA   = SCHEDULE_SERVICE;
 
 /** The planner prompt's source catalog plus the owner's schedule for today and tomorrow (spec 023 FR-004/FR-008). */
 function withSchedule(catalog: (card: EditorCard) => Promise<string | null>, schedule: ScheduleService) {
@@ -595,13 +597,18 @@ export const EDITOR_PROVIDERS = [
     {
       provide: SCHEDULE_INFRA,
       inject: [DB_POOL, EDITOR_REPOS, AGENT_INFRA, PLATFORM_INFRA],
-      useFactory: (pool: Pool, repos: EditorRepos, infra: AgentInfra, platform: PlatformInfra): ScheduleService => new ScheduleService({
-        pool, rules: new ScheduleRepository(pool), network: new NetworkRepository(pool), agents: infra.agents,
-        card: (k) => repos.channels.get(k), plans: repos.plans, inbox: infra.inbox,
-        time: resourceTime(repos, infra.profiles), usable: (ref) => platform.health.usable(ref),
-        sourceCatalog: (card) => seriesSourceCatalog(pool, card),
-        unposted: async (ref, dataset) => (await buildCatalog(pool, { dataset, resource: ref, today: kyivMonthDay() }))[0]?.unposted_here ?? null,
-      }),
+      useFactory: (pool: Pool, repos: EditorRepos, infra: AgentInfra, platform: PlatformInfra): ScheduleService => {
+        const svc = new ScheduleService({
+          pool, rules: new ScheduleRepository(pool), network: new NetworkRepository(pool), agents: infra.agents,
+          card: (k) => repos.channels.get(k), plans: repos.plans, inbox: infra.inbox,
+          time: resourceTime(repos, infra.profiles), usable: (ref) => platform.health.usable(ref),
+          sourceCatalog: (card) => seriesSourceCatalog(pool, card),
+          unposted: async (ref, dataset) => (await buildCatalog(pool, { dataset, resource: ref, today: kyivMonthDay() }))[0]?.unposted_here ?? null,
+        });
+        // Spec 023 FR-006: the chat's series_change / schedule_rule / slot_change cards.
+        registerScheduleActions(infra.actions, svc);
+        return svc;
+      },
     },
     {
       // Deterministic draft actions of the editor chat (spec 010): composer tools, REST buttons, scheduled path.
@@ -651,6 +658,8 @@ export const EDITOR_PROVIDERS = [
             agents: infra.agents, catalog: infra.catalog, profiles: infra.profiles, creator: infra.creator, skills: infra.skills, actions: infra.actions,
           }),
           ...buildAgentChatTools({ pool, memory: repos.memory, skills: infra.skills, actions: infra.actions }),
+          // Spec 023 FR-006: the owner steers the schedule from the chat (cards only).
+          ...buildScheduleTools({ schedule, actions: infra.actions }),
           ...buildNetworkTools({
             repo: new NetworkRepository(pool), plans: repos.plans, memory: repos.memory, inbox: infra.inbox,
             sourceCatalog: (card) => seriesSourceCatalog(pool, card), schedule,
@@ -1047,7 +1056,7 @@ export const EDITOR_PROVIDERS = [
 @Module({
   // AuthModule: EditorController is guarded by TrackingAuthGuard, which injects AuthService.
   imports:     [ChannelConfigModule, PublishersModule, AuthModule],
-  controllers: [EditorController, EditorChatController, AgentsController, NetworkController, ManagerController, PromoController, PromoRedirectController, ApprovalsController, AutonomyController],
+  controllers: [EditorController, EditorChatController, AgentsController, NetworkController, ManagerController, PromoController, PromoRedirectController, ApprovalsController, AutonomyController, ScheduleController],
   providers:   [...EDITOR_PROVIDERS, TrackingAuthGuard],
   exports:     [EDITOR_REPOS, EDITOR_RUNNER, AGENT_INFRA, PLATFORM_INFRA, EDITOR_MANAGER],
 })
