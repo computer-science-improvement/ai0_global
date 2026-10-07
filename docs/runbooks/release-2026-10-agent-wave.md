@@ -14,6 +14,21 @@ Branch `feat/editor-agent`. Stage first (`develop` → dev-stage, `.github/workf
   - Env values only seed the cap rows on first boot; afterwards edit caps on `/app/spend` → Budgets.
 - [ ] GitHub Variable `VITE_AUTH_MODE=token` (or `VITE_TG_BOT_USERNAME`) — a production dashboard build now fails without a sign-in method (028).
 
+## Pitfalls found on dev-stage (2026-10-07) — check these on prod first
+- [ ] **Ports are loopback-only now** (`b78f5ef`). If the host proxy is a *docker* Caddy that proxies to the box's public IP
+      (`reverse_proxy <public-ip>:8080`), it gets 502. Fix used on dev-stage: `DASHBOARD_BIND_ADDR=172.17.0.1` (docker0 IP from
+      `ip -4 addr show docker0`) in `.env`, and `reverse_proxy 172.17.0.1:8080` in the Caddyfile. The Caddyfile is a single-file bind
+      mount: edit it in place (`cp f f.bak && sed '…' f.bak > f`), not with `sed -i` (new inode, the container keeps the old file),
+      then `docker exec <caddy> caddy reload --config /etc/caddy/Caddyfile`.
+- [ ] **A corrupt Redis `dump.rdb` blocks the restart.** The new Redis healthcheck recreates the container; on dev-stage a 6-byte
+      `dump.rdb` from August made Redis abort ("Unexpected EOF reading RDB file"). Check the size first
+      (`docker run --rm -v ai0_global_redisdata:/data alpine ls -la /data`); if it is broken, stop redis and move it aside
+      (`mv /data/dump.rdb /data/dump.rdb.corrupt-<date>`). Only Redis data (BullMQ queues, caches, limiter counters) is affected.
+      Also set `vm.overcommit_memory = 1` on the box.
+- [ ] **Manual `docker compose up` needs the image exports** the workflow sets (`AUTOMATION_IMAGE`/`DASHBOARD_IMAGE` = `…:dev-latest`
+      on stage, `…:vX.Y.Z` on prod); without them compose falls back to `:latest` and may build the dashboard on the box.
+      Prefer "Re-run failed jobs" in GitHub Actions.
+
 ## Deploy (low traffic)
 - [ ] Merge `feat/editor-agent` into `develop` → the workflow runs `database/migrate.sh`, then the new images.
 - [ ] Pipeline and automation go together — old pipeline loaders fail against the 058 compatibility views.
