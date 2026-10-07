@@ -88,6 +88,7 @@ export function orchestratorDailyPrompt(o: { net: NetworkCtx; card: EditorCard; 
     o.hasDirectives ? '1. Спершу розбери директиви менеджера: accept_directive з планом або reject_directive з причиною (кожну).' : '',
     `${o.hasDirectives ? '2' : '1'}. Пул: прийнятих ${accepted}, на рецензії ${fresh}${revise.length ? `, на доопрацюванні ${revise.length} (revise_idea: ${revise.map((i) => i.id).join(', ')})` : ''}. Ціль — ${o.target} ідей на 2 дні вперед для всіх ресурсів.`,
     'Подивись статистику (get_network_posts, get_platform_stats, get_format_performance), нещодавні пости й джерела (fetch_feed, fetch_api, library_catalog), і додай ідеї через add_idea — кожна з варіантами під ресурси й форматами плейбука.',
+    'Пост, що вже добре зайшов на одному ресурсі (get_network_posts), можна продублювати чи адаптувати на інші ресурси мережі через repurpose_post — час і інтервал обираєш ти, оформлення під ресурс теж твоє.',
     'Серії (рубрики) змінюй точково: list_series, define_series, update_series, set_series_active (так виконується директива pause_series), retire_series — не більше 5 змін за прогін. Серії власника (locked) не чіпай: якщо бачиш, що їх варто змінити, напиши це в підсумку.',
     'Якщо даних достатньо і бачиш, що решту плейбука варто підкоригувати (ваги, години, хештеги) — зроби це наприкінці через submit_playbook; інакше заверши finish_orchestration з коротким підсумком.',
   ].filter(Boolean).join('\n');

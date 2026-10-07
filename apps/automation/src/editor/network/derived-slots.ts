@@ -34,6 +34,8 @@ export type DerivedResolution =
       sourceSlotId: string | null;
     };
 
+const TELEGRAM_FORMATS = new Set(['text', 'photo', 'album', 'carousel', 'poll', 'quiz', 'longread', 'video']);
+
 export const DERIVED_FAILED_SOURCE = new Set(['failed', 'skipped', 'expired']);
 export const DERIVED_PENDING_SOURCE = new Set(['planned', 'running', 'awaiting_approval', 'approved']);
 
@@ -95,8 +97,45 @@ export class DerivedSlots {
     return { kind: 'ready', treatment, source, sourceRef, shadow: src.status === 'shadowed', slideUrls, formatNotes: notes, sourceSlotId: src.id };
   }
 
-  /** Hook for non-slot sources (repurpose_post: platform posts and published Telegram posts). */
-  protected async resolveExternal(_slot: EditorSlot, _t: DerivedTreatment, _notes: string | null): Promise<DerivedResolution> {
+  /**
+   * Non-slot sources of repurpose_post (FR-008/FR-009): a platform post or a
+   * published Telegram post without an editor slot — e.g. a strategy post.
+   * A strategy post has no stored spec: its title and source become the
+   * draft, and its hosted media are gone (carousel slides are deleted after
+   * the strategy's own fan-out) → `source_media_gone` when the target needs media.
+   */
+  protected async resolveExternal(slot: EditorSlot, t: DerivedTreatment, notes: string | null): Promise<DerivedResolution> {
+    const key = slot.sourcePost?.key ?? '';
+    const [kind, id] = [key.slice(0, key.indexOf(':')), key.slice(key.indexOf(':') + 1)];
+    if (kind === 'pp' && /^\d+$/.test(id)) {
+      const { rows } = await this.d.pool.query(`SELECT * FROM platform_posts WHERE id = $1`, [Number(id)]);
+      const r = rows[0];
+      if (!r) return { kind: 'skip', code: 'source_missing' };
+      if (r.status === 'failed' || r.status === 'canceled') return { kind: 'skip', code: 'source_failed', details: `source ${r.status}` };
+      if (r.status === 'awaiting_approval') return { kind: 'wait' };
+      const source = parseSource(r.platform, r.spec);
+      if (!source) return { kind: 'skip', code: 'source_missing' };
+      const problem = this.targetProblem(source, slot, t, sourceMediaOf(source));
+      if (problem) return problem;
+      return { kind: 'ready', treatment: t, source, sourceRef: r.resource_ref, shadow: r.status === 'shadowed', slideUrls: [], formatNotes: notes, sourceSlotId: null };
+    }
+    if (kind === 'tg' && /^\d+$/.test(id)) {
+      const { rows } = await this.d.pool.query(`SELECT * FROM published_posts WHERE id = $1`, [Number(id)]);
+      const r = rows[0];
+      if (!r) return { kind: 'skip', code: 'source_missing' };
+      const format = r.format && r.format !== 'legacy' && TELEGRAM_FORMATS.has(r.format) ? r.format : 'text';
+      const spec = PostSpecSchema.safeParse({
+        format: 'text', title: String(r.title ?? 'Пост').slice(0, 120).padEnd(3, '.'), origin: r.source_url ? 'external' : 'original',
+        body: r.title ? [{ type: 'p', text: String(r.title).slice(0, 1500) }] : [], hashtags: (r.tags ?? []).slice(0, 10),
+        ...(r.source_url && /^https?:\/\//.test(r.source_url) ? { source: { url: r.source_url } } : {}),
+      });
+      if (!spec.success) return { kind: 'skip', code: 'source_missing' };
+      const source: SourcePost = { platform: 'telegram', spec: { ...spec.data, format } };
+      // The text is not stored and the media are gone: a target that needs media cannot be filled.
+      const problem = this.targetProblem(source, slot, t, { images: 0, videos: 0, slides: 0 });
+      if (problem) return problem.kind === 'skip' && problem.code === 'unsupported_format' ? problem : { kind: 'skip', code: 'source_media_gone', details: (problem as any).details };
+      return { kind: 'ready', treatment: t, source, sourceRef: `telegram:${r.channel_id}`, shadow: false, slideUrls: [], formatNotes: notes, sourceSlotId: null };
+    }
     return { kind: 'skip', code: 'source_missing' };
   }
 

@@ -3,6 +3,10 @@
 -- • media_holds: hosted slides of a source slot that has derived (duplicate /
 --   adapt) slots still pending; deleted after the last derived slot finishes or
 --   after 24 h (FR-007).
+-- • content_decisions.call_id: one repurpose_post call (its targets share it);
+--   the orchestrator's daily cap counts calls (FR-008).
+-- • network_posts gains post_ref ('tg:<published_posts.id>' / 'pp:<platform_posts.id>')
+--   so an agent can name a repurpose_post source (appended column; same rows).
 --
 -- Additive and idempotent.
 
@@ -15,6 +19,38 @@ CREATE TABLE IF NOT EXISTS media_holds (
   created_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 CREATE INDEX IF NOT EXISTS idx_media_holds_until ON media_holds (hold_until);
+
+-- ── repurpose_post calls (T4) ────────────────────────────────────────────────
+ALTER TABLE content_decisions ADD COLUMN IF NOT EXISTS call_id UUID;
+CREATE INDEX IF NOT EXISTS idx_content_decisions_call ON content_decisions (agent_id, created_at) WHERE call_id IS NOT NULL;
+
+CREATE OR REPLACE VIEW network_posts AS
+SELECT 'telegram:' || p.channel_id                    AS resource_ref,
+       'telegram'::text                               AS platform,
+       p.message_id::text                             AS external_id,
+       COALESCE(p.format, 'legacy')                   AS format,
+       p.title                                        AS excerpt,
+       p.source_url                                   AS source_ref,
+       p.posted_at,
+       s.views                                        AS views,
+       COALESCE(s.forwards, 0) + COALESCE(s.reactions_total, 0) + COALESCE(s.replies, 0) AS engagement,
+       'tg:' || p.id                                  AS post_ref
+  FROM published_posts p
+  LEFT JOIN LATERAL (
+    SELECT views, forwards, replies, reactions_total FROM post_stats_snapshots
+     WHERE post_id = p.id ORDER BY captured_at DESC LIMIT 1
+  ) s ON true
+UNION ALL
+SELECT pp.resource_ref, pp.platform, pp.external_id, pp.format, left(pp.caption, 200), pp.source_ref, pp.posted_at,
+       COALESCE(m.views, m.reach),
+       COALESCE(m.likes, 0) + COALESCE(m.comments, 0) + COALESCE(m.shares, 0) + COALESCE(m.saves, 0),
+       'pp:' || pp.id
+  FROM platform_posts pp
+  LEFT JOIN LATERAL (
+    SELECT views, reach, likes, comments, shares, saves FROM platform_post_metrics
+     WHERE post_id = pp.id ORDER BY captured_at DESC LIMIT 1
+  ) m ON true
+ WHERE pp.status = 'published' AND pp.platform <> 'telegram';
 
 INSERT INTO schema_migrations (version) VALUES ('062_resource_formatting')
   ON CONFLICT (version) DO NOTHING;

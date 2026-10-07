@@ -283,3 +283,32 @@ Duplication becomes a tool, and every resource gets its own time zone.
 - The `network-planning` skill and the `network-plan-staggered` eval now describe decisions (T7 adds `resource-decisions`).
 - Tests: the PG suite is not re-runnable on the same database (editor/autonomy e2e leave `content_ledger` rows — pre-existing);
   use a fresh scratch database.
+
+### T4 (2026-10-07)
+- **Tool** `repurpose_post` (`network/repurpose-tool.ts`, kind `act` — the harness has no `write` kind) for orchestrator,
+  planner and executor; the logic is `RepurposeService.run`, shared with the chat's Apply handler. Error codes: `no_network`,
+  `daily_limit`, `source_not_found`, `source_not_in_network`, `source_not_eligible` (older than 72 h, not out, derived, not
+  today's plan), `not_own_slot`, `not_in_network`, `same_resource`, `duplicate_target`, `no_playbook_section`,
+  `already_decided`, `unsupported_format`, `invalid_time` (DST gap), `time_passed`, `before_source`, `quiet_hours`, `daily_cap`
+  (playbook `per_day.max` on the target's local day, and the platform API cap). On a target error nothing is written; the
+  response lists every target's error.
+- **Input additions:** `targets[].format` (optional, not in FR-008): without it code takes the first playbook format (by
+  weight), then any implemented format, that can technically carry the source. `at` and `delay_min` are exclusive; neither
+  means delay 0. A delay from an already published source that lands in the past becomes "now + 1 min".
+- **Daily cap:** 10 calls per orchestrator per anchor day, counted by `content_decisions.call_id` (migration 062). The owner's
+  chat Apply is outside it.
+- **Writes:** `EditorPlansRepository.createRepurpose` puts the slots into the anchor's active plan of their date (a plan with
+  rationale `repurpose` when the day has none — the scheduler treats it like `reserved only` and still plans the day) and the
+  decisions, in one transaction; a race on the unique index → `already_decided`. A re-plan of the day moves planned
+  repurposed slots (`source_post.via = 'repurpose'`) to the new plan.
+- **Sources:** a slot source (or a platform / Telegram post that has an editor slot) is linked by `derived_from_slot_id`, so
+  the T3 waiting rules apply ("after this is published"); slot-less posts (strategy posts, chat platform posts) carry
+  `source_post.key` (`pp:<id>` / `tg:<id>`). A strategy post has no stored text or media: its title, tags and source URL
+  form the draft, and a target that needs media → `source_media_gone`.
+- **Finding sources:** `get_network_posts` now returns `published_post_id` / `platform_post_id` (062 appends `post_ref` to
+  the `network_posts` view).
+- **Chat:** chat agents get `propose_repurpose` (composer role): it dry-runs the same validation and proposes a `repurpose`
+  card; Apply runs it with `decided_by = 'owner'`, Discard writes nothing.
+- **Per-resource modes** would plug in at `RepurposeService.run` (mode of the target) and in `runDerived` (today the run mode is
+  the anchor's effective mode; platform refs still answer `resource_follows_network`).
+- FR-009's gate in `GroupFanOutService` shipped with T1 (its test stays the coverage); the Groups-page warning is T5.

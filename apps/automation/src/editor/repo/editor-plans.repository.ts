@@ -282,6 +282,10 @@ export class EditorPlansRepository {
         [channelKey, planDate, rationale, runId && /^[0-9a-f-]{36}$/i.test(runId) ? runId : null]);
       const planId: string = rows[0].id;
       for (const o of old.rows) {
+        // Spec 024: posts the agent repurposed into this day are its own decisions, not the old plan's — they move along.
+        await client.query(
+          `UPDATE editor_slots SET plan_id = $2, updated_at = now()
+            WHERE plan_id = $1 AND kind = 'content' AND status = 'planned' AND source_post->>'via' = 'repurpose'`, [o.id, planId]);
         // Unwritten slots and (spec 031) posts still waiting for approval go with the old plan; approved ones stay.
         const dropped = await client.query(
           `UPDATE editor_slots SET status = 'skipped', error = 'superseded by a new plan', updated_at = now()
@@ -349,6 +353,56 @@ export class EditorPlansRepository {
             d.decidedBy, runId && /^[0-9a-f-]{36}$/i.test(runId) ? runId : null]);
       }
     });
+  }
+
+  /**
+   * Spec 024 FR-008 (repurpose_post): put derived slots into the anchor's
+   * active plan of their date (a plan with REPURPOSE_RATIONALE when the day
+   * has none yet) and record one decision per target, in one transaction.
+   * A decision that already exists (planner, another call) → null, nothing written.
+   */
+  async createRepurpose(i: {
+    channelKey: string; agentId: string; callId: string; decidedBy: 'orchestrator' | 'planner' | 'executor' | 'owner'; runId: string | null;
+    sourceKey: string; ideaId: string | null;
+    targets: Array<{
+      resourceRef: string; planDate: string; scheduledAt: Date; format: string; topic: string; treatment: 'duplicate' | 'adapt';
+      reason: string; derivedFromSlotId: string | null; formatNotes: string | null;
+    }>;
+  }): Promise<Array<{ id: string; resourceRef: string; scheduledAt: Date }> | null> {
+    const client = await this.pool.connect();
+    try {
+      await client.query('BEGIN');
+      const out: Array<{ id: string; resourceRef: string; scheduledAt: Date }> = [];
+      for (const t of i.targets) {
+        await client.query(
+          `INSERT INTO editor_plans (channel_key, plan_date, rationale) VALUES ($1, $2, $3)
+           ON CONFLICT (channel_key, plan_date) WHERE status = 'active' DO NOTHING`, [i.channelKey, t.planDate, REPURPOSE_RATIONALE]);
+        const plan = await client.query(
+          `SELECT id FROM editor_plans WHERE channel_key = $1 AND plan_date = $2 AND status = 'active' FOR UPDATE`, [i.channelKey, t.planDate]);
+        const isAnchor = t.resourceRef === `telegram:${i.channelKey}`;
+        const { rows } = await client.query(
+          `INSERT INTO editor_slots (plan_id, channel_key, scheduled_at, format, topic, source_hints, is_experiment, resource_ref, idea_id,
+                                     treatment, treatment_reason, derived_from_slot_id, source_post)
+           VALUES ($1, $2, $3, $4, $5, '[]', false, $6, $7, $8, $9, $10, $11) RETURNING id`,
+          [plan.rows[0].id, i.channelKey, t.scheduledAt, t.format, t.topic.slice(0, 300), isAnchor ? null : t.resourceRef, i.ideaId,
+            t.treatment, t.reason, t.derivedFromSlotId,
+            JSON.stringify({ via: 'repurpose', key: i.sourceKey, ...(t.formatNotes ? { format_notes: t.formatNotes } : {}) })]);
+        const dec = await client.query(
+          `INSERT INTO content_decisions (agent_id, idea_id, source_key, resource_ref, decision, reason, slot_id, decided_by, run_id, call_id)
+           VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) ON CONFLICT DO NOTHING RETURNING id`,
+          [i.agentId, i.ideaId, i.sourceKey, t.resourceRef, t.treatment, t.reason, rows[0].id, i.decidedBy,
+            i.runId && /^[0-9a-f-]{36}$/i.test(i.runId) ? i.runId : null, i.callId]);
+        if (!dec.rows.length) { await client.query('ROLLBACK'); return null; }
+        out.push({ id: rows[0].id, resourceRef: t.resourceRef, scheduledAt: t.scheduledAt });
+      }
+      await client.query('COMMIT');
+      return out;
+    } catch (err) {
+      await client.query('ROLLBACK').catch(() => {});
+      throw err;
+    } finally {
+      client.release();
+    }
   }
 
   /** Atomically move due content slots planned → running (single-instance safe, and multi-instance safe too). */

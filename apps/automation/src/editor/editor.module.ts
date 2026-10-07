@@ -88,6 +88,8 @@ import { ResourceHealthService } from './platform/resource-health.service';
 import { NetworkRepository } from './network/network.repository';
 import { NetworkRunner } from './network/network-runner';
 import { buildNetworkTools } from './network/network-tools';
+import { buildRepurposeTools, RepurposeInput, RepurposeService } from './network/repurpose-tool';
+import { networkContext } from './network/network-context';
 import { buildSeriesTools } from './network/series-tools';
 import { buildHighlightsTools } from './tools/highlights-tools';
 import { catalogSummaryOf, checkLowRunway } from './tools/catalog-context';
@@ -230,6 +232,18 @@ function derivedPorts(pool: Pool, net: NetworkRepository, infra: AgentInfra, hol
     inbox: (n) => infra.inbox.post({
       agentId: n.agentId, kind: 'derived_post_failed', severity: 'action', title: n.title, body: n.body, refType: 'slot', refId: n.slotId,
     }),
+  };
+}
+
+/** Spec 024 FR-008: the network and anchor card of a chat agent (its orchestrator's Telegram anchor). */
+function chatNetwork(pool: Pool, repos: EditorRepos, infra: AgentInfra, usable?: (ref: string) => Promise<boolean>) {
+  return async (agent: Agent) => {
+    const orch = agent.parentId ? (await infra.agents.get(agent.parentId)) ?? agent : agent;
+    const key = telegramKeyOf(orch);
+    const card = key ? await repos.channels.get(key) : null;
+    if (!card) return null;
+    const net = await networkContext({ repo: new NetworkRepository(pool), usable, time: resourceTime(repos, infra.profiles) }, orch, card);
+    return net ? { net, card } : null;
   };
 }
 
@@ -665,6 +679,15 @@ export const EDITOR_PROVIDERS = [
             channelKeyOf: (a) => infra.channelKeyOf(a),
             seriesLocked: async (orch, name) => isSeriesLocked((await new NetworkRepository(pool).activePlaybook(orch.id))?.body ?? null, name),
           }),
+          // Spec 024 FR-008: repurpose_post for the orchestrator, planner and executor; an Apply card for chat agents.
+          ...buildRepurposeTools({
+            service: new RepurposeService({ pool, plans: repos.plans }),
+            networkFor: (orch, card) => networkContext({
+              repo: new NetworkRepository(pool), usable: (ref) => platform.health.usable(ref), time: resourceTime(repos, infra.profiles),
+            }, orch, card),
+            chatNetwork: chatNetwork(pool, repos, infra, (ref) => platform.health.usable(ref)),
+            actions: infra.actions,
+          }),
           ...buildPlatformTools({
             pool, publish: platform.publish, plans: repos.plans,
             notifyPreview: env('EDITOR_SHADOW_PREVIEW') === 'false' ? undefined : (ref, text) => notifier.notifyAlert(`👁 Shadow-превʼю ${ref}\n\n${text}`),
@@ -1005,6 +1028,17 @@ export const EDITOR_PROVIDERS = [
           }, input, { from: await manager.runner.manager(), runId: null, shadow: false, ownerApproved: true });
           if ('error' in r) throw new Error(`${r.error}: ${r.details ?? ''}`);
           return { id: r.directive.id, status: r.directive.status };
+        });
+        // Spec 024 FR-008: a repurpose the owner applied from the chat (decided_by owner, outside the agent's daily cap).
+        infra.actions.register('repurpose', async (p) => {
+          const { handle, ...rest } = p as Record<string, unknown>;
+          const input = RepurposeInput.parse(rest);
+          const agent = await svc.require(String(handle));
+          const c = await chatNetwork(pool, repos, infra)(agent);
+          if (!c) throw new Error('no_network: this channel is not part of a network');
+          const r = await new RepurposeService({ pool, plans: repos.plans }).run(c.net, c.card, input, { decidedBy: 'owner' });
+          if ('error' in r) throw new Error(`${r.error}: ${typeof r.details === 'string' ? r.details : JSON.stringify(r.details ?? '')}`);
+          return r;
         });
         // Spec 032 FR-010: an agent's description fix for a dataset, applied by the owner (description-only, never a version bump).
         infra.actions.register('edit_data_schema', (p) => applyDataSchemaSuggestion(new DataStore(pool), p));

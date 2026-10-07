@@ -318,6 +318,7 @@ export class EditorRunnerService {
       mode === 'shadow' ? 'Режим shadow: пост збережеться як превʼю, нічого не публікується.' : '',
       mode === 'approve' ? 'Режим апруву: пост буде повністю підготовлений і чекатиме схвалення власника; публікує код у час слота після апруву.' : '',
       note ?? '',
+      'Якщо цей пост варто також дати на інший ресурс мережі — до завершення виклич repurpose_post з source.slot_id цього слота (вийде після публікації цього поста).',
       'Підготуй пост і заверши publish_platform_post (після lint_platform_post) або skip_slot з причиною.',
     ].filter(Boolean).join('\n');
     const platformSlot: PlatformSlotExtras = {
