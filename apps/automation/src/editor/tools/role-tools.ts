@@ -19,6 +19,8 @@ import { freshnessDeadline } from '../approval/approval-timing';
 import type { CrossPostRequest } from '../publish/editor-crosspost';
 import type { TgMessage } from '../post/render-telegram';
 import { cardFrom } from './compose-tools';
+import type { ScheduleService } from '../schedule/schedule.service';
+import type { NetworkCtx } from '../network/network-context';
 
 export const SIMILARITY_LIMIT = 0.6;
 const MAX_MEMORY_ADDS_PER_RUN = 5;
@@ -37,6 +39,8 @@ export interface RoleToolDeps {
   media?: { prepare(spec: PostSpec, key: { channelKey: string; slotId: string }): Promise<PreparedPublish> };
   /** Live-only fan-out to the channel's Meta mirrors; returns warnings, never throws (EditorCrossPoster). */
   crosspost?: { fanOut(r: CrossPostRequest): Promise<string[]> };
+  /** Spec 023 FR-004/FR-005: schedule rules in the plan check; blackout and series-source guards on publish. */
+  schedule?: Pick<ScheduleService, 'planContext' | 'effectiveCard' | 'publishGuard'>;
   now?: () => Date;
 }
 
@@ -69,6 +73,10 @@ export async function checkPublishGuards(d: RoleToolDeps, ctx: ToolContext, spec
   const ref = spec.library_ref ?? spec.source?.url ?? null;
   if (spec.library_ref && await d.plans.sourceAlreadyPosted(channelKey, spec.library_ref)) return { error: 'library_item_already_posted' };
   if (spec.source && await d.plans.sourceAlreadyPosted(channelKey, spec.source.url)) return { error: 'source_already_posted' };
+  if (d.schedule) {
+    const sg = await d.schedule.publishGuard(slot, { libraryRef: spec.library_ref, sourceUrl: spec.source?.url }, { live: card.mode === 'live', now, card, feeds: card.sources });
+    if (sg) return sg;
+  }
 
   if (card.mode === 'live') {
     const dayStart = zonedToUtc(localDate(now, card.timezone), '00:00', card.timezone);
@@ -90,7 +98,7 @@ export function buildRoleTools(d: RoleToolDeps): EditorTool[] {
   // ── planner ───────────────────────────────────────────────────────────────
   const submitPlan = defineTool({
     name: 'submit_plan',
-    description: 'Зберегти план на сьогодні (завершує роботу). Код перевіряє кількість, час, тихі години, інтервали, формати й частку експериментів — при помилці виправ і надішли знову.',
+    description: 'Зберегти план на сьогодні (завершує роботу). Код перевіряє кількість, час, тихі години, інтервали, формати, частку експериментів, серії за розкладом (slot.series або skipped_series з причиною) і правила власника (закріплені пости, заборонені вікна, частота) — при помилці виправ і надішли знову.',
     kind: 'terminal', roles: ['planner'],
     input: SubmitPlanInput,
     execute: async (plan, ctx) => {
@@ -99,7 +107,8 @@ export function buildRoleTools(d: RoleToolDeps): EditorTool[] {
       const planDate = (ctx.extras?.planDate as string) ?? localDate(t, card.timezone);
       const dayStart = zonedToUtc(planDate, '00:00', card.timezone);
       const reserved = await d.plans.reservedSlots(card.channelKey, dayStart, new Date(dayStart.getTime() + 86_400_000));
-      const v = validatePlan(plan, card, planDate, t, reserved.map((r) => r.scheduledAt));
+      const sched = d.schedule ? await d.schedule.planContext(card, (ctx.extras?.network as NetworkCtx | undefined) ?? null, planDate, t, 'single') : undefined;
+      const v = validatePlan(plan, sched ? d.schedule!.effectiveCard(card, sched) : card, planDate, t, reserved.map((r) => r.scheduledAt), sched);
       if (!v.ok) return { error: 'plan_invalid', details: v.errors };
       const planId = await d.plans.createPlan(card.channelKey, planDate, plan.rationale, ctx.runId, v.slots);
       // Pool ideas taken into the plan (spec 020) leave the pool; they become `used` once their slots are done.

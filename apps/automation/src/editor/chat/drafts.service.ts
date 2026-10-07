@@ -30,6 +30,8 @@ export interface DraftsDeps {
   /** tracked_channels.publish_paused (the publisher enforces it too; this check runs before any media work). */
   isPaused:  (channelKey: string) => boolean;
   notify:    (text: string) => Promise<void>;
+  /** Spec 023 FR-004: `blackout_window` when a reserved slot lands in the owner's blackout (never blocked). */
+  reservedWarnings?: (channelKey: string, at: Date) => Promise<string[]>;
   now?:      () => Date;
   log?:      (msg: string) => void;
 }
@@ -194,7 +196,7 @@ export class DraftsService {
 
   // ── schedule ──────────────────────────────────────────────────────────────
 
-  async schedule(draftId: string, at: Date): Promise<DraftResult<{ draft: EditorDraft; local: string }>> {
+  async schedule(draftId: string, at: Date): Promise<DraftResult<{ draft: EditorDraft; local: string; warnings?: string[] }>> {
     const draft = await this.d.repo.getDraft(draftId);
     if (!draft) return { error: 'draft_not_found' };
     if (draft.status === 'published') return { error: 'already_published' };
@@ -221,7 +223,8 @@ export class DraftsService {
       topic: `Чат: ${spec.data.title}`.slice(0, 200), sourceHints: [`${CHAT_SLOT_HINT}${draft.id}`], postSpec: spec.data,
     });
     const updated = await this.d.repo.updateDraft(draft.id, { status: 'scheduled', scheduledAt: at, slotId, error: null });
-    return { ok: true, draft: updated!, local: `${localDate(at, CHAT_TIMEZONE)} ${localTimeLabel(at, CHAT_TIMEZONE)} (Київ)` };
+    const warnings = this.d.reservedWarnings ? await this.d.reservedWarnings(draft.channelKey, at).catch(() => []) : [];
+    return { ok: true, draft: updated!, local: `${localDate(at, CHAT_TIMEZONE)} ${localTimeLabel(at, CHAT_TIMEZONE)} (Київ)`, ...(warnings.length ? { warnings } : {}) };
   }
 
   // ── cancel ────────────────────────────────────────────────────────────────

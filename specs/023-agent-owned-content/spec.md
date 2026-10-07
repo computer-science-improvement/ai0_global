@@ -283,3 +283,38 @@ Commit `feat(content): 023-T3 …`. No migration (series live in the playbook JS
   rejects with `owner_rule`); the prompt and the `editor-orchestrator-workflow` skill say to apply the directive
   with `set_series_active`.
 - **Dashboard.** Only `fmtCadence` learned the v2 form; the Schedule tab and lock badges are T5.
+
+## Implementation notes (T4, 2026-10-07)
+Commit `feat(content): 023-T4 …`. Migration `059_schedule_rules.sql` as in FR-001.
+
+- **Deviation — `editor_slots.rule_date`.** Besides `schedule_rule_id` and `series_name`, a pin slot stores its
+  resource-local date; the idempotency key is a partial unique index on `(schedule_rule_id, rule_date)`. A
+  skipped or published pin is therefore never re-created. Disabling or changing a pin deletes only its future,
+  still-`planned` slots (the new version is materialised at once). The rules' resource is free text checked by
+  the service (no FK), and `schedule_rules` belongs to the orchestrator (`agent_id`).
+- **Where the rules live.** Pure checks in `editor/schedule/plan-schedule-rules.ts` (`planScheduleErrors`,
+  `planPerDay`, `scheduleBlock`) and `schedule-rules.ts`; both validators call `planScheduleErrors` with one
+  line through an optional `schedule` context, so callers without it behave as before. Frequency and pins
+  reach the existing count checks through the caller: `ScheduleService.effectiveCard` / `effectiveNet` lower
+  the day's posts per day (the frequency rule, else the card / playbook) by the day's pins.
+- **Pins.** Materialised for the resource-local today and tomorrow by the scheduler before planning (at most
+  every 10 min per channel) and right after a rule is added or changed; a day without a plan gets a
+  reserved-only plan, so the planner still runs. `replacePlan` moves pins to the new plan like reserved slots
+  (never skipped as "superseded"). Planned slots keep `max(window_min, min gap)` from a pin; a pin with
+  `series_name` covers that series' instance. `window_min` has no other meaning yet.
+- **Due series.** A slot names its series with `series` (both planners; the single planner got the field too) and
+  stores `series:<name>` in `source_hints`; the plan transaction copies it into `series_name`. An instance that
+  is already past (late start, +90 min) or inside a blackout is not required. `skipped_series` is optional in
+  both inputs (old plans validate unchanged).
+- **Executor.** `ScheduleService.executorContext` adds the series note (brief, source, mode) to the executor
+  prompt; a pin without a series gets a "pinned by the owner" note. Required-source guard
+  (`series_source_mismatch`) in `publish_post` and `publish_platform_post`: library → same dataset; feed → the
+  feed's site; api → a source URL, on the adapter's site for nasa_apod / tmdb_trending / on_this_day (the others
+  aggregate many sites); network highlights → a t.me link. Live blackout re-check returns `blackout_window`
+  (owner pins are exempt). Approval-mode posts are not re-checked at send time.
+- **`series_source_empty`.** Detected by code only for a `required` **library** source (no unposted rows on the
+  resource, ledger counts): the slot is skipped before any LLM call and one Inbox item per series per day is
+  filed. A required feed / API with nothing usable is left to the agent's `skip_slot` (no Inbox item).
+- **Reserved slots** are never blocked; the chat's `schedule_draft` result carries `warnings: ['blackout_window']`.
+- **Prompts.** The day's pins, blackouts, frequency and due series reach both planners and the orchestrator
+  through the existing catalog-summary hook (no runner change).

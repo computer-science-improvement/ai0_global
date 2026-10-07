@@ -32,6 +32,8 @@ export interface EditorSchedulerDeps {
    * its plan day, so a change takes effect at the next plan-day boundary.
    */
   pinGate?: (card: EditorCard, now: Date) => Promise<unknown>;
+  /** Spec 023 FR-004: materialise the owner's pins (today and tomorrow) before planning; idempotent. */
+  pins?: (card: EditorCard, now: Date) => Promise<unknown>;
   /** Spec 021: the MANAGER's schedule and directive deliveries, once per tick after planning. */
   afterTick?: (now: Date) => Promise<void>;
   /**
@@ -132,6 +134,7 @@ export class EditorScheduler {
         try { await this.d.pinGate(card, now); } catch (err: any) { this.d.log?.(`auto-duplicate gate of ${card.channelKey} failed: ${err?.message ?? err}`); }
       }
       await this.maybeOrchestrate(card, now);
+      if (this.d.pins) await this.d.pins(card, now).catch((err: any) => this.d.log?.(`pins of ${card.channelKey} failed: ${err?.message ?? err}`));
       await this.maybePlan(card, now);
       if (approving.has(card.channelKey)) await this.maybePlanAhead(card, now);
       await this.maybeReview(card as EditorCard & { createdAt?: Date }, now);

@@ -118,6 +118,10 @@ import { ApprovalsService } from './approval/approvals.service';
 import { APPROVALS_SERVICE, ApprovalsController } from './approval/approvals.controller';
 import { ApprovalStatsRepository } from './approval/approval-stats';
 import { AutonomyService, ReadyForAutonomy, readyForAutonomyText } from './approval/autonomy';
+import { ScheduleService } from './schedule/schedule.service';
+import { ScheduleRepository } from './schedule/schedule.repository';
+import { buildCatalog } from '../data/data-catalog';
+import { kyivMonthDay } from '../data/data-query';
 import { AUTONOMY_SERVICE, AutonomyController } from './approval/autonomy.controller';
 
 export const EDITOR_RUNNER    = 'EDITOR_RUNNER';
@@ -174,6 +178,17 @@ export interface ApprovalInfra {
   stats:     ApprovalStatsRepository;
   /** The MANAGER's weekly "ready for autonomy" signal (an info Inbox item; never a mode change). */
   ready:     ReadyForAutonomy;
+}
+
+/** Owner schedule rules, pins and series context (spec 023 T4/T5): one ScheduleService. */
+export const SCHEDULE_INFRA   = 'SCHEDULE_INFRA';
+
+/** The planner prompt's source catalog plus the owner's schedule for today and tomorrow (spec 023 FR-004/FR-008). */
+function withSchedule(catalog: (card: EditorCard) => Promise<string | null>, schedule: ScheduleService) {
+  return async (card: EditorCard): Promise<string | null> => {
+    const parts = [await catalog(card).catch(() => null), await schedule.plannerBlock(card).catch(() => null)].filter(Boolean);
+    return parts.length ? parts.join('\n\n') : null;
+  };
 }
 
 /** Native multi-platform publishing (spec 019): repository, publish path, stats, health. */
@@ -578,12 +593,23 @@ export const EDITOR_PROVIDERS = [
       },
     },
     {
+      provide: SCHEDULE_INFRA,
+      inject: [DB_POOL, EDITOR_REPOS, AGENT_INFRA, PLATFORM_INFRA],
+      useFactory: (pool: Pool, repos: EditorRepos, infra: AgentInfra, platform: PlatformInfra): ScheduleService => new ScheduleService({
+        pool, rules: new ScheduleRepository(pool), network: new NetworkRepository(pool), agents: infra.agents,
+        card: (k) => repos.channels.get(k), plans: repos.plans, inbox: infra.inbox,
+        time: resourceTime(repos, infra.profiles), usable: (ref) => platform.health.usable(ref),
+        sourceCatalog: (card) => seriesSourceCatalog(pool, card),
+        unposted: async (ref, dataset) => (await buildCatalog(pool, { dataset, resource: ref, today: kyivMonthDay() }))[0]?.unposted_here ?? null,
+      }),
+    },
+    {
       // Deterministic draft actions of the editor chat (spec 010): composer tools, REST buttons, scheduled path.
       provide: EDITOR_DRAFTS,
-      inject: [DB_POOL, EDITOR_REPOS, EDITOR_PUBLISH, ChannelConfigService, TelegramNotifier, PostingThrottleService],
+      inject: [DB_POOL, EDITOR_REPOS, EDITOR_PUBLISH, ChannelConfigService, TelegramNotifier, PostingThrottleService, SCHEDULE_INFRA],
       useFactory: (
         pool: Pool, repos: EditorRepos, ports: PublishPorts, channelConfig: ChannelConfigService,
-        notifier: TelegramNotifier, throttle: PostingThrottleService,
+        notifier: TelegramNotifier, throttle: PostingThrottleService, schedule: ScheduleService,
       ): DraftsService => {
         const logger = new Logger('EditorDrafts');
         return new DraftsService({
@@ -591,6 +617,7 @@ export const EDITOR_PROVIDERS = [
           recordPublish: (k) => throttle.recordPublish(k),
           isPaused: (k) => channelConfig.isPublishPausedFor(k),
           notify: (t) => notifier.notifyAlert(t),
+          reservedWarnings: (k, at) => schedule.reservedWarnings(k, at),
           log: (m) => logger.warn(m),
         });
       },
@@ -598,10 +625,10 @@ export const EDITOR_PROVIDERS = [
     {
       // One registry for the runner, the chat and the ops surface (REST tools endpoint → MCP).
       provide: EDITOR_REGISTRY,
-      inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_SKILLS, EDITOR_PUBLISH, EDITOR_DRAFTS, TelegramNotifier, PostingThrottleService, AGENT_INFRA, PLATFORM_INFRA, { token: LlmBudgetService, optional: true }],
+      inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_SKILLS, EDITOR_PUBLISH, EDITOR_DRAFTS, TelegramNotifier, PostingThrottleService, AGENT_INFRA, PLATFORM_INFRA, SCHEDULE_INFRA, { token: LlmBudgetService, optional: true }],
       useFactory: (
         pool: Pool, cfg: ConfigService, repos: EditorRepos, skills: SkillLibrary, ports: PublishPorts, drafts: DraftsService,
-        notifier: TelegramNotifier, throttle: PostingThrottleService, infra: AgentInfra, platform: PlatformInfra, caps?: LlmBudgetService,
+        notifier: TelegramNotifier, throttle: PostingThrottleService, infra: AgentInfra, platform: PlatformInfra, schedule: ScheduleService, caps?: LlmBudgetService,
       ): ToolRegistry => {
         const env = (k: string) => cfg.get<string>(k) ?? undefined;
         return new ToolRegistry([
@@ -616,6 +643,7 @@ export const EDITOR_PROVIDERS = [
             notifyPreview: env('EDITOR_SHADOW_PREVIEW') === 'false'
               ? undefined
               : (k, html) => notifier.notifyAlert(previewMessage(k, html)),
+            schedule,
           }),
           ...buildComposerTools({ drafts, repo: repos.chat }),
           ...buildAgentSkillTools({ agents: infra.agents, skills: infra.skills, kpi: infra.kpi, inbox: infra.inbox }),
@@ -625,7 +653,7 @@ export const EDITOR_PROVIDERS = [
           ...buildAgentChatTools({ pool, memory: repos.memory, skills: infra.skills, actions: infra.actions }),
           ...buildNetworkTools({
             repo: new NetworkRepository(pool), plans: repos.plans, memory: repos.memory, inbox: infra.inbox,
-            sourceCatalog: (card) => seriesSourceCatalog(pool, card),
+            sourceCatalog: (card) => seriesSourceCatalog(pool, card), schedule,
           }),
           // Spec 023 FR-003: the orchestrator's series tools (one submit path with submit_playbook).
           ...buildSeriesTools({ repo: new NetworkRepository(pool), inbox: infra.inbox, sourceCatalog: (card) => seriesSourceCatalog(pool, card) }),
@@ -636,7 +664,7 @@ export const EDITOR_PROVIDERS = [
             seriesLocked: async (orch, name) => isSeriesLocked((await new NetworkRepository(pool).activePlaybook(orch.id))?.body ?? null, name),
           }),
           ...buildPlatformTools({
-            pool, publish: platform.publish, plans: repos.plans,
+            pool, publish: platform.publish, plans: repos.plans, schedule,
             notifyPreview: env('EDITOR_SHADOW_PREVIEW') === 'false' ? undefined : (ref, text) => notifier.notifyAlert(`👁 Shadow-превʼю ${ref}\n\n${text}`),
           }),
         ]);
@@ -773,10 +801,10 @@ export const EDITOR_PROVIDERS = [
     },
     {
       provide: EDITOR_NETWORK,
-      inject: [DB_POOL, ConfigService, EDITOR_LOOP, EDITOR_REPOS, EDITOR_REGISTRY, AGENT_INFRA, PLATFORM_INFRA, TelegramNotifier, EDITOR_MANAGER, PROMO_INFRA],
+      inject: [DB_POOL, ConfigService, EDITOR_LOOP, EDITOR_REPOS, EDITOR_REGISTRY, AGENT_INFRA, PLATFORM_INFRA, TelegramNotifier, EDITOR_MANAGER, PROMO_INFRA, SCHEDULE_INFRA],
       useFactory: (
         pool: Pool, cfg: ConfigService, loop: AgentLoop, repos: EditorRepos, registry: ToolRegistry, infra: AgentInfra, platform: PlatformInfra,
-        notifier: TelegramNotifier, manager: ManagerInfra, promo: PromoInfra,
+        notifier: TelegramNotifier, manager: ManagerInfra, promo: PromoInfra, schedule: ScheduleService,
       ): NetworkRunner => new NetworkRunner({
         loop, registry, runtime: infra.runtime, memory: repos.memory, repo: new NetworkRepository(pool), plans: repos.plans, profiles: infra.profiles,
         usable: (ref) => platform.health.usable(ref), time: resourceTime(repos, infra.profiles),
@@ -795,16 +823,16 @@ export const EDITOR_PROVIDERS = [
         env: (k) => cfg.get<string>(k) ?? undefined,
         notify: (t) => notifier.notifyAlert(t),
         // Spec 023 FR-008: source catalog in the orchestrator/planner prompts; low_runway after the daily run.
-        catalogSummary: catalogSummaryOf(pool, (k) => cfg.get<string>(k) ?? undefined),
+        catalogSummary: withSchedule(catalogSummaryOf(pool, (k) => cfg.get<string>(k) ?? undefined), schedule),
         runwayCheck: (orch, playbook) => checkLowRunway({ pool, inbox: infra.inbox }, orch, playbook),
       }),
     },
     {
       provide: EDITOR_RUNNER,
-      inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_SKILLS, EDITOR_REGISTRY, TelegramNotifier, AGENT_INFRA, EDITOR_LOOP, EDITOR_NETWORK],
+      inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_SKILLS, EDITOR_REGISTRY, TelegramNotifier, AGENT_INFRA, EDITOR_LOOP, EDITOR_NETWORK, SCHEDULE_INFRA],
       useFactory: (
         pool: Pool, cfg: ConfigService, repos: EditorRepos, skills: SkillLibrary, registry: ToolRegistry, notifier: TelegramNotifier,
-        infra: AgentInfra, loop: AgentLoop, network: NetworkRunner,
+        infra: AgentInfra, loop: AgentLoop, network: NetworkRunner, schedule: ScheduleService,
       ): EditorRunnerService => {
         const logger = new Logger('Editor');
         const env = (k: string) => cfg.get<string>(k) ?? undefined;
@@ -814,18 +842,19 @@ export const EDITOR_PROVIDERS = [
         return new EditorRunnerService({
           loop, registry, skills, runtime: infra.runtime, plans: repos.plans, memory: repos.memory, env, notify,
           network, platformContext: (slot, orchId) => network.platformContext(slot, orchId),
-          catalogSummary: catalogSummaryOf(pool, env),
+          catalogSummary: withSchedule(catalogSummaryOf(pool, env), schedule),
+          seriesContext: (slot) => schedule.executorContext(slot),
           onSlotDone: async (slot) => { if (slot.ideaId) await ideas.settleIdea(slot.ideaId); },
         });
       },
     },
     {
       provide: EDITOR_SCHEDULER,
-      inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_RUNNER, EDITOR_PUBLISH, EDITOR_DRAFTS, TelegramNotifier, PostingThrottleService, EDITOR_NETWORK, EDITOR_MANAGER, AGENT_INFRA, ChannelConfigService, APPROVAL_INFRA],
+      inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_RUNNER, EDITOR_PUBLISH, EDITOR_DRAFTS, TelegramNotifier, PostingThrottleService, EDITOR_NETWORK, EDITOR_MANAGER, AGENT_INFRA, ChannelConfigService, APPROVAL_INFRA, SCHEDULE_INFRA],
       useFactory: (
         pool: Pool, cfg: ConfigService, repos: EditorRepos, runner: EditorRunnerService, ports: PublishPorts, drafts: DraftsService,
         notifier: TelegramNotifier, throttle: PostingThrottleService, network: NetworkRunner, manager: ManagerInfra, infra: AgentInfra,
-        channelConfig: ChannelConfigService, approval: ApprovalInfra,
+        channelConfig: ChannelConfigService, approval: ApprovalInfra, schedule: ScheduleService,
       ) => {
         const logger = new Logger('EditorScheduler');
         const notify = (t: string) => notifier.notifyAlert(t);
@@ -858,6 +887,8 @@ export const EDITOR_PROVIDERS = [
           orchestrate: cfg.get<string>('EDITOR_ORCHESTRATION') === 'off' ? undefined : (card) => network.runOrchestrator(card),
           // Spec 024: the auto-duplicate gate is pinned at each anchor's plan-day boundary.
           pinGate: (card, now) => new NetworkRepository(pool).autoDuplicateActiveForChannel(card.channelKey, now),
+          // Spec 023 FR-004: the owner's pins become fixed slots before the planner runs.
+          pins: (card, now) => schedule.materialiseChannel(card, now),
           // The MANAGER at its times; an event run for orchestrators with fresh directives (spec 021).
           afterTick: async () => {
             await manager.runner.tick();

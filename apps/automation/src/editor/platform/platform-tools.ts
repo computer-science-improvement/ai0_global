@@ -6,6 +6,7 @@ import type { EditorPlansRepository } from '../repo/editor-plans.repository';
 import { lintPlatformPost, PlatformPostSpecSchema, renderPlatform } from './platform-spec';
 import { publishPlatformNow, PublishPlatformDeps } from './publish-platform';
 import { freshnessDeadline } from '../approval/approval-timing';
+import type { ScheduleService } from '../schedule/schedule.service';
 
 /** Per-run data of a platform slot (put into ctx.extras by the runner, spec 019/020). */
 export interface PlatformSlotExtras {
@@ -22,6 +23,8 @@ export interface PlatformToolDeps {
   publish: PublishPlatformDeps;
   plans:   Pick<EditorPlansRepository, 'getSlot' | 'updateSlot'>;
   notifyPreview?: (resourceRef: string, text: string) => Promise<void>;
+  /** Spec 023 FR-004/FR-005: blackout (live) and required series source guards. */
+  schedule?: Pick<ScheduleService, 'publishGuard'>;
 }
 
 function slotOf(ctx: ToolContext): PlatformSlotExtras | null {
@@ -60,6 +63,11 @@ export function buildPlatformTools(d: PlatformToolDeps): EditorTool[] {
       if (!slot || !ctx.slotId) return { error: 'no_platform_slot', details: 'цей прогін не має слота іншої платформи' };
       const s = await d.plans.getSlot(ctx.slotId);
       if (!s || s.status !== 'running') return { error: 'slot_not_running' };
+      if (d.schedule) {
+        const card = (ctx.extras?.card as { sources?: any[] } | undefined) ?? null;
+        const sg = await d.schedule.publishGuard(s, { libraryRef: spec.library_ref, sourceUrl: spec.source?.url }, { live: slot.mode === 'live', now: new Date(), feeds: card?.sources ?? [] });
+        if (sg) return sg;
+      }
       const r = await publishPlatformNow(d.publish, {
         resourceRef: slot.resourceRef, spec, mode: slot.mode, slotId: ctx.slotId, agentId: slot.agentId ?? null,
         maxPerDay: slot.maxPerDay, vocabulary: slot.vocabulary, bannedTerms: slot.bannedTerms,
