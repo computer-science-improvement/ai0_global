@@ -107,7 +107,7 @@ test('publishPlatformNow: shadow records without an API call; live renders slide
   assert.equal(l.cleaned(), 1);
 });
 
-test('publishPlatformNow: guards — lint, health, dedup, similarity, cap, gap, failure row', async () => {
+test('publishPlatformNow: guards — lint, health, dedup, similarity, cap, failure row (spec 024: no fixed gap)', async () => {
   const bad: any = await publishPlatformNow(deps().d, { resourceRef: 'instagram:ig1', spec: spec({ slides: [] }), mode: 'live' });
   assert.equal(bad.error, 'lint_failed');
   assert.equal(((await publishPlatformNow(deps({ health: { state: 'token_invalid', detail: 'x' } }).d, { resourceRef: 'instagram:ig1', spec: spec(), mode: 'live' })) as any).error, 'resource_unavailable');
@@ -115,7 +115,8 @@ test('publishPlatformNow: guards — lint, health, dedup, similarity, cap, gap, 
   const caption = 'Марс — червона планета. Гортай, щоб дізнатися пʼять фактів про сусіда Землі.';
   assert.equal(((await publishPlatformNow(deps({ recent: [`${caption}\n\n#космос #марс #наука`] }).d, { resourceRef: 'instagram:ig1', spec: spec({ caption }), mode: 'live' })) as any).error, 'too_similar');
   assert.equal(((await publishPlatformNow(deps({ count: 2 }).d, { resourceRef: 'instagram:ig1', spec: spec(), mode: 'live', maxPerDay: 2 })) as any).error, 'daily_cap_reached');
-  assert.equal(((await publishPlatformNow(deps({ last: new Date('2026-10-02T09:30:00Z') }).d, { resourceRef: 'instagram:ig1', spec: spec(), mode: 'live' })) as any).error, 'min_gap');
+  // Spec 024 FR-013: a post 30 min after the last one is the agent's choice; only the API caps are code rules.
+  assert.equal(((await publishPlatformNow(deps({ last: new Date('2026-10-02T09:30:00Z') }).d, { resourceRef: 'instagram:ig1', spec: spec(), mode: 'live' })) as any).ok, true);
   const f = deps({ fail: true });
   const fr: any = await publishPlatformNow(f.d, { resourceRef: 'instagram:ig1', spec: spec(), mode: 'live' });
   assert.equal(fr.error, 'publish_failed');

@@ -223,7 +223,7 @@ export const ideaReview: EvalCase = {
 const NP = '@eval_np';
 async function orchestratedNetwork(ctx: CaseCtx) {
   await resetAgents(ctx.pool, [NP]);
-  const { ig } = await network(ctx.pool, NP, 'orchestrated');
+  const { ig, groupId } = await network(ctx.pool, NP, 'orchestrated');
   await createCard(ctx.pool, { ...SPACE_CARD(NP), postsPerDayMin: 1, postsPerDayMax: 3 });
   await ctx.stack.registrySync.run();
   const orch = (await ctx.stack.agents.findTop('orchestrator', 'resource', `telegram:${NP}`))!;
@@ -241,7 +241,7 @@ async function orchestratedNetwork(ctx: CaseCtx) {
     sources: ['https://ideas.example/jwst-trappist'], why: 'свіжа новина JWST', origin: 'orchestrator', expiresAt: new Date(ctx.now.getTime() + 3 * 86_400_000), status: 'accepted',
     variants: [{ resource_ref: `telegram:${NP}`, format: 'longread' }, { resource_ref: ig, format: 'ig_carousel', note: '6 слайдів з фактами' }],
   });
-  return { ig, orch, idea, card: (await ctx.stack.channels.get(NP))! };
+  return { ig, groupId, orch, idea, card: (await ctx.stack.channels.get(NP))! };
 }
 
 export const networkPlanStaggered: EvalCase = {
@@ -301,6 +301,63 @@ export const platformNativeVariant: EvalCase = {
         check('read the source', (await trace(ctx, res.runId)).toolsUsed.includes('web_fetch'), undefined, true),
         check('nothing published to Telegram', ctx.stack.sent.length === 0),
         check('not a Telegram-style copy of the idea title', similarity(post?.caption ?? '', idea.title) < 0.8, undefined, true),
+      ],
+    };
+  },
+};
+
+// ── spec 024 T8: agent-owned formatting per resource ──────────────────────
+
+const EMOJI_RE = /\p{Extended_Pictographic}/u;
+export const executorFormatPrefs: EvalCase = {
+  id: 'executor-format-prefs', role: 'executor', channel: NP,
+  title: 'Дубль одного поста на два ресурси з різними format_prefs → по-різному оформлені пости (spec 024 T8)',
+  web: ideaWeb,
+  async execute(ctx) {
+    const { ig, groupId, card } = await orchestratedNetwork(ctx);
+    const th = `threads:${(await ctx.pool.query(
+      `INSERT INTO meta_accounts (platform, account_id, token_env, target_id, username, group_id, last_verified_at)
+       VALUES ('threads', 'eval-th', 'EVAL_NONE', 'eval-target', 'space_daily_th', $1, now()) RETURNING id`, [groupId])).rows[0].id}`;
+    await ctx.stack.profiles.patchFormat(ig, { emoji: 'none', hashtags: { count: 5, fixed: ['космос'] }, links: 'bio', length: { target: 400, max: 800 } }, { by: 'owner', replace: true });
+    await ctx.stack.profiles.patchFormat(th, { emoji: 'rich', hashtags: { count: 0, fixed: [] }, length: { target: 180, max: 300 }, tone: 'розмовний, з питанням наприкінці' }, { by: 'owner', replace: true });
+    const day = localDate(ctx.now, KYIV);
+    const at = new Date(ctx.now.getTime() - 60_000);
+    const base = { scheduledAt: at, angle: null, ideaId: null, sourceHints: [] };
+    const planId = await ctx.stack.plans.createNetworkPlan(NP, day, 'eval', null, [
+      { ...base, resourceRef: `telegram:${NP}`, format: 'photo', topic: 'Webb і TRAPPIST-1 b', treatment: 'unique' },
+      { ...base, resourceRef: ig, format: 'ig_photo', topic: 'Webb і TRAPPIST-1 b', treatment: 'duplicate', fromIndex: 0, treatmentReason: 'Та сама аудиторія, фото пасує' },
+      { ...base, resourceRef: th, format: 'th_text', topic: 'Webb і TRAPPIST-1 b', treatment: 'duplicate', fromIndex: 0, treatmentReason: 'Коротка новина для Threads' },
+    ]);
+    const slots = await ctx.stack.plans.listSlots(NP, planId);
+    const src = slots.find((s) => !s.resourceRef)!;
+    await ctx.stack.plans.updateSlot(src.id, { status: 'shadowed', postSpec: {
+      format: 'photo', title: 'Webb не знайшов атмосфери у TRAPPIST-1 b', origin: 'external',
+      body: [{ type: 'lead', text: 'Webb не знайшов атмосфери у TRAPPIST-1 b' }, { type: 'p', text: 'Інфрачервоні виміри показують голу скелясту планету: тепло з денного боку не розходиться. Для пошуку життя біля червоних карликів це поганий знак, але не вирок.' }],
+      media: [{ url: 'https://ideas.example/trappist.jpg' }], placement: 'above', hashtags: ['космос', 'webb'], buttons: [],
+      source: { url: 'https://ideas.example/jwst-trappist', label: 'NASA' },
+    } });
+    const out: Record<string, { caption: string; runId: string | null }> = {};
+    for (const ref of [ig, th]) {
+      const s = slots.find((x) => x.resourceRef === ref)!;
+      await ctx.pool.query(`UPDATE editor_slots SET status = 'running', attempts = 1 WHERE id = $1`, [s.id]);
+      const res = await ctx.stack.runner.runExecutor({ ...s, status: 'running' }, card);
+      out[ref] = { caption: (await ctx.stack.platformPosts.recent(ref, 1))[0]?.caption ?? '', runId: res.runId };
+    }
+    const tags = (c: string) => (c.match(/#[\p{L}\p{N}_]+/gu) ?? []).length;
+    const a = out[ig].caption;
+    const b = out[th].caption;
+    return {
+      runId: out[ig].runId, status: 'ok', post: `IG:\n${a}\n\nThreads:\n${b}`,
+      checks: [
+        check('both duplicates written (shadow)', !!a && !!b),
+        check('Instagram: no emoji (format_prefs emoji=none)', !EMOJI_RE.test(a), a.slice(0, 80)),
+        check('Instagram: 4–6 hashtags incl. #космос', tags(a) >= 4 && tags(a) <= 6 && /#космос/i.test(a), String(tags(a)), true),
+        check('Instagram: no raw link in the caption', !/https?:\/\//.test(a)),
+        check('Threads: emoji used (emoji=rich)', EMOJI_RE.test(b), b.slice(0, 80), true),
+        check('Threads: no hashtags (count 0)', tags(b) === 0, String(tags(b))),
+        check('Threads: ≤ 300 characters', b.length <= 300, String(b.length)),
+        check('the two posts are formatted differently', similarity(a, b) < 0.8),
+        check('one short run per duplicate', (await stepsOf(ctx.pool, out[ig].runId)).length <= 12 && (await stepsOf(ctx.pool, out[th].runId)).length <= 12),
       ],
     };
   },
@@ -382,5 +439,5 @@ export async function cleanupAgentEvals(pool: Pool): Promise<void> {
 }
 
 export const AGENT_CASES: EvalCase[] = [
-  builderOnboarding, mentionExplain, playbookFromBrief, ideaReview, networkPlanStaggered, platformNativeVariant, managerStableContinue, managerDropDirective,
+  builderOnboarding, mentionExplain, playbookFromBrief, ideaReview, networkPlanStaggered, platformNativeVariant, executorFormatPrefs, managerStableContinue, managerDropDirective,
 ];

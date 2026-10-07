@@ -312,3 +312,27 @@ Duplication becomes a tool, and every resource gets its own time zone.
 - **Per-resource modes** would plug in at `RepurposeService.run` (mode of the target) and in `runDerived` (today the run mode is
   the anchor's effective mode; platform refs still answer `resource_follows_network`).
 - FR-009's gate in `GroupFanOutService` shipped with T1 (its test stays the coverage); the Groups-page warning is T5.
+
+### T8 (2026-10-07)
+- **Schema:** `format_prefs` (`FormatPrefsSchema`, strict, every field optional; `hashtags.style` optional, `line_breaks` free
+  text) and `format_locks` (field names) in `ResourceProfileSchema`. A stored profile with invalid formatting drops only the
+  formatting. A profile save without these keys keeps the stored ones (the profile form, the builder and old clients never wipe
+  them).
+- **Storage:** format_prefs live in the profile JSON, so a member resource without a full profile can still have them
+  (`profiles.get` stays null for it; `formatOf` reads them). Versions: `resource_profile_versions` (migration 062) — every
+  profile save and every formatting change, with `changed_by`, `agent_id`, `reason`, a field-level `diff` and the snapshot.
+- **Tools:** `update_resource_format {resource_ref, patch, reason}` (orchestrator, planner; `null` clears a field) and the
+  read tool `get_resource_format` (also executor; not in the spec). Errors: `locked_by_owner`, `daily_limit` (3 agent changes
+  per resource per local day via `resource_tz()`), `invalid_patch`, `no_change`, `not_in_network`, `no_network`.
+- **Owner edits:** `GET /api/agents/:handle/formatting` (every resource of the agent's network with prefs, locks and today's
+  agent changes, plus the history) and `PUT /api/agents/:handle/formatting/:ref {format_prefs, format_locks}` (replaces both;
+  outside the daily cap). The UI is a "Formatting" section on the orchestrator's Overview next to "Resource" (not inside the
+  profile modal: member resources have no profile form), with per-field lock toggles and a collapsible change history.
+- **Prompts:** the target's format_prefs (locked fields marked) go into the platform executor's system prompt, the Telegram
+  executor's slot prompt and the duplicate / adapt run; the orchestrator prompt tells it to evolve them from KPIs and from the
+  owner's approval edits (031 owner preferences are in its memory) — a hint, not a separate suggestion card.
+- **Soft defaults → hints:** the 60-min gap between posts of one platform resource is gone from `validateNetworkPlan` and from
+  `publishPlatformNow` (`min_gap`); the planner prompt names the old values as guidance. The Telegram card's `minGapMinutes`
+  (an owner setting) still applies. No fixed hashtag cut or caption trim existed in the agent path (`renderPlatform` trims only
+  at the platform maximum); the strategies' caption helpers are legacy fan-out and stay (non-goal).
+- **Eval** `executor-format-prefs` (`evals/cases/agents.ts`) written, not run; the eval stack now wires derived slots.

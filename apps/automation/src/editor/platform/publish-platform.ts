@@ -12,7 +12,8 @@ import type { ResourcePublisher } from './resource-publisher';
 /** The same idea is a repeat on a resource within this window. Sources go through the content ledger (023 FR-010). */
 export const PLATFORM_IDEA_DEDUP_DAYS = 7;
 export const PLATFORM_SIMILARITY_LIMIT = 0.6;
-export const PLATFORM_MIN_GAP_MIN = 60;
+/** Spec 024 FR-013: a hint for the agents, no longer a code rule (only the platform API caps are). */
+export const PLATFORM_GAP_HINT_MIN = 60;
 
 export interface PublishPlatformDeps {
   posts:     Pick<PlatformPostsRepository, 'insert' | 'alreadyPosted' | 'countPublishedSince' | 'lastPostAt' | 'recentCaptions'>
@@ -128,10 +129,6 @@ export async function publishPlatformNow(d: PublishPlatformDeps, i: PublishPlatf
   const cap = Math.min(CAPABILITIES[platform].dailyApiCap, i.maxPerDay ?? Number.POSITIVE_INFINITY);
   const done = await d.posts.countPublishedSince(i.resourceRef, dayStart);
   if (done >= cap) return { error: 'daily_cap_reached', details: `${done}/${cap} за 24 год` };
-  const last = await d.posts.lastPostAt(i.resourceRef);
-  if (last && now.getTime() - last.getTime() < PLATFORM_MIN_GAP_MIN * 60_000) {
-    return { error: 'min_gap', details: `останній пост ${Math.round((now.getTime() - last.getTime()) / 60_000)} хв тому` };
-  }
 
   let prepared: PreparedPublish | null = null;
   try {

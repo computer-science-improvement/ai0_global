@@ -48,7 +48,6 @@ export interface NetworkPlannedSlot {
   formatNotes?: string | null;
 }
 
-export const PLATFORM_GAP_MIN = 60;
 const LEAD_MIN = 5;
 
 /**
@@ -130,10 +129,13 @@ export function validateNetworkPlan(
     const reservedHere = platform === 'telegram' ? o.reservedAt.length : 0;
     if (slots.length + reservedHere > sec.per_day.max) errors.push(`${ref}: ${slots.length + reservedHere} постів > per_day.max ${sec.per_day.max}`);
     if (platform !== 'telegram' && slots.length > CAPABILITIES[platform].dailyApiCap) errors.push(`${ref}: понад ліміт API платформи`);
-    const gap = (platform === 'telegram' ? card.minGapMinutes : PLATFORM_GAP_MIN) * 60_000;
-    const sorted = [...slots].sort((a, b) => a.scheduledAt.getTime() - b.scheduledAt.getTime());
-    for (let i = 1; i < sorted.length; i++) {
-      if (sorted[i].scheduledAt.getTime() - sorted[i - 1].scheduledAt.getTime() < gap) errors.push(`${ref}: інтервал між постами менше ${gap / 60_000} хв`);
+    // Spec 024 FR-013: spacing on a platform resource is the agent's choice (a prompt hint); Telegram keeps the owner's card gap.
+    if (platform === 'telegram') {
+      const gap = card.minGapMinutes * 60_000;
+      const sorted = [...slots].sort((a, b) => a.scheduledAt.getTime() - b.scheduledAt.getTime());
+      for (let i = 1; i < sorted.length; i++) {
+        if (sorted[i].scheduledAt.getTime() - sorted[i - 1].scheduledAt.getTime() < gap) errors.push(`${ref}: інтервал між постами менше ${gap / 60_000} хв`);
+      }
     }
   }
   for (const [ref, sec] of sections) {

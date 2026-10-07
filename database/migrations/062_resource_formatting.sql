@@ -7,6 +7,9 @@
 --   the orchestrator's daily cap counts calls (FR-008).
 -- • network_posts gains post_ref ('tg:<published_posts.id>' / 'pp:<platform_posts.id>')
 --   so an agent can name a repurpose_post source (appended column; same rows).
+-- • resource_profile_versions: every change of a resource profile and of its
+--   format_prefs (who, when, why, diff) — owner edits and the agents'
+--   update_resource_format (≤ 3 a day per resource) (FR-013).
 --
 -- Additive and idempotent.
 
@@ -51,6 +54,31 @@ SELECT pp.resource_ref, pp.platform, pp.external_id, pp.format, left(pp.caption,
      WHERE post_id = pp.id ORDER BY captured_at DESC LIMIT 1
   ) m ON true
  WHERE pp.status = 'published' AND pp.platform <> 'telegram';
+
+-- ── profile / format_prefs versions (T8) ─────────────────────────────────────
+CREATE TABLE IF NOT EXISTS resource_profile_versions (
+  id           BIGSERIAL PRIMARY KEY,
+  resource_ref TEXT NOT NULL,
+  version      INT NOT NULL,
+  kind         TEXT NOT NULL CHECK (kind IN ('profile','format')),
+  changed_by   TEXT NOT NULL CHECK (changed_by IN ('owner','builder','agent','system')),
+  agent_id     UUID REFERENCES agents(id) ON DELETE SET NULL,
+  reason       TEXT,
+  diff         JSONB NOT NULL DEFAULT '{}',
+  profile      JSONB,
+  created_at   TIMESTAMPTZ NOT NULL DEFAULT now(),
+  UNIQUE (resource_ref, version)
+);
+CREATE INDEX IF NOT EXISTS idx_resource_profile_versions_ref ON resource_profile_versions (resource_ref, created_at DESC);
+
+DO $$
+BEGIN
+  IF EXISTS (SELECT 1 FROM pg_roles WHERE rolname = 'editor_ro') THEN
+    GRANT SELECT ON public.resource_profile_versions TO editor_ro;
+  END IF;
+EXCEPTION WHEN insufficient_privilege THEN
+  RAISE NOTICE 'editor_ro grants skipped (insufficient privilege)';
+END $$;
 
 INSERT INTO schema_migrations (version) VALUES ('062_resource_formatting')
   ON CONFLICT (version) DO NOTHING;

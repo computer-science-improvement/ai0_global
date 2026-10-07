@@ -7,7 +7,8 @@ import { Agent, AgentMode, isPaused, telegramKeyOf, validateHandle } from './age
 import type { AgentPatch, AgentsRepository } from './agents.repository';
 import type { OwnerInbox } from './owner-inbox';
 import type { PendingActionsService } from './pending-actions';
-import { ResourceProfileSchema, ResourceProfilesRepository } from './resource-profile';
+import { FORMAT_CHANGES_PER_DAY, FormatLocksSchema, FormatPrefsSchema, ResourceProfileSchema, ResourceProfilesRepository } from './resource-profile';
+import { NetworkRepository } from '../network/network.repository';
 import type { SkillStore } from './skill-store';
 import { SKILL_ROLES } from './skill-lint';
 
@@ -271,6 +272,56 @@ export class AgentsService {
     const p = ResourceProfileSchema.safeParse(body ?? {});
     if (!p.success) throw badRequest(p.error);
     await this.d.profiles.setProfile(ref, p.data, by);
+  }
+
+  // ── per-resource formatting (spec 024 FR-013) ─────────────────────────────
+
+  /** The resources whose formatting this agent's page shows: its network's members, else its own resource. */
+  private async formatRefs(orch: Agent): Promise<Array<{ ref: string; platform: string; title: string | null }>> {
+    const key = telegramKeyOf(orch);
+    if (key) {
+      const repo = new NetworkRepository(this.d.pool);
+      const g = await repo.groupOfChannel(key);
+      const members = g ? await repo.groupResources(g.id) : [];
+      const anchor = `telegram:${key}`;
+      return members.some((m) => m.ref === anchor) ? members : [{ ref: anchor, platform: 'telegram', title: null }, ...members];
+    }
+    const own = this.profileKey(orch);
+    return own && !own.startsWith('network:') ? [{ ref: own, platform: own.slice(0, own.indexOf(':')), title: null }] : [];
+  }
+
+  async getFormatting(handle: string) {
+    if (!this.d.profiles) throw new BadRequestException({ error: 'profiles_unavailable' });
+    const orch = await this.orchestratorOf(await this.require(handle));
+    const refs = await this.formatRefs(orch);
+    const now = (this.d.now ?? (() => new Date()))();
+    const resources: Array<Record<string, unknown>> = [];
+    for (const r of refs) {
+      const f = await this.d.profiles.formatOf(r.ref);
+      resources.push({
+        ref: r.ref, platform: r.platform, title: r.title, formatPrefs: f.prefs, locks: f.locks, updatedAt: f.updatedAt,
+        changesToday: await this.d.profiles.formatChangesToday(r.ref, now),
+      });
+    }
+    const agents = new Map((await this.d.agents.list()).map((a) => [a.id, a.handle]));
+    const history = (await this.d.profiles.history(refs.map((r) => r.ref), 60))
+      .filter((h) => h.kind === 'format' || Object.keys(h.diff).some((k) => k.startsWith('format_')))
+      .map((h) => ({ ...h, agentHandle: h.agentId ? agents.get(h.agentId) ?? null : null }));
+    return { changesPerDay: FORMAT_CHANGES_PER_DAY, resources, history };
+  }
+
+  /** The owner's edit: the whole format_prefs of one resource plus the locked fields. */
+  async putFormatting(handle: string, ref: string, body: unknown) {
+    if (!this.d.profiles) throw new BadRequestException({ error: 'profiles_unavailable' });
+    const orch = await this.orchestratorOf(await this.require(handle));
+    if (!(await this.formatRefs(orch)).some((r) => r.ref === ref)) throw new NotFoundException({ error: 'resource_not_found', details: ref });
+    const p = z.object({ format_prefs: FormatPrefsSchema, format_locks: FormatLocksSchema.default([]), reason: z.string().trim().max(300).optional() }).strict().safeParse(body ?? {});
+    if (!p.success) throw badRequest(p.error);
+    const r = await this.d.profiles.patchFormat(ref, p.data.format_prefs as Record<string, unknown>, {
+      by: 'owner', locks: p.data.format_locks, replace: true, reason: p.data.reason ?? 'owner edit',
+    });
+    if ('error' in r && r.error !== 'no_change') throw new BadRequestException(r);
+    return this.getFormatting(handle);
   }
 
   private briefHook: ((agent: Agent, brief: string) => Promise<void>) | null = null;

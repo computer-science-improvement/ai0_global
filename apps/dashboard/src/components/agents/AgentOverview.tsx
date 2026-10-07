@@ -13,6 +13,7 @@ import { fmtUsd } from '../editor/EditorUi';
 import { fmtDate, fmtRelative } from '../../lib/format';
 import { AgentGlyph, AgentModeSwitch, KIND_LABEL, LastRun, ScopeChip, runsLabel } from './AgentsUi';
 import { ResourceSection } from './ResourceProfile';
+import { FormattingSection } from './ResourceFormatting';
 import { errorBody, usePatchAgent, type AgentDetail, type AgentPatch, type ReasoningEffort } from '../../api/agents';
 
 const HANDLE_RE = /^[a-z][a-z0-9_]{2,31}$/;
@@ -93,6 +94,7 @@ export function AgentOverview({ data }: { data: AgentDetail }) {
       </div>
 
       {a.kind === 'orchestrator' && a.scopeId && <ResourceSection handle={a.handle} />}
+      {a.kind === 'orchestrator' && a.scopeId && <FormattingSection handle={a.handle} />}
 
       <ProfileForm key={`${a.id}:${a.updatedAt}`} data={data} />
 

@@ -32,7 +32,11 @@ export interface EditorRunnerDeps {
    * the resource, its profile and limits. Optional; without it the platform
    * executor works from the slot and the capability matrix only.
    */
-  platformContext?: (slot: EditorSlot, orchestratorId: string | null) => Promise<{ playbook?: string | null; profile?: string | null; maxPerDay?: number | null; vocabulary?: string[]; idea?: string | null } | null>;
+  platformContext?: (slot: EditorSlot, orchestratorId: string | null) => Promise<{
+    playbook?: string | null; profile?: string | null; maxPerDay?: number | null; vocabulary?: string[]; idea?: string | null;
+    /** Spec 024 FR-013: the target's format_prefs, rendered for the prompt. */
+    formatPrefs?: string | null;
+  } | null>;
   /** Spec 020: network planner and the idea pool for the single-channel planner. */
   network?: {
     runNetworkPlanner(card: EditorCard, planDate?: string): Promise<AgentLoopResult | null>;
@@ -228,7 +232,9 @@ export class EditorRunnerService {
     const runCard: EditorCard = r.shadow ? { ...card, mode: 'shadow' } : card;
     const mode = runCard.mode === 'live' || runCard.mode === 'approve' ? runCard.mode : 'shadow';
     const pc = this.d.platformContext ? await this.d.platformContext(slot, ctx?.orchestrator?.id ?? null).catch(() => null) : null;
-    const formatPrefs = this.d.derived!.formatPrefs ? await this.d.derived!.formatPrefs(targetRef).catch(() => null) : null;
+    const formatPrefs = this.d.derived!.formatPrefs
+      ? await this.d.derived!.formatPrefs(targetRef).catch(() => null)
+      : pc?.formatPrefs ?? null;
     const prefs = await this.prefs('executor', card.channelKey);
     const memory = await this.d.memory.listActive(card.channelKey, 30, { excludeApprovalPrefs: prefs.length > 0 });
     const skills = ctx?.skills ?? this.d.skills;
@@ -276,9 +282,14 @@ export class EditorRunnerService {
   /** The Telegram executor prompt, plus the pool idea the slot realises (spec 020). */
   private async executorUser(card: EditorCard, slot: EditorSlot, ctx: RunAgentContext | null): Promise<string> {
     const base = executorUserPrompt(card, slot, this.now());
-    if (!slot.ideaId || !this.d.platformContext) return base;
+    if (!this.d.platformContext) return base;
     const pc = await this.d.platformContext(slot, ctx?.orchestrator?.id ?? null).catch(() => null);
-    return pc?.idea ? `${base}\nІдея з пулу: ${pc.idea}` : base;
+    return [
+      base,
+      slot.ideaId && pc?.idea ? `Ідея з пулу: ${pc.idea}` : '',
+      // Spec 024 FR-013: the channel's own formatting (agent-owned; fields locked by the owner are binding).
+      pc?.formatPrefs ? `Форматування цього ресурсу (format_prefs):\n${pc.formatPrefs}` : '',
+    ].filter(Boolean).join('\n');
   }
 
   /** A slot that targets Instagram / Facebook / Threads / TikTok of the channel's network (spec 019 FR-008). */
@@ -300,6 +311,9 @@ export class EditorRunnerService {
       capabilitiesSummary([platform as any]),
       `Доступні формати зараз: ${implementedFormats(platform as any).join(', ')}.`,
       ...(pc?.profile ? ['', '## Профіль ресурсу', pc.profile] : []),
+      '',
+      '## Форматування ресурсу (format_prefs)',
+      pc?.formatPrefs || '- не задано: на твій розсуд, за нормами платформи (рекомендовані діапазони вище — орієнтир, не правило)',
       ...(pc?.playbook ? ['', '## Плейбук для цього ресурсу', pc.playbook] : []),
       '',
       '## Памʼять мережі (правила власника і висновки)',

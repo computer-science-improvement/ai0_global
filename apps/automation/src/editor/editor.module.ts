@@ -66,7 +66,7 @@ import { AgentsService } from './agents/agents.service';
 import { AGENTS_SERVICE, AgentsController } from './agents/agents.controller';
 import { telegramKeyOf, parseResourceRef, resourceRef } from './agents/agent.types';
 import type { Agent } from './agents/agent.types';
-import { ResourceProfilesRepository } from './agents/resource-profile';
+import { renderFormatPrefs, ResourceProfilesRepository } from './agents/resource-profile';
 import { ResourceCatalog, makeTelegramAccessCheck } from './agents/resource-catalog';
 import { PendingActionsRepository, PendingActionsService } from './agents/pending-actions';
 import { AgentCreator } from './agents/agent-creator';
@@ -89,6 +89,7 @@ import { NetworkRepository } from './network/network.repository';
 import { NetworkRunner } from './network/network-runner';
 import { buildNetworkTools } from './network/network-tools';
 import { buildRepurposeTools, RepurposeInput, RepurposeService } from './network/repurpose-tool';
+import { buildFormatTools } from './network/format-tools';
 import { networkContext } from './network/network-context';
 import { buildSeriesTools } from './network/series-tools';
 import { buildHighlightsTools } from './tools/highlights-tools';
@@ -228,6 +229,7 @@ function derivedPorts(pool: Pool, net: NetworkRepository, infra: AgentInfra, hol
   });
   return {
     resolve: (slot) => slots.resolve(slot),
+    formatPrefs: async (ref) => { const f = await infra.profiles.formatOf(ref); return renderFormatPrefs(f.prefs, f.locks); },
     released: holds ? (id) => holds.sweep(new Date(), id) : undefined,
     inbox: (n) => infra.inbox.post({
       agentId: n.agentId, kind: 'derived_post_failed', severity: 'action', title: n.title, body: n.body, refType: 'slot', refId: n.slotId,
@@ -679,6 +681,8 @@ export const EDITOR_PROVIDERS = [
             channelKeyOf: (a) => infra.channelKeyOf(a),
             seriesLocked: async (orch, name) => isSeriesLocked((await new NetworkRepository(pool).activePlaybook(orch.id))?.body ?? null, name),
           }),
+          // Spec 024 FR-013: agent-owned formatting per resource.
+          ...buildFormatTools({ profiles: infra.profiles }),
           // Spec 024 FR-008: repurpose_post for the orchestrator, planner and executor; an Apply card for chat agents.
           ...buildRepurposeTools({
             service: new RepurposeService({ pool, plans: repos.plans }),

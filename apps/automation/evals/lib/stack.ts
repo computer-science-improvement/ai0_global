@@ -38,6 +38,8 @@ import { telegramKeyOf } from '../../src/editor/agents/agent.types';
 import type { AgentChatPort } from '../../src/editor/chat/editor-chat.service';
 import { NetworkRepository } from '../../src/editor/network/network.repository';
 import { NetworkRunner } from '../../src/editor/network/network-runner';
+import { DerivedSlots } from '../../src/editor/network/derived-slots';
+import { renderFormatPrefs } from '../../src/editor/agents/resource-profile';
 import { buildNetworkTools } from '../../src/editor/network/network-tools';
 import { DirectivesRepository } from '../../src/editor/manager/directives.repository';
 import { KpiDigestService } from '../../src/editor/manager/kpi-digest.service';
@@ -169,6 +171,11 @@ export function buildStack(o: { pool: Pool; web: FakeWeb; now: () => Date; apiKe
     loop, registry, skills, plans, memory, now, runtime, network,
     platformContext: (slot, orchId) => network.platformContext(slot, orchId),
     onSlotDone: async (slot) => { if (slot.ideaId) await networkRepo.settleIdea(slot.ideaId); },
+    // Spec 024: duplicate / adapt slots, formatted by the agent from the target's format_prefs.
+    derived: {
+      resolve: (slot) => new DerivedSlots({ pool }).resolve(slot),
+      formatPrefs: async (ref) => { const f = await profiles.formatOf(ref); return renderFormatPrefs(f.prefs, f.locks); },
+    },
     env: o.env,
     notify: async (t) => { notes.push(t); },
   });

@@ -71,6 +71,17 @@ export class AgentsController {
     return this.svc.putProfile(handle, body);
   }
 
+  /** Spec 024 FR-013: format_prefs of the agent's resources, owner locks and the change history. */
+  @Get('agents/:handle/formatting')
+  formatting(@Param('handle') handle: string) {
+    return this.svc.getFormatting(handle);
+  }
+
+  @Put('agents/:handle/formatting/:ref')
+  putFormatting(@Param('handle') handle: string, @Param('ref') ref: string, @Body() body: unknown) {
+    return this.svc.putFormatting(handle, ref, body);
+  }
+
   @Get('agents/:handle/memory')
   memory(@Param('handle') handle: string) {
     return this.svc.memory(handle);
