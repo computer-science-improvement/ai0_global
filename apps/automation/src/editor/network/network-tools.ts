@@ -12,6 +12,7 @@ import { IDEA_STATUSES, IdeaRow, NetworkRepository } from './network.repository'
 import { SubmitNetworkPlanInput, validateNetworkPlan } from './network-plan';
 import { PlaybookSchema, renderPlaybook } from './playbook';
 import { submitPlaybookVersion, type SubmitDeps } from './series-edit';
+import type { ScheduleService } from '../schedule/schedule.service';
 
 export const IDEA_DEDUP_SIMILARITY = 0.6;
 export const IDEA_MAX_DAYS = 7;
@@ -29,6 +30,8 @@ export interface NetworkToolDeps {
   inbox:  Pick<OwnerInbox, 'post'>;
   /** Spec 023: datasets and card feeds a series source may name. */
   sourceCatalog?: SubmitDeps['sourceCatalog'];
+  /** Spec 023 FR-004: owner schedule rules, pins and due series in the plan check. */
+  schedule?: Pick<ScheduleService, 'planContext' | 'effectiveNet'>;
   now?:   () => Date;
 }
 
@@ -243,8 +246,10 @@ export function buildNetworkTools(d: NetworkToolDeps): EditorTool[] {
       const dayStart = zonedToUtc(planDate, '00:00', card.timezone);
       const reserved = await d.plans.reservedSlots(net.anchorKey, dayStart, new Date(dayStart.getTime() + 86_400_000));
       const accepted = await d.repo.listIdeas(net.orchestrator.id, ['accepted'], 200);
+      const sched = d.schedule ? await d.schedule.planContext(card, net, planDate, t, 'network') : undefined;
       const v = validateNetworkPlan(plan, {
-        net, card, planDate, weekday: localWeekday(dayStart, card.timezone), now: t,
+        net: sched ? d.schedule!.effectiveNet(net, sched) : net, schedule: sched,
+        card, planDate, weekday: localWeekday(dayStart, card.timezone), now: t,
         ideas: new Map(accepted.map((i) => [i.id, i])), reservedAt: reserved.map((r) => r.scheduledAt),
       });
       if (!v.ok) return { error: 'plan_invalid', details: v.errors };

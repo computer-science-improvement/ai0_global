@@ -2,6 +2,7 @@ import { z } from 'zod';
 import type { EditorCard } from '../card';
 import { SUPPORTED_FORMATS } from '../post/post-spec';
 import { isQuietHour, zonedToUtc } from './time';
+import { planScheduleErrors, PlanScheduleCtx, SkippedSeriesInput } from '../schedule/plan-schedule-rules';
 
 export const PlanSlotInput = z.object({
   time:          z.string().regex(/^([01]\d|2[0-3]):[0-5]\d$/).describe('Локальний час каналу HH:MM'),
@@ -11,10 +12,12 @@ export const PlanSlotInput = z.object({
   source_hints:  z.array(z.string().max(300)).max(5).default([]).describe('id джерел з картки, таблиці бібліотеки (library:recipes) або URL'),
   is_experiment: z.boolean().default(false),
   idea_id:       z.string().uuid().optional().describe('id прийнятої ідеї з пулу (list_ideas), якщо слот її реалізує'),
+  series:        z.string().max(80).optional().describe('Назва серії з плейбука, якщо це її випуск (±90 хв від її часу)'),
 });
 export const SubmitPlanInput = z.object({
   rationale: z.string().min(10).max(1500),
   slots:     z.array(PlanSlotInput).max(24),
+  skipped_series: SkippedSeriesInput,
 });
 export type SubmitPlan = z.infer<typeof SubmitPlanInput>;
 
@@ -59,6 +62,7 @@ export function validatePlan(
   planDate: string,
   now: Date,
   reservedAt: Date[] = [],
+  schedule?: PlanScheduleCtx,
 ): PlanVerdict {
   const errors: string[] = [];
   const n = plan.slots.length;
@@ -89,8 +93,9 @@ export function validatePlan(
       if (Math.abs(at.getTime() - r.getTime()) < gapMs) errors.push(`${label}: занадто близько до резервного слоту`);
     }
     prev = at;
-    slots.push({ scheduledAt: at, format: s.format, topic: s.topic, angle: s.angle ?? null, sourceHints: s.source_hints, isExperiment: s.is_experiment, ...(s.idea_id ? { ideaId: s.idea_id } : {}) });
+    slots.push({ scheduledAt: at, format: s.format, topic: s.topic, angle: s.angle ?? null, sourceHints: s.series ? [`series:${s.series}`, ...s.source_hints] : s.source_hints, isExperiment: s.is_experiment, ...(s.idea_id ? { ideaId: s.idea_id } : {}) });
   });
+  if (schedule) errors.push(...planScheduleErrors(plan, schedule, schedule.defaultRef));
 
   return errors.length ? { ok: false, errors } : { ok: true, slots };
 }

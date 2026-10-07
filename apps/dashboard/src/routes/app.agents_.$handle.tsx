@@ -15,6 +15,7 @@ import { AgentHistory, AgentMemory } from '../components/agents/AgentMemoryHisto
 import { AgentPlaybook } from '../components/agents/AgentPlaybook';
 import { AgentIdeas } from '../components/agents/AgentIdeas';
 import { AgentPlan } from '../components/agents/AgentPlan';
+import { AgentSchedule } from '../components/agents/AgentSchedule';
 import { AgentInbox, ManagerDirectives } from '../components/agents/Directives';
 import { ManagerReviews } from '../components/agents/ManagerReviews';
 import { AgentPromo } from '../components/agents/AgentPromo';
@@ -23,9 +24,9 @@ import { ApprovalStatsPanel } from '../components/approvals/ApprovalStatsPanel';
 import { errorBody, useAgent, useRunAgent } from '../api/agents';
 import { useRunManager } from '../api/manager';
 
-const TABS = ['overview', 'approvals', 'reviews', 'directives', 'skills', 'memory', 'history', 'playbook', 'ideas', 'plan', 'inbox', 'promo'] as const;
+const TABS = ['overview', 'approvals', 'reviews', 'directives', 'skills', 'memory', 'history', 'playbook', 'schedule', 'ideas', 'plan', 'inbox', 'promo'] as const;
 type Tab = typeof TABS[number];
-const NETWORK_TABS: readonly Tab[] = ['approvals', 'playbook', 'ideas', 'plan', 'inbox', 'promo'];
+const NETWORK_TABS: readonly Tab[] = ['approvals', 'playbook', 'schedule', 'ideas', 'plan', 'inbox', 'promo'];
 const MANAGER_TABS: readonly Tab[] = ['reviews', 'directives'];
 
 const TAB_OPTIONS = [
@@ -37,6 +38,7 @@ const TAB_OPTIONS = [
   { key: 'memory' as const,   label: 'Memory',   icon: 'bots' as const },
   { key: 'history' as const,  label: 'History',  icon: 'history' as const },
   { key: 'playbook' as const, label: 'Playbook', icon: 'logs' as const },
+  { key: 'schedule' as const, label: 'Schedule', icon: 'clock' as const },
   { key: 'ideas' as const,    label: 'Ideas',    icon: 'sparkles' as const },
   { key: 'plan' as const,     label: 'Plan',     icon: 'calendar' as const },
   { key: 'inbox' as const,    label: 'Inbox',    icon: 'inbox' as const },
@@ -174,6 +176,7 @@ function AgentPage() {
       {tab === 'memory' && <AgentMemory data={d} />}
       {tab === 'history' && <AgentHistory data={d} />}
       {tab === 'playbook' && <AgentPlaybook handle={a.handle} orchestrator={orchestrator} />}
+      {tab === 'schedule' && <AgentSchedule handle={a.handle} />}
       {tab === 'ideas' && <AgentIdeas handle={a.handle} focus={idea} />}
       {tab === 'plan' && <AgentPlan handle={a.handle} onIdea={openIdea} />}
       {tab === 'inbox' && <AgentInbox handle={orchestrator} />}

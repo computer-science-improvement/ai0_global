@@ -31,6 +31,9 @@ export interface EditorSlot {
   ideaId?:         string | null;
   /** Promo between own resources (spec 022). */
   promo?:          Record<string, unknown> | null;
+  /** Spec 023 FR-004: the playbook series this slot is an instance of / the owner pin it materialises. */
+  seriesName?:     string | null;
+  scheduleRuleId?: string | null;
   createdAt?:      Date;
   // ── approval mode (spec 031); present only when set ──
   approvedAt?:        Date | null;
@@ -51,6 +54,15 @@ export type ApprovalRender =
   | { kind: 'platform'; platform: string; rendered: Record<string, unknown> }
   // Spec 022 repost in approval mode: a native forward of an own post, sent after approval.
   | { kind: 'forward'; fromKey: string; messageId: number };
+
+/**
+ * Spec 023 FR-004: a planned series instance carries the `series:<name>` source hint (both planners write
+ * it); the slot's series_name column is filled from it in the plan transaction.
+ */
+const TAG_SERIES_SLOTS = `UPDATE editor_slots s SET series_name = substr(h.v, 8)
+   FROM (SELECT id, (SELECT x FROM jsonb_array_elements_text(source_hints) x WHERE x LIKE 'series:%' LIMIT 1) AS v
+           FROM editor_slots WHERE plan_id = $1 AND series_name IS NULL) h
+  WHERE s.id = h.id AND h.v IS NOT NULL`;
 
 /** Rationale of a plan created only to hold reserved (ad) slots; the planner still plans that day. */
 export const RESERVED_ONLY_RATIONALE = 'reserved only';
@@ -81,6 +93,8 @@ export function rowToSlot(r: any): EditorSlot {
     ...(r.resource_ref ? { resourceRef: r.resource_ref } : {}),
     ...(r.idea_id ? { ideaId: r.idea_id } : {}),
     ...(r.promo ? { promo: r.promo } : {}),
+    ...(r.series_name ? { seriesName: r.series_name } : {}),
+    ...(r.schedule_rule_id ? { scheduleRuleId: r.schedule_rule_id } : {}),
     ...(r.created_at ? { createdAt: new Date(r.created_at) } : {}),
     ...(r.approved_at ? { approvedAt: new Date(r.approved_at) } : {}),
     ...(r.owner_edited ? { ownerEdited: true } : {}),
@@ -237,16 +251,18 @@ export class EditorPlansRepository {
       const planId: string = rows[0].id;
       for (const o of old.rows) {
         // Unwritten slots and (spec 031) posts still waiting for approval go with the old plan; approved ones stay.
+        // Spec 023 FR-004: the owner's pins are fixed — they move to the new plan like reserved slots.
         const dropped = await client.query(
           `UPDATE editor_slots SET status = 'skipped', error = 'superseded by a new plan', updated_at = now()
-            WHERE plan_id = $1 AND status IN ('planned','awaiting_approval') AND kind = 'content' RETURNING platform_post_id`, [o.id]);
+            WHERE plan_id = $1 AND status IN ('planned','awaiting_approval') AND kind = 'content' AND schedule_rule_id IS NULL RETURNING platform_post_id`, [o.id]);
         const waitingRows = dropped.rows.map((r: any) => r.platform_post_id).filter((x: unknown) => x != null);
         if (waitingRows.length) {
           await client.query(`UPDATE platform_posts SET status = 'canceled', error = 'superseded' WHERE id = ANY($1::bigint[]) AND status = 'awaiting_approval'`, [waitingRows]);
         }
-        await client.query(`UPDATE editor_slots SET plan_id = $2, updated_at = now() WHERE plan_id = $1 AND kind = 'reserved'`, [o.id, planId]);
+        await client.query(`UPDATE editor_slots SET plan_id = $2, updated_at = now() WHERE plan_id = $1 AND (kind = 'reserved' OR schedule_rule_id IS NOT NULL)`, [o.id, planId]);
       }
       await insertSlots(client as any, planId);
+      await client.query(TAG_SERIES_SLOTS, [planId]);
       await client.query('COMMIT');
       return planId;
     } catch (err) {

@@ -6,6 +6,7 @@ import { zonedToUtcStrict } from '../time/resource-time';
 import type { IdeaRow } from './network.repository';
 import { NetworkCtx, resourceClock } from './network-context';
 import { seriesDue } from './playbook';
+import { planScheduleErrors, PlanScheduleCtx, SkippedSeriesInput } from '../schedule/plan-schedule-rules';
 
 export const NetworkSlotInput = z.object({
   resource_ref: z.string().min(3).max(200),
@@ -21,6 +22,7 @@ export const NetworkSlotInput = z.object({
 export const SubmitNetworkPlanInput = z.object({
   rationale: z.string().min(10).max(2000),
   slots:     z.array(NetworkSlotInput).max(60),
+  skipped_series: SkippedSeriesInput,
 });
 export type SubmitNetworkPlan = z.infer<typeof SubmitNetworkPlanInput>;
 
@@ -55,6 +57,7 @@ export function validateNetworkPlan(
     now: Date;
     ideas: Map<string, IdeaRow>;
     reservedAt: Date[];
+    schedule?: PlanScheduleCtx;
   },
 ): { ok: true; slots: NetworkPlannedSlot[] } | { ok: false; errors: string[] } {
   const errors: string[] = [];
@@ -139,5 +142,6 @@ export function validateNetworkPlan(
     const tgSection = tg ? sections.get(tg.resourceRef) : null;
     if (tg && tgSection?.role === 'core' && sorted[0] !== tg) errors.push(`ідея ${id}: Telegram (core) має бути першим`);
   }
+  if (o.schedule) errors.push(...planScheduleErrors(plan, o.schedule, o.schedule.defaultRef));
   return errors.length ? { ok: false, errors } : { ok: true, slots: out };
 }

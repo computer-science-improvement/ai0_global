@@ -38,6 +38,8 @@ export interface EditorRunnerDeps {
   };
   /** Spec 023 FR-008: the ≤ 1,500-char source catalog for the planner prompt. Optional. */
   catalogSummary?: (card: EditorCard) => Promise<string | null>;
+  /** Spec 023 FR-005: a series / pin slot's context for the executor, or a code skip (required source exhausted). */
+  seriesContext?: (slot: EditorSlot) => Promise<{ note: string | null; skip?: string }>;
   /** Called after an executor run (spec 020: an idea becomes `used` once all its slots are done). */
   onSlotDone?: (slot: EditorSlot) => Promise<void>;
 }
@@ -137,6 +139,9 @@ export class EditorRunnerService {
       if (this.d.onSlotDone) await this.d.onSlotDone(slot).catch(() => {});
       return off;
     }
+    const series = this.d.seriesContext ? await this.d.seriesContext(slot).catch(() => null) : null;
+    if (series?.skip) return this.skipByCode(slot, series.skip);
+    note = [note, series?.note].filter(Boolean).join('\n') || null;
     const target = slot.resourceRef ? parseResourceRef(slot.resourceRef) : null;
     const res = target && target.platform !== 'telegram'
       ? await this.runPlatformExecutor(slot, card, ctx, target.platform, note ?? null)
@@ -157,6 +162,13 @@ export class EditorRunnerService {
     }
     if (this.d.onSlotDone) await this.d.onSlotDone(slot).catch(() => {});
     return res;
+  }
+
+  /** A slot skipped by code before any LLM call (spec 023 FR-005: a required series source is exhausted). */
+  private async skipByCode(slot: EditorSlot, reason: string): Promise<AgentLoopResult> {
+    await this.d.plans.updateSlot(slot.id, { status: 'skipped', error: reason });
+    if (this.d.onSlotDone) await this.d.onSlotDone(slot).catch(() => {});
+    return { runId: null, status: 'disabled', error: reason, totals: { steps: 0, promptTokens: 0, completionTokens: 0, costUsd: 0 } };
   }
 
   /** The Telegram executor prompt, plus the pool idea the slot realises (spec 020). */

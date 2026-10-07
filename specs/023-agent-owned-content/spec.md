@@ -283,3 +283,69 @@ Commit `feat(content): 023-T3 …`. No migration (series live in the playbook JS
   rejects with `owner_rule`); the prompt and the `editor-orchestrator-workflow` skill say to apply the directive
   with `set_series_active`.
 - **Dashboard.** Only `fmtCadence` learned the v2 form; the Schedule tab and lock badges are T5.
+
+## Implementation notes (T4, 2026-10-07)
+Commit `feat(content): 023-T4 …`. Migration `059_schedule_rules.sql` as in FR-001.
+
+- **Deviation — `editor_slots.rule_date`.** Besides `schedule_rule_id` and `series_name`, a pin slot stores its
+  resource-local date; the idempotency key is a partial unique index on `(schedule_rule_id, rule_date)`. A
+  skipped or published pin is therefore never re-created. Disabling or changing a pin deletes only its future,
+  still-`planned` slots (the new version is materialised at once). The rules' resource is free text checked by
+  the service (no FK), and `schedule_rules` belongs to the orchestrator (`agent_id`).
+- **Where the rules live.** Pure checks in `editor/schedule/plan-schedule-rules.ts` (`planScheduleErrors`,
+  `planPerDay`, `scheduleBlock`) and `schedule-rules.ts`; both validators call `planScheduleErrors` with one
+  line through an optional `schedule` context, so callers without it behave as before. Frequency and pins
+  reach the existing count checks through the caller: `ScheduleService.effectiveCard` / `effectiveNet` lower
+  the day's posts per day (the frequency rule, else the card / playbook) by the day's pins.
+- **Pins.** Materialised for the resource-local today and tomorrow by the scheduler before planning (at most
+  every 10 min per channel) and right after a rule is added or changed; a day without a plan gets a
+  reserved-only plan, so the planner still runs. `replacePlan` moves pins to the new plan like reserved slots
+  (never skipped as "superseded"). Planned slots keep `max(window_min, min gap)` from a pin; a pin with
+  `series_name` covers that series' instance. `window_min` has no other meaning yet.
+- **Due series.** A slot names its series with `series` (both planners; the single planner got the field too) and
+  stores `series:<name>` in `source_hints`; the plan transaction copies it into `series_name`. An instance that
+  is already past (late start, +90 min) or inside a blackout is not required. `skipped_series` is optional in
+  both inputs (old plans validate unchanged).
+- **Executor.** `ScheduleService.executorContext` adds the series note (brief, source, mode) to the executor
+  prompt; a pin without a series gets a "pinned by the owner" note. Required-source guard
+  (`series_source_mismatch`) in `publish_post` and `publish_platform_post`: library → same dataset; feed → the
+  feed's site; api → a source URL, on the adapter's site for nasa_apod / tmdb_trending / on_this_day (the others
+  aggregate many sites); network highlights → a t.me link. Live blackout re-check returns `blackout_window`
+  (owner pins are exempt). Approval-mode posts are not re-checked at send time.
+- **`series_source_empty`.** Detected by code only for a `required` **library** source (no unposted rows on the
+  resource, ledger counts): the slot is skipped before any LLM call and one Inbox item per series per day is
+  filed. A required feed / API with nothing usable is left to the agent's `skip_slot` (no Inbox item).
+- **Reserved slots** are never blocked; the chat's `schedule_draft` result carries `warnings: ['blackout_window']`.
+- **Prompts.** The day's pins, blackouts, frequency and due series reach both planners and the orchestrator
+  through the existing catalog-summary hook (no runner change).
+
+## Implementation notes (T5, 2026-10-07)
+Commit `feat(content): 023-T5 …`. No migration.
+
+- **One `ScheduleService`** (`editor/schedule/schedule.service.ts`, built in T4) holds every check the REST, the
+  cards and the tools share. Owner-facing text (card summaries, REST errors, warnings) is English; the agents'
+  tool results stay Ukrainian.
+- **Chat tools** (`schedule-tools.ts`, role `composer` only — the composer and @agent chats; they need a chat
+  context): `get_schedule`, `propose_series_change`, `propose_schedule_rule`, `propose_slot_change`.
+  **Deviation — the explicit-request check** is the agent-change verb check *or* `hasScheduleChangeIntent`:
+  schedule verbs (перенеси, пропусти, скасуй, move, skip…) or a time plus a cadence word, so «рецепти о 20:30
+  по буднях» counts; negations («не переноси») do not.
+- **Cards and staleness.** `series_change` stores the series' content + lock key at propose time and fails as
+  `stale` when it differs at Apply (two cards for one series: the second fails); Apply writes an owner version
+  (`created_by='owner'`, active, the series locked), which supersedes a pending agent draft (existing
+  `insertPlaybook` rule). `schedule_rule` checks the rule's `updated_at`; `slot_change` moves / skips only a
+  slot that is still `planned` at the proposed time (any change → `stale`). Rules from the chat are
+  `created_by='chat'`.
+- **REST** (`schedule.controller.ts`, `TrackingAuthGuard`): `GET /api/agents/:handle/schedule?from&to` (default
+  the anchor's today + 6 days, at most 14 days), `POST/PATCH /api/agents/:handle/schedule-rules[/:id]` (`active:
+  false` disables, `true` re-enables), `PUT /api/agents/:handle/series/:name` (adds the series when the name is
+  new, locks it either way), `POST /api/agents/:handle/series/:name/unlock`. **Unlock also writes an owner
+  version** (so it supersedes a pending agent draft too). The GET response adds `resources[].formats` and
+  `sourceOptions` for the forms.
+- **Schedule tab** (`?tab=schedule`, network tabs only): a 7-day grid, one lane per resource labelled with its
+  zone and offset (series instances take the status of the slot that realises them; pins of their own slot;
+  other slots listed with status); a day list under 760 px; Series (edit → "Save and lock", Unlock) and
+  Rules (add / edit / disable / enable) card-rows with modal forms. Slot moves stay chat-only (not in the
+  REST list of FR-007).
+- **Evals** (written, not run): `chat-series-change` and `planner-honours-pins` (`evals/cases/schedule.ts`); the
+  eval stack wires the ScheduleService into the tools, runner and planners.

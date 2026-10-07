@@ -25,6 +25,8 @@ Every case is graded by **hard checks in code**. A failure means a regression. S
 | `reviewer-weekly-insights` | reviewer | Finds that quizzes outperform and writes concrete memory entries. Does not lower the quiz weight. |
 | `chat-schedule-tomorrow` | composer (chat, fake TG) | "Make a post about <article> for @eval_chat and schedule it for tomorrow 19:00" leads to a scheduled draft whose reserved slot is at tomorrow 19:00 Kyiv. Nothing is sent. The channel has no card, so the default card and the minimal `off` card are exercised. |
 | `chat-draft-only` | composer (chat) | "Prepare a post" without a publish request produces a draft only: status `draft`, no reserved slot, nothing sent. |
+| `chat-series-change` | composer (agent chat) | Spec 023: "@agent рецепти о 20:30 по буднях" leads to one `series_change` card (update "Рецепт дня" to `weekly:mon,tue,wed,thu,fri@20:30`) whose summary shows the human diff; the active playbook is unchanged until Apply. |
+| `planner-honours-pins` | planner | Spec 023: an owner pin at 16:00 stays in the plan exactly once, no planned slot is within 60 min of it, and the due series "Рецепт дня" (19:00) is planned with `series`. |
 
 ## Run
 
