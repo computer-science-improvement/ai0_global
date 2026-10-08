@@ -754,6 +754,7 @@ export const EDITOR_PROVIDERS = [
           pool, agents: infra.agents, network: new NetworkRepository(pool), card: (k) => repos.channels.get(k), inbox: infra.inbox,
           time: resourceTime(repos, infra.profiles), usable: (ref) => platform.health.usable(ref),
           sourceCatalog: (card) => seriesSourceCatalog(pool, card),
+          attachSkill: (agentId, name) => infra.skills.attachShared(agentId, name),
           publishConfig: events ? () => events.publish('strategy') : undefined,
           editorEnabled: () => isEnabled(cfg),
           log: (m) => new Logger('StrategyMigration').warn(m),

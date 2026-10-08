@@ -15,6 +15,7 @@ import { shiftDate, weekdayOf } from '../schedule/schedule-rules';
 import { DEFAULT_QUIET, DEFAULT_TZ } from '../time/resource-time';
 import { allBindings, bindingsFor, type BindingRow } from './binding-guard';
 import { buildProposal, migratedSeries, proposalKey, type MigrationProposal, type ProposalResource } from './proposal';
+import { toneSkillsFor } from './type-mapping';
 
 /**
  * Strategy bindings → agent series (spec 023 FR-011/FR-012): the proposal (deterministic, no LLM), the
@@ -44,6 +45,8 @@ export interface StrategyMigrationDeps {
   sourceCatalog?: (card: EditorCard | null) => Promise<SeriesSourceCatalog>;
   /** `config:changed` (kind strategy): the strategy scheduler reloads its bindings. */
   publishConfig?: () => Promise<void>;
+  /** Spec 034 FR-014: attach a resource tone skill to the agent (enabled, always in context). */
+  attachSkill?: (agentId: string, name: string) => Promise<'attached' | 'kept_off' | 'missing'>;
   /** EDITOR_ENABLED=true — the cutover is refused otherwise (the kill switch). */
   editorEnabled: () => boolean;
   /** The zone strategy crons run in (SCHEDULER_TZ, else the process zone). */
@@ -141,7 +144,7 @@ export class StrategyMigrationService {
   }
 
   /** The `migrate_strategies` card's Apply: a pending migration draft (re-proposed; a changed proposal is stale). */
-  async writeDraft(channelKey: string, expectKey?: string | null): Promise<{ id: string; version: number; proposal: MigrationProposal } | Fail> {
+  async writeDraft(channelKey: string, expectKey?: string | null): Promise<{ id: string; version: number; proposal: MigrationProposal; toneSkills: string[] } | Fail> {
     const sc = await this.scope(channelKey);
     if (isFail(sc)) return sc;
     const p = await this.proposeIn(sc);
@@ -152,17 +155,37 @@ export class StrategyMigrationService {
       agentId: sc.agent.id, status: 'pending_owner', brief: null, body: p.body, rationale: p.rationale, createdBy: 'migration',
       review: { strategy_migration: { channel_key: p.channel_key, bindings: p.bindings.map((o) => ({ ext_id: o.ext_id, outcome: o.outcome })) } },
     });
+    const toneSkills = await this.attachToneSkills(sc.agent, p);
+    const toneNote = toneSkills.length ? `\n\nVoice skills attached to @${sc.agent.handle}: ${toneSkills.join(', ')} (from the strategies' channel tone).` : '';
     await this.d.inbox.post({
       agentId: sc.agent.id, kind: 'playbook_pending', severity: 'action',
       title: `📘 @${sc.agent.handle}: strategy migration draft v${pb.version} awaits your approval`,
-      body: `${p.rationale}\n\nApprove the playbook on the agent page. The strategies keep publishing while the agent works in shadow; the cutover is offered after ${CUTOVER_MIN_DAYS} days.`,
+      body: `${p.rationale}\n\nApprove the playbook on the agent page. The strategies keep publishing while the agent works in shadow; the cutover is offered after ${CUTOVER_MIN_DAYS} days.${toneNote}`,
       alert: {
         title: `📘 @${sc.agent.handle}: чернетка міграції стратегій v${pb.version} чекає затвердження`,
         body: `Перенесено ${p.mapped} з ${p.total} стратегій. Стратегії публікують далі, поки агент працює в shadow.`,
       },
       refType: 'playbook', refId: pb.id,
     });
-    return { id: pb.id, version: pb.version, proposal: p };
+    return { id: pb.id, version: pb.version, proposal: p, toneSkills };
+  }
+
+  /**
+   * Spec 034 FR-014: the legacy strategies wrote with a channel tone skill; the agent that takes them over gets
+   * the matching `tone-*` skill (enabled, inline). Best-effort: a failure never blocks the draft.
+   */
+  private async attachToneSkills(agent: Agent, p: MigrationProposal): Promise<string[]> {
+    if (!this.d.attachSkill) return [];
+    const names = toneSkillsFor(p.bindings.filter((o) => o.outcome !== 'unmappable').map((o) => o.type));
+    const attached: string[] = [];
+    for (const name of names) {
+      try {
+        if ((await this.d.attachSkill(agent.id, name)) === 'attached') attached.push(name);
+      } catch (err: any) {
+        this.d.log?.(`tone skill ${name} for @${agent.handle}: ${err?.message ?? err}`);
+      }
+    }
+    return attached;
   }
 
   /** The bindings the active playbook took over: migrated series (`migrated_from`) and frequency-hint rules. */

@@ -44,7 +44,7 @@ export const CAPABILITIES: Record<Exclude<Platform, 'telegram'>, PlatformCaps> =
     formats: {
       ig_photo:    { implemented: true,  media: { min: 1, max: 1, kind: 'image' }, slidesOk: true, note: 'одне фото 4:5 або 1:1 + підпис' },
       ig_carousel: { implemented: true,  media: { min: 2, max: 10, kind: 'image' }, slidesOk: true, note: 'карусель 2–10 слайдів; перший слайд — гачок' },
-      ig_reel:     { implemented: false, media: { min: 1, max: 1, kind: 'video' }, note: 'Reels — спека 019b (відео з shorts-studio)' },
+      ig_reel:     { implemented: false, media: { min: 1, max: 1, kind: 'video' }, note: 'Reels — ще ні: потрібен відеоконвеєр (спека 016)' },
     },
   },
   facebook: {
@@ -54,7 +54,7 @@ export const CAPABILITIES: Record<Exclude<Platform, 'telegram'>, PlatformCaps> =
       fb_photo: { implemented: true,  media: { min: 1, max: 1, kind: 'image' }, slidesOk: true, note: 'фото + текст' },
       fb_album: { implemented: true,  media: { min: 2, max: 10, kind: 'image' }, slidesOk: true, note: 'альбом' },
       fb_link:  { implemented: true,  media: { min: 0, max: 0, kind: 'none' }, note: 'текст із посиланням (превʼю робить Facebook)' },
-      fb_reel:  { implemented: false, media: { min: 1, max: 1, kind: 'video' }, note: 'Reels сторінки — 019b' },
+      fb_reel:  { implemented: false, media: { min: 1, max: 1, kind: 'video' }, note: 'Reels сторінки — ще ні: потрібен відеоконвеєр (спека 016)' },
     },
   },
   threads: {
@@ -69,13 +69,13 @@ export const CAPABILITIES: Record<Exclude<Platform, 'telegram'>, PlatformCaps> =
     captionMax: 2200, hashtags: { max: 10, recommended: [3, 5] }, linksClickable: false, dailyApiCap: 15, privateUntilAudit: true,
     formats: {
       tt_photo: { implemented: true,  media: { min: 1, max: 35, kind: 'image' }, slidesOk: true, note: 'фото-режим 1–35 зображень; заголовок до 90 символів' },
-      tt_video: { implemented: false, media: { min: 1, max: 1, kind: 'video' }, note: 'відео — 019b' },
+      tt_video: { implemented: false, media: { min: 1, max: 1, kind: 'video' }, note: 'відео — ще ні: потрібен відеоконвеєр (спека 016)' },
     },
   },
   youtube: {
     captionMax: 5000, hashtags: { max: 15, recommended: [2, 3] }, linksClickable: true, dailyApiCap: 6, privateUntilAudit: true,
     formats: {
-      yt_short: { implemented: false, media: { min: 1, max: 1, kind: 'video' }, note: 'Shorts ≤ 3 хв, вертикальне — 019b' },
+      yt_short: { implemented: false, media: { min: 1, max: 1, kind: 'video' }, note: 'Shorts ≤ 3 хв, вертикальне — ще ні: спеки 016 і 030' },
     },
   },
 };

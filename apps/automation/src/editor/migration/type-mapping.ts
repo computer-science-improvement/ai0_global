@@ -117,6 +117,28 @@ export const TYPE_RULES: Record<string, TypeRule> = {
   },
 };
 
+/**
+ * Spec 034 FR-014: the resource tone skill (editor-skills/tone-*.md, ported from the legacy channel-* skill the
+ * strategy wrote with) that a migration attaches to the agent. Types without a channel skill have none.
+ */
+export const TONE_SKILL_BY_TYPE: Readonly<Record<string, string>> = {
+  'ai0-news':          'tone-ai0-news',
+  'ua-news':           'tone-ua-news',
+  'space-news':        'tone-space',
+  'daily-photo':       'tone-daily-photo',
+  'game-channel':      'tone-gaming',
+  'movies':            'tone-movies',
+  'on-this-day':       'tone-on-this-day',
+  'recipes':           'tone-recipes',
+  'recipe-carousel':   'tone-recipes',
+  'birthday-strategy': 'tone-birthday-story',
+};
+
+/** The tone skills of the mapped bindings (deduplicated, in binding order). */
+export function toneSkillsFor(types: string[]): string[] {
+  return [...new Set(types.map((t) => TONE_SKILL_BY_TYPE[t]).filter((n): n is string => !!n))];
+}
+
 function promptSource(p: Record<string, unknown>): { source: SeriesSource | null; warnings: string[] } {
   const category = str(p.provider) ?? str(p.mediaType);
   return { source: lib('prompts', category ? { category } : {}), warnings: [] };

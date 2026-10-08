@@ -1,6 +1,6 @@
 import type { Pool, PoolClient } from 'pg';
 import type { EditorRole } from '../llm/llm.types';
-import { Skill, SkillLibrary, SkillView } from '../skills/skill-library';
+import { isOptionalSkill, isProtectedSkill, Skill, SkillLibrary, SkillView } from '../skills/skill-library';
 import { lintSkill, SKILL_MAX_INLINE_BODY, SkillLintResult } from './skill-lint';
 
 export type SkillScope = 'builtin' | 'global' | 'agent';
@@ -192,7 +192,9 @@ export class SkillStore {
     for (const s of sharedRows) {
       if (ownByName.has(s.name)) continue;
       const t = toggleOf(s.id);
-      out.push({ skill: s, origin: s.scope === 'builtin' ? 'builtin' : 'global', enabled: t ? !!t.enabled : true, inline: t ? !!t.inline : false, baseChanged: false, pending: false });
+      // Spec 034 FR-014: a builtin tone skill is off until attached to this agent's resource.
+      const byDefault = !(s.scope === 'builtin' && isOptionalSkill(s.name));
+      out.push({ skill: s, origin: s.scope === 'builtin' ? 'builtin' : 'global', enabled: t ? !!t.enabled : byDefault, inline: t ? !!t.inline : false, baseChanged: false, pending: false });
     }
     for (const s of ownByName.values()) {
       const t = toggleOf(s.id);
@@ -225,6 +227,19 @@ export class SkillStore {
       [agentId, skillId, p.enabled ?? null, p.inline ?? null]);
   }
 
+  /**
+   * Attach a shared skill to an agent: enabled and always in context (spec 034 FR-014, a resource tone skill on
+   * strategy migration). An explicit "off" the owner set earlier wins: it is not switched back on.
+   */
+  async attachShared(agentId: string, name: string): Promise<'attached' | 'kept_off' | 'missing'> {
+    const s = await this.findShared(name);
+    if (!s) return 'missing';
+    const { rows } = await this.pool.query(`SELECT enabled FROM agent_skills WHERE agent_id = $1 AND skill_id = $2`, [agentId, s.id]);
+    if (rows[0] && rows[0].enabled === false) return 'kept_off';
+    await this.setToggle(agentId, s.id, { enabled: true, inline: s.body.length <= SKILL_MAX_INLINE_BODY });
+    return 'attached';
+  }
+
   async setLocked(skillId: string, locked: boolean): Promise<void> {
     await this.pool.query(`UPDATE skills SET locked = $2, updated_at = now() WHERE id = $1`, [skillId, locked]);
   }
@@ -244,7 +259,7 @@ export class SkillStore {
     const existing = await this.findForAgent(i.agentId, i.name);
 
     if (i.author === 'agent') {
-      if (shared?.safety || existing?.safety) return { error: 'safety_skill', details: 'системні скіли безпеки агент змінювати не може' };
+      if (shared?.safety || existing?.safety || isProtectedSkill(i.name)) return { error: 'safety_skill', details: 'системні скіли безпеки й голосу агент змінювати не може' };
       if (existing?.locked || shared?.locked) return { error: 'skill_locked', details: 'власник заблокував цей скіл' };
       if (existing) {
         const { rows } = await this.pool.query(
@@ -260,7 +275,7 @@ export class SkillStore {
         const ins = await c.query(
           `INSERT INTO skills (name, scope, agent_id, description, applies_to, body, safety, base_version, created_by)
            VALUES ($1, 'agent', $2, $3, $4, $5, $6, $7, $8) RETURNING id`,
-          [i.name, i.agentId, i.description, i.appliesTo, i.body, !!shared?.safety, shared?.scope === 'builtin' ? shared.currentVersion : null, i.author]);
+          [i.name, i.agentId, i.description, i.appliesTo, i.body, !!shared?.safety || isProtectedSkill(i.name), shared?.scope === 'builtin' ? shared.currentVersion : null, i.author]);
         skillId = ins.rows[0].id;
         version = 1;
       } else {
