@@ -355,8 +355,32 @@ export class ManagerRunner {
     const failed = retried.filter((x) => x.status === 'failed').length;
     const resumed = await this.exec.resumeSeries();
     const verified = await this.exec.verifyApplied();
+    // Spec 025 FR-014/FR-015: experiment quotas past their deadline, tasks never reported done.
+    const quotasFailed = await this.exec.closeQuotas();
+    const overdue = await this.expireOverdueTasks();
     const evaluated = await this.evaluate();
-    return { timedOut, expired, evaluated, executed: executed.length, failed, resumed, verified, autoApplied, ignored, contestTimedOut };
+    return { timedOut, expired: expired + overdue, evaluated, executed: executed.length, failed: failed + quotasFailed, resumed, verified, autoApplied, ignored, contestTimedOut };
+  }
+
+  /** Spec 025 FR-015: an accepted task not reported done by its review date expires (binding: `directive_ignored`, action). */
+  async expireOverdueTasks(): Promise<number> {
+    if (!this.d.repo.overdueTasks) return 0;
+    let n = 0;
+    for (const dir of await this.d.repo.overdueTasks(this.now())) {
+      if (!await this.d.repo.update(dir.id, { status: 'expired', resolution: 'not reported done by the review date' }, ['accepted'])) continue;
+      n++;
+      if (dir.binding !== 'directive') continue;
+      await this.ensureHandles();
+      const who = `@${this.handleCache.get(dir.toAgentId) ?? '?'}`;
+      await this.d.inbox.post({
+        agentId: dir.toAgentId, kind: 'directive_ignored', severity: 'action',
+        title: `🙈 ${who} accepted a task from @manager but never reported it done`,
+        body: `${dir.body}\n\nAccepted ("${dir.resolution ?? '—'}"), but no report_directive_done by ${dir.reviewAt?.toISOString().slice(0, 10) ?? 'the review date'}.`,
+        alert: { title: `🙈 ${who} прийняв завдання @manager, але не відзвітував`, body: `${dir.body}\n\nНемає report_directive_done до дати перевірки.` },
+        refType: 'directive', refId: dir.id,
+      });
+    }
+    return n;
   }
 
   /** Effect of applied directives on their review date (FR-007). */
@@ -369,6 +393,25 @@ export class ManagerRunner {
     let n = 0;
     for (const dir of due) {
       const before = (dir.outcomeDetail as any)?.before as { value: number | null } | undefined;
+      const vkind = (dir.verification as { kind?: string } | null)?.kind ?? null;
+      // FR-015: followed advice is self-reported — closed at its review date, never scored.
+      if (vkind === 'self_reported') {
+        await this.d.repo.update(dir.id, { status: 'evaluated', outcomeDetail: { before: before ?? null, reason: 'self_reported' } });
+        n++;
+        continue;
+      }
+      // An experiment whose quota is still open is not judged before its deadline.
+      const deadline = dir.kind === 'experiment' ? (dir.change as { deadline?: string } | null)?.deadline : null;
+      if (!dir.verifiedAt && deadline && new Date(deadline).getTime() > this.now().getTime()) continue;
+      // FR-016: only a verified change gets worked / no_effect / hurt; otherwise inconclusive (not_verified) with its adherence.
+      if (!dir.verifiedAt) {
+        await this.d.repo.update(dir.id, {
+          status: 'evaluated', outcome: 'inconclusive',
+          outcomeDetail: { before: before ?? null, reason: 'not_verified', adherence: dir.verification?.adherence ?? null, verification: vkind },
+        });
+        n++;
+        continue;
+      }
       const after = this.metricFor(dg, dir);
       const confounders = await this.d.repo.overlapping(dir);
       let outcome: 'worked' | 'no_effect' | 'hurt' | 'inconclusive' = 'inconclusive';

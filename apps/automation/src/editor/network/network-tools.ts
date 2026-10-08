@@ -13,6 +13,7 @@ import { SubmitNetworkPlanInput, validateNetworkPlan } from './network-plan';
 import { PlaybookSchema, renderPlaybook } from './playbook';
 import { submitPlaybookVersion, type SubmitDeps } from './series-edit';
 import type { ScheduleService } from '../schedule/schedule.service';
+import type { ExperimentQuota } from '../manager/experiment-quota';
 
 export const IDEA_DEDUP_SIMILARITY = 0.6;
 export const IDEA_MAX_DAYS = 7;
@@ -34,6 +35,8 @@ export interface NetworkToolDeps {
   directiveLock?: SubmitDeps['directiveLock'];
   /** Spec 023 FR-004: owner schedule rules, pins and due series in the plan check. */
   schedule?: Pick<ScheduleService, 'planContext' | 'effectiveNet'>;
+  /** Spec 025 FR-014: open experiment quotas of an anchor channel for a plan date. */
+  experimentQuotas?: (anchorKey: string, planDate: string, now: Date) => Promise<ExperimentQuota[]>;
   now?:   () => Date;
 }
 
@@ -237,7 +240,7 @@ export function buildNetworkTools(d: NetworkToolDeps): EditorTool[] {
     description: [
       'Зберегти план мережі на сьогодні (завершує роботу): слоти по всіх ресурсах — resource_ref, час HH:MM (зона ресурсу), формат, тема, idea_id прийнятої ідеї або series.',
       'Для кожної ідеї в плані — рівно одне рішення на кожен ресурс з секцією плейбука: слот з treatment (unique; duplicate чи adapt з from_slot = номер унікального слота-джерела, не раніше за нього — інтервал обираєш ти, 0 теж можна) і reason, або запис у skips з причиною.',
-      'Ресурс, що вже на per_day.max, код пропускає сам (cadence). Код перевіряє частоти, тихі години, формати плейбука (для unique) і жорсткі ліміти платформ (для duplicate/adapt).',
+      'Ресурс, що вже на per_day.max, код пропускає сам (cadence). Експеримент за директивою менеджера — слот з directive_id. Код перевіряє частоти, квоти експериментів, тихі години, формати плейбука (для unique) і жорсткі ліміти платформ (для duplicate/adapt).',
     ].join(' '),
     kind: 'terminal', roles: ['planner'],
     input: SubmitNetworkPlanInput,
@@ -257,6 +260,7 @@ export function buildNetworkTools(d: NetworkToolDeps): EditorTool[] {
         ideas: new Map(accepted.map((i) => [i.id, i])), reservedAt: reserved.map((r) => r.scheduledAt),
         // Spec 024: decisions repurpose_post or the owner already made for these ideas stay.
         decided: await d.repo.decidedElsewhere(planned),
+        experiments: d.experimentQuotas ? await d.experimentQuotas(net.anchorKey, planDate, t) : [],
       });
       if (!v.ok) return { error: 'plan_invalid', details: v.errors };
       const planId = await d.plans.createNetworkPlan(net.anchorKey, planDate, plan.rationale, ctx.runId, v.slots, v.decisions, net.orchestrator.id);

@@ -27,6 +27,8 @@ async function cleanup() {
   await pool.query(`DELETE FROM kpi_snapshots WHERE scope_id = $1`, [REF]);
   await pool.query(`DELETE FROM manager_reviews WHERE summary LIKE 'kpi-pg%'`);
   await pool.query(`DELETE FROM tracked_channels WHERE channel_key = $1`, [CH]);
+  await pool.query(`DELETE FROM editor_slots WHERE channel_key = $1`, [CH]);
+  await pool.query(`DELETE FROM editor_plans WHERE channel_key = $1`, [CH]);
   await pool.query(`DELETE FROM editor_channels WHERE channel_key = $1`, [CH]);
 }
 
@@ -106,6 +108,13 @@ test('digest flags the drop; directive lifecycle: owner approval → delivery �
   const card = (await channels.get(CH))!;
   assert.deepEqual([card.postsPerDayMin, card.postsPerDayMax], [1, 4]);
 
+  // Spec 025 FR-016: only a verified change is scored — the next plan keeps the channel within 1–4 posts.
+  const plan = (await pool.query(`INSERT INTO editor_plans (channel_key, plan_date) VALUES ($1, current_date + 1) RETURNING id`, [CH])).rows[0].id;
+  for (const h of ['10:00', '15:00']) {
+    await pool.query(`INSERT INTO editor_slots (plan_id, channel_key, scheduled_at, format, topic) VALUES ($1, $2, (current_date + 1 + $3::time) AT TIME ZONE 'Europe/Kyiv', 'photo', 't')`, [plan, CH, h]);
+  }
+  assert.equal(await exec.verifyApplied(), 1);
+  assert.ok((await repo.get(a.id))!.verifiedAt);
   // Review date reached; the metric recovered by > 10% → worked.
   await pool.query(`UPDATE agent_directives SET review_at = now() - interval '1 minute' WHERE id = $1`, [a.id]);
   await pool.query(`UPDATE post_stats_snapshots SET views = 900 WHERE post_id IN (SELECT id FROM published_posts WHERE channel_id = $1 AND posted_at > now() - interval '8 days')`, [CH]);

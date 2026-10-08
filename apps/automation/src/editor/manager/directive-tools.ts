@@ -11,6 +11,7 @@ import type { KpiDigest, KpiDigestService } from './kpi-digest.service';
 import { admitDirective, BINDINGS, checkBinding, ESCALATION_WINDOW_MS, metricValue, paramStructural } from './directive-kinds';
 import type { DirectiveExecution } from './executors';
 import { describe as describeChange } from './executors/playbook-executors';
+import { TASK_REF_TYPES, type TaskRefResult, type TaskRefType } from './executors/task-report';
 
 export const MAX_DIRECTIVES_PER_RUN = 3;
 export const REJECT_COOLDOWN_MS = 48 * 3600_000;
@@ -41,7 +42,7 @@ export const FileDirectiveInput = z.object({
   kind:      z.enum(DIRECTIVE_KINDS),
   binding:   z.enum(BINDINGS).describe('advice — порада (за замовчуванням; оркестратор може відхилити); directive — обовʼязкова команда: лише при anomaly метрики expected або ескалації після відхиленої поради; структурні типи — завжди directive'),
   body:      z.string().min(10).max(800).describe('Що саме змінити — конкретно'),
-  params:    z.record(z.string(), z.unknown()).default({}).describe('Напр. {format:"ig_carousel", weight_delta:0.2} або {change_pct:-20} або для cross_promo {source_ref, target_ref, window_days}'),
+  params:    z.record(z.string(), z.unknown()).default({}).describe('Напр. {format:"ig_carousel", weight_delta:0.2} або {change_pct:-20} або для cross_promo {source_ref, target_ref, window_days}; experiment {resource_ref?, angle, format?, slots 1–3, within_days 1–7}; strategy {brief?}'),
   rationale: z.string().min(20).max(1200),
   evidence:  z.record(z.string(), z.unknown()).describe('Цифри з дайджесту, на які спирається директива'),
   expected:  z.object({
@@ -69,6 +70,8 @@ export interface DirectiveToolDeps {
   scopeOf?: (orch: Agent) => Promise<string[]>;
   /** Spec 025 FR-006 health check: ResourceHealthService.usable. */
   usable?: (ref: string) => Promise<boolean>;
+  /** Spec 025 FR-015: the reference check of report_directive_done (taskRefCheck). */
+  taskRef?: (type: TaskRefType, id: string, orch: Agent, since: Date) => Promise<TaskRefResult>;
   now?:    () => Date;
 }
 
@@ -148,7 +151,7 @@ export async function fileDirective(d: DirectiveToolDeps, i: FileDirective, o: {
   const kindRule = checkBinding(i.kind, i.binding, false);
   if (kindRule) return kindRule;
   // Spec 025 FR-004: the executor's dry-run — impossible directives are never filed; its diff can make it structural.
-  const dry = d.exec ? await d.exec.dryRun({ kind: i.kind, params: i.params, toAgentId: target.id }, target) : null;
+  const dry = d.exec ? await d.exec.dryRun({ kind: i.kind, params: i.params, toAgentId: target.id, body: i.body }, target) : null;
   if (dry && 'error' in dry) return dry;
   const structural = isStructural(i.kind, i.params) || !!dry?.structural;
   const matrix = checkBinding(i.kind, i.binding, structural);
@@ -371,5 +374,26 @@ export function buildDirectiveTools(d: DirectiveToolDeps): EditorTool[] {
     },
   });
 
-  return [getDigest, listDirectives, fileTool, submitReview, acceptDirective, declineAdvice, contestDirective];
+  const reportDone = defineTool({
+    name: 'report_directive_done',
+    description: 'Повідомити, що завдання менеджера (kind task) виконано: ref_type idea | slot | playbook | skill і ref_id — id того, що ти створив (ідея, слот, версія плейбука, скіл) після отримання завдання. Код перевіряє посилання; тоді завдання — виконане й перевірене.',
+    kind: 'act', roles: ['orchestrator'],
+    input: z.object({ id: z.string().uuid(), ref_type: z.enum(TASK_REF_TYPES), ref_id: z.string().uuid() }),
+    execute: async (i, ctx) => {
+      const orch = (ctx.extras?.orchestrator as Agent | undefined) ?? agentOf(ctx);
+      const dir = await d.repo.get(i.id);
+      if (!dir || !orch || dir.toAgentId !== orch.id || dir.shadow) return { error: 'directive_not_found' };
+      if (dir.kind !== 'task') return { error: 'not_a_task', details: `${dir.kind} застосовує код; report_directive_done — лише для task` };
+      if (dir.status !== 'new' && dir.status !== 'accepted') return { error: 'not_open', details: dir.status };
+      if (!d.taskRef) return { error: 'not_available', details: 'перевірка посилань не підключена' };
+      const since = dir.deliveredAt ?? dir.createdAt;
+      const r = await d.taskRef(i.ref_type, i.ref_id, orch, since);
+      if ('error' in r) return r;
+      const now = (d.now ?? (() => new Date()))();
+      const row = await d.repo.reportDone(dir.id, { kind: 'reported', adherence: 'followed', ref_type: i.ref_type, ref_id: i.ref_id, ref_at: r.at.toISOString(), checked_at: now.toISOString() });
+      return row ? { ok: true, status: row.status, note: 'Завдання виконане й перевірене.' } : { error: 'not_open' };
+    },
+  });
+
+  return [getDigest, listDirectives, fileTool, submitReview, acceptDirective, declineAdvice, contestDirective, reportDone];
 }

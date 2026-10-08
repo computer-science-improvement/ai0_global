@@ -53,7 +53,8 @@ import { KpiDigestService } from '../../src/editor/manager/kpi-digest.service';
 import { ManagerRunner } from '../../src/editor/manager/manager-runner';
 import { buildDirectiveTools } from '../../src/editor/manager/directive-tools';
 import {
-  DirectiveExecution, executionContextOf, formatShiftExecutor, frequencyExecutor, pauseSeriesExecutor, SqlPlanObserver,
+  DirectiveExecution, executionContextOf, experimentExecutor, formatShiftExecutor, frequencyExecutor, pauseSeriesExecutor, PlaybookBuildPort,
+  promoVerifier, SqlExperimentQuotas, SqlPlanObserver, strategyExecutor, taskRefCheck,
 } from '../../src/editor/manager/executors';
 import { PlatformPostsRepository } from '../../src/editor/platform/platform-posts.repository';
 import { buildPlatformTools } from '../../src/editor/platform/platform-tools';
@@ -146,9 +147,17 @@ export function buildStack(o: { pool: Pool; web: FakeWeb; now: () => Date; apiKe
   const channelKeyOf = async (a: any) => telegramKeyOf(a.parentId ? (await agents.get(a.parentId)) ?? a : a);
   // Spec 025: the production directive executors (dry-run at filing, apply after acceptance, directive_lock).
   const execDeps = { network: networkRepo, channels, observer: new SqlPlanObserver(pool) };
+  const quotas = new SqlExperimentQuotas(pool);
+  const experimentQuotas = (anchorKey: string, planDate: string, at: Date) => quotas.open(anchorKey, planDate, at);
+  const buildPort = new PlaybookBuildPort();
   const exec = new DirectiveExecution({
     repo: directives, inbox, agents, now, context: executionContextOf({ repo: networkRepo, channels, time: resourceTime, now }),
-    executors: [frequencyExecutor(execDeps), formatShiftExecutor(execDeps), pauseSeriesExecutor(execDeps)],
+    executors: [
+      frequencyExecutor(execDeps), formatShiftExecutor(execDeps), pauseSeriesExecutor(execDeps),
+      experimentExecutor({ quotas, now }), strategyExecutor({ network: networkRepo, builder: buildPort }),
+    ],
+    verifiers: [promoVerifier(pool, 'cross_promo', now), promoVerifier(pool, 'repost', now)],
+    quotas,
   });
   const directiveLock = (orchId: string, body: any) => exec.lockFor(orchId, body);
   const schedule = new ScheduleService({
@@ -160,9 +169,9 @@ export function buildStack(o: { pool: Pool; web: FakeWeb; now: () => Date; apiKe
     ...buildBuilderTools({ agents, catalog, profiles, creator, skills: skillStore, actions }),
     ...buildAgentChatTools({ pool, memory, skills: skillStore, actions, now }),
     ...buildAgentSkillTools({ agents, skills: skillStore, kpi: new TelegramScopeKpi(pool), inbox, now }),
-    ...buildNetworkTools({ repo: networkRepo, plans, memory, inbox, now, schedule, directiveLock }),
+    ...buildNetworkTools({ repo: networkRepo, plans, memory, inbox, now, schedule, directiveLock, experimentQuotas }),
     ...buildScheduleTools({ schedule, actions, now }),
-    ...buildDirectiveTools({ repo: directives, agents, digest, inbox, memory, actions, channelKeyOf, now, exec }),
+    ...buildDirectiveTools({ repo: directives, agents, digest, inbox, memory, actions, channelKeyOf, now, exec, taskRef: taskRefCheck(pool) }),
     ...buildPlatformTools({
       pool, plans,
       publish: { posts: platformPosts, publisher: { publish: async () => { throw new Error('evals never publish to platforms'); } }, health: async () => null, now },
@@ -172,7 +181,7 @@ export function buildStack(o: { pool: Pool; web: FakeWeb; now: () => Date; apiKe
     ...buildDataTools({ pool, actions }),
     ...buildComposeTools({ http: web.http }),
     ...buildRoleTools({
-      pool, plans, memory, channels, now, publisher, schedule,
+      pool, plans, memory, channels, now, publisher, schedule, experimentQuotas,
       recordPublish: () => {},
       notifyPreview: async (_k, html) => { previews.push(html); },
     }),
@@ -200,6 +209,14 @@ export function buildStack(o: { pool: Pool; web: FakeWeb; now: () => Date; apiKe
     notify: async (t) => { notes.push(t); },
     directives: (orch) => manager.deliver(orch),
     afterOrchestration: (orch) => manager.afterOrchestration(orch),
+    experimentQuotas,
+  });
+  buildPort.bind(async (orchId, brief, directiveId) => {
+    const orch = await agents.get(orchId);
+    const key = orch ? telegramKeyOf(orch) : null;
+    const card = key ? await channels.get(key) : null;
+    if (!card) throw new Error('the orchestrator has no channel card');
+    await network.runPlaybookBuild(card, brief, { directiveId });
   });
   const runner = new EditorRunnerService({
     loop, registry, skills, plans, memory, now, runtime, network,

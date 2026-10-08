@@ -21,6 +21,7 @@ import type { TgMessage } from '../post/render-telegram';
 import { cardFrom } from './compose-tools';
 import type { ScheduleService } from '../schedule/schedule.service';
 import type { NetworkCtx } from '../network/network-context';
+import type { ExperimentQuota } from '../manager/experiment-quota';
 
 export const SIMILARITY_LIMIT = 0.6;
 const MAX_MEMORY_ADDS_PER_RUN = 5;
@@ -41,6 +42,8 @@ export interface RoleToolDeps {
   crosspost?: { fanOut(r: CrossPostRequest): Promise<string[]> };
   /** Spec 023 FR-004/FR-005: schedule rules in the plan check; blackout and series-source guards on publish. */
   schedule?: Pick<ScheduleService, 'planContext' | 'effectiveCard' | 'publishGuard'>;
+  /** Spec 025 FR-014: open experiment quotas of an anchor channel for a plan date. */
+  experimentQuotas?: (anchorKey: string, planDate: string, now: Date) => Promise<ExperimentQuota[]>;
   now?: () => Date;
 }
 
@@ -98,7 +101,7 @@ export function buildRoleTools(d: RoleToolDeps): EditorTool[] {
   // ── planner ───────────────────────────────────────────────────────────────
   const submitPlan = defineTool({
     name: 'submit_plan',
-    description: 'Зберегти план на сьогодні (завершує роботу). Код перевіряє кількість, час, тихі години, інтервали, формати, частку експериментів, серії за розкладом (slot.series або skipped_series з причиною) і правила власника (закріплені пости, заборонені вікна, частота) — при помилці виправ і надішли знову.',
+    description: 'Зберегти план на сьогодні (завершує роботу). Код перевіряє кількість, час, тихі години, інтервали, формати, частку експериментів, експерименти за директивою (directive_id), серії за розкладом (slot.series або skipped_series з причиною) і правила власника (закріплені пости, заборонені вікна, частота) — при помилці виправ і надішли знову.',
     kind: 'terminal', roles: ['planner'],
     input: SubmitPlanInput,
     execute: async (plan, ctx) => {
@@ -108,7 +111,10 @@ export function buildRoleTools(d: RoleToolDeps): EditorTool[] {
       const dayStart = zonedToUtc(planDate, '00:00', card.timezone);
       const reserved = await d.plans.reservedSlots(card.channelKey, dayStart, new Date(dayStart.getTime() + 86_400_000));
       const sched = d.schedule ? await d.schedule.planContext(card, (ctx.extras?.network as NetworkCtx | undefined) ?? null, planDate, t, 'single') : undefined;
-      const v = validatePlan(plan, sched ? d.schedule!.effectiveCard(card, sched) : card, planDate, t, reserved.map((r) => r.scheduledAt), sched);
+      // Spec 025 FR-014: a single-channel plan carries the quotas on its own channel only.
+      const anchor = `telegram:${card.channelKey}`;
+      const quotas = d.experimentQuotas ? (await d.experimentQuotas(card.channelKey, planDate, t)).filter((q) => q.resourceRef === anchor) : [];
+      const v = validatePlan(plan, sched ? d.schedule!.effectiveCard(card, sched) : card, planDate, t, reserved.map((r) => r.scheduledAt), sched, quotas);
       if (!v.ok) return { error: 'plan_invalid', details: v.errors };
       const planId = await d.plans.createPlan(card.channelKey, planDate, plan.rationale, ctx.runId, v.slots);
       // Pool ideas taken into the plan (spec 020) leave the pool; they become `used` once their slots are done.

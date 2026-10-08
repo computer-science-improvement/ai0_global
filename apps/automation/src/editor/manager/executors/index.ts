@@ -6,31 +6,44 @@ import { localDate } from '../../roles/time';
 import type { Directive, DirectiveKind, DirectivesRepository } from '../directives.repository';
 import { describe, resumeChange } from './playbook-executors';
 import { revertsIn } from './playbook-change';
-import type { Change, DirectiveExecutor, ExecContext, PlanResult } from './types';
+import type { PlaybookRow } from '../../network/network.repository';
+import type { AnyChange, AnyExecutor, Change, DirectiveVerifier, ExecContext, ExperimentChange, PlanResult } from './types';
+import type { SqlExperimentQuotas } from './experiment-executor';
 
 export * from './types';
 export { frequencyExecutor, formatShiftExecutor, pauseSeriesExecutor, type PlaybookExecutorDeps } from './playbook-executors';
+export { experimentExecutor, SqlExperimentQuotas, EXPERIMENT, type ExperimentExecutorDeps } from './experiment-executor';
+export { strategyExecutor, PlaybookBuildPort, type PlaybookBuildFn, type StrategyExecutorDeps } from './strategy-executor';
+export { promoVerifier } from './promo-verifier';
+export { taskRefCheck, type TaskRefType, TASK_REF_TYPES } from './task-report';
 export { executionContextOf } from './context';
 export { SqlPlanObserver, type PlanObserver } from './plan-observer';
 
 /** Kinds scheduled by PromoPlanner after an orchestrator run (spec 022); not run here. */
 export const PROMO_KINDS: DirectiveKind[] = ['cross_promo', 'repost'];
 /**
- * Kinds whose executors come with spec 025 T4/T5 (pause_resource, experiment, strategy, task). Until then an
- * accepted one is marked applied with `verification.kind = 'unverified'` (the pre-025 behaviour, now visible).
+ * Kinds whose executor comes with spec 025 T4 (pause_resource). Until then an accepted one is marked applied
+ * with `verification.kind = 'unverified'` (the pre-025 behaviour, now visible).
  */
-export const PENDING_EXECUTOR_KINDS: DirectiveKind[] = ['task', 'experiment', 'strategy', 'pause_resource'];
+export const PENDING_EXECUTOR_KINDS: DirectiveKind[] = ['pause_resource'];
+/** `task` has no executor: it waits for `report_directive_done` (spec 025 FR-015). */
+export const REPORTED_KINDS: DirectiveKind[] = ['task'];
 export const MAX_EXEC_ATTEMPTS = 3;
 /** An accepted row untouched this long is (re)tried by the hourly housekeeping. */
 export const EXEC_RETRY_IDLE_MS = 50 * 60_000;
 
 export interface DirectiveExecutionDeps {
   repo:      Pick<DirectivesRepository, 'get' | 'acceptedForExecution' | 'setChange' | 'execFailed' | 'markApplied' | 'markFailed'
-    | 'awaitingVerification' | 'setVerification' | 'dueSeriesResumes' | 'mergeChange' | 'playbookLocks'>;
+    | 'awaitingVerification' | 'setVerification' | 'dueSeriesResumes' | 'mergeChange' | 'playbookLocks' | 'update'>
+    & Partial<Pick<DirectivesRepository, 'openExperiments' | 'failOpen'>>;
   inbox:     Pick<OwnerInbox, 'post'>;
   agents:    Pick<AgentsRepository, 'get'>;
   context:   (orch: Agent) => Promise<ExecContext | null>;
-  executors: DirectiveExecutor[];
+  executors: AnyExecutor[];
+  /** Kinds observed without an executor of their own (promo kinds, applied by PromoPlanner). */
+  verifiers?: DirectiveVerifier[];
+  /** Spec 025 FR-014: slot counts of experiment quotas (closeQuotas). */
+  quotas?:   Pick<SqlExperimentQuotas, 'counts'>;
   log?:      (m: string) => void;
   now?:      () => Date;
 }
@@ -40,18 +53,20 @@ export interface DirectiveExecutionDeps {
  * `failed` path), hourly verify(), the pause_series resume, and the `directive_lock` check.
  */
 export class DirectiveExecution {
-  private readonly byKind: Map<DirectiveKind, DirectiveExecutor>;
+  private readonly byKind: Map<DirectiveKind, AnyExecutor>;
+  private readonly verifiers: Map<DirectiveKind, DirectiveVerifier>;
 
   constructor(private readonly d: DirectiveExecutionDeps) {
     this.byKind = new Map(d.executors.map((e) => [e.kind, e]));
+    this.verifiers = new Map((d.verifiers ?? []).map((v) => [v.kind, v]));
   }
 
   private now(): Date { return (this.d.now ?? (() => new Date()))(); }
 
-  executorFor(kind: DirectiveKind): DirectiveExecutor | null { return this.byKind.get(kind) ?? null; }
+  executorFor(kind: DirectiveKind): AnyExecutor | null { return this.byKind.get(kind) ?? null; }
 
   /** FR-004: the plan of a directive about to be filed; null when its kind has no executor. */
-  async dryRun(dir: Pick<Directive, 'kind' | 'params' | 'toAgentId'>, orch: Agent): Promise<PlanResult | null> {
+  async dryRun(dir: Pick<Directive, 'kind' | 'params' | 'toAgentId'> & { body?: string }, orch: Agent): Promise<PlanResult | null> {
     const ex = this.executorFor(dir.kind);
     if (!ex) return null;
     const ctx = await this.d.context(orch);
@@ -62,7 +77,7 @@ export class DirectiveExecution {
   /** After an orchestrator run: every accepted directive of it (followed advice included), promo kinds aside. Returns the processed rows. */
   async executeAccepted(orch: Agent): Promise<Directive[]> {
     const out: Directive[] = [];
-    for (const dir of await this.d.repo.acceptedForExecution({ toAgentId: orch.id, except: PROMO_KINDS })) {
+    for (const dir of await this.d.repo.acceptedForExecution({ toAgentId: orch.id, except: [...PROMO_KINDS, ...REPORTED_KINDS] })) {
       const r = await this.execute(dir, orch);
       if (r) out.push(r);
     }
@@ -72,7 +87,7 @@ export class DirectiveExecution {
   /** Hourly: accepted rows untouched for an hour (earlier failures, or a run that never reached afterOrchestration). */
   async retryPending(): Promise<Directive[]> {
     const out: Directive[] = [];
-    for (const dir of await this.d.repo.acceptedForExecution({ idleMs: EXEC_RETRY_IDLE_MS, except: PROMO_KINDS })) {
+    for (const dir of await this.d.repo.acceptedForExecution({ idleMs: EXEC_RETRY_IDLE_MS, except: [...PROMO_KINDS, ...REPORTED_KINDS] })) {
       const orch = await this.d.agents.get(dir.toAgentId);
       const r = orch ? await this.execute(dir, orch) : await this.fail(dir, 'the target orchestrator is gone');
       if (r) out.push(r);
@@ -80,8 +95,13 @@ export class DirectiveExecution {
     return out;
   }
 
-  /** Plan (or reuse the stored change), apply, mark applied; on error count the attempt (failed after 3). */
+  /**
+   * Plan (or reuse the stored change), apply, mark applied; on error count the attempt (failed after 3).
+   * A pending apply (an experiment without a planned slot, a strategy version waiting for the owner) keeps the
+   * row accepted with its change and is checked again hourly; an owner-rejected strategy version rejects it.
+   */
   async execute(dir: Directive, orch: Agent): Promise<Directive | null> {
+    if (REPORTED_KINDS.includes(dir.kind)) return dir;
     const ex = this.executorFor(dir.kind);
     if (!ex) {
       if (dir.kind === 'advice') return this.applied(dir, { verification: { kind: 'self_reported' } });
@@ -89,7 +109,7 @@ export class DirectiveExecution {
       return this.fail(dir, `no executor for ${dir.kind}`);
     }
     try {
-      let change = dir.change as Change | null;
+      let change = dir.change as AnyChange | null;
       if (!change) {
         const ctx = await this.d.context(orch);
         const plan = ctx ? ex.plan(dir, ctx) : { error: 'not_executable' as const, details: 'no context' };
@@ -98,7 +118,16 @@ export class DirectiveExecution {
         await this.d.repo.setChange(dir.id, change);
       }
       const a = await ex.apply(change, dir);
-      return this.applied(dir, { change: { ...change, noop: a.noop, ...(a.playbookId ? { playbook_id: a.playbookId, version: a.version } : {}) } });
+      const merged = { ...change, noop: a.noop, ...(a.playbookId ? { playbook_id: a.playbookId, version: a.version } : {}) };
+      if (a.ownerRejected) {
+        await this.d.repo.setChange(dir.id, merged);
+        return this.d.repo.update(dir.id, { status: 'rejected', ownerDecision: 'declined', resolution: 'the owner rejected the playbook version' }, ['accepted']);
+      }
+      if (a.pending) {
+        await this.d.repo.setChange(dir.id, merged);
+        return (await this.d.repo.get(dir.id)) ?? null;
+      }
+      return this.applied(dir, { change: merged });
     } catch (err: any) {
       return this.fail(dir, String(err?.message ?? err));
     }
@@ -113,29 +142,32 @@ export class DirectiveExecution {
     this.d.log?.(`directive ${dir.id} (${dir.kind}) attempt ${attempts}: ${error}`);
     if (attempts < MAX_EXEC_ATTEMPTS) return (await this.d.repo.get(dir.id)) ?? null;
     const row = await this.d.repo.markFailed(dir.id, error);
-    if (row) {
-      const orch = await this.d.agents.get(dir.toAgentId);
-      const who = orch ? `@${orch.handle}` : 'orchestrator';
-      const binding = dir.binding === 'advice';
-      await this.d.inbox.post({
-        agentId: dir.toAgentId, kind: 'directive_failed', severity: binding ? 'info' : 'action',
-        title: `⚠️ ${binding ? 'Advice' : 'Directive'} for ${who}: ${dir.kind} could not be applied`,
-        body: `${dir.body}\n\nThe executor failed ${MAX_EXEC_ATTEMPTS} times: ${error}`,
-        alert: {
-          title: `⚠️ ${binding ? 'Порада' : 'Директива'} для ${who}: ${dir.kind} не виконана`,
-          body: `${dir.body}\n\nВиконавець не зміг ${MAX_EXEC_ATTEMPTS} рази: ${error}`,
-        },
-        refType: 'directive', refId: dir.id,
-      });
-    }
+    if (row) await this.postFailed(dir, error, `the executor failed ${MAX_EXEC_ATTEMPTS} times`);
     return row;
+  }
+
+  /** The `directive_failed` Inbox entry (action for directives, info for advice). */
+  private async postFailed(dir: Directive, error: string, why: string): Promise<void> {
+    const orch = await this.d.agents.get(dir.toAgentId);
+    const who = orch ? `@${orch.handle}` : 'orchestrator';
+    const advice = dir.binding === 'advice';
+    await this.d.inbox.post({
+      agentId: dir.toAgentId, kind: 'directive_failed', severity: advice ? 'info' : 'action',
+      title: `⚠️ ${advice ? 'Advice' : 'Directive'} for ${who}: ${dir.kind} could not be applied`,
+      body: `${dir.body}\n\n${why[0].toUpperCase()}${why.slice(1)}: ${error}`,
+      alert: {
+        title: `⚠️ ${advice ? 'Порада' : 'Директива'} для ${who}: ${dir.kind} не виконана`,
+        body: `${dir.body}\n\n${error}`,
+      },
+      refType: 'directive', refId: dir.id,
+    });
   }
 
   /** Hourly: verify() on applied rows without a verdict. Returns how many got one. */
   async verifyApplied(): Promise<number> {
     let n = 0;
-    for (const dir of await this.d.repo.awaitingVerification([...this.byKind.keys()])) {
-      const ex = this.executorFor(dir.kind)!;
+    for (const dir of await this.d.repo.awaitingVerification([...new Set([...this.byKind.keys(), ...this.verifiers.keys()])])) {
+      const ex = this.executorFor(dir.kind) ?? this.verifiers.get(dir.kind)!;
       try {
         const r = await ex.verify(dir);
         if (r.pending) continue;
@@ -146,6 +178,47 @@ export class DirectiveExecution {
       }
     }
     return n;
+  }
+
+  /**
+   * Spec 025 FR-014, hourly: an experiment quota whose deadline has passed with fewer than `slots` slots planned
+   * → `failed` with a `directive_failed` Inbox entry (the planner did not follow it).
+   */
+  async closeQuotas(): Promise<number> {
+    if (!this.d.repo.openExperiments || !this.d.repo.failOpen || !this.d.quotas) return 0;
+    let n = 0;
+    for (const dir of await this.d.repo.openExperiments()) {
+      const c = dir.change as ExperimentChange | null;
+      if (!c || c.op !== 'experiment' || new Date(c.deadline).getTime() > this.now().getTime()) continue;
+      const { planned } = await this.d.quotas.counts(dir.id, c.channel_key);
+      if (planned >= c.slots) continue;
+      const error = `experiment quota not filled by ${c.deadline.slice(0, 10)}: ${planned}/${c.slots} slot(s) planned`;
+      const row = await this.d.repo.failOpen(dir.id, error);
+      if (!row) continue;
+      n++;
+      if (dir.status === 'applied' || planned > 0) {
+        await this.d.repo.setVerification(dir.id, { kind: 'observed', adherence: 'not_followed', detail: { planned, slots: c.slots }, checked_at: this.now().toISOString() }, false);
+      }
+      await this.postFailed(dir, error, `the quota of ${c.slots} experiment slot(s) on ${c.resource_ref} was not filled in ${c.within_days} day(s)`);
+    }
+    return n;
+  }
+
+  /**
+   * Spec 025 FR-015: the owner decided a playbook version (NetworkService.decide). A strategy directive's version
+   * activated → the directive is applied now; rejected → the directive is rejected (`owner_decision = 'declined'`).
+   */
+  async onPlaybookDecided(pb: Pick<PlaybookRow, 'id' | 'directiveId' | 'status' | 'version'>, approve: boolean): Promise<Directive | null> {
+    if (!pb.directiveId) return null;
+    const dir = await this.d.repo.get(pb.directiveId);
+    if (!dir || dir.kind !== 'strategy' || dir.status !== 'accepted') return null;
+    if (!approve) {
+      return this.d.repo.update(dir.id, { status: 'rejected', ownerDecision: 'declined', resolution: 'the owner rejected the playbook version' }, ['accepted']);
+    }
+    await this.d.repo.mergeChange(dir.id, { playbook_id: pb.id, version: pb.version, activated_at: this.now().toISOString() });
+    const orch = await this.d.agents.get(dir.toAgentId);
+    const fresh = await this.d.repo.get(dir.id);
+    return orch && fresh ? this.execute(fresh, orch) : null;
   }
 
   /** Hourly: pause_series directives whose resume date has come write a version with the series active again. */

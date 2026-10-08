@@ -17,6 +17,7 @@ import {
   ideaReviewerSystemPrompt, ideaReviewerUserPrompt, networkPlannerBlock, orchestratorDailyPrompt, orchestratorSystemPrompt, playbookBuildPrompt,
 } from './network-prompts';
 import { renderSection } from './playbook';
+import { renderExperimentQuotas, type ExperimentQuota } from '../manager/experiment-quota';
 
 export interface NetworkRunnerDeps {
   loop:     Pick<AgentLoop, 'run'>;
@@ -40,6 +41,8 @@ export interface NetworkRunnerDeps {
   catalogSummary?: (card: EditorCard) => Promise<string | null>;
   /** Spec 023 FR-008: low_runway Inbox items for datasets the active series use (after the daily run). */
   runwayCheck?: (orch: Agent, playbook: unknown) => Promise<unknown>;
+  /** Spec 025 FR-014: open experiment quotas of an anchor for a plan date (shown to the planners). */
+  experimentQuotas?: (anchorKey: string, planDate: string, now: Date) => Promise<ExperimentQuota[]>;
 }
 
 const STEPS: Record<string, number> = { orchestrate: 30, playbook: 18, ideaReview: 25, plan: 14 };
@@ -121,8 +124,11 @@ export class NetworkRunner {
     return res;
   }
 
-  /** Brief → playbook (spec 020 FR-003); one build at a time per agent. */
-  async runPlaybookBuild(card: EditorCard, brief: string | null): Promise<AgentLoopResult | null> {
+  /**
+   * Brief → playbook (spec 020 FR-003); one build at a time per agent. `directiveId` (spec 025 FR-015): a build for
+   * a strategy directive — its version goes to the owner and carries the directive id.
+   */
+  async runPlaybookBuild(card: EditorCard, brief: string | null, opts: { directiveId?: string } = {}): Promise<AgentLoopResult | null> {
     const c = await this.context(card);
     if (this.paused(c)) return null;
     const key = c!.net.orchestrator.id;
@@ -133,7 +139,7 @@ export class NetworkRunner {
       const res = await this.run('orchestrator', card, c!,
         orchestratorSystemPrompt({ net: c!.net, card, profile: await this.profileText(c!.net), memory, skills: c!.agentCtx.skills }),
         playbookBuildPrompt({ net: c!.net, brief, now: this.now(), tz: card.timezone }),
-        STEPS.playbook, { brief });
+        STEPS.playbook, { brief, ...(opts.directiveId ? { directiveId: opts.directiveId } : {}) });
       if (res.terminalTool === 'submit_playbook') await this.runIdeaReview(card);
       else await this.safeNotify(`📘 @${c!.net.orchestrator.handle}: не вдалося скласти плейбук (${res.status}${res.error ? `: ${res.error}` : ''}).`);
       return res;
@@ -174,7 +180,8 @@ export class NetworkRunner {
     const memory = await this.d.memory.listActive(card.channelKey, 30, { excludeApprovalPrefs: prefs.length > 0 });
     const profiles = await this.memberProfiles(c.net);
     const system = `${buildSystemPrompt('planner', card, memory, c.agentCtx.skills, prefs)}\n\n${networkPlannerBlock({ net: c.net, accepted, now, tz: card.timezone, planDate, profiles })}`;
-    const user = [plannerUserPrompt(card, now, reserved, planDate), await this.catalog(card)].filter(Boolean).join('\n\n');
+    const quotas = await this.quotas(card.channelKey, planDate);
+    const user = [plannerUserPrompt(card, now, reserved, planDate), renderExperimentQuotas(quotas), await this.catalog(card)].filter(Boolean).join('\n\n');
     const res = await this.run('planner', card, c, system, user, STEPS.plan, { planDate }, TERMINAL_EXCLUDE_NETWORK);
     if (res.terminalTool !== 'submit_network_plan') {
       await this.safeNotify(`🗓 @${c.net.orchestrator.handle}: план мережі не складено (${res.status}${res.error ? `: ${res.error}` : ''}).`);
@@ -191,15 +198,26 @@ export class NetworkRunner {
     })));
   }
 
-  /** Extras the single-channel planner needs to see the idea pool (list_ideas works on ctx.extras.network). */
-  async plannerExtras(card: EditorCard): Promise<{ network: NetworkCtx; excludeTools: Set<string>; ideasNote: string | null } | null> {
+  /** Spec 025 FR-014: open experiment quotas (best-effort; a prompt never fails on it). */
+  private async quotas(anchorKey: string, planDate: string): Promise<ExperimentQuota[]> {
+    return this.d.experimentQuotas ? this.d.experimentQuotas(anchorKey, planDate, this.now()).catch(() => []) : [];
+  }
+
+  /**
+   * Extras the single-channel planner needs to see the idea pool (list_ideas works on ctx.extras.network) and,
+   * spec 025 FR-014, the experiment quotas on this channel.
+   */
+  async plannerExtras(card: EditorCard, planDate?: string): Promise<{ network: NetworkCtx; excludeTools: Set<string>; ideasNote: string | null } | null> {
     const c = await this.context(card, 'planner');
     if (!c) return null;
     const accepted = await this.d.repo.listIdeas(c.net.orchestrator.id, ['accepted'], 30);
-    return {
-      network: c.net, excludeTools: TERMINAL_EXCLUDE_SINGLE,
-      ideasNote: accepted.length ? `У пулі ${accepted.length} прийнятих ідей (list_ideas) — плануй насамперед з них і вказуй idea_id.` : null,
-    };
+    const anchor = `telegram:${card.channelKey}`;
+    const quotas = (await this.quotas(card.channelKey, planDate ?? localDate(this.now(), card.timezone))).filter((q) => q.resourceRef === anchor);
+    const notes = [
+      accepted.length ? `У пулі ${accepted.length} прийнятих ідей (list_ideas) — плануй насамперед з них і вказуй idea_id.` : null,
+      renderExperimentQuotas(quotas),
+    ].filter(Boolean);
+    return { network: c.net, excludeTools: TERMINAL_EXCLUDE_SINGLE, ideasNote: notes.length ? notes.join('\n') : null };
   }
 
   /** Context of a non-Telegram slot for the platform executor (019 hook). */

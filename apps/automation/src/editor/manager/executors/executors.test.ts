@@ -283,7 +283,7 @@ function execSetup(o: { executors?: any[]; context?: any } = {}) {
   const inbox: any[] = [];
   const repo = {
     get: async (id: string) => rows.get(id) ?? null,
-    acceptedForExecution: async () => [...rows.values()].filter((r) => r.status === 'accepted'),
+    acceptedForExecution: async (f: { except?: string[] } = {}) => [...rows.values()].filter((r) => r.status === 'accepted' && !(f.except ?? []).includes(r.kind)),
     setChange: async (id: string, c: any) => { rows.get(id).change = c; },
     execFailed: async (id: string, e: string) => { const r = rows.get(id); r.execAttempts = (r.execAttempts ?? 0) + 1; r.execError = e; return r.execAttempts; },
     markApplied: async (id: string, p: any) => { const r = rows.get(id); if (r.status !== 'accepted') return null; Object.assign(r, { status: 'applied', appliedAt: new Date('2026-10-20T10:00:00Z'), ...(p.change ? { change: p.change } : {}), ...(p.verification ? { verification: p.verification } : {}) }); return r; },
@@ -300,12 +300,13 @@ function execSetup(o: { executors?: any[]; context?: any } = {}) {
   return { exec, rows, inbox, add };
 }
 
-test('execution: accepted format_shift → applied with the change (before/after, version); advice self-reported; T4/T5 kinds unverified', async () => {
+test('execution: accepted format_shift → applied with the change (before/after, version); advice self-reported; pause_resource (T4) unverified; a task waits for its report', async () => {
   const s = store();
   const x = execSetup({ executors: [formatShiftExecutor(s.deps)] });
   x.add({ id: 'f1', kind: 'format_shift', params: { resource_ref: IG, format: 'ig_carousel', weight_delta: 0.2 } });
   x.add({ id: 'a1', kind: 'advice', binding: 'advice' });
-  x.add({ id: 't1', kind: 'task' });
+  x.add({ id: 't1', kind: 'pause_resource' });
+  x.add({ id: 'tk', kind: 'task' });
   x.add({ id: 'q1', kind: 'frequency', params: { change_pct: 20 } });
   const done = await x.exec.executeAccepted(ORCH);
   const f1 = x.rows.get('f1');
@@ -314,6 +315,8 @@ test('execution: accepted format_shift → applied with the change (before/after
   assert.equal(s.versions[1].directiveId, 'f1');
   assert.deepEqual(x.rows.get('a1').verification, { kind: 'self_reported' });
   assert.equal(x.rows.get('t1').verification.kind, 'unverified');
+  assert.deepEqual([x.rows.get('tk').status, x.rows.get('tk').change], ['accepted', null], 'a task waits for report_directive_done');
+  assert.equal(await x.exec.execute(x.rows.get('tk'), ORCH), x.rows.get('tk'), 'execute() leaves a task as it is');
   assert.equal(x.rows.get('q1').status, 'accepted', 'a kind that should have an executor but has none is not faked');
   assert.equal(x.rows.get('q1').execAttempts, 1);
   assert.deepEqual(done.map((r) => r.id).sort(), ['a1', 'f1', 'q1', 't1']);

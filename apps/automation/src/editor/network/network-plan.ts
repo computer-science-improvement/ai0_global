@@ -1,6 +1,8 @@
 import { z } from 'zod';
 import type { EditorCard } from '../card';
-import { CAPABILITIES } from '../platform/capabilities';
+import { CAPABILITIES, implementedFormats } from '../platform/capabilities';
+import type { Platform } from '../agents/agent.types';
+import { experimentQuotaErrors, type ExperimentQuota } from '../manager/experiment-quota';
 import { isQuietHour } from '../roles/time';
 import { zonedToUtcStrict } from '../time/resource-time';
 import type { IdeaRow } from './network.repository';
@@ -25,6 +27,7 @@ export const NetworkSlotInput = z.object({
   from_slot:    z.number().int().min(1).max(60).optional().describe('Для duplicate/adapt: номер (з 1) унікального слота-джерела цієї ж ідеї в цьому плані'),
   reason:       DecisionReason.optional().describe("Обов'язково з idea_id: чому таке рішення для цього ресурсу (профіль, плейбук, KPI)"),
   format_notes: z.string().max(500).optional().describe('Для duplicate/adapt: твої інструкції оформлення під цей ресурс'),
+  directive_id: z.string().uuid().optional().describe('Слот-експеримент за директивою менеджера (див. «Експерименти за директивою»); idea_id чи series тоді не потрібні'),
 });
 export const SubmitNetworkPlanInput = z.object({
   rationale: z.string().min(10).max(2000),
@@ -48,9 +51,21 @@ export interface NetworkPlannedSlot {
   /** Derived slots: index into the returned `slots` of their unique source. */
   fromIndex?:   number | null;
   formatNotes?: string | null;
+  /** Spec 025 FR-014: a directive experiment slot (stored with is_experiment and the hint directive:<id>). */
+  isExperiment?: boolean;
 }
 
 const LEAD_MIN = 5;
+
+/** Is there a non-quiet hour of `planDate` (in `tz`) that still ends after now + the lead? (spec 025 quota capacity) */
+export function hasTimeLeft(planDate: string, tz: string, quiet: { start: number; end: number }, now: Date): boolean {
+  for (let h = 0; h < 24; h++) {
+    if (isQuietHour(h, quiet.start, quiet.end)) continue;
+    const end = zonedToUtcStrict(planDate, `${String(h).padStart(2, '0')}:59`, tz);
+    if (end && end.getTime() > now.getTime() + LEAD_MIN * 60_000) return true;
+  }
+  return false;
+}
 
 /**
  * Deterministic validation of a network day plan (spec 020 FR-007). Errors go
@@ -72,6 +87,8 @@ export function validateNetworkPlan(
     schedule?: PlanScheduleCtx;
     /** Spec 024: (idea → resources) already decided outside this planner (repurpose_post, owner). */
     decided?: Map<string, Set<string>>;
+    /** Spec 025 FR-014: open experiment quotas of this network (anchor plans). */
+    experiments?: ExperimentQuota[];
   },
 ): { ok: true; slots: NetworkPlannedSlot[]; decisions: PlannedDecision[] } | { ok: false; errors: string[] } {
   const errors: string[] = [];
@@ -85,6 +102,12 @@ export function validateNetworkPlan(
   // Spec 024 FR-006: the decision rules see every submitted slot by its index.
   const decisionSlots: DecisionSlot[] = [];
   const outIndex = new Map<number, number>();
+  // Spec 025 FR-014: a directive's experiment slot may use the format the directive names (if the platform has it).
+  const quotas = o.experiments ?? [];
+  const quotaOf = new Map(quotas.map((q) => [q.directiveId, q]));
+  const directiveFormat = (s: { directive_id?: string; format: string; resource_ref: string }, platform: Platform) =>
+    !!s.directive_id && quotaOf.get(s.directive_id)?.format === s.format && quotaOf.get(s.directive_id)?.resourceRef === s.resource_ref
+      && implementedFormats(platform).includes(s.format);
 
   plan.slots.forEach((s, i) => {
     const label = `слот ${i + 1} (${s.resource_ref} ${s.time})`;
@@ -98,7 +121,7 @@ export function validateNetworkPlan(
       treatment, fromSlot: s.from_slot ?? null, reason: s.reason ?? null, at: null,
     };
     // A unique slot's format must be in the playbook; a derived slot only has to be possible on the platform (plan-decisions).
-    if (treatment === 'unique' && !(sec.formats[s.format] > 0)) errors.push(`${label}: формат ${s.format} не дозволений плейбуком (є: ${Object.keys(sec.formats).filter((f) => sec.formats[f] > 0).join(', ')})`);
+    if (treatment === 'unique' && !(sec.formats[s.format] > 0) && !directiveFormat(s, r.platform)) errors.push(`${label}: формат ${s.format} не дозволений плейбуком (є: ${Object.keys(sec.formats).filter((f) => sec.formats[f] > 0).join(', ')})`);
     const { tz, quiet } = resourceClock(r, card);
     const at = zonedToUtcStrict(o.planDate, s.time, tz);
     if (!at) { errors.push(`${label}: ${s.time} не існує ${o.planDate} у ${tz} (перехід на літній час) — обери інший час`); return; }
@@ -114,12 +137,14 @@ export function validateNetworkPlan(
       if (!idea) errors.push(`${label}: ідея ${s.idea_id} не знайдена або не прийнята рецензентом`);
     }
     if (s.series && !due.has(s.series)) errors.push(`${label}: серія «${s.series}» сьогодні не за розкладом або неактивна`);
-    if (!s.idea_id && !s.series) errors.push(`${label}: потрібен idea_id (прийнята ідея) або series`);
+    if (!s.idea_id && !s.series && !s.directive_id) errors.push(`${label}: потрібен idea_id (прийнята ідея), series або directive_id (експеримент за директивою)`);
+    if (s.directive_id && treatment !== 'unique') errors.push(`${label}: слот-експеримент за директивою — лише unique`);
     const slot: NetworkPlannedSlot = {
       resourceRef: s.resource_ref, scheduledAt: at, format: s.format, topic: s.topic,
       angle: [s.angle, s.note].filter(Boolean).join(' · ') || null, ideaId: s.idea_id ?? null,
-      sourceHints: s.series ? [`series:${s.series}`, ...s.source_hints] : s.source_hints,
+      sourceHints: [...(s.directive_id ? [`directive:${s.directive_id}`] : []), ...(s.series ? [`series:${s.series}`] : []), ...s.source_hints],
       treatment, treatmentReason: s.reason ?? null, fromIndex: null, formatNotes: s.format_notes ?? null,
+      ...(s.directive_id ? { isExperiment: true } : {}),
     };
     outIndex.set(i, out.length);
     out.push(slot);
@@ -161,6 +186,20 @@ export function validateNetworkPlan(
     out[k].fromIndex = outIndex.get(s.from_slot - 1) ?? null;
   });
   const decisions = dec.decisions.map((d) => ({ ...d, slotIndex: d.slotIndex == null ? null : outIndex.get(d.slotIndex) ?? null }));
+  // Spec 025 FR-014: open experiment quotas need a slot on their resource (when it has room today).
+  if (quotas.length || plan.slots.some((s) => s.directive_id)) {
+    errors.push(...experimentQuotaErrors(quotas,
+      plan.slots.map((s, i) => ({ label: `слот ${i + 1} (${s.resource_ref} ${s.time})`, resourceRef: s.resource_ref, format: s.format, directiveId: s.directive_id ?? null })),
+      (ref) => {
+        const r = resources.get(ref);
+        const sec = sections.get(ref);
+        if (!r || !sec) return false;
+        const reservedHere = r.platform === 'telegram' ? o.reservedAt.length : 0;
+        if (sec.per_day.max - reservedHere <= 0) return false;
+        const { tz, quiet } = resourceClock(r, card);
+        return hasTimeLeft(o.planDate, tz, quiet, o.now);
+      }));
+  }
   // Spec 023 FR-004: series, pins, blackouts and frequency rules.
   if (o.schedule) errors.push(...planScheduleErrors(plan, o.schedule, o.schedule.defaultRef));
   return errors.length ? { ok: false, errors } : { ok: true, slots: out, decisions };

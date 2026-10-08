@@ -263,6 +263,38 @@ export class DirectivesRepository {
     return rows[0] ? toDirective(rows[0]) : null;
   }
 
+  /** Spec 025 FR-014: live experiment directives with an open quota (accepted or applied, change stored). */
+  async openExperiments(): Promise<Directive[]> {
+    const { rows } = await this.pool.query(
+      `SELECT * FROM agent_directives WHERE kind = 'experiment' AND status IN ('accepted','applied') AND NOT shadow AND change->>'op' = 'experiment'
+        ORDER BY created_at`);
+    return rows.map(toDirective);
+  }
+
+  /** Fail an accepted or applied directive (an experiment quota not filled by its deadline). */
+  async failOpen(id: string, error: string): Promise<Directive | null> {
+    const { rows } = await this.pool.query(
+      `UPDATE agent_directives SET status = 'failed', exec_error = $2,
+              resolution = COALESCE(resolution, '') || CASE WHEN resolution IS NULL THEN '' ELSE ' · ' END || 'quota not filled', updated_at = now()
+        WHERE id = $1 AND status IN ('accepted','applied') RETURNING *`, [id, error.slice(0, 1000)]);
+    return rows[0] ? toDirective(rows[0]) : null;
+  }
+
+  /** Spec 025 FR-015: a task reported done with a verified reference — applied and verified at once. */
+  async reportDone(id: string, verification: Record<string, unknown>): Promise<Directive | null> {
+    const { rows } = await this.pool.query(
+      `UPDATE agent_directives SET status = 'applied', applied_at = now(), verification = $2, verified_at = now(), updated_at = now()
+        WHERE id = $1 AND kind = 'task' AND status IN ('new','accepted') RETURNING *`, [id, JSON.stringify(verification)]);
+    return rows[0] ? toDirective(rows[0]) : null;
+  }
+
+  /** Accepted tasks never reported done by their review date. */
+  async overdueTasks(now: Date): Promise<Directive[]> {
+    const { rows } = await this.pool.query(
+      `SELECT * FROM agent_directives WHERE kind = 'task' AND status = 'accepted' AND NOT shadow AND review_at IS NOT NULL AND review_at <= $1 ORDER BY review_at`, [now]);
+    return rows.map(toDirective);
+  }
+
   /** Applied, live directives of `kinds` whose verification has no verdict yet (hourly verify()). */
   async awaitingVerification(kinds: DirectiveKind[]): Promise<Directive[]> {
     if (!kinds.length) return [];

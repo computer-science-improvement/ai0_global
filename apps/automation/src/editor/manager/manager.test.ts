@@ -205,9 +205,10 @@ test('owner-card timeouts: default drop, configured kinds apply', async () => {
 });
 
 test('evaluator: worked / hurt / no_effect against the baseline; lessons for the manager', async () => {
-  const dir = (after: number): Directive => ({
+  const dir = (_after: number): Directive => ({
     id: 'x', toAgentId: 'o1', kind: 'format_shift', expected: { metric: 'views_per_post', direction: 'up', min_change_pct: 10 },
     outcomeDetail: { before: { value: 1000 } }, body: 'Більше каруселей', status: 'applied', createdAt: new Date(), reviewAt: new Date(),
+    verification: { kind: 'observed', adherence: 'followed' }, verifiedAt: new Date(),
   } as any);
   for (const [after, outcome] of [[1300, 'worked'], [800, 'hurt'], [1050, 'no_effect']] as const) {
     const s = managerSetup({ due: [dir(after)], after });
@@ -215,4 +216,24 @@ test('evaluator: worked / hurt / no_effect against the baseline; lessons for the
     assert.equal(s.updates[0][1].outcome, outcome, `${after}`);
     assert.equal(s.memory.length, outcome === 'no_effect' ? 0 : 1);
   }
+});
+
+test('evaluator (spec 025 FR-016): an unverified applied directive → inconclusive (not_verified) with its adherence; self-reported advice is closed unscored', async () => {
+  const base = { toAgentId: 'o1', kind: 'format_shift', expected: { metric: 'views_per_post', direction: 'up', min_change_pct: 10 }, body: 'b', status: 'applied', createdAt: new Date(), reviewAt: new Date(), outcomeDetail: { before: { value: 1000 } } };
+  const s = managerSetup({
+    after: 2000,
+    due: [
+      { ...base, id: 'violated', verification: { kind: 'observed', adherence: 'violated' }, verifiedAt: null },
+      { ...base, id: 'unverified', kind: 'pause_resource', verification: { kind: 'unverified' }, verifiedAt: null },
+      { ...base, id: 'advice', kind: 'advice', expected: null, verification: { kind: 'self_reported' }, verifiedAt: null },
+      { ...base, id: 'open-exp', kind: 'experiment', change: { deadline: new Date(Date.now() + 86_400_000).toISOString() }, verification: null, verifiedAt: null },
+    ] as any,
+  });
+  assert.equal(await s.runner.evaluate(), 3);
+  const by = new Map(s.updates.map((u) => [u[0], u[1]]));
+  assert.deepEqual([by.get('violated').outcome, by.get('violated').outcomeDetail.reason, by.get('violated').outcomeDetail.adherence], ['inconclusive', 'not_verified', 'violated']);
+  assert.deepEqual([by.get('unverified').outcome, by.get('unverified').outcomeDetail.reason], ['inconclusive', 'not_verified']);
+  assert.deepEqual([by.get('advice').status, by.get('advice').outcome, by.get('advice').outcomeDetail.reason], ['evaluated', undefined, 'self_reported']);
+  assert.equal(by.has('open-exp'), false, 'an experiment is not judged before its deadline');
+  assert.equal(s.memory.length, 0, 'no lessons from unverified changes even when the metric moved');
 });
