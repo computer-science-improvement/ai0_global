@@ -58,7 +58,7 @@ INSERT INTO editor_channel_memory (channel_key, kind, text, created_by) VALUES
 Optional fields:
 - `skills`: names of skills from `apps/automation/editor-skills/` that are always loaded inline. Use this for a channel's own voice: write `editor-skills/channel-<name>.md` with frontmatter.
 - `tools_allow`: narrows which tools are available. NULL means the role defaults.
-- `models`: `{"executor":"z-ai/glm-5.3"}` gives this channel a stronger writer.
+- `models`: legacy per-channel override (`{"executor":"z-ai/glm-5.3"}`). Prefer `/app/models` (spec 035): a global default (`ai.default_model`, built-in `z-ai/glm-5.3-flash`) and a model per agent; the page lists and clears these legacy overrides.
 - `daily_budget_usd`: per-channel spend cap.
 - `crosspost` (default `true`): mirror live posts to the channel's Meta targets (section 8). `false` keeps the channel Telegram-only.
 
