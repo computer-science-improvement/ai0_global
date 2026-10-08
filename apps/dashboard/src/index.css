@@ -839,6 +839,38 @@ a:hover { opacity: 0.85; }
 .tg-explain { display: flex; gap: 6px; margin: 4px 0 6px; padding: 6px 8px; border-radius: 8px; background: rgba(255,255,255,0.05); font-size: 13px; line-height: 1.4; }
 .tg-poll-foot { display: flex; justify-content: space-between; align-items: center; padding: 2px 0 6px; font-size: 12px; color: var(--color-tg-meta); }
 .tg-poll-foot button { background: none; border: 0; color: var(--color-tg-link); font: inherit; cursor: pointer; padding: 0; }
+/* Spec 033: Telegram rich messages (headings, lists, tables, formulas, details, footer). */
+.tg-rich { padding: 7px 10px 2px; font-size: 14px; line-height: 1.42; word-break: break-word; min-width: 0; }
+.tg-rich > :first-child { margin-top: 0; }
+.tg-rich a { color: var(--color-tg-link); text-decoration: none; }
+.tg-rich code, .tg-rich pre { font-family: var(--font-mono, ui-monospace, monospace); font-size: 13px; color: #e3a679; }
+.tg-rich-p { margin: 0 0 6px; white-space: pre-wrap; }
+.tg-rich-h { font-weight: 700; line-height: 1.3; margin: 10px 0 4px; }
+.tg-rich-h1 { font-size: 19px; }
+.tg-rich-h2 { font-size: 17px; }
+.tg-rich-h3 { font-size: 15px; }
+.tg-rich-list { margin: 0 0 6px; padding-left: 22px; }
+.tg-rich-list li > .tg-rich-p:last-child, .tg-rich-list li .tg-rich-p { margin-bottom: 2px; }
+.tg-rich-quote { margin: 4px 0 6px; padding: 2px 8px; border-left: 3px solid var(--color-tg-link); background: rgba(106,179,243,0.08); border-radius: 4px; }
+.tg-rich-quote .tg-rich-p:last-child { margin-bottom: 0; }
+.tg-rich-pre { margin: 4px 0 6px; padding: 6px 8px; border-radius: 6px; background: rgba(255,255,255,0.05); overflow-x: auto; white-space: pre; }
+.tg-rich-math { margin: 4px 0 6px; padding: 6px 8px; border-radius: 6px; background: rgba(255,255,255,0.05); font-family: var(--font-mono, ui-monospace, monospace); font-size: 13px; overflow-x: auto; white-space: pre; text-align: center; }
+.tg-rich-hr { border: 0; border-top: 1px solid rgba(255,255,255,0.12); margin: 8px 0; }
+.tg-rich-footer { margin: 4px 0 6px; font-size: 12px; color: var(--color-tg-meta); white-space: pre-wrap; }
+.tg-rich-table-wrap { max-width: 100%; overflow-x: auto; margin: 4px 0 8px; -webkit-overflow-scrolling: touch; }
+.tg-rich-table-wrap:focus-visible { outline: 2px solid var(--color-tg-link); outline-offset: 2px; }
+.tg-rich-table { border-collapse: collapse; width: max-content; min-width: 100%; font-size: 13px; }
+.tg-rich-table th, .tg-rich-table td { padding: 4px 8px; text-align: left; vertical-align: top; max-width: 220px; white-space: normal; }
+.tg-rich-table th { font-weight: 600; background: rgba(255,255,255,0.05); }
+.tg-rich-table[data-bordered] th, .tg-rich-table[data-bordered] td { border: 1px solid rgba(255,255,255,0.12); }
+.tg-rich-details { margin: 4px 0 6px; border-radius: 6px; background: rgba(255,255,255,0.04); }
+.tg-rich-details > summary { cursor: pointer; padding: 5px 8px; font-weight: 600; }
+.tg-rich-details-body { padding: 0 8px 4px; }
+.tg-rich-spoiler { background: var(--color-surface-3); color: var(--color-ink-muted); border-radius: 3px; }
+.tg-rich-media { margin: 0 -10px 6px; }
+.tg-rich > .tg-rich-media:first-child { margin-top: -7px; }
+.tg-rich-fallback { margin-top: 4px; font-size: 12px; color: var(--color-tg-meta); }
+.tg-rich-fallback > summary { cursor: pointer; padding: 2px 2px 4px; }
 
 /* ─── Navigation (spec 027): breadcrumbs (full trail on desktop, ‹ Parent on mobile) ─── */
 .crumbs { margin-bottom: 10px; font-size: 12px; line-height: 1.5; }

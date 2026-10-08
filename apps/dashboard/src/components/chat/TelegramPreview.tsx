@@ -2,11 +2,14 @@
 // the backend renderer makes (photo + caption, album, video, text with a link
 // preview, inline URL buttons, poll / quiz). A quiz can be tried in place —
 // the correct option and the explanation appear after a tap, as in Telegram.
+// Spec 033: a rich message (headings, lists, tables, formulas …) renders its
+// blocks; the HTML fallback it carries is one tap away under the bubble.
 
 import { useMemo, useState } from 'react';
 import { Icon } from '../ui/Icon';
 import { sanitizeTelegramHtml } from '../../lib/tg-html';
 import type { TgMessage, TgUrlButton } from '../../api/types';
+import { RichBlocksView } from './RichMessageView';
 
 const safeSrc = (u: string) => /^https?:\/\//i.test(u) || u.startsWith('/');
 
@@ -32,6 +35,22 @@ function TgMessageView({ m, time }: { m: TgMessage; time: string }) {
   switch (m.method) {
     case 'sendPoll':
       return <PollBubble m={m} time={time} />;
+    case 'sendRichMessage':
+      return (
+        <div>
+          <div className="tg-bubble">
+            <div className="tg-rich">
+              <RichBlocksView blocks={m.blocks} media={(src, kind) => <Media src={src} kind={kind} />} />
+            </div>
+            <Meta time={time} />
+          </div>
+          <Buttons rows={m.buttons} />
+          <details className="tg-rich-fallback">
+            <summary>Fallback if the channel rejects rich messages</summary>
+            <TgMessageView m={m.fallback} time={time} />
+          </details>
+        </div>
+      );
     case 'sendMediaGroup':
       return (
         <div className="tg-bubble">
