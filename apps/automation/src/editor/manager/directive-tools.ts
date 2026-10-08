@@ -6,7 +6,7 @@ import type { OwnerInbox } from '../agents/owner-inbox';
 import type { PendingActionsService } from '../agents/pending-actions';
 import { proposeCard } from '../agents/builder-tools';
 import type { EditorMemoryRepository } from '../repo/editor-memory.repository';
-import { DIRECTIVE_KINDS, DIRECTIVE_STATUSES, DirectiveKind, DirectivesRepository, Expected, KPI_METRICS } from './directives.repository';
+import { DIRECTIVE_KINDS, DIRECTIVE_STATUSES, Directive, DirectiveKind, DirectivesRepository, Expected, KPI_METRICS } from './directives.repository';
 import type { KpiDigest, KpiDigestService } from './kpi-digest.service';
 import { admitDirective, BINDINGS, checkBinding, ESCALATION_WINDOW_MS, metricValue, paramStructural } from './directive-kinds';
 import type { DirectiveExecution } from './executors';
@@ -15,7 +15,18 @@ import { describe as describeChange } from './executors/playbook-executors';
 export const MAX_DIRECTIVES_PER_RUN = 3;
 export const REJECT_COOLDOWN_MS = 48 * 3600_000;
 export const REVIEW_DAYS = { min: 3, max: 14 };
-const REASON_KINDS = ['owner_rule', 'playbook', 'capability', 'health', 'data'] as const;
+/** Spec 025 FR-005: why an advice may be declined (any layer, own preference included). */
+export const DECLINE_REASON_KINDS = ['owner_rule', 'playbook', 'data', 'capability', 'health', 'preference'] as const;
+/** Spec 025 FR-005: a binding directive may only be contested by a higher layer (owner rules, safety). */
+export const CONTEST_REASON_KINDS = ['owner_rule', 'safety', 'capability', 'health'] as const;
+type ContestReasonKind = typeof CONTEST_REASON_KINDS[number];
+/** Which precedence layer a contest cites (shown on the owner's card). */
+export const CONTEST_LAYER: Record<ContestReasonKind, string> = {
+  owner_rule: '1 · owner rules',
+  safety:     '2 · safety (code guards, constitution VIII)',
+  capability: '2 · safety (platform capability)',
+  health:     '2 · safety (resource health)',
+};
 
 /** Structural kinds need the owner (D1); code decides, never the model. Spec 025: the parameter part (see directive-kinds). */
 export function isStructural(kind: DirectiveKind, params: Record<string, unknown>): boolean {
@@ -52,9 +63,61 @@ export interface DirectiveToolDeps {
   channelKeyOf: (agent: Agent) => Promise<string | null>;
   /** Spec 023: is this series owner-locked in the orchestrator's active playbook? (pause_series directives) */
   seriesLocked?: (orch: Agent, name: string) => Promise<boolean>;
-  /** Spec 025 FR-004: executor dry-run at filing (not_executable, structural detection). */
-  exec?:   Pick<DirectiveExecution, 'dryRun'>;
+  /** Spec 025 FR-004: executor dry-run at filing (not_executable, structural detection); FR-006: the capability check. */
+  exec?:   Pick<DirectiveExecution, 'dryRun' | 'executorFor'>;
+  /** Spec 025 FR-006 health check: the resources in the orchestrator's scope (anchor + group, usable or not). */
+  scopeOf?: (orch: Agent) => Promise<string[]>;
+  /** Spec 025 FR-006 health check: ResourceHealthService.usable. */
+  usable?: (ref: string) => Promise<boolean>;
   now?:    () => Date;
+}
+
+/** The outcome of a contest check (spec 025 FR-006), stored in `verification.contest`. */
+export interface ContestCheck { reason_kind: ContestReasonKind; verified: boolean | 'unverified'; detail: string; rule_ids?: number[]; resource_ref?: string; checked_at: string }
+
+/**
+ * FR-006: the deterministic contest checks. `owner_rule` — every rule id is an active owner rule of the
+ * orchestrator; `health` — the resource is in scope and not usable now; `capability` — the executor's plan()
+ * fails now; `safety` — accepted, but `unverified`.
+ */
+export async function checkContest(
+  d: Pick<DirectiveToolDeps, 'memory' | 'channelKeyOf' | 'exec' | 'scopeOf' | 'usable'>,
+  dir: Pick<Directive, 'kind' | 'params' | 'toAgentId'>, orch: Agent,
+  i: { reason_kind: ContestReasonKind; rule_ids?: number[]; resource_ref?: string }, now: Date,
+): Promise<ContestCheck> {
+  const base = { reason_kind: i.reason_kind, checked_at: now.toISOString() };
+  switch (i.reason_kind) {
+    case 'owner_rule': {
+      const ids = [...new Set(i.rule_ids ?? [])];
+      if (!ids.length) return { ...base, verified: false, detail: 'не вказано rule_ids — назви id правил власника (#N з памʼяті)' };
+      const key = await d.channelKeyOf(orch);
+      const owner = new Set((key ? await d.memory.listActive(key) : []).filter((m) => m.createdBy === 'owner').map((m) => m.id));
+      const unknown = ids.filter((x) => !owner.has(x));
+      return unknown.length
+        ? { ...base, rule_ids: ids, verified: false, detail: `#${unknown.join(', #')} — не активні правила власника` }
+        : { ...base, rule_ids: ids, verified: true, detail: `правила власника #${ids.join(', #')} активні` };
+    }
+    case 'health': {
+      const ref = i.resource_ref?.trim();
+      if (!ref) return { ...base, verified: false, detail: 'не вказано resource_ref' };
+      const scope = d.scopeOf ? await d.scopeOf(orch) : [];
+      if (!scope.includes(ref)) return { ...base, resource_ref: ref, verified: false, detail: `${ref} не в мережі @${orch.handle}` };
+      if (!d.usable) return { ...base, resource_ref: ref, verified: false, detail: 'стан ресурсів зараз не перевірити' };
+      const ok = await d.usable(ref).catch(() => true);
+      return ok
+        ? { ...base, resource_ref: ref, verified: false, detail: `${ref} зараз доступний (токен і права в порядку)` }
+        : { ...base, resource_ref: ref, verified: true, detail: `${ref} зараз недоступний (health)` };
+    }
+    case 'capability': {
+      if (!d.exec?.executorFor(dir.kind)) return { ...base, verified: false, detail: `для ${dir.kind} можливість не перевіряється кодом` };
+      const dry = await d.exec.dryRun(dir, orch);
+      return dry && 'error' in dry
+        ? { ...base, verified: true, detail: `виконавець не може застосувати: ${dry.details}` }
+        : { ...base, verified: false, detail: 'виконавець може застосувати цю зміну зараз' };
+    }
+    case 'safety':
+      return { ...base, verified: 'unverified', detail: 'посилання на безпеку прийнято без перевірки кодом' };
+  }
 }
 
 const agentOf = (ctx: ToolContext): Agent | null => (ctx.extras?.agent as Agent | null | undefined) ?? null;
@@ -200,49 +263,113 @@ export function buildDirectiveTools(d: DirectiveToolDeps): EditorTool[] {
 
   // ── orchestrator side ─────────────────────────────────────────────────────
 
+  /** The directive addressed to the calling orchestrator and still open, or an error. */
+  const own = async (ctx: ToolContext, id: string): Promise<{ dir: Directive; orch: Agent } | { error: string; details?: string }> => {
+    const orch = (ctx.extras?.orchestrator as Agent | undefined) ?? agentOf(ctx);
+    const dir = await d.repo.get(id);
+    if (!dir || !orch || dir.toAgentId !== orch.id || dir.shadow) return { error: 'directive_not_found' };
+    if (dir.status !== 'new') return { error: 'not_open', details: dir.status };
+    return { dir, orch };
+  };
+
   const acceptDirective = defineTool({
     name: 'accept_directive',
-    description: 'Прийняти директиву менеджера з конкретним планом (що зміниш і коли). Перелічи id правил власника, з якими вона конфліктує (якщо такі є — прийняти не можна, відхили).',
+    description: 'Прийняти директиву чи пораду менеджера з конкретним планом (що зміниш і коли). Перелічи id правил власника, з якими вона конфліктує (якщо такі є — прийняти не можна: директиву оскаржуй через contest_directive, пораду відхиляй через decline_advice).',
     kind: 'act', roles: ['orchestrator'],
     input: z.object({
       id: z.string().uuid(), plan: z.string().min(15).max(800),
       conflicting_rule_ids: z.array(z.number().int()).max(10).describe('id правил власника з памʼяті (#N), які суперечать директиві; [] — якщо таких немає. Обовʼязкове поле: переглянь правила перед відповіддю.'),
     }),
     execute: async (i, ctx) => {
-      const orch = (ctx.extras?.orchestrator as Agent | undefined) ?? agentOf(ctx);
-      const dir = await d.repo.get(i.id);
-      if (!dir || !orch || dir.toAgentId !== orch.id || dir.shadow) return { error: 'directive_not_found' };
-      if (dir.status !== 'new') return { error: 'not_open', details: dir.status };
-      // Spec 023: a pause_series directive is applied with set_series_active; an owner-locked series is the owner's rule.
+      const o = await own(ctx, i.id);
+      if ('error' in o) return o;
+      const { dir, orch } = o;
+      const how = (kind: 'owner_rule' | 'capability') => (dir.binding === 'advice'
+        ? `відхили пораду: decline_advice з reason_kind ${kind}`
+        : `оскарж директиву власнику: contest_directive з reason_kind ${kind}${kind === 'owner_rule' ? ' і rule_ids' : ''}`);
+      // Spec 023: a pause_series directive is applied with set_series_active; an owner-locked series is the owner's.
       const seriesName = dir.kind === 'pause_series' ? String((dir.params as any)?.series ?? (dir.params as any)?.name ?? '') : '';
       if (seriesName && d.seriesLocked && await d.seriesLocked(orch, seriesName)) {
-        return { error: 'owner_rule_conflict', details: `серію «${seriesName}» заблокував власник — відхили директиву з reason_kind owner_rule` };
+        return { error: 'owner_rule_conflict', details: `серію «${seriesName}» заблокував власник — ${how('capability')}` };
       }
       if (i.conflicting_rule_ids.length) {
         const key = await d.channelKeyOf(orch);
         const rules = key ? await d.memory.listActive(key) : [];
         const owner = rules.filter((m) => m.createdBy === 'owner' && i.conflicting_rule_ids.includes(m.id));
-        if (owner.length) return { error: 'owner_rule_conflict', details: `правило власника важливіше: «${owner[0].text}» — відхили директиву з reason_kind owner_rule` };
+        if (owner.length) return { error: 'owner_rule_conflict', details: `правило власника важливіше: «${owner[0].text}» (#${owner[0].id}) — ${how('owner_rule')}` };
       }
       await d.repo.update(i.id, { status: 'accepted', resolution: i.plan }, ['new']);
       return { ok: true, note: 'Після прогону код сам застосує зміну (виконавець директиви), потім перевірить, чи план їй відповідає; за review_at — оцінка ефекту.' };
     },
   });
 
-  const rejectDirective = defineTool({
-    name: 'reject_directive',
-    description: 'Відхилити директиву з причиною: owner_rule | playbook | capability | health | data, і поясненням (≥ 20 символів).',
+  const declineAdvice = defineTool({
+    name: 'decline_advice',
+    description: 'Відхилити ПОРАДУ менеджера (binding advice) з причиною: owner_rule | playbook | data | capability | health | preference і поясненням (≥ 10 символів). Директиву (binding directive) так не відхилити — її виконують або оскаржують (contest_directive).',
     kind: 'act', roles: ['orchestrator'],
-    input: z.object({ id: z.string().uuid(), reason_kind: z.enum(REASON_KINDS), reason: z.string().min(20).max(800) }),
+    input: z.object({ id: z.string().uuid(), reason_kind: z.enum(DECLINE_REASON_KINDS), reason: z.string().min(10).max(800) }),
     execute: async (i, ctx) => {
-      const orch = (ctx.extras?.orchestrator as Agent | undefined) ?? agentOf(ctx);
-      const dir = await d.repo.get(i.id);
-      if (!dir || !orch || dir.toAgentId !== orch.id) return { error: 'directive_not_found' };
-      if (dir.status !== 'new') return { error: 'not_open', details: dir.status };
-      await d.repo.update(i.id, { status: 'rejected', resolution: i.reason, reasonKind: i.reason_kind }, ['new']);
-      return { ok: true };
+      const o = await own(ctx, i.id);
+      if ('error' in o) return o;
+      if (o.dir.binding !== 'advice') {
+        return { error: 'binding_directive_use_contest', details: 'це ДИРЕКТИВА (обовʼязкова): виконай її (accept_directive) або оскарж власнику (contest_directive) — лише правилом власника чи безпекою' };
+      }
+      // No Inbox entry and no cooldown (FR-005): the MANAGER sees the reason in its digest.
+      const r = await d.repo.update(i.id, { status: 'declined', resolution: i.reason, reasonKind: i.reason_kind }, ['new']);
+      return r ? { ok: true, note: 'Порада відхилена; менеджер побачить причину.' } : { error: 'not_open' };
     },
   });
 
-  return [getDigest, listDirectives, fileTool, submitReview, acceptDirective, rejectDirective];
+  const contestDirective = defineTool({
+    name: 'contest_directive',
+    description: [
+      'Оскаржити ДИРЕКТИВУ менеджера (binding directive) перед власником — лише вищим шаром:',
+      'owner_rule (rule_ids — id активних правил власника #N), safety (код-запобіжники, безпека), capability (платформа чи плейбук не дають застосувати зміну зараз), health (resource_ref зараз недоступний).',
+      'Код перевіряє причину; плейбук, дані чи власна думка директиву не скасовують. Власник вирішить: підтримати директиву чи твою відмову.',
+    ].join(' '),
+    kind: 'act', roles: ['orchestrator'],
+    input: z.object({
+      id: z.string().uuid(),
+      reason_kind: z.enum([...CONTEST_REASON_KINDS, 'playbook', 'data', 'preference']).describe('owner_rule | safety | capability | health'),
+      reason: z.string().min(20).max(800),
+      rule_ids: z.array(z.number().int()).max(10).optional().describe('Для owner_rule: id правил власника (#N з памʼяті)'),
+      resource_ref: z.string().max(200).optional().describe('Для health: ресурс, що зараз недоступний'),
+    }),
+    execute: async (i, ctx) => {
+      const o = await own(ctx, i.id);
+      if ('error' in o) return o;
+      const { dir, orch } = o;
+      if (dir.binding === 'advice') return { error: 'advice_use_decline', details: 'це порада — прийми її (accept_directive) або відхили (decline_advice)' };
+      if (!(CONTEST_REASON_KINDS as readonly string[]).includes(i.reason_kind)) {
+        return { error: 'directive_is_binding', details: 'директива обовʼязкова: плейбук, дані чи власна думка її не скасовують (директива вища за плейбук). Виконай її (accept_directive) або оскарж правилом власника чи безпекою.' };
+      }
+      const reasonKind = i.reason_kind as ContestReasonKind;
+      const check = await checkContest(d, dir, orch, { reason_kind: reasonKind, rule_ids: i.rule_ids, resource_ref: i.resource_ref }, (d.now ?? (() => new Date()))());
+      if (check.verified === false) {
+        return { error: 'reason_not_verified', details: `${check.detail} — прийми директиву (accept_directive) або вкажи причину, що справді діє` };
+      }
+      const row = await d.repo.contest(dir.id, { reason: i.reason, reasonKind, check: { ...check } });
+      if (!row) return { error: 'not_open' };
+      const layer = CONTEST_LAYER[reasonKind];
+      await d.inbox.post({
+        agentId: orch.id, kind: 'directive_contested', severity: 'action',
+        title: `⚖️ @${orch.handle} contests a directive from @manager: ${dir.kind}`,
+        body: [
+          `Directive: ${dir.body}`,
+          `Refusal (${reasonKind}, precedence layer ${layer}): ${i.reason}`,
+          `Check: ${check.verified === true ? `verified — ${check.detail}` : 'unverified (safety reasons are not checked by code)'}`,
+          reasonKind === 'owner_rule' ? 'If you uphold the directive, the executor applies it; consider editing the rule.' : '',
+          'Uphold the directive or accept the refusal on the @manager page → Directives.',
+        ].filter(Boolean).join('\n'),
+        alert: {
+          title: `⚖️ @${orch.handle} оскаржує директиву @manager: ${dir.kind}`,
+          body: `Директива: ${dir.body}\n\nВідмова (${reasonKind}): ${i.reason}\nПеревірка: ${check.verified === true ? check.detail : 'без перевірки кодом'}\n\nПідтримати директиву чи відмову — на сторінці @manager → Directives.`,
+        },
+        refType: 'directive', refId: dir.id,
+      });
+      return { ok: true, status: 'contested', note: 'Власник вирішить: підтримати директиву (тоді код її застосує) чи твою відмову.' };
+    },
+  });
+
+  return [getDigest, listDirectives, fileTool, submitReview, acceptDirective, declineAdvice, contestDirective];
 }

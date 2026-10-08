@@ -10,7 +10,7 @@ import { localDate, localTimeLabel } from '../roles/time';
 import type { Directive, DirectivesRepository } from './directives.repository';
 import type { KpiDigest, KpiDigestService } from './kpi-digest.service';
 import type { ScopeKpis } from './kpi-math';
-import { DirectiveExecution } from './executors';
+import { DirectiveExecution, PROMO_KINDS } from './executors';
 
 export const DEFAULT_MANAGER_TIMES = ['08:00', '13:00', '18:00', '22:30'];
 export const DELIVERY_DEBOUNCE_MS = 10 * 60_000;
@@ -32,8 +32,24 @@ export interface ManagerRunnerDeps {
   timeoutApplyKinds?: string[];
   /** Spec 025 FR-009: the executors. Without it no kind has one (advice self-reported; T4/T5 kinds unverified; the rest fail). */
   exec?:    DirectiveExecution;
+  /** Spec 025 FR-008: hours a contested directive waits for the owner before the refusal stands (DIRECTIVE_CONTEST_TIMEOUT_HOURS). */
+  contestTimeoutHours?: number;
+  /** Spec 025 FR-008: the health guard on uphold (ResourceHealthService.usable). */
+  usable?:  (ref: string) => Promise<boolean>;
   now?:     () => Date;
 }
+
+/** Spec 025 FR-007: the resolution of a binding directive the code applied because nobody answered it. */
+export const AUTO_APPLIED = 'auto-applied: no response';
+export const DEFAULT_CONTEST_TIMEOUT_HOURS = 24;
+
+/** The resources a directive's params name (for the health guard on uphold). */
+export function paramRefs(params: Record<string, unknown> | null | undefined): string[] {
+  const p = params ?? {};
+  return ['resource_ref', 'source_ref', 'target_ref', 'to_ref'].map((k) => p[k]).filter((x): x is string => typeof x === 'string' && x.includes(':'));
+}
+
+export type OwnerDecisionResult = { directive: Directive } | { error: 'directive_not_found' | 'not_contested' | 'not_executable'; details?: string };
 
 /** Spec 025 FR-017: how a delivered item is marked for the orchestrator. */
 export function bindingLabel(x: Pick<Directive, 'binding'>): string {
@@ -200,8 +216,124 @@ export class ManagerRunner {
 
   private readonly handleCache = new Map<string, string>();
 
+  /**
+   * Spec 025 FR-007: directives nobody answered. Advice expires silently. A binding directive whose target is
+   * paused or off (or that was never delivered) expires with an info entry; one with an executor is applied by
+   * the code (`directive_auto_applied`, info); one without (`task`) expires as `directive_ignored` (action).
+   */
+  async resolveUnanswered(): Promise<{ expired: number; autoApplied: number; ignored: number }> {
+    const out = { expired: 0, autoApplied: 0, ignored: 0 };
+    out.expired += await this.d.repo.expireShadowUnanswered(RESOLVE_WITHIN_MS);
+    for (const dir of await this.d.repo.unanswered(RESOLVE_WITHIN_MS)) {
+      const orch = await this.d.agents.get(dir.toAgentId);
+      const who = orch ? `@${orch.handle}` : 'the orchestrator';
+      if (dir.binding === 'advice') {
+        if (await this.d.repo.update(dir.id, { status: 'expired', resolution: 'not resolved within 24 h' }, ['new'])) out.expired++;
+        continue;
+      }
+      const inactive = !orch || orch.mode === 'off' || isPaused(orch, this.now());
+      if (inactive || !dir.deliveredAt) {
+        const why = inactive ? `${who} is ${orch?.mode === 'off' ? 'off' : 'paused'}` : `it was never delivered to ${who}`;
+        if (!await this.d.repo.update(dir.id, { status: 'expired', resolution: `expired: ${why}` }, ['new'])) continue;
+        out.expired++;
+        await this.d.inbox.post({
+          agentId: dir.toAgentId, kind: 'directive_expired', severity: 'info',
+          title: `⌛ Directive for ${who} expired: ${dir.kind}`,
+          body: `${dir.body}\n\nNot answered within 24 h: ${why}.`,
+          alert: { title: `⌛ Директива для ${who} спливла: ${dir.kind}`, body: `${dir.body}\n\nБез відповіді 24 год: ${inactive ? 'агент на паузі або вимкнений' : 'не доставлена'}.` },
+          refType: 'directive', refId: dir.id,
+        });
+        continue;
+      }
+      const executable = !!this.exec.executorFor(dir.kind) || PROMO_KINDS.includes(dir.kind);
+      if (!executable) {
+        if (!await this.d.repo.update(dir.id, { status: 'expired', resolution: `ignored: ${who} did not answer within 24 h` }, ['new'])) continue;
+        out.ignored++;
+        await this.d.inbox.post({
+          agentId: dir.toAgentId, kind: 'directive_ignored', severity: 'action',
+          title: `🙈 ${who} ignored a directive from @manager: ${dir.kind}`,
+          body: `${dir.body}\n\nNo answer within 24 h, and the code cannot carry out a ${dir.kind} itself. Check the agent or give it the task in chat.`,
+          alert: { title: `🙈 ${who} проігнорував директиву @manager: ${dir.kind}`, body: `${dir.body}\n\nБез відповіді 24 год; код сам цього не виконає.` },
+          refType: 'directive', refId: dir.id,
+        });
+        continue;
+      }
+      const acc = await this.d.repo.update(dir.id, { status: 'accepted', resolution: AUTO_APPLIED }, ['new']);
+      if (!acc) continue;
+      // Promo kinds are scheduled by PromoPlanner after the orchestrator's next run (spec 022).
+      const done = PROMO_KINDS.includes(dir.kind) ? acc : (await this.exec.execute(acc, orch!)) ?? acc;
+      if (done.status === 'applied') await this.recordBaseline(done, null);
+      out.autoApplied++;
+      const state = done.status === 'applied' ? 'applied' : PROMO_KINDS.includes(dir.kind) ? 'scheduled with the next orchestrator run' : `not applied yet (${done.execError ?? 'retrying hourly'})`;
+      await this.d.inbox.post({
+        agentId: dir.toAgentId, kind: 'directive_auto_applied', severity: 'info',
+        title: `🤖 Directive for ${who} applied without an answer: ${dir.kind}`,
+        body: `${dir.body}\n\n${who} did not answer within 24 h, so the code carried it out: ${state}.`,
+        alert: { title: `🤖 Директиву для ${who} застосовано без відповіді: ${dir.kind}`, body: `${dir.body}\n\n${who} не відповів за 24 год — код виконав її сам.` },
+        refType: 'directive', refId: dir.id,
+      });
+    }
+    return out;
+  }
+
+  /** FR-008: contested directives the owner did not decide in time — the refusal stands (rejected, timeout_dropped). */
+  async contestTimeouts(): Promise<number> {
+    const hours = this.d.contestTimeoutHours ?? DEFAULT_CONTEST_TIMEOUT_HOURS;
+    let n = 0;
+    for (const dir of await this.d.repo.contestedOlderThan(hours * 3600_000)) {
+      if (await this.d.repo.update(dir.id, { status: 'rejected', ownerDecision: 'timeout_dropped' }, ['contested'])) n++;
+    }
+    return n;
+  }
+
+  /**
+   * FR-008: the owner upholds a contested directive. The owner-rule check is skipped (the owner decided), but the
+   * capability (the executor's plan) and health guards still apply; then the executor runs.
+   */
+  async uphold(id: string): Promise<OwnerDecisionResult> {
+    const dir = await this.d.repo.get(id);
+    if (!dir) return { error: 'directive_not_found' };
+    if (dir.status !== 'contested') return { error: 'not_contested', details: dir.status };
+    const orch = await this.d.agents.get(dir.toAgentId);
+    if (!orch) return { error: 'not_executable', details: 'the target orchestrator is gone' };
+    if (this.exec.executorFor(dir.kind)) {
+      const dry = await this.exec.dryRun(dir, orch);
+      if (dry && 'error' in dry) return { error: 'not_executable', details: dry.details };
+    }
+    if (this.d.usable) {
+      for (const ref of paramRefs(dir.params)) {
+        if (!(await this.d.usable(ref).catch(() => true))) return { error: 'not_executable', details: `${ref} is not usable now (resource health)` };
+      }
+    }
+    const acc = await this.d.repo.update(id, { status: 'accepted', ownerDecision: 'upheld' }, ['contested']);
+    if (!acc) return { error: 'not_contested', details: (await this.d.repo.get(id))?.status };
+    // Promo kinds are scheduled by PromoPlanner after the orchestrator's next run (spec 022); the rest run now.
+    if (!PROMO_KINDS.includes(dir.kind)) {
+      const r = await this.exec.execute(acc, orch);
+      if (r?.status === 'applied') await this.recordBaseline(r, null);
+    }
+    return { directive: (await this.d.repo.get(id))! };
+  }
+
+  /** FR-008: the owner sides with the orchestrator — rejected, the 48 h cooldown starts, the MANAGER learns it. */
+  async acceptRefusal(id: string): Promise<OwnerDecisionResult> {
+    const dir = await this.d.repo.get(id);
+    if (!dir) return { error: 'directive_not_found' };
+    if (dir.status !== 'contested') return { error: 'not_contested', details: dir.status };
+    const out = await this.d.repo.update(id, { status: 'rejected', ownerDecision: 'refusal_accepted' }, ['contested']);
+    if (!out) return { error: 'not_contested', details: (await this.d.repo.get(id))?.status };
+    const m = await this.manager();
+    if (m) {
+      await this.ensureHandles();
+      await this.d.repo.addMemory(m.id, 'insight',
+        `Власник став на бік @${this.handleCache.get(dir.toAgentId) ?? '?'} щодо ${dir.kind} (${dir.reasonKind ?? '—'}): ${String(dir.resolution ?? '').slice(0, 200)}`,
+        { directive: dir.id }, 'system');
+    }
+    return { directive: out };
+  }
+
   /** Owner-card timeouts, unresolved expiry, executor retries, series resumes, verification, effect evaluation (hourly). */
-  async housekeeping(): Promise<{ timedOut: number; expired: number; evaluated: number; executed: number; failed: number; resumed: number; verified: number }> {
+  async housekeeping(): Promise<{ timedOut: number; expired: number; evaluated: number; executed: number; failed: number; resumed: number; verified: number; autoApplied: number; ignored: number; contestTimedOut: number }> {
     for (const a of await this.d.agents.list()) this.handleCache.set(a.id, a.handle);
     let timedOut = 0;
     const hours = this.d.timeoutHours ?? 12;
@@ -214,7 +346,8 @@ export class ManagerRunner {
     if (timedOut && m && await this.d.repo.droppedInARow() === NOT_RESPONDING_AFTER) {
       await this.d.repo.addMemory(m.id, 'insight', 'Власник не відповідає на структурні директиви (5 поспіль скасовано за таймаутом) — пропонуй їх рідше і лише з сильними підставами.', null, 'system');
     }
-    const expired = await this.d.repo.expireUnresolved(RESOLVE_WITHIN_MS);
+    const { expired, autoApplied, ignored } = await this.resolveUnanswered();
+    const contestTimedOut = await this.contestTimeouts();
     // Spec 025 FR-009: retry executors, resume paused series, verify applied changes — before evaluating.
     const retried = await this.exec.retryPending();
     const executed = retried.filter((x) => x.status === 'applied');
@@ -223,7 +356,7 @@ export class ManagerRunner {
     const resumed = await this.exec.resumeSeries();
     const verified = await this.exec.verifyApplied();
     const evaluated = await this.evaluate();
-    return { timedOut, expired, evaluated, executed: executed.length, failed, resumed, verified };
+    return { timedOut, expired, evaluated, executed: executed.length, failed, resumed, verified, autoApplied, ignored, contestTimedOut };
   }
 
   /** Effect of applied directives on their review date (FR-007). */

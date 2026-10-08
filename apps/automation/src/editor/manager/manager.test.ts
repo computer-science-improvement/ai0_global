@@ -122,18 +122,21 @@ test('file_directive rules: target, open duplicate, cooldown, evidence, expected
   assert.equal((stale as any).error, 'stale_metric');
 });
 
-test('accept_directive refuses a conflict with an owner rule; reject needs a reason kind', async () => {
+test('accept_directive refuses a conflict with an owner rule (contest it); reject_directive is gone, decline needs a reason kind', async () => {
   const f = fakeRepo();
   const tools = buildDirectiveTools(deps(f.repo) as any);
   const accept = tools.find((t) => t.name === 'accept_directive')!;
   const ctx = { runId: 'r', role: 'orchestrator' as const, channelKey: '@space', extras: { orchestrator: ORCH } };
   const r1: any = await accept.execute({ id: 'dir1', plan: 'Додам 2 каруселі завтра', conflicting_rule_ids: [5] }, ctx);
   assert.equal(r1.error, 'owner_rule_conflict');
+  assert.match(r1.details, /contest_directive/);
   const r2: any = await accept.execute({ id: 'dir1', plan: 'Додам 2 каруселі завтра', conflicting_rule_ids: [] }, ctx);
   assert.equal(r2.ok, true);
   assert.equal(f.updates.at(-1)[1].status, 'accepted');
-  const reject = tools.find((t) => t.name === 'reject_directive')!;
-  assert.equal(reject.input.safeParse({ id: '00000000-0000-4000-8000-000000000001', reason_kind: 'mood', reason: 'не хочу і все тут, просто так' }).success, false);
+  assert.equal(tools.find((t) => t.name === 'reject_directive'), undefined, 'spec 025 FR-005: reject_directive is removed');
+  const decline = tools.find((t) => t.name === 'decline_advice')!;
+  assert.equal(decline.input.safeParse({ id: '00000000-0000-4000-8000-000000000001', reason_kind: 'mood', reason: 'не хочу і все тут' }).success, false);
+  assert.equal(decline.input.safeParse({ id: '00000000-0000-4000-8000-000000000001', reason_kind: 'preference', reason: 'не пасує нашому тону' }).success, true);
 });
 
 function managerSetup(o: { lastHash?: string | null; anomalies?: boolean; due?: Directive[]; awaiting?: any[]; after?: number | null } = {}) {
@@ -157,7 +160,9 @@ function managerSetup(o: { lastHash?: string | null; anomalies?: boolean; due?: 
       awaitingOwnerOlderThan: async () => o.awaiting ?? [],
       update: async (id: string, p: any) => { updates.push([id, p]); return null; },
       droppedInARow: async () => 0,
-      expireUnresolved: async () => 0,
+      unanswered: async () => [],
+      expireShadowUnanswered: async () => 0,
+      contestedOlderThan: async () => [],
       acceptedForExecution: async () => [],
       dueSeriesResumes: async () => [],
       awaitingVerification: async () => [],

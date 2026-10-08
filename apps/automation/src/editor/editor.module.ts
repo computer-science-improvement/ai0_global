@@ -289,6 +289,18 @@ function resourceTime(repos: Pick<EditorRepos, 'channels'>, profiles: ResourcePr
   });
 }
 
+/** Spec 025 FR-006: every resource in an orchestrator's scope (its anchor and its group), usable or not. */
+function directiveScope(pool: Pool): (orch: Agent) => Promise<string[]> {
+  return async (orch) => {
+    const key = telegramKeyOf(orch);
+    if (!key) return [];
+    const network = new NetworkRepository(pool);
+    const group = await network.groupOfChannel(key);
+    const refs = group ? (await network.groupResources(group.id)).map((r) => r.ref) : [];
+    return [...new Set([resourceRef('telegram', key), ...refs])];
+  };
+}
+
 /** Spec 025 FR-009: the directive executors (frequency, format_shift, pause_series) and their runner. */
 function directiveExecution(pool: Pool, repos: EditorRepos, infra: AgentInfra, platform: PlatformInfra): DirectiveExecution {
   const logger = new Logger('DirectiveExecution');
@@ -394,8 +406,8 @@ export class AgentsUpkeep implements OnModuleInit {
   async directives(): Promise<void> {
     try {
       const r = await this.manager.runner.housekeeping();
-      if (r.timedOut || r.expired || r.evaluated || r.executed || r.failed || r.resumed || r.verified) {
-        this.logger.log(`directives: timed out ${r.timedOut}, expired ${r.expired}, executed ${r.executed}, failed ${r.failed}, resumed ${r.resumed}, verified ${r.verified}, evaluated ${r.evaluated}`);
+      if (r.timedOut || r.expired || r.evaluated || r.executed || r.failed || r.resumed || r.verified || r.autoApplied || r.ignored || r.contestTimedOut) {
+        this.logger.log(`directives: timed out ${r.timedOut}, expired ${r.expired}, auto-applied ${r.autoApplied}, ignored ${r.ignored}, contest timeouts ${r.contestTimedOut}, executed ${r.executed}, failed ${r.failed}, resumed ${r.resumed}, verified ${r.verified}, evaluated ${r.evaluated}`);
       }
     } catch (err: any) {
       this.logger.warn(`directives housekeeping failed: ${err?.message ?? err}`);
@@ -795,6 +807,8 @@ export const EDITOR_PROVIDERS = [
             channelKeyOf: (a) => infra.channelKeyOf(a),
             seriesLocked: async (orch, name) => isSeriesLocked((await new NetworkRepository(pool).activePlaybook(orch.id))?.body ?? null, name),
             exec: directives,
+            // Spec 025 FR-006: the health contest check.
+            scopeOf: directiveScope(pool), usable: (ref) => platform.health.usable(ref),
           }),
           // Spec 024 FR-010: @ai0 proposes a network mode change (Apply card).
           ...buildNetworkModeTool({
@@ -923,6 +937,9 @@ export const EDITOR_PROVIDERS = [
           timeoutHours: envNum(env, 'DIRECTIVE_TIMEOUT_HOURS', 12),
           timeoutApplyKinds: (env('DIRECTIVE_TIMEOUT_APPLY_KINDS') ?? '').split(',').map((x) => x.trim()).filter(Boolean),
           exec: directiveExecution(pool, repos, infra, platform),
+          // Spec 025 FR-008: the contest timeout and the health guard on uphold.
+          contestTimeoutHours: envNum(env, 'DIRECTIVE_CONTEST_TIMEOUT_HOURS', 24),
+          usable: (ref) => platform.health.usable(ref),
         });
         return { repo, digest, runner };
       },

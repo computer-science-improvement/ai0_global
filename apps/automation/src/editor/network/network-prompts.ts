@@ -47,6 +47,15 @@ export function resourceClocksBlock(net: NetworkCtx, now: Date): string[] {
     : [];
 }
 
+/**
+ * Spec 025 (normative precedence): a lower layer never overrides a higher one. A directive is answered with
+ * accept or contest; advice with accept or decline.
+ */
+export const PRECEDENCE_LINES = [
+  'Пріоритет (вищий шар завжди перемагає нижчий): 1) правила власника; 2) безпека — код-запобіжники (тихі години, бюджети, вимикач, lint, ліміти API, стан ресурсів) і конституція; 3) ДИРЕКТИВИ менеджера (обовʼязкові); 4) активний плейбук; 5) поради менеджера; 6) твої власні вподобання.',
+  'ДИРЕКТИВУ виконуєш (accept_directive) або оскаржуєш власнику (contest_directive) — лише правилом власника чи безпекою; плейбук, дані чи власна думка її не скасовують. ПОРАДУ приймаєш (accept_directive) або відхиляєш (decline_advice) з причиною.',
+];
+
 /** System prompt of an orchestrator run (playbook upkeep, idea pool) — spec 020. */
 export function orchestratorSystemPrompt(o: { net: NetworkCtx; card: EditorCard; profile: string | null; memory: MemoryEntry[]; skills: SkillSource; directives?: string | null; profiles?: Array<{ ref: string; profile: Parameters<typeof compactProfile>[0] | null }> }): string {
   const { net } = o;
@@ -54,7 +63,8 @@ export function orchestratorSystemPrompt(o: { net: NetworkCtx; card: EditorCard;
   return [
     `Ти — @${net.orchestrator.handle} «${net.orchestrator.name}», оркестратор ${net.mode === 'independent' ? `мережі «${net.groupName}»` : `каналу ${net.anchorKey}`} у медіамережі ai0.`,
     'Ти відповідаєш за план контенту мережі: плейбук (що, куди, як часто), серії і пул ідей, з яких планувальник складає день. Публікують виконавці; ти не публікуєш.',
-    'Правило власника важливіше за директиву менеджера, директива — важливіша за твоє власне рішення. Факти — лише з джерел, які ти прочитав; нічого не вигадуєш.',
+    ...PRECEDENCE_LINES,
+    'Факти — лише з джерел, які ти прочитав; нічого не вигадуєш.',
     'Код перевіряє всі правила (формати, частоти, дублікати). Якщо інструмент повернув error — виправ і спробуй ще раз.',
     '',
     '## Ресурси',
@@ -87,7 +97,7 @@ export function orchestratorDailyPrompt(o: { net: NetworkCtx; card: EditorCard; 
   return [
     `Сьогодні ${WEEKDAYS[localWeekday(o.now, tz)]}, ${localDate(o.now, tz)} ${localTimeLabel(o.now, tz)}${tz === DEFAULT_TZ ? '' : ` (${tz})`}.`,
     ...resourceClocksBlock(o.net, o.now).slice(1),
-    o.hasDirectives ? '1. Спершу розбери директиви менеджера: accept_directive з планом або reject_directive з причиною (кожну).' : '',
+    o.hasDirectives ? '1. Спершу дай відповідь на кожну позицію менеджера: ДИРЕКТИВА — accept_directive з планом або contest_directive (правило власника чи безпека); порада — accept_directive або decline_advice з причиною. Без відповіді за 24 год директиву з виконавцем код застосує сам.' : '',
     `${o.hasDirectives ? '2' : '1'}. Пул: прийнятих ${accepted}, на рецензії ${fresh}${revise.length ? `, на доопрацюванні ${revise.length} (revise_idea: ${revise.map((i) => i.id).join(', ')})` : ''}. Ціль — ${o.target} ідей на 2 дні вперед для всіх ресурсів.`,
     'Подивись статистику (get_network_posts, get_platform_stats, get_format_performance), нещодавні пости й джерела (fetch_feed, fetch_api, library_catalog), і додай ідеї через add_idea — кожна з варіантами під ресурси й форматами плейбука.',
     'Пост, що вже добре зайшов на одному ресурсі (get_network_posts), можна продублювати чи адаптувати на інші ресурси мережі через repurpose_post — час і інтервал обираєш ти, оформлення під ресурс теж твоє (як вирішувати — скіл resource-decisions).',

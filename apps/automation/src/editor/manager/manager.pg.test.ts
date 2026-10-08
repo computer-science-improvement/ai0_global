@@ -83,7 +83,7 @@ test('digest flags the drop; directive lifecycle: owner approval â†’ delivery â†
   }, { from: null, runId: null, shadow: false, digest: dg });
   assert.equal(filed.directive.status, 'awaiting_owner');
 
-  const svc = new ManagerService({ repo, agents, digest, runner: { run: async () => ({}) as any, manager: async () => null } });
+  const svc = new ManagerService({ repo, agents, digest, runner: { run: async () => ({}) as any, manager: async () => null } as any });
   await svc.decide(filed.directive.id, true);
   const runner = new ManagerRunner({
     loop: { run: async () => ({}) as any }, registry: { forRole: () => [] }, runtime: { forAgent: async () => ({}) as any },

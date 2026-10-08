@@ -1,6 +1,6 @@
 # 025: MANAGER: binding directives vs optional advice, and code executors for directive kinds
 
-**Status:** BUILDING (T1–T2 done; T3–T7 open) · **Depends on:** 020, 021, 022 · **Supersedes/extends:** extends 021 (FR-004, FR-006, FR-007, FR-008, FR-009); replaces `applyAccepted` auto-flip ·
+**Status:** BUILDING (T1–T3 done; T4 in parallel; T5–T7 open) · **Depends on:** 020, 021, 022 · **Supersedes/extends:** extends 021 (FR-004, FR-006, FR-007, FR-008, FR-009); replaces `applyAccepted` auto-flip ·
 **Migration:** `065_directive_binding.sql`
 
 **Owner comments addressed:** #7
@@ -84,10 +84,11 @@ advice that conflicts with the playbook may simply be declined.
 - After 14 days live, every `applied` row has an executor `change` and a visible verification state.
 
 ## Open questions for the owner
-1. **A binding directive the orchestrator ignores for 24 h: auto-apply or escalate?** Default: auto-apply when there is an executor, plus an info Inbox entry (FR-007).
-2. **Contest timeout outcome:** does the agent's refusal stand, or does the directive apply? Default: the refusal stands after 24 h, because the higher layers (owner rule, safety) were cited.
-3. **Should `repost` stay possible as advice?** Default: yes. It is non-structural and cheap, and it only affects the anchor.
-4. **Can an orchestrator revert directive-made playbook changes before review?** Default: no for directives (`directive_lock`), yes for advice.
+All four were **decided on 2026-10-08**: the owner confirmed the defaults ("take the next scope").
+1. **A binding directive the orchestrator ignores for 24 h: auto-apply or escalate?** Decided: auto-apply when there is an executor, plus an info Inbox entry (FR-007).
+2. **Contest timeout outcome:** does the agent's refusal stand, or does the directive apply? Decided: the refusal stands after 24 h (`rejected`, `timeout_dropped`), because the higher layers (owner rule, safety) were cited.
+3. **Should `repost` stay possible as advice?** Decided: yes. It is non-structural and cheap, and it only affects the anchor.
+4. **Can an orchestrator revert directive-made playbook changes before review?** Decided: no for directives (`directive_lock`), yes for advice.
 
 ## Implementation notes (T1–T2)
 Decisions where the spec left room; T3–T7 build on these.
@@ -131,7 +132,34 @@ Decisions where the spec left room; T3–T7 build on these.
   `binding = 'directive'`, `status = 'applied'`, `review_at > now` and a playbook change lock; advice and card changes do not. Owner edits
   are never locked.
 - **Left for T3+.** `reject_directive` is still registered and the orchestrator prompt still has the 3-layer precedence (T3 replaces them
-  with `decline_advice` / `contest_directive`). No dashboard changes (T6). The digest `compliance` block is T5.
+  with `decline_advice` / `contest_directive` — done, see T3 notes). No dashboard changes (T6). The digest `compliance` block is T5.
+
+## Implementation notes (T3)
+- **No migration.** Every status, owner decision and column T3 needs came with 065; Inbox kinds are free text. (068 stays unused.)
+- **Tools.** `reject_directive` is gone from the registry. `decline_advice` (advice only → `binding_directive_use_contest`) closes the
+  row as `declined` without an Inbox entry; the cooldown query only reads `rejected`, so a declined advice never starts one.
+  `contest_directive` accepts the seven reason kinds in its schema so that `playbook` / `data` / `preference` get the spec's
+  `directive_is_binding` error instead of a schema error; advice → `advice_use_decline`. A failed FR-006 check → `reason_not_verified`.
+  The transition to `contested` is guarded (`status = 'new' AND binding = 'directive'`), so a repeat call gets `not_open` and the card is
+  posted once. `accept_directive` now points to contest (directive) or decline (advice) when it refuses an owner-rule conflict; a
+  directive about an owner-locked series is contested with `capability` (the executor's plan refuses locked series).
+- **Contest checks** (`checkContest`). `owner_rule` reads the orchestrator's channel memory (`created_by = 'owner'`, active) like
+  `accept_directive`; an empty `rule_ids` fails. `health`: the scope is the anchor plus every group resource (usable or not), then
+  `usable(ref)` must be false. `capability`: the executor's dry-run must fail now; kinds without an executor cannot be checked → not
+  verified. `safety`: `verified: 'unverified'`. The result (with `checked_at`) goes to `verification.contest`.
+- **Owner decision.** `ManagerRunner.uphold` re-runs the dry-run (capability) and `usable()` on every resource the params name
+  (`resource_ref`, `source_ref`, `target_ref`, `to_ref`) → `409 not_executable`, the row stays `contested`; otherwise `accepted` +
+  `owner_decision = 'upheld'`, and the executor runs at once (promo kinds wait for PromoPlanner after the next orchestrator run).
+  `acceptRefusal` → `rejected` + `refusal_accepted` (the 48 h cooldown follows from `rejected`) and a MANAGER memory insight "owner sided
+  with @x on <kind>". Repeats → `409 not_contested`; unknown id → 404. Contest timeout: `DIRECTIVE_CONTEST_TIMEOUT_HOURS` (24) from
+  `contested_at` → `rejected` + `timeout_dropped`; the contest reason stays in `resolution`.
+- **Non-response** (`resolveUnanswered`, hourly, replaces `expireUnresolved`). Same window as before (delivered 24 h ago, or never
+  delivered for 48 h). Advice → `expired` silently. A binding directive whose target is off or paused, or that was never delivered →
+  `expired` + `directive_expired` (info). One with an executor (or a promo kind) → `accepted` with `resolution = 'auto-applied: no
+  response'`, executed at once (promo: scheduled after the next run) + `directive_auto_applied` (info). Kinds without one (`task`, and
+  `pause_resource` until T4) → `expired` + `directive_ignored` (action). Shadow rows still expire silently.
+- **Precedence.** `PRECEDENCE_LINES` in `network-prompts.ts` (the 6 layers and "a directive: accept or contest; advice: accept or
+  decline") replace the 3-layer line in `orchestratorSystemPrompt`; the daily prompt and the `editor-orchestrator-workflow` skill say the same.
 
 ## Task breakdown
 
@@ -171,9 +199,9 @@ Decisions where the spec left room; T3–T7 build on these.
 - 6-layer precedence in `orchestratorSystemPrompt` and the `editor-orchestrator-workflow` skill.
 
 **Acceptance:**
-- [ ] A contest with an unknown rule id → `reason_not_verified`.
-- [ ] A valid contest creates exactly one `directive_contested` Inbox entry.
-- [ ] Uphold runs the executor; accept-refusal starts the cooldown; a declined advice does not.
+- [x] A contest with an unknown rule id → `reason_not_verified`.
+- [x] A valid contest creates exactly one `directive_contested` Inbox entry.
+- [x] Uphold runs the executor; accept-refusal starts the cooldown; a declined advice does not.
 
 **Size:** L · **Depends on:** T1, T2
 
