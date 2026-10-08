@@ -162,9 +162,11 @@ test('an experiment quota unfilled at its deadline → failed with an Inbox entr
 test('an unverified applied directive is evaluated inconclusive (not_verified) with its adherence', { skip }, async () => {
   const s = setup();
   const dir = await insert(s.repo, 'pause_resource', { resource_ref: REF, days: 3 });
-  await s.runner.afterOrchestration((await s.agents.get(orchId))!, null);
-  assert.equal((await s.repo.get(dir.id))!.verification.kind, 'unverified');
-  await pool.query(`UPDATE agent_directives SET review_at = now() - interval '1 minute' WHERE id = $1`, [dir.id]);
+  // Every kind has an executor since T4/T5; an applied change that was never observed is still possible (e.g. a
+  // verifier that never saw the plan), so the row is set to that state directly.
+  await pool.query(
+    `UPDATE agent_directives SET status = 'applied', applied_at = now(), verification = '{"kind":"unverified","reason":"test"}'::jsonb,
+            review_at = now() - interval '1 minute' WHERE id = $1`, [dir.id]);
   await s.runner.evaluate();
   const e = (await s.repo.get(dir.id))!;
   assert.deepEqual([e.status, e.outcome, e.outcomeDetail.reason], ['evaluated', 'inconclusive', 'not_verified']);

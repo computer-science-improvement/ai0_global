@@ -300,7 +300,7 @@ function execSetup(o: { executors?: any[]; context?: any } = {}) {
   return { exec, rows, inbox, add };
 }
 
-test('execution: accepted format_shift → applied with the change (before/after, version); advice self-reported; pause_resource (T4) unverified; a task waits for its report', async () => {
+test('execution: accepted format_shift → applied with the change (before/after, version); advice self-reported; a kind without a registered executor is not faked; a task waits for its report', async () => {
   const s = store();
   const x = execSetup({ executors: [formatShiftExecutor(s.deps)] });
   x.add({ id: 'f1', kind: 'format_shift', params: { resource_ref: IG, format: 'ig_carousel', weight_delta: 0.2 } });
@@ -314,7 +314,7 @@ test('execution: accepted format_shift → applied with the change (before/after
   assert.deepEqual([f1.change.before, f1.change.after, f1.change.version, f1.change.noop], [0.3, 0.5, 2, false]);
   assert.equal(s.versions[1].directiveId, 'f1');
   assert.deepEqual(x.rows.get('a1').verification, { kind: 'self_reported' });
-  assert.equal(x.rows.get('t1').verification.kind, 'unverified');
+  assert.deepEqual([x.rows.get('t1').status, x.rows.get('t1').execAttempts], ['accepted', 1], 'pause_resource needs its executor (none registered here)');
   assert.deepEqual([x.rows.get('tk').status, x.rows.get('tk').change], ['accepted', null], 'a task waits for report_directive_done');
   assert.equal(await x.exec.execute(x.rows.get('tk'), ORCH), x.rows.get('tk'), 'execute() leaves a task as it is');
   assert.equal(x.rows.get('q1').status, 'accepted', 'a kind that should have an executor but has none is not faked');
