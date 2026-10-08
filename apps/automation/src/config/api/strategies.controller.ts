@@ -246,6 +246,16 @@ export class StrategiesController {
     const existing = await this.repo.findById(id);
     if (!existing) throw new NotFoundException(`Strategy ${id} not found`);
 
+    // Spec 023 FR-012: a binding retired by a cutover is the agent's now; only the rollback card brings it back.
+    if (body.enabled === true && existing.retired_at) {
+      const to = existing.migrated_to?.handle ? ` to @${existing.migrated_to.handle}` : '';
+      throw new ConflictException({
+        error: 'binding_retired',
+        details: `${existing.ext_id} was retired by the migration${to}; use the Rollback card on /app/strategies to restore it`,
+        migrated_to: existing.migrated_to ?? null,
+      });
+    }
+
     // Renaming the logical slug: enforce uniqueness server-side. A no-op set
     // (same value as existing) is allowed and skips the lookup.
     if (body.ext_id !== undefined && body.ext_id !== existing.ext_id) {

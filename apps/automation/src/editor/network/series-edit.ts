@@ -93,7 +93,7 @@ export function networkMode(net: NetworkCtx, card: EditorCard | null): ChannelMo
 /** The agent's own pending draft, or an error when a migration draft waits for the owner (T6 corner case). */
 export async function agentDraft(d: Pick<SubmitDeps, 'repo'>, net: NetworkCtx): Promise<{ draft: PlaybookRow | null } | { error: 'migration_pending'; details: string }> {
   const pending = await d.repo.pendingPlaybook(net.orchestrator.id);
-  if (pending && (pending.createdBy as string) === 'migration') {
+  if (pending && pending.createdBy === 'migration') {
     return { error: 'migration_pending', details: 'на власника чекає чернетка міграції стратегій — дочекайся його рішення' };
   }
   return { draft: pending && pending.createdBy === 'orchestrator' ? pending : null };

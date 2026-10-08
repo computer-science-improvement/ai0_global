@@ -51,7 +51,7 @@ export interface PlaybookRow {
   body:      Playbook;
   review:    unknown;
   rationale: string | null;
-  createdBy: 'orchestrator' | 'owner';
+  createdBy: 'orchestrator' | 'owner' | 'migration';
   createdAt: Date;
   decidedAt: Date | null;
 }
@@ -148,7 +148,7 @@ export class NetworkRepository {
    * Insert a new version. `active` supersedes the current active one (and any
    * pending draft); `pending_owner` supersedes an older pending draft.
    */
-  async insertPlaybook(p: { agentId: string; status: 'pending_owner' | 'active'; brief: string | null; body: Playbook; review?: unknown; rationale: string | null; createdBy: 'orchestrator' | 'owner'; runId?: string | null }): Promise<PlaybookRow> {
+  async insertPlaybook(p: { agentId: string; status: 'pending_owner' | 'active'; brief: string | null; body: Playbook; review?: unknown; rationale: string | null; createdBy: 'orchestrator' | 'owner' | 'migration'; runId?: string | null }): Promise<PlaybookRow> {
     // One transaction: never leave a network without an active playbook. An orchestrator's minor change keeps
     // the owner's pending draft (it is decided separately); an owner edit supersedes it (owner precedence).
     const conn = (this.pool as Partial<Pool>).connect ? await (this.pool as Pool).connect() : null;

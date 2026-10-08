@@ -1,5 +1,6 @@
 import type { Pool } from 'pg';
 import type { ChannelMode, EditorCard } from '../card';
+import { bindingsStillEnabled, enabledBindingExtIds, liveRefsOf } from '../migration/binding-guard';
 
 export function rowToCard(r: any): EditorCard & { createdAt: Date } {
   return {
@@ -116,6 +117,11 @@ export class EditorChannelsRepository {
       await client.query('BEGIN');
       const prev = await client.query(`SELECT mode FROM editor_channels WHERE channel_key = $1 FOR UPDATE`, [c.channelKey]);
       const previousMode: ChannelMode | null = prev.rows[0]?.mode ?? null;
+      // Spec 023 FR-012: no live switch while a strategy binding still publishes to the channel or its group.
+      if (c.mode === 'live' && previousMode !== 'live') {
+        const ext = await enabledBindingExtIds(client, await liveRefsOf(client, { scope: 'resource', scopeId: `telegram:${c.channelKey}` }));
+        if (ext.length) throw bindingsStillEnabled(ext);
+      }
       const { rows } = await client.query(
         `INSERT INTO editor_channels (
            channel_key, mode, title, language, timezone, posts_per_day_min, posts_per_day_max,
