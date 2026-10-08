@@ -6,6 +6,7 @@ import type { AgentCreator } from './agent-creator';
 import type { PendingAction, PendingActionsService } from './pending-actions';
 import type { ResourceCatalog } from './resource-catalog';
 import { KPI_GOALS, ResourceProfile, ResourceProfileSchema, ResourceProfilesRepository } from './resource-profile';
+import { isProtectedSkill } from '../skills/skill-library';
 import { lintSkill, SKILL_ROLES } from './skill-lint';
 import type { SkillStore } from './skill-store';
 
@@ -222,7 +223,7 @@ export function buildBuilderTools(d: BuilderToolDeps): EditorTool[] {
       const lint = lintSkill({ name: i.name, description: i.description, appliesTo: i.applies_to, body: i.body, inline: i.inline });
       if (!lint.ok) return { error: 'skill_lint_failed', details: lint.errors };
       const shared = await d.skills.findShared(i.name);
-      if (shared?.safety) return { error: 'safety_skill', details: 'системний скіл безпеки змінюється лише на сторінці агента з підтвердженням' };
+      if (shared?.safety || isProtectedSkill(i.name)) return { error: 'safety_skill', details: 'системний скіл безпеки чи голосу змінюється лише на сторінці агента з підтвердженням' };
       return proposeCard(d, ctx, 'write_skill', { ...i, handle: a.handle },
         `${shared ? 'Override' : 'Add'} skill "${i.name}" for @${a.handle}${i.inline ? ' (always in context)' : ''}: ${i.description}`, a.id);
     },

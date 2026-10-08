@@ -25,6 +25,21 @@ export interface SkillSource {
   inlineNames?(): string[];
 }
 
+/**
+ * Spec 034 FR-014: the voice skills no agent may override or edit — the safety lock by name, so it holds even
+ * before a file sets `safety: true` (and for `voice-core`, which arrives with T1). The owner can still override
+ * them with an explicit force on the agent page.
+ */
+export const PROTECTED_SKILLS: ReadonlySet<string> = new Set(['anti-slop', 'human-voice', 'voice-core']);
+export const isProtectedSkill = (name: string): boolean => PROTECTED_SKILLS.has(name);
+
+/**
+ * Spec 034 FR-014: resource tone skills (`tone-<resource>`, the legacy channel-* tone skills) are opt-in: off and
+ * unlisted for every agent until attached to its resource (strategy migration, `attach_skill`, the skills tab).
+ */
+export const OPTIONAL_SKILL_PREFIX = 'tone-';
+export const isOptionalSkill = (name: string): boolean => name.startsWith(OPTIONAL_SKILL_PREFIX);
+
 /** apps/automation/editor-skills — same relative depth from src/ and dist/. */
 export const DEFAULT_SKILLS_DIR = join(__dirname, '..', '..', '..', 'editor-skills');
 
@@ -40,7 +55,8 @@ export function parseSkill(fileName: string, text: string): Skill {
   if (!meta.name || !meta.description) throw new Error(`skill ${fileName}: name and description are required`);
   const appliesTo = (meta.applies_to ?? '[planner, executor, reviewer]')
     .replace(/[[\]]/g, '').split(',').map((s) => s.trim()).filter(Boolean) as EditorRole[];
-  return { name: meta.name, description: meta.description, appliesTo, body: m[2].trim(), ...(meta.safety === 'true' ? { safety: true } : {}) };
+  const safety = meta.safety === 'true' || isProtectedSkill(meta.name);
+  return { name: meta.name, description: meta.description, appliesTo, body: m[2].trim(), ...(safety ? { safety: true } : {}) };
 }
 
 /**
@@ -60,9 +76,10 @@ export class SkillLibrary implements SkillSource {
     }
   }
 
+  /** With a role: what a prompt lists for it — optional tone skills stay out (they are inlined only when attached). */
   list(role?: EditorRole): SkillMeta[] {
     return [...this.skills.values()]
-      .filter((s) => !role || s.appliesTo.includes(role))
+      .filter((s) => !role || (s.appliesTo.includes(role) && !isOptionalSkill(s.name)))
       .map(({ name, description, appliesTo }) => ({ name, description, appliesTo }));
   }
 

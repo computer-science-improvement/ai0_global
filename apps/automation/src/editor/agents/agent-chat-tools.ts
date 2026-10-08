@@ -7,6 +7,7 @@ import type { Agent } from './agent.types';
 import { chatExtras, proposeCard } from './builder-tools';
 import type { PendingActionsService } from './pending-actions';
 import { ruleOverlap } from './mentions';
+import { isProtectedSkill } from '../skills/skill-library';
 import { lintSkill, SKILL_ROLES } from './skill-lint';
 import type { SkillStore } from './skill-store';
 
@@ -105,7 +106,7 @@ export function buildAgentChatTools(d: AgentChatToolDeps): EditorTool[] {
       if (!a) return { error: 'no_agent', details: 'ця розмова не з агентом каналу — звернись через @handle' };
       const lint = lintSkill({ name: i.name, description: i.description, appliesTo: i.applies_to, body: i.body, inline: i.inline });
       if (!lint.ok) return { error: 'skill_lint_failed', details: lint.errors };
-      if ((await d.skills.findShared(i.name))?.safety) return { error: 'safety_skill' };
+      if (isProtectedSkill(i.name) || (await d.skills.findShared(i.name))?.safety) return { error: 'safety_skill' };
       return proposeCard(d, ctx, 'write_skill', { ...i, handle: a.handle }, `Skill "${i.name}" for @${a.handle}: ${i.description}`, a.id);
     },
   });

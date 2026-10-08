@@ -106,3 +106,48 @@ FR-015. **Size:** S · Depends on T1–T6
 - On a news resource, a feed item published at 15:00 can be posted the same day (live slot or news_watch), with no repeats.
 - The Plan tab says when and by which run the plan was made, and every slot shows either a live-slot description or a preview.
 - MANAGER's digest shows critic and poll stats; an eval with deliberately sloppy posts makes it file advice instead of "continue".
+
+## Implementation notes (T8)
+- **Stale skills fixed** (`apps/automation/editor-skills/`): `agent-onboarding` (new agents start in approve, the
+  brief drives the playbook build, only fitting formats with a one-line reason each, `format_prefs`/`format_locks`,
+  auto-duplication continues until live, tone skills and the voice lock); `editor-orchestrator-workflow` (list at :25,
+  fit-driven formats instead of «лонгрід/карусель/фото», 2–4 formats per section with reasons in `rationale`,
+  Reels/TikTok video → 016, YouTube → 030); `editor-planner-workflow` (plans "the date in the prompt"; approval = the
+  next day at 20:00); `editor-executor-workflow` (14 steps, 6 for a duplicate; live/approve/shadow outcome of
+  `publish_post`; `format_prefs`; hashtags from the vocabulary only when it exists); `format-carousel`,
+  `format-longread` (approve renders slides / the Telegraph page, only shadow previews as text); `format-carousel`,
+  `format-poll-quiz` (`data://` refs); `format-hashtags` (vocabulary enforced only when non-empty; Telegram vs platform
+  lint; `format_prefs.hashtags`); `format-emoji-typography` (`format_prefs.emoji` vs the card's `emoji_policy`);
+  `format-links-attribution` (`format_prefs.links`); `platform-youtube`, `platform-instagram`, `platform-tiktok`
+  (019b → 016/030, "not available now"); `idea-review` (format fit in `platform_fit`, playbook format check: all or
+  > 4 formats, heavy formats on news, polls without a reason); `editor-reviewer-workflow` (no quiz-favouring example;
+  an unfitting format is lowered even with < 3 posts). The capability notes of the unimplemented video formats
+  (`platform/capabilities.ts`) say 016/030 instead of 019b.
+- **Reviewer weights.** `set_format_weights` keeps its ±0.2 step and the repository clamps weights to ≥ 0.05, so the
+  reviewer lowers an unfitting format by 0.2 a week to 0.05 and asks the owner to drop it. The one-step drop to 0 on
+  owner or critic evidence (FR-007) is left to T5.
+- **Resource tone skills.** The nine legacy `apps/automation/.claude/skills/channel-*` skills are ported to
+  `editor-skills/tone-<channel>.md` (Ukrainian, `applies_to: [executor, composer]`; birthday-story's raw HTML frame
+  became PostSpec blocks; hashtag vocabularies defer to the card; lengths defer to `format_prefs.length`). The prefix
+  `tone-` (not `voice-`, so `voice-core` stays unambiguous) makes a skill opt-in: `SkillLibrary.list(role)` leaves it
+  out and `SkillStore.listForAgent` defaults a builtin tone skill to off. `TONE_SKILL_BY_TYPE`
+  (`migration/type-mapping.ts`) maps the strategy types that wrote with a channel skill (recipe-carousel shares
+  recipes'); `StrategyMigrationService.writeDraft` attaches the tones of the mapped bindings to the orchestrator
+  (`SkillStore.attachShared`: enabled + inline, role children inherit; an owner "off" is kept) and names them in the
+  `playbook_pending` Inbox item. The legacy strategies still read `.claude/skills/channel-*` (unchanged).
+- **Voice lock.** `PROTECTED_SKILLS` (`anti-slop`, `human-voice`, `voice-core`) in `skills/skill-library.ts`: parsed
+  as `safety` by name (no frontmatter change, holds for `voice-core` as soon as T1 adds the file), so the builtin
+  rows sync with `safety=true`; `writeAgentSkill` refuses agent writes by name too, and `write_skill` / `edit_my_skill`
+  refuse to propose them. The owner can still override with force on the agent page (existing safety rule).
+- **Skills test** (`skills/skills-audit.test.ts`), each rule with a failing fixture: backticked `verb_object`
+  identifiers must be registered tools (registry scanned from `defineTool` in `src/`, including the
+  `attach_skill`/`detach_skill` factory; allowlist: the directive kinds `pause_resource`, `pause_series`); no
+  `library://`; no shadow as the default start (`shadow-режим`, "starts/працюватиме … shadow", "перші N днів … shadow");
+  frontmatter parses, name = file name, unique; `applies_to` present, non-empty, known roles; inline sizes: role
+  workflow skills ≤ 6 000, `editor-executor-workflow` ≤ 2 600, tone skills ≤ 4 000, `voice-core` ≤ 2 500. Plus the
+  lock, the opt-in listing and the tone mapping; PG tests for the lock/attach (`agents.pg.test.ts`) and for the
+  migration attaching `tone-recipes` (`strategy-migration.pg.test.ts`).
+- **Left for T3** (poll/question pushes, untouched here): `platform-facebook` (description «заклик до обговорення»,
+  `fb_text` «питання до аудиторії», «Закінчуй питанням…»), `platform-threads` («одне питання», «коротке питання до
+  читачів»), `platform-instagram` (cover «обіцянка або питання», last slide «заклик»), `platform-tiktok` (slide 1
+  «…питання»), `format-poll-quiz` («Залучення … через голосування», the «Як думаєте…?» intro).

@@ -16,6 +16,7 @@ import { OwnerInbox } from '../agents/owner-inbox';
 import { PendingActionsRepository, PendingActionsService } from '../agents/pending-actions';
 import { SkillStore } from '../agents/skill-store';
 import { EditorChannelsRepository } from '../repo/editor-channels.repository';
+import { SkillLibrary } from '../skills/skill-library';
 import { NetworkRepository } from '../network/network.repository';
 import { PlaybookSchema } from '../network/playbook';
 import { normalizePlaybook, seriesSourceCatalog } from '../network/series-edit';
@@ -68,6 +69,7 @@ before(async () => {
     agentId, status: 'active', brief: null, rationale: 'seed', createdBy: 'orchestrator',
     body: PlaybookSchema.parse({ platforms: [{ resource_ref: TG, role: 'core', formats: { photo: 1, text: 0.5 }, per_day: { min: 1, max: 3 } }] }),
   });
+  await new SkillStore(pool).syncBuiltins(new SkillLibrary());         // spec 034: the tone skills exist as builtins
   await binding('recipes:pgt6', 'recipes', '0 19 * * *');             // → series daily@19:00
   await binding('quotes:pgt6', 'quotes', '*/30 8-22 * * *');           // → frequency hint
   await binding('pdr-quiz:pgt6', 'pdr-quiz', '0 9 1 * *');             // → unmappable (day of month), stays enabled
@@ -87,6 +89,7 @@ function setup(now: Date = NOW) {
     inbox: new OwnerInbox(pool, async () => {}), sourceCatalog: (card) => seriesSourceCatalog(pool, card),
     time: { tzOf: async () => 'Europe/Kyiv', quietOf: async () => ({ start: 23, end: 8 }) },
     publishConfig: async () => { published.push('strategy'); }, editorEnabled: () => enabled, cronTz: 'Europe/Kyiv', now: () => now,
+    attachSkill: (a, n) => new SkillStore(pool).attachShared(a, n),
   });
   // Cards are stamped by the DB clock: the TTL check uses the real time.
   const actions = new PendingActionsService(new PendingActionsRepository(pool));
@@ -138,6 +141,13 @@ test('T6 end to end: dry run → migrate card → approve → shadow → cutover
   assert.ok(draft.rules.some((r) => r.startsWith('Замість стратегії quotes:pgt6 (quotes)')));
   assert.match(pending!.rationale ?? '', /Unmappable \(left as they are\):\n- pdr-quiz:pgt6 \(pdr-quiz, 0 9 1 \* \*\): day of month/);
   assert.equal((await bindingRow('recipes:pgt6')).enabled, true, 'the bindings keep publishing in shadow');
+  // Spec 034 FR-014: the recipes strategy wrote with channel-recipes → the agent gets tone-recipes, on and inline.
+  const skillsNow = await new SkillStore(pool).listForAgent([agentId]);
+  const tone = skillsNow.find((e) => e.skill.name === 'tone-recipes');
+  assert.ok(tone?.enabled && tone.inline, JSON.stringify(tone));
+  assert.equal(skillsNow.find((e) => e.skill.name === 'tone-space')?.enabled, false, 'other tone skills stay off');
+  const told = await pool.query(`SELECT body FROM agent_inbox WHERE agent_id = $1 AND kind = 'playbook_pending' ORDER BY created_at DESC LIMIT 1`, [agentId]);
+  assert.match(told.rows[0].body, /Voice skills attached to @pgt023t6_chef: tone-recipes/);
   assert.equal((await svc.status()).find((r) => r.channel_key === CH)?.state, 'draft_pending');
 
   // 3. Approved; the cutover is not offered before a week of shadow.
