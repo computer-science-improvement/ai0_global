@@ -442,7 +442,8 @@ export interface AgentThread {
   last_text:       string | null;
   category:        AgentCategory;
   summary:         string | null;
-  fields:          { channel?: string; budget?: string; dates?: string };
+  /** `source`/`placement`: the landing attribution (spec 026 FR-016), set when the DM carried an ai0web tag. */
+  fields:          { channel?: string; budget?: string; dates?: string; source?: 'landing'; placement?: string };
   draft_reply:     string | null;
   score:           number;
   status:          'new' | 'reviewed' | 'archived';
@@ -554,6 +555,8 @@ export interface MediaKitChannel {
   avgViews30d: number | null;
   posts30d:    number;
   prices:      Array<{ format: AdFormat; priceUah: number; note: string | null }>;
+  /** Spec 026 FR-009: the Telegram DM link with this channel as the target; null without a DM account. */
+  adDmUrl?:    string | null;
 }
 
 // ─── Editor agent ops surface (spec 006, /api/editor) ────────────────────────

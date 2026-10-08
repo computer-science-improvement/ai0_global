@@ -50,6 +50,12 @@ const TABS: ReadonlyArray<{ key: CatFilter; label: string }> = [
   { key: 'other',    label: 'Other' },
 ];
 
+/** Landing CTA placements (spec 026 FR-003) as the owner reads them on the DM chip. */
+const LANDING_PLACEMENT_LABEL: Record<string, string> = {
+  hero: 'hero', topbar: 'top bar', network: 'network card', resource: 'channel card',
+  mediakit: 'media kit', advertise: 'advertise block', footer: 'footer', howitworks: 'how it works',
+};
+
 const KIND_TONE: Record<OpportunityKind, 'accent' | 'success' | 'neutral'> = {
   ad_offer:   'accent',
   vp_request: 'success',
@@ -400,6 +406,17 @@ function AgentPage() {
                   {t.peer_name ?? (t.peer_username ? '@' + t.peer_username : t.peer_id)}
                 </span>
                 <Badge tone={CAT_TONE[t.category]}>{t.category}</Badge>
+                {/* Spec 026 FR-016: the DM came from a landing CTA (its prefilled ai0web tag). */}
+                {t.fields?.source === 'landing' && (
+                  <span
+                    className="chip"
+                    style={{ fontSize: 11 }}
+                    title={`Opened from the public landing (${t.fields.placement ?? 'unknown'} button)${t.fields.channel ? `, about ${t.fields.channel}` : ''}`}
+                  >
+                    From landing · {LANDING_PLACEMENT_LABEL[t.fields.placement ?? ''] ?? t.fields.placement ?? 'unknown'}
+                    {t.fields.channel ? ` · ${t.fields.channel.startsWith('@') || /^-?\d+$/.test(t.fields.channel) ? t.fields.channel : `@${t.fields.channel}`}` : ''}
+                  </span>
+                )}
                 <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>
                   score {t.score}
                 </span>

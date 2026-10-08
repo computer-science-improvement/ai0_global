@@ -24,13 +24,26 @@ import { Icon, type IconName } from '../components/ui/Icon';
 import { NetworkShowcase } from '../components/landing/NetworkShowcase';
 import { NetworksCard } from '../components/landing/NetworksCard';
 import { PublicPageCard } from '../components/landing/PublicPageCard';
+import { CtaStatsCard } from '../components/landing/CtaStatsCard';
+import { LeadsCard } from '../components/landing/LeadsCard';
+import { SegmentedTabs } from '../components/SegmentedTabs';
 import {
   landingApi, useLandingAdmin, useLandingAdminNetworks, useSetFeatured,
   type LandingAdminResource, type LandingPlatform,
 } from '../api/landing';
 import { PLATFORM_META as PUBLIC_PLATFORM_META, PLATFORM_ORDER as PUBLIC_PLATFORM_ORDER } from '../lib/landing-view';
 
+// Tabs (spec 026 FR-015): the page setup, the leads from the public forms and the CTA stats.
+type LandingTab = 'page' | 'leads' | 'stats';
+const LANDING_TABS: ReadonlyArray<{ key: LandingTab; label: string }> = [
+  { key: 'page',  label: 'Page setup' },
+  { key: 'leads', label: 'Leads' },
+  { key: 'stats', label: 'CTA stats' },
+];
+
 export const Route = createFileRoute('/app/landing')({
+  validateSearch: (s: Record<string, unknown>): { tab?: LandingTab } =>
+    LANDING_TABS.some((t) => t.key === s.tab) && s.tab !== 'page' ? { tab: s.tab as LandingTab } : {},
   component: LandingAdminPage,
 });
 
@@ -46,6 +59,31 @@ function fmtFollowers(n: number): string {
 }
 
 function LandingAdminPage(): JSX.Element {
+  const tab: LandingTab = Route.useSearch().tab ?? 'page';
+  const navigate = Route.useNavigate();
+  const setTab = (t: LandingTab) => navigate({ search: t === 'page' ? {} : { tab: t }, replace: true });
+  return (
+    <div>
+      <PageHeader
+        title="Landing"
+        subtitle="How the public landing page takes ad orders, which resources it shows in which order, and what visitors do."
+        actions={
+          <a href="/" target="_blank" rel="noopener noreferrer" className="btn-ghost" style={{ gap: 6 }}>
+            Open live page <span aria-hidden>↗</span>
+          </a>
+        }
+      />
+      <div style={{ marginBottom: 'var(--space-xl)' }}>
+        <SegmentedTabs<LandingTab> value={tab} onChange={setTab} options={LANDING_TABS} />
+      </div>
+      {tab === 'page' && <PageSetup />}
+      {tab === 'leads' && <LeadsCard />}
+      {tab === 'stats' && <CtaStatsCard />}
+    </div>
+  );
+}
+
+function PageSetup(): JSX.Element {
   const { data, isLoading, error } = useLandingAdmin();
   const networks = useLandingAdminNetworks();
   const setFeatured = useSetFeatured();
@@ -123,16 +161,6 @@ function LandingAdminPage(): JSX.Element {
 
   return (
     <div>
-      <PageHeader
-        title="Landing"
-        subtitle="How the public landing page takes ad orders, and which resources it shows in which order."
-        actions={
-          <a href="/" target="_blank" rel="noopener noreferrer" className="btn-ghost" style={{ gap: 6 }}>
-            Open live page <span aria-hidden>↗</span>
-          </a>
-        }
-      />
-
       <div style={{ marginBottom: 'var(--space-xl)' }}>
         <PublicPageCard />
       </div>

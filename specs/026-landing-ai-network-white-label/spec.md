@@ -1,6 +1,6 @@
 # 026: Public landing: autonomous AI-run network, white-label offer, ad ordering via Telegram DM
 
-**Status:** BUILDING (T1–T4 done) · **Depends on:** 017–022 (agent platform, DONE), 008 (ad prices), 016 + 019b (YouTube, FR-010 only) · **Supersedes/extends:** BR-CORE-01…08, BR-MKT-01…08; extends BR-EDT-54/55 (DM triage); feeds 011 and 015
+**Status:** DONE (owner: live checks below — DM attribution, DM account, network blurbs, white-label flag) · **Depends on:** 017–022 (agent platform, DONE), 008 (ad prices), 016 + 019b (YouTube, FR-010 only) · **Supersedes/extends:** BR-CORE-01…08, BR-MKT-01…08; extends BR-EDT-54/55 (DM triage); feeds 011 and 015
 **Migration:** `066_landing_ai_network.sql` (renumbered: 063 and 058 were taken, 065 is reserved for spec 025)
 **Owner comments addressed:** #9, #10, #11, #12 (plans/brd-comments-2026-10-06.md)
 
@@ -216,6 +216,88 @@ Decisions where the spec was open or has been overtaken by owner decisions:
   `#order-an-ad`. T6 adds the white-label link to the hero CTA row.
 - `HowItWorks.tsx` is allow-listed in the Cyrillic guard for the legal `#реклама` label only.
 
+## Implementation notes (T5, 2026-10-08)
+- **No migration.** `landing_cta_daily` (066) is enough; DM attribution lives in `agent_dm_threads.fields` (jsonb).
+- **CTA placements.** Top bar "Advertise" (`topbar`), hero (`hero`), network block "Advertise in this network"
+  (`network`), resource card "Ads here" (`resource`), every media-kit card (`mediakit`; `GET /api/landing/media-kit`
+  rows gain `adDmUrl`, target = the channel title), the `#advertise` block (`advertise`), "How it works" (`howitworks`)
+  and the footer "Advertise" (`footer`). Each is `<a target="_blank" rel="noopener">` to the server-built link. Without
+  a DM account the top bar and footer fall back to `#advertise`.
+- **Beacon.** `POST /api/landing/cta {cta, placement, lang}` with `cta ∈ ad_dm | ad_form | white_label` and a known
+  placement; anything else is ignored (204). It upserts `landing_cta_daily` for the UTC day; `lang` is always stored as
+  `'en'`. Nothing about the visitor is written (the table has no such column). 60/min per client through an in-process
+  sliding window keyed by `sha256(salt + ip)` (`LandingClientGate`; the salt derives from `PROMO_HASH_SALT`, else
+  `TOKEN_ENCRYPTION_KEY`, as in 022; a per-process random salt otherwise). No `RateLimitGuard` existed, so the shared
+  `common/rate-limit/sliding-window-limiter.ts` was added (single replica, owner decision). The dashboard counts clicks
+  only on the public page: the tracking sits in a React context that the admin preview does not provide.
+- **Attribution (FR-016).** `parseLandingRef` + `applyLandingAttribution` in `agent-triage.helpers.ts`. The poller reads
+  the tag and the thread's stored fields before the model runs; the tag sets `source='landing'`, `placement` and the
+  tagged `channel`; `other`/`question` become `ad` for any attributed thread (tag now or earlier), `spam` and `vp` stay.
+  `upsertThread` now merges `fields` in SQL (`old || new`), so `source` survives an untagged follow-up (the model may
+  still name a channel, and then it wins). The price-list draft filters by the merged `fields.channel`.
+- **`/app/dm`** (the old `/app/agent` redirects there) shows a "From landing · {placement} · @channel" chip.
+- **CTA stats** on `/app/landing` → "CTA stats" tab: `GET /api/landing/admin/cta-stats?days=30` returns per placement
+  the Telegram clicks, the landing-tagged DM threads (and the rate), form opens, form leads and white-label clicks, plus
+  the ad DM threads without a tag in the window.
+- **Personal email removed.** The `mailto:` and the "Self-serve — coming soon" badge are gone from `#advertise`. CI
+  (`ci-feature.yml`) greps `apps/dashboard/src`, `index.html` and `public/` for a mail link or a Gmail address (file
+  names only in the log); `apps/dashboard/src/lib/no-personal-contact.test.ts` runs the same check (plus other webmail
+  domains) in the dashboard tests. `dist` is not grepped in CI: the feature CI does not build the dashboard, and a
+  built bundle always contains `mailto:` in TanStack Router's safe-protocol list (a local build had no Gmail address).
+
+## Implementation notes (T6, 2026-10-08)
+- **No migration.** `landing_leads` (066) has every column; `ip_hash` is the only client trace, `lang` is `'en'`.
+- **`POST /api/landing/leads`** (`config/landing-leads.ts` pure rules + `landing-leads.service.ts`). Order: 5/hour per
+  client (the same in-process limiter as the beacon; 429) → `white_label` with the flag off → 403 (nothing stored) →
+  zod validation per kind → 400 `{error: 'invalid_lead', issues: [{path, message}]}` (one message per field) → spam →
+  dedup → insert + alert. 201 `{ok: true}` for stored, deduplicated and spam submissions alike. DB down → 503 with the
+  advertise DM link. Rules: `contact` ≤ 200 and must read as a Telegram `@username`/`t.me` link (normalised to
+  `@name`), an email or a phone (stored with `contact_kind`); `message` ≤ 2,000; `resources` ≤ 10 http(s) links (white
+  label only); `consent: true`; a white-label request needs a name. Unknown `utm_*` keys are dropped.
+- **Spam.** The honeypot `website` and a time check (`elapsedMs` < 2.5 s from form open); either stores the lead as
+  `spam` with no alert. Spam is hidden from the default Leads list (Status → Spam shows it).
+- **Dedup.** Same `ip_hash` + contact (case-insensitive) + kind within 24 h updates the row (latest wording wins,
+  status kept, `consent_at` refreshed), no new alert.
+- **Alert.** A new lead posts one `agent_inbox` item (`kind='landing_lead'`, `severity='action'`,
+  `ref_type='landing_lead'`) through `OwnerInbox`, which also sends the admin-bot alert; at most 20 a day (counted by
+  `notified_at` today); leads past the cap are stored without `notified_at`. The stored inbox item has **no name or
+  contact** (company, platforms, audience, service mode, target and placement only); only the Telegram alert to the
+  owner carries the contact. `/app/agents/inbox` links the item to Landing → Leads.
+- **Retention.** `RetentionService` scrubs `message` and `resources` of `lost`/`spam` leads 180 days after `updated_at`
+  and stamps `purged_at` (`LANDING_LEAD_PURGE_DAYS`; scrub policies gained an optional row filter and stamp column).
+- **Owner side.** `GET /api/landing/admin/leads?kind=&status=&limit=` (never returns `ip_hash`) and
+  `PATCH /api/landing/admin/leads/:id {status?, ownerNote?}` (declared before `:platform/:id`). The **Leads** tab on
+  `/app/landing` (`?tab=leads`): kind tabs, a status filter, a `ui/table` list with Badge statuses, copy contact, mark as
+  spam, and a details modal to set the status and a note. `editor_ro` still has no grant on `landing_leads` (a PG test
+  asserts `has_table_privilege` is false).
+- **Forms.** `components/landing/LeadForms.tsx`: visible labels, required marks, hints, inline errors on blur and on
+  submit (`aria-invalid` + `aria-describedby`), an error summary that takes focus after a failed submit, a busy button, a
+  success panel that takes focus, and the 429/403/503 messages (503 offers the Telegram link). The ad form opens in a
+  modal from every "No Telegram? Leave a request" link with the target prefilled; without a DM account the ad CTAs become
+  "Request an ad placement" buttons. Requests are sent without cookies.
+- **White label (FR-012/013).** `#white-label` on `/` (three feature cards, the single-tenant statement, a link to the
+  page) and the public `/white-label` page (hero, the live pulse strip, six features, the four-step delivery, the
+  single-tenant statement, an FAQ on data ownership, the AI disclosure, the shadow period, supported platforms and
+  pricing, a collapsed "What would a shared, multi-client platform need?" with the FR-013 list, and the form). The
+  statement lives once in `lib/white-label-copy.ts`: "Today ai0 is single-tenant. White label means a separate
+  deployment for your resources, with its own database, keys, bot and accounts, which we set up and run for you. There
+  is no shared cabinet for several clients yet." With the flag off (or before the config loads) the section, the hero
+  link "White label for your own resources →" and the footer link are not rendered, `/white-label` says the offer is
+  temporarily unavailable, and the API answers 403. A new placement `whitelabel` counts the section CTA and tags its
+  leads (it never appears in a DM tag).
+
+### Owner checklist (live)
+1. **DM account.** On `/app/landing` → Page setup, set the ad Telegram username (or verify the agent MTProto session's
+   username), then use "Test link" and check the prefilled text ends with the `[ai0web:…]` tag.
+2. **Live DM attribution.** From a phone, tap "Ads here" on a priced channel card and send the prefilled message to the
+   ad account. After the next inbox poll, `/app/dm` shows "From landing · channel card · @channel", the thread is under
+   **Ad**, and the pending price-list draft lists only that channel. Send an untagged follow-up; the chip stays.
+3. **CTA stats.** `/app/landing` → CTA stats shows that click against the tagged thread.
+4. **Network blurbs.** Write a blurb for each network on `/app/landing` → Page setup → Networks.
+5. **White label.** Decide whether the offer is on (Page setup → white-label switch). Send a test request from
+   `/white-label`; it should reach the admin bot, `/app/agents/inbox` and Landing → Leads. Mark it as spam afterwards.
+6. Set `PROMO_HASH_SALT` (or keep `TOKEN_ENCRYPTION_KEY`) so lead dedup and the limits survive restarts.
+
 ## Task breakdown
 
 ### T1: Add migration 066 and the landing config surface
@@ -282,10 +364,10 @@ Decisions where the spec was open or has been overtaken by owner decisions:
 - The CI grep.
 
 **Acceptance:**
-- [ ] A tagged DM is attributed, categorised `ad`, and its price list is filtered.
-- [ ] `source` survives an untagged follow-up.
-- [ ] The grep is green.
-- [ ] No IP is stored for clicks.
+- [x] A tagged DM is attributed, categorised `ad`, and its price list is filtered.
+- [x] `source` survives an untagged follow-up.
+- [x] The grep is green.
+- [x] No IP is stored for clicks.
 
 **Size:** M · **Depends on:** T1, T4
 
@@ -298,9 +380,9 @@ Decisions where the spec was open or has been overtaken by owner decisions:
 - The Leads tab.
 
 **Acceptance:**
-- [ ] The validation, spam, dedup and cap tests pass.
-- [ ] A lead appears in `agent_inbox` and in Leads.
-- [ ] With the flag off: 403 and hidden UI.
-- [ ] The "single-tenant today" statement is present in both languages.
+- [x] The validation, spam, dedup and cap tests pass.
+- [x] A lead appears in `agent_inbox` and in Leads.
+- [x] With the flag off: 403 and hidden UI.
+- [x] The "single-tenant today" statement is present (English only, owner decision 2026-10-06: one language).
 
 **Size:** L · **Depends on:** T1, T3

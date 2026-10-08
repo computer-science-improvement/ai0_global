@@ -2,16 +2,25 @@
 // PUBLIC endpoints: no `@UseGuards`. Guards in this app are applied per-controller
 // (no global APP_GUARD), so omitting the guard leaves these routes unauthenticated.
 // They expose only public projections — never raw rows, ids, agent handles or tokens.
-import { Controller, Get, Inject, NotFoundException, Optional, Res } from '@nestjs/common';
-import type { Response } from 'express';
+import {
+  Body, Controller, Get, HttpCode, HttpException, HttpStatus, Inject, NotFoundException, Optional, Post, Req, Res,
+} from '@nestjs/common';
+import type { Request, Response } from 'express';
 import { LandingResource, LandingResourcesService } from '../landing-resources.service';
 import type { LandingConfigService, LandingPublicConfig } from '../landing-config.service';
 import type { LandingPulse, LandingPulseService } from '../landing-pulse.service';
 import type { LandingNetwork, LandingNetworksService } from '../landing-networks.service';
+import { parseCtaClick, type LandingCtaService } from '../landing-cta.service';
+import type { LandingClientGate } from '../landing-client-key';
+import type { LandingLeadsService } from '../landing-leads.service';
+import { clientIp } from '../../auth/client-info';
 
 export const LANDING_CONFIG = 'LANDING_CONFIG';
 export const LANDING_PULSE = 'LANDING_PULSE';
 export const LANDING_NETWORKS = 'LANDING_NETWORKS';
+export const LANDING_CTA = 'LANDING_CTA';
+export const LANDING_GATE = 'LANDING_GATE';
+export const LANDING_LEADS = 'LANDING_LEADS';
 
 @Controller('api/landing')
 export class LandingController {
@@ -20,7 +29,42 @@ export class LandingController {
     @Inject(LANDING_CONFIG) private readonly config: LandingConfigService,
     @Inject(LANDING_PULSE) private readonly pulseSvc: LandingPulseService,
     @Optional() @Inject(LANDING_NETWORKS) private readonly networksSvc?: LandingNetworksService,
+    @Optional() @Inject(LANDING_CTA) private readonly ctaSvc?: LandingCtaService,
+    @Optional() @Inject(LANDING_GATE) private readonly gate?: LandingClientGate,
+    @Optional() @Inject(LANDING_LEADS) private readonly leadsSvc?: LandingLeadsService,
   ) {}
+
+  /**
+   * Spec 026 FR-011: an ad request ("No Telegram?") or a white-label request.
+   * 201 `{ok: true}` for stored, deduplicated and spam submissions alike (a bot learns
+   * nothing); 400 `{error: 'invalid_lead', issues}`; 403 for white label while the flag is
+   * off; 429 past 5/hour per client; 503 `{adDmUrl}` when the DB is down.
+   */
+  @Post('leads')
+  @HttpCode(201)
+  async lead(@Body() body: unknown, @Req() req: Request): Promise<{ ok: true }> {
+    if (!this.leadsSvc) throw new NotFoundException();
+    await this.leadsSvc.submit(body, clientIp(req));
+    return { ok: true };
+  }
+
+  /**
+   * Spec 026 FR-009: the CTA click beacon `{cta, placement, lang}` (sent with
+   * navigator.sendBeacon). Adds 1 to today's counter; stores nothing about the
+   * visitor (no IP, no hash). 60/min per client (in memory, salted hash); 429 past it.
+   * An unknown CTA or placement is ignored (204), so old page builds never error.
+   */
+  @Post('cta')
+  @HttpCode(204)
+  async cta(@Body() body: unknown, @Req() req: Request): Promise<void> {
+    if (!this.ctaSvc) return;
+    if (this.gate && !this.gate.ctaHit(clientIp(req)).ok) {
+      throw new HttpException({ error: 'rate_limited' }, HttpStatus.TOO_MANY_REQUESTS);
+    }
+    const click = parseCtaClick(body);
+    if (!click) return;
+    try { await this.ctaSvc.record(click); } catch { /* a lost click is not worth a 500 on a beacon */ }
+  }
 
   @Get('resources')
   list(): Promise<LandingResource[]> {

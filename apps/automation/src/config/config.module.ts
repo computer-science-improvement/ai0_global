@@ -1,6 +1,6 @@
 // apps/automation/src/config/config.module.ts
 import { Global, Logger, Module } from '@nestjs/common';
-import { ConfigModule as NestConfigModule } from '@nestjs/config';
+import { ConfigModule as NestConfigModule, ConfigService } from '@nestjs/config';
 import { DB_POOL, DatabaseModule } from '../database/database.module';
 import type { Pool } from 'pg';
 import { TrackingModule } from '../tracking/tracking.module';
@@ -35,7 +35,14 @@ import { TikTokOAuthService } from './tiktok-oauth.service';
 import { TikTokAccountsController } from './api/tiktok-accounts.controller';
 import { TikTokOAuthController } from './api/tiktok-oauth.controller';
 import { LandingResourcesService } from './landing-resources.service';
-import { LANDING_CONFIG, LANDING_NETWORKS, LANDING_PULSE, LandingController } from './api/landing.controller';
+import {
+  LANDING_CONFIG, LANDING_CTA, LANDING_GATE, LANDING_LEADS, LANDING_NETWORKS, LANDING_PULSE, LandingController,
+} from './api/landing.controller';
+import { LandingCtaService } from './landing-cta.service';
+import { LandingClientGate, resolveLandingSalt } from './landing-client-key';
+import { LandingLeadsService } from './landing-leads.service';
+import { OwnerInbox } from '../editor/agents/owner-inbox';
+import { TelegramNotifier } from '../publishers/telegram-notifier.service';
 import { LandingConfigService } from './landing-config.service';
 import { LandingPulseService } from './landing-pulse.service';
 import { LandingNetworksService } from './landing-networks.service';
@@ -91,6 +98,28 @@ import { ContentRunwayModule } from '../common/content-runway/content-runway.mod
       provide: LANDING_NETWORKS, inject: [DB_POOL, LandingResourcesService, LANDING_CONFIG],
       useFactory: (pool: Pool, resources: LandingResourcesService, config: LandingConfigService) =>
         new LandingNetworksService({ pool, resources, catalog: new ResourceCatalog({ pool }), adDm: () => config.adDm() }),
+    },
+    // FR-009: anonymous CTA click counters + the owner's CTA stats.
+    { provide: LANDING_CTA, inject: [DB_POOL], useFactory: (pool: Pool) => new LandingCtaService(pool) },
+    {
+      // FR-009/FR-011: the salted client hash and the per-client limits of the public writes (no IP is stored).
+      provide: LANDING_GATE, inject: [ConfigService],
+      useFactory: (cfg: ConfigService) => {
+        const { salt, persistent } = resolveLandingSalt((k) => cfg.get<string>(k) ?? undefined);
+        if (!persistent) new Logger('LandingGate').warn('PROMO_HASH_SALT / TOKEN_ENCRYPTION_KEY not set — lead dedup resets on restart');
+        return new LandingClientGate(salt);
+      },
+    },
+    {
+      // FR-011: lead intake. A new lead posts one OwnerInbox item (no name/contact in it) and an
+      // admin-bot alert to the owner. TelegramNotifier is optional: without it the item is still stored.
+      provide: LANDING_LEADS,
+      inject: [DB_POOL, ConfigService, LANDING_GATE, LANDING_CONFIG, { token: TelegramNotifier, optional: true }],
+      useFactory: (pool: Pool, cfg: ConfigService, gate: LandingClientGate, config: LandingConfigService, notifier?: TelegramNotifier) => {
+        const logger = new Logger('LandingLeads');
+        const inbox = new OwnerInbox(pool, notifier ? (t) => notifier.notifyAlert(t) : async () => {}, cfg.get<string>('DASHBOARD_URL') ?? null);
+        return new LandingLeadsService({ pool, gate, config, inbox, log: (m) => logger.warn(m) });
+      },
     },
   ],
   exports: [

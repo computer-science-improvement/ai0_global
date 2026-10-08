@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { AgentInboxPoller } from './agent-inbox.poller';
 
-function harness(opts: { enabled?: boolean; hasSession?: boolean; dialogs?: any[]; lastIds?: Record<string, number>; category?: string; channel?: string; prices?: any[]; pending?: boolean }) {
+function harness(opts: { enabled?: boolean; hasSession?: boolean; dialogs?: any[]; lastIds?: Record<string, number>; category?: string; channel?: string; prices?: any[]; pending?: boolean; stored?: Record<string, Record<string, unknown>> }) {
   const triaged: string[] = [];
   const upserts: any[] = [];
   const client = {
@@ -13,7 +13,8 @@ function harness(opts: { enabled?: boolean; hasSession?: boolean; dialogs?: any[
   const triage = { triage: async (text: string) => { triaged.push(text); return { category: opts.category ?? 'ad', summary: '', fields: { channel: opts.channel }, draftReply: '', score: 1 }; } } as any;
   const repo = {
     lastMessageIdFor: async (peer: string) => (opts.lastIds ?? {})[peer] ?? 0,
-    upsertThread: async (dm: any) => { upserts.push(dm); return `th-${dm.peerId}`; },
+    fieldsFor: async (peer: string) => (opts.stored ?? {})[peer] ?? null,
+    upsertThread: async (dm: any, t: any) => { upserts.push({ ...dm, triage: t }); return `th-${dm.peerId}`; },
     touchCursor: async () => {},
   } as any;
   const config = { get: (k: string) => (k === 'AGENT_ENABLED' ? (opts.enabled ? 'true' : 'false') : undefined) } as any;
@@ -28,8 +29,8 @@ function harness(opts: { enabled?: boolean; hasSession?: boolean; dialogs?: any[
   return { poller: new AgentInboxPoller(client, triage, repo, config, actions, prices), triaged, upserts, drafts };
 }
 
-const dm = (peerId: string, messageId: number, out = false) =>
-  ({ peerId, peerUsername: null, peerName: null, messageId, text: `m${messageId}`, date: new Date(), out });
+const dm = (peerId: string, messageId: number, out = false, text = `m${messageId}`) =>
+  ({ peerId, peerUsername: null, peerName: null, messageId, text, date: new Date(), out });
 
 test('no-op when AGENT_ENABLED is false', async () => {
   const h = harness({ enabled: false, dialogs: [dm('1', 5)] });
@@ -73,4 +74,55 @@ test('no draft for non-ad DMs, without active prices, or when a draft is already
   const c = harness({ enabled: true, dialogs: [dm('1', 5)], pending: true });
   await c.poller.pollOnce();
   assert.equal(c.drafts.length, 0);
+});
+
+// ── Spec 026 FR-016: landing attribution ──────────────────────────────────────
+
+test('a tagged DM is attributed to the landing, categorised ad, and its price list is filtered by the tag channel', async () => {
+  // The model calls it a question and names no channel: the tag decides.
+  const h = harness({
+    enabled: true, category: 'question',
+    dialogs: [dm('7', 11, false, "Hi! I'd like to order an ad in Recipes UA. [ai0web:resource:recipes_ua]")],
+  });
+  await h.poller.pollOnce();
+  const t = h.upserts[0].triage;
+  assert.equal(t.category, 'ad');
+  assert.equal(t.fields.source, 'landing');
+  assert.equal(t.fields.placement, 'resource');
+  assert.equal(t.fields.channel, 'recipes_ua');
+  assert.equal(h.drafts.length, 1);
+  assert.match(h.drafts[0].payload.text, /@recipes_ua/);
+  assert.doesNotMatch(h.drafts[0].payload.text, /space_ua/);
+});
+
+test('source survives an untagged follow-up (merged, not overwritten) and keeps the thread an ad inquiry', async () => {
+  const h = harness({
+    enabled: true, category: 'other',
+    stored: { '7': { source: 'landing', placement: 'mediakit', channel: 'space_ua' } },
+    dialogs: [dm('7', 12, false, 'When is the next free slot?')],
+  });
+  await h.poller.pollOnce();
+  const t = h.upserts[0].triage;
+  assert.equal(t.fields.source, 'landing');
+  assert.equal(t.fields.placement, 'mediakit');
+  assert.equal(t.fields.channel, 'space_ua');
+  assert.equal(t.category, 'ad');
+  assert.match(h.drafts[0].payload.text, /@space_ua/);
+});
+
+test('an untagged DM from a new peer gets no landing source and keeps the model category', async () => {
+  const h = harness({ enabled: true, category: 'question', dialogs: [dm('9', 3, false, 'How do I join?')] });
+  await h.poller.pollOnce();
+  const t = h.upserts[0].triage;
+  assert.equal(t.fields.source, undefined);
+  assert.equal(t.category, 'question');
+  assert.equal(h.drafts.length, 0);
+});
+
+test('a tagged DM the model marks as spam stays spam (the tag never overrides spam)', async () => {
+  const h = harness({ enabled: true, category: 'spam', dialogs: [dm('5', 1, false, 'buy followers [ai0web:hero]')] });
+  await h.poller.pollOnce();
+  assert.equal(h.upserts[0].triage.category, 'spam');
+  assert.equal(h.upserts[0].triage.fields.source, 'landing');
+  assert.equal(h.drafts.length, 0);
 });

@@ -2,6 +2,7 @@
 // GET /api/landing/media-kit. Renders nothing until there is at least one price.
 import { Icon } from '../ui/Icon';
 import { AD_FORMAT_LABEL, useMediaKit } from '../../api/ads';
+import { AdDmLink, NoTelegramLink } from './cta';
 
 const fmt = (v: number | null) => (v == null ? '—' : v.toLocaleString('en-US'));
 
@@ -35,6 +36,14 @@ export function MediaKit() {
               </li>
             ))}
           </ul>
+          {c.adDmUrl && (
+            <div className="lp-kit-cta">
+              <AdDmLink href={c.adDmUrl} placement="mediakit" className="lp-kit-ad" ariaLabel={`Order an ad in Telegram: ${c.title ?? c.channelKey}`}>
+                <Icon name="telegram" size={12} /> Order an ad in Telegram
+              </AdDmLink>
+              <NoTelegramLink placement="mediakit" target={c.title ?? c.channelKey} className="lp-kit-notg" />
+            </div>
+          )}
         </div>
       ))}
       <style>{`
@@ -70,6 +79,21 @@ export function MediaKit() {
         .lp-kit-prices b { color: var(--color-ink); white-space: nowrap; }
         .lp-kit-fmt { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
         .lp-kit-fmt .text-micro { color: var(--color-ink-dim); }
+        .lp-kit-ad {
+          display: inline-flex; align-items: center; gap: 6px; min-height: 36px;
+          padding: 6px 12px; border-radius: var(--radius-pill);
+          font-size: 13px; font-weight: 600; color: var(--color-accent); text-decoration: none;
+          border: 1px solid color-mix(in srgb, var(--color-accent) 40%, transparent);
+          background: color-mix(in srgb, var(--color-accent) 8%, transparent);
+        }
+        .lp-kit-ad:hover { background: color-mix(in srgb, var(--color-accent) 16%, transparent); opacity: 1; }
+        .lp-kit-notg {
+          background: none; border: 0; padding: 4px 0; min-height: 24px; cursor: pointer;
+          font: inherit; font-size: 12px; color: var(--color-ink-muted);
+          text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--color-hairline-strong);
+        }
+        .lp-kit-notg:hover { color: var(--color-ink); }
+        .lp-kit-cta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--space-sm); margin-top: auto; }
       `}</style>
     </div>
   );

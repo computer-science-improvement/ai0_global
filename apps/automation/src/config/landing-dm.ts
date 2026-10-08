@@ -11,6 +11,8 @@
 
 export const LANDING_PLACEMENTS = [
   'hero', 'topbar', 'network', 'resource', 'mediakit', 'advertise', 'footer', 'howitworks',
+  // The white-label section and page (spec 026 T6): CTA clicks and form leads, never a DM tag.
+  'whitelabel',
 ] as const;
 export type LandingPlacement = (typeof LANDING_PLACEMENTS)[number];
 

@@ -57,6 +57,17 @@ jobs:
         # Same tsc the dashboard `build` script runs before `vite build`.
         run: pnpm --filter dashboard exec tsc --noEmit -p tsconfig.json
 
+      - name: No personal contact on the public pages (spec 026 FR-009)
+        # Ads are ordered via the Telegram ad account or the request form; a mail link
+        # or a webmail address must never ship again. `-l` lists file names only, so the
+        # log never echoes a matched address. The pattern is split so this file holds no
+        # literal mail link. Same check as apps/dashboard/src/lib/no-personal-contact.test.ts.
+        run: |
+          if grep -rIliE 'mail''to:|@(gmail|googlemail)\.' apps/dashboard/src apps/dashboard/index.html apps/dashboard/public; then
+            echo "::error::Personal contact found in the files above (spec 026 FR-009)"
+            exit 1
+          fi
+
   schema-bootstrap:
     # Builds a fresh Postgres 16 from database/init.sql + every migration in
     # order and re-applies the recent ones to prove idempotency (spec 007 T004).

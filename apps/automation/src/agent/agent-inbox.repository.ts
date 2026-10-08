@@ -7,7 +7,11 @@ import type { AgentCategory, AgentThreadRow, RawDm, TriageResult } from './agent
 export class AgentInboxRepository {
   constructor(@Inject(DB_POOL) private readonly pool: Pool) {}
 
-  /** Insert or refresh a thread; returns its id. */
+  /**
+   * Insert or refresh a thread; returns its id. `fields` are MERGED onto the stored
+   * ones (spec 026 FR-016): the landing attribution (`source`, `placement`, the tagged
+   * `channel`) of the first message survives an untagged follow-up.
+   */
   async upsertThread(dm: RawDm, t: TriageResult): Promise<string> {
     const { rows } = await this.pool.query(
       `INSERT INTO agent_dm_threads
@@ -22,7 +26,7 @@ export class AgentInboxRepository {
          last_text       = EXCLUDED.last_text,
          category        = EXCLUDED.category,
          summary         = EXCLUDED.summary,
-         fields          = EXCLUDED.fields,
+         fields          = COALESCE(agent_dm_threads.fields, '{}'::jsonb) || EXCLUDED.fields,
          draft_reply     = EXCLUDED.draft_reply,
          score           = EXCLUDED.score,
          status          = 'new',
@@ -49,6 +53,14 @@ export class AgentInboxRepository {
 
   async setStatus(id: string, status: 'new' | 'reviewed' | 'archived'): Promise<void> {
     await this.pool.query(`UPDATE agent_dm_threads SET status = $2, updated_at = now() WHERE id = $1`, [id, status]);
+  }
+
+  /** The stored `fields` of a peer's thread (null when the peer is new). */
+  async fieldsFor(peerId: string): Promise<Record<string, unknown> | null> {
+    const { rows } = await this.pool.query<{ fields: Record<string, unknown> | null }>(
+      `SELECT fields FROM agent_dm_threads WHERE peer_id = $1`, [peerId],
+    );
+    return rows[0]?.fields ?? null;
   }
 
   /** Newest message id we've already triaged for this peer (0 if unseen). */

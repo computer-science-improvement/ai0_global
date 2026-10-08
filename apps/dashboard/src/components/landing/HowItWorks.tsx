@@ -7,6 +7,7 @@
 import type { JSX } from 'react';
 import { motion } from 'motion/react';
 import { Icon, type IconName } from '../ui/Icon';
+import { AdCtaPair, useLandingCta } from './cta';
 
 interface Step { icon: IconName; title: string; body: string; badge?: string }
 
@@ -54,6 +55,7 @@ function StepCard({ s, i, children }: { s: Step; i: number; children?: JSX.Eleme
 }
 
 export function HowItWorks({ managerLive, adDmUrl }: { managerLive: boolean; adDmUrl: string | null }): JSX.Element {
+  const { openAdForm } = useLandingCta();
   return (
     <div className="hw">
       <h3 className="hw-row-title">Who runs the network</h3>
@@ -79,8 +81,8 @@ export function HowItWorks({ managerLive, adDmUrl }: { managerLive: boolean; adD
         ))}
       </motion.ol>
       <div className="hw-cta">
-        {adDmUrl
-          ? <a href={adDmUrl} target="_blank" rel="noopener" className="lp-hero-cta-primary">Order an ad in Telegram <Icon name="telegram" size={15} /></a>
+        {adDmUrl || openAdForm
+          ? <AdCtaPair href={adDmUrl} placement="howitworks" />
           : <a href="#advertise" className="lp-hero-cta-secondary">See prices and formats ↓</a>}
       </div>
 
