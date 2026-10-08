@@ -22,7 +22,8 @@ import { AgentPromo } from '../components/agents/AgentPromo';
 import { ApprovalList } from '../components/approvals/ApprovalList';
 import { ApprovalStatsPanel } from '../components/approvals/ApprovalStatsPanel';
 import { errorBody, useAgent, useRunAgent } from '../api/agents';
-import { useRunManager } from '../api/manager';
+import { useRunManager, type DirectiveBinding } from '../api/manager';
+import { directiveFilterSearch, parseDirectiveFilters, type DirectiveFilters } from '../lib/directive-view';
 
 const TABS = ['overview', 'approvals', 'reviews', 'directives', 'skills', 'memory', 'history', 'playbook', 'schedule', 'ideas', 'plan', 'inbox', 'promo'] as const;
 type Tab = typeof TABS[number];
@@ -46,25 +47,30 @@ const TAB_OPTIONS = [
 ];
 
 export const Route = createFileRoute('/app/agents_/$handle')({
-  validateSearch: (s: Record<string, unknown>): { tab?: Tab; idea?: string; directive?: string } => ({
+  validateSearch: (s: Record<string, unknown>): { tab?: Tab; idea?: string; directive?: string; binding?: DirectiveBinding; kind?: string } => ({
     tab: (TABS as readonly string[]).includes(String(s.tab)) ? (s.tab as Tab) : undefined,
     // Ideas tab: an idea to scroll to (from a plan slot).
     idea: typeof s.idea === 'string' && s.idea ? s.idea : undefined,
-    // Directives tab (@manager): a directive to scroll to (from a review).
-    directive: typeof s.directive === 'string' && s.directive ? s.directive : undefined,
+    // Directives tab (@manager): a directive to scroll to (from a review or an Inbox entry; `d` is the short alias).
+    directive: typeof s.directive === 'string' && s.directive ? s.directive : typeof s.d === 'string' && s.d ? s.d : undefined,
+    // Directives / Inbox tabs (spec 025 FR-019): binding and kind filters, kept in the URL.
+    ...directiveFilterSearch(parseDirectiveFilters(s)),
   }),
   component: AgentPage,
 });
 
 function AgentPage() {
   const { handle } = Route.useParams();
-  const { tab: rawTab = 'overview', idea, directive } = Route.useSearch();
+  const search = Route.useSearch();
+  const { tab: rawTab = 'overview', idea, directive } = search;
   const navigate = useNavigate({ from: Route.fullPath });
   const q = useAgent(handle);
   const run = useRunAgent();
   const runManager = useRunManager();
   const setTab = (t: Tab) => navigate({ search: { tab: t === 'overview' ? undefined : t }, replace: true });
   const openIdea = (id: string) => navigate({ search: { tab: 'ideas', idea: id }, replace: false });
+  const filters = parseDirectiveFilters(search);
+  const setFilters = (f: DirectiveFilters) => navigate({ search: (s) => ({ ...s, ...directiveFilterSearch(f) }), replace: true });
 
   // A handle alias resolved to the agent's current handle: move the URL along.
   const current = q.data?.agent.handle;
@@ -171,7 +177,7 @@ function AgentPage() {
         ? <ApprovalList filter={{ channel: d.channelKey }} emptyNote={`When @${orchestrator} is in approval mode, its posts wait here until they are published.`} />
         : <div className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>This agent has no Telegram channel.</div>)}
       {tab === 'reviews' && <ManagerReviews />}
-      {tab === 'directives' && <ManagerDirectives focus={directive} />}
+      {tab === 'directives' && <ManagerDirectives focus={directive} filters={filters} onFilters={setFilters} />}
       {tab === 'skills' && <AgentSkills data={d} />}
       {tab === 'memory' && <AgentMemory data={d} />}
       {tab === 'history' && <AgentHistory data={d} />}
@@ -179,7 +185,7 @@ function AgentPage() {
       {tab === 'schedule' && <AgentSchedule handle={a.handle} />}
       {tab === 'ideas' && <AgentIdeas handle={a.handle} focus={idea} />}
       {tab === 'plan' && <AgentPlan handle={a.handle} onIdea={openIdea} />}
-      {tab === 'inbox' && <AgentInbox handle={orchestrator} />}
+      {tab === 'inbox' && <AgentInbox handle={orchestrator} filters={filters} onFilters={setFilters} />}
       {tab === 'promo' && <AgentPromo handle={a.handle} />}
     </div>
   );

@@ -53,10 +53,11 @@ import { KpiDigestService } from '../../src/editor/manager/kpi-digest.service';
 import { ManagerRunner } from '../../src/editor/manager/manager-runner';
 import { buildDirectiveTools } from '../../src/editor/manager/directive-tools';
 import {
-  DirectiveExecution, executionContextOf, experimentExecutor, formatShiftExecutor, frequencyExecutor, pauseSeriesExecutor, PlaybookBuildPort,
+  DirectiveExecution, executionContextOf, experimentExecutor, formatShiftExecutor, frequencyExecutor, pauseResourceExecutor, pauseSeriesExecutor, PlaybookBuildPort,
   promoVerifier, SqlExperimentQuotas, SqlPlanObserver, strategyExecutor, taskRefCheck,
 } from '../../src/editor/manager/executors';
 import { PlatformPostsRepository } from '../../src/editor/platform/platform-posts.repository';
+import { ResourcePauseService } from '../../src/editor/pauses/resource-pauses';
 import { buildPlatformTools } from '../../src/editor/platform/platform-tools';
 
 /** Counts LLM calls/cost of the agent under test (separately from the judge). */
@@ -150,11 +151,13 @@ export function buildStack(o: { pool: Pool; web: FakeWeb; now: () => Date; apiKe
   const quotas = new SqlExperimentQuotas(pool);
   const experimentQuotas = (anchorKey: string, planDate: string, at: Date) => quotas.open(anchorKey, planDate, at);
   const buildPort = new PlaybookBuildPort();
+  // Spec 025 T4: pause_resource writes resource_pauses rows (scratch DB; nothing is published either way).
+  const pauses = new ResourcePauseService({ pool, inbox, now });
   const exec = new DirectiveExecution({
-    repo: directives, inbox, agents, now, context: executionContextOf({ repo: networkRepo, channels, time: resourceTime, now }),
+    repo: directives, inbox, agents, now, context: executionContextOf({ repo: networkRepo, channels, time: resourceTime, now, pauses }),
     executors: [
       frequencyExecutor(execDeps), formatShiftExecutor(execDeps), pauseSeriesExecutor(execDeps),
-      experimentExecutor({ quotas, now }), strategyExecutor({ network: networkRepo, builder: buildPort }),
+      experimentExecutor({ quotas, now }), strategyExecutor({ network: networkRepo, builder: buildPort }), pauseResourceExecutor({ pauses, now }),
     ],
     verifiers: [promoVerifier(pool, 'cross_promo', now), promoVerifier(pool, 'repost', now)],
     quotas,

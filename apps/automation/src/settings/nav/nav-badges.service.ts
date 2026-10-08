@@ -25,7 +25,7 @@ const SINCE_CTE = `WITH t AS (SELECT (date_trunc('day', $1::timestamptz AT TIME 
 export const BADGE_SOURCES: ReadonlyArray<{ key: BadgeKey; table: string; expr: string }> = [
   { key: 'agentInboxUnread',        table: 'agent_inbox',            expr: `(SELECT count(*)::int FROM agent_inbox WHERE read_at IS NULL)` },
   { key: 'agentInboxCritical',      table: 'agent_inbox',            expr: `(SELECT count(*)::int FROM agent_inbox WHERE read_at IS NULL AND severity = 'critical')` },
-  { key: 'directivesAwaitingOwner', table: 'agent_directives',       expr: `(SELECT count(*)::int FROM agent_directives WHERE status = 'awaiting_owner')` },
+  { key: 'directivesAwaitingOwner', table: 'agent_directives',       expr: `(SELECT count(*)::int FROM agent_directives WHERE status IN ('awaiting_owner', 'contested'))` },
   { key: 'chatPendingActions',      table: 'pending_actions',        expr: `(SELECT count(*)::int FROM pending_actions WHERE status = 'pending')` },
   { key: 'dmThreadsNew',            table: 'agent_dm_threads',       expr: `(SELECT count(*)::int FROM agent_dm_threads WHERE status = 'new')` },
   { key: 'dmActionsPending',        table: 'agent_actions',          expr: `(SELECT count(*)::int FROM agent_actions WHERE status = 'pending')` },

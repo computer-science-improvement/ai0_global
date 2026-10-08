@@ -1,6 +1,6 @@
 # 025: MANAGER: binding directives vs optional advice, and code executors for directive kinds
 
-**Status:** BUILDING (T1–T5 done; T6–T7 open) · **Depends on:** 020, 021, 022 · **Supersedes/extends:** extends 021 (FR-004, FR-006, FR-007, FR-008, FR-009); replaces `applyAccepted` auto-flip ·
+**Status:** DONE (evals written, not run) · **Depends on:** 020, 021, 022 · **Supersedes/extends:** extends 021 (FR-004, FR-006, FR-007, FR-008, FR-009); replaces `applyAccepted` auto-flip ·
 **Migration:** `065_directive_binding.sql`
 
 **Owner comments addressed:** #7
@@ -251,6 +251,60 @@ Decisions where the spec left room; T3–T7 build on these.
   - T6 builds **Active effects** from `GET /api/resources/pauses?active=true`, with **Lift** wired to the lift endpoint.
   - The orchestrator prompt does not say why a resource left its network. Prompts are owned by T3.
 
+## Implementation notes (T6)
+- **No backend change** beyond two counters: the nav badge `directivesAwaitingOwner` and the overview's `awaitingOwner` / `open`
+  now count `contested` too (it is in "Awaiting you").
+- **View helpers** live in `apps/dashboard/src/lib/directive-view.ts` (pure, `node:test` in `directive-view.test.ts`): the URL
+  filters, the board columns, the verification chip, the one-line change, Active effects and the Inbox link target.
+- **Filters.** `/app/agents/$handle` keeps `?binding=directive|advice&kind=<csv>` (unknown values dropped; shared by the @manager
+  Directives tab and the orchestrator Inbox tab) and sends them to `GET /api/directives`; the list also filters what it holds, and
+  the previous list stays on screen while a filter loads (never another agent's). `?d=<id>` is accepted as an alias of
+  `?directive=<id>`; links use `directive=` like the Reviews chips.
+- **Board.** "Awaiting you" = `awaiting_owner` + `contested`; "Closed" = `rejected`, `declined`, `failed`, `expired`, `canceled`.
+  Cards: `DIRECTIVE` (warning) / `advice` (neutral) badge; the status badge on contested and closed cards (always in the Inbox);
+  verification chip: `applying` (accepted, change pending), `applied · checking`, `verified ✓`, `not followed` (violated /
+  not_followed), `self-reported`, `not verified` (evaluated without proof or `kind: unverified`); `change` in one line; executor
+  error with attempts; the evaluated row's unscored reason (`not_verified` + adherence, `self_reported`, `owner_override`).
+- **Contested card.** Shows the refusal (`resolution`), the reason kind and its precedence layer, and the code's check
+  (`verification.contest`: passed / failed / not checked, rule ids, resource). **Uphold** and **Accept refusal** go through
+  `useConfirm()` (the Uphold dialog says health / capability guards still apply). `409 not_executable` → "It cannot be applied now:
+  … It stays contested."; `409 not_contested` → "no longer contested — refreshed". **Discuss** opens `/app/chat?q=…`: the chat
+  route gained `q`, which prefills the composer once with an `@manager` message naming the directive and drops itself from the URL.
+- **Inbox.** Every entry with `refType='directive'` gets "Open directive →" ("Decide on the directive →" for `directive_contested`);
+  a pause entry with `refType='resource'` gets "Open active effects →" (the orchestrator's Overview). Other `resource` entries
+  (health) keep no link.
+- **Active effects** (`components/agents/ActiveEffects.tsx`, on every orchestrator's Overview): active pauses of this agent
+  (`GET /api/resources/pauses?active=true`, matched by agent id or handle) with the end date, time left, the directive link and
+  **Lift** (confirm; `POST /api/resources/<encoded ref>/pause/lift`; `409` → "already ended — refreshed"); applied or accepted
+  directives with a change: paused series (until `resume_on`), experiment quotas (deadline; published / planned counts once the
+  verification has them), strategy builds and playbook versions written by a directive (link to the Playbook tab).
+- **Digest compliance.** Network health on `/app` shows the 30-day `compliance` block as a table (advice followed / declined,
+  contested, auto-applied, last decline reason with the other two in the tooltip).
+- **Browser check** (Vite dev server + a local mock API on 127.0.0.1, desktop and 375 px): filters land in the URL and survive a
+  reload; uphold from the board and from the Inbox link target (focused card); 409 `not_executable` and `not_contested` toasts;
+  Discuss prefills the chat; Lift with both outcomes; no horizontal page scroll at 375 px.
+
+## Implementation notes (T7)
+- **PG e2e** `src/editor/manager/directive-lifecycle.e2e.pg.test.ts`: a `FakeLlm` script drives the real `NetworkRunner`
+  orchestrator run (delivery into the system prompt, the real response tools, `afterOrchestration`, the real executors incl.
+  `pauseResourceExecutor` and `experimentExecutor`). Filing goes through `fileDirective` with a digest stub that flags
+  `views_per_post` as an anomaly. Flows: binding `format_shift` → accepted → version by the directive → a later plan uses the format →
+  verified → evaluated `worked`; advice → `decline_advice` (data) → `declined`, no cooldown, no Inbox; binding `frequency` (plus a
+  `format_shift` and a `task`) contested with the owner rule id in one run → three checked contests, one card each → uphold applies
+  the frequency, accept-refusal starts the cooldown, the task's contest times out, the never-observed frequency evaluates
+  `inconclusive (not_verified)`; `pause_resource` → owner approval → accepted → paused (out of `networkContext`) → owner lift (409 on
+  repeat) → verified, then a second pause auto-lifts at `until` (moved clock) with `resource_resumed`; an experiment quota → pending
+  → the directive slot applies it → shadowed → verified. The plans the verification reads are inserted rows (what the planner would
+  write), not a planner run: plan-time validation of quotas is covered by `directive-t5.pg.test.ts`, and the scheduler's slot
+  skipping by `resource-pauses.pg.test.ts`.
+- **Evals** (`evals/cases/agents.ts`, registered through `AGENT_CASES` in `run-evals.ts`): `orchestrator-directive-comply`,
+  `orchestrator-directive-owner-rule-contest`, `orchestrator-advice-decline`, `manager-advice-vs-directive` (one case, two MANAGER
+  runs: −7 % → advice or nothing; −48 % → a binding directive). The orchestrator cases insert the directive as the MANAGER files it
+  (status `new`) and run the real orchestrator; `managerSetup` takes a drop factor. The eval stack also wires
+  `ResourcePauseService` + `pauseResourceExecutor`. **Not run** (paid LLM calls); run with
+  `--case orchestrator-directive-comply,orchestrator-directive-owner-rule-contest,orchestrator-advice-decline,manager-advice-vs-directive --reps 3`.
+- **BRD** `docs/brd/04-agent-platform.md` updated (BR-AGT-45, 76–79, 80, 93–97, 102, 105 and new 106–111).
+
 ## Task breakdown
 
 ### T1: Add binding levels and directive admission rules
@@ -328,9 +382,9 @@ Decisions where the spec left room; T3–T7 build on these.
 - Orchestrator Overview **Active effects** with the Lift button.
 
 **Acceptance:**
-- [ ] `tsc` and the build are green.
-- [ ] A contested directive can be upheld from the board and from the Inbox link target.
-- [ ] Filters persist in the URL search params.
+- [x] `tsc` and the build are green.
+- [x] A contested directive can be upheld from the board and from the Inbox link target.
+- [x] Filters persist in the URL search params.
 
 **Size:** M · **Depends on:** T1, T3, T4
 
@@ -340,7 +394,7 @@ Decisions where the spec left room; T3–T7 build on these.
 - The PG e2e flows in `manager.pg.test.ts`.
 
 **Acceptance:**
-- [ ] The new evals pass 3 runs out of 3 on the default model.
-- [ ] `pnpm --filter automation test` is green.
+- [ ] The new evals pass 3 runs out of 3 on the default model. *(Written and typechecked, not run: they make paid LLM calls; the owner runs them.)*
+- [x] `pnpm --filter automation test` is green.
 
 **Size:** S · **Depends on:** T3, T4, T5

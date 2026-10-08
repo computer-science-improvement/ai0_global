@@ -30,7 +30,11 @@ import type { ChatAgentRef, EditorChatEvent, EditorChatMessage, EditorDraft, Pen
 // answered and agents' confirmation cards render with [Apply] / [Discard].
 
 export const Route = createFileRoute('/app/chat')({
-  validateSearch: (s: Record<string, unknown>): { c?: string } => ({ c: typeof s.c === 'string' ? s.c : undefined }),
+  // `q` prefills the composer once (e.g. "Discuss" on a contested directive → "@manager about …").
+  validateSearch: (s: Record<string, unknown>): { c?: string; q?: string } => ({
+    c: typeof s.c === 'string' ? s.c : undefined,
+    q: typeof s.q === 'string' && s.q ? s.q.slice(0, 2000) : undefined,
+  }),
   component: ChatPage,
 });
 
@@ -56,7 +60,7 @@ const EXAMPLES = [
 ];
 
 function ChatPage() {
-  const { c: chatId } = Route.useSearch();
+  const { c: chatId, q: prefill } = Route.useSearch();
   const navigate = Route.useNavigate();
   const isMobile = useMediaQuery('(max-width: 860px)');
   const [listOpen, setListOpen] = useState(false);
@@ -67,7 +71,7 @@ function ChatPage() {
   const tree = useAgentTree();
   const handles = useAgentHandles();
 
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState(prefill ?? '');
   const [channel, setChannel] = useState('');
   const [live, setLive] = useState<LiveTurn | null>(null);
   const [activityByMsg, setActivityByMsg] = useState<Record<number, ToolActivity[]>>({});
@@ -143,6 +147,18 @@ function ChatPage() {
     endRef.current?.scrollIntoView({ block: 'end' });
   }, [shown.length, live?.activities.length, live?.text, live && Object.keys(live.actions).length, chatId]);
   useEffect(() => () => abortRef.current?.abort(), []);
+
+  // A prefilled message (?q=) lands in the composer once; the URL drops it so a reload does not refill it.
+  useEffect(() => {
+    if (!prefill) return;
+    setInput((cur) => cur || prefill);
+    navigate({ search: (s) => ({ ...s, q: undefined }), replace: true });
+    requestAnimationFrame(() => {
+      const el = textareaRef.current;
+      if (el) { el.focus(); el.setSelectionRange(el.value.length, el.value.length); }
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [prefill]);
 
   const gotReplyRef = useRef(false);
   const onEvent = (e: EditorChatEvent, forChat: string) => {
