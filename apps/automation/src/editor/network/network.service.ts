@@ -13,6 +13,14 @@ import { PlaybookSchema, validatePlaybook } from './playbook';
 import { lockOwnerSeries, normalizePlaybook, seriesSourceCatalog } from './series-edit';
 import type { NetworkOffers } from './network-offers';
 
+/** A content_decisions row as the dashboard reads it (spec 024 FR-006/FR-011). */
+function toDecisionView(d: any) {
+  return {
+    ideaId: d.idea_id, resourceRef: d.resource_ref, decision: d.decision, reason: d.reason, reasonCode: d.reason_code ?? null,
+    slotId: d.slot_id ?? null, decidedBy: d.decided_by, at: d.created_at,
+  };
+}
+
 export interface NetworkServiceDeps {
   pool:     Pick<Pool, 'query'>;
   agents:   Pick<AgentsRepository, 'getByHandle' | 'get'>;
@@ -124,7 +132,19 @@ export class NetworkService {
   async ideas(handle: string, status?: string) {
     const { agent } = await this.orch(handle);
     const statuses = status ? status.split(',').filter((s) => (IDEA_STATUSES as readonly string[]).includes(s)) as IdeaStatus[] : null;
-    return { ideas: await this.d.repo.listIdeas(agent.id, statuses?.length ? statuses : null, 200) };
+    const ideas = await this.d.repo.listIdeas(agent.id, statuses?.length ? statuses : null, 200);
+    // Spec 024 FR-011: the Ideas card shows the decision matrix once an idea is planned.
+    const ids = ideas.map((i) => i.id);
+    const { rows } = ids.length ? await this.d.pool.query(
+      `SELECT idea_id, resource_ref, decision, reason, reason_code, slot_id, decided_by, created_at FROM content_decisions
+        WHERE idea_id = ANY($1::uuid[]) ORDER BY created_at`, [ids]).catch(() => ({ rows: [] as any[] })) : { rows: [] as any[] };
+    const byIdea = new Map<string, unknown[]>();
+    for (const d of rows) {
+      const list = byIdea.get(d.idea_id) ?? [];
+      list.push(toDecisionView(d));
+      byIdea.set(d.idea_id, list);
+    }
+    return { ideas: ideas.map((i) => ({ ...i, decisions: byIdea.get(i.id) ?? [] })) };
   }
 
   /** Owner override of the reviewer: accept or reject an idea. */
@@ -158,10 +178,7 @@ export class NetworkService {
         preview: s.rendered_preview, resourceRef: s.resource_ref ?? `telegram:${card.channelKey}`, ideaId: s.idea_id, runId: s.run_id,
         treatment: s.treatment ?? null, treatmentReason: s.treatment_reason ?? null, derivedFrom: s.derived_from_slot_id ?? null,
       })),
-      decisions: decisions.map((d) => ({
-        ideaId: d.idea_id, resourceRef: d.resource_ref, decision: d.decision, reason: d.reason, reasonCode: d.reason_code ?? null,
-        slotId: d.slot_id ?? null, decidedBy: d.decided_by, at: d.created_at,
-      })),
+      decisions: decisions.map(toDecisionView),
     };
   }
 

@@ -31,7 +31,7 @@ export class MetaCrosspostsController {
     // Instagram captions have no clickable links → teaser-with-link is pointless;
     // IG only makes sense as a mirror (with image).
     if (body.platform === 'instagram' && body.mode !== 'mirror') {
-      throw new BadRequestException('Instagram supports only "mirror" mode');
+      throw new BadRequestException('Instagram supports only the duplicate mode (an image is required)');
     }
     try {
       return await this.targets.insert({

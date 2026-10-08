@@ -183,7 +183,7 @@ export function CardEditorModal({ open, onClose, card }: { open: boolean; onClos
         </Field>
         <label className="text-caption" style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 4 }}>
           <input type="checkbox" checked={f.crosspost} onChange={(e) => set('crosspost', e.target.checked)} />
-          Cross-post live posts to the channel's Meta targets (Instagram / Facebook / Threads)
+          Auto-duplicate (legacy): duplicate live posts to the channel's Meta targets (Instagram / Facebook / Threads) while auto-duplication is on
         </label>
       </Group>
 

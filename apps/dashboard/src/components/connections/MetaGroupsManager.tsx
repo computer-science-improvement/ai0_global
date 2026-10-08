@@ -1,10 +1,12 @@
 // Groups — the dedicated brand-group management page (Connections → Groups).
 //
 // A group is a brand "patch-bay": it links one Telegram channel + one Facebook,
-// Instagram and Threads account. Any member can be the fan-out SOURCE — publishing
-// to it mirrors the same post to every other member. A group holds at most one
-// destination per platform (enforced server-side). This page is the ONLY place to
-// create/delete groups and wire destinations into them.
+// Instagram and Threads account. Each member is its own resource (spec 024): the
+// network's agent decides per post whether to duplicate, adapt, write a unique post
+// or skip. While auto-duplication is on (legacy groups, or an agent not yet live),
+// posts published to the auto-duplicate SOURCE are duplicated to every other member.
+// A group holds at most one destination per platform (enforced server-side). This
+// page is the ONLY place to create/delete groups and wire destinations into them.
 
 import { useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
@@ -13,7 +15,7 @@ import { useConfirm } from '../ui/ConfirmDialog';
 import {
   useMetaAccounts, useMetaAccountGroups, useCreateMetaAccountGroup,
   useDeleteMetaAccountGroup, useSetMetaAccountGroup, useSetMetaAccountGroupSource,
-  type GroupSourcePlatform,
+  autoDuplicates, type GroupSourcePlatform,
 } from '../../api/meta-accounts';
 import { useStrategies, usePatchStrategy } from '../../api/strategies';
 import { trackingApi } from '../../api/tracking';
@@ -111,9 +113,11 @@ export function MetaGroupsManager() {
 
   // Build the four ports for a group: Telegram, then Facebook, IG, Threads.
   // The source port is driven by g.source_platform (not hardcoded to Facebook).
-  const portsFor = (g: { id: string; source_platform: GroupSourcePlatform; mode?: 'independent' | 'legacy_duplicate' }): PortData[] => {
+  const portsFor = (g: { id: string; source_platform: GroupSourcePlatform; mode?: 'independent' | 'legacy_duplicate'; auto_duplicate?: boolean | null }): PortData[] => {
     const groupId = g.id;
     const independent = g.mode === 'independent';
+    // Spec 024 FR-003: the source and double-post warnings matter only while the group auto-duplicates.
+    const dup = autoDuplicates(g);
     const typesOf = (list: Array<{ type: string }>) => independent && list.length ? [...new Set(list.map((s) => s.type))] : undefined;
     const ch  = allChannels.find(c => c.groupId === groupId) ?? null;
     const isTgSource = g.source_platform === 'telegram';
@@ -133,13 +137,13 @@ export function MetaGroupsManager() {
     // A wired non-source member that has its own enabled strategies double-posts:
     // it gets the fan-out AND its own publish. Returns the collision or undefined.
     const collisionFor = (own: SchedRef[]): Collision | undefined =>
-      own.length ? { own, source: sourceSched } : undefined;
+      dup && own.length ? { own, source: sourceSched } : undefined;
     // Telegram has no bot warning when it is either the source or an assigned target
     // and the linked channel has no bot bound.
     const tgActive = isTgSource || (ch != null);
     const noBotWarning = tgActive && ch != null && !ch.bot;
     const tg: PortData = {
-      key: 'telegram', icon: 'telegram', source: isTgSource,
+      key: 'telegram', icon: 'telegram', source: isTgSource && dup,
       assigned: ch ? { id: ch.id, label: chLabel(ch) } : null,
       options: allChannels.filter(c => c.groupId == null).map(c => ({ id: c.id, label: chLabel(c) })),
       onAssign: (id) => setChannelGroup.mutate({ id, groupId }),
@@ -154,7 +158,7 @@ export function MetaGroupsManager() {
       const acc = allAccounts.find(a => a.group_id === groupId && a.platform === platform) ?? null;
       const isSource = g.source_platform === platform;
       return {
-        key: platform, icon: platform as IconName, source: isSource,
+        key: platform, icon: platform as IconName, source: isSource && dup,
         assigned: acc ? { id: acc.id, label: acctLabel(acc) } : null,
         options: allAccounts.filter(a => a.platform === platform && a.group_id == null)
           .map(a => ({ id: a.id, label: acctLabel(a) })),
@@ -172,12 +176,13 @@ export function MetaGroupsManager() {
   return (
     <div>
       <p className="text-micro" style={{ margin: '0 0 16px', color: 'var(--color-ink-dim)', maxWidth: 760, lineHeight: 1.6 }}>
-        A group links a brand's destinations. Each group has a{' '}
-        <b style={{ color: 'var(--color-ink-muted)' }}>source</b> — the member you publish to. Publishing to the
-        source mirrors the same post to every other member (Telegram included). Pick it from the{' '}
-        <b style={{ color: 'var(--color-ink-muted)' }}>Source</b> dropdown on each group (any wired destination —
-        Facebook, Instagram, Threads or Telegram). A member that <b style={{ color: 'var(--color-ink-muted)' }}>also
-        runs its own enabled strategy</b> is flagged as a double-post — pause that strategy to keep only the fan-out.
+        A group links a brand's destinations. Each member is its own resource; the network's agent decides per post:
+        duplicate, adapt, unique or skip. While a group still{' '}
+        <b style={{ color: 'var(--color-ink-muted)' }}>auto-duplicates</b> (legacy groups, or an agent that is not live
+        yet), posts published to its <b style={{ color: 'var(--color-ink-muted)' }}>auto-duplicate source</b> are
+        duplicated to every other member (Telegram included) — pick it from the dropdown on each group. A member that{' '}
+        <b style={{ color: 'var(--color-ink-muted)' }}>also runs its own enabled strategy</b> is flagged as a
+        double-post — pause that strategy to keep only the duplicate.
       </p>
 
       {/* Create composer */}
@@ -238,10 +243,11 @@ export function MetaGroupsManager() {
                   </div>
                 </div>
 
-                {/* Source selector — the member you publish to; mirrors to the rest. */}
-                <label style={{ display: 'flex', alignItems: 'center', gap: 7 }} title="The member you publish to — its posts are mirrored to every other member of the group">
+                {/* Auto-duplicate source — shown only while the group still auto-duplicates (spec 024 FR-011). */}
+                {autoDuplicates(g) ? (
+                <label style={{ display: 'flex', alignItems: 'center', gap: 7 }} title="The member you publish to — its posts are duplicated to every other member of the group while auto-duplication is on">
                   <span className="text-eyebrow" style={{ color: 'var(--color-accent)', display: 'inline-flex', alignItems: 'center', gap: 4 }}>
-                    <Icon name="strategies" size={11} /> Source
+                    <Icon name="strategies" size={11} /> Auto-duplicate source
                   </span>
                   <select
                     className="input-field"
@@ -255,11 +261,14 @@ export function MetaGroupsManager() {
                     ))}
                   </select>
                 </label>
+                ) : (
+                  <span className="chip" title="The network's agent decides per post for every member; nothing is auto-duplicated">independent</span>
+                )}
 
                 <button
                   className="group-del" title="Delete group"
                   onClick={async () => {
-                    if (await confirm(`delete group "${g.name}"`, { details: <p className="text-micro" style={{ margin: 0, color: 'var(--color-ink-muted)' }}>Members (channel + accounts) are kept — they're just un-grouped (fan-out stops).</p> })) {
+                    if (await confirm(`delete group "${g.name}"`, { details: <p className="text-micro" style={{ margin: 0, color: 'var(--color-ink-muted)' }}>Members (channel + accounts) are kept — they're just un-grouped (auto-duplication stops).</p> })) {
                       deleteGroup.mutate(g.id);
                       qc.invalidateQueries({ queryKey: CHANNELS_KEY });
                     }
@@ -349,12 +358,12 @@ function Port({ port, busy }: { port: PortData; busy: boolean }) {
             </span>
           </div>
           <p className="text-micro" style={{ margin: '0 0 6px', color: 'var(--color-ink-muted)', lineHeight: 1.5 }}>
-            It receives the group fan-out <b>and</b> runs its own strategy → the same post goes out twice. Pause the
-            strategy to keep only the fan-out.
+            It receives the group's auto-duplicate <b>and</b> runs its own strategy → the same post goes out twice. Pause the
+            strategy to keep only the duplicate.
           </p>
           {/* schedules side by side: what drives the fan-out vs the duplicate */}
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: port.onPause ? 8 : 0 }}>
-            {port.collision.source && <SchedChip label="Group source" sched={port.collision.source} tone="muted" />}
+            {port.collision.source && <SchedChip label="Auto-duplicate source" sched={port.collision.source} tone="muted" />}
             {port.collision.own.map(s => <SchedChip key={s.id} label="This member" sched={s} tone="danger" />)}
           </div>
           {port.onPause && port.collision.own.map(s => (

@@ -3,6 +3,9 @@
 // audience, goals in priority order, tone, taboo, sources, ads policy — that is
 // always in the agent's prompt. Edit opens a form with every field; the server
 // validates (ResourceProfileSchema) and its issues are shown at the fields.
+// Spec 024 FR-011: the resource's time zone (searchable IANA list, default
+// Europe/Kyiv) and quiet hours; for a Telegram channel both belong to the
+// channel card and are shown read-only with a link to it.
 
 import { Link } from '@tanstack/react-router';
 import { useEffect, useRef, useState, type CSSProperties, type KeyboardEvent, type ReactNode } from 'react';
@@ -18,6 +21,30 @@ import {
   errorBody, KPI_GOALS, usePutResourceProfile, useResourceProfile,
   type HealthState, type KpiGoal, type ResourceHealth, type ResourceProfile,
 } from '../../api/agents';
+import { useAgentNetwork } from '../../api/network';
+import { KYIV_TZ, formatIn, isValidZone, listZones, zoneLabel } from '../../lib/zoned-time';
+
+const DEFAULT_QUIET = { start: 23, end: 8 };
+const pad2 = (n: number) => String(n).padStart(2, '0');
+export const fmtQuiet = (q: { start: number; end: number }) => `${pad2(q.start)}:00 → ${pad2(q.end)}:00`;
+
+/** The zone and quiet hours that apply to a resource: a Telegram channel's card, else the profile's (defaults Kyiv, 23→8). */
+export function useResourceClock(handle: string, ref: string | null, profile: ResourceProfile | null) {
+  const telegram = !!ref?.startsWith('telegram:');
+  const net = useAgentNetwork(handle);
+  const card = telegram ? net.data?.resources.find((r) => r.ref === ref) : undefined;
+  return {
+    telegram,
+    channel: telegram ? ref!.slice('telegram:'.length) : null,
+    timezone: (telegram ? card?.timezone : profile?.timezone) || KYIV_TZ,
+    quiet: (telegram ? card?.quietHours : profile?.quiet_hours) ?? DEFAULT_QUIET,
+  };
+}
+
+/** "Europe/Kyiv · now 16:04" */
+function ZoneNow({ tz }: { tz: string }) {
+  return <span className="tabular-nums">{tz}{tz !== KYIV_TZ ? <span style={{ color: 'var(--color-ink-dim)' }}> · now {formatIn(new Date(), tz)} (Kyiv {formatIn(new Date(), KYIV_TZ)})</span> : <span style={{ color: 'var(--color-ink-dim)' }}> · now {formatIn(new Date(), tz)}</span>}</span>;
+}
 
 export const HEALTH: Record<HealthState, { tone: Tone; label: string }> = {
   ok:             { tone: 'success', label: 'healthy' },
@@ -85,7 +112,7 @@ export function ResourceSection({ handle }: { handle: string }) {
             )}
           </div>
 
-          {d.profile ? <ProfileView p={d.profile} updatedAt={d.updatedAt} /> : (
+          {d.profile ? <ProfileView handle={handle} refName={d.ref} p={d.profile} updatedAt={d.updatedAt} /> : (
             <EmptyState icon="globe" title="The resource is not described yet"
               note={<>The profile tells the agent what the resource is about, who reads it and what counts as success. You can also ask <strong>@ai0</strong> in the chat to draft it — it proposes a card you apply.</>}
               action={
@@ -106,8 +133,9 @@ export function ResourceSection({ handle }: { handle: string }) {
   );
 }
 
-function ProfileView({ p, updatedAt }: { p: ResourceProfile; updatedAt: string | null }) {
+function ProfileView({ handle, refName, p, updatedAt }: { handle: string; refName: string | null; p: ResourceProfile; updatedAt: string | null }) {
   const aud = [p.audience.who, p.audience.age, p.audience.region].filter(Boolean).join(' · ');
+  const clock = useResourceClock(handle, refName, p);
   return (
     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 220px), 1fr))', gap: '14px 18px' }}>
       <Meta label="Topic" wide>{p.topic}</Meta>
@@ -116,6 +144,8 @@ function ProfileView({ p, updatedAt }: { p: ResourceProfile; updatedAt: string |
       <Meta label="Goals (by priority)"><GoalChips goals={p.goals} /></Meta>
       <Meta label="Tone">{p.tone || <span style={{ color: 'var(--color-ink-dim)' }}>—</span>}</Meta>
       <Meta label="Frequency">{p.frequency_hint || <span style={{ color: 'var(--color-ink-dim)' }}>—</span>}</Meta>
+      <Meta label={clock.telegram ? 'Time zone (channel card)' : 'Time zone'}><ZoneNow tz={clock.timezone} /></Meta>
+      <Meta label={clock.telegram ? 'Quiet hours (channel card)' : 'Quiet hours'}><span className="tabular-nums">{fmtQuiet(clock.quiet)} {zoneLabel(clock.timezone)}</span></Meta>
       <Meta label="Ads">
         {p.ads_allowed.allowed
           ? <span style={{ display: 'inline-flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' }}><Badge tone="success">allowed</Badge><Chips items={p.ads_allowed.categories} empty="any category" /></span>
@@ -136,6 +166,8 @@ interface Form {
   topic: string; who: string; age: string; region: string; language: string; goals: KpiGoal[];
   tone: string; taboo: string[]; sources: string[]; frequency: string; adsAllowed: boolean; adCategories: string[];
   examples: string[]; notes: string;
+  /** Spec 024: '' = default (Europe/Kyiv); quiet hours '' = default (23→8). */
+  timezone: string; quietStart: string; quietEnd: string;
 }
 
 /** Form keys, matched against server issue paths (`audience.who`, `taboo.3`, `ads_allowed.categories.0`…). */
@@ -144,6 +176,7 @@ const PATH_KEY: Array<[string, keyof Form]> = [
   ['ads_allowed.categories', 'adCategories'], ['ads_allowed', 'adsAllowed'], ['frequency_hint', 'frequency'],
   ['topic', 'topic'], ['language', 'language'], ['goals', 'goals'], ['tone', 'tone'], ['taboo', 'taboo'],
   ['sources', 'sources'], ['examples', 'examples'], ['notes', 'notes'],
+  ['timezone', 'timezone'], ['quiet_hours.start', 'quietStart'], ['quiet_hours.end', 'quietEnd'], ['quiet_hours', 'quietStart'],
 ];
 
 function toForm(p: ResourceProfile | null): Form {
@@ -152,7 +185,15 @@ function toForm(p: ResourceProfile | null): Form {
     language: p?.language ?? 'uk', goals: p?.goals ?? [], tone: p?.tone ?? '', taboo: p?.taboo ?? [], sources: p?.sources ?? [],
     frequency: p?.frequency_hint ?? '', adsAllowed: p?.ads_allowed.allowed ?? true, adCategories: p?.ads_allowed.categories ?? [],
     examples: p?.examples ?? [], notes: p?.notes ?? '',
+    timezone: p?.timezone ?? '', quietStart: p?.quiet_hours ? String(p.quiet_hours.start) : '', quietEnd: p?.quiet_hours ? String(p.quiet_hours.end) : '',
   };
+}
+
+/** The zone / quiet-hours part of the body; null fields are left out (= defaults). */
+export function timeBody(f: Pick<Form, 'timezone' | 'quietStart' | 'quietEnd'>): Pick<ResourceProfile, 'timezone' | 'quiet_hours'> {
+  const tz = f.timezone.trim();
+  const quiet = f.quietStart !== '' && f.quietEnd !== '' ? { start: Number(f.quietStart), end: Number(f.quietEnd) } : undefined;
+  return { ...(tz ? { timezone: tz } : {}), ...(quiet ? { quiet_hours: quiet } : {}) };
 }
 
 function toBody(f: Form): ResourceProfile {
@@ -185,6 +226,8 @@ function validate(f: Form): Partial<Record<keyof Form, string>> {
   if (f.tone.trim().length > 300) e.tone = 'up to 300 characters';
   if (f.frequency.trim().length > 120) e.frequency = 'up to 120 characters';
   if (f.notes.trim().length > 800) e.notes = 'up to 800 characters';
+  if (f.timezone.trim() && !isValidZone(f.timezone.trim())) e.timezone = 'pick an IANA time zone from the list, e.g. America/New_York';
+  if ((f.quietStart === '') !== (f.quietEnd === '')) e.quietStart = 'set both hours, or neither for the default 23:00 → 08:00';
   return e;
 }
 
@@ -192,6 +235,8 @@ export function ProfileModal({ handle, initial, refName, onClose }: {
   handle: string; initial: ResourceProfile | null; refName: string | null; onClose: () => void;
 }) {
   const put = usePutResourceProfile(handle);
+  const clock = useResourceClock(handle, refName, initial);
+  const zones = useState(() => listZones())[0];
   const [f, setF] = useState<Form>(() => toForm(initial));
   const [tried, setTried] = useState(false);
   const [jump, setJump] = useState(0);
@@ -226,8 +271,11 @@ export function ProfileModal({ handle, initial, refName, onClose }: {
     setTried(true);
     if (Object.keys(local).length) { setJump((n) => n + 1); return; }
     try {
-      // The zone and quiet hours have no fields here yet (spec 024 T6); keep the stored ones.
-      await put.mutateAsync({ ...(initial?.timezone ? { timezone: initial.timezone } : {}), ...(initial?.quiet_hours ? { quiet_hours: initial.quiet_hours } : {}), ...toBody(f) });
+      // Telegram: the card owns the zone and quiet hours (the profile fields are ignored) — keep whatever is stored.
+      const time = clock.telegram
+        ? { ...(initial?.timezone ? { timezone: initial.timezone } : {}), ...(initial?.quiet_hours ? { quiet_hours: initial.quiet_hours } : {}) }
+        : timeBody(f);
+      await put.mutateAsync({ ...time, ...toBody(f) });
       toast.success('Resource profile saved');
       onClose();
     } catch { setJump((n) => n + 1); /* issues are shown inline */ }
@@ -289,6 +337,46 @@ export function ProfileModal({ handle, initial, refName, onClose }: {
           {err('frequency')}
         </Field>
       </div>
+
+      {clock.telegram ? (
+        <Field label="Time zone and quiet hours" hint="set on the channel card">
+          <div className="text-body-sm" style={{ display: 'flex', gap: 10, alignItems: 'center', flexWrap: 'wrap', color: 'var(--color-ink)' }}>
+            <ZoneNow tz={clock.timezone} />
+            <span className="tabular-nums" style={{ color: 'var(--color-ink-muted)' }}>quiet {fmtQuiet(clock.quiet)}</span>
+            {clock.channel && (
+              <Link to="/app/editor/$channel" params={{ channel: clock.channel }} className="link-accent text-micro">Change on the channel card →</Link>
+            )}
+          </div>
+        </Field>
+      ) : (
+        <div style={grid}>
+          <Field label="Time zone" hint="the resource's own times (slots, quiet hours, best hours) · empty = Europe/Kyiv">
+            <input className="input-field" style={input} value={f.timezone} list="resource-tz-list" spellCheck={false} autoComplete="off"
+              placeholder={KYIV_TZ} aria-label="Time zone" onChange={(e) => set('timezone', e.target.value)} />
+            <datalist id="resource-tz-list">{zones.map((z) => <option key={z} value={z} />)}</datalist>
+            {isValidZone(f.timezone.trim() || KYIV_TZ) && (
+              <div className="text-micro tabular-nums" style={{ color: 'var(--color-ink-dim)', marginTop: 4 }}>
+                now {formatIn(new Date(), f.timezone.trim() || KYIV_TZ)} there · Kyiv {formatIn(new Date(), KYIV_TZ)}
+              </div>
+            )}
+            {err('timezone')}
+          </Field>
+          <Field label="Quiet hours" hint="no posts between · empty = 23:00 → 08:00">
+            <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
+              <select className="input-field tabular-nums" aria-label="Quiet hours start" value={f.quietStart} onChange={(e) => set('quietStart', e.target.value)} style={{ flex: 1, minWidth: 0 }}>
+                <option value="">default</option>
+                {Array.from({ length: 24 }, (_, h) => <option key={h} value={String(h)}>{pad2(h)}:00</option>)}
+              </select>
+              <span style={{ color: 'var(--color-ink-dim)' }}>→</span>
+              <select className="input-field tabular-nums" aria-label="Quiet hours end" value={f.quietEnd} onChange={(e) => set('quietEnd', e.target.value)} style={{ flex: 1, minWidth: 0 }}>
+                <option value="">default</option>
+                {Array.from({ length: 24 }, (_, h) => <option key={h} value={String(h)}>{pad2(h)}:00</option>)}
+              </select>
+            </div>
+            {err('quietStart') ?? err('quietEnd')}
+          </Field>
+        </div>
+      )}
 
       <Field label="Tone" hint="optional">
         <input className="input-field" style={input} value={f.tone} maxLength={300} placeholder="Friendly, to the point, no bureaucratese" onChange={(e) => set('tone', e.target.value)} />

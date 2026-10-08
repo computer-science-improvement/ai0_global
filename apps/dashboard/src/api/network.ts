@@ -110,6 +110,8 @@ export interface IdeaRow {
   review:    IdeaReview | null;
   createdAt: string;
   updatedAt: string;
+  /** Spec 024 FR-011: the per-resource decisions once the idea is planned. */
+  decisions?: ContentDecision[];
 }
 
 export type PlanSlotStatus = 'planned' | 'running' | 'published' | 'shadowed' | 'skipped' | 'failed' | 'awaiting_approval' | 'approved' | 'expired';
@@ -127,9 +129,31 @@ export interface PlanSlot {
   resourceRef: string;
   ideaId:      string | null;
   runId:       string | null;
+  /** Spec 024 FR-006: null for pre-024 and single-channel slots. */
+  treatment?:       Treatment | null;
+  treatmentReason?: string | null;
+  /** The source slot of a duplicate / adapt slot. */
+  derivedFrom?:     string | null;
 }
 
-export interface NetworkPlan { date: string; anchor: string; rationale: string | null; slots: PlanSlot[] }
+/** Spec 024: how a resource gets an idea. */
+export type Treatment = 'unique' | 'duplicate' | 'adapt';
+export type Decision = Treatment | 'skip';
+export type DecisionReasonCode = 'off_topic' | 'audience_mismatch' | 'format_unfit' | 'low_kpi' | 'cadence' | 'other';
+
+/** One (idea, resource) decision (spec 024 FR-006), skips included. */
+export interface ContentDecision {
+  ideaId:      string;
+  resourceRef: string;
+  decision:    Decision;
+  reason:      string;
+  reasonCode:  DecisionReasonCode | null;
+  slotId:      string | null;
+  decidedBy:   'planner' | 'orchestrator' | 'executor' | 'owner' | 'system';
+  at:          string;
+}
+
+export interface NetworkPlan { date: string; anchor: string; rationale: string | null; slots: PlanSlot[]; decisions?: ContentDecision[] }
 
 const enc = encodeURIComponent;
 const KEY = ['network'] as const;

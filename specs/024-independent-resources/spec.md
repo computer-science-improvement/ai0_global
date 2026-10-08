@@ -360,3 +360,27 @@ Duplication becomes a tool, and every resource gets its own time zone.
 - **Groups page (FR-009):** a member's enabled strategy in an `independent` group shows "Strategy <type> publishes into an
   independent network on its own; retire it or keep the group on auto-duplicate" (the "009 T004" reference is left out
   of the UI text). The group list (`SELECT *`) already carries `mode` and the pinned `auto_duplicate`.
+
+### T6 (2026-10-08)
+- **Terminology:** no user-visible "mirror" in `apps/dashboard/src` — guard `lib/no-mirror-ui.test.ts` (comments and
+  the quoted stored value `'mirror'` are allowed). Crosspost option and badges say "duplicate" (stored value stays
+  `mirror`); the editor card row and the card form say "Auto-duplicate (legacy)"; Groups: new intro, "Auto-duplicate source"
+  shown only while the group auto-duplicates (`mode = legacy_duplicate` or today's pinned `auto_duplicate` not false —
+  the list API already returns both), otherwise an "independent" chip, and the SOURCE badge / double-post warnings only
+  while auto-duplicating. The backend's Instagram crosspost error no longer says "mirror". The Playbook switch and the
+  network badges were already done in T1.
+- **Times:** `lib/zoned-time.ts` (`formatIn`, `dual`, `dayIn`, `zonedToUtc`, `minutesFromDayStart`, `listZones`…);
+  `lib/kyiv-time.ts` is now a thin wrapper (chat callers unchanged). The pure layout lives in `lib/plan-timeline.ts`.
+  The Plan tab's day ("Today") and axis are the anchor's zone (its Telegram resource's `timezone` from `GET …/network`);
+  positions are minutes from the plan day's 00:00 in that zone, so a resource behind the anchor (New York evening) lands
+  after 24:00 (axis up to 36 h, "00+1" marks midnight). Lanes show the zone and local now; pills show the resource's
+  time plus "· HH:MM Kyiv" when it differs (the full `09:00 America/New_York · 16:00 Kyiv` is the tooltip and the detail
+  header; the pill is too narrow for both zone names). On a 25-hour DST day positions are by real time.
+  `fmtDay` / `shiftDay` are UTC-based. Test `lib/plan-timeline.test.ts` runs with `TZ=America/New_York`.
+- **Plan tab:** U/D/A mark on pills and list rows; dashed SVG connectors source → derived (solid when either is selected);
+  slot detail shows treatment, reason, the source (jump) and derived slots, and the idea's decisions; a "Decisions" panel
+  lists every idea of the day with each resource's decision, reason, reason code and who decided.
+- **Ideas:** `GET …/ideas` now returns `decisions[]` per idea (from `content_decisions`); the idea card shows them.
+- **ResourceProfile:** time zone (searchable `<datalist>` of `Intl.supportedValuesOf('timeZone')`, empty = Europe/Kyiv,
+  validated with `Intl`) and quiet hours (both or neither; empty = 23→8) in the profile form and view. For a `telegram:`
+  ref both are read-only from the card (via `GET …/network`) with a link to `/app/editor/$channel`.

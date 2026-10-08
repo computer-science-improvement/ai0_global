@@ -272,7 +272,7 @@ function LandingAdminPage(): JSX.Element {
             }
           >
             <p className="text-micro" style={{ margin: '0 0 12px', color: 'var(--color-ink-dim)' }}>
-              Mirrors the public landing page at <code>/</code> — same component, same order.
+              The same as the public landing page at <code>/</code> — same component, same order.
             </p>
             <ResourceShowcase resources={preview} />
           </Panel>

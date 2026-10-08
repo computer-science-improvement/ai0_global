@@ -144,15 +144,16 @@ export function isoDay(d: Date): string {
   return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}`;
 }
 
+/** Calendar arithmetic on "YYYY-MM-DD" (UTC-based, so no browser zone or DST can shift it). */
 export function shiftDay(day: string, by: number): string {
   const [y, m, d] = day.split('-').map(Number);
-  return isoDay(new Date(y, m - 1, d + by));
+  return new Date(Date.UTC(y, m - 1, d + by)).toISOString().slice(0, 10);
 }
 
-const DAY_FMT = new Intl.DateTimeFormat('en-GB', { weekday: 'short', day: 'numeric', month: 'short' });
+const DAY_FMT = new Intl.DateTimeFormat('en-GB', { weekday: 'short', day: 'numeric', month: 'short', timeZone: 'UTC' });
 export function fmtDay(day: string): string {
   const [y, m, d] = day.split('-').map(Number);
-  return DAY_FMT.format(new Date(y, m - 1, d));
+  return DAY_FMT.format(new Date(Date.UTC(y, m - 1, d)));
 }
 
 /** "in 3h" / "in 2d" / "expired 5h ago". */
