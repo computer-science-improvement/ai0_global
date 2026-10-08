@@ -2,7 +2,7 @@
 // UI state, not env overrides — GET /settings must not change when one exists.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { SettingsService, isUiKey } from './settings.service';
+import { SettingsService, isLandingKey, isUiKey } from './settings.service';
 
 function poolWith(rows: Array<{ key: string; value: string }>) {
   const sqls: string[] = [];
@@ -28,4 +28,16 @@ test('GET /settings is unchanged by a ui.nav row', async () => {
   assert.deepEqual(withUi.get(), plain.get());
   assert.deepEqual(withUi.get().overrides, ['TRACKING_ENABLED']);
   assert.match(pool.sqls[0], /WHERE key NOT LIKE 'ui\.%'/);
+});
+
+// Spec 026 FR-002: the landing settings (`landing.*`) belong to LandingConfigService.
+test('GET /settings is unchanged by landing.* rows', async () => {
+  assert.equal(isLandingKey('landing.ad_tg_username'), true);
+  assert.equal(isLandingKey('landingx'), false);
+  const plain = new SettingsService(poolWith([{ key: 'TRACKING_ENABLED', value: 'true' }]) as any, cfg);
+  const pool = poolWith([{ key: 'TRACKING_ENABLED', value: 'true' }, { key: 'landing.ad_message_en', value: 'Hi {target} {ref}' }]);
+  const withLanding = new SettingsService(pool as any, cfg);
+  await Promise.all([plain.whenLoaded(), withLanding.whenLoaded()]);
+  assert.deepEqual(withLanding.get(), plain.get());
+  assert.match(pool.sqls[0], /NOT LIKE 'landing\.%'/);
 });

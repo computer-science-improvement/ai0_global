@@ -1,7 +1,7 @@
 # 026: Public landing: autonomous AI-run network, white-label offer, ad ordering via Telegram DM
 
-**Status:** SPEC · **Depends on:** 017–022 (agent platform, DONE), 008 (ad prices), 016 + 019b (YouTube, FR-010 only) · **Supersedes/extends:** BR-CORE-01…08, BR-MKT-01…08; extends BR-EDT-54/55 (DM triage); feeds 011 and 015
-**Migration:** `063_landing_ai_network.sql`
+**Status:** BUILDING (T1–T2 done) · **Depends on:** 017–022 (agent platform, DONE), 008 (ad prices), 016 + 019b (YouTube, FR-010 only) · **Supersedes/extends:** BR-CORE-01…08, BR-MKT-01…08; extends BR-EDT-54/55 (DM triage); feeds 011 and 015
+**Migration:** `066_landing_ai_network.sql` (renumbered: 063 and 058 were taken, 065 is reserved for spec 025)
 **Owner comments addressed:** #9, #10, #11, #12 (plans/brd-comments-2026-10-06.md)
 
 ## Why
@@ -41,7 +41,7 @@ human answers when an AI drafts the reply.
 ## Functional requirements
 | ID | Requirement |
 |----|-------------|
-| FR-001 | **Migration `063_landing_ai_network.sql`** (idempotent, additive): <br>• `landing_leads(id uuid pk, kind check in (ad, white_label), status default 'new' check in (new, contacted, qualified, won, lost, spam), name, contact not null, contact_kind check in (telegram, email, phone, other), company, resources jsonb default '[]', platforms text[], audience_size check in (lt_10k, 10k_100k, 100k_1m, gt_1m, unknown), service_mode check in (dedicated, consult, unsure), target, message, lang check in (uk, en), placement, utm jsonb, ip_hash, consent_at not null, owner_note, notified_at, purged_at, created_at, updated_at)`. Indexes `(status, created_at desc)` and `(ip_hash, created_at desc)`. **No grant to `editor_ro`.** <br>• `landing_cta_daily(day, cta, placement, lang, clicks, pk(day, cta, placement, lang))`. <br>• `youtube_accounts` gets `handle`, `subscribers`, `landing_visible` (default false) and `landing_order` (default 0). <br>• `meta_account_groups` gets `landing_blurb_uk`, `landing_blurb_en` and `landing_order`. |
+| FR-001 | **Migration `066_landing_ai_network.sql`** (idempotent, additive): <br>• `landing_leads(id uuid pk, kind check in (ad, white_label), status default 'new' check in (new, contacted, qualified, won, lost, spam), name, contact not null, contact_kind check in (telegram, email, phone, other), company, resources jsonb default '[]', platforms text[], audience_size check in (lt_10k, 10k_100k, 100k_1m, gt_1m, unknown), service_mode check in (dedicated, consult, unsure), target, message, lang check in (uk, en), placement, utm jsonb, ip_hash, consent_at not null, owner_note, notified_at, purged_at, created_at, updated_at)`. Indexes `(status, created_at desc)` and `(ip_hash, created_at desc)`. **No grant to `editor_ro`.** <br>• `landing_cta_daily(day, cta, placement, lang, clicks, pk(day, cta, placement, lang))`. <br>• `youtube_accounts` gets `handle`, `subscribers`, `landing_visible` (default false) and `landing_order` (default 0). <br>• `meta_account_groups` gets `landing_blurb_uk`, `landing_blurb_en` and `landing_order`. |
 | FR-002 | **Config in `app_settings`:** <br>• `landing.ad_tg_username`; <br>• `landing.ad_message_uk`, default `Привіт! Хочу замовити рекламу в {target}. {ref}`; <br>• `landing.ad_message_en`, default `Hi! I'd like to order an ad in {target}. {ref}`; <br>• `landing.white_label_enabled` (true); <br>• `landing.default_lang` (uk). <br>The username resolves in this order: the setting, then the `username` of the active `role='agent'` session, then `null`. With `null`, only the form CTA shows. The username must match `^[A-Za-z][A-Za-z0-9_]{4,31}$`. <br>Endpoints: public `GET /api/landing/config` returns `{defaultLang, adDm: {available, username}, whiteLabelEnabled}`; owner-only `GET/PUT /api/landing/admin/config`. |
 | FR-003 | **DM link builder** (pure, `config/landing-dm.ts`): `buildAdDmUrl({username, template, target, placement, lang})` returns `https://t.me/<username>?text=<encodeURIComponent(msg)>`. <br>• `{target}` is the channel or network title; the default is «мережі ai0» / "the ai0 network". <br>• `{ref}` is `[ai0web:<placement>]` or `[ai0web:<placement>:<channel_key>]`. <br>• Placements: `hero, topbar, network, resource, mediakit, advertise, footer, howitworks`. <br>• The message is capped at 300 characters by truncating the target; the tag is never cut. <br>The server returns ready `adDmUrl` values (FR-006, FR-009), so the client has no template logic. |
 | FR-004 | **`GET /api/landing/pulse`** (public; no ids, handles, costs or personal data). <br>• A 300 s in-process cache plus `Cache-Control: public, max-age=300`, and a 2 s statement timeout. On an error it serves the stale value for ≤ 1 h, then `503`. <br>• The response: `agents{orchestratorsLive, orchestratorsShadow, rolesActive, manager}`, `last7d{agentPosts, allPosts, autonomyShare, platforms[], agentRuns, skippedByAgents, directivesFiled, managerReviews, ideasReviewed, ownerDecisions}`, `lastAgentPostAt` (rounded to the minute), `claims{managerLive}`. <br>**Counting rules:** <br>• `agentPosts` = `published_posts` where `strategy_type='editor'`, plus `platform_posts` where `status='published' AND platform<>'telegram' AND agent_id IS NOT NULL`. Shadowed posts never count. Ads and legacy strategies count only in `allPosts`. <br>• `agentRuns` = `editor_runs` where `status='ok' AND agent_id IS NOT NULL`. <br>• `ownerDecisions` = owner approvals and declines: directives, playbooks and `agent_actions`. <br>• `agentPosts` includes posts that agents wrote and the owner approved in approval mode (spec 031); they are agent posts. <br>• No threshold gates the headline claim (owner decision 2026-10-06, see FR-005). |
@@ -54,7 +54,7 @@ human answers when an AI drafts the reply.
 | FR-011 | **`POST /api/landing/leads`** (public). <br>• A zod body per kind: `contact` ≤ 200, `message` ≤ 2,000, `resources` ≤ 10 http(s) URLs, and `consent: true`. <br>• A honeypot field `website`: if it is filled, store the lead as `spam` and return `201`. <br>• The existing `RateLimitGuard` allows 5/hour per IP. `ip_hash` = sha256(salt + ip), with the salt from 022. <br>• A duplicate (same ip_hash, contact and kind within 24 h) updates the existing row without a new alert. <br>• A new lead calls `OwnerInbox.post({kind: 'landing_lead', severity: 'action'})`, which also sends the admin-bot alert. That is capped at 20 alerts a day; leads past the cap are still stored. <br>• Retention: message and resources are purged after 180 days for `lost` and `spam`. |
 | FR-012 | **White label.** <br>• A section `#white-label` and a public route `/white-label` (uk/en). Both are hidden when the flag is off; then the route shows «тимчасово недоступна» and a `white_label` POST returns `403`. <br>• Content: the agent hierarchy for the client's own resources, a shadow-first rollout, the MANAGER/KPI digest, ad tooling, owner cards, and the live `/pulse` strip. <br>• The delivery block: «Сьогодні ai0 — single-tenant. White label = окреме розгортання під ваші ресурси (своя БД, ключі, бот і акаунти), яке ми налаштовуємо й супроводжуємо. Спільного кабінету для кількох клієнтів поки немає». <br>• A FAQ: data ownership, the AI disclosure in DMs, the shadow period, and which platforms are supported today. <br>• The form (`kind='white_label'`): name, contact, company, resource links, platforms, audience size, service mode (dedicated / consultation / unsure), message, consent. |
 | FR-013 | **"What a shared platform would need"** (collapsed on `/white-label`; no code in this spec): <br>• real accounts and roles instead of one `TRACKING_TOKEN` (BR-CORE-17…26); <br>• `tenant_id` plus RLS on every table; <br>• per-tenant secrets, encryption keys, LLM budgets and keys; <br>• a MANAGER and cross-promo (022) scoped to the tenant, so different clients' networks are never mixed; <br>• per-tenant MTProto, bot and platform accounts with flood isolation; <br>• queue prefixes and distributed locks (lifting the single-replica constraint); <br>• billing, export and deletion, and an audit log. |
-| FR-014 | **Language: uk + en.** <br>• A dictionary module `components/landing/i18n.ts`, with no new library. <br>• Language order: `?lang=`, then `localStorage['landing:lang']` (in try/catch), then a `navigator.language` starting with uk/ru → uk, then the config default. <br>• A «UA / EN» toggle. A missing key falls back to uk. `<html lang>` and the title follow the language, and `Intl` uses the matching locale. <br>• `index.html` meta is bilingual, and the hardcoded `dev.ai0.global` becomes `VITE_PUBLIC_URL`. |
+| FR-014 | **Not built (owner decision 2026-10-06: the landing ships English only).** Kept for reference: **Language: uk + en.** <br>• A dictionary module `components/landing/i18n.ts`, with no new library. <br>• Language order: `?lang=`, then `localStorage['landing:lang']` (in try/catch), then a `navigator.language` starting with uk/ru → uk, then the config default. <br>• A «UA / EN» toggle. A missing key falls back to uk. `<html lang>` and the title follow the language, and `Intl` uses the matching locale. <br>• `index.html` meta is bilingual, and the hardcoded `dev.ai0.global` becomes `VITE_PUBLIC_URL`. |
 | FR-015 | **`/app/landing` admin** (all under `TrackingAuthGuard`): <br>• **Networks:** blurb uk/en and order, via `PATCH /api/landing/admin/network/:groupId`; <br>• **Public page:** the templates and username, with a live link preview and «Test link»; <br>• **Leads:** filter by kind and status, set the status, add a note, copy the contact; `GET /api/landing/admin/leads`, `PATCH …/leads/:id`; <br>• **CTA stats:** clicks per placement over 30 days against tagged DM threads, via `GET /api/landing/admin/cta-stats`. |
 | FR-016 | **DM attribution.** <br>• A pure `parseLandingRef(text)` in `agent-triage.helpers.ts`, with the regex `\[ai0web:([a-z_]{2,16})(?::@?([A-Za-z0-9_]{3,64}))?\]`. <br>• On a match, `AgentInboxPoller` merges `fields.source='landing'`, `placement` and `channel` into `agent_dm_threads.fields` before the LLM call (no migration). It forces `category='ad'` when the model says `other` or `question`. The price-list draft (BR-EDT-55) then filters by `fields.channel`. <br>• An untagged follow-up message keeps `source`: it is merged, not overwritten. <br>• `/app/agent` shows a «з лендінгу · {placement}» chip. |
 
@@ -113,20 +113,73 @@ human answers when an AI drafts the reply.
    self-hosted licence.
 6. **What lead retention applies?** Proposed: 180 days for lost and spam; won and qualified leads are kept.
 
+## Implementation notes (T1–T2, 2026-10-08)
+Decisions where the spec was open or has been overtaken by owner decisions:
+- **English only.** No `landing.ad_message_uk` and no `landing.default_lang`: the template key is
+  `landing.ad_message_en`, and `GET /api/landing/config` always returns `defaultLang: 'en'` (kept for the
+  contract). `landing_leads.lang` defaults to `'en'`; the CHECK still allows `uk`. `buildAdDmUrl` takes no
+  `lang` (the template is already chosen) but takes an optional `channelKey` for the `{ref}` tag.
+- **Settings ownership.** `landing.*` rows belong to `LandingConfigService`; `SettingsService` skips them like
+  `ui.*` and `cap.*`, so they never show as env overrides on `/app/settings`.
+- **Public config carries ready links.** `adDm.urls` has a link for each network-level placement (`hero`,
+  `topbar`, `advertise`, `footer`, `howitworks`; target "the ai0 network"), so T3/T5 need no template logic.
+  Per-channel links (`network`, `resource`, `mediakit`) come with the T4/T5 payloads through
+  `LandingConfigService.adDm()` + `buildAdDmUrl`. The username is normalized from `@name` or a `t.me/` link;
+  an invalid stored value falls through to the agent session.
+- **Templates.** At most 240 characters, only `{target}` and `{ref}` placeholders (anything else in braces is
+  rejected as a typo). A template without `{ref}` gets the tag appended. Saving the default text, or an empty
+  one, deletes the key. Characters are counted as code points, so a cut never splits an emoji.
+- **Admin preview.** `POST /api/landing/admin/config/preview` renders an unsaved draft through the same
+  builder (three fixed samples: the hero, a channel card, a very long media-kit title), so the dashboard
+  holds no copy of the link logic. Validation issues come back as `{path, message}`.
+- **Pulse definitions** (FR-004 left these open):
+  - `orchestratorsLive` counts top-level orchestrators in mode `live` **or `approve`** (approval mode
+    publishes after the owner's OK; owner rule: those are agent posts); paused agents count as off.
+    `agents.manager` is `off | shadow | live` with `approve` shown as `live`.
+  - `rolesActive` is a list of role kinds (`planner`, `ideator`, `idea_reviewer`, `executor`, `reviewer`) with
+    at least one successful run in the window — evidence, not configuration — for the T3 role chips.
+  - `last7d.platforms` is `[{platform, posts, agentPosts}]` per platform with at least one published post.
+  - `skippedByAgents` counts only slots an agent skipped by its own decision (`error LIKE 'skipped by agent:%'`),
+    not owner rejections, stale slots or superseded plans. `directivesFiled` excludes shadow directives;
+    `managerReviews` excludes `verdict='skipped'`; `ideasReviewed` = ideas with `reviewed_by` set, updated in the
+    window; `ownerDecisions` = directives with `owner_decision` approved/declined + playbooks `decided_at` +
+    `agent_actions` no longer pending (timeouts are not owner decisions).
+  - Chat drafts (`strategy_type='chat'`) count in `allPosts` only, like ads and legacy strategies.
+  - `lastAgentPostAt` looks at all time (not just 7 days). The payload also carries `generatedAt` and `stale`.
+- **Claim gating.** The headline is never gated. The only gated claim is `claims.managerLive`: the MANAGER is
+  live **and** has at least one non-skipped review in the window. Zero values stay in the payload; T3 hides the
+  tiles.
+- **Resilience.** One read-only statement with `SET LOCAL statement_timeout = 2000`, an overall 3 s guard
+  for a pool that cannot connect, one query in flight however many visitors arrive, and a 30 s back-off
+  after a failure (stale value served meanwhile). A 503 is sent with `Cache-Control: no-store`.
+
+### Notes for T3–T6
+- Fetch `GET /api/landing/pulse` (dashboard hook `useLandingPulse`, no retry) and hide the proof strip on any
+  error; hide a tile whose number is 0 and the "last agent post" tile when `lastAgentPostAt` is null.
+- `useLandingPublicConfig().data.adDm` gives `available` and the ready `urls`; with `available=false` show only
+  the form CTA.
+- T4: `meta_account_groups.landing_blurb_en` is the blurb column to use (`landing_blurb_uk` exists from FR-001
+  but stays unused while the page is English only). `youtube_accounts.handle`, `subscribers`,
+  `landing_visible`, `landing_order` exist.
+- T5: `landing_cta_daily` exists (`lang` defaults to `'en'`); the `{ref}` grammar is
+  `[ai0web:<placement>]` / `[ai0web:<placement>:<channel_key>]` with the key matching `[A-Za-z0-9_]{3,64}`.
+- T6: `landing_leads` exists; `landing.white_label_enabled` is read through `LandingConfigService`
+  (`publicConfig().whiteLabelEnabled`).
+
 ## Task breakdown
 
-### T1: Add migration 058 and the landing config surface
+### T1: Add migration 066 and the landing config surface
 **Scope:**
-- `063_landing_ai_network.sql` (FR-001).
+- `066_landing_ai_network.sql` (FR-001).
 - Config keys and username resolution (FR-002).
 - The pure `buildAdDmUrl` (FR-003).
 - The "Public page" card on `/app/landing`.
 
 **Acceptance:**
-- [ ] The migration applies twice cleanly and records its version.
-- [ ] The URL and username tests pass.
-- [ ] `adDm.available=false` when no username resolves.
-- [ ] The owner edits the templates and sees a live preview.
+- [x] The migration applies twice cleanly and records its version.
+- [x] The URL and username tests pass.
+- [x] `adDm.available=false` when no username resolves.
+- [x] The owner edits the templates and sees a live preview.
 
 **Size:** M · **Depends on:** —
 
@@ -137,15 +190,15 @@ human answers when an AI drafts the reply.
 - A public route with `Cache-Control`.
 
 **Acceptance:**
-- [ ] The PG counting tests pass.
-- [ ] An empty DB gives no claims.
-- [ ] The payload has no ids, handles, costs or personal data.
+- [x] The PG counting tests pass.
+- [x] An empty DB gives no claims.
+- [x] The payload has no ids, handles, costs or personal data.
 
 **Size:** M · **Depends on:** T1, 017–022
 
-### T3: Rebuild the hero and "How it works" around agents, in uk and en
+### T3: Rebuild the hero and "How it works" around agents (English only)
 **Scope:**
-- i18n and the toggle (FR-014).
+- ~~i18n and the toggle (FR-014)~~ — not built: English only (owner decision 2026-10-06).
 - The hero, proof strip and hierarchy diagram (FR-005).
 - The two-row "How it works" with the disclosure (FR-008).
 - The `index.html` meta and `VITE_PUBLIC_URL`.

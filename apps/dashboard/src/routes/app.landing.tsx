@@ -21,6 +21,7 @@ import { TableAction } from '../components/ui/table';
 import { EmptyState } from '../components/ui/primitives';
 import { Icon, type IconName } from '../components/ui/Icon';
 import { ResourceShowcase } from '../components/landing/ResourceShowcase';
+import { PublicPageCard } from '../components/landing/PublicPageCard';
 import {
   landingApi, useLandingAdmin, useSetFeatured,
   type LandingAdminResource, type LandingPlatform,
@@ -124,13 +125,17 @@ function LandingAdminPage(): JSX.Element {
     <div>
       <PageHeader
         title="Landing"
-        subtitle="Choose which resources appear on the public landing page and their order."
+        subtitle="How the public landing page takes ad orders, and which resources it shows in which order."
         actions={
           <a href="/" target="_blank" rel="noopener noreferrer" className="btn-ghost" style={{ gap: 6 }}>
             Open live page <span aria-hidden>↗</span>
           </a>
         }
       />
+
+      <div style={{ marginBottom: 'var(--space-xl)' }}>
+        <PublicPageCard />
+      </div>
 
       <div className="la-wrap">
         <div className="la-editor">
@@ -287,7 +292,7 @@ function LandingAdminPage(): JSX.Element {
           align-items: start;
         }
         @media (max-width: 1024px) {
-          .la-wrap { grid-template-columns: 1fr; }
+          .la-wrap { grid-template-columns: minmax(0, 1fr); }
         }
         .la-preview { position: sticky; top: var(--space-lg); }
         .la-row {
