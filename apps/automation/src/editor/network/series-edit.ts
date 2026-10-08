@@ -79,6 +79,8 @@ export interface SubmitDeps {
   inbox: Pick<OwnerInbox, 'post'>;
   /** Library datasets and card feeds a series source may name; without it only API names are checked. */
   sourceCatalog?: (card: EditorCard | null) => Promise<SeriesSourceCatalog>;
+  /** Spec 025 `directive_lock`: refuses a body that undoes a binding directive's change before its review date. */
+  directiveLock?: (orchId: string, body: Playbook) => Promise<{ error: 'directive_lock'; details: string } | null>;
 }
 
 export type SubmitResult =
@@ -113,6 +115,8 @@ export async function submitPlaybookVersion(d: SubmitDeps, net: NetworkCtx, ctx:
     sources: d.sourceCatalog ? await d.sourceCatalog(card) : null,
   });
   if (errors.length) return { error: 'playbook_invalid', details: errors };
+  const lock = d.directiveLock ? await d.directiveLock(net.orchestrator.id, body) : null;
+  if (lock) return lock;
   const change = classifyPlaybookChange(active, body, { mode: networkMode(net, card) });
   const status = change.structural ? 'pending_owner' : 'active';
   const pb = await d.repo.insertPlaybook({

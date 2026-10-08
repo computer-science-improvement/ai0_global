@@ -30,6 +30,8 @@ export interface NetworkToolDeps {
   inbox:  Pick<OwnerInbox, 'post'>;
   /** Spec 023: datasets and card feeds a series source may name. */
   sourceCatalog?: SubmitDeps['sourceCatalog'];
+  /** Spec 025: `directive_lock` on submit_playbook. */
+  directiveLock?: SubmitDeps['directiveLock'];
   /** Spec 023 FR-004: owner schedule rules, pins and due series in the plan check. */
   schedule?: Pick<ScheduleService, 'planContext' | 'effectiveNet'>;
   now?:   () => Date;

@@ -108,6 +108,19 @@ export class EditorChannelsRepository {
     return (rowCount ?? 0) > 0;
   }
 
+  /**
+   * Spec 025 FR-009: a directive executor's write on a single-channel card without a playbook — the posts per
+   * day range and/or the format weights (already validated and clamped by the executor).
+   */
+  async patchPlanning(channelKey: string, p: { postsPerDayMin?: number; postsPerDayMax?: number; formats?: Record<string, number> }): Promise<boolean> {
+    const { rowCount } = await this.pool.query(
+      `UPDATE editor_channels SET posts_per_day_min = COALESCE($2, posts_per_day_min), posts_per_day_max = COALESCE($3, posts_per_day_max),
+              formats = COALESCE($4::jsonb, formats), updated_at = now()
+        WHERE channel_key = $1`,
+      [channelKey, p.postsPerDayMin ?? null, p.postsPerDayMax ?? null, p.formats ? JSON.stringify(p.formats) : null]);
+    return (rowCount ?? 0) > 0;
+  }
+
   /** Reviewer-bounded write: only weights of formats already present in the card, clamped to 0.05..1. */
   async setFormatWeights(channelKey: string, weights: Record<string, number>): Promise<Record<string, number> | null> {
     const card = await this.get(channelKey);

@@ -51,14 +51,24 @@ export interface PlaybookRow {
   body:      Playbook;
   review:    unknown;
   rationale: string | null;
-  createdBy: 'orchestrator' | 'owner' | 'migration';
+  createdBy: PlaybookAuthor;
+  /** Spec 025: the directive whose executor wrote this version. */
+  directiveId?: string | null;
   createdAt: Date;
   decidedAt: Date | null;
 }
 
+export type PlaybookAuthor = 'orchestrator' | 'owner' | 'migration' | 'directive';
+
+export interface NewPlaybookVersion {
+  agentId: string; status: 'pending_owner' | 'active'; brief: string | null; body: Playbook; review?: unknown; rationale: string | null;
+  createdBy: PlaybookAuthor; runId?: string | null; directiveId?: string | null;
+}
+
 const toPlaybook = (r: any): PlaybookRow => ({
   id: r.id, agentId: r.agent_id, version: Number(r.version), status: r.status, brief: r.brief ?? null, body: r.body,
-  review: r.review ?? null, rationale: r.rationale ?? null, createdBy: r.created_by, createdAt: r.created_at, decidedAt: r.decided_at ?? null,
+  review: r.review ?? null, rationale: r.rationale ?? null, createdBy: r.created_by, directiveId: r.directive_id ?? null,
+  createdAt: r.created_at, decidedAt: r.decided_at ?? null,
 });
 
 export const IDEA_STATUSES = ['new', 'accepted', 'needs_revision', 'rejected', 'planned', 'used', 'expired'] as const;
@@ -148,25 +158,56 @@ export class NetworkRepository {
    * Insert a new version. `active` supersedes the current active one (and any
    * pending draft); `pending_owner` supersedes an older pending draft.
    */
-  async insertPlaybook(p: { agentId: string; status: 'pending_owner' | 'active'; brief: string | null; body: Playbook; review?: unknown; rationale: string | null; createdBy: 'orchestrator' | 'owner' | 'migration'; runId?: string | null }): Promise<PlaybookRow> {
+  async insertPlaybook(p: NewPlaybookVersion): Promise<PlaybookRow> {
     // One transaction: never leave a network without an active playbook. An orchestrator's minor change keeps
     // the owner's pending draft (it is decided separately); an owner edit supersedes it (owner precedence).
+    return this.tx(async (q) => {
+      await q.query(`SELECT pg_advisory_xact_lock(hashtext($1))`, [`playbook:${p.agentId}`]).catch(() => {});
+      return this.insertVersion(q, p);
+    });
+  }
+
+  /**
+   * Spec 025 FR-009: a directive executor's write. In one transaction (advisory lock per agent) it reads the
+   * current active version, lets `patch` compute the next body on top of it (null = the active version already
+   * holds the change: a no-op) and inserts that as the new active version (created_by 'directive',
+   * directive_id). A pending owner draft is kept.
+   */
+  async applyDirectivePatch(agentId: string, directiveId: string, patch: (active: Playbook) => Playbook | null, rationale: string): Promise<{ noop: boolean; row: PlaybookRow } | { error: 'no_playbook' }> {
+    return this.tx(async (q) => {
+      await q.query(`SELECT pg_advisory_xact_lock(hashtext($1))`, [`playbook:${agentId}`]).catch(() => {});
+      const { rows } = await q.query(`SELECT * FROM playbooks WHERE agent_id = $1 AND status = 'active' FOR UPDATE`, [agentId]);
+      if (!rows[0]) return { error: 'no_playbook' as const };
+      const active = toPlaybook(rows[0]);
+      const next = patch(active.body);
+      if (!next) return { noop: true, row: active };
+      return { noop: false, row: await this.insertVersion(q, { agentId, status: 'active', brief: null, body: next, rationale, createdBy: 'directive', directiveId }) };
+    });
+  }
+
+  private async insertVersion(q: Q, p: NewPlaybookVersion): Promise<PlaybookRow> {
+    const { rows: v } = await q.query(`SELECT COALESCE(max(version), 0) + 1 AS v FROM playbooks WHERE agent_id = $1`, [p.agentId]);
+    const supersede = p.status === 'active'
+      ? (p.createdBy === 'owner' ? ['active', 'pending_owner'] : ['active'])
+      : ['pending_owner'];
+    await q.query(`UPDATE playbooks SET status = 'superseded', decided_at = now() WHERE agent_id = $1 AND status = ANY($2::text[])`, [p.agentId, supersede]);
+    const { rows } = await q.query(
+      `INSERT INTO playbooks (agent_id, version, status, brief, body, review, rationale, created_by, run_id, decided_at, directive_id)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, CASE WHEN $3 = 'active' THEN now() END, $10) RETURNING *`,
+      [p.agentId, Number(v[0].v), p.status, p.brief, JSON.stringify(p.body), p.review == null ? null : JSON.stringify(p.review), p.rationale, p.createdBy,
+        UUID_RE.test(p.runId ?? '') ? p.runId : null, p.directiveId ?? null]);
+    return toPlaybook(rows[0]);
+  }
+
+  /** One transaction on a pooled client (a plain query function — unit fakes — runs without one). */
+  private async tx<T>(fn: (q: Q) => Promise<T>): Promise<T> {
     const conn = (this.pool as Partial<Pool>).connect ? await (this.pool as Pool).connect() : null;
     const q = conn ?? this.pool;
     try {
       if (conn) await conn.query('BEGIN');
-      await q.query(`SELECT pg_advisory_xact_lock(hashtext($1))`, [`playbook:${p.agentId}`]).catch(() => {});
-      const { rows: v } = await q.query(`SELECT COALESCE(max(version), 0) + 1 AS v FROM playbooks WHERE agent_id = $1`, [p.agentId]);
-      const supersede = p.status === 'active'
-        ? (p.createdBy === 'owner' ? ['active', 'pending_owner'] : ['active'])
-        : ['pending_owner'];
-      await q.query(`UPDATE playbooks SET status = 'superseded', decided_at = now() WHERE agent_id = $1 AND status = ANY($2::text[])`, [p.agentId, supersede]);
-      const { rows } = await q.query(
-        `INSERT INTO playbooks (agent_id, version, status, brief, body, review, rationale, created_by, run_id, decided_at)
-         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, CASE WHEN $3 = 'active' THEN now() END) RETURNING *`,
-        [p.agentId, Number(v[0].v), p.status, p.brief, JSON.stringify(p.body), p.review == null ? null : JSON.stringify(p.review), p.rationale, p.createdBy, UUID_RE.test(p.runId ?? "") ? p.runId : null]);
+      const out = await fn(q);
       if (conn) await conn.query('COMMIT');
-      return toPlaybook(rows[0]);
+      return out;
     } catch (err) {
       if (conn) await conn.query('ROLLBACK').catch(() => {});
       throw err;

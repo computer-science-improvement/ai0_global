@@ -10,6 +10,7 @@ import { localDate, localTimeLabel } from '../roles/time';
 import type { Directive, DirectivesRepository } from './directives.repository';
 import type { KpiDigest, KpiDigestService } from './kpi-digest.service';
 import type { ScopeKpis } from './kpi-math';
+import { DirectiveExecution } from './executors';
 
 export const DEFAULT_MANAGER_TIMES = ['08:00', '13:00', '18:00', '22:30'];
 export const DELIVERY_DEBOUNCE_MS = 10 * 60_000;
@@ -29,6 +30,8 @@ export interface ManagerRunnerDeps {
   /** Hours an owner card waits before its default action, and the kinds whose default is "apply". */
   timeoutHours?: number;
   timeoutApplyKinds?: string[];
+  /** Spec 025 FR-009: the executors. Without it no kind has one (advice self-reported; T4/T5 kinds unverified; the rest fail). */
+  exec?:    DirectiveExecution;
   now?:     () => Date;
 }
 
@@ -71,7 +74,11 @@ export function managerSystemPrompt(o: { agent: Agent; now: Date; digest: string
 export class ManagerRunner {
   private readonly done = new Set<string>();
 
-  constructor(private readonly d: ManagerRunnerDeps) {}
+  readonly exec: DirectiveExecution;
+
+  constructor(private readonly d: ManagerRunnerDeps) {
+    this.exec = d.exec ?? new DirectiveExecution({ repo: d.repo, inbox: d.inbox, agents: d.agents, context: async () => null, executors: [], now: d.now });
+  }
 
   private now(): Date { return (this.d.now ?? (() => new Date()))(); }
 
@@ -157,9 +164,13 @@ export class ManagerRunner {
     ].filter(Boolean).join('\n')).join('\n');
   }
 
-  /** After an orchestrator run: accepted (non-promo) directives become applied with their baseline. */
+  /**
+   * After an orchestrator run (spec 025 FR-009): every accepted (non-promo) directive goes through its executor;
+   * the ones applied get their baseline. Failures are counted and retried hourly (failed after 3).
+   */
   async afterOrchestration(orch: Agent, digest?: KpiDigest | null): Promise<Directive[]> {
-    const applied = await this.d.repo.applyAccepted(orch.id, ['cross_promo', 'repost']);
+    const done = await this.exec.executeAccepted(orch);
+    const applied = done.filter((x) => x.status === 'applied');
     for (const dir of applied) await this.recordBaseline(dir, digest ?? null);
     return applied;
   }
@@ -189,8 +200,8 @@ export class ManagerRunner {
 
   private readonly handleCache = new Map<string, string>();
 
-  /** Owner-card timeouts, unresolved expiry, effect evaluation (hourly). */
-  async housekeeping(): Promise<{ timedOut: number; expired: number; evaluated: number }> {
+  /** Owner-card timeouts, unresolved expiry, executor retries, series resumes, verification, effect evaluation (hourly). */
+  async housekeeping(): Promise<{ timedOut: number; expired: number; evaluated: number; executed: number; failed: number; resumed: number; verified: number }> {
     for (const a of await this.d.agents.list()) this.handleCache.set(a.id, a.handle);
     let timedOut = 0;
     const hours = this.d.timeoutHours ?? 12;
@@ -204,8 +215,15 @@ export class ManagerRunner {
       await this.d.repo.addMemory(m.id, 'insight', 'Власник не відповідає на структурні директиви (5 поспіль скасовано за таймаутом) — пропонуй їх рідше і лише з сильними підставами.', null, 'system');
     }
     const expired = await this.d.repo.expireUnresolved(RESOLVE_WITHIN_MS);
+    // Spec 025 FR-009: retry executors, resume paused series, verify applied changes — before evaluating.
+    const retried = await this.exec.retryPending();
+    const executed = retried.filter((x) => x.status === 'applied');
+    for (const dir of executed) await this.recordBaseline(dir, null);
+    const failed = retried.filter((x) => x.status === 'failed').length;
+    const resumed = await this.exec.resumeSeries();
+    const verified = await this.exec.verifyApplied();
     const evaluated = await this.evaluate();
-    return { timedOut, expired, evaluated };
+    return { timedOut, expired, evaluated, executed: executed.length, failed, resumed, verified };
   }
 
   /** Effect of applied directives on their review date (FR-007). */

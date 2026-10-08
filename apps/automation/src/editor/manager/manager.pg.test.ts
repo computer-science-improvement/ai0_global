@@ -9,6 +9,9 @@ import { KpiDigestService } from './kpi-digest.service';
 import { ManagerRunner } from './manager-runner';
 import { fileDirective } from './directive-tools';
 import { ManagerService } from './manager.service';
+import { EditorChannelsRepository } from '../repo/editor-channels.repository';
+import { NetworkRepository } from '../network/network.repository';
+import { DirectiveExecution, executionContextOf, formatShiftExecutor, frequencyExecutor, pauseSeriesExecutor, SqlPlanObserver } from './executors';
 
 const url = process.env.EDITOR_PG_TEST_URL;
 const skip = !url ? 'EDITOR_PG_TEST_URL not set' : false;
@@ -24,6 +27,7 @@ async function cleanup() {
   await pool.query(`DELETE FROM kpi_snapshots WHERE scope_id = $1`, [REF]);
   await pool.query(`DELETE FROM manager_reviews WHERE summary LIKE 'kpi-pg%'`);
   await pool.query(`DELETE FROM tracked_channels WHERE channel_key = $1`, [CH]);
+  await pool.query(`DELETE FROM editor_channels WHERE channel_key = $1`, [CH]);
 }
 
 before(async () => {
@@ -31,6 +35,7 @@ before(async () => {
   pool = new Pool({ connectionString: url });
   await cleanup();
   await pool.query(`INSERT INTO tracked_channels (channel_key, username, title, is_mine) VALUES ($1, 'kpi_pg_test', 'KPI', true)`, [CH]);
+  await pool.query(`INSERT INTO editor_channels (channel_key, mode, posts_per_day_min, posts_per_day_max) VALUES ($1, 'live', 2, 6)`, [CH]);
   orchId = (await new AgentsRepository(pool).insert({ kind: 'orchestrator', scope: 'resource', scopeId: REF, name: 'KPI', handle: 'kpi_pg_orch', mode: 'live', createdBy: 'owner' })).id;
   // 35 days of posts: 1000 views/post in the baseline, 500 in the last week (a 50% drop).
   for (let d = 2; d <= 35; d++) {
@@ -59,9 +64,17 @@ test('digest flags the drop; directive lifecycle: owner approval → delivery �
   const agents = new AgentsRepository(pool);
   const repo = new DirectivesRepository(pool);
   const inbox = new OwnerInbox(pool);
+  // Spec 025: the real executors; this orchestrator has no playbook, so frequency edits its card (single-channel fallback).
+  const channels = new EditorChannelsRepository(pool);
+  const network = new NetworkRepository(pool);
+  const xdeps = { network, channels, observer: new SqlPlanObserver(pool) };
+  const exec = new DirectiveExecution({
+    repo, inbox, agents, context: executionContextOf({ repo: network, channels }),
+    executors: [frequencyExecutor(xdeps), formatShiftExecutor(xdeps), pauseSeriesExecutor(xdeps)],
+  });
   const deps = {
     repo, agents, digest, inbox, memory: { listActive: async () => [] }, actions: { propose: async () => ({}) as any },
-    channelKeyOf: async () => CH,
+    channelKeyOf: async () => CH, exec,
   };
   const filed: any = await fileDirective(deps as any, {
     to: '@kpi_pg_orch', kind: 'frequency', binding: 'directive', body: 'Зменшити частоту на 40% на тиждень', params: { change_pct: -40 },
@@ -74,7 +87,7 @@ test('digest flags the drop; directive lifecycle: owner approval → delivery �
   await svc.decide(filed.directive.id, true);
   const runner = new ManagerRunner({
     loop: { run: async () => ({}) as any }, registry: { forRole: () => [] }, runtime: { forAgent: async () => ({}) as any },
-    agents, repo, digest, inbox, env: () => undefined,
+    agents, repo, digest, inbox, env: () => undefined, exec,
   });
   const orch = (await agents.get(orchId))!;
   const text = await runner.deliver(orch);
@@ -88,6 +101,10 @@ test('digest flags the drop; directive lifecycle: owner approval → delivery �
   const a = (await repo.get(filed.directive.id))!;
   assert.equal(a.status, 'applied');
   assert.ok(a.outcomeDetail?.before?.value != null);
+  // The executor changed the card: 2–6 posts a day, −40 % → 1–4 (rounded); the change holds before/after.
+  assert.deepEqual([a.change.target, a.change.before, a.change.after], ['card', { min: 2, max: 6 }, { min: 1, max: 4 }]);
+  const card = (await channels.get(CH))!;
+  assert.deepEqual([card.postsPerDayMin, card.postsPerDayMax], [1, 4]);
 
   // Review date reached; the metric recovered by > 10% → worked.
   await pool.query(`UPDATE agent_directives SET review_at = now() - interval '1 minute' WHERE id = $1`, [a.id]);

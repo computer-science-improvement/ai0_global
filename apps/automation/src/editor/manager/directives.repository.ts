@@ -186,11 +186,93 @@ export class DirectivesRepository {
     return rows.map(toDirective);
   }
 
-  /** Accepted (not promo) directives of an agent are applied once its orchestration run has finished. */
-  async applyAccepted(toAgentId: string, except: DirectiveKind[]): Promise<Directive[]> {
+  // ── executors (spec 025 FR-009) ───────────────────────────────────────────
+
+  /** Accepted, live directives waiting for their executor: one orchestrator's, or every one untouched for `idleMs`. */
+  async acceptedForExecution(f: { toAgentId?: string | null; idleMs?: number | null; except: DirectiveKind[] }): Promise<Directive[]> {
     const { rows } = await this.pool.query(
-      `UPDATE agent_directives SET status = 'applied', applied_at = now(), updated_at = now()
-        WHERE to_agent_id = $1 AND status = 'accepted' AND NOT shadow AND NOT (kind = ANY($2::text[])) RETURNING *`, [toAgentId, except]);
+      `SELECT * FROM agent_directives
+        WHERE status = 'accepted' AND NOT shadow AND NOT (kind = ANY($1::text[]))
+          AND ($2::uuid IS NULL OR to_agent_id = $2)
+          AND ($3::bigint IS NULL OR updated_at < now() - $3::bigint * interval '1 millisecond')
+        ORDER BY created_at`, [f.except, f.toAgentId ?? null, f.idleMs == null ? null : Math.round(f.idleMs)]);
+    return rows.map(toDirective);
+  }
+
+  /** Store the planned change before it is applied (a restart re-applies the same change: a no-op). */
+  async setChange(id: string, change: unknown): Promise<void> {
+    await this.pool.query(`UPDATE agent_directives SET change = $2, updated_at = now() WHERE id = $1`, [id, JSON.stringify(change)]);
+  }
+
+  /** One failed execution attempt; returns the attempt count. */
+  async execFailed(id: string, error: string): Promise<number> {
+    const { rows } = await this.pool.query(
+      `UPDATE agent_directives SET exec_attempts = exec_attempts + 1, exec_error = $2, updated_at = now() WHERE id = $1 AND status = 'accepted'
+        RETURNING exec_attempts`, [id, error.slice(0, 1000)]);
+    return Number(rows[0]?.exec_attempts ?? 0);
+  }
+
+  async markApplied(id: string, p: { change?: unknown; verification?: unknown }): Promise<Directive | null> {
+    const { rows } = await this.pool.query(
+      `UPDATE agent_directives SET status = 'applied', applied_at = now(), change = COALESCE($2, change), verification = COALESCE($3, verification),
+              exec_error = NULL, updated_at = now()
+        WHERE id = $1 AND status = 'accepted' RETURNING *`,
+      [id, p.change === undefined ? null : JSON.stringify(p.change), p.verification === undefined ? null : JSON.stringify(p.verification)]);
+    return rows[0] ? toDirective(rows[0]) : null;
+  }
+
+  async markFailed(id: string, error: string): Promise<Directive | null> {
+    const { rows } = await this.pool.query(
+      `UPDATE agent_directives SET status = 'failed', exec_error = $2, resolution = COALESCE(resolution, '') || CASE WHEN resolution IS NULL THEN '' ELSE ' · ' END || 'executor failed',
+              updated_at = now()
+        WHERE id = $1 AND status = 'accepted' RETURNING *`, [id, error.slice(0, 1000)]);
+    return rows[0] ? toDirective(rows[0]) : null;
+  }
+
+  /** Applied, live directives of `kinds` whose verification has no verdict yet (hourly verify()). */
+  async awaitingVerification(kinds: DirectiveKind[]): Promise<Directive[]> {
+    if (!kinds.length) return [];
+    const { rows } = await this.pool.query(
+      `SELECT * FROM agent_directives
+        WHERE status = 'applied' AND NOT shadow AND verified_at IS NULL AND kind = ANY($1::text[])
+          AND (verification IS NULL OR NOT (verification ? 'adherence'))
+        ORDER BY applied_at`, [kinds]);
+    return rows.map(toDirective);
+  }
+
+  /** Record a verification verdict (merged into `verification`); `verified` stamps verified_at. */
+  async setVerification(id: string, verification: Record<string, unknown>, verified: boolean): Promise<void> {
+    await this.pool.query(
+      `UPDATE agent_directives SET verification = COALESCE(verification, '{}'::jsonb) || $2::jsonb,
+              verified_at = CASE WHEN $3 THEN COALESCE(verified_at, now()) ELSE verified_at END, updated_at = now()
+        WHERE id = $1`, [id, JSON.stringify(verification), verified]);
+  }
+
+  /** pause_series directives whose resume date (Kyiv) has come and whose series is not resumed yet. */
+  async dueSeriesResumes(today: string): Promise<Directive[]> {
+    const { rows } = await this.pool.query(
+      `SELECT * FROM agent_directives
+        WHERE kind = 'pause_series' AND status IN ('applied','evaluated') AND NOT shadow
+          AND change->>'op' = 'series_active' AND change->>'resume_on' <= $1 AND change->>'resumed_at' IS NULL
+        ORDER BY applied_at`, [today]);
+    return rows.map(toDirective);
+  }
+
+  /** Merge fields into `change` (e.g. resumed_at). */
+  async mergeChange(id: string, patch: Record<string, unknown>): Promise<void> {
+    await this.pool.query(`UPDATE agent_directives SET change = COALESCE(change, '{}'::jsonb) || $2::jsonb, updated_at = now() WHERE id = $1`, [id, JSON.stringify(patch)]);
+  }
+
+  /**
+   * Binding directives whose playbook change an orchestrator may not undo before review_at
+   * (spec 025 `directive_lock`; advice is not locked).
+   */
+  async playbookLocks(toAgentId: string, now: Date): Promise<Directive[]> {
+    const { rows } = await this.pool.query(
+      `SELECT * FROM agent_directives
+        WHERE to_agent_id = $1 AND binding = 'directive' AND status = 'applied' AND NOT shadow
+          AND change->>'target' = 'playbook' AND review_at > $2
+        ORDER BY applied_at`, [toAgentId, now]);
     return rows.map(toDirective);
   }
 

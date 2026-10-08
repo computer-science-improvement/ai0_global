@@ -9,6 +9,8 @@ import type { EditorMemoryRepository } from '../repo/editor-memory.repository';
 import { DIRECTIVE_KINDS, DIRECTIVE_STATUSES, DirectiveKind, DirectivesRepository, Expected, KPI_METRICS } from './directives.repository';
 import type { KpiDigest, KpiDigestService } from './kpi-digest.service';
 import { admitDirective, BINDINGS, checkBinding, ESCALATION_WINDOW_MS, metricValue, paramStructural } from './directive-kinds';
+import type { DirectiveExecution } from './executors';
+import { describe as describeChange } from './executors/playbook-executors';
 
 export const MAX_DIRECTIVES_PER_RUN = 3;
 export const REJECT_COOLDOWN_MS = 48 * 3600_000;
@@ -50,6 +52,8 @@ export interface DirectiveToolDeps {
   channelKeyOf: (agent: Agent) => Promise<string | null>;
   /** Spec 023: is this series owner-locked in the orchestrator's active playbook? (pause_series directives) */
   seriesLocked?: (orch: Agent, name: string) => Promise<boolean>;
+  /** Spec 025 FR-004: executor dry-run at filing (not_executable, structural detection). */
+  exec?:   Pick<DirectiveExecution, 'dryRun'>;
   now?:    () => Date;
 }
 
@@ -80,7 +84,10 @@ export async function fileDirective(d: DirectiveToolDeps, i: FileDirective, o: {
   // Spec 025 FR-002: the kind × binding matrix (kind-only rules first, structural advice after the dry-run).
   const kindRule = checkBinding(i.kind, i.binding, false);
   if (kindRule) return kindRule;
-  const structural = isStructural(i.kind, i.params);
+  // Spec 025 FR-004: the executor's dry-run — impossible directives are never filed; its diff can make it structural.
+  const dry = d.exec ? await d.exec.dryRun({ kind: i.kind, params: i.params, toAgentId: target.id }, target) : null;
+  if (dry && 'error' in dry) return dry;
+  const structural = isStructural(i.kind, i.params) || !!dry?.structural;
   const matrix = checkBinding(i.kind, i.binding, structural);
   if (matrix) return matrix;
   // Spec 025 FR-003: a non-structural binding directive needs an anomaly or an escalation; ≤ 2 open per target.
@@ -100,7 +107,10 @@ export async function fileDirective(d: DirectiveToolDeps, i: FileDirective, o: {
     fromAgentId: o.from?.id ?? null, toAgentId: target.id, kind: i.kind, binding: i.binding, structural, body: i.body, params: i.params,
     rationale: i.rationale, evidence: i.evidence, expected: (i.expected ?? null) as Expected | null,
     reviewAt: new Date(now.getTime() + i.review_in_days * 86_400_000), status, runId: o.runId, shadow: o.shadow,
-    outcomeDetail: { at_filing: atFiling, admission: { basis: admission.basis, ...(admission.detail ?? {}) } },
+    outcomeDetail: {
+      at_filing: atFiling, admission: { basis: admission.basis, ...(admission.detail ?? {}) },
+      ...(dry ? { dry_run: { change: describeChange(dry), structural: dry.structural, reasons: dry.reasons } } : {}),
+    },
   });
   if (o.ownerApproved) await d.repo.update(dir.id, { ownerDecision: 'approved' });
   if (status === 'awaiting_owner' && !o.shadow) {
@@ -108,7 +118,7 @@ export async function fileDirective(d: DirectiveToolDeps, i: FileDirective, o: {
     await d.inbox.post({
       agentId: target.id, kind: 'directive_structural', severity: 'action',
       title: `🧭 @manager → @${target.handle}: ${i.kind} — needs your decision`,
-      body: `${i.body}\n\nWhy: ${i.rationale}\nExpected: ${expected}\n\nApply or reject it on the @manager page → Directives.`,
+      body: `${i.body}\n\nWhy: ${i.rationale}\nExpected: ${expected}${dry ? `\nChange: ${describeChange(dry)}` : ''}\n\nApply or reject it on the @manager page → Directives.`,
       alert: {
         title: `🧭 @manager → @${target.handle}: ${i.kind} — потрібне ваше рішення`,
         body: `${i.body}\n\nЧому: ${i.rationale}\nОчікуємо: ${expected}\n\nЗастосувати / відхилити — на сторінці @manager → Directives.`,
@@ -215,7 +225,7 @@ export function buildDirectiveTools(d: DirectiveToolDeps): EditorTool[] {
         if (owner.length) return { error: 'owner_rule_conflict', details: `правило власника важливіше: «${owner[0].text}» — відхили директиву з reason_kind owner_rule` };
       }
       await d.repo.update(i.id, { status: 'accepted', resolution: i.plan }, ['new']);
-      return { ok: true, note: 'Після завершення прогону директива стане applied, а за review_at код оцінить ефект.' };
+      return { ok: true, note: 'Після прогону код сам застосує зміну (виконавець директиви), потім перевірить, чи план їй відповідає; за review_at — оцінка ефекту.' };
     },
   });
 
