@@ -11,6 +11,7 @@ import { FORMAT_CHANGES_PER_DAY, FormatLocksSchema, FormatPrefsSchema, ResourceP
 import { NetworkRepository } from '../network/network.repository';
 import type { SkillStore } from './skill-store';
 import { SKILL_ROLES } from './skill-lint';
+import { assertNoEnabledBindings, liveRefsOf } from '../migration/binding-guard';
 
 export interface AgentsServiceDeps {
   pool:    Pick<Pool, 'query'>;
@@ -140,6 +141,11 @@ export class AgentsService {
     if (v.schedule !== undefined) patch.schedule = v.schedule;
     if (v.daily_budget_usd !== undefined) patch.dailyBudgetUsd = v.daily_budget_usd;
     if (v.mode !== undefined && v.mode !== a.mode) {
+      // Spec 023 FR-012: no live switch while a strategy binding still publishes to the agent's resources.
+      if (v.mode === 'live') {
+        const orch = a.parentId ? (await this.d.agents.get(a.parentId)) ?? a : a;
+        await assertNoEnabledBindings(this.d.pool, await liveRefsOf(this.d.pool, orch));
+      }
       // A Telegram resource orchestrator's mode IS the channel card's mode (the publishing switch).
       const key = !a.parentId ? telegramKeyOf(a) : null;
       if (key) await this.d.setChannelMode(key, v.mode);

@@ -16,6 +16,10 @@ export interface StrategyBindingRow {
   platform:    'telegram' | 'instagram' | 'facebook' | 'threads' | 'tiktok';
   meta_account_id: string | null;
   tiktok_account_id: string | null;
+  /** Spec 023 FR-012: set when a cutover retired the binding (`retired_reason='migrated'`, `migrated_to` = the agent). */
+  retired_at?:     Date | null;
+  retired_reason?: string | null;
+  migrated_to?:    { agent_id?: string; handle?: string; playbook_id?: string | null; series?: string[] } | null;
 }
 
 export interface StrategyBindingInsertInput {
@@ -37,7 +41,8 @@ export class StrategyBindingsRepository {
   async list(): Promise<StrategyBindingRow[]> {
     const { rows } = await this.pool.query<StrategyBindingRow>(
       `SELECT id, ext_id, type, channel_id, schedule, params, enabled, notes,
-              low_content_threshold, platform, meta_account_id, tiktok_account_id
+              low_content_threshold, platform, meta_account_id, tiktok_account_id,
+              retired_at, retired_reason, migrated_to
        FROM strategy_bindings
        ORDER BY ext_id`,
     );
@@ -66,7 +71,8 @@ export class StrategyBindingsRepository {
   async findById(id: string): Promise<StrategyBindingRow | null> {
     const { rows } = await this.pool.query<StrategyBindingRow>(
       `SELECT id, ext_id, type, channel_id, schedule, params, enabled, notes,
-              low_content_threshold, platform, meta_account_id, tiktok_account_id
+              low_content_threshold, platform, meta_account_id, tiktok_account_id,
+              retired_at, retired_reason, migrated_to
        FROM strategy_bindings WHERE id = $1`, [id],
     );
     return rows[0] ?? null;
@@ -77,7 +83,8 @@ export class StrategyBindingsRepository {
   async listByMetaAccount(metaAccountId: string): Promise<StrategyBindingRow[]> {
     const { rows } = await this.pool.query<StrategyBindingRow>(
       `SELECT id, ext_id, type, channel_id, schedule, params, enabled, notes,
-              low_content_threshold, platform, meta_account_id, tiktok_account_id
+              low_content_threshold, platform, meta_account_id, tiktok_account_id,
+              retired_at, retired_reason, migrated_to
        FROM strategy_bindings WHERE meta_account_id = $1
        ORDER BY ext_id`, [metaAccountId],
     );
@@ -96,7 +103,8 @@ export class StrategyBindingsRepository {
   async findByExtId(extId: string): Promise<StrategyBindingRow | null> {
     const { rows } = await this.pool.query<StrategyBindingRow>(
       `SELECT id, ext_id, type, channel_id, schedule, params, enabled, notes,
-              low_content_threshold, platform, meta_account_id, tiktok_account_id
+              low_content_threshold, platform, meta_account_id, tiktok_account_id,
+              retired_at, retired_reason, migrated_to
        FROM strategy_bindings WHERE ext_id = $1`, [extId],
     );
     return rows[0] ?? null;
@@ -109,7 +117,8 @@ export class StrategyBindingsRepository {
        -- COALESCE($7) keeps the SQL in sync with the column DEFAULT 'telegram'.
        VALUES ($1, $2, $3, $4, $5::jsonb, COALESCE($6, true), COALESCE($7, 'telegram'), $8, $9)
        RETURNING id, ext_id, type, channel_id, schedule, params, enabled, notes,
-                 low_content_threshold, platform, meta_account_id, tiktok_account_id`,
+                 low_content_threshold, platform, meta_account_id, tiktok_account_id,
+                 retired_at, retired_reason, migrated_to`,
       [
         input.ext_id, input.type, input.channel_id ?? null, input.schedule,
         JSON.stringify(input.params), input.enabled ?? true,
@@ -155,7 +164,8 @@ export class StrategyBindingsRepository {
       `UPDATE strategy_bindings SET ${sets.join(', ')}
        WHERE id = $1
        RETURNING id, ext_id, type, channel_id, schedule, params, enabled, notes,
-                 low_content_threshold, platform, meta_account_id, tiktok_account_id`,
+                 low_content_threshold, platform, meta_account_id, tiktok_account_id,
+                 retired_at, retired_reason, migrated_to`,
       params,
     );
     return rows[0] ?? null;

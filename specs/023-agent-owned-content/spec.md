@@ -349,3 +349,92 @@ Commit `feat(content): 023-T5 …`. No migration.
   REST list of FR-007).
 - **Evals** (written, not run): `chat-series-change` and `planner-honours-pins` (`evals/cases/schedule.ts`); the
   eval stack wires the ScheduleService into the tools, runner and planners.
+
+## Implementation notes (T6, 2026-10-08)
+Commit `feat(content): 023-T6 …`. Code in `apps/automation/src/editor/migration/`.
+
+- **Migration `063_strategy_retirement.sql`.** 059 (T4) had already added `retired_at` / `retired_reason` /
+  `migrated_to` and the `created_by='migration'` playbook check; 063 re-asserts both idempotently and adds the guards
+  the cutover relies on: `strategy_bindings_retired_chk` (a retired row stays disabled and names its reason,
+  `migrated` or `owner`; re-enabling must clear the retirement in the same UPDATE — only the rollback does),
+  `migrated_to` must be an object, and a partial index on `retired_at`.
+- **Proposal** (`proposal.ts`, `cron-cadence.ts`, `type-mapping.ts`; pure). The cron runs in `SCHEDULER_TZ` (else
+  the process zone, UTC in Docker); times are converted to the resource zone **at today's offsets** (a warning says
+  so) and a whole-day shift moves the weekdays (a cron whose times cross midnight unevenly is unmappable). The
+  digest types are retry loops: a minute step collapses to the window's first time. Quiet-hour times are dropped
+  before the > 6 check. A Meta / TikTok binding gets the platform's native format (photo → `ig_photo` / `fb_photo` /
+  `th_image` / `tt_photo`, carousel → `ig_carousel` / `fb_album` / `th_carousel` / `tt_photo`, text → `fb_text` /
+  `th_text`, none on Instagram). Unmappable reasons: no agent equivalent, the format is off on the card (or missing
+  on the platform), a `required` dataset is not in the library, day-of-month / month crons, all times in quiet
+  hours, a destination outside the network or unusable (health), a Meta / TikTok binding in a `legacy_duplicate`
+  network, a binding some series already names (`migrated_from`), no resolvable destination.
+- **Deviations in the mapping.** A feed that is not on the channel card gives a series without a source (warning;
+  the `ua-news` brief keeps the feed URL) — naming it would make every later agent submit fail validation;
+  `ai0-news` reads `config/sources` and gets no source. `game-channel` names one API (suggested mode). Both digests
+  map to `network_highlights` scope `network`. **The "pillar note" of a frequency hint is a playbook `rules` line**
+  («Замість стратегії <ext_id> (<type>): близько N пост(ів) на день …») because pillar shares must add up to 100;
+  the hint is `published_posts` of the last 14 days ÷ 14 (Telegram; other platforms: successful `strategy_runs`),
+  else the cron count. Each section's `per_day.max` becomes at least the busiest weekday's series instances plus
+  the hints (capped at 24 / the platform API cap); a missing section is added (`discovery`), a missing format
+  weight is set to 0.5. Series are named after the binding `ext_id` (a clash gets " (2)"); briefs are Ukrainian
+  agent instructions, the rationale and warnings English.
+- **Draft.** The `migrate_strategies` card stores the proposal key (bindings + active version); Apply re-proposes and
+  fails `stale` when it changed, `migration_invalid` when the draft does not validate, `nothing_to_migrate` when
+  nothing maps. It writes `created_by='migration'`, `pending_owner` (superseding an agent's pending draft), the
+  per-binding outcomes in `review.strategy_migration`, and an Inbox `playbook_pending` item. The owner approves it on
+  the agent page as any pending version.
+- **Cutover.** The bindings it retires are the enabled bindings of the network that the **active** playbook took
+  over: a series' `migrated_from` or a frequency-hint rule line. Unmappable bindings stay enabled and keep blocking
+  `live` (the owner pauses them). Shadow statistics: since = the first slot of a migrated series; the last 7 days'
+  projected instances vs slots of those series that were `shadowed` / `published` / `awaiting_approval` / `approved`.
+  `StrategyMigrationUpkeep` (06:41 daily) files a chatless `strategy_cutover` card when ready (one pending card per
+  channel) and one Inbox item `strategy_cutover_ready` per channel per 7 days. Apply: `EDITOR_ENABLED≠true` →
+  `editor_disabled`; one transaction sets the card (audited like an owner upsert) and the orchestrator to
+  `CUTOVER_TARGET_MODE` (approve) and retires the bindings (`migrated_to` = `{agent_id, handle, playbook_id,
+  series[]}`); then `config:changed` (kind `strategy`) and an Inbox item.
+- **Guards.** `bindings_still_enabled` (409, `ext_ids`) in `EditorChannelsRepository.upsert` (inside its
+  transaction, so the owner's card form, the autonomy switch and `AgentsService` all hit it) and in
+  `AgentsService.patch` (also for platform resources and network scopes). **A Telegram anchor's live switch covers
+  its whole account group** (its Meta / TikTok bindings too). `binding_retired` (409) in `PATCH /api/strategies/:id`
+  plus the DB check.
+- **Rollback** (`strategy_rollback`): one transaction re-enables the bindings retired for this agent and clears their
+  retirement, and puts the orchestrator **and its card** back to `shadow` (leaving approval drops waiting posts, as
+  in 031).
+- **Triggers.** REST (`TrackingAuthGuard`): `GET /api/strategies/migration` (per-channel state, pending cards),
+  `GET /api/strategies/migration/proposal?channel=` (dry run), `POST /api/strategies/migration/{migrate,cutover,rollback}`
+  `{channel}` → a chatless card (Apply / Discard through `/api/agents/actions/:id/…`). @ai0:
+  `propose_strategy_migration({channel, op: preview|migrate|cutover|rollback})` (cards need the explicit-request
+  check). CLI: `pnpm --filter automation migrate:strategies --dry-run [--channel @key] [--json]` on a read-only
+  connection (`default_transaction_read_only`); it does not check resource health.
+- **Tests.** Unit: cron → cadence (incl. `*/10 19-20`, `0 */4`, `*/30`, zones, weekday shift), the 18 type rules,
+  native formats, every binding of `config/channels.json` (10 of 10 mapped), the guards. PG
+  (`strategy-migration.pg.test.ts`): dry run writes nothing → migrate (stale, then applied) → approve → shadow →
+  offer → refused without `EDITOR_ENABLED` → cutover transaction → 409 live guard (card and agent) → 409
+  `binding_retired` and the DB check → live after pausing the last binding → rollback.
+
+## Implementation notes (T7 phase A, 2026-10-08)
+Commit `feat(content): 023-T7 …`. **Phase B (deleting idle strategy modules, the redirect, removing the scheduler and
+`ContentRunwayService`) is not done: it is owner-gated.** No migration.
+
+- **API.** `POST /api/strategies` → `410 strategies_legacy` (the create validation is gone). `PATCH /api/strategies/:id`
+  accepts only `enabled: false` and `notes`; any other field (enabling included) → `410 strategies_legacy` with
+  `refused[]`; a retired binding asked to enable → `409 binding_retired` first. `DELETE` and the read endpoints
+  (`GET`, `types`, runs, previews) stay. The list adds `retired_at`, `retired_reason`, `migrated_to`. The unit tests of
+  the removed create / edit validation were replaced by `strategies.controller.legacy.test.ts`.
+- **`/app/strategies`.** No Add button; a "Content is run by agents" banner (`components/strategies/MigrationBanner.tsx`)
+  lists every channel with bindings (state badge, agent link to its Schedule tab, enabled / retired counts, shadow
+  days and share) with **Migrate** (a dry-run modal, then "Create migration draft" proposes and applies the
+  `migrate_strategies` card), **Cutover** (when ready; confirm, then the card is applied), **Rollback** (when bindings
+  were retired) and the pending migration cards (e.g. the upkeep's cutover offer) with Apply / Discard. Rows can only
+  be paused (no Enable); retired rows are greyed, sorted last, and link to the agent's series. `/app/strategies/new`
+  explains that strategies can no longer be created. The detail page is a read-only "Legacy strategy" panel (notes,
+  Pause, cross-post targets) and the recipe post preview is read-only. The channel page shows schedules as text.
+  **Deviation:** the create form (`StrategyForm`, `lib/strategy-types.ts`) and the inline schedule editors
+  (`InlineScheduleEditor`, `SchedulePicker`) were deleted rather than hidden; `PatchStrategyInput` now types only
+  `{ enabled?: false; notes? }`, so tsc rejects any UI path that enables a binding.
+- **Menu.** A new **Legacy** group (`g_legacy`, last) holds Strategies and its hidden New-strategy entry; saved menus
+  keep the owner's own placement.
+- **Overview.** "Active strategies" became **Upcoming slots (24 h)** and "Upcoming runs" the **Upcoming slots** card:
+  the next series instances and owner pins of every Telegram-anchored agent (not `off`) with the status of the slot
+  that realises each (`GET /api/schedule/upcoming?hours&limit`, `editor/schedule/upcoming.ts`, built on
+  `ScheduleService.schedule`). "Strategy status" was renamed "Legacy strategy runs".

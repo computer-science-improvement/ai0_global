@@ -4,6 +4,7 @@ import { formatDistanceToNow } from 'date-fns';
 import type { CSSProperties } from 'react';
 import { trackingApi } from '../api/tracking';
 import { useStrategies } from '../api/strategies';
+import { useUpcomingSlots, type UpcomingSlot } from '../api/upcoming';
 import { useMetaAccounts, useRefreshMetaStats } from '../api/meta-accounts';
 import { PageHeader } from '../components/ui/PageHeader';
 import { Badge } from '../components/ui/Badge';
@@ -30,8 +31,25 @@ function deltaText(n: number): string {
   return '0';
 }
 
+const SLOT_STATUS_TONE: Record<string, Tone> = {
+  planned: 'neutral', running: 'accent', shadowed: 'neutral', published: 'success', awaiting_approval: 'warning',
+  approved: 'success', skipped: 'warning', failed: 'danger', expired: 'neutral',
+};
+
+/** "awaiting_approval" → "awaiting approval"; no slot yet → "not planned". */
+function slotStatusLabel(s: UpcomingSlot): string {
+  return s.status ? s.status.replace(/_/g, ' ') : 'not planned';
+}
+
+/** The local time of a slot (en-GB, the viewer's zone) — the card lists the next 24 h. */
+function slotTime(iso: string): string {
+  try { return new Date(iso).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }); } catch { return iso; }
+}
+
 function OverviewPage() {
   const strategiesQ = useStrategies();
+  // Spec 023 FR-013: agents' series instances and owner pins replace "Active strategies / Upcoming runs".
+  const upcomingQ = useUpcomingSlots(24, 8);
   const channelsQ = useQuery({
     queryKey: ['channels', 'mine', 'overview'],
     queryFn: () => trackingApi.listChannels({ filter: 'mine', pageSize: 200 }),
@@ -46,12 +64,8 @@ function OverviewPage() {
   const totalSubs = channels.reduce((sum, c) => sum + (c.subsCount ?? 0), 0);
   const metaFollowers = metaAccounts.reduce((sum, a) => sum + (a.followers ?? 0), 0);
   const metaDelta24 = metaAccounts.reduce((sum, a) => sum + (a.followers_delta_24h ?? 0), 0);
-  const active = strategies.filter(s => s.enabled);
   const errors = strategies.filter(s => s.last_run?.status === 'error');
-  const upcoming = active
-    .filter(s => s.next_run_at)
-    .sort((a, b) => (a.next_run_at! < b.next_run_at! ? -1 : 1))
-    .slice(0, 6);
+  const upcoming = upcomingQ.data?.items ?? [];
   const recent = strategies
     .filter(s => s.last_run)
     .sort((a, b) => (b.last_run!.started_at > a.last_run!.started_at ? 1 : -1))
@@ -79,7 +93,7 @@ function OverviewPage() {
           delta={metaQ.isLoading ? undefined : deltaText(metaDelta24)}
           deltaTone={metaDelta24 > 0 ? 'success' : metaDelta24 < 0 ? 'danger' : 'neutral'}
         />
-        <StatTile icon="strategies" label="Active strategies" value={strategiesQ.isLoading ? '—' : active.length} />
+        <StatTile icon="calendar" label="Upcoming slots (24 h)" value={upcomingQ.isLoading ? '—' : upcoming.length >= 8 ? '8+' : upcoming.length} />
         <StatTile
           icon="warning" label="Errors" value={errors.length}
           delta={errors.length ? 'needs attention' : 'all clear'}
@@ -96,25 +110,38 @@ function OverviewPage() {
       <NetworkHealthCard delay={4 * 60} />
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))', gap: 12, marginBottom: 12 }}>
-        <SectionCard delay={5 * 60} icon="calendar" title="Upcoming runs">
-          {strategiesQ.isLoading
-            ? <EmptyState icon="calendar" title="Loading scheduled runs…" />
-            : upcoming.length === 0
-              ? <EmptyState icon="calendar" title="No scheduled runs" note="Enable a strategy with a cron to see it queued here." />
-              : upcoming.map((s, idx) => (
-                <div key={s.id} style={idx === 0 ? { ...rowBase, borderTop: 'none' } : rowBase} onMouseEnter={onRowEnter} onMouseLeave={onRowLeave}>
-                  <span style={{ color: 'var(--color-ink)', fontWeight: 500, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: 160 }}>{s.ext_id}</span>
-                  {s.channel_key && <span className="text-micro" style={{ color: 'var(--color-ink-dim)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{s.channel_key}</span>}
-                  <span className="text-micro" style={{ marginLeft: 'auto', color: 'var(--color-ink-muted)', whiteSpace: 'nowrap' }}>{s.next_run_at ? rel(s.next_run_at) : ''}</span>
-                </div>
-              ))}
+        <SectionCard delay={5 * 60} icon="calendar" title="Upcoming slots" action={<span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>series and pins · next 24 h</span>}>
+          {upcomingQ.isLoading
+            ? <EmptyState icon="calendar" title="Loading upcoming slots…" />
+            : upcomingQ.error
+              ? <EmptyState icon="calendar" title="Upcoming slots unavailable" note={(upcomingQ.error as Error).message} />
+              : upcoming.length === 0
+                ? <EmptyState icon="calendar" title="No series or pins in the next 24 hours" note="Agents' series and your pinned posts appear here. Steer them on an agent's Schedule tab." />
+                : upcoming.map((u, idx) => (
+                  <Link
+                    key={`${u.agent}-${u.at}-${u.name}`}
+                    to={'/app/agents/$handle' as never}
+                    params={{ handle: u.agent } as never}
+                    search={{ tab: 'schedule' } as never}
+                    style={idx === 0 ? { ...rowBase, borderTop: 'none', textDecoration: 'none', color: 'inherit', flexWrap: 'wrap' } : { ...rowBase, textDecoration: 'none', color: 'inherit', flexWrap: 'wrap' }}
+                    onMouseEnter={onRowEnter}
+                    onMouseLeave={onRowLeave}
+                    title={`${u.kind === 'pin' ? 'Pinned post' : 'Series'} · ${u.resourceRef} · @${u.agent}${u.owner ? ' · set by you' : ''}`}
+                  >
+                    <span style={{ color: 'var(--color-ink)', fontVariantNumeric: 'tabular-nums', fontWeight: 500, minWidth: 40 }}>{slotTime(u.at)}</span>
+                    <span style={{ color: 'var(--color-ink-muted)', display: 'inline-flex', flexShrink: 0 }}><PlatformGlyph name={u.kind === 'pin' ? 'pin' : 'calendar'} size={12} /></span>
+                    <span style={{ color: 'var(--color-ink)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: 150 }}>{u.name}</span>
+                    <span className="text-micro" style={{ color: 'var(--color-ink-dim)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: 130 }}>{u.channelKey}</span>
+                    <span style={{ marginLeft: 'auto' }}><Badge tone={u.status ? (SLOT_STATUS_TONE[u.status] ?? 'neutral') : 'neutral'}>{slotStatusLabel(u)}</Badge></span>
+                  </Link>
+                ))}
         </SectionCard>
 
-        <SectionCard delay={6 * 60} icon="strategies" title="Strategy status">
+        <SectionCard delay={6 * 60} icon="strategies" title="Legacy strategy runs">
           {strategiesQ.isLoading
             ? <EmptyState icon="strategies" title="Loading recent runs…" />
             : recent.length === 0
-              ? <EmptyState icon="strategies" title="No runs yet" note="Strategy outcomes will appear here once they fire." />
+              ? <EmptyState icon="strategies" title="No runs yet" note="Legacy strategy outcomes appear here while any strategy still runs." />
               : recent.map((s, idx) => {
                 const status = s.last_run!.status;
                 return (

@@ -236,6 +236,10 @@ export interface Strategy {
   low_content_threshold: number;
   /** True for a telegram binding whose channel has no bot AND no default bot exists. */
   needs_bot?:            boolean;
+  /** Spec 023: set when a cutover retired the binding (its agent's series took over). */
+  retired_at?:           string | null;
+  retired_reason?:       string | null;
+  migrated_to?:          { agent_id?: string; handle?: string; playbook_id?: string | null; series?: string[] } | null;
 }
 
 export interface StrategyChannelRef {

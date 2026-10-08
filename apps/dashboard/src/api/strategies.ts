@@ -1,7 +1,7 @@
 // apps/dashboard/src/api/strategies.ts
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { api } from './client';
-import type { Strategy, StrategyRun, StrategyPreview } from './types';
+import type { PendingAction, Strategy, StrategyRun, StrategyPreview } from './types';
 
 export function useStrategyRuns(strategyId: string | null) {
   return useQuery({
@@ -61,46 +61,13 @@ export function useStrategies() {
   });
 }
 
-export interface StrategyTypeInfo { type: string; supportedPlatforms: string[]; }
-
-/** Registered strategy types + the platforms each supports (for the binding form filter). */
-export function useStrategyTypes() {
-  return useQuery({
-    queryKey: ['strategy-types'],
-    queryFn:  () => api<StrategyTypeInfo[]>('/api/strategies/types'),
-  });
-}
-
-export interface CreateStrategyInput {
-  ext_id:      string;
-  type:        string;
-  channel_id?: string;
-  schedule:    string;
-  params?:     Record<string, unknown>;
-  enabled?:    boolean;
-  platform?:   'telegram' | 'instagram' | 'facebook' | 'threads' | 'tiktok';
-  meta_account_id?: string;
-  tiktok_account_id?: string;
-}
-
-export function useCreateStrategy() {
-  const qc = useQueryClient();
-  return useMutation({
-    mutationFn: (input: CreateStrategyInput) =>
-      api<Strategy>('/api/strategies', { method: 'POST', body: JSON.stringify(input) }),
-    onSuccess: () => qc.invalidateQueries({ queryKey: ['strategies'] }),
-  });
-}
-
+/**
+ * Spec 023 FR-013 phase A: strategies are read-only legacy — the API accepts only pausing and notes
+ * (anything else is 410 strategies_legacy), so the type allows nothing more.
+ */
 export interface PatchStrategyInput {
-  ext_id?:     string;
-  type?:       string;
-  channel_id?: string;
-  schedule?:   string;
-  params?:     Record<string, unknown>;
-  enabled?:    boolean;
-  notes?:      string | null;
-  low_content_threshold?: number | null;
+  enabled?: false;
+  notes?:   string | null;
 }
 
 export function usePatchStrategy() {
@@ -119,5 +86,79 @@ export function useDeleteStrategy() {
   return useMutation({
     mutationFn: (id: string) => api<void>(`/api/strategies/${id}`, { method: 'DELETE' }),
     onSuccess:  () => qc.invalidateQueries({ queryKey: ['strategies'] }),
+  });
+}
+
+// ── Spec 023 T6/T7: migration of the bindings into agent series ─────────────
+
+export type MigrationState = 'no_agent' | 'not_migrated' | 'draft_pending' | 'shadow' | 'cutover_ready' | 'retired' | 'legacy';
+
+export interface ShadowStats { since: string | null; days: number; expected: number; realised: number; ratio: number; ready: boolean }
+
+export interface MigrationCard { id: string; kind: 'migrate_strategies' | 'strategy_cutover' | 'strategy_rollback'; summary: string; createdAt: string }
+
+export interface MigrationChannel {
+  channel_key: string;
+  agent:       { handle: string; mode: string } | null;
+  state:       MigrationState;
+  enabled:     string[];
+  retired:     string[];
+  draft:       { id: string; version: number } | null;
+  shadow:      ShadowStats | null;
+  cards:       MigrationCard[];
+}
+
+export type BindingOutcome = {
+  ext_id: string; type: string; resource_ref: string | null; schedule: string; warnings: string[];
+} & (
+  | { outcome: 'series'; series: string; cadence: string; format: string; source: string | null; source_mode: 'suggested' | 'required'; per_day: number }
+  | { outcome: 'frequency'; per_day: number; format: string; source: string | null; reason: string }
+  | { outcome: 'unmappable'; reason: string }
+);
+
+export interface MigrationProposal {
+  channel_key:    string;
+  agent:          { id: string; handle: string } | null;
+  active_version: number | null;
+  bindings:       BindingOutcome[];
+  rationale:      string;
+  errors:         string[];
+  mapped:         number;
+  total:          number;
+}
+
+export type MigrationOp = 'migrate' | 'cutover' | 'rollback';
+
+const MIGRATION_KEY = ['strategies', 'migration'] as const;
+
+/** Per-channel migration state and the pending migration cards (/app/strategies banner). */
+export function useStrategyMigration() {
+  return useQuery({
+    queryKey: MIGRATION_KEY,
+    queryFn:  () => api<{ channels: MigrationChannel[] }>('/api/strategies/migration'),
+    refetchInterval: 60_000,
+  });
+}
+
+/** The dry run of one channel: how each enabled binding would map (writes nothing). */
+export function useMigrationProposal(channel: string | null) {
+  return useQuery({
+    queryKey: [...MIGRATION_KEY, 'proposal', channel],
+    queryFn:  () => api<MigrationProposal>(`/api/strategies/migration/proposal?channel=${encodeURIComponent(channel ?? '')}`),
+    enabled:  !!channel,
+    retry:    false,
+  });
+}
+
+/** Propose a migrate / cutover / rollback card (Apply / Discard through /api/agents/actions/:id/…). */
+export function useProposeMigration() {
+  const qc = useQueryClient();
+  return useMutation({
+    meta: { silentError: true },
+    mutationFn: (v: { op: MigrationOp; channel: string }) =>
+      api<{ action: PendingAction; proposal?: MigrationProposal }>(`/api/strategies/migration/${v.op}`, {
+        method: 'POST', body: JSON.stringify({ channel: v.channel }),
+      }),
+    onSettled: () => qc.invalidateQueries({ queryKey: MIGRATION_KEY }),
   });
 }

@@ -133,6 +133,12 @@ import { SCHEDULE_SERVICE, ScheduleController } from './schedule/schedule.contro
 import { buildCatalog } from '../data/data-catalog';
 import { kyivMonthDay } from '../data/data-query';
 import { AUTONOMY_SERVICE, AutonomyController } from './approval/autonomy.controller';
+import { ConfigEventsPublisher } from '../config/config-events.publisher';
+import { StrategyMigrationService } from './migration/strategy-migration.service';
+import { buildMigrationTools, registerMigrationActions } from './migration/migration-actions';
+import { STRATEGY_MIGRATION, StrategyMigrationController, type StrategyMigrationInfra } from './migration/strategy-migration.controller';
+import { StrategyMigrationUpkeep } from './migration/migration-upkeep';
+import { UPCOMING_SLOTS, UpcomingSlotsController, upcomingSlots, type UpcomingSlotsPort } from './schedule/upcoming';
 
 export const EDITOR_RUNNER    = 'EDITOR_RUNNER';
 export const EDITOR_SCHEDULER = 'EDITOR_SCHEDULER';
@@ -676,6 +682,33 @@ export const EDITOR_PROVIDERS = [
       },
     },
     {
+      // Spec 023 FR-013: the Overview's "Upcoming slots" (series instances and pins of every agent).
+      provide: UPCOMING_SLOTS,
+      inject: [SCHEDULE_INFRA, AGENT_INFRA],
+      useFactory: (schedule: ScheduleService, infra: AgentInfra): UpcomingSlotsPort => ({
+        list: (o) => upcomingSlots({ schedule, agents: infra.agents }, o),
+      }),
+    },
+    {
+      // Spec 023 FR-011/FR-012: strategy bindings → agent series (proposal, cards, cutover, rollback).
+      provide: STRATEGY_MIGRATION,
+      inject: [DB_POOL, ConfigService, EDITOR_REPOS, AGENT_INFRA, PLATFORM_INFRA, { token: ConfigEventsPublisher, optional: true }],
+      useFactory: (
+        pool: Pool, cfg: ConfigService, repos: EditorRepos, infra: AgentInfra, platform: PlatformInfra, events?: ConfigEventsPublisher,
+      ): StrategyMigrationInfra => {
+        const svc = new StrategyMigrationService({
+          pool, agents: infra.agents, network: new NetworkRepository(pool), card: (k) => repos.channels.get(k), inbox: infra.inbox,
+          time: resourceTime(repos, infra.profiles), usable: (ref) => platform.health.usable(ref),
+          sourceCatalog: (card) => seriesSourceCatalog(pool, card),
+          publishConfig: events ? () => events.publish('strategy') : undefined,
+          editorEnabled: () => isEnabled(cfg),
+          log: (m) => new Logger('StrategyMigration').warn(m),
+        });
+        registerMigrationActions(infra.actions, svc);
+        return { svc, actions: infra.actions, pool, inbox: infra.inbox };
+      },
+    },
+    {
       // Deterministic draft actions of the editor chat (spec 010): composer tools, REST buttons, scheduled path.
       provide: EDITOR_DRAFTS,
       inject: [DB_POOL, EDITOR_REPOS, EDITOR_PUBLISH, ChannelConfigService, TelegramNotifier, PostingThrottleService, SCHEDULE_INFRA],
@@ -697,10 +730,11 @@ export const EDITOR_PROVIDERS = [
     {
       // One registry for the runner, the chat and the ops surface (REST tools endpoint → MCP).
       provide: EDITOR_REGISTRY,
-      inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_SKILLS, EDITOR_PUBLISH, EDITOR_DRAFTS, TelegramNotifier, PostingThrottleService, AGENT_INFRA, PLATFORM_INFRA, SCHEDULE_INFRA, { token: LlmBudgetService, optional: true }],
+      inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_SKILLS, EDITOR_PUBLISH, EDITOR_DRAFTS, TelegramNotifier, PostingThrottleService, AGENT_INFRA, PLATFORM_INFRA, SCHEDULE_INFRA, STRATEGY_MIGRATION, { token: LlmBudgetService, optional: true }],
       useFactory: (
         pool: Pool, cfg: ConfigService, repos: EditorRepos, skills: SkillLibrary, ports: PublishPorts, drafts: DraftsService,
-        notifier: TelegramNotifier, throttle: PostingThrottleService, infra: AgentInfra, platform: PlatformInfra, schedule: ScheduleService, caps?: LlmBudgetService,
+        notifier: TelegramNotifier, throttle: PostingThrottleService, infra: AgentInfra, platform: PlatformInfra, schedule: ScheduleService,
+        migration: StrategyMigrationInfra, caps?: LlmBudgetService,
       ): ToolRegistry => {
         const env = (k: string) => cfg.get<string>(k) ?? undefined;
         return new ToolRegistry([
@@ -725,6 +759,8 @@ export const EDITOR_PROVIDERS = [
           ...buildAgentChatTools({ pool, memory: repos.memory, skills: infra.skills, actions: infra.actions }),
           // Spec 023 FR-006: the owner steers the schedule from the chat (cards only).
           ...buildScheduleTools({ schedule, actions: infra.actions }),
+          // Spec 023 FR-011: @ai0 previews a strategy migration and proposes its cards.
+          ...buildMigrationTools({ svc: migration.svc, actions: infra.actions }),
           ...buildNetworkTools({
             repo: new NetworkRepository(pool), plans: repos.plans, memory: repos.memory, inbox: infra.inbox,
             sourceCatalog: (card) => seriesSourceCatalog(pool, card), schedule,
@@ -1152,12 +1188,13 @@ export const EDITOR_PROVIDERS = [
     },
     EditorCron,
     AgentsUpkeep,
+    StrategyMigrationUpkeep,
 ];
 
 @Module({
   // AuthModule: EditorController is guarded by TrackingAuthGuard, which injects AuthService.
   imports:     [ChannelConfigModule, PublishersModule, AuthModule],
-  controllers: [EditorController, EditorChatController, AgentsController, NetworkController, ManagerController, PromoController, PromoRedirectController, ApprovalsController, AutonomyController, ScheduleController],
+  controllers: [EditorController, EditorChatController, AgentsController, NetworkController, ManagerController, PromoController, PromoRedirectController, ApprovalsController, AutonomyController, ScheduleController, StrategyMigrationController, UpcomingSlotsController],
   providers:   [...EDITOR_PROVIDERS, TrackingAuthGuard],
   exports:     [EDITOR_REPOS, EDITOR_RUNNER, AGENT_INFRA, PLATFORM_INFRA, EDITOR_MANAGER],
 })
