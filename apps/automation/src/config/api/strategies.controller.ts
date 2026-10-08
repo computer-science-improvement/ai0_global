@@ -1,6 +1,6 @@
 // apps/automation/src/config/api/strategies.controller.ts
 import {
-  BadRequestException, Body, ConflictException, Controller, Delete, Get,
+  Body, ConflictException, Controller, Delete, Get, GoneException,
   HttpCode, NotFoundException, Param, Patch, Post, UseGuards,
 } from '@nestjs/common';
 import { makeCronJob } from '../../scheduler/schedule-time-zone';
@@ -16,19 +16,7 @@ import { bindingPostedKey } from '../../common/content-strategy/publish-destinat
 import { MetaAccountsRepository } from '../meta-accounts.repository';
 import { ContentStrategyRegistry } from '../../common/content-strategy/content-strategy.registry';
 import { TikTokAccountsRepository } from '../tiktok-accounts.repository';
-import { CreateStrategyDto, PatchStrategyDto } from './dto/strategies.dto';
-
-/**
- * Schema validation for cron expressions. The `cron` lib throws a
- * descriptive error on parse failure; we re-wrap into 400.
- */
-function assertCronOrThrow(schedule: string): void {
-  try {
-    makeCronJob(schedule, () => {});
-  } catch (err: any) {
-    throw new BadRequestException(`Invalid cron expression: ${err?.message ?? schedule}`);
-  }
-}
+import { PatchStrategyDto } from './dto/strategies.dto';
 
 /**
  * Compute the next-run timestamp for a schedule. Returns ISO string or null
@@ -139,6 +127,10 @@ export class StrategiesController {
         params:       r.params,
         enabled:      r.enabled,
         notes:        r.notes,
+        // Spec 023 FR-013: a binding retired by a cutover (greyed in the UI, linked to the agent's series).
+        retired_at:     r.retired_at ?? null,
+        retired_reason: r.retired_reason ?? null,
+        migrated_to:    r.migrated_to ?? null,
         next_run_at:  r.enabled ? nextRunOrNull(r.schedule) : null,
         last_run:     last ? {
           status:      last.status,
@@ -194,60 +186,29 @@ export class StrategiesController {
     return result;
   }
 
+  /**
+   * Spec 023 FR-013 phase A: strategies are read-only legacy — content is run by agents. No new binding;
+   * migrate a channel instead (Strategies → Migrate, or @ai0).
+   */
   @Post()
-  async create(@Body() body: CreateStrategyDto) {
-    assertCronOrThrow(body.schedule);
-
-    const existing = await this.repo.findByExtId(body.ext_id);
-    if (existing) throw new ConflictException(`ext_id ${body.ext_id} already exists`);
-
-    const platform = body.platform ?? 'telegram';
-    const supported = this.registry.supportedPlatforms(body.type);
-    if (!supported.includes(platform)) {
-      throw new BadRequestException(`strategy ${body.type} does not support platform ${platform}`);
-    }
-
-    if (platform === 'telegram') {
-      if (!body.channel_id) throw new BadRequestException('channel_id is required for a telegram binding');
-      if (!this.cache.getChannelById(body.channel_id)) throw new BadRequestException(`channel_id ${body.channel_id} not found`);
-      if (body.meta_account_id) throw new BadRequestException('telegram binding must not set meta_account_id');
-      if (body.tiktok_account_id) throw new BadRequestException('telegram binding must not set tiktok_account_id');
-    } else if (platform === 'tiktok') {
-      if (!body.tiktok_account_id) throw new BadRequestException('tiktok_account_id is required for a tiktok binding');
-      const acct = await this.tiktokAccounts.findById(body.tiktok_account_id);
-      if (!acct) throw new BadRequestException(`tiktok account ${body.tiktok_account_id} not found`);
-      if (body.channel_id) throw new BadRequestException('tiktok binding must not set channel_id');
-      if (body.meta_account_id) throw new BadRequestException('tiktok binding must not set meta_account_id');
-    } else {
-      if (!body.meta_account_id) throw new BadRequestException('meta_account_id is required for a meta binding');
-      const acct = await this.metaAccounts.findById(body.meta_account_id);
-      if (!acct) throw new BadRequestException(`meta account ${body.meta_account_id} not found`);
-      if (body.channel_id) throw new BadRequestException('meta binding must not set channel_id');
-      if (body.tiktok_account_id) throw new BadRequestException('meta binding must not set tiktok_account_id');
-    }
-
-    const row = await this.repo.insert({
-      ext_id:     body.ext_id,
-      type:       body.type,
-      channel_id: platform === 'telegram' ? body.channel_id! : null,
-      schedule:   body.schedule,
-      params:     body.params ?? {},
-      enabled:    body.enabled ?? false, // default paused — never auto-publish a freshly created strategy
-      platform,
-      meta_account_id: (platform === 'instagram' || platform === 'facebook' || platform === 'threads') ? body.meta_account_id! : null,
-      tiktok_account_id: platform === 'tiktok' ? body.tiktok_account_id! : null,
+  create(@Body() _body: unknown): never {
+    throw new GoneException({
+      error: 'strategies_legacy',
+      details: 'Strategies are legacy: content is run by agents. Migrate the channel on /app/strategies or create an agent.',
     });
-    await this.publisher.publish('strategy', row.id);
-    return row;
   }
 
+  /**
+   * Phase A: only pausing (`enabled: false`) and `notes` may change. Enabling is closed (a retired binding
+   * answers 409 binding_retired; the rollback card is the only way back); every other field is refused.
+   */
   @Patch(':id')
   async patch(@Param('id') id: string, @Body() body: PatchStrategyDto) {
     const existing = await this.repo.findById(id);
     if (!existing) throw new NotFoundException(`Strategy ${id} not found`);
 
     // Spec 023 FR-012: a binding retired by a cutover is the agent's now; only the rollback card brings it back.
-    if (body.enabled === true && existing.retired_at) {
+    if (body?.enabled === true && existing.retired_at) {
       const to = existing.migrated_to?.handle ? ` to @${existing.migrated_to.handle}` : '';
       throw new ConflictException({
         error: 'binding_retired',
@@ -255,42 +216,22 @@ export class StrategiesController {
         migrated_to: existing.migrated_to ?? null,
       });
     }
-
-    // Renaming the logical slug: enforce uniqueness server-side. A no-op set
-    // (same value as existing) is allowed and skips the lookup.
-    if (body.ext_id !== undefined && body.ext_id !== existing.ext_id) {
-      const dup = await this.repo.findByExtId(body.ext_id);
-      if (dup && dup.id !== id) throw new ConflictException(`ext_id ${body.ext_id} already exists`);
+    const refused = Object.entries(body ?? {})
+      .filter(([k, v]) => v !== undefined && !(k === 'notes' || (k === 'enabled' && v === false)))
+      .map(([k]) => k);
+    if (refused.length) {
+      throw new GoneException({
+        error: 'strategies_legacy',
+        details: `Strategies are read-only legacy: only pausing (enabled: false) and notes can change (refused: ${refused.join(', ')}). Migrate the channel to an agent instead.`,
+        refused,
+      });
     }
 
-    if (body.schedule !== undefined) assertCronOrThrow(body.schedule);
-    if (body.channel_id !== undefined && !this.cache.getChannelById(body.channel_id)) {
-      throw new BadRequestException(`channel_id ${body.channel_id} not found`);
-    }
-    if (body.meta_account_id !== undefined && body.meta_account_id !== null) {
-      const acct = await this.metaAccounts.findById(body.meta_account_id);
-      if (!acct) throw new BadRequestException(`meta account ${body.meta_account_id} not found`);
-    }
-    if (body.channel_id !== undefined && body.meta_account_id !== undefined) {
-      throw new BadRequestException('cannot set both channel_id and meta_account_id');
-    }
-    // TikTok destination — mirror create()'s validation so a patch can't persist an
-    // invalid binding (unknown account / incompatible platform / multiple destinations).
-    if (body.tiktok_account_id !== undefined && body.tiktok_account_id !== null) {
-      const acct = await this.tiktokAccounts.findById(body.tiktok_account_id);
-      if (!acct) throw new BadRequestException(`tiktok account ${body.tiktok_account_id} not found`);
-      if (body.channel_id !== undefined) throw new BadRequestException('cannot set both channel_id and tiktok_account_id');
-      if (body.meta_account_id !== undefined) throw new BadRequestException('cannot set both meta_account_id and tiktok_account_id');
-    }
-    if (body.platform !== undefined) {
-      const supported = this.registry.supportedPlatforms(body.type ?? existing.type);
-      if (!supported.includes(body.platform)) {
-        throw new BadRequestException(`strategy ${body.type ?? existing.type} does not support platform ${body.platform}`);
-      }
-    }
-
-    const updated = await this.repo.update(id, body);
-    await this.publisher.publish('strategy', id);
+    const updated = await this.repo.update(id, {
+      ...(body.enabled === false ? { enabled: false } : {}),
+      ...(body.notes !== undefined ? { notes: body.notes } : {}),
+    });
+    if (body.enabled === false) await this.publisher.publish('strategy', id);
     return updated;
   }
 

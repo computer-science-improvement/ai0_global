@@ -10,6 +10,7 @@ import { TableAction, RowActions } from '../components/ui/table';
 import { usePlatform } from '../lib/usePlatform';
 import { PlatformFilter } from '../components/PlatformFilter';
 import { useConfirm } from '../components/ui/ConfirmDialog';
+import { MigrationBanner } from '../components/strategies/MigrationBanner';
 import {
   useStrategies, usePatchStrategy, useDeleteStrategy, useStrategyRuns, useStrategyPreview,
 } from '../api/strategies';
@@ -55,19 +56,20 @@ function StrategiesPage() {
     platform === 'meta'     ? s.platforms.some(p => META_PLATFORMS.includes(p))
     : platform === 'telegram' ? s.platforms.includes('telegram')
     : true,
-  );
+  // Retired bindings (spec 023 cutover) go last.
+  ).sort((a, b) => Number(!!a.retired_at) - Number(!!b.retired_at));
 
   return (
     <div>
       <PageHeader
         title="Strategies"
-        subtitle="Cron-scheduled content generators bound to channels. Click a row to see its execution log."
-        actions={
-          <Link to={'/app/strategies/new' as never} className="btn-primary" style={{ gap: 6, display: 'inline-flex', alignItems: 'center' }}>
-            <Icon name="plus" size={14} /> Add strategy
-          </Link>
-        }
+        subtitle="Legacy: cron-scheduled generators bound to channels. Read-only — pause or migrate them to agents. Click a row to see its execution log."
       />
+
+      {/* Spec 023 FR-013 phase A: the legacy banner with per-channel migration. */}
+      <div style={{ marginBottom: 20 }}>
+        <MigrationBanner />
+      </div>
 
       {/* Destination filter — strategies are the only view this affects. */}
       <div style={{ marginBottom: 20 }}>
@@ -80,10 +82,9 @@ function StrategiesPage() {
       {data && rows.length === 0 && (
         <EmptyState
           icon="strategies"
-          title={platform === 'meta' ? 'No Meta-enabled strategies' : 'No strategies yet'}
-          note={platform === 'meta'
-            ? 'Add a cross-post target on a strategy (Edit → Cross-post) to surface it here.'
-            : 'Add one to start scheduled publishing.'}
+          title={platform === 'meta' ? 'No Meta-enabled strategies' : 'No strategies'}
+          note="Strategies are legacy: new content is planned and written by agents."
+          action={<Link to="/app/agents" className="link-accent">Open Agents</Link>}
         />
       )}
 
@@ -100,7 +101,7 @@ function StrategiesPage() {
                     showIcons={showIcons}
                     open={isOpen}
                     onToggleOpen={() => setExpanded(isOpen ? null : s.id)}
-                    onToggle={() => patch.mutate({ id: s.id, patch: { enabled: !s.enabled } })}
+                    onPause={() => patch.mutate({ id: s.id, patch: { enabled: false } })}
                     onDelete={async () => {
                       if (await confirm(`delete strategy ${s.ext_id}`)) remove.mutate(s.id);
                     }}
@@ -130,11 +131,12 @@ function StrategiesPage() {
 }
 
 function StrategyRow({
-  s, index, showIcons, open, onToggleOpen, onToggle, onDelete,
+  s, index, showIcons, open, onToggleOpen, onPause, onDelete,
 }: {
   s: Strategy; index: number; showIcons: boolean; open: boolean; onToggleOpen: () => void;
-  onToggle: () => void; onDelete: () => void;
+  onPause: () => void; onDelete: () => void;
 }) {
+  const retired = !!s.retired_at;
   const m = describeStrategy(s.type);
   const typeTip = m ? `${m.title} (${SOURCE_KIND_LABEL[m.source]})\n\n${m.description}` : s.type;
   // Status dot is the at-a-glance signal: paused → neutral, last error → danger,
@@ -146,8 +148,10 @@ function StrategyRow({
       className="card row-lift compose-rise"
       style={{
         display: 'flex', alignItems: 'center', gap: 16,
-        padding: '13px 18px', cursor: 'pointer',
+        padding: '13px 18px', cursor: 'pointer', flexWrap: 'wrap',
         animationDelay: `${Math.min(index, 12) * 34}ms`,
+        // A retired binding (spec 023 cutover) is history: greyed out.
+        opacity: retired ? 0.55 : 1,
       }}
       onClick={onToggleOpen}
     >
@@ -174,7 +178,21 @@ function StrategyRow({
           </span>
           <span className="chip" title={typeTip}>{s.type}</span>
           {showIcons && <PlatformIcons platforms={s.platforms} />}
-          {!s.enabled && <span className="chip" title={STRATEGY_STATUS_HELP.paused}>paused</span>}
+          {retired ? (
+            <span title={`Retired ${fmtDate(s.retired_at!)}: the agent's series took over.`}><Badge tone="neutral">retired</Badge></span>
+          ) : !s.enabled && <span className="chip" title={STRATEGY_STATUS_HELP.paused}>paused</span>}
+          {retired && s.migrated_to?.handle && (
+            <Link
+              to={'/app/agents/$handle' as never}
+              params={{ handle: s.migrated_to.handle } as never}
+              search={{ tab: 'schedule' } as never}
+              className="link-accent text-micro"
+              onClick={(e) => e.stopPropagation()}
+              title="The agent series that replaced this strategy"
+            >
+              {s.migrated_to.series?.length ? `series ${s.migrated_to.series.join(', ')}` : 'agent schedule'} · @{s.migrated_to.handle} →
+            </Link>
+          )}
           {s.needs_bot && (
             <span title="This channel has no bot bound and no default bot exists, so this strategy cannot publish.">
               <Badge tone="warning">
@@ -223,15 +241,13 @@ function StrategyRow({
             to={'/app/strategies/$id' as never}
             params={{ id: s.id } as never}
             className="btn-act"
-            title="Edit strategy + see example post"
-            aria-label="Edit strategy"
+            title="Details, notes and example post"
+            aria-label="Strategy details"
           >
-            <PlatformGlyph name="pencil" size={14} />
+            <PlatformGlyph name="eye" size={14} />
           </Link>
-          <TableAction
-            action={s.enabled ? 'pause' : 'enable'}
-            onClick={onToggle}
-          />
+          {/* Legacy: a strategy can be paused, never (re-)enabled. */}
+          {s.enabled && <TableAction action="pause" onClick={onPause} />}
           <span className="row-actions-sep" aria-hidden />
           <TableAction action="delete" onClick={onDelete} />
         </RowActions>

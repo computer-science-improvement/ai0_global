@@ -41,19 +41,20 @@ test('parents exist, chains have no cycles, templates never reach a menu', () =>
   assert.ok(menuEntries().every((e) => e.menu !== false));
 });
 
-test('the default menu is FR-003 plus Posts to approve, Data and Spend', () => {
+test('the default menu is FR-003 plus Posts to approve, Data and Spend; Strategies under Legacy (023)', () => {
   const nav = defaultNav();
   const shape = Object.fromEntries(nav.groups.map((g) => [g.title, g.items.map((i) => i.label)]));
   assert.deepEqual(shape, {
     Home: ['Overview', 'Posts to approve'],
     Agents: ['Agents', 'Chat', 'DM inbox'],
-    Publishing: ['Compose', 'Scheduled', 'Editor', 'Logs', 'Strategies', 'My channels'],
+    Publishing: ['Compose', 'Scheduled', 'Editor', 'Logs', 'My channels'],
     Content: ['Data'],
     Analytics: ['Analytics', 'Spend', 'Tracked'],
     Intelligence: ['Discovery', 'Graph', 'Recommendations'],
     Connections: ['Connections', 'Groups'],
     Marketing: ['Landing', 'Ads'],
     System: ['Settings'],
+    Legacy: ['Strategies'],
   });
   assert.deepEqual(nav.pinned, []);
   // The approvals counter is on by default and Overview/Settings are forced.

@@ -17,7 +17,6 @@ import { EditThemesModal } from '../components/EditThemesModal';
 import { EditChannelModal } from '../components/EditChannelModal';
 import { ForwardRoutesPanel } from '../components/ForwardRoutesPanel';
 import { ChannelAvatar } from '../components/ChannelAvatar';
-import { InlineScheduleEditor } from '../components/InlineScheduleEditor';
 import { useChannelThemes } from '../api/discovery';
 import { Icon } from '../components/Icon';
 import { Badge } from '../components/ui/Badge';
@@ -405,10 +404,6 @@ function StatStrip({
 function StrategiesPanel({
   primary, forwards, isLoading,
 }: { primary: Strategy[]; forwards: Strategy[]; isLoading: boolean }) {
-  // One row open at a time. null = none. Parent state lives here so opening
-  // row B implicitly closes row A.
-  const [editingId, setEditingId] = useState<string | null>(null);
-
   if (isLoading) {
     return <LoadingState note="Loading strategies…" />;
   }
@@ -418,8 +413,8 @@ function StrategiesPanel({
       <EmptyState
         icon="strategies"
         title="No strategies"
-        note="No strategies publish to this channel."
-        action={<Link to="/app/strategies" className="link-accent">Add a strategy</Link>}
+        note="No strategies publish to this channel. Strategies are legacy: the channel's agent plans its content."
+        action={<Link to="/app/agents" className="link-accent">Open Agents</Link>}
       />
     );
   }
@@ -443,9 +438,6 @@ function StrategiesPanel({
               key={s.id}
               s={s}
               role="primary"
-              isEditing={editingId === s.id}
-              onStartEdit={() => setEditingId(s.id)}
-              onDone={() => setEditingId(null)}
             />
           ))}
           {forwards.map(s => (
@@ -453,9 +445,6 @@ function StrategiesPanel({
               key={s.id}
               s={s}
               role="forward"
-              isEditing={false}
-              onStartEdit={() => {}}
-              onDone={() => {}}
             />
           ))}
         </tbody>
@@ -465,13 +454,10 @@ function StrategiesPanel({
 }
 
 function StrategyTableRow({
-  s, role, isEditing, onStartEdit, onDone,
+  s, role,
 }: {
   s: Strategy;
   role: 'primary' | 'forward';
-  isEditing: boolean;
-  onStartEdit: () => void;
-  onDone: () => void;
 }) {
   const meta = describeStrategy(s.type);
   const typeTooltip = meta
@@ -489,22 +475,15 @@ function StrategyTableRow({
       </td>
       <td><span className="chip" title={typeTooltip}>{s.type}</span></td>
       <td style={{ color: 'var(--color-ink-muted)', fontVariantNumeric: 'tabular-nums' }}>
-        {role === 'primary' ? (
-          <InlineScheduleEditor
-            strategyId={s.id}
-            current={s.schedule}
-            isEditing={isEditing}
-            onStartEdit={onStartEdit}
-            onDone={onDone}
-          />
-        ) : (
-          <span title="Cron schedule (UTC unless TZ is configured). Inherited from a forward route — open the source channel's detail page to edit this schedule inline.">
-            {s.schedule}
+        {/* Spec 023 FR-013: strategies are read-only legacy — the schedule is shown, never edited. */}
+        <span title="Cron schedule (UTC unless SCHEDULER_TZ is configured). Strategies are legacy and read-only.">
+          {s.schedule}
+          {role === 'forward' && (
             <span className="text-micro" style={{ marginLeft: 6, color: 'var(--color-ink-dim)' }}>
-              (forwarded — edit on source)
+              (forwarded)
             </span>
-          </span>
-        )}
+          )}
+        </span>
       </td>
       <td>
         {s.enabled && s.next_run_at

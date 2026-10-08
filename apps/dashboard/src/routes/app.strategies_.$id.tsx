@@ -1,6 +1,5 @@
-import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute, Link } from '@tanstack/react-router';
 import { useEffect, useState } from 'react';
-import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { PageHeader } from '../components/ui/PageHeader';
 import { Crumbs } from '../components/ui/Crumbs';
 import { useCrumbs } from '../nav/hooks';
@@ -9,25 +8,19 @@ import { Icon } from '../components/Icon';
 import { TelegramPreview } from '../components/post/TelegramPreview';
 import { SegmentedTabs } from '../components/SegmentedTabs';
 import { Badge } from '../components/ui/Badge';
-import { SchedulePicker } from '../components/SchedulePicker';
 import { CrosspostSection } from '../components/CrosspostSection';
-import { trackingApi } from '../api/tracking';
-import { ApiError } from '../api/client';
 import { useStrategies, useStrategyPreview, usePatchStrategy, useRecipePostPreview } from '../api/strategies';
-import type { CaptionPart, MetaCaptionOverrides } from '../api/strategies';
+import type { CaptionPart } from '../api/strategies';
 import {
   STRATEGY_STATUS_HELP, RUN_STATUS_HELP, describeStrategy, SOURCE_KIND_LABEL,
-  STRATEGY_DESCRIPTIONS, channelOptionLabel,
 } from '../lib/labels';
-import { FINITE_POOL_TYPES } from '../lib/runway';
+import { fmtDate } from '../lib/format';
 import type { ComposedPostInput, PreviewItem, Strategy } from '../api/types';
 
 export const Route = createFileRoute('/app/strategies_/$id')({ component: StrategyDetailPage });
 
 const LOREM_TEXT =
   '<b>Lorem ipsum dolor sit amet</b>\n\nConsectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation…';
-
-const EXT_ID_RE = /^[A-Za-z0-9_:-]+$/;
 
 function StrategyDetailPage() {
   const { id } = Route.useParams();
@@ -62,8 +55,8 @@ function StrategyDetail({ strategy: s }: { strategy: Strategy }) {
         subtitle={meta ? `${meta.title} (${s.type})` : s.type}
       />
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 1fr)', gap: 16, alignItems: 'start' }}>
-        <EditPanel strategy={s} />
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 380px), 1fr))', gap: 16, alignItems: 'start' }}>
+        <LegacyPanel strategy={s} />
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
           <ConfigPanel strategy={s} meta={meta} />
@@ -125,260 +118,118 @@ function ConfigPanel({ strategy: s, meta }: { strategy: Strategy; meta: ReturnTy
 }
 
 /**
- * Editable form for all mutable fields of a strategy binding — ported from the
- * retired EditStrategyModal, plus the ext_id rename (which used to be an inline
- * table editor). Only telegram bindings expose a channel <select>; meta/tiktok
- * bindings show their destination read-only. Sends only changed fields.
+ * Spec 023 FR-013 phase A: a strategy is read-only legacy. Only pausing and notes can change (the API refuses
+ * the rest with 410); a retired strategy links to the agent series that replaced it.
  */
-function EditPanel({ strategy }: { strategy: Strategy }) {
-  const isTelegram = strategy.platform === 'telegram';
-
-  const [extId,      setExtId]      = useState(strategy.ext_id);
-  const [type,       setType]       = useState(strategy.type);
-  const [channelId,  setChannelId]  = useState(strategy.channel_id);
-  const [schedule,   setSchedule]   = useState(strategy.schedule);
-  const [paramsText, setParamsText] = useState(JSON.stringify(strategy.params ?? {}, null, 2));
-  const [paramsErr,  setParamsErr]  = useState<string | null>(null);
-  const [enabled,    setEnabled]    = useState(strategy.enabled);
-  const [notes,      setNotes]      = useState(strategy.notes ?? '');
-  // Empty string = "use the default" (sends null on save). Number string = override.
-  const [threshold,  setThreshold]  = useState<string>(
-    strategy.low_content_threshold == null ? '' : String(strategy.low_content_threshold),
-  );
-  const [saved, setSaved] = useState(false);
-
-  const showThreshold = FINITE_POOL_TYPES.has(strategy.type);
-
-  // Resync local form state if the underlying strategy changes (background
-  // refetch / navigating between strategies on the same route).
-  useEffect(() => {
-    setExtId(strategy.ext_id);
-    setType(strategy.type);
-    setChannelId(strategy.channel_id);
-    setSchedule(strategy.schedule);
-    setParamsText(JSON.stringify(strategy.params ?? {}, null, 2));
-    setParamsErr(null);
-    setEnabled(strategy.enabled);
-    setNotes(strategy.notes ?? '');
-    setThreshold(strategy.low_content_threshold == null ? '' : String(strategy.low_content_threshold));
-    setSaved(false);
-  }, [strategy.id]); // eslint-disable-line react-hooks/exhaustive-deps
-
+function LegacyPanel({ strategy: s }: { strategy: Strategy }) {
   const patch = usePatchStrategy();
+  const [notes, setNotes] = useState(s.notes ?? '');
+  const [saved, setSaved] = useState(false);
+  useEffect(() => { setNotes(s.notes ?? ''); setSaved(false); }, [s.id]); // eslint-disable-line react-hooks/exhaustive-deps
+  const retired = !!s.retired_at;
 
-  const channels = useQuery({
-    queryKey: ['channels', 'mine-picker'],
-    queryFn:  () => trackingApi.listChannels({ filter: 'mine', pageSize: 200 }),
-    enabled:  isTelegram,
-  });
-
-  // Validate JSON live so Save isn't blocked silently.
-  const tryParseParams = (): Record<string, unknown> | null => {
-    try {
-      const parsed = JSON.parse(paramsText);
-      if (parsed === null || typeof parsed !== 'object' || Array.isArray(parsed)) {
-        setParamsErr('params must be a JSON object');
-        return null;
-      }
-      setParamsErr(null);
-      return parsed as Record<string, unknown>;
-    } catch (err: any) {
-      setParamsErr(err.message);
-      return null;
-    }
-  };
-
-  const trimmedExtId = extId.trim();
-  const extIdFormatOk = EXT_ID_RE.test(trimmedExtId);
-  const extIdEmpty = trimmedExtId.length === 0;
-
-  const submit = async () => {
+  const save = async (body: { enabled?: false; notes?: string | null }) => {
     setSaved(false);
-    if (extIdEmpty || !extIdFormatOk) return;
-
-    const parsedParams = tryParseParams();
-    if (parsedParams === null) return;
-
-    // Only send fields that actually changed — keeps PATCH payload minimal
-    // and avoids no-op writes.
-    const body: Record<string, unknown> = {};
-    if (trimmedExtId !== strategy.ext_id)   body.ext_id     = trimmedExtId;
-    if (type      !== strategy.type)        body.type       = type.trim();
-    if (isTelegram && channelId !== strategy.channel_id) body.channel_id = channelId;
-    if (schedule  !== strategy.schedule)    body.schedule   = schedule.trim();
-    if (enabled   !== strategy.enabled)     body.enabled    = enabled;
-    if (notes     !== (strategy.notes ?? '')) body.notes    = notes.trim() || null;
-    if (JSON.stringify(parsedParams) !== JSON.stringify(strategy.params ?? {})) {
-      body.params = parsedParams;
-    }
-    if (showThreshold) {
-      const next = threshold.trim() === '' ? null : Math.max(0, Math.floor(Number(threshold)));
-      const current = strategy.low_content_threshold;
-      if (next !== current && !(next === null && current == null)) {
-        body.low_content_threshold = next;
-      }
-    }
-
-    if (Object.keys(body).length === 0) { setSaved(true); return; }
-
     try {
-      await patch.mutateAsync({ id: strategy.id, patch: body });
+      await patch.mutateAsync({ id: s.id, patch: body });
       setSaved(true);
     } catch { /* error rendered inline */ }
   };
 
-  const err = patch.error;
-  const conflict = err instanceof ApiError && (err.status === 409 || /already exists/i.test(err.message));
-  const errMsg = conflict
-    ? `Id "${trimmedExtId}" already exists — pick another.`
-    : err ? (err as Error).message : null;
-
   return (
-    <Panel title="Edit strategy">
-      <div className="text-micro" style={{ color: 'var(--color-ink-dim)', marginBottom: 12 }}>
-        Destination is fixed at creation. To change it, delete and recreate the strategy.
-      </div>
+    <Panel title="Legacy strategy">
+      {retired ? (
+        <div className="callout-warning" style={{ marginBottom: 16, flexWrap: 'wrap' }}>
+          <Icon name="info" size={14} />
+          <span className="text-micro">
+            Retired {fmtDate(s.retired_at!)}: the agent&apos;s series took over.{' '}
+            {s.migrated_to?.handle && (
+              <Link to={'/app/agents/$handle' as never} params={{ handle: s.migrated_to.handle } as never} search={{ tab: 'schedule' } as never} className="link-accent">
+                {s.migrated_to.series?.length ? `Series ${s.migrated_to.series.join(', ')}` : 'Schedule'} of @{s.migrated_to.handle} →
+              </Link>
+            )}
+          </span>
+        </div>
+      ) : (
+        <div className="callout-warning" style={{ marginBottom: 16 }}>
+          <Icon name="info" size={14} />
+          <span className="text-micro">
+            Strategies are read-only: you can pause this one and keep notes. To change what or when it publishes, migrate the
+            channel to its agent on the <Link to="/app/strategies" className="link-accent">Strategies</Link> page.
+          </span>
+        </div>
+      )}
 
       <Field label="Name (id)">
-        <input
-          value={extId}
-          onChange={e => { setExtId(e.target.value); setSaved(false); }}
-          className="input-field"
-          style={{ width: '100%', fontVariantNumeric: 'tabular-nums' }}
-        />
-        {!extIdFormatOk && trimmedExtId.length > 0 && (
-          <p className="text-micro" style={{ color: 'var(--color-ink-dim)', margin: '6px 0 0' }}>
-            Only letters, digits, and _ : - are allowed.
-          </p>
-        )}
-        {extIdEmpty && (
-          <p className="text-micro" style={{ color: 'var(--color-ink-dim)', margin: '6px 0 0' }}>Id cannot be empty.</p>
-        )}
+        <div className="text-body-sm" style={{ color: 'var(--color-ink)', fontVariantNumeric: 'tabular-nums', overflowWrap: 'anywhere' }}>{s.ext_id}</div>
       </Field>
 
-      <Field label="Type">
-        <input
-          value={type}
-          onChange={e => { setType(e.target.value); setSaved(false); }}
-          list="strategy-type-suggestions"
-          className="input-field"
-          style={{ width: '100%' }}
-        />
-        <datalist id="strategy-type-suggestions">
-          {Object.keys(STRATEGY_DESCRIPTIONS).map(k => <option key={k} value={k} />)}
-        </datalist>
-        <TypeDescription type={type} />
-      </Field>
-
-      <Field label="Channel">
-        {isTelegram ? (
-          <select
-            value={channelId}
-            onChange={e => { setChannelId(e.target.value); setSaved(false); }}
-            className="input-field"
-            style={{ width: '100%' }}
-          >
-            {channels.data?.items.map(c => (
-              <option key={c.id} value={c.id}>{channelOptionLabel(c)}</option>
-            ))}
-          </select>
-        ) : (
-          <div>
-            <div className="text-body-sm" style={{ color: 'var(--color-ink)' }}>{destinationLabel(strategy)}</div>
-            <p className="text-micro" style={{ color: 'var(--color-ink-dim)', margin: '6px 0 0' }}>
-              Destination is fixed at creation.
-            </p>
-          </div>
-        )}
+      <Field label="Destination">
+        <div className="text-body-sm" style={{ color: 'var(--color-ink)' }}>{destinationLabel(s)}</div>
       </Field>
 
       <Field label="Schedule (cron)">
-        <SchedulePicker value={schedule} onChange={v => { setSchedule(v); setSaved(false); }} />
+        <div className="text-body-sm" style={{ color: 'var(--color-ink)', fontVariantNumeric: 'tabular-nums' }}>
+          {s.schedule}
+          {s.enabled && s.next_run_at && (
+            <span className="text-micro" style={{ color: 'var(--color-ink-muted)', marginLeft: 8 }}>next {fmtDate(s.next_run_at)}</span>
+          )}
+        </div>
       </Field>
 
-      <Field label="Params (JSON)" hint="full replacement on save">
-        <textarea
-          value={paramsText}
-          onChange={e => { setParamsText(e.target.value); setParamsErr(null); setSaved(false); }}
-          onBlur={tryParseParams}
-          className="input-field"
-          style={{
-            width: '100%', minHeight: 160,
-            fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace',
-            fontSize: 12, lineHeight: 1.5, letterSpacing: 0,
-          }}
-        />
-        {paramsErr && (
-          <p className="text-micro" style={{ color: 'var(--color-danger)', marginTop: 6 }}>{paramsErr}</p>
-        )}
+      <Field label="Params">
+        <pre className="text-micro" style={{
+          margin: 0, padding: '10px 12px', background: 'var(--color-surface-1)', borderRadius: 'var(--radius-md)',
+          color: 'var(--color-ink-muted)', whiteSpace: 'pre-wrap', wordBreak: 'break-word', maxHeight: 240, overflowY: 'auto',
+        }}>
+          {JSON.stringify(s.params ?? {}, null, 2)}
+        </pre>
       </Field>
 
       <Field label="Notes (optional)">
-        <input
-          value={notes}
-          onChange={e => { setNotes(e.target.value); setSaved(false); }}
-          placeholder="Why does this exist?"
-          className="input-field"
-          style={{ width: '100%' }}
-        />
-      </Field>
-
-      {showThreshold && (
-        <Field label="Low-content alert (posts)">
+        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
           <input
-            type="number"
-            min={0}
-            value={threshold}
-            onChange={e => { setThreshold(e.target.value); setSaved(false); }}
-            placeholder="100 (default)"
+            value={notes}
+            onChange={e => { setNotes(e.target.value); setSaved(false); }}
+            placeholder="Why does this exist?"
             className="input-field"
-            style={{ width: 160 }}
-            title="Warn when the remaining content for this strategy drops below this many posts. Leave empty to use the default (100)."
+            style={{ flex: '1 1 200px', minWidth: 0 }}
           />
-        </Field>
-      )}
+          <button
+            className="btn-tiny"
+            disabled={patch.isPending || notes === (s.notes ?? '')}
+            onClick={() => save({ notes: notes.trim() || null })}
+          >
+            Save notes
+          </button>
+        </div>
+      </Field>
 
       <Field label="Status">
-        <label style={{ display: 'inline-flex', alignItems: 'center', gap: 8, cursor: 'pointer' }}>
-          <input
-            type="checkbox"
-            checked={enabled}
-            onChange={e => { setEnabled(e.target.checked); setSaved(false); }}
-            style={{ accentColor: 'var(--color-accent)' }}
-          />
-          <span className="text-body-sm" style={{ color: 'var(--color-ink)' }}>
-            Enabled — cron fires this strategy
-          </span>
-        </label>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
+          {retired
+            ? <Badge tone="neutral">retired</Badge>
+            : s.enabled
+              ? <span title={STRATEGY_STATUS_HELP.enabled}><Badge tone="success"><Icon name="check" size={12} /> enabled</Badge></span>
+              : <span title={STRATEGY_STATUS_HELP.paused}><Badge tone="neutral">paused</Badge></span>}
+          {s.enabled && (
+            <button className="btn-tiny" disabled={patch.isPending} onClick={() => save({ enabled: false })} title="Stop this strategy. It cannot be enabled again from here.">
+              <Icon name="pause" size={12} /> Pause
+            </button>
+          )}
+        </div>
       </Field>
 
-      <CrosspostSection channelId={channelId} />
+      {s.platform === 'telegram' && <CrosspostSection channelId={s.channel_id} />}
 
-      <div className="callout-warning" style={{ marginBottom: 16 }}>
-        <Icon name="info" size={14} />
-        <span className="text-micro">
-          Schedule + channel changes take effect immediately (hot-reload via config:changed). Param changes pick up on the next tick.
-        </span>
-      </div>
-
-      {errMsg && (
-        <p className="text-body-sm" style={{ color: 'var(--color-danger)', marginBottom: 12 }}>{errMsg}</p>
+      {patch.error && (
+        <p className="text-body-sm" style={{ color: 'var(--color-danger)', marginBottom: 0, overflowWrap: 'anywhere' }}>{(patch.error as Error).message}</p>
       )}
-
-      <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: 12 }}>
-        {saved && !patch.isPending && (
-          <span className="text-micro" style={{ color: 'var(--color-success, var(--color-accent))' }}>
-            <Icon name="check" size={12} style={{ marginRight: 4 }} />Saved
-          </span>
-        )}
-        <button
-          onClick={submit}
-          disabled={patch.isPending || extIdEmpty || !extIdFormatOk}
-          className="btn-primary"
-        >
-          {patch.isPending ? 'Saving…' : 'Save'}
-        </button>
-      </div>
+      {saved && !patch.isPending && (
+        <span className="text-micro" style={{ color: 'var(--color-success, var(--color-accent))' }}>
+          <Icon name="check" size={12} style={{ marginRight: 4 }} />Saved
+        </span>
+      )}
     </Panel>
   );
 }
@@ -492,81 +343,17 @@ function sourceLabel(source: CaptionPart['source']): string {
   }
 }
 
-/** Parse a space/comma-separated hashtag string into a clean string[]. */
-function parseHashtags(raw: string): string[] {
-  return raw
-    .split(/[\s,]+/)
-    .map(t => t.replace(/^#+/, '').trim())
-    .filter(Boolean);
-}
-
-/** Assemble MetaCaptionOverrides from local state, omitting empty/default fields. */
-function buildOverrides(
-  intro: string,
-  cta: string,
-  outro: string,
-  hashtagsRaw: string,
-  tgLinkLabel: string,
-): MetaCaptionOverrides {
-  const overrides: MetaCaptionOverrides = {};
-  if (intro.trim())        overrides.intro       = intro.trim();
-  if (cta.trim())          overrides.cta         = cta.trim();
-  if (outro.trim())        overrides.outro        = outro.trim();
-  if (tgLinkLabel.trim())  overrides.tgLinkLabel  = tgLinkLabel.trim();
-  const tags = parseHashtags(hashtagsRaw);
-  if (tags.length > 0)     overrides.hashtags    = tags;
-  return overrides;
-}
-
 function PostPreviewPanel({ strategy }: { strategy: Strategy }) {
   const isRecipeCarousel = strategy.type === 'recipe-carousel';
   const { data: preview, isLoading, error } = useRecipePostPreview(strategy.id, isRecipeCarousel);
-  const patch   = usePatchStrategy();
-  const qc      = useQueryClient();
-
-  const existingMeta = (strategy.params as Record<string, unknown>)?.metaCaption as MetaCaptionOverrides | undefined;
-
-  const [platform,     setPlatform]     = useState<Platform>('facebook');
-  const [intro,        setIntro]        = useState(existingMeta?.intro        ?? '');
-  const [cta,          setCta]          = useState(existingMeta?.cta          ?? '');
-  const [outro,        setOutro]        = useState(existingMeta?.outro        ?? '');
-  const [hashtagsRaw,  setHashtagsRaw]  = useState(existingMeta?.hashtags?.join(' ') ?? '');
-  const [tgLinkLabel,  setTgLinkLabel]  = useState(existingMeta?.tgLinkLabel  ?? '');
-  const [saved,        setSaved]        = useState(false);
-
-  // Re-seed when the strategy binding changes (background refetch / route navigation).
-  useEffect(() => {
-    const m = (strategy.params as Record<string, unknown>)?.metaCaption as MetaCaptionOverrides | undefined;
-    setIntro(m?.intro ?? '');
-    setCta(m?.cta ?? '');
-    setOutro(m?.outro ?? '');
-    setHashtagsRaw(m?.hashtags?.join(' ') ?? '');
-    setTgLinkLabel(m?.tgLinkLabel ?? '');
-    setSaved(false);
-  }, [strategy.id]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  const handleSave = async () => {
-    setSaved(false);
-    const metaCaption = buildOverrides(intro, cta, outro, hashtagsRaw, tgLinkLabel);
-    const currentParams = (strategy.params ?? {}) as Record<string, unknown>;
-    await patch.mutateAsync({
-      id:    strategy.id,
-      patch: { params: { ...currentParams, metaCaption } },
-    });
-    // Also invalidate the recipe-post-preview so rendered text refreshes.
-    await qc.invalidateQueries({ queryKey: ['recipe-post-preview', strategy.id] });
-    setSaved(true);
-  };
+  const [platform, setPlatform] = useState<Platform>('facebook');
 
   return (
     <Panel title="Post Preview">
-      {/* Informational note */}
       <div className="callout-warning" style={{ marginBottom: 16 }}>
         <Icon name="info" size={14} />
         <span className="text-micro">
-          Parts from the recipe DB (title, category, macros) are <strong>read-only</strong>.
-          The rest (intro, cta, outro, hashtags, Telegram link label) are editable and saved per-binding.
-          Instagram omits the Telegram link.
+          Read-only: strategies are legacy, so their caption overrides no longer change. Instagram omits the Telegram link.
         </span>
       </div>
 
@@ -581,7 +368,6 @@ function PostPreviewPanel({ strategy }: { strategy: Strategy }) {
 
       {preview && (
         <>
-          {/* Platform tabs */}
           <div style={{ marginBottom: 16 }}>
             <SegmentedTabs<Platform>
               value={platform}
@@ -591,7 +377,6 @@ function PostPreviewPanel({ strategy }: { strategy: Strategy }) {
             />
           </div>
 
-          {/* Parts breakdown */}
           <div style={{ marginBottom: 16 }}>
             <div className="text-eyebrow" style={{ marginBottom: 8 }}>Caption parts</div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -605,136 +390,36 @@ function PostPreviewPanel({ strategy }: { strategy: Strategy }) {
                       background:    'var(--color-surface-2)',
                       borderRadius:  'var(--radius-md)',
                       opacity:       activePlatform ? 1 : 0.45,
-                      borderLeft:    activePlatform
-                        ? '2px solid var(--color-accent)'
-                        : '2px solid var(--color-surface-3)',
-                      transition: 'opacity .15s',
+                      borderLeft:    activePlatform ? '2px solid var(--color-accent)' : '2px solid var(--color-surface-3)',
                     }}
                   >
-                    {/* Part header: label + source chip + platform note */}
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
-                      <span className="text-micro" style={{ color: 'var(--color-ink-muted)', fontWeight: 600 }}>
-                        {part.label}
-                      </span>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6, flexWrap: 'wrap' }}>
+                      <span className="text-micro" style={{ color: 'var(--color-ink-muted)', fontWeight: 600 }}>{part.label}</span>
                       <Badge tone={sourceTone(part.source)}>{sourceLabel(part.source)}</Badge>
                       {!activePlatform && (
-                        <span className="text-micro" style={{ color: 'var(--color-ink-dim)', marginLeft: 'auto' }}>
-                          not on {platform}
-                        </span>
+                        <span className="text-micro" style={{ color: 'var(--color-ink-dim)', marginLeft: 'auto' }}>not on {platform}</span>
                       )}
                     </div>
-
-                    {/* Value: editable or read-only */}
-                    {part.editable ? (
-                      part.key === 'hashtags' ? (
-                        <input
-                          value={hashtagsRaw}
-                          onChange={e => { setHashtagsRaw(e.target.value); setSaved(false); }}
-                          placeholder="fashion style beauty (space or comma separated)"
-                          className="input-field"
-                          style={{ width: '100%', fontSize: 12 }}
-                        />
-                      ) : part.key === 'tgLink' ? (
-                        <input
-                          value={tgLinkLabel}
-                          onChange={e => { setTgLinkLabel(e.target.value); setSaved(false); }}
-                          placeholder={part.value || 'Link label…'}
-                          className="input-field"
-                          style={{ width: '100%', fontSize: 12 }}
-                        />
-                      ) : part.key === 'intro' ? (
-                        <textarea
-                          value={intro}
-                          onChange={e => { setIntro(e.target.value); setSaved(false); }}
-                          placeholder={part.value || 'Intro text…'}
-                          className="input-field"
-                          rows={2}
-                          style={{ width: '100%', fontSize: 12, resize: 'vertical' }}
-                        />
-                      ) : part.key === 'cta' ? (
-                        <input
-                          value={cta}
-                          onChange={e => { setCta(e.target.value); setSaved(false); }}
-                          placeholder={part.value || 'Call to action…'}
-                          className="input-field"
-                          style={{ width: '100%', fontSize: 12 }}
-                        />
-                      ) : part.key === 'outro' ? (
-                        <textarea
-                          value={outro}
-                          onChange={e => { setOutro(e.target.value); setSaved(false); }}
-                          placeholder={part.value || 'Outro text…'}
-                          className="input-field"
-                          rows={2}
-                          style={{ width: '100%', fontSize: 12, resize: 'vertical' }}
-                        />
-                      ) : (
-                        <div className="text-body-sm" style={{ color: 'var(--color-ink)', whiteSpace: 'pre-wrap' }}>
-                          {part.value || <span style={{ color: 'var(--color-ink-dim)' }}>—</span>}
-                        </div>
-                      )
-                    ) : (
-                      <div
-                        className="text-body-sm"
-                        style={{ color: 'var(--color-ink-muted)', whiteSpace: 'pre-wrap', fontStyle: 'italic' }}
-                      >
-                        {part.value || <span style={{ color: 'var(--color-ink-dim)' }}>—</span>}
-                      </div>
-                    )}
+                    <div className="text-body-sm" style={{ color: 'var(--color-ink)', whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>
+                      {part.value || <span style={{ color: 'var(--color-ink-dim)' }}>—</span>}
+                    </div>
                   </div>
                 );
               })}
             </div>
           </div>
 
-          {/* Live rendered caption */}
-          <div style={{ marginBottom: 16 }}>
-            <div className="text-eyebrow" style={{ marginBottom: 8 }}>
-              Rendered caption — {platform}
-            </div>
+          <div>
+            <div className="text-eyebrow" style={{ marginBottom: 8 }}>Rendered caption — {platform}</div>
             <div
               style={{
-                background:    'var(--color-surface-2)',
-                borderRadius:  'var(--radius-md)',
-                padding:       '12px 14px',
-                fontFamily:    'ui-monospace, SFMono-Regular, Menlo, monospace',
-                fontSize:      12,
-                lineHeight:    1.6,
-                color:         'var(--color-ink)',
-                whiteSpace:    'pre-wrap',
-                wordBreak:     'break-word',
-                maxHeight:     320,
-                overflowY:     'auto',
+                background: 'var(--color-surface-2)', borderRadius: 'var(--radius-md)', padding: '12px 14px',
+                fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', fontSize: 12, lineHeight: 1.6,
+                color: 'var(--color-ink)', whiteSpace: 'pre-wrap', wordBreak: 'break-word', maxHeight: 320, overflowY: 'auto',
               }}
             >
-              {preview.rendered[platform] || (
-                <span style={{ color: 'var(--color-ink-dim)' }}>(empty)</span>
-              )}
+              {preview.rendered[platform] || <span style={{ color: 'var(--color-ink-dim)' }}>(empty)</span>}
             </div>
-            <p className="text-micro" style={{ color: 'var(--color-ink-dim)', margin: '6px 0 0' }}>
-              This is the exact text that will publish. Save overrides above, then reload to see changes.
-            </p>
-          </div>
-
-          {/* Save button */}
-          {patch.error && (
-            <p className="text-body-sm" style={{ color: 'var(--color-danger)', marginBottom: 12 }}>
-              {(patch.error as Error).message}
-            </p>
-          )}
-          <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: 12 }}>
-            {saved && !patch.isPending && (
-              <span className="text-micro" style={{ color: 'var(--color-success, var(--color-accent))' }}>
-                <Icon name="check" size={12} style={{ marginRight: 4 }} />Saved
-              </span>
-            )}
-            <button
-              onClick={handleSave}
-              disabled={patch.isPending}
-              className="btn-primary"
-            >
-              {patch.isPending ? 'Saving…' : 'Save caption overrides'}
-            </button>
           </div>
         </>
       )}
@@ -767,32 +452,6 @@ function Field({ label, hint, children }: { label: string; hint?: string; childr
         {hint && <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>{hint}</span>}
       </div>
       {children}
-    </div>
-  );
-}
-
-/** Live description of the entered strategy type. Copied from EditStrategyModal. */
-function TypeDescription({ type }: { type: string }) {
-  const meta = describeStrategy(type.trim());
-  if (!meta) return null;
-  return (
-    <div
-      style={{
-        marginTop: 8,
-        padding: '10px 12px',
-        background: 'var(--color-surface-1)',
-        borderRadius: 'var(--radius-md)',
-        borderLeft: '2px solid var(--color-accent)',
-      }}
-    >
-      <div className="text-body-sm" style={{ color: 'var(--color-ink)', display: 'flex', alignItems: 'center', gap: 8 }}>
-        <Icon name="sparkle" size={12} />
-        {meta.title}
-        <span className="chip" style={{ fontSize: 10 }}>{SOURCE_KIND_LABEL[meta.source]}</span>
-      </div>
-      <p className="text-micro" style={{ color: 'var(--color-ink-muted)', margin: '6px 0 0', lineHeight: 1.5 }}>
-        {meta.description}
-      </p>
     </div>
   );
 }

@@ -43,6 +43,8 @@ test('re-enabling a retired binding → 409 binding_retired (pausing it stays al
     return true;
   });
   const updates: any[] = [];
-  await controller({ ...retired, retired_at: null }, updates).patch('s1', { enabled: true } as any);
-  assert.deepEqual(updates, [{ enabled: true }]);
+  await controller(retired, updates).patch('s1', { enabled: false } as any);
+  assert.deepEqual(updates, [{ enabled: false }]);
+  // Not retired: enabling is closed anyway in the legacy phase (023 FR-013) → 410.
+  await assert.rejects(() => controller({ ...retired, retired_at: null }).patch('s1', { enabled: true } as any), (err: any) => err.getStatus() === 410);
 });

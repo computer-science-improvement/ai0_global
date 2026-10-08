@@ -135,6 +135,7 @@ import { StrategyMigrationService } from './migration/strategy-migration.service
 import { buildMigrationTools, registerMigrationActions } from './migration/migration-actions';
 import { STRATEGY_MIGRATION, StrategyMigrationController, type StrategyMigrationInfra } from './migration/strategy-migration.controller';
 import { StrategyMigrationUpkeep } from './migration/migration-upkeep';
+import { UPCOMING_SLOTS, UpcomingSlotsController, upcomingSlots, type UpcomingSlotsPort } from './schedule/upcoming';
 
 export const EDITOR_RUNNER    = 'EDITOR_RUNNER';
 export const EDITOR_SCHEDULER = 'EDITOR_SCHEDULER';
@@ -662,6 +663,14 @@ export const EDITOR_PROVIDERS = [
       },
     },
     {
+      // Spec 023 FR-013: the Overview's "Upcoming slots" (series instances and pins of every agent).
+      provide: UPCOMING_SLOTS,
+      inject: [SCHEDULE_INFRA, AGENT_INFRA],
+      useFactory: (schedule: ScheduleService, infra: AgentInfra): UpcomingSlotsPort => ({
+        list: (o) => upcomingSlots({ schedule, agents: infra.agents }, o),
+      }),
+    },
+    {
       // Spec 023 FR-011/FR-012: strategy bindings → agent series (proposal, cards, cutover, rollback).
       provide: STRATEGY_MIGRATION,
       inject: [DB_POOL, ConfigService, EDITOR_REPOS, AGENT_INFRA, PLATFORM_INFRA, { token: ConfigEventsPublisher, optional: true }],
@@ -1156,7 +1165,7 @@ export const EDITOR_PROVIDERS = [
 @Module({
   // AuthModule: EditorController is guarded by TrackingAuthGuard, which injects AuthService.
   imports:     [ChannelConfigModule, PublishersModule, AuthModule],
-  controllers: [EditorController, EditorChatController, AgentsController, NetworkController, ManagerController, PromoController, PromoRedirectController, ApprovalsController, AutonomyController, ScheduleController, StrategyMigrationController],
+  controllers: [EditorController, EditorChatController, AgentsController, NetworkController, ManagerController, PromoController, PromoRedirectController, ApprovalsController, AutonomyController, ScheduleController, StrategyMigrationController, UpcomingSlotsController],
   providers:   [...EDITOR_PROVIDERS, TrackingAuthGuard],
   exports:     [EDITOR_REPOS, EDITOR_RUNNER, AGENT_INFRA, PLATFORM_INFRA, EDITOR_MANAGER],
 })

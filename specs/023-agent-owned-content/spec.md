@@ -411,3 +411,30 @@ Commit `feat(content): 023-T6 …`. Code in `apps/automation/src/editor/migratio
   (`strategy-migration.pg.test.ts`): dry run writes nothing → migrate (stale, then applied) → approve → shadow →
   offer → refused without `EDITOR_ENABLED` → cutover transaction → 409 live guard (card and agent) → 409
   `binding_retired` and the DB check → live after pausing the last binding → rollback.
+
+## Implementation notes (T7 phase A, 2026-10-08)
+Commit `feat(content): 023-T7 …`. **Phase B (deleting idle strategy modules, the redirect, removing the scheduler and
+`ContentRunwayService`) is not done: it is owner-gated.** No migration.
+
+- **API.** `POST /api/strategies` → `410 strategies_legacy` (the create validation is gone). `PATCH /api/strategies/:id`
+  accepts only `enabled: false` and `notes`; any other field (enabling included) → `410 strategies_legacy` with
+  `refused[]`; a retired binding asked to enable → `409 binding_retired` first. `DELETE` and the read endpoints
+  (`GET`, `types`, runs, previews) stay. The list adds `retired_at`, `retired_reason`, `migrated_to`. The unit tests of
+  the removed create / edit validation were replaced by `strategies.controller.legacy.test.ts`.
+- **`/app/strategies`.** No Add button; a "Content is run by agents" banner (`components/strategies/MigrationBanner.tsx`)
+  lists every channel with bindings (state badge, agent link to its Schedule tab, enabled / retired counts, shadow
+  days and share) with **Migrate** (a dry-run modal, then "Create migration draft" proposes and applies the
+  `migrate_strategies` card), **Cutover** (when ready; confirm, then the card is applied), **Rollback** (when bindings
+  were retired) and the pending migration cards (e.g. the upkeep's cutover offer) with Apply / Discard. Rows can only
+  be paused (no Enable); retired rows are greyed, sorted last, and link to the agent's series. `/app/strategies/new`
+  explains that strategies can no longer be created. The detail page is a read-only "Legacy strategy" panel (notes,
+  Pause, cross-post targets) and the recipe post preview is read-only. The channel page shows schedules as text.
+  **Deviation:** the create form (`StrategyForm`, `lib/strategy-types.ts`) and the inline schedule editors
+  (`InlineScheduleEditor`, `SchedulePicker`) were deleted rather than hidden; `PatchStrategyInput` now types only
+  `{ enabled?: false; notes? }`, so tsc rejects any UI path that enables a binding.
+- **Menu.** A new **Legacy** group (`g_legacy`, last) holds Strategies and its hidden New-strategy entry; saved menus
+  keep the owner's own placement.
+- **Overview.** "Active strategies" became **Upcoming slots (24 h)** and "Upcoming runs" the **Upcoming slots** card:
+  the next series instances and owner pins of every Telegram-anchored agent (not `off`) with the status of the slot
+  that realises each (`GET /api/schedule/upcoming?hours&limit`, `editor/schedule/upcoming.ts`, built on
+  `ScheduleService.schedule`). "Strategy status" was renamed "Legacy strategy runs".
