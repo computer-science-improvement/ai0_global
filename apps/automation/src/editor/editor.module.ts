@@ -108,8 +108,10 @@ import { ManagerService } from './manager/manager.service';
 import { MANAGER_SERVICE, ManagerController } from './manager/manager.controller';
 import type { Playbook } from './network/playbook';
 import {
-  DirectiveExecution, executionContextOf, formatShiftExecutor, frequencyExecutor, pauseSeriesExecutor, SqlPlanObserver,
+  DirectiveExecution, executionContextOf, formatShiftExecutor, frequencyExecutor, pauseResourceExecutor, pauseSeriesExecutor, SqlPlanObserver,
 } from './manager/executors';
+import { channelHeldBy, ResourcePauseService } from './pauses/resource-pauses';
+import { RESOURCE_PAUSES, ResourcePausesApi, ResourcePausesController } from './pauses/resource-pauses.controller';
 import { TrackedLinks } from './promo/tracked-links';
 import { PromoPlanner } from './promo/promo-planner';
 import { PromoExecutor } from './promo/promo-executor';
@@ -289,15 +291,16 @@ function resourceTime(repos: Pick<EditorRepos, 'channels'>, profiles: ResourcePr
   });
 }
 
-/** Spec 025 FR-009: the directive executors (frequency, format_shift, pause_series) and their runner. */
+/** Spec 025 FR-009: the directive executors (frequency, format_shift, pause_series, pause_resource) and their runner. */
 function directiveExecution(pool: Pool, repos: EditorRepos, infra: AgentInfra, platform: PlatformInfra): DirectiveExecution {
   const logger = new Logger('DirectiveExecution');
   const network = new NetworkRepository(pool);
   const deps = { network, channels: repos.channels, observer: new SqlPlanObserver(pool) };
+  const pauses = new ResourcePauseService({ pool, inbox: infra.inbox });
   return new DirectiveExecution({
     repo: new DirectivesRepository(pool), inbox: infra.inbox, agents: infra.agents,
-    context: executionContextOf({ repo: network, channels: repos.channels, usable: (ref) => platform.health.usable(ref), time: resourceTime(repos, infra.profiles) }),
-    executors: [frequencyExecutor(deps), formatShiftExecutor(deps), pauseSeriesExecutor(deps)],
+    context: executionContextOf({ repo: network, channels: repos.channels, usable: (ref) => platform.health.usable(ref), time: resourceTime(repos, infra.profiles), pauses }),
+    executors: [frequencyExecutor(deps), formatShiftExecutor(deps), pauseSeriesExecutor(deps), pauseResourceExecutor({ pauses })],
     log: (m) => logger.warn(m),
   });
 }
@@ -622,6 +625,8 @@ export const EDITOR_PROVIDERS = [
           crossPost, groupFanOut,
           postLink: (k, id) => tgPostLink(channelConfig.getChannelMeta(k)?.username ?? null, id),
           autoDuplicateActive: (k) => new NetworkRepository(pool).autoDuplicateActiveForChannel(k),
+          // Spec 025 FR-013: no mirror copy on a resource paused by a pause_resource directive.
+          pausedPlatforms: (k) => new ResourcePauseService({ pool }).pausedMirrorPlatforms(k),
         }),
         };
       },
@@ -808,6 +813,7 @@ export const EDITOR_PROVIDERS = [
             service: new RepurposeService({ pool, plans: repos.plans }),
             networkFor: (orch, card) => networkContext({
               repo: new NetworkRepository(pool), usable: (ref) => platform.health.usable(ref), time: resourceTime(repos, infra.profiles),
+              paused: (ref) => new ResourcePauseService({ pool }).isPaused(ref),
             }, orch, card),
             chatNetwork: chatNetwork(pool, repos, infra, (ref) => platform.health.usable(ref)),
             actions: infra.actions,
@@ -842,6 +848,8 @@ export const EDITOR_PROVIDERS = [
             await infra.inbox.post({ agentId: orch?.orchestrator?.id ?? null, kind: 'approval_dedup', severity: 'info', title, body, alert, refType: 'slot', refId: slot.id });
           },
           onSlotDone: async (slot) => { if (slot.ideaId) await ideas.settleIdea(slot.ideaId); },
+          // Spec 025 FR-013: an approved post on a paused resource is skipped.
+          paused: (ref) => new ResourcePauseService({ pool }).isPaused(ref),
           log: (m) => logger.warn(m),
         });
         // T4: one Telegram message per resource per batch through the owner's alert channel, deduped in approval_alerts.
@@ -947,6 +955,7 @@ export const EDITOR_PROVIDERS = [
           pool, plans: repos.plans, catalog: infra.catalog, profiles: infra.profiles, links, directives: manager.repo,
           card: (k) => repos.channels.get(k), usable: (ref) => platform.health.usable(ref),
           bestHours: async (orch, ref) => (await network.activePlaybook(orch.id))?.body.platforms.find((x) => x.resource_ref === ref)?.best_hours ?? [],
+          paused: (ref) => new ResourcePauseService({ pool }).isPaused(ref),
         });
         return { links, planner };
       },
@@ -960,6 +969,8 @@ export const EDITOR_PROVIDERS = [
       ): NetworkRunner => new NetworkRunner({
         loop, registry, runtime: infra.runtime, memory: repos.memory, repo: new NetworkRepository(pool), plans: repos.plans, profiles: infra.profiles,
         usable: (ref) => platform.health.usable(ref), time: resourceTime(repos, infra.profiles),
+        // Spec 025 FR-013: paused resources are out of every orchestrator / planner run.
+        paused: (ref) => new ResourcePauseService({ pool }).isPaused(ref),
         directives: (orch) => manager.runner.deliver(orch),
         afterOrchestration: async (orch) => {
           await manager.runner.afterOrchestration(orch);
@@ -1003,6 +1014,12 @@ export const EDITOR_PROVIDERS = [
       },
     },
     {
+      // Spec 025 FR-013: resource pauses (one service with the Inbox; the guards above build read-only ones).
+      provide: RESOURCE_PAUSES,
+      inject: [DB_POOL, AGENT_INFRA],
+      useFactory: (pool: Pool, infra: AgentInfra) => new ResourcePausesApi(new ResourcePauseService({ pool, inbox: infra.inbox })),
+    },
+    {
       provide: EDITOR_SCHEDULER,
       inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_RUNNER, EDITOR_PUBLISH, EDITOR_DRAFTS, TelegramNotifier, PostingThrottleService, EDITOR_NETWORK, EDITOR_MANAGER, AGENT_INFRA, ChannelConfigService, APPROVAL_INFRA, SCHEDULE_INFRA],
       useFactory: (
@@ -1013,6 +1030,10 @@ export const EDITOR_PROVIDERS = [
         const logger = new Logger('EditorScheduler');
         const notify = (t: string) => notifier.notifyAlert(t);
         const orders = new AdOrdersRepository(pool);
+        // Spec 025 FR-013: pauses lift at their time; a held channel is not orchestrated or planned; paused slots are skipped.
+        const pauses = new ResourcePauseService({ pool, inbox: infra.inbox });
+        const held = channelHeldBy(new NetworkRepository(pool));
+        const paused = (ref: string) => pauses.isPaused(ref);
         // Reserved slots publish deterministically, without the LLM: paid ads (spec 008) and scheduled chat posts (spec 010).
         // Spec 022 promos; in approval mode they wait for the owner (031 FR-009) and are written ahead in the approval lane.
         const promo = new PromoExecutor({
@@ -1021,6 +1042,7 @@ export const EDITOR_PROVIDERS = [
           forward: async (to, from, messageId) => (await botCall(channelConfig, to, 'forwardMessage', { from_chat_id: from, message_id: messageId })).message_id,
           mode: (card) => approval.mode(card),
           cards: () => repos.channels.listActive(),
+          paused,
           log: (m) => logger.warn(m),
         });
         const reserved = new ReservedDispatcher({
@@ -1033,6 +1055,7 @@ export const EDITOR_PROVIDERS = [
           }),
           manual: drafts,
           promo,
+          paused,
           log: (m) => logger.warn(m),
         });
         return new EditorScheduler({
@@ -1051,7 +1074,7 @@ export const EDITOR_PROVIDERS = [
             for (const orch of await manager.runner.orchestratorsToWake()) {
               const key = telegramKeyOf(orch);
               const card = key ? await repos.channels.get(key) : null;
-              if (card && card.mode !== 'off') await network.runOrchestrator(card);
+              if (card && card.mode !== 'off' && !(await held(card, await pauses.pausedRefs(new Date())))) await network.runOrchestrator(card);
             }
           },
           // Spec 031: approval channels write ahead; approved posts, expiry and alerts run in their own lane.
@@ -1063,6 +1086,7 @@ export const EDITOR_PROVIDERS = [
               if (n) logger.log(`approval: ${n} promo post(s) written ahead`);
             },
           },
+          pauses: { liftDue: (now) => pauses.liftDue(now), pausedRefs: (now) => pauses.pausedRefs(now), held },
           notify,
           log: (m) => logger.warn(m),
         });
@@ -1220,7 +1244,7 @@ export const EDITOR_PROVIDERS = [
 @Module({
   // AuthModule: EditorController is guarded by TrackingAuthGuard, which injects AuthService.
   imports:     [ChannelConfigModule, PublishersModule, AuthModule],
-  controllers: [EditorController, EditorChatController, AgentsController, NetworkController, ManagerController, PromoController, PromoRedirectController, ApprovalsController, AutonomyController, ScheduleController, StrategyMigrationController, UpcomingSlotsController],
+  controllers: [EditorController, EditorChatController, AgentsController, NetworkController, ManagerController, PromoController, PromoRedirectController, ApprovalsController, AutonomyController, ScheduleController, StrategyMigrationController, UpcomingSlotsController, ResourcePausesController],
   providers:   [...EDITOR_PROVIDERS, TrackingAuthGuard],
   exports:     [EDITOR_REPOS, EDITOR_RUNNER, AGENT_INFRA, PLATFORM_INFRA, EDITOR_MANAGER],
 })

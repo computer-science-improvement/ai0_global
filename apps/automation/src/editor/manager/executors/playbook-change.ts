@@ -65,6 +65,7 @@ export function patchPlaybook(body: Playbook, c: Change): Playbook {
       if (!body.series.some((s) => s.name === c.series)) throw new Error(`series "${c.series}" is gone from the active playbook`);
       return { ...body, series: body.series.map((s) => (s.name === c.series ? { ...s, active: c.after } : s)) };
     }
+    case 'pause_resource': throw new Error('pause_resource does not change the playbook');
   }
 }
 
@@ -84,6 +85,7 @@ export function holdsIn(body: Playbook | null, c: Change): boolean {
       const s = body.series.find((x) => x.name === c.series);
       return !!s && (s.active !== false) === c.after;
     }
+    case 'pause_resource': return false;
   }
 }
 
@@ -110,6 +112,7 @@ export function revertsIn(body: Playbook, c: Change): boolean {
       const s = body.series.find((x) => x.name === c.series);
       return !!s && (s.active !== false) !== c.after;
     }
+    case 'pause_resource': return false;
   }
 }
 

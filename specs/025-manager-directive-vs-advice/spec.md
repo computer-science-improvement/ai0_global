@@ -133,6 +133,56 @@ Decisions where the spec left room; T3–T7 build on these.
 - **Left for T3+.** `reject_directive` is still registered and the orchestrator prompt still has the 3-layer precedence (T3 replaces them
   with `decline_advice` / `contest_directive`). No dashboard changes (T6). The digest `compliance` block is T5.
 
+## Implementation notes (T4)
+`pause_resource` pauses for real. No migration: `resource_pauses` from 065 is enough. Status for this task: BUILDING (T4 done).
+
+- **Service.** `editor/pauses/resource-pauses.ts` → `ResourcePauseService`. A pause is active while `lifted_at IS NULL AND
+  starts_at <= now < until`, so it ends exactly at `until` even before anything stamps it. Every scheduler tick runs `liftDue`, which
+  stamps the pause `lifted_at = until`, `lifted_by = 'schedule'` and posts `resource_resumed`. That runs once per pause. `pause()` is
+  idempotent per directive: the directive's own row is returned as a no-op, even after a lift, so a retry never pauses again. Another
+  active pause on the same resource returns `already_paused`. A run-out row that was never stamped is closed first, so the unique
+  index never blocks a new pause.
+- **Executor** (`manager/executors/pause-resource.ts`, registered next to the playbook executors; removed from
+  `PENDING_EXECUTOR_KINDS`). Params are `{resource_ref (required), days 1–14 (integer, default 7), reason (≥ 5 chars)}`. `plan` refuses
+  (`not_executable`) a resource outside the orchestrator's network (or unusable now) and a resource that is already paused. To check the
+  second case, `ExecContext.pauses` is filled by `executionContextOf({ pauses })`; the exec context itself is *not* pause-filtered. The
+  change is `{op: 'pause_resource', target: 'resource', resource_ref, days, until, reason}`, always structural. `until` is computed
+  when the directive is accepted and executed, not when it is filed. `apply` writes the row and posts the Inbox `resource_paused`
+  entry, with a note about reserved/ad slots still due in the window. Re-applying is a no-op. A pause held by someone else fails the
+  attempt (retry path → `failed`). `verify` reports `violated` at once if any content or promo slot on the resource is
+  published/shadowed with `scheduled_at` in the window. Otherwise it stays `pending` until the pause ends (owner lift or `until`), then
+  reports `followed`.
+- **Guards.**
+  - `networkContext` takes `paused?(ref)`. Only agent runs pass it: `NetworkRunner` (orchestrator, network planner, single-channel
+    planner extras) and the repurpose tool's network. Owner surfaces (`NetworkService` view and playbook edit, schedule REST,
+    migration, chat) do not, so the owner can still edit a paused resource's playbook section.
+  - Scheduler: `pauses: {liftDue, pausedRefs, held}`. `held` is `channelHeldBy`: a single channel or a `legacy_duplicate` group whose
+    Telegram anchor is paused. An independent network is held only when every resource is paused; otherwise the orchestrator and the
+    network planner keep running without the paused resource. A held channel skips `maybeOrchestrate`, `maybePlan` and the approval
+    `maybePlanAhead`. The MANAGER's event wake-up (`orchestratorsToWake`) checks the same thing. Claimed content slots on a paused
+    resource, including approval write-ahead claims, become `skipped` with `error='resource_paused'`, so no held or awaiting-approval
+    post is produced.
+  - `ApprovalPublisher` skips an approved post on a paused resource (`resource_paused`, platform post canceled).
+  - `PromoExecutor.writeAhead` leaves paused promo slots planned. `ReservedDispatcher` skips due promo slots on a paused resource.
+    Paid ads and the owner's scheduled chat posts go out unchanged.
+  - `PromoPlanner` refuses `resource_paused` when either the source or the target is paused.
+  - `EditorCrossPoster.pausedPlatforms`: the legacy auto-duplication sends no copy to a platform whose paused resource mirrors the
+    channel (a group member or a crosspost target). The filter works per platform, because the mirror callbacks only know the
+    platform.
+- **Owner pins.** The owner's pinned slots on a paused resource are content slots, so they are skipped too, as the acceptance
+  criterion says: nothing on the resource is published. The `resource_paused` card tells the owner that lifting the pause brings them
+  back.
+- **REST** (`pauses/resource-pauses.controller.ts`, its own controller so it does not touch `ManagerController`):
+  - `GET /api/resources/pauses?active=true|false&limit=` returns `{pauses: [{id, resourceRef, agentId, agentHandle, directiveId,
+    reason, startsAt, until, liftedAt, liftedBy, createdAt, active}]}`, active pauses first.
+  - `POST /api/resources/:ref/pause/lift` (ref URL-encoded, e.g. `telegram%3A%40space`) returns `{pause}`. Errors: `400 invalid_ref`;
+    `409 not_paused` when the resource has no active pause (one that has already run out counts).
+  - Inbox entries carry `refType='directive'` (refId = directive id) when the pause came from a directive, else `refType='resource'`.
+- **Left for others.**
+  - T3 (FR-007 "target paused → expired with an Inbox entry") can call `ResourcePauseService.isPaused(ref)`.
+  - T6 builds **Active effects** from `GET /api/resources/pauses?active=true`, with **Lift** wired to the lift endpoint.
+  - The orchestrator prompt does not say why a resource left its network. Prompts are owned by T3.
+
 ## Task breakdown
 
 ### T1: Add binding levels and directive admission rules
@@ -184,8 +234,8 @@ Decisions where the spec left room; T3–T7 build on these.
 - Auto-lift, the lift endpoint, `GET /api/resources/pauses`, and the Inbox entries.
 
 **Acceptance:**
-- [ ] With an active pause, no content or promo slot on the resource is published or shadowed, and paid ad slots still publish.
-- [ ] The pause lifts at `until` and the resource returns to planning the next day.
+- [x] With an active pause, no content or promo slot on the resource is published or shadowed, and paid ad slots still publish.
+- [x] The pause lifts at `until` and the resource returns to planning the next day.
 
 **Size:** M · **Depends on:** T2
 

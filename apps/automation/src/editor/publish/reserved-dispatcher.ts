@@ -1,9 +1,10 @@
 import { PostSpecSchema } from '../post/post-spec';
 import type { EditorPlansRepository, EditorSlot } from '../repo/editor-plans.repository';
 import { RESERVED_CLAIM_BATCH, SponsoredOrdersPort } from './sponsored.publisher';
+import { PAUSED_ERROR, slotRef } from '../pauses/resource-pauses';
 
 export interface ReservedDispatcherDeps {
-  plans:     Pick<EditorPlansRepository, 'claimDueReserved'>;
+  plans:     Pick<EditorPlansRepository, 'claimDueReserved'> & Partial<Pick<EditorPlansRepository, 'updateSlot'>>;
   orders:    Pick<SponsoredOrdersPort, 'findBySlot'>;
   /** 008 ad path (SponsoredPublisher), unchanged. */
   sponsored: { publishClaimed(slot: EditorSlot, now: Date): Promise<boolean> };
@@ -11,6 +12,11 @@ export interface ReservedDispatcherDeps {
   manual:    { publishScheduled(slot: EditorSlot, now: Date): Promise<boolean> };
   /** 022 promo path: a cross-promo or repost between own resources. */
   promo?:    { publishPromo(slot: EditorSlot, now: Date): Promise<boolean> };
+  /**
+   * Spec 025 FR-013: a promo slot on a paused resource is skipped (`resource_paused`). Paid ads and the
+   * owner's scheduled posts are never paused (contractual / owner precedence).
+   */
+  paused?:   (ref: string) => Promise<boolean>;
   log?:      (msg: string) => void;
 }
 
@@ -29,7 +35,13 @@ export class ReservedDispatcher {
     let published = 0;
     for (const slot of slots) {
       if (slot.promo && this.d.promo) {
-        try { if (await this.d.promo.publishPromo(slot, now)) published++; } catch (err: any) { this.d.log?.(`promo slot ${slot.id} failed: ${err?.message ?? err}`); }
+        try {
+          if (this.d.paused && await this.d.paused(slotRef(slot))) {
+            await this.d.plans.updateSlot?.(slot.id, { status: 'skipped', error: PAUSED_ERROR });
+            continue;
+          }
+          if (await this.d.promo.publishPromo(slot, now)) published++;
+        } catch (err: any) { this.d.log?.(`promo slot ${slot.id} failed: ${err?.message ?? err}`); }
         continue;
       }
       let manual = false;

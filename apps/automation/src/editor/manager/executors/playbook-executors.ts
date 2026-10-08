@@ -68,6 +68,7 @@ export function describe(c: Change): string {
     case 'per_day': return `${c.resource_ref}: posts per day ${c.before.min}–${c.before.max} → ${c.after.min}–${c.after.max}`;
     case 'format_weight': return `${c.resource_ref}: weight of ${c.format} ${c.before} → ${c.after}`;
     case 'series_active': return `series "${c.series}" ${c.after ? 'resumed' : `paused until ${c.resume_on ?? '—'}`}`;
+    case 'pause_resource': return `${c.resource_ref}: paused for ${c.days} day(s) until ${c.until}`;
   }
 }
 

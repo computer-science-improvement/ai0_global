@@ -4,6 +4,7 @@ import type { AgentLoopResult } from '../harness/agent-loop';
 import type { EditorPlansRepository, EditorSlot } from '../repo/editor-plans.repository';
 import type { ResourceCatalog } from '../agents/resource-catalog';
 import { renderProfile, ResourceProfilesRepository } from '../agents/resource-profile';
+import { slotRef } from '../pauses/resource-pauses';
 
 export interface PromoExecutorDeps {
   plans:    Pick<EditorPlansRepository, 'updateSlot' | 'getSlot'> & Partial<Pick<EditorPlansRepository, 'plannedPromoBefore' | 'claimPromoSlot'>>;
@@ -23,6 +24,8 @@ export interface PromoExecutorDeps {
   mode?:    (card: EditorCard) => Promise<ChannelMode>;
   /** Spec 031: active cards, for writing promo slots of approval channels ahead of time. */
   cards?:   () => Promise<EditorCard[]>;
+  /** Spec 025 FR-013: promo slots on a paused resource are not written ahead (ReservedDispatcher skips them when due). */
+  paused?:  (ref: string) => Promise<boolean>;
   log?:     (msg: string) => void;
 }
 
@@ -100,6 +103,7 @@ export class PromoExecutor {
     for (const s of await this.d.plans.plannedPromoBefore([...byKey.keys()], new Date(now.getTime() + PROMO_WRITE_AHEAD_WINDOW_MS))) {
       const card = byKey.get(s.channelKey)!;
       if (writeAt(s, card).getTime() > now.getTime()) continue;
+      if (this.d.paused && await this.d.paused(slotRef(s))) continue;
       const claimed = await this.d.plans.claimPromoSlot(s.id);
       if (!claimed) continue;
       try {

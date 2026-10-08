@@ -22,6 +22,8 @@ export interface ExecContext {
   playbook:  Playbook | null;
   /** The effective mode (orchestrator ∧ card) the classification runs in (spec 031). */
   mode?:     ChannelMode;
+  /** Spec 025 FR-013: the active resource pauses (ref → until), when the context was built with them. */
+  pauses?:   Array<{ ref: string; until: Date }>;
   now:       Date;
 }
 
@@ -31,11 +33,13 @@ export interface PerDay { min: number; max: number }
 export type ChangeOp =
   | { op: 'per_day'; resource_ref: string; before: PerDay; after: PerDay }
   | { op: 'format_weight'; resource_ref: string; format: string; before: number; after: number }
-  | { op: 'series_active'; series: string; before: boolean; after: boolean; resume_on?: string };
+  | { op: 'series_active'; series: string; before: boolean; after: boolean; resume_on?: string }
+  /** Spec 025 FR-013: a resource_pauses row; `until` is an ISO timestamp. */
+  | { op: 'pause_resource'; resource_ref: string; days: number; until: string; reason: string };
 
 export type Change = ChangeOp & {
   kind:        DirectiveKind;
-  target:      'playbook' | 'card';
+  target:      'playbook' | 'card' | 'resource';
   /** The card the change lands on (target 'card') — the orchestrator's Telegram anchor. */
   channel_key?: string;
   /** Dry-run classification (classifyPlaybookChange): a format added, per_day ≥ ±30 %, approval-mode schedule changes. */

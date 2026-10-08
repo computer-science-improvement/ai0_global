@@ -29,6 +29,8 @@ export interface NetworkRunnerDeps {
   usable?:  NetworkContextDeps['usable'];
   /** Spec 024: per-resource zones and quiet hours. */
   time?:    NetworkContextDeps['time'];
+  /** Spec 025 FR-013: resources paused by a pause_resource directive stay out of every run's network. */
+  paused?:  NetworkContextDeps['paused'];
   /** Spec 021: open directives for the orchestrator, rendered for the prompt (null when none). */
   directives?: (orch: Agent) => Promise<string | null>;
   /** Spec 021: after an orchestrator run, accepted directives become applied. */
@@ -61,7 +63,7 @@ export class NetworkRunner {
   async context(card: EditorCard, role: EditorRole = 'orchestrator'): Promise<{ agentCtx: RunAgentContext; net: NetworkCtx } | null> {
     const agentCtx = await this.d.runtime.forChannel(card.channelKey, role);
     if (!agentCtx.orchestrator) return null;
-    const net = await networkContext({ repo: this.d.repo, usable: this.d.usable, time: this.d.time }, agentCtx.orchestrator, card);
+    const net = await networkContext({ repo: this.d.repo, usable: this.d.usable, time: this.d.time, paused: this.d.paused }, agentCtx.orchestrator, card);
     return net ? { agentCtx, net } : null;
   }
 
