@@ -44,6 +44,10 @@ import { NetworkRunner } from '../../src/editor/network/network-runner';
 import { DerivedSlots } from '../../src/editor/network/derived-slots';
 import { renderFormatPrefs } from '../../src/editor/agents/resource-profile';
 import { buildNetworkTools } from '../../src/editor/network/network-tools';
+import { buildRepurposeTools, RepurposeService } from '../../src/editor/network/repurpose-tool';
+import { buildFormatTools } from '../../src/editor/network/format-tools';
+import { networkContext } from '../../src/editor/network/network-context';
+import { ResourceTime } from '../../src/editor/time/resource-time';
 import { DirectivesRepository } from '../../src/editor/manager/directives.repository';
 import { KpiDigestService } from '../../src/editor/manager/kpi-digest.service';
 import { ManagerRunner } from '../../src/editor/manager/manager-runner';
@@ -131,6 +135,8 @@ export function buildStack(o: { pool: Pool; web: FakeWeb; now: () => Date; apiKe
     actions.register(k, async () => { throw new Error('not applied in evals'); });
   }
   const networkRepo = new NetworkRepository(pool);
+  // Spec 024 FR-004: the per-resource zone resolver (card for Telegram, then the profile, then Kyiv).
+  const resourceTime = new ResourceTime({ card: (k) => channels.get(k), profile: (ref) => profiles.rawProfile(ref) });
   const directives = new DirectivesRepository(pool);
   const digest = new KpiDigestService({ pool, catalog, globalCapUsd: 50, now });
   const platformPosts = new PlatformPostsRepository(pool);
@@ -161,6 +167,12 @@ export function buildStack(o: { pool: Pool; web: FakeWeb; now: () => Date; apiKe
       notifyPreview: async (_k, html) => { previews.push(html); },
     }),
     ...buildComposerTools({ drafts, repo: chatRepo }),
+    // Spec 024: agent-owned formatting and repurpose_post (orchestrator / planner / executor).
+    ...buildFormatTools({ profiles, now }),
+    ...buildRepurposeTools({
+      service: new RepurposeService({ pool, plans, now }),
+      networkFor: (orch, card) => networkContext({ repo: networkRepo, time: resourceTime }, orch, card),
+    }),
   ]);
 
   const llm = new CountingLlm(new OpenRouterClient({ apiKey: o.apiKey, baseUrl: o.env('OPENROUTER_BASE_URL') }));
@@ -173,7 +185,7 @@ export function buildStack(o: { pool: Pool; web: FakeWeb; now: () => Date; apiKe
   const runtime = new AgentRuntime({ agents, store: skillStore, fallback: skills, now });
   const manager = new ManagerRunner({ loop, registry, runtime, agents, repo: directives, digest, inbox, env: o.env, now });
   const network = new NetworkRunner({
-    loop, registry, runtime, memory, repo: networkRepo, plans, profiles, env: o.env, now,
+    loop, registry, runtime, memory, repo: networkRepo, plans, profiles, env: o.env, now, time: resourceTime,
     catalogSummary: (card) => schedule.plannerBlock(card),
     notify: async (t) => { notes.push(t); },
     directives: (orch) => manager.deliver(orch),

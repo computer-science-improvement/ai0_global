@@ -1,7 +1,8 @@
 // Ideas tab of /app/agents/$handle (spec 020 FR-011): the network's idea pool
 // with status filters (counts from one fetch), per idea the angle, variants per
 // platform, sources, why, the reviewer's five scores and comment, expiry, and
-// the owner override (accept / reject) while the idea is not final.
+// the owner override (accept / reject) while the idea is not final, and — once
+// planned — the per-resource decision matrix (spec 024 FR-011).
 
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { EmptyState } from '../ui/primitives';
@@ -13,6 +14,7 @@ import { toast } from '../ui/Toast';
 import { SegmentedTabs } from '../SegmentedTabs';
 import { fmtDate } from '../../lib/format';
 import { useDecideIdea, useIdeas, type IdeaRow, type IdeaStatus } from '../../api/network';
+import { DecisionRows } from './AgentPlan';
 import { IDEA_STATUS_LABEL, IDEA_TONE, NetworkError, ORIGIN_LABEL, ResourceChip, ScoreMeter, errorText, fmtExpires } from './NetworkUi';
 
 export type IdeaFilter = 'accepted' | 'new' | 'needs_revision' | 'planned' | 'used' | 'rejected' | 'all';
@@ -123,6 +125,12 @@ function IdeaCard({ idea, delay, focused }: { idea: IdeaRow; delay: number; focu
         {idea.variants.length > 0 && (
           <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap' }}>
             {idea.variants.map((v, i) => <ResourceChip key={`${v.resource_ref}-${i}`} refId={v.resource_ref} suffix={v.format} title={v.note ? `${v.resource_ref} — ${v.note}` : undefined} />)}
+          </div>
+        )}
+        {(idea.decisions?.length ?? 0) > 0 && (
+          <div>
+            <div className="text-eyebrow" style={{ marginBottom: 4 }}>Decisions</div>
+            <DecisionRows decisions={idea.decisions!} />
           </div>
         )}
         {idea.why && (

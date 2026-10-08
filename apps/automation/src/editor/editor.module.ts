@@ -97,6 +97,8 @@ import { buildHighlightsTools } from './tools/highlights-tools';
 import { catalogSummaryOf, checkLowRunway } from './tools/catalog-context';
 import { isSeriesLocked, seriesSourceCatalog } from './network/series-edit';
 import { NetworkService } from './network/network.service';
+import { NetworkOffers } from './network/network-offers';
+import { buildNetworkModeTool } from './network/network-mode-tool';
 import { NETWORK_SERVICE, NetworkController } from './network/network.controller';
 import { DirectivesRepository } from './manager/directives.repository';
 import { KpiDigestService } from './manager/kpi-digest.service';
@@ -339,7 +341,19 @@ export class AgentsUpkeep implements OnModuleInit {
     @Inject(EDITOR_MANAGER) private readonly manager: ManagerInfra,
     @Inject(PROMO_INFRA) private readonly promo: PromoInfra,
     @Inject(APPROVAL_INFRA) private readonly approval: ApprovalInfra,
+    @Inject(NETWORK_SERVICE) private readonly network: NetworkService,
   ) {}
+
+  /** Spec 024 FR-010: once-per-group offers to convert legacy auto-duplicate networks (idempotent by group). */
+  @Cron('29 * * * *', { name: 'network-offers' })
+  async networkOffers(): Promise<void> {
+    try {
+      const done = await this.network.runOffers();
+      if (done.length) this.logger.log(`network offers: ${done.map((d) => `${d.groupId} ${d.step}`).join(', ')}`);
+    } catch (err: any) {
+      this.logger.warn(`network offers failed: ${err?.message ?? err}`);
+    }
+  }
 
   /** Spec 031 FR-010: "ready for autonomy" for resources in approval mode (deduped weekly per resource). */
   @Cron('25 9 * * *', { name: 'ready-for-autonomy' })
@@ -723,6 +737,11 @@ export const EDITOR_PROVIDERS = [
             channelKeyOf: (a) => infra.channelKeyOf(a),
             seriesLocked: async (orch, name) => isSeriesLocked((await new NetworkRepository(pool).activePlaybook(orch.id))?.body ?? null, name),
           }),
+          // Spec 024 FR-010: @ai0 proposes a network mode change (Apply card).
+          ...buildNetworkModeTool({
+            agents: infra.agents, actions: infra.actions,
+            groupOf: async (orch) => { const key = await infra.channelKeyOf(orch); return key ? new NetworkRepository(pool).groupOfChannel(key) : null; },
+          }),
           // Spec 024 FR-013: agent-owned formatting per resource.
           ...buildFormatTools({ profiles: infra.profiles }),
           // Spec 024 FR-008: repurpose_post for the orchestrator, planner and executor; an Apply card for chat agents.
@@ -1104,12 +1123,17 @@ export const EDITOR_PROVIDERS = [
       inject: [DB_POOL, AGENT_INFRA, EDITOR_REPOS, EDITOR_NETWORK, PLATFORM_INFRA],
       useFactory: (pool: Pool, infra: AgentInfra, repos: EditorRepos, network: NetworkRunner, platform: PlatformInfra) => {
         const logger = new Logger('Network');
-        return new NetworkService({
+        const svc = new NetworkService({
           pool, agents: infra.agents, repo: new NetworkRepository(pool), inbox: infra.inbox,
           card: (k) => repos.channels.get(k), usable: (ref) => platform.health.usable(ref), time: resourceTime(repos, infra.profiles),
           rebuild: (card, brief) => network.runPlaybookBuild(card, brief),
           log: (m) => logger.warn(m),
+          // Spec 024 FR-010: offers to convert legacy auto-duplicate networks.
+          offers: new NetworkOffers({ pool, inbox: infra.inbox, log: (m) => logger.warn(m) }),
         });
+        // Spec 024 FR-010: a network mode change @ai0 proposed in the chat, applied by the owner.
+        infra.actions.register('set_network_mode', async (p) => svc.setMode(String(p.handle), { mode: p.mode }));
+        return svc;
       },
     },
     {

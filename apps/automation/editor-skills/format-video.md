@@ -18,7 +18,7 @@ applies_to: [executor, planner, composer]
 4. Підпис (body + джерело + хештеги) ≤ 1024. Перший рядок — що відбувається в кадрі.
 5. `placement: "below"` ставить підпис над відео, `above` (типово) — під ним.
 6. Кнопки (`cta`/`buttons`) можна.
-7. Дзеркала Meta отримують лише текст (Facebook/Threads); Instagram пропускається.
+7. Автодублювання в Meta (legacy-мережі) передає лише текст (Facebook/Threads); Instagram пропускається. У незалежній мережі відео на інші ресурси — твоє рішення (`resource-decisions`).
 
 ## Приклад
 ```json

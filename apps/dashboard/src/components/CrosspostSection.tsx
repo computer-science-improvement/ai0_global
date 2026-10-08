@@ -12,6 +12,9 @@ import {
 } from '../api/crossposts';
 import type { MetaPlatform, CrosspostMode } from '../api/types';
 
+/** Spec 024 FR-011: the stored value stays `mirror`; the UI says "duplicate". */
+const CROSSPOST_MODE_LABEL: Record<string, string> = { 'mirror': 'duplicate', 'teaser': 'teaser' };
+
 const PLATFORMS: ReadonlyArray<{ key: MetaPlatform; label: string; icon: IconName }> = [
   { key: 'facebook',  label: 'Facebook',  icon: 'facebook' },
   { key: 'instagram', label: 'Instagram', icon: 'instagram' },
@@ -34,8 +37,8 @@ export function CrosspostSection({ channelId }: { channelId: string }) {
   const platformAccounts = (accounts.data ?? []).filter(
     a => a.platform === platform && a.active && !a.verify_error,
   );
-  const igForcesMirror = platform === 'instagram';
-  const effMode: CrosspostMode = igForcesMirror ? 'mirror' : mode;
+  const igForcesDuplicate = platform === 'instagram';
+  const effMode: CrosspostMode = igForcesDuplicate ? 'mirror' : mode;
 
   const accountLabel = (id: string) => {
     const a = accounts.data?.find(x => x.id === id);
@@ -55,7 +58,7 @@ export function CrosspostSection({ channelId }: { channelId: string }) {
       <div className="text-eyebrow" style={{ marginBottom: 6 }}>Meta cross-posting</div>
       <p className="text-micro" style={{ color: 'var(--color-ink-dim)', margin: '0 0 10px' }}>
         After each Telegram post, this channel reposts to the selected Meta accounts.
-        <b> mirror</b> — the same content; <b>teaser</b> — a short teaser + link to the post.
+        <b> duplicate</b> — the same content; <b>teaser</b> — a short teaser + link to the post.
       </p>
 
       {/* Existing targets */}
@@ -69,7 +72,7 @@ export function CrosspostSection({ channelId }: { channelId: string }) {
             }}>
               <Icon name={meta.icon} size={14} />
               <span className="text-body-sm" style={{ color: 'var(--color-ink)' }}>{accountLabel(t.meta_account_id)}</span>
-              <Badge tone="neutral">{t.mode}</Badge>
+              <Badge tone="neutral">{CROSSPOST_MODE_LABEL[t.mode] ?? t.mode}</Badge>
               {!t.enabled && <Badge tone="warning">disabled</Badge>}
               <span style={{ marginLeft: 'auto', display: 'inline-flex', gap: 6 }}>
                 <button className="btn-tiny" onClick={() => toggle.mutate({ id: t.id, enabled: !t.enabled })}>
@@ -103,8 +106,8 @@ export function CrosspostSection({ channelId }: { channelId: string }) {
         </select>
 
         <select className="input-field" style={{ padding: '6px 10px', fontSize: 13 }}
-          value={effMode} disabled={igForcesMirror} onChange={e => setMode(e.target.value as CrosspostMode)}>
-          <option value="mirror">mirror</option>
+          value={effMode} disabled={igForcesDuplicate} onChange={e => setMode(e.target.value as CrosspostMode)}>
+          <option value="mirror">{CROSSPOST_MODE_LABEL['mirror']}</option>
           <option value="teaser">teaser</option>
         </select>
 
@@ -112,9 +115,9 @@ export function CrosspostSection({ channelId }: { channelId: string }) {
           {create.isPending ? 'Adding…' : 'Add'}
         </button>
       </div>
-      {igForcesMirror && (
+      {igForcesDuplicate && (
         <p className="text-micro" style={{ color: 'var(--color-ink-dim)', marginTop: 6 }}>
-          Instagram supports only <b>mirror</b> (an image is required; links in captions aren't clickable).
+          Instagram supports only <b>duplicate</b> (an image is required; links in captions aren't clickable).
         </p>
       )}
       {create.error && (

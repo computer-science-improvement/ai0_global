@@ -106,7 +106,7 @@ function CardSummary({ c }: { c: EditorChannel }) {
       {row('Tools', c.toolsAllow ? chips(c.toolsAllow) : 'role defaults')}
       {row('Models', Object.keys(c.models).length ? chips(Object.entries(c.models).map(([r, m]) => `${r}: ${m}`)) : 'defaults')}
       {row('Explore ratio', String(c.exploreRatio))}
-      {row('Cross-post', c.crosspost === false ? 'off — Telegram only' : 'on — live posts mirror to Meta targets')}
+      {row('Auto-duplicate (legacy)', c.crosspost === false ? 'off — Telegram only' : 'on — live posts are duplicated to the Meta targets while auto-duplication is on')}
     </SectionCard>
   );
 }

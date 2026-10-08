@@ -13,6 +13,7 @@ import { fmtDate, fmtRelative } from '../lib/format';
 import { useAgentInbox, useAgentTree, useMarkInboxRead, type InboxItem } from '../api/agents';
 import { useApprovalsCount } from '../api/approvals';
 import { ApprovalList } from '../components/approvals/ApprovalList';
+import { NETWORK_OFFER_KIND, NetworkOfferActions } from '../components/agents/NetworkOfferActions';
 
 type InboxTab = 'approvals' | 'unread' | 'all';
 
@@ -104,6 +105,9 @@ function InboxPage() {
                           <Link to="/app/agents/$handle" params={{ handle: agent.handle }} className="link-accent text-micro" style={{ display: 'inline-block', marginTop: 4 }}>
                             Review and switch →
                           </Link>
+                        )}
+                        {agent && it.kind === NETWORK_OFFER_KIND && it.refId && (
+                          <NetworkOfferActions groupId={it.refId} handle={agent.handle} onDone={() => { if (!it.readAt) mark.mutate([it.id]); }} />
                         )}
                         {it.refType === 'run' && it.refId && (
                           <Link to="/app/editor/run/$id" params={{ id: it.refId }} className="link-accent text-micro" style={{ display: 'inline-block', marginTop: 4 }}>

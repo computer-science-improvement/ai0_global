@@ -336,3 +336,70 @@ Duplication becomes a tool, and every resource gets its own time zone.
   (an owner setting) still applies. No fixed hashtag cut or caption trim existed in the agent path (`renderPlatform` trims only
   at the platform maximum); the strategies' caption helpers are legacy fan-out and stay (non-goal).
 - **Eval** `executor-format-prefs` (`evals/cases/agents.ts`) written, not run; the eval stack now wires derived slots.
+
+### T5 (2026-10-08)
+- **Storage:** migration `064_network_offers.sql` — one `network_offers` row per (group, kind) (idempotency of the
+  once-per-group step), with `status` open / switched / kept, `had_playbook` (offered with an active playbook?) and
+  `reoffered_at`. The Inbox item is `network_independent_offer` (`ref_type = 'network_group'`, `ref_id` = group id,
+  severity `action`); dashboard text English, the Telegram alert Ukrainian (as `network_mode`).
+- **Step:** `NetworkOffers.run()` (`network/network-offers.ts`), hourly cron `network-offers` (:29) in `AgentsUpkeep`.
+  Candidates are groups whose anchor channel (first `tracked_channels.channel_key`, as the gate) has a top-level
+  orchestrator; strategy-only groups have none and get nothing. Checklist: playbook (active / pending / none), orchestrator
+  mode (+ paused), enabled strategies on members (`strategy_bindings` by channel / Meta / TikTok member), auto-duplicate
+  source (`source_platform`), and the FR-010 shadow sentence.
+- **Re-offer:** once, when a group offered without a playbook gets an active one — immediately from the owner's approval
+  or playbook edit (`NetworkService.decide` / `putPlaybook`) and otherwise by the hourly step (covers every other path).
+- **Answers:** "Switch to independent" = `POST …/network-mode` (the offer becomes `switched`, the `network_mode` record is
+  written as before, and the gate rules decide when fan-out stops). "Keep auto-duplicate" = `POST /api/network-offers/:groupId/keep`
+  (`kept`, never offered again; the mode is untouched). An explicit `legacy_duplicate` via network-mode also answers an
+  open offer as kept; a group switched elsewhere (Playbook tab) closes its open offer as `switched` (`decided_by = 'mode_change'`).
+  `GET /api/network-offers` lists offers for the Inbox buttons.
+- **@ai0:** builder tool `set_network_mode {handle, mode}` (`network/network-mode-tool.ts`) proposes the pending action
+  `set_network_mode`; the handler (registered with `NETWORK_SERVICE`) runs `NetworkService.setMode`. The
+  `agent-onboarding` skill names it.
+- **Groups page (FR-009):** a member's enabled strategy in an `independent` group shows "Strategy <type> publishes into an
+  independent network on its own; retire it or keep the group on auto-duplicate" (the "009 T004" reference is left out
+  of the UI text). The group list (`SELECT *`) already carries `mode` and the pinned `auto_duplicate`.
+
+### T6 (2026-10-08)
+- **Terminology:** no user-visible "mirror" in `apps/dashboard/src` — guard `lib/no-mirror-ui.test.ts` (comments and
+  the quoted stored value `'mirror'` are allowed). Crosspost option and badges say "duplicate" (stored value stays
+  `mirror`); the editor card row and the card form say "Auto-duplicate (legacy)"; Groups: new intro, "Auto-duplicate source"
+  shown only while the group auto-duplicates (`mode = legacy_duplicate` or today's pinned `auto_duplicate` not false —
+  the list API already returns both), otherwise an "independent" chip, and the SOURCE badge / double-post warnings only
+  while auto-duplicating. The backend's Instagram crosspost error no longer says "mirror". The Playbook switch and the
+  network badges were already done in T1.
+- **Times:** `lib/zoned-time.ts` (`formatIn`, `dual`, `dayIn`, `zonedToUtc`, `minutesFromDayStart`, `listZones`…);
+  `lib/kyiv-time.ts` is now a thin wrapper (chat callers unchanged). The pure layout lives in `lib/plan-timeline.ts`.
+  The Plan tab's day ("Today") and axis are the anchor's zone (its Telegram resource's `timezone` from `GET …/network`);
+  positions are minutes from the plan day's 00:00 in that zone, so a resource behind the anchor (New York evening) lands
+  after 24:00 (axis up to 36 h, "00+1" marks midnight). Lanes show the zone and local now; pills show the resource's
+  time plus "· HH:MM Kyiv" when it differs (the full `09:00 America/New_York · 16:00 Kyiv` is the tooltip and the detail
+  header; the pill is too narrow for both zone names). On a 25-hour DST day positions are by real time.
+  `fmtDay` / `shiftDay` are UTC-based. Test `lib/plan-timeline.test.ts` runs with `TZ=America/New_York`.
+- **Plan tab:** U/D/A mark on pills and list rows; dashed SVG connectors source → derived (solid when either is selected);
+  slot detail shows treatment, reason, the source (jump) and derived slots, and the idea's decisions; a "Decisions" panel
+  lists every idea of the day with each resource's decision, reason, reason code and who decided.
+- **Ideas:** `GET …/ideas` now returns `decisions[]` per idea (from `content_decisions`); the idea card shows them.
+- **ResourceProfile:** time zone (searchable `<datalist>` of `Intl.supportedValuesOf('timeZone')`, empty = Europe/Kyiv,
+  validated with `Intl`) and quiet hours (both or neither; empty = 23→8) in the profile form and view. For a `telegram:`
+  ref both are read-only from the card (via `GET …/network`) with a link to `/app/editor/$channel`.
+
+### T7 (2026-10-08)
+- **Skill** `editor-skills/resource-decisions.md` (orchestrator, planner, executor): the four decisions with when to use
+  each, reasons that name a profile / playbook / KPI signal, `reason_code`s, where each role records them
+  (`submit_network_plan`, `repurpose_post`, the derived run), and reading / evolving `format_prefs` (evidence from KPIs or
+  repeated owner approval edits, one hypothesis per change, never back and forth, ≤ 3 a day, locked fields untouched).
+  Test `skills/builtin-skills-lint.test.ts` lints every builtin skill and checks this one's roles and coverage.
+- **Wording:** «дзеркало / дзеркалити» is gone from builtin skills (`format-carousel`, `format-video`; the JWST "mirror"
+  example in `format-longread` was reworded) and the prompts had none left; the same test guards skills and every
+  non-test `.ts` under `src/editor`. The planner and orchestrator prompts point to the skill.
+- **Not in the spec:** the network planner and the daily orchestrator prompts now carry "## Профілі ресурсів" — one
+  compact line per member resource profile (topic, audience, language, goals, taboo, tone). Without it the planner could
+  not cite a member's profile or skip an off-topic resource (FR-012, eval `planner-skip-offtopic`).
+- **Evals (written, not run — paid):** `planner-mixed-decisions`, `planner-skip-offtopic`, `orchestrator-repurpose-hit`
+  in `evals/cases/agents.ts` (`executor-format-prefs` is from T8). The eval stack now wires `buildFormatTools`,
+  `buildRepurposeTools` and the `ResourceTime` resolver. Fixed in passing: the eval `network()` helper still inserted the
+  pre-061 modes `mirror` / `orchestrated`, which the 061 CHECK rejects (it broke `playbook-from-brief`,
+  `network-plan-staggered`, `platform-native-variant` and `executor-format-prefs`); eval cleanup also removes
+  `content_decisions` and Threads / Facebook profiles.
