@@ -4,6 +4,7 @@ import { defineTool, EditorTool, ToolContext } from '../harness/tool';
 import { parseResourceRef, Platform } from '../agents/agent.types';
 import type { EditorPlansRepository } from '../repo/editor-plans.repository';
 import { lintPlatformPost, PlatformPostSpecSchema, renderPlatform } from './platform-spec';
+import type { VoicePrefs } from '../post/slop-lint';
 import { publishPlatformNow, PublishPlatformDeps } from './publish-platform';
 import { freshnessDeadline } from '../approval/approval-timing';
 import type { ScheduleService } from '../schedule/schedule.service';
@@ -16,6 +17,8 @@ export interface PlatformSlotExtras {
   vocabulary?: string[];
   bannedTerms?: string[];
   agentId?:    string | null;
+  /** Spec 034: the target's format_prefs humor / slang / emoji (slop warnings). */
+  voice?:      VoicePrefs | null;
 }
 
 export interface PlatformToolDeps {
@@ -48,7 +51,7 @@ export function buildPlatformTools(d: PlatformToolDeps): EditorTool[] {
       const p = ref ? parseResourceRef(ref) : null;
       if (!p || p.platform === 'telegram') return { error: 'not_a_platform_resource' };
       const platform = p.platform as Exclude<Platform, 'telegram'>;
-      const lint = lintPlatformPost(spec, { platform, bannedTerms: slotOf(ctx)?.bannedTerms, vocabulary: slotOf(ctx)?.vocabulary });
+      const lint = lintPlatformPost(spec, { platform, bannedTerms: slotOf(ctx)?.bannedTerms, vocabulary: slotOf(ctx)?.vocabulary, voice: slotOf(ctx)?.voice });
       return { ...lint, preview: renderPlatform(spec, platform).caption };
     },
   });
@@ -70,7 +73,7 @@ export function buildPlatformTools(d: PlatformToolDeps): EditorTool[] {
       }
       const r = await publishPlatformNow(d.publish, {
         resourceRef: slot.resourceRef, spec, mode: slot.mode, slotId: ctx.slotId, agentId: slot.agentId ?? null,
-        maxPerDay: slot.maxPerDay, vocabulary: slot.vocabulary, bannedTerms: slot.bannedTerms,
+        maxPerDay: slot.maxPerDay, vocabulary: slot.vocabulary, bannedTerms: slot.bannedTerms, voice: slot.voice,
       });
       if ('error' in r) return r;
       if (r.awaiting && r.rendered) {

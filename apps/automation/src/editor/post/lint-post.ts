@@ -4,18 +4,16 @@ import { inlineToPlain, visibleLength } from './inline-markup';
 import { blockWords, countBlocks, usesRichBlocks } from './blocks';
 import { CAPTION_LIMIT, RICH_FORMATS, TEXT_LIMIT, normalizeHashtag, renderTelegram, type RenderCard, type TgMessage } from './render-telegram';
 import { RICH_MAX_BLOCKS, RICH_MAX_CHARS, RICH_MAX_DEPTH, richStats } from './render-rich';
+/** Spec 034 FR-003: signature AI phrasings (the anti-slop list, normalised) live in slop-phrases.ts. */
+import { findBannedTerms, findSlopPhrases } from './slop-phrases';
+import { slopWarnings } from './slop-lint';
 
 export interface LintIssue { code: string; message: string }
+/**
+ * `warnings` never fail a post. Spec 034: the slop counters arrive here as `slop_*` codes
+ * (see SLOP_WARNING_CODES / isSlopWarning in slop-lint.ts) for the pre-publish critic.
+ */
 export interface LintResult { ok: boolean; errors: LintIssue[]; warnings: LintIssue[] }
-
-/** Signature AI phrasings (from the anti-slop skill) that are never acceptable in a published post. */
-export const GLOBAL_BANNED = [
-  'варто зазначити', 'слід відзначити', 'важливо розуміти', 'не можна не згадати',
-  'у сучасному світі', 'в умовах сьогодення', 'як ніколи раніше', 'на сьогоднішній день',
-  'знаменує поворотний момент', 'віха в історії', 'відіграє ключову роль', 'невід\'ємна частина',
-  'захоплююча подорож', 'нова ера', 'давайте розберемося', 'розберімось', 'уявіть собі',
-  'підсумовуючи', 'у цій статті', 'як штучний інтелект', 'as an ai',
-];
 
 const EMOJI_RE = /\p{Extended_Pictographic}/gu;
 
@@ -55,7 +53,8 @@ function cyrillicShare(text: string): number {
   return cyr / letters.length;
 }
 
-type LintCard = Pick<EditorCard, 'formats' | 'hashtags' | 'hashtagMin' | 'hashtagMax' | 'footer' | 'linkStyle' | 'emojiPolicy' | 'bannedTerms' | 'language'> & RenderCard;
+type LintCard = Pick<EditorCard, 'formats' | 'hashtags' | 'hashtagMin' | 'hashtagMax' | 'footer' | 'linkStyle' | 'emojiPolicy' | 'bannedTerms' | 'language'> & RenderCard
+  & Partial<Pick<EditorCard, 'humor' | 'slang' | 'emojiPref'>>;
 
 export function lintPost(spec: PostSpec, card: LintCard): LintResult {
   const errors: LintIssue[] = [];
@@ -191,13 +190,16 @@ export function lintPost(spec: PostSpec, card: LintCard): LintResult {
   // ── language, banned terms, emoji ─────────────────────────────────────────
   const plain = [spec.title, readerPlain(spec), spec.poll?.question ?? '', ...(spec.poll?.options ?? [])].join('\n');
   if (card.language === 'uk' && cyrillicShare(readerPlain(spec) || plain) < 0.6) err('not_ukrainian', 'текст має бути українською');
-  const low = plain.toLowerCase();
-  for (const term of [...GLOBAL_BANNED, ...card.bannedTerms.map((t) => t.toLowerCase())]) {
-    if (term && low.includes(term)) err('banned_term', `заборонена фраза: "${term}"`);
-  }
+  // Spec 034 FR-003: normalised (case, ʼ ’ ') banned phrases are errors; the slop counters are warnings for the critic.
+  for (const term of findSlopPhrases(plain)) err('banned_term', `заборонена фраза: "${term}"`);
+  for (const term of findBannedTerms(plain, card.bannedTerms)) err('banned_term', `заборонена фраза: "${term}"`);
   const emoji = (readerPlain(spec).match(EMOJI_RE) ?? []).length;
   if (card.emojiPolicy === 'none' && emoji > 0) err('emoji_policy', 'у цьому каналі без емодзі');
   if (card.emojiPolicy === 'sparse' && emoji > 3) err('emoji_policy', `забагато емодзі (${emoji}), максимум 3`);
+  const reader = [readerPlain(spec), spec.poll?.question ?? '', ...(spec.poll?.options ?? [])].filter(Boolean).join('\n');
+  for (const w of slopWarnings({ body: bodyPlain(spec), all: reader, prefs: { humor: card.humor, slang: card.slang, emoji: card.emojiPref } })) {
+    warn(w.code, w.message);
+  }
 
   if (spec.format === 'photo' && !n) warn('no_media_for_photo_channel', 'photo без зображення');
 

@@ -72,6 +72,12 @@ export interface EditorCard {
   richPref?:          'auto' | 'prefer' | 'never';
   /** Spec 033 FR-003: Telegram rejected rich messages here as unsupported in the last 7 days (app_settings flag). */
   richUnsupported?:   boolean;
+  /** Spec 034 FR-002: format_prefs.humor of `telegram:<channelKey>` (joined in on read). Absent = none (no jokes). */
+  humor?:             'none' | 'light';
+  /** Spec 034 FR-002: format_prefs.slang (joined in on read). Absent = false. */
+  slang?:             boolean;
+  /** Spec 034 FR-003: format_prefs.emoji (joined in on read): the slop lint warns above it; emojiPolicy stays the hard rule. */
+  emojiPref?:         'none' | 'light' | 'rich';
 }
 
 /** What each platform can render natively — shown to agents with the card. */

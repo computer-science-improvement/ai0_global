@@ -2,7 +2,7 @@ import type { Pool } from 'pg';
 import type { PostSpec } from '../../src/editor/post/post-spec';
 import { inlineToPlain } from '../../src/editor/post/inline-markup';
 import { blockWords } from '../../src/editor/post/blocks';
-import { GLOBAL_BANNED } from '../../src/editor/post/lint-post';
+import { findSlopPhrases } from '../../src/editor/post/slop-phrases';
 
 export interface Check {
   name:     string;
@@ -25,9 +25,9 @@ export function isUkrainian(text: string): boolean {
   return letters.filter((c) => /[Ѐ-ӿ]/.test(c)).length / letters.length >= 0.7;
 }
 
+/** Spec 034 FR-003: the lint's normalised phrase list (apostrophes, case, word boundaries, inflected stems). */
 export function bannedHits(text: string): string[] {
-  const low = text.toLowerCase();
-  return GLOBAL_BANNED.filter((t) => low.includes(t));
+  return findSlopPhrases(text);
 }
 
 /** Every multi-digit number (years, counts, distances) in the post must appear in the source material. */

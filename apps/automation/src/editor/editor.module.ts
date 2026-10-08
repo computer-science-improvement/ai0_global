@@ -1064,6 +1064,8 @@ export const EDITOR_PROVIDERS = [
           onSlotDone: async (slot) => { if (slot.ideaId) await ideas.settleIdea(slot.ideaId); },
           // Spec 024 FR-007: duplicate / adapt slots — the agent formats every target post itself.
           derived: derivedPorts(pool, ideas, infra, ports.holds ?? null),
+          // Spec 034 FR-002: humour / slang / emoji of a slot's target resource (owner-only switches, off by default).
+          voiceOf: async (ref) => { const f = await infra.profiles.formatOf(ref); return { humor: f.prefs.humor, slang: f.prefs.slang, emoji: f.prefs.emoji }; },
         });
       },
     },

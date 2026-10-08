@@ -5,6 +5,8 @@ import { PlatformPostSpecSchema, type PlatformPostSpec } from '../platform/platf
 import { PostSpecSchema, type PostSpec } from '../post/post-spec';
 import { DerivedTreatment, derivedFormatProblem, duplicateSpec, SourcePost, sourceMediaOf } from '../post/duplicate';
 import type { EditorSlot } from '../repo/editor-plans.repository';
+import type { VoicePrefs } from '../post/slop-lint';
+import { voiceCoreSection } from '../roles/voice';
 
 /**
  * Spec 024 FR-007: executing a derived (duplicate / adapt) slot. The source
@@ -167,6 +169,8 @@ export function derivedPrompts(o: {
   slot: EditorSlot; ready: Extract<DerivedResolution, { kind: 'ready' }>; targetRef: string; targetPlatform: Platform;
   profile: string | null; formatPrefs: string | null; playbook: string | null; memory: string; mode: 'shadow' | 'approve' | 'live';
   skill?: string | null; ownerPrefs?: string[];
+  /** Spec 034 FR-001/FR-002: the target's humour/slang (voice-core is always in the prompt) and the attached voice skills (adapt). */
+  voice?: Pick<VoicePrefs, 'humor' | 'slang'> | null; voiceSkills?: string[];
 }): { system: string; user: string } {
   const { ready, slot } = o;
   const draft = ready.treatment === 'duplicate'
@@ -182,6 +186,7 @@ export function derivedPrompts(o: {
       ? 'Порядок: lint_post → publish_post (PostSpec). Якщо дубль тут недоречний — skip_slot з причиною.'
       : 'Порядок: lint_platform_post → publish_platform_post (PlatformPostSpec). Якщо дубль тут недоречний — skip_slot з причиною.',
     'Якщо публікація повернула lint_failed — виправ саме ці коди один раз; друга помилка завершить слот як failed.',
+    ...voiceCoreSection(o.voice ?? null),
     '',
     '## Жорсткі ліміти платформи',
     tg ? '- Telegram: розмітка, кнопки й альбоми — за PostSpec; lint_post покаже порушення.' : capabilitiesSummary([o.targetPlatform]),
@@ -196,6 +201,7 @@ export function derivedPrompts(o: {
     o.memory || '- (порожня)',
     ...(o.ownerPrefs?.length ? ['', ...o.ownerPrefs] : []),
     ...(o.skill ? ['', o.skill] : []),
+    ...(o.voiceSkills?.length ? ['', ...o.voiceSkills] : []),
   ].join('\n');
   const source = JSON.stringify(ready.source.spec, null, 1);
   const user = [

@@ -26,7 +26,7 @@ export const FormatPatchInput = z.object({
   hashtags: nullable(shape.hashtags.unwrap()), mentions: nullable(shape.mentions.unwrap()), cta: nullable(shape.cta.unwrap()),
   links: nullable(shape.links.unwrap()), line_breaks: nullable(shape.line_breaks.unwrap()), signature: nullable(shape.signature.unwrap()),
   preferred_formats: nullable(shape.preferred_formats.unwrap()), media: nullable(shape.media.unwrap()), notes: nullable(shape.notes.unwrap()),
-  rich: nullable(shape.rich.unwrap()),
+  rich: nullable(shape.rich.unwrap()), humor: nullable(shape.humor.unwrap()), slang: nullable(shape.slang.unwrap()),
 }).strict().refine((p) => Object.keys(p).length > 0, { message: 'at least one field' });
 
 function refsOf(ctx: ToolContext): string[] | null {
@@ -60,6 +60,7 @@ export function buildFormatTools(d: FormatToolDeps): EditorTool[] {
     description: [
       `Змінити форматування ресурсу (format_prefs) — частково: поля ${FORMAT_PREF_FIELDS.join(', ')}; null прибирає поле (тоді на твій розсуд).`,
       'Змінюй на підставі KPI або правок власника, не туди-сюди; reason — який сигнал. Поля, закріплені власником, змінити не можна (locked_by_owner).',
+      'humor і slang вмикає лише власник (owner_only): ти можеш їх лише вимкнути (humor: none, slang: false).',
       `Не більше ${FORMAT_CHANGES_PER_DAY} змін на ресурс за день. Ліміти платформи (довжина підпису, максимум хештегів) все одно перевіряє код.`,
     ].join(' '),
     kind: 'act', roles: ['orchestrator', 'planner'],

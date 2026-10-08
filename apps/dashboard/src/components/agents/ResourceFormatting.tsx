@@ -19,7 +19,7 @@ import {
   errorBody, FORMAT_PREF_FIELDS, usePutResourceFormatting, useResourceFormatting,
   type FormatPrefField, type FormatResource, type FormatVersion,
 } from '../../api/agents';
-import { FORMAT_LABEL, formatValue, toForm, toPrefs, type FormatForm as Form } from '../../lib/format-prefs';
+import { FORMAT_LABEL, formatValue, toForm, toPrefs, voiceSummary, type FormatForm as Form } from '../../lib/format-prefs';
 
 const input: CSSProperties = { width: '100%', boxSizing: 'border-box' };
 const grid: CSSProperties = { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 180px), 1fr))', columnGap: 14 };
@@ -44,7 +44,9 @@ export function FormattingSection({ handle }: { handle: string }) {
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
           {d.resources.map((r) => {
             const l = label(r.ref);
-            const set = FORMAT_PREF_FIELDS.filter((k) => r.formatPrefs[k] !== undefined);
+            // Humour and slang are always shown in one chip (unset = off, spec 034).
+            const set = FORMAT_PREF_FIELDS.filter((k) => k !== 'humor' && k !== 'slang' && r.formatPrefs[k] !== undefined);
+            const voiceLocked = r.locks.includes('humor') || r.locks.includes('slang');
             return (
               <div key={r.ref} className="card row-lift" style={{ padding: '10px 12px', display: 'flex', gap: 12, alignItems: 'flex-start', flexWrap: 'wrap' }}>
                 <div style={{ flex: '1 1 260px', minWidth: 0 }}>
@@ -55,6 +57,13 @@ export function FormattingSection({ handle }: { handle: string }) {
                       {r.changesToday}/{d.changesPerDay} today
                     </Badge>
                     {r.locks.length > 0 && <Badge tone="accent">{r.locks.length} locked</Badge>}
+                  </div>
+                  <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: set.length ? 6 : 4 }}>
+                    <span className="chip" style={{ gap: 4, maxWidth: '100%', overflowWrap: 'anywhere' }}
+                      title="Humour and slang are off unless you allow them; agents cannot turn them on">
+                      {voiceLocked && <Icon name="lock" size={11} />}
+                      <span style={{ color: 'var(--color-ink-dim)' }}>Voice:</span> {voiceSummary(r.formatPrefs)}
+                    </span>
                   </div>
                   {set.length ? (
                     <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
@@ -203,6 +212,22 @@ function FormatModal({ handle, resource, title, onClose }: { handle: string; res
           </Field>
         </Row>
       )}
+      <div style={grid}>
+        <Row field="humor" locked={is('humor')} onLock={lock('humor')}>
+          <Field label="Humour" hint="only you can turn it on">
+            <select className="input-field" style={input} value={f.humor} onChange={(e) => set('humor', e.target.value as Form['humor'])}>
+              <option value="">Off: no jokes or memes</option><option value="light">Light humour</option>
+            </select>
+          </Field>
+        </Row>
+        <Row field="slang" locked={is('slang')} onLock={lock('slang')}>
+          <Field label="Slang" hint="only you can turn it on">
+            <select className="input-field" style={input} value={f.slang} onChange={(e) => set('slang', e.target.value as Form['slang'])}>
+              <option value="">Off: plain language</option><option value="yes">Allowed</option>
+            </select>
+          </Field>
+        </Row>
+      </div>
       <Row field="hashtags" locked={is('hashtags')} onLock={lock('hashtags')}>
         <div style={grid}>
           <Field label="Hashtags" hint="how many"><input className="input-field" style={input} type="number" min={0} max={30} value={f.hashCount} onChange={(e) => set('hashCount', e.target.value)} /></Field>

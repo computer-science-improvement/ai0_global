@@ -3,6 +3,7 @@ import type { ResourceHealth } from '../agents/resource-profile';
 import { similarity } from '../post/similarity';
 import { checkVerbatim } from '../post/verbatim-guard';
 import type { PostSpec } from '../post/post-spec';
+import type { VoicePrefs } from '../post/slop-lint';
 import type { PreparedPublish } from '../publish/prepare-media';
 import { CAPABILITIES } from './capabilities';
 import { captionPlain, lintPlatformPost, PlatformLintResult, PlatformPostSpec, renderPlatform, RenderedPlatformPost } from './platform-spec';
@@ -38,6 +39,8 @@ export interface PublishPlatformInput {
   maxPerDay?:   number | null;
   vocabulary?:  string[];
   bannedTerms?: string[];
+  /** Spec 034: format_prefs humor / slang / emoji of the resource (slop warnings only). */
+  voice?: VoicePrefs | null;
 }
 
 export type PublishPlatformResult =
@@ -61,7 +64,7 @@ export async function publishPlatformNow(d: PublishPlatformDeps, i: PublishPlatf
   if (!ref || ref.platform === 'telegram') return { error: 'not_a_platform_resource', details: 'Telegram публікується через publish_post' };
   const platform = ref.platform as Exclude<Platform, 'telegram'>;
 
-  const lint = lintPlatformPost(i.spec, { platform, bannedTerms: i.bannedTerms, vocabulary: i.vocabulary });
+  const lint = lintPlatformPost(i.spec, { platform, bannedTerms: i.bannedTerms, vocabulary: i.vocabulary, voice: i.voice });
   if (!lint.ok) return { error: 'lint_failed', details: lint.errors };
 
   const health = await d.health(i.resourceRef);

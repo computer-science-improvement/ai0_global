@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { formatValue, toForm, toPrefs } from './format-prefs';
+import { formatValue, toForm, toPrefs, voiceSummary } from './format-prefs';
 
 test('format prefs: form round trip drops empty fields (empty = the agent’s judgement)', () => {
   const prefs = {
@@ -26,4 +26,17 @@ test('format prefs: rich messages (spec 033) round trip and label', () => {
   assert.deepEqual(toPrefs({ ...toForm({ rich: 'never' }), rich: '' }), {});
   assert.equal(formatValue('rich', 'auto'), 'when the post has headings or tables');
   assert.equal(formatValue('rich', 'never'), 'never (plain HTML)');
+});
+
+test('format prefs: humour and slang (spec 034) — off by default, owner turns them on', () => {
+  assert.deepEqual(toPrefs(toForm({ humor: 'light', slang: true })), { humor: 'light', slang: true });
+  assert.equal(toForm({}).humor, '');
+  assert.equal(toForm({}).slang, '');
+  assert.deepEqual(toPrefs(toForm({ humor: 'none', slang: false })), {}, 'explicit off is the same as unset');
+  assert.equal(formatValue('humor', 'light'), 'light, allowed by you');
+  assert.equal(formatValue('humor', 'none'), 'off');
+  assert.equal(formatValue('slang', true), 'allowed by you');
+  assert.equal(formatValue('slang', false), 'off');
+  assert.equal(voiceSummary({}), 'No humour · no slang');
+  assert.equal(voiceSummary({ humor: 'light', slang: true }), 'Light humour · slang allowed');
 });
