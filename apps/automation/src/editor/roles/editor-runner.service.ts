@@ -15,6 +15,8 @@ import type { PlatformSlotExtras } from '../platform/platform-tools';
 import { isQuietHour, localDate, localHour, zonedToUtc } from './time';
 import { isToolError, type EditorTool } from '../harness/tool';
 import { DERIVED_STEPS, derivedPrompts, slotResource, type DerivedResolution } from '../network/derived-slots';
+import type { VoicePrefs } from '../post/slop-lint';
+import { attachVoiceSkills, VOICE_CORE, VOICE_SKILLS_BUDGET, voiceCoreSection, voiceReferenceLine } from './voice';
 
 export interface EditorRunnerDeps {
   loop:     Pick<AgentLoop, 'run'>;
@@ -60,6 +62,11 @@ export interface EditorRunnerDeps {
     released?(sourceSlotId: string): Promise<unknown>;
     inbox?(note: { agentId: string | null; title: string; body: string; slotId: string }): Promise<unknown>;
   };
+  /**
+   * Spec 034 FR-002: format_prefs humor / slang / emoji of a resource (the target of a platform or
+   * derived slot). Optional: without it humour and slang are off. Telegram cards carry their own.
+   */
+  voiceOf?: (ref: string) => Promise<VoicePrefs | null>;
 }
 
 /** Telegram-only tools that must never run on a slot of another platform, and vice versa. */
@@ -110,6 +117,13 @@ export class EditorRunnerService {
   private async prefs(role: CardRole, channelKey: string) {
     if ((role !== 'planner' && role !== 'executor') || !this.d.memory.ownerPreferences) return [];
     return this.d.memory.ownerPreferences(channelKey, APPROVAL_PREFS_IN_PROMPT).catch(() => []);
+  }
+
+  /** The voice settings of the resource a slot writes for (spec 034); a Telegram target falls back to the card. */
+  private async voice(ref: string, card: EditorCard): Promise<VoicePrefs> {
+    const own = ref === `telegram:${card.channelKey}` ? { humor: card.humor, slang: card.slang, emoji: card.emojiPref } : null;
+    const v = this.d.voiceOf ? await this.d.voiceOf(ref).catch(() => null) : null;
+    return v ?? own ?? {};
   }
 
   private async run(
@@ -251,10 +265,14 @@ export class EditorRunnerService {
     const memory = await this.d.memory.listActive(card.channelKey, 30, { excludeApprovalPrefs: prefs.length > 0 });
     const skills = ctx?.skills ?? this.d.skills;
     const skill = skills.get(tg ? 'resource-decisions' : `platform-${platform}`) ?? null;
+    const voice = await this.voice(targetRef, card);
+    // Spec 034 FR-001: an adapt rewrites the text, so it gets the full voice skills (budget-aware); a duplicate keeps it.
+    const vs = r.treatment === 'adapt' ? attachVoiceSkills(skills, VOICE_SKILLS_BUDGET, skill ? [skill.name] : []) : null;
     const { system, user } = derivedPrompts({
       slot, ready: r, targetRef, targetPlatform: platform, profile: pc?.profile ?? null, formatPrefs, playbook: pc?.playbook ?? null,
       memory: memory.map((m) => `- [${m.kind}${m.createdBy === 'owner' ? ', власник' : ''}] ${m.text}`).join('\n'), mode,
       skill: skill ? `### skill: ${skill.name}\n${skill.body}` : null, ownerPrefs: ownerPreferencesSection(prefs),
+      voice, voiceSkills: vs ? [...vs.inline, voiceReferenceLine(vs.missing)].filter((x): x is string => !!x) : [],
     });
     let lintFailedTwice = false;
     const onSecond = async (details: unknown) => {
@@ -276,7 +294,7 @@ export class EditorRunnerService {
       ...(tg ? {} : {
         platformSlot: {
           resourceRef: targetRef, mode, maxPerDay: pc?.maxPerDay ?? null, vocabulary: pc?.vocabulary ?? [], bannedTerms: card.bannedTerms,
-          agentId: ctx?.agent?.id ?? null,
+          agentId: ctx?.agent?.id ?? null, voice,
         } satisfies PlatformSlotExtras,
       }),
     };
@@ -313,11 +331,15 @@ export class EditorRunnerService {
     const memory = await this.d.memory.listActive(card.channelKey, 30, { excludeApprovalPrefs: prefs.length > 0 });
     // `card.mode` is already the effective mode (runExecutor); `off` never publishes, so it runs as shadow.
     const mode = card.mode === 'live' || card.mode === 'approve' ? card.mode : 'shadow';
+    // Spec 034 FR-001/FR-002: voice-core with the target's humour/slang setting, and the full voice skills budget-aware.
+    const voice = await this.voice(slot.resourceRef!, card);
+    const vs = attachVoiceSkills(skills, VOICE_SKILLS_BUDGET, skill ? [skill.name] : []);
     const system = [
       `Ти — автор нативних постів для ${platform} у мережі ai0 (ресурс ${slot.resourceRef}). Пишеш НЕ переробку Telegram-поста, а пост, що працює саме на цій платформі.`,
       'Усі тексти — українською, живою мовою, без AI-штампів. Факти — лише з джерел, які ти прочитав. Код перевіряє ліміти — якщо інструмент повернув error, виправ.',
       'Порядок: прочитай джерела ідеї (web_fetch), за потреби статистику, потім lint_platform_post, потім publish_platform_post. Слабкий чи неперевірений пост — skip_slot.',
       'Факти бери з джерел ідеї. Якщо джерело недоступне — не перебирай адреси навмання: одна спроба альтернативи, далі skip_slot з причиною. Хештеги — лише в полі hashtags, не в тексті підпису.',
+      ...voiceCoreSection(voice, skills),
       '',
       '## Можливості платформи',
       capabilitiesSummary([platform as any]),
@@ -334,7 +356,10 @@ export class EditorRunnerService {
       '',
       '## Скіли',
       skill ? `### skill: ${skill.name}\n${skill.body}` : '- немає скіла платформи',
-      skills.list('executor').filter((s) => s.name !== skill?.name).map((s) => `- ${s.name}: ${s.description}`).join('\n'),
+      ...vs.inline,
+      ...[voiceReferenceLine(vs.missing)].filter((x): x is string => !!x),
+      skills.list('executor').filter((s) => s.name !== skill?.name && s.name !== VOICE_CORE && !vs.names.includes(s.name))
+        .map((s) => `- ${s.name}: ${s.description}`).join('\n'),
     ].join('\n');
     const user = [
       `Слот на ${slot.scheduledAt.toISOString()} для ${slot.resourceRef}. Формат: ${slot.format}. Тема: ${slot.topic}.`,
@@ -349,7 +374,7 @@ export class EditorRunnerService {
     ].filter(Boolean).join('\n');
     const platformSlot: PlatformSlotExtras = {
       resourceRef: slot.resourceRef!, mode, maxPerDay: pc?.maxPerDay ?? null, vocabulary: pc?.vocabulary ?? [], bannedTerms: card.bannedTerms,
-      agentId: ctx?.agent?.id ?? null,
+      agentId: ctx?.agent?.id ?? null, voice,
     };
     return this.run('executor', card, user, slot.id, { excludeTools: TELEGRAM_ONLY, systemOverride: system, platformSlot }, ctx);
   }

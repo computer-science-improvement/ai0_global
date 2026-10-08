@@ -35,6 +35,9 @@ export function rowToCard(r: any): EditorCard & { createdAt: Date } {
     ...(r.approval_lead_hours != null ? { approvalLeadHours: Number(r.approval_lead_hours) } : {}),
     ...(r.rich_pref === 'auto' || r.rich_pref === 'prefer' || r.rich_pref === 'never' ? { richPref: r.rich_pref } : {}),
     ...(r.rich_unsupported ? { richUnsupported: true } : {}),
+    ...(r.humor_pref === 'none' || r.humor_pref === 'light' ? { humor: r.humor_pref } : {}),
+    ...(r.slang_pref === 'true' || r.slang_pref === true ? { slang: true } : r.slang_pref === 'false' || r.slang_pref === false ? { slang: false } : {}),
+    ...(r.emoji_pref === 'none' || r.emoji_pref === 'light' || r.emoji_pref === 'rich' ? { emojiPref: r.emoji_pref } : {}),
     createdAt:      r.created_at,
   };
 }
@@ -59,12 +62,16 @@ export const richUnsupportedKey = (channelKey: string) => `cap.tg_rich_unsupport
 
 /**
  * A card row plus what the renderer needs besides the card (spec 033):
- * format_prefs.rich of the resource and the live "rich unsupported" flag.
+ * format_prefs.rich of the resource and the live "rich unsupported" flag;
+ * spec 034: format_prefs.humor / slang / emoji for the voice block and the slop lint.
  * The flag's value is an ISO time; anything else counts as no flag.
  */
 const CARD_SELECT = `
   SELECT c.*,
          rp.profile->'format_prefs'->>'rich' AS rich_pref,
+         rp.profile->'format_prefs'->>'humor' AS humor_pref,
+         rp.profile->'format_prefs'->>'slang' AS slang_pref,
+         rp.profile->'format_prefs'->>'emoji' AS emoji_pref,
          CASE WHEN s.value ~ '^\\d{4}-\\d{2}-\\d{2}T' THEN s.value::timestamptz > now() ELSE false END AS rich_unsupported
     FROM editor_channels c
     LEFT JOIN resource_profiles rp ON rp.resource_ref = 'telegram:' || c.channel_key

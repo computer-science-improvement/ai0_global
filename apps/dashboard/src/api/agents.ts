@@ -379,7 +379,7 @@ export interface ResourceProfile {
 
 export const FORMAT_PREF_FIELDS = [
   'tone', 'length', 'emoji', 'hashtags', 'mentions', 'cta', 'links', 'line_breaks', 'signature', 'preferred_formats', 'media', 'notes',
-  'rich',
+  'rich', 'humor', 'slang',
 ] as const;
 export type FormatPrefField = typeof FORMAT_PREF_FIELDS[number];
 
@@ -399,6 +399,10 @@ export interface FormatPrefs {
   notes?:             string;
   /** Spec 033: Telegram rich messages (headings, tables, numbered lists, formulas). */
   rich?:              'auto' | 'prefer' | 'never';
+  /** Spec 034: jokes, wordplay and memes — off unless the owner allows light humour. Agents cannot turn it on. */
+  humor?:             'none' | 'light';
+  /** Spec 034: slang and youth jargon — off unless the owner allows it. Agents cannot turn it on. */
+  slang?:             boolean;
 }
 
 export interface FormatResource {

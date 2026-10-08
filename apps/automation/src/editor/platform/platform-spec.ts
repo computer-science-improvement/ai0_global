@@ -1,7 +1,8 @@
 import { z } from 'zod';
 import { CONTENT_REF_RE } from '../../data/data-refs';
 import { SlideSchema } from '../post/post-spec';
-import { GLOBAL_BANNED } from '../post/lint-post';
+import { findBannedTerms, findSlopPhrases } from '../post/slop-phrases';
+import { slopWarnings, type VoicePrefs } from '../post/slop-lint';
 import { inlineToPlain } from '../post/inline-markup';
 import { normalizeHashtag } from '../post/render-telegram';
 import { CAPABILITIES, formatSpec, NATIVE_FORMATS, platformOfFormat } from './capabilities';
@@ -45,6 +46,8 @@ export interface PlatformLintContext {
   bannedTerms?: string[];
   /** Hashtag vocabulary of the playbook (empty = any well-formed). */
   vocabulary?:  string[];
+  /** Spec 034: the resource's format_prefs humor / slang / emoji for the slop warnings (absent = humour and slang off). */
+  voice?:       VoicePrefs | null;
 }
 
 /** Deterministic checks against the capability matrix (spec 019 FR-003). */
@@ -95,10 +98,13 @@ export function lintPlatformPost(spec: PlatformPostSpec, c: PlatformLintContext)
     if (images && slides) warnings.push({ code: 'media_and_slides', message: 'є і media, і slides — використано slides' });
   }
 
-  const lower = `${spec.title}\n${caption}\n${(spec.slides ?? []).map((s) => `${s.title} ${s.text}`).join('\n')}`.toLowerCase();
-  for (const b of [...GLOBAL_BANNED, ...(c.bannedTerms ?? [])]) {
-    if (b && lower.includes(b.toLowerCase())) errors.push({ code: 'banned_phrase', message: `заборонена фраза «${b}»` });
+  // Spec 034 FR-003: the same normalised phrase list and slop counters as the Telegram lint.
+  const slidesText = (spec.slides ?? []).map((s) => `${s.title} ${s.text}`).join('\n');
+  const all = `${spec.title}\n${caption}\n${slidesText}`;
+  for (const b of [...findSlopPhrases(all), ...findBannedTerms(all, c.bannedTerms ?? [])]) {
+    errors.push({ code: 'banned_phrase', message: `заборонена фраза «${b}»` });
   }
+  for (const w of slopWarnings({ body: caption, all: [caption, slidesText, spec.first_comment ?? ''].filter(Boolean).join('\n'), prefs: c.voice })) warnings.push(w);
   if ((spec.format === 'tt_photo' || spec.format === 'yt_short') && spec.title.length > 90) {
     errors.push({ code: 'title_too_long', message: 'заголовок TikTok/YouTube до 90 символів' });
   }

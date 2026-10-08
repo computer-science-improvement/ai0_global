@@ -18,8 +18,18 @@ export const KPI_GOAL_UK: Record<KpiGoal, string> = {
  */
 export const FORMAT_PREF_FIELDS = [
   'tone', 'length', 'emoji', 'hashtags', 'mentions', 'cta', 'links', 'line_breaks', 'signature', 'preferred_formats', 'media', 'notes',
-  'rich',
+  'rich', 'humor', 'slang',
 ] as const;
+
+/**
+ * Spec 034 FR-002: humour and slang are owner-only switches. Absent = off. An
+ * agent may turn them off (or clear them) but never on; the owner sets and
+ * locks them in the Formatting section (the builder only after asking him).
+ */
+export const OWNER_ONLY_ON: Partial<Record<FormatPrefField, (v: unknown) => boolean>> = {
+  humor: (v) => v === 'light',
+  slang: (v) => v === true,
+};
 export type FormatPrefField = typeof FORMAT_PREF_FIELDS[number];
 
 export const FormatPrefsSchema = z.object({
@@ -42,6 +52,10 @@ export const FormatPrefsSchema = z.object({
   notes:             z.string().trim().min(1).max(1000).optional(),
   /** Spec 033 FR-005: Telegram rich messages — auto (when the post uses headings/tables/…), prefer (every text post), never. */
   rich:              z.enum(['auto', 'prefer', 'never']).optional(),
+  /** Spec 034 FR-002: jokes, wordplay and memes — none (default) or light; only the owner turns it on. */
+  humor:             z.enum(['none', 'light']).optional(),
+  /** Spec 034 FR-002: slang and youth jargon (default false); only the owner turns it on. */
+  slang:             z.boolean().optional(),
 }).strict();
 export type FormatPrefs = z.infer<typeof FormatPrefsSchema>;
 
@@ -51,7 +65,7 @@ export const FormatLocksSchema = z.array(z.enum(FORMAT_PREF_FIELDS)).max(FORMAT_
 const FORMAT_UK: Record<FormatPrefField, string> = {
   tone: 'Тон', length: 'Довжина', emoji: 'Емодзі', hashtags: 'Хештеги', mentions: 'Згадки', cta: 'Заклик', links: 'Посилання',
   line_breaks: 'Абзаци', signature: 'Підпис', preferred_formats: 'Бажані формати', media: 'Медіа', notes: 'Нотатки',
-  rich: 'Rich-повідомлення Telegram',
+  rich: 'Rich-повідомлення Telegram', humor: 'Гумор', slang: 'Сленг',
 };
 const EMOJI_UK = { none: 'без емодзі', light: 'кілька', rich: 'багато' } as const;
 const LINKS_UK = { inline: 'у тексті', bio: 'посилання в біо', first_comment: 'перший коментар', button: 'кнопка' } as const;
@@ -66,6 +80,8 @@ function formatValue(k: FormatPrefField, v: unknown): string {
     case 'emoji':    return EMOJI_UK[v as keyof typeof EMOJI_UK] ?? String(v);
     case 'links':    return LINKS_UK[v as keyof typeof LINKS_UK] ?? String(v);
     case 'rich':     return RICH_UK[v as keyof typeof RICH_UK] ?? String(v);
+    case 'humor':    return v === 'light' ? 'легкий (дозволив власник)' : 'вимкнено';
+    case 'slang':    return v === true ? 'дозволено власником' : 'ні';
     case 'hashtags': {
       const h = v as { count: number; style?: string; fixed?: string[] };
       return [`${h.count}`, h.style, h.fixed?.length ? `завжди: ${h.fixed.map((x) => `#${x.replace(/^#/, '')}`).join(' ')}` : ''].filter(Boolean).join(', ');
@@ -190,7 +206,7 @@ export const FORMAT_CHANGES_PER_DAY = 3;
 
 export type FormatPatchResult =
   | { ok: true; version: number; format_prefs: FormatPrefs; changed: string[] }
-  | { error: 'locked_by_owner' | 'daily_limit' | 'invalid_patch' | 'no_change'; details?: unknown };
+  | { error: 'locked_by_owner' | 'owner_only' | 'daily_limit' | 'invalid_patch' | 'no_change'; details?: unknown };
 
 export type HealthState = 'ok' | 'no_access' | 'token_expiring' | 'token_invalid' | 'rate_limited' | 'unknown';
 export interface ResourceHealth {
@@ -286,6 +302,8 @@ export class ResourceProfilesRepository {
       if (meta.by === 'agent') {
         const locked = keys.filter((k) => cur.locks.includes(k as FormatPrefField));
         if (locked.length) return { error: 'locked_by_owner', details: locked };
+        const ownerOnly = keys.filter((k) => OWNER_ONLY_ON[k as FormatPrefField]?.(patch[k]));
+        if (ownerOnly.length) return { error: 'owner_only', details: `${ownerOnly.join(', ')}: гумор і сленг вмикає лише власник` };
         if (await this.formatChangesTodayQ(q, ref, meta.now ?? new Date()) >= FORMAT_CHANGES_PER_DAY) {
           return { error: 'daily_limit', details: `${FORMAT_CHANGES_PER_DAY} format changes a day on ${ref}` };
         }

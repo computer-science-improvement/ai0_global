@@ -149,7 +149,7 @@ test('platform slot (spec 019): platform executor prompt, no Telegram publish to
   assert.match(i.system, /skill: platform-instagram/);
   assert.match(i.system, /Instagram — каруселі 5–8/);
   assert.match(i.user, /Пʼять фактів про Марс/);
-  assert.deepEqual(i.extras.platformSlot, { resourceRef: 'instagram:ig1', mode: 'live', maxPerDay: 2, vocabulary: ['космос'], bannedTerms: [], agentId: null });
+  assert.deepEqual(i.extras.platformSlot, { resourceRef: 'instagram:ig1', mode: 'live', maxPerDay: 2, vocabulary: ['космос'], bannedTerms: [], agentId: null, voice: {} });
 
   // A Telegram slot never sees the platform publish tool.
   runs.length = 0;

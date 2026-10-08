@@ -151,3 +151,40 @@ FR-015. **Size:** S · Depends on T1–T6
   `fb_text` «питання до аудиторії», «Закінчуй питанням…»), `platform-threads` («одне питання», «коротке питання до
   читачів»), `platform-instagram` (cover «обіцянка або питання», last slide «заклик»), `platform-tiktok` (slide 1
   «…питання»), `format-poll-quiz` («Залучення … через голосування», the «Як думаєте…?» intro).
+
+## Implementation notes (T1, 2026-10-08)
+- **FR-001 voice core.** `editor-skills/voice-core.md` (body 2 490 chars, Ukrainian, `applies_to: [executor, composer, reviewer, checker]`,
+  no backticked identifiers). `roles/voice.ts` renders it into every writer prompt **outside** the 8k inline budget: the Telegram
+  executor (`buildSystemPrompt`, role `executor` only; planner and reviewer prompts are unchanged), the composer
+  (`buildComposerSystemPrompt`), the platform executor and the derived duplicate / adapt prompt (`derivedPrompts`). The body is read
+  from the repo file (the builtin), so a disabled toggle or an agent override cannot drop it; voice-core is never also listed for
+  `load_skill`. `human-voice` and `anti-slop` are attached in full from what is left of the budget (Telegram executor and composer:
+  the 8k budget after the workflow and the channel's own skills; platform executor and adapt: `VOICE_SKILLS_BUDGET` = 4 000; a
+  duplicate keeps the source text and gets voice-core only). Today `human-voice` (2.2k) fits everywhere and `anti-slop` (10.6k) does
+  not; a skill that does not fit gets one reference line («Повні правила голосу (…) не вмістилися…») and stays loadable.
+- **Prompt size (chars, `SkillLibrary` defaults, empty memory), before → after:** Telegram executor 8 259 → 12 780; platform
+  executor (Instagram) 5 643 → 10 162; adapt 2 102 → 6 777; duplicate 2 295 → 5 025; composer 8 478 → 12 999 (≈ +1.1–1.3k tokens).
+- **FR-002 humour / slang.** `format_prefs.humor: 'none' | 'light'` and `format_prefs.slang: boolean` (absent = off), in
+  `FORMAT_PREF_FIELDS`, lockable via `format_locks`, rendered for prompts («Гумор: вимкнено», «Сленг: ні»). Owner-only: an agent
+  patch (`update_resource_format`, `patchFormat` by `agent`) that would set `humor: light` or `slang: true` is refused with
+  `owner_only` whether or not the field is locked; agents may switch them off (a locked field stays `locked_by_owner`). Owner and
+  builder writes (`setProfile` / the owner PUT) are not restricted. Every writer prompt states the target's setting explicitly
+  (Telegram: the card, which now joins `format_prefs.humor/slang/emoji` of `telegram:<key>` like `rich`; platform / derived targets:
+  the new `voiceOf(ref)` runner port). Dashboard: the Formatting section shows a "Voice: No humour · no slang" chip on every resource
+  and the edit modal has Humour and Slang selects with locks (English UI; checked against a local mock API).
+- **FR-003 slop lint.** `post/slop-phrases.ts`: 148 normalised phrases from `anti-slop` (`*` = rest of a word, word-bounded,
+  so «по суті» does not fire in «по сутінках»; `normalizeSlop` = lowercase, ʼ ’ ' ‘ ` unified to ʼ, commas dropped, whitespace
+  collapsed). `GLOBAL_BANNED` is gone; `lintPost` (`banned_term`) and `lintPlatformPost` (`banned_phrase`) use `findSlopPhrases`,
+  owner `bannedTerms` keep substring matching on the same normalisation. A few phrases from the skill were left out on purpose
+  because they are ordinary news language («нове золото», «нова валюта», «це важливо», «у наш час»). `post/slop-lint.ts` adds
+  warnings (never errors) shared by both lints: `slop_em_dash` (more than one dash per 400 chars, at least one allowed),
+  `slop_exclamation` (> 1), `slop_rhetorical_qa` (a short or wh-question answered by the next sentence; reader-directed questions
+  are left to T3), `slop_moral_closer` (last sentence «Тож…», «Отже…», «Памʼятайте…», «У світі, де…», «Це показує…», …),
+  `slop_adjective_triple` (three agreeing adjectives), `slop_emoji_over_pref` (format_prefs.emoji none 0 / light 3 / rich 12; the
+  card `emojiPolicy` stays the hard error), `slop_humor_off` and `slop_slang_off` (marker lists, while humour / slang are off).
+- **For T2 (critic):** read `lintPost(spec, card).warnings` / `lintPlatformPost(...).warnings` and keep the ones with
+  `isSlopWarning(code)`; messages are Ukrainian and quote the offending text. Approval cards already store warning messages in
+  `lint_warnings`, so slop warnings also hold a post back from autonomy auto-approval (`autonomy.ts` skips posts with warnings).
+  Success criterion «a joke on a humor:none resource fails before publishing» is a warning in T1 and becomes a failure through the
+  critic (T2).
+- No migration (format_prefs is JSON). `evals/lib/graders.ts` `bannedHits` now uses `findSlopPhrases`.
