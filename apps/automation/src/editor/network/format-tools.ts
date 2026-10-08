@@ -26,6 +26,7 @@ export const FormatPatchInput = z.object({
   hashtags: nullable(shape.hashtags.unwrap()), mentions: nullable(shape.mentions.unwrap()), cta: nullable(shape.cta.unwrap()),
   links: nullable(shape.links.unwrap()), line_breaks: nullable(shape.line_breaks.unwrap()), signature: nullable(shape.signature.unwrap()),
   preferred_formats: nullable(shape.preferred_formats.unwrap()), media: nullable(shape.media.unwrap()), notes: nullable(shape.notes.unwrap()),
+  rich: nullable(shape.rich.unwrap()),
 }).strict().refine((p) => Object.keys(p).length > 0, { message: 'at least one field' });
 
 function refsOf(ctx: ToolContext): string[] | null {

@@ -379,6 +379,7 @@ export interface ResourceProfile {
 
 export const FORMAT_PREF_FIELDS = [
   'tone', 'length', 'emoji', 'hashtags', 'mentions', 'cta', 'links', 'line_breaks', 'signature', 'preferred_formats', 'media', 'notes',
+  'rich',
 ] as const;
 export type FormatPrefField = typeof FORMAT_PREF_FIELDS[number];
 
@@ -396,6 +397,8 @@ export interface FormatPrefs {
   preferred_formats?: string[];
   media?:             { aspect?: string; cover_style?: string };
   notes?:             string;
+  /** Spec 033: Telegram rich messages (headings, tables, numbered lists, formulas). */
+  rich?:              'auto' | 'prefer' | 'never';
 }
 
 export interface FormatResource {

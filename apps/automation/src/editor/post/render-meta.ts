@@ -2,6 +2,7 @@ import type { EditorCard } from '../card';
 import type { Block, PostSpec } from './post-spec';
 import type { PreparedMedia } from './render-telegram';
 import { normalizeHashtag } from './render-telegram';
+import { blockPlain } from './blocks';
 
 /** Mirrors of a Telegram channel: the Meta platforms plus TikTok photo posts. */
 export type MirrorPlatform = 'instagram' | 'facebook' | 'threads' | 'tiktok';
@@ -42,14 +43,8 @@ function inlinePlain(src: string, links: boolean): string {
 }
 
 function blocksPlain(blocks: Block[], links: boolean): string {
-  return blocks.map((b) => {
-    switch (b.type) {
-      case 'lead':
-      case 'p':     return inlinePlain(b.text, links);
-      case 'quote': return `«${inlinePlain(b.text, links)}»`;
-      case 'list':  return b.items.map((i) => `• ${inlinePlain(i, links)}`).join('\n');
-    }
-  }).filter(Boolean).join('\n\n');
+  // Spec 033 FR-004: rich-only blocks (heading, olist, table, math, details …) become plain lines.
+  return blocks.map((b) => blockPlain(b, (s) => inlinePlain(s, links))).filter(Boolean).join('\n\n');
 }
 
 function truncate(s: string, max: number): string {

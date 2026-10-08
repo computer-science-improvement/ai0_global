@@ -178,6 +178,7 @@ export function buildRoleTools(d: RoleToolDeps): EditorTool[] {
       return {
         ok: true, shadow: false, message_id: res.messageId,
         ...(res.partialError ? { partial_error: res.partialError } : {}),
+        ...(res.fallback ? { fallback: res.fallback } : {}),
         ...(res.mirrorWarnings.length ? { crosspost_warnings: res.mirrorWarnings } : {}),
       };
     },

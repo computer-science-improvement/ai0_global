@@ -39,7 +39,7 @@ function textParts(spec: AnySpec): { lead: string; rest: string[] } {
   let lead = '';
   for (const b of blocks) {
     if (b?.type === 'lead' && !lead) lead = String(b.text ?? '');
-    else if (b?.type === 'list') parts.push(...(b.items ?? []).map(String));
+    else if (b?.type === 'list' || b?.type === 'olist') parts.push(...(b.items ?? []).map(String));
     else if (b?.text) parts.push(String(b.text));
   }
   if (!lead && parts.length) lead = parts.shift()!;

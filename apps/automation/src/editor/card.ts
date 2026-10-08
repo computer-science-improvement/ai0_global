@@ -68,6 +68,10 @@ export interface EditorCard {
   approvalHoldHours?: number;
   /** Spec 031: how long before its time a slot added after the evening batch is written. */
   approvalLeadHours?: number;
+  /** Spec 033: format_prefs.rich of `telegram:<channelKey>` (not a column; joined in on read). Absent = auto. */
+  richPref?:          'auto' | 'prefer' | 'never';
+  /** Spec 033 FR-003: Telegram rejected rich messages here as unsupported in the last 7 days (app_settings flag). */
+  richUnsupported?:   boolean;
 }
 
 /** What each platform can render natively — shown to agents with the card. */
@@ -83,6 +87,9 @@ export const TELEGRAM_CAPABILITIES = {
     longread: 'стаття на Telegraph (longread: title + до 60 блоків) і пост-тизер (body до 600 символів) з великим прев’ю та кнопкою «Читати»',
   },
   markup: '**жирний**, _курсив_, [текст](https://url), ||спойлер|| — більше нічого; HTML писати не можна',
+  rich: 'rich-повідомлення (Bot API 10.1): блоки heading, olist, table (≤ 6×20), math (LaTeX), divider, details, footer, code у body '
+    + 'для text/photo/video/longread/вступу до опитування; у підписі альбому й каруселі стають простим текстом; '
+    + 'format_prefs.rich: auto | prefer | never; якщо канал не приймає rich — іде HTML-резерв (заголовки жирним, таблиця моноширинно)',
   buttons: 'до 4 рядків по 1–3 URL-кнопки; cta стає кнопкою',
 } as const;
 

@@ -18,6 +18,7 @@ export const KPI_GOAL_UK: Record<KpiGoal, string> = {
  */
 export const FORMAT_PREF_FIELDS = [
   'tone', 'length', 'emoji', 'hashtags', 'mentions', 'cta', 'links', 'line_breaks', 'signature', 'preferred_formats', 'media', 'notes',
+  'rich',
 ] as const;
 export type FormatPrefField = typeof FORMAT_PREF_FIELDS[number];
 
@@ -39,6 +40,8 @@ export const FormatPrefsSchema = z.object({
   preferred_formats: z.array(z.string().trim().min(2).max(30)).max(10).optional(),
   media:             z.object({ aspect: z.string().trim().max(20).optional(), cover_style: z.string().trim().max(120).optional() }).optional(),
   notes:             z.string().trim().min(1).max(1000).optional(),
+  /** Spec 033 FR-005: Telegram rich messages — auto (when the post uses headings/tables/…), prefer (every text post), never. */
+  rich:              z.enum(['auto', 'prefer', 'never']).optional(),
 }).strict();
 export type FormatPrefs = z.infer<typeof FormatPrefsSchema>;
 
@@ -48,15 +51,21 @@ export const FormatLocksSchema = z.array(z.enum(FORMAT_PREF_FIELDS)).max(FORMAT_
 const FORMAT_UK: Record<FormatPrefField, string> = {
   tone: 'Тон', length: 'Довжина', emoji: 'Емодзі', hashtags: 'Хештеги', mentions: 'Згадки', cta: 'Заклик', links: 'Посилання',
   line_breaks: 'Абзаци', signature: 'Підпис', preferred_formats: 'Бажані формати', media: 'Медіа', notes: 'Нотатки',
+  rich: 'Rich-повідомлення Telegram',
 };
 const EMOJI_UK = { none: 'без емодзі', light: 'кілька', rich: 'багато' } as const;
 const LINKS_UK = { inline: 'у тексті', bio: 'посилання в біо', first_comment: 'перший коментар', button: 'кнопка' } as const;
+const RICH_UK = {
+  auto: 'авто — коли в пості є заголовки, таблиці, нумеровані списки, формули',
+  prefer: 'завжди для текстових постів', never: 'ніколи — лише звичайний HTML',
+} as const;
 
 function formatValue(k: FormatPrefField, v: unknown): string {
   switch (k) {
     case 'length':   { const l = v as { target: number; max: number }; return `~${l.target} символів, максимум ${l.max}`; }
     case 'emoji':    return EMOJI_UK[v as keyof typeof EMOJI_UK] ?? String(v);
     case 'links':    return LINKS_UK[v as keyof typeof LINKS_UK] ?? String(v);
+    case 'rich':     return RICH_UK[v as keyof typeof RICH_UK] ?? String(v);
     case 'hashtags': {
       const h = v as { count: number; style?: string; fixed?: string[] };
       return [`${h.count}`, h.style, h.fixed?.length ? `завжди: ${h.fixed.map((x) => `#${x.replace(/^#/, '')}`).join(' ')}` : ''].filter(Boolean).join(', ');

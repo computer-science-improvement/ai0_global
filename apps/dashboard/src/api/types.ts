@@ -731,11 +731,45 @@ export interface EditorLintIssue { code: string; message: string }
 
 export interface TgUrlButton { text: string; url: string }
 
-/** Mirrors the backend's TgMessage (editor/post/render-telegram.ts). Captions/texts are Telegram HTML. */
-export type TgMessage =
+/** Mirrors the backend's RichText (editor/post/render-rich.ts, Bot API 10.1 RichText*). */
+export type TgRichText =
+  | string
+  | TgRichText[]
+  | { type: 'bold' | 'italic' | 'spoiler' | 'code'; text: TgRichText }
+  | { type: 'url'; text: TgRichText; url: string }
+  | { type: 'mathematical_expression'; expression: string };
+
+/** InputRichBlockListItem: `type: '1'` + `value` mark a numbered item. */
+export interface TgRichListItem { blocks: TgRichBlock[]; type?: '1'; value?: number }
+
+/** RichBlockTableCell. */
+export interface TgRichTableCell { text?: TgRichText; is_header?: true; align?: 'left' | 'center' | 'right' }
+
+/** Mirrors the backend's RichBlock (the InputRichBlock* subset the renderer emits). */
+export type TgRichBlock =
+  | { type: 'paragraph'; text: TgRichText }
+  | { type: 'heading'; text: TgRichText; size: number }
+  | { type: 'pre'; text: TgRichText; language?: string }
+  | { type: 'footer'; text: TgRichText }
+  | { type: 'divider' }
+  | { type: 'mathematical_expression'; expression: string }
+  | { type: 'list'; items: TgRichListItem[] }
+  | { type: 'blockquote'; blocks: TgRichBlock[] }
+  | { type: 'table'; cells: TgRichTableCell[][]; is_bordered?: true; is_striped?: true }
+  | { type: 'details'; summary: TgRichText; blocks: TgRichBlock[]; is_open?: true }
+  | { type: 'photo'; photo: { type: 'photo'; media: string } }
+  | { type: 'video'; video: { type: 'video'; media: string; supports_streaming?: true } };
+
+/** The Telegram-HTML calls (also the fallback of a rich message). */
+export type TgHtmlMessage =
   | { method: 'sendMessage'; text: string; preview: { url: string; showAboveText: boolean } | null; buttons: TgUrlButton[][] }
   | { method: 'sendPhoto'; photo: string; caption: string; captionAboveMedia: boolean; buttons: TgUrlButton[][] }
-  | { method: 'sendVideo'; video: string; caption: string; captionAboveMedia: boolean; buttons: TgUrlButton[][] }
+  | { method: 'sendVideo'; video: string; caption: string; captionAboveMedia: boolean; buttons: TgUrlButton[][] };
+
+/** Mirrors the backend's TgMessage (editor/post/render-telegram.ts). Captions/texts are Telegram HTML; spec 033 adds rich messages. */
+export type TgMessage =
+  | TgHtmlMessage
+  | { method: 'sendRichMessage'; blocks: TgRichBlock[]; buttons: TgUrlButton[][]; fallback: TgHtmlMessage }
   | { method: 'sendMediaGroup'; photos: string[]; caption: string }
   | { method: 'sendPoll'; question: string; options: string[]; quiz: boolean; correctIndex: number | null; explanation: string | null; anonymous: boolean };
 

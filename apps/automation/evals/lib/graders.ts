@@ -1,6 +1,7 @@
 import type { Pool } from 'pg';
 import type { PostSpec } from '../../src/editor/post/post-spec';
 import { inlineToPlain } from '../../src/editor/post/inline-markup';
+import { blockWords } from '../../src/editor/post/blocks';
 import { GLOBAL_BANNED } from '../../src/editor/post/lint-post';
 
 export interface Check {
@@ -14,7 +15,7 @@ export interface Check {
 export const check = (name: string, pass: boolean, detail?: string, soft = false): Check => ({ name, pass, detail, soft });
 
 export function specText(spec: PostSpec): string {
-  const blocks = spec.body.map((b) => (b.type === 'list' ? b.items.join('\n') : b.text)).map(inlineToPlain);
+  const blocks = spec.body.map((b) => blockWords(b, inlineToPlain));
   return [spec.title, ...blocks, spec.poll?.question ?? '', ...(spec.poll?.options ?? []), spec.poll?.explanation ?? ''].join('\n');
 }
 

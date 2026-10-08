@@ -1,6 +1,7 @@
 import type { Pool } from 'pg';
 import type { PostSpec } from './post-spec';
 import { inlineToPlain } from './inline-markup';
+import { blockWords } from './blocks';
 import { parseDataRef } from '../../data/data-refs';
 
 /**
@@ -53,7 +54,7 @@ export function longestCommonRun(a: string, b: string): number {
 }
 
 export function postPlainText(spec: PostSpec): string {
-  return spec.body.map((b) => (b.type === 'list' ? b.items.join('\n') : b.text)).map(inlineToPlain).join('\n');
+  return spec.body.map((b) => blockWords(b, inlineToPlain)).join('\n');
 }
 
 export async function checkVerbatim(pool: Pick<Pool, 'query'>, spec: PostSpec): Promise<{ error: string; details: string } | null> {
