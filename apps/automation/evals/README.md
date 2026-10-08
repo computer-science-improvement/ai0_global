@@ -26,6 +26,9 @@ Every case is graded by **hard checks in code**. A failure means a regression. S
 | `chat-schedule-tomorrow` | composer (chat, fake TG) | "Make a post about <article> for @eval_chat and schedule it for tomorrow 19:00" leads to a scheduled draft whose reserved slot is at tomorrow 19:00 Kyiv. Nothing is sent. The channel has no card, so the default card and the minimal `off` card are exercised. |
 | `chat-draft-only` | composer (chat) | "Prepare a post" without a publish request produces a draft only: status `draft`, no reserved slot, nothing sent. |
 | `chat-series-change` | composer (agent chat) | Spec 023: "@agent рецепти о 20:30 по буднях" leads to one `series_change` card (update "Рецепт дня" to `weekly:mon,tue,wed,thu,fri@20:30`) whose summary shows the human diff; the active playbook is unchanged until Apply. |
+| `executor-rich-comparison` | executor (live, fake TG) | Spec 033: an article comparing three phones becomes a post with a `table` block (≥ 3 rows, 2–6 columns) that goes out as `sendRichMessage`; numbers grounded, Ukrainian. Soft: no rich lint warnings, ≤ 2 headings, the `format-rich-telegram` skill loaded. Written, not yet run. |
+| `executor-rich-short-news` | executor (live, fake TG) | Spec 033: a two-sentence news item stays a short plain post (no table, no headings, sent as HTML). Written, not yet run. |
+| `executor-rich-never` | executor (live, fake TG) | Spec 033: with `format_prefs.rich = never` the card carries `richPref` and nothing is sent as `sendRichMessage`. Written, not yet run. |
 | `planner-honours-pins` | planner | Spec 023: an owner pin at 16:00 stays in the plan exactly once, no planned slot is within 60 min of it, and the due series "Рецепт дня" (19:00) is planned with `series`. |
 
 ## Run

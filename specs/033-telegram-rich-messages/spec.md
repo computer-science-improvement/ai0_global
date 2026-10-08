@@ -1,6 +1,6 @@
 # 033: Telegram rich messages: headings, lists, tables and formulas in agent posts
 
-**Status:** SPEC · **Depends on:** 004 (PostSpec), 019 (platform render), 024 T8 (`format_prefs`), 031 (approval previews)
+**Status:** BUILT (T1–T4; owner live smoke pending) · **Depends on:** 004 (PostSpec), 019 (platform render), 024 T8 (`format_prefs`), 031 (approval previews)
 · **Migration:** none (PostSpec is JSON)
 
 **Owner request (2026-10-07):** the Telegram editor now offers headings, lists, tables, formulas and more; the owner asked
@@ -43,3 +43,50 @@ Bot API 10.1 (2026-06-11) added **Rich Messages**: `sendRichMessage` sends a pos
 **Scope:** FR-006. **Size:** M · **Depends on:** T1
 ### T4: Agent control: `format_prefs.rich`, skill and prompt guidance, evals (written, not run)
 **Scope:** FR-005. **Size:** S · **Depends on:** T1
+
+## Implementation notes (2026-10-08)
+
+**Verified against https://core.telegram.org/bots/api** (read 2026-10-08; no Telegram call was made):
+- `sendRichMessage`: `chat_id` and `rich_message` (InputRichMessage) required; optional `reply_markup`,
+  `message_thread_id`, `disable_notification`, `protect_content` and others; returns the sent Message.
+  `editMessageText` takes `rich_message` (InputRichMessage) instead of `text`.
+- `InputRichMessage`: exactly one of `html`, `markdown`, `blocks`; plus `media`, `is_rtl`, `skip_entity_detection`.
+  We send `blocks`.
+- Block `type` values and fields used: `paragraph {text}`, `heading {text, size 1–6}`, `pre {text, language?}`,
+  `footer {text}`, `divider`, `mathematical_expression {expression}` (LaTeX), `list {items}` with
+  `InputRichBlockListItem {blocks, type?, value?, has_checkbox?, is_checked?}`, `blockquote {blocks, credit?}`,
+  `table {cells: RichBlockTableCell[][], is_bordered?, is_striped?, is_compact?, caption?}` with
+  `RichBlockTableCell {text?, is_header?, colspan?, rowspan?, align?, valign?}`,
+  `details {summary, blocks, is_open?}`, `photo {photo: InputMediaPhoto}`, `video {video: InputMediaVideo}`.
+- `RichText` is a string, an array, or `{type: bold|italic|underline|strikethrough|spoiler|code|… , text}`,
+  `{type: 'url', text, url}`, `{type: 'mathematical_expression', expression}`. There is no `RichTextPlain`.
+- Limits: 32 768 characters (formula source included), 500 blocks (nested blocks, list items and table rows
+  count), 16 nesting levels, 50 media, 20 table columns. Lint enforces them on the rich message, plus our
+  stricter PostSpec limits (6 × 20 table, 60 blocks).
+
+**Left unclear by the docs** (decisions taken):
+- **Channels.** `chat_id` is documented as "bot, supergroup or channel"; nothing says rich messages render in
+  every channel or on every client. → Every rich message carries an HTML fallback; a definite Bad Request is
+  retried once as HTML, a hard "unsupported" answer (or 404 / "method not found") flags the channel for 7 days.
+  Network errors, 429 and 5xx are never retried (the message may be out; no duplicates).
+- **Ordered vs bulleted lists in `blocks`.** `InputRichBlockList` has only `items` and is described as `<ul>` or
+  `<ol>`; `type` / `value` on items are "for ordered lists". → Numbered items carry `type: '1'` and `value: n`;
+  the live smoke must confirm that this renders as a numbered list (else switch olist to `html` `<ol>`).
+- **Paragraph line breaks** inside a RichText string are not described → the tail (source, footer, hashtags) is
+  one paragraph per line. **Empty table cells**: an omitted `text` makes the cell invisible → we send `text: ''`.
+- **Error wording** for unsupported chats is not documented → `classifyRichRejection` matches
+  "not supported / unsupported / method not found / not implemented / RICH_MESSAGE" (adjust after the smoke).
+
+**Design.**
+- `TgMessage` gains `{method: 'sendRichMessage', blocks, buttons, fallback}`; `fallback` is the HTML render
+  of the same post, so an approval (031) stores and previews both and the approval publisher sends exactly the
+  stored payload. Text, photo (photo block), video (video block), longread and the poll/quiz intro can be rich;
+  album and carousel captions stay HTML (lint `rich_in_caption`).
+- `format_prefs.rich` and the capability flag reach the renderer on the card: `EditorChannelsRepository` joins
+  `resource_profiles.profile->format_prefs->rich` and `app_settings` `cap.tg_rich_unsupported:<channel>` (ISO time
+  until which the flag holds; `SettingsService` ignores `cap.*`). No migration.
+- The fallback is recorded as `fallback: 'html'` on the publish result (`publish_post` returns it) and as the slot
+  warning `rich_fallback: html (<reason>)`; `published_posts` has no column for it (no migration).
+- `TelegramEditorPublisher.edit()` (editMessageText + `rich_message`, HTML via editMessageText / editMessageCaption)
+  exists and is tested; nothing in the product edits published posts yet.
+- Evals `executor-rich-comparison`, `executor-rich-short-news`, `executor-rich-never` are written, not run.

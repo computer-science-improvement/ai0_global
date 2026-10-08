@@ -193,6 +193,16 @@ function FormatModal({ handle, resource, title, onClose }: { handle: string; res
           </Field>
         </Row>
       </div>
+      {resource.platform === 'telegram' && (
+        <Row field="rich" locked={is('rich')} onLock={lock('rich')}>
+          <Field label="Rich messages" hint="Telegram headings, tables, numbered lists, formulas">
+            <select className="input-field" style={input} value={f.rich} onChange={(e) => set('rich', e.target.value as Form['rich'])}>
+              <option value="">Agent's choice</option><option value="auto">Auto: when the post uses them</option>
+              <option value="prefer">Prefer for every text post</option><option value="never">Never (plain HTML)</option>
+            </select>
+          </Field>
+        </Row>
+      )}
       <Row field="hashtags" locked={is('hashtags')} onLock={lock('hashtags')}>
         <div style={grid}>
           <Field label="Hashtags" hint="how many"><input className="input-field" style={input} type="number" min={0} max={30} value={f.hashCount} onChange={(e) => set('hashCount', e.target.value)} /></Field>

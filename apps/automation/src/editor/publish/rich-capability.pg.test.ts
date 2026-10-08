@@ -10,7 +10,9 @@ import assert from 'node:assert/strict';
 import { Pool } from 'pg';
 import { EditorChannelsRepository, richUnsupportedKey } from '../repo/editor-channels.repository';
 import { PgRichCapability, RICH_UNSUPPORTED_TTL_MS } from './rich-capability';
-import { makeCard } from '../post/testing/fixtures';
+import { makeCard, makeSpec } from '../post/testing/fixtures';
+import { ResourceProfilesRepository } from '../agents/resource-profile';
+import { renderTelegram } from '../post/render-telegram';
 
 const url = process.env.EDITOR_PG_TEST_URL;
 const skip = !url ? 'EDITOR_PG_TEST_URL not set' : false;
@@ -19,6 +21,7 @@ let pool: Pool;
 
 async function cleanup() {
   await pool.query(`DELETE FROM app_settings WHERE key = $1`, [richUnsupportedKey(CH)]);
+  await pool.query(`DELETE FROM resource_profile_versions WHERE resource_ref = $1`, [`telegram:${CH}`]);
   await pool.query(`DELETE FROM resource_profiles WHERE resource_ref = $1`, [`telegram:${CH}`]);
   await pool.query(`DELETE FROM editor_channels WHERE channel_key = $1`, [CH]);
 }
@@ -66,4 +69,31 @@ test('card read: rich pref from format_prefs and the 7-day unsupported flag', { 
   // The settings service skips cap.* rows (they are not env overrides).
   const { rows } = await pool.query(`SELECT key FROM app_settings WHERE key NOT LIKE 'ui.%' AND key NOT LIKE 'cap.%' AND key = $1`, [richUnsupportedKey(CH)]);
   assert.equal(rows.length, 0);
+});
+
+test('format_prefs.rich: agents set it, the owner can lock it, the card and the render follow it', { skip }, async () => {
+  const repo = new EditorChannelsRepository(pool);
+  const profiles = new ResourceProfilesRepository(pool);
+  const ref = `telegram:${CH}`;
+  await pool.query(`DELETE FROM app_settings WHERE key = $1`, [richUnsupportedKey(CH)]);
+  await pool.query(`DELETE FROM resource_profile_versions WHERE resource_ref = $1`, [ref]);
+  await pool.query(`DELETE FROM resource_profiles WHERE resource_ref = $1`, [ref]);
+  await repo.insertIfMissing(makeCard({ channelKey: CH }));
+  const plain = makeSpec({ format: 'text', media: [] });
+
+  const set = await profiles.patchFormat(ref, { rich: 'prefer' }, { by: 'agent', reason: 'tables get more forwards' });
+  assert.ok('ok' in set && set.ok, JSON.stringify(set));
+  let card = (await repo.get(CH))!;
+  assert.equal(card.richPref, 'prefer');
+  assert.equal(renderTelegram(plain, card).messages[0].method, 'sendRichMessage');
+
+  const owner = await profiles.patchFormat(ref, { rich: 'never' }, { by: 'owner', locks: ['rich'] });
+  assert.ok('ok' in owner && owner.ok, JSON.stringify(owner));
+  const refused = await profiles.patchFormat(ref, { rich: 'auto' }, { by: 'agent', reason: 'try again' });
+  assert.deepEqual(refused, { error: 'locked_by_owner', details: ['rich'] });
+  card = (await repo.get(CH))!;
+  assert.equal(card.richPref, 'never');
+  const withTable = makeSpec({ format: 'text', media: [], body: [{ type: 'lead', text: 'Порівняння' }, { type: 'table', header: ['А', 'Б'], rows: [['1', '2']] }] });
+  assert.equal(renderTelegram(withTable, card).messages[0].method, 'sendMessage');
+  await pool.query(`DELETE FROM resource_profile_versions WHERE resource_ref = $1`, [ref]);
 });

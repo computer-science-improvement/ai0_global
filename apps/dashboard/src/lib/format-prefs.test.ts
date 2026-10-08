@@ -19,3 +19,11 @@ test('format prefs: short English lines', () => {
   assert.equal(formatValue('hashtags', { count: 3, style: 'lowercase', fixed: ['space'] }), '3 · lowercase · always #space');
   assert.equal(formatValue('emoji', null), '—');
 });
+
+test('format prefs: rich messages (spec 033) round trip and label', () => {
+  assert.deepEqual(toPrefs(toForm({ rich: 'prefer' })), { rich: 'prefer' });
+  assert.equal(toForm({}).rich, '');
+  assert.deepEqual(toPrefs({ ...toForm({ rich: 'never' }), rich: '' }), {});
+  assert.equal(formatValue('rich', 'auto'), 'when the post has headings or tables');
+  assert.equal(formatValue('rich', 'never'), 'never (plain HTML)');
+});
