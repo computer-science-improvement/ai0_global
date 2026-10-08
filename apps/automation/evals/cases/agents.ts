@@ -23,6 +23,9 @@ async function resetAgents(pool: Pool, keys: string[]): Promise<void> {
   // Spec 024: decisions and their derived slots of the eval agents (children included).
   await pool.query(`DELETE FROM content_decisions WHERE agent_id = ANY($1::uuid[]) OR agent_id IN (SELECT id FROM agents WHERE parent_id = ANY($1::uuid[]))`, [ids]);
   await pool.query(`DELETE FROM agent_directives WHERE to_agent_id = ANY($1::uuid[])`, [ids]);
+  // Spec 025: owner cards (directive_contested, …) and resource pauses of the eval agents.
+  await pool.query(`DELETE FROM agent_inbox WHERE agent_id = ANY($1::uuid[])`, [ids]);
+  await pool.query(`DELETE FROM resource_pauses WHERE agent_id = ANY($1::uuid[])`, [ids]);
   await pool.query(`DELETE FROM content_ideas WHERE agent_id = ANY($1::uuid[])`, [ids]);
   await pool.query(`DELETE FROM playbooks WHERE agent_id = ANY($1::uuid[])`, [ids]);
   await pool.query(`DELETE FROM agents WHERE scope_id = ANY($1::text[])`, [refs]);
@@ -571,14 +574,16 @@ export const orchestratorRepurposeHit: EvalCase = {
 // ── A7 + A8: MANAGER ───────────────────────────────────────────────────────
 
 const MGR = '@eval_mgr';
-async function managerSetup(ctx: CaseCtx, drop: boolean) {
+/** `drop`: true → views/post of the last week at ~52 % of the baseline (an anomaly); a number → that factor. */
+async function managerSetup(ctx: CaseCtx, drop: boolean | number) {
+  const factor = drop === true ? 0.52 : drop === false ? 1 : drop;
   await resetAgents(ctx.pool, [MGR, EXPLAIN, NET, IDEAS, NP, TRAVEL]);
   await ownChannel(ctx.pool, MGR, 'Космос щодня');
   await createCard(ctx.pool, { ...SPACE_CARD(MGR), mode: 'live' });
   const posts: PostSeed[] = [];
   for (let d = 2; d <= 35; d++) {
     const noise = Math.round(Math.sin(d * 3.7) * 60);
-    posts.push({ daysAgo: d, hour: 12, format: d % 3 ? 'photo' : 'longread', title: `Пост ${d}`, views: (drop && d <= 8 ? 520 : 1000) + noise, forwards: 5, reactions: 20 });
+    posts.push({ daysAgo: d, hour: 12, format: d % 3 ? 'photo' : 'longread', title: `Пост ${d}`, views: Math.round(d <= 8 ? 1000 * factor : 1000) + noise, forwards: 5, reactions: 20 });
   }
   await seedPosts(ctx.pool, MGR, posts, ctx.now);
   await ctx.stack.registrySync.run();
@@ -638,12 +643,189 @@ export const managerDropDirective: EvalCase = {
   },
 };
 
+// ── spec 025: binding directives vs optional advice ────────────────────────
+
+const DAY_MS = 86_400_000;
+const DIR = '@eval_dir';
+
+/** A single-channel orchestrator with an active playbook (longread-leaning) and 4 weeks of posts. */
+async function directiveSetup(ctx: CaseCtx, o: { perDay?: { min: number; max: number }; posts?: PostSeed[] } = {}) {
+  await resetAgents(ctx.pool, [DIR]);
+  await ownChannel(ctx.pool, DIR, 'Космос щодня');
+  await createCard(ctx.pool, { ...SPACE_CARD(DIR), mode: 'live', formats: { longread: 0.6, photo: 0.4, carousel: 0.3 }, postsPerDayMin: 1, postsPerDayMax: 3 });
+  if (o.posts?.length) await seedPosts(ctx.pool, DIR, o.posts, ctx.now);
+  await ctx.stack.registrySync.run();
+  const orch = (await ctx.stack.agents.findTop('orchestrator', 'resource', `telegram:${DIR}`))!;
+  await ctx.pool.query(`UPDATE agents SET mode = 'live' WHERE id = $1`, [orch.id]);
+  await ctx.stack.networkRepo.insertPlaybook({
+    agentId: orch.id, status: 'active', brief: null, createdBy: 'owner', rationale: 'eval',
+    body: PlaybookSchema.parse({
+      platforms: [{ resource_ref: `telegram:${DIR}`, role: 'core', formats: { longread: 0.6, photo: 0.4 }, per_day: o.perDay ?? { min: 1, max: 3 }, best_hours: [10, 19] }],
+    }),
+  });
+  const manager = await ctx.stack.agents.findTop('manager', 'system', null);
+  return { orch, manager, card: (await ctx.stack.channels.get(DIR))! };
+}
+
+/** A MANAGER directive or advice as the MANAGER files it (status new → delivered on the orchestrator's run). */
+async function managerSays(ctx: CaseCtx, orchId: string, managerId: string | null, d: {
+  kind: 'format_shift' | 'frequency'; binding: 'directive' | 'advice'; body: string; params: Record<string, unknown>; rationale: string; evidence: unknown;
+}) {
+  return ctx.stack.directives.insert({
+    fromAgentId: managerId, toAgentId: orchId, structural: false, status: 'new', shadow: false, reviewAt: new Date(ctx.now.getTime() + 7 * DAY_MS),
+    expected: { metric: 'views_per_post', direction: 'up', min_change_pct: 10, resource_ref: `telegram:${DIR}` }, ...d,
+  });
+}
+
+const inboxFor = async (pool: Pool, id: string) => (await pool.query(`SELECT kind FROM agent_inbox WHERE ref_type = 'directive' AND ref_id = $1`, [id])).rows.map((r) => r.kind as string);
+
+export const orchestratorDirectiveComply: EvalCase = {
+  id: 'orchestrator-directive-comply', role: 'orchestrator', channel: DIR,
+  title: 'Обовʼязкова директива format_shift проти ваг плейбука (фото замість лонгрідів) → accept_directive, код застосовує зміну (spec 025)',
+  web: () => new FakeWeb({}),
+  async execute(ctx) {
+    const { orch, manager, card } = await directiveSetup(ctx);
+    const dir = await managerSays(ctx, orch.id, manager?.id ?? null, {
+      kind: 'format_shift', binding: 'directive', body: 'Підняти вагу фото в Telegram на 0.3: фото зараз тримають перегляди краще за лонгріди',
+      params: { format: 'photo', weight_delta: 0.3 },
+      rationale: 'Перегляди на пост впали на 48% за тиждень (anomaly); фото-пости за 28 днів мають у 1,6 раза більше переглядів, ніж лонгріди',
+      evidence: { views_per_post: { v: 520, base: 1000, d: -48 }, photo_vs_longread: 1.6 },
+    });
+    const res = await ctx.stack.network.runOrchestrator(card);
+    const t = await trace(ctx, res?.runId ?? null);
+    const row = (await ctx.stack.directives.get(dir.id))!;
+    const pb = await ctx.stack.networkRepo.activePlaybook(orch.id);
+    const photo = pb?.body.platforms.find((p) => p.resource_ref === `telegram:${DIR}`)?.formats.photo;
+    return {
+      runId: res?.runId ?? null, status: res?.status ?? 'none', terminalTool: res?.terminalTool, ...t,
+      post: `${row.status}: ${row.resolution ?? ''}`,
+      checks: [
+        check('answered with accept_directive', t.toolsUsed.includes('accept_directive'), t.toolsUsed.join(' → ')),
+        check('did not contest or decline it', !t.toolsUsed.includes('contest_directive') && !t.toolsUsed.includes('decline_advice'), t.toolsUsed.join(' → ')),
+        check('the directive is applied by the code', row.status === 'applied', `${row.status} ${row.execError ?? ''}`),
+        check('the active playbook is the directive\'s version', pb?.createdBy === 'directive' && pb.directiveId === dir.id, `${pb?.createdBy} ${pb?.directiveId}`),
+        check('photo weight 0.4 → 0.7', photo === 0.7, String(photo), true),
+        check('the acceptance plan is in Ukrainian', isUkrainian(row.resolution ?? ''), row.resolution ?? '', true),
+        check('finished the run', res?.terminalTool === 'finish_orchestration', `${res?.status} ${res?.error ?? ''}`, true),
+      ],
+    };
+  },
+};
+
+export const orchestratorDirectiveOwnerRuleContest: EvalCase = {
+  id: 'orchestrator-directive-owner-rule-contest', role: 'orchestrator', channel: DIR,
+  title: 'Обовʼязкова директива frequency суперечить правилу власника «не більше 2 постів на день» → contest_directive з owner_rule і id правила (spec 025)',
+  web: () => new FakeWeb({}),
+  async execute(ctx) {
+    const { orch, manager, card } = await directiveSetup(ctx, { perDay: { min: 1, max: 2 } });
+    const ruleId = await ctx.stack.memory.add(DIR, 'rule', 'Не більше 2 постів на день у Telegram — так вирішив власник, аудиторія не любить спаму', null, 'owner');
+    const dir = await managerSays(ctx, orch.id, manager?.id ?? null, {
+      kind: 'frequency', binding: 'directive', body: 'Публікувати частіше: +25% постів на день у Telegram (до 3 на день)',
+      params: { resource_ref: `telegram:${DIR}`, change_pct: 25 },
+      rationale: 'Перегляди на пост впали на 48% (anomaly), а частота найнижча в мережі — потрібно більше точок контакту',
+      evidence: { views_per_post: { v: 520, base: 1000, d: -48 }, posts_per_day: 2 },
+    });
+    const before = await ctx.stack.networkRepo.activePlaybook(orch.id);
+    const res = await ctx.stack.network.runOrchestrator(card);
+    const t = await trace(ctx, res?.runId ?? null);
+    const row = (await ctx.stack.directives.get(dir.id))!;
+    const after = await ctx.stack.networkRepo.activePlaybook(orch.id);
+    const contest = row.verification?.contest;
+    const cards = await inboxFor(ctx.pool, dir.id);
+    return {
+      runId: res?.runId ?? null, status: res?.status ?? 'none', terminalTool: res?.terminalTool, ...t,
+      post: `${row.status} (${row.reasonKind ?? '-'}): ${row.resolution ?? ''}\ncheck: ${JSON.stringify(contest ?? null)}`,
+      checks: [
+        check('contested the directive', t.toolsUsed.includes('contest_directive') && row.status === 'contested', `${row.status} · ${t.toolsUsed.join(' → ')}`),
+        check('cites the owner rule', row.reasonKind === 'owner_rule', row.reasonKind ?? 'none'),
+        check('with the right rule id (checked by code)', !!contest && contest.verified === true && (contest.rule_ids ?? []).includes(ruleId), JSON.stringify(contest)),
+        check('one owner card in the Inbox', cards.filter((k) => k === 'directive_contested').length === 1, cards.join(', ')),
+        check('nothing applied: the playbook is unchanged', after?.id === before?.id, `${before?.id} → ${after?.id}`),
+        check('did not accept it', !t.toolsUsed.includes('accept_directive') || row.status === 'contested', t.toolsUsed.join(' → '), true),
+        check('the refusal is in Ukrainian', isUkrainian(row.resolution ?? ''), row.resolution ?? '', true),
+      ],
+    };
+  },
+};
+
+export const orchestratorAdviceDecline: EvalCase = {
+  id: 'orchestrator-advice-decline', role: 'orchestrator', channel: DIR,
+  title: 'Порада «більше лонгрідів» проти свіжих даних (лонгріди ×4 гірші за фото) → decline_advice з причиною data (spec 025)',
+  web: () => new FakeWeb({}),
+  async execute(ctx) {
+    // 4 weeks: photos ~1,500 views, longreads ~350 — the advice runs against the data.
+    const posts: PostSeed[] = [];
+    for (let d = 1; d <= 28; d++) {
+      const longread = d % 3 === 0;
+      posts.push({ daysAgo: d, hour: longread ? 19 : 12, format: longread ? 'longread' : 'photo', title: `${longread ? 'Лонгрід' : 'Фото'} ${d}`,
+        views: (longread ? 350 : 1500) + Math.round(Math.sin(d * 1.7) * 40), forwards: longread ? 1 : 9, reactions: longread ? 4 : 40 });
+    }
+    const { orch, manager, card } = await directiveSetup(ctx, { posts });
+    const dir = await managerSays(ctx, orch.id, manager?.id ?? null, {
+      kind: 'format_shift', binding: 'advice', body: 'Порада: більше лонгрідів у Telegram (+0.3 до ваги), вони поглиблюють залучення',
+      params: { format: 'longread', weight_delta: 0.3 },
+      rationale: 'В інших мережах лонгріди дають довше читання; варто спробувати збільшити їхню частку',
+      evidence: { views_per_post: { v: 1100, base: 1120, d: -2 } },
+    });
+    const res = await ctx.stack.network.runOrchestrator(card);
+    const t = await trace(ctx, res?.runId ?? null);
+    const row = (await ctx.stack.directives.get(dir.id))!;
+    const cards = await inboxFor(ctx.pool, dir.id);
+    return {
+      runId: res?.runId ?? null, status: res?.status ?? 'none', terminalTool: res?.terminalTool, ...t,
+      post: `${row.status} (${row.reasonKind ?? '-'}): ${row.resolution ?? ''}`,
+      checks: [
+        check('declined the advice', t.toolsUsed.includes('decline_advice') && row.status === 'declined', `${row.status} · ${t.toolsUsed.join(' → ')}`),
+        check('with a data reason', row.reasonKind === 'data', row.reasonKind ?? 'none'),
+        check('no Inbox entry for a declined advice', cards.length === 0, cards.join(', ')),
+        check('the reason cites the numbers', /\d/.test(row.resolution ?? '') && /(перегляд|охоплен|лонгрід|фото|реакці)/iu.test(row.resolution ?? ''), row.resolution ?? '', true),
+        check('did not contest advice', !t.toolsUsed.includes('contest_directive'), t.toolsUsed.join(' → '), true),
+      ],
+    };
+  },
+};
+
+export const managerAdviceVsDirective: EvalCase = {
+  id: 'manager-advice-vs-directive', role: 'manager', channel: MGR,
+  title: 'MANAGER: легкий спад (−7%, без anomaly) → порада або нічого; обвал −48% (anomaly) → обовʼязкова директива (spec 025)',
+  web: () => new FakeWeb({}),
+  async execute(ctx) {
+    const mild = await managerSetup(ctx, 0.93);
+    const r1: any = await ctx.stack.manager.run(mild);
+    const orch1 = (await ctx.stack.agents.findTop('orchestrator', 'resource', `telegram:${MGR}`))!;
+    const d1 = await ctx.stack.directives.list({ toAgentId: orch1.id, limit: 10 });
+    const v1 = (await ctx.pool.query(`SELECT verdict FROM manager_reviews ORDER BY created_at DESC LIMIT 1`)).rows[0]?.verdict;
+    await managerAfter(ctx, mild);
+
+    const drop = await managerSetup(ctx, true);
+    const r2: any = await ctx.stack.manager.run(drop);
+    const orch2 = (await ctx.stack.agents.findTop('orchestrator', 'resource', `telegram:${MGR}`))!;
+    const d2 = await ctx.stack.directives.list({ toAgentId: orch2.id, limit: 10 });
+    await managerAfter(ctx, drop);
+    const t2 = await trace(ctx, r2.runId ?? null);
+    const binding2 = d2.filter((d) => d.binding === 'directive');
+    const fmt = (ds: typeof d1) => ds.map((d) => `${d.binding}/${d.kind}: ${d.body}`).join('\n') || '—';
+    return {
+      runId: r2.runId ?? null, status: r2.status ?? r2.skipped, terminalTool: r2.terminalTool, ...t2,
+      post: `mild (${v1 ?? '-'}):\n${fmt(d1)}\n\ndrop:\n${fmt(d2)}`,
+      checks: [
+        check('mild trend: advice or nothing (no binding directive)', d1.every((d) => d.binding === 'advice'), `${v1} · ${fmt(d1)}`),
+        check('drop: at least one binding directive', binding2.length >= 1, fmt(d2)),
+        check('drop: the directive targets views/post or posting', binding2.some((d) => d.expected?.metric === 'views_per_post' || ['frequency', 'format_shift', 'experiment', 'task'].includes(d.kind)), fmt(binding2), true),
+        check('drop: no filing errors left unrecovered', !t2.toolErrors.some((e) => /directive_needs_anomaly|structural_must_be_directive|advice_kind_is_advice/.test(e)) || binding2.length >= 1, t2.toolErrors.join(' | '), true),
+        check('rationales in Ukrainian', [...d1, ...d2].every((d) => isUkrainian(d.rationale)), undefined, true),
+      ],
+    };
+  },
+};
+
 /** Leave the scratch DB as found (the runner's real-DB guard counts meta accounts). */
 export async function cleanupAgentEvals(pool: Pool): Promise<void> {
-  await resetAgents(pool, [TRAVEL, EXPLAIN, NET, IDEAS, NP, MGR, MD, SKIP, RP]);
+  await resetAgents(pool, [TRAVEL, EXPLAIN, NET, IDEAS, NP, MGR, MD, SKIP, RP, DIR]);
 }
 
 export const AGENT_CASES: EvalCase[] = [
   builderOnboarding, mentionExplain, playbookFromBrief, ideaReview, networkPlanStaggered, platformNativeVariant, executorFormatPrefs,
   plannerMixedDecisions, plannerSkipOfftopic, orchestratorRepurposeHit, managerStableContinue, managerDropDirective,
+  orchestratorDirectiveComply, orchestratorDirectiveOwnerRuleContest, orchestratorAdviceDecline, managerAdviceVsDirective,
 ];
