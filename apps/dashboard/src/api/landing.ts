@@ -13,7 +13,7 @@ export interface LandingResource {
 }
 export interface LandingAdminResource extends LandingResource { id: string; landingVisible: boolean; }
 
-// ── Spec 026: public page config (FR-002), DM link preview (FR-003) ──
+// ── Spec 026: public page config (FR-002), DM link preview (FR-003), live pulse (FR-004) ──
 
 export type LandingPlacement = 'hero' | 'topbar' | 'network' | 'resource' | 'mediakit' | 'advertise' | 'footer' | 'howitworks';
 export type LandingNetworkPlacement = 'hero' | 'topbar' | 'advertise' | 'footer' | 'howitworks';
@@ -47,12 +47,30 @@ export interface LandingDmPreview {
 
 export interface LandingConfigPatch { adTgUsername?: string | null; adMessage?: string | null; whiteLabelEnabled?: boolean }
 
+export type PulsePlatform = LandingPlatform | 'youtube';
+
+/** GET /api/landing/pulse (public; 503 when unavailable — hide the strip then). Aggregates only. */
+export interface LandingPulse {
+  agents: { orchestratorsLive: number; orchestratorsShadow: number; rolesActive: string[]; manager: 'off' | 'shadow' | 'live' };
+  last7d: {
+    agentPosts: number; allPosts: number; autonomyShare: number;
+    platforms: Array<{ platform: PulsePlatform; posts: number; agentPosts: number }>;
+    agentRuns: number; skippedByAgents: number; directivesFiled: number; managerReviews: number;
+    ideasReviewed: number; ownerDecisions: number;
+  };
+  lastAgentPostAt: string | null;
+  claims: { managerLive: boolean };
+  generatedAt: string;
+  stale: boolean;
+}
+
 export const landingApi = {
   resources: () => api<LandingResource[]>('/api/landing/resources'),
   adminList: () => api<LandingAdminResource[]>('/api/landing/admin'),
   setFeatured: (platform: LandingPlatform, id: string, body: { landingVisible: boolean; landingOrder: number }) =>
     api<{ ok: true }>(`/api/landing/admin/${platform}/${id}`, { method: 'PATCH', body: JSON.stringify(body) }),
   publicConfig: () => api<LandingPublicConfig>('/api/landing/config'),
+  pulse: () => api<LandingPulse>('/api/landing/pulse'),
   adminConfig: () => api<LandingAdminConfig>('/api/landing/admin/config'),
   saveConfig: (patch: LandingConfigPatch) =>
     api<LandingAdminConfig>('/api/landing/admin/config', { method: 'PUT', body: JSON.stringify(patch) }),
@@ -62,6 +80,11 @@ export const landingApi = {
 
 export function useLandingPublicConfig() {
   return useQuery({ queryKey: ['landing', 'config'], queryFn: landingApi.publicConfig, staleTime: 300_000 });
+}
+
+/** The proof strip hides on an error (503), so no retries and no error toast. */
+export function useLandingPulse() {
+  return useQuery({ queryKey: ['landing', 'pulse'], queryFn: landingApi.pulse, staleTime: 300_000, retry: false });
 }
 
 export function useLandingAdminConfig() {
