@@ -10,8 +10,11 @@ WORKDIR /repo
 # instead of an ARG default.
 ARG VITE_AUTH_MODE=
 ARG VITE_TG_BOT_USERNAME=
+# Public origin for the Open Graph tags (spec 026); empty: the default in src/lib/public-url.ts.
+ARG VITE_PUBLIC_URL=
 ENV VITE_AUTH_MODE=$VITE_AUTH_MODE
 ENV VITE_TG_BOT_USERNAME=$VITE_TG_BOT_USERNAME
+ENV VITE_PUBLIC_URL=$VITE_PUBLIC_URL
 
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 COPY apps/dashboard/package.json apps/dashboard/
