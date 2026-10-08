@@ -9,6 +9,7 @@ import { AgentActionsRepository } from './agent-actions.repository';
 import { AdPricesRepository, toPublicPrice } from '../payments/ad-prices.repository';
 import { priceListReply, pricesForInquiry } from '../payments/ad-price-list';
 import type { TriageResult } from './agent.types';
+import { applyLandingAttribution, parseLandingRef } from './agent-triage.helpers';
 
 @Injectable()
 export class AgentInboxPoller {
@@ -44,7 +45,12 @@ export class AgentInboxPoller {
 
     const fresh = selectNewIncoming(dialogs, lastIds);
     for (const dm of fresh) {
-      const t = await this.triage.triage(dm.text);
+      // Spec 026 FR-016: read the landing tag (and what the thread already knows)
+      // before the model runs, then merge: the tag sets source/placement/channel and
+      // an attributed thread is an ad inquiry whatever the model calls it.
+      const ref = parseLandingRef(dm.text);
+      const existing = await this.repo.fieldsFor(dm.peerId);
+      const t = applyLandingAttribution(await this.triage.triage(dm.text), ref, existing);
       const threadId = await this.repo.upsertThread(dm, t);
       if (t.category === 'ad' && threadId) await this.draftPriceReply(threadId, t);
     }

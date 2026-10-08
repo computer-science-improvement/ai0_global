@@ -31,7 +31,8 @@ export interface AgentActionRow {
 export interface TriageResult {
   category:   AgentCategory;
   summary:    string;
-  fields:     { channel?: string; budget?: string; dates?: string };
+  /** `source`/`placement` are set by the landing attribution (spec 026 FR-016), never by the model. */
+  fields:     { channel?: string; budget?: string; dates?: string; source?: 'landing'; placement?: string };
   draftReply: string;
   score:      number; // 0..100
 }

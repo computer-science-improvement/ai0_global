@@ -97,6 +97,21 @@ export interface LandingPulse {
   stale: boolean;
 }
 
+// ── Spec 026 FR-015: CTA stats (clicks per placement vs. landing-tagged DM threads and leads) ──
+
+export interface CtaStatsRow {
+  placement: string;
+  dmClicks: number; formClicks: number; whiteLabelClicks: number;
+  dmThreads: number; leads: number;
+}
+export interface CtaStats {
+  days: number;
+  since: string;
+  rows: CtaStatsRow[];
+  totals: Omit<CtaStatsRow, 'placement'>;
+  untaggedAdThreads: number;
+}
+
 export const landingApi = {
   resources: () => api<LandingResource[]>('/api/landing/resources'),
   adminList: () => api<LandingAdminResource[]>('/api/landing/admin'),
@@ -109,6 +124,7 @@ export const landingApi = {
   patchNetwork: (groupId: string, patch: LandingNetworkPatch) =>
     api<{ ok: true }>(`/api/landing/admin/network/${encodeURIComponent(groupId)}`, { method: 'PATCH', body: JSON.stringify(patch) }),
   adminConfig: () => api<LandingAdminConfig>('/api/landing/admin/config'),
+  ctaStats: (days = 30) => api<CtaStats>(`/api/landing/admin/cta-stats?days=${days}`),
   saveConfig: (patch: LandingConfigPatch) =>
     api<LandingAdminConfig>('/api/landing/admin/config', { method: 'PUT', body: JSON.stringify(patch) }),
   previewConfig: (draft: { adTgUsername: string; adMessage: string }) =>
@@ -141,6 +157,10 @@ export function usePatchLandingNetwork() {
       qc.invalidateQueries({ queryKey: ['landing', 'networks'] });
     },
   });
+}
+
+export function useLandingCtaStats(days = 30) {
+  return useQuery({ queryKey: ['landing', 'admin', 'cta-stats', days], queryFn: () => landingApi.ctaStats(days) });
 }
 
 export function useLandingAdminConfig() {

@@ -5,7 +5,7 @@
 // "Public page" settings (spec 026 FR-002/FR-015: DM username, template, white label).
 // The PUBLIC LandingController stays separate and unguarded.
 import {
-  BadRequestException, Body, Controller, Get, HttpCode, Inject, NotFoundException, Optional, Param, Patch, Post, Put, UseGuards,
+  BadRequestException, Body, Controller, Get, HttpCode, Inject, NotFoundException, Optional, Param, Patch, Post, Put, Query, UseGuards,
 } from '@nestjs/common';
 import { TrackingAuthGuard } from '../../tracking/api/tracking-auth.guard';
 import {
@@ -16,7 +16,8 @@ import { PatchLandingDto } from './dto/landing.dto';
 import {
   networkPatchIssues, type LandingAdminNetwork, type LandingNetwork, type LandingNetworksService,
 } from '../landing-networks.service';
-import { LANDING_CONFIG, LANDING_NETWORKS } from './landing.controller';
+import { LANDING_CONFIG, LANDING_CTA, LANDING_NETWORKS } from './landing.controller';
+import type { CtaStats, LandingCtaService } from '../landing-cta.service';
 
 const PLATFORMS: readonly LandingPlatform[] = LANDING_PLATFORMS;
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
@@ -33,7 +34,15 @@ export class LandingAdminController {
     private readonly landing: LandingResourcesService,
     @Inject(LANDING_CONFIG) private readonly config: LandingConfigService,
     @Optional() @Inject(LANDING_NETWORKS) private readonly networks?: LandingNetworksService,
+    @Optional() @Inject(LANDING_CTA) private readonly cta?: LandingCtaService,
   ) {}
+
+  /** Spec 026 FR-015: CTA clicks per placement over `days` (default 30) against landing-tagged DM threads and leads. */
+  @Get('cta-stats')
+  ctaStats(@Query('days') days?: string): Promise<CtaStats> {
+    if (!this.cta) throw new NotFoundException('CTA stats are not available');
+    return this.cta.stats(days ?? 30);
+  }
 
   @Get()
   list(): Promise<LandingAdminResource[]> {

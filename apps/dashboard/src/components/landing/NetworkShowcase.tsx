@@ -10,6 +10,7 @@ import type { LandingNetwork, LandingNetworkResource } from '../../api/landing';
 import { Badge } from '../ui/Badge';
 import { Icon } from '../ui/Icon';
 import { PLATFORM_META, agentChip, aiRunBadge, compact, resourceKey } from '../../lib/landing-view';
+import { AdDmLink, NoTelegramLink } from './cta';
 
 const cardVariants = {
   hidden: { opacity: 0, y: 14 },
@@ -61,11 +62,12 @@ function ResourceCard({ r }: { r: LandingNetworkResource }): JSX.Element {
           </span>
         ) : <span />}
         {r.adDmUrl ? (
-          <a href={r.adDmUrl} target="_blank" rel="noopener" className="rs-ad-link">
+          <AdDmLink href={r.adDmUrl} placement="resource" className="rs-ad-link" ariaLabel={`Ads here: order an ad in ${title} on Telegram`}>
             Ads here <Icon name="telegram" size={12} />
-          </a>
+          </AdDmLink>
         ) : r.url ? <span className="rs-arrow" aria-hidden>↗</span> : null}
       </div>
+      {r.adDmUrl && <NoTelegramLink placement="resource" target={title} className="rs-notg" />}
     </motion.div>
   );
 }
@@ -98,10 +100,11 @@ function NetworkBlock({ n }: { n: LandingNetwork }): JSX.Element {
             ))}
           </span>
           {n.adDmUrl && (
-            <a href={n.adDmUrl} target="_blank" rel="noopener" className="rs-ad-link">
+            <AdDmLink href={n.adDmUrl} placement="network" className="rs-ad-link">
               Advertise in this network <Icon name="telegram" size={12} />
-            </a>
+            </AdDmLink>
           )}
+          {n.adDmUrl && <NoTelegramLink placement="network" target={n.name} className="rs-notg" />}
         </div>
       </header>
 
@@ -258,6 +261,15 @@ export function NetworkShowcase({ networks }: { networks: LandingNetwork[] }): J
           min-height: 32px;
         }
         .rs-ad-link:hover { background: color-mix(in srgb, var(--color-accent) 16%, transparent); opacity: 1; }
+        .rs-notg {
+          position: relative; z-index: 1; align-self: flex-end;
+          background: none; border: 0; padding: 4px 0; min-height: 24px; cursor: pointer;
+          font: inherit; font-size: 12px; color: var(--color-ink-muted);
+          text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--color-hairline-strong);
+        }
+        .rs-notg:hover { color: var(--color-ink); }
+        .rs-notg:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; border-radius: var(--radius-sm); }
+        @media (max-width: 640px) { .ns-head-side .rs-notg { align-self: flex-start; } }
         .rs-empty {
           display: flex; flex-direction: column; align-items: center; gap: var(--space-sm);
           text-align: center;

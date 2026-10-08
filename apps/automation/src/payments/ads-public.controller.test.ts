@@ -12,6 +12,17 @@ function make(report: any = { stage: '24h' }) {
   return { ctrl: new AdsPublicController(prices, orders), lookups };
 }
 
+test('GET landing/media-kit adds a mediakit DM link per channel (null without a DM account)', async () => {
+  const prices = { mediaKit: async () => [{ channelKey: '@space_ua', title: 'Space UA', prices: [] }] } as any;
+  const withDm = new AdsPublicController(prices, {} as any, { adDm: async () => ({ username: 'ai0_ads', template: "Hi! I'd like to order an ad in {target}. {ref}" }) });
+  const [row] = await withDm.mediaKit();
+  assert.match(row.adDmUrl!, /^https:\/\/t\.me\/ai0_ads\?text=/);
+  assert.equal(decodeURIComponent(row.adDmUrl!.split('?text=')[1]), "Hi! I'd like to order an ad in Space UA. [ai0web:mediakit:space_ua]");
+  const noDm = new AdsPublicController(prices, {} as any, { adDm: async () => null });
+  assert.equal((await noDm.mediaKit())[0].adDmUrl, null);
+  assert.equal((await new AdsPublicController(prices, {} as any).mediaKit())[0].adDmUrl, null);
+});
+
 test('GET landing/prices returns active prices without ids or timestamps', async () => {
   const { ctrl } = make();
   assert.deepEqual(await ctrl.listPrices(), [{ channelKey: '@a', format: 'post', priceUah: 900, note: null }]);

@@ -1,6 +1,6 @@
 # 026: Public landing: autonomous AI-run network, white-label offer, ad ordering via Telegram DM
 
-**Status:** BUILDING (T1–T4 done) · **Depends on:** 017–022 (agent platform, DONE), 008 (ad prices), 016 + 019b (YouTube, FR-010 only) · **Supersedes/extends:** BR-CORE-01…08, BR-MKT-01…08; extends BR-EDT-54/55 (DM triage); feeds 011 and 015
+**Status:** BUILDING (T1–T5 done) · **Depends on:** 017–022 (agent platform, DONE), 008 (ad prices), 016 + 019b (YouTube, FR-010 only) · **Supersedes/extends:** BR-CORE-01…08, BR-MKT-01…08; extends BR-EDT-54/55 (DM triage); feeds 011 and 015
 **Migration:** `066_landing_ai_network.sql` (renumbered: 063 and 058 were taken, 065 is reserved for spec 025)
 **Owner comments addressed:** #9, #10, #11, #12 (plans/brd-comments-2026-10-06.md)
 
@@ -216,6 +216,35 @@ Decisions where the spec was open or has been overtaken by owner decisions:
   `#order-an-ad`. T6 adds the white-label link to the hero CTA row.
 - `HowItWorks.tsx` is allow-listed in the Cyrillic guard for the legal `#реклама` label only.
 
+## Implementation notes (T5, 2026-10-08)
+- **No migration.** `landing_cta_daily` (066) is enough; DM attribution lives in `agent_dm_threads.fields` (jsonb).
+- **CTA placements.** Top bar "Advertise" (`topbar`), hero (`hero`), network block "Advertise in this network"
+  (`network`), resource card "Ads here" (`resource`), every media-kit card (`mediakit`; `GET /api/landing/media-kit`
+  rows gain `adDmUrl`, target = the channel title), the `#advertise` block (`advertise`), "How it works" (`howitworks`)
+  and the footer "Advertise" (`footer`). Each is `<a target="_blank" rel="noopener">` to the server-built link. Without
+  a DM account the top bar and footer fall back to `#advertise`.
+- **Beacon.** `POST /api/landing/cta {cta, placement, lang}` with `cta ∈ ad_dm | ad_form | white_label` and a known
+  placement; anything else is ignored (204). It upserts `landing_cta_daily` for the UTC day; `lang` is always stored as
+  `'en'`. Nothing about the visitor is written (the table has no such column). 60/min per client through an in-process
+  sliding window keyed by `sha256(salt + ip)` (`LandingClientGate`; the salt derives from `PROMO_HASH_SALT`, else
+  `TOKEN_ENCRYPTION_KEY`, as in 022; a per-process random salt otherwise). No `RateLimitGuard` existed, so the shared
+  `common/rate-limit/sliding-window-limiter.ts` was added (single replica, owner decision). The dashboard counts clicks
+  only on the public page: the tracking sits in a React context that the admin preview does not provide.
+- **Attribution (FR-016).** `parseLandingRef` + `applyLandingAttribution` in `agent-triage.helpers.ts`. The poller reads
+  the tag and the thread's stored fields before the model runs; the tag sets `source='landing'`, `placement` and the
+  tagged `channel`; `other`/`question` become `ad` for any attributed thread (tag now or earlier), `spam` and `vp` stay.
+  `upsertThread` now merges `fields` in SQL (`old || new`), so `source` survives an untagged follow-up (the model may
+  still name a channel, and then it wins). The price-list draft filters by the merged `fields.channel`.
+- **`/app/dm`** (the old `/app/agent` redirects there) shows a "From landing · {placement} · @channel" chip.
+- **CTA stats** on `/app/landing` → "CTA stats" tab: `GET /api/landing/admin/cta-stats?days=30` returns per placement
+  the Telegram clicks, the landing-tagged DM threads (and the rate), form opens, form leads and white-label clicks, plus
+  the ad DM threads without a tag in the window.
+- **Personal email removed.** The `mailto:` and the "Self-serve — coming soon" badge are gone from `#advertise`. CI
+  (`ci-feature.yml`) greps `apps/dashboard/src`, `index.html` and `public/` for a mail link or a Gmail address (file
+  names only in the log); `apps/dashboard/src/lib/no-personal-contact.test.ts` runs the same check (plus other webmail
+  domains) in the dashboard tests. `dist` is not grepped in CI: the feature CI does not build the dashboard, and a
+  built bundle always contains `mailto:` in TanStack Router's safe-protocol list (a local build had no Gmail address).
+
 ## Task breakdown
 
 ### T1: Add migration 066 and the landing config surface
@@ -282,10 +311,10 @@ Decisions where the spec was open or has been overtaken by owner decisions:
 - The CI grep.
 
 **Acceptance:**
-- [ ] A tagged DM is attributed, categorised `ad`, and its price list is filtered.
-- [ ] `source` survives an untagged follow-up.
-- [ ] The grep is green.
-- [ ] No IP is stored for clicks.
+- [x] A tagged DM is attributed, categorised `ad`, and its price list is filtered.
+- [x] `source` survives an untagged follow-up.
+- [x] The grep is green.
+- [x] No IP is stored for clicks.
 
 **Size:** M · **Depends on:** T1, T4
 
