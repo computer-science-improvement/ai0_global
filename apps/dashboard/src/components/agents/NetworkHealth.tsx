@@ -150,7 +150,7 @@ export function NetworkHealthCard({ delay }: { delay?: number }) {
   }
 
   const dg = q.data;
-  const awaiting = dg.directives.open.filter((d) => d.status === 'awaiting_owner').length;
+  const awaiting = dg.directives.open.filter((d) => d.status === 'awaiting_owner' || d.status === 'contested').length;
   const open = dg.directives.open.length;
   const anomalies = dg.resources.reduce((s, r) => s + r.anomalies.length, 0);
   const spent = dg.budget.spentTodayUsd;

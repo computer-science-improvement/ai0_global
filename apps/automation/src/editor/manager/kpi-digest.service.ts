@@ -170,7 +170,7 @@ export class KpiDigestService {
 
     const { rows: open } = await this.d.pool.query(
       `SELECT d.id, a.handle AS to_handle, d.kind, d.status, d.body, d.created_at FROM agent_directives d JOIN agents a ON a.id = d.to_agent_id
-        WHERE d.status IN ('new','awaiting_owner','accepted','applied') AND NOT d.shadow ORDER BY d.created_at DESC LIMIT 20`);
+        WHERE d.status IN ('new','awaiting_owner','contested','accepted','applied') AND NOT d.shadow ORDER BY d.created_at DESC LIMIT 20`);
     const { rows: outcomes } = await this.d.pool.query(
       `SELECT a.handle AS to_handle, d.kind, d.outcome, d.body, d.outcome_detail FROM agent_directives d JOIN agents a ON a.id = d.to_agent_id
         WHERE d.status IN ('evaluated','rejected','expired') ORDER BY d.updated_at DESC LIMIT 30`);
