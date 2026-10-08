@@ -13,7 +13,7 @@
     "editor:mcp": "tsx src/editor/mcp/main.ts",
     "editor:smoke": "tsx --env-file=../../.env scripts/editor-smoke.ts",
     "editor:evals": "tsx --env-file=../../.env evals/run-evals.ts",
-    "migrate:strategies": "tsx --env-file=../../.env scripts/migrate-strategies.ts"
+    "migrate:strategies": "tsx --env-file=../../.env src/cli/migrate-strategies.ts"
   },
   "dependencies": {
     "@anthropic-ai/claude-agent-sdk": "^0.2.119",

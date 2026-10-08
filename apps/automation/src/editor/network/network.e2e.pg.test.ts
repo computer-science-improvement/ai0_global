@@ -81,8 +81,11 @@ test('brief → playbook → independent network → ideas → plan → native p
   const IG = `instagram:${igId}`;
   const now = new Date();
   const kyivHour = Number(new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Kyiv', hour: '2-digit', hourCycle: 'h23' }).format(now));
-  if (kyivHour >= 20) return; // the plan needs two slots later today
-  const hh = (h: number) => String(Math.min(23, kyivHour + h)).padStart(2, '0');
+  // The planner needs ≥ 5 min of lead (LEAD_MIN): in the last 10 minutes of an hour, start one hour later.
+  const kyivMin = Number(new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Kyiv', minute: '2-digit' }).format(now));
+  const bump = kyivMin >= 50 ? 1 : 0;
+  if (kyivHour + bump >= 20) return; // the plan needs two slots later today
+  const hh = (h: number) => String(Math.min(23, kyivHour + bump + h)).padStart(2, '0');
 
   const agents = new AgentsRepository(pool);
   const channels = new EditorChannelsRepository(pool);

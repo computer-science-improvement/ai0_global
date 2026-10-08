@@ -149,14 +149,14 @@ test('CSV export streams with download headers and its totals equal the breakdow
   assert.equal(r.status, 200);
   assert.match(r.headers['content-type'], /text\/csv/);
   assert.match(r.headers['content-disposition'], /attachment; filename="ai-spend_2026-09-30_2026-10-06_feature.csv"/);
-  const lines = r.text.replace(/^﻿/, '').trim().split('\r\n');
+  const lines = r.text.replace(/^\uFEFF/, '').trim().split('\r\n');
   const head = lines[0].split(',');
   const usdCol = head.indexOf('usd');
   const sum = lines.slice(1).reduce((t, l) => t + Number(l.split(',')[usdCol]), 0);
   const b = await call('GET', '/api/spend/breakdown?range=7d&groupBy=feature');
   assert.equal(sum, b.json.totals.costUsd);
   const raw = await call('GET', '/api/spend/export.csv?range=today&groupBy=raw');
-  assert.match(raw.text, /^﻿id,at,provider/);
+  assert.match(raw.text, /^\uFEFFid,at,provider/);
   assert.equal(raw.text.trim().split('\r\n').length, 2);
 });
 

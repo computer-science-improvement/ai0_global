@@ -76,6 +76,14 @@ ALTER TABLE editor_slots ADD COLUMN IF NOT EXISTS resource_ref  TEXT;
 ALTER TABLE editor_slots ADD COLUMN IF NOT EXISTS platform_spec JSONB;
 
 -- Every post of every platform, one shape for agents and the KPI digest.
+-- Guarded: 062_resource_formatting widens this view (post_ref); a re-run of 051 must not narrow it.
+DO $$
+BEGIN
+  IF NOT EXISTS (
+    SELECT 1 FROM information_schema.columns
+     WHERE table_schema = 'public' AND table_name = 'network_posts' AND column_name = 'post_ref'
+  ) THEN
+    EXECUTE $v$
 CREATE OR REPLACE VIEW network_posts AS
 SELECT 'telegram:' || p.channel_id                    AS resource_ref,
        'telegram'::text                               AS platform,
@@ -100,7 +108,10 @@ SELECT pp.resource_ref, pp.platform, pp.external_id, pp.format, left(pp.caption,
     SELECT views, reach, likes, comments, shares, saves FROM platform_post_metrics
      WHERE post_id = pp.id ORDER BY captured_at DESC LIMIT 1
   ) m ON true
- WHERE pp.status = 'published' AND pp.platform <> 'telegram';
+ WHERE pp.status = 'published' AND pp.platform <> 'telegram'
+    $v$;
+  END IF;
+END $$;
 
 DO $$
 DECLARE

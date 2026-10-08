@@ -2,6 +2,7 @@
  * Strategy bindings → agent series, the dry run (spec 023 FR-011).
  *
  *   cd apps/automation && pnpm migrate:strategies --dry-run [--channel @key] [--json]
+ *   in the prod container: node dist/cli/migrate-strategies.js --dry-run
  *
  * Prints, per channel with enabled bindings, how each binding maps (series cadence, format, source), the
  * frequency hints and the unmappable bindings with their reason, plus the share mapped. Writes nothing: the
@@ -9,14 +10,14 @@
  * Resource health is not checked here (every group resource counts as usable).
  */
 import { Pool } from 'pg';
-import { AgentsRepository } from '../src/editor/agents/agents.repository';
-import { ResourceProfilesRepository } from '../src/editor/agents/resource-profile';
-import { NetworkRepository } from '../src/editor/network/network.repository';
-import { seriesSourceCatalog } from '../src/editor/network/series-edit';
-import { EditorChannelsRepository } from '../src/editor/repo/editor-channels.repository';
-import { ResourceTime } from '../src/editor/time/resource-time';
-import { StrategyMigrationService } from '../src/editor/migration/strategy-migration.service';
-import { dryRun, formatDryRun } from '../src/editor/migration/dry-run';
+import { AgentsRepository } from '../editor/agents/agents.repository';
+import { ResourceProfilesRepository } from '../editor/agents/resource-profile';
+import { NetworkRepository } from '../editor/network/network.repository';
+import { seriesSourceCatalog } from '../editor/network/series-edit';
+import { EditorChannelsRepository } from '../editor/repo/editor-channels.repository';
+import { ResourceTime } from '../editor/time/resource-time';
+import { StrategyMigrationService } from '../editor/migration/strategy-migration.service';
+import { dryRun, formatDryRun } from '../editor/migration/dry-run';
 
 function args(argv: string[]): { dryRun: boolean; channel: string | null; json: boolean } {
   const out = { dryRun: false, channel: null as string | null, json: false };

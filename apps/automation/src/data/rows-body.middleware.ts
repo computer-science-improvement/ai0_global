@@ -40,7 +40,7 @@ export function dataRowsJsonBody(req: Req, res: ServerResponse, next: (err?: unk
   req.on('end', () => {
     if (aborted) return;
     try {
-      const text = Buffer.concat(chunks).toString('utf8').replace(/^﻿/, '');
+      const text = Buffer.concat(chunks).toString('utf8').replace(/^\uFEFF/, '');
       req.body = text.trim() ? JSON.parse(text) : undefined;
       req._body = true;
       next();

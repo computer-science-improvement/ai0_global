@@ -92,7 +92,7 @@ test('text post with rich blocks → one sendRichMessage; the fallback is today\
   ]);
   assert.deepEqual(m.fallback, { method: 'sendMessage', text: composeText(spec, card), preview: null, buttons: [] });
   assert.equal(r.preview, composeText(spec, card));
-  assert.match(m.fallback.text, /<pre>Модель   \| Ціна\n/);
+  assert.match(m.fallback.text, /<pre>Модель {3}\| Ціна\n/);
 });
 
 test('photo post: the image is a photo block above or below; the fallback is the sendPhoto', () => {

@@ -82,8 +82,11 @@ const addDays = (d: string, n: number) => new Date(Date.UTC(+d.slice(0, 4), +d.s
 test('decisions → a duplicate waits for its source, then one short formatting run; failed / shadow sources; stale; media holds', { skip }, async () => {
   const now = new Date();
   const kyivHour = Number(new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Kyiv', hour: '2-digit', hourCycle: 'h23' }).format(now));
-  if (kyivHour >= 22) return; // the plan needs a slot later today
-  const hh = String(kyivHour + 1).padStart(2, '0');
+  // The planner needs ≥ 5 min of lead (LEAD_MIN): in the last 10 minutes of an hour, start one hour later.
+  const kyivMin = Number(new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Kyiv', minute: '2-digit' }).format(now));
+  const bump = kyivMin >= 50 ? 1 : 0;
+  if (kyivHour + bump >= 22) return; // the plan needs a slot later today
+  const hh = String(kyivHour + bump + 1).padStart(2, '0');
 
   const groupId = (await pool.query(`INSERT INTO meta_account_groups (name, source_platform, mode) VALUES ($1, 'telegram', 'independent') RETURNING id`, [GROUP])).rows[0].id;
   await pool.query(`INSERT INTO tracked_channels (channel_key, username, title, is_mine, group_id) VALUES ($1, 'der024_pg', 'Космос', true, $2)`, [CH, groupId]);

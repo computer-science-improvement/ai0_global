@@ -44,7 +44,9 @@ export const authApi = {
 
   /** `/auth/me` plus the reason a cookie stopped working. Throws when the server can't answer. */
   session: async (): Promise<SessionInfo> => {
-    const r = await fetch(`${AUTH_BASE}/me`, { credentials: 'include', cache: 'no-store' });
+    // A backend that hangs (restarting, stuck boot) must not leave "Checking your session…" forever:
+    // after 10 s the check fails and the router shows "Can't reach the server" with Try again.
+    const r = await fetch(`${AUTH_BASE}/me`, { credentials: 'include', cache: 'no-store', signal: AbortSignal.timeout(10_000) });
     if (!r.ok) throw new Error(`auth check failed: ${r.status}`);
     // Nest sends a handler's `null` as an empty 200 body.
     const text = await r.text();

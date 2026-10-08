@@ -25,7 +25,7 @@ export function detectFormat(filename: string | undefined, head: Buffer): Import
   if (ext === 'csv' || ext === 'tsv' || ext === 'txt') return 'csv';
   if (ext === 'jsonl' || ext === 'ndjson') return 'jsonl';
   if (ext === 'json') return 'json';
-  const t = head.subarray(0, 512).toString('utf8').replace(/^﻿/, '').trimStart();
+  const t = head.subarray(0, 512).toString('utf8').replace(/^\uFEFF/, '').trimStart();
   if (t.startsWith('[')) return 'json';
   if (t.startsWith('{')) return 'jsonl';
   return 'csv';
