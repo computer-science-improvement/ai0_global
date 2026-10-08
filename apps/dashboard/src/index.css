@@ -850,6 +850,10 @@ a:hover { opacity: 0.85; }
 .tg-rich-h2 { font-size: 17px; }
 .tg-rich-h3 { font-size: 15px; }
 .tg-rich-list { margin: 0 0 6px; padding-left: 22px; }
+/* Tailwind preflight strips list markers; Telegram shows them. */
+ol.tg-rich-list { list-style: decimal; }
+ul.tg-rich-list { list-style: disc; }
+.tg-rich-list li::marker { color: var(--color-tg-meta); }
 .tg-rich-list li > .tg-rich-p:last-child, .tg-rich-list li .tg-rich-p { margin-bottom: 2px; }
 .tg-rich-quote { margin: 4px 0 6px; padding: 2px 8px; border-left: 3px solid var(--color-tg-link); background: rgba(106,179,243,0.08); border-radius: 4px; }
 .tg-rich-quote .tg-rich-p:last-child { margin-bottom: 0; }
