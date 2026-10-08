@@ -24,7 +24,7 @@ function makeService(over: {
   return { svc: new LandingResourcesService(metaRepo, tiktokRepo, trackedRepo), spies };
 }
 
-test('listAdmin maps all 5 platforms with id + landingVisible, includes non-visible, sorted', async () => {
+test('listAdmin maps the platforms with id + landingVisible, includes non-visible, hides inactive, sorted', async () => {
   const { svc } = makeService({
     tracked: [
       { id: 't1', channel_key: '@ai0_global', username: 'ai0', title: 'AI0', subs_count: 1200, landing_visible: true, landing_order: 1 },
@@ -40,7 +40,9 @@ test('listAdmin maps all 5 platforms with id + landingVisible, includes non-visi
   });
 
   const out = await svc.listAdmin();
-  assert.deepEqual(out.map((r) => r.order), [1, 2, 3, 4, 5]);
+  // m3 (threads) is inactive: BR-MKT-01, the admin list shows active accounts only.
+  assert.deepEqual(out.map((r) => r.order), [1, 2, 3, 4]);
+  assert.ok(!out.some((r) => r.id === 'm3'));
 
   const tg = out[0];
   assert.equal(tg.platform, 'telegram');
@@ -107,4 +109,21 @@ test('setFeatured routes tiktok -> tiktok repo', async () => {
 test('setFeatured throws on unknown platform', async () => {
   const { svc } = makeService();
   await assert.rejects(() => svc.setFeatured('myspace' as any, 'x', { visible: true, order: 0 }), /platform/i);
+});
+
+test('listAdmin lists active YouTube channels and setFeatured routes youtube to its repo', async () => {
+  const spies: any = {};
+  const ytRepo = {
+    listCandidates: async () => [
+      { id: 'y1', channel_id: 'UC123', title: 'YT', handle: '@yt_handle', subscribers: null, landing_visible: false, landing_order: 0 },
+    ],
+    setLanding: async (id: string, o: any) => { spies.youtube = { id, o }; },
+  } as any;
+  const svc = new LandingResourcesService(
+    { list: async () => [] } as any, { list: async () => [] } as any, { listLandingCandidates: async () => [] } as any, ytRepo);
+  const out = await svc.listAdmin();
+  assert.deepEqual(out.map((r) => [r.platform, r.id, r.handle, r.url, r.landingVisible]),
+    [['youtube', 'y1', 'yt_handle', 'https://www.youtube.com/@yt_handle', false]]);
+  await svc.setFeatured('youtube', 'y1', { visible: true, order: 2 });
+  assert.deepEqual(spies.youtube, { id: 'y1', o: { visible: true, order: 2 } });
 });

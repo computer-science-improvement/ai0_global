@@ -1,7 +1,8 @@
 // Operator landing config — /app/landing. Editor + live-preview split. The
 // left column lets operators pick which resources are featured on the PUBLIC
-// landing (/) and order them; the right column renders the exact same
-// ResourceShowcase fed the currently-visible set, sorted by landingOrder.
+// landing (/) and order them, and edit each network's blurb and order (spec 026
+// FR-015); the right column renders the exact same NetworkShowcase the public
+// page renders, fed the server's own preview of GET /api/landing/networks.
 //
 // Ordering is a SINGLE flat list across all platforms (the public landing is
 // one ordered grid). Moving an item up/down RENUMBERS the whole visible list
@@ -20,25 +21,21 @@ import { Badge } from '../components/ui/Badge';
 import { TableAction } from '../components/ui/table';
 import { EmptyState } from '../components/ui/primitives';
 import { Icon, type IconName } from '../components/ui/Icon';
-import { ResourceShowcase } from '../components/landing/ResourceShowcase';
+import { NetworkShowcase } from '../components/landing/NetworkShowcase';
+import { NetworksCard } from '../components/landing/NetworksCard';
 import { PublicPageCard } from '../components/landing/PublicPageCard';
 import {
-  landingApi, useLandingAdmin, useSetFeatured,
+  landingApi, useLandingAdmin, useLandingAdminNetworks, useSetFeatured,
   type LandingAdminResource, type LandingPlatform,
 } from '../api/landing';
+import { PLATFORM_META as PUBLIC_PLATFORM_META, PLATFORM_ORDER as PUBLIC_PLATFORM_ORDER } from '../lib/landing-view';
 
 export const Route = createFileRoute('/app/landing')({
   component: LandingAdminPage,
 });
 
-const PLATFORM_ORDER: LandingPlatform[] = ['telegram', 'instagram', 'facebook', 'threads', 'tiktok'];
-const PLATFORM_META: Record<LandingPlatform, { icon: IconName; label: string }> = {
-  telegram:  { icon: 'telegram',  label: 'Telegram' },
-  instagram: { icon: 'instagram', label: 'Instagram' },
-  facebook:  { icon: 'facebook',  label: 'Facebook' },
-  threads:   { icon: 'threads',   label: 'Threads' },
-  tiktok:    { icon: 'tiktok',    label: 'TikTok' },
-};
+const PLATFORM_ORDER: readonly LandingPlatform[] = PUBLIC_PLATFORM_ORDER;
+const PLATFORM_META: Record<LandingPlatform, { icon: IconName; label: string }> = PUBLIC_PLATFORM_META;
 
 function fmtFollowers(n: number): string {
   if (n < 1_000) return String(n);
@@ -50,6 +47,7 @@ function fmtFollowers(n: number): string {
 
 function LandingAdminPage(): JSX.Element {
   const { data, isLoading, error } = useLandingAdmin();
+  const networks = useLandingAdminNetworks();
   const setFeatured = useSetFeatured();
   const qc = useQueryClient();
 
@@ -61,9 +59,10 @@ function LandingAdminPage(): JSX.Element {
     .filter((r) => r.landingVisible)
     .sort((a, b) => a.order - b.order);
 
-  // preview feed: pass admin resources straight through (ResourceShowcase only
-  // reads LandingResource fields; the extra id/landingVisible are harmless).
-  const preview = visibleSorted;
+  // Preview feed: the server builds it with the same code as the public endpoint
+  // (uncached), so the preview is exactly what / shows.
+  const preview = networks.data?.preview ?? [];
+  const previewCount = preview.reduce((a, n) => a + n.resources.length, 0);
 
   // Batched reorder: PATCH every row whose stored order changed, then refetch
   // ONCE. One react-query mutation → one pending flag, no interleaving.
@@ -76,6 +75,7 @@ function LandingAdminPage(): JSX.Element {
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ['landing', 'admin'] });
       qc.invalidateQueries({ queryKey: ['landing', 'resources'] });
+      qc.invalidateQueries({ queryKey: ['landing', 'networks'] });
     },
   });
 
@@ -139,6 +139,10 @@ function LandingAdminPage(): JSX.Element {
 
       <div className="la-wrap">
         <div className="la-editor">
+          <div style={{ marginBottom: 16 }}>
+            <NetworksCard data={networks.data} isLoading={networks.isLoading} error={networks.error} />
+          </div>
+
           {/* Loading — skeleton rows mirroring the editor-row rhythm. */}
           {isLoading && (
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -269,17 +273,23 @@ function LandingAdminPage(): JSX.Element {
           <Panel
             title="Live preview"
             action={
-              preview.length > 0 ? (
+              previewCount > 0 ? (
                 <span className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>
-                  {preview.length} featured
+                  {previewCount} featured
                 </span>
               ) : undefined
             }
           >
             <p className="text-micro" style={{ margin: '0 0 12px', color: 'var(--color-ink-dim)' }}>
-              The same as the public landing page at <code>/</code> — same component, same order.
+              The same as the public landing page at <code>/</code> — same component, same data, same order.
             </p>
-            <ResourceShowcase resources={preview} />
+            {networks.isLoading && <div className="la-skeleton" style={{ height: 160 }} />}
+            {networks.error && (
+              <div className="text-body-sm" style={{ color: 'var(--color-danger)' }}>
+                Couldn’t load the preview: {(networks.error as Error).message}
+              </div>
+            )}
+            {networks.data && <NetworkShowcase networks={preview} />}
           </Panel>
         </div>
       </div>

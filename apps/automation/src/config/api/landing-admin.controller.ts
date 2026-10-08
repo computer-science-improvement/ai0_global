@@ -5,17 +5,21 @@
 // "Public page" settings (spec 026 FR-002/FR-015: DM username, template, white label).
 // The PUBLIC LandingController stays separate and unguarded.
 import {
-  BadRequestException, Body, Controller, Get, HttpCode, Inject, Param, Patch, Post, Put, UseGuards,
+  BadRequestException, Body, Controller, Get, HttpCode, Inject, NotFoundException, Optional, Param, Patch, Post, Put, UseGuards,
 } from '@nestjs/common';
 import { TrackingAuthGuard } from '../../tracking/api/tracking-auth.guard';
 import {
-  LandingAdminResource, LandingPlatform, LandingResourcesService,
+  LANDING_PLATFORMS, LandingAdminResource, LandingPlatform, LandingResourcesService,
 } from '../landing-resources.service';
 import type { LandingAdminConfig, LandingConfigService, LandingDmPreview } from '../landing-config.service';
 import { PatchLandingDto } from './dto/landing.dto';
-import { LANDING_CONFIG } from './landing.controller';
+import {
+  networkPatchIssues, type LandingAdminNetwork, type LandingNetwork, type LandingNetworksService,
+} from '../landing-networks.service';
+import { LANDING_CONFIG, LANDING_NETWORKS } from './landing.controller';
 
-const PLATFORMS: readonly LandingPlatform[] = ['telegram', 'instagram', 'facebook', 'threads', 'tiktok'];
+const PLATFORMS: readonly LandingPlatform[] = LANDING_PLATFORMS;
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
 function stringOrNull(v: unknown, field: string): string | null | undefined {
   if (v === undefined || v === null || typeof v === 'string') return v as string | null | undefined;
@@ -28,6 +32,7 @@ export class LandingAdminController {
   constructor(
     private readonly landing: LandingResourcesService,
     @Inject(LANDING_CONFIG) private readonly config: LandingConfigService,
+    @Optional() @Inject(LANDING_NETWORKS) private readonly networks?: LandingNetworksService,
   ) {}
 
   @Get()
@@ -60,6 +65,30 @@ export class LandingAdminController {
     return this.config.preview({ adTgUsername: b.adTgUsername, adMessage: b.adMessage });
   }
 
+  /** Spec 026 FR-015: every network with its blurb and order, plus the exact public payload as a preview. */
+  @Get('networks')
+  networksAdmin(): Promise<{ networks: LandingAdminNetwork[]; preview: LandingNetwork[] }> {
+    if (!this.networks) throw new NotFoundException('networks are not available');
+    return this.networks.admin();
+  }
+
+  /** `{blurb?: string | null, order?: number}`; 400 `invalid_network_patch` with issues, 404 for an unknown network.
+   *  Declared before `:platform/:id` so `network/<id>` is not read as a platform. */
+  @Patch('network/:groupId')
+  async patchNetwork(@Param('groupId') groupId: string, @Body() body: Record<string, unknown>): Promise<{ ok: true }> {
+    if (!this.networks) throw new NotFoundException('networks are not available');
+    if (!UUID_RE.test(groupId)) throw new NotFoundException('unknown network');
+    const b = body && typeof body === 'object' ? body : {};
+    const issues = networkPatchIssues({ blurb: b.blurb, order: b.order });
+    if (issues.length) throw new BadRequestException({ error: 'invalid_network_patch', issues });
+    const found = await this.networks.patchNetwork(groupId, {
+      blurb: b.blurb as string | null | undefined,
+      order: b.order as number | undefined,
+    });
+    if (!found) throw new NotFoundException('unknown network');
+    return { ok: true };
+  }
+
   @Patch(':platform/:id')
   async patch(
     @Param('platform') platform: string,
@@ -73,6 +102,7 @@ export class LandingAdminController {
       visible: dto.landingVisible,
       order: dto.landingOrder,
     });
+    this.networks?.invalidate();
     return { ok: true };
   }
 }

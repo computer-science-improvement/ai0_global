@@ -3,9 +3,10 @@ import { useEffect, useRef } from 'react';
 import { motion } from 'motion/react';
 import { Badge } from '../components/ui/Badge';
 import { Icon, type IconName } from '../components/ui/Icon';
-import { ResourceShowcase } from '../components/landing/ResourceShowcase';
+import { NetworkShowcase } from '../components/landing/NetworkShowcase';
 import { MediaKit } from '../components/landing/MediaKit';
-import { useLandingResources } from '../api/landing';
+import { useLandingNetworks } from '../api/landing';
+import { audienceStats } from '../lib/landing-view';
 
 export const Route = createFileRoute('/')({ component: LandingPage });
 
@@ -114,11 +115,8 @@ function NetworkVisual() {
 }
 
 function LandingPage() {
-  const { data, isLoading, isError } = useLandingResources();
-  const resources = data ?? [];
-
-  const totalFollowers = resources.reduce((a, r) => a + (r.followerCount ?? 0), 0);
-  const platformCount = new Set(resources.map((r) => r.platform)).size;
+  const { data: networks, isLoading, isError } = useLandingNetworks();
+  const stats = audienceStats(networks);
 
   return (
     <div className="lp-root">
@@ -194,20 +192,20 @@ function LandingPage() {
           </motion.div>
 
           {/* Live network stats — real numbers from the same API as the grid. */}
-          {!isLoading && !isError && resources.length > 0 && (
+          {!isLoading && !isError && stats.resources > 0 && (
             <motion.div className="lp-stats" {...reveal}>
               <span className="lp-stat">
-                <CountUp to={totalFollowers} />
+                <CountUp to={stats.followers} />
                 <span className="text-micro lp-stat-label">followers reached</span>
               </span>
               <span className="lp-stat-divider" />
               <span className="lp-stat">
-                <CountUp to={resources.length} />
+                <CountUp to={stats.resources} />
                 <span className="text-micro lp-stat-label">channels &amp; profiles</span>
               </span>
               <span className="lp-stat-divider" />
               <span className="lp-stat">
-                <CountUp to={platformCount} />
+                <CountUp to={stats.platforms} />
                 <span className="text-micro lp-stat-label">platforms</span>
               </span>
             </motion.div>
@@ -218,9 +216,10 @@ function LandingPage() {
         <motion.section id="resources" className="lp-section" {...reveal}>
           <div className="lp-section-head">
             <span className="text-eyebrow">The network</span>
-            <h2 className="text-display-md lp-section-title">Channels &amp; profiles we run</h2>
+            <h2 className="text-display-md lp-section-title">Networks run by AI</h2>
             <p className="text-body lp-section-sub">
-              Live audiences across every surface, published from a single pipeline.
+              Each network is a set of channels and profiles with one AI agent in charge. The badge on every
+              card says who publishes there today: an agent, an agent still in training, or the automated pipeline.
             </p>
           </div>
 
@@ -239,7 +238,7 @@ function LandingPage() {
             </div>
           )}
 
-          {!isLoading && !isError && <ResourceShowcase resources={resources} />}
+          {!isLoading && !isError && <NetworkShowcase networks={networks ?? []} />}
         </motion.section>
 
         {/* ── How it works ──────────────────────────────────────── */}

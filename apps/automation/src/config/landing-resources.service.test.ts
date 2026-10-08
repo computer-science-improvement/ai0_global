@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { LandingResourcesService, landingUrl } from './landing-resources.service';
+import { LandingResourcesService, landingUrl, youtubeUrl } from './landing-resources.service';
 
 function makeService(over: {
   meta?: any[];
@@ -96,4 +96,29 @@ test('telegram handle falls back to username when channel_key is null and strips
   const out = await svc.listPublic();
   assert.equal(out[0].handle, 'fallback');
   assert.equal(out[0].url, 'https://t.me/fallback');
+});
+
+test('youtube: url from the handle, else the channel id; listPublic includes featured YouTube rows', async () => {
+  assert.equal(landingUrl('youtube', 'chan'), 'https://www.youtube.com/@chan');
+  assert.equal(youtubeUrl(null, 'UCabc'), 'https://www.youtube.com/channel/UCabc');
+  assert.equal(youtubeUrl(null, null), null);
+  const yt = {
+    listFeatured: async () => [
+      { id: 'y1', channel_id: 'UCabc', title: 'Space TV', handle: null, subscribers: 4200, landing_visible: true, landing_order: 0 },
+    ],
+  } as any;
+  const svc = new LandingResourcesService(
+    { listFeatured: async () => [] } as any, { listFeatured: async () => [] } as any, { listFeatured: async () => [] } as any, yt);
+  const out = await svc.listPublic();
+  assert.deepEqual(out, [{
+    platform: 'youtube', handle: null, displayName: 'Space TV', avatarUrl: null, followerCount: 4200,
+    url: 'https://www.youtube.com/channel/UCabc', order: 0,
+  }]);
+  const entries = await svc.listFeaturedEntries();
+  assert.equal(entries[0].ref, 'youtube:y1');
+});
+
+test('without the YouTube repo (older wiring) listPublic still works', async () => {
+  const out = await makeService().listPublic();
+  assert.deepEqual(out, []);
 });

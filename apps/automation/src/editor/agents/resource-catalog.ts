@@ -70,14 +70,19 @@ export class ResourceCatalog {
         followers: r.followers == null ? null : Number(r.followers), groupId: r.group_id ?? null, groupName: r.group_name ?? null, agent: null,
       });
     }
-    const { rows: tt } = await this.d.pool.query(`SELECT id, username, display_name FROM tiktok_accounts WHERE active ORDER BY username`);
+    // TikTok and YouTube accounts belong to a network like Meta accounts (051 group_id).
+    const { rows: tt } = await this.d.pool.query(
+      `SELECT t.id, t.username, t.display_name, t.group_id, g.name AS group_name
+         FROM tiktok_accounts t LEFT JOIN meta_account_groups g ON g.id = t.group_id WHERE t.active ORDER BY t.username`);
     for (const r of tt) {
-      out.push({ ref: resourceRef('tiktok', r.id), platform: 'tiktok', title: r.display_name ?? r.username ?? null, username: r.username ?? null, followers: null, groupId: null, groupName: null, agent: null });
+      out.push({ ref: resourceRef('tiktok', r.id), platform: 'tiktok', title: r.display_name ?? r.username ?? null, username: r.username ?? null, followers: null, groupId: r.group_id ?? null, groupName: r.group_name ?? null, agent: null });
     }
     const { rows: hasYt } = await this.d.pool.query(`SELECT to_regclass('public.youtube_accounts') IS NOT NULL AS ok`);
     if (hasYt[0]?.ok) {
-      const { rows: yt } = await this.d.pool.query(`SELECT id, title FROM youtube_accounts WHERE active ORDER BY title`);
-      for (const r of yt) out.push({ ref: resourceRef('youtube', r.id), platform: 'youtube', title: r.title ?? null, username: null, followers: null, groupId: null, groupName: null, agent: null });
+      const { rows: yt } = await this.d.pool.query(
+        `SELECT y.id, y.title, y.group_id, g.name AS group_name
+           FROM youtube_accounts y LEFT JOIN meta_account_groups g ON g.id = y.group_id WHERE y.active ORDER BY y.title`);
+      for (const r of yt) out.push({ ref: resourceRef('youtube', r.id), platform: 'youtube', title: r.title ?? null, username: null, followers: null, groupId: r.group_id ?? null, groupName: r.group_name ?? null, agent: null });
     }
 
     // Which agent runs each resource: its own orchestrator, else — in an independent
