@@ -110,6 +110,9 @@ test('repurpose_post: own slot, re-plan, strategy source, already_decided, daily
   const [tool] = buildRepurposeTools({ service, networkFor: async () => netOf(), actions });
   const now = new Date();
   const today = localDate(now, card.timezone);
+  // The scenario spans now … now + 3 h inside one local day; late in the evening it would cross midnight.
+  const localHour = Number(new Intl.DateTimeFormat('en-GB', { timeZone: card.timezone, hour: '2-digit', hourCycle: 'h23' }).format(now));
+  if (localHour >= 20) return;
 
   // A. The executor duplicates its own slot: the derived post waits until the source is out.
   const at = new Date(now.getTime() + 30 * 60_000);
