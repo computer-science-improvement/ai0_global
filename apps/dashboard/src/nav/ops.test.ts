@@ -65,7 +65,7 @@ test('move, move-before, nudge across groups, group order', () => {
   e = nudgeItem(e, 'agents', 1);
   assert.equal(e.groups[1].items[0], 'agents');
   e = nudgeItem(e, 'chat', 1);
-  assert.deepEqual(e.groups[1].items, ['agents', 'dm-inbox', 'chat']);
+  assert.deepEqual(e.groups[1].items, ['agents', 'dm-inbox', 'chat', 'models']);
   assert.equal(nudgeItem(base(), 'overview', -1).groups[0].items[0], 'overview', 'top of the first group stays');
   assert.equal(moveGroup(base(), 'g_system', 0).groups[0].id, 'g_system');
   assert.equal(nudgeGroup(base(), 'g_home', 1).groups[1].id, 'g_home');

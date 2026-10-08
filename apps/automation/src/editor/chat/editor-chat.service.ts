@@ -3,6 +3,7 @@ import type { AgentLoop, AgentLoopEvent, AgentLoopResult } from '../harness/agen
 import type { ToolRegistry } from '../harness/tool-registry';
 import type { ChatMessage } from '../llm/llm.types';
 import { resolveModel } from '../llm/model-registry';
+import { readDefaultModel } from '../llm/model-defaults';
 import type { SkillLibrary } from '../skills/skill-library';
 import type { EditorMemoryRepository } from '../repo/editor-memory.repository';
 import type { EditorChatMessage, EditorChatRepository, EditorDraft } from '../repo/editor-chat.repository';
@@ -68,6 +69,8 @@ export interface EditorChatDeps {
   registry: Pick<ToolRegistry, 'forRole'>;
   skills:   SkillLibrary;
   env:      (key: string) => string | undefined;
+  /** The owner's global default model (spec 035, app_settings `ai.default_model`); cached by ModelDefaultsStore. */
+  defaultModel?: () => Promise<string | null>;
   /** The chat needs an LLM key only; it does not depend on EDITOR_ENABLED. */
   enabled:  () => boolean;
   now?:     () => Date;
@@ -257,7 +260,9 @@ export class EditorChatService {
       try {
         res = await this.d.loop.run({
           role: 'composer', channelKey: null,
-          model: resolveModel('composer', this.d.env, addressee?.model ? { composer: addressee.model } : null),
+          model: resolveModel('composer', this.d.env, null, {
+            agentModel: addressee?.model, defaultModel: await readDefaultModel(this.d.defaultModel), reasoningEffort: addressee?.reasoningEffort,
+          }),
           system: buildComposerSystemPrompt({
             now: this.now(), card: resolved?.card ?? null, hasCard: !!resolved?.hasCard, memory, skills: agentCtx?.skills ?? this.d.skills, persona,
           }),
@@ -307,7 +312,7 @@ export class EditorChatService {
     let res: AgentLoopResult;
     try {
       res = await this.d.loop.run({
-        role, channelKey: null, model: resolveModel(role, this.d.env, agent.model ? { [role]: agent.model } : null),
+        role, channelKey: null, model: resolveModel(role, this.d.env, null, { agentModel: agent.model, defaultModel: await readDefaultModel(this.d.defaultModel), reasoningEffort: agent.reasoningEffort }),
         system: note ? `${system}\n\n${note}` : system,
         user: text, history: this.history(prior, chatDrafts), tools: this.d.registry.forRole(role),
         maxSteps: COMPOSER_MAX_STEPS, extras, onEvent,

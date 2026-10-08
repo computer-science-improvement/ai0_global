@@ -1,7 +1,14 @@
 import type { EditorRole } from './llm.types';
 
+export type ReasoningEffort = 'low' | 'medium' | 'high';
+
+/** Where the effective model of a run came from (spec 035): shown as a badge on the Models page. */
+export type ModelSource = 'agent' | 'channel' | 'env' | 'default';
+
 export interface ModelProfile {
   model:       string;
+  /** Which layer of the precedence chose `model`. */
+  source:      ModelSource;
   /** USD per 1M prompt tokens — used only when the provider omits usage.cost. */
   inPerM:      number;
   /** USD per 1M completion tokens. */
@@ -9,9 +16,10 @@ export interface ModelProfile {
   maxTokens:   number;
   temperature: number;
   /** Reasoning effort; low keeps GLM's mandatory thinking from consuming the whole max_tokens (measured: ~10x fewer tokens). */
-  reasoningEffort: 'low' | 'medium' | 'high';
+  reasoningEffort: ReasoningEffort;
 }
 
+/** The built-in default for every role; the owner's `ai.default_model` setting (Models page) replaces it. */
 export const DEFAULT_EDITOR_MODEL = 'z-ai/glm-5.3-flash';
 
 /**
@@ -19,14 +27,19 @@ export const DEFAULT_EDITOR_MODEL = 'z-ai/glm-5.3-flash';
  * then from the llm_prices table (spec 029, PriceService); this map is used when neither is available.
  * Unknown models fall back to the default's price.
  */
-const PRICES: Record<string, { inPerM: number; outPerM: number }> = {
+export const STATIC_PRICES: Readonly<Record<string, { inPerM: number; outPerM: number }>> = {
   'z-ai/glm-5.3-flash':  { inPerM: 0.15, outPerM: 0.50 },
   'z-ai/glm-5.3-flashx': { inPerM: 0.37, outPerM: 1.25 },
   'z-ai/glm-5.3':        { inPerM: 0.22, outPerM: 3.39 },
 };
 
+/** Every role a run can use (the env override keys are EDITOR_MODEL_<ROLE>). */
+export const EDITOR_ROLES: readonly EditorRole[] = [
+  'planner', 'executor', 'reviewer', 'checker', 'composer', 'orchestrator', 'idea_reviewer', 'manager', 'builder',
+];
+
 // max_tokens includes reasoning tokens on reasoning models, so leave headroom above the visible output.
-const ROLE_DEFAULTS: Record<EditorRole, { maxTokens: number; temperature: number; reasoningEffort: 'low' | 'medium' | 'high' }> = {
+const ROLE_DEFAULTS: Record<EditorRole, { maxTokens: number; temperature: number; reasoningEffort: ReasoningEffort }> = {
   planner:  { maxTokens: 8000, temperature: 0.6, reasoningEffort: 'medium' },
   executor: { maxTokens: 6000, temperature: 0.7, reasoningEffort: 'low' },
   reviewer: { maxTokens: 8000, temperature: 0.3, reasoningEffort: 'medium' },
@@ -38,26 +51,77 @@ const ROLE_DEFAULTS: Record<EditorRole, { maxTokens: number; temperature: number
   builder:       { maxTokens: 6000, temperature: 0.4, reasoningEffort: 'low' },
 };
 
-/** Roles whose default model is not DEFAULT_EDITOR_MODEL (the idea reviewer judges, so it uses the stronger model). */
-const ROLE_MODEL_DEFAULTS: Partial<Record<EditorRole, string>> = { idea_reviewer: 'z-ai/glm-5.3' };
+/** The env key that overrides a role's model (it beats the owner's global default). */
+export function envModelKey(role: EditorRole): string {
+  return `EDITOR_MODEL_${role.toUpperCase()}`;
+}
+
+export interface ModelOverrides {
+  /** The agent's own model, or the one it inherits from its orchestrator. */
+  agentModel?:      string | null;
+  /** The owner's global default (`app_settings` `ai.default_model`); null/absent → DEFAULT_EDITOR_MODEL. */
+  defaultModel?:    string | null;
+  /** The agent's own reasoning effort (beats the env and the role default). */
+  reasoningEffort?: ReasoningEffort | null;
+}
+
+const clean = (s: string | null | undefined): string | null => {
+  const t = typeof s === 'string' ? s.trim() : '';
+  return t || null;
+};
+
+export const isReasoningEffort = (s: unknown): s is ReasoningEffort => s === 'low' || s === 'medium' || s === 'high';
 
 /**
- * Resolve the model for a role. Precedence: per-channel / per-agent override
- * → env EDITOR_MODEL_<ROLE> → the role's default → DEFAULT_EDITOR_MODEL.
+ * Pure model choice for a role (spec 035). Precedence: the agent's model
+ * → the channel card's legacy `models[role]` → env EDITOR_MODEL_<ROLE>
+ * → the owner's global default setting → DEFAULT_EDITOR_MODEL.
+ * Every role defaults to the same model (there are no per-role defaults).
+ */
+export function pickModel(
+  role: EditorRole,
+  env: (key: string) => string | undefined,
+  channelOverrides?: Partial<Record<EditorRole, string>> | null,
+  o: ModelOverrides = {},
+): { model: string; source: ModelSource } {
+  const agent = clean(o.agentModel);
+  if (agent) return { model: agent, source: 'agent' };
+  const channel = clean(channelOverrides?.[role]);
+  if (channel) return { model: channel, source: 'channel' };
+  const fromEnv = clean(env(envModelKey(role)));
+  if (fromEnv) return { model: fromEnv, source: 'env' };
+  return { model: clean(o.defaultModel) ?? DEFAULT_EDITOR_MODEL, source: 'default' };
+}
+
+/** Reasoning effort: the agent's own → env EDITOR_REASONING_<ROLE> → env EDITOR_REASONING → the role default. */
+export function pickReasoningEffort(
+  role: EditorRole,
+  env: (key: string) => string | undefined,
+  agentEffort?: ReasoningEffort | null,
+): { effort: ReasoningEffort; source: 'agent' | 'env' | 'default' } {
+  if (isReasoningEffort(agentEffort)) return { effort: agentEffort, source: 'agent' };
+  const fromEnv = env(`EDITOR_REASONING_${role.toUpperCase()}`) ?? env('EDITOR_REASONING');
+  if (isReasoningEffort(fromEnv)) return { effort: fromEnv, source: 'env' };
+  return { effort: ROLE_DEFAULTS[role].reasoningEffort, source: 'default' };
+}
+
+/**
+ * Resolve the model profile for a role (see `pickModel` for the precedence).
+ * Pure: the caller passes the owner's global default in (ModelDefaultsStore).
  */
 export function resolveModel(
   role: EditorRole,
   env: (key: string) => string | undefined,
   channelOverrides?: Partial<Record<EditorRole, string>> | null,
+  o: ModelOverrides = {},
 ): ModelProfile {
-  const model = channelOverrides?.[role]
-    ?? env(`EDITOR_MODEL_${role.toUpperCase()}`)
-    ?? ROLE_MODEL_DEFAULTS[role]
-    ?? DEFAULT_EDITOR_MODEL;
-  const price = PRICES[model] ?? PRICES[DEFAULT_EDITOR_MODEL];
-  const effort = env(`EDITOR_REASONING_${role.toUpperCase()}`) ?? env('EDITOR_REASONING');
+  const { model, source } = pickModel(role, env, channelOverrides, o);
+  const price = STATIC_PRICES[model] ?? STATIC_PRICES[DEFAULT_EDITOR_MODEL];
   const d = ROLE_DEFAULTS[role];
-  return { model, ...price, ...d, reasoningEffort: effort === 'low' || effort === 'medium' || effort === 'high' ? effort : d.reasoningEffort };
+  return {
+    model, source, ...price, maxTokens: d.maxTokens, temperature: d.temperature,
+    reasoningEffort: pickReasoningEffort(role, env, o.reasoningEffort).effort,
+  };
 }
 
 export function estimateCostUsd(p: Pick<ModelProfile, 'inPerM' | 'outPerM'>, promptTokens: number, completionTokens: number): number {

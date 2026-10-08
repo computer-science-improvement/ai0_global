@@ -27,6 +27,11 @@ export interface AgentsServiceDeps {
   memory: (channelKey: string) => Promise<MemoryEntry[]>;
   /** Registry sync (cards → orchestrators); run before listing so a new card shows its agent at once. */
   sync?:  () => Promise<unknown>;
+  /**
+   * Spec 035: a new agent model must be in the model catalog (throws 400 `unknown_model`);
+   * `chosen` runs after the save (prices the model in llm_prices when it has no price).
+   */
+  models?: { check(model: string, current: string | null): Promise<void>; chosen(model: string): Promise<unknown> };
   log?:   (msg: string) => void;
   now?:   () => Date;
 }
@@ -136,6 +141,8 @@ export class AgentsService {
       }
       patch.pausedUntil = until;
     }
+    const newModel = v.model !== undefined && v.model !== null && v.model !== a.model ? v.model : null;
+    if (newModel && this.d.models) await this.d.models.check(newModel, a.model);
     if (v.model !== undefined) patch.model = v.model;
     if (v.reasoning_effort !== undefined) patch.reasoningEffort = v.reasoning_effort;
     if (v.schedule !== undefined) patch.schedule = v.schedule;
@@ -153,6 +160,7 @@ export class AgentsService {
       if (v.mode === 'live' || v.mode === 'approve') patch.shadowUntil = null;
     }
     const updated = await this.d.agents.update(a.id, patch);
+    if (newModel && this.d.models) await this.d.models.chosen(newModel).catch(() => undefined);
     return { agent: updated };
   }
 

@@ -64,6 +64,11 @@ export function isLandingKey(key: string): boolean {
   return key.startsWith('landing.');
 }
 
+/** AI settings owned by the Models page (spec 035, `ai.*`, e.g. `ai.default_model`): never env overrides. */
+export function isAiKey(key: string): boolean {
+  return key.startsWith('ai.');
+}
+
 @Injectable()
 export class SettingsService {
   private readonly logger = new Logger(SettingsService.name);
@@ -84,9 +89,9 @@ export class SettingsService {
       // `ui.*` rows (e.g. the dashboard menu `ui.nav`, spec 027) are UI state, not
       // env overrides: they stay out of the cache and out of `overrides[]`.
       const { rows } = await this.pool.query<{ key: string; value: string }>(
-        `SELECT key, value FROM app_settings WHERE key NOT LIKE 'ui.%' AND key NOT LIKE 'cap.%' AND key NOT LIKE 'landing.%'`,
+        `SELECT key, value FROM app_settings WHERE key NOT LIKE 'ui.%' AND key NOT LIKE 'cap.%' AND key NOT LIKE 'landing.%' AND key NOT LIKE 'ai.%'`,
       );
-      this.overrides = Object.fromEntries(rows.filter((r) => !isUiKey(r.key) && !isCapabilityKey(r.key) && !isLandingKey(r.key)).map((r) => [r.key, r.value]));
+      this.overrides = Object.fromEntries(rows.filter((r) => !isUiKey(r.key) && !isCapabilityKey(r.key) && !isLandingKey(r.key) && !isAiKey(r.key)).map((r) => [r.key, r.value]));
     } catch (err: any) {
       // Table may not exist yet (pre-migration); fall back to env silently.
       this.logger.debug(`app_settings load skipped: ${err?.message ?? err}`);

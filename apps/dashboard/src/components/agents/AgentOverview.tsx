@@ -16,6 +16,8 @@ import { ResourceSection } from './ResourceProfile';
 import { FormattingSection } from './ResourceFormatting';
 import { ActiveEffects } from './ActiveEffects';
 import { errorBody, usePatchAgent, type AgentDetail, type AgentPatch, type ReasoningEffort } from '../../api/agents';
+import { useModelCatalog } from '../../api/models';
+import { ModelSelect } from '../models/ModelSelect';
 
 const HANDLE_RE = /^[a-z][a-z0-9_]{2,31}$/;
 const TIME_RE = /^([01]\d|2[0-3]):[0-5]\d$/;
@@ -143,6 +145,7 @@ function ProfileForm({ data }: { data: AgentDetail }) {
   const a = data.agent;
   const navigate = useNavigate();
   const patch = usePatchAgent(a.handle);
+  const defaultModel = useModelCatalog().data?.defaultModel;
   const [f, setF] = useState<Form>(() => toForm(a));
   const [time, setTime] = useState('09:00');
   const set = <K extends keyof Form>(k: K, v: Form[K]) => setF((s) => ({ ...s, [k]: v }));
@@ -204,8 +207,9 @@ function ProfileForm({ data }: { data: AgentDetail }) {
         {err('description')}
       </Field>
       <div style={grid}>
-        <Field label="Model" hint="blank = role default">
-          <input className="input-field" style={input} value={f.model} placeholder="default" spellCheck={false} onChange={(e) => set('model', e.target.value)} />
+        <Field label="Model" hint={<>all agents: <Link to="/app/models" style={{ color: 'inherit' }}>Models</Link></>}>
+          <ModelSelect value={f.model.trim() || null} onChange={(m) => set('model', m ?? '')} ariaLabel="Agent model"
+            defaultLabel={data.parent ? `Inherit from @${data.parent.handle}` : `Default (${defaultModel ?? 'global default'})`} />
           {err('model')}
         </Field>
         <Field label="Reasoning effort">
