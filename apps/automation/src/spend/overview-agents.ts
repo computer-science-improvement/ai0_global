@@ -70,8 +70,8 @@ export class OverviewAgentsRepository {
         `SELECT (SELECT COUNT(*) FROM editor_slots WHERE status = 'awaiting_approval')::int
               + (SELECT COUNT(*) FROM platform_posts WHERE status = 'awaiting_approval' AND slot_id IS NULL)::int AS n`),
       this.pool.query(
-        `SELECT (COUNT(*) FILTER (WHERE status IN ('new', 'awaiting_owner', 'accepted')))::int AS open,
-                (COUNT(*) FILTER (WHERE status = 'awaiting_owner'))::int AS awaiting,
+        `SELECT (COUNT(*) FILTER (WHERE status IN ('new', 'awaiting_owner', 'contested', 'accepted')))::int AS open,
+                (COUNT(*) FILTER (WHERE status IN ('awaiting_owner', 'contested')))::int AS awaiting,
                 (COUNT(*) FILTER (WHERE applied_at >= now() - interval '30 days'))::int AS applied,
                 (COUNT(*) FILTER (WHERE outcome = 'worked' AND updated_at >= now() - interval '30 days'))::int AS worked
            FROM agent_directives WHERE NOT shadow`),

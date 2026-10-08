@@ -14,6 +14,7 @@ import { useAgentInbox, useAgentTree, useMarkInboxRead, type InboxItem } from '.
 import { useApprovalsCount } from '../api/approvals';
 import { ApprovalList } from '../components/approvals/ApprovalList';
 import { NETWORK_OFFER_KIND, NetworkOfferActions } from '../components/agents/NetworkOfferActions';
+import { inboxTarget } from '../lib/directive-view';
 
 type InboxTab = 'approvals' | 'unread' | 'all';
 
@@ -80,6 +81,7 @@ function InboxPage() {
             : <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                 {items.map((it, i) => {
                   const agent = it.agentId ? byId.get(it.agentId) : undefined;
+                  const target = inboxTarget(it, agent?.handle ?? null);
                   return (
                     <div key={it.id} className="card row-lift compose-rise" style={{ display: 'flex', gap: 12, alignItems: 'flex-start', padding: '11px 14px', animationDelay: `${Math.min(i, 12) * 30}ms`, opacity: it.readAt ? 0.7 : 1 }}>
                       <div style={{ flex: 1, minWidth: 0 }}>
@@ -108,6 +110,17 @@ function InboxPage() {
                         )}
                         {agent && it.kind === NETWORK_OFFER_KIND && it.refId && (
                           <NetworkOfferActions groupId={it.refId} handle={agent.handle} onDone={() => { if (!it.readAt) mark.mutate([it.id]); }} />
+                        )}
+                        {target?.to === 'directive' && (
+                          <Link to="/app/agents/$handle" params={{ handle: 'manager' }} search={{ tab: 'directives', directive: target.id }}
+                            className="link-accent text-micro" style={{ display: 'inline-block', marginTop: 4 }}>
+                            {it.kind === 'directive_contested' ? 'Decide on the directive →' : 'Open directive →'}
+                          </Link>
+                        )}
+                        {target?.to === 'pauses' && target.handle && (
+                          <Link to="/app/agents/$handle" params={{ handle: target.handle }} className="link-accent text-micro" style={{ display: 'inline-block', marginTop: 4 }}>
+                            Open active effects →
+                          </Link>
                         )}
                         {it.refType === 'run' && it.refId && (
                           <Link to="/app/editor/run/$id" params={{ id: it.refId }} className="link-accent text-micro" style={{ display: 'inline-block', marginTop: 4 }}>

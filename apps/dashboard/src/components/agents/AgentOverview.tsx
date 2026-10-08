@@ -14,6 +14,7 @@ import { fmtDate, fmtRelative } from '../../lib/format';
 import { AgentGlyph, AgentModeSwitch, KIND_LABEL, LastRun, ScopeChip, runsLabel } from './AgentsUi';
 import { ResourceSection } from './ResourceProfile';
 import { FormattingSection } from './ResourceFormatting';
+import { ActiveEffects } from './ActiveEffects';
 import { errorBody, usePatchAgent, type AgentDetail, type AgentPatch, type ReasoningEffort } from '../../api/agents';
 
 const HANDLE_RE = /^[a-z][a-z0-9_]{2,31}$/;
@@ -93,6 +94,7 @@ export function AgentOverview({ data }: { data: AgentDetail }) {
         </div>
       </div>
 
+      {a.kind === 'orchestrator' && <ActiveEffects agent={a} delay={20} />}
       {a.kind === 'orchestrator' && a.scopeId && <ResourceSection handle={a.handle} />}
       {a.kind === 'orchestrator' && a.scopeId && <FormattingSection handle={a.handle} />}
 

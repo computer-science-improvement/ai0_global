@@ -12,7 +12,7 @@ import { Icon } from '../ui/Icon';
 import { describeError } from '../ui/Toast';
 import { fmtDate, fmtRelative } from '../../lib/format';
 import { useMediaQuery } from '../../lib/useMediaQuery';
-import { useKpiDigest, KPI_NAMES, type DigestResource, type KpiName, type KpiValue } from '../../api/manager';
+import { useKpiDigest, KPI_NAMES, type ComplianceRow, type DigestResource, type KpiName, type KpiValue } from '../../api/manager';
 import type { HealthState } from '../../api/agents';
 import { HEALTH } from './ResourceProfile';
 import { PLATFORM_LABEL, PlatformIcon } from './NetworkUi';
@@ -78,6 +78,49 @@ function ResourceTile({ r }: { r: DigestResource }) {
         {r.agent && <Link to="/app/agents/$handle" params={{ handle: r.agent }} className="link-accent" style={{ marginLeft: 'auto', flexShrink: 0 }}>@{r.agent}</Link>}
       </div>
       {KPI_NAMES.map((n) => <KpiRow key={n} name={n} k={r.kpis[n]} />)}
+    </div>
+  );
+}
+
+/** Spec 025 FR-017: how each orchestrator answered @manager over 30 days (the digest's compliance block). */
+function ComplianceTable({ rows }: { rows: ComplianceRow[] }) {
+  return (
+    <div style={{ marginTop: 14 }}>
+      <div className="text-eyebrow" style={{ marginBottom: 6 }} title="Shadow directives are left out">Answers to @manager · 30 days</div>
+      <div className="table-wrap">
+        <table className="table">
+          <thead><tr>
+            <th>Orchestrator</th>
+            <th className="num" title="Advice accepted and acted on">Advice followed</th>
+            <th className="num">Advice declined</th>
+            <th className="num" title="Binding directives contested to you">Contested</th>
+            <th className="num" title="Binding directives left unanswered for 24 h, applied by the code">Auto-applied</th>
+            <th>Last decline reason</th>
+          </tr></thead>
+          <tbody>
+            {rows.map((r) => {
+              const last = r.decline_reasons[0];
+              return (
+                <tr key={r.agent}>
+                  <td><Link to="/app/agents/$handle" params={{ handle: r.agent }} search={{ tab: 'inbox' }} className="link-accent">@{r.agent}</Link></td>
+                  <td className="num">{r.advice_followed}</td>
+                  <td className="num">{r.advice_declined}</td>
+                  <td className="num" style={{ color: r.contested ? 'var(--color-warning)' : undefined }}>{r.contested}</td>
+                  <td className="num">{r.auto_applied}</td>
+                  <td style={{ maxWidth: 320 }}>
+                    {last
+                      ? <span className="text-micro" style={{ color: 'var(--color-ink-muted)', overflowWrap: 'anywhere' }}
+                          title={r.decline_reasons.map((x) => `${x.kind}: ${x.reason}`).join('\n')}>
+                          <span className="chip" style={{ fontSize: 10, marginRight: 6 }}>{last.kind.replace(/_/g, ' ')}</span>{last.reason}
+                        </span>
+                      : <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>—</span>}
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
@@ -159,6 +202,7 @@ export function NetworkHealthCard({ delay }: { delay?: number }) {
             )}
           </>
         )}
+      {dg.compliance && dg.compliance.length > 0 && <ComplianceTable rows={dg.compliance} />}
     </SectionCard>
   );
 }
