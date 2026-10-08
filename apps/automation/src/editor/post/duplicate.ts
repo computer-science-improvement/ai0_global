@@ -4,6 +4,7 @@ import type { PlatformPostSpec } from '../platform/platform-spec';
 import { NATIVE_FORMATS } from '../platform/capabilities';
 import type { Block, PostSpec } from './post-spec';
 import { POST_FORMATS } from './post-spec';
+import { blockPlain } from './blocks';
 
 /**
  * Spec 024 FR-006/FR-007: what a derived post (duplicate / adapt) can carry
@@ -98,14 +99,8 @@ export type SourcePost =
   | { platform: 'telegram'; spec: PostSpec }
   | { platform: Exclude<Platform, 'telegram'>; spec: PlatformPostSpec };
 
-const blockText = (b: Block): string => {
-  switch (b.type) {
-    case 'lead':  return `**${b.text}**`;
-    case 'p':     return b.text;
-    case 'list':  return b.items.map((x) => `• ${x}`).join('\n');
-    case 'quote': return `«${b.text}»`;
-  }
-};
+/** A Telegram block as caption text (markdown-lite kept; the lead stays bold). Spec 033: rich blocks map to plain lines. */
+const blockText = (b: Block): string => (b.type === 'lead' ? `**${b.text}**` : blockPlain(b, (s) => s));
 
 /** Plain caption paragraphs → Telegram blocks (the first short one becomes the lead). */
 function captionBlocks(caption: string): Block[] {
@@ -173,7 +168,7 @@ export function duplicateSpec(source: SourcePost, target: FormatEnd, o: { slideU
   }
   const s = source.spec;
   const teaser = s.format === 'longread' && s.longread && !s.body.length ? s.longread.blocks : s.body;
-  const caption = teaser.map(blockText).join('\n\n');
+  const caption = teaser.map(blockText).filter(Boolean).join('\n\n');
   const hosted = (o.slideUrls ?? []).map((url) => ({ url, kind: 'image' as const }));
   const media = s.format === 'carousel' && hosted.length
     ? hosted

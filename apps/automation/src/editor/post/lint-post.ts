@@ -1,6 +1,7 @@
 import type { EditorCard } from '../card';
-import { PostSpec, SUPPORTED_FORMATS } from './post-spec';
+import { MAX_BLOCKS, PostSpec, SUPPORTED_FORMATS } from './post-spec';
 import { inlineToPlain, visibleLength } from './inline-markup';
+import { blockWords, countBlocks } from './blocks';
 import { CAPTION_LIMIT, TEXT_LIMIT, normalizeHashtag, renderTelegram } from './render-telegram';
 
 export interface LintIssue { code: string; message: string }
@@ -18,7 +19,7 @@ export const GLOBAL_BANNED = [
 const EMOJI_RE = /\p{Extended_Pictographic}/gu;
 
 const blocksPlain = (blocks: PostSpec['body']): string =>
-  blocks.map((b) => (b.type === 'list' ? b.items.join('\n') : b.text)).map(inlineToPlain).join('\n');
+  blocks.map((b) => blockWords(b, inlineToPlain)).join('\n');
 
 function bodyPlain(spec: PostSpec): string {
   return blocksPlain(spec.body);
@@ -31,6 +32,11 @@ function readerPlain(spec: PostSpec): string {
   if (spec.format === 'longread' && spec.longread) parts.push(spec.longread.title, blocksPlain(spec.longread.blocks));
   return parts.filter(Boolean).join('\n');
 }
+
+/** Spec 033 FR-005: a table in a post shorter than this is a lint warning. */
+export const RICH_SHORT_TABLE = 400;
+/** Spec 033 FR-005: more than 2 headings in a post shorter than this is a lint warning. */
+export const RICH_SHORT_HEADINGS = 1200;
 
 /** Longread teaser limit: the post is a hook for the Telegraph article, not the article. */
 export const TEASER_LIMIT = 600;
@@ -140,6 +146,26 @@ export function lintPost(spec: PostSpec, card: LintCard): LintResult {
       if (m.method === 'sendVideo' && visibleLength(m.caption) > CAPTION_LIMIT) err('too_long', `підпис відео ${visibleLength(m.caption)} > ${CAPTION_LIMIT}`);
     }
   }
+  // ── rich blocks (spec 033) ────────────────────────────────────────────────
+  const allBlocks = [...spec.body, ...(spec.longread?.blocks ?? [])];
+  for (const [where, blocks] of [['body', spec.body], ['longread.blocks', spec.longread?.blocks ?? []]] as const) {
+    const total = countBlocks(blocks);
+    if (total > MAX_BLOCKS) err('too_many_blocks', `${where}: ${total} блоків разом із вкладеними, максимум ${MAX_BLOCKS}`);
+  }
+  for (const b of allBlocks.flatMap((x) => (x.type === 'details' ? [x, ...x.body] : [x]))) {
+    if (b.type === 'table' && b.rows.some((r) => r.length > b.header.length)) {
+      err('table_shape', `таблиця: рядок довший за заголовок (${b.header.length} колонок) — вирівняй колонки`);
+    }
+  }
+  const bodyLen = bodyPlain(spec).length;
+  if (spec.body.some((b) => b.type === 'table') && bodyLen < RICH_SHORT_TABLE) {
+    warn('table_in_short_post', `таблиця в короткому пості (${bodyLen} < ${RICH_SHORT_TABLE} символів) — тут краще звичайний текст або список`);
+  }
+  const headings = spec.body.filter((b) => b.type === 'heading').length;
+  if (headings > 2 && bodyLen < RICH_SHORT_HEADINGS) {
+    warn('too_many_headings', `${headings} підзаголовки в короткому пості (${bodyLen} символів) — максимум 2, або прибери їх`);
+  }
+
   if (spec.body.length && spec.body[0].type !== 'lead' && spec.format !== 'poll' && spec.format !== 'quiz') {
     warn('lead_missing', 'перший блок краще зробити lead (жирний гачок)');
   }

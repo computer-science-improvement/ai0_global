@@ -1,5 +1,6 @@
 import type { EditorCard } from '../card';
-import type { Block, PostSpec } from './post-spec';
+import type { Block, InnerBlock, PostSpec } from './post-spec';
+import { tableRow } from './blocks';
 import { escapeAttr, escapeHtml, inlineToHtml, inlineToPlain, visibleLength } from './inline-markup';
 
 export interface UrlButton { text: string; url: string }
@@ -33,12 +34,54 @@ export const READ_BUTTON = 'Читати';
 export const CAPTION_LIMIT = 1024;
 export const TEXT_LIMIT    = 4096;
 
-function renderBlock(b: Block): string {
+/** Widest monospace table that still reads on a phone (≈ 375 px) without wrapping. */
+export const PRE_GRID_MAX_WIDTH = 34;
+
+/**
+ * Spec 033 FR-003: a table in Telegram HTML. Narrow tables become a monospace
+ * `<pre>` grid; wider ones become bullet rows ("• **key** — col: value; …").
+ */
+export function tableToHtml(header: string[], rows: string[][]): string {
+  const w = header.length;
+  const plain = [header, ...rows].map((r) => tableRow(r, w).map((c) => inlineToPlain(c).replace(/\s+/g, ' ').trim()));
+  const widths = Array.from({ length: w }, (_, i) => Math.max(...plain.map((r) => [...r[i]].length), 1));
+  const total = widths.reduce((a, b) => a + b, 0) + 3 * (w - 1);
+  if (total <= PRE_GRID_MAX_WIDTH) {
+    const line = (r: string[]) => r.map((c, i) => c + ' '.repeat(widths[i] - [...c].length)).join(' | ').trimEnd();
+    const sep = widths.map((n) => '-'.repeat(n)).join('-+-');
+    return `<pre>${escapeHtml([line(plain[0]), sep, ...plain.slice(1).map(line)].join('\n'))}</pre>`;
+  }
+  const head = tableRow(header, w).map(inlineToHtml);
+  return rows.map((raw) => {
+    const r = tableRow(raw, w).map(inlineToHtml);
+    if (w === 1) return `• ${r[0]}`;
+    const rest = w === 2 ? r[1] : r.slice(1).map((c, i) => `${head[i + 1]}: ${c || '—'}`).join('; ');
+    return `• <b>${r[0] || '—'}</b> — ${rest}`;
+  }).join('\n');
+}
+
+/**
+ * One block as Telegram HTML. Rich-only blocks (spec 033) degrade here — this
+ * is both the non-rich render and the HTML fallback of a rich message:
+ * headings → bold lines, olist → "1." lines, table → `<pre>` grid or bullet
+ * rows, math → `<code>`, details → bold title + expandable quote.
+ */
+export function renderBlock(b: Block | InnerBlock): string {
   switch (b.type) {
-    case 'lead':  return `<b>${inlineToHtml(b.text)}</b>`;
-    case 'p':     return inlineToHtml(b.text);
-    case 'quote': return `<blockquote>${inlineToHtml(b.text)}</blockquote>`;
-    case 'list':  return b.items.map((i) => `• ${inlineToHtml(i)}`).join('\n');
+    case 'lead':    return `<b>${inlineToHtml(b.text)}</b>`;
+    case 'p':       return inlineToHtml(b.text);
+    case 'quote':   return `<blockquote>${inlineToHtml(b.text)}</blockquote>`;
+    case 'list':    return b.items.map((i) => `• ${inlineToHtml(i)}`).join('\n');
+    case 'heading': return `<b>${inlineToHtml(b.text)}</b>`;
+    case 'olist':   return b.items.map((i, n) => `${n + 1}. ${inlineToHtml(i)}`).join('\n');
+    case 'table':   return tableToHtml(b.header, b.rows);
+    case 'math':    return `<code>${escapeHtml(b.expression)}</code>`;
+    case 'divider': return '';
+    case 'footer':  return `<i>${inlineToHtml(b.text)}</i>`;
+    case 'code':    return b.language
+      ? `<pre><code class="language-${escapeAttr(b.language)}">${escapeHtml(b.text)}</code></pre>`
+      : `<pre>${escapeHtml(b.text)}</pre>`;
+    case 'details': return `<b>${inlineToHtml(b.title)}</b>\n<blockquote expandable>${b.body.map((x) => (x.type === 'quote' ? `«${inlineToHtml(x.text)}»` : renderBlock(x))).filter(Boolean).join('\n\n')}</blockquote>`;
   }
 }
 

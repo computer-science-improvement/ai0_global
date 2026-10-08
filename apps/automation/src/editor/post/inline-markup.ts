@@ -52,7 +52,7 @@ export function visibleLength(html: string): number {
 export function htmlToPlain(html: string): string {
   return html
     .replace(/<a href="([^"]*)">([\s\S]*?)<\/a>/g, (_m, url: string, label: string) => `${label} (${url.replace(/&quot;/g, '"').replace(/&amp;/g, '&')})`)
-    .replace(/<blockquote>/g, '« ').replace(/<\/blockquote>/g, ' »')
+    .replace(/<blockquote[^>]*>/g, '« ').replace(/<\/blockquote>/g, ' »')
     .replace(/<[^>]*>/g, '')
     .replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&amp;/g, '&');
 }
