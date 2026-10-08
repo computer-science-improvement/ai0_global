@@ -41,7 +41,7 @@ Each feature directory has `spec.md` (what and why), `plan.md` (how, plus Consti
 | 030 | [YouTube + LinkedIn](030-youtube-linkedin/spec.md): Shorts via the video bridge with quota, LinkedIn pages and 5 formats (AI0-56) | P3 | 016, 019, 020 | SPEC (future) |
 | 031 | [Approval mode](031-approval-mode/spec.md): every agent post waits for the owner while a resource is tested; default for new resources, switch to autonomous per resource | P1 | 010, 017–020 | DONE (023/024 hooks in approval-policy.ts) |
 | 032 | [Unified data store](032-unified-data-store/spec.md): one `data_items` table + editable `data_schemas`, CSV/JSON import without migrations, agents read schemas first | P1 | — | DONE (eval executor-picks-dataset not run yet) |
-| 033 | [Telegram rich messages](033-telegram-rich-messages/spec.md): headings, lists, tables, formulas via Bot API 10.1 `sendRichMessage`, HTML fallback, agent control via `format_prefs.rich` | P2 | 004, 019, 024, 031 | IN PROGRESS |
+| 033 | [Telegram rich messages](033-telegram-rich-messages/spec.md): headings, lists, tables, formulas via Bot API 10.1 `sendRichMessage`, HTML fallback, agent control via `format_prefs.rich` | P2 | 004, 019, 024, 031 | DONE (owner live smoke pending) |
 
 Suggested order for the next wave: 012 → 011 (phases 0–1) → 015 → 013 → 014; 016 is independent.
 
