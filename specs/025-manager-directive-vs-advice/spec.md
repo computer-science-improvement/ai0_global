@@ -1,7 +1,7 @@
 # 025: MANAGER: binding directives vs optional advice, and code executors for directive kinds
 
-**Status:** SPEC · **Depends on:** 020, 021, 022 · **Supersedes/extends:** extends 021 (FR-004, FR-006, FR-007, FR-008, FR-009); replaces `applyAccepted` auto-flip ·
-**Migration:** `062_directive_binding.sql`
+**Status:** BUILDING (T1–T2 done; T3–T7 open) · **Depends on:** 020, 021, 022 · **Supersedes/extends:** extends 021 (FR-004, FR-006, FR-007, FR-008, FR-009); replaces `applyAccepted` auto-flip ·
+**Migration:** `065_directive_binding.sql`
 
 **Owner comments addressed:** #7
 
@@ -41,7 +41,7 @@ advice that conflicts with the playbook may simply be declined.
 ## Functional requirements
 | ID | Requirement |
 |----|-------------|
-| FR-001 | **Migration `062_directive_binding.sql`** (idempotent, non-destructive). <br>• `agent_directives`: add `binding TEXT NOT NULL DEFAULT 'directive' CHECK (binding IN ('directive','advice'))` and backfill `kind='advice'` → `'advice'`. Add `change JSONB` (executor diff), `exec_attempts SMALLINT NOT NULL DEFAULT 0`, `exec_error TEXT`, `verification JSONB`, `verified_at`, `contested_at TIMESTAMPTZ`. <br>• Widen CHECKs (look up names in `pg_constraint`, drop and re-add; no data changes): `status` + `contested`, `declined`, `failed`; `owner_decision` + `upheld`, `refusal_accepted`. <br>• `playbooks`: add `directive_id UUID NULL REFERENCES agent_directives(id) ON DELETE SET NULL`; `created_by` CHECK gains `'directive'`. <br>• New `resource_pauses(id BIGSERIAL PK, resource_ref TEXT NOT NULL, agent_id UUID, directive_id UUID, reason TEXT NOT NULL, starts_at, until TIMESTAMPTZ NOT NULL, lifted_at, lifted_by TEXT CHECK (lifted_by IN ('schedule','owner')), created_at)`; unique partial index `(resource_ref) WHERE lifted_at IS NULL`. <br>• `GRANT SELECT … TO editor_ro` as in 053. |
+| FR-001 | **Migration `065_directive_binding.sql`** (idempotent, non-destructive). <br>• `agent_directives`: add `binding TEXT NOT NULL DEFAULT 'directive' CHECK (binding IN ('directive','advice'))` and backfill `kind='advice'` → `'advice'`. Add `change JSONB` (executor diff), `exec_attempts SMALLINT NOT NULL DEFAULT 0`, `exec_error TEXT`, `verification JSONB`, `verified_at`, `contested_at TIMESTAMPTZ`. <br>• Widen CHECKs (look up names in `pg_constraint`, drop and re-add; no data changes): `status` + `contested`, `declined`, `failed`; `owner_decision` + `upheld`, `refusal_accepted`. <br>• `playbooks`: add `directive_id UUID NULL REFERENCES agent_directives(id) ON DELETE SET NULL`; `created_by` CHECK gains `'directive'`. <br>• New `resource_pauses(id BIGSERIAL PK, resource_ref TEXT NOT NULL, agent_id UUID, directive_id UUID, reason TEXT NOT NULL, starts_at, until TIMESTAMPTZ NOT NULL, lifted_at, lifted_by TEXT CHECK (lifted_by IN ('schedule','owner')), created_at)`; unique partial index `(resource_ref) WHERE lifted_at IS NULL`. <br>• `GRANT SELECT … TO editor_ro` as in 053. |
 | FR-002 | **Kind × binding matrix** (`directive-kinds.ts`, code only). <br>• `advice`: advice only. <br>• `task`, `format_shift`, `pause_series`, `experiment`, `repost`: either level. <br>• `frequency`: either level below \|change_pct\| 30; at 30 or above it is structural and must be a directive. <br>• `cross_promo`, `pause_resource`, `strategy`: directive only, always structural. <br>`file_directive` gains a required `binding: 'directive' \| 'advice'`. Structural advice → error `structural_must_be_directive`. `advice` filed as a directive → error `advice_kind_is_advice`. |
 | FR-003 | **Directive admission rules** (`fileDirective`), on top of 021 FR-004. A non-structural `binding='directive'` requires that `expected.metric` is flagged `anomaly` for the target scope in the digest, **or** that advice of the same kind to the same target was declined in the last 14 days and the metric has since moved further against `expected` (escalation). Otherwise → error `directive_needs_anomaly`, which tells the MANAGER to file it as advice. At most 2 open binding directives per target. |
 | FR-004 | **Executor dry-run at filing.** Every kind with an executor (FR-010…FR-015) runs `plan(dir, ctx)` before insert. <br>• Invalid params (unknown series, a format outside `implementedFormats(platform)`, a resource outside the network, `per_day.max` above `dailyApiCap`) → error `not_executable`, so impossible directives are never filed. <br>• For playbook kinds the dry-run diff goes through `classifyPlaybookChange`. If it is structural (a format added, per_day ≥ ±30 %), it becomes `structural` and must be a directive. This replaces the param-only `isStructural`. |
@@ -89,19 +89,63 @@ advice that conflicts with the playbook may simply be declined.
 3. **Should `repost` stay possible as advice?** Default: yes. It is non-structural and cheap, and it only affects the anchor.
 4. **Can an orchestrator revert directive-made playbook changes before review?** Default: no for directives (`directive_lock`), yes for advice.
 
+## Implementation notes (T1–T2)
+Decisions where the spec left room; T3–T7 build on these.
+
+- **Migration number.** 062–064 were taken, so the migration is `065_directive_binding.sql`. It drops every single-column CHECK on
+  `status` / `owner_decision` / `binding` found in `pg_constraint` (053 created them inline, so names are not assumed) and re-adds named
+  ones; a second run is a no-op. 063 re-asserts `playbooks_created_by_check` without `'directive'`: harmless for the ledger and for CI's
+  re-run on an empty database, but re-running 063 by hand on a database that holds directive-made versions would fail.
+- **Matrix and admission order** (`fileDirective`): target → run cap → open duplicate → cooldown → evidence → expected → stale → kind-only
+  matrix rules → executor dry-run (`not_executable`) → structural = param rule ∨ dry-run → structural advice refused → admission. Error codes:
+  `advice_kind_is_advice`, `structural_must_be_directive`, `directive_needs_anomaly`, `binding_limit` (the spec names no code for the
+  "at most 2 open binding directives" rule), `not_executable`.
+- **Admission details.** Open binding directives are `new | awaiting_owner | accepted | applied | contested`; the limit also covers
+  structural directives. Shadow filings count only shadow rows. The anomaly must be on `expected.metric` in the target scope
+  (`expected.resource_ref`, else every resource of the orchestrator), so a directive without `expected` (a `task`) needs an escalation or
+  must be advice. Escalation: the latest advice of the same kind to the same target declined in the last 14 days, with the same
+  `expected.metric`, whose value (stored at filing in `outcome_detail.at_filing`) has since moved at least 5 % (`ESCALATION_MIN_MOVE_PCT`)
+  against `expected.direction`. An owner-approved chat card skips the admission rules (the owner is layer 1) but not the matrix.
+- **Dry-run.** Runs for kinds with an executor (frequency, format_shift, pause_series). Validation errors the change *introduces*
+  (`validatePlaybook` after minus before) make it `not_executable`; pre-existing playbook errors do not. The classification uses the
+  resource's effective mode, so in approval mode a `pause_series` is structural (031: every schedule change goes to the owner). The
+  dry-run result is stored in `outcome_detail.dry_run`, and its diff is shown on the owner card.
+- **Executors.** `frequency` clamps as FR-010 says instead of refusing above `dailyApiCap`; a scale that changes nothing after rounding is
+  `not_executable`. `resource_ref` defaults to the Telegram anchor for both frequency and format_shift. A Telegram format_shift is limited
+  to the card's active formats (the same rule an orchestrator's own playbook edit has). A directive cannot pause an owner-locked series
+  (`not_executable`). Without an active playbook only the Telegram anchor is editable (its card), and `pause_series` is not executable.
+- **Apply.** The planned change is stored in `change` *before* it is applied; a retry or a restart reuses it, and `apply` is a no-op when
+  the active version (or card) already holds `change.after`. Accepted rows untouched for 50 min are retried by the hourly housekeeping
+  (this also covers a run that died before `afterOrchestration`). On `resume_on` housekeeping writes a version with the series active
+  again (same `directive_id`) and stamps `change.resumed_at`; if the series was removed or edited by hand it records `resume_error` and stops.
+- **Verify.** The verdict goes to `verification` (`{kind: 'observed', adherence, detail}`); `verified_at` is set only when followed. Rows
+  with a verdict are not checked again. frequency and pause_series read the first active plan created after `applied_at`; format_shift
+  reads the next 3 plan days (a positive delta is verified as soon as one slot uses the format; a negative one compares the share with the
+  3 plan days before, or needs a share of 0 when there are none).
+- **Kinds without an executor yet.** `advice` (free text) becomes `applied` with `verification = {kind: 'self_reported'}` (FR-015). Until
+  T4/T5 add their executors, `task`, `experiment`, `strategy` and `pause_resource` keep the pre-025 behaviour but say so: `applied` with
+  `verification = {kind: 'unverified'}` (`PENDING_EXECUTOR_KINDS` in `manager/executors/index.ts`; T4/T5 remove them from that list).
+  `cross_promo` / `repost` stay with PromoPlanner.
+- **directive_lock.** Checked in `submitPlaybookVersion`, so it covers `submit_playbook` and the five series tools. A body is a revert when
+  it goes back toward `before`; moving further in the directive's direction, or dropping a paused series, is allowed. Only rows with
+  `binding = 'directive'`, `status = 'applied'`, `review_at > now` and a playbook change lock; advice and card changes do not. Owner edits
+  are never locked.
+- **Left for T3+.** `reject_directive` is still registered and the orchestrator prompt still has the 3-layer precedence (T3 replaces them
+  with `decline_advice` / `contest_directive`). No dashboard changes (T6). The digest `compliance` block is T5.
+
 ## Task breakdown
 
 ### T1: Add binding levels and directive admission rules
 **Scope:**
-- Migration `062_directive_binding.sql` (FR-001).
+- Migration `065_directive_binding.sql` (FR-001).
 - `directive-kinds.ts` matrix; `file_directive` gets `binding` and the admission rules (FR-002, FR-003).
 - `binding` in the repository, the REST filters and fields (FR-018 read part), and the delivered prompt text.
 - `manager-workflow` skill section "порада чи директива" (FR-017).
 
 **Acceptance:**
-- [ ] The migration runs twice cleanly; existing `advice` rows are backfilled.
-- [ ] Unit tests cover every matrix cell and both admission paths.
-- [ ] `GET /api/directives?binding=advice` filters correctly.
+- [x] The migration runs twice cleanly; existing `advice` rows are backfilled.
+- [x] Unit tests cover every matrix cell and both admission paths.
+- [x] `GET /api/directives?binding=advice` filters correctly.
 
 **Size:** M · **Depends on:** 021
 
@@ -113,9 +157,9 @@ advice that conflicts with the playbook may simply be declined.
 - Playbook `created_by='directive'` and `directive_id`; `directive_lock` in `submit_playbook`.
 
 **Acceptance:**
-- [ ] An accepted `format_shift` creates an active playbook version linked to the directive, and its `change` holds before/after.
-- [ ] A directive whose plan cannot apply ends `failed` after 3 attempts with an Inbox entry.
-- [ ] Re-running `apply` is a no-op.
+- [x] An accepted `format_shift` creates an active playbook version linked to the directive, and its `change` holds before/after.
+- [x] A directive whose plan cannot apply ends `failed` after 3 attempts with an Inbox entry.
+- [x] Re-running `apply` is a no-op.
 
 **Size:** L · **Depends on:** T1
 

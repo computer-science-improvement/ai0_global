@@ -2,7 +2,9 @@ import type { Pool } from 'pg';
 
 export const DIRECTIVE_KINDS = ['advice', 'task', 'format_shift', 'frequency', 'repost', 'cross_promo', 'pause_series', 'experiment', 'pause_resource', 'strategy'] as const;
 export type DirectiveKind = typeof DIRECTIVE_KINDS[number];
-export type DirectiveStatus = 'new' | 'awaiting_owner' | 'accepted' | 'rejected' | 'applied' | 'evaluated' | 'expired' | 'canceled';
+export const DIRECTIVE_STATUSES = ['new', 'awaiting_owner', 'accepted', 'rejected', 'applied', 'evaluated', 'expired', 'canceled', 'contested', 'declined', 'failed'] as const;
+export type DirectiveStatus = typeof DIRECTIVE_STATUSES[number];
+export type DirectiveBinding = 'directive' | 'advice';
 export type DirectiveOutcome = 'worked' | 'no_effect' | 'hurt' | 'inconclusive';
 export const KPI_METRICS = ['views_per_post', 'engagement_rate', 'posts', 'followers_growth', 'transitions', 'revenue'] as const;
 export type KpiMetric = typeof KPI_METRICS[number];
@@ -14,6 +16,8 @@ export interface Directive {
   fromAgentId:   string | null;
   toAgentId:     string;
   kind:          DirectiveKind;
+  /** Spec 025: 'directive' must be carried out (or contested); 'advice' may be declined. */
+  binding:       DirectiveBinding;
   structural:    boolean;
   body:          string;
   params:        Record<string, unknown>;
@@ -31,20 +35,31 @@ export interface Directive {
   appliedAt:     Date | null;
   runId:         string | null;
   shadow:        boolean;
+  /** Spec 025 FR-009: the executor's diff (before/after), stored before it is applied. */
+  change:        any;
+  execAttempts:  number;
+  execError:     string | null;
+  /** Spec 025: how the change was observed in plans and publishing (adherence, contest check, self-report). */
+  verification:  any;
+  verifiedAt:    Date | null;
+  contestedAt:   Date | null;
   createdAt:     Date;
   updatedAt:     Date;
 }
 
 const toDirective = (r: any): Directive => ({
-  id: r.id, fromAgentId: r.from_agent_id ?? null, toAgentId: r.to_agent_id, kind: r.kind, structural: !!r.structural, body: r.body,
+  id: r.id, fromAgentId: r.from_agent_id ?? null, toAgentId: r.to_agent_id, kind: r.kind, binding: r.binding ?? (r.kind === 'advice' ? 'advice' : 'directive'),
+  structural: !!r.structural, body: r.body,
   params: r.params ?? {}, rationale: r.rationale, evidence: r.evidence ?? null, expected: r.expected ?? null, reviewAt: r.review_at ?? null,
   status: r.status, resolution: r.resolution ?? null, reasonKind: r.reason_kind ?? null, ownerDecision: r.owner_decision ?? null,
   outcome: r.outcome ?? null, outcomeDetail: r.outcome_detail ?? null, deliveredAt: r.delivered_at ?? null, appliedAt: r.applied_at ?? null,
-  runId: r.run_id ?? null, shadow: !!r.shadow, createdAt: r.created_at, updatedAt: r.updated_at,
+  runId: r.run_id ?? null, shadow: !!r.shadow, change: r.change ?? null, execAttempts: Number(r.exec_attempts ?? 0), execError: r.exec_error ?? null,
+  verification: r.verification ?? null, verifiedAt: r.verified_at ?? null, contestedAt: r.contested_at ?? null,
+  createdAt: r.created_at, updatedAt: r.updated_at,
 });
 
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
-const OPEN: DirectiveStatus[] = ['new', 'awaiting_owner', 'accepted', 'applied'];
+const OPEN: DirectiveStatus[] = ['new', 'awaiting_owner', 'accepted', 'applied', 'contested'];
 
 type Q = Pick<Pool, 'query'>;
 
@@ -53,14 +68,18 @@ export class DirectivesRepository {
   constructor(private readonly pool: Q) {}
 
   async insert(d: {
-    fromAgentId: string | null; toAgentId: string; kind: DirectiveKind; structural: boolean; body: string; params: Record<string, unknown>;
+    fromAgentId: string | null; toAgentId: string; kind: DirectiveKind; binding?: DirectiveBinding; structural: boolean; body: string; params: Record<string, unknown>;
     rationale: string; evidence: unknown; expected: Expected | null; reviewAt: Date | null; status: 'new' | 'awaiting_owner'; runId?: string | null; shadow: boolean;
+    /** Spec 025: outcome_detail at filing ({at_filing: {metric, value}, admission}) — the escalation baseline. */
+    outcomeDetail?: unknown; change?: unknown;
   }): Promise<Directive> {
+    const binding = d.binding ?? (d.kind === 'advice' ? 'advice' : 'directive');
     const { rows } = await this.pool.query(
-      `INSERT INTO agent_directives (from_agent_id, to_agent_id, kind, structural, body, params, rationale, evidence, expected, review_at, status, run_id, shadow)
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING *`,
+      `INSERT INTO agent_directives (from_agent_id, to_agent_id, kind, structural, body, params, rationale, evidence, expected, review_at, status, run_id, shadow, binding, outcome_detail, change)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING *`,
       [d.fromAgentId, d.toAgentId, d.kind, d.structural, d.body, JSON.stringify(d.params), d.rationale, JSON.stringify(d.evidence ?? null),
-        d.expected ? JSON.stringify(d.expected) : null, d.reviewAt, d.status, UUID_RE.test(d.runId ?? '') ? d.runId : null, d.shadow]);
+        d.expected ? JSON.stringify(d.expected) : null, d.reviewAt, d.status, UUID_RE.test(d.runId ?? '') ? d.runId : null, d.shadow, binding,
+        d.outcomeDetail == null ? null : JSON.stringify(d.outcomeDetail), d.change == null ? null : JSON.stringify(d.change)]);
     return toDirective(rows[0]);
   }
 
@@ -69,11 +88,30 @@ export class DirectivesRepository {
     return rows[0] ? toDirective(rows[0]) : null;
   }
 
-  async list(f: { status?: DirectiveStatus[] | null; toAgentId?: string | null; limit?: number } = {}): Promise<Directive[]> {
+  async list(f: { status?: DirectiveStatus[] | null; toAgentId?: string | null; limit?: number; binding?: DirectiveBinding | null; kinds?: DirectiveKind[] | null; verified?: boolean | null } = {}): Promise<Directive[]> {
     const { rows } = await this.pool.query(
       `SELECT * FROM agent_directives WHERE ($1::text[] IS NULL OR status = ANY($1::text[])) AND ($2::uuid IS NULL OR to_agent_id = $2)
-        ORDER BY created_at DESC LIMIT $3`, [f.status ?? null, f.toAgentId ?? null, f.limit ?? 100]);
+          AND ($4::text IS NULL OR binding = $4) AND ($5::text[] IS NULL OR kind = ANY($5::text[]))
+          AND ($6::boolean IS NULL OR (verified_at IS NOT NULL) = $6)
+        ORDER BY created_at DESC LIMIT $3`,
+      [f.status ?? null, f.toAgentId ?? null, f.limit ?? 100, f.binding ?? null, f.kinds?.length ? f.kinds : null, f.verified ?? null]);
     return rows.map(toDirective);
+  }
+
+  /** Open binding directives of a target (spec 025 FR-003: at most 2). Shadow rows count only against shadow filings. */
+  async countOpenBinding(toAgentId: string, shadow: boolean): Promise<number> {
+    const { rows } = await this.pool.query(
+      `SELECT COUNT(*)::int AS n FROM agent_directives WHERE to_agent_id = $1 AND binding = 'directive' AND status = ANY($2::text[]) AND shadow = $3`,
+      [toAgentId, OPEN, shadow]);
+    return Number(rows[0]?.n ?? 0);
+  }
+
+  /** The latest advice of a kind to a target declined since `since` (spec 025 FR-003 escalation basis). */
+  async lastDeclinedAdvice(toAgentId: string, kind: DirectiveKind, since: Date): Promise<Directive | null> {
+    const { rows } = await this.pool.query(
+      `SELECT * FROM agent_directives WHERE to_agent_id = $1 AND kind = $2 AND binding = 'advice' AND status = 'declined' AND updated_at >= $3 AND NOT shadow
+        ORDER BY updated_at DESC LIMIT 1`, [toAgentId, kind, since]);
+    return rows[0] ? toDirective(rows[0]) : null;
   }
 
   async openFor(toAgentId: string, kind: DirectiveKind): Promise<Directive | null> {
@@ -148,11 +186,93 @@ export class DirectivesRepository {
     return rows.map(toDirective);
   }
 
-  /** Accepted (not promo) directives of an agent are applied once its orchestration run has finished. */
-  async applyAccepted(toAgentId: string, except: DirectiveKind[]): Promise<Directive[]> {
+  // ── executors (spec 025 FR-009) ───────────────────────────────────────────
+
+  /** Accepted, live directives waiting for their executor: one orchestrator's, or every one untouched for `idleMs`. */
+  async acceptedForExecution(f: { toAgentId?: string | null; idleMs?: number | null; except: DirectiveKind[] }): Promise<Directive[]> {
     const { rows } = await this.pool.query(
-      `UPDATE agent_directives SET status = 'applied', applied_at = now(), updated_at = now()
-        WHERE to_agent_id = $1 AND status = 'accepted' AND NOT shadow AND NOT (kind = ANY($2::text[])) RETURNING *`, [toAgentId, except]);
+      `SELECT * FROM agent_directives
+        WHERE status = 'accepted' AND NOT shadow AND NOT (kind = ANY($1::text[]))
+          AND ($2::uuid IS NULL OR to_agent_id = $2)
+          AND ($3::bigint IS NULL OR updated_at < now() - $3::bigint * interval '1 millisecond')
+        ORDER BY created_at`, [f.except, f.toAgentId ?? null, f.idleMs == null ? null : Math.round(f.idleMs)]);
+    return rows.map(toDirective);
+  }
+
+  /** Store the planned change before it is applied (a restart re-applies the same change: a no-op). */
+  async setChange(id: string, change: unknown): Promise<void> {
+    await this.pool.query(`UPDATE agent_directives SET change = $2, updated_at = now() WHERE id = $1`, [id, JSON.stringify(change)]);
+  }
+
+  /** One failed execution attempt; returns the attempt count. */
+  async execFailed(id: string, error: string): Promise<number> {
+    const { rows } = await this.pool.query(
+      `UPDATE agent_directives SET exec_attempts = exec_attempts + 1, exec_error = $2, updated_at = now() WHERE id = $1 AND status = 'accepted'
+        RETURNING exec_attempts`, [id, error.slice(0, 1000)]);
+    return Number(rows[0]?.exec_attempts ?? 0);
+  }
+
+  async markApplied(id: string, p: { change?: unknown; verification?: unknown }): Promise<Directive | null> {
+    const { rows } = await this.pool.query(
+      `UPDATE agent_directives SET status = 'applied', applied_at = now(), change = COALESCE($2, change), verification = COALESCE($3, verification),
+              exec_error = NULL, updated_at = now()
+        WHERE id = $1 AND status = 'accepted' RETURNING *`,
+      [id, p.change === undefined ? null : JSON.stringify(p.change), p.verification === undefined ? null : JSON.stringify(p.verification)]);
+    return rows[0] ? toDirective(rows[0]) : null;
+  }
+
+  async markFailed(id: string, error: string): Promise<Directive | null> {
+    const { rows } = await this.pool.query(
+      `UPDATE agent_directives SET status = 'failed', exec_error = $2, resolution = COALESCE(resolution, '') || CASE WHEN resolution IS NULL THEN '' ELSE ' · ' END || 'executor failed',
+              updated_at = now()
+        WHERE id = $1 AND status = 'accepted' RETURNING *`, [id, error.slice(0, 1000)]);
+    return rows[0] ? toDirective(rows[0]) : null;
+  }
+
+  /** Applied, live directives of `kinds` whose verification has no verdict yet (hourly verify()). */
+  async awaitingVerification(kinds: DirectiveKind[]): Promise<Directive[]> {
+    if (!kinds.length) return [];
+    const { rows } = await this.pool.query(
+      `SELECT * FROM agent_directives
+        WHERE status = 'applied' AND NOT shadow AND verified_at IS NULL AND kind = ANY($1::text[])
+          AND (verification IS NULL OR NOT (verification ? 'adherence'))
+        ORDER BY applied_at`, [kinds]);
+    return rows.map(toDirective);
+  }
+
+  /** Record a verification verdict (merged into `verification`); `verified` stamps verified_at. */
+  async setVerification(id: string, verification: Record<string, unknown>, verified: boolean): Promise<void> {
+    await this.pool.query(
+      `UPDATE agent_directives SET verification = COALESCE(verification, '{}'::jsonb) || $2::jsonb,
+              verified_at = CASE WHEN $3 THEN COALESCE(verified_at, now()) ELSE verified_at END, updated_at = now()
+        WHERE id = $1`, [id, JSON.stringify(verification), verified]);
+  }
+
+  /** pause_series directives whose resume date (Kyiv) has come and whose series is not resumed yet. */
+  async dueSeriesResumes(today: string): Promise<Directive[]> {
+    const { rows } = await this.pool.query(
+      `SELECT * FROM agent_directives
+        WHERE kind = 'pause_series' AND status IN ('applied','evaluated') AND NOT shadow
+          AND change->>'op' = 'series_active' AND change->>'resume_on' <= $1 AND change->>'resumed_at' IS NULL
+        ORDER BY applied_at`, [today]);
+    return rows.map(toDirective);
+  }
+
+  /** Merge fields into `change` (e.g. resumed_at). */
+  async mergeChange(id: string, patch: Record<string, unknown>): Promise<void> {
+    await this.pool.query(`UPDATE agent_directives SET change = COALESCE(change, '{}'::jsonb) || $2::jsonb, updated_at = now() WHERE id = $1`, [id, JSON.stringify(patch)]);
+  }
+
+  /**
+   * Binding directives whose playbook change an orchestrator may not undo before review_at
+   * (spec 025 `directive_lock`; advice is not locked).
+   */
+  async playbookLocks(toAgentId: string, now: Date): Promise<Directive[]> {
+    const { rows } = await this.pool.query(
+      `SELECT * FROM agent_directives
+        WHERE to_agent_id = $1 AND binding = 'directive' AND status = 'applied' AND NOT shadow
+          AND change->>'target' = 'playbook' AND review_at > $2
+        ORDER BY applied_at`, [toAgentId, now]);
     return rows.map(toDirective);
   }
 

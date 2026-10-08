@@ -52,6 +52,9 @@ import { DirectivesRepository } from '../../src/editor/manager/directives.reposi
 import { KpiDigestService } from '../../src/editor/manager/kpi-digest.service';
 import { ManagerRunner } from '../../src/editor/manager/manager-runner';
 import { buildDirectiveTools } from '../../src/editor/manager/directive-tools';
+import {
+  DirectiveExecution, executionContextOf, formatShiftExecutor, frequencyExecutor, pauseSeriesExecutor, SqlPlanObserver,
+} from '../../src/editor/manager/executors';
 import { PlatformPostsRepository } from '../../src/editor/platform/platform-posts.repository';
 import { buildPlatformTools } from '../../src/editor/platform/platform-tools';
 
@@ -141,6 +144,13 @@ export function buildStack(o: { pool: Pool; web: FakeWeb; now: () => Date; apiKe
   const digest = new KpiDigestService({ pool, catalog, globalCapUsd: 50, now });
   const platformPosts = new PlatformPostsRepository(pool);
   const channelKeyOf = async (a: any) => telegramKeyOf(a.parentId ? (await agents.get(a.parentId)) ?? a : a);
+  // Spec 025: the production directive executors (dry-run at filing, apply after acceptance, directive_lock).
+  const execDeps = { network: networkRepo, channels, observer: new SqlPlanObserver(pool) };
+  const exec = new DirectiveExecution({
+    repo: directives, inbox, agents, now, context: executionContextOf({ repo: networkRepo, channels, time: resourceTime, now }),
+    executors: [frequencyExecutor(execDeps), formatShiftExecutor(execDeps), pauseSeriesExecutor(execDeps)],
+  });
+  const directiveLock = (orchId: string, body: any) => exec.lockFor(orchId, body);
   const schedule = new ScheduleService({
     pool, rules: new ScheduleRepository(pool), network: networkRepo, agents, card: (k) => channels.get(k), plans, inbox, now,
   });
@@ -150,9 +160,9 @@ export function buildStack(o: { pool: Pool; web: FakeWeb; now: () => Date; apiKe
     ...buildBuilderTools({ agents, catalog, profiles, creator, skills: skillStore, actions }),
     ...buildAgentChatTools({ pool, memory, skills: skillStore, actions, now }),
     ...buildAgentSkillTools({ agents, skills: skillStore, kpi: new TelegramScopeKpi(pool), inbox, now }),
-    ...buildNetworkTools({ repo: networkRepo, plans, memory, inbox, now, schedule }),
+    ...buildNetworkTools({ repo: networkRepo, plans, memory, inbox, now, schedule, directiveLock }),
     ...buildScheduleTools({ schedule, actions, now }),
-    ...buildDirectiveTools({ repo: directives, agents, digest, inbox, memory, actions, channelKeyOf, now }),
+    ...buildDirectiveTools({ repo: directives, agents, digest, inbox, memory, actions, channelKeyOf, now, exec }),
     ...buildPlatformTools({
       pool, plans,
       publish: { posts: platformPosts, publisher: { publish: async () => { throw new Error('evals never publish to platforms'); } }, health: async () => null, now },
@@ -183,7 +193,7 @@ export function buildStack(o: { pool: Pool; web: FakeWeb; now: () => Date; apiKe
     enabled: () => true,
   });
   const runtime = new AgentRuntime({ agents, store: skillStore, fallback: skills, now });
-  const manager = new ManagerRunner({ loop, registry, runtime, agents, repo: directives, digest, inbox, env: o.env, now });
+  const manager = new ManagerRunner({ loop, registry, runtime, agents, repo: directives, digest, inbox, env: o.env, now, exec });
   const network = new NetworkRunner({
     loop, registry, runtime, memory, repo: networkRepo, plans, profiles, env: o.env, now, time: resourceTime,
     catalogSummary: (card) => schedule.plannerBlock(card),

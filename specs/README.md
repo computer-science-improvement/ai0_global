@@ -33,7 +33,7 @@ Each feature directory has `spec.md` (what and why), `plan.md` (how, plus Consti
 | 022 | [Network cross-promo](022-network-cross-promo/spec.md): own-resource promo and reposts, tracked links, transitions KPI | P2 | 021 | DONE (shadow-safe; owner verifies live) |
 | 023 | [Agent-owned content](023-agent-owned-content/spec.md): strategies become agent tools, the agent sets the schedule (chat, manual override), content ledger (Linear AI0-17) | P1 | 009, 018, 020, 021 | DONE except T7 phase B (owner-gated: delete strategy modules) |
 | 024 | [Independent resources](024-independent-resources/spec.md): per-resource duplicate / adapt / unique decisions and per-resource time zones (AI0-25) | P1 | 019, 020, 021 | DONE (paid evals not run) |
-| 025 | [MANAGER directive vs advice](025-manager-directive-vs-advice/spec.md): binding directives vs optional advice, code executors per directive kind (AI0-33) | P2 | 020, 021, 022 | SPEC |
+| 025 | [MANAGER directive vs advice](025-manager-directive-vs-advice/spec.md): binding directives vs optional advice, code executors per directive kind (AI0-33) | P2 | 020, 021, 022 | BUILDING (T1–T2 done) |
 | 026 | [Landing: AI network + white label](026-landing-ai-network-white-label/spec.md): AI-run network positioning, white-label offer, ads via Telegram DM (AI0-41) | P2 | 008, 017–022 | BUILDING (T1–T2 done; English only) |
 | 027 | [Navigation constructor](027-navigation-constructor/spec.md): menu constructor, badges, IA cleanup; `ui.nav` in app_settings (AI0-9) | P2 | 017, 018, 021 | DONE |
 | 028 | [Auth hardening](028-auth-hardening/spec.md): route guard, server-side gating of /app, revocable sessions, no dev mode in production (AI0-48) | P1 | 001 | DONE (live browser flows to verify on deploy) |
@@ -49,7 +49,7 @@ Agent platform wave: 017 → 018 ∥ 019 → 020 → 021 → 022 (019b after 016
 
 **UI language (owner rule 2026-10-06):** all interface text is English. Ukrainian button and label texts quoted in specs 023–032 give the meaning; implement them in English (see `apps/dashboard/CLAUDE.md` → Language).
 
-Migration numbers in specs 023–032 are assigned in merge order (landed: 055 auth, 056 llm_usage, 057 approval, 058 data store; landed: 059–060 and 063 spec 023, 061–062 and 064 spec 024; planned: 065 spec 025, 066 spec 026, 067 spec 030) and are renumbered if the order changes.
+Migration numbers in specs 023–032 are assigned in merge order (landed: 055 auth, 056 llm_usage, 057 approval, 058 data store; landed: 059–060 and 063 spec 023, 061–062 and 064 spec 024; landed: 065 spec 025; planned: 066 spec 026, 067 spec 030) and are renumbered if the order changes.
 
 BRD-comments wave (2026-10-06): 028 ∥ 029 ∥ 031 → 032 → 023 ∥ 024 → 025 → 029 → 027 → 026; 030 after 016.
 

@@ -106,6 +106,10 @@ import { ManagerRunner } from './manager/manager-runner';
 import { buildDirectiveTools, fileDirective, FileDirectiveInput } from './manager/directive-tools';
 import { ManagerService } from './manager/manager.service';
 import { MANAGER_SERVICE, ManagerController } from './manager/manager.controller';
+import type { Playbook } from './network/playbook';
+import {
+  DirectiveExecution, executionContextOf, formatShiftExecutor, frequencyExecutor, pauseSeriesExecutor, SqlPlanObserver,
+} from './manager/executors';
 import { TrackedLinks } from './promo/tracked-links';
 import { PromoPlanner } from './promo/promo-planner';
 import { PromoExecutor } from './promo/promo-executor';
@@ -285,6 +289,19 @@ function resourceTime(repos: Pick<EditorRepos, 'channels'>, profiles: ResourcePr
   });
 }
 
+/** Spec 025 FR-009: the directive executors (frequency, format_shift, pause_series) and their runner. */
+function directiveExecution(pool: Pool, repos: EditorRepos, infra: AgentInfra, platform: PlatformInfra): DirectiveExecution {
+  const logger = new Logger('DirectiveExecution');
+  const network = new NetworkRepository(pool);
+  const deps = { network, channels: repos.channels, observer: new SqlPlanObserver(pool) };
+  return new DirectiveExecution({
+    repo: new DirectivesRepository(pool), inbox: infra.inbox, agents: infra.agents,
+    context: executionContextOf({ repo: network, channels: repos.channels, usable: (ref) => platform.health.usable(ref), time: resourceTime(repos, infra.profiles) }),
+    executors: [frequencyExecutor(deps), formatShiftExecutor(deps), pauseSeriesExecutor(deps)],
+    log: (m) => logger.warn(m),
+  });
+}
+
 export interface EditorRepos {
   channels: EditorChannelsRepository;
   plans:    EditorPlansRepository;
@@ -377,7 +394,9 @@ export class AgentsUpkeep implements OnModuleInit {
   async directives(): Promise<void> {
     try {
       const r = await this.manager.runner.housekeeping();
-      if (r.timedOut || r.expired || r.evaluated) this.logger.log(`directives: timed out ${r.timedOut}, expired ${r.expired}, evaluated ${r.evaluated}`);
+      if (r.timedOut || r.expired || r.evaluated || r.executed || r.failed || r.resumed || r.verified) {
+        this.logger.log(`directives: timed out ${r.timedOut}, expired ${r.expired}, executed ${r.executed}, failed ${r.failed}, resumed ${r.resumed}, verified ${r.verified}, evaluated ${r.evaluated}`);
+      }
     } catch (err: any) {
       this.logger.warn(`directives housekeeping failed: ${err?.message ?? err}`);
     }
@@ -737,6 +756,9 @@ export const EDITOR_PROVIDERS = [
         migration: StrategyMigrationInfra, caps?: LlmBudgetService,
       ): ToolRegistry => {
         const env = (k: string) => cfg.get<string>(k) ?? undefined;
+        // Spec 025: executor dry-run for file_directive; directive_lock on the orchestrator's playbook writes.
+        const directives = directiveExecution(pool, repos, infra, platform);
+        const directiveLock = (orchId: string, body: Playbook) => directives.lockFor(orchId, body);
         return new ToolRegistry([
           ...buildReadTools({ pool, readonly: new ReadonlyQueryService(pool), skills }),
           ...buildDataTools({ pool, actions: infra.actions, env }),
@@ -763,15 +785,16 @@ export const EDITOR_PROVIDERS = [
           ...buildMigrationTools({ svc: migration.svc, actions: infra.actions }),
           ...buildNetworkTools({
             repo: new NetworkRepository(pool), plans: repos.plans, memory: repos.memory, inbox: infra.inbox,
-            sourceCatalog: (card) => seriesSourceCatalog(pool, card), schedule,
+            sourceCatalog: (card) => seriesSourceCatalog(pool, card), schedule, directiveLock,
           }),
           // Spec 023 FR-003: the orchestrator's series tools (one submit path with submit_playbook).
-          ...buildSeriesTools({ repo: new NetworkRepository(pool), inbox: infra.inbox, sourceCatalog: (card) => seriesSourceCatalog(pool, card) }),
+          ...buildSeriesTools({ repo: new NetworkRepository(pool), inbox: infra.inbox, sourceCatalog: (card) => seriesSourceCatalog(pool, card), directiveLock }),
           ...buildDirectiveTools({
             repo: new DirectivesRepository(pool), agents: infra.agents, inbox: infra.inbox, memory: repos.memory, actions: infra.actions,
             digest: new KpiDigestService({ pool, catalog: infra.catalog, globalCapUsd: capDefaults(env).agentsDailyUsd, capUsd: agentsCapUsd(env, caps) }),
             channelKeyOf: (a) => infra.channelKeyOf(a),
             seriesLocked: async (orch, name) => isSeriesLocked((await new NetworkRepository(pool).activePlaybook(orch.id))?.body ?? null, name),
+            exec: directives,
           }),
           // Spec 024 FR-010: @ai0 proposes a network mode change (Apply card).
           ...buildNetworkModeTool({
@@ -888,8 +911,10 @@ export const EDITOR_PROVIDERS = [
     },
     {
       provide: EDITOR_MANAGER,
-      inject: [DB_POOL, ConfigService, EDITOR_LOOP, EDITOR_REGISTRY, AGENT_INFRA, { token: LlmBudgetService, optional: true }],
-      useFactory: (pool: Pool, cfg: ConfigService, loop: AgentLoop, registry: ToolRegistry, infra: AgentInfra, caps?: LlmBudgetService): ManagerInfra => {
+      inject: [DB_POOL, ConfigService, EDITOR_LOOP, EDITOR_REGISTRY, AGENT_INFRA, EDITOR_REPOS, PLATFORM_INFRA, { token: LlmBudgetService, optional: true }],
+      useFactory: (
+        pool: Pool, cfg: ConfigService, loop: AgentLoop, registry: ToolRegistry, infra: AgentInfra, repos: EditorRepos, platform: PlatformInfra, caps?: LlmBudgetService,
+      ): ManagerInfra => {
         const env = (k: string) => cfg.get<string>(k) ?? undefined;
         const repo = new DirectivesRepository(pool);
         const digest = new KpiDigestService({ pool, catalog: infra.catalog, globalCapUsd: capDefaults(env).agentsDailyUsd, capUsd: agentsCapUsd(env, caps) });
@@ -897,6 +922,7 @@ export const EDITOR_PROVIDERS = [
           loop, registry, runtime: infra.runtime, agents: infra.agents, repo, digest, inbox: infra.inbox, env,
           timeoutHours: envNum(env, 'DIRECTIVE_TIMEOUT_HOURS', 12),
           timeoutApplyKinds: (env('DIRECTIVE_TIMEOUT_APPLY_KINDS') ?? '').split(',').map((x) => x.trim()).filter(Boolean),
+          exec: directiveExecution(pool, repos, infra, platform),
         });
         return { repo, digest, runner };
       },
@@ -1128,7 +1154,7 @@ export const EDITOR_PROVIDERS = [
           const input = FileDirectiveInput.parse(p);
           const r = await fileDirective({
             repo: manager.repo, agents: infra.agents, digest: manager.digest, inbox: infra.inbox, memory: repos.memory, actions: infra.actions,
-            channelKeyOf: (a) => infra.channelKeyOf(a),
+            channelKeyOf: (a) => infra.channelKeyOf(a), exec: manager.runner.exec,
           }, input, { from: await manager.runner.manager(), runId: null, shadow: false, ownerApproved: true });
           if ('error' in r) throw new Error(`${r.error}: ${r.details ?? ''}`);
           return { id: r.directive.id, status: r.directive.status };

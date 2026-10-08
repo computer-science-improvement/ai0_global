@@ -65,7 +65,7 @@ test('structural classification is code, not the model', () => {
   assert.equal(isStructural('format_shift', {}), false);
 });
 
-function fakeRepo(o: Partial<{ open: boolean; rejectedAt: Date | null; runCount: number }> = {}) {
+function fakeRepo(o: Partial<{ open: boolean; rejectedAt: Date | null; runCount: number; openBinding: number; declined: any }> = {}) {
   const inserted: any[] = [];
   const updates: any[] = [];
   return {
@@ -74,6 +74,8 @@ function fakeRepo(o: Partial<{ open: boolean; rejectedAt: Date | null; runCount:
       openFor: async () => (o.open ? { status: 'new' } : null),
       lastRejected: async () => o.rejectedAt ?? null,
       countForRun: async () => o.runCount ?? 0,
+      countOpenBinding: async () => o.openBinding ?? 0,
+      lastDeclinedAdvice: async () => o.declined ?? null,
       insert: async (d: any) => { const x = { id: `d${inserted.length + 1}`, ...d, createdAt: new Date() }; inserted.push(x); return x; },
       update: async (id: string, p: any) => { updates.push([id, p]); return { id, ...p }; },
       get: async (id: string) => (id === 'dir1' ? { id, toAgentId: 'o1', status: 'new' } : null),
@@ -89,7 +91,7 @@ const deps = (repo: any, inbox: any[] = []) => ({
   actions: { propose: async () => ({}) as any }, channelKeyOf: async () => '@space',
 });
 const good = {
-  to: '@kira', kind: 'format_shift' as const, body: 'Більше каруселей в Instagram', params: { format: 'ig_carousel', weight_delta: 0.2 },
+  to: '@kira', kind: 'format_shift' as const, binding: 'advice' as 'advice' | 'directive', body: 'Більше каруселей в Instagram', params: { format: 'ig_carousel', weight_delta: 0.2 },
   rationale: 'Каруселі дають на 60% більше переглядів за 28 днів', evidence: { views_per_post: { carousel: 1600, photo: 1000 } },
   expected: { metric: 'views_per_post' as const, direction: 'up' as const, min_change_pct: 10 }, review_in_days: 7,
 };
@@ -109,7 +111,7 @@ test('file_directive rules: target, open duplicate, cooldown, evidence, expected
   assert.equal(((await fileDirective(deps(fakeRepo({ runCount: 3 }).repo), good, { from: null, runId: '00000000-0000-4000-8000-000000000001', shadow: false })) as any).error, 'too_many_directives');
   const s = fakeRepo();
   const sinbox: any[] = [];
-  await fileDirective(deps(s.repo, sinbox), { ...good, kind: 'cross_promo', params: { source_ref: 'a', target_ref: 'b' } }, { from: null, runId: 'r', shadow: false });
+  await fileDirective(deps(s.repo, sinbox), { ...good, kind: 'cross_promo', binding: 'directive', params: { source_ref: 'a', target_ref: 'b' } }, { from: null, runId: 'r', shadow: false });
   assert.equal(s.inserted[0].status, 'awaiting_owner');
   assert.equal(s.inserted[0].structural, true);
   assert.equal(sinbox[0].severity, 'action');
@@ -156,6 +158,9 @@ function managerSetup(o: { lastHash?: string | null; anomalies?: boolean; due?: 
       update: async (id: string, p: any) => { updates.push([id, p]); return null; },
       droppedInARow: async () => 0,
       expireUnresolved: async () => 0,
+      acceptedForExecution: async () => [],
+      dueSeriesResumes: async () => [],
+      awaitingVerification: async () => [],
       dueForEvaluation: async () => o.due ?? [],
       overlapping: async () => 0,
       addMemory: async (...a: any[]) => { memory.push(a); },

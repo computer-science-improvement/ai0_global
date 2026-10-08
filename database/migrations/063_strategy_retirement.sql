@@ -30,7 +30,8 @@ CREATE INDEX IF NOT EXISTS idx_strategy_bindings_retired ON strategy_bindings (r
 -- playbooks.created_by: the migration draft of a strategy migration (T1–T3 notes: "the DB check that allows
 -- created_by='migration' comes with T6").
 ALTER TABLE playbooks DROP CONSTRAINT IF EXISTS playbooks_created_by_check;
-ALTER TABLE playbooks ADD CONSTRAINT playbooks_created_by_check CHECK (created_by IN ('orchestrator','owner','migration'));
+ALTER TABLE playbooks ADD CONSTRAINT playbooks_created_by_check CHECK (created_by IN ('orchestrator','owner','migration','directive'));
+-- 'directive' comes with 065_directive_binding; listed here too so a re-run of 063 never narrows the check.
 
 INSERT INTO schema_migrations (version) VALUES ('063_strategy_retirement')
   ON CONFLICT (version) DO NOTHING;
