@@ -1,7 +1,8 @@
 // apps/automation/src/config/config.module.ts
 import { Global, Module } from '@nestjs/common';
 import { ConfigModule as NestConfigModule } from '@nestjs/config';
-import { DatabaseModule } from '../database/database.module';
+import { DB_POOL, DatabaseModule } from '../database/database.module';
+import type { Pool } from 'pg';
 import { TrackingModule } from '../tracking/tracking.module';
 import { ChannelConfigService } from './channel-config.service';
 import { ConfigCacheService } from './config-cache.service';
@@ -34,7 +35,8 @@ import { TikTokOAuthService } from './tiktok-oauth.service';
 import { TikTokAccountsController } from './api/tiktok-accounts.controller';
 import { TikTokOAuthController } from './api/tiktok-oauth.controller';
 import { LandingResourcesService } from './landing-resources.service';
-import { LandingController } from './api/landing.controller';
+import { LANDING_CONFIG, LandingController } from './api/landing.controller';
+import { LandingConfigService } from './landing-config.service';
 import { LandingAdminController } from './api/landing-admin.controller';
 import { StrategiesController } from './api/strategies.controller';
 import { ForwardRoutesController } from './api/forward-routes.controller';
@@ -69,6 +71,8 @@ import { ContentRunwayModule } from '../common/content-runway/content-runway.mod
     TikTokTokenService,
     TikTokOAuthService,
     LandingResourcesService,
+    // Spec 026: the public page settings (app_settings landing.*).
+    { provide: LANDING_CONFIG, inject: [DB_POOL], useFactory: (pool: Pool) => new LandingConfigService(pool) },
   ],
   exports: [
     ChannelConfigService,
@@ -87,6 +91,7 @@ import { ContentRunwayModule } from '../common/content-runway/content-runway.mod
     MetaCrosspostTargetsRepository,
     TikTokAccountsRepository,
     TikTokTokenService,
+    LANDING_CONFIG,
   ],
 })
 export class ChannelConfigModule {}
