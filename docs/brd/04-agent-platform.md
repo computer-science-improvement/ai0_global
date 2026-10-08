@@ -1,6 +1,6 @@
 # BRD (as-is) — Платформа агентів (оркестратори, MANAGER, крос-промо)
 
-> Статус: чернетка, згенерована з коду 2026-10-05. Описує, як система ФАКТИЧНО працює зараз (гілка feat/editor-agent), а не як мала б.
+> Статус: чернетка, згенерована з коду 2026-10-05; §3.5, §3.10–§3.13 оновлено 2026-10-08 під спеку 025 (директива чи порада, виконавці, оскарження). Описує, як система ФАКТИЧНО працює зараз (гілка feat/editor-agent), а не як мала б.
 
 ## 1. Призначення розділу
 
@@ -20,10 +20,10 @@
 | Агент: Playbook | `…?tab=playbook` | Режим мережі mirror/orchestrated, чернетка на затвердження, активний плейбук, редактор, історія |
 | Агент: Ideas | `…?tab=ideas` | Пул ідей, оцінки рецензента, ручне accept/reject |
 | Агент: Plan | `…?tab=plan` | План дня по всіх ресурсах мережі (таймлайн/список), прев’ю слотів |
-| Агент: Inbox | `…?tab=inbox` | Директиви MANAGER, адресовані оркестратору |
+| Агент: Inbox | `…?tab=inbox` | Директиви й поради MANAGER, адресовані оркестратору (фільтри binding / kind) |
 | Агент: Promo | `…?tab=promo` | Пари крос-промо, останні промо-слоти, tracked links з лічильниками |
 | @manager: Reviews | `/app/agents/manager?tab=reviews` | Хронологія прогонів MANAGER (continue / directives / skipped) |
-| @manager: Directives | `/app/agents/manager?tab=directives` | Дошка директив за статусами, Approve/Decline структурних |
+| @manager: Directives | `/app/agents/manager?tab=directives` | Дошка директив і порад за статусами, Approve/Decline структурних, Uphold/Accept refusal оскаржених |
 | Inbox агентів | `/app/agents/inbox` | Службові повідомлення агентів (самоправки скілів, відкати, go-live, health) |
 
 Публічний ендпоінт `/r/:code` (редирект tracked-посилань) описаний у §3.11 і §4 як частина крос-промо.
@@ -215,7 +215,7 @@
 - `BR-AGT-42` Вкладка читає памʼять Telegram-каналу оркестратора (для ролі — її батька) і показує до 100 активних записів.
 - `BR-AGT-43` Записи читаються без редагування; кнопка «Manage memory» з’являється лише якщо в агента є `channelKey`.
 - `BR-AGT-44` Без каналу (напр. @manager, @ai0) вкладка пуста з поясненням «Memory is kept per Telegram resource; this agent has none».
-- `BR-AGT-45` Правила власника (`created_by='owner'`) мають вищий пріоритет, ніж директиви MANAGER: `accept_directive` відхиляється, якщо оркестратор вказав конфліктні id правил власника.
+- `BR-AGT-45` Пріоритет (спека 025, 6 шарів): 1) правила власника (`created_by='owner'`, заблоковані власником скіли); 2) безпека — код-запобіжники (тихі години, бюджети, kill switch, лінт, ліміти API, здоровʼя ресурсу) і конституція VIII; 3) директиви MANAGER (обовʼязкові); 4) активний плейбук; 5) поради MANAGER; 6) власні вподобання оркестратора. `accept_directive` відхиляється, якщо оркестратор вказав конфліктні id правил власника: директиву тоді оскаржують (`contest_directive`), пораду відхиляють (`decline_advice`). Ці 6 шарів — у системному промпті оркестратора (`PRECEDENCE_LINES`) і в скілі `editor-orchestrator-workflow`.
 
 **Бізнес-правила й обмеження.** Пам’ять додається: власником (чат `add_owner_rule`, лише з перефразуванням його останнього повідомлення ≥ 50 % слів), тижневим рецензентом, автовідкатом скілів, рецензентом ідей (3+ відхилення за 14 днів з однаковою причиною → `avoid`).
 
@@ -375,19 +375,21 @@
 
 ### 3.10 Вкладка Inbox оркестратора (директиви)
 
-**Бізнес-мета.** Показати власнику директиви MANAGER, адресовані цьому оркестратору, і дати змогу затвердити структурні.
+**Бізнес-мета.** Показати власнику директиви й поради MANAGER, адресовані цьому оркестратору, дати змогу затвердити структурні й вирішити оскаржені.
 
 **Хто користується / доступ.** Логін; оркестратор і ролі (використовується handle оркестратора).
 
-**Що показує.** Перемикач «Open · N» / «All · N» і сітка карток директив із статусом. Дані: `GET /api/directives?agent=<handle>` (до 200, `agent_directives`), оновлення 60 с. Посилання «All directives on @manager →».
+**Що показує.** Перемикач «Open · N» / «All · N», фільтр binding (**All / Directives / Advice**) і мультивибір видів (**Kind**), обидва в URL (`?binding=directive|advice&kind=<csv>`), і сітка карток директив із статусом. Дані: `GET /api/directives?agent=<handle>[&binding=…&kind=…]` (до 200, `agent_directives`), оновлення 60 с. Посилання «All directives on @manager →».
 
-**Дії користувача.** **Approve / Decline** на картці `awaiting_owner` → `POST /api/directives/:id/approve|decline` (підтвердження в діалозі).
+**Дії користувача.** **Approve / Decline** на картці `awaiting_owner` → `POST /api/directives/:id/approve|decline`; на оскарженій (`contested`) — **Uphold** → `POST /api/directives/:id/uphold`, **Accept refusal** → `POST /api/directives/:id/accept-refusal` і **Discuss** (відкриває `/app/chat` з підставленим повідомленням до `@manager`). Усі рішення — з підтвердженням у діалозі.
 
 **Бізнес-вимоги (as-is).**
-- `BR-AGT-76` «Open» = статуси `awaiting_owner`, `new`, `accepted`, `applied`, відсортовані за рангом статусу, далі за новизною.
-- `BR-AGT-77` Картка директиви показує вид (advice, task, format shift, frequency, repost, cross-promo, pause series, experiment, pause resource, strategy), мітки `structural` і `shadow`, відправника, текст, «why», очікуваний ефект («views/post ↑ ≥ 10 % on …, review <дата>»), params, evidence, резолюцію, рішення власника, результат (before → after, % зміни, confounders).
+- `BR-AGT-76` «Open» = статуси `awaiting_owner`, `contested`, `new`, `accepted`, `applied`, відсортовані за рангом статусу (`contested` і `awaiting_owner` першими), далі за новизною.
+- `BR-AGT-77` Картка директиви показує binding (`DIRECTIVE` — warning, `advice` — нейтральний), вид (advice, task, format shift, frequency, repost, cross-promo, pause series, experiment, pause resource, strategy), статус (зокрема `contested`, `declined`, `failed`), мітки `structural` і `shadow`, чип перевірки (`applying`, `applied · checking`, `verified ✓`, `not followed`, `self-reported`, `not verified`), відправника, текст, «why», очікуваний ефект («views/post ↑ ≥ 10 % on …, review <дата>»), params, evidence, зміну виконавця одним рядком (`change`), помилку виконавця, блок оскарження (причина, шар пріоритету, результат перевірки кодом), рішення власника (зокрема `owner upheld`, `refusal accepted`), результат (before → after, % зміни, confounders) і причину, чому рядок не оцінено (`not verified`, `self-reported`).
 - `BR-AGT-78` Approve переводить `awaiting_owner → new`, `owner_decision='approved'`, `shadow=false`; доставка оркестратору — під час його наступного прогону. Decline → `rejected` («owner declined», `reason_kind='owner_rule'`). Повторне рішення — `409 not_awaiting_owner`.
-- `BR-AGT-79` Оркестратор отримує директиви лише зі статусом `new` і не `shadow`; відповідає на кожну `accept_directive` (з планом ≥ 15 символів і списком id конфліктних правил власника) або `reject_directive` (причина `owner_rule`/`playbook`/`capability`/`health`/`data`, пояснення ≥ 20 символів).
+- `BR-AGT-79` Оркестратор отримує директиви лише зі статусом `new` і не `shadow`, кожну з позначкою `ДИРЕКТИВА (обовʼязково)` або `порада (на твій розсуд)`. На директиву відповідає `accept_directive` (план ≥ 15 символів, id конфліктних правил власника) або `contest_directive` (причина `owner_rule`/`safety`/`capability`/`health`, пояснення ≥ 20 символів, `rule_ids` / `resource_ref`); причини `playbook`/`data`/`preference` → помилка `directive_is_binding`. На пораду — `accept_directive` або `decline_advice` (причина `owner_rule`/`playbook`/`data`/`capability`/`health`/`preference`, пояснення ≥ 10 символів); `decline_advice` на директиву → `binding_directive_use_contest`. `reject_directive` прибрано.
+- `BR-AGT-106` Оскарження перевіряє код (FR-006): `owner_rule` — кожен `rule_ids` є активним правилом власника каналу оркестратора; `health` — `resource_ref` у мережі й зараз непридатний (`usable=false`); `capability` — dry-run виконавця зараз не проходить; `safety` приймається з позначкою «не перевірено кодом». Невдала перевірка → `reason_not_verified`, директива лишається `new`. Успішна → `contested` (`contested_at`, результат у `verification.contest`) і рівно один Inbox-запис `directive_contested` (action).
+- `BR-AGT-107` Рішення власника на оскарженій: **Uphold** → `accepted` + `owner_decision='upheld'`, виконавець запускається одразу; правила власника не перевіряються вдруге, але здоровʼя й можливість — так (`409 not_executable`, директива лишається `contested`). **Accept refusal** → `rejected` + `refusal_accepted`, пауза 48 год на цей вид, у памʼять MANAGER — «власник став на бік @x». Повторне рішення → `409 not_contested`. Без рішення `DIRECTIVE_CONTEST_TIMEOUT_HOURS` (24) → відмова стоїть (`rejected`, `timeout_dropped`).
 
 **Бізнес-правила й обмеження.** Дивіться §3.12 (життєвий цикл директив).
 
@@ -397,9 +399,9 @@
 
 **Звʼязки.** Вкладка Directives @manager.
 
-**Спостереження «як фактично зараз».** Для оркестратора в режимі `off` event-прогони не запускаються, директива лишається `new` і мовчки спливає через 48 год.
+**Спостереження «як фактично зараз».** Для оркестратора в режимі `off` event-прогони не запускаються; директива лишається `new` і через 24 год (доставлена) / 48 год (недоставлена) вирішується як у BR-AGT-96: порада спливає мовчки, обовʼязкова директива на ціль, що `off` чи на паузі, — `expired` з Inbox-записом `directive_expired` (info).
 
-**Відкриті питання до власника.** Чи треба сповіщати власника, коли директива протермінована без відповіді оркестратора?
+**Відкриті питання до власника.** Немає: питання «сповіщати про протерміновані директиви» вирішено спекою 025 (FR-007).
 
 ### 3.11 Вкладка Promo
 
@@ -412,7 +414,7 @@
 **Дії користувача.** Лише перегляд; посилання відкриваються в новій вкладці.
 
 **Бізнес-вимоги (as-is).**
-- `BR-AGT-80` Промо виникає з директив `cross_promo` (структурна, потребує Approve власника) і `repost` (не структурна); після `accept_directive` оркестратор-джерело отримує резервний слот на плані (`PromoPlanner.schedule`), директива стає `applied`; відмова коду переводить директиву в `rejected` з причиною `<код>: <деталі>`.
+- `BR-AGT-80` Промо виникає з директив `cross_promo` (структурна, потребує Approve власника) і `repost` (не структурна); після `accept_directive` оркестратор-джерело отримує резервний слот на плані (`PromoPlanner.schedule`), директива стає `applied`; відмова коду переводить директиву в `rejected` з причиною `<код>: <деталі>`. `repost` може бути й порадою. Перевірка (спека 025): промо-слот `published`/`shadowed` → `verified`; усі слоти `skipped`/`failed` або жодного за 9 днів → `not_followed`. Ресурс на паузі (`pause_resource`) — `PromoPlanner` відмовляє `resource_paused`.
 - `BR-AGT-81` Ліміти (код): та сама пара в будь-якому напрямку — раз на 14 днів; ≤ 1 промо на ресурс-джерело і ≤ 3 на мережу на добу; жодного промо за ±2 год від платного рекламного слота на тому ж каналі; обидва ресурси мають бути нашими, у мережі оркестратора, не `no_access`/`token_invalid`; relevance ≥ 3 з 5.
 - `BR-AGT-82` Relevance — детерміноване перетинання слів профілів двох ресурсів (1–5; табу одного = тема іншого → 1; профіль не описаний → 3), кеш 30 днів у `promo_pairs`.
 - `BR-AGT-83` Час слота: найкращі години джерела з плейбука (поза тихими) або 12:00/15:00/18:00, у вікні 1–7 днів від завтра (за замовчуванням 3).
@@ -443,27 +445,30 @@
 
 ### 3.12 @manager: Reviews і Directives (MANAGER, KPI-дайджест, директиви)
 
-**Бізнес-мета.** Показати власнику, коли й що вирішив MANAGER, і керувати структурними директивами.
+**Бізнес-мета.** Показати власнику, коли й що вирішив MANAGER (директиви й поради), керувати структурними й оскарженими директивами та бачити, чи зміна справді відбулася.
 
 **Хто користується / доступ.** Логін; лише сторінка `/app/agents/manager`.
 
 **Що показує.**
 - **Reviews:** хронологічна стрічка (`GET /api/manager/reviews?limit=50`, `manager_reviews`): бейдж вердикту `continue` / `directives` / `skipped`, дата, підсумок, чипи директив цього прогону (клік → Directives із підсвіткою).
-- **Directives:** дошка з колонками **Awaiting you**, **New**, **Accepted**, **Applied**, **Evaluated**, **Rejected · expired** (на ширині ≥ 1100 px — горизонтальні колонки, нижче — секції; закриті приховані за кнопкою Show). Дані: `GET /api/directives` (до 200), оновлення 60 с.
-- KPI-дайджест (`GET /api/kpi/digest`) живить плитку «Network health» на `/app` (поза цим розділом).
+- **Directives:** дошка з колонками **Awaiting you** (`awaiting_owner` і `contested`), **New**, **Accepted**, **Applied**, **Evaluated**, **Closed** (`rejected`, `declined`, `failed`, `expired`, `canceled`) (на ширині ≥ 1100 px — горизонтальні колонки, нижче — секції; закриті приховані за кнопкою Show). Над дошкою — фільтри binding і kind (як у §3.10, у URL). Дані: `GET /api/directives[?binding=…&kind=…]` (до 200), оновлення 60 с. `?directive=<id>` (або `?d=<id>`) підсвічує й прокручує картку.
+- KPI-дайджест (`GET /api/kpi/digest`) живить плитку «Network health» на `/app` (поза цим розділом); вона ж показує блок `compliance` (за 30 днів по оркестраторах: порад виконано / відхилено, останні причини відхилень, оскаржено, автозастосовано).
 
-**Дії користувача.** Run now (через каркас), Approve/Decline структурних директив; перехід з чипа review на директиву.
+**Дії користувача.** Run now (через каркас), Approve/Decline структурних директив, Uphold / Accept refusal / Discuss оскаржених (BR-AGT-107); перехід з чипа review на директиву.
 
 **Бізнес-вимоги (as-is).**
 - `BR-AGT-89` @manager засіяний міграцією 049 у режимі `off`; поки `off` або пауза, планових прогонів немає. Розклад — київські часи `agent.schedule.times` (до 8) або за замовчуванням 08:00, 13:00, 18:00, 22:30; кожен час спрацьовує раз на добу (обліковується в памʼяті процесу).
 - `BR-AGT-90` Перед LLM код будує KPI-дайджест (`KpiDigestService`): по кожному ресурсу 6 метрик — views_per_post, engagement_rate, posts, followers_growth, transitions, revenue (₴, лише Telegram `ad_orders`) — як 7-денне значення проти 28-денної норми, Δ %, z, `stale`, `anomaly`; аномалія: (|z| ≥ 2 і |Δ| ≥ 10 %) або Δ ≤ −25 %; плюс слоти дня, витрати проти ліміту, відкриті директиви й результати. Дайджест ≤ 12 000 символів, щодня пишеться в `kpi_snapshots`.
 - `BR-AGT-91` Якщо хеш дайджесту не змінився з минулого прогону і немає аномалій, прогін пропускається без LLM, а в `manager_reviews` пишеться `skipped` («без змін з минулого прогону»).
 - `BR-AGT-92` Прогін MANAGER завершується `submit_review` (verdict `continue` або `directives`, підсумок 5–1500 символів, ≤ 3 директиви); без підсумку пишеться `continue` «прогін без підсумку (<статус>)».
-- `BR-AGT-93` Валідація `file_directive` (у коді): адресат — кореневий оркестратор; ≤ 3 директиви за прогін; ≤ 1 відкрита директива того ж виду на адресата; після відхилення — пауза 48 год для цього виду; `evidence` має містити число; `expected` обовʼязковий для всіх видів, крім advice/task; метрика зі `stale` — відмова; `review_in_days` 3–14 (дефолт 7).
-- `BR-AGT-94` «Структурні» визначає код, не модель: `cross_promo`, `pause_resource`, `strategy`, `frequency` із |change_pct| ≥ 30, або `params.add_platform`. Вони стають `awaiting_owner`; інші — `new`.
+- `BR-AGT-93` Валідація `file_directive` (у коді): адресат — кореневий оркестратор; ≤ 3 директиви за прогін; ≤ 1 відкрита директива того ж виду на адресата; після `rejected` (не після відхиленої поради) — пауза 48 год для цього виду; `evidence` має містити число; `expected` обовʼязковий для всіх видів, крім advice/task; метрика зі `stale` — відмова; `review_in_days` 3–14 (дефолт 7). Спека 025: обовʼязкове поле `binding` (`directive` | `advice`) і матриця вид × binding: `advice` — лише порада; `task`, `format_shift`, `pause_series`, `experiment`, `repost` — будь-який рівень; `frequency` — будь-який нижче |change_pct| 30, від 30 — лише директива; `cross_promo`, `pause_resource`, `strategy` — лише директива (помилки `advice_kind_is_advice`, `structural_must_be_directive`). Неструктурна директива потребує `anomaly` на `expected.metric` у дайджесті або ескалації (порада того ж виду тому ж адресату відхилена за 14 днів, і метрика відтоді пішла ще ≥ 5 % проти `expected`), інакше `directive_needs_anomaly`; ≤ 2 відкриті обовʼязкові директиви на адресата (`binding_limit`). Видам із виконавцем код робить dry-run: неможлива зміна → `not_executable`, директива не файлиться.
+- `BR-AGT-94` «Структурні» визначає код, не модель: `cross_promo`, `pause_resource`, `strategy`, `frequency` із |change_pct| ≥ 30, `params.add_platform`, або dry-run виконавця класифікує зміну плейбука як структурну (`classifyPlaybookChange`: доданий формат, per_day ≥ ±30 %, у режимі approval — будь-яка зміна розкладу). Вони стають `awaiting_owner`; інші — `new`.
 - `BR-AGT-95` Для структурної директиви власник отримує Inbox `directive_structural` (action) з текстом і посиланням на Directives; чекає рішення `DIRECTIVE_TIMEOUT_HOURS` (дефолт 12): далі `expired` + `owner_decision='timeout_dropped'`, а для видів із `DIRECTIVE_TIMEOUT_APPLY_KINDS` — `new` + `timeout_applied`. Після 5 таких скасувань підряд у памʼять MANAGER пишеться «власник не відповідає».
-- `BR-AGT-96` Життєвий цикл: `new` → (оркестратор) `accepted` | `rejected` → після прогону оркестратора `applied` (+ baseline `before` і `review_at`) → за `review_at` (hourly cron `47 * * * *`) `evaluated` з `outcome` worked / no_effect / hurt / inconclusive; невирішені `new`: доставлені > 24 год або недоставлені > 48 год → `expired`.
-- `BR-AGT-97` Оцінка ефекту: `after` — 7-денне значення метрики на `review_at` проти `before` на момент apply; `worked`/`hurt`, якщо зміна у бік `expected` ≥ `min_change_pct` або проти нього ≤ −`min_change_pct`, інакше `no_effect`; `inconclusive` при `stale`, нульовому/відсутньому `before`, або наявності іншої директиви на ту саму метрику того ж агента (confounder); `worked`/`hurt` пишуться в памʼять MANAGER.
+- `BR-AGT-96` Життєвий цикл (спека 025): `new` → (оркестратор) `accepted` | `contested` (директива) | `declined` (порада) → після прогону оркестратора виконавець → `applied` (+ `change`, baseline `before` і `review_at`) → щогодинна перевірка (`verification`, `verified_at`) → за `review_at` (hourly cron `47 * * * *`) `evaluated`. Збій виконавця: `exec_attempts+1`, повтор щогодини, після 3 → `failed` + Inbox `directive_failed` (action для директиви, info для поради). Невирішені `new` (доставлені > 24 год або недоставлені > 48 год): порада → `expired` мовчки; директива з виконавцем → застосовується кодом (`resolution='auto-applied: no response'`) + `directive_auto_applied` (info); без виконавця (`task`) → `expired` + `directive_ignored` (action); ціль `off`/на паузі чи недоставлена → `expired` + `directive_expired` (info).
+- `BR-AGT-108` Виконавці (`manager/executors/*`): `frequency` (масштабує `per_day`), `format_shift` (вага формату ± 0.3), `pause_series` (серія неактивна до `resume_on`, ≤ 28 днів, автовідновлення) пишуть нову активну версію плейбука (`created_by='directive'`, `directive_id`), зберігаючи чернетку власника; без плейбука — правлять картку Telegram-якоря. `pause_resource` пише `resource_pauses` (BR-AGT-110). `experiment` відкриває квоту слотів із `directive_id`, яку перевіряють обидва валідатори плану. `strategy` запускає побудову плейбука з брифу директиви; версія йде власнику з `directive_id`, його активація застосовує директиву, відмова — `rejected`. `task` виконується через `report_directive_done` (посилання на ідею / слот / плейбук / скіл оркестратора, створені після доставки). Прийнята порада без виконавця — `applied` з `verification.kind='self_reported'`. Повторне застосування — no-op; оркестратор не може відкотити зміну директиви плейбуком до `review_at` (`directive_lock`), зміну поради — може.
+- `BR-AGT-109` У режимі live директива до оркестратора в shadow виконується (конфіг змінюється), а публікації лишаються shadow; перевірка зараховує `shadowed` слоти. Shadow-директиви MANAGER не доставляються, не виконуються й не оскаржуються.
+- `BR-AGT-110` `pause_resource` (структурна, `{resource_ref, days 1–14, reason}`) пише рядок `resource_pauses` (одна активна пауза на ресурс; повтор тієї ж директиви — no-op). Поки пауза діє: `networkContext` агентів не бачить ресурс, тримані канали не плануються, контент-слоти на ресурсі стають `skipped` (`resource_paused`), промо відмовляє; оплачена реклама й заплановані власником пости з чату виходять. Автозняття в `until` (Inbox `resource_resumed`), раніше — **Lift** власника: `POST /api/resources/:ref/pause/lift` (`409 not_paused`, якщо вже скінчилась). Перевірка: жоден контент- чи промо-слот на ресурсі не опублікований у вікні. Overview оркестратора показує **Active effects**: активні паузи (`GET /api/resources/pauses?active=true`) з кнопкою Lift, серії на паузі з датою відновлення, квоти експериментів із дедлайном, версії плейбука, написані директивою.
+- `BR-AGT-97` Оцінка ефекту: `after` — 7-денне значення метрики на `review_at` проти `before` на момент apply; `worked`/`hurt`, якщо зміна у бік `expected` ≥ `min_change_pct` або проти нього ≤ −`min_change_pct`, інакше `no_effect`; `inconclusive` при `stale`, нульовому/відсутньому `before`, або наявності іншої директиви на ту саму метрику того ж агента (confounder); `worked`/`hurt` пишуться в памʼять MANAGER. Спека 025: оцінюються лише перевірені (`verified_at`) рядки; застосований, але не перевірений до `review_at` → `inconclusive` з `outcome_detail.reason='not_verified'` і його `adherence`; порада `self_reported` закривається без оцінки (`reason='self_reported'`); експеримент не оцінюється до свого дедлайну.
 - `BR-AGT-98` У режимі `shadow` MANAGER файлить директиви з `shadow=true`: вони видимі на дошці з бейджем, але ніколи не доставляються оркестратору, не приймаються й не виконуються; Approve власником знімає `shadow` і директива стає звичайною.
 - `BR-AGT-99` У чаті з @manager директива пропонується карткою `file_directive` і після Apply файлиться як `ownerApproved` (статус `new`, без черги `awaiting_owner`, `shadow=false`).
 
@@ -476,17 +481,17 @@
 **Звʼязки.** Адмін-бот Telegram (Inbox-алерти), `/app` (Network health), `/app/chat` (@manager).
 
 **Спостереження «як фактично зараз».**
-- Лише `cross_promo` і `repost` мають код-виконавця. Директиви `format_shift`, `frequency`, `pause_series`, `pause_resource`, `experiment`, `strategy`, `advice`, `task` — це текст у промпті оркестратора: після `accept_directive` вони автоматично стають `applied` після будь-якого його прогону (`applyAccepted`), хоч ніщо не перевіряє, що план справді виконано; `pause_resource` ніде нічого не ставить на паузу. Оцінка ефекту при цьому триває як для «застосованих».
+- Спека 025 замінила `applyAccepted`: кожен вид має виконавця або перевірку (BR-AGT-108), `applied` означає, що зміна існує, а `verified` — що її побачено в планах і публікаціях. Живі evals спеки 025 (`orchestrator-directive-comply`, `orchestrator-directive-owner-rule-contest`, `orchestrator-advice-decline`, `manager-advice-vs-directive`) написані, але ще не запускались на моделі за замовчуванням.
 - Планові прогони відстежуються в `Set` у памʼяті: після перезапуску процесу «останній прошедший час» дня виконується знову (пропуск без LLM, якщо хеш не змінився, але рядок `skipped` додається) — стрічка Reviews може містити зайві `skipped`.
 - Ручний «Run now» при `EDITOR_ENABLED≠true`: API відповідає `started:true`, UI показує «run started», але цикл вимкнений; у Reviews з’являється `continue` «прогін без підсумку (disabled)».
 - Оцінка ефекту відрізняється від спеки 021 FR-007: виконується щогодини (а не щодня) і порівнює 7-денне вікно на `review_at` зі знімком у момент apply, а не з 28-денною базою «до».
-- Спека обіцяє кнопку «Обговорити» на картці структурної директиви й `directive_timeout_hours` у налаштуваннях; фактично є лише Approve/Decline і змінні середовища `DIRECTIVE_TIMEOUT_HOURS` / `DIRECTIVE_TIMEOUT_APPLY_KINDS` (їх немає в `.env.example`; як і `EDITOR_ORCHESTRATION`, `PROMO_HASH_SALT`, `PUBLIC_BASE_URL`).
+- Спека 021 обіцяє кнопку «Обговорити» на картці структурної директиви й `directive_timeout_hours` у налаштуваннях; «Discuss» є лише на оскарженій директиві (спека 025), на структурній — Approve/Decline; таймаути — змінні середовища `DIRECTIVE_TIMEOUT_HOURS` / `DIRECTIVE_TIMEOUT_APPLY_KINDS` / `DIRECTIVE_CONTEST_TIMEOUT_HOURS` (їх немає в `.env.example`; як і `EDITOR_ORCHESTRATION`, `PROMO_HASH_SALT`, `PUBLIC_BASE_URL`).
 - Директива структурна в shadow-режимі лишається `awaiting_owner` без Inbox-повідомлення й без таймауту (`NOT shadow`); у колонці «Awaiting you» вона виглядає як звичайна.
 - У Reviews показано лише останні 50 записів (макс. 200), без пагінації; при 4 прогонах на день близько половини можуть бути `skipped`.
 - Метрика `transitions` у дайджесті — це лише приєднання/кліки по tracked links (`link_joins` за `target_ref`); органічних переходів між ресурсами дайджест не бачить.
 - Memory-вкладка не показує `agent_memory` MANAGER (див. §3.5).
 
-**Відкриті питання до власника.** Чи треба детермінований виконавець для `frequency`/`format_shift`/`pause_*`? Чи залишати `shadow`-директиви в колонці «Awaiting you»?
+**Відкриті питання до власника.** Чи залишати `shadow`-директиви в колонці «Awaiting you»? (Питання про детермінованих виконавців вирішено спекою 025.)
 
 ### 3.13 Inbox агентів — `/app/agents/inbox`
 
@@ -501,10 +506,11 @@
 **Бізнес-вимоги (as-is).**
 - `BR-AGT-100` Сторінка показує повідомлення від новіших до старших і за замовчуванням лише непрочитані; «All» показує до 200 останніх.
 - `BR-AGT-101` Кожне повідомлення (`OwnerInbox.post`) зберігається в `agent_inbox` і додатково шлеться власнику в адмін-бот Telegram як алерт із емодзі за severity та (при заданому `DASHBOARD_URL`) лінком на цю сторінку; збій алерта не скасовує запис.
-- `BR-AGT-102` Види повідомлень у коді: `skill_self_edit` (info), `skill_rolled_back` (info), `go_live` (action), `playbook_pending` (action), `playbook_updated` (info), `network_mode` (info), `directive_structural` (action), `resource_health` (critical або action для `token_expiring`).
+- `BR-AGT-102` Види повідомлень у коді: `skill_self_edit` (info), `skill_rolled_back` (info), `go_live` (action), `playbook_pending` (action), `playbook_updated` (info), `network_mode` (info), `directive_structural` (action), `resource_health` (critical або action для `token_expiring`); спека 025: `directive_contested` (action), `directive_auto_applied` (info), `directive_ignored` (action), `directive_expired` (info), `directive_failed` (action / info для поради), `resource_paused` і `resource_resumed` (info).
 - `BR-AGT-103` `resource_health` створюється лише при переході ресурсу в поганий стан (`no_access`, `token_invalid`, `token_expiring`, `rate_limited`), один раз на зміну стану.
 - `BR-AGT-104` «Mark all read» вимкнена, коли непрочитаних 0; позначка прочитаного виставляє `read_at`.
 - `BR-AGT-105` Лінк «Open skills →» веде на `?tab=skills` агента; для запису з `refType=run` показується «Open run →» (`/app/editor/run/$id`).
+- `BR-AGT-111` Запис із `refType='directive'` (усі `directive_*`, а також `resource_paused` / `resource_resumed` від директиви) має лінк «Open directive →» («Decide on the directive →» для `directive_contested`) на `/app/agents/manager?tab=directives&directive=<id>`; запис паузи без директиви (`refType='resource'`) — «Open active effects →» на Overview оркестратора.
 
 **Бізнес-правила й обмеження.** Видалення повідомлень немає; ретенція не обмежена.
 
@@ -515,7 +521,7 @@
 **Звʼязки.** Адмін-бот Telegram, `/app/agents/$handle`, `/app/editor/run/$id`.
 
 **Спостереження «як фактично зараз».**
-- Для `playbook_pending`, `directive_structural`, `go_live`, `network_mode`, `resource_health` сторінка не має жодного лінку чи кнопки дії (лінки лише для `refType` skill і run): власник мусить вручну йти на вкладку Playbook / Directives / Overview.
+- Для `playbook_pending`, `go_live`, `network_mode`, `resource_health` сторінка не має жодного лінку чи кнопки дії (лінки є для `refType` skill, run, directive і пауз ресурсу): власник мусить вручну йти на вкладку Playbook / Overview.
 - Гілка `refType='run'` — мертвий код: жоден код не створює Inbox-запис з таким `refType`.
 - Запис `go_live` — це текст, не «картка» (спека 018 обіцяє картку «go live?»).
 - Бейдж на кнопці Inbox показує кількість непрочитаних, але не окремо `action`/`critical`.
