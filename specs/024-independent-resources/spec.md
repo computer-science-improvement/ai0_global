@@ -336,3 +336,27 @@ Duplication becomes a tool, and every resource gets its own time zone.
   (an owner setting) still applies. No fixed hashtag cut or caption trim existed in the agent path (`renderPlatform` trims only
   at the platform maximum); the strategies' caption helpers are legacy fan-out and stay (non-goal).
 - **Eval** `executor-format-prefs` (`evals/cases/agents.ts`) written, not run; the eval stack now wires derived slots.
+
+### T5 (2026-10-08)
+- **Storage:** migration `064_network_offers.sql` — one `network_offers` row per (group, kind) (idempotency of the
+  once-per-group step), with `status` open / switched / kept, `had_playbook` (offered with an active playbook?) and
+  `reoffered_at`. The Inbox item is `network_independent_offer` (`ref_type = 'network_group'`, `ref_id` = group id,
+  severity `action`); dashboard text English, the Telegram alert Ukrainian (as `network_mode`).
+- **Step:** `NetworkOffers.run()` (`network/network-offers.ts`), hourly cron `network-offers` (:29) in `AgentsUpkeep`.
+  Candidates are groups whose anchor channel (first `tracked_channels.channel_key`, as the gate) has a top-level
+  orchestrator; strategy-only groups have none and get nothing. Checklist: playbook (active / pending / none), orchestrator
+  mode (+ paused), enabled strategies on members (`strategy_bindings` by channel / Meta / TikTok member), auto-duplicate
+  source (`source_platform`), and the FR-010 shadow sentence.
+- **Re-offer:** once, when a group offered without a playbook gets an active one — immediately from the owner's approval
+  or playbook edit (`NetworkService.decide` / `putPlaybook`) and otherwise by the hourly step (covers every other path).
+- **Answers:** "Switch to independent" = `POST …/network-mode` (the offer becomes `switched`, the `network_mode` record is
+  written as before, and the gate rules decide when fan-out stops). "Keep auto-duplicate" = `POST /api/network-offers/:groupId/keep`
+  (`kept`, never offered again; the mode is untouched). An explicit `legacy_duplicate` via network-mode also answers an
+  open offer as kept; a group switched elsewhere (Playbook tab) closes its open offer as `switched` (`decided_by = 'mode_change'`).
+  `GET /api/network-offers` lists offers for the Inbox buttons.
+- **@ai0:** builder tool `set_network_mode {handle, mode}` (`network/network-mode-tool.ts`) proposes the pending action
+  `set_network_mode`; the handler (registered with `NETWORK_SERVICE`) runs `NetworkService.setMode`. The
+  `agent-onboarding` skill names it.
+- **Groups page (FR-009):** a member's enabled strategy in an `independent` group shows "Strategy <type> publishes into an
+  independent network on its own; retire it or keep the group on auto-duplicate" (the "009 T004" reference is left out
+  of the UI text). The group list (`SELECT *`) already carries `mode` and the pinned `auto_duplicate`.

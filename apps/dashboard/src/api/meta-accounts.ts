@@ -57,8 +57,17 @@ export interface MetaAccountGroup {
   id: string;
   name: string;
   created_at: string;
-  /** Which member platform mirrors content to the rest of the group when published to. */
+  /** The auto-duplicate source: posts published to it are duplicated to the rest of the group (legacy behaviour). */
   source_platform: GroupSourcePlatform;
+  /** Spec 024: `independent` (the network's agent decides per resource) | `legacy_duplicate`. */
+  mode?: 'independent' | 'legacy_duplicate';
+  /** Spec 024 FR-003: today's pinned auto-duplicate gate (null until first evaluated). */
+  auto_duplicate?: boolean | null;
+}
+
+/** Whether a group still auto-duplicates (FR-003): legacy, or independent with today's gate still on. */
+export function autoDuplicates(g: Pick<MetaAccountGroup, 'mode' | 'auto_duplicate'>): boolean {
+  return g.mode !== 'independent' || g.auto_duplicate !== false;
 }
 
 const GROUPS_KEY = ['meta-account-groups'];

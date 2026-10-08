@@ -233,6 +233,42 @@ export function useSetNetworkMode(handle: string) {
   });
 }
 
+// ── Spec 024 FR-010: offers to convert a legacy auto-duplicate network ──
+
+export type NetworkOfferStatus = 'open' | 'switched' | 'kept';
+
+export interface NetworkOffer {
+  groupId:     string;
+  groupName:   string | null;
+  agentId:     string | null;
+  status:      NetworkOfferStatus;
+  hadPlaybook: boolean;
+  inboxId:     number | null;
+  createdAt:   string;
+  reofferedAt: string | null;
+  decidedAt:   string | null;
+  decidedBy:   string | null;
+}
+
+export function useNetworkOffers(enabled = true) {
+  return useQuery({
+    queryKey: [...KEY, 'offers'],
+    queryFn:  () => api<{ offers: NetworkOffer[] }>('/api/network-offers'),
+    enabled,
+    retry:    false,
+  });
+}
+
+/** "Keep auto-duplicate": the offer is closed for good; the network stays legacy. */
+export function useKeepNetworkOffer() {
+  const qc = useQueryClient();
+  return useMutation({
+    meta: { silentError: true },
+    mutationFn: (groupId: string) => api<{ status: NetworkOfferStatus }>(`/api/network-offers/${enc(groupId)}/keep`, { method: 'POST' }),
+    onSettled: () => qc.invalidateQueries({ queryKey: [...KEY, 'offers'] }),
+  });
+}
+
 export interface ResourceLabel { platform: Platform | null; label: string; title: string }
 
 /**

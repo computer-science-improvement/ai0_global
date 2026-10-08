@@ -11,6 +11,7 @@ import { networkContext, NetworkContextDeps } from './network-context';
 import { IDEA_STATUSES, IdeaStatus, NETWORK_MODE_ALIASES, NETWORK_MODES, NetworkMode, NetworkRepository } from './network.repository';
 import { PlaybookSchema, validatePlaybook } from './playbook';
 import { lockOwnerSeries, normalizePlaybook, seriesSourceCatalog } from './series-edit';
+import type { NetworkOffers } from './network-offers';
 
 export interface NetworkServiceDeps {
   pool:     Pick<Pool, 'query'>;
@@ -24,6 +25,8 @@ export interface NetworkServiceDeps {
   rebuild:  (card: EditorCard, brief: string | null) => Promise<unknown>;
   log?:     (msg: string) => void;
   now?:     () => Date;
+  /** Spec 024 FR-010: offers to convert legacy auto-duplicate networks. */
+  offers?:  Pick<NetworkOffers, 'onPlaybookActive' | 'decide' | 'list' | 'run'>;
 }
 
 /** Owner surface of playbooks, the idea pool, network plans and network mode (spec 020 FR-010/FR-011). */
@@ -63,6 +66,7 @@ export class NetworkService {
   async decide(id: string, approve: boolean) {
     const pb = await this.d.repo.decidePlaybook(id, approve);
     if (!pb) throw new ConflictException({ error: 'not_pending', details: 'this version no longer awaits a decision' });
+    if (approve) await this.playbookActive(pb.agentId);
     return { playbook: pb };
   }
 
@@ -78,7 +82,35 @@ export class NetworkService {
     const errors = validatePlaybook(locked, net?.resources ?? [], net?.telegramFormats ?? [], { sources: await seriesSourceCatalog(this.d.pool, card) });
     if (errors.length) throw new BadRequestException({ error: 'playbook_invalid', details: errors });
     const pb = await this.d.repo.insertPlaybook({ agentId: agent.id, status: 'active', brief: null, body: locked, rationale: p.data.rationale ?? 'owner edit', createdBy: 'owner' });
+    await this.playbookActive(agent.id);
     return { playbook: pb };
+  }
+
+  /** Spec 024 FR-010: a legacy group offered without a playbook is offered again once its first playbook is active. */
+  private async playbookActive(agentId: string): Promise<void> {
+    await this.d.offers?.onPlaybookActive(agentId).catch((err) => this.d.log?.(`network offer after playbook failed: ${err?.message ?? err}`));
+  }
+
+  /** Spec 024 FR-010: every offer to convert a legacy network, with the owner's answer. */
+  async offers() {
+    return { offers: this.d.offers ? await this.d.offers.list() : [] };
+  }
+
+  /** The once-per-group housekeeping step (hourly cron). */
+  async runOffers() {
+    return this.d.offers ? this.d.offers.run() : [];
+  }
+
+  /** "Keep auto-duplicate": the group stays legacy_duplicate and is never offered again. */
+  async keepOffer(groupId: string) {
+    if (!this.d.offers) throw new NotFoundException({ error: 'offer_not_found' });
+    const ok = await this.d.offers.decide(groupId, 'kept', 'owner');
+    if (!ok) {
+      const cur = (await this.d.offers.list()).find((o) => o.groupId === groupId);
+      if (!cur) throw new NotFoundException({ error: 'offer_not_found' });
+      return { status: cur.status };
+    }
+    return { status: 'kept' as const };
   }
 
   async rebuild(handle: string, body: unknown) {
@@ -149,6 +181,9 @@ export class NetworkService {
     if (!group) throw new BadRequestException({ error: 'no_network', details: 'the channel is not in an account group (/app/connections/groups)' });
     const now = (this.d.now ?? (() => new Date()))();
     await this.d.repo.setGroupMode(group.id, mode, now);
+    // Spec 024 FR-010: switching answers an open offer; explicitly choosing legacy keeps it.
+    await this.d.offers?.decide(group.id, mode === 'independent' ? 'switched' : 'kept', 'owner')
+      .catch((err) => this.d.log?.(`network offer update failed: ${err?.message ?? err}`));
     const hasPlaybook = !!(await this.d.repo.activePlaybook(agent.id));
     const independent = mode === 'independent';
     await this.d.inbox.post({

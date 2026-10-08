@@ -57,6 +57,8 @@ interface PortData {
   collision?: Collision;
   /** Pause a conflicting strategy (the one-click resolve). */
   onPause?: (id: string) => void;
+  /** Spec 024 FR-009: enabled strategies of this member in an independent network (they publish on their own). */
+  ownStrategies?: string[];
 }
 
 export function MetaGroupsManager() {
@@ -109,8 +111,10 @@ export function MetaGroupsManager() {
 
   // Build the four ports for a group: Telegram, then Facebook, IG, Threads.
   // The source port is driven by g.source_platform (not hardcoded to Facebook).
-  const portsFor = (g: { id: string; source_platform: GroupSourcePlatform }): PortData[] => {
+  const portsFor = (g: { id: string; source_platform: GroupSourcePlatform; mode?: 'independent' | 'legacy_duplicate' }): PortData[] => {
     const groupId = g.id;
+    const independent = g.mode === 'independent';
+    const typesOf = (list: Array<{ type: string }>) => independent && list.length ? [...new Set(list.map((s) => s.type))] : undefined;
     const ch  = allChannels.find(c => c.groupId === groupId) ?? null;
     const isTgSource = g.source_platform === 'telegram';
     const onPause = (id: string) => patchStrategy.mutate({ id, patch: { enabled: false } });
@@ -144,6 +148,7 @@ export function MetaGroupsManager() {
       // Telegram is a fan-out target (not source) but also has its own strategy.
       collision: (!isTgSource && ch) ? collisionFor(stratsForChannel(ch.id).map(toSched)) : undefined,
       onPause,
+      ownStrategies: ch ? typesOf(stratsForChannel(ch.id)) : undefined,
     };
     const metaPorts = PLATFORMS.map<PortData>(platform => {
       const acc = allAccounts.find(a => a.group_id === groupId && a.platform === platform) ?? null;
@@ -158,6 +163,7 @@ export function MetaGroupsManager() {
         // Non-source Meta member that also has its own enabled strategy.
         collision: (!isSource && acc) ? collisionFor(stratsForMeta(acc.id).map(toSched)) : undefined,
         onPause,
+        ownStrategies: acc ? typesOf(stratsForMeta(acc.id)) : undefined,
       };
     });
     return [tg, ...metaPorts];
@@ -323,6 +329,13 @@ function Port({ port, busy }: { port: PortData; busy: boolean }) {
           <span>No bot — this channel can't send or receive group posts.</span>
         </div>
       )}
+
+      {port.ownStrategies?.map((type) => (
+        <div key={type} className="callout-warning" style={{ marginTop: 8, padding: '7px 10px', gap: 8, fontSize: 11 }}>
+          <Icon name="warning" size={13} />
+          <span>Strategy {type} publishes into an independent network on its own; retire it or keep the group on auto-duplicate.</span>
+        </div>
+      ))}
 
       {port.collision && (
         <div style={{
