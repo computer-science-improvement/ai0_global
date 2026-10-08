@@ -36,7 +36,7 @@ interface RetentionPolicy {
 interface ScrubColumn {
   name:  string;
   /** SQL literal: NULL for nullable text, `'{}'::jsonb` for NOT NULL jsonb. */
-  empty: 'NULL' | "'{}'::jsonb";
+  empty: 'NULL' | "'{}'::jsonb" | "'[]'::jsonb";
 }
 
 interface ScrubPolicy {
@@ -46,6 +46,10 @@ interface ScrubPolicy {
   columns: ScrubColumn[];
   envDays: string;
   defaultDays: number;
+  /** Extra row filter (a fixed SQL predicate from this file, never user input). */
+  where?: string;
+  /** A timestamp column stamped with now() when the row is scrubbed. */
+  stamp?: string;
 }
 
 export const RETENTION_POLICIES: RetentionPolicy[] = [
@@ -81,13 +85,19 @@ export const SCRUB_POLICIES: ScrubPolicy[] = [
   // is fresh; every re-discovery rewrites it anyway. NOT NULL → reset to '{}'.
   { table: 'candidate_channels',  col: 'last_seen_at',    envDays: 'CANDIDATE_RAW_PAYLOAD_RETENTION_DAYS',  defaultDays: 30,
     columns: [{ name: 'raw_payload', empty: "'{}'::jsonb" }] },
+  // Landing leads (spec 026 FR-011): a lost or spam lead keeps its row (status, contact
+  // for dedup history, dates) but loses the message and the resource links after 180 d.
+  { table: 'landing_leads',       col: 'updated_at',      envDays: 'LANDING_LEAD_PURGE_DAYS',               defaultDays: 180,
+    where: "status IN ('lost','spam')", stamp: 'purged_at',
+    columns: [{ name: 'message', empty: 'NULL' }, { name: 'resources', empty: "'[]'::jsonb" }] },
 ];
 
 /** UPDATE that blanks a scrub policy's columns on rows past the window that still hold data. */
-function scrubSql(p: ScrubPolicy): string {
-  const set   = p.columns.map(c => `${c.name} = ${c.empty}`).join(', ');
+export function scrubSql(p: ScrubPolicy): string {
+  const set   = [...p.columns.map(c => `${c.name} = ${c.empty}`), ...(p.stamp ? [`${p.stamp} = now()`] : [])].join(', ');
   const dirty = p.columns.map(c => `${c.name} IS DISTINCT FROM ${c.empty}`).join(' OR ');
-  return `UPDATE ${p.table} SET ${set} WHERE ${p.col} < now() - ($1 * interval '1 day') AND (${dirty})`;
+  const extra = p.where ? ` AND (${p.where})` : '';
+  return `UPDATE ${p.table} SET ${set} WHERE ${p.col} < now() - ($1 * interval '1 day')${extra} AND (${dirty})`;
 }
 
 @Injectable()

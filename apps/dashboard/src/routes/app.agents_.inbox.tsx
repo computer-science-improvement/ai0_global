@@ -109,6 +109,11 @@ function InboxPage() {
                         {agent && it.kind === NETWORK_OFFER_KIND && it.refId && (
                           <NetworkOfferActions groupId={it.refId} handle={agent.handle} onDone={() => { if (!it.readAt) mark.mutate([it.id]); }} />
                         )}
+                        {it.kind === 'landing_lead' && (
+                          <Link to="/app/landing" search={{ tab: 'leads' }} className="link-accent text-micro" style={{ display: 'inline-block', marginTop: 4 }}>
+                            Open leads →
+                          </Link>
+                        )}
                         {it.refType === 'run' && it.refId && (
                           <Link to="/app/editor/run/$id" params={{ id: it.refId }} className="link-accent text-micro" style={{ display: 'inline-block', marginTop: 4 }}>
                             Open run →

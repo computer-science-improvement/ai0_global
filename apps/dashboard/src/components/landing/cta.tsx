@@ -74,17 +74,31 @@ export function NoTelegramLink({ placement, target, className }: {
   );
 }
 
-/** The pair most placements use: the DM button plus the form link under it. */
+/**
+ * The pair most placements use: the DM button plus the "No Telegram?" form link under it.
+ * Without a DM account the form is the only way, so it becomes the main button.
+ */
 export function AdCtaPair({ href, placement, target, label = 'Order an ad in Telegram', className = 'lp-hero-cta-primary' }: {
   href: string | null | undefined; placement: LandingPlacement; target?: string | null; label?: string; className?: string;
-}): JSX.Element {
+}): JSX.Element | null {
+  const { track, openAdForm } = useLandingCta();
+  if (!href) {
+    if (!openAdForm) return null;
+    return (
+      <button
+        type="button"
+        className={`${className} lp-cta-button`}
+        onClick={() => { track('ad_form', placement); openAdForm({ placement, target }); }}
+      >
+        Request an ad placement
+      </button>
+    );
+  }
   return (
     <span className="lp-cta-pair">
-      {href && (
-        <AdDmLink href={href} placement={placement} className={className}>
-          <Icon name="telegram" size={15} /> {label}
-        </AdDmLink>
-      )}
+      <AdDmLink href={href} placement={placement} className={className}>
+        <Icon name="telegram" size={15} /> {label}
+      </AdDmLink>
       <NoTelegramLink placement={placement} target={target} />
     </span>
   );

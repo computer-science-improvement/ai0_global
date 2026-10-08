@@ -9,7 +9,7 @@ import { useLandingCtaStats } from '../../api/landing';
 const PLACEMENT_LABEL: Record<string, string> = {
   hero: 'Hero', topbar: 'Top bar', network: 'Network block', resource: 'Channel card',
   mediakit: 'Media kit', advertise: 'Advertise block', footer: 'Footer', howitworks: 'How it works',
-  white_label: 'White-label page', unknown: 'Unknown',
+  whitelabel: 'White-label section/page', unknown: 'Unknown',
 };
 
 const rate = (num: number, den: number) => (den > 0 ? `${Math.round((num / den) * 100)}%` : '—');

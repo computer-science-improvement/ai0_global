@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { MotionConfig, motion } from 'motion/react';
 import { Icon } from '../components/ui/Icon';
 import { NetworkShowcase } from '../components/landing/NetworkShowcase';
@@ -8,6 +8,10 @@ import { ProofStrip } from '../components/landing/ProofStrip';
 import { AgentHierarchy } from '../components/landing/AgentHierarchy';
 import { HowItWorks } from '../components/landing/HowItWorks';
 import { AdCtaPair, AdDmLink, LandingCtaProvider, NoTelegramLink, sendCtaBeacon, type LandingCtaApi } from '../components/landing/cta';
+import { AdLeadModal } from '../components/landing/LeadForms';
+import { WhiteLabelSection } from '../components/landing/WhiteLabel';
+import { whiteLabelVisible } from '../lib/lead-form';
+import type { LandingPlacement } from '../api/landing';
 import { useLandingNetworks, useLandingPublicConfig, useLandingPulse } from '../api/landing';
 import { audienceStats, compact, heroPill, heroPlatforms } from '../lib/landing-view';
 
@@ -64,8 +68,12 @@ function LandingPage() {
   const platforms = heroPlatforms(networks, livePulse);
   const managerLive = livePulse?.claims.managerLive ?? false;
   const adUrls = config?.adDm.available ? config.adDm.urls : {};
-  // Spec 026 FR-009: clicks on the public page are counted (anonymous beacon).
-  const cta: LandingCtaApi = { track: sendCtaBeacon, openAdForm: null };
+  // Spec 026 FR-012: the white-label section and links exist only while the flag is on.
+  const whiteLabel = whiteLabelVisible(config);
+  // Spec 026 FR-009/FR-011: clicks on the public page are counted (anonymous beacon), and
+  // every ad CTA can open the "No Telegram?" request form with its target prefilled.
+  const [adForm, setAdForm] = useState<{ placement: LandingPlacement; target?: string | null } | null>(null);
+  const cta: LandingCtaApi = { track: sendCtaBeacon, openAdForm: setAdForm };
 
   return (
     <MotionConfig reducedMotion="user">
@@ -146,6 +154,11 @@ function LandingPage() {
               : <a href="#advertise" className="lp-hero-cta-secondary">Advertise with us</a>}
           </motion.div>
           {adUrls.hero && <NoTelegramLink placement="hero" />}
+          {whiteLabel && (
+            <a href="#white-label" className="lp-hero-wl" onClick={() => sendCtaBeacon('white_label', 'hero')}>
+              White label for your own resources <span aria-hidden>→</span>
+            </a>
+          )}
 
           {/* Who runs it, drawn from live data: MANAGER → networks → roles → platforms. */}
           <motion.div
@@ -227,16 +240,24 @@ function LandingPage() {
               </p>
               {/* Media kit: live channel stats + the current price list (renders only when prices exist). */}
               <MediaKit />
-              {adUrls.advertise
-                ? <AdCtaPair href={adUrls.advertise} placement="advertise" />
-                : <p className="text-body-sm lp-ad-note">Ad booking opens here once the Telegram ad account is connected.</p>}
+              <AdCtaPair href={adUrls.advertise} placement="advertise" />
               <p className="text-micro lp-ad-note">
                 Replies are drafted by an AI assistant on the owner’s behalf, and the owner checks them before they are sent.
               </p>
             </div>
           </div>
         </motion.section>
+
+        {/* ── White label (FR-012), only while the flag is on ─────── */}
+        {whiteLabel && <WhiteLabelSection />}
       </main>
+
+      <AdLeadModal
+        open={adForm !== null}
+        onClose={() => setAdForm(null)}
+        placement={adForm?.placement ?? 'advertise'}
+        target={adForm?.target ?? null}
+      />
 
       {/* ── Footer ────────────────────────────────────────────── */}
       <footer className="lp-footer">
@@ -252,6 +273,7 @@ function LandingPage() {
           {adUrls.footer
             ? <AdDmLink href={adUrls.footer} placement="footer" className="lp-footer-link">Advertise</AdDmLink>
             : <a href="#advertise" className="lp-footer-link">Advertise</a>}
+          {whiteLabel && <a href="/white-label" className="lp-footer-link" onClick={() => sendCtaBeacon('white_label', 'footer')}>White label</a>}
           <a href="/app" className="lp-footer-link">Sign in</a>
         </span>
       </footer>
@@ -438,6 +460,13 @@ function LandingPage() {
           outline: 2px solid var(--color-accent); outline-offset: 2px; border-radius: var(--radius-sm);
         }
         .lp-hero > .lp-notg { margin-top: var(--space-sm); }
+        .lp-cta-button { border: 0; cursor: pointer; font-family: inherit; min-height: 44px; }
+        .lp-cta-button:focus-visible, .lp-hero-wl:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; }
+        .lp-hero-wl {
+          margin-top: var(--space-md); display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 8px 4px;
+          color: var(--color-accent); font-size: 14px; font-weight: 500; text-decoration: none;
+        }
+        .lp-hero-wl:hover { text-decoration: underline; text-underline-offset: 3px; opacity: 1; }
 
         .lp-footer {
           display: flex; align-items: center; justify-content: space-between; gap: var(--space-lg);

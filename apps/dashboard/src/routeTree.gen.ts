@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WhiteLabelRouteImport } from './routes/white-label'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as AppRouteImport } from './routes/app'
 import { Route as IndexRouteImport } from './routes/index'
@@ -52,6 +53,11 @@ import { Route as AppEditorSlotIdRouteImport } from './routes/app.editor_.slot.$
 import { Route as AppEditorRunIdRouteImport } from './routes/app.editor_.run.$id'
 import { Route as AppConnectionsMetaAccountIdRouteImport } from './routes/app.connections_.meta_.$accountId'
 
+const WhiteLabelRoute = WhiteLabelRouteImport.update({
+  id: '/white-label',
+  path: '/white-label',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
@@ -268,6 +274,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
   '/login': typeof LoginRoute
+  '/white-label': typeof WhiteLabelRoute
   '/app/ads': typeof AppAdsRoute
   '/app/agent': typeof AppAgentRoute
   '/app/agents': typeof AppAgentsRoute
@@ -311,6 +318,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
+  '/white-label': typeof WhiteLabelRoute
   '/app/ads': typeof AppAdsRoute
   '/app/agent': typeof AppAgentRoute
   '/app/agents': typeof AppAgentsRoute
@@ -356,6 +364,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/app': typeof AppRouteWithChildren
   '/login': typeof LoginRoute
+  '/white-label': typeof WhiteLabelRoute
   '/app/ads': typeof AppAdsRoute
   '/app/agent': typeof AppAgentRoute
   '/app/agents': typeof AppAgentsRoute
@@ -402,6 +411,7 @@ export interface FileRouteTypes {
     | '/'
     | '/app'
     | '/login'
+    | '/white-label'
     | '/app/ads'
     | '/app/agent'
     | '/app/agents'
@@ -445,6 +455,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/login'
+    | '/white-label'
     | '/app/ads'
     | '/app/agent'
     | '/app/agents'
@@ -489,6 +500,7 @@ export interface FileRouteTypes {
     | '/'
     | '/app'
     | '/login'
+    | '/white-label'
     | '/app/ads'
     | '/app/agent'
     | '/app/agents'
@@ -534,11 +546,19 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AppRoute: typeof AppRouteWithChildren
   LoginRoute: typeof LoginRoute
+  WhiteLabelRoute: typeof WhiteLabelRoute
   ReportTokenRoute: typeof ReportTokenRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/white-label': {
+      id: '/white-label'
+      path: '/white-label'
+      fullPath: '/white-label'
+      preLoaderRoute: typeof WhiteLabelRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/login': {
       id: '/login'
       path: '/login'
@@ -924,6 +944,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AppRoute: AppRouteWithChildren,
   LoginRoute: LoginRoute,
+  WhiteLabelRoute: WhiteLabelRoute,
   ReportTokenRoute: ReportTokenRoute,
 }
 export const routeTree = rootRouteImport

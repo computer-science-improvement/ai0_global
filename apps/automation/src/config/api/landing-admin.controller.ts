@@ -16,7 +16,8 @@ import { PatchLandingDto } from './dto/landing.dto';
 import {
   networkPatchIssues, type LandingAdminNetwork, type LandingNetwork, type LandingNetworksService,
 } from '../landing-networks.service';
-import { LANDING_CONFIG, LANDING_CTA, LANDING_NETWORKS } from './landing.controller';
+import { LANDING_CONFIG, LANDING_CTA, LANDING_LEADS, LANDING_NETWORKS } from './landing.controller';
+import type { LandingLeadRow, LandingLeadsService } from '../landing-leads.service';
 import type { CtaStats, LandingCtaService } from '../landing-cta.service';
 
 const PLATFORMS: readonly LandingPlatform[] = LANDING_PLATFORMS;
@@ -35,7 +36,24 @@ export class LandingAdminController {
     @Inject(LANDING_CONFIG) private readonly config: LandingConfigService,
     @Optional() @Inject(LANDING_NETWORKS) private readonly networks?: LandingNetworksService,
     @Optional() @Inject(LANDING_CTA) private readonly cta?: LandingCtaService,
+    @Optional() @Inject(LANDING_LEADS) private readonly leads?: LandingLeadsService,
   ) {}
+
+  /** Spec 026 FR-015: leads from the public forms; `?kind=ad|white_label&status=…` (spam only when asked for). */
+  @Get('leads')
+  listLeads(@Query('kind') kind?: string, @Query('status') status?: string, @Query('limit') limit?: string): Promise<LandingLeadRow[]> {
+    if (!this.leads) throw new NotFoundException('leads are not available');
+    return this.leads.list({ kind, status, limit });
+  }
+
+  /** `{status?, ownerNote?}`; 400 `invalid_lead_patch`, 404 for an unknown lead. Declared before `:platform/:id`. */
+  @Patch('leads/:id')
+  async patchLead(@Param('id') id: string, @Body() body: Record<string, unknown>): Promise<LandingLeadRow> {
+    if (!this.leads) throw new NotFoundException('leads are not available');
+    const row = await this.leads.patch(id, body);
+    if (!row) throw new NotFoundException('unknown lead');
+    return row;
+  }
 
   /** Spec 026 FR-015: CTA clicks per placement over `days` (default 30) against landing-tagged DM threads and leads. */
   @Get('cta-stats')

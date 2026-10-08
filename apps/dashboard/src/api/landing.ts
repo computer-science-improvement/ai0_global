@@ -1,5 +1,6 @@
 import { keepPreviousData, useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { api } from './client';
+import { API_BASE } from '../lib/env';
 
 export type LandingPlatform = 'telegram' | 'instagram' | 'facebook' | 'threads' | 'tiktok' | 'youtube';
 export interface LandingResource {
@@ -15,7 +16,7 @@ export interface LandingAdminResource extends LandingResource { id: string; land
 
 // ── Spec 026: public page config (FR-002), DM link preview (FR-003), live pulse (FR-004) ──
 
-export type LandingPlacement = 'hero' | 'topbar' | 'network' | 'resource' | 'mediakit' | 'advertise' | 'footer' | 'howitworks';
+export type LandingPlacement = 'hero' | 'topbar' | 'network' | 'resource' | 'mediakit' | 'advertise' | 'footer' | 'howitworks' | 'whitelabel';
 export type LandingNetworkPlacement = 'hero' | 'topbar' | 'advertise' | 'footer' | 'howitworks';
 
 /** GET /api/landing/config (public). The links are ready to use: the page has no template logic. */
@@ -112,6 +113,88 @@ export interface CtaStats {
   untaggedAdThreads: number;
 }
 
+// ── Spec 026 FR-011/FR-015: leads from the public forms ──
+
+export type LeadKind = 'ad' | 'white_label';
+export type LeadStatus = 'new' | 'contacted' | 'qualified' | 'won' | 'lost' | 'spam';
+export type LeadPlatform = 'telegram' | 'instagram' | 'facebook' | 'threads' | 'tiktok' | 'youtube' | 'other';
+export type AudienceSize = 'lt_10k' | '10k_100k' | '100k_1m' | 'gt_1m' | 'unknown';
+export type ServiceMode = 'dedicated' | 'consult' | 'unsure';
+
+/** POST /api/landing/leads body. `website` is the honeypot (always empty for people). */
+export interface LeadSubmission {
+  kind: LeadKind;
+  name?: string;
+  contact: string;
+  message?: string;
+  consent: boolean;
+  placement?: LandingPlacement;
+  target?: string;
+  company?: string;
+  resources?: string[];
+  platforms?: LeadPlatform[];
+  audienceSize?: AudienceSize;
+  serviceMode?: ServiceMode;
+  utm?: Record<string, string>;
+  website: string;
+  elapsedMs: number;
+}
+
+/** What the forms show after a failed submit. */
+export type LeadSubmitError =
+  | { type: 'invalid'; issues: Array<{ path: string; message: string }> }
+  | { type: 'rate_limited' }
+  | { type: 'disabled' }
+  | { type: 'unavailable'; adDmUrl: string | null };
+
+/**
+ * Public submit with typed errors (the shared `api()` helper would only give text).
+ * Never sends cookies: the forms are anonymous.
+ */
+export async function submitLead(body: LeadSubmission): Promise<{ ok: true } | { ok: false; error: LeadSubmitError }> {
+  let res: Response;
+  try {
+    res = await fetch(`${API_BASE}/api/landing/leads`, {
+      method: 'POST', credentials: 'omit', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body),
+    });
+  } catch {
+    return { ok: false, error: { type: 'unavailable', adDmUrl: null } };
+  }
+  if (res.ok) return { ok: true };
+  let data: Record<string, unknown> = {};
+  try { data = (await res.json()) as Record<string, unknown>; } catch { /* non-JSON */ }
+  if (res.status === 400 && Array.isArray(data.issues)) return { ok: false, error: { type: 'invalid', issues: data.issues as Array<{ path: string; message: string }> } };
+  if (res.status === 429) return { ok: false, error: { type: 'rate_limited' } };
+  if (res.status === 403) return { ok: false, error: { type: 'disabled' } };
+  return { ok: false, error: { type: 'unavailable', adDmUrl: typeof data.adDmUrl === 'string' ? data.adDmUrl : null } };
+}
+
+/** A lead as the owner sees it (GET /api/landing/admin/leads). */
+export interface LandingLead {
+  id: string;
+  kind: LeadKind;
+  status: LeadStatus;
+  name: string | null;
+  contact: string;
+  contactKind: 'telegram' | 'email' | 'phone' | 'other' | null;
+  company: string | null;
+  resources: string[];
+  platforms: LeadPlatform[] | null;
+  audienceSize: AudienceSize | null;
+  serviceMode: ServiceMode | null;
+  target: string | null;
+  message: string | null;
+  placement: string | null;
+  utm: Record<string, string> | null;
+  ownerNote: string | null;
+  notifiedAt: string | null;
+  purgedAt: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+export interface LeadFilter { kind?: LeadKind; status?: LeadStatus }
+export interface LeadPatch { status?: LeadStatus; ownerNote?: string | null }
+
 export const landingApi = {
   resources: () => api<LandingResource[]>('/api/landing/resources'),
   adminList: () => api<LandingAdminResource[]>('/api/landing/admin'),
@@ -124,6 +207,15 @@ export const landingApi = {
   patchNetwork: (groupId: string, patch: LandingNetworkPatch) =>
     api<{ ok: true }>(`/api/landing/admin/network/${encodeURIComponent(groupId)}`, { method: 'PATCH', body: JSON.stringify(patch) }),
   adminConfig: () => api<LandingAdminConfig>('/api/landing/admin/config'),
+  leads: (f: LeadFilter = {}) => {
+    const q = new URLSearchParams();
+    if (f.kind) q.set('kind', f.kind);
+    if (f.status) q.set('status', f.status);
+    const qs = q.toString();
+    return api<LandingLead[]>(`/api/landing/admin/leads${qs ? `?${qs}` : ''}`);
+  },
+  patchLead: (id: string, patch: LeadPatch) =>
+    api<LandingLead>(`/api/landing/admin/leads/${encodeURIComponent(id)}`, { method: 'PATCH', body: JSON.stringify(patch) }),
   ctaStats: (days = 30) => api<CtaStats>(`/api/landing/admin/cta-stats?days=${days}`),
   saveConfig: (patch: LandingConfigPatch) =>
     api<LandingAdminConfig>('/api/landing/admin/config', { method: 'PUT', body: JSON.stringify(patch) }),
@@ -156,6 +248,18 @@ export function usePatchLandingNetwork() {
       qc.invalidateQueries({ queryKey: ['landing', 'admin', 'networks'] });
       qc.invalidateQueries({ queryKey: ['landing', 'networks'] });
     },
+  });
+}
+
+export function useLandingLeads(f: LeadFilter) {
+  return useQuery({ queryKey: ['landing', 'admin', 'leads', f], queryFn: () => landingApi.leads(f) });
+}
+
+export function usePatchLead() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: ({ id, patch }: { id: string; patch: LeadPatch }) => landingApi.patchLead(id, patch),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ['landing', 'admin', 'leads'] }),
   });
 }
 
