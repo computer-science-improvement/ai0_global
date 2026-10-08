@@ -31,8 +31,8 @@ Each feature directory has `spec.md` (what and why), `plan.md` (how, plus Consti
 | 020 | [Playbook, ideas, day planner](020-playbook-ideas-planner/spec.md): brief → playbook, series, idea reviewer, network plan | P1 | 017, 019 | DONE (shadow-safe; owner verifies live) |
 | 021 | [MANAGER and directives](021-manager-directives/spec.md): KPI digest, directives, owner cards, effect evaluation | P1 | 020 | DONE (shadow-safe; owner verifies live) |
 | 022 | [Network cross-promo](022-network-cross-promo/spec.md): own-resource promo and reposts, tracked links, transitions KPI | P2 | 021 | DONE (shadow-safe; owner verifies live) |
-| 023 | [Agent-owned content](023-agent-owned-content/spec.md): strategies become agent tools, the agent sets the schedule (chat, manual override), content ledger (Linear AI0-17) | P1 | 009, 018, 020, 021 | IN PROGRESS (T1–T5 done) |
-| 024 | [Independent resources](024-independent-resources/spec.md): per-resource duplicate / adapt / unique decisions and per-resource time zones (AI0-25) | P1 | 019, 020, 021 | IN PROGRESS (T1–T4, T8 done) |
+| 023 | [Agent-owned content](023-agent-owned-content/spec.md): strategies become agent tools, the agent sets the schedule (chat, manual override), content ledger (Linear AI0-17) | P1 | 009, 018, 020, 021 | IN PROGRESS (T1–T5 done, T6–T7 in progress) |
+| 024 | [Independent resources](024-independent-resources/spec.md): per-resource duplicate / adapt / unique decisions and per-resource time zones (AI0-25) | P1 | 019, 020, 021 | IN PROGRESS (T1–T4, T8 done, T5–T7 in progress) |
 | 025 | [MANAGER directive vs advice](025-manager-directive-vs-advice/spec.md): binding directives vs optional advice, code executors per directive kind (AI0-33) | P2 | 020, 021, 022 | SPEC |
 | 026 | [Landing: AI network + white label](026-landing-ai-network-white-label/spec.md): AI-run network positioning, white-label offer, ads via Telegram DM (AI0-41) | P2 | 008, 017–022 | SPEC |
 | 027 | [Navigation constructor](027-navigation-constructor/spec.md): menu constructor, badges, IA cleanup; `ui.nav` in app_settings (AI0-9) | P2 | 017, 018, 021 | DONE |
@@ -41,6 +41,7 @@ Each feature directory has `spec.md` (what and why), `plan.md` (how, plus Consti
 | 030 | [YouTube + LinkedIn](030-youtube-linkedin/spec.md): Shorts via the video bridge with quota, LinkedIn pages and 5 formats (AI0-56) | P3 | 016, 019, 020 | SPEC (future) |
 | 031 | [Approval mode](031-approval-mode/spec.md): every agent post waits for the owner while a resource is tested; default for new resources, switch to autonomous per resource | P1 | 010, 017–020 | DONE (023/024 hooks in approval-policy.ts) |
 | 032 | [Unified data store](032-unified-data-store/spec.md): one `data_items` table + editable `data_schemas`, CSV/JSON import without migrations, agents read schemas first | P1 | — | DONE (eval executor-picks-dataset not run yet) |
+| 033 | [Telegram rich messages](033-telegram-rich-messages/spec.md): headings, lists, tables, formulas via Bot API 10.1 `sendRichMessage`, HTML fallback, agent control via `format_prefs.rich` | P2 | 004, 019, 024, 031 | IN PROGRESS |
 
 Suggested order for the next wave: 012 → 011 (phases 0–1) → 015 → 013 → 014; 016 is independent.
 
