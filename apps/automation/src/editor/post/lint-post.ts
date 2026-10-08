@@ -1,8 +1,9 @@
 import type { EditorCard } from '../card';
 import { MAX_BLOCKS, PostSpec, SUPPORTED_FORMATS } from './post-spec';
 import { inlineToPlain, visibleLength } from './inline-markup';
-import { blockWords, countBlocks } from './blocks';
-import { CAPTION_LIMIT, TEXT_LIMIT, normalizeHashtag, renderTelegram } from './render-telegram';
+import { blockWords, countBlocks, usesRichBlocks } from './blocks';
+import { CAPTION_LIMIT, RICH_FORMATS, TEXT_LIMIT, normalizeHashtag, renderTelegram, type RenderCard, type TgMessage } from './render-telegram';
+import { RICH_MAX_BLOCKS, RICH_MAX_CHARS, RICH_MAX_DEPTH, richStats } from './render-rich';
 
 export interface LintIssue { code: string; message: string }
 export interface LintResult { ok: boolean; errors: LintIssue[]; warnings: LintIssue[] }
@@ -54,7 +55,7 @@ function cyrillicShare(text: string): number {
   return cyr / letters.length;
 }
 
-type LintCard = Pick<EditorCard, 'formats' | 'hashtags' | 'hashtagMin' | 'hashtagMax' | 'footer' | 'linkStyle' | 'emojiPolicy' | 'bannedTerms' | 'language'>;
+type LintCard = Pick<EditorCard, 'formats' | 'hashtags' | 'hashtagMin' | 'hashtagMax' | 'footer' | 'linkStyle' | 'emojiPolicy' | 'bannedTerms' | 'language'> & RenderCard;
 
 export function lintPost(spec: PostSpec, card: LintCard): LintResult {
   const errors: LintIssue[] = [];
@@ -140,10 +141,20 @@ export function lintPost(spec: PostSpec, card: LintCard): LintResult {
   }
   if (errors.every((e) => e.code !== 'format_not_supported_yet' && e.code !== 'poll_missing')) {
     const rendered = renderTelegram(spec, card);
-    for (const m of rendered.messages) {
-      if (m.method === 'sendMessage' && visibleLength(m.text) > TEXT_LIMIT) err('too_long', `текст ${visibleLength(m.text)} > ${TEXT_LIMIT} символів`);
+    // A rich message is checked against the Bot API limits, and its HTML fallback like any HTML message (spec 033).
+    const checked: TgMessage[] = rendered.messages.flatMap((m): TgMessage[] => (m.method === 'sendRichMessage' ? [m, m.fallback] : [m]));
+    for (const m of checked) {
+      if (m.method === 'sendRichMessage') {
+        const st = richStats(m.blocks);
+        if (st.chars > RICH_MAX_CHARS) err('too_long', `rich-повідомлення ${st.chars} > ${RICH_MAX_CHARS} символів`);
+        if (st.blocks > RICH_MAX_BLOCKS) err('too_many_blocks', `rich-повідомлення: ${st.blocks} блоків > ${RICH_MAX_BLOCKS}`);
+        if (st.depth > RICH_MAX_DEPTH) err('too_deep', `rich-повідомлення: вкладеність ${st.depth} > ${RICH_MAX_DEPTH}`);
+        continue;
+      }
+      const fb = rendered.messages.some((r) => r.method === 'sendRichMessage' && r.fallback === m) ? ' (HTML-резерв rich-поста)' : '';
+      if (m.method === 'sendMessage' && visibleLength(m.text) > TEXT_LIMIT) err('too_long', `текст ${visibleLength(m.text)} > ${TEXT_LIMIT} символів${fb}`);
       if (m.method === 'sendMediaGroup' && visibleLength(m.caption) > CAPTION_LIMIT) err('too_long', `підпис альбому ${visibleLength(m.caption)} > ${CAPTION_LIMIT}`);
-      if (m.method === 'sendVideo' && visibleLength(m.caption) > CAPTION_LIMIT) err('too_long', `підпис відео ${visibleLength(m.caption)} > ${CAPTION_LIMIT}`);
+      if (m.method === 'sendVideo' && visibleLength(m.caption) > CAPTION_LIMIT) err('too_long', `підпис відео ${visibleLength(m.caption)} > ${CAPTION_LIMIT}${fb}`);
     }
   }
   // ── rich blocks (spec 033) ────────────────────────────────────────────────
@@ -160,6 +171,13 @@ export function lintPost(spec: PostSpec, card: LintCard): LintResult {
   const bodyLen = bodyPlain(spec).length;
   if (spec.body.some((b) => b.type === 'table') && bodyLen < RICH_SHORT_TABLE) {
     warn('table_in_short_post', `таблиця в короткому пості (${bodyLen} < ${RICH_SHORT_TABLE} символів) — тут краще звичайний текст або список`);
+  }
+  if (usesRichBlocks(spec.body) && !RICH_FORMATS.has(spec.format)) {
+    warn('rich_in_caption', `${spec.format}: підпис не може бути rich-повідомленням — заголовки, таблиці й формули стануть простим текстом`);
+  } else if (usesRichBlocks(spec.body) && (card.richPref === 'never' || card.richUnsupported)) {
+    warn('rich_off', card.richPref === 'never'
+      ? 'format_prefs.rich = never: заголовки, таблиці й формули підуть простим HTML-текстом'
+      : 'канал зараз не приймає rich-повідомлення: заголовки, таблиці й формули підуть простим HTML-текстом');
   }
   const headings = spec.body.filter((b) => b.type === 'heading').length;
   if (headings > 2 && bodyLen < RICH_SHORT_HEADINGS) {

@@ -37,6 +37,8 @@ export interface PublishedPost {
   postId:        number;
   preview:       string;
   partialError?: string;
+  /** Spec 033 FR-003: the rich message went out as its HTML fallback (the reason is in the warnings and the log). */
+  fallback?:     'html';
 }
 
 export type PublishSpecResult =
@@ -100,6 +102,7 @@ export async function sendRendered(
   d.recordPublish(channelKey);
   const published: PublishedPost = {
     messageId, postId, preview: r.rendered.preview, ...(sent.partialError ? { partialError: sent.partialError } : {}),
+    ...(sent.fallback ? { fallback: sent.fallback } : {}),
   };
   if (i.onPublished) await i.onPublished(published);
 
@@ -112,6 +115,8 @@ export async function sendRendered(
       mirrorWarnings = [`crosspost: ${err?.message ?? err}`];
     }
   }
+  // Spec 033 FR-003: the HTML fallback is recorded with the publish (callers store warnings on the slot).
+  if (sent.fallback) mirrorWarnings = [`rich_fallback: html (${sent.fallbackReason ?? 'rejected'})`, ...mirrorWarnings];
   return { ok: true, ...published, mirrorWarnings };
 }
 

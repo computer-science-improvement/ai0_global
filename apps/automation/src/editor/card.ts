@@ -68,6 +68,10 @@ export interface EditorCard {
   approvalHoldHours?: number;
   /** Spec 031: how long before its time a slot added after the evening batch is written. */
   approvalLeadHours?: number;
+  /** Spec 033: format_prefs.rich of `telegram:<channelKey>` (not a column; joined in on read). Absent = auto. */
+  richPref?:          'auto' | 'prefer' | 'never';
+  /** Spec 033 FR-003: Telegram rejected rich messages here as unsupported in the last 7 days (app_settings flag). */
+  richUnsupported?:   boolean;
 }
 
 /** What each platform can render natively — shown to agents with the card. */

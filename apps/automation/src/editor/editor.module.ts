@@ -30,6 +30,7 @@ import { DataStore } from '../data/data-store';
 import { EditorChannelsRepository } from './repo/editor-channels.repository';
 import { EditorPlansRepository } from './repo/editor-plans.repository';
 import { EditorMemoryRepository } from './repo/editor-memory.repository';
+import { PgRichCapability } from './publish/rich-capability';
 import { TelegramEditorPublisher } from './publish/telegram-editor.publisher';
 import { SponsoredPublisher } from './publish/sponsored.publisher';
 import { EditorMediaPreparer } from './publish/prepare-media';
@@ -561,6 +562,10 @@ export const EDITOR_PROVIDERS = [
         publisher: new TelegramEditorPublisher({
           resolveChannel:     (k) => channelConfig.resolveChannel(k),
           isPublishPausedFor: (k) => channelConfig.isPublishPausedFor(k),
+        }, undefined, {
+          // Spec 033 FR-003: a hard "rich unsupported" answer is remembered per channel for 7 days.
+          richCapability: new PgRichCapability(pool),
+          log: (m) => new Logger('TelegramEditorPublisher').warn(m),
         }),
         // Carousel slides and longread pages are produced only by a live publish (spec 009 T002).
         media: new EditorMediaPreparer({

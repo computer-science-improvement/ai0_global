@@ -32,6 +32,8 @@ export function rowToCard(r: any): EditorCard & { createdAt: Date } {
     crosspost:      r.crosspost ?? true,
     ...(r.approval_hold_hours != null ? { approvalHoldHours: Number(r.approval_hold_hours) } : {}),
     ...(r.approval_lead_hours != null ? { approvalLeadHours: Number(r.approval_lead_hours) } : {}),
+    ...(r.rich_pref === 'auto' || r.rich_pref === 'prefer' || r.rich_pref === 'never' ? { richPref: r.rich_pref } : {}),
+    ...(r.rich_unsupported ? { richUnsupported: true } : {}),
     createdAt:      r.created_at,
   };
 }
@@ -51,21 +53,37 @@ export async function dropWaitingPosts(db: Pick<Pool, 'query'>, channelKey: stri
   return rows.length;
 }
 
+/** app_settings key of the spec 033 FR-003 capability flag: the ISO time until which rich messages are off. */
+export const richUnsupportedKey = (channelKey: string) => `cap.tg_rich_unsupported:${channelKey}`;
+
+/**
+ * A card row plus what the renderer needs besides the card (spec 033):
+ * format_prefs.rich of the resource and the live "rich unsupported" flag.
+ * The flag's value is an ISO time; anything else counts as no flag.
+ */
+const CARD_SELECT = `
+  SELECT c.*,
+         rp.profile->'format_prefs'->>'rich' AS rich_pref,
+         CASE WHEN s.value ~ '^\\d{4}-\\d{2}-\\d{2}T' THEN s.value::timestamptz > now() ELSE false END AS rich_unsupported
+    FROM editor_channels c
+    LEFT JOIN resource_profiles rp ON rp.resource_ref = 'telegram:' || c.channel_key
+    LEFT JOIN app_settings s ON s.key = 'cap.tg_rich_unsupported:' || c.channel_key`;
+
 export class EditorChannelsRepository {
   constructor(private readonly pool: Pool) {}
 
   async get(channelKey: string): Promise<(EditorCard & { createdAt: Date }) | null> {
-    const { rows } = await this.pool.query(`SELECT * FROM editor_channels WHERE channel_key = $1`, [channelKey]);
+    const { rows } = await this.pool.query(`${CARD_SELECT} WHERE c.channel_key = $1`, [channelKey]);
     return rows[0] ? rowToCard(rows[0]) : null;
   }
 
   async listActive(): Promise<Array<EditorCard & { createdAt: Date }>> {
-    const { rows } = await this.pool.query(`SELECT * FROM editor_channels WHERE mode <> 'off' ORDER BY channel_key`);
+    const { rows } = await this.pool.query(`${CARD_SELECT} WHERE c.mode <> 'off' ORDER BY c.channel_key`);
     return rows.map(rowToCard);
   }
 
   async list(): Promise<Array<EditorCard & { createdAt: Date }>> {
-    const { rows } = await this.pool.query(`SELECT * FROM editor_channels ORDER BY channel_key`);
+    const { rows } = await this.pool.query(`${CARD_SELECT} ORDER BY c.channel_key`);
     return rows.map(rowToCard);
   }
 

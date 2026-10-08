@@ -1,16 +1,39 @@
 import type { EditorCard } from '../card';
 import type { Block, InnerBlock, PostSpec } from './post-spec';
-import { tableRow } from './blocks';
+import { tableRow, usesRichBlocks } from './blocks';
+import { blockToRich, type RichBlock } from './render-rich';
 import { escapeAttr, escapeHtml, inlineToHtml, inlineToPlain, visibleLength } from './inline-markup';
 
 export interface UrlButton { text: string; url: string }
 
-export type TgMessage =
+/** The Telegram-HTML calls (today's render and the fallback of a rich message). */
+export type TgHtmlMessage =
   | { method: 'sendMessage'; text: string; preview: { url: string; showAboveText: boolean } | null; buttons: UrlButton[][] }
   | { method: 'sendPhoto'; photo: string; caption: string; captionAboveMedia: boolean; buttons: UrlButton[][] }
-  | { method: 'sendVideo'; video: string; caption: string; captionAboveMedia: boolean; buttons: UrlButton[][] }
+  | { method: 'sendVideo'; video: string; caption: string; captionAboveMedia: boolean; buttons: UrlButton[][] };
+
+/**
+ * Spec 033: a Bot API 10.1 rich message (`sendRichMessage`, `InputRichMessage.blocks`).
+ * `fallback` is the HTML render of the same post: the publisher sends it when
+ * Telegram rejects the rich message, so an approved post (031) carries both.
+ */
+export interface TgRichMessage { method: 'sendRichMessage'; blocks: RichBlock[]; buttons: UrlButton[][]; fallback: TgHtmlMessage }
+
+export type TgMessage =
+  | TgHtmlMessage
+  | TgRichMessage
   | { method: 'sendMediaGroup'; photos: string[]; caption: string }
   | { method: 'sendPoll'; question: string; options: string[]; quiz: boolean; correctIndex: number | null; explanation: string | null; anonymous: boolean };
+
+/** Spec 033 FR-005: format_prefs.rich of the resource — auto (rich when rich blocks are used), prefer, never. */
+export type RichPref = 'auto' | 'prefer' | 'never';
+
+/**
+ * What the renderer reads from the channel card. `richPref` comes from the
+ * resource's format_prefs and `richUnsupported` from the per-channel
+ * capability flag (FR-003); both are joined in by EditorChannelsRepository.
+ */
+export type RenderCard = Pick<EditorCard, 'footer' | 'linkStyle'> & Partial<Pick<EditorCard, 'richPref' | 'richUnsupported'>>;
 
 export interface RenderResult {
   messages: TgMessage[];
@@ -95,7 +118,7 @@ export function normalizeHashtag(t: string): string {
 }
 
 /** Body + source + footer + hashtags as one Telegram-HTML string. */
-export function composeText(spec: PostSpec, card: Pick<EditorCard, 'footer' | 'linkStyle'>): string {
+export function composeText(spec: PostSpec, card: RenderCard): string {
   const parts: string[] = spec.body.map(renderBlock);
   if (spec.source && card.linkStyle === 'inline') {
     parts.push(`→ <a href="${escapeAttr(spec.source.url)}">${escapeHtml(sourceLabel(spec))}</a>`);
@@ -110,7 +133,7 @@ export function composeText(spec: PostSpec, card: Pick<EditorCard, 'footer' | 'l
   return parts.filter(Boolean).join('\n\n');
 }
 
-function composeButtons(spec: PostSpec, card: Pick<EditorCard, 'linkStyle'>): UrlButton[][] {
+function composeButtons(spec: PostSpec, card: RenderCard): UrlButton[][] {
   const rows: UrlButton[][] = [];
   if (spec.cta) rows.push([{ text: spec.cta.label, url: spec.cta.url }]);
   if (spec.source && card.linkStyle === 'button') rows.push([{ text: `Джерело: ${sourceLabel(spec)}`.slice(0, 40), url: spec.source.url }]);
@@ -143,12 +166,8 @@ function longreadPreview(spec: PostSpec, url: string | undefined): string {
   return `📖 Лонгрід «${escapeHtml(lr.title)}»: ${n} ${pluralUk(n, 'блок', 'блоки', 'блоків')}${url ? ` → ${escapeHtml(url)}` : ''}\n\n${outline}${more}`;
 }
 
-/**
- * Pure PostSpec → Telegram Bot API calls. Limits are enforced by lintPost;
- * the renderer only picks the right shape (e.g. a long "photo" post becomes a
- * text message with a large image preview so nothing is truncated).
- */
-export function renderTelegram(spec: PostSpec, card: Pick<EditorCard, 'footer' | 'linkStyle'>, prepared: PreparedMedia = {}): RenderResult {
+/** Telegram-HTML render: a long "photo" post becomes a text message with a large image preview so nothing is truncated. */
+function renderHtml(spec: PostSpec, card: RenderCard, prepared: PreparedMedia): RenderResult {
   const text = composeText(spec, card);
   const buttons = composeButtons(spec, card);
   const image = spec.media[0]?.url ?? null;
@@ -222,4 +241,63 @@ export function renderTelegram(spec: PostSpec, card: Pick<EditorCard, 'footer' |
     default:
       return { messages: [{ method: 'sendMessage', text, preview: image ? { url: image, showAboveText: spec.placement === 'above' } : null, buttons }], primary: 0, preview: text };
   }
+}
+
+/** Formats whose text message can become a rich message (album / carousel captions stay HTML). */
+export const RICH_FORMATS: ReadonlySet<PostSpec['format']> = new Set(['text', 'photo', 'video', 'longread', 'poll', 'quiz']);
+
+/**
+ * Spec 033 FR-002: does this post go out as a rich message? Yes when it uses a
+ * rich-only block or the resource prefers rich — unless the resource says
+ * never, the channel is flagged as not supporting rich messages, or the
+ * format has no text message to carry it.
+ */
+export function wantsRich(spec: PostSpec, card: RenderCard): boolean {
+  const pref = card.richPref ?? 'auto';
+  if (pref === 'never' || card.richUnsupported || !RICH_FORMATS.has(spec.format) || !spec.body.length) return false;
+  return pref === 'prefer' || usesRichBlocks(spec.body);
+}
+
+/** Source / footer / hashtags of a rich message: one paragraph per line (HTML puts them on one paragraph). */
+function richTail(spec: PostSpec, card: RenderCard): RichBlock[] {
+  const out: RichBlock[] = [];
+  const link = (label: string) => ({ type: 'url' as const, text: label, url: spec.source!.url });
+  if (spec.source && card.linkStyle === 'inline') out.push({ type: 'paragraph', text: ['→ ', link(sourceLabel(spec))] });
+  if (card.footer) out.push({ type: 'paragraph', text: card.footer });
+  if (spec.source && card.linkStyle === 'footer') out.push({ type: 'paragraph', text: ['Джерело: ', link(sourceLabel(spec))] });
+  if (spec.hashtags.length) out.push({ type: 'paragraph', text: spec.hashtags.map((h) => `#${normalizeHashtag(h)}`).join(' ') });
+  return out;
+}
+
+/** The rich message for a post; `fallback` is the HTML message it replaces. */
+export function toRichMessage(spec: PostSpec, card: RenderCard, fallback: TgHtmlMessage): TgRichMessage {
+  const blocks: RichBlock[] = [...spec.body.flatMap(blockToRich), ...richTail(spec, card)];
+  const first = spec.media[0];
+  let media: RichBlock | null = null;
+  if (spec.format === 'video') {
+    if (first) media = { type: 'video', video: { type: 'video', media: first.url, supports_streaming: true } };
+  } else if (first && first.kind !== 'video') {
+    media = { type: 'photo', photo: { type: 'photo', media: first.url } };
+  }
+  if (media) {
+    if (spec.placement === 'below') blocks.push(media);
+    else blocks.unshift(media);
+  }
+  return { method: 'sendRichMessage', blocks, buttons: fallback.buttons, fallback };
+}
+
+/**
+ * Pure PostSpec → Telegram Bot API calls. Limits are enforced by lintPost.
+ * Spec 033: when wantsRich(), the post's text message becomes a
+ * `sendRichMessage` carrying the HTML render as its fallback; polls, albums
+ * and carousels keep their own calls. The preview stays the HTML text.
+ */
+export function renderTelegram(spec: PostSpec, card: RenderCard, prepared: PreparedMedia = {}): RenderResult {
+  const html = renderHtml(spec, card, prepared);
+  if (!wantsRich(spec, card)) return html;
+  const i = html.messages.findIndex((m) => m.method === 'sendMessage' || m.method === 'sendPhoto' || m.method === 'sendVideo');
+  if (i < 0) return html;
+  const messages = [...html.messages];
+  messages[i] = toRichMessage(spec, card, messages[i] as TgHtmlMessage);
+  return { ...html, messages };
 }

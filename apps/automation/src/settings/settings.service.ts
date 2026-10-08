@@ -49,6 +49,11 @@ const FIELD_TO_KEY: Record<keyof SettingsPatch, string> = {
   fetchTimeoutMs:       'FETCH_TIMEOUT',
 };
 
+/** Spec 033: capability flags the services keep in app_settings (`cap.*`, e.g. rich messages unsupported): never env overrides. */
+export function isCapabilityKey(key: string): boolean {
+  return key.startsWith('cap.');
+}
+
 /** UI-state rows in app_settings (spec 027 FR-004): never env overrides. */
 export function isUiKey(key: string): boolean {
   return key.startsWith('ui.');
@@ -74,9 +79,9 @@ export class SettingsService {
       // `ui.*` rows (e.g. the dashboard menu `ui.nav`, spec 027) are UI state, not
       // env overrides: they stay out of the cache and out of `overrides[]`.
       const { rows } = await this.pool.query<{ key: string; value: string }>(
-        `SELECT key, value FROM app_settings WHERE key NOT LIKE 'ui.%'`,
+        `SELECT key, value FROM app_settings WHERE key NOT LIKE 'ui.%' AND key NOT LIKE 'cap.%'`,
       );
-      this.overrides = Object.fromEntries(rows.filter((r) => !isUiKey(r.key)).map((r) => [r.key, r.value]));
+      this.overrides = Object.fromEntries(rows.filter((r) => !isUiKey(r.key) && !isCapabilityKey(r.key)).map((r) => [r.key, r.value]));
     } catch (err: any) {
       // Table may not exist yet (pre-migration); fall back to env silently.
       this.logger.debug(`app_settings load skipped: ${err?.message ?? err}`);
