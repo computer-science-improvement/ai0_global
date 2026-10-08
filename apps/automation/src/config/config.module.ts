@@ -35,9 +35,12 @@ import { TikTokOAuthService } from './tiktok-oauth.service';
 import { TikTokAccountsController } from './api/tiktok-accounts.controller';
 import { TikTokOAuthController } from './api/tiktok-oauth.controller';
 import { LandingResourcesService } from './landing-resources.service';
-import { LANDING_CONFIG, LANDING_PULSE, LandingController } from './api/landing.controller';
+import { LANDING_CONFIG, LANDING_NETWORKS, LANDING_PULSE, LandingController } from './api/landing.controller';
 import { LandingConfigService } from './landing-config.service';
 import { LandingPulseService } from './landing-pulse.service';
+import { LandingNetworksService } from './landing-networks.service';
+import { YoutubeLandingRepository } from './youtube-landing.repository';
+import { ResourceCatalog } from '../editor/agents/resource-catalog';
 import { LandingAdminController } from './api/landing-admin.controller';
 import { StrategiesController } from './api/strategies.controller';
 import { ForwardRoutesController } from './api/forward-routes.controller';
@@ -71,6 +74,7 @@ import { ContentRunwayModule } from '../common/content-runway/content-runway.mod
     TikTokAccountsRepository,
     TikTokTokenService,
     TikTokOAuthService,
+    YoutubeLandingRepository,
     LandingResourcesService,
     // Spec 026: the public page settings (app_settings landing.*) and the live autonomy proof.
     { provide: LANDING_CONFIG, inject: [DB_POOL], useFactory: (pool: Pool) => new LandingConfigService(pool) },
@@ -80,6 +84,13 @@ import { ContentRunwayModule } from '../common/content-runway/content-runway.mod
         const logger = new Logger('LandingPulse');
         return new LandingPulseService(pool, { log: (m) => logger.warn(m) });
       },
+    },
+    {
+      // FR-006: the showcase grouped by network. The catalog needs only the pool here
+      // (no live Telegram access check: the landing never calls a platform API).
+      provide: LANDING_NETWORKS, inject: [DB_POOL, LandingResourcesService, LANDING_CONFIG],
+      useFactory: (pool: Pool, resources: LandingResourcesService, config: LandingConfigService) =>
+        new LandingNetworksService({ pool, resources, catalog: new ResourceCatalog({ pool }), adDm: () => config.adDm() }),
     },
   ],
   exports: [

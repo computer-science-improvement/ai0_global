@@ -1,10 +1,14 @@
 // apps/automation/src/config/landing-resources.service.ts
-import { Injectable } from '@nestjs/common';
+import { Injectable, Optional } from '@nestjs/common';
 import { MetaAccountsRepository } from './meta-accounts.repository';
 import { TikTokAccountsRepository } from './tiktok-accounts.repository';
 import { TrackedChannelsConfigRepository } from './tracked-channels.repository';
+import { YoutubeLandingRepository, type YoutubeLandingRow } from './youtube-landing.repository';
 
-export type LandingPlatform = 'telegram' | 'instagram' | 'facebook' | 'threads' | 'tiktok';
+export type LandingPlatform = 'telegram' | 'instagram' | 'facebook' | 'threads' | 'tiktok' | 'youtube';
+
+/** Every landing platform, in display order. */
+export const LANDING_PLATFORMS: readonly LandingPlatform[] = ['telegram', 'instagram', 'facebook', 'threads', 'tiktok', 'youtube'];
 
 export interface LandingResource {
   platform: LandingPlatform;
@@ -22,16 +26,36 @@ export interface LandingAdminResource extends LandingResource {
   landingVisible: boolean;
 }
 
+/**
+ * A featured resource plus the internal keys the network view (spec 026 FR-006) needs
+ * to find its network and agent. Server-side only: `ref` and `channelKey` never leave
+ * the API (the networks payload maps them away).
+ */
+export interface LandingFeaturedEntry {
+  /** ResourceCatalog ref: `telegram:<channel_key>`, `<meta platform>:<id>`, `tiktok:<id>`, `youtube:<id>`. */
+  ref:        string | null;
+  /** Telegram channel key as stored (e.g. `@my_channel`), for ad prices; null on other platforms. */
+  channelKey: string | null;
+  resource:   LandingResource;
+}
+
 /** Pure, unit-testable: derive a public profile url from a handle. */
 export function landingUrl(platform: LandingPlatform, handle: string | null): string | null {
   if (handle === null) return null;
   switch (platform) {
+    case 'youtube':   return `https://www.youtube.com/@${handle}`;
     case 'telegram':  return `https://t.me/${handle}`;
     case 'instagram': return `https://www.instagram.com/${handle}`;
     case 'facebook':  return `https://www.facebook.com/${handle}`;
     case 'threads':   return `https://www.threads.net/@${handle}`;
     case 'tiktok':    return `https://www.tiktok.com/@${handle}`;
   }
+}
+
+/** FR-010: `youtube.com/@<handle>`, else `youtube.com/channel/<channel_id>`. */
+export function youtubeUrl(handle: string | null, channelId: string | null): string | null {
+  if (handle) return landingUrl('youtube', handle);
+  return channelId ? `https://www.youtube.com/channel/${encodeURIComponent(channelId)}` : null;
 }
 
 function stripAt(value: string | null): string | null {
@@ -45,6 +69,8 @@ export class LandingResourcesService {
     private readonly meta:    MetaAccountsRepository,
     private readonly tiktok:  TikTokAccountsRepository,
     private readonly tracked: TrackedChannelsConfigRepository,
+    // Optional so the unit tests that predate YouTube keep constructing the service with three repos.
+    @Optional() private readonly youtube?: YoutubeLandingRepository,
   ) {}
 
   // ---- shared per-row normalization (single source of truth for listPublic + listAdmin) ----
@@ -89,28 +115,54 @@ export class LandingResourcesService {
     };
   }
 
-  async listPublic(): Promise<LandingResource[]> {
-    const [metaRows, tiktokRows, trackedRows] = await Promise.all([
+  /** Map a youtube row to the public projection (FR-010; `subscribers` stays null until 019b fills it). */
+  private mapYoutube(row: YoutubeLandingRow): LandingResource {
+    const handle = stripAt(row.handle);
+    return {
+      platform: 'youtube',
+      handle,
+      displayName: row.title,
+      avatarUrl: null,
+      followerCount: row.subscribers == null ? null : Number(row.subscribers),
+      url: youtubeUrl(handle, row.channel_id),
+      order: row.landing_order,
+    };
+  }
+
+  /** Featured (and active) resources with their internal keys, ordered like listPublic. */
+  async listFeaturedEntries(): Promise<LandingFeaturedEntry[]> {
+    const [metaRows, tiktokRows, trackedRows, youtubeRows] = await Promise.all([
       this.meta.listFeatured(),
       this.tiktok.listFeatured(),
       this.tracked.listFeatured(),
+      this.youtube ? this.youtube.listFeatured() : Promise.resolve([] as YoutubeLandingRow[]),
     ]);
-
-    const telegram = trackedRows.map((row) => this.mapTracked(row));
-    const metaResources = metaRows.map((row) => this.mapMeta(row));
-    const tiktokResources = tiktokRows.map((row) => this.mapTiktok(row));
-
-    return [...telegram, ...metaResources, ...tiktokResources].sort((a, b) => a.order - b.order);
+    const entries: LandingFeaturedEntry[] = [
+      ...trackedRows.map((row) => ({
+        ref: row.channel_key ? `telegram:${row.channel_key}` : null, channelKey: row.channel_key, resource: this.mapTracked(row),
+      })),
+      ...metaRows.map((row) => ({ ref: row.id ? `${row.platform}:${row.id}` : null, channelKey: null, resource: this.mapMeta(row) })),
+      ...tiktokRows.map((row) => ({ ref: row.id ? `tiktok:${row.id}` : null, channelKey: null, resource: this.mapTiktok(row) })),
+      ...youtubeRows.map((row) => ({ ref: `youtube:${row.id}`, channelKey: null, resource: this.mapYoutube(row) })),
+    ];
+    return entries.sort((a, b) => a.resource.order - b.resource.order);
   }
 
-  /** Operator-facing list: ALL candidates across the 3 tables (visible or not),
-   *  with id + landingVisible. Same normalization as listPublic. NEVER emits tokens. */
+  async listPublic(): Promise<LandingResource[]> {
+    return (await this.listFeaturedEntries()).map((e) => e.resource);
+  }
+
+  /** Operator-facing list: every ACTIVE candidate (visible or not; inactive accounts are hidden,
+   *  BR-MKT-01), with id + landingVisible. Same normalization as listPublic. NEVER emits tokens. */
   async listAdmin(): Promise<LandingAdminResource[]> {
-    const [trackedRows, metaRows, tiktokRows] = await Promise.all([
+    const [trackedRows, allMeta, allTiktok, youtubeRows] = await Promise.all([
       this.tracked.listLandingCandidates(),
       this.meta.list(),
       this.tiktok.list(),
+      this.youtube ? this.youtube.listCandidates() : Promise.resolve([] as YoutubeLandingRow[]),
     ]);
+    const metaRows = allMeta.filter((row) => row.active !== false);
+    const tiktokRows = allTiktok.filter((row) => row.active !== false);
 
     const telegram = trackedRows.map((row) => ({
       ...this.mapTracked(row),
@@ -130,7 +182,13 @@ export class LandingResourcesService {
       landingVisible: row.landing_visible,
     }));
 
-    return [...telegram, ...metaResources, ...tiktokResources]
+    const youtubeResources = youtubeRows.map((row) => ({
+      ...this.mapYoutube(row),
+      id: row.id,
+      landingVisible: row.landing_visible,
+    }));
+
+    return [...telegram, ...metaResources, ...tiktokResources, ...youtubeResources]
       .sort((a, b) => a.order - b.order || a.platform.localeCompare(b.platform));
   }
 
@@ -145,6 +203,9 @@ export class LandingResourcesService {
         return this.meta.setLanding(id, { visible: opts.visible, order: opts.order });
       case 'tiktok':
         return this.tiktok.setLanding(id, { visible: opts.visible, order: opts.order });
+      case 'youtube':
+        if (!this.youtube) throw new Error('YouTube landing is not available');
+        return this.youtube.setLanding(id, { visible: opts.visible, order: opts.order });
       default:
         throw new Error(`Unknown landing platform: ${platform as string}`);
     }

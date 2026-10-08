@@ -8,7 +8,7 @@ import {
   ScrollText, Sparkles, Rocket, SkipForward, CalendarSync, Eye,
   MessageSquare, Square, ArrowUp, Globe, Wrench, Clock, Ban, Database, BookOpen, PanelLeft,
   Megaphone, Radar, Users, Workflow, Lock, LockOpen, Inbox, History, ImageOff, ArrowUpRight, Lightbulb,
-  CircleDollarSign, Download,
+  CircleDollarSign, Download, SquarePlay,
   EyeOff, GripVertical, Command, Link2, Pin, PinOff, RotateCcw, FolderPlus, CornerDownLeft,
   type LucideIcon,
 } from 'lucide-react';
@@ -22,7 +22,7 @@ const ICONS = {
   info: Info, warning: TriangleAlert, 'chevron-left': ChevronLeft,
   'chevron-right': ChevronRight, 'chevron-up': ChevronUp,
   'chevron-down': ChevronDown, telegram: Send, instagram: Camera,
-  tiktok: Music2, threads: AtSign, facebook: ThumbsUp, menu: Menu,
+  tiktok: Music2, threads: AtSign, facebook: ThumbsUp, youtube: SquarePlay, menu: Menu,
   logs: ScrollText, sparkles: Sparkles, rocket: Rocket, 'skip-forward': SkipForward,
   'calendar-sync': CalendarSync, eye: Eye,
   chat: MessageSquare, stop: Square, 'arrow-up': ArrowUp, globe: Globe, wrench: Wrench,

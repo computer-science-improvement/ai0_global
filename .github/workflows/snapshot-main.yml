@@ -63,6 +63,7 @@ jobs:
           build-args: |
             VITE_AUTH_MODE=${{ vars.VITE_AUTH_MODE || secrets.VITE_AUTH_MODE }}
             VITE_TG_BOT_USERNAME=${{ vars.VITE_TG_BOT_USERNAME || secrets.VITE_TG_BOT_USERNAME }}
+            VITE_PUBLIC_URL=${{ vars.VITE_PUBLIC_URL }}
           tags: |
             ${{ steps.image.outputs.dashboard }}:snapshot-${{ github.sha }}
           cache-from: type=gha

@@ -2,14 +2,16 @@
 // PUBLIC endpoints: no `@UseGuards`. Guards in this app are applied per-controller
 // (no global APP_GUARD), so omitting the guard leaves these routes unauthenticated.
 // They expose only public projections — never raw rows, ids, agent handles or tokens.
-import { Controller, Get, Inject, Res } from '@nestjs/common';
+import { Controller, Get, Inject, NotFoundException, Optional, Res } from '@nestjs/common';
 import type { Response } from 'express';
 import { LandingResource, LandingResourcesService } from '../landing-resources.service';
 import type { LandingConfigService, LandingPublicConfig } from '../landing-config.service';
 import type { LandingPulse, LandingPulseService } from '../landing-pulse.service';
+import type { LandingNetwork, LandingNetworksService } from '../landing-networks.service';
 
 export const LANDING_CONFIG = 'LANDING_CONFIG';
 export const LANDING_PULSE = 'LANDING_PULSE';
+export const LANDING_NETWORKS = 'LANDING_NETWORKS';
 
 @Controller('api/landing')
 export class LandingController {
@@ -17,6 +19,7 @@ export class LandingController {
     private readonly landing: LandingResourcesService,
     @Inject(LANDING_CONFIG) private readonly config: LandingConfigService,
     @Inject(LANDING_PULSE) private readonly pulseSvc: LandingPulseService,
+    @Optional() @Inject(LANDING_NETWORKS) private readonly networksSvc?: LandingNetworksService,
   ) {}
 
   @Get('resources')
@@ -36,6 +39,15 @@ export class LandingController {
     res.setHeader('Cache-Control', 'no-store'); // replaced on success: a 503 is never cached
     const value = await this.pulseSvc.get();
     res.setHeader('Cache-Control', `public, max-age=${this.pulseSvc.maxAgeSeconds}`);
+    return value;
+  }
+
+  /** Spec 026 FR-006: the showcase grouped by network, with agent badges (cached 300 s). */
+  @Get('networks')
+  async networks(@Res({ passthrough: true }) res: Response): Promise<LandingNetwork[]> {
+    if (!this.networksSvc) throw new NotFoundException();
+    const value = await this.networksSvc.list();
+    res.setHeader('Cache-Control', `public, max-age=${this.networksSvc.maxAgeSeconds}`);
     return value;
   }
 }

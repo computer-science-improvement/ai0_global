@@ -1,6 +1,6 @@
 # 026: Public landing: autonomous AI-run network, white-label offer, ad ordering via Telegram DM
 
-**Status:** BUILDING (T1–T2 done) · **Depends on:** 017–022 (agent platform, DONE), 008 (ad prices), 016 + 019b (YouTube, FR-010 only) · **Supersedes/extends:** BR-CORE-01…08, BR-MKT-01…08; extends BR-EDT-54/55 (DM triage); feeds 011 and 015
+**Status:** BUILDING (T1–T4 done) · **Depends on:** 017–022 (agent platform, DONE), 008 (ad prices), 016 + 019b (YouTube, FR-010 only) · **Supersedes/extends:** BR-CORE-01…08, BR-MKT-01…08; extends BR-EDT-54/55 (DM triage); feeds 011 and 015
 **Migration:** `066_landing_ai_network.sql` (renumbered: 063 and 058 were taken, 065 is reserved for spec 025)
 **Owner comments addressed:** #9, #10, #11, #12 (plans/brd-comments-2026-10-06.md)
 
@@ -166,6 +166,56 @@ Decisions where the spec was open or has been overtaken by owner decisions:
 - T6: `landing_leads` exists; `landing.white_label_enabled` is read through `LandingConfigService`
   (`publicConfig().whiteLabelEnabled`).
 
+## Implementation notes (T3–T4, 2026-10-08)
+- **No migration.** 066 already had every column T4 needs (`youtube_accounts.handle/subscribers/landing_visible/
+  landing_order`, `meta_account_groups.landing_blurb_en/landing_order`), so 067 was not created.
+- **`GET /api/landing/networks`** (`config/landing-networks.service.ts`): `[{name, blurb, order, agent{name, emoji,
+  mode}|null, followers, platforms[], adDmUrl, resources[]}]`, the standalone group last with `name: null`.
+  Deviations from FR-006: `blurb` is one English string (no `{uk,en}`: English only); `platforms` (display order)
+  and a network-level `adDmUrl` (placement `network`, set when one of its channels has an active price) were
+  added for the page. Cached 300 s in-process + `Cache-Control: public, max-age=300`; a failed refresh serves the
+  last good value; admin edits (blurb, order, featured toggles) expire the cache but keep the fallback.
+- **aiRun** is the resource's top-level orchestrator (from `ResourceCatalog`) mapped like the pulse:
+  `live`/`approve` → `live`, `shadow` → `shadow`, `off`, paused or no agent → `none`. A network's agent is its own
+  network orchestrator, else the agent of its Telegram anchor, else the one agent all its resources share; an
+  `off` or paused agent is not shown. Only the agent's name and emoji are public, never the `@handle`.
+- **ResourceCatalog fix:** TikTok and YouTube rows now carry their `group_id` network (they were always
+  standalone before), so they inherit the network's agent like Meta accounts. This also affects the KPI digest
+  and cross-promo grouping, which is the intended spec 020 behaviour.
+- **YouTube:** `YoutubeLandingRepository` (public columns only, never tokens). `/api/landing/resources` gains
+  YouTube; the URL is `youtube.com/@handle`, else `youtube.com/channel/<channel_id>`. YouTube enters the pill,
+  the diagram's platform row and the showcase only through an active **and** featured row. The admin list now
+  hides inactive Meta, TikTok and YouTube accounts (BR-MKT-01).
+- **Admin:** `GET /api/landing/admin/networks` returns every network (`id`, blurb, order, resource and featured
+  counts, agent) plus `preview`, the exact public payload built uncached by the same code; `/app/landing`
+  renders that preview with the same `NetworkShowcase` component as `/`. `PATCH /api/landing/admin/network/:id`
+  takes `{blurb?: string|null (≤ 280), order?: 0–9999}`; the Networks card reorders by renumbering.
+- **Hero (T3):** the H1 is always "A media network run by AI agents". The pill counts the showcase platforms
+  (falls back to the pulse's platforms with posts). The subhead names MANAGER as steering only when
+  `claims.managerLive`, otherwise "coming soon", and says the owner approves structural changes and, during the
+  launch period, each post. The proof strip hides zero tiles, the last-post tile without `lastAgentPostAt`, and
+  the whole strip on a pulse error; each "?" is a click/tap toggle with the FR-004 definition. The diagram is
+  MANAGER (dashed, "soon" unless live) → up to 4 networks (live agents first) → the five roles (lit when they
+  ran this week) → platforms. CTAs: "See the network ↓" and "Order an ad in Telegram" (`adDm.urls.hero`), or
+  "Advertise with us" when `adDm.available` is false. The white-label link is left for T6 (no section yet).
+- **How it works (T3):** row 1 MANAGER → Orchestrator → Planner → Executor → Reviewer with the owner footnote;
+  row 2 the four ad steps with the AI disclosure under step 1 and a CTA from `adDm.urls.howitworks`.
+- **`index.html`:** English meta; absolute OG/Twitter URLs use a placeholder that `vite.config.ts` fills from
+  `VITE_PUBLIC_URL` (default `https://dev.ai0.global`; invalid values fail the build). The Dockerfile and both
+  image workflows pass `vars.VITE_PUBLIC_URL`.
+- **Motion:** the page sits in `MotionConfig reducedMotion="user"`; CSS loops (pulses, packets, mesh, shimmer)
+  stop under `prefers-reduced-motion`. Checked at 375 px with full data, zero agent posts and a failing pulse:
+  no horizontal scroll.
+
+### Notes for T5–T6
+- The hero CTA, the "How it works" CTA and the per-card "Ads here" / "Advertise in this network" links are plain
+  `<a target="_blank" rel="noopener">`; T5 adds the beacon and the "No Telegram?" form link next to each. With
+  `adDm.available=false` the hero shows "Advertise with us" (→ `#advertise`); T5/T6 swap in the form.
+- The top bar "Advertise", the `#advertise` block (badge, `mailto:`) and the footer are untouched (T5).
+- The section ids are `#networks` (was `#resources`) and `#how-it-works`; row 2 of "How it works" has
+  `#order-an-ad`. T6 adds the white-label link to the hero CTA row.
+- `HowItWorks.tsx` is allow-listed in the Cyrillic guard for the legal `#реклама` label only.
+
 ## Task breakdown
 
 ### T1: Add migration 066 and the landing config surface
@@ -204,10 +254,10 @@ Decisions where the spec was open or has been overtaken by owner decisions:
 - The `index.html` meta and `VITE_PUBLIC_URL`.
 
 **Acceptance:**
-- [ ] The page renders fully in both languages.
-- [ ] The H1 is the same with zero agent posts; zero-value tiles are hidden.
-- [ ] Reduced motion is respected.
-- [ ] There is no horizontal scroll at 375 px.
+- [x] The page renders fully in English (owner decision 2026-10-06: English only, no second language).
+- [x] The H1 is the same with zero agent posts; zero-value tiles are hidden.
+- [x] Reduced motion is respected.
+- [x] There is no horizontal scroll at 375 px.
 
 **Size:** L · **Depends on:** T2
 
@@ -218,9 +268,9 @@ Decisions where the spec was open or has been overtaken by owner decisions:
 - The Networks admin card (FR-015).
 
 **Acceptance:**
-- [ ] The `aiRun` badges are correct for live, shadow and legacy fixtures.
-- [ ] YouTube appears only with an active, featured row, and then increments the platform count.
-- [ ] The admin preview equals the public page.
+- [x] The `aiRun` badges are correct for live, shadow and legacy fixtures.
+- [x] YouTube appears only with an active, featured row, and then increments the platform count.
+- [x] The admin preview equals the public page.
 
 **Size:** M · **Depends on:** T1
 

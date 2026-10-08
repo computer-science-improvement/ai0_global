@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react';
 import { TanStackRouterVite } from '@tanstack/router-vite-plugin';
 import tailwindcss from '@tailwindcss/vite';
 import { devAuthBuildError } from './src/lib/auth-mode';
+import { applyPublicUrl, resolvePublicUrl } from './src/lib/public-url';
 
 /**
  * Spec 028 FR-013: a production `vite build` without a sign-in method would ship
@@ -22,9 +23,28 @@ function requireAuthMode(): Plugin {
   };
 }
 
+/**
+ * Spec 026 T3: index.html carries absolute Open Graph / Twitter URLs. Their origin
+ * comes from VITE_PUBLIC_URL (default: the current public host), so another domain
+ * needs only a build arg, not an edit. An invalid value fails the build.
+ */
+function publicUrlMeta(): Plugin {
+  let publicUrl = '';
+  return {
+    name: 'ai0-public-url-meta',
+    configResolved(config) {
+      publicUrl = resolvePublicUrl(config.env as Record<string, string | undefined>);
+    },
+    transformIndexHtml(html) {
+      return applyPublicUrl(html, publicUrl);
+    },
+  };
+}
+
 export default defineConfig({
   plugins: [
     requireAuthMode(),
+    publicUrlMeta(),
     TanStackRouterVite({ routesDirectory: 'src/routes', autoCodeSplitting: true }),
     react(),
     tailwindcss(),
