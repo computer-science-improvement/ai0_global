@@ -334,6 +334,8 @@ export class EditorPlansRepository {
       resourceRef: string; scheduledAt: Date; format: string; topic: string; angle: string | null; ideaId: string | null; sourceHints: string[];
       // spec 024
       treatment?: 'unique' | 'duplicate' | 'adapt'; treatmentReason?: string | null; fromIndex?: number | null; formatNotes?: string | null;
+      // spec 025 FR-014: a directive experiment slot
+      isExperiment?: boolean;
     }>,
     decisions: PlanDecisionInput[] = [],
     agentId: string | null = null,
@@ -349,10 +351,10 @@ export class EditorPlansRepository {
         const { rows } = await client.query(
           `INSERT INTO editor_slots (plan_id, channel_key, scheduled_at, format, topic, angle, source_hints, is_experiment, resource_ref, idea_id,
                                      treatment, treatment_reason, derived_from_slot_id, source_post)
-           VALUES ($1, $2, $3, $4, $5, $6, $7, false, $8, $9, $10, $11, $12, $13) RETURNING id`,
+           VALUES ($1, $2, $3, $4, $5, $6, $7, $14, $8, $9, $10, $11, $12, $13) RETURNING id`,
           [planId, channelKey, s.scheduledAt, s.format, s.topic, s.angle, JSON.stringify(s.sourceHints), isAnchor ? null : s.resourceRef, s.ideaId,
             s.treatment ?? null, s.treatmentReason ?? null, derived ? ids[s.fromIndex!] : null,
-            derived ? JSON.stringify({ via: 'plan', ...(s.formatNotes ? { format_notes: s.formatNotes } : {}) }) : null]);
+            derived ? JSON.stringify({ via: 'plan', ...(s.formatNotes ? { format_notes: s.formatNotes } : {}) }) : null, !!s.isExperiment]);
         ids[k] = rows[0].id;
       }
       if (!decisions.length || !agentId) return;

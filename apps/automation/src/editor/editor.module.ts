@@ -108,7 +108,8 @@ import { ManagerService } from './manager/manager.service';
 import { MANAGER_SERVICE, ManagerController } from './manager/manager.controller';
 import type { Playbook } from './network/playbook';
 import {
-  DirectiveExecution, executionContextOf, formatShiftExecutor, frequencyExecutor, pauseResourceExecutor, pauseSeriesExecutor, SqlPlanObserver,
+  DirectiveExecution, executionContextOf, experimentExecutor, formatShiftExecutor, frequencyExecutor, pauseResourceExecutor, pauseSeriesExecutor,
+  PlaybookBuildPort, promoVerifier, SqlExperimentQuotas, SqlPlanObserver, strategyExecutor, taskRefCheck,
 } from './manager/executors';
 import { channelHeldBy, ResourcePauseService } from './pauses/resource-pauses';
 import { RESOURCE_PAUSES, ResourcePausesApi, ResourcePausesController } from './pauses/resource-pauses.controller';
@@ -180,6 +181,8 @@ export interface ManagerInfra {
   repo:   DirectivesRepository;
   digest: KpiDigestService;
   runner: ManagerRunner;
+  /** Spec 025 FR-015: the strategy executor's playbook builder, bound to NetworkRunner.runPlaybookBuild. */
+  buildPort: PlaybookBuildPort;
 }
 
 /** Orchestrator-level runs and the idea pool (spec 020). */
@@ -291,19 +294,46 @@ function resourceTime(repos: Pick<EditorRepos, 'channels'>, profiles: ResourcePr
   });
 }
 
-/** Spec 025 FR-009: the directive executors (frequency, format_shift, pause_series, pause_resource) and their runner. */
-function directiveExecution(pool: Pool, repos: EditorRepos, infra: AgentInfra, platform: PlatformInfra): DirectiveExecution {
+/** Spec 025 FR-006: every resource in an orchestrator's scope (its anchor and its group), usable or not. */
+function directiveScope(pool: Pool): (orch: Agent) => Promise<string[]> {
+  return async (orch) => {
+    const key = telegramKeyOf(orch);
+    if (!key) return [];
+    const network = new NetworkRepository(pool);
+    const group = await network.groupOfChannel(key);
+    const refs = group ? (await network.groupResources(group.id)).map((r) => r.ref) : [];
+    return [...new Set([resourceRef('telegram', key), ...refs])];
+  };
+}
+
+/**
+ * Spec 025 FR-009: the directive executors (frequency, format_shift, pause_series, pause_resource; T5: experiment, strategy) and
+ * the promo verifiers, with their runner. `buildPort` is bound only for the MANAGER's instance (it applies).
+ */
+function directiveExecution(pool: Pool, repos: EditorRepos, infra: AgentInfra, platform: PlatformInfra, buildPort = new PlaybookBuildPort()): DirectiveExecution {
   const logger = new Logger('DirectiveExecution');
   const network = new NetworkRepository(pool);
   const deps = { network, channels: repos.channels, observer: new SqlPlanObserver(pool) };
+  const quotas = new SqlExperimentQuotas(pool);
   const pauses = new ResourcePauseService({ pool, inbox: infra.inbox });
   return new DirectiveExecution({
     repo: new DirectivesRepository(pool), inbox: infra.inbox, agents: infra.agents,
     context: executionContextOf({ repo: network, channels: repos.channels, usable: (ref) => platform.health.usable(ref), time: resourceTime(repos, infra.profiles), pauses }),
-    executors: [frequencyExecutor(deps), formatShiftExecutor(deps), pauseSeriesExecutor(deps), pauseResourceExecutor({ pauses })],
+    executors: [
+      frequencyExecutor(deps), formatShiftExecutor(deps), pauseSeriesExecutor(deps), pauseResourceExecutor({ pauses }),
+      experimentExecutor({ quotas }), strategyExecutor({ network, builder: buildPort }),
+    ],
+    verifiers: [promoVerifier(pool, 'cross_promo'), promoVerifier(pool, 'repost')],
+    quotas,
     log: (m) => logger.warn(m),
   });
 }
+
+/** Spec 025 FR-014: open experiment quotas of an anchor (plan validators and planner prompts). */
+const experimentQuotasOf = (pool: Pool) => {
+  const q = new SqlExperimentQuotas(pool);
+  return (anchorKey: string, planDate: string, now: Date) => q.open(anchorKey, planDate, now);
+};
 
 export interface EditorRepos {
   channels: EditorChannelsRepository;
@@ -397,8 +427,8 @@ export class AgentsUpkeep implements OnModuleInit {
   async directives(): Promise<void> {
     try {
       const r = await this.manager.runner.housekeeping();
-      if (r.timedOut || r.expired || r.evaluated || r.executed || r.failed || r.resumed || r.verified) {
-        this.logger.log(`directives: timed out ${r.timedOut}, expired ${r.expired}, executed ${r.executed}, failed ${r.failed}, resumed ${r.resumed}, verified ${r.verified}, evaluated ${r.evaluated}`);
+      if (r.timedOut || r.expired || r.evaluated || r.executed || r.failed || r.resumed || r.verified || r.autoApplied || r.ignored || r.contestTimedOut) {
+        this.logger.log(`directives: timed out ${r.timedOut}, expired ${r.expired}, auto-applied ${r.autoApplied}, ignored ${r.ignored}, contest timeouts ${r.contestTimedOut}, executed ${r.executed}, failed ${r.failed}, resumed ${r.resumed}, verified ${r.verified}, evaluated ${r.evaluated}`);
       }
     } catch (err: any) {
       this.logger.warn(`directives housekeeping failed: ${err?.message ?? err}`);
@@ -777,6 +807,8 @@ export const EDITOR_PROVIDERS = [
               ? undefined
               : (k, html) => notifier.notifyAlert(previewMessage(k, html)),
             schedule,
+            // Spec 025 FR-014: directive experiment quotas in the plan check.
+            experimentQuotas: experimentQuotasOf(pool),
           }),
           ...buildComposerTools({ drafts, repo: repos.chat }),
           ...buildAgentSkillTools({ agents: infra.agents, skills: infra.skills, kpi: infra.kpi, inbox: infra.inbox }),
@@ -791,6 +823,7 @@ export const EDITOR_PROVIDERS = [
           ...buildNetworkTools({
             repo: new NetworkRepository(pool), plans: repos.plans, memory: repos.memory, inbox: infra.inbox,
             sourceCatalog: (card) => seriesSourceCatalog(pool, card), schedule, directiveLock,
+            experimentQuotas: experimentQuotasOf(pool),
           }),
           // Spec 023 FR-003: the orchestrator's series tools (one submit path with submit_playbook).
           ...buildSeriesTools({ repo: new NetworkRepository(pool), inbox: infra.inbox, sourceCatalog: (card) => seriesSourceCatalog(pool, card), directiveLock }),
@@ -800,6 +833,10 @@ export const EDITOR_PROVIDERS = [
             channelKeyOf: (a) => infra.channelKeyOf(a),
             seriesLocked: async (orch, name) => isSeriesLocked((await new NetworkRepository(pool).activePlaybook(orch.id))?.body ?? null, name),
             exec: directives,
+            // Spec 025 FR-006: the health contest check.
+            scopeOf: directiveScope(pool), usable: (ref) => platform.health.usable(ref),
+            // Spec 025 FR-015: report_directive_done checks the referenced row.
+            taskRef: taskRefCheck(pool),
           }),
           // Spec 024 FR-010: @ai0 proposes a network mode change (Apply card).
           ...buildNetworkModeTool({
@@ -926,13 +963,17 @@ export const EDITOR_PROVIDERS = [
         const env = (k: string) => cfg.get<string>(k) ?? undefined;
         const repo = new DirectivesRepository(pool);
         const digest = new KpiDigestService({ pool, catalog: infra.catalog, globalCapUsd: capDefaults(env).agentsDailyUsd, capUsd: agentsCapUsd(env, caps) });
+        const buildPort = new PlaybookBuildPort();
         const runner = new ManagerRunner({
           loop, registry, runtime: infra.runtime, agents: infra.agents, repo, digest, inbox: infra.inbox, env,
           timeoutHours: envNum(env, 'DIRECTIVE_TIMEOUT_HOURS', 12),
           timeoutApplyKinds: (env('DIRECTIVE_TIMEOUT_APPLY_KINDS') ?? '').split(',').map((x) => x.trim()).filter(Boolean),
-          exec: directiveExecution(pool, repos, infra, platform),
+          exec: directiveExecution(pool, repos, infra, platform, buildPort),
+          // Spec 025 FR-008: the contest timeout and the health guard on uphold.
+          contestTimeoutHours: envNum(env, 'DIRECTIVE_CONTEST_TIMEOUT_HOURS', 24),
+          usable: (ref) => platform.health.usable(ref),
         });
-        return { repo, digest, runner };
+        return { repo, digest, runner, buildPort };
       },
     },
     {
@@ -966,29 +1007,42 @@ export const EDITOR_PROVIDERS = [
       useFactory: (
         pool: Pool, cfg: ConfigService, loop: AgentLoop, repos: EditorRepos, registry: ToolRegistry, infra: AgentInfra, platform: PlatformInfra,
         notifier: TelegramNotifier, manager: ManagerInfra, promo: PromoInfra, schedule: ScheduleService,
-      ): NetworkRunner => new NetworkRunner({
-        loop, registry, runtime: infra.runtime, memory: repos.memory, repo: new NetworkRepository(pool), plans: repos.plans, profiles: infra.profiles,
-        usable: (ref) => platform.health.usable(ref), time: resourceTime(repos, infra.profiles),
-        // Spec 025 FR-013: paused resources are out of every orchestrator / planner run.
-        paused: (ref) => new ResourcePauseService({ pool }).isPaused(ref),
-        directives: (orch) => manager.runner.deliver(orch),
-        afterOrchestration: async (orch) => {
-          await manager.runner.afterOrchestration(orch);
-          // Accepted cross-promo / repost directives become reserved promo slots (spec 022).
-          const key = telegramKeyOf(orch);
-          if (!key) return;
-          for (const dir of await manager.repo.list({ status: ['accepted'], toAgentId: orch.id })) {
-            if (dir.kind !== 'cross_promo' && dir.kind !== 'repost') continue;
-            const r = await promo.planner.schedule(dir, orch, key);
-            if ('ok' in r) await manager.runner.recordBaseline((await manager.repo.get(dir.id))!, null);
-          }
-        },
-        env: (k) => cfg.get<string>(k) ?? undefined,
-        notify: (t) => notifier.notifyAlert(t),
-        // Spec 023 FR-008: source catalog in the orchestrator/planner prompts; low_runway after the daily run.
-        catalogSummary: withSchedule(catalogSummaryOf(pool, (k) => cfg.get<string>(k) ?? undefined), schedule),
-        runwayCheck: (orch, playbook) => checkLowRunway({ pool, inbox: infra.inbox }, orch, playbook),
-      }),
+      ): NetworkRunner => {
+        const runner = new NetworkRunner({
+          loop, registry, runtime: infra.runtime, memory: repos.memory, repo: new NetworkRepository(pool), plans: repos.plans, profiles: infra.profiles,
+          usable: (ref) => platform.health.usable(ref), time: resourceTime(repos, infra.profiles),
+          // Spec 025 FR-013: paused resources are out of every orchestrator / planner run.
+          paused: (ref) => new ResourcePauseService({ pool }).isPaused(ref),
+          directives: (orch) => manager.runner.deliver(orch),
+          afterOrchestration: async (orch) => {
+            await manager.runner.afterOrchestration(orch);
+            // Accepted cross-promo / repost directives become reserved promo slots (spec 022).
+            const key = telegramKeyOf(orch);
+            if (!key) return;
+            for (const dir of await manager.repo.list({ status: ['accepted'], toAgentId: orch.id })) {
+              if (dir.kind !== 'cross_promo' && dir.kind !== 'repost') continue;
+              const r = await promo.planner.schedule(dir, orch, key);
+              if ('ok' in r) await manager.runner.recordBaseline((await manager.repo.get(dir.id))!, null);
+            }
+          },
+          env: (k) => cfg.get<string>(k) ?? undefined,
+          notify: (t) => notifier.notifyAlert(t),
+          // Spec 023 FR-008: source catalog in the orchestrator/planner prompts; low_runway after the daily run.
+          catalogSummary: withSchedule(catalogSummaryOf(pool, (k) => cfg.get<string>(k) ?? undefined), schedule),
+          runwayCheck: (orch, playbook) => checkLowRunway({ pool, inbox: infra.inbox }, orch, playbook),
+          // Spec 025 FR-014: experiment quotas in the planner prompts.
+          experimentQuotas: experimentQuotasOf(pool),
+        });
+        // Spec 025 FR-015: a strategy directive rebuilds the playbook through this runner (late-bound: the MANAGER exists first).
+        manager.buildPort.bind(async (orchId, brief, directiveId) => {
+          const orch = await infra.agents.get(orchId);
+          const key = orch ? telegramKeyOf(orch) : null;
+          const card = key ? await repos.channels.get(key) : null;
+          if (!card) throw new Error('the orchestrator has no channel card');
+          await runner.runPlaybookBuild(card, brief, { directiveId });
+        });
+        return runner;
+      },
     },
     {
       provide: EDITOR_RUNNER,
@@ -1206,8 +1260,8 @@ export const EDITOR_PROVIDERS = [
     },
     {
       provide: NETWORK_SERVICE,
-      inject: [DB_POOL, AGENT_INFRA, EDITOR_REPOS, EDITOR_NETWORK, PLATFORM_INFRA],
-      useFactory: (pool: Pool, infra: AgentInfra, repos: EditorRepos, network: NetworkRunner, platform: PlatformInfra) => {
+      inject: [DB_POOL, AGENT_INFRA, EDITOR_REPOS, EDITOR_NETWORK, PLATFORM_INFRA, EDITOR_MANAGER],
+      useFactory: (pool: Pool, infra: AgentInfra, repos: EditorRepos, network: NetworkRunner, platform: PlatformInfra, manager: ManagerInfra) => {
         const logger = new Logger('Network');
         const svc = new NetworkService({
           pool, agents: infra.agents, repo: new NetworkRepository(pool), inbox: infra.inbox,
@@ -1216,6 +1270,8 @@ export const EDITOR_PROVIDERS = [
           log: (m) => logger.warn(m),
           // Spec 024 FR-010: offers to convert legacy auto-duplicate networks.
           offers: new NetworkOffers({ pool, inbox: infra.inbox, log: (m) => logger.warn(m) }),
+          // Spec 025 FR-015: the owner activating / rejecting a strategy directive's version settles the directive.
+          onPlaybookDecided: (pb, approve) => manager.runner.exec.onPlaybookDecided(pb, approve),
         });
         // Spec 024 FR-010: a network mode change @ai0 proposed in the chat, applied by the owner.
         infra.actions.register('set_network_mode', async (p) => svc.setMode(String(p.handle), { mode: p.mode }));

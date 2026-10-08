@@ -53,10 +53,57 @@ export type Change = ChangeOp & {
   resumed_at?: string;
 };
 
-export type PlanError = { error: 'not_executable'; details: string };
-export type PlanResult = Change | PlanError;
+/**
+ * Spec 025 FR-014: an experiment quota — `slots` planned slots with `directive_id` on `resource_ref` by `deadline`.
+ * Nothing is written when it opens: the plan validators read open quotas (status accepted/applied, deadline ahead).
+ */
+export interface ExperimentChange {
+  kind:         'experiment';
+  op:           'experiment';
+  target:       'quota';
+  /** The anchor whose day plans hold the slots (network plans live on the anchor). */
+  channel_key:  string;
+  resource_ref: string;
+  angle:        string;
+  format:       string | null;
+  slots:        number;
+  within_days:  number;
+  /** ISO instant: acceptance + within_days. A quota still open then → failed. */
+  deadline:     string;
+  structural:   false;
+  reasons:      string[];
+  noop?:        boolean;
+}
 
-export interface Applied { noop: boolean; playbookId?: string; version?: number }
+/** Spec 025 FR-015: a strategy rebuilds the playbook from the directive's brief; the owner activates the version. */
+export interface StrategyChange {
+  kind:        'strategy';
+  op:          'playbook_build';
+  target:      'owner';
+  channel_key: string;
+  brief:       string;
+  structural:  true;
+  reasons:     string[];
+  /** The pending_owner version the build wrote (set once it exists). */
+  playbook_id?: string;
+  version?:    number;
+  /** Set when the owner activated the version (NetworkService.decide). */
+  activated_at?: string;
+  noop?:       boolean;
+}
+
+/** Every change an executor can plan. Playbook kinds keep `Change`; the T5 kinds have their own shapes. */
+export type AnyChange = Change | ExperimentChange | StrategyChange;
+
+export type PlanError = { error: 'not_executable'; details: string };
+export type PlanResult<C = AnyChange> = C | PlanError;
+
+/**
+ * `pending` — nothing failed, but the change does not exist yet (an experiment quota with no slot planned, a
+ * strategy version waiting for the owner): the directive stays `accepted` and is checked again hourly.
+ * `ownerRejected` — the owner rejected the directive's playbook version (strategy): the directive is rejected.
+ */
+export interface Applied { noop: boolean; playbookId?: string; version?: number; pending?: boolean; ownerRejected?: boolean }
 
 export type Adherence = 'followed' | 'violated' | 'not_followed';
 
@@ -65,11 +112,20 @@ export type VerifyResult =
   | { pending: true; detail?: Record<string, unknown> }
   | { pending?: false; verified: boolean; adherence: Adherence; detail: Record<string, unknown> };
 
-export interface DirectiveExecutor {
+export interface DirectiveExecutor<C extends { kind: DirectiveKind; structural: boolean; reasons: string[] } = Change> {
   kind:   DirectiveKind;
-  plan(dir: Pick<Directive, 'kind' | 'params' | 'toAgentId'> & { id?: string }, ctx: ExecContext): PlanResult;
-  apply(change: Change, dir: Pick<Directive, 'id' | 'toAgentId' | 'kind'>): Promise<Applied>;
+  plan(dir: Pick<Directive, 'kind' | 'params' | 'toAgentId'> & { id?: string; body?: string }, ctx: ExecContext): PlanResult<C>;
+  apply(change: C, dir: Pick<Directive, 'id' | 'toAgentId' | 'kind'>): Promise<Applied>;
   verify(dir: Directive): Promise<VerifyResult>;
 }
 
-export const isPlanError = (x: PlanResult | null | undefined): x is PlanError => !!x && 'error' in x;
+/** Any executor (the registry holds playbook, experiment and strategy executors side by side). */
+export type AnyExecutor = DirectiveExecutor<any>;
+
+/** A kind with code that observes it but no plan/apply of its own (spec 025: promo kinds, applied by PromoPlanner). */
+export interface DirectiveVerifier {
+  kind:   DirectiveKind;
+  verify(dir: Directive): Promise<VerifyResult>;
+}
+
+export const isPlanError = (x: PlanResult<unknown> | null | undefined): x is PlanError => !!x && typeof x === 'object' && 'error' in x;

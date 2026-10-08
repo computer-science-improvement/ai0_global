@@ -8,7 +8,7 @@ import type { OwnerInbox } from '../agents/owner-inbox';
 import type { EditorCard } from '../card';
 import { localDate } from '../roles/time';
 import { networkContext, NetworkContextDeps } from './network-context';
-import { IDEA_STATUSES, IdeaStatus, NETWORK_MODE_ALIASES, NETWORK_MODES, NetworkMode, NetworkRepository } from './network.repository';
+import { IDEA_STATUSES, IdeaStatus, NETWORK_MODE_ALIASES, NETWORK_MODES, NetworkMode, NetworkRepository, type PlaybookRow } from './network.repository';
 import { PlaybookSchema, validatePlaybook } from './playbook';
 import { lockOwnerSeries, normalizePlaybook, seriesSourceCatalog } from './series-edit';
 import type { NetworkOffers } from './network-offers';
@@ -35,6 +35,8 @@ export interface NetworkServiceDeps {
   now?:     () => Date;
   /** Spec 024 FR-010: offers to convert legacy auto-duplicate networks. */
   offers?:  Pick<NetworkOffers, 'onPlaybookActive' | 'decide' | 'list' | 'run'>;
+  /** Spec 025 FR-015: a decided version that a strategy directive asked for (DirectiveExecution.onPlaybookDecided). */
+  onPlaybookDecided?: (pb: PlaybookRow, approve: boolean) => Promise<unknown>;
 }
 
 /** Owner surface of playbooks, the idea pool, network plans and network mode (spec 020 FR-010/FR-011). */
@@ -75,6 +77,9 @@ export class NetworkService {
     const pb = await this.d.repo.decidePlaybook(id, approve);
     if (!pb) throw new ConflictException({ error: 'not_pending', details: 'this version no longer awaits a decision' });
     if (approve) await this.playbookActive(pb.agentId);
+    if (pb.directiveId && this.d.onPlaybookDecided) {
+      await this.d.onPlaybookDecided(pb, approve).catch((err) => this.d.log?.(`strategy directive after the playbook decision failed: ${err?.message ?? err}`));
+    }
     return { playbook: pb };
   }
 

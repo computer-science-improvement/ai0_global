@@ -8,7 +8,7 @@ import type { PlanObserver } from './plan-observer';
 import {
   anchorRef, cardAsPlaybook, cardHolds, cardPatch, dryRunCheck, holdsIn, notExecutable, patchPlaybook, resolveTarget, round2,
 } from './playbook-change';
-import type { Applied, Change, ChangeOp, DirectiveExecutor, ExecContext, PlanResult, VerifyResult } from './types';
+import type { AnyChange, Applied, Change, ChangeOp, DirectiveExecutor, ExecContext, PlanResult, VerifyResult } from './types';
 
 /**
  * The playbook executors (spec 025 FR-010 frequency, FR-011 format_shift, FR-012 pause_series).
@@ -29,7 +29,7 @@ export const FORMAT_VERIFY_PLAN_DAYS = 3;
 const KYIV = 'Europe/Kyiv';
 
 /** Build the change for an op: the next body, the dry-run checks, the classification. */
-function finish(ctx: ExecContext, kind: Change['kind'], target: 'playbook' | 'card', op: ChangeOp): PlanResult {
+function finish(ctx: ExecContext, kind: Change['kind'], target: 'playbook' | 'card', op: ChangeOp): PlanResult<Change> {
   const ref = op.op === 'series_active' ? null : op.resource_ref;
   const channelKey = ctx.net?.anchorKey ?? ctx.card?.channelKey;
   const prev: Playbook = target === 'playbook' ? ctx.playbook! : cardAsPlaybook(ctx.card!, ref!);
@@ -63,12 +63,14 @@ async function applyChange(d: PlaybookExecutorDeps, change: Change, dir: Pick<Di
   return { noop: r.noop, playbookId: now.id, version: now.version };
 }
 
-export function describe(c: Change): string {
+export function describe(c: AnyChange): string {
   switch (c.op) {
     case 'per_day': return `${c.resource_ref}: posts per day ${c.before.min}–${c.before.max} → ${c.after.min}–${c.after.max}`;
     case 'format_weight': return `${c.resource_ref}: weight of ${c.format} ${c.before} → ${c.after}`;
     case 'series_active': return `series "${c.series}" ${c.after ? 'resumed' : `paused until ${c.resume_on ?? '—'}`}`;
     case 'pause_resource': return `${c.resource_ref}: paused for ${c.days} day(s) until ${c.until}`;
+    case 'experiment': return `${c.resource_ref}: experiment "${c.angle.slice(0, 80)}"${c.format ? ` (${c.format})` : ''} — ${c.slots} slot(s) within ${c.within_days} day(s)`;
+    case 'playbook_build': return `playbook rebuild from the directive's brief (the owner activates the new version)`;
   }
 }
 

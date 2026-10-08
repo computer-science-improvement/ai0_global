@@ -40,7 +40,7 @@ export interface EditorRunnerDeps {
   /** Spec 020: network planner and the idea pool for the single-channel planner. */
   network?: {
     runNetworkPlanner(card: EditorCard, planDate?: string): Promise<AgentLoopResult | null>;
-    plannerExtras(card: EditorCard): Promise<{ network: unknown; excludeTools: Set<string>; ideasNote: string | null } | null>;
+    plannerExtras(card: EditorCard, planDate?: string): Promise<{ network: unknown; excludeTools: Set<string>; ideasNote: string | null } | null>;
   };
   /** Spec 023 FR-008: the ≤ 1,500-char source catalog for the planner prompt. Optional. */
   catalogSummary?: (card: EditorCard) => Promise<string | null>;
@@ -161,7 +161,7 @@ export class EditorRunnerService {
       const net = await this.d.network.runNetworkPlanner(card, opts.planDate).catch(() => null);
       if (net) return net;
     }
-    const extra = this.d.network ? await this.d.network.plannerExtras(card).catch(() => null) : null;
+    const extra = this.d.network ? await this.d.network.plannerExtras(card, planDate).catch(() => null) : null;
     const reserved = await this.d.plans.reservedSlots(card.channelKey, dayStart, new Date(dayStart.getTime() + 86_400_000));
     const catalog = this.d.catalogSummary ? await this.d.catalogSummary(card).catch(() => null) : null;
     const user = [plannerUserPrompt(card, now, reserved, planDate), extra?.ideasNote, catalog ? `\n${catalog}` : null].filter(Boolean).join('\n');

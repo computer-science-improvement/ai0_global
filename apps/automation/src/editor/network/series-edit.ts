@@ -118,19 +118,23 @@ export async function submitPlaybookVersion(d: SubmitDeps, net: NetworkCtx, ctx:
   const lock = d.directiveLock ? await d.directiveLock(net.orchestrator.id, body) : null;
   if (lock) return lock;
   const change = classifyPlaybookChange(active, body, { mode: networkMode(net, card) });
-  const status = change.structural ? 'pending_owner' : 'active';
+  // Spec 025 FR-015: a build for a `strategy` directive always goes to the owner, linked to the directive.
+  const directiveId = typeof ctx.extras?.directiveId === 'string' ? ctx.extras.directiveId : null;
+  const status = change.structural || directiveId ? 'pending_owner' : 'active';
   const pb = await d.repo.insertPlaybook({
     agentId: net.orchestrator.id, status, brief: (ctx.extras?.brief as string | undefined) ?? null, body, rationale, createdBy: 'orchestrator', runId: ctx.runId,
+    ...(directiveId ? { directiveId } : {}),
   });
   if (status === 'active') { net.playbook = body; net.playbookVersion = pb.version; }
+  const pending = status === 'pending_owner';
   await d.inbox.post({
-    agentId: net.orchestrator.id, kind: change.structural ? 'playbook_pending' : 'playbook_updated', severity: change.structural ? 'action' : 'info',
-    title: change.structural
+    agentId: net.orchestrator.id, kind: pending ? 'playbook_pending' : 'playbook_updated', severity: pending ? 'action' : 'info',
+    title: pending
       ? `📘 @${net.orchestrator.handle}: playbook v${pb.version} awaits your approval`
       : `📘 @${net.orchestrator.handle}: playbook updated to v${pb.version}`,
-    body: `${rationale}\n\nChanges: ${change.reasons.join('; ') || 'minor (weights, hours, briefs, sources)'}`,
+    body: `${rationale}\n\nChanges: ${change.reasons.join('; ') || 'minor (weights, hours, briefs, sources)'}${directiveId ? `\nBuilt for the @manager strategy directive ${directiveId}.` : ''}`,
     alert: {
-      title: change.structural
+      title: pending
         ? `📘 @${net.orchestrator.handle}: плейбук v${pb.version} чекає затвердження`
         : `📘 @${net.orchestrator.handle}: плейбук оновлено до v${pb.version}`,
       body: `${rationale}\n\nЗміни: ${change.reasons.join('; ') || 'дрібні'}`,

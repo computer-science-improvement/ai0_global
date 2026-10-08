@@ -1,6 +1,6 @@
 # 025: MANAGER: binding directives vs optional advice, and code executors for directive kinds
 
-**Status:** BUILDING (T1–T2 done; T3–T7 open) · **Depends on:** 020, 021, 022 · **Supersedes/extends:** extends 021 (FR-004, FR-006, FR-007, FR-008, FR-009); replaces `applyAccepted` auto-flip ·
+**Status:** BUILDING (T1–T5 done; T6–T7 open) · **Depends on:** 020, 021, 022 · **Supersedes/extends:** extends 021 (FR-004, FR-006, FR-007, FR-008, FR-009); replaces `applyAccepted` auto-flip ·
 **Migration:** `065_directive_binding.sql`
 
 **Owner comments addressed:** #7
@@ -84,10 +84,11 @@ advice that conflicts with the playbook may simply be declined.
 - After 14 days live, every `applied` row has an executor `change` and a visible verification state.
 
 ## Open questions for the owner
-1. **A binding directive the orchestrator ignores for 24 h: auto-apply or escalate?** Default: auto-apply when there is an executor, plus an info Inbox entry (FR-007).
-2. **Contest timeout outcome:** does the agent's refusal stand, or does the directive apply? Default: the refusal stands after 24 h, because the higher layers (owner rule, safety) were cited.
-3. **Should `repost` stay possible as advice?** Default: yes. It is non-structural and cheap, and it only affects the anchor.
-4. **Can an orchestrator revert directive-made playbook changes before review?** Default: no for directives (`directive_lock`), yes for advice.
+All four were **decided on 2026-10-08**: the owner confirmed the defaults ("take the next scope").
+1. **A binding directive the orchestrator ignores for 24 h: auto-apply or escalate?** Decided: auto-apply when there is an executor, plus an info Inbox entry (FR-007).
+2. **Contest timeout outcome:** does the agent's refusal stand, or does the directive apply? Decided: the refusal stands after 24 h (`rejected`, `timeout_dropped`), because the higher layers (owner rule, safety) were cited.
+3. **Should `repost` stay possible as advice?** Decided: yes. It is non-structural and cheap, and it only affects the anchor.
+4. **Can an orchestrator revert directive-made playbook changes before review?** Decided: no for directives (`directive_lock`), yes for advice.
 
 ## Implementation notes (T1–T2)
 Decisions where the spec left room; T3–T7 build on these.
@@ -131,7 +132,74 @@ Decisions where the spec left room; T3–T7 build on these.
   `binding = 'directive'`, `status = 'applied'`, `review_at > now` and a playbook change lock; advice and card changes do not. Owner edits
   are never locked.
 - **Left for T3+.** `reject_directive` is still registered and the orchestrator prompt still has the 3-layer precedence (T3 replaces them
-  with `decline_advice` / `contest_directive`). No dashboard changes (T6). The digest `compliance` block is T5.
+  with `decline_advice` / `contest_directive` — done, see T3 notes). No dashboard changes (T6). The digest `compliance` block is T5.
+
+## Implementation notes (T3)
+- **No migration.** Every status, owner decision and column T3 needs came with 065; Inbox kinds are free text. (068 stays unused.)
+- **Tools.** `reject_directive` is gone from the registry. `decline_advice` (advice only → `binding_directive_use_contest`) closes the
+  row as `declined` without an Inbox entry; the cooldown query only reads `rejected`, so a declined advice never starts one.
+  `contest_directive` accepts the seven reason kinds in its schema so that `playbook` / `data` / `preference` get the spec's
+  `directive_is_binding` error instead of a schema error; advice → `advice_use_decline`. A failed FR-006 check → `reason_not_verified`.
+  The transition to `contested` is guarded (`status = 'new' AND binding = 'directive'`), so a repeat call gets `not_open` and the card is
+  posted once. `accept_directive` now points to contest (directive) or decline (advice) when it refuses an owner-rule conflict; a
+  directive about an owner-locked series is contested with `capability` (the executor's plan refuses locked series).
+- **Contest checks** (`checkContest`). `owner_rule` reads the orchestrator's channel memory (`created_by = 'owner'`, active) like
+  `accept_directive`; an empty `rule_ids` fails. `health`: the scope is the anchor plus every group resource (usable or not), then
+  `usable(ref)` must be false. `capability`: the executor's dry-run must fail now; kinds without an executor cannot be checked → not
+  verified. `safety`: `verified: 'unverified'`. The result (with `checked_at`) goes to `verification.contest`.
+- **Owner decision.** `ManagerRunner.uphold` re-runs the dry-run (capability) and `usable()` on every resource the params name
+  (`resource_ref`, `source_ref`, `target_ref`, `to_ref`) → `409 not_executable`, the row stays `contested`; otherwise `accepted` +
+  `owner_decision = 'upheld'`, and the executor runs at once (promo kinds wait for PromoPlanner after the next orchestrator run).
+  `acceptRefusal` → `rejected` + `refusal_accepted` (the 48 h cooldown follows from `rejected`) and a MANAGER memory insight "owner sided
+  with @x on <kind>". Repeats → `409 not_contested`; unknown id → 404. Contest timeout: `DIRECTIVE_CONTEST_TIMEOUT_HOURS` (24) from
+  `contested_at` → `rejected` + `timeout_dropped`; the contest reason stays in `resolution`.
+- **Non-response** (`resolveUnanswered`, hourly, replaces `expireUnresolved`). Same window as before (delivered 24 h ago, or never
+  delivered for 48 h). Advice → `expired` silently. A binding directive whose target is off or paused, or that was never delivered →
+  `expired` + `directive_expired` (info). One with an executor (or a promo kind) → `accepted` with `resolution = 'auto-applied: no
+  response'`, executed at once (promo: scheduled after the next run) + `directive_auto_applied` (info). Kinds without one (`task`, and
+  `pause_resource` until T4) → `expired` + `directive_ignored` (action). Shadow rows still expire silently.
+- **Precedence.** `PRECEDENCE_LINES` in `network-prompts.ts` (the 6 layers and "a directive: accept or contest; advice: accept or
+  decline") replace the 3-layer line in `orchestratorSystemPrompt`; the daily prompt and the `editor-orchestrator-workflow` skill say the same.
+
+## Implementation notes (T5)
+- **No migration.** The quota lives in the directive's `change` (`op: 'experiment'`, `channel_key`, `resource_ref`, `angle`, `format`,
+  `slots`, `within_days`, `deadline`); its slots are found by the hint `directive:<id>` (the same hint PromoPlanner writes).
+- **Interfaces.** `DirectiveExecutor<C>` is generic; `AnyChange = Change | ExperimentChange | StrategyChange`. `Applied` gains `pending`
+  (the directive stays `accepted` with its change; hourly re-check through the idle retry, no attempt counted) and `ownerRejected`.
+  `DirectiveExecution` takes `verifiers` (verify-only kinds) and `quotas`. `PENDING_EXECUTOR_KINDS` is now `['pause_resource']` (T4).
+- **experiment** (FR-014). `plan()`: `angle` 10–300, `slots` 1–3 (default 1), `within_days` 1–7 (default 3), `resource_ref` defaults to
+  the Telegram anchor and must be in the usable network; a non-anchor resource needs an independent network with a playbook (only that
+  planner plans it); `format` must be implemented on the platform (it need not be in the playbook — that is the experiment; the slot
+  carrying the directive id may use it); the resource needs `per_day.max ≥ 1`. The deadline is acceptance + `within_days`. `apply()` is
+  `pending` until a slot with the hint is planned, then `applied`. `verify()`: `slots` slots `published`/`shadowed` → verified; 24 h after
+  the deadline without that → `not_followed`. `closeQuotas()` (hourly): deadline passed with fewer than `slots` planned → `failed` +
+  `directive_failed` (works from `accepted` and `applied`).
+- **Quota rule** (`experiment-quota.ts`, shared by `validatePlan` and `validateNetworkPlan`). Open quota = an accepted/applied experiment
+  of this anchor before its deadline with slots left; the count leaves out the replaceable slots of the plan day being submitted (a
+  re-plan must include the slot again). Every open quota whose resource has room that day (per_day.max above the reserved slots and a
+  non-quiet hour still ahead) needs ≥ 1 slot with its `directive_id`, and no more than it has left; an unknown id, the wrong resource or
+  format is an error. The error names the directive in Ukrainian. Directive slots are stored with `is_experiment = true` and
+  `directive:<id>` first in the hints, do not count against `explore_ratio`, and need no `idea_id` / `series` in a network plan (they
+  must be `unique`). A single-channel plan only carries quotas on its own channel. Both planner prompts list the open quotas.
+- **strategy** (FR-015). `plan()` takes the brief from `params.brief` or the directive body (≥ 10 chars). `apply()` runs the build once
+  through `PlaybookBuildPort` (bound in the module to `NetworkRunner.runPlaybookBuild(card, brief, {directiveId})`; the MANAGER is built
+  before the runner). `submitPlaybookVersion` forces `pending_owner` and stores `directive_id` when the run carries `directiveId`. The
+  version's state decides: pending → `pending`; active (or `change.activated_at`) → applied, and verified on the next hourly pass;
+  rejected → the directive is `rejected` with `owner_decision = 'declined'`; superseded before a decision → an executor error (retried,
+  then `failed`). `NetworkService.decide` calls `DirectiveExecution.onPlaybookDecided`, so the owner's click settles it at once.
+- **task** (FR-015). `execute()` leaves it alone (it is no longer marked unverified-applied) and the executor queries skip it.
+  `report_directive_done({id, ref_type, ref_id})` works from `new` or `accepted`; `taskRefCheck` compares in SQL: the idea / playbook /
+  skill belongs to the orchestrator (`agent_id`), the slot to its anchor channel, and was created after `delivered_at` (a skill: created
+  or changed after it — skill edits keep their id). Then `applied` with `verification = {kind: 'reported', adherence: 'followed', ref_*}`
+  and `verified_at`. An accepted task without a report by `review_at` → `expired` (+ `directive_ignored`, action, for directives).
+- **Promo** (FR-015). `promoVerifier` reads `editor_slots.promo->>'directive_id'`: published/shadowed → verified; all skipped/failed →
+  `not_followed`; no slot that ran within 9 days of `applied_at` → `not_followed`. PromoPlanner itself is unchanged.
+- **Evaluation** (FR-016). Self-reported advice is closed at its review date with `outcome` left empty and `outcome_detail.reason =
+  'self_reported'` (never scored). An unverified row → `inconclusive` with `reason: 'not_verified'`, its `adherence` and verification kind
+  copied; no MANAGER lesson. An experiment is not judged before its deadline unless verified.
+- **Digest** (FR-017). `compliance` (30 days, per orchestrator, shadow rows excluded): `advice_followed` (advice accepted/applied/
+  evaluated), `advice_declined`, `decline_reasons` (last 3: kind + reason), `contested` (`contested_at` set), `auto_applied` (resolution
+  `auto-applied:`). It is not part of the digest hash (the manager's skip rule stays on KPIs and open directives).
 
 ## Implementation notes (T4)
 `pause_resource` pauses for real. No migration: `resource_pauses` from 065 is enough. Status for this task: BUILDING (T4 done).
@@ -221,9 +289,9 @@ Decisions where the spec left room; T3–T7 build on these.
 - 6-layer precedence in `orchestratorSystemPrompt` and the `editor-orchestrator-workflow` skill.
 
 **Acceptance:**
-- [ ] A contest with an unknown rule id → `reason_not_verified`.
-- [ ] A valid contest creates exactly one `directive_contested` Inbox entry.
-- [ ] Uphold runs the executor; accept-refusal starts the cooldown; a declined advice does not.
+- [x] A contest with an unknown rule id → `reason_not_verified`.
+- [x] A valid contest creates exactly one `directive_contested` Inbox entry.
+- [x] Uphold runs the executor; accept-refusal starts the cooldown; a declined advice does not.
 
 **Size:** L · **Depends on:** T1, T2
 
@@ -247,8 +315,8 @@ Decisions where the spec left room; T3–T7 build on these.
 - Digest `compliance` block (FR-017).
 
 **Acceptance:**
-- [ ] A plan without the required experiment slot is refused with a Ukrainian error naming the directive.
-- [ ] An unverified applied directive is evaluated `inconclusive (not_verified)`.
+- [x] A plan without the required experiment slot is refused with a Ukrainian error naming the directive.
+- [x] An unverified applied directive is evaluated `inconclusive (not_verified)`.
 
 **Size:** M · **Depends on:** T2
 

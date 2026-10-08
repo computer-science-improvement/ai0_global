@@ -13,7 +13,7 @@ export interface DirectiveFilters { status?: string; agent?: string; binding?: s
 export class ManagerService {
   constructor(private readonly d: {
     repo: DirectivesRepository; agents: Pick<AgentsRepository, 'getByHandle' | 'list'>; digest: Pick<KpiDigestService, 'build' | 'render'>;
-    runner: Pick<ManagerRunner, 'run' | 'manager'>; log?: (m: string) => void;
+    runner: Pick<ManagerRunner, 'run' | 'manager' | 'uphold' | 'acceptRefusal'>; log?: (m: string) => void;
   }) {}
 
   async directives(f: DirectiveFilters = {}) {
@@ -41,6 +41,19 @@ export class ManagerService {
       ? { status: 'new', ownerDecision: 'approved', shadow: false }
       : { status: 'rejected', ownerDecision: 'declined', resolution: 'owner declined', reasonKind: 'owner_rule' }, ['awaiting_owner']);
     return { directive: out };
+  }
+
+  /**
+   * Spec 025 FR-008: the owner decides a contested directive. Uphold runs the executor (capability and health
+   * guards still apply → 409 not_executable); accept-refusal rejects it and starts the cooldown. A repeat → 409 not_contested.
+   */
+  async ownerDecision(id: string, decision: 'uphold' | 'accept_refusal') {
+    const r = decision === 'uphold' ? await this.d.runner.uphold(id) : await this.d.runner.acceptRefusal(id);
+    if ('error' in r) {
+      if (r.error === 'directive_not_found') throw new NotFoundException({ error: r.error });
+      throw new ConflictException({ error: r.error, details: r.error === 'not_contested' ? `the directive is ${r.details ?? 'not contested'}` : r.details });
+    }
+    return { directive: r.directive };
   }
 
   async reviews(limit?: string) {

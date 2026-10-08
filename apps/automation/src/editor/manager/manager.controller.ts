@@ -22,6 +22,14 @@ export class ManagerController {
   @Post('directives/:id/decline')
   decline(@Param('id', ParseUUIDPipe) id: string) { return this.svc.decide(id, false); }
 
+  /** Spec 025 FR-008: the owner upholds a contested directive (the executor runs). */
+  @Post('directives/:id/uphold')
+  uphold(@Param('id', ParseUUIDPipe) id: string) { return this.svc.ownerDecision(id, 'uphold'); }
+
+  /** Spec 025 FR-008: the owner sides with the orchestrator (rejected, 48 h cooldown). */
+  @Post('directives/:id/accept-refusal')
+  acceptRefusal(@Param('id', ParseUUIDPipe) id: string) { return this.svc.ownerDecision(id, 'accept_refusal'); }
+
   @Get('manager/reviews')
   reviews(@Query('limit') limit?: string) { return this.svc.reviews(limit); }
 

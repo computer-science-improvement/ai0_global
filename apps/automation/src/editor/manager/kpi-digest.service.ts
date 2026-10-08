@@ -22,8 +22,44 @@ export interface KpiDigest {
   agents:      Array<{ handle: string; mode: string; paused: boolean; slotsToday: Record<string, number>; spentTodayUsd: number }>;
   budget:      { spentTodayUsd: number; capUsd: number };
   directives:  { open: Array<{ id: string; to: string; kind: string; status: string; body: string; createdAt: string }>; outcomes: Array<{ to: string; kind: string; outcome: string | null; body: string; detail: unknown }> };
+  /** Spec 025 FR-017: how each orchestrator answered the MANAGER over 30 days. */
+  compliance?: ComplianceRow[];
   hash:        string;
   raw:         Map<string, ScopeKpis>;
+}
+
+export interface ComplianceRow {
+  agent:            string;
+  advice_followed:  number;
+  advice_declined:  number;
+  /** The last 3 decline reasons, newest first. */
+  decline_reasons:  Array<{ kind: string; reason: string }>;
+  contested:        number;
+  auto_applied:     number;
+}
+
+export const COMPLIANCE_DAYS = 30;
+
+/** Spec 025 FR-017: the compliance block — advice followed / declined (+ the last 3 reasons), directives contested and auto-applied. */
+export async function complianceOf(pool: Pick<Pool, 'query'>, days = COMPLIANCE_DAYS): Promise<ComplianceRow[]> {
+  const { rows } = await pool.query(
+    `SELECT a.handle,
+            COUNT(*) FILTER (WHERE d.binding = 'advice' AND d.status IN ('accepted','applied','evaluated'))::int AS advice_followed,
+            COUNT(*) FILTER (WHERE d.binding = 'advice' AND d.status = 'declined')::int AS advice_declined,
+            COUNT(*) FILTER (WHERE d.contested_at IS NOT NULL)::int AS contested,
+            COUNT(*) FILTER (WHERE d.resolution LIKE 'auto-applied:%')::int AS auto_applied,
+            (SELECT COALESCE(jsonb_agg(jsonb_build_object('kind', x.reason_kind, 'reason', left(x.resolution, 160)) ORDER BY x.updated_at DESC), '[]'::jsonb)
+               FROM (SELECT reason_kind, resolution, updated_at FROM agent_directives
+                      WHERE to_agent_id = a.id AND status = 'declined' AND NOT shadow AND created_at >= now() - ($1 || ' days')::interval
+                      ORDER BY updated_at DESC LIMIT 3) x) AS reasons
+       FROM agent_directives d JOIN agents a ON a.id = d.to_agent_id
+      WHERE NOT d.shadow AND d.created_at >= now() - ($1 || ' days')::interval
+      GROUP BY a.id, a.handle ORDER BY a.handle`, [String(days)]);
+  return rows.map((r) => ({
+    agent: r.handle, advice_followed: Number(r.advice_followed), advice_declined: Number(r.advice_declined),
+    decline_reasons: (r.reasons ?? []).map((x: any) => ({ kind: x.kind ?? '—', reason: x.reason ?? '' })),
+    contested: Number(r.contested), auto_applied: Number(r.auto_applied),
+  }));
 }
 
 export interface KpiDigestDeps {
@@ -146,6 +182,7 @@ export class KpiDigestService {
         open: open.map((o) => ({ id: o.id, to: o.to_handle, kind: o.kind, status: o.status, body: String(o.body).slice(0, 200), createdAt: new Date(o.created_at).toISOString() })),
         outcomes: outcomes.map((o) => ({ to: o.to_handle, kind: o.kind, outcome: o.outcome ?? null, body: String(o.body).slice(0, 160), detail: o.outcome_detail ?? null })),
       },
+      compliance: await complianceOf(this.d.pool),
     };
     const hash = createHash('sha1').update(JSON.stringify({ r: out.map((x) => [x.ref, x.kpis]), o: digest.directives.open.map((x) => [x.id, x.status]) })).digest('hex');
     return { ...digest, hash, raw };

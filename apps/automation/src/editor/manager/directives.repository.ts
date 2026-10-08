@@ -165,13 +165,47 @@ export class DirectivesRepository {
     return rows.map((r) => r.to_agent_id);
   }
 
-  async expireUnresolved(maxAgeMs: number): Promise<number> {
+  /**
+   * Spec 025 FR-007: open (`new`) directives nobody answered — delivered more than `maxAgeMs` ago, or never
+   * delivered for twice that. Shadow rows are expired silently by `expireShadowUnanswered`.
+   */
+  async unanswered(maxAgeMs: number): Promise<Directive[]> {
+    const { rows } = await this.pool.query(
+      `SELECT * FROM agent_directives
+        WHERE status = 'new' AND NOT shadow AND (
+          (delivered_at IS NOT NULL AND delivered_at < now() - ($1 || ' milliseconds')::interval)
+          OR (delivered_at IS NULL AND created_at < now() - ($1 || ' milliseconds')::interval * 2))
+        ORDER BY created_at`, [String(maxAgeMs)]);
+    return rows.map(toDirective);
+  }
+
+  /** Shadow directives are never delivered (FR-020): they expire after twice the window, without a trace in the Inbox. */
+  async expireShadowUnanswered(maxAgeMs: number): Promise<number> {
     const { rowCount } = await this.pool.query(
       `UPDATE agent_directives SET status = 'expired', resolution = 'not resolved within 24 h', updated_at = now()
-        WHERE status = 'new' AND (
-          (delivered_at IS NOT NULL AND delivered_at < now() - ($1 || ' milliseconds')::interval)
-          OR (delivered_at IS NULL AND created_at < now() - ($1 || ' milliseconds')::interval * 2))`, [String(maxAgeMs)]);
+        WHERE status = 'new' AND shadow AND created_at < now() - ($1 || ' milliseconds')::interval * 2`, [String(maxAgeMs)]);
     return rowCount ?? 0;
+  }
+
+  /**
+   * Spec 025 FR-005/FR-006: a binding directive contested by its orchestrator (only from `new`, so a repeat
+   * call changes nothing). The check result goes to `verification.contest`.
+   */
+  async contest(id: string, p: { reason: string; reasonKind: string; check: Record<string, unknown> }): Promise<Directive | null> {
+    const { rows } = await this.pool.query(
+      `UPDATE agent_directives SET status = 'contested', contested_at = now(), resolution = $2, reason_kind = $3,
+              verification = COALESCE(verification, '{}'::jsonb) || jsonb_build_object('contest', $4::jsonb), updated_at = now()
+        WHERE id = $1 AND status = 'new' AND binding = 'directive' RETURNING *`,
+      [id, p.reason, p.reasonKind, JSON.stringify(p.check)]);
+    return rows[0] ? toDirective(rows[0]) : null;
+  }
+
+  /** Contested directives the owner has not decided within `ms` (FR-008 timeout). */
+  async contestedOlderThan(ms: number): Promise<Directive[]> {
+    const { rows } = await this.pool.query(
+      `SELECT * FROM agent_directives WHERE status = 'contested' AND contested_at < now() - ($1 || ' milliseconds')::interval ORDER BY contested_at`,
+      [String(ms)]);
+    return rows.map(toDirective);
   }
 
   async awaitingOwnerOlderThan(ms: number): Promise<Directive[]> {
@@ -227,6 +261,38 @@ export class DirectivesRepository {
               updated_at = now()
         WHERE id = $1 AND status = 'accepted' RETURNING *`, [id, error.slice(0, 1000)]);
     return rows[0] ? toDirective(rows[0]) : null;
+  }
+
+  /** Spec 025 FR-014: live experiment directives with an open quota (accepted or applied, change stored). */
+  async openExperiments(): Promise<Directive[]> {
+    const { rows } = await this.pool.query(
+      `SELECT * FROM agent_directives WHERE kind = 'experiment' AND status IN ('accepted','applied') AND NOT shadow AND change->>'op' = 'experiment'
+        ORDER BY created_at`);
+    return rows.map(toDirective);
+  }
+
+  /** Fail an accepted or applied directive (an experiment quota not filled by its deadline). */
+  async failOpen(id: string, error: string): Promise<Directive | null> {
+    const { rows } = await this.pool.query(
+      `UPDATE agent_directives SET status = 'failed', exec_error = $2,
+              resolution = COALESCE(resolution, '') || CASE WHEN resolution IS NULL THEN '' ELSE ' · ' END || 'quota not filled', updated_at = now()
+        WHERE id = $1 AND status IN ('accepted','applied') RETURNING *`, [id, error.slice(0, 1000)]);
+    return rows[0] ? toDirective(rows[0]) : null;
+  }
+
+  /** Spec 025 FR-015: a task reported done with a verified reference — applied and verified at once. */
+  async reportDone(id: string, verification: Record<string, unknown>): Promise<Directive | null> {
+    const { rows } = await this.pool.query(
+      `UPDATE agent_directives SET status = 'applied', applied_at = now(), verification = $2, verified_at = now(), updated_at = now()
+        WHERE id = $1 AND kind = 'task' AND status IN ('new','accepted') RETURNING *`, [id, JSON.stringify(verification)]);
+    return rows[0] ? toDirective(rows[0]) : null;
+  }
+
+  /** Accepted tasks never reported done by their review date. */
+  async overdueTasks(now: Date): Promise<Directive[]> {
+    const { rows } = await this.pool.query(
+      `SELECT * FROM agent_directives WHERE kind = 'task' AND status = 'accepted' AND NOT shadow AND review_at IS NOT NULL AND review_at <= $1 ORDER BY review_at`, [now]);
+    return rows.map(toDirective);
   }
 
   /** Applied, live directives of `kinds` whose verification has no verdict yet (hourly verify()). */
