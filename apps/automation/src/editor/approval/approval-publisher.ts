@@ -10,6 +10,7 @@ import type { EditorPlansRepository, EditorSlot } from '../repo/editor-plans.rep
 import { SIMILARITY_LIMIT } from '../tools/role-tools';
 import { localDate, zonedToUtc } from '../roles/time';
 import type { ApprovalsRepository } from './approvals.repository';
+import { PAUSED_ERROR, slotRef } from '../pauses/resource-pauses';
 
 export interface ApprovalPublisherDeps {
   repo:     Pick<ApprovalsRepository, 'claimApprovedDue' | 'publishedSource' | 'publishedTexts' | 'cancelPlatformPosts'>;
@@ -27,6 +28,8 @@ export interface ApprovalPublisherDeps {
   notice?:  (slot: EditorSlot, title: string, body: string, alert?: { title: string; body: string }) => Promise<void>;
   /** Spec 020: an idea becomes `used` once its slots are done. */
   onSlotDone?: (slot: EditorSlot) => Promise<void>;
+  /** Spec 025 FR-013: an approved post on a paused resource is skipped (`resource_paused`), not sent. */
+  paused?:  (ref: string) => Promise<boolean>;
   log?:     (msg: string) => void;
 }
 
@@ -78,6 +81,7 @@ export class ApprovalPublisher {
     if (!card) return this.fail(slot, 'no channel card');
     const mode = await this.d.mode(card);
     if (mode === 'off' || mode === 'shadow') return this.skip(slot, 'mode_changed');
+    if (this.d.paused && await this.d.paused(slotRef(slot))) return this.skip(slot, PAUSED_ERROR);
     const render = slot.renderMessages;
     if (!render) return this.fail(slot, 'approved post has no stored render');
 

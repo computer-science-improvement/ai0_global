@@ -55,6 +55,8 @@ export interface PromoPlannerDeps {
   usable:   (ref: string) => Promise<boolean>;
   /** Best hours of the source resource from the playbook (020), when known. */
   bestHours?: (orch: Agent, ref: string) => Promise<number[]>;
+  /** Spec 025 FR-013: a promo on or for a paused resource is refused (`resource_paused`). */
+  paused?:  (ref: string) => Promise<boolean>;
   now?:     () => Date;
 }
 
@@ -99,6 +101,11 @@ export class PromoPlanner {
     if (!inNetwork) return { error: 'source_not_in_network', details: `${sourceRef} не належить мережі ${anchorKey} — директиву має отримати оркестратор джерела` };
     if (kind === 'repost' && sourceRef !== anchorRef) return { error: 'repost_into_anchor_only', details: `репост можна лише в ${anchorRef}` };
     if (!(await this.d.usable(sourceRef)) || !(await this.d.usable(targetRef))) return { error: 'resource_unhealthy', details: 'один із ресурсів недоступний (токен/права)' };
+    if (this.d.paused) {
+      for (const ref of [sourceRef, targetRef]) {
+        if (await this.d.paused(ref)) return { error: 'resource_paused', details: `${ref} на паузі (директива pause_resource) — промо з ним не плануються, поки пауза діє` };
+      }
+    }
     if (kind === 'repost' && (parseResourceRef(sourceRef)!.platform !== 'telegram' || parseResourceRef(targetRef)!.platform !== 'telegram')) {
       return { error: 'repost_telegram_only', details: 'нативне пересилання — лише Telegram → Telegram; для інших платформ — cross_promo' };
     }

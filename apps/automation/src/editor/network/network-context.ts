@@ -49,6 +49,11 @@ export interface NetworkContextDeps {
   usable?: (ref: string) => Promise<boolean>;
   /** Spec 024: per-resource zone and quiet hours. Without it Telegram uses the card, others Kyiv 23→8. */
   time?: Pick<ResourceTime, 'tzOf' | 'quietOf'>;
+  /**
+   * Spec 025 FR-013: a resource paused by a pause_resource directive is left out (a paused Telegram anchor is
+   * not added back). Agent runs pass it; owner surfaces (playbook edits, the network view) do not.
+   */
+  paused?: (ref: string) => Promise<boolean>;
 }
 
 /** The clock of one resource: the resolver when wired, else the card for Telegram and the defaults for the rest. */
@@ -68,9 +73,11 @@ export async function networkContext(d: NetworkContextDeps, orch: Agent, card: E
   const plain: NetworkResource[] = [];
   for (const r of raw) {
     if (d.usable && r.platform !== 'telegram' && !(await d.usable(r.ref))) continue;
+    if (d.paused && await d.paused(r.ref)) continue;
     plain.push({ ref: r.ref, platform: r.platform as Platform });
   }
-  if (!plain.some((r) => r.platform === 'telegram')) plain.unshift({ ref: resourceRef('telegram', anchorKey), platform: 'telegram' });
+  const anchorRef = resourceRef('telegram', anchorKey);
+  if (!plain.some((r) => r.platform === 'telegram') && !(d.paused && await d.paused(anchorRef))) plain.unshift({ ref: anchorRef, platform: 'telegram' });
   const resources: NetworkResourceClock[] = [];
   for (const r of plain) resources.push(await clockOf(d, r, card));
   const pb = await d.repo.activePlaybook(orch.id);

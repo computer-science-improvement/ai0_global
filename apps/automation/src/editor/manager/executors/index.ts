@@ -10,16 +10,17 @@ import type { Change, DirectiveExecutor, ExecContext, PlanResult } from './types
 
 export * from './types';
 export { frequencyExecutor, formatShiftExecutor, pauseSeriesExecutor, type PlaybookExecutorDeps } from './playbook-executors';
+export { pauseResourceExecutor, PAUSE_RESOURCE_DAYS, type PauseResourceDeps } from './pause-resource';
 export { executionContextOf } from './context';
 export { SqlPlanObserver, type PlanObserver } from './plan-observer';
 
 /** Kinds scheduled by PromoPlanner after an orchestrator run (spec 022); not run here. */
 export const PROMO_KINDS: DirectiveKind[] = ['cross_promo', 'repost'];
 /**
- * Kinds whose executors come with spec 025 T4/T5 (pause_resource, experiment, strategy, task). Until then an
- * accepted one is marked applied with `verification.kind = 'unverified'` (the pre-025 behaviour, now visible).
+ * Kinds whose executors come with spec 025 T5 (experiment, strategy, task). Until then an accepted one is
+ * marked applied with `verification.kind = 'unverified'` (the pre-025 behaviour, now visible).
  */
-export const PENDING_EXECUTOR_KINDS: DirectiveKind[] = ['task', 'experiment', 'strategy', 'pause_resource'];
+export const PENDING_EXECUTOR_KINDS: DirectiveKind[] = ['task', 'experiment', 'strategy'];
 export const MAX_EXEC_ATTEMPTS = 3;
 /** An accepted row untouched this long is (re)tried by the hourly housekeeping. */
 export const EXEC_RETRY_IDLE_MS = 50 * 60_000;

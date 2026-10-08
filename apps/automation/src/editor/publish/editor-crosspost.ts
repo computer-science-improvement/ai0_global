@@ -20,6 +20,11 @@ export interface EditorCrossPostDeps {
    * neither the channel's crosspost targets nor the group members.
    */
   autoDuplicateActive?(channelKey: string): Promise<boolean>;
+  /**
+   * Spec 025 FR-013: platforms whose mirror resource of this channel is paused by a pause_resource directive;
+   * they get no copy while the pause is active.
+   */
+  pausedPlatforms?(channelKey: string): Promise<Set<string>>;
 }
 
 export interface CrossPostRequest {
@@ -48,12 +53,16 @@ export class EditorCrossPoster {
   constructor(private readonly d: EditorCrossPostDeps) {}
 
   async fanOut(r: CrossPostRequest): Promise<string[]> {
-    const render = (platform: MirrorPlatform, link: string | null) =>
-      forPublisher(renderMeta(r.spec, r.card, r.prepared, { telegramLink: link }).posts[platform]);
     const warnings: string[] = [];
     if (this.d.autoDuplicateActive) {
       try { if (!(await this.d.autoDuplicateActive(r.channelKey))) return warnings; } catch { /* unknown → keep duplicating as before */ }
     }
+    let paused = new Set<string>();
+    if (this.d.pausedPlatforms) {
+      try { paused = await this.d.pausedPlatforms(r.channelKey); } catch { /* unknown → no pause filter */ }
+    }
+    const render = (platform: MirrorPlatform, link: string | null) =>
+      (paused.has(platform) ? null : forPublisher(renderMeta(r.spec, r.card, r.prepared, { telegramLink: link }).posts[platform]));
     const record = (outs: Array<CrossPostOutcome | FanOutOutcome> | void) => {
       for (const o of outs ?? []) if (o.status === 'failed') warnings.push(`crosspost: ${o.platform}: ${o.detail ?? 'failed'}`);
     };

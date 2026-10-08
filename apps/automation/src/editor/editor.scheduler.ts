@@ -5,13 +5,14 @@ import type { EditorChannelsRepository } from './repo/editor-channels.repository
 import { isPlaceholderPlan } from './repo/editor-plans.repository';
 import type { EditorPlansRepository, EditorSlot } from './repo/editor-plans.repository';
 import type { EditorRunnerService } from './roles/editor-runner.service';
+import { PAUSED_ERROR, slotRef } from './pauses/resource-pauses';
 import { localDate, localHour, localWeekday } from './roles/time';
 
 export interface EditorSchedulerDeps {
   pool:     Pick<Pool, 'query'>;
   channels: Pick<EditorChannelsRepository, 'listActive'>;
   plans:    Pick<EditorPlansRepository, 'getActivePlan' | 'claimDue' | 'skipStale' | 'sweepStuck' | 'consecutiveFailures'>
-    & Partial<Pick<EditorPlansRepository, 'plannedBefore' | 'claimSlot'>>;
+    & Partial<Pick<EditorPlansRepository, 'plannedBefore' | 'claimSlot' | 'updateSlot'>>;
   runner:   Pick<EditorRunnerService, 'runPlanner' | 'runExecutor' | 'runReviewer'>;
   enabled:  () => boolean;
   notify:   (text: string) => Promise<void>;
@@ -45,6 +46,17 @@ export interface EditorSchedulerDeps {
   approval?: {
     mode(card: EditorCard): Promise<ChannelMode>;
     tick(now: Date): Promise<void>;
+  };
+  /**
+   * Spec 025 FR-013: resource pauses. Each tick lifts the pauses whose time is up, holds the orchestration and
+   * planning of a channel whose own resources are paused (`held`), and skips claimed content slots on a paused
+   * resource (`skipped`, error `resource_paused`) — approval write-ahead included, so nothing waits for the owner.
+   * Reserved slots (paid ads) are not this lane's.
+   */
+  pauses?: {
+    liftDue(now: Date): Promise<unknown>;
+    pausedRefs(now: Date): Promise<Set<string>>;
+    held(card: EditorCard, paused: Set<string>): Promise<boolean>;
   };
 }
 
@@ -128,15 +140,19 @@ export class EditorScheduler {
     const cards = await this.d.channels.listActive();
     const byKey = new Map(cards.map((c) => [c.channelKey, c]));
     const approving = await this.approvingCards(cards);
+    const paused = await this.pausedRefs(now);
 
     for (const card of cards) {
       if (this.d.pinGate) {
         try { await this.d.pinGate(card, now); } catch (err: any) { this.d.log?.(`auto-duplicate gate of ${card.channelKey} failed: ${err?.message ?? err}`); }
       }
-      await this.maybeOrchestrate(card, now);
+      const held = await this.held(card, paused);
+      if (!held) await this.maybeOrchestrate(card, now);
       if (this.d.pins) await this.d.pins(card, now).catch((err: any) => this.d.log?.(`pins of ${card.channelKey} failed: ${err?.message ?? err}`));
-      await this.maybePlan(card, now);
-      if (approving.has(card.channelKey)) await this.maybePlanAhead(card, now);
+      if (!held) {
+        await this.maybePlan(card, now);
+        if (approving.has(card.channelKey)) await this.maybePlanAhead(card, now);
+      }
       await this.maybeReview(card as EditorCard & { createdAt?: Date }, now);
     }
 
@@ -147,11 +163,45 @@ export class EditorScheduler {
     // Approval mode writes ahead of time; everything else (and late approval slots) at the slot time.
     const early = await this.claimWriteAhead(approving, byKey, now);
     const rest = early.length < CLAIM_BATCH ? await this.d.plans.claimDue(now, CLAIM_BATCH - early.length) : [];
-    const due = [...early, ...rest].filter((s) => byKey.has(s.channelKey));
+    const due: EditorSlot[] = [];
+    for (const s of [...early, ...rest]) {
+      if (!byKey.has(s.channelKey)) continue;
+      if (paused.has(slotRef(s))) await this.skipPaused(s);
+      else due.push(s);
+    }
     await this.runLimited(due, EXECUTOR_PARALLEL, async (slot) => {
       await this.d.runner.runExecutor(slot, byKey.get(slot.channelKey)!);
       await this.checkFailures(slot.channelKey, now);
     });
+  }
+
+  /** Spec 025 FR-013: lift pauses whose time is up, then the refs paused now (empty without the hook or on error). */
+  private async pausedRefs(now: Date): Promise<Set<string>> {
+    if (!this.d.pauses) return new Set();
+    try {
+      await this.d.pauses.liftDue(now);
+      return await this.d.pauses.pausedRefs(now);
+    } catch (err: any) {
+      this.d.log?.(`resource pauses failed: ${err?.message ?? err}`);
+      return new Set();
+    }
+  }
+
+  private async held(card: EditorCard, paused: Set<string>): Promise<boolean> {
+    if (!paused.size || !this.d.pauses) return false;
+    try { return await this.d.pauses.held(card, paused); } catch (err: any) {
+      this.d.log?.(`pause check of ${card.channelKey} failed: ${err?.message ?? err}`);
+      return false;
+    }
+  }
+
+  /** A claimed content slot on a paused resource: never written, published or shadowed. */
+  private async skipPaused(slot: EditorSlot): Promise<void> {
+    try {
+      await this.d.plans.updateSlot?.(slot.id, { status: 'skipped', error: PAUSED_ERROR });
+    } catch (err: any) {
+      this.d.log?.(`skipping paused slot ${slot.id} failed: ${err?.message ?? err}`);
+    }
   }
 
   /** Channels whose effective mode is `approve` (empty without the approval hook). */
