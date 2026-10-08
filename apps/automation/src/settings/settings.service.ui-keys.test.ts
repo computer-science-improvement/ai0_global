@@ -2,7 +2,8 @@
 // UI state, not env overrides — GET /settings must not change when one exists.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { SettingsService, isLandingKey, isUiKey } from './settings.service';
+import { SettingsService, isAiKey, isLandingKey, isUiKey } from './settings.service';
+import { DEFAULT_MODEL_KEY } from '../editor/llm/model-defaults';
 
 function poolWith(rows: Array<{ key: string; value: string }>) {
   const sqls: string[] = [];
@@ -40,4 +41,19 @@ test('GET /settings is unchanged by landing.* rows', async () => {
   await Promise.all([plain.whenLoaded(), withLanding.whenLoaded()]);
   assert.deepEqual(withLanding.get(), plain.get());
   assert.match(pool.sqls[0], /NOT LIKE 'landing\.%'/);
+});
+
+// Spec 035: the global default model (`ai.default_model`) belongs to the Models page.
+test('GET /settings is unchanged by ai.* rows (ai.default_model is never an env override)', async () => {
+  assert.equal(DEFAULT_MODEL_KEY, 'ai.default_model');
+  assert.equal(isAiKey(DEFAULT_MODEL_KEY), true);
+  assert.equal(isAiKey('aix'), false);
+  assert.equal(isAiKey('AI_KEY'), false);
+  const plain = new SettingsService(poolWith([{ key: 'TRACKING_ENABLED', value: 'true' }]) as any, cfg);
+  const pool = poolWith([{ key: 'TRACKING_ENABLED', value: 'true' }, { key: DEFAULT_MODEL_KEY, value: 'openai/gpt-5-mini' }]);
+  const withAi = new SettingsService(pool as any, cfg);
+  await Promise.all([plain.whenLoaded(), withAi.whenLoaded()]);
+  assert.deepEqual(withAi.get(), plain.get());
+  assert.deepEqual(withAi.get().overrides, ['TRACKING_ENABLED']);
+  assert.match(pool.sqls[0], /NOT LIKE 'ai\.%'/);
 });

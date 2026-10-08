@@ -22,6 +22,7 @@ import { Route as AppSpendRouteImport } from './routes/app.spend'
 import { Route as AppSettingsRouteImport } from './routes/app.settings'
 import { Route as AppScheduledRouteImport } from './routes/app.scheduled'
 import { Route as AppRecommendationsRouteImport } from './routes/app.recommendations'
+import { Route as AppModelsRouteImport } from './routes/app.models'
 import { Route as AppLogsRouteImport } from './routes/app.logs'
 import { Route as AppLandingRouteImport } from './routes/app.landing'
 import { Route as AppGraphRouteImport } from './routes/app.graph'
@@ -116,6 +117,11 @@ const AppScheduledRoute = AppScheduledRouteImport.update({
 const AppRecommendationsRoute = AppRecommendationsRouteImport.update({
   id: '/recommendations',
   path: '/recommendations',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppModelsRoute = AppModelsRouteImport.update({
+  id: '/models',
+  path: '/models',
   getParentRoute: () => AppRoute,
 } as any)
 const AppLogsRoute = AppLogsRouteImport.update({
@@ -292,6 +298,7 @@ export interface FileRoutesByFullPath {
   '/app/graph': typeof AppGraphRoute
   '/app/landing': typeof AppLandingRoute
   '/app/logs': typeof AppLogsRoute
+  '/app/models': typeof AppModelsRoute
   '/app/recommendations': typeof AppRecommendationsRoute
   '/app/scheduled': typeof AppScheduledRoute
   '/app/settings': typeof AppSettingsRoute
@@ -336,6 +343,7 @@ export interface FileRoutesByTo {
   '/app/graph': typeof AppGraphRoute
   '/app/landing': typeof AppLandingRoute
   '/app/logs': typeof AppLogsRoute
+  '/app/models': typeof AppModelsRoute
   '/app/recommendations': typeof AppRecommendationsRoute
   '/app/scheduled': typeof AppScheduledRoute
   '/app/settings': typeof AppSettingsRoute
@@ -382,6 +390,7 @@ export interface FileRoutesById {
   '/app/graph': typeof AppGraphRoute
   '/app/landing': typeof AppLandingRoute
   '/app/logs': typeof AppLogsRoute
+  '/app/models': typeof AppModelsRoute
   '/app/recommendations': typeof AppRecommendationsRoute
   '/app/scheduled': typeof AppScheduledRoute
   '/app/settings': typeof AppSettingsRoute
@@ -429,6 +438,7 @@ export interface FileRouteTypes {
     | '/app/graph'
     | '/app/landing'
     | '/app/logs'
+    | '/app/models'
     | '/app/recommendations'
     | '/app/scheduled'
     | '/app/settings'
@@ -473,6 +483,7 @@ export interface FileRouteTypes {
     | '/app/graph'
     | '/app/landing'
     | '/app/logs'
+    | '/app/models'
     | '/app/recommendations'
     | '/app/scheduled'
     | '/app/settings'
@@ -518,6 +529,7 @@ export interface FileRouteTypes {
     | '/app/graph'
     | '/app/landing'
     | '/app/logs'
+    | '/app/models'
     | '/app/recommendations'
     | '/app/scheduled'
     | '/app/settings'
@@ -641,6 +653,13 @@ declare module '@tanstack/react-router' {
       path: '/recommendations'
       fullPath: '/app/recommendations'
       preLoaderRoute: typeof AppRecommendationsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/models': {
+      id: '/app/models'
+      path: '/models'
+      fullPath: '/app/models'
+      preLoaderRoute: typeof AppModelsRouteImport
       parentRoute: typeof AppRoute
     }
     '/app/logs': {
@@ -874,6 +893,7 @@ interface AppRouteChildren {
   AppGraphRoute: typeof AppGraphRoute
   AppLandingRoute: typeof AppLandingRoute
   AppLogsRoute: typeof AppLogsRoute
+  AppModelsRoute: typeof AppModelsRoute
   AppRecommendationsRoute: typeof AppRecommendationsRoute
   AppScheduledRoute: typeof AppScheduledRoute
   AppSettingsRoute: typeof AppSettingsRoute
@@ -915,6 +935,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppGraphRoute: AppGraphRoute,
   AppLandingRoute: AppLandingRoute,
   AppLogsRoute: AppLogsRoute,
+  AppModelsRoute: AppModelsRoute,
   AppRecommendationsRoute: AppRecommendationsRoute,
   AppScheduledRoute: AppScheduledRoute,
   AppSettingsRoute: AppSettingsRoute,

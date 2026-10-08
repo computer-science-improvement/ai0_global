@@ -43,6 +43,7 @@ Each feature directory has `spec.md` (what and why), `plan.md` (how, plus Consti
 | 032 | [Unified data store](032-unified-data-store/spec.md): one `data_items` table + editable `data_schemas`, CSV/JSON import without migrations, agents read schemas first | P1 | — | DONE (eval executor-picks-dataset not run yet) |
 | 033 | [Telegram rich messages](033-telegram-rich-messages/spec.md): headings, lists, tables, formulas via Bot API 10.1 `sendRichMessage`, HTML fallback, agent control via `format_prefs.rich` | P2 | 004, 019, 024, 031 | DONE (owner live smoke pending) |
 | 034 | [Content quality + live planning](034-content-quality-live-planning/spec.md): voice core in every writer prompt, pre-publish critic, fewer polls/questions, fitting formats with examples in the creation chat, live news slots, readable plan, skills audit (AI0-82) | P0 | 017–025, 031, 033 | SPEC |
+| 035 | [Model picker](035-model-picker/spec.md): `/app/models` — global default model (`ai.default_model`, built-in `z-ai/glm-5.3-flash` for every role), per-agent model + effort, bulk apply/reset, legacy channel overrides, OpenRouter catalog (AI0-92) | P1 | 017, 029 | DONE |
 
 Suggested order for the next wave: 012 → 011 (phases 0–1) → 015 → 013 → 014; 016 is independent.
 

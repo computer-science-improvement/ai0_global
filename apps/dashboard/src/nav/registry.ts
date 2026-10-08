@@ -69,6 +69,8 @@ export const NAV_REGISTRY: ReadonlyArray<NavEntry> = [
   { id: 'agents', to: '/app/agents', label: 'Agents', icon: 'agents', defaultGroup: 'g_agents', badge: 'agents', keywords: ['bots', 'network', 'orchestrator', 'team'] },
   { id: 'chat', to: '/app/chat', label: 'Chat', icon: 'chat', defaultGroup: 'g_agents', badge: 'chat', keywords: ['ai0', 'talk', 'ask', 'conversation'] },
   { id: 'dm-inbox', to: '/app/dm', label: 'DM inbox', icon: 'inbox', defaultGroup: 'g_agents', badge: 'dm', keywords: ['messages', 'direct', 'triage', 'ad requests', 'cross-promo'] },
+  // Spec 035: which LLM each agent runs on (global default, per agent, bulk).
+  { id: 'models', to: '/app/models', label: 'Models', icon: 'cpu', defaultGroup: 'g_agents', keywords: ['llm', 'model', 'openrouter', 'glm', 'ai model', 'reasoning', 'default model'] },
   { id: 'agents-inbox', to: '/app/agents/inbox', label: 'Agent inbox', icon: 'inbox', defaultGroup: 'g_agents', badge: 'agentsInbox', parent: 'agents', hiddenByDefault: true, keywords: ['notifications', 'alerts', 'unread'] },
   { id: 'directives', to: '/app/agents/manager', search: { tab: 'directives' }, label: 'Directives', icon: 'agents', defaultGroup: 'g_agents', badge: 'directives', parent: 'agents', hiddenByDefault: true, keywords: ['manager', 'decisions', 'awaiting'] },
 

@@ -107,6 +107,32 @@ test('agent runtime (spec 017): the run is recorded on the role agent with its s
   assert.equal(i.extras.agent, exec);
 });
 
+test('spec 035: the global default model reaches the run; agent → channel → global default; effort inherited', async () => {
+  const runs: any[] = [];
+  const orch: any = { id: 'o1', handle: 'kira', model: null, reasoningEffort: 'high', dailyBudgetUsd: null };
+  const exec: any = { id: 'e1', handle: 'kira_executor', model: null, reasoningEffort: null, dailyBudgetUsd: null };
+  let reads = 0;
+  const runner = new EditorRunnerService({
+    loop: { run: async (i: any) => { runs.push(i); return { runId: 'r', status: 'ok', terminalTool: 'publish_post' } as any; } },
+    registry: { forRole: () => [] as any },
+    skills: new SkillLibrary(),
+    runtime: { forChannel: async () => ({ agent: exec, orchestrator: orch, skills: new SkillLibrary(), paused: false }) },
+    plans: { reservedSlots: async () => [], getSlot: async () => ({ ...slot, status: 'published' }), updateSlot: async () => {} },
+    memory: { listActive: async () => [] },
+    env: () => undefined, notify: async () => {}, now: () => NOW,
+    defaultModel: async () => { reads++; return 'openai/gpt-5-mini'; },
+  });
+  await runner.runExecutor(slot, makeCard());
+  assert.deepEqual([runs[0].model.model, runs[0].model.source, runs[0].model.reasoningEffort], ['openai/gpt-5-mini', 'default', 'high']);
+  assert.equal(reads, 1);
+  await runner.runExecutor(slot, makeCard({ models: { executor: 'z-ai/glm-5.3' } }));
+  assert.deepEqual([runs[1].model.model, runs[1].model.source], ['z-ai/glm-5.3', 'channel']);
+  exec.model = 'anthropic/claude-haiku-4.5';
+  exec.reasoningEffort = 'low';
+  await runner.runExecutor(slot, makeCard({ models: { executor: 'z-ai/glm-5.3' } }));
+  assert.deepEqual([runs[2].model.model, runs[2].model.source, runs[2].model.reasoningEffort], ['anthropic/claude-haiku-4.5', 'agent', 'low']);
+});
+
 test('agent runtime (spec 017): a paused agent skips the slot without an LLM call', async () => {
   const runs: any[] = [];
   const updates: any[] = [];

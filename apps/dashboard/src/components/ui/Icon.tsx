@@ -8,7 +8,7 @@ import {
   ScrollText, Sparkles, Rocket, SkipForward, CalendarSync, Eye,
   MessageSquare, Square, ArrowUp, Globe, Wrench, Clock, Ban, Database, BookOpen, PanelLeft,
   Megaphone, Radar, Users, Workflow, Lock, LockOpen, Inbox, History, ImageOff, ArrowUpRight, Lightbulb,
-  CircleDollarSign, Download, SquarePlay, Copy,
+  CircleDollarSign, Download, SquarePlay, Copy, Cpu,
   EyeOff, GripVertical, Command, Link2, Pin, PinOff, RotateCcw, FolderPlus, CornerDownLeft,
   type LucideIcon,
 } from 'lucide-react';
@@ -30,7 +30,7 @@ const ICONS = {
   megaphone: Megaphone, radar: Radar, users: Users,
   agents: Workflow, lock: Lock, unlock: LockOpen, inbox: Inbox, history: History,
   'image-off': ImageOff, external: ArrowUpRight, hint: Lightbulb,
-  spend: CircleDollarSign, download: Download, copy: Copy,
+  spend: CircleDollarSign, download: Download, copy: Copy, cpu: Cpu,
   // Navigation (spec 027): pin/star, hide, drag handle, palette.
   star: Star, 'eye-off': EyeOff, grip: GripVertical, command: Command, link: Link2,
   pin: Pin, 'pin-off': PinOff, reset: RotateCcw, 'folder-plus': FolderPlus, enter: CornerDownLeft, search: Search,
