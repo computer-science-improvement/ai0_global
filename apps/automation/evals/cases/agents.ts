@@ -6,6 +6,7 @@ import { createCard, PostSeed, seedPosts } from '../lib/seed';
 import { localDate, zonedToUtc } from '../../src/editor/roles/time';
 import { validateHandle } from '../../src/editor/agents/agent.types';
 import { PlaybookSchema } from '../../src/editor/network/playbook';
+import { ResourceProfileSchema } from '../../src/editor/agents/resource-profile';
 import { similarity } from '../../src/editor/post/similarity';
 
 // Specs 017–022: the @ai0 builder, channel agents in the chat, playbooks, the idea reviewer,
@@ -19,12 +20,14 @@ async function resetAgents(pool: Pool, keys: string[]): Promise<void> {
   const refs = keys.map((k) => `telegram:${k}`);
   const { rows } = await pool.query(`SELECT id FROM agents WHERE scope_id = ANY($1::text[])`, [refs]);
   const ids = rows.map((r) => r.id);
+  // Spec 024: decisions and their derived slots of the eval agents (children included).
+  await pool.query(`DELETE FROM content_decisions WHERE agent_id = ANY($1::uuid[]) OR agent_id IN (SELECT id FROM agents WHERE parent_id = ANY($1::uuid[]))`, [ids]);
   await pool.query(`DELETE FROM agent_directives WHERE to_agent_id = ANY($1::uuid[])`, [ids]);
   await pool.query(`DELETE FROM content_ideas WHERE agent_id = ANY($1::uuid[])`, [ids]);
   await pool.query(`DELETE FROM playbooks WHERE agent_id = ANY($1::uuid[])`, [ids]);
   await pool.query(`DELETE FROM agents WHERE scope_id = ANY($1::text[])`, [refs]);
   await pool.query(`DELETE FROM pending_actions WHERE payload->>'resource_ref' = ANY($1::text[]) OR payload->>'handle' LIKE 'eval%'`, [refs]);
-  await pool.query(`DELETE FROM resource_profiles WHERE resource_ref = ANY($1::text[]) OR resource_ref LIKE 'instagram:%'`, [refs]);
+  await pool.query(`DELETE FROM resource_profiles WHERE resource_ref = ANY($1::text[]) OR resource_ref LIKE 'instagram:%' OR resource_ref LIKE 'threads:%' OR resource_ref LIKE 'facebook:%'`, [refs]);
   await pool.query(`DELETE FROM platform_posts WHERE caption LIKE '%#%' AND resource_ref LIKE 'instagram:%'`);
   await pool.query(`DELETE FROM editor_plans WHERE channel_key = ANY($1::text[])`, [keys]);
   await pool.query(`DELETE FROM editor_channel_memory WHERE channel_key = ANY($1::text[])`, [keys]);
@@ -41,8 +44,8 @@ async function ownChannel(pool: Pool, key: string, title: string, groupId: strin
     [key, key.slice(1), title, groupId]);
 }
 
-/** A network: Telegram anchor + an Instagram account in one group. Returns the IG resource ref. */
-async function network(pool: Pool, key: string, mode: 'mirror' | 'orchestrated'): Promise<{ groupId: string; ig: string }> {
+/** A network: Telegram anchor + an Instagram account in one group. Returns the IG resource ref. Modes as of spec 024 (migration 061). */
+async function network(pool: Pool, key: string, mode: 'legacy_duplicate' | 'independent'): Promise<{ groupId: string; ig: string }> {
   const groupId = (await pool.query(`INSERT INTO meta_account_groups (name, source_platform, mode) VALUES ($1, 'telegram', $2) RETURNING id`, [GROUP, mode])).rows[0].id;
   await ownChannel(pool, key, 'Космос щодня', groupId);
   const ig = (await pool.query(
@@ -142,7 +145,7 @@ export const playbookFromBrief: EvalCase = {
   web: () => new FakeWeb({}),
   async execute(ctx) {
     await resetAgents(ctx.pool, [NET]);
-    const { ig } = await network(ctx.pool, NET, 'mirror');
+    const { ig } = await network(ctx.pool, NET, 'legacy_duplicate');
     await createCard(ctx.pool, SPACE_CARD(NET));
     await ctx.stack.registrySync.run();
     const card = (await ctx.stack.channels.get(NET))!;
@@ -223,7 +226,7 @@ export const ideaReview: EvalCase = {
 const NP = '@eval_np';
 async function orchestratedNetwork(ctx: CaseCtx) {
   await resetAgents(ctx.pool, [NP]);
-  const { ig, groupId } = await network(ctx.pool, NP, 'orchestrated');
+  const { ig, groupId } = await network(ctx.pool, NP, 'independent');
   await createCard(ctx.pool, { ...SPACE_CARD(NP), postsPerDayMin: 1, postsPerDayMax: 3 });
   await ctx.stack.registrySync.run();
   const orch = (await ctx.stack.agents.findTop('orchestrator', 'resource', `telegram:${NP}`))!;
@@ -363,6 +366,208 @@ export const executorFormatPrefs: EvalCase = {
   },
 };
 
+// ── spec 024 T7: per-resource decisions ───────────────────────────────────
+
+/** Another member of a network group (one account per platform per group). Returns its resource ref. */
+async function member(pool: Pool, groupId: string, platform: 'instagram' | 'threads' | 'facebook', accountId: string, username: string): Promise<string> {
+  const id = (await pool.query(
+    `INSERT INTO meta_accounts (platform, account_id, token_env, target_id, username, display_name, group_id, last_verified_at)
+     VALUES ($1, $2, 'EVAL_NONE', 'eval-target', $3, $3, $4, now()) RETURNING id`, [platform, accountId, username, groupId])).rows[0].id;
+  return `${platform}:${id}`;
+}
+
+const profile = (p: { topic: string; who: string; goals: string[]; taboo?: string[]; tone?: string }) => ResourceProfileSchema.parse({
+  topic: p.topic, audience: { who: p.who }, language: 'uk', goals: p.goals, taboo: p.taboo ?? [], tone: p.tone,
+});
+
+/** A reason names a profile, playbook or KPI signal (FR-012), not "it is better". */
+const SIGNAL = /(профіл|аудитор|молод|студент|старш|45\+|обговор|розмов|плейбук|секці|формат|карусел|лонгрід|частот|per_day|ліміт|KPI|охоплен|перегляд|реакці|залучен|переход|growth|engagement|transitions|ціль|цілі|тем[аиуі]|табу|коротк|довг)/iu;
+
+async function decisionsOf(pool: Pool, ideaId: string) {
+  const { rows } = await pool.query(`SELECT resource_ref, decision, reason, reason_code, slot_id FROM content_decisions WHERE idea_id = $1 ORDER BY resource_ref`, [ideaId]);
+  return rows as Array<{ resource_ref: string; decision: string; reason: string; reason_code: string | null; slot_id: string | null }>;
+}
+
+const MD = '@eval_md';
+export const plannerMixedDecisions: EvalCase = {
+  id: 'planner-mixed-decisions', role: 'planner', channel: MD,
+  title: 'Мережа з 4 ресурсів з різними профілями → щонайменше 2 різні рішення, кожна причина називає сигнал профілю / плейбука / KPI (spec 024)',
+  web: ideaWeb,
+  async execute(ctx) {
+    await resetAgents(ctx.pool, [MD]);
+    const { groupId, ig } = await network(ctx.pool, MD, 'independent');
+    const th = await member(ctx.pool, groupId, 'threads', 'eval-md-th', 'space_talks');
+    const fb = await member(ctx.pool, groupId, 'facebook', 'eval-md-fb', 'space_news_fb');
+    await createCard(ctx.pool, { ...SPACE_CARD(MD), postsPerDayMin: 1, postsPerDayMax: 3 });
+    await ctx.stack.registrySync.run();
+    const orch = (await ctx.stack.agents.findTop('orchestrator', 'resource', `telegram:${MD}`))!;
+    await ctx.stack.profiles.setProfile(ig, profile({ topic: 'Космос у картинках: факти-каруселі', who: 'студенти й молодь 16–24, гортають стрічку', goals: ['growth'] }), 'owner');
+    await ctx.stack.profiles.setProfile(th, profile({ topic: 'Короткі розмови про науку й новини космосу', who: 'дорослі 25–35, що люблять обговорення', goals: ['engagement'], tone: 'розмовний, коротко' }), 'owner');
+    await ctx.stack.profiles.setProfile(fb, profile({ topic: 'Новини науки для старшої аудиторії', who: 'читачі 45+, люблять докладні тексти', goals: ['transitions'], taboo: ['меми', 'сленг'] }), 'owner');
+    await ctx.stack.networkRepo.insertPlaybook({
+      agentId: orch.id, status: 'active', brief: null, createdBy: 'owner', rationale: 'eval',
+      body: PlaybookSchema.parse({
+        platforms: [
+          { resource_ref: `telegram:${MD}`, role: 'core', formats: { longread: 0.6, photo: 0.4 }, per_day: { min: 1, max: 3 }, best_hours: [12, 19] },
+          { resource_ref: ig, role: 'discovery', formats: { ig_carousel: 1 }, per_day: { min: 0, max: 2 }, best_hours: [14, 20], hashtag_policy: { vocab: ['космос', 'наука'], min: 3, max: 5 } },
+          { resource_ref: th, role: 'community', formats: { th_text: 1 }, per_day: { min: 0, max: 3 }, best_hours: [13, 21] },
+          { resource_ref: fb, role: `funnel_to:telegram:${MD}`, formats: { fb_text: 0.5, fb_photo: 0.5 }, per_day: { min: 0, max: 1 }, best_hours: [18] },
+        ],
+      }),
+    });
+    const idea = await ctx.stack.networkRepo.addIdea({
+      agentId: orch.id, title: 'Webb не знайшов атмосфери у TRAPPIST-1 b', angle: 'що це означає для пошуку життя біля червоних карликів',
+      sources: ['https://ideas.example/jwst-trappist'], why: 'свіжа новина JWST', origin: 'orchestrator', expiresAt: new Date(ctx.now.getTime() + 3 * 86_400_000), status: 'accepted',
+      variants: [{ resource_ref: `telegram:${MD}`, format: 'longread' }, { resource_ref: ig, format: 'ig_carousel' }],
+    });
+    const card = (await ctx.stack.channels.get(MD))!;
+    const res = await ctx.stack.runner.runPlanner(card);
+    const decisions = await decisionsOf(ctx.pool, idea.id);
+    const { rows: slots } = await ctx.pool.query(
+      `SELECT s.id, s.resource_ref, s.treatment, s.derived_from_slot_id, src.treatment AS src_treatment, src.idea_id AS src_idea
+         FROM editor_slots s LEFT JOIN editor_slots src ON src.id = s.derived_from_slot_id WHERE s.idea_id = $1`, [idea.id]);
+    const derived = slots.filter((x) => x.treatment === 'duplicate' || x.treatment === 'adapt');
+    const kinds = new Set(decisions.map((d) => d.decision));
+    const fbSlot = slots.find((x) => x.resource_ref === fb);
+    const igSlot = slots.find((x) => x.resource_ref === ig);
+    return {
+      runId: res.runId, status: res.status, terminalTool: res.terminalTool, ...(await trace(ctx, res.runId)),
+      post: decisions.map((d) => `${d.resource_ref} ${d.decision}${d.reason_code ? ` [${d.reason_code}]` : ''}: ${d.reason}`).join('\n'),
+      checks: [
+        check('submitted a network plan', res.terminalTool === 'submit_network_plan', `${res.status} ${res.error ?? ''}`),
+        check('one decision per resource (4)', decisions.length === 4 && new Set(decisions.map((d) => d.resource_ref)).size === 4, decisions.map((d) => `${d.resource_ref}:${d.decision}`).join(', ')),
+        check('at least two distinct treatments', kinds.size >= 2, [...kinds].join(', ')),
+        check('every reason cites a profile / playbook / KPI signal', decisions.length > 0 && decisions.every((d) => d.reason.length >= 10 && SIGNAL.test(d.reason)),
+          decisions.filter((d) => !SIGNAL.test(d.reason)).map((d) => d.reason).join(' | ')),
+        check('duplicate / adapt slots point at a unique source of the same idea', derived.every((x) => x.derived_from_slot_id && x.src_treatment === 'unique' && x.src_idea === idea.id),
+          derived.map((x) => `${x.resource_ref}:${x.treatment}←${x.src_treatment}`).join(', ')),
+        check('Facebook (45+) does not get the student carousel duplicated as is', !(fbSlot?.treatment === 'duplicate' && igSlot && fbSlot.derived_from_slot_id === igSlot.id), undefined, true),
+      ],
+    };
+  },
+};
+
+const SKIP = '@eval_skip';
+const recipeWeb = () => new FakeWeb({
+  'https://ideas.example/borshch': article({
+    title: 'Borscht with roasted beets', image: 'https://ideas.example/img/borshch.jpg',
+    paragraphs: [
+      'Roasting the beets for 50 minutes at 200 °C before they go into the pot keeps the colour deep red and adds a sweet note.',
+      'For six portions you need 2 litres of broth, 3 beets, half a cabbage, 3 potatoes, a carrot, an onion and 2 tablespoons of tomato paste.',
+      'Add a spoon of vinegar at the end and let the borscht rest for 20 minutes before serving.',
+    ],
+  }),
+});
+export const plannerSkipOfftopic: EvalCase = {
+  id: 'planner-skip-offtopic', role: 'planner', channel: SKIP,
+  title: 'Рецепт → Telegram-канал рецептів отримує пост, а Instagram, у профілі якого їжа під табу, — skip з причиною (spec 024)',
+  web: recipeWeb,
+  async execute(ctx) {
+    await resetAgents(ctx.pool, [SKIP]);
+    const { ig } = await network(ctx.pool, SKIP, 'independent');
+    await createCard(ctx.pool, {
+      channelKey: SKIP, title: 'Смачно вдома', brief: 'Рецепти домашньої кухні: прості страви на щодень.',
+      formats: { photo: 0.6, longread: 0.4 }, hashtags: ['рецепти', 'кухня'], postsPerDayMin: 1, postsPerDayMax: 3,
+    });
+    await ctx.stack.registrySync.run();
+    const orch = (await ctx.stack.agents.findTop('orchestrator', 'resource', `telegram:${SKIP}`))!;
+    await ctx.stack.profiles.setProfile(ig, profile({
+      topic: 'Домашні тренування і фітнес: вправи, техніка, мотивація', who: 'жінки 25–40, тренуються вдома', goals: ['growth', 'engagement'],
+      taboo: ['їжа', 'рецепти', 'кулінарія', 'дієти'],
+    }), 'owner');
+    await ctx.stack.networkRepo.insertPlaybook({
+      agentId: orch.id, status: 'active', brief: null, createdBy: 'owner', rationale: 'eval',
+      body: PlaybookSchema.parse({
+        platforms: [
+          { resource_ref: `telegram:${SKIP}`, role: 'core', formats: { photo: 0.6, longread: 0.4 }, per_day: { min: 1, max: 3 }, best_hours: [12, 18] },
+          { resource_ref: ig, role: 'discovery', formats: { ig_photo: 0.5, ig_carousel: 0.5 }, per_day: { min: 0, max: 2 }, best_hours: [9, 19], hashtag_policy: { vocab: ['фітнес', 'тренування'], min: 3, max: 5 } },
+        ],
+      }),
+    });
+    const idea = await ctx.stack.networkRepo.addIdea({
+      agentId: orch.id, title: 'Борщ із печеними буряками: рецепт на 6 порцій', angle: 'печені буряки — глибокий колір і солодкість',
+      sources: ['https://ideas.example/borshch'], why: 'сезон буряків, рецепти супів добре заходять', origin: 'orchestrator',
+      expiresAt: new Date(ctx.now.getTime() + 3 * 86_400_000), status: 'accepted',
+      // The variant tempts the planner to post it on Instagram too; it is a hint, not a requirement.
+      variants: [{ resource_ref: `telegram:${SKIP}`, format: 'photo' }, { resource_ref: ig, format: 'ig_photo', note: 'фото борщу' }],
+    });
+    const card = (await ctx.stack.channels.get(SKIP))!;
+    const res = await ctx.stack.runner.runPlanner(card);
+    const decisions = await decisionsOf(ctx.pool, idea.id);
+    const igDecision = decisions.find((d) => d.resource_ref === ig);
+    const tgDecision = decisions.find((d) => d.resource_ref === `telegram:${SKIP}`);
+    const { rows: igSlots } = await ctx.pool.query(`SELECT id FROM editor_slots WHERE idea_id = $1 AND resource_ref = $2`, [idea.id, ig]);
+    return {
+      runId: res.runId, status: res.status, terminalTool: res.terminalTool, ...(await trace(ctx, res.runId)),
+      post: decisions.map((d) => `${d.resource_ref} ${d.decision}${d.reason_code ? ` [${d.reason_code}]` : ''}: ${d.reason}`).join('\n'),
+      checks: [
+        check('submitted a network plan', res.terminalTool === 'submit_network_plan', `${res.status} ${res.error ?? ''}`),
+        check('Instagram (fitness, food is taboo) is skipped', igDecision?.decision === 'skip', igDecision ? `${igDecision.decision}: ${igDecision.reason}` : 'no decision'),
+        check('no Instagram slot for the recipe', igSlots.length === 0, String(igSlots.length)),
+        check('the skip reason names the profile', !!igDecision && /(профіл|табу|фітнес|тренуван|їж|кулінар|рецепт|тем[аиуі]|аудитор)/iu.test(igDecision.reason), igDecision?.reason),
+        check('reason code off_topic', igDecision?.reason_code === 'off_topic', igDecision?.reason_code ?? 'none', true),
+        check('Telegram (recipes) gets the recipe as a unique post', tgDecision?.decision === 'unique' && !!tgDecision.slot_id, tgDecision ? `${tgDecision.decision}` : 'no decision'),
+      ],
+    };
+  },
+};
+
+const RP = '@eval_rp';
+export const orchestratorRepurposeHit: EvalCase = {
+  id: 'orchestrator-repurpose-hit', role: 'orchestrator', channel: RP,
+  title: 'Пост Telegram із верхніх 10 % за переглядами (вчора) → repurpose_post duplicate у Threads (spec 024)',
+  web: () => new FakeWeb({}),
+  async execute(ctx) {
+    await resetAgents(ctx.pool, [RP]);
+    const groupId = (await ctx.pool.query(`INSERT INTO meta_account_groups (name, source_platform, mode) VALUES ($1, 'telegram', 'independent') RETURNING id`, [GROUP])).rows[0].id;
+    await ownChannel(ctx.pool, RP, 'Космос щодня', groupId);
+    const th = await member(ctx.pool, groupId, 'threads', 'eval-rp-th', 'space_daily_th');
+    await createCard(ctx.pool, { ...SPACE_CARD(RP), postsPerDayMin: 1, postsPerDayMax: 3 });
+    await ctx.stack.registrySync.run();
+    const orch = (await ctx.stack.agents.findTop('orchestrator', 'resource', `telegram:${RP}`))!;
+    await ctx.stack.profiles.setProfile(th, profile({ topic: 'Короткі новини космосу для обговорення', who: 'дорослі 20–35, що читають новини науки', goals: ['engagement', 'transitions'] }), 'owner');
+    await ctx.stack.networkRepo.insertPlaybook({
+      agentId: orch.id, status: 'active', brief: null, createdBy: 'owner', rationale: 'eval',
+      body: PlaybookSchema.parse({
+        platforms: [
+          { resource_ref: `telegram:${RP}`, role: 'core', formats: { photo: 0.6, longread: 0.4 }, per_day: { min: 1, max: 3 }, best_hours: [10, 19] },
+          { resource_ref: th, role: `funnel_to:telegram:${RP}`, formats: { th_text: 1 }, per_day: { min: 0, max: 3 }, best_hours: [13, 21] },
+        ],
+      }),
+    });
+    // 30 ordinary posts around 1,000 views and yesterday's hit with 4,200 — the top decile, within 72 h.
+    const posts: PostSeed[] = [];
+    for (let d = 2; d <= 31; d++) posts.push({ daysAgo: d, hour: 12, format: d % 3 ? 'photo' : 'longread', title: `Новина космосу ${d}`, views: 950 + Math.round(Math.sin(d * 2.3) * 80), forwards: 4, reactions: 18 });
+    const HIT = 'Webb знайшов ознаки водяної пари на K2-18 b';
+    posts.push({ daysAgo: 1, hour: 10, format: 'photo', title: HIT, views: 4200, forwards: 60, reactions: 310, tags: ['космос', 'webb'] });
+    await seedPosts(ctx.pool, RP, posts, ctx.now);
+    const hit = (await ctx.pool.query(`SELECT id FROM published_posts WHERE channel_id = $1 AND title = $2`, [RP, HIT])).rows[0].id as number;
+    const startedAt = new Date();
+    const card = (await ctx.stack.channels.get(RP))!;
+    const res = await ctx.stack.network.runOrchestrator(card);
+    const t = await trace(ctx, res?.runId ?? null);
+    const { rows: decisions } = await ctx.pool.query(
+      `SELECT resource_ref, decision, reason, source_key, slot_id FROM content_decisions WHERE resource_ref = $1 AND created_at >= $2`, [th, startedAt]);
+    const fromHit = decisions.filter((d) => d.source_key === `tg:${hit}`);
+    const { rows: slots } = await ctx.pool.query(
+      `SELECT s.id, s.treatment FROM editor_slots s JOIN editor_plans p ON p.id = s.plan_id
+        WHERE p.channel_key = $1 AND s.resource_ref = $2 AND s.treatment IS NOT NULL`, [RP, th]);
+    return {
+      runId: res?.runId ?? null, status: res?.status ?? 'none', terminalTool: res?.terminalTool, ...t,
+      post: decisions.map((d) => `${d.source_key ?? d.slot_id} → ${d.resource_ref} ${d.decision}: ${d.reason}`).join('\n'),
+      checks: [
+        check('called repurpose_post', t.toolsUsed.includes('repurpose_post'), t.toolsUsed.join(', ')),
+        check('the top-decile post is the source', fromHit.length >= 1, decisions.map((d) => d.source_key).join(', ') || 'no decisions'),
+        check('duplicate to Threads', fromHit.some((d) => d.decision === 'duplicate'), fromHit.map((d) => d.decision).join(', ')),
+        check('a derived Threads slot is planned', slots.some((x) => x.treatment === 'duplicate'), slots.map((x) => x.treatment).join(', ')),
+        check('the reason cites the KPI', fromHit.some((d) => /(перегляд|охоплен|KPI|топ|найкращ|реакці|репост|4\s?200|×|разів|вище)/iu.test(d.reason)), fromHit.map((d) => d.reason).join(' | '), true),
+        check('ordinary posts are not repurposed', decisions.every((d) => d.source_key === `tg:${hit}`), decisions.map((d) => d.source_key).join(', '), true),
+        check('no tool errors', t.toolErrors.length === 0, t.toolErrors.join(' | '), true),
+      ],
+    };
+  },
+};
+
 // ── A7 + A8: MANAGER ───────────────────────────────────────────────────────
 
 const MGR = '@eval_mgr';
@@ -435,9 +640,10 @@ export const managerDropDirective: EvalCase = {
 
 /** Leave the scratch DB as found (the runner's real-DB guard counts meta accounts). */
 export async function cleanupAgentEvals(pool: Pool): Promise<void> {
-  await resetAgents(pool, [TRAVEL, EXPLAIN, NET, IDEAS, NP, MGR]);
+  await resetAgents(pool, [TRAVEL, EXPLAIN, NET, IDEAS, NP, MGR, MD, SKIP, RP]);
 }
 
 export const AGENT_CASES: EvalCase[] = [
-  builderOnboarding, mentionExplain, playbookFromBrief, ideaReview, networkPlanStaggered, platformNativeVariant, executorFormatPrefs, managerStableContinue, managerDropDirective,
+  builderOnboarding, mentionExplain, playbookFromBrief, ideaReview, networkPlanStaggered, platformNativeVariant, executorFormatPrefs,
+  plannerMixedDecisions, plannerSkipOfftopic, orchestratorRepurposeHit, managerStableContinue, managerDropDirective,
 ];

@@ -9,6 +9,7 @@ import type { NetworkCtx } from './network-context';
 import { DEFAULT_TZ, resourceTimeLines } from '../time/resource-time';
 import type { IdeaRow } from './network.repository';
 import { renderPlaybook, seriesDue } from './playbook';
+import type { ResourceProfile } from '../agents/resource-profile';
 
 const WEEKDAYS = ['неділя', 'понеділок', 'вівторок', 'середа', 'четвер', 'пʼятниця', 'субота'];
 const BUDGET = 8_000;
@@ -47,7 +48,7 @@ export function resourceClocksBlock(net: NetworkCtx, now: Date): string[] {
 }
 
 /** System prompt of an orchestrator run (playbook upkeep, idea pool) — spec 020. */
-export function orchestratorSystemPrompt(o: { net: NetworkCtx; card: EditorCard; profile: string | null; memory: MemoryEntry[]; skills: SkillSource; directives?: string | null }): string {
+export function orchestratorSystemPrompt(o: { net: NetworkCtx; card: EditorCard; profile: string | null; memory: MemoryEntry[]; skills: SkillSource; directives?: string | null; profiles?: Array<{ ref: string; profile: Parameters<typeof compactProfile>[0] | null }> }): string {
   const { net } = o;
   const platforms = [...new Set(net.resources.map((r) => r.platform))];
   return [
@@ -62,6 +63,7 @@ export function orchestratorSystemPrompt(o: { net: NetworkCtx; card: EditorCard;
     '## Можливості платформ',
     capabilitiesSummary(platforms) || '- лише Telegram',
     ...(o.profile ? ['', '## Профіль', o.profile] : []),
+    ...resourceProfilesBlock(o.profiles ?? []),
     '',
     '## Картка Telegram-каналу',
     JSON.stringify({ ...cardSummary(o.card), capabilities: undefined }, null, 1),
@@ -88,7 +90,7 @@ export function orchestratorDailyPrompt(o: { net: NetworkCtx; card: EditorCard; 
     o.hasDirectives ? '1. Спершу розбери директиви менеджера: accept_directive з планом або reject_directive з причиною (кожну).' : '',
     `${o.hasDirectives ? '2' : '1'}. Пул: прийнятих ${accepted}, на рецензії ${fresh}${revise.length ? `, на доопрацюванні ${revise.length} (revise_idea: ${revise.map((i) => i.id).join(', ')})` : ''}. Ціль — ${o.target} ідей на 2 дні вперед для всіх ресурсів.`,
     'Подивись статистику (get_network_posts, get_platform_stats, get_format_performance), нещодавні пости й джерела (fetch_feed, fetch_api, library_catalog), і додай ідеї через add_idea — кожна з варіантами під ресурси й форматами плейбука.',
-    'Пост, що вже добре зайшов на одному ресурсі (get_network_posts), можна продублювати чи адаптувати на інші ресурси мережі через repurpose_post — час і інтервал обираєш ти, оформлення під ресурс теж твоє.',
+    'Пост, що вже добре зайшов на одному ресурсі (get_network_posts), можна продублювати чи адаптувати на інші ресурси мережі через repurpose_post — час і інтервал обираєш ти, оформлення під ресурс теж твоє (як вирішувати — скіл resource-decisions).',
     'Форматування кожного ресурсу (format_prefs: get_resource_format) — твоє: змінюй update_resource_format, коли KPI або правки власника (у режимі апруву його правки постів — у памʼяті) показують, що інша подача працює краще. Поля, закріплені власником, не чіпай; не більше 3 змін на ресурс за день, не туди-сюди.',
     'Серії (рубрики) змінюй точково: list_series, define_series, update_series, set_series_active (так виконується директива pause_series), retire_series — не більше 5 змін за прогін. Серії власника (locked) не чіпай: якщо бачиш, що їх варто змінити, напиши це в підсумку.',
     'Якщо даних достатньо і бачиш, що решту плейбука варто підкоригувати (ваги, години, хештеги) — зроби це наприкінці через submit_playbook; інакше заверши finish_orchestration з коротким підсумком.',
@@ -133,7 +135,22 @@ export function ideaReviewerUserPrompt(o: { fresh: number; pendingPlaybook: bool
 }
 
 /** Extra block for the planner of an independent network (spec 020 FR-007, 024 FR-005). */
-export function networkPlannerBlock(o: { net: NetworkCtx; accepted: IdeaRow[]; now: Date; tz: string; planDate?: string }): string {
+/** One line of a member resource's profile — what the per-resource decisions cite (spec 024 FR-012). */
+export function compactProfile(p: Pick<ResourceProfile, 'topic' | 'audience' | 'language' | 'goals' | 'taboo'> & { tone?: string }): string {
+  const aud = [p.audience?.who, p.audience?.age, p.audience?.region].filter(Boolean).join(', ');
+  return [
+    `тема: ${p.topic}`, aud ? `аудиторія: ${aud}` : '', `мова: ${p.language}`, p.goals?.length ? `цілі: ${p.goals.join(' > ')}` : '',
+    p.taboo?.length ? `табу: ${p.taboo.join(', ')}` : '', p.tone ? `тон: ${p.tone}` : '',
+  ].filter(Boolean).join('; ');
+}
+
+/** "## Профілі ресурсів": each member's own profile, so a decision can name it (empty when none is described). */
+export function resourceProfilesBlock(profiles: Array<{ ref: string; profile: Parameters<typeof compactProfile>[0] | null }>): string[] {
+  const lines = profiles.filter((x) => x.profile).map((x) => `- ${x.ref}: ${compactProfile(x.profile!)}`);
+  return lines.length ? ['', '## Профілі ресурсів (кожен ресурс — окрема одиниця)', ...lines, 'Ресурс без профілю — за профілем мережі.'] : [];
+}
+
+export function networkPlannerBlock(o: { net: NetworkCtx; accepted: IdeaRow[]; now: Date; tz: string; planDate?: string; profiles?: Array<{ ref: string; profile: Parameters<typeof compactProfile>[0] | null }> }): string {
   // The plan date is one calendar date for every resource, so its weekday is the same in every zone.
   const planDate = o.planDate ?? localDate(o.now, o.tz);
   const due = o.net.playbook ? seriesDue(o.net.playbook, new Date(`${planDate}T12:00:00Z`).getUTCDay()) : [];
@@ -142,6 +159,7 @@ export function networkPlannerBlock(o: { net: NetworkCtx; accepted: IdeaRow[]; n
     `## Мережа «${o.net.groupName}» — плануєш день ${planDate} для ВСІХ ресурсів`,
     resourcesBlock(o.net),
     ...resourceClocksBlock(o.net, o.now),
+    ...resourceProfilesBlock(o.profiles ?? []),
     '',
     '## Плейбук',
     o.net.playbook ? renderPlaybook(o.net.playbook) : '- немає',
@@ -158,7 +176,7 @@ export function networkPlannerBlock(o: { net: NetworkCtx; accepted: IdeaRow[]; n
       : '- немає (плануй серії; якщо й їх немає — мінімум постів з бібліотеки через series не можна, тож краще менше постів)',
     '',
     '## Рішення по ресурсах (кожен ресурс — окрема одиниця)',
-    'Для кожної ідеї, яку береш у план, вирішуй окремо для КОЖНОГО ресурсу з секцією плейбука — рівно одне рішення з reason (сигнал профілю, плейбука чи KPI):',
+    'Для кожної ідеї, яку береш у план, вирішуй окремо для КОЖНОГО ресурсу з секцією плейбука — рівно одне рішення з reason (сигнал профілю, плейбука чи KPI; як вирішувати — скіл resource-decisions):',
     '- unique — свій пост для цього ресурсу (формат з плейбука);',
     '- duplicate — той самий пост, що на іншому ресурсі (from_slot = його номер); оформлення під ресурс зробиш ти сам за format_prefs, можна додати format_notes;',
     '- adapt — та сама ідея й факти, переписані нативно під платформу (from_slot теж обовʼязковий);',

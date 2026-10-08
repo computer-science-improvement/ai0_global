@@ -10,7 +10,7 @@ import { buildSystemPrompt, plannerUserPrompt } from '../roles/prompts';
 import { localDate, zonedToUtc } from '../roles/time';
 import type { AgentRuntime, RunAgentContext } from '../agents/agent-runtime';
 import type { Agent } from '../agents/agent.types';
-import { renderFormatPrefs, renderProfile, ResourceProfilesRepository } from '../agents/resource-profile';
+import { renderFormatPrefs, renderProfile, ResourceProfile, ResourceProfilesRepository } from '../agents/resource-profile';
 import { networkContext, NetworkContextDeps, NetworkCtx } from './network-context';
 import type { NetworkRepository } from './network.repository';
 import {
@@ -112,7 +112,7 @@ export class NetworkRunner {
     await this.d.repo.releaseStalePlanned(net.orchestrator.id);
     const memory = await this.d.memory.listActive(card.channelKey);
     const res = await this.run('orchestrator', card, c!,
-      orchestratorSystemPrompt({ net, card, profile: await this.profileText(net), memory, skills: c!.agentCtx.skills, directives }),
+      orchestratorSystemPrompt({ net, card, profile: await this.profileText(net), memory, skills: c!.agentCtx.skills, directives, profiles: await this.memberProfiles(net) }),
       [orchestratorDailyPrompt({ net, card, now: this.now(), open, target, hasDirectives: !!directives }), await this.catalog(card)].filter(Boolean).join('\n\n'),
       STEPS.orchestrate, { brief: card.brief });
     if (this.d.afterOrchestration) await this.d.afterOrchestration(net.orchestrator).catch(() => {});
@@ -172,13 +172,23 @@ export class NetworkRunner {
     // Spec 031 FR-008: the owner's last approval edits and rejections in their own section.
     const prefs = this.d.memory.ownerPreferences ? await this.d.memory.ownerPreferences(card.channelKey, APPROVAL_PREFS_IN_PROMPT).catch(() => []) : [];
     const memory = await this.d.memory.listActive(card.channelKey, 30, { excludeApprovalPrefs: prefs.length > 0 });
-    const system = `${buildSystemPrompt('planner', card, memory, c.agentCtx.skills, prefs)}\n\n${networkPlannerBlock({ net: c.net, accepted, now, tz: card.timezone, planDate })}`;
+    const profiles = await this.memberProfiles(c.net);
+    const system = `${buildSystemPrompt('planner', card, memory, c.agentCtx.skills, prefs)}\n\n${networkPlannerBlock({ net: c.net, accepted, now, tz: card.timezone, planDate, profiles })}`;
     const user = [plannerUserPrompt(card, now, reserved, planDate), await this.catalog(card)].filter(Boolean).join('\n\n');
     const res = await this.run('planner', card, c, system, user, STEPS.plan, { planDate }, TERMINAL_EXCLUDE_NETWORK);
     if (res.terminalTool !== 'submit_network_plan') {
       await this.safeNotify(`🗓 @${c.net.orchestrator.handle}: план мережі не складено (${res.status}${res.error ? `: ${res.error}` : ''}).`);
     }
     return res;
+  }
+
+  /** Spec 024 FR-012: each member resource's own profile (the anchor's is the network profile above), for the per-resource decisions. */
+  private async memberProfiles(net: NetworkCtx): Promise<Array<{ ref: string; profile: ResourceProfile | null }>> {
+    if (net.mode === 'single') return [];
+    const anchor = `telegram:${net.anchorKey}`;
+    return Promise.all(net.resources.filter((r) => r.ref !== anchor).map(async (r) => ({
+      ref: r.ref, profile: (await this.d.profiles.get(r.ref).catch(() => null))?.profile ?? null,
+    })));
   }
 
   /** Extras the single-channel planner needs to see the idea pool (list_ideas works on ctx.extras.network). */

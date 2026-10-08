@@ -384,3 +384,22 @@ Duplication becomes a tool, and every resource gets its own time zone.
 - **ResourceProfile:** time zone (searchable `<datalist>` of `Intl.supportedValuesOf('timeZone')`, empty = Europe/Kyiv,
   validated with `Intl`) and quiet hours (both or neither; empty = 23→8) in the profile form and view. For a `telegram:`
   ref both are read-only from the card (via `GET …/network`) with a link to `/app/editor/$channel`.
+
+### T7 (2026-10-08)
+- **Skill** `editor-skills/resource-decisions.md` (orchestrator, planner, executor): the four decisions with when to use
+  each, reasons that name a profile / playbook / KPI signal, `reason_code`s, where each role records them
+  (`submit_network_plan`, `repurpose_post`, the derived run), and reading / evolving `format_prefs` (evidence from KPIs or
+  repeated owner approval edits, one hypothesis per change, never back and forth, ≤ 3 a day, locked fields untouched).
+  Test `skills/builtin-skills-lint.test.ts` lints every builtin skill and checks this one's roles and coverage.
+- **Wording:** «дзеркало / дзеркалити» is gone from builtin skills (`format-carousel`, `format-video`; the JWST "mirror"
+  example in `format-longread` was reworded) and the prompts had none left; the same test guards skills and every
+  non-test `.ts` under `src/editor`. The planner and orchestrator prompts point to the skill.
+- **Not in the spec:** the network planner and the daily orchestrator prompts now carry "## Профілі ресурсів" — one
+  compact line per member resource profile (topic, audience, language, goals, taboo, tone). Without it the planner could
+  not cite a member's profile or skip an off-topic resource (FR-012, eval `planner-skip-offtopic`).
+- **Evals (written, not run — paid):** `planner-mixed-decisions`, `planner-skip-offtopic`, `orchestrator-repurpose-hit`
+  in `evals/cases/agents.ts` (`executor-format-prefs` is from T8). The eval stack now wires `buildFormatTools`,
+  `buildRepurposeTools` and the `ResourceTime` resolver. Fixed in passing: the eval `network()` helper still inserted the
+  pre-061 modes `mirror` / `orchestrated`, which the 061 CHECK rejects (it broke `playbook-from-brief`,
+  `network-plan-staggered`, `platform-native-variant` and `executor-format-prefs`); eval cleanup also removes
+  `content_decisions` and Threads / Facebook profiles.
