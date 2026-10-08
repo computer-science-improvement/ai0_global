@@ -13,6 +13,8 @@ apps/automation/config/*.local.json
 # Dependencies
 node_modules/
 **/node_modules/
+# also a node_modules *symlink* (agent worktrees link it); a trailing slash only matches directories
+node_modules
 # pnpm content-addressable store (created when store-dir points inside the repo).
 # Was accidentally committed (3,094 files) — untracked in spec 007 T001; the
 # optional history purge is in docs/runbooks/repo-history-purge.md.
