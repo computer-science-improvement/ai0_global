@@ -2,7 +2,9 @@ import type { Pool } from 'pg';
 
 export const DIRECTIVE_KINDS = ['advice', 'task', 'format_shift', 'frequency', 'repost', 'cross_promo', 'pause_series', 'experiment', 'pause_resource', 'strategy'] as const;
 export type DirectiveKind = typeof DIRECTIVE_KINDS[number];
-export type DirectiveStatus = 'new' | 'awaiting_owner' | 'accepted' | 'rejected' | 'applied' | 'evaluated' | 'expired' | 'canceled';
+export const DIRECTIVE_STATUSES = ['new', 'awaiting_owner', 'accepted', 'rejected', 'applied', 'evaluated', 'expired', 'canceled', 'contested', 'declined', 'failed'] as const;
+export type DirectiveStatus = typeof DIRECTIVE_STATUSES[number];
+export type DirectiveBinding = 'directive' | 'advice';
 export type DirectiveOutcome = 'worked' | 'no_effect' | 'hurt' | 'inconclusive';
 export const KPI_METRICS = ['views_per_post', 'engagement_rate', 'posts', 'followers_growth', 'transitions', 'revenue'] as const;
 export type KpiMetric = typeof KPI_METRICS[number];
@@ -14,6 +16,8 @@ export interface Directive {
   fromAgentId:   string | null;
   toAgentId:     string;
   kind:          DirectiveKind;
+  /** Spec 025: 'directive' must be carried out (or contested); 'advice' may be declined. */
+  binding:       DirectiveBinding;
   structural:    boolean;
   body:          string;
   params:        Record<string, unknown>;
@@ -31,20 +35,31 @@ export interface Directive {
   appliedAt:     Date | null;
   runId:         string | null;
   shadow:        boolean;
+  /** Spec 025 FR-009: the executor's diff (before/after), stored before it is applied. */
+  change:        any;
+  execAttempts:  number;
+  execError:     string | null;
+  /** Spec 025: how the change was observed in plans and publishing (adherence, contest check, self-report). */
+  verification:  any;
+  verifiedAt:    Date | null;
+  contestedAt:   Date | null;
   createdAt:     Date;
   updatedAt:     Date;
 }
 
 const toDirective = (r: any): Directive => ({
-  id: r.id, fromAgentId: r.from_agent_id ?? null, toAgentId: r.to_agent_id, kind: r.kind, structural: !!r.structural, body: r.body,
+  id: r.id, fromAgentId: r.from_agent_id ?? null, toAgentId: r.to_agent_id, kind: r.kind, binding: r.binding ?? (r.kind === 'advice' ? 'advice' : 'directive'),
+  structural: !!r.structural, body: r.body,
   params: r.params ?? {}, rationale: r.rationale, evidence: r.evidence ?? null, expected: r.expected ?? null, reviewAt: r.review_at ?? null,
   status: r.status, resolution: r.resolution ?? null, reasonKind: r.reason_kind ?? null, ownerDecision: r.owner_decision ?? null,
   outcome: r.outcome ?? null, outcomeDetail: r.outcome_detail ?? null, deliveredAt: r.delivered_at ?? null, appliedAt: r.applied_at ?? null,
-  runId: r.run_id ?? null, shadow: !!r.shadow, createdAt: r.created_at, updatedAt: r.updated_at,
+  runId: r.run_id ?? null, shadow: !!r.shadow, change: r.change ?? null, execAttempts: Number(r.exec_attempts ?? 0), execError: r.exec_error ?? null,
+  verification: r.verification ?? null, verifiedAt: r.verified_at ?? null, contestedAt: r.contested_at ?? null,
+  createdAt: r.created_at, updatedAt: r.updated_at,
 });
 
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
-const OPEN: DirectiveStatus[] = ['new', 'awaiting_owner', 'accepted', 'applied'];
+const OPEN: DirectiveStatus[] = ['new', 'awaiting_owner', 'accepted', 'applied', 'contested'];
 
 type Q = Pick<Pool, 'query'>;
 
@@ -53,14 +68,18 @@ export class DirectivesRepository {
   constructor(private readonly pool: Q) {}
 
   async insert(d: {
-    fromAgentId: string | null; toAgentId: string; kind: DirectiveKind; structural: boolean; body: string; params: Record<string, unknown>;
+    fromAgentId: string | null; toAgentId: string; kind: DirectiveKind; binding?: DirectiveBinding; structural: boolean; body: string; params: Record<string, unknown>;
     rationale: string; evidence: unknown; expected: Expected | null; reviewAt: Date | null; status: 'new' | 'awaiting_owner'; runId?: string | null; shadow: boolean;
+    /** Spec 025: outcome_detail at filing ({at_filing: {metric, value}, admission}) — the escalation baseline. */
+    outcomeDetail?: unknown; change?: unknown;
   }): Promise<Directive> {
+    const binding = d.binding ?? (d.kind === 'advice' ? 'advice' : 'directive');
     const { rows } = await this.pool.query(
-      `INSERT INTO agent_directives (from_agent_id, to_agent_id, kind, structural, body, params, rationale, evidence, expected, review_at, status, run_id, shadow)
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING *`,
+      `INSERT INTO agent_directives (from_agent_id, to_agent_id, kind, structural, body, params, rationale, evidence, expected, review_at, status, run_id, shadow, binding, outcome_detail, change)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING *`,
       [d.fromAgentId, d.toAgentId, d.kind, d.structural, d.body, JSON.stringify(d.params), d.rationale, JSON.stringify(d.evidence ?? null),
-        d.expected ? JSON.stringify(d.expected) : null, d.reviewAt, d.status, UUID_RE.test(d.runId ?? '') ? d.runId : null, d.shadow]);
+        d.expected ? JSON.stringify(d.expected) : null, d.reviewAt, d.status, UUID_RE.test(d.runId ?? '') ? d.runId : null, d.shadow, binding,
+        d.outcomeDetail == null ? null : JSON.stringify(d.outcomeDetail), d.change == null ? null : JSON.stringify(d.change)]);
     return toDirective(rows[0]);
   }
 
@@ -69,11 +88,30 @@ export class DirectivesRepository {
     return rows[0] ? toDirective(rows[0]) : null;
   }
 
-  async list(f: { status?: DirectiveStatus[] | null; toAgentId?: string | null; limit?: number } = {}): Promise<Directive[]> {
+  async list(f: { status?: DirectiveStatus[] | null; toAgentId?: string | null; limit?: number; binding?: DirectiveBinding | null; kinds?: DirectiveKind[] | null; verified?: boolean | null } = {}): Promise<Directive[]> {
     const { rows } = await this.pool.query(
       `SELECT * FROM agent_directives WHERE ($1::text[] IS NULL OR status = ANY($1::text[])) AND ($2::uuid IS NULL OR to_agent_id = $2)
-        ORDER BY created_at DESC LIMIT $3`, [f.status ?? null, f.toAgentId ?? null, f.limit ?? 100]);
+          AND ($4::text IS NULL OR binding = $4) AND ($5::text[] IS NULL OR kind = ANY($5::text[]))
+          AND ($6::boolean IS NULL OR (verified_at IS NOT NULL) = $6)
+        ORDER BY created_at DESC LIMIT $3`,
+      [f.status ?? null, f.toAgentId ?? null, f.limit ?? 100, f.binding ?? null, f.kinds?.length ? f.kinds : null, f.verified ?? null]);
     return rows.map(toDirective);
+  }
+
+  /** Open binding directives of a target (spec 025 FR-003: at most 2). Shadow rows count only against shadow filings. */
+  async countOpenBinding(toAgentId: string, shadow: boolean): Promise<number> {
+    const { rows } = await this.pool.query(
+      `SELECT COUNT(*)::int AS n FROM agent_directives WHERE to_agent_id = $1 AND binding = 'directive' AND status = ANY($2::text[]) AND shadow = $3`,
+      [toAgentId, OPEN, shadow]);
+    return Number(rows[0]?.n ?? 0);
+  }
+
+  /** The latest advice of a kind to a target declined since `since` (spec 025 FR-003 escalation basis). */
+  async lastDeclinedAdvice(toAgentId: string, kind: DirectiveKind, since: Date): Promise<Directive | null> {
+    const { rows } = await this.pool.query(
+      `SELECT * FROM agent_directives WHERE to_agent_id = $1 AND kind = $2 AND binding = 'advice' AND status = 'declined' AND updated_at >= $3 AND NOT shadow
+        ORDER BY updated_at DESC LIMIT 1`, [toAgentId, kind, since]);
+    return rows[0] ? toDirective(rows[0]) : null;
   }
 
   async openFor(toAgentId: string, kind: DirectiveKind): Promise<Directive | null> {

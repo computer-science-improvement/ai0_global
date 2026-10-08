@@ -1,7 +1,7 @@
 # 025: MANAGER: binding directives vs optional advice, and code executors for directive kinds
 
 **Status:** SPEC · **Depends on:** 020, 021, 022 · **Supersedes/extends:** extends 021 (FR-004, FR-006, FR-007, FR-008, FR-009); replaces `applyAccepted` auto-flip ·
-**Migration:** `062_directive_binding.sql`
+**Migration:** `065_directive_binding.sql`
 
 **Owner comments addressed:** #7
 
@@ -41,7 +41,7 @@ advice that conflicts with the playbook may simply be declined.
 ## Functional requirements
 | ID | Requirement |
 |----|-------------|
-| FR-001 | **Migration `062_directive_binding.sql`** (idempotent, non-destructive). <br>• `agent_directives`: add `binding TEXT NOT NULL DEFAULT 'directive' CHECK (binding IN ('directive','advice'))` and backfill `kind='advice'` → `'advice'`. Add `change JSONB` (executor diff), `exec_attempts SMALLINT NOT NULL DEFAULT 0`, `exec_error TEXT`, `verification JSONB`, `verified_at`, `contested_at TIMESTAMPTZ`. <br>• Widen CHECKs (look up names in `pg_constraint`, drop and re-add; no data changes): `status` + `contested`, `declined`, `failed`; `owner_decision` + `upheld`, `refusal_accepted`. <br>• `playbooks`: add `directive_id UUID NULL REFERENCES agent_directives(id) ON DELETE SET NULL`; `created_by` CHECK gains `'directive'`. <br>• New `resource_pauses(id BIGSERIAL PK, resource_ref TEXT NOT NULL, agent_id UUID, directive_id UUID, reason TEXT NOT NULL, starts_at, until TIMESTAMPTZ NOT NULL, lifted_at, lifted_by TEXT CHECK (lifted_by IN ('schedule','owner')), created_at)`; unique partial index `(resource_ref) WHERE lifted_at IS NULL`. <br>• `GRANT SELECT … TO editor_ro` as in 053. |
+| FR-001 | **Migration `065_directive_binding.sql`** (idempotent, non-destructive). <br>• `agent_directives`: add `binding TEXT NOT NULL DEFAULT 'directive' CHECK (binding IN ('directive','advice'))` and backfill `kind='advice'` → `'advice'`. Add `change JSONB` (executor diff), `exec_attempts SMALLINT NOT NULL DEFAULT 0`, `exec_error TEXT`, `verification JSONB`, `verified_at`, `contested_at TIMESTAMPTZ`. <br>• Widen CHECKs (look up names in `pg_constraint`, drop and re-add; no data changes): `status` + `contested`, `declined`, `failed`; `owner_decision` + `upheld`, `refusal_accepted`. <br>• `playbooks`: add `directive_id UUID NULL REFERENCES agent_directives(id) ON DELETE SET NULL`; `created_by` CHECK gains `'directive'`. <br>• New `resource_pauses(id BIGSERIAL PK, resource_ref TEXT NOT NULL, agent_id UUID, directive_id UUID, reason TEXT NOT NULL, starts_at, until TIMESTAMPTZ NOT NULL, lifted_at, lifted_by TEXT CHECK (lifted_by IN ('schedule','owner')), created_at)`; unique partial index `(resource_ref) WHERE lifted_at IS NULL`. <br>• `GRANT SELECT … TO editor_ro` as in 053. |
 | FR-002 | **Kind × binding matrix** (`directive-kinds.ts`, code only). <br>• `advice`: advice only. <br>• `task`, `format_shift`, `pause_series`, `experiment`, `repost`: either level. <br>• `frequency`: either level below \|change_pct\| 30; at 30 or above it is structural and must be a directive. <br>• `cross_promo`, `pause_resource`, `strategy`: directive only, always structural. <br>`file_directive` gains a required `binding: 'directive' \| 'advice'`. Structural advice → error `structural_must_be_directive`. `advice` filed as a directive → error `advice_kind_is_advice`. |
 | FR-003 | **Directive admission rules** (`fileDirective`), on top of 021 FR-004. A non-structural `binding='directive'` requires that `expected.metric` is flagged `anomaly` for the target scope in the digest, **or** that advice of the same kind to the same target was declined in the last 14 days and the metric has since moved further against `expected` (escalation). Otherwise → error `directive_needs_anomaly`, which tells the MANAGER to file it as advice. At most 2 open binding directives per target. |
 | FR-004 | **Executor dry-run at filing.** Every kind with an executor (FR-010…FR-015) runs `plan(dir, ctx)` before insert. <br>• Invalid params (unknown series, a format outside `implementedFormats(platform)`, a resource outside the network, `per_day.max` above `dailyApiCap`) → error `not_executable`, so impossible directives are never filed. <br>• For playbook kinds the dry-run diff goes through `classifyPlaybookChange`. If it is structural (a format added, per_day ≥ ±30 %), it becomes `structural` and must be a directive. This replaces the param-only `isStructural`. |
@@ -93,7 +93,7 @@ advice that conflicts with the playbook may simply be declined.
 
 ### T1: Add binding levels and directive admission rules
 **Scope:**
-- Migration `062_directive_binding.sql` (FR-001).
+- Migration `065_directive_binding.sql` (FR-001).
 - `directive-kinds.ts` matrix; `file_directive` gets `binding` and the admission rules (FR-002, FR-003).
 - `binding` in the repository, the REST filters and fields (FR-018 read part), and the delivered prompt text.
 - `manager-workflow` skill section "порада чи директива" (FR-017).

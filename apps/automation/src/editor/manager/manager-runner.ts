@@ -32,6 +32,11 @@ export interface ManagerRunnerDeps {
   now?:     () => Date;
 }
 
+/** Spec 025 FR-017: how a delivered item is marked for the orchestrator. */
+export function bindingLabel(x: Pick<Directive, 'binding'>): string {
+  return x.binding === 'advice' ? 'порада (на твій розсуд)' : 'ДИРЕКТИВА (обовʼязково)';
+}
+
 /** System prompt of the scheduled manager run. */
 export function managerSystemPrompt(o: { agent: Agent; now: Date; digest: string; memory: string; skills: { inline: string; listed: string } }): string {
   const tz = 'Europe/Kyiv';
@@ -39,6 +44,7 @@ export function managerSystemPrompt(o: { agent: Agent; now: Date; digest: string
     `Ти — ${o.agent.name} (@${o.agent.handle}), менеджер медіамережі ai0. Бачиш усі ресурси, KPI і директиви. Ти НЕ публікуєш і не керуєш постами напряму — лише даєш директиви оркестраторам.`,
     '«Продовжуйте як раніше» (submit_review verdict=continue) — нормальний і частий результат. Директива — лише коли цифри дайджесту дають конкретну підставу (аномалія, стійкий тренд, явна можливість).',
     'Правила власника важливіші за твої директиви. Не давай директив на метриках зі stale. Не більше 3 директив за прогін.',
+    'Кожну подаєш з binding: порада (advice, за замовчуванням — оркестратор може відхилити) або директива (directive, обовʼязкова — лише при anomaly чи ескалації; структурні — завжди директива).',
     '',
     `Зараз ${localDate(o.now, tz)} ${localTimeLabel(o.now, tz)} (Київ).`,
     '',
@@ -144,7 +150,7 @@ export class ManagerRunner {
     if (!list.length) return null;
     await this.d.repo.markDelivered(list.map((x) => x.id));
     return list.map((x) => [
-      `- id ${x.id} · ${x.kind}${x.structural ? ' (затверджено власником)' : ''}: ${x.body}`,
+      `- ${bindingLabel(x)} · id ${x.id} · ${x.kind}${x.structural ? ' (затверджено власником)' : ''}: ${x.body}`,
       `  чому: ${x.rationale}`,
       x.expected ? `  очікуємо: ${x.expected.metric} ${x.expected.direction === 'up' ? '↑' : '↓'} ≥ ${x.expected.min_change_pct}% до ${x.reviewAt?.toISOString().slice(0, 10)}` : '',
       Object.keys(x.params ?? {}).length ? `  параметри: ${JSON.stringify(x.params)}` : '',

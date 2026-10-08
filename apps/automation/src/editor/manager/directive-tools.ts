@@ -6,20 +6,18 @@ import type { OwnerInbox } from '../agents/owner-inbox';
 import type { PendingActionsService } from '../agents/pending-actions';
 import { proposeCard } from '../agents/builder-tools';
 import type { EditorMemoryRepository } from '../repo/editor-memory.repository';
-import { DIRECTIVE_KINDS, DirectiveKind, DirectivesRepository, Expected, KPI_METRICS } from './directives.repository';
+import { DIRECTIVE_KINDS, DIRECTIVE_STATUSES, DirectiveKind, DirectivesRepository, Expected, KPI_METRICS } from './directives.repository';
 import type { KpiDigest, KpiDigestService } from './kpi-digest.service';
+import { admitDirective, BINDINGS, checkBinding, ESCALATION_WINDOW_MS, metricValue, paramStructural } from './directive-kinds';
 
 export const MAX_DIRECTIVES_PER_RUN = 3;
 export const REJECT_COOLDOWN_MS = 48 * 3600_000;
 export const REVIEW_DAYS = { min: 3, max: 14 };
 const REASON_KINDS = ['owner_rule', 'playbook', 'capability', 'health', 'data'] as const;
 
-/** Structural kinds need the owner (D1); code decides, never the model. */
+/** Structural kinds need the owner (D1); code decides, never the model. Spec 025: the parameter part (see directive-kinds). */
 export function isStructural(kind: DirectiveKind, params: Record<string, unknown>): boolean {
-  if (kind === 'cross_promo' || kind === 'pause_resource' || kind === 'strategy') return true;
-  if (params.add_platform) return true;
-  if (kind === 'frequency' && Math.abs(Number(params.change_pct ?? 0)) >= 30) return true;
-  return false;
+  return paramStructural(kind, params);
 }
 
 const hasNumber = (v: unknown): boolean =>
@@ -28,6 +26,7 @@ const hasNumber = (v: unknown): boolean =>
 export const FileDirectiveInput = z.object({
   to:        z.string().min(2).max(40).describe('@handle оркестратора'),
   kind:      z.enum(DIRECTIVE_KINDS),
+  binding:   z.enum(BINDINGS).describe('advice — порада (за замовчуванням; оркестратор може відхилити); directive — обовʼязкова команда: лише при anomaly метрики expected або ескалації після відхиленої поради; структурні типи — завжди directive'),
   body:      z.string().min(10).max(800).describe('Що саме змінити — конкретно'),
   params:    z.record(z.string(), z.unknown()).default({}).describe('Напр. {format:"ig_carousel", weight_delta:0.2} або {change_pct:-20} або для cross_promo {source_ref, target_ref, window_days}'),
   rationale: z.string().min(20).max(1200),
@@ -78,12 +77,30 @@ export async function fileDirective(d: DirectiveToolDeps, i: FileDirective, o: {
     const stale = rows.length > 0 && rows.every((r) => (r.kpis as any)[i.expected!.metric]?.stale);
     if (stale) return { error: 'stale_metric', details: `${i.expected.metric} без свіжих даних — директиви на ній не даються` };
   }
+  // Spec 025 FR-002: the kind × binding matrix (kind-only rules first, structural advice after the dry-run).
+  const kindRule = checkBinding(i.kind, i.binding, false);
+  if (kindRule) return kindRule;
   const structural = isStructural(i.kind, i.params);
+  const matrix = checkBinding(i.kind, i.binding, structural);
+  if (matrix) return matrix;
+  // Spec 025 FR-003: a non-structural binding directive needs an anomaly or an escalation; ≤ 2 open per target.
+  let dg = o.digest ?? null;
+  if (!dg && i.expected && !o.ownerApproved) { try { dg = await d.digest.build(); } catch { dg = null; } }
+  const declined = i.binding === 'directive' && !structural && !o.ownerApproved
+    ? await d.repo.lastDeclinedAdvice(target.id, i.kind, new Date(now.getTime() - ESCALATION_WINDOW_MS)) : null;
+  const admission = admitDirective({
+    binding: i.binding, structural, ownerApproved: !!o.ownerApproved, targetHandle: target.handle, expected: i.expected ?? null, digest: dg,
+    declined: declined ? { id: declined.id, expected: declined.expected, filedValue: (declined.outcomeDetail as any)?.at_filing?.value ?? null } : null,
+    openBinding: i.binding === 'directive' && !o.ownerApproved ? await d.repo.countOpenBinding(target.id, o.shadow) : 0,
+  });
+  if ('error' in admission) return admission;
+  const atFiling = i.expected ? { metric: i.expected.metric, value: metricValue(dg, target.handle, i.expected.metric, i.expected.resource_ref) } : null;
   const status = structural && !o.ownerApproved ? 'awaiting_owner' : 'new';
   const dir = await d.repo.insert({
-    fromAgentId: o.from?.id ?? null, toAgentId: target.id, kind: i.kind, structural, body: i.body, params: i.params,
+    fromAgentId: o.from?.id ?? null, toAgentId: target.id, kind: i.kind, binding: i.binding, structural, body: i.body, params: i.params,
     rationale: i.rationale, evidence: i.evidence, expected: (i.expected ?? null) as Expected | null,
     reviewAt: new Date(now.getTime() + i.review_in_days * 86_400_000), status, runId: o.runId, shadow: o.shadow,
+    outcomeDetail: { at_filing: atFiling, admission: { basis: admission.basis, ...(admission.detail ?? {}) } },
   });
   if (o.ownerApproved) await d.repo.update(dir.id, { ownerDecision: 'approved' });
   if (status === 'awaiting_owner' && !o.shadow) {
@@ -123,12 +140,17 @@ export function buildDirectiveTools(d: DirectiveToolDeps): EditorTool[] {
     name: 'list_directives',
     description: 'Директиви (відкриті й нещодавні) з їхнім статусом і результатом; для оркестратора — лише його.',
     kind: 'read', roles: ['manager', 'orchestrator'],
-    input: z.object({ status: z.array(z.enum(['new', 'awaiting_owner', 'accepted', 'rejected', 'applied', 'evaluated', 'expired', 'canceled'])).optional(), limit: z.number().int().min(1).max(50).default(20) }),
+    input: z.object({ status: z.array(z.enum(DIRECTIVE_STATUSES)).optional(), limit: z.number().int().min(1).max(50).default(20) }),
     execute: async ({ status, limit }, ctx) => {
       const me = agentOf(ctx);
       const toAgentId = ctx.role === 'orchestrator' ? (ctx.extras?.orchestrator as Agent | undefined)?.id ?? me?.id ?? null : null;
       const list = (await d.repo.list({ status: status ?? null, toAgentId, limit })).filter((x) => !(toAgentId && x.shadow));
-      return { directives: list.map((x) => ({ id: x.id, kind: x.kind, status: x.status, body: x.body, rationale: x.rationale, expected: x.expected, outcome: x.outcome, resolution: x.resolution, created_at: x.createdAt })) };
+      return {
+        directives: list.map((x) => ({
+          id: x.id, kind: x.kind, binding: x.binding, status: x.status, body: x.body, rationale: x.rationale, expected: x.expected, outcome: x.outcome,
+          resolution: x.resolution, verification: x.verification, adherence: x.verification?.adherence ?? null, created_at: x.createdAt,
+        })),
+      };
     },
   });
 
@@ -136,7 +158,8 @@ export function buildDirectiveTools(d: DirectiveToolDeps): EditorTool[] {
     name: 'file_directive',
     description: [
       'Дати директиву оркестратору (@handle). Лише коли є підстава в цифрах дайджесту; «продовжуйте» — нормальний результат без директив.',
-      'Не більше 3 за прогін; не дублюй відкриту директиву; структурні (cross_promo, pause_resource, strategy, частота ±30%, нова платформа) підуть власнику на рішення.',
+      'binding: advice (порада, за замовчуванням) — оркестратор може відхилити; directive (обовʼязково) — лише коли метрика expected позначена anomaly в дайджесті або після відхиленої поради, коли метрика пішла ще далі; не більше 2 відкритих директив на агента.',
+      'Не більше 3 за прогін; не дублюй відкриту директиву; структурні (cross_promo, pause_resource, strategy, частота ±30%, нова платформа) — завжди directive і підуть власнику на рішення.',
     ].join(' '),
     kind: 'act', roles: ['manager'],
     input: FileDirectiveInput,
@@ -149,7 +172,7 @@ export function buildDirectiveTools(d: DirectiveToolDeps): EditorTool[] {
       }
       const r = await fileDirective(d, i, { from: me, runId: ctx.runId, shadow: me?.mode !== 'live', digest: await digestOf(ctx) });
       if ('error' in r) return r;
-      return { ok: true, id: r.directive.id, status: r.directive.status, structural: r.directive.structural, shadow: r.directive.shadow };
+      return { ok: true, id: r.directive.id, binding: r.directive.binding, status: r.directive.status, structural: r.directive.structural, shadow: r.directive.shadow };
     },
   });
 

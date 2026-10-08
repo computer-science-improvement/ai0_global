@@ -1,10 +1,13 @@
 import { BadRequestException, ConflictException, NotFoundException } from '@nestjs/common';
 import type { AgentsRepository } from '../agents/agents.repository';
-import type { DirectiveStatus, DirectivesRepository } from './directives.repository';
+import { DIRECTIVE_KINDS, DIRECTIVE_STATUSES, DirectiveKind, DirectiveStatus, DirectivesRepository } from './directives.repository';
 import type { KpiDigestService } from './kpi-digest.service';
 import type { ManagerRunner } from './manager-runner';
 
-const STATUSES: DirectiveStatus[] = ['new', 'awaiting_owner', 'accepted', 'rejected', 'applied', 'evaluated', 'expired', 'canceled'];
+const STATUSES: readonly string[] = DIRECTIVE_STATUSES;
+
+/** Query filters of GET /api/directives (spec 021 FR-009, spec 025 FR-018). */
+export interface DirectiveFilters { status?: string; agent?: string; binding?: string; kind?: string; verified?: string }
 
 /** Owner surface of the MANAGER (spec 021 FR-009). */
 export class ManagerService {
@@ -13,12 +16,20 @@ export class ManagerService {
     runner: Pick<ManagerRunner, 'run' | 'manager'>; log?: (m: string) => void;
   }) {}
 
-  async directives(status?: string, agent?: string) {
-    const st = status ? status.split(',').filter((s) => (STATUSES as string[]).includes(s)) as DirectiveStatus[] : null;
+  async directives(f: DirectiveFilters = {}) {
+    const { status, agent } = f;
+    const st = status ? status.split(',').filter((s) => STATUSES.includes(s)) as DirectiveStatus[] : null;
+    if (f.binding && f.binding !== 'directive' && f.binding !== 'advice') throw new BadRequestException({ error: 'invalid_binding', details: 'directive | advice' });
+    if (f.verified && f.verified !== 'true' && f.verified !== 'false') throw new BadRequestException({ error: 'invalid_verified', details: 'true | false' });
+    const kinds = f.kind ? f.kind.split(',').map((k) => k.trim()).filter((k) => (DIRECTIVE_KINDS as readonly string[]).includes(k)) as DirectiveKind[] : null;
+    if (f.kind && !kinds?.length) throw new BadRequestException({ error: 'invalid_kind', details: DIRECTIVE_KINDS.join(', ') });
     const to = agent ? await this.d.agents.getByHandle(agent) : null;
     if (agent && !to) throw new NotFoundException({ error: 'agent_not_found' });
     const handles = new Map((await this.d.agents.list()).map((a) => [a.id, a.handle]));
-    const list = await this.d.repo.list({ status: st?.length ? st : null, toAgentId: to?.id ?? null, limit: 200 });
+    const list = await this.d.repo.list({
+      status: st?.length ? st : null, toAgentId: to?.id ?? null, limit: 200,
+      binding: (f.binding as 'directive' | 'advice' | undefined) ?? null, kinds, verified: f.verified ? f.verified === 'true' : null,
+    });
     return { directives: list.map((x) => ({ ...x, to: handles.get(x.toAgentId) ?? null, from: x.fromAgentId ? handles.get(x.fromAgentId) ?? null : null })) };
   }
 

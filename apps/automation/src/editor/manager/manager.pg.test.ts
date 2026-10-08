@@ -64,7 +64,7 @@ test('digest flags the drop; directive lifecycle: owner approval → delivery �
     channelKeyOf: async () => CH,
   };
   const filed: any = await fileDirective(deps as any, {
-    to: '@kpi_pg_orch', kind: 'frequency', body: 'Зменшити частоту на 40% на тиждень', params: { change_pct: -40 },
+    to: '@kpi_pg_orch', kind: 'frequency', binding: 'directive', body: 'Зменшити частоту на 40% на тиждень', params: { change_pct: -40 },
     rationale: 'Перегляди на пост впали на 50% за тиждень', evidence: { views_per_post: r.kpis.views_per_post },
     expected: { metric: 'views_per_post', direction: 'up', min_change_pct: 10 }, review_in_days: 3,
   }, { from: null, runId: null, shadow: false, digest: dg });
