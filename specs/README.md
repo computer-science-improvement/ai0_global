@@ -42,6 +42,7 @@ Each feature directory has `spec.md` (what and why), `plan.md` (how, plus Consti
 | 031 | [Approval mode](031-approval-mode/spec.md): every agent post waits for the owner while a resource is tested; default for new resources, switch to autonomous per resource | P1 | 010, 017–020 | DONE (023/024 hooks in approval-policy.ts) |
 | 032 | [Unified data store](032-unified-data-store/spec.md): one `data_items` table + editable `data_schemas`, CSV/JSON import without migrations, agents read schemas first | P1 | — | DONE (eval executor-picks-dataset not run yet) |
 | 033 | [Telegram rich messages](033-telegram-rich-messages/spec.md): headings, lists, tables, formulas via Bot API 10.1 `sendRichMessage`, HTML fallback, agent control via `format_prefs.rich` | P2 | 004, 019, 024, 031 | DONE (owner live smoke pending) |
+| 034 | [Content quality + live planning](034-content-quality-live-planning/spec.md): voice core in every writer prompt, pre-publish critic, fewer polls/questions, fitting formats with examples in the creation chat, live news slots, readable plan, skills audit (AI0-82) | P0 | 017–025, 031, 033 | SPEC |
 
 Suggested order for the next wave: 012 → 011 (phases 0–1) → 015 → 013 → 014; 016 is independent.
 
@@ -49,7 +50,7 @@ Agent platform wave: 017 → 018 ∥ 019 → 020 → 021 → 022 (019b after 016
 
 **UI language (owner rule 2026-10-06):** all interface text is English. Ukrainian button and label texts quoted in specs 023–032 give the meaning; implement them in English (see `apps/dashboard/CLAUDE.md` → Language).
 
-Migration numbers in specs 023–032 are assigned in merge order (landed: 055 auth, 056 llm_usage, 057 approval, 058 data store; landed: 059–060 and 063 spec 023, 061–062 and 064 spec 024; landed: 065 spec 025; planned: 066 spec 026, 067 spec 030) and are renumbered if the order changes.
+Migration numbers in specs 023–032 are assigned in merge order (landed: 055 auth, 056 llm_usage, 057 approval, 058 data store; landed: 059–060 and 063 spec 023, 061–062 and 064 spec 024; landed: 065 spec 025; landed: 066 spec 026; planned: 067 spec 034, then spec 030) and are renumbered if the order changes.
 
 BRD-comments wave (2026-10-06): 028 ∥ 029 ∥ 031 → 032 → 023 ∥ 024 → 025 → 029 → 027 → 026; 030 after 016.
 
