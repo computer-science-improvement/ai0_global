@@ -7,7 +7,7 @@ import { SkillLibrary } from '../skills/skill-library';
 import { makeCard, makeSpec } from '../post/testing/fixtures';
 import type { EditorChatMessage, EditorDraft } from '../repo/editor-chat.repository';
 import { buildComposerTools } from './composer-tools';
-import { EditorChatService, ChatStreamEvent } from './editor-chat.service';
+import { EditorChatService, ChatStreamEvent, failureText } from './editor-chat.service';
 
 const NOW = new Date('2026-10-01T09:00:00Z');
 const UUID = '00000000-0000-4000-8000-000000000001';
@@ -118,4 +118,19 @@ test('without a known channel the prompt tells the composer to ask which channel
   const s = setup([{ text: 'У який канал писати?' }]);
   await s.svc.sendMessage('c1', 'Зроби пост про космос');
   assert.match((s.llm.requests[0].messages[0] as any).content, /Канал ще не визначено/);
+});
+
+test('max_steps names the checks the last draft failed (codes + quoted fragment), English text', () => {
+  const r: any = { runId: null, status: 'max_steps', totals: { steps: 16, promptTokens: 0, completionTokens: 0, costUsd: 0 } };
+  const draft = (lint: any) => ({ id: 'd', lint }) as any;
+  const text = failureText(r, [
+    draft({ ok: true, errors: [], warnings: [] }),
+    draft({ ok: false, warnings: [], errors: [
+      { code: 'banned_term', message: 'заборонена фраза: "по суті"' },
+      { code: 'banned_term', message: 'заборонена фраза: "по суті"' },
+      { code: 'not_ukrainian', message: 'текст має бути українською: кирилиці 40% із потрібних 60%' },
+    ] }),
+  ]);
+  assert.match(text, /could not finish within 16 steps\. The draft did not pass the checks: banned_term \("по суті"\), not_ukrainian\. Say "continue"/);
+  assert.equal(failureText(r), 'I could not finish within 16 steps. Say "continue" or narrow the task down.');
 });

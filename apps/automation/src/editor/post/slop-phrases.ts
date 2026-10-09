@@ -98,3 +98,11 @@ export function findBannedTerms(text: string, terms: readonly string[]): string[
   const t = normalizeSlop(text);
   return terms.filter((term) => { const n = normalizeSlop(term); return n.length > 0 && t.includes(n); });
 }
+
+/** The word of the text in which an owner's banned term was found (so «ставк» shows up as «доставка»). */
+export function bannedTermContext(text: string, term: string): string | null {
+  const n = normalizeSlop(term);
+  if (!n) return null;
+  const m = new RegExp(`${WORD}*${n.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}${WORD}*`, 'u').exec(normalizeSlop(text));
+  return m ? m[0] : null;
+}

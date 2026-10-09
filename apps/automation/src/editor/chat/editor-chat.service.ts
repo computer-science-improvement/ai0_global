@@ -103,13 +103,28 @@ export function budgetRefusalText(error: string | null | undefined): string {
     + 'Work resumes at midnight Kyiv time, or as soon as the cap is raised on Spend → Budgets (/app/spend?tab=budgets).';
 }
 
-export function failureText(r: AgentLoopResult): string {
+export function failureText(r: AgentLoopResult, drafts: readonly EditorDraft[] = []): string {
   switch (r.status) {
     case 'disabled':        return 'Chat is off: OPENROUTER_API_KEY is not set.';
     case 'budget_exceeded': return budgetRefusalText(r.error);
-    case 'max_steps':       return `I could not finish within ${COMPOSER_MAX_STEPS} steps. Say "continue" or narrow the task down.`;
+    case 'max_steps':       return `I could not finish within ${COMPOSER_MAX_STEPS} steps.${lintFailureNote(drafts)} Say "continue" or narrow the task down.`;
     default:                return `Something went wrong: ${r.error ?? r.status}.`;
   }
+}
+
+/** Why the last draft of the turn was not accepted, by check code (the quoted fragment is post content). */
+export function lintFailureNote(drafts: readonly EditorDraft[]): string {
+  const last = [...drafts].reverse().find((d) => d.lint && !d.lint.ok);
+  if (!last?.lint) return '';
+  const seen = new Set<string>();
+  const items = last.lint.errors.flatMap((e) => {
+    const quoted = /"([^"]{1,60})"/.exec(e.message)?.[1];
+    const item = quoted ? `${e.code} ("${quoted}")` : e.code;
+    if (seen.has(item)) return [];
+    seen.add(item);
+    return [item];
+  });
+  return items.length ? ` The draft did not pass the checks: ${items.slice(0, 5).join(', ')}.` : '';
 }
 
 /**
@@ -276,7 +291,7 @@ export class EditorChatService {
       const ok = res.status === 'ok' && !!res.finalText?.trim();
       if (!ok) emit({ type: 'error', error: res.error ?? res.status });
       const message = await this.d.repo.addMessage({
-        chatId, role: 'assistant', content: ok ? res.finalText!.trim() : failureText(res), draftIds: [...touched.keys()], runId: res.runId,
+        chatId, role: 'assistant', content: ok ? res.finalText!.trim() : failureText(res, [...touched.values()]), draftIds: [...touched.keys()], runId: res.runId,
         agentId: addressee?.id ?? null,
       });
       await this.d.repo.touchChat(chatId);

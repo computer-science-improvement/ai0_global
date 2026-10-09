@@ -18,7 +18,14 @@ export interface ComposerExtras {
   userIntent:  boolean;
   /** Called for every draft a tool created or changed (streams a draft card to the UI). */
   onDraft?:    (draft: EditorDraft) => void;
+  /** Per turn: consecutive failing saves per draft id (the save_draft retry guard). */
+  lintFails?:  Map<string, number>;
+  /** Per turn: the last draft saved per channel, while its lint fails (a retry without draft_id updates it). */
+  failingDraft?: Map<string, string>;
 }
+
+/** A draft whose lint failed this many saves in a row in one turn is not saved again; the agent asks the owner. */
+export const MAX_LINT_RETRIES = 3;
 
 export interface ComposerToolDeps {
   drafts: Pick<DraftsService, 'save' | 'publish' | 'schedule' | 'cancel' | 'list'>;
@@ -74,13 +81,35 @@ export function buildComposerTools(d: ComposerToolDeps): EditorTool[] {
     }),
     execute: async ({ channel, spec, draft_id }, ctx) => {
       const x = chatOf(ctx);
-      const r = await d.drafts.save({ chatId: x.chat.chatId, channel: channel.trim(), spec, draftId: draft_id ?? null });
+      const key = channel.trim();
+      const fails = (x.lintFails ??= new Map());
+      const failing = (x.failingDraft ??= new Map());
+      // A retry of a failing draft without draft_id updates that draft instead of stacking new drafts in the chat.
+      const target = draft_id ?? failing.get(key) ?? null;
+      if (target && (fails.get(target) ?? 0) >= MAX_LINT_RETRIES) {
+        return {
+          error: 'lint_stuck', draft_id: target,
+          details: `Перевірка не пройшла ${MAX_LINT_RETRIES} рази поспіль. Не зберігай знову: поясни власнику, яка саме перевірка не проходить (коди й тексти помилок з lint) і запитай, як бути.`,
+        };
+      }
+      const r = await d.drafts.save({ chatId: x.chat.chatId, channel: key, spec, draftId: target });
       if ('error' in r) return r;
       // The chat now works on this channel: channel-scoped tools follow the draft.
       x.chat.channelKey = r.draft.channelKey;
       x.card = r.card;
       emit(x, r.draft);
-      return { draft_id: r.draft.id, status: r.draft.status, preview: r.draft.preview, lint: r.lint };
+      let attempts = 0;
+      if (r.lint.ok) { fails.delete(r.draft.id); failing.delete(key); } else {
+        attempts = (fails.get(r.draft.id) ?? 0) + 1;
+        fails.set(r.draft.id, attempts);
+        failing.set(key, r.draft.id);
+      }
+      return {
+        draft_id: r.draft.id, status: r.draft.status, preview: r.draft.preview, lint: r.lint,
+        ...(attempts >= MAX_LINT_RETRIES
+          ? { stop: 'Перевірка не пройшла кілька разів поспіль. Більше не зберігай: поясни власнику помилки й запитай, як бути.' }
+          : attempts > 0 ? { attempt: attempts, max_attempts: MAX_LINT_RETRIES } : {}),
+      };
     },
   });
 

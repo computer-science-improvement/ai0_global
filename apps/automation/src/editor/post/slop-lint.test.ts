@@ -153,3 +153,14 @@ test('lintPlatformPost: same phrase list (normalised) and slop warnings with the
   const ok = lintPlatformPost(spec('Марс видно сьогодні. Це вайб.'), { platform: 'threads', voice: { slang: true } });
   assert.ok(!ok.warnings.some((w) => w.code === 'slop_slang_off'));
 });
+
+test('lint messages: an owner banned term names the word it was found in; not_ukrainian gives the Cyrillic share', () => {
+  const card = makeCard({ bannedTerms: ['ставк'] });
+  const spec = makeSpec({ body: [{ type: 'lead', text: 'Безкоштовна доставка пакунків по всій країні вже з понеділка, без черг і зайвих паперів.' }] });
+  const r = lintPost(spec, card);
+  const banned = r.errors.find((e) => e.code === 'banned_term');
+  assert.ok(banned, JSON.stringify(r.errors));
+  assert.match(banned!.message, /"ставк" \(знайдено в «доставка»\)/);
+  const en = lintPost(makeSpec({ body: [{ type: 'lead', text: 'Use this prompt to write better system instructions for agents and tools every day.' }] }), makeCard());
+  assert.match(en.errors.find((e) => e.code === 'not_ukrainian')!.message, /кирилиці \d+% із потрібних 60%/);
+});

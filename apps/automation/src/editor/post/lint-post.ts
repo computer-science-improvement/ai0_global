@@ -5,7 +5,7 @@ import { blockWords, countBlocks, usesRichBlocks } from './blocks';
 import { CAPTION_LIMIT, RICH_FORMATS, TEXT_LIMIT, normalizeHashtag, renderTelegram, type RenderCard, type TgMessage } from './render-telegram';
 import { RICH_MAX_BLOCKS, RICH_MAX_CHARS, RICH_MAX_DEPTH, richStats } from './render-rich';
 /** Spec 034 FR-003: signature AI phrasings (the anti-slop list, normalised) live in slop-phrases.ts. */
-import { findBannedTerms, findSlopPhrases } from './slop-phrases';
+import { bannedTermContext, findBannedTerms, findSlopPhrases, normalizeSlop } from './slop-phrases';
 import { slopWarnings } from './slop-lint';
 
 export interface LintIssue { code: string; message: string }
@@ -89,7 +89,11 @@ export function lintPost(spec: PostSpec, card: LintCard): LintResult {
 
   // ── media ─────────────────────────────────────────────────────────────────
   const n = spec.media.length;
-  if (spec.format === 'photo' && n !== 1) err('media_count', `photo потребує рівно 1 зображення, зараз ${n}`);
+  if (spec.format === 'photo' && n !== 1) {
+    err('media_count', n === 0
+      ? 'photo потребує рівно 1 зображення, зараз 0 — додай media: [{"url": "https://…"}] (пряме посилання на картинку з джерела, бібліотеки чи від власника) або зміни format на text'
+      : `photo потребує рівно 1 зображення, зараз ${n} — залиш одне або зміни format на album`);
+  }
   if (spec.format === 'album' && (n < 2 || n > 10)) err('media_count', `album потребує 2–10 зображень, зараз ${n}`);
   if ((spec.format === 'text' || spec.format === 'poll' || spec.format === 'quiz') && n > 1) err('media_count', `${spec.format}: максимум 1 зображення (як прев’ю)`);
   if (spec.format === 'longread' && n > 1) err('media_count', 'longread: максимум 1 зображення (обкладинка статті)');
@@ -189,10 +193,16 @@ export function lintPost(spec: PostSpec, card: LintCard): LintResult {
 
   // ── language, banned terms, emoji ─────────────────────────────────────────
   const plain = [spec.title, readerPlain(spec), spec.poll?.question ?? '', ...(spec.poll?.options ?? [])].join('\n');
-  if (card.language === 'uk' && cyrillicShare(readerPlain(spec) || plain) < 0.6) err('not_ukrainian', 'текст має бути українською');
+  const share = cyrillicShare(readerPlain(spec) || plain);
+  if (card.language === 'uk' && share < 0.6) {
+    err('not_ukrainian', `текст має бути українською: кирилиці ${Math.round(share * 100)}% із потрібних 60% — перекажи англійські цитати й назви українською або винеси їх у посилання`);
+  }
   // Spec 034 FR-003: normalised (case, ʼ ’ ') banned phrases are errors; the slop counters are warnings for the critic.
   for (const term of findSlopPhrases(plain)) err('banned_term', `заборонена фраза: "${term}"`);
-  for (const term of findBannedTerms(plain, card.bannedTerms)) err('banned_term', `заборонена фраза: "${term}"`);
+  for (const term of findBannedTerms(plain, card.bannedTerms)) {
+    const word = bannedTermContext(plain, term);
+    err('banned_term', `заборонене слово з картки каналу: "${term}"${word && word !== normalizeSlop(term) ? ` (знайдено в «${word}»)` : ''}`);
+  }
   const emoji = (readerPlain(spec).match(EMOJI_RE) ?? []).length;
   if (card.emojiPolicy === 'none' && emoji > 0) err('emoji_policy', 'у цьому каналі без емодзі');
   if (card.emojiPolicy === 'sparse' && emoji > 3) err('emoji_policy', `забагато емодзі (${emoji}), максимум 3`);

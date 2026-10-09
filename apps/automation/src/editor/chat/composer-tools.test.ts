@@ -69,3 +69,32 @@ test('publish_draft / schedule_draft refuse without an explicit request; cancel 
   const ch: any = await tools.list_my_channels.execute({}, ctx(false));
   assert.deepEqual(ch.channels, [{ channel: '@space', title: 'Космос', has_card: false, mode: null }]);
 });
+
+test('save_draft retry guard: a failing draft is updated (not stacked) and is not saved after MAX_LINT_RETRIES failures', async () => {
+  const calls: any[] = [];
+  const bad = { ok: false, errors: [{ code: 'not_ukrainian', message: 'текст має бути українською' }], warnings: [] };
+  const IDS = ['00000000-0000-4000-8000-0000000000a1', '00000000-0000-4000-8000-0000000000a2'];
+  let n = 0;
+  const drafts: any = {
+    save: async (i: any) => {
+      calls.push(i);
+      const id = i.draftId ?? IDS[n++];
+      return { ok: true, card: makeCard({ channelKey: '@space' }), lint: bad,
+        draft: { id, chatId: 'c1', channelKey: '@space', spec: makeSpec(), preview: 'p', lint: bad, status: 'draft', scheduledAt: null, slotId: null, publishedPostId: null, error: null, createdAt: NOW, updatedAt: NOW } };
+    },
+  };
+  const [save] = buildComposerTools({ drafts, repo: { myChannels: async () => [] } as any }).filter((t) => t.name === 'save_draft');
+  const c = ctx(false);
+  const r1: any = await save.execute({ channel: '@space', spec: makeSpec() }, c);
+  assert.deepEqual([r1.draft_id, r1.attempt], [IDS[0], 1]);
+  // The model forgets draft_id: the failing draft is updated, not a second one created.
+  const r2: any = await save.execute({ channel: '@space', spec: makeSpec() }, c);
+  assert.deepEqual([calls[1].draftId, r2.draft_id, r2.attempt], [IDS[0], IDS[0], 2]);
+  const r3: any = await save.execute({ channel: '@space', spec: makeSpec(), draft_id: IDS[0] }, c);
+  assert.ok(r3.stop, 'the third failure tells the agent to stop and ask the owner');
+  const r4: any = await save.execute({ channel: '@space', spec: makeSpec() }, c);
+  assert.equal(r4.error, 'lint_stuck');
+  assert.equal(calls.length, 3, 'the fourth attempt is not saved');
+  // A new turn (fresh extras) starts over.
+  assert.equal(((await save.execute({ channel: '@space', spec: makeSpec(), draft_id: IDS[0] }, ctx(false))) as any).attempt, 1);
+});
