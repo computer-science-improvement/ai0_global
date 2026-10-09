@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { defineTool, EditorTool, ToolContext } from '../harness/tool';
 import { cardSummary, EditorCard } from '../card';
-import { PostSpecSchema } from '../post/post-spec';
+import { AgentPostSpecSchema } from '../post/post-spec';
 import { lintPost } from '../post/lint-post';
 import { renderTelegram } from '../post/render-telegram';
 import { safeGet, RawGet } from '../net/safe-http';
@@ -32,7 +32,7 @@ export function buildComposeTools(d: ComposeToolDeps = {}): EditorTool[] {
     name: 'lint_post',
     description: 'Перевірити PostSpec за правилами каналу (формат, хештеги, атрибуція, довжина, мова, заборонені фрази, емодзі). Виправ усі errors перед publish_post.',
     kind: 'read', roles: ['executor', 'composer'],
-    input: z.object({ spec: PostSpecSchema }),
+    input: z.object({ spec: AgentPostSpecSchema }),
     execute: async ({ spec }, ctx) => lintPost(spec, cardFrom(ctx)),
   });
 
@@ -40,7 +40,7 @@ export function buildComposeTools(d: ComposeToolDeps = {}): EditorTool[] {
     name: 'preview_post',
     description: 'Показати, як PostSpec виглядатиме в Telegram після рендеру (HTML/текст), разом із результатом lint.',
     kind: 'read', roles: ['executor', 'composer'],
-    input: z.object({ spec: PostSpecSchema }),
+    input: z.object({ spec: AgentPostSpecSchema }),
     execute: async ({ spec }, ctx) => {
       const card = cardFrom(ctx);
       const l = lintPost(spec, card);

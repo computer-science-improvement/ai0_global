@@ -1,7 +1,7 @@
 import type { Pool } from 'pg';
 import { z } from 'zod';
 import { channelOf, defineTool, EditorTool, ToolContext } from '../harness/tool';
-import { PostSpecSchema, PostSpec } from '../post/post-spec';
+import { AgentPostSpecSchema, PostSpec } from '../post/post-spec';
 import { lintPost } from '../post/lint-post';
 import { checkQuizGroundTruth } from '../post/quiz-ground-truth';
 import { checkVerbatim } from '../post/verbatim-guard';
@@ -131,7 +131,7 @@ export function buildRoleTools(d: RoleToolDeps): EditorTool[] {
     name: 'publish_post',
     description: 'Опублікувати PostSpec у слот (завершує роботу). У shadow-режимі пост зберігається як превʼю без публікації; у режимі апруву — повністю готується і чекає схвалення власника. Перед цим обовʼязково lint_post.',
     kind: 'terminal', roles: ['executor'],
-    input: z.object({ spec: PostSpecSchema }),
+    input: z.object({ spec: AgentPostSpecSchema }),
     execute: async ({ spec }, ctx) => {
       const t = now();
       const g = await checkPublishGuards(d, ctx, spec, t);

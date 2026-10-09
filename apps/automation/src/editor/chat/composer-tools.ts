@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { defineTool, EditorTool, ToolContext } from '../harness/tool';
-import { PostSpecSchema } from '../post/post-spec';
+import { AgentPostSpecSchema } from '../post/post-spec';
 import { DRAFT_STATUSES, EditorDraft } from '../repo/editor-chat.repository';
 import type { EditorChatRepository } from '../repo/editor-chat.repository';
 import type { DraftsService } from './drafts.service';
@@ -76,7 +76,7 @@ export function buildComposerTools(d: ComposerToolDeps): EditorTool[] {
     kind: 'act', roles: ['composer'],
     input: z.object({
       channel:  z.string().min(2).max(200).describe('Ключ каналу, напр. @my_channel (з list_my_channels)'),
-      spec:     PostSpecSchema,
+      spec:     AgentPostSpecSchema,
       draft_id: z.string().uuid().optional().describe('Оновити цю чернетку замість створення нової'),
     }),
     execute: async ({ channel, spec, draft_id }, ctx) => {

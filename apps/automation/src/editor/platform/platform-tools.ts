@@ -3,7 +3,7 @@ import { z } from 'zod';
 import { defineTool, EditorTool, ToolContext } from '../harness/tool';
 import { parseResourceRef, Platform } from '../agents/agent.types';
 import type { EditorPlansRepository } from '../repo/editor-plans.repository';
-import { lintPlatformPost, PlatformPostSpecSchema, renderPlatform } from './platform-spec';
+import { AgentPlatformPostSpecSchema, lintPlatformPost, renderPlatform } from './platform-spec';
 import type { VoicePrefs } from '../post/slop-lint';
 import { publishPlatformNow, PublishPlatformDeps } from './publish-platform';
 import { freshnessDeadline } from '../approval/approval-timing';
@@ -45,7 +45,7 @@ export function buildPlatformTools(d: PlatformToolDeps): EditorTool[] {
     name: 'lint_platform_post',
     description: 'Перевірити нативний пост для Instagram / Facebook / Threads / TikTok перед публікацією: ліміти підпису, хештеги, посилання, кількість медіа, формат. Повертає помилки й превʼю підпису.',
     kind: 'read', roles: ['executor', 'composer'],
-    input: z.object({ resource: z.string().min(3).max(200).optional().describe('ref ресурсу; у слоті — береться зі слота'), spec: PlatformPostSpecSchema }),
+    input: z.object({ resource: z.string().min(3).max(200).optional().describe('ref ресурсу; у слоті — береться зі слота'), spec: AgentPlatformPostSpecSchema }),
     execute: async ({ resource, spec }, ctx) => {
       const ref = resource ?? slotOf(ctx)?.resourceRef;
       const p = ref ? parseResourceRef(ref) : null;
@@ -60,7 +60,7 @@ export function buildPlatformTools(d: PlatformToolDeps): EditorTool[] {
     name: 'publish_platform_post',
     description: 'Опублікувати нативний пост у ресурс слота (Instagram / Facebook / Threads / TikTok) — завершує роботу. У shadow-режимі лише зберігає превʼю; у режимі апруву пост готується повністю і чекає схвалення власника. Перед цим lint_platform_post.',
     kind: 'terminal', roles: ['executor'],
-    input: z.object({ spec: PlatformPostSpecSchema }),
+    input: z.object({ spec: AgentPlatformPostSpecSchema }),
     execute: async ({ spec }, ctx) => {
       const slot = slotOf(ctx);
       if (!slot || !ctx.slotId) return { error: 'no_platform_slot', details: 'цей прогін не має слота іншої платформи' };

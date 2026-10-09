@@ -94,3 +94,60 @@ export const PostSpecSchema = z.object({
 });
 
 export type PostSpec = z.infer<typeof PostSpecSchema>;
+
+// ── What agents send (tool inputs) ───────────────────────────────────────────
+// PostSpecSchema strips unknown keys, so a picture sent as `image`/`image_url` or a source as `source_url`
+// used to vanish silently: the post then failed lint (media_count, source_required) and the agent kept
+// re-saving the same spec. Agent inputs map the common aliases and reject any other unknown field by name.
+
+/** Field names models use for a picture instead of `media`. */
+export const MEDIA_ALIASES = ['image', 'image_url', 'imageUrl', 'images', 'photo', 'photo_url', 'photoUrl', 'picture', 'media_url', 'mediaUrl', 'img'] as const;
+/** Field names models use for the source instead of `source`. */
+export const SOURCE_ALIASES = ['source_url', 'sourceUrl'] as const;
+
+/** Maps alias fields onto `media` / `source`; `media` given as URL strings becomes `[{url}]`. Pure; leaves other keys alone. */
+export function coerceAgentSpec(raw: unknown): unknown {
+  if (!raw || typeof raw !== 'object' || Array.isArray(raw)) return raw;
+  const o: Record<string, unknown> = { ...(raw as Record<string, unknown>) };
+  const found: unknown[] = [];
+  for (const k of MEDIA_ALIASES) {
+    if (!(k in o)) continue;
+    const v = o[k];
+    delete o[k];
+    for (const x of Array.isArray(v) ? v : [v]) if (x !== null && x !== undefined && x !== '') found.push(x);
+  }
+  if (found.length || Array.isArray(o.media)) {
+    const items = [...(Array.isArray(o.media) ? o.media : []), ...found]
+      .map((m) => (typeof m === 'string' ? { url: m } : m))
+      .map((m) => (m && typeof m === 'object' && typeof (m as { url?: unknown }).url === 'string'
+        ? { ...(m as object), url: withScheme((m as { url: string }).url) } : m));
+    const seen = new Set<string>();
+    o.media = items.filter((m) => {
+      const url = m && typeof m === 'object' ? (m as { url?: unknown }).url : undefined;
+      if (typeof url !== 'string') return true;
+      if (seen.has(url)) return false;
+      seen.add(url);
+      return true;
+    });
+  }
+  for (const k of SOURCE_ALIASES) {
+    if (!(k in o)) continue;
+    const v = o[k];
+    delete o[k];
+    if (!o.source && typeof v === 'string' && v) o.source = { url: v };
+  }
+  if (typeof o.source === 'string') o.source = o.source ? { url: o.source } : undefined;
+  if (o.source && typeof o.source === 'object' && typeof (o.source as { url?: unknown }).url === 'string') {
+    o.source = { ...(o.source as object), url: withScheme((o.source as { url: string }).url) };
+  }
+  return o;
+}
+
+/** `host.tld/path` (a URL written without its scheme, e.g. copied from memory) → `https://host.tld/path`. */
+export function withScheme(url: string): string {
+  const u = url.trim();
+  return /^[a-z0-9-]+(\.[a-z0-9-]+)+\//i.test(u) ? `https://${u}` : u;
+}
+
+/** PostSpec as an agent tool input: aliases mapped, any other unknown top-level field is an error naming it. */
+export const AgentPostSpecSchema = z.preprocess(coerceAgentSpec, PostSpecSchema.strict());

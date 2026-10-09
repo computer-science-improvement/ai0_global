@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { CONTENT_REF_RE } from '../../data/data-refs';
-import { SlideSchema } from '../post/post-spec';
+import { coerceAgentSpec, SlideSchema } from '../post/post-spec';
 import { findBannedTerms, findSlopPhrases } from '../post/slop-phrases';
 import { slopWarnings, type VoicePrefs } from '../post/slop-lint';
 import { inlineToPlain } from '../post/inline-markup';
@@ -147,3 +147,6 @@ export function renderPlatform(spec: PlatformPostSpec, platform: Exclude<Platfor
     link: spec.link?.url ?? null,
   };
 }
+
+/** Platform spec as an agent tool input: picture/source aliases mapped, other unknown fields rejected by name (spec 034 follow-up). */
+export const AgentPlatformPostSpecSchema = z.preprocess(coerceAgentSpec, PlatformPostSpecSchema.strict());
