@@ -1,0 +1,155 @@
+[
+  {
+    "id": "01-prompt",
+    "title": "Prompt",
+    "category": "prompts",
+    "accent": "#3ECF8E",
+    "use_for": "пост про один промпт або техніку промптингу",
+    "image_url": "https://prdruteophdbnypnikij.supabase.co/storage/v1/object/public/common/01-prompt.png",
+    "license": "own"
+  },
+  {
+    "id": "02-community-prompt",
+    "title": "Community prompt",
+    "category": "prompts",
+    "accent": "#3ECF8E",
+    "use_for": "промпт від спільноти, добірка промптів",
+    "image_url": "https://prdruteophdbnypnikij.supabase.co/storage/v1/object/public/common/02-community-prompt.png",
+    "license": "own"
+  },
+  {
+    "id": "03-context-window",
+    "title": "Context window",
+    "category": "prompts",
+    "accent": "#3ECF8E",
+    "use_for": "контекстне вікно, довгий контекст, токени",
+    "image_url": "https://prdruteophdbnypnikij.supabase.co/storage/v1/object/public/common/03-context-window.png",
+    "license": "own"
+  },
+  {
+    "id": "04-mcp-server",
+    "title": "MCP server",
+    "category": "integrations",
+    "accent": "#3B82F6",
+    "use_for": "MCP-сервер, підключення AI до сервісу",
+    "image_url": "https://prdruteophdbnypnikij.supabase.co/storage/v1/object/public/common/04-mcp-server.png",
+    "license": "own"
+  },
+  {
+    "id": "05-tool-function-call",
+    "title": "Tool / Function call",
+    "category": "integrations",
+    "accent": "#3B82F6",
+    "use_for": "виклик інструментів, function calling, API",
+    "image_url": "https://prdruteophdbnypnikij.supabase.co/storage/v1/object/public/common/05-tool-function-call.png",
+    "license": "own"
+  },
+  {
+    "id": "06-plugin",
+    "title": "Plugin",
+    "category": "integrations",
+    "accent": "#3B82F6",
+    "use_for": "плагін, розширення для AI-інструмента",
+    "image_url": "https://prdruteophdbnypnikij.supabase.co/storage/v1/object/public/common/06-plugin.png",
+    "license": "own"
+  },
+  {
+    "id": "07-hook",
+    "title": "Hook",
+    "category": "integrations",
+    "accent": "#3B82F6",
+    "use_for": "хуки, автоматизація подій",
+    "image_url": "https://prdruteophdbnypnikij.supabase.co/storage/v1/object/public/common/07-hook.png",
+    "license": "own"
+  },
+  {
+    "id": "08-agent",
+    "title": "Agent",
+    "category": "agents",
+    "accent": "#8B5CF6",
+    "use_for": "AI-агент, автономний асистент",
+    "image_url": "https://prdruteophdbnypnikij.supabase.co/storage/v1/object/public/common/08-agent.png",
+    "license": "own"
+  },
+  {
+    "id": "09-subagents",
+    "title": "Subagents",
+    "category": "agents",
+    "accent": "#8B5CF6",
+    "use_for": "субагенти, делегування задач, мультиагентні системи",
+    "image_url": "https://prdruteophdbnypnikij.supabase.co/storage/v1/object/public/common/09-subagents.png",
+    "license": "own"
+  },
+  {
+    "id": "10-harness",
+    "title": "Harness",
+    "category": "agents",
+    "accent": "#8B5CF6",
+    "use_for": "harness, обвʼязка агента, середовище запуску",
+    "image_url": "https://prdruteophdbnypnikij.supabase.co/storage/v1/object/public/common/10-harness.png",
+    "license": "own"
+  },
+  {
+    "id": "11-workflow",
+    "title": "Workflow",
+    "category": "agents",
+    "accent": "#8B5CF6",
+    "use_for": "воркфлоу, пайплайн, ланцюжок кроків",
+    "image_url": "https://prdruteophdbnypnikij.supabase.co/storage/v1/object/public/common/11-workflow.png",
+    "license": "own"
+  },
+  {
+    "id": "12-skill",
+    "title": "Skill",
+    "category": "knowledge",
+    "accent": "#F59E0B",
+    "use_for": "скіл, навичка агента, інструкції",
+    "image_url": "https://prdruteophdbnypnikij.supabase.co/storage/v1/object/public/common/12-skill.png",
+    "license": "own"
+  },
+  {
+    "id": "13-memory",
+    "title": "Memory",
+    "category": "knowledge",
+    "accent": "#F59E0B",
+    "use_for": "памʼять агента",
+    "image_url": "https://prdruteophdbnypnikij.supabase.co/storage/v1/object/public/common/13-memory.png",
+    "license": "own"
+  },
+  {
+    "id": "14-rag",
+    "title": "RAG",
+    "category": "knowledge",
+    "accent": "#F59E0B",
+    "use_for": "RAG, пошук по базі знань",
+    "image_url": "https://prdruteophdbnypnikij.supabase.co/storage/v1/object/public/common/14-rag.png",
+    "license": "own"
+  },
+  {
+    "id": "15-eval",
+    "title": "Eval",
+    "category": "quality",
+    "accent": "#F43F5E",
+    "use_for": "evals, тестування якості моделей",
+    "image_url": "https://prdruteophdbnypnikij.supabase.co/storage/v1/object/public/common/15-eval.png",
+    "license": "own"
+  },
+  {
+    "id": "16-guardrails",
+    "title": "Guardrails",
+    "category": "quality",
+    "accent": "#F43F5E",
+    "use_for": "guardrails, безпека, обмеження моделі",
+    "image_url": "https://prdruteophdbnypnikij.supabase.co/storage/v1/object/public/common/16-guardrails.png",
+    "license": "own"
+  },
+  {
+    "id": "17-fine-tune-model",
+    "title": "Fine-tune / Model",
+    "category": "models",
+    "accent": "#E5E7EB",
+    "use_for": "нова модель, файнтюнінг, реліз моделі",
+    "image_url": "https://prdruteophdbnypnikij.supabase.co/storage/v1/object/public/common/17-fine-tune-model.png",
+    "license": "own"
+  }
+]
