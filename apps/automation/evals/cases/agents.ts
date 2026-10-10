@@ -16,7 +16,7 @@ const KYIV = 'Europe/Kyiv';
 const GROUP = 'Eval мережа';
 
 /** Remove agent-platform state of eval channels (scratch DB only). */
-async function resetAgents(pool: Pool, keys: string[]): Promise<void> {
+export async function resetAgents(pool: Pool, keys: string[]): Promise<void> {
   const refs = keys.map((k) => `telegram:${k}`);
   const { rows } = await pool.query(`SELECT id FROM agents WHERE scope_id = ANY($1::text[])`, [refs]);
   const ids = rows.map((r) => r.id);
@@ -42,7 +42,7 @@ async function resetAgents(pool: Pool, keys: string[]): Promise<void> {
   await pool.query(`DELETE FROM manager_reviews WHERE created_at > now() - interval '1 day'`);
 }
 
-async function ownChannel(pool: Pool, key: string, title: string, groupId: string | null = null): Promise<void> {
+export async function ownChannel(pool: Pool, key: string, title: string, groupId: string | null = null): Promise<void> {
   await pool.query(`INSERT INTO tracked_channels (channel_key, username, title, is_mine, kind, group_id) VALUES ($1, $2, $3, true, 'public', $4)`,
     [key, key.slice(1), title, groupId]);
 }
@@ -62,12 +62,12 @@ const SPACE_CARD = (key: string) => ({
   formats: { longread: 0.5, photo: 0.5, carousel: 0.4 }, hashtags: ['космос', 'nasa', 'астрономія'], postsPerDayMin: 1, postsPerDayMax: 4,
 });
 
-async function trace(ctx: CaseCtx, runId: string | null) {
+export async function trace(ctx: CaseCtx, runId: string | null) {
   const steps = await stepsOf(ctx.pool, runId);
   return { toolErrors: toolErrors(steps), toolsUsed: steps.filter((x) => x.type === 'tool').map((x) => x.tool_name ?? '?') };
 }
 
-async function sendAgentChat(ctx: CaseCtx, text: string) {
+export async function sendAgentChat(ctx: CaseCtx, text: string) {
   const chat = await ctx.stack.chat.createChat();
   const { message } = await ctx.stack.chat.sendMessage(chat.id, text);
   const { rows } = await ctx.pool.query(`SELECT * FROM pending_actions WHERE chat_id = $1 ORDER BY created_at`, [chat.id]);
