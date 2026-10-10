@@ -10,7 +10,9 @@ test('VITE_PUBLIC_URL resolves to an origin without a trailing slash', () => {
   assert.equal(resolvePublicUrl({ VITE_PUBLIC_URL: '  ' }), DEFAULT_PUBLIC_URL);
   assert.equal(resolvePublicUrl({ VITE_PUBLIC_URL: 'https://ai0.example/' }), 'https://ai0.example');
   assert.equal(resolvePublicUrl({ VITE_PUBLIC_URL: 'https://example.org/landing//' }), 'https://example.org/landing');
-  assert.throws(() => resolvePublicUrl({ VITE_PUBLIC_URL: 'ai0.example' }), /not a URL/);
+  assert.equal(resolvePublicUrl({ VITE_PUBLIC_URL: 'ai0.example' }), 'https://ai0.example', 'a host without a scheme gets https://');
+  assert.equal(resolvePublicUrl({ VITE_PUBLIC_URL: 'dev.ai0.global/' }), 'https://dev.ai0.global');
+  assert.throws(() => resolvePublicUrl({ VITE_PUBLIC_URL: 'not a url' }), /not a URL/);
   assert.throws(() => resolvePublicUrl({ VITE_PUBLIC_URL: 'ftp://ai0.example' }), /http/);
   assert.throws(() => resolvePublicUrl({ VITE_PUBLIC_URL: 'https://ai0.example/?x=1' }), /origin/);
 });

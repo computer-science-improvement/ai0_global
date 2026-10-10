@@ -8,10 +8,14 @@ export const DEFAULT_PUBLIC_URL = 'https://dev.ai0.global';
 /** The placeholder in index.html that the build replaces with the origin (no trailing slash). */
 export const PUBLIC_URL_TOKEN = '__AI0_PUBLIC_URL__';
 
-/** `https://example.org/` → `https://example.org`; unset → the default; anything that is not http(s) → an error. */
+/**
+ * `https://example.org/` → `https://example.org`; `example.org` (no scheme) → `https://example.org`;
+ * unset → the default; anything that is not http(s) → an error.
+ */
 export function resolvePublicUrl(env: Record<string, string | undefined>): string {
-  const raw = env.VITE_PUBLIC_URL?.trim();
-  if (!raw) return DEFAULT_PUBLIC_URL;
+  const value = env.VITE_PUBLIC_URL?.trim();
+  if (!value) return DEFAULT_PUBLIC_URL;
+  const raw = /^[a-z][a-z0-9+.-]*:/i.test(value) ? value : `https://${value}`;
   let url: URL;
   try {
     url = new URL(raw);
