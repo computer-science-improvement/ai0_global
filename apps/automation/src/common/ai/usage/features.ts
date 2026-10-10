@@ -3,9 +3,12 @@
  * llm_usage carries one of these in `feature`; budgets match them by prefix.
  */
 
-/** Roles of the editor harness that make LLM calls (`editor.<role>`). */
+/**
+ * Roles of the editor harness that make LLM calls (`editor.<role>`), plus `preview`: the executor run of an
+ * owner's on-demand dry-run slot preview (spec 034 FR-012).
+ */
 export const EDITOR_FEATURE_ROLES = [
-  'planner', 'executor', 'reviewer', 'checker', 'composer', 'orchestrator', 'idea_reviewer', 'manager', 'builder', 'chat',
+  'planner', 'executor', 'reviewer', 'checker', 'composer', 'orchestrator', 'idea_reviewer', 'manager', 'builder', 'chat', 'preview',
 ] as const;
 
 export const FEATURES = {

@@ -1,3 +1,5 @@
+import type { CriticVerdict } from '../lib/critic';
+import { previewRunning, type LiveSpecView, type SlotPreviewView } from '../lib/slot-plan';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { api } from './client';
 import { useMetaAccounts } from './meta-accounts';
@@ -146,7 +148,24 @@ export interface PlanSlot {
   treatmentReason?: string | null;
   /** The source slot of a duplicate / adapt slot. */
   derivedFrom?:     string | null;
+  // ── spec 034 FR-012 (readable plan) ──
+  sourceHints?:     string[];
+  seriesName?:      string | null;
+  isExperiment?:    boolean;
+  createdAt?:       string | null;
+  /** An owner pin (schedule rule) materialised as this slot. */
+  pinned?:          boolean;
+  topicMode?:       'fixed' | 'live';
+  liveSpec?:        LiveSpecView;
+  critic?:          CriticVerdict | null;
+  previewDraft?:    SlotPreviewView | null;
 }
+
+/** Spec 034 FR-013: how the agent plans — the card's plan hour; approval mode plans the next day at 20:00 the evening before. */
+export interface PlanSchedule { timezone: string; planHour: number; mode: string; approval: boolean; batchHour: number }
+
+/** A superseded plan of the same day (plan history, spec 034 FR-012). */
+export interface PlanHistoryEntry { id: string; plannedAt: string; runId: string | null; runRole: string | null; rationale: string | null; slots: number }
 
 /** Spec 024: how a resource gets an idea. */
 export type Treatment = 'unique' | 'duplicate' | 'adapt';
@@ -165,7 +184,20 @@ export interface ContentDecision {
   at:          string;
 }
 
-export interface NetworkPlan { date: string; anchor: string; rationale: string | null; slots: PlanSlot[]; decisions?: ContentDecision[] }
+export interface NetworkPlan {
+  date: string; anchor: string; rationale: string | null; slots: PlanSlot[]; decisions?: ContentDecision[];
+  // ── spec 034 FR-012 / FR-013: when and by which run the plan was made, the day's earlier plans, how the agent plans ──
+  planId?:             string | null;
+  plannedAt?:          string | null;
+  runId?:              string | null;
+  runRole?:            string | null;
+  schedule?:           PlanSchedule;
+  history?:            PlanHistoryEntry[];
+  /** Typical USD of one slot Preview on the anchor channel (null without executor history). */
+  previewEstimateUsd?: number | null;
+  /** The anchor card's feeds (source id → URL): a live slot's sources read as site names. */
+  feeds?:              Record<string, string>;
+}
 
 const enc = encodeURIComponent;
 const KEY = ['network'] as const;
@@ -255,7 +287,8 @@ export function useNetworkPlan(handle: string, date: string) {
     queryKey: [...KEY, 'plan', handle, date],
     queryFn:  () => api<NetworkPlan>(`/api/agents/${enc(handle)}/plan?date=${enc(date)}`),
     retry:    false,
-    refetchInterval: 60_000,
+    // A slot preview in progress (spec 034 FR-012) is polled until it finishes.
+    refetchInterval: (q) => (q.state.data?.slots.some((s) => previewRunning(s.previewDraft)) ? 4_000 : 60_000),
   });
 }
 

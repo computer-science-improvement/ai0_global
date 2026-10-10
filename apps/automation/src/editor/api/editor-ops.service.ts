@@ -11,14 +11,16 @@ import type { EditorMemoryRepository } from '../repo/editor-memory.repository';
 import type { EditorRunsRepository, SpendRow } from '../repo/editor-runs.repository';
 import type { EditorRunnerService } from '../roles/editor-runner.service';
 import { localDate } from '../roles/time';
+import { previewWithoutRun, type SlotPreview } from '../roles/preview-run';
 import { mergeCard } from './card-input';
 
 export interface EditorOpsDeps {
   channels: Pick<EditorChannelsRepository, 'get' | 'list' | 'upsert'>;
-  plans:    Pick<EditorPlansRepository, 'listPlans' | 'slotStatusCounts' | 'getSlot' | 'claimSlot' | 'skipPlannedSlot'>;
+  plans:    Pick<EditorPlansRepository, 'listPlans' | 'slotStatusCounts' | 'getSlot' | 'claimSlot' | 'skipPlannedSlot'>
+    & Partial<Pick<EditorPlansRepository, 'planOf' | 'claimPreview' | 'setPreview'>>;
   memory:   Pick<EditorMemoryRepository, 'listAll' | 'add' | 'retireByOwner'>;
-  runs:     Pick<EditorRunsRepository, 'list' | 'get' | 'spendByDay'>;
-  runner:   Pick<EditorRunnerService, 'runPlanner' | 'runExecutor'>;
+  runs:     Pick<EditorRunsRepository, 'list' | 'get' | 'spendByDay'> & Partial<Pick<EditorRunsRepository, 'previewEstimates'>>;
+  runner:   Pick<EditorRunnerService, 'runPlanner' | 'runExecutor'> & Partial<Pick<EditorRunnerService, 'runPreview'>>;
   registry: Pick<ToolRegistry, 'all' | 'get'>;
   skills:   { list(): Array<{ name: string }> };
   enabled:  () => boolean;
@@ -32,6 +34,13 @@ export interface RunOutcome {
   started: true;
   slotId?: string;
   result?: Pick<AgentLoopResult, 'runId' | 'status' | 'terminalTool' | 'terminalResult' | 'error'>;
+}
+
+/** Spec 034 FR-012: `POST /api/editor/slots/:id/preview` — `preview` is the finished result with `?wait=true`, else `running`. */
+export interface PreviewOutcome {
+  started: true;
+  slotId:  string;
+  preview: SlotPreview;
 }
 
 const KYIV = 'Europe/Kyiv';
@@ -140,10 +149,18 @@ export class EditorOpsService {
 
   // ── plans and slots ───────────────────────────────────────────────────────
 
+  /**
+   * Plans of a date: the active one first, then the superseded ones (plan history) — each with when and by which
+   * run it was made (`createdAt`, `runId`, `runRole`). `previewEstimates`: the typical USD of one slot Preview per
+   * channel (spec 034 FR-012; absent without executor history).
+   */
   async listPlans(date?: string, channel?: string) {
     const planDate = date || localDate(this.now(), KYIV);
     if (!DATE_RE.test(planDate)) throw new BadRequestException({ error: 'invalid_date', details: 'expected YYYY-MM-DD' });
-    return { date: planDate, plans: await this.d.plans.listPlans(planDate, channel || null) };
+    const plans = await this.d.plans.listPlans(planDate, channel || null);
+    const keys = [...new Set(plans.map((p) => p.channelKey))];
+    const est = this.d.runs.previewEstimates ? await this.d.runs.previewEstimates(keys).catch(() => new Map<string, number>()) : new Map<string, number>();
+    return { date: planDate, plans, previewEstimates: Object.fromEntries(est) };
   }
 
   /**
@@ -169,6 +186,71 @@ export class EditorOpsService {
     const slot = await this.d.plans.getSlot(id);
     if (!slot) throw new NotFoundException({ error: 'slot_not_found' });
     return slot;
+  }
+
+  /**
+   * The slot page (spec 034 FR-012): the slot with its plan (when and by which run it was made) and the typical
+   * cost of a Preview on its channel.
+   */
+  async slotDetail(id: string) {
+    const slot = await this.getSlot(id);
+    const [plan, est] = await Promise.all([
+      this.d.plans.planOf ? this.d.plans.planOf(slot.planId).catch(() => null) : Promise.resolve(null),
+      this.d.runs.previewEstimates ? this.d.runs.previewEstimates([slot.channelKey]).catch(() => new Map<string, number>()) : Promise.resolve(new Map<string, number>()),
+    ]);
+    return { ...slot, plan, previewEstimateUsd: est.get(slot.channelKey) ?? null };
+  }
+
+  private readonly previewing = new Set<string>();
+
+  /**
+   * Spec 034 FR-012: the owner's on-demand Preview of a fixed planned slot — the executor in dry mode (every guard
+   * and the critic; no publish, no approval card, nothing in the content ledger; the slot keeps its status). The
+   * result is stored as the slot's `previewDraft`. One preview at a time per slot (`preview_in_progress`). Spend
+   * counts as `editor.preview` (+ `editor.checker`) and stops at the blocking caps like every run.
+   */
+  async previewSlot(id: string, opts: RunOptions): Promise<PreviewOutcome> {
+    this.requireEnabled();
+    if (!this.d.runner.runPreview || !this.d.plans.claimPreview || !this.d.plans.setPreview) {
+      throw new ServiceUnavailableException({ error: 'preview_unavailable' });
+    }
+    const slot = await this.getSlot(id);
+    const card = await this.card(slot.channelKey);
+    this.requireNotOff(card);
+    if (slot.kind !== 'content') throw new ConflictException({ error: 'slot_not_runnable', details: 'reserved slots are not written by the editor' });
+    if (slot.status !== 'planned') throw new ConflictException({ error: 'slot_not_planned', status: slot.status, details: 'a written slot shows its post; Preview is for planned slots' });
+    if (slot.topicMode === 'live') {
+      throw new ConflictException({ error: 'preview_live_slot', details: 'a live slot picks the freshest item at its time; its description is the preview' });
+    }
+    if (slot.treatment === 'duplicate' || slot.treatment === 'adapt') {
+      throw new ConflictException({ error: 'preview_derived_slot', details: `a ${slot.treatment} is written from its source once the source is written` });
+    }
+    if (this.previewing.has(id)) throw new ConflictException({ error: 'preview_in_progress' });
+    const claimed = await this.d.plans.claimPreview(id, this.now());
+    if (!claimed) {
+      const now = await this.d.plans.getSlot(id);
+      if (now?.status !== 'planned') throw new ConflictException({ error: 'slot_not_planned', status: now?.status ?? slot.status });
+      throw new ConflictException({ error: 'preview_in_progress' });
+    }
+    this.previewing.add(id);
+    const startedAt = claimed.previewDraft?.startedAt ?? this.now().toISOString();
+    const job = async (): Promise<SlotPreview> => {
+      let result: SlotPreview;
+      try {
+        result = await this.d.runner.runPreview!(claimed, card);
+      } catch (err: any) {
+        result = previewWithoutRun('failed', `preview failed: ${String(err?.message ?? err).slice(0, 300)}`, startedAt);
+      }
+      try {
+        await this.d.plans.setPreview!(id, result);
+      } finally {
+        this.previewing.delete(id);
+      }
+      return result;
+    };
+    if (opts.wait) return { started: true, slotId: id, preview: await job() };
+    void job().catch((err) => { this.previewing.delete(id); this.d.log?.(`preview of slot ${id} failed: ${err?.message ?? err}`); });
+    return { started: true, slotId: id, preview: claimed.previewDraft! };
   }
 
   /**

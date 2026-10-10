@@ -37,4 +37,8 @@ test('held from "Approve all" unless pass; footnotes per place', () => {
   assert.equal(criticFootnote(v(), 'approval'), null);
   assert.equal(criticFootnote(v({ pass: 2 }), 'approval'), 'Passed after one rewrite.');
   assert.match(criticFootnote(v({ verdict: 'reject' }), 'draft')!, /never blocks/);
+  // Spec 034 FR-012: a written slot says nothing about approvals; a dry-run preview says it is reviewed again.
+  assert.equal(criticFootnote(v({ verdict: 'error' }), 'slot'), null);
+  assert.equal(criticFootnote(v({ pass: 2 }), 'slot'), 'Passed after one rewrite.');
+  assert.match(criticFootnote(v(), 'preview')!, /dry-run preview; the real post is reviewed again/);
 });

@@ -64,7 +64,13 @@ export class EditorController {
 
   @Get('slots/:id')
   slot(@Param('id', ParseUUIDPipe) id: string) {
-    return this.ops.getSlot(id);
+    return this.ops.slotDetail(id);
+  }
+
+  /** Spec 034 FR-012: a dry-run Preview of a fixed planned slot (no publish; stored as the slot's previewDraft). */
+  @Post('slots/:id/preview')
+  previewSlot(@Param('id', ParseUUIDPipe) id: string, @Query('wait') wait?: string) {
+    return this.ops.previewSlot(id, { wait: isTrue(wait) });
   }
 
   @Post('slots/:id/run')

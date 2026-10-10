@@ -14,6 +14,8 @@ import {
   useAddEditorMemory, useEditorChannel, useEditorMemory, useEditorPlans, useEditorRuns, useReplan, useRetireEditorMemory,
 } from '../api/editor';
 import { fmtDate } from '../lib/format';
+import { feedsOf, planScheduleNote } from '../lib/slot-plan';
+import { PlanStamp } from '../components/editor/SlotPlan';
 import type { EditorChannel, EditorMemoryEntry } from '../api/types';
 
 export const Route = createFileRoute('/app/editor_/$channel')({ component: EditorChannelPage });
@@ -30,6 +32,12 @@ function EditorChannelPage() {
   if (!ch.data) return <div className="panel compose-rise" style={{ height: 120, opacity: 0.55 }} />;
   const c = ch.data;
   const active = plans.data?.plans.find((p) => p.status === 'active');
+  // Spec 034 FR-012 / FR-013: when and by which run, how this channel plans, the day's earlier plans.
+  const schedule = { planHour: c.planHour, timezone: c.timezone, approval: c.mode === 'approve', batchHour: 20 };
+  const history = (plans.data?.plans ?? []).filter((p) => p.status === 'superseded')
+    .map((p) => ({ id: p.id, plannedAt: p.createdAt, runId: p.runId, runRole: p.runRole ?? null, rationale: p.rationale, slots: p.slots.length }));
+  const feeds = feedsOf(c);
+  const estimate = plans.data?.previewEstimates?.[c.channelKey] ?? null;
 
   return (
     <div>
@@ -73,11 +81,17 @@ function EditorChannelPage() {
 
       <SectionCard title={`Plan · ${c.today.date}`} icon="calendar" delay={60} style={{ marginBottom: 16 }}
         action={<SlotCounts slots={c.today.slots} />}>
+        <div style={{ marginBottom: 12 }}>
+          <PlanStamp tz={c.timezone} data={{
+            planDate: c.today.date, plannedAt: active?.createdAt ?? null, runId: active?.runId ?? null, runRole: active?.runRole ?? null,
+            schedule: c.mode === 'off' ? null : schedule, history,
+          }} />
+        </div>
         {active?.rationale && <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)', margin: '0 0 12px' }}>{active.rationale}</p>}
         {!active || active.slots.length === 0
-          ? <EmptyState icon="calendar" title="No plan for today yet" note={c.mode === 'off' ? 'The channel is off.' : `The planner runs at ${c.planHour}:00, or use “Replan the rest of today”.`} />
+          ? <EmptyState icon="calendar" title="No plan for today yet" note={c.mode === 'off' ? 'The channel is off.' : `${planScheduleNote(schedule)} Or use “Replan the rest of today”.`} />
           : <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-              {active.slots.map((s, i) => <SlotRow key={s.id} slot={s} delay={i * 25} />)}
+              {active.slots.map((s, i) => <SlotRow key={s.id} slot={s} delay={i * 25} tz={c.timezone} feeds={feeds} estimateUsd={estimate} />)}
             </div>}
       </SectionCard>
 

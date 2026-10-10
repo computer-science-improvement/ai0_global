@@ -476,6 +476,17 @@ a:hover { opacity: 0.85; }
   .auth-pending-dot { animation: none; }
 }
 
+/* A small inline spinner (e.g. a slot preview being written, spec 034 FR-012). */
+@keyframes spin-ring { to { transform: rotate(360deg); } }
+.spin-ring {
+  display: inline-block; width: 12px; height: 12px; flex-shrink: 0; border-radius: 50%;
+  border: 2px solid var(--color-hairline); border-top-color: var(--color-accent);
+  animation: spin-ring 0.8s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .spin-ring { animation: none; border-top-color: var(--color-ink-dim); }
+}
+
 /* Subtle entrance for the compose page panes — staggered via animation-delay. */
 @keyframes compose-rise {
   from { opacity: 0; transform: translateY(10px); }

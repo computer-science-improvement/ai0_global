@@ -8,6 +8,11 @@
 // Times: the axis is the network (anchor) zone's plan day; each lane shows its
 // resource's zone and local "now"; a pill shows the resource's own time and the
 // owner's Kyiv time when they differ. Nothing reads the browser zone.
+//
+// Spec 034 FR-012 / FR-013: "Planned at … by {run →}", how the agent plans (approval:
+// the evening before), the day's earlier plans, and per slot either the live call
+// ("At 14:00: fetch … → pick the freshest item → write …") or the fixed details with a
+// dry-run Preview, the written post and the critic's verdict.
 
 import { Link } from '@tanstack/react-router';
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
@@ -16,8 +21,9 @@ import { Badge } from '../ui/Badge';
 import { Icon } from '../ui/Icon';
 import { SLOT_TONE, SLOT_ORDER } from '../editor/EditorUi';
 import { useMediaQuery } from '../../lib/useMediaQuery';
-import { sanitizeTelegramHtml } from '../../lib/tg-html';
 import { dayIn, dual, formatIn, zoneLabel } from '../../lib/zoned-time';
+import { isLive, liveLine, planScheduleNote } from '../../lib/slot-plan';
+import { CriticBadge, PlanStamp, SlotDescription, SlotPost } from '../editor/SlotPlan';
 import {
   TREATMENT_LETTER, anchorZone, axisHours, axisLabel, connectors, laneZone, packRows, pillTimes, slotMinutes,
 } from '../../lib/plan-timeline';
@@ -41,6 +47,9 @@ const DECIDED_BY_LABEL: Record<ContentDecision['decidedBy'], string> = {
 };
 
 interface Lane { ref: string; tz: string; slots: PlanSlot[] }
+
+/** Plan-level data the slot views need (spec 034 FR-012): feed names for live slots, the typical Preview cost. */
+interface PlanExtra { feeds: Record<string, string>; estimateUsd: number | null }
 
 export function AgentPlan({ handle, onIdea }: { handle: string; onIdea: (id: string) => void }) {
   const net = useAgentNetwork(handle);
@@ -68,6 +77,7 @@ export function AgentPlan({ handle, onIdea }: { handle: string; onIdea: (id: str
   }, [slots]);
   const sel = slots.find((s) => s.id === selected) ?? null;
   const decisions = plan.data?.decisions ?? [];
+  const extra: PlanExtra = { feeds: plan.data?.feeds ?? {}, estimateUsd: plan.data?.previewEstimateUsd ?? null };
   const select = (id: string) => setSelected((cur) => (cur === id ? null : id));
 
   const relative = day === today ? 'Today' : day === shiftDay(today, 1) ? 'Tomorrow' : day === shiftDay(today, -1) ? 'Yesterday' : null;
@@ -105,22 +115,30 @@ export function AgentPlan({ handle, onIdea }: { handle: string; onIdea: (id: str
       {!plan.data && <div className="panel compose-rise" style={{ height: 180, opacity: 0.55 }} />}
       {plan.data && (
         <>
-          {plan.data.rationale && (
-            <div className="card compose-rise" style={{ padding: '10px 14px', marginBottom: 14, display: 'flex', gap: 10, alignItems: 'flex-start' }}>
-              <span style={{ color: 'var(--color-accent)', display: 'inline-flex', marginTop: 2 }}><Icon name="sparkles" size={14} /></span>
-              <p className="text-body-sm" style={{ margin: 0, color: 'var(--color-ink)', whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>{plan.data.rationale}</p>
-            </div>
-          )}
+          <div className="card compose-rise" style={{ padding: '10px 14px', marginBottom: 14, display: 'grid', gap: 8, minWidth: 0 }}>
+            <PlanStamp tz={anchorTz} data={{
+              planDate: day, plannedAt: plan.data.plannedAt, runId: plan.data.runId, runRole: plan.data.runRole,
+              schedule: plan.data.schedule ?? null, history: plan.data.history,
+            }} />
+            {plan.data.rationale && (
+              <div style={{ display: 'flex', gap: 10, alignItems: 'flex-start', borderTop: '1px solid var(--color-hairline-soft)', paddingTop: 8 }}>
+                <span style={{ color: 'var(--color-accent)', display: 'inline-flex', marginTop: 2 }}><Icon name="sparkles" size={14} /></span>
+                <p className="text-body-sm" style={{ margin: 0, color: 'var(--color-ink)', whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>{plan.data.rationale}</p>
+              </div>
+            )}
+          </div>
           {slots.length === 0 ? (
             <div>
               <EmptyState icon="calendar" title={`No network plan for ${fmtDay(day)}`}
-                note={day >= today ? 'The orchestrator plans the day across every resource in the morning run.' : 'Nothing was planned that day.'} />
+                note={day >= today
+                  ? (plan.data.schedule ? planScheduleNote(plan.data.schedule) : 'The orchestrator plans the day across every resource in the morning run.')
+                  : 'Nothing was planned that day.'} />
             </div>
           ) : wide ? (
             <>
               <Timeline lanes={lanes} day={day} today={today} anchorTz={anchorTz} selected={selected} onSelect={select} />
               {sel
-                ? <div style={{ marginTop: 12 }}><SlotDetail slot={sel} slots={slots} tzOf={tzOf} decisions={decisions} onIdea={onIdea} onSelect={select} showResource /></div>
+                ? <div style={{ marginTop: 12 }}><SlotDetail slot={sel} slots={slots} tzOf={tzOf} decisions={decisions} onIdea={onIdea} onSelect={select} extra={extra} showResource /></div>
                 : <p className="text-micro" style={{ color: 'var(--color-ink-dim)', margin: '10px 2px 0' }}>Select a slot to see its topic, treatment, preview and links.</p>}
             </>
           ) : (
@@ -134,7 +152,7 @@ export function AgentPlan({ handle, onIdea }: { handle: string; onIdea: (id: str
                   <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
                     {l.slots.map((s) => (
                       <ListSlot key={s.id} slot={s} tz={l.tz} slots={slots} tzOf={tzOf} decisions={decisions} open={selected === s.id}
-                        onToggle={() => select(s.id)} onSelect={setSelected} onIdea={onIdea} />
+                        onToggle={() => select(s.id)} onSelect={setSelected} onIdea={onIdea} extra={extra} />
                     ))}
                   </div>
                 </section>
@@ -295,7 +313,8 @@ function TreatmentMark({ treatment }: { treatment: PlanSlot['treatment'] }) {
 }
 
 function slotTitle(slot: PlanSlot, tz: string): string {
-  return `${dual(slot.at, tz)} · ${slot.status} · ${slot.format}${slot.treatment ? ` · ${TREATMENT_LABEL[slot.treatment]}` : ''}\n${slot.topic}`;
+  const what = isLive(slot) ? liveLine(slot, tz) : slot.topic;
+  return `${dual(slot.at, tz)} · ${slot.status} · ${slot.format}${slot.treatment ? ` · ${TREATMENT_LABEL[slot.treatment]}` : ''}\n${what}`;
 }
 
 function SlotPill({ slot, tz, left, top, active, onClick }: { slot: PlanSlot; tz: string; left: number; top: number; active: boolean; onClick: () => void }) {
@@ -314,6 +333,7 @@ function SlotPill({ slot, tz, left, top, active, onClick }: { slot: PlanSlot; tz
         textDecoration: dim ? 'line-through' : undefined,
       }}>
       <TreatmentMark treatment={slot.treatment ?? null} />
+      {isLive(slot) && <span aria-label="live" style={{ color: 'var(--color-accent)', display: 'inline-flex', flexShrink: 0 }}><Icon name="radar" size={11} /></span>}
       <span className="tabular-nums" style={{ fontSize: 11, fontWeight: 600, flexShrink: 0 }}>{t.local}</span>
       {t.kyiv && <span className="tabular-nums" style={{ fontSize: 10, color: 'var(--color-ink-dim)', flexShrink: 0 }}>· {t.kyiv} Kyiv</span>}
       <span style={{ fontSize: 11, color: 'var(--color-ink-muted)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', minWidth: 0 }}>
@@ -325,9 +345,9 @@ function SlotPill({ slot, tz, left, top, active, onClick }: { slot: PlanSlot; tz
 
 // ── list (narrow screens) + detail ──
 
-function ListSlot({ slot, tz, slots, tzOf, decisions, open, onToggle, onSelect, onIdea }: {
+function ListSlot({ slot, tz, slots, tzOf, decisions, open, onToggle, onSelect, onIdea, extra }: {
   slot: PlanSlot; tz: string; slots: PlanSlot[]; tzOf: Map<string, string>; decisions: ContentDecision[];
-  open: boolean; onToggle: () => void; onSelect: (id: string) => void; onIdea: (id: string) => void;
+  open: boolean; onToggle: () => void; onSelect: (id: string) => void; onIdea: (id: string) => void; extra: PlanExtra;
 }) {
   const t = pillTimes(slot.at, tz);
   return (
@@ -344,12 +364,14 @@ function ListSlot({ slot, tz, slots, tzOf, decisions, open, onToggle, onSelect, 
             <Badge tone={SLOT_TONE[slot.status]}>{slot.status}</Badge>
             <span className="chip" style={{ fontSize: 11 }}>{slot.format}</span>
             {slot.kind === 'reserved' && <span className="chip" style={{ fontSize: 11 }}>reserved</span>}
+            <CriticBadge critic={slot.critic} />
           </span>
           <span className="text-body-sm" style={{ color: 'var(--color-ink)', display: 'block', overflowWrap: 'anywhere' }}>{slot.topic}</span>
+          {!open && <span style={{ display: 'block', marginTop: 3 }}><SlotDescription slot={slot} tz={tz} feeds={extra.feeds} compact /></span>}
         </span>
         <span style={{ color: 'var(--color-ink-dim)', display: 'inline-flex', marginTop: 2 }}><Icon name={open ? 'chevron-up' : 'chevron-down'} size={14} /></span>
       </button>
-      {open && <div style={{ padding: '0 12px 12px' }}><SlotDetail slot={slot} slots={slots} tzOf={tzOf} decisions={decisions} onIdea={onIdea} onSelect={onSelect} compact /></div>}
+      {open && <div style={{ padding: '0 12px 12px' }}><SlotDetail slot={slot} slots={slots} tzOf={tzOf} decisions={decisions} onIdea={onIdea} onSelect={onSelect} extra={extra} compact /></div>}
     </div>
   );
 }
@@ -365,12 +387,10 @@ function SlotJump({ slot, tz, onSelect }: { slot: PlanSlot; tz: string; onSelect
   );
 }
 
-function SlotDetail({ slot, slots, tzOf, decisions, onIdea, onSelect, showResource = false, compact = false }: {
+function SlotDetail({ slot, slots, tzOf, decisions, onIdea, onSelect, extra, showResource = false, compact = false }: {
   slot: PlanSlot; slots: PlanSlot[]; tzOf: Map<string, string>; decisions: ContentDecision[];
-  onIdea: (id: string) => void; onSelect: (id: string) => void; showResource?: boolean; compact?: boolean;
+  onIdea: (id: string) => void; onSelect: (id: string) => void; extra: PlanExtra; showResource?: boolean; compact?: boolean;
 }) {
-  const [preview, setPreview] = useState(false);
-  const html = useMemo(() => (slot.preview ? sanitizeTelegramHtml(slot.preview) : null), [slot.preview]);
   const tg = platformOf(slot.resourceRef) === 'telegram';
   const tz = tzOf.get(slot.resourceRef) ?? 'Europe/Kyiv';
   const source = slot.derivedFrom ? slots.find((s) => s.id === slot.derivedFrom) ?? null : null;
@@ -388,7 +408,7 @@ function SlotDetail({ slot, slots, tzOf, decisions, onIdea, onSelect, showResour
         </div>
       )}
       {!compact && <div style={{ color: 'var(--color-ink)', fontWeight: 500, overflowWrap: 'anywhere' }}>{slot.topic}</div>}
-      {slot.angle && <div className="text-body-sm" style={{ color: 'var(--color-ink-muted)', marginTop: 3, overflowWrap: 'anywhere' }}>{slot.angle}</div>}
+      <div style={{ marginTop: 4 }}><SlotDescription slot={slot} tz={tz} feeds={extra.feeds} /></div>
       {slot.treatment && (
         <div className="text-body-sm" style={{ marginTop: 8, display: 'flex', gap: 8, alignItems: 'flex-start', flexWrap: 'wrap' }}>
           <Badge tone={DECISION_TONE[slot.treatment]}>{TREATMENT_LABEL[slot.treatment]}</Badge>
@@ -409,9 +429,10 @@ function SlotDetail({ slot, slots, tzOf, decisions, onIdea, onSelect, showResour
           {derived.map((d) => <SlotJump key={d.id} slot={d} tz={tzOf.get(d.resourceRef) ?? tz} onSelect={onSelect} />)}
         </div>
       )}
-      {slot.error && (
-        <div className={slot.status === 'failed' ? 'callout-danger' : 'callout-warning'} style={{ marginTop: 8, overflowWrap: 'anywhere' }}>{slot.error}</div>
+      {slot.error && slot.status !== 'skipped' && slot.status !== 'failed' && (
+        <div className="callout-warning" style={{ marginTop: 8, overflowWrap: 'anywhere' }}>{slot.error}</div>
       )}
+      {slot.kind !== 'reserved' && <div style={{ marginTop: 10 }}><SlotPost slot={slot} tz={tz} estimateUsd={extra.estimateUsd} plain={!tg} collapsible /></div>}
       {ideaDecisions.length > 0 && (
         <div style={{ marginTop: 10 }}>
           <div className="text-eyebrow" style={{ marginBottom: 4 }}>Decisions for this idea</div>
@@ -424,11 +445,6 @@ function SlotDetail({ slot, slots, tzOf, decisions, onIdea, onSelect, showResour
             <Icon name="sparkles" size={12} /> Idea
           </button>
         )}
-        {html && (
-          <button type="button" className="btn-tiny" style={{ gap: 5 }} aria-expanded={preview} onClick={() => setPreview((v) => !v)}>
-            <Icon name="eye" size={12} /> {preview ? 'Hide preview' : 'Preview'}
-          </button>
-        )}
         <Link to="/app/editor/slot/$id" params={{ id: slot.id }} className="btn-tiny" style={{ gap: 5, textDecoration: 'none' }}>
           <Icon name="calendar" size={12} /> Slot
         </Link>
@@ -438,13 +454,6 @@ function SlotDetail({ slot, slots, tzOf, decisions, onIdea, onSelect, showResour
           </Link>
         )}
       </div>
-      {preview && html && (
-        <div style={{ background: 'var(--color-surface-1)', borderRadius: 'var(--radius-lg)', padding: 14, marginTop: 10, maxWidth: 480, border: '1px solid var(--color-hairline-soft)' }}>
-          {!tg && <div className="text-micro" style={{ color: 'var(--color-ink-dim)', marginBottom: 6 }}>rendered text</div>}
-          <div className="text-body-sm" style={{ color: 'var(--color-ink)', whiteSpace: 'pre-wrap', wordBreak: 'break-word', lineHeight: 1.5 }}
-            dangerouslySetInnerHTML={{ __html: html }} />
-        </div>
-      )}
     </div>
   );
 }

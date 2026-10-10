@@ -3,8 +3,9 @@ import { api } from './client';
 import { toast } from '../components/ui/Toast';
 import type {
   EditorCard, EditorCardFields, EditorChannel, EditorChannelsResponse, EditorMemoryEntry, EditorMode,
-  EditorPlansResponse, EditorRun, EditorRunDetail, EditorRunOutcome, EditorSlot, EditorSpendResponse,
+  EditorPlansResponse, EditorRun, EditorRunDetail, EditorRunOutcome, EditorSlot, EditorSlotDetail, EditorSpendResponse, PreviewOutcome,
 } from './types';
+import { previewRunning } from '../lib/slot-plan';
 
 // Editor agent ops surface (spec 006). Channel keys look like "@my_channel",
 // so they are always URL-encoded in paths.
@@ -23,6 +24,7 @@ export function useEditorChannel(key: string) {
   return useQuery({
     queryKey: [...KEY, 'channel', key],
     queryFn:  () => api<EditorChannel>(`/api/editor/channels/${enc(key)}`),
+    enabled:  !!key,
     refetchInterval: 30_000,
   });
 }
@@ -80,15 +82,32 @@ export function useEditorPlans(date: string | undefined, channel?: string) {
   return useQuery({
     queryKey: [...KEY, 'plans', date ?? 'today', channel ?? null],
     queryFn:  () => api<EditorPlansResponse>(`/api/editor/plans?${qs.toString()}`),
-    refetchInterval: 30_000,
+    // A slot preview in progress (spec 034 FR-012) is polled until it finishes.
+    refetchInterval: (q) => (q.state.data?.plans.some((p) => p.slots.some((s) => previewRunning(s.previewDraft))) ? 4_000 : 30_000),
   });
 }
 
 export function useEditorSlot(id: string) {
   return useQuery({
     queryKey: [...KEY, 'slot', id],
-    queryFn:  () => api<EditorSlot>(`/api/editor/slots/${id}`),
-    refetchInterval: (q) => (q.state.data?.status === 'running' ? 5_000 : 30_000),
+    queryFn:  () => api<EditorSlotDetail>(`/api/editor/slots/${id}`),
+    refetchInterval: (q) => (q.state.data?.status === 'running' || previewRunning(q.state.data?.previewDraft) ? 4_000 : 30_000),
+  });
+}
+
+/**
+ * Spec 034 FR-012: a dry-run Preview of a fixed planned slot — the executor writes the post with every guard and
+ * the critic, but nothing is published or stored for the slot; the result lands on the slot as `previewDraft`.
+ * The server answers at once (`running`); the slot / plan queries poll until it is done.
+ */
+export function usePreviewSlot() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (id: string) => api<PreviewOutcome>(`/api/editor/slots/${id}/preview`, { method: 'POST' }),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: KEY });
+      qc.invalidateQueries({ queryKey: ['network', 'plan'] });
+    },
   });
 }
 

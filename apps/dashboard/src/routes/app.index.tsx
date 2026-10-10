@@ -5,6 +5,7 @@ import type { CSSProperties } from 'react';
 import { trackingApi } from '../api/tracking';
 import { useStrategies } from '../api/strategies';
 import { useUpcomingSlots, type UpcomingSlot } from '../api/upcoming';
+import { upcomingName, upcomingTitle } from '../lib/slot-plan';
 import { useMetaAccounts, useRefreshMetaStats } from '../api/meta-accounts';
 import { PageHeader } from '../components/ui/PageHeader';
 import { Badge } from '../components/ui/Badge';
@@ -48,7 +49,8 @@ function slotTime(iso: string): string {
 
 function OverviewPage() {
   const strategiesQ = useStrategies();
-  // Spec 023 FR-013: agents' series instances and owner pins replace "Active strategies / Upcoming runs".
+  // Spec 023 FR-013: agents' series instances and owner pins replace "Active strategies / Upcoming runs";
+  // spec 034 FR-012: ordinary planned slots too (a fixed topic, or a live slot's fetch-and-write).
   const upcomingQ = useUpcomingSlots(24, 8);
   const channelsQ = useQuery({
     queryKey: ['channels', 'mine', 'overview'],
@@ -110,27 +112,30 @@ function OverviewPage() {
       <NetworkHealthCard delay={4 * 60} />
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))', gap: 12, marginBottom: 12 }}>
-        <SectionCard delay={5 * 60} icon="calendar" title="Upcoming slots" action={<span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>series and pins · next 24 h</span>}>
+        <SectionCard delay={5 * 60} icon="calendar" title="Upcoming slots" action={<span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>planned slots, series and pins · next 24 h</span>}>
           {upcomingQ.isLoading
             ? <EmptyState icon="calendar" title="Loading upcoming slots…" />
             : upcomingQ.error
               ? <EmptyState icon="calendar" title="Upcoming slots unavailable" note={(upcomingQ.error as Error).message} />
               : upcoming.length === 0
-                ? <EmptyState icon="calendar" title="No series or pins in the next 24 hours" note="Agents' series and your pinned posts appear here. Steer them on an agent's Schedule tab." />
+                ? <EmptyState icon="calendar" title="Nothing planned in the next 24 hours" note="Planned slots, agents' series and your pinned posts appear here. Steer them on an agent's Schedule tab." />
                 : upcoming.map((u, idx) => (
                   <Link
-                    key={`${u.agent}-${u.at}-${u.name}`}
-                    to={'/app/agents/$handle' as never}
-                    params={{ handle: u.agent } as never}
-                    search={{ tab: 'schedule' } as never}
+                    key={`${u.agent}-${u.at}-${u.slotId ?? u.name}`}
+                    // An ordinary slot opens its slot page (description, preview); a series or pin the agent's Schedule tab.
+                    to={(u.kind === 'slot' && u.slotId ? '/app/editor/slot/$id' : '/app/agents/$handle') as never}
+                    params={(u.kind === 'slot' && u.slotId ? { id: u.slotId } : { handle: u.agent }) as never}
+                    search={(u.kind === 'slot' ? undefined : { tab: 'schedule' }) as never}
                     style={idx === 0 ? { ...rowBase, borderTop: 'none', textDecoration: 'none', color: 'inherit', flexWrap: 'wrap' } : { ...rowBase, textDecoration: 'none', color: 'inherit', flexWrap: 'wrap' }}
                     onMouseEnter={onRowEnter}
                     onMouseLeave={onRowLeave}
-                    title={`${u.kind === 'pin' ? 'Pinned post' : 'Series'} · ${u.resourceRef} · @${u.agent}${u.owner ? ' · set by you' : ''}`}
+                    title={upcomingTitle(u)}
                   >
                     <span style={{ color: 'var(--color-ink)', fontVariantNumeric: 'tabular-nums', fontWeight: 500, minWidth: 40 }}>{slotTime(u.at)}</span>
-                    <span style={{ color: 'var(--color-ink-muted)', display: 'inline-flex', flexShrink: 0 }}><PlatformGlyph name={u.kind === 'pin' ? 'pin' : 'calendar'} size={12} /></span>
-                    <span style={{ color: 'var(--color-ink)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: 150 }}>{u.name}</span>
+                    <span style={{ color: u.topicMode === 'live' ? 'var(--color-accent)' : 'var(--color-ink-muted)', display: 'inline-flex', flexShrink: 0 }}>
+                      <PlatformGlyph name={u.kind === 'pin' ? 'pin' : u.topicMode === 'live' ? 'radar' : u.kind === 'slot' ? 'clock' : 'calendar'} size={12} />
+                    </span>
+                    <span style={{ color: 'var(--color-ink)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: 190, minWidth: 0 }}>{upcomingName(u)}</span>
                     <span className="text-micro" style={{ color: 'var(--color-ink-dim)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: 130 }}>{u.channelKey}</span>
                     <span style={{ marginLeft: 'auto' }}><Badge tone={u.status ? (SLOT_STATUS_TONE[u.status] ?? 'neutral') : 'neutral'}>{slotStatusLabel(u)}</Badge></span>
                   </Link>

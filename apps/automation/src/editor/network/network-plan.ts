@@ -145,7 +145,7 @@ export function validateNetworkPlan(
       // Spec 024: the idea's variants are hints, not a requirement.
       if (!idea) errors.push(`${label}: ідея ${s.idea_id} не знайдена або не прийнята рецензентом`);
     }
-    if (s.series && !due.has(s.series)) errors.push(`${label}: серія «${s.series}» сьогодні не за розкладом або неактивна`);
+    if (s.series && !due.has(s.series)) errors.push(`${label}: серія «${s.series}» ${o.planDate} не за розкладом або неактивна`);
     // Spec 034 FR-010: a fixed slot needs its topic; a live slot a source (its own, the series' or the anchor card's feeds).
     const t = resolveSlotTopic(s, { label, seriesSource: s.series ? due.get(s.series)?.series.source ?? null : null, cardFeeds: cardFeedIds(card.sources) });
     if (!t.ok) errors.push(t.error);

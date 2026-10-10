@@ -256,15 +256,21 @@ export class EditorScheduler {
 
   private readonly orchestrated = new Set<string>();
 
+  /**
+   * The orchestrator's daily run, once per channel-day from the card's plan hour, before planning. Spec 034
+   * FR-013: "today" is the card zone's date for both the in-memory key and the editor_runs check (it used to
+   * compare with the Kyiv date, so a channel in another zone could run twice or skip a day near midnight).
+   */
   private async maybeOrchestrate(card: EditorCard, now: Date): Promise<void> {
     if (!this.d.orchestrate) return;
     if (localHour(now, card.timezone) < card.planHour) return;
-    const key = `${card.channelKey}:${localDate(now, card.timezone)}`;
+    const day = localDate(now, card.timezone);
+    const key = `${card.channelKey}:${day}`;
     if (this.orchestrated.has(key)) return;
     this.orchestrated.add(key);
     const { rows } = await this.d.pool.query(
       `SELECT 1 FROM editor_runs WHERE role = 'orchestrator' AND channel_key = $1
-          AND (started_at AT TIME ZONE 'Europe/Kyiv')::date = (now() AT TIME ZONE 'Europe/Kyiv')::date LIMIT 1`, [card.channelKey]);
+          AND (started_at AT TIME ZONE $2)::date = $3::date LIMIT 1`, [card.channelKey, card.timezone, day]);
     if (rows.length) return;
     try { await this.d.orchestrate(card); } catch (err: any) { this.d.log?.(`orchestrator ${card.channelKey} failed: ${err?.message ?? err}`); }
   }

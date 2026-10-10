@@ -3,7 +3,8 @@ import type { Agent } from '../agents/agent.types';
 import { telegramKeyOf } from '../agents/agent.types';
 import type { AgentsRepository } from '../agents/agents.repository';
 import type { OwnerInbox } from '../agents/owner-inbox';
-import type { CardSource, EditorCard } from '../card';
+import { effectiveMode, type CardSource, type EditorCard } from '../card';
+import { APPROVAL_BATCH_HOUR } from '../approval/approval-timing';
 import { CAPABILITIES, implementedFormats } from '../platform/capabilities';
 import { REPLAN_KEEP_LEAD_MS, type EditorPlansRepository, type EditorSlot } from '../repo/editor-plans.repository';
 import { isQuietHour, localDate, localTimeLabel, zonedToUtc } from '../roles/time';
@@ -379,6 +380,11 @@ export class ScheduleService {
     return {
       agent: { id: sc.agent.id, handle: sc.agent.handle }, anchor: sc.card.channelKey, mode: sc.net.mode, playbookVersion: sc.net.playbookVersion,
       now: now.toISOString(), from, to, days,
+      // Spec 034 FR-013: when the agent plans — the card's plan hour; approval mode plans the next day at 20:00 the evening before.
+      planning: {
+        timezone: anchorTz, planHour: sc.card.planHour, approval: effectiveMode(sc.agent.mode, sc.card.mode) === 'approve', batchHour: APPROVAL_BATCH_HOUR,
+        feeds: Object.fromEntries((sc.card.sources ?? []).filter((x) => x.kind === 'rss' || x.kind === 'url').map((x) => [x.id, x.ref])),
+      },
       resources: sc.net.resources.filter((r) => refs.includes(r.ref)).map((r) => ({
         ref: r.ref, platform: r.platform, timezone: clocks[r.ref].tz, quietHours: clocks[r.ref].quiet,
         formats: r.platform === 'telegram' ? sc.net.telegramFormats : implementedFormats(r.platform),

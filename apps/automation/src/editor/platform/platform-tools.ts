@@ -9,6 +9,7 @@ import { publishPlatformNow, PublishPlatformDeps } from './publish-platform';
 import { freshnessDeadline } from '../approval/approval-timing';
 import { criticGateOf, criticSummary, PUBLISH_TOOL_TIMEOUT_MS } from '../critic/critic-gate';
 import type { ScheduleService } from '../schedule/schedule.service';
+import { dryRunOf } from '../roles/preview-run';
 
 /** Per-run data of a platform slot (put into ctx.extras by the runner, spec 019/020). */
 export interface PlatformSlotExtras {
@@ -66,7 +67,9 @@ export function buildPlatformTools(d: PlatformToolDeps): EditorTool[] {
       const slot = slotOf(ctx);
       if (!slot || !ctx.slotId) return { error: 'no_platform_slot', details: 'цей прогін не має слота іншої платформи' };
       const s = await d.plans.getSlot(ctx.slotId);
-      if (!s || s.status !== 'running') return { error: 'slot_not_running' };
+      // Spec 034 FR-012: the owner's dry-run Preview runs on a slot that stays `planned`.
+      const dry = dryRunOf(ctx);
+      if (!s || (s.status !== 'running' && !(dry && s.status === 'planned'))) return { error: 'slot_not_running' };
       if (d.schedule) {
         const card = (ctx.extras?.card as { sources?: any[] } | undefined) ?? null;
         const sg = await d.schedule.publishGuard(s, { libraryRef: spec.library_ref, sourceUrl: spec.source?.url }, { live: slot.mode === 'live', now: new Date(), feeds: card?.sources ?? [] });
@@ -77,7 +80,7 @@ export function buildPlatformTools(d: PlatformToolDeps): EditorTool[] {
       let critic = null as Record<string, unknown> | null;
       const r = await publishPlatformNow(d.publish, {
         resourceRef: slot.resourceRef, spec, mode: slot.mode, slotId: ctx.slotId, agentId: slot.agentId ?? null,
-        maxPerDay: slot.maxPerDay, vocabulary: slot.vocabulary, bannedTerms: slot.bannedTerms, voice: slot.voice,
+        maxPerDay: slot.maxPerDay, vocabulary: slot.vocabulary, bannedTerms: slot.bannedTerms, voice: slot.voice, ...(dry ? { dry: true } : {}),
         ...(gate ? {
           review: async ({ text, lint }) => {
             const c = await gate.check({ text, spec, format: spec.format, warnings: lint.warnings });
@@ -90,6 +93,10 @@ export function buildPlatformTools(d: PlatformToolDeps): EditorTool[] {
       if ('error' in r) return r;
       if ('halted' in r) return r.halted;
       const withCritic = critic ? { critic } : {};
+      if (dry) {
+        dry.store({ platform: parseResourceRef(slot.resourceRef)?.platform ?? 'platform', preview: r.preview, spec, warnings: r.warnings });
+        return { ok: true, dry: true, warnings: r.warnings, ...withCritic };
+      }
       if (r.awaiting && r.rendered) {
         // Spec 031: written and waiting; the approval publisher sends `rendered` after the owner approves.
         const card = ctx.extras?.card as { sources?: unknown } | undefined;

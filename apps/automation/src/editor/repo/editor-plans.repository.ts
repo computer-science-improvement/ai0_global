@@ -3,6 +3,7 @@ import { ContentLedger, specRefs } from '../../data/content-ledger';
 import type { PlannedSlot } from '../roles/plan-rules';
 import type { LiveSpec } from '../live/live-slot';
 import type { StoredCritic } from '../critic/critic';
+import { PREVIEW_STALE_MS, type SlotPreview } from '../roles/preview-run';
 
 export type SlotStatus =
   | 'planned' | 'running' | 'published' | 'shadowed' | 'skipped' | 'failed'
@@ -62,6 +63,8 @@ export interface EditorSlot {
   liveSpec?:          LiveSpec;
   /** Spec 034 FR-004: the pre-publish critic's verdict, scores and notes (present only when set). */
   critic?:            StoredCritic | null;
+  /** Spec 034 FR-012: the owner's on-demand dry-run preview of a fixed planned slot (migration 070; present only when set). */
+  previewDraft?:      SlotPreview | null;
 }
 
 /** editor_slots.source_post of a derived slot (spec 024). */
@@ -147,6 +150,7 @@ export function rowToSlot(r: any): EditorSlot {
     ...(r.source_post ? { sourcePost: r.source_post } : {}),
     ...(r.topic_mode === 'live' ? { topicMode: 'live' as const, liveSpec: liveSpecOf(r) } : {}),
     ...(r.critic ? { critic: r.critic } : {}),
+    ...(r.preview_draft ? { previewDraft: r.preview_draft } : {}),
   };
 }
 
@@ -196,6 +200,8 @@ export interface EditorPlan {
   status:     'active' | 'superseded';
   rationale:  string | null;
   runId:      string | null;
+  /** Spec 034 FR-012: the role of the run that made the plan (planner / orchestrator), null without a run. */
+  runRole?:   string | null;
   createdAt:  Date;
   slots:      EditorSlot[];
 }
@@ -564,9 +570,10 @@ export class EditorPlansRepository {
   /** Plans of one date (active first), each with its slots. */
   async listPlans(planDate: string, channelKey?: string | null): Promise<EditorPlan[]> {
     const { rows: plans } = await this.pool.query(
-      `SELECT id, channel_key, plan_date::text AS plan_date, status, rationale, run_id, created_at FROM editor_plans
-        WHERE plan_date = $1 AND ($2::text IS NULL OR channel_key = $2)
-        ORDER BY channel_key, (status = 'active') DESC, created_at DESC`,
+      `SELECT p.id, p.channel_key, p.plan_date::text AS plan_date, p.status, p.rationale, p.run_id, p.created_at, r.role AS run_role
+         FROM editor_plans p LEFT JOIN editor_runs r ON r.id = p.run_id
+        WHERE p.plan_date = $1 AND ($2::text IS NULL OR p.channel_key = $2)
+        ORDER BY p.channel_key, (p.status = 'active') DESC, p.created_at DESC`,
       [planDate, channelKey ?? null]);
     if (!plans.length) return [];
     const { rows: slots } = await this.pool.query(
@@ -578,8 +585,37 @@ export class EditorPlansRepository {
     }
     return plans.map((p) => ({
       id: p.id, channelKey: p.channel_key, planDate: p.plan_date, status: p.status, rationale: p.rationale ?? null,
-      runId: p.run_id ?? null, createdAt: p.created_at, slots: byPlan.get(p.id) ?? [],
+      runId: p.run_id ?? null, runRole: p.run_role ?? null, createdAt: p.created_at, slots: byPlan.get(p.id) ?? [],
     }));
+  }
+
+  /** Spec 034 FR-012: a slot's plan (when and by which run it was made) for the slot page. */
+  async planOf(planId: string): Promise<{ id: string; planDate: string; status: string; createdAt: Date; runId: string | null; runRole: string | null } | null> {
+    const { rows } = await this.pool.query(
+      `SELECT p.id, p.plan_date::text AS plan_date, p.status, p.created_at, p.run_id, r.role AS run_role
+         FROM editor_plans p LEFT JOIN editor_runs r ON r.id = p.run_id WHERE p.id = $1`, [planId]);
+    const p = rows[0];
+    return p ? { id: p.id, planDate: p.plan_date, status: p.status, createdAt: p.created_at, runId: p.run_id ?? null, runRole: p.run_role ?? null } : null;
+  }
+
+  /**
+   * Spec 034 FR-012: start a preview of a planned content slot — one at a time per slot (a `running` preview
+   * younger than PREVIEW_STALE_MS blocks a second). The slot's status and updated_at stay as they are.
+   */
+  async claimPreview(id: string, now: Date): Promise<EditorSlot | null> {
+    const running = { status: 'running', platform: null, preview: null, spec: null, critic: null, reason: null, warnings: [], runId: null, costUsd: 0, startedAt: now.toISOString(), finishedAt: null };
+    const { rows } = await this.pool.query(
+      `UPDATE editor_slots SET preview_draft = $2::jsonb
+        WHERE id = $1 AND status = 'planned' AND kind = 'content'
+          AND (preview_draft IS NULL OR preview_draft->>'status' <> 'running'
+               OR (preview_draft->>'startedAt')::timestamptz < $3)
+        RETURNING *`, [id, JSON.stringify(running), new Date(now.getTime() - PREVIEW_STALE_MS)]);
+    return rows[0] ? rowToSlot(rows[0]) : null;
+  }
+
+  /** Spec 034 FR-012: the finished preview (never touches the slot's status, post or updated_at). */
+  async setPreview(id: string, preview: SlotPreview | null): Promise<void> {
+    await this.pool.query(`UPDATE editor_slots SET preview_draft = $2::jsonb WHERE id = $1`, [id, preview === null ? null : JSON.stringify(preview)]);
   }
 
   /** Slot counts per status of every active plan dated on or after `sinceDate`. */

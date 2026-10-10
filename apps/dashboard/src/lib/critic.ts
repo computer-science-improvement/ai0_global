@@ -69,9 +69,14 @@ export function heldByCritic(c: Pick<CriticVerdict, 'verdict'> | null | undefine
   return !!c && c.verdict !== 'pass';
 }
 
+/** Where a verdict is shown: an approval card, a chat draft, a written slot, or a slot's dry-run preview (spec 034 FR-012). */
+export type CriticWhere = 'approval' | 'draft' | 'slot' | 'preview';
+
 /** One explanatory line under the block. */
-export function criticFootnote(c: Pick<CriticVerdict, 'verdict' | 'final' | 'pass'>, where: 'approval' | 'draft'): string | null {
+export function criticFootnote(c: Pick<CriticVerdict, 'verdict' | 'final' | 'pass'>, where: CriticWhere): string | null {
   if (where === 'draft') return 'Advisory: the critic never blocks your own publish.';
+  if (where === 'preview') return 'The critic read this dry-run preview; the real post is reviewed again when it is written.';
+  if (where === 'slot') return c.verdict === 'pass' && c.pass > 1 ? 'Passed after one rewrite.' : null;
   if (c.verdict === 'error') return 'The critic did not answer, so this post waits for you and is left out of "Approve all".';
   if (c.verdict === 'revise' && c.final) return 'The agent rewrote it once and the critic still asks for changes. Decide yourself; it is left out of "Approve all".';
   if (c.verdict === 'pass' && c.pass > 1) return 'Passed after one rewrite.';

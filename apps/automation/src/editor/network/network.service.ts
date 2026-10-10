@@ -5,8 +5,10 @@ import type { Agent } from '../agents/agent.types';
 import { telegramKeyOf } from '../agents/agent.types';
 import type { AgentsRepository } from '../agents/agents.repository';
 import type { OwnerInbox } from '../agents/owner-inbox';
-import type { EditorCard } from '../card';
+import { effectiveMode, type ChannelMode, type EditorCard } from '../card';
 import { localDate } from '../roles/time';
+import { rowToSlot } from '../repo/editor-plans.repository';
+import { APPROVAL_BATCH_HOUR } from '../approval/approval-timing';
 import { networkContext, NetworkContextDeps } from './network-context';
 import { IDEA_STATUSES, IdeaStatus, NETWORK_MODE_ALIASES, NETWORK_MODES, NetworkMode, NetworkRepository, type PlaybookRow } from './network.repository';
 import { PlaybookSchema, validatePlaybook } from './playbook';
@@ -163,31 +165,68 @@ export class NetworkService {
     return { idea: await this.d.repo.updateIdea(id, { status: accept ? 'accepted' : 'rejected', review: { ...(idea.review ?? {}), owner: accept ? 'accepted' : 'rejected' } }) };
   }
 
-  /** The day's plan of the anchor channel with every resource's slots. */
+  /**
+   * The day's plan of the anchor channel with every resource's slots (spec 020), and (spec 034 FR-012/FR-013) when
+   * and by which run it was made, the superseded plans of the day (history), how the agent plans (card plan hour;
+   * approval mode plans the next day at 20:00 the evening before), each slot's planning details (series, source
+   * hints, live spec, critic verdict, the owner's dry-run preview) and the typical cost of one Preview.
+   */
   async plan(handle: string, date?: string) {
-    const { card } = await this.orch(handle);
+    const { agent, card } = await this.orch(handle);
     const day = date && /^\d{4}-\d{2}-\d{2}$/.test(date) ? date : localDate((this.d.now ?? (() => new Date()))(), card.timezone);
     const { rows: plans } = await this.d.pool.query(
-      `SELECT id, rationale, created_at FROM editor_plans WHERE channel_key = $1 AND plan_date = $2 AND status = 'active'`, [card.channelKey, day]);
-    const plan = plans[0] ?? null;
-    const { rows: slots } = plan ? await this.d.pool.query(
-      `SELECT s.id, s.scheduled_at, s.kind, s.format, s.topic, s.angle, s.status, s.error, s.rendered_preview, s.resource_ref, s.idea_id, s.run_id,
-              s.treatment, s.treatment_reason, s.derived_from_slot_id
-         FROM editor_slots s WHERE s.plan_id = $1 ORDER BY s.scheduled_at`, [plan.id]) : { rows: [] as any[] };
+      `SELECT p.id, p.rationale, p.created_at, p.run_id, p.status, r.role AS run_role,
+              (SELECT COUNT(*)::int FROM editor_slots s WHERE s.plan_id = p.id) AS slots
+         FROM editor_plans p LEFT JOIN editor_runs r ON r.id = p.run_id
+        WHERE p.channel_key = $1 AND p.plan_date = $2
+        ORDER BY (p.status = 'active') DESC, p.created_at DESC`, [card.channelKey, day]);
+    const plan = plans.find((p) => p.status === 'active') ?? null;
+    const { rows: slots } = plan ? await this.d.pool.query(`SELECT s.* FROM editor_slots s WHERE s.plan_id = $1 ORDER BY s.scheduled_at`, [plan.id]) : { rows: [] as any[] };
     // Spec 024 FR-006: the per-(idea, resource) decisions of the ideas in this plan, skips included.
     const ideaIds = [...new Set(slots.map((s) => s.idea_id).filter(Boolean))] as string[];
     const { rows: decisions } = ideaIds.length ? await this.d.pool.query(
       `SELECT idea_id, resource_ref, decision, reason, reason_code, slot_id, decided_by, created_at FROM content_decisions
         WHERE idea_id = ANY($1::uuid[]) ORDER BY created_at`, [ideaIds]) : { rows: [] as any[] };
+    const est = await this.previewEstimate(card.channelKey);
+    const mode = effectiveMode(agent.mode as ChannelMode, card.mode);
     return {
       date: day, anchor: card.channelKey, rationale: plan?.rationale ?? null,
-      slots: slots.map((s) => ({
-        id: s.id, at: s.scheduled_at, kind: s.kind, format: s.format, topic: s.topic, angle: s.angle, status: s.status, error: s.error,
-        preview: s.rendered_preview, resourceRef: s.resource_ref ?? `telegram:${card.channelKey}`, ideaId: s.idea_id, runId: s.run_id,
-        treatment: s.treatment ?? null, treatmentReason: s.treatment_reason ?? null, derivedFrom: s.derived_from_slot_id ?? null,
+      // Spec 034 FR-012: "Planned at {time} by {run}".
+      planId: plan?.id ?? null, plannedAt: plan?.created_at ?? null, runId: plan?.run_id ?? null, runRole: plan?.run_role ?? null,
+      // Spec 034 FR-013: when this agent plans (the card's plan hour; approval mode: the evening before).
+      schedule: { timezone: card.timezone, planHour: card.planHour, mode, approval: mode === 'approve', batchHour: APPROVAL_BATCH_HOUR },
+      history: plans.filter((p) => p.status !== 'active').map((p) => ({
+        id: p.id, plannedAt: p.created_at, runId: p.run_id ?? null, runRole: p.run_role ?? null, rationale: p.rationale ?? null, slots: Number(p.slots),
+      })),
+      previewEstimateUsd: est,
+      // The card's feeds (id → URL), so a live slot's sources read as site names.
+      feeds: Object.fromEntries((card.sources ?? []).filter((x) => x.kind === 'rss' || x.kind === 'url').map((x) => [x.id, x.ref])),
+      slots: slots.map(rowToSlot).map((s) => ({
+        id: s.id, at: s.scheduledAt, kind: s.kind, format: s.format, topic: s.topic, angle: s.angle, status: s.status, error: s.error,
+        preview: s.renderedPreview, resourceRef: s.resourceRef ?? `telegram:${card.channelKey}`, ideaId: s.ideaId ?? null, runId: s.runId,
+        treatment: s.treatment ?? null, treatmentReason: s.treatmentReason ?? null, derivedFrom: s.derivedFromSlotId ?? null,
+        sourceHints: s.sourceHints, seriesName: s.seriesName ?? null, isExperiment: s.isExperiment, createdAt: s.createdAt ?? null,
+        pinned: !!s.scheduleRuleId, topicMode: s.topicMode ?? 'fixed', ...(s.liveSpec ? { liveSpec: s.liveSpec } : {}),
+        critic: s.critic ?? null, previewDraft: s.previewDraft ?? null,
       })),
       decisions: decisions.map(toDecisionView),
     };
+  }
+
+  /** The typical USD of one slot Preview on the channel (spec 034 FR-012), null without executor history. */
+  private async previewEstimate(channelKey: string): Promise<number | null> {
+    try {
+      const { rows } = await this.d.pool.query(
+        `SELECT role, AVG(cost_usd)::float8 AS usd FROM (
+           SELECT role, cost_usd, ROW_NUMBER() OVER (PARTITION BY role ORDER BY started_at DESC) AS rn
+             FROM editor_runs WHERE channel_key = $1 AND role IN ('executor', 'checker') AND status = 'ok' AND finished_at IS NOT NULL
+         ) x WHERE rn <= 20 GROUP BY role`, [channelKey]);
+      const exec = rows.find((r) => r.role === 'executor');
+      if (!exec) return null;
+      return Number((Number(exec.usd) + Number(rows.find((r) => r.role === 'checker')?.usd ?? 0)).toFixed(6));
+    } catch {
+      return null;
+    }
   }
 
   /**

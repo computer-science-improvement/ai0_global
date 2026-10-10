@@ -1,11 +1,11 @@
 // The pre-publish critic's verdict (spec 034 FR-004): verdict badge, six scores
-// (1–5) and the critic's notes, as written. Used on approval cards and on chat
-// draft cards (advisory there).
+// (1–5) and the critic's notes, as written. Used on approval cards, on chat
+// draft cards (advisory there) and on plan slots (written posts, dry-run previews).
 
 import { Badge } from '../ui/Badge';
-import { criticFootnote, scoreList, verdictBadge, type CriticVerdict } from '../../lib/critic';
+import { criticFootnote, scoreList, verdictBadge, type CriticVerdict, type CriticWhere } from '../../lib/critic';
 
-export function CriticBlock({ critic, where }: { critic: CriticVerdict; where: 'approval' | 'draft' }) {
+export function CriticBlock({ critic, where }: { critic: CriticVerdict; where: CriticWhere }) {
   const badge = verdictBadge(critic);
   const scores = scoreList(critic);
   const foot = criticFootnote(critic, where);

@@ -121,3 +121,47 @@ test('spec 034 FR-011: the news watch runs per card after planning, never for a 
   assert.deepEqual(calls, ['@a', '@boom']);
   assert.ok(logs.some((l) => /news watch of @boom failed: feed down/.test(l)));
 });
+
+test('spec 034 FR-013: the orchestrator day is the card zone\'s date, in memory and in the editor_runs check (not Kyiv\'s)', async () => {
+  // An orchestrator run that started 2026-10-01 10:30Z = 06:30 in New York (01.10) = 13:30 in Kyiv (01.10).
+  const ranAt = new Date('2026-10-01T10:30:00Z');
+  const localDay = (d: Date, tz: string) => new Intl.DateTimeFormat('en-CA', { timeZone: tz, year: 'numeric', month: '2-digit', day: '2-digit' }).format(d);
+  const runOrchestrator = async (now: Date, alreadyRan: boolean) => {
+    const queries: unknown[][] = [];
+    const orchestrated: string[] = [];
+    const card = { ...makeCard({ planHour: 6, timezone: 'America/New_York' }), createdAt: new Date('2026-01-01') };
+    const s = new EditorScheduler({
+      pool: {
+        query: async (sql: string, params: unknown[]) => {
+          if (!/role = 'orchestrator'/.test(sql)) return { rows: [] };
+          queries.push(params);
+          // What Postgres does with (started_at AT TIME ZONE $2)::date = $3::date.
+          return { rows: alreadyRan && localDay(ranAt, String(params[1])) === params[2] ? [{}] : [] };
+        },
+      } as any,
+      channels: { listActive: async () => [card] },
+      plans: {
+        getActivePlan: async () => ({ id: 'p', rationale: null }), claimDue: async () => [], skipStale: async () => 0,
+        sweepStuck: async () => [], consecutiveFailures: async () => 0,
+      },
+      runner: { runPlanner: async () => ({}) as any, runExecutor: async () => ({}) as any, runReviewer: async () => ({}) as any },
+      enabled: () => true,
+      notify: async () => {},
+      orchestrate: async (c) => { orchestrated.push(c.channelKey); },
+    });
+    await s.tick(now);
+    return { queries, orchestrated };
+  };
+  // 22:30Z on 01.10: 18:30 in New York (still 01.10), 01:30 on 02.10 in Kyiv.
+  const late = await runOrchestrator(new Date('2026-10-01T22:30:00Z'), true);
+  assert.deepEqual(late.queries, [['@chan', 'America/New_York', '2026-10-01']]);
+  assert.deepEqual(late.orchestrated, [], 'the morning run of the same New York day is found — no second run');
+  // 11:00Z on 02.10: 07:00 in New York on 02.10 — a new day, the run of 01.10 does not count.
+  const next = await runOrchestrator(new Date('2026-10-02T11:00:00Z'), true);
+  assert.deepEqual(next.queries, [['@chan', 'America/New_York', '2026-10-02']]);
+  assert.deepEqual(next.orchestrated, ['@chan']);
+  // 09:00Z on 01.10: 05:00 in New York, before the plan hour — nothing, even though it is 12:00 in Kyiv.
+  const early = await runOrchestrator(new Date('2026-10-01T09:00:00Z'), false);
+  assert.deepEqual(early.queries, []);
+  assert.deepEqual(early.orchestrated, []);
+});

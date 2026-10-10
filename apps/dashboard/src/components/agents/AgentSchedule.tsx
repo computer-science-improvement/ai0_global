@@ -4,7 +4,11 @@
 // overrides and planned / reserved slots; below it the series (inline edit,
 // which locks a series, and Unlock) and the owner's rules (add, edit, disable).
 // On narrow screens the grid becomes a list grouped by day.
+// Spec 034 FR-012 / FR-013: when the agent plans (plan hour; approval: the evening
+// before), a live slot's scheduled fetch-and-write in its tooltip, and every slot
+// entry opens its slot page (description, preview, critic, runs).
 
+import { Link } from '@tanstack/react-router';
 import { useMemo, useState, type CSSProperties, type ReactNode } from 'react';
 import { EmptyState, Field, SectionCard } from '../ui/primitives';
 import { Badge } from '../ui/Badge';
@@ -24,6 +28,7 @@ import {
   validityLabel, warningsText, WEEK, type Entry,
 } from '../../lib/schedule-grid';
 import { NetworkError, ResourceLabel, errorText, shiftDay } from './NetworkUi';
+import { liveLine, planScheduleNote } from '../../lib/slot-plan';
 
 const input: CSSProperties = { width: '100%', boxSizing: 'border-box', padding: '6px 10px', fontSize: 13 };
 const LANE_W = 168;
@@ -67,6 +72,12 @@ export function AgentSchedule({ handle }: { handle: string }) {
   return (
     <div>
       {toolbar}
+      {d.planning && (
+        <div className="text-micro" style={{ display: 'flex', gap: 6, alignItems: 'flex-start', color: 'var(--color-ink-muted)', marginBottom: 8 }}>
+          <span style={{ display: 'inline-flex', marginTop: 1, flexShrink: 0 }}><Icon name="clock" size={12} /></span>
+          <span style={{ minWidth: 0 }}>{planScheduleNote(d.planning)} Click a planned slot to see what it will do and preview it.</span>
+        </div>
+      )}
       <Legend />
       {wide ? <WeekGrid data={d} /> : <DayList data={d} />}
       <div style={{ display: 'grid', gridTemplateColumns: wide ? 'minmax(0, 1fr) minmax(0, 1fr)' : 'minmax(0, 1fr)', gap: 16, marginTop: 18 }}>
@@ -97,6 +108,7 @@ function Legend() {
       {item('ban', 'blackout', 'var(--color-danger)')}
       {item('logs', 'posts per day')}
       {item('clock', 'planned slot')}
+      {item('radar', 'live: picks the freshest item at its time', 'var(--color-accent)')}
       {item('megaphone', 'reserved (ad / promo)')}
     </div>
   );
@@ -149,7 +161,7 @@ function Lane({ r, data, now }: { r: ScheduleResource; data: ScheduleResponse; n
         const entries = cellEntries(data, r.ref, day);
         return (
           <div key={day} style={{ padding: 6, borderBottom: '1px solid var(--color-hairline-soft)', borderLeft: '1px solid var(--color-hairline-soft)', display: 'flex', flexDirection: 'column', gap: 4, minWidth: 0 }}>
-            {entries.map((e) => <EntryPill key={e.key} e={e} />)}
+            {entries.map((e) => <EntryPill key={e.key} e={e} data={data} tz={r.timezone} />)}
           </div>
         );
       })}
@@ -157,25 +169,33 @@ function Lane({ r, data, now }: { r: ScheduleResource; data: ScheduleResponse; n
   );
 }
 
-function EntryPill({ e }: { e: Entry }) {
-  const tint = e.kind === 'blackout' ? 'var(--color-danger)' : e.locked ? 'var(--color-warning)' : e.kind === 'series' || e.kind === 'pin' ? 'var(--color-accent)' : 'var(--color-ink-dim)';
+function EntryPill({ e, data, tz }: { e: Entry; data: ScheduleResponse; tz: string }) {
+  const tint = e.kind === 'blackout' ? 'var(--color-danger)' : e.locked ? 'var(--color-warning)' : e.kind === 'series' || e.kind === 'pin' || e.live ? 'var(--color-accent)' : 'var(--color-ink-dim)';
   const bg = e.kind === 'blackout' ? 'var(--color-danger-soft)' : 'var(--color-surface-2)';
+  // Spec 034 FR-012: a live slot's tooltip is its scheduled call ("At 14:00: fetch … → write …").
+  const slot = e.slotId ? data.slots.find((x) => x.id === e.slotId) : undefined;
+  const call = slot?.live ? liveLine({ at: slot.at, format: slot.format, liveSpec: slot.live }, tz, data.planning?.feeds) : null;
   const title = [
     e.kind === 'blackout' ? `No posts ${e.time}–${e.until}` : `${e.time ? `${e.time} · ` : ''}${e.title}`,
-    e.sub, e.locked && e.kind === 'series' ? 'set by the owner (locked)' : null, e.status ? `status: ${e.status.replace(/_/g, ' ')}` : null,
+    e.sub, call, e.locked && e.kind === 'series' ? 'set by the owner (locked)' : null, e.status ? `status: ${e.status.replace(/_/g, ' ')}` : null,
+    e.slotId ? 'click to open the slot' : null,
   ].filter(Boolean).join(' · ');
-  return (
-    <div title={title} style={{ background: bg, borderLeft: `2px solid ${tint}`, borderRadius: 6, padding: '3px 6px', minWidth: 0 }}>
+  const body = (
+    <>
       <div style={{ display: 'flex', alignItems: 'center', gap: 4, minWidth: 0 }}>
-        <span style={{ color: tint, display: 'inline-flex', flexShrink: 0 }}><Icon name={e.locked && e.kind === 'series' ? 'lock' : KIND_ICON[e.kind]} size={11} /></span>
+        <span style={{ color: tint, display: 'inline-flex', flexShrink: 0 }}><Icon name={e.locked && e.kind === 'series' ? 'lock' : e.live && e.kind === 'slot' ? 'radar' : KIND_ICON[e.kind]} size={11} /></span>
         {e.time && <span className="text-micro tabular-nums" style={{ color: 'var(--color-ink)', fontWeight: 500, flexShrink: 0 }}>{e.kind === 'blackout' ? `${e.time}–${e.until}` : e.time}</span>}
         <span className="text-micro" style={{ color: 'var(--color-ink-muted)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', minWidth: 0 }}>{e.title}</span>
       </div>
       {e.status && (
         <div style={{ marginTop: 2 }}><Badge tone={SLOT_TONE[e.status as keyof typeof SLOT_TONE] ?? 'neutral'}>{e.status.replace(/_/g, ' ')}</Badge></div>
       )}
-    </div>
+    </>
   );
+  const box: CSSProperties = { background: bg, borderLeft: `2px solid ${tint}`, borderRadius: 6, padding: '3px 6px', minWidth: 0, display: 'block' };
+  return e.slotId
+    ? <Link to="/app/editor/slot/$id" params={{ id: e.slotId }} title={title} aria-label={title} style={{ ...box, textDecoration: 'none', color: 'inherit' }}>{body}</Link>
+    : <div title={title} style={box}>{body}</div>;
 }
 
 function DayList({ data }: { data: ScheduleResponse }) {
@@ -191,7 +211,7 @@ function DayList({ data }: { data: ScheduleResponse }) {
             {lanes.map(({ r, entries }) => (
               <div key={r.ref} style={{ marginBottom: 10 }}>
                 <div style={{ marginBottom: 4 }}>{laneHead(r, now)}</div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>{entries.map((e) => <EntryPill key={e.key} e={e} />)}</div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>{entries.map((e) => <EntryPill key={e.key} e={e} data={data} tz={r.timezone} />)}</div>
               </div>
             ))}
           </div>

@@ -1,4 +1,5 @@
 import type { CriticVerdict } from '../lib/critic';
+import type { SlotPreviewView } from '../lib/slot-plan';
 export interface TrackedChannel {
   id: string;
   username: string | null;
@@ -651,6 +652,30 @@ export interface EditorSlot {
   /** Spec 034 FR-010: present only on a live slot — the executor picks the item at slot time. */
   topicMode?:      'live';
   liveSpec?:       EditorLiveSpec;
+  /** Spec 034 FR-004: the pre-publish critic's verdict of the written post (present only when set). */
+  critic?:         CriticVerdict | null;
+  /** Spec 034 FR-012: the owner's dry-run Preview of a fixed planned slot (present only when set). */
+  previewDraft?:   SlotPreviewView | null;
+  /** Network slots (spec 019/020/024); present only when set. */
+  resourceRef?:    string | null;
+  ideaId?:         string | null;
+  seriesName?:     string | null;
+  scheduleRuleId?: string | null;
+  treatment?:      'unique' | 'duplicate' | 'adapt' | null;
+  createdAt?:      string;
+}
+
+/** The slot page (spec 034 FR-012): the slot, its plan (when and by which run) and the typical Preview cost. */
+export interface EditorSlotDetail extends EditorSlot {
+  plan:               { id: string; planDate: string; status: 'active' | 'superseded'; createdAt: string; runId: string | null; runRole: string | null } | null;
+  previewEstimateUsd: number | null;
+}
+
+/** POST /api/editor/slots/:id/preview: `running` at once (background), the result with `?wait=true`. */
+export interface PreviewOutcome {
+  started: true;
+  slotId:  string;
+  preview: SlotPreviewView;
 }
 
 /** A live slot's source and brief (spec 034 FR-010); `item` is set when the news watch added the slot. */
@@ -669,13 +694,18 @@ export interface EditorPlan {
   status:     'active' | 'superseded';
   rationale:  string | null;
   runId:      string | null;
+  /** Spec 034 FR-012: the role of the run that made the plan (planner / orchestrator). */
+  runRole?:   string | null;
   createdAt:  string;
   slots:      EditorSlot[];
 }
 
 export interface EditorPlansResponse {
   date:  string;
+  /** The active plan first, then the superseded ones (plan history). */
   plans: EditorPlan[];
+  /** Spec 034 FR-012: typical USD of one slot Preview per channel (absent without executor history). */
+  previewEstimates?: Record<string, number>;
 }
 
 export interface EditorRun {

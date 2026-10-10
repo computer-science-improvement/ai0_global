@@ -180,7 +180,7 @@ export function networkPlannerBlock(o: { net: NetworkCtx; accepted: IdeaRow[]; n
     '## Плейбук',
     o.net.playbook ? renderPlaybook(o.net.playbook) : '- немає',
     '',
-    '## Серії за розкладом сьогодні',
+    `## Серії за розкладом на ${planDate}`,
     due.length ? due.map((d) => {
       const tz = tzOf.get(d.series.resource_ref);
       const live = d.series.source?.kind === 'feed' ? ' [live: тему обере виконавець зі свіжого в фіді]' : '';
