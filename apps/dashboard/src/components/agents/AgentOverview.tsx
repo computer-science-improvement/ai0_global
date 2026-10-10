@@ -2,6 +2,11 @@
 // resource (health + profile, spec 018), the profile form (name, handle, emoji,
 // description, model, effort, budget, schedule) and the role children of an
 // orchestrator.
+//
+// Spec 034 FR-013 (schedule settings tell the truth): only @manager's run times
+// are editable here — they drive its runs. An orchestrator and its role agents run
+// at the channel card's plan hour (approval mode: the next day at 20:00 the evening
+// before); the form shows that read-only, with a link to the card.
 
 import { Link, useNavigate } from '@tanstack/react-router';
 import { useState, type CSSProperties, type ReactNode } from 'react';
@@ -17,6 +22,8 @@ import { FormattingSection } from './ResourceFormatting';
 import { ActiveEffects } from './ActiveEffects';
 import { errorBody, usePatchAgent, type AgentDetail, type AgentPatch, type ReasoningEffort } from '../../api/agents';
 import { useModelCatalog } from '../../api/models';
+import { useEditorChannel } from '../../api/editor';
+import { planScheduleNote } from '../../lib/slot-plan';
 import { ModelSelect } from '../models/ModelSelect';
 
 const HANDLE_RE = /^[a-z][a-z0-9_]{2,31}$/;
@@ -52,6 +59,11 @@ function validate(f: Form): Partial<Record<keyof Form, string>> {
   return e;
 }
 
+/** Only @manager's schedule drives its runs (spec 034 FR-013); every other agent follows its channel's plan hour. */
+function scheduleEditable(a: Pick<AgentDetail['agent'], 'kind'>): boolean {
+  return a.kind === 'manager';
+}
+
 function diff(a: AgentDetail['agent'], f: Form): AgentPatch {
   const p: AgentPatch = {};
   const h = f.handle.trim().replace(/^@/, '').toLowerCase();
@@ -64,7 +76,7 @@ function diff(a: AgentDetail['agent'], f: Form): AgentPatch {
   const budget = f.budget.trim() === '' ? null : Number(f.budget);
   if (budget !== a.dailyBudgetUsd) p.daily_budget_usd = budget;
   const before = [...(a.schedule.times ?? [])].sort().join(',');
-  if (f.times.join(',') !== before) p.schedule = { times: f.times };
+  if (scheduleEditable(a) && f.times.join(',') !== before) p.schedule = { times: f.times };
   return p;
 }
 
@@ -222,7 +234,8 @@ function ProfileForm({ data }: { data: AgentDetail }) {
           {err('budget')}
         </Field>
       </div>
-      <Field label="Schedule" hint="Kyiv time · up to 8 runs a day">
+      {!scheduleEditable(a) && <PlanTimes channelKey={data.channelKey} />}
+      {scheduleEditable(a) && <Field label="Schedule" hint="Kyiv time · up to 8 runs a day">
         <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center' }}>
           {f.times.length === 0 && <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>role default</span>}
           {f.times.map((t) => (
@@ -242,7 +255,7 @@ function ProfileForm({ data }: { data: AgentDetail }) {
             </button>
           </span>
         </div>
-      </Field>
+      </Field>}
 
       <div style={{ ...grid, gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 150px), 1fr))', rowGap: 12, padding: '12px 0', borderTop: '1px solid var(--color-hairline-soft)' }}>
         <Meta label="Kind">{KIND_LABEL[a.kind]}</Meta>
@@ -259,5 +272,22 @@ function ProfileForm({ data }: { data: AgentDetail }) {
         </button>
       </div>
     </SectionCard>
+  );
+}
+
+/** When an orchestrator / role agent runs: the channel card's plan hour (read-only here; edited on the card). */
+function PlanTimes({ channelKey }: { channelKey: string | null }) {
+  const ch = useEditorChannel(channelKey ?? '');
+  const c = ch.data;
+  return (
+    <Field label="Schedule" hint="from the channel card">
+      <div className="text-body-sm" style={{ color: 'var(--color-ink-muted)', display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }} data-testid="plan-times">
+        <Icon name="clock" size={13} />
+        {c
+          ? <span>{planScheduleNote({ planHour: c.planHour, timezone: c.timezone, approval: c.mode === 'approve', batchHour: 20 })}</span>
+          : <span>The orchestrator and the planner run at the channel card's plan hour.</span>}
+        {channelKey && <Link to="/app/editor/$channel" params={{ channel: channelKey }} className="link-accent">Change on the card →</Link>}
+      </div>
+    </Field>
   );
 }

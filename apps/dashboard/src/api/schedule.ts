@@ -1,3 +1,4 @@
+import type { LiveSpecView } from '../lib/slot-plan';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { api } from './client';
 import type { Platform } from './network';
@@ -58,7 +59,7 @@ export interface ScheduleSeries {
 }
 
 export type ScheduleItem =
-  | { kind: 'series'; resourceRef: string; date: string; time: string; at: string; name: string; format: string; locked: boolean; origin: string }
+  | { kind: 'series'; resourceRef: string; date: string; time: string; at: string; name: string; format: string; locked: boolean; origin: string; topicMode?: 'fixed' | 'live'; source?: string }
   | { kind: 'pin'; ruleId: string; resourceRef: string; date: string; time: string; at: string; format: string | null; seriesName: string | null; brief: string | null }
   | { kind: 'blackout'; ruleId: string; resourceRef: string; date: string; time: string; until: string }
   | { kind: 'frequency'; ruleId: string; resourceRef: string; date: string; min: number | null; max: number | null };
@@ -77,6 +78,9 @@ export interface ScheduleSlot {
   seriesName:     string | null;
   scheduleRuleId: string | null;
   promo:          boolean;
+  /** Spec 034 FR-010: `live` = the executor picks the freshest item at slot time (`live` carries the spec). */
+  topicMode?:     'fixed' | 'live';
+  live?:          LiveSpecView;
 }
 
 export interface ScheduleResource {
@@ -103,6 +107,8 @@ export interface ScheduleResponse {
   items:           ScheduleItem[];
   slots:           ScheduleSlot[];
   sourceOptions:   { tables: string[]; feeds: string[]; apis: string[] };
+  /** Spec 034 FR-013: when the agent plans (the card's plan hour; approval: the evening before) and the card's feeds. */
+  planning?:       { timezone: string; planHour: number; approval: boolean; batchHour: number; feeds: Record<string, string> };
 }
 
 export interface RuleResult { rule: ScheduleRule; warnings: string[] }

@@ -79,6 +79,29 @@ export class EditorRunsRepository {
     };
   }
 
+  /**
+   * Spec 034 FR-012: the typical cost of one slot Preview per channel — the mean of the channel's last `limit`
+   * finished executor runs plus the mean of its last critic (`checker`) runs. A channel without executor history
+   * is left out (the dashboard then says "one executor run").
+   */
+  async previewEstimates(channelKeys: string[], limit = 20): Promise<Map<string, number>> {
+    const out = new Map<string, number>();
+    if (!channelKeys.length) return out;
+    const { rows } = await this.pool.query(
+      `SELECT channel_key, role, AVG(cost_usd)::float8 AS usd FROM (
+         SELECT channel_key, role, cost_usd, ROW_NUMBER() OVER (PARTITION BY channel_key, role ORDER BY started_at DESC) AS rn
+           FROM editor_runs
+          WHERE channel_key = ANY($1::text[]) AND role IN ('executor', 'checker') AND status = 'ok' AND finished_at IS NOT NULL
+       ) x WHERE rn <= $2 GROUP BY 1, 2`, [channelKeys, limit]);
+    for (const k of channelKeys) {
+      const exec = rows.find((r) => r.channel_key === k && r.role === 'executor');
+      if (!exec) continue;
+      const checker = rows.find((r) => r.channel_key === k && r.role === 'checker');
+      out.set(k, Number((Number(exec.usd) + Number(checker?.usd ?? 0)).toFixed(6)));
+    }
+    return out;
+  }
+
   /** USD of editor_runs.cost_usd per Kyiv calendar day and channel, for the last `days` days (today included). */
   /**
    * Editor spend per Kyiv day and channel from the llm_usage ledger (spec 029:

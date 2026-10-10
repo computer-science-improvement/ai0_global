@@ -22,8 +22,8 @@ const LEAD_MIN = 5;
 
 export const SkippedSeriesInput = z.array(z.object({
   name:   z.string().min(3).max(80),
-  reason: z.string().min(10).max(300).describe('Чому серія сьогодні пропущена (≥ 10 символів)'),
-})).max(20).optional().describe('Серії за розкладом, які ти свідомо не плануєш сьогодні (заблоковані власником — не можна)');
+  reason: z.string().min(10).max(300).describe('Чому серію пропущено в день плану (≥ 10 символів)'),
+})).max(20).optional().describe('Серії за розкладом дня плану, які ти свідомо не плануєш (заблоковані власником — не можна)');
 
 /**
  * A materialised pin of the plan day (an editor_slots row with schedule_rule_id) or, spec 034 FR-011, a
@@ -113,7 +113,7 @@ export function planScheduleErrors(plan: PlanLike, ctx: PlanScheduleCtx, default
     for (const x of slots) {
       if (!x.series) continue;
       const s = ctx.series.find((y) => y.name === x.series);
-      if (!dueNames.has(x.series)) errors.push(`${label(x)}: серія «${x.series}» сьогодні не за розкладом або неактивна`);
+      if (!dueNames.has(x.series)) errors.push(`${label(x)}: серія «${x.series}» ${ctx.planDate} не за розкладом або неактивна`);
       else if (s && s.resource_ref !== x.ref) errors.push(`${label(x)}: серія «${x.series}» належить ресурсу ${s.resource_ref}`);
     }
   }
@@ -171,7 +171,7 @@ export function scheduleBlock(ctx: PlanScheduleCtx): string | null {
   }
   for (const ref of Object.keys(ctx.clocks)) {
     const f = frequencyOn(ctx.rules, ref, ctx.planDate);
-    if (f) lines.push(`- частота ${ref} сьогодні: ${f.min ?? '…'}–${f.max ?? '…'} постів (правило власника, замість per_day)`);
+    if (f) lines.push(`- частота ${ref} ${ctx.planDate}: ${f.min ?? '…'}–${f.max ?? '…'} постів (правило власника, замість per_day)`);
   }
   for (const d of dueInstances(ctx)) {
     lines.push(`- серія «${d.series.name}» ${d.series.resource_ref} о ${d.time} (±${SERIES_WINDOW_MIN} хв, format ${d.series.format})${d.series.locked ? ' — заблокована власником, обовʼязкова' : ' — або skipped_series з причиною'}`);

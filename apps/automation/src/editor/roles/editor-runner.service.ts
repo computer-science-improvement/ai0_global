@@ -22,6 +22,7 @@ import { liveSlotLines, noFreshReason, type LiveScan } from '../live/live-slot';
 import { CriticGate } from '../critic/critic-gate';
 import type { CriticService } from '../critic/critic.service';
 import type { InboxItemInput } from '../agents/owner-inbox';
+import { PREVIEW_FEATURE, PreviewSink, previewWithoutRun, type SlotPreview } from './preview-run';
 
 export interface EditorRunnerDeps {
   loop:     Pick<AgentLoop, 'run'>;
@@ -158,13 +159,17 @@ export class EditorRunnerService {
   private async criticGate(
     slot: EditorSlot, card: EditorCard, ctx: RunAgentContext | null,
     target: { ref: string; platform: string; mode: 'live' | 'shadow' | 'approve'; voice: VoicePrefs }, pc?: PlatformContext,
+    dry: PreviewSink | null = null,
   ): Promise<CriticGate | null> {
     if (!this.d.critic) return null;
     const context = pc !== undefined ? pc : this.d.platformContext
       ? await this.d.platformContext({ ...slot, resourceRef: target.ref }, ctx?.orchestrator?.id ?? null).catch(() => null)
       : null;
     return new CriticGate(
-      { critic: this.d.critic.service, plans: this.d.plans, inbox: this.d.critic.inbox, libraryText: this.d.critic.libraryText },
+      // A dry-run preview (spec 034 FR-012): the verdict goes to the preview, never onto the slot or into the Inbox.
+      dry
+        ? { critic: this.d.critic.service, plans: dry.plans, libraryText: this.d.critic.libraryText }
+        : { critic: this.d.critic.service, plans: this.d.plans, inbox: this.d.critic.inbox, libraryText: this.d.critic.libraryText },
       {
         slotId: slot.id, channelKey: card.channelKey, mode: target.mode, resourceRef: target.ref, platform: target.platform,
         topic: slot.topic, angle: slot.angle, card: { models: card.models, dailyBudgetUsd: card.dailyBudgetUsd }, voice: target.voice,
@@ -182,6 +187,16 @@ export class EditorRunnerService {
     if (!gate) return extras;
     const own = extras.wrapTools as ((t: EditorTool[]) => EditorTool[]) | undefined;
     return { ...extras, critic: gate, wrapTools: (t: EditorTool[]) => gate.wrapTools(own ? own(t) : t) };
+  }
+
+  /**
+   * Extras of a dry-run preview (spec 034 FR-012): the sink the publish tools stop at, the tools without act tools
+   * and with a recording skip_slot, and the run's spend as `editor.preview`.
+   */
+  private static dryExtras(extras: Record<string, unknown>, dry: PreviewSink | null): Record<string, unknown> {
+    if (!dry) return extras;
+    const own = extras.wrapTools as ((t: EditorTool[]) => EditorTool[]) | undefined;
+    return { ...extras, dryRun: dry, wrapTools: (t: EditorTool[]) => dry.wrapTools(own ? own(t) : t), usage: { feature: PREVIEW_FEATURE, shadow: false } };
   }
 
   private async run(
@@ -213,6 +228,7 @@ export class EditorRunnerService {
         : null,
       extras: { card, skills, agent: ctx?.agent ?? null, orchestrator: ctx?.orchestrator ?? null, ...extras },
       ...(extras.systemOverride ? { system: String(extras.systemOverride) } : {}),
+      ...(extras.usage ? { usage: extras.usage as { feature?: string; shadow?: boolean } } : {}),
     });
   }
 
@@ -272,12 +288,7 @@ export class EditorRunnerService {
     const target = slot.resourceRef ? parseResourceRef(slot.resourceRef) : null;
     const res = target && target.platform !== 'telegram'
       ? await this.runPlatformExecutor(slot, card, ctx, target.platform, note ?? null, scan)
-      : await this.run('executor', card, [await this.executorUser(card, slot, ctx, scan), note].filter(Boolean).join('\n'), slot.id,
-        EditorRunnerService.withGate({ excludeTools: PLATFORM_ONLY }, await this.criticGate(slot, card, ctx, {
-          ref: `telegram:${card.channelKey}`, platform: 'telegram',
-          mode: card.mode === 'live' || card.mode === 'approve' ? card.mode : 'shadow',
-          voice: { humor: card.humor, slang: card.slang, emoji: card.emojiPref },
-        })), ctx);
+      : await this.runTelegramExecutor(slot, card, ctx, note ?? null, scan);
     await this.d.plans.updateSlot(slot.id, { runId: res.runId });
 
     const after = await this.d.plans.getSlot(slot.id);
@@ -294,6 +305,53 @@ export class EditorRunnerService {
     }
     if (this.d.onSlotDone) await this.d.onSlotDone(slot).catch(() => {});
     return res;
+  }
+
+  /** The Telegram executor run of a slot (`dry`: the owner's dry-run preview, spec 034 FR-012). */
+  private async runTelegramExecutor(
+    slot: EditorSlot, card: EditorCard, ctx: RunAgentContext | null, note: string | null, scan: LiveScan | null, dry: PreviewSink | null = null,
+  ): Promise<AgentLoopResult> {
+    const gate = await this.criticGate(slot, card, ctx, {
+      ref: `telegram:${card.channelKey}`, platform: 'telegram',
+      mode: card.mode === 'live' || card.mode === 'approve' ? card.mode : 'shadow',
+      voice: { humor: card.humor, slang: card.slang, emoji: card.emojiPref },
+    }, undefined, dry);
+    return this.run('executor', card, [await this.executorUser(card, slot, ctx, scan), note].filter(Boolean).join('\n'), slot.id,
+      EditorRunnerService.withGate(EditorRunnerService.dryExtras({ excludeTools: PLATFORM_ONLY }, dry), gate), ctx);
+  }
+
+  /**
+   * Spec 034 FR-012: the owner's on-demand Preview of a fixed planned slot. The executor runs exactly as at
+   * slot time (prompts, tools, every publish guard, the critic) but in dry mode: the publish tools stop before
+   * storing, sending, creating an approval card or touching the content ledger; skip_slot only records its
+   * reason; act tools are left out; the slot keeps its status, post and run. Live caps (daily cap, quiet hours,
+   * min gap) are not checked — they depend on the moment of publishing. Spend: `editor.preview` (+ the
+   * critic's `editor.checker`), against the channel, agent and blocking caps like every run.
+   */
+  async runPreview(slot: EditorSlot, cardIn: EditorCard): Promise<SlotPreview> {
+    const startedAt = this.now().toISOString();
+    const target = slot.resourceRef ? parseResourceRef(slot.resourceRef) : null;
+    const platform = target?.platform ?? 'telegram';
+    if (slot.topicMode === 'live') return previewWithoutRun('failed', 'preview_unavailable: a live slot picks its item at slot time', startedAt, platform);
+    if (slot.treatment === 'duplicate' || slot.treatment === 'adapt') {
+      return previewWithoutRun('failed', `preview_unavailable: a ${slot.treatment} is written from its source after the source is written`, startedAt, platform);
+    }
+    const ctx = await this.agentOf(cardIn, 'executor');
+    const off = this.paused(ctx);
+    if (off) return previewWithoutRun('failed', off.error ?? 'agent paused', startedAt, platform);
+    // Shadow semantics for the tools (no live caps); the publish tools stop at the dry-run sink anyway.
+    const card: EditorCard = { ...cardIn, mode: 'shadow' };
+    const series = this.d.seriesContext ? await this.d.seriesContext(slot).catch(() => null) : null;
+    if (series?.skip) return previewWithoutRun('skipped', series.skip, startedAt, platform);
+    const dry = new PreviewSink();
+    const res = target && target.platform !== 'telegram'
+      ? await this.runPlatformExecutor(slot, card, ctx, target.platform, series?.note ?? null, null, dry)
+      : await this.runTelegramExecutor(slot, card, ctx, series?.note ?? null, null, dry);
+    return dry.outcome({
+      platform, runId: res.runId, runCostUsd: res.totals?.costUsd ?? 0,
+      runError: res.status === 'ok' && !res.error ? null : `${res.status}${res.error ? `: ${res.error}` : ''}`,
+      startedAt, finishedAt: this.now().toISOString(),
+    });
   }
 
   /** A slot skipped by code before any LLM call (spec 023 FR-005: a required series source is exhausted). */
@@ -400,6 +458,7 @@ export class EditorRunnerService {
   /** A slot that targets Instagram / Facebook / Threads / TikTok of the channel's network (spec 019 FR-008). */
   private async runPlatformExecutor(
     slot: EditorSlot, card: EditorCard, ctx: RunAgentContext | null, platform: string, note: string | null = null, scan: LiveScan | null = null,
+    dry: PreviewSink | null = null,
   ): Promise<AgentLoopResult> {
     const pc = this.d.platformContext ? await this.d.platformContext(slot, ctx?.orchestrator?.id ?? null).catch(() => null) : null;
     const skills = ctx?.skills ?? this.d.skills;
@@ -455,8 +514,9 @@ export class EditorRunnerService {
       resourceRef: slot.resourceRef!, mode, maxPerDay: pc?.maxPerDay ?? null, vocabulary: pc?.vocabulary ?? [], bannedTerms: card.bannedTerms,
       agentId: ctx?.agent?.id ?? null, voice,
     };
-    const gate = await this.criticGate(slot, card, ctx, { ref: slot.resourceRef!, platform, mode, voice }, pc);
-    return this.run('executor', card, user, slot.id, EditorRunnerService.withGate({ excludeTools: TELEGRAM_ONLY, systemOverride: system, platformSlot }, gate), ctx);
+    const gate = await this.criticGate(slot, card, ctx, { ref: slot.resourceRef!, platform, mode, voice }, pc, dry);
+    return this.run('executor', card, user, slot.id,
+      EditorRunnerService.withGate(EditorRunnerService.dryExtras({ excludeTools: TELEGRAM_ONLY, systemOverride: system, platformSlot }, dry), gate), ctx);
   }
 
   async runReviewer(card: EditorCard): Promise<AgentLoopResult> {

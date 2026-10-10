@@ -41,6 +41,8 @@ export interface AgentLoopInput {
   onEvent?:          (e: AgentLoopEvent) => void;
   /** Registry agent of this run (spec 017): recorded on the run and checked against its own daily budget. */
   agent?:            AgentBudget | null;
+  /** Spend-ledger attribution override (spec 034 FR-012: an owner's dry-run preview is `editor.preview`, never shadow). */
+  usage?:            { feature?: string; shadow?: boolean };
 }
 
 export interface AgentLoopResult {
@@ -81,10 +83,10 @@ function usageAttribution(input: AgentLoopInput, runId: string): LlmContext {
     : input.role === 'composer' || input.role === 'builder' ? false
     : x.card?.mode === 'shadow' || x.orchestrator?.mode === 'shadow';
   return {
-    feature: editorFeature(input.role), role: input.role, runId,
+    feature: input.usage?.feature ?? editorFeature(input.role), role: input.role, runId,
     agentId: input.agent?.id ?? null, agentHandle: input.agent?.handle ?? null,
     resourceRef: x.platformSlot?.resourceRef ?? (input.channelKey ? telegramResource(input.channelKey) : null),
-    shadow,
+    shadow: input.usage?.shadow ?? shadow,
   };
 }
 

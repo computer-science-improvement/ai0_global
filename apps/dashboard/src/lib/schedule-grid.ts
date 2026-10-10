@@ -20,6 +20,10 @@ export interface Entry {
   status?: string;
   ruleId?: string;
   series?: string;
+  /** The slot behind the entry (a free slot, or the one that realises a series instance / pin) — spec 034 FR-012. */
+  slotId?: string;
+  /** The slot picks its topic at slot time from the freshest item (spec 034 FR-010). */
+  live?:   boolean;
 }
 
 const SERIES_WINDOW_MIN = 90;
@@ -39,7 +43,8 @@ export function cellEntries(s: Pick<ScheduleResponse, 'items' | 'slots'>, ref: s
     if (used.has(x.id)) continue;
     out.push({
       key: `slot:${x.id}`, kind: x.kind === 'reserved' ? 'reserved' : 'slot', time: x.time, title: x.topic,
-      sub: x.kind === 'reserved' ? (x.promo ? 'promo' : 'reserved') : x.format, status: x.status,
+      sub: x.kind === 'reserved' ? (x.promo ? 'promo' : 'reserved') : x.format, status: x.status, slotId: x.id,
+      ...(x.topicMode === 'live' ? { live: true } : {}),
       ...(x.seriesName ? { series: x.seriesName } : {}),
     });
   }
@@ -56,7 +61,8 @@ function itemEntry(i: ScheduleItem, slots: ScheduleSlot[], used: Set<string>): E
       if (hit) used.add(hit.id);
       return {
         key: `series:${i.name}:${i.time}`, kind: 'series', time: hit?.time ?? i.time, title: i.name, sub: i.format, locked: i.locked,
-        series: i.name, ...(hit ? { status: hit.status } : {}),
+        series: i.name, ...(hit ? { status: hit.status, slotId: hit.id } : {}),
+        ...((hit ? hit.topicMode : i.topicMode) === 'live' ? { live: true } : {}),
       };
     }
     case 'pin': {
@@ -64,7 +70,7 @@ function itemEntry(i: ScheduleItem, slots: ScheduleSlot[], used: Set<string>): E
       if (hit) used.add(hit.id);
       return {
         key: `pin:${i.ruleId}`, kind: 'pin', time: i.time, title: i.seriesName ?? i.brief ?? 'Pinned post', sub: i.format ?? undefined,
-        ruleId: i.ruleId, locked: true, ...(hit ? { status: hit.status } : {}),
+        ruleId: i.ruleId, locked: true, ...(hit ? { status: hit.status, slotId: hit.id, ...(hit.topicMode === 'live' ? { live: true } : {}) } : {}),
       };
     }
     case 'blackout':

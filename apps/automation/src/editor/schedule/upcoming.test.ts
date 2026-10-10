@@ -50,3 +50,30 @@ test('series instances and pins of every live-ish agent in the window, with the 
   const one = await upcomingSlots({ schedule: svc, now: () => NOW, agents: { list: async () => [agent('food')] as any } }, { hours: 24, limit: 1 });
   assert.equal(one.items.length, 1);
 });
+
+test('spec 034 FR-012: ordinary planned slots are listed too — fixed with the topic, live with its spec; done / skipped / past ones are not', async () => {
+  const live = { sources: ['feed:https://www.pravda.com.ua/rss/'], brief: 'головна новина', max_age_hours: 6, origin: 'planner' };
+  const { svc } = fakeSchedule({
+    food: {
+      items: [
+        { kind: 'series', resourceRef: 'telegram:@food', date: '2030-01-15', time: '19:00', at: '2030-01-15T17:00:00Z', name: 'Рецепт дня', format: 'photo', locked: false, origin: 'agent', topicMode: 'fixed' },
+      ],
+      slots: [
+        { id: 's1', kind: 'content', resourceRef: 'telegram:@food', at: '2030-01-15T17:10:00Z', date: '2030-01-15', seriesName: 'Рецепт дня', scheduleRuleId: null, status: 'planned', topic: 'Борщ', format: 'photo', topicMode: 'fixed' },
+        { id: 's2', kind: 'content', resourceRef: 'telegram:@food', at: '2030-01-15T12:00:00Z', date: '2030-01-15', seriesName: null, scheduleRuleId: null, status: 'planned', topic: 'Як вибрати гарбуз', format: 'text', topicMode: 'fixed' },
+        { id: 's3', kind: 'content', resourceRef: 'instagram:ig1', at: '2030-01-15T14:00:00Z', date: '2030-01-15', seriesName: null, scheduleRuleId: null, status: 'awaiting_approval', topic: 'Свіжа новина з pravda.com.ua', format: 'photo', topicMode: 'live', live },
+        { id: 's4', kind: 'content', resourceRef: 'telegram:@food', at: '2030-01-15T15:00:00Z', date: '2030-01-15', seriesName: null, scheduleRuleId: null, status: 'skipped', topic: 'Пропущений', format: 'text', topicMode: 'fixed' },
+        { id: 's5', kind: 'content', resourceRef: 'telegram:@food', at: '2030-01-15T09:00:00Z', date: '2030-01-15', seriesName: null, scheduleRuleId: null, status: 'planned', topic: 'Минулий', format: 'text', topicMode: 'fixed' },
+        { id: 's6', kind: 'reserved', resourceRef: 'telegram:@food', at: '2030-01-15T16:00:00Z', date: '2030-01-15', seriesName: null, scheduleRuleId: null, status: 'planned', topic: 'Реклама', format: 'text', topicMode: 'fixed' },
+      ],
+    },
+  });
+  const r = await upcomingSlots({ schedule: svc, now: () => NOW, agents: { list: async () => [agent('food')] as any } }, { hours: 24, limit: 20 });
+  assert.deepEqual(r.items.map((i) => [i.kind, i.name, i.slotId, i.status, i.topicMode]), [
+    ['slot', 'Як вибрати гарбуз', 's2', 'planned', 'fixed'],
+    ['slot', 'Свіжа новина з pravda.com.ua', 's3', 'awaiting_approval', 'live'],
+    ['series', 'Рецепт дня', 's1', 'planned', 'fixed'],
+  ]);
+  assert.deepEqual(r.items[1].live, live);
+  assert.equal(r.items[1].resourceRef, 'instagram:ig1');
+});

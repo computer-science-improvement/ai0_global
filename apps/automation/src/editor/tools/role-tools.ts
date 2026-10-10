@@ -26,6 +26,7 @@ import type { NetworkCtx } from '../network/network-context';
 import type { ExperimentQuota } from '../manager/experiment-quota';
 import type { PollCapCtx } from '../roles/poll-cap';
 import { NO_FRESH_ITEM } from '../live/live-slot';
+import { dryRunOf } from '../roles/preview-run';
 
 export const SIMILARITY_LIMIT = 0.6;
 const MAX_MEMORY_ADDS_PER_RUN = 5;
@@ -65,7 +66,9 @@ export async function checkPublishGuards(d: RoleToolDeps, ctx: ToolContext, spec
 
   const slot = await d.plans.getSlot(slotId);
   if (!slot || slot.channelKey !== channelKey) return { error: 'slot_not_found' };
-  if (slot.status !== 'running') return { error: 'slot_not_running', details: `slot status is ${slot.status}` };
+  // Spec 034 FR-012: the owner's dry-run Preview runs on a slot that stays `planned`.
+  const dry = !!dryRunOf(ctx) && slot.status === 'planned';
+  if (slot.status !== 'running' && !dry) return { error: 'slot_not_running', details: `slot status is ${slot.status}` };
   if (card.mode === 'off') return { error: 'channel_off' };
 
   const lint = lintPost(spec, card);
@@ -107,7 +110,7 @@ export function buildRoleTools(d: RoleToolDeps): EditorTool[] {
   // ── planner ───────────────────────────────────────────────────────────────
   const submitPlan = defineTool({
     name: 'submit_plan',
-    description: 'Зберегти план на сьогодні (завершує роботу). Код перевіряє кількість, час, тихі години, інтервали, формати, частку експериментів, експерименти за директивою (directive_id), серії за розкладом (slot.series або skipped_series з причиною) і правила власника (закріплені пости, заборонені вікна, частота) — при помилці виправ і надішли знову.',
+    description: 'Зберегти план на день плану (сьогодні; у режимі апруву ввечері — завтра) (завершує роботу). Код перевіряє кількість, час, тихі години, інтервали, формати, частку експериментів, експерименти за директивою (directive_id), серії за розкладом (slot.series або skipped_series з причиною) і правила власника (закріплені пости, заборонені вікна, частота) — при помилці виправ і надішли знову.',
     kind: 'terminal', roles: ['planner'],
     input: SubmitPlanInput,
     execute: async (plan, ctx) => {
@@ -155,6 +158,13 @@ export function buildRoleTools(d: RoleToolDeps): EditorTool[] {
         critic = criticSummary(c.critic);
       }
       const withCritic = critic ? { critic } : {};
+
+      // Spec 034 FR-012: a dry-run Preview stops here — nothing is stored on the slot, sent, put up for approval or ledgered.
+      const dry = dryRunOf(ctx);
+      if (dry) {
+        dry.store({ platform: 'telegram', preview: g.rendered.preview, spec, warnings: g.lint.warnings.map((w) => w.message) });
+        return { ok: true, dry: true, warnings: g.lint.warnings, ...withCritic };
+      }
 
       if (card.mode === 'approve') {
         // Spec 031 FR-004: every live check ran above; prepare media and render exactly what will be sent, then wait.

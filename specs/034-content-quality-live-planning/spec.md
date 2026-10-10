@@ -381,3 +381,78 @@ FR-015. **Size:** S · Depends on T1–T6
 - **For T7 (plan UI)**: `EditorSlot.critic` comes with every slot row (`rowToSlot`); show the verdict badge / notes from it
   (reuse `components/critic/CriticBlock.tsx` and `lib/critic.ts`); the on-demand dry-run Preview (FR-012) can run the executor
   with the gate in shadow mode to get a verdict with the draft.
+
+## Implementation notes (T7, 2026-10-10)
+- **Migration `070_plan_visibility.sql`** (guarded `DO`, idempotent, records `070_plan_visibility`; 069 stays reserved for T5):
+  `editor_slots.preview_draft JSONB` — the owner's dry-run preview (`SlotPreview`: `status running|ready|rejected|skipped|failed`,
+  `platform`, `preview` (Telegram HTML / caption), `spec`, `critic`, `reason`, `warnings`, `runId`, `costUsd`, `startedAt`, `finishedAt`).
+  Kept apart from `rendered_preview` / `post_spec` / `critic` on purpose: the similarity and repeat guards (`recentTexts`,
+  `feed-items` repeat check), derived slots and MANAGER's critic stats (T4) read those, and a preview must change none of them.
+  `rowToSlot` → `EditorSlot.previewDraft`.
+- **FR-012 Preview** (`POST /api/editor/slots/:id/preview`, `?wait=true` waits; default answers `running` at once and the
+  dashboard polls every 4 s while a preview runs). `EditorOpsService.previewSlot`: editor enabled, channel not off, a planned
+  content slot that is not live (`preview_live_slot`) and not a duplicate / adapt (`preview_derived_slot`); one at a time per slot
+  (`preview_in_progress`: an in-memory guard plus `EditorPlansRepository.claimPreview`, an atomic UPDATE that refuses a `running`
+  preview younger than 10 min, so a crashed one can be replaced). `EditorRunnerService.runPreview` is the only executor change:
+  the slot runs exactly as at slot time (same prompts, tools, guards, series note, critic gate) with the card in shadow semantics
+  and a `PreviewSink` (`roles/preview-run.ts`) in `ctx.extras.dryRun`: `publish_post` / `publish_platform_post` run every
+  deterministic guard and the critic and then hand the rendered post to the sink instead of storing / sending / creating an
+  approval card / inserting `platform_posts` (`publishPlatformNow({dry})` stops after review); `checkPublishGuards` accepts a
+  `planned` slot only in a dry run; `skip_slot` is wrapped to record its reason; act tools (`repurpose_post`, `edit_data_schema`)
+  are left out; the CriticGate gets the sink as its `plans` (its verdict and reject/fail writes land on the preview) and no Inbox.
+  The slot keeps its status, run id, post, verdict and `updated_at`; nothing reaches the content ledger. Live caps (daily cap,
+  quiet hours, min gap) are not checked (they depend on the publishing moment). The executor run is a normal `editor_runs` row
+  with the slot id (the slot page marks it "preview (dry run)"); its outcome is stored with `setPreview`.
+- **Preview spend**: `AgentLoopInput.usage` overrides the ledger attribution — the executor run is `editor.preview` (added to
+  `EDITOR_FEATURE_ROLES`), never shadow; its critic passes stay `editor.checker`. Both count against the channel, agent and
+  every blocking cap (the BudgetService gate sees `editor.preview`, so an `editor`/`editor.preview` feature cap stops it before
+  the first call; tested). **Cost**: one executor run plus one critic pass (two with a revise) — the same as writing the slot:
+  ≈ $0.003–0.006 with the default `z-ai/glm-5.3-flash` executor + critic, ≈ $0.02–0.03 with a Sonnet-class critic. The button
+  shows the channel's own estimate (`previewEstimates`: mean of its last 20 finished executor runs + mean of its last 20 critic
+  runs; "about one executor run" without history).
+- **Payloads**: `GET /api/agents/:handle/plan` adds `planId`, `plannedAt` (`editor_plans.created_at`), `runId`, `runRole` (the
+  run's role), `schedule {timezone, planHour, mode (effective), approval, batchHour: 20}`, `history` (the day's superseded plans:
+  time, run, rationale, slot count), `previewEstimateUsd`, `feeds` (card feed id → URL) and per slot `sourceHints`, `seriesName`,
+  `isExperiment`, `createdAt`, `pinned`, `topicMode`, `liveSpec`, `critic`, `previewDraft`. `GET /api/editor/plans` adds
+  `runRole` per plan and `previewEstimates` per channel; `GET /api/editor/slots/:id` (`slotDetail`) adds the slot's `plan`
+  (planned at / by which run, active or superseded) and `previewEstimateUsd`. The Schedule API adds `planning` (plan hour,
+  approval, batch hour, feeds) and `topicMode` on series items. `GET /api/schedule/upcoming` lists ordinary future slots too
+  (`kind: 'slot'`, statuses planned / running / awaiting_approval / approved; series / pin slots stay with their instance) with
+  `topicMode` and `live` (card feed ids resolved to URLs).
+- **Dashboard** (`lib/slot-plan.ts`, `components/editor/SlotPlan.tsx`, English): a live slot reads «At 14:00: fetch
+  pravda.com.ua, rbc.ua → pick the freshest item (≤ 6 h) → write photo» (site names from feed URLs / card feed ids, `x API`),
+  with a "live · planner / news watch / pinned" badge, the picked item's title + link for news-watch slots and the brief; a fixed
+  slot shows angle, series, source hints (and the Idea link on the Plan tab); skipped / failed slots show a labelled reason
+  (`no_fresh_item` → "Nothing fresh in the sources", `critic_rejected`, `critic_failed`, superseded, owner, agent) plus the
+  system's detail; a written post shows the rendered post and the `CriticBlock` (new `where: 'slot' | 'preview'` footnotes);
+  a planned fixed slot gets **Preview** (cost hint, spinner, "Preview again") and its last preview with the critic's verdict and
+  "Dry run at … · $… · nothing was published"; a planned live slot says it has no preview before its time. `PlanStamp`:
+  "Planned at 20:02 Kyiv by planner run →" (run trace link), "planned the evening before at 20:00" for an approval plan made the
+  day before, how the agent plans, and "Earlier plans of this day (n)" collapsed (time, run link, slot count, rationale).
+  Used on the Plan tab (timeline detail and the narrow list), `/app/editor` (rows + "Planned at … by … · plans at 06:00" per
+  channel), the channel page and the slot page (which also labels the critic run and the preview run). Schedule tab: the plan
+  note, a live legend item, every slot entry links to its slot page and a live entry's tooltip is its scheduled call. Overview
+  Upcoming lists ordinary slots ("Live: fetch … → freshest → photo", a news-watch slot's item title) linking to the slot page.
+- **FR-013 schedule truth — decision: remove, not wire.** Orchestrator / role-agent `schedule.times` never drove anything (the
+  orchestrator runs before planning at the card's `plan_hour`; approval channels plan the next day at 20:00); wiring a second
+  clock would make two settings disagree. The agent Overview now shows the Schedule editor only for **@manager** (whose times do
+  drive its runs); every other agent shows read-only "Planned daily at 06:00 Kyiv …" (or the approval wording) from its channel
+  card with "Change on the card →", and its PATCH no longer sends `schedule`. The stored value is untouched (API / builder still
+  accept it; harmless). The plan hour and the 20:00 batch are shown next to the plan on the Plan tab, Schedule tab, `/app/editor`,
+  the channel page and the slot page. **Zone fix**: `maybeOrchestrate` keys the day by the card zone and checks `editor_runs`
+  with `(started_at AT TIME ZONE <card tz>)::date = <card-zone date>` (was Kyiv's date vs `now()`). **"Today" wording** when
+  planning tomorrow: `## Серії за розкладом на <date>`, schedule rule errors / frequency lines name the plan date, and the
+  `submit_plan` / `submit_network_plan` descriptions say "the plan day (today; in approval mode in the evening — tomorrow)".
+  `/app/editor` empty state names approval mode (planned the evening before at 20:00) and that off channels are not planned.
+- **Tests**: `roles/preview-run.test.ts` (Telegram / approval / platform dry run: nothing stored, sent, notified, ledgered or put
+  up for approval; act tools absent; revise → one rewrite; reject → `rejected`; critic failure → `failed` without Inbox; skip;
+  `editor.preview` ledger row not shadow; channel budget and a blocking feature cap stop it before any call; live / derived
+  refused), `api/editor-ops.preview.test.ts` (wait vs background, one at a time, crash → failed preview, refusals, slot page and
+  plans payload), `roles/preview-run.e2e.pg.test.ts` (migration 070 idempotent; real repos + publish tools on a live card: the
+  preview lands in `preview_draft`, the slot row stays planned with no run / post / verdict, no ledger / publication / approval
+  rows; claim one at a time + stale; Plan tab payload: planned at / by, history, schedule, fixed / live / news-watch / skipped /
+  written + critic; `/api/editor/plans` run roles and estimates), scheduler zone test (New York card near Kyiv midnight),
+  Upcoming ordinary slots, controller routes; dashboard `lib/slot-plan.test.ts`, `schedule-grid` (slot links, live) and
+  `critic` footnotes. Browser-checked against a local mock API (127.0.0.1) at 1366 px and 375 px: Plan tab (stamp, history,
+  fixed with preview + critic, live, news watch, skipped no_fresh_item, critic reject, running preview, Preview click → spinner
+  → result), Schedule tab, `/app/editor`, channel page, slot page, Overview Upcoming; no horizontal page overflow.

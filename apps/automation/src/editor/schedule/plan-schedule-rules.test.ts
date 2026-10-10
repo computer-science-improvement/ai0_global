@@ -170,7 +170,7 @@ test('the planner prompt block lists pins, blackouts, frequency and due series',
     pins: [{ resourceRef: TG, at: new Date('2026-10-07T16:00:00Z'), ruleId: 'p1', seriesName: null, windowMin: 20 }],
     rules: [rule({ atLocal: '13:00', untilLocal: '15:00' }), rule({ id: 'f', kind: 'frequency', perDayMin: 1, perDayMax: 2 })],
   }))!;
-  for (const frag of ['закріплений пост власника telegram:@food о 19:00', 'заборонене вікно telegram:@food: 13:00–15:00', 'частота telegram:@food сьогодні: 1–2', 'серія «Рецепт дня»', 'заблокована власником']) {
+  for (const frag of ['закріплений пост власника telegram:@food о 19:00', 'заборонене вікно telegram:@food: 13:00–15:00', 'частота telegram:@food 2026-10-07: 1–2', 'серія «Рецепт дня»', 'заблокована власником']) {
     assert.ok(b.includes(frag), `${frag}\n${b}`);
   }
   assert.equal(scheduleBlock(ctx({ series: [] })), null);

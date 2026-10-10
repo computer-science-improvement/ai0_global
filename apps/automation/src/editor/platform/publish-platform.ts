@@ -47,6 +47,8 @@ export interface PublishPlatformInput {
    * as is (a `critic_revise` error, or the terminal result of a rejected / held slot).
    */
   review?: (p: { text: string; lint: PlatformLintResult }) => Promise<null | { halt: object }>;
+  /** Spec 034 FR-012: the owner's dry-run Preview — every check and the critic, then stop: no row, no API call. */
+  dry?: boolean;
 }
 
 export type PublishPlatformResult =
@@ -112,6 +114,9 @@ export async function publishPlatformNow(d: PublishPlatformDeps, i: PublishPlatf
   }
 
   const preview = renderPlatform(i.spec, platform);
+  if (i.dry) {
+    return { ok: true, shadow: true, postId: 0, externalId: null, url: null, preview: preview.caption, warnings: lint.warnings.map((w) => w.message), lint };
+  }
   if (i.mode === 'approve') {
     // Spec 031 FR-004: every check of a live publish ran above; slides are rendered and hosted now so the
     // owner approves exactly what goes out. Nothing is sent — publishApprovedPlatform does that after approval.

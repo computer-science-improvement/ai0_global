@@ -23,7 +23,8 @@ const rec = (name: string) => async (...args: unknown[]) => { calls.push([name, 
 const ops = {
   listChannels: rec('listChannels'), getChannel: rec('getChannel'), upsertChannel: rec('upsertChannel'),
   replan: rec('replan'), listMemory: rec('listMemory'), addMemory: rec('addMemory'), retireMemory: rec('retireMemory'),
-  listPlans: rec('listPlans'), getSlot: rec('getSlot'), runSlot: rec('runSlot'), skipSlot: rec('skipSlot'),
+  listPlans: rec('listPlans'), getSlot: rec('getSlot'), slotDetail: rec('slotDetail'), runSlot: rec('runSlot'), skipSlot: rec('skipSlot'),
+  previewSlot: rec('previewSlot'),
   listRuns: rec('listRuns'), getRun: rec('getRun'), spend: rec('spend'), listTools: rec('listTools'), callTool: rec('callTool'),
 };
 
@@ -83,6 +84,9 @@ test('routes reach the ops service with decoded params, raw bodies and query fla
   await call('PUT', '/api/editor/channels/%40my_chan', { mode: 'shadow', unknownField: 1 });
   await call('POST', '/api/editor/channels/%40my_chan/replan?wait=true');
   await call('POST', `/api/editor/slots/${SLOT}/run`);
+  await call('GET', `/api/editor/slots/${SLOT}`);
+  await call('POST', `/api/editor/slots/${SLOT}/preview`);
+  await call('POST', `/api/editor/slots/${SLOT}/preview?wait=true`);
   await call('POST', `/api/editor/slots/${SLOT}/skip`, { reason: 'дубль' });
   await call('DELETE', '/api/editor/channels/%40my_chan/memory/7');
   await call('GET', '/api/editor/plans?date=2026-10-01&channel=%40my_chan');
@@ -93,6 +97,9 @@ test('routes reach the ops service with decoded params, raw bodies and query fla
     ['upsertChannel', '@my_chan', { mode: 'shadow', unknownField: 1 }],  // zod (not class-validator) rejects unknown keys
     ['replan', '@my_chan', { wait: true }],
     ['runSlot', SLOT, { wait: false }],
+    ['slotDetail', SLOT],
+    ['previewSlot', SLOT, { wait: false }],
+    ['previewSlot', SLOT, { wait: true }],
     ['skipSlot', SLOT, 'дубль'],
     ['retireMemory', '@my_chan', 7],
     ['listPlans', '2026-10-01', '@my_chan'],
@@ -105,6 +112,7 @@ test('routes reach the ops service with decoded params, raw bodies and query fla
 test('malformed ids are rejected before reaching the service', async () => {
   calls.length = 0;
   assert.equal((await call('POST', '/api/editor/slots/not-a-uuid/run')).status, 400);
+  assert.equal((await call('POST', '/api/editor/slots/not-a-uuid/preview')).status, 400);
   assert.equal((await call('GET', '/api/editor/runs/123')).status, 400);
   assert.equal((await call('DELETE', '/api/editor/channels/x/memory/abc')).status, 400);
   assert.deepEqual(calls, []);

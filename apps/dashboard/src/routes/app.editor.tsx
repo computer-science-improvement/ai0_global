@@ -9,7 +9,8 @@ import { CardEditorModal } from '../components/editor/CardEditorModal';
 import { ModeSwitch, MODE_TONE, SlotCounts, SlotRow, fmtUsd } from '../components/editor/EditorUi';
 import { describeError } from '../components/ui/Toast';
 import { useEditorChannels, useEditorPlans, useEditorSpend, useReplan } from '../api/editor';
-import type { EditorChannel, EditorSpendRow } from '../api/types';
+import type { EditorChannel, EditorPlan, EditorSpendRow } from '../api/types';
+import { feedsOf, plannedAtLine, runLabel } from '../lib/slot-plan';
 
 export const Route = createFileRoute('/app/editor')({ component: EditorPage });
 
@@ -25,6 +26,9 @@ function EditorPage() {
       .sort((a, b) => a.scheduledAt.localeCompare(b.scheduledAt)),
     [plans.data],
   );
+  const byKey = useMemo(() => new Map(list.map((c) => [c.channelKey, c])), [list]);
+  const activePlan = (key: string) => (plans.data?.plans ?? []).find((p) => p.status === 'active' && p.channelKey === key) ?? null;
+  const estimates = plans.data?.previewEstimates ?? {};
   const spendToday = list.reduce((s, c) => s + c.today.spendUsd, 0);
   const count = (m: EditorChannel['mode']) => list.filter((c) => c.mode === m).length;
   const failed = todaySlots.filter((s) => s.status === 'failed').length;
@@ -66,7 +70,7 @@ function EditorPage() {
       {list.length > 0 && (
         <SectionCard title="Channels" icon="channels" delay={40} style={{ marginBottom: 16 }}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-            {list.map((c, i) => <ChannelRow key={c.channelKey} c={c} delay={i * 40} />)}
+            {list.map((c, i) => <ChannelRow key={c.channelKey} c={c} plan={activePlan(c.channelKey)} delay={i * 40} />)}
           </div>
         </SectionCard>
       )}
@@ -74,9 +78,13 @@ function EditorPage() {
       {list.length > 0 && (
         <SectionCard title={`Today${date ? ` · ${date}` : ''}`} icon="calendar" delay={80} style={{ marginBottom: 16 }}>
           {todaySlots.length === 0
-            ? <EmptyState icon="calendar" title="No slots planned today" note="Planners run at each card's plan hour for channels in shadow or live mode." />
+            ? <EmptyState icon="calendar" title="No slots planned today"
+                note="Planners run at each card's plan hour for channels in shadow, approval or live mode; a channel in approval plans each day the evening before at 20:00, so its posts can be approved that evening. Channels that are off are not planned." />
             : <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                {todaySlots.map((s, i) => <SlotRow key={s.id} slot={s} showChannel delay={i * 25} />)}
+                {todaySlots.map((s, i) => {
+                  const c = byKey.get(s.channelKey);
+                  return <SlotRow key={s.id} slot={s} showChannel delay={i * 25} tz={c?.timezone} feeds={feedsOf(c)} estimateUsd={estimates[s.channelKey] ?? null} />;
+                })}
               </div>}
         </SectionCard>
       )}
@@ -88,8 +96,9 @@ function EditorPage() {
   );
 }
 
-function ChannelRow({ c, delay }: { c: EditorChannel; delay: number }) {
+function ChannelRow({ c, plan, delay }: { c: EditorChannel; plan: EditorPlan | null; delay: number }) {
   const replan = useReplan();
+  const planned = plannedAtLine(plan?.createdAt, c.timezone);
   return (
     <div className="card row-lift compose-rise" style={{ display: 'flex', alignItems: 'center', gap: 16, padding: '13px 18px', flexWrap: 'wrap', animationDelay: `${delay}ms` }}>
       <div style={{ minWidth: 200, flex: 1 }}>
@@ -103,6 +112,15 @@ function ChannelRow({ c, delay }: { c: EditorChannel; delay: number }) {
           <span>{c.channelKey}</span>
           <span>{c.postsPerDayMin}–{c.postsPerDayMax}/day</span>
           <SlotCounts slots={c.today.slots} />
+        </div>
+        <div className="text-micro" style={{ color: 'var(--color-ink-dim)', display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center', marginTop: 3 }}>
+          {planned
+            ? <>
+                <span>{planned} by</span>
+                {plan?.runId ? <Link to="/app/editor/run/$id" params={{ id: plan.runId }} className="link-accent">{runLabel(plan.runRole)} →</Link> : <span>the system</span>}
+              </>
+            : <span>Not planned yet</span>}
+          <span>· plans at {String(c.planHour).padStart(2, '0')}:00{c.mode === 'approve' ? ', the next day at 20:00 the evening before' : ''}</span>
         </div>
       </div>
       <div className="tabular-nums" style={{ textAlign: 'right', minWidth: 80 }}>

@@ -28,6 +28,11 @@ test('cells: series and pins take their slot\'s status; other slots stay on thei
   ]);
   assert.equal(cellEntries(s, TG, '2026-10-08')[0].status, undefined);
   assert.deepEqual(cellEntries(s, 'instagram:x', '2026-10-07'), []);
+  // Spec 034 FR-012: every entry backed by a slot links to it; a live slot is marked.
+  assert.deepEqual(e.map((x) => x.slotId ?? null), [null, 's3', 's2', null, 's4', 's1']);
+  const live: any = { items: [], slots: [{ ...s.slots[2], id: 's9', topicMode: 'live', live: { sources: ['feed1'], brief: 'b', max_age_hours: 6, origin: 'planner' } }] };
+  assert.equal(cellEntries(live, TG, '2026-10-07')[0].live, true);
+  assert.equal(e.find((x) => x.slotId === 's3')!.live, undefined);
 });
 
 test('cadence: build from days and times, parse back, label in English', () => {
