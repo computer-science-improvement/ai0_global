@@ -2,6 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { Pool } from 'pg';
 import { DB_POOL } from '../database/database.module';
 import type { AdFormat, AdPriceRow, PublicAdPrice } from './ad-orders.types';
+import { sellablePriceSql } from './sponsor-orders.repository';
 
 export interface MediaKitChannel {
   channelKey:  string;
@@ -22,12 +23,18 @@ export function toPublicPrice(r: AdPriceRow): PublicAdPrice {
 export class AdPricesRepository {
   constructor(@Inject(DB_POOL) private readonly pool: Pool) {}
 
-  async list(opts: { activeOnly?: boolean; channelKey?: string } = {}): Promise<AdPriceRow[]> {
+  /**
+   * `sellableOnly` (spec 036): what may be offered to advertisers — a digest_sponsor price only while a legacy
+   * digest strategy runs on its channel (the public price list, the media kit and the DM price list use it).
+   * Rows carry `sellable` either way (the owner's price table shows it).
+   */
+  async list(opts: { activeOnly?: boolean; channelKey?: string; sellableOnly?: boolean } = {}): Promise<AdPriceRow[]> {
     const { rows } = await this.pool.query<AdPriceRow>(
-      `SELECT * FROM ad_prices
-        WHERE ($1::boolean IS NOT TRUE OR active) AND ($2::text IS NULL OR channel_key = $2)
-        ORDER BY channel_key, format, active DESC, created_at DESC`,
-      [opts.activeOnly ?? false, opts.channelKey ?? null],
+      `SELECT p.*, ${sellablePriceSql('p')} AS sellable FROM ad_prices p
+        WHERE ($1::boolean IS NOT TRUE OR p.active) AND ($2::text IS NULL OR p.channel_key = $2)
+          AND ($3::boolean IS NOT TRUE OR ${sellablePriceSql('p')})
+        ORDER BY p.channel_key, p.format, p.active DESC, p.created_at DESC`,
+      [opts.activeOnly ?? false, opts.channelKey ?? null, opts.sellableOnly ?? false],
     );
     return rows;
   }
@@ -62,13 +69,13 @@ export class AdPricesRepository {
   }
 
   /**
-   * Media kit (T008): every channel with at least one active price, with live
+   * Media kit (T008): every channel with at least one active, sellable price (spec 036), with live
    * stats — latest subscriber count and the average latest views of posts from
    * the last 30 days (editor_v_post_performance covers all strategies).
    */
   async mediaKit(): Promise<MediaKitChannel[]> {
     const { rows } = await this.pool.query(
-      `WITH ch AS (SELECT DISTINCT channel_key FROM ad_prices WHERE active)
+      `WITH ch AS (SELECT DISTINCT p.channel_key FROM ad_prices p WHERE p.active AND ${sellablePriceSql('p')})
        SELECT ch.channel_key,
               tc.title, tc.username,
               (SELECT subscribers FROM channel_stats_snapshots s
@@ -76,7 +83,7 @@ export class AdPricesRepository {
                 ORDER BY captured_at DESC LIMIT 1) AS subscribers,
               perf.avg_views, COALESCE(perf.posts, 0) AS posts,
               (SELECT json_agg(json_build_object('format', p.format, 'priceUah', p.price_uah, 'note', p.note) ORDER BY p.format)
-                 FROM ad_prices p WHERE p.channel_key = ch.channel_key AND p.active) AS prices
+                 FROM ad_prices p WHERE p.channel_key = ch.channel_key AND p.active AND ${sellablePriceSql('p')}) AS prices
          FROM ch
          LEFT JOIN tracked_channels tc ON tc.channel_key = ch.channel_key
          LEFT JOIN LATERAL (

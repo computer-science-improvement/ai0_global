@@ -18,11 +18,17 @@ export interface AdOrderRow {
   report:            AdReport | null;
   reported_at:       Date | null;
   report_token:      string | null;
+  // 072_sponsor_fulfilment
+  /** Why the paid order cannot be / was not published (set once per reason, with an Inbox action). */
+  flag_reason?:      string | null;
+  flagged_at?:       Date | null;
 }
 
 export interface AdPriceRow {
   id: string; channel_key: string; format: AdFormat; price_uah: number;
   active: boolean; note: string | null; created_at: Date;
+  /** Spec 036: may be offered (a digest_sponsor price only while a digest strategy runs on the channel). */
+  sellable?: boolean;
 }
 
 /** Public projection of a price (no ids, no internals). */

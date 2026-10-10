@@ -48,6 +48,8 @@ import { htmlToPlain } from './post/inline-markup';
 import { EditorRunsRepository } from './repo/editor-runs.repository';
 import { EditorChatRepository } from './repo/editor-chat.repository';
 import { ReservedDispatcher } from './publish/reserved-dispatcher';
+import { SponsorFulfilment } from '../payments/sponsor-fulfilment';
+import { SponsorOrdersRepository } from '../payments/sponsor-orders.repository';
 import type { PublishSpecDeps } from './publish/publish-spec';
 import { DraftsService } from './chat/drafts.service';
 import { buildComposerTools } from './chat/composer-tools';
@@ -821,6 +823,11 @@ export const EDITOR_PROVIDERS = [
           time: resourceTime(repos, infra.profiles), usable: (ref) => platform.health.usable(ref),
           sourceCatalog: (card) => seriesSourceCatalog(pool, card),
           attachSkill: (agentId, name) => infra.skills.attachShared(agentId, name),
+          // Spec 036: open digest sponsors of the retired digest bindings are reported to the owner.
+          sponsors: new SponsorFulfilment({
+            orders: new SponsorOrdersRepository(pool), card: (k) => repos.channels.get(k), reserve: (i) => repos.plans.reserveSlot(i),
+            inbox: infra.inbox, log: (m) => new Logger('StrategyMigration').warn(m),
+          }),
           publishConfig: events ? () => events.publish('strategy') : undefined,
           editorEnabled: () => isEnabled(cfg),
           log: (m) => new Logger('StrategyMigration').warn(m),
@@ -1192,7 +1199,12 @@ export const EDITOR_PROVIDERS = [
           paused,
           log: (m) => logger.warn(m),
         });
-        const reserved = new ReservedDispatcher({
+        // Spec 036: paid digest sponsors on channels where no digest strategy runs go out as reserved sponsored posts.
+        const sponsors = new SponsorFulfilment({
+          orders: new SponsorOrdersRepository(pool), card: (k) => repos.channels.get(k), reserve: (i) => repos.plans.reserveSlot(i),
+          inbox: infra.inbox, log: (m) => logger.warn(m),
+        });
+        const dispatcher = new ReservedDispatcher({
           plans: repos.plans, orders,
           sponsored: new SponsoredPublisher({
             plans: repos.plans, channels: repos.channels, orders, publisher: ports.publisher,
@@ -1205,6 +1217,17 @@ export const EDITOR_PROVIDERS = [
           paused,
           log: (m) => logger.warn(m),
         });
+        const reserved = {
+          publishDue: async (now: Date) => {
+            try {
+              const r = await sponsors.reserveDue(now);
+              if (r.placed || r.flagged) logger.log(`digest sponsors: ${r.placed} placed, ${r.flagged} flagged`);
+            } catch (err: any) {
+              logger.warn(`digest sponsor fulfilment failed: ${err?.message ?? err}`);
+            }
+            return dispatcher.publishDue(now);
+          },
+        };
         // Spec 034 FR-011: news resources check their feeds on a cadence and add live slots for fresh items (no LLM).
         const newsWatch = new NewsWatchService({
           pool, profile: async (ref) => (await infra.profiles.get(ref))?.profile ?? null, log: (m) => logger.warn(m),

@@ -523,6 +523,9 @@ export interface AdOrder {
   report:            AdReport | null;
   reported_at:       string | null;
   report_token:      string | null;
+  // spec 036: why a paid order cannot be (or was not) published
+  flag_reason?:      string | null;
+  flagged_at?:       string | null;
 }
 
 export interface AdPrice {
@@ -533,6 +536,8 @@ export interface AdPrice {
   active:      boolean;
   note:        string | null;
   created_at:  string;
+  /** Spec 036: false = not offered (a digest sponsor where no digest strategy runs any more). */
+  sellable?:   boolean;
 }
 
 /** Public advertiser report (GET /api/ads/report/:token). */

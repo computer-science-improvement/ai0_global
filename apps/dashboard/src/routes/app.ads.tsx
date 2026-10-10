@@ -29,6 +29,21 @@ const STATUS_TONE: Record<AdOrderStatus, 'success' | 'accent' | 'neutral' | 'war
 
 const FORMATS: AdFormat[] = ['post', 'pin_24h', 'digest_sponsor'];
 
+/** Spec 036: why a paid order is flagged (ad_orders.flag_reason). */
+const FLAG_LABEL: Record<string, string> = {
+  no_channel:       'no channel',
+  no_publish_date:  'no publish date',
+  no_agent_card:    'no digest and no agent card',
+  no_creative:      'no creative',
+  no_link:          'no sponsor link',
+  creative_invalid: 'creative invalid',
+  missed_day:       'day missed',
+  day_passed:       'day passed, not published',
+  slot_failed:      'slot failed',
+  not_scheduled:    'never scheduled',
+  approval_pending: 'action not approved',
+};
+
 type ChannelOpt = { id: string; title: string | null; channelKey?: string | null };
 
 /** Paragraphs separated by a blank line → creative blocks; an image URL makes it a photo post. */
@@ -169,7 +184,14 @@ function PriceList({ prices, channels }: { prices: AdPrice[]; channels: ChannelO
               {prices.map(p => (
                 <tr key={p.id}>
                   <td>{p.channel_key}</td>
-                  <td>{AD_FORMAT_LABEL[p.format]}</td>
+                  <td>
+                    {AD_FORMAT_LABEL[p.format]}
+                    {p.sellable === false && (
+                      <Badge tone="warning" style={{ marginLeft: 6 }} title="No digest strategy runs on this channel any more (the agent runs it), so this price is hidden from the landing, the media kit and DM price lists, and new orders are refused.">
+                        not offered
+                      </Badge>
+                    )}
+                  </td>
                   <td className="num">{p.price_uah.toLocaleString('en-GB')}</td>
                   <td style={{ color: 'var(--color-ink-muted)' }}>{p.note ?? '—'}</td>
                   <td style={{ textAlign: 'right' }}>
@@ -243,7 +265,7 @@ function NewOrder({ prices, channels }: { prices: AdPrice[]; channels: ChannelOp
           <Field label="Price" hint={price ? `${price.price_uah} UAH — amount is set by the server` : 'or enter a custom amount'}>
             <select className="input-field" value={priceId} onChange={e => setPriceId(e.target.value)}>
               <option value="">— custom amount —</option>
-              {prices.map(p => (
+              {prices.filter(p => p.sellable !== false).map(p => (
                 <option key={p.id} value={p.id}>{p.channel_key} · {AD_FORMAT_LABEL[p.format]} · {p.price_uah} UAH</option>
               ))}
             </select>
@@ -365,6 +387,11 @@ function OrderRow({
 
         <Badge tone={STATUS_TONE[order.status]}>{order.status.replace('_', ' ')}</Badge>
         {order.editor_slot_id && order.status === 'scheduled' && <Badge tone="neutral">reserved slot</Badge>}
+        {order.flag_reason && (order.status === 'paid' || order.status === 'scheduled') && (
+          <Badge tone="danger" title={`Flagged ${order.flagged_at ? fmtDate(order.flagged_at) : ''}: see the Inbox item. Nothing is refunded or published automatically.`}>
+            needs attention: {FLAG_LABEL[order.flag_reason] ?? order.flag_reason.replace(/_/g, ' ')}
+          </Badge>
+        )}
 
         {order.description && (
           <div className="text-body-sm" style={{ flex: 1, minWidth: 0, color: 'var(--color-ink-muted)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
@@ -385,10 +412,16 @@ function OrderRow({
             </button>
           )}
           {order.status === 'paid' && price?.format === 'digest_sponsor' && (
-            <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>goes into the digest on its publish day</span>
+            <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>
+              {price.sellable === false
+                ? 'goes out as a sponsored post on its publish day (no digest runs here)'
+                : 'goes into the digest on its publish day'}
+            </span>
           )}
           {order.status === 'scheduled' && (
-            <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>approve the action on /app/agent</span>
+            <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>
+              {order.editor_slot_id ? 'publishes automatically at its slot' : 'approve the action on /app/agent'}
+            </span>
           )}
           {reportUrl && (
             <a className="btn-tiny" href={reportUrl} target="_blank" rel="noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>

@@ -67,7 +67,7 @@ export class AgentInboxPoller {
    */
   private async draftPriceReply(threadId: string, t: TriageResult): Promise<void> {
     try {
-      const prices = pricesForInquiry((await this.prices.list({ activeOnly: true })).map(toPublicPrice), t.fields.channel);
+      const prices = pricesForInquiry((await this.prices.list({ activeOnly: true, sellableOnly: true })).map(toPublicPrice), t.fields.channel);
       if (!prices.length) return;
       if (await this.actions.hasPending(threadId, 'reply')) return;
       await this.actions.create({ type: 'reply', threadId, payload: { text: priceListReply(prices), kind: 'price_list' } });

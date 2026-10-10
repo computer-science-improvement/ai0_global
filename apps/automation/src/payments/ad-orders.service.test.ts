@@ -84,3 +84,35 @@ test('schedulePost refuses when the order is not paid, or has nothing to publish
   const c = harness({ id: 'o1', status: 'paid', creative: CREATIVE, publish_at: null });
   await assert.rejects(() => c.svc.schedulePost('o1', { channelId: 'c1' }), /scheduledAt is required/);
 });
+
+// ── spec 036: the digest-sponsor sale guard ──────────────────────────────────
+
+function guarded(price: any, runs: boolean, order: any = null) {
+  const h = harness(order, price);
+  const checked: string[] = [];
+  const svc = new AdOrdersService((h.svc as any).repo, (h.svc as any).liqpay, (h.svc as any).actions, (h.svc as any).prices,
+    { digestRunsOn: async (k: string) => { checked.push(k); return runs; } } as any);
+  return { svc, calls: h.calls, checked };
+}
+
+test('spec 036: a digest_sponsor order is refused where no digest strategy runs (agent-run channel)', async () => {
+  const price = { id: 'pr1', channel_key: '@space_ua', format: 'digest_sponsor', price_uah: 400, active: true };
+  const no = guarded(price, false);
+  await assert.rejects(() => no.svc.create({ advertiser: 'Acme', priceId: 'pr1' }), /digest_sponsor is not sold on @space_ua/);
+  assert.deepEqual(no.checked, ['@space_ua']);
+  assert.equal(no.calls.filter((c) => c[0] === 'create').length, 0);
+  const yes = guarded(price, true);
+  await yes.svc.create({ advertiser: 'Acme', priceId: 'pr1', channelId: '@other' });
+  assert.deepEqual(yes.checked, ['@other'], 'the explicit channel is the one checked');
+  // other formats are never checked
+  const post = guarded({ ...price, format: 'post' }, false);
+  await post.svc.create({ advertiser: 'Acme', priceId: 'pr1' });
+  assert.deepEqual(post.checked, []);
+});
+
+test('spec 036: schedulePost refuses a digest_sponsor order (it is placed automatically — never twice)', async () => {
+  const g = guarded({ id: 'pr1', channel_key: '@space_ua', format: 'digest_sponsor', price_uah: 400, active: true }, true,
+    { id: 'o1', status: 'paid', price_id: 'pr1', channel_id: '@space_ua', publish_at: new Date('2030-01-01T10:00:00Z'), creative: CREATIVE, advertiser: 'A', sponsor_label: null });
+  await assert.rejects(() => g.svc.schedulePost('o1', {}), /placed automatically/);
+  assert.equal(g.calls.filter((c) => c[0] === 'action').length, 0);
+});

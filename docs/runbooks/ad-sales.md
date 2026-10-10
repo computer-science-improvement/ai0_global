@@ -30,7 +30,7 @@ order (price → amount) ──► LiqPay link ──► paid (webhook) ──�
 |---|---|
 | `post` | one sponsored post at the agreed time |
 | `pin_24h` | the same, pinned for 24 h. **Pinning is manual:** the "published" alert reminds you to pin it, and you unpin it after 24 h |
-| `digest_sponsor` | the "Партнер дайджесту" line in that channel's network/topic digest on the agreed day |
+| `digest_sponsor` | the "Партнер дайджесту" line in that channel's network/topic digest on the agreed day. Sold only while a digest strategy runs on the channel (spec 036): elsewhere the price shows "not offered" and is hidden from the landing, the media kit and DM price lists, and new orders are refused |
 
 Saving a new price for the same channel and format deactivates the old one, which is kept as history. Active prices
 are public: `GET /api/landing/prices`, and the media kit on the landing page (`GET /api/landing/media-kit`:
@@ -77,6 +77,12 @@ Approve the action on `/app/dm` (DM inbox). Then:
 strategies; the link gets `utm_source=ai0&utm_medium=telegram&utm_campaign=<first 8 chars of the order id>`.
 After the digest is posted, the order is `published` and linked to the digest post.
 
+When no digest strategy runs on the order's channel any more (the agent took it over in a cutover, or the binding is
+off), the order is placed automatically in the reserved lane instead (spec 036): a standalone sponsored post with the
+same creative, UTM link and `#реклама`, 10 minutes after the agent's digest series that day (else at the order's time,
+outside quiet hours). The order turns `scheduled` with a "reserved slot" badge; you get a `💰` alert. An order that
+cannot be placed (no date, no creative/link, no agent card, day missed) gets a "needs attention" badge and an Inbox item.
+
 ## 5. Published → reports
 
 Order statuses: `scheduled → published` (with `published_post_id`) `→ reported`.
@@ -101,6 +107,7 @@ Reports need post stats, so the stats collector must be running for the channel.
 |---|---|
 | Order stuck in `scheduled` | Was the action approved? Is the slot `failed` (`SELECT status, error FROM editor_slots WHERE id = (SELECT editor_slot_id FROM ad_orders WHERE id = …)`)? On the SP2 path `scheduled` is final. |
 | "creative invalid" on schedule | Photo needs exactly 1 image; text ≤ 4096 visible characters incl. the ad label (a long photo post becomes a text post with a large image preview); http(s) URLs only. |
-| Digest has no sponsor | Order must be `paid`, priced as `digest_sponsor`, with `publish_at` on today's Kyiv date, and the button URL set (it is the sponsor link). |
+| Digest has no sponsor | Order must be `paid`, priced as `digest_sponsor`, with `publish_at` on today's Kyiv date, and the button URL set (it is the sponsor link). If the channel has no digest strategy, look for the reserved slot / the "needs attention" reason instead. |
+| Paid orders that never went out | `node dist/cli/stuck-ad-orders.js` (read-only; `npm run ads:stuck-orders` locally). The service posts the same list to the Inbox after start and daily. Nothing is refunded or published automatically. |
 | No report after 24 h | `published_post_id` must be set and the post must have stats snapshots. |
 | Reschedule a failed ad | Fix the cause, then set the order back: `UPDATE ad_orders SET status='paid', editor_slot_id=NULL WHERE id=…`, and schedule again. |

@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException, Optional } from '@nestjs/common';
 import { AdOrdersRepository, CreateOrderInput, OrderPatch } from './ad-orders.repository';
 import { AdPricesRepository } from './ad-prices.repository';
 import { LiqpayService } from './liqpay.service';
@@ -6,6 +6,11 @@ import { AgentActionsRepository } from '../agent/agent-actions.repository';
 import { SponsoredCreative, SponsoredCreativeSchema, creativeFromText, lintSponsored, renderSponsored } from '../editor/post/sponsored';
 import { htmlToPlain } from '../editor/post/inline-markup';
 import type { AdOrderRow } from './ad-orders.types';
+import { SponsorOrdersRepository } from './sponsor-orders.repository';
+
+/** Spec 036: the sale guard's message (a digest sponsor is sold only where a digest strategy runs). */
+export const digestSponsorNotSold = (channel: string) =>
+  `digest_sponsor is not sold on ${channel}: no digest strategy (network-digest / topic-digest) runs there — the agent runs the channel, and its series have no sponsor slot`;
 
 export interface CreateOrderRequest {
   advertiser:    string;
@@ -41,6 +46,7 @@ export class AdOrdersService {
     private readonly liqpay:  LiqpayService,
     private readonly actions: AgentActionsRepository,
     private readonly prices:  AdPricesRepository,
+    @Optional() private readonly sponsors?: SponsorOrdersRepository,
   ) {}
 
   /** With a priceId the amount (UAH) and default channel come from the active price — never from the client. */
@@ -58,6 +64,9 @@ export class AdOrdersService {
       input.amount = Number(price.price_uah).toFixed(2);
       input.currency = 'UAH';
       input.channelId = req.channelId || price.channel_key;
+      if (price.format === 'digest_sponsor' && this.sponsors && !(await this.sponsors.digestRunsOn(input.channelId))) {
+        throw new BadRequestException(digestSponsorNotSold(input.channelId));
+      }
     } else if (!req.amount || !/^\d+(\.\d{1,2})?$/.test(req.amount)) {
       throw new BadRequestException('amount is required (decimal string) when no priceId is given');
     }
@@ -95,6 +104,11 @@ export class AdOrdersService {
     const o = await this.repo.findById(id);
     if (!o) throw new NotFoundException('order not found');
     if (o.status !== 'paid') throw new BadRequestException('order is not paid');
+    // Spec 036: a digest sponsor is placed automatically (the digest line, or a reserved sponsored post where no
+    // digest runs); a second, manual placement would publish it twice.
+    if (o.price_id && (await this.prices.findById(o.price_id))?.format === 'digest_sponsor') {
+      throw new BadRequestException('digest_sponsor orders are placed automatically on their publish day; set publish_at and the creative instead');
+    }
     const channelId = input.channelId || o.channel_id;
     if (!channelId) throw new BadRequestException('channelId is required');
     const at = parseDate(input.scheduledAt, 'scheduledAt') ?? o.publish_at;

@@ -23,6 +23,7 @@ import type { ResourceListItem } from '../editor/agents/resource-catalog';
 import type { AdDmContext } from './landing-config.service';
 import { buildAdDmUrl } from './landing-dm';
 import { publicMode } from './landing-pulse.service';
+import { sellablePriceSql } from '../payments/sponsor-orders.repository';
 import {
   LANDING_PLATFORMS, type LandingFeaturedEntry, type LandingPlatform, type LandingResource,
 } from './landing-resources.service';
@@ -262,7 +263,7 @@ export class LandingNetworksService {
       this.d.pool.query<GroupRow>(
         `SELECT id, name, landing_blurb_en, landing_order FROM meta_account_groups`).then((r) => r.rows),
       this.d.pool.query<{ channel_key: string }>(
-        `SELECT DISTINCT channel_key FROM ad_prices WHERE active`).then((r) => r.rows.map((x) => x.channel_key)),
+        `SELECT DISTINCT p.channel_key FROM ad_prices p WHERE p.active AND ${sellablePriceSql('p')}`).then((r) => r.rows.map((x) => x.channel_key)),
       this.d.adDm(),
     ]);
     return { entries, catalog, agents, groups, pricedKeys: priced, adDm };

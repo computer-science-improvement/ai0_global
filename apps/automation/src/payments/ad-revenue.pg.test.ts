@@ -23,6 +23,7 @@ let trackedId: string;
 
 async function cleanup() {
   await pool.query(`DELETE FROM ad_orders WHERE advertiser LIKE 'pgtest-%'`);
+  await pool.query(`DELETE FROM strategy_bindings WHERE ext_id LIKE 'pgtest-ads-%'`);
   await pool.query(`DELETE FROM published_posts WHERE channel_id = $1`, [CH]);
   await pool.query(`DELETE FROM editor_channels WHERE channel_key = $1`, [CH]);
   await pool.query(`DELETE FROM ad_prices WHERE channel_key = $1`, [CH]);
@@ -70,7 +71,16 @@ test('prices: one active per channel+format, history kept, public list + media k
   assert.equal(kit.title, 'PG Ads');
   assert.equal(kit.url, 'https://t.me/pgtest_ads');
   assert.equal(kit.subscribers, 2000);
-  assert.deepEqual(kit.prices.map((p) => p.format), ['digest_sponsor', 'post']);
+  // Spec 036: no digest strategy runs on the channel → its digest sponsor is not offered (kept for the owner, marked).
+  assert.deepEqual(kit.prices.map((p) => p.format), ['post']);
+  assert.deepEqual((await repo.list({ activeOnly: true, channelKey: CH, sellableOnly: true })).map((p) => p.format), ['post']);
+  assert.equal(active.find((p) => p.format === 'digest_sponsor')!.sellable, false);
+  await pool.query(
+    `INSERT INTO strategy_bindings (ext_id, type, channel_id, schedule, params, enabled) VALUES ('pgtest-ads-digest', 'network-digest', $1, '0 20 * * *', '{}', true)`,
+    [trackedId]);
+  const kit2 = (await repo.mediaKit()).find((c) => c.channelKey === CH)!;
+  assert.deepEqual(kit2.prices.map((p) => p.format), ['digest_sponsor', 'post']);
+  assert.equal((await repo.list({ activeOnly: true, channelKey: CH, sellableOnly: true })).length, 2);
   assert.equal((await repo.findById(second.id))!.note, 'від жовтня');
   assert.equal(await repo.deactivate(second.id), true);
   assert.equal(await repo.deactivate(second.id), false);
