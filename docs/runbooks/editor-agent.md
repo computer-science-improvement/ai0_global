@@ -103,7 +103,9 @@ Everything above can be done without SQL:
   recorded in `editor_channel_memory` as an inactive owner `rule`), `channels/:key/replan`,
   `channels/:key/memory`, `plans?date=&channel=`, `slots/:id`, `slots/:id/run`, `slots/:id/skip`,
   `runs?channel=&slot=&limit=`, `runs/:id`, `spend?days=`, `tools`, `tools/:name` (read tools only).
-  `replan` and `run` return at once; add `?wait=true` to wait for the agent run.
+  `replan` and `run` return at once; add `?wait=true` to wait for the agent run. `replan` replaces only the
+  future planned slots of the day (spec 034 FR-011; `?date=tomorrow` replans the next day — approval mode);
+  running, written, approved, pinned and reserved slots stay.
   "Run now" claims the slot (planned → running) and goes through the normal executor, so every
   publish guard still applies. Both refuse while `EDITOR_ENABLED` is not `true` or the channel is `off`.
 - **MCP for Claude Code:** copy `.mcp.json.example` to `.mcp.json`; the server runs

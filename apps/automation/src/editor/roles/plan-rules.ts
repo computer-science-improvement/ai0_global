@@ -4,11 +4,14 @@ import { SUPPORTED_FORMATS } from '../post/post-spec';
 import { isQuietHour, zonedToUtc } from './time';
 import { planScheduleErrors, PlanScheduleCtx, SkippedSeriesInput } from '../schedule/plan-schedule-rules';
 import { experimentQuotaErrors, type ExperimentQuota } from '../manager/experiment-quota';
+import { cardFeedIds, LIVE_SLOT_FIELDS, resolveSlotTopic, type LiveSpec } from '../live/live-slot';
 
 export const PlanSlotInput = z.object({
   time:          z.string().regex(/^([01]\d|2[0-3]):[0-5]\d$/).describe('Локальний час каналу HH:MM'),
   format:        z.string().min(1).max(20),
-  topic:         z.string().min(5).max(300).describe('Конкретна тема поста'),
+  topic:         z.string().min(5).max(300).optional().describe('Конкретна тема поста (обовʼязкова для fixed-слота)'),
+  // Spec 034 FR-010: live slots (topic chosen by the executor at slot time from a fresh item of the source).
+  ...LIVE_SLOT_FIELDS,
   angle:         z.string().max(400).optional().describe('Кут подачі / що саме підкреслити'),
   source_hints:  z.array(z.string().max(300)).max(5).default([]).describe('id джерел з картки, таблиці бібліотеки (library:recipes) або URL'),
   is_experiment: z.boolean().default(false),
@@ -31,6 +34,9 @@ export interface PlannedSlot {
   sourceHints:  string[];
   isExperiment: boolean;
   ideaId?:      string | null;
+  /** Spec 034 FR-010: a live slot (the topic is a label; the executor picks the item at slot time). */
+  topicMode?:   'fixed' | 'live';
+  live?:        LiveSpec | null;
 }
 
 export type PlanVerdict = { ok: true; slots: PlannedSlot[] } | { ok: false; errors: string[] };
@@ -60,7 +66,8 @@ export function remainingCapacity(
  */
 export function validatePlan(
   plan: SubmitPlan,
-  card: Pick<EditorCard, 'timezone' | 'postsPerDayMin' | 'postsPerDayMax' | 'quietStartHour' | 'quietEndHour' | 'minGapMinutes' | 'formats' | 'exploreRatio'>,
+  card: Pick<EditorCard, 'timezone' | 'postsPerDayMin' | 'postsPerDayMax' | 'quietStartHour' | 'quietEndHour' | 'minGapMinutes' | 'formats' | 'exploreRatio'>
+    & Partial<Pick<EditorCard, 'sources'>>,
   planDate: string,
   now: Date,
   reservedAt: Date[] = [],
@@ -111,9 +118,18 @@ export function validatePlan(
       if (Math.abs(at.getTime() - r.getTime()) < gapMs) errors.push(`${label}: занадто близько до резервного слоту`);
     }
     prev = at;
+    // Spec 034 FR-010: a fixed slot needs its topic; a live slot a source (its own, its series' or the card's feeds).
+    const t = resolveSlotTopic(s, {
+      label, seriesSource: s.series ? schedule?.series.find((x) => x.name === s.series)?.source ?? null : null, cardFeeds: cardFeedIds(card.sources),
+    });
+    if (!t.ok) errors.push(t.error);
     // Spec 025 FR-014: a directive's experiment slot is stored with is_experiment and the hint directive:<id>.
     const hints = [...(s.directive_id ? [`directive:${s.directive_id}`] : []), ...(s.series ? [`series:${s.series}`] : []), ...s.source_hints];
-    slots.push({ scheduledAt: at, format: s.format, topic: s.topic, angle: s.angle ?? null, sourceHints: hints, isExperiment: s.is_experiment || !!s.directive_id, ...(s.idea_id ? { ideaId: s.idea_id } : {}) });
+    slots.push({
+      scheduledAt: at, format: s.format, topic: t.ok ? t.topic : (s.topic ?? ''), angle: s.angle ?? null, sourceHints: hints,
+      isExperiment: s.is_experiment || !!s.directive_id, ...(s.idea_id ? { ideaId: s.idea_id } : {}),
+      ...(t.ok && t.live ? { topicMode: 'live' as const, live: t.live } : {}),
+    });
   });
   if (schedule) errors.push(...planScheduleErrors(plan, schedule, schedule.defaultRef));
 

@@ -1,5 +1,6 @@
 import type { Pool } from 'pg';
 import { rowToSlot, RESERVED_ONLY_RATIONALE, type EditorSlot } from '../repo/editor-plans.repository';
+import type { LiveSpec } from '../live/live-slot';
 import { rowToRule, ruleColumns, type ScheduleRule, type ScheduleRuleInput } from './schedule-rules';
 
 type Q = Pick<Pool, 'query'> & Partial<Pick<Pool, 'connect'>>;
@@ -18,6 +19,8 @@ export interface PinSlotInput {
   topic:       string;
   sourceHints: string[];
   seriesName:  string | null;
+  /** Spec 034 FR-010: a pin on a feed source is a live slot. */
+  live?:       LiveSpec | null;
 }
 
 /** Storage of schedule rules and their materialised pin slots. */
@@ -100,10 +103,11 @@ export class ScheduleRepository {
       const plan = await q.query(`SELECT id FROM editor_plans WHERE channel_key = $1 AND plan_date = $2 AND status = 'active' FOR UPDATE`, [p.channelKey, p.planDate]);
       const { rows } = await q.query(
         `INSERT INTO editor_slots (plan_id, channel_key, scheduled_at, kind, format, topic, source_hints, is_experiment, resource_ref,
-                                   schedule_rule_id, rule_date, series_name)
-         VALUES ($1, $2, $3, 'content', $4, $5, $6, false, $7, $8, $9, $10)
+                                   schedule_rule_id, rule_date, series_name, topic_mode, live_spec)
+         VALUES ($1, $2, $3, 'content', $4, $5, $6, false, $7, $8, $9, $10, $11, $12)
          ON CONFLICT (schedule_rule_id, rule_date) WHERE schedule_rule_id IS NOT NULL DO NOTHING RETURNING id`,
-        [plan.rows[0].id, p.channelKey, p.scheduledAt, p.format, p.topic, JSON.stringify(p.sourceHints), p.resourceRef, p.ruleId, p.ruleDate, p.seriesName]);
+        [plan.rows[0].id, p.channelKey, p.scheduledAt, p.format, p.topic, JSON.stringify(p.sourceHints), p.resourceRef, p.ruleId, p.ruleDate, p.seriesName,
+          p.live ? 'live' : 'fixed', p.live ? JSON.stringify(p.live) : null]);
       if (conn) await conn.query('COMMIT');
       return rows[0]?.id ?? null;
     } catch (err) {
@@ -128,6 +132,22 @@ export class ScheduleRepository {
     const { rows } = await this.pool.query(
       `SELECT * FROM editor_slots WHERE channel_key = $1 AND schedule_rule_id IS NOT NULL AND status NOT IN ('skipped','failed','expired')
           AND scheduled_at >= $2 AND scheduled_at < $3 ORDER BY scheduled_at`, [channelKey, from, to]);
+    return rows.map(rowToSlot);
+  }
+
+  /**
+   * Spec 034 FR-011: content slots of the day's active plan that a replan keeps (not pins — they are
+   * `pinsOn`; not repurposed posts): running, written, due within `keepUntil`, and news-watch slots.
+   * The planners treat them as fixed points (count, gap, series) like pins.
+   */
+  async keptOn(channelKey: string, planDate: string, keepUntil: Date): Promise<EditorSlot[]> {
+    const { rows } = await this.pool.query(
+      `SELECT s.* FROM editor_slots s JOIN editor_plans p ON p.id = s.plan_id
+        WHERE p.channel_key = $1 AND p.plan_date = $2::date AND p.status = 'active'
+          AND s.kind = 'content' AND s.schedule_rule_id IS NULL AND COALESCE(s.source_post->>'via', '') <> 'repurpose'
+          AND (s.status IN ('running','awaiting_approval','approved','published','shadowed')
+            OR (s.status = 'planned' AND (s.scheduled_at <= $3 OR COALESCE(s.live_spec->>'origin', '') = 'news_watch')))
+        ORDER BY s.scheduled_at`, [channelKey, planDate, keepUntil]);
     return rows.map(rowToSlot);
   }
 

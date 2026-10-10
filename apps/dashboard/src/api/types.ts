@@ -647,6 +647,18 @@ export interface EditorSlot {
   postSpec:        unknown;
   renderedPreview: string | null;
   error:           string | null;
+  /** Spec 034 FR-010: present only on a live slot — the executor picks the item at slot time. */
+  topicMode?:      'live';
+  liveSpec?:       EditorLiveSpec;
+}
+
+/** A live slot's source and brief (spec 034 FR-010); `item` is set when the news watch added the slot. */
+export interface EditorLiveSpec {
+  sources:       string[];
+  brief:         string;
+  max_age_hours: number;
+  origin:        'planner' | 'news_watch' | 'pin';
+  item?:         { url: string; title: string; published_at?: string | null } | null;
 }
 
 export interface EditorPlan {

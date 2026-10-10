@@ -157,8 +157,11 @@ export class ApprovalsRepository {
   async insertReplacement(rejected: EditorSlot, note: string): Promise<string | null> {
     if (rejected.replacesSlotId) return null; // a replacement is never replaced again
     const { rows } = await this.pool.query(
-      `INSERT INTO editor_slots (plan_id, channel_key, scheduled_at, kind, format, topic, angle, source_hints, is_experiment, resource_ref, idea_id, replaces_slot_id)
-       SELECT plan_id, channel_key, scheduled_at, 'content', format, topic, $2, source_hints, is_experiment, resource_ref, idea_id, id
+      // Spec 034: a live slot's replacement stays live (without the item the owner turned down).
+      `INSERT INTO editor_slots (plan_id, channel_key, scheduled_at, kind, format, topic, angle, source_hints, is_experiment, resource_ref, idea_id, replaces_slot_id,
+                                 topic_mode, live_spec)
+       SELECT plan_id, channel_key, scheduled_at, 'content', format, topic, $2, source_hints, is_experiment, resource_ref, idea_id, id,
+              topic_mode, live_spec - 'item'
          FROM editor_slots WHERE id = $1 AND kind = 'content'
        ON CONFLICT (replaces_slot_id) WHERE replaces_slot_id IS NOT NULL DO NOTHING
        RETURNING id`, [rejected.id, note.slice(0, 1000)]);

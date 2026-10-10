@@ -22,6 +22,7 @@ import { cardFrom } from './compose-tools';
 import type { ScheduleService } from '../schedule/schedule.service';
 import type { NetworkCtx } from '../network/network-context';
 import type { ExperimentQuota } from '../manager/experiment-quota';
+import { NO_FRESH_ITEM } from '../live/live-slot';
 
 export const SIMILARITY_LIMIT = 0.6;
 const MAX_MEMORY_ADDS_PER_RUN = 5;
@@ -194,11 +195,15 @@ export function buildRoleTools(d: RoleToolDeps): EditorTool[] {
     name: 'skip_slot',
     description: 'Пропустити слот з поясненням (завершує роботу). Краще пропустити, ніж опублікувати слабкий, повторний або неперевірений пост.',
     kind: 'terminal', roles: ['executor'],
-    input: z.object({ reason: z.string().min(5).max(500) }),
-    execute: async ({ reason }, ctx) => {
+    input: z.object({
+      reason: z.string().min(5).max(500),
+      // Spec 034 FR-010: a live slot with nothing fresh in its source.
+      code:   z.enum([NO_FRESH_ITEM]).optional().describe(`${NO_FRESH_ITEM} — у live-слоті немає свіжого неопублікованого матеріалу`),
+    }),
+    execute: async ({ reason, code }, ctx) => {
       const { slotId } = requireSlotCtx(ctx);
-      await d.plans.updateSlot(slotId, { status: 'skipped', error: `skipped by agent: ${reason}` });
-      return { ok: true, skipped: true };
+      await d.plans.updateSlot(slotId, { status: 'skipped', error: code ? `${code}: ${reason}` : `skipped by agent: ${reason}` });
+      return { ok: true, skipped: true, ...(code ? { code } : {}) };
     },
   });
 

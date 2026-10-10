@@ -113,8 +113,9 @@ function ownerTools(api: EditorApi, o: ToolOptions): McpTool[] {
     tool('get_spend', 'LLM spend in USD per Kyiv day per channel.',
       z.object({ days: z.number().int().min(1).max(90).default(7) }), ({ days }) => api.get(`/api/editor/spend${qs({ days })}`)),
 
-    tool('replan', 'Run the planner for a channel now (supersedes today\'s plan; its planned slots are skipped). Waits for the run.',
-      z.object({ channel }), ({ channel: c }) => api.post(`/api/editor/channels/${enc(c)}/replan?wait=true`)),
+    tool('replan', 'Run the planner for a channel now: replans the rest of today (or tomorrow with date=tomorrow). Only future planned slots are replaced; running, written, approved, pinned and reserved slots stay. Waits for the run.',
+      z.object({ channel, date: z.enum(['today', 'tomorrow']).optional() }),
+      ({ channel: c, date }) => api.post(`/api/editor/channels/${enc(c)}/replan?wait=true${date ? `&date=${date}` : ''}`)),
 
     tool('run_slot',
       'Execute one planned slot now through the normal executor and all publish guards. Shadow channels only: the post is rendered and stored, never published.',

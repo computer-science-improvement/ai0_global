@@ -5,7 +5,7 @@ import type { AgentsRepository } from '../agents/agents.repository';
 import type { OwnerInbox } from '../agents/owner-inbox';
 import type { CardSource, EditorCard } from '../card';
 import { CAPABILITIES, implementedFormats } from '../platform/capabilities';
-import type { EditorPlansRepository, EditorSlot } from '../repo/editor-plans.repository';
+import { REPLAN_KEEP_LEAD_MS, type EditorPlansRepository, type EditorSlot } from '../repo/editor-plans.repository';
 import { isQuietHour, localDate, localTimeLabel, zonedToUtc } from '../roles/time';
 import { DEFAULT_TZ } from '../time/resource-time';
 import { networkContext, NetworkContextDeps, NetworkCtx, resourceClock } from '../network/network-context';
@@ -21,6 +21,12 @@ import {
 } from './schedule-rules';
 import { applySeriesOp, SeriesFields, SeriesOp, seriesDiff, seriesKey } from './series-change';
 import { SeriesForSlot, seriesNote, seriesSourceMismatch, sourceHints } from './series-guard';
+import { LIVE_DEFAULT_MAX_AGE_HOURS, seriesLiveSources, type TopicMode } from '../live/live-slot';
+
+/** Spec 034 FR-010: a series (or pin) with a feed source runs as a live slot. */
+export function seriesTopicMode(src: SeriesSource | null): TopicMode {
+  return src?.kind === 'feed' ? 'live' : 'fixed';
+}
 
 /**
  * One place for the schedule (spec 023 FR-004…FR-007): the planners' rule context and pin
@@ -130,9 +136,19 @@ export class ScheduleService {
       : { [anchorRef]: all[anchorRef] ?? { tz: card.timezone, quiet: { start: card.quietStartHour, end: card.quietEndHour }, gapMin: card.minGapMinutes } };
     const rules = await this.d.rules.activeFor(Object.keys(clocks));
     const byId = new Map(rules.map((r) => [r.id, r]));
-    const pins = (await this.d.rules.pinsOn(card.channelKey, planDate))
+    const pins: PlanScheduleCtx['pins'] = (await this.d.rules.pinsOn(card.channelKey, planDate))
       .map((s) => ({ resourceRef: s.resourceRef ?? anchorRef, at: s.scheduledAt, ruleId: s.scheduleRuleId!, seriesName: s.seriesName ?? null, windowMin: byId.get(s.scheduleRuleId!)?.windowMin ?? 20 }))
       .filter((p) => clocks[p.resourceRef]);
+    // Spec 034 FR-011: what a replan keeps (running, written, due now, news watch) is fixed like a pin.
+    if (this.d.rules.keptOn) {
+      const kept = await this.d.rules.keptOn(card.channelKey, planDate, new Date(now.getTime() + REPLAN_KEEP_LEAD_MS)).catch(() => []);
+      for (const s of kept) {
+        const ref = s.resourceRef ?? anchorRef;
+        if (!clocks[ref]) continue;
+        pins.push({ resourceRef: ref, at: s.scheduledAt, ruleId: `kept:${s.id}`, seriesName: s.seriesName ?? null, windowMin: 0,
+          kept: { status: s.status, topic: s.topic, live: s.topicMode === 'live' } });
+      }
+    }
     const series = (net?.playbook ? normalizePlaybook(net.playbook).series : []).filter((s) => clocks[s.resource_ref]);
     return { planDate, defaultRef: anchorRef, now, clocks, rules, pins, series, checkSlotSeries: scope === 'single' };
   }
@@ -201,6 +217,10 @@ export class ScheduleService {
           topic: (r.brief ?? series?.brief ?? `Owner pin ${r.atLocal}`).slice(0, 300),
           sourceHints: [...sourceHints(r.source ?? series?.source ?? null), ...(series ? [`series:${series.name}`] : [])].slice(0, 5),
           seriesName: series?.name ?? null,
+          // Spec 034 FR-010: a pin on a feed source picks its item at slot time.
+          live: seriesTopicMode(r.source ?? series?.source ?? null) === 'live'
+            ? { sources: seriesLiveSources(r.source ?? series?.source ?? null), brief: (r.brief ?? series?.brief ?? 'Свіжа новина з фіду').slice(0, 400), max_age_hours: LIVE_DEFAULT_MAX_AGE_HOURS, origin: 'pin' }
+            : null,
         });
         if (id) n++;
       }
@@ -266,10 +286,15 @@ export class ScheduleService {
 
   /**
    * Publish guard of a slot: a live post inside the owner's blackout (`blackout_window`; owner pins are
-   * exempt) and a `required` series source the post does not use (`series_source_mismatch`).
+   * exempt), a `required` series source the post does not use (`series_source_mismatch`) and (spec 034)
+   * a live slot's post without its item's source URL (`live_source_missing`).
    */
   async publishGuard(slot: EditorSlot, refs: { libraryRef?: string | null; sourceUrl?: string | null }, o: { live: boolean; now: Date; card?: EditorCard | null; feeds?: CardSource[] }): Promise<Fail | null> {
     const ref = slot.resourceRef ?? `telegram:${slot.channelKey}`;
+    // Spec 034 FR-010: a live slot's post names the item it is about, so the ledger can stop a repeat.
+    if (slot.topicMode === 'live' && !refs.sourceUrl) {
+      return { error: 'live_source_missing', details: 'live-слот: вкажи source.url — посилання на свіжий матеріал, про який пост (або skip_slot з code no_fresh_item)' };
+    }
     if (o.live && !slot.scheduleRuleId) {
       const rules = await this.d.rules.activeFor([ref]);
       if (rules.some((r) => r.kind === 'blackout')) {
@@ -320,7 +345,11 @@ export class ScheduleService {
           if (s.active === false || s.resource_ref !== ref) continue;
           const c = parseCadence(s.cadence);
           for (const time of c ? instancesOn(c, wd) : []) {
-            items.push({ kind: 'series', resourceRef: ref, date, time, at: zonedToUtc(date, time, tz).toISOString(), name: s.name, format: s.format, locked: !!s.locked, origin: s.origin ?? 'agent' });
+            items.push({
+              kind: 'series', resourceRef: ref, date, time, at: zonedToUtc(date, time, tz).toISOString(), name: s.name, format: s.format, locked: !!s.locked, origin: s.origin ?? 'agent',
+              // Spec 034 FR-010: a series with a feed source is planned as a live slot (topic picked at slot time).
+              topicMode: seriesTopicMode(s.source ?? null), ...(s.source ? { source: seriesSourceLabel(s.source) } : {}),
+            });
           }
         }
         for (const r of rules) {
@@ -344,7 +373,7 @@ export class ScheduleService {
       return {
         id: s.id, resourceRef: ref, at: s.scheduledAt.toISOString(), date: localDate(s.scheduledAt, tz), time: localTimeLabel(s.scheduledAt, tz),
         kind: s.kind, status: s.status, format: s.format, topic: s.topic, seriesName: s.seriesName ?? null, scheduleRuleId: s.scheduleRuleId ?? null,
-        promo: !!s.promo,
+        promo: !!s.promo, topicMode: s.topicMode ?? 'fixed', ...(s.liveSpec ? { live: s.liveSpec } : {}),
       };
     }).filter((s) => s.date >= from && s.date <= to && refs.includes(s.resourceRef));
     return {
@@ -358,6 +387,7 @@ export class ScheduleService {
       series: (pb?.series ?? []).filter((s) => refs.includes(s.resource_ref)).map((s) => ({
         name: s.name, cadence: s.cadence, resource_ref: s.resource_ref, format: s.format, brief: s.brief, active: s.active !== false,
         source: s.source ?? null, source_mode: s.source_mode ?? 'suggested', origin: s.origin ?? 'agent', locked: !!s.locked, migrated_from: s.migrated_from ?? null,
+        topic_mode: seriesTopicMode(s.source ?? null),
       })),
       rules: rules.filter((r) => refs.includes(r.resourceRef)).map(ruleDto),
       items, slots,
@@ -577,7 +607,7 @@ export class ScheduleService {
 }
 
 export type ScheduleItem =
-  | { kind: 'series'; resourceRef: string; date: string; time: string; at: string; name: string; format: string; locked: boolean; origin: string }
+  | { kind: 'series'; resourceRef: string; date: string; time: string; at: string; name: string; format: string; locked: boolean; origin: string; topicMode: 'fixed' | 'live'; source?: string }
   | { kind: 'pin'; ruleId: string; resourceRef: string; date: string; time: string; at: string; format: string | null; seriesName: string | null; brief: string | null }
   | { kind: 'blackout'; ruleId: string; resourceRef: string; date: string; time: string; until: string }
   | { kind: 'frequency'; ruleId: string; resourceRef: string; date: string; min: number | null; max: number | null };

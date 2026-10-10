@@ -44,3 +44,19 @@ export function topMatches<T extends { text: string }>(draft: string, corpus: T[
     .sort((x, y) => y.score - x.score)
     .slice(0, k);
 }
+
+/**
+ * Share of `a`'s character trigrams that also occur in `b` (0–1). For a short text (a news title) against
+ * a longer one (a post): "is this story already told there?" — Dice punishes the length difference.
+ */
+export function containment(a: string, b: string): number {
+  const na = normalizeForSimilarity(a);
+  const nb = normalizeForSimilarity(b);
+  if (!na || !nb) return 0;
+  const ta = trigrams(na);
+  const tb = trigrams(nb);
+  let inter = 0;
+  let size = 0;
+  for (const [g, v] of ta) { size += v; inter += Math.min(v, tb.get(g) ?? 0); }
+  return size ? inter / size : 0;
+}

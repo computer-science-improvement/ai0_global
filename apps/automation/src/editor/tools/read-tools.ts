@@ -1,6 +1,5 @@
 import type { Pool } from 'pg';
 import { z } from 'zod';
-import Parser from 'rss-parser';
 import { channelOf, defineTool, EditorTool, ToolContext } from '../harness/tool';
 import type { ReadonlyQueryService } from '../db/readonly-query.service';
 import type { SkillSource } from '../skills/skill-library';
@@ -10,6 +9,7 @@ import { extractPage } from '../net/extract-page';
 import { topMatches } from '../post/similarity';
 import { EXTRA_MAX_CHARS, LIBRARY_EXTRA, LIBRARY_TABLE_NAMES } from './library-tables';
 import { DataStore } from '../../data/data-store';
+import { filterFresh, readFeed } from '../live/feed-items';
 import { queryDataset } from '../../data/data-query';
 
 export interface ReadToolDeps {
@@ -20,6 +20,8 @@ export interface ReadToolDeps {
   http?:     { lookup?: Lookup; get?: RawGet };
   /** Kyiv-local month/day for "today" filters; injectable for tests. */
   today?:    () => { month: number; day: number };
+  /** Clock for item ages (fetch_feed); injectable for tests. */
+  now?:      () => Date;
 }
 
 const ALL_ROLES = ['planner', 'executor', 'reviewer', 'composer', 'orchestrator', 'idea_reviewer', 'manager', 'builder'] as const;
@@ -35,11 +37,19 @@ function requireChannel(ctx: ToolContext): string {
   return channelKey;
 }
 
+/** The resource a run writes for: a platform slot's target, else the channel (spec 034 live dedup). */
+function slotResourceRef(ctx: ToolContext): string | null {
+  const ps = ctx.extras?.platformSlot as { resourceRef?: string } | undefined;
+  if (ps?.resourceRef) return ps.resourceRef;
+  const ch = channelOf(ctx);
+  return ch ? `telegram:${ch}` : null;
+}
+
 const clip = (s: unknown, n: number) => (typeof s === 'string' && s.length > n ? `${s.slice(0, n)}…` : s);
 
 export function buildReadTools(d: ReadToolDeps): EditorTool[] {
   const today = d.today ?? kyivToday;
-  const rss = new Parser({ timeout: 10_000 });
+  const now = d.now ?? (() => new Date());
 
   const getChannelStats = defineTool({
     name: 'get_channel_stats',
@@ -185,23 +195,35 @@ export function buildReadTools(d: ReadToolDeps): EditorTool[] {
 
   const fetchFeed = defineTool({
     name: 'fetch_feed',
-    description: 'Прочитати RSS/Atom-стрічку: останні записи з заголовком, посиланням, датою, коротким описом і зображенням.',
+    description: 'Прочитати RSS/Atom-стрічку: останні записи з заголовком, посиланням, датою, віком (age_hours), коротким описом і зображенням. since_hours — лише записи, не старші за N год; exclude_posted — відкинути вже використане на твоєму ресурсі і схоже на його пости за 7 днів (для live-слотів).',
     kind: 'read', roles: [...ALL_ROLES],
-    input: z.object({ url: z.string().url(), limit: z.number().int().min(1).max(30).default(10) }),
-    execute: async ({ url, limit }) => {
-      const res = await safeGet(url, { lookup: d.http?.lookup, get: d.http?.get, accept: 'application/rss+xml,application/atom+xml,application/xml,text/xml;q=0.9,*/*;q=0.5' });
-      if (res.status >= 400) return { error: 'http_error', details: `status ${res.status}` };
-      const feed = await rss.parseString(res.body);
-      return {
-        title: feed.title ?? null,
-        items: (feed.items ?? []).slice(0, limit).map((it: any) => ({
-          title:   it.title ?? null,
-          link:    it.link ?? null,
-          date:    it.isoDate ?? it.pubDate ?? null,
-          snippet: clip((it.contentSnippet ?? it.summary ?? '').replace(/\s+/g, ' ').trim(), 400),
-          image:   it.enclosure?.url ?? null,
-        })),
-      };
+    input: z.object({
+      url:            z.string().url(),
+      limit:          z.number().int().min(1).max(30).default(10),
+      since_hours:    z.number().min(0.5).max(720).optional().describe('Лише записи, не старші за стільки годин (записи без дати відкидаються)'),
+      exclude_posted: z.boolean().default(false).describe('Відкинути вже опубліковане/зайняте на ресурсі й схоже на пости останніх 7 днів'),
+    }),
+    execute: async ({ url, limit, since_hours, exclude_posted }, ctx) => {
+      const t = now();
+      let feed: Awaited<ReturnType<typeof readFeed>>;
+      try {
+        feed = await readFeed(url, t, d.http);
+      } catch (err: any) {
+        const m = /^status (\d+)/.exec(err?.message ?? '');
+        if (m) return { error: 'http_error', details: `status ${m[1]}` };
+        throw err;
+      }
+      // Spec 034 FR-010: freshness and (live slots) the ledger + 7-day repeat check, in code.
+      const resourceRef = exclude_posted ? slotResourceRef(ctx) : null;
+      if (exclude_posted && !resourceRef) return { error: 'no_resource', details: 'exclude_posted потребує каналу (контексту слота)' };
+      const r = since_hours != null || resourceRef
+        ? await filterFresh(feed.items, { sinceHours: since_hours ?? null, pool: resourceRef ? d.pool : undefined, resourceRef, now: t, excludeSlotId: ctx.slotId ?? null })
+        : null;
+      const items = (r ? r.kept : feed.items).slice(0, limit).map((it) => ({
+        title: it.title, link: it.link, date: it.date, age_hours: it.age_hours != null && it.age_hours >= 0 ? it.age_hours : null,
+        snippet: it.snippet, image: it.image,
+      }));
+      return { title: feed.title, items, ...(r ? { dropped: r.dropped } : {}) };
     },
   });
 

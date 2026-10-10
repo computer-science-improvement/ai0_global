@@ -10,7 +10,8 @@ applies_to: [executor]
 ## Кроки
 1. **Контекст.** Картка й памʼять каналу вже в промпті. Якщо формат незвичний — `load_skill` відповідного `format-*`.
 2. **Матеріал.** Залежно від підказок:
-   - RSS/новини → `fetch_feed`, обери свіже (≤ 48 год) і релевантне темі → `web_fetch` статті.
+   - RSS/новини → `fetch_feed` (`since_hours`), обери свіже і релевантне → `web_fetch` статті.
+   - **Live-слот** (теми немає) → `fetch_feed` з `since_hours` і `exclude_posted: true`, найсвіжіше важливе; нічого — `skip_slot` з code `no_fresh_item`.
    - Джерело картки `kind: api` → `fetch_api({source: ref, params})` (NASA APOD, космічні новини, TMDB, роздачі/знижки ігор, «цей день в історії»). `url` елемента — це `source.url`.
    - Бібліотека → спершу `library_catalog`, обери датасет за описом і цифрами (`unposted_here`, `today_items`), потім `query_data` лише з потрібними полями (2–5) і `limit` 3–5. Деталі — скіл `content-sources`.
    - Власний текст (поради, опитування) → можна без джерел, але без вигаданих фактів.

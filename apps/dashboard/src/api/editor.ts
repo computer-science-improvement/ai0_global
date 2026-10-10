@@ -53,13 +53,20 @@ export function useSetEditorMode() {
   });
 }
 
+/** What a replan covers (spec 034 FR-011): the rest of today, or the next day (approval mode plans it the evening before). */
+export type ReplanDay = 'today' | 'tomorrow';
+
 export function useReplan() {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: (key: string) => api<EditorRunOutcome>(`/api/editor/channels/${enc(key)}/replan`, { method: 'POST' }),
+    mutationFn: (v: string | { key: string; date?: ReplanDay }) => {
+      const { key, date } = typeof v === 'string' ? { key: v, date: undefined } : v;
+      return api<EditorRunOutcome>(`/api/editor/channels/${enc(key)}/replan${date === 'tomorrow' ? '?date=tomorrow' : ''}`, { method: 'POST' });
+    },
     // The planner runs in the background; refresh now and again shortly after.
-    onSuccess: (_d, key) => {
-      toast.success(`Planner started for ${key} — the new plan appears in a minute.`);
+    onSuccess: (_d, v) => {
+      const { key, date } = typeof v === 'string' ? { key: v, date: undefined } : v;
+      toast.success(`Planner started for ${key} — ${date === 'tomorrow' ? 'tomorrow is' : 'the rest of today is'} replanned; written posts stay. The new plan appears in a minute.`);
       qc.invalidateQueries({ queryKey: KEY });
       setTimeout(() => qc.invalidateQueries({ queryKey: KEY }), 20_000);
     },

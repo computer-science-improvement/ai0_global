@@ -111,7 +111,10 @@ function ChannelRow({ c, delay }: { c: EditorChannel; delay: number }) {
       </div>
       <ModeSwitch channelKey={c.channelKey} mode={c.mode} title={c.title} />
       <RowActions>
-        <TableAction icon="calendar-sync" title="Replan today" disabled={replan.isPending || c.mode === 'off'} onClick={() => replan.mutate(c.channelKey)} />
+        <TableAction icon="calendar-sync" title="Replan the rest of today" disabled={replan.isPending || c.mode === 'off'} onClick={() => replan.mutate({ key: c.channelKey })} />
+        {c.mode === 'approve' && (
+          <TableAction icon="calendar" title="Replan tomorrow" disabled={replan.isPending} onClick={() => replan.mutate({ key: c.channelKey, date: 'tomorrow' })} />
+        )}
         <Link to="/app/editor/$channel" params={{ channel: c.channelKey }} className="btn-act" title="Open channel" aria-label="Open channel">
           <Icon name="pencil" size={14} />
         </Link>

@@ -22,6 +22,8 @@ import { BudgetService } from './harness/budget.service';
 import { ReadonlyQueryService } from './db/readonly-query.service';
 import { SkillLibrary } from './skills/skill-library';
 import { buildReadTools } from './tools/read-tools';
+import { scanLive } from './live/feed-items';
+import { NewsWatchService } from './live/news-watch';
 import { buildComposeTools } from './tools/compose-tools';
 import { buildRoleTools } from './tools/role-tools';
 import { buildApiTools } from './tools/api-tools';
@@ -1100,6 +1102,12 @@ export const EDITOR_PROVIDERS = [
           derived: derivedPorts(pool, ideas, infra, ports.holds ?? null),
           // Spec 034 FR-002: humour / slang / emoji of a slot's target resource (owner-only switches, off by default).
           voiceOf: async (ref) => { const f = await infra.profiles.formatOf(ref); return { humor: f.prefs.humor, slang: f.prefs.slang, emoji: f.prefs.emoji }; },
+          // Spec 034 FR-010: a live slot's feeds are read by code first (fresh, unposted, not a repeat).
+          live: {
+            scan: async (slot, card) => slot.liveSpec
+              ? scanLive({ pool }, { spec: slot.liveSpec, resourceRef: slot.resourceRef ?? `telegram:${slot.channelKey}`, card: card.sources, now: new Date(), excludeSlotId: slot.id })
+              : null,
+          },
         });
       },
     },
@@ -1148,8 +1156,13 @@ export const EDITOR_PROVIDERS = [
           paused,
           log: (m) => logger.warn(m),
         });
+        // Spec 034 FR-011: news resources check their feeds on a cadence and add live slots for fresh items (no LLM).
+        const newsWatch = new NewsWatchService({
+          pool, profile: async (ref) => (await infra.profiles.get(ref))?.profile ?? null, log: (m) => logger.warn(m),
+        });
         return new EditorScheduler({
           pool, channels: repos.channels, plans: repos.plans, runner, reserved,
+          newsWatch: (card, now) => newsWatch.check(card, now),
           enabled: () => isEnabled(cfg),
           orchestrate: cfg.get<string>('EDITOR_ORCHESTRATION') === 'off' ? undefined : (card) => network.runOrchestrator(card),
           // Spec 024: the auto-duplicate gate is pinned at each anchor's plan-day boundary.
