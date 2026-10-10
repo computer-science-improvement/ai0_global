@@ -3,8 +3,10 @@ import { localDate } from '../roles/time';
 import type { Pool } from 'pg';
 import type { ResourceCatalog } from '../agents/resource-catalog';
 import { compactKpis, computeKpis, DailySeries, dayBefore, ScopeKpis } from './kpi-math';
+import { qualitySignature, slimQuality, SqlQuality, type ResourceQuality } from './quality-digest';
 
-export const DIGEST_LIMIT_CHARS = 12_000;
+/** Spec 034 T4: the quality blocks (≤ ~3k chars per busy resource) raised the bound from 12k; render() slims to it. */
+export const DIGEST_LIMIT_CHARS = 20_000;
 
 export interface ResourceDigest {
   ref:       string;
@@ -13,6 +15,8 @@ export interface ResourceDigest {
   health:    string | null;
   kpis:      ReturnType<typeof compactKpis>;
   anomalies: string[];
+  /** Spec 034 FR-006: the content-quality block (7 days); null when it could not be read. */
+  quality?:  ResourceQuality | null;
 }
 
 export interface KpiDigest {
@@ -68,6 +72,8 @@ export interface KpiDigestDeps {
   /** The agents' daily cap; `capUsd` (llm_budgets, owner-editable) wins when given. */
   globalCapUsd: number;
   capUsd?: () => Promise<number>;
+  /** Spec 034 FR-006: the quality reader (default: SQL on the same pool). */
+  quality?: Pick<SqlQuality, 'digest'>;
   now?:    () => Date;
 }
 
@@ -75,6 +81,38 @@ const kyivDay = (d: Date) => d.toLocaleDateString('sv-SE', { timeZone: 'Europe/K
 
 function series(): { viewsPerPost: DailySeries; engagementRate: DailySeries; posts: DailySeries; followerDelta: DailySeries; joins: DailySeries; revenue: DailySeries } {
   return { viewsPerPost: new Map(), engagementRate: new Map(), posts: new Map(), followerDelta: new Map(), joins: new Map(), revenue: new Map() };
+}
+
+/**
+ * The digest hash the MANAGER's skip compares (spec 021, extended by spec 034 FR-006): the KPIs, the open
+ * directives and the quality signature — a new critic reject/revise, a new owner rejection/edit or a new quality
+ * flag (cap overflow, low pass rate) changes it, so such a run is never skipped.
+ */
+export function digestHash(d: Pick<KpiDigest, 'resources' | 'directives'>): string {
+  return createHash('sha1').update(JSON.stringify({
+    r: d.resources.map((x) => [x.ref, x.kpis]), o: d.directives.open.map((x) => [x.id, x.status]), q: qualitySignature(d.resources),
+  })).digest('hex');
+}
+
+const flagged = (r: ResourceDigest) => (r.quality?.flags.length ?? 0) > 0;
+
+/** See KpiDigestService.render. */
+export function renderDigest(d: KpiDigest, limit = DIGEST_LIMIT_CHARS): string {
+  const strip = (x: object) => JSON.stringify({ ...x, raw: undefined, hash: undefined });
+  const map = (f: (r: ResourceDigest) => object) => ({ ...d, resources: d.resources.map(f) });
+  const short = (r: ResourceDigest) => (r.quality ? { ...r, quality: slimQuality(r.quality, { samples: flagged(r) ? 1 : 0, sampleChars: 200 }) } : r);
+  const steps: Array<() => string> = [
+    () => strip(d),
+    () => strip(map((r) => (r.quality && !flagged(r) ? { ...r, quality: slimQuality(r.quality, { samples: 0, sampleChars: 0 }) } : r))),
+    () => strip(map(short)),
+    () => strip(map((r) => (r.anomalies.length || flagged(r) ? short(r) : { ref: r.ref, agent: r.agent, anomalies: [], note: 'без аномалій і прапорців якості' }))),
+  ];
+  let s = '';
+  for (const step of steps) {
+    s = step();
+    if (s.length <= limit) return s;
+  }
+  return `${s.slice(0, limit - 20)}…(обрізано)`;
 }
 
 /**
@@ -134,6 +172,10 @@ export class KpiDigestService {
       `SELECT resource_ref, resource_health->>'state' AS state FROM resource_profiles WHERE resource_ref = ANY($1::text[])`, [refs]);
     const healthOf = new Map(health.map((h) => [h.resource_ref, h.state as string | null]));
 
+    // Spec 034 FR-006: what the agents wrote and how the critic and the owner judged it (best effort: a failure
+    // leaves the KPI digest intact with quality null).
+    const quality = await (this.d.quality ?? new SqlQuality(this.d.pool)).digest(refs, now).catch(() => null);
+
     const raw = new Map<string, ScopeKpis>();
     const out: ResourceDigest[] = resources.map((r) => {
       const k = computeKpis(data.get(r.ref)!, localToday(r.ref));
@@ -141,6 +183,7 @@ export class KpiDigestService {
       return {
         ref: r.ref, title: r.title, agent: r.agent, health: healthOf.get(r.ref) ?? null, kpis: compactKpis(k),
         anomalies: Object.entries(k).filter(([, m]) => m.anomaly).map(([n]) => n),
+        quality: quality?.get(r.ref) ?? null,
       };
     }).sort((a, b) => b.anomalies.length - a.anomalies.length || a.ref.localeCompare(b.ref));
 
@@ -184,20 +227,16 @@ export class KpiDigestService {
       },
       compliance: await complianceOf(this.d.pool),
     };
-    const hash = createHash('sha1').update(JSON.stringify({ r: out.map((x) => [x.ref, x.kpis]), o: digest.directives.open.map((x) => [x.id, x.status]) })).digest('hex');
-    return { ...digest, hash, raw };
+    return { ...digest, hash: digestHash(digest), raw };
   }
 
-  /** Prompt text under DIGEST_LIMIT_CHARS: anomalies first; quiet resources lose their detail when it does not fit. */
+  /**
+   * Prompt text under DIGEST_LIMIT_CHARS: anomalies and quality flags first. When it does not fit: the sample
+   * texts of resources without quality flags go first, then every resource keeps at most one short sample, then
+   * quiet resources (no anomaly, no quality flag) lose their detail, then the text is cut.
+   */
   render(d: KpiDigest): string {
-    const full = JSON.stringify({ ...d, raw: undefined, hash: undefined }, null, 0);
-    if (full.length <= DIGEST_LIMIT_CHARS) return full;
-    const slim = {
-      ...d, raw: undefined, hash: undefined,
-      resources: d.resources.map((r) => (r.anomalies.length ? r : { ref: r.ref, agent: r.agent, anomalies: [], note: 'без аномалій' })),
-    };
-    const s = JSON.stringify(slim);
-    return s.length <= DIGEST_LIMIT_CHARS ? s : `${s.slice(0, DIGEST_LIMIT_CHARS - 20)}…(обрізано)`;
+    return renderDigest(d);
   }
 
   /** Daily snapshot per resource (kpi_snapshots); idempotent per day. */

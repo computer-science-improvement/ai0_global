@@ -32,6 +32,7 @@ import { NetworkError, ResourceChip, errorText } from './NetworkUi';
 export const DIRECTIVE_KIND_LABEL: Record<DirectiveKind, string> = {
   advice: 'advice', task: 'task', format_shift: 'format shift', frequency: 'frequency', repost: 'repost', cross_promo: 'cross-promo',
   pause_series: 'pause series', experiment: 'experiment', pause_resource: 'pause resource', strategy: 'strategy',
+  voice_fix: 'voice fix', format_mix: 'format mix',
 };
 
 export const DIRECTIVE_STATUS_LABEL: Record<DirectiveStatus, string> = {
@@ -67,6 +68,7 @@ const CONTEST_REASON: Record<ContestCheck['reason_kind'], { label: string; layer
 export const METRIC_LABEL: Record<string, string> = {
   views_per_post: 'views/post', engagement_rate: 'engagement', posts: 'posts', followers_growth: 'follower growth',
   transitions: 'transitions', revenue: 'revenue',
+  critic_pass_rate: 'critic pass rate', owner_rejection_rate: 'owner rejections', poll_share: 'poll share',
 };
 export const metricLabel = (m: string) => METRIC_LABEL[m] ?? m.replace(/_/g, ' ');
 

@@ -1,5 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { api } from './client';
+import type { QualityCheckEntry, ResourceQuality } from '../lib/quality-view';
 
 // Spec 021: the MANAGER's directives to orchestrators, its review timeline and
 // the KPI digest it reads. Responses are camelCase at the row level; params,
@@ -7,6 +8,8 @@ import { api } from './client';
 
 export const DIRECTIVE_KINDS = [
   'advice', 'task', 'format_shift', 'frequency', 'repost', 'cross_promo', 'pause_series', 'experiment', 'pause_resource', 'strategy',
+  // Spec 034 FR-006: content-quality kinds.
+  'voice_fix', 'format_mix',
 ] as const;
 export type DirectiveKind = typeof DIRECTIVE_KINDS[number];
 
@@ -46,7 +49,7 @@ export interface DirectiveVerification {
 
 /** The executor's change (spec 025 FR-009…FR-015); `op` says which shape it is. */
 export interface DirectiveChange {
-  op:            'per_day' | 'format_weight' | 'series_active' | 'pause_resource' | 'experiment' | 'playbook_build' | string;
+  op:            'per_day' | 'format_weight' | 'series_active' | 'pause_resource' | 'experiment' | 'playbook_build' | 'voice_fix' | 'format_mix' | string;
   kind?:         DirectiveKind;
   target?:       'playbook' | 'card' | 'resource' | 'quota' | 'owner';
   resource_ref?: string;
@@ -69,6 +72,15 @@ export interface DirectiveChange {
   activated_at?: string;
   structural?:   boolean;
   noop?:         boolean;
+  /** voice_fix (spec 034): rules appended to the playbook and example posts merged into it. */
+  rules?:        string[];
+  examples?:     Array<{ format: string; text: string; verdict: 'good' | 'bad'; note?: string; resource_ref?: string }>;
+  evidence_slots?: string[];
+  /** format_mix (spec 034): weight cuts (after 0 = dropped), dropped formats, lowered caps. */
+  weights?:      Array<{ format: string; before: number; after: number }>;
+  drop?:         string[];
+  caps?:         { polls_per_week?: { before: number | null; after: number }; questions_to_readers_per_day?: { before: number | null; after: number } };
+  reasons?:      string[];
 }
 
 export interface DirectiveExpected {
@@ -130,6 +142,8 @@ export interface ManagerReview {
   verdict:      ReviewVerdict;
   summary:      string;
   directiveIds: string[];
+  /** Spec 034 FR-006: the manager's content-quality checklist per resource (null on older and skipped runs). */
+  qualityCheck?: QualityCheckEntry[] | null;
   createdAt:    string;
 }
 
@@ -153,6 +167,8 @@ export interface DigestResource {
   health:    string | null;
   kpis:      Partial<Record<KpiName, KpiValue>>;
   anomalies: string[];
+  /** Spec 034 FR-006: the 7-day content-quality block (null when it could not be read). */
+  quality?:  ResourceQuality | null;
 }
 
 export interface KpiDigest {

@@ -12,6 +12,7 @@ import type { Directive, DirectivesRepository } from './directives.repository';
 import type { KpiDigest, KpiDigestService } from './kpi-digest.service';
 import type { ScopeKpis } from './kpi-math';
 import { DirectiveExecution, PROMO_KINDS } from './executors';
+import { isQualityMetric, qualityMetricValue } from './quality-digest';
 
 export const DEFAULT_MANAGER_TIMES = ['08:00', '13:00', '18:00', '22:30'];
 export const DELIVERY_DEBOUNCE_MS = 10 * 60_000;
@@ -63,14 +64,15 @@ export function bindingLabel(x: Pick<Directive, 'binding'>): string {
 export function managerSystemPrompt(o: { agent: Agent; now: Date; digest: string; memory: string; skills: { inline: string; listed: string } }): string {
   const tz = 'Europe/Kyiv';
   return [
-    `Ти — ${o.agent.name} (@${o.agent.handle}), менеджер медіамережі ai0. Бачиш усі ресурси, KPI і директиви. Ти НЕ публікуєш і не керуєш постами напряму — лише даєш директиви оркестраторам.`,
-    '«Продовжуйте як раніше» (submit_review verdict=continue) — нормальний і частий результат. Директива — лише коли цифри дайджесту дають конкретну підставу (аномалія, стійкий тренд, явна можливість).',
-    'Правила власника важливіші за твої директиви. Не давай директив на метриках зі stale. Не більше 3 директив за прогін.',
+    `Ти — ${o.agent.name} (@${o.agent.handle}), менеджер медіамережі ai0. Бачиш усі ресурси, KPI, якість текстів і директиви. Ти НЕ публікуєш і не керуєш постами напряму — лише даєш поради й директиви оркестраторам.`,
+    'Кожен прогін — два аудити: цифри (KPI) і якість контенту (блок quality у дайджесті: вердикти критика, опитування й питання до читачів проти лімітів, відхилення й правки власника, зразки текстів). Чекліст якості зі скіла manager-workflow проходиш по кожному активному ресурсу з доказами з дайджесту.',
+    '«continue» (submit_review) — лише після чекліста: quality_check по кожному ресурсу з цифрами чи цитатами. Проблема з якістю (тексти звучать як ШІ, безглузді, забагато опитувань чи питань, власник відхиляє чи править) — це порада voice_fix або format_mix, а не «все гаразд». Директива на KPI — коли цифри дають конкретну підставу (аномалія, стійкий тренд, явна можливість).',
+    'Правила власника важливіші за твої директиви. Не давай директив на метриках зі stale. Не більше 3 директив за прогін. Не мікроменеджь окремі пости — працюй через правила, приклади, ваги й ліміти.',
     'Кожну подаєш з binding: порада (advice, за замовчуванням — оркестратор може відхилити) або директива (directive, обовʼязкова — лише при anomaly чи ескалації; структурні — завжди директива).',
     '',
     `Зараз ${localDate(o.now, tz)} ${localTimeLabel(o.now, tz)} (Київ).`,
     '',
-    '## KPI-дайджест (7 днів проти 28-денної норми; d — зміна %, z — у шумах)',
+    '## Дайджест: KPI (7 днів проти 28-денної норми; d — зміна %, z — у шумах) і quality по ресурсах (7 днів)',
     o.digest,
     '',
     '## Памʼять менеджера (уроки минулих директив)',
@@ -82,6 +84,16 @@ export function managerSystemPrompt(o: { agent: Agent; now: Date; digest: string
     '## Інші скіли (load_skill)',
     o.skills.listed || '- немає',
   ].join('\n');
+}
+
+/**
+ * Spec 021 skip rule, extended by spec 034 FR-006: a run without an LLM call only when the digest hash (KPIs,
+ * open directives and the quality signature: newest critic issue, newest owner rejection/edit, quality flags)
+ * is the same as at the last review and no KPI anomaly is flagged.
+ */
+export function canSkip(last: { digestHash: string | null } | null, digest: Pick<KpiDigest, 'hash' | 'resources'>): boolean {
+  if (!last || last.digestHash !== digest.hash) return false;
+  return !digest.resources.some((r) => r.anomalies.length);
 }
 
 /**
@@ -131,8 +143,7 @@ export class ManagerRunner {
     const digest = await this.d.digest.build();
     try { await this.d.digest.snapshot(digest); } catch { /* snapshots are best-effort */ }
     const last = await this.d.repo.lastReview();
-    const anomalies = digest.resources.some((r) => r.anomalies.length);
-    if (last && last.digestHash === digest.hash && !anomalies) {
+    if (canSkip(last, digest)) {
       await this.d.repo.addReview({ verdict: 'skipped', summary: 'без змін з минулого прогону', digestHash: digest.hash });
       return { skipped: 'digest unchanged, no anomalies' };
     }
@@ -143,7 +154,7 @@ export class ManagerRunner {
     const res = await this.d.loop.run({
       role: 'manager', channelKey: null, model: resolveModel('manager', this.d.env, null, { agentModel: m.model, defaultModel: await readDefaultModel(this.d.defaultModel), reasoningEffort: m.reasoningEffort }),
       system: managerSystemPrompt({ agent: m, now: this.now(), digest: this.d.digest.render(digest), memory, skills: { inline: inlineSkill, listed } }),
-      user: 'Проаналізуй дайджест. Якщо все в нормі — submit_review continue. Якщо є підстава — file_directive (до 3) і submit_review directives.',
+      user: 'Проаналізуй дайджест: KPI і якість контенту по кожному ресурсу (чекліст якості). Є підстава — file_directive (до 3; для якості — voice_fix / format_mix) і submit_review directives. Нічого робити не треба — submit_review continue, але з quality_check по кожному активному ресурсу з доказами.',
       tools: this.d.registry.forRole('manager'), maxSteps: 20,
       agent: { id: m.id, handle: m.handle, limitUsd: m.dailyBudgetUsd },
       extras: { agent: m, skills: ctx.skills, digest },
@@ -212,6 +223,11 @@ export class ManagerRunner {
     if (!dir.expected) return null;
     const metric = dir.expected.metric;
     const refs = dg.resources.filter((r) => (dir.expected!.resource_ref ? r.ref === dir.expected!.resource_ref : r.agent && r.agent === this.handleCache.get(dir.toAgentId)));
+    // Spec 034 FR-006: a quality metric (%) comes from the resources' quality block; no data = stale.
+    if (isQualityMetric(metric)) {
+      const q = refs.map((r) => qualityMetricValue(r.quality, metric)).filter((v): v is number => v != null);
+      return { value: q.length ? q.reduce((a, b) => a + b, 0) / q.length : null, stale: q.length === 0, resources: refs.map((r) => r.ref) };
+    }
     const vals = refs.map((r) => (dg.raw.get(r.ref) as ScopeKpis | undefined)?.[metric as keyof ScopeKpis]).filter(Boolean);
     const nums = vals.map((v) => v!.value7d).filter((v): v is number => v != null);
     return { value: nums.length ? nums.reduce((a, b) => a + b, 0) / nums.length : null, stale: vals.length > 0 && vals.every((v) => v!.stale), resources: refs.map((r) => r.ref) };

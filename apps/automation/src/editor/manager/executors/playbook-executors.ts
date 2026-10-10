@@ -71,6 +71,8 @@ export function describe(c: AnyChange): string {
     case 'pause_resource': return `${c.resource_ref}: paused for ${c.days} day(s) until ${c.until}`;
     case 'experiment': return `${c.resource_ref}: experiment "${c.angle.slice(0, 80)}"${c.format ? ` (${c.format})` : ''} — ${c.slots} slot(s) within ${c.within_days} day(s)`;
     case 'playbook_build': return `playbook rebuild from the directive's brief (the owner activates the new version)`;
+    case 'voice_fix': return c.reasons.join('; ') || `${c.resource_ref}: voice rules and example posts`;
+    case 'format_mix': return c.reasons.join('; ') || `${c.resource_ref}: fewer polls / lower caps`;
   }
 }
 

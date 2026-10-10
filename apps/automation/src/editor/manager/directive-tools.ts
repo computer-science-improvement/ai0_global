@@ -12,6 +12,7 @@ import { admitDirective, BINDINGS, checkBinding, ESCALATION_WINDOW_MS, metricVal
 import type { DirectiveExecution } from './executors';
 import { describe as describeChange } from './executors/playbook-executors';
 import { TASK_REF_TYPES, type TaskRefResult, type TaskRefType } from './executors/task-report';
+import { isQualityMetric, qualityActive } from './quality-digest';
 
 export const MAX_DIRECTIVES_PER_RUN = 3;
 export const REJECT_COOLDOWN_MS = 48 * 3600_000;
@@ -42,7 +43,7 @@ export const FileDirectiveInput = z.object({
   kind:      z.enum(DIRECTIVE_KINDS),
   binding:   z.enum(BINDINGS).describe('advice — порада (за замовчуванням; оркестратор може відхилити); directive — обовʼязкова команда: лише при anomaly метрики expected або ескалації після відхиленої поради; структурні типи — завжди directive'),
   body:      z.string().min(10).max(800).describe('Що саме змінити — конкретно'),
-  params:    z.record(z.string(), z.unknown()).default({}).describe('Напр. {format:"ig_carousel", weight_delta:0.2} або {change_pct:-20} або для cross_promo {source_ref, target_ref, window_days}; experiment {resource_ref?, angle, format?, slots 1–3, within_days 1–7}; strategy {brief?}'),
+  params:    z.record(z.string(), z.unknown()).default({}).describe('Напр. {format:"ig_carousel", weight_delta:0.2} або {change_pct:-20} або для cross_promo {source_ref, target_ref, window_days}; experiment {resource_ref?, angle, format?, slots 1–3, within_days 1–7}; strategy {brief?}; voice_fix {resource_ref, rules?: [1–3 правила голосу], bad_slot_ids?: [id відхилених постів], good_examples?: [{text, note, format?}]}; format_mix {resource_ref, weights?: {poll: 0.1}, drop?: ["quiz"], polls_per_week?, questions_to_readers_per_day?} — лише зниження'),
   rationale: z.string().min(20).max(1200),
   evidence:  z.record(z.string(), z.unknown()).describe('Цифри з дайджесту, на які спирається директива'),
   expected:  z.object({
@@ -52,6 +53,60 @@ export const FileDirectiveInput = z.object({
   review_in_days: z.number().int().min(REVIEW_DAYS.min).max(REVIEW_DAYS.max).default(7),
 });
 export type FileDirective = z.infer<typeof FileDirectiveInput>;
+
+/** Spec 034 FR-006: the content-quality checklist items (manager-workflow). */
+export const QUALITY_CHECK_ITEMS = ['ai_likeness', 'sense', 'voice', 'audience_asks', 'owner_feedback', 'format_fit'] as const;
+/** A note that explains an "ok" despite code flags, or a "continue" despite an issue, is at least this long. */
+export const QUALITY_NOTE_MIN = 20;
+
+export const QualityCheckEntry = z.object({
+  resource_ref: z.string().min(3).max(200),
+  status:       z.enum(['ok', 'issue']),
+  evidence:     z.string().min(20).max(400).describe('Цифри чи цитати з блоку quality: вердикти критика й нотатки, опитування/питання проти лімітів, відхилення й правки власника, зразок тексту'),
+  issues:       z.array(z.enum(QUALITY_CHECK_ITEMS)).max(QUALITY_CHECK_ITEMS.length).default([]),
+  note:         z.string().max(400).optional().describe('Чому «ok», хоча код позначив прапорці; або чому continue без поради при status issue'),
+});
+export type QualityCheck = z.infer<typeof QualityCheckEntry>;
+
+export const SubmitReviewInput = z.object({
+  verdict:       z.enum(['continue', 'directives']),
+  summary:       z.string().min(5).max(1500),
+  directive_ids: z.array(z.string().uuid()).max(3).default([]),
+  quality_check: z.array(QualityCheckEntry).max(40).describe('Чекліст якості по кожному ресурсу з активністю за 7 днів (дайджест, блок quality)'),
+});
+export type SubmitReview = z.infer<typeof SubmitReviewInput>;
+
+/**
+ * Spec 034 FR-006: the code side of the quality checklist. Every resource with activity in the quality block must
+ * be answered with evidence (a number or a quote); a resource the code flagged cannot be "ok" without a note; a
+ * "continue" over an issue needs a note saying why no advice is filed now. Null = the review may be stored.
+ */
+export function checkQualityReview(i: Pick<SubmitReview, 'verdict' | 'quality_check'>, dg: Pick<KpiDigest, 'resources'> | null | undefined): { error: string; details: string } | null {
+  const rows = dg?.resources ?? [];
+  const byRef = new Map(rows.map((r) => [r.ref, r]));
+  const unknown = i.quality_check.filter((e) => !byRef.has(e.resource_ref)).map((e) => e.resource_ref);
+  if (unknown.length) return { error: 'quality_check_unknown', details: `таких ресурсів немає в дайджесті: ${unknown.join(', ')}` };
+  const given = new Set(i.quality_check.map((e) => e.resource_ref));
+  const missing = rows.filter((r) => qualityActive(r.quality) && !given.has(r.ref)).map((r) => r.ref);
+  if (missing.length) {
+    return { error: 'quality_check_missing', details: `пройди чекліст якості й для: ${missing.join(', ')} (quality_check: status, evidence з цифрами чи цитатами, issues)` };
+  }
+  for (const e of i.quality_check) {
+    const flags = byRef.get(e.resource_ref)?.quality?.flags ?? [];
+    const note = (e.note ?? '').trim().length >= QUALITY_NOTE_MIN;
+    if (!/\d|«|"/.test(e.evidence)) {
+      return { error: 'quality_evidence_required', details: `${e.resource_ref}: evidence має містити цифри (вердикти, частки, ліміти) або цитату з тексту — не загальні слова` };
+    }
+    if (e.status === 'issue' && !e.issues.length) return { error: 'quality_issues_required', details: `${e.resource_ref}: status issue — назви пункти чекліста в issues` };
+    if (e.status === 'ok' && flags.length && !note) {
+      return { error: 'quality_flags_ignored', details: `${e.resource_ref}: код позначив ${flags.join(', ')} — познач status issue або поясни в note (≥ ${QUALITY_NOTE_MIN} символів), чому це не проблема` };
+    }
+    if (i.verdict === 'continue' && e.status === 'issue' && !note) {
+      return { error: 'quality_issue_unaddressed', details: `${e.resource_ref}: проблема якості (${e.issues.join(', ')}), а verdict continue — подай пораду voice_fix чи format_mix (verdict directives) або поясни в note, чому зараз не треба (напр. порада вже відкрита)` };
+    }
+  }
+  return null;
+}
 
 export interface DirectiveToolDeps {
   repo:    DirectivesRepository;
@@ -146,6 +201,10 @@ export async function fileDirective(d: DirectiveToolDeps, i: FileDirective, o: {
     const rows = o.digest.resources.filter((r) => (ref ? r.ref === ref : r.agent === target.handle));
     const stale = rows.length > 0 && rows.every((r) => (r.kpis as any)[i.expected!.metric]?.stale);
     if (stale) return { error: 'stale_metric', details: `${i.expected.metric} без свіжих даних — директиви на ній не даються` };
+    // Spec 034 FR-006: a quality metric needs data in the quality block (critic verdicts, owner decisions, slots).
+    if (isQualityMetric(i.expected.metric) && metricValue(o.digest, target.handle, i.expected.metric, ref) == null) {
+      return { error: 'stale_metric', details: `${i.expected.metric}: за 7 днів немає даних якості для ${ref ?? `@${target.handle}`} — директиви на ній не даються` };
+    }
   }
   // Spec 025 FR-002: the kind × binding matrix (kind-only rules first, structural advice after the dry-run).
   const kindRule = checkBinding(i.kind, i.binding, false);
@@ -233,7 +292,7 @@ export function buildDirectiveTools(d: DirectiveToolDeps): EditorTool[] {
   const fileTool = defineTool({
     name: 'file_directive',
     description: [
-      'Дати директиву оркестратору (@handle). Лише коли є підстава в цифрах дайджесту; «продовжуйте» — нормальний результат без директив.',
+      'Дати пораду чи директиву оркестратору (@handle) — коли є підстава в цифрах дайджесту: KPI або блок quality (voice_fix — правила голосу й приклади з реальних відхилених постів; format_mix — менше опитувань, нижчі ліміти, прибрати формат, що не пасує).',
       'binding: advice (порада, за замовчуванням) — оркестратор може відхилити; directive (обовʼязково) — лише коли метрика expected позначена anomaly в дайджесті або після відхиленої поради, коли метрика пішла ще далі; не більше 2 відкритих директив на агента.',
       'Не більше 3 за прогін; не дублюй відкриту директиву; структурні (cross_promo, pause_resource, strategy, частота ±30%, нова платформа) — завжди directive і підуть власнику на рішення.',
     ].join(' '),
@@ -254,12 +313,18 @@ export function buildDirectiveTools(d: DirectiveToolDeps): EditorTool[] {
 
   const submitReview = defineTool({
     name: 'submit_review',
-    description: 'Завершити прогін менеджера: verdict continue (усе гаразд, продовжуємо) або directives (дано директиви), короткий підсумок для власника.',
+    description: [
+      'Завершити прогін менеджера: verdict directives (дано поради чи директиви) або continue (нічого міняти не треба), короткий підсумок для власника.',
+      'quality_check обовʼязковий: по кожному ресурсу з активністю за 7 днів — status ok | issue, evidence з цифрами чи цитатами з блоку quality, issues (ai_likeness, sense, voice, audience_asks, owner_feedback, format_fit).',
+      'Код перевіряє: ресурс із прапорцями якості не може бути «ok» без пояснення в note; continue при status issue — лише з поясненням у note, чому поради зараз не треба.',
+    ].join(' '),
     kind: 'terminal', roles: ['manager'],
-    input: z.object({ verdict: z.enum(['continue', 'directives']), summary: z.string().min(5).max(1500), directive_ids: z.array(z.string().uuid()).max(3).default([]) }),
+    input: SubmitReviewInput,
     execute: async (i, ctx) => {
-      const dg = (ctx.extras as any)?.digest as KpiDigest | undefined;
-      await d.repo.addReview({ runId: ctx.runId, verdict: i.verdict, summary: i.summary, digestHash: dg?.hash ?? null, directiveIds: i.directive_ids });
+      const dg = await digestOf(ctx);
+      const bad = checkQualityReview(i, dg);
+      if (bad) return bad;
+      await d.repo.addReview({ runId: ctx.runId, verdict: i.verdict, summary: i.summary, digestHash: dg?.hash ?? null, directiveIds: i.directive_ids, qualityCheck: i.quality_check });
       return { ok: true };
     },
   });

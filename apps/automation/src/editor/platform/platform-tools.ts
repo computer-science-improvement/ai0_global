@@ -10,6 +10,7 @@ import { freshnessDeadline } from '../approval/approval-timing';
 import { criticGateOf, criticSummary, PUBLISH_TOOL_TIMEOUT_MS } from '../critic/critic-gate';
 import type { ScheduleService } from '../schedule/schedule.service';
 import { dryRunOf } from '../roles/preview-run';
+import { slotText } from '../manager/quality-digest';
 
 /** Per-run data of a platform slot (put into ctx.extras by the runner, spec 019/020). */
 export interface PlatformSlotExtras {
@@ -138,7 +139,7 @@ export function buildPlatformTools(d: PlatformToolDeps): EditorTool[] {
 
   const networkPosts = defineTool({
     name: 'get_network_posts',
-    description: 'Пости мережі на всіх платформах (Telegram + інші) за N днів: ресурс, формат, уривок, перегляди, залученість. Фільтр за ресурсом або групою.',
+    description: 'Пости мережі на всіх платформах (Telegram + інші) за N днів: ресурс, формат, уривок, текст (перші 400 символів, коли пост написав агент), перегляди, залученість. Фільтр за ресурсом або групою.',
     kind: 'read', roles: [...READ_ROLES],
     input: z.object({
       resource: z.string().max(200).optional(),
@@ -148,8 +149,15 @@ export function buildPlatformTools(d: PlatformToolDeps): EditorTool[] {
     }),
     execute: async ({ resource, network, days, limit }) => {
       const { rows } = await d.pool.query(
-        `SELECT np.resource_ref, np.platform, np.format, np.excerpt, np.posted_at, np.views, np.engagement, np.post_ref
+        `SELECT np.resource_ref, np.platform, np.format, np.excerpt, np.posted_at, np.views, np.engagement, np.post_ref,
+                es.post_spec AS slot_spec, es.rendered_preview AS slot_preview
            FROM network_posts np
+           -- Spec 034 FR-006: the text the agent wrote (Telegram: the published post's slot; platforms: the platform post's slot).
+           LEFT JOIN LATERAL (
+             SELECT s.post_spec, s.rendered_preview FROM editor_slots s
+              WHERE (np.post_ref LIKE 'tg:%' AND s.id = (SELECT pp.editor_slot_id FROM published_posts pp WHERE pp.id = substr(np.post_ref, 4)::bigint))
+                 OR (np.post_ref LIKE 'pp:%' AND s.id = (SELECT p2.slot_id FROM platform_posts p2 WHERE p2.id = substr(np.post_ref, 4)::bigint))
+              ORDER BY s.updated_at DESC LIMIT 1) es ON true
           WHERE np.posted_at >= now() - ($1 || ' days')::interval
             AND ($2::text IS NULL OR np.resource_ref = $2)
             AND ($3::uuid IS NULL OR np.resource_ref IN (
@@ -160,8 +168,9 @@ export function buildPlatformTools(d: PlatformToolDeps): EditorTool[] {
         [String(days), resource ?? null, network ?? null, limit]);
       // Spec 024: post_ref names a repurpose_post source (tg:<id> → published_post_id, pp:<id> → platform_post_id).
       return {
-        posts: rows.map(({ post_ref, ...r }) => ({
+        posts: rows.map(({ post_ref, slot_spec, slot_preview, ...r }) => ({
           ...r,
+          ...(slot_spec || slot_preview ? { text: slotText(slot_spec, slot_preview).slice(0, 400) } : {}),
           ...(typeof post_ref === 'string' && post_ref.startsWith('tg:') ? { published_post_id: Number(post_ref.slice(3)) } : {}),
           ...(typeof post_ref === 'string' && post_ref.startsWith('pp:') ? { platform_post_id: Number(post_ref.slice(3)) } : {}),
         })),

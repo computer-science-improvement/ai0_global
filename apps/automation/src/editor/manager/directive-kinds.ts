@@ -1,5 +1,6 @@
 import type { DirectiveKind, Expected, KpiMetric } from './directives.repository';
 import type { KpiDigest } from './kpi-digest.service';
+import { isQualityMetric, qualityMetricValue } from './quality-digest';
 
 /**
  * Binding levels and the kind × binding matrix (spec 025 FR-002/FR-003). Code only: the model picks a
@@ -23,6 +24,10 @@ export const KIND_BINDING: Record<DirectiveKind, 'advice' | 'either' | 'directiv
   cross_promo:    'directive',
   pause_resource: 'directive',
   strategy:       'directive',
+  // Spec 034 FR-006: advice by default; a binding directive only on repeated failure (FR-003 escalation — quality
+  // metrics are never flagged as anomalies). Dropping a format from a playbook section is structural (dry-run).
+  voice_fix:      'either',
+  format_mix:     'either',
 };
 
 /** Kinds that are always structural (they need the owner, D1). */
@@ -65,10 +70,13 @@ export function metricAnomaly(dg: Pick<KpiDigest, 'resources'> | null | undefine
   return scopeRows(dg, targetHandle, resourceRef).some((r) => r.anomalies?.includes(metric));
 }
 
-/** The scope's 7-day value of `metric` (mean over its resources), from the compact digest. */
+/**
+ * The scope's 7-day value of `metric` (mean over its resources), from the compact digest. A quality metric
+ * (spec 034: critic_pass_rate, owner_rejection_rate, poll_share — in %) is read from the resources' quality block.
+ */
 export function metricValue(dg: Pick<KpiDigest, 'resources'> | null | undefined, targetHandle: string, metric: KpiMetric, resourceRef?: string | null): number | null {
   const vals = scopeRows(dg, targetHandle, resourceRef)
-    .map((r) => (r.kpis as Record<string, { v?: number | null } | undefined>)?.[metric]?.v)
+    .map((r) => (isQualityMetric(metric) ? qualityMetricValue(r.quality, metric) : (r.kpis as Record<string, { v?: number | null } | undefined>)?.[metric]?.v))
     .filter((v): v is number => typeof v === 'number' && Number.isFinite(v));
   return vals.length ? vals.reduce((a, b) => a + b, 0) / vals.length : null;
 }

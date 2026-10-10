@@ -1,8 +1,11 @@
 // "Network health" card on the overview page (spec 021 FR-009): the KPI digest
 // the MANAGER reads — per resource its health and six KPIs (7-day value, delta
 // against the 28-day baseline, anomaly and stale flags), a link to the AI spend
-// card (spec 029) and the directives waiting for the owner. On phones the
-// resources without anomalies collapse into one line.
+// card (spec 029) and the directives waiting for the owner. Spec 034 FR-006: each
+// tile also shows the 7-day content quality (critic pass rate, polls against the
+// cap, your rejections and edits, the code's quality flags, the critic's notes and
+// sample texts). On phones the resources without anomalies or quality flags
+// collapse into one line.
 
 import { Link } from '@tanstack/react-router';
 import { useState } from 'react';
@@ -18,6 +21,61 @@ import { HEALTH } from './ResourceProfile';
 import { PLATFORM_LABEL, PlatformIcon } from './NetworkUi';
 import { fmtPct, metricLabel } from './Directives';
 import { parseRef, useResourceLabels } from '../../api/network';
+import { flagLabel, flaggedCount, qualityActive, qualityStats, type QualityTone, type ResourceQuality } from '../../lib/quality-view';
+
+const TONE_COLOR: Record<QualityTone, string> = {
+  neutral: 'var(--color-ink-muted)', success: 'var(--color-success)', warning: 'var(--color-warning)', danger: 'var(--color-danger)',
+};
+
+/** Spec 034 FR-006: the tile's content-quality block. */
+function QualityBlock({ q }: { q: ResourceQuality | null | undefined }) {
+  if (!qualityActive(q)) {
+    return (
+      <div className="text-micro" style={{ padding: '6px 6px 0', marginTop: 6, borderTop: '1px solid var(--color-hairline)', color: 'var(--color-ink-dim)' }}>
+        Content quality · no posts in 7 days
+      </div>
+    );
+  }
+  const notes = [...q.critic.notes.map((n) => ({ tag: 'Critic', text: n })), ...q.owner.reasons.map((n) => ({ tag: 'You rejected', text: n })), ...q.owner.edits.map((n) => ({ tag: 'You edited', text: n }))];
+  return (
+    <div style={{ marginTop: 6, paddingTop: 6, borderTop: '1px solid var(--color-hairline)' }}>
+      <div className="text-micro" style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '0 6px 3px', color: 'var(--color-ink-dim)' }}>
+        <span style={{ textTransform: 'uppercase', letterSpacing: '0.04em', fontSize: 10 }}>Content quality · {q.days} d</span>
+        <span style={{ marginLeft: 'auto' }}>{q.posts} post{q.posts === 1 ? '' : 's'}</span>
+      </div>
+      {qualityStats(q).map((s) => (
+        <div key={s.key} title={s.title} style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) auto', gap: 8, alignItems: 'center', padding: '3px 6px', borderRadius: 'var(--radius-sm)',
+          background: s.tone === 'danger' ? 'var(--color-danger-soft)' : undefined }}>
+          <span className="text-micro" style={{ color: 'var(--color-ink-muted)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{s.label}</span>
+          <span className="text-micro tabular-nums" style={{ color: TONE_COLOR[s.tone], fontWeight: 500, textAlign: 'right' }}>{s.value}</span>
+        </div>
+      ))}
+      {q.flags.length > 0 && (
+        <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', padding: '5px 6px 0' }}>
+          {q.flags.map((f) => <Badge key={f} tone={f === 'owner_edits' || f === 'critic_failed' ? 'warning' : 'danger'}>{flagLabel(f)}</Badge>)}
+        </div>
+      )}
+      {(notes.length > 0 || q.samples.length > 0) && (
+        <details style={{ padding: '5px 6px 0' }}>
+          <summary className="text-micro link-accent" style={{ cursor: 'pointer' }}>Notes and sample posts</summary>
+          <div style={{ display: 'grid', gap: 6, marginTop: 6 }}>
+            {notes.map((n, i) => (
+              <div key={`n${i}`} className="text-micro" style={{ color: 'var(--color-ink-muted)', overflowWrap: 'anywhere' }}>
+                <span className="chip" style={{ fontSize: 10, marginRight: 5 }}>{n.tag}</span>{n.text}
+              </div>
+            ))}
+            {q.samples.map((s, i) => (
+              <div key={`s${i}`} style={{ padding: '6px 8px', borderRadius: 'var(--radius-sm)', background: 'var(--color-surface-2)', minWidth: 0 }}>
+                <div className="text-micro" style={{ color: 'var(--color-ink-dim)', marginBottom: 3 }}>{s.format} · {s.status.replace(/_/g, ' ')} · {fmtRelative(s.at)}</div>
+                <div className="text-micro" style={{ color: 'var(--color-ink)', whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>{s.text}</div>
+              </div>
+            ))}
+          </div>
+        </details>
+      )}
+    </div>
+  );
+}
 
 function fmtKpi(name: KpiName, v: number | null): string {
   if (v == null || !Number.isFinite(v)) return '—';
@@ -61,7 +119,7 @@ function ResourceTile({ r }: { r: DigestResource }) {
   const h = r.health ? HEALTH[r.health as HealthState] ?? HEALTH.unknown : null;
   return (
     <div style={{ padding: '10px 10px 8px', borderRadius: 'var(--radius-md)', background: 'var(--color-surface-1)', minWidth: 0,
-      border: `1px solid ${r.anomalies.length ? 'var(--color-warning-soft)' : 'var(--color-hairline)'}` }}>
+      border: `1px solid ${r.anomalies.length || r.quality?.flags.length ? 'var(--color-warning-soft)' : 'var(--color-hairline)'}` }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 7, minWidth: 0, padding: '0 4px' }}>
         <PlatformIcon platform={platform} size={14} />
         <span style={{ color: 'var(--color-ink)', fontWeight: 500, fontSize: 13, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', minWidth: 0 }} title={r.ref}>
@@ -78,6 +136,7 @@ function ResourceTile({ r }: { r: DigestResource }) {
         {r.agent && <Link to="/app/agents/$handle" params={{ handle: r.agent }} className="link-accent" style={{ marginLeft: 'auto', flexShrink: 0 }}>@{r.agent}</Link>}
       </div>
       {KPI_NAMES.map((n) => <KpiRow key={n} name={n} k={r.kpis[n]} />)}
+      {r.quality !== undefined && <QualityBlock q={r.quality} />}
     </div>
   );
 }
@@ -154,8 +213,10 @@ export function NetworkHealthCard({ delay }: { delay?: number }) {
   const open = dg.directives.open.length;
   const anomalies = dg.resources.reduce((s, r) => s + r.anomalies.length, 0);
   const spent = dg.budget.spentTodayUsd;
-  const sorted = [...dg.resources].sort((a, b) => b.anomalies.length - a.anomalies.length);
-  const flagged = sorted.filter((r) => r.anomalies.length > 0);
+  const issues = (r: DigestResource) => r.anomalies.length + (r.quality?.flags.length ?? 0);
+  const sorted = [...dg.resources].sort((a, b) => issues(b) - issues(a));
+  const flagged = sorted.filter((r) => issues(r) > 0);
+  const qualityFlagged = flaggedCount(dg.resources);
   const healthy = sorted.length - flagged.length;
   const shown = phone && !showAll ? flagged : sorted;
 
@@ -174,6 +235,11 @@ export function NetworkHealthCard({ delay }: { delay?: number }) {
           <span className="text-micro" style={{ display: 'inline-flex', alignItems: 'center', gap: 5, color: anomalies ? 'var(--color-warning)' : 'var(--color-ink-muted)' }}>
             <Icon name={anomalies ? 'warning' : 'check'} size={12} />
             {anomalies ? `${anomalies} anomal${anomalies === 1 ? 'y' : 'ies'}` : 'no anomalies'}
+          </span>
+          <span className="text-micro" title="Resources whose 7-day content quality the code flagged (critic rejects, polls over the cap, your rejections or edits)"
+            style={{ display: 'inline-flex', alignItems: 'center', gap: 5, color: qualityFlagged ? 'var(--color-danger)' : 'var(--color-ink-muted)' }}>
+            <Icon name={qualityFlagged ? 'warning' : 'check'} size={12} />
+            {qualityFlagged ? `quality flags on ${qualityFlagged} resource${qualityFlagged === 1 ? '' : 's'}` : 'no quality flags'}
           </span>
           <Link to="/app/agents/$handle" params={{ handle: 'manager' }} search={{ tab: 'directives' }} className="link-accent text-micro"
             style={{ display: 'inline-flex', alignItems: 'center', gap: 5, color: awaiting ? 'var(--color-warning)' : undefined }}>
@@ -197,7 +263,7 @@ export function NetworkHealthCard({ delay }: { delay?: number }) {
               <button type="button" className="btn-tiny" style={{ marginTop: shown.length ? 10 : 0, width: '100%', justifyContent: 'center', gap: 6 }}
                 aria-expanded={showAll} onClick={() => setShowAll((v) => !v)}>
                 <Icon name={showAll ? 'chevron-up' : 'check'} size={12} />
-                {showAll ? 'Show only anomalies' : `${healthy} healthy resource${healthy === 1 ? '' : 's'}`}
+                {showAll ? 'Show only flagged' : `${healthy} healthy resource${healthy === 1 ? '' : 's'}`}
               </button>
             )}
           </>

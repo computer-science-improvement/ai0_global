@@ -1,6 +1,7 @@
 // Reviews tab of /app/agents/manager (spec 021 FR-009): the timeline of
 // manager runs — verdict (continue / directives / skipped), the summary and
-// chips of the directives that run filed (linking into the Directives board).
+// chips of the directives that run filed (linking into the Directives board) and,
+// since spec 034, the content-quality checklist the manager answered per resource.
 
 import { Link } from '@tanstack/react-router';
 import { useMemo } from 'react';
@@ -11,6 +12,31 @@ import { fmtDate, fmtRelative } from '../../lib/format';
 import { useDirectives, useManagerReviews, type ReviewVerdict } from '../../api/manager';
 import { NetworkError } from './NetworkUi';
 import { DIRECTIVE_KIND_LABEL, DIRECTIVE_STATUS_LABEL, DIRECTIVE_STATUS_TONE } from './Directives';
+import { CHECK_ITEM_LABEL, type QualityCheckEntry } from '../../lib/quality-view';
+
+/** Spec 034 FR-006: the manager's quality checklist of one run. */
+function QualityCheckList({ items }: { items: QualityCheckEntry[] }) {
+  return (
+    <details style={{ marginTop: 7 }}>
+      <summary className="text-micro link-accent" style={{ cursor: 'pointer' }}>
+        Quality check · {items.filter((x) => x.status === 'issue').length} issue{items.filter((x) => x.status === 'issue').length === 1 ? '' : 's'} on {items.length} resource{items.length === 1 ? '' : 's'}
+      </summary>
+      <div style={{ display: 'grid', gap: 6, marginTop: 6 }}>
+        {items.map((x) => (
+          <div key={x.resource_ref} className="text-micro" style={{ minWidth: 0 }}>
+            <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' }}>
+              <Badge tone={x.status === 'issue' ? 'warning' : 'success'}>{x.status === 'issue' ? 'issue' : 'ok'}</Badge>
+              <span style={{ color: 'var(--color-ink)', overflowWrap: 'anywhere' }}>{x.resource_ref}</span>
+              {x.issues.map((i) => <span key={i} className="chip" style={{ fontSize: 10 }}>{CHECK_ITEM_LABEL[i] ?? i.replace(/_/g, ' ')}</span>)}
+            </div>
+            <div style={{ color: 'var(--color-ink-muted)', overflowWrap: 'anywhere', marginTop: 2 }}>{x.evidence}</div>
+            {x.note && <div style={{ color: 'var(--color-ink-dim)', overflowWrap: 'anywhere', marginTop: 2 }}>Note: {x.note}</div>}
+          </div>
+        ))}
+      </div>
+    </details>
+  );
+}
 
 const VERDICT: Record<ReviewVerdict, { tone: Tone; label: string; dot: string }> = {
   continue:   { tone: 'success', label: 'continue',   dot: 'var(--color-success)' },
@@ -32,7 +58,7 @@ export function ManagerReviews() {
   const reviews = q.data.reviews;
   if (!reviews.length) {
     return <EmptyState icon="history" title="No manager runs yet"
-      note="Each scheduled run reads the KPI digest and either says “continue” or files up to three directives. Runs with an unchanged digest are skipped without a model call." />;
+      note="Each scheduled run reads the KPI digest and the content quality, answers the quality checklist per resource, and files up to three directives or says “continue”. Runs with an unchanged digest are skipped without a model call." />;
   }
 
   return (
@@ -57,6 +83,7 @@ export function ManagerReviews() {
                   {r.summary}
                 </div>
               )}
+              {r.qualityCheck && r.qualityCheck.length > 0 && <QualityCheckList items={r.qualityCheck} />}
               {r.directiveIds.length > 0 && (
                 <div style={{ display: 'flex', gap: 5, flexWrap: 'wrap', marginTop: 7 }}>
                   {r.directiveIds.map((id) => {

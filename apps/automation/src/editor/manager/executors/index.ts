@@ -7,8 +7,9 @@ import type { Directive, DirectiveKind, DirectivesRepository } from '../directiv
 import { describe, resumeChange } from './playbook-executors';
 import { revertsIn } from './playbook-change';
 import type { PlaybookRow } from '../../network/network.repository';
-import type { AnyChange, AnyExecutor, Change, DirectiveVerifier, ExecContext, ExperimentChange, PlanResult } from './types';
+import type { AnyChange, AnyExecutor, Change, DirectiveVerifier, ExecContext, ExperimentChange, FormatMixChange, PlanResult, VoiceFixChange } from './types';
 import type { SqlExperimentQuotas } from './experiment-executor';
+import { revertsMix, revertsVoice } from './quality-executors';
 
 export * from './types';
 export { frequencyExecutor, formatShiftExecutor, pauseSeriesExecutor, type PlaybookExecutorDeps } from './playbook-executors';
@@ -16,9 +17,18 @@ export { pauseResourceExecutor, PAUSE_RESOURCE_DAYS, type PauseResourceDeps } fr
 export { experimentExecutor, SqlExperimentQuotas, EXPERIMENT, type ExperimentExecutorDeps } from './experiment-executor';
 export { strategyExecutor, PlaybookBuildPort, type PlaybookBuildFn, type StrategyExecutorDeps } from './strategy-executor';
 export { promoVerifier } from './promo-verifier';
+export { voiceFixExecutor, formatMixExecutor, VOICE_FIX, MANAGER_EXAMPLE_TAG, type QualityExecutorDeps } from './quality-executors';
 export { taskRefCheck, type TaskRefType, TASK_REF_TYPES } from './task-report';
 export { executionContextOf } from './context';
 export { SqlPlanObserver, type PlanObserver } from './plan-observer';
+
+/** Does a submitted playbook body undo a directive's change (`directive_lock`)? */
+function revertsChange(body: Playbook, c: AnyChange): boolean {
+  if (c.op === 'voice_fix') return revertsVoice(body, c as VoiceFixChange);
+  if (c.op === 'format_mix') return (c as FormatMixChange).target === 'playbook' && revertsMix(body, c as FormatMixChange);
+  if (c.op === 'experiment' || c.op === 'playbook_build' || c.op === 'pause_resource') return false;
+  return revertsIn(body, c as Change);
+}
 
 /** Kinds scheduled by PromoPlanner after an orchestrator run (spec 022); not run here. */
 export const PROMO_KINDS: DirectiveKind[] = ['cross_promo', 'repost'];
@@ -248,8 +258,8 @@ export class DirectiveExecution {
    */
   async lockFor(orchId: string, body: Playbook): Promise<{ error: 'directive_lock'; details: string } | null> {
     for (const dir of await this.d.repo.playbookLocks(orchId, this.now())) {
-      const c = dir.change as Change | null;
-      if (c && revertsIn(body, c)) {
+      const c = dir.change as AnyChange | null;
+      if (c && revertsChange(body, c)) {
         return {
           error: 'directive_lock',
           details: `директива ${dir.id} (${dir.kind}: ${describe(c)}) діє до ${dir.reviewAt?.toISOString().slice(0, 10) ?? '—'} — цю зміну не можна скасувати до перевірки ефекту; залиш її як є`,
