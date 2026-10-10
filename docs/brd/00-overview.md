@@ -166,8 +166,8 @@ ai0_global — система для власника мережі україн�
 | № | Документ | BR-коди |
 |---|---|---|
 | 00 | Огляд (цей документ) | BR-GEN-01…12 |
-| 01 | [Доступ, публічна частина, огляд і налаштування](https://linear.app/uapp-personal/document/brd-01-dostup-publichna-chastina-oglyad-i-nalashtuvannya-as-is-954ae83942a5) | BR-CORE-01…45+ |
-| 02 | [Публікація: стратегії, розклад, ручні пости](https://linear.app/uapp-personal/document/brd-02-publikaciya-strategiyi-rozklad-ruchni-posti-as-is-098bc62ff671) | BR-PUB-01…57+ |
+| 01 | [Доступ, публічна частина, огляд і налаштування](https://linear.app/uapp-personal/document/brd-01-dostup-publichna-chastina-oglyad-i-nalashtuvannya-as-is-954ae83942a5) | BR-CORE-01…68 |
+| 02 | [Публікація: стратегії, розклад, ручні пости](https://linear.app/uapp-personal/document/brd-02-publikaciya-strategiyi-rozklad-ruchni-posti-as-is-098bc62ff671) | BR-PUB-01…67 (13 видалено) |
 | 03 | [AI-редактор і чат](https://linear.app/uapp-personal/document/brd-03-ai-redaktor-i-chat-as-is-95f719159a22) | BR-EDT-01…61 |
 | 04 | [Платформа агентів: оркестратори, MANAGER, крос-промо](https://linear.app/uapp-personal/document/brd-04-platforma-agentiv-orkestratori-manager-kros-promo-as-is-014fee3b442b) | BR-AGT-01…105 |
 | 05 | [Мої канали, аналітика, трекінг, логи](https://linear.app/uapp-personal/document/brd-05-moyi-kanali-analitika-treking-logi-as-is-aad4e232bebc) | BR-CHN-01…48 |
