@@ -1,10 +1,19 @@
 # BRD (as-is) — Розвідка: пошук каналів, граф, рекомендації
 
-> Статус: чернетка, згенерована з коду 2026-10-05. Описує, як система ФАКТИЧНО працює зараз (гілка feat/editor-agent), а не як мала б.
+> Статус: оновлено з коду 2026-10-10 (коміт 54dd1eb, гілка feat/editor-agent). Описує, як система ФАКТИЧНО працює зараз, а не як мала б.
+
+## Що змінилось з 2026-10-05
+
+- Пункти меню розділу тепер беруться з реєстру навігації (`apps/dashboard/src/nav/registry.ts`): група «Intelligence» з пунктами «Discovery», «Graph», «Recommendations»; власник може перейменувати, сховати або перенести їх у Settings → Navigation, сторінки також знаходить пошук ⌘K (spec 027).
+- Доступ до `/app/*` перевіряється до рендеру: роутер питає `/auth/me` і без сесії веде на `/login?next=…&reason=…`; у production nginx закриває HTML `/app` через `auth_request` (spec 028).
+- `TrackingAuthGuard` тепер делегує `AuthService.authenticate()`: Bearer `TRACKING_TOKEN` → відкликувана сесія в кукі `tracking_jwt` (таблиця `auth_sessions`) → локальний обхід `ALLOW_NO_AUTH` лише поза production і лише без `TRACKING_TOKEN`; 401 несе `code` (spec 028).
+- Виклик Claude для ROI пишеться в журнал `llm_usage` з фічею `tracking.roi`, видно на `/app/spend`; блокувальні денні ліміти (global / feature_prefix / provider) можуть заблокувати виклик, тоді ROI рахується евристикою (spec 029).
+- Вибір моделі на `/app/models` (spec 035) на ROI не впливає: модель `claude-haiku-4-5` захардкоджена.
+- Сторінки Discovery, Graph, Recommendations і їхні бекенд-модулі (`tracking`, `discovery`) з 2026-10-05 не змінювались.
 
 ## 1. Призначення розділу
 
-Розділ «Intelligence» у бічному меню (`AppSidebar`) — це «розвідка» рекламного ринку Telegram для власника мережі каналів. Він відповідає на три питання: (1) які ще канали зʼявляються навколо тих, що ми відстежуємо (`/app/discovery`); (2) хто на кого посилається в постах — граф перехресних згадок (`/app/graph`); (3) де варто купити рекламу для мого каналу (`/app/recommendations`, кандидати з каталогу TeleAds, ранжування за збігом тем).
+Розділ «Intelligence» (група меню за замовчуванням, `nav/registry.ts`) — це «розвідка» рекламного ринку Telegram для власника мережі каналів. Він відповідає на три питання: (1) які ще канали зʼявляються навколо тих, що ми відстежуємо (`/app/discovery`); (2) хто на кого посилається в постах — граф перехресних згадок (`/app/graph`); (3) де варто купити рекламу для мого каналу (`/app/recommendations`, кандидати з каталогу TeleAds, ранжування за збігом тем).
 
 Користувач — один власник/оператор, що залогінений у дашборд. Усі три сторінки — read-only щодо реальних каналів: нічого не публікується і не купується; єдині записи в БД — теми каналу та додавання каналу до відстеження (кнопка «Track»).
 
@@ -24,7 +33,7 @@
 
 **Бізнес-мета.** Показати оператору канали, які система «побачила» в рекламних/згадкових посиланнях відстежуваних каналів, але які ще не пройшли опитування (закриті, невизначені), щоб він вручну відкрив їх у Telegram і вирішив, що з ними робити.
 
-**Хто користується / доступ.** Тільки після логіну (шлях під `/app`, guard у `routes/app.tsx`: без `me` — редірект на `/login`). Бекенд-ендпоінт захищений `TrackingAuthGuard` (Bearer `TRACKING_TOKEN`, JWT-кукі `tracking_jwt`, або локальний обхід лише за `ALLOW_NO_AUTH=true` поза production).
+**Хто користується / доступ.** Тільки після логіну. Guard у `routes/app.tsx` (`beforeLoad`) перевіряє сесію через `/auth/me` до рендеру; без сесії — редірект на `/login?next=<сторінка>&reason=<причина>`. У production nginx додатково закриває HTML `/app` (`auth_request /_auth_check`). Бекенд-ендпоінт захищений `TrackingAuthGuard` (Bearer `TRACKING_TOKEN`; сесійна кукі `tracking_jwt`, сесія з таблиці `auth_sessions` може бути відкликана; локальний обхід лише за `ALLOW_NO_AUTH=true`, поза production і без `TRACKING_TOKEN`).
 
 **Що показує.**
 - Заголовок «Discovery» і підзаголовок «Channels seen in ads on tracked channels but not yet polled (closed or unresolved).»
@@ -37,7 +46,7 @@
 - «Open on Telegram» — зовнішнє посилання в новій вкладці. Інших дій (додати до відстеження, відхилити, повторити resolve) на сторінці немає.
 
 **Бізнес-вимоги (as-is).**
-- `BR-INT-01` Сторінка `/app/discovery` доступна лише авторизованому користувачу; неавторизованого `AppLayout` перекидає на `/login`.
+- `BR-INT-01` Сторінка `/app/discovery` доступна лише авторизованому користувачу: guard роутера `/app` (spec 028) без сесії перекидає на `/login?next=…&reason=…`, бекенд без облікових даних відповідає 401 з `code`.
 - `BR-INT-02` Сторінка завантажує перелік одним запитом `GET /tracking/discovery` і не має пагінації; бекенд повертає максимум 200 записів, відсортованих за `added_at DESC`.
 - `BR-INT-03` Елемент потрапляє в чергу, якщо в `tracked_channels` `is_closed = TRUE` АБО (`last_polled_at IS NULL` І `added_at` старше 1 години).
 - `BR-INT-04` Для кожного елемента UI показує `username` (або «(no username)»), прапорець закритості та час «seen» = `added_at`.
@@ -79,7 +88,7 @@
 
 **Бізнес-мета.** Візуалізувати, хто на кого посилається в постах відстежуваних каналів («рекламна мережа»): виявити, хто кого рекламує, які канали-конкуренти/партнери часто згадуються, і швидко перейти до постів-доказів.
 
-**Хто користується / доступ.** Лише після логіну (`/app`); бекенд `GET /tracking/graph` під `TrackingAuthGuard`.
+**Хто користується / доступ.** Лише після логіну (`/app`); бекенд `GET /tracking/graph` під `TrackingAuthGuard`. У меню пункт називається «Graph», заголовок сторінки — «Channel graph».
 
 **Що показує.**
 - Панель фільтрів `GraphFilters`: «From» / «To» (date), слайдер «Min weight» (1–10, дефолт 1), чипи видів цілі `tg_channel`, `tg_invite`, `tg_user`, `instagram`, `web`, чекбокс «Include mine» (дефолт увімкнено).
@@ -121,14 +130,14 @@
 
 **Фонові процеси.** Ті самі, що у 3.1: `poll-posts` (наповнення ребер), `resolve-discovery`, `poll-meta`; крон-розклад за тирами `hot/warm/cold`; щоденний перерахунок тира (`classifyTier`: ≥3 постів/день — hot, ≥0.5 — warm, інакше cold; нові <3 днів — завжди warm).
 
-**Звʼязки.** З `/app/channels/$id` (деталі каналу), `/app/discovery` (нові вузли зʼявляються через resolve), ROI-панель використовує `GET /tracking/roi/:id` (евристика або Claude Haiku, див. 3.3). Інтеграції: Telegram MTProto, Anthropic (лише для ROI-панелі у ChannelDialog).
+**Звʼязки.** З `/app/channels/$id` (деталі каналу), `/app/discovery` (нові вузли зʼявляються через resolve), ROI-панель використовує `GET /tracking/roi/:id` (евристика або Claude Haiku, див. 3.3). Інтеграції: Telegram MTProto, Anthropic (лише для ROI-панелі у ChannelDialog; витрати видно на `/app/spend`).
 
 **Спостереження «як фактично зараз».**
 - «Ad» у назвах (`tracked_ad_edges`, «N ad posts →») — це будь-яка згадка: `@mention`, посилання, пересилання. Реклама від звичайної згадки не відрізняється, посилання на власний сайт/канал також рахуються; самопосилання (канал → він сам) не виключені.
 - Фільтр-чип `tg_user` мертвий: `extractAdRefs` ніколи не генерує `tg_user` (усі `@mention` стають `tg_channel`); `mention_name` ігнорується.
 - Для пересилань береться `fwdFrom.fromName` — це відображуване імʼя прихованого відправника, а не username; воно потрапляє в ребра як «username» (з пробілами/кирилицею) і не резолвиться.
 - Ліміт 2000 ребер діє до фільтрів `kind` та «Include mine»: при вузькому фільтрі можна отримати менше ребер, ніж реально існує (відсічка слабких ребер — мовчки).
-- Кнопка «Open full channel page →» у `ChannelDialog` веде на `/channels/<id>`, а реальний маршрут — `/app/channels/<id>`; такого маршруту без префіксу `/app` в `routeTree.gen.ts` немає (посилання, найімовірніше, мертве; `<a href>` ще й перезавантажує SPA).
+- Кнопка «Open full channel page →» у `ChannelDialog` досі веде на `/channels/<id>`, а реальний маршрут — `/app/channels/<id>`. Маршруту без префікса `/app` немає, а сторінка «not found» з spec 027 покриває лише `/app/*`; посилання мертве, `<a href>` ще й перезавантажує SPA.
 - Колір «red» для ≥10 згадок — лише порогова шкала частоти, не оцінка «поганості»; легенди кольорів на сторінці немає.
 - Режим Tree ↓/→ при циклах (а в рекламних графах вони типові) автоматично повертається у Force; пояснення користувачу не показується, лише перемикається сегмент.
 - Фільтри дат — за `first_seen_at/last_seen_at` ребра в цілому, а не за датою кожного допису; лічильник ребра НЕ перераховується під діапазон (вага завжди загальна).
@@ -170,9 +179,10 @@
 - `BR-INT-29` `estimatedSubsPerAd` і `roiConfidence` підтягуються лише якщо канал-кандидат одночасно відстежується в `tracked_channels` (збіг `LOWER(username)=LOWER(slug)`) і для нього є рядок у `tracked_roi_cache`; інакше в колонці «Subs/ad» стоїть «—».
 - `BR-INT-30` `tracked_roi_cache` заповнюється лише коли хтось викликає `GET /tracking/roi/:id` (панель ROI в `ChannelDialog` або на сторінці каналу): TTL 7 днів, `fresh=true` примушує перерахунок.
 - `BR-INT-31` Оцінка ROI: евристика `round(avgViews30d × viewToSubRate × mult)`, де `viewToSubRate` = `TRACKING_VIEW_TO_SUB_RATE` (дефолт 0.02), `mult` = 0.5 при engagement <1%, 1.5 при >5%, інакше 1.0; впевненість: high — ≥30 днів історії і ≥50 постів, medium — ≥14 і ≥20, інакше low.
-- `BR-INT-32` Якщо доступний `ANTHROPIC_API_KEY`, ROI уточнює Claude (`claude-haiku-4-5`, до 600 токенів, 10 останніх постів): результат обрізається до діапазону [50%; 200%] від евристики; при помилці — відкат на евристику (`source: heuristic | claude`). Це єдиний платний LLM-виклик розділу; сам `POST /api/recommendations` LLM не викликає.
+- `BR-INT-32` Якщо доступний `ANTHROPIC_API_KEY`, ROI уточнює Claude (`claude-haiku-4-5`, до 600 токенів, 10 останніх постів): результат обрізається до діапазону [50%; 200%] від евристики; при будь-якій помилці (зокрема блокування бюджетом, BR-INT-35) — відкат на евристику (`source: heuristic | claude`). Це єдиний платний LLM-виклик розділу; сам `POST /api/recommendations` LLM не викликає.
 - `BR-INT-33` Перелік тем (`GET /api/themes`) — це живий список категорій TeleAds (`/categories/`, `type=product`, `status=enabled`), що кешується в памʼяті процесу на 24 години; збереження тем (`PUT`) приймає ≤20 slug-ів формату `^[a-z0-9-]+$` і відхиляє невідомі (400).
 - `BR-INT-34` Збереження тем канал-цілі дедуплікує масив і перезаписує `tracked_channels.themes`; кнопка «Save» закриває модалку після успіху.
+- `BR-INT-35` Кожен виклик Claude для ROI записується в журнал `llm_usage` з `feature='tracking.roi'` (токени, вартість) і входить у звіт `/app/spend`. Перед викликом перевіряються денні блокувальні ліміти з `llm_budgets` (global, feature_prefix, provider); при перевищеному ліміті `ClaudeAgent` не робить виклик і повертає порожню відповідь, тож ROI повертається з евристики; збій самої перевірки не блокує виклик (spec 029).
 
 **Бізнес-правила й обмеження.**
 - Бюджет: у UI — гривні, на бекенді — копійки (ціле, >0). Рекомендація враховує лише МІНІМАЛЬНУ ціну тарифу (`price_min`); тип тарифу (`1day`, `24h`, `always`) не розрізняється.
@@ -188,7 +198,7 @@
 
 **Фонові процеси.** `TeleAdsIngestionWorker` (`@Cron('0 4 * * *')`, не під `TRACKING_ENABLED`) — щоденне оновлення каталогу. Для «Subs/ad» — опосередковано `RoiAnalyzerService` (лише за запитом).
 
-**Звʼязки.** З `/app/channels/$id` (теж редагує теми через `EditThemesModal`), з `/app/channels` (кнопка «Track»). Зовнішні: TeleAds public API (`teleads.com.ua/api/promo`), Anthropic (ROI).
+**Звʼязки.** З `/app/channels/$id` (теж редагує теми через `EditThemesModal`), з `/app/channels` (кнопка «Track»), `/app/spend` (витрати `tracking.roi`). Зовнішні: TeleAds public API (`teleads.com.ua/api/promo`), Anthropic (ROI).
 
 **Спостереження «як фактично зараз».**
 - Опис «sorted by theme overlap → ROI → price» вірний, але ROI майже завжди порожній: він є лише для кандидатів, які ми вже відстежуємо та для яких хтось відкрив ROI-панель. Для типового каталогу ранжування фактично зводиться до Jaccard → ціна.
@@ -201,6 +211,7 @@
 - Тип `RecommendationItem.priceMin` показується як `priceMin / 100` з `toFixed(0)` — копійки/дробові гривні відкидаються.
 - TeleAds ingestion при збої першої сторінки лише логує помилку (повертає нулі), помилки наступних сторінок пропускаються мовчки; в UI немає індикатора «коли оновлено каталог» (`last_seen_at` не показується) і жодних видалень застарілих кандидатів: канали, що зникли з TeleAds, лишаються в `candidate_channels` назавжди.
 - Ручний тригер `POST /api/admin/ingest-teleads` дозволений будь-якому авторизованому користувачу (guard — той самий `TrackingAuthGuard`), окремої ролі «адмін» немає.
+- Модель ROI (`claude-haiku-4-5`) захардкоджена в `roi-analyzer.service.ts`; глобальна модель і моделі агентів зі сторінки `/app/models` (spec 035) її не змінюють.
 
 **Відкриті питання до власника.**
 - Чи потрібно розширювати джерела кандидатів (інші біржі/каталоги, власний граф), чи TeleAds — єдине джерело?
@@ -211,12 +222,14 @@
 ## 4. Наскрізні правила розділу
 
 - Усі три сторінки працюють із даними, які готує підсистема tracking: MTProto-сесія користувача (gramjs) читає історію каналів; без `TRACKING_ENABLED=true` та працюючої сесії Discovery і Graph не наповнюються. Recommendations залежить від TeleAds-інгесту (крон 04:00 UTC) і не потребує MTProto.
-- Аутентифікація: `TrackingAuthGuard` на всіх ендпоінтах розділу; на фронті — guard `/app`.
+- Аутентифікація: `TrackingAuthGuard` (через `AuthService.authenticate()`) на всіх ендпоінтах розділу; на фронті — guard роутера `/app` до рендеру, у production ще й nginx `auth_request` (spec 028).
+- Навігація: пункти розділу задає реєстр `nav/registry.ts` (група `g_intelligence`); меню можна змінити в Settings → Navigation, сторінки також доступні з ⌘K (spec 027).
 - Бекенд змонтований у двох групах: bare-root `/tracking/*` (Discovery, Graph) і `/api/*` (Recommendations, Themes). Dev-проксі Vite та `nginx.conf` мають обидва набори префіксів.
 - Дані «граф ↔ рекомендації» не повʼязані: ребра графа (`tracked_ad_edges`) не використовуються у скорингу Recommendations; жодна схожість між каналами за графом не рахується — «схожість» існує лише як Jaccard за темами.
 - Теми (`tracked_channels.themes`) — єдиний звʼязок власних каналів із каталогом TeleAds; розставляються вручну (`EditThemesModal` на Recommendations та на сторінці каналу). Автоматичної класифікації (LLM або евристики) немає.
 - Реальних дій із зовнішнім світом розділ не виконує: не публікує, не купує рекламу, не вступає в канали (інвайти лише «peek» через `CheckChatInvite`).
-- Тексти інтерфейсу розділу англійською; мови перемикача немає.
+- Тексти інтерфейсу розділу англійською (правило власника 2026-10-06); перемикача мови немає.
+- Єдиний платний виклик розділу (Claude для ROI) проходить через журнал `llm_usage` і бюджети spec 029.
 
 ## 5. Глосарій розділу
 
@@ -236,6 +249,7 @@
 Дашборд:
 - `apps/dashboard/src/routes/app.discovery.tsx`, `app.graph.tsx`, `app.recommendations.tsx`, `app.tsx` (guard)
 - `apps/dashboard/src/components/GraphCanvas.tsx`, `GraphFilters.tsx`, `EdgePanel.tsx`, `ChannelDialog.tsx`, `RoiPanel.tsx`, `RecommendationsTable.tsx`, `EditThemesModal.tsx`, `TargetChannelPicker.tsx`, `BudgetInput.tsx`, `AppSidebar.tsx`
+- `apps/dashboard/src/nav/registry.ts` (пункти меню), `apps/dashboard/src/auth/session.ts`
 - `apps/dashboard/src/api/tracking.ts`, `api/discovery.ts`, `api/types.ts`, `api/client.ts`, `lib/graph-synthetic.ts`, `vite.config.ts`, `nginx.conf`
 
 Бекенд, модуль `discovery` (TeleAds, рекомендації):
@@ -245,11 +259,12 @@
 - `apps/automation/src/discovery/teleads/teleads.client.ts`, `teleads-ingestion.worker.ts`, `teleads-mapper.ts`
 
 Бекенд, модуль `tracking` (Discovery-черга, граф, ROI):
-- `apps/automation/src/tracking/api/tracking.controller.ts`, `tracking.service.ts`, `tracking-auth.guard.ts`
+- `apps/automation/src/tracking/api/tracking.controller.ts`, `tracking.service.ts`, `tracking-auth.guard.ts`; `apps/automation/src/auth/auth.service.ts` (`authenticate`)
+- `apps/automation/src/common/ai/usage/features.ts`, `llm-usage.service.ts`, `llm-budget.service.ts` (журнал і ліміти для ROI)
 - `apps/automation/src/tracking/workers/poll-posts.worker.ts`, `poll-meta.worker.ts`, `resolve-discovery.worker.ts`
 - `apps/automation/src/tracking/processors/ad-ref-extractor.ts`, `tier-classifier.ts`, `roi-analyzer.service.ts`, `roi-heuristic.ts`
 - `apps/automation/src/tracking/repositories/tracked-edges.repository.ts`, `tracked-channels.repository.ts`, `tracked-posts.repository.ts`, `tracked-roi-cache.repository.ts`
 - `apps/automation/src/tracking/mtproto/tracking-mtproto.client.ts`, `tracking.scheduler.ts`, `types.ts`
 
 БД:
-- `database/migrations/002_tracking.sql` (`tracked_channels`, `tracked_ad_edges`), `003_roi_cache.sql`, `004_discovery.sql` (`candidate_channels`, `tracked_channels.themes`), `013_tracking_status.sql`
+- `database/migrations/002_tracking.sql` (`tracked_channels`, `tracked_ad_edges`), `003_roi_cache.sql`, `004_discovery.sql` (`candidate_channels`, `tracked_channels.themes`), `013_tracking_status.sql`, `055_auth_sessions.sql` (сесії), `056_llm_usage.sql` (`llm_usage`, `llm_budgets`)
