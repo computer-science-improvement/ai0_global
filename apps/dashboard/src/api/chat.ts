@@ -64,7 +64,7 @@ export function useDeleteChat() {
 export function useDraftAction() {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: (v: { id: string; action: 'publish' | 'cancel' } | { id: string; action: 'schedule'; at: string }) =>
+    mutationFn: (v: { id: string; action: 'publish' | 'cancel' | 'critic' } | { id: string; action: 'schedule'; at: string }) =>
       api<{ draft: EditorDraft; messageId?: number; warnings?: string[]; local?: string }>(
         `/api/editor/drafts/${v.id}/${v.action}`,
         { method: 'POST', ...(v.action === 'schedule' ? { body: JSON.stringify({ at: v.at }) } : {}) },

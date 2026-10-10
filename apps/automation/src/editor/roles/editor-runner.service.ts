@@ -19,6 +19,9 @@ import { DERIVED_STEPS, derivedPrompts, slotResource, type DerivedResolution } f
 import type { VoicePrefs } from '../post/slop-lint';
 import { attachVoiceSkills, VOICE_CORE, VOICE_SKILLS_BUDGET, voiceCoreSection, voiceReferenceLine } from './voice';
 import { liveSlotLines, noFreshReason, type LiveScan } from '../live/live-slot';
+import { CriticGate } from '../critic/critic-gate';
+import type { CriticService } from '../critic/critic.service';
+import type { InboxItemInput } from '../agents/owner-inbox';
 
 export interface EditorRunnerDeps {
   loop:     Pick<AgentLoop, 'run'>;
@@ -76,7 +79,20 @@ export interface EditorRunnerDeps {
    * posted, not a repeat). Nothing fresh → the slot is skipped with `no_fresh_item` without an LLM call.
    */
   live?: { scan(slot: EditorSlot, card: EditorCard): Promise<LiveScan | null> };
+  /**
+   * Spec 034 FR-004: the pre-publish critic. When set, every executor run (Telegram, platform, adapt; not a
+   * duplicate, which keeps its reviewed source text) gets a CriticGate the publish tools call before storing,
+   * sending or creating an approval card. `inbox` gets the "critic unavailable" item; `libraryText` is the
+   * source excerpt behind a library_ref.
+   */
+  critic?: {
+    service:      Pick<CriticService, 'review'>;
+    inbox?:       (i: InboxItemInput) => Promise<unknown>;
+    libraryText?: (ref: string) => Promise<string | null>;
+  };
 }
+
+type PlatformContext = Awaited<ReturnType<NonNullable<EditorRunnerDeps['platformContext']>>>;
 
 /** Telegram-only tools that must never run on a slot of another platform, and vice versa. */
 const TELEGRAM_ONLY = new Set(['publish_post', 'lint_post', 'preview_post']);
@@ -133,6 +149,39 @@ export class EditorRunnerService {
     const own = ref === `telegram:${card.channelKey}` ? { humor: card.humor, slang: card.slang, emoji: card.emojiPref, readerQuestionsMax: card.readerQuestionsMax } : null;
     const v = this.d.voiceOf ? await this.d.voiceOf(ref).catch(() => null) : null;
     return v ?? own ?? {};
+  }
+
+  /**
+   * Spec 034 FR-004: the critic gate of one executor run (null without a critic). `pc` is the slot's network
+   * context when the caller already has it; a Telegram slot reads its anchor resource's profile and playbook.
+   */
+  private async criticGate(
+    slot: EditorSlot, card: EditorCard, ctx: RunAgentContext | null,
+    target: { ref: string; platform: string; mode: 'live' | 'shadow' | 'approve'; voice: VoicePrefs }, pc?: PlatformContext,
+  ): Promise<CriticGate | null> {
+    if (!this.d.critic) return null;
+    const context = pc !== undefined ? pc : this.d.platformContext
+      ? await this.d.platformContext({ ...slot, resourceRef: target.ref }, ctx?.orchestrator?.id ?? null).catch(() => null)
+      : null;
+    return new CriticGate(
+      { critic: this.d.critic.service, plans: this.d.plans, inbox: this.d.critic.inbox, libraryText: this.d.critic.libraryText },
+      {
+        slotId: slot.id, channelKey: card.channelKey, mode: target.mode, resourceRef: target.ref, platform: target.platform,
+        topic: slot.topic, angle: slot.angle, card: { models: card.models, dailyBudgetUsd: card.dailyBudgetUsd }, voice: target.voice,
+        brief: card.brief || null, profile: context?.profile ?? null, formatPrefs: context?.formatPrefs ?? null, playbook: context?.playbook ?? null,
+        agent: ctx?.agent
+          ? { id: ctx.agent.id, handle: ctx.agent.handle, limitUsd: ctx.agent.dailyBudgetUsd ?? ctx.orchestrator?.dailyBudgetUsd ?? null }
+          : null,
+        inboxAgentId: ctx?.orchestrator?.id ?? null,
+      },
+    );
+  }
+
+  /** extras of a run with a critic: the gate, and the read tools wrapped so it sees the sources the executor read. */
+  private static withGate(extras: Record<string, unknown>, gate: CriticGate | null): Record<string, unknown> {
+    if (!gate) return extras;
+    const own = extras.wrapTools as ((t: EditorTool[]) => EditorTool[]) | undefined;
+    return { ...extras, critic: gate, wrapTools: (t: EditorTool[]) => gate.wrapTools(own ? own(t) : t) };
   }
 
   private async run(
@@ -223,7 +272,12 @@ export class EditorRunnerService {
     const target = slot.resourceRef ? parseResourceRef(slot.resourceRef) : null;
     const res = target && target.platform !== 'telegram'
       ? await this.runPlatformExecutor(slot, card, ctx, target.platform, note ?? null, scan)
-      : await this.run('executor', card, [await this.executorUser(card, slot, ctx, scan), note].filter(Boolean).join('\n'), slot.id, { excludeTools: PLATFORM_ONLY }, ctx);
+      : await this.run('executor', card, [await this.executorUser(card, slot, ctx, scan), note].filter(Boolean).join('\n'), slot.id,
+        EditorRunnerService.withGate({ excludeTools: PLATFORM_ONLY }, await this.criticGate(slot, card, ctx, {
+          ref: `telegram:${card.channelKey}`, platform: 'telegram',
+          mode: card.mode === 'live' || card.mode === 'approve' ? card.mode : 'shadow',
+          voice: { humor: card.humor, slang: card.slang, emoji: card.emojiPref },
+        })), ctx);
     await this.d.plans.updateSlot(slot.id, { runId: res.runId });
 
     const after = await this.d.plans.getSlot(slot.id);
@@ -315,7 +369,11 @@ export class EditorRunnerService {
         } satisfies PlatformSlotExtras,
       }),
     };
-    const res = await this.run('executor', runCard, user, slot.id, extras, ctx);
+    // Spec 034 FR-004: an adapt is a new text, so the critic reads it; a duplicate keeps its reviewed source text.
+    const gate = r.treatment === 'adapt'
+      ? await this.criticGate(slot, runCard, ctx, { ref: targetRef, platform, mode, voice }, pc)
+      : null;
+    const res = await this.run('executor', runCard, user, slot.id, EditorRunnerService.withGate(extras, gate), ctx);
     await this.d.plans.updateSlot(slot.id, { runId: res.runId });
     const after = await this.d.plans.getSlot(slot.id);
     if (after && after.status === 'running' && !lintFailedTwice) {
@@ -397,7 +455,8 @@ export class EditorRunnerService {
       resourceRef: slot.resourceRef!, mode, maxPerDay: pc?.maxPerDay ?? null, vocabulary: pc?.vocabulary ?? [], bannedTerms: card.bannedTerms,
       agentId: ctx?.agent?.id ?? null, voice,
     };
-    return this.run('executor', card, user, slot.id, { excludeTools: TELEGRAM_ONLY, systemOverride: system, platformSlot }, ctx);
+    const gate = await this.criticGate(slot, card, ctx, { ref: slot.resourceRef!, platform, mode, voice }, pc);
+    return this.run('executor', card, user, slot.id, EditorRunnerService.withGate({ excludeTools: TELEGRAM_ONLY, systemOverride: system, platformSlot }, gate), ctx);
   }
 
   async runReviewer(card: EditorCard): Promise<AgentLoopResult> {

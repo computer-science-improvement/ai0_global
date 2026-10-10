@@ -89,6 +89,8 @@ function usageAttribution(input: AgentLoopInput, runId: string): LlmContext {
 }
 
 const MAX_FINISH_NUDGES = 1;
+/** The most turns a tool error can add to a run (`_grantSteps`), once per run. */
+export const MAX_GRANT_STEPS = 3;
 const MAX_TRUNCATION_RETRIES = 2;
 
 /**
@@ -106,7 +108,8 @@ export class AgentLoop {
 
     const now = this.deps.now ?? Date.now;
     const toolTimeoutMs = this.deps.toolTimeoutMs ?? 30_000;
-    const maxSteps = input.maxSteps ?? DEFAULT_MAX_STEPS;
+    let maxSteps = input.maxSteps ?? DEFAULT_MAX_STEPS;
+    let granted = false;
     const byName = new Map(input.tools.map((t) => [t.name, t]));
     const specs = input.tools.map(toToolSpec);
     // The last turn may only end the run: a role that has terminal tools must not run out of turns mid-research.
@@ -198,6 +201,13 @@ export class AgentLoop {
           if (outcome.terminal && !outcome.isError) {
             return finish('ok', { terminalTool: call.name, terminalResult: outcome.output });
           }
+          // A tool error may ask for turns to act on it (spec 034: a critic `revise` near the step limit must still
+          // end in publish or skip). Granted once per run, at most MAX_GRANT_STEPS turns after this one.
+          const grant = outcome.isError ? Number((outcome.output as { _grantSteps?: unknown })?._grantSteps ?? 0) : 0;
+          if (grant > 0 && !granted) {
+            granted = true;
+            maxSteps = Math.max(maxSteps, turn + 1 + Math.min(Math.floor(grant), MAX_GRANT_STEPS));
+          }
         }
       }
       return finish('max_steps', { error: `no terminal tool after ${maxSteps} turns` });
@@ -229,9 +239,10 @@ export class AgentLoop {
 
     let timer: NodeJS.Timeout | undefined;
     try {
+      const ms = tool.timeoutMs ?? timeoutMs;
       const output = await Promise.race([
         tool.execute(parsed.data, ctx),
-        new Promise<never>((_, reject) => { timer = setTimeout(() => reject(new Error(`tool timed out after ${timeoutMs}ms`)), timeoutMs); }),
+        new Promise<never>((_, reject) => { timer = setTimeout(() => reject(new Error(`tool timed out after ${ms}ms`)), ms); }),
       ]);
       return done(parsed.data, output ?? { ok: true }, tool.kind === 'terminal');
     } catch (err: any) {

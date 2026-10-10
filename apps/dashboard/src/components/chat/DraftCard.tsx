@@ -15,6 +15,7 @@ import { Field } from '../ui/primitives';
 import type { Tone } from '../ui/primitives';
 import { sanitizeTelegramHtml } from '../../lib/tg-html';
 import { TelegramPreview } from './TelegramPreview';
+import { CriticBlock } from '../critic/CriticBlock';
 import { KYIV_TZ, fmtKyiv, inputToApi, nextRoundHourKyiv, toKyivInput } from '../../lib/kyiv-time';
 import { useDraftAction } from '../../api/chat';
 import type { EditorDraft, EditorDraftStatus } from '../../api/types';
@@ -54,6 +55,14 @@ export function DraftCard({ draft }: { draft: EditorDraft }) {
       onSuccess: (r) => toast.success(`Published to ${draft.channelKey}${r.warnings?.length ? ` (${r.warnings.join('; ')})` : ''}`),
     });
   };
+
+  const review = () => action.mutate({ id: draft.id, action: 'critic' }, {
+    onSuccess: (r) => {
+      const v = r.draft.critic?.verdict;
+      if (v === 'error') toast.error('The critic did not answer. Try again later.');
+      else toast.success(`Critic: ${v ?? 'done'}`);
+    },
+  });
 
   const cancel = async () => {
     const what = draft.status === 'scheduled' ? `cancel the post scheduled for ${fmtKyiv(draft.scheduledAt)}` : `cancel the draft "${title}"`;
@@ -99,6 +108,7 @@ export function DraftCard({ draft }: { draft: EditorDraft }) {
           ))}
         </div>
       )}
+      {draft.critic && <CriticBlock critic={draft.critic} where="draft" />}
       {draft.error && (
         <div className={draft.status === 'failed' ? 'callout-danger' : 'callout-warning'} style={{ marginTop: 10 }}>
           <span className="text-micro">{draft.error}</span>
@@ -115,6 +125,11 @@ export function DraftCard({ draft }: { draft: EditorDraft }) {
           <button className="btn-secondary" disabled={busy || !lintOk} onClick={() => setScheduling(true)}
             style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
             <Icon name="calendar" size={14} /> {draft.status === 'scheduled' ? 'Reschedule' : 'Schedule'}
+          </button>
+          <button className="btn-secondary" disabled={busy || !lintOk} onClick={review}
+            title="Ask the pre-publish critic for scores and notes (advisory; it costs one LLM call)"
+            style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+            <Icon name="sparkles" size={14} /> {draft.critic ? 'Check again' : 'Check with critic'}
           </button>
           {draft.status !== 'canceled' && (
             <button className="btn-ghost" disabled={busy} onClick={cancel}

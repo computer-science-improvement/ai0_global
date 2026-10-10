@@ -41,6 +41,12 @@ export interface PublishPlatformInput {
   bannedTerms?: string[];
   /** Spec 034: format_prefs humor / slang / emoji of the resource (slop warnings only). */
   voice?: VoicePrefs | null;
+  /**
+   * Spec 034 FR-004: the pre-publish critic, called after every check and before
+   * anything is stored or sent. `null` = proceed; otherwise its result is returned
+   * as is (a `critic_revise` error, or the terminal result of a rejected / held slot).
+   */
+  review?: (p: { text: string; lint: PlatformLintResult }) => Promise<null | { halt: object }>;
 }
 
 export type PublishPlatformResult =
@@ -49,7 +55,9 @@ export type PublishPlatformResult =
       /** Spec 031: written and waiting for the owner; `rendered` is exactly what will be sent. */
       awaiting?: boolean; rendered?: RenderedPlatformPost;
     }
-  | { error: string; details?: unknown };
+  | { error: string; details?: unknown }
+  /** Spec 034 FR-004: the critic stopped the post (revise / reject / held); the tool returns `halted` as is. */
+  | { halted: object };
 
 const BLOCKING_HEALTH = new Set(['no_access', 'token_invalid']);
 
@@ -94,6 +102,13 @@ export async function publishPlatformNow(d: PublishPlatformDeps, i: PublishPlatf
   const maxSim = recent.reduce((m, t) => Math.max(m, similarity(caption, t)), 0);
   if (caption.length > 40 && maxSim >= PLATFORM_SIMILARITY_LIMIT) {
     return { error: 'too_similar', details: `схожість ${maxSim.toFixed(2)} з нещодавнім постом цього ресурсу` };
+  }
+
+  if (i.review) {
+    const text = [caption, ...(i.spec.slides ?? []).map((sl, k) => `Слайд ${k + 1}: ${sl.title}. ${sl.text}`),
+      i.spec.first_comment ? `Перший коментар: ${i.spec.first_comment}` : null].filter(Boolean).join('\n');
+    const r = await i.review({ text, lint });
+    if (r) return { halted: r.halt };
   }
 
   const preview = renderPlatform(i.spec, platform);

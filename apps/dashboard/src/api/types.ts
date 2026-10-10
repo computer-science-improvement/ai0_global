@@ -1,3 +1,4 @@
+import type { CriticVerdict } from '../lib/critic';
 export interface TrackedChannel {
   id: string;
   username: string | null;
@@ -810,6 +811,8 @@ export interface EditorDraft {
   slotId:          string | null;
   publishedPostId: number | null;
   error:           string | null;
+  /** Spec 034 FR-004: the critic's advisory verdict (on demand; cleared when the draft changes). */
+  critic?:         CriticVerdict | null;
   createdAt:       string;
   updatedAt:       string;
 }

@@ -8,6 +8,7 @@ import { EmptyState } from '../ui/primitives';
 import { Icon } from '../ui/Icon';
 import { toast, describeError } from '../ui/Toast';
 import { ApprovalCard } from './ApprovalCard';
+import { heldByCritic } from '../../lib/critic';
 import { fmtDay, useApprovals, useBulkApprove, type ApprovalCardData, type ApprovalFilter } from '../../api/approvals';
 
 interface Group { key: string; channelKey: string; resourceRef: string; title: string; day: string; items: ApprovalCardData[] }
@@ -43,7 +44,7 @@ export function ApprovalList({ filter = {}, emptyNote, limit }: { filter?: Appro
   const approveAll = (body: { channel?: string; resource?: string; date: string }, label: string) => bulk.mutate(body, {
     onSuccess: (r) => {
       const parts = [`Approved ${posts(r.approved)} (${label})`];
-      if (r.skippedWithWarnings) parts.push(`${r.skippedWithWarnings} with warnings — review them one by one`);
+      if (r.skippedWithWarnings) parts.push(`${r.skippedWithWarnings} with warnings or critic notes — review them one by one`);
       if (r.conflicts) parts.push(`${r.conflicts} already decided`);
       toast.success(parts.join('; '));
     },
@@ -62,7 +63,8 @@ export function ApprovalList({ filter = {}, emptyNote, limit }: { filter?: Appro
     <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
       {groups.map((g) => {
         const waiting = g.items.filter((i) => i.status === 'awaiting_approval');
-        const clean = waiting.filter((i) => !i.lintWarnings.length).length;
+        // Posts with lint warnings or a critic verdict other than pass are decided one by one (spec 034 FR-004).
+        const clean = waiting.filter((i) => !i.lintWarnings.length && !heldByCritic(i.critic)).length;
         const nk = `${g.channelKey}|${g.day}`;
         const showNetwork = (networkDays.get(nk)?.size ?? 0) > 1 && nk !== lastNetworkDay;
         if (showNetwork) lastNetworkDay = nk;

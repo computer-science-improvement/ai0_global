@@ -125,6 +125,13 @@ export class EditorChatController {
     return { draft: await this.drafts.withRender(r.draft), local: r.local };
   }
 
+  /** Spec 034 FR-004: the critic's advisory verdict for a draft (stored on the draft card). */
+  @Post('drafts/:id/critic')
+  async critic(@Param('id', ParseUUIDPipe) id: string) {
+    const r = unwrap(await this.drafts.review(id));
+    return { draft: await this.drafts.withRender(r.draft), critic: r.critic };
+  }
+
   @Post('drafts/:id/cancel')
   async cancel(@Param('id', ParseUUIDPipe) id: string) {
     return { draft: await this.drafts.withRender(unwrap(await this.drafts.cancel(id)).draft) };

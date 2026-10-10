@@ -1,3 +1,4 @@
+import type { StoredCritic } from '../critic/critic';
 import type { Pool } from 'pg';
 import type { LintResult } from '../post/lint-post';
 
@@ -37,6 +38,8 @@ export interface EditorDraft {
   slotId:          string | null;
   publishedPostId: number | null;
   error:           string | null;
+  /** Spec 034 FR-004: the critic's advisory verdict (on demand; cleared when the spec changes). */
+  critic?:         StoredCritic | null;
   createdAt:       Date;
   updatedAt:       Date;
 }
@@ -51,6 +54,7 @@ export interface DraftPatch {
   slotId?:          string | null;
   publishedPostId?: number | null;
   error?:           string | null;
+  critic?:          StoredCritic | null;
 }
 
 export interface MyChannel {
@@ -73,7 +77,7 @@ export const toDraft = (r: any): EditorDraft => ({
   id: r.id, chatId: r.chat_id ?? null, channelKey: r.channel_key, spec: r.spec, preview: r.preview ?? null,
   lint: r.lint ?? null, status: r.status, scheduledAt: r.scheduled_at ? new Date(r.scheduled_at) : null,
   slotId: r.slot_id ?? null, publishedPostId: r.published_post_id == null ? null : Number(r.published_post_id),
-  error: r.error ?? null, createdAt: r.created_at, updatedAt: r.updated_at,
+  error: r.error ?? null, ...(r.critic ? { critic: r.critic } : {}), createdAt: r.created_at, updatedAt: r.updated_at,
 });
 
 /** Editor chat storage (spec 010): chats, their messages and the drafts the composer saves. */
@@ -159,6 +163,7 @@ export class EditorChatRepository {
     if (p.slotId !== undefined)          add('slot_id', p.slotId);
     if (p.publishedPostId !== undefined) add('published_post_id', p.publishedPostId);
     if (p.error !== undefined)           add('error', p.error);
+    if (p.critic !== undefined)          add('critic', p.critic === null ? null : JSON.stringify(p.critic));
     const { rows } = await this.pool.query(
       `UPDATE editor_drafts SET ${[...sets, 'updated_at = now()'].join(', ')} WHERE id = $1 RETURNING *`, params);
     return rows[0] ? toDraft(rows[0]) : null;

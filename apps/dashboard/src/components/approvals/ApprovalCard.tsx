@@ -13,6 +13,7 @@ import { toast, describeError } from '../ui/Toast';
 import { Modal } from '../Modal';
 import { SegmentedTabs } from '../SegmentedTabs';
 import { TelegramPreview } from '../chat/TelegramPreview';
+import { CriticBlock } from '../critic/CriticBlock';
 import { errorBody } from '../../api/agents';
 import {
   toZonedInput, useApprovalAction, zonedInputToIso, type ApprovalCardData, type RenderedPlatformPost,
@@ -96,10 +97,12 @@ export function ApprovalCard({ item, delay = 0 }: { item: ApprovalCardData; dela
 
       <Rationale item={item} />
 
+      {item.critic && <CriticBlock critic={item.critic} where="approval" />}
+
       {item.lintWarnings.length > 0 && (
         <div style={{ marginTop: 8, display: 'flex', flexDirection: 'column', gap: 2 }}>
           {item.lintWarnings.map((w, i) => <span key={i} className="text-micro" style={{ color: 'var(--color-warning)' }}>⚠ {w}</span>)}
-          <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>Posts with warnings are left out of "Approve all".</span>
+          <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>Posts with warnings or a critic verdict other than pass are left out of "Approve all".</span>
         </div>
       )}
       {waiting && (

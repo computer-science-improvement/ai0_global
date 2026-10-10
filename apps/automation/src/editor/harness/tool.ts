@@ -29,6 +29,8 @@ export interface EditorTool<I = any, O = any> {
   input:       z.ZodType<I>;
   kind:        ToolKind;
   roles:       EditorRole[];
+  /** Own timeout (ms) instead of the loop's default (30 s): publish tools wait for the pre-publish critic (spec 034). */
+  timeoutMs?:  number;
   execute(input: I, ctx: ToolContext): Promise<O | ToolError>;
 }
 
@@ -38,6 +40,7 @@ export function defineTool<S extends z.ZodType, O>(t: {
   input:       S;
   kind:        ToolKind;
   roles:       EditorRole[];
+  timeoutMs?:  number;
   execute(input: z.infer<S>, ctx: ToolContext): Promise<O | ToolError>;
 }): EditorTool<z.infer<S>, O> {
   return t as unknown as EditorTool<z.infer<S>, O>;

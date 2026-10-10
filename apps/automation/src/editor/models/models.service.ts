@@ -19,6 +19,8 @@ export interface ModelsServiceDeps {
   agents:   { list(): Promise<Agent[]> };
   catalog:  Pick<ModelCatalog, 'list'>;
   defaults: Pick<ModelDefaultsStore, 'get' | 'set'>;
+  /** Spec 034 FR-004: the owner's pre-publish critic model (app_settings `ai.critic_model`); optional. */
+  critic?:  Pick<ModelDefaultsStore, 'get' | 'set'>;
   /** Spec 029 price cache; optional (tests, a build without the usage module). */
   prices?:  { price(provider: string, model: string): Promise<PriceRow | null>; invalidate(): void };
   env:      (key: string) => string | undefined;
@@ -117,8 +119,16 @@ export class ModelsService {
         channelKey,
       };
     }));
+    // Spec 034 FR-004: the critic runs as the `checker` role; the owner's choice beats env, env beats the default.
+    const criticSaved = this.d.critic ? await this.d.critic.get() : null;
+    const criticPick = pickModel('checker', this.d.env, null, { agentModel: criticSaved, defaultModel: def });
     return {
       defaultModel: { model: def, saved, builtin: DEFAULT_EDITOR_MODEL, price: await priceOf(def) },
+      criticModel: {
+        model: criticPick.model, saved: criticSaved,
+        source: (criticPick.source === 'agent' ? 'critic' : criticPick.source) as 'critic' | 'env' | 'default',
+        price: await priceOf(criticPick.model),
+      },
       // Which roles an env EDITOR_MODEL_<ROLE> overrides (key names only — never the values).
       envOverrides: EDITOR_ROLES.filter((r) => !!this.d.env(envModelKey(r))?.trim()).map((r) => ({ role: r, key: envModelKey(r) })),
       agents,
@@ -141,6 +151,24 @@ export class ModelsService {
     }
     this.d.log?.(`default model → ${model ?? `built-in (${DEFAULT_EDITOR_MODEL})`}`);
     return { ok: true, defaultModel: model ?? DEFAULT_EDITOR_MODEL, saved: model };
+  }
+
+  /** PUT /api/models/critic — `{model}` gives the pre-publish critic its own model, `{model: null}` makes it follow the default. */
+  async setCritic(body: unknown) {
+    const p = DefaultBody.safeParse(body ?? {});
+    if (!p.success) throw badRequest(p.error);
+    if (!this.d.critic) throw new NotFoundException({ error: 'critic_unavailable' });
+    const model = p.data.model;
+    if (model) {
+      const [saved, def] = await Promise.all([this.d.critic.get(), this.d.defaults.get()]);
+      await this.assertKnown(model, [saved, def, DEFAULT_EDITOR_MODEL]);
+      await this.d.critic.set(model);
+      await this.ensurePrice(model);
+    } else {
+      await this.d.critic.set(null);
+    }
+    this.d.log?.(`critic model → ${model ?? 'the default'}`);
+    return { ok: true, criticModel: model };
   }
 
   /** POST /api/models/bulk — apply one model to every agent, or clear every agent's model. */

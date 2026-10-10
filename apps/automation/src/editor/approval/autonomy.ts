@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { parseResourceRef } from '../agents/agent.types';
 import type { ChannelMode, EditorCard } from '../card';
 import type { ApprovalStats, ApprovalStatsReport, ApprovalStatsRepository } from './approval-stats';
+import { heldByCritic, type StoredCritic } from '../critic/critic';
 
 /**
  * Switching a resource between approval and autonomous work (spec 031 FR-010).
@@ -29,7 +30,7 @@ export interface AutonomyDeps {
   /** The owner's switch: the channel card (audited in its memory) and its resource orchestrator. */
   setMode: (channelKey: string, mode: 'live' | 'approve') => Promise<void>;
   /** Posts of the channel (all its resources) that wait for approval. */
-  waiting: (channelKey: string) => Promise<Array<{ id: string; lintWarnings?: string[] | null }>>;
+  waiting: (channelKey: string) => Promise<Array<{ id: string; lintWarnings?: string[] | null; critic?: Pick<StoredCritic, 'verdict'> | null }>>;
   /** ApprovalsService.approve: single-flight; a lost race throws ConflictException. */
   approve: (slotId: string) => Promise<unknown>;
   now?:    () => Date;
@@ -130,7 +131,7 @@ export class AutonomyService {
     return {
       channel, title: card.title, mode, cardMode: card.mode, days: AUTONOMY_WINDOW_DAYS,
       stats: report.totals, byResource: report.byResource,
-      waiting: waiting.length, waitingWithWarnings: waiting.filter((w) => (w.lintWarnings ?? []).length > 0).length,
+      waiting: waiting.length, waitingWithWarnings: waiting.filter((w) => (w.lintWarnings ?? []).length > 0 || heldByCritic(w.critic)).length,
     };
   }
 
@@ -155,7 +156,8 @@ export class AutonomyService {
     }
     if (to === 'live' && from === 'approve' && p.data.approve_waiting) {
       for (const w of await this.d.waiting(channel)) {
-        if ((w.lintWarnings ?? []).length) { out.skippedWithWarnings++; continue; }
+        // Spec 034 FR-004: a post the critic did not pass is decided by the owner one by one, like one with warnings.
+        if ((w.lintWarnings ?? []).length || heldByCritic(w.critic)) { out.skippedWithWarnings++; continue; }
         try {
           await this.d.approve(w.id);
           out.approved++;
