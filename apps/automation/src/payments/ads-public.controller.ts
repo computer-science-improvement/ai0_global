@@ -20,10 +20,10 @@ export class AdsPublicController {
     @Optional() @Inject(LANDING_CONFIG) private readonly landing?: Pick<LandingConfigService, 'adDm'>,
   ) {}
 
-  /** T001: the active price list. */
+  /** T001: the active price list (spec 036: only what can be fulfilled — no digest sponsor where no digest runs). */
   @Get('landing/prices')
   async listPrices(): Promise<PublicAdPrice[]> {
-    return (await this.prices.list({ activeOnly: true })).map(toPublicPrice);
+    return (await this.prices.list({ activeOnly: true, sellableOnly: true })).map(toPublicPrice);
   }
 
   /**

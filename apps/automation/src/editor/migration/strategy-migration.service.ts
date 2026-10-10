@@ -16,6 +16,8 @@ import { DEFAULT_QUIET, DEFAULT_TZ } from '../time/resource-time';
 import { allBindings, bindingsFor, type BindingRow } from './binding-guard';
 import { buildProposal, migratedSeries, proposalKey, type MigrationProposal, type ProposalResource } from './proposal';
 import { toneSkillsFor } from './type-mapping';
+import { DIGEST_STRATEGY_TYPES } from '../../payments/sponsor-orders.repository';
+import type { SponsorFulfilment } from '../../payments/sponsor-fulfilment';
 
 /**
  * Strategy bindings → agent series (spec 023 FR-011/FR-012): the proposal (deterministic, no LLM), the
@@ -47,6 +49,11 @@ export interface StrategyMigrationDeps {
   publishConfig?: () => Promise<void>;
   /** Spec 034 FR-014: attach a resource tone skill to the agent (enabled, always in context). */
   attachSkill?: (agentId: string, name: string) => Promise<'attached' | 'kept_off' | 'missing'>;
+  /**
+   * Spec 036: retiring a digest binding ends the paid digest sponsor line on its channel. The open
+   * digest_sponsor orders and static sponsors there are reported to the owner (one Inbox action + alert).
+   */
+  sponsors?:  Pick<SponsorFulfilment, 'reportCutover'>;
   /** EDITOR_ENABLED=true — the cutover is refused otherwise (the kill switch). */
   editorEnabled: () => boolean;
   /** The zone strategy crons run in (SCHEDULER_TZ, else the process zone). */
@@ -300,7 +307,27 @@ export class StrategyMigrationService {
       alert: { title: `🔁 @${sc.agent.handle}: стратегії вимкнено, агент веде ${sc.card.channelKey} у режимі апруву`, body: `Вимкнено: ${retired.join(', ')}.` },
       refType: 'agent', refId: sc.agent.handle,
     }).catch(() => {});
+    await this.reportSponsors(sc.agent, set.bindings);
     return { mode, retired };
+  }
+
+  /** Spec 036: what happens to the digest sponsors of the retired digest bindings (never blocks the cutover). */
+  private async reportSponsors(agent: Agent, retired: BindingRow[]): Promise<void> {
+    if (!this.d.sponsors) return;
+    const digests = retired.filter((b) => (DIGEST_STRATEGY_TYPES as readonly string[]).includes(b.type) && b.resourceRef?.startsWith('telegram:'));
+    if (!digests.length) return;
+    const keyOf = (b: BindingRow) => b.resourceRef!.slice('telegram:'.length);
+    const staticSponsors = digests.flatMap((b) => {
+      const sp = (b.params as { sponsor?: { text?: unknown; url?: unknown } | null }).sponsor;
+      return sp && typeof sp.text === 'string' && typeof sp.url === 'string' ? [{ extId: b.ext_id, channelKey: keyOf(b), text: sp.text, url: sp.url }] : [];
+    });
+    try {
+      await this.d.sponsors.reportCutover({
+        channelKeys: [...new Set(digests.map(keyOf))], agentId: agent.id, handle: agent.handle, now: this.now(), staticSponsors,
+      });
+    } catch (err: any) {
+      this.d.log?.(`digest sponsor cutover report failed: ${err?.message ?? err}`);
+    }
   }
 
   /** The rollback card: the agent and its card back to shadow, the migrated bindings re-enabled (one transaction). */

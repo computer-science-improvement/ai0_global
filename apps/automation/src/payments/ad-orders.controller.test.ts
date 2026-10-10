@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { AdOrdersController } from './ad-orders.controller';
+import { AdOrdersController, AdPricesController } from './ad-orders.controller';
 
 function make() {
   const calls: any[] = [];
@@ -38,4 +38,14 @@ test('PATCH update goes through the service (creative validation lives there)', 
   const { ctrl, calls } = make();
   await ctrl.update('o1', { sponsorLabel: 'ФОП' } as any);
   assert.deepEqual(calls[0], ['update', 'o1', { sponsorLabel: 'ФОП' }]);
+});
+
+test('spec 036: PUT price refuses a digest_sponsor price where no digest strategy runs; other formats pass', async () => {
+  const saved: any[] = [];
+  const prices = { upsertActive: async (i: any) => { saved.push(i); return { id: 'p1', ...i }; } } as any;
+  const ctrl = new AdPricesController(prices, { digestRunsOn: async (k: string) => k === '@digest_on' } as any);
+  await assert.rejects(() => ctrl.upsert({ channelKey: 'agent_run', format: 'digest_sponsor', priceUah: 400 } as any), /digest_sponsor is not sold on @agent_run/);
+  await ctrl.upsert({ channelKey: 'digest_on', format: 'digest_sponsor', priceUah: 400 } as any);
+  await ctrl.upsert({ channelKey: 'agent_run', format: 'post', priceUah: 900 } as any);
+  assert.deepEqual(saved.map((s) => [s.channelKey, s.format]), [['@digest_on', 'digest_sponsor'], ['@agent_run', 'post']]);
 });

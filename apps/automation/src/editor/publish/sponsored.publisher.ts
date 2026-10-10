@@ -74,6 +74,11 @@ export class SponsoredPublisher {
       await this.d.plans.updateSlot(slot.id, { status: 'skipped', error: 'ad order canceled' });
       return false;
     }
+    // Spec 036: an order already published elsewhere (e.g. a legacy digest line) is never posted twice.
+    if (order.status === 'published' || order.status === 'reported') {
+      await this.d.plans.updateSlot(slot.id, { status: 'skipped', error: 'ad order already published' });
+      return false;
+    }
     const lateMs = now.getTime() - slot.scheduledAt.getTime();
     if (lateMs > RESERVED_MAX_LATE_MS) {
       return this.fail(slot, `missed window: ${Math.round(lateMs / 60_000)} min late`, order);
@@ -108,7 +113,8 @@ export class SponsoredPublisher {
     await this.d.plans.updateSlot(slot.id, patch);
     await this.d.orders.markPublished(order.id, postId);
     const pin = order.format === 'pin_24h' ? '\n📌 Формат pin_24h: закріпи цей пост на 24 год і відкріпи після.' : '';
-    await this.safeNotify(`💰 Реклама «${order.advertiser}» опублікована в ${slot.channelKey} (msg ${messageId}).${pin}`);
+    const digest = order.format === 'digest_sponsor' ? '\n🧾 Спонсор дайджесту: дайджест-стратегія на каналі не працює, тож вийшов окремий рекламний пост.' : '';
+    await this.safeNotify(`💰 Реклама «${order.advertiser}» опублікована в ${slot.channelKey} (msg ${messageId}).${pin}${digest}`);
     return true;
   }
 

@@ -123,3 +123,20 @@ test('pin_24h order → the owner alert asks to pin the post for 24 h', async ()
   await plain.p.publishDue(NOW);
   assert.doesNotMatch(plain.notes[0], /закріпи/);
 });
+
+test('spec 036: an order already published elsewhere (a digest line) is never posted twice', async () => {
+  for (const status of ['published', 'reported']) {
+    const h = setup({ order: { id: 'o1', advertiser: 'Школа', sponsorLabel: null, status, creative: CREATIVE, format: 'digest_sponsor' } });
+    assert.equal(await h.p.publishDue(NOW), 0);
+    assert.equal(h.sent.length, 0);
+    assert.deepEqual(h.updates.at(-1), { id: 's1', status: 'skipped', error: 'ad order already published' });
+    assert.equal(h.marked.length, 0);
+  }
+});
+
+test('spec 036: a digest sponsor published as a standalone post says so in the owner alert', async () => {
+  const h = setup({ order: { id: 'o1', advertiser: 'Школа', sponsorLabel: null, status: 'scheduled', creative: CREATIVE, format: 'digest_sponsor' } });
+  assert.equal(await h.p.publishDue(NOW), 1);
+  assert.ok((h.sent[0].m[0].text as string).endsWith(AD_LABEL));
+  assert.match(h.notes[0], /Спонсор дайджесту/);
+});

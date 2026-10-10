@@ -37,6 +37,7 @@ export class DigestSponsorsRepository {
          FROM ad_orders o JOIN ad_prices p ON p.id = o.price_id
         WHERE p.format = 'digest_sponsor'
           AND o.status IN ('paid','scheduled')
+          AND o.editor_slot_id IS NULL          -- spec 036: placed in the reserved lane → a sponsored post, not a digest line
           AND o.publish_at IS NOT NULL
           AND (o.publish_at AT TIME ZONE 'Europe/Kyiv')::date = $2::date
           AND (COALESCE(o.channel_id, p.channel_key) = $1

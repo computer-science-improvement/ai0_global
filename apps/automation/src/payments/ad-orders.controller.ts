@@ -1,7 +1,8 @@
-import { Body, Controller, Delete, Get, NotFoundException, Param, Patch, Post, Put, Query, UseGuards } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Delete, Get, NotFoundException, Optional, Param, Patch, Post, Put, Query, UseGuards } from '@nestjs/common';
 import { TrackingAuthGuard } from '../tracking/api/tracking-auth.guard';
 import { AdOrdersRepository } from './ad-orders.repository';
-import { AdOrdersService } from './ad-orders.service';
+import { AdOrdersService, digestSponsorNotSold } from './ad-orders.service';
+import { SponsorOrdersRepository } from './sponsor-orders.repository';
 import { AdPricesRepository } from './ad-prices.repository';
 import { CreateOrderDto, UpdateOrderDto } from './dto/create-order.dto';
 import { ScheduleOrderDto } from './dto/schedule-order.dto';
@@ -26,12 +27,18 @@ const withAt = (k: string) => (k.startsWith('@') ? k : `@${k}`);
 @Controller('api/ad-prices')
 @UseGuards(TrackingAuthGuard)
 export class AdPricesController {
-  constructor(private readonly prices: AdPricesRepository) {}
+  constructor(private readonly prices: AdPricesRepository, @Optional() private readonly sponsors?: SponsorOrdersRepository) {}
 
+  /** Rows carry `sellable` (spec 036): a digest_sponsor price is not offered where no digest strategy runs. */
   @Get() list(@Query('active') active?: string) { return this.prices.list({ activeOnly: active === 'true' }); }
 
-  @Put() upsert(@Body() dto: UpsertPriceDto) {
-    return this.prices.upsertActive({ channelKey: withAt(dto.channelKey), format: dto.format, priceUah: dto.priceUah, note: dto.note ?? null });
+  /** Spec 036: a digest_sponsor price is refused on a channel without a running digest strategy (it could not be fulfilled). */
+  @Put() async upsert(@Body() dto: UpsertPriceDto) {
+    const channelKey = withAt(dto.channelKey);
+    if (dto.format === 'digest_sponsor' && this.sponsors && !(await this.sponsors.digestRunsOn(channelKey))) {
+      throw new BadRequestException(digestSponsorNotSold(channelKey));
+    }
+    return this.prices.upsertActive({ channelKey, format: dto.format, priceUah: dto.priceUah, note: dto.note ?? null });
   }
 
   @Delete(':id') async deactivate(@Param('id') id: string) {
