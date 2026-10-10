@@ -1,6 +1,9 @@
 import axios from 'axios';
 import { assertPublicUrl, Lookup } from './ssrf-guard';
 
+export const BROWSER_USER_AGENT =
+  'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36';
+
 export interface SafeGetResult {
   url:         string;   // final URL after redirects
   status:      number;
@@ -39,8 +42,10 @@ async function guardedGet(raw: string, opts: SafeOpts, responseType: 'text' | 'a
       transformResponse: (d: unknown) => d,
       validateStatus:   () => true,
       headers: {
-        'User-Agent': 'ai0-editor/1.0 (+https://ai0.global)',
-        Accept:       opts.accept ?? 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.5',
+        // A browser User-Agent like the legacy fetchers: news sites behind Cloudflare answer 403 to bot-like agents.
+        'User-Agent':      BROWSER_USER_AGENT,
+        Accept:            opts.accept ?? 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.5',
+        'Accept-Language': 'uk,en;q=0.8',
       },
     });
     if (res.status >= 300 && res.status < 400 && res.headers?.location) {

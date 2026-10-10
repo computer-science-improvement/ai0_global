@@ -109,6 +109,8 @@ export class AgentLoop {
     const maxSteps = input.maxSteps ?? DEFAULT_MAX_STEPS;
     const byName = new Map(input.tools.map((t) => [t.name, t]));
     const specs = input.tools.map(toToolSpec);
+    // The last turn may only end the run: a role that has terminal tools must not run out of turns mid-research.
+    const terminalSpecs = input.tools.filter((t) => t.kind === 'terminal').map(toToolSpec);
     const terminalNames = input.tools.filter((t) => t.kind === 'terminal').map((t) => t.name);
 
     let runId: string;
@@ -148,9 +150,13 @@ export class AgentLoop {
         const verdict = await withLlmContext(usage, () => this.deps.budget.check(input.channelKey, input.channelBudgetUsd, input.agent ?? null));
         if (!verdict.ok) return finish('budget_exceeded', { error: `${verdict.scope} budget: $${verdict.spentUsd.toFixed(4)} >= $${verdict.limitUsd}` });
 
+        const lastTurn = turn === maxSteps - 1 && terminalSpecs.length > 0;
+        if (lastTurn) {
+          messages.push({ role: 'user', content: `Це останній крок. Заверши роботу зараз викликом одного з інструментів: ${terminalSpecs.map((t) => t.name).join(', ')}. Якщо матеріалу для поста не вистачає — пропусти слот і коротко назви причину.` });
+        }
         const t0 = now();
         const res = await withLlmContext({ ...usage, stepIdx: totals.steps }, () => this.deps.llm.chat({
-          model: input.model.model, messages, tools: specs,
+          model: input.model.model, messages, tools: lastTurn ? terminalSpecs : specs,
           maxTokens: input.model.maxTokens, temperature: input.model.temperature, reasoningEffort: input.model.reasoningEffort,
         }));
         totals.promptTokens     += res.usage.promptTokens;

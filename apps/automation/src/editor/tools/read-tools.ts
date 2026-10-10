@@ -174,6 +174,9 @@ export function buildReadTools(d: ReadToolDeps): EditorTool[] {
     input: z.object({ url: z.string().url() }),
     execute: async ({ url }) => {
       const res = await safeGet(url, { lookup: d.http?.lookup, get: d.http?.get });
+      if (res.status === 401 || res.status === 403 || res.status === 429) {
+        return { error: 'http_error', details: `status ${res.status}: сайт не дає завантажити сторінку. Не пробуй його знову — візьми snippet зі стрічки, інше джерело або пропусти слот` };
+      }
       if (res.status >= 400) return { error: 'http_error', details: `status ${res.status}` };
       if (!/html|xml|text/i.test(res.contentType) && res.contentType) return { error: 'unsupported_content', details: res.contentType };
       return { url: res.url, ...extractPage(res.body, res.url) };
