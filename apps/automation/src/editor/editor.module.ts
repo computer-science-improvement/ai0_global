@@ -123,7 +123,9 @@ import { createHash, randomBytes } from 'crypto';
 import { TrackingAuthGuard } from '../tracking/api/tracking-auth.guard';
 import { PriceService } from '../common/ai/usage/price.service';
 import { LlmPricesRepository } from '../common/ai/usage/llm-prices.repository';
-import { ModelDefaultsStore } from './llm/model-defaults';
+import { CRITIC_MODEL_KEY, ModelDefaultsStore } from './llm/model-defaults';
+import { CriticService } from './critic/critic.service';
+import { libraryTextOf } from './critic/critic-source';
 import { ModelCatalog } from './models/model-catalog';
 import { ModelsService, fallbackCatalog } from './models/models.service';
 import { MODELS_SERVICE, ModelsController } from './models/models.controller';
@@ -196,6 +198,9 @@ export const EDITOR_NETWORK   = 'EDITOR_NETWORK';
 export const EDITOR_LOOP      = 'EDITOR_LOOP';
 /** Spec 035: the owner's global default model (app_settings `ai.default_model`), cached in-process for every runner. */
 export const MODEL_DEFAULTS   = 'MODEL_DEFAULTS';
+/** Spec 034 FR-004: the owner's critic model (app_settings `ai.critic_model`) and the pre-publish critic. */
+export const CRITIC_MODEL     = 'CRITIC_MODEL';
+export const EDITOR_CRITIC    = 'EDITOR_CRITIC';
 
 /** Approval mode (spec 031): storage, the publisher of approved posts and the tick lane. */
 export const APPROVAL_INFRA   = 'APPROVAL_INFRA';
@@ -584,10 +589,30 @@ export const EDITOR_PROVIDERS = [
       },
     },
     {
+      provide: CRITIC_MODEL,
+      inject: [DB_POOL],
+      useFactory: (pool: Pool) => {
+        const logger = new Logger('Models');
+        return new ModelDefaultsStore(pool, { onError: (m) => logger.warn(m) }, CRITIC_MODEL_KEY);
+      },
+    },
+    {
+      // Spec 034 FR-004: the pre-publish critic (role `checker`, ledger feature `editor.checker`). EDITOR_CRITIC=off disables it.
+      provide: EDITOR_CRITIC,
+      inject: [ConfigService, EDITOR_LOOP, MODEL_DEFAULTS, CRITIC_MODEL],
+      useFactory: (cfg: ConfigService, loop: AgentLoop, models: ModelDefaultsStore, critic: ModelDefaultsStore): CriticService | null => {
+        if ((cfg.get<string>('EDITOR_CRITIC') ?? '').trim().toLowerCase() === 'off') {
+          new Logger('Editor').warn('EDITOR_CRITIC=off: posts are published without the pre-publish critic');
+          return null;
+        }
+        return new CriticService({ loop, env: (k) => cfg.get<string>(k) ?? undefined, defaultModel: () => models.get(), criticModel: () => critic.get() });
+      },
+    },
+    {
       // Spec 035: the Models page (catalog from OpenRouter's public list, cached 24 h; offline fallback from llm_prices).
       provide: MODELS_SERVICE,
-      inject: [DB_POOL, ConfigService, AGENT_INFRA, MODEL_DEFAULTS, { token: PriceService, optional: true }],
-      useFactory: (pool: Pool, cfg: ConfigService, infra: AgentInfra, defaults: ModelDefaultsStore, prices?: PriceService) => {
+      inject: [DB_POOL, ConfigService, AGENT_INFRA, MODEL_DEFAULTS, CRITIC_MODEL, { token: PriceService, optional: true }],
+      useFactory: (pool: Pool, cfg: ConfigService, infra: AgentInfra, defaults: ModelDefaultsStore, critic: ModelDefaultsStore, prices?: PriceService) => {
         const logger = new Logger('Models');
         const catalog = new ModelCatalog({
           fetch: (url, init) => fetch(url, init),
@@ -595,7 +620,7 @@ export const EDITOR_PROVIDERS = [
           log: (m) => logger.warn(m),
         });
         return new ModelsService({
-          pool, agents: infra.agents, catalog, defaults, prices, env: (k) => cfg.get<string>(k) ?? undefined, log: (m) => logger.log(m),
+          pool, agents: infra.agents, catalog, defaults, critic, prices, env: (k) => cfg.get<string>(k) ?? undefined, log: (m) => logger.log(m),
         });
       },
     },
@@ -797,10 +822,10 @@ export const EDITOR_PROVIDERS = [
     {
       // Deterministic draft actions of the editor chat (spec 010): composer tools, REST buttons, scheduled path.
       provide: EDITOR_DRAFTS,
-      inject: [DB_POOL, EDITOR_REPOS, EDITOR_PUBLISH, ChannelConfigService, TelegramNotifier, PostingThrottleService, SCHEDULE_INFRA],
+      inject: [DB_POOL, EDITOR_REPOS, EDITOR_PUBLISH, ChannelConfigService, TelegramNotifier, PostingThrottleService, SCHEDULE_INFRA, EDITOR_CRITIC],
       useFactory: (
         pool: Pool, repos: EditorRepos, ports: PublishPorts, channelConfig: ChannelConfigService,
-        notifier: TelegramNotifier, throttle: PostingThrottleService, schedule: ScheduleService,
+        notifier: TelegramNotifier, throttle: PostingThrottleService, schedule: ScheduleService, critic: CriticService | null,
       ): DraftsService => {
         const logger = new Logger('EditorDrafts');
         return new DraftsService({
@@ -809,6 +834,7 @@ export const EDITOR_PROVIDERS = [
           isPaused: (k) => channelConfig.isPublishPausedFor(k),
           notify: (t) => notifier.notifyAlert(t),
           reservedWarnings: (k, at) => schedule.reservedWarnings(k, at),
+          ...(critic ? { critic } : {}),
           log: (m) => logger.warn(m),
         });
       },
@@ -1080,10 +1106,11 @@ export const EDITOR_PROVIDERS = [
     },
     {
       provide: EDITOR_RUNNER,
-      inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_SKILLS, EDITOR_REGISTRY, TelegramNotifier, AGENT_INFRA, EDITOR_LOOP, EDITOR_NETWORK, SCHEDULE_INFRA, EDITOR_PUBLISH, MODEL_DEFAULTS],
+      inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_SKILLS, EDITOR_REGISTRY, TelegramNotifier, AGENT_INFRA, EDITOR_LOOP, EDITOR_NETWORK, SCHEDULE_INFRA, EDITOR_PUBLISH, MODEL_DEFAULTS, EDITOR_CRITIC],
       useFactory: (
         pool: Pool, cfg: ConfigService, repos: EditorRepos, skills: SkillLibrary, registry: ToolRegistry, notifier: TelegramNotifier,
         infra: AgentInfra, loop: AgentLoop, network: NetworkRunner, schedule: ScheduleService, ports: PublishPorts, models: ModelDefaultsStore,
+        critic: CriticService | null,
       ): EditorRunnerService => {
         const logger = new Logger('Editor');
         const env = (k: string) => cfg.get<string>(k) ?? undefined;
@@ -1100,6 +1127,8 @@ export const EDITOR_PROVIDERS = [
           derived: derivedPorts(pool, ideas, infra, ports.holds ?? null),
           // Spec 034 FR-002: humour / slang / emoji of a slot's target resource (owner-only switches, off by default).
           voiceOf: async (ref) => { const f = await infra.profiles.formatOf(ref); return { humor: f.prefs.humor, slang: f.prefs.slang, emoji: f.prefs.emoji }; },
+          // Spec 034 FR-004: the pre-publish critic of every executor run (live, shadow, approval write-ahead).
+          ...(critic ? { critic: { service: critic, inbox: (i) => infra.inbox.post(i), libraryText: libraryTextOf(pool) } } : {}),
         });
       },
     },

@@ -89,7 +89,7 @@ test('the formatting prompt carries the source, the draft, format_prefs, the not
 
 // ── the runner's derived path ──────────────────────────────────────────────
 
-function runner(resolve: any, o: { after?: Partial<EditorSlot>; loop?: (i: any) => Promise<any> } = {}) {
+function runner(resolve: any, o: { after?: Partial<EditorSlot>; loop?: (i: any) => Promise<any>; critic?: any } = {}) {
   const updates: any[] = [];
   const runs: any[] = [];
   const notes: any[] = [];
@@ -114,6 +114,7 @@ function runner(resolve: any, o: { after?: Partial<EditorSlot>; loop?: (i: any) 
       released: async (id) => { released.push(id); },
       inbox: async (n) => { notes.push(n); },
     },
+    ...(o.critic ? { critic: { service: o.critic } } : {}),
   });
   return { r, updates, runs, notes, done, released };
 }
@@ -160,6 +161,18 @@ test('adapt: a native rewrite with the full executor tool set; a run without a r
   assert.match(i.system, /АДАПТУЄШ/);
   assert.equal(i.extras.platformSlot.mode, 'live');
   assert.equal(t.updates.at(-1)[1].status, 'failed');
+});
+
+test('spec 034 FR-004: an adapt is read by the critic (target resource, mode, profile); a duplicate keeps its reviewed source text', async () => {
+  const critic = { review: async () => ({ ok: false, error: 'x', runIds: [], costUsd: 0 }) };
+  const a = runner(READY({ treatment: 'adapt' }), { critic });
+  await a.r.runExecutor(derivedSlot({ treatment: 'adapt' }), makeCard({ mode: 'live' }));
+  const gate = a.runs[0].extras.critic;
+  assert.ok(gate, 'the adapt run has a critic gate');
+  assert.deepEqual([gate.c.resourceRef, gate.c.platform, gate.c.mode, gate.c.profile], [IG, 'instagram', 'live', 'Тема: космос для Instagram']);
+  const d = runner(READY(), { critic });
+  await d.r.runExecutor(derivedSlot(), makeCard({ mode: 'live' }));
+  assert.equal(d.runs[0].extras.critic, undefined);
 });
 
 test('lint fails twice → the slot fails and the owner gets an Inbox note', async () => {

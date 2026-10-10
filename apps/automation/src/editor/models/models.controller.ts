@@ -29,6 +29,11 @@ export class ModelsController {
     return this.svc.setDefault(body);
   }
 
+  @Put('critic')
+  setCritic(@Body() body: unknown) {
+    return this.svc.setCritic(body);
+  }
+
   @Post('bulk')
   bulk(@Body() body: unknown) {
     return this.svc.bulk(body);

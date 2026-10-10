@@ -43,7 +43,8 @@ const ROLE_DEFAULTS: Record<EditorRole, { maxTokens: number; temperature: number
   planner:  { maxTokens: 8000, temperature: 0.6, reasoningEffort: 'medium' },
   executor: { maxTokens: 6000, temperature: 0.7, reasoningEffort: 'low' },
   reviewer: { maxTokens: 8000, temperature: 0.3, reasoningEffort: 'medium' },
-  checker:  { maxTokens: 2000, temperature: 0.0, reasoningEffort: 'low' },
+  // Spec 034 FR-004: the pre-publish critic (six scores, a verdict, notes ≤ 800 chars) with room for reasoning.
+  checker:  { maxTokens: 3000, temperature: 0.0, reasoningEffort: 'low' },
   composer: { maxTokens: 6000, temperature: 0.6, reasoningEffort: 'low' },
   orchestrator:  { maxTokens: 8000, temperature: 0.6, reasoningEffort: 'medium' },
   idea_reviewer: { maxTokens: 6000, temperature: 0.2, reasoningEffort: 'low' },

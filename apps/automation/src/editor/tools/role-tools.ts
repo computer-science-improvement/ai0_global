@@ -6,6 +6,8 @@ import { lintPost } from '../post/lint-post';
 import { checkQuizGroundTruth } from '../post/quiz-ground-truth';
 import { checkVerbatim } from '../post/verbatim-guard';
 import { renderTelegram } from '../post/render-telegram';
+import { htmlToPlain } from '../post/inline-markup';
+import { criticGateOf, criticSummary, PUBLISH_TOOL_TIMEOUT_MS } from '../critic/critic-gate';
 import { similarity } from '../post/similarity';
 import { SubmitPlanInput, validatePlan } from '../roles/plan-rules';
 import { isQuietHour, localDate, localHour, zonedToUtc } from '../roles/time';
@@ -129,8 +131,8 @@ export function buildRoleTools(d: RoleToolDeps): EditorTool[] {
   // ── executor ──────────────────────────────────────────────────────────────
   const publishPost = defineTool({
     name: 'publish_post',
-    description: 'Опублікувати PostSpec у слот (завершує роботу). У shadow-режимі пост зберігається як превʼю без публікації; у режимі апруву — повністю готується і чекає схвалення власника. Перед цим обовʼязково lint_post.',
-    kind: 'terminal', roles: ['executor'],
+    description: 'Опублікувати PostSpec у слот (завершує роботу). Перед збереженням пост читає критик: critic_revise — виправ зауваження й виклич ще раз (одна спроба). У shadow-режимі пост зберігається як превʼю без публікації; у режимі апруву — повністю готується і чекає схвалення власника. Перед цим обовʼязково lint_post.',
+    kind: 'terminal', roles: ['executor'], timeoutMs: PUBLISH_TOOL_TIMEOUT_MS,
     input: z.object({ spec: AgentPostSpecSchema }),
     execute: async ({ spec }, ctx) => {
       const t = now();
@@ -138,6 +140,16 @@ export function buildRoleTools(d: RoleToolDeps): EditorTool[] {
       if ('error' in g) return g;
       const { channelKey, slotId } = requireSlotCtx(ctx);
       const card = cardFrom(ctx);
+
+      // Spec 034 FR-004: the critic reads the finished post after every guard, before anything is stored or sent.
+      const gate = criticGateOf(ctx);
+      let critic: Record<string, unknown> | null = null;
+      if (gate) {
+        const c = await gate.check({ text: htmlToPlain(g.rendered.preview), spec, format: spec.format, warnings: g.lint.warnings });
+        if (c.kind !== 'proceed') return c.result;
+        critic = criticSummary(c.critic);
+      }
+      const withCritic = critic ? { critic } : {};
 
       if (card.mode === 'approve') {
         // Spec 031 FR-004: every live check ran above; prepare media and render exactly what will be sent, then wait.
@@ -153,7 +165,7 @@ export function buildRoleTools(d: RoleToolDeps): EditorTool[] {
           freshnessDeadline: slot ? freshnessDeadline(slot, card) : null, error: null,
         });
         // Hosted slides stay until the post is published (the owner sees them and the publisher sends them).
-        return { ok: true, awaiting_approval: true, warnings: g.lint.warnings };
+        return { ok: true, awaiting_approval: true, warnings: g.lint.warnings, ...withCritic };
       }
 
       if (card.mode !== 'live') {
@@ -161,7 +173,7 @@ export function buildRoleTools(d: RoleToolDeps): EditorTool[] {
         if (d.notifyPreview) {
           try { await d.notifyPreview(channelKey, g.rendered.preview); } catch { /* preview is best-effort */ }
         }
-        return { ok: true, shadow: true, warnings: g.lint.warnings };
+        return { ok: true, shadow: true, warnings: g.lint.warnings, ...withCritic };
       }
 
       // Live only, after every guard (media stage, send, publication row, mirrors: publishSpecNow).
@@ -186,6 +198,7 @@ export function buildRoleTools(d: RoleToolDeps): EditorTool[] {
         ...(res.partialError ? { partial_error: res.partialError } : {}),
         ...(res.fallback ? { fallback: res.fallback } : {}),
         ...(res.mirrorWarnings.length ? { crosspost_warnings: res.mirrorWarnings } : {}),
+        ...withCritic,
       };
     },
   });

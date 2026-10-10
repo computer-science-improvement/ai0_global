@@ -188,3 +188,79 @@ FR-015. **Size:** S · Depends on T1–T6
   Success criterion «a joke on a humor:none resource fails before publishing» is a warning in T1 and becomes a failure through the
   critic (T2).
 - No migration (format_prefs is JSON). `evals/lib/graders.ts` `bannedHits` now uses `findSlopPhrases`.
+
+## Implementation notes (T2, 2026-10-10)
+- **The critic run** (`src/editor/critic/critic.service.ts`): one AgentLoop run as the `checker` role with a single terminal
+  tool `submit_critique` (zod: six scores 1–5 `ai_likeness` (5 = human), `sense`, `voice`, `grounding`, `audience_asks`,
+  `format_fit`, the model's `verdict`, Ukrainian `notes` ≤ 800 chars), `maxSteps` 3. System prompt: the rubric skill
+  `editor-skills/editor-critic-workflow.md` (`applies_to: [checker]`, read from the repo builtin, never an agent override) +
+  `voice-core`. User prompt: resource ref and platform, the humour/slang line (`voiceSettingsLine`), card brief, resource
+  profile, `format_prefs`, the playbook section (rules/examples once T5 adds them), slot format/topic/angle, the reader-visible
+  text (Telegram: the rendered preview as plain text incl. poll / slide outline; platforms: caption + slides + first comment),
+  the spec JSON, the source excerpt (the `web_fetch` / `fetch_feed` output the executor read, captured by wrapping those tools in
+  the run; else the library row behind `library_ref`, `critic/critic-source.ts`), the `slop_*` lint warnings and, on pass 2,
+  the first verdict's notes. Each attempt has a 90 s timeout; an error, a timeout or a run without a valid verdict is retried
+  once; `budget_exceeded` / `disabled` are not retried.
+- **Model** (`pickModel('checker', …)`): the owner's critic model (`app_settings` `ai.critic_model`, a second
+  `ModelDefaultsStore`; Models page card "Critic model", `PUT /api/models/critic {model|null}`) → the channel card's legacy
+  `models.checker` → env `EDITOR_MODEL_CHECKER` → the global default. Default stays the global default (owner decision in the
+  task). `checker` max_tokens 2 000 → 3 000. `EDITOR_CRITIC=off` disables the critic (kill switch, logged at boot).
+- **Thresholds** (`critic/critic.ts` `decideVerdict`, code decides; the model can only be stricter): any score ≤ 2 → reject;
+  model verdict reject → reject; any score ≤ 3 → revise; ≥ 2 slop warnings → revise; a `slop_humor_off` / `slop_slang_off`
+  warning → revise (so humour on a `humor: none` resource never passes; voice ≤ 2 rejects it); model verdict revise → revise;
+  else pass.
+- **Where it runs** (`critic/critic-gate.ts`, one `CriticGate` per executor run in `ctx.extras.critic`, built by
+  `EditorRunnerService` for Telegram, platform and **adapt** runs; a **duplicate** keeps its source's reviewed text and has no
+  gate): inside `publish_post` after every deterministic guard (`checkPublishGuards`: lint, quiz truth, verbatim, similarity,
+  ledger dedup, schedule guards, live caps) and before media preparation, the approval card, shadow storage or the send; inside
+  `publishPlatformNow` (new optional `review` hook) after lint, health, verbatim, dedup and similarity, before the approval row,
+  the shadow row or the API call. Outcomes: pass → proceed (verdict stored on the slot, a `critic` summary in the tool result);
+  first revise → tool error `critic_revise` with notes, scores and an instruction (the executor rewrites once in the same run);
+  second revise → live/shadow: slot `skipped` with `critic_rejected: second revise — …`; approval: the post goes to the owner
+  with `final: true` and the notes; reject → slot `skipped` with `critic_rejected: reject (sense 1): …`. A retry of the same spec
+  after a later error (e.g. a media failure) is not reviewed again (spec hash).
+- **Step limit**: a tool error may carry `_grantSteps`; the AgentLoop extends the run once per run by up to 3 turns
+  (`MAX_GRANT_STEPS`). `critic_revise` grants 2: one turn with every tool (lint), then the terminal-only last turn, so a revise
+  on the last step still ends in publish or skip, not `max_steps`. Publish tools get their own timeout
+  (`EditorTool.timeoutMs`, `PUBLISH_TOOL_TIMEOUT_MS` = 2 × 90 s + 60 s) instead of the loop's 30 s.
+- **Fail-safe**: after the retry, live and shadow slots end `failed` (`critic_failed: …`, verdict `error` stored) with an Inbox
+  item (`kind: critic_failed`, severity `action`, English; the Telegram alert stays Ukrainian); nothing is stored or sent. A
+  blocking cap that stops the critic (`budget_exceeded`) takes the same path, so the post does not publish live. Approval mode:
+  the card is created with `verdict: 'error'` (the owner reviews every waiting post anyway).
+- **Never auto-approved**: `heldByCritic` (verdict ≠ pass) — bulk approve and the autonomy switch skip such posts like posts with
+  lint warnings (counted in `skippedWithWarnings` / `waitingWithWarnings`); the dashboard "Approve all (n)" count matches.
+- **Spend**: the critic run's LLM rows land in the usage ledger as `editor.checker` (role `checker`, the slot's resource, the
+  shadow flag, the executor's agent for agent caps); the critic run is its own `editor_runs` row (role `checker`, `slot_id`
+  set), so its cost is not in the executor run's total. Measured prompt with typical inputs: ≈ 11 000 chars (system 4.9k: rubric
+  + voice-core; user ≈ 6k) ≈ 4–4.5k input tokens + the tool schema, ≈ 300–600 output tokens. **Extra cost per post**: with
+  the default `z-ai/glm-5.3-flash` ≈ $0.001 per pass; with a Sonnet-class critic ($3/$15 per M) ≈ $0.015–0.02 per pass; a
+  revised post costs two passes (plus the executor's rewrite turn).
+- **Storage** (`database/migrations/068_critic.sql`: guarded `DO` block, idempotent, records `068_critic`):
+  `editor_slots.critic JSONB` and `editor_drafts.critic JSONB`, plus `idx_editor_slots_critic (channel_key, critic->>'verdict',
+  updated_at DESC) WHERE critic IS NOT NULL`. Shape (`StoredCritic`): `{verdict: pass|revise|reject|error, scores, notes,
+  model_verdict, reason, pass, slop_warnings, model, run_id, cost_usd, at, final?, history?: [pass-1 summary]}`.
+  `EditorSlot.critic` / `SlotResultPatch.critic`; `ApprovalCard.critic`; `EditorDraft.critic`.
+- **Trace / UI**: the executor trace shows the `publish_post` step with `critic_revise` (notes, scores) or the `critic` summary in
+  its result, and a skipped/failed slot's `error`; the critic's own run is listed with role `checker`. Dashboard (English): a
+  shared `CriticBlock` ("Critic: pass / revise / reject / unavailable", "revise (after one rewrite)", six score badges coloured by
+  the thresholds, the notes as written, the first-pass notes) on the approval card and the chat draft card; Models page "Critic
+  model" card. Checked in the browser against a local mock API (desktop and 375 px, no horizontal overflow).
+- **Chat drafts (decision)**: advisory and on demand — a "Check with critic" button (`POST /api/editor/drafts/:id/critic`,
+  `DraftsService.review`) stores the verdict on the draft; saving a changed draft clears it; publish and schedule never read it
+  (the owner is the author). Not automatic on every `save_draft`, so the composer's iterations cost nothing extra.
+- **Skills**: `editor-executor-workflow` gained one line on `critic_revise` (2 532 chars ≤ 2 600); the publish tool descriptions
+  say the critic reads the post.
+- **Tests** (scripted fake LLMs only): `critic/critic.test.ts` (thresholds; humour on `humor: none` → revise / voice ≤ 2 → reject;
+  the run's prompt, model and tool; retry / cap / timeout; the `editor.checker` ledger row through `OpenRouterClient`; reject never
+  sends; revise → exactly one rewrite and one send; second revise live/shadow → skip, approval → owner with notes; revise on the
+  last step → publish; critic failure → failed + Inbox, never published, approval → card with the error; platform reject / revise
+  / pass; the runner's gate; the approval card payload, bulk and autonomy; drafts; the Models setting), `critic.pg.test.ts`
+  (migration re-apply, card payload from PG, reject skips with the verdict, draft round-trip), `agent-loop.test.ts` (grant once,
+  capped; per-tool timeout), `derived-run.test.ts` (adapt has a gate, duplicate has none), dashboard `lib/critic.test.ts`.
+- **For T4 (MANAGER)**: per resource and day read `editor_slots.critic` (`critic->>'verdict'`, `critic->'scores'`,
+  `critic->>'notes'`, `critic->>'reason'`, `critic->>'final'`, `critic->'history'` for revise-then-pass); the resource is
+  `COALESCE(resource_ref, 'telegram:' || channel_key)`; skipped-by-critic slots have `error LIKE 'critic_rejected:%'`, held ones
+  `critic_failed:%`; critic spend is `llm_usage.feature = 'editor.checker'`. Drafts' verdicts are owner-side, leave them out.
+- **For T7 (plan UI)**: `EditorSlot.critic` comes with every slot row (`rowToSlot`); show the verdict badge / notes from it
+  (reuse `components/critic/CriticBlock.tsx` and `lib/critic.ts`); the on-demand dry-run Preview (FR-012) can run the executor
+  with the gate in shadow mode to get a verdict with the draft.

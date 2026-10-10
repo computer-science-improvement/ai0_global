@@ -11,7 +11,7 @@ import { Modal } from '../components/Modal';
 import { ModelSelect } from '../components/models/ModelSelect';
 import { KIND_LABEL } from '../components/agents/AgentsUi';
 import {
-  useBulkModels, useClearChannelModels, useModelCatalog, useModelsOverview, useSetAgentModel, useSetDefaultModel,
+  useBulkModels, useClearChannelModels, useModelCatalog, useModelsOverview, useSetAgentModel, useSetCriticModel, useSetDefaultModel,
   type AgentModelRow, type ModelsOverview,
 } from '../api/models';
 import type { ReasoningEffort } from '../api/agents';
@@ -46,6 +46,7 @@ function ModelsPage() {
 
       {data && data.envOverrides.length > 0 && <EnvNote env={data.envOverrides} />}
       {data && <DefaultCard data={data} />}
+      {data?.criticModel && <CriticModelCard data={data} />}
       {data && <AgentsSection data={data} />}
       {data && data.channelOverrides.length > 0 && <ChannelOverrides data={data} />}
 
@@ -141,6 +142,66 @@ function DefaultCard({ data }: { data: ModelsOverview }) {
             <Icon name="reset" size={13} /> Use the built-in default
           </button>
           <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>{def.builtin}</span>
+        </div>
+      )}
+    </SectionCard>
+  );
+}
+
+/** Spec 034 FR-004: the pre-publish critic reads every agent post before it is stored, sent or put up for approval. */
+function CriticModelCard({ data }: { data: ModelsOverview }) {
+  const c = data.criticModel!;
+  const catalog = useModelCatalog();
+  const save = useSetCriticModel();
+  const confirm = useConfirm();
+  const entry = catalog.data?.models.find((m) => m.id === c.model);
+
+  const change = async (model: string | null) => {
+    if (model !== null && model === c.saved) return;
+    if (model === null && !c.saved) return;
+    const next = model ?? data.defaultModel.model;
+    const ok = await confirm(`use ${next} for the critic`, {
+      danger: false, confirmLabel: 'Set critic model',
+      details: (
+        <p className="text-micro" style={{ margin: 0, color: 'var(--color-ink-muted)', lineHeight: 1.6 }}>
+          The critic reviews every post (once more after a rewrite), so its cost is added to each post. A stronger model catches more AI-sounding and senseless posts.
+        </p>
+      ),
+    });
+    if (!ok) return;
+    try {
+      await save.mutateAsync(model);
+      toast.success(model ? `Critic model: ${model}` : 'The critic follows the default model');
+    } catch (err) {
+      toast.error(describeError(err));
+    }
+  };
+
+  const badge = c.source === 'critic' ? <Badge tone="accent">Custom</Badge>
+    : c.source === 'env' ? <Badge tone="warning">Env override</Badge>
+    : <Badge tone="neutral">Follows the default</Badge>;
+
+  return (
+    <SectionCard title="Critic model" icon="sparkles" delay={40} style={{ marginBottom: 12 }} action={badge}>
+      <p className="text-micro" style={{ margin: '0 0 12px', color: 'var(--color-ink-muted)', lineHeight: 1.6 }}>
+        Before a post is published, stored as a preview or sent for your approval, the critic scores it (human voice, sense, tone, facts, reader asks, format)
+        and passes it, asks the agent for one rewrite, or rejects it. Its spend shows as <span style={mono}>editor.checker</span> on the Spend page.
+      </p>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))', gap: 16, alignItems: 'end' }}>
+        <Field label="Model" hint={c.source === 'env' ? 'EDITOR_MODEL_CHECKER is set on the server; a model chosen here beats it' : undefined}>
+          <ModelSelect value={c.saved} onChange={(m) => change(m)} ariaLabel="Critic model" disabled={save.isPending}
+            defaultLabel={`Default (${c.source === 'env' ? c.model : data.defaultModel.model})`} />
+        </Field>
+        <div style={{ paddingBottom: 18 }}>
+          <PriceFacts inPerM={entry?.inPerM ?? c.price?.inPerM} outPerM={entry?.outPerM ?? c.price?.outPerM} context={entry?.contextLength} />
+        </div>
+      </div>
+      {c.saved && (
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
+          <button type="button" className="btn-secondary" style={{ gap: 6 }} disabled={save.isPending} onClick={() => change(null)}>
+            <Icon name="reset" size={13} /> Follow the default model
+          </button>
+          <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>{data.defaultModel.model}</span>
         </div>
       )}
     </SectionCard>

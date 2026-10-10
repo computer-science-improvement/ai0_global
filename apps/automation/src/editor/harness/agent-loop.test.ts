@@ -236,3 +236,30 @@ test('truncation retries are capped', async () => {
   assert.equal(llm.requests.length, 4); // 2 truncation retries + 1 nudge + final
   assert.equal(res.status, 'ok');
 });
+
+test('spec 034: a tool error with _grantSteps extends the run once (capped at 3 turns); a per-tool timeoutMs beats the default', async () => {
+  let n = 0;
+  const gated = defineTool({
+    name: 'gated', description: 'terminal behind a critic', kind: 'terminal', roles: ['executor'], input: z.object({}),
+    execute: async () => (++n <= 2 ? { error: 'critic_revise', _grantSteps: 99 } : { ok: true }),
+  });
+  const call = (name: string, args: unknown = {}) => ({ calls: [{ name, args }] });
+  const llm = new FakeLlm([call('gated'), call('gated'), call('echo', { text: 'x' }), call('gated'), call('gated')]);
+  const res = await loop(llm).l.run(input({ tools: [echo, gated], maxSteps: 1 }));
+  // Turn 0 is the last one → an error with a grant → 3 more turns (capped); the second error grants nothing.
+  assert.equal(llm.requests.length, 4);
+  assert.equal(res.status, 'ok');
+  assert.equal(res.terminalTool, 'gated');
+  assert.deepEqual(llm.requests[2].tools!.map((t) => t.name), ['echo', 'gated']);
+  assert.deepEqual(llm.requests[3].tools!.map((t) => t.name), ['gated'], 'the granted last turn is terminal-only again');
+
+  const patient = defineTool({
+    name: 'patient', description: 'slow but allowed', kind: 'read', roles: ['executor'], input: z.object({}), timeoutMs: 500,
+    execute: () => new Promise<any>((r) => setTimeout(() => r({ ok: true }), 40)),
+  });
+  const llm2 = new FakeLlm([call('patient'), call('publish', { title: 't' })]);
+  const { l, recorder } = loop(llm2, { toolTimeoutMs: 10 });
+  await l.run(input({ tools: [patient, publish] }));
+  const step = recorder.steps.find((s) => s.tool === 'patient')!;
+  assert.equal(step.isError, false, JSON.stringify(step.output));
+});

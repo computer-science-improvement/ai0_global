@@ -2,6 +2,8 @@ import type { Pool } from 'pg';
 
 /** app_settings key of the owner's global default model (spec 035); absent → DEFAULT_EDITOR_MODEL. Never an env override. */
 export const DEFAULT_MODEL_KEY = 'ai.default_model';
+/** app_settings key of the owner's pre-publish critic model (spec 034 FR-004); absent → the normal resolution (global default). */
+export const CRITIC_MODEL_KEY = 'ai.critic_model';
 
 /**
  * The owner's global default model, cached in-process (one Nest process) so
@@ -18,6 +20,8 @@ export class ModelDefaultsStore {
   constructor(
     private readonly pool: Pick<Pool, 'query'>,
     private readonly opts: { ttlMs?: number; now?: () => number; onError?: (msg: string) => void } = {},
+    /** The app_settings key (the global default, or the critic's model). */
+    readonly key: string = DEFAULT_MODEL_KEY,
   ) {}
 
   private now(): number { return (this.opts.now ?? Date.now)(); }
@@ -31,9 +35,9 @@ export class ModelDefaultsStore {
   async get(): Promise<string | null> {
     if (this.loaded && this.now() - this.loadedAt < (this.opts.ttlMs ?? 60_000)) return this.value;
     if (!this.loading) {
-      this.loading = this.pool.query<{ value: string }>(`SELECT value FROM app_settings WHERE key = $1`, [DEFAULT_MODEL_KEY])
+      this.loading = this.pool.query<{ value: string }>(`SELECT value FROM app_settings WHERE key = $1`, [this.key])
         .then(({ rows }) => { this.value = rows[0]?.value?.trim() || null; })
-        .catch((err) => { this.opts.onError?.(`${DEFAULT_MODEL_KEY} read failed: ${err?.message ?? err}`); })
+        .catch((err) => { this.opts.onError?.(`${this.key} read failed: ${err?.message ?? err}`); })
         .finally(() => { this.loaded = true; this.loadedAt = this.now(); this.loading = null; });
     }
     await this.loading;
@@ -46,9 +50,9 @@ export class ModelDefaultsStore {
     if (v) {
       await this.pool.query(
         `INSERT INTO app_settings (key, value, updated_at) VALUES ($1, $2, now())
-         ON CONFLICT (key) DO UPDATE SET value = EXCLUDED.value, updated_at = now()`, [DEFAULT_MODEL_KEY, v]);
+         ON CONFLICT (key) DO UPDATE SET value = EXCLUDED.value, updated_at = now()`, [this.key, v]);
     } else {
-      await this.pool.query(`DELETE FROM app_settings WHERE key = $1`, [DEFAULT_MODEL_KEY]);
+      await this.pool.query(`DELETE FROM app_settings WHERE key = $1`, [this.key]);
     }
     this.value = v;
     this.loaded = true;

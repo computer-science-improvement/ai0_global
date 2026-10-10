@@ -1,6 +1,7 @@
 import type { Pool } from 'pg';
 import { ContentLedger, specRefs } from '../../data/content-ledger';
 import type { PlannedSlot } from '../roles/plan-rules';
+import type { StoredCritic } from '../critic/critic';
 
 export type SlotStatus =
   | 'planned' | 'running' | 'published' | 'shadowed' | 'skipped' | 'failed'
@@ -54,6 +55,8 @@ export interface EditorSlot {
   derivedFromSlotId?: string | null;
   /** A derived slot's non-slot source and the agent's format notes (`{ key?, format_notes?, via? }`). */
   sourcePost?:        DerivedSourceRef | null;
+  /** Spec 034 FR-004: the pre-publish critic's verdict, scores and notes (present only when set). */
+  critic?:            StoredCritic | null;
 }
 
 /** editor_slots.source_post of a derived slot (spec 024). */
@@ -137,6 +140,7 @@ export function rowToSlot(r: any): EditorSlot {
     ...(r.treatment_reason ? { treatmentReason: r.treatment_reason } : {}),
     ...(r.derived_from_slot_id ? { derivedFromSlotId: r.derived_from_slot_id } : {}),
     ...(r.source_post ? { sourcePost: r.source_post } : {}),
+    ...(r.critic ? { critic: r.critic } : {}),
   };
 }
 
@@ -186,6 +190,8 @@ export interface SlotResultPatch {
   lintWarnings?:      string[] | null;
   freshnessDeadline?: Date | null;
   platformPostId?:    number | null;
+  /** Spec 034 FR-004. */
+  critic?:            StoredCritic | null;
 }
 
 export class EditorPlansRepository {
@@ -584,6 +590,7 @@ export class EditorPlansRepository {
     if (p.lintWarnings !== undefined)    add('lint_warnings', p.lintWarnings === null ? null : JSON.stringify(p.lintWarnings));
     if (p.freshnessDeadline !== undefined) add('freshness_deadline', p.freshnessDeadline);
     if (p.platformPostId !== undefined)  add('platform_post_id', p.platformPostId);
+    if (p.critic !== undefined)          add('critic', p.critic === null ? null : JSON.stringify(p.critic));
     if (!sets.length) return;
     const { rows } = await this.pool.query(
       `UPDATE editor_slots SET ${sets.join(', ')}, updated_at = now() WHERE id = $1 RETURNING channel_key, resource_ref`, params);

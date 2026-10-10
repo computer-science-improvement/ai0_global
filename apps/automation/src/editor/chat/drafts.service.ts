@@ -13,6 +13,9 @@ import type { EditorPlansRepository, EditorSlot } from '../repo/editor-plans.rep
 import type { DraftStatus, EditorChatRepository, EditorDraft } from '../repo/editor-chat.repository';
 import { localDate, localTimeLabel } from '../roles/time';
 import { CHAT_TIMEZONE, makeDefaultCard } from './default-card';
+import { htmlToPlain } from '../post/inline-markup';
+import { slopCodes, type StoredCritic } from '../critic/critic';
+import type { CriticService } from '../critic/critic.service';
 
 export const SCHEDULE_MIN_LEAD_MS = 2 * 60_000;
 export const SCHEDULE_MAX_AHEAD_MS = 60 * 86_400_000;
@@ -32,6 +35,8 @@ export interface DraftsDeps {
   notify:    (text: string) => Promise<void>;
   /** Spec 023 FR-004: `blackout_window` when a reserved slot lands in the owner's blackout (never blocked). */
   reservedWarnings?: (channelKey: string, at: Date) => Promise<string[]>;
+  /** Spec 034 FR-004: the pre-publish critic, on demand for a chat draft (advisory: never blocks the owner). */
+  critic?:   Pick<CriticService, 'review'>;
   now?:      () => Date;
   log?:      (msg: string) => void;
 }
@@ -109,10 +114,47 @@ export class DraftsService {
       if (existing.slotId) await this.d.plans.updateSlot(existing.slotId, { postSpec: spec });
     }
     const draft = await this.d.repo.updateDraft(existing.id, {
-      channelKey: i.channel, spec, preview, lint,
+      // A changed post needs a new critic verdict (the old one described another text).
+      channelKey: i.channel, spec, preview, lint, critic: null,
       ...(existing.status === 'scheduled' ? {} : { status: 'draft' as const, error: null }),
     });
     return { ok: true, draft: draft!, card: resolved.card, lint };
+  }
+
+  // ── critic (spec 034 FR-004): advisory for the owner's own drafts ─────────
+
+  /**
+   * Run the pre-publish critic on a draft and store its verdict on the draft
+   * card. Advisory only: publish and schedule never read it (the owner is the
+   * author here). The spend counts as `editor.checker` like every critic run.
+   */
+  async review(draftId: string): Promise<DraftResult<{ draft: EditorDraft; critic: StoredCritic }>> {
+    if (!this.d.critic) return { error: 'critic_unavailable', details: 'the critic is not configured' };
+    const draft = await this.d.repo.getDraft(draftId);
+    if (!draft) return { error: 'draft_not_found' };
+    const spec = PostSpecSchema.safeParse(draft.spec);
+    if (!spec.success) return { error: 'invalid_spec' };
+    const resolved = await this.resolveCard(draft.channelKey);
+    if (!resolved) return { error: 'unknown_channel' };
+    const card = resolved.card;
+    const lint = lintPost(spec.data, card);
+    const preview = previewOf(spec.data, card, lint);
+    const slop = lint.warnings.filter((w) => slopCodes([w]).length > 0);
+    const r = await this.d.critic.review({
+      channelKey: draft.channelKey, slotId: null, mode: 'draft', card: { models: card.models, dailyBudgetUsd: card.dailyBudgetUsd },
+      resourceRef: `telegram:${draft.channelKey}`, platform: 'telegram', format: spec.data.format, topic: spec.data.title,
+      text: preview ? htmlToPlain(preview) : spec.data.title, spec: spec.data,
+      voice: { humor: card.humor, slang: card.slang, emoji: card.emojiPref }, brief: card.brief || null,
+      source: spec.data.source ? { url: spec.data.source.url, excerpt: null } : null,
+      slopWarnings: slop.map((w) => ({ code: w.code, message: w.message })),
+    });
+    const critic: StoredCritic = r.ok ? r.critic : {
+      verdict: 'error', scores: null, notes: `Critic unavailable: ${r.error}`, model_verdict: null, reason: r.error, pass: 1,
+      slop_warnings: slop.map((w) => w.code), model: null, run_id: r.runIds.at(-1) ?? null, cost_usd: Number(r.costUsd.toFixed(6)),
+      at: this.now().toISOString(),
+    };
+    const updated = await this.d.repo.updateDraft(draft.id, { critic });
+    return { ok: true, draft: updated ?? { ...draft, critic }, critic };
   }
 
   // ── guards shared by publish-now and the scheduled path ───────────────────

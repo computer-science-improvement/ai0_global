@@ -3,7 +3,7 @@ import { api } from './client';
 import type { AgentKind, AgentScope, ReasoningEffort } from './agents';
 
 // Models page (spec 035): GET /api/models (OpenRouter catalog, tool-capable only,
-// cached 24 h server-side), GET /api/models/overview, PUT /api/models/default,
+// cached 24 h server-side), GET /api/models/overview, PUT /api/models/default, PUT /api/models/critic (spec 034),
 // POST /api/models/bulk, POST /api/models/channels/clear. An agent's own model and
 // reasoning effort go through PATCH /api/agents/:handle (validated server-side).
 
@@ -59,6 +59,8 @@ export interface ChannelModelOverride {
 
 export interface ModelsOverview {
   defaultModel:     { model: string; saved: string | null; builtin: string; price: ModelPrice | null };
+  /** Spec 034 FR-004: the pre-publish critic's model — the owner's choice, else env EDITOR_MODEL_CHECKER, else the default. */
+  criticModel?:     { model: string; saved: string | null; source: 'critic' | 'env' | 'default'; price: ModelPrice | null };
   envOverrides:     Array<{ role: string; key: string }>;
   agents:           AgentModelRow[];
   channelOverrides: ChannelModelOverride[];
@@ -85,6 +87,16 @@ export function useSetDefaultModel() {
     meta: { silentError: true },
     mutationFn: (model: string | null) =>
       api<{ ok: true; defaultModel: string; saved: string | null }>('/api/models/default', { method: 'PUT', body: JSON.stringify({ model }) }),
+    onSuccess: done,
+  });
+}
+
+export function useSetCriticModel() {
+  const done = useInvalidate();
+  return useMutation({
+    meta: { silentError: true },
+    mutationFn: (model: string | null) =>
+      api<{ ok: true; criticModel: string | null }>('/api/models/critic', { method: 'PUT', body: JSON.stringify({ model }) }),
     onSuccess: done,
   });
 }

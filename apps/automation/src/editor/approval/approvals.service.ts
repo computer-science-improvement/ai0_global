@@ -15,6 +15,7 @@ import {
 } from './approval-timing';
 import type { ApprovalItem, ApprovalsRepository } from './approvals.repository';
 import { editPreference, rejectPreference, type OwnerPreference } from './owner-preferences';
+import { heldByCritic, type StoredCritic } from '../critic/critic';
 
 export interface ApprovalsServiceDeps {
   repo:  ApprovalsRepository;
@@ -53,6 +54,8 @@ export interface ApprovalCard {
   preview:       string | null;
   render:        EditorSlot['renderMessages'] | null;
   lintWarnings:  string[];
+  /** Spec 034 FR-004: the pre-publish critic's verdict, scores and notes (null for posts written before it). */
+  critic:        StoredCritic | null;
   ownerEdited:   boolean;
   approvedAt:    Date | null;
   expiresAt:     Date;
@@ -115,7 +118,7 @@ export class ApprovalsService {
       status: i.status, scheduledAt: i.scheduledAt, timezone: i.timezone,
       localDate: localDate(i.scheduledAt, i.timezone), localTime: localTimeLabel(i.scheduledAt, i.timezone), planDate: i.planDate,
       format: i.format, topic: i.topic, isExperiment: i.isExperiment, spec: i.postSpec, preview: i.renderedPreview,
-      render: i.renderMessages ?? null, lintWarnings: i.lintWarnings ?? [], ownerEdited: !!i.ownerEdited, approvedAt: i.approvedAt ?? null,
+      render: i.renderMessages ?? null, lintWarnings: i.lintWarnings ?? [], critic: i.critic ?? null, ownerEdited: !!i.ownerEdited, approvedAt: i.approvedAt ?? null,
       expiresAt: expiresAt(i, { approvalHoldHours: i.holdHours }), editableUntil: new Date(i.scheduledAt.getTime() - EDIT_LOCK_MS),
       replacesSlotId: i.replacesSlotId ?? null, error: i.error,
       rationale: { idea: i.idea, source, angle: i.angle, plan: i.planRationale },
@@ -307,7 +310,8 @@ export class ApprovalsService {
     });
     const out = { approved: 0, skippedWithWarnings: 0, conflicts: 0, ids: [] as string[] };
     for (const it of items) {
-      if ((it.lintWarnings ?? []).length) { out.skippedWithWarnings++; continue; }
+      // Spec 034 FR-004: a post the critic did not pass is decided one by one, like one with lint warnings.
+      if ((it.lintWarnings ?? []).length || heldByCritic(it.critic)) { out.skippedWithWarnings++; continue; }
       try {
         await this.approve(it.id);
         out.approved++;

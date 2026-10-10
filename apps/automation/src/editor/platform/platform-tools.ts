@@ -7,6 +7,7 @@ import { AgentPlatformPostSpecSchema, lintPlatformPost, renderPlatform } from '.
 import type { VoicePrefs } from '../post/slop-lint';
 import { publishPlatformNow, PublishPlatformDeps } from './publish-platform';
 import { freshnessDeadline } from '../approval/approval-timing';
+import { criticGateOf, criticSummary, PUBLISH_TOOL_TIMEOUT_MS } from '../critic/critic-gate';
 import type { ScheduleService } from '../schedule/schedule.service';
 
 /** Per-run data of a platform slot (put into ctx.extras by the runner, spec 019/020). */
@@ -58,8 +59,8 @@ export function buildPlatformTools(d: PlatformToolDeps): EditorTool[] {
 
   const publishPlatform = defineTool({
     name: 'publish_platform_post',
-    description: 'Опублікувати нативний пост у ресурс слота (Instagram / Facebook / Threads / TikTok) — завершує роботу. У shadow-режимі лише зберігає превʼю; у режимі апруву пост готується повністю і чекає схвалення власника. Перед цим lint_platform_post.',
-    kind: 'terminal', roles: ['executor'],
+    description: 'Опублікувати нативний пост у ресурс слота (Instagram / Facebook / Threads / TikTok) — завершує роботу. Перед збереженням пост читає критик: critic_revise — виправ зауваження й виклич ще раз (одна спроба). У shadow-режимі лише зберігає превʼю; у режимі апруву пост готується повністю і чекає схвалення власника. Перед цим lint_platform_post.',
+    kind: 'terminal', roles: ['executor'], timeoutMs: PUBLISH_TOOL_TIMEOUT_MS,
     input: z.object({ spec: AgentPlatformPostSpecSchema }),
     execute: async ({ spec }, ctx) => {
       const slot = slotOf(ctx);
@@ -71,11 +72,24 @@ export function buildPlatformTools(d: PlatformToolDeps): EditorTool[] {
         const sg = await d.schedule.publishGuard(s, { libraryRef: spec.library_ref, sourceUrl: spec.source?.url }, { live: slot.mode === 'live', now: new Date(), feeds: card?.sources ?? [] });
         if (sg) return sg;
       }
+      // Spec 034 FR-004: the critic reads the post after every check, before it is stored, sent or put up for approval.
+      const gate = criticGateOf(ctx);
+      let critic = null as Record<string, unknown> | null;
       const r = await publishPlatformNow(d.publish, {
         resourceRef: slot.resourceRef, spec, mode: slot.mode, slotId: ctx.slotId, agentId: slot.agentId ?? null,
         maxPerDay: slot.maxPerDay, vocabulary: slot.vocabulary, bannedTerms: slot.bannedTerms, voice: slot.voice,
+        ...(gate ? {
+          review: async ({ text, lint }) => {
+            const c = await gate.check({ text, spec, format: spec.format, warnings: lint.warnings });
+            if (c.kind !== 'proceed') return { halt: c.result };
+            critic = criticSummary(c.critic);
+            return null;
+          },
+        } : {}),
       });
       if ('error' in r) return r;
+      if ('halted' in r) return r.halted;
+      const withCritic = critic ? { critic } : {};
       if (r.awaiting && r.rendered) {
         // Spec 031: written and waiting; the approval publisher sends `rendered` after the owner approves.
         const card = ctx.extras?.card as { sources?: unknown } | undefined;
@@ -85,7 +99,7 @@ export function buildPlatformTools(d: PlatformToolDeps): EditorTool[] {
           platformPostId: r.postId, lintWarnings: r.warnings,
           freshnessDeadline: card?.sources ? freshnessDeadline(s, card as any) : null,
         });
-        return { ok: true, awaiting_approval: true, warnings: r.warnings };
+        return { ok: true, awaiting_approval: true, warnings: r.warnings, ...withCritic };
       }
       await d.plans.updateSlot(ctx.slotId, {
         // Spec 024: the spec stays on the slot — a derived (duplicate / adapt) slot reads its source from here.
@@ -94,7 +108,7 @@ export function buildPlatformTools(d: PlatformToolDeps): EditorTool[] {
       if (r.shadow && d.notifyPreview) {
         try { await d.notifyPreview(slot.resourceRef, r.preview); } catch { /* best-effort */ }
       }
-      return { ok: true, shadow: r.shadow, external_id: r.externalId, url: r.url, warnings: r.warnings };
+      return { ok: true, shadow: r.shadow, external_id: r.externalId, url: r.url, warnings: r.warnings, ...withCritic };
     },
   });
 
