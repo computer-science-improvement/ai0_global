@@ -1,12 +1,20 @@
 import type { Pool } from 'pg';
 
-export const DIRECTIVE_KINDS = ['advice', 'task', 'format_shift', 'frequency', 'repost', 'cross_promo', 'pause_series', 'experiment', 'pause_resource', 'strategy'] as const;
+export const DIRECTIVE_KINDS = [
+  'advice', 'task', 'format_shift', 'frequency', 'repost', 'cross_promo', 'pause_series', 'experiment', 'pause_resource', 'strategy',
+  // Spec 034 FR-006 (T4): content-quality kinds.
+  'voice_fix', 'format_mix',
+] as const;
 export type DirectiveKind = typeof DIRECTIVE_KINDS[number];
 export const DIRECTIVE_STATUSES = ['new', 'awaiting_owner', 'accepted', 'rejected', 'applied', 'evaluated', 'expired', 'canceled', 'contested', 'declined', 'failed'] as const;
 export type DirectiveStatus = typeof DIRECTIVE_STATUSES[number];
 export type DirectiveBinding = 'directive' | 'advice';
 export type DirectiveOutcome = 'worked' | 'no_effect' | 'hurt' | 'inconclusive';
-export const KPI_METRICS = ['views_per_post', 'engagement_rate', 'posts', 'followers_growth', 'transitions', 'revenue'] as const;
+export const KPI_METRICS = [
+  'views_per_post', 'engagement_rate', 'posts', 'followers_growth', 'transitions', 'revenue',
+  // Spec 034 FR-006: quality metrics (%, from the digest's quality block; never flagged as anomalies).
+  'critic_pass_rate', 'owner_rejection_rate', 'poll_share',
+] as const;
 export type KpiMetric = typeof KPI_METRICS[number];
 
 export interface Expected { metric: KpiMetric; direction: 'up' | 'down'; min_change_pct: number; resource_ref?: string }
@@ -355,10 +363,10 @@ export class DirectivesRepository {
 
   // ── manager reviews + memory ──────────────────────────────────────────────
 
-  async addReview(r: { runId?: string | null; verdict: 'continue' | 'directives' | 'skipped'; summary: string; digestHash: string | null; directiveIds?: string[] }): Promise<void> {
+  async addReview(r: { runId?: string | null; verdict: 'continue' | 'directives' | 'skipped'; summary: string; digestHash: string | null; directiveIds?: string[]; qualityCheck?: unknown }): Promise<void> {
     await this.pool.query(
-      `INSERT INTO manager_reviews (run_id, verdict, summary, digest_hash, directive_ids) VALUES ($1, $2, $3, $4, $5)`,
-      [UUID_RE.test(r.runId ?? '') ? r.runId : null, r.verdict, r.summary, r.digestHash, r.directiveIds ?? []]);
+      `INSERT INTO manager_reviews (run_id, verdict, summary, digest_hash, directive_ids, quality_check) VALUES ($1, $2, $3, $4, $5, $6)`,
+      [UUID_RE.test(r.runId ?? '') ? r.runId : null, r.verdict, r.summary, r.digestHash, r.directiveIds ?? [], r.qualityCheck == null ? null : JSON.stringify(r.qualityCheck)]);
   }
 
   async lastReview(): Promise<{ verdict: string; digestHash: string | null; createdAt: Date } | null> {
@@ -366,9 +374,9 @@ export class DirectivesRepository {
     return rows[0] ? { verdict: rows[0].verdict, digestHash: rows[0].digest_hash ?? null, createdAt: rows[0].created_at } : null;
   }
 
-  async reviews(limit = 50): Promise<Array<{ id: string; verdict: string; summary: string; directiveIds: string[]; createdAt: Date }>> {
+  async reviews(limit = 50): Promise<Array<{ id: string; verdict: string; summary: string; directiveIds: string[]; qualityCheck: unknown; createdAt: Date }>> {
     const { rows } = await this.pool.query(`SELECT * FROM manager_reviews ORDER BY created_at DESC LIMIT $1`, [limit]);
-    return rows.map((r) => ({ id: r.id, verdict: r.verdict, summary: r.summary, directiveIds: r.directive_ids ?? [], createdAt: r.created_at }));
+    return rows.map((r) => ({ id: r.id, verdict: r.verdict, summary: r.summary, directiveIds: r.directive_ids ?? [], qualityCheck: r.quality_check ?? null, createdAt: r.created_at }));
   }
 
   async addMemory(agentId: string, kind: 'insight' | 'rule' | 'avoid', text: string, evidence: unknown, by: 'reviewer' | 'owner' | 'system'): Promise<void> {

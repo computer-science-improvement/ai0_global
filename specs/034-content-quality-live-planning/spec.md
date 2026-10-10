@@ -536,3 +536,88 @@ FR-015. **Size:** S · Depends on T1–T6
   `critic` footnotes. Browser-checked against a local mock API (127.0.0.1) at 1366 px and 375 px: Plan tab (stamp, history,
   fixed with preview + critic, live, news watch, skipped no_fresh_item, critic reject, running preview, Preview click → spinner
   → result), Schedule tab, `/app/editor`, channel page, slot page, Overview Upcoming; no horizontal page overflow.
+
+## Implementation notes (T4, 2026-10-10)
+- **Migration `071_manager_quality.sql`** (guarded `DO`, idempotent, records `071_manager_quality`): the `agent_directives.kind`
+  CHECK gains `voice_fix` and `format_mix` — every single-column CHECK on `kind` that does not already allow both is dropped
+  and the named `agent_directives_kind_check` is added, so a re-run never narrows a list a later migration widened;
+  `manager_reviews.quality_check JSONB`. 072 stays reserved.
+- **Digest quality block** (`manager/quality-digest.ts`, `SqlQuality`; `ResourceDigest.quality`, 7 days, best effort — a read
+  error leaves `quality: null`): per resource `critic` (pass / revise / reject / failed(`error`) counts from
+  `editor_slots.critic`, `revised_then_passed` from `history`, `pass_rate` = pass / (pass + revise + reject), mean score
+  per axis, the 3 newest non-pass notes incl. the first-pass note of a revise → pass, ≤ 200 chars), `polls` (poll + quiz
+  content slots of the window, planned ones too, against `polls_per_week` from `audienceCapsOfProfile`; `over`),
+  `reader_questions` (`readerQuestions()` over every written post's text vs the per-post cap; posts over the cap and 2 quoted
+  examples), `owner` (approval decisions: `approved_at` → clean / edited, `skipped` + `rejected by owner` → rejected with
+  `reject_reason`; an edit's before/after note from `editor_channel_memory` (`evidence.slotId`, `action: edit`); top 3
+  each, `rejection_rate`), `samples` (3 newest written posts — published, shadowed, awaiting approval, approved — first 400
+  chars from the post spec's caption/blocks, else the rendered preview), `flags` (`critic_reject`, `critic_low_pass` (< 70 %
+  with ≥ 3 verdicts), `critic_failed`, `polls_over_cap`, `reader_questions_over_cap`, `owner_rejections`, `owner_edits`) and
+  a `signature` (newest critic issue, newest owner rejection/edit, flags). Quality metrics for `expected`:
+  `critic_pass_rate`, `owner_rejection_rate`, `poll_share` (%; added to `KPI_METRICS`, never flagged as anomalies;
+  `metricValue`, the runner's `metricFor` and `stale_metric` read them from the block). Bound: `DIGEST_LIMIT_CHARS` 12k →
+  20k; `renderDigest` slims in steps — samples of unflagged resources, then ≤ 1 short sample, then quiet resources (no
+  anomaly, no flag) collapse, then cut. `get_network_posts` also returns `text` (first 400 chars of the slot the agent wrote,
+  via `published_posts.editor_slot_id` / `platform_posts.slot_id`); the excerpt stays the title.
+- **No skip when quality changed**: `digestHash()` = KPIs + open directives + the quality signatures; `canSkip(last, digest)`
+  (same hash and no anomaly). A new critic reject/revise, a new owner rejection/edit or a new flag (cap overflow, low pass
+  rate) changes the hash. A clean approval or another pass does not.
+- **Prompts / skill / quality_check**: `managerSystemPrompt` (two audits, KPI + quality; `continue` only after the checklist
+  with evidence; quality problems → `voice_fix` / `format_mix`; no micromanaging single posts), the run's user prompt, the
+  chat prompt (`buildManagerChatPrompt`: "no problems" only when the checklist shows it), `file_directive` / `submit_review`
+  descriptions and `manager-workflow` (4.8k chars: the six-item checklist — AI-likeness, sense, voice/humour, polls and
+  questions vs caps, owner rejections/edits, format fit — the two kinds, escalation-only directives for them) no longer say
+  "continue is the normal / frequent answer"; `kpi-reading` explains the block. `submit_review` requires
+  `quality_check: [{resource_ref, status ok|issue, evidence (20–400, a number or a quote), issues[], note?}]`;
+  `checkQualityReview` refuses (tool error, nothing stored): a resource with activity in the block left out
+  (`quality_check_missing`), an unknown ref, evidence without a number/quote, `issue` without items, `ok` on a resource with
+  code flags without a note ≥ 20 chars (`quality_flags_ignored`), `continue` over an `issue` without a note
+  (`quality_issue_unaddressed`). Stored in `manager_reviews.quality_check`.
+- **`voice_fix`** (`executors/quality-executors.ts`; params `resource_ref`, `rules` ≤ 3 (10–240 chars, stored as
+  «Голос (<ref>): …»), `bad_slot_ids` ≤ 3, `good_examples` ≤ 2 `{text, note, format?}`): bad examples must be real posts of
+  the resource from the last 14 days that the owner rejected or the critic rejected / revised (`SqlQuality.evidencePosts`,
+  loaded into `ExecContext.evidence`), with the owner's reason or the critic's notes as `note`; good ones pass
+  `findSlopPhrases` and the reader-question cap and use a format of the section. Examples are tagged `[@manager]`, merged new
+  first; when over 12 only older `[@manager]` examples make room (the owner's are never pushed out; full → not executable).
+  Needs an active playbook (no card fallback). **Not structural** — deviation from the literal `classifyPlaybookChange` rule
+  "rules changed": the voice rules are append-only (dry-run classification runs with the old rules list; any other change to
+  rules stays structural). Apply: `applyDirectivePatch` (version `created_by directive`, re-apply no-op). Verify: pending
+  for 3 days and until ≥ 3 posts were judged (critic or owner); then verified when the pass rate rose ≥ 10 points, the
+  owner rejection rate fell, or the week is clean after a bad one; not followed otherwise or after 10 days without posts;
+  violated when a rule was removed from the active playbook. `directive_lock`: removing one of its rules is a revert.
+- **`format_mix`** (params `resource_ref`, `weights {format: lower 0–1}`, `drop [formats]`, `polls_per_week`,
+  `questions_to_readers_per_day`): only lowers — a higher weight (`format_shift`), a cap ≥ the current one or above the
+  default, an owner-locked cap field are not executable; raising stays owner-only (and `patchFormat` by `agent` refuses it
+  too). Target: the playbook section, or the card for a single-channel orchestrator without a playbook, or `resource` for
+  caps only. **Structural only when a format is dropped from a playbook section** (owner decides); lowering weights (any
+  step) and caps, and a drop on the card apply at once. Caps are written with `ResourceProfilesRepository.patchFormat` as an
+  agent change (versioned; skipped when they already hold). Verify over the next 3 plans: a dropped format planned →
+  violated; poll + quiz slots over the new weekly cap → violated; a lowered weight whose share did not fall → not followed.
+  `directive_lock`: raising a cut weight again is a revert.
+- **Matrix**: `voice_fix`, `format_mix` = `either` (advice by default). Quality metrics never carry anomaly flags, so a
+  binding directive of these kinds is admitted only by the FR-003 escalation (declined advice of the same kind in 14 days
+  and the quality metric moved ≥ 5 % further against `expected`), by the owner, or as structural (a playbook drop).
+- **Wiring**: `editor.module.ts` (`directiveExecution`: `SqlQuality` evidence / audience readers in `executionContextOf`,
+  `voiceFixExecutor`, `formatMixExecutor`), `evals/lib/stack.ts` the same.
+- **Dashboard** (English): Network health tiles get a "Content quality · 7 d" block (critic pass rate, polls / cap, your
+  rejections and edits with tones, flag badges, "Notes and sample posts" with the critic notes, your reasons/edits and the
+  samples as written); header "quality flags on N resources"; on phones flagged resources stay visible. Directives board:
+  kind labels "voice fix" / "format mix", quality metric labels, `describeChange` lines; Reviews tab shows each run's
+  quality check. `lib/quality-view.ts`. Browser-checked against a local mock API (127.0.0.1) at 800 px and 375 px (no
+  horizontal overflow): tiles with flags / calm / no posts, notes and samples, kind filter, the quality check list.
+- **Tests** (scripted fakes, no LLM): `manager/quality.test.ts` (block assembly, slot text, hash/skip for reject / revise /
+  owner rejection / edit / poll overflow, a changed signature calls the LLM, render bound, `quality_check` rules and the
+  stored review, prompts and skill without "continue is normal", quality metrics + escalation, `stale_metric`),
+  `executors/quality-executors.test.ts` (plan / refusals / apply idempotent / verify for both kinds, example room,
+  `directive_lock`), `directive-kinds.test.ts` (matrix cells), `manager/quality.pg.test.ts` (block from real slots +
+  memory, hash on a new rejection, migration 071 re-apply and CHECK, voice_fix filed → accepted → applied quoting a real
+  rejected post, format_mix caps through the profile, quality_check stored, `get_network_posts` text); dashboard
+  `lib/quality-view.test.ts`, `directive-view.test.ts`.
+- **For T9 (`manager-flags-quality`)**: seed a network whose last 7 days have ≥ 3 critic verdicts with a reject and notes,
+  2 poll slots on a resource with the default cap 1, a post with two reader questions, an owner rejection with a reason
+  (`skipped` + `rejected by owner` + `reject_reason`) and an owner edit (`owner_edited` + a memory row with `evidence.slotId`),
+  sloppy sample texts; KPIs flat (no anomaly). Pass when the MANAGER files `voice_fix` (bad_slot_ids = the rejected slot)
+  and/or `format_mix` (poll weight/cap down) as **advice**, or `continue` only with `quality_check` status `issue` + a
+  note — never `continue` with "ok" on the flagged resource (the tool refuses it; count refusals as a soft failure). Use
+  the `evals/lib/stack.ts` stack (it already registers both executors); grade with the stored `manager_reviews.quality_check`
+  and `agent_directives` rows.

@@ -53,9 +53,10 @@ import { KpiDigestService } from '../../src/editor/manager/kpi-digest.service';
 import { ManagerRunner } from '../../src/editor/manager/manager-runner';
 import { buildDirectiveTools } from '../../src/editor/manager/directive-tools';
 import {
-  DirectiveExecution, executionContextOf, experimentExecutor, formatShiftExecutor, frequencyExecutor, pauseResourceExecutor, pauseSeriesExecutor, PlaybookBuildPort,
-  promoVerifier, SqlExperimentQuotas, SqlPlanObserver, strategyExecutor, taskRefCheck,
+  DirectiveExecution, executionContextOf, experimentExecutor, formatMixExecutor, formatShiftExecutor, frequencyExecutor, pauseResourceExecutor, pauseSeriesExecutor, PlaybookBuildPort,
+  promoVerifier, SqlExperimentQuotas, SqlPlanObserver, strategyExecutor, taskRefCheck, voiceFixExecutor,
 } from '../../src/editor/manager/executors';
+import { SqlQuality } from '../../src/editor/manager/quality-digest';
 import { PlatformPostsRepository } from '../../src/editor/platform/platform-posts.repository';
 import { ResourcePauseService } from '../../src/editor/pauses/resource-pauses';
 import { buildPlatformTools } from '../../src/editor/platform/platform-tools';
@@ -153,11 +154,19 @@ export function buildStack(o: { pool: Pool; web: FakeWeb; now: () => Date; apiKe
   const buildPort = new PlaybookBuildPort();
   // Spec 025 T4: pause_resource writes resource_pauses rows (scratch DB; nothing is published either way).
   const pauses = new ResourcePauseService({ pool, inbox, now });
+  // Spec 034 T4: the content-quality executors (voice_fix, format_mix) with their evidence / caps readers.
+  const quality = new SqlQuality(pool);
+  const qualityDeps = { ...execDeps, profiles, quality, now };
   const exec = new DirectiveExecution({
-    repo: directives, inbox, agents, now, context: executionContextOf({ repo: networkRepo, channels, time: resourceTime, now, pauses }),
+    repo: directives, inbox, agents, now,
+    context: executionContextOf({
+      repo: networkRepo, channels, time: resourceTime, now, pauses,
+      evidence: (refs, since) => quality.evidencePosts(refs, since), audience: (refs) => quality.audience(refs),
+    }),
     executors: [
       frequencyExecutor(execDeps), formatShiftExecutor(execDeps), pauseSeriesExecutor(execDeps),
       experimentExecutor({ quotas, now }), strategyExecutor({ network: networkRepo, builder: buildPort }), pauseResourceExecutor({ pauses, now }),
+      voiceFixExecutor(qualityDeps), formatMixExecutor(qualityDeps),
     ],
     verifiers: [promoVerifier(pool, 'cross_promo', now), promoVerifier(pool, 'repost', now)],
     quotas,

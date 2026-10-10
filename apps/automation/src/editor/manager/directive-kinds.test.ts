@@ -26,6 +26,12 @@ const CELLS: Array<[DirectiveKind, Record<string, unknown>, 'directive' | 'advic
     [k, {}, 'directive', null],
   ]),
   ['format_shift', { add_platform: 'tiktok' }, 'advice', 'structural_must_be_directive'],
+  // Spec 034 FR-006: the quality kinds — advice by default, a directive allowed by the matrix (admission decides).
+  ...(['voice_fix', 'format_mix'] as DirectiveKind[]).flatMap((k): Array<[DirectiveKind, Record<string, unknown>, 'directive' | 'advice', string | null]> => [
+    [k, { resource_ref: 'telegram:@space' }, 'advice', null],
+    [k, { resource_ref: 'telegram:@space' }, 'directive', null],
+  ]),
+  ['format_mix', { add_platform: 'tiktok' }, 'advice', 'structural_must_be_directive'],
 ];
 
 test('matrix: every kind has a binding rule', () => {

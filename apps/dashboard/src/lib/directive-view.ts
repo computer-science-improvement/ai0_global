@@ -13,6 +13,7 @@ export type Tone = 'neutral' | 'success' | 'warning' | 'danger' | 'accent';
 /** Same order as DIRECTIVE_KINDS in api/manager.ts (kept here so this module has no runtime imports). */
 export const KIND_ORDER: readonly DirectiveKind[] = [
   'advice', 'task', 'format_shift', 'frequency', 'repost', 'cross_promo', 'pause_series', 'experiment', 'pause_resource', 'strategy',
+  'voice_fix', 'format_mix',
 ];
 
 // ── filters (URL search params) ──
@@ -146,6 +147,25 @@ export function describeChange(c: DirectiveChange | null | undefined): string | 
     case 'playbook_build': return c.version != null
       ? `playbook v${c.version} built from the brief${c.activated_at ? ' · activated' : ' · waits for your activation'}`
       : 'playbook rebuild from the brief · building';
+    case 'voice_fix': {
+      const ex = c.examples ?? [];
+      const bad = ex.filter((e) => e.verdict === 'bad').length;
+      const good = ex.length - bad;
+      const parts = [
+        c.rules?.length ? `${c.rules.length} voice rule${c.rules.length === 1 ? '' : 's'}` : '',
+        bad ? `${bad} bad example${bad === 1 ? '' : 's'} from rejected posts` : '',
+        good ? `${good} good example${good === 1 ? '' : 's'}` : '',
+      ].filter(Boolean);
+      return `${parts.join(', ') || 'voice rules and examples'}${on}${c.version != null ? ` · playbook v${c.version}` : ''}`;
+    }
+    case 'format_mix': {
+      const parts = [
+        ...(c.weights ?? []).map((w) => (w.after <= 0 ? `drop ${w.format}` : `${w.format} weight ${weight(w.before)} → ${weight(w.after)}`)),
+        c.caps?.polls_per_week ? `polls a week ${c.caps.polls_per_week.before ?? 'no cap'} → ${c.caps.polls_per_week.after}` : '',
+        c.caps?.questions_to_readers_per_day ? `reader questions per post ${c.caps.questions_to_readers_per_day.before ?? '?'} → ${c.caps.questions_to_readers_per_day.after}` : '',
+      ].filter(Boolean);
+      return `${parts.join(', ') || 'format mix'}${on}`;
+    }
     default:               return c.op ? c.op.replace(/_/g, ' ') : null;
   }
 }
@@ -183,7 +203,7 @@ export function activeEffectsOf(directives: readonly Directive[], now = new Date
       out.push({ directive: d, kind: 'strategy', text, version: c.version });
     } else if (c.target === 'card') {
       out.push({ directive: d, kind: 'card', text });
-    } else if (c.op === 'per_day' || c.op === 'format_weight') {
+    } else if (c.op === 'per_day' || c.op === 'format_weight' || c.op === 'voice_fix' || (c.op === 'format_mix' && c.target === 'playbook')) {
       out.push({ directive: d, kind: 'playbook', text, version: c.version });
     } else {
       out.push({ directive: d, kind: 'other', text });

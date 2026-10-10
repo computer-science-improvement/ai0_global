@@ -106,14 +106,15 @@ import { buildNetworkModeTool } from './network/network-mode-tool';
 import { NETWORK_SERVICE, NetworkController } from './network/network.controller';
 import { DirectivesRepository } from './manager/directives.repository';
 import { KpiDigestService } from './manager/kpi-digest.service';
+import { SqlQuality } from './manager/quality-digest';
 import { ManagerRunner } from './manager/manager-runner';
 import { buildDirectiveTools, fileDirective, FileDirectiveInput } from './manager/directive-tools';
 import { ManagerService } from './manager/manager.service';
 import { MANAGER_SERVICE, ManagerController } from './manager/manager.controller';
 import type { Playbook } from './network/playbook';
 import {
-  DirectiveExecution, executionContextOf, experimentExecutor, formatShiftExecutor, frequencyExecutor, pauseResourceExecutor, pauseSeriesExecutor,
-  PlaybookBuildPort, promoVerifier, SqlExperimentQuotas, SqlPlanObserver, strategyExecutor, taskRefCheck,
+  DirectiveExecution, executionContextOf, experimentExecutor, formatMixExecutor, formatShiftExecutor, frequencyExecutor, pauseResourceExecutor, pauseSeriesExecutor,
+  PlaybookBuildPort, promoVerifier, SqlExperimentQuotas, SqlPlanObserver, strategyExecutor, taskRefCheck, voiceFixExecutor,
 } from './manager/executors';
 import { channelHeldBy, ResourcePauseService } from './pauses/resource-pauses';
 import { RESOURCE_PAUSES, ResourcePausesApi, ResourcePausesController } from './pauses/resource-pauses.controller';
@@ -323,7 +324,8 @@ function directiveScope(pool: Pool): (orch: Agent) => Promise<string[]> {
 }
 
 /**
- * Spec 025 FR-009: the directive executors (frequency, format_shift, pause_series, pause_resource; T5: experiment, strategy) and
+ * Spec 025 FR-009: the directive executors (frequency, format_shift, pause_series, pause_resource; T5: experiment, strategy;
+ * spec 034 T4: voice_fix, format_mix) and
  * the promo verifiers, with their runner. `buildPort` is bound only for the MANAGER's instance (it applies).
  */
 function directiveExecution(pool: Pool, repos: EditorRepos, infra: AgentInfra, platform: PlatformInfra, buildPort = new PlaybookBuildPort()): DirectiveExecution {
@@ -332,12 +334,19 @@ function directiveExecution(pool: Pool, repos: EditorRepos, infra: AgentInfra, p
   const deps = { network, channels: repos.channels, observer: new SqlPlanObserver(pool) };
   const quotas = new SqlExperimentQuotas(pool);
   const pauses = new ResourcePauseService({ pool, inbox: infra.inbox });
+  // Spec 034 FR-006: the content-quality executors (voice_fix, format_mix) and their evidence / caps readers.
+  const quality = new SqlQuality(pool);
+  const qdeps = { ...deps, profiles: infra.profiles, quality };
   return new DirectiveExecution({
     repo: new DirectivesRepository(pool), inbox: infra.inbox, agents: infra.agents,
-    context: executionContextOf({ repo: network, channels: repos.channels, usable: (ref) => platform.health.usable(ref), time: resourceTime(repos, infra.profiles), pauses }),
+    context: executionContextOf({
+      repo: network, channels: repos.channels, usable: (ref) => platform.health.usable(ref), time: resourceTime(repos, infra.profiles), pauses,
+      evidence: (refs, since) => quality.evidencePosts(refs, since), audience: (refs) => quality.audience(refs),
+    }),
     executors: [
       frequencyExecutor(deps), formatShiftExecutor(deps), pauseSeriesExecutor(deps), pauseResourceExecutor({ pauses }),
       experimentExecutor({ quotas }), strategyExecutor({ network, builder: buildPort }),
+      voiceFixExecutor(qdeps), formatMixExecutor(qdeps),
     ],
     verifiers: [promoVerifier(pool, 'cross_promo'), promoVerifier(pool, 'repost')],
     quotas,

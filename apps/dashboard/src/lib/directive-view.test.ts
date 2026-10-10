@@ -56,6 +56,16 @@ test('describeChange renders every executor op', () => {
   assert.match(describeChange({ op: 'experiment', slots: 2, resource_ref: 'telegram:@space', deadline: '2026-10-11T09:00:00Z' })!, /^2 experiment slots on telegram:@space by 11 Oct/);
   assert.equal(describeChange({ op: 'playbook_build', version: 7 }), 'playbook v7 built from the brief · waits for your activation');
   assert.equal(describeChange(null), null);
+  // Spec 034 FR-006: the quality kinds.
+  assert.equal(describeChange({
+    op: 'voice_fix', resource_ref: 'telegram:@space', version: 4, rules: ['r'],
+    examples: [{ format: 'text', text: 'x', verdict: 'bad' }, { format: 'text', text: 'y', verdict: 'bad' }, { format: 'text', text: 'z', verdict: 'good' }],
+  }), '1 voice rule, 2 bad examples from rejected posts, 1 good example on telegram:@space · playbook v4');
+  assert.equal(describeChange({
+    op: 'format_mix', resource_ref: 'telegram:@space', weights: [{ format: 'poll', before: 0.5, after: 0.1 }, { format: 'quiz', before: 0.4, after: 0 }],
+    caps: { polls_per_week: { before: 1, after: 0 } },
+  }), 'poll weight 50% → 10%, drop quiz, polls a week 1 → 0 on telegram:@space');
+  assert.equal(describeChange({ op: 'format_mix', caps: { questions_to_readers_per_day: { before: 1, after: 0 } } }), 'reader questions per post 1 → 0');
 });
 
 test('active effects: applied changes with a pause series and an open quota; pauses filtered by agent', () => {

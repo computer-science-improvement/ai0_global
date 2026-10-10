@@ -1,7 +1,9 @@
 import type { Agent } from '../../agents/agent.types';
 import type { ChannelMode, EditorCard } from '../../card';
 import type { NetworkCtx } from '../../network/network-context';
-import type { Playbook } from '../../network/playbook';
+import type { Playbook, PlaybookExample } from '../../network/playbook';
+import type { AudienceCaps } from '../../post/audience-asks';
+import type { EvidencePost } from '../quality-digest';
 import type { Directive, DirectiveKind } from '../directives.repository';
 
 /**
@@ -24,6 +26,10 @@ export interface ExecContext {
   mode?:     ChannelMode;
   /** Spec 025 FR-013: the active resource pauses (ref → until), when the context was built with them. */
   pauses?:   Array<{ ref: string; until: Date }>;
+  /** Spec 034 FR-006: real rejected / critic-flagged posts of the network (14 days) a voice_fix may quote. */
+  evidence?: EvidencePost[];
+  /** Spec 034 FR-006: each network resource's effective audience caps and owner-locked format fields (format_mix lowers caps, never raises). */
+  audience?: Record<string, { caps: AudienceCaps; locks: string[] }>;
   now:       Date;
 }
 
@@ -92,8 +98,56 @@ export interface StrategyChange {
   noop?:       boolean;
 }
 
-/** Every change an executor can plan. Playbook kinds keep `Change`; the T5 kinds have their own shapes. */
-export type AnyChange = Change | ExperimentChange | StrategyChange;
+/**
+ * Spec 034 FR-006: voice_fix — voice rules appended to the playbook `rules` (append-only) and example posts merged
+ * into `examples` (new first; bad ones quote real rejected posts with the critic's / owner's note, good ones pass
+ * the slop check). Not structural: examples never are (T5) and the rules are only added, never edited or removed.
+ */
+export interface VoiceFixChange {
+  kind:         'voice_fix';
+  op:           'voice_fix';
+  target:       'playbook';
+  channel_key:  string;
+  resource_ref: string;
+  rules:        string[];
+  examples:     PlaybookExample[];
+  /** The slots the bad examples quote. */
+  evidence_slots: string[];
+  structural:   false;
+  reasons:      string[];
+  playbook_id?: string;
+  version?:     number;
+  noop?:        boolean;
+}
+
+export interface WeightCut { format: string; before: number; after: number }
+export interface CapCut { before: number | null; after: number }
+
+/**
+ * Spec 034 FR-006: format_mix — lower format weights (poll/quiz first), drop an unfitting format, lower the
+ * resource's poll / reader-question caps. Only ever lower: raising a cap stays the owner's. A format dropped from
+ * a playbook section is structural (the owner decides); on a single-channel card it applies at once.
+ */
+export interface FormatMixChange {
+  kind:         'format_mix';
+  op:           'format_mix';
+  /** Where the weights land; 'resource' when only the caps change. */
+  target:       'playbook' | 'card' | 'resource';
+  channel_key:  string;
+  resource_ref: string;
+  weights:      WeightCut[];
+  /** Formats removed (weight 0). */
+  drop:         string[];
+  caps:         { polls_per_week?: CapCut; questions_to_readers_per_day?: CapCut };
+  structural:   boolean;
+  reasons:      string[];
+  playbook_id?: string;
+  version?:     number;
+  noop?:        boolean;
+}
+
+/** Every change an executor can plan. Playbook kinds keep `Change`; the T5 and spec 034 kinds have their own shapes. */
+export type AnyChange = Change | ExperimentChange | StrategyChange | VoiceFixChange | FormatMixChange;
 
 export type PlanError = { error: 'not_executable'; details: string };
 export type PlanResult<C = AnyChange> = C | PlanError;
