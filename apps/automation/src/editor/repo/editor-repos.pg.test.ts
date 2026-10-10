@@ -50,11 +50,14 @@ test('plans: create, supersede, claim, update, stale, sweep', { skip }, async ()
   assert.equal((await repo.getActivePlan(CH, '2099-01-01'))!.id, p2);
   const old = await repo.listSlots(CH, p1);
   assert.ok(old.every((x) => x.status === 'skipped'));
+  // Spec 034 FR-011: the old plan's slot that is due now (−1 min) stays and moves to the new plan; the future one is replaced.
+  assert.deepEqual(old.map((x) => x.topic), ['t60']);
+  assert.deepEqual((await repo.listSlots(CH, p2)).map((x) => x.topic).sort(), ['t-1', 't-2', 't-500', 't120'].sort());
 
   const stale = await repo.skipStale(now, 3 * 3600_000);
   assert.ok(stale >= 1);
   const claimed = await repo.claimDue(now, 10);
-  assert.equal(claimed.filter((c) => c.channelKey === CH).length, 1);
+  assert.equal(claimed.filter((c) => c.channelKey === CH).length, 2);
   const c = claimed.find((x) => x.channelKey === CH)!;
   assert.equal(c.status, 'running');
   assert.equal(c.attempts, 1);

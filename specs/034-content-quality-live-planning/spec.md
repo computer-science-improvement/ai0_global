@@ -240,3 +240,69 @@ FR-015. **Size:** S · Depends on T1–T6
   Posts with reader questions: run `readerQuestions(text)` (`post/audience-asks.ts`) over the stored
   `rendered_preview` / post text — nothing is stored per post. Caps: `ResourceProfilesRepository.capsOf(ref)`. A
   `format_mix` directive executor can lower the caps or set poll weights; raising caps stays owner-only.
+
+## Implementation notes (T6, 2026-10-10)
+- **Migration `067_live_slots.sql`** (additive, guarded, re-run is a no-op, records its version): `editor_slots.topic_mode`
+  (`'fixed' | 'live'`, default `fixed`, named CHECK added only when missing), `editor_slots.live_spec` JSONB
+  (`{ sources, brief, max_age_hours, origin: planner | news_watch | pin, item? }`), an index on the live item URL, and
+  `news_watch_log` (`checked` / `added` / `ignored` rows with reason, item, feed, score, slot; SELECT for `editor_ro`).
+- **FR-010 live slots.** `live/live-slot.ts`: `LIVE_SLOT_FIELDS` (`topic_mode`, `source`, `brief`, `max_age_hours`) in both
+  `PlanSlotInput` and `NetworkSlotInput`; `topic` is optional. `resolveSlotTopic`: `fixed` needs a topic (≥ 5); `live`
+  needs a source — its own, else its series' (`feed:<ref>` / `api:<name>`), else the card's RSS feeds; library sources are
+  refused. Default mode: `live` when there is no topic or the slot realises a series with a `feed` source (the planner's
+  topic then becomes the brief). The stored topic is a label («Свіжа новина з <site>»; a news-watch slot «Свіжа новина:
+  <title>»). Network: a live slot needs no `idea_id` / `series` / `directive_id`, must be `unique` and realises no idea.
+  Pins on a feed source are materialised live too; the Schedule projection marks series items `topicMode` (`live` for a
+  `feed` source) and returns `topicMode` / `live` on slots.
+- **Executor.** Before the LLM, `scanLive` (`live/feed-items.ts`) reads the slot's feeds (SSRF-safe GET), keeps items
+  ≤ `max_age_hours` (default 6; undated items dropped), drops what the content ledger blocks on the resource, waiting /
+  running posts with that source, items another planned live slot holds, and near-repeats of the resource's last 7 days
+  (posts, shadow previews, waiting posts, today's fixed topics, platform captions; `containment` of the title in a post's
+  head or Dice ≥ 0.6, calibrated on sample news; a second feed's copy of the same story counts too). Nothing fresh, at
+  least one feed read and no `api:` source → the slot is skipped by code with `no_fresh_item: …` (no LLM call). Otherwise
+  the prompt (Telegram and platform executor) has no «Тема:» but the brief, the sources, the rule, the skip code and up to 5
+  candidates. `fetch_feed` gains `since_hours` and `exclude_posted` and returns `age_hours` (+ `dropped` counts);
+  `skip_slot` gains `code: "no_fresh_item"` (error `no_fresh_item: <reason>`). Publish guard (in
+  `ScheduleService.publishGuard`, shared by Telegram and platform publish, so the publish tools are untouched):
+  `live_source_missing` when a live slot's post has no `source.url`.
+- **Approval mode.** `isTimeSensitive` is true for every live slot, so it is written 2 h before its time with the
+  `freshness_deadline` of spec 031 (unchanged path). A rejected live post's replacement stays live (without the item).
+  Known limit: in approval mode a live slot with nothing fresh at its write time (2 h ahead) is skipped, not retried.
+- **Defaults (news resources).** `isNewsCard`: RSS sources and the title / brief / profile topic says news (or a `news`
+  format weight). The planner prompt tells a news resource to make news slots live; `editor-planner-workflow`,
+  `network-planning`, `editor-executor-workflow` (2 555 / 2 600 chars) and `content-sources` say how; the network planner
+  block marks feed series `[live]`.
+- **FR-011 partial replan.** `replacePlan` (both planners, manual and scheduled) skips only the old plan's future
+  `planned` content slots (more than 5 min ahead, not pins, not repurposed, not news-watch); every other slot that is still
+  alive (`planned`, `running`, `awaiting_approval`, `approved`, `published`, `shadowed`, pins, reserved) moves to the new
+  plan. Waiting approval posts are no longer dropped (the 031 test was updated). The planners see the kept slots as fixed
+  points: `ScheduleRepository.keptOn` → `planContext` adds them to `pins` with `kept` (they count in `posts_per_day` /
+  `per_day`, keep the min gap, cover a due series instance) and `scheduleBlock` lists them as «уже в плані». The planner
+  prompt says "the rest of today". API `POST /api/editor/channels/:key/replan?date=tomorrow` (and the MCP `replan` tool)
+  replans the next day. Dashboard: "Replan the rest of today" on `/app/editor` and the channel page, plus "Replan tomorrow"
+  for channels in approval mode.
+- **FR-011 news watch.** `live/news-watch.ts` (`NewsWatchService.check`, scheduler hook `newsWatch` after planning, never
+  for a held channel; no LLM). Settings: profile `news_watch` (`enabled` absent = on for news resources, `every_hours` 2,
+  `from_hour` 8, `to_hour` 22, `max_per_day` 3, `max_age_hours` 3); owner-only (agent / builder profile writes keep the
+  stored value); edited in the dashboard Resource profile (Telegram resources: view + form, `NewsWatchFields.tsx`). A check
+  runs only when the day has a real plan; items must be fresh, unused (same filters as above) and on topic (5-letter stems
+  of the profile topic, brief and title; generic words ignored); score = freshness + topic fit (≥ 0.4). Room: under
+  `max_per_day` news-watch slots, under `posts_per_day_max` (slots and publications), a time at now + 15/20/25/30 min outside
+  quiet hours and ≥ `min_gap_minutes` from every slot and the last post. One slot per check (the best item); the slot's
+  format is `text` or `photo` (whichever the card allows). Every fresh item gets one log row a day (`added`, or `ignored`
+  with `off_topic` / `low_score` / `daily_cap` / `day_full` / `no_gap` / `no_format` / `not_best`) plus a `checked` summary.
+  Scope: Telegram channels (card feeds); platform resources get live slots from the planners only.
+- **Tests.** Unit: `live/live-slot.test.ts` (resolver, both validators, approval lead + freshness deadline, prompts),
+  `live/feed-items.test.ts` (ages, freshness, ledger/repeat filter, `fetch_feed`, news-watch config, keywords, score),
+  scheduler hook. PG `live/live-slots.e2e.pg.test.ts` on a fixed 2030 date (no hour-of-day dependence): a 14:50 feed item is
+  picked by the 15:00 news watch and written the same day, a forced re-check adds nothing, the 16:00 planner live slot is
+  skipped with `no_fresh_item` without an LLM call, the item is used exactly once; a replan keeps written / running / due
+  slots, counts them (per day, gap) and skips only the future planned one; the news watch stays out of a full day and
+  outside its hours. Dashboard `lib/news-watch.test.ts`.
+- **For T7 (readable plan).** Slots from `/api/editor/plans` and the Schedule API carry `topicMode: 'live'` and `liveSpec`
+  (`sources`, `brief`, `max_age_hours`, `origin`, `item`) only on live slots (dashboard type `EditorSlot.topicMode/liveSpec`);
+  render a planned live slot as «At HH:MM: fetch {liveSpec.sources → site names} → pick the freshest item (≤ max_age_hours h)
+  → write {format}», a news-watch slot with its `item.title` / link, and a skipped one with its `error` (`no_fresh_item: …`).
+  Schedule series items have `topicMode` and `source`. Written live slots have `postSpec.source.url` (the chosen item).
+  `news_watch_log` (per channel, newest first) can back a "why was this added / ignored" view.
+

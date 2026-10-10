@@ -58,7 +58,11 @@ Guard errors (`too_similar`, `source_already_posted`, `daily_cap_reached`, `quie
 `lint_failed`) are the code doing its job, not bugs.
 
 **"Re-plan today."** `replan(channel)` → `list_plans(channel)`; summarise the new slots (time, format,
-topic) and the rationale. The old plan's planned slots become `skipped`.
+topic) and the rationale. Only the rest of the day is replanned: the old plan's future `planned` slots become
+`skipped`; running, written (`awaiting_approval`, `approved`, `published`, `shadowed`), pinned and reserved
+slots stay in the new plan. In approval mode `replan(channel, date="tomorrow")` replans the next day.
+Live slots (`topicMode: live`) have no topic yet — the executor picks a fresh item of their source at slot
+time, or skips with `no_fresh_item`; news resources also get live slots from the news watch (`news_watch_log`).
 
 **"Try a slot in shadow."** Make sure the channel is `shadow` (`get_channel`), `list_plans` → pick a
 `planned` slot → `run_slot(slot_id)` → `get_slot` and show the `renderedPreview`.

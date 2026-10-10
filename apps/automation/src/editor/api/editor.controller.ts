@@ -36,9 +36,10 @@ export class EditorController {
     return this.ops.upsertChannel(key, body);
   }
 
+  /** Spec 034 FR-011: replans the rest of today (default) or, `?date=tomorrow`, the next day; written posts stay. */
   @Post('channels/:key/replan')
-  replan(@Param('key') key: string, @Query('wait') wait?: string) {
-    return this.ops.replan(key, { wait: isTrue(wait) });
+  replan(@Param('key') key: string, @Query('wait') wait?: string, @Query('date') date?: string) {
+    return this.ops.replan(key, { wait: isTrue(wait), ...(date ? { date } : {}) });
   }
 
   @Get('channels/:key/memory')

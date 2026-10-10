@@ -6,6 +6,8 @@ import type { EditorSlot } from '../repo/editor-plans.repository';
 import { localDate, localTimeLabel, localWeekday } from './time';
 import { resourceTimeLines } from '../time/resource-time';
 import { attachVoiceSkills, VOICE_CORE, voiceCoreSection, voiceReferenceLine } from './voice';
+import { liveSlotLines, type LiveScan } from '../live/live-slot';
+import { isNewsCard } from '../live/news-watch-config';
 
 const ROLE_TITLE: Record<CardRole, string> = {
   planner:  'редактор-планувальник',
@@ -154,22 +156,30 @@ export function plannerUserPrompt(card: EditorCard, now: Date, reserved: EditorS
     `Сьогодні ${WEEKDAYS[localWeekday(now, tz)]}, ${localDate(now, tz)}, зараз ${localTimeLabel(now, tz)} (${tz}).`,
     ahead
       ? `Склади план публікацій каналу на ${planDate}: ${card.postsPerDayMin}–${card.postsPerDayMax} постів з урахуванням резервних. Режим апруву: пости напишуть заздалегідь, власник схвалить їх увечері.`
-      : `Склади план публікацій каналу на сьогодні: ${card.postsPerDayMin}–${card.postsPerDayMax} постів з урахуванням резервних.`,
+      : `Склади план публікацій каналу на решту сьогоднішнього дня (слоти — не раніше ніж за 5 хв від зараз): ${card.postsPerDayMin}–${card.postsPerDayMax} постів за день з урахуванням резервних і тих, що вже є в плані.`,
+    // Spec 034 FR-011: a replan replaces only future planned slots; what is written or running stays.
+    'Пости, які вже опубліковані, написані, чекають апруву або виконуються, залишаються в плані (див. «уже в плані» в розкладі) — не повторюй їхні теми.',
     reserved.length
       ? `Резервні (рекламні) слоти, їх не чіпай і тримай інтервал: ${reserved.map((r) => localTimeLabel(r.scheduledAt, tz)).join(', ')}.`
       : 'Резервних слотів немає.',
+    // Spec 034 FR-010: news is picked at slot time, not fixed at planning time.
+    isNewsCard(card)
+      ? 'Це новинний ресурс: новинні слоти став live (topic_mode: "live", source — фід картки, brief — що шукати) — тему обере виконавець у час слота з найсвіжішого. fixed — лише для рубрик і матеріалів, тема яких відома зараз.'
+      : 'Слот, що має взяти свіжу новину з фіду чи API, став live (topic_mode: "live", source, brief) — тему обере виконавець у час слота.',
     'Спершу подивись статистику, нещодавні пости й ефективність форматів. Заверши викликом submit_plan.',
   ].join('\n');
 }
 
-export function executorUserPrompt(card: EditorCard, slot: EditorSlot, now: Date): string {
+export function executorUserPrompt(card: EditorCard, slot: EditorSlot, now: Date, scan?: LiveScan | null): string {
   const tz = card.timezone;
+  const live = slot.topicMode === 'live' && slot.liveSpec;
   return [
     `Слот на ${localTimeLabel(slot.scheduledAt, tz)} (зараз ${localTimeLabel(now, tz)}).`,
     `Формат: ${slot.format}.`,
-    `Тема: ${slot.topic}`,
+    // Spec 034 FR-010: a live slot has a brief and a source instead of a topic.
+    ...(live ? liveSlotLines(slot.liveSpec!, { tz, scan }) : [`Тема: ${slot.topic}`]),
     slot.angle ? `Кут подачі: ${slot.angle}` : '',
-    slot.sourceHints.length ? `Підказки джерел: ${slot.sourceHints.join('; ')}` : 'Підказок джерел немає — обери сам із джерел картки або бібліотеки.',
+    slot.sourceHints.length ? `Підказки джерел: ${slot.sourceHints.join('; ')}` : live ? '' : 'Підказок джерел немає — обери сам із джерел картки або бібліотеки.',
     slot.isExperiment ? 'Це експеримент: зроби його чисто за задумом планувальника, щоб результат можна було оцінити.' : '',
     card.mode === 'approve'
       ? 'Режим апруву: пишеш заздалегідь. publish_post нічого не надсилає — пост чекатиме схвалення власника, і код опублікує його в час слота.'

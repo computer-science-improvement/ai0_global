@@ -39,10 +39,18 @@ function EditorChannelPage() {
         subtitle={`${c.channelKey} · ${c.timezone} · plan at ${String(c.planHour).padStart(2, '0')}:00`}
         actions={<>
           <button className="btn-secondary" style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}
-            disabled={replan.isPending || c.mode === 'off'} title={c.mode === 'off' ? 'Switch to shadow first' : 'Run the planner now'}
-            onClick={() => replan.mutate(c.channelKey)}>
-            <Icon name="calendar-sync" size={14} /> Replan today
+            disabled={replan.isPending || c.mode === 'off'}
+            title={c.mode === 'off' ? 'Switch to shadow first' : 'Run the planner now: only future planned slots are replaced; written, running and pinned posts stay'}
+            onClick={() => replan.mutate({ key: c.channelKey })}>
+            <Icon name="calendar-sync" size={14} /> Replan the rest of today
           </button>
+          {c.mode === 'approve' && (
+            <button className="btn-secondary" style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}
+              disabled={replan.isPending} title="Approval mode plans the next day the evening before; posts already written for tomorrow stay"
+              onClick={() => replan.mutate({ key: c.channelKey, date: 'tomorrow' })}>
+              <Icon name="calendar" size={14} /> Replan tomorrow
+            </button>
+          )}
           <button className="btn-primary" style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }} onClick={() => setEditing(true)}>
             <Icon name="pencil" size={14} /> Edit card
           </button>
@@ -67,7 +75,7 @@ function EditorChannelPage() {
         action={<SlotCounts slots={c.today.slots} />}>
         {active?.rationale && <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)', margin: '0 0 12px' }}>{active.rationale}</p>}
         {!active || active.slots.length === 0
-          ? <EmptyState icon="calendar" title="No plan for today yet" note={c.mode === 'off' ? 'The channel is off.' : `The planner runs at ${c.planHour}:00, or use “Replan today”.`} />
+          ? <EmptyState icon="calendar" title="No plan for today yet" note={c.mode === 'off' ? 'The channel is off.' : `The planner runs at ${c.planHour}:00, or use “Replan the rest of today”.`} />
           : <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               {active.slots.map((s, i) => <SlotRow key={s.id} slot={s} delay={i * 25} />)}
             </div>}

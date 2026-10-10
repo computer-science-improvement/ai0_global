@@ -18,6 +18,7 @@ import { isToolError, type EditorTool } from '../harness/tool';
 import { DERIVED_STEPS, derivedPrompts, slotResource, type DerivedResolution } from '../network/derived-slots';
 import type { VoicePrefs } from '../post/slop-lint';
 import { attachVoiceSkills, VOICE_CORE, VOICE_SKILLS_BUDGET, voiceCoreSection, voiceReferenceLine } from './voice';
+import { liveSlotLines, noFreshReason, type LiveScan } from '../live/live-slot';
 
 export interface EditorRunnerDeps {
   loop:     Pick<AgentLoop, 'run'>;
@@ -70,6 +71,11 @@ export interface EditorRunnerDeps {
    * derived slot). Optional: without it humour and slang are off. Telegram cards carry their own.
    */
   voiceOf?: (ref: string) => Promise<VoicePrefs | null>;
+  /**
+   * Spec 034 FR-010: the code-side scan of a live slot's feeds before the executor runs (fresh, not
+   * posted, not a repeat). Nothing fresh → the slot is skipped with `no_fresh_item` without an LLM call.
+   */
+  live?: { scan(slot: EditorSlot, card: EditorCard): Promise<LiveScan | null> };
 }
 
 /** Telegram-only tools that must never run on a slot of another platform, and vice versa. */
@@ -209,10 +215,15 @@ export class EditorRunnerService {
     if (series?.skip) return this.skipByCode(slot, series.skip);
     note = [note, series?.note].filter(Boolean).join('\n') || null;
     if ((slot.treatment === 'duplicate' || slot.treatment === 'adapt') && this.d.derived) return this.runDerived(slot, card, ctx);
+    // Spec 034 FR-010: a live slot looks at its feeds first; with nothing fresh it is skipped by code.
+    const scan = slot.topicMode === 'live' && slot.liveSpec && this.d.live ? await this.d.live.scan(slot, card).catch(() => null) : null;
+    if (scan && slot.liveSpec && scan.feedsRead > 0 && !scan.items.length && !scan.otherSources.length) {
+      return this.skipByCode(slot, noFreshReason(slot.liveSpec, scan));
+    }
     const target = slot.resourceRef ? parseResourceRef(slot.resourceRef) : null;
     const res = target && target.platform !== 'telegram'
-      ? await this.runPlatformExecutor(slot, card, ctx, target.platform, note ?? null)
-      : await this.run('executor', card, [await this.executorUser(card, slot, ctx), note].filter(Boolean).join('\n'), slot.id, { excludeTools: PLATFORM_ONLY }, ctx);
+      ? await this.runPlatformExecutor(slot, card, ctx, target.platform, note ?? null, scan)
+      : await this.run('executor', card, [await this.executorUser(card, slot, ctx, scan), note].filter(Boolean).join('\n'), slot.id, { excludeTools: PLATFORM_ONLY }, ctx);
     await this.d.plans.updateSlot(slot.id, { runId: res.runId });
 
     const after = await this.d.plans.getSlot(slot.id);
@@ -316,8 +327,8 @@ export class EditorRunnerService {
   }
 
   /** The Telegram executor prompt, plus the pool idea the slot realises (spec 020). */
-  private async executorUser(card: EditorCard, slot: EditorSlot, ctx: RunAgentContext | null): Promise<string> {
-    const base = executorUserPrompt(card, slot, this.now());
+  private async executorUser(card: EditorCard, slot: EditorSlot, ctx: RunAgentContext | null, scan: LiveScan | null = null): Promise<string> {
+    const base = executorUserPrompt(card, slot, this.now(), scan);
     if (!this.d.platformContext) return base;
     const pc = await this.d.platformContext(slot, ctx?.orchestrator?.id ?? null).catch(() => null);
     return [
@@ -329,7 +340,9 @@ export class EditorRunnerService {
   }
 
   /** A slot that targets Instagram / Facebook / Threads / TikTok of the channel's network (spec 019 FR-008). */
-  private async runPlatformExecutor(slot: EditorSlot, card: EditorCard, ctx: RunAgentContext | null, platform: string, note: string | null = null): Promise<AgentLoopResult> {
+  private async runPlatformExecutor(
+    slot: EditorSlot, card: EditorCard, ctx: RunAgentContext | null, platform: string, note: string | null = null, scan: LiveScan | null = null,
+  ): Promise<AgentLoopResult> {
     const pc = this.d.platformContext ? await this.d.platformContext(slot, ctx?.orchestrator?.id ?? null).catch(() => null) : null;
     const skills = ctx?.skills ?? this.d.skills;
     const skill = skills.get(`platform-${platform}`);
@@ -368,7 +381,9 @@ export class EditorRunnerService {
         .map((s) => `- ${s.name}: ${s.description}`).join('\n'),
     ].join('\n');
     const user = [
-      `Слот на ${slot.scheduledAt.toISOString()} для ${slot.resourceRef}. Формат: ${slot.format}. Тема: ${slot.topic}.`,
+      slot.topicMode === 'live' && slot.liveSpec
+        ? [`Слот на ${slot.scheduledAt.toISOString()} для ${slot.resourceRef}. Формат: ${slot.format}.`, ...liveSlotLines(slot.liveSpec, { tz: card.timezone, scan })].join('\n')
+        : `Слот на ${slot.scheduledAt.toISOString()} для ${slot.resourceRef}. Формат: ${slot.format}. Тема: ${slot.topic}.`,
       slot.angle ? `Кут подачі: ${slot.angle}` : '',
       pc?.idea ? `Ідея з пулу: ${pc.idea}` : '',
       slot.sourceHints.length ? `Підказки джерел: ${slot.sourceHints.join('; ')}` : '',

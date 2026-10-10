@@ -5,6 +5,7 @@ import { DEFAULT_TZ, isValidTimeZone } from '../time/resource-time';
 import {
   audienceCaps, audienceCapsOfProfile, CONTENT_KINDS, DEFAULT_POLLS_PER_WEEK, DEFAULT_READER_QUESTIONS, type AudienceCaps,
 } from '../post/audience-asks';
+import { NewsWatchSchema } from '../live/news-watch-config';
 
 export const KPI_GOALS = ['growth', 'engagement', 'transitions', 'revenue'] as const;
 export type KpiGoal = typeof KPI_GOALS[number];
@@ -162,6 +163,8 @@ export const ResourceProfileSchema = z.object({
   /** Spec 024 FR-013: presentation on this resource (agent-owned) and the fields the owner locked. */
   format_prefs:   FormatPrefsSchema.optional(),
   format_locks:   FormatLocksSchema.optional(),
+  /** Spec 034 FR-011: the news watch of a news resource (cadence, active hours, cap); absent = defaults. */
+  news_watch:     NewsWatchSchema.optional(),
 });
 export type ResourceProfile = z.infer<typeof ResourceProfileSchema>;
 
@@ -203,7 +206,10 @@ function parseStoredProfile(raw: unknown) {
   const second = ResourceProfileSchema.safeParse(noTz);
   if (second.success) return second;
   const { format_prefs: _fp, format_locks: _fl, ...plain } = noTz;
-  return ResourceProfileSchema.safeParse(plain);
+  const third = ResourceProfileSchema.safeParse(plain);
+  if (third.success) return third;
+  const { news_watch: _nw, ...bare } = plain;
+  return ResourceProfileSchema.safeParse(bare);
 }
 
 /** The format_prefs and locks of a stored profile JSON (valid even when the rest of the profile is not). */
@@ -272,7 +278,8 @@ export class ResourceProfilesRepository {
 
   /**
    * Save a whole profile. A profile without `format_prefs` / `format_locks` keeps the stored ones (callers that do not
-   * know the formatting never wipe it). Every change is a version (FR-013).
+   * know the formatting never wipe it); `news_watch` (spec 034) is kept the same way and only the owner changes it.
+   * Every change is a version (FR-013).
    */
   async setProfile(ref: string, profile: ResourceProfile, by: 'owner' | 'builder' | 'agent', meta: { agentId?: string | null; reason?: string | null } = {}): Promise<void> {
     await this.tx(async (q) => {
@@ -282,6 +289,9 @@ export class ResourceProfilesRepository {
       const next: Record<string, unknown> = { ...profile };
       if (next.format_prefs === undefined && Object.keys(keep.prefs).length) next.format_prefs = keep.prefs;
       if (next.format_locks === undefined && keep.locks.length) next.format_locks = keep.locks;
+      // Spec 034 FR-011: the news watch is the owner's setting — agents and the builder never change it.
+      if ((next.news_watch === undefined || by !== 'owner') && prev?.news_watch !== undefined) next.news_watch = prev.news_watch;
+      else if (by !== 'owner') delete next.news_watch;
       await q.query(
         `INSERT INTO resource_profiles (resource_ref, profile, updated_by) VALUES ($1, $2, $3)
          ON CONFLICT (resource_ref) DO UPDATE SET profile = EXCLUDED.profile, updated_by = EXCLUDED.updated_by, updated_at = now()`,

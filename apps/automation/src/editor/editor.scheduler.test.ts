@@ -97,3 +97,27 @@ test('reserved (paid) slots publish on every cronTick, even when EDITOR_ENABLED 
   assert.equal(on.calls[0], 'reserved');
   assert.ok(on.calls.includes('skipStale'));
 });
+
+test('spec 034 FR-011: the news watch runs per card after planning, never for a held channel, and its failure is only logged', async () => {
+  const calls: string[] = [];
+  const logs: string[] = [];
+  const created = new Date('2026-01-01');
+  const cards = ['@a', '@held', '@boom'].map((channelKey) => ({ ...makeCard({ planHour: 6 }), channelKey, createdAt: created }));
+  const s = new EditorScheduler({
+    pool: { query: async () => ({ rows: [] }) } as any,
+    channels: { listActive: async () => cards },
+    plans: {
+      getActivePlan: async () => ({ id: 'p', rationale: null }), claimDue: async () => [], skipStale: async () => 0,
+      sweepStuck: async () => [], consecutiveFailures: async () => 0,
+    },
+    runner: { runPlanner: async () => ({}) as any, runExecutor: async () => ({}) as any, runReviewer: async () => ({}) as any },
+    enabled: () => true,
+    notify: async () => {},
+    log: (m) => logs.push(m),
+    pauses: { liftDue: async () => 0, pausedRefs: async () => new Set(['telegram:@held']), held: async (c) => c.channelKey === '@held' },
+    newsWatch: async (card) => { calls.push(card.channelKey); if (card.channelKey === '@boom') throw new Error('feed down'); },
+  });
+  await s.tick(THU_0700);
+  assert.deepEqual(calls, ['@a', '@boom']);
+  assert.ok(logs.some((l) => /news watch of @boom failed: feed down/.test(l)));
+});

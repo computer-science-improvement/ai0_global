@@ -12,12 +12,15 @@ import { planScheduleErrors, PlanScheduleCtx, SkippedSeriesInput } from '../sche
 import { DecisionReason, DecisionSlot, PlannedDecision, PlanSkipInput, TREATMENTS, validateDecisions } from './plan-decisions';
 import type { Treatment } from '../post/duplicate';
 import { pollCapErrors, type PollCapCtx } from '../roles/poll-cap';
+import { cardFeedIds, LIVE_SLOT_FIELDS, resolveSlotTopic, type LiveSpec } from '../live/live-slot';
 
 export const NetworkSlotInput = z.object({
   resource_ref: z.string().min(3).max(200),
   time:         z.string().regex(/^([01]\d|2[0-3]):[0-5]\d$/).describe('HH:MM у часовому поясі цього ресурсу на дату плану'),
   format:       z.string().min(2).max(30),
-  topic:        z.string().min(5).max(300),
+  topic:        z.string().min(5).max(300).optional().describe('Конкретна тема (обовʼязкова для fixed-слота)'),
+  // Spec 034 FR-010: a live slot — the executor picks a fresh item of the source at slot time (no idea needed).
+  ...LIVE_SLOT_FIELDS,
   angle:        z.string().max(400).optional(),
   idea_id:      z.string().uuid().optional(),
   series:       z.string().max(80).optional().describe('Назва серії з плейбука, якщо це її випуск'),
@@ -54,6 +57,9 @@ export interface NetworkPlannedSlot {
   formatNotes?: string | null;
   /** Spec 025 FR-014: a directive experiment slot (stored with is_experiment and the hint directive:<id>). */
   isExperiment?: boolean;
+  /** Spec 034 FR-010: a live slot. */
+  topicMode?:   'fixed' | 'live';
+  live?:        LiveSpec | null;
 }
 
 const LEAD_MIN = 5;
@@ -79,7 +85,7 @@ export function validateNetworkPlan(
   plan: SubmitNetworkPlan,
   o: {
     net: NetworkCtx;
-    card: Pick<EditorCard, 'channelKey' | 'timezone' | 'quietStartHour' | 'quietEndHour' | 'minGapMinutes'>;
+    card: Pick<EditorCard, 'channelKey' | 'timezone' | 'quietStartHour' | 'quietEndHour' | 'minGapMinutes'> & Partial<Pick<EditorCard, 'sources'>>;
     planDate: string;
     weekday: number;
     now: Date;
@@ -140,10 +146,17 @@ export function validateNetworkPlan(
       if (!idea) errors.push(`${label}: ідея ${s.idea_id} не знайдена або не прийнята рецензентом`);
     }
     if (s.series && !due.has(s.series)) errors.push(`${label}: серія «${s.series}» сьогодні не за розкладом або неактивна`);
-    if (!s.idea_id && !s.series && !s.directive_id) errors.push(`${label}: потрібен idea_id (прийнята ідея), series або directive_id (експеримент за директивою)`);
+    // Spec 034 FR-010: a fixed slot needs its topic; a live slot a source (its own, the series' or the anchor card's feeds).
+    const t = resolveSlotTopic(s, { label, seriesSource: s.series ? due.get(s.series)?.series.source ?? null : null, cardFeeds: cardFeedIds(card.sources) });
+    if (!t.ok) errors.push(t.error);
+    const live = t.ok && t.topicMode === 'live';
+    if (!s.idea_id && !s.series && !s.directive_id && !live) errors.push(`${label}: потрібен idea_id (прийнята ідея), series, directive_id (експеримент за директивою) або topic_mode "live" (свіжа новина з джерела)`);
+    if (live && treatment !== 'unique') errors.push(`${label}: live-слот — лише unique (похідний слот робиться з уже написаного поста)`);
+    if (live && s.idea_id) errors.push(`${label}: live-слот не реалізує ідею — прибери idea_id або зроби слот fixed`);
     if (s.directive_id && treatment !== 'unique') errors.push(`${label}: слот-експеримент за директивою — лише unique`);
     const slot: NetworkPlannedSlot = {
-      resourceRef: s.resource_ref, scheduledAt: at, format: s.format, topic: s.topic,
+      resourceRef: s.resource_ref, scheduledAt: at, format: s.format, topic: t.ok ? t.topic : (s.topic ?? ''),
+      ...(t.ok && t.live ? { topicMode: 'live' as const, live: t.live } : {}),
       angle: [s.angle, s.note].filter(Boolean).join(' · ') || null, ideaId: s.idea_id ?? null,
       sourceHints: [...(s.directive_id ? [`directive:${s.directive_id}`] : []), ...(s.series ? [`series:${s.series}`] : []), ...s.source_hints],
       treatment, treatmentReason: s.reason ?? null, fromIndex: null, formatNotes: s.format_notes ?? null,

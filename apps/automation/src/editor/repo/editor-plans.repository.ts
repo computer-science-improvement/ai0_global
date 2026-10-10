@@ -1,6 +1,7 @@
 import type { Pool } from 'pg';
 import { ContentLedger, specRefs } from '../../data/content-ledger';
 import type { PlannedSlot } from '../roles/plan-rules';
+import type { LiveSpec } from '../live/live-slot';
 
 export type SlotStatus =
   | 'planned' | 'running' | 'published' | 'shadowed' | 'skipped' | 'failed'
@@ -54,6 +55,10 @@ export interface EditorSlot {
   derivedFromSlotId?: string | null;
   /** A derived slot's non-slot source and the agent's format notes (`{ key?, format_notes?, via? }`). */
   sourcePost?:        DerivedSourceRef | null;
+  // ── live slots (spec 034 FR-010); present only on a live slot ──
+  /** 'live': the executor picks the topic at slot time from a fresh item of `liveSpec.sources`. */
+  topicMode?:         'live';
+  liveSpec?:          LiveSpec;
 }
 
 /** editor_slots.source_post of a derived slot (spec 024). */
@@ -137,8 +142,34 @@ export function rowToSlot(r: any): EditorSlot {
     ...(r.treatment_reason ? { treatmentReason: r.treatment_reason } : {}),
     ...(r.derived_from_slot_id ? { derivedFromSlotId: r.derived_from_slot_id } : {}),
     ...(r.source_post ? { sourcePost: r.source_post } : {}),
+    ...(r.topic_mode === 'live' ? { topicMode: 'live' as const, liveSpec: liveSpecOf(r) } : {}),
   };
 }
+
+/** A live slot's stored spec (a row written without one still gets a usable default). */
+function liveSpecOf(r: any): LiveSpec {
+  const v = r.live_spec && typeof r.live_spec === 'object' ? r.live_spec : {};
+  return {
+    sources: Array.isArray(v.sources) ? v.sources.map(String) : [],
+    brief: typeof v.brief === 'string' && v.brief ? v.brief : String(r.topic ?? ''),
+    max_age_hours: Number(v.max_age_hours) > 0 ? Number(v.max_age_hours) : 6,
+    origin: v.origin === 'news_watch' || v.origin === 'pin' ? v.origin : 'planner',
+    ...(v.item && typeof v.item === 'object' && v.item.url ? { item: { url: String(v.item.url), title: String(v.item.title ?? ''), published_at: v.item.published_at ?? null } } : {}),
+  };
+}
+
+/**
+ * Spec 034 FR-011: which content slots of a superseded plan stay (and move to the new plan) on a replan.
+ * Only future `planned` slots are replaced; running, written (awaiting_approval / approved / published /
+ * shadowed), due-now, owner pins, reserved, repurposed and news-watch slots stay. `$2` = now + the lead.
+ */
+const REPLACEABLE = `kind = 'content' AND status = 'planned' AND schedule_rule_id IS NULL AND scheduled_at > $2
+   AND COALESCE(source_post->>'via', '') <> 'repurpose' AND COALESCE(live_spec->>'origin', '') <> 'news_watch'`;
+/** Slots that move to the new plan (whatever is not replaced and not already finished without a post). */
+const KEPT = `(kind = 'reserved' OR schedule_rule_id IS NOT NULL
+   OR status IN ('planned','running','awaiting_approval','approved','published','shadowed'))`;
+/** Planned slots this close to their time are about to run: a replan keeps them (mirrors the planner's lead). */
+export const REPLAN_KEEP_LEAD_MS = 5 * 60_000;
 
 /** Rationale of a plan created by repurpose_post before the day was planned; the planner still plans that day (spec 024). */
 export const REPURPOSE_RATIONALE = 'repurpose';
@@ -192,7 +223,7 @@ export class EditorPlansRepository {
   /** Spec 023 FR-010: every dedup question goes to the content ledger. */
   private readonly ledger: ContentLedger;
 
-  constructor(private readonly pool: Pool) {
+  constructor(private readonly pool: Pool, private readonly now: () => Date = () => new Date()) {
     this.ledger = new ContentLedger(pool);
   }
 
@@ -270,22 +301,25 @@ export class EditorPlansRepository {
     return this.replacePlan(channelKey, planDate, rationale, runId, async (client, planId) => {
       for (const s of slots) {
         await client.query(
-          s.ideaId
-            ? `INSERT INTO editor_slots (plan_id, channel_key, scheduled_at, format, topic, angle, source_hints, is_experiment, idea_id)
-               VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`
-            : `INSERT INTO editor_slots (plan_id, channel_key, scheduled_at, format, topic, angle, source_hints, is_experiment)
-               VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`,
-          [planId, channelKey, s.scheduledAt, s.format, s.topic, s.angle, JSON.stringify(s.sourceHints), s.isExperiment, ...(s.ideaId ? [s.ideaId] : [])]);
+          `INSERT INTO editor_slots (plan_id, channel_key, scheduled_at, format, topic, angle, source_hints, is_experiment, idea_id, topic_mode, live_spec)
+           VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)`,
+          [planId, channelKey, s.scheduledAt, s.format, s.topic, s.angle, JSON.stringify(s.sourceHints), s.isExperiment, s.ideaId ?? null,
+            s.live ? 'live' : 'fixed', s.live ? JSON.stringify(s.live) : null]);
       }
     });
   }
 
-  /** One transaction: supersede the day's active plan, move its reserved slots, insert the new slots. */
+  /**
+   * One transaction: supersede the day's active plan and insert the new slots. Spec 034 FR-011: a partial
+   * replan — only the old plan's future `planned` slots are replaced (skipped); every slot that stays
+   * (running, written, due now, pins, reserved, repurposed, news watch) moves to the new plan.
+   */
   private async replacePlan(
     channelKey: string, planDate: string, rationale: string, runId: string | null,
     insertSlots: (client: { query: Pool['query'] }, planId: string) => Promise<void>,
   ): Promise<string> {
     const client = await this.pool.connect();
+    const keepUntil = new Date(this.now().getTime() + REPLAN_KEEP_LEAD_MS);
     try {
       await client.query('BEGIN');
       const old = await client.query(
@@ -296,20 +330,12 @@ export class EditorPlansRepository {
         [channelKey, planDate, rationale, runId && /^[0-9a-f-]{36}$/i.test(runId) ? runId : null]);
       const planId: string = rows[0].id;
       for (const o of old.rows) {
-        // Spec 024: posts the agent repurposed into this day are its own decisions, not the old plan's — they move along.
+        // Future unwritten slots go with the old plan; written posts (spec 031: waiting or approved) stay.
         await client.query(
-          `UPDATE editor_slots SET plan_id = $2, updated_at = now()
-            WHERE plan_id = $1 AND kind = 'content' AND status = 'planned' AND source_post->>'via' = 'repurpose'`, [o.id, planId]);
-        // Unwritten slots and (spec 031) posts still waiting for approval go with the old plan; approved ones stay.
-        // Spec 023 FR-004: the owner's pins are fixed — they move to the new plan like reserved slots.
-        const dropped = await client.query(
           `UPDATE editor_slots SET status = 'skipped', error = 'superseded by a new plan', updated_at = now()
-            WHERE plan_id = $1 AND status IN ('planned','awaiting_approval') AND kind = 'content' AND schedule_rule_id IS NULL RETURNING platform_post_id`, [o.id]);
-        const waitingRows = dropped.rows.map((r: any) => r.platform_post_id).filter((x: unknown) => x != null);
-        if (waitingRows.length) {
-          await client.query(`UPDATE platform_posts SET status = 'canceled', error = 'superseded' WHERE id = ANY($1::bigint[]) AND status = 'awaiting_approval'`, [waitingRows]);
-        }
-        await client.query(`UPDATE editor_slots SET plan_id = $2, updated_at = now() WHERE plan_id = $1 AND (kind = 'reserved' OR schedule_rule_id IS NOT NULL)`, [o.id, planId]);
+            WHERE plan_id = $1 AND ${REPLACEABLE}`, [o.id, keepUntil]);
+        // Spec 023 FR-004 / 024 / 034: pins, reserved, repurposed and every kept post move to the new plan.
+        await client.query(`UPDATE editor_slots SET plan_id = $2, updated_at = now() WHERE plan_id = $1 AND ${KEPT}`, [o.id, planId]);
       }
       await insertSlots(client as any, planId);
       await client.query(TAG_SERIES_SLOTS, [planId]);
@@ -336,6 +362,8 @@ export class EditorPlansRepository {
       treatment?: 'unique' | 'duplicate' | 'adapt'; treatmentReason?: string | null; fromIndex?: number | null; formatNotes?: string | null;
       // spec 025 FR-014: a directive experiment slot
       isExperiment?: boolean;
+      // spec 034 FR-010: a live slot
+      live?: LiveSpec | null;
     }>,
     decisions: PlanDecisionInput[] = [],
     agentId: string | null = null,
@@ -350,11 +378,12 @@ export class EditorPlansRepository {
         const derived = s.fromIndex != null && (s.treatment === 'duplicate' || s.treatment === 'adapt');
         const { rows } = await client.query(
           `INSERT INTO editor_slots (plan_id, channel_key, scheduled_at, format, topic, angle, source_hints, is_experiment, resource_ref, idea_id,
-                                     treatment, treatment_reason, derived_from_slot_id, source_post)
-           VALUES ($1, $2, $3, $4, $5, $6, $7, $14, $8, $9, $10, $11, $12, $13) RETURNING id`,
+                                     treatment, treatment_reason, derived_from_slot_id, source_post, topic_mode, live_spec)
+           VALUES ($1, $2, $3, $4, $5, $6, $7, $14, $8, $9, $10, $11, $12, $13, $15, $16) RETURNING id`,
           [planId, channelKey, s.scheduledAt, s.format, s.topic, s.angle, JSON.stringify(s.sourceHints), isAnchor ? null : s.resourceRef, s.ideaId,
             s.treatment ?? null, s.treatmentReason ?? null, derived ? ids[s.fromIndex!] : null,
-            derived ? JSON.stringify({ via: 'plan', ...(s.formatNotes ? { format_notes: s.formatNotes } : {}) }) : null, !!s.isExperiment]);
+            derived ? JSON.stringify({ via: 'plan', ...(s.formatNotes ? { format_notes: s.formatNotes } : {}) }) : null, !!s.isExperiment,
+            s.live ? 'live' : 'fixed', s.live ? JSON.stringify(s.live) : null]);
         ids[k] = rows[0].id;
       }
       if (!decisions.length || !agentId) return;

@@ -299,14 +299,21 @@ test('mode switched away from approval, or a paused channel: an approved post is
   await assertNoUnapprovedPublish();
 });
 
-test('a replan drops posts still waiting in the old plan; approved ones stay', { skip }, async () => {
+test('a replan (spec 034 FR-011) replaces only future planned slots; waiting and approved posts stay in the new plan', { skip }, async () => {
   const h = harness([], { now: new Date('2030-03-11T05:00:00Z') });
   await pool.query(`INSERT INTO editor_plans (channel_key, plan_date, rationale) VALUES ($1, '2030-03-12', 'old')`, [CH]);
   const waiting = await waitingSlot({ at: new Date('2030-03-12T08:00:00Z'), topic: 'Старий план' });
   const approved = await waitingSlot({ at: new Date('2030-03-12T09:00:00Z'), status: 'approved', topic: 'Апрувнутий' });
-  await h.plans.createPlan(CH, '2030-03-12', 'новий план', null, []);
+  const oldPlan = (await pool.query(`SELECT id FROM editor_plans WHERE channel_key = $1 AND plan_date = '2030-03-12' AND status = 'active'`, [CH])).rows[0].id;
+  const planned = (await pool.query(
+    `INSERT INTO editor_slots (plan_id, channel_key, scheduled_at, format, topic) VALUES ($1, $2, '2030-03-12T10:00:00Z', 'text', 'Ще не написаний') RETURNING id`,
+    [oldPlan, CH])).rows[0].id;
+  const planId = await h.plans.createPlan(CH, '2030-03-12', 'новий план', null, []);
   const w = (await h.plans.getSlot(waiting))!;
-  assert.deepEqual([w.status, w.error], ['skipped', 'superseded by a new plan']);
-  assert.equal((await h.plans.getSlot(approved))!.status, 'approved');
-  await pool.query(`UPDATE editor_slots SET status = 'skipped' WHERE id = $1`, [approved]);
+  assert.deepEqual([w.status, w.planId], ['awaiting_approval', planId], 'a written post waiting for approval stays and moves to the new plan');
+  const a = (await h.plans.getSlot(approved))!;
+  assert.deepEqual([a.status, a.planId], ['approved', planId]);
+  const p = (await h.plans.getSlot(planned))!;
+  assert.deepEqual([p.status, p.error, p.planId], ['skipped', 'superseded by a new plan', oldPlan], 'a future unwritten slot is replaced');
+  await pool.query(`UPDATE editor_slots SET status = 'skipped' WHERE id = ANY($1::uuid[])`, [[approved, waiting]]);
 });

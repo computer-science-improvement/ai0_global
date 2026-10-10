@@ -25,13 +25,17 @@ export const SkippedSeriesInput = z.array(z.object({
   reason: z.string().min(10).max(300).describe('Чому серія сьогодні пропущена (≥ 10 символів)'),
 })).max(20).optional().describe('Серії за розкладом, які ти свідомо не плануєш сьогодні (заблоковані власником — не можна)');
 
-/** A materialised pin of the plan day (an editor_slots row with schedule_rule_id). */
+/**
+ * A materialised pin of the plan day (an editor_slots row with schedule_rule_id) or, spec 034 FR-011, a
+ * slot a replan keeps (`kept`: running, written, due now, news watch) — both fixed points of the plan.
+ */
 export interface PinSlot {
   resourceRef: string;
   at:          Date;
   ruleId:      string;
   seriesName:  string | null;
   windowMin:   number;
+  kept?:       { status: string; topic: string; live: boolean };
 }
 
 /** Everything the schedule checks need about the plan day; built by ScheduleService.planContext. */
@@ -95,7 +99,9 @@ export function planScheduleErrors(plan: PlanLike, ctx: PlanScheduleCtx, default
       if (p.resourceRef !== x.ref) continue;
       const gap = Math.max(p.windowMin, x.clock.gapMin);
       if (Math.abs(p.at.getTime() - x.at.getTime()) < gap * 60_000) {
-        errors.push(`${label(x)}: занадто близько до закріпленого поста власника о ${localTimeLabel(p.at, x.clock.tz)} (мінімум ${gap} хв)`);
+        errors.push(p.kept
+          ? `${label(x)}: занадто близько до поста, що вже є в плані о ${localTimeLabel(p.at, x.clock.tz)} (${p.kept.status}; мінімум ${gap} хв)`
+          : `${label(x)}: занадто близько до закріпленого поста власника о ${localTimeLabel(p.at, x.clock.tz)} (мінімум ${gap} хв)`);
       }
     }
   }
@@ -149,6 +155,10 @@ export function scheduleBlock(ctx: PlanScheduleCtx): string | null {
   const lines: string[] = [];
   for (const p of ctx.pins) {
     const clock = ctx.clocks[p.resourceRef];
+    if (p.kept) {
+      lines.push(`- уже в плані ${p.resourceRef} о ${clock ? localTimeLabel(p.at, clock.tz) : p.at.toISOString()} (${p.kept.status}${p.kept.live ? ', live' : ''}): «${p.kept.topic}»${p.seriesName ? ` (серія «${p.seriesName}»)` : ''} — залишається, рахується в кількість постів дня; не повторюй тему й тримай інтервал`);
+      continue;
+    }
     lines.push(`- закріплений пост власника ${p.resourceRef} о ${clock ? localTimeLabel(p.at, clock.tz) : p.at.toISOString()}${p.seriesName ? ` (серія «${p.seriesName}»)` : ''} — уже в плані, не дублюй і тримай інтервал`);
   }
   for (const r of ctx.rules) {

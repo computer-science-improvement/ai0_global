@@ -373,6 +373,18 @@ export interface ResourceProfile {
   /** Spec 024 FR-013: edited in the Formatting section; the profile form keeps them (the server too). */
   format_prefs?:   FormatPrefs;
   format_locks?:   FormatPrefField[];
+  /** Spec 034 FR-011: the news watch of a Telegram news resource (owner-only; absent = defaults). */
+  news_watch?:     NewsWatchSettings;
+}
+
+/** Spec 034 FR-011: every field optional; absent = the default (auto, every 2 h, 08:00–22:00, 3 a day, items ≤ 3 h). */
+export interface NewsWatchSettings {
+  enabled?:       boolean;
+  every_hours?:   number;
+  from_hour?:     number;
+  to_hour?:       number;
+  max_per_day?:   number;
+  max_age_hours?: number;
 }
 
 // ── spec 024 FR-013: agent-owned formatting per resource ──────────────────────

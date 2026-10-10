@@ -180,7 +180,8 @@ export function networkPlannerBlock(o: { net: NetworkCtx; accepted: IdeaRow[]; n
     '## Серії за розкладом сьогодні',
     due.length ? due.map((d) => {
       const tz = tzOf.get(d.series.resource_ref);
-      return `- «${d.series.name}» о ${d.time}${tz && tz !== DEFAULT_TZ ? ` (${tz})` : ''} → ${d.series.resource_ref} (${d.series.format}): ${d.series.brief}`;
+      const live = d.series.source?.kind === 'feed' ? ' [live: тему обере виконавець зі свіжого в фіді]' : '';
+      return `- «${d.series.name}» о ${d.time}${tz && tz !== DEFAULT_TZ ? ` (${tz})` : ''} → ${d.series.resource_ref} (${d.series.format})${live}: ${d.series.brief}`;
     }).join('\n') : '- немає',
     '',
     '## Прийняті ідеї',
@@ -196,6 +197,9 @@ export function networkPlannerBlock(o: { net: NetworkCtx; accepted: IdeaRow[]; n
     '- skip — у skips з причиною: не та тема для профілю, ресурс слабкий у цьому форматі, частота вичерпана.',
     'Варіанти ідеї — підказка, не вимога. Напрям дублювання будь-який (і з Instagram у Telegram). Похідний слот — не раніше за джерело, інтервал обираєш ти (0 — одночасно); ланцюжків немає — джерело завжди unique.',
     'Інтервали між постами одного ресурсу на платформах — на твій розсуд (орієнтир: ≥ 60 хв; між варіантами однієї ідеї — пару годин, якщо аудиторії перетинаються); код стежить лише за частотою, тихими годинами й лімітами API. Інтервал у Telegram задає картка каналу.',
+    // Spec 034 FR-010: news is picked at slot time.
+    'Новини й інфоприводи дня — live-слоти (topic_mode: "live", source — фід картки або api:<назва>, brief — що шукати; без idea_id, лише unique): тему обере виконавець у час слота з найсвіжішого неопублікованого. Серія з джерелом feed — live за замовчуванням.',
+    'Пости дня, що вже опубліковані, написані чи чекають апруву, залишаються (розклад: «уже в плані») — плануй лише решту дня.',
     'Заверши submit_network_plan.',
   ].join('\n');
 }

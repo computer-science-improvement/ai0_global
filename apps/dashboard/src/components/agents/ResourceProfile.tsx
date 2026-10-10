@@ -23,6 +23,7 @@ import {
 } from '../../api/agents';
 import { useAgentNetwork } from '../../api/network';
 import { KYIV_TZ, formatIn, isValidZone, listZones, zoneLabel } from '../../lib/zoned-time';
+import { NewsWatchEditor, NewsWatchView, newsWatchBody, newsWatchError, newsWatchForm } from './NewsWatchFields';
 
 const DEFAULT_QUIET = { start: 23, end: 8 };
 const pad2 = (n: number) => String(n).padStart(2, '0');
@@ -151,6 +152,7 @@ function ProfileView({ handle, refName, p, updatedAt }: { handle: string; refNam
           ? <span style={{ display: 'inline-flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' }}><Badge tone="success">allowed</Badge><Chips items={p.ads_allowed.categories} empty="any category" /></span>
           : <Badge tone="neutral">not allowed</Badge>}
       </Meta>
+      {clock.telegram && <Meta label="News watch" wide><NewsWatchView w={p.news_watch} /></Meta>}
       <Meta label="Taboo" wide><Chips items={p.taboo} empty="none" /></Meta>
       <Meta label="Sources" wide><Chips items={p.sources} empty="none" /></Meta>
       <Meta label="Examples" wide><Chips items={p.examples} empty="none" /></Meta>
@@ -238,6 +240,9 @@ export function ProfileModal({ handle, initial, refName, onClose }: {
   const clock = useResourceClock(handle, refName, initial);
   const zones = useState(() => listZones())[0];
   const [f, setF] = useState<Form>(() => toForm(initial));
+  // Spec 034 FR-011: the news watch (Telegram resources only); kept apart from the profile form fields.
+  const [nw, setNw] = useState(() => newsWatchForm(initial?.news_watch));
+  const nwError = clock.telegram ? newsWatchError(nw) : null;
   const [tried, setTried] = useState(false);
   const [jump, setJump] = useState(0);
   const formRef = useRef<HTMLDivElement | null>(null);
@@ -269,13 +274,13 @@ export function ProfileModal({ handle, initial, refName, onClose }: {
 
   const save = async () => {
     setTried(true);
-    if (Object.keys(local).length) { setJump((n) => n + 1); return; }
+    if (Object.keys(local).length || nwError) { setJump((n) => n + 1); return; }
     try {
       // Telegram: the card owns the zone and quiet hours (the profile fields are ignored) — keep whatever is stored.
       const time = clock.telegram
         ? { ...(initial?.timezone ? { timezone: initial.timezone } : {}), ...(initial?.quiet_hours ? { quiet_hours: initial.quiet_hours } : {}) }
         : timeBody(f);
-      await put.mutateAsync({ ...time, ...toBody(f) });
+      await put.mutateAsync({ ...time, ...toBody(f), ...(clock.telegram ? { news_watch: newsWatchBody(nw, initial?.news_watch) } : {}) });
       toast.success('Resource profile saved');
       onClose();
     } catch { setJump((n) => n + 1); /* issues are shown inline */ }
@@ -378,6 +383,8 @@ export function ProfileModal({ handle, initial, refName, onClose }: {
         </div>
       )}
 
+      {clock.telegram && <NewsWatchEditor f={nw} onChange={setNw} error={tried ? nwError : null} />}
+
       <Field label="Tone" hint="optional">
         <input className="input-field" style={input} value={f.tone} maxLength={300} placeholder="Friendly, to the point, no bureaucratese" onChange={(e) => set('tone', e.target.value)} />
         {err('tone')}
@@ -417,7 +424,7 @@ export function ProfileModal({ handle, initial, refName, onClose }: {
           {unmatched.length ? unmatched.map((u) => <span key={u} className="text-micro">{u}</span>) : <span className="text-micro">{describeError(put.error)}</span>}
         </div>
       )}
-      {tried && Object.keys(errs).length > 0 && (
+      {tried && (Object.keys(errs).length > 0 || !!nwError) && (
         <div className="text-micro" style={{ color: 'var(--color-danger)', marginBottom: 4 }}>Fix the highlighted fields.</div>
       )}
       </div>

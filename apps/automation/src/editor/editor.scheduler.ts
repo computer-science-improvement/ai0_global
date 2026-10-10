@@ -58,6 +58,11 @@ export interface EditorSchedulerDeps {
     pausedRefs(now: Date): Promise<Set<string>>;
     held(card: EditorCard, paused: Set<string>): Promise<boolean>;
   };
+  /**
+   * Spec 034 FR-011: the news watch of a news resource — a code-only feed check on its cadence that adds a
+   * live slot for a fresh item (cheap when not due). Runs after planning, never for a held channel.
+   */
+  newsWatch?: (card: EditorCard, now: Date) => Promise<unknown>;
 }
 
 /** How far ahead approval-mode slots are looked at for writing (the evening batch covers the next day). */
@@ -152,6 +157,9 @@ export class EditorScheduler {
       if (!held) {
         await this.maybePlan(card, now);
         if (approving.has(card.channelKey)) await this.maybePlanAhead(card, now);
+        if (this.d.newsWatch) {
+          try { await this.d.newsWatch(card, now); } catch (err: any) { this.d.log?.(`news watch of ${card.channelKey} failed: ${err?.message ?? err}`); }
+        }
       }
       await this.maybeReview(card as EditorCard & { createdAt?: Date }, now);
     }

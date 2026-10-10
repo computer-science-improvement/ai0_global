@@ -146,13 +146,21 @@ export class EditorOpsService {
     return { date: planDate, plans: await this.d.plans.listPlans(planDate, channel || null) };
   }
 
-  async replan(key: string, opts: RunOptions): Promise<RunOutcome> {
+  /**
+   * Spec 034 FR-011: a partial replan — the planner replaces only the future planned slots of the day;
+   * running, written, approved, pinned and reserved slots stay. `date`: 'today' (the rest of today, the
+   * default) or 'tomorrow' (approval mode plans the next day the evening before).
+   */
+  async replan(key: string, opts: RunOptions & { date?: string }): Promise<RunOutcome> {
     this.requireEnabled();
     const card = await this.card(key);
     this.requireNotOff(card);
+    const day = opts.date || 'today';
+    if (day !== 'today' && day !== 'tomorrow') throw new BadRequestException({ error: 'invalid_param', field: 'date', details: 'today or tomorrow' });
+    const planDate = day === 'tomorrow' ? localDate(new Date(this.now().getTime() + 86_400_000), card.timezone) : undefined;
     if (this.replanning.has(key)) throw new ConflictException({ error: 'replan_in_progress' });
     this.replanning.add(key);
-    const job = () => this.d.runner.runPlanner(card).finally(() => this.replanning.delete(key));
+    const job = () => this.d.runner.runPlanner(card, planDate ? { planDate } : {}).finally(() => this.replanning.delete(key));
     const res = await this.start(job, opts, `replan ${key}`);
     return res ? { started: true, result: brief(res) } : { started: true };
   }

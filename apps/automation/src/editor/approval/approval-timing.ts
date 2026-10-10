@@ -39,12 +39,16 @@ export function addDays(date: string, n: number): string {
 
 const NEWS_RE = /(^|[^a-zа-яіїєґ])(news|rss|feed|новин|стрічк)/i;
 
+type TimingSlot = Pick<EditorSlot, 'format' | 'topic' | 'sourceHints'> & Partial<Pick<EditorSlot, 'topicMode'>>;
+
 /**
  * News and feed-sourced slots go stale quickly: written 2 h ahead with a
- * freshness deadline. A slot is time-sensitive when its format or topic says
- * news, or a source hint points at an RSS source of the card.
+ * freshness deadline. A slot is time-sensitive when it is a live slot (spec 034
+ * FR-010: its item is picked at write time), its format or topic says news, or a
+ * source hint points at an RSS source of the card.
  */
-export function isTimeSensitive(slot: Pick<EditorSlot, 'format' | 'topic' | 'sourceHints'>, card: Pick<EditorCard, 'sources'>): boolean {
+export function isTimeSensitive(slot: TimingSlot, card: Pick<EditorCard, 'sources'>): boolean {
+  if (slot.topicMode === 'live') return true;
   if (slot.format === 'news' || NEWS_RE.test(slot.format)) return true;
   const rss = card.sources.filter((s) => s.kind === 'rss');
   return slot.sourceHints.some((h) => /^(rss|feed):/i.test(h) || rss.some((s) => h === s.id || h === s.ref || h.startsWith(s.ref)))
@@ -64,7 +68,7 @@ export function batchTimeOf(scheduledAt: Date, tz: string): Date {
  *    it was created less than 12 h ahead. A write time in the past means "now".
  */
 export function writeAt(
-  slot: Pick<EditorSlot, 'scheduledAt' | 'format' | 'topic' | 'sourceHints'> & { createdAt?: Date | null },
+  slot: TimingSlot & Pick<EditorSlot, 'scheduledAt'> & { createdAt?: Date | null },
   card: Pick<EditorCard, 'timezone' | 'sources' | 'approvalLeadHours'>,
 ): Date {
   const at = slot.scheduledAt.getTime();
@@ -79,7 +83,7 @@ export function writeAt(
 
 /** The freshness deadline a written time-sensitive post carries (null for evergreen posts). */
 export function freshnessDeadline(
-  slot: Pick<EditorSlot, 'scheduledAt' | 'format' | 'topic' | 'sourceHints'>, card: Pick<EditorCard, 'sources'>,
+  slot: TimingSlot & Pick<EditorSlot, 'scheduledAt'>, card: Pick<EditorCard, 'sources'>,
 ): Date | null {
   return isTimeSensitive(slot, card) ? new Date(slot.scheduledAt.getTime() + FRESHNESS_GRACE_MS) : null;
 }
