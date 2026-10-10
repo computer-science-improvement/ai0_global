@@ -143,7 +143,14 @@ test('a pool that never hands out a connection times out', async () => {
   const pool = { connect: () => new Promise<never>(() => undefined) };
   const svc = new LandingPulseService(pool as any, { statementTimeoutMs: 20 });
   const t0 = Date.now();
-  await assert.rejects(svc.get(), ServiceUnavailableException);
+  // The service's guard timer is unref'd (it must not keep a server process alive); here nothing else holds the
+  // event loop, and Node 20's test runner would cancel the test before the timer fires.
+  const keepAlive = setInterval(() => undefined, 1_000);
+  try {
+    await assert.rejects(svc.get(), ServiceUnavailableException);
+  } finally {
+    clearInterval(keepAlive);
+  }
   assert.ok(Date.now() - t0 < 2_000);
 });
 
