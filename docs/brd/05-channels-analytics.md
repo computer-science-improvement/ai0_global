@@ -1,12 +1,27 @@
 # BRD (as-is) — Мої канали, аналітика, трекінг, логи
 
-> Статус: чернетка, згенерована з коду 2026-10-05. Описує, як система ФАКТИЧНО працює зараз (гілка feat/editor-agent), а не як мала б.
+> Статус: оновлено з коду 2026-10-10 (коміт 54dd1eb, гілка feat/editor-agent). Описує, як система ФАКТИЧНО працює зараз, а не як мала б.
+
+## Що змінилось з 2026-10-05
+
+- Меню тепер будується з реєстру `apps/dashboard/src/nav/registry.ts`. За замовчуванням "My channels" і "Logs" стоять у групі Publishing, "Analytics" і "Tracked" — у групі Analytics. "Tracked" переїхав з Intelligence, "Logs" — з Analytics. Власник може ховати, перейменовувати й переносити пункти (Settings → Navigation); усі чотири сторінки є в палітрі ⌘K. Лічильників (badges) на цих пунктах немає (spec 027).
+- Картка каналу `/app/channels/$id` отримала хлібні крихти: власний канал — "My channels", чужий — "Channels" (spec 027).
+- Невідомий шлях під `/app/*` (наприклад, старий закладений лінк) показує "Page not found" всередині оболонки з підказкою про ⌘K (spec 027).
+- Стратегії стали read-only legacy. На картці каналу прибрано inline-редагування cron-розкладу; порожній стан таблиці стратегій веде на `/app/agents` замість "Add a strategy" (spec 023).
+- Авторизація: `TrackingAuthGuard` делегує все `AuthService.authenticate()`. Cookie `tracking_jwt` — тепер відкликувана сесія (`auth_sessions`) із ковзним продовженням. 401 повертає `{code}`, дашборд веде на `/login?next=…&reason=…`. `/app` перевіряється до рендеру (router `beforeLoad`) і в production ще nginx-ом через `/auth/check` (spec 028).
+- Виклик Claude для ROI тепер пишеться в журнал витрат LLM як feature `tracking.roi` (видно на `/app/spend`). Якщо блокуючий бюджет вичерпано, виклик не робиться і ROI рахується евристикою (spec 029).
+- День у `resource_daily_stats` (статистика платформ для агентів) тепер рахується в часовому поясі ресурсу через `resource_tz()`. Сторінки цього розділу це не змінило: графіки й далі в часовому поясі браузера (spec 024).
+- Лічильник "low content" для legacy-стратегій тепер рахує рядки з compatibility-views над `data_items`, бо 12 контентних таблиць переїхали в єдине сховище (spec 032).
+- Запис у `published_posts` (конвеєр `/stats`) додатково заносить URL джерела в content ledger (spec 023).
+- Виправлено помилку попередньої версії документа: `useStrategies` оновлюється кожні 30 с, а не 10 с.
 
 ## 1. Призначення розділу
 
 Розділ покриває "операційну панель власника каналів": список власних Telegram-каналів із прив'язаним ботом і стратегіями (`/app/channels`), картку каналу з метриками та діями (`/app/channels/$id`), агреговану аналітику Telegram і Meta (`/app/analytics`), список чужих (відстежуваних) каналів (`/app/tracked`) і стрічку активності автоматизації (`/app/logs`).
 
-Користувач один — власник/оператор, який публікує контент у свої канали, дивиться, чи росте аудиторія, і контролює, що автоматика реально зробила. Усі сторінки доступні лише після логіну (`/app` — захищений layout; бекенд-гард `TrackingAuthGuard`: cookie `tracking_jwt` або Bearer `TRACKING_TOKEN`; розподілу даних між користувачами немає).
+Користувач один — власник/оператор, який публікує контент у свої канали, дивиться, чи росте аудиторія, і контролює, що автоматика реально зробила. Усі сторінки доступні лише після логіну. `/app` — захищений layout: сесію перевіряє router до рендеру, у production ще й nginx. Бекенд-гард `TrackingAuthGuard` приймає Bearer `TRACKING_TOKEN` або сесійний cookie `tracking_jwt` (див. 4.4). Розподілу даних між користувачами немає.
+
+Публікацію в канали сьогодні веде переважно агент каналу (редактор, `/app/agents`, `/app/editor`). Стратегії — read-only legacy (spec 023). Сторінки цього розділу показують лише legacy-стратегії й не показують план чи пости агента (див. "Спостереження" в 3.2 і 3.5).
 
 Ключова особливість, яку треба розуміти для всього розділу: **усі метрики Telegram на цих сторінках беруться не з Bot API, а з MTProto-сесії "трекера"** (user-акаунт, gramjs), яка опитує канали за розкладом і пише в таблиці `tracked_*`. Паралельно існує другий, незалежний конвеєр статистики (`/stats`, таблиці `channel_stats_snapshots` / `post_stats_snapshots` / `published_posts`), але дашборд його не читає (див. розділ 4).
 
@@ -15,7 +30,7 @@
 | Сторінка | Маршрут | Коротко |
 |---|---|---|
 | Мої канали | `/app/channels` | Пагінований список власних (`is_mine`) каналів: бот, tier опитування, стратегії, підписники; додавання/редагування каналу |
-| Картка каналу | `/app/channels/$id` | Метрики одного каналу (підписники, перегляди, ER, топ-пости, ROI), керування паузою/tier/ботом/темами, стратегії та forward-маршрути |
+| Картка каналу | `/app/channels/$id` | Метрики одного каналу (підписники, перегляди, ER, топ-пости, ROI), керування паузою/tier/ботом/темами, legacy-стратегії (лише читання) та forward-маршрути |
 | Аналітика | `/app/analytics` | Дві вкладки: Telegram (власні канали, дані трекера) і Meta (IG/FB/Threads: фоловери, охоплення, перегляди профілю) |
 | Відстежувані канали | `/app/tracked` | Список чужих каналів (`is_mine = false`), статус трекінгу, додавання та жорстке видалення |
 | Логи | `/app/logs` | Стрічка активності: запуски стратегій і одноразові заплановані пости, з трасою виконання |
@@ -26,13 +41,13 @@
 
 **Бізнес-мета.** Показати власнику всі канали, у які система публікує, і відразу підсвітити, що заважає публікації: немає бота, канал на паузі, у стратегії закінчується контент.
 
-**Хто користується / доступ.** Оператор після логіну. Пункт сайдбару "Publishing → My channels" (веде на `/app/channels?filter=mine`).
+**Хто користується / доступ.** Оператор після логіну. Пункт меню за замовчуванням "Publishing → My channels" (реєстр id `channels`, веде на `/app/channels?filter=mine`; у ⌘K знаходиться також за словами "telegram", "own").
 
 **Що показує.**
 - `GET /tracking/channels?filter=mine&page=N&pageSize=50[&q=…][&bot=<uuid>]` → `TrackingService.listChannels` → `TrackedChannelsRepository.list` (таблиця `tracked_channels`, `ORDER BY added_at DESC`, пошук `LIKE` по `title + username + channel_key`).
 - Три KPI-плитки, які рахуються лише по елементах поточної сторінки (не по всьому набору): "Channels" / "On this page" (кількість рядків), "Need a bot" (`needsBot`), "Paused" (`publishPaused`).
 - Рядок каналу (`ChannelRow`): назва (`title` → `channelKey` → `@username`), чипи `kind` (public/private), `mine`, `closed`, `paused`, чип бота (`bot.username`, напівпрозорий, якщо бот неактивний), попередження "No bot — add or set a default bot to publish" та "Subscribe to track", реальний Telegram-id (`@username` або числовий chat id), кількість підписників (`subsCount`, формат `1.2K`), чип tier (`hot|warm|cold`), "last polled" (відносний час), список стратегій-чипів (`type`, `↩` для forward-ролі, іконка попередження "low content").
-- Дані про стратегії для рядка беруться не з SQL, а з кешу конфігурації в пам'яті (`ConfigCacheService.getBindings()/getForwardRoutes()`); "low content" рахується на фронтенді з `useStrategies()` (`content_remaining < low_content_threshold` для типів зі скінченним пулом: recipes, quotes, facts, curated-prompts, ai0-prompts, pdr-quiz, motivation-biography, assets).
+- Дані про стратегії для рядка беруться не з SQL, а з кешу конфігурації в пам'яті (`ConfigCacheService.getBindings()/getForwardRoutes()`), включно з вимкненими й retired-привʼязками; "low content" рахується на фронтенді з `useStrategies()` (`content_remaining < low_content_threshold` для типів зі скінченним пулом: recipes, quotes, facts, curated-prompts, ai0-prompts, pdr-quiz, motivation-biography, assets). `content_remaining` рахує `ContentRunwayService`; після spec 032 старі контентні таблиці — це compatibility-views над `data_items`.
 
 **Дії користувача.**
 - Кнопка **Add channel** → модалка `AddChannelModal` (`ownership="mine"`): Kind (private/public), Username або Chat id, Name, Bot (+ кнопка "Set default bot"), Poll tier (за замовчуванням warm), Ownership (завжди "Mine", заблокований чекбокс). Після створення — перехід на картку каналу.
@@ -61,7 +76,7 @@
 
 **Стани.** Завантаження: картка "Loading channels…". Помилка: картка "Couldn't load channels" + текст помилки. Порожньо без фільтрів: "No channels yet" + кнопка Add channel; з фільтрами: "No channels match your filters" + "Clear filters".
 
-**Фонові процеси.** Дані рядків оновлює конвеєр трекінгу (розділ 4). Сторінка сама **не** оновлюється за таймером: `staleTime` 30 с, без `refetchInterval` (крім `useStrategies` — 10 с, але лише для чипів/low-content).
+**Фонові процеси.** Дані рядків оновлює конвеєр трекінгу (розділ 4). Сторінка сама **не** оновлюється за таймером: `staleTime` 30 с, без `refetchInterval` (крім `useStrategies` — 30 с, але лише для чипів/low-content).
 
 **Звʼязки.** → `/app/channels/$id`; ← сайдбар; використовує боти (`useBots`), стратегії (`useStrategies`). Інтеграції: Telegram MTProto (трекер), Telegram Bot API (публікація, поза цим розділом).
 
@@ -69,7 +84,9 @@
 - **Помилкова власність.** `AddChannelModal` у режимі "mine" для public+username-only викликає `addChannel`, який виконує `upsertByUsername` без `isMine` → `COALESCE(null,false)` → канал створюється як зовнішній і НЕ зʼявляється в "My channels" (хоча UI обіцяє "Mine"). За замовчуванням у цьому режимі вибрано kind=private, тож проблема проявляється, коли оператор перемикає на public.
 - Підказка (tooltip) підписників згадує `getChat` бота, хоча фактично лічильник береться з MTProto трекера; для private-каналу без членства трекера число буде порожнім.
 - Для щойно створеного private-каналу опитування не ставиться в чергу — показники зʼявляться після першого тік-циклу (за умови `TRACKING_ENABLED=true`) або після ручного "Fetch stats".
-- Параметр `filter` і більшість пошукових полів у `Search` — залишки старого дизайну (коментар у коді: "Tracked/competitor channels live under Intelligence").
+- Параметр `filter` і більшість пошукових полів у `Search` — залишки старого дизайну (коментар у коді: "Tracked/competitor channels live under Intelligence"; самі "Tracked" тепер за замовчуванням у групі Analytics).
+- Власник може додати в меню власне посилання, наприклад `/app/channels?filter=external` (spec 027 FR-007), але сторінка ігнорує `filter` і все одно покаже власні канали.
+- Чипи стратегій показують усі привʼязки, також retired після міграції на агента (spec 023); окремої позначки "retired" у рядку немає.
 
 **Відкриті питання до власника.** Чи має "Add channel → public" завжди створювати канал як `mine`? Чи потрібне видалення власного каналу зі списку? Чи потрібен фільтр за tier/ботом у UI?
 
@@ -86,12 +103,13 @@
 - `GET /tracking/channels/:id/subs-history` → `tracked_subs_history` (повна історія без ліміту/агрегації);
 - `GET /tracking/channels/:id/posts?limit=30` → `tracked_posts ORDER BY posted_at DESC LIMIT 30`;
 - `GET /tracking/channels/:id/top-posts?metric=views&limit=5` → топ-5 за `views` за весь збережений період;
-- `GET /api/tracked-channels/:id/themes` (кількість тем на кнопці Themes) + `useStrategies()` (кожні 10 с).
+- `GET /api/tracked-channels/:id/themes` (кількість тем на кнопці Themes) + `useStrategies()` (кожні 30 с).
 
 Блоки:
+0. Хлібні крихти (spec 027): для власного каналу — "My channels" (`/app/channels?filter=mine`), для чужого — "Channels" (`/app/channels`). Назви крихт враховують перейменування пунктів меню власником.
 1. Хедер: назва, бейджі `paused` / `not subscribed` (danger) / `kind`, `@username` або chat id, підписники, випадаючий список tier, дата додавання ("added …"), опис `about`.
 2. Стрічка плиток: **Subscribers** (`subs_count`), **Strategies** (кількість primary + forward), **Next post** (найближчий `next_run_at` серед увімкнених стратегій, формат "in 2h 5m"; якщо немає — "paused"), **Bot**, **Channel key**, **Themes** (до 3 чипів + "+N").
-3. **Publishing strategies** (лише `isMine`): таблиця Strategy / Type / Schedule / Next run / Last run / Content / Status; для primary — inline-редагування cron-розкладу (`PATCH` стратегії), для forward — лише читання.
+3. **Publishing strategies** (лише `isMine`, підпис "primary + forward bindings"): таблиця Strategy / Type / Schedule / Next run / Last run / Content / Status. Усе лише для читання (spec 023): розклад показано як cron-рядок, для forward — з позначкою "(forwarded)". Назва стратегії веде на `/app/strategies`. Порожній стан: "No strategies" + "Strategies are legacy: the channel's agent plans its content." + посилання "Open Agents" (`/app/agents`).
 4. **Forward routes** (лише `isMine`): список/створення/видалення маршрутів `/api/forward-routes` (topic → target channel).
 5. **ROI estimate** (`RoiPanel`, `GET /tracking/roi/:id`).
 6. Графіки: **Subscribers over time**, **Views per post** (last 30), **Engagement rate**.
@@ -104,7 +122,7 @@
 - **Themes (N)** → `EditThemesModal` (`/api/tracked-channels/:id/themes`).
 - **Config** (лише `isMine`) → `EditChannelModal`: Name, Bot (+ Set default bot), Channel key, Chat id, Kind, Poll tier, Pause publishing, Ownership (Mine). Збереження → `PATCH /tracking/channels/:id` → подія `config:changed` оновлює кеш.
 - **Recompute** у ROI → `GET /tracking/roi/:id?fresh=true` (може викликати платний LLM).
-- Зміна розкладу стратегії, додавання/видалення forward — окремі ендпоінти (поза цим розділом).
+- Додавання/видалення forward-маршрутів — у блоці Forward routes (`/api/forward-routes`). Змінити розклад чи параметри стратегії з картки не можна: API стратегій приймає лише паузу й нотатки, решта — 410 `strategies_legacy` (spec 023).
 
 **Метрики та їх походження.**
 
@@ -122,14 +140,15 @@
 - `BR-CHN-11` Картка показує одну й ту саму структуру для будь-якого каналу; секції "Publishing strategies", "Forward routes" та кнопки "Pause/Resume" і "Config" зʼявляються лише коли `isMine = true`.
 - `BR-CHN-12` Кнопка "Fetch stats" ставить у чергу дві задачі (meta + posts) і одразу повертає `{ok:true}`; результат у UI зʼявляється через ~4 с лише якщо воркер встиг.
 - `BR-CHN-13` Зміна tier і паузи вимагає підтвердження через діалог; при скасуванні select повертається до збереженого значення.
-- `BR-CHN-14` Пауза публікації блокує всі стратегії та forward-и в канал на етапі публікації, не змінюючи `enabled` самих стратегій.
-- `BR-CHN-15` Плитка "Next post" показує "paused", коли немає жодної увімкненої стратегії з `next_run_at` (в тому числі коли стратегій взагалі немає).
+- `BR-CHN-14` Пауза публікації (`publish_paused`) блокує на етапі публікації всі стратегії та forward-и в канал, заплановані пости і пости агента (`TelegramEditorPublisher`, чернетки з чату), не змінюючи `enabled` самих стратегій.
+- `BR-CHN-15` Плитка "Next post" показує "paused", коли немає жодної увімкненої стратегії з `next_run_at` (в тому числі коли стратегій взагалі немає). Слоти агента (`editor_slots`) у розрахунок не входять.
 - `BR-CHN-16` Графік підписників відображає всі наявні точки історії (до 365 днів за політикою retention) без даунсемплінгу; порожній стан — "No history yet. Wait for the next poll cycle."
 - `BR-CHN-17` "Views per post" і "Engagement rate" будуються по 30 останніх постах із `tracked_posts`; у "Engagement rate" враховуються коментарі, хоча підпис блоку — "reactions + forwards / views".
 - `BR-CHN-18` Лічильники views/forwards/reactions/comments посту записуються при першому виявленні посту воркером poll-posts і надалі **не оновлюються** (див. "Спостереження").
 - `BR-CHN-19` У "Top posts" і "Recent posts" текст посту старше 30 днів відсутній (політика scrub `TRACKED_POST_TEXT_RETENTION_DAYS`, якщо `RETENTION_ENABLED=true`) і показується як "(media only)".
-- `BR-CHN-20` Primary-розклад стратегії редагується inline прямо в таблиці (cron-вираз, UTC), forward-розклад — лише для читання з позначкою "edit on source".
+- `BR-CHN-20` Розклад стратегії на картці лише для читання — і primary, і forward (spec 023; inline-редактор `InlineScheduleEditor` видалено). Cron рахується в `SCHEDULER_TZ`, якщо його задано, інакше в часовому поясі процесу (підказка в UI: "UTC unless SCHEDULER_TZ is configured").
 - `BR-CHN-21` Колонка "Content" показує залишок контенту лише для стратегій зі скінченним пулом; при `content_remaining < low_content_threshold` — бейдж "Low: N / threshold".
+- `BR-CHN-49` Картка показує хлібні крихти з реєстру навігації (spec 027): власний канал — під "My channels", чужий — під "Channels" (`/app/channels`).
 
 **Бізнес-правила й обмеження.**
 - Один канал може належати максимум одній "групі бренду" (`group_id`, унікальний індекс; конфлікт → HTTP 409); це лише організаційна привʼязка і з картки не редагується.
@@ -140,7 +159,7 @@
 
 **Фонові процеси.** Крони трекінгу (hot 5 хв, warm 30 хв, cold 6 год), черги `tracking.*`, щоденний перерахунок tier о 03:30, нічне retention.
 
-**Звʼязки.** ← `/app/channels`, `/app/tracked`, модалка Add channel (редірект після створення); → `/app/strategies`. Інтеграції: Telegram MTProto, Anthropic (ROI).
+**Звʼязки.** ← `/app/channels`, `/app/tracked`, модалка Add channel (редірект після створення); → `/app/strategies` (назва стратегії), `/app/agents` (порожній стан стратегій). Інтеграції: Telegram MTProto, Anthropic (ROI).
 
 **Спостереження «як фактично зараз».**
 - **Перегляди "заморожені" на моменті першого опитування.** `poll-posts` бере лише повідомлення з `id > max(tg_message_id)` (`minId`), тому вже збережений пост ніколи не оновлюється. Воркер `refresh-metrics` та таблиця `tracked_post_metrics_history` існують, але `addRefreshMetrics` ніде не викликається — історія метрик посту порожня. Для власних каналів пост опитується через 5–60 хв після публікації, тому "Views per post", "Engagement rate", "Avg views" та ROI систематично занижені відносно реальних цифр у Telegram.
@@ -149,8 +168,13 @@
 - Тултіп бейджа `not subscribed` на картці говорить про "publishing bot", а в списку — про "tracker account"; правильне — друге (перевіряється MTProto-сесія трекера, а не бот).
 - Блок "Views per post" має підпис "last 30", а "Top posts" — "top 5" без обмеження за часом: після 30 днів тексти зникають.
 - Блок ROI на власному каналі формулюється як "estimated subscribers per ad placement" (оцінка реклами), що має сенс для зовнішніх каналів, а не для власних.
+- Картка дивиться лише на legacy-стратегії. Якщо канал веде агент, а стратегії вимкнені чи retired після міграції, плитка "Strategies" показує старі привʼязки, "Next post" — "paused", хоча агент публікує. План і пости агента (`editor_slots`) на картці не показано.
+- Retired-привʼязка (spec 023, `retired_at`) показується як звичайна "paused", без позначки, що її замінив агент.
+- Часовий пояс каналу (spec 024) живе в картці редактора (`editor_channels`) і видно його на сторінці агента; на `/app/channels/$id` його немає.
+- Для чужого каналу крихта "Channels" веде на `/app/channels`, а та показує лише власні канали; крихти назад до "Tracked" немає.
+- Окрема тимчасова пауза ресурсу агентом чи директивою (`resource_pauses`) на картці не відображається; кнопка Pause тут керує лише `publish_paused`.
 
-**Відкриті питання до власника.** Чи треба оновлювати метрики постів протягом перших 48 год? Чи має ручний tier блокувати автоперерахунок? Чи потрібен блок ROI для власних каналів?
+**Відкриті питання до власника.** Чи треба оновлювати метрики постів протягом перших 48 год? Чи має ручний tier блокувати автоперерахунок? Чи потрібен блок ROI для власних каналів? Чи показувати на картці план агента замість (або поруч із) legacy-стратегій?
 
 ---
 
@@ -158,7 +182,7 @@
 
 **Бізнес-мета.** Один екран "як ростуть мої канали й акаунти": підписники/фоловери, середні перегляди, реакції, охоплення.
 
-**Хто користується / доступ.** Оператор після логіну. Сайдбар "Analytics → Analytics".
+**Хто користується / доступ.** Оператор після логіну. Пункт меню за замовчуванням "Analytics → Analytics" (у тій самій групі тепер "Spend" і "Tracked"; `/app/spend` описано в іншому документі).
 
 **Що показує.** Перемикач платформи **Telegram | Meta** (стан лише в памʼяті, у URL не зберігається) і селектор обʼєкта.
 
@@ -187,11 +211,11 @@
 - `BR-CHN-29` Для Threads фоловери беруться окремим викликом `threads_insights followers_count`; якщо немає scope `threads_manage_insights`, знімок не створюється.
 - `BR-CHN-30` Вкладка Meta показує лише активні акаунти; порожній стан — "No Meta accounts".
 - `BR-CHN-31` TikTok на сторінці аналітики відсутній (лише Telegram та Meta).
-- `BR-CHN-32` Відкриття сторінки з холодним кешем ROI може запустити платний виклик `claude-haiku-4-5` (кеш ROI живе 7 днів у `tracked_roi_cache`).
+- `BR-CHN-32` Відкриття сторінки з холодним кешем ROI може запустити платний виклик `claude-haiku-4-5` (кеш ROI живе 7 днів у `tracked_roi_cache`). Виклик пишеться в журнал витрат LLM як feature `tracking.roi` (spec 029); якщо блокуючий бюджет вичерпано, виклику немає, ROI рахується евристикою (`source: heuristic`).
 
 **Бізнес-правила й обмеження.**
 - ROI: `estimate = round(avgViews30d × 0.02 × m)`, де `m = 0.5` при ER < 1 %, `1.5` при ER > 5 %, інакше `1`; `ER30d = Σ(reactions+forwards+comments) / Σviews`. Confidence: `high` — ≥30 днів від `added_at` і ≥50 постів за 30 днів; `medium` — ≥14 днів і ≥20 постів; інакше `low`. За наявності `ANTHROPIC_API_KEY` оцінка уточнюється Claude і обмежується діапазоном [0.5×; 2×] евристики; при помилці — fallback на евристику (`source: heuristic`, без narrative).
-- Усі часові мітки на графіках відображаються в часовому поясі браузера.
+- Усі часові мітки на графіках відображаються в часовому поясі браузера. Часовий пояс ресурсу (spec 024, `resource_tz()`) на цій сторінці не застосовується.
 
 **Стани.** Кожен графік має окремі "Loading …" та "No … yet". Помилки запитів окремо не показуються — блок просто лишається порожнім.
 
@@ -206,6 +230,7 @@
 - У `/stats`-контролері (`GET /stats/channels`, `/stats/summary`, `/stats/posts/:id` тощо, захист `X-API-Key`) є готові агрегати "зміна за 24 год", "daily subscribers", "top posts" — але дашборд їх не викликає.
 - Помилки Graph API (недоступні метрики Facebook) логуються на рівні debug, тож у UI це виглядає як "No insight data yet".
 - Сторінка не має селектора періоду: Telegram — "усе/останні 30 постів", Meta — фіксовані 30 днів.
+- Агенти бачать іншу статистику, ніж ця сторінка: щоденні `resource_daily_stats` і `platform_post_metrics` (spec 019, див. 4.2a). Цифри на `/app/analytics` і в звітах агентів можуть не збігатися.
 
 **Відкриті питання до власника.** Чи потрібен вибір періоду та експорт? Додати TikTok? Чи показувати "Avg views" лише по постах старших за N годин? Чи залишати `/stats` API (X-API-Key) або підключити його до UI?
 
@@ -215,7 +240,7 @@
 
 **Бізнес-мета.** Керований список конкурентів/референсних каналів, за якими збирається статистика та рекламні звʼязки (вхід для Graph, Discovery, Recommendations).
 
-**Хто користується / доступ.** Оператор. Сайдбар "Intelligence → Tracked".
+**Хто користується / доступ.** Оператор. Пункт меню за замовчуванням "Analytics → Tracked" (до spec 027 був у групі Intelligence; у ⌘K також за словами "competitors", "watch").
 
 **Що показує.** `GET /tracking/channels?filter=external&page&pageSize=50[&q]` (`is_mine = false`). Плитки (лише коли `total > 0`): "Total tracked" (загальна кількість із відповіді), "Tracking ok" та "Needs subscribe" (рахуються лише по поточній сторінці за `tracking_status`). Легенда статусів: **Tracking** (`ok`), **Not subscribed**, **Unknown**. Рядки — той самий `ChannelRow`, що й у "My channels", але без кнопки редагування (вона лише для `isMine`) і з кнопкою **Delete channel**.
 
@@ -257,7 +282,7 @@
 
 **Бізнес-мета.** Відповісти на питання "що автоматика зробила і де помилилась": опубліковані пости, помилки, пропуски, поточні запуски.
 
-**Хто користується / доступ.** Оператор. Сайдбар "Analytics → Logs".
+**Хто користується / доступ.** Оператор. Пункт меню за замовчуванням "Publishing → Logs" (до spec 027 був у групі Analytics; у ⌘K також за словами "history", "published", "runs").
 
 **Що показує.** `GET /activity?platform=…&type=…&from=…&to=…&strategy=…&channelId=…&limit=50&offset=…` → `ActivityService` → `ActivityRepository` (UNION двох джерел, `ORDER BY at DESC`, окремий `count(*)` для підсумку) та `GET /activity/run/:runId/steps` для траси.
 
@@ -270,7 +295,7 @@
 **Дії користувача.** Фільтри (кожна зміна скидає сторінку на 1; зміна платформи скидає стратегію і канал), розгортання рядка, кнопка **Retry** при помилці завантаження. Жодних дій над подіями (повтор, видалення, експорт) немає — сторінка read-only.
 
 **Бізнес-вимоги (as-is).**
-- `BR-CHN-41` Сторінка показує лише дві категорії подій: запуски стратегій (`strategy_runs`) і одноразові заплановані публікації (`scheduled_publications`); дії редактора, агентів, трекінгу, AI-логів, платежів у стрічку не потрапляють.
+- `BR-CHN-41` Сторінка показує лише дві категорії подій: запуски стратегій (`strategy_runs`) і одноразові заплановані публікації (`scheduled_publications`). Пости й слоти агентів (`editor_slots`, `platform_posts`), пости на погодженні (spec 031), трекінг, AI-логи, платежі в стрічку не потрапляють.
 - `BR-CHN-42` Вкладка платформи мапиться так: Telegram → `telegram`; Meta → `instagram`, `facebook`, `threads`; TikTok → `tiktok`. Запуск без привʼязки (`strategy_bindings` не знайдено) вважається `telegram`.
 - `BR-CHN-43` Лише рядки `strategy_run` розгортаються; для них траса завантажується ліниво (`staleTime` 30 с) із `strategy_runs.steps` (jsonb); якщо трасу не записано — "No execution trace recorded for this run."
 - `BR-CHN-44` Розмір сторінки 50 (бекенд обмежує 1–200), загальна кількість рахується окремим `count(*)` по тому ж UNION.
@@ -285,13 +310,14 @@
 
 **Фонові процеси.** Записи створює планувальник стратегій та сервіс запланованих постів (`strategy_runs`, `scheduled_publications`); нічне retention видаляє `strategy_runs` старші за 90 днів.
 
-**Звʼязки.** Дані з `/app/strategies`, `/app/scheduled`, `/app/connections`; платформи Telegram, Meta, TikTok.
+**Звʼязки.** Дані з `/app/strategies`, `/app/scheduled`, `/app/connections`; платформи Telegram, Meta, TikTok. Пости агентів — в `/app/editor` (не тут).
 
 **Спостереження «як фактично зараз».**
 - **Фільтр "канал/акаунт" не працює для Meta і TikTok.** Фронтенд передає UUID Meta/TikTok-акаунта як `channelId`, а SQL порівнює його з `tc.id` (`tracked_channels`), який для Meta/TikTok-подій дорівнює NULL → вибір акаунта повертає 0 подій.
 - Майбутні та ще не відправлені заплановані пости (`pending`) відображаються як "Running" зі спінером і датою `updated_at`, а не як "заплановано".
 - "Custom" діапазон: `to` — це `new Date('YYYY-MM-DD')` (північ UTC), тож вибраний останній день не включається повністю.
 - Назва "Logs" вужча за зміст: стрічка не показує помилки Meta/TikTok публікацій поза `strategy_runs`, роботу редактора, трекінгу, AI.
+- Стратегії стали legacy (spec 023), а основний потік публікацій іде від агентів. Тому для каналу, переведеного на агента, Logs фактично порожній, хоча канал публікує. Пости агентів видно лише в `/app/editor` і на сторінках агентів.
 - Текст помилки виводиться як є (`sr.error`/`sp.error`), без нормалізації й без посилання на стратегію/пост.
 - У стрічці немає фільтра за текстом/ID і немає експорту.
 
@@ -321,7 +347,11 @@ FLOOD_WAIT від Telegram: клієнт відкриває "вікно" й ус
 
 ### 4.2 Другий конвеєр: `/stats` (для сторінок розділу не використовується)
 
-`StatsCollectorService` щогодини (`EVERY_HOUR`) через окремий MTProto-клієнт знімає підписники/онлайн для кожного каналу з `channel_key` (`channel_stats_snapshots`) та перегляди/реакції/пересилання/відповіді для кожного поста, опублікованого системою за останні `STATS_POST_AGE_DAYS` (30) днів (`published_posts` → `post_stats_snapshots`). На відміну від трекера, ці знімки **повторно оновлюються щогодини**, тож вони точніші для "моїх" постів. Їх споживають редактор, звіти про рекламу, дайджести, `platform_posts` — але не `/app/channels` та `/app/analytics`. REST `/stats/*` захищений заголовком `X-API-Key` (`STATS_API_KEY`); якщо ключ не заданий, усі запити повертають 500. Retention: 90 днів.
+`StatsCollectorService` щогодини (`EVERY_HOUR`) через окремий MTProto-клієнт знімає підписники/онлайн для кожного каналу з `channel_key` (`channel_stats_snapshots`) та перегляди/реакції/пересилання/відповіді для кожного поста, опублікованого системою за останні `STATS_POST_AGE_DAYS` (30) днів (`published_posts` → `post_stats_snapshots`). На відміну від трекера, ці знімки **повторно оновлюються щогодини**, тож вони точніші для "моїх" постів. Їх споживають редактор, звіти про рекламу, дайджести, `platform_posts` — але не `/app/channels` та `/app/analytics`. REST `/stats/*` захищений заголовком `X-API-Key` (`STATS_API_KEY`); якщо ключ не заданий, усі запити повертають 500. Retention: 90 днів. Новий рядок у `published_posts` з `source_url` додатково записується в content ledger (`ContentLedger.recordRefs`, origin `strategy`, spec 023). Агентський інструмент `get_channel_stats` читає ці знімки і рахує "найкращі години" в часовому поясі каналу (`resource_tz()`, spec 024).
+
+### 4.2a Третій конвеєр: статистика платформ для агентів (теж не використовується сторінками розділу)
+
+`PlatformStatsCollector` (крон `platform-stats`, `35 */3 * * *`, spec 019) збирає метрики постів Instagram/Facebook/Threads у `platform_post_metrics` і щоденний зріз підписників/охоплення кожного ресурсу в `resource_daily_stats` (Meta — з `meta_accounts` + `meta_account_insights`, Telegram — з `editor_v_channel_daily` для `is_mine`-каналів, TikTok — через API акаунта). Ключ дня — "сьогодні" в часовому поясі ресурсу (`resource_tz()`, spec 024; до того — Київ). Ці дані читають агенти (`get_platform_stats`) і KPI-дайджест MANAGER; дашборд-сторінки розділу — ні.
 
 ### 4.3 Таблиці розділу
 
@@ -336,11 +366,14 @@ FLOOD_WAIT від Telegram: клієнт відкриває "вікно" й ус
 | `meta_follower_history` | щогодинні знімки фоловерів Meta (retention 365 д) | PK `(account_id, snapshot_at)` |
 | `meta_account_insights` | щоденні reach/impressions/profile_views | `(account_id, day)` (upsert) |
 | `strategy_runs`, `scheduled_publications` | джерела стрічки Logs | — |
+| `platform_post_metrics`, `resource_daily_stats` | статистика платформ для агентів (4.2a), у дашборді розділу не показується | `resource_daily_stats`: `(resource_ref, day)` |
 | `channel_stats_snapshots`, `post_stats_snapshots`, `published_posts` | паралельний конвеєр `/stats` | `(channel_id, message_id)` |
 
 ### 4.4 Загальні правила
-- Усі запити сторінок розділу йдуть через `api()` із cookie-автентифікацією; відповідь 401 перенаправляє на `/login`.
-- `staleTime` React Query — 30 с, `retry: 1`; автоматичного polling на сторінках розділу немає (крім стратегій — 10 с).
+- Усі запити сторінок розділу йдуть через `api()` із cookie-автентифікацією. Відповідь 401 несе `{code}` (`no_credentials`, `bad_token`, `session_expired`, `session_revoked`, `session_legacy`); дашборд скидає сесію і один раз переходить на `/login?next=<поточна сторінка>&reason=<code>`. Якщо сервер не може перевірити сесію, бекенд відповідає 503, а не 401 (це не вихід із системи).
+- `staleTime` React Query — 30 с, `retry: 1` (на 401 повтору немає); автоматичного polling на сторінках розділу немає (крім стратегій — 30 с).
+- `BR-CHN-50` Розміщення сторінок у меню задає реєстр `nav/registry.ts` (spec 027): за замовчуванням "My channels" і "Logs" — у Publishing, "Analytics" і "Tracked" — в Analytics. Власник може приховати, перейменувати чи перенести пункт (Settings → Navigation, збережено в `app_settings` під ключем `ui.nav`); маршрут при цьому працює далі. Усі чотири сторінки доступні з палітри ⌘K; окремі канали чи пости палітра не індексує. Лічильників на цих пунктах немає.
+- `BR-CHN-51` Доступ до сторінок розділу (spec 028): router перевіряє сесію (`/auth/me`) до рендеру `/app`, у production nginx додатково перевіряє HTML `/app/*` через `/auth/check`. API-гард `TrackingAuthGuard` → `AuthService.authenticate()`: Bearer `TRACKING_TOKEN` (без сесії) → cookie `tracking_jwt` (JWT, привʼязаний до рядка `auth_sessions`, відкликується; після половини строку видається новий cookie) → `ALLOW_NO_AUTH=true` лише поза production і лише коли `TRACKING_TOKEN` не задано.
 - Числа форматуються `fmtNumber`: `1234 → 1.2K`, `1 500 000 → 1.5M`, NULL → "—"; дати — `en-GB`, 24-годинний формат.
 - Видалення каналу — єдиний незворотний крок розділу; будь-яка зміна конфігу каналу публікує подію `config:changed` і оновлює кеш без перезапуску.
 
@@ -354,17 +387,21 @@ FLOOD_WAIT від Telegram: клієнт відкриває "вікно" й ус
 - **needsBot** — у каналу немає бота й немає бота за замовчуванням.
 - **publish_paused** — вимикач публікації на рівні каналу.
 - **primary / forward** — роль стратегії щодо каналу: публікує напряму або через forward-маршрут.
+- **legacy-стратегія / retired** — привʼязка `strategy_bindings` після spec 023: лише читання (пауза й нотатки). Retired — вимкнена після переходу каналу на серії агента (`retired_at`, `retired_reason = 'migrated'`).
+- **`resource_tz()`** — SQL-функція часового поясу ресурсу (spec 024): для Telegram — пояс із картки редактора, потім профіль ресурсу, інакше Europe/Kyiv.
 
 ## 6. Джерела в коді
 
 Дашборд:
 - `apps/dashboard/src/routes/app.channels.tsx`, `app.channels_.$id.tsx`, `app.analytics.tsx`, `app.tracked.tsx`, `app.logs.tsx`
 - `apps/dashboard/src/api/tracking.ts`, `activity.ts`, `meta-accounts.ts`, `forward-routes.ts`, `discovery.ts`
-- `apps/dashboard/src/components/ChannelRow.tsx`, `AddChannelModal.tsx`, `EditChannelModal.tsx`, `RoiPanel.tsx`, `SubsHistoryChart.tsx`, `ViewsBarChart.tsx`, `EngagementChart.tsx`, `PostsList.tsx`, `ForwardRoutesPanel.tsx`, `InlineScheduleEditor.tsx`
-- `apps/dashboard/src/lib/labels.ts`, `format.ts`, `runway.ts`; `components/AppSidebar.tsx`
+- `apps/dashboard/src/components/ChannelRow.tsx`, `AddChannelModal.tsx`, `EditChannelModal.tsx`, `RoiPanel.tsx`, `SubsHistoryChart.tsx`, `ViewsBarChart.tsx`, `EngagementChart.tsx`, `PostsList.tsx`, `ForwardRoutesPanel.tsx`, `ui/Crumbs.tsx`
+- `apps/dashboard/src/lib/labels.ts`, `format.ts`, `runway.ts`; `components/AppSidebar.tsx`, `CommandPalette.tsx`
+- `apps/dashboard/src/nav/registry.ts`, `crumbs.ts`, `hooks.ts` (меню, ⌘K, крихти — spec 027)
+- `apps/dashboard/src/routes/app.tsx` (guard `/app`), `router.ts`, `api/client.ts`, `auth/session.ts`, `auth/unauthorized.ts`; `apps/dashboard/nginx.conf` (spec 028)
 
 Бекенд (`apps/automation/src`):
-- `tracking/api/tracking.controller.ts`, `tracking.service.ts`, `tracking-auth.guard.ts`
+- `tracking/api/tracking.controller.ts`, `tracking.service.ts`, `tracking-auth.guard.ts`; `auth/auth.service.ts` (`authenticate()`), `auth/auth-cookie.ts`
 - `tracking/tracking.scheduler.ts`, `tracking-queue.service.ts`, `workers/poll-meta.worker.ts`, `poll-posts.worker.ts`, `refresh-metrics.worker.ts`, `resolve-discovery.worker.ts`
 - `tracking/mtproto/tracking-mtproto.client.ts`
 - `tracking/repositories/tracked-channels.repository.ts`, `tracked-posts.repository.ts`
@@ -373,5 +410,8 @@ FLOOD_WAIT від Telegram: клієнт відкриває "вікно" й ус
 - `config/api/meta-accounts.controller.ts`, `config/meta-graph.client.ts`, `config/meta-insights.ts`
 - `activity/activity.controller.ts`, `activity.service.ts`, `activity.repository.ts`; `config/strategy-runs.repository.ts`
 - `common/retention/retention.service.ts`; `settings/settings.service.ts`
+- `common/content-runway/content-runway.service.ts`; `config/api/strategies.controller.ts` (legacy, spec 023)
+- `common/ai/agents/claude.agent.ts`, `common/ai/usage/features.ts` (облік і бюджети LLM для ROI, spec 029)
+- `editor/platform/platform-stats.collector.ts`, `editor/time/resource-time.ts`; `editor/publish/telegram-editor.publisher.ts` (пауза каналу для постів агента)
 
-БД (`database/migrations`): `001_stats.sql`, `002_tracking.sql`, `005_config.sql`, `007_publish_paused.sql`, `013_tracking_status.sql`, `014_scheduled_publications.sql`, `021_meta_follower_history.sql`, `022_meta_account_insights.sql`, `034_tracked_channel_group.sql`, `045_scheduled_publications_unknown.sql`.
+БД (`database/migrations`): `001_stats.sql`, `002_tracking.sql`, `005_config.sql`, `007_publish_paused.sql`, `013_tracking_status.sql`, `014_scheduled_publications.sql`, `021_meta_follower_history.sql`, `022_meta_account_insights.sql`, `034_tracked_channel_group.sql`, `045_scheduled_publications_unknown.sql`, `051_platform_posts.sql`, `055_auth_sessions.sql`, `056_llm_usage.sql`, `058_data_store.sql`, `061_independent_resources.sql` (`resource_tz()`), `063_strategy_retirement.sql`.
