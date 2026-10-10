@@ -45,6 +45,11 @@ jobs:
         # `nest build` would also emit; tsc --noEmit only type-checks.
         run: pnpm --filter automation exec tsc --noEmit -p tsconfig.json
 
+      - name: Build automation (same as the image)
+        # The image runs `nest build`, which is stricter than the check above (it once failed a deploy on
+        # possibly-undefined test fields that tsc --noEmit accepted). Catch that here, not on deploy.
+        run: pnpm --filter automation run build
+
       - name: Unit tests (automation)
         # Offline by construction (fakes for LLM/Telegram/HTTP). The dead proxy
         # makes any accidental outbound HTTP fail fast instead of going out.

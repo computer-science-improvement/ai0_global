@@ -110,8 +110,8 @@ test('the last turn offers only the terminal tools and says so, so a run ends in
   const res = await loop(llm).l.run(input({ maxSteps: 3 }));
   assert.equal(res.status, 'ok');
   assert.equal(res.terminalTool, 'publish');
-  assert.ok(llm.requests[1].tools.length > 1, 'earlier turns keep every tool');
-  assert.deepEqual(llm.requests[2].tools.map((t: any) => t.name), ['publish']);
+  assert.ok(llm.requests[1].tools!.length > 1, 'earlier turns keep every tool');
+  assert.deepEqual(llm.requests[2].tools!.map((t: any) => t.name), ['publish']);
   const last = llm.requests[2].messages.at(-1) as any;
   assert.equal(last.role, 'user');
   assert.match(last.content, /останній крок.*publish/i);
@@ -120,7 +120,7 @@ test('the last turn offers only the terminal tools and says so, so a run ends in
 test('a role without terminal tools keeps every tool on its last turn', async () => {
   const llm = new FakeLlm(Array.from({ length: 2 }, () => ({ calls: [{ name: 'echo', args: { text: 'x' } }] })));
   await loop(llm).l.run(input({ maxSteps: 2, tools: [echo] }));
-  assert.deepEqual(llm.requests[1].tools.map((t: any) => t.name), ['echo']);
+  assert.deepEqual(llm.requests[1].tools!.map((t: any) => t.name), ['echo']);
 });
 
 test('budget exhausted mid-run stops before next LLM call', async () => {
