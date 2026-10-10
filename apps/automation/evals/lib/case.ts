@@ -18,6 +18,8 @@ export interface CaseCtx {
 
 export interface CaseOutcome {
   runId:         string | null;
+  /** Further runs of the case (e.g. the critic runs of a case that calls it twice): their cost counts too. */
+  extraRunIds?:  Array<string | null>;
   status:        string;
   terminalTool?: string;
   checks:        Check[];
@@ -33,8 +35,8 @@ export interface EvalCase {
   role:        EditorRole;
   title:       string;
   channel:     string;
-  /** Fixture web for this case. */
-  web():       FakeWeb;
+  /** Fixture web for this case; `now` is the run's fixed clock (for feeds dated relative to it). */
+  web(now: Date): FakeWeb;
   execute(ctx: CaseCtx): Promise<CaseOutcome>;
 }
 

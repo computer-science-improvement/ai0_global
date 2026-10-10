@@ -4,6 +4,7 @@
  *   cd apps/automation
  *   EVAL_DB_URL='postgres://ai0@localhost/ai0?host=/tmp/pgsockXXXX&port=54329' \
  *     npx tsx --env-file=../../.env evals/run-evals.ts [--case <id>[,<id>]] [--reps 3] [--judge] [--judge-model z-ai/glm-5.3] [--max-usd 1]
+ *   npx tsx evals/run-evals.ts --list [--case <id>,…]   # print the registered cases; no DB, no API key, no LLM call
  *
  * Safety: refuses any DB that looks real (has bots/meta accounts or > 5000 published posts).
  * Nothing is ever sent to Telegram; the web is fixtures only.
@@ -23,10 +24,11 @@ import { AGENT_CASES, cleanupAgentEvals } from './cases/agents';
 import { DATA_CASES } from './cases/data';
 import { SCHEDULE_CASES } from './cases/schedule';
 import { RICH_CASES } from './cases/rich';
+import { QUALITY_CASES, cleanupQualityEvals } from './cases/quality';
 import { localDate, zonedToUtc } from '../src/editor/roles/time';
 import { resolveModel } from '../src/editor/llm/model-registry';
 
-const ALL: EvalCase[] = [...EXECUTOR_CASES, ...PLANNER_REVIEWER_CASES, ...CHAT_CASES, ...AGENT_CASES, ...DATA_CASES, ...SCHEDULE_CASES, ...RICH_CASES];
+const ALL: EvalCase[] = [...EXECUTOR_CASES, ...PLANNER_REVIEWER_CASES, ...CHAT_CASES, ...AGENT_CASES, ...DATA_CASES, ...SCHEDULE_CASES, ...RICH_CASES, ...QUALITY_CASES];
 
 function arg(name: string): string | undefined {
   const i = process.argv.indexOf(`--${name}`);
@@ -50,7 +52,22 @@ interface Row {
   toolsUsed: string[]; toolErrors: string[]; judge?: JudgeScore | { error: string }; post: string; checks: CaseOutcome['checks'];
 }
 
+/** `--list`: the registered cases (id · role · channel · title); touches no DB, needs no key, calls no LLM. */
+function listCases(only: string[] | undefined): void {
+  const ids = new Set<string>();
+  for (const c of ALL) {
+    if (ids.has(c.id)) throw new Error(`duplicate case id ${c.id}`);
+    ids.add(c.id);
+  }
+  const unknown = (only ?? []).filter((id) => !ids.has(id));
+  if (unknown.length) throw new Error(`unknown case ids: ${unknown.join(', ')}`);
+  const cases = ALL.filter((c) => !only || only.includes(c.id));
+  for (const c of cases) console.log(`${c.id.padEnd(44)} ${c.role.padEnd(14)} ${c.channel.padEnd(18)} ${c.title}`);
+  console.log(`\n${cases.length} of ${ALL.length} cases`);
+}
+
 async function main() {
+  if (arg('list') === 'true') { listCases(arg('case')?.split(',')); return; }
   const dbUrl = process.env.EVAL_DB_URL;
   const apiKey = process.env.OPENROUTER_API_KEY;
   if (!dbUrl) throw new Error('EVAL_DB_URL is required (scratch Postgres with all migrations applied)');
@@ -79,7 +96,7 @@ async function main() {
       if (spent >= maxUsd) { console.log(`⛔ budget cap $${maxUsd} reached — stopping`); break; }
       await resetChannel(pool, c.channel);
       await resetLibrary(pool);
-      const web = c.web();
+      const web = c.web(now);
       const stack = buildStack({ pool, web, now: () => now, apiKey, env });
       const t0 = Date.now();
       let out: CaseOutcome;
@@ -89,6 +106,11 @@ async function main() {
         out = { runId: null, status: 'crash', checks: [{ name: 'case crashed', pass: false, detail: e?.message ?? String(e) }] };
       }
       const cost = await runCost(pool, out.runId);
+      for (const id of out.extraRunIds ?? []) {
+        if (!id || id === out.runId) continue;
+        const x = await runCost(pool, id);
+        cost.costUsd += x.costUsd; cost.steps += x.steps; cost.promptTokens += x.promptTokens; cost.completionTokens += x.completionTokens;
+      }
       let judge: Row['judge'];
       if (doJudge && out.judge && out.judge.post) {
         judge = await judgePost(apiKey, judgeModel, out.judge).catch((e) => ({ error: String(e?.message ?? e) }));
@@ -113,6 +135,7 @@ async function main() {
   }
   await resetLibrary(pool);
   await cleanupAgentEvals(pool);
+  await cleanupQualityEvals(pool);
   await pool.end();
 
   const passed = rows.filter((r) => r.pass).length;

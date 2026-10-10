@@ -1,6 +1,6 @@
 # 034: Content quality and live planning: human voice, a pre-publish critic, fewer polls, fitting formats, live news slots, a readable plan
 
-**Status:** SPEC · **Priority:** P0 (above every open spec; owner request 2026-10-08) · **Depends on:** 017–025, 031, 033
+**Status:** DONE (evals written, not run) · **Priority:** P0 (above every open spec; owner request 2026-10-08) · **Depends on:** 017–025, 031, 033
 · **Migration:** `067_content_quality.sql` if needed (spec 030 moves to the next free number)
 
 **Owner request (2026-10-08, after running the agents live on dev-stage):**
@@ -621,3 +621,59 @@ FR-015. **Size:** S · Depends on T1–T6
   note — never `continue` with "ok" on the flagged resource (the tool refuses it; count refusals as a soft failure). Use
   the `evals/lib/stack.ts` stack (it already registers both executors); grade with the stored `manager_reviews.quality_check`
   and `agent_directives` rows.
+
+## Implementation notes (T9, 2026-10-10)
+- **Cases** (`apps/automation/evals/cases/quality.ts`, registered in `run-evals.ts` as `QUALITY_CASES`; each on its own
+  `@eval_*` key, the two critic cases share `@eval_critic`). Real LLM through the production wiring; fixture web only;
+  nothing reaches Telegram, Meta or the internet. **Written, not run** (paid calls are the owner's to start).
+  - `executor-voice-plain`: a news resource (`content_kind: news`, `humor: none`, `slang: false` set by the owner) and a
+    story that invites jokes (a delivery robot stuck in snow). Hard: written (shadowed), no listed slop phrase
+    (`findSlopPhrases`), no humour / slang marker (`humorHits` / `slangHits`), reader questions ≤ the card cap (0),
+    `lintPost` ok, Ukrainian, numbers grounded. Soft: no `slop_*` warning, critic `pass` without `critic_revise`. Judge input.
+  - `critic-rejects-slop`: `CriticService.review` on two fixed posts about one news item (request built like the gate's:
+    card, voice, brief, source excerpt, the lint's `slop_*` warnings). The AI-sounding post has no listed phrase (so only
+    the critic can stop it, as in production) but a rhetorical Q&A, a moral closer, a triple, dashes and exclamations.
+    Hard: its verdict is `revise` / `reject`, the model's own verdict is not `pass` or `ai_likeness` ≤ 3 (so code
+    thresholds alone cannot pass the case), and the clean post is `pass`.
+  - `critic-rejects-nonsense`: a fluent, lint-clean post that contradicts its source (city, 2000 vs 200 MW, storage that
+    "generates", "the whole country", "this week") → `reject` with `sense` ≤ 2 or `grounding` ≤ 2.
+  - `planner-poll-cap`: poll and quiz in the card formats, polls best by views, a published poll 2 days ago, default cap 1.
+    Hard: the final plan has no poll / quiz. Soft: no `polls_per_week` refusal from `submit_plan` (FR-015: a refusal is a
+    soft failure).
+  - `builder-fitting-formats`: "@ai0 create an agent for my short IT-news channel" → a `create_agent` card with 1–4
+    `formats`, each with a reason ≥ 10 chars, no poll / quiz, no longread / carousel; nothing created before Apply.
+  - `builder-examples-and-warnings`: the same conversation (one neutral follow-up turn allowed, soft) → a
+    `content_examples` card: 3 examples that pass `checkExample` with the resource card, no listed phrase, no humour /
+    slang, ≤ 1 reader question each, Ukrainian; 2–4 distinct warnings with a reason and a bad example ≥ 20 chars.
+  - `manager-flags-quality`: the T4 "Notes for T9" week, seeded relative to the eval clock — flat KPIs, a critic reject,
+    a revise → pass, 2 polls (cap 1), a waiting post with two reader questions, an owner rejection with a reason, an owner
+    edit with its memory note, sloppy samples, an active playbook with `poll`. Hard: not skipped, a review stored, the
+    resource never `ok` in `quality_check`, and either a `voice_fix` / `format_mix` directive or `quality_check` status
+    `issue` with a note ≥ 20 chars. Soft: advice binding, `voice_fix` quotes a rejected slot, `format_mix` lowers polls,
+    no `quality_check_*` refusal, evidence with a number or a quote.
+  - `executor-live-news-fresh`: two live slots on fixture feeds dated against the eval clock. Feed A: posted today
+    (0.5 h), fresh (1.5 h), older fresh (4.5 h), stale (30 h). Feed B: posted + stale only. Hard: A is published (fake
+    Telegram) citing the 1.5 h item, never the posted or the stale one; B is skipped `no_fresh_item:` with no run and
+    no LLM call.
+- **Harness changes.** `evals/lib/stack.ts` now mirrors the spec 034 production wiring: `pollCaps` (`SqlPollCaps`) in
+  both plan validators, the runner's `voiceOf`, the `live.scan` (`scanLive` through the fixture web and the fixed clock),
+  `buildReadTools({ now })` so `fetch_feed` ages use the same clock, `propose_content_examples` (+ the
+  `content_examples` card kind), and the **critic** (`CriticService` on the same loop, `EvalStack.critic`, the runner's
+  gate; `EDITOR_CRITIC=off` disables it as in production). Every executor case therefore also pays one critic pass
+  (≈ $0.001 on the default model). `EvalCase.web(now)` receives the eval clock; `CaseOutcome.extraRunIds` adds the cost of
+  further runs (critic passes, a second chat turn); `run-evals.ts --list [--case …]` prints the registered cases without
+  a DB, key or LLM call. `agents.ts` exports `resetAgents`, `ownChannel`, `trace`, `sendAgentChat` for reuse.
+- **Fixture sanity** (`evals/cases/quality.fixtures.test.ts`, no DB / LLM / network; run with
+  `npx tsx --test evals/cases/quality.fixtures.test.ts`, 7 tests pass): the 8 FR-015 ids registered once; the clean post
+  lint-clean and grounded; the slop post with no listed phrase but `slop_rhetorical_qa` + `slop_moral_closer` (≥ 2
+  warnings); the nonsense post lint-clean with the ungrounded 2000; feed ages 0.5 / 1.5 / 4.5 / 30 h against the clock,
+  the posted title a repeat (`closestRecent` ≥ 0.6), the weekly feed with nothing fresh and unposted; the MANAGER texts
+  (two reader questions, a listed cliché).
+- **Run (owner)**: `cd apps/automation && EVAL_DB_URL='postgres://ai0@localhost/ai0?host=/tmp&port=54329' npx tsx
+  --env-file=../../.env evals/run-evals.ts --case executor-voice-plain,critic-rejects-slop,critic-rejects-nonsense,planner-poll-cap,builder-fitting-formats,builder-examples-and-warnings,manager-flags-quality,executor-live-news-fresh --reps 3 --max-usd 1`
+  (add `--judge` for the two executor posts). **Estimated cost** on the default `z-ai/glm-5.3-flash` (critic on the
+  same model): ≈ $0.05 per pass of the 8 cases, ≈ $0.15 for `--reps 3` (+ ≈ $0.004 per pass with `--judge`); with a
+  Sonnet-class critic via `EDITOR_MODEL_CHECKER` add ≈ $0.1 per pass. The per-case table is in `evals/README.md`.
+- **Checks run**: `npx tsc --noEmit -p evals/tsconfig.json`, `npx tsc --noEmit -p tsconfig.json`, `npm run lint`
+  (0 errors), `npm run build`, the unit suite on Node 20 (2155 tests, 0 failures), the fixture sanity test and `--list`.
+  No live eval was run.

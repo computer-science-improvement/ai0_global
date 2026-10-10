@@ -60,6 +60,12 @@ import { SqlQuality } from '../../src/editor/manager/quality-digest';
 import { PlatformPostsRepository } from '../../src/editor/platform/platform-posts.repository';
 import { ResourcePauseService } from '../../src/editor/pauses/resource-pauses';
 import { buildPlatformTools } from '../../src/editor/platform/platform-tools';
+import { SqlPollCaps } from '../../src/editor/roles/poll-cap';
+import { CriticService } from '../../src/editor/critic/critic.service';
+import { libraryTextOf } from '../../src/editor/critic/critic-source';
+import { scanLive } from '../../src/editor/live/feed-items';
+import { buildContentExamplesTool, CONTENT_EXAMPLES_KIND } from '../../src/editor/agents/content-examples';
+import { parseResourceRef } from '../../src/editor/agents/agent.types';
 
 /** Counts LLM calls/cost of the agent under test (separately from the judge). */
 class CountingLlm implements LlmClient {
@@ -100,6 +106,8 @@ export interface EvalStack {
   profiles: ResourceProfilesRepository;
   /** Spec 023 T4/T5: owner schedule rules, pins, chat cards. */
   schedule: ScheduleService;
+  /** Spec 034 FR-004: the pre-publish critic (the runner's gate uses it too); null when EDITOR_CRITIC=off. */
+  critic:   CriticService | null;
 }
 
 /**
@@ -137,7 +145,7 @@ export function buildStack(o: { pool: Pool; web: FakeWeb; now: () => Date; apiKe
   const creator = new AgentCreator({ agents, registry: registrySync, catalog, profiles, channels, now });
   // Cards are only proposed in evals; the kinds must be known (the module registers the real handlers).
   actions.register('create_agent', async (p) => creator.create(p));
-  for (const k of ['update_agent', 'set_brief', 'set_resource_profile', 'write_skill', 'attach_skill', 'detach_skill', 'file_directive', 'edit_data_schema']) {
+  for (const k of ['update_agent', 'set_brief', 'set_resource_profile', 'write_skill', 'attach_skill', 'detach_skill', 'file_directive', 'edit_data_schema', CONTENT_EXAMPLES_KIND]) {
     actions.register(k, async () => { throw new Error('not applied in evals'); });
   }
   const networkRepo = new NetworkRepository(pool);
@@ -172,6 +180,9 @@ export function buildStack(o: { pool: Pool; web: FakeWeb; now: () => Date; apiKe
     quotas,
   });
   const directiveLock = (orchId: string, body: any) => exec.lockFor(orchId, body);
+  // Spec 034 FR-005: the poll cap in both plan validators (as editor.module's pollCapsOf).
+  const pollCapsQ = new SqlPollCaps(pool);
+  const pollCaps = (q: { refs: string[]; planDate: string; tz: string; defaultRef?: string }) => pollCapsQ.load(q);
   const schedule = new ScheduleService({
     pool, rules: new ScheduleRepository(pool), network: networkRepo, agents, card: (k) => channels.get(k), plans, inbox, now,
   });
@@ -179,9 +190,14 @@ export function buildStack(o: { pool: Pool; web: FakeWeb; now: () => Date; apiKe
   registerScheduleActions(actions, schedule);
   const registry = new ToolRegistry([
     ...buildBuilderTools({ agents, catalog, profiles, creator, skills: skillStore, actions }),
+    // Spec 034 FR-008: example posts and warnings in the agent-creation chat (a content_examples card).
+    buildContentExamplesTool({
+      agents, actions,
+      cardOf: async (ref) => { const id = parseResourceRef(ref)?.id; return id ? channels.get(id) : null; },
+    }),
     ...buildAgentChatTools({ pool, memory, skills: skillStore, actions, now }),
     ...buildAgentSkillTools({ agents, skills: skillStore, kpi: new TelegramScopeKpi(pool), inbox, now }),
-    ...buildNetworkTools({ repo: networkRepo, plans, memory, inbox, now, schedule, directiveLock, experimentQuotas }),
+    ...buildNetworkTools({ repo: networkRepo, plans, memory, inbox, now, schedule, directiveLock, experimentQuotas, pollCaps }),
     ...buildScheduleTools({ schedule, actions, now }),
     ...buildDirectiveTools({ repo: directives, agents, digest, inbox, memory, actions, channelKeyOf, now, exec, taskRef: taskRefCheck(pool) }),
     ...buildPlatformTools({
@@ -189,11 +205,11 @@ export function buildStack(o: { pool: Pool; web: FakeWeb; now: () => Date; apiKe
       publish: { posts: platformPosts, publisher: { publish: async () => { throw new Error('evals never publish to platforms'); } }, health: async () => null, now },
       notifyPreview: async (_r, text) => { previews.push(text); },
     }),
-    ...buildReadTools({ pool, readonly: new ReadonlyQueryService(pool), skills, http: web.http }),
+    ...buildReadTools({ pool, readonly: new ReadonlyQueryService(pool), skills, http: web.http, now }),
     ...buildDataTools({ pool, actions }),
     ...buildComposeTools({ http: web.http }),
     ...buildRoleTools({
-      pool, plans, memory, channels, now, publisher, schedule, experimentQuotas,
+      pool, plans, memory, channels, now, publisher, schedule, experimentQuotas, pollCaps,
       recordPublish: () => {},
       notifyPreview: async (_k, html) => { previews.push(html); },
     }),
@@ -214,6 +230,8 @@ export function buildStack(o: { pool: Pool; web: FakeWeb; now: () => Date; apiKe
     enabled: () => true,
   });
   const runtime = new AgentRuntime({ agents, store: skillStore, fallback: skills, now });
+  // Spec 034 FR-004: the production critic (role `checker`, real LLM); EDITOR_CRITIC=off turns it off as in production.
+  const critic = o.env('EDITOR_CRITIC') === 'off' ? null : new CriticService({ loop, env: o.env, now });
   const manager = new ManagerRunner({ loop, registry, runtime, agents, repo: directives, digest, inbox, env: o.env, now, exec });
   const network = new NetworkRunner({
     loop, registry, runtime, memory, repo: networkRepo, plans, profiles, env: o.env, now, time: resourceTime,
@@ -241,6 +259,19 @@ export function buildStack(o: { pool: Pool; web: FakeWeb; now: () => Date; apiKe
       resolve: (slot) => new DerivedSlots({ pool }).resolve(slot),
       formatPrefs: async (ref) => { const f = await profiles.formatOf(ref); return renderFormatPrefs(f.prefs, f.locks); },
     },
+    // Spec 034 FR-002 / FR-005: humour / slang / emoji and the reader-question cap of a slot's target resource.
+    voiceOf: async (ref) => {
+      const f = await profiles.formatOf(ref);
+      const caps = await profiles.capsOf(ref);
+      return { humor: f.prefs.humor, slang: f.prefs.slang, emoji: f.prefs.emoji, readerQuestionsMax: caps.questionsPerDay };
+    },
+    // Spec 034 FR-010: a live slot's feeds are read by code first — through the fixture web and the fixed clock.
+    live: {
+      scan: async (slot, card) => slot.liveSpec
+        ? scanLive({ pool, http: web.http }, { spec: slot.liveSpec, resourceRef: slot.resourceRef ?? `telegram:${slot.channelKey}`, card: card.sources, now: now(), excludeSlotId: slot.id })
+        : null,
+    },
+    ...(critic ? { critic: { service: critic, inbox: (i: Parameters<OwnerInbox['post']>[0]) => inbox.post(i), libraryText: libraryTextOf(pool) } } : {}),
     env: o.env,
     notify: async (t) => { notes.push(t); },
   });
@@ -260,6 +291,6 @@ export function buildStack(o: { pool: Pool; web: FakeWeb; now: () => Date; apiKe
   });
   return {
     pool, channels, plans, memory, runner, chat, chatRepo, drafts, llm, sent, previews, notes,
-    agents, registrySync, actions, network, networkRepo, manager, directives, platformPosts, profiles, schedule,
+    agents, registrySync, actions, network, networkRepo, manager, directives, platformPosts, profiles, schedule, critic,
   };
 }
