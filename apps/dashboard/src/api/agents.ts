@@ -379,7 +379,7 @@ export interface ResourceProfile {
 
 export const FORMAT_PREF_FIELDS = [
   'tone', 'length', 'emoji', 'hashtags', 'mentions', 'cta', 'links', 'line_breaks', 'signature', 'preferred_formats', 'media', 'notes',
-  'rich', 'humor', 'slang',
+  'rich', 'humor', 'slang', 'content_kind', 'polls_per_week', 'questions_to_readers_per_day',
 ] as const;
 export type FormatPrefField = typeof FORMAT_PREF_FIELDS[number];
 
@@ -403,6 +403,24 @@ export interface FormatPrefs {
   humor?:             'none' | 'light';
   /** Spec 034: slang and youth jargon — off unless the owner allows it. Agents cannot turn it on. */
   slang?:             boolean;
+  /** Spec 034: what the resource is — moves the defaults (news: no reader questions; quiz: no poll cap). Owner only. */
+  content_kind?:      ContentKind;
+  /** Spec 034: poll + quiz posts in any 7 days (default 1). Agents may only lower it. */
+  polls_per_week?:    number;
+  /** Spec 034: questions addressed to the readers in one post (default 1, news 0). Agents may only lower it. */
+  questions_to_readers_per_day?: number;
+}
+
+export type ContentKind = 'general' | 'news' | 'education' | 'quiz';
+
+/** Spec 034 FR-005: the caps the plan check and the lint enforce (defaults resolved on the server). */
+export interface AudienceCaps {
+  kind:            ContentKind;
+  /** true when the kind comes from the profile topic (no explicit content_kind). */
+  kindInferred:    boolean;
+  /** null = no cap (a quiz resource without an explicit cap). */
+  pollsPerWeek:    number | null;
+  questionsPerDay: number;
 }
 
 export interface FormatResource {
@@ -414,6 +432,8 @@ export interface FormatResource {
   updatedAt:    string | null;
   /** Agent changes on the resource's local day (at most `changesPerDay`). */
   changesToday: number;
+  /** Spec 034 FR-005 (absent on an older server). */
+  audience?:    AudienceCaps;
 }
 
 export interface FormatVersion {

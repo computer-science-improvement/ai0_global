@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { formatValue, toForm, toPrefs, voiceSummary } from './format-prefs';
+import { audienceSummary, formatValue, toForm, toPrefs, voiceSummary } from './format-prefs';
 
 test('format prefs: form round trip drops empty fields (empty = the agent’s judgement)', () => {
   const prefs = {
@@ -39,4 +39,18 @@ test('format prefs: humour and slang (spec 034) — off by default, owner turns 
   assert.equal(formatValue('slang', false), 'off');
   assert.equal(voiceSummary({}), 'No humour · no slang');
   assert.equal(voiceSummary({ humor: 'light', slang: true }), 'Light humour · slang allowed');
+});
+
+test('format prefs: audience caps (spec 034 FR-005) — round trip, labels and the summary line', () => {
+  assert.deepEqual(toPrefs(toForm({ content_kind: 'news', polls_per_week: 0, questions_to_readers_per_day: 0 })),
+    { content_kind: 'news', polls_per_week: 0, questions_to_readers_per_day: 0 });
+  assert.deepEqual(toPrefs(toForm({})), {}, 'empty = the defaults');
+  assert.equal(toForm({ polls_per_week: 2 }).pollsPerWeek, '2');
+  assert.equal(formatValue('content_kind', 'quiz'), 'Quiz');
+  assert.equal(formatValue('polls_per_week', 1), 'up to 1');
+  assert.equal(audienceSummary({}), 'polls: up to 1 a week (default) · reader questions: up to 1 per post (default)');
+  assert.equal(audienceSummary({}, { kind: 'news', kindInferred: true, pollsPerWeek: 1, questionsPerDay: 0 }),
+    'News (from the topic) · polls: up to 1 a week (default) · no reader questions (default)');
+  assert.equal(audienceSummary({ content_kind: 'quiz' }), 'Quiz · polls: no limit (default) · reader questions: up to 1 per post (default)');
+  assert.equal(audienceSummary({ polls_per_week: 0, questions_to_readers_per_day: 2 }), 'no polls · reader questions: up to 2 per post');
 });

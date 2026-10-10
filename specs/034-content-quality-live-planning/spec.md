@@ -188,3 +188,55 @@ FR-015. **Size:** S · Depends on T1–T6
   Success criterion «a joke on a humor:none resource fails before publishing» is a warning in T1 and becomes a failure through the
   critic (T2).
 - No migration (format_prefs is JSON). `evals/lib/graders.ts` `bannedHits` now uses `findSlopPhrases`.
+
+## Implementation notes (T3)
+- **Defaults (FR-005, the T5 half of FR-007 only for poll/quiz).** `makeDefaultCard` (`chat/default-card.ts`) starts with
+  `DEFAULT_CARD_FORMATS` = text + photo, so a builder-made agent's card has no poll/quiz (weight 0 = absent; the card
+  schema stores weights ≥ 0.01). The owner's chat keeps every format through `makeChatCard` (a card-less channel; the
+  owner asks for the format himself, and a scheduled chat poll is stored and published with that card). The API card
+  defaults (`CARD_DEFAULTS`) and the `editor_channels.formats` column default were text + photo already.
+  `playbookBuildPrompt` and `editor-orchestrator-workflow`: poll/quiz weight 0 unless the brief asks or the resource is
+  education/quiz (`content_kind`), the weekly cap is named. T5 owns the wider "fitting formats" wording.
+- **Caps in the profile** (`post/audience-asks.ts`, no migration — `format_prefs` is JSON): three new `format_prefs`
+  fields, lockable and versioned like the rest: `content_kind` (`general | news | education | quiz`),
+  `polls_per_week` (0–70) and `questions_to_readers_per_day` (0–5). `audienceCaps(prefs, topic)` resolves the
+  defaults: polls 1 a week (a `quiz` resource: no cap until the owner sets one), reader questions 1 per post, 0 on a
+  news resource. "News" = `content_kind: news`, or — without `content_kind` — a profile topic matching
+  `NEWS_TOPIC_RE` (новин / news / дайджест / зведенн). Nothing else is inferred. Agents (`update_resource_format`,
+  `patchFormat` by `agent`) may only lower the two caps (to ≤ the default) and never set or clear `content_kind`
+  (`owner_only` with a Ukrainian reason per field, `OWNER_ONLY_REASON`); the owner and the builder set anything.
+  `get_resource_format` returns the effective `audience_caps`; `ResourceProfilesRepository.capsOf(ref)`.
+- **Plan validators.** `roles/poll-cap.ts`: `pollCapErrors(slots, ctx, series)` is one line in `validatePlan` (new
+  trailing optional `pollCap`) and in `validateNetworkPlan` (`o.pollCap`). Per resource: poll + quiz slots in the 7
+  days ending on the plan date (`SqlPollCaps.load`: every status except skipped / failed / expired on the 6 days
+  before; on the plan date only what a new plan keeps — published, running, written, pins, reserved/chat and
+  repurposed slots) plus the plan's own > cap → «…опитувань і вікторин за 7 днів було б N (уже X, у плані Y) — ліміт
+  ресурсу C на тиждень (polls_per_week)…». Instances of a series with origin owner / migration (or locked) do not
+  count (e.g. the migrated pdr-quiz series), nor do they count in the window. Wired through `pollCaps` deps of
+  `buildRoleTools` / `buildNetworkTools` (`editor.module.ts` → `SqlPollCaps`); the window uses the anchor card's zone.
+- **Lint.** `readerQuestions(text)` counts `?`-sentences that address the reader: the tested `READER_MARKERS` list
+  (ви/вас/вам/ваш*, ти/тебе/твій…, «як думаєте», «а ви», «чи доводилось», «напишіть», «у коментарях», «згодні», …) plus
+  second-person verb forms (-ете/-єте/-ите/-їте, -єш/-еш/-иш/-їш, imperative -іть/-йте; a few nouns/adjectives
+  excluded); quoted speech («…», "…") is removed first; the poll's own question never counts. Error code
+  `reader_questions` over the cap, **per post** (the "per day" name is the owner-facing cap; a per-day count across
+  posts is not enforced). Telegram: `card.readerQuestionsMax` / `card.pollsPerWeek`, joined on read in
+  `editor-channels.repository` (`format_prefs` + `topic` of `telegram:<key>`; a row read without the join keeps the
+  card unchanged). Platform: `VoicePrefs.readerQuestionsMax` (the runner's `voiceOf` adds it; absent = 1). T1's
+  `slop_rhetorical_qa` is unchanged (it still skips reader-directed questions).
+- **CTA.** `PlatformSectionSchema.cta` was already optional; the playbook build prompt and the orchestrator skill no
+  longer list «заклик» as a section field and say it is absent by default.
+- **Skills.** `platform-facebook` (no «заклик до обговорення», no «Закінчуй питанням»; end on a fact, questions within
+  the cap), `platform-threads` (no «одне питання», no «а ви знали» / «питання до читачів»), `platform-instagram` (cover
+  is a promise or a fact; CTA optional, one, not a question), `platform-tiktok` (no question hook; humour only when
+  the owner turned it on), `format-poll-quiz` (no «залучення через голосування»; only when planned or asked, the
+  weekly cap; intro without extra questions; how to write a good poll/quiz kept), `editor-planner-workflow` (the cap),
+  `editor-executor-workflow` (one line on reader questions; 2 518 chars), `agent-onboarding` (`content_kind`, caps).
+  `agents/audience-caps.test.ts` fails if any skill pushes those phrases again.
+- **Dashboard** (Formatting section, English): an "Audience asks" chip on every resource (effective caps from the
+  server's `audience`, "(default)" for unset values, a lock icon when any of the three is locked) and Resource kind /
+  Polls a week / Reader questions fields with locks in the edit modal (checked against a local mock API).
+- **For T4 (MANAGER).** Poll share: count `editor_slots` with `format IN ('poll','quiz')` per
+  `COALESCE(resource_ref, 'telegram:' || channel_key)` (or reuse `SqlPollCaps.load`, which also gives the cap).
+  Posts with reader questions: run `readerQuestions(text)` (`post/audience-asks.ts`) over the stored
+  `rendered_preview` / post text — nothing is stored per post. Caps: `ResourceProfilesRepository.capsOf(ref)`. A
+  `format_mix` directive executor can lower the caps or set poll weights; raising caps stays owner-only.

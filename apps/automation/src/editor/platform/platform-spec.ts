@@ -3,6 +3,7 @@ import { CONTENT_REF_RE } from '../../data/data-refs';
 import { coerceAgentSpec, SlideSchema } from '../post/post-spec';
 import { findBannedTerms, findSlopPhrases } from '../post/slop-phrases';
 import { slopWarnings, type VoicePrefs } from '../post/slop-lint';
+import { readerQuestionsIssue } from '../post/audience-asks';
 import { inlineToPlain } from '../post/inline-markup';
 import { normalizeHashtag } from '../post/render-telegram';
 import { CAPABILITIES, formatSpec, NATIVE_FORMATS, platformOfFormat } from './capabilities';
@@ -105,6 +106,9 @@ export function lintPlatformPost(spec: PlatformPostSpec, c: PlatformLintContext)
     errors.push({ code: 'banned_phrase', message: `заборонена фраза «${b}»` });
   }
   for (const w of slopWarnings({ body: caption, all: [caption, slidesText, spec.first_comment ?? ''].filter(Boolean).join('\n'), prefs: c.voice })) warnings.push(w);
+  // Spec 034 FR-005: questions to the readers over the resource's cap (default 1 per post, news 0).
+  const asks = readerQuestionsIssue([caption, slidesText].filter(Boolean).join('\n'), c.voice?.readerQuestionsMax);
+  if (asks) errors.push(asks);
   if ((spec.format === 'tt_photo' || spec.format === 'yt_short') && spec.title.length > 90) {
     errors.push({ code: 'title_too_long', message: 'заголовок TikTok/YouTube до 90 символів' });
   }

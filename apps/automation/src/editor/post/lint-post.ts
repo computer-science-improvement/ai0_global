@@ -7,6 +7,7 @@ import { RICH_MAX_BLOCKS, RICH_MAX_CHARS, RICH_MAX_DEPTH, richStats } from './re
 /** Spec 034 FR-003: signature AI phrasings (the anti-slop list, normalised) live in slop-phrases.ts. */
 import { bannedTermContext, findBannedTerms, findSlopPhrases, normalizeSlop } from './slop-phrases';
 import { slopWarnings } from './slop-lint';
+import { readerQuestionsIssue } from './audience-asks';
 
 export interface LintIssue { code: string; message: string }
 /**
@@ -54,7 +55,7 @@ function cyrillicShare(text: string): number {
 }
 
 type LintCard = Pick<EditorCard, 'formats' | 'hashtags' | 'hashtagMin' | 'hashtagMax' | 'footer' | 'linkStyle' | 'emojiPolicy' | 'bannedTerms' | 'language'> & RenderCard
-  & Partial<Pick<EditorCard, 'humor' | 'slang' | 'emojiPref'>>;
+  & Partial<Pick<EditorCard, 'humor' | 'slang' | 'emojiPref' | 'readerQuestionsMax'>>;
 
 export function lintPost(spec: PostSpec, card: LintCard): LintResult {
   const errors: LintIssue[] = [];
@@ -210,6 +211,13 @@ export function lintPost(spec: PostSpec, card: LintCard): LintResult {
   for (const w of slopWarnings({ body: bodyPlain(spec), all: reader, prefs: { humor: card.humor, slang: card.slang, emoji: card.emojiPref } })) {
     warn(w.code, w.message);
   }
+
+  // Spec 034 FR-005: questions addressed to the readers, over the resource's cap (default 1, news 0). The poll's own
+  // question is the poll (capped by polls_per_week), so only the post text and carousel slides count.
+  const asks = readerQuestionsIssue(
+    [bodyPlain(spec), ...(spec.format === 'carousel' ? (spec.slides ?? []).map((x) => `${x.title}\n${x.text}`) : [])].join('\n'),
+    card.readerQuestionsMax);
+  if (asks) err(asks.code, asks.message);
 
   if (spec.format === 'photo' && !n) warn('no_media_for_photo_channel', 'photo без зображення');
 

@@ -8,6 +8,8 @@ export interface VoicePrefs {
   humor?: 'none' | 'light';
   slang?: boolean;
   emoji?: 'none' | 'light' | 'rich';
+  /** Spec 034 FR-005: reader-directed questions allowed per post (questions_to_readers_per_day; absent = 1). An error, not a slop warning. */
+  readerQuestionsMax?: number;
 }
 
 export interface SlopIssue { code: SlopWarningCode; message: string }

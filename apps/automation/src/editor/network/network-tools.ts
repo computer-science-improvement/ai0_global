@@ -14,6 +14,7 @@ import { PlaybookSchema, renderPlaybook } from './playbook';
 import { submitPlaybookVersion, type SubmitDeps } from './series-edit';
 import type { ScheduleService } from '../schedule/schedule.service';
 import type { ExperimentQuota } from '../manager/experiment-quota';
+import type { PollCapCtx } from '../roles/poll-cap';
 
 export const IDEA_DEDUP_SIMILARITY = 0.6;
 export const IDEA_MAX_DAYS = 7;
@@ -37,6 +38,8 @@ export interface NetworkToolDeps {
   schedule?: Pick<ScheduleService, 'planContext' | 'effectiveNet'>;
   /** Spec 025 FR-014: open experiment quotas of an anchor channel for a plan date. */
   experimentQuotas?: (anchorKey: string, planDate: string, now: Date) => Promise<ExperimentQuota[]>;
+  /** Spec 034 FR-005: per-resource poll caps and the polls already in the 7-day window (SqlPollCaps.load). */
+  pollCaps?: (o: { refs: string[]; planDate: string; tz: string; defaultRef?: string }) => Promise<PollCapCtx>;
   now?:   () => Date;
 }
 
@@ -261,6 +264,7 @@ export function buildNetworkTools(d: NetworkToolDeps): EditorTool[] {
         // Spec 024: decisions repurpose_post or the owner already made for these ideas stay.
         decided: await d.repo.decidedElsewhere(planned),
         experiments: d.experimentQuotas ? await d.experimentQuotas(net.anchorKey, planDate, t) : [],
+        pollCap: d.pollCaps ? await d.pollCaps({ refs: net.resources.map((r) => r.ref), planDate, tz: card.timezone }) : undefined,
       });
       if (!v.ok) return { error: 'plan_invalid', details: v.errors };
       const planId = await d.plans.createNetworkPlan(net.anchorKey, planDate, plan.rationale, ctx.runId, v.slots, v.decisions, net.orchestrator.id);

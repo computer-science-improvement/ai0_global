@@ -22,6 +22,7 @@ import { cardFrom } from './compose-tools';
 import type { ScheduleService } from '../schedule/schedule.service';
 import type { NetworkCtx } from '../network/network-context';
 import type { ExperimentQuota } from '../manager/experiment-quota';
+import type { PollCapCtx } from '../roles/poll-cap';
 
 export const SIMILARITY_LIMIT = 0.6;
 const MAX_MEMORY_ADDS_PER_RUN = 5;
@@ -44,6 +45,8 @@ export interface RoleToolDeps {
   schedule?: Pick<ScheduleService, 'planContext' | 'effectiveCard' | 'publishGuard'>;
   /** Spec 025 FR-014: open experiment quotas of an anchor channel for a plan date. */
   experimentQuotas?: (anchorKey: string, planDate: string, now: Date) => Promise<ExperimentQuota[]>;
+  /** Spec 034 FR-005: poll caps and the polls already in the 7-day window (SqlPollCaps.load). */
+  pollCaps?: (o: { refs: string[]; planDate: string; tz: string; defaultRef?: string }) => Promise<PollCapCtx>;
   now?: () => Date;
 }
 
@@ -114,7 +117,8 @@ export function buildRoleTools(d: RoleToolDeps): EditorTool[] {
       // Spec 025 FR-014: a single-channel plan carries the quotas on its own channel only.
       const anchor = `telegram:${card.channelKey}`;
       const quotas = d.experimentQuotas ? (await d.experimentQuotas(card.channelKey, planDate, t)).filter((q) => q.resourceRef === anchor) : [];
-      const v = validatePlan(plan, sched ? d.schedule!.effectiveCard(card, sched) : card, planDate, t, reserved.map((r) => r.scheduledAt), sched, quotas);
+      const pollCap = d.pollCaps ? await d.pollCaps({ refs: [anchor], planDate, tz: card.timezone, defaultRef: anchor }) : undefined;
+      const v = validatePlan(plan, sched ? d.schedule!.effectiveCard(card, sched) : card, planDate, t, reserved.map((r) => r.scheduledAt), sched, quotas, pollCap);
       if (!v.ok) return { error: 'plan_invalid', details: v.errors };
       const planId = await d.plans.createPlan(card.channelKey, planDate, plan.rationale, ctx.runId, v.slots);
       // Pool ideas taken into the plan (spec 020) leave the pool; they become `used` once their slots are done.

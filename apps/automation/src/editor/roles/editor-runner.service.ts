@@ -124,7 +124,7 @@ export class EditorRunnerService {
 
   /** The voice settings of the resource a slot writes for (spec 034); a Telegram target falls back to the card. */
   private async voice(ref: string, card: EditorCard): Promise<VoicePrefs> {
-    const own = ref === `telegram:${card.channelKey}` ? { humor: card.humor, slang: card.slang, emoji: card.emojiPref } : null;
+    const own = ref === `telegram:${card.channelKey}` ? { humor: card.humor, slang: card.slang, emoji: card.emojiPref, readerQuestionsMax: card.readerQuestionsMax } : null;
     const v = this.d.voiceOf ? await this.d.voiceOf(ref).catch(() => null) : null;
     return v ?? own ?? {};
   }

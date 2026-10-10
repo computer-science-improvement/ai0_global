@@ -78,6 +78,13 @@ export interface EditorCard {
   slang?:             boolean;
   /** Spec 034 FR-003: format_prefs.emoji (joined in on read): the slop lint warns above it; emojiPolicy stays the hard rule. */
   emojiPref?:         'none' | 'light' | 'rich';
+  /**
+   * Spec 034 FR-005: the resource's caps (format_prefs + topic of `telegram:<channelKey>`, joined in on read;
+   * see post/audience-asks.ts). Absent = the defaults: 1 reader question per post, 1 poll/quiz a week.
+   */
+  readerQuestionsMax?: number;
+  /** null = no cap (a quiz resource without an explicit polls_per_week). */
+  pollsPerWeek?:       number | null;
 }
 
 /** What each platform can render natively — shown to agents with the card. */
