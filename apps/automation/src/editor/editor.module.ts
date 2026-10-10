@@ -71,9 +71,10 @@ import { telegramKeyOf, parseResourceRef, resourceRef } from './agents/agent.typ
 import type { Agent } from './agents/agent.types';
 import { renderFormatPrefs, ResourceProfilesRepository } from './agents/resource-profile';
 import { ResourceCatalog, makeTelegramAccessCheck } from './agents/resource-catalog';
-import { PendingActionsRepository, PendingActionsService } from './agents/pending-actions';
+import { KeepPendingError, PendingActionsRepository, PendingActionsService } from './agents/pending-actions';
 import { AgentCreator } from './agents/agent-creator';
 import { buildBuilderTools } from './agents/builder-tools';
+import { buildContentExamplesTool, CONTENT_EXAMPLES_KIND, examplesFromChoice, type ContentExamplesPayload } from './agents/content-examples';
 import { buildAgentChatTools } from './agents/agent-chat-tools';
 import type { AgentChatPort } from './chat/editor-chat.service';
 import { MetaAccountsRepository } from '../config/meta-accounts.repository';
@@ -550,7 +551,7 @@ function registerAgentActions(infra: AgentInfra, svc: AgentsService, ops: Editor
   a.register('create_agent', async (p) => {
     const r = await infra.creator.create(p);
     if ('error' in r) throw new Error(`${r.error}${r.details ? `: ${typeof r.details === 'string' ? r.details : JSON.stringify(r.details)}` : ''}`);
-    return { handle: r.agent.handle, id: r.agent.id, cardCreated: r.cardCreated };
+    return { handle: r.agent.handle, id: r.agent.id, cardCreated: r.cardCreated, briefWritten: r.briefWritten, buildStarted: r.buildStarted };
   });
   a.register('update_agent', async (p) => {
     // Spec 031 FR-010: a mode never changes through an agent's card, whatever the stored payload says.
@@ -882,6 +883,11 @@ export const EDITOR_PROVIDERS = [
           ...buildAgentSkillTools({ agents: infra.agents, skills: infra.skills, kpi: infra.kpi, inbox: infra.inbox }),
           ...buildBuilderTools({
             agents: infra.agents, catalog: infra.catalog, profiles: infra.profiles, creator: infra.creator, skills: infra.skills, actions: infra.actions,
+          }),
+          // Spec 034 FR-008: example posts and warnings in the agent-creation chat (a content_examples card).
+          buildContentExamplesTool({
+            agents: infra.agents, actions: infra.actions,
+            cardOf: async (ref) => { const id = parseResourceRef(ref)?.id; return id ? repos.channels.get(id) : null; },
           }),
           ...buildAgentChatTools({ pool, memory: repos.memory, skills: infra.skills, actions: infra.actions }),
           // Spec 023 FR-006: the owner steers the schedule from the chat (cards only).
@@ -1322,6 +1328,16 @@ export const EDITOR_PROVIDERS = [
           },
         });
         registerAgentActions(infra, svc, ops);
+        // Spec 034 FR-008: the owner's verdicts and edits of @ai0's example posts → the playbook's examples.
+        infra.actions.register(CONTENT_EXAMPLES_KIND, async (p, _action, input) => {
+          const payload = p as unknown as ContentExamplesPayload;
+          const agent = await infra.agents.getByHandle(String(payload.handle));
+          if (!agent) throw new KeepPendingError('agent_not_created', `@${payload.handle} does not exist yet — apply the "Create agent" card first, then these examples.`);
+          const orch = agent.parentId ? (await infra.agents.get(agent.parentId)) ?? agent : agent;
+          const examples = examplesFromChoice(payload, input);
+          const r = await new NetworkRepository(pool).setExamples(orch.id, examples, 'Example posts and warnings approved in the chat with @ai0');
+          return { ...r, saved: examples.length, handle: orch.handle };
+        });
         // A directive the owner approved in the chat with @manager (spec 021): filed as owner-approved, never shadow.
         infra.actions.register('file_directive', async (p) => {
           const input = FileDirectiveInput.parse(p);
@@ -1350,6 +1366,8 @@ export const EDITOR_PROVIDERS = [
           const card = key ? await repos.channels.get(key) : null;
           if (card) void network.runPlaybookBuild(card, brief).catch((err) => logger.warn(`playbook build failed: ${err?.message ?? err}`));
         });
+        // Spec 034 FR-009: create_agent with a brief starts the first playbook build (the creator is built before this service).
+        infra.creator.setOnBrief((agent, brief) => svc.onBrief(agent, brief));
         return svc;
       },
     },

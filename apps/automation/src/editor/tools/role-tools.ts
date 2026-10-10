@@ -288,17 +288,40 @@ export function buildRoleTools(d: RoleToolDeps): EditorTool[] {
 
   const setWeights = defineTool({
     name: 'set_format_weights',
-    description: 'Змінити ваги форматів каналу (0.05–1). Лише для форматів, що вже є в картці; міняй плавно, крок ≤ 0.2.',
+    description: [
+      'Змінити ваги форматів каналу (0.05–1). Лише для форматів, що вже є в картці; міняй плавно, крок ≤ 0.2.',
+      'Формат, що не пасує ресурсу, можна прибрати одним кроком (вага 0) лише з причиною в drop_reasons, яка спирається на докази:',
+      'правки чи відхилення власника або зауваження критика. Підвищення — завжди ±0.2.',
+    ].join(' '),
     kind: 'act', roles: ['reviewer'],
-    input: z.object({ weights: z.record(z.string(), z.number().min(0).max(1)) }),
-    execute: async ({ weights }, ctx) => {
+    input: z.object({
+      weights:      z.record(z.string(), z.number().min(0).max(1)),
+      drop_reasons: z.record(z.string(), z.string().trim().min(15).max(300)).optional()
+        .describe('Формат → чому він не пасує (докази: правки/відхилення власника, нотатки критика). Лише для ваги 0.'),
+    }),
+    execute: async ({ weights, drop_reasons }, ctx) => {
       const card = cardFrom(ctx);
+      const drop: string[] = [];
       for (const [f, w] of Object.entries(weights)) {
         const cur = card.formats[f];
         if (cur === undefined) return { error: 'unknown_format', details: f };
-        if (Math.abs(w - Number(cur)) > 0.2001) return { error: 'step_too_big', details: `${f}: ${cur} → ${w}, максимум ±0.2` };
+        // Spec 034 FR-007: a drop to 0 in one step needs evidence; increases and other decreases keep the ±0.2 step.
+        if (w === 0 && Number(cur) > 0) {
+          if (!drop_reasons?.[f]) return { error: 'drop_needs_reason', details: `${f}: вага 0 лише з причиною в drop_reasons (правки чи відхилення власника, нотатки критика)` };
+          drop.push(f);
+          continue;
+        }
+        if (Math.abs(w - Number(cur)) > 0.2001) return { error: 'step_too_big', details: `${f}: ${cur} → ${w}, максимум ±0.2 (вага 0 — з drop_reasons)` };
       }
-      return { ok: true, formats: await d.channels.setFormatWeights(card.channelKey, weights) };
+      const left = Object.keys(card.formats).filter((f) => !drop.includes(f) && Number(card.formats[f]) > 0);
+      if (drop.length && !left.length) return { error: 'last_format', details: 'у картці має лишитися хоча б один формат' };
+      const formats = await d.channels.setFormatWeights(card.channelKey, weights, drop.length ? { drop } : undefined);
+      if (drop.length) {
+        for (const f of drop) {
+          await d.memory.add(card.channelKey, 'avoid', `Формат ${f} прибрано з каналу: ${drop_reasons![f]}`, { tool: 'set_format_weights', format: f }, 'reviewer').catch(() => {});
+        }
+      }
+      return { ok: true, formats, ...(drop.length ? { dropped: drop } : {}) };
     },
   });
 

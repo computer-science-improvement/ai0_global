@@ -17,7 +17,7 @@ import type { NetworkRepository } from './network.repository';
 import {
   ideaReviewerSystemPrompt, ideaReviewerUserPrompt, networkPlannerBlock, orchestratorDailyPrompt, orchestratorSystemPrompt, playbookBuildPrompt,
 } from './network-prompts';
-import { renderSection } from './playbook';
+import { renderExamples, renderSection } from './playbook';
 import { renderExperimentQuotas, type ExperimentQuota } from '../manager/experiment-quota';
 
 export interface NetworkRunnerDeps {
@@ -239,6 +239,8 @@ export class NetworkRunner {
     return {
       formatPrefs: fmt ? renderFormatPrefs(fmt.prefs, fmt.locks) : null,
       playbook: sec ? renderSection(sec) : null,
+      // Spec 034 FR-008: up to 3 good + 2 bad examples of this resource, the slot's format first (few-shot, critic).
+      examples: renderExamples(pb?.body.examples, { resourceRef: slot.resourceRef ?? `telegram:${slot.channelKey}`, format: slot.format }),
       profile: profile ? renderProfile(profile, { now: this.now(), ref: slot.resourceRef ?? undefined }) : null,
       maxPerDay: sec?.per_day.max ?? null,
       vocabulary: sec?.hashtag_policy.vocab ?? [],

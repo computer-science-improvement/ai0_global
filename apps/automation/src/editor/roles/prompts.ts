@@ -8,6 +8,7 @@ import { resourceTimeLines } from '../time/resource-time';
 import { attachVoiceSkills, VOICE_CORE, voiceCoreSection, voiceReferenceLine } from './voice';
 import { liveSlotLines, type LiveScan } from '../live/live-slot';
 import { isNewsCard } from '../live/news-watch-config';
+import { examplesPromptSection } from '../network/playbook';
 
 const ROLE_TITLE: Record<CardRole, string> = {
   planner:  'редактор-планувальник',
@@ -48,7 +49,11 @@ function inlineSkills(skills: SkillSource, names: string[], writer: boolean): { 
  * writer) also gets voice-core and the resource's humour/slang setting
  * (spec 034 FR-001/FR-002), read from the card (format_prefs of telegram:<key>).
  */
-export function buildSystemPrompt(role: CardRole, card: EditorCard, memory: MemoryEntry[], skills: SkillSource, prefs: MemoryEntry[] = []): string {
+export function buildSystemPrompt(
+  role: CardRole, card: EditorCard, memory: MemoryEntry[], skills: SkillSource, prefs: MemoryEntry[] = [],
+  /** Spec 034 FR-008: the resource's example posts (renderExamples), few-shot right after voice-core (executor only). */
+  o: { examples?: string | null } = {},
+): string {
   const writer = role === 'executor';
   const names = [...new Set([`editor-${role}-workflow`, ...card.skills, ...(skills.inlineNames?.() ?? [])])].filter((n) => n !== VOICE_CORE);
   const { inline, shown, voiceRef } = inlineSkills(skills, names, writer);
@@ -60,6 +65,7 @@ export function buildSystemPrompt(role: CardRole, card: EditorCard, memory: Memo
     'Принципи: факти перевірені; чужі тексти не копіюєш; один пост — одна думка; краще пропустити, ніж опублікувати слабке.',
     'Код перевіряє всі правила (формат, хештеги, ліміти, тихі години, дублікати). Якщо інструмент повернув error — виправ і спробуй ще раз, не сперечайся з правилами.',
     ...(writer ? voiceCoreSection({ humor: card.humor, slang: card.slang }, skills) : []),
+    ...(writer ? examplesPromptSection(o.examples) : []),
     '',
     '## Картка каналу',
     JSON.stringify(cardSummary(card), null, 1),

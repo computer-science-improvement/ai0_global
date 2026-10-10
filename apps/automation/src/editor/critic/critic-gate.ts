@@ -56,6 +56,8 @@ export interface CriticGateContext {
   profile?:     string | null;
   formatPrefs?: string | null;
   playbook?:    string | null;
+  /** Spec 034 FR-008: the resource's examples (renderExamples) for the critic's reference. */
+  examples?:    string | null;
   agent?:       AgentBudget | null;
   /** The orchestrator the Inbox item belongs to. */
   inboxAgentId?: string | null;
@@ -145,7 +147,7 @@ export class CriticGate {
       channelKey: this.c.channelKey, slotId: this.c.slotId, mode: this.c.mode, card: this.c.card ?? null,
       resourceRef: this.c.resourceRef, platform: this.c.platform, format: post.format, topic: this.c.topic, angle: this.c.angle,
       text: post.text, spec: post.spec, voice: this.c.voice, brief: this.c.brief, profile: this.c.profile,
-      formatPrefs: this.c.formatPrefs, playbook: this.c.playbook, source: await this.source(post.spec),
+      formatPrefs: this.c.formatPrefs, playbook: this.c.playbook, examples: this.c.examples ?? null, source: await this.source(post.spec),
       slopWarnings: post.warnings.filter((w) => slop.includes(w.code)).map((w) => ({ code: w.code, message: w.message })),
       previous: this.first, agent: this.c.agent ?? null,
     });

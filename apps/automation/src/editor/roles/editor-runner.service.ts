@@ -20,6 +20,7 @@ import type { VoicePrefs } from '../post/slop-lint';
 import { attachVoiceSkills, VOICE_CORE, VOICE_SKILLS_BUDGET, voiceCoreSection, voiceReferenceLine } from './voice';
 import { liveSlotLines, noFreshReason, type LiveScan } from '../live/live-slot';
 import { CriticGate } from '../critic/critic-gate';
+import { examplesPromptSection } from '../network/playbook';
 import type { CriticService } from '../critic/critic.service';
 import type { InboxItemInput } from '../agents/owner-inbox';
 
@@ -45,6 +46,8 @@ export interface EditorRunnerDeps {
     playbook?: string | null; profile?: string | null; maxPerDay?: number | null; vocabulary?: string[]; idea?: string | null;
     /** Spec 024 FR-013: the target's format_prefs, rendered for the prompt. */
     formatPrefs?: string | null;
+    /** Spec 034 FR-008: the resource's example posts (renderExamples) — executor few-shot and the critic's reference. */
+    examples?: string | null;
   } | null>;
   /** Spec 020: network planner and the idea pool for the single-channel planner. */
   network?: {
@@ -169,6 +172,7 @@ export class EditorRunnerService {
         slotId: slot.id, channelKey: card.channelKey, mode: target.mode, resourceRef: target.ref, platform: target.platform,
         topic: slot.topic, angle: slot.angle, card: { models: card.models, dailyBudgetUsd: card.dailyBudgetUsd }, voice: target.voice,
         brief: card.brief || null, profile: context?.profile ?? null, formatPrefs: context?.formatPrefs ?? null, playbook: context?.playbook ?? null,
+        examples: context?.examples ?? null,
         agent: ctx?.agent
           ? { id: ctx.agent.id, handle: ctx.agent.handle, limitUsd: ctx.agent.dailyBudgetUsd ?? ctx.orchestrator?.dailyBudgetUsd ?? null }
           : null,
@@ -200,7 +204,7 @@ export class EditorRunnerService {
       channelKey: card.channelKey,
       slotId,
       model: resolveModel(role, this.d.env, card.models, { agentModel, defaultModel, reasoningEffort: agentEffort }),
-      system: buildSystemPrompt(role, card, memory, skills, prefs),
+      system: buildSystemPrompt(role, card, memory, skills, prefs, { examples: typeof extras.examples === 'string' ? extras.examples : null }),
       user,
       tools: ((extras.wrapTools as ((t: EditorTool[]) => EditorTool[]) | undefined) ?? ((t) => t))(
         this.d.registry.forRole(role, card.toolsAllow)
@@ -270,14 +274,19 @@ export class EditorRunnerService {
       return this.skipByCode(slot, noFreshReason(slot.liveSpec, scan));
     }
     const target = slot.resourceRef ? parseResourceRef(slot.resourceRef) : null;
+    const tgRef = `telegram:${card.channelKey}`;
+    // The Telegram resource's own context (playbook section, examples): the critic's and the few-shot's.
+    const tgContext = target && target.platform !== 'telegram' ? undefined : this.d.platformContext
+      ? await this.d.platformContext({ ...slot, resourceRef: tgRef }, ctx?.orchestrator?.id ?? null).catch(() => null)
+      : null;
     const res = target && target.platform !== 'telegram'
       ? await this.runPlatformExecutor(slot, card, ctx, target.platform, note ?? null, scan)
       : await this.run('executor', card, [await this.executorUser(card, slot, ctx, scan), note].filter(Boolean).join('\n'), slot.id,
-        EditorRunnerService.withGate({ excludeTools: PLATFORM_ONLY }, await this.criticGate(slot, card, ctx, {
-          ref: `telegram:${card.channelKey}`, platform: 'telegram',
+        EditorRunnerService.withGate({ excludeTools: PLATFORM_ONLY, examples: tgContext?.examples ?? null }, await this.criticGate(slot, card, ctx, {
+          ref: tgRef, platform: 'telegram',
           mode: card.mode === 'live' || card.mode === 'approve' ? card.mode : 'shadow',
           voice: { humor: card.humor, slang: card.slang, emoji: card.emojiPref },
-        })), ctx);
+        }, tgContext ?? undefined)), ctx);
     await this.d.plans.updateSlot(slot.id, { runId: res.runId });
 
     const after = await this.d.plans.getSlot(slot.id);
@@ -343,7 +352,7 @@ export class EditorRunnerService {
       slot, ready: r, targetRef, targetPlatform: platform, profile: pc?.profile ?? null, formatPrefs, playbook: pc?.playbook ?? null,
       memory: memory.map((m) => `- [${m.kind}${m.createdBy === 'owner' ? ', власник' : ''}] ${m.text}`).join('\n'), mode,
       skill: skill ? `### skill: ${skill.name}\n${skill.body}` : null, ownerPrefs: ownerPreferencesSection(prefs),
-      voice, voiceSkills: vs ? [...vs.inline, voiceReferenceLine(vs.missing)].filter((x): x is string => !!x) : [],
+      voice, voiceSkills: vs ? [...vs.inline, voiceReferenceLine(vs.missing)].filter((x): x is string => !!x) : [], examples: pc?.examples ?? null,
     });
     let lintFailedTwice = false;
     const onSecond = async (details: unknown) => {
@@ -417,6 +426,7 @@ export class EditorRunnerService {
       'Порядок: прочитай джерела ідеї (web_fetch), за потреби статистику, потім lint_platform_post, потім publish_platform_post. Слабкий чи неперевірений пост — skip_slot.',
       'Факти бери з джерел ідеї. Якщо джерело недоступне — не перебирай адреси навмання: одна спроба альтернативи, далі skip_slot з причиною. Хештеги — лише в полі hashtags, не в тексті підпису.',
       ...voiceCoreSection(voice, skills),
+      ...examplesPromptSection(pc?.examples),
       '',
       '## Можливості платформи',
       capabilitiesSummary([platform as any]),

@@ -42,6 +42,8 @@ export interface PlaybookPlatform {
   hashtag_policy: { vocab: string[]; min: number; max: number };
   link_policy?:   string;
   cta?:           string;
+  /** Spec 034 FR-007: why each enabled format fits this resource (one line per format). */
+  format_reasons?: Record<string, string>;
 }
 
 export interface PlaybookSeries {
@@ -59,6 +61,16 @@ export interface Playbook {
   series:    PlaybookSeries[];
   pillars:   Array<{ name: string; share: number }>;
   rules:     string[];
+  /** Spec 034 FR-008: example posts (good) and bad-post warnings (bad), approved by the owner in the chat. */
+  examples?: PlaybookExample[];
+}
+
+export interface PlaybookExample {
+  format:        string;
+  text:          string;
+  verdict:       'good' | 'bad';
+  note?:         string;
+  resource_ref?: string;
 }
 
 export type PlaybookStatus = 'draft' | 'pending_owner' | 'active' | 'superseded' | 'rejected';

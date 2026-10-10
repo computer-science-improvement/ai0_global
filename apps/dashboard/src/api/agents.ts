@@ -342,8 +342,11 @@ export function useDecideAction() {
   const qc = useQueryClient();
   return useMutation({
     meta: { silentError: true },
-    mutationFn: (v: { id: string; decision: 'apply' | 'discard' }) =>
-      api<{ action: PendingAction }>(`/api/agents/actions/${enc(v.id)}/${v.decision}`, { method: 'POST' }),
+    // Spec 034 FR-008: Apply may carry the owner's choices on the card (example verdicts and edits) as `input`.
+    mutationFn: (v: { id: string; decision: 'apply' | 'discard'; input?: unknown }) =>
+      api<{ action: PendingAction }>(`/api/agents/actions/${enc(v.id)}/${v.decision}`, {
+        method: 'POST', ...(v.input !== undefined ? { body: JSON.stringify({ input: v.input }) } : {}),
+      }),
     onSettled: () => {
       qc.invalidateQueries({ queryKey: KEY });
       qc.invalidateQueries({ queryKey: ['editor-chat', 'chat'] });

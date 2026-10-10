@@ -49,7 +49,9 @@ test('catalog → create card → apply → orchestrator, children, profile and 
   const registry = new AgentRegistrySync({ agents, channels });
   const catalog = new ResourceCatalog({ pool, telegramAccess: async () => ({ state: 'ok', detail: 'test' }) });
   const profiles = new ResourceProfilesRepository(pool);
+  const builds: string[] = [];
   const creator = new AgentCreator({ agents, registry, catalog, profiles, channels });
+  creator.setOnBrief(async (a, brief) => { builds.push(`${a.handle}: ${brief}`); });
 
   const listed = (await catalog.list()).find((r) => r.ref === REF);
   assert.ok(listed, 'own channel is listed');
@@ -81,7 +83,12 @@ test('catalog → create card → apply → orchestrator, children, profile and 
   const c = await channels.get(CH);
   assert.equal(c!.mode, 'approve');
   assert.equal(c!.brief, 'TG — маршрути й поради.');
-  assert.deepEqual(c!.bannedTerms, ['політика']);
+  // Spec 034 FR-009: taboo is a topic list for prompts and the critic, never copied into the lint terms.
+  assert.deepEqual(c!.bannedTerms, []);
+  assert.deepEqual(c!.formats, { text: 1, photo: 1 }, 'text + photo by default, no polls');
+  assert.deepEqual(builds, ['nomad_pg: TG — маршрути й поради.'], 'the brief starts the first playbook build');
+  assert.equal(await channels.setBrief(CH, 'TG — маршрути вихідного дня.'), true);
+  assert.equal((await channels.get(CH))!.brief, 'TG — маршрути вихідного дня.', 'a brief for an existing card is written to it');
 
   // The hourly sync does not duplicate it; the catalog now shows the agent.
   assert.equal((await registry.run()).created, 0);

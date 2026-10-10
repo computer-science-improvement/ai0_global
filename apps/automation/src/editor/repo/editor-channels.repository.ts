@@ -139,14 +139,27 @@ export class EditorChannelsRepository {
     return (rowCount ?? 0) > 0;
   }
 
-  /** Reviewer-bounded write: only weights of formats already present in the card, clamped to 0.05..1. */
-  async setFormatWeights(channelKey: string, weights: Record<string, number>): Promise<Record<string, number> | null> {
+  /** Spec 034 FR-009: the brief @ai0's create_agent card gave a resource whose card already exists. */
+  async setBrief(channelKey: string, brief: string): Promise<boolean> {
+    const { rowCount } = await this.pool.query(
+      `UPDATE editor_channels SET brief = $2, updated_at = now() WHERE channel_key = $1`, [channelKey, brief]);
+    return (rowCount ?? 0) > 0;
+  }
+
+  /**
+   * Reviewer-bounded write: only weights of formats already present in the card, clamped to 0.05–1. Spec 034 FR-007: `drop` removes formats from the card (weight 0 = absent) — the
+   * reviewer's one-step drop of an unfitting format on owner or critic evidence; the last format is never removed.
+   */
+  async setFormatWeights(channelKey: string, weights: Record<string, number>, o: { drop?: readonly string[] } = {}): Promise<Record<string, number> | null> {
     const card = await this.get(channelKey);
     if (!card) return null;
     const next = { ...card.formats };
     for (const [f, w] of Object.entries(weights)) {
-      if (!(f in next)) continue;
+      if (!(f in next) || o.drop?.includes(f)) continue;
       next[f] = Math.round(Math.min(1, Math.max(0.05, Number(w))) * 100) / 100;
+    }
+    for (const f of o.drop ?? []) {
+      if (f in next && Object.keys(next).length > 1) delete next[f];
     }
     await this.pool.query(
       `UPDATE editor_channels SET formats = $2, updated_at = now() WHERE channel_key = $1`,

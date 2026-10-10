@@ -47,7 +47,7 @@ export function resolveTarget(ctx: ExecContext, refIn: unknown): Target | PlanEr
 export function cardAsPlaybook(card: Pick<EditorCard, 'formats' | 'postsPerDayMin' | 'postsPerDayMax'>, ref: string): Playbook {
   return {
     platforms: [{ resource_ref: ref, role: 'core', formats: { ...card.formats }, per_day: { min: card.postsPerDayMin, max: card.postsPerDayMax }, best_hours: [], hashtag_policy: { vocab: [], min: 0, max: 5 } }],
-    series: [], pillars: [], rules: [],
+    series: [], pillars: [], rules: [], examples: [],
   };
 }
 

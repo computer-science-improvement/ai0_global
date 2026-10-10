@@ -45,7 +45,7 @@ test('resource profile: validation and compact rendering', () => {
   assert.equal(p.language, 'uk');
   const r = renderProfile(p);
   assert.match(r, /ріст підписників → охоплення/);
-  assert.match(r, /Табу: астрологія/);
+  assert.match(r, /Табу-теми \(не писати про них\): астрологія/);
   assert.equal(ResourceProfileSchema.safeParse({ topic: 'x', audience: { who: 'y' }, goals: [] }).success, false);
 });
 

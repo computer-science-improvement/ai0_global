@@ -5,7 +5,7 @@
 // reason. Decided cards show their final status.
 
 import { Link } from '@tanstack/react-router';
-import { useState, type ReactNode } from 'react';
+import { useMemo, useState, type ReactNode } from 'react';
 import { Badge } from '../ui/Badge';
 import { Icon, type IconName } from '../ui/Icon';
 import type { Tone } from '../ui/primitives';
@@ -13,6 +13,8 @@ import { describeError, toast } from '../ui/Toast';
 import { fmtDate, fmtRelative } from '../../lib/format';
 import { KPI_GOALS, useDecideAction, type KpiGoal } from '../../api/agents';
 import type { PendingAction, PendingActionStatus } from '../../api/types';
+import { choiceInput, initialState, parsePayload, type ContentExamplesState } from '../../lib/content-examples';
+import { ContentExamplesBody } from './ContentExamplesCard';
 
 const KIND_META: Record<string, { label: string; icon: IconName }> = {
   create_agent:         { label: 'Create agent',      icon: 'sparkles' },
@@ -23,6 +25,7 @@ const KIND_META: Record<string, { label: string; icon: IconName }> = {
   attach_skill:         { label: 'Attach skill',      icon: 'plus' },
   detach_skill:         { label: 'Detach skill',      icon: 'ban' },
   edit_data_schema:     { label: 'Edit dataset description', icon: 'database' },
+  content_examples:     { label: 'Example posts', icon: 'book' },
 };
 
 export const ACTION_TONE: Record<PendingActionStatus, Tone> = {
@@ -71,11 +74,28 @@ export function GoalChips({ goals }: { goals: string[] }) {
   );
 }
 
+/** Spec 034 FR-007: the formats @ai0 picked, each with why it fits (absent = the text + photo default). */
+export function formatsOf(p: Record<string, unknown>): Array<{ format: string; reason: string | null }> {
+  return Array.isArray(p.formats)
+    ? p.formats.map((f) => ({ format: str(obj(f).format) ?? '?', reason: str(obj(f).reason) })).filter((f) => f.format !== '?')
+    : [];
+}
+
+function LongText({ text, lines = 4 }: { text: string; lines?: number }) {
+  return (
+    <span style={{ display: '-webkit-box', WebkitLineClamp: lines, WebkitBoxOrient: 'vertical', overflow: 'hidden', whiteSpace: 'pre-wrap' }} title={text}>{text}</span>
+  );
+}
+
 function CreateAgentView({ p }: { p: Record<string, unknown> }) {
   const profile = obj(p.profile);
   const aud = obj(profile.audience);
   const who = [str(aud.who), str(aud.age), str(aud.region)].filter(Boolean).join(' · ');
   const handle = str(p.handle)?.replace(/^@/, '');
+  const formats = formatsOf(p);
+  const taboo = strs(profile.taboo);
+  const banned = strs(p.banned_terms);
+  const times = strs(obj(p.schedule).times);
   return (
     <>
       <Row label="Agent">
@@ -86,7 +106,45 @@ function CreateAgentView({ p }: { p: Record<string, unknown> }) {
       {str(profile.topic) && <Row label="Topic">{profile.topic as string}</Row>}
       {who && <Row label="Audience">{who}</Row>}
       {strs(profile.goals).length > 0 && <Row label="Goals"><GoalChips goals={strs(profile.goals)} /></Row>}
+      <Row label="Brief">{str(p.brief) ? <LongText text={p.brief as string} /> : <span style={{ color: 'var(--color-ink-dim)' }}>none — the profile is the brief</span>}</Row>
+      {str(profile.tone) && <Row label="Tone">{profile.tone as string}</Row>}
+      <Row label="Taboo topics">{taboo.length ? taboo.join(', ') : '—'}</Row>
+      {banned.length > 0 && <Row label="Banned words">{banned.join(', ')}</Row>}
+      <Row label="Formats">
+        {formats.length ? (
+          <span style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+            {formats.map((f) => (
+              <span key={f.format}><span className="chip" style={{ marginRight: 6 }}>{f.format}</span>{f.reason ?? ''}</span>
+            ))}
+          </span>
+        ) : <span><span className="chip">text</span> <span className="chip">photo</span> <span style={{ color: 'var(--color-ink-dim)' }}>default</span></span>}
+      </Row>
+      <Row label="Schedule">{times.length ? `orchestrator runs at ${times.join(', ')} (Kyiv)` : 'orchestrator runs at 06:30 (Kyiv)'}</Row>
+      <Row label="Mode"><span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, flexWrap: 'wrap' }}><span style={{ flexShrink: 0, whiteSpace: 'nowrap' }}><Badge tone="warning">approval</Badge></span> Starts in approval mode: every post waits for your approval</span></Row>
     </>
+  );
+}
+
+function SetBriefView({ p }: { p: Record<string, unknown> }) {
+  return (
+    <>
+      {str(p.handle) && <Row label="Agent">@{p.handle as string}</Row>}
+      {str(p.brief) && <Row label="Brief"><LongText text={p.brief as string} lines={8} /></Row>}
+      <Row label="Then">the orchestrator rebuilds the playbook from this brief</Row>
+    </>
+  );
+}
+
+function ExamplesResult({ result }: { result: unknown }) {
+  const r = obj(result);
+  const saved = typeof r.saved === 'number' ? r.saved : null;
+  const where = r.target === 'active' ? `playbook v${String(r.version)}`
+    : r.target === 'pending' ? `the playbook draft v${String(r.version)} waiting for your approval`
+      : r.target === 'held' ? 'the first playbook (it is still being built)' : 'the playbook';
+  return (
+    <p className="text-micro" style={{ margin: '10px 0 0', color: 'var(--color-ink-muted)' }}>
+      Saved {saved ?? 'the'} examples to {where}.
+    </p>
   );
 }
 
@@ -144,8 +202,11 @@ function PayloadView({ action }: { action: PendingAction }) {
   if (action.kind === 'create_agent') return <CreateAgentView p={p} />;
   if (action.kind === 'update_agent') return <UpdateAgentView p={p} />;
   if (action.kind === 'write_skill') return <WriteSkillView p={p} />;
+  if (action.kind === 'set_brief') return <SetBriefView p={p} />;
   return null;
 }
+
+const BOXED = new Set(['create_agent', 'update_agent', 'write_skill', 'set_brief']);
 
 export function ActionCard({ action }: { action: PendingAction }) {
   const decide = useDecideAction();
@@ -157,8 +218,13 @@ export function ActionCard({ action }: { action: PendingAction }) {
   const busy = decide.isPending;
   const payload = <PayloadView action={a} />;
   const createdHandle = a.kind === 'create_agent' && a.status === 'applied' ? str(obj(a.result).handle) : null;
+  // Spec 034 FR-008: the example-posts card keeps the owner's verdicts and edits until Apply.
+  const examples = useMemo(() => (a.kind === 'content_examples' ? parsePayload(a.payload) : null), [a.kind, a.payload]);
+  const [choices, setChoices] = useState<ContentExamplesState | null>(() => (examples ? initialState(examples) : null));
 
-  const run = (decision: 'apply' | 'discard') => decide.mutate({ id: a.id, decision }, {
+  const run = (decision: 'apply' | 'discard') => decide.mutate({
+    id: a.id, decision, ...(decision === 'apply' && examples && choices ? { input: choiceInput(examples, choices) } : {}),
+  }, {
     onSuccess: (r) => {
       setLocal(r.action);
       if (r.action.status === 'applied') toast.success(`Applied: ${meta.label.toLowerCase()}`);
@@ -182,7 +248,7 @@ export function ActionCard({ action }: { action: PendingAction }) {
 
       <p className="text-body-sm" style={{ margin: '0 0 10px', color: 'var(--color-ink)', lineHeight: 1.5, overflowWrap: 'anywhere' }}>{a.summary}</p>
 
-      {(a.kind === 'create_agent' || a.kind === 'update_agent' || a.kind === 'write_skill') && (
+      {BOXED.has(a.kind) && (
         <div style={{
           display: 'flex', flexDirection: 'column', gap: 6, padding: 12,
           background: 'var(--color-surface-1)', border: '1px solid var(--color-hairline-soft)', borderRadius: 'var(--radius-lg)',
@@ -190,6 +256,8 @@ export function ActionCard({ action }: { action: PendingAction }) {
           {payload}
         </div>
       )}
+      {examples && choices && <ContentExamplesBody payload={examples} state={choices} onChange={setChoices} pending={pending} />}
+      {a.kind === 'content_examples' && a.status === 'applied' && <ExamplesResult result={a.result} />}
 
       {a.status === 'failed' && a.error && (
         <div className="callout-danger" style={{ marginTop: 10 }}><span className="text-micro" style={{ overflowWrap: 'anywhere' }}>{a.error}</span></div>
@@ -216,7 +284,7 @@ export function ActionCard({ action }: { action: PendingAction }) {
             style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
             Open @{createdHandle} <Icon name="chevron-right" size={14} />
           </Link>
-          <span className="text-micro" style={{ color: 'var(--color-ink-dim)', marginLeft: 8 }}>starts in shadow mode</span>
+          <span className="text-micro" style={{ color: 'var(--color-ink-dim)', marginLeft: 8 }}>Starts in approval mode</span>
         </div>
       )}
     </div>

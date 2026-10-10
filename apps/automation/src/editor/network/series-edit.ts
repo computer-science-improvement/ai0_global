@@ -3,7 +3,7 @@ import type { ToolContext } from '../harness/tool';
 import type { OwnerInbox } from '../agents/owner-inbox';
 import type { NetworkCtx } from './network-context';
 import type { NetworkRepository, PlaybookRow } from './network.repository';
-import { classifyPlaybookChange, Playbook, PlaybookSchema, Series, validatePlaybook } from './playbook';
+import { classifyPlaybookChange, Playbook, PlaybookSchema, playbookWarnings, Series, validatePlaybook } from './playbook';
 import { seriesContent, SeriesSourceCatalog } from './series';
 
 /**
@@ -84,7 +84,7 @@ export interface SubmitDeps {
 }
 
 export type SubmitResult =
-  | { ok: true; id: string; version: number; status: 'active' | 'pending_owner'; changes: string[] }
+  | { ok: true; id: string; version: number; status: 'active' | 'pending_owner'; changes: string[]; warnings?: string[] }
   | { error: string; details?: unknown };
 
 /** The mode a schedule change is judged in: the lower of the orchestrator's and its card's (spec 031). */
@@ -118,6 +118,8 @@ export async function submitPlaybookVersion(d: SubmitDeps, net: NetworkCtx, ctx:
   const lock = d.directiveLock ? await d.directiveLock(net.orchestrator.id, body) : null;
   if (lock) return lock;
   const change = classifyPlaybookChange(active, body, { mode: networkMode(net, card) });
+  // Spec 034 FR-007: more than 4 formats or a format without a reason is a warning, never a refusal.
+  const warnings = playbookWarnings(body);
   // Spec 025 FR-015: a build for a `strategy` directive always goes to the owner, linked to the directive.
   const directiveId = typeof ctx.extras?.directiveId === 'string' ? ctx.extras.directiveId : null;
   const status = change.structural || directiveId ? 'pending_owner' : 'active';
@@ -132,7 +134,7 @@ export async function submitPlaybookVersion(d: SubmitDeps, net: NetworkCtx, ctx:
     title: pending
       ? `📘 @${net.orchestrator.handle}: playbook v${pb.version} awaits your approval`
       : `📘 @${net.orchestrator.handle}: playbook updated to v${pb.version}`,
-    body: `${rationale}\n\nChanges: ${change.reasons.join('; ') || 'minor (weights, hours, briefs, sources)'}${directiveId ? `\nBuilt for the @manager strategy directive ${directiveId}.` : ''}`,
+    body: `${rationale}\n\nChanges: ${change.reasons.join('; ') || 'minor (weights, hours, briefs, sources)'}${directiveId ? `\nBuilt for the @manager strategy directive ${directiveId}.` : ''}${warnings.length ? `\nWarnings: ${warnings.map((w) => w.en).join('; ')}` : ''}`,
     alert: {
       title: pending
         ? `📘 @${net.orchestrator.handle}: плейбук v${pb.version} чекає затвердження`
@@ -141,5 +143,5 @@ export async function submitPlaybookVersion(d: SubmitDeps, net: NetworkCtx, ctx:
     },
     refType: 'playbook', refId: pb.id,
   });
-  return { ok: true, id: pb.id, version: pb.version, status, changes: change.reasons };
+  return { ok: true, id: pb.id, version: pb.version, status, changes: change.reasons, ...(warnings.length ? { warnings: warnings.map((w) => w.uk) } : {}) };
 }

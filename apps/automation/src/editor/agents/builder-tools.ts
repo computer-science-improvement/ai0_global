@@ -2,7 +2,8 @@ import { z } from 'zod';
 import { defineTool, EditorTool, ToolContext } from '../harness/tool';
 import { parseResourceRef, validateHandle } from './agent.types';
 import type { AgentsRepository } from './agents.repository';
-import type { AgentCreator } from './agent-creator';
+import { FittingFormatSchema, type AgentCreator } from './agent-creator';
+import { MAX_FITTING_FORMATS } from '../network/playbook';
 import type { PendingAction, PendingActionsService } from './pending-actions';
 import type { ResourceCatalog } from './resource-catalog';
 import { KPI_GOALS, ResourceProfile, ResourceProfileSchema, ResourceProfilesRepository } from './resource-profile';
@@ -101,7 +102,7 @@ export function buildBuilderTools(d: BuilderToolDeps): EditorTool[] {
         frequency_hint: i.stats.postsPerDay ? `зараз ~${i.stats.postsPerDay} постів/день` : undefined,
         ads_allowed: { allowed: true, categories: [] },
       };
-      const missing = ['audience.who', 'goals (підтвердити пріоритет: ' + KPI_GOALS.join(', ') + ')', 'tone', 'taboo'];
+      const missing = ['audience.who', 'goals (підтвердити пріоритет: ' + KPI_GOALS.join(', ') + ')', 'tone', 'taboo (теми, про які ресурс не пише — не окремі слова)', 'formats (1–4, що пасують темі, з причиною кожного)'];
       return { draft, missing, recent_posts: i.recentPosts.slice(0, 8), stats: i.stats, access: i.access };
     },
   });
@@ -137,6 +138,8 @@ export function buildBuilderTools(d: BuilderToolDeps): EditorTool[] {
     description: [
       'Запропонувати створення агента для ресурсу (resource_ref) або мережі (network_id). Обовʼязковий профіль ресурсу (topic, audience.who, goals).',
       'Агент стартує в режимі апруву: пише справжні пости, але кожен чекає схвалення власника. Повертає картку для підтвердження — створення відбудеться лише після кліку власника.',
+      'Бриф одразу запускає побудову плейбука. formats — 1–4 формати, що пасують темі й аудиторії, кожен з причиною (без них — text і photo); poll/quiz лише для вікторинного чи освітнього ресурсу або на прохання власника.',
+      'profile.taboo — теми, про які ресурс не пише; banned_terms — лише слова, які власник прямо назвав забороненими.',
     ].join(' '),
     kind: 'act', roles: ['builder'],
     input: z.object({
@@ -148,6 +151,10 @@ export function buildBuilderTools(d: BuilderToolDeps): EditorTool[] {
       description:      z.string().max(500).optional(),
       profile:          ResourceProfileSchema,
       brief:            z.string().max(4000).optional(),
+      formats:          z.array(FittingFormatSchema).min(1).max(MAX_FITTING_FORMATS).optional()
+        .describe('1–4 формати, що пасують ресурсу: { format, reason } — чому саме цей формат цій аудиторії'),
+      banned_terms:     z.array(z.string().trim().min(1).max(80)).max(50).optional()
+        .describe('Лише слова, які власник прямо назвав забороненими (lint). Табу-теми — у profile.taboo'),
       schedule:         z.object({ times: z.array(z.string()).max(8) }).optional(),
       daily_budget_usd: z.number().min(0).max(50).optional(),
     }),
@@ -155,8 +162,10 @@ export function buildBuilderTools(d: BuilderToolDeps): EditorTool[] {
       const v = await d.creator.validate(i);
       if ('error' in v) return v;
       const target = i.resource_ref ?? `network:${i.network_id}`;
-      return proposeCard(d, ctx, 'create_agent', i as unknown as Record<string, unknown>,
-        `Create agent ${i.emoji ?? '📣'} ${i.name} (@${v.input.handle}) for ${target} — it starts in approval mode (every post waits for your approval). Topic: ${i.profile.topic}`);
+      const fmts = i.formats?.length ? i.formats.map((f) => f.format).join(', ') : 'text, photo';
+      const r = await proposeCard(d, ctx, 'create_agent', i as unknown as Record<string, unknown>,
+        `Create agent ${i.emoji ?? '📣'} ${i.name} (@${v.input.handle}) for ${target} — it starts in approval mode (every post waits for your approval). Topic: ${i.profile.topic}. Formats: ${fmts}.`);
+      return 'ok' in r ? { ...r, next: `Далі в цій самій відповіді виклич propose_content_examples (handle ${v.input.handle}, resource_ref ${target}): 3 приклади постів і 2–4 застереження.` } : r;
     },
   });
 
@@ -190,7 +199,9 @@ export function buildBuilderTools(d: BuilderToolDeps): EditorTool[] {
     execute: async ({ handle, brief }, ctx) => {
       const a = await d.agents.getByHandle(handle);
       if (!a) return { error: 'unknown_agent', details: handle };
-      return proposeCard(d, ctx, 'set_brief', { handle: a.handle, brief }, `New brief for @${a.handle}: ${brief.slice(0, 300)}${brief.length > 300 ? '…' : ''}`, a.id);
+      const r = await proposeCard(d, ctx, 'set_brief', { handle: a.handle, brief }, `New brief for @${a.handle}: ${brief.slice(0, 300)}${brief.length > 300 ? '…' : ''}`, a.id);
+      // Spec 034 FR-008: a new brief gets new example posts and warnings.
+      return 'ok' in r && a.scopeId ? { ...r, next: `Далі виклич propose_content_examples (handle ${a.handle}, resource_ref ${a.scope === 'network' ? `network:${a.scopeId}` : a.scopeId}) — приклади постів і застереження під новий бриф.` } : r;
     },
   });
 

@@ -381,3 +381,83 @@ FR-015. **Size:** S · Depends on T1–T6
 - **For T7 (plan UI)**: `EditorSlot.critic` comes with every slot row (`rowToSlot`); show the verdict badge / notes from it
   (reuse `components/critic/CriticBlock.tsx` and `lib/critic.ts`); the on-demand dry-run Preview (FR-012) can run the executor
   with the gate in shadow mode to get a verdict with the draft.
+
+## Implementation notes (T5, 2026-10-10)
+- **FR-007 fitting formats.** `PlatformSectionSchema.format_reasons` (format → one line, ≤ 200) is stored in the section and
+  rendered by `renderSection` («Чому ці формати: …»). `playbookWarnings(p)` (`network/playbook.ts`) returns soft checks, never
+  errors: `too_many_formats` (> `MAX_FITTING_FORMATS` = 4 enabled formats in a section) and `format_reason_missing`; each has a
+  Ukrainian line (back to the agent in `submit_playbook`'s result as `warnings`) and an English one (appended to the owner's
+  Inbox item). `playbookBuildPrompt` asks for 1–4 formats that fit, one reason each in `format_reasons`, names the format skills.
+  `format-longread`, `format-carousel`, `format-album-slider`, `format-video`, `format-poll-quiz` now apply to `builder`,
+  `orchestrator`, `idea_reviewer` (listed for `load_skill`; `idea-review` already checks format fit since T8).
+  `editor-orchestrator-workflow` points to `format_reasons` (1–4 per section) and keeps the owner's examples.
+- **Reviewer one-step drop.** `set_format_weights` takes `drop_reasons` (format → evidence, ≥ 15 chars): a weight 0 is allowed
+  only with a reason (owner edits / rejections on approval, critic notes) and removes the format from the card
+  (`EditorChannelsRepository.setFormatWeights(key, weights, { drop })`; the last format is never removed — `last_format`); the
+  reason is also written to the channel memory as `avoid`. Every other change keeps the ±0.2 step and the 0.05 floor
+  (`drop_needs_reason`, `step_too_big`). `editor-reviewer-workflow` says when.
+- **FR-008 examples and warnings — mechanism.** A new pending action kind `content_examples` (`agents/content-examples.ts`),
+  proposed by @ai0's new tool `propose_content_examples` (builder): exactly 3 examples (`format`, `title`, reader `text` in the
+  PostSpec markdown-lite, `why`) and 2–4 warnings (`pattern`, `why`, `bad_example`, `format`). Code turns each example into a
+  real PostSpec (paragraph blocks, rendered as `text`), lints it with the resource's card (`exampleCard`: the Telegram card if
+  any, every format allowed, no required hashtags) and renders it with `renderTelegram`; the card payload carries the
+  `TgMessage[]`, so the chat shows the exact Telegram preview (`TelegramPreview`). A lint error (slop phrase, reader questions
+  over the cap, an owner banned word) or a `slop_humor_off` / `slop_slang_off` warning refuses the call (`examples_rejected`,
+  the model rewrites); other `slop_*` warnings travel to the owner as notes. `create_agent` and `set_brief` results carry a
+  `next` hint to call it; the builder prompt and `agent-onboarding` (step 7) say so.
+- **Apply with the owner's choices.** `POST /api/agents/actions/:id/apply` accepts `{ input }`; `PendingActionsService.apply(id,
+  input)` passes it to the handler as a third argument. `ContentExamplesChoice` (strict): per example `verdict` good/bad, an
+  edited `text`, a `note`; per warning `keep`. A new `KeepPendingError` (HTTP 400) leaves the card pending instead of failing
+  it: a "good" example whose (edited) text has a slop phrase (`example_slop`), nothing kept, an unknown field, or the agent not
+  created yet (`agent_not_created`: apply the Create agent card first). Warnings become `bad` examples with
+  `note = "<pattern>: <why>"`; every example carries the resource ref.
+- **Storage (no migration — the playbook body is JSON).** `PlaybookSchema.examples` = `[{format, text, verdict, note?,
+  resource_ref?}]`, ≤ 12 (`MAX_PLAYBOOK_EXAMPLES`); `validatePlaybook` refuses a `good` example with a slop phrase and an
+  example of a resource outside the network (so agent-written examples — T4's MANAGER — must be clean too). **Not
+  structural** (`classifyPlaybookChange` ignores `examples` and `format_reasons`): the owner decided the examples on the card,
+  and agent examples are slop-checked. `NetworkRepository.setExamples(agentId, examples)` merges (new first, deduped by
+  normalised text, capped at 12): active playbook → a new active version `created_by owner` that keeps (and patches) a pending
+  agent draft; only a pending draft → patched in place; no playbook yet (the usual case right after creation: the first build
+  is still running) → held in a `draft` row with version 0 (status `draft` existed in 052 and was unused; `playbookHistory`
+  hides it). `insertVersion`: an agent version (orchestrator / directive / migration) without examples carries them from the
+  newest active / pending / held row; the holder is deleted by any new version. An owner PUT without an `examples` key keeps
+  the current ones (an older editor); with `examples: []` it clears them.
+- **Few-shot and the critic.** `renderExamples(examples, {resourceRef, format})`: up to 3 good + 2 bad of the resource, the
+  slot's format first, alternating good/bad, each text ≤ 700 chars, block ≤ `EXAMPLES_PROMPT_BUDGET` 2 400 chars (≈ +600–800
+  tokens when present; nothing when the playbook has none). `platformContext` returns `examples` (Telegram slots read their
+  `telegram:<key>` section; the runner now reads the Telegram resource context once and hands it to the critic gate). The
+  block (`examplesPromptSection`) sits right after voice-core in the Telegram executor (`buildSystemPrompt(..., { examples })`,
+  executor role only), the platform executor and the adapt prompt (a duplicate keeps the source text). The critic gets
+  `CriticRequest.examples` as «Приклади постів ресурсу (еталон власника)»: voice / format_fit are judged against the good ones,
+  repeating a bad pattern scores ≤ 2; a profile with taboo topics adds «пост на табу-тему → sense ≤ 2».
+- **FR-009 builder fixes.** `AgentCreator.setOnBrief` is wired in `editor.module.ts` to `AgentsService.onBrief` (the brief hook
+  → `NetworkRunner.runPlaybookBuild`, in the background): `create_agent` with a brief starts the first playbook build with
+  `buildBriefText` (the brief + «Формати, погоджені з власником: …» with the reasons). A brief for a resource whose card
+  already exists is written to it (`EditorChannelsRepository.setBrief`). `create_agent` gains `formats` (1–4 `{format,
+  reason}`; checked against the platform's formats; poll/quiz refused unless `content_kind` quiz/education or the brief asks
+  for polls) — they become the new card's formats (absent = text + photo) — and `banned_terms` (only words the owner listed).
+  `profile.taboo` is no longer copied into `card.bannedTerms`; it stays topics: `renderProfile` / `compactProfile` say
+  «Табу-теми (не писати про них)», the critic reads it. The apply result reports `briefWritten` / `buildStarted`.
+- **Dashboard** (English UI): `ActionCard` for `create_agent` shows agent, resource, topic, audience, goals, brief, tone, taboo
+  topics, banned words, formats with reasons (or the text + photo default), the orchestrator schedule and "Starts in approval
+  mode: every post waits for your approval" (the old "starts in shadow mode" line after Apply is fixed); `set_brief` shows the
+  brief. The `content_examples` card (`ContentExamplesCard.tsx`, `lib/content-examples.ts`): each example as a Telegram
+  preview with Good / Bad toggles, Edit (an edit is previewed client-side with the same markdown-lite), an optional "why bad"
+  note, the warnings with Keep checkboxes; Apply sends the choices, a 400 shows the server's reason and the card stays
+  pending; an applied card says where the examples went. The Playbook tab shows format reasons per section, a "> 4 formats"
+  flag and an "Example posts" list.
+- **Tests.** `agents/content-examples.test.ts` (scripted LLM: create_agent with ≤ 4 reasoned formats and no poll → a
+  `content_examples` card with 3 rendered examples and the warnings streamed as chat events → apply with verdicts / edits /
+  dropped warning stores them; slop / joke / reader-question examples refused; keep-pending cases; set_brief hint; builder
+  prompt; AgentCreator: formats on the card, taboo not banned, brief starts the build, existing card gets the brief, poll rules),
+  `network/playbook-examples.test.ts` (schema, slop check, warnings, not structural, merge, render budget, executor / platform /
+  adapt / critic prompts, the runner wiring, build prompt, reviewer drop), `network/playbook-examples.pg.test.ts` (held → first
+  version, pending patched, active + kept draft, rebuild carries, owner PUT keeps / clears / refuses slop), updated
+  `agent-builder.pg.test.ts` (no taboo in bannedTerms, text + photo, build started, setBrief). Dashboard
+  `lib/content-examples.test.ts`. Browser-checked against a local mock API (127.0.0.1): both cards at 1280 px and 375 px (no
+  horizontal overflow), Good/Bad, edit preview, the 400 on a slop edit, apply.
+- **For T4 (MANAGER).** A `voice_fix` / `format_mix` executor can write examples through the playbook body (validated: a good
+  one must be slop-free; ≤ 12; not structural, so it applies at once) — prefer `NetworkRepository.setExamples`-style merging
+  (new first) over replacing the owner's; give them a `note` naming the evidence. Lowering an unfitting format to 0 on a
+  card is `setFormatWeights(key, {}, { drop: [format] })`; on a playbook section it is a structural change (the format set
+  changes) and goes to the owner. The examples of a resource are `renderExamples(playbook.examples, { resourceRef })`.

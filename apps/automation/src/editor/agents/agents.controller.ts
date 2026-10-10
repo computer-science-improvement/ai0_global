@@ -32,8 +32,8 @@ export class AgentsController {
   }
 
   @Post('agents/actions/:id/apply')
-  apply(@Param('id', ParseUUIDPipe) id: string) {
-    return this.svc.applyAction(id);
+  apply(@Param('id', ParseUUIDPipe) id: string, @Body() body?: { input?: unknown }) {
+    return this.svc.applyAction(id, body?.input ?? null);
   }
 
   @Post('agents/actions/:id/discard')

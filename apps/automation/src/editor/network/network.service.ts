@@ -91,7 +91,10 @@ export class NetworkService {
     const net = await networkContext({ repo: this.d.repo, usable: this.d.usable, time: this.d.time }, agent, card);
     // Spec 023 FR-002: an owner's new or edited series is locked (the agent gets series_locked); quiet hours
     // are not enforced for the owner's own series (owner precedence, like the owner's pins).
-    const locked = lockOwnerSeries(net?.playbook ? normalizePlaybook(net.playbook) : null, p.data.body);
+    const lockedIn = lockOwnerSeries(net?.playbook ? normalizePlaybook(net.playbook) : null, p.data.body);
+    // Spec 034 FR-008: an edit that does not send `examples` (an older editor) keeps the current ones.
+    const sentExamples = Array.isArray((body as { body?: { examples?: unknown } } | null)?.body?.examples);
+    const locked = sentExamples ? lockedIn : { ...lockedIn, examples: net?.playbook ? normalizePlaybook(net.playbook).examples ?? [] : [] };
     const errors = validatePlaybook(locked, net?.resources ?? [], net?.telegramFormats ?? [], { sources: await seriesSourceCatalog(this.d.pool, card) });
     if (errors.length) throw new BadRequestException({ error: 'playbook_invalid', details: errors });
     const pb = await this.d.repo.insertPlaybook({ agentId: agent.id, status: 'active', brief: null, body: locked, rationale: p.data.rationale ?? 'owner edit', createdBy: 'owner' });

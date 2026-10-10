@@ -184,7 +184,7 @@ export function renderProfile(p: ResourceProfile, o: { now?: Date; ref?: string 
     `Мова: ${p.language}`,
     `Цілі (за пріоритетом): ${p.goals.map((g) => KPI_GOAL_UK[g]).join(' → ')}`,
     p.tone ? `Тон: ${p.tone}` : '',
-    p.taboo.length ? `Табу: ${p.taboo.join(', ')}` : '',
+    p.taboo.length ? `Табу-теми (не писати про них): ${p.taboo.join(', ')}` : '',
     p.sources.length ? `Джерела: ${p.sources.join('; ')}` : '',
     p.frequency_hint ? `Частота: ${p.frequency_hint}` : '',
     `Реклама: ${p.ads_allowed.allowed ? `так${p.ads_allowed.categories.length ? ` (${p.ads_allowed.categories.join(', ')})` : ''}` : 'ні'}`,
