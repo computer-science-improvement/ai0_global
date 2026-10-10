@@ -70,7 +70,7 @@ jobs:
           build-args: |
             VITE_AUTH_MODE=${{ vars.DEV_VITE_AUTH_MODE || secrets.DEV_VITE_AUTH_MODE || vars.VITE_AUTH_MODE || secrets.VITE_AUTH_MODE }}
             VITE_TG_BOT_USERNAME=${{ vars.DEV_VITE_TG_BOT_USERNAME || secrets.DEV_VITE_TG_BOT_USERNAME }}
-            VITE_PUBLIC_URL=${{ vars.DEV_VITE_PUBLIC_URL }}
+            VITE_PUBLIC_URL=${{ vars.DEV_VITE_PUBLIC_URL || secrets.DEV_VITE_PUBLIC_URL }}
           tags: |
             ${{ steps.image.outputs.dashboard }}:dev-latest
             ${{ steps.image.outputs.dashboard }}:dev-${{ github.sha }}

@@ -9,7 +9,8 @@ const ENV = (import.meta.env ?? {}) as Record<string, string | undefined>;
 // to point at a different origin (e.g. `https://api.example.com`).
 export const API_BASE = ENV.VITE_API_BASE_URL ?? '';
 export const AUTH_BASE = ENV.VITE_AUTH_BASE_URL ?? '/auth';
-export const TG_BOT_USERNAME = ENV.VITE_TG_BOT_USERNAME ?? '';
+/** The Telegram Login Widget wants the bot name without "@"; a value entered as "@bot" still works. */
+export const TG_BOT_USERNAME = (ENV.VITE_TG_BOT_USERNAME ?? '').trim().replace(/^@/, '');
 
 /** telegram | token | dev — see lib/auth-mode.ts. Baked in at build time. */
 export const AUTH_MODE = resolveAuthMode(ENV);
