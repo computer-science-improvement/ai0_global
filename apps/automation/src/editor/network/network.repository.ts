@@ -1,7 +1,7 @@
 import type { Pool } from 'pg';
 import { ChannelMode, effectiveMode } from '../card';
 import { localDate } from '../roles/time';
-import type { Playbook } from './playbook';
+import { mergeExamples, type Playbook, type PlaybookExample } from './playbook';
 
 /**
  * Network modes (spec 024 FR-002): `independent` — every member is its own
@@ -149,8 +149,9 @@ export class NetworkRepository {
     return rows[0] ? toPlaybook(rows[0]) : null;
   }
 
+  /** Versions newest first; the examples holder (`draft`, version 0) is not a version. */
   async playbookHistory(agentId: string, limit = 30): Promise<PlaybookRow[]> {
-    const { rows } = await this.pool.query(`SELECT * FROM playbooks WHERE agent_id = $1 ORDER BY version DESC LIMIT $2`, [agentId, limit]);
+    const { rows } = await this.pool.query(`SELECT * FROM playbooks WHERE agent_id = $1 AND status <> 'draft' ORDER BY version DESC LIMIT $2`, [agentId, limit]);
     return rows.map(toPlaybook);
   }
 
@@ -185,10 +186,71 @@ export class NetworkRepository {
     });
   }
 
-  private async insertVersion(q: Q, p: NewPlaybookVersion): Promise<PlaybookRow> {
+  /**
+   * Spec 034 FR-008: the owner applied example posts and warnings from the chat card. Merged with the examples
+   * already there (new first, ≤ 12):
+   * - an active playbook → a new active version (created_by owner; a pending agent draft is kept and gets the
+   *   examples too, so approving it does not lose them);
+   * - only a pending draft → the draft's body is updated in place (it is still waiting for the owner);
+   * - no playbook yet (the first build is still running) → kept in the agent's examples holder (status `draft`,
+   *   version 0), which the first version takes over (`insertVersion`).
+   */
+  async setExamples(agentId: string, examples: PlaybookExample[], rationale: string): Promise<{ target: 'active' | 'pending' | 'held'; version: number | null; count: number }> {
+    return this.tx(async (q) => {
+      await q.query(`SELECT pg_advisory_xact_lock(hashtext($1))`, [`playbook:${agentId}`]).catch(() => {});
+      const { rows } = await q.query(
+        `SELECT * FROM playbooks WHERE agent_id = $1 AND status IN ('active','pending_owner','draft') ORDER BY version DESC`, [agentId]);
+      const all = rows.map(toPlaybook);
+      const active = all.find((r) => r.status === 'active');
+      const pending = all.find((r) => r.status === 'pending_owner');
+      const held = all.find((r) => r.status === 'draft');
+      const patchPending = async (): Promise<number> => {
+        if (!pending) return 0;
+        const merged = mergeExamples(examples, pending.body.examples ?? []);
+        await q.query(`UPDATE playbooks SET body = jsonb_set(body, '{examples}', $2::jsonb) WHERE id = $1`, [pending.id, JSON.stringify(merged)]);
+        return merged.length;
+      };
+      if (active) {
+        const body: Playbook = { ...active.body, examples: mergeExamples(examples, active.body.examples ?? []) };
+        await patchPending();
+        const row = await this.insertVersion(q, { agentId, status: 'active', brief: null, body, rationale, createdBy: 'owner' }, { keepPending: true });
+        return { target: 'active' as const, version: row.version, count: body.examples.length };
+      }
+      if (pending) return { target: 'pending' as const, version: pending.version, count: await patchPending() };
+      const merged = mergeExamples(examples, held?.body?.examples ?? []);
+      if (held) {
+        await q.query(`UPDATE playbooks SET body = $2, rationale = $3 WHERE id = $1`, [held.id, JSON.stringify({ examples: merged }), rationale]);
+      } else {
+        await q.query(
+          `INSERT INTO playbooks (agent_id, version, status, brief, body, rationale, created_by) VALUES ($1, 0, 'draft', NULL, $2, $3, 'owner')`,
+          [agentId, JSON.stringify({ examples: merged }), rationale]);
+      }
+      return { target: 'held' as const, version: null, count: merged.length };
+    });
+  }
+
+  /** Examples of the agent's newest playbook row that has any (active, pending or the holder). */
+  private async carriedExamples(q: Q, agentId: string): Promise<PlaybookExample[]> {
+    const { rows } = await q.query(
+      `SELECT body->'examples' AS examples FROM playbooks
+        WHERE agent_id = $1 AND status IN ('active','pending_owner','draft') AND jsonb_typeof(body->'examples') = 'array'
+          AND jsonb_array_length(body->'examples') > 0
+        ORDER BY version DESC LIMIT 1`, [agentId]);
+    return Array.isArray(rows[0]?.examples) ? rows[0].examples : [];
+  }
+
+  private async insertVersion(q: Q, pIn: NewPlaybookVersion, o: { keepPending?: boolean } = {}): Promise<PlaybookRow> {
+    // Spec 034 FR-008: an agent's version without examples keeps the current ones (owner-approved examples are not
+    // lost by a rebuild); the first version takes over the examples holder. An owner edit is taken as written.
+    let p = pIn;
+    if (p.createdBy !== 'owner' && !(p.body.examples ?? []).length) {
+      const carried = await this.carriedExamples(q, p.agentId);
+      if (carried.length) p = { ...p, body: { ...p.body, examples: carried } };
+    }
+    await q.query(`DELETE FROM playbooks WHERE agent_id = $1 AND status = 'draft'`, [p.agentId]);
     const { rows: v } = await q.query(`SELECT COALESCE(max(version), 0) + 1 AS v FROM playbooks WHERE agent_id = $1`, [p.agentId]);
     const supersede = p.status === 'active'
-      ? (p.createdBy === 'owner' ? ['active', 'pending_owner'] : ['active'])
+      ? (p.createdBy === 'owner' && !o.keepPending ? ['active', 'pending_owner'] : ['active'])
       : ['pending_owner'];
     await q.query(`UPDATE playbooks SET status = 'superseded', decided_at = now() WHERE agent_id = $1 AND status = ANY($2::text[])`, [p.agentId, supersede]);
     const { rows } = await q.query(

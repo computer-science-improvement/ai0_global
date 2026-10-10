@@ -14,13 +14,16 @@ import { Modal } from '../Modal';
 import { fmtDate, fmtRelative } from '../../lib/format';
 import {
   useAgentNetwork, useDecidePlaybook, usePlaybook, useRebuildPlaybook, useSetNetworkMode,
-  type AgentNetwork, type Playbook, type PlaybookPlatform, type PlaybookRow, type GroupNetworkMode,
+  type AgentNetwork, type Playbook, type PlaybookExample, type PlaybookPlatform, type PlaybookRow, type GroupNetworkMode,
 } from '../../api/network';
 import {
   NETWORK_MODE_LABEL, NETWORK_MODE_TONE, NetworkError, PLAYBOOK_TONE, ResourceChip, ResourceLabel, WeightBar, errorText, fmtCadence, hourLabel,
 } from './NetworkUi';
 import { diffPlaybooks, type DiffGroup } from './playbookDiff';
 import { PlaybookEditor } from './PlaybookEditor';
+
+/** Spec 034 FR-007: more enabled formats than this in one section is flagged (the server warns too). */
+const MAX_FITTING_FORMATS = 4;
 
 const eyebrow: CSSProperties = { color: 'var(--color-ink-dim)', textTransform: 'uppercase', letterSpacing: '0.04em', fontSize: 10, marginBottom: 6 };
 const btn: CSSProperties = { display: 'inline-flex', alignItems: 'center', gap: 6 };
@@ -316,6 +319,8 @@ function Row({ label, children }: { label: string; children: ReactNode }) {
 
 function PlatformCard({ s, delay }: { s: PlaybookPlatform; delay: number }) {
   const formats = Object.entries(s.formats).sort((a, b) => b[1] - a[1]);
+  const enabled = formats.filter(([, w]) => w > 0).map(([f]) => f);
+  const reasons = enabled.filter((f) => s.format_reasons?.[f]).map((f) => [f, s.format_reasons![f]] as const);
   const hp = s.hashtag_policy ?? { vocab: [], min: 0, max: 0 };
   return (
     <div className="card compose-rise" style={{ padding: '14px 16px', minWidth: 0, display: 'flex', flexDirection: 'column', gap: 12, animationDelay: `${delay}ms` }}>
@@ -328,6 +333,21 @@ function PlatformCard({ s, delay }: { s: PlaybookPlatform; delay: number }) {
         <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
           {formats.length ? formats.map(([f, v]) => <WeightBar key={f} label={f} value={v} />) : <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>none</span>}
         </div>
+        {/* Spec 034 FR-007: why each format fits; more than 4 enabled formats is flagged. */}
+        {enabled.length > MAX_FITTING_FORMATS && (
+          <div className="text-micro" style={{ marginTop: 6, color: 'var(--color-warning)' }}>
+            ⚠ {enabled.length} formats enabled: keep the {MAX_FITTING_FORMATS} or fewer that fit the topic and audience
+          </div>
+        )}
+        {reasons.length > 0 && (
+          <ul style={{ margin: '8px 0 0', padding: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 3 }}>
+            {reasons.map(([f, r]) => (
+              <li key={f} className="text-micro" style={{ color: 'var(--color-ink-muted)', overflowWrap: 'anywhere' }}>
+                <span style={{ color: 'var(--color-ink)', fontWeight: 500 }}>{f}</span>: {r}
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
         <Row label="Per day"><span className="tabular-nums">{s.per_day.min === s.per_day.max ? s.per_day.min : `${s.per_day.min}–${s.per_day.max}`} posts</span></Row>
@@ -413,6 +433,34 @@ export function PlaybookView({ body }: { body: Playbook }) {
           </ol>
         </div>
       )}
+
+      {(body.examples?.length ?? 0) > 0 && <ExamplesList examples={body.examples!} />}
+    </div>
+  );
+}
+
+/** Spec 034 FR-008: the owner-approved example posts (the writer's few-shot) and bad-post warnings (the critic's reference). */
+function ExamplesList({ examples }: { examples: PlaybookExample[] }) {
+  const sorted = [...examples].sort((a, b) => Number(a.verdict === 'bad') - Number(b.verdict === 'bad'));
+  return (
+    <div>
+      <div className="text-micro" style={eyebrow}>Example posts · {examples.filter((e) => e.verdict === 'good').length} good, {examples.filter((e) => e.verdict === 'bad').length} to avoid</div>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 290px), 1fr))', gap: 8 }}>
+        {sorted.map((e, i) => (
+          <div key={i} className="card" style={{ padding: '10px 14px', display: 'flex', flexDirection: 'column', gap: 6, minWidth: 0 }}>
+            <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' }}>
+              <Badge tone={e.verdict === 'good' ? 'success' : 'danger'}>{e.verdict === 'good' ? 'good' : 'avoid'}</Badge>
+              <span className="chip">{e.format}</span>
+              {e.resource_ref && <ResourceChip refId={e.resource_ref} />}
+            </div>
+            <div className="text-body-sm" style={{
+              color: 'var(--color-ink)', whiteSpace: 'pre-wrap', overflowWrap: 'anywhere',
+              display: '-webkit-box', WebkitLineClamp: 6, WebkitBoxOrient: 'vertical', overflow: 'hidden',
+            }} title={e.text}>{e.text}</div>
+            {e.note && <div className="text-micro" style={{ color: 'var(--color-ink-muted)', overflowWrap: 'anywhere' }}>{e.note}</div>}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

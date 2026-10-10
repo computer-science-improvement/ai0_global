@@ -60,8 +60,19 @@ export class PendingActionsRepository {
   }
 }
 
-/** A mutation the owner confirms with a card click. Throwing marks the action failed with the message. */
-export type ActionHandler = (payload: Record<string, unknown>, action: PendingAction) => Promise<unknown>;
+/**
+ * A mutation the owner confirms with a card click. Throwing marks the action failed with the message — except a
+ * `KeepPendingError`, which leaves the card pending (the owner fixes his choices and applies again). `input` is what
+ * the owner chose on the card (spec 034: verdicts and edits of example posts); null for a plain Apply.
+ */
+export type ActionHandler = (payload: Record<string, unknown>, action: PendingAction, input: unknown) => Promise<unknown>;
+
+/** The owner's choices on the card are not acceptable yet (HTTP 400); the card stays pending. */
+export class KeepPendingError extends Error {
+  readonly status = 400;
+  readonly keepPending = true;
+  constructor(readonly code: string, message: string) { super(message); }
+}
 
 /**
  * Confirmation cards (spec 018 FR-005): tools only propose; the owner's
@@ -89,18 +100,18 @@ export class PendingActionsService {
 
   private readonly applying = new Set<string>();
 
-  async apply(id: string): Promise<PendingAction> {
+  async apply(id: string, input: unknown = null): Promise<PendingAction> {
     // Single instance (constitution): an in-process claim makes a double click or a retried POST run the handler once.
     if (this.applying.has(id)) throw Object.assign(new Error('action_in_progress'), { status: 409 });
     this.applying.add(id);
     try {
-      return await this.applyOnce(id);
+      return await this.applyOnce(id, input);
     } finally {
       this.applying.delete(id);
     }
   }
 
-  private async applyOnce(id: string): Promise<PendingAction> {
+  private async applyOnce(id: string, input: unknown): Promise<PendingAction> {
     const a = await this.repo.get(id);
     if (!a) throw Object.assign(new Error('action_not_found'), { status: 404 });
     if (a.status === 'applied') return a; // idempotent
@@ -111,9 +122,10 @@ export class PendingActionsService {
     const h = this.handlers.get(a.kind);
     if (!h) throw Object.assign(new Error(`no handler for ${a.kind}`), { status: 500 });
     try {
-      const result = await h(a.payload, a);
+      const result = await h(a.payload, a, input);
       return (await this.repo.decide(id, 'applied', result ?? { ok: true })) ?? a;
     } catch (err: any) {
+      if (err instanceof KeepPendingError) throw err;
       const msg = typeof err?.response === 'object' && err.response
         ? JSON.stringify(err.response)
         : String(err?.message ?? err);

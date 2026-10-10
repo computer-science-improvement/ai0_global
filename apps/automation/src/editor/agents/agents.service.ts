@@ -362,13 +362,14 @@ export class AgentsService {
 
   // ── confirmation cards (spec 018 FR-005) ──────────────────────────────────
 
-  async applyAction(id: string) {
+  async applyAction(id: string, input: unknown = null) {
     if (!this.d.actions) throw new NotFoundException({ error: 'actions_unavailable' });
     try {
-      return { action: await this.d.actions.apply(id) };
+      return { action: await this.d.actions.apply(id, input) };
     } catch (err: any) {
       if (err?.status === 404) throw new NotFoundException({ error: 'action_not_found' });
       if (err?.status === 409) throw new ConflictException({ error: err.message });
+      if (err?.keepPending) throw new BadRequestException({ error: err.code ?? 'invalid_choice', details: err.message });
       throw err;
     }
   }

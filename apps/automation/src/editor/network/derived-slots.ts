@@ -7,6 +7,7 @@ import { DerivedTreatment, derivedFormatProblem, duplicateSpec, SourcePost, sour
 import type { EditorSlot } from '../repo/editor-plans.repository';
 import type { VoicePrefs } from '../post/slop-lint';
 import { voiceCoreSection } from '../roles/voice';
+import { examplesPromptSection } from './playbook';
 
 /**
  * Spec 024 FR-007: executing a derived (duplicate / adapt) slot. The source
@@ -171,6 +172,8 @@ export function derivedPrompts(o: {
   skill?: string | null; ownerPrefs?: string[];
   /** Spec 034 FR-001/FR-002: the target's humour/slang (voice-core is always in the prompt) and the attached voice skills (adapt). */
   voice?: Pick<VoicePrefs, 'humor' | 'slang'> | null; voiceSkills?: string[];
+  /** Spec 034 FR-008: the target's example posts (renderExamples); used by an adapt (a duplicate keeps the source text). */
+  examples?: string | null;
 }): { system: string; user: string } {
   const { ready, slot } = o;
   const draft = ready.treatment === 'duplicate'
@@ -187,6 +190,7 @@ export function derivedPrompts(o: {
       : 'Порядок: lint_platform_post → publish_platform_post (PlatformPostSpec). Якщо дубль тут недоречний — skip_slot з причиною.',
     'Якщо публікація повернула lint_failed — виправ саме ці коди один раз; друга помилка завершить слот як failed.',
     ...voiceCoreSection(o.voice ?? null),
+    ...(ready.treatment === 'adapt' ? examplesPromptSection(o.examples) : []),
     '',
     '## Жорсткі ліміти платформи',
     tg ? '- Telegram: розмітка, кнопки й альбоми — за PostSpec; lint_post покаже порушення.' : capabilitiesSummary([o.targetPlatform]),

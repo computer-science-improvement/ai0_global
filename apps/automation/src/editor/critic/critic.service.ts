@@ -15,7 +15,7 @@ export const CRITIC_ATTEMPTS = 2;
 const CRITIC_MAX_STEPS = 3;
 export const CRITIC_SKILL = 'editor-critic-workflow';
 /** Prompt caps: the critic sees the post in full, the context clipped. */
-const CAP = { text: 6_000, spec: 3_000, source: 3_000, profile: 1_500, playbook: 2_000, prefs: 800 } as const;
+const CAP = { text: 6_000, spec: 3_000, source: 3_000, profile: 1_500, playbook: 2_000, prefs: 800, examples: 2_600 } as const;
 
 /** What the critic reviews and the context it needs (spec 034 FR-004). */
 export interface CriticRequest {
@@ -40,6 +40,8 @@ export interface CriticRequest {
   profile?:     string | null;
   formatPrefs?: string | null;
   playbook?:    string | null;
+  /** Spec 034 FR-008: the resource's example posts and warnings from the playbook (renderExamples), the reference. */
+  examples?:    string | null;
   source?:      { url: string | null; excerpt: string | null } | null;
   /** Slop lint warnings (spec 034 T1): only the `slop_*` ones. */
   slopWarnings: Array<{ code: string; message: string }>;
@@ -95,6 +97,14 @@ export function criticUserPrompt(r: CriticRequest): string {
   if (r.profile) s.push('', '### Профіль ресурсу', clip(r.profile, CAP.profile));
   if (r.formatPrefs) s.push('', '### Форматування ресурсу (format_prefs)', clip(r.formatPrefs, CAP.prefs));
   if (r.playbook) s.push('', '### Плейбук: правила й приклади для цього ресурсу', clip(r.playbook, CAP.playbook));
+  // Spec 034 FR-008: the owner-approved examples are the reference for voice and format_fit; a post that repeats a
+  // "bad" pattern scores low on the matching criterion.
+  if (r.examples) {
+    s.push('', '### Приклади постів ресурсу (еталон власника)',
+      'ДОБРЕ — так цей ресурс пише (оцінюй voice і format_fit відносно них); ПОГАНО — патерн, якого пост не має повторювати (повтор → відповідний бал ≤ 2).',
+      clip(r.examples, CAP.examples));
+  }
+  if (r.profile && /Табу-теми/.test(r.profile)) s.push('', 'Табу-теми з профілю — це теми, про які ресурс не пише: пост на табу-тему → sense ≤ 2.');
   s.push('', '## Слот');
   s.push(`Формат: ${r.format}.${r.topic ? ` Тема: ${r.topic}.` : ''}${r.angle ? ` Кут: ${r.angle}.` : ''}`);
   s.push('', '## Пост (що побачить читач)', clip(r.text, CAP.text) || '(порожньо)');

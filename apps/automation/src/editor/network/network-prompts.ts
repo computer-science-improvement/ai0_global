@@ -111,7 +111,10 @@ export function playbookBuildPrompt(o: { net: NetworkCtx; brief: string | null; 
   return [
     `Сьогодні ${localDate(o.now, o.tz)}. ${o.net.playbook ? `Перебудуй плейбук (зараз v${o.net.playbookVersion}).` : 'Склади перший плейбук.'}`,
     o.brief?.trim() ? `Бриф власника:\n«${o.brief.trim()}»` : 'Брифу немає — запропонуй плейбук зі статистики й профілю, поясни в rationale, на яких даних він стоїть.',
-    'Секція на КОЖЕН ресурс зі списку: роль (core для Telegram, discovery / funnel_to:<ref> для інших), формати лише з доступних, частота, найкращі години, тон, хештеги.',
+    'Секція на КОЖЕН ресурс зі списку: роль (core для Telegram, discovery / funnel_to:<ref> для інших), формати, частота, найкращі години, тон, хештеги.',
+    // Spec 034 FR-007: a fitting subset, never "every format the platform has".
+    'Формати — НЕ всі доступні, а 1–4, що пасують темі й аудиторії ресурсу (як вирішувати — скіли format-longread, format-carousel, format-album-slider, format-video, format-poll-quiz: «коли варто»). На кожен формат з вагою > 0 — один рядок у format_reasons, чому він пасує саме цьому ресурсу; формат без причини не вмикай. Новини — text і photo; лонгрід і карусель — лише коли тема справді потребує розбору чи кроків, не для новин. Більше 4 форматів у секції код позначить як попередження власнику.',
+    'Приклади постів (examples) погоджує власник у чаті з @ai0 — не вигадуй їх і не прибирай наявні; якщо вони є, твої ваги, тон і правила мають їм відповідати.',
     // Spec 034 FR-005: no poll/quiz and no CTA by default.
     'Заклик (cta) — необовʼязковий і за замовчуванням відсутній: став його, лише якщо власник просив. Не закінчуй пости питаннями до аудиторії за звичкою.',
     'Опитування й вікторини (poll, quiz) — вага 0, якщо власник прямо не просив їх у брифі і ресурс не освітній чи вікторинний (content_kind education / quiz в audience_caps з get_resource_format). Навіть тоді код пропустить не більше polls_per_week на ресурс за 7 днів (за замовчуванням 1).',
@@ -153,7 +156,7 @@ export function compactProfile(p: Pick<ResourceProfile, 'topic' | 'audience' | '
   const aud = [p.audience?.who, p.audience?.age, p.audience?.region].filter(Boolean).join(', ');
   return [
     `тема: ${p.topic}`, aud ? `аудиторія: ${aud}` : '', `мова: ${p.language}`, p.goals?.length ? `цілі: ${p.goals.join(' > ')}` : '',
-    p.taboo?.length ? `табу: ${p.taboo.join(', ')}` : '', p.tone ? `тон: ${p.tone}` : '',
+    p.taboo?.length ? `табу-теми: ${p.taboo.join(', ')}` : '', p.tone ? `тон: ${p.tone}` : '',
   ].filter(Boolean).join('; ');
 }
 
