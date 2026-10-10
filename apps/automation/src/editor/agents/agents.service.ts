@@ -315,6 +315,8 @@ export class AgentsService {
       resources.push({
         ref: r.ref, platform: r.platform, title: r.title, formatPrefs: f.prefs, locks: f.locks, updatedAt: f.updatedAt,
         changesToday: await this.d.profiles.formatChangesToday(r.ref, now),
+        // Spec 034 FR-005: the effective poll / reader-question caps (defaults and the news topic included).
+        audience: await this.d.profiles.capsOf(r.ref),
       });
     }
     const agents = new Map((await this.d.agents.list()).map((a) => [a.id, a.handle]));

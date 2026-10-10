@@ -111,7 +111,10 @@ export function playbookBuildPrompt(o: { net: NetworkCtx; brief: string | null; 
   return [
     `Сьогодні ${localDate(o.now, o.tz)}. ${o.net.playbook ? `Перебудуй плейбук (зараз v${o.net.playbookVersion}).` : 'Склади перший плейбук.'}`,
     o.brief?.trim() ? `Бриф власника:\n«${o.brief.trim()}»` : 'Брифу немає — запропонуй плейбук зі статистики й профілю, поясни в rationale, на яких даних він стоїть.',
-    'Секція на КОЖЕН ресурс зі списку: роль (core для Telegram, discovery / funnel_to:<ref> для інших), формати лише з доступних, частота, найкращі години, тон, хештеги, заклик.',
+    'Секція на КОЖЕН ресурс зі списку: роль (core для Telegram, discovery / funnel_to:<ref> для інших), формати лише з доступних, частота, найкращі години, тон, хештеги.',
+    // Spec 034 FR-005: no poll/quiz and no CTA by default.
+    'Заклик (cta) — необовʼязковий і за замовчуванням відсутній: став його, лише якщо власник просив. Не закінчуй пости питаннями до аудиторії за звичкою.',
+    'Опитування й вікторини (poll, quiz) — вага 0, якщо власник прямо не просив їх у брифі і ресурс не освітній чи вікторинний (content_kind education / quiz в audience_caps з get_resource_format). Навіть тоді код пропустить не більше polls_per_week на ресурс за 7 днів (за замовчуванням 1).',
     'Серії — лише ті, що просив власник або явно випливають з даних. Правила з брифу перенеси в rules дослівно-коротко.',
     'Спершу подивись статистику (get_network_posts, get_platform_stats, get_format_performance). Заверши submit_playbook.',
   ].join('\n');

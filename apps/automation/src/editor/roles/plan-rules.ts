@@ -4,6 +4,7 @@ import { SUPPORTED_FORMATS } from '../post/post-spec';
 import { isQuietHour, zonedToUtc } from './time';
 import { planScheduleErrors, PlanScheduleCtx, SkippedSeriesInput } from '../schedule/plan-schedule-rules';
 import { experimentQuotaErrors, type ExperimentQuota } from '../manager/experiment-quota';
+import { pollCapErrors, type PollCapCtx } from './poll-cap';
 
 export const PlanSlotInput = z.object({
   time:          z.string().regex(/^([01]\d|2[0-3]):[0-5]\d$/).describe('Локальний час каналу HH:MM'),
@@ -67,6 +68,8 @@ export function validatePlan(
   schedule?: PlanScheduleCtx,
   /** Spec 025 FR-014: open experiment quotas on this channel (the anchor). */
   experiments: ExperimentQuota[] = [],
+  /** Spec 034 FR-005: the channel's poll cap and the polls already in the 7-day window. */
+  pollCap?: PollCapCtx,
 ): PlanVerdict {
   const errors: string[] = [];
   const n = plan.slots.length;
@@ -116,6 +119,7 @@ export function validatePlan(
     slots.push({ scheduledAt: at, format: s.format, topic: s.topic, angle: s.angle ?? null, sourceHints: hints, isExperiment: s.is_experiment || !!s.directive_id, ...(s.idea_id ? { ideaId: s.idea_id } : {}) });
   });
   if (schedule) errors.push(...planScheduleErrors(plan, schedule, schedule.defaultRef));
+  if (pollCap) errors.push(...pollCapErrors(plan.slots.map((s) => ({ format: s.format, series: s.series ?? null, sourceHints: s.source_hints })), pollCap, schedule?.series));
 
   return errors.length ? { ok: false, errors } : { ok: true, slots };
 }

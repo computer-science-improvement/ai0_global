@@ -19,7 +19,10 @@ import {
   errorBody, FORMAT_PREF_FIELDS, usePutResourceFormatting, useResourceFormatting,
   type FormatPrefField, type FormatResource, type FormatVersion,
 } from '../../api/agents';
-import { FORMAT_LABEL, formatValue, toForm, toPrefs, voiceSummary, type FormatForm as Form } from '../../lib/format-prefs';
+import { audienceSummary, CONTENT_KIND_LABEL, FORMAT_LABEL, formatValue, toForm, toPrefs, voiceSummary, type FormatForm as Form } from '../../lib/format-prefs';
+
+/** Spec 034 FR-005: the audience caps are shown in one chip of their own (unset = the defaults). */
+const AUDIENCE_FIELDS: readonly FormatPrefField[] = ['content_kind', 'polls_per_week', 'questions_to_readers_per_day'];
 
 const input: CSSProperties = { width: '100%', boxSizing: 'border-box' };
 const grid: CSSProperties = { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 180px), 1fr))', columnGap: 14 };
@@ -45,8 +48,9 @@ export function FormattingSection({ handle }: { handle: string }) {
           {d.resources.map((r) => {
             const l = label(r.ref);
             // Humour and slang are always shown in one chip (unset = off, spec 034).
-            const set = FORMAT_PREF_FIELDS.filter((k) => k !== 'humor' && k !== 'slang' && r.formatPrefs[k] !== undefined);
+            const set = FORMAT_PREF_FIELDS.filter((k) => k !== 'humor' && k !== 'slang' && !AUDIENCE_FIELDS.includes(k) && r.formatPrefs[k] !== undefined);
             const voiceLocked = r.locks.includes('humor') || r.locks.includes('slang');
+            const audienceLocked = AUDIENCE_FIELDS.some((k) => r.locks.includes(k));
             return (
               <div key={r.ref} className="card row-lift" style={{ padding: '10px 12px', display: 'flex', gap: 12, alignItems: 'flex-start', flexWrap: 'wrap' }}>
                 <div style={{ flex: '1 1 260px', minWidth: 0 }}>
@@ -63,6 +67,11 @@ export function FormattingSection({ handle }: { handle: string }) {
                       title="Humour and slang are off unless you allow them; agents cannot turn them on">
                       {voiceLocked && <Icon name="lock" size={11} />}
                       <span style={{ color: 'var(--color-ink-dim)' }}>Voice:</span> {voiceSummary(r.formatPrefs)}
+                    </span>
+                    <span className="chip" style={{ gap: 4, maxWidth: '100%', overflowWrap: 'anywhere' }}
+                      title="Polls and questions to readers are capped; plans and posts over the cap are refused. Agents can only lower the caps">
+                      {audienceLocked && <Icon name="lock" size={11} />}
+                      <span style={{ color: 'var(--color-ink-dim)' }}>Audience asks:</span> {audienceSummary(r.formatPrefs, r.audience)}
                     </span>
                   </div>
                   {set.length ? (
@@ -225,6 +234,30 @@ function FormatModal({ handle, resource, title, onClose }: { handle: string; res
             <select className="input-field" style={input} value={f.slang} onChange={(e) => set('slang', e.target.value as Form['slang'])}>
               <option value="">Off: plain language</option><option value="yes">Allowed</option>
             </select>
+          </Field>
+        </Row>
+      </div>
+      <Row field="content_kind" locked={is('content_kind')} onLock={lock('content_kind')}>
+        <Field label="Resource kind" hint="news: no reader questions · quiz: no poll limit">
+          <select className="input-field" style={input} value={f.contentKind} onChange={(e) => set('contentKind', e.target.value as Form['contentKind'])}>
+            <option value="">{resource.audience?.kindInferred ? `From the topic: ${CONTENT_KIND_LABEL[resource.audience.kind].toLowerCase()}` : 'From the topic'}</option>
+            <option value="general">General</option><option value="news">News</option>
+            <option value="education">Education</option><option value="quiz">Quiz</option>
+          </select>
+        </Field>
+      </Row>
+      <div style={grid}>
+        <Row field="polls_per_week" locked={is('polls_per_week')} onLock={lock('polls_per_week')}>
+          <Field label="Polls a week" hint="polls + quizzes, any 7 days">
+            <input className="input-field" style={input} type="number" min={0} max={70} value={f.pollsPerWeek}
+              placeholder={f.contentKind === 'quiz' ? 'no limit' : '1 (default)'} onChange={(e) => set('pollsPerWeek', e.target.value)} />
+          </Field>
+        </Row>
+        <Row field="questions_to_readers_per_day" locked={is('questions_to_readers_per_day')} onLock={lock('questions_to_readers_per_day')}>
+          <Field label="Reader questions" hint="per post">
+            <input className="input-field" style={input} type="number" min={0} max={5} value={f.questionsPerPost}
+              placeholder={(f.contentKind || resource.audience?.kind) === 'news' ? '0 (default for news)' : '1 (default)'}
+              onChange={(e) => set('questionsPerPost', e.target.value)} />
           </Field>
         </Row>
       </div>

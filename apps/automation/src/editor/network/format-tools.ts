@@ -14,7 +14,7 @@ import type { NetworkCtx } from './network-context';
  */
 
 export interface FormatToolDeps {
-  profiles: Pick<ResourceProfilesRepository, 'formatOf' | 'patchFormat' | 'formatChangesToday' | 'history'>;
+  profiles: Pick<ResourceProfilesRepository, 'formatOf' | 'patchFormat' | 'formatChangesToday' | 'history'> & Partial<Pick<ResourceProfilesRepository, 'capsOf'>>;
   now?: () => Date;
 }
 
@@ -27,6 +27,8 @@ export const FormatPatchInput = z.object({
   links: nullable(shape.links.unwrap()), line_breaks: nullable(shape.line_breaks.unwrap()), signature: nullable(shape.signature.unwrap()),
   preferred_formats: nullable(shape.preferred_formats.unwrap()), media: nullable(shape.media.unwrap()), notes: nullable(shape.notes.unwrap()),
   rich: nullable(shape.rich.unwrap()), humor: nullable(shape.humor.unwrap()), slang: nullable(shape.slang.unwrap()),
+  content_kind: nullable(shape.content_kind.unwrap()), polls_per_week: nullable(shape.polls_per_week.unwrap()),
+  questions_to_readers_per_day: nullable(shape.questions_to_readers_per_day.unwrap()),
 }).strict().refine((p) => Object.keys(p).length > 0, { message: 'at least one field' });
 
 function refsOf(ctx: ToolContext): string[] | null {
@@ -49,6 +51,8 @@ export function buildFormatTools(d: FormatToolDeps): EditorTool[] {
       const history = await d.profiles.history([resource_ref], 5);
       return {
         resource_ref, format_prefs: f.prefs, locked_by_owner: f.locks, rendered: renderFormatPrefs(f.prefs, f.locks),
+        // Spec 034 FR-005: the effective caps (defaults included) the plan check and the lint enforce.
+        ...(d.profiles.capsOf ? { audience_caps: await d.profiles.capsOf(resource_ref) } : {}),
         changes_today: await d.profiles.formatChangesToday(resource_ref, now()), changes_per_day: FORMAT_CHANGES_PER_DAY,
         recent: history.filter((h) => h.kind === 'format').map((h) => ({ version: h.version, by: h.changedBy, at: h.createdAt, reason: h.reason, diff: h.diff })),
       };
@@ -61,6 +65,7 @@ export function buildFormatTools(d: FormatToolDeps): EditorTool[] {
       `Змінити форматування ресурсу (format_prefs) — частково: поля ${FORMAT_PREF_FIELDS.join(', ')}; null прибирає поле (тоді на твій розсуд).`,
       'Змінюй на підставі KPI або правок власника, не туди-сюди; reason — який сигнал. Поля, закріплені власником, змінити не можна (locked_by_owner).',
       'humor і slang вмикає лише власник (owner_only): ти можеш їх лише вимкнути (humor: none, slang: false).',
+      'polls_per_week і questions_to_readers_per_day ти можеш лише знизити (до 1 або менше); content_kind задає власник.',
       `Не більше ${FORMAT_CHANGES_PER_DAY} змін на ресурс за день. Ліміти платформи (довжина підпису, максимум хештегів) все одно перевіряє код.`,
     ].join(' '),
     kind: 'act', roles: ['orchestrator', 'planner'],

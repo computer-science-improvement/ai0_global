@@ -1,6 +1,7 @@
 import type { Pool } from 'pg';
 import type { ChannelMode, EditorCard } from '../card';
 import { bindingsStillEnabled, enabledBindingExtIds, liveRefsOf } from '../migration/binding-guard';
+import { audienceCapsOfProfile } from '../post/audience-asks';
 
 export function rowToCard(r: any): EditorCard & { createdAt: Date } {
   return {
@@ -38,8 +39,16 @@ export function rowToCard(r: any): EditorCard & { createdAt: Date } {
     ...(r.humor_pref === 'none' || r.humor_pref === 'light' ? { humor: r.humor_pref } : {}),
     ...(r.slang_pref === 'true' || r.slang_pref === true ? { slang: true } : r.slang_pref === 'false' || r.slang_pref === false ? { slang: false } : {}),
     ...(r.emoji_pref === 'none' || r.emoji_pref === 'light' || r.emoji_pref === 'rich' ? { emojiPref: r.emoji_pref } : {}),
+    ...capsOfRow(r),
     createdAt:      r.created_at,
   };
+}
+
+/** Spec 034 FR-005: reader-question and poll caps of the channel's resource (defaults without a profile). */
+function capsOfRow(r: any): Pick<EditorCard, 'readerQuestionsMax' | 'pollsPerWeek'> {
+  if (!('format_prefs_json' in r) && !('profile_topic' in r)) return {}; // a row read without the profile join
+  const caps = audienceCapsOfProfile({ format_prefs: r.format_prefs_json ?? {}, topic: r.profile_topic ?? null });
+  return { readerQuestionsMax: caps.questionsPerDay, pollsPerWeek: caps.pollsPerWeek };
 }
 
 /**
@@ -72,6 +81,8 @@ const CARD_SELECT = `
          rp.profile->'format_prefs'->>'humor' AS humor_pref,
          rp.profile->'format_prefs'->>'slang' AS slang_pref,
          rp.profile->'format_prefs'->>'emoji' AS emoji_pref,
+         rp.profile->'format_prefs' AS format_prefs_json,
+         rp.profile->>'topic' AS profile_topic,
          CASE WHEN s.value ~ '^\\d{4}-\\d{2}-\\d{2}T' THEN s.value::timestamptz > now() ELSE false END AS rich_unsupported
     FROM editor_channels c
     LEFT JOIN resource_profiles rp ON rp.resource_ref = 'telegram:' || c.channel_key

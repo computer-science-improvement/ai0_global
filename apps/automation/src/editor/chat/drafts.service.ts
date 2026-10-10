@@ -12,7 +12,7 @@ import type { EditorChannelsRepository } from '../repo/editor-channels.repositor
 import type { EditorPlansRepository, EditorSlot } from '../repo/editor-plans.repository';
 import type { DraftStatus, EditorChatRepository, EditorDraft } from '../repo/editor-chat.repository';
 import { localDate, localTimeLabel } from '../roles/time';
-import { CHAT_TIMEZONE, makeDefaultCard } from './default-card';
+import { CHAT_TIMEZONE, makeChatCard } from './default-card';
 
 export const SCHEDULE_MIN_LEAD_MS = 2 * 60_000;
 export const SCHEDULE_MAX_AHEAD_MS = 60 * 86_400_000;
@@ -68,7 +68,7 @@ export class DraftsService {
     const card = await this.d.channels.get(channelKey);
     if (card) return { card, hasCard: true };
     const mine = (await this.d.repo.myChannels()).find((c) => c.channelKey === channelKey);
-    return mine ? { card: makeDefaultCard(channelKey, mine.title), hasCard: false } : null;
+    return mine ? { card: makeChatCard(channelKey, mine.title), hasCard: false } : null;
   }
 
   /** A draft plus its Telegram messages for a Telegram-like preview card (dashboard). */
@@ -261,7 +261,7 @@ export class DraftsService {
       const spec = PostSpecSchema.safeParse(draft?.spec ?? slot.postSpec);
       if (!spec.success) return this.failScheduled(slot, draft, 'post_spec is not a valid PostSpec');
       const resolved = await this.resolveCard(slot.channelKey)
-        ?? { card: makeDefaultCard(slot.channelKey, null), hasCard: false };
+        ?? { card: makeChatCard(slot.channelKey, null), hasCard: false };
       const g = await this.guards(slot.channelKey, spec.data, resolved.card, now);
       if (isError(g)) return this.failScheduled(slot, draft, `${g.error}${g.details ? `: ${typeof g.details === 'string' ? g.details : JSON.stringify(g.details)}` : ''}`);
 
@@ -324,7 +324,7 @@ export function renderDraft(d: EditorDraft, card: EditorCard | null): RenderedDr
   const parsed = PostSpecSchema.safeParse(d.spec);
   if (!parsed.success) return { ...d, render: null };
   try {
-    const r = renderTelegram(parsed.data, card ?? makeDefaultCard(d.channelKey, null));
+    const r = renderTelegram(parsed.data, card ?? makeChatCard(d.channelKey, null));
     return { ...d, render: { messages: r.messages, channelTitle: card?.title ?? null } };
   } catch {
     return { ...d, render: null };

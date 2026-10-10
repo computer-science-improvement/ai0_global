@@ -2,6 +2,9 @@ import type { Pool } from 'pg';
 import { z } from 'zod';
 import { localTimeLabel } from '../roles/time';
 import { DEFAULT_TZ, isValidTimeZone } from '../time/resource-time';
+import {
+  audienceCaps, audienceCapsOfProfile, CONTENT_KINDS, DEFAULT_POLLS_PER_WEEK, DEFAULT_READER_QUESTIONS, type AudienceCaps,
+} from '../post/audience-asks';
 
 export const KPI_GOALS = ['growth', 'engagement', 'transitions', 'revenue'] as const;
 export type KpiGoal = typeof KPI_GOALS[number];
@@ -18,7 +21,7 @@ export const KPI_GOAL_UK: Record<KpiGoal, string> = {
  */
 export const FORMAT_PREF_FIELDS = [
   'tone', 'length', 'emoji', 'hashtags', 'mentions', 'cta', 'links', 'line_breaks', 'signature', 'preferred_formats', 'media', 'notes',
-  'rich', 'humor', 'slang',
+  'rich', 'humor', 'slang', 'content_kind', 'polls_per_week', 'questions_to_readers_per_day',
 ] as const;
 
 /**
@@ -29,6 +32,18 @@ export const FORMAT_PREF_FIELDS = [
 export const OWNER_ONLY_ON: Partial<Record<FormatPrefField, (v: unknown) => boolean>> = {
   humor: (v) => v === 'light',
   slang: (v) => v === true,
+  // Spec 034 FR-005: an agent may lower the audience caps, never raise them above the defaults or clear them;
+  // what the resource is (content_kind) moves the defaults, so only the owner or the builder sets it.
+  polls_per_week: (v) => v === null || (typeof v === 'number' && v > DEFAULT_POLLS_PER_WEEK),
+  questions_to_readers_per_day: (v) => v === null || (typeof v === 'number' && v > DEFAULT_READER_QUESTIONS),
+  content_kind: () => true,
+};
+/** Why an agent's change of an owner-only field is refused (Ukrainian, for the model). */
+export const OWNER_ONLY_REASON: Partial<Record<FormatPrefField, string>> = {
+  humor: 'гумор вмикає лише власник', slang: 'сленг вмикає лише власник',
+  polls_per_week: `ліміт опитувань агент може лише знизити (до ${DEFAULT_POLLS_PER_WEEK} на тиждень або менше)`,
+  questions_to_readers_per_day: `ліміт питань до читачів агент може лише знизити (до ${DEFAULT_READER_QUESTIONS} або менше)`,
+  content_kind: 'тип ресурсу (content_kind) задає власник',
 };
 export type FormatPrefField = typeof FORMAT_PREF_FIELDS[number];
 
@@ -56,6 +71,12 @@ export const FormatPrefsSchema = z.object({
   humor:             z.enum(['none', 'light']).optional(),
   /** Spec 034 FR-002: slang and youth jargon (default false); only the owner turns it on. */
   slang:             z.boolean().optional(),
+  /** Spec 034 FR-005: what the resource is — moves the default caps (news: no reader questions; quiz: no poll cap). */
+  content_kind:      z.enum(CONTENT_KINDS).optional(),
+  /** Spec 034 FR-005: poll + quiz posts in any 7 days (default 1; a quiz resource: no cap). */
+  polls_per_week:    z.number().int().min(0).max(70).optional(),
+  /** Spec 034 FR-005: questions addressed to the readers in one post (default 1; news 0). */
+  questions_to_readers_per_day: z.number().int().min(0).max(5).optional(),
 }).strict();
 export type FormatPrefs = z.infer<typeof FormatPrefsSchema>;
 
@@ -66,7 +87,9 @@ const FORMAT_UK: Record<FormatPrefField, string> = {
   tone: 'Тон', length: 'Довжина', emoji: 'Емодзі', hashtags: 'Хештеги', mentions: 'Згадки', cta: 'Заклик', links: 'Посилання',
   line_breaks: 'Абзаци', signature: 'Підпис', preferred_formats: 'Бажані формати', media: 'Медіа', notes: 'Нотатки',
   rich: 'Rich-повідомлення Telegram', humor: 'Гумор', slang: 'Сленг',
+  content_kind: 'Тип ресурсу', polls_per_week: 'Опитувань і вікторин на тиждень', questions_to_readers_per_day: 'Питань до читачів у пості',
 };
+const KIND_UK = { general: 'загальний', news: 'новини', education: 'освітній', quiz: 'вікторини' } as const;
 const EMOJI_UK = { none: 'без емодзі', light: 'кілька', rich: 'багато' } as const;
 const LINKS_UK = { inline: 'у тексті', bio: 'посилання в біо', first_comment: 'перший коментар', button: 'кнопка' } as const;
 const RICH_UK = {
@@ -82,6 +105,8 @@ function formatValue(k: FormatPrefField, v: unknown): string {
     case 'rich':     return RICH_UK[v as keyof typeof RICH_UK] ?? String(v);
     case 'humor':    return v === 'light' ? 'легкий (дозволив власник)' : 'вимкнено';
     case 'slang':    return v === true ? 'дозволено власником' : 'ні';
+    case 'content_kind': return KIND_UK[v as keyof typeof KIND_UK] ?? String(v);
+    case 'polls_per_week': case 'questions_to_readers_per_day': return `до ${v}`;
     case 'hashtags': {
       const h = v as { count: number; style?: string; fixed?: string[] };
       return [`${h.count}`, h.style, h.fixed?.length ? `завжди: ${h.fixed.map((x) => `#${x.replace(/^#/, '')}`).join(' ')}` : ''].filter(Boolean).join(', ');
@@ -272,6 +297,12 @@ export class ResourceProfilesRepository {
     });
   }
 
+  /** Spec 034 FR-005: the effective poll / reader-question caps of a resource (defaults without a profile). */
+  async capsOf(ref: string): Promise<AudienceCaps> {
+    const { rows } = await this.pool.query(`SELECT profile FROM resource_profiles WHERE resource_ref = $1`, [ref]);
+    return audienceCapsOfProfile(rows[0]?.profile ?? null);
+  }
+
   /** format_prefs, owner locks and the last change of a resource (empty when it has no row). */
   async formatOf(ref: string): Promise<{ prefs: FormatPrefs; locks: FormatPrefField[]; updatedAt: Date | null }> {
     const { rows } = await this.pool.query(`SELECT profile, updated_at FROM resource_profiles WHERE resource_ref = $1`, [ref]);
@@ -303,7 +334,7 @@ export class ResourceProfilesRepository {
         const locked = keys.filter((k) => cur.locks.includes(k as FormatPrefField));
         if (locked.length) return { error: 'locked_by_owner', details: locked };
         const ownerOnly = keys.filter((k) => OWNER_ONLY_ON[k as FormatPrefField]?.(patch[k]));
-        if (ownerOnly.length) return { error: 'owner_only', details: `${ownerOnly.join(', ')}: гумор і сленг вмикає лише власник` };
+        if (ownerOnly.length) return { error: 'owner_only', details: ownerOnly.map((k) => `${k}: ${OWNER_ONLY_REASON[k as FormatPrefField] ?? 'лише власник'}`).join('; ') };
         if (await this.formatChangesTodayQ(q, ref, meta.now ?? new Date()) >= FORMAT_CHANGES_PER_DAY) {
           return { error: 'daily_limit', details: `${FORMAT_CHANGES_PER_DAY} format changes a day on ${ref}` };
         }
@@ -395,4 +426,9 @@ export class ResourceProfilesRepository {
       [ref, JSON.stringify(health)]);
     return (prev.rows[0]?.resource_health?.state as HealthState | undefined) ?? null;
   }
+}
+
+/** Spec 034 FR-005: the caps of a parsed profile (format_prefs + topic). */
+export function profileCaps(p: Pick<ResourceProfile, 'topic' | 'format_prefs'> | null | undefined): AudienceCaps {
+  return audienceCaps(p?.format_prefs ?? null, p?.topic ?? null);
 }

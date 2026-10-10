@@ -11,6 +11,7 @@ import { seriesDue } from './playbook';
 import { planScheduleErrors, PlanScheduleCtx, SkippedSeriesInput } from '../schedule/plan-schedule-rules';
 import { DecisionReason, DecisionSlot, PlannedDecision, PlanSkipInput, TREATMENTS, validateDecisions } from './plan-decisions';
 import type { Treatment } from '../post/duplicate';
+import { pollCapErrors, type PollCapCtx } from '../roles/poll-cap';
 
 export const NetworkSlotInput = z.object({
   resource_ref: z.string().min(3).max(200),
@@ -89,6 +90,8 @@ export function validateNetworkPlan(
     decided?: Map<string, Set<string>>;
     /** Spec 025 FR-014: open experiment quotas of this network (anchor plans). */
     experiments?: ExperimentQuota[];
+    /** Spec 034 FR-005: per-resource poll caps and the polls already in the 7-day window. */
+    pollCap?: PollCapCtx;
   },
 ): { ok: true; slots: NetworkPlannedSlot[]; decisions: PlannedDecision[] } | { ok: false; errors: string[] } {
   const errors: string[] = [];
@@ -202,5 +205,6 @@ export function validateNetworkPlan(
   }
   // Spec 023 FR-004: series, pins, blackouts and frequency rules.
   if (o.schedule) errors.push(...planScheduleErrors(plan, o.schedule, o.schedule.defaultRef));
+  if (o.pollCap) errors.push(...pollCapErrors(plan.slots.map((s) => ({ resourceRef: s.resource_ref, format: s.format, series: s.series ?? null })), o.pollCap, net.playbook.series));
   return errors.length ? { ok: false, errors } : { ok: true, slots: out, decisions };
 }

@@ -91,6 +91,7 @@ import { NetworkRunner } from './network/network-runner';
 import { buildNetworkTools } from './network/network-tools';
 import { buildRepurposeTools, RepurposeInput, RepurposeService } from './network/repurpose-tool';
 import { buildFormatTools } from './network/format-tools';
+import { SqlPollCaps } from './roles/poll-cap';
 import { networkContext } from './network/network-context';
 import { buildSeriesTools } from './network/series-tools';
 import { buildHighlightsTools } from './tools/highlights-tools';
@@ -335,6 +336,12 @@ function directiveExecution(pool: Pool, repos: EditorRepos, infra: AgentInfra, p
     log: (m) => logger.warn(m),
   });
 }
+
+/** Spec 034 FR-005: poll caps and the polls already in the 7-day window (plan validators). */
+const pollCapsOf = (pool: Pool) => {
+  const q = new SqlPollCaps(pool);
+  return (o: { refs: string[]; planDate: string; tz: string; defaultRef?: string }) => q.load(o);
+};
 
 /** Spec 025 FR-014: open experiment quotas of an anchor (plan validators and planner prompts). */
 const experimentQuotasOf = (pool: Pool) => {
@@ -841,6 +848,7 @@ export const EDITOR_PROVIDERS = [
             schedule,
             // Spec 025 FR-014: directive experiment quotas in the plan check.
             experimentQuotas: experimentQuotasOf(pool),
+            pollCaps: pollCapsOf(pool),
           }),
           ...buildComposerTools({ drafts, repo: repos.chat }),
           ...buildAgentSkillTools({ agents: infra.agents, skills: infra.skills, kpi: infra.kpi, inbox: infra.inbox }),
@@ -856,6 +864,7 @@ export const EDITOR_PROVIDERS = [
             repo: new NetworkRepository(pool), plans: repos.plans, memory: repos.memory, inbox: infra.inbox,
             sourceCatalog: (card) => seriesSourceCatalog(pool, card), schedule, directiveLock,
             experimentQuotas: experimentQuotasOf(pool),
+            pollCaps: pollCapsOf(pool),
           }),
           // Spec 023 FR-003: the orchestrator's series tools (one submit path with submit_playbook).
           ...buildSeriesTools({ repo: new NetworkRepository(pool), inbox: infra.inbox, sourceCatalog: (card) => seriesSourceCatalog(pool, card), directiveLock }),
@@ -1099,7 +1108,12 @@ export const EDITOR_PROVIDERS = [
           // Spec 024 FR-007: duplicate / adapt slots — the agent formats every target post itself.
           derived: derivedPorts(pool, ideas, infra, ports.holds ?? null),
           // Spec 034 FR-002: humour / slang / emoji of a slot's target resource (owner-only switches, off by default).
-          voiceOf: async (ref) => { const f = await infra.profiles.formatOf(ref); return { humor: f.prefs.humor, slang: f.prefs.slang, emoji: f.prefs.emoji }; },
+          // Spec 034 FR-005: plus the reader-question cap the platform lint enforces.
+          voiceOf: async (ref) => {
+            const f = await infra.profiles.formatOf(ref);
+            const caps = await infra.profiles.capsOf(ref);
+            return { humor: f.prefs.humor, slang: f.prefs.slang, emoji: f.prefs.emoji, readerQuestionsMax: caps.questionsPerDay };
+          },
         });
       },
     },
