@@ -11,7 +11,8 @@ import { isNewsCard } from '../../live/news-watch-config';
  *   • content_kind from what the resource looks like (`resourceKind`): games by the title / topic (Біржа Ігор), news
  *     by the spec 034 news detection (content_kind news, a news topic, or a card with RSS feeds whose title / brief
  *     says news: AI Шукає Новини, AI Технології);
- *   • hashtags off on news and games resources (so all three DEV channels), the card's vocabulary elsewhere.
+ *   • hashtags off on news and games resources (so all three DEV channels), the card's vocabulary elsewhere — and on
+ *     any resource whose card already has a hashtag vocabulary (an owner's earlier choice is never switched off).
  * `names`, `headline`, `numbers`, `units` and `audience` have no default: a check that needs one stays silent.
  * The style is the owner's: agents cannot change it (OWNER_ONLY_ON in resource-profile.ts).
  */
@@ -78,14 +79,14 @@ export const STYLE_DEFAULTED = ['address', 'glossary', 'hashtags', 'content_kind
  * The style the checks, the prompts and the platform lint use: the stored one plus the owner's defaults. `kind` is
  * what the resource looks like (`resourceKind`); hashtags are off by default on news and games resources.
  */
-export function effectiveStyle(stored: ResourceStyle | null | undefined, o: { kind?: StyleKind | null }): ResourceStyle {
+export function effectiveStyle(stored: ResourceStyle | null | undefined, o: { kind?: StyleKind | null; vocabulary?: readonly string[] | null }): ResourceStyle {
   const s = stored ?? {};
   const kind = s.content_kind ?? o.kind ?? undefined;
   return {
     ...s,
     address: s.address ?? DEFAULT_ADDRESS,
     glossary: s.glossary ?? DEFAULT_GLOSSARY,
-    hashtags: s.hashtags ?? (kind === 'news' || kind === 'games' ? 'off' : 'vocabulary'),
+    hashtags: s.hashtags ?? ((kind === 'news' || kind === 'games') && !o.vocabulary?.length ? 'off' : 'vocabulary'),
     ...(kind ? { content_kind: kind } : {}),
   };
 }
@@ -135,7 +136,7 @@ export function styleOfRow(r: any): { style?: ResourceStyle } {
     topic: r.profile_topic ?? null,
     card: { brief: r.brief ?? '', title: r.title ?? null, formats: r.formats ?? {}, sources: r.sources ?? [] },
   });
-  return { style: effectiveStyle(parseStoredStyle(fp.style), { kind }) };
+  return { style: effectiveStyle(parseStoredStyle(fp.style), { kind, vocabulary: Array.isArray(r.hashtags) ? r.hashtags : null }) };
 }
 
 export interface GlossaryEntry { term: string; use?: string }

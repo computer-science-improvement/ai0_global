@@ -36,7 +36,7 @@ export async function resourceStyleOf(pool: Pick<Pool, 'query'>, ref: string): P
   });
   const stored = parseStoredStyle(fp.style);
   return {
-    stored, effective: effectiveStyle(stored, { kind }), kind,
+    stored, effective: effectiveStyle(stored, { kind, vocabulary: card?.hashtags ?? null }), kind,
     defaulted: STYLE_DEFAULTED.filter((k) => stored[k] === undefined),
     ...(card ? { vocabulary: card.hashtags ?? [] } : {}),
   };

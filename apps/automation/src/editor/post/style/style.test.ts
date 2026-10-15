@@ -69,6 +69,14 @@ test('T8 style: the card read joins the effective style (row without the profile
   assert.equal(styleOfRow({ ...row, format_prefs_json: { style: { address: 'nope' } } }).style!.address, 'vy', 'invalid stored style = not set');
 });
 
+test('T8 style: a news / games card that already has a hashtag vocabulary keeps it (an owner choice is never switched off)', () => {
+  assert.equal(effectiveStyle({}, { kind: 'news', vocabulary: ['#ai'] }).hashtags, 'vocabulary');
+  assert.equal(effectiveStyle({}, { kind: 'games', vocabulary: [] }).hashtags, 'off', 'an empty vocabulary (the DEV channels) stays off');
+  assert.equal(effectiveStyle({ hashtags: 'off' }, { kind: 'news', vocabulary: ['#ai'] }).hashtags, 'off', 'an explicit owner style wins');
+  const row = { title: 'Біржа Ігор', brief: '', formats: {}, sources: [], profile_topic: null, format_prefs_json: {}, hashtags: ['#роздача'] };
+  assert.equal(styleOfRow(row).style!.hashtags, 'vocabulary');
+});
+
 // ── prompts ─────────────────────────────────────────────────────────────────
 
 test('T8 prompts: a compact style block (≤ 600) with «Хештеги не став» in the writer and the critic prompts', () => {
@@ -255,7 +263,7 @@ test('T8 proposal: reads published posts of 60 days (Telegram slots or platform 
   const view = await resourceStyleOf(pool as any, 'telegram:@x');
   assert.deepEqual(view.stored, { names: 'original' });
   assert.equal(view.kind, 'news');
-  assert.equal(view.effective.hashtags, 'off');
+  assert.equal(view.effective.hashtags, 'vocabulary', 'a news card with a vocabulary keeps it');
   assert.deepEqual(view.defaulted, ['address', 'glossary', 'hashtags', 'content_kind']);
   assert.deepEqual(view.vocabulary, ['роздача']);
 });
