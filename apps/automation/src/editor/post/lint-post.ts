@@ -8,6 +8,9 @@ import { RICH_MAX_BLOCKS, RICH_MAX_CHARS, RICH_MAX_DEPTH, richStats } from './re
 import { bannedTermContext, findBannedTerms, findSlopPhrases, normalizeSlop } from './slop-phrases';
 import { slopWarnings } from './slop-lint';
 import { readerQuestionsIssue } from './audience-asks';
+import { auditPostFromSpec } from './integrity/from-post-spec';
+import { INTEGRITY_CHECKS, runIntegrityChecks } from './integrity/registry';
+import type { AuditCard, AuditContext } from './integrity/types';
 
 export interface LintIssue { code: string; message: string }
 /**
@@ -54,10 +57,27 @@ function cyrillicShare(text: string): number {
   return cyr / letters.length;
 }
 
+/**
+ * Spec 037: what lintPost knows about the post beyond the spec, for the integrity checks (dates resolve against the
+ * scheduled publish time in the resource zone; story / style / poll checks read the context). Every field is
+ * optional: without it a check that needs it returns nothing, so old call sites keep their behaviour.
+ */
+export interface LintIntegrity {
+  /** Slot id or any stable id of the post. */
+  id?: string;
+  channel?: string;
+  /** Scheduled publish instant (ISO). Default: now. */
+  publishedAt?: string;
+  /** Resource zone (IANA). Default: card.timezone, else Europe/Kyiv. */
+  timezone?: string;
+  /** Earlier posts, network posts, extra card fields (style), clock. */
+  ctx?: Partial<AuditContext>;
+}
+
 type LintCard = Pick<EditorCard, 'formats' | 'hashtags' | 'hashtagMin' | 'hashtagMax' | 'footer' | 'linkStyle' | 'emojiPolicy' | 'bannedTerms' | 'language'> & RenderCard
   & Partial<Pick<EditorCard, 'humor' | 'slang' | 'emojiPref' | 'readerQuestionsMax'>>;
 
-export function lintPost(spec: PostSpec, card: LintCard): LintResult {
+export function lintPost(spec: PostSpec, card: LintCard, integrity: LintIntegrity = {}): LintResult {
   const errors: LintIssue[] = [];
   const warnings: LintIssue[] = [];
   const err = (code: string, message: string) => errors.push({ code, message });
@@ -221,5 +241,31 @@ export function lintPost(spec: PostSpec, card: LintCard): LintResult {
 
   if (spec.format === 'photo' && !n) warn('no_media_for_photo_channel', 'photo без зображення');
 
+  integrityIssues(spec, card, integrity, err, warn);
+
   return { ok: errors.length === 0, errors, warnings };
+}
+
+/**
+ * Spec 037: the deterministic integrity checks (dates, text hygiene, style, polls, sources, …) run on the post as the
+ * reader will see it. Checks lintPost already enforces itself (`lintEnforced`) are skipped; a finding whose code and
+ * message lintPost already reported is not repeated. A check that throws becomes a warning, never a silent pass and
+ * never a blocked post.
+ */
+function integrityIssues(
+  spec: PostSpec, card: LintCard, i: LintIntegrity,
+  err: (code: string, message: string) => void, warn: (code: string, message: string) => void,
+): void {
+  const timezone = i.timezone ?? (card as { timezone?: string }).timezone ?? 'Europe/Kyiv';
+  const post = auditPostFromSpec(spec, {
+    id: i.id ?? 'draft', channel: i.channel ?? '', publishedAt: i.publishedAt ?? new Date().toISOString(), timezone,
+    card: { linkStyle: card.linkStyle, footer: card.footer },
+  });
+  const ctx: AuditContext = { previous: [], ...i.ctx, card: { ...(card as AuditCard), timezone, ...i.ctx?.card } };
+  for (const f of runIntegrityChecks(post, ctx, INTEGRITY_CHECKS.filter((c) => !c.lintEnforced))) {
+    const message = f.excerpt ? `${f.message} («${f.excerpt}»)` : f.message;
+    if (f.code === 'check_failed') warn(f.code, message);
+    else if (f.level === 'error') err(f.code, message);
+    else warn(f.code, message);
+  }
 }

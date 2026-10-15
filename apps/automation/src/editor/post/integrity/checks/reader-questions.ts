@@ -6,6 +6,7 @@ import { bodyText, excerptOf, type IntegrityCheck } from '../types';
  * an error, as in lintPost. The poll's own question is the poll, so only the post text counts.
  */
 export const readerQuestionsCheck: IntegrityCheck = {
+  lintEnforced: true,
   id: 'reader-questions',
   codes: ['reader_questions'],
   run: (post, ctx) => {

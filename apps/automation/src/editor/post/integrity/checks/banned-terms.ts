@@ -3,6 +3,7 @@ import { readerText, type IntegrityCheck } from '../types';
 
 /** The owner's banned terms of the card (card.bannedTerms), as in lintPost; nothing without a card. */
 export const bannedTermsCheck: IntegrityCheck = {
+  lintEnforced: true,
   id: 'banned-terms',
   codes: ['banned_term'],
   run: (post, ctx) => {

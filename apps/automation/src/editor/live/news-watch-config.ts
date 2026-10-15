@@ -47,7 +47,7 @@ const STOP_STEMS = new Set([
   'telegram', 'news', 'daily', 'post', 'posts', 'chann', 'about', 'fresh', 'короткі', 'україн', 'украї',
 ].map((w) => w.slice(0, 5)));
 
-const tokens = (text: string) => (text.toLowerCase().match(/[\p{L}\p{N}]+/gu) ?? []);
+const tokens = (text: string): string[] => (text.toLowerCase().match(/[\p{L}\p{N}]+/gu) ?? []);
 
 /** Topic keywords (5-letter stems, ≥ 4-letter words) of the resource's topic, brief and title. */
 export function topicKeywords(texts: Array<string | null | undefined>): string[] {

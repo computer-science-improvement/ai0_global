@@ -7,6 +7,7 @@ import { bodyText, readerText, voiceOf, type IntegrityCheck } from '../types';
  * without the rendered source and hashtag lines, `all` adds the poll.
  */
 export const slopWarningsCheck: IntegrityCheck = {
+  lintEnforced: true,
   id: 'slop-warnings',
   codes: SLOP_WARNING_CODES,
   run: (post, ctx) => slopWarnings({ body: bodyText(post), all: readerText(post), prefs: voiceOf(ctx.card) })

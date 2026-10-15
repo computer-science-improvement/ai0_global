@@ -135,7 +135,9 @@ export async function checkPublishGuards(d: RoleToolDeps, ctx: ToolContext, spec
   if (slot.status !== 'running' && !dry) return { error: 'slot_not_running', details: `slot status is ${slot.status}` };
   if (card.mode === 'off') return { error: 'channel_off' };
 
-  const lint = lintPost(spec, card);
+  // Spec 037: the integrity checks resolve dates against the slot time (now for a late slot), in the resource zone.
+  const at = slot.scheduledAt && new Date(slot.scheduledAt).getTime() > now.getTime() ? new Date(slot.scheduledAt) : now;
+  const lint = lintPost(spec, card, { id: slotId, channel: channelKey, publishedAt: at.toISOString(), timezone: card.timezone, ctx: { now: now.toISOString() } });
   if (!lint.ok) return { error: 'lint_failed', details: lint.errors };
   const truth = await checkQuizGroundTruth(d.pool, spec);
   if (truth) return truth;

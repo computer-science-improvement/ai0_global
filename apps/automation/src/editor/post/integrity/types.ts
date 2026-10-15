@@ -89,6 +89,11 @@ export interface IntegrityCheck {
   id: string;
   codes: readonly string[];
   run(post: AuditPost, ctx: AuditContext): Finding[];
+  /**
+   * The check adapts a rule lintPost already enforces on the PostSpec (spec 034), so lintPost skips it and only the
+   * export / post audit runs it. Spec 037 checks leave it unset: lintPost runs them before publishing.
+   */
+  lintEnforced?: true;
 }
 
 /** The slop counters' voice prefs from a card (absent = humour and slang off, as in lintPost). */
