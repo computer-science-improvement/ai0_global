@@ -1,5 +1,7 @@
 import { fmtNumber, fmtRelative } from '../lib/format';
 import type { TrackedPost } from '../api/types';
+import { repostBadge } from '../lib/reposts';
+import { Badge } from './ui/Badge';
 
 export function PostsList({ posts }: { posts: TrackedPost[] }) {
   return (
@@ -11,7 +13,12 @@ export function PostsList({ posts }: { posts: TrackedPost[] }) {
           padding: 14,
         }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: 12, color: 'var(--color-ink-muted)' }}>
-            <span>{fmtRelative(p.postedAt)}</span>
+            <span>
+              {fmtRelative(p.postedAt)}
+              {repostBadge(p.repostFrom) && (
+                <Badge tone="accent" style={{ marginLeft: 8 }}>{repostBadge(p.repostFrom)}</Badge>
+              )}
+            </span>
             <span className="tabular-nums">👁 {fmtNumber(p.views)} · 🔁 {fmtNumber(p.forwards)} · ❤ {fmtNumber(p.reactionsTotal)} · 💬 {fmtNumber(p.commentsCount)}</span>
           </div>
           <p style={{ marginTop: 8, fontSize: 14, color: 'var(--color-ink)', letterSpacing: '-0.14px', lineHeight: 1.5 }} className="line-clamp-3">

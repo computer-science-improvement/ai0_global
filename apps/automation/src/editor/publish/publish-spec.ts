@@ -8,7 +8,7 @@ import type { CrossPostRequest } from './editor-crosspost';
 
 export interface PublishSpecDeps {
   plans:         Pick<EditorPlansRepository, 'insertPublication'>;
-  publisher:     { send(channelKey: string, messages: TgMessage[]): Promise<SendResult> };
+  publisher:     { send(channelKey: string, messages: TgMessage[], opts?: { replyTo?: number }): Promise<SendResult> };
   recordPublish: (channelKey: string) => void;
   /** Live-only media stage for carousel (render + host slides) and longread (Telegraph page). */
   media?:        { prepare(spec: PostSpec, key: { channelKey: string; slotId: string }): Promise<PreparedPublish> };
@@ -28,6 +28,8 @@ export interface PublishSpecInput {
   slotId:     string | null;
   /** published_posts.strategy_type; omitted → the repository default ('editor'). */
   strategyType?: 'editor' | 'ad' | 'chat';
+  /** Spec 037 T2: the channel message a story follow-up replies to. */
+  replyTo?:   number | null;
   /** Runs once the publication row exists and before the mirrors (e.g. mark the slot published). */
   onPublished?: (p: PublishedPost) => Promise<void>;
 }
@@ -90,7 +92,7 @@ export async function sendRendered(
   d: PublishSpecDeps, i: PublishSpecInput, r: Pick<PreparedRender, 'rendered' | 'prepared'>,
 ): Promise<{ ok: true; mirrorWarnings: string[] } & PublishedPost> {
   const { channelKey, spec, card } = i;
-  const sent = await d.publisher.send(channelKey, r.rendered.messages);
+  const sent = i.replyTo ? await d.publisher.send(channelKey, r.rendered.messages, { replyTo: i.replyTo }) : await d.publisher.send(channelKey, r.rendered.messages);
   const messageId = sent.messageIds[r.rendered.primary] ?? sent.messageIds[0];
   // The content ledger gets every source ref of the post; published_posts.source_url keeps only one.
   const extraRefs = [spec.library_ref, spec.source?.url].filter((x): x is string => !!x && x !== i.sourceRef);

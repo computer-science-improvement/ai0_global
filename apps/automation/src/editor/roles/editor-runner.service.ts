@@ -120,6 +120,8 @@ export interface EditorRunnerDeps {
    * (the slot is then judged like every other step) or null when no evergreen post is possible today.
    */
   fallbackEvergreen?: (i: EvergreenRequest) => Promise<AgentLoopResult | null>;
+  /** Spec 037 T2: the "Active stories (14 days)" block of the planner / writer prompt (story/story-context.ts); null for none. */
+  stories?: { activeBlock(card: EditorCard, role: 'planner' | 'executor', now: Date): Promise<string | null> };
 }
 
 /** What the evergreen step gets (spec 037 FR-010 seam). */
@@ -134,7 +136,7 @@ export interface EvergreenRequest {
 type PlatformContext = Awaited<ReturnType<NonNullable<EditorRunnerDeps['platformContext']>>>;
 
 /** Telegram-only tools that must never run on a slot of another platform, and vice versa. */
-const TELEGRAM_ONLY = new Set(['publish_post', 'lint_post', 'preview_post']);
+const TELEGRAM_ONLY = new Set(['publish_post', 'lint_post', 'preview_post', 'request_story_repost']);
 const PLATFORM_ONLY = new Set(['publish_platform_post']);
 
 export const MAX_SLOT_ATTEMPTS = 2;
@@ -305,7 +307,8 @@ export class EditorRunnerService {
     const extra = this.d.network ? await this.d.network.plannerExtras(card, planDate).catch(() => null) : null;
     const reserved = await this.d.plans.reservedSlots(card.channelKey, dayStart, new Date(dayStart.getTime() + 86_400_000));
     const catalog = this.d.catalogSummary ? await this.d.catalogSummary(card).catch(() => null) : null;
-    const user = [plannerUserPrompt(card, now, reserved, planDate), extra?.ideasNote, catalog ? `\n${catalog}` : null].filter(Boolean).join('\n');
+    const stories = this.d.stories ? await this.d.stories.activeBlock(card, 'planner', now).catch(() => null) : null;
+    const user = [plannerUserPrompt(card, now, reserved, planDate), extra?.ideasNote, catalog ? `\n${catalog}` : null, stories ? `\n${stories}` : null].filter(Boolean).join('\n');
     const res = await this.run('planner', card, user, null, {
       planDate, ...(extra ? { network: extra.network, excludeTools: extra.excludeTools } : { excludeTools: new Set(['submit_network_plan']) }),
     }, ctx);
@@ -601,9 +604,10 @@ export class EditorRunnerService {
 
   /** The Telegram executor prompt, plus the pool idea the slot realises (spec 020). */
   private async executorUser(card: EditorCard, slot: EditorSlot, ctx: RunAgentContext | null, scan: LiveScan | null = null): Promise<string> {
+    const stories = this.d.stories ? await this.d.stories.activeBlock(card, 'executor', this.now()).catch(() => null) : null;
     // Spec 037 FR-009: what the last posts already used (openings, phrases), so the writer avoids a third time.
     const used = this.d.recentPosts ? alreadyUsedBlock(await this.d.recentPosts(card, slot).catch(() => []), this.now()) : null;
-    const base = executorUserPrompt(card, slot, this.now(), scan, { alreadyUsed: used });
+    const base = [executorUserPrompt(card, slot, this.now(), scan, { alreadyUsed: used }), stories ? `\n${stories}` : null].filter(Boolean).join('\n');
     if (!this.d.platformContext) return base;
     const pc = await this.d.platformContext(slot, ctx?.orchestrator?.id ?? null).catch(() => null);
     return [

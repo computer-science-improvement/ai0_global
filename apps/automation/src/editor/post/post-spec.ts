@@ -66,6 +66,20 @@ export const LongreadSchema = z.object({
 });
 export type Longread = z.infer<typeof LongreadSchema>;
 
+/** Spec 037 FR-002: kinds of a story post other than the original. */
+export const STORY_KINDS = ['followup', 'reminder', 'roundup', 'evergreen'] as const;
+
+export const StorySpecSchema = z.object({
+  key:         z.string().regex(/^[a-z0-9][a-z0-9-]{1,79}$/).optional().describe('Ключ історії з блоку «Активні історії» (латиниця, дефіси)'),
+  followup_of: z.string().min(3).max(120).optional().describe('Оригінальний пост історії: id з блоку «Активні історії» або з помилки story_repeat'),
+  kind:        z.enum(STORY_KINDS).optional()
+    .describe('followup — новий факт до історії (відповідь на оригінал); reminder — одне нагадування в останні 24 год роздачі / знижки; roundup — дайджест; evergreen — вічнозелена тема'),
+  new_facts:   z.array(z.string().min(3).max(200)).max(8).optional().describe('Для followup: нові факти (числа, назви), яких не було в оригіналі'),
+  decision:    z.enum(['own_angle']).optional().describe('own_angle — сусідній канал мережі вже опублікував цю історію за 24 год, а цей пост дає власний кут'),
+  reason:      z.string().min(5).max(300).optional().describe('Чому саме так (для own_angle — у чому власний кут)'),
+}).strict();
+export type StorySpec = z.infer<typeof StorySpecSchema>;
+
 export const PostSpecSchema = z.object({
   format:      z.enum(POST_FORMATS),
   title:       z.string().min(3).max(120).describe('Короткий внутрішній заголовок (для аналітики й дайджесту), українською'),
@@ -92,6 +106,8 @@ export const PostSpecSchema = z.object({
   }).optional(),
   slides:      z.array(SlideSchema).max(10).optional().describe('Лише для format=carousel: 2–10 слайдів, код рендерить їх у зображення'),
   longread:    LongreadSchema.optional().describe('Лише для format=longread: стаття для Telegraph; body — короткий тизер до 600 символів'),
+  // Spec 037 FR-002 (T2): the story registry — one story, one post; back only with new facts.
+  story:       StorySpecSchema.optional().describe('Історія поста: продовження (followup_of + new_facts), нагадування, дайджест чи evergreen; власний кут на історію сусіднього каналу'),
 });
 
 export type PostSpec = z.infer<typeof PostSpecSchema>;

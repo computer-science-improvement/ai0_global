@@ -28,7 +28,11 @@ import { buildReadTools } from './tools/read-tools';
 import { scanLive } from './live/feed-items';
 import { NewsWatchService } from './live/news-watch';
 import { buildComposeTools } from './tools/compose-tools';
-import { buildRoleTools } from './tools/role-tools';
+import { buildRoleTools, STORY_KPI_SAMPLE_FILTER } from './tools/role-tools';
+import { StoryRegistry } from './story/story.repository';
+import { StoryContextService } from './story/story-service';
+import { buildStoryTools, storyRepostLimits } from './story/story-tools';
+import { StoryBackfill } from './story/story-backfill';
 import { buildApiTools } from './tools/api-tools';
 import { applyDataSchemaSuggestion, buildDataTools } from './tools/data-tools';
 import { DataStore } from '../data/data-store';
@@ -875,18 +879,20 @@ export const EDITOR_PROVIDERS = [
     {
       // One registry for the runner, the chat and the ops surface (REST tools endpoint → MCP).
       provide: EDITOR_REGISTRY,
-      inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_SKILLS, EDITOR_PUBLISH, EDITOR_DRAFTS, TelegramNotifier, PostingThrottleService, AGENT_INFRA, PLATFORM_INFRA, SCHEDULE_INFRA, STRATEGY_MIGRATION, { token: LlmBudgetService, optional: true }],
+      inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_SKILLS, EDITOR_PUBLISH, EDITOR_DRAFTS, TelegramNotifier, PostingThrottleService, AGENT_INFRA, PLATFORM_INFRA, SCHEDULE_INFRA, STRATEGY_MIGRATION, ChannelConfigService, { token: LlmBudgetService, optional: true }],
       useFactory: (
         pool: Pool, cfg: ConfigService, repos: EditorRepos, skills: SkillLibrary, ports: PublishPorts, drafts: DraftsService,
         notifier: TelegramNotifier, throttle: PostingThrottleService, infra: AgentInfra, platform: PlatformInfra, schedule: ScheduleService,
-        migration: StrategyMigrationInfra, caps?: LlmBudgetService,
+        migration: StrategyMigrationInfra, channelConfig: ChannelConfigService, caps?: LlmBudgetService,
       ): ToolRegistry => {
         const env = (k: string) => cfg.get<string>(k) ?? undefined;
+        // Spec 037 T2: the story registry (publish guard, prompts, fetch_feed, story reposts).
+        const stories = new StoryRegistry(pool);
         // Spec 025: executor dry-run for file_directive; directive_lock on the orchestrator's playbook writes.
         const directives = directiveExecution(pool, repos, infra, platform);
         const directiveLock = (orchId: string, body: Playbook) => directives.lockFor(orchId, body);
         return new ToolRegistry([
-          ...buildReadTools({ pool, readonly: new ReadonlyQueryService(pool), skills }),
+          ...buildReadTools({ pool, readonly: new ReadonlyQueryService(pool), skills, stories: new StoryContextService(stories) }),
           ...buildDataTools({ pool, actions: infra.actions, env }),
           ...buildHighlightsTools({ pool }),
           ...buildComposeTools(),
@@ -901,6 +907,11 @@ export const EDITOR_PROVIDERS = [
             // Spec 025 FR-014: directive experiment quotas in the plan check.
             experimentQuotas: experimentQuotasOf(pool),
             pollCaps: pollCapsOf(pool),
+            stories, kpiSampleFilter: STORY_KPI_SAMPLE_FILTER,
+          }),
+          ...buildStoryTools({
+            pool, plans: repos.plans, stories, limits: storyRepostLimits(env),
+            forward: async (to, from, messageId) => (await botCall(channelConfig, to, 'forwardMessage', { from_chat_id: from, message_id: messageId })).message_id,
           }),
           ...buildComposerTools({ drafts, repo: repos.chat }),
           ...buildAgentSkillTools({ agents: infra.agents, skills: infra.skills, kpi: infra.kpi, inbox: infra.inbox }),
@@ -985,6 +996,9 @@ export const EDITOR_PROVIDERS = [
           onSlotDone: async (slot) => { if (slot.ideaId) await ideas.settleIdea(slot.ideaId); },
           // Spec 025 FR-013: an approved post on a paused resource is skipped.
           paused: (ref) => new ResourcePauseService({ pool }).isPaused(ref),
+          // Spec 037 T2: an approved follow-up replies to its original; a forward is recorded as a repost.
+          replyTarget: (slot) => new StoryRegistry(pool).replyTargetOf(slot.id),
+          onForwarded: async (slot, fromKey, fromMessageId, messageId) => { await new StoryRegistry(pool).recordForward({ channelKey: slot.channelKey, slotId: slot.id, fromKey, fromMessageId, messageId }); },
           log: (m) => logger.warn(m),
         });
         // T4: one Telegram message per resource per batch through the owner's alert channel, deduped in approval_alerts.
@@ -1135,6 +1149,8 @@ export const EDITOR_PROVIDERS = [
           runwayCheck: (orch, playbook) => checkLowRunway({ pool, inbox: infra.inbox }, orch, playbook),
           // Spec 025 FR-014: experiment quotas in the planner prompts.
           experimentQuotas: experimentQuotasOf(pool),
+          // Spec 037 T2: the active stories in the planner prompt.
+          stories: new StoryContextService(new StoryRegistry(pool)),
         });
         // Spec 025 FR-015: a strategy directive rebuilds the playbook through this runner (late-bound: the MANAGER exists first).
         manager.buildPort.bind(async (orchId, brief, directiveId) => {
@@ -1196,6 +1212,8 @@ export const EDITOR_PROVIDERS = [
           ladder: { enabled: env('EDITOR_FALLBACK_LADDER') !== 'off' },
           // Spec 037 FR-009: the writer's «Уже було» block reads the channel's last 20 written posts.
           recentPosts: (card, slot) => recentAuditPosts(pool, { channelKey: card.channelKey, timezone: card.timezone, excludeSlotId: slot.id, card }),
+          // Spec 037 T2: the active stories in the planner and writer prompts.
+          stories: new StoryContextService(new StoryRegistry(pool)),
           // fallbackEvergreen: the evergreen step plugs in here after spec 037 T2 (story registry) and T12 (critic skills).
         });
       },
@@ -1238,6 +1256,8 @@ export const EDITOR_PROVIDERS = [
           mode: (card) => approval.mode(card),
           cards: () => repos.channels.listActive(),
           paused,
+          // Spec 037 T2: every native forward is a published_posts row marked repost (counted apart, out of the KPI samples).
+          onForwarded: async (slot, fromKey, fromMessageId, messageId) => { await new StoryRegistry(pool).recordForward({ channelKey: slot.channelKey, slotId: slot.id, fromKey, fromMessageId, messageId }); },
           log: (m) => logger.warn(m),
         });
         // Spec 036: paid digest sponsors on channels where no digest strategy runs go out as reserved sponsored posts.
@@ -1481,6 +1501,7 @@ export const EDITOR_PROVIDERS = [
     },
     EditorCron,
     AgentsUpkeep,
+    StoryBackfill,
     StrategyMigrationUpkeep,
 ];
 

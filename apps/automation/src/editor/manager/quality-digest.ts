@@ -9,6 +9,7 @@ import type { SlotFallback } from '../silent/fallback-ladder';
 import { SqlFeedFit, type FeedFit } from './feed-fit';
 import { PostAuditService, type AuditSummary } from '../audit/post-audit.service';
 import { AUDIT_FLAGS } from '../audit/code-catalogue';
+import { REPOST_COUNTS_SQL, repostShare, type RepostShare } from '../story/repost-stats';
 
 /**
  * Spec 034 FR-006 (T4): the content-quality block of the MANAGER's digest, per resource over 7 days. Code computes
@@ -43,6 +44,8 @@ export const QUALITY_FLAGS = [
   'feed_misfit',
   // Spec 037 FR-014: the post audit found story repeats, fact / source issues, date, text-hygiene or style findings.
   'story_repeat', 'fact_conflict', 'date_issue', 'text_hygiene', 'style_violation',
+  // Spec 037 T2: reposts are more than 30 % of what the resource put out.
+  'repost_share_high',
 ] as const;
 export type QualityFlag = typeof QUALITY_FLAGS[number];
 
@@ -98,6 +101,8 @@ export interface ResourceQuality {
   feeds?:  FeedFit[];
   /** Spec 037 FR-014: the post audit of the window — findings per digest flag and the top codes (absent before the first audit). */
   audit?:  AuditSummary;
+  /** Spec 037 T2: own vs repost publications of a Telegram channel in the window (absent when not read). */
+  reposts?: RepostShare;
   flags:   QualityFlag[];
   /**
    * What changed since the last run (the digest hash reads it): the newest critic issue and owner decision, the
@@ -191,6 +196,7 @@ export const isWritten = (status: string) => WRITTEN.has(status);
 /** One resource's quality block from its rows (newest first in each list); `plan` adds planned vs out (spec 037). */
 export function assembleQuality(i: {
   critic: CriticRow[]; posts: PostRow[]; owner: OwnerRow[]; caps: AudienceCaps; plan?: { rows: PlanRow[]; tz: string; now: Date } | null;
+  reposts?: { own: number; reposts: number } | null;
 }): ResourceQuality {
   const critic = [...i.critic].sort((a, b) => b.at.getTime() - a.at.getTime());
   const count = (v: string) => critic.filter((c) => c.critic?.verdict === v).length;
@@ -253,6 +259,8 @@ export function assembleQuality(i: {
   const plan = i.plan ? assemblePlan(i.plan.rows, i.plan.tz, i.plan.now) : undefined;
   if (plan?.dark_days.length) flags.push('dark_day');
   if (plan?.series_missed.length) flags.push('series_missed');
+  const reposts = i.reposts ? repostShare(i.reposts.own, i.reposts.reposts) : undefined;
+  if (reposts?.over) flags.push('repost_share_high');
 
   const issue = critic.find((c) => c.critic?.verdict && c.critic.verdict !== 'pass');
   const lastOwner = owner.find((o) => o.outcome !== 'clean');
@@ -268,6 +276,7 @@ export function assembleQuality(i: {
     owner: { approved, edited: edited.length, rejected: rejected.length, rejection_rate: ratio(rejected.length, approved + rejected.length), reasons, edits },
     samples: written.slice(0, MAX_SAMPLES).map((p) => ({ at: p.at.toISOString(), status: p.status, format: p.format, text: clip(p.text, SAMPLE_CHARS) })),
     ...(plan ? { plan } : {}),
+    ...(reposts ? { reposts } : {}),
     flags,
     signature: {
       issue: issue ? `${issue.slotId}:${issue.critic.verdict}` : null, owner: lastOwner ? `${lastOwner.slotId}:${lastOwner.outcome}` : null, flags,
@@ -328,9 +337,18 @@ const REF = `COALESCE(s.resource_ref, 'telegram:' || s.channel_key)`;
 export class SqlQuality {
   constructor(private readonly pool: Pick<Pool, 'query'>) {}
 
-  async rows(refs: string[], from: Date, to: Date): Promise<Map<string, { critic: CriticRow[]; posts: PostRow[]; owner: OwnerRow[]; plan: PlanRow[]; tz: string }>> {
-    const out = new Map(refs.map((r) => [r, { critic: [] as CriticRow[], posts: [] as PostRow[], owner: [] as OwnerRow[], plan: [] as PlanRow[], tz: 'Europe/Kyiv' }]));
+  async rows(refs: string[], from: Date, to: Date): Promise<Map<string, { critic: CriticRow[]; posts: PostRow[]; owner: OwnerRow[]; plan: PlanRow[]; tz: string; reposts?: { own: number; reposts: number } }>> {
+    const out = new Map(refs.map((r) => [r, { critic: [] as CriticRow[], posts: [] as PostRow[], owner: [] as OwnerRow[], plan: [] as PlanRow[], tz: 'Europe/Kyiv' } as {
+      critic: CriticRow[]; posts: PostRow[]; owner: OwnerRow[]; plan: PlanRow[]; tz: string; reposts?: { own: number; reposts: number };
+    }]));
     if (!refs.length) return out;
+    // Spec 037 T2: own vs repost publications of the Telegram channels (best-effort: the block works without it).
+    const tg = refs.filter((r) => r.startsWith('telegram:'));
+    if (tg.length) {
+      const { rows: rp } = await this.pool.query(REPOST_COUNTS_SQL, [tg, from, to]).catch(() => ({ rows: [] as any[] }));
+      for (const r of rp ?? []) { const e = out.get(r.ref); if (e) e.reposts = { own: Number(r.own ?? 0), reposts: Number(r.reposts ?? 0) }; }
+      for (const r of tg) { const e = out.get(r)!; e.reposts ??= { own: 0, reposts: 0 }; }
+    }
     // Spec 037 FR-010: every content slot of the window (planned vs out, skip reasons) and each resource's zone.
     const { rows: plan } = await this.pool.query(
       `SELECT ${REF} AS ref, s.id::text AS id, s.scheduled_at AS at, s.status, s.error, s.critic->>'verdict' AS verdict,

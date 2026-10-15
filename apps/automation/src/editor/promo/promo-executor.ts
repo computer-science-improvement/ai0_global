@@ -24,6 +24,8 @@ export interface PromoExecutorDeps {
   mode?:    (card: EditorCard) => Promise<ChannelMode>;
   /** Spec 031: active cards, for writing promo slots of approval channels ahead of time. */
   cards?:   () => Promise<EditorCard[]>;
+  /** Spec 037 T2: a forward went out (spec 022 repost or story_repost): the published_posts row marked repost. */
+  onForwarded?: (slot: EditorSlot, fromKey: string, fromMessageId: number, messageId: number) => Promise<void>;
   /** Spec 025 FR-013: promo slots on a paused resource are not written ahead (ReservedDispatcher skips them when due). */
   paused?:  (ref: string) => Promise<boolean>;
   log?:     (msg: string) => void;
@@ -42,7 +44,8 @@ export class PromoExecutor {
     if (!card) { await this.d.plans.updateSlot(slot.id, { status: 'failed', error: 'no channel card' }); return false; }
     const mode = this.d.mode ? await this.d.mode(card) : card.mode;
 
-    if (p.kind === 'repost') {
+    // Spec 037 T2: a story repost (request_story_repost) is the same native forward, without the promo cooldown.
+    if (p.kind === 'repost' || p.kind === 'story_repost') {
       const m = String(p.post_ref ?? '').match(/^telegram:(.+)\/(\d+)$/);
       if (!m) { await this.d.plans.updateSlot(slot.id, { status: 'failed', error: 'invalid post_ref' }); return false; }
       if (mode === 'approve') {
@@ -60,6 +63,7 @@ export class PromoExecutor {
       try {
         const id = await this.d.forward(slot.channelKey, m[1], Number(m[2]));
         await this.d.plans.updateSlot(slot.id, { status: 'published', renderedPreview: `↪️ Forwarded ${m[1]}/${m[2]} → ${id}`, error: null });
+        if (this.d.onForwarded) await this.d.onForwarded(slot, m[1], Number(m[2]), id).catch((e) => this.d.log?.(`repost row of ${slot.id}: ${e?.message ?? e}`));
         return true;
       } catch (err: any) {
         const msg = String(err?.message ?? err);

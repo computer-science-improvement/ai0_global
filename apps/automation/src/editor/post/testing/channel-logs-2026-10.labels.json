@@ -68,7 +68,7 @@
     "ai-tekhnolohii:1048": { "expect": ["hashtags_disabled", "number_not_in_sources"], "note": "«пише тексти довжиною до 1 мільйона токенів» — context window confused with output length." },
 
     "birzha-ihor-dev:844": { "expect": ["hashtags_disabled", "address_mixed", "slop_em_dash"], "note": "Epic giveaway System Shock 2 + BURIED STARS until 08.10 15:00; «забирай», «Забрав» (ти, warning). First «назавжди в бібліотеці»." },
-    "birzha-ihor-dev:845": { "expect": ["address_mixed", "banned_term"], "note": "Poll intro restating 844 the same evening; «Признавайся, як у тебе…» (new slop phrase, T6; ти)." },
+    "birzha-ihor-dev:845": { "expect": ["address_mixed", "banned_term", "story_repeat"], "note": "Poll intro restating 844 the same evening; «Признавайся, як у тебе…» (new slop phrase, T6; ти). story_repeat added by T2: it retells 844 (same two games, no deadline, nothing new) six hours later, like the Mistral poll intro 1027 that is labelled a repeat." },
     "birzha-ihor-dev:846": { "expect": ["address_mixed"], "clean": true, "note": "Opinion poll «Що ти робиш із безкоштовними іграми?» (regular is right; ти form, warning)." },
     "birzha-ihor-dev:847": { "expect": ["hashtags_disabled", "address_mixed", "slop_em_dash"], "note": "Allowed reminder of 844 in its last 24 h (deadline 08.10 15:00). «забирай» (ти)." },
     "birzha-ihor-dev:848": { "expect": ["hashtags_disabled", "source_is_homepage", "mixed_script_word", "slop_em_dash"], "note": "Steam deals, source https://store.steampowered.com/; «Меркoff» with a Latin o." },
@@ -95,6 +95,7 @@
       { "a": "birzha-ihor-dev:848", "b": "birzha-ihor-dev:849", "note": "Steam deals, 1 h 43 min apart" },
       { "a": "ai-tekhnolohii:1034", "b": "ai-tekhnolohii:1042", "note": "Qwen-Image-2.1-Turbo: in the digest, then as a post" },
       { "a": "ai-tekhnolohii:1023", "b": "ai-tekhnolohii:1027", "note": "Mistral Large 4, then again with a poll" },
+      { "a": "birzha-ihor-dev:844", "b": "birzha-ihor-dev:845", "note": "Epic giveaway retold as a poll intro the same evening (added by T2, see the 845 row)" },
       { "a": "ai-shukaie-novyny-dev:1116", "b": "ai-tekhnolohii:1031", "cross_channel": true, "note": "Gemini agent in both AI channels on 09.10 (sibling within 24 h → story_decision)" }
     ],
     "allowed_followup": [

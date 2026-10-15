@@ -11,6 +11,7 @@ import { styleSection } from '../post/style/resource-style';
 import { CritiqueInput, decideVerdict, type Critique, type StoredCritic } from './critic';
 import { criticSkillsSection, type CriticSkillsContext, type CriticSkillsRequest } from './critic-skills';
 import { criticDatesLines, type CriticDates } from './critic-dates';
+import { criticStoryLines, type CriticStoryContext } from '../story/story-context';
 
 /** One attempt of the critic; a second attempt follows a timeout or an error (fail-safe, FR-004). */
 export const CRITIC_TIMEOUT_MS = 90_000;
@@ -58,6 +59,8 @@ export interface CriticRequest {
   skills?:      CriticSkillsContext | null;
   /** Spec 037 T5: publish time in the resource zone, source date, first post of the story (critic-dates.ts). */
   dates?:       CriticDates | null;
+  /** Spec 037 T2: the story's earlier posts (date, channel, lead, key facts) — the post must add, not repeat. */
+  story?:       CriticStoryContext | null;
 }
 
 export type CriticResult =
@@ -123,6 +126,7 @@ export function criticUserPrompt(r: CriticRequest): string {
   s.push('', '## Слот');
   s.push(`Формат: ${r.format}.${r.topic ? ` Тема: ${r.topic}.` : ''}${r.angle ? ` Кут: ${r.angle}.` : ''}`);
   if (r.dates) s.push(...criticDatesLines(r.dates));
+  s.push(...criticStoryLines(r.story, r.dates?.timezone ?? 'Europe/Kyiv'));
   s.push('', '## Пост (що побачить читач)', clip(r.text, CAP.text) || '(порожньо)');
   s.push('', '### Специфікація поста (JSON)', clip(json(r.spec), CAP.spec));
   s.push('', '## Джерело');
