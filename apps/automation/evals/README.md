@@ -113,6 +113,27 @@ That is about **$0.05 per full pass** of the 8 cases, or **$0.15 for `--reps 3`*
 pass. With a Sonnet-class critic (`EDITOR_MODEL_CHECKER`, $3 / $15 per M tokens), each critic pass costs
 $0.015–0.02. That adds about $0.1 per pass, or about $0.3 for 3 reps. Keep `--max-usd 1` as the cap.
 
+### Spec 037 content-integrity critic cases (written, not run)
+
+`cases/integrity.ts`: 16 `critic-037-*` cases (role `checker`) built from the golden fixture of the DEV-channel logs
+(`src/editor/post/testing/channel-logs-2026-10.json`). Twelve problem posts (a relative date that contradicts the
+publish date, the 4th announcement of an event, U+FFFD in the text, a knowledge poll whose answer is in the companion
+post, «щойно» about yesterday's story, a story repeated after a digest, a «fun facts» number, the same Steam deals
+twice, an expired giveaway, a fact that contradicts the previous story post, a process leak, «ти» on a «ви» resource)
+expect `revise` or `reject`, with a soft check that the notes name the problem. Four clean posts (hashtag line
+dropped, as the style now requires) expect `pass`. The context the critic lacks today (publish time in the resource
+zone, the style, the story's earlier posts, the poll's companion post) is passed in `profile` until T2/T5/T8/T12 add
+request fields for it.
+
+```bash
+cd apps/automation
+npx tsx evals/run-evals.ts --list | grep critic-037
+npx tsx --test evals/cases/integrity.fixtures.test.ts   # fixture sanity: no DB, no LLM, no network
+```
+
+Each case is one critic pass, ≈ $0.001 on `z-ai/glm-5.3-flash` (≈ $0.02 per full pass of the 16, ≈ $0.05 for
+`--reps 3`); with a Sonnet-class critic ≈ $0.3 per pass. Keep `--max-usd 1`.
+
 ## Adding a case
 
 1. Add an `EvalCase` to `cases/*.ts`:

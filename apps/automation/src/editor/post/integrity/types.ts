@@ -1,0 +1,121 @@
+import type { EditorCard } from '../../card';
+import type { VoicePrefs } from '../slop-lint';
+
+/**
+ * Spec 037 FR-001: the integrity check seam. Every deterministic content check of the epic (story repeats, dates,
+ * text hygiene, style, polls, sources, …) runs on one platform-neutral view of a post, `AuditPost`, built either
+ * from a PostSpec before publishing (`from-post-spec.ts`) or from a published post (Telegram Desktop export,
+ * `tg-export.ts`; later the post audit of T14). A check is a pure function of the post and its context; it never
+ * reads the DB or the network.
+ */
+
+export type AuditMediaKind = 'photo' | 'video' | 'document' | 'other';
+
+export interface AuditPoll {
+  question: string;
+  options: string[];
+  kind: 'regular' | 'quiz';
+  anonymous: boolean;
+  /** Quiz only, when known (a PostSpec has it; a Telegram export does not show it). */
+  correctIndex?: number;
+  explanation?: string;
+}
+
+/** One post as the reader sees it, normalised across sources and platforms. */
+export interface AuditPost {
+  /** Stable id: `<channel slug>:<message id>` for an export, the slot id for a spec. */
+  id: string;
+  /** Channel / resource title or key. */
+  channel: string;
+  /** Publish (or scheduled) instant, ISO 8601 with the offset, e.g. `2026-10-07T14:02:41+02:00`. */
+  publishedAt: string;
+  /** The resource zone (IANA) relative words and weekdays resolve in, e.g. `Europe/Kyiv`. */
+  timezone: string;
+  /** Plain reader text: paragraphs split by blank lines, list items as `• …`, the `→ source` line and hashtags as shown. */
+  text: string;
+  /** The bold first line / sentence, when the post opens with one. */
+  lead?: string;
+  links: { text: string; url: string }[];
+  buttons: { text: string; url?: string }[];
+  /** Hashtags without `#`, as written (case kept). */
+  hashtags: string[];
+  media: { kind: AuditMediaKind; count: number } | null;
+  poll?: AuditPoll;
+  /** The URL of the code-rendered `→ Source` line, when present. */
+  sourceUrl?: string;
+  /** Every platform message the post is made of (an album is several), for traceability; export only. */
+  messageIds?: number[];
+}
+
+/**
+ * Resource settings a check may read. A partial card so a test or the export audit can pass only what matters;
+ * `style` is the resource style sheet of T8 (address, hashtags, glossary, …), loosely typed until T8 defines it.
+ */
+export type AuditCard = Partial<Pick<EditorCard,
+  'timezone' | 'language' | 'bannedTerms' | 'hashtags' | 'emojiPolicy' | 'humor' | 'slang' | 'emojiPref' | 'readerQuestionsMax'>> & {
+  style?: AuditStyle;
+};
+
+/** T8 narrows this; the keys used so far are the owner decisions of 2026-10-15. */
+export interface AuditStyle {
+  address?: 'ty' | 'vy' | 'impersonal';
+  hashtags?: 'off' | 'vocabulary';
+  [key: string]: unknown;
+}
+
+export interface AuditContext {
+  /** Earlier posts of the same resource, newest first. */
+  previous: AuditPost[];
+  /** Posts of sibling resources of the network group (any order). */
+  network?: AuditPost[];
+  card?: AuditCard;
+  /** "Now" for the check (ISO); defaults to the post's publishedAt where a check needs a clock. */
+  now?: string;
+}
+
+export interface Finding {
+  code: string;
+  level: 'error' | 'warning';
+  message: string;
+  /** The words of the post the finding is about (short). */
+  excerpt?: string;
+}
+
+/**
+ * One deterministic check. `codes` lists every code `run` may return; the golden set treats a code as
+ * implemented once a registered check declares it.
+ */
+export interface IntegrityCheck {
+  id: string;
+  codes: readonly string[];
+  run(post: AuditPost, ctx: AuditContext): Finding[];
+}
+
+/** The slop counters' voice prefs from a card (absent = humour and slang off, as in lintPost). */
+export function voiceOf(card: AuditCard | undefined): VoicePrefs {
+  return { humor: card?.humor, slang: card?.slang, emoji: card?.emojiPref, readerQuestionsMax: card?.readerQuestionsMax };
+}
+
+/** Everything the reader reads in a post: the text plus the poll question and options. */
+export function readerText(post: AuditPost): string {
+  return [post.text, post.poll?.question ?? '', ...(post.poll?.options ?? [])].filter(Boolean).join('\n');
+}
+
+/** A line the code renders after the body: the `→ Source` link or a line of hashtags. */
+const TRAILER_LINE = /^(?:→\s.*|(?:#[\p{L}\p{N}_]+\s*)+)$/u;
+
+/**
+ * The author's text without the code-rendered trailer (the `→ Source` line and the hashtag line at the end), the
+ * same text lintPost calls the body: sentence-structure checks (closing sentence, rhetorical Q&A) look at it.
+ */
+export function bodyText(post: Pick<AuditPost, 'text'>): string {
+  const lines = post.text.split('\n');
+  while (lines.length && (!lines[lines.length - 1].trim() || TRAILER_LINE.test(lines[lines.length - 1].trim()))) lines.pop();
+  return lines.join('\n');
+}
+
+/** A short excerpt for a finding: the first `max` chars, one line. */
+export function excerptOf(s: string, max = 120): string {
+  const one = s.replace(/\s+/g, ' ').trim();
+  return one.length > max ? `${one.slice(0, max - 1)}…` : one;
+}
