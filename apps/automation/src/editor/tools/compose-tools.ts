@@ -52,7 +52,7 @@ export function buildComposeTools(d: ComposeToolDeps = {}): EditorTool[] {
 
   const extractImages = defineTool({
     name: 'extract_images',
-    description: 'Знайти зображення на сторінці (og:image і картинки зі статті). Використовуй лише зображення з джерела, яке цитуєш.',
+    description: 'Знайти зображення на сторінці (og:image і картинки зі статті). Використовуй лише зображення з джерела, яке цитуєш; для новини — лише og_image (головне зображення), немає його — пост без зображення.',
     kind: 'read', roles: ['executor', 'composer'],
     input: z.object({ url: z.string().url() }),
     execute: async ({ url }) => {

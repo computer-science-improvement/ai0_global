@@ -98,6 +98,10 @@ export function auditPostFromSpec(spec: PostSpec, meta: PostSpecMeta): AuditPost
     format: spec.format,
     ...(meta.topic ? { topic: meta.topic } : {}),
   };
+  // Spec 037 T11: the images the post shows and its title, for the media check (source image, posters).
+  const imageUrls = [...spec.media.filter((m) => m.kind !== 'video').map((m) => m.url), ...(spec.format === 'carousel' ? (spec.slides ?? []).flatMap((s) => (s.image ? [s.image] : [])) : [])];
+  if (imageUrls.length && spec.format !== 'video') post.imageUrls = imageUrls;
+  if (spec.title) post.title = spec.title;
   if (first?.type === 'lead') post.lead = inlineToPlain(first.text);
   // Spec 037 T2: a spec always says what it is in its story (an empty story = an original post).
   post.story = {

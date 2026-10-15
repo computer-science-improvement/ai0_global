@@ -295,8 +295,8 @@ export const CODE_EXPLANATIONS: Record<string, CodeExplanation> = {
   // T11 media.
   image_not_from_source: {
     title: 'Image not from the source',
-    explain: 'A news post carries an image other than the source article\'s own picture.',
-    fix: 'Use the source image or publish without an image.',
+    explain: 'A news post carries an image other than the source article\'s own main picture, or any image when the source had none.',
+    fix: 'Use the source page\'s main image, or publish as text without an image when the source has none.',
   },
   poster_mismatch: {
     title: 'Poster does not fit',

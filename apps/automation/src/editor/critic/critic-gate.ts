@@ -14,6 +14,7 @@ import type { AuditSource } from '../post/integrity/types';
 import type { CriticDates } from './critic-dates';
 import type { CriticStoryContext } from '../story/story-context';
 import { sourcePassages, type SourcePage } from '../post/grounding';
+import { criticMediaOf } from './critic-media';
 
 /** Publish tools wait for the critic (two attempts) and then for the send itself. */
 export const PUBLISH_TOOL_TIMEOUT_MS = 2 * CRITIC_TIMEOUT_MS + 60_000;
@@ -120,13 +121,15 @@ export class CriticGate {
   private readonly read = new Map<string, AuditSource>();
   /** Spec 037 T4: an aggregator page's links to the primary source (web_fetch `primary_links`). */
   private readonly primary = new Map<string, string[]>();
+  /** Spec 037 T11: the main image of each page read (web_fetch `image`, extract_images `og_image`); null = none. */
+  private readonly images = new Map<string, string | null>();
 
   constructor(private readonly d: CriticGateDeps, readonly c: CriticGateContext) {}
 
   /** Wrap the run's read tools so the critic sees the source text the executor read (web_fetch, fetch_feed). */
   wrapTools(tools: EditorTool[]): EditorTool[] {
     return tools.map((t) => {
-      if (t.name !== 'web_fetch' && t.name !== 'fetch_feed') return t;
+      if (t.name !== 'web_fetch' && t.name !== 'fetch_feed' && t.name !== 'extract_images') return t;
       return {
         ...t,
         execute: async (input: any, ctx: ToolContext) => {
@@ -139,12 +142,17 @@ export class CriticGate {
   }
 
   private remember(tool: string, input: any, out: any): void {
+    if (tool === 'extract_images') {
+      if (typeof input?.url === 'string') this.images.set(normUrl(input.url), typeof out?.og_image === 'string' ? out.og_image : null);
+      return;
+    }
     if (tool === 'web_fetch') {
       const text = [out?.title, out?.description, out?.text].filter((x) => typeof x === 'string' && x.trim()).join('\n');
       for (const u of [input?.url, out?.url]) if (typeof u === 'string' && text) this.fetched.set(normUrl(u), text.slice(0, PAGE_CAP));
       for (const u of [input?.url, out?.url]) if (typeof u === 'string') this.read.set(normUrl(u), { url: u, publishedAt: normalizePublishedAt(out?.published_at), title: out?.title ?? null });
       const primary = Array.isArray(out?.primary_links) ? out.primary_links.filter((x: unknown): x is string => typeof x === 'string') : [];
       for (const u of [input?.url, out?.url]) if (typeof u === 'string' && primary.length) this.primary.set(normUrl(u), primary);
+      for (const u of [input?.url, out?.url]) if (typeof u === 'string') this.images.set(normUrl(u), typeof out?.image === 'string' ? out.image : null);
       return;
     }
     for (const it of Array.isArray(out?.items) ? out.items : []) {
@@ -182,13 +190,14 @@ export class CriticGate {
   /**
    * Spec 037 T4: `sources()` with the text the run read (≤ 60k chars a page, a feed item's title + snippet) and an
    * aggregator page's primary links, plus the library row behind the spec's `library_ref` — lintPost grounds the
-   * post's numbers in them.
+   * post's numbers in them. T11: a page the run read also carries its main image (`image`, null = none).
    */
   async groundingSources(spec?: { library_ref?: string | null } | null): Promise<AuditSource[]> {
     const out: AuditSource[] = this.sources().map((s) => {
       const text = this.fetched.get(normUrl(s.url));
       const primary = this.primary.get(normUrl(s.url));
-      return { ...s, ...(text ? { text } : {}), ...(primary ? { primaryLinks: primary } : {}) };
+      const image = this.images.has(normUrl(s.url)) ? { image: this.images.get(normUrl(s.url)) ?? null } : {};
+      return { ...s, ...(text ? { text } : {}), ...(primary ? { primaryLinks: primary } : {}), ...image };
     });
     const ref = typeof spec?.library_ref === 'string' ? spec.library_ref : null;
     if (ref && this.d.libraryText) {
@@ -196,6 +205,12 @@ export class CriticGate {
       if (text) out.push({ url: ref, text });
     }
     return out;
+  }
+
+  /** Spec 037 T11: the post's images for the critic (posters by name and use_for) and the source page's main image. */
+  private media(spec: any) {
+    const url: string | null = typeof spec?.source?.url === 'string' ? spec.source.url : null;
+    return criticMediaOf(spec, url && this.images.has(normUrl(url)) ? this.images.get(normUrl(url)) ?? null : undefined);
   }
 
   /** Spec 037 T5: the publish time and the source date for the critic's prompt; null without a publish time. */
@@ -237,6 +252,7 @@ export class CriticGate {
       previous: this.first, agent: this.c.agent ?? null, dates: this.dates(post),
       skills: this.c.skills ?? null,
       story: post.story ?? null,
+      media: this.media(post.spec),
     });
     this.passes++;
     const history = this.first ? [{
