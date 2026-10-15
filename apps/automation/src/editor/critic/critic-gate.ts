@@ -15,6 +15,7 @@ import type { CriticDates } from './critic-dates';
 import type { CriticStoryContext } from '../story/story-context';
 import { sourcePassages, type SourcePage } from '../post/grounding';
 import { criticMediaOf } from './critic-media';
+import { storedSourcesOf, type StoredSource } from './stored-sources';
 
 /** Publish tools wait for the critic (two attempts) and then for the send itself. */
 export const PUBLISH_TOOL_TIMEOUT_MS = 2 * CRITIC_TIMEOUT_MS + 60_000;
@@ -123,6 +124,8 @@ export class CriticGate {
   private readonly primary = new Map<string, string[]>();
   /** Spec 037 T11: the main image of each page read (web_fetch `image`, extract_images `og_image`); null = none. */
   private readonly images = new Map<string, string | null>();
+  /** Spec 037 T17: every image of each page read a news post may use (web_fetch / extract_images `images`). */
+  private readonly pageImages = new Map<string, string[]>();
 
   constructor(private readonly d: CriticGateDeps, readonly c: CriticGateContext) {}
 
@@ -144,6 +147,7 @@ export class CriticGate {
   private remember(tool: string, input: any, out: any): void {
     if (tool === 'extract_images') {
       if (typeof input?.url === 'string') this.images.set(normUrl(input.url), typeof out?.og_image === 'string' ? out.og_image : null);
+      if (typeof input?.url === 'string') this.rememberImages(input.url, out?.og_image, out?.images);
       return;
     }
     if (tool === 'web_fetch') {
@@ -153,6 +157,7 @@ export class CriticGate {
       const primary = Array.isArray(out?.primary_links) ? out.primary_links.filter((x: unknown): x is string => typeof x === 'string') : [];
       for (const u of [input?.url, out?.url]) if (typeof u === 'string' && primary.length) this.primary.set(normUrl(u), primary);
       for (const u of [input?.url, out?.url]) if (typeof u === 'string') this.images.set(normUrl(u), typeof out?.image === 'string' ? out.image : null);
+      for (const u of [input?.url, out?.url]) if (typeof u === 'string') this.rememberImages(u, out?.image, out?.images);
       return;
     }
     for (const it of Array.isArray(out?.items) ? out.items : []) {
@@ -161,6 +166,13 @@ export class CriticGate {
       const text = [it.title, it.date ? `(${it.date})` : null, it.snippet].filter(Boolean).join(' ');
       if (text && !this.fetched.has(normUrl(it.link))) this.fetched.set(normUrl(it.link), text.slice(0, PAGE_CAP));
     }
+  }
+
+  /** Spec 037 T17: the page's main image and its article images (≤ 10, main first); nothing when the tool gave no list. */
+  private rememberImages(url: string, main: unknown, list: unknown): void {
+    if (!Array.isArray(list)) return;
+    const all = [...(typeof main === 'string' ? [main] : []), ...list.filter((x): x is string => typeof x === 'string' && /^https?:\/\//i.test(x))];
+    this.pageImages.set(normUrl(url), [...new Set(all)].slice(0, 10));
   }
 
   private async source(spec: any, post?: CriticPost): Promise<CriticRequest['source']> {
@@ -190,14 +202,16 @@ export class CriticGate {
   /**
    * Spec 037 T4: `sources()` with the text the run read (≤ 60k chars a page, a feed item's title + snippet) and an
    * aggregator page's primary links, plus the library row behind the spec's `library_ref` — lintPost grounds the
-   * post's numbers in them. T11: a page the run read also carries its main image (`image`, null = none).
+   * post's numbers in them. T11: a page the run read also carries its main image (`image`, null = none); T17: and
+   * every image of the page a news post may use (`images`, main first) when the tool listed them.
    */
   async groundingSources(spec?: { library_ref?: string | null } | null): Promise<AuditSource[]> {
     const out: AuditSource[] = this.sources().map((s) => {
       const text = this.fetched.get(normUrl(s.url));
       const primary = this.primary.get(normUrl(s.url));
       const image = this.images.has(normUrl(s.url)) ? { image: this.images.get(normUrl(s.url)) ?? null } : {};
-      return { ...s, ...(text ? { text } : {}), ...(primary ? { primaryLinks: primary } : {}), ...image };
+      const images = this.pageImages.get(normUrl(s.url));
+      return { ...s, ...(text ? { text } : {}), ...(primary ? { primaryLinks: primary } : {}), ...image, ...(images ? { images } : {}) };
     });
     const ref = typeof spec?.library_ref === 'string' ? spec.library_ref : null;
     if (ref && this.d.libraryText) {
@@ -210,7 +224,23 @@ export class CriticGate {
   /** Spec 037 T11: the post's images for the critic (posters by name and use_for) and the source page's main image. */
   private media(spec: any) {
     const url: string | null = typeof spec?.source?.url === 'string' ? spec.source.url : null;
-    return criticMediaOf(spec, url && this.images.has(normUrl(url)) ? this.images.get(normUrl(url)) ?? null : undefined);
+    return criticMediaOf(spec, url && this.images.has(normUrl(url)) ? this.images.get(normUrl(url)) ?? null : undefined,
+      url ? this.pageImages.get(normUrl(url)) : undefined);
+  }
+
+  /**
+   * Spec 037 T17: what the run read, as it is stored with the slot (`editor_slots.critic.sources`) — the post audit
+   * and the approval card then see `image_not_from_source` / the source date without reading the page again.
+   */
+  storedSources(spec: unknown): StoredSource[] {
+    const url = typeof (spec as any)?.source?.url === 'string' ? (spec as any).source.url as string : null;
+    return storedSourcesOf(this.sources().map((s) => {
+      const k = normUrl(s.url);
+      return {
+        ...s, ...(this.images.has(k) ? { image: this.images.get(k) ?? null } : {}),
+        ...(this.pageImages.has(k) ? { images: this.pageImages.get(k)! } : {}),
+      };
+    }), url);
   }
 
   /** Spec 037 T5: the publish time and the source date for the critic's prompt; null without a publish time. */
@@ -242,6 +272,8 @@ export class CriticGate {
     if (this.proceeded?.hash === hash) return { kind: 'proceed', critic: this.proceeded.critic };
 
     const slop = slopCodes(post.warnings);
+    const read = this.storedSources(post.spec);
+    const withSources = read.length ? { sources: read } : {};
     const r = await this.d.critic.review({
       channelKey: this.c.channelKey, slotId: this.c.slotId, mode: this.c.mode, card: this.c.card ?? null,
       resourceRef: this.c.resourceRef, platform: this.c.platform, format: post.format, topic: this.c.topic, angle: this.c.angle,
@@ -263,7 +295,7 @@ export class CriticGate {
       const critic: StoredCritic = {
         verdict: 'error', scores: null, notes: `Критик не відповів: ${r.error}`, model_verdict: null, reason: r.error,
         pass: this.passes, slop_warnings: slop, model: null, run_id: r.runIds.at(-1) ?? null, cost_usd: Number(r.costUsd.toFixed(6)),
-        at: new Date().toISOString(), ...(history ? { history } : {}),
+        at: new Date().toISOString(), ...(history ? { history } : {}), ...withSources,
       };
       if (this.c.mode === 'approve') {
         // The owner reviews every waiting post anyway: the card shows the critic error and is never auto-approved.
@@ -278,7 +310,7 @@ export class CriticGate {
       return { kind: 'halt', critic, result: { ok: true, failed: 'critic_failed', details: r.error } };
     }
 
-    const critic: StoredCritic = { ...r.critic, ...(history ? { history } : {}) };
+    const critic: StoredCritic = { ...r.critic, ...(history ? { history } : {}), ...withSources };
     if (critic.verdict === 'pass') return this.proceed(hash, critic);
 
     if (critic.verdict === 'revise' && this.passes === 1) {

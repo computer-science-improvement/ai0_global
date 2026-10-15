@@ -11,6 +11,7 @@ import { criticGateOf, criticSummary, PUBLISH_TOOL_TIMEOUT_MS } from '../critic/
 import type { ScheduleService } from '../schedule/schedule.service';
 import { dryRunOf } from '../roles/preview-run';
 import { slotText } from '../manager/quality-digest';
+import { platformMediaFindings } from './platform-media';
 
 /** Per-run data of a platform slot (put into ctx.extras by the runner, spec 019/020). */
 export interface PlatformSlotExtras {
@@ -78,13 +79,19 @@ export function buildPlatformTools(d: PlatformToolDeps): EditorTool[] {
       }
       // Spec 034 FR-004: the critic reads the post after every check, before it is stored, sent or put up for approval.
       const gate = criticGateOf(ctx);
+      // Spec 037 T17: the media rules of T11 (a news image only from its source page, no posters on news) on platform posts.
+      const media = platformMediaFindings(spec, {
+        resourceRef: slot.resourceRef, sources: gate ? await gate.groundingSources(spec) : undefined,
+        style: (ctx.extras?.card as { style?: unknown } | undefined)?.style, topic: s.topicMode === 'live' ? null : s.topic,
+      });
+      if (media.errors.length) return { error: 'lint_failed', details: media.errors };
       let critic = null as Record<string, unknown> | null;
       const r = await publishPlatformNow(d.publish, {
         resourceRef: slot.resourceRef, spec, mode: slot.mode, slotId: ctx.slotId, agentId: slot.agentId ?? null,
         maxPerDay: slot.maxPerDay, vocabulary: slot.vocabulary, bannedTerms: slot.bannedTerms, voice: slot.voice, ...(dry ? { dry: true } : {}),
         ...(gate ? {
           review: async ({ text, lint }) => {
-            const c = await gate.check({ text, spec, format: spec.format, warnings: lint.warnings });
+            const c = await gate.check({ text, spec, format: spec.format, warnings: [...lint.warnings, ...media.warnings] });
             if (c.kind !== 'proceed') return { halt: c.result };
             critic = criticSummary(c.critic);
             return null;

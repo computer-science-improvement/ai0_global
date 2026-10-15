@@ -66,7 +66,7 @@ export function approvalAuditPost(i: {
     });
   }
   const spec = PlatformPostSpecSchema.safeParse(i.postSpec);
-  return spec.success ? auditPostFromPlatformSpec(spec.data, meta) : null;
+  return spec.success ? auditPostFromPlatformSpec(spec.data, { ...meta, ...(i.topicMode !== 'live' && i.topic?.trim() ? { topic: i.topic } : {}) }) : null;
 }
 
 export interface ApprovalFindingsDeps {
