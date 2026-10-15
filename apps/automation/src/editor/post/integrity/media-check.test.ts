@@ -15,6 +15,9 @@ import { AI_POSTERS, posterFitsTopic, posterOf } from '../media/posters';
 import { normalizeImageUrl, sameImage } from '../media/image-url';
 import { lintPost } from '../lint-post';
 import { makeCard, makeSpec } from '../testing/fixtures';
+import { auditPostFromPlatformSpec, platformCitedUrl } from '../../audit/post-audit';
+import { PlatformPostSpecSchema } from '../../platform/platform-spec';
+import { platformMediaFindings } from '../../platform/platform-media';
 
 const POSTER = (id: string) => `https://prdruteophdbnypnikij.supabase.co/storage/v1/object/public/common/${id}.png`;
 const NEWS_CARD: AuditCard = { timezone: 'Europe/Kyiv', style: { content_kind: 'news' } as AuditCard['style'] };
@@ -165,4 +168,73 @@ test('normalizeImageUrl: scheme, www, case of the host, fragment, tracking and s
   assert.ok(!sameImage('https://cdn.example/a-1200x630.jpg', 'https://cdn.example/a.jpg'), 'a size in the file name is another image');
   assert.ok(!sameImage('https://cdn.example/a.jpg?id=1', 'https://cdn.example/a.jpg?id=2'));
   assert.equal(normalizeImageUrl(' Not A URL '), 'not a url');
+});
+
+// ── Spec 037 T17: news albums from the source page, platform posts ──────────────────────────────────────────────
+const ART = (n: number) => `https://cdn.akamai.steamstatic.com/steam/apps/123/ss_${n}.jpg`;
+const META = { channel: 'instagram:ai0', publishedAt: '2026-10-12T16:01:05+02:00', timezone: 'Europe/Kyiv' };
+
+test('T17: an album of 3 images from the same article passes; one foreign image → image_not_from_source', () => {
+  const sources = [{ url: PAGE, image: OG, images: [OG, ART(1), ART(2), ART(3)] }];
+  const album = { ...NEWS, media: { kind: 'photo' as const, count: 3 }, imageUrls: [ART(1), `${ART(2)}?w=1200`, OG] };
+  assert.deepEqual(mediaCheck.run(album, ctx({ sources })), []);
+  const f = mediaCheck.run({ ...album, imageUrls: [ART(1), ART(2), 'https://images.unsplash.com/photo-gamer.jpg'] }, ctx({ sources }));
+  assert.deepEqual(codes(f), ['image_not_from_source:error']);
+  assert.match(f[0].excerpt!, /unsplash/);
+  assert.doesNotMatch(f[0].excerpt!, /ss_1/, 'only the foreign image is named');
+  assert.match(f[0].message, /головне .*header\.jpg\?t=1728000000 або ще 3 зі статті/);
+});
+
+test('T17: without `images` only the main image counts (T11); an empty list with no main image means no media', () => {
+  assert.deepEqual(codes(mediaCheck.run({ ...NEWS, imageUrls: [ART(1)] }, ctx({ sources: [{ url: PAGE, image: OG }] }))), ['image_not_from_source:error']);
+  const none = mediaCheck.run({ ...NEWS, imageUrls: [ART(1)] }, ctx({ sources: [{ url: PAGE, image: null, images: [] }] }));
+  assert.match(none[0].message, /немає зображення/);
+});
+
+test('T17: an Instagram news post with a network poster → poster_mismatch error; slide backgrounds follow the source rule', () => {
+  const spec = PlatformPostSpecSchema.parse({
+    format: 'ig_photo', title: 'Qwen-Image-2.1-Turbo', caption: 'Alibaba випустила Qwen-Image-2.1-Turbo, прискорену модель генерації зображень.',
+    media: [{ url: POSTER('17-fine-tune-model') }], first_comment: `Джерело: ${QWEN_URL}`,
+  });
+  const ig = auditPostFromPlatformSpec(spec, { id: 'ig:1', ...META });
+  assert.equal(ig.citedSourceUrl, QWEN_URL, 'Instagram cites its source in the first comment');
+  assert.deepEqual(ig.imageUrls, [POSTER('17-fine-tune-model')]);
+  assert.equal(ig.title, 'Qwen-Image-2.1-Turbo');
+  assert.equal(isNewsPost(ig, NEWS_CARD), true);
+  assert.deepEqual(codes(mediaCheck.run(ig, ctx())), ['poster_mismatch:error']);
+
+  const carousel = PlatformPostSpecSchema.parse({
+    format: 'ig_carousel', title: 'Оновлення Steam', caption: 'Valve оновила гру.', source: { url: PAGE },
+    slides: [{ title: 'Що нового', text: 'Новий режим.', image: ART(1) }, { title: 'Ще', text: 'Нова карта.', image: 'https://cdn.example/stock.jpg' }],
+  });
+  const post = auditPostFromPlatformSpec(carousel, { id: 'ig:2', ...META });
+  assert.deepEqual(post.imageUrls, [ART(1), 'https://cdn.example/stock.jpg'], 'slide backgrounds are the post\'s images');
+  const f = mediaCheck.run(post, ctx({ sources: [{ url: PAGE, image: OG, images: [OG, ART(1)] }] }));
+  assert.deepEqual(codes(f), ['image_not_from_source:error']);
+  assert.match(f[0].excerpt!, /stock\.jpg/);
+});
+
+test('T17: publish_platform_post runs the media rules before the critic (errors block, warnings go to the critic)', () => {
+  const news = PlatformPostSpecSchema.parse({
+    format: 'ig_photo', title: 'Оновлення Steam', caption: 'Valve оновила гру.', source: { url: PAGE }, media: [{ url: POSTER('08-agent') }],
+  });
+  const style = { content_kind: 'news' };
+  assert.deepEqual(platformMediaFindings(news, { resourceRef: 'instagram:1', style }).errors.map((e) => e.code), ['poster_mismatch']);
+  const foreign = { ...news, media: [{ url: 'https://cdn.example/stock.jpg', kind: 'image' as const }] };
+  assert.deepEqual(platformMediaFindings(foreign, { resourceRef: 'instagram:1', style }).errors, [], 'the page not read in this run: never guess');
+  assert.deepEqual(platformMediaFindings(foreign, { resourceRef: 'instagram:1', style, sources: [{ url: PAGE, image: OG, images: [OG] }] }).errors.map((e) => e.code), ['image_not_from_source']);
+  assert.deepEqual(platformMediaFindings({ ...news, media: [{ url: OG, kind: 'image' as const }] }, { resourceRef: 'instagram:1', style, sources: [{ url: PAGE, image: OG }] }), { errors: [], warnings: [] });
+  const explainer = PlatformPostSpecSchema.parse({ format: 'ig_photo', title: 'Що таке MCP-сервер', caption: 'Пояснюємо.', media: [{ url: POSTER('08-agent') }] });
+  const r = platformMediaFindings(explainer, { resourceRef: 'instagram:1', style, topic: 'Глосарій: MCP' });
+  assert.deepEqual([r.errors.length, r.warnings.map((w) => w.code)], [0, ['poster_mismatch']], 'a poster off topic on a non-news post is a warning');
+});
+
+test('T17: platformCitedUrl — source, fb_link link, first comment, the only caption link; CTAs and site roots are not sources', () => {
+  const p = (o: Record<string, unknown>) => platformCitedUrl(PlatformPostSpecSchema.parse({ format: 'th_text', title: 'Пост', caption: 'Текст.', ...o }));
+  assert.equal(p({ source: { url: PAGE }, first_comment: 'https://other.example/a/b' }), PAGE);
+  assert.equal(p({ format: 'fb_link', link: { url: 'https://news.example/2026/10/12/story' } }), 'https://news.example/2026/10/12/story');
+  assert.equal(p({ caption: 'Деталі — [у Verge](https://www.theverge.com/2026/10/12/story).' }), 'https://www.theverge.com/2026/10/12/story');
+  assert.equal(p({ caption: '[A](https://a.example/x/1) і [B](https://b.example/y/2).' }), undefined, 'two links: a round-up, no single source');
+  assert.equal(p({ format: 'ig_photo', media: [{ url: OG }], link: { url: 'https://ai0.example/subscribe/now' } }), undefined, 'the link of a non-fb_link format is a CTA');
+  assert.equal(p({ format: 'ig_photo', media: [{ url: OG }], first_comment: 'Більше на https://ai0.example/' }), undefined, 'a site root is a CTA');
 });

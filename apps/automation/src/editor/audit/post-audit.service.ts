@@ -197,10 +197,12 @@ export class PostAuditService {
   private async platformPosts(ref: string, from: Date, to: Date, tz: string): Promise<AuditTarget[]> {
     if (ref.startsWith('telegram:')) return [];
     const { rows } = await this.d.pool.query(
-      `SELECT id::text AS id, slot_id::text AS slot_id, url, spec, posted_at
-         FROM platform_posts
-        WHERE resource_ref = $1 AND platform <> 'telegram' AND status IN ${OUT} AND posted_at >= $2 AND posted_at < $3
-        ORDER BY posted_at LIMIT 2000`, [ref, from, to]);
+      `SELECT p.id::text AS id, p.slot_id::text AS slot_id, p.url, p.spec, p.posted_at,
+              s.critic -> 'sources' AS sources
+         FROM platform_posts p
+         LEFT JOIN editor_slots s ON s.id = p.slot_id
+        WHERE p.resource_ref = $1 AND p.platform <> 'telegram' AND p.status IN ${OUT} AND p.posted_at >= $2 AND p.posted_at < $3
+        ORDER BY p.posted_at LIMIT 2000`, [ref, from, to]);
     const out: AuditTarget[] = [];
     for (const r of rows) {
       const spec = PlatformPostSpecSchema.safeParse(r.spec);
@@ -208,6 +210,8 @@ export class PostAuditService {
       out.push({
         post: auditPostFromPlatformSpec(spec.data, { id: `platform:${r.id}`, channel: ref, publishedAt: iso(r.posted_at), timezone: tz }),
         kind: 'platform', postId: r.id, slotId: r.slot_id ?? null, url: r.url ?? null,
+        // Spec 037 T17: the pages the slot's run read (critic gate), so image_not_from_source is audited here too.
+        sources: parseSources(r.sources),
       });
     }
     return out;

@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { isSlopWarning } from '../post/slop-lint';
+import type { StoredSource } from './stored-sources';
 
 /**
  * Spec 034 FR-004: the pre-publish critic's verdict.
@@ -99,6 +100,8 @@ export interface StoredCritic {
   final?:         boolean;
   /** Earlier passes of the same slot (pass 1 when this is pass 2). */
   history?:       Array<Pick<StoredCritic, 'verdict' | 'scores' | 'notes' | 'reason' | 'pass' | 'at'>>;
+  /** Spec 037 T17: the pages the run read (url, date, tier, images), for the post audit and the approval card. */
+  sources?:       StoredSource[];
 }
 
 /** A short line for traces, Inbox items and slot errors: «revise (ai_likeness 3, voice 2): notes». */

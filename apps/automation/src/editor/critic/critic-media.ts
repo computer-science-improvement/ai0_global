@@ -8,10 +8,15 @@ import { posterOf } from '../post/media/posters';
 export interface CriticMediaContext {
   images: Array<{ url: string; poster?: { title: string; useFor: string } }>;
   sourceImage?: string | null;
+  /** Spec 037 T17: how many images of the source page a news post may use (main included); absent = unknown. */
+  sourceImageCount?: number;
 }
 
-/** The context from a spec's media (+ carousel slide backgrounds); null when the post has no image. */
-export function criticMediaOf(spec: unknown, sourceImage?: string | null): CriticMediaContext | null {
+/**
+ * The context from a spec's media (+ carousel slide backgrounds); null when the post has no image. `sourceImages` (T17)
+ * are the page's images a news post may use (main first) — the critic is told only how many there are.
+ */
+export function criticMediaOf(spec: unknown, sourceImage?: string | null, sourceImages?: readonly string[]): CriticMediaContext | null {
   const s = (spec ?? {}) as { media?: Array<{ url?: unknown; kind?: unknown }>; slides?: Array<{ image?: unknown }> };
   const urls = [
     ...(Array.isArray(s.media) ? s.media : []).filter((m) => m?.kind !== 'video').map((m) => m?.url),
@@ -24,6 +29,7 @@ export function criticMediaOf(spec: unknown, sourceImage?: string | null): Criti
       return p ? { url, poster: { title: p.title, useFor: p.useFor } } : { url };
     }),
     ...(sourceImage !== undefined ? { sourceImage } : {}),
+    ...(sourceImages ? { sourceImageCount: new Set([...(sourceImage ? [sourceImage] : []), ...sourceImages]).size } : {}),
   };
 }
 
@@ -34,8 +40,9 @@ export function criticMediaLines(m: CriticMediaContext | null | undefined): stri
   for (const i of m.images) {
     out.push(i.poster ? `- постер мережі «${i.poster.title}», use_for: ${i.poster.useFor}` : `- ${i.url}`);
   }
-  if (m.sourceImage) out.push(`Головне зображення сторінки-джерела: ${m.sourceImage}`);
+  const more = m.sourceImageCount !== undefined ? m.sourceImageCount - 1 : 0;
+  if (m.sourceImage) out.push(`Головне зображення сторінки-джерела: ${m.sourceImage}${more > 0 ? ` (ще ${more} зі статті теж можна, напр. для альбому)` : ''}`);
   else if (m.sourceImage === null) out.push('Сторінка-джерело без зображення: новина має йти без media.');
-  out.push('Правило: новина (новина, роздача, знижка з джерелом) — лише зображення зі сторінки-джерела; постер мережі — лише на пості без новинного приводу (пояснення, глосарій, добірка), і тема поста має збігатися з use_for. Постер не за темою чи на новині → format_fit ≤ 3.');
+  out.push('Правило: новина (новина, роздача, знижка з джерелом) — лише зображення зі сторінки-джерела (головне або зі статті); постер мережі — лише на пості без новинного приводу (пояснення, глосарій, добірка), і тема поста має збігатися з use_for. Постер не за темою чи на новині → format_fit ≤ 3.');
   return out;
 }

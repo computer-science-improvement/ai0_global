@@ -4,9 +4,10 @@ import { excerptOf, type AuditCard, type AuditContext, type AuditPost, type Find
 
 /**
  * Spec 037 FR-011 (T11), owner decision 2026-10-15: a post gets an image only when its source news had one.
- *   • `image_not_from_source` (error): a news post (news, giveaway, deal with a source) shows an image other than the
- *     main image of the source page the run read, or any image when that page had none (→ no media, format `text`).
- *     Without the page in `ctx.sources` (not read in this run, a feed item only, the export audit) it says nothing.
+ *   • `image_not_from_source` (error): a news post (news, giveaway, deal with a source) shows an image that is not an
+ *     image of the source page the run read — its main image or (T17) one of the article's own images, so an album
+ *     from the same article passes — or any image when that page had none (→ no media, format `text`). Without the
+ *     page in `ctx.sources` (not read in this run, a feed item only, the export audit) it says nothing.
  *   • `poster_mismatch`: an `ai_posters` poster on a news post (error), or on a non-news post whose topic is not the
  *     poster's `use_for` (warning). Needs only the post, so the post audit of published specs sees it too.
  *
@@ -75,13 +76,17 @@ export const mediaCheck: IntegrityCheck = {
     if (!news) return out;
     const url = citedUrl(post)!;
     const page = (ctx.sources ?? []).find((s) => normUrl(s.url) === normUrl(url));
-    if (!page || page.image === undefined) return out; // the source page was not read in this run: never guess
-    const foreign = posters.filter((x) => !x.poster && (!page.image || normalizeImageUrl(x.url) !== normalizeImageUrl(page.image)));
+    if (!page || (page.image === undefined && page.images === undefined)) return out; // the page was not read in this run: never guess
+    const pageImages = [...(page.image ? [page.image] : []), ...(page.images ?? [])];
+    const allowed = new Set(pageImages.map(normalizeImageUrl));
+    const foreign = posters.filter((x) => !x.poster && !allowed.has(normalizeImageUrl(x.url)));
     if (!foreign.length) return out;
+    const main = page.image ?? pageImages[0];
+    const more = allowed.size - 1;
     out.push({
       code: 'image_not_from_source', level: 'error', excerpt: excerptOf(foreign.map((x) => x.url).join(' '), 120),
-      message: page.image
-        ? `зображення не зі сторінки-джерела: ${foreign.map((x) => x.url).slice(0, 3).join(', ')} — для новини лише головне зображення джерела ${page.image} або пост без зображення (format text)`
+      message: main
+        ? `зображення не зі сторінки-джерела: ${foreign.map((x) => x.url).slice(0, 3).join(', ')} — для новини лише зображення джерела (головне ${main}${more > 0 ? ` або ще ${more} зі статті` : ''}) або пост без зображення (format text)`
         : `на сторінці-джерелі ${url} немає зображення — новина йде без media, format text (прибери ${foreign.map((x) => x.url).slice(0, 3).join(', ')})`,
     });
     return out;

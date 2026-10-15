@@ -25,7 +25,7 @@ test('lint_post and preview_post', async () => {
 test('extract_images', async () => {
   const r: any = await tools.extract_images.execute({ url: 'https://news.example/a' }, ctx);
   assert.equal(r.og_image, 'https://i.example/og.jpg');
-  assert.deepEqual(r.images, ['https://i.example/1.jpg']);
+  assert.deepEqual(r.images, ['https://i.example/og.jpg', 'https://i.example/1.jpg'], 'spec 037 T17: the main image first, then the article\'s');
 });
 
 test('missing card is an error', async () => {

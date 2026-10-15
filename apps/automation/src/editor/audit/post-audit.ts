@@ -4,6 +4,7 @@ import { normalizeHashtag, type RenderCard } from '../post/render-telegram';
 import { INTEGRITY_CHECKS, runIntegrityChecks } from '../post/integrity/registry';
 import { excerptOf, type AuditCard, type AuditPost, type AuditSource, type Finding, type IntegrityCheck } from '../post/integrity/types';
 import type { PlatformPostSpec } from '../platform/platform-spec';
+import { isSiteIndexUrl } from '../../data/source-tier';
 
 /**
  * Spec 037 FR-014 (T14): the post audit, the pure part. Every registered deterministic check (`INTEGRITY_CHECKS`,
@@ -149,7 +150,7 @@ export function auditFindings(i: {
   return rows;
 }
 
-/** Stored sources (`[{url, publishedAt|published_at, title}]`) → AuditSource[]; anything else → null. */
+/** Stored sources (`[{url, publishedAt|published_at, title, image?, images?}]`, critic/stored-sources.ts) → AuditSource[]; anything else → null. */
 export function parseSources(raw: unknown): AuditSource[] | null {
   if (!Array.isArray(raw)) return null;
   const out: AuditSource[] = [];
@@ -161,6 +162,8 @@ export function parseSources(raw: unknown): AuditSource[] | null {
       url: x.url as string, publishedAt: published, title: typeof x.title === 'string' ? x.title : null,
       // Spec 037 T11: the page's main image when it was stored (null = the page had none).
       ...('image' in x && (typeof x.image === 'string' || x.image === null) ? { image: x.image as string | null } : {}),
+      // Spec 037 T17: every image of the page a news post may use (main first), when it was stored.
+      ...(Array.isArray(x.images) ? { images: (x.images as unknown[]).filter((u): u is string => typeof u === 'string').slice(0, 10) } : {}),
     });
   }
   return out.length ? out : null;
@@ -168,16 +171,36 @@ export function parseSources(raw: unknown): AuditSource[] | null {
 
 const LINK_RE = /\[([^\]\n]{1,200})\]\((https?:\/\/[^\s)]{1,2000})\)/g;
 
+const URL_RE = /https?:\/\/[^\s)\]>"']+/i;
+
+/**
+ * Spec 037 T17: the page a platform post cites. `source.url` first; without it the shapes cite otherwise: the `link`
+ * of an `fb_link` (the shared article), the first URL of Instagram's `first_comment` («джерело: …»), or the caption's
+ * only link (Threads / Facebook). The `link` of other formats is a "link in bio" call to action, not a source, and so
+ * is a site root or section index anywhere.
+ */
+export function platformCitedUrl(spec: PlatformPostSpec): string | undefined {
+  if (spec.source?.url) return spec.source.url;
+  const ok = (u: string | undefined): u is string => !!u && !isSiteIndexUrl(u);
+  const fromComment = spec.first_comment ? URL_RE.exec(spec.first_comment)?.[0]?.replace(/[.,;:!?]+$/, '') : undefined;
+  const inCaption = [...new Set([...spec.caption.matchAll(LINK_RE)].map((m) => m[2]).filter(ok))];
+  return [spec.format === 'fb_link' ? spec.link?.url : undefined, fromComment, inCaption.length === 1 ? inCaption[0] : undefined].find(ok);
+}
+
 /**
  * A native platform post (Instagram, Facebook, Threads, TikTok, YouTube) → the integrity view: the caption as the
  * reader sees it (markup and links as plain labels), the slides, the hashtags, the source as the source line.
+ * Spec 037 T17: plus its images (image media, slide backgrounds), the internal title and the cited page
+ * (`platformCitedUrl`), so the media / poster check (T11) runs on platform posts too.
  */
-export function auditPostFromPlatformSpec(spec: PlatformPostSpec, meta: { id: string; channel: string; publishedAt: string; timezone: string }): AuditPost {
+export function auditPostFromPlatformSpec(spec: PlatformPostSpec, meta: { id: string; channel: string; publishedAt: string; timezone: string; topic?: string }): AuditPost {
   const caption = inlineToPlain(spec.caption.replace(LINK_RE, (_m, label: string) => label)).trim();
   const slides = (spec.slides ?? []).map((s) => `${s.title}\n${s.text}`);
   const hashtags = spec.hashtags.map(normalizeHashtag);
   const text = [caption, ...slides, hashtags.length ? hashtags.map((h) => `#${h}`).join(' ') : ''].filter((s) => s.trim()).join('\n\n');
   const mediaCount = spec.slides?.length ? spec.slides.length : spec.media.length;
+  const imageUrls = [...spec.media.filter((m) => m.kind !== 'video').map((m) => m.url), ...(spec.slides ?? []).flatMap((s) => (s.image ? [s.image] : []))];
+  const cited = platformCitedUrl(spec);
   return {
     id: meta.id, channel: meta.channel, publishedAt: meta.publishedAt, timezone: meta.timezone,
     text,
@@ -187,6 +210,10 @@ export function auditPostFromPlatformSpec(spec: PlatformPostSpec, meta: { id: st
     media: mediaCount ? { kind: spec.media.some((m) => m.kind === 'video') ? 'video' : 'photo', count: mediaCount } : null,
     format: spec.format,
     ...(spec.source ? { sourceUrl: spec.source.url } : {}),
+    ...(cited ? { citedSourceUrl: cited } : {}),
+    title: spec.title,
+    ...(meta.topic ? { topic: meta.topic } : {}),
+    ...(imageUrls.length ? { imageUrls: [...new Set(imageUrls)] } : {}),
   };
 }
 

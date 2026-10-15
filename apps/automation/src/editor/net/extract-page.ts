@@ -1,12 +1,17 @@
 import * as cheerio from 'cheerio';
 import { normalizePublishedAt } from '../post/dates';
 import { primaryLinksOf, sourceTier } from '../../data/source-tier';
+import { normalizeImageUrl } from '../post/media/image-url';
 
 export interface ExtractedPage {
   title:       string | null;
   description: string | null;
   /** Spec 037 T11: the page's main image — og:image, twitter:image, else the first article image (absolute); null = none. */
   image:       string | null;
+  /**
+   * Spec 037 T17: the page's images a news post may use — the main image first, then the article's own images
+   * (≤ 10, absolute http(s), deduplicated, page chrome filtered out; see `articleImagesOf`).
+   */
   images:      string[];
   text:        string;
   /** Spec 037 T5: when the page says it was published (ISO instant or YYYY-MM-DD); null when it does not. */
@@ -34,9 +39,8 @@ export function extractPage(html: string, baseUrl: string): ExtractedPage {
   $('script, style, noscript, nav, footer, header, aside, form, iframe, svg').remove();
   const root = $('article').first().length ? $('article').first() : ($('main').first().length ? $('main').first() : $('body'));
 
-  const images = root.find('img').map((_, el) => abs($(el).attr('src') ?? $(el).attr('data-src'))).get()
-    .filter((u): u is string => !!u && /^https?:/.test(u) && !/\.(svg|gif)(\?|$)/i.test(u));
-  const image = socialImage ?? images[0] ?? null;
+  const article = articleImagesOf($, root, abs);
+  const image = socialImage ?? article[0] ?? null;
 
   const blocks = root.find('h1, h2, h3, p, li, blockquote').map((_, el) => $(el).text().replace(/\s+/g, ' ').trim()).get()
     .filter((t) => t.length > 1);
@@ -48,7 +52,70 @@ export function extractPage(html: string, baseUrl: string): ExtractedPage {
     ? primaryLinksOf(baseUrl, root.find('a[href]').map((_, el) => abs($(el).attr('href'))).get().filter((u): u is string => !!u))
     : [];
 
-  return { title, description, image, images: [...new Set(images)].slice(0, 10), text, published_at, ...(primary.length ? { primary_links: primary } : {}) };
+  return { title, description, image, images: dedupeImages([...(image ? [image] : []), ...article]), text, published_at, ...(primary.length ? { primary_links: primary } : {}) };
+}
+
+/** How many page images are kept (the main one included). */
+export const PAGE_IMAGES_MAX = 10;
+/** A declared width or height at or below this is an icon, a spacer or a tracking pixel. */
+const TINY_PX = 64;
+/** Names of page chrome: a path segment / file-name part `logo`, `icon(s)`, `avatar`, `sprite`, `badge`, `favicon`, `emoji`… */
+const CHROME_NAME = /(?:^|[/_.-])(?:logos?|icons?|favicons?|avatars?|sprites?|badges?|emojis?|spinner|placeholder|gravatar|userpic)(?=$|[/_.\d-])/i;
+/** A file named as a tracking pixel or spacer (`pixel.gif`, `tracking-pixel.png`, `1x1.png`, `spacer.gif`, `blank.png`). */
+const PIXEL_FILE = /(?:^|[/_-])(?:pixel|px|1x1|spacer|blank|transparent|tracking)\.[a-z0-9]+$/i;
+/** Classes / ids of page chrome. */
+const CHROME_ATTR = /(?:^|[\s_-])(?:logo|icon|avatar|emoji|badge|sprite|author-photo|byline)(?=$|[\s_-])/i;
+
+const dimOf = (v: string | undefined): number | null => {
+  const n = v ? Number.parseInt(v, 10) : NaN;
+  return Number.isFinite(n) ? n : null;
+};
+
+/** Distinct images (by `normalizeImageUrl`), first occurrence kept, at most PAGE_IMAGES_MAX. */
+function dedupeImages(urls: readonly string[]): string[] {
+  const seen = new Set<string>();
+  const out: string[] = [];
+  for (const u of urls) {
+    const k = normalizeImageUrl(u);
+    if (seen.has(k)) continue;
+    seen.add(k);
+    out.push(u);
+    if (out.length >= PAGE_IMAGES_MAX) break;
+  }
+  return out;
+}
+
+/**
+ * Spec 037 T17: the article's own images (the root the text is read from; nav / header / footer / aside are already
+ * gone), in page order, absolute http(s), deduplicated, ≤ PAGE_IMAGES_MAX. Page chrome is skipped by simple rules:
+ *   • `data:` URIs and anything not http(s) (also how lazy-load placeholders usually look);
+ *   • `.svg` (logos, icons) and `.gif` (tracking pixels, spacers; an animated GIF is not a post photo);
+ *   • a declared `width` or `height` ≤ 64 px (icons, avatars, 1×1 pixels);
+ *   • a path / file name with logo, icon, favicon, avatar, sprite, badge, emoji, spinner, placeholder, gravatar,
+ *     userpic, or a pixel / spacer file (`pixel.png`, `1x1.png`, `spacer.gif`);
+ *   • a class / id naming logo, icon, avatar, emoji, badge, sprite, author photo, byline (not the alt: a news photo
+ *     may well show a logo).
+ * The source is `src`, else `data-src` / `data-lazy-src` / `data-original` (lazy loading).
+ */
+export function articleImagesOf($: cheerio.CheerioAPI, root: cheerio.Cheerio<any>, abs: (u: string | undefined | null) => string | null): string[] {
+  const out: string[] = [];
+  root.find('img').each((_, el) => {
+    const img = $(el);
+    const raw = [img.attr('src'), img.attr('data-src'), img.attr('data-lazy-src'), img.attr('data-original')]
+      .map((v) => v?.trim()).find((v) => !!v && !/^data:/i.test(v));
+    const u = abs(raw);
+    if (!u || !/^https?:\/\//i.test(u)) return;
+    let path: string;
+    try { path = decodeURIComponent(new URL(u).pathname); } catch { return; }
+    if (/\.(?:svg|gif)$/i.test(path)) return;
+    const w = dimOf(img.attr('width'));
+    const h = dimOf(img.attr('height'));
+    if ((w !== null && w <= TINY_PX) || (h !== null && h <= TINY_PX)) return;
+    if (CHROME_NAME.test(path) || PIXEL_FILE.test(path)) return;
+    if (CHROME_ATTR.test([img.attr('class'), img.attr('id')].filter(Boolean).join(' '))) return;
+    out.push(u);
+  });
+  return dedupeImages(out);
 }
 
 /** Social-card image selectors in priority order (og:image and its aliases, then twitter:image). */
