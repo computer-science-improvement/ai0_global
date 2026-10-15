@@ -45,8 +45,10 @@ export interface CriticRequest {
   /** Spec 034 FR-008: the resource's example posts and warnings from the playbook (renderExamples), the reference. */
   examples?:    string | null;
   source?:      { url: string | null; excerpt: string | null } | null;
-  /** Slop lint warnings (spec 034 T1): only the `slop_*` ones. */
+  /** Slop lint warnings (spec 034 T1): only the `slop_*` ones; the verdict rule counts these. */
   slopWarnings: Array<{ code: string; message: string }>;
+  /** Spec 037 T6: every lint warning (hygiene, dates, style, … and the slop ones) for the prompt; absent = slopWarnings. */
+  lintWarnings?: Array<{ code: string; message: string }>;
   /** Pass 2: the first verdict, so the critic sees what was asked. */
   previous?:    Pick<StoredCritic, 'verdict' | 'notes' | 'scores'> | null;
   /** Registry agent whose budget the critic run counts against (the executor's). */
@@ -127,8 +129,9 @@ export function criticUserPrompt(r: CriticRequest): string {
   } else {
     s.push('Джерела немає — оціни grounding за перевірюваністю тверджень.');
   }
-  s.push('', '## Попередження lint (AI-штампи, гумор і сленг)');
-  s.push(r.slopWarnings.length ? r.slopWarnings.map((w) => `- ${w.code}: ${w.message}`).join('\n') : '- немає');
+  s.push('', '## Попередження lint (AI-штампи, гумор і сленг, гігієна тексту та інші перевірки коду)');
+  const lintWarnings = r.lintWarnings ?? r.slopWarnings;
+  s.push(lintWarnings.length ? lintWarnings.map((w) => `- ${w.code}: ${w.message}`).join('\n') : '- немає');
   if (r.previous) {
     s.push('', '## Це переписаний пост', `Перший вердикт: ${r.previous.verdict}. Зауваження автору: ${r.previous.notes}`,
       'Перевір, чи виправлено саме це, і оціни пост заново повністю.');

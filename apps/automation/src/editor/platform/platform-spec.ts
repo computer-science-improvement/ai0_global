@@ -6,6 +6,8 @@ import { slopWarnings, type VoicePrefs } from '../post/slop-lint';
 import { readerQuestionsIssue } from '../post/audience-asks';
 import { inlineToPlain } from '../post/inline-markup';
 import { normalizeHashtag } from '../post/render-telegram';
+import { normalizeTypography } from '../post/typography';
+import { brokenCharText, findBrokenChars } from '../post/text-hygiene';
 import { CAPABILITIES, formatSpec, NATIVE_FORMATS, platformOfFormat } from './capabilities';
 import type { Platform } from '../agents/agent.types';
 
@@ -109,6 +111,8 @@ export function lintPlatformPost(spec: PlatformPostSpec, c: PlatformLintContext)
   // Spec 034 FR-005: questions to the readers over the resource's cap (default 1 per post, news 0).
   const asks = readerQuestionsIssue([caption, slidesText].filter(Boolean).join('\n'), c.voice?.readerQuestionsMax);
   if (asks) errors.push(asks);
+  // Spec 037 T6: a broken character (U+FFFD, control, zero-width inside a word, mojibake) never goes out.
+  for (const b of findBrokenChars([all, spec.first_comment ?? ''].join('\n'))) errors.push({ code: 'text_replacement_char', message: `${brokenCharText(b.kind)}: «${b.excerpt}»` });
   if ((spec.format === 'tt_photo' || spec.format === 'yt_short') && spec.title.length > 90) {
     errors.push({ code: 'title_too_long', message: 'заголовок TikTok/YouTube до 90 символів' });
   }
@@ -152,5 +156,17 @@ export function renderPlatform(spec: PlatformPostSpec, platform: Exclude<Platfor
   };
 }
 
-/** Platform spec as an agent tool input: picture/source aliases mapped, other unknown fields rejected by name (spec 034 follow-up). */
-export const AgentPlatformPostSpecSchema = z.preprocess(coerceAgentSpec, PlatformPostSpecSchema.strict());
+/** Spec 037 T6: the typography normaliser over the reader-visible strings of a platform post (hashtags and URLs untouched). */
+export function normalizePlatformSpec(spec: PlatformPostSpec): PlatformPostSpec {
+  const t = normalizeTypography;
+  return {
+    ...spec,
+    caption: t(spec.caption),
+    ...(spec.first_comment ? { first_comment: t(spec.first_comment) } : {}),
+    ...(spec.slides ? { slides: spec.slides.map((x) => ({ ...x, title: t(x.title), text: t(x.text) })) } : {}),
+    ...(spec.link?.label ? { link: { ...spec.link, label: t(spec.link.label) } } : {}),
+  };
+}
+
+/** Platform spec as an agent tool input: picture/source aliases mapped, other unknown fields rejected by name (spec 034 follow-up), text normalised (spec 037 T6). */
+export const AgentPlatformPostSpecSchema = z.preprocess(coerceAgentSpec, PlatformPostSpecSchema.strict()).transform(normalizePlatformSpec);
