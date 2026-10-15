@@ -7,6 +7,8 @@ import { addSkip, isNotAMiss, isOwnerDecision, skipGroupOf, type SkipCounts } fr
 import { DARK_DAY_HOUR } from '../silent/silent-days';
 import type { SlotFallback } from '../silent/fallback-ladder';
 import { SqlFeedFit, type FeedFit } from './feed-fit';
+import { PostAuditService, type AuditSummary } from '../audit/post-audit.service';
+import { AUDIT_FLAGS } from '../audit/code-catalogue';
 
 /**
  * Spec 034 FR-006 (T4): the content-quality block of the MANAGER's digest, per resource over 7 days. Code computes
@@ -39,6 +41,8 @@ export const QUALITY_FLAGS = [
   'dark_day', 'series_missed',
   // Spec 037 FR-009: a feed whose items mostly carry jargon over the audience level or get a critic revise / reject.
   'feed_misfit',
+  // Spec 037 FR-014: the post audit found story repeats, fact / source issues, date, text-hygiene or style findings.
+  'story_repeat', 'fact_conflict', 'date_issue', 'text_hygiene', 'style_violation',
 ] as const;
 export type QualityFlag = typeof QUALITY_FLAGS[number];
 
@@ -92,6 +96,8 @@ export interface ResourceQuality {
   plan?:   PlanBlock;
   /** Spec 037 FR-009: per feed, the share of items with jargon over the level / critic revise / reject (digest only). */
   feeds?:  FeedFit[];
+  /** Spec 037 FR-014: the post audit of the window — findings per digest flag and the top codes (absent before the first audit). */
+  audit?:  AuditSummary;
   flags:   QualityFlag[];
   /**
    * What changed since the last run (the digest hash reads it): the newest critic issue and owner decision, the
@@ -278,6 +284,14 @@ export function withFeeds(q: ResourceQuality, feeds: FeedFit[] | undefined): Res
   return { ...q, feeds };
 }
 
+/** Spec 037 FR-014: the post-audit block on a resource's quality, and a flag per audit group with findings. */
+export function withAudit(q: ResourceQuality, audit: AuditSummary | undefined): ResourceQuality {
+  if (!audit) return q;
+  // The flags array is shared with the signature, so a new audit flag changes the digest hash too.
+  for (const f of AUDIT_FLAGS) if ((audit.groups[f] ?? 0) > 0 && !q.flags.includes(f)) q.flags.push(f);
+  return { ...q, audit };
+}
+
 /** Has the resource produced anything to judge in the window (posts, verdicts or owner decisions)? */
 export function qualityActive(q: ResourceQuality | null | undefined): boolean {
   return !!q && (q.posts > 0 || q.critic.total > 0 || q.owner.approved + q.owner.rejected > 0 || q.polls.slots > 0
@@ -390,13 +404,14 @@ export class SqlQuality {
   async digest(refs: string[], now: Date): Promise<Map<string, ResourceQuality>> {
     const from = new Date(now.getTime() - QUALITY_DAYS * 86_400_000);
     // A minute of slack: a row written in the same millisecond (DB clocks are finer) still counts.
-    const [data, caps, feeds] = await Promise.all([
+    const [data, caps, feeds, audit] = await Promise.all([
       this.rows(refs, from, new Date(now.getTime() + 60_000)), this.caps(refs),
       new SqlFeedFit(this.pool).feeds(refs, from, new Date(now.getTime() + 60_000)).catch(() => new Map<string, FeedFit[]>()),
+      new PostAuditService({ pool: this.pool }).summaries(refs, now).catch(() => new Map<string, AuditSummary>()),
     ]);
     return new Map(refs.map((r) => {
       const d = data.get(r)!;
-      return [r, withFeeds(assembleQuality({ ...d, caps: caps.get(r)!, plan: { rows: d.plan, tz: d.tz, now } }), feeds.get(r))];
+      return [r, withAudit(withFeeds(assembleQuality({ ...d, caps: caps.get(r)!, plan: { rows: d.plan, tz: d.tz, now } }), feeds.get(r)), audit.get(r))];
     }));
   }
 

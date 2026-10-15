@@ -68,6 +68,8 @@ export interface EditorSchedulerDeps {
    * the slots, throttled by the hook itself, one Inbox note per resource per day and kind. Paused resources are left out.
    */
   silentDays?: (cards: EditorCard[], now: Date, paused: ReadonlySet<string>) => Promise<unknown>;
+  /** Spec 037 FR-014: the post audit — daily per resource and at once after a rule change; throttled by the hook itself. */
+  postAudit?: (now: Date) => Promise<unknown>;
 }
 
 /** How far ahead approval-mode slots are looked at for writing (the evening batch covers the next day). */
@@ -174,6 +176,9 @@ export class EditorScheduler {
     }
     if (this.d.silentDays) {
       try { await this.d.silentDays(cards, now, paused); } catch (err: any) { this.d.log?.(`silent-day check failed: ${err?.message ?? err}`); }
+    }
+    if (this.d.postAudit) {
+      try { await this.d.postAudit(now); } catch (err: any) { this.d.log?.(`post audit failed: ${err?.message ?? err}`); }
     }
 
     // Approval mode writes ahead of time; everything else (and late approval slots) at the slot time.

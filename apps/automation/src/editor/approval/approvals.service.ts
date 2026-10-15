@@ -17,6 +17,7 @@ import type { ApprovalItem, ApprovalsRepository } from './approvals.repository';
 import { editPreference, rejectPreference, type OwnerPreference } from './owner-preferences';
 import { heldByCritic, type StoredCritic } from '../critic/critic';
 import type { ResourceStyle } from '../post/style/resource-style';
+import type { ApprovalFinding } from '../audit/approval-findings';
 
 export interface ApprovalsServiceDeps {
   repo:  ApprovalsRepository;
@@ -33,6 +34,8 @@ export interface ApprovalsServiceDeps {
    * write never undoes the decision.
    */
   remember?: (channelKey: string, pref: OwnerPreference) => Promise<unknown>;
+  /** Spec 037 FR-014: every integrity finding of a waiting post (lint, numbers, stories, dates) for the card; never throws. */
+  findings?: (item: ApprovalItem) => Promise<ApprovalFinding[]>;
   log?:  (msg: string) => void;
   now?:  () => Date;
 }
@@ -59,6 +62,8 @@ export interface ApprovalCard {
   lintWarnings:  string[];
   /** Spec 034 FR-004: the pre-publish critic's verdict, scores and notes (null for posts written before it). */
   critic:        StoredCritic | null;
+  /** Spec 037 FR-014: the integrity findings of the post with the rule explanation (list only; absent without the hook). */
+  findings?:     ApprovalFinding[];
   ownerEdited:   boolean;
   approvedAt:    Date | null;
   expiresAt:     Date;
@@ -137,7 +142,11 @@ export class ApprovalsService {
       status: status.length ? status : undefined, resource: q.resource ?? null, channel: q.channel ?? null,
       from: q.from ? new Date(q.from) : null, to: q.to ? new Date(q.to) : null, ideaId: q.idea ?? null, planDate: q.date ?? null,
     });
-    return { items: items.map((i) => this.toCard(i)), waiting: await this.d.repo.waitingCount() };
+    const cards = await Promise.all(items.map(async (i) => {
+      const card = this.toCard(i);
+      return this.d.findings ? { ...card, findings: await this.d.findings(i).catch(() => []) } : card;
+    }));
+    return { items: cards, waiting: await this.d.repo.waitingCount() };
   }
 
   async count(): Promise<{ waiting: number }> {

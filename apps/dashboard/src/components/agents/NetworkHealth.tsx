@@ -4,8 +4,9 @@
 // card (spec 029) and the directives waiting for the owner. Spec 034 FR-006: each
 // tile also shows the 7-day content quality (critic pass rate, polls against the
 // cap, your rejections and edits, the code's quality flags, the critic's notes and
-// sample texts). On phones the resources without anomalies or quality flags
-// collapse into one line.
+// sample texts). Spec 037 FR-014: "Notes and sample posts" also lists the post
+// audit (issues by code with the posts, the rule and the fix) and the feed fit.
+// On phones the resources without anomalies or quality flags collapse into one line.
 
 import { Link } from '@tanstack/react-router';
 import { useState } from 'react';
@@ -22,13 +23,15 @@ import { PLATFORM_LABEL, PlatformIcon } from './NetworkUi';
 import { fmtPct, metricLabel } from './Directives';
 import { parseRef, useResourceLabels } from '../../api/network';
 import { flagLabel, flaggedCount, qualityActive, qualityStats, type QualityTone, type ResourceQuality } from '../../lib/quality-view';
+import { FeedFitList, PostAuditNotes } from './PostAuditNotes';
 
 const TONE_COLOR: Record<QualityTone, string> = {
   neutral: 'var(--color-ink-muted)', success: 'var(--color-success)', warning: 'var(--color-warning)', danger: 'var(--color-danger)',
 };
 
 /** Spec 034 FR-006: the tile's content-quality block. */
-function QualityBlock({ q }: { q: ResourceQuality | null | undefined }) {
+function QualityBlock({ q, resource }: { q: ResourceQuality | null | undefined; resource: string }) {
+  const [open, setOpen] = useState(false);
   if (!qualityActive(q)) {
     return (
       <div className="text-micro" style={{ padding: '6px 6px 0', marginTop: 6, borderTop: '1px solid var(--color-hairline)', color: 'var(--color-ink-dim)' }}>
@@ -55,10 +58,14 @@ function QualityBlock({ q }: { q: ResourceQuality | null | undefined }) {
           {q.flags.map((f) => <Badge key={f} tone={f === 'owner_edits' || f === 'critic_failed' ? 'warning' : 'danger'}>{flagLabel(f)}</Badge>)}
         </div>
       )}
-      {(notes.length > 0 || q.samples.length > 0) && (
-        <details style={{ padding: '5px 6px 0' }}>
-          <summary className="text-micro link-accent" style={{ cursor: 'pointer' }}>Notes and sample posts</summary>
-          <div style={{ display: 'grid', gap: 6, marginTop: 6 }}>
+      {(notes.length > 0 || q.samples.length > 0 || q.audit || (q.feeds?.length ?? 0) > 0 || q.posts > 0) && (
+        <details style={{ padding: '5px 6px 0' }} onToggle={(e) => setOpen((e.currentTarget as HTMLDetailsElement).open)}>
+          <summary className="text-micro link-accent" style={{ cursor: 'pointer' }}>
+            Notes and sample posts{q.audit?.findings ? ` · ${q.audit.findings} issue${q.audit.findings === 1 ? '' : 's'}` : ''}
+          </summary>
+          <div style={{ display: 'grid', gap: 6, marginTop: 6, minWidth: 0 }}>
+            <PostAuditNotes resource={resource} summary={q.audit} open={open} />
+            {q.feeds && q.feeds.length > 0 && <FeedFitList feeds={q.feeds} />}
             {notes.map((n, i) => (
               <div key={`n${i}`} className="text-micro" style={{ color: 'var(--color-ink-muted)', overflowWrap: 'anywhere' }}>
                 <span className="chip" style={{ fontSize: 10, marginRight: 5 }}>{n.tag}</span>{n.text}
@@ -136,7 +143,7 @@ function ResourceTile({ r }: { r: DigestResource }) {
         {r.agent && <Link to="/app/agents/$handle" params={{ handle: r.agent }} className="link-accent" style={{ marginLeft: 'auto', flexShrink: 0 }}>@{r.agent}</Link>}
       </div>
       {KPI_NAMES.map((n) => <KpiRow key={n} name={n} k={r.kpis[n]} />)}
-      {r.quality !== undefined && <QualityBlock q={r.quality} />}
+      {r.quality !== undefined && <QualityBlock q={r.quality} resource={r.ref} />}
     </div>
   );
 }
