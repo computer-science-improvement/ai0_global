@@ -45,7 +45,7 @@ Each feature directory has `spec.md` (what and why), `plan.md` (how, plus Consti
 | 034 | [Content quality + live planning](034-content-quality-live-planning/spec.md): voice core in every writer prompt, pre-publish critic, fewer polls/questions, fitting formats with examples in the creation chat, live news slots, readable plan, skills audit (AI0-82) | P0 | 017–025, 031, 033 | DONE (evals written, not run) |
 | 035 | [Model picker](035-model-picker/spec.md): `/app/models` — global default model (`ai.default_model`, built-in `z-ai/glm-5.3-flash` for every role), per-agent model + effort, bulk apply/reset, legacy channel overrides, OpenRouter catalog (AI0-92) | P1 | 017, 029 | DONE |
 | 036 | [Sponsor fulfilment](036-sponsor-fulfilment/spec.md): paid `digest_sponsor` orders on channels without a digest strategy go out as reserved sponsored posts; sale guard (not offered / refused where no digest runs), cutover report, stuck paid-order check + CLI (migration 072) | P0 | 008, 023, 025, 031 | DONE |
-| 037 | [Content integrity](037-content-integrity/spec.md): story registry (one story one post, cross-channel skip/own angle/repost), facts and dates from the source, text hygiene, resource style sheet (ви, glossary, hashtags off), polls→quizzes, silent-day fallback + evergreen, critic gets the writer's skills, KPI sample guard, post audit (AI0-94) | P0 | 023, 025, 031, 034, 035 | IN PROGRESS |
+| 037 | [Content integrity](037-content-integrity/spec.md): story registry (one story one post, cross-channel skip/own angle/repost), facts and dates from the source, text hygiene, resource style sheet (ви, glossary, hashtags off), polls→quizzes, silent-day fallback + evergreen, critic gets the writer's skills, KPI sample guard, post audit (AI0-94) | P0 | 023, 025, 031, 034, 035 | DONE |
 
 Suggested order for the next wave: 012 → 011 (phases 0–1) → 015 → 013 → 014; 016 is independent.
 
@@ -53,7 +53,7 @@ Agent platform wave: 017 → 018 ∥ 019 → 020 → 021 → 022 (019b after 016
 
 **UI language (owner rule 2026-10-06):** all interface text is English. Ukrainian button and label texts quoted in specs 023–032 give the meaning; implement them in English (see `apps/dashboard/CLAUDE.md` → Language).
 
-Migration numbers in specs 023–032 are assigned in merge order (landed: 055 auth, 056 llm_usage, 057 approval, 058 data store; landed: 059–060 and 063 spec 023, 061–062 and 064 spec 024; landed: 065 spec 025; landed: 066 spec 026; landed: 067–068 and 070–071 spec 034 (069 unused), 072 spec 036; landed: 075–076 spec 037 (T16 ledger canonical URLs, T10 silent days); planned: 073–074 spec 037, spec 030) and are renumbered if the order changes.
+Migration numbers in specs 023–032 are assigned in merge order (landed: 055 auth, 056 llm_usage, 057 approval, 058 data store; landed: 059–060 and 063 spec 023, 061–062 and 064 spec 024; landed: 065 spec 025; landed: 066 spec 026; landed: 067–068 and 070–071 spec 034 (069 unused), 072 spec 036; landed: 073–076 spec 037 (073 T2 story registry, 074 T14 post audit, 075 T16 ledger canonical URLs, 076 T10 silent days); planned: spec 030) and are renumbered if the order changes.
 
 BRD-comments wave (2026-10-06): 028 ∥ 029 ∥ 031 → 032 → 023 ∥ 024 → 025 → 029 → 027 → 026; 030 after 016.
 
