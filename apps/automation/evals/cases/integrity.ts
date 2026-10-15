@@ -37,10 +37,11 @@ export const fixturePost = (id: string): AuditPost => {
   return p;
 };
 
-const CARDS: Record<string, { title: string; brief: string; kind: 'news' | 'general'; fixtureChannel: string }> = {
+/** `tone`: the resource tone skill attached to its agent (spec 034 FR-014); the AI channels have no tone skill of their own. */
+const CARDS: Record<string, { title: string; brief: string; kind: 'news' | 'general'; fixtureChannel: string; tone?: string }> = {
   [NEWS]:  { title: 'AI Шукає Новини', brief: 'Новини технологій і ШІ для широкої аудиторії: що сталося і що це означає для читача, з джерелом.', kind: 'news', fixtureChannel: 'AI Шукає Новини | DEV' },
   [TECH]:  { title: 'AI Технології', brief: 'ШІ простими словами для звичайних людей: нові моделі й інструменти, пояснення термінів, практичні поради.', kind: 'general', fixtureChannel: 'AI Технології' },
-  [GAMES]: { title: 'Біржа Ігор', brief: 'Ігри: роздачі, знижки, релізи й новини для гравців, з точними датами й цінами.', kind: 'general', fixtureChannel: 'Біржа Ігор | DEV' },
+  [GAMES]: { title: 'Біржа Ігор', brief: 'Ігри: роздачі, знижки, релізи й новини для гравців, з точними датами й цінами.', kind: 'general', fixtureChannel: 'Біржа Ігор | DEV', tone: 'tone-gaming' },
 };
 
 async function resetIntegrity(pool: Pool, keys: string[]): Promise<void> {
@@ -122,6 +123,8 @@ export interface IntegrityCase {
   /** The post published in the same minute (poll intro / poll). */
   companion?: string;
   expect: 'pass' | 'not_pass';
+  /** Slot sources the post was written from (`api:<name>`, `feed:<id>`): the critic's content-type signal (T12). */
+  sources?: string[];
   /** What the notes should name (a soft check). */
   names?: RegExp;
   why: string;
@@ -158,6 +161,19 @@ export function integrityRequest(card: EditorCard, c: IntegrityCase): CriticRequ
     brief: card.brief, profile: integrityContext(c),
     source: p.sourceUrl ? { url: p.sourceUrl, excerpt: null } : null,
     slopWarnings: lint.warnings.filter((w) => isSlopWarning(w.code)).map((w) => ({ code: w.code, message: w.message })),
+    // Spec 037 T12: the writer's skills — the resource tone, the format (spec.format), the topic skills of the content
+    // type (from the source URL, the title, a news resource's feed and the case's own signals).
+    skills: skillsOf(card, c),
+  };
+}
+
+/** The critic's skill selection inputs of a case: the card skills + the resource tone, and the slot-side signals. */
+export function skillsOf(card: EditorCard, c: IntegrityCase): NonNullable<CriticRequest['skills']> {
+  const tone = CARDS[c.key]?.tone;
+  return {
+    resource: [...(tone ? [tone] : []), ...card.skills],
+    // The news resource's posts come from its feeds (live slots); the others from the case's own sources.
+    signals: { sources: c.sources ?? [], live: CARDS[c.key]?.kind === 'news' },
   };
 }
 
@@ -175,7 +191,7 @@ export const INTEGRITY_CRITIC_CASES: IntegrityCase[] = [
     why: '«пе��еважно»: U+FFFD in the published text.' },
   { id: 'critic-037-knowledge-poll-revealed', key: NEWS, post: `${N}:1110`, companion: `${N}:1109`, expect: 'not_pass', names: /вікторин|quiz|відповід|LibreOffice/iu,
     why: 'Knowledge question as a regular poll; the answer (LibreOffice) is in the same-minute post.' },
-  { id: 'critic-037-mistral-just-now-repeat', key: TECH, post: `${T}:1027`, story: [`${T}:1023`], expect: 'not_pass', names: /щойно|повтор|вже|вчора|07/iu,
+  { id: 'critic-037-mistral-just-now-repeat', key: TECH, post: `${T}:1027`, story: [`${T}:1023`], sources: ['https://www.marktechpost.com/feed/'], expect: 'not_pass', names: /щойно|повтор|вже|вчора|07/iu,
     why: '«Mistral щойно показала Le Chonk» the day after the channel covered it, with no new fact.' },
   { id: 'critic-037-qwen-after-digest', key: TECH, post: `${T}:1042`, story: [`${T}:1034`], expect: 'not_pass', names: /повтор|вже|дайджест|нового/iu,
     why: 'Qwen-Image-2.1-Turbo two days after the digest that covered it, same facts (8 steps, 7B, 2K).' },

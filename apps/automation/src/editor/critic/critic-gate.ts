@@ -7,6 +7,7 @@ import type { VoicePrefs } from '../post/slop-lint';
 import type { EditorRole } from '../llm/llm.types';
 import { criticLine, slopCodes, type StoredCritic } from './critic';
 import { CRITIC_TIMEOUT_MS, type CriticRequest, type CriticService } from './critic.service';
+import type { CriticSkillsContext } from './critic-skills';
 
 /** Publish tools wait for the critic (two attempts) and then for the send itself. */
 export const PUBLISH_TOOL_TIMEOUT_MS = 2 * CRITIC_TIMEOUT_MS + 60_000;
@@ -61,6 +62,8 @@ export interface CriticGateContext {
   agent?:       AgentBudget | null;
   /** The orchestrator the Inbox item belongs to. */
   inboxAgentId?: string | null;
+  /** Spec 037 FR-012: the writer's skill selection inputs (resource tone skills, slot signals, the agent's skill view). */
+  skills?:      CriticSkillsContext | null;
 }
 
 const SOURCE_CAP = 4_000;
@@ -150,6 +153,7 @@ export class CriticGate {
       formatPrefs: this.c.formatPrefs, playbook: this.c.playbook, examples: this.c.examples ?? null, source: await this.source(post.spec),
       slopWarnings: post.warnings.filter((w) => slop.includes(w.code)).map((w) => ({ code: w.code, message: w.message })),
       previous: this.first, agent: this.c.agent ?? null,
+      skills: this.c.skills ?? null,
     });
     this.passes++;
     const history = this.first ? [{

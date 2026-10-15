@@ -147,6 +147,7 @@ export class DraftsService {
       voice: { humor: card.humor, slang: card.slang, emoji: card.emojiPref }, brief: card.brief || null,
       source: spec.data.source ? { url: spec.data.source.url, excerpt: null } : null,
       slopWarnings: slop.map((w) => ({ code: w.code, message: w.message })),
+      skills: { resource: card.skills },
     });
     const critic: StoredCritic = r.ok ? r.critic : {
       verdict: 'error', scores: null, notes: `Critic unavailable: ${r.error}`, model_verdict: null, reason: r.error, pass: 1,
