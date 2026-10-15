@@ -6,6 +6,7 @@ import { readerQuestionsCheck } from './checks/reader-questions';
 import { datesCheck } from './checks/dates';
 import { TEXT_HYGIENE_CHECKS } from './checks/text-hygiene';
 import { styleChecks } from './checks/style';
+import { varietyChecks } from './checks/variety';
 
 /**
  * Spec 037 FR-001: every deterministic integrity check, in report order. A new check (T2–T11) is one file under
@@ -22,6 +23,7 @@ export const INTEGRITY_CHECKS: IntegrityCheck[] = [
   datesCheck,
   ...TEXT_HYGIENE_CHECKS,
   ...styleChecks,
+  ...varietyChecks,
 ];
 
 /** Every finding of every check on one post. A check that throws is reported as `check_failed`, never swallowed. */

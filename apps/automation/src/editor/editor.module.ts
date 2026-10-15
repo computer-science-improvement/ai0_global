@@ -112,6 +112,7 @@ import { NETWORK_SERVICE, NetworkController } from './network/network.controller
 import { DirectivesRepository } from './manager/directives.repository';
 import { KpiDigestService } from './manager/kpi-digest.service';
 import { SqlQuality } from './manager/quality-digest';
+import { recentAuditPosts } from './post/variety/recent-posts';
 import { ManagerRunner } from './manager/manager-runner';
 import { buildDirectiveTools, fileDirective, FileDirectiveInput } from './manager/directive-tools';
 import { ManagerService } from './manager/manager.service';
@@ -1188,6 +1189,8 @@ export const EDITOR_PROVIDERS = [
             };
           })(),
           ladder: { enabled: env('EDITOR_FALLBACK_LADDER') !== 'off' },
+          // Spec 037 FR-009: the writer's «Уже було» block reads the channel's last 20 written posts.
+          recentPosts: (card, slot) => recentAuditPosts(pool, { channelKey: card.channelKey, timezone: card.timezone, excludeSlotId: slot.id, card }),
           // fallbackEvergreen: the evergreen step plugs in here after spec 037 T2 (story registry) and T12 (critic skills).
         });
       },

@@ -10,6 +10,8 @@ export const QUALITY_FLAGS = [
   'critic_reject', 'critic_low_pass', 'critic_failed', 'polls_over_cap', 'reader_questions_over_cap', 'owner_rejections', 'owner_edits',
   // Spec 037 FR-010: silent days.
   'dark_day', 'series_missed',
+  // Spec 037 FR-009: a feed that mostly gives jargon over the audience level or critic revise / reject.
+  'feed_misfit',
 ] as const;
 export type QualityFlag = typeof QUALITY_FLAGS[number];
 
@@ -33,6 +35,8 @@ export interface ResourceQuality {
     series_missed: Array<{ day: string; slot_id: string; series: string; status: string; reason: string }>;
     fallback: { laddered: number; rescued: number };
   };
+  /** Spec 037 FR-009: per feed, items with jargon over the audience level / critic revise / reject (absent on older digests). */
+  feeds?: Array<{ feed: string; items: number; jargon_over_level: number; revise: number; reject: number; misfit_share: number; suggestion: 'replace' | 'limit' | null }>;
   flags: QualityFlag[];
 }
 
@@ -55,6 +59,7 @@ export const FLAG_LABEL: Record<QualityFlag, string> = {
   owner_edits:               'you edited posts',
   dark_day:                  'a planned day with no post',
   series_missed:             'a series slot did not go out',
+  feed_misfit:               'a feed does not fit the audience',
 };
 
 export const CHECK_ITEM_LABEL: Record<string, string> = {
