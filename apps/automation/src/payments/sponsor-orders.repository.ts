@@ -3,19 +3,24 @@ import type { Pool } from 'pg';
 /**
  * Spec 036: the SQL side of digest-sponsor fulfilment, the sale guard and the stuck-order check.
  *
- * A `digest_sponsor` order is fulfilled by the legacy digest strategies (network-digest / topic-digest) only
- * while an ENABLED binding of one of them publishes to the order's channel. Everything here keys on that.
+ * A `digest_sponsor` order used to be embedded by the legacy digest strategies (network-digest / topic-digest)
+ * while an enabled binding of one of them published to the order's channel. Spec 023 phase B removed the strategy
+ * runtime: no digest strategy runs anywhere, whatever `strategy_bindings.enabled` says, so every open digest
+ * sponsor goes to the reserved lane as a standalone sponsored post and the price is not offered for sale.
  */
 
 type Q = Pick<Pool, 'query'>;
 
-/** Legacy strategy types that embed the paid "Партнер дайджесту" line (spec 008 T006). */
+/** Legacy strategy types that embedded the paid "Партнер дайджесту" line (spec 008 T006); history only. */
 export const DIGEST_STRATEGY_TYPES = ['network-digest', 'topic-digest'] as const;
 
-/** SQL predicate: an enabled legacy digest binding publishes to the Telegram channel `keyExpr` (a channel_key). */
-export function digestRunsOnSql(keyExpr: string): string {
-  return `EXISTS (SELECT 1 FROM strategy_bindings sb JOIN tracked_channels stc ON stc.id = sb.channel_id
-     WHERE sb.enabled AND sb.platform = 'telegram' AND sb.type IN ('network-digest','topic-digest') AND stc.channel_key = ${keyExpr})`;
+/**
+ * SQL predicate: a legacy digest strategy publishes to the Telegram channel `keyExpr` (a channel_key). Always
+ * FALSE since spec 023 phase B (the strategy runtime is gone; an enabled binding no longer runs). Kept as one
+ * predicate so the sale guard, fulfilment and the stuck check stay in agreement.
+ */
+export function digestRunsOnSql(_keyExpr: string): string {
+  return 'FALSE';
 }
 
 /** SQL predicate on an ad_prices row: the price may be offered (a digest sponsor only where a digest still runs). */
@@ -37,7 +42,7 @@ export interface SponsorOrder {
   publishAt:    Date | null;
   /** The resolved channel_key (null when the order names no channel). */
   channelKey:   string | null;
-  /** An enabled legacy digest binding publishes to the channel: the strategy embeds the sponsor. */
+  /** A legacy digest strategy embeds the sponsor (always false since spec 023 phase B). */
   digestRuns:   boolean;
   flagReason:   string | null;
 }
@@ -105,7 +110,7 @@ export class SponsorOrdersRepository {
     return rows.map((r) => ({ channelKey: r.channel_key, priceUah: Number(r.price_uah) }));
   }
 
-  /** Does an enabled legacy digest binding publish to this channel (channel_key or tracked_channels uuid)? */
+  /** Does a legacy digest strategy publish to this channel? Always false since spec 023 phase B (kept for the callers). */
   async digestRunsOn(channelIdOrKey: string): Promise<boolean> {
     const { rows } = await this.pool.query(
       `SELECT ${digestRunsOnSql('k.key')} AS runs

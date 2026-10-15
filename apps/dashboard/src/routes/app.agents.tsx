@@ -8,6 +8,7 @@ import { describeError } from '../components/ui/Toast';
 import { fmtUsd } from '../components/editor/EditorUi';
 import { AgentGlyph, KIND_LABEL, LastRun, ScopeChip, StateBadges, runsLabel } from '../components/agents/AgentsUi';
 import { useAgentInbox, useAgentTree, type AgentNode } from '../api/agents';
+import { MigrationBanner } from '../components/strategies/MigrationBanner';
 
 export const Route = createFileRoute('/app/agents')({ component: AgentsPage });
 
@@ -47,6 +48,9 @@ function AgentsPage() {
           <StatTile label="Spend today" value={fmtUsd(spend)} icon="analytics" />
         </div>
       )}
+
+      {/* Spec 023 phase B: /app/strategies redirects here; enabled legacy bindings are migrated or cut over here. */}
+      <MigrationBanner />
 
       {system.length > 0 && (
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))', gap: 12, marginBottom: 16 }}>

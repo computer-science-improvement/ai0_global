@@ -9,7 +9,6 @@ import assert from 'node:assert/strict';
 import { Pool } from 'pg';
 import { AdPricesRepository } from './ad-prices.repository';
 import { AdOrdersRepository } from './ad-orders.repository';
-import { DigestSponsorsRepository } from './digest-sponsors.repository';
 import { buildAdReport } from './ad-report';
 import { EditorPlansRepository, RESERVED_ONLY_RATIONALE } from '../editor/repo/editor-plans.repository';
 import { AgentScheduleExecutor, channelRefFromDb } from '../agent/agent-schedule.executor';
@@ -78,9 +77,10 @@ test('prices: one active per channel+format, history kept, public list + media k
   await pool.query(
     `INSERT INTO strategy_bindings (ext_id, type, channel_id, schedule, params, enabled) VALUES ('pgtest-ads-digest', 'network-digest', $1, '0 20 * * *', '{}', true)`,
     [trackedId]);
+  // Spec 023 phase B: an enabled legacy digest binding no longer runs, so it does not make the sponsor sellable.
   const kit2 = (await repo.mediaKit()).find((c) => c.channelKey === CH)!;
-  assert.deepEqual(kit2.prices.map((p) => p.format), ['digest_sponsor', 'post']);
-  assert.equal((await repo.list({ activeOnly: true, channelKey: CH, sellableOnly: true })).length, 2);
+  assert.deepEqual(kit2.prices.map((p) => p.format), ['post']);
+  assert.equal((await repo.list({ activeOnly: true, channelKey: CH, sellableOnly: true })).length, 1);
   assert.equal((await repo.findById(second.id))!.note, 'від жовтня');
   assert.equal(await repo.deactivate(second.id), true);
   assert.equal(await repo.deactivate(second.id), false);
@@ -163,29 +163,4 @@ test('update refuses published orders; executor fallback without a card writes s
   assert.equal(ref!.channelKey, CH);
   assert.deepEqual(await channelRefFromDb(pool, CH), ref);
   assert.equal(await channelRefFromDb(pool, '@pgtest_missing'), null);
-});
-
-test('digest sponsors: today\'s paid digest_sponsor order for the channel → found, then published with the digest post', { skip }, async () => {
-  const prices = new AdPricesRepository(pool);
-  const orders = new AdOrdersRepository(pool);
-  const sponsors = new DigestSponsorsRepository(pool);
-  const price = (await prices.list({ activeOnly: true, channelKey: CH })).find((p) => p.format === 'digest_sponsor')!;
-  const day = new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Kyiv' }).format(new Date());
-  const o = await orders.create({
-    advertiser: 'pgtest-digest', amount: '400.00', currency: 'UAH', priceId: price.id, publishAt: new Date(),
-    creative: { format: 'text', body: [{ type: 'p', text: '**Курс** програмування' }], cta: { url: 'https://kurs.example', label: 'Курс' } },
-  });
-  assert.equal(await sponsors.findForDay(CH, day), null, 'unpaid orders never sponsor');
-  await pool.query(`UPDATE ad_orders SET status = 'paid', paid_at = now() WHERE id = $1`, [o.id]);
-  assert.equal(await sponsors.findForDay(CH, '2001-01-01'), null);
-  const s = await sponsors.findForDay(CH, day);
-  assert.deepEqual(s, { orderId: o.id, text: 'Курс програмування', url: 'https://kurs.example' });
-
-  await pool.query(`INSERT INTO published_posts (channel_id, message_id, title, strategy_type) VALUES ($1, 777, 'digest', 'network-digest')`, [CH]);
-  await sponsors.markPublished(o.id, CH, '777');
-  const after = await orders.findById(o.id);
-  assert.equal(after!.status, 'published');
-  assert.ok(after!.published_post_id);
-  assert.ok(after!.report_token);
-  assert.equal(await sponsors.findForDay(CH, day), null, 'a published sponsor is not reused');
 });

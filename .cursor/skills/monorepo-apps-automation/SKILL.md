@@ -8,6 +8,11 @@ description: >-
 
 # Coding guide: `apps/automation`
 
+> **Outdated sections:** the strategy runtime (`src/strategies/*`, `SchedulerService`, `ContentStrategyRunner` /
+> registry, `/trigger/:type`) was removed in spec 023 phase B (2026-10-15). Content is written by editor agents
+> (`src/editor`). The "Layout" / "Two execution paths" / "Adding a strategy" parts below are history; the DB notes
+> still apply.
+
 ## Stack
 
 - **NestJS 10**, TypeScript, **raw `pg`** (no ORM).

@@ -1,6 +1,6 @@
 /**
- * Spec 036 against a throwaway Postgres (all migrations, 072 included): a paid digest_sponsor order is embedded
- * by the legacy digest while its binding runs; the spec 023 cutover retires the binding and reports the open
+ * Spec 036 against a throwaway Postgres (all migrations, 072 included): since spec 023 phase B an enabled legacy
+ * digest binding no longer runs, so nothing is left to it; the spec 023 cutover retires the binding and reports the open
  * orders, the static sponsor and the price to the owner (Inbox + alert); the price is no longer offered; the
  * reserved-lane tick then places the order after the agent's digest series and the reserved lane publishes it
  * (#реклама, approval mode and a pause ignored, fake publisher); a new order is refused at sale; the stuck-order
@@ -22,7 +22,6 @@ import { AD_LABEL } from '../editor/post/sponsored';
 import { AdOrdersRepository } from './ad-orders.repository';
 import { AdOrdersService } from './ad-orders.service';
 import { AdPricesRepository } from './ad-prices.repository';
-import { DigestSponsorsRepository } from './digest-sponsors.repository';
 import { SponsorFulfilment } from './sponsor-fulfilment';
 import { SponsorOrdersRepository } from './sponsor-orders.repository';
 import { runStuckCheck } from './stuck-ad-orders';
@@ -103,11 +102,11 @@ function deps() {
 
 let orderId: string;
 
-test('while the digest binding runs: the sponsor is sellable and left to the legacy digest; an order without a creative is flagged', { skip }, async () => {
+test('spec 023 phase B: an enabled digest binding no longer runs — the sponsor is not sellable, nothing is left to a legacy digest; an order without a creative is flagged', { skip }, async () => {
   const d = deps();
-  assert.equal(await d.sponsorRepo.digestRunsOn(CH), true);
-  assert.equal(await d.sponsorRepo.digestRunsOn(trackedId), true, 'a tracked_channels uuid resolves too');
-  assert.deepEqual((await d.prices.list({ activeOnly: true, channelKey: CH, sellableOnly: true })).map((p) => p.format), ['digest_sponsor']);
+  assert.equal(await d.sponsorRepo.digestRunsOn(CH), false, 'the binding is enabled but the strategy runtime is gone');
+  assert.equal(await d.sponsorRepo.digestRunsOn(trackedId), false, 'a tracked_channels uuid resolves too');
+  assert.deepEqual(await d.prices.list({ activeOnly: true, channelKey: CH, sellableOnly: true }), []);
 
   // channel_id as the tracked uuid (the dashboard form's format): resolved to the channel key
   const o = await d.orders.create({ advertiser: 'pgt036-kurs', amount: '400.00', currency: 'UAH', priceId, channelId: trackedId,
@@ -117,13 +116,13 @@ test('while the digest binding runs: the sponsor is sellable and left to the leg
   await pool.query(`UPDATE ad_orders SET status = 'paid', paid_at = now() WHERE id = ANY($1::uuid[])`, [[o.id, bare.id]]);
 
   const open = (await d.sponsorRepo.openDigestSponsors()).filter((x) => x.advertiser.startsWith('pgt036-'));
-  assert.deepEqual(open.map((x) => [x.advertiser, x.channelKey, x.digestRuns]).sort(), [['pgt036-bare', CH, true], ['pgt036-kurs', CH, true]]);
-  assert.deepEqual(await d.fulfilment.reserveDue(NOW), { placed: 0, flagged: 1 });
+  assert.deepEqual(open.map((x) => [x.advertiser, x.channelKey, x.digestRuns]).sort(), [['pgt036-bare', CH, false], ['pgt036-kurs', CH, false]]);
+  // Four days ahead the paid order is not due yet (48 h horizon); the order without a creative is flagged at once.
+  assert.deepEqual(await d.fulfilment.reserveDue(new Date('2030-03-08T10:00:00Z')), { placed: 0, flagged: 1 });
   const flagged = (await pool.query(`SELECT advertiser, flag_reason FROM ad_orders WHERE flag_reason IS NOT NULL AND advertiser LIKE 'pgt036-%'`)).rows;
   assert.deepEqual(flagged, [{ advertiser: 'pgt036-bare', flag_reason: 'no_creative' }]);
   assert.ok(alerts.some((a) => /pgt036-bare/.test(a)), 'admin-bot alert sent');
   assert.equal(await d.sponsorRepo.flag(bare.id, 'no_creative'), false, 'the same reason is flagged once');
-  assert.ok(await new DigestSponsorsRepository(pool).findForDay(CH, '2030-03-12'), 'the legacy digest finds it');
 });
 
 test('cutover retires the digest binding and reports the open sponsors; the price is no longer offered', { skip }, async () => {
@@ -160,7 +159,6 @@ test('after the cutover the tick places the paid sponsor after the agent\'s dige
   assert.equal(slot.kind, 'reserved');
   assert.deepEqual(slot.source_hints, [`ad_order:${orderId}`, 'digest_sponsor']);
   assert.match(slot.post_spec.cta.url, /utm_source=ai0/);
-  assert.equal(await new DigestSponsorsRepository(pool).findForDay(CH, '2030-03-12'), null, 'placed → never also a digest line');
   assert.deepEqual(await d.fulfilment.reserveDue(NOW), { placed: 0, flagged: 0 }, 'placed once');
 
   const sent: any[] = [];

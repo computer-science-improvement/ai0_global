@@ -2,6 +2,11 @@
 
 NestJS-сервіс для автоматичної публікації контенту у Telegram (та інших каналах) через незалежні контент-стратегії.
 
+> **Outdated (spec 023 phase B, 2026-10-15):** the strategy runtime described below (cron scheduler, `src/strategies/*`,
+> `ContentStrategyRunner`, `/trigger/:type`) was removed. Content is written by editor agents (`src/editor`, specs
+> 003–006, 017–023); `strategy_bindings` / `strategy_runs` are kept as history only. See
+> `specs/023-agent-owned-content/spec.md` → "Implementation notes (T7 phase B)".
+
 ---
 
 ## Як це працює
@@ -162,13 +167,9 @@ docker compose --profile prod restart automation   # перезапуск піс
 docker compose --profile prod down        # зупинка
 ```
 
-### Ручний тригер стратегії (dev only)
+### Ручний тригер стратегії
 
-```bash
-curl http://localhost:3001/trigger/ai0-news
-curl http://localhost:3001/trigger/ua-news
-curl http://localhost:3001/trigger/daily-photo
-```
+Removed with the strategy runtime (spec 023 phase B). Run an agent instead (`/app/agents`, or the editor MCP tools).
 
 ---
 

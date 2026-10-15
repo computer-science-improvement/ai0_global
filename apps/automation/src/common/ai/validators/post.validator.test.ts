@@ -44,14 +44,6 @@ test('validatePost: SKIP_POST, empty, too short/long, refusals and meta-commenta
   }
 });
 
-test('PostValidator.reject: permanent → StrategyRejection, transient → null', () => {
-  const v = new PostValidator();
-  assert.deepEqual(v.reject(validatePost('SKIP_POST'), 'ctx'), {
-    rejected: 'model signalled SKIP_POST — content not formattable',
-  });
-  assert.equal(v.reject(validatePost(null), 'ctx'), null);
-});
-
 test('PostValidator.check keeps its boolean contract', () => {
   const v = new PostValidator();
   assert.equal(v.check(GOOD, 'ctx'), true);

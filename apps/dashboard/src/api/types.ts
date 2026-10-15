@@ -212,7 +212,7 @@ export interface TelegraphAccount {
   created_at:       string;
 }
 
-// ─── Phase 5c: Strategies ──────────────────────────────────────────────────
+// ─── Phase 5c: Strategies (history only since spec 023 phase B) ────────────
 
 export interface Strategy {
   id:           string;
@@ -233,13 +233,8 @@ export interface Strategy {
   params:       Record<string, unknown>;
   enabled:      boolean;
   notes:        string | null;
-  /** ISO timestamp of the next scheduled fire, or null if cron invalid / disabled. */
-  next_run_at:  string | null;
+  /** The binding's last run (history: nothing runs since spec 023 phase B). */
   last_run:     StrategyRunSummary | null;
-  /** Remaining unpublished posts for finite-pool strategies; null for live/feed types. */
-  content_remaining:     number | null;
-  /** Effective low-content alert threshold (posts); binding override or default 100. */
-  low_content_threshold: number;
   /** True for a telegram binding whose channel has no bot AND no default bot exists. */
   needs_bot?:            boolean;
   /** Spec 023: set when a cutover retired the binding (its agent's series took over). */
@@ -261,39 +256,6 @@ export interface StrategyRunSummary {
   finished_at:  string | null;
   duration_ms:  number | null;
   error:        string | null;
-}
-
-export interface StrategyRun {
-  id:           string;
-  strategy_id:  string;
-  ext_id:       string;
-  started_at:   string;
-  finished_at:  string | null;
-  status:       'running' | 'ok' | 'error' | 'skipped';
-  error:        string | null;
-  duration_ms:  number | null;
-}
-
-// ─── Strategy preview (sample of what the strategy would publish) ──────────
-
-export interface PreviewItem {
-  title?:       string;
-  text?:        string;
-  imageUrl?:    string;
-  imageAlt?:    string;
-  source?:      string;
-  url?:         string;
-  publishedAt?: string;
-}
-
-export interface StrategyPreview {
-  /** db-row = sampled row from a Postgres table feeding this strategy.
-   *  dedup-recent = last N items the dedup layer marked as posted.
-   *  live-fetch = strategy fetches at runtime (e.g. NASA APOD); preview unavailable.
-   *  unsupported = strategy type unknown or has no preview source wired. */
-  kind:    'db-row' | 'dedup-recent' | 'live-fetch' | 'unsupported';
-  message?: string;
-  items:   PreviewItem[];
 }
 
 // ─── Scheduled posts (operator-composed one-off Telegram posts) ─────────────

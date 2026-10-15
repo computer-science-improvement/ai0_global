@@ -47,11 +47,11 @@ test('every page of the default menu is reachable in 3 keystrokes or fewer', () 
 });
 
 test('hidden pages are listed and marked; renamed pages match old and new names; paths match', () => {
-  const cfg = setOverride(hideItem(defaultConfig(), 'strategies'), 'agents', { label: 'Team' });
+  const cfg = setOverride(hideItem(defaultConfig(), 'landing'), 'agents', { label: 'Team' });
   const entries = buildPaletteEntries(resolveNav(NAV_REGISTRY, cfg));
-  const strategies = entries.find((e) => e.key === 'page:strategies')!;
-  assert.equal(strategies.hidden, true);
-  assert.equal(searchPalette(entries, 'strat')[0].key, 'page:strategies');
+  const landing = entries.find((e) => e.key === 'page:landing')!;
+  assert.equal(landing.hidden, true);
+  assert.equal(searchPalette(entries, 'landing')[0].key, 'page:landing');
   assert.equal(entries.find((e) => e.key === 'page:agents-inbox')!.hidden, true, 'hidden by default');
   assert.equal(entries.find((e) => e.key === 'page:chat')!.hidden, undefined);
   assert.equal(searchPalette(entries, 'team')[0].key, 'page:agents');

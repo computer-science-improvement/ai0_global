@@ -146,7 +146,7 @@ function OverviewPage() {
           {strategiesQ.isLoading
             ? <EmptyState icon="strategies" title="Loading recent runs…" />
             : recent.length === 0
-              ? <EmptyState icon="strategies" title="No runs yet" note="Legacy strategy outcomes appear here while any strategy still runs." />
+              ? <EmptyState icon="strategies" title="No runs yet" note="Strategies no longer run; their past runs show here." />
               : recent.map((s, idx) => {
                 const status = s.last_run!.status;
                 return (

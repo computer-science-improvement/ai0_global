@@ -11,11 +11,8 @@ import { readFileSync, readdirSync } from 'fs';
 import { join } from 'path';
 import { Client, Pool } from 'pg';
 import { seedLegacyTables, SEEDED_TABLES } from './testing/legacy-seed';
-import { RecipesRepository } from '../strategies/recipes/recipes.repository';
-import { FactsRepository } from '../strategies/facts/facts.repository';
-import { PromptsRepository } from '../strategies/ai0-prompts/prompts.repository';
-import { CuratedPromptsRepository } from '../strategies/curated-prompts/curated-prompts.repository';
-import { MotivationBiographyRepository } from '../strategies/motivation-biography/motivation-biography.repository';
+import { DataStore } from './data-store';
+import { libraryRef } from '../editor/tools/library-tables';
 import { checkQuizGroundTruth } from '../editor/post/quiz-ground-truth';
 
 const url = process.env.EDITOR_PG_TEST_URL;
@@ -170,18 +167,24 @@ test('pipeline-style INSERT through a view: new rows inserted with RETURNING id,
   assert.equal(guard, null);
 });
 
-test('posted markers and markError go through the trigger (strategy repositories unchanged)', { skip }, async () => {
+// The legacy strategy repositories went away with spec 023 phase B; their writes are inlined (same SQL) so the
+// compatibility views stay covered for any remaining writer (pipeline, manual SQL).
+const markPostedSql = (table: string) => `UPDATE ${table} SET posted = posted || jsonb_build_object($2::text, NOW()) WHERE id = $1`;
+const MARK_ERROR_SQL = (table: string) =>
+  `UPDATE ${table} SET posted = posted || jsonb_build_object($2::text, jsonb_build_object('at', now(), 'reason', $3::text)) WHERE id = $1`;
+
+test('posted markers and error markers go through the trigger', { skip }, async () => {
   const f = snapshot.facts.find((r) => Object.keys(r.posted).length === 0)!;
-  await new FactsRepository(pool).markPosted(f.id, '@pg_chan');
+  await pool.query(markPostedSql('facts'), [f.id, '@pg_chan']);
   const after1 = (await pool.query(`SELECT posted FROM facts WHERE id = $1`, [f.id])).rows[0].posted;
   assert.ok(after1['@pg_chan']);
   const b = snapshot.birthdays[3];
-  await new MotivationBiographyRepository(pool).markError(b.id, '@bio', 'no photo');
+  await pool.query(MARK_ERROR_SQL('birthdays'), [b.id, 'error:@bio', 'no photo']);
   const pb = (await pool.query(`SELECT posted FROM birthdays WHERE id = $1`, [b.id])).rows[0].posted;
   assert.equal(pb['error:@bio'].reason, 'no photo');
   const pr = snapshot.prompts[7];
-  await new PromptsRepository(pool).markPosted(pr.id, 'TELEGRAM');
-  await new CuratedPromptsRepository(pool).markError(pr.id);
+  await pool.query(markPostedSql('prompts'), [pr.id, 'TELEGRAM']);
+  await new DataStore(pool).patchByLegacyRef('prompts', libraryRef('prompts', pr.id), { status: 'ERROR' });
   const prow = (await pool.query(`SELECT posted, status FROM prompts WHERE id = $1`, [pr.id])).rows[0];
   assert.ok(prow.posted.TELEGRAM);
   assert.equal(prow.status, 'ERROR', 'a data column update through the view');
@@ -211,14 +214,17 @@ test('recipe translation and telegraph_url updates go through the trigger; envel
   await pool.query(
     `UPDATE recipes SET title_uk = $2, ingredients_uk = $3, instructions_uk = $4, translated_at = now() WHERE id = $1`,
     [r.id, 'Пиріг', '1 яйце', 'Спекти.']);
-  await new RecipesRepository(pool).saveTelegraph(r.id, { url: 'https://telegra.ph/Pyrih-1', path: 'Pyrih-1' });
-  // The repository's translation write goes through the DataStore (T3), the skip sentinel included.
+  const store = new DataStore(pool);
+  await store.patchByLegacyRef('recipes', libraryRef('recipes', r.id), { telegraph_url: 'https://telegra.ph/Pyrih-1', telegraph_path: 'Pyrih-1' });
+  // A translation write through the DataStore (T3), the skip sentinel included.
   const r2 = snapshot.recipes.filter((x) => x.title_uk === null)[1];
-  await new RecipesRepository(pool).saveTranslation(r2.id, { titleUk: '', ingredientsUk: '', instructionsUk: '' });
+  await store.patchByLegacyRef('recipes', libraryRef('recipes', r2.id), {
+    title_uk: '', ingredients_uk: '', instructions_uk: '', translated_at: new Date().toISOString(),
+  });
   const v2 = (await pool.query(`SELECT title_uk, translated_at FROM recipes WHERE id = $1`, [r2.id])).rows[0];
   assert.equal(v2.title_uk, '', 'the empty-string sentinel is stored, not dropped');
   assert.ok(v2.translated_at);
-  await new RecipesRepository(pool).markPosted(r.id, 'TELEGRAM');
+  await pool.query(markPostedSql('recipes'), [r.id, 'TELEGRAM']);
   const v = (await pool.query(`SELECT title_uk, ingredients_uk, telegraph_url, telegraph_path, translated_at, posted, kcal FROM recipes WHERE id = $1`, [r.id])).rows[0];
   assert.equal(v.title_uk, 'Пиріг');
   assert.equal(v.telegraph_url, 'https://telegra.ph/Pyrih-1');

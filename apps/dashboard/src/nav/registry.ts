@@ -17,7 +17,7 @@ import type { IconName } from '../components/ui/Icon';
 
 export type NavGroupId =
   | 'g_home' | 'g_agents' | 'g_publishing' | 'g_content' | 'g_analytics'
-  | 'g_intelligence' | 'g_connections' | 'g_marketing' | 'g_system' | 'g_legacy';
+  | 'g_intelligence' | 'g_connections' | 'g_marketing' | 'g_system';
 
 /** Which live counter an item shows (see nav/badges.ts). */
 export type BadgeKey = 'approvals' | 'agents' | 'agentsInbox' | 'directives' | 'chat' | 'dm' | 'editor' | 'scheduled';
@@ -53,8 +53,6 @@ export const NAV_GROUPS: ReadonlyArray<{ id: NavGroupId; title: string }> = [
   { id: 'g_connections',  title: 'Connections' },
   { id: 'g_marketing',    title: 'Marketing' },
   { id: 'g_system',       title: 'System' },
-  // Spec 023 FR-013: strategies are read-only legacy (content is run by agents).
-  { id: 'g_legacy',       title: 'Legacy' },
 ];
 
 /** Always visible, whatever the saved menu says: the safety net (FR-006, open question 7). */
@@ -112,9 +110,8 @@ export const NAV_REGISTRY: ReadonlyArray<NavEntry> = [
   { id: 'settings-security', to: '/app/settings', search: { tab: 'security' }, label: 'Security', icon: 'lock', defaultGroup: 'g_system', parent: 'settings', hiddenByDefault: true, keywords: ['sessions', 'sign-in', 'login', 'audit'] },
   { id: 'settings-ai', to: '/app/settings', search: { tab: 'ai' }, label: 'AI keys', icon: 'sparkles', defaultGroup: 'g_system', parent: 'settings', hiddenByDefault: true, keywords: ['anthropic', 'openai', 'providers'] },
 
-  // ── Legacy (spec 023 FR-013 phase A) ──
-  { id: 'strategies', to: '/app/strategies', label: 'Strategies', icon: 'strategies', defaultGroup: 'g_legacy', keywords: ['bindings', 'cron', 'legacy', 'migrate'] },
-  { id: 'strategies-new', to: '/app/strategies/new', label: 'New strategy', icon: 'plus', defaultGroup: 'g_legacy', parent: 'strategies', hiddenByDefault: true, keywords: ['add strategy'] },
+  // Spec 023 phase B: the legacy Strategies pages (ids `strategies`, `strategies-new`, `strategy-detail`) are
+  // gone; /app/strategies* redirects to /app/agents. A saved menu that still names them lists them as unavailable.
 
   // ── Detail templates (breadcrumbs only) ──
   { id: 'agent-detail', to: '/app/agents/$handle', label: 'Agent', icon: 'agents', defaultGroup: 'g_agents', parent: 'agents', menu: false, keywords: [] },
@@ -122,7 +119,6 @@ export const NAV_REGISTRY: ReadonlyArray<NavEntry> = [
   { id: 'editor-channel', to: '/app/editor/$channel', label: 'Editor channel', icon: 'sparkles', defaultGroup: 'g_publishing', parent: 'editor', menu: false, keywords: [] },
   { id: 'editor-run', to: '/app/editor/run/$id', label: 'Run', icon: 'sparkles', defaultGroup: 'g_publishing', parent: 'editor', menu: false, keywords: [] },
   { id: 'editor-slot', to: '/app/editor/slot/$id', label: 'Slot', icon: 'calendar', defaultGroup: 'g_publishing', parent: 'editor', menu: false, keywords: [] },
-  { id: 'strategy-detail', to: '/app/strategies/$id', label: 'Strategy', icon: 'strategies', defaultGroup: 'g_legacy', parent: 'strategies', menu: false, keywords: [] },
   { id: 'meta-account', to: '/app/connections/meta/$accountId', label: 'Meta account', icon: 'facebook', defaultGroup: 'g_connections', parent: 'connections-meta', menu: false, keywords: [] },
   { id: 'dataset', to: '/app/data/$key', label: 'Dataset', icon: 'database', defaultGroup: 'g_content', parent: 'data', menu: false, keywords: [] },
 ];

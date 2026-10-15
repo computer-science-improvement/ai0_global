@@ -223,8 +223,8 @@ test('T6 end to end: dry run → migrate card → approve → shadow → cutover
   await assert.rejects(() => agentsSvc.patch(HANDLE, { mode: 'live' }), (err: any) => err.getStatus() === 409 && err.getResponse().ext_ids.join() === 'pdr-quiz:pgt6');
 
   // 8. A retired binding cannot be re-enabled: 409 binding_retired, and the DB check.
-  const ctl = new StrategiesController(new StrategyBindingsRepository(pool), {} as any, {} as any, { getChannelById: () => ({}) } as any,
-    { publish: async () => {} } as any, {} as any, {} as any, {} as any, { supportedPlatforms: () => ['telegram'] } as any, {} as any);
+  const ctl = new StrategiesController(new StrategyBindingsRepository(pool), {} as any, { getChannelById: () => ({}) } as any,
+    { publish: async () => {} } as any, {} as any, {} as any);
   const rid = (await pool.query(`SELECT id FROM strategy_bindings WHERE ext_id = 'recipes:pgt6'`)).rows[0].id;
   await assert.rejects(() => ctl.patch(rid, { enabled: true } as any), (err: any) => err.getStatus() === 409 && err.getResponse().error === 'binding_retired');
   await assert.rejects(() => pool.query(`UPDATE strategy_bindings SET enabled = true WHERE ext_id = 'recipes:pgt6'`), /strategy_bindings_retired_chk/);

@@ -11,9 +11,9 @@ import type { SponsorOrder, SponsorOrdersRepository } from './sponsor-orders.rep
 /**
  * Spec 036: a paid `digest_sponsor` order is never silently lost.
  *
- * While an enabled legacy digest binding (network-digest / topic-digest) publishes to the order's channel, the
- * strategy embeds the "Партнер дайджесту" line on the order's day (spec 008 T006) and nothing here acts. When
- * no digest strategy runs there (spec 023 cutover retired it, or it was paused or never bound), the order is
+ * The legacy digest strategies (network-digest / topic-digest) used to embed the "Партнер дайджесту" line
+ * (spec 008 T006); since spec 023 phase B no strategy runs (`digestRuns` is always false, the `legacy` outcome
+ * is unreachable and kept only for the type). So no digest strategy runs on any channel, and the order is
  * placed in the RESERVED lane as a standalone sponsored post — deterministic, no LLM, outside approval mode
  * (spec 031) and resource pauses (spec 025), with the code-added #реклама label — 10 minutes after the agent's
  * digest-like series (source `network_highlights`) on that day, else at the order's own time moved out of the

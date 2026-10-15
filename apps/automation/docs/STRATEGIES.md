@@ -1,5 +1,10 @@
 # Контент-стратегії
 
+> **Outdated (spec 023 phase B, 2026-10-15):** the strategy runtime this page describes (cron scheduler,
+> `src/strategies/*`, `ContentStrategyRunner`, `/trigger/:type`) was removed. Content is written by editor agents
+> (`src/editor`); `strategy_bindings` / `strategy_runs` are history only. See
+> `specs/023-agent-owned-content/spec.md` → "Implementation notes (T7 phase B)".
+
 Кожна стратегія — незалежний модуль, що реалізує інтерфейс `ContentStrategy`. Стратегія отримує `params` з `channels.json` і може бути підключена до будь-якої кількості каналів.
 
 Стратегії реєструються за рядком `type`. Саме цей рядок треба вказувати в полі `"type"` у `channels.json → strategies[]`.

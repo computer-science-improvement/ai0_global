@@ -190,7 +190,7 @@ export function EditChannelModal({ channel, open, onClose }: Props) {
             style={{ accentColor: 'var(--color-accent)' }}
           />
           <span className="text-body-sm" style={{ color: 'var(--color-ink)' }}>
-            Mine — this is one of my own channels (strategies publish here)
+            Mine — this is one of my own channels (its agent publishes here)
           </span>
         </label>
       </Field>

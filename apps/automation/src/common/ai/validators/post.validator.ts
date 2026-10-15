@@ -1,5 +1,4 @@
 import { Injectable, Logger } from '@nestjs/common';
-import type { StrategyRejection } from '../../content-strategy/content-strategy.interface';
 
 export interface ValidationResult {
   valid: boolean;
@@ -68,19 +67,6 @@ export class PostValidator {
       this.logger.warn(`Rejected model response [${context}]: ${result.reason}`);
     }
     return result.valid;
-  }
-
-  /**
-   * For a strategy's generate(): log an invalid result and map it to the
-   * runner outcome — a StrategyRejection when the failure is permanent (the
-   * item gets marked as errored and is never retried), null when it is
-   * transient (no response, billing / rate limit / overload → retry later).
-   */
-  reject(result: ValidationResult, context: string): StrategyRejection | null {
-    this.logger.warn(
-      `Rejected model response [${context}]: ${result.reason} (${result.permanent ? 'permanent' : 'transient'})`,
-    );
-    return result.permanent ? { rejected: result.reason ?? 'invalid model response' } : null;
   }
 }
 

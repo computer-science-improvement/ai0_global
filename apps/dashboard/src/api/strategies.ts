@@ -1,69 +1,23 @@
 // apps/dashboard/src/api/strategies.ts
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { api } from './client';
-import type { PendingAction, Strategy, StrategyRun, StrategyPreview } from './types';
+import type { PendingAction, Strategy } from './types';
 
-export function useStrategyRuns(strategyId: string | null) {
-  return useQuery({
-    queryKey: ['strategy-runs', strategyId],
-    queryFn:  () => api<StrategyRun[]>(`/api/strategies/${strategyId}/runs`),
-    enabled:  !!strategyId,
-    refetchInterval: 10_000,
-  });
-}
-
-export function useStrategyPreview(strategyId: string | null) {
-  return useQuery({
-    queryKey: ['strategy-preview', strategyId],
-    queryFn:  () => api<StrategyPreview>(`/api/strategies/${strategyId}/preview`),
-    enabled:  !!strategyId,
-    staleTime: 60_000,
-  });
-}
-
-export type CaptionPartSource = 'recipe' | 'computed' | 'static' | 'generated' | 'custom';
-export interface CaptionPart {
-  key:       string;
-  label:     string;
-  source:    CaptionPartSource;
-  value:     string;
-  platforms: string[];
-  editable:  boolean;
-}
-export interface RecipePostPreview {
-  parts:    CaptionPart[];
-  rendered: Record<'facebook' | 'instagram' | 'threads' | 'telegram', string>;
-}
-export interface MetaCaptionOverrides {
-  cta?:         string;
-  hashtags?:    string[];
-  intro?:       string;
-  outro?:       string;
-  tgLinkLabel?: string;
-}
-
-/** Caption parts + per-platform rendered captions for a recipe-carousel binding. */
-export function useRecipePostPreview(strategyId: string | null, enabled: boolean) {
-  return useQuery({
-    queryKey: ['recipe-post-preview', strategyId],
-    queryFn:  () => api<RecipePostPreview>(`/api/strategies/${strategyId}/post-preview`),
-    enabled:  !!strategyId && enabled,
-    staleTime: 30_000,
-  });
-}
-
+/**
+ * The legacy bindings with their last run — history only: spec 023 phase B removed the strategy runtime, so
+ * nothing here runs any more (the Overview, Logs, channel pages and Meta groups still read it).
+ */
 export function useStrategies() {
   return useQuery({
     queryKey: ['strategies'],
     queryFn:  () => api<Strategy[]>('/api/strategies'),
-    // Recompute next-run timestamps reasonably often (every 30s in foreground).
-    refetchInterval: 30_000,
+    refetchInterval: 60_000,
   });
 }
 
 /**
- * Spec 023 FR-013 phase A: strategies are read-only legacy — the API accepts only pausing and notes
- * (anything else is 410 strategies_legacy), so the type allows nothing more.
+ * Spec 023 FR-013: strategies are read-only legacy — the API accepts only pausing and notes (anything else is
+ * 410 strategies_legacy), so the type allows nothing more.
  */
 export interface PatchStrategyInput {
   enabled?: false;
@@ -78,14 +32,6 @@ export function usePatchStrategy() {
         method: 'PATCH', body: JSON.stringify(patch),
       }),
     onSuccess: () => qc.invalidateQueries({ queryKey: ['strategies'] }),
-  });
-}
-
-export function useDeleteStrategy() {
-  const qc = useQueryClient();
-  return useMutation({
-    mutationFn: (id: string) => api<void>(`/api/strategies/${id}`, { method: 'DELETE' }),
-    onSuccess:  () => qc.invalidateQueries({ queryKey: ['strategies'] }),
   });
 }
 
@@ -131,7 +77,7 @@ export type MigrationOp = 'migrate' | 'cutover' | 'rollback';
 
 const MIGRATION_KEY = ['strategies', 'migration'] as const;
 
-/** Per-channel migration state and the pending migration cards (/app/strategies banner). */
+/** Per-channel migration state and the pending migration cards (the legacy-bindings card on /app/agents). */
 export function useStrategyMigration() {
   return useQuery({
     queryKey: MIGRATION_KEY,

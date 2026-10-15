@@ -18,8 +18,6 @@ import { DedupService }              from './dedup/dedup.service';
 import { SemanticDedupService }      from './dedup/semantic-dedup.service';
 import { TopicRouterService }        from './routing/topic-router.service';
 import { BotLoggerService }          from './logger/bot-logger.service';
-import { ContentStrategyRunner }     from './content-strategy/content-strategy.runner';
-import { ContentStrategyRegistry }   from './content-strategy/content-strategy.registry';
 import { DestinationResolver }       from './content-strategy/destination-resolver.service';
 import { AUTO_DUPLICATE_GATE, GroupFanOutService } from './content-strategy/group-fanout.service';
 import { DB_POOL }                   from '../database/database.tokens';
@@ -53,8 +51,6 @@ const SERVICES = [
   SemanticDedupService,
   TopicRouterService,
   BotLoggerService,
-  ContentStrategyRunner,
-  ContentStrategyRegistry,
   DestinationResolver,
   GroupFanOutService,
   RunTracer,

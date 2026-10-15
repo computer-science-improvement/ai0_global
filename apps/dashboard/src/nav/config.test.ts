@@ -37,7 +37,7 @@ test('manual scenario: reorder, rename, hide, pin, add the directives board as "
   let c = defaultConfig();
   c = moveItem(c, 'chat', 'g_home', 1);
   c = setOverride(c, 'agents', { label: 'Team' });
-  c = hideItem(c, 'strategies');
+  c = hideItem(c, 'landing');
   c = togglePin(c, 'approvals');
   const target = parseNavTarget('/app/agents/manager?tab=directives')!;
   assert.ok(routeExists(target.to));
@@ -48,14 +48,14 @@ test('manual scenario: reorder, rename, hide, pin, add the directives board as "
   const ids = nav.groups.flatMap((g) => g.items.map((i) => i.id));
   assert.deepEqual(nav.groups[0].items.map((i) => i.id), ['overview', 'chat', 'approvals']);
   assert.equal(nav.groups.flatMap((g) => g.items).find((i) => i.id === 'agents')!.label, 'Team');
-  assert.ok(!ids.includes('strategies') && nav.hidden.some((i) => i.id === 'strategies'));
+  assert.ok(!ids.includes('landing') && nav.hidden.some((i) => i.id === 'landing'));
   assert.deepEqual(nav.pinned.map((i) => i.id), ['approvals']);
   const dir = nav.groups.find((g) => g.id === 'g_agents')!.items.at(-1)!;
   assert.deepEqual([dir.label, dir.to, dir.search, dir.custom, dir.unavailable], ['Directives', '/app/agents/manager', { tab: 'directives' }, true, undefined]);
   // Reset = no config → the FR-003 default again.
   const reset = resolveNav(NAV_REGISTRY, null);
   assert.deepEqual(reset.groups[0].items.map((i) => i.id), ['overview', 'approvals']);
-  assert.ok(reset.groups.flatMap((g) => g.items).some((i) => i.id === 'strategies'));
+  assert.ok(reset.groups.flatMap((g) => g.items).some((i) => i.id === 'landing'));
 });
 
 test('stored search strings are handed to the router with the types it would parse', () => {

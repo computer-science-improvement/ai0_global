@@ -16,12 +16,12 @@ import { RoiPanel } from '../components/RoiPanel';
 import { EditThemesModal } from '../components/EditThemesModal';
 import { EditChannelModal } from '../components/EditChannelModal';
 import { ForwardRoutesPanel } from '../components/ForwardRoutesPanel';
+import { CrosspostSection } from '../components/CrosspostSection';
 import { ChannelAvatar } from '../components/ChannelAvatar';
 import { useChannelThemes } from '../api/discovery';
 import { Icon } from '../components/Icon';
 import { Badge } from '../components/ui/Badge';
 import { StatTile, SectionCard, EmptyState } from '../components/ui/primitives';
-import { FINITE_POOL_TYPES, isLowContent } from '../lib/runway';
 import {
   POLL_TIER_HELP, CHANNEL_KIND_HELP, CHANNEL_FLAG_HELP, STRATEGY_STATUS_HELP,
   STRATEGY_ROLE_HELP, RUN_STATUS_HELP, BOT_STATUS_HELP,
@@ -104,12 +104,10 @@ function ChannelDetailPage() {
   // Spec 027 FR-013: own channels sit under "My channels", the rest under all channels.
   const crumbs = c.isMine ? trail : [...trail.slice(0, -1), { label: 'Channels', to: '/app/channels' }];
 
-  // Filter the full strategies list by this channel. Two memberships count:
+  // Legacy strategy bindings of this channel (history since spec 023 phase B). Two memberships count:
   //  • primary  — strategy.channel_id == this.id
   //  • forward  — channel.strategies[] entry with role='forward' (the
-  //               strategy publishes elsewhere but forward-routes here)
-  // The channel DTO already carries strategy refs; we cross-reference with
-  // the full strategy rows for schedule + next-run.
+  //               strategy published elsewhere and forward-routed here)
   const primaryStrategies = (strategiesQ.data ?? []).filter(s => s.channel_id === id);
 
   // For forwards, look at c.strategies[].role === 'forward' and resolve back.
@@ -119,7 +117,6 @@ function ChannelDetailPage() {
   const forwardStrategies = (strategiesQ.data ?? []).filter(s => forwardStrategyIds.has(s.id));
 
   const allBound = [...primaryStrategies, ...forwardStrategies];
-  const nextRun = soonestNextRun(allBound);
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 28 }}>
@@ -250,7 +247,6 @@ function ChannelDetailPage() {
       <StatStrip
         channel={c}
         strategiesCount={allBound.length}
-        nextRunAt={nextRun}
       />
 
       {themesOpen && (
@@ -266,7 +262,7 @@ function ChannelDetailPage() {
       )}
 
       {c.isMine && (
-        <SectionCard title="Publishing strategies" icon="strategies" action={<SectionCaption>primary + forward bindings</SectionCaption>} delay={120}>
+        <SectionCard title="Legacy strategy bindings" icon="strategies" action={<SectionCaption>history · content is run by agents</SectionCaption>} delay={120}>
           <StrategiesPanel
             primary={primaryStrategies}
             forwards={forwardStrategies}
@@ -278,6 +274,13 @@ function ChannelDetailPage() {
       {c.isMine && (
         <SectionCard title="Forward routes" icon="connections" delay={160}>
           <ForwardRoutesPanel sourceChannelId={id} />
+        </SectionCard>
+      )}
+
+      {/* Spec 023 phase B: crosspost targets moved here from the removed strategy page; the editor still uses them. */}
+      {c.isMine && (
+        <SectionCard title="Cross-posts" icon="connections" action={<SectionCaption>Meta copies of this channel&apos;s posts</SectionCaption>} delay={180}>
+          <CrosspostSection channelId={id} />
         </SectionCard>
       )}
 
@@ -327,8 +330,8 @@ function ChannelDetailPage() {
 // ─── Hero stat strip ────────────────────────────────────────────────────────
 
 function StatStrip({
-  channel, strategiesCount, nextRunAt,
-}: { channel: TrackedChannel; strategiesCount: number; nextRunAt: string | null }) {
+  channel, strategiesCount,
+}: { channel: TrackedChannel; strategiesCount: number }) {
   const themes = channel.themes ?? [];
   return (
     <div className="stat-grid">
@@ -338,24 +341,12 @@ function StatStrip({
         value={fmtNumber(channel.subsCount)}
       />
       <StatTile
-        label="Strategies"
+        label="Legacy strategies"
         icon="strategies"
-        accent={strategiesCount > 0}
         value={
-          <span style={{ color: strategiesCount > 0 ? 'var(--color-ink)' : 'var(--color-ink-dim)' }}>
+          <span style={{ color: strategiesCount > 0 ? 'var(--color-ink-muted)' : 'var(--color-ink-dim)' }}>
             {strategiesCount}
           </span>
-        }
-      />
-      <StatTile
-        label="Next post"
-        icon="calendar"
-        value={
-          nextRunAt
-            ? <span className="text-body-sm tabular-nums" style={{ color: 'var(--color-accent)', fontWeight: 600 }} title={fmtDate(nextRunAt)}>
-                {formatRelativeFuture(nextRunAt)}
-              </span>
-            : <span className="text-body-sm" style={{ color: 'var(--color-ink-dim)' }}>paused</span>
         }
       />
       <StatTile
@@ -412,8 +403,8 @@ function StrategiesPanel({
     return (
       <EmptyState
         icon="strategies"
-        title="No strategies"
-        note="No strategies publish to this channel. Strategies are legacy: the channel's agent plans its content."
+        title="No legacy strategies"
+        note="Strategies were removed: the channel's agent plans and writes its content."
         action={<Link to="/app/agents" className="link-accent">Open Agents</Link>}
       />
     );
@@ -426,9 +417,7 @@ function StrategiesPanel({
             <th>Strategy</th>
             <th>Type</th>
             <th>Schedule</th>
-            <th>Next run</th>
             <th>Last run</th>
-            <th>Content</th>
             <th>Status</th>
           </tr>
         </thead>
@@ -466,17 +455,15 @@ function StrategyTableRow({
   return (
     <tr>
       <td>
-        <Link to="/app/strategies" className="link-accent" style={{ fontVariantNumeric: 'tabular-nums' }}>
-          {s.ext_id}
-        </Link>
+        <span style={{ fontVariantNumeric: 'tabular-nums' }}>{s.ext_id}</span>
         {role === 'forward' && (
           <span className="chip" style={{ marginLeft: 8 }} title={STRATEGY_ROLE_HELP.forward}>↩ forward</span>
         )}
       </td>
       <td><span className="chip" title={typeTooltip}>{s.type}</span></td>
       <td style={{ color: 'var(--color-ink-muted)', fontVariantNumeric: 'tabular-nums' }}>
-        {/* Spec 023 FR-013: strategies are read-only legacy — the schedule is shown, never edited. */}
-        <span title="Cron schedule (UTC unless SCHEDULER_TZ is configured). Strategies are legacy and read-only.">
+        {/* Spec 023 phase B: history only — the schedule no longer runs. */}
+        <span title="The binding's old cron schedule. Strategies no longer run.">
           {s.schedule}
           {role === 'forward' && (
             <span className="text-micro" style={{ marginLeft: 6, color: 'var(--color-ink-dim)' }}>
@@ -484,13 +471,6 @@ function StrategyTableRow({
             </span>
           )}
         </span>
-      </td>
-      <td>
-        {s.enabled && s.next_run_at
-          ? <span className="text-body-sm" style={{ color: 'var(--color-ink)', fontVariantNumeric: 'tabular-nums' }} title={fmtDate(s.next_run_at)}>
-              {formatRelativeFuture(s.next_run_at)}
-            </span>
-          : <span className="text-body-sm" style={{ color: 'var(--color-ink-dim)' }}>—</span>}
       </td>
       <td>
         {s.last_run ? (() => {
@@ -507,22 +487,9 @@ function StrategyTableRow({
           );
         })() : <span className="text-body-sm" style={{ color: 'var(--color-ink-dim)' }} title="No execution recorded yet.">never</span>}
       </td>
-      <td style={{ fontVariantNumeric: 'tabular-nums' }}>
-        {!FINITE_POOL_TYPES.has(s.type) || s.content_remaining == null ? (
-          <span className="text-body-sm" style={{ color: 'var(--color-ink-dim)' }} title="Live/feed source — unlimited supply, no runway.">—</span>
-        ) : isLowContent(s) ? (
-          <span title={`Low content: ${s.content_remaining} posts left (alert below ${s.low_content_threshold}). Load more content for this strategy.`}>
-            <Badge tone="warning"><Icon name="warning" size={11} /> Low: {s.content_remaining} / {s.low_content_threshold}</Badge>
-          </span>
-        ) : (
-          <span className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }} title={`${s.content_remaining} posts of content remaining (alert below ${s.low_content_threshold}).`}>
-            {s.content_remaining.toLocaleString()}
-          </span>
-        )}
-      </td>
       <td>
         {s.enabled
-          ? <Badge tone="success" title={STRATEGY_STATUS_HELP.enabled}><Icon name="check" size={12} style={{ marginRight: 4 }} />enabled</Badge>
+          ? <Badge tone="warning" title={STRATEGY_STATUS_HELP.enabled}><Icon name="warning" size={12} style={{ marginRight: 4 }} />enabled, not running</Badge>
           : <span className="chip" title={STRATEGY_STATUS_HELP.paused}>paused</span>}
       </td>
     </tr>
@@ -530,32 +497,6 @@ function StrategyTableRow({
 }
 
 // ─── helpers ────────────────────────────────────────────────────────────────
-
-/** Soonest next-run ISO timestamp across all enabled strategies. null when none. */
-function soonestNextRun(strategies: Strategy[]): string | null {
-  let soonest: string | null = null;
-  for (const s of strategies) {
-    if (!s.enabled || !s.next_run_at) continue;
-    if (!soonest || new Date(s.next_run_at).getTime() < new Date(soonest).getTime()) {
-      soonest = s.next_run_at;
-    }
-  }
-  return soonest;
-}
-
-/** Future timestamp → relative string. */
-function formatRelativeFuture(iso: string): string {
-  const t  = new Date(iso).getTime();
-  const dt = t - Date.now();
-  if (dt < 0) return 'now';
-  const m = Math.round(dt / 60_000);
-  if (m < 60)   return `in ${m}m`;
-  const h = Math.floor(m / 60);
-  const mm = m - h * 60;
-  if (h < 24)   return `in ${h}h ${mm}m`;
-  const d = Math.floor(h / 24);
-  return `in ${d}d ${h - d * 24}h`;
-}
 
 /** Right-aligned muted caption for a SectionCard header action slot. */
 function SectionCaption({ children }: { children: React.ReactNode }) {

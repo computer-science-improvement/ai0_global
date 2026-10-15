@@ -11,9 +11,8 @@ import {
 } from '../lib/labels';
 import type { TrackedChannel } from '../api/types';
 
-export function ChannelRow({ c, lowContentIds, onDelete }: {
+export function ChannelRow({ c, onDelete }: {
   c: TrackedChannel;
-  lowContentIds?: Set<string>;
   /** When provided, renders a danger delete action (used by the Tracked page). */
   onDelete?: () => void;
 }) {
@@ -158,7 +157,6 @@ export function ChannelRow({ c, lowContentIds, onDelete }: {
                 `Binding: ${s.ext_id}`,
                 `Role: ${s.role} (${STRATEGY_ROLE_HELP[s.role]})`,
                 `Status: ${s.enabled ? 'enabled' : 'paused'} — ${s.enabled ? STRATEGY_STATUS_HELP.enabled : STRATEGY_STATUS_HELP.paused}`,
-                ...(lowContentIds?.has(s.id) ? ['⚠ Low content — running out of posts for this strategy.'] : []),
               ].join('\n\n');
               return (
                 <span
@@ -169,9 +167,6 @@ export function ChannelRow({ c, lowContentIds, onDelete }: {
                 >
                   {s.type}
                   {s.role === 'forward' && <span style={{ marginLeft: 4, color: 'var(--color-ink-dim)' }}>↩</span>}
-                  {lowContentIds?.has(s.id) && (
-                    <Icon name="warning" size={11} style={{ marginLeft: 4, color: 'var(--color-warning)' }} />
-                  )}
                 </span>
               );
             })}
