@@ -180,7 +180,11 @@ export function plannerUserPrompt(card: EditorCard, now: Date, reserved: EditorS
   ].join('\n');
 }
 
-export function executorUserPrompt(card: EditorCard, slot: EditorSlot, now: Date, scan?: LiveScan | null): string {
+export function executorUserPrompt(
+  card: EditorCard, slot: EditorSlot, now: Date, scan?: LiveScan | null,
+  /** Spec 037 FR-009: the «Уже було» block (alreadyUsedBlock) — patterns and phrases of the last posts to avoid. */
+  o: { alreadyUsed?: string | null } = {},
+): string {
   const tz = card.timezone;
   const live = slot.topicMode === 'live' && slot.liveSpec;
   return [
@@ -194,6 +198,7 @@ export function executorUserPrompt(card: EditorCard, slot: EditorSlot, now: Date
     card.mode === 'approve'
       ? 'Режим апруву: пишеш заздалегідь. publish_post нічого не надсилає — пост чекатиме схвалення власника, і код опублікує його в час слота.'
       : '',
+    o.alreadyUsed ?? '',
     'Підготуй пост і опублікуй його через publish_post (після lint_post) або пропусти через skip_slot з причиною.',
   ].filter(Boolean).join('\n');
 }

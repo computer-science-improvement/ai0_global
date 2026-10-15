@@ -6,6 +6,7 @@ import { localDate, localHour } from '../roles/time';
 import { addSkip, isNotAMiss, isOwnerDecision, skipGroupOf, type SkipCounts } from '../silent/skip-reasons';
 import { DARK_DAY_HOUR } from '../silent/silent-days';
 import type { SlotFallback } from '../silent/fallback-ladder';
+import { SqlFeedFit, type FeedFit } from './feed-fit';
 
 /**
  * Spec 034 FR-006 (T4): the content-quality block of the MANAGER's digest, per resource over 7 days. Code computes
@@ -36,6 +37,8 @@ export const QUALITY_FLAGS = [
   'critic_reject', 'critic_low_pass', 'critic_failed', 'polls_over_cap', 'reader_questions_over_cap', 'owner_rejections', 'owner_edits',
   // Spec 037 FR-010: a planned day with nothing out (by 18:00 local for today), a series / fixed slot that did not go out.
   'dark_day', 'series_missed',
+  // Spec 037 FR-009: a feed whose items mostly carry jargon over the audience level or get a critic revise / reject.
+  'feed_misfit',
 ] as const;
 export type QualityFlag = typeof QUALITY_FLAGS[number];
 
@@ -87,6 +90,8 @@ export interface ResourceQuality {
   samples: QualitySample[];
   /** Spec 037 FR-010: planned vs out per local day with the skip reasons (absent when the plan rows were not read). */
   plan?:   PlanBlock;
+  /** Spec 037 FR-009: per feed, the share of items with jargon over the level / critic revise / reject (digest only). */
+  feeds?:  FeedFit[];
   flags:   QualityFlag[];
   /**
    * What changed since the last run (the digest hash reads it): the newest critic issue and owner decision, the
@@ -265,6 +270,14 @@ export function assembleQuality(i: {
   };
 }
 
+/** Spec 037 FR-009: the feed-fit block on a resource's quality, and `feed_misfit` when a feed is to be limited / replaced. */
+export function withFeeds(q: ResourceQuality, feeds: FeedFit[] | undefined): ResourceQuality {
+  if (!feeds?.length) return q;
+  // The flags array is shared with the signature, so a new misfit feed changes the digest hash too.
+  if (feeds.some((f) => f.suggestion) && !q.flags.includes('feed_misfit')) q.flags.push('feed_misfit');
+  return { ...q, feeds };
+}
+
 /** Has the resource produced anything to judge in the window (posts, verdicts or owner decisions)? */
 export function qualityActive(q: ResourceQuality | null | undefined): boolean {
   return !!q && (q.posts > 0 || q.critic.total > 0 || q.owner.approved + q.owner.rejected > 0 || q.polls.slots > 0
@@ -377,10 +390,13 @@ export class SqlQuality {
   async digest(refs: string[], now: Date): Promise<Map<string, ResourceQuality>> {
     const from = new Date(now.getTime() - QUALITY_DAYS * 86_400_000);
     // A minute of slack: a row written in the same millisecond (DB clocks are finer) still counts.
-    const [data, caps] = await Promise.all([this.rows(refs, from, new Date(now.getTime() + 60_000)), this.caps(refs)]);
+    const [data, caps, feeds] = await Promise.all([
+      this.rows(refs, from, new Date(now.getTime() + 60_000)), this.caps(refs),
+      new SqlFeedFit(this.pool).feeds(refs, from, new Date(now.getTime() + 60_000)).catch(() => new Map<string, FeedFit[]>()),
+    ]);
     return new Map(refs.map((r) => {
       const d = data.get(r)!;
-      return [r, assembleQuality({ ...d, caps: caps.get(r)!, plan: { rows: d.plan, tz: d.tz, now } })];
+      return [r, withFeeds(assembleQuality({ ...d, caps: caps.get(r)!, plan: { rows: d.plan, tz: d.tz, now } }), feeds.get(r))];
     }));
   }
 

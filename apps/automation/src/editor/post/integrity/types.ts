@@ -46,6 +46,9 @@ export interface AuditPost {
   sourceUrl?: string;
   /** Every platform message the post is made of (an album is several), for traceability; export only. */
   messageIds?: number[];
+  /** Spec 037 T9: the slot's format and the planner's topic (a fixed slot); an export knows neither. */
+  format?: string;
+  topic?: string;
 }
 
 /**

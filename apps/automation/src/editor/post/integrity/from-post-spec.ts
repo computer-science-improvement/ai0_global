@@ -23,6 +23,8 @@ export interface PostSpecMeta {
   timezone: string;
   /** How the source / footer render; default: inline source, no footer. */
   card?: Partial<RenderCard>;
+  /** Spec 037 T9: the planner's topic of a fixed slot (a live slot's topic is only a label). */
+  topic?: string;
 }
 
 /** `[label](https://…)` links of inline markup (the same syntax inlineToHtml renders). */
@@ -93,6 +95,8 @@ export function auditPostFromSpec(spec: PostSpec, meta: PostSpecMeta): AuditPost
     buttons,
     hashtags,
     media: mediaCount ? { kind: mediaKind, count: mediaCount } : null,
+    format: spec.format,
+    ...(meta.topic ? { topic: meta.topic } : {}),
   };
   if (first?.type === 'lead') post.lead = inlineToPlain(first.text);
   if (spec.source && linkStyle === 'inline') post.sourceUrl = spec.source.url;

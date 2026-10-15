@@ -72,6 +72,8 @@ export interface LintIntegrity {
   timezone?: string;
   /** Earlier posts, network posts, extra card fields (style), clock. */
   ctx?: Partial<AuditContext>;
+  /** Spec 037 T9: the planner's topic of a fixed slot (same format + topic twice a day). */
+  topic?: string;
 }
 
 type LintCard = Pick<EditorCard, 'formats' | 'hashtags' | 'hashtagMin' | 'hashtagMax' | 'footer' | 'linkStyle' | 'emojiPolicy' | 'bannedTerms' | 'language'> & RenderCard
@@ -260,7 +262,7 @@ function integrityIssues(
   const timezone = i.timezone ?? (card as { timezone?: string }).timezone ?? 'Europe/Kyiv';
   const post = auditPostFromSpec(spec, {
     id: i.id ?? 'draft', channel: i.channel ?? '', publishedAt: i.publishedAt ?? new Date().toISOString(), timezone,
-    card: { linkStyle: card.linkStyle, footer: card.footer },
+    card: { linkStyle: card.linkStyle, footer: card.footer }, topic: i.topic,
   });
   const ctx: AuditContext = { previous: [], ...i.ctx, card: { ...(card as AuditCard), timezone, ...i.ctx?.card } };
   for (const f of runIntegrityChecks(post, ctx, INTEGRITY_CHECKS.filter((c) => !c.lintEnforced))) {

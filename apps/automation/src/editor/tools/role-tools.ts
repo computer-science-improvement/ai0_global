@@ -27,6 +27,7 @@ import type { ExperimentQuota } from '../manager/experiment-quota';
 import type { PollCapCtx } from '../roles/poll-cap';
 import { NO_FRESH_ITEM } from '../live/live-slot';
 import { dryRunOf } from '../roles/preview-run';
+import { recentAuditPosts } from '../post/variety/recent-posts';
 import {
   CONFIDENCE_RULE, FormatSample, formatsSummary, KPI_SAMPLE_DAYS, performanceEvidenceCheck, sampleConfidence, weightChangeIssue, WeightChange,
 } from '../manager/kpi-confidence';
@@ -139,7 +140,9 @@ export async function checkPublishGuards(d: RoleToolDeps, ctx: ToolContext, spec
   const at = slot.scheduledAt && new Date(slot.scheduledAt).getTime() > now.getTime() ? new Date(slot.scheduledAt) : now;
   // Spec 037 T5: the pages and feed items the run read (with their publication dates) feed the freshness checks.
   const sources = criticGateOf(ctx)?.sources();
-  const lint = lintPost(spec, card, { id: slotId, channel: channelKey, publishedAt: at.toISOString(), timezone: card.timezone, ctx: { now: now.toISOString(), ...(sources ? { sources } : {}) } });
+  // Spec 037 T9: the resource's last 20 posts (monotony) and a fixed slot's topic (same format + topic twice a day).
+  const variety = { previous: await recentAuditPosts(d.pool, { channelKey, timezone: card.timezone, excludeSlotId: slotId, card }).catch(() => []), topic: slot.topicMode === 'live' ? undefined : slot.topic };
+  const lint = lintPost(spec, card, { id: slotId, channel: channelKey, publishedAt: at.toISOString(), timezone: card.timezone, ctx: { now: now.toISOString(), ...(sources ? { sources } : {}), previous: variety.previous }, topic: variety.topic });
   if (!lint.ok) return { error: 'lint_failed', details: lint.errors };
   const truth = await checkQuizGroundTruth(d.pool, spec);
   if (truth) return truth;

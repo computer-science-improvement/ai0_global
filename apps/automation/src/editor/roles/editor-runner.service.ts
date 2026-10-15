@@ -27,6 +27,8 @@ import type { CriticService } from '../critic/critic.service';
 import type { InboxItemInput } from '../agents/owner-inbox';
 import { PREVIEW_FEATURE, PreviewSink, previewWithoutRun, type SlotPreview } from './preview-run';
 import type { AgentBudget } from '../harness/budget.service';
+import { alreadyUsedBlock } from '../post/variety/monotony';
+import type { AuditPost } from '../post/integrity/types';
 import {
   classifyFailure, isRescued, LADDER_MAX_LATE_MS, ladderNote, ladderPlan, PublishProbe, stepRecord,
   type FallbackFinal, type FallbackStepRecord, type LadderStep, type SlotFailure,
@@ -107,6 +109,8 @@ export interface EditorRunnerDeps {
    * Without it only a run's own `budget_exceeded` stops the ladder.
    */
   budget?: (card: EditorCard, agent: AgentBudget | null) => Promise<{ ok: true } | { ok: false; reason: string }>;
+  /** Spec 037 FR-009: the channel's last written posts (newest first) for the writer's «Уже було» block. Optional. */
+  recentPosts?: (card: EditorCard, slot: EditorSlot) => Promise<AuditPost[]>;
   /** Spec 037 FR-010: the fallback ladder (default on); `maxLateMs` — no new step this long after the slot time. */
   ladder?: { enabled?: boolean; maxLateMs?: number };
   /**
@@ -597,7 +601,9 @@ export class EditorRunnerService {
 
   /** The Telegram executor prompt, plus the pool idea the slot realises (spec 020). */
   private async executorUser(card: EditorCard, slot: EditorSlot, ctx: RunAgentContext | null, scan: LiveScan | null = null): Promise<string> {
-    const base = executorUserPrompt(card, slot, this.now(), scan);
+    // Spec 037 FR-009: what the last posts already used (openings, phrases), so the writer avoids a third time.
+    const used = this.d.recentPosts ? alreadyUsedBlock(await this.d.recentPosts(card, slot).catch(() => []), this.now()) : null;
+    const base = executorUserPrompt(card, slot, this.now(), scan, { alreadyUsed: used });
     if (!this.d.platformContext) return base;
     const pc = await this.d.platformContext(slot, ctx?.orchestrator?.id ?? null).catch(() => null);
     return [
