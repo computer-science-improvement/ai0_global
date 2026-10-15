@@ -3,6 +3,7 @@ import type { EditorCard } from '../card';
 import { dailyRef, type InboxItemInput, type OwnerInbox, type SilentDayKind } from '../agents/owner-inbox';
 import { localDate, localHour, localTimeLabel } from '../roles/time';
 import { attemptRejections, type SlotFallback } from './fallback-ladder';
+import { evergreenFilled } from './evergreen-stats';
 import { addSkip, isCriticRejection, isNotAMiss, isOwnerDecision, skipGroupOf, type SkipCounts } from './skip-reasons';
 
 /**
@@ -141,14 +142,19 @@ export function evaluateSilentDays(i: {
     const missedByDay = new Map<string, WatchSlot[]>();
     for (const s of counted) {
       if (!s.seriesName && !s.scheduleRuleId) continue;
-      if (!ENDED_NOT_OUT.has(s.status) || isOwnerDecision(s.error)) continue;
+      // Spec 037 T10: an evergreen post that filled a series slot is not the series' post — the alert still fires.
+      if ((!ENDED_NOT_OUT.has(s.status) && !evergreenFilled(s.fallback)) || isOwnerDecision(s.error)) continue;
       const d = dayOf(s);
       if (d > today) continue;
       missedByDay.set(d, [...(missedByDay.get(d) ?? []), s]);
     }
     for (const [day, miss] of missedByDay) {
       miss.sort((a, b) => a.scheduledAt.getTime() - b.scheduledAt.getTime());
-      const lines = miss.slice(0, 4).map((s) => `${localTimeLabel(s.scheduledAt, r.tz)} ${s.seriesName ? `series "${s.seriesName}"` : 'fixed slot'} — ${s.status}: ${clip(s.error ?? 'no reason recorded', 160)}`);
+      const lines = miss.slice(0, 4).map((s) => {
+        const ever = evergreenFilled(s.fallback);
+        const what = ever ? `filled by an evergreen post (${s.status}); the main post: ${clip(ever.reason, 160)}` : `${s.status}: ${clip(s.error ?? 'no reason recorded', 160)}`;
+        return `${localTimeLabel(s.scheduledAt, r.tz)} ${s.seriesName ? `series "${s.seriesName}"` : 'fixed slot'} — ${what}`;
+      });
       out.push({
         kind: 'series_missed', ref: r.ref, day, agentId: r.agentId ?? null, slotIds: miss.map((s) => s.id),
         title: `Series or fixed slot missed on ${r.ref} (${day})`,

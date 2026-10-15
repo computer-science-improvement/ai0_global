@@ -1,6 +1,6 @@
 import { fmtNumber, fmtRelative } from '../lib/format';
 import type { TrackedPost } from '../api/types';
-import { repostBadge } from '../lib/reposts';
+import { evergreenBadge, repostBadge } from '../lib/reposts';
 import { Badge } from './ui/Badge';
 
 export function PostsList({ posts }: { posts: TrackedPost[] }) {
@@ -17,6 +17,9 @@ export function PostsList({ posts }: { posts: TrackedPost[] }) {
               {fmtRelative(p.postedAt)}
               {repostBadge(p.repostFrom) && (
                 <Badge tone="accent" style={{ marginLeft: 8 }}>{repostBadge(p.repostFrom)}</Badge>
+              )}
+              {evergreenBadge(p.evergreen) && (
+                <Badge tone="neutral" style={{ marginLeft: 8 }}>{evergreenBadge(p.evergreen)}</Badge>
               )}
             </span>
             <span className="tabular-nums">👁 {fmtNumber(p.views)} · 🔁 {fmtNumber(p.forwards)} · ❤ {fmtNumber(p.reactionsTotal)} · 💬 {fmtNumber(p.commentsCount)}</span>

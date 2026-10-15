@@ -26,8 +26,8 @@ export interface PublishSpecInput {
   mediaKey:   string;
   /** published_posts.editor_slot_id. */
   slotId:     string | null;
-  /** published_posts.strategy_type; omitted → the repository default ('editor'). */
-  strategyType?: 'editor' | 'ad' | 'chat';
+  /** published_posts.strategy_type; omitted → 'evergreen' for an evergreen post (spec 037 T10), else the repository default ('editor'). */
+  strategyType?: 'editor' | 'ad' | 'chat' | 'evergreen';
   /** Spec 037 T2: the channel message a story follow-up replies to. */
   replyTo?:   number | null;
   /** Runs once the publication row exists and before the mirrors (e.g. mark the slot published). */
@@ -96,9 +96,11 @@ export async function sendRendered(
   const messageId = sent.messageIds[r.rendered.primary] ?? sent.messageIds[0];
   // The content ledger gets every source ref of the post; published_posts.source_url keeps only one.
   const extraRefs = [spec.library_ref, spec.source?.url].filter((x): x is string => !!x && x !== i.sourceRef);
+  // Spec 037 T10: an evergreen post (the fallback ladder's last step) is its own category in stats and Analytics.
+  const strategyType = i.strategyType ?? (spec.story?.kind === 'evergreen' ? 'evergreen' as const : undefined);
   const postId = await d.plans.insertPublication({
     channelKey, messageId, sourceUrl: i.sourceRef, title: spec.title, tags: spec.hashtags, format: spec.format, slotId: i.slotId,
-    ...(i.strategyType ? { strategyType: i.strategyType } : {}),
+    ...(strategyType ? { strategyType } : {}),
     ...(extraRefs.length ? { refs: extraRefs } : {}),
   });
   d.recordPublish(channelKey);

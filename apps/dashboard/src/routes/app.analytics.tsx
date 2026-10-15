@@ -5,7 +5,7 @@ import { trackingApi } from '../api/tracking';
 import { useMetaAccounts, useMetaFollowerHistory, useMetaAccountInsights } from '../api/meta-accounts';
 import { channelOptionLabel } from '../lib/labels';
 import { fmtNumber } from '../lib/format';
-import { splitReposts } from '../lib/reposts';
+import { EVERGREEN_SHARE_MAX, splitReposts } from '../lib/reposts';
 import { PageHeader } from '../components/ui/PageHeader';
 import type { IconName } from '../components/ui/Icon';
 import { SegmentedTabs } from '../components/SegmentedTabs';
@@ -132,6 +132,13 @@ function AnalyticsPage() {
                 icon="channels"
                 delta={split.share != null ? `${Math.round(split.share * 100)}% reposts` : 'no posts'}
                 deltaTone={split.share != null && split.share > 0.3 ? 'danger' : 'neutral'}
+              />
+              <StatTile
+                label="Evergreen"
+                value={fmtNumber(split.evergreen)}
+                icon="strategies"
+                delta={split.evergreenShare != null ? `${Math.round(split.evergreenShare * 100)}% of posts · fallback` : 'no posts'}
+                deltaTone={split.evergreenShare != null && split.evergreenShare > EVERGREEN_SHARE_MAX ? 'danger' : 'neutral'}
               />
               <StatTile
                 label="Reactions"

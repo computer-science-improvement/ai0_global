@@ -10,6 +10,7 @@ import { SqlFeedFit, type FeedFit } from './feed-fit';
 import { PostAuditService, type AuditSummary } from '../audit/post-audit.service';
 import { AUDIT_FLAGS } from '../audit/code-catalogue';
 import { REPOST_COUNTS_SQL, repostShare, type RepostShare } from '../story/repost-stats';
+import { evergreenShare, type EvergreenShare } from '../silent/evergreen-stats';
 import { StoryEventRepository } from '../story/story-event.repository';
 import type { EventGap } from '../story/story-event';
 import { tierShare, type TierShare } from '../../data/source-tier';
@@ -51,6 +52,8 @@ export const QUALITY_FLAGS = [
   'repost_share_high',
   // Spec 037 T3: the resource announced an event and posted nothing about it within 24 h after it.
   'event_not_covered',
+  // Spec 037 T10: evergreen fallback posts are more than 25 % of the week's written posts (few fresh sources).
+  'evergreen_share_high',
 ] as const;
 export type QualityFlag = typeof QUALITY_FLAGS[number];
 
@@ -115,6 +118,8 @@ export interface ResourceQuality {
    * domains — a resource that lives on one aggregator shows here (absent without a sourced post).
    */
   sources?: TierShare;
+  /** Spec 037 T10: evergreen fallback posts among the written posts of the window (absent without written posts). */
+  evergreen?: EvergreenShare;
   flags:   QualityFlag[];
   /**
    * What changed since the last run (the digest hash reads it): the newest critic issue and owner decision, the
@@ -152,7 +157,11 @@ export function slotText(spec: any, preview: string | null | undefined): string 
 // ── pure assembly ────────────────────────────────────────────────────────────
 
 export interface CriticRow { slotId: string; at: Date; critic: any }
-export interface PostRow { slotId: string; at: Date; status: string; format: string; text: string; written: boolean; sourceUrl?: string | null }
+export interface PostRow {
+  slotId: string; at: Date; status: string; format: string; text: string; written: boolean; sourceUrl?: string | null;
+  /** Spec 037 T10: an evergreen post (post_spec story.kind) — the fallback ladder's last step. */
+  evergreen?: boolean;
+}
 export interface OwnerRow { slotId: string; at: Date; outcome: 'clean' | 'edited' | 'rejected'; reason: string | null; edit: string | null }
 /** Spec 037 FR-010: one content slot of the window, any status (planned vs out). */
 export interface PlanRow {
@@ -274,6 +283,8 @@ export function assembleQuality(i: {
   const reposts = i.reposts ? repostShare(i.reposts.own, i.reposts.reposts) : undefined;
   const sources = written.some((p) => p.sourceUrl) ? tierShare(written.map((p) => p.sourceUrl)) : undefined;
   if (reposts?.over) flags.push('repost_share_high');
+  const evergreen = written.length ? evergreenShare(written.length, written.filter((p) => p.evergreen).length) : undefined;
+  if (evergreen?.over) flags.push('evergreen_share_high');
 
   const issue = critic.find((c) => c.critic?.verdict && c.critic.verdict !== 'pass');
   const lastOwner = owner.find((o) => o.outcome !== 'clean');
@@ -291,6 +302,7 @@ export function assembleQuality(i: {
     ...(plan ? { plan } : {}),
     ...(reposts ? { reposts } : {}),
     ...(sources ? { sources } : {}),
+    ...(evergreen ? { evergreen } : {}),
     flags,
     signature: {
       issue: issue ? `${issue.slotId}:${issue.critic.verdict}` : null, owner: lastOwner ? `${lastOwner.slotId}:${lastOwner.outcome}` : null, flags,
@@ -403,14 +415,19 @@ export class SqlQuality {
     // Posts of the window: polls count every live slot (planned ones too); texts only the written ones.
     const { rows: posts } = await this.pool.query(
       `SELECT ${REF} AS ref, s.id::text AS id, s.status, s.format, s.scheduled_at AS at, s.post_spec, s.rendered_preview,
-              COALESCE(s.post_spec->'source'->>'url', s.platform_spec->'source'->>'url') AS source_url
+              COALESCE(s.post_spec->'source'->>'url', s.platform_spec->'source'->>'url') AS source_url,
+              COALESCE(s.post_spec->'story'->>'kind' = 'evergreen', false) AS evergreen
          FROM editor_slots s
         WHERE s.kind = 'content' AND ${REF} = ANY($1::text[]) AND s.scheduled_at >= $2 AND s.scheduled_at < $3
           AND s.status NOT IN ('skipped','failed','expired')
         ORDER BY s.scheduled_at DESC LIMIT 3000`, [refs, from, new Date(to.getTime() + 2 * 86_400_000)]);
     for (const r of posts) {
       const written = isWritten(r.status);
-      out.get(r.ref)?.posts.push({ slotId: r.id, at: new Date(r.at), status: r.status, format: r.format, written, text: written ? slotText(r.post_spec, r.rendered_preview) : '', sourceUrl: written ? r.source_url ?? null : null });
+      out.get(r.ref)?.posts.push({
+        slotId: r.id, at: new Date(r.at), status: r.status, format: r.format, written, text: written ? slotText(r.post_spec, r.rendered_preview) : '',
+        sourceUrl: written ? r.source_url ?? null : null,
+        ...(r.evergreen ? { evergreen: true } : {}),
+      });
     }
     const { rows: owner } = await this.pool.query(
       `SELECT ${REF} AS ref, s.id::text AS id, COALESCE(s.approved_at, s.updated_at) AS at,

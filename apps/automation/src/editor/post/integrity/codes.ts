@@ -62,6 +62,9 @@ export const INTEGRITY_CODES: Record<string, CodeInfo> = {
   monotony_phrase:            { task: 'T9', level: 'warning', what: 'a 3–5-word phrase shared with recent posts' },
   monotony_format_topic:      { task: 'T9', level: 'warning', what: 'same format and topic twice a day' },
   jargon_over_level:          { task: 'T9', level: 'warning', what: 'unexplained jargon over the audience level budget' },
+  // T10 evergreen fallback (story.kind evergreen only).
+  evergreen_dated:            { task: 'T10', level: 'error',   what: 'an evergreen post with «щойно» / «сьогодні» / «новина» or another news anchor' },
+  evergreen_unsourced_number: { task: 'T10', level: 'warning', what: 'an evergreen post with specific numbers (%, sums, millions) and no source' },
   // T11 media.
   image_not_from_source:      { task: 'T11', level: 'error',  what: 'news media other than the source\'s own image' },
   poster_mismatch:            { task: 'T11', level: 'mixed',  what: 'ai_posters poster off topic (warning) or on a news post (error)' },

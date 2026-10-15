@@ -18,6 +18,8 @@ export const QUALITY_FLAGS = [
   'story_repeat', 'fact_conflict', 'date_issue', 'text_hygiene', 'style_violation',
   // Spec 037 FR-003: an announced event got no post within 24 h after it.
   'event_not_covered',
+  // Spec 037 FR-010: evergreen fallback posts over 25 % of the week's posts.
+  'evergreen_share_high',
 ] as const;
 export type QualityFlag = typeof QUALITY_FLAGS[number];
 
@@ -47,6 +49,8 @@ export interface ResourceQuality {
   audit?: AuditSummary;
   /** Spec 037 FR-003: announced events without a recap within 24 h (absent when none). */
   events_not_covered?: Array<{ story_key: string; event: string; at: string; all_day: boolean; announced: number }>;
+  /** Spec 037 FR-010: evergreen fallback posts among the written posts of the window (absent without posts). */
+  evergreen?: { posts: number; evergreen: number; share: number | null; over: boolean };
   flags: QualityFlag[];
 }
 
@@ -76,6 +80,7 @@ export const FLAG_LABEL: Record<QualityFlag, string> = {
   text_hygiene:              'text hygiene issues',
   style_violation:           'off the style sheet',
   event_not_covered:         'an announced event got no recap',
+  evergreen_share_high:      'evergreen over 25% of posts',
 };
 
 export const CHECK_ITEM_LABEL: Record<string, string> = {
@@ -86,14 +91,14 @@ export const flagLabel = (f: string) => FLAG_LABEL[f as QualityFlag] ?? f.replac
 
 const pct = (x: number | null | undefined) => (x == null || !Number.isFinite(x) ? '—' : `${Math.round(x * 100)}%`);
 
-export interface QualityStat { key: 'critic' | 'polls' | 'owner'; label: string; value: string; tone: QualityTone; title: string }
+export interface QualityStat { key: 'critic' | 'polls' | 'owner' | 'evergreen'; label: string; value: string; tone: QualityTone; title: string }
 
 /** Has the block anything to show (posts, verdicts, owner decisions or planned slots)? */
 export function qualityActive(q: ResourceQuality | null | undefined): q is ResourceQuality {
   return !!q && (q.posts > 0 || q.critic.total > 0 || q.owner.approved + q.owner.rejected > 0 || q.polls.slots > 0);
 }
 
-/** The three numbers of a resource tile: critic pass rate, polls vs cap, owner rejections. */
+/** The numbers of a resource tile: critic pass rate, polls vs cap, owner rejections (+ the evergreen share when any). */
 export function qualityStats(q: ResourceQuality): QualityStat[] {
   const judged = q.critic.pass + q.critic.revise + q.critic.reject;
   const passTone: QualityTone = judged === 0 ? 'neutral' : q.critic.reject > 0 || (q.critic.pass_rate ?? 1) < 0.7 ? 'danger' : (q.critic.pass_rate ?? 1) < 0.9 ? 'warning' : 'success';
@@ -113,6 +118,12 @@ export function qualityStats(q: ResourceQuality): QualityStat[] {
       key: 'owner', label: 'Your rejections', value: `${q.owner.rejected}${q.owner.edited ? ` · ${q.owner.edited} edited` : ''}`, tone: ownerTone,
       title: `Approval mode, ${q.days} days: ${q.owner.approved} approved (${q.owner.edited} edited), ${q.owner.rejected} rejected`,
     },
+    // Spec 037 FR-010: evergreen fallback posts, counted apart (flag above 25 %: few fresh sources).
+    ...(q.evergreen && q.evergreen.evergreen > 0 ? [{
+      key: 'evergreen' as const, label: 'Evergreen', value: `${q.evergreen.evergreen} · ${pct(q.evergreen.share)}`,
+      tone: (q.evergreen.over ? 'danger' : 'warning') as QualityTone,
+      title: `Evergreen fallback posts in ${q.days} days: ${q.evergreen.evergreen} of ${q.evergreen.posts} written posts (flagged above 25%: the channel lacks fresh sources)`,
+    }] : []),
   ];
 }
 

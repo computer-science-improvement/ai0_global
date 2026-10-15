@@ -33,6 +33,7 @@ import {
   classifyFailure, isRescued, LADDER_MAX_LATE_MS, ladderNote, ladderPlan, PublishProbe, stepRecord,
   type FallbackFinal, type FallbackStepRecord, type LadderStep, type SlotFailure,
 } from '../silent/fallback-ladder';
+import { EvergreenProbe } from '../silent/evergreen';
 
 export interface EditorRunnerDeps {
   loop:     Pick<AgentLoop, 'run'>;
@@ -114,10 +115,10 @@ export interface EditorRunnerDeps {
   /** Spec 037 FR-010: the fallback ladder (default on); `maxLateMs` — no new step this long after the slot time. */
   ladder?: { enabled?: boolean; maxLateMs?: number };
   /**
-   * Spec 037 FR-010 SEAM — the evergreen step of the fallback ladder (after the story registry T2 and the critic's
-   * resource skills T12). Absent by default: the ladder goes from the lighter format straight to skip. When set,
-   * it runs after the lighter format with the slot (status `running`) and the last failure, and returns the run
-   * (the slot is then judged like every other step) or null when no evergreen post is possible today.
+   * Spec 037 FR-010 — the evergreen step of the fallback ladder (silent/evergreen.ts `EvergreenStep`, wired in
+   * editor.module). Absent: the ladder goes from the lighter format straight to skip. When set, it runs after the
+   * lighter format with the slot (status `running`) and the last failure, and returns the run (the slot is then
+   * judged like every other step) or null when no evergreen post is possible today (cap, platform, switched off).
    */
   fallbackEvergreen?: (i: EvergreenRequest) => Promise<AgentLoopResult | null>;
   /** Spec 037 T2: the "Active stories (14 days)" block of the planner / writer prompt (story/story-context.ts); null for none. */
@@ -131,6 +132,11 @@ export interface EvergreenRequest {
   failure: SlotFailure;
   /** The ladder so far (initial, next candidate, lighter format). */
   steps:   FallbackStepRecord[];
+  /**
+   * Spec 037 T10: one executor run of the slot (critic included) with the evergreen probe — the post is marked
+   * `story.kind = evergreen` by code. `slot` is the slot as the writer sees it (topic, format), `note` its instruction.
+   */
+  run:     (o: { slot: EditorSlot; note: string }) => Promise<AgentLoopResult>;
 }
 
 type PlatformContext = Awaited<ReturnType<NonNullable<EditorRunnerDeps['platformContext']>>>;
@@ -432,11 +438,11 @@ export class EditorRunnerService {
         }
       }
       await this.d.plans.updateSlot(slot.id, { status: 'running', error: null, critic: null });
-      const p = new PublishProbe();
+      const p = st.step === 'evergreen' ? new EvergreenProbe() : new PublishProbe();
       const stepSlot: EditorSlot = { ...slot, format: st.format };
       last = st.step;
       const r = st.step === 'evergreen'
-        ? await this.d.fallbackEvergreen!({ slot: stepSlot, card, failure, steps: [...steps] }).catch(() => null)
+        ? await this.d.fallbackEvergreen!({ slot: stepSlot, card, failure, steps: [...steps], run: (e) => attempt(e.slot, e.note, null, p) }).catch(() => null)
         : await attempt(stepSlot, [o.note, ladderNote(st.step, { failure, format: st.format, original: slot.format, avoid, live })].filter(Boolean).join('\n'), scan, p);
       if (!r) { steps.push(skipped(st.step, st.format, 'unavailable', 'no evergreen post today')); continue; }
       res = r;
@@ -444,6 +450,12 @@ export class EditorRunnerService {
       after = await this.d.plans.getSlot(slot.id);
       const f = after ? classifyFailure(after, p) : null;
       steps.push(stepRecord(st.step, st.format, this.now(), after, f, r));
+      // Spec 037 T10: an evergreen post that did not go out (critic, guard, the writer's skip) skips the slot with the
+      // MAIN post's reason; the evergreen's own reason is on its step.
+      if (st.step === 'evergreen' && !isRescued(after?.status)) {
+        final = { outcome: 'skipped', code: 'exhausted', step: 'evergreen', reason: failure.reason };
+        break;
+      }
       if (!f) {
         // Out (published / shadowed / waiting for the owner), or ended otherwise (skip, outage, cap): the slot keeps it.
         final = { outcome: isRescued(after?.status) ? 'rescued' : 'ended', code: after?.status ?? 'unknown', step: st.step, reason: after?.error ?? null };

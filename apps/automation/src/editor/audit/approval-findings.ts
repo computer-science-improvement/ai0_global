@@ -91,7 +91,7 @@ export function approvalFindingsHook(d: ApprovalFindingsDeps) {
       });
       if (!post) return [];
       const previous = ref.startsWith('telegram:')
-        ? (await recentAuditPosts(d.pool, { channelKey: item.channelKey, timezone: item.timezone, excludeSlotId: item.id, card: own?.render, limit: 60 }).catch(() => []))
+        ? (await recentAuditPosts(d.pool, { channelKey: item.channelKey, timezone: item.timezone, excludeSlotId: item.id, card: own?.render, limit: 60 }).catch((): AuditPost[] => []))
           .filter((p) => Date.parse(p.publishedAt) <= Date.parse(post.publishedAt))
         : [];
       const { rows } = await d.pool.query(
