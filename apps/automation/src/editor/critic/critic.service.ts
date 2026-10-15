@@ -8,6 +8,7 @@ import type { VoicePrefs } from '../post/slop-lint';
 import { SkillLibrary, type Skill } from '../skills/skill-library';
 import { voiceCoreBody, voiceSettingsLine } from '../roles/voice';
 import { CritiqueInput, decideVerdict, type Critique, type StoredCritic } from './critic';
+import { criticSkillsSection, type CriticSkillsContext, type CriticSkillsRequest } from './critic-skills';
 
 /** One attempt of the critic; a second attempt follows a timeout or an error (fail-safe, FR-004). */
 export const CRITIC_TIMEOUT_MS = 90_000;
@@ -49,6 +50,8 @@ export interface CriticRequest {
   previous?:    Pick<StoredCritic, 'verdict' | 'notes' | 'scores'> | null;
   /** Registry agent whose budget the critic run counts against (the executor's). */
   agent?:       AgentBudget | null;
+  /** Spec 037 FR-012: what selects the writer's skills for the critic (resource tone skills, slot signals, skill view). */
+  skills?:      CriticSkillsContext | null;
 }
 
 export type CriticResult =
@@ -81,11 +84,15 @@ function json(v: unknown): string {
   try { return JSON.stringify(v); } catch { return String(v); }
 }
 
-/** The critic's system prompt: its rubric (repo builtin, never an agent override) and voice-core. */
-export function criticSystemPrompt(): string {
+/**
+ * The critic's system prompt: its rubric (repo builtin, never an agent override), voice-core and (spec 037 FR-012,
+ * with a request) the writer's skills for this post — resource tone, format and topic skills, compressed to rules
+ * within CRITIC_SKILLS_BUDGET. Per resource, format and content type, so it caches across the posts of a resource.
+ */
+export function criticSystemPrompt(r?: CriticSkillsRequest | null): string {
   const rubric = repoSkill(CRITIC_SKILL)?.body
     ?? 'Оціни пост за шкалою 1–5 (ai_likeness, sense, voice, grounding, audience_asks, format_fit) і виклич submit_critique з вердиктом pass / revise / reject та короткими нотатками українською.';
-  return [rubric, '', '## Голос мережі (voice-core): за цими правилами оцінюй ai_likeness і voice', voiceCoreBody()].join('\n');
+  return [rubric, '', '## Голос мережі (voice-core): за цими правилами оцінюй ai_likeness і voice', voiceCoreBody(), ...(r ? criticSkillsSection(r).lines : [])].join('\n');
 }
 
 /** The critic's user prompt: the resource, the slot, the post, the source excerpt and the lint warnings. */
@@ -148,7 +155,7 @@ export class CriticService {
       input: CritiqueInput,
       execute: async (c) => ({ ok: true, ...c }),
     });
-    const system = criticSystemPrompt();
+    const system = criticSystemPrompt(r);
     const user = criticUserPrompt(r);
     const runIds: string[] = [];
     let cost = 0;

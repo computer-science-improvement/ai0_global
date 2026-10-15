@@ -8,8 +8,11 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { FIXTURE, INTEGRITY_CASES, INTEGRITY_CRITIC_CASES, fixturePost, integrityContext, publishLine, specOf, styledText } from './integrity';
+import { FIXTURE, INTEGRITY_CASES, INTEGRITY_CRITIC_CASES, fixturePost, integrityContext, integrityRequest, publishLine, specOf, styledText } from './integrity';
 import { parseLabelCode } from '../../src/editor/post/integrity/codes';
+import { criticSkillNames } from '../../src/editor/critic/critic-skills';
+import { criticSystemPrompt } from '../../src/editor/critic/critic.service';
+import { makeCard } from '../../src/editor/post/testing/fixtures';
 
 const labels = JSON.parse(readFileSync(join(__dirname, '../../src/editor/post/testing/channel-logs-2026-10.labels.json'), 'utf8')) as {
   posts: Record<string, { expect: string[]; clean?: true }>;
@@ -55,4 +58,23 @@ test('037 critic cases agree with the golden labels', () => {
     if (c.expect === 'pass') assert.deepEqual(codes.filter((x) => !benign.has(x)), [], `${c.id}: a clean case must not carry content problems`);
     else assert.ok(codes.some((x) => !benign.has(x)), `${c.id}: a problem case needs a labelled problem`);
   }
+});
+
+test('037 critic cases (T12): each request carries what selects the writer\'s skills — resource tone, format, content type', () => {
+  const names = (id: string) => {
+    const c = INTEGRITY_CRITIC_CASES.find((x) => x.id === id)!;
+    const r = integrityRequest(makeCard({ channelKey: c.key, skills: [] }), c);
+    assert.ok(r.skills && r.format, id);
+    assert.match(criticSystemPrompt(r), /### skill: proper-nouns-terms|Not inlined: .*proper-nouns-terms/, id);
+    return criticSkillNames(r);
+  };
+  for (const id of ['critic-037-giveaway-expired', 'critic-037-process-leak-third-post', 'critic-037-steam-repeat']) {
+    assert.deepEqual(names(id), ['tone-gaming', 'deals-giveaways', 'proper-nouns-terms'], id);
+  }
+  assert.deepEqual(names('critic-037-address-ty').slice(0, 1), ['tone-gaming']);
+  assert.deepEqual(names('critic-037-knowledge-poll-revealed').slice(0, 3), ['format-poll-quiz', 'news-followups', 'fact-check']);
+  for (const id of ['critic-037-apple-fourth-announcement', 'critic-037-mistral-just-now-repeat', 'critic-037-qwen-after-digest', 'critic-037-netflix-fun-facts']) {
+    assert.ok(names(id).includes('news-followups') && names(id).includes('fact-check'), id);
+  }
+  assert.deepEqual(names('critic-037-clean-templates'), ['proper-nouns-terms'], 'original evergreen content: no topic skill');
 });

@@ -20,6 +20,7 @@ import type { VoicePrefs } from '../post/slop-lint';
 import { attachVoiceSkills, VOICE_CORE, VOICE_SKILLS_BUDGET, voiceCoreSection, voiceReferenceLine } from './voice';
 import { liveSlotLines, noFreshReason, type LiveScan } from '../live/live-slot';
 import { CriticGate } from '../critic/critic-gate';
+import { slotSkillsContext } from '../critic/critic-skills';
 import { examplesPromptSection } from '../network/playbook';
 import type { CriticService } from '../critic/critic.service';
 import type { InboxItemInput } from '../agents/owner-inbox';
@@ -219,6 +220,8 @@ export class EditorRunnerService {
           ? { id: ctx.agent.id, handle: ctx.agent.handle, limitUsd: ctx.agent.dailyBudgetUsd ?? ctx.orchestrator?.dailyBudgetUsd ?? null }
           : null,
         inboxAgentId: ctx?.orchestrator?.id ?? null,
+        // Spec 037 FR-012: the critic judges with the writer's skills (resource tone, format, topic).
+        skills: slotSkillsContext(slot, card, ctx?.skills ?? this.d.skills),
       },
     );
   }
