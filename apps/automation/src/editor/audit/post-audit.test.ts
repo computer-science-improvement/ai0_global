@@ -15,7 +15,7 @@ import {
 } from './post-audit';
 import { AUDIT_FLAGS, CODE_EXPLANATIONS, auditFlagOf, catalogueEntry } from './code-catalogue';
 import { groupFindings, summarise } from './post-audit.service';
-import { expectedNow, goldenCard, loadGolden, specOfGoldenPost } from './testing/golden-specs';
+import { expectedNow, goldenCard, goldenStory, loadGolden, specOfGoldenPost } from './testing/golden-specs';
 import { PlatformPostSpecSchema } from '../platform/platform-spec';
 
 const golden = loadGolden();
@@ -24,7 +24,7 @@ const fixture = { posts: golden.posts };
 /** The golden posts of one channel as audit targets built from their PostSpecs (as the audit reads published slots). */
 function goldenTargets(channel: string): AuditTarget[] {
   return fixture.posts.filter((p) => p.channel === channel).map((p) => ({
-    post: auditPostFromSpec(specOfGoldenPost(p), { id: p.id, channel, publishedAt: p.publishedAt, timezone: p.timezone }),
+    post: auditPostFromSpec(specOfGoldenPost(p, goldenStory(golden, p.id)), { id: p.id, channel, publishedAt: p.publishedAt, timezone: p.timezone }),
     kind: 'slot' as const, postId: p.id,
   }));
 }
@@ -34,7 +34,9 @@ const channels = [...new Set(fixture.posts.map((p) => p.channel))];
 test('golden set via PostSpecs: the audit finds exactly the labelled codes the registered checks implement', () => {
   const diffs: string[] = [];
   for (const ch of channels) {
-    const rows = auditFindings({ resourceRef: ch, targets: goldenTargets(ch), card: goldenCard(golden, ch) });
+    // The other two DEV channels are the network (as the golden-set test and the story registry read it).
+    const network = channels.filter((c) => c !== ch).flatMap((c) => goldenTargets(c).map((t) => t.post));
+    const rows = auditFindings({ resourceRef: ch, targets: goldenTargets(ch), network, card: goldenCard(golden, ch) });
     for (const p of fixture.posts.filter((x) => x.channel === ch)) {
       const got = [...new Set(rows.filter((r) => r.postId === p.id).map((r) => r.code))].sort();
       const want = expectedNow(golden, p.id);

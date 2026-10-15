@@ -10,7 +10,7 @@ import assert from 'node:assert/strict';
 import { Pool } from 'pg';
 import { PostAuditService } from './post-audit.service';
 import { PostAuditApi } from './post-audit.controller';
-import { expectedNow, goldenCard, loadGolden, specOfGoldenPost } from './testing/golden-specs';
+import { expectedNow, goldenCard, goldenStory, loadGolden, specOfGoldenPost } from './testing/golden-specs';
 import { SqlQuality } from '../manager/quality-digest';
 import { approvalFindingsHook } from './approval-findings';
 
@@ -55,7 +55,8 @@ before(async () => {
     await pool.query(`INSERT INTO editor_channels (channel_key, mode, formats) VALUES ($1, 'live', '{"text":1}')`, [key]);
     const plan = (await pool.query(`INSERT INTO editor_plans (channel_key, plan_date) VALUES ($1, '2026-10-14') RETURNING id`, [key])).rows[0].id;
     for (const p of golden.posts.filter((x) => x.channel === ch)) {
-      const spec = specOfGoldenPost(p);
+      // The writer declares a reminder / follow-up against the original's slot id (inserted earlier: posts are in time order).
+      const spec = specOfGoldenPost(p, goldenStory(golden, p.id, (g) => SLOT.get(g)));
       const slot = (await pool.query(
         `INSERT INTO editor_slots (plan_id, channel_key, scheduled_at, format, topic, status, post_spec)
          VALUES ($1, $2, $3, $4, $5, 'published', $6) RETURNING id::text AS id`,

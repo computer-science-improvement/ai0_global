@@ -211,13 +211,15 @@ export class PostAuditService {
     return out;
   }
 
-  /** Telegram network siblings of a channel (the same tracked_channels group). */
+  /**
+   * Telegram network siblings of a channel, as the story registry (T2, StoryRegistry.scopeOf) defines them: a brand
+   * group holds at most one Telegram channel, so the siblings are the other channels the editor runs (mode not off).
+   */
   private async siblings(ref: string): Promise<string[]> {
     if (!ref.startsWith('telegram:')) return [];
     const { rows } = await this.d.pool.query(
-      `SELECT 'telegram:' || t2.channel_key AS ref
-         FROM tracked_channels t1 JOIN tracked_channels t2 ON t2.group_id = t1.group_id AND t2.channel_key <> t1.channel_key
-        WHERE t1.channel_key = $1 AND t1.group_id IS NOT NULL AND t2.channel_key IS NOT NULL`, [ref.slice('telegram:'.length)]);
+      `SELECT 'telegram:' || channel_key AS ref FROM editor_channels WHERE channel_key <> $1 AND mode <> 'off' ORDER BY channel_key`,
+      [ref.slice('telegram:'.length)]);
     return rows.map((r: any) => r.ref);
   }
 

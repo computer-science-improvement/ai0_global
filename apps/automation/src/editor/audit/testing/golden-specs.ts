@@ -43,8 +43,11 @@ function blocksOf(p: AuditPost): PostSpec['body'] {
   return out;
 }
 
-/** The PostSpec of a golden post (validated; throws when the post does not fit the schema). */
-export function specOfGoldenPost(p: AuditPost): PostSpec {
+/**
+ * The PostSpec of a golden post (validated; throws when the post does not fit the schema). `story` is what the writer
+ * declared (spec 037 T2; see goldenStory): a spec without one is an original post.
+ */
+export function specOfGoldenPost(p: AuditPost, story?: PostSpec['story']): PostSpec {
   const label = p.text.split('\n').map((l) => l.trim()).map((l) => l.match(ARROW)?.[1]).find(Boolean);
   const media = p.media ? Array.from({ length: Math.min(p.media.count, 10) }, (_, i) => ({
     url: `https://example.com/golden/${encodeURIComponent(p.id)}-${i}.${p.media!.kind === 'video' ? 'mp4' : 'jpg'}`,
@@ -60,6 +63,7 @@ export function specOfGoldenPost(p: AuditPost): PostSpec {
     body: blocksOf(p), media: p.poll ? [] : media, hashtags: p.hashtags.slice(0, 10),
     ...(p.sourceUrl ? { source: { url: p.sourceUrl, ...(label ? { label: label.slice(0, 60) } : {}) } } : {}),
     buttons: rows.slice(0, 4),
+    ...(story ? { story } : {}),
     ...(p.poll ? {
       poll: {
         question: p.poll.question.slice(0, 300), options: p.poll.options.map((o) => o.slice(0, 100)).slice(0, 10), anonymous: p.poll.anonymous,
@@ -76,7 +80,10 @@ const TESTING = join(__dirname, '..', '..', 'post', 'testing');
 
 export interface GoldenSet {
   posts:  AuditPost[];
-  labels: { cards: Record<string, AuditCard & { note?: string }>; posts: Record<string, { expect: string[] }> };
+  labels: {
+    cards: Record<string, AuditCard & { note?: string }>; posts: Record<string, { expect: string[] }>;
+    story_pairs?: { allowed_followup?: Array<{ a: string; b: string; note?: string }> };
+  };
 }
 
 export function loadGolden(): GoldenSet {
@@ -90,6 +97,17 @@ export function loadGolden(): GoldenSet {
 export function goldenCard(g: GoldenSet, channel: string): AuditCard {
   const { note: _note, ...card } = g.labels.cards[channel];
   return card;
+}
+
+/**
+ * Spec 037 T2: the story a writer declares on a labelled allowed follow-up (`story_pairs.allowed_followup`): a giveaway
+ * reminder or a follow-up of the original. `idOf` maps a golden id to the id the audit knows the original by (a slot id).
+ */
+export function goldenStory(g: GoldenSet, id: string, idOf: (goldenId: string) => string | undefined = (x) => x): PostSpec['story'] | undefined {
+  const pair = g.labels.story_pairs?.allowed_followup?.find((x) => x.b === id);
+  const of = pair ? idOf(pair.a) : undefined;
+  if (!pair || !of) return undefined;
+  return { followup_of: of, kind: /reminder/i.test(pair.note ?? '') ? 'reminder' : 'followup' };
 }
 
 /** The codes the labels expect of a post that a registered check finds now (`@Tn` markers are still pending). */

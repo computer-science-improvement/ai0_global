@@ -4,6 +4,7 @@ import { auditPostFromSpec } from '../post/integrity/from-post-spec';
 import { INTEGRITY_CHECKS, runIntegrityChecks } from '../post/integrity/registry';
 import type { AuditContext, AuditPost, Finding } from '../post/integrity/types';
 import { recentAuditPosts } from '../post/variety/recent-posts';
+import { StoryRegistry } from '../story/story.repository';
 import { PlatformPostSpecSchema } from '../platform/platform-spec';
 import { auditPostFromPlatformSpec, findingExtra, parseSources } from './post-audit';
 import { catalogueEntry, type AuditFlag, type FindingSection } from './code-catalogue';
@@ -97,7 +98,11 @@ export function approvalFindingsHook(d: ApprovalFindingsDeps) {
         `SELECT COALESCE(to_jsonb(s) -> 'sources', s.critic -> 'sources') AS sources FROM editor_slots s WHERE s.id = $1`, [item.id],
       ).catch(() => ({ rows: [] as any[] }));
       const sources = parseSources(rows[0]?.sources);
-      const ctx: AuditContext = { previous, card, now: post.publishedAt, ...(sources ? { sources } : {}) };
+      // Spec 037 T2: the sibling channels' posts near this one, as the story guard reads them (story_cross_channel).
+      const network = ref.startsWith('telegram:')
+        ? (await new StoryRegistry(d.pool).history(item.channelKey, item.id, new Date(post.publishedAt)).catch(() => null))?.network ?? []
+        : [];
+      const ctx: AuditContext = { previous, network, card, now: post.publishedAt, ...(sources ? { sources } : {}) };
       return toApprovalFindings(runIntegrityChecks(post, ctx, INTEGRITY_CHECKS));
     } catch {
       return [];
