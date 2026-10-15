@@ -6,9 +6,10 @@
  */
 
 /** C0 / C1 control characters except tab, line feed and carriage return. */
+// eslint-disable-next-line no-control-regex -- control characters are what this module looks for
 const CONTROL = /[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F-\u009F]/u;
 /** Zero-width characters between two letters or digits (inside a word; a ZWJ inside an emoji sequence is fine). */
-const ZERO_WIDTH_IN_WORD = /(?<=[\p{L}\p{N}])[​‌‍⁠﻿]+(?=[\p{L}\p{N}])/u;
+const ZERO_WIDTH_IN_WORD = /(?<=[\p{L}\p{N}])[\u200B-\u200D\u2060\uFEFF]+(?=[\p{L}\p{N}])/u;
 /** The second byte of a UTF-8 Cyrillic letter (0x80–0xBF) as windows-1251 shows it. */
 const CP1251_HIGH = 'ЂЃ‚ѓ„…†‡€‰Љ‹ЊЌЋЏђ‘’“”•–—™љ›њќћџЎўЈ¤Ґ¦§Ё©Є«¬®Ї°±Ііґµ¶·ё№є»јЅѕї';
 /** The same byte as windows-1252 / latin-1 shows it. */
@@ -35,13 +36,15 @@ export const brokenCharText = (k: BrokenCharKind): string => KIND_TEXT[k];
 
 /** The word (letters, digits, the broken chars themselves) around index `i`, at most ~40 chars, made visible. */
 function wordAt(text: string, i: number, len: number): string {
-  const isWordChar = (c: string) => /[\p{L}\p{N}ʼ'’�​‌‍⁠﻿\u0000-\u001F\u007F-\u009F-]/u.test(c);
+  // eslint-disable-next-line no-control-regex -- control characters are what this module looks for
+  const isWordChar = (c: string) => /[\p{L}\p{N}ʼ'’�\u200B-\u200D\u2060\uFEFF\u0000-\u001F\u007F-\u009F-]/u.test(c);
   let a = i;
   let b = i + len;
   while (a > 0 && i - a < 20 && isWordChar(text[a - 1])) a--;
   while (b < text.length && b - i < 20 && isWordChar(text[b])) b++;
+  // eslint-disable-next-line no-control-regex -- control characters are what this module looks for
   return text.slice(a, b).replace(/[\u0000-\u001F\u007F-\u009F]/g, (c) => `\\u${c.charCodeAt(0).toString(16).padStart(4, '0')}`)
-    .replace(/[​‌‍⁠﻿]/g, (c) => `[U+${c.charCodeAt(0).toString(16).toUpperCase()}]`);
+    .replace(/[\u200B-\u200D\u2060\uFEFF]/g, (c) => `[U+${c.charCodeAt(0).toString(16).toUpperCase()}]`);
 }
 
 /** Every kind of broken character in a text, once per kind, with the word it sits in. */

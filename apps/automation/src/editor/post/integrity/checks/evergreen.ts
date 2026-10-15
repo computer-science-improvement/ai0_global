@@ -23,7 +23,7 @@ const NUMBER_RES: RegExp[] = [
   new RegExp(`${NUM}\\s?(?:%|відсот\\p{L}*)`, 'iu'),
   new RegExp(`[$€₴£]\\s?\\d|${NUM}\\s?(?:\\$|€|₴|грн${E}|гривен\\p{L}*|долар\\p{L}*|євро${E}|USD${E})`, 'iu'),
   new RegExp(`${NUM}\\s?(?:млн${E}|млрд${E}|трлн${E}|тис\\.|тисяч\\p{L}*|мільйон\\p{L}*|мільярд\\p{L}*|трильйон\\p{L}*)`, 'iu'),
-  /(?<![\d.,])\d{1,3}(?:[  ]\d{3})+(?![\d.,])|(?<![\d.,])\d{5,}(?![\d.,])/u,
+  /(?<![\d.,])\d{1,3}(?:[ \u00A0]\d{3})+(?![\d.,])|(?<![\d.,])\d{5,}(?![\d.,])/u,
 ];
 
 function hasSource(post: AuditPost, ctx: AuditContext): boolean {

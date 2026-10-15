@@ -16,7 +16,7 @@ import { bodyText, excerptOf, type AuditPost, type Finding } from './integrity/t
 
 export const FACT_WINDOW_DAYS = 14;
 
-const NUM = String.raw`\d{1,3}(?:[   ]\d{3})+|\d+`;
+const NUM = String.raw`\d{1,3}(?:[ \u00A0\u202F]\d{3})+|\d+`;
 const CUR = String.raw`(?:грн|₴|\$|€|USD|UAH)?`;
 const PRICE_RE = new RegExp(String.raw`(?<![\p{L}\p{N}])[$€]?(${NUM})\s*${CUR}\s*(?:замість|замiсть|instead of|вместо)\s*[$€]?(${NUM})\s*${CUR}`, 'u');
 const DISCOUNT_RE = /(?:знижк\p{L}*\s*|[−–-]\s?)(\d{1,2})\s*%/u;

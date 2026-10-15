@@ -72,18 +72,18 @@ const CONNECTORS = new Set(['of', 'the', 'and', 'for', 'in', 'on', 'to', 'a', 'a
 const LATIN_TOKEN = String.raw`[A-Za-z][A-Za-z0-9+]*(?:[.'’][A-Za-z0-9]+)*`;
 const VERSION_TOKEN = String.raw`\d+(?:[.,]\d+)*[A-Za-z]{0,3}`;
 /** A run of Latin tokens and versions joined by spaces, hyphens or a colon («System Shock 2: 25th Anniversary Remaster»). */
-const NAME_RE = new RegExp(String.raw`(?<![\p{L}\p{N}])${LATIN_TOKEN}(?:(?:[  ]|-|:\s)(?:${LATIN_TOKEN}|${VERSION_TOKEN}))*`, 'gu');
+const NAME_RE = new RegExp(String.raw`(?<![\p{L}\p{N}])${LATIN_TOKEN}(?:(?:[ \u00A0]|-|:\s)(?:${LATIN_TOKEN}|${VERSION_TOKEN}))*`, 'gu');
 
 const CYR_CAP = String.raw`[А-ЯІЇЄҐ][а-яіїєґʼ'’]+(?:-[А-ЯІЇЄҐ][а-яіїєґʼ'’]+)*`;
 /** Two or more capitalised Cyrillic words in a row (a name or a place), not the first word of a sentence alone. */
-const PERSON_RE = new RegExp(String.raw`(?<![\p{L}])${CYR_CAP}(?:[  ]${CYR_CAP})+`, 'gu');
+const PERSON_RE = new RegExp(String.raw`(?<![\p{L}])${CYR_CAP}(?:[ \u00A0]${CYR_CAP})+`, 'gu');
 
 const DOMAIN_RE = /(?<![\p{L}\p{N}@./])((?:[a-z0-9-]+\.)+(?:com|io|ai|org|net|dev|app|co|ua|gg|tv|me|so|xyz))(?:\/[^\s)»"]*)?/giu;
 
 const UNIT_RE = String.raw`(трлн|трильйон\p{L}*|млрд|мільярд\p{L}*|млн|мільйон\p{L}*|тис\.?|тисяч\p{L}*|trillion|billion|million|thousand|%|відсот\p{L}*|грн|гривен\p{L}*|гривн\p{L}*|юан\p{L}*|дол\p{L}*|євро|ГБ|ТБ|МБ|Гб|Мп|Гц|мАг|Вт|ніт|мс|кроків|кроки|крок|токенів|токени|параметрів|разів|рази|раза|GB|TB|MB|B|M|K|T|W|Hz|ms|px|fps|K\b)`;
 /** A number with a unit or a currency sign: «1,05 трлн», «$14,5 млрд», «−90%», «74 грн», «¥5699», «49B». */
 const NUM_RE = new RegExp(
-  String.raw`(?<![\p{L}\p{N}.,])([$€¥£]?)\s?[−–-]?(\d{1,3}(?:[   ]\d{3})+|\d+(?:[.,]\d+)?)(?:\s?${UNIT_RE})?(?![\p{L}\p{N}])`,
+  String.raw`(?<![\p{L}\p{N}.,])([$€¥£]?)\s?[−–-]?(\d{1,3}(?:[ \u00A0\u202F]\d{3})+|\d+(?:[.,]\d+)?)(?:\s?${UNIT_RE})?(?![\p{L}\p{N}])`,
   'gu',
 );
 
@@ -108,7 +108,7 @@ const STEM_LEN = 6;
 function normName(raw: string): string {
   const parts = raw
     .replace(/[’']/g, '')
-    .split(/[\s :-]+/)
+    .split(/[\s\u00A0:-]+/)
     .map((p) => p.toLowerCase())
     .filter(Boolean);
   const kept = parts.filter((p, i) => {
@@ -150,7 +150,7 @@ function unitOf(u: string | undefined): string | null {
 
 /** «1,05» → 1.05, «2 599» → 2599; null when not a number. */
 export function numberValue(s: string): number | null {
-  const v = Number(s.replace(/[   ]/g, '').replace(',', '.'));
+  const v = Number(s.replace(/[ \u00A0\u202F]/g, '').replace(',', '.'));
   return Number.isFinite(v) ? v : null;
 }
 
@@ -225,7 +225,7 @@ export function extractEntities(text: string): PostEntities {
   }
 
   for (const m of noDomains.matchAll(PERSON_RE)) {
-    const words = m[0].split(/[  ]+/);
+    const words = m[0].split(/[ \u00A0]+/);
     // «Що відомо», sentence starts: a capitalised word after a sentence end only counts with another capital after it.
     const key = `person:${words.map(stemOf).map((w) => w.slice(0, 5)).join(' ')}`;
     if (!entities.has(key)) entities.set(key, { key, kind: 'person', text: m[0], weight: 2 });
