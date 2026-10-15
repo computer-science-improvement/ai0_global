@@ -16,6 +16,8 @@ export const QUALITY_FLAGS = [
   'feed_misfit',
   // Spec 037 FR-014: the post audit of the published posts.
   'story_repeat', 'fact_conflict', 'date_issue', 'text_hygiene', 'style_violation',
+  // Spec 037 FR-002: reposts over 30 % of what the resource put out.
+  'repost_share_high',
   // Spec 037 FR-003: an announced event got no post within 24 h after it.
   'event_not_covered',
   // Spec 037 FR-010: evergreen fallback posts over 25 % of the week's posts.
@@ -79,6 +81,7 @@ export const FLAG_LABEL: Record<QualityFlag, string> = {
   date_issue:                'dates to check',
   text_hygiene:              'text hygiene issues',
   style_violation:           'off the style sheet',
+  repost_share_high:         'reposts over 30% of posts',
   event_not_covered:         'an announced event got no recap',
   evergreen_share_high:      'evergreen over 25% of posts',
 };
