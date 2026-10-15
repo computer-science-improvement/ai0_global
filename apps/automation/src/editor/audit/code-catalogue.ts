@@ -287,6 +287,17 @@ export const CODE_EXPLANATIONS: Record<string, CodeExplanation> = {
     explain: 'The post uses more unexplained technical terms than the audience level of the resource allows.',
     fix: 'Explain each term in plain words, or drop the ones the reader does not need; replace a feed that is too technical.',
   },
+  // T10 evergreen fallback.
+  evergreen_dated: {
+    title: 'Evergreen post reads like news',
+    explain: 'An evergreen post (a fallback with no date anchor) uses "just", "today", "news" or a similar time word.',
+    fix: 'Drop the time words so the post stays true in a month, or publish it as news from a fresh source.',
+  },
+  evergreen_unsourced_number: {
+    title: 'Evergreen numbers without a source',
+    explain: 'An evergreen post gives specific numbers (percentages, sums, millions) but names no source.',
+    fix: 'Add the page the numbers come from, or say it without specific numbers.',
+  },
   // T11 media.
   image_not_from_source: {
     title: 'Image not from the source',

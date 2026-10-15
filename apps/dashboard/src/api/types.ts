@@ -57,6 +57,8 @@ export interface TrackedPost {
   adRefs: unknown[] | null;
   /** Spec 037 T2: a native forward of a network sibling's post — the source channel; null / absent for own posts. */
   repostFrom?: string | null;
+  /** Spec 037 T10: an evergreen post (the editor's fallback for a failed slot) — its own category. */
+  evergreen?: boolean;
 }
 
 export interface SubsHistoryPoint { at: string; subs: number; }

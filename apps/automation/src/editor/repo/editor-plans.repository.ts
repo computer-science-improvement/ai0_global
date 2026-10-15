@@ -728,8 +728,8 @@ export class EditorPlansRepository {
 
   async insertPublication(i: {
     channelKey: string; messageId: number; sourceUrl: string | null; title: string; tags: string[]; format: string; slotId: string | null;
-    /** 'editor' for agent posts, 'ad' for reserved sponsored posts, 'chat' for posts from the editor chat (010). */
-    strategyType?: 'editor' | 'ad' | 'chat';
+    /** 'editor' for agent posts, 'ad' for reserved sponsored posts, 'chat' for posts from the editor chat (010), 'evergreen' (037 T10). */
+    strategyType?: 'editor' | 'ad' | 'chat' | 'evergreen';
     /** Every source ref of the post (library item and source URL); `sourceUrl` keeps only one. */
     refs?: Array<string | null | undefined>;
   }): Promise<number> {

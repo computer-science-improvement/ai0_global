@@ -22,6 +22,7 @@ import { ToolRegistry } from './harness/tool-registry';
 import { PgRunRecorder } from './harness/run-recorder';
 import { BudgetService } from './harness/budget.service';
 import { DEFAULT_REJECT_STREAK, SilentDaysWatch } from './silent/silent-days';
+import { EVERGREEN_KPI_SAMPLE_FILTER, EvergreenStep, evergreenPerDay } from './silent/evergreen';
 import { ReadonlyQueryService } from './db/readonly-query.service';
 import { SkillLibrary } from './skills/skill-library';
 import { buildReadTools } from './tools/read-tools';
@@ -908,7 +909,7 @@ export const EDITOR_PROVIDERS = [
             // Spec 025 FR-014: directive experiment quotas in the plan check.
             experimentQuotas: experimentQuotasOf(pool),
             pollCaps: pollCapsOf(pool),
-            stories, kpiSampleFilter: STORY_KPI_SAMPLE_FILTER,
+            stories, kpiSampleFilter: `${STORY_KPI_SAMPLE_FILTER} AND ${EVERGREEN_KPI_SAMPLE_FILTER}`,
           }),
           ...buildStoryTools({
             pool, plans: repos.plans, stories, limits: storyRepostLimits(env),
@@ -1215,7 +1216,11 @@ export const EDITOR_PROVIDERS = [
           recentPosts: (card, slot) => recentAuditPosts(pool, { channelKey: card.channelKey, timezone: card.timezone, excludeSlotId: slot.id, card }),
           // Spec 037 T2: the active stories in the planner and writer prompts.
           stories: new StoryContextService(new StoryRegistry(pool)),
-          // fallbackEvergreen: the evergreen step plugs in here after spec 037 T2 (story registry) and T12 (critic skills).
+          // Spec 037 T10: the evergreen step of the ladder (≤ EDITOR_EVERGREEN_PER_DAY per channel per day, default 1; 0 = off).
+          fallbackEvergreen: (() => {
+            const step = new EvergreenStep({ pool, plans: repos.plans, perDay: evergreenPerDay(env), inbox: infra.inbox, log: (m) => logger.warn(m) });
+            return (req) => step.run(req);
+          })(),
         });
       },
     },

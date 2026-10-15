@@ -160,7 +160,8 @@ function freshnessChecks(post: AuditPost, ctx: AuditContext, text: string): Find
     }
   }
 
-  const limit = freshnessHoursOf(ctx.card);
+  // Spec 037 T10: an evergreen post (story.kind) is exempt from the freshness threshold, like an evergreen resource.
+  const limit = post.story?.kind === 'evergreen' ? null : freshnessHoursOf(ctx.card);
   if (limit != null) {
     const primary = post.sourceUrl ?? urlsOf(post).find((u) => known.has(normUrl(u)));
     const age = primary ? sourceAgeHours(sourceDate(primary, known), post.publishedAt) : null;

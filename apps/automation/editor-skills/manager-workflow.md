@@ -15,7 +15,7 @@ applies_to: [manager]
 4. **Опитування й питання** — `polls` проти `cap` (тиждень), `reader_questions.over_cap` (на пост).
 5. **Власник** — `owner.rejected` / `edited`, причини й правки: що саме йому не подобається.
 6. **Формат** — `format_fit`: формат, що не пасує темі чи аудиторії.
-7. **Тихі дні** — `plan`: по днях planned / published / skip_reasons (critic, lint, cap, nothing_fresh, budget), `dark_days`, `series_missed`, `fallback` (скільки слотів урятував запасний крок).
+7. **Тихі дні** — `plan`: по днях planned / published / skip_reasons (critic, lint, cap, nothing_fresh, budget), `dark_days`, `series_missed`, `fallback` (скільки слотів урятував запасний крок); `evergreen` — частка вічнозелених постів за тиждень (прапорець `evergreen_share_high` понад 25 % → бракує свіжих джерел: порада оркестратору додати чи замінити фіди).
 8. **Фіди** — `feeds`: по фіду частка матеріалів із жаргоном понад рівень аудиторії (`jargon_over_level`), `revise` чи `reject` критика; `suggestion` limit / replace (прапорець `feed_misfit`) → порада оркестратору обмежити чи замінити фід (issue `format_fit`).
 9. **Аудит постів** — `audit`: знахідки перевірок коду по опублікованих постах за 7 днів, `groups` (`story_repeat`, `fact_conflict`, `date_issue`, `text_hygiene`, `style_violation` — однойменні прапорці) і `codes` (код, рівень, кількість) → issue за суттю (sense, voice, format_fit) і порада оркестратору з кодом.
 10. **Події без підсумку** — `events_not_covered` (прапорець `event_not_covered`): ресурс анонсував подію, а за 24 год після неї поста немає → порада оркестратору (issue `sense`).

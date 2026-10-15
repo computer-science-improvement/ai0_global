@@ -136,6 +136,17 @@ export class TrackedPostsRepository {
     return out;
   }
 
+  /** Spec 037 T10: the tg message ids of the channel's evergreen posts (published_posts strategy_type 'evergreen'). */
+  async evergreenIds(channelId: string, messageIds: Array<string | number>): Promise<Set<string>> {
+    const ids = messageIds.map((m) => String(m)).filter((m) => /^\d+$/.test(m));
+    if (!ids.length) return new Set();
+    const r = await this.pool.query<{ mid: string }>(
+      `SELECT pp.message_id::text AS mid
+         FROM tracked_channels t JOIN published_posts pp ON pp.channel_id = t.channel_key
+        WHERE t.id = $1 AND pp.strategy_type = 'evergreen' AND pp.message_id = ANY($2::bigint[])`, [channelId, ids]);
+    return new Set(r.rows.map((row) => row.mid));
+  }
+
   async topByMetric(channelId: string, metric: 'views' | 'reactions_total' | 'forwards', limit: number) {
     const allowed = ['views', 'reactions_total', 'forwards'];
     if (!allowed.includes(metric)) throw new Error(`Disallowed metric: ${metric}`);

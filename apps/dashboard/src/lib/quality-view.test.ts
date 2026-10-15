@@ -41,6 +41,16 @@ test('headline, activity, labels and the network count', () => {
   assert.equal(flaggedCount([{ quality: Q() }, { quality: Q({ flags: [] }) }, { quality: null }, {}]), 1);
 });
 
+test('spec 037 T10: the evergreen share is its own stat and flag (English label)', () => {
+  assert.equal(qualityStats(Q()).length, 3, 'no evergreen posts — no extra stat');
+  const q = Q({ evergreen: { posts: 6, evergreen: 2, share: 0.333, over: true }, flags: ['evergreen_share_high'] });
+  const ev = qualityStats(q).find((s) => s.key === 'evergreen')!;
+  assert.deepEqual([ev.label, ev.value, ev.tone], ['Evergreen', '2 · 33%', 'danger']);
+  assert.match(ev.title, /2 of 6 written posts/);
+  assert.equal(flagLabel('evergreen_share_high'), 'evergreen over 25% of posts');
+  assert.equal(qualityStats(Q({ evergreen: { posts: 8, evergreen: 1, share: 0.125, over: false } })).at(-1)?.tone, 'warning');
+});
+
 test('directive filters know the quality kinds', () => {
   assert.ok(KIND_ORDER.includes('voice_fix') && KIND_ORDER.includes('format_mix'));
   assert.deepEqual(parseDirectiveFilters({ kind: 'format_mix,voice_fix,bogus' }).kinds, ['voice_fix', 'format_mix']);

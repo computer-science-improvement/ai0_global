@@ -8,8 +8,8 @@ import { isContentFailureCode } from './skip-reasons';
  *     → next_candidate  — once: a live slot takes the next fresh feed item, a fixed slot re-runs the executor with the
  *                          failure notes and an instruction to pick different material;
  *     → lighter_format  — a lighter format the card / platform allows (longread / carousel → text or photo, …);
- *     → evergreen       — SEAM: `EditorRunnerDeps.fallbackEvergreen`, absent until the story registry (T2) and the
- *                          critic's resource skills (T12) exist; without it this step is not planned;
+ *     → evergreen       — `EditorRunnerDeps.fallbackEvergreen` (silent/evergreen.ts): an evergreen post, ≤ 1 per
+ *                          channel per day, all checks + critic; without it this step is not planned;
  *     → skip with the recorded reason.
  *
  * Only content failures climb the ladder: a critic reject (or a second revise, or the executor's skip after a
@@ -172,8 +172,8 @@ export function ladderPlan(o: { format: string; allowed: ReadonlySet<string>; ev
   const out: Array<{ step: Exclude<LadderStep, 'initial'>; format: string }> = [{ step: 'next_candidate', format: o.format }];
   const lighter = lighterFormat(o.format, o.allowed);
   if (lighter) out.push({ step: 'lighter_format', format: lighter });
-  // Spec 037 T10 seam: the evergreen step plugs in here once `fallbackEvergreen` exists (after T2 and T12).
-  if (o.evergreen) out.push({ step: 'evergreen', format: lighter ?? o.format });
+  // Spec 037 T10: the evergreen step (`fallbackEvergreen`, silent/evergreen.ts); plain text when allowed (no image needed).
+  if (o.evergreen) out.push({ step: 'evergreen', format: o.allowed.has('text') ? 'text' : lighter ?? o.format });
   return out;
 }
 
