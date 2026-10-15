@@ -1,4 +1,5 @@
 import { BadRequestException, ConflictException, NotFoundException } from '@nestjs/common';
+import { agentModelIn, type Workspace } from '../llm/workspace';
 import type { Pool } from 'pg';
 import { z } from 'zod';
 import type { EditorRunRow } from '../repo/editor-runs.repository';
@@ -32,7 +33,11 @@ export interface AgentsServiceDeps {
    * Spec 035: a new agent model must be in the model catalog (throws 400 `unknown_model`);
    * `chosen` runs after the save (prices the model in llm_prices when it has no price).
    */
-  models?: { check(model: string, current: string | null): Promise<void>; chosen(model: string): Promise<unknown> };
+  models?: {
+    check(model: string, current: string | null): Promise<void>; chosen(model: string): Promise<unknown>;
+    /** Spec 038: the active workspace — `model` in a PATCH is the agent's model in it (absent → openrouter). */
+    workspace?(): Promise<Workspace>;
+  };
   log?:   (msg: string) => void;
   now?:   () => Date;
 }
@@ -142,9 +147,14 @@ export class AgentsService {
       }
       patch.pausedUntil = until;
     }
-    const newModel = v.model !== undefined && v.model !== null && v.model !== a.model ? v.model : null;
-    if (newModel && this.d.models) await this.d.models.check(newModel, a.model);
-    if (v.model !== undefined) patch.model = v.model;
+    const ws: Workspace = this.d.models?.workspace ? await this.d.models.workspace() : 'openrouter';
+    const current = agentModelIn(a, ws);
+    const newModel = v.model !== undefined && v.model !== null && v.model !== current ? v.model : null;
+    if (newModel && this.d.models) await this.d.models.check(newModel, current);
+    if (v.model !== undefined) {
+      if (ws === 'anthropic') patch.anthropicModel = v.model;
+      else patch.model = v.model;
+    }
     if (v.reasoning_effort !== undefined) patch.reasoningEffort = v.reasoning_effort;
     if (v.schedule !== undefined) patch.schedule = v.schedule;
     if (v.daily_budget_usd !== undefined) patch.dailyBudgetUsd = v.daily_budget_usd;

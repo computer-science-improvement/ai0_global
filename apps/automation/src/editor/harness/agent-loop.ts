@@ -152,7 +152,7 @@ export class AgentLoop {
 
     try {
       for (let turn = 0; turn < maxSteps; turn++) {
-        const verdict = await withLlmContext(usage, () => this.deps.budget.check(input.channelKey, input.channelBudgetUsd, input.agent ?? null));
+        const verdict = await withLlmContext(usage, () => this.deps.budget.check(input.channelKey, input.channelBudgetUsd, input.agent ?? null, input.model.workspace ?? 'openrouter'));
         if (!verdict.ok) return finish('budget_exceeded', { error: `${verdict.scope} budget: $${verdict.spentUsd.toFixed(4)} >= $${verdict.limitUsd}` });
 
         const lastTurn = turn === maxSteps - 1 && terminalSpecs.length > 0;
@@ -163,6 +163,7 @@ export class AgentLoop {
         const res = await withLlmContext({ ...usage, stepIdx: totals.steps }, () => this.deps.llm.chat({
           model: input.model.model, messages, tools: lastTurn ? terminalSpecs : specs,
           maxTokens: input.model.maxTokens, temperature: input.model.temperature, reasoningEffort: input.model.reasoningEffort,
+          ...(input.model.workspace === 'anthropic' ? { provider: 'anthropic' as const } : {}),
         }));
         totals.promptTokens     += res.usage.promptTokens;
         totals.completionTokens += res.usage.completionTokens;

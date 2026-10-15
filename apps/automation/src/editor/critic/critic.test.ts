@@ -495,7 +495,7 @@ test('chat draft: the critic verdict is stored on the draft card, a saved change
 
 test('models: the owner picks the critic model; null makes it follow the default; env EDITOR_MODEL_CHECKER applies below it', async () => {
   let saved: string | null = null;
-  const critic = { get: async () => saved, set: async (m: string | null) => { saved = m; } };
+  const critic = { get: async () => saved, set: async (_ws: unknown, m: string | null) => { saved = m; } };
   const mk = (env: Record<string, string> = {}) => new ModelsService({
     pool: { query: async () => ({ rows: [] }) } as any, agents: { list: async () => [] },
     catalog: { list: async () => ({ models: [{ id: 'anthropic/claude-sonnet-4.5', name: 's', contextLength: 1, inPerM: 3, outPerM: 15, supportsReasoning: true }], fetchedAt: null, stale: false, source: 'openrouter' as const }) },

@@ -1,4 +1,5 @@
 import type { EditorRole } from './llm.types';
+import type { Workspace } from './workspace';
 
 export type ReasoningEffort = 'low' | 'medium' | 'high';
 
@@ -17,6 +18,8 @@ export interface ModelProfile {
   temperature: number;
   /** Reasoning effort; low keeps GLM's mandatory thinking from consuming the whole max_tokens (measured: ~10x fewer tokens). */
   reasoningEffort: ReasoningEffort;
+  /** Spec 038: the workspace the model belongs to — the run's requests go to this provider (absent = openrouter). */
+  workspace?:  Workspace;
 }
 
 /** The built-in default for every role; the owner's `ai.default_model` setting (Models page) replaces it. */
@@ -32,6 +35,28 @@ export const STATIC_PRICES: Readonly<Record<string, { inPerM: number; outPerM: n
   'z-ai/glm-5.3-flashx': { inPerM: 0.37, outPerM: 1.25 },
   'z-ai/glm-5.3':        { inPerM: 0.22, outPerM: 3.39 },
 };
+
+/** Spec 038: the built-in default of the Anthropic workspace; `ai.anthropic.default_model` replaces it. */
+export const DEFAULT_ANTHROPIC_MODEL = 'claude-sonnet-5-5';
+
+/**
+ * Anthropic list prices (USD per 1M, pricing page 2026-10-15) — the last-resort fallback after llm_prices
+ * (migration 077 seeds the same rows). Cache read is 0.05× input on Opus 5.5 / Sonnet 5.5, 0.1× elsewhere;
+ * a 5-minute cache write is 1.25× input. Also the static part of the Anthropic model catalog.
+ */
+export const ANTHROPIC_PRICES: Readonly<Record<string, { name: string; inPerM: number; outPerM: number; cacheReadPerM: number; cacheWritePerM: number; contextLength: number }>> = {
+  'claude-opus-5-5':   { name: 'Claude Opus 5.5',   inPerM: 4,    outPerM: 20,   cacheReadPerM: 0.2,  cacheWritePerM: 5,     contextLength: 1_000_000 },
+  'claude-sonnet-5-5': { name: 'Claude Sonnet 5.5', inPerM: 2,    outPerM: 10,   cacheReadPerM: 0.1,  cacheWritePerM: 2.5,   contextLength: 1_000_000 },
+  'claude-haiku-5-5':  { name: 'Claude Haiku 5.5',  inPerM: 0.1,  outPerM: 0.5,  cacheReadPerM: 0.01, cacheWritePerM: 0.125, contextLength: 200_000 },
+  'claude-opus-5':     { name: 'Claude Opus 5',     inPerM: 5,    outPerM: 25,   cacheReadPerM: 0.5,  cacheWritePerM: 6.25,  contextLength: 1_000_000 },
+  'claude-sonnet-5':   { name: 'Claude Sonnet 5',   inPerM: 2,    outPerM: 10,   cacheReadPerM: 0.2,  cacheWritePerM: 2.5,   contextLength: 1_000_000 },
+  'claude-haiku-4-5':  { name: 'Claude Haiku 4.5',  inPerM: 1,    outPerM: 5,    cacheReadPerM: 0.1,  cacheWritePerM: 1.25,  contextLength: 200_000 },
+};
+
+/** The built-in default model of a workspace. */
+export function builtinDefaultModel(ws: Workspace = 'openrouter'): string {
+  return ws === 'anthropic' ? DEFAULT_ANTHROPIC_MODEL : DEFAULT_EDITOR_MODEL;
+}
 
 /** Every role a run can use (the env override keys are EDITOR_MODEL_<ROLE>). */
 export const EDITOR_ROLES: readonly EditorRole[] = [
@@ -52,9 +77,9 @@ const ROLE_DEFAULTS: Record<EditorRole, { maxTokens: number; temperature: number
   builder:       { maxTokens: 6000, temperature: 0.4, reasoningEffort: 'low' },
 };
 
-/** The env key that overrides a role's model (it beats the owner's global default). */
-export function envModelKey(role: EditorRole): string {
-  return `EDITOR_MODEL_${role.toUpperCase()}`;
+/** The env key that overrides a role's model (it beats the owner's global default); the Anthropic workspace has its own keys. */
+export function envModelKey(role: EditorRole, ws: Workspace = 'openrouter'): string {
+  return ws === 'anthropic' ? `EDITOR_ANTHROPIC_MODEL_${role.toUpperCase()}` : `EDITOR_MODEL_${role.toUpperCase()}`;
 }
 
 export interface ModelOverrides {
@@ -64,6 +89,8 @@ export interface ModelOverrides {
   defaultModel?:    string | null;
   /** The agent's own reasoning effort (beats the env and the role default). */
   reasoningEffort?: ReasoningEffort | null;
+  /** Spec 038: the active workspace (absent = openrouter). `agentModel` / `defaultModel` must be that workspace's values. */
+  workspace?:       Workspace;
 }
 
 const clean = (s: string | null | undefined): string | null => {
@@ -78,6 +105,8 @@ export const isReasoningEffort = (s: unknown): s is ReasoningEffort => s === 'lo
  * → the channel card's legacy `models[role]` → env EDITOR_MODEL_<ROLE>
  * → the owner's global default setting → DEFAULT_EDITOR_MODEL.
  * Every role defaults to the same model (there are no per-role defaults).
+ * Anthropic workspace (spec 038): the channel cards' legacy overrides are OpenRouter ids and are skipped; the env
+ * key is EDITOR_ANTHROPIC_MODEL_<ROLE>; the built-in default is DEFAULT_ANTHROPIC_MODEL.
  */
 export function pickModel(
   role: EditorRole,
@@ -87,11 +116,12 @@ export function pickModel(
 ): { model: string; source: ModelSource } {
   const agent = clean(o.agentModel);
   if (agent) return { model: agent, source: 'agent' };
-  const channel = clean(channelOverrides?.[role]);
+  const ws = o.workspace ?? 'openrouter';
+  const channel = ws === 'openrouter' ? clean(channelOverrides?.[role]) : null;
   if (channel) return { model: channel, source: 'channel' };
-  const fromEnv = clean(env(envModelKey(role)));
+  const fromEnv = clean(env(envModelKey(role, ws)));
   if (fromEnv) return { model: fromEnv, source: 'env' };
-  return { model: clean(o.defaultModel) ?? DEFAULT_EDITOR_MODEL, source: 'default' };
+  return { model: clean(o.defaultModel) ?? builtinDefaultModel(ws), source: 'default' };
 }
 
 /** Reasoning effort: the agent's own → env EDITOR_REASONING_<ROLE> → env EDITOR_REASONING → the role default. */
@@ -117,11 +147,14 @@ export function resolveModel(
   o: ModelOverrides = {},
 ): ModelProfile {
   const { model, source } = pickModel(role, env, channelOverrides, o);
-  const price = STATIC_PRICES[model] ?? STATIC_PRICES[DEFAULT_EDITOR_MODEL];
+  const ws = o.workspace ?? 'openrouter';
+  const a = ws === 'anthropic' ? ANTHROPIC_PRICES[model] ?? ANTHROPIC_PRICES[DEFAULT_ANTHROPIC_MODEL] : null;
+  const price = a ? { inPerM: a.inPerM, outPerM: a.outPerM } : STATIC_PRICES[model] ?? STATIC_PRICES[DEFAULT_EDITOR_MODEL];
   const d = ROLE_DEFAULTS[role];
   return {
     model, source, ...price, maxTokens: d.maxTokens, temperature: d.temperature,
     reasoningEffort: pickReasoningEffort(role, env, o.reasoningEffort).effort,
+    ...(ws === 'anthropic' ? { workspace: ws } : {}),
   };
 }
 

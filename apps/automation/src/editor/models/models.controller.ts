@@ -24,6 +24,17 @@ export class ModelsController {
     return this.svc.overview();
   }
 
+  /** Spec 038: the model workspace (OpenRouter | Anthropic). */
+  @Get('workspace')
+  workspace() {
+    return this.svc.workspaceInfo();
+  }
+
+  @Put('workspace')
+  setWorkspace(@Body() body: unknown) {
+    return this.svc.setWorkspace(body);
+  }
+
   @Put('default')
   setDefault(@Body() body: unknown) {
     return this.svc.setDefault(body);

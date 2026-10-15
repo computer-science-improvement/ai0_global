@@ -1,6 +1,9 @@
+import type { Workspace } from './workspace';
+
 /**
  * Provider-neutral chat types for the editor harness. Shape follows the
- * OpenAI chat-completions wire format, which OpenRouter speaks for every model.
+ * OpenAI chat-completions wire format, which OpenRouter speaks for every model;
+ * the Anthropic client (spec 038) maps it to the Messages API.
  */
 
 export type EditorRole =
@@ -20,7 +23,9 @@ export interface ToolCall {
 export type ChatMessage =
   | { role: 'system';    content: string }
   | { role: 'user';      content: string }
-  | { role: 'assistant'; content: string | null; toolCalls?: ToolCall[] }
+  | { role: 'assistant'; content: string | null; toolCalls?: ToolCall[];
+      /** Spec 038: the provider's raw content blocks (Anthropic thinking + text + tool_use), sent back verbatim on the next turn. */
+      providerContent?: unknown[] }
   | { role: 'tool';      toolCallId: string; content: string };
 
 export interface ToolSpec {
@@ -38,6 +43,8 @@ export interface LlmRequest {
   temperature?: number;
   /** Reasoning budget for reasoning models (GLM 5.3 reasoning is mandatory and otherwise eats max_tokens). */
   reasoningEffort?: 'low' | 'medium' | 'high';
+  /** Spec 038: which workspace serves the request (absent = openrouter); the RoutingLlmClient dispatches on it. */
+  provider?:    Workspace;
 }
 
 export interface LlmUsage {

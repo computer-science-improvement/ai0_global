@@ -6,7 +6,7 @@ export function rowToAgent(r: any): Agent {
     id: r.id, kind: r.kind, scope: r.scope, scopeId: r.scope_id ?? null, parentId: r.parent_id ?? null,
     name: r.name, handle: r.handle, emoji: r.emoji ?? null, description: r.description ?? null,
     mode: r.mode, status: r.status, pausedUntil: r.paused_until ?? null,
-    model: r.model ?? null, reasoningEffort: r.reasoning_effort ?? null,
+    model: r.model ?? null, anthropicModel: r.anthropic_model ?? null, reasoningEffort: r.reasoning_effort ?? null,
     schedule: r.schedule ?? {}, dailyBudgetUsd: r.daily_budget_usd == null ? null : Number(r.daily_budget_usd),
     shadowUntil: r.shadow_until ?? null, createdBy: r.created_by, createdAt: r.created_at, updatedAt: r.updated_at,
   };
@@ -38,6 +38,7 @@ export interface AgentPatch {
   status?:          AgentStatus;
   pausedUntil?:     Date | null;
   model?:           string | null;
+  anthropicModel?:  string | null;
   reasoningEffort?: 'low' | 'medium' | 'high' | null;
   schedule?:        AgentSchedule;
   dailyBudgetUsd?:  number | null;
@@ -46,7 +47,7 @@ export interface AgentPatch {
 
 const COLS: Record<keyof AgentPatch, string> = {
   name: 'name', handle: 'handle', emoji: 'emoji', description: 'description', mode: 'mode', status: 'status',
-  pausedUntil: 'paused_until', model: 'model', reasoningEffort: 'reasoning_effort', schedule: 'schedule',
+  pausedUntil: 'paused_until', model: 'model', anthropicModel: 'anthropic_model', reasoningEffort: 'reasoning_effort', schedule: 'schedule',
   dailyBudgetUsd: 'daily_budget_usd', shadowUntil: 'shadow_until',
 };
 

@@ -15,7 +15,8 @@ export interface AgentBudget {
 }
 
 export interface BudgetGate {
-  check(channelKey: string | null, channelLimitUsd?: number | null, agent?: AgentBudget | null): Promise<BudgetVerdict>;
+  /** `provider`: the run's workspace (spec 038), for provider-scoped llm_budgets caps; default openrouter. */
+  check(channelKey: string | null, channelLimitUsd?: number | null, agent?: AgentBudget | null, provider?: string): Promise<BudgetVerdict>;
 }
 
 export interface BudgetLimits {
@@ -45,12 +46,12 @@ export class BudgetService implements BudgetGate {
     private readonly caps?: LlmBudgetService,
   ) {}
 
-  async check(channelKey: string | null, channelLimitUsd?: number | null, agent?: AgentBudget | null): Promise<BudgetVerdict> {
+  async check(channelKey: string | null, channelLimitUsd?: number | null, agent?: AgentBudget | null, provider = 'openrouter'): Promise<BudgetVerdict> {
     if (this.caps) {
       // Total, agents (editor.*) and any feature/provider caps covering this editor call.
       const feature = currentLlmContext().feature?.startsWith('editor.') ? currentLlmContext().feature! : 'editor.unknown';
       let v: FeatureVerdict = { ok: true };
-      try { v = await this.caps.checkFeature(feature, 'openrouter'); } catch { /* fail open: the editor caps below still apply */ }
+      try { v = await this.caps.checkFeature(feature, provider); } catch { /* fail open: the editor caps below still apply */ }
       if (!v.ok) return { ok: false, scope: v.scope as Exclude<BudgetVerdict, { ok: true }>['scope'], spentUsd: v.spentUsd, limitUsd: v.capUsd };
     }
 

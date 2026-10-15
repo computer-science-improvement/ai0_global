@@ -10,6 +10,7 @@ import assert from 'node:assert/strict';
 import { Pool } from 'pg';
 import { AgentsRepository } from '../agents/agents.repository';
 import { ModelDefaultsStore, DEFAULT_MODEL_KEY } from '../llm/model-defaults';
+import { WorkspaceModelStore } from '../llm/workspace';
 import { ModelsService, fallbackCatalog } from './models.service';
 import type { CatalogSnapshot } from './model-catalog';
 import { LlmPricesRepository } from '../../common/ai/usage/llm-prices.repository';
@@ -48,7 +49,7 @@ after(async () => {
   await pool.end();
 });
 
-function service(defaults: ModelDefaultsStore, prices: PriceService) {
+function service(defaults: WorkspaceModelStore, prices: PriceService) {
   const catalog = {
     list: async (): Promise<CatalogSnapshot> => ({
       models: [
@@ -68,7 +69,7 @@ test('global default, bulk actions, legacy channel overrides and the price upser
   const channels = new EditorChannelsRepository(pool);
   await channels.insertIfMissing({ ...makeDefaultCard(CH, 'Models'), models: { executor: 'z-ai/glm-5.3', planner: 'z-ai/glm-5.3-flashx' } });
 
-  const defaults = new ModelDefaultsStore(pool);
+  const defaults = new WorkspaceModelStore(pool, 'default');
   const prices = new PriceService(new LlmPricesRepository(pool));
   const svc = service(defaults, prices);
 

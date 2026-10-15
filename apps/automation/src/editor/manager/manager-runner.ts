@@ -1,7 +1,7 @@
 import type { AgentLoop, AgentLoopResult } from '../harness/agent-loop';
 import type { ToolRegistry } from '../harness/tool-registry';
 import { resolveModel } from '../llm/model-registry';
-import { readDefaultModel } from '../llm/model-defaults';
+import { agentModelIn, readModelContext, type Workspace } from '../llm/workspace';
 import type { Agent } from '../agents/agent.types';
 import { isPaused } from '../agents/agent.types';
 import type { AgentRuntime } from '../agents/agent-runtime';
@@ -30,7 +30,9 @@ export interface ManagerRunnerDeps {
   inbox:    Pick<OwnerInbox, 'post'>;
   env:      (key: string) => string | undefined;
   /** The owner's global default model (spec 035, app_settings `ai.default_model`); cached by ModelDefaultsStore. */
-  defaultModel?: () => Promise<string | null>;
+  defaultModel?: (ws?: Workspace) => Promise<string | null>;
+  /** Spec 038: the active model workspace. */
+  workspace?: () => Promise<Workspace>;
   /** Hours an owner card waits before its default action, and the kinds whose default is "apply". */
   timeoutHours?: number;
   timeoutApplyKinds?: string[];
@@ -151,8 +153,9 @@ export class ManagerRunner {
     const memory = (await this.d.repo.memory(m.id)).map((x) => `- [${x.kind}${x.createdBy === 'owner' ? ', власник' : ''}] ${x.text}`).join('\n');
     const inlineSkill = ['manager-workflow', 'kpi-reading'].map((n) => ctx.skills.get(n)).filter(Boolean).map((s) => `### skill: ${s!.name}\n${s!.body}`).join('\n\n');
     const listed = ctx.skills.list('manager').filter((s) => !['manager-workflow', 'kpi-reading'].includes(s.name)).map((s) => `- ${s.name}: ${s.description}`).join('\n');
+    const mctx = await readModelContext(this.d);
     const res = await this.d.loop.run({
-      role: 'manager', channelKey: null, model: resolveModel('manager', this.d.env, null, { agentModel: m.model, defaultModel: await readDefaultModel(this.d.defaultModel), reasoningEffort: m.reasoningEffort }),
+      role: 'manager', channelKey: null, model: resolveModel('manager', this.d.env, null, { agentModel: agentModelIn(m, mctx.workspace), defaultModel: mctx.defaultModel, reasoningEffort: m.reasoningEffort, workspace: mctx.workspace }),
       system: managerSystemPrompt({ agent: m, now: this.now(), digest: this.d.digest.render(digest), memory, skills: { inline: inlineSkill, listed } }),
       user: 'Проаналізуй дайджест: KPI і якість контенту по кожному ресурсу (чекліст якості). Є підстава — file_directive (до 3; для якості — voice_fix / format_mix) і submit_review directives. Нічого робити не треба — submit_review continue, але з quality_check по кожному активному ресурсу з доказами.',
       tools: this.d.registry.forRole('manager'), maxSteps: 20,

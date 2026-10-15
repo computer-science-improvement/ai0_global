@@ -6,6 +6,18 @@ import type { AgentKind, AgentScope, ReasoningEffort } from './agents';
 // cached 24 h server-side), GET /api/models/overview, PUT /api/models/default, PUT /api/models/critic (spec 034),
 // POST /api/models/bulk, POST /api/models/channels/clear. An agent's own model and
 // reasoning effort go through PATCH /api/agents/:handle (validated server-side).
+// Spec 038: GET/PUT /api/models/workspace — OpenRouter or Anthropic. Every endpoint above
+// reads and writes the active workspace's models (each workspace keeps its own choices).
+
+export type Workspace = 'openrouter' | 'anthropic';
+
+export interface WorkspaceInfo {
+  active:       Workspace;
+  /** Whether the server has an Anthropic API key (never the value). */
+  anthropicKey: boolean;
+  switchable:   boolean;
+  workspaces:   Array<{ id: Workspace; defaultModel: string; agentsWithOwnModel: number }>;
+}
 
 export type ModelSource = 'agent' | 'channel' | 'env' | 'default';
 
@@ -22,8 +34,10 @@ export interface ModelCatalog {
   models:       CatalogModel[];
   fetchedAt:    string | null;
   stale:        boolean;
-  source:       'openrouter' | 'fallback';
+  source:       'openrouter' | 'anthropic' | 'fallback';
   defaultModel: string;
+  /** Spec 038: the workspace this catalog belongs to (absent on an older server = openrouter). */
+  workspace?:   Workspace;
 }
 
 export interface ModelPrice { inPerM: number; outPerM: number; source: 'llm_prices' | 'catalog' | 'static' }
@@ -58,6 +72,8 @@ export interface ChannelModelOverride {
 }
 
 export interface ModelsOverview {
+  /** Spec 038: the active workspace (absent on an older server = openrouter). */
+  workspace?:       Workspace;
   defaultModel:     { model: string; saved: string | null; builtin: string; price: ModelPrice | null };
   /** Spec 034 FR-004: the pre-publish critic's model — the owner's choice, else env EDITOR_MODEL_CHECKER, else the default. */
   criticModel?:     { model: string; saved: string | null; source: 'critic' | 'env' | 'default'; price: ModelPrice | null };
@@ -74,6 +90,10 @@ export function useModelCatalog() {
 
 export function useModelsOverview() {
   return useQuery({ queryKey: [...KEY, 'overview'], queryFn: () => api<ModelsOverview>('/api/models/overview') });
+}
+
+export function useModelWorkspace() {
+  return useQuery({ queryKey: [...KEY, 'workspace'], queryFn: () => api<WorkspaceInfo>('/api/models/workspace') });
 }
 
 function useInvalidate() {
@@ -129,6 +149,16 @@ export function useSetAgentModel() {
     meta: { silentError: true },
     mutationFn: ({ handle, ...patch }: { handle: string; model?: string | null; reasoning_effort?: ReasoningEffort | null }) =>
       api<{ agent: unknown }>(`/api/agents/${encodeURIComponent(handle)}`, { method: 'PATCH', body: JSON.stringify(patch) }),
+    onSuccess: done,
+  });
+}
+
+export function useSetModelWorkspace() {
+  const done = useInvalidate();
+  return useMutation({
+    meta: { silentError: true },
+    mutationFn: (workspace: Workspace) =>
+      api<{ ok: true; workspace: Workspace }>('/api/models/workspace', { method: 'PUT', body: JSON.stringify({ workspace }) }),
     onSuccess: done,
   });
 }

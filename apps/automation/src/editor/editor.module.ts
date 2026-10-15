@@ -17,6 +17,8 @@ import { CrossPostService } from '../publishers/cross-post.service';
 import { tgPostLink } from '../publishers/crosspost-content';
 import { GroupFanOutService } from '../common/content-strategy/group-fanout.service';
 import { OpenRouterClient } from './llm/openrouter.client';
+import { AnthropicClient, RoutingLlmClient } from './llm/anthropic.client';
+import { WorkspaceModelStore, WorkspaceStore, anthropicApiKey } from './llm/workspace';
 import { AgentLoop } from './harness/agent-loop';
 import { ToolRegistry } from './harness/tool-registry';
 import { PgRunRecorder } from './harness/run-recorder';
@@ -140,10 +142,9 @@ import { createHash, randomBytes } from 'crypto';
 import { TrackingAuthGuard } from '../tracking/api/tracking-auth.guard';
 import { PriceService } from '../common/ai/usage/price.service';
 import { LlmPricesRepository } from '../common/ai/usage/llm-prices.repository';
-import { CRITIC_MODEL_KEY, ModelDefaultsStore } from './llm/model-defaults';
 import { CriticService } from './critic/critic.service';
 import { libraryTextOf } from './critic/critic-source';
-import { ModelCatalog } from './models/model-catalog';
+import { anthropicCatalog, ModelCatalog } from './models/model-catalog';
 import { ModelsService, fallbackCatalog } from './models/models.service';
 import { MODELS_SERVICE, ModelsController } from './models/models.controller';
 import { LlmBudgetService, capDefaults } from '../common/ai/usage/llm-budget.service';
@@ -220,6 +221,8 @@ export const EDITOR_LOOP      = 'EDITOR_LOOP';
 export const MODEL_DEFAULTS   = 'MODEL_DEFAULTS';
 /** Spec 034 FR-004: the owner's critic model (app_settings `ai.critic_model`) and the pre-publish critic. */
 export const CRITIC_MODEL     = 'CRITIC_MODEL';
+/** Spec 038: the active model workspace (WorkspaceStore). */
+export const MODEL_WORKSPACE  = 'MODEL_WORKSPACE';
 export const EDITOR_CRITIC    = 'EDITOR_CRITIC';
 
 /** Approval mode (spec 031): storage, the publisher of approved posts and the tick lane. */
@@ -615,46 +618,59 @@ function registerAgentActions(infra: AgentInfra, svc: AgentsService, ops: Editor
  */
 export const EDITOR_PROVIDERS = [
     {
-      provide: MODEL_DEFAULTS,
+      // Spec 038: OpenRouter (default) or Anthropic directly; each workspace keeps its own default / critic / agent models.
+      provide: MODEL_WORKSPACE,
       inject: [DB_POOL],
       useFactory: (pool: Pool) => {
         const logger = new Logger('Models');
-        return new ModelDefaultsStore(pool, { onError: (m) => logger.warn(m) });
+        return new WorkspaceStore(pool, { onError: (m) => logger.warn(m) });
+      },
+    },
+    {
+      provide: MODEL_DEFAULTS,
+      inject: [DB_POOL, MODEL_WORKSPACE],
+      useFactory: (pool: Pool, workspace: WorkspaceStore) => {
+        const logger = new Logger('Models');
+        return new WorkspaceModelStore(pool, 'default', { onError: (m) => logger.warn(m) }, workspace);
       },
     },
     {
       provide: CRITIC_MODEL,
-      inject: [DB_POOL],
-      useFactory: (pool: Pool) => {
+      inject: [DB_POOL, MODEL_WORKSPACE],
+      useFactory: (pool: Pool, workspace: WorkspaceStore) => {
         const logger = new Logger('Models');
-        return new ModelDefaultsStore(pool, { onError: (m) => logger.warn(m) }, CRITIC_MODEL_KEY);
+        return new WorkspaceModelStore(pool, 'critic', { onError: (m) => logger.warn(m) }, workspace);
       },
     },
     {
       // Spec 034 FR-004: the pre-publish critic (role `checker`, ledger feature `editor.checker`). EDITOR_CRITIC=off disables it.
       provide: EDITOR_CRITIC,
       inject: [ConfigService, EDITOR_LOOP, MODEL_DEFAULTS, CRITIC_MODEL],
-      useFactory: (cfg: ConfigService, loop: AgentLoop, models: ModelDefaultsStore, critic: ModelDefaultsStore): CriticService | null => {
+      useFactory: (cfg: ConfigService, loop: AgentLoop, models: WorkspaceModelStore, critic: WorkspaceModelStore): CriticService | null => {
         if ((cfg.get<string>('EDITOR_CRITIC') ?? '').trim().toLowerCase() === 'off') {
           new Logger('Editor').warn('EDITOR_CRITIC=off: posts are published without the pre-publish critic');
           return null;
         }
-        return new CriticService({ loop, env: (k) => cfg.get<string>(k) ?? undefined, defaultModel: () => models.get(), criticModel: () => critic.get() });
+        return new CriticService({ loop, env: (k) => cfg.get<string>(k) ?? undefined, defaultModel: (ws) => models.get(ws), workspace: () => models.workspace(), criticModel: (ws) => critic.get(ws) });
       },
     },
     {
       // Spec 035: the Models page (catalog from OpenRouter's public list, cached 24 h; offline fallback from llm_prices).
       provide: MODELS_SERVICE,
-      inject: [DB_POOL, ConfigService, AGENT_INFRA, MODEL_DEFAULTS, CRITIC_MODEL, { token: PriceService, optional: true }],
-      useFactory: (pool: Pool, cfg: ConfigService, infra: AgentInfra, defaults: ModelDefaultsStore, critic: ModelDefaultsStore, prices?: PriceService) => {
+      inject: [DB_POOL, ConfigService, AGENT_INFRA, MODEL_DEFAULTS, CRITIC_MODEL, MODEL_WORKSPACE, { token: PriceService, optional: true }],
+      useFactory: (pool: Pool, cfg: ConfigService, infra: AgentInfra, defaults: WorkspaceModelStore, critic: WorkspaceModelStore, workspace: WorkspaceStore, prices?: PriceService) => {
         const logger = new Logger('Models');
+        const env = (k: string) => cfg.get<string>(k) ?? undefined;
         const catalog = new ModelCatalog({
           fetch: (url, init) => fetch(url, init),
           fallback: async () => fallbackCatalog(await new LlmPricesRepository(pool).list()),
           log: (m) => logger.warn(m),
         });
+        // Spec 038: the Anthropic catalog — the live /v1/models list with the server's key (read at boot, never returned), else the price list.
+        const anthropic = anthropicCatalog({ apiKey: anthropicApiKey(env), fetch: (url, init) => fetch(url, init), baseUrl: env('ANTHROPIC_BASE_URL'), log: (m) => logger.warn(m) });
         return new ModelsService({
-          pool, agents: infra.agents, catalog, defaults, critic, prices, env: (k) => cfg.get<string>(k) ?? undefined, log: (m) => logger.log(m),
+          pool, agents: infra.agents, catalog, anthropicCatalog: anthropic, defaults, critic, workspace, anthropicKey: () => !!anthropicApiKey(env),
+          prices, env, log: (m) => logger.log(m),
         });
       },
     },
@@ -1064,7 +1080,10 @@ export const EDITOR_PROVIDERS = [
         const logger = new Logger('Editor');
         const env = (k: string) => cfg.get<string>(k) ?? undefined;
         return new AgentLoop({
-          llm: new OpenRouterClient({ apiKey: env('OPENROUTER_API_KEY'), baseUrl: env('OPENROUTER_BASE_URL'), prices }),
+          llm: new RoutingLlmClient({
+            openrouter: new OpenRouterClient({ apiKey: env('OPENROUTER_API_KEY'), baseUrl: env('OPENROUTER_BASE_URL'), prices }),
+            anthropic:  new AnthropicClient({ apiKey: anthropicApiKey(env), baseUrl: env('ANTHROPIC_BASE_URL'), prices }),
+          }),
           recorder: new PgRunRecorder(pool, (m) => logger.warn(m)),
           budget: editorBudget(pool, env, (text) => notifier.notifyAlert(text), caps),
           enabled: () => isEnabled(cfg),
@@ -1076,14 +1095,14 @@ export const EDITOR_PROVIDERS = [
       inject: [DB_POOL, ConfigService, EDITOR_LOOP, EDITOR_REGISTRY, AGENT_INFRA, EDITOR_REPOS, PLATFORM_INFRA, MODEL_DEFAULTS, { token: LlmBudgetService, optional: true }],
       useFactory: (
         pool: Pool, cfg: ConfigService, loop: AgentLoop, registry: ToolRegistry, infra: AgentInfra, repos: EditorRepos, platform: PlatformInfra,
-        models: ModelDefaultsStore, caps?: LlmBudgetService,
+        models: WorkspaceModelStore, caps?: LlmBudgetService,
       ): ManagerInfra => {
         const env = (k: string) => cfg.get<string>(k) ?? undefined;
         const repo = new DirectivesRepository(pool);
         const digest = new KpiDigestService({ pool, catalog: infra.catalog, globalCapUsd: capDefaults(env).agentsDailyUsd, capUsd: agentsCapUsd(env, caps) });
         const buildPort = new PlaybookBuildPort();
         const runner = new ManagerRunner({
-          loop, registry, runtime: infra.runtime, agents: infra.agents, repo, digest, inbox: infra.inbox, env, defaultModel: () => models.get(),
+          loop, registry, runtime: infra.runtime, agents: infra.agents, repo, digest, inbox: infra.inbox, env, defaultModel: (ws) => models.get(ws), workspace: () => models.workspace(),
           timeoutHours: envNum(env, 'DIRECTIVE_TIMEOUT_HOURS', 12),
           timeoutApplyKinds: (env('DIRECTIVE_TIMEOUT_APPLY_KINDS') ?? '').split(',').map((x) => x.trim()).filter(Boolean),
           exec: directiveExecution(pool, repos, infra, platform, buildPort),
@@ -1124,7 +1143,7 @@ export const EDITOR_PROVIDERS = [
       inject: [DB_POOL, ConfigService, EDITOR_LOOP, EDITOR_REPOS, EDITOR_REGISTRY, AGENT_INFRA, PLATFORM_INFRA, TelegramNotifier, EDITOR_MANAGER, PROMO_INFRA, SCHEDULE_INFRA, MODEL_DEFAULTS],
       useFactory: (
         pool: Pool, cfg: ConfigService, loop: AgentLoop, repos: EditorRepos, registry: ToolRegistry, infra: AgentInfra, platform: PlatformInfra,
-        notifier: TelegramNotifier, manager: ManagerInfra, promo: PromoInfra, schedule: ScheduleService, models: ModelDefaultsStore,
+        notifier: TelegramNotifier, manager: ManagerInfra, promo: PromoInfra, schedule: ScheduleService, models: WorkspaceModelStore,
       ): NetworkRunner => {
         const runner = new NetworkRunner({
           loop, registry, runtime: infra.runtime, memory: repos.memory, repo: new NetworkRepository(pool), plans: repos.plans, profiles: infra.profiles,
@@ -1144,7 +1163,7 @@ export const EDITOR_PROVIDERS = [
             }
           },
           env: (k) => cfg.get<string>(k) ?? undefined,
-          defaultModel: () => models.get(),
+          defaultModel: (ws) => models.get(ws), workspace: () => models.workspace(),
           notify: (t) => notifier.notifyAlert(t),
           // Spec 023 FR-008: source catalog in the orchestrator/planner prompts; low_runway after the daily run.
           catalogSummary: withSchedule(catalogSummaryOf(pool, (k) => cfg.get<string>(k) ?? undefined), schedule),
@@ -1170,7 +1189,7 @@ export const EDITOR_PROVIDERS = [
       inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_SKILLS, EDITOR_REGISTRY, TelegramNotifier, AGENT_INFRA, EDITOR_LOOP, EDITOR_NETWORK, SCHEDULE_INFRA, EDITOR_PUBLISH, MODEL_DEFAULTS, EDITOR_CRITIC, { token: LlmBudgetService, optional: true }],
       useFactory: (
         pool: Pool, cfg: ConfigService, repos: EditorRepos, skills: SkillLibrary, registry: ToolRegistry, notifier: TelegramNotifier,
-        infra: AgentInfra, loop: AgentLoop, network: NetworkRunner, schedule: ScheduleService, ports: PublishPorts, models: ModelDefaultsStore,
+        infra: AgentInfra, loop: AgentLoop, network: NetworkRunner, schedule: ScheduleService, ports: PublishPorts, models: WorkspaceModelStore,
         critic: CriticService | null, caps?: LlmBudgetService,
       ): EditorRunnerService => {
         const logger = new Logger('Editor');
@@ -1179,7 +1198,7 @@ export const EDITOR_PROVIDERS = [
         const ideas = new NetworkRepository(pool);
         logger.log(`editor ${isEnabled(cfg) ? 'ENABLED' : 'disabled'}: ${registry.all().length} tools, ${skills.list().length} skills`);
         return new EditorRunnerService({
-          loop, registry, skills, runtime: infra.runtime, plans: repos.plans, memory: repos.memory, env, notify, defaultModel: () => models.get(),
+          loop, registry, skills, runtime: infra.runtime, plans: repos.plans, memory: repos.memory, env, notify, defaultModel: (ws) => models.get(ws), workspace: () => models.workspace(),
           network, platformContext: (slot, orchId) => network.platformContext(slot, orchId),
           catalogSummary: withSchedule(catalogSummaryOf(pool, env), schedule),
           seriesContext: (slot) => schedule.executorContext(slot),
@@ -1352,13 +1371,16 @@ export const EDITOR_PROVIDERS = [
       inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_SKILLS, EDITOR_REGISTRY, EDITOR_DRAFTS, TelegramNotifier, AGENT_INFRA, EDITOR_MANAGER, MODEL_DEFAULTS, { token: PriceService, optional: true }, { token: LlmBudgetService, optional: true }],
       useFactory: (
         pool: Pool, cfg: ConfigService, repos: EditorRepos, skills: SkillLibrary, registry: ToolRegistry, drafts: DraftsService,
-        notifier: TelegramNotifier, infra: AgentInfra, manager: ManagerInfra, models: ModelDefaultsStore, prices?: PriceService, caps?: LlmBudgetService,
+        notifier: TelegramNotifier, infra: AgentInfra, manager: ManagerInfra, models: WorkspaceModelStore, prices?: PriceService, caps?: LlmBudgetService,
       ): EditorChatService => {
         const logger = new Logger('EditorChat');
         const env = (k: string) => cfg.get<string>(k) ?? undefined;
         const enabled = () => !!env('OPENROUTER_API_KEY');
         const loop = new AgentLoop({
-          llm: new OpenRouterClient({ apiKey: env('OPENROUTER_API_KEY'), baseUrl: env('OPENROUTER_BASE_URL'), prices }),
+          llm: new RoutingLlmClient({
+            openrouter: new OpenRouterClient({ apiKey: env('OPENROUTER_API_KEY'), baseUrl: env('OPENROUTER_BASE_URL'), prices }),
+            anthropic:  new AnthropicClient({ apiKey: anthropicApiKey(env), baseUrl: env('ANTHROPIC_BASE_URL'), prices }),
+          }),
           recorder: new PgRunRecorder(pool, (m) => logger.warn(m)),
           budget: editorBudget(pool, env, (t) => notifier.notifyAlert(t), caps),
           enabled,
@@ -1380,7 +1402,7 @@ export const EDITOR_PROVIDERS = [
           managerDigest: async () => manager.digest.render(await manager.digest.build()),
         };
         return new EditorChatService({
-          repo: repos.chat, drafts, memory: repos.memory, loop, registry, skills, env, enabled, agents: agentsPort, defaultModel: () => models.get(),
+          repo: repos.chat, drafts, memory: repos.memory, loop, registry, skills, env, enabled, agents: agentsPort, defaultModel: (ws) => models.get(ws), workspace: () => models.workspace(),
         });
       },
     },
@@ -1412,7 +1434,7 @@ export const EDITOR_PROVIDERS = [
           memory: (key) => repos.memory.listActive(key, 100),
           sync: () => infra.registry.run(),
           // Spec 035: agent models are checked against the catalog and priced in llm_prices when new.
-          models: { check: (m, cur) => models.checkAgentModel(m, cur), chosen: (m) => models.ensurePrice(m) },
+          models: { check: (m, cur) => models.checkAgentModel(m, cur), chosen: (m) => models.ensurePrice(m), workspace: () => models.active() },
           log: (m) => logger.warn(m),
           runNow: async (agent, orch) => {
             const key = telegramKeyOf(orch);

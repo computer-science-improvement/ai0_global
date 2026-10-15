@@ -56,7 +56,7 @@ export class PgRunRecorder implements RunRecorder {
   }
 
   async llmStep(runId: string, idx: number, res: LlmResponse, durationMs: number): Promise<void> {
-    await this.insertStep(runId, idx, 'llm', null, null, res.message, false,
+    await this.insertStep(runId, idx, 'llm', null, null, traceMessage(res.message), false,
       res.usage.promptTokens, res.usage.completionTokens, res.usage.costUsd, durationMs);
   }
 
@@ -108,4 +108,16 @@ export class PgRunRecorder implements RunRecorder {
       this.onError(`editor trace insert failed (run ${runId} step ${idx}): ${err.message}`);
     }
   }
+}
+
+/**
+ * The assistant message as the run trace stores it (spec 038): the provider's raw blocks are dropped (thinking
+ * signatures are opaque and large); the thinking text is kept, capped, so the run page shows why the model acted.
+ */
+export function traceMessage(m: LlmResponse['message']): Record<string, unknown> {
+  const { providerContent, ...rest } = m;
+  const thinking = Array.isArray(providerContent)
+    ? providerContent.filter((b: any) => b?.type === 'thinking' && typeof b.thinking === 'string').map((b: any) => b.thinking).join('\n').trim()
+    : '';
+  return thinking ? { ...rest, thinking: thinking.slice(0, 4000) } : rest;
 }

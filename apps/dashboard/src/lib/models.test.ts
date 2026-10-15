@@ -42,3 +42,13 @@ test('groupAgents keeps the server order and nests role children; orphans become
   assert.deepEqual(g.map((x) => [x.root.id, x.children.map((c) => c.id)]), [['m', []], ['o1', ['p1', 'e1']], ['o2', []], ['orphan', []]]);
   assert.deepEqual(ownCounts([row('a', null, 'x/y'), row('b')]), { models: 1, efforts: 0 });
 });
+
+test('spec 038: the agent model of a workspace', async () => {
+  const { ownModelIn, WORKSPACE_LABEL } = await import('./models');
+  const a = { model: 'z-ai/glm-5.3', anthropicModel: 'claude-opus-5-5' };
+  assert.equal(ownModelIn(a, 'openrouter'), 'z-ai/glm-5.3');
+  assert.equal(ownModelIn(a, undefined), 'z-ai/glm-5.3');
+  assert.equal(ownModelIn(a, 'anthropic'), 'claude-opus-5-5');
+  assert.equal(ownModelIn({ model: 'x' }, 'anthropic'), null);
+  assert.equal(WORKSPACE_LABEL.anthropic, 'Anthropic');
+});

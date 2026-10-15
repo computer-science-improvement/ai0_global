@@ -8,19 +8,22 @@ import { ActionsTh, RowActions, TableAction } from '../components/ui/table';
 import { useConfirm } from '../components/ui/ConfirmDialog';
 import { describeError, toast } from '../components/ui/Toast';
 import { Modal } from '../components/Modal';
+import { SegmentedTabs } from '../components/SegmentedTabs';
 import { ModelSelect } from '../components/models/ModelSelect';
 import { KIND_LABEL } from '../components/agents/AgentsUi';
 import {
-  useBulkModels, useClearChannelModels, useModelCatalog, useModelsOverview, useSetAgentModel, useSetCriticModel, useSetDefaultModel,
-  type AgentModelRow, type ModelsOverview,
+  useBulkModels, useClearChannelModels, useModelCatalog, useModelWorkspace, useModelsOverview, useSetAgentModel, useSetCriticModel,
+  useSetDefaultModel, useSetModelWorkspace, type AgentModelRow, type ModelsOverview, type Workspace, type WorkspaceInfo,
 } from '../api/models';
 import type { ReasoningEffort } from '../api/agents';
-import { fmtContext, fmtPerM, groupAgents, ownCounts, SOURCE_HINT, SOURCE_LABEL, SOURCE_TONE } from '../lib/models';
+import { fmtContext, fmtPerM, groupAgents, ownCounts, SOURCE_HINT, SOURCE_LABEL, SOURCE_TONE, WORKSPACE_LABEL } from '../lib/models';
 
 // Models (spec 035): the owner picks the LLM of every agent. One global default
 // (app_settings `ai.default_model`, built-in z-ai/glm-5.3-flash); an agent's own
 // model beats a channel card's legacy override, which beats EDITOR_MODEL_* env
 // variables, which beat the default.
+// Spec 038: one level above, the workspace — OpenRouter or Anthropic (the Claude API directly).
+// Everything below the Workspace card edits the active workspace's choices; each workspace keeps its own.
 export const Route = createFileRoute('/app/models')({ component: ModelsPage });
 
 const mono = { fontFamily: 'var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace)', fontSize: 13 } as const;
@@ -28,19 +31,27 @@ const mono = { fontFamily: 'var(--font-mono, ui-monospace, SFMono-Regular, Menlo
 function ModelsPage() {
   const q = useModelsOverview();
   const catalog = useModelCatalog();
+  const ws = useModelWorkspace();
   const data = q.data;
+  const active: Workspace = data?.workspace ?? 'openrouter';
 
   return (
     <div>
-      <PageHeader title="Models" subtitle="Choose the LLM each agent runs on. Agents without their own model use the default." />
+      <PageHeader title="Models" subtitle="Choose where agents run and the LLM each agent runs on. Agents without their own model use the default." />
 
       {q.error && <div className="callout-danger" style={{ marginBottom: 16 }}>{describeError(q.error)}</div>}
       {!data && !q.error && <div className="panel compose-rise" style={{ height: 160, opacity: 0.55 }} />}
 
+      {ws.data?.switchable && <WorkspaceCard info={ws.data} />}
+
       {catalog.data?.source === 'fallback' && (
         <div className="callout-warning" style={{ marginBottom: 12 }}>
           <Icon name="warning" size={16} />
-          <div>The OpenRouter model list is unavailable right now, so only models with a known price can be chosen. It is retried in a few minutes.</div>
+          <div>
+            {active === 'anthropic'
+              ? 'The Anthropic model list is unavailable right now, so only the models with a known price can be chosen. It is retried in a few minutes.'
+              : 'The OpenRouter model list is unavailable right now, so only models with a known price can be chosen. It is retried in a few minutes.'}
+          </div>
         </div>
       )}
 
@@ -54,10 +65,85 @@ function ModelsPage() {
         <p className="text-micro" style={{ color: 'var(--color-ink-dim)', margin: '12px 0 0' }}>
           {catalog.data.source === 'openrouter'
             ? `${catalog.data.models.length} models with tool support from OpenRouter${catalog.data.fetchedAt ? `, fetched ${new Date(catalog.data.fetchedAt).toLocaleString('en-GB', { dateStyle: 'medium', timeStyle: 'short' })}` : ''}${catalog.data.stale ? ' (refresh failed, list may be outdated)' : ''}. Prices are USD per 1M tokens.`
-            : `${catalog.data.models.length} priced models (offline list). Prices are USD per 1M tokens.`}
+            : catalog.data.source === 'anthropic'
+              ? `${catalog.data.models.length} Claude models${catalog.data.fetchedAt ? ` (Anthropic's list, fetched ${new Date(catalog.data.fetchedAt).toLocaleString('en-GB', { dateStyle: 'medium', timeStyle: 'short' })})` : ' (built-in price list)'}. Prices are Anthropic list prices, USD per 1M tokens; prompt caching makes repeated input much cheaper.`
+              : `${catalog.data.models.length} priced models (offline list). Prices are USD per 1M tokens.`}
         </p>
       )}
     </div>
+  );
+}
+
+const WORKSPACE_TABS: ReadonlyArray<{ key: Workspace; label: string }> = [
+  { key: 'openrouter', label: WORKSPACE_LABEL.openrouter },
+  { key: 'anthropic', label: WORKSPACE_LABEL.anthropic },
+];
+
+/** Spec 038: OpenRouter or Anthropic for every agent; the choice of models below belongs to the active one. */
+function WorkspaceCard({ info }: { info: WorkspaceInfo }) {
+  const save = useSetModelWorkspace();
+  const confirm = useConfirm();
+  const of = (w: Workspace) => info.workspaces.find((x) => x.id === w);
+
+  const change = async (next: Workspace) => {
+    if (next === info.active) return;
+    if (next === 'anthropic' && !info.anthropicKey) {
+      toast.error('Add an Anthropic API key on the server first (EDITOR_ANTHROPIC_API_KEY or ANTHROPIC_API_KEY).');
+      return;
+    }
+    const target = of(next);
+    const ok = await confirm(`run every agent on ${WORKSPACE_LABEL[next]}`, {
+      danger: false, confirmLabel: `Switch to ${WORKSPACE_LABEL[next]}`,
+      details: (
+        <p className="text-micro" style={{ margin: 0, color: 'var(--color-ink-muted)', lineHeight: 1.6 }}>
+          From their next run, agents use the {WORKSPACE_LABEL[next]} models: the default {target ? <span style={mono}>{target.defaultModel}</span> : null}
+          {target && target.agentsWithOwnModel > 0 ? `, and ${target.agentsWithOwnModel} agent${target.agentsWithOwnModel === 1 ? '' : 's'} with their own ${WORKSPACE_LABEL[next]} model` : ''}.
+          Your {WORKSPACE_LABEL[info.active]} choices are kept and come back when you switch back. Runs already in progress finish where they started.
+        </p>
+      ),
+    });
+    if (!ok) return;
+    try {
+      await save.mutateAsync(next);
+      toast.success(`Agents now run on ${WORKSPACE_LABEL[next]}`);
+    } catch (err) {
+      toast.error(describeError(err));
+    }
+  };
+
+  return (
+    <SectionCard title="Workspace" icon="connections" delay={0} style={{ marginBottom: 12 }}
+      action={<Badge tone={info.active === 'anthropic' ? 'accent' : 'neutral'}>{WORKSPACE_LABEL[info.active]}</Badge>}>
+      <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 12, marginBottom: 12 }}>
+        <SegmentedTabs<Workspace> value={info.active} onChange={change} options={WORKSPACE_TABS} />
+        {info.anthropicKey
+          ? <Badge tone="success" title="The server has an Anthropic API key">Anthropic key set</Badge>
+          : <Badge tone="warning" title="Set EDITOR_ANTHROPIC_API_KEY or ANTHROPIC_API_KEY on the server">No Anthropic key</Badge>}
+      </div>
+      <p className="text-micro" style={{ margin: '0 0 12px', color: 'var(--color-ink-muted)', lineHeight: 1.6, maxWidth: 760 }}>
+        {info.active === 'anthropic'
+          ? <>Agents call the Claude API directly with the server's Anthropic key. With a key from the Console organization linked to your Claude Max plan, runs are paid from its monthly API credits; unused credits expire at the end of each billing cycle, and when they run out, runs fail until the next grant or until you buy credits. Spend shows under the <span style={mono}>anthropic</span> provider.</>
+          : <>Agents run through OpenRouter with the server's OpenRouter key and pay as they go. Any model with tool support from the OpenRouter catalog can be chosen.</>}
+      </p>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 240px), 1fr))', gap: 10 }}>
+        {info.workspaces.map((w) => (
+          <div key={w.id} className="card" style={{ padding: '10px 12px', minWidth: 0, borderColor: w.id === info.active ? 'var(--color-accent)' : undefined }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 4 }}>
+              <span style={{ color: 'var(--color-ink)', fontWeight: 500 }}>{WORKSPACE_LABEL[w.id]}</span>
+              {w.id === info.active && <Badge tone="accent">Active</Badge>}
+            </div>
+            <div className="text-micro" style={{ color: 'var(--color-ink-muted)', overflowWrap: 'anywhere' }}>
+              Default <span style={mono}>{w.defaultModel}</span> · {w.agentsWithOwnModel} agent{w.agentsWithOwnModel === 1 ? '' : 's'} with their own model
+            </div>
+          </div>
+        ))}
+      </div>
+      {!info.anthropicKey && (
+        <p className="text-micro" style={{ margin: '10px 0 0', color: 'var(--color-ink-dim)', lineHeight: 1.6 }}>
+          To use Anthropic, link a Console organization to your Claude plan (claude.ai → Settings → Billing → API credits), create an API key in it and set it on the server as <span style={mono}>EDITOR_ANTHROPIC_API_KEY</span>, then restart.
+        </p>
+      )}
+    </SectionCard>
   );
 }
 
@@ -188,7 +274,7 @@ function CriticModelCard({ data }: { data: ModelsOverview }) {
         and passes it, asks the agent for one rewrite, or rejects it. Its spend shows as <span style={mono}>editor.checker</span> on the Spend page.
       </p>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))', gap: 16, alignItems: 'end' }}>
-        <Field label="Model" hint={c.source === 'env' ? 'EDITOR_MODEL_CHECKER is set on the server; a model chosen here beats it' : undefined}>
+        <Field label="Model" hint={c.source === 'env' ? `${data.workspace === 'anthropic' ? 'EDITOR_ANTHROPIC_MODEL_CHECKER' : 'EDITOR_MODEL_CHECKER'} is set on the server; a model chosen here beats it` : undefined}>
           <ModelSelect value={c.saved} onChange={(m) => change(m)} ariaLabel="Critic model" disabled={save.isPending}
             defaultLabel={`Default (${c.source === 'env' ? c.model : data.defaultModel.model})`} />
         </Field>
@@ -336,7 +422,9 @@ function AgentsSection({ data }: { data: ModelsOverview }) {
         </div>
       )}
       <p className="text-micro" style={{ color: 'var(--color-ink-dim)', margin: '10px 0 0' }}>
-        Precedence: the agent's own model (role agents inherit their orchestrator's), then a channel override, then an env variable, then the default.
+        {data.workspace === 'anthropic'
+          ? <>Precedence: the agent's own Anthropic model (role agents inherit their orchestrator's), then an env variable, then the default. Channel overrides apply to OpenRouter only.</>
+          : <>Precedence: the agent's own model (role agents inherit their orchestrator's), then a channel override, then an env variable, then the default.</>}
       </p>
 
       {editing && (

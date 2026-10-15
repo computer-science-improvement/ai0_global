@@ -3,7 +3,7 @@ import type { AgentBudget } from '../harness/budget.service';
 import { defineTool } from '../harness/tool';
 import type { EditorRole } from '../llm/llm.types';
 import { resolveModel } from '../llm/model-registry';
-import { readDefaultModel } from '../llm/model-defaults';
+import { readModelContext, type Workspace } from '../llm/workspace';
 import type { VoicePrefs } from '../post/slop-lint';
 import { SkillLibrary, type Skill } from '../skills/skill-library';
 import { voiceCoreBody, voiceSettingsLine } from '../roles/voice';
@@ -76,9 +76,11 @@ export interface CriticDeps {
   loop:          Pick<AgentLoop, 'run'>;
   env:           (key: string) => string | undefined;
   /** The owner's global default model (spec 035). */
-  defaultModel?: () => Promise<string | null>;
+  defaultModel?: (ws?: Workspace) => Promise<string | null>;
+  /** Spec 038: the active model workspace. */
+  workspace?: () => Promise<Workspace>;
   /** The owner's critic model (app_settings `ai.critic_model`, Models page); null → the normal resolution. */
-  criticModel?:  () => Promise<string | null>;
+  criticModel?:  (ws?: Workspace) => Promise<string | null>;
   timeoutMs?:    number;
   now?:          () => Date;
 }
@@ -168,8 +170,9 @@ export class CriticService {
   constructor(private readonly d: CriticDeps) {}
 
   async review(r: CriticRequest): Promise<CriticResult> {
-    const [defaultModel, criticModel] = await Promise.all([readDefaultModel(this.d.defaultModel), readDefaultModel(this.d.criticModel)]);
-    const model = resolveModel('checker', this.d.env, r.card?.models ?? null, { agentModel: criticModel, defaultModel });
+    const { workspace, defaultModel } = await readModelContext(this.d);
+    const criticModel = this.d.criticModel ? await this.d.criticModel(workspace).catch(() => null) : null;
+    const model = resolveModel('checker', this.d.env, r.card?.models ?? null, { agentModel: criticModel, defaultModel, workspace });
     const tool = defineTool({
       name: 'submit_critique',
       description: 'Віддати оцінку поста (завершує роботу): оцінки 1–5 за шістьма осями, вердикт pass / revise / reject і короткі нотатки українською.',

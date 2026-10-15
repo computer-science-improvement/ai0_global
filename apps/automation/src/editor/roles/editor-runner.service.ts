@@ -2,7 +2,7 @@ import { effectiveMode, type EditorCard } from '../card';
 import type { AgentLoop, AgentLoopResult } from '../harness/agent-loop';
 import type { ToolRegistry } from '../harness/tool-registry';
 import { resolveModel } from '../llm/model-registry';
-import { readDefaultModel } from '../llm/model-defaults';
+import { agentModelIn, readModelContext, type Workspace } from '../llm/workspace';
 import type { CardRole } from '../llm/llm.types';
 import type { SkillSource } from '../skills/skill-library';
 import type { AgentRuntime, RunAgentContext } from '../agents/agent-runtime';
@@ -45,7 +45,9 @@ export interface EditorRunnerDeps {
   memory:   Pick<EditorMemoryRepository, 'listActive'> & Partial<Pick<EditorMemoryRepository, 'ownerPreferences'>>;
   env:      (key: string) => string | undefined;
   /** The owner's global default model (spec 035, app_settings `ai.default_model`); cached by ModelDefaultsStore. */
-  defaultModel?: () => Promise<string | null>;
+  defaultModel?: (ws?: Workspace) => Promise<string | null>;
+  /** Spec 038: the active model workspace. */
+  workspace?: () => Promise<Workspace>;
   notify:   (text: string) => Promise<void>;
   now?:     () => Date;
   /**
@@ -265,14 +267,14 @@ export class EditorRunnerService {
     const ctx = agentCtx === undefined ? await this.agentOf(card, role) : agentCtx;
     const skills = ctx?.skills ?? this.d.skills;
     // A role agent inherits its orchestrator's model and effort (spec 035: agent → channel → env → global default).
-    const agentModel = ctx?.agent?.model ?? ctx?.orchestrator?.model ?? null;
+    const { workspace, defaultModel } = await readModelContext(this.d);
+    const agentModel = agentModelIn(ctx?.agent, workspace) ?? agentModelIn(ctx?.orchestrator, workspace);
     const agentEffort = ctx?.agent?.reasoningEffort ?? ctx?.orchestrator?.reasoningEffort ?? null;
-    const defaultModel = await readDefaultModel(this.d.defaultModel);
     return this.d.loop.run({
       role,
       channelKey: card.channelKey,
       slotId,
-      model: resolveModel(role, this.d.env, card.models, { agentModel, defaultModel, reasoningEffort: agentEffort }),
+      model: resolveModel(role, this.d.env, card.models, { agentModel, defaultModel, reasoningEffort: agentEffort, workspace }),
       system: buildSystemPrompt(role, card, memory, skills, prefs, { examples: typeof extras.examples === 'string' ? extras.examples : null }),
       user,
       tools: ((extras.wrapTools as ((t: EditorTool[]) => EditorTool[]) | undefined) ?? ((t) => t))(

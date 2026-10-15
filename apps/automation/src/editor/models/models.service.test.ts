@@ -78,7 +78,7 @@ function world(opts: { env?: Record<string, string>; saved?: string | null; sour
     pool: pool as any,
     agents: { list: async () => agents.map((a) => ({ ...a })) },
     catalog: { list: async () => snapshot() },
-    defaults: { get: async () => saved, set: async (m) => { saved = m; } },
+    defaults: { get: async () => saved, set: async (_ws, m) => { saved = m; } },
     prices: { price: async (_p, m) => prices.find((x) => x.model === m) ?? null, invalidate: () => { invalidated++; } },
     env: (k) => opts.env?.[k],
   });
@@ -141,7 +141,7 @@ test('setDefault: validates against the catalog, prices a new model, null return
   await assert.rejects(w.svc.setDefault({ model: 'has space' }), (e: any) => e.response?.error === 'invalid_body');
   await assert.rejects(w.svc.setDefault({}), (e: any) => e.response?.error === 'invalid_body');
   const r = await w.svc.setDefault({ model: 'anthropic/claude-haiku-4.5' });
-  assert.deepEqual(r, { ok: true, defaultModel: 'anthropic/claude-haiku-4.5', saved: 'anthropic/claude-haiku-4.5' });
+  assert.deepEqual(r, { ok: true, workspace: 'openrouter', defaultModel: 'anthropic/claude-haiku-4.5', saved: 'anthropic/claude-haiku-4.5' });
   assert.equal(w.saved, 'anthropic/claude-haiku-4.5');
   assert.deepEqual(w.prices.map((p) => [p.model, p.inPerM, p.outPerM]), [['anthropic/claude-haiku-4.5', 1, 5]]);
   assert.equal(w.invalidated, 1);
@@ -149,7 +149,7 @@ test('setDefault: validates against the catalog, prices a new model, null return
   await w.svc.setDefault({ model: 'anthropic/claude-haiku-4.5' });
   assert.equal(w.prices.length, 1);
   const back = await w.svc.setDefault({ model: null });
-  assert.deepEqual(back, { ok: true, defaultModel: 'z-ai/glm-5.3-flash', saved: null });
+  assert.deepEqual(back, { ok: true, workspace: 'openrouter', defaultModel: 'z-ai/glm-5.3-flash', saved: null });
   assert.equal(w.saved, null);
 });
 
@@ -169,13 +169,13 @@ test('bulk: apply to all agents (validated, priced) and reset all to the default
   await assert.rejects(w.svc.bulk({ action: 'apply_all', model: 'x/unknown' }), (e: any) => e.response?.error === 'unknown_model');
   await assert.rejects(w.svc.bulk({ action: 'nuke' }), (e: any) => e.response?.error === 'invalid_body');
   const r = await w.svc.bulk({ action: 'apply_all', model: 'openai/gpt-5-mini' });
-  assert.deepEqual(r, { ok: true, action: 'apply_all', model: 'openai/gpt-5-mini', updated: 7 });
+  assert.deepEqual(r, { ok: true, action: 'apply_all', workspace: 'openrouter', model: 'openai/gpt-5-mini', updated: 7 });
   assert.ok(w.agents.every((a) => a.model === 'openai/gpt-5-mini'));
   assert.deepEqual(w.prices.map((p) => p.model), ['openai/gpt-5-mini']);
   const o: any = await w.svc.overview();
   assert.ok(o.agents.every((a: any) => a.effective.source === 'agent' && a.effective.model === 'openai/gpt-5-mini'), 'agent beats the channel override');
   const z = await w.svc.bulk({ action: 'reset_all' });
-  assert.deepEqual(z, { ok: true, action: 'reset_all', updated: 8 });
+  assert.deepEqual(z, { ok: true, action: 'reset_all', workspace: 'openrouter', updated: 8 });
   assert.ok(w.agents.every((a) => a.model === null));
   // A model already set on some agent may be applied to all even when the catalog no longer lists it.
   w.agents[0].model = 'legacy/kept';

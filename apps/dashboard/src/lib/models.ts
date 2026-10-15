@@ -1,6 +1,6 @@
 // Pure helpers of the Models page (spec 035) — node tests import this file, so
 // only type imports here.
-import type { AgentModelRow, CatalogModel, ModelSource } from '../api/models';
+import type { AgentModelRow, CatalogModel, ModelSource, Workspace } from '../api/models';
 
 /** "$0.15" / "$12" per 1M tokens; "—" when unknown. */
 export function fmtPerM(n: number | null | undefined): string {
@@ -22,7 +22,7 @@ export const SOURCE_TONE: Record<ModelSource, 'accent' | 'warning' | 'neutral'> 
 export const SOURCE_HINT: Record<ModelSource, string> = {
   agent:   "the agent's own model",
   channel: "the channel card's legacy override",
-  env:     'an EDITOR_MODEL_* environment variable on the server',
+  env:     'an EDITOR_MODEL_* (OpenRouter) or EDITOR_ANTHROPIC_MODEL_* (Anthropic) environment variable on the server',
   default: 'the default model',
 };
 
@@ -65,4 +65,12 @@ export function groupAgents(rows: AgentModelRow[]): AgentGroup[] {
 /** How many agents have their own model / own effort (bulk reset preview). */
 export function ownCounts(rows: AgentModelRow[]): { models: number; efforts: number } {
   return { models: rows.filter((r) => r.model).length, efforts: rows.filter((r) => r.reasoningEffort).length };
+}
+
+/** Spec 038: the model workspaces as the Models page names them. */
+export const WORKSPACE_LABEL: Record<Workspace, string> = { openrouter: 'OpenRouter', anthropic: 'Anthropic' };
+
+/** The agent's own model in a workspace (each workspace keeps its own choice). */
+export function ownModelIn(a: { model: string | null; anthropicModel?: string | null }, ws: Workspace | undefined): string | null {
+  return (ws === 'anthropic' ? a.anthropicModel : a.model) ?? null;
 }

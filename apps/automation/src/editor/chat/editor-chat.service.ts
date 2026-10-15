@@ -3,7 +3,7 @@ import type { AgentLoop, AgentLoopEvent, AgentLoopResult } from '../harness/agen
 import type { ToolRegistry } from '../harness/tool-registry';
 import type { ChatMessage } from '../llm/llm.types';
 import { resolveModel } from '../llm/model-registry';
-import { readDefaultModel } from '../llm/model-defaults';
+import { agentModelIn, readModelContext, type Workspace } from '../llm/workspace';
 import type { SkillLibrary } from '../skills/skill-library';
 import type { EditorMemoryRepository } from '../repo/editor-memory.repository';
 import type { EditorChatMessage, EditorChatRepository, EditorDraft } from '../repo/editor-chat.repository';
@@ -70,7 +70,9 @@ export interface EditorChatDeps {
   skills:   SkillLibrary;
   env:      (key: string) => string | undefined;
   /** The owner's global default model (spec 035, app_settings `ai.default_model`); cached by ModelDefaultsStore. */
-  defaultModel?: () => Promise<string | null>;
+  defaultModel?: (ws?: Workspace) => Promise<string | null>;
+  /** Spec 038: the active model workspace. */
+  workspace?: () => Promise<Workspace>;
   /** The chat needs an LLM key only; it does not depend on EDITOR_ENABLED. */
   enabled:  () => boolean;
   now?:     () => Date;
@@ -275,9 +277,12 @@ export class EditorChatService {
       try {
         res = await this.d.loop.run({
           role: 'composer', channelKey: null,
-          model: resolveModel('composer', this.d.env, null, {
-            agentModel: addressee?.model, defaultModel: await readDefaultModel(this.d.defaultModel), reasoningEffort: addressee?.reasoningEffort,
-          }),
+          model: await (async () => {
+            const { workspace, defaultModel } = await readModelContext(this.d);
+            return resolveModel('composer', this.d.env, null, {
+              agentModel: agentModelIn(addressee, workspace), defaultModel, reasoningEffort: addressee?.reasoningEffort, workspace,
+            });
+          })(),
           system: buildComposerSystemPrompt({
             now: this.now(), card: resolved?.card ?? null, hasCard: !!resolved?.hasCard, memory, skills: agentCtx?.skills ?? this.d.skills, persona,
           }),
@@ -324,10 +329,11 @@ export class EditorChatService {
       if (e.type === 'llm_text') emit({ type: 'text', text: e.text });
       else emit(e);
     };
+    const mctx = await readModelContext(this.d);
     let res: AgentLoopResult;
     try {
       res = await this.d.loop.run({
-        role, channelKey: null, model: resolveModel(role, this.d.env, null, { agentModel: agent.model, defaultModel: await readDefaultModel(this.d.defaultModel), reasoningEffort: agent.reasoningEffort }),
+        role, channelKey: null, model: resolveModel(role, this.d.env, null, { agentModel: agentModelIn(agent, mctx.workspace), defaultModel: mctx.defaultModel, reasoningEffort: agent.reasoningEffort, workspace: mctx.workspace }),
         system: note ? `${system}\n\n${note}` : system,
         user: text, history: this.history(prior, chatDrafts), tools: this.d.registry.forRole(role),
         maxSteps: COMPOSER_MAX_STEPS, extras, onEvent,

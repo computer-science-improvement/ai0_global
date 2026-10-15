@@ -263,3 +263,16 @@ test('spec 034: a tool error with _grantSteps extends the run once (capped at 3 
   const step = recorder.steps.find((s) => s.tool === 'patient')!;
   assert.equal(step.isError, false, JSON.stringify(step.output));
 });
+
+test('spec 038: an Anthropic-workspace profile sends provider anthropic and checks provider caps for it; OpenRouter sends none', async () => {
+  published = [];
+  const providers: Array<string | undefined> = [];
+  const budget = new FakeBudget();
+  budget.check = async (...args: any[]) => { providers.push(args[3]); return { ok: true }; };
+  const llm = new FakeLlm([{ calls: [{ name: 'publish', args: { title: 'A' } }] }, { calls: [{ name: 'publish', args: { title: 'B' } }] }]);
+  const { l } = loop(llm, { budget });
+  await l.run(input({ model: resolveModel('executor', () => undefined, null, { workspace: 'anthropic' }) }));
+  await l.run(input());
+  assert.deepEqual(llm.requests.map((r) => [r.model, r.provider]), [['claude-sonnet-5-5', 'anthropic'], ['z-ai/glm-5.3-flash', undefined]]);
+  assert.deepEqual(providers, ['anthropic', 'openrouter']);
+});

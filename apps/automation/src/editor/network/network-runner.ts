@@ -2,7 +2,7 @@ import type { EditorCard } from '../card';
 import type { AgentLoop, AgentLoopResult } from '../harness/agent-loop';
 import type { ToolRegistry } from '../harness/tool-registry';
 import { resolveModel } from '../llm/model-registry';
-import { readDefaultModel } from '../llm/model-defaults';
+import { agentModelIn, readModelContext, type Workspace } from '../llm/workspace';
 import type { EditorRole } from '../llm/llm.types';
 import type { EditorMemoryRepository } from '../repo/editor-memory.repository';
 import { APPROVAL_PREFS_IN_PROMPT } from '../approval/owner-preferences';
@@ -39,7 +39,9 @@ export interface NetworkRunnerDeps {
   afterOrchestration?: (orch: Agent) => Promise<unknown>;
   env:      (key: string) => string | undefined;
   /** The owner's global default model (spec 035, app_settings `ai.default_model`); cached by ModelDefaultsStore. */
-  defaultModel?: () => Promise<string | null>;
+  defaultModel?: (ws?: Workspace) => Promise<string | null>;
+  /** Spec 038: the active model workspace. */
+  workspace?: () => Promise<Workspace>;
   notify:   (text: string) => Promise<void>;
   now?:     () => Date;
   /** Spec 023 FR-008: the ≤ 1,500-char source catalog for the orchestrator and planner prompts. */
@@ -83,11 +85,11 @@ export class NetworkRunner {
 
   private async run(role: EditorRole, card: EditorCard, c: { agentCtx: RunAgentContext; net: NetworkCtx }, system: string, user: string, steps: number, extras: Record<string, unknown> = {}, exclude?: Set<string>): Promise<AgentLoopResult> {
     const agent = c.agentCtx.agent ?? c.agentCtx.orchestrator!;
-    const model = agent.model ?? c.agentCtx.orchestrator?.model ?? null;
+    const { workspace, defaultModel } = await readModelContext(this.d);
+    const model = agentModelIn(agent, workspace) ?? agentModelIn(c.agentCtx.orchestrator, workspace);
     const effort = agent.reasoningEffort ?? c.agentCtx.orchestrator?.reasoningEffort ?? null;
-    const defaultModel = await readDefaultModel(this.d.defaultModel);
     return this.d.loop.run({
-      role, channelKey: card.channelKey, model: resolveModel(role, this.d.env, card.models, { agentModel: model, defaultModel, reasoningEffort: effort }),
+      role, channelKey: card.channelKey, model: resolveModel(role, this.d.env, card.models, { agentModel: model, defaultModel, reasoningEffort: effort, workspace }),
       system, user, tools: this.d.registry.forRole(role, card.toolsAllow).filter((t) => !exclude?.has(t.name)), maxSteps: steps,
       channelBudgetUsd: card.dailyBudgetUsd,
       agent: { id: agent.id, handle: agent.handle, limitUsd: agent.dailyBudgetUsd ?? c.agentCtx.orchestrator?.dailyBudgetUsd ?? null },

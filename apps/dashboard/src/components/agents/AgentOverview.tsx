@@ -21,7 +21,8 @@ import { ResourceSection } from './ResourceProfile';
 import { FormattingSection } from './ResourceFormatting';
 import { ActiveEffects } from './ActiveEffects';
 import { errorBody, usePatchAgent, type AgentDetail, type AgentPatch, type ReasoningEffort } from '../../api/agents';
-import { useModelCatalog } from '../../api/models';
+import { useModelCatalog, type Workspace } from '../../api/models';
+import { ownModelIn, WORKSPACE_LABEL } from '../../lib/models';
 import { useEditorChannel } from '../../api/editor';
 import { planScheduleNote } from '../../lib/slot-plan';
 import { ModelSelect } from '../models/ModelSelect';
@@ -36,9 +37,9 @@ interface Form {
   effort: '' | ReasoningEffort; budget: string; times: string[];
 }
 
-function toForm(a: AgentDetail['agent']): Form {
+function toForm(a: AgentDetail['agent'], ws: Workspace): Form {
   return {
-    name: a.name, handle: a.handle, emoji: a.emoji ?? '', description: a.description ?? '', model: a.model ?? '',
+    name: a.name, handle: a.handle, emoji: a.emoji ?? '', description: a.description ?? '', model: ownModelIn(a, ws) ?? '',
     effort: a.reasoningEffort ?? '', budget: a.dailyBudgetUsd == null ? '' : String(a.dailyBudgetUsd),
     times: [...(a.schedule.times ?? [])].sort(),
   };
@@ -64,14 +65,15 @@ function scheduleEditable(a: Pick<AgentDetail['agent'], 'kind'>): boolean {
   return a.kind === 'manager';
 }
 
-function diff(a: AgentDetail['agent'], f: Form): AgentPatch {
+/** `model` is the agent's model in the active workspace (spec 038): the server stores it in that workspace's column. */
+function diff(a: AgentDetail['agent'], f: Form, ws: Workspace): AgentPatch {
   const p: AgentPatch = {};
   const h = f.handle.trim().replace(/^@/, '').toLowerCase();
   if (f.name.trim() !== a.name) p.name = f.name.trim();
   if (h !== a.handle) p.handle = h;
   if ((f.emoji.trim() || null) !== a.emoji) p.emoji = f.emoji.trim() || null;
   if ((f.description.trim() || null) !== (a.description ?? null)) p.description = f.description.trim() || null;
-  if ((f.model.trim() || null) !== a.model) p.model = f.model.trim() || null;
+  if ((f.model.trim() || null) !== ownModelIn(a, ws)) p.model = f.model.trim() || null;
   if ((f.effort || null) !== a.reasoningEffort) p.reasoning_effort = f.effort || null;
   const budget = f.budget.trim() === '' ? null : Number(f.budget);
   if (budget !== a.dailyBudgetUsd) p.daily_budget_usd = budget;
@@ -82,6 +84,8 @@ function diff(a: AgentDetail['agent'], f: Form): AgentPatch {
 
 export function AgentOverview({ data }: { data: AgentDetail }) {
   const a = data.agent;
+  // Spec 038: the agent's model shown and edited is the one of the active workspace.
+  const ws: Workspace = useModelCatalog().data?.workspace ?? 'openrouter';
   const act = a.activity;
   // An orchestrator's day includes its role agents (same roll-up as the list page).
   const kids = data.children;
@@ -112,7 +116,7 @@ export function AgentOverview({ data }: { data: AgentDetail }) {
       {a.kind === 'orchestrator' && a.scopeId && <ResourceSection handle={a.handle} />}
       {a.kind === 'orchestrator' && a.scopeId && <FormattingSection handle={a.handle} />}
 
-      <ProfileForm key={`${a.id}:${a.updatedAt}`} data={data} />
+      <ProfileForm key={`${a.id}:${a.updatedAt}:${ws}`} data={data} ws={ws} />
 
       {data.children.length > 0 && (
         <SectionCard title="Roles" icon="agents" delay={90} style={{ marginTop: 16 }}>
@@ -127,7 +131,7 @@ export function AgentOverview({ data }: { data: AgentDetail }) {
                     <span className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>@{c.handle}</span>
                     {c.status === 'paused' && <Badge tone="danger">paused</Badge>}
                   </div>
-                  {c.model && <div className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>{c.model}</div>}
+                  {ownModelIn(c, ws) && <div className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>{ownModelIn(c, ws)}</div>}
                 </div>
                 <span style={{ display: 'inline-flex', alignItems: 'center', gap: 10, marginLeft: 'auto' }}>
                   <LastRun activity={c.activity} />
@@ -153,17 +157,17 @@ function Meta({ label, children }: { label: string; children: ReactNode }) {
   );
 }
 
-function ProfileForm({ data }: { data: AgentDetail }) {
+function ProfileForm({ data, ws }: { data: AgentDetail; ws: Workspace }) {
   const a = data.agent;
   const navigate = useNavigate();
   const patch = usePatchAgent(a.handle);
   const defaultModel = useModelCatalog().data?.defaultModel;
-  const [f, setF] = useState<Form>(() => toForm(a));
+  const [f, setF] = useState<Form>(() => toForm(a, ws));
   const [time, setTime] = useState('09:00');
   const set = <K extends keyof Form>(k: K, v: Form[K]) => setF((s) => ({ ...s, [k]: v }));
 
   const errors = validate(f);
-  const changes = diff(a, f);
+  const changes = diff(a, f, ws);
   const dirty = Object.keys(changes).length > 0;
   const valid = Object.keys(errors).length === 0;
   const serverErr = errorBody(patch.error);
@@ -219,7 +223,7 @@ function ProfileForm({ data }: { data: AgentDetail }) {
         {err('description')}
       </Field>
       <div style={grid}>
-        <Field label="Model" hint={<>all agents: <Link to="/app/models" style={{ color: 'inherit' }}>Models</Link></>}>
+        <Field label="Model" hint={<>{WORKSPACE_LABEL[ws]} workspace · all agents: <Link to="/app/models" style={{ color: 'inherit' }}>Models</Link></>}>
           <ModelSelect value={f.model.trim() || null} onChange={(m) => set('model', m ?? '')} ariaLabel="Agent model"
             defaultLabel={data.parent ? `Inherit from @${data.parent.handle}` : `Default (${defaultModel ?? 'global default'})`} />
           {err('model')}
@@ -266,7 +270,7 @@ function ProfileForm({ data }: { data: AgentDetail }) {
 
       {patch.error && !handleErr && <div className="callout-danger" style={{ marginTop: 8 }}>{describeError(patch.error)}</div>}
       <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 8, marginTop: 8, flexWrap: 'wrap' }}>
-        <button type="button" className="btn-secondary" disabled={!dirty || patch.isPending} onClick={() => { setF(toForm(a)); patch.reset(); }}>Reset</button>
+        <button type="button" className="btn-secondary" disabled={!dirty || patch.isPending} onClick={() => { setF(toForm(a, ws)); patch.reset(); }}>Reset</button>
         <button type="button" className="btn-primary" disabled={!dirty || !valid || patch.isPending} onClick={save}>
           {patch.isPending ? 'Saving…' : 'Save profile'}
         </button>

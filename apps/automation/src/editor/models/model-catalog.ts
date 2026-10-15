@@ -6,7 +6,11 @@
  * without one, a fallback list built from llm_prices + the static price map.
  */
 
+import { ANTHROPIC_PRICES } from '../llm/model-registry';
+
 export const OPENROUTER_MODELS_URL = 'https://openrouter.ai/api/v1/models';
+/** Spec 038: Anthropic's model list (needs the API key). */
+export const ANTHROPIC_MODELS_URL = 'https://api.anthropic.com/v1/models?limit=1000';
 
 export interface CatalogModel {
   id:                string;
@@ -21,11 +25,12 @@ export interface CatalogModel {
 
 export interface CatalogSnapshot {
   models:    CatalogModel[];
-  /** When the list was fetched from OpenRouter; null for the fallback list. */
+  /** When the list was fetched from the provider; null for the fallback list. */
   fetchedAt: string | null;
   /** True when the list is older than the TTL (a refresh failed) or is the fallback. */
   stale:     boolean;
-  source:    'openrouter' | 'fallback';
+  /** The provider's live list, or the offline fallback (spec 038: `anthropic` = Anthropic's list merged with the price list). */
+  source:    'openrouter' | 'anthropic' | 'fallback';
 }
 
 export type FetchLike = (url: string, init?: { signal?: AbortSignal; headers?: Record<string, string> }) => Promise<{
@@ -37,6 +42,10 @@ export interface ModelCatalogDeps {
   /** Models known without the network (llm_prices rows + the static price map). */
   fallback:  () => Promise<CatalogModel[]>;
   url?:      string;
+  /** Spec 038: the provider's payload parser (default: OpenRouter's), extra request headers, the live source label. */
+  parse?:    (json: unknown) => CatalogModel[];
+  headers?:  Record<string, string>;
+  source?:   'openrouter' | 'anthropic';
   timeoutMs?: number;
   ttlMs?:    number;
   /** After a failed fetch, wait this long before trying again (no hammering on every page load). */
@@ -102,7 +111,7 @@ export class ModelCatalog {
     if (this.good) {
       return {
         models: this.good.models, fetchedAt: new Date(this.good.at).toISOString(),
-        stale: this.now() - this.good.at >= this.ttl(), source: 'openrouter',
+        stale: this.now() - this.good.at >= this.ttl(), source: this.d.source ?? 'openrouter',
       };
     }
     let models: CatalogModel[] = [];
@@ -135,17 +144,56 @@ export class ModelCatalog {
     try {
       const body = await Promise.race([
         (async () => {
-          const res = await this.d.fetch(this.d.url ?? OPENROUTER_MODELS_URL, { signal: ctl.signal, headers: { accept: 'application/json' } });
+          const res = await this.d.fetch(this.d.url ?? OPENROUTER_MODELS_URL, { signal: ctl.signal, headers: { accept: 'application/json', ...(this.d.headers ?? {}) } });
           if (!res.ok) throw new Error(`HTTP ${res.status}`);
           return res.json();
         })(),
         timeout,
       ]);
-      const models = parseOpenRouterModels(body);
+      const models = (this.d.parse ?? parseOpenRouterModels)(body);
       if (!models.length) throw new Error('no tool-capable models in the payload');
       return models;
     } finally {
       clearTimeout(timer);
     }
   }
+}
+
+/** Spec 038: the Anthropic models known without the network (the price list). */
+export function anthropicStaticCatalog(): CatalogModel[] {
+  return Object.entries(ANTHROPIC_PRICES).map(([id, p]) => ({
+    id, name: p.name, contextLength: p.contextLength, inPerM: p.inPerM, outPerM: p.outPerM, supportsReasoning: true,
+  })).sort((a, b) => a.id.localeCompare(b.id));
+}
+
+/**
+ * Anthropic /v1/models JSON → catalog entries merged with the price list: every Claude model takes tools;
+ * priced models keep their prices and context, the others get null prices. Claude 2 / 3 generations are left out.
+ */
+export function parseAnthropicModels(json: unknown): CatalogModel[] {
+  const data = (json as { data?: unknown })?.data;
+  if (!Array.isArray(data)) throw new Error('unexpected /v1/models payload');
+  const out = new Map(anthropicStaticCatalog().map((m) => [m.id, m]));
+  for (const m of data as any[]) {
+    const id = typeof m?.id === 'string' ? m.id.trim() : '';
+    if (!id || id.length > 100 || !id.startsWith('claude-') || /^claude-(2|3|instant)/.test(id) || out.has(id)) continue;
+    out.set(id, {
+      id, name: typeof m.display_name === 'string' && m.display_name.trim() ? m.display_name.trim().slice(0, 120) : id,
+      contextLength: null, inPerM: null, outPerM: null, supportsReasoning: true,
+    });
+  }
+  return [...out.values()].sort((a, b) => a.id.localeCompare(b.id));
+}
+
+/** The catalog of the Anthropic workspace: without a key, the price list only (never a network call). */
+export function anthropicCatalog(o: { apiKey: string | undefined; fetch: FetchLike; baseUrl?: string; log?: (msg: string) => void }): Pick<ModelCatalog, 'list'> {
+  if (!o.apiKey) {
+    return { list: async () => ({ models: anthropicStaticCatalog(), fetchedAt: null, stale: false, source: 'anthropic' }) };
+  }
+  return new ModelCatalog({
+    fetch: o.fetch, fallback: async () => anthropicStaticCatalog(), parse: parseAnthropicModels, source: 'anthropic',
+    url: o.baseUrl ? `${o.baseUrl.replace(/\/$/, '')}/v1/models?limit=1000` : ANTHROPIC_MODELS_URL,
+    headers: { 'x-api-key': o.apiKey, 'anthropic-version': '2023-06-01' },
+    log: o.log,
+  });
 }

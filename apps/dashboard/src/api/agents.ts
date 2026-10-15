@@ -29,6 +29,8 @@ export interface Agent {
   status:          'active' | 'paused';
   pausedUntil:     string | null;
   model:           string | null;
+  /** Spec 038: the agent's own model in the Anthropic workspace. */
+  anthropicModel?: string | null;
   reasoningEffort: ReasoningEffort | null;
   schedule:        AgentSchedule;
   dailyBudgetUsd:  number | null;

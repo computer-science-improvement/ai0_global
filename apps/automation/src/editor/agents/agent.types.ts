@@ -30,7 +30,10 @@ export interface Agent {
   mode:           AgentMode;
   status:         AgentStatus;
   pausedUntil:    Date | null;
+  /** The agent's own model in the OpenRouter workspace (null = the workspace default). */
   model:          string | null;
+  /** Spec 038: the agent's own model in the Anthropic workspace (null = the workspace default). */
+  anthropicModel?: string | null;
   reasoningEffort: 'low' | 'medium' | 'high' | null;
   schedule:       AgentSchedule;
   dailyBudgetUsd: number | null;

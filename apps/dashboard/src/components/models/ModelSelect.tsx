@@ -1,5 +1,5 @@
 // Searchable model picker (spec 035), shared by the Models page and the agent
-// profile form. The list is the tool-capable OpenRouter catalog (GET /api/models).
+// profile form. The list is the active workspace's catalog (GET /api/models): OpenRouter's tool-capable models or the Claude models (spec 038).
 // An optional "Default (…)" entry comes first and stands for "no own model"
 // (onChange(null)). A value missing from the catalog stays selectable and is
 // marked "not in catalog". The popover is portaled with fixed positioning so a
@@ -192,7 +192,7 @@ export function ModelSelect({
             )}
           </div>
           <div className="text-micro" style={{ padding: '6px 10px', borderTop: '1px solid var(--color-hairline-soft)', color: 'var(--color-ink-dim)' }}>
-            USD per 1M tokens in / out{catalog.data?.source === 'fallback' ? ' · OpenRouter list unavailable, showing priced models only' : catalog.data?.stale ? ' · list may be outdated' : ''}
+            USD per 1M tokens in / out{catalog.data?.source === 'fallback' ? ` · ${catalog.data.workspace === 'anthropic' ? 'Anthropic' : 'OpenRouter'} list unavailable, showing priced models only` : catalog.data?.stale ? ' · list may be outdated' : ''}
           </div>
         </div>,
         document.body,
