@@ -77,3 +77,13 @@ test('passages: ±400 chars around the post\'s numbers and names, not the page h
   assert.ok(many.reduce((n, p) => n + p.text.length, 0) <= PASSAGE.chars + 2 * PASSAGE.max);
   assert.deepEqual(sourcePassages('Нічого спільного', [{ url: 'u', text: page }], AT), []);
 });
+
+test('037 grounding: «4 центи» is money ($0.04) and matches "$0.04 per million"; «262 тисяч» matches "262K"', () => {
+  const post = 'Jev 1.14 читає 262 тисяч слів і коштує 4 центи за мільйон токенів.';
+  const nums = postNumbers(post);
+  assert.deepEqual(nums.map((n) => [n.text, n.kind]), [['262 тисяч', 'count'], ['4 центи', 'money']]);
+  assert.ok(Math.abs(nums[1].value - 0.04) < 1e-9);
+  const r = groundNumbers(post, [{ url: 'https://x.dev/jev', text: 'A 262K-word context at $0.04 per million tokens.' }]);
+  assert.deepEqual(r.missing.map((m) => m.text), []);
+  assert.deepEqual(groundNumbers(post, [{ url: 'u', text: 'At $0.40 per million tokens.' }]).missing.map((m) => m.text), ['262 тисяч', '4 центи']);
+});

@@ -54,7 +54,7 @@ export interface AuditSummary {
   posts:      number;
   findings:   number;
   groups:     Record<string, number>;
-  codes:      Array<{ code: string; level: FindingLevel; n: number }>;
+  codes:      Array<{ code: string; level: FindingLevel; n: number; means?: string }>;
 }
 
 /** A finding on a waiting post (approval card). */

@@ -96,7 +96,8 @@ export interface AuditSummary {
   posts:      number;
   findings:   number;
   groups:     Partial<Record<AuditFlag, number>>;
-  codes:      Array<{ code: string; level: 'error' | 'warning'; n: number }>;
+  /** The top codes with what each means (`explain`): a code names a fault found in posts, not a setting to change. */
+  codes:      Array<{ code: string; level: 'error' | 'warning'; n: number; means?: string }>;
 }
 
 /** Rows of `editor_post_audit` → the dashboard's grouped view (errors first, then by count). */
@@ -127,7 +128,7 @@ export function summarise(groups: AuditCodeGroup[], run: { auditedAt: string | n
   const ordered = Object.fromEntries(AUDIT_FLAGS.filter((f) => flags[f]).map((f) => [f, flags[f]!])) as Partial<Record<AuditFlag, number>>;
   return {
     audited_at: run.auditedAt, posts: run.posts, findings: groups.reduce((s, g) => s + g.count, 0), groups: ordered,
-    codes: groups.slice(0, MAX_DIGEST_CODES).map((g) => ({ code: g.code, level: g.level, n: g.count })),
+    codes: groups.slice(0, MAX_DIGEST_CODES).map((g) => ({ code: g.code, level: g.level, n: g.count, means: g.explain })),
   };
 }
 

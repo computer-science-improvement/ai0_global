@@ -160,5 +160,5 @@ test('grouped view and digest summary: errors first, counts, distinct posts, fla
   const s = summarise(groups, { auditedAt: '2026-10-12T00:00:00.000Z', posts: 4 });
   assert.deepEqual(s.groups, { text_hygiene: 3, style_violation: 1 });
   assert.equal(s.findings, 5);
-  assert.deepEqual(s.codes[0], { code: 'lead_too_long', level: 'error', n: 3 });
+  assert.deepEqual(s.codes[0], { code: 'lead_too_long', level: 'error', n: 3, means: 'The bold first line is longer than 140 characters (over 220 is an error).' });
 });

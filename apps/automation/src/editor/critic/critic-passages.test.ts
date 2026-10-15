@@ -4,6 +4,7 @@ import assert from 'node:assert/strict';
 import { CriticGate, PAGE_CAP } from './critic-gate';
 import { criticUserPrompt, type CriticRequest } from './critic.service';
 import type { EditorTool } from '../harness/tool';
+import { criticGroundingLines, groundingCheckOf } from './critic-passages';
 
 const URL = 'https://www.marktechpost.com/2026/10/13/google-gemini-4-argon-api-release/';
 const HEAD = 'Home AI News Research Tutorials Newsletter Subscribe. '.repeat(90); // ~4.8k chars of navigation, the old excerpt
@@ -45,6 +46,10 @@ test('snapshot: the critic prompt\'s source block — title, date and the passag
     'Сторінка: «Google Releases Gemini 4 Argon to the API»; опублікована: вівторок, 13.10.2026 19:20 (Europe/Kyiv).',
     'Уривки навколо чисел і назв поста (±400 знаків, не початок сторінки) — звір із ними кожне число й факт, зокрема що саме число означає:',
     `[1] про «1 мільйона», «68,90%», «Gemini 4 Argon», «Vals Index»:\n${passage}`,
+    '',
+    '### Звірка чисел і дат кодом (з усіма прочитаними текстами, не лише з уривками вище)',
+    'Знайдено в джерелі: «1 мільйона» (там: «1M»), «68,90%» (там: «68.90%»).',
+    'Ці числа й дати є в джерелі, навіть якщо записані інакше (інша мова, формат дати, K/M, центи): не знижуй за них grounding і не пиши, що їх немає у фрагменті. Перевір лише, чи вони означають те саме, що в пості.',
   ].join('\n'));
   assert.match(passage, /^…/);
   assert.match(passage, /1M-token context window, while a single response is capped at 64K output tokens/);
@@ -75,4 +80,19 @@ test('groundingSources: the page text (≤ 60k), the aggregator\'s primary links
   assert.deepEqual(s[0].primaryLinks, ['https://blog.google/technology/ai/gemini-4-argon/']);
   assert.deepEqual(s[1], { url: 'library://facts/7', text: 'Факт: 42 відсотки.' });
   assert.deepEqual(gate.sources().map((x) => Object.keys(x).sort()), [['publishedAt', 'title', 'url']], 'sources() keeps its T5 shape');
+});
+
+test('037: the critic is told which numbers and dates code found in the sources and how the source writes them', () => {
+  const post = 'Роздача триває до 19 жовтня, 23:59 UTC. Ціна без знижки — 1 799 грн.';
+  const g = groundingCheckOf(post, [{ url: 'https://store.example/game', text: 'Free to keep. Offer ends 10/19/2026 11:59 PM UTC.' }],
+    { publishedAt: '2026-10-15T09:00:00Z', timezone: 'Europe/Kyiv' });
+  assert.ok(g);
+  assert.deepEqual(g!.found.map((f) => [f.text, f.as]), [['19 жовтня', '10/19/2026']]);
+  assert.deepEqual(g!.missing, ['1 799 грн']);
+  const lines = criticGroundingLines(g).join('\n');
+  assert.match(lines, /Знайдено в джерелі: «19 жовтня» \(там: «10\/19\/2026»\)/);
+  assert.match(lines, /не знижуй за них grounding/);
+  assert.match(lines, /Не знайдено в жодному прочитаному тексті: «1 799 грн»/);
+  assert.deepEqual(criticGroundingLines(null), []);
+  assert.equal(groundingCheckOf('Без чисел.', [{ url: 'u', text: 'x' }]), null);
 });

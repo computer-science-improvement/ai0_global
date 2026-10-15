@@ -5,7 +5,7 @@ import { localDay, MONTHS_GENITIVE } from './dates';
  * Spec 037 FR-004 (T4): are the post's numbers in the pages the writer read? Pure and deterministic.
  *
  * The claims of a post are its prices, percentages, counts with units, scaled numbers and dates, normalised to a
- * value: «1,05 трлн» = 1.05e12, «850 тисяч» = 850 000, «2 599 грн» = 2599, «$0.10» = 0.1, «−75%» = 75 %, «15 жовтня» =
+ * value: «1,05 трлн» = 1.05e12, «850 тисяч» = 850 000, «2 599 грн» = 2599, «$0.10» = 0.1, «4 центи» = 0.04, «−75%» = 75 %, «15 жовтня» =
  * 10-15. Not claims: years, the post's own date, times, list numbering («1. Роль»), product versions («Gemini 4»,
  * «Qwen-Image-2.1», «Red Dead Redemption 2»), small bare integers (< 10, «5 термінів»), anything inside quotes (a
  * prompt example «Мені 35, вага 80 кг», a quoted title).
@@ -57,6 +57,8 @@ export interface GroundingResult {
 const SP = '[ \\u00A0\\u202F\\u2009]';
 const SCALE_RE = new RegExp(String.raw`^${SP}?(трлн|трильйон\p{L}*|млрд|мільярд\p{L}*|млн|мільйон\p{L}*|тисяч\p{L}*|тис\.?|trillion|billion|million|thousand|bn|mln|mn|[KMBT](?![\p{L}\p{N}]))`, 'u');
 const CURRENCY_AFTER_RE = new RegExp(String.raw`^${SP}?(грн|гривень|гривні|гривня|гривнi|₴|UAH|USD|EUR|доларів|долари|долара|долар|дол\.|євро|€|\$|юанів|юанів|фунтів)(?![\p{L}])`, 'u');
+/** «4 центи», «5 cents», «4¢»: money in hundredths («4 центи за мільйон» = $0.04). */
+const CENTS_AFTER_RE = new RegExp(String.raw`^${SP}?(цент\p{L}*|cents?|¢)(?![\p{L}])`, 'u');
 const PERCENT_RE = new RegExp(String.raw`^${SP}?(%|відсот\p{L}*|percent\b|per cent\b)`, 'u');
 /** A unit word right after a bare number: makes a small integer a claim («5 кг», «8 кроків» stay out below 10 anyway). */
 const CURRENCY_BEFORE_RE = /([$€£¥₴])\s?$/u;
@@ -143,7 +145,8 @@ function scanNumbers(text: string, source: boolean): RawNumber[] {
     const pc = PERCENT_RE.exec(rest);
     const cur = CURRENCY_AFTER_RE.exec(rest);
     const curBefore = CURRENCY_BEFORE_RE.exec(before);
-    if (pc) { kind = 'percent'; end += pc[0].length; } else if (cur) { kind = 'money'; end += cur[0].length; }
+    const cents = !pc && !cur ? CENTS_AFTER_RE.exec(rest) : null;
+    if (pc) { kind = 'percent'; end += pc[0].length; } else if (cur) { kind = 'money'; end += cur[0].length; } else if (cents) { kind = 'money'; scale *= 0.01; end += cents[0].length; }
     if (curBefore) kind = kind === 'percent' ? kind : 'money';
     const begin = curBefore ? start - curBefore[0].length : start;
     const marked = kind !== 'count' || scale !== 1;

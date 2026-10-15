@@ -13,7 +13,7 @@ import { criticSkillsSection, type CriticSkillsContext, type CriticSkillsRequest
 import { criticDatesLines, type CriticDates } from './critic-dates';
 import { criticStoryLines, type CriticStoryContext } from '../story/story-context';
 import { criticMediaLines, type CriticMediaContext } from './critic-media';
-import { criticPassageLines, type CriticSourceContext } from './critic-passages';
+import { criticGroundingLines, criticPassageLines, type CriticSourceContext } from './critic-passages';
 
 /** One attempt of the critic; a second attempt follows a timeout or an error (fail-safe, FR-004). */
 export const CRITIC_TIMEOUT_MS = 90_000;
@@ -142,6 +142,7 @@ export function criticUserPrompt(r: CriticRequest): string {
   } else {
     s.push('Джерела немає — оціни grounding за перевірюваністю тверджень.');
   }
+  s.push(...criticGroundingLines(r.source?.grounding));
   s.push(...criticMediaLines(r.media));
   s.push('', '## Попередження lint (AI-штампи, гумор і сленг, гігієна тексту та інші перевірки коду)');
   const lintWarnings = r.lintWarnings ?? r.slopWarnings;

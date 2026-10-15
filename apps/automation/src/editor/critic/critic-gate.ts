@@ -13,7 +13,8 @@ import { dateFromUrl, normalizePublishedAt } from '../post/dates';
 import type { AuditSource } from '../post/integrity/types';
 import type { CriticDates } from './critic-dates';
 import type { CriticStoryContext } from '../story/story-context';
-import { sourcePassages, type SourcePage } from '../post/grounding';
+import { sourcePassages, type GroundingSource, type SourcePage } from '../post/grounding';
+import { groundingCheckOf } from './critic-passages';
 import { criticMediaOf } from './critic-media';
 import { storedSourcesOf, type StoredSource } from './stored-sources';
 
@@ -184,14 +185,21 @@ export class CriticGate {
       const pages: SourcePage[] = [{ url, text: page, title: meta?.title ?? null },
         ...[...this.fetched.entries()].filter(([k]) => k !== normUrl(url)).map(([k, text]) => ({ url: this.read.get(k)?.url ?? k, text, title: this.read.get(k)?.title ?? null }))];
       const passages = sourcePassages(post.text, pages, { publishedAt: post.publishAt, timezone: post.timezone });
-      return { url, excerpt: passages.length ? null : page.slice(0, SOURCE_CAP), title: meta?.title ?? null, publishedAt: meta?.publishedAt ?? null, passages };
+      const grounding = groundingCheckOf(post.text, await this.textsRead(spec), { publishedAt: post.publishAt, timezone: post.timezone });
+      return { url, excerpt: passages.length ? null : page.slice(0, SOURCE_CAP), title: meta?.title ?? null, publishedAt: meta?.publishedAt ?? null, passages, grounding };
     }
     let excerpt = url ? this.fetched.get(normUrl(url)) ?? null : null;
     if (!excerpt && typeof spec?.library_ref === 'string' && this.d.libraryText) {
       excerpt = await this.d.libraryText(spec.library_ref).catch(() => null);
     }
     if (!url && !excerpt) return null;
-    return { url: url ?? (typeof spec?.library_ref === 'string' ? spec.library_ref : null), excerpt: excerpt ? excerpt.slice(0, SOURCE_CAP) : null };
+    const grounding = post ? groundingCheckOf(post.text, await this.textsRead(spec), { publishedAt: post.publishAt, timezone: post.timezone }) : null;
+    return { url: url ?? (typeof spec?.library_ref === 'string' ? spec.library_ref : null), excerpt: excerpt ? excerpt.slice(0, SOURCE_CAP) : null, grounding };
+  }
+
+  /** Every text the run read (pages ≤ 60k, feed items' title + snippet) and the spec's library row, for grounding. */
+  private async textsRead(spec: any): Promise<GroundingSource[]> {
+    return (await this.groundingSources(spec)).filter((x) => typeof x.text === 'string' && x.text.trim()).map((x) => ({ url: x.url, text: x.text!, title: x.title ?? null }));
   }
 
   /** Spec 037 T5: the pages and feed items the run read, with their publication dates (lintPost's `ctx.sources`). */
