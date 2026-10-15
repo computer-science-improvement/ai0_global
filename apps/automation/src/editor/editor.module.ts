@@ -168,6 +168,9 @@ import { buildMigrationTools, registerMigrationActions } from './migration/migra
 import { STRATEGY_MIGRATION, StrategyMigrationController, type StrategyMigrationInfra } from './migration/strategy-migration.controller';
 import { StrategyMigrationUpkeep } from './migration/migration-upkeep';
 import { UPCOMING_SLOTS, UpcomingSlotsController, upcomingSlots, type UpcomingSlotsPort } from './schedule/upcoming';
+import { POST_AUDIT, PostAuditApi, PostAuditController } from './audit/post-audit.controller';
+import { editorCardAudit, PostAuditService } from './audit/post-audit.service';
+import { approvalFindingsHook } from './audit/approval-findings';
 
 export const EDITOR_RUNNER    = 'EDITOR_RUNNER';
 export const EDITOR_SCHEDULER = 'EDITOR_SCHEDULER';
@@ -1029,6 +1032,8 @@ export const EDITOR_PROVIDERS = [
       useFactory: (repos: EditorRepos, ports: PublishPorts, approval: ApprovalInfra, platform: PlatformInfra, pool: Pool) => new ApprovalsService({
         repo: approval.repo, card: (k) => repos.channels.get(k), media: ports.media, hostSlides: platform.publish.hostSlides,
         styleOf: async (ref) => (await resourceStyleOf(pool, ref)).effective,
+        // Spec 037 FR-014: every integrity finding of a waiting post, with the rule explanation, on the card.
+        findings: approvalFindingsHook({ pool, cardOf: editorCardAudit((k) => repos.channels.get(k)) }),
         // Spec 031 FR-008: owner edits and reject reasons become owner preferences in the channel memory.
         remember: (key, pref) => repos.memory.add(key, pref.kind, pref.text, pref.evidence, 'owner'),
         log: (m) => new Logger('Approval').warn(m),
@@ -1214,6 +1219,14 @@ export const EDITOR_PROVIDERS = [
       },
     },
     {
+      // Spec 037 FR-014: the post audit (Network health notes) and the on-demand run.
+      provide: POST_AUDIT,
+      inject: [DB_POOL, EDITOR_REPOS],
+      useFactory: (pool: Pool, repos: EditorRepos) => new PostAuditApi(new PostAuditService({
+        pool, cardOf: editorCardAudit((k) => repos.channels.get(k)), log: (m) => new Logger('PostAudit').warn(m),
+      })),
+    },
+    {
       // Spec 025 FR-013: resource pauses (one service with the Inbox; the guards above build read-only ones).
       provide: RESOURCE_PAUSES,
       inject: [DB_POOL, AGENT_INFRA],
@@ -1285,8 +1298,11 @@ export const EDITOR_PROVIDERS = [
           pool, inbox: infra.inbox, log: (m) => logger.warn(m),
           streakN: Math.max(1, Math.round(envNum((k) => cfg.get<string>(k) ?? undefined, 'EDITOR_CRITIC_REJECT_STREAK', DEFAULT_REJECT_STREAK))),
         });
+        // Spec 037 FR-014: the daily post audit (and at once after a rule change), code only.
+        const audit = new PostAuditService({ pool, cardOf: editorCardAudit((k) => repos.channels.get(k)), log: (m) => logger.warn(m) });
         return new EditorScheduler({
           pool, channels: repos.channels, plans: repos.plans, runner, reserved,
+          postAudit: (now) => audit.tick(now),
           newsWatch: (card, now) => newsWatch.check(card, now),
           silentDays: (cards, now, paused) => silent.check(cards, now, paused),
           enabled: () => isEnabled(cfg),
@@ -1492,7 +1508,7 @@ export const EDITOR_PROVIDERS = [
 @Module({
   // AuthModule: EditorController is guarded by TrackingAuthGuard, which injects AuthService.
   imports:     [ChannelConfigModule, PublishersModule, AuthModule],
-  controllers: [EditorController, EditorChatController, AgentsController, ModelsController, NetworkController, ManagerController, PromoController, PromoRedirectController, ApprovalsController, AutonomyController, ScheduleController, StrategyMigrationController, UpcomingSlotsController, ResourcePausesController],
+  controllers: [EditorController, EditorChatController, AgentsController, ModelsController, NetworkController, ManagerController, PromoController, PromoRedirectController, ApprovalsController, AutonomyController, ScheduleController, StrategyMigrationController, UpcomingSlotsController, ResourcePausesController, PostAuditController],
   providers:   [...EDITOR_PROVIDERS, TrackingAuthGuard],
   exports:     [EDITOR_REPOS, EDITOR_RUNNER, AGENT_INFRA, PLATFORM_INFRA, EDITOR_MANAGER],
 })

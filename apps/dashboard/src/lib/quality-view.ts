@@ -4,6 +4,8 @@
 // Mirrors ResourceQuality (apps/automation/src/editor/manager/quality-digest.ts).
 // Pure helpers, no React and no runtime imports (the node:test suite loads this).
 
+import type { AuditSummary } from './audit-view';
+
 export type QualityTone = 'neutral' | 'success' | 'warning' | 'danger';
 
 export const QUALITY_FLAGS = [
@@ -12,6 +14,8 @@ export const QUALITY_FLAGS = [
   'dark_day', 'series_missed',
   // Spec 037 FR-009: a feed that mostly gives jargon over the audience level or critic revise / reject.
   'feed_misfit',
+  // Spec 037 FR-014: the post audit of the published posts.
+  'story_repeat', 'fact_conflict', 'date_issue', 'text_hygiene', 'style_violation',
 ] as const;
 export type QualityFlag = typeof QUALITY_FLAGS[number];
 
@@ -37,6 +41,8 @@ export interface ResourceQuality {
   };
   /** Spec 037 FR-009: per feed, items with jargon over the audience level / critic revise / reject (absent on older digests). */
   feeds?: Array<{ feed: string; items: number; jargon_over_level: number; revise: number; reject: number; misfit_share: number; suggestion: 'replace' | 'limit' | null }>;
+  /** Spec 037 FR-014: the post audit of the window (absent before the first audit). */
+  audit?: AuditSummary;
   flags: QualityFlag[];
 }
 
@@ -60,6 +66,11 @@ export const FLAG_LABEL: Record<QualityFlag, string> = {
   dark_day:                  'a planned day with no post',
   series_missed:             'a series slot did not go out',
   feed_misfit:               'a feed does not fit the audience',
+  story_repeat:              'a story was repeated',
+  fact_conflict:             'facts or sources to check',
+  date_issue:                'dates to check',
+  text_hygiene:              'text hygiene issues',
+  style_violation:           'off the style sheet',
 };
 
 export const CHECK_ITEM_LABEL: Record<string, string> = {
