@@ -1,6 +1,6 @@
 ---
 name: grammar-ua
-description: Ukrainian grammar and orthography rules for proofreading posts. Apply only in grammar-review contexts, not during initial writing.
+description: Ukrainian grammar and orthography rules for proofreading posts — cases, aspect, calques, apostrophe ʼ, «» quotes, decimal separator, broken characters and mixed scripts. Apply in grammar-review contexts.
 applies_to: [executor, reviewer, composer]
 ---
 
@@ -39,8 +39,9 @@ verb that names that exact action — never the multiplicative form.
 - Always check the direct object ending after transitive verbs.
 
 ## Proper nouns — never translate
-Company names, product names, person names, platform names, game titles, studio names — stay in
-original language.
+Company names, product names, platform names, game titles, studio names — stay in original language.
+Person names follow the resource style (`uk_translit` or `original`, see `proper-nouns-terms`).
+Abbreviations stay Latin: API, CLI, not «АПІ», «КЛІ» (`glossary_violation`).
 - Good: "Apple випустила iOS 18"
 - Bad: "Еппл випустила"
 
@@ -59,6 +60,18 @@ proper noun in Latin/English). Never ship a post with leaked foreign-script frag
 - "15%" not "15 %"
 - "$8 млн" / "8 млрд грн"
 - "12 березня 2026" (omit year if current)
+- Decimal separator: one per post, as the resource style says (`numbers.decimal`); default is the comma — «1,05 трлн», «$1,24». A post with both «1,05» and «0.10» gets `decimal_mixed`. Versions and model names keep their dots (iOS 18.1, Gemini 2.5).
+- Units for a beginner or general audience (style `units: words`): «3 млрд параметрів», «270 млн», not «3B», «270M». Model names stay as they are (Gemma 3 27B).
+
+## Typography (the normaliser fixes it before render — write it right anyway)
+- Apostrophe between Cyrillic letters is ʼ (U+02BC): «зʼявився», «пʼять», «обʼєм». One form in the whole post — never «з'явились» and «зʼявиться» side by side.
+- Quotes in Ukrainian text are «ялинки»; nested — „лапки“. Straight " only in code, URLs and Latin text.
+- One space between words; no double spaces.
+- The normaliser never touches URLs, code, hashtags or Latin text.
+
+## Broken characters
+- The replacement character U+FFFD (a diamond with a question mark), control characters, zero-width characters inside a word, mojibake like «Ð¿Ñ€Ð¸» — lint error `text_replacement_char`. Retype the word from the source; never publish it.
+- One word, one script: a Latin letter inside a Cyrillic word («Меркoff», «#aiновини») is `mixed_script_word`. Write Murkoff or Меркофф. A Latin name with a hyphenated Ukrainian ending («iPhone-ом») is allowed.
 
 ## What NOT to change
 - Facts, numbers, prices, dates, URLs

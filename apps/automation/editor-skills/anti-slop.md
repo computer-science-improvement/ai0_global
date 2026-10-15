@@ -23,6 +23,9 @@ Your job is to strip those signatures.
 - "Проблема одна: …", "Річ одна: …", "Нюанс один: …" — setup-punchline cliché
 - "Саме так виглядає…", "Саме такий вигляд має…" — recap-фраза після сценки
 - "одне з найгарячіших …-захоплень/трендів/явищ" — хайпове означення
+- "Це той випадок, коли…" — ready-made framing (lint warning)
+- "Коротко — …" at the start of a sentence — signposting (lint warning)
+- "Панікувати не варто", "Зберігайте собі", "Здогадаєтеся, який?", "Признавайся" — chatty filler and pseudo-engagement (lint error)
 
 ## Significance / legacy puffery — hard ban
 LLMs inflate importance by framing arbitrary facts as historic turning points.
@@ -54,6 +57,7 @@ The last sentence MUST be a concrete fact, not a worldview comment.
 - ❌ "у часи, коли …", "в епоху, що …"
 - ❌ "коли/якщо X формує Y, то Z"
 - ❌ "майбутнє виглядає яскравим", "попереду цікаві часи"
+- ❌ "Мораль: …", "Мораль для всіх, хто…" (lint `MORAL_CLOSER`)
 - ❌ Будь-яке речення, що робить узагальнення про «світ», «час», «епоху».
 
 ## Banned metaphors / clichés
@@ -127,10 +131,10 @@ Do not explain brand/character references the reader already knows.
 - Fix: хто оголосив / хто прийняв / хто змусив.
 
 ## Format bans
-- No em-dashes (—) except in the headline separator. Use commas or periods.
+- No em-dashes (—) instead of commas or periods. Allowed only where a copula is omitted («Київ — столиця») and in the headline separator.
 - No adverbs: дуже, досить, надзвичайно, вкрай, особливо, значно, суттєво (unless from source).
 - No mechanical boldface for key terms — **bold** only for the headline.
-- No curly quotes (“ ”) — only straight (" ").
+- No curly (“ ”) or straight (" ") quotes in Ukrainian text — only «ялинки» (the typography normaliser converts straight ones). Straight quotes only inside code, URLs and Latin text.
 - No emoji unless the channel skill explicitly allows.
 - No paragraph that ends with a one-liner "mic drop" every time — vary endings.
 
@@ -139,6 +143,19 @@ These leak from model instructions. Delete on sight:
 - "Звісно!", "Чудове питання!", "Сподіваюся, це допоможе!"
 - "Ось огляд…", "Нижче наведено…", "Якщо потрібно, можу розгорнути…"
 - "На момент останнього оновлення…", "Наскільки мені відомо…"
+
+## Process leaks — the reader sees the result, not your work
+Sentences about how the post was made are a lint error (`process_leak`) when explicit, a warning otherwise:
+- ❌ "Актуальних промокодів не знайшлось, тому в пості лише…", "у пості лише…"
+- ❌ "я перевірив", "за моїми даними", "інструмент повернув", "згідно з брифом", "на жаль, не вдалося знайти"
+- ✅ Publish what you found. Found nothing — skip the slot with a reason, don't post about the search.
+
+## One address form — the resource's
+Address the reader the way the resource style says: «ви» by default (owner decision for every resource), or impersonal. Never mix forms in one post: "Ви граєте…" next to "перевіряй", "граєш", "признавайся" is a lint error (`address_mixed`). Quotes from sources don't count.
+
+## Don't repeat yourself
+- Same thought twice in one post (the second time in other words) — cut the second. A verbatim repeat of 4+ words inside a post is a lint warning.
+- Openings and phrases from the resource's recent posts (the "Already used" block in your prompt: «Що X:» subheadings, "5 X" listicle openings, the same closing phrase in every giveaway) — use something else (`monotony_*`).
 
 ## Hard ban: AI-style closing sentences
 The LAST sentence MUST be a concrete fact from the source. It MUST NOT be a summary, implication,
