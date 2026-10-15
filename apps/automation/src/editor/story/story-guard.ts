@@ -6,6 +6,7 @@ import type { AuditCard } from '../post/integrity/types';
 import { assessStory, storyView, type StoryAssessment } from './story-match';
 import type { CriticStoryContext } from './story-context';
 import type { StoryRegistry } from './story.repository';
+import { factConflicts } from '../post/fact-conflict';
 
 /**
  * Spec 037 T2: the story guard of publish_post. The post (as the reader will see it) is matched with the resource's
@@ -83,5 +84,7 @@ export async function storyGuard(reg: Pick<StoryRegistry, 'history'>, i: StoryGu
   const replyTo = a.role === 'followup' && original && original.channel === i.channelKey && original.messageIds?.[0] != null
     && Math.abs(Date.parse(post.publishedAt) - Date.parse(original.publishedAt)) <= 14 * 86_400_000
     ? original.messageIds[0] : null;
-  return { ok: true, warnings: a.findings.filter((f) => f.level === 'warning'), post, assessment: a, critic: criticStoryOf(a, post), replyTo };
+  // Spec 037 T4: a price, character or deadline told differently by an earlier post (the registry's 14 days) → warning.
+  const facts = factConflicts(post, h.previous);
+  return { ok: true, warnings: [...a.findings.filter((f) => f.level === 'warning'), ...facts], post, assessment: a, critic: criticStoryOf(a, post), replyTo };
 }

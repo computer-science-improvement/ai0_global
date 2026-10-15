@@ -1,5 +1,6 @@
 import type { Pool } from 'pg';
 import { resourceKeys } from './data-refs';
+import { isSiteIndexUrl } from './source-tier';
 
 /**
  * The content ledger (spec 023 FR-010, migration 060): one dedup record per (resource, canonical source
@@ -14,6 +15,9 @@ import { resourceKeys } from './data-refs';
  * Canonical refs: `data://<schema_key>/<id>` (a `library://` alias resolves through legacy_ref); a URL as
  * https, a lower-case host without `www.`, the root as "/" and no trailing slash on a path, without utm_* /
  * fbclid / gclid parameters or the fragment (migration 075, spec 037 T16); anything else as given.
+ *
+ * A site root or a section index (`https://store.steampowered.com/`, `/search`, `/new-and-popular`; spec 037 T4) is
+ * never recorded or checked: it names a site, not an item, and one row of it would block every later post of the site.
  *
  * Posts that wait for the owner (spec 031) are not in the ledger yet; `check(..., { waiting: true })` also
  * looks at waiting / approved slots and waiting platform posts (their refs canonicalised the same way), so
@@ -70,6 +74,10 @@ export class ContentLedger {
   /** Record one use of one source. True when a new ledger row was written. */
   async record(sourceRef: string | null | undefined, u: LedgerUse): Promise<boolean> {
     if (!sourceRef?.trim() || !u.resourceRef?.trim()) return false;
+    if (isSiteIndexUrl(sourceRef)) {
+      this.log?.(`content_ledger: ${sourceRef} is a site root / section index — not recorded`);
+      return false;
+    }
     const { rows } = await this.pool.query(
       `SELECT content_ledger_record($1, $2, $3, $4, $5, $6, $7, $8, $9) AS added`,
       [ledgerResource(u.resourceRef), sourceRef, u.origin, u.status, u.publishedPostId ?? null, u.platformPostId ?? null,
@@ -102,7 +110,7 @@ export class ContentLedger {
 
   /** May `sourceRef` go out on `resourceRef`? `{used: false}` = yes. */
   async check(resourceRef: string, sourceRef: string | null | undefined, o: LedgerCheckOptions = {}): Promise<LedgerVerdict> {
-    if (!sourceRef?.trim()) return { used: false };
+    if (!sourceRef?.trim() || isSiteIndexUrl(sourceRef)) return { used: false };
     const rr = ledgerResource(resourceRef);
     const now = o.now ?? new Date();
     const { rows: a } = await this.pool.query(`SELECT content_ref_aliases($1) AS refs`, [sourceRef]);

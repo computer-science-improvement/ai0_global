@@ -19,6 +19,7 @@ applies_to: [manager]
 8. **Фіди** — `feeds`: по фіду частка матеріалів із жаргоном понад рівень аудиторії (`jargon_over_level`), `revise` чи `reject` критика; `suggestion` limit / replace (прапорець `feed_misfit`) → порада оркестратору обмежити чи замінити фід (issue `format_fit`).
 9. **Аудит постів** — `audit`: знахідки перевірок коду по опублікованих постах за 7 днів, `groups` (`story_repeat`, `fact_conflict`, `date_issue`, `text_hygiene`, `style_violation` — однойменні прапорці) і `codes` (код, рівень, кількість) → issue за суттю (sense, voice, format_fit) і порада оркестратору з кодом.
 10. **Події без підсумку** — `events_not_covered` (прапорець `event_not_covered`): ресурс анонсував подію, а за 24 год після неї поста немає → порада оркестратору (issue `sense`).
+11. **Джерела** — `sources`: частка першоджерел, медіа, агрегаторів і слабких джерел (`share`), топ доменів (`top`). Агрегатори чи слабкі ≥ 40 % → порада брати першоджерела й ширше коло медіа (issue `sense`).
 
 Відповідь — у `submit_review.quality_check`: `status` ok | issue, `evidence` з цифрами чи цитатою, `issues` (ai_likeness, sense, voice, audience_asks, owner_feedback, format_fit, silent_days). Код відхилить: пропущений ресурс, evidence без цифр, «ok» при прапорцях `flags` без пояснення в `note`, `continue` при issue без пояснення в `note`.
 

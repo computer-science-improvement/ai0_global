@@ -31,3 +31,11 @@ test('caps long text', () => {
   const p = extractPage(`<body><p>${'a'.repeat(20000)}</p></body>`, 'https://x.example');
   assert.ok(p.text.length <= 12_001);
 });
+
+test('037 T4: an aggregator page lists its links to the primary source; other pages do not', () => {
+  const body = '<article><p>Google <a href="https://blog.google/technology/ai/gemini-4-argon/">announced</a> Argon '
+    + '(<a href="/2026/10/12/other/">our earlier story</a>, <a href="https://techcrunch.com/x">TechCrunch</a>, <a href="https://arxiv.org/abs/2510.01234">paper</a>).</p></article>';
+  const agg = extractPage(`<html><body>${body}</body></html>`, 'https://www.marktechpost.com/2026/10/13/google-gemini-4-argon-api-release/');
+  assert.deepEqual(agg.primary_links, ['https://blog.google/technology/ai/gemini-4-argon/', 'https://arxiv.org/abs/2510.01234']);
+  assert.equal(extractPage(`<html><body>${body}</body></html>`, 'https://techcrunch.com/2026/10/13/a/').primary_links, undefined);
+});

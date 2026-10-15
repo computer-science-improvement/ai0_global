@@ -142,6 +142,11 @@ export const CODE_EXPLANATIONS: Record<string, CodeExplanation> = {
     explain: 'Specific numbers come from a low-quality source (a "fun facts" page, an aggregator).',
     fix: 'Take the number from the primary source, or drop it.',
   },
+  source_aggregator: {
+    title: 'Aggregator instead of the primary source',
+    explain: 'The source is an aggregator (MarkTechPost, GamerPower) whose page links the original.',
+    fix: 'Open the linked original (blog, paper, store page) and cite it instead.',
+  },
   // T5 dates and freshness.
   date_relative_mismatch: {
     title: 'Relative date is wrong',

@@ -44,6 +44,8 @@ export interface AuditPost {
   poll?: AuditPoll;
   /** The URL of the code-rendered `→ Source` line, when present. */
   sourceUrl?: string;
+  /** Spec 037 T4: a spec's `source.url` whatever the card's link style (a button / footer source has no `→` line). */
+  citedSourceUrl?: string;
   /** Every platform message the post is made of (an album is several), for traceability; export only. */
   messageIds?: number[];
   /**
@@ -99,6 +101,10 @@ export interface AuditSource {
   url: string;
   publishedAt?: string | null;
   title?: string | null;
+  /** Spec 037 T4: the text the run read (page ≤ 60k chars, feed item title + snippet, library row) for grounding. */
+  text?: string | null;
+  /** Spec 037 T4: links of the page to a primary source on another site (an aggregator's "take the primary"). */
+  primaryLinks?: string[];
 }
 
 export interface Finding {
