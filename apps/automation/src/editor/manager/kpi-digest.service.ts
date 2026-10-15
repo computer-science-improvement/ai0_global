@@ -3,6 +3,7 @@ import { localDate } from '../roles/time';
 import type { Pool } from 'pg';
 import type { ResourceCatalog } from '../agents/resource-catalog';
 import { compactKpis, computeKpis, DailySeries, dayBefore, ScopeKpis } from './kpi-math';
+import { markSampleConfidence } from './kpi-confidence';
 import { qualitySignature, slimQuality, SqlQuality, type ResourceQuality } from './quality-digest';
 
 /** Spec 034 T4: the quality blocks (≤ ~3k chars per busy resource) raised the bound from 12k; render() slims to it. */
@@ -181,7 +182,9 @@ export class KpiDigestService {
       const k = computeKpis(data.get(r.ref)!, localToday(r.ref));
       raw.set(r.ref, k);
       return {
-        ref: r.ref, title: r.title, agent: r.agent, health: healthOf.get(r.ref) ?? null, kpis: compactKpis(k),
+        // Spec 037 FR-013: views/engagement of a small 7-day sample carry "(n=3, low confidence)".
+        ref: r.ref, title: r.title, agent: r.agent, health: healthOf.get(r.ref) ?? null,
+        kpis: markSampleConfidence(compactKpis(k), k.posts.value7d, k.views_per_post.value7d),
         anomalies: Object.entries(k).filter(([, m]) => m.anomaly).map(([n]) => n),
         quality: quality?.get(r.ref) ?? null,
       };
