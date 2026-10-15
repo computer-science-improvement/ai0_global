@@ -30,6 +30,7 @@ import { storyGuard, type StoryGuardResult } from '../story/story-guard';
 import type { StoryRegistry } from '../story/story.repository';
 import { dryRunOf } from '../roles/preview-run';
 import { recentAuditPosts } from '../post/variety/recent-posts';
+import { pollCapGuard, slotSeriesOf } from '../post/polls/poll-cap-guard';
 import {
   CONFIDENCE_RULE, FormatSample, formatsSummary, KPI_SAMPLE_DAYS, performanceEvidenceCheck, sampleConfidence, weightChangeIssue, WeightChange,
 } from '../manager/kpi-confidence';
@@ -168,6 +169,12 @@ export async function checkPublishGuards(d: RoleToolDeps, ctx: ToolContext, spec
     const sg = await d.schedule.publishGuard(slot, { libraryRef: spec.library_ref, sourceUrl: spec.source?.url }, { live: card.mode === 'live', now, card, feeds: card.sources });
     if (sg) return sg;
   }
+  // Spec 037 T7: polls + quizzes over polls_per_week on what is really out, waiting or approved (live, approval, shadow).
+  const polls = await pollCapGuard(d.pool, {
+    channelKey, format: spec.format, at, timezone: card.timezone, cap: card.pollsPerWeek, slotId, series: slotSeriesOf(slot),
+    playbookSeries: (ctx.extras?.network as NetworkCtx | undefined)?.playbook?.series,
+  });
+  if (polls) return polls;
   // Spec 037 T2: one story, one post (the resource's 14 days, the network's 24 h); warnings go to the critic.
   let story: Extract<StoryGuardResult, { ok: true }> | null = null;
   if (d.stories) {

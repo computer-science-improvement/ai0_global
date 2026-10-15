@@ -5,6 +5,7 @@ import { lintPost, LintResult } from '../post/lint-post';
 import { renderTelegram, TgMessage } from '../post/render-telegram';
 import { checkQuizGroundTruth } from '../post/quiz-ground-truth';
 import { checkVerbatim } from '../post/verbatim-guard';
+import { pollCapGuard } from '../post/polls/poll-cap-guard';
 import { publishSpecNow, PublishSpecDeps } from '../publish/publish-spec';
 import { ChannelPausedForEditorError } from '../publish/telegram-editor.publisher';
 import { RESERVED_MAX_LATE_MS } from '../publish/sponsored.publisher';
@@ -160,13 +161,16 @@ export class DraftsService {
 
   // ── guards shared by publish-now and the scheduled path ───────────────────
 
-  private async guards(channelKey: string, spec: PostSpec, card: EditorCard, now: Date): Promise<DraftError | { ref: string | null }> {
+  private async guards(channelKey: string, spec: PostSpec, card: EditorCard, now: Date, slotId: string | null = null): Promise<DraftError | { ref: string | null }> {
     const lint = lintPost(spec, card);
     if (!lint.ok) return { error: 'lint_failed', details: lint.errors };
     const truth = await checkQuizGroundTruth(this.d.pool, spec);
     if (truth) return truth;
     const verbatim = await checkVerbatim(this.d.pool, spec);
     if (verbatim) return verbatim;
+    // Spec 037 T7: a chat poll counts against polls_per_week like the agent's (published, waiting and approved posts).
+    const polls = await pollCapGuard(this.d.pool, { channelKey, format: spec.format, at: now, timezone: card.timezone || CHAT_TIMEZONE, cap: card.pollsPerWeek, slotId });
+    if (polls) return polls;
     if (this.d.isPaused(channelKey)) return { error: 'channel_paused', details: `${channelKey}: publish_paused=true` };
     // Spec 023 FR-010: the content ledger decides (a library item once per channel unless its dataset allows a
     // repeat, a URL once per channel, a shadow preview holds it 7 days, an error-marked item never).
@@ -305,7 +309,7 @@ export class DraftsService {
       if (!spec.success) return this.failScheduled(slot, draft, 'post_spec is not a valid PostSpec');
       const resolved = await this.resolveCard(slot.channelKey)
         ?? { card: makeChatCard(slot.channelKey, null), hasCard: false };
-      const g = await this.guards(slot.channelKey, spec.data, resolved.card, now);
+      const g = await this.guards(slot.channelKey, spec.data, resolved.card, now, slot.id);
       if (isError(g)) return this.failScheduled(slot, draft, `${g.error}${g.details ? `: ${typeof g.details === 'string' ? g.details : JSON.stringify(g.details)}` : ''}`);
 
       let res;

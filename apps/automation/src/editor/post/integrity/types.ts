@@ -75,7 +75,7 @@ export interface AuditStory {
  * `style` is the resource style sheet of T8 (address, hashtags, glossary, …).
  */
 export type AuditCard = Partial<Pick<EditorCard,
-  'timezone' | 'language' | 'bannedTerms' | 'hashtags' | 'emojiPolicy' | 'humor' | 'slang' | 'emojiPref' | 'readerQuestionsMax'>> & {
+  'timezone' | 'language' | 'bannedTerms' | 'hashtags' | 'emojiPolicy' | 'humor' | 'slang' | 'emojiPref' | 'readerQuestionsMax' | 'pollsPerWeek'>> & {
   style?: AuditStyle;
 };
 
