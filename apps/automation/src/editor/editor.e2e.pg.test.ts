@@ -32,6 +32,8 @@ before(async () => {
   pool = new Pool({ connectionString: url });
   await pool.query(`DELETE FROM editor_runs WHERE channel_key = $1`, [CH]);
   await pool.query(`DELETE FROM editor_channels WHERE channel_key = $1`, [CH]);
+  // The content ledger (spec 023) outlives the channel row: a rerun on the same DB would hit source_already_posted.
+  await pool.query(`DELETE FROM content_ledger WHERE resource_ref = $1`, [`telegram:${CH}`]);
   await pool.query(
     `INSERT INTO editor_channels (channel_key, mode, title, brief, formats, hashtags, posts_per_day_min, posts_per_day_max, plan_hour)
      VALUES ($1, 'shadow', 'Космос щодня', 'Короткі пояснення космічних знімків', '{"photo":1,"text":0.5,"quiz":0.3}', '{космос,nasa}', 1, 3, 0)`, [CH]);
@@ -41,6 +43,7 @@ after(async () => {
   if (!url) return;
   await pool.query(`DELETE FROM editor_runs WHERE channel_key = $1`, [CH]);
   await pool.query(`DELETE FROM editor_channels WHERE channel_key = $1`, [CH]);
+  await pool.query(`DELETE FROM content_ledger WHERE resource_ref = $1`, [`telegram:${CH}`]);
   await pool.end();
 });
 

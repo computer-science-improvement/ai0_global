@@ -43,6 +43,8 @@ async function cleanup() {
   await pool.query(`DELETE FROM editor_plans WHERE channel_key = $1`, [CH]);
   await pool.query(`DELETE FROM agents WHERE scope_id = $1`, [`telegram:${CH}`]);
   await pool.query(`DELETE FROM editor_channels WHERE channel_key = $1`, [CH]);
+  // The content ledger (spec 023) outlives the channel row: a rerun on the same DB would hit source_already_posted.
+  await pool.query(`DELETE FROM content_ledger WHERE resource_ref = $1`, [`telegram:${CH}`]);
 }
 
 before(async () => {
