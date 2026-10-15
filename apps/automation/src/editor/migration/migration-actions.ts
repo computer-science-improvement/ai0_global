@@ -4,12 +4,12 @@ import { proposeCard } from '../agents/builder-tools';
 import type { OwnerInbox } from '../agents/owner-inbox';
 import type { PendingActionsService } from '../agents/pending-actions';
 import { proposalKey, type MigrationProposal } from './proposal';
-import { isFail, type Fail, type StrategyMigrationService } from './strategy-migration.service';
+import { isFail, STRATEGIES_REMOVED, type Fail, type StrategyMigrationService } from './strategy-migration.service';
 
 /**
  * The migration cards (spec 023 FR-011/FR-012): `migrate_strategies` (writes the migration draft),
  * `strategy_cutover` (retires the taken-over bindings, the resource goes to approval mode) and
- * `strategy_rollback`. Proposed from `/app/strategies` (chatless cards) or by @ai0 in the chat; each is
+ * `strategy_rollback` (refused since spec 023 T7 phase B: strategies no longer run). Proposed from `/app/strategies` (chatless cards) or by @ai0 in the chat; each is
  * re-validated at Apply and fails with the reason. Summaries are English (the dashboard shows them).
  */
 
@@ -62,18 +62,15 @@ export async function migrationCard(svc: StrategyMigrationService, op: Migration
       summary: `Cutover on ${sc.card.channelKey}: retire ${o.extIds.join(', ')} and switch @${sc.agent.handle} to approval mode (${o.stats.days} days in shadow, ${Math.round(o.stats.ratio * 100)}% of the series instances done)`,
     };
   }
-  return {
-    kind: 'strategy_rollback', agentId: sc.agent.id,
-    payload: { channel_key: sc.card.channelKey },
-    summary: `Rollback on ${sc.card.channelKey}: re-enable the migrated strategies and put @${sc.agent.handle} back to shadow`,
-  };
+  // Spec 023 T7 phase B: strategies no longer run, a rollback would only silence the channel.
+  return STRATEGIES_REMOVED;
 }
 
 /** @ai0's tool: dry-run a migration, or propose one of the three cards. */
 export function buildMigrationTools(d: { svc: StrategyMigrationService; actions: Pick<PendingActionsService, 'propose'> }): EditorTool[] {
   const tool = defineTool({
     name: 'propose_strategy_migration',
-    description: 'Перенесення старих стратегій (cron-публікацій) каналу в серії агента. op=preview — лише показати, що й як переноситься (нічого не пише); migrate — картка «перенести» (чернетка плейбука на затвердження власника, стратегії публікують далі, агент у shadow); cutover — картка «вимкнути стратегії й перевести ресурс у режим апруву» (лише після 7 днів у shadow і ≥80% виконаних серій); rollback — картка «повернути стратегії, агент знову в shadow». Картки — лише на пряме прохання власника. Якщо агента в каналу немає (no_agent) — спершу запропонуй create_agent.',
+    description: 'Перенесення старих стратегій (cron-публікацій) каналу в серії агента. op=preview — лише показати, що й як переноситься (нічого не пише); migrate — картка «перенести» (чернетка плейбука на затвердження власника, стратегії публікують далі, агент у shadow); cutover — картка «вимкнути стратегії й перевести ресурс у режим апруву» (лише після 7 днів у shadow і ≥80% виконаних серій); rollback більше недоступний: старі стратегії видалено (spec 023, фаза B), повернення лише заглушило б канал — поверне strategies_removed. Картки — лише на пряме прохання власника. Якщо агента в каналу немає (no_agent) — спершу запропонуй create_agent.',
     kind: 'act', roles: ['builder'],
     input: z.object({
       channel: z.string().min(2).max(200).describe('ключ Telegram-каналу, напр. @my_channel'),

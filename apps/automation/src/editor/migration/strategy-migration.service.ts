@@ -78,6 +78,12 @@ export interface MigrationStatusRow {
   shadow:      ShadowStats | null;
 }
 
+/** Spec 023 T7 phase B: legacy strategies no longer run, so restoring a binding would leave the channel silent. */
+export const STRATEGIES_REMOVED: Fail = {
+  error: 'strategies_removed', status: 410,
+  details: 'legacy strategies no longer run (spec 023 phase B): a restored binding would leave the channel silent; keep the agent and fix its plan instead',
+};
+
 export class StrategyMigrationService {
   constructor(private readonly d: StrategyMigrationDeps) {}
 
@@ -330,29 +336,12 @@ export class StrategyMigrationService {
     }
   }
 
-  /** The rollback card: the agent and its card back to shadow, the migrated bindings re-enabled (one transaction). */
-  async rollback(channelKey: string): Promise<{ mode: ChannelMode; restored: string[] } | Fail> {
-    const sc = await this.scope(channelKey);
-    if (isFail(sc)) return sc;
-    const retired = (await bindingsFor(this.d.pool, sc.allRefs)).filter((b) => b.retiredReason === 'migrated' && b.migratedTo?.agent_id === sc.agent.id);
-    if (!retired.length) return { error: 'nothing_to_restore', details: 'no binding was retired by a cutover of this agent', status: 409 };
-    await this.tx(async (c) => {
-      await setCardMode(c, sc.card.channelKey, 'shadow', 'strategy rollback');
-      await c.query(`UPDATE agents SET mode = 'shadow', updated_at = now() WHERE id = $1`, [sc.agent.id]);
-      await c.query(
-        `UPDATE strategy_bindings SET enabled = true, retired_at = NULL, retired_reason = NULL, migrated_to = NULL WHERE id = ANY($1::uuid[])`,
-        [retired.map((b) => b.id)]);
-    });
-    await this.config();
-    const restored = retired.map((b) => b.ext_id);
-    await this.d.inbox.post({
-      agentId: sc.agent.id, kind: 'strategy_rollback', severity: 'info',
-      title: `↩️ @${sc.agent.handle}: strategies restored on ${sc.card.channelKey}, the agent is back in shadow`,
-      body: `Re-enabled: ${restored.join(', ')}.`,
-      alert: { title: `↩️ @${sc.agent.handle}: стратегії повернуто, агент знову в shadow`, body: `Увімкнено: ${restored.join(', ')}.` },
-      refType: 'agent', refId: sc.agent.handle,
-    }).catch(() => {});
-    return { mode: 'shadow', restored };
+  /**
+   * The rollback card is refused since spec 023 T7 phase B: the strategy runtime is gone, so a restored binding would
+   * never run and the channel would go silent with its agent back in shadow.
+   */
+  async rollback(_channelKey: string): Promise<{ mode: ChannelMode; restored: string[] } | Fail> {
+    return STRATEGIES_REMOVED;
   }
 
   /** `/app/strategies` banner: one row per channel that has (or had) bindings. */

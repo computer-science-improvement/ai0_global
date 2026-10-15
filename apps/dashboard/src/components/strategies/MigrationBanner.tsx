@@ -90,7 +90,7 @@ function ChannelRow({ c, onMigrate }: { c: MigrationChannel; onMigrate: () => vo
     <div className="card" style={{ padding: '12px 14px', display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 12 }}>
       <div style={{ minWidth: 0, flex: '1 1 260px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
-          <span className="text-body" style={{ color: 'var(--color-ink)', fontWeight: 500 }}>{c.channel_key}</span>
+          <span className="text-body" style={{ color: 'var(--color-ink)', fontWeight: 500, minWidth: 0, overflowWrap: 'anywhere' }}>{c.channel_key}</span>
           <span title={s.help}><Badge tone={s.tone}>{s.label}</Badge></span>
           {c.agent && (
             <Link to={'/app/agents/$handle' as never} params={{ handle: c.agent.handle } as never} search={{ tab: 'schedule' } as never} className="link-accent text-body-sm">

@@ -4,7 +4,7 @@
  * week in shadow the cutover is offered; the cutover is one transaction (card + agent → approve, the taken-over
  * bindings retired, config:changed) and is refused while EDITOR_ENABLED≠true; the live guard answers 409 with
  * the ext_ids while a binding is still enabled; a retired binding cannot be re-enabled (409 binding_retired and
- * the DB check); the rollback card restores the bindings and puts the agent back to shadow.
+ * the DB check); the rollback card is refused (spec 023 T7 phase B: strategies no longer run).
  * Skipped unless EDITOR_PG_TEST_URL is set.
  */
 import { test, before, after } from 'node:test';
@@ -101,6 +101,7 @@ const counts = async () => (await pool.query(
   `SELECT (SELECT count(*) FROM playbooks) AS p, (SELECT count(*) FROM pending_actions) AS a, (SELECT count(*) FROM agent_inbox) AS i,
           (SELECT string_agg(ext_id || enabled::text || COALESCE(retired_at::text, '-'), ',' ORDER BY ext_id) FROM strategy_bindings) AS b`)).rows[0];
 const bindingRow = async (ext: string) => (await pool.query(`SELECT enabled, retired_at, retired_reason, migrated_to FROM strategy_bindings WHERE ext_id = $1`, [ext])).rows[0];
+const failOf = (r: unknown) => (isFail(r as any) ? (r as any).error as string : '');
 const propose = async (actions: PendingActionsService, svc: StrategyMigrationService, op: 'migrate' | 'cutover' | 'rollback') => {
   const c = await migrationCard(svc, op, CH);
   assert.ok(!isFail(c), JSON.stringify(c));
@@ -235,25 +236,12 @@ test('T6 end to end: dry run → migrate card → approve → shadow → cutover
   assert.equal((await channels.get(CH))?.mode, 'live');
   assert.equal((await svc.status()).find((r) => r.channel_key === CH)?.state, 'retired');
 
-  // 9. The rollback card: the migrated bindings come back, the agent and its card go to shadow.
-  const rb = await propose(actions, svc, 'rollback');
-  const back = await actions.apply(rb.id);
-  assert.equal(back.status, 'applied', back.error ?? '');
-  assert.deepEqual((back.result as any).restored.sort(), ['quotes:pgt6', 'recipes:pgt6']);
-  for (const ext of ['recipes:pgt6', 'quotes:pgt6']) {
-    const r = await bindingRow(ext);
-    assert.deepEqual([r.enabled, r.retired_at, r.retired_reason, r.migrated_to], [true, null, null, null]);
-  }
-  assert.equal((await channels.get(CH))?.mode, 'shadow');
-  assert.equal((await new AgentsRepository(pool).get(agentId))?.mode, 'shadow');
-  // A second rollback has nothing to restore.
-  const again = await migrationCard(svc, 'rollback', CH);
-  assert.ok(!isFail(again));
-  if (!isFail(again)) {
-    const a2 = await actions.propose({ chatId: null, agentId: again.agentId, kind: again.kind, payload: again.payload, summary: again.summary });
-    const r2 = await actions.apply(a2.id);
-    assert.match(r2.error ?? '', /^nothing_to_restore/);
-  }
+  // 9. The rollback card is refused since spec 023 T7 phase B (strategies no longer run): nothing changes.
+  const rb = await migrationCard(svc, 'rollback', CH);
+  assert.ok(isFail(rb) && rb.error === 'strategies_removed' && rb.status === 410, JSON.stringify(rb));
+  assert.match(failOf(await svc.rollback(CH)), /^strategies_removed/);
+  for (const ext of ['recipes:pgt6', 'quotes:pgt6']) assert.equal((await bindingRow(ext)).enabled, false);
+  assert.equal((await channels.get(CH))?.mode, 'live');
 });
 
 test('no agent on the channel → no_agent (the proposal is refused)', { skip }, async () => {
