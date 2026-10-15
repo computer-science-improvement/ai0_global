@@ -99,6 +99,12 @@ export class EditorController {
     return this.ops.spend(days);
   }
 
+  /** Spec 037 FR-008: the style sheet bootstrap proposal of a resource (`?ref=telegram:@channel`); read-only. */
+  @Get('style-proposal')
+  styleProposal(@Query('ref') ref?: string) {
+    return this.ops.styleProposal(ref);
+  }
+
   @Get('tools')
   tools() {
     return this.ops.listTools();

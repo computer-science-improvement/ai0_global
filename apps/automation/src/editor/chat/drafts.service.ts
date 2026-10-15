@@ -144,7 +144,7 @@ export class DraftsService {
       channelKey: draft.channelKey, slotId: null, mode: 'draft', card: { models: card.models, dailyBudgetUsd: card.dailyBudgetUsd },
       resourceRef: `telegram:${draft.channelKey}`, platform: 'telegram', format: spec.data.format, topic: spec.data.title,
       text: preview ? htmlToPlain(preview) : spec.data.title, spec: spec.data,
-      voice: { humor: card.humor, slang: card.slang, emoji: card.emojiPref }, brief: card.brief || null,
+      voice: { humor: card.humor, slang: card.slang, emoji: card.emojiPref, style: card.style }, brief: card.brief || null,
       source: spec.data.source ? { url: spec.data.source.url, excerpt: null } : null,
       slopWarnings: slop.map((w) => ({ code: w.code, message: w.message })),
       skills: { resource: card.skills },

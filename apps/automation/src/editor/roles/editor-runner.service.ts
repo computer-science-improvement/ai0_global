@@ -18,6 +18,7 @@ import { isToolError, type EditorTool } from '../harness/tool';
 import { DERIVED_STEPS, derivedPrompts, slotResource, type DerivedResolution } from '../network/derived-slots';
 import type { VoicePrefs } from '../post/slop-lint';
 import { attachVoiceSkills, VOICE_CORE, VOICE_SKILLS_BUDGET, voiceCoreSection, voiceReferenceLine } from './voice';
+import { styleSection } from '../post/style/resource-style';
 import { liveSlotLines, noFreshReason, type LiveScan } from '../live/live-slot';
 import { CriticGate } from '../critic/critic-gate';
 import { slotSkillsContext } from '../critic/critic-skills';
@@ -188,9 +189,10 @@ export class EditorRunnerService {
 
   /** The voice settings of the resource a slot writes for (spec 034); a Telegram target falls back to the card. */
   private async voice(ref: string, card: EditorCard): Promise<VoicePrefs> {
-    const own = ref === `telegram:${card.channelKey}` ? { humor: card.humor, slang: card.slang, emoji: card.emojiPref, readerQuestionsMax: card.readerQuestionsMax } : null;
+    const own = ref === `telegram:${card.channelKey}` ? { humor: card.humor, slang: card.slang, emoji: card.emojiPref, readerQuestionsMax: card.readerQuestionsMax, style: card.style } : null;
     const v = this.d.voiceOf ? await this.d.voiceOf(ref).catch(() => null) : null;
-    return v ?? own ?? {};
+    // Spec 037 FR-008: a channel's own style is the card's (the same the Telegram lint reads).
+    return own?.style && v ? { ...v, style: own.style } : v ?? own ?? {};
   }
 
   /**
@@ -465,7 +467,7 @@ export class EditorRunnerService {
     const gate = await this.criticGate(slot, card, ctx, {
       ref: tgRef, platform: 'telegram',
       mode: card.mode === 'live' || card.mode === 'approve' ? card.mode : 'shadow',
-      voice: { humor: card.humor, slang: card.slang, emoji: card.emojiPref },
+      voice: { humor: card.humor, slang: card.slang, emoji: card.emojiPref, style: card.style },
     }, tgContext ?? undefined, dry);
     return this.run('executor', card, [await this.executorUser(card, slot, ctx, scan), note].filter(Boolean).join('\n'), slot.id,
       EditorRunnerService.withGate(EditorRunnerService.dryExtras({ excludeTools: PLATFORM_ONLY, examples: tgContext?.examples ?? null, ...probed(probe) }, dry), gate), ctx);
@@ -627,6 +629,7 @@ export class EditorRunnerService {
       'Порядок: прочитай джерела ідеї (web_fetch), за потреби статистику, потім lint_platform_post, потім publish_platform_post. Слабкий чи неперевірений пост — skip_slot.',
       'Факти бери з джерел ідеї. Якщо джерело недоступне — не перебирай адреси навмання: одна спроба альтернативи, далі skip_slot з причиною. Хештеги — лише в полі hashtags, не в тексті підпису.',
       ...voiceCoreSection(voice, skills),
+      ...styleSection(voice.style),
       ...examplesPromptSection(pc?.examples),
       '',
       '## Можливості платформи',

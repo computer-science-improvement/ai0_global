@@ -3,6 +3,8 @@ import { ConfigService } from '@nestjs/config';
 import { Cron } from '@nestjs/schedule';
 import type { Pool } from 'pg';
 import { DB_POOL } from '../database/database.module';
+import { resourceStyleOf } from './post/style/style-store';
+import { proposeStyle } from './post/style/style-proposal';
 import { ChannelConfigModule } from '../config/config.module';
 import { ChannelConfigService } from '../config/channel-config.service';
 import { PublishersModule } from '../publishers/publishers.module';
@@ -1008,9 +1010,10 @@ export const EDITOR_PROVIDERS = [
     },
     {
       provide: APPROVALS_SERVICE,
-      inject: [EDITOR_REPOS, EDITOR_PUBLISH, APPROVAL_INFRA, PLATFORM_INFRA],
-      useFactory: (repos: EditorRepos, ports: PublishPorts, approval: ApprovalInfra, platform: PlatformInfra) => new ApprovalsService({
+      inject: [EDITOR_REPOS, EDITOR_PUBLISH, APPROVAL_INFRA, PLATFORM_INFRA, DB_POOL],
+      useFactory: (repos: EditorRepos, ports: PublishPorts, approval: ApprovalInfra, platform: PlatformInfra, pool: Pool) => new ApprovalsService({
         repo: approval.repo, card: (k) => repos.channels.get(k), media: ports.media, hostSlides: platform.publish.hostSlides,
+        styleOf: async (ref) => (await resourceStyleOf(pool, ref)).effective,
         // Spec 031 FR-008: owner edits and reject reasons become owner preferences in the channel memory.
         remember: (key, pref) => repos.memory.add(key, pref.kind, pref.text, pref.evidence, 'owner'),
         log: (m) => new Logger('Approval').warn(m),
@@ -1164,7 +1167,9 @@ export const EDITOR_PROVIDERS = [
           voiceOf: async (ref) => {
             const f = await infra.profiles.formatOf(ref);
             const caps = await infra.profiles.capsOf(ref);
-            return { humor: f.prefs.humor, slang: f.prefs.slang, emoji: f.prefs.emoji, readerQuestionsMax: caps.questionsPerDay };
+            // Spec 037 FR-008: plus the resource style sheet (writer / critic prompts, platform lint address + glossary).
+            const style = (await resourceStyleOf(pool, ref)).effective;
+            return { humor: f.prefs.humor, slang: f.prefs.slang, emoji: f.prefs.emoji, readerQuestionsMax: caps.questionsPerDay, style };
           },
           // Spec 034 FR-010: a live slot's feeds are read by code first (fresh, unposted, not a repeat).
           live: {
@@ -1333,14 +1338,15 @@ export const EDITOR_PROVIDERS = [
     },
     {
       provide: EDITOR_OPS,
-      inject: [ConfigService, EDITOR_REPOS, EDITOR_RUNNER, EDITOR_REGISTRY, EDITOR_SKILLS],
-      useFactory: (cfg: ConfigService, repos: EditorRepos, runner: EditorRunnerService, registry: ToolRegistry, skills: SkillLibrary) => {
+      inject: [ConfigService, EDITOR_REPOS, EDITOR_RUNNER, EDITOR_REGISTRY, EDITOR_SKILLS, DB_POOL],
+      useFactory: (cfg: ConfigService, repos: EditorRepos, runner: EditorRunnerService, registry: ToolRegistry, skills: SkillLibrary, pool: Pool) => {
         const logger = new Logger('EditorOps');
         return new EditorOpsService({
           channels: repos.channels, plans: repos.plans, memory: repos.memory, runs: repos.runs,
           runner, registry, skills,
           enabled: () => isEnabled(cfg),
           log: (m) => logger.warn(m),
+          styleProposal: (ref) => proposeStyle(pool, ref),
         });
       },
     },

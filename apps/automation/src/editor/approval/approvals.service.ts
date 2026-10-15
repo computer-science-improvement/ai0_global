@@ -16,12 +16,15 @@ import {
 import type { ApprovalItem, ApprovalsRepository } from './approvals.repository';
 import { editPreference, rejectPreference, type OwnerPreference } from './owner-preferences';
 import { heldByCritic, type StoredCritic } from '../critic/critic';
+import type { ResourceStyle } from '../post/style/resource-style';
 
 export interface ApprovalsServiceDeps {
   repo:  ApprovalsRepository;
   card:  (channelKey: string) => Promise<EditorCard | null>;
   /** Carousel slides / longread pages of an edited Telegram post are prepared again. */
   media?: PublishSpecDeps['media'];
+  /** Spec 037 FR-008: the effective style sheet of a platform resource (absent = the channel card's style). */
+  styleOf?: (resourceRef: string) => Promise<ResourceStyle | null>;
   /** Slides of an edited platform post are rendered and hosted again. */
   hostSlides?: (slides: NonNullable<PlatformPostSpec['slides']>, key: { channelKey: string; slotId: string }) => Promise<PreparedPublish>;
   /**
@@ -211,7 +214,8 @@ export class ApprovalsService {
       const platform = target.platform as Exclude<Platform, 'telegram'>;
       const parsed = PlatformPostSpecSchema.safeParse(raw);
       if (!parsed.success) throw badRequest(parsed.error);
-      const lint = lintPlatformPost(parsed.data, { platform, bannedTerms: card.bannedTerms });
+      const style = this.d.styleOf ? await this.d.styleOf(it.resourceRef!).catch(() => null) : null;
+      const lint = lintPlatformPost(parsed.data, { platform, bannedTerms: card.bannedTerms, style: style ?? card.style });
       if (!lint.ok) throw new BadRequestException({ error: 'lint_failed', details: lint.errors });
       let slideUrls: string[] = [];
       if (parsed.data.slides?.length) {

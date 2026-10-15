@@ -54,6 +54,7 @@ export const INTEGRITY_CODES: Record<string, CodeInfo> = {
   name_script_mixed:          { task: 'T8', level: 'warning', what: 'a person\'s name in a script other than the resource policy' },
   hashtags_disabled:          { task: 'T8', level: 'error',   what: 'a hashtag on a resource with style.hashtags = off' },
   hashtag_not_in_vocabulary:  { task: 'T8', level: 'error',   what: 'vocabulary mode: hashtag outside card.hashtags' },
+  units_latin:                { task: 'T8', level: 'warning', what: 'style.units = words: «3B», «270M» instead of «3 млрд», «270 млн» (model names stay)' },
   // T9 variety and audience level.
   monotony_opening:           { task: 'T9', level: 'warning', what: 'opening pattern repeated in the last 20 posts («5 X», «Що X:», same first word)' },
   monotony_phrase:            { task: 'T9', level: 'warning', what: 'a 3–5-word phrase shared with recent posts' },

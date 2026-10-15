@@ -12,6 +12,7 @@ import { NetworkRepository } from '../network/network.repository';
 import type { SkillStore } from './skill-store';
 import { SKILL_ROLES } from './skill-lint';
 import { assertNoEnabledBindings, liveRefsOf } from '../migration/binding-guard';
+import { resourceStyleOf } from '../post/style/style-store';
 
 export interface AgentsServiceDeps {
   pool:    Pick<Pool, 'query'>;
@@ -317,6 +318,8 @@ export class AgentsService {
         changesToday: await this.d.profiles.formatChangesToday(r.ref, now),
         // Spec 034 FR-005: the effective poll / reader-question caps (defaults and the news topic included).
         audience: await this.d.profiles.capsOf(r.ref),
+        // Spec 037 FR-008: the style sheet as stored, with the owner's defaults, and (Telegram) the hashtag vocabulary.
+        style: await resourceStyleOf(this.d.pool, r.ref),
       });
     }
     const agents = new Map((await this.d.agents.list()).map((a) => [a.id, a.handle]));

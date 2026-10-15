@@ -1,4 +1,5 @@
 import type { EditorRole } from './llm/llm.types';
+import type { ResourceStyle } from './post/style/resource-style';
 
 /**
  * How a resource works (spec 031): `off` does nothing, `shadow` writes previews
@@ -85,6 +86,8 @@ export interface EditorCard {
   readerQuestionsMax?: number;
   /** null = no cap (a quiz resource without an explicit polls_per_week). */
   pollsPerWeek?:       number | null;
+  /** Spec 037 FR-008: the effective style sheet (format_prefs.style + the owner's defaults; joined in on read). */
+  style?:              ResourceStyle;
 }
 
 /** What each platform can render natively — shown to agents with the card. */
@@ -118,7 +121,7 @@ export function cardSummary(c: EditorCard): Record<string, unknown> {
     quiet_hours:    `${c.quietStartHour}:00–${c.quietEndHour}:00`,
     min_gap_minutes: c.minGapMinutes,
     formats:        c.formats,
-    hashtags:       { vocabulary: c.hashtags, min: c.hashtagMin, max: c.hashtagMax },
+    hashtags:       c.style?.hashtags === 'off' ? 'вимкнено: хештегів не став' : { vocabulary: c.hashtags, min: c.hashtagMin, max: c.hashtagMax },
     footer:         c.footer,
     link_style:     c.linkStyle,
     emoji_policy:   c.emojiPolicy,

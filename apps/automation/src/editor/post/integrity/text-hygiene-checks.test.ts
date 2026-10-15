@@ -64,7 +64,7 @@ test('lead_too_long: > 140 warning, > 220 error; the style limit moves the thres
   assert.deepEqual(leadTooLongCheck.run(post({}), ctx), [], 'no lead');
   assert.deepEqual(leadLimits({ style: { headline: { max_chars: 100 } } }), { warn: 100, error: 220 });
   assert.deepEqual(leadLimits({ style: { headline: { max_chars: 200 } } }), { warn: 200, error: 300 });
-  assert.deepEqual(leadLimits({ style: { headline: 'short' } }), { warn: 140, error: 220 }, 'unknown shape → defaults');
+  assert.deepEqual(leadLimits({ style: { headline: 'short' } } as never), { warn: 140, error: 220 }, 'unknown shape → defaults');
   assert.deepEqual(levels(leadTooLongCheck.run(post({ lead: lead(120) }), { previous: [], card: { style: { headline: { max_chars: 100 } } } })), ['warning']);
 });
 
