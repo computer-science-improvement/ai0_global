@@ -16,6 +16,8 @@ export const QUALITY_FLAGS = [
   'feed_misfit',
   // Spec 037 FR-014: the post audit of the published posts.
   'story_repeat', 'fact_conflict', 'date_issue', 'text_hygiene', 'style_violation',
+  // Spec 037 FR-003: an announced event got no post within 24 h after it.
+  'event_not_covered',
 ] as const;
 export type QualityFlag = typeof QUALITY_FLAGS[number];
 
@@ -43,6 +45,8 @@ export interface ResourceQuality {
   feeds?: Array<{ feed: string; items: number; jargon_over_level: number; revise: number; reject: number; misfit_share: number; suggestion: 'replace' | 'limit' | null }>;
   /** Spec 037 FR-014: the post audit of the window (absent before the first audit). */
   audit?: AuditSummary;
+  /** Spec 037 FR-003: announced events without a recap within 24 h (absent when none). */
+  events_not_covered?: Array<{ story_key: string; event: string; at: string; all_day: boolean; announced: number }>;
   flags: QualityFlag[];
 }
 
@@ -71,6 +75,7 @@ export const FLAG_LABEL: Record<QualityFlag, string> = {
   date_issue:                'dates to check',
   text_hygiene:              'text hygiene issues',
   style_violation:           'off the style sheet',
+  event_not_covered:         'an announced event got no recap',
 };
 
 export const CHECK_ITEM_LABEL: Record<string, string> = {

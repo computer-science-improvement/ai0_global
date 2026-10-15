@@ -22,6 +22,7 @@ export const INTEGRITY_CODES: Record<string, CodeInfo> = {
   story_cross_channel:        { task: 'T2', level: 'warning', what: 'a sibling channel posted the story in the last 24 h (own angle / repost / skip)' },
   // T3 announcement → recap (digest level, not per post).
   event_not_covered:          { task: 'T3', level: 'warning', what: 'announced event without a recap within 24 h' },
+  event_date_missing:         { task: 'T3', level: 'error',   what: 'an announcement (story.event_at) whose text does not name the event date / time' },
   // T4 facts and sources.
   number_not_in_sources:      { task: 'T4', level: 'warning', what: 'a number of the post not found in the fetched sources' },
   fact_conflict:              { task: 'T4', level: 'warning', what: 'a fact differs from a previous post of the story' },

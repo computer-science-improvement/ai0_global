@@ -8,6 +8,8 @@ import type { AuditPost } from '../post/integrity/types';
 import { assessStory, CROSS_CHANNEL_HOURS, EVERGREEN_WINDOW_DAYS, isStoryOverlap, STORY_WINDOW_DAYS, storyView, type StoryAssessment } from './story-match';
 import type { ActiveStory } from './story-context';
 import { recentAuditPosts } from '../post/variety/recent-posts';
+import { StoryEventRepository } from './story-event.repository';
+import type { RecapItem } from './story-event';
 
 /**
  * Spec 037 T2: the story registry (migration 073). One story per scope — the owner's network (`network`, shared by
@@ -251,8 +253,11 @@ export class StoryRegistry {
     const keyFacts = [...new Set([...(Array.isArray(cur.key_facts) ? cur.key_facts : []), ...facts])].slice(-KEY_FACTS_MAX);
     await this.pool.query(
       `UPDATE editor_stories SET last_post_at = GREATEST(last_post_at, $2), first_post_at = LEAST(first_post_at, $2),
-              entities = $3, key_facts = $4, updated_at = now() WHERE id = $1`,
+              entities = $3::jsonb || CASE WHEN entities ? 'event' THEN jsonb_build_object('event', entities->'event') ELSE '{}'::jsonb END,
+              key_facts = $4, updated_at = now() WHERE id = $1`,
       [storyId, i.postedAt, JSON.stringify(merged), JSON.stringify(keyFacts)]);
+    // Spec 037 T3: the event the post announces (event_at + name), kept apart from the entities above.
+    await new StoryEventRepository(this.pool).noteEvent(storyId, i.post, role, i.postedAt);
     return { storyId, storyKey: cur.story_key };
   }
 
@@ -298,6 +303,11 @@ export class StoryRegistry {
       }
     }
     return [...byId.values()].map(({ last: _l, ...s }) => s);
+  }
+
+  /** Spec 037 T3: the events the channel announced that need a recap now ("recap needed" in the prompts). */
+  async recapItems(channelKey: string, now: Date): Promise<RecapItem[]> {
+    return new StoryEventRepository(this.pool).recapItems(channelKey, now);
   }
 
   /**

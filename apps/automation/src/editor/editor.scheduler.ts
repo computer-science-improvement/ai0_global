@@ -70,6 +70,11 @@ export interface EditorSchedulerDeps {
   silentDays?: (cards: EditorCard[], now: Date, paused: ReadonlySet<string>) => Promise<unknown>;
   /** Spec 037 FR-014: the post audit — daily per resource and at once after a rule change; throttled by the hook itself. */
   postAudit?: (now: Date) => Promise<unknown>;
+  /**
+   * Spec 037 FR-003 (T3): an announced event with no post within 24 h after it — one owner Inbox note per event
+   * (code-only, throttled by the hook itself).
+   */
+  eventRecaps?: (now: Date) => Promise<unknown>;
 }
 
 /** How far ahead approval-mode slots are looked at for writing (the evening batch covers the next day). */
@@ -179,6 +184,9 @@ export class EditorScheduler {
     }
     if (this.d.postAudit) {
       try { await this.d.postAudit(now); } catch (err: any) { this.d.log?.(`post audit failed: ${err?.message ?? err}`); }
+    }
+    if (this.d.eventRecaps) {
+      try { await this.d.eventRecaps(now); } catch (err: any) { this.d.log?.(`event recap check failed: ${err?.message ?? err}`); }
     }
 
     // Approval mode writes ahead of time; everything else (and late approval slots) at the slot time.

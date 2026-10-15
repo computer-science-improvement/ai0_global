@@ -77,6 +77,10 @@ export const StorySpecSchema = z.object({
   new_facts:   z.array(z.string().min(3).max(200)).max(8).optional().describe('Для followup: нові факти (числа, назви), яких не було в оригіналі'),
   decision:    z.enum(['own_angle']).optional().describe('own_angle — сусідній канал мережі вже опублікував цю історію за 24 год, а цей пост дає власний кут'),
   reason:      z.string().min(5).max(300).optional().describe('Чому саме так (для own_angle — у чому власний кут)'),
+  // Spec 037 FR-003 (T3): an announcement of a dated event; the date must be in the text (event_date_missing).
+  event_at:    z.string().regex(/^\d{4}-\d{2}-\d{2}(?:[T ]\d{2}:\d{2})?$/).optional()
+    .describe('Анонс події з датою: дата й час події за часом ресурсу, «2026-10-13T16:00» або «2026-10-13» (день релізу). Дата має бути в тексті поста'),
+  event:       z.string().min(2).max(120).optional().describe('Назва події для анонсу (Apple Welcome Home, реліз CoD MW4)'),
 }).strict();
 export type StorySpec = z.infer<typeof StorySpecSchema>;
 

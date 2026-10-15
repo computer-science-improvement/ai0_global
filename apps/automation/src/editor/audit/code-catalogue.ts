@@ -116,6 +116,11 @@ export const CODE_EXPLANATIONS: Record<string, CodeExplanation> = {
     explain: 'An event the resource announced has passed and no recap went out within 24 hours.',
     fix: 'Publish a short recap of what happened, or note why it is not covered.',
   },
+  event_date_missing: {
+    title: 'Announcement without its date',
+    explain: 'The post announces an event (story.event_at) but its text does not say when the event is.',
+    fix: 'Write the event date (and time, Kyiv) in the text, the same as declared in story.event_at.',
+  },
   // T4 facts and sources.
   number_not_in_sources: {
     title: 'Number without a source',
