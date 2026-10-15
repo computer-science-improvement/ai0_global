@@ -12,7 +12,7 @@ test('extracts metadata, absolute images and article text', () => {
   assert.equal(p.title, 'OG Title');
   assert.equal(p.description, 'Desc');
   assert.equal(p.image, 'https://news.example/img/hero.jpg');
-  assert.deepEqual(p.images, ['https://news.example/a.jpg']);
+  assert.deepEqual(p.images, ['https://news.example/img/hero.jpg', 'https://news.example/a.jpg'], 'the main image first (T17), then the article\'s');
   assert.equal(p.text, 'Head\nFirst para.\nSecond.');
 });
 
@@ -51,4 +51,37 @@ test('spec 037 T11: main image — og:image, else twitter:image, else the first 
   assert.equal(first.image, 'https://news.example/a/img/first.jpg', 'the first article image (not nav, not svg), resolved against the page URL');
   assert.equal(extractPage('<body><article><p>Текст без зображень.</p></article></body>', 'https://news.example/a').image, null);
   assert.equal(extractPage('<head><meta property="og:image" content="data:image/png;base64,AAA"></head><body><p>x</p></body>', 'https://news.example/a').image, null, 'a data: URI is not an image URL');
+});
+
+test('spec 037 T17: article images — main first, absolute, deduplicated, ≤ 10; icons, logos, avatars, pixels, sprites skipped', () => {
+  const body = [
+    '<img src="/photo-1.jpg">',                                        // kept
+    '<img src="https://cdn.example/photo-1.jpg?w=800">',               // another host: kept
+    '<img src="/photo-1.jpg?utm_source=x&w=1200">',                    // the same as the first (noise params): dropped
+    '<img data-src="/lazy/photo-2.webp" src="data:image/gif;base64,R0lGOD">', // a lazy image: its data-src kept
+    '<img src="data:image/png;base64,AAA">',                           // data: URI
+    '<img src="/img/site-logo.png">', '<img src="/icons/share.png">', '<img src="/u/avatar_42.jpg">',
+    '<img src="/assets/sprite.png">', '<img src="/b/badge-new.png">', '<img src="/t/pixel.png">', '<img src="/t/1x1.png">',
+    '<img src="/diagram.svg">', '<img src="/anim.gif">',
+    '<img src="/tiny.jpg" width="48" height="48">', '<img src="/thin.jpg" height="1">',
+    '<img src="/author.jpg" class="author-avatar">', '<img src="/brand.jpg" id="header-logo">',
+    '<img src="/photo-3.jpg" width="1200" height="630" alt="New logo of the company">', // a news photo of a logo: kept
+    '<img src="javascript:alert(1)">',
+  ].join('');
+  const p = extractPage(`<head><meta property="og:image" content="https://news.example/og.jpg"></head><body><article><p>x</p>${body}</article></body>`, 'https://news.example/a/b');
+  assert.equal(p.image, 'https://news.example/og.jpg');
+  assert.deepEqual(p.images, [
+    'https://news.example/og.jpg', 'https://news.example/photo-1.jpg', 'https://cdn.example/photo-1.jpg?w=800',
+    'https://news.example/lazy/photo-2.webp', 'https://news.example/photo-3.jpg',
+  ]);
+
+  const many = Array.from({ length: 14 }, (_, i) => `<img src="/p/${i}.jpg">`).join('');
+  const m = extractPage(`<body><article><p>x</p>${many}</article></body>`, 'https://news.example/a');
+  assert.equal(m.images.length, 10);
+  assert.equal(m.image, 'https://news.example/p/0.jpg', 'no social image: the first article image is the main one');
+  assert.equal(m.images[0], m.image, 'and it is not listed twice');
+
+  const og = extractPage('<head><meta property="og:image" content="/p/0.jpg?w=1200"></head><body><article><img src="/p/0.jpg"><img src="/p/1.jpg"></article></body>', 'https://news.example/a');
+  assert.deepEqual(og.images, ['https://news.example/p/0.jpg?w=1200', 'https://news.example/p/1.jpg'], 'the main image and its resized copy are one');
+  assert.deepEqual(extractPage('<body><nav><img src="/n.jpg"></nav><article><p>Без зображень.</p></article></body>', 'https://news.example/a').images, [], 'nav images are page chrome');
 });

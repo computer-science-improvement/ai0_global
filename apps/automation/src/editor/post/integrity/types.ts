@@ -116,6 +116,11 @@ export interface AuditSource {
    * was read and has none; absent = unknown (a feed item, a page not read in this run).
    */
   image?: string | null;
+  /**
+   * Spec 037 T17: every image of that page a news post may use (the main one first, then the article's own images,
+   * ≤ 10). Absent = only `image` is known (T11 behaviour).
+   */
+  images?: string[];
 }
 
 export interface Finding {
