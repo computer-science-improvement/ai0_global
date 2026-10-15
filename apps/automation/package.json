@@ -13,6 +13,7 @@
     "editor:mcp": "tsx src/editor/mcp/main.ts",
     "editor:smoke": "tsx --env-file=../../.env scripts/editor-smoke.ts",
     "editor:evals": "tsx --env-file=../../.env evals/run-evals.ts",
+    "audit:tg-export": "tsx scripts/audit-tg-export.ts",
     "migrate:strategies": "tsx --env-file=../../.env src/cli/migrate-strategies.ts",
     "ads:stuck-orders": "tsx --env-file=../../.env src/cli/stuck-ad-orders.ts"
   },

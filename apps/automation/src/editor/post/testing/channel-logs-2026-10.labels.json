@@ -1,0 +1,120 @@
+{
+  "about": "Spec 037 FR-001 golden-set labels for channel-logs-2026-10.json, hand-kept. Each post lists every code the deterministic checks should return on it (see integrity/codes.ts for the catalogue). `code@Tn` = expected once task Tn extends a check that already exists (the code is implemented, this case is not yet): todo while it does not fire; drop the marker when it does. `clean: true` = no error-level finding (warnings only if listed). Owner decisions 2026-10-15 applied: hashtags off in all three DEV channels (every post with a hashtag expects hashtags_disabled), address «ви» everywhere (a ти-form post expects address_mixed: error when both forms are in one post, warning otherwise). Leads: 57 posts open bold; 31 leads are over 140 chars (4 over 220).",
+  "cards": {
+    "AI Шукає Новини | DEV": {
+      "timezone": "Europe/Kyiv",
+      "readerQuestionsMax": 0,
+      "style": { "address": "vy", "hashtags": "off", "audience": { "level": "general" } },
+      "note": "readerQuestionsMax 0 = the spec 034 default of a news resource (content_kind news inferred from the name); the stage profile was not read."
+    },
+    "AI Технології": {
+      "timezone": "Europe/Kyiv",
+      "style": { "address": "vy", "hashtags": "off", "audience": { "level": "beginner" } },
+      "note": "Written for ordinary people (owner), so audience level beginner for T9."
+    },
+    "Біржа Ігор | DEV": {
+      "timezone": "Europe/Kyiv",
+      "style": { "address": "vy", "hashtags": "off", "audience": { "level": "general" } }
+    }
+  },
+  "posts": {
+    "ai-shukaie-novyny-dev:1105": { "expect": ["hashtags_disabled"], "note": "Apple + LG smart home hub, «Анонс очікують 13 жовтня». First post of the Apple hub story (original)." },
+    "ai-shukaie-novyny-dev:1106": { "expect": ["hashtags_disabled", "lead_too_long", "slop_em_dash"] },
+    "ai-shukaie-novyny-dev:1107": { "expect": ["hashtags_disabled", "slop_em_dash"] },
+    "ai-shukaie-novyny-dev:1108": { "expect": ["hashtags_disabled", "glossary_violation", "slop_em_dash"], "note": "#спотифай (glossary bans «спотифай»)." },
+    "ai-shukaie-novyny-dev:1109": { "expect": ["hashtags_disabled", "slop_em_dash", "slop_rhetorical_qa", "banned_term@T6"], "note": "«Здогадаєтеся, який?» (new slop phrase, T6). Companion of the knowledge poll 1110; the answer LibreOffice is in this text." },
+    "ai-shukaie-novyny-dev:1110": { "expect": ["knowledge_poll", "quiz_answer_revealed"], "note": "Regular anonymous poll «Який офісний пакет…» with a single right answer that the same-minute post 1109 states." },
+    "ai-shukaie-novyny-dev:1111": { "expect": ["hashtags_disabled", "lead_too_long", "slop_em_dash"], "note": "Straight apostrophes «з'явиться», «б'ються» (T6 typography normaliser, no code)." },
+    "ai-shukaie-novyny-dev:1112": { "expect": ["hashtags_disabled", "lead_too_long", "slop_em_dash", "slop_cliche"], "note": "Sentence-initial «Коротко — що анонсували.»" },
+    "ai-shukaie-novyny-dev:1113": { "expect": ["hashtags_disabled", "lead_too_long", "slop_em_dash", "relative_date_unanchored", "address_mixed"], "note": "«тариф Go — з завтра» without a date (copied from The Verge). «спитаєте» (ви) and «його вимикаєш» (ти) in one post → address_mixed error." },
+    "ai-shukaie-novyny-dev:1114": { "expect": ["hashtags_disabled", "lead_too_long", "slop_em_dash", "banned_term@T6"], "note": "Lead 239 chars (error). «Панікувати не варто» (new slop phrase, T6)." },
+    "ai-shukaie-novyny-dev:1115": { "expect": ["hashtags_disabled", "lead_too_long", "slop_em_dash", "reader_questions"], "note": "«Питання до вас: …?» on a news resource (cap 0, see cards)." },
+    "ai-shukaie-novyny-dev:1116": { "expect": ["hashtags_disabled", "lead_too_long"], "note": "Gemini agent; the same story went out in AI Технології 1031 three hours later. «у четвер» = 08.10, correct for a post of Friday 09.10." },
+    "ai-shukaie-novyny-dev:1117": { "expect": ["hashtags_disabled", "lead_too_long"] },
+    "ai-shukaie-novyny-dev:1118": { "expect": ["lead_too_long", "duplicate_attribution"], "clean": true, "note": "«Джерело: Financial Times через TechCrunch» plus the rendered «→ TechCrunch». No hashtags." },
+    "ai-shukaie-novyny-dev:1119": { "expect": ["hashtags_disabled", "lead_too_long"], "note": "MacBook Pro touchscreen rumour (27.10). Mentions the 13.10 smart-home event in one sentence: the owner counts it among the 4 Apple announcements (T3), but it is a different story (see story_pairs.mention)." },
+    "ai-shukaie-novyny-dev:1120": { "expect": ["hashtags_disabled", "lead_too_long", "date_relative_mismatch"], "note": "Fitbit: «Реліз очікується вже завтра, 12 жовтня» in a post of 10.10 (source caption US date 10.12.26). No follow-up after 12.10 (T3 event_not_covered, digest level)." },
+    "ai-shukaie-novyny-dev:1121": { "expect": ["hashtags_disabled", "lead_too_long", "slop_em_dash", "address_mixed"], "note": "Album of 3 photos. «розпакував, підключив, друкуєш» — ти form on a «ви» resource (warning)." },
+    "ai-shukaie-novyny-dev:1124": { "expect": ["hashtags_disabled", "lead_too_long", "text_replacement_char"], "note": "Ledger: «пе��еважно» (U+FFFD ×2), published after the critic went live." },
+    "ai-shukaie-novyny-dev:1125": { "expect": ["lead_too_long", "story_repeat"], "note": "Apple «Welcome Home» 13.10 16:00: third announcement of the event (07, 09, 11.10)." },
+    "ai-shukaie-novyny-dev:1126": { "expect": ["hashtags_disabled", "lead_too_long", "story_repeat"], "note": "Fourth announcement (HomeView). «у вівторок, 13 жовтня» is correct (13.10.2026 is a Tuesday). 12.10 15:00 Kyiv = 25 h before the event, just outside a reminder window." },
+    "ai-shukaie-novyny-dev:1127": { "expect": ["hashtags_disabled", "lead_too_long"], "note": "Lead exactly 220 chars (warning)." },
+    "ai-shukaie-novyny-dev:1128": { "expect": ["lead_too_long"], "note": "OnePlus 16, lead 253 (error). The thought «not sold in Ukraine» is repeated in the lead and the last paragraph, but not verbatim (critic rubric, no deterministic code)." },
+    "ai-shukaie-novyny-dev:1129": { "expect": ["hashtags_disabled", "lead_too_long", "slop_em_dash", "name_script_mixed"], "note": "Rich message with a photo; lead 256 (error). «Mustafa Suleyman» in Latin while 1130 writes «Ендрю Фелдман»." },
+    "ai-shukaie-novyny-dev:1130": { "expect": ["hashtags_disabled", "lead_too_long"], "note": "«Ендрю Фелдман» in Cyrillic; «у вівторок» = 13.10, correct for a post of Wednesday 14.10." },
+    "ai-shukaie-novyny-dev:1131": { "expect": ["hashtags_disabled", "lead_too_long", "address_mixed"], "note": "«чого хочеш більше або менше» — ти form (warning)." },
+
+    "ai-tekhnolohii:1023": { "expect": ["hashtags_disabled", "lead_too_long", "slop_em_dash", "jargon_over_level"], "note": "Mistral Large 4 «Le Chonk», original post. MoE, «1,05T/49B», інференс, ваги unexplained for beginners." },
+    "ai-tekhnolohii:1024": { "expect": ["hashtags_disabled", "slop_em_dash", "slop_cliche", "address_mixed", "jargon_over_level"], "note": "EmbeddingGemma: «це той випадок, коли»; «Якщо будуєш RAG» (ти, warning); Matryoshka-трюнкація, MTEB, 768d → 256d, cosine similarity." },
+    "ai-tekhnolohii:1025": { "expect": ["glossary_violation"], "note": "Opinion poll (regular is right). Options «Хмара через АПІ», «Агенти й КЛІ»." },
+    "ai-tekhnolohii:1026": { "expect": ["hashtags_disabled", "lead_too_long", "slop_em_dash", "jargon_over_level"], "note": "#ainews. Subagents, компакція, cache reads, batch, temperature/top_p, «400-ку» unexplained (labelled from reading; not named in tasks.md)." },
+    "ai-tekhnolohii:1027": { "expect": ["lead_too_long", "slop_em_dash", "slop_rhetorical_qa", "stale_now_word", "story_repeat"], "note": "Poll intro: «Mistral щойно показала Le Chonk» the day after 1023 (article 2 days old). No source link, only «у огляді MarkTechPost»." },
+    "ai-tekhnolohii:1028": { "expect": ["knowledge_poll", "quiz_answer_revealed", "poll_cap_reached"], "note": "«Скільки параметрів … активні на кожен токен?» — answer «49 мільярдів» is in 1023 (19 h earlier). Second poll of the resource in two days (1025) with the default cap 1/week." },
+    "ai-tekhnolohii:1029": { "expect": ["hashtags_disabled", "lead_too_long", "slop_em_dash", "slop_rhetorical_qa", "jargon_over_level"], "note": "Decision models, forward pass, edge. «з'їхати» straight apostrophe next to «зʼявиться» elsewhere (typography)." },
+    "ai-tekhnolohii:1030": { "expect": ["hashtags_disabled", "lead_too_long", "slop_em_dash", "slop_moral_closer@T6", "jargon_over_level"], "note": "«Мораль для всіх, хто тягне open-ваги: …» opens the second-to-last sentence, so a last-sentence-only MORAL_CLOSER will not see it. Reverse shell, pickle, weights_only, sandbox unexplained." },
+    "ai-tekhnolohii:1031": { "expect": ["source_is_homepage", "duplicate_attribution", "story_cross_channel", "slop_em_dash", "decimal_mixed", "jargon_over_level"], "note": "Rich digest; source https://www.marktechpost.com/; «Джерело: MarkTechPost» lines plus «→ MarkTechPost»; Gemini Agent first, 3 h after AI Шукає Новини 1116; «2,5 млрд» next to «з 2.0 до 47.0»; MoE, RL, SWE-bench Verified." },
+    "ai-tekhnolohii:1032": { "expect": ["hashtags_disabled", "source_is_homepage", "slop_em_dash"], "note": "YNAB MCP, source https://www.ynab.com/." },
+    "ai-tekhnolohii:1033": { "expect": ["glossary_violation", "lead_too_long"], "note": "«Разом AI випустила Together Link». Telegraph longread button." },
+    "ai-tekhnolohii:1034": { "expect": ["source_is_homepage"], "note": "«Три новини дня» digest incl. Qwen-Image-2.1-Turbo; source https://www.marktechpost.com/. The 12:00 slot that later went missing 11–13.10." },
+    "ai-tekhnolohii:1035": { "expect": ["hashtags_disabled", "banned_term@T6"], "note": "Album of 5 (one photo reused from the 09.10 YNAB post). «Зберігайте собі.» (new slop phrase, T6). First «5 X» of three in 3 days." },
+    "ai-tekhnolohii:1040": { "expect": ["hashtags_disabled", "number_not_in_sources"], "note": "Rich message with a photo, no source. «Цього достатньо для 90% побутових задач». The numbers inside the quoted prompt examples («Мені 35, вага 80 кг») are examples, not claims." },
+    "ai-tekhnolohii:1041": { "expect": ["hashtags_disabled"], "note": "«Пʼять готових шаблонів» — second «5 X» in 3 days (the third one warns)." },
+    "ai-tekhnolohii:1042": { "expect": ["hashtags_disabled", "lead_too_long", "story_repeat", "poster_mismatch"], "note": "Qwen-Image-2.1-Turbo as a post two days after the 1034 digest, without new facts. Poster «Fine-tune / Model» (from the slot, not visible in the export)." },
+    "ai-tekhnolohii:1043": { "expect": ["hashtags_disabled", "source_is_homepage", "poster_mismatch", "monotony_opening"], "note": "Free courses, source https://elementsofai.com/; posters «Prompt» and «Skill» (slot data); third «5 X» (пʼять безкоштовних ресурсів) in 3 days." },
+    "ai-tekhnolohii:1045": { "expect": ["hashtags_disabled", "mixed_script_word", "lead_too_long", "stale_source"], "note": "#aiновини; lead 280 (max, error); MarkTechPost article of 10.10 posted 13.10 (> 36 h; from the URL date, not named in tasks.md)." },
+    "ai-tekhnolohii:1046": { "expect": ["hashtags_disabled", "lead_too_long"], "note": "«у листопаді 2024 року» is historical (no date check)." },
+    "ai-tekhnolohii:1047": { "expect": ["hashtags_disabled", "low_tier_claim"], "note": "«Понад 80% контенту … Netflix» from a «20 cikavih faktiv» page on faktypro.com.ua (low tier)." },
+    "ai-tekhnolohii:1048": { "expect": ["hashtags_disabled", "number_not_in_sources"], "note": "«пише тексти довжиною до 1 мільйона токенів» — context window confused with output length." },
+
+    "birzha-ihor-dev:844": { "expect": ["hashtags_disabled", "address_mixed", "slop_em_dash"], "note": "Epic giveaway System Shock 2 + BURIED STARS until 08.10 15:00; «забирай», «Забрав» (ти, warning). First «назавжди в бібліотеці»." },
+    "birzha-ihor-dev:845": { "expect": ["address_mixed", "banned_term@T6"], "note": "Poll intro restating 844 the same evening; «Признавайся, як у тебе…» (new slop phrase, T6; ти)." },
+    "birzha-ihor-dev:846": { "expect": ["address_mixed"], "clean": true, "note": "Opinion poll «Що ти робиш із безкоштовними іграми?» (regular is right; ти form, warning)." },
+    "birzha-ihor-dev:847": { "expect": ["hashtags_disabled", "address_mixed", "slop_em_dash"], "note": "Allowed reminder of 844 in its last 24 h (deadline 08.10 15:00). «забирай» (ти)." },
+    "birzha-ihor-dev:848": { "expect": ["hashtags_disabled", "source_is_homepage", "mixed_script_word", "slop_em_dash"], "note": "Steam deals, source https://store.steampowered.com/; «Меркoff» with a Latin o." },
+    "birzha-ihor-dev:849": { "expect": ["hashtags_disabled", "source_is_homepage", "mixed_script_word", "slop_em_dash", "story_repeat"], "note": "The same deals 1 h 43 min after 848 with the same source URL (ledger gap, T16). «Меркoff» again. RDR2 «539 грн замість 1799»." },
+    "birzha-ihor-dev:850": { "expect": ["hashtags_disabled", "deal_expired", "slop_em_dash"], "note": "Bridge Constructor Studio «до 8 жовтня» published 08.10 19:00. Source GamerPower (aggregator)." },
+    "birzha-ihor-dev:851": { "expect": ["hashtags_disabled", "address_mixed", "stale_source"], "note": "CoD MW4 DMZ: «Висаджуєшся», «виконуєш», «збираєш» (ти). PlayStation Blog article of 05.10." },
+    "birzha-ihor-dev:852": { "expect": ["hashtags_disabled", "lead_too_long"], "note": "Out of Sight giveaway, first post: «сліпого хлопчика»." },
+    "birzha-ihor-dev:853": { "expect": ["hashtags_disabled", "lead_too_long", "address_mixed", "fact_conflict"], "note": "RDR2 «649 грн замість 2599 (−75%)» vs 849 «539 грн замість 1799 (−70%)». «перевіряй таймер» (ти). A different deal selection than 848/849 (see story_pairs.negative)." },
+    "birzha-ihor-dev:857": { "expect": ["hashtags_disabled", "stale_source"], "note": "PlayStation Blog article of 06.10. Character names in Latin (Morvenn Vahl) are game names, not labelled." },
+    "birzha-ihor-dev:858": { "expect": ["hashtags_disabled", "fact_conflict"], "note": "Allowed follow-up of 852 (TerraScape is new). «сліпу дівчинку Софі» vs «сліпого хлопчика» in 852." },
+    "birzha-ihor-dev:859": { "expect": ["stale_source"], "clean": true, "note": "PlayStation Blog article of 07.10 posted 10.10 17:31. «Ray Chase» (voice actor, Latin) not labelled: the names policy of this resource is not decided." },
+    "birzha-ihor-dev:860": { "expect": ["stale_source"], "clean": true, "note": "«Game of September» vote 5 days after it opened (article of 05.10). No bold lead." },
+    "birzha-ihor-dev:861": { "expect": ["poll_cap_reached"], "note": "Opinion poll; the second poll of the week after 846 with cap 1." },
+    "birzha-ihor-dev:862": { "expect": ["hashtags_disabled", "story_repeat", "process_leak", "address_mixed", "source_is_homepage", "monotony_phrase"], "note": "Out of Sight a third time (no new facts after 858). «Актуальних промокодів … не знайшлось, тому в пості лише перевірені роздачі». «граєш» (ти). Source https://store.epicgames.com/en-US/free-games is a section index (not among the 7 homepages counted in tasks.md). Third «в бібліотеці назавжди»." },
+    "birzha-ihor-dev:863": { "expect": ["hashtags_disabled", "source_is_homepage", "address_mixed"], "note": "Source https://itch.io/new-and-popular (section index). «Розставляєш бомби і прибираєш» (ти). Lead mixes bold and a link." }
+  },
+  "story_pairs": {
+    "positive": [
+      { "a": "ai-shukaie-novyny-dev:1105", "b": "ai-shukaie-novyny-dev:1125", "note": "Apple smart-home hub / 13.10 event" },
+      { "a": "ai-shukaie-novyny-dev:1105", "b": "ai-shukaie-novyny-dev:1126", "note": "Apple smart-home hub / 13.10 event" },
+      { "a": "ai-shukaie-novyny-dev:1125", "b": "ai-shukaie-novyny-dev:1126", "note": "Apple smart-home hub / 13.10 event" },
+      { "a": "birzha-ihor-dev:852", "b": "birzha-ihor-dev:862", "note": "Out of Sight giveaway" },
+      { "a": "birzha-ihor-dev:858", "b": "birzha-ihor-dev:862", "note": "Out of Sight + TerraScape giveaway, nothing new on 13.10" },
+      { "a": "birzha-ihor-dev:848", "b": "birzha-ihor-dev:849", "note": "Steam deals, 1 h 43 min apart" },
+      { "a": "ai-tekhnolohii:1034", "b": "ai-tekhnolohii:1042", "note": "Qwen-Image-2.1-Turbo: in the digest, then as a post" },
+      { "a": "ai-tekhnolohii:1023", "b": "ai-tekhnolohii:1027", "note": "Mistral Large 4, then again with a poll" },
+      { "a": "ai-shukaie-novyny-dev:1116", "b": "ai-tekhnolohii:1031", "cross_channel": true, "note": "Gemini agent in both AI channels on 09.10 (sibling within 24 h → story_decision)" }
+    ],
+    "allowed_followup": [
+      { "a": "birzha-ihor-dev:852", "b": "birzha-ihor-dev:858", "note": "Out of Sight + a new game (TerraScape)" },
+      { "a": "birzha-ihor-dev:844", "b": "birzha-ihor-dev:847", "note": "Giveaway reminder in the last 24 h (ends 08.10 15:00)" }
+    ],
+    "negative": [
+      { "a": "birzha-ihor-dev:844", "b": "birzha-ihor-dev:852", "note": "Different Epic giveaways" },
+      { "a": "birzha-ihor-dev:847", "b": "birzha-ihor-dev:858", "note": "Different Epic giveaways" },
+      { "a": "birzha-ihor-dev:849", "b": "birzha-ihor-dev:853", "note": "Different Steam deal selections sharing Steam and RDR2 (fact_conflict, not a repeat)" },
+      { "a": "ai-shukaie-novyny-dev:1116", "b": "ai-tekhnolohii:1048", "note": "Different Google models: Gemini agent vs Gemini 4 Argon" },
+      { "a": "ai-tekhnolohii:1024", "b": "ai-tekhnolohii:1048", "note": "Different Google models: EmbeddingGemma 2 vs Gemini 4 Argon" },
+      { "a": "ai-shukaie-novyny-dev:1106", "b": "ai-shukaie-novyny-dev:1116", "note": "Google nuclear deal vs Gemini agent" },
+      { "a": "ai-shukaie-novyny-dev:1112", "b": "ai-shukaie-novyny-dev:1129", "note": "Microsoft Surface event vs Maia 300" },
+      { "a": "ai-shukaie-novyny-dev:1117", "b": "ai-shukaie-novyny-dev:1129", "note": "Microsoft WinDbg MCP vs Maia 300" },
+      { "a": "ai-shukaie-novyny-dev:1127", "b": "ai-shukaie-novyny-dev:1131", "note": "Meta Muse Wonder vs Facebook «Your Algorithm»" },
+      { "a": "ai-shukaie-novyny-dev:1113", "b": "ai-shukaie-novyny-dev:1118", "note": "OpenAI Intelligent UI vs OpenAI revenue" },
+      { "a": "ai-tekhnolohii:1029", "b": "ai-tekhnolohii:1034", "note": "Liquid d1 decision models vs OpenAI Decisions API (similar words, different products)" }
+    ],
+    "mention": [
+      { "a": "ai-shukaie-novyny-dev:1105", "b": "ai-shukaie-novyny-dev:1119", "note": "1119 is the MacBook Pro rumour and names the 13.10 event once: not a story repeat for T2, but an announcement mention T3 counts (the owner's «Apple ×4»)." }
+    ]
+  }
+}

@@ -25,10 +25,11 @@ import { DATA_CASES } from './cases/data';
 import { SCHEDULE_CASES } from './cases/schedule';
 import { RICH_CASES } from './cases/rich';
 import { QUALITY_CASES, cleanupQualityEvals } from './cases/quality';
+import { INTEGRITY_CASES, cleanupIntegrityEvals } from './cases/integrity';
 import { localDate, zonedToUtc } from '../src/editor/roles/time';
 import { resolveModel } from '../src/editor/llm/model-registry';
 
-const ALL: EvalCase[] = [...EXECUTOR_CASES, ...PLANNER_REVIEWER_CASES, ...CHAT_CASES, ...AGENT_CASES, ...DATA_CASES, ...SCHEDULE_CASES, ...RICH_CASES, ...QUALITY_CASES];
+const ALL: EvalCase[] = [...EXECUTOR_CASES, ...PLANNER_REVIEWER_CASES, ...CHAT_CASES, ...AGENT_CASES, ...DATA_CASES, ...SCHEDULE_CASES, ...RICH_CASES, ...QUALITY_CASES, ...INTEGRITY_CASES];
 
 function arg(name: string): string | undefined {
   const i = process.argv.indexOf(`--${name}`);
@@ -136,6 +137,7 @@ async function main() {
   await resetLibrary(pool);
   await cleanupAgentEvals(pool);
   await cleanupQualityEvals(pool);
+  await cleanupIntegrityEvals(pool);
   await pool.end();
 
   const passed = rows.filter((r) => r.pass).length;
