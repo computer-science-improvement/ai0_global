@@ -7,8 +7,7 @@ export class UpdateSettingsDto {
   @IsOptional() @IsBoolean()
   trackingEnabled?: boolean;
 
-  // Owner chat id for admin notifications. A numeric string, or '' to clear the
-  // DB override (falls back to the env TELEGRAM_OWNER_ID, then disabled).
+  // Owner chat id for admin notifications. A numeric string, or '' to reset it to the default (unset: no notifications).
   @IsOptional() @Matches(/^(\d+)?$/, { message: 'telegramOwnerId must be a numeric chat id (or empty)' })
   telegramOwnerId?: string;
 

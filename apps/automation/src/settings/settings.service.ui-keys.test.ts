@@ -1,5 +1,5 @@
 // Spec 027 FR-004: `ui.*` rows in app_settings (the dashboard menu `ui.nav`) are
-// UI state, not env overrides — GET /settings must not change when one exists.
+// UI state, not env overrides — GET /settings must not change when one exists (spec 039: only catalog keys are settings).
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { SettingsService, isAiKey, isLandingKey, isUiKey } from './settings.service';
@@ -26,9 +26,9 @@ test('GET /settings is unchanged by a ui.nav row', async () => {
   const pool = poolWith([{ key: 'TRACKING_ENABLED', value: 'true' }, { key: 'ui.nav', value: '{"schemaVersion":1}' }]);
   const withUi = new SettingsService(pool as any, cfg);
   await Promise.all([plain.whenLoaded(), withUi.whenLoaded()]);
-  assert.deepEqual(withUi.get(), plain.get());
-  assert.deepEqual(withUi.get().overrides, ['TRACKING_ENABLED']);
-  assert.match(pool.sqls[0], /WHERE key NOT LIKE 'ui\.%'/);
+  assert.deepEqual(await withUi.get(), await plain.get());
+  assert.deepEqual((await withUi.get()).overrides, ['TRACKING_ENABLED']);
+  assert.match(pool.sqls[0], /WHERE key = ANY/, 'only catalog keys are settings');
 });
 
 // Spec 026 FR-002: the landing settings (`landing.*`) belong to LandingConfigService.
@@ -39,8 +39,7 @@ test('GET /settings is unchanged by landing.* rows', async () => {
   const pool = poolWith([{ key: 'TRACKING_ENABLED', value: 'true' }, { key: 'landing.ad_message_en', value: 'Hi {target} {ref}' }]);
   const withLanding = new SettingsService(pool as any, cfg);
   await Promise.all([plain.whenLoaded(), withLanding.whenLoaded()]);
-  assert.deepEqual(withLanding.get(), plain.get());
-  assert.match(pool.sqls[0], /NOT LIKE 'landing\.%'/);
+  assert.deepEqual(await withLanding.get(), await plain.get());
 });
 
 // Spec 035: the global default model (`ai.default_model`) belongs to the Models page.
@@ -53,7 +52,6 @@ test('GET /settings is unchanged by ai.* rows (ai.default_model is never an env 
   const pool = poolWith([{ key: 'TRACKING_ENABLED', value: 'true' }, { key: DEFAULT_MODEL_KEY, value: 'openai/gpt-5-mini' }]);
   const withAi = new SettingsService(pool as any, cfg);
   await Promise.all([plain.whenLoaded(), withAi.whenLoaded()]);
-  assert.deepEqual(withAi.get(), plain.get());
-  assert.deepEqual(withAi.get().overrides, ['TRACKING_ENABLED']);
-  assert.match(pool.sqls[0], /NOT LIKE 'ai\.%'/);
+  assert.deepEqual(await withAi.get(), await plain.get());
+  assert.deepEqual((await withAi.get()).overrides, ['TRACKING_ENABLED']);
 });

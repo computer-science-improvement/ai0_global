@@ -25,7 +25,9 @@ import { DataModule }           from './data/data.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({ isGlobal: true, envFilePath: '../../.env' }),
+    // load-env.ts has already read ../../.env into process.env; reading the file again here would put back the keys
+    // the settings overlay removed (spec 039: reset to the built-in default).
+    ConfigModule.forRoot({ isGlobal: true, ignoreEnvFile: true }),
     ScheduleModule.forRoot(),
     DatabaseModule,
     ChannelConfigModule,

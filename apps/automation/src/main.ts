@@ -6,8 +6,8 @@ import { WinstonModule }           from 'nest-winston';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import * as winston                from 'winston';
 import cookieParser                from 'cookie-parser';
-import { AppModule }               from './app.module';
 import { dataRowsJsonBody }        from './data/rows-body.middleware';
+import { bootSettings }            from './settings/boot';
 
 const isDev = (process.env.NODE_ENV ?? 'development') !== 'production';
 
@@ -28,7 +28,13 @@ const logger = WinstonModule.createLogger({
 });
 
 async function bootstrap() {
+  // Spec 039: the dashboard's settings go into process.env BEFORE any module is loaded (ConfigService, @Cron
+  // expressions and boot-time factories then read them), so AppModule is imported only after the overlay.
+  await bootSettings((m) => logger.log(m, 'Settings'));
+  const { AppModule } = await import('./app.module');
   const app = await NestFactory.create<NestExpressApplication>(AppModule, { logger });
+  // Graceful stop on SIGTERM (docker stop, and the Settings page's "Restart service"): onModuleDestroy hooks run.
+  app.enableShutdownHooks();
 
   // Prod chain is host Caddy → dashboard nginx → here, all on loopback/docker
   // private addresses. Trusting only those hops makes `req.ip` the real client

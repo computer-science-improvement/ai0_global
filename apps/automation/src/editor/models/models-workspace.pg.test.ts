@@ -101,7 +101,7 @@ test('workspace, per-workspace defaults, agent models per column, bulk on the ac
   // The settings service never treats ai.* (the workspace included) as env overrides.
   const settings = new SettingsService(pool as any, { get: () => undefined } as any);
   await settings.whenLoaded();
-  assert.ok(!settings.get().overrides.includes(WORKSPACE_KEY));
+  assert.ok(!(await settings.get()).overrides.includes(WORKSPACE_KEY));
 
   await svc.setWorkspace({ workspace: 'openrouter' });
   assert.equal((await pool.query(`SELECT count(*)::int AS n FROM app_settings WHERE key = $1`, [WORKSPACE_KEY])).rows[0].n, 0, 'openrouter = no row');

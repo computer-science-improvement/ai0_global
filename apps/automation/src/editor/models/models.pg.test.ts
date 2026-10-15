@@ -98,7 +98,7 @@ test('global default, bulk actions, legacy channel overrides and the price upser
   // The settings service never treats ai.default_model as an env override.
   const settings = new SettingsService(pool as any, { get: () => undefined } as any);
   await settings.whenLoaded();
-  assert.ok(!settings.get().overrides.includes(DEFAULT_MODEL_KEY));
+  assert.ok(!(await settings.get()).overrides.includes(DEFAULT_MODEL_KEY));
 
   // Clear one role of the legacy override, then all.
   await svc.clearChannel({ channelKey: CH, role: 'executor' });

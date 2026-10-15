@@ -15,9 +15,9 @@ import { DB_POOL } from '../../database/database.tokens';
  *  - SCRUB_POLICIES      — keep the row (dedup keys, metrics, status) but blank
  *                          out its text/payload columns older than the window.
  *
- * Gated behind RETENTION_ENABLED=true (`.env.example` ships it on since spec
- * 007). While off it deletes nothing and just logs. Per-table windows are
- * configurable via env; a window of 0 (or less) disables that table.
+ * Gated behind RETENTION_ENABLED=true (Settings → Configuration → Retention, spec 039).
+ * While off it deletes nothing and just logs. Per-table windows are settings too
+ * (read on every run); a window of 0 (or less) disables that table.
  *
  * `bot_logs` is deliberately absent: it is the publish dedup ledger until spec
  * 009 retires the legacy strategies.
