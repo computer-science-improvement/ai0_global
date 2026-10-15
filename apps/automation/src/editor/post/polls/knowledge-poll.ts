@@ -84,7 +84,7 @@ export function optionKey(option: string): OptionKey {
   }
   const bare = [...rest.matchAll(/(?<![\p{L}\p{N}.,])\d+(?:[.,]\d+)?(?![\p{L}\p{N}]|[.,]\d)/gu)].map((m) => m[0].replace(',', '.'));
   rest = rest.replace(/\d+(?:[.,]\d+)?/g, ' ');
-  const words = norm(rest).match(/[\p{L}ʼ]+/gu) ?? [];
+  const words: string[] = norm(rest).match(/[\p{L}ʼ]+/gu) ?? [];
   const latin = words.filter((w) => /^[a-z]/.test(w) && w.length >= 2 && !STOP_WORDS.has(w));
   const stems = words.filter((w) => !/^[a-z]/.test(w) && w.length >= 3 && !STOP_WORDS.has(w)).map(stemOf);
   return { numbers, bare, latin, stems };
