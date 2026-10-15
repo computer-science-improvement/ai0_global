@@ -8,6 +8,7 @@ import type { VoicePrefs } from '../post/slop-lint';
 import { SkillLibrary, type Skill } from '../skills/skill-library';
 import { voiceCoreBody, voiceSettingsLine } from '../roles/voice';
 import { CritiqueInput, decideVerdict, type Critique, type StoredCritic } from './critic';
+import { criticDatesLines, type CriticDates } from './critic-dates';
 
 /** One attempt of the critic; a second attempt follows a timeout or an error (fail-safe, FR-004). */
 export const CRITIC_TIMEOUT_MS = 90_000;
@@ -49,6 +50,8 @@ export interface CriticRequest {
   previous?:    Pick<StoredCritic, 'verdict' | 'notes' | 'scores'> | null;
   /** Registry agent whose budget the critic run counts against (the executor's). */
   agent?:       AgentBudget | null;
+  /** Spec 037 T5: publish time in the resource zone, source date, first post of the story (critic-dates.ts). */
+  dates?:       CriticDates | null;
 }
 
 export type CriticResult =
@@ -107,6 +110,7 @@ export function criticUserPrompt(r: CriticRequest): string {
   if (r.profile && /Табу-теми/.test(r.profile)) s.push('', 'Табу-теми з профілю — це теми, про які ресурс не пише: пост на табу-тему → sense ≤ 2.');
   s.push('', '## Слот');
   s.push(`Формат: ${r.format}.${r.topic ? ` Тема: ${r.topic}.` : ''}${r.angle ? ` Кут: ${r.angle}.` : ''}`);
+  if (r.dates) s.push(...criticDatesLines(r.dates));
   s.push('', '## Пост (що побачить читач)', clip(r.text, CAP.text) || '(порожньо)');
   s.push('', '### Специфікація поста (JSON)', clip(json(r.spec), CAP.spec));
   s.push('', '## Джерело');

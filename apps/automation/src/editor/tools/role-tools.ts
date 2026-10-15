@@ -137,7 +137,9 @@ export async function checkPublishGuards(d: RoleToolDeps, ctx: ToolContext, spec
 
   // Spec 037: the integrity checks resolve dates against the slot time (now for a late slot), in the resource zone.
   const at = slot.scheduledAt && new Date(slot.scheduledAt).getTime() > now.getTime() ? new Date(slot.scheduledAt) : now;
-  const lint = lintPost(spec, card, { id: slotId, channel: channelKey, publishedAt: at.toISOString(), timezone: card.timezone, ctx: { now: now.toISOString() } });
+  // Spec 037 T5: the pages and feed items the run read (with their publication dates) feed the freshness checks.
+  const sources = criticGateOf(ctx)?.sources();
+  const lint = lintPost(spec, card, { id: slotId, channel: channelKey, publishedAt: at.toISOString(), timezone: card.timezone, ctx: { now: now.toISOString(), ...(sources ? { sources } : {}) } });
   if (!lint.ok) return { error: 'lint_failed', details: lint.errors };
   const truth = await checkQuizGroundTruth(d.pool, spec);
   if (truth) return truth;
@@ -166,7 +168,7 @@ export async function checkPublishGuards(d: RoleToolDeps, ctx: ToolContext, spec
       return { error: 'min_gap', details: `останній пост ${Math.round((now.getTime() - last.getTime()) / 60_000)} хв тому, мінімум ${card.minGapMinutes}` };
     }
   }
-  return { ok: true as const, rendered, ref, lint };
+  return { ok: true as const, rendered, ref, lint, at };
 }
 
 export function buildRoleTools(d: RoleToolDeps): EditorTool[] {
@@ -219,7 +221,7 @@ export function buildRoleTools(d: RoleToolDeps): EditorTool[] {
       const gate = criticGateOf(ctx);
       let critic: Record<string, unknown> | null = null;
       if (gate) {
-        const c = await gate.check({ text: htmlToPlain(g.rendered.preview), spec, format: spec.format, warnings: g.lint.warnings });
+        const c = await gate.check({ text: htmlToPlain(g.rendered.preview), spec, format: spec.format, warnings: g.lint.warnings, publishAt: g.at.toISOString(), timezone: card.timezone });
         if (c.kind !== 'proceed') return c.result;
         critic = criticSummary(c.critic);
       }
