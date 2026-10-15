@@ -9,6 +9,7 @@ import { styleChecks } from './checks/style';
 import { varietyChecks } from './checks/variety';
 import { storyCheck } from './checks/story';
 import { storyEventCheck } from './checks/story-event';
+import { POLL_CHECKS } from './checks/polls';
 
 /**
  * Spec 037 FR-001: every deterministic integrity check, in report order. A new check (T2–T11) is one file under
@@ -28,6 +29,7 @@ export const INTEGRITY_CHECKS: IntegrityCheck[] = [
   ...varietyChecks,
   storyCheck,
   storyEventCheck,
+  ...POLL_CHECKS,
 ];
 
 /** Every finding of every check on one post. A check that throws is reported as `check_failed`, never swallowed. */

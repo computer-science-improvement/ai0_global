@@ -228,7 +228,7 @@ export const CODE_EXPLANATIONS: Record<string, CodeExplanation> = {
   quiz_answer_revealed: {
     title: 'Quiz answer given away',
     explain: 'The right answer is in the intro, the companion post or a post of the same story from the last 24 hours.',
-    fix: 'Remove the answer from the text around the quiz, or ask a different question.',
+    fix: 'Remove the answer from the intro and the posts around the quiz; reveal it only in the quiz explanation.',
   },
   poll_cap_reached: {
     title: 'Too many polls',

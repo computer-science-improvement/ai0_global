@@ -183,6 +183,8 @@ export class PostAuditService {
         ...(r.topic_mode !== 'live' && typeof r.topic === 'string' && r.topic.trim() ? { topic: r.topic } : {}),
       });
       const messageId = r.message_id == null ? null : Number(r.message_id);
+      // Spec 037 T7: the message id orders posts of the same instant (a poll right under its intro).
+      if (messageId != null) post.messageIds = [messageId];
       out.push({
         post, kind: 'slot', postId: r.id, slotId: r.id, channelKey: r.channel_key, messageId,
         url: telegramPostUrl(r.channel_id ?? r.channel_key, messageId), sources: parseSources(r.sources),

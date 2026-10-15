@@ -96,6 +96,16 @@ export function fingerprintOf(f: Finding): string {
 }
 
 /**
+ * Spec 037 T7: of two posts of the same instant (an intro and the poll right under it), the one the reader sees first:
+ * the lower Telegram message id when both are known, else the id.
+ */
+function readFirst(p: AuditPost, q: AuditPost): boolean {
+  const a = p.messageIds?.[0];
+  const b = q.messageIds?.[0];
+  return a != null && b != null && a !== b ? a < b : p.id < q.id;
+}
+
+/**
  * Every finding of every check on the targets (any order). `history` holds the resource's posts before the window
  * (any order); a target's `previous` is every earlier post of the resource, newest first. `network` holds the
  * siblings' posts; a target sees the ones published before it. A check that throws is a `check_failed` row.
@@ -115,7 +125,7 @@ export function auditFindings(i: {
   const rows: AuditRow[] = [];
   for (const t of [...i.targets].sort((a, b) => at(a.post) - at(b.post))) {
     const when = at(t.post);
-    const previous = timeline.filter((p) => p.id !== t.post.id && (at(p) < when || (at(p) === when && p.id < t.post.id)));
+    const previous = timeline.filter((p) => p.id !== t.post.id && (at(p) < when || (at(p) === when && readFirst(p, t.post))));
     const findings = runIntegrityChecks(t.post, {
       previous,
       network: network.filter((p) => at(p) < when),
