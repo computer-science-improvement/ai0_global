@@ -7,6 +7,8 @@ import { addSkip, isNotAMiss, isOwnerDecision, skipGroupOf, type SkipCounts } fr
 import { DARK_DAY_HOUR } from '../silent/silent-days';
 import type { SlotFallback } from '../silent/fallback-ladder';
 import { SqlFeedFit, type FeedFit } from './feed-fit';
+import { PostAuditService, type AuditSummary } from '../audit/post-audit.service';
+import { AUDIT_FLAGS } from '../audit/code-catalogue';
 import { REPOST_COUNTS_SQL, repostShare, type RepostShare } from '../story/repost-stats';
 import { StoryEventRepository } from '../story/story-event.repository';
 import type { EventGap } from '../story/story-event';
@@ -42,6 +44,8 @@ export const QUALITY_FLAGS = [
   'dark_day', 'series_missed',
   // Spec 037 FR-009: a feed whose items mostly carry jargon over the audience level or get a critic revise / reject.
   'feed_misfit',
+  // Spec 037 FR-014: the post audit found story repeats, fact / source issues, date, text-hygiene or style findings.
+  'story_repeat', 'fact_conflict', 'date_issue', 'text_hygiene', 'style_violation',
   // Spec 037 T2: reposts are more than 30 % of what the resource put out.
   'repost_share_high',
   // Spec 037 T3: the resource announced an event and posted nothing about it within 24 h after it.
@@ -99,6 +103,8 @@ export interface ResourceQuality {
   plan?:   PlanBlock;
   /** Spec 037 FR-009: per feed, the share of items with jargon over the level / critic revise / reject (digest only). */
   feeds?:  FeedFit[];
+  /** Spec 037 FR-014: the post audit of the window — findings per digest flag and the top codes (absent before the first audit). */
+  audit?:  AuditSummary;
   /** Spec 037 T2: own vs repost publications of a Telegram channel in the window (absent when not read). */
   reposts?: RepostShare;
   /** Spec 037 T3: events the resource announced with no post within 24 h after them (absent when none). */
@@ -293,6 +299,14 @@ export function withFeeds(q: ResourceQuality, feeds: FeedFit[] | undefined): Res
   return { ...q, feeds };
 }
 
+/** Spec 037 FR-014: the post-audit block on a resource's quality, and a flag per audit group with findings. */
+export function withAudit(q: ResourceQuality, audit: AuditSummary | undefined): ResourceQuality {
+  if (!audit) return q;
+  // The flags array is shared with the signature, so a new audit flag changes the digest hash too.
+  for (const f of AUDIT_FLAGS) if ((audit.groups[f] ?? 0) > 0 && !q.flags.includes(f)) q.flags.push(f);
+  return { ...q, audit };
+}
+
 /** Spec 037 T3: one announced event without a recap, as the digest shows it. */
 export interface EventNotCovered { story_key: string; event: string; at: string; all_day: boolean; announced: number }
 
@@ -430,14 +444,15 @@ export class SqlQuality {
   async digest(refs: string[], now: Date): Promise<Map<string, ResourceQuality>> {
     const from = new Date(now.getTime() - QUALITY_DAYS * 86_400_000);
     // A minute of slack: a row written in the same millisecond (DB clocks are finer) still counts.
-    const [data, caps, feeds, events] = await Promise.all([
+    const [data, caps, feeds, audit, events] = await Promise.all([
       this.rows(refs, from, new Date(now.getTime() + 60_000)), this.caps(refs),
       new SqlFeedFit(this.pool).feeds(refs, from, new Date(now.getTime() + 60_000)).catch(() => new Map<string, FeedFit[]>()),
+      new PostAuditService({ pool: this.pool }).summaries(refs, now).catch(() => new Map<string, AuditSummary>()),
       new StoryEventRepository(this.pool).gapsByRef(refs, from, now).catch(() => new Map<string, EventGap[]>()),
     ]);
     return new Map(refs.map((r) => {
       const d = data.get(r)!;
-      return [r, withEvents(withFeeds(assembleQuality({ ...d, caps: caps.get(r)!, plan: { rows: d.plan, tz: d.tz, now } }), feeds.get(r)), events.get(r))];
+      return [r, withEvents(withAudit(withFeeds(assembleQuality({ ...d, caps: caps.get(r)!, plan: { rows: d.plan, tz: d.tz, now } }), feeds.get(r)), audit.get(r)), events.get(r))];
     }));
   }
 

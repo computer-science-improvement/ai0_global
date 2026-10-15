@@ -68,6 +68,8 @@ export interface EditorSchedulerDeps {
    * the slots, throttled by the hook itself, one Inbox note per resource per day and kind. Paused resources are left out.
    */
   silentDays?: (cards: EditorCard[], now: Date, paused: ReadonlySet<string>) => Promise<unknown>;
+  /** Spec 037 FR-014: the post audit — daily per resource and at once after a rule change; throttled by the hook itself. */
+  postAudit?: (now: Date) => Promise<unknown>;
   /**
    * Spec 037 FR-003 (T3): an announced event with no post within 24 h after it — one owner Inbox note per event
    * (code-only, throttled by the hook itself).
@@ -179,6 +181,9 @@ export class EditorScheduler {
     }
     if (this.d.silentDays) {
       try { await this.d.silentDays(cards, now, paused); } catch (err: any) { this.d.log?.(`silent-day check failed: ${err?.message ?? err}`); }
+    }
+    if (this.d.postAudit) {
+      try { await this.d.postAudit(now); } catch (err: any) { this.d.log?.(`post audit failed: ${err?.message ?? err}`); }
     }
     if (this.d.eventRecaps) {
       try { await this.d.eventRecaps(now); } catch (err: any) { this.d.log?.(`event recap check failed: ${err?.message ?? err}`); }

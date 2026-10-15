@@ -14,6 +14,7 @@ import { Modal } from '../Modal';
 import { SegmentedTabs } from '../SegmentedTabs';
 import { TelegramPreview } from '../chat/TelegramPreview';
 import { CriticBlock } from '../critic/CriticBlock';
+import { ApprovalFindings } from './ApprovalFindings';
 import { errorBody } from '../../api/agents';
 import {
   toZonedInput, useApprovalAction, zonedInputToIso, type ApprovalCardData, type RenderedPlatformPost,
@@ -99,9 +100,12 @@ export function ApprovalCard({ item, delay = 0 }: { item: ApprovalCardData; dela
 
       {item.critic && <CriticBlock critic={item.critic} where="approval" />}
 
+      {/* Spec 037 FR-014: the checks' findings (stories, numbers, dates, lint) with the rule and the fix. */}
+      <ApprovalFindings findings={item.findings} />
+
       {item.lintWarnings.length > 0 && (
         <div style={{ marginTop: 8, display: 'flex', flexDirection: 'column', gap: 2 }}>
-          {item.lintWarnings.map((w, i) => <span key={i} className="text-micro" style={{ color: 'var(--color-warning)' }}>⚠ {w}</span>)}
+          {!item.findings?.length && item.lintWarnings.map((w, i) => <span key={i} className="text-micro" style={{ color: 'var(--color-warning)', overflowWrap: 'anywhere' }}>⚠ {w}</span>)}
           <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>Posts with warnings or a critic verdict other than pass are left out of "Approve all".</span>
         </div>
       )}

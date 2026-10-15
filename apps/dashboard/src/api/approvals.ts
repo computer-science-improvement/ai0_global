@@ -2,6 +2,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { api } from './client';
 import type { EditorMode, TgMessage } from './types';
 import type { CriticVerdict } from '../lib/critic';
+import type { ApprovalFinding } from '../lib/audit-view';
 
 // Approval mode (spec 031): posts the agents wrote that wait for the owner.
 // GET /api/editor/approvals, POST /api/editor/approvals/:id/{approve,edit,reschedule,reject}, POST …/bulk.
@@ -40,6 +41,8 @@ export interface ApprovalCardData {
   lintWarnings:  string[];
   /** Spec 034 FR-004: the pre-publish critic's verdict (null for posts written before it). */
   critic?:       CriticVerdict | null;
+  /** Spec 037 FR-014: what the code's checks found in the post (absent on older servers). */
+  findings?:     ApprovalFinding[];
   ownerEdited:   boolean;
   approvedAt:    string | null;
   expiresAt:     string;
