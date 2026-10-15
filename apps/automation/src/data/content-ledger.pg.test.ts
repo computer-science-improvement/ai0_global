@@ -1,11 +1,14 @@
 /**
  * Spec 023 T1: the content ledger rules against a throwaway Postgres with every migration applied —
  * canonical refs, reuse policy (dated datasets after 300 days), the 7-day shadow window, error everywhere,
- * waiting posts (spec 031), the approval re-check (published only) and network-wide scope.
+ * waiting posts (spec 031), the approval re-check (published only) and network-wide scope; spec 037 T16: one
+ * canonical form per URL (migration 075) in the ledger and the waiting posts, and the rewrite of old rows.
  * Skipped unless EDITOR_PG_TEST_URL is set. Never point this at a real database.
  */
 import { test, before, after } from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'fs';
+import { join } from 'path';
 import { Pool } from 'pg';
 import { ContentLedger } from './content-ledger';
 import { DataStore } from './data-store';
@@ -22,6 +25,8 @@ const ref: Record<string, string> = {};
 
 async function cleanup() {
   await pool.query(`DELETE FROM content_ledger WHERE resource_ref LIKE '%pgt023l%' OR source_ref LIKE '%pgt023l%'`);
+  await pool.query(`DELETE FROM editor_slots WHERE channel_key = '@pgt023l_a'`);
+  await pool.query(`DELETE FROM editor_plans WHERE channel_key = '@pgt023l_a'`);
   await pool.query(`DELETE FROM editor_channels WHERE channel_key = '@pgt023l_a'`);
   await pool.query(`DELETE FROM platform_posts WHERE resource_ref = $1`, [R2]);
   await pool.query(`DELETE FROM data_items WHERE schema_id IN (SELECT id FROM data_schemas WHERE key LIKE 'pgt023l\\_%')`);
@@ -58,14 +63,14 @@ const canon = async (s: string) => (await pool.query(`SELECT content_ref_canonic
 
 test('canonical refs: URLs, data:// and its library:// alias, other refs', { skip }, async () => {
   assert.equal(await canon('HTTPS://News.Example.COM/Path/A?utm_source=tg&id=7&UTM_Medium=x#frag'), 'https://news.example.com/Path/A?id=7');
-  assert.equal(await canon('http://x.example/?utm_a=1&utm_b=2'), 'http://x.example/');
+  assert.equal(await canon('http://x.example/?utm_a=1&utm_b=2'), 'https://x.example/');
   assert.equal(await canon('  https://x.example/a?b=1  '), 'https://x.example/a?b=1');
   assert.equal(await canon('library://pgt023l_old/9'), ref[K_ONCE], 'a moved row resolves to data://');
   assert.equal(await canon('library://pgt023l_old/404'), 'library://pgt023l_old/404', 'an unknown legacy ref stays as given');
   assert.equal(await canon('digest://network/2026-10-06'), 'digest://network/2026-10-06');
   assert.equal(await canon('pdr:12:q3'), 'pdr:12:q3');
   assert.equal(await canon('   '), null);
-  assert.equal(await ledger.canonical('HTTP://A.example/x#y'), 'http://a.example/x');
+  assert.equal(await ledger.canonical('HTTP://A.example/x#y'), 'https://a.example/x');
 });
 
 test('record: blank refs are ignored; a repeat moves used_at forward, never back', { skip }, async () => {
@@ -134,4 +139,59 @@ test('the wildcard telegram:* (a TELEGRAM marker without a bound channel) counts
   await ledger.record('https://pgt023l.example/wild', { resourceRef: 'telegram:*', origin: 'backfill', status: 'published' });
   assert.equal(await ledger.used(R1, 'https://pgt023l.example/wild'), false);
   assert.equal(await ledger.used(R1, 'https://pgt023l.example/wild', { scope: 'network' }), true);
+});
+
+// ── spec 037 T16 (AI0-110): the Steam deals of 08.10 went out twice with the same source ──────────────
+
+test('037 T16: one URL is one ref — root slash, http, www., trailing slash, default port, click ids; another path or query is another page', { skip }, async () => {
+  for (const v of ['https://store.steampowered.com', 'https://store.steampowered.com/', 'http://store.steampowered.com', 'https://www.store.steampowered.com/',
+    'HTTPS://Store.SteamPowered.com:443/', 'https://store.steampowered.com/#deals', 'https://store.steampowered.com/?utm_source=tg&fbclid=1&gclid=2']) {
+    assert.equal(await canon(v), 'https://store.steampowered.com/', v);
+  }
+  assert.equal(await canon('https://store.steampowered.com/search/?specials=1'), 'https://store.steampowered.com/search?specials=1');
+  assert.equal(await canon('https://www.example.com/News/A/'), 'https://example.com/News/A', 'the path keeps its case');
+  assert.equal(await canon('https://store.steampowered.com/?l=ukrainian'), 'https://store.steampowered.com/?l=ukrainian', 'other parameters stay');
+
+  await ledger.record('https://store.pgt023l.example', { resourceRef: R1, origin: 'editor', status: 'published' });
+  for (const v of ['https://store.pgt023l.example/', 'http://www.store.pgt023l.example', 'https://store.pgt023l.example/?utm_medium=x']) {
+    assert.equal(await ledger.used(R1, v), true, `${v} is the published homepage`);
+  }
+  assert.equal(await ledger.used(R1, 'https://store.pgt023l.example/search/?specials=1'), false, 'the specials search is another page (09.10 18:01)');
+  const { rows } = await pool.query(`SELECT source_ref FROM content_ledger WHERE resource_ref = $1 AND source_ref LIKE 'https://store.pgt023l%'`, [R1]);
+  assert.deepEqual(rows.map((r) => r.source_ref), ['https://store.pgt023l.example/']);
+});
+
+test('037 T16: a waiting slot or platform post holds its source in any spelling of the URL', { skip }, async () => {
+  await pool.query(`INSERT INTO editor_channels (channel_key, mode) VALUES ('@pgt023l_a', 'approve') ON CONFLICT DO NOTHING`);
+  const plan = (await pool.query(`INSERT INTO editor_plans (channel_key, plan_date) VALUES ('@pgt023l_a', CURRENT_DATE) RETURNING id`)).rows[0].id;
+  const slot = (await pool.query(
+    `INSERT INTO editor_slots (plan_id, channel_key, scheduled_at, format, topic, status, post_spec)
+     VALUES ($1, '@pgt023l_a', now() + interval '2 hours', 'text', 'Steam deals', 'awaiting_approval', $2) RETURNING id`,
+    [plan, JSON.stringify({ source: { url: 'https://Steam.pgt023l.example' } })])).rows[0].id;
+  const v = await ledger.check(R1, 'https://steam.pgt023l.example/', { waiting: true });
+  assert.equal(v.used && v.status, 'waiting', 'written without the root slash, asked with it');
+  assert.equal(await ledger.used(R1, 'https://steam.pgt023l.example/', { waiting: true, excludeSlotId: slot }), false, 'the slot itself is excluded');
+
+  await pool.query(`INSERT INTO platform_posts (resource_ref, platform, format, caption, spec, source_ref, status) VALUES ($1, 'instagram', 'ig_photo', 'w', '{}', 'http://www.pgt023l.example/wait2/', 'awaiting_approval')`, [R2]);
+  assert.equal(await ledger.used(R2, 'https://pgt023l.example/wait2', { waiting: true }), true);
+});
+
+test('037 T16: migration 075 rewrites rows of the old canonical form and merges the ones that become one ref', { skip }, async () => {
+  const day = 86_400_000;
+  // Rows as 060 wrote them (inserted directly: content_ledger_record would canonicalise them now).
+  await pool.query(
+    `INSERT INTO content_ledger (resource_ref, source_ref, origin, status, published_post_id, used_at) VALUES
+       ($1, 'https://old.pgt023l.example', 'editor', 'published', 11, $2),
+       ($1, 'https://old.pgt023l.example/', 'editor', 'published', 12, $3),
+       ($1, 'http://www.old.pgt023l.example/a/', 'chat', 'shadowed', NULL, $3)`,
+    [R1, new Date(Date.now() - 2 * day), new Date(Date.now() - day)]);
+  const m075 = readFileSync(join(__dirname, '..', '..', '..', '..', 'database', 'migrations', '075_ledger_url_canonical.sql'), 'utf8');
+  await pool.query(m075);
+  await pool.query(m075); // idempotent
+  const { rows } = await pool.query(
+    `SELECT source_ref, status, published_post_id, origin FROM content_ledger WHERE resource_ref = $1 AND source_ref LIKE '%old.pgt023l%' ORDER BY source_ref, status`, [R1]);
+  assert.deepEqual(rows, [
+    { source_ref: 'https://old.pgt023l.example/', status: 'published', published_post_id: '12', origin: 'editor' },
+    { source_ref: 'https://old.pgt023l.example/a', status: 'shadowed', published_post_id: null, origin: 'chat' },
+  ], 'the latest use of the merged rows wins');
 });

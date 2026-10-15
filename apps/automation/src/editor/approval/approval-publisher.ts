@@ -11,6 +11,7 @@ import { SIMILARITY_LIMIT } from '../tools/role-tools';
 import { localDate, zonedToUtc } from '../roles/time';
 import type { ApprovalsRepository } from './approvals.repository';
 import { PAUSED_ERROR, slotRef } from '../pauses/resource-pauses';
+import { specRefs } from '../../data/content-ledger';
 
 export interface ApprovalPublisherDeps {
   repo:     Pick<ApprovalsRepository, 'claimApprovedDue' | 'publishedSource' | 'publishedTexts' | 'cancelPlatformPosts'>;
@@ -120,10 +121,13 @@ export class ApprovalPublisher {
     if (!parsed.success) return this.fail(slot, 'approved post has an invalid spec');
     const spec = parsed.data;
 
-    // Dedup after approval: the source or a near-identical text went out while the post waited.
+    // Dedup after approval: the source or a near-identical text went out while the post waited. Every ref of
+    // the post is asked (spec 037 T16: a library item and a source URL are two refs, either may have gone out).
     const ref = spec.library_ref ?? spec.source?.url ?? null;
-    if (ref && await this.d.repo.publishedSource(slot.channelKey, ref, slot.id)) {
-      return this.skip(slot, 'dedup_after_approval', dedupNotice(slot, { en: 'this source was already published in the channel', uk: 'це джерело вже опубліковано в каналі' }));
+    for (const r of specRefs(spec)) {
+      if (await this.d.repo.publishedSource(slot.channelKey, r, slot.id)) {
+        return this.skip(slot, 'dedup_after_approval', dedupNotice(slot, { en: 'this source was already published in the channel', uk: 'це джерело вже опубліковано в каналі' }));
+      }
     }
     const preview = slot.renderedPreview ?? '';
     const maxSim = (await this.d.repo.publishedTexts(slot.channelKey, slot.id)).reduce((m, t) => Math.max(m, similarity(preview, t)), 0);
