@@ -1,0 +1,226 @@
+import { isToolError, type EditorTool } from '../harness/tool';
+import { isContentFailureCode } from './skip-reasons';
+
+/**
+ * Spec 037 FR-010 (T10): the fallback ladder of a slot whose post failed.
+ *
+ *   initial run (the critic's one rewrite on `revise` is inside it, spec 034)
+ *     → next_candidate  — once: a live slot takes the next fresh feed item, a fixed slot re-runs the executor with the
+ *                          failure notes and an instruction to pick different material;
+ *     → lighter_format  — a lighter format the card / platform allows (longread / carousel → text or photo, …);
+ *     → evergreen       — SEAM: `EditorRunnerDeps.fallbackEvergreen`, absent until the story registry (T2) and the
+ *                          critic's resource skills (T12) exist; without it this step is not planned;
+ *     → skip with the recorded reason.
+ *
+ * Only content failures climb the ladder: a critic reject (or a second revise, or the executor's skip after a
+ * revise) and a lint / guard failure of the publish tool (lint, too similar, too verbatim, source already posted…).
+ * A critic outage, a budget block, a cap, quiet hours, "nothing fresh" or the executor's own editorial skip end
+ * the slot as before. Every step runs through the AgentLoop, so the executor's and the critic's spend lands in the
+ * usage ledger (spec 029) and counts against the channel / agent / global caps; the runner checks the daily budget
+ * before each step and stops the ladder when it is hit. Each step and its reason are stored on the slot
+ * (`editor_slots.fallback`, migration 076) next to the run id of the step (the run trace).
+ */
+
+export type LadderStep = 'initial' | 'next_candidate' | 'lighter_format' | 'evergreen';
+
+/** Why the post of an attempt did not pass. */
+export interface SlotFailure {
+  kind:      'critic_reject' | 'lint' | 'guard';
+  /** `critic_rejected`, `lint_failed`, `too_similar`, … */
+  code:      string;
+  /** The slot error to keep when the ladder ends in a skip (stable prefix: the digest groups by it). */
+  reason:    string;
+  /** The critic's notes or the lint errors, for the next attempt's prompt. */
+  notes:     string | null;
+  /** The source the failed post was written from (a live slot takes another item next). */
+  sourceUrl: string | null;
+}
+
+export type StepOutcome =
+  | 'published' | 'shadowed' | 'awaiting_approval' | 'approved'      // rescued
+  | 'critic_reject' | 'lint' | 'guard'                                // failed again
+  | 'no_candidate' | 'unavailable'                                    // the step could not run
+  | 'ended';                                                          // a non-content end (skip, outage, budget, …)
+
+export interface FallbackStepRecord {
+  step:       LadderStep;
+  at:         string;
+  format:     string;
+  outcome:    StepOutcome;
+  reason:     string | null;
+  /** The critic's verdict of this attempt (null when the post never reached the critic). */
+  verdict:    string | null;
+  run_id:     string | null;
+  /** The executor run's cost plus the critic's (both already in the usage ledger). */
+  cost_usd:   number;
+  source_url?: string | null;
+}
+
+export interface FallbackFinal {
+  /** rescued: a later step went out; skipped: every step failed or the ladder stopped; ended: a step ended the slot otherwise. */
+  outcome: 'rescued' | 'skipped' | 'ended';
+  /** exhausted | budget | too_late (skipped); the slot status (rescued / ended). */
+  code:    string;
+  step:    LadderStep;
+  reason:  string | null;
+}
+
+/** editor_slots.fallback (migration 076). */
+export interface SlotFallback {
+  steps: FallbackStepRecord[];
+  final: FallbackFinal | null;
+}
+
+/** The ladder does not start a new step this long after the slot's time (stale slots are skipped at 3 h). */
+export const LADDER_MAX_LATE_MS = 90 * 60_000;
+
+const RESCUED = new Set(['published', 'shadowed', 'awaiting_approval', 'approved']);
+export const isRescued = (status: string | null | undefined): boolean => !!status && RESCUED.has(status);
+
+const clip = (s: string, n: number) => (s.length > n ? `${s.slice(0, n - 1)}…` : s);
+
+function detailsText(details: unknown): string {
+  if (details == null) return '';
+  if (Array.isArray(details)) return details.map((x: any) => (x && typeof x === 'object' ? x.code ?? x.message ?? JSON.stringify(x) : String(x))).join(', ');
+  if (typeof details === 'object') return JSON.stringify(details);
+  return String(details);
+}
+
+/**
+ * What the publish tool saw in one run: its last error (lint, guard, critic_revise; null after a success) and the
+ * source of the last post it was given (a rejected post is never stored on the slot, so the ladder learns it here).
+ */
+export class PublishProbe {
+  last: { code: string; details: unknown } | null = null;
+  source: string | null = null;
+
+  wrap(tools: EditorTool[]): EditorTool[] {
+    return tools.map((t) => (t.name !== 'publish_post' && t.name !== 'publish_platform_post') ? t : {
+      ...t,
+      execute: async (input: any, ctx: any) => {
+        this.source = sourceOf(input?.spec) ?? this.source;
+        const r = await t.execute(input, ctx);
+        this.last = isToolError(r) ? { code: r.error, details: (r as any).details } : null;
+        return r;
+      },
+    });
+  }
+}
+
+/** The slot fields the classification reads. */
+export interface SlotState {
+  status:    string;
+  error:     string | null;
+  critic?:   { verdict?: string | null; notes?: string | null } | null;
+  postSpec?: unknown;
+}
+
+function sourceOf(spec: any): string | null {
+  return typeof spec?.source?.url === 'string' ? spec.source.url : typeof spec?.library_ref === 'string' ? spec.library_ref : null;
+}
+
+/**
+ * Did this attempt fail for a content reason the ladder retries? `probe` is the run's last publish-tool error: a
+ * run that ran out of steps on a lint / guard error leaves the slot `running`.
+ */
+export function classifyFailure(slot: SlotState, run: Pick<PublishProbe, 'last' | 'source'> | null): SlotFailure | null {
+  const f = classify(slot, run?.last ?? null);
+  return f && !f.sourceUrl && run?.source ? { ...f, sourceUrl: run.source } : f;
+}
+
+function classify(slot: SlotState, probe: PublishProbe['last']): SlotFailure | null {
+  const err = (slot.error ?? '').trim();
+  const verdict = slot.critic?.verdict ?? null;
+  const notes = slot.critic?.notes ?? null;
+  if (slot.status === 'skipped' && /^critic_rejected\b/.test(err)) {
+    return { kind: 'critic_reject', code: 'critic_rejected', reason: err, notes, sourceUrl: sourceOf(slot.postSpec) };
+  }
+  if (slot.status === 'skipped' && /^skipped by agent\b/.test(err) && (verdict === 'revise' || verdict === 'reject')) {
+    // The critic asked for a rewrite and the executor gave up on it: a critic rejection, not an editorial choice.
+    return { kind: 'critic_reject', code: 'critic_rejected', reason: `critic_rejected: executor skipped after revise — ${clip(notes ?? err, 300)}`, notes, sourceUrl: null };
+  }
+  if (slot.status === 'failed' && /^lint_failed\b/.test(err)) {
+    return { kind: 'lint', code: 'lint_failed', reason: err, notes: err, sourceUrl: null };
+  }
+  if (slot.status === 'running' && probe && isContentFailureCode(probe.code)) {
+    const text = detailsText(probe.details);
+    const kind = probe.code === 'lint_failed' ? 'lint' : 'guard';
+    return {
+      kind, code: probe.code,
+      reason: clip(kind === 'lint' ? `lint_failed: ${text}` : `${probe.code}${text ? `: ${text}` : ''}`, 500),
+      notes: clip(text, 600) || null, sourceUrl: null,
+    };
+  }
+  return null;
+}
+
+/** Lighter formats, in order of preference (Telegram and native platform formats). */
+export const LIGHTER_FORMATS: Record<string, string[]> = {
+  longread: ['text', 'photo'], carousel: ['photo', 'text'], album: ['photo', 'text'], video: ['photo', 'text'],
+  photo: ['text'], poll: ['text'], quiz: ['text'],
+  ig_carousel: ['ig_photo'], fb_album: ['fb_photo', 'fb_text'], fb_photo: ['fb_text'], fb_link: ['fb_text'],
+  th_carousel: ['th_image', 'th_text'], th_image: ['th_text'],
+};
+
+/** The first lighter format the resource allows (null: none — the step is not planned). */
+export function lighterFormat(format: string, allowed: ReadonlySet<string>): string | null {
+  return (LIGHTER_FORMATS[format] ?? []).find((f) => allowed.has(f)) ?? null;
+}
+
+/** The steps after the initial attempt (each at most once). */
+export function ladderPlan(o: { format: string; allowed: ReadonlySet<string>; evergreen: boolean }): Array<{ step: Exclude<LadderStep, 'initial'>; format: string }> {
+  const out: Array<{ step: Exclude<LadderStep, 'initial'>; format: string }> = [{ step: 'next_candidate', format: o.format }];
+  const lighter = lighterFormat(o.format, o.allowed);
+  if (lighter) out.push({ step: 'lighter_format', format: lighter });
+  // Spec 037 T10 seam: the evergreen step plugs in here once `fallbackEvergreen` exists (after T2 and T12).
+  if (o.evergreen) out.push({ step: 'evergreen', format: lighter ?? o.format });
+  return out;
+}
+
+/** The executor's extra instruction for a ladder step (Ukrainian: the executor's language). */
+export function ladderNote(step: Exclude<LadderStep, 'initial'>, o: { failure: SlotFailure; format: string; original: string; avoid: string[]; live: boolean }): string {
+  const why = o.failure.kind === 'critic_reject' ? 'критик відхилив пост' : o.failure.kind === 'lint' ? 'пост не пройшов lint' : `пост не пройшов перевірку (${o.failure.code})`;
+  const lines = [`## Запасний крок (${step}): попередня спроба цього слота не вийшла — ${why}.`];
+  if (o.failure.notes) lines.push(`Зауваження: ${clip(o.failure.notes, 600)}`);
+  if (o.avoid.length) lines.push(`Не бери повторно: ${o.avoid.slice(0, 5).join('; ')}.`);
+  if (step === 'next_candidate') {
+    lines.push(o.live
+      ? 'Візьми НАСТУПНИЙ свіжий матеріал зі списку (не той, що не пройшов) і напиши пост заново з урахуванням зауважень.'
+      : 'Візьми ІНШИЙ матеріал чи джерело в межах теми слота (не той, що не пройшов) і напиши пост заново з урахуванням зауважень.');
+  } else {
+    lines.push(`Пиши в легшому форматі: ${o.format} замість ${o.original} — коротше і простіше, факти лише з прочитаних джерел.`);
+    if (o.live) lines.push('Можна взяти інший свіжий матеріал, якщо він кращий.');
+  }
+  lines.push('Це запасна спроба: якщо гідного поста немає — skip_slot з причиною.');
+  return lines.join('\n');
+}
+
+/** The outcome of one attempt from the slot after it (and its failure, if any). */
+export function stepOutcome(slot: SlotState | null, failure: SlotFailure | null): StepOutcome {
+  if (failure) return failure.kind;
+  if (slot && isRescued(slot.status)) return slot.status as StepOutcome;
+  return 'ended';
+}
+
+/** One step's record (verdict, cost, run) from the run result and the slot after it. */
+export function stepRecord(
+  step: LadderStep, format: string, at: Date, slot: (SlotState & { critic?: { verdict?: string | null; cost_usd?: number | null } | null }) | null,
+  failure: SlotFailure | null, run: { runId: string | null; totals?: { costUsd?: number } | null } | null,
+): FallbackStepRecord {
+  const outcome = stepOutcome(slot, failure);
+  const reason = failure?.reason ?? (outcome === 'ended' ? (slot?.error ?? slot?.status ?? null) : null);
+  return {
+    step, at: at.toISOString(), format, outcome, reason: reason ? clip(reason, 300) : null,
+    verdict: slot?.critic?.verdict ?? null, run_id: run?.runId ?? null,
+    cost_usd: Number(((run?.totals?.costUsd ?? 0) + Number(slot?.critic?.cost_usd ?? 0)).toFixed(6)),
+    ...(failure?.sourceUrl || (slot?.postSpec && sourceOf(slot.postSpec)) ? { source_url: failure?.sourceUrl ?? sourceOf(slot!.postSpec) } : {}),
+  };
+}
+
+/** The critic verdicts of a slot's attempts, oldest first (the reject streak reads them). */
+export function attemptRejections(fallback: SlotFallback | null | undefined): boolean[] {
+  return (fallback?.steps ?? [])
+    .filter((s) => s.outcome !== 'no_candidate' && s.outcome !== 'unavailable')
+    .filter((s) => s.verdict != null || s.outcome === 'critic_reject')
+    .map((s) => s.outcome === 'critic_reject');
+}

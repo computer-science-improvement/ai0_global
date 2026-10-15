@@ -4,6 +4,7 @@ import type { PlannedSlot } from '../roles/plan-rules';
 import type { LiveSpec } from '../live/live-slot';
 import type { StoredCritic } from '../critic/critic';
 import { PREVIEW_STALE_MS, type SlotPreview } from '../roles/preview-run';
+import type { SlotFallback } from '../silent/fallback-ladder';
 
 export type SlotStatus =
   | 'planned' | 'running' | 'published' | 'shadowed' | 'skipped' | 'failed'
@@ -65,6 +66,8 @@ export interface EditorSlot {
   critic?:            StoredCritic | null;
   /** Spec 034 FR-012: the owner's on-demand dry-run preview of a fixed planned slot (migration 070; present only when set). */
   previewDraft?:      SlotPreview | null;
+  /** Spec 037 FR-010: the fallback ladder of a failed post (migration 076; present only when set). */
+  fallback?:          SlotFallback | null;
 }
 
 /** editor_slots.source_post of a derived slot (spec 024). */
@@ -151,6 +154,7 @@ export function rowToSlot(r: any): EditorSlot {
     ...(r.topic_mode === 'live' ? { topicMode: 'live' as const, liveSpec: liveSpecOf(r) } : {}),
     ...(r.critic ? { critic: r.critic } : {}),
     ...(r.preview_draft ? { previewDraft: r.preview_draft } : {}),
+    ...(r.fallback ? { fallback: r.fallback } : {}),
   };
 }
 
@@ -229,6 +233,8 @@ export interface SlotResultPatch {
   platformPostId?:    number | null;
   /** Spec 034 FR-004. */
   critic?:            StoredCritic | null;
+  /** Spec 037 FR-010: the fallback ladder trace. */
+  fallback?:          SlotFallback | null;
 }
 
 export class EditorPlansRepository {
@@ -656,6 +662,7 @@ export class EditorPlansRepository {
     if (p.freshnessDeadline !== undefined) add('freshness_deadline', p.freshnessDeadline);
     if (p.platformPostId !== undefined)  add('platform_post_id', p.platformPostId);
     if (p.critic !== undefined)          add('critic', p.critic === null ? null : JSON.stringify(p.critic));
+    if (p.fallback !== undefined)        add('fallback', p.fallback === null ? null : JSON.stringify(p.fallback));
     if (!sets.length) return;
     const { rows } = await this.pool.query(
       `UPDATE editor_slots SET ${sets.join(', ')}, updated_at = now() WHERE id = $1 RETURNING channel_key, resource_ref`, params);

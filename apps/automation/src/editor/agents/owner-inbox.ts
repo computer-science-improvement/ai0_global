@@ -18,6 +18,19 @@ export interface InboxItemInput {
   alert?:    { title: string; body?: string | null } | null;
 }
 
+/**
+ * Spec 037 FR-010 (T10): the silent-day alerts, at most one note per resource per (local) day and kind
+ * (`postOnce` with `dailyRef`; a unique partial index of migration 076 backs the dedup).
+ */
+export const SILENT_DAY_KINDS = ['dark_day', 'series_missed', 'critic_reject_streak'] as const;
+export type SilentDayKind = typeof SILENT_DAY_KINDS[number];
+export const RESOURCE_DAY_REF = 'resource_day';
+
+/** The dedup key of a once-per-resource-per-day note: ref_type `resource_day`, ref_id `<resource_ref>|<YYYY-MM-DD>`. */
+export function dailyRef(resourceRef: string, day: string): { refType: string; refId: string } {
+  return { refType: RESOURCE_DAY_REF, refId: `${resourceRef}|${day}` };
+}
+
 export interface InboxItem extends Required<Omit<InboxItemInput, 'agentId' | 'alert'>> {
   id:        number;
   agentId:   string | null;
@@ -41,13 +54,39 @@ export class OwnerInbox {
     const { rows } = await this.pool.query(
       `INSERT INTO agent_inbox (agent_id, kind, title, body, ref_type, ref_id, severity) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id`,
       [i.agentId ?? null, i.kind, i.title.slice(0, 300), i.body ?? null, i.refType ?? null, i.refId ?? null, i.severity ?? 'info']);
+    await this.sendAlert(i);
+    return Number(rows[0].id);
+  }
+
+  /**
+   * Store and alert only when no item of the same kind and ref exists yet (the once-per-resource-per-day notes,
+   * spec 037 FR-010). Returns the new id, or null when it was a duplicate (no alert either).
+   */
+  async postOnce(i: InboxItemInput & { refType: string; refId: string }): Promise<number | null> {
+    let rows: any[];
+    try {
+      ({ rows } = await this.pool.query(
+        `INSERT INTO agent_inbox (agent_id, kind, title, body, ref_type, ref_id, severity)
+         SELECT $1::uuid, $2::text, $3::text, $4::text, $5::text, $6::text, $7::text
+          WHERE NOT EXISTS (SELECT 1 FROM agent_inbox WHERE kind = $2 AND ref_type = $5 AND ref_id = $6)
+         RETURNING id`,
+        [i.agentId ?? null, i.kind, i.title.slice(0, 300), i.body ?? null, i.refType, i.refId, i.severity ?? 'info']));
+    } catch (err: any) {
+      if (err?.code === '23505') return null; // a concurrent insert won the unique index (migration 076)
+      throw err;
+    }
+    if (!rows.length) return null;
+    await this.sendAlert(i);
+    return Number(rows[0].id);
+  }
+
+  private async sendAlert(i: InboxItemInput): Promise<void> {
     const link = this.dashboardUrl ? `\n${this.dashboardUrl.replace(/\/$/, '')}/app/agents/inbox` : '';
     const title = i.alert ? i.alert.title : i.title;
     const body = i.alert ? i.alert.body : i.body;
     try {
       await this.alert(`${i.severity === 'critical' ? '🚨' : i.severity === 'action' ? '🟡' : '🤖'} ${title}${body ? `\n\n${body.slice(0, 1500)}` : ''}${link}`);
     } catch { /* the stored item is what matters */ }
-    return Number(rows[0].id);
   }
 
   async list(o: { unreadOnly?: boolean; limit?: number } = {}): Promise<InboxItem[]> {
