@@ -4,17 +4,17 @@
     "AI Шукає Новини | DEV": {
       "timezone": "Europe/Kyiv",
       "readerQuestionsMax": 0,
-      "style": { "address": "vy", "hashtags": "off", "audience": { "level": "general" } },
+      "style": { "address": "vy", "hashtags": "off", "audience": { "level": "general" }, "content_kind": "news" },
       "note": "readerQuestionsMax 0 = the spec 034 default of a news resource (content_kind news inferred from the name); the stage profile was not read."
     },
     "AI Технології": {
       "timezone": "Europe/Kyiv",
-      "style": { "address": "vy", "hashtags": "off", "audience": { "level": "beginner" } },
+      "style": { "address": "vy", "hashtags": "off", "audience": { "level": "beginner" }, "content_kind": "news" },
       "note": "Written for ordinary people (owner), so audience level beginner for T9."
     },
     "Біржа Ігор | DEV": {
       "timezone": "Europe/Kyiv",
-      "style": { "address": "vy", "hashtags": "off", "audience": { "level": "general" } }
+      "style": { "address": "vy", "hashtags": "off", "audience": { "level": "general" }, "content_kind": "games" }
     }
   },
   "posts": {

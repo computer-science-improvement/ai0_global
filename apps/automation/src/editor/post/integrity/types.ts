@@ -71,6 +71,15 @@ export interface AuditContext {
   card?: AuditCard;
   /** "Now" for the check (ISO); defaults to the post's publishedAt where a check needs a clock. */
   now?: string;
+  /** Spec 037 T5: the pages and feed items the run read, with their publication date when known. */
+  sources?: AuditSource[];
+}
+
+/** A source the writer read: `publishedAt` is ISO (an instant) or `YYYY-MM-DD` (a day), absent when unknown. */
+export interface AuditSource {
+  url: string;
+  publishedAt?: string | null;
+  title?: string | null;
 }
 
 export interface Finding {
