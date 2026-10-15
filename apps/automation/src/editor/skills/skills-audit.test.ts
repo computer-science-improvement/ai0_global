@@ -248,7 +248,7 @@ function decisionIssues(files: Array<{ file: string; text: string }>): AuditIssu
 
 /** Every rule backed by a deterministic check names its code (spec 037 FR-015). */
 const SKILL_CHECK_CODES: Readonly<Record<string, readonly string[]>> = {
-  'news-followups':         ['story_repeat', 'followup_without_new_facts', 'followup_restates', 'story_cross_channel', 'fact_conflict', 'stale_source', 'stale_now_word', 'date_relative_mismatch', 'weekday_mismatch', 'relative_date_unanchored'],
+  'news-followups':         ['story_repeat', 'followup_without_new_facts', 'followup_restates', 'story_cross_channel', 'fact_conflict', 'stale_source', 'stale_now_word', 'date_relative_mismatch', 'weekday_mismatch', 'relative_date_unanchored', 'event_date_missing', 'event_not_covered'],
   'deals-giveaways':        ['deal_expired', 'deal_expiring', 'source_is_homepage', 'number_not_in_sources', 'fact_conflict', 'image_not_from_source', 'process_leak', 'address_mixed', 'story_repeat'],
   'proper-nouns-terms':     ['glossary_violation', 'mixed_script_word', 'name_script_mixed', 'jargon_over_level', 'decimal_mixed'],
   'format-poll-quiz':       ['knowledge_poll', 'quiz_answer_revealed', 'poll_cap_reached', 'glossary_violation'],

@@ -104,6 +104,7 @@ export function auditPostFromSpec(spec: PostSpec, meta: PostSpecMeta): AuditPost
     ...(spec.story?.key ? { key: spec.story.key } : {}), ...(spec.story?.followup_of ? { followupOf: spec.story.followup_of } : {}),
     ...(spec.story?.kind ? { kind: spec.story.kind } : {}), ...(spec.story?.new_facts?.length ? { newFacts: spec.story.new_facts } : {}),
     ...(spec.story?.decision ? { decision: spec.story.decision } : {}),
+    ...(spec.story?.event_at ? { eventAt: spec.story.event_at, ...(spec.story.event ? { eventName: spec.story.event } : {}) } : {}),
   };
   if (spec.source && linkStyle === 'inline') post.sourceUrl = spec.source.url;
   if (isPoll && spec.poll) {

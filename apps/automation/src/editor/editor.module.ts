@@ -31,6 +31,7 @@ import { buildComposeTools } from './tools/compose-tools';
 import { buildRoleTools, STORY_KPI_SAMPLE_FILTER } from './tools/role-tools';
 import { StoryRegistry } from './story/story.repository';
 import { StoryContextService } from './story/story-service';
+import { EventRecapWatch } from './story/event-watch';
 import { buildStoryTools, storyRepostLimits } from './story/story-tools';
 import { StoryBackfill } from './story/story-backfill';
 import { buildApiTools } from './tools/api-tools';
@@ -1285,10 +1286,13 @@ export const EDITOR_PROVIDERS = [
           pool, inbox: infra.inbox, log: (m) => logger.warn(m),
           streakN: Math.max(1, Math.round(envNum((k) => cfg.get<string>(k) ?? undefined, 'EDITOR_CRITIC_REJECT_STREAK', DEFAULT_REJECT_STREAK))),
         });
+        // Spec 037 FR-003 (T3): an announced event with no post within 24 h after it — one Inbox note per event.
+        const eventRecaps = new EventRecapWatch({ pool, inbox: infra.inbox, log: (m) => logger.warn(m) });
         return new EditorScheduler({
           pool, channels: repos.channels, plans: repos.plans, runner, reserved,
           newsWatch: (card, now) => newsWatch.check(card, now),
           silentDays: (cards, now, paused) => silent.check(cards, now, paused),
+          eventRecaps: (now) => eventRecaps.check(now),
           enabled: () => isEnabled(cfg),
           orchestrate: cfg.get<string>('EDITOR_ORCHESTRATION') === 'off' ? undefined : (card) => network.runOrchestrator(card),
           // Spec 024: the auto-duplicate gate is pinned at each anchor's plan-day boundary.

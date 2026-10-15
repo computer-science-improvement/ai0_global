@@ -2,6 +2,7 @@ import { entityOverlap, extractEntities, mergeEntities, newEntities, type Entity
 import { addDays, formatLocalStamp, localDay, mentionInstant, parseDateMentions } from '../post/dates';
 import { zonedToUtc } from '../roles/time';
 import { bodyText, excerptOf, type AuditContext, type AuditPost, type Finding } from '../post/integrity/types';
+import { eventVerdict } from './story-event';
 
 /**
  * Spec 037 FR-002 (T2): one story, one post. Pure: which earlier posts tell the same story as a post, and what the
@@ -221,6 +222,14 @@ export function assessStory(post: AuditPost, ctx: AuditContext): StoryAssessment
   if (declared?.kind === 'roundup') return { findings, matches, siblings, original, role: 'roundup' };
 
   const kind = declared ? declared.kind ?? (declared.followupOf ? 'followup' : undefined) : undefined;
+
+  // Spec 037 T3: a story with an announced event — one announcement, one reminder in the last 24 h, then the recap.
+  if (!evergreen) {
+    const addsFacts = newEntities(me.entities, storyEntities).reduce((w, e) => w + e.weight, 0) >= 2;
+    const ev = eventVerdict({ post, story, kind, deal: me.deal, addsFacts });
+    if (ev && 'repeat' in ev) return repeat(ev.repeat);
+    if (ev) return { findings, matches, siblings, original, role: ev.role };
+  }
 
   if (kind === 'reminder' || (!declared && me.deal && namesDeadline(post))) {
     const end = storyDeadline([...story, post]);

@@ -8,6 +8,7 @@ import { TEXT_HYGIENE_CHECKS } from './checks/text-hygiene';
 import { styleChecks } from './checks/style';
 import { varietyChecks } from './checks/variety';
 import { storyCheck } from './checks/story';
+import { storyEventCheck } from './checks/story-event';
 
 /**
  * Spec 037 FR-001: every deterministic integrity check, in report order. A new check (T2–T11) is one file under
@@ -26,6 +27,7 @@ export const INTEGRITY_CHECKS: IntegrityCheck[] = [
   ...styleChecks,
   ...varietyChecks,
   storyCheck,
+  storyEventCheck,
 ];
 
 /** Every finding of every check on one post. A check that throws is reported as `check_failed`, never swallowed. */

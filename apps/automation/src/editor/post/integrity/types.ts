@@ -65,6 +65,9 @@ export interface AuditStory {
   newFacts?: string[];
   /** A sibling channel posted the story in the last 24 h and this post takes its own angle. */
   decision?: 'own_angle';
+  /** Spec 037 T3: the announced event — `YYYY-MM-DD` / `YYYY-MM-DDTHH:MM` (resource time) — and its name. */
+  eventAt?: string;
+  eventName?: string;
 }
 
 /**

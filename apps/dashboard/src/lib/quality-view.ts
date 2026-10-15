@@ -12,6 +12,8 @@ export const QUALITY_FLAGS = [
   'dark_day', 'series_missed',
   // Spec 037 FR-009: a feed that mostly gives jargon over the audience level or critic revise / reject.
   'feed_misfit',
+  // Spec 037 FR-003: an announced event got no post within 24 h after it.
+  'event_not_covered',
 ] as const;
 export type QualityFlag = typeof QUALITY_FLAGS[number];
 
@@ -37,6 +39,8 @@ export interface ResourceQuality {
   };
   /** Spec 037 FR-009: per feed, items with jargon over the audience level / critic revise / reject (absent on older digests). */
   feeds?: Array<{ feed: string; items: number; jargon_over_level: number; revise: number; reject: number; misfit_share: number; suggestion: 'replace' | 'limit' | null }>;
+  /** Spec 037 FR-003: announced events without a recap within 24 h (absent when none). */
+  events_not_covered?: Array<{ story_key: string; event: string; at: string; all_day: boolean; announced: number }>;
   flags: QualityFlag[];
 }
 
@@ -60,6 +64,7 @@ export const FLAG_LABEL: Record<QualityFlag, string> = {
   dark_day:                  'a planned day with no post',
   series_missed:             'a series slot did not go out',
   feed_misfit:               'a feed does not fit the audience',
+  event_not_covered:         'an announced event got no recap',
 };
 
 export const CHECK_ITEM_LABEL: Record<string, string> = {

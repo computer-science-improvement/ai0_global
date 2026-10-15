@@ -8,6 +8,8 @@ import { DARK_DAY_HOUR } from '../silent/silent-days';
 import type { SlotFallback } from '../silent/fallback-ladder';
 import { SqlFeedFit, type FeedFit } from './feed-fit';
 import { REPOST_COUNTS_SQL, repostShare, type RepostShare } from '../story/repost-stats';
+import { StoryEventRepository } from '../story/story-event.repository';
+import type { EventGap } from '../story/story-event';
 
 /**
  * Spec 034 FR-006 (T4): the content-quality block of the MANAGER's digest, per resource over 7 days. Code computes
@@ -42,6 +44,8 @@ export const QUALITY_FLAGS = [
   'feed_misfit',
   // Spec 037 T2: reposts are more than 30 % of what the resource put out.
   'repost_share_high',
+  // Spec 037 T3: the resource announced an event and posted nothing about it within 24 h after it.
+  'event_not_covered',
 ] as const;
 export type QualityFlag = typeof QUALITY_FLAGS[number];
 
@@ -97,6 +101,8 @@ export interface ResourceQuality {
   feeds?:  FeedFit[];
   /** Spec 037 T2: own vs repost publications of a Telegram channel in the window (absent when not read). */
   reposts?: RepostShare;
+  /** Spec 037 T3: events the resource announced with no post within 24 h after them (absent when none). */
+  events_not_covered?: EventNotCovered[];
   flags:   QualityFlag[];
   /**
    * What changed since the last run (the digest hash reads it): the newest critic issue and owner decision, the
@@ -287,6 +293,22 @@ export function withFeeds(q: ResourceQuality, feeds: FeedFit[] | undefined): Res
   return { ...q, feeds };
 }
 
+/** Spec 037 T3: one announced event without a recap, as the digest shows it. */
+export interface EventNotCovered { story_key: string; event: string; at: string; all_day: boolean; announced: number }
+
+export const MAX_EVENTS_NOT_COVERED = 5;
+
+/** Spec 037 T3: the uncovered events on a resource's quality, and the `event_not_covered` flag. */
+export function withEvents(q: ResourceQuality, gaps: EventGap[] | undefined): ResourceQuality {
+  if (!gaps?.length) return q;
+  // The flags array is shared with the signature, so a new uncovered event changes the digest hash too.
+  if (!q.flags.includes('event_not_covered')) q.flags.push('event_not_covered');
+  const events = gaps.slice(-MAX_EVENTS_NOT_COVERED).map((g) => ({
+    story_key: g.key, event: clip(g.event.name || g.title, 90), at: g.event.at, all_day: g.event.allDay, announced: g.resources[0]?.announced ?? 0,
+  }));
+  return { ...q, events_not_covered: events };
+}
+
 /** Has the resource produced anything to judge in the window (posts, verdicts or owner decisions)? */
 export function qualityActive(q: ResourceQuality | null | undefined): boolean {
   return !!q && (q.posts > 0 || q.critic.total > 0 || q.owner.approved + q.owner.rejected > 0 || q.polls.slots > 0
@@ -408,13 +430,14 @@ export class SqlQuality {
   async digest(refs: string[], now: Date): Promise<Map<string, ResourceQuality>> {
     const from = new Date(now.getTime() - QUALITY_DAYS * 86_400_000);
     // A minute of slack: a row written in the same millisecond (DB clocks are finer) still counts.
-    const [data, caps, feeds] = await Promise.all([
+    const [data, caps, feeds, events] = await Promise.all([
       this.rows(refs, from, new Date(now.getTime() + 60_000)), this.caps(refs),
       new SqlFeedFit(this.pool).feeds(refs, from, new Date(now.getTime() + 60_000)).catch(() => new Map<string, FeedFit[]>()),
+      new StoryEventRepository(this.pool).gapsByRef(refs, from, now).catch(() => new Map<string, EventGap[]>()),
     ]);
     return new Map(refs.map((r) => {
       const d = data.get(r)!;
-      return [r, withFeeds(assembleQuality({ ...d, caps: caps.get(r)!, plan: { rows: d.plan, tz: d.tz, now } }), feeds.get(r))];
+      return [r, withEvents(withFeeds(assembleQuality({ ...d, caps: caps.get(r)!, plan: { rows: d.plan, tz: d.tz, now } }), feeds.get(r)), events.get(r))];
     }));
   }
 
