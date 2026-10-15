@@ -6,6 +6,7 @@
 // who, when, why and the diff. Platform hard limits stay in code.
 
 import { useState, type CSSProperties, type ReactNode } from 'react';
+import { useQueryClient } from '@tanstack/react-query';
 import { EmptyState, Field, SectionCard } from '../ui/primitives';
 import { Badge } from '../ui/Badge';
 import { Icon } from '../ui/Icon';
@@ -13,13 +14,16 @@ import { describeError, toast } from '../ui/Toast';
 import { Modal } from '../Modal';
 import { ChipInput } from './ResourceProfile';
 import { PlatformIcon } from './NetworkUi';
+import { StyleSheetEditor } from './StyleSheetEditor';
 import { fmtDate, fmtRelative } from '../../lib/format';
 import { useResourceLabels } from '../../api/network';
+import { useUpsertEditorCard } from '../../api/editor';
 import {
   errorBody, FORMAT_PREF_FIELDS, usePutResourceFormatting, useResourceFormatting,
   type FormatPrefField, type FormatResource, type FormatVersion,
 } from '../../api/agents';
 import { audienceSummary, CONTENT_KIND_LABEL, FORMAT_LABEL, formatValue, toForm, toPrefs, voiceSummary, type FormatForm as Form } from '../../lib/format-prefs';
+import { styleSummary, toStyle, toStyleForm } from '../../lib/style-sheet';
 
 /** Spec 034 FR-005: the audience caps are shown in one chip of their own (unset = the defaults). */
 const AUDIENCE_FIELDS: readonly FormatPrefField[] = ['content_kind', 'polls_per_week', 'questions_to_readers_per_day'];
@@ -48,7 +52,7 @@ export function FormattingSection({ handle }: { handle: string }) {
           {d.resources.map((r) => {
             const l = label(r.ref);
             // Humour and slang are always shown in one chip (unset = off, spec 034).
-            const set = FORMAT_PREF_FIELDS.filter((k) => k !== 'humor' && k !== 'slang' && !AUDIENCE_FIELDS.includes(k) && r.formatPrefs[k] !== undefined);
+            const set = FORMAT_PREF_FIELDS.filter((k) => k !== 'humor' && k !== 'slang' && k !== 'style' && !AUDIENCE_FIELDS.includes(k) && r.formatPrefs[k] !== undefined);
             const voiceLocked = r.locks.includes('humor') || r.locks.includes('slang');
             const audienceLocked = AUDIENCE_FIELDS.some((k) => r.locks.includes(k));
             return (
@@ -72,6 +76,10 @@ export function FormattingSection({ handle }: { handle: string }) {
                       title="Polls and questions to readers are capped; plans and posts over the cap are refused. Agents can only lower the caps">
                       {audienceLocked && <Icon name="lock" size={11} />}
                       <span style={{ color: 'var(--color-ink-dim)' }}>Audience asks:</span> {audienceSummary(r.formatPrefs, r.audience)}
+                    </span>
+                    <span className="chip" style={{ gap: 4, maxWidth: '100%', overflowWrap: 'anywhere' }}
+                      title="The style sheet (yours only); unset fields use the defaults">
+                      <span style={{ color: 'var(--color-ink-dim)' }}>Style:</span> {styleSummary(r.style?.effective ?? r.formatPrefs.style)}
                     </span>
                   </div>
                   {set.length ? (
@@ -167,7 +175,14 @@ function Row({ field, locked, onLock, children }: { field: FormatPrefField; lock
 
 function FormatModal({ handle, resource, title, onClose }: { handle: string; resource: FormatResource; title: string; onClose: () => void }) {
   const put = usePutResourceFormatting(handle);
+  const upsertCard = useUpsertEditorCard();
+  const qc = useQueryClient();
   const [f, setF] = useState<Form>(() => toForm(resource.formatPrefs));
+  const [sf, setSf] = useState(() => toStyleForm(resource.style, resource.formatPrefs.style));
+  // Spec 037 FR-008: the Telegram hashtag vocabulary lives on the channel card; saved only when changed.
+  const channelKey = resource.ref.startsWith('telegram:') ? resource.ref.slice('telegram:'.length) : null;
+  const [vocab, setVocab] = useState<string[] | null>(() => (channelKey ? resource.style?.vocabulary ?? null : null));
+  const [vocabTouched, setVocabTouched] = useState(false);
   const [locks, setLocks] = useState<FormatPrefField[]>(resource.locks);
   const set = <K extends keyof Form>(k: K, v: Form[K]) => { setF((s) => ({ ...s, [k]: v })); if (put.error) put.reset(); };
   const lock = (k: FormatPrefField) => (v: boolean) => setLocks((s) => (v ? [...new Set([...s, k])] : s.filter((x) => x !== k)));
@@ -177,7 +192,17 @@ function FormatModal({ handle, resource, title, onClose }: { handle: string; res
   const issues = (body?.issues ?? []).map((i) => `${String(i.path ?? '').replace(/^format_prefs\./, '') || 'form'}: ${i.message}`);
   const save = async () => {
     try {
-      await put.mutateAsync({ ref: resource.ref, format_prefs: toPrefs(f), format_locks: locks });
+      const style = toStyle(sf);
+      await put.mutateAsync({ ref: resource.ref, format_prefs: { ...toPrefs(f), ...(style ? { style } : {}) }, format_locks: locks });
+      if (channelKey && vocab && vocabTouched) {
+        try {
+          await upsertCard.mutateAsync({ key: channelKey, card: { hashtags: vocab } });
+          qc.invalidateQueries({ queryKey: ['agents', 'formatting', handle] });
+        } catch (e) {
+          toast.error(`Formatting saved; the hashtag vocabulary was not: ${describeError(e)}`);
+          return;
+        }
+      }
       toast.success('Formatting saved');
       onClose();
     } catch { /* shown inline */ }
@@ -185,6 +210,8 @@ function FormatModal({ handle, resource, title, onClose }: { handle: string; res
 
   return (
     <Modal open onClose={onClose} size="lg" icon="wrench" title="Edit formatting" subtitle={`${title} · empty = the agent's judgement · lock = the agent cannot change it`}>
+      <StyleSheetEditor resource={resource} form={sf} onChange={(v) => { setSf(v); if (put.error) put.reset(); }}
+        vocabulary={vocab} onVocabulary={(v) => { setVocab(v); setVocabTouched(true); }} />
       <Row field="tone" locked={is('tone')} onLock={lock('tone')}>
         <Field label="Tone"><input className="input-field" style={input} value={f.tone} maxLength={200} placeholder="Friendly, to the point" onChange={(e) => set('tone', e.target.value)} /></Field>
       </Row>
@@ -303,7 +330,7 @@ function FormatModal({ handle, resource, title, onClose }: { handle: string; res
       )}
       <div className="modal-foot">
         <button type="button" className="btn-secondary" onClick={onClose}>Cancel</button>
-        <button type="button" className="btn-primary" disabled={put.isPending} onClick={save}>{put.isPending ? 'Saving…' : 'Save formatting'}</button>
+        <button type="button" className="btn-primary" disabled={put.isPending || upsertCard.isPending} onClick={save}>{put.isPending || upsertCard.isPending ? 'Saving…' : 'Save formatting'}</button>
       </div>
     </Modal>
   );

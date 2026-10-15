@@ -7,6 +7,7 @@ import { readDefaultModel } from '../llm/model-defaults';
 import type { VoicePrefs } from '../post/slop-lint';
 import { SkillLibrary, type Skill } from '../skills/skill-library';
 import { voiceCoreBody, voiceSettingsLine } from '../roles/voice';
+import { styleSection } from '../post/style/resource-style';
 import { CritiqueInput, decideVerdict, type Critique, type StoredCritic } from './critic';
 import { criticSkillsSection, type CriticSkillsContext, type CriticSkillsRequest } from './critic-skills';
 import { criticDatesLines, type CriticDates } from './critic-dates';
@@ -105,6 +106,8 @@ export function criticUserPrompt(r: CriticRequest): string {
   const s: string[] = [];
   s.push(`## Ресурс: ${r.resourceRef} (${r.platform})`);
   s.push(voiceSettingsLine(r.voice));
+  // Spec 037 FR-008: the resource style sheet the post must follow (address, glossary, names, units, hashtags).
+  s.push(...styleSection(r.voice?.style));
   if (r.brief) s.push(`Бриф каналу: ${clip(r.brief, CAP.profile)}`);
   if (r.profile) s.push('', '### Профіль ресурсу', clip(r.profile, CAP.profile));
   if (r.formatPrefs) s.push('', '### Форматування ресурсу (format_prefs)', clip(r.formatPrefs, CAP.prefs));

@@ -6,6 +6,7 @@ import {
   audienceCaps, audienceCapsOfProfile, CONTENT_KINDS, DEFAULT_POLLS_PER_WEEK, DEFAULT_READER_QUESTIONS, type AudienceCaps,
 } from '../post/audience-asks';
 import { NewsWatchSchema } from '../live/news-watch-config';
+import { StyleSchema, styleSummaryUk, type ResourceStyle } from '../post/style/resource-style';
 
 export const KPI_GOALS = ['growth', 'engagement', 'transitions', 'revenue'] as const;
 export type KpiGoal = typeof KPI_GOALS[number];
@@ -22,7 +23,7 @@ export const KPI_GOAL_UK: Record<KpiGoal, string> = {
  */
 export const FORMAT_PREF_FIELDS = [
   'tone', 'length', 'emoji', 'hashtags', 'mentions', 'cta', 'links', 'line_breaks', 'signature', 'preferred_formats', 'media', 'notes',
-  'rich', 'humor', 'slang', 'content_kind', 'polls_per_week', 'questions_to_readers_per_day',
+  'rich', 'humor', 'slang', 'content_kind', 'polls_per_week', 'questions_to_readers_per_day', 'style',
 ] as const;
 
 /**
@@ -38,6 +39,8 @@ export const OWNER_ONLY_ON: Partial<Record<FormatPrefField, (v: unknown) => bool
   polls_per_week: (v) => v === null || (typeof v === 'number' && v > DEFAULT_POLLS_PER_WEEK),
   questions_to_readers_per_day: (v) => v === null || (typeof v === 'number' && v > DEFAULT_READER_QUESTIONS),
   content_kind: () => true,
+  // Spec 037 FR-008: the style sheet (address, glossary, names, hashtags off, …) is the owner's.
+  style: () => true,
 };
 /** Why an agent's change of an owner-only field is refused (Ukrainian, for the model). */
 export const OWNER_ONLY_REASON: Partial<Record<FormatPrefField, string>> = {
@@ -45,6 +48,7 @@ export const OWNER_ONLY_REASON: Partial<Record<FormatPrefField, string>> = {
   polls_per_week: `ліміт опитувань агент може лише знизити (до ${DEFAULT_POLLS_PER_WEEK} на тиждень або менше)`,
   questions_to_readers_per_day: `ліміт питань до читачів агент може лише знизити (до ${DEFAULT_READER_QUESTIONS} або менше)`,
   content_kind: 'тип ресурсу (content_kind) задає власник',
+  style: 'стиль ресурсу (звертання, глосарій, імена, хештеги) задає власник',
 };
 export type FormatPrefField = typeof FORMAT_PREF_FIELDS[number];
 
@@ -78,6 +82,8 @@ export const FormatPrefsSchema = z.object({
   polls_per_week:    z.number().int().min(0).max(70).optional(),
   /** Spec 034 FR-005: questions addressed to the readers in one post (default 1; news 0). */
   questions_to_readers_per_day: z.number().int().min(0).max(5).optional(),
+  /** Spec 037 FR-008: the resource style sheet (post/style/resource-style.ts); unset fields take the owner's defaults. */
+  style:             StyleSchema.optional(),
 }).strict();
 export type FormatPrefs = z.infer<typeof FormatPrefsSchema>;
 
@@ -89,6 +95,7 @@ const FORMAT_UK: Record<FormatPrefField, string> = {
   line_breaks: 'Абзаци', signature: 'Підпис', preferred_formats: 'Бажані формати', media: 'Медіа', notes: 'Нотатки',
   rich: 'Rich-повідомлення Telegram', humor: 'Гумор', slang: 'Сленг',
   content_kind: 'Тип ресурсу', polls_per_week: 'Опитувань і вікторин на тиждень', questions_to_readers_per_day: 'Питань до читачів у пості',
+  style: 'Стиль ресурсу',
 };
 const KIND_UK = { general: 'загальний', news: 'новини', education: 'освітній', quiz: 'вікторини' } as const;
 const EMOJI_UK = { none: 'без емодзі', light: 'кілька', rich: 'багато' } as const;
@@ -108,6 +115,7 @@ function formatValue(k: FormatPrefField, v: unknown): string {
     case 'slang':    return v === true ? 'дозволено власником' : 'ні';
     case 'content_kind': return KIND_UK[v as keyof typeof KIND_UK] ?? String(v);
     case 'polls_per_week': case 'questions_to_readers_per_day': return `до ${v}`;
+    case 'style':    return styleSummaryUk(v as ResourceStyle);
     case 'hashtags': {
       const h = v as { count: number; style?: string; fixed?: string[] };
       return [`${h.count}`, h.style, h.fixed?.length ? `завжди: ${h.fixed.map((x) => `#${x.replace(/^#/, '')}`).join(' ')}` : ''].filter(Boolean).join(', ');

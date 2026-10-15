@@ -13,6 +13,7 @@ import type { EditorRunnerService } from '../roles/editor-runner.service';
 import { localDate } from '../roles/time';
 import { previewWithoutRun, type SlotPreview } from '../roles/preview-run';
 import { mergeCard } from './card-input';
+import type { StyleProposal } from '../post/style/style-proposal';
 
 export interface EditorOpsDeps {
   channels: Pick<EditorChannelsRepository, 'get' | 'list' | 'upsert'>;
@@ -26,6 +27,8 @@ export interface EditorOpsDeps {
   enabled:  () => boolean;
   now?:     () => Date;
   log?:     (msg: string) => void;
+  /** Spec 037 FR-008: the style bootstrap proposal of a resource (read-only; absent = 503). */
+  styleProposal?: (ref: string) => Promise<StyleProposal>;
 }
 
 export interface RunOptions { wait?: boolean }
@@ -123,6 +126,17 @@ export class EditorOpsService {
         return { ...c, today: { date, spendUsd: s?.usd ?? 0, runs: s?.runs ?? 0, slots } };
       }),
     };
+  }
+
+  /**
+   * Spec 037 FR-008: a style sheet proposal from the resource's posts of the last 60 days (names policy; hashtag
+   * vocabulary only in vocabulary mode). Nothing is applied: the owner accepts it in the Formatting section.
+   */
+  async styleProposal(ref: string | undefined) {
+    const r = (ref ?? '').trim();
+    if (!/^[a-z]+:\S{1,200}$/.test(r)) throw new BadRequestException({ error: 'invalid_ref', details: 'expected <platform>:<id>, e.g. telegram:@channel' });
+    if (!this.d.styleProposal) throw new ServiceUnavailableException({ error: 'style_proposal_unavailable' });
+    return this.d.styleProposal(r);
   }
 
   async getChannel(key: string) {

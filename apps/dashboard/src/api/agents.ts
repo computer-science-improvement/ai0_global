@@ -394,7 +394,7 @@ export interface NewsWatchSettings {
 
 export const FORMAT_PREF_FIELDS = [
   'tone', 'length', 'emoji', 'hashtags', 'mentions', 'cta', 'links', 'line_breaks', 'signature', 'preferred_formats', 'media', 'notes',
-  'rich', 'humor', 'slang', 'content_kind', 'polls_per_week', 'questions_to_readers_per_day',
+  'rich', 'humor', 'slang', 'content_kind', 'polls_per_week', 'questions_to_readers_per_day', 'style',
 ] as const;
 export type FormatPrefField = typeof FORMAT_PREF_FIELDS[number];
 
@@ -424,6 +424,46 @@ export interface FormatPrefs {
   polls_per_week?:    number;
   /** Spec 034: questions addressed to the readers in one post (default 1, news 0). Agents may only lower it. */
   questions_to_readers_per_day?: number;
+  /** Spec 037 FR-008: the resource style sheet (owner only; unset fields take the owner's defaults on the server). */
+  style?:             StyleSheet;
+}
+
+/** Mirrors StyleSchema on the server (spec 037 FR-008). */
+export interface StyleSheet {
+  address?:  'ty' | 'vy' | 'impersonal';
+  /** `prefer`: wrong form → right form (a map, or a list of pairs); `ban`: forms banned without a hint. */
+  glossary?: { prefer?: Record<string, string> | Array<{ instead_of: string; use: string }>; ban?: string[] };
+  names?:    'uk_translit' | 'original';
+  headline?: { max_chars: number };
+  numbers?:  { decimal: 'comma' | 'dot' };
+  units?:    'words' | 'latin';
+  hashtags?: 'off' | 'vocabulary';
+  audience?: { level: 'beginner' | 'general' | 'expert' };
+  content_kind?:    'news' | 'games' | 'evergreen' | 'explainer' | 'education';
+  freshness_hours?: number;
+}
+
+/** The style sheet of a resource as the server resolves it. */
+export interface StyleView {
+  /** What the owner set. */
+  stored:      StyleSheet;
+  /** With the defaults filled in: what the checks and the prompts use. */
+  effective:   StyleSheet;
+  /** Fields taken from the defaults. */
+  defaulted:   string[];
+  kind:        StyleSheet['content_kind'] | null;
+  /** Telegram only: the card's hashtag vocabulary (edited in vocabulary mode). */
+  vocabulary?: string[];
+}
+
+/** GET /api/editor/style-proposal: what 60 days of posts suggest; nothing is applied until the owner accepts. */
+export interface StyleProposal {
+  ref:      string;
+  days:     number;
+  posts:    number;
+  names:    { latin: number; cyrillic: number; examples: { latin: string[]; cyrillic: string[] }; propose: 'uk_translit' | 'original' | null };
+  hashtags: { groups: Array<{ tag: string; count: number; variants: Array<{ tag: string; count: number }> }>; propose: string[] } | null;
+  propose:  { names?: 'uk_translit' | 'original'; vocabulary?: string[] };
 }
 
 export type ContentKind = 'general' | 'news' | 'education' | 'quiz';
@@ -449,6 +489,8 @@ export interface FormatResource {
   changesToday: number;
   /** Spec 034 FR-005 (absent on an older server). */
   audience?:    AudienceCaps;
+  /** Spec 037 FR-008 (absent on an older server). */
+  style?:       StyleView;
 }
 
 export interface FormatVersion {
@@ -491,6 +533,16 @@ export function usePutResourceFormatting(handle: string) {
       qc.setQueryData([...KEY, 'formatting', handle], r);
       qc.invalidateQueries({ queryKey: [...KEY, 'profile'] });
     },
+  });
+}
+
+/** Spec 037 FR-008: the style bootstrap proposal of one resource (read-only; fetched when the owner asks). */
+export function useStyleProposal(ref: string, enabled: boolean) {
+  return useQuery({
+    queryKey: [...KEY, 'style-proposal', ref],
+    queryFn:  () => api<StyleProposal>(`/api/editor/style-proposal?ref=${enc(ref)}`),
+    enabled,
+    staleTime: 5 * 60_000,
   });
 }
 

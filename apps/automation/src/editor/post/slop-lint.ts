@@ -1,4 +1,5 @@
 import { normalizeSlop } from './slop-phrases';
+import type { ResourceStyle } from './style/resource-style';
 
 /**
  * Spec 034 FR-002/FR-003: the resource's voice settings the lint reads —
@@ -10,6 +11,8 @@ export interface VoicePrefs {
   emoji?: 'none' | 'light' | 'rich';
   /** Spec 034 FR-005: reader-directed questions allowed per post (questions_to_readers_per_day; absent = 1). An error, not a slop warning. */
   readerQuestionsMax?: number;
+  /** Spec 037 FR-008: the resource's effective style sheet (writer / critic prompts, platform lint address + glossary). */
+  style?: ResourceStyle;
 }
 
 export interface SlopIssue { code: SlopWarningCode; message: string }

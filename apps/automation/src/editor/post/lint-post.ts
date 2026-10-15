@@ -75,7 +75,7 @@ export interface LintIntegrity {
 }
 
 type LintCard = Pick<EditorCard, 'formats' | 'hashtags' | 'hashtagMin' | 'hashtagMax' | 'footer' | 'linkStyle' | 'emojiPolicy' | 'bannedTerms' | 'language'> & RenderCard
-  & Partial<Pick<EditorCard, 'humor' | 'slang' | 'emojiPref' | 'readerQuestionsMax'>>;
+  & Partial<Pick<EditorCard, 'humor' | 'slang' | 'emojiPref' | 'readerQuestionsMax' | 'style'>>;
 
 export function lintPost(spec: PostSpec, card: LintCard, integrity: LintIntegrity = {}): LintResult {
   const errors: LintIssue[] = [];
@@ -104,7 +104,8 @@ export function lintPost(spec: PostSpec, card: LintCard, integrity: LintIntegrit
     else if (vocab.size && !vocab.has(t)) err('hashtag_not_in_vocabulary', `хештег "${t}" не зі словника: ${[...vocab].join(', ')}`);
   }
   if (new Set(tags).size !== tags.length) err('hashtag_duplicate', 'хештеги повторюються');
-  if (spec.format !== 'poll' && spec.format !== 'quiz' && (tags.length < card.hashtagMin || tags.length > card.hashtagMax)) {
+  // Spec 037 FR-008: with style.hashtags = off the count does not apply (any hashtag is hashtags_disabled).
+  if (spec.format !== 'poll' && spec.format !== 'quiz' && card.style?.hashtags !== 'off' && (tags.length < card.hashtagMin || tags.length > card.hashtagMax)) {
     err('hashtag_count', `хештегів має бути ${card.hashtagMin}–${card.hashtagMax}, зараз ${tags.length}`);
   }
 

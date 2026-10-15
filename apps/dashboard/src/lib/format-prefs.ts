@@ -1,13 +1,15 @@
 // Spec 024 FR-013: format_prefs ⇄ the owner's edit form, and short English
 // lines for the Formatting section (pure; unit-tested).
 
-import type { AudienceCaps, ContentKind, FormatPrefField, FormatPrefs } from '../api/agents';
+import type { AudienceCaps, ContentKind, FormatPrefField, FormatPrefs, StyleSheet } from '../api/agents';
+import { styleSummary } from './style-sheet';
 
 export const FORMAT_LABEL: Record<FormatPrefField, string> = {
   tone: 'Tone', length: 'Length', emoji: 'Emoji', hashtags: 'Hashtags', mentions: 'Mentions', cta: 'Call to action',
   links: 'Links', line_breaks: 'Line breaks', signature: 'Signature', preferred_formats: 'Preferred formats', media: 'Media', notes: 'Notes',
   rich: 'Rich messages', humor: 'Humour', slang: 'Slang',
   content_kind: 'Resource kind', polls_per_week: 'Polls per week', questions_to_readers_per_day: 'Reader questions per post',
+  style: 'Style sheet',
 };
 export const CONTENT_KIND_LABEL: Record<ContentKind, string> = { general: 'General', news: 'News', education: 'Education', quiz: 'Quiz' };
 const EMOJI = { none: 'none', light: 'light', rich: 'rich' } as const;
@@ -31,6 +33,7 @@ export function formatValue(k: FormatPrefField, v: unknown): string {
       return [String(h.count), h.style, h.fixed?.length ? `always ${h.fixed.map((x) => `#${x}`).join(' ')}` : ''].filter(Boolean).join(' · ');
     }
     case 'preferred_formats': return (v as string[]).join(', ');
+    case 'style': return styleSummary(v as StyleSheet);
     case 'media': { const m = v as { aspect?: string; cover_style?: string }; return [m.aspect, m.cover_style].filter(Boolean).join(' · ') || '—'; }
     default: return String(v);
   }

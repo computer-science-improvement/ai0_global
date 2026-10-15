@@ -9,6 +9,7 @@ import { attachVoiceSkills, VOICE_CORE, voiceCoreSection, voiceReferenceLine } f
 import { liveSlotLines, type LiveScan } from '../live/live-slot';
 import { isNewsCard } from '../live/news-watch-config';
 import { examplesPromptSection } from '../network/playbook';
+import { styleSection } from '../post/style/resource-style';
 
 const ROLE_TITLE: Record<CardRole, string> = {
   planner:  'редактор-планувальник',
@@ -66,6 +67,8 @@ export function buildSystemPrompt(
     'Код перевіряє всі правила (формат, хештеги, ліміти, тихі години, дублікати). Якщо інструмент повернув error — виправ і спробуй ще раз, не сперечайся з правилами.',
     ...(writer ? voiceCoreSection({ humor: card.humor, slang: card.slang }, skills) : []),
     ...(writer ? examplesPromptSection(o.examples) : []),
+    // Spec 037 FR-008: the resource style sheet (address, glossary, names, units, hashtags) as a compact block.
+    ...(writer ? styleSection(card.style) : []),
     '',
     '## Картка каналу',
     JSON.stringify(cardSummary(card), null, 1),
@@ -138,6 +141,7 @@ export function buildComposerSystemPrompt(o: {
     'Відповідай власнику коротко. Превʼю чернетки він бачить окремою карткою — не переписуй увесь пост у відповідь.',
     // Spec 034 FR-001/FR-002: the voice of every post; the humour/slang line is the channel's (off until the owner turns it on).
     ...voiceCoreSection(o.card ? { humor: o.card.humor, slang: o.card.slang } : null, o.skills),
+    ...(o.hasCard ? styleSection(o.card?.style) : []),
     '',
     `Зараз ${WEEKDAYS[localWeekday(o.now, tz)]}, ${localDate(o.now, tz)} ${localTimeLabel(o.now, tz)} (Київ, ${tz}). Завтра — ${WEEKDAYS[localWeekday(tomorrow, tz)]}, ${localDate(tomorrow, tz)}.`,
     // Spec 024 FR-005: owner time stays Kyiv; a channel in another zone gets its own clock line.

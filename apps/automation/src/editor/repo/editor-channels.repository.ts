@@ -2,6 +2,7 @@ import type { Pool } from 'pg';
 import type { ChannelMode, EditorCard } from '../card';
 import { bindingsStillEnabled, enabledBindingExtIds, liveRefsOf } from '../migration/binding-guard';
 import { audienceCapsOfProfile } from '../post/audience-asks';
+import { styleOfRow } from '../post/style/resource-style';
 
 export function rowToCard(r: any): EditorCard & { createdAt: Date } {
   return {
@@ -40,6 +41,7 @@ export function rowToCard(r: any): EditorCard & { createdAt: Date } {
     ...(r.slang_pref === 'true' || r.slang_pref === true ? { slang: true } : r.slang_pref === 'false' || r.slang_pref === false ? { slang: false } : {}),
     ...(r.emoji_pref === 'none' || r.emoji_pref === 'light' || r.emoji_pref === 'rich' ? { emojiPref: r.emoji_pref } : {}),
     ...capsOfRow(r),
+    ...styleOfRow(r),
     createdAt:      r.created_at,
   };
 }

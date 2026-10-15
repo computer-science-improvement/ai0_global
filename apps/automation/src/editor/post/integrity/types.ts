@@ -1,5 +1,6 @@
 import type { EditorCard } from '../../card';
 import type { VoicePrefs } from '../slop-lint';
+import type { ResourceStyle } from '../style/resource-style';
 
 /**
  * Spec 037 FR-001: the integrity check seam. Every deterministic content check of the epic (story repeats, dates,
@@ -49,19 +50,15 @@ export interface AuditPost {
 
 /**
  * Resource settings a check may read. A partial card so a test or the export audit can pass only what matters;
- * `style` is the resource style sheet of T8 (address, hashtags, glossary, …), loosely typed until T8 defines it.
+ * `style` is the resource style sheet of T8 (address, hashtags, glossary, …).
  */
 export type AuditCard = Partial<Pick<EditorCard,
   'timezone' | 'language' | 'bannedTerms' | 'hashtags' | 'emojiPolicy' | 'humor' | 'slang' | 'emojiPref' | 'readerQuestionsMax'>> & {
   style?: AuditStyle;
 };
 
-/** T8 narrows this; the keys used so far are the owner decisions of 2026-10-15. */
-export interface AuditStyle {
-  address?: 'ty' | 'vy' | 'impersonal';
-  hashtags?: 'off' | 'vocabulary';
-  [key: string]: unknown;
-}
+/** The resource style sheet of T8 (`format_prefs.style`, effective: the owner's defaults filled in). */
+export type AuditStyle = ResourceStyle;
 
 export interface AuditContext {
   /** Earlier posts of the same resource, newest first. */

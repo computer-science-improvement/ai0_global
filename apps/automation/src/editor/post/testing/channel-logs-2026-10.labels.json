@@ -4,17 +4,18 @@
     "AI Шукає Новини | DEV": {
       "timezone": "Europe/Kyiv",
       "readerQuestionsMax": 0,
-      "style": { "address": "vy", "hashtags": "off", "audience": { "level": "general" }, "content_kind": "news" },
+      "style": { "address": "vy", "hashtags": "off", "names": "uk_translit", "glossary": { "prefer": { "АПІ": "API", "КЛІ": "CLI", "Разом AI": "Together AI", "спотифа*": "Spotify" } }, "audience": { "level": "general" }, "content_kind": "news" },
       "note": "readerQuestionsMax 0 = the spec 034 default of a news resource (content_kind news inferred from the name); the stage profile was not read."
     },
     "AI Технології": {
       "timezone": "Europe/Kyiv",
-      "style": { "address": "vy", "hashtags": "off", "audience": { "level": "beginner" }, "content_kind": "news" },
-      "note": "Written for ordinary people (owner), so audience level beginner for T9."
+      "style": { "address": "vy", "hashtags": "off", "names": "uk_translit", "units": "words", "glossary": { "prefer": { "АПІ": "API", "КЛІ": "CLI", "Разом AI": "Together AI", "спотифа*": "Spotify" } }, "audience": { "level": "beginner" }, "content_kind": "news" },
+      "note": "Written for ordinary people (owner), so audience level beginner for T9 and units in words (T8: «49B», «270M» in a channel for ordinary people)."
     },
     "Біржа Ігор | DEV": {
       "timezone": "Europe/Kyiv",
-      "style": { "address": "vy", "hashtags": "off", "audience": { "level": "general" }, "content_kind": "games" }
+      "style": { "address": "vy", "hashtags": "off", "names": "original", "glossary": { "prefer": { "АПІ": "API", "КЛІ": "CLI", "Разом AI": "Together AI", "спотифа*": "Spotify" } }, "audience": { "level": "general" }, "content_kind": "games" },
+      "note": "Names policy original: game and character names stay in Latin (Morvenn Vahl, Ray Chase are not labelled)."
     }
   },
   "posts": {
@@ -44,22 +45,22 @@
     "ai-shukaie-novyny-dev:1130": { "expect": ["hashtags_disabled", "lead_too_long"], "note": "«Ендрю Фелдман» in Cyrillic; «у вівторок» = 13.10, correct for a post of Wednesday 14.10." },
     "ai-shukaie-novyny-dev:1131": { "expect": ["hashtags_disabled", "lead_too_long", "address_mixed"], "note": "«чого хочеш більше або менше» — ти form (warning)." },
 
-    "ai-tekhnolohii:1023": { "expect": ["hashtags_disabled", "lead_too_long", "slop_em_dash", "jargon_over_level"], "note": "Mistral Large 4 «Le Chonk», original post. MoE, «1,05T/49B», інференс, ваги unexplained for beginners." },
-    "ai-tekhnolohii:1024": { "expect": ["hashtags_disabled", "slop_em_dash", "slop_cliche", "address_mixed", "jargon_over_level"], "note": "EmbeddingGemma: «це той випадок, коли»; «Якщо будуєш RAG» (ти, warning); Matryoshka-трюнкація, MTEB, 768d → 256d, cosine similarity." },
+    "ai-tekhnolohii:1023": { "expect": ["hashtags_disabled", "lead_too_long", "slop_em_dash", "jargon_over_level", "units_latin"], "note": "Mistral Large 4 «Le Chonk», original post. MoE, «1,05T/49B», інференс, ваги unexplained for beginners. «1,05T/49B» → units_latin." },
+    "ai-tekhnolohii:1024": { "expect": ["hashtags_disabled", "slop_em_dash", "slop_cliche", "address_mixed", "jargon_over_level", "units_latin"], "note": "EmbeddingGemma: «це той випадок, коли»; «Якщо будуєш RAG» (ти, warning); Matryoshka-трюнкація, MTEB, 768d → 256d, cosine similarity. «270M … 740M» → units_latin." },
     "ai-tekhnolohii:1025": { "expect": ["glossary_violation"], "note": "Opinion poll (regular is right). Options «Хмара через АПІ», «Агенти й КЛІ»." },
-    "ai-tekhnolohii:1026": { "expect": ["hashtags_disabled", "lead_too_long", "slop_em_dash", "jargon_over_level"], "note": "#ainews. Subagents, компакція, cache reads, batch, temperature/top_p, «400-ку» unexplained (labelled from reading; not named in tasks.md)." },
+    "ai-tekhnolohii:1026": { "expect": ["hashtags_disabled", "lead_too_long", "slop_em_dash", "jargon_over_level", "units_latin"], "note": "#ainews. Subagents, компакція, cache reads, batch, temperature/top_p, «400-ку» unexplained (labelled from reading; not named in tasks.md). «1M токенів», «$0.01/1M» → units_latin." },
     "ai-tekhnolohii:1027": { "expect": ["lead_too_long", "slop_em_dash", "slop_rhetorical_qa", "stale_now_word", "story_repeat"], "note": "Poll intro: «Mistral щойно показала Le Chonk» the day after 1023 (article 2 days old). No source link, only «у огляді MarkTechPost»." },
     "ai-tekhnolohii:1028": { "expect": ["knowledge_poll", "quiz_answer_revealed", "poll_cap_reached"], "note": "«Скільки параметрів … активні на кожен токен?» — answer «49 мільярдів» is in 1023 (19 h earlier). Second poll of the resource in two days (1025) with the default cap 1/week." },
-    "ai-tekhnolohii:1029": { "expect": ["hashtags_disabled", "lead_too_long", "slop_em_dash", "slop_rhetorical_qa", "jargon_over_level"], "note": "Decision models, forward pass, edge. «з'їхати» straight apostrophe next to «зʼявиться» elsewhere (typography)." },
+    "ai-tekhnolohii:1029": { "expect": ["hashtags_disabled", "lead_too_long", "slop_em_dash", "slop_rhetorical_qa", "jargon_over_level", "units_latin"], "note": "Decision models, forward pass, edge. «з'їхати» straight apostrophe next to «зʼявиться» elsewhere (typography). «до 10B» → units_latin; the model names d1-3B, d1-omni-600M stay." },
     "ai-tekhnolohii:1030": { "expect": ["hashtags_disabled", "lead_too_long", "slop_em_dash", "slop_moral_closer", "jargon_over_level"], "note": "«Мораль для всіх, хто тягне open-ваги: …» opens the second-to-last sentence (T6: «мораль» counts there too; «~244 тис. завантажень» is no longer a sentence end). Reverse shell, pickle, weights_only, sandbox unexplained." },
-    "ai-tekhnolohii:1031": { "expect": ["source_is_homepage", "duplicate_attribution", "story_cross_channel", "slop_em_dash", "decimal_mixed", "jargon_over_level"], "note": "Rich digest; source https://www.marktechpost.com/; «Джерело: MarkTechPost» lines plus «→ MarkTechPost»; Gemini Agent first, 3 h after AI Шукає Новини 1116; «2,5 млрд» next to «з 2.0 до 47.0»; MoE, RL, SWE-bench Verified." },
+    "ai-tekhnolohii:1031": { "expect": ["source_is_homepage", "duplicate_attribution", "story_cross_channel", "slop_em_dash", "decimal_mixed", "jargon_over_level", "units_latin"], "note": "Rich digest; source https://www.marktechpost.com/; «Джерело: MarkTechPost» lines plus «→ MarkTechPost»; Gemini Agent first, 3 h after AI Шукає Новини 1116; «2,5 млрд» next to «з 2.0 до 47.0»; MoE, RL, SWE-bench Verified. «12B модель» → units_latin." },
     "ai-tekhnolohii:1032": { "expect": ["hashtags_disabled", "source_is_homepage", "slop_em_dash"], "note": "YNAB MCP, source https://www.ynab.com/." },
     "ai-tekhnolohii:1033": { "expect": ["glossary_violation", "lead_too_long"], "note": "«Разом AI випустила Together Link». Telegraph longread button." },
     "ai-tekhnolohii:1034": { "expect": ["source_is_homepage"], "note": "«Три новини дня» digest incl. Qwen-Image-2.1-Turbo; source https://www.marktechpost.com/. The 12:00 slot that later went missing 11–13.10." },
     "ai-tekhnolohii:1035": { "expect": ["hashtags_disabled", "banned_term"], "note": "Album of 5 (one photo reused from the 09.10 YNAB post). «Зберігайте собі.» (new slop phrase, T6). First «5 X» of three in 3 days." },
     "ai-tekhnolohii:1040": { "expect": ["hashtags_disabled", "number_not_in_sources"], "note": "Rich message with a photo, no source. «Цього достатньо для 90% побутових задач». The numbers inside the quoted prompt examples («Мені 35, вага 80 кг») are examples, not claims." },
     "ai-tekhnolohii:1041": { "expect": ["hashtags_disabled"], "note": "«Пʼять готових шаблонів» — second «5 X» in 3 days (the third one warns)." },
-    "ai-tekhnolohii:1042": { "expect": ["hashtags_disabled", "lead_too_long", "story_repeat", "poster_mismatch"], "note": "Qwen-Image-2.1-Turbo as a post two days after the 1034 digest, without new facts. Poster «Fine-tune / Model» (from the slot, not visible in the export)." },
+    "ai-tekhnolohii:1042": { "expect": ["hashtags_disabled", "lead_too_long", "story_repeat", "poster_mismatch", "units_latin"], "note": "Qwen-Image-2.1-Turbo as a post two days after the 1034 digest, without new facts. Poster «Fine-tune / Model» (from the slot, not visible in the export). «7B-архітектурі» → units_latin." },
     "ai-tekhnolohii:1043": { "expect": ["hashtags_disabled", "source_is_homepage", "poster_mismatch", "monotony_opening"], "note": "Free courses, source https://elementsofai.com/; posters «Prompt» and «Skill» (slot data); third «5 X» (пʼять безкоштовних ресурсів) in 3 days." },
     "ai-tekhnolohii:1045": { "expect": ["hashtags_disabled", "mixed_script_word", "lead_too_long", "stale_source"], "note": "#aiновини; lead 280 (max, error); MarkTechPost article of 10.10 posted 13.10 (> 36 h; from the URL date, not named in tasks.md)." },
     "ai-tekhnolohii:1046": { "expect": ["hashtags_disabled", "lead_too_long"], "note": "«у листопаді 2024 року» is historical (no date check)." },

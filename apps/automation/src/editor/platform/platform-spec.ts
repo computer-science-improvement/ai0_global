@@ -8,6 +8,8 @@ import { inlineToPlain } from '../post/inline-markup';
 import { normalizeHashtag } from '../post/render-telegram';
 import { normalizeTypography } from '../post/typography';
 import { brokenCharText, findBrokenChars } from '../post/text-hygiene';
+import { addressFindings, glossaryFindings } from '../post/style/style-rules';
+import type { ResourceStyle } from '../post/style/resource-style';
 import { CAPABILITIES, formatSpec, NATIVE_FORMATS, platformOfFormat } from './capabilities';
 import type { Platform } from '../agents/agent.types';
 
@@ -51,6 +53,8 @@ export interface PlatformLintContext {
   vocabulary?:  string[];
   /** Spec 034: the resource's format_prefs humor / slang / emoji for the slop warnings (absent = humour and slang off). */
   voice?:       VoicePrefs | null;
+  /** Spec 037 FR-008: the resource style sheet (absent = voice.style; without either no address / glossary rules). */
+  style?:       ResourceStyle | null;
 }
 
 /** Deterministic checks against the capability matrix (spec 019 FR-003). */
@@ -113,6 +117,12 @@ export function lintPlatformPost(spec: PlatformPostSpec, c: PlatformLintContext)
   if (asks) errors.push(asks);
   // Spec 037 T6: a broken character (U+FFFD, control, zero-width inside a word, mojibake) never goes out.
   for (const b of findBrokenChars([all, spec.first_comment ?? ''].join('\n'))) errors.push({ code: 'text_replacement_char', message: `${brokenCharText(b.kind)}: «${b.excerpt}»` });
+  // Spec 037 FR-008: the same address and glossary rules as the Telegram integrity checks.
+  const style = c.style ?? c.voice?.style;
+  const reader = [caption, slidesText, spec.first_comment ?? ''].filter(Boolean).join('\n');
+  for (const f of [...addressFindings(reader, style), ...glossaryFindings(`${spec.title}\n${reader}\n${spec.hashtags.map((h) => `#${h}`).join(' ')}`, style)]) {
+    (f.level === 'error' ? errors : warnings).push({ code: f.code, message: f.message });
+  }
   if ((spec.format === 'tt_photo' || spec.format === 'yt_short') && spec.title.length > 90) {
     errors.push({ code: 'title_too_long', message: 'заголовок TikTok/YouTube до 90 символів' });
   }
