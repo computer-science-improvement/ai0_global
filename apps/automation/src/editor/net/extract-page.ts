@@ -5,6 +5,7 @@ import { primaryLinksOf, sourceTier } from '../../data/source-tier';
 export interface ExtractedPage {
   title:       string | null;
   description: string | null;
+  /** Spec 037 T11: the page's main image — og:image, twitter:image, else the first article image (absolute); null = none. */
   image:       string | null;
   images:      string[];
   text:        string;
@@ -27,7 +28,7 @@ export function extractPage(html: string, baseUrl: string): ExtractedPage {
 
   const title = meta('meta[property="og:title"]') ?? ($('title').first().text().trim() || null);
   const description = meta('meta[property="og:description"]') ?? meta('meta[name="description"]');
-  const image = abs(meta('meta[property="og:image"]') ?? meta('meta[name="twitter:image"]'));
+  const socialImage = metaImageOf($, abs);
   const published_at = publishedAtOf($);
 
   $('script, style, noscript, nav, footer, header, aside, form, iframe, svg').remove();
@@ -35,6 +36,7 @@ export function extractPage(html: string, baseUrl: string): ExtractedPage {
 
   const images = root.find('img').map((_, el) => abs($(el).attr('src') ?? $(el).attr('data-src'))).get()
     .filter((u): u is string => !!u && /^https?:/.test(u) && !/\.(svg|gif)(\?|$)/i.test(u));
+  const image = socialImage ?? images[0] ?? null;
 
   const blocks = root.find('h1, h2, h3, p, li, blockquote').map((_, el) => $(el).text().replace(/\s+/g, ' ').trim()).get()
     .filter((t) => t.length > 1);
@@ -47,6 +49,24 @@ export function extractPage(html: string, baseUrl: string): ExtractedPage {
     : [];
 
   return { title, description, image, images: [...new Set(images)].slice(0, 10), text, published_at, ...(primary.length ? { primary_links: primary } : {}) };
+}
+
+/** Social-card image selectors in priority order (og:image and its aliases, then twitter:image). */
+const META_IMAGE = [
+  'meta[property="og:image:secure_url"]', 'meta[property="og:image"]', 'meta[name="og:image"]', 'meta[property="og:image:url"]',
+  'meta[name="twitter:image"]', 'meta[property="twitter:image"]', 'meta[name="twitter:image:src"]', 'meta[property="twitter:image:src"]',
+];
+
+/**
+ * Spec 037 T11: the page's social-card image (og:image, then twitter:image), absolute, http(s) only; null when the
+ * page declares none. Read before the head is stripped; the article's first image is the caller's fallback.
+ */
+export function metaImageOf($: cheerio.CheerioAPI, abs: (u: string | undefined | null) => string | null): string | null {
+  for (const sel of META_IMAGE) {
+    const u = abs($(sel).first().attr('content')?.trim());
+    if (u && /^https?:/i.test(u)) return u;
+  }
+  return null;
 }
 
 /** A `datePublished` anywhere in a JSON-LD value (an object, an array, a `@graph`). */

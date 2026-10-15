@@ -39,3 +39,16 @@ test('037 T4: an aggregator page lists its links to the primary source; other pa
   assert.deepEqual(agg.primary_links, ['https://blog.google/technology/ai/gemini-4-argon/', 'https://arxiv.org/abs/2510.01234']);
   assert.equal(extractPage(`<html><body>${body}</body></html>`, 'https://techcrunch.com/2026/10/13/a/').primary_links, undefined);
 });
+
+test('spec 037 T11: main image — og:image, else twitter:image, else the first article image; absolute; null when none', () => {
+  const og = extractPage('<head><meta name="twitter:image" content="https://t.example/tw.jpg"><meta property="og:image" content="//cdn.example/og.jpg?w=1200"></head><body><article><img src="/first.jpg"><p>x</p></article></body>', 'https://news.example/a/b');
+  assert.equal(og.image, 'https://cdn.example/og.jpg?w=1200', 'og:image first, protocol-relative made absolute');
+  const tw = extractPage('<head><meta name="twitter:image" content="/tw.jpg"></head><body><article><img src="/first.jpg"><p>x</p></article></body>', 'https://news.example/a/b');
+  assert.equal(tw.image, 'https://news.example/tw.jpg');
+  const twProp = extractPage('<head><meta property="twitter:image:src" content="https://t.example/src.jpg"></head><body><p>x</p></body>', 'https://news.example/a');
+  assert.equal(twProp.image, 'https://t.example/src.jpg');
+  const first = extractPage('<body><nav><img src="/logo.png"></nav><article><img src="/icon.svg"><img data-src="img/first.jpg"><img src="/second.jpg"><p>x</p></article></body>', 'https://news.example/a/b');
+  assert.equal(first.image, 'https://news.example/a/img/first.jpg', 'the first article image (not nav, not svg), resolved against the page URL');
+  assert.equal(extractPage('<body><article><p>Текст без зображень.</p></article></body>', 'https://news.example/a').image, null);
+  assert.equal(extractPage('<head><meta property="og:image" content="data:image/png;base64,AAA"></head><body><p>x</p></body>', 'https://news.example/a').image, null, 'a data: URI is not an image URL');
+});

@@ -56,6 +56,12 @@ export interface AuditPost {
   /** Spec 037 T9: the slot's format and the planner's topic (a fixed slot); an export knows neither. */
   format?: string;
   topic?: string;
+  /**
+   * Spec 037 T11: the URLs of the post's images (spec media other than video, carousel slide backgrounds) and the
+   * spec's internal title; a spec has them, an export does not (a media check then says nothing).
+   */
+  imageUrls?: string[];
+  title?: string;
 }
 
 /** Spec 037 T2: a post's place in its story. */
@@ -105,6 +111,11 @@ export interface AuditSource {
   text?: string | null;
   /** Spec 037 T4: links of the page to a primary source on another site (an aggregator's "take the primary"). */
   primaryLinks?: string[];
+  /**
+   * Spec 037 T11: the page's main image (og:image, twitter:image, else the first article image). `null` = the page
+   * was read and has none; absent = unknown (a feed item, a page not read in this run).
+   */
+  image?: string | null;
 }
 
 export interface Finding {

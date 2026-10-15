@@ -12,6 +12,7 @@ import { CritiqueInput, decideVerdict, type Critique, type StoredCritic } from '
 import { criticSkillsSection, type CriticSkillsContext, type CriticSkillsRequest } from './critic-skills';
 import { criticDatesLines, type CriticDates } from './critic-dates';
 import { criticStoryLines, type CriticStoryContext } from '../story/story-context';
+import { criticMediaLines, type CriticMediaContext } from './critic-media';
 import { criticPassageLines, type CriticSourceContext } from './critic-passages';
 
 /** One attempt of the critic; a second attempt follows a timeout or an error (fail-safe, FR-004). */
@@ -63,6 +64,8 @@ export interface CriticRequest {
   dates?:       CriticDates | null;
   /** Spec 037 T2: the story's earlier posts (date, channel, lead, key facts) — the post must add, not repeat. */
   story?:       CriticStoryContext | null;
+  /** Spec 037 T11: the post's images (network posters by name and use_for) and the source page's main image. */
+  media?:       CriticMediaContext | null;
 }
 
 export type CriticResult =
@@ -139,6 +142,7 @@ export function criticUserPrompt(r: CriticRequest): string {
   } else {
     s.push('Джерела немає — оціни grounding за перевірюваністю тверджень.');
   }
+  s.push(...criticMediaLines(r.media));
   s.push('', '## Попередження lint (AI-штампи, гумор і сленг, гігієна тексту та інші перевірки коду)');
   const lintWarnings = r.lintWarnings ?? r.slopWarnings;
   s.push(lintWarnings.length ? lintWarnings.map((w) => `- ${w.code}: ${w.message}`).join('\n') : '- немає');

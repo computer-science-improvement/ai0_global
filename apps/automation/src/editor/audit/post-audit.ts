@@ -157,7 +157,11 @@ export function parseSources(raw: unknown): AuditSource[] | null {
     if (!s || typeof s !== 'object' || typeof (s as any).url !== 'string') continue;
     const x = s as Record<string, unknown>;
     const published = typeof x.publishedAt === 'string' ? x.publishedAt : typeof x.published_at === 'string' ? x.published_at : null;
-    out.push({ url: x.url as string, publishedAt: published, title: typeof x.title === 'string' ? x.title : null });
+    out.push({
+      url: x.url as string, publishedAt: published, title: typeof x.title === 'string' ? x.title : null,
+      // Spec 037 T11: the page's main image when it was stored (null = the page had none).
+      ...('image' in x && (typeof x.image === 'string' || x.image === null) ? { image: x.image as string | null } : {}),
+    });
   }
   return out.length ? out : null;
 }
