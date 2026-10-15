@@ -55,6 +55,8 @@ export interface TrackedPost {
   reactionsTotal: number | null;
   commentsCount: number | null;
   adRefs: unknown[] | null;
+  /** Spec 037 T2: a native forward of a network sibling's post — the source channel; null / absent for own posts. */
+  repostFrom?: string | null;
 }
 
 export interface SubsHistoryPoint { at: string; subs: number; }

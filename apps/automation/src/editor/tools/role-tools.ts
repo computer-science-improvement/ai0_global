@@ -26,6 +26,8 @@ import type { NetworkCtx } from '../network/network-context';
 import type { ExperimentQuota } from '../manager/experiment-quota';
 import type { PollCapCtx } from '../roles/poll-cap';
 import { NO_FRESH_ITEM } from '../live/live-slot';
+import { storyGuard, type StoryGuardResult } from '../story/story-guard';
+import type { StoryRegistry } from '../story/story.repository';
 import { dryRunOf } from '../roles/preview-run';
 import { recentAuditPosts } from '../post/variety/recent-posts';
 import {
@@ -33,6 +35,10 @@ import {
 } from '../manager/kpi-confidence';
 
 export const SIMILARITY_LIMIT = 0.6;
+/** Spec 037 T2: skip_slot code — a sibling channel already told the story. */
+export const STORY_SKIP = 'story_skip';
+/** Spec 037 T2: the KPI samples leave native forwards (reposts) out: they are the sibling's post, not ours. */
+export const STORY_KPI_SAMPLE_FILTER = `strategy_type IS DISTINCT FROM 'repost'`;
 const MAX_MEMORY_ADDS_PER_RUN = 5;
 
 export interface RoleToolDeps {
@@ -42,7 +48,7 @@ export interface RoleToolDeps {
     | 'sourceAlreadyPosted' | 'recentTexts' | 'insertPublication'>;
   memory:    Pick<EditorMemoryRepository, 'listActive' | 'add' | 'retireByReviewer'>;
   channels:  Pick<EditorChannelsRepository, 'setFormatWeights'>;
-  publisher: { send(channelKey: string, messages: TgMessage[]): Promise<SendResult> };
+  publisher: { send(channelKey: string, messages: TgMessage[], opts?: { replyTo?: number }): Promise<SendResult> };
   recordPublish: (channelKey: string) => void;
   notifyPreview?: (channelKey: string, html: string) => Promise<void>;
   /** Live-only media stage for carousel (render + host slides) and longread (Telegraph page). */
@@ -57,9 +63,11 @@ export interface RoleToolDeps {
   pollCaps?: (o: { refs: string[]; planDate: string; tz: string; defaultRef?: string }) => Promise<PollCapCtx>;
   /**
    * Spec 037 FR-013 seam: an SQL predicate over editor_v_post_performance rows that keeps a row in the KPI sample.
-   * Nothing marks reposts or evergreen posts yet; spec 037 T2/T10 add the marker and pass e.g. `NOT is_repost`.
+   * Spec 037 T2 passes STORY_KPI_SAMPLE_FILTER (reposts are out); T10 adds evergreen.
    */
   kpiSampleFilter?: string;
+  /** Spec 037 T2: the story registry — the story guard of publish_post and the record of a stored / sent post. */
+  stories?: Pick<StoryRegistry, 'history' | 'record'>;
   now?: () => Date;
 }
 
@@ -160,6 +168,14 @@ export async function checkPublishGuards(d: RoleToolDeps, ctx: ToolContext, spec
     const sg = await d.schedule.publishGuard(slot, { libraryRef: spec.library_ref, sourceUrl: spec.source?.url }, { live: card.mode === 'live', now, card, feeds: card.sources });
     if (sg) return sg;
   }
+  // Spec 037 T2: one story, one post (the resource's 14 days, the network's 24 h); warnings go to the critic.
+  let story: Extract<StoryGuardResult, { ok: true }> | null = null;
+  if (d.stories) {
+    const st = await storyGuard(d.stories, { channelKey, slotId, spec, card, at, now });
+    if ('error' in st) return st;
+    story = st;
+    lint.warnings.push(...st.warnings.map((w) => ({ code: w.code, message: w.message })));
+  }
 
   if (card.mode === 'live') {
     const dayStart = zonedToUtc(localDate(now, card.timezone), '00:00', card.timezone);
@@ -171,7 +187,7 @@ export async function checkPublishGuards(d: RoleToolDeps, ctx: ToolContext, spec
       return { error: 'min_gap', details: `останній пост ${Math.round((now.getTime() - last.getTime()) / 60_000)} хв тому, мінімум ${card.minGapMinutes}` };
     }
   }
-  return { ok: true as const, rendered, ref, lint, at };
+  return { ok: true as const, rendered, ref, lint, at, story };
 }
 
 export function buildRoleTools(d: RoleToolDeps): EditorTool[] {
@@ -219,12 +235,21 @@ export function buildRoleTools(d: RoleToolDeps): EditorTool[] {
       if ('error' in g) return g;
       const { channelKey, slotId } = requireSlotCtx(ctx);
       const card = cardFrom(ctx);
+      // Spec 037 T2: the stored / sent post joins its story (best-effort: the post is already stored or out).
+      const recordStory = async (p: { publishedPostId?: number; messageId?: number } = {}) => {
+        if (!d.stories || !g.story) return;
+        const s = spec.story;
+        await d.stories.record({
+          channelKey, slotId, ...p, postedAt: g.at, title: spec.title, post: g.story.post, assessment: g.story.assessment,
+          story: s ? { key: s.key, kind: s.kind, newFacts: s.new_facts, decision: s.decision, reason: s.reason } : null,
+        }).catch(() => {});
+      };
 
       // Spec 034 FR-004: the critic reads the finished post after every guard, before anything is stored or sent.
       const gate = criticGateOf(ctx);
       let critic: Record<string, unknown> | null = null;
       if (gate) {
-        const c = await gate.check({ text: htmlToPlain(g.rendered.preview), spec, format: spec.format, warnings: g.lint.warnings, publishAt: g.at.toISOString(), timezone: card.timezone });
+        const c = await gate.check({ text: htmlToPlain(g.rendered.preview), spec, format: spec.format, warnings: g.lint.warnings, publishAt: g.at.toISOString(), timezone: card.timezone, story: g.story?.critic ?? null });
         if (c.kind !== 'proceed') return c.result;
         critic = criticSummary(c.critic);
       }
@@ -258,12 +283,14 @@ export function buildRoleTools(d: RoleToolDeps): EditorTool[] {
           preparedMedia: prep.prepared, lintWarnings: warnings,
           freshnessDeadline: slot ? freshnessDeadline(slot, card) : null, error: null,
         });
+        await recordStory();
         // Hosted slides stay until the post is published (the owner sees them and the publisher sends them).
         return { ok: true, awaiting_approval: true, warnings: g.lint.warnings, ...withCritic };
       }
 
       if (card.mode !== 'live') {
         await d.plans.updateSlot(slotId, { status: 'shadowed', postSpec: spec, renderedPreview: g.rendered.preview, error: null });
+        await recordStory();
         if (d.notifyPreview) {
           try { await d.notifyPreview(channelKey, g.rendered.preview); } catch { /* preview is best-effort */ }
         }
@@ -272,12 +299,13 @@ export function buildRoleTools(d: RoleToolDeps): EditorTool[] {
 
       // Live only, after every guard (media stage, send, publication row, mirrors: publishSpecNow).
       const res = await publishSpecNow(d, {
-        channelKey, spec, card, sourceRef: g.ref, mediaKey: slotId, slotId,
+        channelKey, spec, card, sourceRef: g.ref, mediaKey: slotId, slotId, replyTo: g.story?.replyTo ?? null,
         onPublished: async (p) => {
           await d.plans.updateSlot(slotId, {
             status: 'published', publishedPostId: p.postId, postSpec: spec, renderedPreview: p.preview,
             error: p.partialError ? `partial: ${p.partialError}` : null,
           });
+          await recordStory({ publishedPostId: p.postId, messageId: p.messageId });
         },
       });
       if ('error' in res) return res;
@@ -304,7 +332,7 @@ export function buildRoleTools(d: RoleToolDeps): EditorTool[] {
     input: z.object({
       reason: z.string().min(5).max(500),
       // Spec 034 FR-010: a live slot with nothing fresh in its source.
-      code:   z.enum([NO_FRESH_ITEM]).optional().describe(`${NO_FRESH_ITEM} — у live-слоті немає свіжого неопублікованого матеріалу`),
+      code:   z.enum([NO_FRESH_ITEM, STORY_SKIP]).optional().describe(`${NO_FRESH_ITEM} — у live-слоті немає свіжого неопублікованого матеріалу; ${STORY_SKIP} — історію вже розповів сусідній канал мережі (spec 037 T2)`),
     }),
     execute: async ({ reason, code }, ctx) => {
       const { slotId } = requireSlotCtx(ctx);

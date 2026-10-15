@@ -29,6 +29,10 @@ export interface ApprovalPublisherDeps {
   notice?:  (slot: EditorSlot, title: string, body: string, alert?: { title: string; body: string }) => Promise<void>;
   /** Spec 020: an idea becomes `used` once its slots are done. */
   onSlotDone?: (slot: EditorSlot) => Promise<void>;
+  /** Spec 037 T2: the message a story follow-up replies to (its original on the channel), null for none. */
+  replyTarget?: (slot: EditorSlot) => Promise<number | null>;
+  /** Spec 037 T2: a forward went out (a published_posts row marked repost). */
+  onForwarded?: (slot: EditorSlot, fromKey: string, fromMessageId: number, messageId: number) => Promise<void>;
   /** Spec 025 FR-013: an approved post on a paused resource is skipped (`resource_paused`), not sent. */
   paused?:  (ref: string) => Promise<boolean>;
   log?:     (msg: string) => void;
@@ -92,6 +96,7 @@ export class ApprovalPublisher {
       try {
         const id = await this.d.forward(slot.channelKey, render.fromKey, render.messageId);
         await this.d.plans.updateSlot(slot.id, { status: 'published', renderedPreview: `↪️ Forwarded ${render.fromKey}/${render.messageId} → ${id}`, error: null });
+        if (this.d.onForwarded) await this.d.onForwarded(slot, render.fromKey, render.messageId, id).catch((e) => this.d.log?.(`repost row of ${slot.id}: ${e?.message ?? e}`));
         return 'published';
       } catch (err: any) {
         const msg = String(err?.message ?? err);
@@ -139,9 +144,10 @@ export class ApprovalPublisher {
     if (today >= card.postsPerDayMax) return this.fail(slot, `daily_cap_reached: ${today}/${card.postsPerDayMax}`);
 
     // The stored render — exactly what the owner approved. A paused channel throws in the publisher (failed path).
+    const replyTo = this.d.replyTarget ? await this.d.replyTarget(slot).catch(() => null) : null;
     try {
       const res = await sendRendered(this.d.telegram, {
-        channelKey: slot.channelKey, spec, card, sourceRef: ref, mediaKey: slot.id, slotId: slot.id,
+        channelKey: slot.channelKey, spec, card, sourceRef: ref, mediaKey: slot.id, slotId: slot.id, ...(replyTo ? { replyTo } : {}),
         onPublished: async (p) => {
           await this.d.plans.updateSlot(slot.id, {
             status: 'published', publishedPostId: p.postId, error: p.partialError ? `partial: ${p.partialError}` : null,

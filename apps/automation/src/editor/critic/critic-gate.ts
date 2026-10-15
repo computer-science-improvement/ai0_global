@@ -12,6 +12,7 @@ import type { CriticSkillsContext } from './critic-skills';
 import { dateFromUrl, normalizePublishedAt } from '../post/dates';
 import type { AuditSource } from '../post/integrity/types';
 import type { CriticDates } from './critic-dates';
+import type { CriticStoryContext } from '../story/story-context';
 
 /** Publish tools wait for the critic (two attempts) and then for the send itself. */
 export const PUBLISH_TOOL_TIMEOUT_MS = 2 * CRITIC_TIMEOUT_MS + 60_000;
@@ -28,6 +29,8 @@ export interface CriticPost {
   /** Spec 037 T5: the (scheduled) publish instant and the resource zone, for the critic's date line. */
   publishAt?: string;
   timezone?:  string;
+  /** Spec 037 T2: the story's earlier posts (the story guard), null for a new story. */
+  story?:     CriticStoryContext | null;
 }
 
 /**
@@ -169,6 +172,7 @@ export class CriticGate {
     return {
       publishAt: post.publishAt, timezone: post.timezone,
       ...(page ? { sourcePublishedAt: page, sourceDateFrom: 'page' as const } : fromUrl ? { sourcePublishedAt: fromUrl, sourceDateFrom: 'url' as const } : {}),
+      ...(post.story?.firstPostAt ? { storyFirstPostAt: post.story.firstPostAt } : {}),
     };
   }
 
@@ -197,6 +201,7 @@ export class CriticGate {
       lintWarnings: post.warnings.map((w) => ({ code: w.code, message: w.message })),
       previous: this.first, agent: this.c.agent ?? null, dates: this.dates(post),
       skills: this.c.skills ?? null,
+      story: post.story ?? null,
     });
     this.passes++;
     const history = this.first ? [{

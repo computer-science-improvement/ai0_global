@@ -22,6 +22,8 @@ export interface ReadToolDeps {
   today?:    () => { month: number; day: number };
   /** Clock for item ages (fetch_feed); injectable for tests. */
   now?:      () => Date;
+  /** Spec 037 T2: the channel's active stories; fetch_feed marks the items one covers (`covered_by_story`). */
+  stories?:  { coveredBy(channelKey: string, items: Array<{ title?: string | null; snippet?: string | null }>, now: Date): Promise<Array<string | null>> };
 }
 
 const ALL_ROLES = ['planner', 'executor', 'reviewer', 'composer', 'orchestrator', 'idea_reviewer', 'manager', 'builder'] as const;
@@ -223,7 +225,9 @@ export function buildReadTools(d: ReadToolDeps): EditorTool[] {
         title: it.title, link: it.link, date: it.date, age_hours: it.age_hours != null && it.age_hours >= 0 ? it.age_hours : null,
         snippet: it.snippet, image: it.image,
       }));
-      return { title: feed.title, items, ...(r ? { dropped: r.dropped } : {}) };
+      const covered = d.stories && ctx.channelKey ? await d.stories.coveredBy(ctx.channelKey, items, t).catch(() => null) : null;
+      const marked = covered ? items.map((it, i) => (covered[i] ? { ...it, covered_by_story: covered[i] } : it)) : items;
+      return { title: feed.title, items: marked, ...(r ? { dropped: r.dropped } : {}) };
     },
   });
 

@@ -48,6 +48,8 @@ export interface NetworkRunnerDeps {
   runwayCheck?: (orch: Agent, playbook: unknown) => Promise<unknown>;
   /** Spec 025 FR-014: open experiment quotas of an anchor for a plan date (shown to the planners). */
   experimentQuotas?: (anchorKey: string, planDate: string, now: Date) => Promise<ExperimentQuota[]>;
+  /** Spec 037 T2: the "Active stories (14 days)" block of the planner / writer prompt (story/story-context.ts); null for none. */
+  stories?: { activeBlock(card: EditorCard, role: 'planner' | 'executor', now: Date): Promise<string | null> };
 }
 
 const STEPS: Record<string, number> = { orchestrate: 30, playbook: 18, ideaReview: 25, plan: 14 };
@@ -188,7 +190,8 @@ export class NetworkRunner {
     const profiles = await this.memberProfiles(c.net);
     const system = `${buildSystemPrompt('planner', card, memory, c.agentCtx.skills, prefs)}\n\n${networkPlannerBlock({ net: c.net, accepted, now, tz: card.timezone, planDate, profiles })}`;
     const quotas = await this.quotas(card.channelKey, planDate);
-    const user = [plannerUserPrompt(card, now, reserved, planDate), renderExperimentQuotas(quotas), await this.catalog(card)].filter(Boolean).join('\n\n');
+    const stories = this.d.stories ? await this.d.stories.activeBlock(card, 'planner', now).catch(() => null) : null;
+    const user = [plannerUserPrompt(card, now, reserved, planDate), renderExperimentQuotas(quotas), await this.catalog(card), stories].filter(Boolean).join('\n\n');
     const res = await this.run('planner', card, c, system, user, STEPS.plan, { planDate }, TERMINAL_EXCLUDE_NETWORK);
     if (res.terminalTool !== 'submit_network_plan') {
       await this.safeNotify(`🗓 @${c.net.orchestrator.handle}: план мережі не складено (${res.status}${res.error ? `: ${res.error}` : ''}).`);
