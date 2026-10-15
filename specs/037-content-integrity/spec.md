@@ -1,7 +1,7 @@
 # 037: Content integrity: one story one post, facts and dates from the source, resource style, visible errors
 
 **Status:** IN PROGRESS · **Priority:** P0 (owner request 2026-10-14) · **Depends on:** 023, 025, 031, 034, 035
-· **Linear:** epic AI0-94, T1–T16 = AI0-95…AI0-110 · **Migrations:** `073_story_registry.sql` (T2), `074_post_audit.sql` (T14)
+· **Linear:** epic AI0-94, T1–T16 = AI0-95…AI0-110 · **Migrations:** `073_story_registry.sql` (T2), `074_post_audit.sql` (T14), `075_ledger_url_canonical.sql` (T16, landed), `076_silent_days.sql` (T10, landed)
 
 **Owner request (2026-10-14):** read the Telegram Desktop exports of the three DEV channels (AI Шукає Новини, AI Технології,
 Біржа Ігор; 07–14.10, 73 messages, `channels - logs/`, not committed) and say what to improve globally, as skills or rules.
