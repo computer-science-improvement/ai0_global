@@ -29,8 +29,7 @@ test('the refs a live switch covers: a resource, its Telegram group, or a networ
 function controller(existing: any, updates: any[] = []) {
   return new StrategiesController(
     { findById: async () => existing, findByExtId: async () => null, update: async (_id: string, p: any) => { updates.push(p); return { ...existing, ...p }; } } as any,
-    {} as any, {} as any, { getChannelById: () => ({}) } as any, { publish: async () => {} } as any,
-    {} as any, {} as any, {} as any, { supportedPlatforms: () => ['telegram'] } as any, {} as any,
+    {} as any, { getChannelById: () => ({}) } as any, { publish: async () => {} } as any, {} as any, {} as any,
   );
 }
 
@@ -39,7 +38,7 @@ test('re-enabling a retired binding → 409 binding_retired (pausing it stays al
   await assert.rejects(() => controller(retired).patch('s1', { enabled: true } as any), (err: any) => {
     assert.equal(err.getStatus(), 409);
     assert.equal(err.getResponse().error, 'binding_retired');
-    assert.match(err.getResponse().details, /retired by the migration to @chef; use the Rollback card/);
+    assert.match(err.getResponse().details, /retired by the migration to @chef; strategies no longer run/);
     return true;
   });
   const updates: any[] = [];

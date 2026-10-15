@@ -1,5 +1,10 @@
 # Управління часом публікацій
 
+> **Outdated (spec 023 phase B, 2026-10-15):** the strategy runtime this page describes (cron scheduler,
+> `src/strategies/*`, `ContentStrategyRunner`, `/trigger/:type`) was removed. Content is written by editor agents
+> (`src/editor`); `strategy_bindings` / `strategy_runs` are history only. See
+> `specs/023-agent-owned-content/spec.md` → "Implementation notes (T7 phase B)".
+
 Розклад кожної стратегії задається полем `"schedule"` у `channels.json` у форматі cron. Зміна розкладу — редагування JSON і перезапуск сервісу.
 
 ---

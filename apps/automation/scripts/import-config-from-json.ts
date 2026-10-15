@@ -128,12 +128,13 @@ function makePool(): Pool {
 
 /**
  * After a successful import, publish a config:changed event so any running
- * automation service reloads its cache + scheduler reconciles cron jobs
- * within ~500ms. Best-effort: if Redis is down or unreachable, we log a
- * warning and move on — the data is already committed.
+ * automation service reloads its cache within ~500ms. Best-effort: if Redis
+ * is down or unreachable, we log a warning and move on — the data is already
+ * committed.
  *
- * The matching subscriber lives in ConfigCacheService + SchedulerService;
- * both listen for `kind: 'all' | 'strategy' | 'channel' | 'bot' | 'forward-route'`.
+ * The matching subscriber lives in ConfigCacheService; it listens for
+ * `kind: 'all' | 'strategy' | 'channel' | 'bot' | 'forward-route'`.
+ * (The strategy scheduler that also reconciled cron jobs was removed in spec 023 phase B.)
  */
 async function publishConfigChanged(): Promise<void> {
   const url = process.env.REDIS_URL ?? 'redis://localhost:6379';

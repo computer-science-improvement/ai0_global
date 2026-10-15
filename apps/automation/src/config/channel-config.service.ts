@@ -4,7 +4,6 @@ import { ConfigService } from '@nestjs/config';
 import { ConfigCacheService } from './config-cache.service';
 import { JsonImporterService } from './json-importer.service';
 import { SecretsService } from '../common/crypto/secrets.service';
-import type { DestinationPlatform } from '../common/content-strategy/publish-destination';
 
 export type AppEnv = 'local-development' | 'dev-stage' | 'production';
 const VALID_ENVS: AppEnv[] = ['local-development', 'dev-stage', 'production'];
@@ -16,24 +15,6 @@ export interface ResolvedChannel {
   chatId:    string;
   botToken:  string;
   botId:     string;
-}
-
-export interface ResolvedStrategyBinding {
-  id:         string;
-  /** Internal UUID — used by run-logging to FK back into strategy_bindings. */
-  uuid:       string;
-  type:       string;
-  /** TG channel_key (resolved) for telegram bindings; '' for meta bindings. */
-  channelId:  string;
-  schedule:   string;
-  params:     Record<string, unknown>;
-  enabled:    boolean;
-  /** Destination kind. 'telegram' = publish to channelId; otherwise a Meta platform. */
-  platform:   DestinationPlatform;
-  /** Meta account UUID when platform != 'telegram'; null otherwise. */
-  metaAccountId: string | null;
-  /** TikTok account UUID when platform == 'tiktok'; null otherwise. */
-  tiktokAccountId: string | null;
 }
 
 export interface ForwardRoute {
@@ -114,24 +95,6 @@ export class ChannelConfigService implements OnApplicationBootstrap {
     const ch = this.cache.getChannelByKey(channelKeyOrId)
             ?? this.cache.getChannelById(channelKeyOrId);
     return ch ? { id: ch.id, username: ch.username } : null;
-  }
-
-  resolveStrategyBindings(): ResolvedStrategyBinding[] {
-    return this.cache.getBindings().map(b => {
-      const ch = b.channel_id ? this.cache.getChannelById(b.channel_id) : null;
-      return {
-        id:        b.ext_id,
-        uuid:      b.id,
-        type:      b.type,
-        channelId: ch?.channel_key ?? b.channel_id ?? '',
-        schedule:  b.schedule,
-        params:    b.params,
-        enabled:   b.enabled,
-        platform:  b.platform,
-        metaAccountId: b.meta_account_id,
-        tiktokAccountId: b.tiktok_account_id,
-      };
-    });
   }
 
   getForwardRoutes(channelKey: string): ForwardRoute[] {

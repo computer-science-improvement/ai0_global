@@ -17,15 +17,8 @@ import {
   useDeleteMetaAccountGroup, useSetMetaAccountGroup, useSetMetaAccountGroupSource,
   autoDuplicates, type GroupSourcePlatform,
 } from '../../api/meta-accounts';
-import { useStrategies, usePatchStrategy } from '../../api/strategies';
 import { trackingApi } from '../../api/tracking';
-import { fmtDate } from '../../lib/format';
 import type { MetaAccount, MetaPlatform, TrackedChannel } from '../../api/types';
-
-/** A conflicting strategy's schedule, shown side-by-side with the group source. */
-interface SchedRef { id: string; extId: string; schedule: string; nextRunAt: string | null }
-/** A double-post collision on a fan-out-target member. */
-interface Collision { own: SchedRef[]; source: SchedRef | null }
 
 const CHANNELS_KEY = ['groups-channels'];
 const chLabel = (c: TrackedChannel) =>
@@ -55,12 +48,6 @@ interface PortData {
   onRemove: (id: string) => void;
   /** Show no-bot warning on this port (Telegram only, when channel has no bot). */
   noBotWarning?: boolean;
-  /** Set when this fan-out target ALSO has its own enabled strategy → double-post. */
-  collision?: Collision;
-  /** Pause a conflicting strategy (the one-click resolve). */
-  onPause?: (id: string) => void;
-  /** Spec 024 FR-009: enabled strategies of this member in an independent network (they publish on their own). */
-  ownStrategies?: string[];
 }
 
 export function MetaGroupsManager() {
@@ -71,12 +58,10 @@ export function MetaGroupsManager() {
     queryKey: CHANNELS_KEY,
     queryFn:  () => trackingApi.listChannels({ filter: 'mine', pageSize: 200 }),
   });
-  const { data: strategies } = useStrategies();
   const createGroup = useCreateMetaAccountGroup();
   const deleteGroup = useDeleteMetaAccountGroup();
   const setGroup    = useSetMetaAccountGroup();
   const setSource   = useSetMetaAccountGroupSource();
-  const patchStrategy = usePatchStrategy();
   const setChannelGroup = useMutation({
     mutationFn: ({ id, groupId }: { id: string; groupId: string | null }) =>
       trackingApi.patchChannel(id, { groupId }),
@@ -90,17 +75,7 @@ export function MetaGroupsManager() {
 
   const allAccounts = accounts ?? [];
   const allChannels = channelsResp?.items ?? [];
-  const allStrategies = strategies ?? [];
-  const busy = setGroup.isPending || setChannelGroup.isPending || setSource.isPending || patchStrategy.isPending;
-
-  // Enabled strategies that publish to a given Meta account / Telegram channel —
-  // used to detect a member that ALSO posts on its own (double-post collision).
-  const toSched = (s: { id: string; ext_id: string; schedule: string; next_run_at: string | null }) =>
-    ({ id: s.id, extId: s.ext_id, schedule: s.schedule, nextRunAt: s.next_run_at });
-  const stratsForMeta = (accId: string) =>
-    allStrategies.filter(s => s.enabled && s.meta_account?.id === accId);
-  const stratsForChannel = (chId: string) =>
-    allStrategies.filter(s => s.enabled && s.platform === 'telegram' && s.channel_id === chId);
+  const busy = setGroup.isPending || setChannelGroup.isPending || setSource.isPending;
 
   const create = async () => {
     const n = name.trim();
@@ -109,35 +84,17 @@ export function MetaGroupsManager() {
     setName('');
   };
 
-  const err = (ea || eg || createGroup.error || setGroup.error || setChannelGroup.error || setSource.error || patchStrategy.error) as Error | null;
+  const err = (ea || eg || createGroup.error || setGroup.error || setChannelGroup.error || setSource.error) as Error | null;
 
   // Build the four ports for a group: Telegram, then Facebook, IG, Threads.
   // The source port is driven by g.source_platform (not hardcoded to Facebook).
   const portsFor = (g: { id: string; source_platform: GroupSourcePlatform; mode?: 'independent' | 'legacy_duplicate'; auto_duplicate?: boolean | null }): PortData[] => {
     const groupId = g.id;
-    const independent = g.mode === 'independent';
     // Spec 024 FR-003: the source and double-post warnings matter only while the group auto-duplicates.
     const dup = autoDuplicates(g);
-    const typesOf = (list: Array<{ type: string }>) => independent && list.length ? [...new Set(list.map((s) => s.type))] : undefined;
     const ch  = allChannels.find(c => c.groupId === groupId) ?? null;
     const isTgSource = g.source_platform === 'telegram';
-    const onPause = (id: string) => patchStrategy.mutate({ id, patch: { enabled: false } });
 
-    // The strategy that drives this group's fan-out (the source member's own
-    // enabled strategy) — shown alongside a colliding member's schedule.
-    const sourceSched: SchedRef | null = (() => {
-      if (g.source_platform === 'telegram') {
-        const s = ch ? stratsForChannel(ch.id)[0] : null;
-        return s ? toSched(s) : null;
-      }
-      const srcAcc = allAccounts.find(a => a.group_id === groupId && a.platform === g.source_platform);
-      const s = srcAcc ? stratsForMeta(srcAcc.id)[0] : null;
-      return s ? toSched(s) : null;
-    })();
-    // A wired non-source member that has its own enabled strategies double-posts:
-    // it gets the fan-out AND its own publish. Returns the collision or undefined.
-    const collisionFor = (own: SchedRef[]): Collision | undefined =>
-      dup && own.length ? { own, source: sourceSched } : undefined;
     // Telegram has no bot warning when it is either the source or an assigned target
     // and the linked channel has no bot bound.
     const tgActive = isTgSource || (ch != null);
@@ -149,10 +106,6 @@ export function MetaGroupsManager() {
       onAssign: (id) => setChannelGroup.mutate({ id, groupId }),
       onRemove: (id) => setChannelGroup.mutate({ id, groupId: null }),
       noBotWarning,
-      // Telegram is a fan-out target (not source) but also has its own strategy.
-      collision: (!isTgSource && ch) ? collisionFor(stratsForChannel(ch.id).map(toSched)) : undefined,
-      onPause,
-      ownStrategies: ch ? typesOf(stratsForChannel(ch.id)) : undefined,
     };
     const metaPorts = PLATFORMS.map<PortData>(platform => {
       const acc = allAccounts.find(a => a.group_id === groupId && a.platform === platform) ?? null;
@@ -164,10 +117,6 @@ export function MetaGroupsManager() {
           .map(a => ({ id: a.id, label: acctLabel(a) })),
         onAssign: (id) => setGroup.mutate({ id, groupId }),
         onRemove: (id) => setGroup.mutate({ id, groupId: null }),
-        // Non-source Meta member that also has its own enabled strategy.
-        collision: (!isSource && acc) ? collisionFor(stratsForMeta(acc.id).map(toSched)) : undefined,
-        onPause,
-        ownStrategies: acc ? typesOf(stratsForMeta(acc.id)) : undefined,
       };
     });
     return [tg, ...metaPorts];
@@ -180,9 +129,7 @@ export function MetaGroupsManager() {
         duplicate, adapt, unique or skip. While a group still{' '}
         <b style={{ color: 'var(--color-ink-muted)' }}>auto-duplicates</b> (legacy groups, or an agent that is not live
         yet), posts published to its <b style={{ color: 'var(--color-ink-muted)' }}>auto-duplicate source</b> are
-        duplicated to every other member (Telegram included) — pick it from the dropdown on each group. A member that{' '}
-        <b style={{ color: 'var(--color-ink-muted)' }}>also runs its own enabled strategy</b> is flagged as a
-        double-post — pause that strategy to keep only the duplicate.
+        duplicated to every other member (Telegram included) — pick it from the dropdown on each group.
       </p>
 
       {/* Create composer */}
@@ -339,66 +286,6 @@ function Port({ port, busy }: { port: PortData; busy: boolean }) {
         </div>
       )}
 
-      {port.ownStrategies?.map((type) => (
-        <div key={type} className="callout-warning" style={{ marginTop: 8, padding: '7px 10px', gap: 8, fontSize: 11 }}>
-          <Icon name="warning" size={13} />
-          <span>Strategy {type} publishes into an independent network on its own; retire it or keep the group on auto-duplicate.</span>
-        </div>
-      ))}
-
-      {port.collision && (
-        <div style={{
-          marginTop: 8, padding: '8px 10px', borderRadius: 'var(--radius-sm)',
-          background: 'var(--color-danger-soft)', border: '1px solid var(--color-danger-soft)',
-        }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 6 }}>
-            <Icon name="warning" size={13} />
-            <span className="text-micro" style={{ fontWeight: 600, color: 'var(--color-danger)' }}>
-              Double-posts — this member also publishes on its own
-            </span>
-          </div>
-          <p className="text-micro" style={{ margin: '0 0 6px', color: 'var(--color-ink-muted)', lineHeight: 1.5 }}>
-            It receives the group's auto-duplicate <b>and</b> runs its own strategy → the same post goes out twice. Pause the
-            strategy to keep only the duplicate.
-          </p>
-          {/* schedules side by side: what drives the fan-out vs the duplicate */}
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: port.onPause ? 8 : 0 }}>
-            {port.collision.source && <SchedChip label="Auto-duplicate source" sched={port.collision.source} tone="muted" />}
-            {port.collision.own.map(s => <SchedChip key={s.id} label="This member" sched={s} tone="danger" />)}
-          </div>
-          {port.onPause && port.collision.own.map(s => (
-            <button
-              key={s.id}
-              className="btn-secondary"
-              disabled={busy}
-              onClick={() => port.onPause!(s.id)}
-              style={{ fontSize: 11, padding: '3px 8px', marginRight: 6, marginTop: 2 }}
-            >
-              <Icon name="pause" size={11} /> Pause {s.extId}
-            </button>
-          ))}
-        </div>
-      )}
     </div>
-  );
-}
-
-// A compact schedule pill: "<label> · <ext_id> · <cron> · next <time>".
-function SchedChip({ label, sched, tone }: { label: string; sched: SchedRef; tone: 'muted' | 'danger' }) {
-  const color = tone === 'danger' ? 'var(--color-danger)' : 'var(--color-ink-muted)';
-  return (
-    <span
-      className="text-micro"
-      style={{
-        display: 'inline-flex', flexDirection: 'column', gap: 1, padding: '4px 8px',
-        borderRadius: 'var(--radius-sm)', background: 'var(--color-surface-3)', color: 'var(--color-ink-dim)',
-      }}
-      title={`${label}: ${sched.extId} · ${sched.schedule}`}
-    >
-      <span style={{ fontWeight: 600, color }}>{label}: {sched.extId}</span>
-      <span style={{ fontVariantNumeric: 'tabular-nums' }}>
-        {sched.schedule}{sched.nextRunAt ? ` · next ${fmtDate(sched.nextRunAt)}` : ''}
-      </span>
-    </span>
   );
 }

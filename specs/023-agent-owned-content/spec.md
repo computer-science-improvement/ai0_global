@@ -183,8 +183,8 @@ rewriting the whole playbook, and cannot be steered from chat. This spec makes t
   `ContentRunwayService`.
 
 **Acceptance:**
-- [ ] No UI path can create or enable a binding.
-- [ ] After phase B, `/app/strategies` redirects and `pnpm --filter automation test` stays green.
+- [x] No UI path can create or enable a binding.
+- [x] After phase B, `/app/strategies` redirects and `pnpm --filter automation test` stays green.
 
 **Size:** M · **Depends on:** T6
 
@@ -413,8 +413,9 @@ Commit `feat(content): 023-T6 …`. Code in `apps/automation/src/editor/migratio
   `binding_retired` and the DB check → live after pausing the last binding → rollback.
 
 ## Implementation notes (T7 phase A, 2026-10-08)
-Commit `feat(content): 023-T7 …`. **Phase B (deleting idle strategy modules, the redirect, removing the scheduler and
-`ContentRunwayService`) is not done: it is owner-gated.** No migration.
+Commit `feat(content): 023-T7 …`. Phase B (deleting idle strategy modules, the redirect, removing the scheduler and
+`ContentRunwayService`) was owner-gated; it landed on 2026-10-15, see "Implementation notes (T7 phase B)" below.
+No migration.
 
 - **API.** `POST /api/strategies` → `410 strategies_legacy` (the create validation is gone). `PATCH /api/strategies/:id`
   accepts only `enabled: false` and `notes`; any other field (enabling included) → `410 strategies_legacy` with
@@ -438,3 +439,45 @@ Commit `feat(content): 023-T7 …`. **Phase B (deleting idle strategy modules, t
   the next series instances and owner pins of every Telegram-anchored agent (not `off`) with the status of the slot
   that realises each (`GET /api/schedule/upcoming?hours&limit`, `editor/schedule/upcoming.ts`, built on
   `ScheduleService.schedule`). "Strategy status" was renamed "Legacy strategy runs".
+
+## Implementation notes (T7 phase B, 2026-10-15)
+Commit `refactor(strategies): 023-T7 phase B — …` (Linear AI0-24, owner approval 2026-10-15). Editor agents write all
+content, so the whole legacy strategy runtime is removed at once instead of type by type. No migration:
+`strategy_bindings` and `strategy_runs` stay as history.
+
+- **Removed (automation).** `src/strategies/*` (every type: ai0-news, ai0-prompts, assets, curated-prompts, daily-photo,
+  facts, game-channel, motivation-biography, movies, network-digest, on-this-day, pdr-quiz, quotes, recipe-carousel,
+  recipes, space, topic-digest, ua-news), the strategy scheduler (`src/scheduler/*`), `ContentStrategyRunner` and
+  `ContentStrategyRegistry`, `ContentRunwayService` (`common/content-runway`), `StrategyPreviewService`,
+  `AlertingService` (it only watched `strategy_runs`), `DigestSponsorsRepository`, the strategy-only prompts / channel
+  skills / fetchers (`workflows/*/fetchers`, `workflows/ai0-prompts`, `workflows/recipes`, `integrations/wikipedia`),
+  `ChannelConfigService.resolveStrategyBindings`, `DestinationResolverService.resolve(binding)`,
+  `PostValidator.reject`, `RunSkippedError` / `runOutcomeForError` / `isPermanentTelegramError`, the dev
+  `GET /trigger/:type` and the admin bot's `/run` and `/list` (they now answer that strategies were removed).
+- **Kept, and why.** `GroupFanOutService`, `publish-destination.ts` and the group lookups of
+  `DestinationResolverService` (the editor's fan-out uses them); `StrategyBindingsRepository`, `StrategyRunsRepository`
+  (history reads only) and the T6 migration (`/api/strategies/migration*`, `migrate_strategies` / `strategy_cutover`
+  cards); `DedupService`; `workflows/*/types.ts` (the shared API fetchers use them); `SCHEDULER_TZ` (the migration
+  reads cron schedules in that zone); `MetaCrosspostTargetsRepository` and its API (the editor's cross-post reads
+  `meta_crosspost_targets`).
+- **API.** `GET /api/strategies` stays as the read-only history list (without `next_run_at`, `content_remaining`,
+  `low_content_threshold`); `PATCH` still only pauses or edits notes (a retired binding → `409 binding_retired`).
+  `GET types`, `:id/runs`, `:id/preview`, `:id/post-preview`, `POST` and `DELETE` → `410 strategies_legacy`.
+- **Dashboard.** `/app/strategies`, `/app/strategies/$id` and `/app/strategies/new` are redirect-only to `/app/agents`
+  (the route files stay, so `routeTree.gen.ts` is unchanged). The Legacy menu group and its entries are gone (a saved
+  menu that still names them lists them as unavailable). The migration card moved to `/app/agents` as "Legacy strategy
+  bindings", shown only while a channel has enabled bindings or a pending migration card (Migrate, Cutover; Rollback is
+  no longer offered since restored bindings would not run). Cross-post targets moved from the strategy page to the
+  channel page ("Cross-posts"). The channel page shows bindings as history (an enabled one is badged "enabled, not
+  running"); the runway counters, next-run columns and the Meta group double-post warnings are gone.
+- **Safety net.** `config/legacy-bindings.check.ts` (`LegacyBindingsCheck`, on boot, in the background, never fails
+  the boot): closes `strategy_runs` rows left at `running`, then, when enabled non-retired bindings exist, logs a warning
+  and writes ONE owner Inbox note per Kyiv day (`kind=legacy_bindings_enabled`, ref `legacy_bindings_day`/day):
+  "Legacy strategy bindings are enabled but no longer run: <channel (types); …>. Content for these channels is written
+  by agents; migrate or disable them." Owner check:
+  `SELECT sb.ext_id, sb.type, sb.platform, t.channel_key, sb.enabled, sb.retired_at FROM strategy_bindings sb LEFT JOIN tracked_channels t ON t.id = sb.channel_id WHERE sb.enabled AND sb.retired_at IS NULL;`
+- **Sponsors (spec 036).** No digest strategy runs any more, so `digestRunsOnSql` is always `FALSE`: every paid
+  `digest_sponsor` order goes to the reserved lane (or is flagged by the stuck-order check), and `digest_sponsor`
+  prices are not offered for sale anywhere until an agent-side digest exists.
+- **Env.** Removed from `.env.example`: `STRATEGY_RUN_TIMEOUT_MS`, `ALERT_ENABLED`, `ALERT_CONSECUTIVE_ERRORS`,
+  `ALERT_STUCK_RUNNING_MINUTES`. `STRATEGY_RUNS_RETENTION_DAYS` stays (it purges old run history).

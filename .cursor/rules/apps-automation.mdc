@@ -8,6 +8,6 @@ alwaysApply: false
 
 - Follow **`.cursor/skills/monorepo-apps-automation/SKILL.md`** for module/strategy patterns, **DB shapes** (`database/init.sql`, `posted` vs `posted_news`), and the **standard vs `execute` pipeline**.
 - **NestJS 10**, TypeScript; **raw `pg`** only — do not introduce another ORM without an explicit decision.
-- New **strategies**: add `*StrategyModule` under `src/strategies/<name>/` and register imports in `src/app.module.ts`; align with `scheduler` / cron patterns already in the repo.
+- **No new strategies**: the legacy strategy runtime (`src/strategies/*`, the strategy scheduler, `ContentStrategyRunner`) was removed in spec 023 phase B. Content is written by editor agents (`src/editor`); `strategy_bindings` / `strategy_runs` are history only.
 - **Config**: global `ConfigModule` uses repo-root `../../.env` — keep that pattern for new modules needing env.
 - Respect existing **dedup / logging** patterns (`posted_news`, `bot_logs`, `ai_logs`) when publishing or generating content.

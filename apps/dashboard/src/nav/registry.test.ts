@@ -41,7 +41,7 @@ test('parents exist, chains have no cycles, templates never reach a menu', () =>
   assert.ok(menuEntries().every((e) => e.menu !== false));
 });
 
-test('the default menu is FR-003 plus Posts to approve, Data and Spend; Strategies under Legacy (023)', () => {
+test('the default menu is FR-003 plus Posts to approve, Data and Spend; no Legacy group since 023 phase B', () => {
   const nav = defaultNav();
   const shape = Object.fromEntries(nav.groups.map((g) => [g.title, g.items.map((i) => i.label)]));
   assert.deepEqual(shape, {
@@ -54,7 +54,6 @@ test('the default menu is FR-003 plus Posts to approve, Data and Spend; Strategi
     Connections: ['Connections', 'Groups'],
     Marketing: ['Landing', 'Ads'],
     System: ['Settings'],
-    Legacy: ['Strategies'],
   });
   assert.deepEqual(nav.pinned, []);
   // The approvals counter is on by default and Overview/Settings are forced.
@@ -87,7 +86,7 @@ test('breadcrumbs follow the parent chain, then the dynamic ancestors, with rena
 test('the FR-013 detail pages render breadcrumbs and dropped their ad-hoc back links', () => {
   const pages = [
     'app.agents_.$handle.tsx', 'app.agents_.inbox.tsx', 'app.channels_.$id.tsx', 'app.editor_.$channel.tsx',
-    'app.editor_.run.$id.tsx', 'app.editor_.slot.$id.tsx', 'app.strategies_.new.tsx', 'app.strategies_.$id.tsx',
+    'app.editor_.run.$id.tsx', 'app.editor_.slot.$id.tsx',
     'app.connections_.meta_.$accountId.tsx', 'app.connections_.groups.tsx', 'app.compose.tsx', 'app.data_.$key.tsx',
   ];
   for (const f of pages) {

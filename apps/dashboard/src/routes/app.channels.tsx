@@ -1,10 +1,8 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { useQuery } from '@tanstack/react-query';
-import { useState, useMemo } from 'react';
+import { useState } from 'react';
 import { trackingApi } from '../api/tracking';
 import { useBots } from '../api/bots';
-import { useStrategies } from '../api/strategies';
-import { isLowContent } from '../lib/runway';
 import { ChannelRow } from '../components/ChannelRow';
 import { Pagination } from '../components/Pagination';
 import { AddChannelModal } from '../components/AddChannelModal';
@@ -36,12 +34,6 @@ function ChannelsPage() {
   const navigate = Route.useNavigate();
   const [modalOpen, setModalOpen] = useState(false);
   const { data: bots } = useBots();
-  const { data: strategies } = useStrategies();
-  const lowContentIds = useMemo(() => {
-    const set = new Set<string>();
-    for (const s of strategies ?? []) if (isLowContent(s)) set.add(s.id);
-    return set;
-  }, [strategies]);
 
   const { data, isLoading, error } = useQuery({
     queryKey: ['channels', FILTER, page, q, bot],
@@ -68,7 +60,7 @@ function ChannelsPage() {
     <div>
       <PageHeader
         title="My channels"
-        subtitle="Owned channels you publish into. Each row shows its bound bot, poll tier, and live strategies."
+        subtitle="Owned channels you publish into. Each row shows its bound bot, poll tier, and legacy strategy bindings."
         actions={
           <button
             onClick={() => setModalOpen(true)}
@@ -219,7 +211,7 @@ function ChannelsPage() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
               {data.items.map((c, i) => (
                 <div key={c.id} className="row-lift compose-rise" style={{ animationDelay: `${Math.min(i, 12) * 28}ms` }}>
-                  <ChannelRow c={c} lowContentIds={lowContentIds} />
+                  <ChannelRow c={c} />
                 </div>
               ))}
             </div>

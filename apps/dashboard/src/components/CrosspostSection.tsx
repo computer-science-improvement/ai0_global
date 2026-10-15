@@ -1,4 +1,4 @@
-// Cross-post management for one channel — used inside the Edit-strategy modal.
+// Cross-post management for one channel — on the channel detail page (moved from the removed strategy page, spec 023 phase B).
 // Lists the channel's Meta cross-post targets and lets the operator add /
 // toggle / remove them. Cross-posting fires after the channel's Telegram posts.
 
@@ -54,8 +54,7 @@ export function CrosspostSection({ channelId }: { channelId: string }) {
   };
 
   return (
-    <div style={{ marginBottom: 16 }}>
-      <div className="text-eyebrow" style={{ marginBottom: 6 }}>Meta cross-posting</div>
+    <div>
       <p className="text-micro" style={{ color: 'var(--color-ink-dim)', margin: '0 0 10px' }}>
         After each Telegram post, this channel reposts to the selected Meta accounts.
         <b> duplicate</b> — the same content; <b>teaser</b> — a short teaser + link to the post.

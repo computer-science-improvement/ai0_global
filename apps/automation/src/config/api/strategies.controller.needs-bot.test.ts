@@ -23,13 +23,9 @@ function makeController(opts: { channelBotId: string | null; defaultBot: any }) 
     getDefaultBot: () => opts.defaultBot,
   };
   const crossposts = { platformsByChannel: async () => new Map() };
-  const runway = { remainingFor: async () => 0, effectiveThreshold: () => 100 };
   const metaAccounts = { list: async () => [{ id: 'acct-1', platform: 'instagram', username: 'x' }] };
   return new StrategiesController(
-    repo as any, runsRepo as any, {} as any, cache as any, {} as any,
-    crossposts as any, runway as any, metaAccounts as any,
-    { types: () => [], supportedPlatforms: () => ['telegram', 'instagram'] } as any,
-    { findById: async () => null } as any,
+    repo as any, runsRepo as any, cache as any, {} as any, crossposts as any, metaAccounts as any,
   );
 }
 

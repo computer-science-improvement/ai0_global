@@ -14,7 +14,6 @@ import { MtprotoVerifyClient } from './mtproto-verify.client';
 import { TrackedChannelsConfigRepository } from './tracked-channels.repository';
 import { StrategyBindingsRepository } from './strategy-bindings.repository';
 import { StrategyRunsRepository } from './strategy-runs.repository';
-import { StrategyPreviewService } from './strategy-preview.service';
 import { ForwardRoutesRepository } from './forward-routes.repository';
 import { TelegramGetMeClient } from './telegram-getme.client';
 import { TelegraphAccountsRepository } from './telegraph-accounts.repository';
@@ -52,11 +51,11 @@ import { LandingAdminController } from './api/landing-admin.controller';
 import { StrategiesController } from './api/strategies.controller';
 import { ForwardRoutesController } from './api/forward-routes.controller';
 import { AuthModule } from '../auth/auth.module';
-import { ContentRunwayModule } from '../common/content-runway/content-runway.module';
+import { LegacyBindingsCheck } from './legacy-bindings.check';
 
 @Global()
 @Module({
-  imports: [NestConfigModule, DatabaseModule, TrackingModule, AuthModule, ContentRunwayModule],
+  imports: [NestConfigModule, DatabaseModule, TrackingModule, AuthModule],
   controllers: [MyBotsController, MtprotoSessionsController, TelegraphAccountsController, MetaAccountsController, MetaAccountGroupsController, MetaCrosspostsController, StrategiesController, ForwardRoutesController, TikTokAccountsController, TikTokOAuthController, LandingController, LandingAdminController],
   providers: [
     ChannelConfigService,
@@ -69,7 +68,6 @@ import { ContentRunwayModule } from '../common/content-runway/content-runway.mod
     TrackedChannelsConfigRepository,
     StrategyBindingsRepository,
     StrategyRunsRepository,
-    StrategyPreviewService,
     ForwardRoutesRepository,
     TelegramGetMeClient,
     TelegraphAccountsRepository,
@@ -120,6 +118,15 @@ import { ContentRunwayModule } from '../common/content-runway/content-runway.mod
         const inbox = new OwnerInbox(pool, notifier ? (t) => notifier.notifyAlert(t) : async () => {}, cfg.get<string>('DASHBOARD_URL') ?? null);
         return new LandingLeadsService({ pool, gate, config, inbox, log: (m) => logger.warn(m) });
       },
+    },
+    {
+      // Spec 023 T7 phase B: the strategy scheduler is gone. On boot, warn (log + one owner Inbox note per day)
+      // about bindings that are still enabled but no longer run. Best-effort, never blocks the boot.
+      provide: LegacyBindingsCheck,
+      inject: [{ token: DB_POOL, optional: true }, ConfigService, { token: TelegramNotifier, optional: true }],
+      useFactory: (pool: Pool | undefined, cfg: ConfigService, notifier?: TelegramNotifier) => new LegacyBindingsCheck(pool
+        ? { pool, inbox: new OwnerInbox(pool, notifier ? (t) => notifier.notifyAlert(t) : async () => {}, cfg.get<string>('DASHBOARD_URL') ?? null) }
+        : null),
     },
   ],
   exports: [

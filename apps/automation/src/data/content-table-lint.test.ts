@@ -8,23 +8,13 @@ import { findContentTableRefs } from './content-table-lint';
  * Spec 032 FR-009 lint: content tables are compatibility views over the data store now. New code reads
  * and writes datasets by schema key (DataStore, pipeline loadData, later query_data) — never by table
  * name. The files below are the legacy readers (and the tests of the compatibility layer) that may still
- * name a content table until specs 023/009 retire them. Do not add to this list; shrink it.
+ * name a content table. Do not add to this list; shrink it.
  */
 const ALLOWED: Record<string, string> = {
-  // Legacy readers through the compatibility views (posted markers go through the view triggers).
-  'automation/src/config/strategy-preview.service.ts': 'dashboard strategy previews',
-  'automation/src/strategies/ai0-prompts/prompts.repository.ts': 'legacy strategy repository',
-  'automation/src/strategies/assets/assets.repository.ts': 'legacy strategy repository',
-  'automation/src/strategies/curated-prompts/curated-prompts.repository.ts': 'legacy strategy repository',
-  'automation/src/strategies/facts/facts.repository.ts': 'legacy strategy repository',
-  'automation/src/strategies/motivation-biography/motivation-biography.repository.ts': 'legacy strategy repository',
-  'automation/src/strategies/pdr-quiz/pdr-quiz.repository.ts': 'legacy strategy repository',
-  'automation/src/strategies/quotes/quotes.repository.ts': 'legacy strategy repository',
-  'automation/src/strategies/recipes/recipes.repository.ts': 'legacy strategy repository (reads only; writes use DataStore)',
+  // Legacy readers through the compatibility views (the strategy repositories went with spec 023 phase B).
   'pipeline/src/tg/adapt-biographies.js': 'reads birthdays to draft biography posts',
   'pipeline/src/calculator/server.js': 'local content calculator (read-only counts)',
   // Tests that exercise the legacy SQL or the compatibility views themselves.
-  'automation/src/common/content-runway/count-eligible.test.ts': 'asserts legacy repository SQL',
   'automation/src/editor/db/readonly-query.service.test.ts': 'example SQL for the read-only guard',
   'automation/src/editor/db/readonly-sql.test.ts': 'example SQL for the read-only guard',
   'automation/src/data/data-store.migration.pg.test.ts': 'tests the 058 compatibility views',

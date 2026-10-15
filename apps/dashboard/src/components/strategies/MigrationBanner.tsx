@@ -1,6 +1,6 @@
-// Spec 023 FR-011–FR-013 (phase A): /app/strategies is read-only legacy. This banner says so and drives the
-// migration of each channel into its agent's series: Migrate (dry run → draft for approval), Cutover (retire
-// the strategies, approval mode) and Rollback — each a card the owner applies here.
+// Spec 023 FR-011–FR-013, phase B: strategies no longer run (the scheduler is gone). Shown on /app/agents only
+// while a channel still has enabled legacy bindings or a pending migration card: Migrate (dry run → draft for
+// approval) turns the bindings into the agent's series, Cutover retires them and moves the agent to approval mode.
 import { Link } from '@tanstack/react-router';
 import { useState } from 'react';
 import { Badge } from '../ui/Badge';
@@ -16,15 +16,20 @@ import {
 
 const STATE: Record<MigrationState, { label: string; tone: 'success' | 'warning' | 'danger' | 'accent' | 'neutral'; help: string }> = {
   no_agent:      { label: 'No agent', tone: 'danger', help: 'No agent runs this channel yet. Create one on the Agents page (or ask @ai0), then migrate.' },
-  not_migrated:  { label: 'Not migrated', tone: 'warning', help: 'The strategies publish on their own. Migrate them into the agent\'s series.' },
-  draft_pending: { label: 'Draft awaits approval', tone: 'accent', help: 'Approve the migration playbook on the agent page. The strategies keep publishing meanwhile.' },
+  not_migrated:  { label: 'Not migrated', tone: 'warning', help: 'The bindings are enabled but no longer publish. Migrate them into the agent\'s series, or pause them.' },
+  draft_pending: { label: 'Draft awaits approval', tone: 'accent', help: 'Approve the migration playbook on the agent page.' },
   shadow:        { label: 'Agent in shadow', tone: 'accent', help: 'The agent writes the migrated series as previews. The cutover is offered after 7 days with 80% of the series done.' },
-  cutover_ready: { label: 'Ready for cutover', tone: 'success', help: 'The migrated series ran a week in shadow. The cutover retires the strategies and moves the agent to approval mode.' },
-  retired:       { label: 'Retired', tone: 'neutral', help: 'The agent publishes this channel; its strategies are retired. Rollback brings them back.' },
-  legacy:        { label: 'Nothing enabled', tone: 'neutral', help: 'No enabled strategy on this channel.' },
+  cutover_ready: { label: 'Ready for cutover', tone: 'success', help: 'The migrated series ran a week in shadow. The cutover retires the bindings and moves the agent to approval mode.' },
+  retired:       { label: 'Retired', tone: 'neutral', help: 'The agent publishes this channel; its strategy bindings are retired.' },
+  legacy:        { label: 'Nothing enabled', tone: 'neutral', help: 'No enabled strategy binding on this channel.' },
 };
 
 const OP_LABEL: Record<MigrationOp, string> = { migrate: 'Migrate', cutover: 'Cutover', rollback: 'Rollback' };
+
+/** Phase B: only channels that still need the owner — enabled bindings or a pending card. */
+export function needsAttention(c: MigrationChannel): boolean {
+  return c.enabled.length > 0 || c.cards.length > 0;
+}
 const KIND_OP: Record<string, MigrationOp> = { migrate_strategies: 'migrate', strategy_cutover: 'cutover', strategy_rollback: 'rollback' };
 
 function errText(err: unknown): string {
@@ -36,15 +41,15 @@ function errText(err: unknown): string {
 export function MigrationBanner() {
   const { data, isLoading, error } = useStrategyMigration();
   const [migrating, setMigrating] = useState<string | null>(null);
-  const channels = data?.channels ?? [];
+  const channels = (data?.channels ?? []).filter(needsAttention);
+  if (!error && (isLoading || channels.length === 0)) return null;
 
   return (
-    <SectionCard title="Content is run by agents" icon="agents" delay={40}>
+    <SectionCard title="Legacy strategy bindings" icon="strategies" delay={40} style={{ marginBottom: 16 }}>
       <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)', margin: '0 0 12px' }}>
-        Strategies are legacy and read-only: you can pause them and edit notes, nothing else. Migrate each channel to move its
-        strategies into the agent&apos;s series — they keep publishing while the agent works in shadow, until the cutover retires them.
+        Strategies were removed: these bindings are still enabled but publish nothing, the channel&apos;s agent writes its
+        content. Migrate a channel to turn its bindings into the agent&apos;s series, then cut over to retire them.
       </p>
-      {isLoading && <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)', margin: 0 }}>Loading migration state…</p>}
       {error && <p className="text-body-sm" style={{ color: 'var(--color-danger)', margin: 0 }}>{errText(error)}</p>}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
         {channels.map((c) => <ChannelRow key={c.channel_key} c={c} onMigrate={() => setMigrating(c.channel_key)} />)}
@@ -67,14 +72,12 @@ function ChannelRow({ c, onMigrate }: { c: MigrationChannel; onMigrate: () => vo
     if (r.action.status === 'applied') setMsg({ tone: 'ok', text: 'Applied.' });
     else setMsg({ tone: 'error', text: r.action.error ?? `Card ${r.action.status}.` });
   };
-  const run = async (op: Exclude<MigrationOp, 'migrate'>) => {
-    const text = op === 'cutover'
-      ? `retire the migrated strategies of ${c.channel_key} and switch @${c.agent?.handle} to approval mode`
-      : `re-enable the migrated strategies of ${c.channel_key} and put @${c.agent?.handle} back to shadow`;
-    if (!(await confirm(text, { danger: op === 'rollback', confirmLabel: OP_LABEL[op] }))) return;
+  const cutover = async () => {
+    const text = `retire the migrated strategy bindings of ${c.channel_key} and switch @${c.agent?.handle} to approval mode`;
+    if (!(await confirm(text, { confirmLabel: OP_LABEL.cutover }))) return;
     setMsg(null);
     try {
-      const r = await propose.mutateAsync({ op, channel: c.channel_key });
+      const r = await propose.mutateAsync({ op: 'cutover', channel: c.channel_key });
       await apply(r.action.id);
     } catch (err) {
       setMsg({ tone: 'error', text: errText(err) });
@@ -82,7 +85,6 @@ function ChannelRow({ c, onMigrate }: { c: MigrationChannel; onMigrate: () => vo
   };
   const canMigrate = c.agent && c.state === 'not_migrated';
   const canCutover = c.state === 'cutover_ready' && !c.cards.some((x) => x.kind === 'strategy_cutover');
-  const canRollback = c.retired.length > 0 && !!c.agent;
 
   return (
     <div className="card" style={{ padding: '12px 14px', display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 12 }}>
@@ -132,13 +134,8 @@ function ChannelRow({ c, onMigrate }: { c: MigrationChannel; onMigrate: () => vo
           </button>
         )}
         {canCutover && (
-          <button className="btn-primary" disabled={busy} onClick={() => run('cutover')}>
+          <button className="btn-primary" disabled={busy} onClick={cutover}>
             <Icon name="check" size={14} /> Cutover
-          </button>
-        )}
-        {canRollback && (
-          <button className="btn-tiny" disabled={busy} onClick={() => run('rollback')} title="Re-enable the migrated strategies and put the agent back to shadow">
-            <Icon name="reset" size={12} /> Rollback
           </button>
         )}
       </div>
@@ -176,7 +173,7 @@ function MigrateModal({ channel, onClose }: { channel: string | null; onClose: (
       const d = await decide.mutateAsync({ id: r.action.id, decision: 'apply' });
       if (d.action.status === 'applied') {
         const v = (d.action.result as { version?: number } | null)?.version;
-        setResult({ tone: 'ok', text: `Migration draft${v ? ` v${v}` : ''} created. Approve it on the agent page; the strategies keep publishing until the cutover.` });
+        setResult({ tone: 'ok', text: `Migration draft${v ? ` v${v}` : ''} created. Approve it on the agent page, then cut over to retire the bindings.` });
       } else {
         setResult({ tone: 'error', text: d.action.error ?? `Card ${d.action.status}.` });
       }
@@ -186,13 +183,13 @@ function MigrateModal({ channel, onClose }: { channel: string | null; onClose: (
   };
 
   return (
-    <Modal open={!!channel} onClose={close} title={`Migrate ${channel ?? ''}`} subtitle="How each enabled strategy maps to the agent (nothing is written yet)" icon="agents" size="lg">
+    <Modal open={!!channel} onClose={close} title={`Migrate ${channel ?? ''}`} subtitle="How each enabled strategy binding maps to the agent (nothing is written yet)" icon="agents" size="lg">
       {isLoading && <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>Building the proposal…</p>}
       {error && <p className="text-body-sm" style={{ color: 'var(--color-danger)', overflowWrap: 'anywhere' }}>{errText(error)}</p>}
       {p && (
         <div>
           <p className="text-body-sm" style={{ color: 'var(--color-ink)', margin: '0 0 10px' }}>
-            {p.mapped} of {p.total} enabled strategies map to @{p.agent?.handle}
+            {p.mapped} of {p.total} enabled strategy bindings map to @{p.agent?.handle}
             {p.active_version ? ` (on top of playbook v${p.active_version})` : ' (a new playbook from the channel card)'}.
           </p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 6, maxHeight: '50vh', overflowY: 'auto' }}>

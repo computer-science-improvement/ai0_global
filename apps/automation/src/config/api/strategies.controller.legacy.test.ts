@@ -1,4 +1,4 @@
-// Spec 023 FR-013 phase A: /api/strategies is read-only legacy.
+// Spec 023 FR-013: /api/strategies is read-only legacy (phase A); phase B removed everything but the list and pausing.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { StrategiesController } from './strategies.controller';
@@ -12,13 +12,9 @@ function build(existing: any = { id: 'b1', ext_id: 'recipes:a', type: 'recipes',
     insert: async () => { throw new Error('insert must never be called'); },
     update: async (id: string, patch: any) => { updated.push(patch); return { ...existing, ...patch }; },
   };
-  const registry = {
-    types: () => ['recipe-carousel', 'ai0-news'],
-    supportedPlatforms: (t: string) => (t === 'recipe-carousel' ? ['instagram', 'facebook', 'threads', 'tiktok'] : ['telegram']),
-  };
   const c = new StrategiesController(
-    repo as any, {} as any, {} as any, { getChannelById: () => ({ id: 'c' }) } as any, { publish: async (_k: string, id: string) => { published.push(id); } } as any,
-    {} as any, {} as any, {} as any, registry as any, {} as any,
+    repo as any, {} as any, { getChannelById: () => ({ id: 'c' }) } as any, { publish: async (_k: string, id: string) => { published.push(id); } } as any,
+    {} as any, {} as any,
   );
   return { c, updated, published };
 }
@@ -30,9 +26,13 @@ const gone = (err: any, refused?: string[]) => {
   return true;
 };
 
-test('GET /types still returns supportedPlatforms per strategy (read-only)', () => {
-  const types = build().c.listTypes();
-  assert.deepEqual(types.find((t: any) => t.type === 'recipe-carousel')!.supportedPlatforms, ['instagram', 'facebook', 'threads', 'tiktok']);
+test('phase B: types, runs, previews and DELETE → 410 strategies_legacy', () => {
+  const { c } = build();
+  assert.throws(() => c.listTypes(), (err: any) => gone(err));
+  assert.throws(() => c.runs('b1'), (err: any) => gone(err));
+  assert.throws(() => c.previewStrategy('b1'), (err: any) => gone(err));
+  assert.throws(() => c.postPreview('b1'), (err: any) => gone(err));
+  assert.throws(() => c.remove('b1'), (err: any) => gone(err));
 });
 
 test('POST /api/strategies → 410 strategies_legacy, nothing inserted', () => {

@@ -17,12 +17,13 @@ export const POLL_TIER_HELP: Record<'hot' | 'warm' | 'cold', string> = {
 };
 
 // ─── Strategy enabled / paused ─────────────────────────────────────────
+// Spec 023 phase B: the strategy scheduler is gone, so neither state runs anything any more.
 export const STRATEGY_STATUS_HELP: Record<'enabled' | 'paused', string> = {
-  enabled: 'Cron is registered for this strategy. It will fire at its next scheduled minute.',
-  paused:  'Cron is NOT registered. The strategy stays configured but won\'t fire until you enable it.',
+  enabled: 'Legacy binding still marked enabled, but strategies no longer run: the channel\'s agent writes its content. Migrate or pause it.',
+  paused:  'Legacy binding, paused. Strategies no longer run; kept as history.',
 };
 
-// ─── Strategy run status ───────────────────────────────────────────────
+// ─── Strategy run status (history) ─────────────────────────────────────
 export const RUN_STATUS_HELP: Record<'ok' | 'error' | 'skipped' | 'running', string> = {
   ok:      'Strategy ran to completion (published, or found nothing new to publish).',
   error:   'Strategy threw or its publish failed. Hover the row for the message; most-recent error is also stored.',
@@ -47,10 +48,10 @@ export const CHANNEL_KIND_HELP: Record<'public' | 'private', string> = {
 
 // ─── Channel flags ─────────────────────────────────────────────────────
 export const CHANNEL_FLAG_HELP = {
-  mine:   'One of your own channels. Strategies publish here; can be edited.',
+  mine:   'One of your own channels. Its agent publishes here; can be edited.',
   closed: 'Channel was unreachable on the last poll — likely banned, private, or renamed. Polling backs off.',
   publishPaused:
-    'Per-channel kill switch. Strategies + forward routes are blocked from publishing into this channel. Strategy schedules continue to fire (they’re just skipped at publish-time and recorded as skipped, not error). Toggle off to resume.',
+    'Per-channel kill switch. Agents and forward routes are blocked from publishing into this channel. Toggle off to resume.',
 } as const;
 
 // ─── Bot status ────────────────────────────────────────────────────────
@@ -66,10 +67,9 @@ export const FORWARD_ROLE_HELP: Record<'primary' | 'forward', string> = STRATEGY
 
 // ─── Strategy types ────────────────────────────────────────────────────
 //
-// What each strategy DOES — short description + data source. Shown as
-// hover-tooltips on the type chip, and inline as a hint in the add/edit
-// modals. Keys must match the registered type slugs in
-// `apps/automation/src/common/content-strategy/content-strategy.registry.ts`.
+// What each legacy strategy type did — short description + data source. Shown as
+// hover-tooltips on the type chip of legacy bindings (history since spec 023 phase B,
+// when the strategy runtime and its registry were removed).
 
 export interface StrategyTypeMeta {
   title:        string;
