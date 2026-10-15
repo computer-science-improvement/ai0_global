@@ -6,6 +6,7 @@ import type { EditorPlansRepository } from '../repo/editor-plans.repository';
 import type { VoicePrefs } from '../post/slop-lint';
 import type { EditorRole } from '../llm/llm.types';
 import { criticLine, slopCodes, type StoredCritic } from './critic';
+import { brokenCharText, findBrokenChars } from '../post/text-hygiene';
 import { CRITIC_TIMEOUT_MS, type CriticRequest, type CriticService } from './critic.service';
 
 /** Publish tools wait for the critic (two attempts) and then for the send itself. */
@@ -14,7 +15,7 @@ export const PUBLISH_TOOL_TIMEOUT_MS = 2 * CRITIC_TIMEOUT_MS + 60_000;
 /** Extra turns the AgentLoop grants after a `critic_revise`, so a revise near the step limit still ends in publish or skip. */
 export const CRITIC_REVISE_GRANT_STEPS = 2;
 
-/** What a publish tool hands the critic: the reader-visible text, the spec and the lint warnings (slop ones are kept). */
+/** What a publish tool hands the critic: the reader-visible text, the spec and every lint warning (spec 037 T6). */
 export interface CriticPost {
   text:     string;
   spec:     unknown;
@@ -26,10 +27,13 @@ export interface CriticPost {
  * The gate's answer to a publish tool:
  * - `proceed`: store / publish / create the approval card (the verdict is already on the slot);
  * - `revise`: return `result` (a tool error with the notes) — the executor rewrites once;
- * - `halt`: the slot is already `skipped` (reject) or `failed` (critic error); return `result` to end the run.
+ * - `halt`: the slot is already `skipped` (reject) or `failed` (critic error); return `result` to end the run;
+ * - `blocked`: the text has a broken character (spec 037 T6) — return `result`, the executor rewrites the word; the
+ *   critic is not called and nothing is stored.
  */
 export type CriticGateOutcome =
   | { kind: 'proceed'; critic: StoredCritic }
+  | { kind: 'blocked'; result: ToolError }
   | { kind: 'revise'; critic: StoredCritic; result: ToolError & { _grantSteps: number } }
   | { kind: 'halt'; critic: StoredCritic; result: Record<string, unknown> };
 
@@ -139,6 +143,17 @@ export class CriticGate {
   }
 
   async check(post: CriticPost): Promise<CriticGateOutcome> {
+    // Spec 037 T6: a broken character never reaches publish, whatever lint said (U+FFFD in the 11.10 Ledger post).
+    const broken = findBrokenChars(post.text);
+    if (broken.length) {
+      return {
+        kind: 'blocked',
+        result: {
+          error: 'text_replacement_char',
+          details: `${broken.map((b) => `${brokenCharText(b.kind)}: «${b.excerpt}»`).join('; ')}. Перепиши ці слова звичайними літерами й виклич публікацію ще раз.`,
+        },
+      };
+    }
     const hash = hashOf(post.spec);
     if (this.proceeded?.hash === hash) return { kind: 'proceed', critic: this.proceeded.critic };
 
@@ -149,6 +164,7 @@ export class CriticGate {
       text: post.text, spec: post.spec, voice: this.c.voice, brief: this.c.brief, profile: this.c.profile,
       formatPrefs: this.c.formatPrefs, playbook: this.c.playbook, examples: this.c.examples ?? null, source: await this.source(post.spec),
       slopWarnings: post.warnings.filter((w) => slop.includes(w.code)).map((w) => ({ code: w.code, message: w.message })),
+      lintWarnings: post.warnings.map((w) => ({ code: w.code, message: w.message })),
       previous: this.first, agent: this.c.agent ?? null,
     });
     this.passes++;

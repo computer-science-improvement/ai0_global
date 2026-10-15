@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { CONTENT_REF_RE } from '../../data/data-refs';
+import { normalizePostSpec } from './typography';
 
 export const POST_FORMATS = ['text', 'photo', 'album', 'poll', 'quiz', 'video', 'carousel', 'longread'] as const;
 /** Formats lint accepts. Phase 2 (spec 009 T002) added video, carousel and longread, so this is every format. */
@@ -149,5 +150,9 @@ export function withScheme(url: string): string {
   return /^[a-z0-9-]+(\.[a-z0-9-]+)+\//i.test(u) ? `https://${u}` : u;
 }
 
-/** PostSpec as an agent tool input: aliases mapped, any other unknown top-level field is an error naming it. */
-export const AgentPostSpecSchema = z.preprocess(coerceAgentSpec, PostSpecSchema.strict());
+/**
+ * PostSpec as an agent tool input: aliases mapped, any other unknown top-level field is an error naming it; the
+ * parsed spec goes through the typography normaliser (spec 037 T6), so lint, the critic and the render all read
+ * the normalised text.
+ */
+export const AgentPostSpecSchema = z.preprocess(coerceAgentSpec, PostSpecSchema.strict()).transform(normalizePostSpec);

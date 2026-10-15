@@ -54,6 +54,9 @@ export const SLOP_PHRASES: readonly string[] = [
   'звісно!', 'чудове питання', 'сподіваюся це допоможе', 'сподіваюсь це допоможе', 'ось огляд', 'нижче наведено',
   'якщо потрібно можу', 'на момент останнього оновлення', 'наскільки мені відомо', 'у цій статті', 'як штучний інтелект я',
   'як мовна модель', 'as an ai', 'as a language model', 'i hope this helps',
+  // Spec 037 T6: found in the DEV channels 07–14.10 (bookmark bait, teasing, ти-address bait, empty reassurance)
+  'зберігайте собі', 'зберігай собі', 'признавайся', 'признавайтеся', 'признавайтесь', 'здогадаєтеся', 'здогадаєтесь',
+  'панікувати не варто', 'не варто панікувати',
 ];
 
 /** Apostrophes writers and models actually use for the Ukrainian ʼ. */

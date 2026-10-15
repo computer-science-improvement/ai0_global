@@ -22,6 +22,8 @@ export interface SlopIssue { code: SlopWarningCode; message: string }
 export const SLOP_WARNING_CODES = [
   'slop_em_dash', 'slop_exclamation', 'slop_rhetorical_qa', 'slop_moral_closer', 'slop_adjective_triple',
   'slop_emoji_over_pref', 'slop_humor_off', 'slop_slang_off',
+  // Spec 037 T6: soft slop phrases («це той випадок, коли», sentence-initial «коротко —»).
+  'slop_cliche',
 ] as const;
 export type SlopWarningCode = typeof SLOP_WARNING_CODES[number];
 
@@ -37,9 +39,12 @@ export const EMOJI_PREF_MAX: Record<NonNullable<VoicePrefs['emoji']>, number> = 
 const EMOJI_RE = /\p{Extended_Pictographic}/gu;
 const WORD = '[\\p{L}\\p{N}ʼ]';
 
-/** Sentences of a text: split after . ! ? … and on line breaks; terminators kept. */
+/**
+ * Sentences of a text: split after . ! ? … and on line breaks; terminators kept. A period followed by a lowercase
+ * word is an abbreviation («~244 тис. завантажень», «2 млрд. грн»), not a sentence end (spec 037 T6).
+ */
 export function sentencesOf(text: string): string[] {
-  return text.split(/\n+/).flatMap((line) => line.split(/(?<=[.!?…])\s+/)).map((s) => s.trim()).filter((s) => /\p{L}/u.test(s));
+  return text.split(/\n+/).flatMap((line) => line.split(/(?<=[!?…])\s+|(?<=\.)\s+(?!\p{Ll})/u)).map((s) => s.trim()).filter((s) => /\p{L}/u.test(s));
 }
 
 const words = (s: string) => s.split(/\s+/).filter((w) => /\p{L}/u.test(w)).length;
@@ -68,13 +73,43 @@ const MORAL_CLOSER = new RegExp(`^(?:${[
   'можливо саме', 'адже', 'в епоху', 'в еру', 'у світі де', 'в світі де', 'у часи коли', 'в часи коли', 'у час коли',
   'це показує', 'це свідчить', 'це нагадує', 'це змінює', 'це доводить', 'це означає', 'це ще раз', 'такі історії', 'подібні історії',
   'ця історія', 'тенденція', 'зміни відбивають', 'одне зрозуміло', 'одне очевидно', 'питання лише', 'залишається лише',
+  'мораль',
 ].map((p) => p.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})(?!${WORD})`, 'u');
+
+/**
+ * Spec 037 T6: openers that moralise wherever they stand, so they also count in the second-to-last sentence
+ * («Мораль для всіх, хто тягне open-ваги: …» before a closing fact). The rest of the list only in the last one:
+ * «Це означає…», «Адже…» mid-text are ordinary sentences.
+ */
+const MORAL_OPENER = /^(?:мораль|памʼятайте|не забувайте)(?![\p{L}\p{N}ʼ])/u;
 
 export function moralCloser(text: string): string | null {
   const ss = sentencesOf(text);
   const last = ss[ss.length - 1];
   if (!last) return null;
-  return MORAL_CLOSER.test(normalizeSlop(last.replace(/^[^\p{L}]+/u, ''))) ? last : null;
+  const opener = (s: string) => normalizeSlop(s.replace(/^[^\p{L}]+/u, ''));
+  if (MORAL_CLOSER.test(opener(last))) return last;
+  const before = ss[ss.length - 2];
+  return before && MORAL_OPENER.test(opener(before)) ? before : null;
+}
+
+/** Spec 037 T6: soft clichés — a warning, not a banned phrase (normalised; `^` = sentence-initial). */
+export const SLOP_CLICHES: readonly string[] = ['той випадок коли', '^коротко —', '^коротко -', '^коротко:'];
+const CLICHE_RE = SLOP_CLICHES.map((c) => (c.startsWith('^')
+  ? new RegExp(`^${c.slice(1).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`, 'u')
+  : new RegExp(`(?<!${WORD})${c.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}(?!${WORD})`, 'u')));
+
+/** The soft clichés of a text, as written after normalisation, each once. */
+export function slopCliches(text: string): string[] {
+  const out: string[] = [];
+  for (const s of sentencesOf(text)) {
+    const n = normalizeSlop(s.replace(/^[^\p{L}]+/u, ''));
+    for (const re of CLICHE_RE) {
+      const m = n.match(re);
+      if (m && !out.includes(m[0])) out.push(m[0]);
+    }
+  }
+  return out;
 }
 
 /** Adjective endings that must agree across the three words (a list of nouns rarely shares them). */
@@ -163,6 +198,9 @@ export function slopWarnings(o: { body: string; all?: string; prefs?: VoicePrefs
 
   const closer = moralCloser(o.body);
   if (closer) add('slop_moral_closer', `моралізаторська кінцівка: «${closer.slice(0, 100)}» — закінчи конкретним фактом або видали це речення`);
+
+  const cliches = slopCliches(o.body);
+  if (cliches.length) add('slop_cliche', `штамп: ${cliches.map((c) => `«${c}»`).join(', ')} — скажи це прямо або прибери`);
 
   const triple = adjectiveTriple(all);
   if (triple) add('slop_adjective_triple', `три прикметники поспіль: «${triple}» — залиш один-два`);
