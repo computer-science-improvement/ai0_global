@@ -12,6 +12,7 @@ import { CritiqueInput, decideVerdict, type Critique, type StoredCritic } from '
 import { criticSkillsSection, type CriticSkillsContext, type CriticSkillsRequest } from './critic-skills';
 import { criticDatesLines, type CriticDates } from './critic-dates';
 import { criticStoryLines, type CriticStoryContext } from '../story/story-context';
+import { criticPassageLines, type CriticSourceContext } from './critic-passages';
 
 /** One attempt of the critic; a second attempt follows a timeout or an error (fail-safe, FR-004). */
 export const CRITIC_TIMEOUT_MS = 90_000;
@@ -46,7 +47,8 @@ export interface CriticRequest {
   playbook?:    string | null;
   /** Spec 034 FR-008: the resource's example posts and warnings from the playbook (renderExamples), the reference. */
   examples?:    string | null;
-  source?:      { url: string | null; excerpt: string | null } | null;
+  /** The source: the page head / library row, or (spec 037 T4) title, date and passages around the post's claims. */
+  source?:      CriticSourceContext | null;
   /** Slop lint warnings (spec 034 T1): only the `slop_*` ones; the verdict rule counts these. */
   slopWarnings: Array<{ code: string; message: string }>;
   /** Spec 037 T6: every lint warning (hygiene, dates, style, … and the slop ones) for the prompt; absent = slopWarnings. */
@@ -132,7 +134,8 @@ export function criticUserPrompt(r: CriticRequest): string {
   s.push('', '## Джерело');
   if (r.source?.url || r.source?.excerpt) {
     if (r.source.url) s.push(`URL: ${r.source.url}`);
-    s.push(r.source.excerpt ? `Фрагмент, який читав автор:\n${clip(r.source.excerpt, CAP.source)}` : 'Фрагмента джерела немає — оціни grounding за перевірюваністю тверджень.');
+    if (r.source.passages) s.push(...criticPassageLines(r.source, r.dates?.timezone, CAP.source));
+    else s.push(r.source.excerpt ? `Фрагмент, який читав автор:\n${clip(r.source.excerpt, CAP.source)}` : 'Фрагмента джерела немає — оціни grounding за перевірюваністю тверджень.');
   } else {
     s.push('Джерела немає — оціни grounding за перевірюваністю тверджень.');
   }

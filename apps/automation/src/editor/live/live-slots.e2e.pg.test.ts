@@ -40,7 +40,7 @@ let pool: Pool;
 // Kyiv is UTC+3 on 2030-05-06.
 const at = (hhmm: string) => new Date(`2030-05-06T${String(Number(hhmm.slice(0, 2)) - 3).padStart(2, '0')}:${hhmm.slice(3)}:00Z`);
 
-const NEW = { title: 'Уряд ухвалив закон про енергоринок', link: 'https://energy.example/new', date: at('14:50').toISOString() };
+const NEW = { title: 'Уряд ухвалив закон про енергоринок', link: 'https://energy.example/zakon-pro-energorynok', date: at('14:50').toISOString() };
 const OLD = { title: 'Енергетики підбили підсумки зими', link: 'https://energy.example/old', date: '2030-05-05T06:00:00Z' };
 const OFF = { title: 'Футбольний клуб підписав нападника', link: 'https://energy.example/sport', date: at('14:40').toISOString() };
 let feedItems = [NEW, OLD, OFF];
@@ -164,7 +164,7 @@ test('a 15:00 feed item is posted the same day (news watch → live slot), the 1
   const userPrompt = String(llm.requests[1].messages.find((m) => m.role === 'user')!.content);
   assert.match(userPrompt, /live-слот: тема НЕ задана/);
   assert.match(userPrompt, /Код додав цей слот під свіжий матеріал: «Уряд ухвалив закон про енергоринок»/);
-  assert.match(userPrompt, /1\. «Уряд ухвалив закон про енергоринок» — https:\/\/energy\.example\/new/);
+  assert.match(userPrompt, /1\. «Уряд ухвалив закон про енергоринок» — https:\/\/energy\.example\/zakon-pro-energorynok/);
   assert.doesNotMatch(userPrompt, /Енергетики підбили підсумки зими/, 'an old item is not a candidate');
   const written = (await plans.getSlot(added!.slotId))!;
   assert.equal(written.status, 'shadowed');

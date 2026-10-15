@@ -1,5 +1,6 @@
 import * as cheerio from 'cheerio';
 import { normalizePublishedAt } from '../post/dates';
+import { primaryLinksOf, sourceTier } from '../../data/source-tier';
 
 export interface ExtractedPage {
   title:       string | null;
@@ -9,6 +10,8 @@ export interface ExtractedPage {
   text:        string;
   /** Spec 037 T5: when the page says it was published (ISO instant or YYYY-MM-DD); null when it does not. */
   published_at: string | null;
+  /** Spec 037 T4: an aggregator page's links to the primary source on another site (absent when none / not an aggregator). */
+  primary_links?: string[];
 }
 
 const TEXT_MAX = 12_000;
@@ -38,7 +41,12 @@ export function extractPage(html: string, baseUrl: string): ExtractedPage {
   let text = (blocks.length ? blocks.join('\n') : root.text().replace(/\s+/g, ' ')).trim();
   if (text.length > TEXT_MAX) text = `${text.slice(0, TEXT_MAX)}…`;
 
-  return { title, description, image, images: [...new Set(images)].slice(0, 10), text, published_at };
+  // Spec 037 T4: an aggregator (MarkTechPost, GamerPower) retells a primary source; its links to it are the better source.
+  const primary = sourceTier(baseUrl) === 'aggregator'
+    ? primaryLinksOf(baseUrl, root.find('a[href]').map((_, el) => abs($(el).attr('href'))).get().filter((u): u is string => !!u))
+    : [];
+
+  return { title, description, image, images: [...new Set(images)].slice(0, 10), text, published_at, ...(primary.length ? { primary_links: primary } : {}) };
 }
 
 /** A `datePublished` anywhere in a JSON-LD value (an object, an array, a `@graph`). */

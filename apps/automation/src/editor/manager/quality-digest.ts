@@ -13,6 +13,7 @@ import { REPOST_COUNTS_SQL, repostShare, type RepostShare } from '../story/repos
 import { evergreenShare, type EvergreenShare } from '../silent/evergreen-stats';
 import { StoryEventRepository } from '../story/story-event.repository';
 import type { EventGap } from '../story/story-event';
+import { tierShare, type TierShare } from '../../data/source-tier';
 
 /**
  * Spec 034 FR-006 (T4): the content-quality block of the MANAGER's digest, per resource over 7 days. Code computes
@@ -112,6 +113,11 @@ export interface ResourceQuality {
   reposts?: RepostShare;
   /** Spec 037 T3: events the resource announced with no post within 24 h after them (absent when none). */
   events_not_covered?: EventNotCovered[];
+  /**
+   * Spec 037 T4: the written posts' sources by tier (primary / media / aggregator / low / unknown) and the most cited
+   * domains — a resource that lives on one aggregator shows here (absent without a sourced post).
+   */
+  sources?: TierShare;
   /** Spec 037 T10: evergreen fallback posts among the written posts of the window (absent without written posts). */
   evergreen?: EvergreenShare;
   flags:   QualityFlag[];
@@ -152,7 +158,7 @@ export function slotText(spec: any, preview: string | null | undefined): string 
 
 export interface CriticRow { slotId: string; at: Date; critic: any }
 export interface PostRow {
-  slotId: string; at: Date; status: string; format: string; text: string; written: boolean;
+  slotId: string; at: Date; status: string; format: string; text: string; written: boolean; sourceUrl?: string | null;
   /** Spec 037 T10: an evergreen post (post_spec story.kind) — the fallback ladder's last step. */
   evergreen?: boolean;
 }
@@ -275,6 +281,7 @@ export function assembleQuality(i: {
   if (plan?.dark_days.length) flags.push('dark_day');
   if (plan?.series_missed.length) flags.push('series_missed');
   const reposts = i.reposts ? repostShare(i.reposts.own, i.reposts.reposts) : undefined;
+  const sources = written.some((p) => p.sourceUrl) ? tierShare(written.map((p) => p.sourceUrl)) : undefined;
   if (reposts?.over) flags.push('repost_share_high');
   const evergreen = written.length ? evergreenShare(written.length, written.filter((p) => p.evergreen).length) : undefined;
   if (evergreen?.over) flags.push('evergreen_share_high');
@@ -294,6 +301,7 @@ export function assembleQuality(i: {
     samples: written.slice(0, MAX_SAMPLES).map((p) => ({ at: p.at.toISOString(), status: p.status, format: p.format, text: clip(p.text, SAMPLE_CHARS) })),
     ...(plan ? { plan } : {}),
     ...(reposts ? { reposts } : {}),
+    ...(sources ? { sources } : {}),
     ...(evergreen ? { evergreen } : {}),
     flags,
     signature: {
@@ -407,6 +415,7 @@ export class SqlQuality {
     // Posts of the window: polls count every live slot (planned ones too); texts only the written ones.
     const { rows: posts } = await this.pool.query(
       `SELECT ${REF} AS ref, s.id::text AS id, s.status, s.format, s.scheduled_at AS at, s.post_spec, s.rendered_preview,
+              COALESCE(s.post_spec->'source'->>'url', s.platform_spec->'source'->>'url') AS source_url,
               COALESCE(s.post_spec->'story'->>'kind' = 'evergreen', false) AS evergreen
          FROM editor_slots s
         WHERE s.kind = 'content' AND ${REF} = ANY($1::text[]) AND s.scheduled_at >= $2 AND s.scheduled_at < $3
@@ -416,6 +425,7 @@ export class SqlQuality {
       const written = isWritten(r.status);
       out.get(r.ref)?.posts.push({
         slotId: r.id, at: new Date(r.at), status: r.status, format: r.format, written, text: written ? slotText(r.post_spec, r.rendered_preview) : '',
+        sourceUrl: written ? r.source_url ?? null : null,
         ...(r.evergreen ? { evergreen: true } : {}),
       });
     }

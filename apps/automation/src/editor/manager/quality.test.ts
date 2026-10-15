@@ -284,3 +284,20 @@ test('file_directive: a quality metric without data in the window is refused (st
   assert.equal(ok.ok, true);
   assert.equal(inserted[0].outcomeDetail.at_filing.value, 50, 'the escalation baseline is the quality value at filing');
 });
+
+test('037 T4: the quality block shows the share of sources by tier per resource and the most cited domains', () => {
+  const src = (id: string, h: number, url: string | null, status = 'published'): PostRow => ({ ...post(id, h, 'text', 'текст', status), sourceUrl: url });
+  const q = assembleQuality({
+    critic: [], owner: [], caps: audienceCaps(null),
+    posts: [
+      src('a', 1, 'https://www.marktechpost.com/2026/10/13/a/'), src('b', 2, 'https://www.marktechpost.com/2026/10/12/b/'),
+      src('c', 3, 'https://developers.googleblog.com/en/x/'), src('d', 4, 'https://techcrunch.com/2026/10/06/c/'),
+      src('e', 5, 'https://faktypro.com.ua/page/20-cikavih-faktiv'), src('f', 6, null), src('g', 7, 'https://a.example/x', 'planned'),
+    ],
+  });
+  assert.deepEqual(q.sources!.counts, { primary: 1, media: 1, aggregator: 2, low: 1, unknown: 0 });
+  assert.equal(q.sources!.total, 5, 'written posts with a URL source only');
+  assert.equal(q.sources!.share!.aggregator, 0.4);
+  assert.deepEqual(q.sources!.top[0], { host: 'marktechpost.com', n: 2, tier: 'aggregator' });
+  assert.equal(assembleQuality({ critic: [], owner: [], caps: audienceCaps(null), posts: [post('x', 1, 'text', 'т')] }).sources, undefined);
+});

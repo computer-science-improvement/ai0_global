@@ -10,6 +10,7 @@ import { varietyChecks } from './checks/variety';
 import { storyCheck } from './checks/story';
 import { storyEventCheck } from './checks/story-event';
 import { POLL_CHECKS } from './checks/polls';
+import { SOURCE_CHECKS } from './checks/sources';
 import { evergreenCheck } from './checks/evergreen';
 
 /**
@@ -31,6 +32,7 @@ export const INTEGRITY_CHECKS: IntegrityCheck[] = [
   storyCheck,
   storyEventCheck,
   ...POLL_CHECKS,
+  ...SOURCE_CHECKS,
   evergreenCheck,
 ];
 

@@ -152,13 +152,16 @@ test('037 T16: one URL is one ref — root slash, http, www., trailing slash, de
   assert.equal(await canon('https://www.example.com/News/A/'), 'https://example.com/News/A', 'the path keeps its case');
   assert.equal(await canon('https://store.steampowered.com/?l=ukrainian'), 'https://store.steampowered.com/?l=ukrainian', 'other parameters stay');
 
-  await ledger.record('https://store.pgt023l.example', { resourceRef: R1, origin: 'editor', status: 'published' });
-  for (const v of ['https://store.pgt023l.example/', 'http://www.store.pgt023l.example', 'https://store.pgt023l.example/?utm_medium=x']) {
-    assert.equal(await ledger.used(R1, v), true, `${v} is the published homepage`);
+  await ledger.record('https://store.pgt023l.example/app/1174180/', { resourceRef: R1, origin: 'editor', status: 'published' });
+  for (const v of ['https://store.pgt023l.example/app/1174180', 'http://www.store.pgt023l.example/app/1174180/', 'https://store.pgt023l.example/app/1174180?utm_medium=x']) {
+    assert.equal(await ledger.used(R1, v), true, `${v} is the published game page`);
   }
-  assert.equal(await ledger.used(R1, 'https://store.pgt023l.example/search/?specials=1'), false, 'the specials search is another page (09.10 18:01)');
+  assert.equal(await ledger.used(R1, 'https://store.pgt023l.example/app/1174180?l=ukrainian'), false, 'another query is another page');
+  // Spec 037 T4: a site root / section index names no item — never recorded (source_is_homepage stops the post in lint).
+  assert.equal(await ledger.record('https://store.pgt023l.example', { resourceRef: R1, origin: 'editor', status: 'published' }), false);
+  assert.equal(await ledger.used(R1, 'https://store.pgt023l.example/'), false);
   const { rows } = await pool.query(`SELECT source_ref FROM content_ledger WHERE resource_ref = $1 AND source_ref LIKE 'https://store.pgt023l%'`, [R1]);
-  assert.deepEqual(rows.map((r) => r.source_ref), ['https://store.pgt023l.example/']);
+  assert.deepEqual(rows.map((r) => r.source_ref), ['https://store.pgt023l.example/app/1174180']);
 });
 
 test('037 T16: a waiting slot or platform post holds its source in any spelling of the URL', { skip }, async () => {
@@ -167,10 +170,10 @@ test('037 T16: a waiting slot or platform post holds its source in any spelling 
   const slot = (await pool.query(
     `INSERT INTO editor_slots (plan_id, channel_key, scheduled_at, format, topic, status, post_spec)
      VALUES ($1, '@pgt023l_a', now() + interval '2 hours', 'text', 'Steam deals', 'awaiting_approval', $2) RETURNING id`,
-    [plan, JSON.stringify({ source: { url: 'https://Steam.pgt023l.example' } })])).rows[0].id;
-  const v = await ledger.check(R1, 'https://steam.pgt023l.example/', { waiting: true });
-  assert.equal(v.used && v.status, 'waiting', 'written without the root slash, asked with it');
-  assert.equal(await ledger.used(R1, 'https://steam.pgt023l.example/', { waiting: true, excludeSlotId: slot }), false, 'the slot itself is excluded');
+    [plan, JSON.stringify({ source: { url: 'https://Steam.pgt023l.example/app/7' } })])).rows[0].id;
+  const v = await ledger.check(R1, 'https://www.steam.pgt023l.example/app/7/', { waiting: true });
+  assert.equal(v.used && v.status, 'waiting', 'written without www. and the trailing slash, asked with them');
+  assert.equal(await ledger.used(R1, 'https://steam.pgt023l.example/app/7/', { waiting: true, excludeSlotId: slot }), false, 'the slot itself is excluded');
 
   await pool.query(`INSERT INTO platform_posts (resource_ref, platform, format, caption, spec, source_ref, status) VALUES ($1, 'instagram', 'ig_photo', 'w', '{}', 'http://www.pgt023l.example/wait2/', 'awaiting_approval')`, [R2]);
   assert.equal(await ledger.used(R2, 'https://pgt023l.example/wait2', { waiting: true }), true);
