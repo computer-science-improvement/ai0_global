@@ -106,6 +106,7 @@ export function auditPostFromSpec(spec: PostSpec, meta: PostSpecMeta): AuditPost
     ...(spec.story?.decision ? { decision: spec.story.decision } : {}),
   };
   if (spec.source && linkStyle === 'inline') post.sourceUrl = spec.source.url;
+  if (spec.source) post.citedSourceUrl = spec.source.url;
   if (isPoll && spec.poll) {
     post.poll = {
       question: inlineToPlain(spec.poll.question),

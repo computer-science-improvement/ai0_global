@@ -146,8 +146,9 @@ export async function checkPublishGuards(d: RoleToolDeps, ctx: ToolContext, spec
 
   // Spec 037: the integrity checks resolve dates against the slot time (now for a late slot), in the resource zone.
   const at = slot.scheduledAt && new Date(slot.scheduledAt).getTime() > now.getTime() ? new Date(slot.scheduledAt) : now;
-  // Spec 037 T5: the pages and feed items the run read (with their publication dates) feed the freshness checks.
-  const sources = criticGateOf(ctx)?.sources();
+  // Spec 037 T5: the pages and feed items the run read (with their publication dates) feed the freshness checks;
+  // T4: their texts (and the library row of library_ref) ground the post's numbers.
+  const sources = await criticGateOf(ctx)?.groundingSources(spec);
   // Spec 037 T9: the resource's last 20 posts (monotony) and a fixed slot's topic (same format + topic twice a day).
   const variety = { previous: await recentAuditPosts(d.pool, { channelKey, timezone: card.timezone, excludeSlotId: slotId, card }).catch(() => []), topic: slot.topicMode === 'live' ? undefined : slot.topic };
   const lint = lintPost(spec, card, { id: slotId, channel: channelKey, publishedAt: at.toISOString(), timezone: card.timezone, ctx: { now: now.toISOString(), ...(sources ? { sources } : {}), previous: variety.previous }, topic: variety.topic });

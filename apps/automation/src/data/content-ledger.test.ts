@@ -29,9 +29,9 @@ test('record: calls content_ledger_record with the resource ref, drops a non-uui
   const l = new ContentLedger(f.pool);
   assert.equal(await l.record('', { resourceRef: '@c', origin: 'editor', status: 'published' }), false);
   assert.equal(f.calls.length, 0);
-  assert.equal(await l.record('https://x', { resourceRef: '@c', origin: 'chat', status: 'published', slotId: 'not-a-uuid', publishedPostId: 5 }), true);
+  assert.equal(await l.record('https://x.example/a', { resourceRef: '@c', origin: 'chat', status: 'published', slotId: 'not-a-uuid', publishedPostId: 5 }), true);
   assert.match(f.calls[0].sql, /content_ledger_record/);
-  assert.deepEqual(f.calls[0].params.slice(0, 7), ['telegram:@c', 'https://x', 'chat', 'published', 5, null, null]);
+  assert.deepEqual(f.calls[0].params.slice(0, 7), ['telegram:@c', 'https://x.example/a', 'chat', 'published', 5, null, null]);
 });
 
 test('recordRefs: dedups refs, never throws, logs a failure', async () => {
@@ -39,7 +39,7 @@ test('recordRefs: dedups refs, never throws, logs a failure', async () => {
   let n = 0;
   const pool = { query: async () => { n++; if (n === 1) throw new Error('db down'); return { rows: [{ added: true }] }; } } as any;
   const l = new ContentLedger(pool, (m) => logs.push(m));
-  const recorded = await l.recordRefs(['https://a', 'https://a', null, undefined, ' ', 'https://b'], { resourceRef: '@c', origin: 'editor', status: 'published' });
+  const recorded = await l.recordRefs(['https://a.example/1', 'https://a.example/1', null, undefined, ' ', 'https://b.example/1'], { resourceRef: '@c', origin: 'editor', status: 'published' });
   assert.equal(recorded, 1);
   assert.equal(n, 2, 'one query per distinct ref');
   assert.match(logs[0], /db down/);
@@ -61,9 +61,23 @@ test('check: aliases first, then the ledger with scope/publishedOnly/excludeSlot
 
 test('check: a ledger hit answers with its status, resource and time', async () => {
   const at = new Date('2026-01-01T00:00:00Z');
-  const f = fakePool((sql) => (sql.includes('content_ref_aliases') ? [{ refs: ['https://x'] }]
-    : sql.includes('content_ledger_blocking') ? [{ status: 'error', resource_ref: 'telegram:@o', source_ref: 'https://x', used_at: at }] : []));
-  const v = await new ContentLedger(f.pool).check('@c', 'https://x', { waiting: true });
-  assert.deepEqual(v, { used: true, status: 'error', resourceRef: 'telegram:@o', ref: 'https://x', at });
+  const f = fakePool((sql) => (sql.includes('content_ref_aliases') ? [{ refs: ['https://x.example/a'] }]
+    : sql.includes('content_ledger_blocking') ? [{ status: 'error', resource_ref: 'telegram:@o', source_ref: 'https://x.example/a', used_at: at }] : []));
+  const v = await new ContentLedger(f.pool).check('@c', 'https://x.example/a', { waiting: true });
+  assert.deepEqual(v, { used: true, status: 'error', resourceRef: 'telegram:@o', ref: 'https://x.example/a', at });
   assert.equal(f.calls.length, 2, 'a ledger hit skips the waiting query');
+});
+
+test('037 T4: a site root or a section index is never recorded nor checked (it names a site, not an item)', async () => {
+  const logs: string[] = [];
+  const f = fakePool(() => [{ added: true, refs: ['x'] }]);
+  const l = new ContentLedger(f.pool, (m) => logs.push(m));
+  for (const root of ['https://store.steampowered.com/', 'https://www.marktechpost.com', 'https://itch.io/new-and-popular', 'https://store.epicgames.com/en-US/free-games']) {
+    assert.equal(await l.record(root, { resourceRef: '@c', origin: 'editor', status: 'published' }), false, root);
+    assert.deepEqual(await l.check('@c', root, { waiting: true }), { used: false }, root);
+  }
+  assert.equal(f.calls.length, 0, 'no query for a site root');
+  assert.match(logs[0], /site root/);
+  assert.equal(await l.recordRefs(['https://store.steampowered.com/', 'https://store.steampowered.com/app/1174180'], { resourceRef: '@c', origin: 'editor', status: 'published' }), 2);
+  assert.equal(f.calls.length, 1, 'only the game page reaches the ledger');
 });

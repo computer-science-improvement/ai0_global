@@ -13,6 +13,7 @@ import { dateFromUrl, normalizePublishedAt } from '../post/dates';
 import type { AuditSource } from '../post/integrity/types';
 import type { CriticDates } from './critic-dates';
 import type { CriticStoryContext } from '../story/story-context';
+import { sourcePassages, type SourcePage } from '../post/grounding';
 
 /** Publish tools wait for the critic (two attempts) and then for the send itself. */
 export const PUBLISH_TOOL_TIMEOUT_MS = 2 * CRITIC_TIMEOUT_MS + 60_000;
@@ -80,6 +81,8 @@ export interface CriticGateContext {
 }
 
 const SOURCE_CAP = 4_000;
+/** Spec 037 T4: a page read in the run is kept whole (up to this), for grounding and the critic's passages. */
+export const PAGE_CAP = 60_000;
 
 const normUrl = (u: string): string => u.trim().replace(/#.*$/, '').replace(/\/+$/, '').toLowerCase();
 const hashOf = (v: unknown): string => createHash('sha256').update(JSON.stringify(v ?? null)).digest('hex');
@@ -115,6 +118,8 @@ export class CriticGate {
   private readonly fetched = new Map<string, string>();
   /** Spec 037 T5: what the run read, with the publication date when the page or the feed item gave one. */
   private readonly read = new Map<string, AuditSource>();
+  /** Spec 037 T4: an aggregator page's links to the primary source (web_fetch `primary_links`). */
+  private readonly primary = new Map<string, string[]>();
 
   constructor(private readonly d: CriticGateDeps, readonly c: CriticGateContext) {}
 
@@ -136,20 +141,31 @@ export class CriticGate {
   private remember(tool: string, input: any, out: any): void {
     if (tool === 'web_fetch') {
       const text = [out?.title, out?.description, out?.text].filter((x) => typeof x === 'string' && x.trim()).join('\n');
-      for (const u of [input?.url, out?.url]) if (typeof u === 'string' && text) this.fetched.set(normUrl(u), text.slice(0, SOURCE_CAP));
+      for (const u of [input?.url, out?.url]) if (typeof u === 'string' && text) this.fetched.set(normUrl(u), text.slice(0, PAGE_CAP));
       for (const u of [input?.url, out?.url]) if (typeof u === 'string') this.read.set(normUrl(u), { url: u, publishedAt: normalizePublishedAt(out?.published_at), title: out?.title ?? null });
+      const primary = Array.isArray(out?.primary_links) ? out.primary_links.filter((x: unknown): x is string => typeof x === 'string') : [];
+      for (const u of [input?.url, out?.url]) if (typeof u === 'string' && primary.length) this.primary.set(normUrl(u), primary);
       return;
     }
     for (const it of Array.isArray(out?.items) ? out.items : []) {
       if (typeof it?.link !== 'string') continue;
       if (!this.read.has(normUrl(it.link))) this.read.set(normUrl(it.link), { url: it.link, publishedAt: normalizePublishedAt(it.date), title: it.title ?? null });
       const text = [it.title, it.date ? `(${it.date})` : null, it.snippet].filter(Boolean).join(' ');
-      if (text && !this.fetched.has(normUrl(it.link))) this.fetched.set(normUrl(it.link), text.slice(0, SOURCE_CAP));
+      if (text && !this.fetched.has(normUrl(it.link))) this.fetched.set(normUrl(it.link), text.slice(0, PAGE_CAP));
     }
   }
 
-  private async source(spec: any): Promise<CriticRequest['source']> {
+  private async source(spec: any, post?: CriticPost): Promise<CriticRequest['source']> {
     const url: string | null = typeof spec?.source?.url === 'string' ? spec.source.url : null;
+    // Spec 037 T4: a page the run read gives the critic its title, date and the passages around the post's claims.
+    const page = url ? this.fetched.get(normUrl(url)) : undefined;
+    if (url && page && post) {
+      const meta = this.read.get(normUrl(url));
+      const pages: SourcePage[] = [{ url, text: page, title: meta?.title ?? null },
+        ...[...this.fetched.entries()].filter(([k]) => k !== normUrl(url)).map(([k, text]) => ({ url: this.read.get(k)?.url ?? k, text, title: this.read.get(k)?.title ?? null }))];
+      const passages = sourcePassages(post.text, pages, { publishedAt: post.publishAt, timezone: post.timezone });
+      return { url, excerpt: passages.length ? null : page.slice(0, SOURCE_CAP), title: meta?.title ?? null, publishedAt: meta?.publishedAt ?? null, passages };
+    }
     let excerpt = url ? this.fetched.get(normUrl(url)) ?? null : null;
     if (!excerpt && typeof spec?.library_ref === 'string' && this.d.libraryText) {
       excerpt = await this.d.libraryText(spec.library_ref).catch(() => null);
@@ -161,6 +177,25 @@ export class CriticGate {
   /** Spec 037 T5: the pages and feed items the run read, with their publication dates (lintPost's `ctx.sources`). */
   sources(): AuditSource[] {
     return [...this.read.values()];
+  }
+
+  /**
+   * Spec 037 T4: `sources()` with the text the run read (≤ 60k chars a page, a feed item's title + snippet) and an
+   * aggregator page's primary links, plus the library row behind the spec's `library_ref` — lintPost grounds the
+   * post's numbers in them.
+   */
+  async groundingSources(spec?: { library_ref?: string | null } | null): Promise<AuditSource[]> {
+    const out: AuditSource[] = this.sources().map((s) => {
+      const text = this.fetched.get(normUrl(s.url));
+      const primary = this.primary.get(normUrl(s.url));
+      return { ...s, ...(text ? { text } : {}), ...(primary ? { primaryLinks: primary } : {}) };
+    });
+    const ref = typeof spec?.library_ref === 'string' ? spec.library_ref : null;
+    if (ref && this.d.libraryText) {
+      const text = await this.d.libraryText(ref).catch(() => null);
+      if (text) out.push({ url: ref, text });
+    }
+    return out;
   }
 
   /** Spec 037 T5: the publish time and the source date for the critic's prompt; null without a publish time. */
@@ -196,7 +231,7 @@ export class CriticGate {
       channelKey: this.c.channelKey, slotId: this.c.slotId, mode: this.c.mode, card: this.c.card ?? null,
       resourceRef: this.c.resourceRef, platform: this.c.platform, format: post.format, topic: this.c.topic, angle: this.c.angle,
       text: post.text, spec: post.spec, voice: this.c.voice, brief: this.c.brief, profile: this.c.profile,
-      formatPrefs: this.c.formatPrefs, playbook: this.c.playbook, examples: this.c.examples ?? null, source: await this.source(post.spec),
+      formatPrefs: this.c.formatPrefs, playbook: this.c.playbook, examples: this.c.examples ?? null, source: await this.source(post.spec, post),
       slopWarnings: post.warnings.filter((w) => slop.includes(w.code)).map((w) => ({ code: w.code, message: w.message })),
       lintWarnings: post.warnings.map((w) => ({ code: w.code, message: w.message })),
       previous: this.first, agent: this.c.agent ?? null, dates: this.dates(post),

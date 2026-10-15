@@ -27,6 +27,7 @@ export const INTEGRITY_CODES: Record<string, CodeInfo> = {
   fact_conflict:              { task: 'T4', level: 'warning', what: 'a fact differs from a previous post of the story' },
   source_is_homepage:         { task: 'T4', level: 'error',   what: 'source URL is a site root or a section index' },
   low_tier_claim:             { task: 'T4', level: 'warning', what: 'numbers taken from a low-tier source ("fun facts" pages)' },
+  source_aggregator:          { task: 'T4', level: 'warning', what: 'aggregator source whose page links the primary source (take the primary)' },
   // T5 dates and freshness.
   date_relative_mismatch:     { task: 'T5', level: 'error',   what: 'relative word and explicit date disagree with the publish date' },
   weekday_mismatch:           { task: 'T5', level: 'error',   what: 'weekday does not match the date' },

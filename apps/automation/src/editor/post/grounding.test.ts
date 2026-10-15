@@ -1,0 +1,79 @@
+/** Spec 037 T4: number normalisation, grounding against the pages read, and the critic's passages. */
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import { groundNumbers, PASSAGE, postNumbers, sourcePassages, statisticalPercents } from './grounding';
+
+const AT = { publishedAt: '2026-10-09T15:01:07Z', timezone: 'Europe/Kyiv' }; // 09.10 18:01 Kyiv
+const values = (text: string) => postNumbers(text, AT).map((n) => [n.text, n.kind, n.value]);
+
+test('normalisation: «1,05 трлн», «850 тисяч», «2 599», «$0.10», «−75%», «1 мільйона», «12B», «$14,5 млрд», dates', () => {
+  assert.deepEqual(values('Модель має 1,05 трлн параметрів.'), [['1,05 трлн', 'count', 1.05e12]]);
+  assert.deepEqual(values('Відгуки від понад 850 тисяч гравців.'), [['850 тисяч', 'count', 850_000]]);
+  assert.deepEqual(values('Ціна 2 599 грн.'), [['2 599 грн', 'money', 2599]]);
+  assert.deepEqual(values('Від $0.10 за мільйон токенів.'), [['$0.10', 'money', 0.1]]);
+  assert.deepEqual(values('RDR2 −75% до неділі.'), [['75%', 'percent', 75]]);
+  assert.deepEqual(values('до 1 мільйона токенів'), [['1 мільйона', 'count', 1e6]]);
+  assert.deepEqual(values('Нова 12B модель'), [['12B', 'count', 12e9]]);
+  assert.deepEqual(values('Залучила $14,5 млрд'), [['$14,5 млрд', 'money', 14.5e9]]);
+  assert.deepEqual(values('Роздача до 15 жовтня, реліз 12.11'), [['15 жовтня', 'date', 1015], ['12.11', 'date', 1112]]);
+  const approx = postNumbers('понад 850 тисяч гравців', AT)[0];
+  assert.equal(approx.approx, true);
+});
+
+test('not claims: years, the post date, times, list numbering, versions, small bare integers, quoted examples', () => {
+  assert.deepEqual(values('Термін запропонували в 1956 році; Sekiro GOTY 2019 року.'), []);
+  assert.deepEqual(values('Сьогодні, 9 жовтня, о 18:00 за Києвом.'), [], 'the post date and a time');
+  assert.deepEqual(values('1. Роль: скажіть, хто відповідає\n2. Контекст'), []);
+  assert.deepEqual(values('Gemini 4 Argon, GPT-6, Qwen-Image-2.1-Turbo, Claude Haiku 5.5, Red Dead Redemption 2, Mellum2.1, iOS 26'), []);
+  assert.deepEqual(values('5 термінів ШІ простими словами, 3 правила'), []);
+  assert.deepEqual(values('Добре: «Мені 35, вага 80 кг, хочу схуднути на 5 кг за 2 місяці»'), []);
+  assert.deepEqual(values('Цього достатньо для 90% побутових задач'), [['90%', 'percent', 90]]);
+});
+
+test('statisticalPercents: a claim about the world, not a discount', () => {
+  assert.deepEqual(statisticalPercents('Цього достатньо для 90% побутових задач', AT).map((n) => n.value), [90]);
+  assert.deepEqual(statisticalPercents('Знижка 20% до неділі; RDR2 −75%; ще 50% off', AT), []);
+});
+
+const STEAM = 'Red Dead Redemption 2 · ₴649 (was ₴2,599) -75% · Overwhelmingly Positive · 850,123 user reviews · Offer ends October 15. '
+  + 'Mistral Large 4 has 1.05T parameters; pricing from $0.10 per million input tokens. Terraria: 1,234,567 reviews.';
+
+test('grounding: synthetic sources that contain the numbers give no false number_not_in_sources', () => {
+  const post = 'RDR2 — 649 грн замість 2 599 грн (−75%), понад 850 тисяч відгуків, роздача до 15 жовтня. '
+    + 'Mistral Large 4 має 1,05 трлн параметрів і коштує від $0.10 за мільйон. Terraria — понад 1,2 млн відгуків.';
+  const g = groundNumbers(post, [{ url: 'https://store.steampowered.com/app/1174180', text: STEAM }], AT);
+  assert.equal(g.checked, true);
+  assert.deepEqual(g.missing.map((n) => n.text), []);
+  assert.equal(g.found.length, 8);
+});
+
+test('grounding: a number on no page read is missing; a percent needs a percent; no source text → not checked', () => {
+  const g = groundNumbers('Знижка 70%: 539 грн замість 1799. Понад 80% контенту Netflix підбирає алгоритм.', [{ url: 'u', text: STEAM }], AT);
+  assert.deepEqual(g.missing.map((n) => n.text), ['70%', '539 грн', '1799', '80%']);
+  assert.deepEqual(groundNumbers('Ціна 649 грн', [{ url: 'u', text: 'about 649 visitors and 75 more' }], AT).missing, []);
+  assert.deepEqual(groundNumbers('75% відгуків', [{ url: 'u', text: 'only 75 reviews' }], AT).missing.map((n) => n.text), ['75%']);
+  const none = groundNumbers('Понад 80% контенту', [{ url: 'u', text: null }, { url: 'v' }], AT);
+  assert.deepEqual([none.checked, none.missing.length], [false, 0]);
+  // Ukrainian forms in a Ukrainian source; English thousands and words.
+  assert.deepEqual(groundNumbers('68,90% у рейтингу, 3 млрд', [{ url: 'u', text: 'результат 68,90% і 3 billion' }], AT).missing, []);
+  assert.deepEqual(groundNumbers('1 мільйона токенів', [{ url: 'u', text: 'a 1M-token context window' }], AT).missing, []);
+});
+
+test('passages: ±400 chars around the post\'s numbers and names, not the page head; ≤ 6 passages, ≤ 6000 chars', () => {
+  const head = 'Menu Home News Deals Login. '.repeat(200); // 5400 chars of navigation
+  const fact = 'Google said Gemini 4 Argon accepts a 1M-token context window, while a single response is capped at 64K output tokens.';
+  const page = `${head}${fact} ${'Filler sentence about something else. '.repeat(100)}`;
+  const ps = sourcePassages('Модель пише тексти довжиною до 1 мільйона токенів. Gemini 4 Argon вже в API.', [{ url: 'https://m.example/a', text: page }], AT);
+  assert.equal(ps.length, 1);
+  assert.match(ps[0].text, /1M-token context window, while a single response is capped at 64K output tokens/);
+  assert.ok(ps[0].text.length <= 2 * PASSAGE.radius + fact.length + 2, `${ps[0].text.length}`);
+  assert.ok(!ps[0].text.includes('Menu Home News Deals Login. '.repeat(20)), 'not the page head');
+  assert.deepEqual(ps[0].about, ['1 мільйона', 'Gemini 4 Argon']);
+
+  // Many claims far apart: at most 6 passages and 6000 chars.
+  const far = Array.from({ length: 10 }, (_, i) => `${'x '.repeat(600)}Item ${i}: price ${100 + i} UAH.`).join(' ');
+  const many = sourcePassages(Array.from({ length: 10 }, (_, i) => `ціна ${100 + i} грн`).join(', '), [{ url: 'u', text: far }], AT);
+  assert.equal(many.length, PASSAGE.max);
+  assert.ok(many.reduce((n, p) => n + p.text.length, 0) <= PASSAGE.chars + 2 * PASSAGE.max);
+  assert.deepEqual(sourcePassages('Нічого спільного', [{ url: 'u', text: page }], AT), []);
+});
