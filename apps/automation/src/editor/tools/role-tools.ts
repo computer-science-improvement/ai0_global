@@ -27,6 +27,9 @@ import type { ExperimentQuota } from '../manager/experiment-quota';
 import type { PollCapCtx } from '../roles/poll-cap';
 import { NO_FRESH_ITEM } from '../live/live-slot';
 import { dryRunOf } from '../roles/preview-run';
+import {
+  CONFIDENCE_RULE, FormatSample, formatsSummary, KPI_SAMPLE_DAYS, performanceEvidenceCheck, sampleConfidence, weightChangeIssue, WeightChange,
+} from '../manager/kpi-confidence';
 
 export const SIMILARITY_LIMIT = 0.6;
 const MAX_MEMORY_ADDS_PER_RUN = 5;
@@ -51,7 +54,58 @@ export interface RoleToolDeps {
   experimentQuotas?: (anchorKey: string, planDate: string, now: Date) => Promise<ExperimentQuota[]>;
   /** Spec 034 FR-005: poll caps and the polls already in the 7-day window (SqlPollCaps.load). */
   pollCaps?: (o: { refs: string[]; planDate: string; tz: string; defaultRef?: string }) => Promise<PollCapCtx>;
+  /**
+   * Spec 037 FR-013 seam: an SQL predicate over editor_v_post_performance rows that keeps a row in the KPI sample.
+   * Nothing marks reposts or evergreen posts yet; spec 037 T2/T10 add the marker and pass e.g. `NOT is_repost`.
+   */
+  kpiSampleFilter?: string;
   now?: () => Date;
+}
+
+export interface FormatPerformanceRow extends FormatSample {
+  posts:        number;
+  median_vph:   number | null;
+  avg_forwards: unknown;
+}
+
+/**
+ * Spec 037 FR-013: per-format performance of the editor's posts over `days` with the sample size `n` (posts with
+ * measured views), the median views and the confidence of the sample. `sampleFilter` is the repost/evergreen seam.
+ */
+export async function loadFormatPerformance(
+  pool: Pick<Pool, 'query'>, channelKey: string, days: number, o: { sampleFilter?: string } = {},
+): Promise<FormatPerformanceRow[]> {
+  const { rows } = await pool.query(
+    `SELECT COALESCE(format, 'legacy:' || COALESCE(strategy_type, '?')) AS format, COUNT(*)::int AS posts,
+            COUNT(views)::int AS n,
+            percentile_cont(0.5) WITHIN GROUP (ORDER BY views) AS median_views,
+            percentile_cont(0.5) WITHIN GROUP (ORDER BY views_per_hour) AS median_vph,
+            ROUND(AVG(forwards)::numeric, 1) AS avg_forwards
+       FROM editor_v_post_performance
+      WHERE channel_id = $1 AND posted_at >= now() - ($2 || ' days')::interval${o.sampleFilter ? ` AND (${o.sampleFilter})` : ''}
+      GROUP BY 1 ORDER BY median_vph DESC NULLS LAST`, [channelKey, days]);
+  return rows.map((r) => {
+    const n = Number(r.n ?? 0);
+    const medianViews = r.median_views == null ? null : Math.round(Number(r.median_views) * 10) / 10;
+    return {
+      ...r, posts: Number(r.posts ?? 0), n, median_views: medianViews,
+      median_vph: r.median_vph == null ? null : Number(r.median_vph),
+      confidence: sampleConfidence(n, medianViews),
+    };
+  });
+}
+
+/**
+ * Spec 037 FR-013: a direct owner directive lets set_format_weights through the sample guard. Two explicit run
+ * signals: the runner marks a run started by an owner command (`extras.ownerDirective === true`), or the call comes
+ * from an owner chat turn whose latest message explicitly asks for a change (spec 018 AgentChatExtras: `chat` +
+ * `agentIntent` + `ownerText`). A scheduled reviewer run has neither. An owner `rule` in channel memory is cited
+ * through the tool's `owner_rule_id` and checked against the memory rows.
+ */
+export function ownerDirectiveOf(ctx: ToolContext): boolean {
+  const x = ctx.extras as { ownerDirective?: unknown; chat?: unknown; agentIntent?: unknown; ownerText?: unknown } | undefined;
+  if (x?.ownerDirective === true) return true;
+  return !!x?.chat && x.agentIntent === true && typeof x.ownerText === 'string' && x.ownerText.trim().length > 0;
 }
 
 function requireSlotCtx(ctx: ToolContext): { channelKey: string; slotId: string } {
@@ -249,38 +303,52 @@ export function buildRoleTools(d: RoleToolDeps): EditorTool[] {
 
   const formatPerf = defineTool({
     name: 'get_format_performance',
-    description: 'Ефективність форматів за N днів: кількість постів і медіана переглядів/год по кожному формату (лише пости редактора).',
+    description: [
+      'Ефективність форматів за N днів (лише пости редактора): posts, n (пости з виміряними переглядами), median_views, median_vph (медіана переглядів/год), avg_forwards',
+      `і confidence вибірки (${CONFIDENCE_RULE}).`,
+      'Висновок «формат X сильніший» — лише з ok; low — обережно і з n; insufficient — висновків не роби.',
+      'Якщо всі формати insufficient, у відповіді summary: insufficient_data — кажи «замало даних для порівняння форматів».',
+    ].join(' '),
     kind: 'read', roles: ['planner', 'reviewer'],
-    input: z.object({ days: z.number().int().min(1).max(180).default(30) }),
+    input: z.object({ days: z.number().int().min(1).max(180).default(KPI_SAMPLE_DAYS) }),
     execute: async ({ days }, ctx) => {
       if (!ctx.channelKey) return { error: 'no_channel' };
-      const { rows } = await d.pool.query(
-        `SELECT COALESCE(format, 'legacy:' || COALESCE(strategy_type, '?')) AS format, COUNT(*)::int AS posts,
-                percentile_cont(0.5) WITHIN GROUP (ORDER BY views_per_hour) AS median_vph,
-                ROUND(AVG(forwards)::numeric, 1) AS avg_forwards
-           FROM editor_v_post_performance
-          WHERE channel_id = $1 AND posted_at >= now() - ($2 || ' days')::interval
-          GROUP BY 1 ORDER BY median_vph DESC NULLS LAST`, [ctx.channelKey, days]);
-      return { days, formats: rows.map((r) => ({ ...r, median_vph: r.median_vph == null ? null : Number(r.median_vph) })) };
+      const formats = await loadFormatPerformance(d.pool, ctx.channelKey, days, { sampleFilter: d.kpiSampleFilter });
+      return { days, formats, ...(formatsSummary(formats) ?? {}) };
     },
   });
 
   // ── reviewer ──────────────────────────────────────────────────────────────
   const addMemory = defineTool({
     name: 'add_memory',
-    description: `Записати висновок у памʼять каналу (до ${MAX_MEMORY_ADDS_PER_RUN} за прогін). Конкретно, з цифрами в evidence.`,
+    description: [
+      `Записати висновок у памʼять каналу (до ${MAX_MEMORY_ADDS_PER_RUN} за прогін). Конкретно, з цифрами в evidence.`,
+      'Висновок про ефективність (формат / тема / час кращий чи гірший за переглядами, реакціями) — з performance: true',
+      'і evidence { n, metric, median_views } з get_format_performance; код відмовить (insufficient_data), якщо вибірка insufficient',
+      `(${CONFIDENCE_RULE}).`,
+    ].join(' '),
     kind: 'act', roles: ['reviewer'],
     input: z.object({
-      kind:     z.enum(['insight', 'avoid']),
-      text:     z.string().min(15).max(400),
-      evidence: z.record(z.string(), z.unknown()).optional(),
+      kind:        z.enum(['insight', 'avoid']),
+      text:        z.string().min(15).max(400),
+      performance: z.boolean().optional()
+        .describe('true — висновок про ефективність форматів/тем/часу; тоді evidence { n, metric, median_views } обовʼязковий'),
+      evidence:    z.record(z.string(), z.unknown()).optional()
+        .describe('Для performance: n — постів у вибірці, metric — назва метрики, median_views — медіана переглядів на пост у вибірці'),
     }),
     execute: async (i, ctx) => {
       if (!ctx.channelKey) return { error: 'no_channel' };
+      // Spec 037 FR-013: a performance note on an insufficient sample is never stored.
+      let evidence: Record<string, unknown> | null = i.evidence ?? null;
+      if (i.performance) {
+        const check = performanceEvidenceCheck(i.evidence);
+        if ('error' in check) return check;
+        evidence = { ...i.evidence, performance: true, confidence: check.confidence };
+      }
       const used = memoryAdds.get(ctx.runId) ?? 0;
       if (used >= MAX_MEMORY_ADDS_PER_RUN) return { error: 'memory_limit', details: `максимум ${MAX_MEMORY_ADDS_PER_RUN} записів за прогін` };
       memoryAdds.set(ctx.runId, used + 1);
-      return { ok: true, id: await d.memory.add(ctx.channelKey, i.kind, i.text, i.evidence ?? null, 'reviewer') };
+      return { ok: true, id: await d.memory.add(ctx.channelKey, i.kind, i.text, evidence, 'reviewer') };
     },
   });
 
@@ -302,16 +370,21 @@ export function buildRoleTools(d: RoleToolDeps): EditorTool[] {
       'Змінити ваги форматів каналу (0.05–1). Лише для форматів, що вже є в картці; міняй плавно, крок ≤ 0.2.',
       'Формат, що не пасує ресурсу, можна прибрати одним кроком (вага 0) лише з причиною в drop_reasons, яка спирається на докази:',
       'правки чи відхилення власника або зауваження критика. Підвищення — завжди ±0.2.',
+      `Інші зміни спираються на цифри формату: якщо його вибірка за ${KPI_SAMPLE_DAYS} днів insufficient (get_format_performance: ${CONFIDENCE_RULE}),`,
+      'код поверне insufficient_data з цифрами — тоді ваги не міняй. Виняток — пряма вказівка власника: його правило з памʼяті каналу (owner_rule_id).',
     ].join(' '),
     kind: 'act', roles: ['reviewer'],
     input: z.object({
-      weights:      z.record(z.string(), z.number().min(0).max(1)),
-      drop_reasons: z.record(z.string(), z.string().trim().min(15).max(300)).optional()
+      weights:       z.record(z.string(), z.number().min(0).max(1)),
+      drop_reasons:  z.record(z.string(), z.string().trim().min(15).max(300)).optional()
         .describe('Формат → чому він не пасує (докази: правки/відхилення власника, нотатки критика). Лише для ваги 0.'),
+      owner_rule_id: z.number().int().positive().optional()
+        .describe('id активного правила власника (kind rule, з get_channel_memory), яке прямо вимагає цю зміну ваг — тоді вибірка не перевіряється'),
     }),
-    execute: async ({ weights, drop_reasons }, ctx) => {
+    execute: async ({ weights, drop_reasons, owner_rule_id }, ctx) => {
       const card = cardFrom(ctx);
       const drop: string[] = [];
+      const changed: WeightChange[] = [];
       for (const [f, w] of Object.entries(weights)) {
         const cur = card.formats[f];
         if (cur === undefined) return { error: 'unknown_format', details: f };
@@ -322,6 +395,23 @@ export function buildRoleTools(d: RoleToolDeps): EditorTool[] {
           continue;
         }
         if (Math.abs(w - Number(cur)) > 0.2001) return { error: 'step_too_big', details: `${f}: ${cur} → ${w}, максимум ±0.2 (вага 0 — з drop_reasons)` };
+        if (Math.abs(w - Number(cur)) > 1e-9) changed.push({ format: f, from: Number(cur), to: w });
+      }
+      // Spec 037 FR-013: a raise or a cut (not an evidence-backed drop to 0) relies on the format's own numbers.
+      let ownerRule: { id: number; text: string } | null = null;
+      if (changed.length && !ownerDirectiveOf(ctx)) {
+        if (owner_rule_id != null) {
+          const rule = (await d.memory.listActive(card.channelKey)).find((m) => m.id === owner_rule_id);
+          const learnt = (rule?.evidence as { source?: unknown } | null | undefined)?.source === 'approval';
+          if (!rule || rule.createdBy !== 'owner' || rule.kind !== 'rule' || learnt) {
+            return { error: 'owner_rule_not_found', details: `${owner_rule_id}: у памʼяті каналу немає активного правила власника (kind rule) з таким id` };
+          }
+          ownerRule = { id: rule.id, text: rule.text };
+        } else {
+          const samples = await loadFormatPerformance(d.pool, card.channelKey, KPI_SAMPLE_DAYS, { sampleFilter: d.kpiSampleFilter });
+          const issue = weightChangeIssue(changed, samples, KPI_SAMPLE_DAYS);
+          if (issue) return issue;
+        }
       }
       const left = Object.keys(card.formats).filter((f) => !drop.includes(f) && Number(card.formats[f]) > 0);
       if (drop.length && !left.length) return { error: 'last_format', details: 'у картці має лишитися хоча б один формат' };
@@ -331,7 +421,7 @@ export function buildRoleTools(d: RoleToolDeps): EditorTool[] {
           await d.memory.add(card.channelKey, 'avoid', `Формат ${f} прибрано з каналу: ${drop_reasons![f]}`, { tool: 'set_format_weights', format: f }, 'reviewer').catch(() => {});
         }
       }
-      return { ok: true, formats, ...(drop.length ? { dropped: drop } : {}) };
+      return { ok: true, formats, ...(drop.length ? { dropped: drop } : {}), ...(ownerRule ? { owner_rule: ownerRule } : {}) };
     },
   });
 

@@ -113,8 +113,14 @@ export function computeKpis(s: ScopeSeries, today: string): ScopeKpis {
 
 const r1 = (x: number | null) => (x == null ? null : Math.round(x * 10) / 10);
 
-/** Compact form for the prompt and the hash. */
-export function compactKpis(k: ScopeKpis): Record<string, { v: number | null; base: number | null; d: number | null; z: number | null; stale?: true; anomaly?: true }> {
+/**
+ * Compact form for the prompt and the hash. Spec 037 FR-013: the digest adds `n`, `conf` and `sample`
+ * ("(n=3, low confidence)") to post-based metrics of a small sample (kpi-confidence markSampleConfidence).
+ */
+export function compactKpis(k: ScopeKpis): Record<string, {
+  v: number | null; base: number | null; d: number | null; z: number | null; stale?: true; anomaly?: true;
+  n?: number; conf?: 'low' | 'insufficient'; sample?: string;
+}> {
   const out: Record<string, any> = {};
   for (const [name, m] of Object.entries(k)) {
     out[name] = { v: r1(m.value7d), base: r1(m.baseline28d), d: r1(m.deltaPct), z: r1(m.z), ...(m.stale ? { stale: true } : {}), ...(m.anomaly ? { anomaly: true } : {}) };

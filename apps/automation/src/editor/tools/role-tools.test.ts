@@ -98,8 +98,18 @@ test('submit_plan validates and creates', async () => {
   assert.equal(updates[0][2], '2026-10-01');
 });
 
+// Spec 037 FR-013: editor_v_post_performance rows as the pool returns them (numerics as strings).
+const perfPool = (rows: any[], seen: any[] = []) => ({
+  query: async (sql: string, params: any[]) => {
+    seen.push([sql, params]);
+    return { rows: sql.includes('editor_v_post_performance') ? rows : [] };
+  },
+}) as any;
+const perfRow = (format: string, n: number, median: number | null) =>
+  ({ format, posts: n, n, median_views: median == null ? null : String(median), median_vph: '4.2', avg_forwards: '0.5' });
+
 test('reviewer: memory cap, retire rules, weight step', async () => {
-  const { tools } = deps();
+  const { tools } = deps({}, { pool: perfPool([perfRow('album', 10, 50)]) });
   const c = { ...ctx(), role: 'reviewer' as const, slotId: null };
   for (let i = 0; i < 5; i++) assert.equal(((await tools.add_memory.execute({ kind: 'insight', text: 'Вікторини мають вищі перегляди' }, c)) as any).ok, true);
   assert.equal(((await tools.add_memory.execute({ kind: 'insight', text: 'Шостий запис перевищує ліміт' }, c)) as any).error, 'memory_limit');
@@ -107,6 +117,104 @@ test('reviewer: memory cap, retire rules, weight step', async () => {
   assert.equal(((await tools.set_format_weights.execute({ weights: { photo: 0.5 } }, c)) as any).error, 'step_too_big');
   assert.equal(((await tools.set_format_weights.execute({ weights: { video: 0.5 } }, c)) as any).error, 'unknown_format');
   assert.equal(((await tools.set_format_weights.execute({ weights: { album: 0.6 } }, c)) as any).ok, true);
+});
+
+// ── spec 037 FR-013: KPI sample guard ───────────────────────────────────────
+const reviewerCtx = (extras: any = {}) => ({ ...ctx(), role: 'reviewer' as const, slotId: null, extras: { card: makeCard(), ...extras } });
+
+test('get_format_performance: n, median views and confidence per format; old fields kept; summary when all insufficient', async () => {
+  const seen: any[] = [];
+  const { tools } = deps({}, { pool: perfPool([perfRow('photo', 10, 50), perfRow('album', 3, 2), perfRow('poll', 5, 20)], seen) });
+  const r: any = await tools.get_format_performance.execute({ days: 30 }, reviewerCtx());
+  assert.deepEqual(r.formats.map((f: any) => [f.format, f.n, f.median_views, f.confidence]),
+    [['photo', 10, 50, 'ok'], ['album', 3, 2, 'insufficient'], ['poll', 5, 20, 'low']]);
+  assert.equal(r.formats[0].posts, 10);
+  assert.equal(r.formats[0].median_vph, 4.2, 'median_vph stays a number');
+  assert.equal(r.formats[0].avg_forwards, '0.5');
+  assert.equal(r.summary, undefined);
+  assert.deepEqual(seen[0][1], ['@chan', 30]);
+  assert.doesNotMatch(seen[0][0], /AND \(/, 'no sample filter by default');
+
+  const thin: any = await deps({}, { pool: perfPool([perfRow('album', 3, 2), perfRow('photo', 2, 400)]) }).tools.get_format_performance.execute({ days: 30 }, reviewerCtx());
+  assert.equal(thin.summary, 'insufficient_data');
+  assert.equal(thin.note, 'not enough data to compare formats');
+  const none: any = await deps({}, { pool: perfPool([]) }).tools.get_format_performance.execute({ days: 30 }, reviewerCtx());
+  assert.equal(none.summary, 'insufficient_data');
+});
+
+test('get_format_performance: the repost/evergreen seam adds the sample filter to the query', async () => {
+  const seen: any[] = [];
+  const { tools } = deps({}, { pool: perfPool([], seen), kpiSampleFilter: 'NOT is_repost' });
+  await tools.get_format_performance.execute({ days: 7 }, reviewerCtx());
+  assert.match(seen[0][0], /AND \(NOT is_repost\)/);
+});
+
+test('set_format_weights: n = 3 with 2 views → insufficient_data with the numbers; n = 10 with median 50 → ok', async () => {
+  const calls: any[] = [];
+  const pool = perfPool([perfRow('album', 3, 2), perfRow('photo', 10, 50)]);
+  const { tools } = deps({}, { pool, channels: { setFormatWeights: async (_k: string, w: any) => { calls.push(w); return w; } } });
+  const up: any = await tools.set_format_weights.execute({ weights: { album: 0.7 } }, reviewerCtx());
+  assert.equal(up.error, 'insufficient_data');
+  assert.deepEqual(up.details, [{ format: 'album', n: 3, median_views: 2, confidence: 'insufficient' }]);
+  const down: any = await tools.set_format_weights.execute({ weights: { album: 0.3, photo: 0.9 } }, reviewerCtx());
+  assert.equal(down.error, 'insufficient_data', 'a cut relies on the numbers too');
+  assert.equal(calls.length, 0, 'nothing written');
+  const ok: any = await tools.set_format_weights.execute({ weights: { photo: 0.8 } }, reviewerCtx());
+  assert.equal(ok.ok, true);
+  assert.deepEqual(calls, [{ photo: 0.8 }]);
+  const poll: any = await tools.set_format_weights.execute({ weights: { poll: 0.5 } }, reviewerCtx());
+  assert.deepEqual(poll.details, [{ format: 'poll', n: 0, median_views: null, confidence: 'insufficient' }], 'no posts in the window');
+  const same: any = await tools.set_format_weights.execute({ weights: { album: 0.5 } }, reviewerCtx());
+  assert.equal(same.ok, true, 'an unchanged weight relies on nothing');
+});
+
+test('set_format_weights: an evidence-backed drop to 0 is not a performance change', async () => {
+  const { tools } = deps({}, { pool: perfPool([perfRow('album', 1, 2)]) });
+  const r: any = await tools.set_format_weights.execute({ weights: { album: 0 }, drop_reasons: { album: 'власник відхилив 3 альбоми на апруві: «не наш формат»' } }, reviewerCtx());
+  assert.equal(r.ok, true);
+  assert.deepEqual(r.dropped, ['album']);
+});
+
+test('set_format_weights: a direct owner directive passes the sample guard (run flag, owner chat request, owner rule)', async () => {
+  const memory = {
+    listActive: async () => [
+      { id: 7, kind: 'rule', text: 'Більше альбомів — це рішення власника', evidence: null, createdBy: 'owner', createdAt: NOW },
+      { id: 8, kind: 'insight', text: 'Альбом — найсильніший формат', evidence: null, createdBy: 'reviewer', createdAt: NOW },
+      { id: 9, kind: 'rule', text: 'Власник прибрав емодзі на апруві', evidence: { source: 'approval' }, createdBy: 'owner', createdAt: NOW },
+    ],
+    add: async () => 1, retireByReviewer: async () => false,
+  } as any;
+  const { tools } = deps({}, { pool: perfPool([perfRow('album', 3, 2)]), memory });
+  const w = { weights: { album: 0.7 } };
+  assert.equal(((await tools.set_format_weights.execute(w, reviewerCtx({ ownerDirective: true }))) as any).ok, true, 'runner flag');
+  assert.equal(((await tools.set_format_weights.execute(w, reviewerCtx({ chat: { chatId: 'c1', channelKey: '@chan' }, agentIntent: true, ownerText: 'зміни вагу альбомів на 0.7' }))) as any).ok, true, 'owner chat request');
+  assert.equal(((await tools.set_format_weights.execute(w, reviewerCtx({ chat: { chatId: 'c1', channelKey: '@chan' }, agentIntent: false, ownerText: 'як справи?' }))) as any).error, 'insufficient_data', 'chat without a change request');
+  assert.equal(((await tools.set_format_weights.execute(w, reviewerCtx({ ownerDirective: 'yes' }))) as any).error, 'insufficient_data', 'only an explicit true');
+  const rule: any = await tools.set_format_weights.execute({ ...w, owner_rule_id: 7 }, reviewerCtx());
+  assert.equal(rule.ok, true);
+  assert.deepEqual(rule.owner_rule, { id: 7, text: 'Більше альбомів — це рішення власника' });
+  for (const id of [8, 9, 99]) {
+    assert.equal(((await tools.set_format_weights.execute({ ...w, owner_rule_id: id }, reviewerCtx())) as any).error, 'owner_rule_not_found', `rule ${id}`);
+  }
+});
+
+test('add_memory: a performance note needs evidence { n, metric, median_views } and is refused on an insufficient sample', async () => {
+  const added: any[] = [];
+  const memory = { listActive: async () => [], add: async (...a: any[]) => { added.push(a); return added.length; }, retireByReviewer: async () => false } as any;
+  const { tools } = deps({}, { memory });
+  const c = reviewerCtx();
+  const text = 'Альбом — найсильніший формат за 30 днів';
+  assert.equal(((await tools.add_memory.execute({ kind: 'insight', text, performance: true }, c)) as any).error, 'evidence_required');
+  const thin: any = await tools.add_memory.execute({ kind: 'insight', text, performance: true, evidence: { n: 3, metric: 'median_views', median_views: 2 } }, c);
+  assert.equal(thin.error, 'insufficient_data');
+  assert.deepEqual(thin.details, { n: 3, metric: 'median_views', median_views: 2, confidence: 'insufficient' });
+  assert.equal(added.length, 0, 'nothing stored');
+  const ok: any = await tools.add_memory.execute({ kind: 'insight', text, performance: true, evidence: { n: 10, metric: 'median_views', median_views: 50 } }, c);
+  assert.equal(ok.ok, true);
+  assert.deepEqual(added[0][3], { n: 10, metric: 'median_views', median_views: 50, performance: true, confidence: 'ok' });
+  const plain: any = await tools.add_memory.execute({ kind: 'avoid', text: 'Власник просить не писати про крипту', evidence: { owner_edit: 'slot-9' } }, c);
+  assert.equal(plain.ok, true, 'a non-performance note is unchanged');
+  assert.deepEqual(added[1][3], { owner_edit: 'slot-9' });
 });
 
 // ── phase-2 formats (spec 009 T002) ─────────────────────────────────────────
