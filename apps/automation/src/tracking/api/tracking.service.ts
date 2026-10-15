@@ -218,12 +218,14 @@ export class TrackingService {
   async listPosts(channelId: string, from: Date | null, to: Date | null, limit: number, offset: number):
     Promise<{ items: TrackedPostDto[]; total: number }> {
     const r = await this.posts.listByChannel(channelId, from, to, limit, offset);
+    // Spec 037 T2: native forwards of a sibling's post (published_posts 'repost') carry their source channel.
+    const reposts = await this.posts.repostSources(channelId, r.items.map((p) => p.tgMessageId)).catch(() => new Map<string, string>());
     return {
       items: r.items.map((p) => ({
         id: p.id, channelId: p.channelId, tgMessageId: p.tgMessageId,
         text: p.text, hasMedia: p.hasMedia, postedAt: p.postedAt.toISOString(),
         views: p.views, forwards: p.forwards, reactionsTotal: p.reactionsTotal,
-        commentsCount: p.commentsCount, adRefs: p.adRefs,
+        commentsCount: p.commentsCount, adRefs: p.adRefs, repostFrom: reposts.get(String(p.tgMessageId)) ?? null,
       })),
       total: r.total,
     };

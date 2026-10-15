@@ -46,9 +46,25 @@ export interface AuditPost {
   sourceUrl?: string;
   /** Every platform message the post is made of (an album is several), for traceability; export only. */
   messageIds?: number[];
+  /**
+   * Spec 037 T2: the story fields the writer declared (PostSpec `story`). Present (possibly empty) on a post built from
+   * a spec, absent on an export: a check then infers reminders and giveaway follow-ups from the text.
+   */
+  story?: AuditStory;
   /** Spec 037 T9: the slot's format and the planner's topic (a fixed slot); an export knows neither. */
   format?: string;
   topic?: string;
+}
+
+/** Spec 037 T2: a post's place in its story. */
+export interface AuditStory {
+  key?: string;
+  /** The original's id (an AuditPost id: slot id, `pp:<published post id>`, or `<channel>:<message id>`). */
+  followupOf?: string;
+  kind?: 'followup' | 'reminder' | 'roundup' | 'evergreen';
+  newFacts?: string[];
+  /** A sibling channel posted the story in the last 24 h and this post takes its own angle. */
+  decision?: 'own_angle';
 }
 
 /**

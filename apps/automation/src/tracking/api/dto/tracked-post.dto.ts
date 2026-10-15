@@ -11,4 +11,6 @@ export interface TrackedPostDto {
   reactionsTotal: number | null;
   commentsCount: number | null;
   adRefs: AdRef[] | null;
+  /** Spec 037 T2: a native forward of a network sibling's post — the source channel; null for own posts. */
+  repostFrom: string | null;
 }

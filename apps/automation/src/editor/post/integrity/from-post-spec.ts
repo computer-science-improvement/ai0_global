@@ -99,6 +99,12 @@ export function auditPostFromSpec(spec: PostSpec, meta: PostSpecMeta): AuditPost
     ...(meta.topic ? { topic: meta.topic } : {}),
   };
   if (first?.type === 'lead') post.lead = inlineToPlain(first.text);
+  // Spec 037 T2: a spec always says what it is in its story (an empty story = an original post).
+  post.story = {
+    ...(spec.story?.key ? { key: spec.story.key } : {}), ...(spec.story?.followup_of ? { followupOf: spec.story.followup_of } : {}),
+    ...(spec.story?.kind ? { kind: spec.story.kind } : {}), ...(spec.story?.new_facts?.length ? { newFacts: spec.story.new_facts } : {}),
+    ...(spec.story?.decision ? { decision: spec.story.decision } : {}),
+  };
   if (spec.source && linkStyle === 'inline') post.sourceUrl = spec.source.url;
   if (isPoll && spec.poll) {
     post.poll = {

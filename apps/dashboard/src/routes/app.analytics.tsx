@@ -5,6 +5,7 @@ import { trackingApi } from '../api/tracking';
 import { useMetaAccounts, useMetaFollowerHistory, useMetaAccountInsights } from '../api/meta-accounts';
 import { channelOptionLabel } from '../lib/labels';
 import { fmtNumber } from '../lib/format';
+import { splitReposts } from '../lib/reposts';
 import { PageHeader } from '../components/ui/PageHeader';
 import type { IconName } from '../components/ui/Icon';
 import { SegmentedTabs } from '../components/SegmentedTabs';
@@ -77,8 +78,9 @@ function AnalyticsPage() {
   const selChannel = channels.find(c => c.id === channelId);
   const subsCurrent = points.length > 0 ? points[points.length - 1].subs : selChannel?.subsCount ?? null;
   const subsDelta = points.length > 1 ? points[points.length - 1].subs - points[0].subs : null;
-  const postViews = posts.map(p => p.views ?? 0);
-  const avgViews = postViews.length > 0 ? Math.round(postViews.reduce((a, b) => a + b, 0) / postViews.length) : null;
+  // Spec 037 T2: reposts are counted apart; the average views read own posts only.
+  const split = splitReposts(posts);
+  const avgViews = split.avgOwnViews;
   const totalReactions = posts.reduce((a, p) => a + (p.reactionsTotal ?? 0), 0);
 
   const metaReachTotal = insPoints.reduce((a, p) => a + (p.reach ?? 0), 0);
@@ -122,7 +124,14 @@ function AnalyticsPage() {
                 label="Avg views"
                 value={fmtNumber(avgViews)}
                 icon="analytics"
-                delta={posts.length > 0 ? `last ${posts.length} posts` : 'no posts'}
+                delta={split.own > 0 ? `last ${split.own} own posts` : 'no posts'}
+              />
+              <StatTile
+                label="Own vs reposts"
+                value={`${fmtNumber(split.own)} / ${fmtNumber(split.reposts)}`}
+                icon="channels"
+                delta={split.share != null ? `${Math.round(split.share * 100)}% reposts` : 'no posts'}
+                deltaTone={split.share != null && split.share > 0.3 ? 'danger' : 'neutral'}
               />
               <StatTile
                 label="Reactions"

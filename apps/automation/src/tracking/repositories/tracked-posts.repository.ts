@@ -117,6 +117,25 @@ export class TrackedPostsRepository {
     };
   }
 
+  /**
+   * Spec 037 T2: tg message id → source channel of the channel's native forwards (published_posts strategy_type
+   * 'repost', source_url `https://t.me/<channel>/<id>`), for the "Repost from @…" badge.
+   */
+  async repostSources(channelId: string, messageIds: Array<string | number>): Promise<Map<string, string>> {
+    const ids = messageIds.map((m) => String(m)).filter((m) => /^\d+$/.test(m));
+    if (!ids.length) return new Map();
+    const r = await this.pool.query<{ mid: string; source_url: string | null; title: string | null }>(
+      `SELECT pp.message_id::text AS mid, pp.source_url, pp.title
+         FROM tracked_channels t JOIN published_posts pp ON pp.channel_id = t.channel_key
+        WHERE t.id = $1 AND pp.strategy_type = 'repost' AND pp.message_id = ANY($2::bigint[])`, [channelId, ids]);
+    const out = new Map<string, string>();
+    for (const row of r.rows) {
+      const from = row.source_url?.match(/t\.me\/([A-Za-z0-9_]+)\//)?.[1] ?? row.title?.match(/@([A-Za-z0-9_]+)/)?.[1] ?? null;
+      if (from) out.set(row.mid, from);
+    }
+    return out;
+  }
+
   async topByMetric(channelId: string, metric: 'views' | 'reactions_total' | 'forwards', limit: number) {
     const allowed = ['views', 'reactions_total', 'forwards'];
     if (!allowed.includes(metric)) throw new Error(`Disallowed metric: ${metric}`);

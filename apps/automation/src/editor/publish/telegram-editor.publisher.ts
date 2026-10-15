@@ -66,7 +66,8 @@ export class TelegramEditorPublisher {
 
   private get now(): Date { return this.opts.now ? this.opts.now() : new Date(); }
 
-  async send(channelKey: string, messages: TgMessage[]): Promise<SendResult> {
+  /** `opts.replyTo` (spec 037 T2): the first message goes out as a reply to that message of the channel (a story follow-up). */
+  async send(channelKey: string, messages: TgMessage[], opts: { replyTo?: number } = {}): Promise<SendResult> {
     if (this.channels.isPublishPausedFor(channelKey)) throw new ChannelPausedForEditorError(channelKey);
     const { chatId, botToken } = this.channels.resolveChannel(channelKey);
     const base = `https://api.telegram.org/bot${botToken}`;
@@ -74,13 +75,14 @@ export class TelegramEditorPublisher {
     const ids: number[] = [];
     let fallback: Pick<SendResult, 'fallback' | 'fallbackReason'> = {};
     for (const m of messages) {
+      const reply = !ids.length && opts.replyTo ? opts.replyTo : undefined;
       try {
         if (m.method === 'sendRichMessage') {
-          const r = await this.sendRich(base, chatId, channelKey, m);
+          const r = await this.sendRich(base, chatId, channelKey, m, reply);
           ids.push(r.id);
           if (r.fallbackReason) fallback = { fallback: 'html', fallbackReason: r.fallbackReason };
         } else {
-          ids.push(await this.sendOne(base, chatId, m));
+          ids.push(await this.sendOne(base, chatId, m, reply));
         }
       } catch (err: any) {
         const reason = err?.response?.data?.description ?? err?.message ?? String(err);
@@ -146,16 +148,16 @@ export class TelegramEditorPublisher {
   }
 
   /** A rich message, or its fallback when Telegram rejects it / the channel is flagged. */
-  private async sendRich(base: string, chatId: string, channelKey: string, m: TgRichMessage): Promise<{ id: number; fallbackReason?: string }> {
+  private async sendRich(base: string, chatId: string, channelKey: string, m: TgRichMessage, replyTo?: number): Promise<{ id: number; fallbackReason?: string }> {
     const cap = this.opts.richCapability;
     if (cap && await cap.isUnsupported(channelKey, this.now).catch(() => false)) {
-      return { id: await this.sendOne(base, chatId, m.fallback), fallbackReason: 'rich messages are flagged unsupported for this channel' };
+      return { id: await this.sendOne(base, chatId, m.fallback, replyTo), fallbackReason: 'rich messages are flagged unsupported for this channel' };
     }
     try {
-      return { id: await this.sendOne(base, chatId, m) };
+      return { id: await this.sendOne(base, chatId, m, replyTo) };
     } catch (err) {
       const reason = await this.onRichRejected(channelKey, 'sendRichMessage', err);
-      return { id: await this.sendOne(base, chatId, m.fallback), fallbackReason: reason };
+      return { id: await this.sendOne(base, chatId, m.fallback, replyTo), fallbackReason: reason };
     }
   }
 
@@ -176,7 +178,7 @@ export class TelegramEditorPublisher {
     return data.result;
   }
 
-  private async sendOne(base: string, chatId: string, m: TgMessage | TgHtmlMessage): Promise<number> {
+  private async sendOne(base: string, chatId: string, m: TgMessage | TgHtmlMessage, replyTo?: number): Promise<number> {
     let method: string;
     let body: Record<string, unknown>;
     switch (m.method) {
@@ -227,6 +229,8 @@ export class TelegramEditorPublisher {
         };
         break;
     }
+    // Spec 037 T2: a story follow-up replies to its original (sent anyway if the original is gone).
+    if (replyTo) body = { ...body, reply_parameters: { message_id: replyTo, allow_sending_without_reply: true } };
     const result = await this.call(base, method, body);
     const first = Array.isArray(result) ? result[0] : result;
     return Number(first?.message_id);
