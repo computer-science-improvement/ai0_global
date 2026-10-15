@@ -19,6 +19,7 @@ import { AgentLoop } from './harness/agent-loop';
 import { ToolRegistry } from './harness/tool-registry';
 import { PgRunRecorder } from './harness/run-recorder';
 import { BudgetService } from './harness/budget.service';
+import { DEFAULT_REJECT_STREAK, SilentDaysWatch } from './silent/silent-days';
 import { ReadonlyQueryService } from './db/readonly-query.service';
 import { SkillLibrary } from './skills/skill-library';
 import { buildReadTools } from './tools/read-tools';
@@ -1139,11 +1140,11 @@ export const EDITOR_PROVIDERS = [
     },
     {
       provide: EDITOR_RUNNER,
-      inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_SKILLS, EDITOR_REGISTRY, TelegramNotifier, AGENT_INFRA, EDITOR_LOOP, EDITOR_NETWORK, SCHEDULE_INFRA, EDITOR_PUBLISH, MODEL_DEFAULTS, EDITOR_CRITIC],
+      inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_SKILLS, EDITOR_REGISTRY, TelegramNotifier, AGENT_INFRA, EDITOR_LOOP, EDITOR_NETWORK, SCHEDULE_INFRA, EDITOR_PUBLISH, MODEL_DEFAULTS, EDITOR_CRITIC, { token: LlmBudgetService, optional: true }],
       useFactory: (
         pool: Pool, cfg: ConfigService, repos: EditorRepos, skills: SkillLibrary, registry: ToolRegistry, notifier: TelegramNotifier,
         infra: AgentInfra, loop: AgentLoop, network: NetworkRunner, schedule: ScheduleService, ports: PublishPorts, models: ModelDefaultsStore,
-        critic: CriticService | null,
+        critic: CriticService | null, caps?: LlmBudgetService,
       ): EditorRunnerService => {
         const logger = new Logger('Editor');
         const env = (k: string) => cfg.get<string>(k) ?? undefined;
@@ -1173,6 +1174,16 @@ export const EDITOR_PROVIDERS = [
           },
           // Spec 034 FR-004: the pre-publish critic of every executor run (live, shadow, approval write-ahead).
           ...(critic ? { critic: { service: critic, inbox: (i) => infra.inbox.post(i), libraryText: libraryTextOf(pool) } } : {}),
+          // Spec 037 FR-010: the fallback ladder of a failed post stops at the daily caps (the same gate as every LLM call).
+          budget: (() => {
+            const gate = editorBudget(pool, env, notify, caps);
+            return async (card, agent) => {
+              const v = await gate.check(card.channelKey, card.dailyBudgetUsd, agent);
+              return v.ok ? { ok: true as const } : { ok: false as const, reason: `${v.scope} cap: $${v.spentUsd.toFixed(3)} / $${v.limitUsd}` };
+            };
+          })(),
+          ladder: { enabled: env('EDITOR_FALLBACK_LADDER') !== 'off' },
+          // fallbackEvergreen: the evergreen step plugs in here after spec 037 T2 (story registry) and T12 (critic skills).
         });
       },
     },
@@ -1241,9 +1252,15 @@ export const EDITOR_PROVIDERS = [
         const newsWatch = new NewsWatchService({
           pool, profile: async (ref) => (await infra.profiles.get(ref))?.profile ?? null, log: (m) => logger.warn(m),
         });
+        // Spec 037 FR-010: silent-day notes (dark_day, series_missed, critic_reject_streak), once per resource per day.
+        const silent = new SilentDaysWatch({
+          pool, inbox: infra.inbox, log: (m) => logger.warn(m),
+          streakN: Math.max(1, Math.round(envNum((k) => cfg.get<string>(k) ?? undefined, 'EDITOR_CRITIC_REJECT_STREAK', DEFAULT_REJECT_STREAK))),
+        });
         return new EditorScheduler({
           pool, channels: repos.channels, plans: repos.plans, runner, reserved,
           newsWatch: (card, now) => newsWatch.check(card, now),
+          silentDays: (cards, now, paused) => silent.check(cards, now, paused),
           enabled: () => isEnabled(cfg),
           orchestrate: cfg.get<string>('EDITOR_ORCHESTRATION') === 'off' ? undefined : (card) => network.runOrchestrator(card),
           // Spec 024: the auto-duplicate gate is pinned at each anchor's plan-day boundary.

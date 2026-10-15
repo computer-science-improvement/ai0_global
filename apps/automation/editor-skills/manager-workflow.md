@@ -15,8 +15,9 @@ applies_to: [manager]
 4. **Опитування й питання** — `polls` проти `cap` (тиждень), `reader_questions.over_cap` (на пост).
 5. **Власник** — `owner.rejected` / `edited`, причини й правки: що саме йому не подобається.
 6. **Формат** — `format_fit`: формат, що не пасує темі чи аудиторії.
+7. **Тихі дні** — `plan`: по днях planned / published / skip_reasons (critic, lint, cap, nothing_fresh, budget), `dark_days`, `series_missed`, `fallback` (скільки слотів урятував запасний крок).
 
-Відповідь — у `submit_review.quality_check`: `status` ok | issue, `evidence` з цифрами чи цитатою, `issues` (ai_likeness, sense, voice, audience_asks, owner_feedback, format_fit). Код відхилить: пропущений ресурс, evidence без цифр, «ok» при прапорцях `flags` без пояснення в `note`, `continue` при issue без пояснення в `note`.
+Відповідь — у `submit_review.quality_check`: `status` ok | issue, `evidence` з цифрами чи цитатою, `issues` (ai_likeness, sense, voice, audience_asks, owner_feedback, format_fit, silent_days). Код відхилить: пропущений ресурс, evidence без цифр, «ok» при прапорцях `flags` без пояснення в `note`, `continue` при issue без пояснення в `note`.
 
 Проблема якості → порада:
 - `voice_fix` — правила голосу й приклади (params: `resource_ref`, `rules` 1–3, `bad_slot_ids` — id відхилених власником чи критиком постів, `good_examples` [{text, note}] без штампів). Expected: `critic_pass_rate` ↑ або `owner_rejection_rate` ↓.

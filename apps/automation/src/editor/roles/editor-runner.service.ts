@@ -24,6 +24,11 @@ import { examplesPromptSection } from '../network/playbook';
 import type { CriticService } from '../critic/critic.service';
 import type { InboxItemInput } from '../agents/owner-inbox';
 import { PREVIEW_FEATURE, PreviewSink, previewWithoutRun, type SlotPreview } from './preview-run';
+import type { AgentBudget } from '../harness/budget.service';
+import {
+  classifyFailure, isRescued, LADDER_MAX_LATE_MS, ladderNote, ladderPlan, PublishProbe, stepRecord,
+  type FallbackFinal, type FallbackStepRecord, type LadderStep, type SlotFailure,
+} from '../silent/fallback-ladder';
 
 export interface EditorRunnerDeps {
   loop:     Pick<AgentLoop, 'run'>;
@@ -94,6 +99,30 @@ export interface EditorRunnerDeps {
     inbox?:       (i: InboxItemInput) => Promise<unknown>;
     libraryText?: (ref: string) => Promise<string | null>;
   };
+  /**
+   * Spec 037 FR-010: the daily budget check the fallback ladder runs before each extra step (BudgetService.check:
+   * global, channel and agent caps on the usage ledger, which already holds the executor's and the critic's spend).
+   * Without it only a run's own `budget_exceeded` stops the ladder.
+   */
+  budget?: (card: EditorCard, agent: AgentBudget | null) => Promise<{ ok: true } | { ok: false; reason: string }>;
+  /** Spec 037 FR-010: the fallback ladder (default on); `maxLateMs` — no new step this long after the slot time. */
+  ladder?: { enabled?: boolean; maxLateMs?: number };
+  /**
+   * Spec 037 FR-010 SEAM — the evergreen step of the fallback ladder (after the story registry T2 and the critic's
+   * resource skills T12). Absent by default: the ladder goes from the lighter format straight to skip. When set,
+   * it runs after the lighter format with the slot (status `running`) and the last failure, and returns the run
+   * (the slot is then judged like every other step) or null when no evergreen post is possible today.
+   */
+  fallbackEvergreen?: (i: EvergreenRequest) => Promise<AgentLoopResult | null>;
+}
+
+/** What the evergreen step gets (spec 037 FR-010 seam). */
+export interface EvergreenRequest {
+  slot:    EditorSlot;
+  card:    EditorCard;
+  failure: SlotFailure;
+  /** The ladder so far (initial, next candidate, lighter format). */
+  steps:   FallbackStepRecord[];
 }
 
 type PlatformContext = Awaited<ReturnType<NonNullable<EditorRunnerDeps['platformContext']>>>;
@@ -131,6 +160,14 @@ export function lintOnce(tool: EditorTool, onSecond: (details: unknown) => Promi
     },
   };
 }
+
+/** One executor attempt of a slot (Telegram or platform), with the probe of its publish-tool errors. */
+type Attempt = (slot: EditorSlot, note: string | null, scan: LiveScan | null, probe: PublishProbe) => Promise<AgentLoopResult>;
+
+/** The extras that record the run's publish-tool errors (spec 037 FR-010). */
+const probed = (probe: PublishProbe | null): Record<string, unknown> => (probe ? { wrapTools: (t: EditorTool[]) => probe.wrap(t) } : {});
+
+const normUrl = (u: string): string => u.trim().replace(/#.*$/, '').replace(/\/+$/, '').toLowerCase();
 
 /** Runs one role over the AgentLoop and applies the slot state machine around it. */
 export class EditorRunnerService {
@@ -290,10 +327,14 @@ export class EditorRunnerService {
       return this.skipByCode(slot, noFreshReason(slot.liveSpec, scan));
     }
     const target = slot.resourceRef ? parseResourceRef(slot.resourceRef) : null;
-    const res = target && target.platform !== 'telegram'
-      ? await this.runPlatformExecutor(slot, card, ctx, target.platform, note ?? null, scan)
-      : await this.runTelegramExecutor(slot, card, ctx, note ?? null, scan);
-    await this.d.plans.updateSlot(slot.id, { runId: res.runId });
+    const attempt: Attempt = (s, n, sc, probe) => target && target.platform !== 'telegram'
+      ? this.runPlatformExecutor(s, card, ctx, target.platform, n, sc, null, probe)
+      : this.runTelegramExecutor(s, card, ctx, n, sc, null, probe);
+    const probe = new PublishProbe();
+    const first = await attempt(slot, note ?? null, scan, probe);
+    await this.d.plans.updateSlot(slot.id, { runId: first.runId });
+    // Spec 037 FR-010: a post the critic rejected or that failed lint / a guard climbs the fallback ladder.
+    const res = await this.fallback(slot, card, ctx, { note: note ?? null, scan, platform: target?.platform ?? 'telegram' }, first, probe, attempt);
 
     const after = await this.d.plans.getSlot(slot.id);
     if (after && after.status === 'running') {
@@ -311,9 +352,107 @@ export class EditorRunnerService {
     return res;
   }
 
+  /** The registry agent's budget of a run (the same mapping the loop gets). */
+  private static agentBudget(ctx: RunAgentContext | null): AgentBudget | null {
+    return ctx?.agent
+      ? { id: ctx.agent.id, handle: ctx.agent.handle, limitUsd: ctx.agent.dailyBudgetUsd ?? ctx.orchestrator?.dailyBudgetUsd ?? null }
+      : null;
+  }
+
+  /** Formats a slot may fall back to: the card's formats with a weight (Telegram), the implemented native formats (platform). */
+  private static allowedFormats(card: EditorCard, platform: string): Set<string> {
+    if (platform !== 'telegram') return new Set(implementedFormats(platform as any));
+    const tg = new Set(implementedFormats('telegram'));
+    return new Set(Object.entries(card.formats ?? {}).filter(([f, w]) => Number(w) > 0 && tg.has(f)).map(([f]) => f));
+  }
+
+  /**
+   * Spec 037 FR-010: the fallback ladder of a slot whose post failed for a content reason (see silent/fallback-ladder):
+   * the next candidate once, a lighter allowed format, [the evergreen seam], else a skip with the recorded reason.
+   * Each extra step is a full executor run (critic included) on the same slot, started only within the daily budget
+   * and within LADDER_MAX_LATE_MS of the slot time. Every step and its reason are stored on `editor_slots.fallback`.
+   * Not for promo / reserved slots (their post is fixed) or derived slots (runDerived, their own lint-twice rule).
+   */
+  private async fallback(
+    slot: EditorSlot, card: EditorCard, ctx: RunAgentContext | null, o: { note: string | null; scan: LiveScan | null; platform: string },
+    first: AgentLoopResult, probe: PublishProbe, attempt: Attempt,
+  ): Promise<AgentLoopResult> {
+    if (this.d.ladder?.enabled === false || slot.promo || slot.kind === 'reserved') return first;
+    let after = await this.d.plans.getSlot(slot.id);
+    let failure = after ? classifyFailure(after, probe) : null;
+    if (!after || !failure) return first;
+
+    const steps: FallbackStepRecord[] = [stepRecord('initial', slot.format, this.now(), after, failure, first)];
+    const avoid: string[] = failure.sourceUrl ? [failure.sourceUrl] : [];
+    const live = slot.topicMode === 'live' && !!slot.liveSpec;
+    const plan = ladderPlan({ format: slot.format, allowed: EditorRunnerService.allowedFormats(card, o.platform), evergreen: !!this.d.fallbackEvergreen });
+    const agent = EditorRunnerService.agentBudget(ctx);
+    const maxLate = this.d.ladder?.maxLateMs ?? LADDER_MAX_LATE_MS;
+    let res = first;
+    let final: FallbackFinal | null = null;
+    let last: LadderStep = 'initial';
+    const skipped = (step: FallbackStepRecord['step'], format: string, outcome: 'no_candidate' | 'unavailable', reason: string): FallbackStepRecord =>
+      ({ step, at: this.now().toISOString(), format, outcome, reason, verdict: null, run_id: null, cost_usd: 0 });
+
+    for (const st of plan) {
+      // Budget: a run that hit a cap, or the caps on the usage ledger (executor + critic spend so far today).
+      if (res.status === 'budget_exceeded') { final = { outcome: 'skipped', code: 'budget', step: last, reason: res.error ?? 'budget_exceeded' }; break; }
+      if (this.now().getTime() - slot.scheduledAt.getTime() > maxLate) {
+        final = { outcome: 'skipped', code: 'too_late', step: last, reason: `more than ${Math.round(maxLate / 60_000)} min after the slot time` };
+        break;
+      }
+      if (this.d.budget) {
+        const b = await this.d.budget(card, agent).catch(() => ({ ok: true as const }));
+        if (!b.ok) { final = { outcome: 'skipped', code: 'budget', step: last, reason: b.reason }; break; }
+      }
+      // A live slot takes the next fresh item: the code re-reads its feeds without the items that already failed.
+      let scan = o.scan;
+      if (live && this.d.live) {
+        const fresh = await this.d.live.scan(slot, card).catch(() => null);
+        if (fresh) {
+          const used = new Set(avoid.map(normUrl));
+          const others = fresh.items.filter((i) => !used.has(normUrl(i.url)));
+          if (st.step === 'next_candidate' && fresh.feedsRead > 0 && !others.length && !fresh.otherSources.length) {
+            steps.push(skipped(st.step, st.format, 'no_candidate', 'no other fresh item in the feeds'));
+            continue;
+          }
+          scan = { ...fresh, items: others.length || st.step === 'next_candidate' ? others : fresh.items };
+        }
+      }
+      await this.d.plans.updateSlot(slot.id, { status: 'running', error: null, critic: null });
+      const p = new PublishProbe();
+      const stepSlot: EditorSlot = { ...slot, format: st.format };
+      last = st.step;
+      const r = st.step === 'evergreen'
+        ? await this.d.fallbackEvergreen!({ slot: stepSlot, card, failure, steps: [...steps] }).catch(() => null)
+        : await attempt(stepSlot, [o.note, ladderNote(st.step, { failure, format: st.format, original: slot.format, avoid, live })].filter(Boolean).join('\n'), scan, p);
+      if (!r) { steps.push(skipped(st.step, st.format, 'unavailable', 'no evergreen post today')); continue; }
+      res = r;
+      await this.d.plans.updateSlot(slot.id, { runId: r.runId });
+      after = await this.d.plans.getSlot(slot.id);
+      const f = after ? classifyFailure(after, p) : null;
+      steps.push(stepRecord(st.step, st.format, this.now(), after, f, r));
+      if (!f) {
+        // Out (published / shadowed / waiting for the owner), or ended otherwise (skip, outage, cap): the slot keeps it.
+        final = { outcome: isRescued(after?.status) ? 'rescued' : 'ended', code: after?.status ?? 'unknown', step: st.step, reason: after?.error ?? null };
+        failure = null;
+        break;
+      }
+      failure = f;
+      if (f.sourceUrl && !avoid.includes(f.sourceUrl)) avoid.push(f.sourceUrl);
+    }
+    if (failure) {
+      final ??= { outcome: 'skipped', code: 'exhausted', step: last, reason: failure.reason };
+      await this.d.plans.updateSlot(slot.id, { status: 'skipped', error: failure.reason.slice(0, 500) });
+    }
+    await this.d.plans.updateSlot(slot.id, { fallback: { steps, final } });
+    return res;
+  }
+
   /** The Telegram executor run of a slot (`dry`: the owner's dry-run preview, spec 034 FR-012). */
   private async runTelegramExecutor(
     slot: EditorSlot, card: EditorCard, ctx: RunAgentContext | null, note: string | null, scan: LiveScan | null, dry: PreviewSink | null = null,
+    probe: PublishProbe | null = null,
   ): Promise<AgentLoopResult> {
     const tgRef = `telegram:${card.channelKey}`;
     // The Telegram resource's own context (playbook section, examples): the critic's and the few-shot's (spec 034 T5).
@@ -326,7 +465,7 @@ export class EditorRunnerService {
       voice: { humor: card.humor, slang: card.slang, emoji: card.emojiPref },
     }, tgContext ?? undefined, dry);
     return this.run('executor', card, [await this.executorUser(card, slot, ctx, scan), note].filter(Boolean).join('\n'), slot.id,
-      EditorRunnerService.withGate(EditorRunnerService.dryExtras({ excludeTools: PLATFORM_ONLY, examples: tgContext?.examples ?? null }, dry), gate), ctx);
+      EditorRunnerService.withGate(EditorRunnerService.dryExtras({ excludeTools: PLATFORM_ONLY, examples: tgContext?.examples ?? null, ...probed(probe) }, dry), gate), ctx);
   }
 
   /**
@@ -467,7 +606,7 @@ export class EditorRunnerService {
   /** A slot that targets Instagram / Facebook / Threads / TikTok of the channel's network (spec 019 FR-008). */
   private async runPlatformExecutor(
     slot: EditorSlot, card: EditorCard, ctx: RunAgentContext | null, platform: string, note: string | null = null, scan: LiveScan | null = null,
-    dry: PreviewSink | null = null,
+    dry: PreviewSink | null = null, probe: PublishProbe | null = null,
   ): Promise<AgentLoopResult> {
     const pc = this.d.platformContext ? await this.d.platformContext(slot, ctx?.orchestrator?.id ?? null).catch(() => null) : null;
     const skills = ctx?.skills ?? this.d.skills;
@@ -526,7 +665,7 @@ export class EditorRunnerService {
     };
     const gate = await this.criticGate(slot, card, ctx, { ref: slot.resourceRef!, platform, mode, voice }, pc, dry);
     return this.run('executor', card, user, slot.id,
-      EditorRunnerService.withGate(EditorRunnerService.dryExtras({ excludeTools: TELEGRAM_ONLY, systemOverride: system, platformSlot }, dry), gate), ctx);
+      EditorRunnerService.withGate(EditorRunnerService.dryExtras({ excludeTools: TELEGRAM_ONLY, systemOverride: system, platformSlot, ...probed(probe) }, dry), gate), ctx);
   }
 
   async runReviewer(card: EditorCard): Promise<AgentLoopResult> {

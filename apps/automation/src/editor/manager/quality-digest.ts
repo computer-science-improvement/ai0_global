@@ -2,6 +2,10 @@ import type { Pool } from 'pg';
 import { CRITIC_SCORE_KEYS, type CriticScoreKey } from '../critic/critic';
 import { audienceCapsOfProfile, isPollFormat, readerQuestions, type AudienceCaps } from '../post/audience-asks';
 import { htmlToPlain } from '../post/inline-markup';
+import { localDate, localHour } from '../roles/time';
+import { addSkip, isNotAMiss, isOwnerDecision, skipGroupOf, type SkipCounts } from '../silent/skip-reasons';
+import { DARK_DAY_HOUR } from '../silent/silent-days';
+import type { SlotFallback } from '../silent/fallback-ladder';
 
 /**
  * Spec 034 FR-006 (T4): the content-quality block of the MANAGER's digest, per resource over 7 days. Code computes
@@ -28,10 +32,39 @@ export type QualityMetric = typeof QUALITY_METRICS[number];
 export const isQualityMetric = (m: string): m is QualityMetric => (QUALITY_METRICS as readonly string[]).includes(m);
 
 /** Code flags of a resource's quality block (English codes; the dashboard and the quality_check read them). */
-export const QUALITY_FLAGS = ['critic_reject', 'critic_low_pass', 'critic_failed', 'polls_over_cap', 'reader_questions_over_cap', 'owner_rejections', 'owner_edits'] as const;
+export const QUALITY_FLAGS = [
+  'critic_reject', 'critic_low_pass', 'critic_failed', 'polls_over_cap', 'reader_questions_over_cap', 'owner_rejections', 'owner_edits',
+  // Spec 037 FR-010: a planned day with nothing out (by 18:00 local for today), a series / fixed slot that did not go out.
+  'dark_day', 'series_missed',
+] as const;
 export type QualityFlag = typeof QUALITY_FLAGS[number];
 
 export interface QualitySample { at: string; status: string; format: string; text: string }
+
+/** Spec 037 FR-010: one local day of a resource's plan — what was planned, what went out and why the rest did not. */
+export interface PlanDay {
+  day:          string;
+  /** Content slots of the day (superseded plans, mode changes and canceled drafts are not counted). */
+  planned:      number;
+  published:    number;
+  shadowed:     number;
+  /** Still planned / being written / waiting for the owner. */
+  pending:      number;
+  /** Skipped, failed or expired, grouped: critic, lint, cap, nothing_fresh, budget, other. */
+  skip_reasons: SkipCounts;
+  /** Slots the fallback ladder got out after a failed first post. */
+  rescued:      number;
+}
+
+export interface PlanBlock {
+  days:          PlanDay[];
+  /** Days with >= 1 planned slot and nothing out (today only from 18:00 local). */
+  dark_days:     string[];
+  /** Series / fixed (owner pin) slots that did not go out, newest first (<= 3). */
+  series_missed: Array<{ day: string; slot_id: string; series: string; status: string; reason: string }>;
+  /** Slots that climbed the fallback ladder in the window, and how many of them went out. */
+  fallback:      { laddered: number; rescued: number };
+}
 
 export interface ResourceQuality {
   days:    number;
@@ -52,9 +85,14 @@ export interface ResourceQuality {
   reader_questions: { cap: number; with_questions: number; over_cap: number; examples: string[] };
   owner: { approved: number; edited: number; rejected: number; rejection_rate: number | null; reasons: string[]; edits: string[] };
   samples: QualitySample[];
+  /** Spec 037 FR-010: planned vs out per local day with the skip reasons (absent when the plan rows were not read). */
+  plan?:   PlanBlock;
   flags:   QualityFlag[];
-  /** What changed since the last run (the digest hash reads it): the newest critic issue and owner decision, the flags. */
-  signature: { issue: string | null; owner: string | null; flags: QualityFlag[] };
+  /**
+   * What changed since the last run (the digest hash reads it): the newest critic issue and owner decision, the
+   * flags, and (spec 037) the newest dark day / missed series slot — a new silent day is never a skipped run.
+   */
+  signature: { issue: string | null; owner: string | null; flags: QualityFlag[]; silent?: string | null };
 }
 
 const clip = (s: string, n: number) => {
@@ -88,12 +126,61 @@ export function slotText(spec: any, preview: string | null | undefined): string 
 export interface CriticRow { slotId: string; at: Date; critic: any }
 export interface PostRow { slotId: string; at: Date; status: string; format: string; text: string; written: boolean }
 export interface OwnerRow { slotId: string; at: Date; outcome: 'clean' | 'edited' | 'rejected'; reason: string | null; edit: string | null }
+/** Spec 037 FR-010: one content slot of the window, any status (planned vs out). */
+export interface PlanRow {
+  slotId: string; at: Date; status: string; error: string | null; criticVerdict: string | null;
+  seriesName: string | null; scheduleRuleId: string | null; fallback: SlotFallback | null;
+}
+
+export const MAX_SERIES_MISSED = 3;
+const PENDING = new Set(['planned', 'running', 'awaiting_approval', 'approved']);
+
+/** Planned vs out per local day, the dark days and the missed series slots of one resource (pure). */
+export function assemblePlan(rows: PlanRow[], tz: string, now: Date): PlanBlock {
+  const today = localDate(now, tz);
+  const afterDark = localHour(now, tz) >= DARK_DAY_HOUR;
+  const days = new Map<string, PlanDay>();
+  const missed: Array<PlanRow & { day: string }> = [];
+  let laddered = 0; let rescued = 0;
+  for (const r of rows) {
+    if (isNotAMiss(r.error)) continue;
+    const day = localDate(r.at, tz);
+    if (day > today) continue;
+    const d = days.get(day) ?? { day, planned: 0, published: 0, shadowed: 0, pending: 0, skip_reasons: {}, rescued: 0 };
+    d.planned++;
+    if (r.status === 'published') d.published++;
+    else if (r.status === 'shadowed') d.shadowed++;
+    else if (PENDING.has(r.status)) d.pending++;
+    else {
+      addSkip(d.skip_reasons, skipGroupOf(r.error, r.criticVerdict));
+      if ((r.seriesName || r.scheduleRuleId) && !isOwnerDecision(r.error)) missed.push({ ...r, day });
+    }
+    if (r.fallback?.steps?.length) {
+      laddered++;
+      if (r.fallback.final?.outcome === 'rescued') { rescued++; d.rescued++; }
+    }
+    days.set(day, d);
+  }
+  const list = [...days.values()].sort((a, b) => a.day.localeCompare(b.day));
+  const dark = list.filter((d) => d.published + d.shadowed === 0 && (d.day < today || afterDark)).map((d) => d.day);
+  missed.sort((a, b) => b.at.getTime() - a.at.getTime());
+  return {
+    days: list,
+    dark_days: dark,
+    series_missed: missed.slice(0, MAX_SERIES_MISSED).map((m) => ({
+      day: m.day, slot_id: m.slotId, series: m.seriesName ?? 'fixed slot', status: m.status, reason: clip(m.error ?? 'no reason recorded', REASON_CHARS),
+    })),
+    fallback: { laddered, rescued },
+  };
+}
 
 const WRITTEN = new Set(['published', 'shadowed', 'awaiting_approval', 'approved']);
 export const isWritten = (status: string) => WRITTEN.has(status);
 
-/** One resource's quality block from its rows (newest first in each list). */
-export function assembleQuality(i: { critic: CriticRow[]; posts: PostRow[]; owner: OwnerRow[]; caps: AudienceCaps }): ResourceQuality {
+/** One resource's quality block from its rows (newest first in each list); `plan` adds planned vs out (spec 037). */
+export function assembleQuality(i: {
+  critic: CriticRow[]; posts: PostRow[]; owner: OwnerRow[]; caps: AudienceCaps; plan?: { rows: PlanRow[]; tz: string; now: Date } | null;
+}): ResourceQuality {
   const critic = [...i.critic].sort((a, b) => b.at.getTime() - a.at.getTime());
   const count = (v: string) => critic.filter((c) => c.critic?.verdict === v).length;
   const pass = count('pass'); const revise = count('revise'); const reject = count('reject'); const failed = count('error');
@@ -152,9 +239,15 @@ export function assembleQuality(i: { critic: CriticRow[]; posts: PostRow[]; owne
   if (overQ > 0) flags.push('reader_questions_over_cap');
   if (rejected.length) flags.push('owner_rejections');
   if (edited.length) flags.push('owner_edits');
+  const plan = i.plan ? assemblePlan(i.plan.rows, i.plan.tz, i.plan.now) : undefined;
+  if (plan?.dark_days.length) flags.push('dark_day');
+  if (plan?.series_missed.length) flags.push('series_missed');
 
   const issue = critic.find((c) => c.critic?.verdict && c.critic.verdict !== 'pass');
   const lastOwner = owner.find((o) => o.outcome !== 'clean');
+  const silent = plan && (plan.dark_days.length || plan.series_missed.length)
+    ? `${plan.dark_days.at(-1) ?? ''}|${plan.series_missed[0]?.slot_id ?? ''}`
+    : null;
   return {
     days: QUALITY_DAYS,
     posts: written.length,
@@ -163,14 +256,19 @@ export function assembleQuality(i: { critic: CriticRow[]; posts: PostRow[]; owne
     reader_questions: { cap: i.caps.questionsPerDay, with_questions: withQ, over_cap: overQ, examples: qExamples },
     owner: { approved, edited: edited.length, rejected: rejected.length, rejection_rate: ratio(rejected.length, approved + rejected.length), reasons, edits },
     samples: written.slice(0, MAX_SAMPLES).map((p) => ({ at: p.at.toISOString(), status: p.status, format: p.format, text: clip(p.text, SAMPLE_CHARS) })),
+    ...(plan ? { plan } : {}),
     flags,
-    signature: { issue: issue ? `${issue.slotId}:${issue.critic.verdict}` : null, owner: lastOwner ? `${lastOwner.slotId}:${lastOwner.outcome}` : null, flags },
+    signature: {
+      issue: issue ? `${issue.slotId}:${issue.critic.verdict}` : null, owner: lastOwner ? `${lastOwner.slotId}:${lastOwner.outcome}` : null, flags,
+      ...(silent ? { silent } : {}),
+    },
   };
 }
 
 /** Has the resource produced anything to judge in the window (posts, verdicts or owner decisions)? */
 export function qualityActive(q: ResourceQuality | null | undefined): boolean {
-  return !!q && (q.posts > 0 || q.critic.total > 0 || q.owner.approved + q.owner.rejected > 0 || q.polls.slots > 0);
+  return !!q && (q.posts > 0 || q.critic.total > 0 || q.owner.approved + q.owner.rejected > 0 || q.polls.slots > 0
+    || (q.plan?.days.some((d) => d.planned > 0) ?? false));
 }
 
 /** A quality metric's value in % (null without data). */
@@ -203,9 +301,24 @@ const REF = `COALESCE(s.resource_ref, 'telegram:' || s.channel_key)`;
 export class SqlQuality {
   constructor(private readonly pool: Pick<Pool, 'query'>) {}
 
-  async rows(refs: string[], from: Date, to: Date): Promise<Map<string, { critic: CriticRow[]; posts: PostRow[]; owner: OwnerRow[] }>> {
-    const out = new Map(refs.map((r) => [r, { critic: [] as CriticRow[], posts: [] as PostRow[], owner: [] as OwnerRow[] }]));
+  async rows(refs: string[], from: Date, to: Date): Promise<Map<string, { critic: CriticRow[]; posts: PostRow[]; owner: OwnerRow[]; plan: PlanRow[]; tz: string }>> {
+    const out = new Map(refs.map((r) => [r, { critic: [] as CriticRow[], posts: [] as PostRow[], owner: [] as OwnerRow[], plan: [] as PlanRow[], tz: 'Europe/Kyiv' }]));
     if (!refs.length) return out;
+    // Spec 037 FR-010: every content slot of the window (planned vs out, skip reasons) and each resource's zone.
+    const { rows: plan } = await this.pool.query(
+      `SELECT ${REF} AS ref, s.id::text AS id, s.scheduled_at AS at, s.status, s.error, s.critic->>'verdict' AS verdict,
+              s.series_name, s.schedule_rule_id::text AS schedule_rule_id, s.fallback
+         FROM editor_slots s
+        WHERE s.kind = 'content' AND ${REF} = ANY($1::text[]) AND s.scheduled_at >= $2 AND s.scheduled_at < $3
+        ORDER BY s.scheduled_at LIMIT 5000`, [refs, from, to]);
+    for (const r of plan) {
+      out.get(r.ref)?.plan.push({
+        slotId: r.id, at: new Date(r.at), status: r.status, error: r.error ?? null, criticVerdict: r.verdict ?? null,
+        seriesName: r.series_name ?? null, scheduleRuleId: r.schedule_rule_id ?? null, fallback: r.fallback ?? null,
+      });
+    }
+    const { rows: zones } = await this.pool.query(`SELECT ref, resource_tz(ref) AS tz FROM unnest($1::text[]) AS ref`, [refs]);
+    for (const z of zones) { const e = out.get(z.ref); if (e && z.tz) e.tz = z.tz; }
     const { rows: critic } = await this.pool.query(
       `SELECT ${REF} AS ref, s.id::text AS id, s.updated_at AS at, s.critic
          FROM editor_slots s
@@ -265,13 +378,17 @@ export class SqlQuality {
     const from = new Date(now.getTime() - QUALITY_DAYS * 86_400_000);
     // A minute of slack: a row written in the same millisecond (DB clocks are finer) still counts.
     const [data, caps] = await Promise.all([this.rows(refs, from, new Date(now.getTime() + 60_000)), this.caps(refs)]);
-    return new Map(refs.map((r) => [r, assembleQuality({ ...data.get(r)!, caps: caps.get(r)! })]));
+    return new Map(refs.map((r) => {
+      const d = data.get(r)!;
+      return [r, assembleQuality({ ...d, caps: caps.get(r)!, plan: { rows: d.plan, tz: d.tz, now } })];
+    }));
   }
 
   /** One resource's quality in [from, to) (voice_fix / format_mix verification). */
   async window(ref: string, from: Date, to: Date): Promise<ResourceQuality> {
     const [data, caps] = await Promise.all([this.rows([ref], from, to), this.caps([ref])]);
-    return assembleQuality({ ...data.get(ref)!, caps: caps.get(ref)! });
+    const d = data.get(ref)!;
+    return assembleQuality({ ...d, caps: caps.get(ref)!, plan: { rows: d.plan, tz: d.tz, now: to } });
   }
 
   /**

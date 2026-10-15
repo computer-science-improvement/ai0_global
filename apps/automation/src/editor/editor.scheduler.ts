@@ -63,6 +63,11 @@ export interface EditorSchedulerDeps {
    * live slot for a fresh item (cheap when not due). Runs after planning, never for a held channel.
    */
   newsWatch?: (card: EditorCard, now: Date) => Promise<unknown>;
+  /**
+   * Spec 037 FR-010: the silent-day notes (dark_day, series_missed, critic_reject_streak) — a code-only check of
+   * the slots, throttled by the hook itself, one Inbox note per resource per day and kind. Paused resources are left out.
+   */
+  silentDays?: (cards: EditorCard[], now: Date, paused: ReadonlySet<string>) => Promise<unknown>;
 }
 
 /** How far ahead approval-mode slots are looked at for writing (the evening batch covers the next day). */
@@ -166,6 +171,9 @@ export class EditorScheduler {
 
     if (this.d.afterTick) {
       try { await this.d.afterTick(now); } catch (err: any) { this.d.log?.(`after-tick hook failed: ${err?.message ?? err}`); }
+    }
+    if (this.d.silentDays) {
+      try { await this.d.silentDays(cards, now, paused); } catch (err: any) { this.d.log?.(`silent-day check failed: ${err?.message ?? err}`); }
     }
 
     // Approval mode writes ahead of time; everything else (and late approval slots) at the slot time.

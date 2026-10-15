@@ -8,6 +8,8 @@ export type QualityTone = 'neutral' | 'success' | 'warning' | 'danger';
 
 export const QUALITY_FLAGS = [
   'critic_reject', 'critic_low_pass', 'critic_failed', 'polls_over_cap', 'reader_questions_over_cap', 'owner_rejections', 'owner_edits',
+  // Spec 037 FR-010: silent days.
+  'dark_day', 'series_missed',
 ] as const;
 export type QualityFlag = typeof QUALITY_FLAGS[number];
 
@@ -24,6 +26,13 @@ export interface ResourceQuality {
   reader_questions: { cap: number; with_questions: number; over_cap: number; examples: string[] };
   owner: { approved: number; edited: number; rejected: number; rejection_rate: number | null; reasons: string[]; edits: string[] };
   samples: QualitySample[];
+  /** Spec 037 FR-010: planned vs out per local day (absent on older digests). */
+  plan?: {
+    days: Array<{ day: string; planned: number; published: number; shadowed: number; pending: number; skip_reasons: Record<string, number>; rescued: number }>;
+    dark_days: string[];
+    series_missed: Array<{ day: string; slot_id: string; series: string; status: string; reason: string }>;
+    fallback: { laddered: number; rescued: number };
+  };
   flags: QualityFlag[];
 }
 
@@ -44,10 +53,12 @@ export const FLAG_LABEL: Record<QualityFlag, string> = {
   reader_questions_over_cap: 'too many reader questions',
   owner_rejections:          'you rejected posts',
   owner_edits:               'you edited posts',
+  dark_day:                  'a planned day with no post',
+  series_missed:             'a series slot did not go out',
 };
 
 export const CHECK_ITEM_LABEL: Record<string, string> = {
-  ai_likeness: 'sounds like AI', sense: 'sense', voice: 'voice / humour', audience_asks: 'polls & questions', owner_feedback: 'your feedback', format_fit: 'format fit',
+  ai_likeness: 'sounds like AI', sense: 'sense', voice: 'voice / humour', audience_asks: 'polls & questions', owner_feedback: 'your feedback', format_fit: 'format fit', silent_days: 'silent days',
 };
 
 export const flagLabel = (f: string) => FLAG_LABEL[f as QualityFlag] ?? f.replace(/_/g, ' ');
@@ -88,7 +99,7 @@ export function qualityStats(q: ResourceQuality): QualityStat[] {
 export function qualityHeadline(q: ResourceQuality | null | undefined): { text: string; tone: QualityTone } {
   if (!qualityActive(q)) return { text: 'No posts in 7 days', tone: 'neutral' };
   if (!q.flags.length) return { text: 'No quality flags', tone: 'success' };
-  const bad = q.flags.some((f) => f === 'critic_reject' || f === 'critic_low_pass' || f === 'polls_over_cap' || f === 'owner_rejections');
+  const bad = q.flags.some((f) => f === 'critic_reject' || f === 'critic_low_pass' || f === 'polls_over_cap' || f === 'owner_rejections' || f === 'dark_day');
   return { text: q.flags.map(flagLabel).join(' · '), tone: bad ? 'danger' : 'warning' };
 }
 

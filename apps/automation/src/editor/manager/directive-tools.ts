@@ -55,7 +55,7 @@ export const FileDirectiveInput = z.object({
 export type FileDirective = z.infer<typeof FileDirectiveInput>;
 
 /** Spec 034 FR-006: the content-quality checklist items (manager-workflow). */
-export const QUALITY_CHECK_ITEMS = ['ai_likeness', 'sense', 'voice', 'audience_asks', 'owner_feedback', 'format_fit'] as const;
+export const QUALITY_CHECK_ITEMS = ['ai_likeness', 'sense', 'voice', 'audience_asks', 'owner_feedback', 'format_fit', 'silent_days'] as const;
 /** A note that explains an "ok" despite code flags, or a "continue" despite an issue, is at least this long. */
 export const QUALITY_NOTE_MIN = 20;
 
@@ -315,7 +315,7 @@ export function buildDirectiveTools(d: DirectiveToolDeps): EditorTool[] {
     name: 'submit_review',
     description: [
       'Завершити прогін менеджера: verdict directives (дано поради чи директиви) або continue (нічого міняти не треба), короткий підсумок для власника.',
-      'quality_check обовʼязковий: по кожному ресурсу з активністю за 7 днів — status ok | issue, evidence з цифрами чи цитатами з блоку quality, issues (ai_likeness, sense, voice, audience_asks, owner_feedback, format_fit).',
+      'quality_check обовʼязковий: по кожному ресурсу з активністю за 7 днів — status ok | issue, evidence з цифрами чи цитатами з блоку quality, issues (ai_likeness, sense, voice, audience_asks, owner_feedback, format_fit, silent_days).',
       'Код перевіряє: ресурс із прапорцями якості не може бути «ok» без пояснення в note; continue при status issue — лише з поясненням у note, чому поради зараз не треба.',
     ].join(' '),
     kind: 'terminal', roles: ['manager'],
