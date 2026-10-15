@@ -113,6 +113,16 @@ function requireSlotCtx(ctx: ToolContext): { channelKey: string; slotId: string 
   return { channelKey: ctx.channelKey, slotId: ctx.slotId };
 }
 
+/**
+ * The content-ledger dedup of a post's refs (spec 023 FR-010): published, shadowed, error-marked, or waiting /
+ * approved on another slot of the resource (spec 031). Null when the post may go out.
+ */
+export async function sourceGuard(d: Pick<RoleToolDeps, 'plans'>, channelKey: string, spec: PostSpec) {
+  if (spec.library_ref && await d.plans.sourceAlreadyPosted(channelKey, spec.library_ref)) return { error: 'library_item_already_posted' as const };
+  if (spec.source && await d.plans.sourceAlreadyPosted(channelKey, spec.source.url)) return { error: 'source_already_posted' as const };
+  return null;
+}
+
 /** Ordered, deterministic guards for publish_post. Returns an error object or null. */
 export async function checkPublishGuards(d: RoleToolDeps, ctx: ToolContext, spec: PostSpec, now: Date) {
   const { channelKey, slotId } = requireSlotCtx(ctx);
@@ -137,8 +147,8 @@ export async function checkPublishGuards(d: RoleToolDeps, ctx: ToolContext, spec
   const maxSim = corpus.reduce((m, t) => Math.max(m, similarity(rendered.preview, t)), 0);
   if (maxSim >= SIMILARITY_LIMIT) return { error: 'too_similar', details: `схожість ${maxSim.toFixed(2)} з нещодавнім постом — інший матеріал або кут` };
   const ref = spec.library_ref ?? spec.source?.url ?? null;
-  if (spec.library_ref && await d.plans.sourceAlreadyPosted(channelKey, spec.library_ref)) return { error: 'library_item_already_posted' };
-  if (spec.source && await d.plans.sourceAlreadyPosted(channelKey, spec.source.url)) return { error: 'source_already_posted' };
+  const dup = await sourceGuard(d, channelKey, spec);
+  if (dup) return dup;
   if (d.schedule) {
     const sg = await d.schedule.publishGuard(slot, { libraryRef: spec.library_ref, sourceUrl: spec.source?.url }, { live: card.mode === 'live', now, card, feeds: card.sources });
     if (sg) return sg;
@@ -213,8 +223,16 @@ export function buildRoleTools(d: RoleToolDeps): EditorTool[] {
       }
       const withCritic = critic ? { critic } : {};
 
-      // Spec 034 FR-012: a dry-run Preview stops here — nothing is stored on the slot, sent, put up for approval or ledgered.
       const dry = dryRunOf(ctx);
+
+      // Spec 037 T16: the critic takes minutes; another slot of the resource may have published or put up the
+      // same source meanwhile (it was not in the ledger or waiting when the guards ran). Ask the ledger again.
+      if (gate && !dry) {
+        const dup = await sourceGuard(d, channelKey, spec);
+        if (dup) return { ...dup, details: 'поки критик читав пост, це джерело вже вийшло або чекає апруву на цьому ресурсі — інший матеріал або skip_slot' };
+      }
+
+      // Spec 034 FR-012: a dry-run Preview stops here — nothing is stored on the slot, sent, put up for approval or ledgered.
       if (dry) {
         dry.store({ platform: 'telegram', preview: g.rendered.preview, spec, warnings: g.lint.warnings.map((w) => w.message) });
         return { ok: true, dry: true, warnings: g.lint.warnings, ...withCritic };

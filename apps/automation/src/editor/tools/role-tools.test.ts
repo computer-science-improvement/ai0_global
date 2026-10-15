@@ -2,6 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { buildRoleTools, RoleToolDeps } from './role-tools';
 import { makeCard, makeSpec } from '../post/testing/fixtures';
+import { CriticGate } from '../critic/critic-gate';
 
 const NOW = new Date('2026-10-01T09:00:00Z'); // 12:00 Kyiv
 
@@ -72,6 +73,37 @@ test('guards: slot state, lint, similarity, dedup, cap, quiet, gap, off', async 
   assert.equal(await call({ countPublishedSince: async () => 5 }), 'daily_cap_reached');
   assert.equal(await call({}, ctx('live', { quietStartHour: 11, quietEndHour: 14 })), 'quiet_hours');
   assert.equal(await call({ lastPostAt: async () => new Date(NOW.getTime() - 10 * 60_000) }), 'min_gap');
+});
+
+/** A critic gate that passes every post; `onCheck` runs while the "critic reads" (another slot publishing meanwhile). */
+function passingGate(onCheck: () => void = () => {}) {
+  const gate = new CriticGate({ critic: { review: async () => { throw new Error('not called'); } } as any, plans: { updateSlot: async () => {} } },
+    { slotId: 'slot-1', channelKey: '@chan', mode: 'live', resourceRef: 'telegram:@chan', platform: 'telegram', voice: {} });
+  gate.check = async () => { onCheck(); return { kind: 'proceed', critic: { verdict: 'pass', scores: null, notes: 'ok', pass: 1 } as any }; };
+  return gate;
+}
+
+test('037 T16: the source is asked again after the critic — a sibling slot that published or waits meanwhile stops the post', async () => {
+  for (const mode of ['live', 'approve'] as const) {
+    const asked: string[] = [];
+    let siblingOut = false;
+    const h = deps({ sourceAlreadyPosted: async (_k: string, url: string) => { asked.push(url); return siblingOut; } });
+    const c: any = ctx(mode);
+    c.extras.critic = passingGate(() => { siblingOut = true; });
+    const r: any = await h.tools.publish_post.execute({ spec: makeSpec() }, c);
+    assert.equal(r.error, 'source_already_posted', mode);
+    assert.deepEqual(asked, ['https://nasa.gov/ring', 'https://nasa.gov/ring'], `${mode}: before the critic and again after it`);
+    assert.equal(h.sent.length, 0, `${mode}: nothing sent`);
+    assert.equal(h.pubs.length, 0, `${mode}: no publication row`);
+    assert.equal(h.updates.length, 0, `${mode}: the slot is not stored as waiting or published`);
+  }
+  // Nothing went out meanwhile: the post is published, the ledger was asked twice.
+  const ok = deps();
+  const c: any = ctx('live');
+  c.extras.critic = passingGate();
+  const r: any = await ok.tools.publish_post.execute({ spec: makeSpec() }, c);
+  assert.equal(r.ok, true);
+  assert.equal(ok.sent.length, 1);
 });
 
 test('shadow mode skips live-only guards (cap/quiet/gap)', async () => {

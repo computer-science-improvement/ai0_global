@@ -11,11 +11,13 @@ import { resourceKeys } from './data-refs';
  *   • `published` — never again on the same resource, or after `reuse_policy.days` for a dataset whose
  *                   data_schemas.reuse_policy is `after_days` (the dated datasets);
  *   • `shadowed`  — a shadow preview holds the item on the same resource for 7 days only.
- * Canonical refs: `data://<schema_key>/<id>` (a `library://` alias resolves through legacy_ref), a URL with
- * a lower-case scheme and host and without utm_* parameters or the fragment, anything else as given.
+ * Canonical refs: `data://<schema_key>/<id>` (a `library://` alias resolves through legacy_ref); a URL as
+ * https, a lower-case host without `www.`, the root as "/" and no trailing slash on a path, without utm_* /
+ * fbclid / gclid parameters or the fragment (migration 075, spec 037 T16); anything else as given.
  *
  * Posts that wait for the owner (spec 031) are not in the ledger yet; `check(..., { waiting: true })` also
- * looks at waiting / approved slots and waiting platform posts, so two waiting posts never share a source.
+ * looks at waiting / approved slots and waiting platform posts (their refs canonicalised the same way), so
+ * two waiting posts never share a source.
  */
 
 export const LEDGER_ORIGINS = ['strategy', 'editor', 'chat', 'platform', 'manual', 'backfill'] as const;
@@ -123,11 +125,13 @@ export class ContentLedger {
       `SELECT COALESCE(resource_ref, 'telegram:' || channel_key) AS rr, updated_at AS at FROM editor_slots
         WHERE status IN ('awaiting_approval', 'approved') AND ($3::uuid IS NULL OR id <> $3)
           AND COALESCE(resource_ref, 'telegram:' || channel_key) = $1
-          AND (post_spec->>'library_ref' = ANY($2::text[]) OR post_spec->'source'->>'url' = ANY($2::text[])
-               OR platform_spec->>'library_ref' = ANY($2::text[]) OR platform_spec->'source'->>'url' = ANY($2::text[]))
+          AND (content_ref_canonical(post_spec->>'library_ref') = ANY($2::text[])
+               OR content_ref_canonical(post_spec->'source'->>'url') = ANY($2::text[])
+               OR content_ref_canonical(platform_spec->>'library_ref') = ANY($2::text[])
+               OR content_ref_canonical(platform_spec->'source'->>'url') = ANY($2::text[]))
        UNION ALL
        SELECT resource_ref, posted_at FROM platform_posts
-        WHERE resource_ref = $1 AND status = 'awaiting_approval' AND source_ref = ANY($2::text[])
+        WHERE resource_ref = $1 AND status = 'awaiting_approval' AND content_ref_canonical(source_ref) = ANY($2::text[])
           AND ($3::uuid IS NULL OR slot_id IS DISTINCT FROM $3)
        LIMIT 1`, [rr, refs, ex]);
     if (w[0]) return { used: true, status: 'waiting', resourceRef: w[0].rr, ref: sourceRef, at: w[0].at ? new Date(w[0].at) : null };

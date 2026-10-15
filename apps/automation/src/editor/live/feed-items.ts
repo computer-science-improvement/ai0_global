@@ -82,8 +82,10 @@ export async function usedUrls(pool: Pick<Pool, 'query'>, resourceRef: string, u
                      WHERE COALESCE(s.resource_ref, 'telegram:' || s.channel_key) = $1
                        AND ($3::uuid IS NULL OR s.id <> $3)
                        AND ((s.status IN ('running','awaiting_approval','approved')
-                             AND (s.post_spec->'source'->>'url' = ANY(content_ref_aliases(u)) OR s.platform_spec->'source'->>'url' = ANY(content_ref_aliases(u))))
-                         OR (s.status IN ('planned','running') AND s.topic_mode = 'live' AND s.live_spec->'item'->>'url' = u)))`,
+                             AND (content_ref_canonical(s.post_spec->'source'->>'url') = content_ref_canonical(u)
+                                  OR content_ref_canonical(s.platform_spec->'source'->>'url') = content_ref_canonical(u)))
+                         OR (s.status IN ('planned','running') AND s.topic_mode = 'live'
+                             AND content_ref_canonical(s.live_spec->'item'->>'url') = content_ref_canonical(u))))`,
     [rr, urls, excludeSlotId && /^[0-9a-f-]{36}$/i.test(excludeSlotId) ? excludeSlotId : null]);
   return new Set(rows.map((r: any) => String(r.u)));
 }
