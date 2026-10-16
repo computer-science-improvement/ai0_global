@@ -6,7 +6,7 @@
 // one place — they used three different backdrop alphas, three different
 // surfaces, three different radii before.
 
-import { useEffect, type ReactNode } from 'react';
+import { useEffect, useRef, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { Icon } from './Icon';
 import { Icon as UiIcon, type IconName } from './ui/Icon';
@@ -24,13 +24,29 @@ interface Props {
   children: ReactNode;
 }
 
+// Open modals, oldest first: Escape closes only the top one (a confirm opened from a details dialog
+// closes alone, not together with the dialog under it).
+const openStack: symbol[] = [];
+
 export function Modal({ open, onClose, title, subtitle, icon, size = 'md', children }: Props) {
+  const close = useRef(onClose);
+  close.current = onClose;
   useEffect(() => {
     if (!open) return;
-    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
+    const id = Symbol('modal');
+    openStack.push(id);
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== 'Escape' || openStack[openStack.length - 1] !== id) return;
+      e.stopPropagation();
+      close.current();
+    };
     document.addEventListener('keydown', onKey);
-    return () => document.removeEventListener('keydown', onKey);
-  }, [open, onClose]);
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      const at = openStack.indexOf(id);
+      if (at >= 0) openStack.splice(at, 1);
+    };
+  }, [open]);
 
   if (!open) return null;
 

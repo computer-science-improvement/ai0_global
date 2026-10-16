@@ -6,12 +6,12 @@
 // does. Both lists share a binding + kind filter kept in the URL (?binding=&kind=).
 
 import { Link } from '@tanstack/react-router';
-import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
+import { useEffect, useMemo, useState, type ReactNode } from 'react';
 import { EmptyState, type Tone } from '../ui/primitives';
 import { Badge } from '../ui/Badge';
 import { Icon } from '../ui/Icon';
 import { RowActions, TableAction } from '../ui/table';
-import { Modal } from '../Modal';
+import { CompactCard } from '../ui/CompactCard';
 import { useConfirm } from '../ui/ConfirmDialog';
 import { toast } from '../ui/Toast';
 import { SegmentedTabs } from '../SegmentedTabs';
@@ -354,54 +354,33 @@ function DirectiveDetails({ d, show }: { d: Directive; show: 'to' | 'from' }) {
 export function DirectiveCard({ d, delay = 0, focused = false, show = 'to', showStatus = false }: {
   d: Directive; delay?: number; focused?: boolean; show?: 'to' | 'from'; showStatus?: boolean;
 }) {
-  const ref = useRef<HTMLButtonElement>(null);
-  const [open, setOpen] = useState(false);
-  useEffect(() => {
-    if (!focused) return;
-    ref.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    setOpen(true);
-  }, [focused]);
-
   const contested = d.status === 'contested';
   const needsYou = d.status === 'awaiting_owner' || contested;
   const statusBadge = showStatus || contested || CLOSED_STATUSES.includes(d.status);
   const who = show === 'to' ? d.to : d.from;
-  const ring = focused ? 'var(--color-accent)' : needsYou ? 'var(--color-warning-soft)' : null;
 
   return (
-    <>
-      <button ref={ref} type="button" id={`directive-${d.id}`} className="card row-lift compose-rise directive-card" onClick={() => setOpen(true)}
-        aria-haspopup="dialog" title="Open the directive"
-        style={{ animationDelay: `${delay}ms`, boxShadow: ring ? `inset 0 0 0 1px ${ring}` : undefined }}>
-        <span style={{ display: 'flex', gap: 5, alignItems: 'center', minWidth: 0 }}>
-          {d.binding === 'advice' ? <Badge tone="neutral">advice</Badge> : <Badge tone="warning">DIRECTIVE</Badge>}
-          {d.kind !== 'advice' && <span className="chip" style={{ fontSize: 11, whiteSpace: 'nowrap' }}>{DIRECTIVE_KIND_LABEL[d.kind] ?? d.kind}</span>}
-          {statusBadge && <Badge tone={DIRECTIVE_STATUS_TONE[d.status] ?? 'neutral'}>{DIRECTIVE_STATUS_LABEL[d.status] ?? d.status}</Badge>}
-          {d.outcome && <Badge tone={OUTCOME_TONE[d.outcome]}>{OUTCOME_LABEL[d.outcome]}</Badge>}
-          <span className="text-micro" style={{ marginLeft: 'auto', color: 'var(--color-ink-dim)', whiteSpace: 'nowrap' }} title={fmtDate(d.createdAt)}>
-            {fmtRelative(d.createdAt)}
-          </span>
-        </span>
-        <span className="text-body-sm directive-card-body">
-          {who && <span style={{ color: 'var(--color-ink-dim)' }}>{show === 'to' ? '→ ' : '← '}@{who} · </span>}
-          {d.body}
-        </span>
-        {needsYou && (
-          <span className="text-micro" style={{ display: 'inline-flex', gap: 5, alignItems: 'center', color: 'var(--color-warning)' }}>
-            <Icon name="warning" size={12} /> {contested ? `${who ? `@${who}` : 'The orchestrator'} contests it — your call` : 'Needs your approval'}
-          </span>
-        )}
-      </button>
-      <Modal open={open} onClose={() => setOpen(false)} size="lg" icon="agents" title={directiveTitle(d)}
-        subtitle={`${who ? `${show === 'to' ? 'to' : 'from'} @${who} · ` : ''}${fmtRelative(d.createdAt)}`}>
-        <DirectiveDetails d={d} show={show} />
-        {(d.status === 'awaiting_owner' || contested) && (
-          <div className="modal-foot" style={{ justifyContent: contested ? 'stretch' : 'flex-end' }}>
-            {d.status === 'awaiting_owner' ? <OwnerActions d={d} onDone={() => setOpen(false)} /> : <div style={{ flex: 1 }}><ContestActions d={d} onDone={() => setOpen(false)} /></div>}
-          </div>
-        )}
-      </Modal>
-    </>
+    <CompactCard id={`directive-${d.id}`} delay={delay} focused={focused} attention={needsYou} hint="Open the directive"
+      top={<>
+        {d.binding === 'advice' ? <Badge tone="neutral">advice</Badge> : <Badge tone="warning">DIRECTIVE</Badge>}
+        {d.kind !== 'advice' && <span className="chip" style={{ fontSize: 11, whiteSpace: 'nowrap' }}>{DIRECTIVE_KIND_LABEL[d.kind] ?? d.kind}</span>}
+        {statusBadge && <Badge tone={DIRECTIVE_STATUS_TONE[d.status] ?? 'neutral'}>{DIRECTIVE_STATUS_LABEL[d.status] ?? d.status}</Badge>}
+        {d.outcome && <Badge tone={OUTCOME_TONE[d.outcome]}>{OUTCOME_LABEL[d.outcome]}</Badge>}
+      </>}
+      meta={<span title={fmtDate(d.createdAt)}>{fmtRelative(d.createdAt)}</span>}
+      body={<>
+        {who && <span style={{ color: 'var(--color-ink-dim)' }}>{show === 'to' ? '→ ' : '← '}@{who} · </span>}
+        {d.body}
+      </>}
+      note={needsYou ? (contested ? `${who ? `@${who}` : 'The orchestrator'} contests it — your call` : 'Needs your approval') : undefined}
+      dialog={{
+        size: 'lg', icon: 'agents', title: directiveTitle(d),
+        subtitle: `${who ? `${show === 'to' ? 'to' : 'from'} @${who} · ` : ''}${fmtRelative(d.createdAt)}`,
+        body: () => <DirectiveDetails d={d} show={show} />,
+        actions: needsYou ? (close) => d.status === 'awaiting_owner'
+          ? <OwnerActions d={d} onDone={close} />
+          : <div style={{ flex: 1 }}><ContestActions d={d} onDone={close} /></div> : undefined,
+      }} />
   );
 }
 

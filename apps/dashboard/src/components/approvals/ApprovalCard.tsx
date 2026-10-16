@@ -15,9 +15,12 @@ import { SegmentedTabs } from '../SegmentedTabs';
 import { TelegramPreview } from '../chat/TelegramPreview';
 import { CriticBlock } from '../critic/CriticBlock';
 import { ApprovalFindings } from './ApprovalFindings';
+import { CompactCard, plainText } from '../ui/CompactCard';
+import { CriticBadge } from '../editor/SlotPlan';
+import { heldByCritic } from '../../lib/critic';
 import { errorBody } from '../../api/agents';
 import {
-  toZonedInput, useApprovalAction, zonedInputToIso, type ApprovalCardData, type RenderedPlatformPost,
+  fmtDay, toZonedInput, useApprovalAction, zonedInputToIso, type ApprovalCardData, type RenderedPlatformPost,
 } from '../../api/approvals';
 
 const STATUS: Record<string, { label: string; tone: Tone }> = {
@@ -46,42 +49,76 @@ function explain(err: unknown): string {
   }
 }
 
-export function ApprovalCard({ item, delay = 0 }: { item: ApprovalCardData; delay?: number }) {
-  const action = useApprovalAction();
-  const [modal, setModal] = useState<null | 'edit' | 'reschedule' | 'reject'>(null);
-  const busy = action.isPending;
-  const waiting = item.status === 'awaiting_approval';
-  const approved = item.status === 'approved';
-  // A repost (spec 022) is a native forward: it can be approved, moved or rejected, not edited.
-  const forward = item.render?.kind === 'forward';
-  const editable = waiting || (approved && new Date(item.editableUntil).getTime() > Date.now());
-  const st = STATUS[item.status] ?? { label: item.status, tone: 'neutral' as Tone };
-  const title = item.channelTitle || item.channelKey;
+/** The card's text line: the platform caption, else the plain text of the Telegram preview. */
+function cardText(item: ApprovalCardData): string {
+  if (item.render?.kind === 'platform') return item.render.rendered.caption;
+  if (item.render?.kind === 'forward') return `Repost of ${item.render.fromKey}/${item.render.messageId}`;
+  return plainText(item.preview);
+}
 
-  const approve = () => action.mutate({ id: item.id, action: 'approve' }, {
-    onSuccess: (r) => toast.success(r.movedTo
-      ? `Approved and moved to ${toZonedInput(new Date(r.movedTo), item.timezone).replace('T', ' ')} — the slot time has passed`
-      : 'Approved — it goes out at the slot time'),
-    onError: (e) => toast.error(explain(e)),
-  });
+function mediaCount(item: ApprovalCardData): number {
+  const r = item.render;
+  if (r?.kind === 'platform') return r.rendered.imageUrls.length + (r.rendered.videoUrl ? 1 : 0);
+  if (r?.kind === 'telegram') return r.messages.reduce((n, m) => n + ('photos' in m ? m.photos.length : 'photo' in m && m.photo ? 1 : 0), 0);
+  return 0;
+}
+
+/**
+ * A post that waits for the owner as a compact card: time, status, resource, format, topic, two lines of
+ * the text and what the checks say. A click opens the dialog with the exact preview, the rationale, the
+ * critic and the findings, and the actions.
+ */
+export function ApprovalCard({ item, delay = 0, focused = false }: { item: ApprovalCardData; delay?: number; focused?: boolean }) {
+  const waiting = item.status === 'awaiting_approval';
+  const st = STATUS[item.status] ?? { label: item.status, tone: 'neutral' as Tone };
+  const issues = item.findings?.length || item.lintWarnings.length;
+  const held = heldByCritic(item.critic);
+  const media = mediaCount(item);
 
   return (
-    <div className="card compose-rise" style={{ padding: 14, minWidth: 0, animationDelay: `${delay}ms` }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap', marginBottom: 10 }}>
-        <Badge tone={st.tone}>{st.label}</Badge>
+    <CompactCard id={`approval-${item.id}`} delay={delay} focused={focused} attention={waiting && (!!issues || held)} hint="Open the post"
+      top={<>
         <span className="text-micro tabular-nums" style={{ color: 'var(--color-ink)', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: 4 }}>
           <Icon name="clock" size={12} /> {item.localTime}
         </span>
-        <span className="chip" style={{ display: 'inline-flex', alignItems: 'center', gap: 4, maxWidth: '100%', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }} title={item.resourceRef}>
-          <Icon name={PLATFORM_ICON[item.platform] ?? 'globe'} size={11} /> {item.platform === 'telegram' ? item.channelKey : item.resourceRef}
+        <Badge tone={st.tone}>{st.label}</Badge>
+        <span className="chip" style={{ display: 'inline-flex', alignItems: 'center', gap: 4, fontSize: 11 }} title={item.resourceRef}>
+          <Icon name={PLATFORM_ICON[item.platform] ?? 'globe'} size={11} /> {item.format}
         </span>
+        {item.ownerEdited && <span className="chip" style={{ fontSize: 11 }}>edited</span>}
+        {item.replacesSlotId && <span className="chip" style={{ fontSize: 11 }}>replacement</span>}
+        {item.isExperiment && <span className="chip" style={{ fontSize: 11 }}>experiment</span>}
+      </>}
+      title={item.topic}
+      body={cardText(item) || undefined}
+      extra={(item.critic || media > 0) ? (
+        <span style={{ display: 'flex', gap: 5, alignItems: 'center', flexWrap: 'wrap' }}>
+          <CriticBadge critic={item.critic} />
+          {media > 0 && <span className="text-micro" style={{ color: 'var(--color-ink-dim)', display: 'inline-flex', alignItems: 'center', gap: 4 }}><Icon name="image" size={11} /> {media}</span>}
+        </span>
+      ) : undefined}
+      note={issues ? `${issues} ${issues === 1 ? 'finding' : 'findings'} — check before approving` : undefined}
+      dialog={{
+        size: 'lg', icon: PLATFORM_ICON[item.platform] ?? 'globe', title: item.topic,
+        subtitle: `${item.platform === 'telegram' ? item.channelKey : item.resourceRef} · ${fmtDay(item.planDate)} ${item.localTime} (${item.timezone})`,
+        body: () => <ApprovalDetails item={item} />,
+        actions: (waiting || item.status === 'approved') ? (close) => <ApprovalActions item={item} onDone={close} /> : undefined,
+      }} />
+  );
+}
+
+/** Everything about the post: the exact preview, the rationale, the critic, the findings and the expiry. */
+function ApprovalDetails({ item }: { item: ApprovalCardData }) {
+  const title = item.channelTitle || item.channelKey;
+  return (
+    <div style={{ minWidth: 0 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap', marginBottom: 10 }}>
+        <Badge tone={(STATUS[item.status] ?? { tone: 'neutral' as Tone }).tone}>{(STATUS[item.status] ?? { label: item.status }).label}</Badge>
         <span className="chip">{item.format}</span>
         {item.ownerEdited && <span className="chip">edited</span>}
         {item.replacesSlotId && <span className="chip">replacement</span>}
         {item.isExperiment && <span className="chip">experiment</span>}
       </div>
-
-      <div className="text-body-sm" style={{ color: 'var(--color-ink)', fontWeight: 600, marginBottom: 8, overflowWrap: 'anywhere' }}>{item.topic}</div>
 
       {item.render?.kind === 'telegram'
         ? <TelegramPreview messages={item.render.messages} channelTitle={item.channelTitle} channelKey={item.channelKey} time={item.localTime} />
@@ -109,41 +146,63 @@ export function ApprovalCard({ item, delay = 0 }: { item: ApprovalCardData; dela
           <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>Posts with warnings or a critic verdict other than pass are left out of "Approve all".</span>
         </div>
       )}
-      {waiting && (
+      {item.status === 'awaiting_approval' && (
         <div className="text-micro" style={{ marginTop: 8, color: 'var(--color-ink-dim)' }}>
           If it is not approved by {toZonedInput(new Date(item.expiresAt), item.timezone).replace('T', ' ')} ({item.timezone}), the post will not go out.
         </div>
       )}
+    </div>
+  );
+}
 
-      {(waiting || approved) && (
-        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 12 }}>
-          {waiting && (
-            <button className="btn-primary" disabled={busy} onClick={approve} style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
-              <Icon name="check" size={14} /> Approve
-            </button>
-          )}
-          {editable && !forward && (
-            <button className="btn-secondary" disabled={busy} onClick={() => setModal('edit')} style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
-              <Icon name="pencil" size={14} /> {waiting ? 'Edit and approve' : 'Edit'}
-            </button>
-          )}
-          {editable && (
-            <button className="btn-secondary" disabled={busy} onClick={() => setModal('reschedule')} style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
-              <Icon name="calendar" size={14} /> Reschedule
-            </button>
-          )}
-          {editable && (
-            <button className="btn-ghost" disabled={busy} onClick={() => setModal('reject')} style={{ display: 'inline-flex', alignItems: 'center', gap: 6, color: 'var(--color-danger)' }}>
-              <Icon name="ban" size={14} /> Reject
-            </button>
-          )}
-          {approved && !editable && <span className="text-micro" style={{ color: 'var(--color-ink-dim)', alignSelf: 'center' }}>Less than 2 minutes to publication — the card is locked.</span>}
-        </div>
+/** Approve, edit, reschedule, reject — the dialog's footer. `onDone` closes the dialog once the post is decided. */
+function ApprovalActions({ item, onDone }: { item: ApprovalCardData; onDone: () => void }) {
+  const action = useApprovalAction();
+  const [modal, setModal] = useState<null | 'edit' | 'reschedule' | 'reject'>(null);
+  const busy = action.isPending;
+  const waiting = item.status === 'awaiting_approval';
+  const approved = item.status === 'approved';
+  // A repost (spec 022) is a native forward: it can be approved, moved or rejected, not edited.
+  const forward = item.render?.kind === 'forward';
+  const editable = waiting || (approved && new Date(item.editableUntil).getTime() > Date.now());
+  const settled = () => { setModal(null); onDone(); };
+
+  const approve = () => action.mutate({ id: item.id, action: 'approve' }, {
+    onSuccess: (r) => {
+      toast.success(r.movedTo
+        ? `Approved and moved to ${toZonedInput(new Date(r.movedTo), item.timezone).replace('T', ' ')} — the slot time has passed`
+        : 'Approved — it goes out at the slot time');
+      onDone();
+    },
+    onError: (e) => toast.error(explain(e)),
+  });
+
+  return (
+    <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', justifyContent: 'flex-end', width: '100%' }}>
+      {approved && !editable && <span className="text-micro" style={{ color: 'var(--color-ink-dim)', alignSelf: 'center', marginRight: 'auto' }}>Less than 2 minutes to publication — the post is locked.</span>}
+      {editable && (
+        <button className="btn-ghost" disabled={busy} onClick={() => setModal('reject')} style={{ display: 'inline-flex', alignItems: 'center', gap: 6, color: 'var(--color-danger)', marginRight: 'auto' }}>
+          <Icon name="ban" size={14} /> Reject
+        </button>
       )}
-
-      {modal === 'edit' && <EditModal item={item} onClose={() => setModal(null)} />}
-      {modal === 'reschedule' && <RescheduleModal item={item} onClose={() => setModal(null)} />}
-      {modal === 'reject' && <RejectModal item={item} onClose={() => setModal(null)} />}
+      {editable && (
+        <button className="btn-secondary" disabled={busy} onClick={() => setModal('reschedule')} style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+          <Icon name="calendar" size={14} /> Reschedule
+        </button>
+      )}
+      {editable && !forward && (
+        <button className="btn-secondary" disabled={busy} onClick={() => setModal('edit')} style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+          <Icon name="pencil" size={14} /> {waiting ? 'Edit and approve' : 'Edit'}
+        </button>
+      )}
+      {waiting && (
+        <button className="btn-primary" disabled={busy} onClick={approve} style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+          <Icon name="check" size={14} /> Approve
+        </button>
+      )}
+      {modal === 'edit' && <EditModal item={item} onClose={() => setModal(null)} onSaved={settled} />}
+      {modal === 'reschedule' && <RescheduleModal item={item} onClose={() => setModal(null)} onSaved={settled} />}
+      {modal === 'reject' && <RejectModal item={item} onClose={() => setModal(null)} onSaved={settled} />}
     </div>
   );
 }
@@ -218,7 +277,7 @@ function textToBody(text: string, firstIsLead: boolean): Block[] {
   });
 }
 
-function EditModal({ item, onClose }: { item: ApprovalCardData; onClose: () => void }) {
+function EditModal({ item, onClose, onSaved }: { item: ApprovalCardData; onClose: () => void; onSaved: () => void }) {
   const action = useApprovalAction();
   const spec = item.spec ?? {};
   const isPlatform = item.platform !== 'telegram';
@@ -241,7 +300,7 @@ function EditModal({ item, onClose }: { item: ApprovalCardData; onClose: () => v
     try { next = build(); } catch { setError('Could not parse the JSON — check the syntax.'); return; }
     setError(null);
     action.mutate({ id: item.id, action: 'edit', spec: next }, {
-      onSuccess: (r) => { toast.success(`Saved and approved${r.warnings?.length ? ` (warnings: ${r.warnings.join('; ')})` : ''}`); onClose(); },
+      onSuccess: (r) => { toast.success(`Saved and approved${r.warnings?.length ? ` (warnings: ${r.warnings.join('; ')})` : ''}`); onSaved(); },
       onError: (e) => setError(explain(e)),
     });
   };
@@ -277,13 +336,13 @@ function EditModal({ item, onClose }: { item: ApprovalCardData; onClose: () => v
   );
 }
 
-function RescheduleModal({ item, onClose }: { item: ApprovalCardData; onClose: () => void }) {
+function RescheduleModal({ item, onClose, onSaved }: { item: ApprovalCardData; onClose: () => void; onSaved: () => void }) {
   const action = useApprovalAction();
   const [value, setValue] = useState(() => toZonedInput(new Date(item.scheduledAt), item.timezone));
   const [error, setError] = useState<string | null>(null);
   const min = useMemo(() => toZonedInput(new Date(Date.now() + 5 * 60_000), item.timezone), [item.timezone]);
   const submit = () => action.mutate({ id: item.id, action: 'reschedule', at: zonedInputToIso(value, item.timezone) }, {
-    onSuccess: () => { toast.success('Time changed'); onClose(); },
+    onSuccess: () => { toast.success('Time changed'); onSaved(); },
     onError: (e) => setError(explain(e)),
   });
   return (
@@ -301,15 +360,15 @@ function RescheduleModal({ item, onClose }: { item: ApprovalCardData; onClose: (
   );
 }
 
-function RejectModal({ item, onClose }: { item: ApprovalCardData; onClose: () => void }) {
+function RejectModal({ item, onClose, onSaved }: { item: ApprovalCardData; onClose: () => void; onSaved: () => void }) {
   const action = useApprovalAction();
   const [reason, setReason] = useState('');
   const submit = () => action.mutate({ id: item.id, action: 'reject', reason: reason.trim() || undefined }, {
     onSuccess: (r) => {
       toast.success(r.replacementId ? 'Rejected — the agent will write a replacement, which will also wait for approval' : 'Rejected');
-      onClose();
+      onSaved();
     },
-    onError: (e) => { toast.error(explain(e)); onClose(); },
+    onError: (e) => { toast.error(explain(e)); onSaved(); },
   });
   return (
     <Modal open onClose={onClose} title="Reject post" subtitle={`${item.resourceRef} · ${item.topic}`} icon="ban">

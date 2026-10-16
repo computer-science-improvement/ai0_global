@@ -98,7 +98,7 @@ export function ApprovalList({ filter = {}, emptyNote, limit }: { filter?: Appro
                   </button>
                 )}
               </div>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 380px), 1fr))', gap: 12, alignItems: 'start' }}>
+              <div className="compact-grid">
                 {g.items.map((it, i) => <ApprovalCard key={it.id} item={it} delay={Math.min(i, 10) * 30} />)}
               </div>
             </section>
