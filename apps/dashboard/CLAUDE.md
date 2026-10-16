@@ -69,6 +69,22 @@ last with the `btn-act-danger` variant behind a `useConfirm()` dialog. Use a
 staggered `compose-rise` entrance for lists. Tables (`ui/table.tsx`) remain for
 dense, column-oriented data (logs, recommendations).
 
+## Compact cards (rich items)
+
+Lists of rich items — posts to approve, directives, ideas, reviews, inbox messages, data items — never
+render tall cards with the whole content inline. Use **`<CompactCard>`** (`components/ui/CompactCard.tsx`):
+the card shows 3–5 key facts (badges/chips in `top`, the time in `meta`, a one-line `title`, a `body`
+clamped to 2 lines, an optional `note` that asks for attention) and a click opens a dialog with
+everything else (`dialog.body`) and the actions (`dialog.actions`, a sticky footer). Grid: `.compact-grid`.
+
+- The card is a `<button>`: no buttons, links or inputs inside it — actions live in the dialog.
+- Put the details in a `XxxDetails` component and the actions in `XxxActions({ onDone })`; call `onDone`
+  (the dialog's `close`) once the item is settled. See `DirectiveCard` and `ApprovalCard`.
+- Deep links (`?directive=`, `?idea=`…) pass `focused` — the card scrolls into view and opens.
+- Sub-dialogs (edit, reject, confirm) open on top: `Modal` keeps a stack, Escape closes only the top one.
+- Rows of entities with toggles or icon buttons stay card-rows (below); just clamp long text (`.clamp`, `--clamp`).
+- Never use `<details>` or inline expand toggles for long content — open a dialog.
+
 ## Graph page
 
 `components/GraphCanvas.tsx` renders via `force-graph` on a single canvas —
