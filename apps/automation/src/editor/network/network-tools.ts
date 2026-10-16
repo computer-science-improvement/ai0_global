@@ -146,7 +146,13 @@ export function buildNetworkTools(d: NetworkToolDeps): EditorTool[] {
     const res = new Map(net.resources.map((r) => [r.ref, r]));
     for (const v of variants) {
       const r = res.get(v.resource_ref);
-      if (!r) { errs.push(`варіант ${v.resource_ref}: не ресурс мережі (є: ${net.resources.map((x) => x.ref).join(', ')})`); continue; }
+      if (!r) {
+        const off = net.dropped?.find((x) => x.ref === v.resource_ref);
+        errs.push(off
+          ? `варіант ${v.resource_ref}: ресурс зараз поза мережею (${off.reason === 'paused' ? 'на паузі' : 'недоступний'}) — прибери варіант (є: ${net.resources.map((x) => x.ref).join(', ')})`
+          : `варіант ${v.resource_ref}: не ресурс мережі (є: ${net.resources.map((x) => x.ref).join(', ')})`);
+        continue;
+      }
       const sec = net.playbook?.platforms.find((p) => p.resource_ref === v.resource_ref);
       const allowed = sec ? Object.keys(sec.formats).filter((f) => sec.formats[f] > 0) : (r.platform === 'telegram' ? net.telegramFormats : implementedFormats(r.platform));
       if (!allowed.includes(v.format)) errs.push(`варіант ${v.resource_ref}: формат ${v.format} не дозволений (є: ${allowed.join(', ')})`);

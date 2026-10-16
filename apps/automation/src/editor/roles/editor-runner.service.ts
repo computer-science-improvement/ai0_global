@@ -363,7 +363,8 @@ export class EditorRunnerService {
       const quiet = isQuietHour(localHour(retryAt, card.timezone), card.quietStartHour, card.quietEndHour);
       const reason = `${res.status}${res.error ? `: ${res.error}` : ''}`;
       if (after.attempts < MAX_SLOT_ATTEMPTS && res.status !== 'budget_exceeded' && res.status !== 'disabled' && !quiet) {
-        await this.d.plans.updateSlot(slot.id, { status: 'planned', scheduledAt: retryAt, error: `retry after ${reason}` });
+        // Spec 040 FR-008: the planned time stays, so the delay of the post that goes out is visible.
+        await this.d.plans.updateSlot(slot.id, { status: 'planned', retryAt, error: `retry after ${reason}` });
       } else {
         await this.d.plans.updateSlot(slot.id, { status: 'failed', error: reason });
       }

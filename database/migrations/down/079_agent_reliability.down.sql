@@ -13,6 +13,9 @@ ALTER TABLE agent_directives ADD CONSTRAINT agent_directives_status_check CHECK 
 ALTER TABLE agent_directives DROP COLUMN IF EXISTS supersedes;
 
 ALTER TABLE manager_reviews DROP COLUMN IF EXISTS signature;
+-- A slot waiting for its retry keeps it as its time (the pre-079 behaviour).
+UPDATE editor_slots SET scheduled_at = retry_at WHERE retry_at IS NOT NULL AND status = 'planned';
+ALTER TABLE editor_slots DROP COLUMN IF EXISTS retry_at;
 DROP TABLE IF EXISTS source_host_failures;
 ALTER TABLE editor_channel_memory DROP COLUMN IF EXISTS source_text;
 DELETE FROM llm_budgets WHERE scope_kind = 'feature_prefix' AND scope_key = 'editor.chat' AND seeded_from = 'spec 040';

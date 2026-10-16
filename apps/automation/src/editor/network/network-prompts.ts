@@ -33,7 +33,10 @@ function memoryBlock(memory: MemoryEntry[]): string {
 }
 
 export function resourcesBlock(net: NetworkCtx): string {
-  return net.resources.map((r) => `- ${r.ref} (${r.platform}): формати ${r.platform === 'telegram' ? net.telegramFormats.join(', ') : implementedFormats(r.platform).join(', ') || 'поки немає'}`).join('\n');
+  const lines = net.resources.map((r) => `- ${r.ref} (${r.platform}): формати ${r.platform === 'telegram' ? net.telegramFormats.join(', ') : implementedFormats(r.platform).join(', ') || 'поки немає'}`);
+  // Spec 040 FR-016: resources of the group left out of this run, with the reason — not to be planned or written for.
+  for (const x of net.dropped ?? []) lines.push(`- ${x.ref}: зараз поза мережею (${x.reason === 'paused' ? 'на паузі за директивою' : 'недоступний: токен чи права'}) — не плануй і не пиши для нього`);
+  return lines.join('\n');
 }
 
 /**

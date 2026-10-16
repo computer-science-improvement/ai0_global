@@ -33,6 +33,8 @@ export interface EditorTool<I = any, O = any> {
   timeoutMs?:  number;
   /** Spec 040: the error code of a verbatim repeat of a failed call (default `repeated_failed_call`). */
   repeatError?: string;
+  /** Spec 040 FR-008: its errors judge the content, not the call (a lint) — the breaker never switches it off. */
+  keepOnError?: boolean;
   execute(input: I, ctx: ToolContext): Promise<O | ToolError>;
 }
 
@@ -44,6 +46,7 @@ export function defineTool<S extends z.ZodType, O>(t: {
   roles:       EditorRole[];
   timeoutMs?:  number;
   repeatError?: string;
+  keepOnError?: boolean;
   execute(input: z.infer<S>, ctx: ToolContext): Promise<O | ToolError>;
 }): EditorTool<z.infer<S>, O> {
   return t as unknown as EditorTool<z.infer<S>, O>;

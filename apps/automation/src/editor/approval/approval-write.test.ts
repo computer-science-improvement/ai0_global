@@ -204,3 +204,28 @@ test('scheduler: approval channels plan the next day at 20:00 and write slots ah
   await s.approvalTick(new Date('2026-10-07T17:01:00Z'));
   assert.ok(calls.includes('approval-tick'));
 });
+
+test('scheduler: a write-ahead slot waiting for its retry is not claimed before retry_at (spec 040 FR-008)', async () => {
+  const calls: string[] = [];
+  const approveCard = { ...card, channelKey: '@appr', planHour: 6, createdAt: new Date('2026-01-01') };
+  const created = new Date('2026-10-07T17:00:30Z');
+  const waiting = slot({ id: 'r1', channelKey: '@appr', scheduledAt: new Date('2026-10-08T07:00:00Z'), createdAt: created, retryAt: new Date('2026-10-07T17:15:00Z') });
+  const due = slot({ id: 'r2', channelKey: '@appr', scheduledAt: new Date('2026-10-08T07:30:00Z'), createdAt: created, retryAt: new Date('2026-10-07T16:55:00Z') });
+  const s = new EditorScheduler({
+    pool: { query: async () => ({ rows: [{}] }) } as any,
+    channels: { listActive: async () => [approveCard] },
+    plans: {
+      getActivePlan: async () => ({ id: 'p', rationale: null }),
+      claimDue: async () => [], skipStale: async () => 0, sweepStuck: async () => [], consecutiveFailures: async () => 0,
+      plannedBefore: async () => [waiting, due],
+      claimSlot: async (id: string) => { calls.push(`claim:${id}`); return { ...(id === 'r1' ? waiting : due), status: 'running' }; },
+    },
+    runner: { runPlanner: async () => ({}) as any, runExecutor: async () => ({}) as any, runReviewer: async () => ({}) as any },
+    enabled: () => true,
+    notify: async () => {},
+    approval: { mode: async (c) => c.mode, tick: async () => {} },
+  });
+  await s.tick(new Date('2026-10-07T17:01:00Z'));
+  assert.ok(!calls.includes('claim:r1'), calls.join(' '));
+  assert.ok(calls.includes('claim:r2'), calls.join(' '));
+});

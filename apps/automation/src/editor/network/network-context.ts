@@ -41,6 +41,8 @@ export interface NetworkCtx {
   playbookVersion: number | null;
   /** Telegram formats allowed by the anchor card. */
   telegramFormats: string[];
+  /** Spec 040 FR-016: group resources left out of this run and why (the agent names them, it does not guess). */
+  dropped?:        Array<{ ref: string; reason: 'unusable' | 'paused' }>;
 }
 
 export interface NetworkContextDeps {
@@ -71,9 +73,10 @@ export async function networkContext(d: NetworkContextDeps, orch: Agent, card: E
   const group = await d.repo.groupOfChannel(anchorKey);
   const raw = group ? await d.repo.groupResources(group.id) : [{ ref: resourceRef('telegram', anchorKey), platform: 'telegram', title: card.title }];
   const plain: NetworkResource[] = [];
+  const dropped: NonNullable<NetworkCtx['dropped']> = [];
   for (const r of raw) {
-    if (d.usable && r.platform !== 'telegram' && !(await d.usable(r.ref))) continue;
-    if (d.paused && await d.paused(r.ref)) continue;
+    if (d.usable && r.platform !== 'telegram' && !(await d.usable(r.ref))) { dropped.push({ ref: r.ref, reason: 'unusable' }); continue; }
+    if (d.paused && await d.paused(r.ref)) { dropped.push({ ref: r.ref, reason: 'paused' }); continue; }
     plain.push({ ref: r.ref, platform: r.platform as Platform });
   }
   const anchorRef = resourceRef('telegram', anchorKey);
@@ -87,5 +90,6 @@ export async function networkContext(d: NetworkContextDeps, orch: Agent, card: E
     mode: !group ? 'single' : group.mode,
     resources, playbook: pb?.body ?? null, playbookVersion: pb?.version ?? null,
     telegramFormats: Object.entries(card.formats).filter(([f, w]) => Number(w) > 0 && tgAllowed.has(f)).map(([f]) => f),
+    ...(dropped.length ? { dropped } : {}),
   };
 }

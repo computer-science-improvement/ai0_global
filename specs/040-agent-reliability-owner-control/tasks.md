@@ -9,7 +9,7 @@ Wave 1 — production keeps running
 - [x] T4 (AI0-130) FR-005 Planner inputs: `""` / nil UUID as absent, idea slot → fixed with the idea's topic, `same_plan_rejected` checklist.
 - [x] T5 (AI0-131) FR-006 Sources: host failure memory (079 `source_host_failures`, 24 h), `host_blocked` + known alternatives, 404 "don't guess", `feed_unparseable`.
 - [x] T6 (AI0-132) FR-007 Directives and manager: open set without `applied`, `supersedes`, schema defaults, `already_satisfied`, open directives in the prompt, skip unchanged reviews, digest wording.
-- [ ] T7 (AI0-133) FR-008 + FR-016 Honest metrics and small fixes: lint failures as errors, retries keep `scheduled_at`, `explain_decision` keys, `add_idea` valid refs + dropped resources.
+- [x] T7 (AI0-133) FR-008 + FR-016 Honest metrics and small fixes: lint failures as errors, retries keep `scheduled_at`, `explain_decision` keys, `add_idea` valid refs + dropped resources.
 
 Wave 2 — owner control
 - [ ] T8 (AI0-134) FR-009 + FR-015 Intent verbs and affirmative replies; chats bound to an agent keep it without a mention.

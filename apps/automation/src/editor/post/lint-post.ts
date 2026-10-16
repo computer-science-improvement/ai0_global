@@ -19,6 +19,14 @@ export interface LintIssue { code: string; message: string }
  */
 export interface LintResult { ok: boolean; errors: LintIssue[]; warnings: LintIssue[] }
 
+/**
+ * Spec 040 FR-008: a failed lint as a tool answer — error `lint_failed` (run stats count it as a failure) with the same
+ * errors and warnings, and the errors as `details` (a verbatim repeat answers them as a checklist).
+ */
+export function lintFailed<T extends { ok: boolean; errors: Array<{ code: string; message: string }> }>(r: T): T | (T & { error: 'lint_failed'; details: string[] }) {
+  return r.ok ? r : { error: 'lint_failed', details: r.errors.map((e) => `${e.code}: ${e.message}`), ...r };
+}
+
 const EMOJI_RE = /\p{Extended_Pictographic}/gu;
 
 const blocksPlain = (blocks: PostSpec['body']): string =>

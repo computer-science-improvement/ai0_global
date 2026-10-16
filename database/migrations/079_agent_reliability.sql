@@ -7,6 +7,7 @@
 -- • source_host_failures: hosts that refused or failed a fetch, blocked for 24 h so agents stop retrying them (FR-006).
 -- • agent_directives: `supersedes` and status `superseded` (FR-007).
 -- • manager_reviews.signature: the anomaly set + quality flags a review saw; an unchanged one skips the next run (FR-007).
+-- • editor_slots.retry_at: when a failed attempt runs again; scheduled_at keeps the planned time (FR-008).
 -- • editor_channel_memory.source_text: the owner's own words a rule came from (FR-010).
 --
 -- Additive, non-destructive and idempotent (CI re-applies it).
@@ -55,6 +56,9 @@ ALTER TABLE agent_directives ADD COLUMN IF NOT EXISTS supersedes UUID REFERENCES
 ALTER TABLE agent_directives DROP CONSTRAINT IF EXISTS agent_directives_status_check;
 ALTER TABLE agent_directives ADD CONSTRAINT agent_directives_status_check CHECK (status IN (
   'new','awaiting_owner','accepted','rejected','applied','evaluated','expired','canceled','contested','declined','failed','superseded'));
+
+-- ── editor_slots ─────────────────────────────────────────────────────────────
+ALTER TABLE editor_slots ADD COLUMN IF NOT EXISTS retry_at TIMESTAMPTZ;
 
 -- ── manager_reviews ──────────────────────────────────────────────────────────
 ALTER TABLE manager_reviews ADD COLUMN IF NOT EXISTS signature TEXT;

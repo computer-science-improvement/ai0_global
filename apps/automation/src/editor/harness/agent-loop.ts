@@ -319,7 +319,7 @@ export class AgentLoop {
             const n = (errorCounts.get(k) ?? 0) + 1;
             errorCounts.set(k, n);
             const tool = byName.get(call.name);
-            if (n >= MAX_SAME_TOOL_ERRORS && tool && tool.kind !== 'terminal' && !dropped.has(call.name)) {
+            if (n >= MAX_SAME_TOOL_ERRORS && tool && tool.kind !== 'terminal' && !tool.keepOnError && !dropped.has(call.name)) {
               dropped.add(call.name);
               notes.push(`Інструмент ${call.name} вимкнено до кінця цього прогону: ${n} помилки «${code}». Зроби інакше або заверши роботу.`);
             }

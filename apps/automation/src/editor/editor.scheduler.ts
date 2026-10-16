@@ -256,6 +256,8 @@ export class EditorScheduler {
       if (out.length >= CLAIM_BATCH) break;
       const card = byKey.get(s.channelKey);
       if (!card || writeAt(s, card).getTime() > now.getTime()) continue;
+      // Spec 040 FR-008: a failed attempt waits for its retry time (scheduledAt keeps the planned one).
+      if (s.retryAt && s.retryAt.getTime() > now.getTime()) continue;
       const claimed = await this.d.plans.claimSlot(s.id);
       if (claimed) out.push(claimed);
     }

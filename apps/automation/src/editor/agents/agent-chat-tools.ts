@@ -24,6 +24,19 @@ export interface AgentChatToolDeps {
 const agentOf = (ctx: ToolContext): Agent | null => (ctx.extras?.agent as Agent | null | undefined) ?? null;
 
 /**
+ * Spec 040 FR-016: the channel the owner or the manager names, in any of its spellings — `telegram:@x`, `@x`, `x`, or a
+ * platform resource ref (`instagram:ig1`). Telegram → the channel key `@x`; another platform → its resource ref.
+ */
+export function slotScopeOf(raw: string): { channelKey: string | null; resourceRef: string | null } {
+  const v = raw.trim();
+  const m = /^([a-z]+):(.+)$/i.exec(v);
+  if (m && m[1].toLowerCase() !== 'telegram') return { channelKey: null, resourceRef: `${m[1].toLowerCase()}:${m[2]}` };
+  const name = (m ? m[2] : v).replace(/^@+/, '');
+  if (!name) return { channelKey: null, resourceRef: null };
+  return { channelKey: `@${name}`, resourceRef: `telegram:@${name}` };
+}
+
+/**
  * Tools of a channel agent when the owner talks to it by @handle (spec 018 FR-003):
  * explain its own decisions, take an owner rule, change its own skills (card).
  */
@@ -37,17 +50,20 @@ export function buildAgentChatTools(d: AgentChatToolDeps): EditorTool[] {
     input: z.object({
       date:    z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional().describe('YYYY-MM-DD (Київ); за замовчуванням сьогодні'),
       slot_id: z.string().uuid().optional(),
-      channel: z.string().max(200).optional().describe('Для менеджера: канал; агент каналу знає свій'),
+      channel: z.string().max(200).optional().describe('Для менеджера: канал — telegram:@x, @x, x або ref іншої платформи; агент каналу знає свій'),
     }),
     execute: async ({ date, slot_id, channel }, ctx) => {
-      const key = channelOf(ctx) ?? channel ?? null;
-      if (!key && !slot_id) return { error: 'no_channel' };
+      const scope = slotScopeOf(channelOf(ctx) ?? channel ?? '');
+      if (!scope.channelKey && !scope.resourceRef && !slot_id) return { error: 'no_channel' };
       const day = date ?? localDate(now(), 'Europe/Kyiv');
       const { rows: slots } = await d.pool.query(
-        `SELECT s.id, s.scheduled_at, s.kind, s.format, s.topic, s.angle, s.status, s.error, s.is_experiment, s.run_id, p.rationale
+        `SELECT s.id, s.scheduled_at, s.kind, s.format, s.topic, s.angle, s.status, s.error, s.is_experiment, s.run_id, s.channel_key, s.resource_ref, p.rationale
            FROM editor_slots s JOIN editor_plans p ON p.id = s.plan_id
-          WHERE ($1::uuid IS NOT NULL AND s.id = $1) OR ($1::uuid IS NULL AND s.channel_key = $2 AND p.plan_date = $3::date AND p.status = 'active')
-          ORDER BY s.scheduled_at`, [slot_id ?? null, key, day]);
+          WHERE ($1::uuid IS NOT NULL AND s.id = $1)
+             OR ($1::uuid IS NULL AND p.plan_date = $3::date AND p.status = 'active'
+                 AND (s.resource_ref = $4 OR (s.channel_key = $2 AND (s.resource_ref IS NULL OR s.resource_ref = $4))))
+          ORDER BY s.scheduled_at`, [slot_id ?? null, scope.channelKey, day, scope.resourceRef]);
+      const key = scope.channelKey ?? slots[0]?.channel_key ?? null;
       const runIds = slots.map((s) => s.run_id).filter(Boolean);
       const { rows: finals } = runIds.length ? await d.pool.query(
         `SELECT DISTINCT ON (run_id) run_id, tool_name, output
@@ -58,7 +74,8 @@ export function buildAgentChatTools(d: AgentChatToolDeps): EditorTool[] {
         `SELECT status, error, started_at FROM editor_runs WHERE role = 'planner' AND channel_key = $1
             AND (started_at AT TIME ZONE 'Europe/Kyiv')::date = $2::date ORDER BY started_at DESC LIMIT 3`, [key, day]);
       return {
-        channel: key, date: day, plan_rationale: slots[0]?.rationale ?? null,
+        channel: scope.resourceRef ?? key, date: day, plan_rationale: slots[0]?.rationale ?? null,
+        ...(slots.length ? {} : { note: `на ${day} немає активного плану зі слотами для ${scope.resourceRef ?? key ?? 'цього каналу'}` }),
         planner_runs: plannerRuns.map((r) => ({ status: r.status, error: r.error, at: r.started_at })),
         slots: slots.map((s) => {
           const f = finalOf.get(s.run_id);

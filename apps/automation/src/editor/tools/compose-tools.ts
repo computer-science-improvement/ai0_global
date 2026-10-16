@@ -2,7 +2,7 @@ import { z } from 'zod';
 import { defineTool, EditorTool, ToolContext } from '../harness/tool';
 import { cardSummary, EditorCard } from '../card';
 import { AgentPostSpecSchema } from '../post/post-spec';
-import { lintPost } from '../post/lint-post';
+import { lintFailed, lintPost } from '../post/lint-post';
 import { renderTelegram } from '../post/render-telegram';
 import { safeGet, RawGet } from '../net/safe-http';
 import type { Lookup } from '../net/ssrf-guard';
@@ -34,9 +34,9 @@ export function buildComposeTools(d: ComposeToolDeps = {}): EditorTool[] {
   const lint = defineTool({
     name: 'lint_post',
     description: 'Перевірити PostSpec за правилами каналу (формат, хештеги, атрибуція, довжина, мова, заборонені фрази, емодзі). Виправ усі errors перед publish_post.',
-    kind: 'read', roles: ['executor', 'composer'],
+    kind: 'read', roles: ['executor', 'composer'], keepOnError: true,
     input: z.object({ spec: AgentPostSpecSchema }),
-    execute: async ({ spec }, ctx) => lintPost(spec, cardFrom(ctx)),
+    execute: async ({ spec }, ctx) => lintFailed(lintPost(spec, cardFrom(ctx))),
   });
 
   const preview = defineTool({

@@ -43,12 +43,13 @@ test('executor: loop gets role tools, card extras, model and prompts with memory
   assert.match(i.user, /Формат: photo/);
 });
 
-test('executor: no terminal → retry once in 15 min', async () => {
-  const { runner, updates } = setup({ runId: 'r1', status: 'max_steps', error: 'no terminal' }, { ...slot, status: 'running', attempts: 1 });
+test('executor: no terminal → retry once in 15 min; the planned time stays (spec 040 FR-008)', async () => {
+  const { runner, updates } = setup({ runId: 'r1', status: 'no_terminal', error: 'ended without a terminal tool' }, { ...slot, status: 'running', attempts: 1 });
   await runner.runExecutor(slot, makeCard());
   const last = updates.at(-1)[1];
   assert.equal(last.status, 'planned');
-  assert.equal(last.scheduledAt.toISOString(), '2026-10-01T09:15:00.000Z');
+  assert.equal(last.retryAt.toISOString(), '2026-10-01T09:15:00.000Z');
+  assert.equal(last.scheduledAt, undefined, 'scheduled_at is not moved');
 });
 
 test('executor: second failure, budget, or quiet retry → failed', async () => {

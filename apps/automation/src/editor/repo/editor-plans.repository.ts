@@ -48,6 +48,8 @@ export interface EditorSlot {
   preparedMedia?:     { slideUrls?: string[]; longreadUrl?: string } | null;
   lintWarnings?:      string[] | null;
   freshnessDeadline?: Date | null;
+  /** Spec 040 FR-008: when a failed attempt runs again; `scheduledAt` keeps the planned time (delays stay visible). */
+  retryAt?:           Date | null;
   replacesSlotId?:    string | null;
   platformPostId?:    number | null;
   // ── independent resources (spec 024); present only when set ──
@@ -145,6 +147,7 @@ export function rowToSlot(r: any): EditorSlot {
     ...(r.prepared_media ? { preparedMedia: r.prepared_media } : {}),
     ...(r.lint_warnings ? { lintWarnings: r.lint_warnings } : {}),
     ...(r.freshness_deadline ? { freshnessDeadline: new Date(r.freshness_deadline) } : {}),
+    ...(r.retry_at ? { retryAt: new Date(r.retry_at) } : {}),
     ...(r.replaces_slot_id ? { replacesSlotId: r.replaces_slot_id } : {}),
     ...(r.platform_post_id != null ? { platformPostId: Number(r.platform_post_id) } : {}),
     ...(r.treatment ? { treatment: r.treatment } : {}),
@@ -225,6 +228,8 @@ export interface SlotResultPatch {
   renderedPreview?: string | null;
   error?:           string | null;
   scheduledAt?:     Date;
+  /** Spec 040 FR-008: the retry time of a failed attempt (cleared when the slot is claimed). */
+  retryAt?:         Date | null;
   // spec 031
   renderMessages?:    ApprovalRender | null;
   preparedMedia?:     { slideUrls?: string[]; longreadUrl?: string } | null;
@@ -473,11 +478,11 @@ export class EditorPlansRepository {
   /** Atomically move due content slots planned → running (single-instance safe, and multi-instance safe too). */
   async claimDue(now: Date, limit: number): Promise<EditorSlot[]> {
     const { rows } = await this.pool.query(
-      `UPDATE editor_slots SET status = 'running', attempts = attempts + 1, updated_at = now()
+      `UPDATE editor_slots SET status = 'running', attempts = attempts + 1, retry_at = NULL, updated_at = now()
         WHERE id IN (
           SELECT s.id FROM editor_slots s
-           WHERE s.status = 'planned' AND s.kind = 'content' AND s.scheduled_at <= $1 AND ${DERIVED_READY}
-           ORDER BY s.scheduled_at
+           WHERE s.status = 'planned' AND s.kind = 'content' AND COALESCE(s.retry_at, s.scheduled_at) <= $1 AND ${DERIVED_READY}
+           ORDER BY COALESCE(s.retry_at, s.scheduled_at)
            LIMIT $2
            FOR UPDATE OF s SKIP LOCKED)
         RETURNING *`,
@@ -533,7 +538,7 @@ export class EditorPlansRepository {
       [new Date(now.getTime() - maxLateMs)]);
     const { rowCount } = await this.pool.query(
       `UPDATE editor_slots SET status = 'skipped', error = 'stale: missed its time window', updated_at = now()
-        WHERE status = 'planned' AND kind = 'content' AND scheduled_at < $1`,
+        WHERE status = 'planned' AND kind = 'content' AND COALESCE(retry_at, scheduled_at) < $1`,
       [new Date(now.getTime() - maxLateMs)]);
     return (rowCount ?? 0) + (derived?.rowCount ?? 0);
   }
@@ -558,7 +563,7 @@ export class EditorPlansRepository {
    */
   async claimSlot(id: string): Promise<EditorSlot | null> {
     const { rows } = await this.pool.query(
-      `UPDATE editor_slots SET status = 'running', attempts = attempts + 1, updated_at = now()
+      `UPDATE editor_slots SET status = 'running', attempts = attempts + 1, retry_at = NULL, updated_at = now()
         WHERE id = $1 AND status = 'planned' AND kind = 'content'
         RETURNING *`, [id]);
     return rows[0] ? rowToSlot(rows[0]) : null;
@@ -656,6 +661,7 @@ export class EditorPlansRepository {
     if (p.renderedPreview !== undefined) add('rendered_preview', p.renderedPreview);
     if (p.error !== undefined)           add('error', p.error);
     if (p.scheduledAt !== undefined)     add('scheduled_at', p.scheduledAt);
+    if (p.retryAt !== undefined)         add('retry_at', p.retryAt);
     if (p.renderMessages !== undefined)  add('render_messages', p.renderMessages === null ? null : JSON.stringify(p.renderMessages));
     if (p.preparedMedia !== undefined)   add('prepared_media', p.preparedMedia === null ? null : JSON.stringify(p.preparedMedia));
     if (p.lintWarnings !== undefined)    add('lint_warnings', p.lintWarnings === null ? null : JSON.stringify(p.lintWarnings));

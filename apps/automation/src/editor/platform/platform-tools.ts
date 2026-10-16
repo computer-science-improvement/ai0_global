@@ -5,6 +5,7 @@ import { parseResourceRef, Platform } from '../agents/agent.types';
 import type { EditorPlansRepository } from '../repo/editor-plans.repository';
 import { AgentPlatformPostSpecSchema, lintPlatformPost, renderPlatform } from './platform-spec';
 import type { VoicePrefs } from '../post/slop-lint';
+import { lintFailed } from '../post/lint-post';
 import { publishPlatformNow, PublishPlatformDeps } from './publish-platform';
 import { freshnessDeadline } from '../approval/approval-timing';
 import { criticGateOf, criticSummary, PUBLISH_TOOL_TIMEOUT_MS } from '../critic/critic-gate';
@@ -48,7 +49,7 @@ export function buildPlatformTools(d: PlatformToolDeps): EditorTool[] {
   const lintPlatform = defineTool({
     name: 'lint_platform_post',
     description: 'Перевірити нативний пост для Instagram / Facebook / Threads / TikTok перед публікацією: ліміти підпису, хештеги, посилання, кількість медіа, формат. Повертає помилки й превʼю підпису.',
-    kind: 'read', roles: ['executor', 'composer'],
+    kind: 'read', roles: ['executor', 'composer'], keepOnError: true,
     input: z.object({ resource: z.string().min(3).max(200).optional().describe('ref ресурсу; у слоті — береться зі слота'), spec: AgentPlatformPostSpecSchema }),
     execute: async ({ resource, spec }, ctx) => {
       const ref = resource ?? slotOf(ctx)?.resourceRef;
@@ -56,7 +57,7 @@ export function buildPlatformTools(d: PlatformToolDeps): EditorTool[] {
       if (!p || p.platform === 'telegram') return { error: 'not_a_platform_resource' };
       const platform = p.platform as Exclude<Platform, 'telegram'>;
       const lint = lintPlatformPost(spec, { platform, bannedTerms: slotOf(ctx)?.bannedTerms, vocabulary: slotOf(ctx)?.vocabulary, voice: slotOf(ctx)?.voice });
-      return { ...lint, preview: renderPlatform(spec, platform).caption };
+      return lintFailed({ ...lint, preview: renderPlatform(spec, platform).caption });
     },
   });
 
