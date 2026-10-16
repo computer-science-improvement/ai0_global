@@ -10,6 +10,8 @@ import type { Change, ExecContext, PlanError } from './types';
  */
 
 export const notExecutable = (details: string): PlanError => ({ error: 'not_executable', details });
+/** Spec 040 FR-007: the directive asks for what is already true — nothing to file. */
+export const alreadySatisfied = (details: string): PlanError => ({ error: 'not_executable', details, satisfied: true });
 
 const EPS = 1e-9;
 export const round2 = (x: number) => Math.round(x * 100) / 100;

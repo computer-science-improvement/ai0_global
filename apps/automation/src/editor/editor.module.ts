@@ -1474,6 +1474,7 @@ export const EDITOR_PROVIDERS = [
             channelKeyOf: (a) => infra.channelKeyOf(a), exec: manager.runner.exec,
           }, input, { from: await manager.runner.manager(), runId: null, shadow: false, ownerApproved: true });
           if ('error' in r) throw new Error(`${r.error}: ${r.details ?? ''}`);
+          if ('already_satisfied' in r) return { already_satisfied: true, details: r.details };
           return { id: r.directive.id, status: r.directive.status };
         });
         // Spec 024 FR-008: a repurpose the owner applied from the chat (decided_by owner, outside the agent's daily cap).

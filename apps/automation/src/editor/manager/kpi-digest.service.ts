@@ -26,7 +26,7 @@ export interface KpiDigest {
   resources:   ResourceDigest[];
   agents:      Array<{ handle: string; mode: string; paused: boolean; slotsToday: Record<string, number>; spentTodayUsd: number }>;
   budget:      { spentTodayUsd: number; capUsd: number };
-  directives:  { open: Array<{ id: string; to: string; kind: string; status: string; body: string; createdAt: string }>; outcomes: Array<{ to: string; kind: string; outcome: string | null; body: string; detail: unknown }> };
+  directives:  { open: Array<{ id: string; to: string; kind: string; status: string; body: string; createdAt: string; binding?: string; reviewAt?: string | null }>; outcomes: Array<{ to: string; kind: string; outcome: string | null; body: string; detail: unknown }> };
   /** Spec 025 FR-017: how each orchestrator answered the MANAGER over 30 days. */
   compliance?: ComplianceRow[];
   hash:        string;
@@ -93,6 +93,19 @@ export function digestHash(d: Pick<KpiDigest, 'resources' | 'directives'>): stri
   return createHash('sha1').update(JSON.stringify({
     r: d.resources.map((x) => [x.ref, x.kpis]), o: d.directives.open.map((x) => [x.id, x.status]), q: qualitySignature(d.resources),
   })).digest('hex');
+}
+
+/**
+ * Spec 040 FR-007: what a manager review reacts to — per resource with an agent, the KPI anomalies and the quality
+ * flags (sorted). The same signature as the last review skips the scheduled run (one forced review a day).
+ */
+export function reviewSignature(d: Pick<KpiDigest, 'resources'>): string {
+  const rows = d.resources
+    .filter((r) => r.agent)
+    .map((r) => [r.ref, [...r.anomalies].sort(), [...(r.quality?.flags ?? [])].sort()] as const)
+    .filter(([, a, f]) => a.length || f.length)
+    .sort((x, y) => x[0].localeCompare(y[0]));
+  return createHash('sha1').update(JSON.stringify(rows)).digest('hex');
 }
 
 const flagged = (r: ResourceDigest) => (r.quality?.flags.length ?? 0) > 0;
@@ -215,7 +228,7 @@ export class KpiDigestService {
     const capUsd = this.d.capUsd ? await this.d.capUsd().catch(() => this.d.globalCapUsd) : this.d.globalCapUsd;
 
     const { rows: open } = await this.d.pool.query(
-      `SELECT d.id, a.handle AS to_handle, d.kind, d.status, d.body, d.created_at FROM agent_directives d JOIN agents a ON a.id = d.to_agent_id
+      `SELECT d.id, a.handle AS to_handle, d.kind, d.binding, d.status, d.body, d.created_at, d.review_at FROM agent_directives d JOIN agents a ON a.id = d.to_agent_id
         WHERE d.status IN ('new','awaiting_owner','contested','accepted','applied') AND NOT d.shadow ORDER BY d.created_at DESC LIMIT 20`);
     const { rows: outcomes } = await this.d.pool.query(
       `SELECT a.handle AS to_handle, d.kind, d.outcome, d.body, d.outcome_detail FROM agent_directives d JOIN agents a ON a.id = d.to_agent_id
@@ -225,7 +238,10 @@ export class KpiDigestService {
       generatedAt: now.toISOString(), today, resources: out, agents,
       budget: { spentTodayUsd: Math.round(Number(spend[0]?.usd ?? 0) * 10000) / 10000, capUsd },
       directives: {
-        open: open.map((o) => ({ id: o.id, to: o.to_handle, kind: o.kind, status: o.status, body: String(o.body).slice(0, 200), createdAt: new Date(o.created_at).toISOString() })),
+        open: open.map((o) => ({
+          id: o.id, to: o.to_handle, kind: o.kind, status: o.status, body: String(o.body).slice(0, 200), createdAt: new Date(o.created_at).toISOString(),
+          binding: o.binding ?? undefined, reviewAt: o.review_at ? new Date(o.review_at).toISOString() : null,
+        })),
         outcomes: outcomes.map((o) => ({ to: o.to_handle, kind: o.kind, outcome: o.outcome ?? null, body: String(o.body).slice(0, 160), detail: o.outcome_detail ?? null })),
       },
       compliance: await complianceOf(this.d.pool),

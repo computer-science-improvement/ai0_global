@@ -37,12 +37,12 @@ export const DIRECTIVE_KIND_LABEL: Record<DirectiveKind, string> = {
 
 export const DIRECTIVE_STATUS_LABEL: Record<DirectiveStatus, string> = {
   awaiting_owner: 'awaiting owner', contested: 'contested', new: 'new', accepted: 'accepted', applied: 'applied', evaluated: 'evaluated',
-  rejected: 'rejected', declined: 'declined', failed: 'failed', expired: 'expired', canceled: 'canceled',
+  rejected: 'rejected', declined: 'declined', failed: 'failed', expired: 'expired', canceled: 'canceled', superseded: 'superseded',
 };
 
 export const DIRECTIVE_STATUS_TONE: Record<DirectiveStatus, Tone> = {
   awaiting_owner: 'warning', contested: 'warning', new: 'accent', accepted: 'success', applied: 'success', evaluated: 'neutral',
-  rejected: 'danger', declined: 'neutral', failed: 'danger', expired: 'neutral', canceled: 'neutral',
+  rejected: 'danger', declined: 'neutral', failed: 'danger', expired: 'neutral', canceled: 'neutral', superseded: 'neutral',
 };
 
 export const OUTCOME_TONE: Record<DirectiveOutcome, Tone> = { worked: 'success', hurt: 'danger', no_effect: 'neutral', inconclusive: 'warning' };

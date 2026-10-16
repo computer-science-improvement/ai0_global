@@ -149,7 +149,8 @@ export interface FormatMixChange {
 /** Every change an executor can plan. Playbook kinds keep `Change`; the T5 and spec 034 kinds have their own shapes. */
 export type AnyChange = Change | ExperimentChange | StrategyChange | VoiceFixChange | FormatMixChange;
 
-export type PlanError = { error: 'not_executable'; details: string };
+/** `satisfied`: the change is already in place (spec 040 FR-007) — filing answers `already_satisfied`, not an error. */
+export type PlanError = { error: 'not_executable'; details: string; satisfied?: true };
 export type PlanResult<C = AnyChange> = C | PlanError;
 
 /**

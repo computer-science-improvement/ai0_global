@@ -7,7 +7,7 @@ import type { PendingActionsService } from '../agents/pending-actions';
 import { proposeCard } from '../agents/builder-tools';
 import type { EditorMemoryRepository } from '../repo/editor-memory.repository';
 import { DIRECTIVE_KINDS, DIRECTIVE_STATUSES, Directive, DirectiveKind, DirectivesRepository, Expected, KPI_METRICS } from './directives.repository';
-import type { KpiDigest, KpiDigestService } from './kpi-digest.service';
+import { reviewSignature, type KpiDigest, type KpiDigestService } from './kpi-digest.service';
 import { admitDirective, BINDINGS, checkBinding, ESCALATION_WINDOW_MS, metricValue, paramStructural } from './directive-kinds';
 import type { DirectiveExecution } from './executors';
 import { describe as describeChange } from './executors/playbook-executors';
@@ -38,19 +38,24 @@ export function isStructural(kind: DirectiveKind, params: Record<string, unknown
 const hasNumber = (v: unknown): boolean =>
   typeof v === 'number' || (!!v && typeof v === 'object' && Object.values(v as object).some(hasNumber));
 
+/** Spec 040 FR-007: the default minimal change of `expected` (the models left it out and the call failed). */
+export const DEFAULT_MIN_CHANGE_PCT = 10;
+
+// Spec 040 FR-007: `kind` first (the model picks the kind, then fills the rest), `binding` defaults to advice.
 export const FileDirectiveInput = z.object({
-  to:        z.string().min(2).max(40).describe('@handle оркестратора'),
   kind:      z.enum(DIRECTIVE_KINDS),
-  binding:   z.enum(BINDINGS).describe('advice — порада (за замовчуванням; оркестратор може відхилити); directive — обовʼязкова команда: лише при anomaly метрики expected або ескалації після відхиленої поради; структурні типи — завжди directive'),
+  to:        z.string().min(2).max(40).describe('@handle оркестратора'),
+  binding:   z.enum(BINDINGS).default('advice').describe('advice — порада (за замовчуванням; оркестратор може відхилити); directive — обовʼязкова команда: лише при anomaly метрики expected або ескалації після відхиленої поради; структурні типи — завжди directive'),
   body:      z.string().min(10).max(800).describe('Що саме змінити — конкретно'),
   params:    z.record(z.string(), z.unknown()).default({}).describe('Напр. {format:"ig_carousel", weight_delta:0.2} або {change_pct:-20} або для cross_promo {source_ref, target_ref, window_days}; experiment {resource_ref?, angle, format?, slots 1–3, within_days 1–7}; strategy {brief?}; voice_fix {resource_ref, rules?: [1–3 правила голосу], bad_slot_ids?: [id відхилених постів], good_examples?: [{text, note, format?}]}; format_mix {resource_ref, weights?: {poll: 0.1}, drop?: ["quiz"], polls_per_week?, questions_to_readers_per_day?} — лише зниження'),
   rationale: z.string().min(20).max(1200),
   evidence:  z.record(z.string(), z.unknown()).describe('Цифри з дайджесту, на які спирається директива'),
   expected:  z.object({
-    metric: z.enum(KPI_METRICS), direction: z.enum(['up', 'down']), min_change_pct: z.number().min(1).max(500),
+    metric: z.enum(KPI_METRICS), direction: z.enum(['up', 'down']), min_change_pct: z.number().min(1).max(500).default(DEFAULT_MIN_CHANGE_PCT),
     resource_ref: z.string().max(200).optional(),
   }).optional(),
   review_in_days: z.number().int().min(REVIEW_DAYS.min).max(REVIEW_DAYS.max).default(7),
+  supersedes: z.string().uuid().optional().describe('id застосованої (applied) директиви того ж типу цьому ж оркестратору, яку нова замінює — тоді стара закривається як superseded'),
 });
 export type FileDirective = z.infer<typeof FileDirectiveInput>;
 
@@ -87,7 +92,8 @@ export function checkQualityReview(i: Pick<SubmitReview, 'verdict' | 'quality_ch
   const unknown = i.quality_check.filter((e) => !byRef.has(e.resource_ref)).map((e) => e.resource_ref);
   if (unknown.length) return { error: 'quality_check_unknown', details: `таких ресурсів немає в дайджесті: ${unknown.join(', ')}` };
   const given = new Set(i.quality_check.map((e) => e.resource_ref));
-  const missing = rows.filter((r) => qualityActive(r.quality) && !given.has(r.ref)).map((r) => r.ref);
+  // Spec 040 FR-007: a resource without an agent has nobody to advise — it is exempt.
+  const missing = rows.filter((r) => r.agent && qualityActive(r.quality) && !given.has(r.ref)).map((r) => r.ref);
   if (missing.length) {
     return { error: 'quality_check_missing', details: `пройди чекліст якості й для: ${missing.join(', ')} (quality_check: status, evidence з цифрами чи цитатами, issues)` };
   }
@@ -191,7 +197,16 @@ export async function fileDirective(d: DirectiveToolDeps, i: FileDirective, o: {
   if (!target || target.kind !== 'orchestrator' || target.parentId) return { error: 'not_an_orchestrator', details: i.to };
   if (o.runId && await d.repo.countForRun(o.runId) >= MAX_DIRECTIVES_PER_RUN) return { error: 'too_many_directives', details: `не більше ${MAX_DIRECTIVES_PER_RUN} за прогін` };
   const open = await d.repo.openFor(target.id, i.kind);
-  if (open) return { error: 'directive_open', details: `у @${target.handle} вже є відкрита директива ${i.kind} (${open.status})` };
+  if (open) return { error: 'directive_open', details: `у @${target.handle} вже є відкрита директива ${i.kind} (${open.id}, ${open.status})` };
+  // Spec 040 FR-007: an applied one of the same kind no longer blocks — the new one names it and replaces it.
+  const applied = await d.repo.appliedFor(target.id, i.kind);
+  if (applied && i.supersedes !== applied.id) {
+    return {
+      error: i.supersedes ? 'supersedes_mismatch' : 'supersedes_required',
+      details: `у @${target.handle} діє застосована ${i.kind} ${applied.id} («${applied.body.slice(0, 120)}», перевірка ${applied.reviewAt?.toISOString().slice(0, 10) ?? '—'}): якщо нова її замінює — supersedes: "${applied.id}"; інакше дочекайся її оцінки`,
+    };
+  }
+  if (!applied && i.supersedes) return { error: 'supersedes_mismatch', details: `${i.supersedes} — не застосована директива ${i.kind} для @${target.handle}; прибери supersedes` };
   const rejected = await d.repo.lastRejected(target.id, i.kind);
   if (rejected && now.getTime() - rejected.getTime() < REJECT_COOLDOWN_MS) return { error: 'cooldown', details: 'після відхиленої директиви такого типу — пауза 48 год' };
   if (!hasNumber(i.evidence)) return { error: 'evidence_required', details: 'evidence має містити цифри з дайджесту' };
@@ -211,6 +226,8 @@ export async function fileDirective(d: DirectiveToolDeps, i: FileDirective, o: {
   if (kindRule) return kindRule;
   // Spec 025 FR-004: the executor's dry-run — impossible directives are never filed; its diff can make it structural.
   const dry = d.exec ? await d.exec.dryRun({ kind: i.kind, params: i.params, toAgentId: target.id, body: i.body }, target) : null;
+  // Spec 040 FR-007: a change already in place is not an error — nothing is filed.
+  if (dry && 'error' in dry && dry.satisfied) return { ok: true as const, already_satisfied: true as const, details: dry.details };
   if (dry && 'error' in dry) return dry;
   const structural = isStructural(i.kind, i.params) || !!dry?.structural;
   const matrix = checkBinding(i.kind, i.binding, structural);
@@ -231,13 +248,15 @@ export async function fileDirective(d: DirectiveToolDeps, i: FileDirective, o: {
   const dir = await d.repo.insert({
     fromAgentId: o.from?.id ?? null, toAgentId: target.id, kind: i.kind, binding: i.binding, structural, body: i.body, params: i.params,
     rationale: i.rationale, evidence: i.evidence, expected: (i.expected ?? null) as Expected | null,
-    reviewAt: new Date(now.getTime() + i.review_in_days * 86_400_000), status, runId: o.runId, shadow: o.shadow,
+    reviewAt: new Date(now.getTime() + i.review_in_days * 86_400_000), status, runId: o.runId, shadow: o.shadow, supersedes: applied?.id ?? null,
     outcomeDetail: {
       at_filing: atFiling, admission: { basis: admission.basis, ...(admission.detail ?? {}) },
       ...(dry ? { dry_run: { change: describeChange(dry), structural: dry.structural, reasons: dry.reasons } } : {}),
     },
   });
   if (o.ownerApproved) await d.repo.update(dir.id, { ownerDecision: 'approved' });
+  // A shadow filing never closes a live directive.
+  if (applied && !o.shadow) await d.repo.update(applied.id, { status: 'superseded', resolution: `superseded by ${dir.id}` }, ['applied']);
   if (status === 'awaiting_owner' && !o.shadow) {
     const expected = i.expected ? `${i.expected.metric} ${i.expected.direction === 'up' ? '↑' : '↓'} ≥ ${i.expected.min_change_pct}%` : '—';
     await d.inbox.post({
@@ -294,7 +313,7 @@ export function buildDirectiveTools(d: DirectiveToolDeps): EditorTool[] {
     description: [
       'Дати пораду чи директиву оркестратору (@handle) — коли є підстава в цифрах дайджесту: KPI або блок quality (voice_fix — правила голосу й приклади з реальних відхилених постів; format_mix — менше опитувань, нижчі ліміти, прибрати формат, що не пасує).',
       'binding: advice (порада, за замовчуванням) — оркестратор може відхилити; directive (обовʼязково) — лише коли метрика expected позначена anomaly в дайджесті або після відхиленої поради, коли метрика пішла ще далі; не більше 2 відкритих директив на агента.',
-      'Не більше 3 за прогін; не дублюй відкриту директиву; структурні (cross_promo, pause_resource, strategy, частота ±30%, нова платформа) — завжди directive і підуть власнику на рішення.',
+      'Не більше 3 за прогін; не дублюй відкриту директиву; застосовану (applied) того ж типу заміняй лише явно — supersedes: її id; структурні (cross_promo, pause_resource, strategy, частота ±30%, нова платформа) — завжди directive і підуть власнику на рішення.',
     ].join(' '),
     kind: 'act', roles: ['manager'],
     input: FileDirectiveInput,
@@ -307,6 +326,7 @@ export function buildDirectiveTools(d: DirectiveToolDeps): EditorTool[] {
       }
       const r = await fileDirective(d, i, { from: me, runId: ctx.runId, shadow: me?.mode !== 'live', digest: await digestOf(ctx) });
       if ('error' in r) return r;
+      if ('already_satisfied' in r) return { ok: true, already_satisfied: true, details: `${r.details} — директиву не подано, змінювати нічого` };
       return { ok: true, id: r.directive.id, binding: r.directive.binding, status: r.directive.status, structural: r.directive.structural, shadow: r.directive.shadow };
     },
   });
@@ -324,7 +344,10 @@ export function buildDirectiveTools(d: DirectiveToolDeps): EditorTool[] {
       const dg = await digestOf(ctx);
       const bad = checkQualityReview(i, dg);
       if (bad) return bad;
-      await d.repo.addReview({ runId: ctx.runId, verdict: i.verdict, summary: i.summary, digestHash: dg?.hash ?? null, directiveIds: i.directive_ids, qualityCheck: i.quality_check });
+      await d.repo.addReview({
+        runId: ctx.runId, verdict: i.verdict, summary: i.summary, digestHash: dg?.hash ?? null, directiveIds: i.directive_ids, qualityCheck: i.quality_check,
+        signature: dg ? reviewSignature(dg) : null,
+      });
       return { ok: true };
     },
   });

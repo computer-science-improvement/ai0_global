@@ -1,6 +1,6 @@
 import { localDate, localTimeLabel } from '../../roles/time';
 import type { ResourcePauseService } from '../../pauses/resource-pauses';
-import { notExecutable } from './playbook-change';
+import { alreadySatisfied, notExecutable } from './playbook-change';
 import type { Applied, Change, DirectiveExecutor, VerifyResult } from './types';
 
 /**
@@ -39,7 +39,7 @@ export function pauseResourceExecutor(d: PauseResourceDeps): DirectiveExecutor {
       const reason = typeof p.reason === 'string' ? p.reason.trim() : '';
       if (reason.length < PAUSE_REASON_MIN) return notExecutable(`вкажи params.reason (≥ ${PAUSE_REASON_MIN} символів) — чому ресурс ставимо на паузу`);
       const active = ctx.pauses?.find((x) => x.ref === ref);
-      if (active) return notExecutable(`${ref} уже на паузі до ${kyiv(active.until)} (Київ)`);
+      if (active) return alreadySatisfied(`${ref} уже на паузі до ${kyiv(active.until)} (Київ)`);
       const until = new Date(ctx.now.getTime() + days * DAY_MS).toISOString();
       return {
         kind: 'pause_resource', target: 'resource', op: 'pause_resource', resource_ref: ref, days, until, reason,

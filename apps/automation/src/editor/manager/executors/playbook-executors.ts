@@ -6,7 +6,7 @@ import { localDate } from '../../roles/time';
 import type { Directive } from '../directives.repository';
 import type { PlanObserver } from './plan-observer';
 import {
-  anchorRef, cardAsPlaybook, cardHolds, cardPatch, dryRunCheck, holdsIn, notExecutable, patchPlaybook, resolveTarget, round2,
+  alreadySatisfied, anchorRef, cardAsPlaybook, cardHolds, cardPatch, dryRunCheck, holdsIn, notExecutable, patchPlaybook, resolveTarget, round2,
 } from './playbook-change';
 import type { AnyChange, Applied, Change, ChangeOp, DirectiveExecutor, ExecContext, PlanResult, VerifyResult } from './types';
 
@@ -133,7 +133,7 @@ export function formatShiftExecutor(d: PlaybookExecutorDeps): DirectiveExecutor 
       const formats = t.target === 'playbook' ? t.section.formats : t.card.formats;
       const before = formats[format] ?? 0;
       const after = round2(Math.min(1, Math.max(0, before + delta)));
-      if (Math.abs(after - before) < 1e-9) return notExecutable(`вага ${format} уже ${before} — зміна нічого не дасть`);
+      if (Math.abs(after - before) < 1e-9) return alreadySatisfied(`вага ${format} уже ${before} — зміна нічого не дасть`);
       if (!Object.entries({ ...formats, [format]: after }).some(([, w]) => w > 0)) return notExecutable('хоча б один формат має лишитися з вагою > 0');
       return finish(ctx, 'format_shift', t.target, { op: 'format_weight', resource_ref: t.ref, format, before, after });
     },
@@ -184,7 +184,7 @@ export function pauseSeriesExecutor(d: PlaybookExecutorDeps): DirectiveExecutor 
       const s = ctx.playbook.series.find((x) => x.name === name);
       if (!s) return notExecutable(`серії «${name}» немає (є: ${ctx.playbook.series.map((x) => x.name).join(', ') || '—'})`);
       if (s.locked) return notExecutable(`серію «${name}» заблокував власник — директива її не змінює`);
-      if (s.active === false) return notExecutable(`серія «${name}» уже на паузі`);
+      if (s.active === false) return alreadySatisfied(`серія «${name}» уже на паузі`);
       const today = localDate(ctx.now, KYIV);
       const resume = p.resume_on == null ? addDays(today, PAUSE_SERIES_DAYS.default) : String(p.resume_on);
       if (!/^\d{4}-\d{2}-\d{2}$/.test(resume) || Number.isNaN(new Date(`${resume}T12:00:00Z`).getTime())) return notExecutable('resume_on — дата YYYY-MM-DD (Київ)');

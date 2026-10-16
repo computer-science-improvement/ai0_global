@@ -6,7 +6,9 @@ export const DIRECTIVE_KINDS = [
   'voice_fix', 'format_mix',
 ] as const;
 export type DirectiveKind = typeof DIRECTIVE_KINDS[number];
-export const DIRECTIVE_STATUSES = ['new', 'awaiting_owner', 'accepted', 'rejected', 'applied', 'evaluated', 'expired', 'canceled', 'contested', 'declined', 'failed'] as const;
+export const DIRECTIVE_STATUSES = ['new', 'awaiting_owner', 'accepted', 'rejected', 'applied', 'evaluated', 'expired', 'canceled', 'contested', 'declined', 'failed',
+  // Spec 040 FR-007: an applied directive replaced by a newer one of the same target + kind (named in `supersedes`).
+  'superseded'] as const;
 export type DirectiveStatus = typeof DIRECTIVE_STATUSES[number];
 export type DirectiveBinding = 'directive' | 'advice';
 export type DirectiveOutcome = 'worked' | 'no_effect' | 'hurt' | 'inconclusive';
@@ -51,6 +53,8 @@ export interface Directive {
   verification:  any;
   verifiedAt:    Date | null;
   contestedAt:   Date | null;
+  /** Spec 040 FR-007: the applied directive this one replaced. */
+  supersedes?:   string | null;
   createdAt:     Date;
   updatedAt:     Date;
 }
@@ -63,11 +67,14 @@ const toDirective = (r: any): Directive => ({
   outcome: r.outcome ?? null, outcomeDetail: r.outcome_detail ?? null, deliveredAt: r.delivered_at ?? null, appliedAt: r.applied_at ?? null,
   runId: r.run_id ?? null, shadow: !!r.shadow, change: r.change ?? null, execAttempts: Number(r.exec_attempts ?? 0), execError: r.exec_error ?? null,
   verification: r.verification ?? null, verifiedAt: r.verified_at ?? null, contestedAt: r.contested_at ?? null,
-  createdAt: r.created_at, updatedAt: r.updated_at,
+  supersedes: r.supersedes ?? null, createdAt: r.created_at, updatedAt: r.updated_at,
 });
 
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+/** Open for the binding limit (spec 025 FR-003): an applied directive is still being evaluated. */
 const OPEN: DirectiveStatus[] = ['new', 'awaiting_owner', 'accepted', 'applied', 'contested'];
+/** Spec 040 FR-007: open for dedup — an applied advice no longer blocks a new one (it must be named in `supersedes`). */
+export const OPEN_FOR_DEDUP: DirectiveStatus[] = ['new', 'awaiting_owner', 'accepted', 'contested'];
 
 type Q = Pick<Pool, 'query'>;
 
@@ -80,14 +87,16 @@ export class DirectivesRepository {
     rationale: string; evidence: unknown; expected: Expected | null; reviewAt: Date | null; status: 'new' | 'awaiting_owner'; runId?: string | null; shadow: boolean;
     /** Spec 025: outcome_detail at filing ({at_filing: {metric, value}, admission}) — the escalation baseline. */
     outcomeDetail?: unknown; change?: unknown;
+    /** Spec 040 FR-007: the applied directive this one replaces. */
+    supersedes?: string | null;
   }): Promise<Directive> {
     const binding = d.binding ?? (d.kind === 'advice' ? 'advice' : 'directive');
     const { rows } = await this.pool.query(
-      `INSERT INTO agent_directives (from_agent_id, to_agent_id, kind, structural, body, params, rationale, evidence, expected, review_at, status, run_id, shadow, binding, outcome_detail, change)
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) RETURNING *`,
+      `INSERT INTO agent_directives (from_agent_id, to_agent_id, kind, structural, body, params, rationale, evidence, expected, review_at, status, run_id, shadow, binding, outcome_detail, change, supersedes)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17) RETURNING *`,
       [d.fromAgentId, d.toAgentId, d.kind, d.structural, d.body, JSON.stringify(d.params), d.rationale, JSON.stringify(d.evidence ?? null),
         d.expected ? JSON.stringify(d.expected) : null, d.reviewAt, d.status, UUID_RE.test(d.runId ?? '') ? d.runId : null, d.shadow, binding,
-        d.outcomeDetail == null ? null : JSON.stringify(d.outcomeDetail), d.change == null ? null : JSON.stringify(d.change)]);
+        d.outcomeDetail == null ? null : JSON.stringify(d.outcomeDetail), d.change == null ? null : JSON.stringify(d.change), d.supersedes ?? null]);
     return toDirective(rows[0]);
   }
 
@@ -124,7 +133,15 @@ export class DirectivesRepository {
 
   async openFor(toAgentId: string, kind: DirectiveKind): Promise<Directive | null> {
     const { rows } = await this.pool.query(
-      `SELECT * FROM agent_directives WHERE to_agent_id = $1 AND kind = $2 AND status = ANY($3::text[]) AND NOT shadow LIMIT 1`, [toAgentId, kind, OPEN]);
+      `SELECT * FROM agent_directives WHERE to_agent_id = $1 AND kind = $2 AND status = ANY($3::text[]) AND NOT shadow LIMIT 1`, [toAgentId, kind, OPEN_FOR_DEDUP]);
+    return rows[0] ? toDirective(rows[0]) : null;
+  }
+
+  /** Spec 040 FR-007: the newest applied (not yet evaluated) directive of a kind to a target. */
+  async appliedFor(toAgentId: string, kind: DirectiveKind): Promise<Directive | null> {
+    const { rows } = await this.pool.query(
+      `SELECT * FROM agent_directives WHERE to_agent_id = $1 AND kind = $2 AND status = 'applied' AND NOT shadow ORDER BY applied_at DESC NULLS LAST, created_at DESC LIMIT 1`,
+      [toAgentId, kind]);
     return rows[0] ? toDirective(rows[0]) : null;
   }
 
@@ -363,15 +380,23 @@ export class DirectivesRepository {
 
   // ── manager reviews + memory ──────────────────────────────────────────────
 
-  async addReview(r: { runId?: string | null; verdict: 'continue' | 'directives' | 'skipped'; summary: string; digestHash: string | null; directiveIds?: string[]; qualityCheck?: unknown }): Promise<void> {
+  async addReview(r: { runId?: string | null; verdict: 'continue' | 'directives' | 'skipped'; summary: string; digestHash: string | null; directiveIds?: string[]; qualityCheck?: unknown; signature?: string | null }): Promise<void> {
     await this.pool.query(
-      `INSERT INTO manager_reviews (run_id, verdict, summary, digest_hash, directive_ids, quality_check) VALUES ($1, $2, $3, $4, $5, $6)`,
-      [UUID_RE.test(r.runId ?? '') ? r.runId : null, r.verdict, r.summary, r.digestHash, r.directiveIds ?? [], r.qualityCheck == null ? null : JSON.stringify(r.qualityCheck)]);
+      `INSERT INTO manager_reviews (run_id, verdict, summary, digest_hash, directive_ids, quality_check, signature) VALUES ($1, $2, $3, $4, $5, $6, $7)`,
+      [UUID_RE.test(r.runId ?? '') ? r.runId : null, r.verdict, r.summary, r.digestHash, r.directiveIds ?? [], r.qualityCheck == null ? null : JSON.stringify(r.qualityCheck), r.signature ?? null]);
   }
 
-  async lastReview(): Promise<{ verdict: string; digestHash: string | null; createdAt: Date } | null> {
-    const { rows } = await this.pool.query(`SELECT verdict, digest_hash, created_at FROM manager_reviews ORDER BY created_at DESC LIMIT 1`);
-    return rows[0] ? { verdict: rows[0].verdict, digestHash: rows[0].digest_hash ?? null, createdAt: rows[0].created_at } : null;
+  /**
+   * The last review, with (spec 040 FR-007) its anomaly/flag signature and when the last LLM review (not skipped) ran.
+   * The signature of a skipped row is the one it was compared with, so a chain of skips keeps it.
+   */
+  async lastReview(): Promise<{ verdict: string; digestHash: string | null; signature: string | null; lastRunAt: Date | null; createdAt: Date } | null> {
+    const { rows } = await this.pool.query(
+      `SELECT verdict, digest_hash, signature, created_at,
+              (SELECT max(created_at) FROM manager_reviews WHERE verdict <> 'skipped') AS last_run_at
+         FROM manager_reviews ORDER BY created_at DESC LIMIT 1`);
+    const r = rows[0];
+    return r ? { verdict: r.verdict, digestHash: r.digest_hash ?? null, signature: r.signature ?? null, lastRunAt: r.last_run_at ?? null, createdAt: r.created_at } : null;
   }
 
   async reviews(limit = 50): Promise<Array<{ id: string; verdict: string; summary: string; directiveIds: string[]; qualityCheck: unknown; createdAt: Date }>> {

@@ -118,7 +118,7 @@ function setup(o: { openBinding?: number; declined?: any } = {}) {
   const inserted: any[] = [];
   const inbox: any[] = [];
   const repo = {
-    openFor: async () => null, lastRejected: async () => null, countForRun: async () => 0,
+    openFor: async () => null, appliedFor: async () => null, lastRejected: async () => null, countForRun: async () => 0,
     countOpenBinding: async () => o.openBinding ?? 0, lastDeclinedAdvice: async () => o.declined ?? null,
     insert: async (d: any) => { const x = { id: `d${inserted.length + 1}`, ...d, createdAt: new Date() }; inserted.push(x); return x; },
     update: async (id: string, p: any) => ({ id, ...p }),

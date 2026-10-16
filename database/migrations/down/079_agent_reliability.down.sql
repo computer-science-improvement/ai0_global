@@ -12,6 +12,7 @@ ALTER TABLE agent_directives ADD CONSTRAINT agent_directives_status_check CHECK 
   'new','awaiting_owner','accepted','rejected','applied','evaluated','expired','canceled','contested','declined','failed'));
 ALTER TABLE agent_directives DROP COLUMN IF EXISTS supersedes;
 
+ALTER TABLE manager_reviews DROP COLUMN IF EXISTS signature;
 DROP TABLE IF EXISTS source_host_failures;
 ALTER TABLE editor_channel_memory DROP COLUMN IF EXISTS source_text;
 DELETE FROM llm_budgets WHERE scope_kind = 'feature_prefix' AND scope_key = 'editor.chat' AND seeded_from = 'spec 040';

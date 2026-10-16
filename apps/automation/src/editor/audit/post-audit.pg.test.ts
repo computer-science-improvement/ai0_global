@@ -121,7 +121,7 @@ test('rows carry the post: publish time, t.me link, excerpt, catalogue text in t
   const view = await api.view({ resource: REF(p.channel) });
   assert.equal(view.current, true);
   const hashtags = view.groups.find((g) => g.code === 'hashtags_disabled')!;
-  assert.equal(hashtags.title, 'Hashtags are off');
+  assert.equal(hashtags.title, 'Hashtags present while off');
   assert.match(hashtags.fix, /Remove the hashtags/);
   assert.equal(hashtags.group, 'style_violation');
   assert.ok(hashtags.count >= hashtags.posts && hashtags.items.length <= 10);

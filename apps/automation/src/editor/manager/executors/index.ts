@@ -124,6 +124,8 @@ export class DirectiveExecution {
       if (!change) {
         const ctx = await this.d.context(orch);
         const plan = ctx ? ex.plan(dir, ctx) : { error: 'not_executable' as const, details: 'no context' };
+        // Spec 040 FR-007: the change got in place since filing (the owner or another directive) — applied, nothing to do.
+        if ('error' in plan && plan.satisfied) return this.applied(dir, { change: { noop: true, satisfied: plan.details }, verification: { kind: 'already_satisfied', detail: plan.details } });
         if ('error' in plan) return this.fail(dir, `${plan.error}: ${plan.details}`);
         change = plan;
         await this.d.repo.setChange(dir.id, change);

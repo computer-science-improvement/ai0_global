@@ -14,7 +14,7 @@ export const DIRECTIVE_KINDS = [
 export type DirectiveKind = typeof DIRECTIVE_KINDS[number];
 
 export const DIRECTIVE_STATUSES = [
-  'awaiting_owner', 'contested', 'new', 'accepted', 'applied', 'evaluated', 'rejected', 'declined', 'failed', 'expired', 'canceled',
+  'awaiting_owner', 'contested', 'new', 'accepted', 'applied', 'evaluated', 'rejected', 'declined', 'failed', 'expired', 'canceled', 'superseded',
 ] as const;
 export type DirectiveStatus = typeof DIRECTIVE_STATUSES[number];
 

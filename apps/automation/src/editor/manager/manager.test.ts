@@ -65,13 +65,14 @@ test('structural classification is code, not the model', () => {
   assert.equal(isStructural('format_shift', {}), false);
 });
 
-function fakeRepo(o: Partial<{ open: boolean; rejectedAt: Date | null; runCount: number; openBinding: number; declined: any }> = {}) {
+function fakeRepo(o: Partial<{ open: boolean; rejectedAt: Date | null; runCount: number; openBinding: number; declined: any; applied: any }> = {}) {
   const inserted: any[] = [];
   const updates: any[] = [];
   return {
     inserted, updates,
     repo: {
-      openFor: async () => (o.open ? { status: 'new' } : null),
+      openFor: async () => (o.open ? { id: 'open1', status: 'new' } : null),
+      appliedFor: async () => o.applied ?? null,
       lastRejected: async () => o.rejectedAt ?? null,
       countForRun: async () => o.runCount ?? 0,
       countOpenBinding: async () => o.openBinding ?? 0,

@@ -9,7 +9,7 @@ import type { AgentsRepository } from '../agents/agents.repository';
 import type { OwnerInbox } from '../agents/owner-inbox';
 import { localDate, localTimeLabel } from '../roles/time';
 import type { Directive, DirectivesRepository } from './directives.repository';
-import type { KpiDigest, KpiDigestService } from './kpi-digest.service';
+import { reviewSignature, type KpiDigest, type KpiDigestService } from './kpi-digest.service';
 import type { ScopeKpis } from './kpi-math';
 import { DirectiveExecution, PROMO_KINDS } from './executors';
 import { isQualityMetric, qualityMetricValue } from './quality-digest';
@@ -63,7 +63,7 @@ export function bindingLabel(x: Pick<Directive, 'binding'>): string {
 }
 
 /** System prompt of the scheduled manager run. */
-export function managerSystemPrompt(o: { agent: Agent; now: Date; digest: string; memory: string; skills: { inline: string; listed: string } }): string {
+export function managerSystemPrompt(o: { agent: Agent; now: Date; digest: string; memory: string; skills: { inline: string; listed: string }; open?: KpiDigest['directives']['open'] }): string {
   const tz = 'Europe/Kyiv';
   return [
     `Ти — ${o.agent.name} (@${o.agent.handle}), менеджер медіамережі ai0. Бачиш усі ресурси, KPI, якість текстів і директиви. Ти НЕ публікуєш і не керуєш постами напряму — лише даєш поради й директиви оркестраторам.`,
@@ -77,6 +77,9 @@ export function managerSystemPrompt(o: { agent: Agent; now: Date; digest: string
     '## Дайджест: KPI (7 днів проти 28-денної норми; d — зміна %, z — у шумах) і quality по ресурсах (7 днів)',
     o.digest,
     '',
+    '## Відкриті директиви (не дублюй; застосовану того ж типу замінюй лише через supersedes)',
+    openDirectivesText(o.open ?? []),
+    '',
     '## Памʼять менеджера (уроки минулих директив)',
     o.memory || '- (порожня)',
     '',
@@ -88,14 +91,28 @@ export function managerSystemPrompt(o: { agent: Agent; now: Date; digest: string
   ].join('\n');
 }
 
+/** Spec 040 FR-007: the open directives as the manager prompt lists them — target, kind, binding, status, review date. */
+export function openDirectivesText(open: KpiDigest['directives']['open']): string {
+  if (!open.length) return '- немає';
+  return open.map((x) => `- @${x.to} · ${x.kind}${x.binding ? ` (${x.binding})` : ''} · ${x.status} · перевірка ${x.reviewAt?.slice(0, 10) ?? '—'} · id ${x.id}`).join('\n');
+}
+
 /**
- * Spec 021 skip rule, extended by spec 034 FR-006: a run without an LLM call only when the digest hash (KPIs,
- * open directives and the quality signature: newest critic issue, newest owner rejection/edit, quality flags)
- * is the same as at the last review and no KPI anomaly is flagged.
+ * Spec 021 skip rule, extended by spec 034 FR-006: a run without an LLM call when the digest hash (KPIs, open
+ * directives and the quality signature) is the same as at the last review and no KPI anomaly is flagged.
+ * Spec 040 FR-007: also when the review signature (KPI anomalies + quality flags of the resources with an agent)
+ * equals the last review's — unless no LLM review ran yet today (Kyiv): at most one forced review a day.
  */
-export function canSkip(last: { digestHash: string | null } | null, digest: Pick<KpiDigest, 'hash' | 'resources'>): boolean {
-  if (!last || last.digestHash !== digest.hash) return false;
-  return !digest.resources.some((r) => r.anomalies.length);
+export function canSkip(
+  last: { digestHash: string | null; signature?: string | null; lastRunAt?: Date | null } | null,
+  digest: Pick<KpiDigest, 'hash' | 'resources'>,
+  o: { now?: Date } = {},
+): boolean {
+  if (!last) return false;
+  if (last.digestHash === digest.hash && !digest.resources.some((r) => r.anomalies.length)) return true;
+  if (!last.signature || last.signature !== reviewSignature(digest)) return false;
+  const now = o.now ?? new Date();
+  return !!last.lastRunAt && localDate(last.lastRunAt, 'Europe/Kyiv') === localDate(now, 'Europe/Kyiv');
 }
 
 /**
@@ -145,8 +162,9 @@ export class ManagerRunner {
     const digest = await this.d.digest.build();
     try { await this.d.digest.snapshot(digest); } catch { /* snapshots are best-effort */ }
     const last = await this.d.repo.lastReview();
-    if (canSkip(last, digest)) {
-      await this.d.repo.addReview({ verdict: 'skipped', summary: 'без змін з минулого прогону', digestHash: digest.hash });
+    const signature = reviewSignature(digest);
+    if (canSkip(last, digest, { now: this.now() })) {
+      await this.d.repo.addReview({ verdict: 'skipped', summary: 'без змін з минулого прогону', digestHash: digest.hash, signature });
       return { skipped: 'digest unchanged, no anomalies' };
     }
     const ctx = await this.d.runtime.forAgent(m, 'manager');
@@ -156,14 +174,14 @@ export class ManagerRunner {
     const mctx = await readModelContext(this.d);
     const res = await this.d.loop.run({
       role: 'manager', channelKey: null, model: resolveModel('manager', this.d.env, null, { agentModel: agentModelIn(m, mctx.workspace), defaultModel: mctx.defaultModel, reasoningEffort: m.reasoningEffort, workspace: mctx.workspace }),
-      system: managerSystemPrompt({ agent: m, now: this.now(), digest: this.d.digest.render(digest), memory, skills: { inline: inlineSkill, listed } }),
+      system: managerSystemPrompt({ agent: m, now: this.now(), digest: this.d.digest.render(digest), memory, skills: { inline: inlineSkill, listed }, open: digest.directives?.open }),
       user: 'Проаналізуй дайджест: KPI і якість контенту по кожному ресурсу (чекліст якості). Є підстава — file_directive (до 3; для якості — voice_fix / format_mix) і submit_review directives. Нічого робити не треба — submit_review continue, але з quality_check по кожному активному ресурсу з доказами.',
       tools: this.d.registry.forRole('manager'), maxSteps: 20,
       agent: { id: m.id, handle: m.handle, limitUsd: m.dailyBudgetUsd },
       extras: { agent: m, skills: ctx.skills, digest },
     });
     if (res.terminalTool !== 'submit_review') {
-      await this.d.repo.addReview({ runId: res.runId, verdict: 'continue', summary: `прогін без підсумку (${res.status}${res.error ? `: ${res.error}` : ''})`, digestHash: digest.hash });
+      await this.d.repo.addReview({ runId: res.runId, verdict: 'continue', summary: `прогін без підсумку (${res.status}${res.error ? `: ${res.error}` : ''})`, digestHash: digest.hash, signature });
     }
     return res;
   }

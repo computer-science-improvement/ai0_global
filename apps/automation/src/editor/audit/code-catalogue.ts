@@ -257,8 +257,8 @@ export const CODE_EXPLANATIONS: Record<string, CodeExplanation> = {
     fix: 'Write names as the style sheet says: transliterated or in the original Latin.',
   },
   hashtags_disabled: {
-    title: 'Hashtags are off',
-    explain: 'The post has hashtags although hashtags are off for this resource.',
+    title: 'Hashtags present while off',
+    explain: 'Hashtags present while the channel has them off: the post has hashtags, the resource style says no hashtags. Not a setting to switch on.',
     fix: 'Remove the hashtags, or switch hashtags to Vocabulary in the style sheet.',
   },
   hashtag_not_in_vocabulary: {

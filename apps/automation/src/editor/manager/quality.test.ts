@@ -266,7 +266,7 @@ test('file_directive: a quality metric without data in the window is refused (st
   const inserted: any[] = [];
   const deps = {
     repo: {
-      openFor: async () => null, lastRejected: async () => null, countForRun: async () => 0, countOpenBinding: async () => 0, lastDeclinedAdvice: async () => null,
+      openFor: async () => null, appliedFor: async () => null, lastRejected: async () => null, countForRun: async () => 0, countOpenBinding: async () => 0, lastDeclinedAdvice: async () => null,
       insert: async (x: any) => { inserted.push(x); return { id: 'd1', ...x }; }, update: async () => null,
     } as any,
     agents: { getByHandle: async () => ({ id: 'o1', handle: 'kira', kind: 'orchestrator', parentId: null }), findTop: async () => null } as any,

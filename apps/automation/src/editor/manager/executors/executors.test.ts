@@ -377,7 +377,7 @@ test('file_directive dry-run: not_executable is never filed; a structural diff t
   const inbox: any[] = [];
   const deps = {
     repo: {
-      openFor: async () => null, lastRejected: async () => null, countForRun: async () => 0, countOpenBinding: async () => 0, lastDeclinedAdvice: async () => null,
+      openFor: async () => null, appliedFor: async () => null, lastRejected: async () => null, countForRun: async () => 0, countOpenBinding: async () => 0, lastDeclinedAdvice: async () => null,
       insert: async (d: any) => { const r = { id: `d${inserted.length + 1}`, ...d }; inserted.push(r); return r; }, update: async () => null,
     } as any,
     agents: { getByHandle: async () => ORCH, findTop: async () => null } as any,
