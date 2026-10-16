@@ -286,7 +286,7 @@ export class EditorChatService {
           system: buildComposerSystemPrompt({
             now: this.now(), card: resolved?.card ?? null, hasCard: !!resolved?.hasCard, memory, skills: agentCtx?.skills ?? this.d.skills, persona,
           }),
-          user: text, history: this.history(prior, chatDrafts), tools: this.d.registry.forRole('composer'),
+          user: text, history: this.history(prior, chatDrafts), tools: this.chatTools('composer'),
           maxSteps: COMPOSER_MAX_STEPS, extras: extras as unknown as Record<string, unknown>, onEvent,
           agent: addressee ? { id: addressee.id, handle: addressee.handle, limitUsd: addressee.dailyBudgetUsd } : null,
         });
@@ -305,6 +305,15 @@ export class EditorChatService {
     } finally {
       this.running.delete(chatId);
     }
+  }
+
+  /**
+   * A role's tools for a chat turn. Terminal tools end an autonomous run (the nightly manager's submit_review): in chat
+   * the answer ends the turn, and the loop would otherwise nudge — and on the last step force — the agent to call one,
+   * which records a run summary and leaves the owner with no reply.
+   */
+  private chatTools(role: EditorRole) {
+    return this.d.registry.forRole(role).filter((t) => t.kind !== 'terminal');
   }
 
   /** @ai0 (builder) and @manager: their own prompts and tools; mutations only as confirmation cards. */
@@ -335,7 +344,7 @@ export class EditorChatService {
       res = await this.d.loop.run({
         role, channelKey: null, model: resolveModel(role, this.d.env, null, { agentModel: agentModelIn(agent, mctx.workspace), defaultModel: mctx.defaultModel, reasoningEffort: agent.reasoningEffort, workspace: mctx.workspace }),
         system: note ? `${system}\n\n${note}` : system,
-        user: text, history: this.history(prior, chatDrafts), tools: this.d.registry.forRole(role),
+        user: text, history: this.history(prior, chatDrafts), tools: this.chatTools(role),
         maxSteps: COMPOSER_MAX_STEPS, extras, onEvent,
         agent: { id: agent.id, handle: agent.handle, limitUsd: agent.dailyBudgetUsd },
       });

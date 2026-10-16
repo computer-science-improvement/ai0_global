@@ -1,4 +1,5 @@
 import { test } from 'node:test';
+import { z } from 'zod';
 import assert from 'node:assert/strict';
 import { AgentLoop } from '../harness/agent-loop';
 import { ToolRegistry } from '../harness/tool-registry';
@@ -95,8 +96,9 @@ function setup(turns: ConstructorParameters<typeof FakeLlm>[0], chatAgentId: str
   const kira = agent({});
   const kiraExec = agent({ id: 'a-kexec', kind: 'executor', parentId: 'a-kira', handle: 'kira_executor', name: 'Виконавець · Кіра' });
   const ai0 = agent({ id: 'a-ai0', kind: 'builder', scope: 'system', scopeId: null, handle: 'ai0', name: 'ai0', emoji: '🛠', dailyBudgetUsd: null, mode: 'live' });
-  const byHandle = new Map([kira, kiraExec, ai0].map((a) => [a.handle, a]));
-  const byId = new Map([kira, kiraExec, ai0].map((a) => [a.id, a]));
+  const mgr = agent({ id: 'a-mgr', kind: 'manager', scope: 'system', scopeId: null, handle: 'manager', name: 'Manager', emoji: '🧭', dailyBudgetUsd: null, mode: 'live' });
+  const byHandle = new Map([kira, kiraExec, ai0, mgr].map((a) => [a.handle, a]));
+  const byId = new Map([kira, kiraExec, ai0, mgr].map((a) => [a.id, a]));
   const lib = new SkillLibrary();
   const port: AgentChatPort = {
     byHandle: async (h) => byHandle.get(h.toLowerCase()) ?? null,
@@ -123,6 +125,7 @@ function setup(turns: ConstructorParameters<typeof FakeLlm>[0], chatAgentId: str
   actions.svc.register('update_agent', async () => ({ ok: true }));
   actions.svc.register('write_skill', async () => ({ ok: true }));
   const memoryAdds: any[] = [];
+  const reviews: number[] = [];
   const registry = new ToolRegistry([
     ...buildComposerTools({ drafts, repo }),
     ...buildBuilderTools({
@@ -133,6 +136,9 @@ function setup(turns: ConstructorParameters<typeof FakeLlm>[0], chatAgentId: str
       skills: { findShared: async () => null } as any,
       actions: actions.svc,
     }),
+    // The nightly manager run's terminal tool and a read tool (spec 021), as the real registry has them.
+    { name: 'submit_review', description: 'end the nightly manager run', kind: 'terminal', roles: ['manager'], input: z.object({}).passthrough(), execute: async () => { reviews.push(1); return { ok: true }; } },
+    { name: 'list_directives', description: 'directives', kind: 'read', roles: ['manager'], input: z.object({}).passthrough(), execute: async () => ({ directives: [] }) },
     ...buildAgentChatTools({ pool: { query: async () => ({ rows: [] }) } as any, memory: { add: async (...a: any[]) => { memoryAdds.push(a); return 7; } }, skills: { findShared: async () => null } as any, actions: actions.svc, now: () => NOW }),
   ]);
   const llm = new FakeLlm(turns);
@@ -141,7 +147,7 @@ function setup(turns: ConstructorParameters<typeof FakeLlm>[0], chatAgentId: str
   const svc = new EditorChatService({
     repo, drafts, memory: { listActive: async () => [] }, loop, registry, skills: lib, env: () => undefined, enabled: () => true, now: () => NOW, agents: port,
   });
-  return { svc, llm, messages, recorder, setAgents, actions, memoryAdds };
+  return { svc, llm, messages, recorder, setAgents, actions, memoryAdds, reviews };
 }
 
 test('@kira: the channel agent answers as itself, on its channel, recorded on its agent', async () => {
@@ -210,4 +216,19 @@ test('@kira: an owner rule is stored only when it paraphrases the owner', async 
   assert.equal(s.memoryAdds.length, 1);
   assert.deepEqual(s.memoryAdds[0].slice(0, 3), ['@chan', 'rule', 'Без мемів по понеділках']);
   assert.equal(s.memoryAdds[0][4], 'owner');
+});
+
+test('@manager in chat: a plain answer is the reply — the nightly run\'s submit_review is not offered or forced', async () => {
+  const s = setup([
+    { calls: [{ name: 'list_directives', args: {} }] },
+    { text: 'Сьогодні три слоти; переплановувати нічого не треба.' },
+  ]);
+  const r = await s.svc.sendMessage('c1', '@manager переплануй пости для всіх каналів на сьогодні');
+  assert.equal(s.recorder.runs[0].role, 'manager');
+  assert.ok(s.llm.requests.every((q) => !q.tools!.some((t) => t.name === 'submit_review')), 'the chat never offers the run-ending tool');
+  assert.ok(s.llm.requests[0].tools!.some((t) => t.name === 'list_directives'));
+  assert.equal(r.message.content, 'Сьогодні три слоти; переплановувати нічого не треба.');
+  assert.equal(s.llm.requests.length, 2, 'no nudge to finish with a tool');
+  assert.deepEqual(s.reviews, []);
+  assert.match((s.llm.requests[0].messages[0] as any).content, /submit_review тут немає/);
 });
