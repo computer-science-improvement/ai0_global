@@ -1,5 +1,6 @@
 import { BadRequestException, ConflictException, NotFoundException, ServiceUnavailableException } from '@nestjs/common';
-import type { AgentLoop, AgentLoopEvent, AgentLoopResult } from '../harness/agent-loop';
+import type { AgentLoop, AgentLoopEvent, AgentLoopInput, AgentLoopResult } from '../harness/agent-loop';
+import { actionLine, claimRePrompt, historyTurn, NOT_DONE_NOTE, TurnRecorder, unbackedClaims } from './turn-record';
 import type { ToolRegistry } from '../harness/tool-registry';
 import type { ChatMessage } from '../llm/llm.types';
 import { resolveModel } from '../llm/model-registry';
@@ -299,16 +300,17 @@ export class EditorChatService {
 
       const touched = new Map<string, EditorDraft>();
       const actions: PendingAction[] = [];
+      const rec = new TurnRecorder();
       const extras: ComposerExtras & AgentChatExtras & Record<string, unknown> = {
         chat: { chatId, channelKey },
         card: resolved?.card,
         userIntent: hasPublishIntent(text),
         // The card in extras is the draft's channel card (save_draft switches it), so the preview renders like the post.
-        onDraft: (draft) => { touched.set(draft.id, draft); emit({ type: 'draft', draft: renderDraft(draft, (extras.card as EditorCard | undefined) ?? null) }); },
+        onDraft: (draft) => { touched.set(draft.id, draft); rec.draft(draft.id); emit({ type: 'draft', draft: renderDraft(draft, (extras.card as EditorCard | undefined) ?? null) }); },
         agentIntent: ownerChangeIntent(text, lastAssistantText(prior)),
         ownerText: text,
         ownerRecent: ownerRecent(prior, text),
-        onAction: (a) => { actions.push(a); emit({ type: 'action', action: a }); },
+        onAction: (a) => { actions.push(a); rec.card(a.id, a.kind); emit({ type: 'action', action: a }); },
         ...(agentCtx ? { agent: addressee, skills: agentCtx.skills } : {}),
       };
       const onEvent = (e: AgentLoopEvent) => {
@@ -316,9 +318,10 @@ export class EditorChatService {
         else emit(e);
       };
 
+      const history = await this.history(chatId, prior, chatDrafts);
       let res: AgentLoopResult;
       try {
-        res = await this.d.loop.run({
+        res = await this.runGuarded(rec, {
           role: 'composer', channelKey: null,
           model: await (async () => {
             const { workspace, defaultModel } = await readModelContext(this.d);
@@ -329,7 +332,7 @@ export class EditorChatService {
           system: buildComposerSystemPrompt({
             now: this.now(), card: resolved?.card ?? null, hasCard: !!resolved?.hasCard, memory, skills: agentCtx?.skills ?? this.d.skills, persona,
           }),
-          user: text, history: this.history(prior, chatDrafts), tools: this.chatTools('composer'),
+          user: text, history, tools: this.chatTools('composer'),
           maxSteps: COMPOSER_MAX_STEPS, extras: extras as unknown as Record<string, unknown>, onEvent,
           agent: addressee ? { id: addressee.id, handle: addressee.handle, limitUsd: addressee.dailyBudgetUsd } : null,
           usage: { feature: chatFeature('composer'), shadow: false }, maxCostUsd: chatTurnCap(this.d.env),
@@ -341,7 +344,7 @@ export class EditorChatService {
       if (!ok) emit({ type: 'error', error: res.error ?? res.status });
       const message = await this.d.repo.addMessage({
         chatId, role: 'assistant', content: ok ? res.finalText!.trim() : failureText(res, [...touched.values()]), draftIds: [...touched.keys()], runId: res.runId,
-        agentId: addressee?.id ?? null,
+        agentId: addressee?.id ?? null, actions: rec.turn,
       });
       await this.d.repo.touchChat(chatId);
       emit({ type: 'message', message });
@@ -371,12 +374,13 @@ export class EditorChatService {
     const system = role === 'builder'
       ? buildBuilderPrompt({ now: this.now(), skills: ctx.skills, agentsSummary: await ag.agentsSummary() })
       : buildManagerChatPrompt({ now: this.now(), skills: ctx.skills, agent, digest: ag.managerDigest ? await ag.managerDigest() : null });
+    const rec = new TurnRecorder();
     const extras: AgentChatExtras & Record<string, unknown> = {
       chat: { chatId, channelKey: null },
       agentIntent: ownerChangeIntent(text, lastAssistantText(prior)),
       ownerText: text,
       ownerRecent: ownerRecent(prior, text),
-      onAction: (a) => emit({ type: 'action', action: a }),
+      onAction: (a) => { rec.card(a.id, a.kind); emit({ type: 'action', action: a }); },
       agent, skills: ctx.skills,
     };
     const onEvent = (e: AgentLoopEvent) => {
@@ -386,10 +390,11 @@ export class EditorChatService {
     const mctx = await readModelContext(this.d);
     let res: AgentLoopResult;
     try {
-      res = await this.d.loop.run({
+      const history = await this.history(chatId, prior, chatDrafts);
+      res = await this.runGuarded(rec, {
         role, channelKey: null, model: resolveModel(role, this.d.env, null, { agentModel: agentModelIn(agent, mctx.workspace), defaultModel: mctx.defaultModel, reasoningEffort: agent.reasoningEffort, workspace: mctx.workspace }),
         system: note ? `${system}\n\n${note}` : system,
-        user: text, history: this.history(prior, chatDrafts), tools: this.chatTools(role),
+        user: text, history, tools: this.chatTools(role),
         maxSteps: COMPOSER_MAX_STEPS, extras, onEvent,
         agent: { id: agent.id, handle: agent.handle, limitUsd: agent.dailyBudgetUsd },
         usage: { feature: chatFeature(role), shadow: false }, maxCostUsd: chatTurnCap(this.d.env),
@@ -400,21 +405,56 @@ export class EditorChatService {
     const ok = res.status === 'ok' && !!res.finalText?.trim();
     if (!ok) emit({ type: 'error', error: res.error ?? res.status });
     const message = await this.d.repo.addMessage({
-      chatId, role: 'assistant', content: ok ? res.finalText!.trim() : failureText(res), runId: res.runId, agentId: agent.id,
+      chatId, role: 'assistant', content: ok ? res.finalText!.trim() : failureText(res), runId: res.runId, agentId: agent.id, actions: rec.turn,
     });
     await this.d.repo.touchChat(chatId);
     emit({ type: 'message', message });
     return { message, drafts: [] };
   }
 
-  /** Prior text turns; an assistant turn carries a summary of the drafts it touched (ids for later edits). */
-  private history(prior: EditorChatMessage[], drafts: EditorDraft[]): ChatMessage[] {
+  /**
+   * Prior text turns. An assistant turn carries its author (`@handle:`), a summary of the drafts it touched (ids for
+   * later edits) and (spec 040 FR-014) what its tools did, with the cards' statuses as they are now.
+   */
+  private async history(chatId: string, prior: EditorChatMessage[], drafts: EditorDraft[]): Promise<ChatMessage[]> {
     const byId = new Map(drafts.map((x) => [x.id, x]));
+    const cards = prior.some((m) => m.actions?.cards.length) && this.d.agents
+      ? new Map((await this.d.agents.actionsForChat(chatId).catch(() => [] as PendingAction[])).map((a) => [a.id, a.status]))
+      : new Map<string, string>();
+    const handles = new Map<string, string>();
+    if (this.d.agents) {
+      for (const id of new Set(prior.filter((m) => m.role === 'assistant' && m.agentId).map((m) => m.agentId!))) {
+        const a = await this.d.agents.get(id).catch(() => null);
+        if (a) handles.set(id, a.handle);
+      }
+    }
     return prior.map((m) => {
       if (m.role === 'user') return { role: 'user', content: m.content };
       const lines = m.draftIds.map((id) => byId.get(id)).filter((x): x is EditorDraft => !!x).map(draftLine);
-      return { role: 'assistant', content: lines.length ? `${m.content}\n\n[чернетки: ${lines.join('; ')}]` : m.content };
+      const content = lines.length ? `${m.content}\n\n[чернетки: ${lines.join('; ')}]` : m.content;
+      return { role: 'assistant', content: historyTurn(content, m.agentId ? handles.get(m.agentId) ?? null : null, actionLine(m.actions, (id) => cards.get(id))) };
     });
+  }
+
+  /**
+   * Spec 040 FR-014: one run with the turn's tools recorded; a reply claiming an action no tool did gets one re-prompt
+   * (its tool calls count too), and a reply that still claims it ends with a visible note.
+   */
+  private async runGuarded(rec: TurnRecorder, input: AgentLoopInput): Promise<AgentLoopResult> {
+    const run = { ...input, tools: rec.wrap(input.tools) };
+    const first = await this.d.loop.run(run);
+    if (first.status !== 'ok' || !first.finalText?.trim()) return first;
+    const claims = unbackedClaims(first.finalText, rec.turn);
+    if (!claims.length) return first;
+    let second: AgentLoopResult | null = null;
+    try {
+      second = await this.d.loop.run({
+        ...run, history: [...(input.history ?? []), { role: 'user', content: input.user }, { role: 'assistant', content: first.finalText.trim() }],
+        user: claimRePrompt(claims),
+      });
+    } catch { /* the first reply stands, with the note */ }
+    const res = second?.status === 'ok' && second.finalText?.trim() ? second : first;
+    return unbackedClaims(res.finalText!, rec.turn).length ? { ...res, finalText: `${res.finalText!.trim()}\n\n${NOT_DONE_NOTE}` } : res;
   }
 
   /**

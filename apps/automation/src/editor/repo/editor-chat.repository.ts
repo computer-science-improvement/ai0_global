@@ -1,6 +1,7 @@
 import type { StoredCritic } from '../critic/critic';
 import type { Pool } from 'pg';
 import type { LintResult } from '../post/lint-post';
+import type { TurnActions } from '../chat/turn-record';
 
 export const DRAFT_STATUSES = ['draft', 'scheduled', 'published', 'failed', 'canceled'] as const;
 export type DraftStatus = typeof DRAFT_STATUSES[number];
@@ -23,6 +24,8 @@ export interface EditorChatMessage {
   runId:     string | null;
   /** Agent that wrote (assistant) or was addressed (user) — spec 018. */
   agentId?:  string | null;
+  /** Spec 040 FR-014: what the turn's tools did (assistant turns since migration 079). */
+  actions?:  TurnActions | null;
   createdAt: Date;
 }
 
@@ -71,6 +74,7 @@ const toChat = (r: any): EditorChat => ({
 const toMessage = (r: any): EditorChatMessage => ({
   id: Number(r.id), chatId: r.chat_id, role: r.role, content: r.content, draftIds: r.draft_ids ?? [],
   runId: r.run_id ?? null, createdAt: r.created_at, ...(r.agent_id ? { agentId: r.agent_id } : {}),
+  ...(r.actions ? { actions: r.actions } : {}),
 });
 
 export const toDraft = (r: any): EditorDraft => ({
@@ -117,14 +121,16 @@ export class EditorChatRepository {
 
   // ── messages ──────────────────────────────────────────────────────────────
 
-  async addMessage(m: { chatId: string; role: 'user' | 'assistant'; content: string; draftIds?: string[]; runId?: string | null; agentId?: string | null }): Promise<EditorChatMessage> {
-    const { rows } = m.agentId
-      ? await this.pool.query(
-        `INSERT INTO editor_chat_messages (chat_id, role, content, draft_ids, run_id, agent_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`,
-        [m.chatId, m.role, m.content, m.draftIds ?? [], m.runId ?? null, m.agentId])
-      : await this.pool.query(
-        `INSERT INTO editor_chat_messages (chat_id, role, content, draft_ids, run_id) VALUES ($1, $2, $3, $4, $5) RETURNING *`,
-        [m.chatId, m.role, m.content, m.draftIds ?? [], m.runId ?? null]);
+  async addMessage(m: {
+    chatId: string; role: 'user' | 'assistant'; content: string; draftIds?: string[]; runId?: string | null; agentId?: string | null;
+    actions?: TurnActions | null;
+  }): Promise<EditorChatMessage> {
+    const cols = ['chat_id', 'role', 'content', 'draft_ids', 'run_id'];
+    const vals: unknown[] = [m.chatId, m.role, m.content, m.draftIds ?? [], m.runId ?? null];
+    if (m.agentId) { cols.push('agent_id'); vals.push(m.agentId); }
+    if (m.actions) { cols.push('actions'); vals.push(JSON.stringify(m.actions)); }
+    const { rows } = await this.pool.query(
+      `INSERT INTO editor_chat_messages (${cols.join(', ')}) VALUES (${cols.map((_, i) => `$${i + 1}`).join(', ')}) RETURNING *`, vals);
     return toMessage(rows[0]);
   }
 
