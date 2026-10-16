@@ -114,7 +114,7 @@ done
 
 # The automation container's log for the same window (skipped when testing against another database).
 if [ -z "${EXPORT_PG_URL:-}" ]; then
-  docker compose logs --no-color --since "${DAYS}d" automation > "$OUT/automation.log" 2>&1 || echo "  warn   automation log not available"
+  docker compose --profile prod logs --no-color --since "$((DAYS * 24))h" automation > "$OUT/automation.log" 2>&1 || echo "  warn   automation log not available"
   [ -f "$OUT/automation.log" ] && echo "  wrote  automation.log ($(wc -l < "$OUT/automation.log" | tr -d ' ') lines)"
 fi
 
@@ -127,7 +127,7 @@ git rev-parse HEAD > "$OUT/code-revision.txt" 2>/dev/null || true
 
 # Mask anything that looks like a credential, in every file (Telegram bot tokens, OpenRouter / Anthropic / OpenAI
 # keys, Meta tokens, bearer headers, JWTs, MTProto session strings, passwords in URLs).
-find "$OUT" -type f \( -name '*.jsonl' -o -name '*.log' \) -print0 | xargs -0 perl -pi -e '
+find "$OUT" -type f \( -name '*.jsonl' -o -name '*.log' \) -print0 | LC_ALL=C xargs -0 perl -pi -e '
   s/(?<![0-9])\d{6,12}:[A-Za-z0-9_-]{30,}/<bot-token>/g;
   s/\bsk-(?:or-v1-|ant-[a-z0-9]+-|proj-)?[A-Za-z0-9_-]{20,}/<api-key>/g;
   s/\bEAA[A-Za-z0-9]{40,}/<meta-token>/g;
