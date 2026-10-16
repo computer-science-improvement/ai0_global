@@ -47,7 +47,7 @@ export function MetaAccountsManager({ platform }: { platform: MetaPlatform }) {
         <div>
           <h2 className="text-eyebrow" style={{ margin: 0 }}>{PLATFORM_LABEL[platform]}</h2>
           <p className="text-micro" style={{ margin: '4px 0 0', color: 'var(--color-ink-dim)' }}>
-            {PLATFORM_LABEL[platform]} accounts. Tokens are stored in <code style={{ color: 'var(--color-ink-muted)' }}>.env</code>.
+            {PLATFORM_LABEL[platform]} accounts. Tokens are stored encrypted in the database.
           </p>
         </div>
         <button onClick={() => setAddOpen(true)} className="btn-primary" style={{ gap: 6 }}>
@@ -138,7 +138,8 @@ function AccountCard({ account: a, groupName, onVerify, onToggle, onDelete, onRe
   onVerify: () => void; onToggle: () => void; onDelete: () => void;
   onRefreshToken: () => void; refreshing: boolean; refreshError: string | null;
 }) {
-  const verified = !a.verify_error && !!a.username;
+  // A Facebook Page or system user has no @username: a successful verify is enough.
+  const verified = !a.verify_error && (!!a.username || !!a.last_verified_at);
   return (
     <div className="card" style={{ display: 'flex', gap: 14, alignItems: 'center', flexWrap: 'wrap' }}>
       <Avatar url={a.picture_url} platform={a.platform} />
@@ -162,7 +163,7 @@ function AccountCard({ account: a, groupName, onVerify, onToggle, onDelete, onRe
         </div>
         <div className="text-caption" style={{ color: 'var(--color-ink-dim)', marginTop: 4 }}>
           {a.followers != null && <>{a.followers.toLocaleString()} followers · </>}
-          <code>{a.token_env}</code> · id <code>{a.target_id}</code>
+          {a.token_env && <><code>{a.token_env}</code> · </>}id <code>{a.target_id}</code>
           {a.last_verified_at && <> · verified {fmtDate(a.last_verified_at)}</>}
         </div>
         <div style={{ marginTop: 8 }}>

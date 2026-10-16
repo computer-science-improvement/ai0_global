@@ -36,7 +36,7 @@ export function BotsManager() {
         <div>
           <h2 className="text-eyebrow" style={{ margin: 0 }}>Bots</h2>
           <p className="text-micro" style={{ margin: '4px 0 0', color: 'var(--color-ink-dim)' }}>
-            Telegram bots that publish on your behalf. Tokens are stored in <code style={{ color: 'var(--color-ink-muted)' }}>.env</code>.
+            Telegram bots that publish on your behalf. Tokens are stored encrypted in the database.
           </p>
         </div>
         <button onClick={() => setAddOpen(true)} className="btn-primary" style={{ gap: 6 }}>
