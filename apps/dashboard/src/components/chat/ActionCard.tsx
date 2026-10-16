@@ -1,6 +1,6 @@
-// A confirmation card from an agent in the chat (spec 018 FR-005): what the
-// agent proposes (create an agent, change one, write a skill…) with the owner's
-// [Apply] / [Discard]. Nothing changes until Apply; the server re-validates the
+// A confirmation card from an agent in the chat (spec 018 FR-005), compact: what
+// the agent proposes (create an agent, change one, write a skill…); its dialog has
+// the full payload and the owner's [Apply] / [Discard]. Nothing changes until Apply; the server re-validates the
 // card against the current state, so a stale card comes back `failed` with the
 // reason. Decided cards show their final status.
 
@@ -14,7 +14,8 @@ import { fmtDate, fmtRelative } from '../../lib/format';
 import { KPI_GOALS, useDecideAction, type KpiGoal } from '../../api/agents';
 import type { PendingAction, PendingActionStatus } from '../../api/types';
 import { choiceInput, initialState, parsePayload, type ContentExamplesState } from '../../lib/content-examples';
-import { ContentExamplesBody } from './ContentExamplesCard';
+import { ContentExamplesBody, examplesCardLine } from './ContentExamplesCard';
+import { CompactCard } from '../ui/CompactCard';
 
 const KIND_META: Record<string, { label: string; icon: IconName }> = {
   create_agent:         { label: 'Create agent',      icon: 'sparkles' },
@@ -86,10 +87,9 @@ export function formatsOf(p: Record<string, unknown>): Array<{ format: string; r
     : [];
 }
 
-function LongText({ text, lines = 4 }: { text: string; lines?: number }) {
-  return (
-    <span style={{ display: '-webkit-box', WebkitLineClamp: lines, WebkitBoxOrient: 'vertical', overflow: 'hidden', whiteSpace: 'pre-wrap' }} title={text}>{text}</span>
-  );
+/** Long payload text, shown whole (the payload is only rendered in the card's dialog). */
+function LongText({ text }: { text: string }) {
+  return <span style={{ whiteSpace: 'pre-wrap' }}>{text}</span>;
 }
 
 function CreateAgentView({ p }: { p: Record<string, unknown> }) {
@@ -134,7 +134,7 @@ function SetBriefView({ p }: { p: Record<string, unknown> }) {
   return (
     <>
       {str(p.handle) && <Row label="Agent">@{p.handle as string}</Row>}
-      {str(p.brief) && <Row label="Brief"><LongText text={p.brief as string} lines={8} /></Row>}
+      {str(p.brief) && <Row label="Brief"><LongText text={p.brief as string} /></Row>}
       <Row label="Then">the orchestrator rebuilds the playbook from this brief</Row>
     </>
   );
@@ -146,12 +146,12 @@ function OwnerRuleView({ p }: { p: Record<string, unknown> }) {
   return (
     <>
       {str(p.channel) && <Row label="Channel">{p.channel as string}</Row>}
-      {str(p.text) && <Row label={p.kind === 'avoid' ? 'Avoid' : 'Rule'}><LongText text={p.text as string} lines={6} /></Row>}
+      {str(p.text) && <Row label={p.kind === 'avoid' ? 'Avoid' : 'Rule'}><LongText text={p.text as string} /></Row>}
       {quotes.length > 0 && (
         <Row label="Your words">
           <span style={{ display: 'grid', gap: 4 }}>
             {quotes.map((q, i) => (
-              <span key={i} style={{ color: 'var(--color-ink-muted)', borderLeft: '2px solid var(--color-hairline)', paddingLeft: 8 }}><LongText text={q} lines={3} /></span>
+              <span key={i} style={{ color: 'var(--color-ink-muted)', borderLeft: '2px solid var(--color-hairline)', paddingLeft: 8 }}><LongText text={q} /></span>
             ))}
           </span>
         </Row>
@@ -224,16 +224,16 @@ function WriteSkillView({ p }: { p: Record<string, unknown> }) {
         </Row>
       )}
       {body && (
-        <details>
-          <summary className="text-micro" style={{ cursor: 'pointer', color: 'var(--color-ink-muted)' }}>
+        <div>
+          <span className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>
             Body · {body.length.toLocaleString('en-US')} chars
-          </summary>
+          </span>
           <pre className="text-micro" style={{
-            margin: '6px 0 0', padding: 10, maxHeight: 240, overflow: 'auto', whiteSpace: 'pre-wrap', wordBreak: 'break-word',
+            margin: '6px 0 0', padding: 10, maxHeight: 360, overflow: 'auto', whiteSpace: 'pre-wrap', wordBreak: 'break-word',
             background: 'var(--color-canvas)', border: '1px solid var(--color-hairline)', borderRadius: 'var(--radius-sm)',
             color: 'var(--color-ink-muted)', fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace',
           }}>{body}</pre>
-        </details>
+        </div>
       )}
     </>
   );
@@ -252,6 +252,10 @@ function PayloadView({ action }: { action: PendingAction }) {
 
 const BOXED = new Set(['create_agent', 'update_agent', 'write_skill', 'set_brief', 'owner_rule', 'fix_config_conflicts']);
 
+/**
+ * An agent's confirmation card as a compact card: what it proposes, its status and two lines of the summary.
+ * A click opens the dialog with the full payload (and the example posts to mark) and Apply / Discard.
+ */
 export function ActionCard({ action }: { action: PendingAction }) {
   const decide = useDecideAction();
   // The decision's response until the chat refetch brings the same status.
@@ -259,14 +263,12 @@ export function ActionCard({ action }: { action: PendingAction }) {
   const a = action.status === 'pending' && local ? local : action;
   const meta = KIND_META[a.kind] ?? { label: a.kind.replace(/_/g, ' '), icon: 'wrench' as IconName };
   const pending = a.status === 'pending';
-  const busy = decide.isPending;
-  const payload = <PayloadView action={a} />;
   const createdHandle = a.kind === 'create_agent' && a.status === 'applied' ? str(obj(a.result).handle) : null;
-  // Spec 034 FR-008: the example-posts card keeps the owner's verdicts and edits until Apply.
+  // Spec 034 FR-008: the example-posts card keeps the owner's verdicts and edits until Apply (here, across dialog openings).
   const examples = useMemo(() => (a.kind === 'content_examples' ? parsePayload(a.payload) : null), [a.kind, a.payload]);
   const [choices, setChoices] = useState<ContentExamplesState | null>(() => (examples ? initialState(examples) : null));
 
-  const run = (decision: 'apply' | 'discard') => decide.mutate({
+  const run = (decision: 'apply' | 'discard', onDone: () => void) => decide.mutate({
     id: a.id, decision, ...(decision === 'apply' && examples && choices ? { input: choiceInput(examples, choices) } : {}),
   }, {
     onSuccess: (r) => {
@@ -274,20 +276,73 @@ export function ActionCard({ action }: { action: PendingAction }) {
       if (r.action.status === 'applied') toast.success(`Applied: ${meta.label.toLowerCase()}`);
       else if (r.action.status === 'failed') toast.error(`Not applied: ${r.action.error ?? 'failed'}`);
       else if (r.action.status === 'expired') toast.error('This card has expired — ask the agent again');
+      // Applied or discarded: the card is settled. Failed / expired stay open with the reason.
+      if (r.action.status === 'applied' || r.action.status === 'discarded') onDone();
     },
   });
 
+  const examplesLine = examples ? examplesCardLine(examples, pending) : null;
+
   return (
-    <div className="card compose-rise" style={{ padding: 14, maxWidth: 560, boxShadow: pending ? 'inset 0 0 0 1px var(--color-hairline)' : undefined }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', marginBottom: 8 }}>
-        <span className="section-glyph" style={{ width: 26, height: 26 }}><Icon name={meta.icon} size={14} /></span>
-        <span className="text-caption" style={{ color: 'var(--color-ink)', fontWeight: 600 }}>{meta.label}</span>
-        <span style={{ marginLeft: 'auto', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
-          {!pending && a.decidedAt && (
-            <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }} title={fmtDate(a.decidedAt)}>{fmtRelative(a.decidedAt)}</span>
-          )}
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 6, maxWidth: 560, minWidth: 0 }}>
+      <CompactCard hint="Open the card" attention={pending}
+        top={<>
+          <span className="section-glyph" style={{ width: 22, height: 22 }}><Icon name={meta.icon} size={12} /></span>
+          <span className="text-caption" style={{ color: 'var(--color-ink)', fontWeight: 600 }}>{meta.label}</span>
           <Badge tone={ACTION_TONE[a.status] ?? 'neutral'}>{pending ? 'needs your confirmation' : a.status}</Badge>
-        </span>
+        </>}
+        meta={!pending && a.decidedAt ? <span title={fmtDate(a.decidedAt)}>{fmtRelative(a.decidedAt)}</span> : undefined}
+        title={examplesLine ?? undefined}
+        body={a.summary || undefined}
+        note={a.status === 'failed' && a.error ? a.error : undefined}
+        noteTone="danger"
+        dialog={{
+          size: examples ? 'xl' : 'lg', icon: meta.icon, title: meta.label,
+          subtitle: pending ? 'Nothing changes until you apply' : `${a.status}${a.decidedAt ? ` · ${fmtRelative(a.decidedAt)}` : ''}`,
+          body: () => (
+            <ActionDetails a={a} pending={pending} createdHandle={createdHandle} error={decide.error}
+              examples={examples && choices ? <ContentExamplesBody payload={examples} state={choices} onChange={setChoices} pending={pending} /> : null} />
+          ),
+          actions: pending ? (close) => (
+            <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', justifyContent: 'flex-end', alignItems: 'center', width: '100%' }}>
+              <span className="text-micro" style={{ color: 'var(--color-ink-dim)', marginRight: 'auto' }}>Nothing changes until you apply</span>
+              <button className="btn-secondary" disabled={decide.isPending} onClick={() => run('discard', close)} style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+                <Icon name="x" size={14} /> Discard
+              </button>
+              <button className="btn-primary" disabled={decide.isPending} onClick={() => run('apply', close)} style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+                <Icon name="check" size={14} /> Apply
+              </button>
+            </div>
+          ) : undefined,
+        }} />
+      {createdHandle && <CreatedLink handle={createdHandle} />}
+    </div>
+  );
+}
+
+function CreatedLink({ handle }: { handle: string }) {
+  return (
+    <div>
+      <Link to="/app/agents/$handle" params={{ handle }} className="link-accent text-body-sm"
+        style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+        Open @{handle} <Icon name="chevron-right" size={14} />
+      </Link>
+      <span className="text-micro" style={{ color: 'var(--color-ink-dim)', marginLeft: 8 }}>Starts in approval mode</span>
+    </div>
+  );
+}
+
+/** The dialog body: the summary, the payload rows, the example posts, the result and the errors. */
+function ActionDetails({ a, pending, createdHandle, error, examples }: {
+  a: PendingAction; pending: boolean; createdHandle: string | null; error: unknown; examples: ReactNode;
+}) {
+  return (
+    <div style={{ minWidth: 0 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', marginBottom: 8 }}>
+        <Badge tone={ACTION_TONE[a.status] ?? 'neutral'}>{pending ? 'needs your confirmation' : a.status}</Badge>
+        {!pending && a.decidedAt && (
+          <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }} title={fmtDate(a.decidedAt)}>{fmtRelative(a.decidedAt)}</span>
+        )}
       </div>
 
       <p className="text-body-sm" style={{ margin: '0 0 10px', color: 'var(--color-ink)', lineHeight: 1.5, overflowWrap: 'anywhere' }}>{a.summary}</p>
@@ -297,40 +352,19 @@ export function ActionCard({ action }: { action: PendingAction }) {
           display: 'flex', flexDirection: 'column', gap: 6, padding: 12,
           background: 'var(--color-surface-1)', border: '1px solid var(--color-hairline-soft)', borderRadius: 'var(--radius-lg)',
         }}>
-          {payload}
+          <PayloadView action={a} />
         </div>
       )}
-      {examples && choices && <ContentExamplesBody payload={examples} state={choices} onChange={setChoices} pending={pending} />}
+      {examples}
       {a.kind === 'content_examples' && a.status === 'applied' && <ExamplesResult result={a.result} />}
 
       {a.status === 'failed' && a.error && (
         <div className="callout-danger" style={{ marginTop: 10 }}><span className="text-micro" style={{ overflowWrap: 'anywhere' }}>{a.error}</span></div>
       )}
-      {decide.error && (
-        <div className="callout-danger" style={{ marginTop: 10 }}><span className="text-micro">{describeError(decide.error)}</span></div>
+      {error != null && (
+        <div className="callout-danger" style={{ marginTop: 10 }}><span className="text-micro">{describeError(error)}</span></div>
       )}
-
-      {pending && (
-        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 12 }}>
-          <button className="btn-primary" disabled={busy} onClick={() => run('apply')} style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
-            <Icon name="check" size={14} /> Apply
-          </button>
-          <button className="btn-secondary" disabled={busy} onClick={() => run('discard')} style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
-            <Icon name="x" size={14} /> Discard
-          </button>
-          <span className="text-micro" style={{ color: 'var(--color-ink-dim)', alignSelf: 'center' }}>Nothing changes until you apply</span>
-        </div>
-      )}
-
-      {createdHandle && (
-        <div style={{ marginTop: 10 }}>
-          <Link to="/app/agents/$handle" params={{ handle: createdHandle }} className="link-accent text-body-sm"
-            style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
-            Open @{createdHandle} <Icon name="chevron-right" size={14} />
-          </Link>
-          <span className="text-micro" style={{ color: 'var(--color-ink-dim)', marginLeft: 8 }}>Starts in approval mode</span>
-        </div>
-      )}
+      {createdHandle && <div style={{ marginTop: 10 }}><CreatedLink handle={createdHandle} /></div>}
     </div>
   );
 }

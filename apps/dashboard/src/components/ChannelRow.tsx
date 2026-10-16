@@ -180,6 +180,6 @@ export function ChannelRow({ c, onDelete }: {
 }
 
 function PollTierChip({ tier }: { tier: TrackedChannel['pollTier'] }) {
-  const cls = tier === 'hot' ? 'chip chip-warning' : tier === 'warm' ? 'chip chip-success' : 'chip';
-  return <span className={cls} title={POLL_TIER_HELP[tier]}>{tier}</span>;
+  const tone = tier === 'hot' ? 'warning' : tier === 'warm' ? 'success' : 'neutral';
+  return <Badge tone={tone} title={POLL_TIER_HELP[tier]}>{tier}</Badge>;
 }

@@ -5,7 +5,7 @@ import { useCrumbs } from '../nav/hooks';
 import { SectionCard, StatTile, EmptyState } from '../components/ui/primitives';
 import { Badge } from '../components/ui/Badge';
 import { Icon } from '../components/ui/Icon';
-import { TableAction, RowActions } from '../components/ui/table';
+import { CompactCard } from '../components/ui/CompactCard';
 import { useConfirm } from '../components/ui/ConfirmDialog';
 import { describeError } from '../components/ui/Toast';
 import { CardEditorModal } from '../components/editor/CardEditorModal';
@@ -166,22 +166,34 @@ function MemorySection({ channelKey }: { channelKey: string }) {
       </div>
       {activeEntries.length === 0
         ? <EmptyState icon="bots" title="No active memory" note="Owner rules are injected into every planner, executor and reviewer prompt. The reviewer adds insights weekly." />
-        : <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-            {activeEntries.map((m) => (
-              <div key={m.id} className="card" style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '10px 14px' }}>
-                <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{ display: 'flex', gap: 6, marginBottom: 3 }}>
-                    <Badge tone={KIND_TONE[m.kind]}>{m.kind}</Badge>
-                    <Badge tone="neutral">{m.createdBy}</Badge>
-                  </div>
-                  <div className="text-body-sm" style={{ color: 'var(--color-ink)' }}>{m.text}</div>
-                </div>
-                <RowActions danger={
-                  <TableAction action="delete" title="Retire" disabled={retire.isPending}
-                    onClick={async () => { if (await confirm(`retire the memory entry “${m.text.slice(0, 60)}”`, { confirmLabel: 'Retire' })) retire.mutate(m.id); }} />
-                } />
-              </div>
-            ))}
+        : <div className="compact-grid">
+            {activeEntries.map((m, i) => {
+              const badges = <><Badge tone={KIND_TONE[m.kind]}>{m.kind}</Badge><Badge tone="neutral">{m.createdBy}</Badge></>;
+              const onRetire = async (close: () => void) => {
+                if (await confirm(`retire the memory entry “${m.text.slice(0, 60)}”`, { confirmLabel: 'Retire' })) retire.mutate(m.id, { onSuccess: close });
+              };
+              return (
+                <CompactCard key={m.id} delay={Math.min(i, 12) * 25} hint="Open the memory entry"
+                  top={badges}
+                  meta={<span className="tabular-nums">{fmtDate(m.createdAt)}</span>}
+                  body={m.text}
+                  dialog={{
+                    size: 'md', icon: 'bots', title: `Memory ${m.kind}`, subtitle: `${m.createdBy} · ${fmtDate(m.createdAt)}`,
+                    body: () => (
+                      <div style={{ minWidth: 0 }}>
+                        <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap', marginBottom: 10 }}>{badges}</div>
+                        <div className="text-body-sm" style={{ color: 'var(--color-ink)', whiteSpace: 'pre-wrap', overflowWrap: 'anywhere', lineHeight: 1.55 }}>{m.text}</div>
+                      </div>
+                    ),
+                    actions: (close) => (
+                      <button type="button" className="btn-ghost" disabled={retire.isPending} onClick={() => onRetire(close)}
+                        style={{ display: 'inline-flex', alignItems: 'center', gap: 6, color: 'var(--color-danger)', marginRight: 'auto' }}>
+                        <Icon name="trash" size={14} /> Retire
+                      </button>
+                    ),
+                  }} />
+              );
+            })}
           </div>}
       {showHistory && history.length > 0 && (
         <div style={{ marginTop: 14, display: 'flex', flexDirection: 'column', gap: 4 }}>

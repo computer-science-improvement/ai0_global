@@ -10,6 +10,7 @@
 
 import { Link } from '@tanstack/react-router';
 import { useMemo, useState, type ReactNode } from 'react';
+import { Modal } from '../Modal';
 import { Badge } from '../ui/Badge';
 import { Icon } from '../ui/Icon';
 import { CriticBlock } from '../critic/CriticBlock';
@@ -215,25 +216,25 @@ export function PlanStamp({ data, tz }: { data: PlanStampData; tz: string }) {
       {data.schedule && <div style={dim}>{planScheduleNote(data.schedule)}</div>}
       {history.length > 0 && (
         <div>
-          <button type="button" className="btn-tiny" style={{ gap: 5, padding: '4px 9px' }} aria-expanded={open} onClick={() => setOpen((v) => !v)}>
+          <button type="button" className="btn-tiny" style={{ gap: 5, padding: '4px 9px' }} aria-haspopup="dialog" onClick={() => setOpen(true)}>
             <Icon name="history" size={12} /> Earlier plans of this day ({history.length})
-            <Icon name={open ? 'chevron-up' : 'chevron-down'} size={12} />
           </button>
-          {open && (
-            <div style={{ display: 'grid', gap: 6, marginTop: 6 }}>
+          <Modal open={open} onClose={() => setOpen(false)} size="lg" icon="history" title="Earlier plans of this day"
+            subtitle={`${history.length} superseded plan${history.length === 1 ? '' : 's'} · times in ${tz}`}>
+            <div className="text-body-sm" style={{ display: 'grid', gap: 10 }}>
               {history.map((h) => (
-                <div key={h.id} style={{ display: 'flex', gap: 6, alignItems: 'baseline', flexWrap: 'wrap', paddingLeft: 8, borderLeft: '2px solid var(--color-hairline)', minWidth: 0 }}>
+                <div key={h.id} style={{ display: 'flex', gap: 6, alignItems: 'baseline', flexWrap: 'wrap', paddingLeft: 10, borderLeft: '2px solid var(--color-hairline)', minWidth: 0 }}>
                   <span className="tabular-nums" style={{ color: 'var(--color-ink)' }}>{formatIn(h.plannedAt, tz)}</span>
                   {h.runId
                     ? <Link to="/app/editor/run/$id" params={{ id: h.runId }} className="link-accent">{runLabel(h.runRole)} →</Link>
-                    : <span>no run</span>}
-                  {h.slots != null && <span>· {h.slots} slot{h.slots === 1 ? '' : 's'}</span>}
+                    : <span style={muted}>no run</span>}
+                  {h.slots != null && <span style={muted}>· {h.slots} slot{h.slots === 1 ? '' : 's'}</span>}
                   <Badge tone="neutral">superseded</Badge>
-                  {h.rationale && <span style={{ flexBasis: '100%', overflowWrap: 'anywhere', ...dim }}>{h.rationale}</span>}
+                  {h.rationale && <span style={{ flexBasis: '100%', overflowWrap: 'anywhere', whiteSpace: 'pre-wrap', ...muted }}>{h.rationale}</span>}
                 </div>
               ))}
             </div>
-          )}
+          </Modal>
         </div>
       )}
     </div>

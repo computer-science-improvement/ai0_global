@@ -2,19 +2,23 @@
 // with the independent / auto-duplicate switch, the pending version awaiting approval
 // (reviewer verdict + a diff vs the active one), the active playbook rendered
 // per resource, "Rebuild from brief", the owner editor and version history.
+// Compact: the pending version is a one-line card whose dialog holds the review, the
+// diff, the brief, the full version and Approve / Reject; each platform section, series
+// and example post is a compact card whose dialog has the rest.
 
 import { Link } from '@tanstack/react-router';
 import { useState, type CSSProperties, type ReactNode } from 'react';
 import { EmptyState, SectionCard } from '../ui/primitives';
 import { Badge } from '../ui/Badge';
 import { Icon } from '../ui/Icon';
+import { CompactCard } from '../ui/CompactCard';
 import { useConfirm } from '../ui/ConfirmDialog';
 import { toast } from '../ui/Toast';
 import { Modal } from '../Modal';
 import { fmtDate, fmtRelative } from '../../lib/format';
 import {
   useAgentNetwork, useDecidePlaybook, usePlaybook, useRebuildPlaybook, useSetNetworkMode,
-  type AgentNetwork, type Playbook, type PlaybookExample, type PlaybookPlatform, type PlaybookRow, type GroupNetworkMode,
+  type AgentNetwork, type Playbook, type PlaybookExample, type PlaybookPlatform, type PlaybookRow, type PlaybookSeries, type GroupNetworkMode,
 } from '../../api/network';
 import {
   NETWORK_MODE_LABEL, NETWORK_MODE_TONE, NetworkError, PLAYBOOK_TONE, ResourceChip, ResourceLabel, WeightBar, errorText, fmtCadence, hourLabel,
@@ -190,42 +194,45 @@ function NetworkModeSwitch({ handle, orchestrator, net, hasActive, grouped }: { 
 
 // ── pending version ──
 
+/** The version awaiting approval as a one-line card; its dialog has the review, the diff, the brief, the full version and the decision. */
 function PendingCard({ row, active }: { row: PlaybookRow; active: PlaybookRow | null }) {
-  const confirm = useConfirm();
-  const decide = useDecidePlaybook();
-  const [full, setFull] = useState(false);
   const diff = diffPlaybooks(active?.body, row.body);
-
-  const go = async (decision: 'approve' | 'reject') => {
-    const ok = decision === 'approve'
-      ? await confirm(`approve playbook v${row.version}`, {
-        danger: false, confirmLabel: 'Approve',
-        details: <p className="text-micro" style={{ margin: 0, color: 'var(--color-ink-muted)' }}>It becomes the active playbook at once{active ? `; v${active.version} is superseded` : ''}. The next plan follows it.</p>,
-      })
-      : await confirm(`reject playbook v${row.version}`, { confirmLabel: 'Reject' });
-    if (!ok) return;
-    decide.mutate({ id: row.id, decision }, {
-      onSuccess: () => toast.success(decision === 'approve' ? `v${row.version} is active` : `v${row.version} rejected`),
-      onError: (e) => toast.error(errorText(e) === 'not pending' ? 'This version is no longer pending' : errorText(e)),
-    });
-  };
-
+  const changes = diff.reduce((n, g) => n + g.changes.length, 0);
+  const review = row.review;
   return (
-    <SectionCard
-      title={<span style={{ display: 'inline-flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>Pending <Badge tone="warning">v{row.version}</Badge></span>}
-      icon="inbox" delay={20}
-      style={{ marginBottom: 16, boxShadow: 'inset 0 0 0 1px color-mix(in srgb, var(--color-warning) 40%, transparent)' }}
-      action={<Badge tone="warning">awaiting approval</Badge>}
-    >
-      <VersionMeta row={row} />
-      {row.brief && (
-        <details style={{ marginBottom: 12 }}>
-          <summary className="text-micro" style={{ cursor: 'pointer', color: 'var(--color-ink-muted)' }}>Brief</summary>
-          <p className="text-body-sm" style={{ margin: '6px 0 0', whiteSpace: 'pre-wrap', color: 'var(--color-ink)' }}>{row.brief}</p>
-        </details>
-      )}
+    <div style={{ marginBottom: 16 }}>
+      <CompactCard delay={20} attention hint="Open the pending version"
+        top={<>
+          <Badge tone="warning">v{row.version}</Badge>
+          <Badge tone="warning">awaiting approval</Badge>
+          {review && <Badge tone={review.verdict === 'ok' ? 'success' : 'warning'} title="Playbook reviewer verdict">reviewer: {review.verdict === 'ok' ? 'ok' : 'concerns'}</Badge>}
+        </>}
+        meta={<span title={fmtDate(row.createdAt)}>{fmtRelative(row.createdAt)}</span>}
+        title={`Playbook v${row.version} awaiting approval`}
+        body={row.rationale || undefined} lines={1}
+        extra={(
+          <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>
+            by {row.createdBy}
+            {' · '}{review ? `${review.comments.length} reviewer comment${review.comments.length === 1 ? '' : 's'}` : 'no review yet'}
+            {' · '}{active ? `${changes} change${changes === 1 ? '' : 's'} vs v${active.version}` : 'first version'}
+          </span>
+        )}
+        dialog={{
+          size: 'xl', icon: 'inbox', title: `Pending playbook v${row.version}`,
+          subtitle: `awaiting approval · by ${row.createdBy} · ${fmtDate(row.createdAt)}`,
+          body: () => <PendingDetails row={row} active={active} />,
+          actions: (close) => <PendingActions row={row} active={active} onDone={close} />,
+        }} />
+    </div>
+  );
+}
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))', gap: 14, marginBottom: 12 }}>
+function PendingDetails({ row, active }: { row: PlaybookRow; active: PlaybookRow | null }) {
+  const diff = diffPlaybooks(active?.body, row.body);
+  return (
+    <div>
+      {row.rationale && <p className="text-body-sm" style={{ margin: '0 0 12px', color: 'var(--color-ink)', whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>{row.rationale}</p>}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))', gap: 14, marginBottom: 14 }}>
         <div className="card" style={{ padding: '12px 14px', minWidth: 0 }}>
           <div className="text-micro" style={eyebrow}>Reviewer</div>
           <ReviewBlock review={row.review} />
@@ -235,21 +242,48 @@ function PendingCard({ row, active }: { row: PlaybookRow; active: PlaybookRow | 
           <DiffSummary groups={diff} empty={active ? 'Same as the active version.' : 'First version.'} />
         </div>
       </div>
+      {row.brief && <BriefBlock brief={row.brief} />}
+      <div className="text-micro" style={eyebrow}>The full v{row.version}</div>
+      <PlaybookView body={row.body} />
+    </div>
+  );
+}
 
-      <button type="button" className="btn-ghost text-micro" style={{ ...btn, padding: '4px 0' }} onClick={() => setFull((v) => !v)} aria-expanded={full}>
-        <Icon name={full ? 'chevron-up' : 'chevron-down'} size={13} /> {full ? 'Hide' : 'Show'} the full v{row.version}
+function PendingActions({ row, active, onDone }: { row: PlaybookRow; active: PlaybookRow | null; onDone?: () => void }) {
+  const confirm = useConfirm();
+  const decide = useDecidePlaybook();
+  const go = async (decision: 'approve' | 'reject') => {
+    const ok = decision === 'approve'
+      ? await confirm(`approve playbook v${row.version}`, {
+        danger: false, confirmLabel: 'Approve',
+        details: <p className="text-micro" style={{ margin: 0, color: 'var(--color-ink-muted)' }}>It becomes the active playbook at once{active ? `; v${active.version} is superseded` : ''}. The next plan follows it.</p>,
+      })
+      : await confirm(`reject playbook v${row.version}`, { confirmLabel: 'Reject' });
+    if (!ok) return;
+    decide.mutate({ id: row.id, decision }, {
+      onSuccess: () => { toast.success(decision === 'approve' ? `v${row.version} is active` : `v${row.version} rejected`); onDone?.(); },
+      onError: (e) => toast.error(errorText(e) === 'not pending' ? 'This version is no longer pending' : errorText(e)),
+    });
+  };
+  return (
+    <>
+      <button type="button" className="btn-secondary" style={{ ...btn, color: 'var(--color-danger)' }} disabled={decide.isPending} onClick={() => go('reject')}>
+        <Icon name="x" size={14} /> Reject
       </button>
-      {full && <div style={{ marginTop: 12 }}><PlaybookView body={row.body} /></div>}
+      <button type="button" className="btn-primary" style={btn} disabled={decide.isPending} onClick={() => go('approve')}>
+        <Icon name="check" size={14} /> Approve
+      </button>
+    </>
+  );
+}
 
-      <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 8, marginTop: 14, flexWrap: 'wrap' }}>
-        <button type="button" className="btn-secondary" style={{ ...btn, color: 'var(--color-danger)' }} disabled={decide.isPending} onClick={() => go('reject')}>
-          <Icon name="x" size={14} /> Reject
-        </button>
-        <button type="button" className="btn-primary" style={btn} disabled={decide.isPending} onClick={() => go('approve')}>
-          <Icon name="check" size={14} /> Approve
-        </button>
-      </div>
-    </SectionCard>
+/** The owner's brief of a version (shown in full inside a dialog). */
+function BriefBlock({ brief }: { brief: string }) {
+  return (
+    <div style={{ marginBottom: 14 }}>
+      <div className="text-micro" style={eyebrow}>Brief</div>
+      <p className="text-body-sm" style={{ margin: 0, whiteSpace: 'pre-wrap', overflowWrap: 'anywhere', color: 'var(--color-ink)' }}>{brief}</p>
+    </div>
   );
 }
 
@@ -317,20 +351,54 @@ function Row({ label, children }: { label: string; children: ReactNode }) {
   );
 }
 
+/** "photo 40 · text 30 · +2": the top enabled formats by weight (in %). */
+function formatsLine(formats: Record<string, number>, top = 3): string {
+  const enabled = Object.entries(formats).filter(([, w]) => w > 0).sort((a, b) => b[1] - a[1]);
+  if (!enabled.length) return 'no formats';
+  const shown = enabled.slice(0, top).map(([f, w]) => `${f} ${Math.round(w * 100)}`);
+  return `${shown.join(' · ')}${enabled.length > top ? ` · +${enabled.length - top}` : ''}`;
+}
+
+const perDayLabel = (s: PlaybookPlatform) => (s.per_day.min === s.per_day.max ? `${s.per_day.min}` : `${s.per_day.min}–${s.per_day.max}`);
+
+/** One resource's section as a compact card: resource, role, top formats, posts per day, best hours; the dialog has the full section. */
 function PlatformCard({ s, delay }: { s: PlaybookPlatform; delay: number }) {
+  const enabled = Object.values(s.formats).filter((w) => w > 0).length;
+  const hours = s.best_hours?.length ?? 0;
+  return (
+    <CompactCard delay={delay} hint="Open the section"
+      top={<>
+        <span style={{ flex: '1 1 auto', minWidth: 0, display: 'flex' }}><ResourceLabel refId={s.resource_ref} strong /></span>
+        <RoleChip role={s.role} />
+      </>}
+      body={<span className="tabular-nums">{formatsLine(s.formats)}</span>} lines={1}
+      extra={(
+        <span className="text-micro tabular-nums" style={{ color: 'var(--color-ink-dim)' }}>
+          {perDayLabel(s)} post{s.per_day.max === 1 ? '' : 's'}/day · {hours ? `${hours} best hour${hours === 1 ? '' : 's'}` : 'any hour'}
+        </span>
+      )}
+      note={enabled > MAX_FITTING_FORMATS ? `${enabled} formats enabled — keep ${MAX_FITTING_FORMATS} or fewer` : undefined}
+      dialog={{
+        size: 'lg', icon: 'logs', title: s.resource_ref, subtitle: `role ${s.role.replace('funnel_to:', 'funnel → ')}`,
+        body: () => <PlatformDetails s={s} />,
+      }} />
+  );
+}
+
+function PlatformDetails({ s }: { s: PlaybookPlatform }) {
   const formats = Object.entries(s.formats).sort((a, b) => b[1] - a[1]);
   const enabled = formats.filter(([, w]) => w > 0).map(([f]) => f);
   const reasons = enabled.filter((f) => s.format_reasons?.[f]).map((f) => [f, s.format_reasons![f]] as const);
   const hp = s.hashtag_policy ?? { vocab: [], min: 0, max: 0 };
   return (
-    <div className="card compose-rise" style={{ padding: '14px 16px', minWidth: 0, display: 'flex', flexDirection: 'column', gap: 12, animationDelay: `${delay}ms` }}>
+    <div style={{ minWidth: 0, display: 'flex', flexDirection: 'column', gap: 14 }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', minWidth: 0 }}>
         <span style={{ flex: '1 1 auto', minWidth: 0, display: 'flex' }}><ResourceLabel refId={s.resource_ref} strong /></span>
         <RoleChip role={s.role} />
       </div>
       <div>
         <div className="text-micro" style={eyebrow}>Formats</div>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 5, maxWidth: 420 }}>
           {formats.length ? formats.map(([f, v]) => <WeightBar key={f} label={f} value={v} />) : <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>none</span>}
         </div>
         {/* Spec 034 FR-007: why each format fits; more than 4 enabled formats is flagged. */}
@@ -350,7 +418,7 @@ function PlatformCard({ s, delay }: { s: PlaybookPlatform; delay: number }) {
         )}
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-        <Row label="Per day"><span className="tabular-nums">{s.per_day.min === s.per_day.max ? s.per_day.min : `${s.per_day.min}–${s.per_day.max}`} posts</span></Row>
+        <Row label="Per day"><span className="tabular-nums">{perDayLabel(s)} posts</span></Row>
         <Row label="Best hours">
           {s.best_hours?.length
             ? <span style={{ display: 'inline-flex', gap: 4, flexWrap: 'wrap' }}>{[...s.best_hours].sort((a, b) => a - b).map((h) => <span key={h} className="chip tabular-nums" style={{ fontSize: 11 }}>{hourLabel(h)}</span>)}</span>
@@ -370,6 +438,36 @@ function PlatformCard({ s, delay }: { s: PlaybookPlatform; delay: number }) {
   );
 }
 
+/** A series as a compact card: name, cadence, resource, active; the dialog has the full brief. */
+function SeriesCard({ s, delay }: { s: PlaybookSeries; delay: number }) {
+  return (
+    <CompactCard delay={delay} hint="Open the series" style={{ opacity: s.active ? 1 : 0.6 }}
+      top={<>
+        {s.active ? <Badge tone="success">active</Badge> : <Badge tone="neutral">paused</Badge>}
+        <span className="chip tabular-nums" style={{ fontSize: 11 }}><Icon name="clock" size={11} />&nbsp;{fmtCadence(s.cadence)}</span>
+      </>}
+      title={s.name}
+      body={s.brief || undefined} lines={1}
+      extra={<span style={{ display: 'flex', minWidth: 0 }}><ResourceChip refId={s.resource_ref} suffix={s.format} /></span>}
+      dialog={{
+        size: 'md', icon: 'history', title: s.name, subtitle: `${fmtCadence(s.cadence)} · ${s.active ? 'active' : 'paused'}`,
+        body: () => (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 10, minWidth: 0 }}>
+            <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' }}>
+              {s.active ? <Badge tone="success">active</Badge> : <Badge tone="neutral">paused</Badge>}
+              <span className="chip tabular-nums"><Icon name="clock" size={11} />&nbsp;{fmtCadence(s.cadence)}</span>
+              <ResourceChip refId={s.resource_ref} suffix={s.format} />
+            </div>
+            <div>
+              <div className="text-micro" style={eyebrow}>Brief</div>
+              <p className="text-body-sm" style={{ margin: 0, color: 'var(--color-ink)', whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>{s.brief || '—'}</p>
+            </div>
+          </div>
+        ),
+      }} />
+  );
+}
+
 // Pillar segments: the accent at decreasing strength, so the bar stays one hue.
 const PILLAR_ALPHA = [0.95, 0.72, 0.52, 0.38, 0.27, 0.19, 0.14, 0.1];
 
@@ -377,29 +475,15 @@ export function PlaybookView({ body }: { body: Playbook }) {
   const total = body.pillars.reduce((s, p) => s + p.share, 0) || 1;
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 290px), 1fr))', gap: 12 }}>
+      <div className="compact-grid">
         {body.platforms.map((s, i) => <PlatformCard key={s.resource_ref} s={s} delay={i * 30} />)}
       </div>
 
       {body.series.length > 0 && (
         <div>
           <div className="text-micro" style={eyebrow}>Series</div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-            {body.series.map((s) => (
-              <div key={s.name} className="card" style={{ padding: '10px 14px', display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'flex-start', opacity: s.active ? 1 : 0.6 }}>
-                <div style={{ flex: '1 1 240px', minWidth: 0 }}>
-                  <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' }}>
-                    <span style={{ color: 'var(--color-ink)', fontWeight: 500 }}>{s.name}</span>
-                    {!s.active && <Badge tone="neutral">paused</Badge>}
-                  </div>
-                  <div className="text-micro" style={{ color: 'var(--color-ink-muted)', marginTop: 3, overflowWrap: 'anywhere' }}>{s.brief}</div>
-                </div>
-                <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' }}>
-                  <span className="chip tabular-nums"><Icon name="clock" size={11} />&nbsp;{fmtCadence(s.cadence)}</span>
-                  <ResourceChip refId={s.resource_ref} suffix={s.format} />
-                </div>
-              </div>
-            ))}
+          <div className="compact-grid">
+            {body.series.map((s, i) => <SeriesCard key={s.name} s={s} delay={Math.min(i, 12) * 25} />)}
           </div>
         </div>
       )}
@@ -425,14 +509,7 @@ export function PlaybookView({ body }: { body: Playbook }) {
         </div>
       )}
 
-      {body.rules.length > 0 && (
-        <div>
-          <div className="text-micro" style={eyebrow}>Rules</div>
-          <ol style={{ margin: 0, paddingLeft: 20, listStyle: 'decimal', display: 'flex', flexDirection: 'column', gap: 4 }}>
-            {body.rules.map((r, i) => <li key={i} className="text-body-sm" style={{ color: 'var(--color-ink)', overflowWrap: 'anywhere' }}>{r}</li>)}
-          </ol>
-        </div>
-      )}
+      {body.rules.length > 0 && <RulesList rules={body.rules} />}
 
       {(body.examples?.length ?? 0) > 0 && <ExamplesList examples={body.examples!} />}
     </div>
@@ -445,22 +522,69 @@ function ExamplesList({ examples }: { examples: PlaybookExample[] }) {
   return (
     <div>
       <div className="text-micro" style={eyebrow}>Example posts · {examples.filter((e) => e.verdict === 'good').length} good, {examples.filter((e) => e.verdict === 'bad').length} to avoid</div>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 290px), 1fr))', gap: 8 }}>
-        {sorted.map((e, i) => (
-          <div key={i} className="card" style={{ padding: '10px 14px', display: 'flex', flexDirection: 'column', gap: 6, minWidth: 0 }}>
+      <div className="compact-grid">
+        {sorted.map((e, i) => <ExampleCard key={i} e={e} delay={Math.min(i, 12) * 25} />)}
+      </div>
+    </div>
+  );
+}
+
+/** One example post: verdict, format and the first lines; the dialog has the full text and the note. */
+function ExampleCard({ e, delay }: { e: PlaybookExample; delay: number }) {
+  const good = e.verdict === 'good';
+  return (
+    <CompactCard delay={delay} hint="Open the example post"
+      top={<>
+        <Badge tone={good ? 'success' : 'danger'}>{good ? 'good' : 'avoid'}</Badge>
+        <span className="chip" style={{ fontSize: 11 }}>{e.format}</span>
+        {e.resource_ref && <ResourceChip refId={e.resource_ref} />}
+      </>}
+      body={e.text}
+      dialog={{
+        size: 'lg', icon: 'logs', title: good ? 'Example post' : 'Post to avoid', subtitle: `${e.format}${e.resource_ref ? ` · ${e.resource_ref}` : ''}`,
+        body: () => (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 10, minWidth: 0 }}>
             <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' }}>
-              <Badge tone={e.verdict === 'good' ? 'success' : 'danger'}>{e.verdict === 'good' ? 'good' : 'avoid'}</Badge>
+              <Badge tone={good ? 'success' : 'danger'}>{good ? 'good' : 'avoid'}</Badge>
               <span className="chip">{e.format}</span>
               {e.resource_ref && <ResourceChip refId={e.resource_ref} />}
             </div>
-            <div className="text-body-sm" style={{
-              color: 'var(--color-ink)', whiteSpace: 'pre-wrap', overflowWrap: 'anywhere',
-              display: '-webkit-box', WebkitLineClamp: 6, WebkitBoxOrient: 'vertical', overflow: 'hidden',
-            }} title={e.text}>{e.text}</div>
-            {e.note && <div className="text-micro" style={{ color: 'var(--color-ink-muted)', overflowWrap: 'anywhere' }}>{e.note}</div>}
+            <div className="text-body-sm" style={{ color: 'var(--color-ink)', whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>{e.text}</div>
+            {e.note && (
+              <div>
+                <div className="text-micro" style={eyebrow}>Note</div>
+                <div className="text-body-sm" style={{ color: 'var(--color-ink-muted)', overflowWrap: 'anywhere' }}>{e.note}</div>
+              </div>
+            )}
           </div>
-        ))}
+        ),
+      }} />
+  );
+}
+
+/** The playbook rules, each clamped to two lines; when one is long, "All rules" opens them in full. */
+function RulesList({ rules }: { rules: string[] }) {
+  const [open, setOpen] = useState(false);
+  const long = rules.some((r) => r.length > 180 || r.includes('\n'));
+  const list = (clamp: boolean) => (
+    <ol style={{ margin: 0, paddingLeft: 20, listStyle: 'decimal', display: 'flex', flexDirection: 'column', gap: 4 }}>
+      {rules.map((r, i) => (
+        <li key={i} className="text-body-sm" style={{ color: 'var(--color-ink)', overflowWrap: 'anywhere', whiteSpace: clamp ? undefined : 'pre-wrap' }}>
+          {clamp ? <span className="clamp" title={r}>{r}</span> : r}
+        </li>
+      ))}
+    </ol>
+  );
+  return (
+    <div>
+      <div style={{ display: 'flex', alignItems: 'baseline', gap: 8 }}>
+        <div className="text-micro" style={eyebrow}>Rules</div>
+        {long && <button type="button" className="btn-tiny" style={{ marginLeft: 'auto' }} onClick={() => setOpen(true)}>All rules</button>}
       </div>
+      {list(true)}
+      <Modal open={open} onClose={() => setOpen(false)} size="lg" icon="logs" title="Rules" subtitle={`${rules.length} rule${rules.length === 1 ? '' : 's'}`}>
+        {list(false)}
+      </Modal>
     </div>
   );
 }
@@ -495,12 +619,7 @@ function HistoryModal({ row, history, onClose }: { row: PlaybookRow; history: Pl
     <Modal open onClose={onClose} size="xl" icon="logs" title={`Playbook v${row.version}`}
       subtitle={`${row.status.replace('_', ' ')} · by ${row.createdBy} · ${fmtDate(row.createdAt)}${row.decidedAt ? ` · decided ${fmtDate(row.decidedAt)}` : ''}`}>
       {row.rationale && <p className="text-body-sm" style={{ margin: '0 0 12px', color: 'var(--color-ink)', whiteSpace: 'pre-wrap' }}>{row.rationale}</p>}
-      {row.brief && (
-        <details style={{ marginBottom: 12 }}>
-          <summary className="text-micro" style={{ cursor: 'pointer', color: 'var(--color-ink-muted)' }}>Brief</summary>
-          <p className="text-body-sm" style={{ margin: '6px 0 0', whiteSpace: 'pre-wrap', color: 'var(--color-ink)' }}>{row.brief}</p>
-        </details>
-      )}
+      {row.brief && <BriefBlock brief={row.brief} />}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))', gap: 12, marginBottom: 16 }}>
         {row.review && (
           <div className="card" style={{ padding: '12px 14px', minWidth: 0 }}>

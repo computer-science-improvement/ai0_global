@@ -1,5 +1,5 @@
 import { createFileRoute, Link, useNavigate } from '@tanstack/react-router';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { PageHeader } from '../components/ui/PageHeader';
 import { Crumbs } from '../components/ui/Crumbs';
 import { useCrumbs } from '../nav/hooks';
@@ -9,7 +9,7 @@ import { Icon } from '../components/ui/Icon';
 import { describeError, toast } from '../components/ui/Toast';
 import { SegmentedTabs } from '../components/SegmentedTabs';
 import { AgentGlyph, KIND_LABEL, PauseButton, ScopeChip, StateBadges } from '../components/agents/AgentsUi';
-import { AgentOverview } from '../components/agents/AgentOverview';
+import { AgentEditDialog, AgentOverview } from '../components/agents/AgentOverview';
 import { AgentSkills } from '../components/agents/AgentSkills';
 import { AgentHistory, AgentMemory } from '../components/agents/AgentMemoryHistory';
 import { AgentPlaybook } from '../components/agents/AgentPlaybook';
@@ -67,6 +67,7 @@ function AgentPage() {
   const navigate = useNavigate({ from: Route.fullPath });
   const q = useAgent(handle);
   const run = useRunAgent();
+  const [editing, setEditing] = useState(false);
   const runManager = useRunManager();
   const setTab = (t: Tab) => navigate({ search: { tab: t === 'overview' ? undefined : t }, replace: true });
   const openIdea = (id: string) => navigate({ search: { tab: 'ideas', idea: id }, replace: false });
@@ -100,14 +101,6 @@ function AgentPage() {
   const hidden = (t: Tab) => (!networked && NETWORK_TABS.includes(t)) || (!manager && MANAGER_TABS.includes(t));
   const tab: Tab = hidden(rawTab) ? 'overview' : rawTab;
   const tabOptions = TAB_OPTIONS.filter((o) => !hidden(o.key));
-  const edit = () => {
-    setTab('overview');
-    setTimeout(() => {
-      const el = document.getElementById('agent-name') as HTMLInputElement | null;
-      el?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      el?.focus({ preventScroll: true });
-    }, 60);
-  };
 
   const runNow = () => manager
     // The MANAGER has its own run endpoint (reads the KPI digest; may file directives).
@@ -146,7 +139,7 @@ function AgentPage() {
                 <Icon name="rocket" size={14} /> Run now
               </button>
               <PauseButton agent={a} />
-              <button className="btn-primary" style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }} onClick={edit}>
+              <button className="btn-primary" style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }} onClick={() => setEditing(true)}>
                 <Icon name="pencil" size={14} /> Edit
               </button>
             </>}
@@ -173,6 +166,7 @@ function AgentPage() {
         </div>
       )}
 
+      <AgentEditDialog data={d} open={editing} onClose={() => setEditing(false)} />
       {tab === 'overview' && <AgentOverview data={d} />}
       {tab === 'approvals' && d.channelKey && <ApprovalStatsPanel channel={d.channelKey} />}
       {tab === 'approvals' && (d.channelKey

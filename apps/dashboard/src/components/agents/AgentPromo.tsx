@@ -7,6 +7,7 @@ import { useMemo, useState } from 'react';
 import { EmptyState, SectionCard } from '../ui/primitives';
 import { Badge } from '../ui/Badge';
 import { Icon } from '../ui/Icon';
+import { Modal } from '../Modal';
 import { SLOT_TONE } from '../editor/EditorUi';
 import { fmtDate, fmtRelative } from '../../lib/format';
 import { sanitizeTelegramHtml } from '../../lib/tg-html';
@@ -152,15 +153,18 @@ function PromoSlotRow({ slot, delay }: { slot: PromoSlot; delay: number }) {
         )}
         {p.post_ref && <span className="text-micro" style={{ color: 'var(--color-ink-dim)', overflowWrap: 'anywhere' }}>post {p.post_ref}</span>}
         {html && (
-          <button type="button" className="btn-tiny" style={{ gap: 5, marginLeft: 'auto' }} aria-expanded={open} onClick={() => setOpen((v) => !v)}>
-            <Icon name="eye" size={12} /> {open ? 'Hide preview' : 'Preview'}
+          <button type="button" className="btn-tiny" style={{ gap: 5, marginLeft: 'auto' }} aria-haspopup="dialog" onClick={() => setOpen(true)}>
+            <Icon name="eye" size={12} /> Preview
           </button>
         )}
       </div>
       {slot.error && <div className="text-micro" style={{ color: 'var(--color-danger)', overflowWrap: 'anywhere' }}>{slot.error.replace(/_/g, ' ')}</div>}
-      {open && html && (
-        <div className="text-body-sm" style={{ padding: '10px 12px', maxWidth: 520, borderRadius: 'var(--radius-md)', background: 'var(--color-surface-1)', border: '1px solid var(--color-hairline-soft)', whiteSpace: 'pre-wrap', wordBreak: 'break-word', lineHeight: 1.5, color: 'var(--color-ink)' }}
-          dangerouslySetInnerHTML={{ __html: html }} />
+      {html && (
+        <Modal open={open} onClose={() => setOpen(false)} icon="eye" title="Promo post preview"
+          subtitle={`${KIND_LABEL[p.kind] ?? p.kind} · ${fmtDate(slot.at)} · ${slot.status}`}>
+          <div className="text-body-sm" style={{ padding: '10px 12px', borderRadius: 'var(--radius-md)', background: 'var(--color-surface-1)', border: '1px solid var(--color-hairline-soft)', whiteSpace: 'pre-wrap', wordBreak: 'break-word', lineHeight: 1.5, color: 'var(--color-ink)' }}
+            dangerouslySetInnerHTML={{ __html: html }} />
+        </Modal>
       )}
     </div>
   );

@@ -1,5 +1,6 @@
 // Items browser (spec 032 FR-007): full-text search, filters built from the dataset's filterable fields,
-// a card per row rendered through the roles (title, body, image, category, date), and hide / unhide.
+// a compact card per row rendered through the roles (title, body, image, category, date) that opens all the
+// fields, and hide / unhide.
 
 import { useState } from 'react';
 import { SegmentedTabs } from '../SegmentedTabs';
@@ -7,7 +8,7 @@ import { Pagination } from '../Pagination';
 import { Badge } from '../ui/Badge';
 import { Icon } from '../ui/Icon';
 import { EmptyState } from '../ui/primitives';
-import { TableAction } from '../ui/table';
+import { CompactCard } from '../ui/CompactCard';
 import { describeError, toast } from '../ui/Toast';
 import { fmtDate } from '../../lib/format';
 import {
@@ -52,11 +53,11 @@ export function DatasetItems({ schema }: { schema: DataSchema }) {
       {items.data && items.data.items.length > 0 && (
         <>
           <p className="text-micro" style={{ color: 'var(--color-ink-dim)', margin: '0 0 8px' }}>{fmtInt(items.data.total)} rows</p>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 260px), 1fr))', gap: 10, opacity: items.isFetching ? 0.7 : 1 }}>
+          <div className="compact-grid" style={{ opacity: items.isFetching ? 0.7 : 1 }}>
             {items.data.items.map((it, i) => (
               <ItemCard key={it.id} item={it} index={i} schema={schema} busy={setItem.isPending}
-                onToggle={() => setItem.mutate({ id: it.id, status: it.status === 'active' ? 'hidden' : 'active' }, {
-                  onSuccess: (r) => toast.success(r.status === 'hidden' ? 'Hidden from agents and strategies' : 'Visible again'),
+                onToggle={(done) => setItem.mutate({ id: it.id, status: it.status === 'active' ? 'hidden' : 'active' }, {
+                  onSuccess: (r) => { toast.success(r.status === 'hidden' ? 'Hidden from agents and strategies' : 'Visible again'); done(); },
                   onError: (e) => toast.error(describeError(e)),
                 })} />
             ))}
@@ -68,40 +69,58 @@ export function DatasetItems({ schema }: { schema: DataSchema }) {
   );
 }
 
-function ItemCard({ item, index, schema, onToggle, busy }: { item: DataItem; index: number; schema: DataSchema; onToggle: () => void; busy: boolean }) {
-  const [open, setOpen] = useState(false);
+/**
+ * A row as a compact card: a small thumbnail, the status / posted / category badges, the date, the title
+ * and two lines of the body. A click opens every field, the ref and the full body with Hide / Unhide.
+ */
+function ItemCard({ item, index, schema, onToggle, busy }: { item: DataItem; index: number; schema: DataSchema; onToggle: (done: () => void) => void; busy: boolean }) {
   const date = item.event_date ?? (item.event_month && item.event_day ? `${String(item.event_day).padStart(2, '0')}.${String(item.event_month).padStart(2, '0')}` : null);
+  const hidden = item.status === 'hidden';
+  const badges = (
+    <>
+      {hidden && <Badge tone="warning">Hidden</Badge>}
+      {item.posted_count > 0 && <Badge tone="success" title="Resources this row was published on (content ledger)">Posted {item.posted_count}×</Badge>}
+      {item.category && <span className="chip" style={{ fontSize: 11 }}>{item.category}</span>}
+      {date && <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>{date}</span>}
+    </>
+  );
   return (
-    <div className="card compose-rise" style={{ padding: 12, display: 'flex', flexDirection: 'column', gap: 8, minWidth: 0, animationDelay: `${Math.min(index, 12) * 25}ms`, opacity: item.status === 'hidden' ? 0.6 : 1 }}>
-      {item.image_url && (
-        <img src={item.image_url} alt="" loading="lazy" style={{ width: '100%', height: 140, objectFit: 'cover', borderRadius: 'var(--radius-sm)', background: 'var(--color-surface-3)' }} />
-      )}
-      <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' }}>
-        {item.status === 'hidden' && <Badge tone="warning">Hidden</Badge>}
-        {item.posted_count > 0 && <Badge tone="success" title="Resources this row was published on (content ledger)">Posted {item.posted_count}×</Badge>}
-        {item.category && <span className="chip">{item.category}</span>}
-        {date && <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>{date}</span>}
-        <span style={{ marginLeft: 'auto', display: 'inline-flex', gap: 6 }}>
-          <TableAction icon="info" title={open ? 'Hide fields' : 'Show all fields'} onClick={() => setOpen(!open)} />
-          <TableAction icon={item.status === 'active' ? 'ban' : 'eye'} title={item.status === 'active' ? 'Hide' : 'Unhide'} disabled={busy} onClick={onToggle} />
-        </span>
-      </div>
-      <div className="text-body-sm" style={{ fontWeight: 600, color: 'var(--color-ink)', overflowWrap: 'anywhere' }}>
-        {item.title ?? <em style={{ color: 'var(--color-ink-dim)' }}>no title</em>}
-      </div>
-      {item.body && <div className="text-micro" style={{ color: 'var(--color-ink-muted)', overflowWrap: 'anywhere', whiteSpace: 'pre-line' }}>{item.body}</div>}
-      {item.url && <a href={item.url} target="_blank" rel="noreferrer noopener" className="link-accent text-micro" style={{ overflowWrap: 'anywhere' }}>{item.url}</a>}
-      {open && (
-        <dl style={{ margin: 0, display: 'grid', gridTemplateColumns: 'minmax(80px, 120px) 1fr', gap: '4px 10px', borderTop: '1px solid var(--color-hairline-soft)', paddingTop: 8 }}>
-          {schema.fields.map((f) => (
-            <FieldRow key={f.name} name={f.name} value={item.data[f.name]} muted={f.deprecated || f.agent_visible === false} />
-          ))}
-          <FieldRow name="ref" value={item.ref} />
-          {item.legacy_ref && <FieldRow name="legacy ref" value={item.legacy_ref} />}
-          <FieldRow name="added" value={fmtDate(item.created_at)} />
-        </dl>
-      )}
-    </div>
+    <CompactCard delay={Math.min(index, 12) * 25} hint="Open the row" style={{ opacity: hidden ? 0.6 : 1 }}
+      top={<>
+        {item.image_url && (
+          <img src={item.image_url} alt="" loading="lazy" style={{ width: 48, height: 48, objectFit: 'cover', borderRadius: 'var(--radius-sm)', background: 'var(--color-surface-3)', flexShrink: 0 }} />
+        )}
+        <span style={{ display: 'flex', gap: 5, alignItems: 'center', flexWrap: 'wrap', minWidth: 0, flex: 1 }}>{badges}</span>
+      </>}
+      title={item.title ?? <em style={{ color: 'var(--color-ink-dim)', fontWeight: 400 }}>no title</em>}
+      body={item.body || undefined}
+      dialog={{
+        size: 'lg', icon: 'database', title: item.title ?? 'Untitled row', subtitle: item.ref,
+        body: () => (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 10, minWidth: 0 }}>
+            {item.image_url && (
+              <img src={item.image_url} alt="" loading="lazy" style={{ width: '100%', maxHeight: 320, objectFit: 'contain', borderRadius: 'var(--radius-sm)', background: 'var(--color-surface-3)' }} />
+            )}
+            <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' }}>{badges}</div>
+            {item.body && <div className="text-body-sm" style={{ color: 'var(--color-ink)', overflowWrap: 'anywhere', whiteSpace: 'pre-line', lineHeight: 1.55 }}>{item.body}</div>}
+            {item.url && <a href={item.url} target="_blank" rel="noreferrer noopener" className="link-accent text-micro" style={{ overflowWrap: 'anywhere' }}>{item.url}</a>}
+            <dl style={{ margin: 0, display: 'grid', gridTemplateColumns: 'minmax(80px, 140px) 1fr', gap: '4px 10px', borderTop: '1px solid var(--color-hairline-soft)', paddingTop: 8 }}>
+              {schema.fields.map((f) => (
+                <FieldRow key={f.name} name={f.name} value={item.data[f.name]} muted={f.deprecated || f.agent_visible === false} />
+              ))}
+              <FieldRow name="ref" value={item.ref} />
+              {item.legacy_ref && <FieldRow name="legacy ref" value={item.legacy_ref} />}
+              <FieldRow name="added" value={fmtDate(item.created_at)} />
+            </dl>
+          </div>
+        ),
+        actions: (close) => (
+          <button type="button" className="btn-secondary" disabled={busy} onClick={() => onToggle(close)}
+            style={{ display: 'inline-flex', alignItems: 'center', gap: 6, marginLeft: 'auto' }}>
+            <Icon name={hidden ? 'eye' : 'ban'} size={14} /> {hidden ? 'Unhide' : 'Hide'}
+          </button>
+        ),
+      }} />
   );
 }
 

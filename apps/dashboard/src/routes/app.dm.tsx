@@ -5,6 +5,10 @@ import { SectionCard, EmptyState } from '../components/ui/primitives';
 import { Badge } from '../components/ui/Badge';
 import { SegmentedTabs } from '../components/SegmentedTabs';
 import { TableAction, RowActions } from '../components/ui/table';
+import { Icon } from '../components/ui/Icon';
+import { Field } from '../components/ui/primitives';
+import { describeError } from '../components/ui/Toast';
+import { CompactCard } from '../components/ui/CompactCard';
 import {
   useAgentInbox,
   useAgentStatus,
@@ -18,8 +22,8 @@ import {
   useAgentOpportunities,
   usePatchOpportunity,
 } from '../api/agent';
-import type { AgentCategory, AgentAction, OpportunityKind } from '../api/types';
-import { fmtDate } from '../lib/format';
+import type { AgentCategory, AgentAction, AgentThread, OpportunityKind } from '../api/types';
+import { fmtDate, fmtRelative } from '../lib/format';
 
 type CatFilter = 'all' | AgentCategory;
 
@@ -102,87 +106,156 @@ function PendingActionRow({ action }: { action: AgentAction }) {
   const textChanged = editedText !== storedText;
   const busy = approve.isPending || reject.isPending || create.isPending;
 
-  function handleApprove() {
+  function handleApprove(onDone: () => void) {
     if (textChanged) {
       // Text was edited: create a new action with the updated text, then reject
       // the old one. The new action will appear in the pending list for a second
       // Approve click. We do not auto-approve the new action to keep the guard.
       create.mutate(
         { type: action.type, threadId: action.thread_id ?? undefined, payload: { ...action.payload, text: editedText } },
-        { onSuccess: () => reject.mutate(action.id) },
+        { onSuccess: () => reject.mutate(action.id, { onSuccess: onDone }) },
       );
     } else {
-      approve.mutate(action.id);
+      approve.mutate(action.id, { onSuccess: onDone });
     }
   }
 
   const target = action.type === 'reply'
     ? (action.thread_id ? `thread ${action.thread_id.slice(0, 8)}…` : '—')
     : (action.payload.channelId ?? '—');
+  const when = action.type === 'schedule_post' && action.payload.scheduledAt ? fmtDate(action.payload.scheduledAt) : null;
+  const err = approve.error ?? reject.error ?? create.error;
 
   return (
-    <div
-      className="card"
-      style={{ display: 'flex', alignItems: 'flex-start', gap: 16, padding: '13px 18px' }}
-    >
-      <div style={{ minWidth: 0, flex: 1 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', marginBottom: 6 }}>
-          <Badge tone={action.type === 'reply' ? 'accent' : 'neutral'}>{action.type}</Badge>
-          <span className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>
-            {target}
-          </span>
-          {action.type === 'schedule_post' && action.payload.scheduledAt && (
-            <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>
-              {fmtDate(action.payload.scheduledAt)}
-            </span>
-          )}
-        </div>
-        <textarea
-          value={editedText}
-          onChange={(e) => setEditedText(e.target.value)}
-          rows={3}
-          style={{
-            width: '100%',
-            resize: 'vertical',
-            background: 'var(--color-surface)',
-            color: 'var(--color-ink)',
-            border: '1px solid var(--color-border)',
-            borderRadius: 'var(--radius-sm)',
-            padding: '6px 10px',
-            fontSize: '0.85rem',
-            fontFamily: 'inherit',
-          }}
-        />
-        {textChanged && (
-          <div className="text-micro" style={{ color: 'var(--color-ink-dim)', marginTop: 3 }}>
-            Text edited — Approve will create a new action with the updated text.
+    <CompactCard hint="Open the action" attention={!!action.error}
+      top={<>
+        <Badge tone={action.type === 'reply' ? 'accent' : 'neutral'}>{action.type}</Badge>
+        <span className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>{target}</span>
+        {textChanged && <span className="chip" style={{ fontSize: 11 }}>edited</span>}
+      </>}
+      meta={when ?? fmtRelative(action.created_at)}
+      body={editedText || <span style={{ color: 'var(--color-ink-dim)' }}>No text</span>}
+      note={action.error ?? undefined}
+      noteTone="danger"
+      dialog={{
+        size: 'lg', icon: 'check', title: action.type === 'reply' ? 'Reply' : action.type.replace(/_/g, ' '),
+        subtitle: `${target}${when ? ` · ${when}` : ''} · nothing is sent until you approve`,
+        body: () => (
+          <div style={{ minWidth: 0 }}>
+            <Field label="Text" hint="Edit it before approving; an edited text becomes a new action to approve.">
+              <textarea className="input-field" value={editedText} onChange={(e) => setEditedText(e.target.value)} rows={8}
+                style={{ width: '100%', resize: 'vertical', fontFamily: 'inherit', fontSize: '0.85rem' }} />
+            </Field>
+            {textChanged && (
+              <div className="text-micro" style={{ color: 'var(--color-ink-dim)', marginTop: -6 }}>
+                Text edited — Approve will create a new action with the updated text.
+              </div>
+            )}
+            {action.error && (
+              <div className="callout-danger" style={{ marginTop: 8 }}><span className="text-micro" style={{ overflowWrap: 'anywhere' }}>{action.error}</span></div>
+            )}
+            {err && (
+              <div className="callout-danger" style={{ marginTop: 8 }}><span className="text-micro">{describeError(err)}</span></div>
+            )}
           </div>
-        )}
-        {action.error && (
-          <div className="text-micro" style={{ color: 'var(--color-danger)', marginTop: 3 }}>
-            {action.error}
+        ),
+        actions: (close) => (
+          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', justifyContent: 'flex-end', width: '100%' }}>
+            <button type="button" className="btn-ghost" disabled={busy} onClick={() => reject.mutate(action.id, { onSuccess: close })}
+              style={{ display: 'inline-flex', alignItems: 'center', gap: 6, color: 'var(--color-danger)', marginRight: 'auto' }}>
+              <Icon name="ban" size={14} /> Reject
+            </button>
+            {textChanged && (
+              <button type="button" className="btn-secondary" disabled={busy} onClick={() => setEditedText(storedText)}>Undo edits</button>
+            )}
+            <button type="button" className="btn-primary" disabled={busy} onClick={() => handleApprove(close)}
+              style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+              <Icon name="check" size={14} /> {textChanged ? 'Approve with edits' : 'Approve'}
+            </button>
           </div>
-        )}
-      </div>
-      <RowActions
-        danger={
-          <TableAction
-            icon="trash"
-            danger
-            title="Reject"
-            disabled={busy}
-            onClick={() => reject.mutate(action.id)}
-          />
-        }
-      >
-        <TableAction
-          icon="check"
-          title={textChanged ? 'Approve (with edits)' : 'Approve'}
-          disabled={busy}
-          onClick={handleApprove}
-        />
-      </RowActions>
-    </div>
+        ),
+      }} />
+  );
+}
+
+/** A triaged DM thread as a compact card; the dialog has the full summary, the draft reply and the actions. */
+function ThreadCard({ t, index }: { t: AgentThread; index: number }) {
+  const patch  = usePatchAgentThread();
+  const create = useCreateAgentAction();
+  const peer = t.peer_name ?? (t.peer_username ? '@' + t.peer_username : t.peer_id);
+  const landing = t.fields?.source === 'landing'
+    ? `From landing · ${LANDING_PLACEMENT_LABEL[t.fields.placement ?? ''] ?? t.fields.placement ?? 'unknown'}${t.fields.channel ? ` · ${t.fields.channel.startsWith('@') || /^-?\d+$/.test(t.fields.channel) ? t.fields.channel : `@${t.fields.channel}`}` : ''}`
+    : null;
+  const busy = patch.isPending || create.isPending;
+  const err = patch.error ?? create.error;
+
+  return (
+    <CompactCard hint="Open the thread" delay={Math.min(index, 12) * 30}
+      top={<>
+        <span className="text-body-sm" style={{ color: 'var(--color-ink)', fontWeight: 600 }}>{peer}</span>
+        <Badge tone={CAT_TONE[t.category]}>{t.category}</Badge>
+        <span className="text-micro tabular-nums" style={{ color: 'var(--color-ink-dim)' }}>score {t.score}</span>
+        {/* Spec 026 FR-016: the DM came from a landing CTA (its prefilled ai0web tag). */}
+        {landing && <span className="chip" style={{ fontSize: 11 }} title={`Opened from the public landing (${t.fields.placement ?? 'unknown'} button)${t.fields.channel ? `, about ${t.fields.channel}` : ''}`}>{landing}</span>}
+      </>}
+      meta={<span title={fmtDate(t.last_message_at)}>{fmtRelative(t.last_message_at)}</span>}
+      body={t.summary ?? t.last_text ?? undefined}
+      extra={t.draft_reply ? <span className="text-micro" style={{ color: 'var(--color-accent)' }}>Draft reply ready</span> : undefined}
+      dialog={{
+        size: 'lg', icon: 'chat', title: peer,
+        subtitle: `${t.category} · score ${t.score} · last message ${fmtDate(t.last_message_at)}`,
+        body: () => (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 12, minWidth: 0 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
+              <Badge tone={CAT_TONE[t.category]}>{t.category}</Badge>
+              <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>score {t.score}</span>
+              {t.peer_username && <span className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>@{t.peer_username}</span>}
+              {landing && <span className="chip" style={{ fontSize: 11 }}>{landing}</span>}
+            </div>
+            {t.summary && (
+              <div>
+                <div className="text-micro" style={{ color: 'var(--color-ink-dim)', marginBottom: 3 }}>Summary</div>
+                <div className="text-body-sm" style={{ color: 'var(--color-ink)', whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>{t.summary}</div>
+              </div>
+            )}
+            {t.last_text && (
+              <div>
+                <div className="text-micro" style={{ color: 'var(--color-ink-dim)', marginBottom: 3 }}>Last message</div>
+                <div className="text-body-sm" style={{ color: 'var(--color-ink-muted)', whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>{t.last_text}</div>
+              </div>
+            )}
+            <div>
+              <div className="text-micro" style={{ color: 'var(--color-ink-dim)', marginBottom: 3 }}>Draft reply</div>
+              {t.draft_reply
+                ? <div className="text-body-sm" style={{ color: 'var(--color-ink)', whiteSpace: 'pre-wrap', overflowWrap: 'anywhere', padding: '8px 10px', background: 'var(--color-surface-1)', border: '1px solid var(--color-hairline-soft)', borderRadius: 'var(--radius-md)' }}>{t.draft_reply}</div>
+                : <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>No draft reply.</span>}
+              <div className="text-micro" style={{ color: 'var(--color-ink-dim)', marginTop: 4 }}>
+                Queue reply adds it to Pending actions above; it is sent only when you approve it there.
+              </div>
+            </div>
+            {err && <div className="callout-danger"><span className="text-micro">{describeError(err)}</span></div>}
+          </div>
+        ),
+        actions: (close) => (
+          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', justifyContent: 'flex-end', width: '100%' }}>
+            <button type="button" className="btn-ghost" disabled={busy} onClick={() => patch.mutate({ id: t.id, status: 'archived' }, { onSuccess: close })}
+              style={{ display: 'inline-flex', alignItems: 'center', gap: 6, color: 'var(--color-danger)', marginRight: 'auto' }}>
+              <Icon name="trash" size={14} /> Archive
+            </button>
+            <button type="button" className="btn-secondary" disabled={busy} onClick={() => patch.mutate({ id: t.id, status: 'reviewed' }, { onSuccess: close })}
+              style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+              <Icon name="check" size={14} /> Mark reviewed
+            </button>
+            {/* Queue reply: creates a pending action from the draft_reply text. Sending only happens when the
+                action is Approved in the Pending section — this button never sends directly. */}
+            <button type="button" className="btn-primary" disabled={busy}
+              onClick={() => create.mutate({ type: 'reply', threadId: t.id, payload: { text: t.draft_reply ?? '' } }, { onSuccess: close })}
+              style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+              <Icon name="play" size={14} /> Queue reply
+            </button>
+          </div>
+        ),
+      }} />
   );
 }
 
@@ -325,9 +398,7 @@ function AgentPage() {
   const setCat = (c: CatFilter) => navigate({ search: c === 'all' ? {} : { cat: c }, replace: true });
   const status  = useAgentStatus();
   const inbox   = useAgentInbox(cat === 'all' ? {} : { category: cat });
-  const patch   = usePatchAgentThread();
   const actions = useAgentActions('pending');
-  const create  = useCreateAgentAction();
 
   return (
     <div>
@@ -369,7 +440,7 @@ function AgentPage() {
             No pending actions.
           </div>
         ) : (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+          <div className="compact-grid">
             {actions.data.map((a) => (
               <PendingActionRow key={a.id} action={a} />
             ))}
@@ -390,95 +461,8 @@ function AgentPage() {
         />
       )}
 
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-        {inbox.data?.map((t) => (
-          <div
-            key={t.id}
-            className="card row-lift"
-            style={{ display: 'flex', alignItems: 'flex-start', gap: 16, padding: '13px 18px' }}
-          >
-            <div style={{ minWidth: 0, flex: 1 }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
-                <span
-                  className="text-body"
-                  style={{ color: 'var(--color-ink)', fontWeight: 500 }}
-                >
-                  {t.peer_name ?? (t.peer_username ? '@' + t.peer_username : t.peer_id)}
-                </span>
-                <Badge tone={CAT_TONE[t.category]}>{t.category}</Badge>
-                {/* Spec 026 FR-016: the DM came from a landing CTA (its prefilled ai0web tag). */}
-                {t.fields?.source === 'landing' && (
-                  <span
-                    className="chip"
-                    style={{ fontSize: 11 }}
-                    title={`Opened from the public landing (${t.fields.placement ?? 'unknown'} button)${t.fields.channel ? `, about ${t.fields.channel}` : ''}`}
-                  >
-                    From landing · {LANDING_PLACEMENT_LABEL[t.fields.placement ?? ''] ?? t.fields.placement ?? 'unknown'}
-                    {t.fields.channel ? ` · ${t.fields.channel.startsWith('@') || /^-?\d+$/.test(t.fields.channel) ? t.fields.channel : `@${t.fields.channel}`}` : ''}
-                  </span>
-                )}
-                <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>
-                  score {t.score}
-                </span>
-              </div>
-              {t.summary && (
-                <div
-                  className="text-body-sm"
-                  style={{ color: 'var(--color-ink-muted)', marginTop: 4 }}
-                >
-                  {t.summary}
-                </div>
-              )}
-              {t.draft_reply && (
-                <details style={{ marginTop: 6 }}>
-                  <summary
-                    className="text-micro"
-                    style={{ color: 'var(--color-accent)', cursor: 'pointer' }}
-                  >
-                    Draft reply
-                  </summary>
-                  <div
-                    className="text-body-sm"
-                    style={{ color: 'var(--color-ink)', marginTop: 4, whiteSpace: 'pre-wrap' }}
-                  >
-                    {t.draft_reply}
-                  </div>
-                </details>
-              )}
-            </div>
-            <RowActions
-              danger={
-                <TableAction
-                  icon="trash"
-                  danger
-                  title="Archive"
-                  onClick={() => patch.mutate({ id: t.id, status: 'archived' })}
-                />
-              }
-            >
-              {/* Queue reply: creates a pending action from the draft_reply text.
-                  Sending only happens when the action is Approved in the Pending
-                  section above — this button never sends directly. */}
-              <TableAction
-                icon="play"
-                title="Queue reply"
-                disabled={create.isPending}
-                onClick={() =>
-                  create.mutate({
-                    type: 'reply',
-                    threadId: t.id,
-                    payload: { text: t.draft_reply ?? '' },
-                  })
-                }
-              />
-              <TableAction
-                icon="check"
-                title="Mark reviewed"
-                onClick={() => patch.mutate({ id: t.id, status: 'reviewed' })}
-              />
-            </RowActions>
-          </div>
-        ))}
+      <div className="compact-grid">
+        {inbox.data?.map((t, i) => <ThreadCard key={t.id} t={t} index={i} />)}
       </div>
     </div>
   );

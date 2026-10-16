@@ -9,6 +9,10 @@
 // resource's zone and local "now"; a pill shows the resource's own time and the
 // owner's Kyiv time when they differ. Nothing reads the browser zone.
 //
+// Compact: a pill (wide) or a list row (narrow) opens the slot's details in a dialog;
+// each idea's decisions are a compact card whose dialog holds the per-resource rows;
+// a long plan rationale is clamped with the full text in a dialog.
+//
 // Spec 034 FR-012 / FR-013: "Planned at … by {run →}", how the agent plans (approval:
 // the evening before), the day's earlier plans, and per slot either the live call
 // ("At 14:00: fetch … → pick the freshest item → write …") or the fixed details with a
@@ -19,6 +23,8 @@ import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { EmptyState } from '../ui/primitives';
 import { Badge } from '../ui/Badge';
 import { Icon } from '../ui/Icon';
+import { CompactCard } from '../ui/CompactCard';
+import { Modal } from '../Modal';
 import { SLOT_TONE, SLOT_ORDER } from '../editor/EditorUi';
 import { useMediaQuery } from '../../lib/useMediaQuery';
 import { dayIn, dual, formatIn, zoneLabel } from '../../lib/zoned-time';
@@ -78,7 +84,7 @@ export function AgentPlan({ handle, onIdea }: { handle: string; onIdea: (id: str
   const sel = slots.find((s) => s.id === selected) ?? null;
   const decisions = plan.data?.decisions ?? [];
   const extra: PlanExtra = { feeds: plan.data?.feeds ?? {}, estimateUsd: plan.data?.previewEstimateUsd ?? null };
-  const select = (id: string) => setSelected((cur) => (cur === id ? null : id));
+  const select = (id: string) => setSelected(id);
 
   const relative = day === today ? 'Today' : day === shiftDay(today, 1) ? 'Tomorrow' : day === shiftDay(today, -1) ? 'Yesterday' : null;
   const toolbar = (
@@ -120,12 +126,7 @@ export function AgentPlan({ handle, onIdea }: { handle: string; onIdea: (id: str
               planDate: day, plannedAt: plan.data.plannedAt, runId: plan.data.runId, runRole: plan.data.runRole,
               schedule: plan.data.schedule ?? null, history: plan.data.history,
             }} />
-            {plan.data.rationale && (
-              <div style={{ display: 'flex', gap: 10, alignItems: 'flex-start', borderTop: '1px solid var(--color-hairline-soft)', paddingTop: 8 }}>
-                <span style={{ color: 'var(--color-accent)', display: 'inline-flex', marginTop: 2 }}><Icon name="sparkles" size={14} /></span>
-                <p className="text-body-sm" style={{ margin: 0, color: 'var(--color-ink)', whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>{plan.data.rationale}</p>
-              </div>
-            )}
+            {plan.data.rationale && <Rationale text={plan.data.rationale} day={day} />}
           </div>
           {slots.length === 0 ? (
             <div>
@@ -137,9 +138,7 @@ export function AgentPlan({ handle, onIdea }: { handle: string; onIdea: (id: str
           ) : wide ? (
             <>
               <Timeline lanes={lanes} day={day} today={today} anchorTz={anchorTz} selected={selected} onSelect={select} />
-              {sel
-                ? <div style={{ marginTop: 12 }}><SlotDetail slot={sel} slots={slots} tzOf={tzOf} decisions={decisions} onIdea={onIdea} onSelect={select} extra={extra} showResource /></div>
-                : <p className="text-micro" style={{ color: 'var(--color-ink-dim)', margin: '10px 2px 0' }}>Select a slot to see its topic, treatment, preview and links.</p>}
+              <p className="text-micro" style={{ color: 'var(--color-ink-dim)', margin: '10px 2px 0' }}>Click a slot to open its topic, treatment, preview and links.</p>
             </>
           ) : (
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
@@ -151,8 +150,7 @@ export function AgentPlan({ handle, onIdea }: { handle: string; onIdea: (id: str
                   </div>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
                     {l.slots.map((s) => (
-                      <ListSlot key={s.id} slot={s} tz={l.tz} slots={slots} tzOf={tzOf} decisions={decisions} open={selected === s.id}
-                        onToggle={() => select(s.id)} onSelect={setSelected} onIdea={onIdea} extra={extra} />
+                      <ListSlot key={s.id} slot={s} tz={l.tz} open={selected === s.id} onOpen={() => select(s.id)} extra={extra} />
                     ))}
                   </div>
                 </section>
@@ -160,9 +158,61 @@ export function AgentPlan({ handle, onIdea }: { handle: string; onIdea: (id: str
             </div>
           )}
           {decisions.length > 0 && <DecisionsPanel decisions={decisions} slots={slots} tzOf={tzOf} onIdea={onIdea} onSelect={setSelected} />}
+          <SlotDialog slot={sel} slots={slots} tzOf={tzOf} decisions={decisions} extra={extra} onSelect={setSelected}
+            onIdea={(id) => { setSelected(null); onIdea(id); }} onClose={() => setSelected(null)} />
         </>
       )}
     </div>
+  );
+}
+
+/** The planner's rationale, clamped to two lines; a long one opens in full in a dialog. */
+function Rationale({ text, day }: { text: string; day: string }) {
+  const [open, setOpen] = useState(false);
+  const long = text.length > 220 || text.split('\n').length > 2;
+  return (
+    <div style={{ display: 'flex', gap: 10, alignItems: 'flex-start', borderTop: '1px solid var(--color-hairline-soft)', paddingTop: 8, minWidth: 0 }}>
+      <span style={{ color: 'var(--color-accent)', display: 'inline-flex', marginTop: 2 }}><Icon name="sparkles" size={14} /></span>
+      <div style={{ flex: 1, minWidth: 0 }}>
+        <p className="text-body-sm clamp" style={{ margin: 0, color: 'var(--color-ink)', whiteSpace: 'pre-wrap' }}>{text}</p>
+        {long && <button type="button" className="btn-tiny" style={{ marginTop: 6 }} onClick={() => setOpen(true)}>Read all</button>}
+      </div>
+      <Modal open={open} onClose={() => setOpen(false)} size="lg" icon="sparkles" title="Plan rationale" subtitle={fmtDay(day)}>
+        <p className="text-body-sm" style={{ margin: 0, color: 'var(--color-ink)', whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>{text}</p>
+      </Modal>
+    </div>
+  );
+}
+
+/** A slot's details in a dialog — opened from a timeline pill or a list row. */
+function SlotDialog({ slot, slots, tzOf, decisions, extra, onSelect, onIdea, onClose }: {
+  slot: PlanSlot | null; slots: PlanSlot[]; tzOf: Map<string, string>; decisions: ContentDecision[]; extra: PlanExtra;
+  onSelect: (id: string) => void; onIdea: (id: string) => void; onClose: () => void;
+}) {
+  const tz = slot ? tzOf.get(slot.resourceRef) ?? 'Europe/Kyiv' : 'Europe/Kyiv';
+  return (
+    <Modal open={!!slot} onClose={onClose} size="lg" icon="calendar"
+      title={slot ? (slot.kind === 'reserved' ? 'Reserved slot' : slot.topic || 'Slot') : ''}
+      subtitle={slot ? dual(slot.at, tz) : undefined}>
+      {slot && <SlotDetail slot={slot} slots={slots} tzOf={tzOf} decisions={decisions} onSelect={onSelect} extra={extra} />}
+      {slot && (
+        <div className="modal-foot">
+          {slot.ideaId && (
+            <button type="button" className="btn-tiny" style={{ gap: 5 }} onClick={() => onIdea(slot.ideaId!)}>
+              <Icon name="sparkles" size={12} /> Idea
+            </button>
+          )}
+          <Link to="/app/editor/slot/$id" params={{ id: slot.id }} className="btn-tiny" style={{ gap: 5, textDecoration: 'none' }}>
+            <Icon name="calendar" size={12} /> Slot
+          </Link>
+          {slot.runId && (
+            <Link to="/app/editor/run/$id" params={{ id: slot.runId }} className="btn-tiny" style={{ gap: 5, textDecoration: 'none' }}>
+              <Icon name="logs" size={12} /> Run
+            </Link>
+          )}
+        </div>
+      )}
+    </Modal>
   );
 }
 
@@ -345,34 +395,31 @@ function SlotPill({ slot, tz, left, top, active, onClick }: { slot: PlanSlot; tz
 
 // ── list (narrow screens) + detail ──
 
-function ListSlot({ slot, tz, slots, tzOf, decisions, open, onToggle, onSelect, onIdea, extra }: {
-  slot: PlanSlot; tz: string; slots: PlanSlot[]; tzOf: Map<string, string>; decisions: ContentDecision[];
-  open: boolean; onToggle: () => void; onSelect: (id: string) => void; onIdea: (id: string) => void; extra: PlanExtra;
+function ListSlot({ slot, tz, open, onOpen, extra }: {
+  slot: PlanSlot; tz: string; open: boolean; onOpen: () => void; extra: PlanExtra;
 }) {
   const t = pillTimes(slot.at, tz);
   return (
-    <div className="card" style={{ padding: 0, overflow: 'hidden', boxShadow: open ? 'inset 0 0 0 1px var(--color-accent)' : undefined }}>
-      <button type="button" onClick={onToggle} aria-expanded={open} title={slotTitle(slot, tz)}
-        style={{ display: 'flex', gap: 10, alignItems: 'flex-start', width: '100%', padding: '10px 12px', background: 'none', border: 0, color: 'inherit', font: 'inherit', textAlign: 'left', cursor: 'pointer' }}>
-        <span className="tabular-nums" style={{ fontWeight: 600, color: 'var(--color-ink)', width: 44, flexShrink: 0, display: 'flex', flexDirection: 'column' }}>
-          {t.local}
-          {t.kyiv && <span style={{ fontSize: 10, fontWeight: 400, color: 'var(--color-ink-dim)' }}>{t.kyiv} Kyiv</span>}
+    <button type="button" className="card row-lift" onClick={onOpen} aria-haspopup="dialog" title={slotTitle(slot, tz)}
+      style={{ display: 'flex', gap: 10, alignItems: 'flex-start', width: '100%', padding: '10px 12px', color: 'inherit', font: 'inherit', textAlign: 'left', cursor: 'pointer',
+        boxShadow: open ? 'inset 0 0 0 1px var(--color-accent)' : undefined }}>
+      <span className="tabular-nums" style={{ fontWeight: 600, color: 'var(--color-ink)', width: 44, flexShrink: 0, display: 'flex', flexDirection: 'column' }}>
+        {t.local}
+        {t.kyiv && <span style={{ fontSize: 10, fontWeight: 400, color: 'var(--color-ink-dim)' }}>{t.kyiv} Kyiv</span>}
+      </span>
+      <span style={{ flex: 1, minWidth: 0 }}>
+        <span style={{ display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center', marginBottom: 3 }}>
+          <TreatmentMark treatment={slot.treatment ?? null} />
+          <Badge tone={SLOT_TONE[slot.status]}>{slot.status}</Badge>
+          <span className="chip" style={{ fontSize: 11 }}>{slot.format}</span>
+          {slot.kind === 'reserved' && <span className="chip" style={{ fontSize: 11 }}>reserved</span>}
+          <CriticBadge critic={slot.critic} />
         </span>
-        <span style={{ flex: 1, minWidth: 0 }}>
-          <span style={{ display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center', marginBottom: 3 }}>
-            <TreatmentMark treatment={slot.treatment ?? null} />
-            <Badge tone={SLOT_TONE[slot.status]}>{slot.status}</Badge>
-            <span className="chip" style={{ fontSize: 11 }}>{slot.format}</span>
-            {slot.kind === 'reserved' && <span className="chip" style={{ fontSize: 11 }}>reserved</span>}
-            <CriticBadge critic={slot.critic} />
-          </span>
-          <span className="text-body-sm" style={{ color: 'var(--color-ink)', display: 'block', overflowWrap: 'anywhere' }}>{slot.topic}</span>
-          {!open && <span style={{ display: 'block', marginTop: 3 }}><SlotDescription slot={slot} tz={tz} feeds={extra.feeds} compact /></span>}
-        </span>
-        <span style={{ color: 'var(--color-ink-dim)', display: 'inline-flex', marginTop: 2 }}><Icon name={open ? 'chevron-up' : 'chevron-down'} size={14} /></span>
-      </button>
-      {open && <div style={{ padding: '0 12px 12px' }}><SlotDetail slot={slot} slots={slots} tzOf={tzOf} decisions={decisions} onIdea={onIdea} onSelect={onSelect} extra={extra} compact /></div>}
-    </div>
+        <span className="text-body-sm clamp" style={{ color: 'var(--color-ink)', ['--clamp' as string]: 2 }}>{slot.topic}</span>
+        <span style={{ display: 'block', marginTop: 3 }}><SlotDescription slot={slot} tz={tz} feeds={extra.feeds} compact /></span>
+      </span>
+      <span style={{ color: 'var(--color-ink-dim)', display: 'inline-flex', marginTop: 2 }}><Icon name="chevron-right" size={14} /></span>
+    </button>
   );
 }
 
@@ -387,9 +434,10 @@ function SlotJump({ slot, tz, onSelect }: { slot: PlanSlot; tz: string; onSelect
   );
 }
 
-function SlotDetail({ slot, slots, tzOf, decisions, onIdea, onSelect, extra, showResource = false, compact = false }: {
+/** Everything about one slot: the dialog body (the topic is the dialog title, the links its footer). */
+function SlotDetail({ slot, slots, tzOf, decisions, onSelect, extra }: {
   slot: PlanSlot; slots: PlanSlot[]; tzOf: Map<string, string>; decisions: ContentDecision[];
-  onIdea: (id: string) => void; onSelect: (id: string) => void; extra: PlanExtra; showResource?: boolean; compact?: boolean;
+  onSelect: (id: string) => void; extra: PlanExtra;
 }) {
   const tg = platformOf(slot.resourceRef) === 'telegram';
   const tz = tzOf.get(slot.resourceRef) ?? 'Europe/Kyiv';
@@ -397,17 +445,15 @@ function SlotDetail({ slot, slots, tzOf, decisions, onIdea, onSelect, extra, sho
   const derived = slots.filter((s) => s.derivedFrom === slot.id);
   const ideaDecisions = slot.ideaId ? decisions.filter((d) => d.ideaId === slot.ideaId) : [];
   return (
-    <div className={compact ? undefined : 'card compose-rise'} style={compact ? undefined : { padding: '14px 16px' }}>
-      {!compact && (
-        <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap', marginBottom: 8 }}>
-          <span className="tabular-nums" style={{ fontWeight: 600, color: 'var(--color-ink)' }}>{dual(slot.at, tz)}</span>
-          {showResource && <span className="text-body-sm" style={{ display: 'inline-flex', minWidth: 0 }}><ResourceLabel refId={slot.resourceRef} /></span>}
-          <Badge tone={SLOT_TONE[slot.status]}>{slot.status}</Badge>
-          <span className="chip" style={{ fontSize: 11 }}>{slot.format}</span>
-          {slot.kind === 'reserved' && <span className="chip" style={{ fontSize: 11 }}>reserved</span>}
-        </div>
-      )}
-      {!compact && <div style={{ color: 'var(--color-ink)', fontWeight: 500, overflowWrap: 'anywhere' }}>{slot.topic}</div>}
+    <div style={{ minWidth: 0 }}>
+      <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap', marginBottom: 8 }}>
+        <span className="text-body-sm" style={{ display: 'inline-flex', minWidth: 0 }}><ResourceLabel refId={slot.resourceRef} /></span>
+        <Badge tone={SLOT_TONE[slot.status]}>{slot.status}</Badge>
+        <span className="chip" style={{ fontSize: 11 }}>{slot.format}</span>
+        {slot.kind === 'reserved' && <span className="chip" style={{ fontSize: 11 }}>reserved</span>}
+        <CriticBadge critic={slot.critic} />
+      </div>
+      {slot.kind === 'reserved' && slot.topic && <div style={{ color: 'var(--color-ink)', fontWeight: 500, overflowWrap: 'anywhere' }}>{slot.topic}</div>}
       <div style={{ marginTop: 4 }}><SlotDescription slot={slot} tz={tz} feeds={extra.feeds} /></div>
       {slot.treatment && (
         <div className="text-body-sm" style={{ marginTop: 8, display: 'flex', gap: 8, alignItems: 'flex-start', flexWrap: 'wrap' }}>
@@ -432,28 +478,13 @@ function SlotDetail({ slot, slots, tzOf, decisions, onIdea, onSelect, extra, sho
       {slot.error && slot.status !== 'skipped' && slot.status !== 'failed' && (
         <div className="callout-warning" style={{ marginTop: 8, overflowWrap: 'anywhere' }}>{slot.error}</div>
       )}
-      {slot.kind !== 'reserved' && <div style={{ marginTop: 10 }}><SlotPost slot={slot} tz={tz} estimateUsd={extra.estimateUsd} plain={!tg} collapsible /></div>}
+      {slot.kind !== 'reserved' && <div style={{ marginTop: 10 }}><SlotPost slot={slot} tz={tz} estimateUsd={extra.estimateUsd} plain={!tg} /></div>}
       {ideaDecisions.length > 0 && (
         <div style={{ marginTop: 10 }}>
           <div className="text-eyebrow" style={{ marginBottom: 4 }}>Decisions for this idea</div>
           <DecisionRows decisions={ideaDecisions} />
         </div>
       )}
-      <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginTop: 10 }}>
-        {slot.ideaId && (
-          <button type="button" className="btn-tiny" style={{ gap: 5 }} onClick={() => onIdea(slot.ideaId!)}>
-            <Icon name="sparkles" size={12} /> Idea
-          </button>
-        )}
-        <Link to="/app/editor/slot/$id" params={{ id: slot.id }} className="btn-tiny" style={{ gap: 5, textDecoration: 'none' }}>
-          <Icon name="calendar" size={12} /> Slot
-        </Link>
-        {slot.runId && (
-          <Link to="/app/editor/run/$id" params={{ id: slot.runId }} className="btn-tiny" style={{ gap: 5, textDecoration: 'none' }}>
-            <Icon name="logs" size={12} /> Run
-          </Link>
-        )}
-      </div>
     </div>
   );
 }
@@ -498,23 +529,37 @@ function DecisionsPanel({ decisions, slots, tzOf, onIdea, onSelect }: {
         <span className="text-eyebrow">Decisions</span>
         <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>per idea and resource: duplicate, adapt, unique or skip — with the reason</span>
       </div>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-        {ideas.map((i) => {
+      <div className="compact-grid">
+        {ideas.map((i, n) => {
           const skips = i.decisions.filter((d) => d.decision === 'skip').length;
+          const topic = i.slot?.topic ?? 'Idea';
+          const counts = `${i.decisions.length - skips} planned${skips ? ` · ${skips} skipped` : ''}`;
           return (
-            <div key={i.id} style={{ borderTop: '1px solid var(--color-hairline-soft)', paddingTop: 10 }}>
-              <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap', marginBottom: 6 }}>
-                <span className="text-body-sm" style={{ color: 'var(--color-ink)', fontWeight: 500, overflowWrap: 'anywhere', minWidth: 0 }}>{i.slot?.topic ?? 'Idea'}</span>
-                <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>
-                  {i.decisions.length - skips} planned{skips ? ` · ${skips} skipped` : ''}
+            <CompactCard key={i.id} delay={Math.min(n, 12) * 25} hint="Open the decisions for this idea"
+              title={topic}
+              extra={(
+                <span className="text-micro" style={{ display: 'flex', gap: 5, alignItems: 'center', flexWrap: 'wrap', color: 'var(--color-ink-dim)' }}>
+                  <Badge tone="accent">{i.decisions.length - skips} planned</Badge>
+                  {skips > 0 && <Badge tone="warning">{skips} skipped</Badge>}
                 </span>
-                <span style={{ marginLeft: 'auto', display: 'inline-flex', gap: 6 }}>
-                  {i.slot && <button type="button" className="btn-tiny" onClick={() => onSelect(i.slot!.id)} title={slotTitle(i.slot, tzOf.get(i.slot.resourceRef) ?? 'Europe/Kyiv')}>Slot</button>}
-                  <button type="button" className="btn-tiny" style={{ gap: 5 }} onClick={() => onIdea(i.id)}><Icon name="sparkles" size={12} /> Idea</button>
-                </span>
-              </div>
-              <DecisionRows decisions={i.decisions} />
-            </div>
+              )}
+              dialog={{
+                size: 'lg', icon: 'sparkles', title: topic, subtitle: counts,
+                body: () => <DecisionRows decisions={i.decisions} />,
+                actions: (close) => (
+                  <>
+                    {i.slot && (
+                      <button type="button" className="btn-tiny" style={{ gap: 5 }} title={slotTitle(i.slot, tzOf.get(i.slot.resourceRef) ?? 'Europe/Kyiv')}
+                        onClick={() => { close(); onSelect(i.slot!.id); }}>
+                        <Icon name="calendar" size={12} /> Slot
+                      </button>
+                    )}
+                    <button type="button" className="btn-tiny" style={{ gap: 5 }} onClick={() => { close(); onIdea(i.id); }}>
+                      <Icon name="sparkles" size={12} /> Idea
+                    </button>
+                  </>
+                ),
+              }} />
           );
         })}
       </div>

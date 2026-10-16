@@ -90,30 +90,38 @@ function Chips({ items, empty = '—' }: { items: string[]; empty?: string }) {
 export function ResourceSection({ handle }: { handle: string }) {
   const q = useResourceProfile(handle);
   const [editing, setEditing] = useState(false);
+  const [details, setDetails] = useState(false);
   const d = q.data;
 
-  const edit = (
-    <button type="button" className="btn-secondary" style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }} onClick={() => setEditing(true)}>
-      <Icon name="pencil" size={14} /> Edit
-    </button>
+  const actions = (
+    <span style={{ display: 'inline-flex', gap: 6, flexWrap: 'wrap' }}>
+      <button type="button" className="btn-ghost" style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }} onClick={() => setDetails(true)}>
+        <Icon name="info" size={14} /> Details
+      </button>
+      <button type="button" className="btn-secondary" style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }} onClick={() => setEditing(true)}>
+        <Icon name="pencil" size={14} /> Edit
+      </button>
+    </span>
   );
 
   return (
-    <SectionCard title="Resource" icon="globe" delay={20} style={{ marginBottom: 16 }} action={d?.profile ? edit : undefined}>
+    <SectionCard title="Resource" icon="globe" delay={20} style={{ marginBottom: 16 }} action={d?.profile ? actions : undefined}>
       {q.error && <div className="callout-danger">{describeError(q.error)}</div>}
       {!d && !q.error && <div style={{ height: 80, opacity: 0.5 }} className="panel" />}
       {d && (
         <>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', marginBottom: 14 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', marginBottom: 14, minWidth: 0 }}>
             {d.ref && <code className="chip" style={{ fontSize: 12, maxWidth: '100%', overflow: 'hidden', textOverflow: 'ellipsis' }} title={d.ref}>{d.ref}</code>}
             <HealthBadge health={d.health} />
-            {d.health?.detail && <span className="text-micro" style={{ color: 'var(--color-ink-muted)', overflowWrap: 'anywhere' }}>{d.health.detail}</span>}
             {d.health && (
-              <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }} title={fmtDate(d.health.checkedAt)}>· checked {fmtRelative(d.health.checkedAt)}</span>
+              <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }} title={fmtDate(d.health.checkedAt)}>checked {fmtRelative(d.health.checkedAt)}</span>
+            )}
+            {d.health?.detail && (
+              <span className="text-micro clamp" style={{ color: 'var(--color-ink-muted)', flex: '1 1 100%', ['--clamp' as string]: 1 } as CSSProperties} title={d.health.detail}>{d.health.detail}</span>
             )}
           </div>
 
-          {d.profile ? <ProfileView handle={handle} refName={d.ref} p={d.profile} updatedAt={d.updatedAt} /> : (
+          {d.profile ? <ProfileSummary handle={handle} refName={d.ref} p={d.profile} updatedAt={d.updatedAt} /> : (
             <EmptyState icon="globe" title="The resource is not described yet"
               note={<>The profile tells the agent what the resource is about, who reads it and what counts as success. You can also ask <strong>@ai0</strong> in the chat to draft it — it proposes a card you apply.</>}
               action={
@@ -129,11 +137,42 @@ export function ResourceSection({ handle }: { handle: string }) {
           )}
         </>
       )}
+      {details && d?.profile && (
+        <Modal open onClose={() => setDetails(false)} size="lg" icon="globe" title="Resource profile" subtitle={d.ref ?? undefined}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', marginBottom: 14 }}>
+            <HealthBadge health={d.health} />
+            {d.health && <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>checked {fmtDate(d.health.checkedAt)}</span>}
+            {d.health?.detail && <span className="text-micro" style={{ color: 'var(--color-ink-muted)', overflowWrap: 'anywhere', flex: '1 1 100%' }}>{d.health.detail}</span>}
+          </div>
+          <ProfileView handle={handle} refName={d.ref} p={d.profile} updatedAt={d.updatedAt} />
+          <div className="modal-foot">
+            <button type="button" className="btn-secondary" onClick={() => setDetails(false)}>Close</button>
+            <button type="button" className="btn-primary" style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }} onClick={() => { setDetails(false); setEditing(true); }}>
+              <Icon name="pencil" size={14} /> Edit
+            </button>
+          </div>
+        </Modal>
+      )}
       {editing && d && <ProfileModal handle={handle} initial={d.profile} refName={d.ref} onClose={() => setEditing(false)} />}
     </SectionCard>
   );
 }
 
+/** The key facts on the Overview: topic (two lines), language, goals and the time zone; the rest is in Details. */
+function ProfileSummary({ handle, refName, p, updatedAt }: { handle: string; refName: string | null; p: ResourceProfile; updatedAt: string | null }) {
+  const clock = useResourceClock(handle, refName, p);
+  return (
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 200px), 1fr))', gap: '14px 18px' }}>
+      <Meta label="Topic" wide><span className="clamp" style={{ ['--clamp' as string]: 2 } as CSSProperties} title={p.topic}>{p.topic}</span></Meta>
+      <Meta label="Language"><span className="chip">{p.language}</span></Meta>
+      <Meta label="Goals (by priority)"><GoalChips goals={p.goals} /></Meta>
+      <Meta label={clock.telegram ? 'Time zone (channel card)' : 'Time zone'}><ZoneNow tz={clock.timezone} /></Meta>
+      {updatedAt && <div className="text-micro" style={{ gridColumn: '1 / -1', color: 'var(--color-ink-dim)' }} title={fmtDate(updatedAt)}>updated {fmtRelative(updatedAt)} · audience, tone, taboo, sources and the rest in Details</div>}
+    </div>
+  );
+}
+
+/** The whole profile (the Details dialog). */
 function ProfileView({ handle, refName, p, updatedAt }: { handle: string; refName: string | null; p: ResourceProfile; updatedAt: string | null }) {
   const aud = [p.audience.who, p.audience.age, p.audience.region].filter(Boolean).join(' · ');
   const clock = useResourceClock(handle, refName, p);

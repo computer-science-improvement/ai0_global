@@ -66,7 +66,7 @@ export function FormattingSection({ handle }: { handle: string }) {
                     </Badge>
                     {r.locks.length > 0 && <Badge tone="accent">{r.locks.length} locked</Badge>}
                   </div>
-                  <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: set.length ? 6 : 4 }}>
+                  <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 4 }}>
                     <span className="chip" style={{ gap: 4, maxWidth: '100%', overflowWrap: 'anywhere' }}
                       title="Humour and slang are off unless you allow them; agents cannot turn them on">
                       {voiceLocked && <Icon name="lock" size={11} />}
@@ -82,16 +82,13 @@ export function FormattingSection({ handle }: { handle: string }) {
                       <span style={{ color: 'var(--color-ink-dim)' }}>Style:</span> {styleSummary(r.style?.effective ?? r.formatPrefs.style)}
                     </span>
                   </div>
-                  {set.length ? (
-                    <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-                      {set.map((k) => (
-                        <span key={k} className="chip" style={{ gap: 4, maxWidth: '100%', overflowWrap: 'anywhere' }} title={r.locks.includes(k) ? 'Locked by you' : 'Set by the agent or you'}>
-                          {r.locks.includes(k) && <Icon name="lock" size={11} />}
-                          <span style={{ color: 'var(--color-ink-dim)' }}>{FORMAT_LABEL[k]}:</span> {formatValue(k, r.formatPrefs[k])}
-                        </span>
-                      ))}
-                    </div>
-                  ) : <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>Not set — the agent's judgement</span>}
+                  {/* The fields set beyond the three summaries: a count here, the values in the edit dialog. */}
+                  <span className="text-micro clamp" style={{ color: 'var(--color-ink-dim)', ['--clamp' as string]: 1 } as CSSProperties}
+                    title={set.length ? set.map((k) => `${r.locks.includes(k) ? '🔒 ' : ''}${FORMAT_LABEL[k]}: ${formatValue(k, r.formatPrefs[k])}`).join('\n') : undefined}>
+                    {set.length
+                      ? `+${set.length} more ${set.length === 1 ? 'field' : 'fields'} set: ${set.map((k) => FORMAT_LABEL[k].toLowerCase()).join(', ')}`
+                      : "Other fields not set — the agent's judgement"}
+                  </span>
                 </div>
                 <button type="button" className="btn-act" aria-label={`Edit formatting of ${l.label}`} title="Edit" onClick={() => setEditing(r)}>
                   <Icon name="pencil" size={14} />
@@ -103,13 +100,20 @@ export function FormattingSection({ handle }: { handle: string }) {
       )}
       {d && (
         <div style={{ marginTop: 12 }}>
-          <button type="button" className="btn-ghost" aria-expanded={showHistory} onClick={() => setShowHistory((v) => !v)}
+          <button type="button" className="btn-ghost" onClick={() => setShowHistory(true)}
             style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
             <Icon name="history" size={14} /> Change history ({d.history.length})
-            <Icon name={showHistory ? 'chevron-up' : 'chevron-down'} size={14} />
           </button>
-          {showHistory && <History items={d.history} label={(ref) => label(ref).label} />}
         </div>
+      )}
+      {d && (
+        <Modal open={showHistory} onClose={() => setShowHistory(false)} size="lg" icon="history" title="Formatting history"
+          subtitle="Who changed what, when and why — the agent's changes and yours">
+          <History items={d.history} label={(ref) => label(ref).label} />
+          <div className="modal-foot">
+            <button type="button" className="btn-secondary" onClick={() => setShowHistory(false)}>Close</button>
+          </div>
+        </Modal>
       )}
       {editing && <FormatModal handle={handle} resource={editing} title={label(editing.ref).label} onClose={() => setEditing(null)} />}
     </SectionCard>

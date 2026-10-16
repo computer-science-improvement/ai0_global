@@ -7,12 +7,14 @@
 // sample texts). Spec 037 FR-014: "Notes and sample posts" also lists the post
 // audit (issues by code with the posts, the rule and the fix) and the feed fit.
 // On phones the resources without anomalies or quality flags collapse into one line.
+// Each resource is a compact card (name, health, three KPIs, flag count); a click opens all of it.
 
 import { Link } from '@tanstack/react-router';
 import { useState } from 'react';
 import { SectionCard } from '../ui/primitives';
 import { Badge } from '../ui/Badge';
-import { Icon } from '../ui/Icon';
+import { Icon, type IconName } from '../ui/Icon';
+import { CompactCard } from '../ui/CompactCard';
 import { describeError } from '../ui/Toast';
 import { fmtDate, fmtRelative } from '../../lib/format';
 import { useMediaQuery } from '../../lib/useMediaQuery';
@@ -29,19 +31,18 @@ const TONE_COLOR: Record<QualityTone, string> = {
   neutral: 'var(--color-ink-muted)', success: 'var(--color-success)', warning: 'var(--color-warning)', danger: 'var(--color-danger)',
 };
 
-/** Spec 034 FR-006: the tile's content-quality block. */
+/** Spec 034 FR-006: the resource's content-quality block (in the resource dialog, notes and samples shown in full). */
 function QualityBlock({ q, resource }: { q: ResourceQuality | null | undefined; resource: string }) {
-  const [open, setOpen] = useState(false);
   if (!qualityActive(q)) {
     return (
-      <div className="text-micro" style={{ padding: '6px 6px 0', marginTop: 6, borderTop: '1px solid var(--color-hairline)', color: 'var(--color-ink-dim)' }}>
+      <div className="text-micro" style={{ padding: '6px 6px 0', marginTop: 10, borderTop: '1px solid var(--color-hairline)', color: 'var(--color-ink-dim)' }}>
         Content quality · no posts in 7 days
       </div>
     );
   }
   const notes = [...q.critic.notes.map((n) => ({ tag: 'Critic', text: n })), ...q.owner.reasons.map((n) => ({ tag: 'You rejected', text: n })), ...q.owner.edits.map((n) => ({ tag: 'You edited', text: n }))];
   return (
-    <div style={{ marginTop: 6, paddingTop: 6, borderTop: '1px solid var(--color-hairline)' }}>
+    <div style={{ marginTop: 10, paddingTop: 8, borderTop: '1px solid var(--color-hairline)' }}>
       <div className="text-micro" style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '0 6px 3px', color: 'var(--color-ink-dim)' }}>
         <span style={{ textTransform: 'uppercase', letterSpacing: '0.04em', fontSize: 10 }}>Content quality · {q.days} d</span>
         <span style={{ marginLeft: 'auto' }}>{q.posts} post{q.posts === 1 ? '' : 's'}</span>
@@ -59,12 +60,12 @@ function QualityBlock({ q, resource }: { q: ResourceQuality | null | undefined; 
         </div>
       )}
       {(notes.length > 0 || q.samples.length > 0 || q.audit || (q.feeds?.length ?? 0) > 0 || q.posts > 0) && (
-        <details style={{ padding: '5px 6px 0' }} onToggle={(e) => setOpen((e.currentTarget as HTMLDetailsElement).open)}>
-          <summary className="text-micro link-accent" style={{ cursor: 'pointer' }}>
+        <div style={{ padding: '8px 6px 0' }}>
+          <div className="text-eyebrow" style={{ marginBottom: 6 }}>
             Notes and sample posts{q.audit?.findings ? ` · ${q.audit.findings} issue${q.audit.findings === 1 ? '' : 's'}` : ''}
-          </summary>
-          <div style={{ display: 'grid', gap: 6, marginTop: 6, minWidth: 0 }}>
-            <PostAuditNotes resource={resource} summary={q.audit} open={open} />
+          </div>
+          <div style={{ display: 'grid', gap: 6, minWidth: 0 }}>
+            <PostAuditNotes resource={resource} summary={q.audit} open />
             {q.feeds && q.feeds.length > 0 && <FeedFitList feeds={q.feeds} />}
             {notes.map((n, i) => (
               <div key={`n${i}`} className="text-micro" style={{ color: 'var(--color-ink-muted)', overflowWrap: 'anywhere' }}>
@@ -78,7 +79,7 @@ function QualityBlock({ q, resource }: { q: ResourceQuality | null | undefined; 
               </div>
             ))}
           </div>
-        </details>
+        </div>
       )}
     </div>
   );
@@ -119,32 +120,84 @@ function KpiRow({ name, k }: { name: KpiName; k: KpiValue | undefined }) {
   );
 }
 
-function ResourceTile({ r }: { r: DigestResource }) {
+const PLATFORM_ICON: Record<string, IconName> = {
+  telegram: 'telegram', facebook: 'facebook', instagram: 'instagram', threads: 'threads', tiktok: 'tiktok', youtube: 'globe',
+};
+
+/** The KPIs the resource card shows; the dialog has all six. */
+const HEADLINE_KPIS: KpiName[] = ['views_per_post', 'engagement_rate', 'followers_growth'];
+
+/** One headline KPI on the card: the 7-day value and the delta against the baseline. */
+function KpiCell({ name, k }: { name: KpiName; k: KpiValue | undefined }) {
+  const stale = !!k?.stale;
+  const anomaly = !!k?.anomaly;
+  const d = k?.d ?? null;
+  const dColor = stale || d == null || d === 0 ? 'var(--color-ink-dim)' : d > 0 ? 'var(--color-success)' : 'var(--color-danger)';
+  return (
+    <span style={{ display: 'flex', flexDirection: 'column', gap: 1, minWidth: 0, opacity: stale ? 0.5 : 1 }}>
+      <span className="text-micro" style={{ color: anomaly ? 'var(--color-warning)' : 'var(--color-ink-dim)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', fontSize: 10 }}>
+        {metricLabel(name)}
+      </span>
+      <span className="text-micro tabular-nums" style={{ display: 'inline-flex', gap: 4, alignItems: 'baseline' }}>
+        <span style={{ color: 'var(--color-ink)', fontWeight: 600 }}>{fmtKpi(name, k?.v ?? null)}</span>
+        <span style={{ color: dColor, fontSize: 10 }}>{stale ? '—' : fmtPct(d, 0)}</span>
+      </span>
+    </span>
+  );
+}
+
+/**
+ * A resource of the digest as a compact card: name, platform, health, three headline KPIs and the count of
+ * anomalies and quality flags. A click opens the dialog with all KPIs, the content quality, notes, samples
+ * and the post audit.
+ */
+function ResourceTile({ r, delay }: { r: DigestResource; delay: number }) {
   const label = useResourceLabels();
   const l = label(r.ref);
   const platform = parseRef(r.ref).platform;
   const h = r.health ? HEALTH[r.health as HealthState] ?? HEALTH.unknown : null;
+  const name = r.title || l.label;
+  const sub = r.title ? l.label : platform ? PLATFORM_LABEL[platform] : r.ref;
+  const anomalies = r.anomalies.length;
+  const flags = r.quality?.flags.length ?? 0;
+  const note = [
+    anomalies ? `${anomalies} anomal${anomalies === 1 ? 'y' : 'ies'}` : '',
+    flags ? `${flags} quality flag${flags === 1 ? '' : 's'}` : '',
+  ].filter(Boolean).join(' · ');
   return (
-    <div style={{ padding: '10px 10px 8px', borderRadius: 'var(--radius-md)', background: 'var(--color-surface-1)', minWidth: 0,
-      border: `1px solid ${r.anomalies.length || r.quality?.flags.length ? 'var(--color-warning-soft)' : 'var(--color-hairline)'}` }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 7, minWidth: 0, padding: '0 4px' }}>
-        <PlatformIcon platform={platform} size={14} />
-        <span style={{ color: 'var(--color-ink)', fontWeight: 500, fontSize: 13, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', minWidth: 0 }} title={r.ref}>
-          {r.title || l.label}
+    <CompactCard delay={delay} attention={anomalies + flags > 0} hint="Open the resource"
+      top={<>
+        <PlatformIcon platform={platform} size={13} />
+        {h ? <Badge tone={h.tone}>{h.label}</Badge> : <Badge tone="neutral" title="The resource has not been checked yet">not checked</Badge>}
+      </>}
+      meta={r.agent ? `@${r.agent}` : undefined}
+      title={<span title={r.ref}>{name}</span>}
+      extra={(
+        <span style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: 8 }}>
+          {HEADLINE_KPIS.map((n) => <KpiCell key={n} name={n} k={r.kpis[n]} />)}
         </span>
-        <span style={{ marginLeft: 'auto', flexShrink: 0 }}>
-          {h ? <Badge tone={h.tone}>{h.label}</Badge> : <Badge tone="neutral" title="The resource has not been checked yet">not checked</Badge>}
-        </span>
-      </div>
-      <div className="text-micro" style={{ display: 'flex', gap: 6, alignItems: 'center', padding: '2px 4px 6px', color: 'var(--color-ink-dim)', minWidth: 0 }}>
-        <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', minWidth: 0 }} title={r.ref}>
-          {r.title ? l.label : platform ? PLATFORM_LABEL[platform] : r.ref}
-        </span>
-        {r.agent && <Link to="/app/agents/$handle" params={{ handle: r.agent }} className="link-accent" style={{ marginLeft: 'auto', flexShrink: 0 }}>@{r.agent}</Link>}
-      </div>
-      {KPI_NAMES.map((n) => <KpiRow key={n} name={n} k={r.kpis[n]} />)}
-      {r.quality !== undefined && <QualityBlock q={r.quality} resource={r.ref} />}
-    </div>
+      )}
+      note={note || undefined}
+      noteTone={flags ? 'danger' : 'warning'}
+      dialog={{
+        size: 'md', icon: platform ? PLATFORM_ICON[platform] ?? 'globe' : 'globe', title: name, subtitle: sub,
+        body: () => (
+          <div style={{ minWidth: 0 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', marginBottom: 10 }}>
+              {h ? <Badge tone={h.tone}>{h.label}</Badge> : <Badge tone="neutral" title="The resource has not been checked yet">not checked</Badge>}
+              <span className="text-micro" style={{ color: 'var(--color-ink-dim)', overflowWrap: 'anywhere' }}>{r.ref}</span>
+              {r.agent && <Link to="/app/agents/$handle" params={{ handle: r.agent }} className="link-accent text-micro" style={{ marginLeft: 'auto' }}>@{r.agent}</Link>}
+            </div>
+            <div className="text-micro" style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) auto 58px', gap: 8, padding: '0 6px 3px', color: 'var(--color-ink-dim)' }}>
+              <span style={{ textTransform: 'uppercase', letterSpacing: '0.04em', fontSize: 10 }}>KPI · 7 d</span>
+              <span style={{ textAlign: 'right' }}>value</span>
+              <span style={{ textAlign: 'right' }}>vs 28 d</span>
+            </div>
+            {KPI_NAMES.map((n) => <KpiRow key={n} name={n} k={r.kpis[n]} />)}
+            {r.quality !== undefined && <QualityBlock q={r.quality} resource={r.ref} />}
+          </div>
+        ),
+      }} />
   );
 }
 
@@ -262,8 +315,8 @@ export function NetworkHealthCard({ delay }: { delay?: number }) {
         : (
           <>
             {shown.length > 0 && (
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 230px), 1fr))', gap: 10 }}>
-                {shown.map((r) => <ResourceTile key={r.ref} r={r} />)}
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 230px), 1fr))', gap: 8, alignItems: 'start' }}>
+                {shown.map((r, i) => <ResourceTile key={r.ref} r={r} delay={Math.min(i, 12) * 25} />)}
               </div>
             )}
             {phone && healthy > 0 && (

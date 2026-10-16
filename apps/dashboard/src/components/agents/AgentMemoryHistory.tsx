@@ -4,6 +4,7 @@
 import { Link } from '@tanstack/react-router';
 import { SectionCard, EmptyState } from '../ui/primitives';
 import { Badge } from '../ui/Badge';
+import { CompactCard } from '../ui/CompactCard';
 import { Icon } from '../ui/Icon';
 import { describeError } from '../ui/Toast';
 import { RUN_TONE, fmtDuration, fmtUsd } from '../editor/EditorUi';
@@ -51,19 +52,36 @@ export function AgentMemory({ data }: { data: AgentDetail }) {
           note={key ? 'Owner rules and the reviewer’s weekly insights for this resource appear here.' : 'Memory is kept per Telegram resource; this agent has none.'} />
       )}
       {memory.length > 0 && (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-          {memory.map((m, i) => (
-            <div key={m.id} className="card compose-rise" style={{ padding: '10px 14px', animationDelay: `${Math.min(i, 12) * 25}ms` }}>
-              <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap', marginBottom: 4 }}>
+        <div className="compact-grid">
+          {memory.map((m, i) => {
+            const who = m.createdBy === 'owner' ? 'owner' : 'reviewer';
+            const badges = (
+              <>
                 <Badge tone={KIND_TONE[m.kind]}>{m.kind}</Badge>
-                <Badge tone={m.createdBy === 'owner' ? 'success' : 'neutral'} title={m.createdBy === 'owner' ? 'Written by you' : 'Learned by the weekly reviewer'}>
-                  {m.createdBy === 'owner' ? 'owner' : 'reviewer'}
-                </Badge>
-                <span className="text-micro tabular-nums" style={{ color: 'var(--color-ink-dim)', marginLeft: 'auto' }}>{fmtDate(m.createdAt)}</span>
-              </div>
-              <div className="text-body-sm" style={{ color: 'var(--color-ink)', whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>{m.text}</div>
-            </div>
-          ))}
+                <Badge tone={m.createdBy === 'owner' ? 'success' : 'neutral'} title={m.createdBy === 'owner' ? 'Written by you' : 'Learned by the weekly reviewer'}>{who}</Badge>
+              </>
+            );
+            return (
+              <CompactCard key={m.id} delay={Math.min(i, 12) * 25} hint="Open the memory entry"
+                top={badges}
+                meta={<span className="tabular-nums">{fmtDate(m.createdAt)}</span>}
+                body={m.text}
+                dialog={{
+                  size: 'md', icon: 'bots', title: `Memory ${m.kind}`, subtitle: `${who} · ${fmtDate(m.createdAt)}`,
+                  body: () => (
+                    <div style={{ minWidth: 0 }}>
+                      <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap', marginBottom: 10 }}>{badges}</div>
+                      <div className="text-body-sm" style={{ color: 'var(--color-ink)', whiteSpace: 'pre-wrap', overflowWrap: 'anywhere', lineHeight: 1.55 }}>{m.text}</div>
+                    </div>
+                  ),
+                  actions: key ? () => (
+                    <Link to="/app/editor/$channel" params={{ channel: key }} className="btn-secondary" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+                      <Icon name="pencil" size={14} /> Manage memory
+                    </Link>
+                  ) : undefined,
+                }} />
+            );
+          })}
         </div>
       )}
     </SectionCard>

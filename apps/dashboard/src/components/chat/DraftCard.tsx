@@ -1,9 +1,9 @@
-// A draft from the editor chat (spec 010): a Telegram-style preview of the exact
-// calls the post becomes (photo + caption, poll…; the old HTML preview is the
-// fallback), its
-// channel / format / status and lint notes, with the owner's buttons. The
-// buttons call the same deterministic DraftsService as the agent, so every
-// publish guard applies; "Schedule" picks a date/time in Kyiv time.
+// A draft from the editor chat (spec 010) as a compact card; its dialog has a
+// Telegram-style preview of the exact calls the post becomes (photo + caption,
+// poll…; the old HTML preview is the fallback), the lint notes and the critic,
+// with the owner's buttons in the footer. The buttons call the same
+// deterministic DraftsService as the agent, so every publish guard applies;
+// "Schedule" picks a date/time in Kyiv time.
 
 import { useMemo, useState } from 'react';
 import { Badge } from '../ui/Badge';
@@ -16,6 +16,8 @@ import type { Tone } from '../ui/primitives';
 import { sanitizeTelegramHtml } from '../../lib/tg-html';
 import { TelegramPreview } from './TelegramPreview';
 import { CriticBlock } from '../critic/CriticBlock';
+import { CriticBadge } from '../editor/SlotPlan';
+import { CompactCard, plainText } from '../ui/CompactCard';
 import { KYIV_TZ, fmtKyiv, inputToApi, nextRoundHourKyiv, toKyivInput } from '../../lib/kyiv-time';
 import { useDraftAction } from '../../api/chat';
 import type { EditorDraft, EditorDraftStatus } from '../../api/types';
@@ -28,49 +30,53 @@ const STATUS_LABEL: Record<EditorDraftStatus, string> = {
   draft: 'draft', scheduled: 'scheduled', published: 'published', failed: 'failed', canceled: 'canceled',
 };
 
+/**
+ * A draft as a compact card in the chat: status, channel, format, the scheduled time, the title, two lines of
+ * the text, the critic's verdict and the lint counts. A click opens the dialog with the exact preview, the lint
+ * lists, the critic and the owner's buttons (Publish now / Schedule / Check with critic / Discard).
+ */
 export function DraftCard({ draft }: { draft: EditorDraft }) {
-  const confirm = useConfirm();
-  const action = useDraftAction();
-  const [scheduling, setScheduling] = useState(false);
-  const preview = useMemo(() => (draft.preview ? sanitizeTelegramHtml(draft.preview) : null), [draft.preview]);
-  const lintOk = draft.lint?.ok !== false;
-  const busy = action.isPending;
   const title = draft.spec.title ?? 'post';
   const done = draft.status === 'published';
-  const postTime = useMemo(() => new Intl.DateTimeFormat('en-GB', { timeZone: KYIV_TZ, hour: '2-digit', minute: '2-digit' })
-    .format(draft.scheduledAt ? new Date(draft.scheduledAt) : new Date()), [draft.scheduledAt]);
-
-  const publish = async () => {
-    const ok = await confirm(`publish "${title}" to ${draft.channelKey} now`, {
-      danger: false, confirmLabel: 'Publish now',
-      details: (
-        <p className="text-micro" style={{ margin: 0, color: 'var(--color-ink-muted)' }}>
-          The post goes to the real channel right away. Lint, the channel pause and the 7-day source dedup still apply.
-          {draft.status === 'scheduled' ? ' The scheduled copy is canceled.' : ''}
-        </p>
-      ),
-    });
-    if (!ok) return;
-    action.mutate({ id: draft.id, action: 'publish' }, {
-      onSuccess: (r) => toast.success(`Published to ${draft.channelKey}${r.warnings?.length ? ` (${r.warnings.join('; ')})` : ''}`),
-    });
-  };
-
-  const review = () => action.mutate({ id: draft.id, action: 'critic' }, {
-    onSuccess: (r) => {
-      const v = r.draft.critic?.verdict;
-      if (v === 'error') toast.error('The critic did not answer. Try again later.');
-      else toast.success(`Critic: ${v ?? 'done'}`);
-    },
-  });
-
-  const cancel = async () => {
-    const what = draft.status === 'scheduled' ? `cancel the post scheduled for ${fmtKyiv(draft.scheduledAt)}` : `cancel the draft "${title}"`;
-    if (await confirm(what, { confirmLabel: draft.status === 'scheduled' ? 'Cancel post' : 'Discard draft' })) action.mutate({ id: draft.id, action: 'cancel' });
-  };
+  const errors = draft.lint?.errors.length ?? 0;
+  const warnings = draft.lint?.warnings.length ?? 0;
+  const lintNote = [errors ? `${errors} lint ${errors === 1 ? 'error' : 'errors'}` : '', warnings ? `${warnings} ${warnings === 1 ? 'warning' : 'warnings'}` : '']
+    .filter(Boolean).join(' · ');
+  const note = lintNote || (draft.error ? draft.error : '');
+  const text = plainText(draft.preview);
 
   return (
-    <div className="card compose-rise" style={{ padding: 14, maxWidth: 560 }}>
+    <CompactCard id={`draft-${draft.id}`} hint="Open the draft" attention={!done && errors > 0} style={{ maxWidth: 560 }}
+      top={<>
+        <Badge tone={DRAFT_TONE[draft.status]}>{STATUS_LABEL[draft.status]}</Badge>
+        <span className="text-caption" style={{ color: 'var(--color-ink)', fontWeight: 600 }}>{draft.channelKey}</span>
+        {draft.spec.format && <span className="chip" style={{ fontSize: 11 }}>{draft.spec.format}</span>}
+      </>}
+      meta={draft.status === 'scheduled'
+        ? <span className="tabular-nums" style={{ color: 'var(--color-warning)', display: 'inline-flex', alignItems: 'center', gap: 4 }}><Icon name="clock" size={12} /> {fmtKyiv(draft.scheduledAt)} (Kyiv)</span>
+        : done && draft.publishedPostId != null ? `post #${draft.publishedPostId}` : undefined}
+      title={title}
+      body={text || undefined}
+      extra={draft.critic ? <span style={{ display: 'flex', gap: 5, alignItems: 'center' }}><CriticBadge critic={draft.critic} /></span> : undefined}
+      note={note || undefined}
+      noteTone={errors > 0 || (!lintNote && draft.status === 'failed') ? 'danger' : 'warning'}
+      dialog={{
+        size: 'lg', icon: 'pencil', title,
+        subtitle: `${draft.channelKey}${draft.spec.format ? ` · ${draft.spec.format}` : ''} · ${STATUS_LABEL[draft.status]}${draft.status === 'scheduled' ? ` · ${fmtKyiv(draft.scheduledAt)} (Kyiv)` : ''}`,
+        body: () => <DraftDetails draft={draft} />,
+        actions: done ? undefined : (close) => <DraftActions draft={draft} onDone={close} />,
+      }} />
+  );
+}
+
+/** Everything about the draft: the exact preview, lint errors and warnings, the critic and the last error. */
+function DraftDetails({ draft }: { draft: EditorDraft }) {
+  const preview = useMemo(() => (draft.preview ? sanitizeTelegramHtml(draft.preview) : null), [draft.preview]);
+  const postTime = useMemo(() => new Intl.DateTimeFormat('en-GB', { timeZone: KYIV_TZ, hour: '2-digit', minute: '2-digit' })
+    .format(draft.scheduledAt ? new Date(draft.scheduledAt) : new Date()), [draft.scheduledAt]);
+  const done = draft.status === 'published';
+  return (
+    <div style={{ minWidth: 0 }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap', marginBottom: 10 }}>
         <Badge tone={DRAFT_TONE[draft.status]}>{STATUS_LABEL[draft.status]}</Badge>
         <span className="text-caption" style={{ color: 'var(--color-ink)', fontWeight: 600 }}>{draft.channelKey}</span>
@@ -114,38 +120,80 @@ export function DraftCard({ draft }: { draft: EditorDraft }) {
           <span className="text-micro">{draft.error}</span>
         </div>
       )}
+    </div>
+  );
+}
 
-      {!done && (
-        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 12 }}>
-          <button className="btn-primary" disabled={busy || !lintOk} onClick={publish}
-            title={lintOk ? 'Publish now (all guards apply)' : 'Fix the lint errors first'}
-            style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
-            <Icon name="rocket" size={14} /> Publish now
-          </button>
-          <button className="btn-secondary" disabled={busy || !lintOk} onClick={() => setScheduling(true)}
-            style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
-            <Icon name="calendar" size={14} /> {draft.status === 'scheduled' ? 'Reschedule' : 'Schedule'}
-          </button>
-          <button className="btn-secondary" disabled={busy || !lintOk} onClick={review}
-            title="Ask the pre-publish critic for scores and notes (advisory; it costs one LLM call)"
-            style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
-            <Icon name="sparkles" size={14} /> {draft.critic ? 'Check again' : 'Check with critic'}
-          </button>
-          {draft.status !== 'canceled' && (
-            <button className="btn-ghost" disabled={busy} onClick={cancel}
-              style={{ display: 'inline-flex', alignItems: 'center', gap: 6, color: 'var(--color-danger)' }}>
-              <Icon name="ban" size={14} /> {draft.status === 'scheduled' ? 'Cancel post' : 'Discard'}
-            </button>
-          )}
-        </div>
+/** The owner's buttons — the dialog's footer. `onDone` closes the dialog once the draft is published, scheduled or canceled. */
+function DraftActions({ draft, onDone }: { draft: EditorDraft; onDone: () => void }) {
+  const confirm = useConfirm();
+  const action = useDraftAction();
+  const [scheduling, setScheduling] = useState(false);
+  const lintOk = draft.lint?.ok !== false;
+  const busy = action.isPending;
+  const title = draft.spec.title ?? 'post';
+
+  const publish = async () => {
+    const ok = await confirm(`publish "${title}" to ${draft.channelKey} now`, {
+      danger: false, confirmLabel: 'Publish now',
+      details: (
+        <p className="text-micro" style={{ margin: 0, color: 'var(--color-ink-muted)' }}>
+          The post goes to the real channel right away. Lint, the channel pause and the 7-day source dedup still apply.
+          {draft.status === 'scheduled' ? ' The scheduled copy is canceled.' : ''}
+        </p>
+      ),
+    });
+    if (!ok) return;
+    action.mutate({ id: draft.id, action: 'publish' }, {
+      onSuccess: (r) => { toast.success(`Published to ${draft.channelKey}${r.warnings?.length ? ` (${r.warnings.join('; ')})` : ''}`); onDone(); },
+    });
+  };
+
+  // The critic's verdict lands in the open dialog (the chat refetch brings the updated draft).
+  const review = () => action.mutate({ id: draft.id, action: 'critic' }, {
+    onSuccess: (r) => {
+      const v = r.draft.critic?.verdict;
+      if (v === 'error') toast.error('The critic did not answer. Try again later.');
+      else toast.success(`Critic: ${v ?? 'done'}`);
+    },
+  });
+
+  const cancel = async () => {
+    const what = draft.status === 'scheduled' ? `cancel the post scheduled for ${fmtKyiv(draft.scheduledAt)}` : `cancel the draft "${title}"`;
+    if (await confirm(what, { confirmLabel: draft.status === 'scheduled' ? 'Cancel post' : 'Discard draft' })) {
+      action.mutate({ id: draft.id, action: 'cancel' }, { onSuccess: () => onDone() });
+    }
+  };
+
+  return (
+    <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', justifyContent: 'flex-end', width: '100%' }}>
+      {draft.status !== 'canceled' && (
+        <button className="btn-ghost" disabled={busy} onClick={cancel}
+          style={{ display: 'inline-flex', alignItems: 'center', gap: 6, color: 'var(--color-danger)', marginRight: 'auto' }}>
+          <Icon name="ban" size={14} /> {draft.status === 'scheduled' ? 'Cancel post' : 'Discard'}
+        </button>
       )}
+      <button className="btn-secondary" disabled={busy || !lintOk} onClick={review}
+        title="Ask the pre-publish critic for scores and notes (advisory; it costs one LLM call)"
+        style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+        <Icon name="sparkles" size={14} /> {draft.critic ? 'Check again' : 'Check with critic'}
+      </button>
+      <button className="btn-secondary" disabled={busy || !lintOk} onClick={() => setScheduling(true)}
+        style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+        <Icon name="calendar" size={14} /> {draft.status === 'scheduled' ? 'Reschedule' : 'Schedule'}
+      </button>
+      <button className="btn-primary" disabled={busy || !lintOk} onClick={publish}
+        title={lintOk ? 'Publish now (all guards apply)' : 'Fix the lint errors first'}
+        style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+        <Icon name="rocket" size={14} /> Publish now
+      </button>
 
       {scheduling && (
         <ScheduleModal
           draft={draft}
           onClose={() => setScheduling(false)}
           onSubmit={(at) => action.mutate({ id: draft.id, action: 'schedule', at }, {
-            onSuccess: (r) => { setScheduling(false); toast.success(`Scheduled for ${fmtKyiv(r.draft.scheduledAt)} (Kyiv)`); },
+            onSuccess: (r) => { setScheduling(false); toast.success(`Scheduled for ${fmtKyiv(r.draft.scheduledAt)} (Kyiv)`); onDone(); },
           })}
           busy={busy}
         />

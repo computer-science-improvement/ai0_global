@@ -1,4 +1,4 @@
-// Spec 034 FR-008: the body of @ai0's "Example posts" card. Three example posts for the new agent's resource,
+// Spec 034 FR-008: the body of @ai0's "Example posts" card (shown in its details dialog). Three example posts for the new agent's resource,
 // each as a Telegram preview, which the owner marks good or bad and can edit; then 2–4 warnings about bad posts
 // (a pattern, why it is bad here and a short bad example), each kept or dropped. ActionCard sends the choices
 // with Apply; the server stores them in the playbook's examples (the writer's few-shot, the critic's reference).
@@ -82,7 +82,8 @@ export function ContentExamplesBody({ payload, state, onChange, pending }: {
   const channelKey = payload.resource_ref.replace(/^[a-z]+:/, '') || payload.resource_ref;
   const title = payload.handle ? `@${payload.handle} · ${channelKey}` : channelKey;
   const count = savedCount(state);
-  const body = (
+  // The card's dialog is the expansion: a decided card shows the same body, read-only.
+  return (
     <>
       <div style={{ display: 'grid', gap: 10 }}>
         {payload.examples.map((e, i) => (
@@ -124,13 +125,13 @@ export function ContentExamplesBody({ payload, state, onChange, pending }: {
       )}
     </>
   );
-  if (pending) return body;
-  return (
-    <details>
-      <summary className="text-micro" style={{ cursor: 'pointer', color: 'var(--color-ink-muted)' }}>
-        Show {payload.examples.length} examples and {payload.warnings.length} warnings
-      </summary>
-      <div style={{ marginTop: 8 }}>{body}</div>
-    </details>
-  );
+}
+
+/** The compact card's line: "3 example posts · 2 warnings to mark" (pending) or what was proposed (decided). */
+export function examplesCardLine(payload: ContentExamplesPayload, pending: boolean): string {
+  const n = payload.examples.length;
+  const w = payload.warnings.length;
+  const posts = `${n} example ${n === 1 ? 'post' : 'posts'}`;
+  if (!w) return pending ? `${posts} to mark` : posts;
+  return `${posts} · ${w} ${w === 1 ? 'warning' : 'warnings'}${pending ? ' to mark' : ''}`;
 }

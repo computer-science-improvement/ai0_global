@@ -366,10 +366,13 @@ function ApprovalStrip({ channel }: { channel: string }) {
   const waiting = (q.data?.items ?? []).filter((i) => i.status === 'awaiting_approval').length;
   if (!waiting) return null;
   return (
+    // Collapsed by default (no `open`): one line above the conversation; the list inside is compact cards.
     <details style={{ maxWidth: 780, margin: '0 auto 16px', background: 'var(--color-surface-1)', border: '1px solid var(--color-hairline-soft)', borderRadius: 'var(--radius-lg)', padding: '8px 12px' }}>
-      <summary className="text-body-sm" style={{ cursor: 'pointer', color: 'var(--color-ink)', display: 'flex', alignItems: 'center', gap: 8 }}>
-        <Icon name="check" size={14} /> Posts to approve · {channel}
+      <summary className="text-body-sm" style={{ cursor: 'pointer', color: 'var(--color-ink)', display: 'flex', alignItems: 'center', gap: 8, whiteSpace: 'nowrap', overflow: 'hidden' }}>
+        <Icon name="check" size={14} />
         <Badge tone="warning">{waiting}</Badge>
+        <span style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>{waiting === 1 ? 'post' : 'posts'} to approve · {channel}</span>
+        <span style={{ marginLeft: 'auto', color: 'var(--color-ink-dim)', flexShrink: 0, display: 'inline-flex' }}><Icon name="chevron-down" size={13} /></span>
       </summary>
       <div style={{ marginTop: 12 }}>
         <ApprovalList filter={{ channel }} />

@@ -6,6 +6,7 @@ import { SectionCard, EmptyState, Field } from '../components/ui/primitives';
 import { Badge } from '../components/ui/Badge';
 import { ActionsTh, RowActions, TableAction } from '../components/ui/table';
 import { useConfirm } from '../components/ui/ConfirmDialog';
+import { Modal } from '../components/Modal';
 import {
   AD_FORMAT_LABEL, useAdOrders, useCreateAdOrder, useAdOrderCheckout, useScheduleAdOrder,
   useAdPrices, useUpsertAdPrice, useDeactivateAdPrice,
@@ -341,6 +342,7 @@ function OrderRow({
   const scheduleMut  = useScheduleAdOrder();
 
   const [paymentUrl,  setPaymentUrl]  = useState<string | null>(null);
+  const [showPayment, setShowPayment] = useState(false);
   const [showSched,   setShowSched]   = useState(false);
   const [schedChannel, setSchedChannel] = useState(order.channel_id ?? '');
   const [schedText,   setSchedText]   = useState('');
@@ -355,6 +357,7 @@ function OrderRow({
       onSuccess: ({ data, signature, actionUrl }) => {
         const url = `${actionUrl}?data=${encodeURIComponent(data)}&signature=${encodeURIComponent(signature)}`;
         setPaymentUrl(url);
+        setShowPayment(true);
         setTimeout(() => urlRef.current?.select(), 50);
       },
     });
@@ -406,7 +409,12 @@ function OrderRow({
               {checkoutMut.isPending ? 'Loading…' : 'Get payment link'}
             </button>
           )}
-          {order.status === 'paid' && !showSched && price?.format !== 'digest_sponsor' && (
+          {paymentUrl && (
+            <button className="btn-tiny" onClick={() => setShowPayment(true)} style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+              <Icon name="check" size={12} /> Show payment link
+            </button>
+          )}
+          {order.status === 'paid' && price?.format !== 'digest_sponsor' && (
             <button className="btn-tiny" onClick={() => setShowSched(true)} style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
               <Icon name="calendar" size={12} /> Schedule post
             </button>
@@ -431,22 +439,27 @@ function OrderRow({
         </div>
       </div>
 
-      {paymentUrl && (
-        <div style={{ marginTop: 12 }}>
+      <Modal open={showPayment && !!paymentUrl} onClose={() => setShowPayment(false)} icon="info" title="Payment link"
+        subtitle={`${order.advertiser} · ${order.amount} ${order.currency}`}>
+        {paymentUrl && (
           <Field label="Payment link — send this to the advertiser">
             <div style={{ display: 'flex', gap: 8 }}>
-              <input ref={urlRef} readOnly className="input-field" value={paymentUrl} onFocus={e => e.target.select()}
-                style={{ flex: 1, fontFamily: 'var(--font-mono, monospace)', fontSize: 11 }} />
+              <input ref={urlRef} readOnly autoFocus className="input-field" value={paymentUrl} onFocus={e => e.target.select()}
+                style={{ flex: 1, minWidth: 0, fontFamily: 'var(--font-mono, monospace)', fontSize: 11 }} />
               <button className="btn-tiny" onClick={() => { navigator.clipboard.writeText(paymentUrl); }} style={{ flexShrink: 0, display: 'inline-flex', alignItems: 'center', gap: 4 }}>
                 <Icon name="check" size={12} /> Copy
               </button>
             </div>
           </Field>
+        )}
+        <div className="modal-foot">
+          <button type="button" className="btn-secondary" onClick={() => setShowPayment(false)}>Close</button>
         </div>
-      )}
+      </Modal>
 
-      {order.status === 'paid' && showSched && (
-        <form onSubmit={handleSchedule} style={{ marginTop: 12, display: 'flex', flexDirection: 'column', gap: 0 }}>
+      <Modal open={order.status === 'paid' && showSched} onClose={() => setShowSched(false)} icon="calendar" title="Schedule post"
+        subtitle={`${order.advertiser}${price ? ` · ${AD_FORMAT_LABEL[price.format]}` : ''}`}>
+        <form onSubmit={handleSchedule} style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '0 24px' }}>
             <Field label="Channel">
               <select className="input-field" value={schedChannel} onChange={e => setSchedChannel(e.target.value)} required>
@@ -458,7 +471,7 @@ function OrderRow({
               </select>
             </Field>
             <Field label="Schedule at">
-              <input type="datetime-local" className="input-field" value={schedAt} onChange={e => setSchedAt(e.target.value)} required />
+              <input type="datetime-local" className="input-field" value={schedAt} onChange={e => setSchedAt(e.target.value)} required style={{ colorScheme: 'dark' }} />
             </Field>
           </div>
           {order.creative ? (
@@ -467,21 +480,21 @@ function OrderRow({
             </p>
           ) : (
             <Field label="Post text" hint="#реклама is added automatically">
-              <textarea className="input-field" rows={3} value={schedText} onChange={e => setSchedText(e.target.value)} required style={{ resize: 'vertical' }} />
+              <textarea className="input-field" rows={5} value={schedText} onChange={e => setSchedText(e.target.value)} required style={{ resize: 'vertical' }} />
             </Field>
           )}
-          <div style={{ display: 'flex', gap: 8 }}>
+          {scheduleMut.isError && (
+            <div className="callout-danger" style={{ marginBottom: 8 }}><span className="text-micro">{(scheduleMut.error as Error).message}</span></div>
+          )}
+          <div className="modal-foot">
+            <button type="button" className="btn-secondary" onClick={() => setShowSched(false)}>Cancel</button>
             <button type="submit" className="btn-primary" disabled={scheduleMut.isPending} style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
               <Icon name="calendar" size={14} />
               {scheduleMut.isPending ? 'Scheduling…' : 'Schedule'}
             </button>
-            <button type="button" className="btn-secondary" onClick={() => setShowSched(false)}>Cancel</button>
-            {scheduleMut.isError && (
-              <span className="text-body-sm" style={{ color: 'var(--color-danger)' }}>{(scheduleMut.error as Error).message}</span>
-            )}
           </div>
         </form>
-      )}
+      </Modal>
     </div>
   );
 }

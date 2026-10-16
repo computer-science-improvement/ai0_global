@@ -1,7 +1,7 @@
 // Overview tab of /app/agents/$handle: stat tiles, mode, an orchestrator's
-// resource (health + profile, spec 018), the profile form (name, handle, emoji,
-// description, model, effort, budget, schedule) and the role children of an
-// orchestrator.
+// resource (health + profile, spec 018), the profile summary — its form (name,
+// handle, emoji, description, model, effort, budget, schedule) opens in a dialog
+// from Edit — and the role children of an orchestrator.
 //
 // Spec 034 FR-013 (schedule settings tell the truth): only @manager's run times
 // are editable here — they drive its runs. An orchestrator and its role agents run
@@ -14,6 +14,7 @@ import { SectionCard, StatTile, Field } from '../ui/primitives';
 import { Badge } from '../ui/Badge';
 import { Icon } from '../ui/Icon';
 import { describeError, toast } from '../ui/Toast';
+import { Modal } from '../Modal';
 import { fmtUsd } from '../editor/EditorUi';
 import { fmtDate, fmtRelative } from '../../lib/format';
 import { AgentGlyph, AgentModeSwitch, KIND_LABEL, LastRun, ScopeChip, runsLabel } from './AgentsUi';
@@ -116,7 +117,7 @@ export function AgentOverview({ data }: { data: AgentDetail }) {
       {a.kind === 'orchestrator' && a.scopeId && <ResourceSection handle={a.handle} />}
       {a.kind === 'orchestrator' && a.scopeId && <FormattingSection handle={a.handle} />}
 
-      <ProfileForm key={`${a.id}:${a.updatedAt}:${ws}`} data={data} ws={ws} />
+      <ProfileSummary data={data} ws={ws} />
 
       {data.children.length > 0 && (
         <SectionCard title="Roles" icon="agents" delay={90} style={{ marginTop: 16 }}>
@@ -157,7 +158,62 @@ function Meta({ label, children }: { label: string; children: ReactNode }) {
   );
 }
 
-function ProfileForm({ data, ws }: { data: AgentDetail; ws: Workspace }) {
+/** The profile, read-only: the key settings at a glance and Edit, which opens the form in a dialog. */
+function ProfileSummary({ data, ws }: { data: AgentDetail; ws: Workspace }) {
+  const a = data.agent;
+  const [editing, setEditing] = useState(false);
+  const defaultModel = useModelCatalog().data?.defaultModel;
+  const model = ownModelIn(a, ws);
+  const times = [...(a.schedule.times ?? [])].sort();
+  const dim = (t: string) => <span style={{ color: 'var(--color-ink-dim)' }}>{t}</span>;
+  return (
+    <SectionCard title="Profile" icon="pencil" delay={40}
+      action={
+        <button type="button" className="btn-secondary" style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }} onClick={() => setEditing(true)}>
+          <Icon name="pencil" size={14} /> Edit
+        </button>
+      }>
+      <div style={{ ...grid, gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 170px), 1fr))', rowGap: 12 }}>
+        <Meta label="Name">{a.emoji ? `${a.emoji} ` : ''}{a.name}</Meta>
+        <Meta label="Handle">@{a.handle}</Meta>
+        <Meta label={`Model · ${WORKSPACE_LABEL[ws]}`}>
+          {model ?? dim(data.parent ? `inherit from @${data.parent.handle}` : `default (${defaultModel ?? 'global default'})`)}
+        </Meta>
+        <Meta label="Reasoning effort">{a.reasoningEffort ?? dim('default')}</Meta>
+        <Meta label="Daily budget">{a.dailyBudgetUsd == null ? dim('default cap') : fmtUsd(a.dailyBudgetUsd)}</Meta>
+        <Meta label="Schedule">
+          {scheduleEditable(a)
+            ? (times.length ? <span className="tabular-nums">{times.join(', ')} (Kyiv)</span> : dim('role default'))
+            : <PlanTimesNote channelKey={data.channelKey} />}
+        </Meta>
+        <Meta label="Kind">{KIND_LABEL[a.kind]}</Meta>
+        <Meta label="Scope"><ScopeChip agent={a} /></Meta>
+        <Meta label="Created">{fmtDate(a.createdAt)} · {a.createdBy}</Meta>
+        <Meta label="Updated">{fmtRelative(a.updatedAt)}</Meta>
+      </div>
+      {a.description && (
+        <div style={{ marginTop: 12 }}>
+          <div className="text-micro" style={{ color: 'var(--color-ink-dim)', marginBottom: 3 }}>Description</div>
+          <div className="text-body-sm clamp" style={{ color: 'var(--color-ink-muted)', ['--clamp' as string]: 2 } as CSSProperties} title={a.description}>{a.description}</div>
+        </div>
+      )}
+      <AgentEditDialog data={data} open={editing} onClose={() => setEditing(false)} />
+    </SectionCard>
+  );
+}
+
+/** The agent's profile form in a dialog (the Overview's Profile "Edit" and the page header's "Edit"). */
+export function AgentEditDialog({ data, open, onClose }: { data: AgentDetail; open: boolean; onClose: () => void }) {
+  const ws: Workspace = useModelCatalog().data?.workspace ?? 'openrouter';
+  const a = data.agent;
+  return (
+    <Modal open={open} onClose={onClose} size="lg" icon="pencil" title="Edit profile" subtitle={`@${a.handle} · ${KIND_LABEL[a.kind]}`}>
+      {open && <ProfileForm key={`${a.id}:${a.updatedAt}:${ws}`} data={data} ws={ws} onClose={onClose} />}
+    </Modal>
+  );
+}
+
+function ProfileForm({ data, ws, onClose }: { data: AgentDetail; ws: Workspace; onClose: () => void }) {
   const a = data.agent;
   const navigate = useNavigate();
   const patch = usePatchAgent(a.handle);
@@ -191,17 +247,17 @@ function ProfileForm({ data, ws }: { data: AgentDetail; ws: Workspace }) {
       } else {
         toast.success('Profile saved');
       }
+      onClose();
     } catch { /* shown inline */ }
   };
 
   const err = (k: keyof Form) => errors[k] && <div className="text-micro" style={{ color: 'var(--color-danger)', marginTop: 4 }}>{errors[k]}</div>;
 
   return (
-    <SectionCard title="Profile" icon="pencil" delay={40}
-      action={dirty ? <Badge tone="warning">unsaved</Badge> : undefined}>
+    <>
       <div id="agent-profile" style={grid}>
         <Field label="Name">
-          <input id="agent-name" className="input-field" style={input} value={f.name} maxLength={60} onChange={(e) => set('name', e.target.value)} />
+          <input id="agent-name" autoFocus className="input-field" style={input} value={f.name} maxLength={60} onChange={(e) => set('name', e.target.value)} />
           {err('name')}
         </Field>
         <Field label="Handle" hint={f.handle.trim().replace(/^@/, '').toLowerCase() !== a.handle ? 'old handle stays an alias for 30 days' : undefined}>
@@ -261,37 +317,38 @@ function ProfileForm({ data, ws }: { data: AgentDetail; ws: Workspace }) {
         </div>
       </Field>}
 
-      <div style={{ ...grid, gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 150px), 1fr))', rowGap: 12, padding: '12px 0', borderTop: '1px solid var(--color-hairline-soft)' }}>
-        <Meta label="Kind">{KIND_LABEL[a.kind]}</Meta>
-        <Meta label="Scope"><ScopeChip agent={a} /></Meta>
-        <Meta label="Created">{fmtDate(a.createdAt)} · {a.createdBy}</Meta>
-        <Meta label="Updated">{fmtRelative(a.updatedAt)}</Meta>
-      </div>
-
       {patch.error && !handleErr && <div className="callout-danger" style={{ marginTop: 8 }}>{describeError(patch.error)}</div>}
-      <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 8, marginTop: 8, flexWrap: 'wrap' }}>
+      <div className="modal-foot">
+        {dirty && <span style={{ marginRight: 'auto', alignSelf: 'center' }}><Badge tone="warning">unsaved</Badge></span>}
         <button type="button" className="btn-secondary" disabled={!dirty || patch.isPending} onClick={() => { setF(toForm(a, ws)); patch.reset(); }}>Reset</button>
+        <button type="button" className="btn-secondary" onClick={onClose}>Cancel</button>
         <button type="button" className="btn-primary" disabled={!dirty || !valid || patch.isPending} onClick={save}>
           {patch.isPending ? 'Saving…' : 'Save profile'}
         </button>
       </div>
-    </SectionCard>
+    </>
   );
 }
 
 /** When an orchestrator / role agent runs: the channel card's plan hour (read-only here; edited on the card). */
 function PlanTimes({ channelKey }: { channelKey: string | null }) {
+  return (
+    <Field label="Schedule" hint="from the channel card">
+      <PlanTimesNote channelKey={channelKey} />
+    </Field>
+  );
+}
+
+function PlanTimesNote({ channelKey }: { channelKey: string | null }) {
   const ch = useEditorChannel(channelKey ?? '');
   const c = ch.data;
   return (
-    <Field label="Schedule" hint="from the channel card">
-      <div className="text-body-sm" style={{ color: 'var(--color-ink-muted)', display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }} data-testid="plan-times">
-        <Icon name="clock" size={13} />
-        {c
-          ? <span>{planScheduleNote({ planHour: c.planHour, timezone: c.timezone, approval: c.mode === 'approve', batchHour: 20 })}</span>
-          : <span>The orchestrator and the planner run at the channel card's plan hour.</span>}
-        {channelKey && <Link to="/app/editor/$channel" params={{ channel: channelKey }} className="link-accent">Change on the card →</Link>}
-      </div>
-    </Field>
+    <div className="text-body-sm" style={{ color: 'var(--color-ink-muted)', display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }} data-testid="plan-times">
+      <Icon name="clock" size={13} />
+      {c
+        ? <span>{planScheduleNote({ planHour: c.planHour, timezone: c.timezone, approval: c.mode === 'approve', batchHour: 20 })}</span>
+        : <span>The orchestrator and the planner run at the channel card's plan hour.</span>}
+      {channelKey && <Link to="/app/editor/$channel" params={{ channel: channelKey }} className="link-accent">Change on the card →</Link>}
+    </div>
   );
 }

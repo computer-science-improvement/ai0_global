@@ -6,6 +6,7 @@ import { fmtRelative } from '../lib/format';
 import { PageHeader } from '../components/ui/PageHeader';
 import { Icon } from '../components/Icon';
 import { SectionCard, StatTile, StatusDot, EmptyState } from '../components/ui/primitives';
+import { Badge } from '../components/ui/Badge';
 
 export const Route = createFileRoute('/app/discovery')({ component: DiscoveryPage });
 
@@ -147,7 +148,7 @@ function ResultRow({ item, index }: { item: DiscoveryItem; index: number }) {
           >
             {hasUsername ? `@${item.username}` : '(no username)'}
           </span>
-          {item.isClosed && <span className="chip chip-danger">closed</span>}
+          {item.isClosed && <Badge tone="danger">closed</Badge>}
         </div>
         <div className="text-micro" style={{ color: 'var(--color-ink-muted)', marginTop: 3 }}>
           seen {fmtRelative(item.addedAt)}

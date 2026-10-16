@@ -111,7 +111,7 @@ function SkillRow({ entry: e, data, delay, onEdit, onVersions }: {
             {e.pending && <Badge tone="warning" title="An agent-written version is waiting for its 7-day KPI review">pending review</Badge>}
             {e.baseChanged && <Badge tone="warning" title="The built-in this override is based on changed in the repository">base changed</Badge>}
           </div>
-          <div className="text-body-sm" style={{ color: 'var(--color-ink-muted)', marginBottom: 6 }}>{s.description}</div>
+          <div className="text-body-sm clamp" title={s.description} style={{ ['--clamp' as string]: 1, color: 'var(--color-ink-muted)', marginBottom: 6 }}>{s.description}</div>
           <div className="text-micro" style={{ display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center', color: 'var(--color-ink-dim)' }}>
             <span className="tabular-nums">v{s.currentVersion}{s.baseVersion != null ? ` · base v${s.baseVersion}` : ''}</span>
             <span>·</span>
