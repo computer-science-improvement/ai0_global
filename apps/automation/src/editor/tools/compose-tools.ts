@@ -7,9 +7,12 @@ import { renderTelegram } from '../post/render-telegram';
 import { safeGet, RawGet } from '../net/safe-http';
 import type { Lookup } from '../net/ssrf-guard';
 import { extractPage } from '../net/extract-page';
+import { fetchPageGuarded, isFetchFailure, type HostFailures } from '../net/host-failures';
 
 export interface ComposeToolDeps {
   http?: { lookup?: Lookup; get?: RawGet };
+  /** Spec 040 FR-006: hosts that refused or failed a fetch. */
+  hosts?: HostFailures;
 }
 
 /** The runner puts the channel card into ctx.extras.card for every run. */
@@ -55,9 +58,10 @@ export function buildComposeTools(d: ComposeToolDeps = {}): EditorTool[] {
     description: 'Знайти зображення на сторінці (og:image і картинки зі статті). Використовуй лише зображення з джерела, яке цитуєш; для новини — лише og_image (головне зображення) або images цієї ж сторінки (альбом), немає їх — пост без зображення.',
     kind: 'read', roles: ['executor', 'composer'],
     input: z.object({ url: z.string().url() }),
-    execute: async ({ url }) => {
-      const res = await safeGet(url, { lookup: d.http?.lookup, get: d.http?.get });
-      if (res.status >= 400) return { error: 'http_error', details: `status ${res.status}` };
+    execute: async ({ url }, ctx) => {
+      const sources = (ctx.extras?.card as EditorCard | undefined)?.sources;
+      const res = await fetchPageGuarded(url, d.hosts, sources, () => safeGet(url, { lookup: d.http?.lookup, get: d.http?.get }));
+      if (isFetchFailure(res)) return res;
       const p = extractPage(res.body, res.url);
       return { og_image: p.image, images: p.images };
     },

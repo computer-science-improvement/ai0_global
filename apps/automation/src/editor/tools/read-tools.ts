@@ -6,10 +6,12 @@ import type { SkillSource } from '../skills/skill-library';
 import { safeGet, RawGet } from '../net/safe-http';
 import type { Lookup } from '../net/ssrf-guard';
 import { extractPage } from '../net/extract-page';
+import { classifyFetchError, fetchPageGuarded, hostBlockedError, hostOf, isFetchFailure, REFUSAL_STATUSES, type HostFailures } from '../net/host-failures';
+import type { EditorCard } from '../card';
 import { topMatches } from '../post/similarity';
 import { EXTRA_MAX_CHARS, LIBRARY_EXTRA, LIBRARY_TABLE_NAMES } from './library-tables';
 import { DataStore } from '../../data/data-store';
-import { filterFresh, readFeed } from '../live/feed-items';
+import { FeedParseError, filterFresh, readFeed } from '../live/feed-items';
 import { queryDataset } from '../../data/data-query';
 
 export interface ReadToolDeps {
@@ -24,6 +26,8 @@ export interface ReadToolDeps {
   now?:      () => Date;
   /** Spec 037 T2: the channel's active stories; fetch_feed marks the items one covers (`covered_by_story`). */
   stories?:  { coveredBy(channelKey: string, items: Array<{ title?: string | null; snippet?: string | null }>, now: Date): Promise<Array<string | null>> };
+  /** Spec 040 FR-006: hosts that refused or failed a fetch (web_fetch, fetch_feed). */
+  hosts?:    HostFailures;
 }
 
 const ALL_ROLES = ['planner', 'executor', 'reviewer', 'composer', 'orchestrator', 'idea_reviewer', 'manager', 'builder'] as const;
@@ -184,12 +188,10 @@ export function buildReadTools(d: ReadToolDeps): EditorTool[] {
     description: 'Завантажити публічну веб-сторінку і отримати її читабельний текст, заголовок, опис та зображення. Для фактчеку й першоджерел. image — головне зображення сторінки (og:image або перше зображення статті), images — усі зображення сторінки (головне першим, далі зі статті): новина з цього джерела може мати лише їх (альбом — кілька з images); image = null → новина без зображення (format text).',
     kind: 'read', roles: [...ALL_ROLES],
     input: z.object({ url: z.string().url() }),
-    execute: async ({ url }) => {
-      const res = await safeGet(url, { lookup: d.http?.lookup, get: d.http?.get });
-      if (res.status === 401 || res.status === 403 || res.status === 429) {
-        return { error: 'http_error', details: `status ${res.status}: сайт не дає завантажити сторінку. Не пробуй його знову — візьми snippet зі стрічки, інше джерело або пропусти слот` };
-      }
-      if (res.status >= 400) return { error: 'http_error', details: `status ${res.status}` };
+    execute: async ({ url }, ctx) => {
+      const sources = (ctx.extras?.card as EditorCard | undefined)?.sources;
+      const res = await fetchPageGuarded(url, d.hosts, sources, () => safeGet(url, { lookup: d.http?.lookup, get: d.http?.get }));
+      if (isFetchFailure(res)) return res;
       if (!/html|xml|text/i.test(res.contentType) && res.contentType) return { error: 'unsupported_content', details: res.contentType };
       return { url: res.url, ...extractPage(res.body, res.url) };
     },
@@ -207,12 +209,32 @@ export function buildReadTools(d: ReadToolDeps): EditorTool[] {
     }),
     execute: async ({ url, limit, since_hours, exclude_posted }, ctx) => {
       const t = now();
+      const host = hostOf(url);
+      const sources = (ctx.extras?.card as EditorCard | undefined)?.sources;
+      if (host && d.hosts) {
+        const b = await d.hosts.blocked(host, 'feed');
+        if (b) return hostBlockedError(b, sources);
+      }
       let feed: Awaited<ReturnType<typeof readFeed>>;
       try {
         feed = await readFeed(url, t, d.http);
       } catch (err: any) {
+        // Spec 040 FR-006: a refusal, DNS / TLS failure or a body that is not a feed marks the host; the tool answers.
         const m = /^status (\d+)/.exec(err?.message ?? '');
-        if (m) return { error: 'http_error', details: `status ${m[1]}` };
+        if (m) {
+          const status = Number(m[1]);
+          if (host && REFUSAL_STATUSES.has(status)) await d.hosts?.record(host, 'refused', status);
+          return { error: 'http_error', details: status === 404 ? 'status 404: стрічки за цією адресою немає — бери фіди з картки чи плейбука, адреси не вгадуй' : `status ${status}` };
+        }
+        if (err instanceof FeedParseError) {
+          if (host) await d.hosts?.record(host, 'feed_unparseable');
+          return { error: 'feed_unparseable', details: `це не RSS/Atom-стрічка (${err.message}). Не читай її знову сьогодні — інша стрічка або web_fetch сторінки` };
+        }
+        const kind = classifyFetchError(err);
+        if (kind && host) {
+          await d.hosts?.record(host, kind);
+          return { error: 'host_unreachable', details: `${host}: ${kind === 'dns' ? 'домен не знаходиться (DNS)' : 'помилка TLS-сертифіката'}` };
+        }
         throw err;
       }
       // Spec 034 FR-010: freshness and (live slots) the ledger + 7-day repeat check, in code.

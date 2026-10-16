@@ -39,11 +39,21 @@ export function ageHours(date: string | null | undefined, now: Date): number | n
   return Math.max(0, Math.round(((now.getTime() - t) / 3_600_000) * 10) / 10);
 }
 
-/** Read one RSS/Atom feed through the SSRF-safe GET. Throws on an HTTP error or unparsable XML. */
+/** The body came back but is not RSS/Atom (spec 040 FR-006: `feed_unparseable`, not a crash of the tool). */
+export class FeedParseError extends Error {
+  constructor(message: string) { super(message); this.name = 'FeedParseError'; }
+}
+
+/** Read one RSS/Atom feed through the SSRF-safe GET. Throws on an HTTP error (`status N`) or FeedParseError. */
 export async function readFeed(url: string, now: Date, http: HttpSeams = {}): Promise<{ title: string | null; items: FeedItem[] }> {
   const res = await safeGet(url, { lookup: http.lookup, get: http.get, accept: FEED_ACCEPT });
   if (res.status >= 400) throw new Error(`status ${res.status}`);
-  const feed = await parser.parseString(res.body);
+  let feed: Awaited<ReturnType<typeof parser.parseString>>;
+  try {
+    feed = await parser.parseString(res.body);
+  } catch (err: any) {
+    throw new FeedParseError(String(err?.message ?? err).slice(0, 200));
+  }
   return {
     title: feed.title ?? null,
     items: (feed.items ?? []).map((it: any) => {

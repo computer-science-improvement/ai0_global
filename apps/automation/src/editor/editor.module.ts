@@ -31,6 +31,7 @@ import { buildReadTools } from './tools/read-tools';
 import { scanLive } from './live/feed-items';
 import { NewsWatchService } from './live/news-watch';
 import { buildComposeTools } from './tools/compose-tools';
+import { PgHostFailures } from './net/host-failures';
 import { buildRoleTools, STORY_KPI_SAMPLE_FILTER } from './tools/role-tools';
 import { StoryRegistry } from './story/story.repository';
 import { StoryContextService } from './story/story-service';
@@ -909,11 +910,13 @@ export const EDITOR_PROVIDERS = [
         // Spec 025: executor dry-run for file_directive; directive_lock on the orchestrator's playbook writes.
         const directives = directiveExecution(pool, repos, infra, platform);
         const directiveLock = (orchId: string, body: Playbook) => directives.lockFor(orchId, body);
+        // Spec 040 FR-006: hosts that refused or failed a fetch are not asked again for 24 h.
+        const hosts = new PgHostFailures(pool);
         return new ToolRegistry([
-          ...buildReadTools({ pool, readonly: new ReadonlyQueryService(pool), skills, stories: new StoryContextService(stories) }),
+          ...buildReadTools({ pool, readonly: new ReadonlyQueryService(pool), skills, stories: new StoryContextService(stories), hosts }),
           ...buildDataTools({ pool, actions: infra.actions, env }),
           ...buildHighlightsTools({ pool }),
-          ...buildComposeTools(),
+          ...buildComposeTools({ hosts }),
           ...buildApiTools({ env }),
           ...buildRoleTools({
             pool, plans: repos.plans, memory: repos.memory, channels: repos.channels, ...ports,
