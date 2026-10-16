@@ -233,9 +233,11 @@ export class ChannelSetupService {
     const posts = await this.postsOf(p);
     let drift: SetupSection[] = [];
     let kept: string[] = [];
+    let current: Record<SetupSection, unknown> | null = null;
     if (p.sections && (p.status === 'ready' || p.status === 'partially_applied')) {
       const state = await this.d.state(p.channelKey);
-      drift = driftedSections(p.baseline, sectionBaseline(state, p.resourceRef), pendingSections(p));
+      current = sectionBaseline(state, p.resourceRef);
+      drift = driftedSections(p.baseline, current, pendingSections(p));
       const parsed = SubmitSetupInput.safeParse(p.sections);
       if (parsed.success) kept = formatPatch(parsed.data, state.locks, null).kept;
     }
@@ -246,7 +248,8 @@ export class ChannelSetupService {
         views: x.views, hasMedia: x.hasMedia, mediaType: x.mediaType,
         link: `https://t.me/${p.channelKey.replace(/^@/, '')}/${x.msgId}`,
       })),
-      drift, kept,
+      // What each section holds now (the dialog's "now → proposed"); null once the proposal is closed.
+      current, drift, kept,
     };
   }
 

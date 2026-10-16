@@ -293,6 +293,12 @@ test('apply through the service: a section the owner changed since the analysis 
   await svc.analyze({ channelKeys: [KEY] });
   await drain(svc, repo);
   setState(() => state({ card: makeCard({ channelKey: KEY, brief: 'Власник переписав бриф', formats: { text: 1, photo: 1 } }) }));
+  const view = await svc.get(repo.rows[0].id);
+  assert.deepEqual(view.drift, ['brief_profile']);
+  assert.deepEqual(view.kept, ['emoji']);
+  assert.equal((view.current?.brief_profile as { brief: string }).brief, 'Власник переписав бриф');
+  assert.equal(view.posts.length, 8);
+  assert.equal(view.posts[0].link, 'https://t.me/tips_ua/999');
   const r = await svc.apply(repo.rows[0].id, { sections: ['brief_profile', 'format_mix'] });
   assert.deepEqual(r.changedSinceAnalysis, ['brief_profile']);
   assert.deepEqual(r.applied, ['format_mix']);

@@ -46,7 +46,7 @@ test('the default menu is FR-003 plus Posts to approve, Data and Spend; no Legac
   const shape = Object.fromEntries(nav.groups.map((g) => [g.title, g.items.map((i) => i.label)]));
   assert.deepEqual(shape, {
     Home: ['Overview', 'Posts to approve'],
-    Agents: ['Agents', 'Chat', 'DM inbox', 'Models'],
+    Agents: ['Agents', 'Chat', 'DM inbox', 'Setup from history', 'Models'],
     Publishing: ['Compose', 'Scheduled', 'Editor', 'Logs', 'My channels'],
     Content: ['Data'],
     Analytics: ['Analytics', 'Spend', 'Tracked'],

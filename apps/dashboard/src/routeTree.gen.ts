@@ -19,6 +19,7 @@ import { Route as AppTrackedRouteImport } from './routes/app.tracked'
 import { Route as AppTelegraphRouteImport } from './routes/app.telegraph'
 import { Route as AppStrategiesRouteImport } from './routes/app.strategies'
 import { Route as AppSpendRouteImport } from './routes/app.spend'
+import { Route as AppSetupRouteImport } from './routes/app.setup'
 import { Route as AppSettingsRouteImport } from './routes/app.settings'
 import { Route as AppScheduledRouteImport } from './routes/app.scheduled'
 import { Route as AppRecommendationsRouteImport } from './routes/app.recommendations'
@@ -102,6 +103,11 @@ const AppStrategiesRoute = AppStrategiesRouteImport.update({
 const AppSpendRoute = AppSpendRouteImport.update({
   id: '/spend',
   path: '/spend',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppSetupRoute = AppSetupRouteImport.update({
+  id: '/setup',
+  path: '/setup',
   getParentRoute: () => AppRoute,
 } as any)
 const AppSettingsRoute = AppSettingsRouteImport.update({
@@ -302,6 +308,7 @@ export interface FileRoutesByFullPath {
   '/app/recommendations': typeof AppRecommendationsRoute
   '/app/scheduled': typeof AppScheduledRoute
   '/app/settings': typeof AppSettingsRoute
+  '/app/setup': typeof AppSetupRoute
   '/app/spend': typeof AppSpendRoute
   '/app/strategies': typeof AppStrategiesRoute
   '/app/telegraph': typeof AppTelegraphRoute
@@ -347,6 +354,7 @@ export interface FileRoutesByTo {
   '/app/recommendations': typeof AppRecommendationsRoute
   '/app/scheduled': typeof AppScheduledRoute
   '/app/settings': typeof AppSettingsRoute
+  '/app/setup': typeof AppSetupRoute
   '/app/spend': typeof AppSpendRoute
   '/app/strategies': typeof AppStrategiesRoute
   '/app/telegraph': typeof AppTelegraphRoute
@@ -394,6 +402,7 @@ export interface FileRoutesById {
   '/app/recommendations': typeof AppRecommendationsRoute
   '/app/scheduled': typeof AppScheduledRoute
   '/app/settings': typeof AppSettingsRoute
+  '/app/setup': typeof AppSetupRoute
   '/app/spend': typeof AppSpendRoute
   '/app/strategies': typeof AppStrategiesRoute
   '/app/telegraph': typeof AppTelegraphRoute
@@ -442,6 +451,7 @@ export interface FileRouteTypes {
     | '/app/recommendations'
     | '/app/scheduled'
     | '/app/settings'
+    | '/app/setup'
     | '/app/spend'
     | '/app/strategies'
     | '/app/telegraph'
@@ -487,6 +497,7 @@ export interface FileRouteTypes {
     | '/app/recommendations'
     | '/app/scheduled'
     | '/app/settings'
+    | '/app/setup'
     | '/app/spend'
     | '/app/strategies'
     | '/app/telegraph'
@@ -533,6 +544,7 @@ export interface FileRouteTypes {
     | '/app/recommendations'
     | '/app/scheduled'
     | '/app/settings'
+    | '/app/setup'
     | '/app/spend'
     | '/app/strategies'
     | '/app/telegraph'
@@ -632,6 +644,13 @@ declare module '@tanstack/react-router' {
       path: '/spend'
       fullPath: '/app/spend'
       preLoaderRoute: typeof AppSpendRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/setup': {
+      id: '/app/setup'
+      path: '/setup'
+      fullPath: '/app/setup'
+      preLoaderRoute: typeof AppSetupRouteImport
       parentRoute: typeof AppRoute
     }
     '/app/settings': {
@@ -897,6 +916,7 @@ interface AppRouteChildren {
   AppRecommendationsRoute: typeof AppRecommendationsRoute
   AppScheduledRoute: typeof AppScheduledRoute
   AppSettingsRoute: typeof AppSettingsRoute
+  AppSetupRoute: typeof AppSetupRoute
   AppSpendRoute: typeof AppSpendRoute
   AppStrategiesRoute: typeof AppStrategiesRoute
   AppTelegraphRoute: typeof AppTelegraphRoute
@@ -939,6 +959,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppRecommendationsRoute: AppRecommendationsRoute,
   AppScheduledRoute: AppScheduledRoute,
   AppSettingsRoute: AppSettingsRoute,
+  AppSetupRoute: AppSetupRoute,
   AppSpendRoute: AppSpendRoute,
   AppStrategiesRoute: AppStrategiesRoute,
   AppTelegraphRoute: AppTelegraphRoute,

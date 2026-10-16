@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute, Link } from '@tanstack/react-router';
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { trackingApi } from '../api/tracking';
@@ -61,7 +61,11 @@ function ChannelsPage() {
       <PageHeader
         title="My channels"
         subtitle="Owned channels you publish into. Each row shows its bound bot, poll tier, and legacy strategy bindings."
-        actions={
+        actions={<>
+          {/* Spec 042: set an own channel's agent up from its last 20 posts. */}
+          <Link to="/app/setup" className="btn-secondary" style={{ gap: 6, display: 'inline-flex', alignItems: 'center', flexShrink: 0, textDecoration: 'none' }}>
+            <Icon name="sparkle" size={14} /> Setup from history
+          </Link>
           <button
             onClick={() => setModalOpen(true)}
             className="btn-primary"
@@ -69,7 +73,7 @@ function ChannelsPage() {
           >
             <Icon name="plus" size={14} /> Add channel
           </button>
-        }
+        </>}
       />
 
       {/* Filter bar — search field with an inline glyph, the active bot filter

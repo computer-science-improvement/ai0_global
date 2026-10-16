@@ -21,6 +21,7 @@ import { ManagerReviews } from '../components/agents/ManagerReviews';
 import { AgentPromo } from '../components/agents/AgentPromo';
 import { ApprovalList } from '../components/approvals/ApprovalList';
 import { ApprovalStatsPanel } from '../components/approvals/ApprovalStatsPanel';
+import { AgentSetupButton } from '../components/setup/AgentSetupButton';
 import { errorBody, useAgent, useRunAgent } from '../api/agents';
 import { useRunManager, type DirectiveBinding } from '../api/manager';
 import { directiveFilterSearch, parseDirectiveFilters, type DirectiveFilters } from '../lib/directive-view';
@@ -139,6 +140,7 @@ function AgentPage() {
             title={a.name}
             subtitle={`@${a.handle} · ${KIND_LABEL[a.kind]}`}
             actions={<>
+              {a.kind === 'orchestrator' && d.channelKey && a.scopeId?.startsWith('telegram:') && <AgentSetupButton channelKey={d.channelKey} />}
               <button className="btn-secondary" style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}
                 disabled={running || a.paused} title={a.paused ? 'Resume the agent first' : 'Start a run now'} onClick={runNow}>
                 <Icon name="rocket" size={14} /> Run now
