@@ -31,6 +31,8 @@ export interface EditorTool<I = any, O = any> {
   roles:       EditorRole[];
   /** Own timeout (ms) instead of the loop's default (30 s): publish tools wait for the pre-publish critic (spec 034). */
   timeoutMs?:  number;
+  /** Spec 040: the error code of a verbatim repeat of a failed call (default `repeated_failed_call`). */
+  repeatError?: string;
   execute(input: I, ctx: ToolContext): Promise<O | ToolError>;
 }
 
@@ -41,6 +43,7 @@ export function defineTool<S extends z.ZodType, O>(t: {
   kind:        ToolKind;
   roles:       EditorRole[];
   timeoutMs?:  number;
+  repeatError?: string;
   execute(input: z.infer<S>, ctx: ToolContext): Promise<O | ToolError>;
 }): EditorTool<z.infer<S>, O> {
   return t as unknown as EditorTool<z.infer<S>, O>;

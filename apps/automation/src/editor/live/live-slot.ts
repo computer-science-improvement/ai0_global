@@ -95,16 +95,19 @@ export function liveTopicLabel(sources: string[], item?: LiveItemRef | null): st
 
 /**
  * The topic of a plan slot: `fixed` needs a topic; `live` needs a source (its own, its series', or the
- * card's feeds). Default mode: `live` when the slot has no topic or realises a series with a feed source.
+ * card's feeds). Default mode: `fixed` for an idea slot without a topic (the idea's title); otherwise `live` when the
+ * slot has no topic or realises a series with a feed source.
  */
 export function resolveSlotTopic(
   s: LiveSlotInputLike,
-  o: { label: string; seriesSource?: SeriesSource | null; cardFeeds?: string[] },
+  o: { label: string; seriesSource?: SeriesSource | null; cardFeeds?: string[]; idea?: { title: string } | null },
 ): ResolvedTopic {
   const feedSeries = o.seriesSource?.kind === 'feed';
-  const mode: TopicMode = s.topic_mode ?? (!s.topic?.trim() || feedSeries ? 'live' : 'fixed');
+  // Spec 040 FR-005: a slot that realises an idea and names no topic writes that idea (fixed, the idea's title).
+  const ideaTopic = o.idea?.title?.trim() || '';
+  const mode: TopicMode = s.topic_mode ?? (ideaTopic && !s.topic?.trim() ? 'fixed' : !s.topic?.trim() || feedSeries ? 'live' : 'fixed');
   if (mode === 'fixed') {
-    const topic = s.topic?.trim() ?? '';
+    const topic = (s.topic?.trim() || ideaTopic).slice(0, 300);
     if (topic.length < 5) return { ok: false, error: `${o.label}: потрібна конкретна тема (topic, ≥ 5 символів) або topic_mode "live" з джерелом` };
     return { ok: true, topic, topicMode: 'fixed', live: null };
   }

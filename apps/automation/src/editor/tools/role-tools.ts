@@ -9,7 +9,7 @@ import { renderTelegram } from '../post/render-telegram';
 import { htmlToPlain } from '../post/inline-markup';
 import { criticGateOf, criticSummary, PUBLISH_TOOL_TIMEOUT_MS } from '../critic/critic-gate';
 import { similarity } from '../post/similarity';
-import { SubmitPlanInput, validatePlan } from '../roles/plan-rules';
+import { SubmitPlanInput, validatePlan, type PlanIdea } from '../roles/plan-rules';
 import { isQuietHour, localDate, localHour, zonedToUtc } from '../roles/time';
 import type { EditorPlansRepository } from '../repo/editor-plans.repository';
 import type { EditorMemoryRepository } from '../repo/editor-memory.repository';
@@ -198,6 +198,17 @@ export async function checkPublishGuards(d: RoleToolDeps, ctx: ToolContext, spec
   return { ok: true as const, rendered, ref, lint, at, story };
 }
 
+/** The pool ideas a single-channel plan names (spec 040 FR-005); a failing read leaves them out (the slot then needs a topic). */
+async function planIdeas(pool: Pick<Pool, 'query'> | undefined, ids: string[]): Promise<Map<string, PlanIdea>> {
+  if (!pool || !ids.length) return new Map();
+  try {
+    const { rows } = await pool.query(`SELECT id, title, angle, sources FROM content_ideas WHERE id = ANY($1::uuid[])`, [[...new Set(ids)]]);
+    return new Map(rows.map((r: any) => [r.id, { title: r.title, angle: r.angle ?? null, sources: r.sources ?? [] }]));
+  } catch {
+    return new Map();
+  }
+}
+
 export function buildRoleTools(d: RoleToolDeps): EditorTool[] {
   const now = d.now ?? (() => new Date());
   const memoryAdds = new Map<string, number>();
@@ -206,7 +217,7 @@ export function buildRoleTools(d: RoleToolDeps): EditorTool[] {
   const submitPlan = defineTool({
     name: 'submit_plan',
     description: 'Зберегти план на день плану (сьогодні; у режимі апруву ввечері — завтра) (завершує роботу). Код перевіряє кількість, час, тихі години, інтервали, формати, частку експериментів, експерименти за директивою (directive_id), серії за розкладом (slot.series або skipped_series з причиною) і правила власника (закріплені пости, заборонені вікна, частота) — при помилці виправ і надішли знову.',
-    kind: 'terminal', roles: ['planner'],
+    kind: 'terminal', roles: ['planner'], repeatError: 'same_plan_rejected',
     input: SubmitPlanInput,
     execute: async (plan, ctx) => {
       const card = cardFrom(ctx);
@@ -219,7 +230,8 @@ export function buildRoleTools(d: RoleToolDeps): EditorTool[] {
       const anchor = `telegram:${card.channelKey}`;
       const quotas = d.experimentQuotas ? (await d.experimentQuotas(card.channelKey, planDate, t)).filter((q) => q.resourceRef === anchor) : [];
       const pollCap = d.pollCaps ? await d.pollCaps({ refs: [anchor], planDate, tz: card.timezone, defaultRef: anchor }) : undefined;
-      const v = validatePlan(plan, sched ? d.schedule!.effectiveCard(card, sched) : card, planDate, t, reserved.map((r) => r.scheduledAt), sched, quotas, pollCap);
+      const ideas = await planIdeas(d.pool, plan.slots.map((s) => s.idea_id).filter((x): x is string => !!x));
+      const v = validatePlan(plan, sched ? d.schedule!.effectiveCard(card, sched) : card, planDate, t, reserved.map((r) => r.scheduledAt), sched, quotas, pollCap, ideas);
       if (!v.ok) return { error: 'plan_invalid', details: v.errors };
       const planId = await d.plans.createPlan(card.channelKey, planDate, plan.rationale, ctx.runId, v.slots);
       // Pool ideas taken into the plan (spec 020) leave the pool; they become `used` once their slots are done.

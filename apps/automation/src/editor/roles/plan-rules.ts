@@ -65,6 +65,9 @@ export function remainingCapacity(
  * guarantee the model cannot talk its way around; violations go back to the
  * model as a list so it can fix the plan and resubmit.
  */
+/** A pool idea as the single-channel plan check needs it (spec 040 FR-005). */
+export interface PlanIdea { title: string; angle: string | null; sources: string[] }
+
 export function validatePlan(
   plan: SubmitPlan,
   card: Pick<EditorCard, 'timezone' | 'postsPerDayMin' | 'postsPerDayMax' | 'quietStartHour' | 'quietEndHour' | 'minGapMinutes' | 'formats' | 'exploreRatio'>
@@ -77,6 +80,8 @@ export function validatePlan(
   experiments: ExperimentQuota[] = [],
   /** Spec 034 FR-005: the channel's poll cap and the polls already in the 7-day window. */
   pollCap?: PollCapCtx,
+  /** Spec 040 FR-005: pool ideas the plan names (an idea slot without a topic writes its idea). */
+  ideas?: Map<string, PlanIdea>,
 ): PlanVerdict {
   const errors: string[] = [];
   const n = plan.slots.length;
@@ -122,14 +127,16 @@ export function validatePlan(
     }
     prev = at;
     // Spec 034 FR-010: a fixed slot needs its topic; a live slot a source (its own, its series' or the card's feeds).
+    const idea = s.idea_id ? ideas?.get(s.idea_id) ?? null : null;
     const t = resolveSlotTopic(s, {
-      label, seriesSource: s.series ? schedule?.series.find((x) => x.name === s.series)?.source ?? null : null, cardFeeds: cardFeedIds(card.sources),
+      label, seriesSource: s.series ? schedule?.series.find((x) => x.name === s.series)?.source ?? null : null, cardFeeds: cardFeedIds(card.sources), idea,
     });
     if (!t.ok) errors.push(t.error);
     // Spec 025 FR-014: a directive's experiment slot is stored with is_experiment and the hint directive:<id>.
     const hints = [...(s.directive_id ? [`directive:${s.directive_id}`] : []), ...(s.series ? [`series:${s.series}`] : []), ...s.source_hints];
     slots.push({
-      scheduledAt: at, format: s.format, topic: t.ok ? t.topic : (s.topic ?? ''), angle: s.angle ?? null, sourceHints: hints,
+      scheduledAt: at, format: s.format, topic: t.ok ? t.topic : (s.topic ?? ''), angle: s.angle ?? idea?.angle ?? null,
+      sourceHints: [...new Set([...hints, ...(idea?.sources ?? [])])].slice(0, 10),
       isExperiment: s.is_experiment || !!s.directive_id, ...(s.idea_id ? { ideaId: s.idea_id } : {}),
       ...(t.ok && t.live ? { topicMode: 'live' as const, live: t.live } : {}),
     });

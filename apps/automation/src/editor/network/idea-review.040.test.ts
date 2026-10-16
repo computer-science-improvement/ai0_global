@@ -117,7 +117,7 @@ test('add_idea: a duplicate names the idea already in the pool; per-run and back
   const topics = ['Вулкани Ісландії вибухають', 'Бджоли рахують до чотирьох', 'Квантові комп’ютери ламають шифри', 'Океанські течії змінюють клімат',
     'Мозок восьминога розподілений', 'Шахові дебюти Каспарова', 'Пекарня з закваскою вдома', 'Велосипедні маршрути Карпатами',
     'Стародавній Рим і бетон', 'Монети Візантії на аукціонах', 'Гриби будують мережі в лісі', 'Сонячні бурі вимикають супутники', 'Джаз Нового Орлеана'];
-  const res = [];
+  const res: any[] = [];
   for (const t of topics) res.push(await many.call('add_idea', { ...base, title: t, angle: undefined }, c));
   assert.equal(res.filter((r) => r.ok).length, MAX_IDEAS_PER_RUN);
   assert.equal(res.at(-1).error, 'run_quota');

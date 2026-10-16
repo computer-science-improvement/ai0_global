@@ -2,7 +2,7 @@ import type { ChatMessage, EditorRole, LlmClient, ToolCall } from '../llm/llm.ty
 import type { ModelProfile } from '../llm/model-registry';
 import type { AgentBudget, BudgetGate } from './budget.service';
 import type { RunRecorder, RunStatus, RunTotals } from './run-recorder';
-import { EditorTool, ToolContext, isToolError, toToolSpec } from './tool';
+import { EditorTool, ToolContext, ToolError, isToolError, toToolSpec } from './tool';
 import { toToolContent } from './truncate';
 import { withLlmContext, type LlmContext } from '../../common/ai/usage/llm-context';
 import { editorFeature, telegramResource } from '../../common/ai/usage/features';
@@ -81,6 +81,26 @@ function summarize(output: unknown): string {
   try { s = JSON.stringify(output) ?? ''; } catch { s = String(output); }
   return s.length > SUMMARY_CHARS ? `${s.slice(0, SUMMARY_CHARS)}…` : s;
 }
+const NIL_UUID = '00000000-0000-0000-0000-000000000000';
+
+/** Arguments without the properties a model filled with a placeholder ("" or the nil UUID), at any depth; same object when none. */
+export function dropPlaceholders(v: unknown): unknown {
+  if (Array.isArray(v)) {
+    const out = v.map(dropPlaceholders);
+    return out.some((x, i) => x !== v[i]) ? out : v;
+  }
+  if (!v || typeof v !== 'object') return v;
+  let changed = false;
+  const out: Record<string, unknown> = {};
+  for (const [k, x] of Object.entries(v as Record<string, unknown>)) {
+    if (x === '' || x === NIL_UUID) { changed = true; continue; }
+    const y = dropPlaceholders(x);
+    if (y !== x) changed = true;
+    out[k] = y;
+  }
+  return changed ? out : v;
+}
+
 /** The error code of a tool result ('' for a success). */
 function errorCode(output: unknown): string {
   return isToolError(output) ? String(output.error) : '';
@@ -96,12 +116,16 @@ function rememberFailure(output: unknown): boolean {
     && (output as { _grantSteps?: unknown })._grantSteps === undefined;
 }
 
-/** The earlier error in full (code and details, ≤ 1500 chars), so a blocked repeat still says what to fix. */
-function failureDetails(output: unknown): string {
-  if (!isToolError(output)) return '';
-  const d = output.details === undefined ? '' : `: ${typeof output.details === 'string' ? output.details : JSON.stringify(output.details)}`;
-  const s = `${output.error}${d}`;
-  return s.length > 1500 ? `${s.slice(0, 1500)}…` : s;
+/**
+ * A verbatim repeat of a failed call, answered without running the tool (spec 040 FR-002 / FR-005): the earlier error, its
+ * list of problems as a numbered checklist (a rejected plan), or its details.
+ */
+function repeatOutcome(raw: string, code: string, prev: ToolError) {
+  const output: Record<string, unknown> = { error: code, details: `${prev.error} — this exact call already failed in this run; change the arguments or stop` };
+  const str = (d: unknown) => (typeof d === 'string' ? d : JSON.stringify(d));
+  if (Array.isArray(prev.details)) output.checklist = prev.details.slice(0, 20).map((d, i) => `${i + 1}. ${str(d)}`.slice(0, 400));
+  else if (prev.details !== undefined) output.previous = str(prev.details).slice(0, 1500);
+  return { input: parseArgs(raw), output, isError: true, terminal: false, durationMs: 0 };
 }
 
 /** A call the circuit breaker answers without running the tool (spec 040 FR-002). */
@@ -165,7 +189,7 @@ export class AgentLoop {
     let granted = false;
     const byName = new Map(input.tools.map((t) => [t.name, t]));
     // Circuit breaker (spec 040 FR-002): calls that failed (never re-run verbatim), error counts per (tool, code), dropped tools.
-    const failedCalls = new Map<string, string>();
+    const failedCalls = new Map<string, ToolError>();
     const errorCounts = new Map<string, number>();
     const dropped = new Set<string>();
     let repeatBlocked = 0;
@@ -276,7 +300,7 @@ export class AgentLoop {
           // LLM calls a tool makes itself are attributed to the run's feature, but without run/step ids:
           // (run_id, step_idx) belongs to the tool step row.
           const outcome = previous !== undefined
-            ? blockedOutcome(call.arguments, 'repeated_failed_call', `${previous} — this exact call already failed in this run; change the arguments or stop`)
+            ? repeatOutcome(call.arguments, byName.get(call.name)?.repeatError ?? 'repeated_failed_call', previous)
             : dropped.has(call.name)
               ? blockedOutcome(call.arguments, 'tool_dropped', `${call.name} is off for the rest of this run after ${MAX_SAME_TOOL_ERRORS} errors of the same kind`)
               : await withLlmContext({ ...usage, runId: null }, () => this.runTool(call, byName, ctx, toolTimeoutMs));
@@ -290,7 +314,7 @@ export class AgentLoop {
           if (!outcome.isError) toolsOk.push(call.name);
           else {
             const code = errorCode(outcome.output);
-            if (previous === undefined && rememberFailure(outcome.output)) failedCalls.set(callKey, failureDetails(outcome.output));
+            if (previous === undefined && rememberFailure(outcome.output)) failedCalls.set(callKey, outcome.output as ToolError);
             const k = `${call.name}\u0000${code}`;
             const n = (errorCounts.get(k) ?? 0) + 1;
             errorCounts.set(k, n);
@@ -336,7 +360,15 @@ export class AgentLoop {
     } catch {
       return done(call.arguments, { error: 'invalid_json', details: 'arguments must be a JSON object' });
     }
-    const parsed = tool.input.safeParse(args);
+    let parsed = tool.input.safeParse(args);
+    if (!parsed.success) {
+      // Spec 040 FR-005: models fill optional fields with "" or the nil UUID; read those as absent before giving up.
+      const cleaned = dropPlaceholders(args);
+      if (cleaned !== args) {
+        const again = tool.input.safeParse(cleaned);
+        if (again.success) parsed = again;
+      }
+    }
     if (!parsed.success) {
       return done(args, { error: 'invalid_args', details: parsed.error.issues.map((i) => ({ path: i.path.join('.'), message: i.message })) });
     }

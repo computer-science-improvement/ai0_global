@@ -147,7 +147,8 @@ export function validateNetworkPlan(
     }
     if (s.series && !due.has(s.series)) errors.push(`${label}: серія «${s.series}» ${o.planDate} не за розкладом або неактивна`);
     // Spec 034 FR-010: a fixed slot needs its topic; a live slot a source (its own, the series' or the anchor card's feeds).
-    const t = resolveSlotTopic(s, { label, seriesSource: s.series ? due.get(s.series)?.series.source ?? null : null, cardFeeds: cardFeedIds(card.sources) });
+    const idea = s.idea_id ? o.ideas.get(s.idea_id) ?? null : null;
+    const t = resolveSlotTopic(s, { label, seriesSource: s.series ? due.get(s.series)?.series.source ?? null : null, cardFeeds: cardFeedIds(card.sources), idea });
     if (!t.ok) errors.push(t.error);
     const live = t.ok && t.topicMode === 'live';
     if (!s.idea_id && !s.series && !s.directive_id && !live) errors.push(`${label}: потрібен idea_id (прийнята ідея), series, directive_id (експеримент за директивою) або topic_mode "live" (свіжа новина з джерела)`);
@@ -157,8 +158,9 @@ export function validateNetworkPlan(
     const slot: NetworkPlannedSlot = {
       resourceRef: s.resource_ref, scheduledAt: at, format: s.format, topic: t.ok ? t.topic : (s.topic ?? ''),
       ...(t.ok && t.live ? { topicMode: 'live' as const, live: t.live } : {}),
-      angle: [s.angle, s.note].filter(Boolean).join(' · ') || null, ideaId: s.idea_id ?? null,
-      sourceHints: [...(s.directive_id ? [`directive:${s.directive_id}`] : []), ...(s.series ? [`series:${s.series}`] : []), ...s.source_hints],
+      angle: [s.angle ?? idea?.angle, s.note].filter(Boolean).join(' · ') || null, ideaId: s.idea_id ?? null,
+      sourceHints: [...new Set([...(s.directive_id ? [`directive:${s.directive_id}`] : []), ...(s.series ? [`series:${s.series}`] : []), ...s.source_hints,
+        ...(idea?.sources ?? [])])].slice(0, 10),
       treatment, treatmentReason: s.reason ?? null, fromIndex: null, formatNotes: s.format_notes ?? null,
       ...(s.directive_id ? { isExperiment: true } : {}),
     };
