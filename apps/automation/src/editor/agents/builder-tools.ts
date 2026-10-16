@@ -11,6 +11,7 @@ import { KPI_GOALS, ResourceProfile, ResourceProfileSchema, ResourceProfilesRepo
 import { isProtectedSkill } from '../skills/skill-library';
 import { lintSkill, SKILL_ROLES } from './skill-lint';
 import type { SkillStore } from './skill-store';
+import { defaultAppliesTo } from '../skills/skill-defaults';
 
 /** Per-run state of an agent chat turn (spec 018), put into ctx.extras by the chat service. */
 export interface AgentChatExtras {
@@ -29,7 +30,7 @@ export interface BuilderToolDeps {
   catalog:  Pick<ResourceCatalog, 'list' | 'inspect'>;
   profiles: Pick<ResourceProfilesRepository, 'get'>;
   creator:  Pick<AgentCreator, 'validate'>;
-  skills:   Pick<SkillStore, 'findShared'>;
+  skills:   Pick<SkillStore, 'findShared'> & Partial<Pick<SkillStore, 'findForAgent'>>;
   actions:  Pick<PendingActionsService, 'propose'>;
   /** Spec 040 FR-011: rules-vs-config of an orchestrator (fix_config_conflicts). */
   conflicts?: Pick<ConfigConflictsService, 'forAgent'>;
@@ -232,18 +233,23 @@ export function buildBuilderTools(d: BuilderToolDeps): EditorTool[] {
       handle:      z.string().min(2).max(40),
       name:        z.string().min(3).max(48),
       description: z.string().min(10).max(300),
-      applies_to:  z.array(z.enum(SKILL_ROLES as unknown as [string, ...string[]])).min(1),
+      applies_to:  z.array(z.enum(SKILL_ROLES as unknown as [string, ...string[]])).min(1).optional()
+        .describe('Ролі; без значення — як у наявного скіла, а для нового скіла каналу — executor, composer, checker'),
       body:        z.string().min(20).max(12_000),
       inline:      z.boolean().optional(),
     }),
     execute: async (i, ctx) => {
       const a = await d.agents.getByHandle(i.handle);
       if (!a) return { error: 'unknown_agent', details: i.handle };
-      const lint = lintSkill({ name: i.name, description: i.description, appliesTo: i.applies_to, body: i.body, inline: i.inline });
-      if (!lint.ok) return { error: 'skill_lint_failed', details: lint.errors };
       const shared = await d.skills.findShared(i.name);
+      const own = d.skills.findForAgent ? await d.skills.findForAgent(a.id, i.name) : null;
+      // Spec 040 FR-012: without roles — the existing skill's, else the writer roles for a channel agent.
+      const appliesTo = i.applies_to ?? own?.appliesTo ?? shared?.appliesTo ?? defaultAppliesTo(a);
+      if (!appliesTo?.length) return { error: 'new_skill_needs_meta', details: 'для скіла системного агента вкажи applies_to' };
+      const lint = lintSkill({ name: i.name, description: i.description, appliesTo, body: i.body, inline: i.inline });
+      if (!lint.ok) return { error: 'skill_lint_failed', details: lint.errors };
       if (shared?.safety || isProtectedSkill(i.name)) return { error: 'safety_skill', details: 'системний скіл безпеки чи голосу змінюється лише на сторінці агента з підтвердженням' };
-      return proposeCard(d, ctx, 'write_skill', { ...i, handle: a.handle },
+      return proposeCard(d, ctx, 'write_skill', { ...i, applies_to: appliesTo, handle: a.handle },
         `${shared ? 'Override' : 'Add'} skill "${i.name}" for @${a.handle}${i.inline ? ' (always in context)' : ''}: ${i.description}`, a.id);
     },
   });

@@ -240,6 +240,19 @@ export class SkillStore {
     return 'attached';
   }
 
+  /**
+   * Spec 040 FR-012: attach a shared skill only when the agent has no toggle for it yet (the profile's tone skill):
+   * whatever the owner set on the skills tab — off, or on but not inline — stays.
+   */
+  async attachSharedIfUnset(agentId: string, name: string): Promise<'attached' | 'exists' | 'missing'> {
+    const s = await this.findShared(name);
+    if (!s) return 'missing';
+    const { rowCount } = await this.pool.query(
+      `INSERT INTO agent_skills (agent_id, skill_id, enabled, inline) VALUES ($1, $2, true, $3) ON CONFLICT (agent_id, skill_id) DO NOTHING`,
+      [agentId, s.id, s.body.length <= SKILL_MAX_INLINE_BODY]);
+    return (rowCount ?? 0) > 0 ? 'attached' : 'exists';
+  }
+
   async setLocked(skillId: string, locked: boolean): Promise<void> {
     await this.pool.query(`UPDATE skills SET locked = $2, updated_at = now() WHERE id = $1`, [skillId, locked]);
   }
@@ -292,6 +305,13 @@ export class SkillStore {
          VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)`,
         [skillId, version, i.body, i.description, i.appliesTo, i.author, i.authorAgentId ?? null, i.reason ?? null,
           i.kpiBaseline == null ? null : JSON.stringify(i.kpiBaseline), i.reviewAt ?? null, i.author === 'agent' ? 'pending' : null]);
+      // Spec 040 FR-012: the agent's own skill is on and always in context (when it fits) from its first write; a
+      // toggle the owner set earlier is kept. Overrides of shared skills keep the shared skill's toggles.
+      if (!shared) {
+        await c.query(
+          `INSERT INTO agent_skills (agent_id, skill_id, enabled, inline) VALUES ($1, $2, true, $3) ON CONFLICT (agent_id, skill_id) DO NOTHING`,
+          [i.agentId, skillId, i.body.length <= SKILL_MAX_INLINE_BODY]);
+      }
       const { rows } = await c.query(`SELECT * FROM skills WHERE id = $1`, [skillId]);
       return { ok: true as const, skill: rowToSkill(rows[0]), version, lint };
     });

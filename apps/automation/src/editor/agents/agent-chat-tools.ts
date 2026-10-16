@@ -11,6 +11,7 @@ import { isProtectedSkill } from '../skills/skill-library';
 import { lintSkill, SKILL_ROLES } from './skill-lint';
 import type { SkillStore } from './skill-store';
 import type { ConfigConflictsService } from '../rules/config-conflicts.service';
+import { CHANNEL_SKILL_ROLES, defaultAppliesTo } from '../skills/skill-defaults';
 
 /** Spec 040 FR-010: the pending-action kind of a rule the owner confirms with a card. */
 export const OWNER_RULE_KIND = 'owner_rule';
@@ -176,17 +177,20 @@ export function buildAgentChatTools(d: AgentChatToolDeps): EditorTool[] {
     input: z.object({
       name:        z.string().min(3).max(48),
       description: z.string().min(10).max(300),
-      applies_to:  z.array(z.enum(SKILL_ROLES as unknown as [string, ...string[]])).min(1),
+      applies_to:  z.array(z.enum(SKILL_ROLES as unknown as [string, ...string[]])).min(1).optional()
+        .describe('Ролі; без значення — автор поста, чат і критик (executor, composer, checker)'),
       body:        z.string().min(20).max(12_000),
       inline:      z.boolean().optional(),
     }),
     execute: async (i, ctx) => {
       const a = agentOf(ctx);
       if (!a) return { error: 'no_agent', details: 'ця розмова не з агентом каналу — звернись через @handle' };
-      const lint = lintSkill({ name: i.name, description: i.description, appliesTo: i.applies_to, body: i.body, inline: i.inline });
+      // Spec 040 FR-012: a channel skill without roles is for the writers (and the critic judges by it).
+      const appliesTo = i.applies_to ?? defaultAppliesTo(a) ?? [...CHANNEL_SKILL_ROLES];
+      const lint = lintSkill({ name: i.name, description: i.description, appliesTo, body: i.body, inline: i.inline });
       if (!lint.ok) return { error: 'skill_lint_failed', details: lint.errors };
       if (isProtectedSkill(i.name) || (await d.skills.findShared(i.name))?.safety) return { error: 'safety_skill' };
-      return proposeCard(d, ctx, 'write_skill', { ...i, handle: a.handle }, `Skill "${i.name}" for @${a.handle}: ${i.description}`, a.id);
+      return proposeCard(d, ctx, 'write_skill', { ...i, applies_to: appliesTo, handle: a.handle }, `Skill "${i.name}" for @${a.handle}: ${i.description}`, a.id);
     },
   });
 

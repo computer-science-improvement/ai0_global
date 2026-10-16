@@ -14,6 +14,8 @@ import type { SkillStore } from './skill-store';
 import { SKILL_ROLES } from './skill-lint';
 import { assertNoEnabledBindings, liveRefsOf } from '../migration/binding-guard';
 import { resourceStyleOf } from '../post/style/style-store';
+import { defaultAppliesTo } from '../skills/skill-defaults';
+import { attachProfileTone } from '../skills/profile-tone';
 
 export interface AgentsServiceDeps {
   pool:    Pick<Pool, 'query'>;
@@ -62,7 +64,8 @@ const PatchSchema = z.object({
 
 const SkillBodySchema = z.object({
   description: z.string().trim().min(10).max(300),
-  applies_to:  z.array(z.enum(SKILL_ROLES as unknown as [string, ...string[]])).min(1),
+  /** Spec 040 FR-012: absent → the existing skill's roles, else the writer roles for a channel agent. */
+  applies_to:  z.array(z.enum(SKILL_ROLES as unknown as [string, ...string[]])).min(1).optional(),
   body:        z.string().min(1).max(12_000),
   force:       z.boolean().optional(),
 }).strict();
@@ -221,8 +224,10 @@ export class AgentsService {
     if (shared?.safety && !p.data.force) {
       throw new ConflictException({ error: 'safety_skill', details: 'this is a system safety skill — confirm with force: true if you understand the consequences' });
     }
+    const appliesTo = p.data.applies_to ?? (await this.d.skills.findForAgent(a.id, name))?.appliesTo ?? shared?.appliesTo ?? defaultAppliesTo(a);
+    if (!appliesTo?.length) throw new BadRequestException({ error: 'applies_to_required', details: 'a skill of a system agent needs applies_to' });
     const r = await this.d.skills.writeAgentSkill({
-      agentId: a.id, name, description: p.data.description, appliesTo: p.data.applies_to, body: p.data.body,
+      agentId: a.id, name, description: p.data.description, appliesTo, body: p.data.body,
       author: 'owner', force: p.data.force, reason: 'owner edit',
     });
     if ('error' in r) throw new BadRequestException(r);
@@ -306,6 +311,10 @@ export class AgentsService {
     const p = ResourceProfileSchema.safeParse(body ?? {});
     if (!p.success) throw badRequest(p.error);
     await this.d.profiles.setProfile(ref, p.data, by);
+    // Spec 040 FR-012: the profile's tone attaches the matching tone-* skill to the resource's agent.
+    const net = ref.startsWith('network:') ? ref.slice('network:'.length) : null;
+    const orch = await this.d.agents.findTop('orchestrator', net ? 'network' : 'resource', net ?? ref).catch(() => null);
+    if (orch) await attachProfileTone({ skills: this.d.skills }, orch, p.data);
   }
 
   // ── per-resource formatting (spec 024 FR-013) ─────────────────────────────

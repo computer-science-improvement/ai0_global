@@ -176,6 +176,7 @@ import { UPCOMING_SLOTS, UpcomingSlotsController, upcomingSlots, type UpcomingSl
 import { POST_AUDIT, PostAuditApi, PostAuditController } from './audit/post-audit.controller';
 import { editorCardAudit, PostAuditService } from './audit/post-audit.service';
 import { approvalFindingsHook } from './audit/approval-findings';
+import { attachProfileTone } from './skills/profile-tone';
 
 export const EDITOR_RUNNER    = 'EDITOR_RUNNER';
 export const EDITOR_SCHEDULER = 'EDITOR_SCHEDULER';
@@ -337,6 +338,19 @@ function networkConflicts(infra: Pick<AgentInfra, 'agents'>, svc: ConfigConflict
     }
     return out;
   };
+}
+
+/** Every top orchestrator whose profile names a tone family gets that tone skill, unless the owner set it already. */
+async function attachProfileTones(infra: Pick<AgentInfra, 'agents' | 'profiles' | 'skills'>): Promise<string[]> {
+  const out: string[] = [];
+  for (const a of await infra.agents.list()) {
+    if (a.parentId || a.kind !== 'orchestrator' || !a.scopeId) continue;
+    const ref = a.scope === 'network' ? `network:${a.scopeId}` : a.scopeId;
+    const profile = (await infra.profiles.get(ref).catch(() => null))?.profile ?? null;
+    const name = await attachProfileTone({ skills: infra.skills }, a, profile);
+    if (name) out.push(`@${a.handle} ${name}`);
+  }
+  return out;
 }
 
 function resourceTime(repos: Pick<EditorRepos, 'channels'>, profiles: ResourceProfilesRepository): ResourceTime {
@@ -536,6 +550,9 @@ export class AgentsUpkeep implements OnModuleInit {
     try {
       const s = await this.infra.skills.syncBuiltins(this.files);
       const r = await this.infra.registry.run();
+      // Spec 040 FR-012: profiles written before the tone attach (or by the builder) get their tone skill too.
+      const tones = await attachProfileTones(this.infra);
+      if (tones.length) this.logger.log(`tone skills attached from profiles: ${tones.join(', ')}`);
       if (s.inserted || s.updated || r.created || r.updated) {
         this.logger.log(`skills +${s.inserted}/~${s.updated}; agents +${r.created}/~${r.updated}; runs linked ${r.linkedRuns}`);
       }

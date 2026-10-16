@@ -66,6 +66,16 @@ ALTER TABLE manager_reviews ADD COLUMN IF NOT EXISTS signature TEXT;
 -- ── editor_channel_memory ────────────────────────────────────────────────────
 ALTER TABLE editor_channel_memory ADD COLUMN IF NOT EXISTS source_text TEXT;
 
+-- ── agent_skills (FR-012) ────────────────────────────────────────────────────
+-- An agent's own skill (not an override of a shared one) is on and always in context when it fits (SKILL_MAX_INLINE_BODY
+-- 4000); new writes get this row in SkillStore.writeAgentSkill, existing skills here. A toggle the owner set is kept.
+INSERT INTO agent_skills (agent_id, skill_id, enabled, inline)
+SELECT s.agent_id, s.id, true, length(s.body) <= 4000
+  FROM skills s
+ WHERE s.scope = 'agent' AND s.agent_id IS NOT NULL
+   AND NOT EXISTS (SELECT 1 FROM skills sh WHERE sh.agent_id IS NULL AND sh.name = s.name)
+ON CONFLICT (agent_id, skill_id) DO NOTHING;
+
 DO $$
 BEGIN
   IF EXISTS (SELECT 1 FROM pg_roles WHERE rolname = 'editor_ro') THEN

@@ -177,6 +177,8 @@ export function derivedPrompts(o: {
   examples?: string | null;
   /** Spec 040 FR-011: the channel's owner rules (their own block, above the playbook they override). */
   ownerRules?: OwnerRuleLine[];
+  /** Spec 040 FR-012: the agent's always-in-context skills (adapt). */
+  agentSkills?: string[];
 }): { system: string; user: string } {
   const { ready, slot } = o;
   const draft = ready.treatment === 'duplicate'
@@ -209,6 +211,7 @@ export function derivedPrompts(o: {
     o.memory || '- (порожня)',
     ...(o.ownerPrefs?.length ? ['', ...o.ownerPrefs] : []),
     ...(o.skill ? ['', o.skill] : []),
+    ...(o.agentSkills?.length ? ['', ...o.agentSkills] : []),
     ...(o.voiceSkills?.length ? ['', ...o.voiceSkills] : []),
   ].join('\n');
   const source = JSON.stringify(ready.source.spec, null, 1);

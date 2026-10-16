@@ -6,6 +6,7 @@ import type { OwnerInbox } from './owner-inbox';
 import type { ScopeKpi } from './scope-kpi';
 import type { SkillStore } from './skill-store';
 import { SKILL_ROLES } from './skill-lint';
+import { defaultAppliesTo } from '../skills/skill-defaults';
 
 export const SELF_EDITS_PER_DAY = 1;
 export const SELF_EDIT_REVIEW_DAYS = 7;
@@ -80,8 +81,9 @@ export function buildAgentSkillTools(d: AgentSkillToolDeps): EditorTool[] {
       }
       const prev = (await d.skills.findForAgent(target.id, i.skill)) ?? (await d.skills.findShared(i.skill));
       const description = i.description ?? prev?.description;
-      const appliesTo = i.applies_to ?? prev?.appliesTo;
-      if (!description || !appliesTo?.length) return { error: 'new_skill_needs_meta', details: 'для нового скіла потрібні description і applies_to' };
+      // Spec 040 FR-012: a new skill of a channel agent without roles is for the writers.
+      const appliesTo = i.applies_to ?? prev?.appliesTo ?? defaultAppliesTo(target) ?? undefined;
+      if (!description || !appliesTo?.length) return { error: 'new_skill_needs_meta', details: 'для нового скіла потрібен description (і applies_to — для скіла системного агента)' };
 
       const t = now();
       const baseline = await d.kpi.primary(target, t).catch(() => null);

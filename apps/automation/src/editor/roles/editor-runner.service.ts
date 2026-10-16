@@ -8,7 +8,7 @@ import type { SkillSource } from '../skills/skill-library';
 import type { AgentRuntime, RunAgentContext } from '../agents/agent-runtime';
 import type { EditorPlansRepository, EditorSlot } from '../repo/editor-plans.repository';
 import type { EditorMemoryRepository } from '../repo/editor-memory.repository';
-import { buildSystemPrompt, executorUserPrompt, ownerPreferencesSection, plannerUserPrompt, reviewerUserPrompt } from './prompts';
+import { agentInlineSkills, buildSystemPrompt, executorUserPrompt, ownerPreferencesSection, plannerUserPrompt, reviewerUserPrompt } from './prompts';
 import { APPROVAL_PREFS_IN_PROMPT } from '../approval/owner-preferences';
 import { parseResourceRef } from '../agents/agent.types';
 import { capabilitiesSummary, implementedFormats } from '../platform/capabilities';
@@ -582,6 +582,8 @@ export class EditorRunnerService {
       ownerRules: ownerRulesOf(memory),
       skill: skill ? `### skill: ${skill.name}\n${skill.body}` : null, ownerPrefs: ownerPreferencesSection(prefs),
       voice, voiceSkills: vs ? [...vs.inline, voiceReferenceLine(vs.missing)].filter((x): x is string => !!x) : [], examples: pc?.examples ?? null,
+      // Spec 040 FR-012: an adapt rewrites the text, so it gets the agent's own skills too.
+      agentSkills: r.treatment === 'adapt' ? agentInlineSkills(skills, [...(skill ? [skill.name] : []), ...(vs?.names ?? [])]).inline : [],
     });
     let lintFailedTwice = false;
     const onSecond = async (details: unknown) => {
@@ -653,6 +655,7 @@ export class EditorRunnerService {
     // Spec 034 FR-001/FR-002: voice-core with the target's humour/slang setting, and the full voice skills budget-aware.
     const voice = await this.voice(slot.resourceRef!, card);
     const vs = attachVoiceSkills(skills, VOICE_SKILLS_BUDGET, skill ? [skill.name] : []);
+    const own = agentInlineSkills(skills, [...(skill ? [skill.name] : []), ...vs.names]);
     const system = [
       `Ти — автор нативних постів для ${platform} у мережі ai0 (ресурс ${slot.resourceRef}). Пишеш НЕ переробку Telegram-поста, а пост, що працює саме на цій платформі.`,
       'Усі тексти — українською, живою мовою, без AI-штампів. Факти — лише з джерел, які ти прочитав. Код перевіряє ліміти — якщо інструмент повернув error, виправ.',
@@ -681,6 +684,7 @@ export class EditorRunnerService {
       '',
       '## Скіли',
       skill ? `### skill: ${skill.name}\n${skill.body}` : '- немає скіла платформи',
+      ...own.inline,
       ...vs.inline,
       ...[voiceReferenceLine(vs.missing)].filter((x): x is string => !!x),
       skills.list('executor').filter((s) => s.name !== skill?.name && s.name !== VOICE_CORE && !vs.names.includes(s.name))

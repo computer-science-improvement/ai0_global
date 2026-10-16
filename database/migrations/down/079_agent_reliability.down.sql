@@ -19,4 +19,5 @@ ALTER TABLE editor_slots DROP COLUMN IF EXISTS retry_at;
 DROP TABLE IF EXISTS source_host_failures;
 ALTER TABLE editor_channel_memory DROP COLUMN IF EXISTS source_text;
 DELETE FROM llm_budgets WHERE scope_kind = 'feature_prefix' AND scope_key = 'editor.chat' AND seeded_from = 'spec 040';
+-- agent_skills rows added by 079 stay: they are skills-tab toggles the owner may have changed since.
 DELETE FROM schema_migrations WHERE version = '079_agent_reliability';

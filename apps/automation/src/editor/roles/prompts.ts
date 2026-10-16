@@ -46,6 +46,25 @@ function inlineSkills(skills: SkillSource, names: string[], writer: boolean): { 
 }
 
 /**
+ * Spec 040 FR-012: the agent's always-in-context skills (the owner's and its own skills, the profile's tone skill) for
+ * the writer prompts without card skills (a native platform post, a derived adapt), within the inline budget.
+ */
+export function agentInlineSkills(skills: SkillSource, exclude: readonly string[], budget = INLINE_SKILLS_BUDGET): { inline: string[]; names: string[] } {
+  const inline: string[] = [];
+  const names: string[] = [];
+  let left = budget;
+  for (const name of skills.inlineNames?.() ?? []) {
+    if (exclude.includes(name) || name === VOICE_CORE) continue;
+    const s = skills.get(name);
+    if (!s || s.body.length > left) continue;
+    left -= s.body.length;
+    inline.push(`### skill: ${s.name}\n${s.body}`);
+    names.push(s.name);
+  }
+  return { inline, names };
+}
+
+/**
  * System prompt = role + principles + card + memory + the role's workflow
  * skill and the channel's own skills inline; every other skill is only listed
  * (name + description) and loaded on demand via load_skill. The executor (a
