@@ -99,6 +99,10 @@ export class DraftsService {
     const spec = parsed.data;
     const resolved = await this.resolveCard(i.channel);
     if (!resolved) return { error: 'unknown_channel', details: `${i.channel} не є каналом мережі — див. list_my_channels` };
+    // The content ledger refuses an item or source already used on the channel at publish; refusing it here
+    // lets the agent pick another one instead of leaving the owner a draft that can never go out.
+    const used = await this.usedRef(i.channel, spec);
+    if (used) return used;
     const lint = lintPost(spec, resolved.card);
     const preview = previewOf(spec, resolved.card, lint);
 
@@ -172,15 +176,27 @@ export class DraftsService {
     const polls = await pollCapGuard(this.d.pool, { channelKey, format: spec.format, at: now, timezone: card.timezone || CHAT_TIMEZONE, cap: card.pollsPerWeek, slotId });
     if (polls) return polls;
     if (this.d.isPaused(channelKey)) return { error: 'channel_paused', details: `${channelKey}: publish_paused=true` };
-    // Spec 023 FR-010: the content ledger decides (a library item once per channel unless its dataset allows a
-    // repeat, a URL once per channel, a shadow preview holds it 7 days, an error-marked item never).
+    // Checked again at publish: another post may have used the item since the draft was saved.
+    const used = await this.usedRef(channelKey, spec);
+    if (used) return used;
+    return { ref: spec.library_ref ?? spec.source?.url ?? null };
+  }
+
+  /**
+   * Spec 023 FR-010: the content ledger decides (a library item once per channel unless its dataset allows a
+   * repeat, a URL once per channel, a shadow preview holds it 7 days, an error-marked item never).
+   */
+  private async usedRef(channelKey: string, spec: PostSpec): Promise<DraftError | null> {
     if (spec.library_ref && await this.d.plans.sourceUsed(channelKey, spec.library_ref)) {
-      return { error: 'library_item_already_posted', details: `this library item was already used in ${channelKey} (content ledger)` };
+      return {
+        error: 'library_item_already_posted',
+        details: `this library item was already used in ${channelKey} (content ledger). Pick another row: query_data skips used rows by default.`,
+      };
     }
     if (spec.source && await this.d.plans.sourceUsed(channelKey, spec.source.url)) {
-      return { error: 'source_already_posted', details: `this source was already used in ${channelKey} (content ledger)` };
+      return { error: 'source_already_posted', details: `this source was already used in ${channelKey} (content ledger). Use another source.` };
     }
-    return { ref: spec.library_ref ?? spec.source?.url ?? null };
+    return null;
   }
 
   private publishDeps(): PublishSpecDeps {

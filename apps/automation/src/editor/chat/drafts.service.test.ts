@@ -108,6 +108,18 @@ test('save: default card for an own channel without a card (any hashtag, every f
   assert.equal(invalid.error, 'invalid_spec');
 });
 
+test('save: a library item or source already used on the channel is refused, so the agent picks another before the owner sees a draft that cannot go out', async () => {
+  const s = setup({ card: CARD, posted: ['library://pdr_questions/57045', 'https://nasa.gov/ring'] });
+  const lib: any = await s.svc.save({ chatId: 'chat-1', channel: '@chan', spec: makeSpec({ origin: 'library', library_ref: 'library://pdr_questions/57045', source: undefined }) });
+  assert.equal(lib.error, 'library_item_already_posted');
+  assert.match(lib.details, /query_data/);
+  const src: any = await s.svc.save({ chatId: 'chat-1', channel: '@chan', spec: makeSpec() });
+  assert.equal(src.error, 'source_already_posted');
+  assert.equal(s.drafts.size, 0, 'nothing stored');
+  const fresh: any = await s.svc.save({ chatId: 'chat-1', channel: '@chan', spec: makeSpec({ origin: 'library', library_ref: 'library://pdr_questions/1', source: undefined }) });
+  assert.equal(fresh.ok, true);
+});
+
 test('publish: guards (lint, paused, content-ledger dedup, verbatim copy) then sends with strategy chat and marks the draft published', async () => {
   const lintFail = setup({ card: CARD });
   const bad = await save(lintFail, makeSpec({ hashtags: ['мода'] }));
@@ -116,10 +128,16 @@ test('publish: guards (lint, paused, content-ledger dedup, verbatim copy) then s
   const paused = setup({ card: CARD, paused: true });
   assert.equal(((await paused.svc.publish((await save(paused)).id)) as any).error, 'channel_paused');
 
-  const dup = setup({ card: CARD, posted: ['https://nasa.gov/ring'] });
-  assert.equal(((await dup.svc.publish((await save(dup)).id)) as any).error, 'source_already_posted');
-  const libDup = setup({ card: CARD, posted: ['library://facts/42'] });
+  // Used after the draft was saved (another post took the source meanwhile): publish still refuses.
+  const posted: string[] = [];
+  const dup = setup({ card: CARD, posted });
+  const dupDraft = await save(dup);
+  posted.push('https://nasa.gov/ring');
+  assert.equal(((await dup.svc.publish(dupDraft.id)) as any).error, 'source_already_posted');
+  const libPosted: string[] = [];
+  const libDup = setup({ card: CARD, posted: libPosted });
   const lib = await save(libDup, makeSpec({ origin: 'library', library_ref: 'library://facts/42', source: undefined }));
+  libPosted.push('library://facts/42');
   assert.equal(((await libDup.svc.publish(lib.id)) as any).error, 'library_item_already_posted');
   const copied = 'Телескоп Вебб показав туманність Кільце. На знімку видно оболонки газу, які зоря скинула тисячі років тому.';
   const verbatim = setup({ card: CARD, libraryText: copied });

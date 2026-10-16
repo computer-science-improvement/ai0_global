@@ -94,3 +94,12 @@ test('agents get at most 20 rows; the owner listing counts the total', async () 
   assert.match(owner.calls[0].sql, /d\.data->>'title' ILIKE/, 'searchable fields are searched too');
   assert.equal((r.rows[0].body as string).length, 301);
 });
+
+test('resource keys: a Telegram username without "@" gets it, so unposted_on still matches the ledger', async () => {
+  const { resourceKeys } = await import('./data-refs');
+  assert.deepEqual(resourceKeys('telegram:pdr_dev_channel'), { channelKey: '@pdr_dev_channel', resourceRef: 'telegram:@pdr_dev_channel' });
+  assert.deepEqual(resourceKeys('pdr_dev_channel'), { channelKey: '@pdr_dev_channel', resourceRef: 'telegram:@pdr_dev_channel' });
+  assert.deepEqual(resourceKeys('@pdr_dev_channel').resourceRef, 'telegram:@pdr_dev_channel');
+  assert.deepEqual(resourceKeys('telegram:-1001234567890').resourceRef, 'telegram:-1001234567890');
+  assert.deepEqual(resourceKeys('instagram:1789').resourceRef, 'instagram:1789');
+});

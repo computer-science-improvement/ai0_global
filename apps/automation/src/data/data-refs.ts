@@ -80,9 +80,18 @@ export async function refAliases(pool: Q, ref: string): Promise<string[]> {
 /** A resource ref (`telegram:@x`, `instagram:123`) or a bare Telegram channel key (`@x`) → both forms. */
 export function resourceKeys(ref: string): { channelKey: string; resourceRef: string } {
   const t = ref.trim();
-  if (t.startsWith('telegram:')) return { channelKey: t.slice('telegram:'.length), resourceRef: t };
+  if (t.startsWith('telegram:')) {
+    const channelKey = telegramKey(t.slice('telegram:'.length));
+    return { channelKey, resourceRef: `telegram:${channelKey}` };
+  }
   if (t.includes(':')) return { channelKey: t, resourceRef: t };
-  return { channelKey: t, resourceRef: `telegram:${t}` };
+  const channelKey = telegramKey(t);
+  return { channelKey, resourceRef: `telegram:${channelKey}` };
+}
+
+/** A Telegram username written without "@" (an agent's `telegram:pdr_channel`) gets it, so it matches the ledger's key. */
+function telegramKey(k: string): string {
+  return /^[A-Za-z][A-Za-z0-9_]{3,31}$/.test(k) ? `@${k}` : k;
 }
 
 /**
