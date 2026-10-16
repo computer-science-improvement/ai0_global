@@ -19,6 +19,14 @@ import type { PollCapCtx } from '../roles/poll-cap';
 export const IDEA_DEDUP_SIMILARITY = 0.6;
 export const IDEA_MAX_DAYS = 7;
 export const AVOID_AFTER_REJECTIONS = 3;
+/** Spec 040 FR-004: successful add_idea calls in one run, and the backlog of `new` ideas that stops adding. */
+export const MAX_IDEAS_PER_RUN = 12;
+export const MAX_NEW_IDEAS = 30;
+/** Spec 040 FR-004: list_ideas page size (compact rows stay far below the tool-output cut). */
+export const IDEA_PAGE_MAX = 50;
+/** Spec 040 FR-004: the reviewer's batch in its prompt, and the longest kept summary. */
+export const REVIEW_BATCH = 15;
+export const REVIEW_SUMMARY_MAX = 4000;
 const REASON_CODES = ['duplicate', 'unverifiable', 'off_topic', 'weak', 'risky', 'platform_mismatch', 'off_playbook'] as const;
 const REASON_UK: Record<typeof REASON_CODES[number], string> = {
   duplicate: 'повтори вже опублікованого', unverifiable: 'ідеї без джерел, які можна перевірити', off_topic: 'теми поза профілем ресурсу',
@@ -54,6 +62,27 @@ const ideaBrief = (i: IdeaRow) => ({
   why: i.why, expires_at: i.expiresAt, revisions: i.revisions, review: i.review,
 });
 
+const hostOf = (url: string | undefined): string | null => {
+  if (!url) return null;
+  try { return new URL(url).hostname.replace(/^www\./, ''); } catch { return null; }
+};
+
+/** One line of the pool (spec 040 FR-004): enough to pick ideas; list_ideas(ids) gives the full ones. */
+const ideaRow = (i: IdeaRow) => ({
+  id: i.id, title: i.title.length > 120 ? `${i.title.slice(0, 119)}…` : i.title, status: i.status,
+  resources: i.variants.map((v) => `${v.resource_ref}/${v.format}`), source_host: hostOf(i.sources[0]),
+  created_at: i.createdAt instanceof Date ? i.createdAt.toISOString() : i.createdAt,
+});
+
+interface IdeaRunState { added: number; reviewed: number }
+
+/** Per-run counters of the idea tools; extras is a fresh object for every run. */
+function ideaRun(ctx: ToolContext): IdeaRunState {
+  const x = ctx.extras as { ideaRun?: IdeaRunState } | undefined;
+  if (!x) return { added: 0, reviewed: 0 };
+  return (x.ideaRun ??= { added: 0, reviewed: 0 });
+}
+
 export function buildNetworkTools(d: NetworkToolDeps): EditorTool[] {
   const now = d.now ?? (() => new Date());
 
@@ -88,10 +117,28 @@ export function buildNetworkTools(d: NetworkToolDeps): EditorTool[] {
 
   const listIdeas = defineTool({
     name: 'list_ideas',
-    description: 'Пул ідей мережі з фільтром за статусом (new, accepted, needs_revision, planned, used, rejected, expired).',
+    description: [
+      'Пул ідей мережі з фільтром за статусом (new, accepted, needs_revision, planned, used, rejected, expired): компактні рядки сторінками',
+      '(offset, total, next_offset). Повні ідеї (кут, джерела, варіанти, рецензія) — list_ideas з ids.',
+    ].join(' '),
     kind: 'read', roles: ['orchestrator', 'planner', 'idea_reviewer', 'manager'],
-    input: z.object({ status: z.array(z.enum(IDEA_STATUSES)).max(7).optional(), limit: z.number().int().min(1).max(100).default(40) }),
-    execute: async ({ status, limit }, ctx) => ({ ideas: (await d.repo.listIdeas(netOf(ctx).orchestrator.id, status ?? null, limit)).map(ideaBrief) }),
+    input: z.object({
+      status: z.array(z.enum(IDEA_STATUSES)).max(7).optional(),
+      limit:  z.number().int().min(1).max(IDEA_PAGE_MAX).default(20),
+      offset: z.number().int().min(0).default(0),
+      oldest_first: z.boolean().default(false).describe('true — від найстаріших (черга рецензії)'),
+      ids:    z.array(z.string().uuid()).min(1).max(10).optional().describe('Повні дані цих ідей замість сторінки'),
+    }),
+    execute: async ({ status, limit, offset, oldest_first, ids }, ctx) => {
+      const owner = netOf(ctx).orchestrator.id;
+      if (ids) {
+        const rows = (await Promise.all(ids.map((id) => d.repo.idea(id)))).filter((i): i is IdeaRow => !!i && i.agentId === owner);
+        return { ideas: rows.map(ideaBrief), ...(rows.length < ids.length ? { not_found: ids.filter((id) => !rows.some((r) => r.id === id)) } : {}) };
+      }
+      const page = await d.repo.pageIdeas(owner, status ?? null, { limit, offset, oldestFirst: oldest_first });
+      const next = offset + page.rows.length;
+      return { total: page.total, offset, ideas: page.rows.map(ideaRow), ...(next < page.total ? { next_offset: next } : {}) };
+    },
   });
 
   const validateVariants = (net: NetworkCtx, variants: Array<{ resource_ref: string; format: string }>): string[] => {
@@ -99,7 +146,7 @@ export function buildNetworkTools(d: NetworkToolDeps): EditorTool[] {
     const res = new Map(net.resources.map((r) => [r.ref, r]));
     for (const v of variants) {
       const r = res.get(v.resource_ref);
-      if (!r) { errs.push(`варіант ${v.resource_ref}: не ресурс мережі`); continue; }
+      if (!r) { errs.push(`варіант ${v.resource_ref}: не ресурс мережі (є: ${net.resources.map((x) => x.ref).join(', ')})`); continue; }
       const sec = net.playbook?.platforms.find((p) => p.resource_ref === v.resource_ref);
       const allowed = sec ? Object.keys(sec.formats).filter((f) => sec.formats[f] > 0) : (r.platform === 'telegram' ? net.telegramFormats : implementedFormats(r.platform));
       if (!allowed.includes(v.format)) errs.push(`варіант ${v.resource_ref}: формат ${v.format} не дозволений (є: ${allowed.join(', ')})`);
@@ -128,13 +175,26 @@ export function buildNetworkTools(d: NetworkToolDeps): EditorTool[] {
     }),
     execute: async (i, ctx) => {
       const net = netOf(ctx);
+      const run = ideaRun(ctx);
+      if (run.added >= MAX_IDEAS_PER_RUN) {
+        return { error: 'run_quota', details: `за цей прогін уже додано ${run.added} ідей — більше не додавай, переходь до наступного кроку` };
+      }
+      const waiting = await d.repo.countIdeas(net.orchestrator.id, ['new']);
+      if (waiting >= MAX_NEW_IDEAS) {
+        return { error: 'pool_full', details: `${waiting} ідей чекають рецензії (межа ${MAX_NEW_IDEAS}) — нових не додавай, доки рецензент їх не розбере` };
+      }
       const errs = validateVariants(net, i.variants);
       if (!i.sources.length && i.origin !== 'series' && i.origin !== 'owner') errs.push('потрібні джерела (sources), з яких можна перевірити факти');
       if (errs.length) return { error: 'idea_invalid', details: errs };
       const text = `${i.title} ${i.angle ?? ''}`;
       const open = await d.repo.listIdeas(net.orchestrator.id, ['new', 'accepted', 'needs_revision', 'planned'], 200);
       const dupOpen = open.map((o) => ({ o, s: similarity(text, `${o.title} ${o.angle ?? ''}`) })).sort((a, b) => b.s - a.s)[0];
-      if (dupOpen && dupOpen.s >= IDEA_DEDUP_SIMILARITY) return { error: 'duplicate_idea', details: `схоже на «${dupOpen.o.title}» (${dupOpen.s.toFixed(2)}) у пулі` };
+      if (dupOpen && dupOpen.s >= IDEA_DEDUP_SIMILARITY) {
+        return {
+          error: 'duplicate_idea', existing: { id: dupOpen.o.id, title: dupOpen.o.title, status: dupOpen.o.status },
+          details: `схоже на «${dupOpen.o.title}» (${dupOpen.s.toFixed(2)}): вона вже в пулі — не подавай її знову, використовуй id ${dupOpen.o.id}`,
+        };
+      }
       const recent = await d.repo.recentExcerpts(net.resources.map((r) => r.ref), 14);
       const dupPost = recent.map((t) => ({ t, s: similarity(text, t) })).sort((a, b) => b.s - a.s)[0];
       if (dupPost && dupPost.s >= IDEA_DEDUP_SIMILARITY) return { error: 'already_published', details: `схоже на нещодавній пост «${dupPost.t.slice(0, 80)}» (${dupPost.s.toFixed(2)})` };
@@ -143,6 +203,7 @@ export function buildNetworkTools(d: NetworkToolDeps): EditorTool[] {
         evidence: i.evidence ?? null, origin: i.origin, originRef: i.origin_ref ?? null,
         expiresAt: new Date(now().getTime() + i.expires_in_days * 86_400_000),
       });
+      run.added++;
       return { ok: true, id: idea.id };
     },
   });
@@ -206,6 +267,7 @@ export function buildNetworkTools(d: NetworkToolDeps): EditorTool[] {
       const status = verdict === 'accept' ? 'accepted' : verdict === 'revise' ? 'needs_revision' : 'rejected';
       const agent = ctx.extras?.agent as { id: string } | undefined;
       await d.repo.updateIdea(i.id, { status, review: { verdict, scores: i.scores, comment: i.comment, reason_code: code }, reviewedBy: agent?.id ?? null });
+      ideaRun(ctx).reviewed++;
       if (status === 'rejected' && code && await d.repo.rejectionCount(net.orchestrator.id, code) === AVOID_AFTER_REJECTIONS) {
         await d.memory.add(net.anchorKey, 'avoid',
           `Рецензент ідей 3+ рази за 14 днів відхилив ${REASON_UK[code as keyof typeof REASON_UK] ?? code} — не пропонуй таких.`, { reason_code: code }, 'reviewer');
@@ -230,10 +292,18 @@ export function buildNetworkTools(d: NetworkToolDeps): EditorTool[] {
 
   const finishIdeaReview = defineTool({
     name: 'finish_idea_review',
-    description: 'Завершити рецензію ідей підсумком (скільки прийнято / на доопрацювання / відхилено і чому).',
+    description: `Завершити рецензію ідей коротким підсумком (скільки прийнято / на доопрацювання / відхилено і чому; до ${REVIEW_SUMMARY_MAX} символів, довше обрізається).`,
     kind: 'terminal', roles: ['idea_reviewer'],
-    input: z.object({ summary: z.string().min(5).max(1000) }),
-    execute: async ({ summary }) => ({ ok: true, summary }),
+    input: z.object({ summary: z.string().min(5) }),
+    execute: async ({ summary }, ctx) => {
+      // Spec 040 FR-004: a review run that reviewed nothing while ideas wait is not finished.
+      if (ideaRun(ctx).reviewed === 0) {
+        const waiting = await d.repo.countIdeas(netOf(ctx).orchestrator.id, ['new']);
+        if (waiting > 0) return { error: 'nothing_reviewed', details: `${waiting} нових ідей чекають: спершу review_idea хоча б для пачки з промпту, потім підсумок` };
+      }
+      const cut = summary.length > REVIEW_SUMMARY_MAX;
+      return { ok: true, summary: cut ? `${summary.slice(0, REVIEW_SUMMARY_MAX - 1)}…` : summary, ...(cut ? { truncated: true } : {}) };
+    },
   });
 
   // ── network planner ───────────────────────────────────────────────────────

@@ -317,6 +317,21 @@ export class NetworkRepository {
     return rows.map(toIdea);
   }
 
+  /** A page of the pool (spec 040 FR-004) and the size of the whole filtered set. */
+  async pageIdeas(agentId: string, statuses: IdeaStatus[] | null, o: { limit: number; offset: number; oldestFirst?: boolean }): Promise<{ rows: IdeaRow[]; total: number }> {
+    const { rows } = await this.pool.query(
+      `SELECT *, count(*) OVER () AS total FROM content_ideas WHERE agent_id = $1 AND ($2::text[] IS NULL OR status = ANY($2::text[]))
+        ORDER BY created_at ${o.oldestFirst ? 'ASC' : 'DESC'}, id LIMIT $3 OFFSET $4`, [agentId, statuses, o.limit, o.offset]);
+    if (rows.length) return { rows: rows.map(toIdea), total: Number(rows[0].total) };
+    return { rows: [], total: o.offset ? await this.countIdeas(agentId, statuses) : 0 };
+  }
+
+  async countIdeas(agentId: string, statuses: IdeaStatus[] | null): Promise<number> {
+    const { rows } = await this.pool.query(
+      `SELECT count(*)::int AS n FROM content_ideas WHERE agent_id = $1 AND ($2::text[] IS NULL OR status = ANY($2::text[]))`, [agentId, statuses]);
+    return Number(rows[0]?.n ?? 0);
+  }
+
   async updateIdea(id: string, p: { status?: IdeaStatus; review?: unknown; reviewedBy?: string | null; title?: string; angle?: string | null; sources?: string[]; variants?: IdeaVariant[]; bumpRevision?: boolean }): Promise<IdeaRow | null> {
     const { rows } = await this.pool.query(
       `UPDATE content_ideas SET

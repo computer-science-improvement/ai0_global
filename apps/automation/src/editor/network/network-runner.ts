@@ -14,6 +14,7 @@ import type { Agent } from '../agents/agent.types';
 import { renderFormatPrefs, renderProfile, ResourceProfile, ResourceProfilesRepository } from '../agents/resource-profile';
 import { networkContext, NetworkContextDeps, NetworkCtx } from './network-context';
 import type { NetworkRepository } from './network.repository';
+import { REVIEW_BATCH } from './network-tools';
 import {
   ideaReviewerSystemPrompt, ideaReviewerUserPrompt, networkPlannerBlock, orchestratorDailyPrompt, orchestratorSystemPrompt, playbookBuildPrompt,
 } from './network-prompts';
@@ -162,13 +163,15 @@ export class NetworkRunner {
   async runIdeaReview(card: EditorCard): Promise<AgentLoopResult | null> {
     const c = await this.context(card, 'idea_reviewer');
     if (this.paused(c)) return null;
-    const fresh = (await this.d.repo.listIdeas(c!.net.orchestrator.id, ['new'], 100)).length;
+    // Spec 040 FR-004: the oldest new ideas go into the prompt, so the reviewer starts reviewing at once.
+    const queue = await this.d.repo.pageIdeas(c!.net.orchestrator.id, ['new'], { limit: REVIEW_BATCH, offset: 0, oldestFirst: true });
+    const fresh = queue.total;
     const pending = !!(await this.d.repo.pendingPlaybook(c!.net.orchestrator.id));
     if (!fresh && !pending) return null;
     const memory = await this.d.memory.listActive(card.channelKey);
     return this.run('idea_reviewer', card, c!,
       ideaReviewerSystemPrompt({ net: c!.net, profile: await this.profileText(c!.net), memory, skills: c!.agentCtx.skills }),
-      ideaReviewerUserPrompt({ fresh, pendingPlaybook: pending }), STEPS.ideaReview);
+      ideaReviewerUserPrompt({ fresh, batch: queue.rows, pendingPlaybook: pending }), STEPS.ideaReview);
   }
 
   /**

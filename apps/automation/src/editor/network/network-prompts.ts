@@ -142,11 +142,31 @@ export function ideaReviewerSystemPrompt(o: { net: NetworkCtx; profile: string |
   ].join('\n');
 }
 
-export function ideaReviewerUserPrompt(o: { fresh: number; pendingPlaybook: boolean }): string {
+const clip = (s: string | null | undefined, n: number) => (s && s.length > n ? `${s.slice(0, n - 1)}…` : s ?? '');
+
+/** One idea of the reviewer's batch (spec 040 FR-004): everything a verdict needs, on one line. */
+export function ideaReviewLine(i: IdeaRow): string {
   return [
-    o.fresh ? `На рецензії ${o.fresh} нових ідей: list_ideas(status=[new]) і review_idea для кожної.` : 'Нових ідей немає.',
+    `- ${i.id} · «${clip(i.title, 140)}»`,
+    i.angle ? `кут: ${clip(i.angle, 300)}` : '',
+    i.why ? `чому: ${clip(i.why, 300)}` : '',
+    `джерела: ${i.sources.length ? i.sources.slice(0, 3).map((u) => clip(u, 160)).join(' ') : 'немає'}`,
+    `варіанти: ${i.variants.map((v) => `${v.resource_ref}/${v.format}`).join(', ')}`,
+    `походження: ${i.origin}${i.revisions ? ', уже доопрацьована' : ''}`,
+  ].filter(Boolean).join(' · ');
+}
+
+export function ideaReviewerUserPrompt(o: { fresh: number; batch?: IdeaRow[]; pendingPlaybook: boolean }): string {
+  const batch = o.batch ?? [];
+  return [
+    !o.fresh ? 'Нових ідей немає.'
+      : batch.length ? `На рецензії ${o.fresh} нових ідей. Ось ${batch.length} найстаріших — оціни кожну через review_idea (кілька викликів за крок):`
+      : `На рецензії ${o.fresh} нових ідей: list_ideas(status=[new], oldest_first=true) і review_idea для кожної.`,
+    ...batch.map(ideaReviewLine),
+    o.fresh > batch.length && batch.length
+      ? `Решта (${o.fresh - batch.length}) — list_ideas(status=[new], oldest_first=true, offset=${batch.length}), якщо лишаться кроки; інакше наступним прогоном.` : '',
     o.pendingPlaybook ? 'Є чернетка плейбука на затвердження власнику: get_playbook і review_playbook (коротко, по пунктах).' : '',
-    'Для перевірки новизни дивись get_network_posts; для перевірки джерел можна web_fetch. Заверши finish_idea_review.',
+    'Для перевірки новизни дивись get_network_posts; для перевірки джерел можна web_fetch. Заверши finish_idea_review коротким підсумком.',
   ].filter(Boolean).join('\n');
 }
 
