@@ -38,7 +38,12 @@ const CHANGE_VERBS = [
   // en
   'create', 'rename', 'pause', 'resume', 'enable', 'disable', 'change', 'update', 'delete', 'remove', 'add skill', 'set ',
 ];
-const NEGATION_RE = /(?:^|[^\p{L}])(?:не|не\s+треба|не\s+потрібно|don't|do\s+not|не\s+надо)\s+(?:\p{L}+\s+){0,1}?(?:створ|перейменуй|зміни|видали|create|rename|change|delete|pause|паузу)/iu;
+/**
+ * Spec 040 FR-009: plan and slot verbs — imperative and infinitive only, whole words («пропустила», «відмінно», «skipped»
+ * are not requests).
+ */
+const CHANGE_VERB_RE = /(?<![\p{L}])(?:переплан(?:уй|уйте|увати)|перепланир(?:уй|уйте|овать)|отмени|скасу(?:й|йте|вати)|відмін(?:и|іть|ити)|перенес(?:и|іть|ти)|пропуст(?:и|іть|ити)|перезапуст(?:и|іть|ити)|перегенеру(?:й|йте|вати)|cancel|reschedule|skip|move|regenerate|replan)(?![\p{L}])/iu;
+const NEGATION_RE = /(?:^|[^\p{L}])(?:не|не\s+треба|не\s+потрібно|don't|do\s+not|не\s+надо)\s+(?:\p{L}+\s+){0,1}?(?:створ|перейменуй|зміни|видали|переплан|скасов|відмін|перенос|пропуск|перезапуск|перегенер|create|rename|change|delete|pause|паузу|cancel|reschedule|skip|move|regenerate)/iu;
 
 /**
  * Did the owner ask, in THIS message, to change agents (create, rename, pause,
@@ -49,7 +54,7 @@ const NEGATION_RE = /(?:^|[^\p{L}])(?:не|не\s+треба|не\s+потріб
 export function hasAgentChangeIntent(message: string): boolean {
   const t = unquoted(message).toLowerCase();
   if (NEGATION_RE.test(t)) return false;
-  return CHANGE_VERBS.some((v) => t.includes(v));
+  return CHANGE_VERBS.some((v) => t.includes(v)) || CHANGE_VERB_RE.test(t);
 }
 
 const WORD_RE = /[\p{L}\p{N}]{3,}/gu;

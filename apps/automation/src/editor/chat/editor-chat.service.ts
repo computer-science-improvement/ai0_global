@@ -18,7 +18,8 @@ import type { RunAgentContext } from '../agents/agent-runtime';
 import type { PendingAction } from '../agents/pending-actions';
 import type { ResourceProfile } from '../agents/resource-profile';
 import type { AgentChatExtras } from '../agents/builder-tools';
-import { hasAgentChangeIntent, parseMentions, startsWithMention } from '../agents/mentions';
+import { parseMentions, startsWithMention } from '../agents/mentions';
+import { ownerChangeIntent } from './owner-intent';
 import { agentPersona, buildBuilderPrompt, buildManagerChatPrompt } from '../agents/agent-prompts';
 import type { EditorRole } from '../llm/llm.types';
 import { chatFeature, CHAT_FEATURE_PREFIX } from '../../common/ai/usage/features';
@@ -118,6 +119,12 @@ export function budgetRefusalText(error: string | null | undefined): string {
     + 'Work resumes at midnight Kyiv time, or as soon as the cap is raised on Spend → Budgets (/app/spend?tab=budgets).';
 }
 
+/** The previous assistant turn of the chat (spec 040 FR-009: a short "yes" answers it). */
+export function lastAssistantText(prior: Array<Pick<EditorChatMessage, 'role' | 'content'>>): string | null {
+  for (let k = prior.length - 1; k >= 0; k--) if (prior[k].role === 'assistant') return prior[k].content;
+  return null;
+}
+
 /** A turn stopped by its own cap (spec 040 FR-001): what it cost, how far it got and what it did. */
 export function turnCapText(r: AgentLoopResult): string {
   const m = /^turn budget: \$([\d.]+) >= \$([\d.]+)/.exec(r.error ?? '');
@@ -214,11 +221,12 @@ export class EditorChatService {
       const known = new Set((await this.d.repo.myChannels()).map((c) => c.channelKey.toLowerCase()));
       if (!known.has(`@${mentions[0].handle}`)) return { kind: 'unknown', handle: mentions[0].handle };
     }
-    if (picked) return { kind: 'legacy' };
+    // Spec 040 FR-015: a chat bound to an agent keeps it without a mention, whatever channel the composer has picked.
     if (chatAgentId) {
       const a = await ag.get(chatAgentId);
       if (a) return { kind: 'agent', agent: a, note: null };
     }
+    if (picked) return { kind: 'legacy' };
     return { kind: 'legacy' };
   }
 
@@ -292,7 +300,7 @@ export class EditorChatService {
         userIntent: hasPublishIntent(text),
         // The card in extras is the draft's channel card (save_draft switches it), so the preview renders like the post.
         onDraft: (draft) => { touched.set(draft.id, draft); emit({ type: 'draft', draft: renderDraft(draft, (extras.card as EditorCard | undefined) ?? null) }); },
-        agentIntent: hasAgentChangeIntent(text),
+        agentIntent: ownerChangeIntent(text, lastAssistantText(prior)),
         ownerText: text,
         onAction: (a) => { actions.push(a); emit({ type: 'action', action: a }); },
         ...(agentCtx ? { agent: addressee, skills: agentCtx.skills } : {}),
@@ -359,7 +367,7 @@ export class EditorChatService {
       : buildManagerChatPrompt({ now: this.now(), skills: ctx.skills, agent, digest: ag.managerDigest ? await ag.managerDigest() : null });
     const extras: AgentChatExtras & Record<string, unknown> = {
       chat: { chatId, channelKey: null },
-      agentIntent: hasAgentChangeIntent(text),
+      agentIntent: ownerChangeIntent(text, lastAssistantText(prior)),
       ownerText: text,
       onAction: (a) => emit({ type: 'action', action: a }),
       agent, skills: ctx.skills,

@@ -251,3 +251,23 @@ test('spec 040 FR-001: chat turns are billed as editor.chat.<role> (never shadow
   assert.equal(off.runs[0].usage?.feature, 'editor.chat.builder');
   assert.equal(off.runs[0].maxCostUsd, null, '0 = no per-turn cap');
 });
+
+test('spec 040 FR-015: a chat bound to an agent keeps it even when the composer has a channel picked', async () => {
+  const s = setup([{ text: 'Так.' }], 'a-kira');
+  await s.svc.sendMessage('c1', 'а сьогодні?', { channel: '@other' });
+  assert.equal(s.recorder.runs[0].agentId, 'a-kira');
+});
+
+test('spec 040 FR-009: a short "так" to @ai0\'s offer is the owner\'s request — the card is proposed', async () => {
+  const s = setup([
+    { text: 'Можу перейменувати @kira на @nova. Зробити?' },
+    { calls: [{ name: 'update_agent', args: { handle: 'kira', patch: { handle: 'nova' } } }] },
+    { text: 'Картка готова — підтвердіть.' },
+  ], 'a-ai0');
+  await s.svc.sendMessage('c1', 'що можна зробити з кірою?');
+  const events: ChatStreamEvent[] = [];
+  await s.svc.sendMessage('c1', 'так', { onEvent: (e) => events.push(e) });
+  const action = events.find((e) => e.type === 'action') as any;
+  assert.ok(action, 'the yes counted as intent');
+  assert.equal(action.action.kind, 'update_agent');
+});
