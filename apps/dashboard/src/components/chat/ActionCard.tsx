@@ -27,6 +27,7 @@ const KIND_META: Record<string, { label: string; icon: IconName }> = {
   edit_data_schema:     { label: 'Edit dataset description', icon: 'database' },
   content_examples:     { label: 'Example posts', icon: 'book' },
   owner_rule:           { label: 'Owner rule', icon: 'logs' },
+  fix_config_conflicts: { label: 'Align with your rules', icon: 'wrench' },
 };
 
 export const ACTION_TONE: Record<PendingActionStatus, Tone> = {
@@ -157,6 +158,22 @@ function OwnerRuleView({ p }: { p: Record<string, unknown> }) {
   );
 }
 
+/** Spec 040 FR-011: what the card changes in the playbook and profiles. */
+function FixConflictsView({ p }: { p: Record<string, unknown> }) {
+  const list = Array.isArray(p.conflicts) ? p.conflicts.map(obj) : [];
+  return (
+    <>
+      {str(p.handle) && <Row label="Agent">@{p.handle as string}</Row>}
+      <Row label="Fixes">
+        <ul style={{ margin: 0, paddingLeft: 16, display: 'grid', gap: 4 }}>
+          {list.map((c, i) => <li key={i} style={{ overflowWrap: 'anywhere' }}>{str(c.detail) ?? str(c.code) ?? '—'}</li>)}
+        </ul>
+      </Row>
+      <Row label="Then">a new playbook version (yours) and profile updates, recomputed at Apply</Row>
+    </>
+  );
+}
+
 function ExamplesResult({ result }: { result: unknown }) {
   const r = obj(result);
   const saved = typeof r.saved === 'number' ? r.saved : null;
@@ -226,10 +243,11 @@ function PayloadView({ action }: { action: PendingAction }) {
   if (action.kind === 'write_skill') return <WriteSkillView p={p} />;
   if (action.kind === 'set_brief') return <SetBriefView p={p} />;
   if (action.kind === 'owner_rule') return <OwnerRuleView p={p} />;
+  if (action.kind === 'fix_config_conflicts') return <FixConflictsView p={p} />;
   return null;
 }
 
-const BOXED = new Set(['create_agent', 'update_agent', 'write_skill', 'set_brief', 'owner_rule']);
+const BOXED = new Set(['create_agent', 'update_agent', 'write_skill', 'set_brief', 'owner_rule', 'fix_config_conflicts']);
 
 export function ActionCard({ action }: { action: PendingAction }) {
   const decide = useDecideAction();

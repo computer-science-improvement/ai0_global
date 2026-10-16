@@ -22,6 +22,8 @@ export const QUALITY_FLAGS = [
   'event_not_covered',
   // Spec 037 FR-010: evergreen fallback posts over 25 % of the week's posts.
   'evergreen_share_high',
+  // Spec 040 FR-011: the playbook or a profile contradicts the owner's rules.
+  'config_conflict',
 ] as const;
 export type QualityFlag = typeof QUALITY_FLAGS[number];
 
@@ -84,6 +86,7 @@ export const FLAG_LABEL: Record<QualityFlag, string> = {
   repost_share_high:         'reposts over 30% of posts',
   event_not_covered:         'an announced event got no recap',
   evergreen_share_high:      'evergreen over 25% of posts',
+  config_conflict:           'playbook or profile contradicts your rules',
 };
 
 export const CHECK_ITEM_LABEL: Record<string, string> = {

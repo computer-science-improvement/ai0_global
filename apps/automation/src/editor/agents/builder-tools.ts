@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import type { ConfigConflictsService } from '../rules/config-conflicts.service';
 import { defineTool, EditorTool, ToolContext } from '../harness/tool';
 import { parseResourceRef, validateHandle } from './agent.types';
 import type { AgentsRepository } from './agents.repository';
@@ -30,7 +31,12 @@ export interface BuilderToolDeps {
   creator:  Pick<AgentCreator, 'validate'>;
   skills:   Pick<SkillStore, 'findShared'>;
   actions:  Pick<PendingActionsService, 'propose'>;
+  /** Spec 040 FR-011: rules-vs-config of an orchestrator (fix_config_conflicts). */
+  conflicts?: Pick<ConfigConflictsService, 'forAgent'>;
 }
+
+/** Spec 040 FR-011: the owner card that aligns a playbook and profiles with the owner's rules. */
+export const FIX_CONFIG_CONFLICTS_KIND = 'fix_config_conflicts';
 
 export const NEEDS_CHANGE_REQUEST = {
   error: 'needs_explicit_request',
@@ -257,5 +263,22 @@ export function buildBuilderTools(d: BuilderToolDeps): EditorTool[] {
     },
   });
 
-  return [listResources, inspectResource, draftProfile, listAgents, getAgent, createAgent, updateAgent, setBrief, setProfile, writeSkill, toggleSkill('attach_skill'), toggleSkill('detach_skill')];
+  const fixConflicts = defineTool({
+    name: 'fix_config_conflicts',
+    description: 'Знайти, де плейбук чи профіль ресурсу суперечать правилам власника й стилю (хештеги вимкнені, ліміт опитувань, без сленгу, аудиторія), і запропонувати одну картку, що все узгоджує. Без конфліктів — нічого не пропонує.',
+    kind: 'act', roles: ['builder'],
+    input: z.object({ handle: z.string().min(2).max(40) }),
+    execute: async ({ handle }, ctx) => {
+      if (!d.conflicts) return { error: 'unavailable' };
+      const a = await d.agents.getByHandle(handle);
+      if (!a) return { error: 'unknown_agent', details: handle };
+      const conflicts = await d.conflicts.forAgent(a);
+      if (!conflicts.length) return { ok: true, conflicts: [], note: `у @${a.handle} плейбук і профілі не суперечать правилам власника` };
+      const list = conflicts.map((c) => ({ code: c.code, ref: c.ref, detail: c.detail, rule_id: c.rule_id ?? null }));
+      return proposeCard(d, ctx, FIX_CONFIG_CONFLICTS_KIND, { handle: a.handle, conflicts: list },
+        `Align @${a.handle}'s playbook and profiles with the owner's rules: ${conflicts.length} conflict${conflicts.length > 1 ? 's' : ''}`, a.id);
+    },
+  });
+
+  return [listResources, inspectResource, draftProfile, listAgents, getAgent, createAgent, updateAgent, setBrief, setProfile, writeSkill, toggleSkill('attach_skill'), toggleSkill('detach_skill'), fixConflicts];
 }

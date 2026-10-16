@@ -5,13 +5,16 @@
 import type { Tone } from '../components/ui/primitives';
 
 export type CriticVerdictKind = 'pass' | 'revise' | 'reject' | 'error';
-export const CRITIC_SCORE_KEYS = ['ai_likeness', 'sense', 'voice', 'grounding', 'audience_asks', 'format_fit'] as const;
+// `owner_rules` (spec 040) is scored only when the channel has owner rules, so older verdicts lack it.
+export const CRITIC_SCORE_KEYS = ['ai_likeness', 'sense', 'voice', 'grounding', 'audience_asks', 'format_fit', 'owner_rules'] as const;
 export type CriticScoreKey = typeof CRITIC_SCORE_KEYS[number];
 
 export interface CriticVerdict {
   verdict:        CriticVerdictKind;
-  scores:         Record<CriticScoreKey, number> | null;
+  scores:         Partial<Record<CriticScoreKey, number>> | null;
   notes:          string;
+  /** Ids of the owner rules the post broke (spec 040). */
+  broken_rules?:  number[];
   model_verdict?: 'pass' | 'revise' | 'reject' | null;
   reason:         string;
   pass:           number;
@@ -21,7 +24,7 @@ export interface CriticVerdict {
   cost_usd:       number;
   at:             string;
   final?:         boolean;
-  history?:       Array<{ verdict: CriticVerdictKind; scores: Record<CriticScoreKey, number> | null; notes: string; reason: string; pass: number; at: string }>;
+  history?:       Array<{ verdict: CriticVerdictKind; scores: Partial<Record<CriticScoreKey, number>> | null; notes: string; reason: string; pass: number; at: string }>;
 }
 
 export const SCORE_LABEL: Record<CriticScoreKey, string> = {
@@ -31,6 +34,7 @@ export const SCORE_LABEL: Record<CriticScoreKey, string> = {
   grounding:     'Grounded',
   audience_asks: 'Reader asks',
   format_fit:    'Format fit',
+  owner_rules:   'Your rules',
 };
 
 export const SCORE_HINT: Record<CriticScoreKey, string> = {
@@ -40,6 +44,7 @@ export const SCORE_HINT: Record<CriticScoreKey, string> = {
   grounding:     'Every fact is in the source',
   audience_asks: 'Questions to readers and polls fit (none is fine)',
   format_fit:    'The format and length suit the content and the platform',
+  owner_rules:   "Keeps the channel's owner rules (scored only when the channel has rules)",
 };
 
 /** Badge copy and tone of a verdict ("Critic: pass"). */
@@ -61,7 +66,7 @@ export function scoreTone(n: number): Tone {
 export function scoreList(c: Pick<CriticVerdict, 'scores'>): Array<{ key: CriticScoreKey; label: string; hint: string; value: number; tone: Tone }> {
   if (!c.scores) return [];
   return CRITIC_SCORE_KEYS.filter((k) => typeof c.scores![k] === 'number')
-    .map((k) => ({ key: k, label: SCORE_LABEL[k], hint: SCORE_HINT[k], value: c.scores![k], tone: scoreTone(c.scores![k]) }));
+    .map((k) => ({ key: k, label: SCORE_LABEL[k], hint: SCORE_HINT[k], value: c.scores![k]!, tone: scoreTone(c.scores![k]!) }));
 }
 
 /** Whether "Approve all" / the autonomy switch leave this post for a one-by-one decision. */

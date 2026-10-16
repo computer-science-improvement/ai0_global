@@ -8,9 +8,29 @@ import { Icon } from '../ui/Icon';
 import { describeError } from '../ui/Toast';
 import { RUN_TONE, fmtDuration, fmtUsd } from '../editor/EditorUi';
 import { fmtDate } from '../../lib/format';
-import { useAgentMemory, useAgentRuns, type AgentDetail, type AgentMemoryEntry } from '../../api/agents';
+import { useAgentConfigConflicts, useAgentMemory, useAgentRuns, type AgentDetail, type AgentMemoryEntry } from '../../api/agents';
 
 const KIND_TONE: Record<AgentMemoryEntry['kind'], 'accent' | 'warning' | 'neutral'> = { rule: 'accent', avoid: 'warning', insight: 'neutral' };
+
+/** Spec 040 FR-011: the playbook / profiles against the owner's rules; @ai0 aligns them with one card. */
+function ConfigConflicts({ handle }: { handle: string }) {
+  const q = useAgentConfigConflicts(handle);
+  const list = q.data?.conflicts ?? [];
+  if (!list.length) return null;
+  return (
+    <div className="callout-warning" style={{ marginBottom: 12 }}>
+      <div style={{ fontWeight: 600, marginBottom: 6 }}>
+        The playbook or a profile contradicts your rules · {list.length}
+      </div>
+      <ul style={{ margin: 0, paddingLeft: 18, display: 'grid', gap: 4 }}>
+        {list.map((c, i) => <li key={i} className="text-body-sm" style={{ overflowWrap: 'anywhere' }}>{c.detail}</li>)}
+      </ul>
+      <div className="text-micro" style={{ marginTop: 8, color: 'var(--color-ink-muted)' }}>
+        Ask in the chat: “@ai0 fix config conflicts for @{q.data?.handle ?? handle}” — one card aligns them.
+      </div>
+    </div>
+  );
+}
 
 export function AgentMemory({ data }: { data: AgentDetail }) {
   const q = useAgentMemory(data.agent.handle);
@@ -23,6 +43,7 @@ export function AgentMemory({ data }: { data: AgentDetail }) {
           <Icon name="pencil" size={12} /> Manage memory
         </Link>
       ) : undefined}>
+      <ConfigConflicts handle={data.agent.handle} />
       {q.error && <div className="callout-danger">{describeError(q.error)}</div>}
       {!q.data && !q.error && <div className="panel" style={{ height: 80, opacity: 0.5 }} />}
       {q.data && memory.length === 0 && (

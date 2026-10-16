@@ -13,7 +13,7 @@ Wave 1 — production keeps running
 
 Wave 2 — owner control
 - [x] T8 (AI0-134) FR-009 + FR-015 Intent verbs and affirmative replies; chats bound to an agent keep it without a mention.
-- [ ] T9 (AI0-135) FR-010 + FR-011 Owner rules: overlap over the last 5 messages, `owner_rule` card fallback, `source_text` (079), skill existence; `rules-vs-config` check, `fix_config_conflicts` card, owner rules in executor/critic prompts + `owner_rules` axis.
+- [x] T9 (AI0-135) FR-010 + FR-011 Owner rules: overlap over the last 5 messages, `owner_rule` card fallback, `source_text` (079), skill existence; `rules-vs-config` check, `fix_config_conflicts` card, owner rules in executor/critic prompts + `owner_rules` axis.
 - [ ] T10 (AI0-136) FR-012 Owner and agent skills reach executor/checker (defaults, `agent_skills` on write, tone skill from the profile).
 - [ ] T11 (AI0-137) FR-013 Slot control from chat: `get_schedule` / `propose_slot_change` for @manager and channel agents, `regenerate`, `propose_replan_today`.
 - [ ] T12 (AI0-138) FR-014 Truthful history: authors + action line per turn, claim guard (re-prompt, then visible note).

@@ -8,6 +8,7 @@ import type { EditorSlot } from '../repo/editor-plans.repository';
 import type { VoicePrefs } from '../post/slop-lint';
 import { voiceCoreSection } from '../roles/voice';
 import { examplesPromptSection } from './playbook';
+import { ownerRulesSection, type OwnerRuleLine } from '../rules/owner-rules-prompt';
 
 /**
  * Spec 024 FR-007: executing a derived (duplicate / adapt) slot. The source
@@ -174,6 +175,8 @@ export function derivedPrompts(o: {
   voice?: Pick<VoicePrefs, 'humor' | 'slang'> | null; voiceSkills?: string[];
   /** Spec 034 FR-008: the target's example posts (renderExamples); used by an adapt (a duplicate keeps the source text). */
   examples?: string | null;
+  /** Spec 040 FR-011: the channel's owner rules (their own block, above the playbook they override). */
+  ownerRules?: OwnerRuleLine[];
 }): { system: string; user: string } {
   const { ready, slot } = o;
   const draft = ready.treatment === 'duplicate'
@@ -191,6 +194,7 @@ export function derivedPrompts(o: {
     'Якщо публікація повернула lint_failed — виправ саме ці коди один раз; друга помилка завершить слот як failed.',
     ...voiceCoreSection(o.voice ?? null),
     ...(ready.treatment === 'adapt' ? examplesPromptSection(o.examples) : []),
+    ...ownerRulesSection(o.ownerRules ?? []),
     '',
     '## Жорсткі ліміти платформи',
     tg ? '- Telegram: розмітка, кнопки й альбоми — за PostSpec; lint_post покаже порушення.' : capabilitiesSummary([o.targetPlatform]),

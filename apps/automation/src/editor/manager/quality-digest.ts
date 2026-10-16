@@ -54,6 +54,8 @@ export const QUALITY_FLAGS = [
   'event_not_covered',
   // Spec 037 T10: evergreen fallback posts are more than 25 % of the week's written posts (few fresh sources).
   'evergreen_share_high',
+  // Spec 040 FR-011: the playbook or a profile contradicts the owner's rules / the resource style (rules-vs-config).
+  'config_conflict',
 ] as const;
 export type QualityFlag = typeof QUALITY_FLAGS[number];
 

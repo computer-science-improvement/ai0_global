@@ -229,6 +229,16 @@ export function useAgentMemory(handle: string) {
   });
 }
 
+/** Spec 040 FR-011: where the playbook or a profile contradicts the owner's rules. */
+export interface ConfigConflict { code: string; ref: string; detail: string; rule_id: number | null }
+
+export function useAgentConfigConflicts(handle: string) {
+  return useQuery({
+    queryKey: [...KEY, 'config-conflicts', handle],
+    queryFn:  () => api<{ handle: string; conflicts: ConfigConflict[] }>(`/api/agents/${enc(handle)}/config-conflicts`),
+  });
+}
+
 export function useAgentSkills(handle: string) {
   return useQuery({
     queryKey: [...KEY, 'skills', handle],

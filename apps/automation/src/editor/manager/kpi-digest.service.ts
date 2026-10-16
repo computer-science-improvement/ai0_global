@@ -29,6 +29,8 @@ export interface KpiDigest {
   directives:  { open: Array<{ id: string; to: string; kind: string; status: string; body: string; createdAt: string; binding?: string; reviewAt?: string | null }>; outcomes: Array<{ to: string; kind: string; outcome: string | null; body: string; detail: unknown }> };
   /** Spec 025 FR-017: how each orchestrator answered the MANAGER over 30 days. */
   compliance?: ComplianceRow[];
+  /** Spec 040 FR-011: where a playbook or profile contradicts the owner's rules (fixed by @ai0's fix_config_conflicts card). */
+  config_conflicts?: Array<{ agent: string; ref: string; code: string; detail: string }>;
   hash:        string;
   raw:         Map<string, ScopeKpis>;
 }
@@ -75,6 +77,8 @@ export interface KpiDigestDeps {
   capUsd?: () => Promise<number>;
   /** Spec 034 FR-006: the quality reader (default: SQL on the same pool). */
   quality?: Pick<SqlQuality, 'digest'>;
+  /** Spec 040 FR-011: rules-vs-config conflicts of every orchestrator (agent handle + conflict). */
+  conflicts?: () => Promise<Array<{ agent: string; ref: string; code: string; detail: string }>>;
   now?:    () => Date;
 }
 
@@ -234,6 +238,13 @@ export class KpiDigestService {
       `SELECT a.handle AS to_handle, d.kind, d.outcome, d.body, d.outcome_detail FROM agent_directives d JOIN agents a ON a.id = d.to_agent_id
         WHERE d.status IN ('evaluated','rejected','expired') ORDER BY d.updated_at DESC LIMIT 30`);
 
+    // Spec 040 FR-011: a conflict flags its resource, so it changes the hash and the review signature.
+    const conflicts = this.d.conflicts ? await this.d.conflicts().catch(() => []) : [];
+    for (const c of conflicts) {
+      const q = out.find((r) => r.ref === c.ref)?.quality;
+      if (q && !q.flags.includes('config_conflict')) q.flags.push('config_conflict');
+    }
+
     const digest: Omit<KpiDigest, 'hash' | 'raw'> = {
       generatedAt: now.toISOString(), today, resources: out, agents,
       budget: { spentTodayUsd: Math.round(Number(spend[0]?.usd ?? 0) * 10000) / 10000, capUsd },
@@ -245,6 +256,7 @@ export class KpiDigestService {
         outcomes: outcomes.map((o) => ({ to: o.to_handle, kind: o.kind, outcome: o.outcome ?? null, body: String(o.body).slice(0, 160), detail: o.outcome_detail ?? null })),
       },
       compliance: await complianceOf(this.d.pool),
+      ...(conflicts.length ? { config_conflicts: conflicts } : {}),
     };
     return { ...digest, hash: digestHash(digest), raw };
   }

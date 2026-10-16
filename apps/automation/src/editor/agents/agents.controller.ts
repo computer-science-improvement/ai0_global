@@ -82,6 +82,12 @@ export class AgentsController {
     return this.svc.putFormatting(handle, ref, body);
   }
 
+  /** Spec 040 FR-011: the playbook / profiles against the owner's rules. */
+  @Get('agents/:handle/config-conflicts')
+  configConflicts(@Param('handle') handle: string) {
+    return this.svc.configConflicts(handle);
+  }
+
   @Get('agents/:handle/memory')
   memory(@Param('handle') handle: string) {
     return this.svc.memory(handle);

@@ -10,6 +10,7 @@ import { ruleOverlap } from './mentions';
 import { isProtectedSkill } from '../skills/skill-library';
 import { lintSkill, SKILL_ROLES } from './skill-lint';
 import type { SkillStore } from './skill-store';
+import type { ConfigConflictsService } from '../rules/config-conflicts.service';
 
 /** Spec 040 FR-010: the pending-action kind of a rule the owner confirms with a card. */
 export const OWNER_RULE_KIND = 'owner_rule';
@@ -45,6 +46,8 @@ export interface AgentChatToolDeps {
   memory:  Pick<EditorMemoryRepository, 'add'>;
   skills:  Pick<SkillStore, 'findShared'>;
   actions: Pick<PendingActionsService, 'propose'>;
+  /** Spec 040 FR-011: rules-vs-config, run when a rule is stored. */
+  conflicts?: Pick<ConfigConflictsService, 'forAgent'>;
   now?:    () => Date;
 }
 
@@ -142,7 +145,13 @@ export function buildAgentChatTools(d: AgentChatToolDeps): EditorTool[] {
       const best = sources[0];
       if (best && best.overlap >= RULE_OVERLAP_MIN) {
         const id = await d.memory.add(key, kind, text, { source: 'chat', agent: agentOf(ctx)?.handle ?? null, overlap: Math.round(best.overlap * 100) / 100 }, 'owner', best.text.slice(0, 2000));
-        return { ok: true, id, channel: key };
+        // Spec 040 FR-011: a new rule may contradict the playbook or a profile — say so now, @ai0 fixes it with one card.
+        const a = agentOf(ctx);
+        const conflicts = a && d.conflicts ? await d.conflicts.forAgent(a).catch(() => []) : [];
+        return {
+          ok: true, id, channel: key,
+          ...(conflicts.length ? { config_conflicts: conflicts.map((c) => c.detail), note: 'плейбук чи профіль суперечать правилам власника — скажи власнику; @ai0 узгодить їх карткою fix_config_conflicts' } : {}),
+        };
       }
       // Spec 040 FR-010: not the owner's words (a paraphrase, or text from elsewhere) — the owner decides with a card, never refused.
       const quotes = sources.filter((s) => s.overlap > 0).slice(0, 3).map((s) => s.text.slice(0, 400));

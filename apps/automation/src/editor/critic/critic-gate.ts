@@ -17,6 +17,7 @@ import { sourcePassages, type GroundingSource, type SourcePage } from '../post/g
 import { groundingCheckOf } from './critic-passages';
 import { criticMediaOf } from './critic-media';
 import { storedSourcesOf, type StoredSource } from './stored-sources';
+import type { OwnerRuleLine } from '../rules/owner-rules-prompt';
 
 /** Publish tools wait for the critic (two attempts) and then for the send itself. */
 export const PUBLISH_TOOL_TIMEOUT_MS = 2 * CRITIC_TIMEOUT_MS + 60_000;
@@ -81,6 +82,8 @@ export interface CriticGateContext {
   inboxAgentId?: string | null;
   /** Spec 037 FR-012: the writer's skill selection inputs (resource tone skills, slot signals, the agent's skill view). */
   skills?:      CriticSkillsContext | null;
+  /** Spec 040 FR-011: the channel's owner rules (the critic's `owner_rules` axis). */
+  ownerRules?:  OwnerRuleLine[] | null;
 }
 
 const SOURCE_CAP = 4_000;
@@ -293,6 +296,7 @@ export class CriticGate {
       skills: this.c.skills ?? null,
       story: post.story ?? null,
       media: this.media(post.spec),
+      ownerRules: this.c.ownerRules ?? null,
     });
     this.passes++;
     const history = this.first ? [{

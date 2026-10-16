@@ -34,6 +34,7 @@ import {
   type FallbackFinal, type FallbackStepRecord, type LadderStep, type SlotFailure,
 } from '../silent/fallback-ladder';
 import { EvergreenProbe } from '../silent/evergreen';
+import { memoryWithoutRules, ownerRulesOf, ownerRulesSection } from '../rules/owner-rules-prompt';
 
 export interface EditorRunnerDeps {
   loop:     Pick<AgentLoop, 'run'>;
@@ -222,6 +223,8 @@ export class EditorRunnerService {
     const context = pc !== undefined ? pc : this.d.platformContext
       ? await this.d.platformContext({ ...slot, resourceRef: target.ref }, ctx?.orchestrator?.id ?? null).catch(() => null)
       : null;
+    // Spec 040 FR-011: the critic checks the channel's owner rules (its own axis).
+    const ownerRules = ownerRulesOf(await this.d.memory.listActive(card.channelKey, 60).catch(() => []));
     return new CriticGate(
       // A dry-run preview (spec 034 FR-012): the verdict goes to the preview, never onto the slot or into the Inbox.
       dry
@@ -238,6 +241,7 @@ export class EditorRunnerService {
         inboxAgentId: ctx?.orchestrator?.id ?? null,
         // Spec 037 FR-012: the critic judges with the writer's skills (resource tone, format, topic).
         skills: slotSkillsContext(slot, card, ctx?.skills ?? this.d.skills),
+        ownerRules,
       },
     );
   }
@@ -574,7 +578,8 @@ export class EditorRunnerService {
     const vs = r.treatment === 'adapt' ? attachVoiceSkills(skills, VOICE_SKILLS_BUDGET, skill ? [skill.name] : []) : null;
     const { system, user } = derivedPrompts({
       slot, ready: r, targetRef, targetPlatform: platform, profile: pc?.profile ?? null, formatPrefs, playbook: pc?.playbook ?? null,
-      memory: memory.map((m) => `- [${m.kind}${m.createdBy === 'owner' ? ', власник' : ''}] ${m.text}`).join('\n'), mode,
+      memory: memoryWithoutRules(memory).map((m) => `- [${m.kind}${m.createdBy === 'owner' ? ', власник' : ''}] ${m.text}`).join('\n'), mode,
+      ownerRules: ownerRulesOf(memory),
       skill: skill ? `### skill: ${skill.name}\n${skill.body}` : null, ownerPrefs: ownerPreferencesSection(prefs),
       voice, voiceSkills: vs ? [...vs.inline, voiceReferenceLine(vs.missing)].filter((x): x is string => !!x) : [], examples: pc?.examples ?? null,
     });
@@ -656,6 +661,8 @@ export class EditorRunnerService {
       ...voiceCoreSection(voice, skills),
       ...styleSection(voice.style),
       ...examplesPromptSection(pc?.examples),
+      // Spec 040 FR-011: the owner rules above the profile / playbook they override.
+      ...ownerRulesSection(ownerRulesOf(memory)),
       '',
       '## Можливості платформи',
       capabilitiesSummary([platform as any]),
@@ -666,8 +673,10 @@ export class EditorRunnerService {
       pc?.formatPrefs || '- не задано: на твій розсуд, за нормами платформи (рекомендовані діапазони вище — орієнтир, не правило)',
       ...(pc?.playbook ? ['', '## Плейбук для цього ресурсу', pc.playbook] : []),
       '',
-      '## Памʼять мережі (правила власника і висновки)',
-      memory.length ? memory.map((m) => `- [${m.kind}${m.createdBy === 'owner' ? ', власник' : ''}] ${m.text}`).join('\n') : '- (порожня)',
+      '## Памʼять мережі (висновки)',
+      memoryWithoutRules(memory).length
+        ? memoryWithoutRules(memory).map((m) => `- [${m.kind}${m.createdBy === 'owner' ? ', власник' : ''}] ${m.text}`).join('\n')
+        : '- (порожня)',
       ...ownerPreferencesSection(prefs),
       '',
       '## Скіли',

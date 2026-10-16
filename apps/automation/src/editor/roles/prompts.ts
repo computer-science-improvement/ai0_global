@@ -11,6 +11,7 @@ import { liveSlotLines, type LiveScan } from '../live/live-slot';
 import { isNewsCard } from '../live/news-watch-config';
 import { examplesPromptSection } from '../network/playbook';
 import { styleSection } from '../post/style/resource-style';
+import { memoryWithoutRules, ownerRulesOf, ownerRulesSection } from '../rules/owner-rules-prompt';
 
 const ROLE_TITLE: Record<CardRole, string> = {
   planner:  'редактор-планувальник',
@@ -60,6 +61,7 @@ export function buildSystemPrompt(
   const names = [...new Set([`editor-${role}-workflow`, ...card.skills, ...(skills.inlineNames?.() ?? [])])].filter((n) => n !== VOICE_CORE);
   const { inline, shown, voiceRef } = inlineSkills(skills, names, writer);
   const listed = skills.list(role).filter((s) => !names.includes(s.name) && !shown.includes(s.name) && !(writer && s.name === VOICE_CORE));
+  const shownMemory = writer ? memoryWithoutRules(memory) : memory;
 
   return [
     `Ти — ${ROLE_TITLE[role]} Telegram-каналу «${card.title ?? card.channelKey}» (${card.channelKey}) в українській медіамережі ai0.`,
@@ -70,13 +72,15 @@ export function buildSystemPrompt(
     ...(writer ? examplesPromptSection(o.examples) : []),
     // Spec 037 FR-008: the resource style sheet (address, glossary, names, units, hashtags) as a compact block.
     ...(writer ? styleSection(card.style) : []),
+    // Spec 040 FR-011: the writer sees the owner rules as their own block, above the playbook they override.
+    ...(writer ? ownerRulesSection(ownerRulesOf(memory)) : []),
     '',
     '## Картка каналу',
     JSON.stringify(cardSummary(card), null, 1),
     '',
-    '## Памʼять каналу (правила власника і висновки минулих тижнів)',
-    memory.length
-      ? memory.map((m) => `- [${m.kind}${m.createdBy === 'owner' ? ', власник' : ''}] ${m.text}`).join('\n')
+    writer ? '## Памʼять каналу (висновки минулих тижнів)' : '## Памʼять каналу (правила власника і висновки минулих тижнів)',
+    shownMemory.length
+      ? shownMemory.map((m) => `- [${m.kind}${m.createdBy === 'owner' ? ', власник' : ''}] ${m.text}`).join('\n')
       : '- (поки порожня)',
     ...ownerPreferencesSection(prefs),
     '',

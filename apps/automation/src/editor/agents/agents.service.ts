@@ -40,6 +40,8 @@ export interface AgentsServiceDeps {
   };
   log?:   (msg: string) => void;
   now?:   () => Date;
+  /** Spec 040 FR-011: rules-vs-config of the agent's orchestrator (agent page). */
+  conflicts?: (orchestrator: Agent) => Promise<Array<{ code: string; ref: string; detail: string; rule_id?: number }>>;
 }
 
 const TIME_RE = /^([01]\d|2[0-3]):[0-5]\d$/;
@@ -262,6 +264,13 @@ export class AgentsService {
     const r = await this.d.skills.rollback(skillId, p.data.version, 'owner', `owner rollback to v${p.data.version}`);
     if ('error' in r) throw new BadRequestException(r);
     return r;
+  }
+
+  /** Spec 040 FR-011: where the playbook or a profile contradicts the owner's rules (empty when none or unavailable). */
+  async configConflicts(handle: string) {
+    const orch = await this.orchestratorOf(await this.require(handle));
+    const conflicts = this.d.conflicts ? await this.d.conflicts(orch).catch(() => []) : [];
+    return { handle: orch.handle, conflicts: conflicts.map((c) => ({ code: c.code, ref: c.ref, detail: c.detail, rule_id: c.rule_id ?? null })) };
   }
 
   async memory(handle: string) {

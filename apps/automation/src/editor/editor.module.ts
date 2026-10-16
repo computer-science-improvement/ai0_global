@@ -87,7 +87,8 @@ import { renderFormatPrefs, ResourceProfilesRepository } from './agents/resource
 import { ResourceCatalog, makeTelegramAccessCheck } from './agents/resource-catalog';
 import { KeepPendingError, PendingActionsRepository, PendingActionsService } from './agents/pending-actions';
 import { AgentCreator } from './agents/agent-creator';
-import { buildBuilderTools } from './agents/builder-tools';
+import { ConfigConflictsService } from './rules/config-conflicts.service';
+import { buildBuilderTools, FIX_CONFIG_CONFLICTS_KIND } from './agents/builder-tools';
 import { buildContentExamplesTool, CONTENT_EXAMPLES_KIND, examplesFromChoice, type ContentExamplesPayload } from './agents/content-examples';
 import { applyOwnerRule, buildAgentChatTools, OWNER_RULE_KIND } from './agents/agent-chat-tools';
 import type { AgentChatPort } from './chat/editor-chat.service';
@@ -321,6 +322,23 @@ function chatNetwork(pool: Pool, repos: EditorRepos, infra: AgentInfra, usable?:
 }
 
 /** Spec 024 FR-004: one per-resource time resolver (card for Telegram, then the profile, then Kyiv). */
+/** Spec 040 FR-011: rules-vs-config over the editor repositories. */
+function configConflictsOf(pool: Pool, repos: Pick<EditorRepos, 'memory' | 'channels'>, infra: Pick<AgentInfra, 'profiles'>): ConfigConflictsService {
+  return new ConfigConflictsService({ memory: repos.memory, network: new NetworkRepository(pool), channels: repos.channels, profiles: infra.profiles });
+}
+
+/** Every top-level orchestrator's conflicts, for the manager digest. */
+function networkConflicts(infra: Pick<AgentInfra, 'agents'>, svc: ConfigConflictsService) {
+  return async () => {
+    const out: Array<{ agent: string; ref: string; code: string; detail: string }> = [];
+    for (const a of await infra.agents.list()) {
+      if (a.kind !== 'orchestrator' || a.parentId) continue;
+      for (const c of await svc.forAgent(a).catch(() => [])) out.push({ agent: a.handle, ref: c.ref, code: c.code, detail: c.detail });
+    }
+    return out;
+  };
+}
+
 function resourceTime(repos: Pick<EditorRepos, 'channels'>, profiles: ResourceProfilesRepository): ResourceTime {
   const logger = new Logger('ResourceTime');
   return new ResourceTime({
@@ -938,13 +956,14 @@ export const EDITOR_PROVIDERS = [
           ...buildAgentSkillTools({ agents: infra.agents, skills: infra.skills, kpi: infra.kpi, inbox: infra.inbox }),
           ...buildBuilderTools({
             agents: infra.agents, catalog: infra.catalog, profiles: infra.profiles, creator: infra.creator, skills: infra.skills, actions: infra.actions,
+            conflicts: configConflictsOf(pool, repos, infra),
           }),
           // Spec 034 FR-008: example posts and warnings in the agent-creation chat (a content_examples card).
           buildContentExamplesTool({
             agents: infra.agents, actions: infra.actions,
             cardOf: async (ref) => { const id = parseResourceRef(ref)?.id; return id ? repos.channels.get(id) : null; },
           }),
-          ...buildAgentChatTools({ pool, memory: repos.memory, skills: infra.skills, actions: infra.actions }),
+          ...buildAgentChatTools({ pool, memory: repos.memory, skills: infra.skills, actions: infra.actions, conflicts: configConflictsOf(pool, repos, infra) }),
           // Spec 023 FR-006: the owner steers the schedule from the chat (cards only).
           ...buildScheduleTools({ schedule, actions: infra.actions }),
           // Spec 023 FR-011: @ai0 previews a strategy migration and proposes its cards.
@@ -1102,7 +1121,10 @@ export const EDITOR_PROVIDERS = [
       ): ManagerInfra => {
         const env = (k: string) => cfg.get<string>(k) ?? undefined;
         const repo = new DirectivesRepository(pool);
-        const digest = new KpiDigestService({ pool, catalog: infra.catalog, globalCapUsd: capDefaults(env).agentsDailyUsd, capUsd: agentsCapUsd(env, caps) });
+        const digest = new KpiDigestService({
+          pool, catalog: infra.catalog, globalCapUsd: capDefaults(env).agentsDailyUsd, capUsd: agentsCapUsd(env, caps),
+          conflicts: networkConflicts(infra, configConflictsOf(pool, repos, infra)),
+        });
         const buildPort = new PlaybookBuildPort();
         const runner = new ManagerRunner({
           loop, registry, runtime: infra.runtime, agents: infra.agents, repo, digest, inbox: infra.inbox, env, defaultModel: (ws) => models.get(ws), workspace: () => models.workspace(),
@@ -1435,6 +1457,7 @@ export const EDITOR_PROVIDERS = [
           pool, agents: infra.agents, skills: infra.skills, inbox: infra.inbox, profiles: infra.profiles, actions: infra.actions,
           setChannelMode: (key, mode) => ops.upsertChannel(key, { mode }),
           memory: (key) => repos.memory.listActive(key, 100),
+          conflicts: (orch) => configConflictsOf(pool, repos, infra).forAgent(orch),
           sync: () => infra.registry.run(),
           // Spec 035: agent models are checked against the catalog and priced in llm_prices when new.
           models: { check: (m, cur) => models.checkAgentModel(m, cur), chosen: (m) => models.ensurePrice(m), workspace: () => models.active() },
@@ -1465,6 +1488,12 @@ export const EDITOR_PROVIDERS = [
           const examples = examplesFromChoice(payload, input);
           const r = await new NetworkRepository(pool).setExamples(orch.id, examples, 'Example posts and warnings approved in the chat with @ai0');
           return { ...r, saved: examples.length, handle: orch.handle };
+        });
+        // Spec 040 FR-011: the owner aligned a playbook and profiles with their rules (recomputed at Apply).
+        infra.actions.register(FIX_CONFIG_CONFLICTS_KIND, async (p) => {
+          const orch = await infra.agents.getByHandle(String((p as Record<string, unknown>).handle ?? ''));
+          if (!orch) throw new Error('unknown_agent: the agent no longer exists');
+          return configConflictsOf(pool, repos, infra).apply(orch);
         });
         // Spec 040 FR-010: an owner rule the owner confirmed with a card (its words did not match the chat closely enough).
         infra.actions.register(OWNER_RULE_KIND, (p) => applyOwnerRule(repos.memory, p as Record<string, unknown>));

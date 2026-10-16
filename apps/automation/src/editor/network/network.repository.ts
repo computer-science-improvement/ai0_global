@@ -187,6 +187,22 @@ export class NetworkRepository {
   }
 
   /**
+   * Spec 040 FR-011: the owner applied a `fix_config_conflicts` card — like applyDirectivePatch, but the version is the
+   * owner's (created_by owner); a pending agent draft is kept (it is decided separately).
+   */
+  async applyOwnerPatch(agentId: string, patch: (active: Playbook) => Playbook | null, rationale: string): Promise<{ noop: boolean; row: PlaybookRow } | { error: 'no_playbook' }> {
+    return this.tx(async (q) => {
+      await q.query(`SELECT pg_advisory_xact_lock(hashtext($1))`, [`playbook:${agentId}`]).catch(() => {});
+      const { rows } = await q.query(`SELECT * FROM playbooks WHERE agent_id = $1 AND status = 'active' FOR UPDATE`, [agentId]);
+      if (!rows[0]) return { error: 'no_playbook' as const };
+      const active = toPlaybook(rows[0]);
+      const next = patch(active.body);
+      if (!next) return { noop: true, row: active };
+      return { noop: false, row: await this.insertVersion(q, { agentId, status: 'active', brief: null, body: next, rationale, createdBy: 'owner' }, { keepPending: true }) };
+    });
+  }
+
+  /**
    * Spec 034 FR-008: the owner applied example posts and warnings from the chat card. Merged with the examples
    * already there (new first, ≤ 12):
    * - an active playbook → a new active version (created_by owner; a pending agent draft is kept and gets the

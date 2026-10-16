@@ -8,7 +8,8 @@ import type { VoicePrefs } from '../post/slop-lint';
 import { SkillLibrary, type Skill } from '../skills/skill-library';
 import { voiceCoreBody, voiceSettingsLine } from '../roles/voice';
 import { styleSection } from '../post/style/resource-style';
-import { CritiqueInput, decideVerdict, type Critique, type StoredCritic } from './critic';
+import { CRITIC_REJECT_AT, CritiqueInput, decideVerdict, type Critique, type StoredCritic } from './critic';
+import type { OwnerRuleLine } from '../rules/owner-rules-prompt';
 import { criticSkillsSection, type CriticSkillsContext, type CriticSkillsRequest } from './critic-skills';
 import { criticDatesLines, type CriticDates } from './critic-dates';
 import { criticStoryLines, type CriticStoryContext } from '../story/story-context';
@@ -66,6 +67,8 @@ export interface CriticRequest {
   story?:       CriticStoryContext | null;
   /** Spec 037 T11: the post's images (network posters by name and use_for) and the source page's main image. */
   media?:       CriticMediaContext | null;
+  /** Spec 040 FR-011: the channel's owner rules; the critic scores `owner_rules` against them. */
+  ownerRules?:  OwnerRuleLine[] | null;
 }
 
 export type CriticResult =
@@ -107,7 +110,7 @@ function json(v: unknown): string {
  */
 export function criticSystemPrompt(r?: CriticSkillsRequest | null): string {
   const rubric = repoSkill(CRITIC_SKILL)?.body
-    ?? 'Оціни пост за шкалою 1–5 (ai_likeness, sense, voice, grounding, audience_asks, format_fit) і виклич submit_critique з вердиктом pass / revise / reject та короткими нотатками українською.';
+    ?? 'Оціни пост за шкалою 1–5 (ai_likeness, sense, voice, grounding, audience_asks, format_fit; owner_rules — коли є правила власника) і виклич submit_critique з вердиктом pass / revise / reject та короткими нотатками українською.';
   return [rubric, '', '## Голос мережі (voice-core): за цими правилами оцінюй ai_likeness і voice', voiceCoreBody(), ...(r ? criticSkillsSection(r).lines : [])].join('\n');
 }
 
@@ -130,6 +133,7 @@ export function criticUserPrompt(r: CriticRequest): string {
       clip(r.examples, CAP.examples));
   }
   if (r.profile && /Табу-теми/.test(r.profile)) s.push('', 'Табу-теми з профілю — це теми, про які ресурс не пише: пост на табу-тему → sense ≤ 2.');
+  s.push(...criticOwnerRulesLines(r.ownerRules));
   s.push('', '## Слот');
   s.push(`Формат: ${r.format}.${r.topic ? ` Тема: ${r.topic}.` : ''}${r.angle ? ` Кут: ${r.angle}.` : ''}`);
   if (r.dates) s.push(...criticDatesLines(r.dates));
@@ -157,6 +161,35 @@ export function criticUserPrompt(r: CriticRequest): string {
   return s.join('\n');
 }
 
+/** Owner-rules prompt cap: rules are short; a long list is clipped per rule, never dropped. */
+const RULE_CAP = 400;
+
+/**
+ * Spec 040 FR-011: the owner rules block of the critic prompt. On 10-16 two posts broke owner rules the playbook
+ * contradicted and still scored 5/5: the rule now outranks the playbook and has its own axis.
+ */
+export function criticOwnerRulesLines(rules: readonly OwnerRuleLine[] | null | undefined): string[] {
+  if (!rules?.length) return [];
+  return [
+    '', '### Правила власника каналу (обовʼязкові, важливіші за плейбук, профіль і приклади)',
+    ...rules.map((x) => `- #${x.id} ${clip(x.text, RULE_CAP)}`),
+    'Оціни owner_rules: 5 — пост не порушує жодного правила; порушене правило → owner_rules ≤ 2, його id у broken_rules і назви його в нотатках («#12: без хештегів»). Якщо плейбук чи профіль кажуть інше — правило власника перемагає. Правило не про цей пост (інший формат, інша тема) — не порушення.',
+  ];
+}
+
+/**
+ * Spec 040 FR-011: broken rules are kept only when they were in the prompt, and a named broken rule caps
+ * `owner_rules` at the reject threshold. Without rules in the prompt the axis is dropped.
+ */
+export function normalizeOwnerRules(c: Critique, rules: readonly OwnerRuleLine[] | null | undefined): Critique {
+  const { owner_rules, ...base } = c.scores;
+  if (!rules?.length) return { ...c, scores: base, broken_rules: undefined };
+  const known = new Set(rules.map((x) => x.id));
+  const broken = [...new Set((c.broken_rules ?? []).filter((id) => known.has(id)))];
+  const score = broken.length ? Math.min(owner_rules ?? CRITIC_REJECT_AT, CRITIC_REJECT_AT) : owner_rules;
+  return { ...c, scores: score == null ? base : { ...base, owner_rules: score }, broken_rules: broken.length ? broken : undefined };
+}
+
 /**
  * The pre-publish critic (spec 034 FR-004): one AgentLoop run as the `checker`
  * role with a single terminal tool. Its spend lands in the usage ledger as
@@ -175,7 +208,7 @@ export class CriticService {
     const model = resolveModel('checker', this.d.env, r.card?.models ?? null, { agentModel: criticModel, defaultModel, workspace });
     const tool = defineTool({
       name: 'submit_critique',
-      description: 'Віддати оцінку поста (завершує роботу): оцінки 1–5 за шістьма осями, вердикт pass / revise / reject і короткі нотатки українською.',
+      description: 'Віддати оцінку поста (завершує роботу): оцінки 1–5 за шістьма осями (і owner_rules, коли є правила власника), порушені правила (broken_rules), вердикт pass / revise / reject і короткі нотатки українською.',
       kind: 'terminal', roles: ['checker'],
       input: CritiqueInput,
       execute: async (c) => ({ ok: true, ...c }),
@@ -216,11 +249,13 @@ export class CriticService {
     return { ok: false, error: error.slice(0, 500), runIds, costUsd: cost };
   }
 
-  private store(c: Critique, r: CriticRequest, model: string, runId: string | null, cost: number): StoredCritic {
+  private store(raw: Critique, r: CriticRequest, model: string, runId: string | null, cost: number): StoredCritic {
     const slop = r.slopWarnings.map((w) => w.code);
+    const c = normalizeOwnerRules(raw, r.ownerRules);
     const d = decideVerdict(c, slop);
     return {
       verdict: d.verdict, scores: c.scores, notes: c.notes.trim(), model_verdict: c.verdict, reason: d.reason,
+      ...(c.broken_rules ? { broken_rules: c.broken_rules } : {}),
       pass: r.previous ? 2 : 1, slop_warnings: slop, model, run_id: runId, cost_usd: Number(cost.toFixed(6)),
       at: (this.d.now ?? (() => new Date()))().toISOString(),
     };

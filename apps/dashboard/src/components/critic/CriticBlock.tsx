@@ -1,5 +1,6 @@
-// The pre-publish critic's verdict (spec 034 FR-004): verdict badge, six scores
-// (1–5) and the critic's notes, as written. Used on approval cards, on chat
+// The pre-publish critic's verdict (spec 034 FR-004): verdict badge, the scores
+// (1–5; `owner_rules` when the channel has rules, spec 040), the owner rules the
+// post broke and the critic's notes, as written. Used on approval cards, on chat
 // draft cards (advisory there) and on plan slots (written posts, dry-run previews).
 
 import { Badge } from '../ui/Badge';
@@ -31,6 +32,11 @@ export function CriticBlock({ critic, where }: { critic: CriticVerdict; where: C
           ))}
         </div>
       )}
+      {critic.broken_rules?.length ? (
+        <div className="text-micro" style={{ color: 'var(--color-danger)', overflowWrap: 'anywhere' }}>
+          Breaks your rules: {critic.broken_rules.map((id) => `#${id}`).join(', ')}
+        </div>
+      ) : null}
       {critic.notes && (
         <div className="text-micro" style={{ color: 'var(--color-ink)', whiteSpace: 'pre-wrap', overflowWrap: 'anywhere', lineHeight: 1.5 }}>
           {critic.notes}
