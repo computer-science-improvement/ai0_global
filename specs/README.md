@@ -48,6 +48,7 @@ Each feature directory has `spec.md` (what and why), `plan.md` (how, plus Consti
 | 037 | [Content integrity](037-content-integrity/spec.md): story registry (one story one post, cross-channel skip/own angle/repost), facts and dates from the source, text hygiene, resource style sheet (ви, glossary, hashtags off), polls→quizzes, silent-day fallback + evergreen, critic gets the writer's skills, KPI sample guard, post audit (AI0-94) | P0 | 023, 025, 031, 034, 035 | DONE |
 | 038 | [Model workspace](038-model-workspace/spec.md): OpenRouter or Anthropic (the Claude API directly, e.g. with a Max plan's monthly credits) one level above the model choice; each workspace keeps its own default / critic / agent models; Messages API client with thinking round-trip, effort, prompt caching, cache-aware cost (AI0-113) | P1 | 029, 035 | DONE |
 | 039 | [Settings from env](039-settings-from-env/spec.md): everything but infrastructure moves from `.env` to Settings → Configuration — a catalog of 113 settings (keys encrypted), imported from env once at start then the DB wins (overlay onto `process.env` before Nest loads), live writes, reset, “Use .env value”, Restart service (AI0-120) | P1 | 015, 028 | DONE |
+| 040 | [Agent reliability and owner control](040-agent-reliability-owner-control/spec.md): from the 10-07…16 dev-stage analysis — separate chat budget, loop circuit breaker, honest run endings, idea review unblocked, planner input fixes, blocked-host memory, directive dedup, owner rules captured and reconciled with playbooks/profiles, owner skills reach the writers, slot control from chat, truthful chat history | P1 | 017–025, 029, 034, 037 | PLANNED |
 
 Suggested order for the next wave: 012 → 011 (phases 0–1) → 015 → 013 → 014; 016 is independent.
 
@@ -55,7 +56,7 @@ Agent platform wave: 017 → 018 ∥ 019 → 020 → 021 → 022 (019b after 016
 
 **UI language (owner rule 2026-10-06):** all interface text is English. Ukrainian button and label texts quoted in specs 023–032 give the meaning; implement them in English (see `apps/dashboard/CLAUDE.md` → Language).
 
-Migration numbers in specs 023–032 are assigned in merge order (landed: 055 auth, 056 llm_usage, 057 approval, 058 data store; landed: 059–060 and 063 spec 023, 061–062 and 064 spec 024; landed: 065 spec 025; landed: 066 spec 026; landed: 067–068 and 070–071 spec 034 (069 unused), 072 spec 036; landed: 073–076 spec 037 (073 T2 story registry, 074 T14 post audit, 075 T16 ledger canonical URLs, 076 T10 silent days); landed: 077 spec 038; landed: 078 spec 039; planned: spec 030) and are renumbered if the order changes.
+Migration numbers in specs 023–032 are assigned in merge order (landed: 055 auth, 056 llm_usage, 057 approval, 058 data store; landed: 059–060 and 063 spec 023, 061–062 and 064 spec 024; landed: 065 spec 025; landed: 066 spec 026; landed: 067–068 and 070–071 spec 034 (069 unused), 072 spec 036; landed: 073–076 spec 037 (073 T2 story registry, 074 T14 post audit, 075 T16 ledger canonical URLs, 076 T10 silent days); landed: 077 spec 038; landed: 078 spec 039; planned: 079 spec 040; planned: spec 030) and are renumbered if the order changes.
 
 BRD-comments wave (2026-10-06): 028 ∥ 029 ∥ 031 → 032 → 023 ∥ 024 → 025 → 029 → 027 → 026; 030 after 016.
 
