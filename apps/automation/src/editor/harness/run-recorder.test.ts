@@ -48,5 +48,9 @@ test('finish writes totals', async () => {
   const { pool, calls } = fakePool();
   await new PgRunRecorder(pool).finish('r', 'ok', { steps: 3, promptTokens: 30, completionTokens: 6, costUsd: 0.01 });
   assert.match(calls[0].sql, /UPDATE editor_runs/);
-  assert.deepEqual(calls[0].params, ['r', 'ok', 3, 30, 6, 0.01, null]);
+  assert.deepEqual(calls[0].params, ['r', 'ok', 3, 30, 6, 0.01, null, 0, null]);
+  // Spec 040 FR-002: the loop breaker's counters.
+  await new PgRunRecorder(pool).finish('r', 'no_terminal', { steps: 3, promptTokens: 30, completionTokens: 6, costUsd: 0.01 }, 'x', { repeatBlocked: 2, toolsDropped: ['add_idea'] });
+  assert.match(calls[1].sql, /repeat_blocked = \$8, tools_dropped = \$9/);
+  assert.deepEqual(calls[1].params.slice(1), ['no_terminal', 3, 30, 6, 0.01, 'x', 2, ['add_idea']]);
 });

@@ -101,7 +101,7 @@ test('failures become an assistant message; disabled chat and a busy chat are re
   const s = setup([new Error('upstream 500')]);
   const events: ChatStreamEvent[] = [];
   const r = await s.svc.sendMessage('c1', 'привіт', { onEvent: (e) => events.push(e) });
-  assert.match(r.message.content, /Something went wrong/);
+  assert.match(r.message.content, /^The agent stopped without an answer \(.+\)\. Try again or rephrase\.$/);
   assert.deepEqual(events.map((e) => e.type), ['error', 'message']);
 
   await assert.rejects(setup([], { enabled: false }).svc.sendMessage('c1', 'привіт'), /chat_disabled|Service Unavailable/);

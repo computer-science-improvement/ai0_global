@@ -2,8 +2,9 @@ import type { Pool } from 'pg';
 import { kyivDay } from './kyiv-day';
 import { BudgetExceededError, type BudgetGuard } from './llm-usage.service';
 import type { LlmProvider } from './llm-prices.repository';
+import { isChatFeature } from './features';
 import {
-  AGENTS_SCOPE, RESOURCE_DEFAULT_SCOPE, TOTAL_SCOPE,
+  AGENTS_SCOPE, CHAT_SCOPE, RESOURCE_DEFAULT_SCOPE, TOTAL_SCOPE,
   type BudgetRow, type BudgetSeed,
 } from './llm-budgets.repository';
 
@@ -81,6 +82,7 @@ const money = (n: number) => `$${n.toFixed(3)}`;
 export function capLabel(row: Pick<BudgetRow, 'scopeKind' | 'scopeKey'>): string {
   if (row.scopeKind === 'global') return 'загальний ліміт AI (AI_DAILY_BUDGET_USD)';
   if (row.scopeKind === 'feature_prefix' && row.scopeKey === AGENTS_SCOPE.scopeKey) return 'ліміт агентів (EDITOR_DAILY_BUDGET_USD)';
+  if (row.scopeKind === 'feature_prefix' && row.scopeKey === CHAT_SCOPE.scopeKey) return 'ліміт чату з агентами';
   if (row.scopeKind === 'feature_prefix') return `ліміт ${row.scopeKey}*`;
   if (row.scopeKind === 'provider') return `ліміт провайдера ${row.scopeKey}`;
   return row.scopeKey === RESOURCE_DEFAULT_SCOPE.scopeKey ? 'ліміт ресурсу (EDITOR_CHANNEL_DAILY_BUDGET_USD)' : `ліміт ресурсу ${row.scopeKey}`;
@@ -90,9 +92,19 @@ export function capLabel(row: Pick<BudgetRow, 'scopeKind' | 'scopeKey'>): string
 export function capLabelEn(row: Pick<BudgetRow, 'scopeKind' | 'scopeKey'>): string {
   if (row.scopeKind === 'global') return 'total AI cap (AI_DAILY_BUDGET_USD)';
   if (row.scopeKind === 'feature_prefix' && row.scopeKey === AGENTS_SCOPE.scopeKey) return 'agents cap (EDITOR_DAILY_BUDGET_USD)';
+  if (row.scopeKind === 'feature_prefix' && row.scopeKey === CHAT_SCOPE.scopeKey) return 'agents chat cap';
   if (row.scopeKind === 'feature_prefix') return `${row.scopeKey}* cap`;
   if (row.scopeKind === 'provider') return `provider cap ${row.scopeKey}`;
   return row.scopeKey === RESOURCE_DEFAULT_SCOPE.scopeKey ? 'resource cap (EDITOR_CHANNEL_DAILY_BUDGET_USD)' : `resource cap ${row.scopeKey}`;
+}
+
+/**
+ * A feature_prefix cap covers a feature by prefix, except that the agents' production cap (`editor.`) leaves owner chat turns
+ * (`editor.chat.*`) to their own cap (spec 040 FR-001): a long conversation must not stop scheduled posts.
+ */
+export function prefixCovers(scopeKey: string, feature: string): boolean {
+  if (!feature.startsWith(scopeKey)) return false;
+  return !(scopeKey === AGENTS_SCOPE.scopeKey && isChatFeature(feature));
 }
 
 function scopeOf(row: BudgetRow): CapScope {
@@ -159,7 +171,7 @@ export class LlmBudgetService implements BudgetGuard {
   async checkFeature(feature: string, provider: string): Promise<FeatureVerdict> {
     const rows = (await this.caps()).filter((r) => r.dailyUsd != null && (
       r.scopeKind === 'global'
-      || (r.scopeKind === 'feature_prefix' && feature.startsWith(r.scopeKey))
+      || (r.scopeKind === 'feature_prefix' && prefixCovers(r.scopeKey, feature))
       || (r.scopeKind === 'provider' && r.scopeKey === provider)));
     if (!rows.length) return { ok: true };
 
@@ -174,7 +186,7 @@ export class LlmBudgetService implements BudgetGuard {
     for (const row of [...rows].sort((a, b) => order[a.scopeKind] - order[b.scopeKind] || b.scopeKey.length - a.scopeKey.length)) {
       const spent = spend
         .filter((s: any) => row.scopeKind === 'global'
-          || (row.scopeKind === 'feature_prefix' && String(s.feature).startsWith(row.scopeKey))
+          || (row.scopeKind === 'feature_prefix' && prefixCovers(row.scopeKey, String(s.feature)))
           || (row.scopeKind === 'provider' && s.provider === row.scopeKey))
         .reduce((sum: number, s: any) => sum + Number(s.usd), 0);
       const info: BlockInfo = { scope: scopeOf(row), key: row.scopeKey, label: capLabel(row), labelEn: capLabelEn(row), spentUsd: spent, capUsd: row.dailyUsd! };

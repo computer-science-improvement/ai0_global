@@ -209,7 +209,7 @@ export class KpiDigestService {
     });
     const { rows: spend } = await this.d.pool.query(
       `SELECT COALESCE(SUM(cost_usd), 0)::float8 AS usd FROM llm_usage
-        WHERE feature LIKE 'editor.%'
+        WHERE feature LIKE 'editor.%' AND feature <> 'editor.chat' AND feature NOT LIKE 'editor.chat.%'
           AND at >= ($1::date::timestamp AT TIME ZONE 'Europe/Kyiv') AND at < (($1::date + 1)::timestamp AT TIME ZONE 'Europe/Kyiv')`, [today]);
     // The spend ledger (spec 029) is the source; the cap is the agents' llm_budgets row.
     const capUsd = this.d.capUsd ? await this.d.capUsd().catch(() => this.d.globalCapUsd) : this.d.globalCapUsd;

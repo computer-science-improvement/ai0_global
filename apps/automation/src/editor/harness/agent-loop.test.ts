@@ -133,10 +133,10 @@ test('budget exhausted mid-run stops before next LLM call', async () => {
   assert.equal(recorder.runs[0].status, 'budget_exceeded');
 });
 
-test('text answer gets one nudge, then ends ok with finalText', async () => {
+test('text answer gets one nudge, then ends no_terminal with finalText (spec 040 FR-003: a role with terminal tools)', async () => {
   const llm = new FakeLlm([{ text: 'я думаю…' }, { text: 'все' }]);
   const res = await loop(llm).l.run(input());
-  assert.equal(res.status, 'ok');
+  assert.equal(res.status, 'no_terminal');
   assert.equal(res.finalText, 'все');
   assert.equal(res.terminalTool, undefined);
   assert.match((llm.requests[1].messages.at(-1) as any).content, /publish/);
@@ -234,7 +234,7 @@ test('truncation retries are capped', async () => {
   const llm = new FakeLlm([{ text: '', finish: 'length' }, { text: '', finish: 'length' }, { text: '', finish: 'length' }, { text: 'все' }]);
   const res = await loop(llm).l.run(input());
   assert.equal(llm.requests.length, 4); // 2 truncation retries + 1 nudge + final
-  assert.equal(res.status, 'ok');
+  assert.equal(res.status, 'no_terminal');
 });
 
 test('spec 034: a tool error with _grantSteps extends the run once (capped at 3 turns); a per-tool timeoutMs beats the default', async () => {

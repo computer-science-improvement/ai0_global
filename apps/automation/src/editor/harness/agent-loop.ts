@@ -41,8 +41,13 @@ export interface AgentLoopInput {
   onEvent?:          (e: AgentLoopEvent) => void;
   /** Registry agent of this run (spec 017): recorded on the run and checked against its own daily budget. */
   agent?:            AgentBudget | null;
-  /** Spend-ledger attribution override (spec 034 FR-012: an owner's dry-run preview is `editor.preview`, never shadow). */
+  /**
+   * Spend-ledger attribution override (spec 034 FR-012: an owner's dry-run preview is `editor.preview`, never shadow; spec 040
+   * FR-001: an owner chat turn is `editor.chat.<role>`).
+   */
   usage?:            { feature?: string; shadow?: boolean };
+  /** The run's own spend cap (spec 040 FR-001, a chat turn's EDITOR_CHAT_TURN_MAX_USD): reaching it ends the run `budget_exceeded`. */
+  maxCostUsd?:       number | null;
 }
 
 export interface AgentLoopResult {
@@ -53,6 +58,10 @@ export interface AgentLoopResult {
   finalText?:      string | null;
   totals:          RunTotals;
   error?:          string;
+  /** The last non-empty assistant text of the run (spec 040 FR-003: what the owner sees when the run ends without an answer). */
+  lastText?:       string | null;
+  /** Tools that succeeded in this run, in call order (what was done before an early stop). */
+  toolsOk?:        string[];
 }
 
 const DEFAULT_MAX_STEPS = 12;
@@ -72,6 +81,34 @@ function summarize(output: unknown): string {
   try { s = JSON.stringify(output) ?? ''; } catch { s = String(output); }
   return s.length > SUMMARY_CHARS ? `${s.slice(0, SUMMARY_CHARS)}…` : s;
 }
+/** The error code of a tool result ('' for a success). */
+function errorCode(output: unknown): string {
+  return isToolError(output) ? String(output.error) : '';
+}
+
+/**
+ * Whether an identical retry of this failed call is pointless. Not for a crash or timeout (`tool_failed`, may be transient),
+ * nor for an error that grants turns to act on it (a critic `revise`: the critic judges the text, not the call).
+ */
+function rememberFailure(output: unknown): boolean {
+  const code = errorCode(output);
+  return !!code && code !== 'tool_failed' && code !== 'tool_dropped' && code !== 'repeated_failed_call'
+    && (output as { _grantSteps?: unknown })._grantSteps === undefined;
+}
+
+/** The earlier error in full (code and details, ≤ 1500 chars), so a blocked repeat still says what to fix. */
+function failureDetails(output: unknown): string {
+  if (!isToolError(output)) return '';
+  const d = output.details === undefined ? '' : `: ${typeof output.details === 'string' ? output.details : JSON.stringify(output.details)}`;
+  const s = `${output.error}${d}`;
+  return s.length > 1500 ? `${s.slice(0, 1500)}…` : s;
+}
+
+/** A call the circuit breaker answers without running the tool (spec 040 FR-002). */
+function blockedOutcome(raw: string, error: string, details: string) {
+  return { input: parseArgs(raw), output: { error, details }, isError: true, terminal: false, durationMs: 0 };
+}
+
 /**
  * Spend-ledger attribution of a run (spec 029): editor.<role>, the agent, the
  * resource and whether it is a shadow run (the runners put the card, the
@@ -90,7 +127,21 @@ function usageAttribution(input: AgentLoopInput, runId: string): LlmContext {
   };
 }
 
+/** Stable JSON of a call's arguments (object keys sorted), so the same call with reordered keys is the same call. */
+export function canonicalArgs(raw: string): string {
+  let v: unknown;
+  try { v = raw?.trim() ? JSON.parse(raw) : {}; } catch { return String(raw ?? '').trim(); }
+  const sort = (x: unknown): unknown => Array.isArray(x) ? x.map(sort)
+    : x && typeof x === 'object' ? Object.fromEntries(Object.keys(x as object).sort().map((k) => [k, sort((x as Record<string, unknown>)[k])]))
+    : x;
+  return JSON.stringify(sort(v));
+}
+
+/** Spec 040 FR-002: errors with the same (tool, code) in one run after which the tool is dropped (terminal tools never are). */
+export const MAX_SAME_TOOL_ERRORS = 3;
+
 const MAX_FINISH_NUDGES = 1;
+const MAX_EMPTY_RETRIES = 1;
 /** The most turns a tool error can add to a run (`_grantSteps`), once per run. */
 export const MAX_GRANT_STEPS = 3;
 const MAX_TRUNCATION_RETRIES = 2;
@@ -113,7 +164,12 @@ export class AgentLoop {
     let maxSteps = input.maxSteps ?? DEFAULT_MAX_STEPS;
     let granted = false;
     const byName = new Map(input.tools.map((t) => [t.name, t]));
-    const specs = input.tools.map(toToolSpec);
+    // Circuit breaker (spec 040 FR-002): calls that failed (never re-run verbatim), error counts per (tool, code), dropped tools.
+    const failedCalls = new Map<string, string>();
+    const errorCounts = new Map<string, number>();
+    const dropped = new Set<string>();
+    let repeatBlocked = 0;
+    const liveSpecs = () => input.tools.filter((t) => !dropped.has(t.name)).map(toToolSpec);
     // The last turn may only end the run: a role that has terminal tools must not run out of turns mid-research.
     const terminalSpecs = input.tools.filter((t) => t.kind === 'terminal').map(toToolSpec);
     const terminalNames = input.tools.filter((t) => t.kind === 'terminal').map((t) => t.name);
@@ -127,9 +183,13 @@ export class AgentLoop {
       return { runId: null, status: 'error', totals, error: `run start failed: ${err.message}` };
     }
 
+    let lastText: string | null = null;
+    const toolsOk: string[] = [];
     const finish = async (status: RunStatus, extra: Partial<AgentLoopResult> = {}): Promise<AgentLoopResult> => {
-      try { await this.deps.recorder.finish(runId, status, totals, extra.error ?? null); } catch { /* trace only */ }
-      return { runId, status, totals, ...extra };
+      try {
+        await this.deps.recorder.finish(runId, status, totals, extra.error ?? null, { repeatBlocked, toolsDropped: [...dropped] });
+      } catch { /* trace only */ }
+      return { runId, status, totals, lastText, toolsOk, ...extra };
     };
 
     const usage = usageAttribution(input, runId);
@@ -149,11 +209,18 @@ export class AgentLoop {
     };
     let nudges = 0;
     let truncations = 0;
+    let empties = 0;
 
     try {
       for (let turn = 0; turn < maxSteps; turn++) {
+        if (input.maxCostUsd != null && input.maxCostUsd > 0 && totals.costUsd >= input.maxCostUsd) {
+          return finish('budget_exceeded', { error: `turn budget: $${totals.costUsd.toFixed(4)} >= $${input.maxCostUsd}` });
+        }
         const verdict = await withLlmContext(usage, () => this.deps.budget.check(input.channelKey, input.channelBudgetUsd, input.agent ?? null, input.model.workspace ?? 'openrouter'));
-        if (!verdict.ok) return finish('budget_exceeded', { error: `${verdict.scope} budget: $${verdict.spentUsd.toFixed(4)} >= $${verdict.limitUsd}` });
+        if (!verdict.ok) {
+          const key = verdict.key ? ` (${verdict.key})` : '';
+          return finish('budget_exceeded', { error: `${verdict.scope} budget${key}: $${verdict.spentUsd.toFixed(4)} >= $${verdict.limitUsd}` });
+        }
 
         const lastTurn = turn === maxSteps - 1 && terminalSpecs.length > 0;
         if (lastTurn) {
@@ -161,7 +228,7 @@ export class AgentLoop {
         }
         const t0 = now();
         const res = await withLlmContext({ ...usage, stepIdx: totals.steps }, () => this.deps.llm.chat({
-          model: input.model.model, messages, tools: lastTurn ? terminalSpecs : specs,
+          model: input.model.model, messages, tools: lastTurn ? terminalSpecs : liveSpecs(),
           maxTokens: input.model.maxTokens, temperature: input.model.temperature, reasoningEffort: input.model.reasoningEffort,
           ...(input.model.workspace === 'anthropic' ? { provider: 'anthropic' as const } : {}),
         }));
@@ -170,7 +237,10 @@ export class AgentLoop {
         totals.costUsd          += res.usage.costUsd;
         await this.deps.recorder.llmStep(runId, totals.steps++, res, now() - t0);
         messages.push(res.message);
-        if (res.message.content?.trim()) emit({ type: 'llm_text', text: res.message.content });
+        if (res.message.content?.trim()) {
+          lastText = res.message.content.trim();
+          emit({ type: 'llm_text', text: res.message.content });
+        }
 
         const calls = res.message.toolCalls ?? [];
         if (!calls.length && res.finishReason === 'length' && !(res.message.content ?? '').trim() && truncations < MAX_TRUNCATION_RETRIES) {
@@ -180,27 +250,56 @@ export class AgentLoop {
           messages.push({ role: 'user', content: 'Відповідь обірвалась до результату. Думай коротше і одразу дій: виклич потрібний інструмент.' });
           continue;
         }
+        if (!calls.length && !(res.message.content ?? '').trim() && res.usage.completionTokens === 0 && empties < MAX_EMPTY_RETRIES) {
+          // An empty 0-token completion is a provider hiccup, not an answer (spec 040 FR-003): ask again once.
+          empties++;
+          messages.pop();
+          continue;
+        }
         if (!calls.length) {
           if (terminalNames.length && nudges < MAX_FINISH_NUDGES) {
             nudges++;
             messages.push({ role: 'user', content: `Заверши роботу викликом одного з інструментів: ${terminalNames.join(', ')}.` });
             continue;
           }
+          // A role that ends with a terminal tool did not (spec 040 FR-003): not a success, whatever the text says.
+          if (terminalNames.length) return finish('no_terminal', { finalText: res.message.content, error: 'ended without a terminal tool' });
           return finish('ok', { finalText: res.message.content });
         }
 
+        const notes: string[] = [];
         for (const call of calls) {
           if (input.onEvent) emit({ type: 'tool_call', name: call.name, args: parseArgs(call.arguments) });
           const stepCtx = { ...usage, stepIdx: totals.steps };
+          const callKey = `${call.name}\u0000${canonicalArgs(call.arguments)}`;
+          const previous = failedCalls.get(callKey);
           // LLM calls a tool makes itself are attributed to the run's feature, but without run/step ids:
           // (run_id, step_idx) belongs to the tool step row.
-          const outcome = await withLlmContext({ ...usage, runId: null }, () => this.runTool(call, byName, ctx, toolTimeoutMs));
+          const outcome = previous !== undefined
+            ? blockedOutcome(call.arguments, 'repeated_failed_call', `${previous} — this exact call already failed in this run; change the arguments or stop`)
+            : dropped.has(call.name)
+              ? blockedOutcome(call.arguments, 'tool_dropped', `${call.name} is off for the rest of this run after ${MAX_SAME_TOOL_ERRORS} errors of the same kind`)
+              : await withLlmContext({ ...usage, runId: null }, () => this.runTool(call, byName, ctx, toolTimeoutMs));
+          if (previous !== undefined) repeatBlocked++;
           if (input.onEvent) emit({ type: 'tool_result', name: call.name, ok: !outcome.isError, summary: summarize(outcome.output) });
           // Paid tools (e.g. web_search) report their own spend so it counts against the budget.
           const toolCost = typeof (outcome.output as any)?._costUsd === 'number' ? (outcome.output as any)._costUsd as number : 0;
           totals.costUsd += toolCost;
           await withLlmContext(stepCtx, () => this.deps.recorder.toolStep(runId, totals.steps++, call, outcome.input, outcome.output, outcome.isError, outcome.durationMs, toolCost || null));
           messages.push({ role: 'tool', toolCallId: call.id, content: toToolContent(outcome.output) });
+          if (!outcome.isError) toolsOk.push(call.name);
+          else {
+            const code = errorCode(outcome.output);
+            if (previous === undefined && rememberFailure(outcome.output)) failedCalls.set(callKey, failureDetails(outcome.output));
+            const k = `${call.name}\u0000${code}`;
+            const n = (errorCounts.get(k) ?? 0) + 1;
+            errorCounts.set(k, n);
+            const tool = byName.get(call.name);
+            if (n >= MAX_SAME_TOOL_ERRORS && tool && tool.kind !== 'terminal' && !dropped.has(call.name)) {
+              dropped.add(call.name);
+              notes.push(`Інструмент ${call.name} вимкнено до кінця цього прогону: ${n} помилки «${code}». Зроби інакше або заверши роботу.`);
+            }
+          }
           if (outcome.terminal && !outcome.isError) {
             return finish('ok', { terminalTool: call.name, terminalResult: outcome.output });
           }
@@ -212,6 +311,8 @@ export class AgentLoop {
             maxSteps = Math.max(maxSteps, turn + 1 + Math.min(Math.floor(grant), MAX_GRANT_STEPS));
           }
         }
+        // After every tool result of this turn (the API wants them right after the assistant message).
+        if (notes.length) messages.push({ role: 'user', content: notes.join('\n') });
       }
       return finish('max_steps', { error: `no terminal tool after ${maxSteps} turns` });
     } catch (err: any) {

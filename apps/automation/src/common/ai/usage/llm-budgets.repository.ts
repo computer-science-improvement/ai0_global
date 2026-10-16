@@ -23,6 +23,8 @@ export interface BudgetSeed {
 /** Scope keys of the caps seeded from env (FR-008). */
 export const TOTAL_SCOPE  = { scopeKind: 'global',         scopeKey: ''        } as const;
 export const AGENTS_SCOPE = { scopeKind: 'feature_prefix', scopeKey: 'editor.' } as const;
+/** Owner chat turns (spec 040 FR-001; seeded by migration 079). The agents' cap above leaves them out. */
+export const CHAT_SCOPE   = { scopeKind: 'feature_prefix', scopeKey: 'editor.chat' } as const;
 /** The default per-resource cap; a row with a concrete resource_ref overrides it for that resource. */
 export const RESOURCE_DEFAULT_SCOPE = { scopeKind: 'resource', scopeKey: '*' } as const;
 

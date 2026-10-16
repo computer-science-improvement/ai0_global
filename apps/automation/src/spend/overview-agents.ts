@@ -53,7 +53,7 @@ export class OverviewAgentsRepository {
                 (COUNT(*) FILTER (WHERE status = 'ok'))::int AS ok,
                 (COUNT(*) FILTER (WHERE status <> 'running'))::int AS finished,
                 (COUNT(*) FILTER (WHERE status = 'disabled'))::int AS disabled,
-                (COUNT(*) FILTER (WHERE status IN ('error', 'max_steps')))::int AS errors,
+                (COUNT(*) FILTER (WHERE status IN ('error', 'max_steps', 'no_terminal')))::int AS errors,
                 (COUNT(*) FILTER (WHERE status = 'budget_exceeded'))::int AS budget
            FROM editor_runs WHERE started_at >= ${KYIV_7D_START_SQL}`),
       this.pool.query(

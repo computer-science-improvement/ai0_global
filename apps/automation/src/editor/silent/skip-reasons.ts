@@ -50,7 +50,7 @@ export function skipGroupOf(error: string | null | undefined, criticVerdict?: st
   for (const [g, r] of RULES) if (r.test(e)) return g;
   if (/^skipped by agent\b/.test(e) && (criticVerdict === 'revise' || criticVerdict === 'reject')) return 'critic';
   // A run that hit a publish guard in its last step and ran out of steps / retries keeps the code after the status.
-  if (/^(max_steps|error)\b.*\b(lint_failed|too_similar|too_verbatim)\b/.test(e)) return 'lint';
+  if (/^(max_steps|no_terminal|error)\b.*\b(lint_failed|too_similar|too_verbatim)\b/.test(e)) return 'lint';
   return 'other';
 }
 

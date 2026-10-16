@@ -21,6 +21,7 @@ import type { AgentChatExtras } from '../agents/builder-tools';
 import { hasAgentChangeIntent, parseMentions, startsWithMention } from '../agents/mentions';
 import { agentPersona, buildBuilderPrompt, buildManagerChatPrompt } from '../agents/agent-prompts';
 import type { EditorRole } from '../llm/llm.types';
+import { chatFeature, CHAT_FEATURE_PREFIX } from '../../common/ai/usage/features';
 
 export const COMPOSER_MAX_STEPS = 16;
 export const MAX_MESSAGE_CHARS = 8000;
@@ -87,6 +88,16 @@ export interface SendOptions {
 const draftLine = (d: EditorDraft) =>
   `${d.id} · ${d.channelKey} · ${(d.spec as any)?.format ?? '?'} · «${(d.spec as any)?.title ?? ''}» · ${d.status}${d.scheduledAt ? ` на ${d.scheduledAt.toISOString()}` : ''}`;
 
+/** A chat turn's own spend cap (spec 040 FR-001); setting EDITOR_CHAT_TURN_MAX_USD, 0 = off. */
+export const CHAT_TURN_MAX_USD = 0.3;
+
+export function chatTurnCap(env: (key: string) => string | undefined): number | null {
+  const raw = env('EDITOR_CHAT_TURN_MAX_USD')?.trim();
+  const n = raw ? Number(raw) : CHAT_TURN_MAX_USD;
+  if (!Number.isFinite(n)) return CHAT_TURN_MAX_USD;
+  return n > 0 ? n : null;
+}
+
 const CAP_LABELS: Record<string, string> = {
   total:    'total daily AI cap (AI_DAILY_BUDGET_USD)',
   global:   'agents daily cap (EDITOR_DAILY_BUDGET_USD)',
@@ -98,19 +109,37 @@ const CAP_LABELS: Record<string, string> = {
 
 /** The refusal of an owner message over a blocking cap (spec 029 FR-008): names the cap, never silent. */
 export function budgetRefusalText(error: string | null | undefined): string {
-  const m = /^(\w+) budget: \$([\d.]+) >= \$([\d.]+)/.exec(error ?? '');
-  const what = m ? (CAP_LABELS[m[1]] ?? m[1]) : (error ?? 'daily cap');
-  const spent = m ? `: spent $${Number(m[2]).toFixed(3)} of $${m[3]}` : '';
+  const m = /^(\w+) budget(?: \(([^)]+)\))?: \$([\d.]+) >= \$([\d.]+)/.exec(error ?? '');
+  const what = !m ? (error ?? 'daily cap')
+    : m[2] === CHAT_FEATURE_PREFIX ? `agents chat daily cap (${CHAT_FEATURE_PREFIX})`
+    : `${CAP_LABELS[m[1]] ?? m[1]}${m[2] ? ` (${m[2]})` : ''}`;
+  const spent = m ? `: spent $${Number(m[3]).toFixed(3)} of $${m[4]}` : '';
   return `Message not processed — ${what} reached${spent} (Kyiv day). `
     + 'Work resumes at midnight Kyiv time, or as soon as the cap is raised on Spend → Budgets (/app/spend?tab=budgets).';
+}
+
+/** A turn stopped by its own cap (spec 040 FR-001): what it cost, how far it got and what it did. */
+export function turnCapText(r: AgentLoopResult): string {
+  const m = /^turn budget: \$([\d.]+) >= \$([\d.]+)/.exec(r.error ?? '');
+  const cost = m ? ` ($${Number(m[1]).toFixed(3)} of $${m[2]})` : '';
+  const done = [...new Set(r.toolsOk ?? [])];
+  return `Stopped — this turn reached the per-turn chat cap${cost}; EDITOR_CHAT_TURN_MAX_USD in Settings → Configuration. `
+    + (done.length ? `Done in this turn: ${done.join(', ')}.` : 'Nothing was changed in this turn.')
+    + (r.lastText ? `\n\nWhere I stopped:\n${r.lastText}` : '')
+    + '\n\nSay "continue" to go on, or narrow the task down.';
 }
 
 export function failureText(r: AgentLoopResult, drafts: readonly EditorDraft[] = []): string {
   switch (r.status) {
     case 'disabled':        return 'Chat is off: OPENROUTER_API_KEY is not set.';
-    case 'budget_exceeded': return budgetRefusalText(r.error);
+    case 'budget_exceeded': return /^turn budget/.test(r.error ?? '') ? turnCapText(r) : budgetRefusalText(r.error);
     case 'max_steps':       return `I could not finish within ${COMPOSER_MAX_STEPS} steps.${lintFailureNote(drafts)} Say "continue" or narrow the task down.`;
-    default:                return `Something went wrong: ${r.error ?? r.status}.`;
+    default: {
+      // Spec 040 FR-003: never a bare status. What the agent last said beats a generic line.
+      if (r.lastText?.trim()) return r.lastText.trim();
+      const reason = r.status === 'ok' ? 'empty reply' : r.status === 'no_terminal' ? 'no final step' : (r.error ?? r.status);
+      return `The agent stopped without an answer (${reason}). Try again or rephrase.`;
+    }
   }
 }
 
@@ -289,6 +318,7 @@ export class EditorChatService {
           user: text, history: this.history(prior, chatDrafts), tools: this.chatTools('composer'),
           maxSteps: COMPOSER_MAX_STEPS, extras: extras as unknown as Record<string, unknown>, onEvent,
           agent: addressee ? { id: addressee.id, handle: addressee.handle, limitUsd: addressee.dailyBudgetUsd } : null,
+          usage: { feature: chatFeature('composer'), shadow: false }, maxCostUsd: chatTurnCap(this.d.env),
         });
       } catch (err: any) {
         res = { runId: null, status: 'error', totals: { steps: 0, promptTokens: 0, completionTokens: 0, costUsd: 0 }, error: err?.message ?? String(err) };
@@ -347,6 +377,7 @@ export class EditorChatService {
         user: text, history: this.history(prior, chatDrafts), tools: this.chatTools(role),
         maxSteps: COMPOSER_MAX_STEPS, extras, onEvent,
         agent: { id: agent.id, handle: agent.handle, limitUsd: agent.dailyBudgetUsd },
+        usage: { feature: chatFeature(role), shadow: false }, maxCostUsd: chatTurnCap(this.d.env),
       });
     } catch (err: any) {
       res = { runId: null, status: 'error', totals: { steps: 0, promptTokens: 0, completionTokens: 0, costUsd: 0 }, error: err?.message ?? String(err) };

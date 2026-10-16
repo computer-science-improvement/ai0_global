@@ -233,7 +233,7 @@ test('caps: an exhausted channel / agent budget or a blocking cap on the feature
   const blocked = harness({ budget: gate, executor: [publishCall()] });
   const b = await blocked.runner.runPreview(blocked.slot, blocked.card);
   assert.equal(b.status, 'failed');
-  assert.match(b.reason!, /^budget_exceeded: feature budget: \$2\.0000 >= \$2/);
+  assert.match(b.reason!, /^budget_exceeded: feature budget \(editor\.preview\): \$2\.0000 >= \$2/);
   assert.deepEqual(seen, [PREVIEW_FEATURE]);
   assert.equal((blocked.execLlm as FakeLlm).requests.length, 0);
   // The same gate lets an ordinary executor run through (the cap is on the preview feature only).

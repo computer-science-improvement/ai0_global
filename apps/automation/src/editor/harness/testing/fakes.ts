@@ -1,6 +1,6 @@
 import type { LlmClient, LlmRequest, LlmResponse, ToolCall } from '../../llm/llm.types';
 import type { BudgetGate, BudgetVerdict } from '../budget.service';
-import type { RunRecorder, RunStart, RunStatus, RunTotals } from '../run-recorder';
+import type { RunBreaker, RunRecorder, RunStart, RunStatus, RunTotals } from '../run-recorder';
 
 /** Scripted LLM: each chat() returns the next scripted turn. */
 export class FakeLlm implements LlmClient {
@@ -26,7 +26,7 @@ export class FakeLlm implements LlmClient {
 }
 
 export class MemoryRecorder implements RunRecorder {
-  runs: Array<RunStart & { id: string; status?: RunStatus; totals?: RunTotals; error?: string | null }> = [];
+  runs: Array<RunStart & { id: string; status?: RunStatus; totals?: RunTotals; error?: string | null; breaker?: RunBreaker }> = [];
   steps: Array<{ runId: string; idx: number; type: 'llm' | 'tool'; tool?: string; input?: unknown; output?: unknown; isError?: boolean }> = [];
 
   async start(r: RunStart): Promise<string> {
@@ -38,9 +38,9 @@ export class MemoryRecorder implements RunRecorder {
   async toolStep(runId: string, idx: number, call: ToolCall, input: unknown, output: unknown, isError: boolean): Promise<void> {
     this.steps.push({ runId, idx, type: 'tool', tool: call.name, input, output, isError });
   }
-  async finish(runId: string, status: RunStatus, totals: RunTotals, error?: string | null): Promise<void> {
+  async finish(runId: string, status: RunStatus, totals: RunTotals, error?: string | null, breaker?: RunBreaker): Promise<void> {
     const r = this.runs.find((x) => x.id === runId)!;
-    r.status = status; r.totals = { ...totals }; r.error = error;
+    r.status = status; r.totals = { ...totals }; r.error = error; r.breaker = breaker;
   }
 }
 

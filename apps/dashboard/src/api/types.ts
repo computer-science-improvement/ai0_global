@@ -539,7 +539,7 @@ export type EditorMode = 'off' | 'shadow' | 'approve' | 'live';
 export type EditorSlotStatus =
   | 'planned' | 'running' | 'published' | 'shadowed' | 'skipped' | 'failed'
   | 'awaiting_approval' | 'approved' | 'expired';
-export type EditorRunStatus = 'running' | 'ok' | 'error' | 'budget_exceeded' | 'max_steps' | 'disabled';
+export type EditorRunStatus = 'running' | 'ok' | 'error' | 'budget_exceeded' | 'max_steps' | 'disabled' | 'no_terminal';
 export type EditorRole = 'planner' | 'executor' | 'reviewer' | 'checker' | 'composer';
 export type EditorFormat = 'text' | 'photo' | 'album' | 'poll' | 'quiz' | 'video' | 'carousel' | 'longread';
 

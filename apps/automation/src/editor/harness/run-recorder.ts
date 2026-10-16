@@ -5,7 +5,14 @@ import { llmUsage, type LlmUsageRecorder } from '../../common/ai/usage/llm-usage
 import { currentLlmContext } from '../../common/ai/usage/llm-context';
 import { editorFeature, telegramResource } from '../../common/ai/usage/features';
 
-export type RunStatus = 'running' | 'ok' | 'error' | 'budget_exceeded' | 'max_steps' | 'disabled';
+/** `no_terminal` (spec 040 FR-003): a role that ends with a terminal tool answered without one. */
+export type RunStatus = 'running' | 'ok' | 'error' | 'budget_exceeded' | 'max_steps' | 'disabled' | 'no_terminal';
+
+/** The loop's circuit breaker counters (spec 040 FR-002). */
+export interface RunBreaker {
+  repeatBlocked: number;
+  toolsDropped:  string[];
+}
 
 export interface RunStart {
   role:       EditorRole;
@@ -27,7 +34,7 @@ export interface RunRecorder {
   start(r: RunStart): Promise<string>;
   llmStep(runId: string, idx: number, res: LlmResponse, durationMs: number): Promise<void>;
   toolStep(runId: string, idx: number, call: ToolCall, input: unknown, output: unknown, isError: boolean, durationMs: number, costUsd?: number | null): Promise<void>;
-  finish(runId: string, status: RunStatus, totals: RunTotals, error?: string | null): Promise<void>;
+  finish(runId: string, status: RunStatus, totals: RunTotals, error?: string | null, breaker?: RunBreaker): Promise<void>;
 }
 
 /**
@@ -71,7 +78,7 @@ export class PgRunRecorder implements RunRecorder {
         runId, stepIdx: idx, status: isError ? 'error' : 'ok', latencyMs: durationMs,
         // The AgentLoop's context carries the full attribution; the run's own fields fill in without one.
         ...(run ? {
-          feature: editorFeature(run.role), role: run.role,
+          feature: ctx.feature?.startsWith('editor.') ? ctx.feature : editorFeature(run.role), role: run.role,
           agentId: ctx.agentId ?? run.agentId ?? null,
           resourceRef: ctx.resourceRef ?? (run.channelKey ? telegramResource(run.channelKey) : null),
         } : {}),
@@ -79,14 +86,16 @@ export class PgRunRecorder implements RunRecorder {
     }
   }
 
-  async finish(runId: string, status: RunStatus, t: RunTotals, error?: string | null): Promise<void> {
+  async finish(runId: string, status: RunStatus, t: RunTotals, error?: string | null, breaker?: RunBreaker): Promise<void> {
     this.runs.delete(runId);
     await this.pool.query(
       `UPDATE editor_runs
           SET status = $2, steps = $3, prompt_tokens = $4, completion_tokens = $5,
-              cost_usd = $6, error = $7, finished_at = now()
+              cost_usd = $6, error = $7, finished_at = now(),
+              repeat_blocked = $8, tools_dropped = $9
         WHERE id = $1`,
-      [runId, status, t.steps, t.promptTokens, t.completionTokens, t.costUsd, error ?? null],
+      [runId, status, t.steps, t.promptTokens, t.completionTokens, t.costUsd, error ?? null,
+        breaker?.repeatBlocked ?? 0, breaker?.toolsDropped.length ? breaker.toolsDropped : null],
     );
   }
 

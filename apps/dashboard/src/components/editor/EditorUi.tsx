@@ -28,7 +28,7 @@ export const SLOT_TONE: Record<EditorSlotStatus, Tone> = {
 };
 
 export const RUN_TONE: Record<EditorRunStatus, Tone> = {
-  running: 'warning', ok: 'success', error: 'danger', budget_exceeded: 'danger', max_steps: 'warning', disabled: 'neutral',
+  running: 'warning', ok: 'success', error: 'danger', budget_exceeded: 'danger', max_steps: 'warning', disabled: 'neutral', no_terminal: 'warning',
 };
 
 export const SLOT_ORDER: EditorSlotStatus[] = ['planned', 'running', 'awaiting_approval', 'approved', 'shadowed', 'published', 'skipped', 'expired', 'failed'];

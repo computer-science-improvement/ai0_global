@@ -8,13 +8,14 @@ import { resolveModel } from '../llm/model-registry';
 import { LlmBudgetService, type BlockInfo } from '../../common/ai/usage/llm-budget.service';
 import type { BudgetRow } from '../../common/ai/usage/llm-budgets.repository';
 import { budgetRefusalText, failureText } from '../chat/editor-chat.service';
+import { withLlmContext } from '../../common/ai/usage/llm-context';
 
 const row = (p: Partial<BudgetRow>): BudgetRow => ({ id: 1, scopeKind: 'global', scopeKey: '', dailyUsd: 3, monthlyUsd: null, alertPct: 80, enforce: true, ...p });
 const DEFAULT_CAPS = [
   row({}), row({ id: 2, scopeKind: 'feature_prefix', scopeKey: 'editor.', dailyUsd: 2 }), row({ id: 3, scopeKind: 'resource', scopeKey: '*', dailyUsd: 0.3 }),
 ];
 
-function setup(o: { total?: number; editor?: number; channel?: number; agent?: number; caps?: BudgetRow[]; keys?: Set<string> }) {
+function setup(o: { total?: number; editor?: number; chat?: number; channel?: number; agent?: number; caps?: BudgetRow[]; keys?: Set<string> }) {
   const keys = o.keys ?? new Set<string>();
   const blocks: BlockInfo[] = [];
   const queries: string[] = [];
@@ -24,7 +25,8 @@ function setup(o: { total?: number; editor?: number; channel?: number; agent?: n
       if (/GROUP BY 1, 2/.test(sql)) {
         return { rows: [
           { feature: 'editor.executor', provider: 'openrouter', usd: o.editor ?? 0 },
-          { feature: 'strategy.s.generate', provider: 'anthropic', usd: (o.total ?? 0) - (o.editor ?? 0) },
+          { feature: 'editor.chat.composer', provider: 'openrouter', usd: o.chat ?? 0 },
+          { feature: 'strategy.s.generate', provider: 'anthropic', usd: (o.total ?? 0) - (o.editor ?? 0) - (o.chat ?? 0) },
         ] };
       }
       return { rows: [{ global_usd: o.editor ?? 0, channel_usd: o.channel ?? 0, agent_usd: o.agent ?? 0, day: '2026-10-06' }] };
@@ -92,4 +94,40 @@ test('budgetRefusalText names each cap', () => {
   assert.match(budgetRefusalText('channel budget: $0.3100 >= $0.3'), /resource daily cap/);
   assert.match(budgetRefusalText('agent budget: $1.0000 >= $1'), /agent daily cap/);
   assert.match(budgetRefusalText(null), /daily cap/);
+});
+
+test('spec 040 FR-001: chat spend has its own pool — it neither counts against nor is blocked by the production caps', async () => {
+  const caps = [...DEFAULT_CAPS, row({ id: 4, scopeKind: 'feature_prefix', scopeKey: 'editor.chat', dailyUsd: 1 })];
+  const asRun  = (s: ReturnType<typeof setup>, ...a: Parameters<BudgetService['check']>) =>
+    withLlmContext({ feature: 'editor.executor' }, () => s.svc.check(...a));
+  const asChat = (s: ReturnType<typeof setup>, ...a: Parameters<BudgetService['check']>) =>
+    withLlmContext({ feature: 'editor.chat.manager' }, () => s.svc.check(...a));
+
+  // $0.9 of chat on top of $1.9 of production: production is still under its $2 cap.
+  const a = setup({ total: 2.8, editor: 1.9, chat: 0.9, caps });
+  assert.deepEqual(await asRun(a, 'ch'), { ok: true });
+  assert.deepEqual(await asChat(a, null), { ok: true });
+
+  // The chat pool is exhausted: chat stops with the pool named, production runs on.
+  const b = setup({ total: 2.6, editor: 1.5, chat: 1.1, caps });
+  assert.deepEqual(await asChat(b, null), { ok: false, scope: 'feature', spentUsd: 1.1, limitUsd: 1, key: 'editor.chat' });
+  assert.deepEqual(await asRun(b, 'ch'), { ok: true });
+  assert.match(budgetRefusalText('feature budget (editor.chat): $1.1000 >= $1'), /agents chat daily cap \(editor\.chat\) reached: spent \$1\.100 of \$1/);
+
+  // Production is exhausted (agents, channel and agent caps): the owner can still talk to the agents.
+  const c = setup({ total: 2.2, editor: 2.1, chat: 0.1, channel: 0.5, agent: 9, caps });
+  assert.equal((await asRun(c, 'ch')).ok, false);
+  assert.deepEqual(await asChat(c, 'ch', null, { id: 'a1', handle: 'kira', limitUsd: 0.3 }), { ok: true });
+
+  // The total AI cap still covers chat.
+  const d = setup({ total: 3.1, editor: 1, chat: 0.2, caps });
+  assert.deepEqual(await asChat(d, null), { ok: false, scope: 'total', spentUsd: 3.1, limitUsd: 3 });
+});
+
+test('spec 040 FR-001: the production spend query leaves chat features out', async () => {
+  const s = setup({});
+  await withLlmContext({ feature: 'editor.executor' }, () => s.svc.check('ch', null, { id: 'a1', limitUsd: 1 }));
+  const q = s.queries.find((x) => /FROM llm_usage u/.test(x))!;
+  assert.match(q, /global_usd/);
+  assert.equal((q.match(/NOT LIKE 'editor\.chat\.%'/g) ?? []).length, 3, 'agents, channel and agent sums');
 });

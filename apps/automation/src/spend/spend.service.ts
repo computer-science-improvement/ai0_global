@@ -3,7 +3,9 @@ import { z } from 'zod';
 import { kyivDay } from '../common/ai/usage/kyiv-day';
 import { costFromPrice } from '../common/ai/usage/price.service';
 import type { PriceRow } from '../common/ai/usage/llm-prices.repository';
-import { AGENTS_SCOPE, RESOURCE_DEFAULT_SCOPE } from '../common/ai/usage/llm-budgets.repository';
+import { AGENTS_SCOPE, CHAT_SCOPE, RESOURCE_DEFAULT_SCOPE } from '../common/ai/usage/llm-budgets.repository';
+import { prefixCovers } from '../common/ai/usage/llm-budget.service';
+import { isChatFeature } from '../common/ai/usage/features';
 import {
   addDays, eachDay, presetRange, previousRange, resolveRange, RANGES, type DayRange, type RangeKey,
 } from './spend-range';
@@ -128,7 +130,8 @@ const round6 = (x: number) => Math.round(x * 1e6) / 1e6;
 
 export function budgetLabel(kind: string, key: string): string {
   if (kind === 'global') return 'Total AI spend';
-  if (kind === 'feature_prefix' && key === AGENTS_SCOPE.scopeKey) return 'Agents (editor.*)';
+  if (kind === 'feature_prefix' && key === AGENTS_SCOPE.scopeKey) return 'Agents (editor.*, without chat)';
+  if (kind === 'feature_prefix' && key === CHAT_SCOPE.scopeKey) return 'Agents chat (editor.chat.*)';
   if (kind === 'feature_prefix') return `Feature ${key}*`;
   if (kind === 'provider') return `Provider ${key}`;
   return key === RESOURCE_DEFAULT_SCOPE.scopeKey ? 'Each resource (default)' : `Resource ${key}`;
@@ -145,10 +148,10 @@ export function capState(spent: number, cap: number | null, enforce: boolean): B
 /** Spend under one cap row (the same matching as LlmBudgetService / BudgetService). */
 function matches(kind: string, key: string, s: SpendSlice): boolean {
   if (kind === 'global') return true;
-  if (kind === 'feature_prefix') return s.feature.startsWith(key);
+  if (kind === 'feature_prefix') return prefixCovers(key, s.feature);
   if (kind === 'provider') return s.provider === key;
-  // Resource caps cover the agents' (editor.*) spend of that resource.
-  return s.feature.startsWith('editor.') && s.resourceRef != null && (key === '*' || s.resourceRef === key);
+  // Resource caps cover the agents' production (editor.* without chat, spec 040) spend of that resource.
+  return s.feature.startsWith('editor.') && !isChatFeature(s.feature) && s.resourceRef != null && (key === '*' || s.resourceRef === key);
 }
 
 const sumOf = (slices: SpendSlice[], pred: (s: SpendSlice) => boolean) => slices.reduce((t, s) => (pred(s) ? t + s.usd : t), 0);

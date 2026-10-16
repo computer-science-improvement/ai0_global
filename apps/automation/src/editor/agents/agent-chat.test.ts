@@ -90,7 +90,7 @@ const agent = (o: Partial<Agent>): Agent => ({
   shadowUntil: null, createdBy: 'owner', createdAt: NOW, updatedAt: NOW, ...o,
 });
 
-function setup(turns: ConstructorParameters<typeof FakeLlm>[0], chatAgentId: string | null = null) {
+function setup(turns: ConstructorParameters<typeof FakeLlm>[0], chatAgentId: string | null = null, env: Record<string, string> = {}) {
   const messages: EditorChatMessage[] = [];
   const setAgents: Array<string | null> = [];
   const kira = agent({});
@@ -143,11 +143,13 @@ function setup(turns: ConstructorParameters<typeof FakeLlm>[0], chatAgentId: str
   ]);
   const llm = new FakeLlm(turns);
   const recorder = new MemoryRecorder();
-  const loop = new AgentLoop({ llm, recorder, budget: new FakeBudget(), enabled: () => true });
+  const real = new AgentLoop({ llm, recorder, budget: new FakeBudget(), enabled: () => true });
+  const runs: Parameters<AgentLoop['run']>[0][] = [];
+  const loop = { run: (i: Parameters<AgentLoop['run']>[0]) => { runs.push(i); return real.run(i); } };
   const svc = new EditorChatService({
-    repo, drafts, memory: { listActive: async () => [] }, loop, registry, skills: lib, env: () => undefined, enabled: () => true, now: () => NOW, agents: port,
+    repo, drafts, memory: { listActive: async () => [] }, loop, registry, skills: lib, env: (k) => env[k], enabled: () => true, now: () => NOW, agents: port,
   });
-  return { svc, llm, messages, recorder, setAgents, actions, memoryAdds, reviews };
+  return { svc, llm, messages, recorder, setAgents, actions, memoryAdds, reviews, runs };
 }
 
 test('@kira: the channel agent answers as itself, on its channel, recorded on its agent', async () => {
@@ -231,4 +233,21 @@ test('@manager in chat: a plain answer is the reply — the nightly run\'s submi
   assert.equal(s.llm.requests.length, 2, 'no nudge to finish with a tool');
   assert.deepEqual(s.reviews, []);
   assert.match((s.llm.requests[0].messages[0] as any).content, /submit_review тут немає/);
+});
+
+test('spec 040 FR-001: chat turns are billed as editor.chat.<role> (never shadow) with the per-turn cap from the settings', async () => {
+  const a = setup([{ text: 'Привіт.' }]);
+  await a.svc.sendMessage('c1', '@kira як справи?');
+  assert.deepEqual(a.runs[0].usage, { feature: 'editor.chat.composer', shadow: false });
+  assert.equal(a.runs[0].maxCostUsd, 0.3, 'default cap');
+
+  const m = setup([{ text: 'Все добре.' }], null, { EDITOR_CHAT_TURN_MAX_USD: '0.5' });
+  await m.svc.sendMessage('c1', '@manager що в мережі?');
+  assert.deepEqual(m.runs[0].usage, { feature: 'editor.chat.manager', shadow: false });
+  assert.equal(m.runs[0].maxCostUsd, 0.5);
+
+  const off = setup([{ text: 'ok' }], null, { EDITOR_CHAT_TURN_MAX_USD: '0' });
+  await off.svc.sendMessage('c1', '@ai0 привіт');
+  assert.equal(off.runs[0].usage?.feature, 'editor.chat.builder');
+  assert.equal(off.runs[0].maxCostUsd, null, '0 = no per-turn cap');
 });
