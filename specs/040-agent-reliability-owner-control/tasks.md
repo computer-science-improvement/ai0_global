@@ -17,4 +17,4 @@ Wave 2 — owner control
 - [x] T10 (AI0-136) FR-012 Owner and agent skills reach executor/checker (defaults, `agent_skills` on write, tone skill from the profile).
 - [x] T11 (AI0-137) FR-013 Slot control from chat: `get_schedule` / `propose_slot_change` for @manager and channel agents, `regenerate`, `propose_replan_today`.
 - [x] T12 (AI0-138) FR-014 Truthful history: authors + action line per turn, claim guard (re-prompt, then visible note).
-- [ ] T13 (AI0-139) Verification: replays of the export's failing runs as FakeLlm scripts, PG tests, docs and README row.
+- [x] T13 (AI0-139) Verification: replays of the export's failing runs as FakeLlm scripts, PG tests, docs and README row.

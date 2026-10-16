@@ -229,7 +229,9 @@ saves a **draft** and shows it as a Telegram preview card. You ask for changes i
 **Опублікувати зараз** or **Запланувати** (date and time in Kyiv), or tell the agent "опублікуй" / "заплануй на завтра о 19".
 
 **Enable.** Apply `047_editor_chat`. The chat needs only `OPENROUTER_API_KEY`; it does **not** depend on `EDITOR_ENABLED`.
-Its LLM spend counts against the **global** `EDITOR_DAILY_BUDGET_USD` (runs have `role='composer'`, `channel_key` NULL).
+Its LLM spend is the owner chat pool `editor.chat.<role>` (spec 040): the `editor.chat` cap ($1/day, Spend → Budgets) and a
+per-turn cap `EDITOR_CHAT_TURN_MAX_USD` ($0.30); it does not count against the agents' production cap (runs have `role='composer'`,
+`channel_key` NULL).
 
 **What the agent can and cannot do.**
 - It never publishes on its own. `publish_draft` / `schedule_draft` work only when your **latest message** explicitly asks
@@ -270,3 +272,55 @@ Refusals come back as 4xx with the same `{error, details}` the agent sees (`lint
 | Cancel a scheduled post | "Скасувати" on its card, or `POST api/editor/drafts/:id/cancel` |
 | Why the agent did something | `SELECT * FROM editor_run_steps WHERE run_id = (SELECT run_id FROM editor_chat_messages WHERE id = …) ORDER BY idx` |
 | Live evals of the chat | `npx tsx --env-file=../../.env evals/run-evals.ts --case chat-schedule-tomorrow,chat-draft-only` (scratch DB) |
+
+## 10. Reliability and owner control (spec 040)
+
+What changed after the 10-07…16 dev-stage analysis, and where to look when something goes wrong.
+
+**Budgets.** Owner chat turns are `editor.chat.<role>` in `llm_usage`: they answer to the total cap, the `editor.chat` pool
+($1/day, seeded by 079, editable on Spend → Budgets) and the per-turn cap `EDITOR_CHAT_TURN_MAX_USD` ($0.30). Production runs
+(`editor.*` without chat) no longer stop because of a long chat. A turn over its cap ends `budget_exceeded`; the reply says what
+was done and where it stopped.
+
+**Run endings.** `editor_runs.status`:
+- `no_terminal` — a role that must end with a terminal tool (`submit_plan`, `publish_post`, `finish_*`) answered in text.
+  Slots treat it like `max_steps`: one retry, then failed with the reason.
+- `repeat_blocked` counts identical calls of a call that already failed (answered without running the tool, with the earlier
+  problems as a checklist).
+- `tools_dropped` lists tools switched off for the rest of the run after 3 errors with the same code. Terminal tools and lints
+  are never dropped.
+
+**Blocked hosts.** `source_host_failures`: a 401/403/451/429, DNS or TLS failure blocks a host for 24 h. `web_fetch`,
+`extract_images` and `fetch_feed` answer `host_blocked` without a request, plus a known alternative.
+
+**Directives.** An applied directive of the same kind must be named in `supersedes` and is closed as `superseded`. A change
+already in place answers `already_satisfied`. The manager skips a run whose anomalies and quality flags are unchanged (one
+forced review a day).
+
+**Owner rules.**
+- A rule is stored when it matches one of your last 5 messages; it keeps your words in `editor_channel_memory.source_text`.
+  Otherwise you get an `owner_rule` card.
+- Rules that contradict the playbook or profile (hashtags, polls, slang, audience) show up as a `fix_config_conflicts` card.
+- Writers see the rules above the playbook; the critic scores `owner_rules` (≤ 2 rejects the post and names the rule).
+
+**Skills.**
+- An agent's own skill is on and always in context (when ≤ 4000 chars) from its first write. 079 backfilled the existing ones.
+- The profile's tone attaches its `tone-*` skill once. A toggle you set on the skills tab is never changed.
+
+**Slot control from chat.** In chat, @manager and channel agents have `get_schedule`, `propose_slot_change` (incl.
+`regenerate`) and `propose_replan_today`. They return cards; Apply writes the slot now or replans the rest of today. A channel
+agent controls only its own schedule. These tools are never offered in autonomous runs.
+
+**Truthful history.**
+- Each assistant message stores what its tools did (`editor_chat_messages.actions`). The history shows the author and a line like
+  `[дії: картка owner_rule pa-12345 (застосовано); правило #7 записано]`.
+- A reply that claims an action no tool did is re-prompted once. If it still claims it, the reply ends with
+  "(Not done: no tool call recorded this action.)".
+
+| Need | How |
+|---|---|
+| Runs that looped | `SELECT id, role, status, steps, repeat_blocked, tools_dropped FROM editor_runs WHERE repeat_blocked > 0 OR tools_dropped IS NOT NULL ORDER BY started_at DESC` |
+| Unblock a host now | `DELETE FROM source_host_failures WHERE host = …` |
+| Chat spend today | `SELECT feature, SUM(cost_usd) FROM llm_usage WHERE feature LIKE 'editor.chat%' AND at > current_date GROUP BY 1` |
+| What a chat turn did | `SELECT content, actions FROM editor_chat_messages WHERE chat_id = … ORDER BY id` |
+| Replays of the failing runs | `src/editor/replays/export-runs.040.test.ts` (FakeLlm, no network) |

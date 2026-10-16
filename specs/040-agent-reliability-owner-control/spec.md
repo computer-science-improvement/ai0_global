@@ -1,6 +1,6 @@
 # 040: Agent reliability and owner control
 
-**Status:** PLANNED · **Priority:** P1 · **Linear:** AI0-126 (T1–T13: AI0-127…AI0-139) · **Depends on:** 017–022 (agents), 023 (schedule cards), 025
+**Status:** DONE · **Priority:** P1 · **Linear:** AI0-126 (T1–T13: AI0-127…AI0-139) · **Depends on:** 017–022 (agents), 023 (schedule cards), 025
 (directives), 029 (llm_usage / budgets), 034 (live planning), 037 (integrity) · **Migration:** `079_agent_reliability.sql`
 
 **Owner request (2026-10-16):** analyse all agent logs, chats, skills, rules, directives and posts and say where the system is weak;

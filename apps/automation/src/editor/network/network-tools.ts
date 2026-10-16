@@ -321,7 +321,7 @@ export function buildNetworkTools(d: NetworkToolDeps): EditorTool[] {
       'Для кожної ідеї в плані — рівно одне рішення на кожен ресурс з секцією плейбука: слот з treatment (unique; duplicate чи adapt з from_slot = номер унікального слота-джерела, не раніше за нього — інтервал обираєш ти, 0 теж можна) і reason, або запис у skips з причиною.',
       'Ресурс, що вже на per_day.max, код пропускає сам (cadence). Експеримент за директивою менеджера — слот з directive_id. Код перевіряє частоти, квоти експериментів, тихі години, формати плейбука (для unique) і жорсткі ліміти платформ (для duplicate/adapt).',
     ].join(' '),
-    kind: 'terminal', roles: ['planner'], repeatError: 'same_plan_rejected',
+    kind: 'terminal', roles: ['planner'], repeatError: 'same_plan_rejected', placeholdersAbsent: true,
     input: SubmitNetworkPlanInput,
     execute: async (plan, ctx) => {
       const net = netOf(ctx);

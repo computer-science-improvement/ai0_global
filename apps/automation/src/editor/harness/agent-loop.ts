@@ -360,6 +360,8 @@ export class AgentLoop {
     } catch {
       return done(call.arguments, { error: 'invalid_json', details: 'arguments must be a JSON object' });
     }
+    // A plan's optional fields filled with "" or the nil UUID pass the schema (the nil UUID is a UUID) but are not values.
+    if (tool.placeholdersAbsent) args = dropPlaceholders(args);
     let parsed = tool.input.safeParse(args);
     if (!parsed.success) {
       // Spec 040 FR-005: models fill optional fields with "" or the nil UUID; read those as absent before giving up.

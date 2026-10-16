@@ -42,6 +42,20 @@ test('the loop retries validation without placeholders; a required field left em
   assert.deepEqual(seen, [{ topic: 'Сатурн' }]);
 });
 
+test('a plan tool drops "" and the nil UUID before validation, though the schema accepts them', async () => {
+  const seen: unknown[] = [];
+  const t = defineTool({
+    name: 'plan', description: 'x', kind: 'terminal', roles: ['planner'], placeholdersAbsent: true,
+    input: z.object({ slots: z.array(z.object({ time: z.string(), series: z.string().optional(), directive_id: z.string().uuid().optional() })) }),
+    execute: async (i) => { seen.push(i); return { ok: true }; },
+  });
+  const llm = new FakeLlm([{ calls: [{ name: 'plan', args: { slots: [{ time: '12:00', series: '', directive_id: NIL }] } }] }]);
+  const res = await new AgentLoop({ llm, recorder: new MemoryRecorder(), budget: new FakeBudget(), enabled: () => true })
+    .run({ role: 'planner', channelKey: 'ch', model: resolveModel('planner', () => undefined), system: 's', user: 'u', tools: [t] });
+  assert.equal(res.status, 'ok');
+  assert.deepEqual(seen, [{ slots: [{ time: '12:00' }] }]);
+});
+
 test('a verbatim resubmission of a rejected plan: same_plan_rejected with the earlier errors as a numbered checklist', async () => {
   let runs = 0;
   const t = defineTool({

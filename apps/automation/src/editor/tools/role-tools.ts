@@ -217,7 +217,7 @@ export function buildRoleTools(d: RoleToolDeps): EditorTool[] {
   const submitPlan = defineTool({
     name: 'submit_plan',
     description: 'Зберегти план на день плану (сьогодні; у режимі апруву ввечері — завтра) (завершує роботу). Код перевіряє кількість, час, тихі години, інтервали, формати, частку експериментів, експерименти за директивою (directive_id), серії за розкладом (slot.series або skipped_series з причиною) і правила власника (закріплені пости, заборонені вікна, частота) — при помилці виправ і надішли знову.',
-    kind: 'terminal', roles: ['planner'], repeatError: 'same_plan_rejected',
+    kind: 'terminal', roles: ['planner'], repeatError: 'same_plan_rejected', placeholdersAbsent: true,
     input: SubmitPlanInput,
     execute: async (plan, ctx) => {
       const card = cardFrom(ctx);
