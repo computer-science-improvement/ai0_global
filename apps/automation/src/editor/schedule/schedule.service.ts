@@ -99,6 +99,31 @@ export class ScheduleService {
     return this.scopeOf(orch);
   }
 
+  /** Spec 040 FR-013: the scope a slot belongs to (@manager names a slot, not an agent). */
+  async scopeBySlot(slotId: string): Promise<ScheduleScope | Fail> {
+    const slot = await this.d.plans.getSlot(slotId);
+    if (!slot) return { error: 'slot_not_found', status: 404 };
+    return this.scopeByChannel(slot.channelKey);
+  }
+
+  /**
+   * Spec 040 FR-013: the scope @manager names in chat — an agent handle (`@loko`), a channel key (`@loko_channel`),
+   * a resource ref (`telegram:@x`, `instagram:123`) or a bare name (`loko`).
+   */
+  async scopeByTarget(target: string): Promise<ScheduleScope | Fail> {
+    const t = target.trim();
+    const ref = t.match(/^([a-z]+):(.+)$/);
+    if (ref) {
+      if (ref[1] === 'telegram') return this.scopeByChannel(ref[2].startsWith('@') ? ref[2] : `@${ref[2]}`);
+      const orch = await this.d.agents.findTop('orchestrator', 'resource', t);
+      return orch ? this.scopeOf(orch) : { error: 'no_agent', details: `no agent runs ${t}`, status: 404 };
+    }
+    const name = t.replace(/^@/, '');
+    const a = await this.d.agents.getByHandle(name);
+    if (a) return this.scopeOf(a);
+    return this.scopeByChannel(`@${name}`);
+  }
+
   private playbookOf(sc: ScheduleScope): Playbook | null {
     return sc.net.playbook ? normalizePlaybook(sc.net.playbook) : null;
   }
@@ -595,6 +620,26 @@ export class ScheduleService {
     if (b) return { error: 'blackout_window', details: `${m[2]}:${m[3]} is inside the blackout ${b.atLocal}–${b.untilLocal} (${clock.tz})`, status: 400 };
     const warnings = isQuietHour(Number(m[2]), clock.quiet.start, clock.quiet.end) ? ['quiet_hours'] : [];
     return { slot, to, summary: `Move ${label}: ${when(slot.scheduledAt)} → ${when(to)} (${clock.tz})`, warnings };
+  }
+
+  /**
+   * Spec 040 FR-013: `regenerate` — write a planned slot now (the executor runs at once instead of at its time). Only a
+   * planned content slot of this scope within the change horizon; a duplicate / adapt waits for its source.
+   */
+  async prepareRegenerate(sc: ScheduleScope, slotId: string): Promise<{ slot: EditorSlot; summary: string } | Fail> {
+    const slot = await this.d.plans.getSlot(slotId);
+    if (!slot || slot.channelKey !== sc.card.channelKey) return { error: 'slot_not_found', status: 404 };
+    if (slot.kind !== 'content') return { error: 'slot_not_runnable', details: 'reserved slots are not written by the editor', status: 409 };
+    if (slot.status !== 'planned') {
+      return { error: 'slot_not_planned', details: `the slot is ${slot.status}; only a planned slot can be written now — for today's other slots use propose_replan_today`, status: 409 };
+    }
+    if (slot.treatment === 'duplicate' || slot.treatment === 'adapt') {
+      return { error: 'derived_slot', details: `a ${slot.treatment} is written from its source once the source is written`, status: 409 };
+    }
+    if (slot.scheduledAt.getTime() > this.now().getTime() + SLOT_CHANGE_HOURS * 3600_000) return { error: 'slot_too_far', details: `only slots within the next ${SLOT_CHANGE_HOURS} h`, status: 400 };
+    const ref = slot.resourceRef ?? `telegram:${slot.channelKey}`;
+    const tz = this.clocks(sc)[ref]?.tz ?? sc.card.timezone;
+    return { slot, summary: `Write "${slot.topic.slice(0, 80)}" on ${ref} now (planned for ${localDate(slot.scheduledAt, tz)} ${localTimeLabel(slot.scheduledAt, tz)}, ${tz})` };
   }
 
   async applySlotChange(slotId: string, op: 'move' | 'skip', from: Date, to: Date | null): Promise<{ slot: EditorSlot } | Fail> {

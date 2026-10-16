@@ -162,7 +162,7 @@ import { ApprovalStatsRepository } from './approval/approval-stats';
 import { AutonomyService, ReadyForAutonomy, readyForAutonomyText } from './approval/autonomy';
 import { ScheduleService } from './schedule/schedule.service';
 import { ScheduleRepository } from './schedule/schedule.repository';
-import { buildScheduleTools, registerScheduleActions } from './schedule/schedule-tools';
+import { buildScheduleTools, registerScheduleActions, registerSlotRunActions } from './schedule/schedule-tools';
 import { SCHEDULE_SERVICE, ScheduleController } from './schedule/schedule.controller';
 import { buildCatalog } from '../data/data-catalog';
 import { kyivMonthDay } from '../data/data-query';
@@ -611,6 +611,8 @@ export class AgentsUpkeep implements OnModuleInit {
 /** Owner-confirmed mutations proposed by @ai0 and channel agents in the chat (spec 018 FR-005). */
 function registerAgentActions(infra: AgentInfra, svc: AgentsService, ops: EditorOpsService): void {
   const a = infra.actions;
+  // Spec 040 FR-013: the chat's slot_regenerate / replan_today cards run the editor ops.
+  registerSlotRunActions(a, ops);
   a.register('create_agent', async (p) => {
     const r = await infra.creator.create(p);
     if ('error' in r) throw new Error(`${r.error}${r.details ? `: ${typeof r.details === 'string' ? r.details : JSON.stringify(r.details)}` : ''}`);

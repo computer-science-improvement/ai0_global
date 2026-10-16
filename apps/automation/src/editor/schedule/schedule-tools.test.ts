@@ -29,8 +29,9 @@ test('the propose tools answer needs_explicit_request without a request in the l
     assert.equal(((await tools[name].execute(input as any, ctx)) as any).error, 'needs_explicit_request', name);
   }
   assert.equal(proposed.length, 0);
-  assert.deepEqual(tools.get_schedule.roles, ['composer']);
-  assert.ok(Object.values(tools).every((t) => t.roles.length === 1 && t.roles[0] === 'composer'));
+  // Spec 040 FR-013: chat-only (never in an autonomous run); @manager gets the read tool and the slot cards.
+  assert.deepEqual(tools.get_schedule.roles, ['composer', 'manager']);
+  assert.ok(Object.values(tools).every((t) => t.chatOnly === true && t.roles.includes('composer')));
 });
 
 test('series ops: owner edits lock the series; the card shows a human diff; the staleness key follows content and lock', () => {

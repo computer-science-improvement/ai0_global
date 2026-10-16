@@ -9,7 +9,8 @@ import { hasAgentChangeIntent, unquoted } from '../agents/mentions';
 const SCHEDULE_VERBS = [
   'перенеси', 'пересунь', 'посунь', 'зсунь', 'перемісти', 'пропусти', 'скасуй', 'відміни', 'постав', 'додай', 'прибери', 'закріпи',
   'заборони', 'не публікуй з', 'не пости з', 'перенести', 'пропустити', 'скасувати', 'отмени', 'пропусти',
-  'move', 'shift', 'skip', 'cancel', 'reschedule', 'pin ', 'block ', 'blackout',
+  'перепиши', 'перегенеруй', 'переплануй', 'напиши зараз',
+  'move', 'shift', 'skip', 'cancel', 'reschedule', 'pin ', 'block ', 'blackout', 'regenerate', 'rewrite', 'replan',
 ];
 const TIME_RE = /(?:^|[^\d])([01]?\d|2[0-3])[:.][0-5]\d(?!\d)/;
 const CADENCE_RE = /(щодня|щоранку|щовечора|щотижня|будн|вихідн|кожн|понеділ|вівтор|серед|четвер|пʼятниц|п'ятниц|субот|неділ|daily|weekday|weekend|every|monday|tuesday|wednesday|thursday|friday|saturday|sunday)/iu;

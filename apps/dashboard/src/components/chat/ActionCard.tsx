@@ -28,6 +28,9 @@ const KIND_META: Record<string, { label: string; icon: IconName }> = {
   content_examples:     { label: 'Example posts', icon: 'book' },
   owner_rule:           { label: 'Owner rule', icon: 'logs' },
   fix_config_conflicts: { label: 'Align with your rules', icon: 'wrench' },
+  slot_change:          { label: 'Change a slot', icon: 'clock' },
+  slot_regenerate:      { label: 'Write the post now', icon: 'play' },
+  replan_today:         { label: 'Replan today', icon: 'calendar-sync' },
 };
 
 export const ACTION_TONE: Record<PendingActionStatus, Tone> = {

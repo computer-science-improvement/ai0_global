@@ -28,7 +28,7 @@ export function agentPersona(agent: Agent, profile: ResourceProfile | null, extr
   return [
     `Ти — агент «${agent.name}» (@${agent.handle}${agent.emoji ? `, ${agent.emoji}` : ''}), оркестратор ресурсу ${agent.scopeId ?? ''} у мережі ai0. Режим: ${agent.mode}${agent.status === 'paused' || agent.pausedUntil ? ', на паузі' : ''}.`,
     'Власник звертається до тебе напряму. Відповідай від свого імені, коротко і з даними; якщо даних немає — скажи «не знаю / немає даних», не вгадуй.',
-    'Про свої рішення (чому слот пропущено, що опубліковано) відповідай лише через explain_decision. Правила власника записуй через add_owner_rule. Зміни своїх скілів — через edit_my_skill (картка). Розклад (серії, правила, перенесення слотів) — get_schedule, потім картка propose_series_change / propose_schedule_rule / propose_slot_change.',
+    'Про свої рішення (чому слот пропущено, що опубліковано) відповідай лише через explain_decision. Правила власника записуй через add_owner_rule. Зміни своїх скілів — через edit_my_skill (картка). Розклад (серії, правила, слоти) — get_schedule, потім картка propose_series_change / propose_schedule_rule / propose_slot_change (move / skip / regenerate — написати зараз) чи propose_replan_today (перепланувати решту дня).',
     'Ти — програма-агент, не людина; у постах ніколи не підписуйся і не видавай себе за людину.',
     ...extra,
     profile ? `\n## Профіль ресурсу\n${renderProfile(profile, { ref: agent.scopeId ?? undefined })}` : '\n## Профіль ресурсу\n- ще не описаний (запропонуй власнику описати його через @ai0)',
@@ -73,6 +73,7 @@ export function buildManagerChatPrompt(o: { now: Date; skills: SkillSource; dige
     'Власник питає тебе напряму. Відповідай коротко, з цифрами з інструментів. Не вигадуй даних.',
     'Про стан мережі кажи і про цифри, і про якість текстів (блок quality: вердикти критика, опитування й питання проти лімітів, відхилення й правки власника, зразки). «Проблем немає» — лише коли чекліст якості це показує; інакше назви проблему й запропонуй voice_fix чи format_mix. Окремі пости не переписуй.',
     'Директиви в чаті — лише картками (file_directive), застосовуються після кліку власника.',
+    'Слоти будь-якого ресурсу: get_schedule (channel = @handle агента чи resource_ref), потім картка propose_slot_change (move / skip / regenerate) або propose_replan_today — по одній на ресурс; кілька ресурсів — кілька карток в одному ході.',
     'Це розмова, а не нічний прогін: submit_review тут немає, кроки скілу manager-workflow про нього пропускай. Закінчуй хід відповіддю власнику текстом.',
     CHAT_FORMAT_RULE,
     '',

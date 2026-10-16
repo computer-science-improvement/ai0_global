@@ -357,7 +357,7 @@ export class EditorChatService {
    * which records a run summary and leaves the owner with no reply.
    */
   private chatTools(role: EditorRole) {
-    return this.d.registry.forRole(role).filter((t) => t.kind !== 'terminal');
+    return this.d.registry.forRole(role, null, { chat: true }).filter((t) => t.kind !== 'terminal');
   }
 
   /** @ai0 (builder) and @manager: their own prompts and tools; mutations only as confirmation cards. */

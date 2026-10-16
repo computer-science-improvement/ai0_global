@@ -12,7 +12,9 @@ import { SERIES_OPS, SeriesFields } from './series-change';
 
 /**
  * Chat steering of the schedule (spec 023 FR-006): composer and agent chat only (the tools need a chat
- * context and are never given to autonomous roles). One read tool and three proposals; each proposal is
+ * context and are `chatOnly`: never given to autonomous roles). Spec 040 FR-013: @manager gets the read tool and the
+ * slot cards for any resource (named by `channel` or by the slot), with `regenerate` and `propose_replan_today`.
+ * One read tool and the proposals; each proposal is
  * validated now and again at Apply (a stale card fails), and needs an explicit request in the owner's last
  * message. Card summaries are English (the dashboard shows them); results for the model stay data.
  */
@@ -23,16 +25,39 @@ export interface ScheduleToolDeps {
   now?:     () => Date;
 }
 
-export const SCHEDULE_ACTIONS = ['series_change', 'schedule_rule', 'slot_change'] as const;
+export const SCHEDULE_ACTIONS = ['series_change', 'schedule_rule', 'slot_change', 'slot_regenerate', 'replan_today'] as const;
+/** Spec 040 FR-013: write a planned slot now / replan the rest of today (handlers need the editor ops: registerAgentActions). */
+export const SLOT_REGENERATE_KIND = 'slot_regenerate';
+export const REPLAN_TODAY_KIND = 'replan_today';
 
-async function scopeOf(d: ScheduleToolDeps, ctx: ToolContext): Promise<ScheduleScope | Fail> {
+/** What a tool call names: a target (@handle, channel, resource ref) and / or a slot. */
+interface ScopeTarget { channel?: string | null; slotId?: string | null }
+
+/**
+ * The schedule a chat call works on (spec 040 FR-013). A channel agent: its own (another target is out of scope).
+ * @manager / @ai0: the slot's, else the named target's, else the chat's channel.
+ */
+async function scopeOf(d: ScheduleToolDeps, ctx: ToolContext, t: ScopeTarget = {}): Promise<ScheduleScope | Fail> {
   const agent = (ctx.extras?.agent as Agent | null | undefined) ?? null;
-  if (agent && agent.kind !== 'builder' && agent.kind !== 'manager') return d.schedule.scopeOf(agent);
+  if (agent && agent.kind !== 'builder' && agent.kind !== 'manager') {
+    const own = await d.schedule.scopeOf(agent);
+    if (isFail(own) || !t.channel) return own;
+    const other = await d.schedule.scopeByTarget(t.channel);
+    if (!isFail(other) && other.agent.id !== own.agent.id) {
+      return { error: 'out_of_scope', details: `@${own.agent.handle} керує лише своїм розкладом; розклад ${t.channel} — у @${other.agent.handle} або @manager` };
+    }
+    return own;
+  }
+  if (t.slotId) return d.schedule.scopeBySlot(t.slotId);
+  if (t.channel) return d.schedule.scopeByTarget(t.channel);
   const x = chatExtras(ctx);
   const key = x.chat.channelKey ?? ctx.channelKey ?? (ctx.extras?.card as EditorCard | undefined)?.channelKey ?? null;
-  if (!key) return { error: 'no_channel', details: 'незрозуміло, про який канал мова — звернись до агента через @handle або назви канал' };
+  if (!key) return { error: 'no_channel', details: 'назви ресурс: channel = @handle агента, @канал або resource_ref (telegram:@x)' };
   return d.schedule.scopeByChannel(key);
 }
+
+const CHANNEL_ARG = z.string().min(2).max(200).optional()
+  .describe('Чий розклад: @handle агента, @канал або resource_ref. Агенту каналу не потрібно (лише свій); @manager — обовʼязково, якщо немає slot_id');
 
 const outFail = (f: Fail) => ({ error: f.error, ...(f.details !== undefined ? { details: f.details } : {}) });
 
@@ -55,13 +80,14 @@ export function buildScheduleTools(d: ScheduleToolDeps): EditorTool[] {
   const getSchedule = defineTool({
     name: 'get_schedule',
     description: 'Розклад агента: серії (хто власник, чи заблоковані власником), правила власника (закріплені пости, заборонені вікна, частота), заплановані слоти на найближчі 48 год і резервні (рекламні) слоти. Час — у часовому поясі кожного ресурсу.',
-    kind: 'read', roles: ['composer'],
+    kind: 'read', roles: ['composer', 'manager'], chatOnly: true,
     input: z.object({
+      channel:      CHANNEL_ARG,
       resource_ref: z.string().min(3).max(200).optional(),
       days:         z.number().int().min(1).max(7).default(7),
     }),
-    execute: async ({ resource_ref, days }, ctx) => {
-      const sc = await scopeOf(d, ctx);
+    execute: async ({ channel, resource_ref, days }, ctx) => {
+      const sc = await scopeOf(d, ctx, { channel: channel ?? resource_ref ?? null });
       if (isFail(sc)) return outFail(sc);
       const t = now();
       const from = localDate(t, sc.card.timezone);
@@ -82,7 +108,7 @@ export function buildScheduleTools(d: ScheduleToolDeps): EditorTool[] {
   const proposeSeries = defineTool({
     name: 'propose_series_change',
     description: 'Запропонувати власнику зміну серії (картка Apply): add — нова серія; update — змінити поля (cadence daily@HH:MM або weekly:mon,thu@HH:MM у часі ресурсу, format, brief, source, source_mode); pause / resume / remove. Після Apply серію веде власник (заблокована для агента). Лише коли власник прямо попросив в останньому повідомленні.',
-    kind: 'act', roles: ['composer'],
+    kind: 'act', roles: ['composer'], chatOnly: true,
     input: z.object({ op: z.enum(SERIES_OPS), series: SeriesFields }),
     execute: async ({ op, series }, ctx) => {
       if (!requested(ctx)) return NEEDS_CHANGE_REQUEST;
@@ -98,7 +124,7 @@ export function buildScheduleTools(d: ScheduleToolDeps): EditorTool[] {
   const proposeRule = defineTool({
     name: 'propose_schedule_rule',
     description: 'Запропонувати правило розкладу (картка Apply): kind pin — закріплений пост о at_local (format + brief або series_name); blackout — без постів між at_local і until_local; frequency — per_day_min/max замість плейбука. days: 0 = неділя (null — щодня), час — у часовому поясі ресурсу. op add | update (rule_id + змінені поля) | disable (rule_id). Лише на пряме прохання власника.',
-    kind: 'act', roles: ['composer'],
+    kind: 'act', roles: ['composer'], chatOnly: true,
     input: z.object({
       op:      z.enum(['add', 'update', 'disable']),
       rule_id: z.string().uuid().optional(),
@@ -132,13 +158,18 @@ export function buildScheduleTools(d: ScheduleToolDeps): EditorTool[] {
 
   const proposeSlot = defineTool({
     name: 'propose_slot_change',
-    description: `Запропонувати перенести (move, to_local HH:MM або YYYY-MM-DD HH:MM у часі ресурсу) або пропустити (skip) запланований слот контенту в найближчі ${SLOT_CHANGE_HOURS} год (id з get_schedule). Картка Apply; лише на пряме прохання власника.`,
-    kind: 'act', roles: ['composer'],
-    input: z.object({ slot_id: z.string().uuid(), op: z.enum(['move', 'skip']), to_local: z.string().max(20).optional() }),
+    description: `Запропонувати змінити запланований слот контенту в найближчі ${SLOT_CHANGE_HOURS} год (id з get_schedule): move — перенести (to_local HH:MM або YYYY-MM-DD HH:MM у часі ресурсу); skip — пропустити; regenerate — написати пост зараз (автор запускається одразу, а не в час слота). Одна картка Apply на слот; лише на пряме прохання власника.`,
+    kind: 'act', roles: ['composer', 'manager'], chatOnly: true,
+    input: z.object({ slot_id: z.string().uuid(), op: z.enum(['move', 'skip', 'regenerate']), to_local: z.string().max(20).optional() }),
     execute: async ({ slot_id, op, to_local }, ctx) => {
       if (!requested(ctx)) return NEEDS_CHANGE_REQUEST;
-      const sc = await scopeOf(d, ctx);
+      const sc = await scopeOf(d, ctx, { slotId: slot_id });
       if (isFail(sc)) return outFail(sc);
+      if (op === 'regenerate') {
+        const r = await d.schedule.prepareRegenerate(sc, slot_id);
+        if (isFail(r)) return outFail(r);
+        return propose(d, ctx, SLOT_REGENERATE_KIND, { agent_id: sc.agent.id, slot_id, channel_key: sc.card.channelKey }, r.summary, sc.agent.id);
+      }
       const prep = await d.schedule.prepareSlotChange(sc, slot_id, op, to_local ?? null);
       if (isFail(prep)) return outFail(prep);
       return propose(d, ctx, 'slot_change', {
@@ -147,7 +178,41 @@ export function buildScheduleTools(d: ScheduleToolDeps): EditorTool[] {
     },
   });
 
-  return [getSchedule, proposeSeries, proposeRule, proposeSlot];
+  const proposeReplan = defineTool({
+    name: 'propose_replan_today',
+    description: 'Запропонувати перепланувати решту сьогоднішнього дня ресурсу (картка Apply): планувальник замінює майбутні заплановані слоти; написані, ті, що вже пишуться, закріплені й резервні лишаються. Одна картка на ресурс (кілька ресурсів — кілька викликів); лише на пряме прохання власника.',
+    kind: 'act', roles: ['composer', 'manager'], chatOnly: true,
+    input: z.object({ channel: CHANNEL_ARG, reason: z.string().max(300).optional().describe('Що змінити в плані — піде в підсумок картки') }),
+    execute: async ({ channel, reason }, ctx) => {
+      if (!requested(ctx)) return NEEDS_CHANGE_REQUEST;
+      const sc = await scopeOf(d, ctx, { channel: channel ?? null });
+      if (isFail(sc)) return outFail(sc);
+      const tz = sc.card.timezone;
+      return propose(d, ctx, REPLAN_TODAY_KIND, { agent_id: sc.agent.id, channel_key: sc.card.channelKey, reason: reason ?? null },
+        `Replan the rest of today (${localDate(now(), tz)}) for ${sc.card.channelKey} (@${sc.agent.handle}): future planned slots are replaced; written, running and pinned slots stay${reason ? `. ${reason}` : ''}`,
+        sc.agent.id);
+    },
+  });
+
+  return [getSchedule, proposeSeries, proposeRule, proposeSlot, proposeReplan];
+}
+
+/**
+ * Spec 040 FR-013: the slot_regenerate / replan_today card handlers. They run the editor ops (registered where the ops
+ * exist); the ops re-check at Apply (the slot is still planned, the channel is not off, no replan is running).
+ */
+export function registerSlotRunActions(
+  actions: Pick<PendingActionsService, 'register'>,
+  ops: { runSlot(id: string, o: { wait?: boolean }): Promise<unknown>; replan(key: string, o: { wait?: boolean }): Promise<unknown> },
+): void {
+  actions.register(SLOT_REGENERATE_KIND, async (p) => {
+    await ops.runSlot(String(p.slot_id), { wait: false });
+    return { started: true, slot: String(p.slot_id) };
+  });
+  actions.register(REPLAN_TODAY_KIND, async (p) => {
+    await ops.replan(String(p.channel_key), { wait: false });
+    return { started: true, channel: String(p.channel_key) };
+  });
 }
 
 /** The three card handlers (spec 023 FR-006): re-validated at Apply; a stale card throws → `failed`. */

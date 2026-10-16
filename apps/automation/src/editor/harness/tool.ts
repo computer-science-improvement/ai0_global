@@ -35,6 +35,8 @@ export interface EditorTool<I = any, O = any> {
   repeatError?: string;
   /** Spec 040 FR-008: its errors judge the content, not the call (a lint) — the breaker never switches it off. */
   keepOnError?: boolean;
+  /** Spec 040 FR-013: needs a chat (cards, the owner's message) — offered to the role in chat only, never in its autonomous runs. */
+  chatOnly?:   boolean;
   execute(input: I, ctx: ToolContext): Promise<O | ToolError>;
 }
 
@@ -47,6 +49,7 @@ export function defineTool<S extends z.ZodType, O>(t: {
   timeoutMs?:  number;
   repeatError?: string;
   keepOnError?: boolean;
+  chatOnly?:   boolean;
   execute(input: z.infer<S>, ctx: ToolContext): Promise<O | ToolError>;
 }): EditorTool<z.infer<S>, O> {
   return t as unknown as EditorTool<z.infer<S>, O>;

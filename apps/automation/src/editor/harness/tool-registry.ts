@@ -20,10 +20,12 @@ export class ToolRegistry {
     return [...this.byName.values()];
   }
 
-  forRole(role: EditorRole, allow?: string[] | null): EditorTool[] {
+  /** `chat`: a chat turn also gets the role's chat-only tools (spec 040 FR-013). */
+  forRole(role: EditorRole, allow?: string[] | null, opts: { chat?: boolean } = {}): EditorTool[] {
     const allowSet = allow && allow.length ? new Set(allow) : null;
     return this.all().filter((t) =>
       t.roles.includes(role)
+      && (!t.chatOnly || !!opts.chat)
       // Terminal tools are the role's way to finish — never filtered out by a channel allowlist.
       && (!allowSet || allowSet.has(t.name) || t.kind === 'terminal'));
   }
