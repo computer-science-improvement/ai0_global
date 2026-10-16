@@ -11,7 +11,34 @@ import { isProtectedSkill } from '../skills/skill-library';
 import { lintSkill, SKILL_ROLES } from './skill-lint';
 import type { SkillStore } from './skill-store';
 
+/** Spec 040 FR-010: the pending-action kind of a rule the owner confirms with a card. */
+export const OWNER_RULE_KIND = 'owner_rule';
 export const RULE_OVERLAP_MIN = 0.5;
+/** Spec 040 FR-010: how many of the owner's last messages a rule is compared with. */
+export const RULE_SOURCE_MESSAGES = 5;
+const KEBAB_RE = /(?<![\p{L}\p{N}_-])[a-z][a-z0-9]*(?:-[a-z0-9]+)+(?![\p{L}\p{N}_-])/gu;
+
+/**
+ * Spec 040 FR-010: the skills a rule names (kebab-case names in a rule that speaks of a skill) that exist neither for this
+ * agent nor as a shared skill — a rule pointing at a missing skill («завжди дивись poster-bank») only misleads the writer.
+ */
+export async function unknownSkills(rule: string, known: { get(name: string): unknown } | undefined, shared: Pick<SkillStore, 'findShared'>): Promise<string[]> {
+  if (!/скіл|skill/i.test(rule)) return [];
+  const out: string[] = [];
+  for (const name of new Set(rule.toLowerCase().match(KEBAB_RE) ?? [])) {
+    if (known?.get(name)) continue;
+    if (await shared.findShared(name).catch(() => null)) continue;
+    out.push(name);
+  }
+  return out;
+}
+
+/** The owner's messages a rule paraphrases, best match first (spec 040 FR-010). */
+export function ruleSources(rule: string, recent: string[]): Array<{ text: string; overlap: number }> {
+  return recent.slice(-RULE_SOURCE_MESSAGES).filter((m) => m.trim())
+    .map((m) => ({ text: m, overlap: ruleOverlap(rule, m) }))
+    .sort((a, b) => b.overlap - a.overlap);
+}
 
 export interface AgentChatToolDeps {
   pool:    Pick<Pool, 'query'>;
@@ -34,6 +61,17 @@ export function slotScopeOf(raw: string): { channelKey: string | null; resourceR
   const name = (m ? m[2] : v).replace(/^@+/, '');
   if (!name) return { channelKey: null, resourceRef: null };
   return { channelKey: `@${name}`, resourceRef: `telegram:@${name}` };
+}
+
+/** Spec 040 FR-010: the owner applied an `owner_rule` card — the rule is stored with the quotes it came from. */
+export async function applyOwnerRule(memory: Pick<EditorMemoryRepository, 'add'>, p: Record<string, unknown>): Promise<{ id: number; channel: string }> {
+  const channel = String(p.channel ?? '');
+  const text = String(p.text ?? '').trim();
+  const kind = p.kind === 'avoid' ? 'avoid' : 'rule';
+  if (!channel || text.length < 8) throw new Error('invalid_rule: the card has no channel or rule text');
+  const quotes = Array.isArray(p.quotes) ? p.quotes.map(String).filter(Boolean) : [];
+  const id = await memory.add(channel, kind, text, { source: 'owner_card' }, 'owner', quotes.join('\n---\n').slice(0, 2000) || null);
+  return { id, channel };
 }
 
 /**
@@ -91,19 +129,34 @@ export function buildAgentChatTools(d: AgentChatToolDeps): EditorTool[] {
 
   const addOwnerRule = defineTool({
     name: 'add_owner_rule',
-    description: 'Записати правило власника в памʼять каналу (діє на всі прогони агента). Лише те, що власник сказав у ОСТАННЬОМУ повідомленні — своїми словами, коротко.',
+    description: 'Записати правило власника в памʼять каналу (діє на всі прогони агента). Лише те, що власник сказав у своїх останніх повідомленнях — його словами, коротко й конкретно. Якщо слова не збігаються з його повідомленнями, правило піде йому карткою на підтвердження.',
     kind: 'act', roles: ['composer'],
     input: z.object({ text: z.string().min(8).max(400), kind: z.enum(['rule', 'avoid']).default('rule') }),
     execute: async ({ text, kind }, ctx) => {
       const x = chatExtras(ctx);
       const key = channelOf(ctx);
       if (!key) return { error: 'no_channel' };
-      const overlap = ruleOverlap(text, x.ownerText);
-      if (overlap < RULE_OVERLAP_MIN) {
-        return { error: 'not_owner_words', details: `правило має переказувати останнє повідомлення власника (збіг ${Math.round(overlap * 100)}%)` };
+      const missing = await unknownSkills(text, ctx.extras?.skills as { get(name: string): unknown } | undefined, d.skills);
+      if (missing.length) return { error: 'unknown_skill', details: `таких скілів немає: ${missing.join(', ')} — назви наявний скіл або прибери посилання` };
+      const sources = ruleSources(text, x.ownerRecent?.length ? x.ownerRecent : [x.ownerText]);
+      const best = sources[0];
+      if (best && best.overlap >= RULE_OVERLAP_MIN) {
+        const id = await d.memory.add(key, kind, text, { source: 'chat', agent: agentOf(ctx)?.handle ?? null, overlap: Math.round(best.overlap * 100) / 100 }, 'owner', best.text.slice(0, 2000));
+        return { ok: true, id, channel: key };
       }
-      const id = await d.memory.add(key, kind, text, { source: 'chat', agent: agentOf(ctx)?.handle ?? null }, 'owner');
-      return { ok: true, id, channel: key };
+      // Spec 040 FR-010: not the owner's words (a paraphrase, or text from elsewhere) — the owner decides with a card, never refused.
+      const quotes = sources.filter((s) => s.overlap > 0).slice(0, 3).map((s) => s.text.slice(0, 400));
+      const a = agentOf(ctx);
+      const action = await d.actions.propose({
+        chatId: x.chat.chatId, agentId: a?.id ?? null, kind: OWNER_RULE_KIND,
+        payload: { channel: key, kind, text, quotes: quotes.length ? quotes : sources.slice(0, 2).map((s) => s.text.slice(0, 400)) },
+        summary: `Owner rule for ${key}: ${text}`,
+      });
+      try { x.onAction?.(action); } catch { /* UI stream only */ }
+      return {
+        ok: true, pending_action: action.id, stored: false,
+        note: `збіг із вашими словами ${Math.round((best?.overlap ?? 0) * 100)}% — правило піде власнику карткою; запишеться лише після його Apply`,
+      };
     },
   });
 

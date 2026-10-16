@@ -119,6 +119,11 @@ export function budgetRefusalText(error: string | null | undefined): string {
     + 'Work resumes at midnight Kyiv time, or as soon as the cap is raised on Spend → Budgets (/app/spend?tab=budgets).';
 }
 
+/** The owner's last messages, oldest first, ending with this one (spec 040 FR-010: a rule is matched against them). */
+export function ownerRecent(prior: Array<Pick<EditorChatMessage, 'role' | 'content'>>, text: string, n = 5): string[] {
+  return [...prior.filter((m) => m.role === 'user').map((m) => m.content).slice(-(n - 1)), text];
+}
+
 /** The previous assistant turn of the chat (spec 040 FR-009: a short "yes" answers it). */
 export function lastAssistantText(prior: Array<Pick<EditorChatMessage, 'role' | 'content'>>): string | null {
   for (let k = prior.length - 1; k >= 0; k--) if (prior[k].role === 'assistant') return prior[k].content;
@@ -302,6 +307,7 @@ export class EditorChatService {
         onDraft: (draft) => { touched.set(draft.id, draft); emit({ type: 'draft', draft: renderDraft(draft, (extras.card as EditorCard | undefined) ?? null) }); },
         agentIntent: ownerChangeIntent(text, lastAssistantText(prior)),
         ownerText: text,
+        ownerRecent: ownerRecent(prior, text),
         onAction: (a) => { actions.push(a); emit({ type: 'action', action: a }); },
         ...(agentCtx ? { agent: addressee, skills: agentCtx.skills } : {}),
       };
@@ -369,6 +375,7 @@ export class EditorChatService {
       chat: { chatId, channelKey: null },
       agentIntent: ownerChangeIntent(text, lastAssistantText(prior)),
       ownerText: text,
+      ownerRecent: ownerRecent(prior, text),
       onAction: (a) => emit({ type: 'action', action: a }),
       agent, skills: ctx.skills,
     };

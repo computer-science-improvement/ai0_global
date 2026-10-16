@@ -43,10 +43,15 @@ export class EditorMemoryRepository {
     return rows.map((r) => ({ id: Number(r.id), kind: r.kind, text: r.text, evidence: r.evidence, createdBy: r.created_by, createdAt: r.created_at }));
   }
 
-  async add(channelKey: string, kind: MemoryKind, text: string, evidence: unknown, createdBy: 'reviewer' | 'owner'): Promise<number> {
-    const { rows } = await this.pool.query(
-      `INSERT INTO editor_channel_memory (channel_key, kind, text, evidence, created_by) VALUES ($1, $2, $3, $4, $5) RETURNING id`,
-      [channelKey, kind, text, evidence == null ? null : JSON.stringify(evidence), createdBy]);
+  /** `sourceText` (spec 040 FR-010, migration 079): the owner's own words the rule came from. */
+  async add(channelKey: string, kind: MemoryKind, text: string, evidence: unknown, createdBy: 'reviewer' | 'owner', sourceText?: string | null): Promise<number> {
+    const { rows } = sourceText
+      ? await this.pool.query(
+        `INSERT INTO editor_channel_memory (channel_key, kind, text, evidence, created_by, source_text) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id`,
+        [channelKey, kind, text, evidence == null ? null : JSON.stringify(evidence), createdBy, sourceText])
+      : await this.pool.query(
+        `INSERT INTO editor_channel_memory (channel_key, kind, text, evidence, created_by) VALUES ($1, $2, $3, $4, $5) RETURNING id`,
+        [channelKey, kind, text, evidence == null ? null : JSON.stringify(evidence), createdBy]);
     return Number(rows[0].id);
   }
 

@@ -89,7 +89,7 @@ import { KeepPendingError, PendingActionsRepository, PendingActionsService } fro
 import { AgentCreator } from './agents/agent-creator';
 import { buildBuilderTools } from './agents/builder-tools';
 import { buildContentExamplesTool, CONTENT_EXAMPLES_KIND, examplesFromChoice, type ContentExamplesPayload } from './agents/content-examples';
-import { buildAgentChatTools } from './agents/agent-chat-tools';
+import { applyOwnerRule, buildAgentChatTools, OWNER_RULE_KIND } from './agents/agent-chat-tools';
 import type { AgentChatPort } from './chat/editor-chat.service';
 import { MetaAccountsRepository } from '../config/meta-accounts.repository';
 import { TikTokTokenService } from '../config/tiktok-token.service';
@@ -1466,6 +1466,8 @@ export const EDITOR_PROVIDERS = [
           const r = await new NetworkRepository(pool).setExamples(orch.id, examples, 'Example posts and warnings approved in the chat with @ai0');
           return { ...r, saved: examples.length, handle: orch.handle };
         });
+        // Spec 040 FR-010: an owner rule the owner confirmed with a card (its words did not match the chat closely enough).
+        infra.actions.register(OWNER_RULE_KIND, (p) => applyOwnerRule(repos.memory, p as Record<string, unknown>));
         // A directive the owner approved in the chat with @manager (spec 021): filed as owner-approved, never shadow.
         infra.actions.register('file_directive', async (p) => {
           const input = FileDirectiveInput.parse(p);

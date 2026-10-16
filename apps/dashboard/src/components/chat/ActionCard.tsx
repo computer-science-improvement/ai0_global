@@ -26,6 +26,7 @@ const KIND_META: Record<string, { label: string; icon: IconName }> = {
   detach_skill:         { label: 'Detach skill',      icon: 'ban' },
   edit_data_schema:     { label: 'Edit dataset description', icon: 'database' },
   content_examples:     { label: 'Example posts', icon: 'book' },
+  owner_rule:           { label: 'Owner rule', icon: 'logs' },
 };
 
 export const ACTION_TONE: Record<PendingActionStatus, Tone> = {
@@ -135,6 +136,27 @@ function SetBriefView({ p }: { p: Record<string, unknown> }) {
   );
 }
 
+/** Spec 040 FR-010: a rule whose words did not match the chat closely — the owner checks it against their own messages. */
+function OwnerRuleView({ p }: { p: Record<string, unknown> }) {
+  const quotes = strs(p.quotes);
+  return (
+    <>
+      {str(p.channel) && <Row label="Channel">{p.channel as string}</Row>}
+      {str(p.text) && <Row label={p.kind === 'avoid' ? 'Avoid' : 'Rule'}><LongText text={p.text as string} lines={6} /></Row>}
+      {quotes.length > 0 && (
+        <Row label="Your words">
+          <span style={{ display: 'grid', gap: 4 }}>
+            {quotes.map((q, i) => (
+              <span key={i} style={{ color: 'var(--color-ink-muted)', borderLeft: '2px solid var(--color-hairline)', paddingLeft: 8 }}><LongText text={q} lines={3} /></span>
+            ))}
+          </span>
+        </Row>
+      )}
+      <Row label="Then">the rule goes into the channel memory and applies to every run</Row>
+    </>
+  );
+}
+
 function ExamplesResult({ result }: { result: unknown }) {
   const r = obj(result);
   const saved = typeof r.saved === 'number' ? r.saved : null;
@@ -203,10 +225,11 @@ function PayloadView({ action }: { action: PendingAction }) {
   if (action.kind === 'update_agent') return <UpdateAgentView p={p} />;
   if (action.kind === 'write_skill') return <WriteSkillView p={p} />;
   if (action.kind === 'set_brief') return <SetBriefView p={p} />;
+  if (action.kind === 'owner_rule') return <OwnerRuleView p={p} />;
   return null;
 }
 
-const BOXED = new Set(['create_agent', 'update_agent', 'write_skill', 'set_brief']);
+const BOXED = new Set(['create_agent', 'update_agent', 'write_skill', 'set_brief', 'owner_rule']);
 
 export function ActionCard({ action }: { action: PendingAction }) {
   const decide = useDecideAction();

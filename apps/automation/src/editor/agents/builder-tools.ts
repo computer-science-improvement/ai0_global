@@ -18,6 +18,8 @@ export interface AgentChatExtras {
   agentIntent: boolean;
   /** The owner's latest message (add_owner_rule checks the rule paraphrases it). */
   ownerText:   string;
+  /** Spec 040 FR-010: the owner's last messages in this chat, oldest first, the latest included. */
+  ownerRecent?: string[];
   onAction?:   (a: PendingAction) => void;
 }
 
