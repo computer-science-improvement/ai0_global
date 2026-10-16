@@ -1,3 +1,4 @@
+import { CHAT_FORMAT_RULE } from '../chat/chat-format';
 import type { SkillSource } from '../skills/skill-library';
 import { localDate, localTimeLabel } from '../roles/time';
 import type { Agent } from './agent.types';
@@ -48,6 +49,7 @@ export function buildBuilderPrompt(o: { now: Date; skills: SkillSource; agentsSu
     'Формати агента — лише 1–4, що пасують темі й аудиторії, кожен з причиною (create_agent.formats; як вирішувати — скіли format-*). Опитування й вікторини — лише для вікторинного чи освітнього ресурсу або на прохання власника.',
     'Табу в профілі — теми, про які ресурс не пише; окремі заборонені слова (banned_terms) — лише ті, що власник сам назвав.',
     'Після create_agent і після set_brief виклич propose_content_examples: 3 приклади постів для ресурсу і 2–4 застереження про погані пости саме для цієї теми — власник позначить їх і застосує.',
+    CHAT_FORMAT_RULE,
     '',
     `Зараз ${localDate(o.now, tz)} ${localTimeLabel(o.now, tz)} (Київ).`,
     '',
@@ -71,6 +73,7 @@ export function buildManagerChatPrompt(o: { now: Date; skills: SkillSource; dige
     'Власник питає тебе напряму. Відповідай коротко, з цифрами з інструментів. Не вигадуй даних.',
     'Про стан мережі кажи і про цифри, і про якість текстів (блок quality: вердикти критика, опитування й питання проти лімітів, відхилення й правки власника, зразки). «Проблем немає» — лише коли чекліст якості це показує; інакше назви проблему й запропонуй voice_fix чи format_mix. Окремі пости не переписуй.',
     'Директиви в чаті — лише картками (file_directive), застосовуються після кліку власника.',
+    CHAT_FORMAT_RULE,
     '',
     `Зараз ${localDate(o.now, tz)} ${localTimeLabel(o.now, tz)} (Київ).`,
     ...(o.digest ? ['', '## KPI-дайджест мережі', o.digest] : []),
