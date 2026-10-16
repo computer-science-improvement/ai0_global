@@ -1,11 +1,9 @@
-// Directives of the MANAGER (spec 021 FR-009, spec 025 FR-019): the card shared
-// by the @manager "Directives" board and an orchestrator's "Inbox" tab — kind,
-// binding (DIRECTIVE / advice), structural / shadow flags, addressee, body,
-// rationale, the expected effect, evidence, the executor's change and its
-// verification, resolution, the owner's decision and the evaluated outcome —
-// plus the owner's Approve / Decline while a structural directive awaits them
-// and Uphold / Accept refusal / Discuss while a contested one does. Both lists
-// share a binding + kind filter kept in the URL (?binding=&kind=).
+// Directives of the MANAGER (spec 021 FR-009, spec 025 FR-019), shared by the @manager "Directives" board and an
+// orchestrator's "Inbox" tab. Each directive is a compact card (binding, kind, status, addressee, the first lines of the
+// body, whether it needs you); a click opens a dialog with the rest — rationale, expected effect, evidence, the
+// executor's change and its verification, resolution, the owner's decision, the evaluated outcome — and the owner's
+// Approve / Decline while a structural directive awaits them, Uphold / Accept refusal / Discuss while a contested one
+// does. Both lists share a binding + kind filter kept in the URL (?binding=&kind=).
 
 import { Link } from '@tanstack/react-router';
 import { useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
@@ -13,6 +11,7 @@ import { EmptyState, type Tone } from '../ui/primitives';
 import { Badge } from '../ui/Badge';
 import { Icon } from '../ui/Icon';
 import { RowActions, TableAction } from '../ui/table';
+import { Modal } from '../Modal';
 import { useConfirm } from '../ui/ConfirmDialog';
 import { toast } from '../ui/Toast';
 import { SegmentedTabs } from '../SegmentedTabs';
@@ -208,7 +207,7 @@ function ContestBlock({ d }: { d: Directive }) {
 }
 
 /** Uphold / Accept refusal / Discuss on a contested directive (spec 025 FR-008). */
-function ContestActions({ d }: { d: Directive }) {
+function ContestActions({ d, onDone }: { d: Directive; onDone?: () => void }) {
   const confirm = useConfirm();
   const decide = useContestDecision();
   const who = d.to ? `@${d.to}` : 'the orchestrator';
@@ -228,7 +227,7 @@ function ContestActions({ d }: { d: Directive }) {
         });
     if (!ok) return;
     decide.mutate({ id: d.id, decision }, {
-      onSuccess: () => toast.success(decision === 'uphold' ? 'Directive upheld — the executor is applying it' : 'Refusal accepted — the directive is rejected'),
+      onSuccess: () => { toast.success(decision === 'uphold' ? 'Directive upheld — the executor is applying it' : 'Refusal accepted — the directive is rejected'); onDone?.(); },
       onError: (e) => {
         const b = errorBody(e);
         if (b?.error === 'not_executable') toast.error(`It cannot be applied now: ${typeof b.details === 'string' ? b.details : 'a health or capability guard refused it'}. It stays contested.`);
@@ -251,17 +250,10 @@ function ContestActions({ d }: { d: Directive }) {
   );
 }
 
-export function DirectiveCard({ d, delay = 0, focused = false, show = 'to', showStatus = false }: {
-  d: Directive; delay?: number; focused?: boolean; show?: 'to' | 'from'; showStatus?: boolean;
-}) {
+/** Approve / Decline while a structural directive awaits the owner (spec 025). */
+function OwnerActions({ d, onDone }: { d: Directive; onDone?: () => void }) {
   const confirm = useConfirm();
   const decide = useDecideDirective();
-  const ref = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    if (focused) ref.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }, [focused]);
-
-  const who = show === 'to' ? d.to : d.from;
   const act = async (decision: 'approve' | 'decline') => {
     const target = `${DIRECTIVE_KIND_LABEL[d.kind]} ${d.binding === 'advice' ? 'advice' : 'directive'}${d.to ? ` to @${d.to}` : ''}`;
     const ok = decision === 'approve'
@@ -275,54 +267,63 @@ export function DirectiveCard({ d, delay = 0, focused = false, show = 'to', show
       : await confirm(`decline the ${target}`, { confirmLabel: 'Decline' });
     if (!ok) return;
     decide.mutate({ id: d.id, decision }, {
-      onSuccess: () => toast.success(decision === 'approve' ? 'Directive approved' : 'Directive declined'),
+      onSuccess: () => { toast.success(decision === 'approve' ? 'Directive approved' : 'Directive declined'); onDone?.(); },
       onError: (e) => toast.error(errorBody(e)?.error === 'not_awaiting_owner' ? 'This directive no longer awaits you — refreshed' : errorText(e)),
     });
   };
+  return (
+    <RowActions danger={<TableAction icon="x" danger label="Decline" title="Decline" disabled={decide.isPending} onClick={() => act('decline')} />}>
+      <TableAction icon="check" label="Approve" title="Approve" disabled={decide.isPending} onClick={() => act('approve')} />
+    </RowActions>
+  );
+}
 
+/** "Format shift directive" / "Advice". */
+function directiveTitle(d: Directive): string {
+  const kind = DIRECTIVE_KIND_LABEL[d.kind] ?? d.kind;
+  if (d.binding === 'advice') return d.kind === 'advice' ? 'Advice' : `${kind[0].toUpperCase()}${kind.slice(1)} advice`;
+  return `${kind[0].toUpperCase()}${kind.slice(1)} directive`;
+}
+
+/** Everything about one directive: the dialog body. */
+function DirectiveDetails({ d, show }: { d: Directive; show: 'to' | 'from' }) {
   const contested = d.status === 'contested';
-  const statusBadge = showStatus || contested || CLOSED_STATUSES.includes(d.status);
   const vchip = verificationChip(d);
   const change = describeChange(d.change);
   const unscored = d.status === 'evaluated' ? unscoredReason(d) : null;
-  const ring = focused ? 'var(--color-accent)' : d.status === 'awaiting_owner' || contested ? 'var(--color-warning-soft)' : null;
-
+  const who = show === 'to' ? d.to : d.from;
   return (
-    <div ref={ref} id={`directive-${d.id}`} className="card row-lift compose-rise"
-      style={{ padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 8, minWidth: 0, animationDelay: `${delay}ms`,
-        boxShadow: ring ? `inset 0 0 0 1px ${ring}` : undefined }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 12, minWidth: 0 }}>
       <div style={{ display: 'flex', gap: 5, alignItems: 'center', flexWrap: 'wrap' }}>
         {d.binding === 'advice'
           ? <Badge tone="neutral" title="Advice: the orchestrator may follow or decline it">advice</Badge>
           : <Badge tone="warning" title="Binding directive: the orchestrator carries it out, or contests it to you citing your rules or safety">DIRECTIVE</Badge>}
-        {(d.kind !== 'advice' || d.binding !== 'advice') && <span className="chip" style={{ fontSize: 11 }}>{DIRECTIVE_KIND_LABEL[d.kind] ?? d.kind}</span>}
-        {statusBadge && <Badge tone={DIRECTIVE_STATUS_TONE[d.status] ?? 'neutral'}>{DIRECTIVE_STATUS_LABEL[d.status] ?? d.status}</Badge>}
+        <Badge tone={DIRECTIVE_STATUS_TONE[d.status] ?? 'neutral'}>{DIRECTIVE_STATUS_LABEL[d.status] ?? d.status}</Badge>
         {d.structural && <Badge tone="warning" title="Structural: needs the owner's approval">structural</Badge>}
         {d.shadow && <Badge tone="neutral" title="Filed while the manager was in shadow mode">shadow</Badge>}
         {vchip && <Badge tone={vchip.tone} title={vchip.title}>{vchip.label}</Badge>}
         {d.outcome && <Badge tone={OUTCOME_TONE[d.outcome]}>{OUTCOME_LABEL[d.outcome]}</Badge>}
-        <span className="text-micro" style={{ marginLeft: 'auto', color: 'var(--color-ink-dim)', whiteSpace: 'nowrap' }} title={fmtDate(d.createdAt)}>
-          {fmtRelative(d.createdAt)}
-        </span>
+        {who && (
+          <span className="text-micro" style={{ marginLeft: 'auto', color: 'var(--color-ink-dim)' }}>
+            {show === 'to' ? 'to ' : 'from '}
+            <Link to="/app/agents/$handle" params={{ handle: who }} className="link-accent">@{who}</Link>
+          </span>
+        )}
       </div>
-      {who && (
-        <div className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>
-          {show === 'to' ? 'to ' : 'from '}
-          <Link to="/app/agents/$handle" params={{ handle: who }} className="link-accent">@{who}</Link>
-        </div>
-      )}
       <div className="text-body-sm" style={{ color: 'var(--color-ink)', overflowWrap: 'anywhere', whiteSpace: 'pre-wrap' }}>{d.body}</div>
-      {d.rationale && <Line label="why">{d.rationale}</Line>}
-      <ExpectedLine d={d} />
-      <KeyValues label="params" value={d.params && Object.keys(d.params).length ? d.params : null} />
-      <KeyValues label="evidence" value={d.evidence} />
-      {change && <Line label="change">{change}</Line>}
-      {d.execError && (d.status === 'accepted' || d.status === 'failed') && (
-        <div className="text-micro" style={{ color: 'var(--color-danger)', overflowWrap: 'anywhere' }}>
-          <span style={{ color: 'var(--color-ink-dim)' }}>executor · </span>{d.execError}
-          {d.execAttempts ? <span style={{ color: 'var(--color-ink-dim)' }}> · {d.execAttempts} attempt{d.execAttempts === 1 ? '' : 's'}</span> : null}
-        </div>
-      )}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 6, minWidth: 0 }}>
+        {d.rationale && <Line label="why">{d.rationale}</Line>}
+        <ExpectedLine d={d} />
+        <KeyValues label="params" value={d.params && Object.keys(d.params).length ? d.params : null} />
+        <KeyValues label="evidence" value={d.evidence} />
+        {change && <Line label="change">{change}</Line>}
+        {d.execError && (d.status === 'accepted' || d.status === 'failed') && (
+          <div className="text-micro" style={{ color: 'var(--color-danger)', overflowWrap: 'anywhere' }}>
+            <span style={{ color: 'var(--color-ink-dim)' }}>executor · </span>{d.execError}
+            {d.execAttempts ? <span style={{ color: 'var(--color-ink-dim)' }}> · {d.execAttempts} attempt{d.execAttempts === 1 ? '' : 's'}</span> : null}
+          </div>
+        )}
+      </div>
       <ContestBlock d={d} />
       {(d.reasonKind || d.ownerDecision || (d.resolution && !d.verification?.contest && !contested)) && (
         <div className="text-micro" style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap', color: 'var(--color-ink-muted)', minWidth: 0 }}>
@@ -337,15 +338,70 @@ export function DirectiveCard({ d, delay = 0, focused = false, show = 'to', show
           <Icon name="info" size={12} /><span>{unscored}</span>
         </div>
       )}
-      {d.status === 'awaiting_owner' && (
-        <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-          <RowActions danger={<TableAction icon="x" danger label="Decline" title="Decline" disabled={decide.isPending} onClick={() => act('decline')} />}>
-            <TableAction icon="check" label="Approve" title="Approve" disabled={decide.isPending} onClick={() => act('approve')} />
-          </RowActions>
-        </div>
-      )}
-      {contested && <ContestActions d={d} />}
+      <div className="text-micro tabular-nums" style={{ color: 'var(--color-ink-dim)', display: 'flex', gap: 10, flexWrap: 'wrap' }}>
+        <span>filed {fmtDate(d.createdAt)}</span>
+        {d.reviewAt && <span>review {fmtDate(d.reviewAt)}</span>}
+        <span title={d.id}>id {d.id.slice(0, 8)}</span>
+      </div>
     </div>
+  );
+}
+
+/**
+ * One directive as a compact card: binding, kind, status, who, the first lines of the body and whether it needs you.
+ * A click opens the dialog with everything else and the owner's actions.
+ */
+export function DirectiveCard({ d, delay = 0, focused = false, show = 'to', showStatus = false }: {
+  d: Directive; delay?: number; focused?: boolean; show?: 'to' | 'from'; showStatus?: boolean;
+}) {
+  const ref = useRef<HTMLButtonElement>(null);
+  const [open, setOpen] = useState(false);
+  useEffect(() => {
+    if (!focused) return;
+    ref.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    setOpen(true);
+  }, [focused]);
+
+  const contested = d.status === 'contested';
+  const needsYou = d.status === 'awaiting_owner' || contested;
+  const statusBadge = showStatus || contested || CLOSED_STATUSES.includes(d.status);
+  const who = show === 'to' ? d.to : d.from;
+  const ring = focused ? 'var(--color-accent)' : needsYou ? 'var(--color-warning-soft)' : null;
+
+  return (
+    <>
+      <button ref={ref} type="button" id={`directive-${d.id}`} className="card row-lift compose-rise directive-card" onClick={() => setOpen(true)}
+        aria-haspopup="dialog" title="Open the directive"
+        style={{ animationDelay: `${delay}ms`, boxShadow: ring ? `inset 0 0 0 1px ${ring}` : undefined }}>
+        <span style={{ display: 'flex', gap: 5, alignItems: 'center', minWidth: 0 }}>
+          {d.binding === 'advice' ? <Badge tone="neutral">advice</Badge> : <Badge tone="warning">DIRECTIVE</Badge>}
+          {d.kind !== 'advice' && <span className="chip" style={{ fontSize: 11, whiteSpace: 'nowrap' }}>{DIRECTIVE_KIND_LABEL[d.kind] ?? d.kind}</span>}
+          {statusBadge && <Badge tone={DIRECTIVE_STATUS_TONE[d.status] ?? 'neutral'}>{DIRECTIVE_STATUS_LABEL[d.status] ?? d.status}</Badge>}
+          {d.outcome && <Badge tone={OUTCOME_TONE[d.outcome]}>{OUTCOME_LABEL[d.outcome]}</Badge>}
+          <span className="text-micro" style={{ marginLeft: 'auto', color: 'var(--color-ink-dim)', whiteSpace: 'nowrap' }} title={fmtDate(d.createdAt)}>
+            {fmtRelative(d.createdAt)}
+          </span>
+        </span>
+        <span className="text-body-sm directive-card-body">
+          {who && <span style={{ color: 'var(--color-ink-dim)' }}>{show === 'to' ? '→ ' : '← '}@{who} · </span>}
+          {d.body}
+        </span>
+        {needsYou && (
+          <span className="text-micro" style={{ display: 'inline-flex', gap: 5, alignItems: 'center', color: 'var(--color-warning)' }}>
+            <Icon name="warning" size={12} /> {contested ? `${who ? `@${who}` : 'The orchestrator'} contests it — your call` : 'Needs your approval'}
+          </span>
+        )}
+      </button>
+      <Modal open={open} onClose={() => setOpen(false)} size="lg" icon="agents" title={directiveTitle(d)}
+        subtitle={`${who ? `${show === 'to' ? 'to' : 'from'} @${who} · ` : ''}${fmtRelative(d.createdAt)}`}>
+        <DirectiveDetails d={d} show={show} />
+        {(d.status === 'awaiting_owner' || contested) && (
+          <div className="modal-foot" style={{ justifyContent: contested ? 'stretch' : 'flex-end' }}>
+            {d.status === 'awaiting_owner' ? <OwnerActions d={d} onDone={() => setOpen(false)} /> : <div style={{ flex: 1 }}><ContestActions d={d} onDone={() => setOpen(false)} /></div>}
+          </div>
+        )}
+      </Modal>
+    </>
   );
 }
 
@@ -507,7 +563,7 @@ export function AgentInbox({ handle, filters, onFilters }: { handle: string; fil
         <EmptyState icon="inbox" title={hasFilters(filters) ? 'Nothing matches these filters' : filter === 'open' ? 'No open directives' : 'No directives yet'}
           note="Directives (binding) and advice (optional) from @manager land here: the orchestrator accepts a directive or contests it to you; it follows advice or declines it. Structural ones wait for you first." />
       )}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 380px), 1fr))', gap: 10, alignItems: 'start' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 320px), 1fr))', gap: 8, alignItems: 'start' }}>
         {shown.map((d, i) => <DirectiveCard key={d.id} d={d} delay={Math.min(i, 12) * 25} show="from" showStatus />)}
       </div>
     </div>
