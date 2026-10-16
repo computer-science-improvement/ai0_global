@@ -329,30 +329,39 @@ export class TrackingMtprotoClient implements OnModuleInit {
   }
 
   async getHistory(usernameOrId: string, offsetId: number, limit = 50): Promise<RawMessage[]> {
-    if (!this.ready || !this.client) return [];
+    return (await this.readHistory(usernameOrId, offsetId, limit)).messages;
+  }
+
+  /**
+   * getHistory that says why it returned nothing (spec 042 FR-001): `not_subscribed` — the session cannot read the
+   * channel; `unavailable` — no session, a bad address or an API error (logged). FLOOD_WAIT is re-thrown.
+   */
+  async readHistory(usernameOrId: string, offsetId: number, limit = 50): Promise<{ access: 'ok' | 'not_subscribed' | 'unavailable'; messages: RawMessage[] }> {
+    if (!this.ready || !this.client) return { access: 'unavailable', messages: [] };
     this.assertNotFlooded('getHistory');
     const address = this.toAddress(usernameOrId);
-    if (address === null) return [];
+    if (address === null) return { access: 'unavailable', messages: [] };
     try {
       const entity = await this.resolveEntity(address);
       if (entity === 'not_subscribed') {
         this.logger.debug(`getHistory: ${usernameOrId} not reachable by session (not subscribed)`);
-        return [];
+        return { access: 'not_subscribed', messages: [] };
       }
       const res    = await this.client.invoke(
         new Api.messages.GetHistory({ peer: entity as any, limit, minId: offsetId, offsetId: 0 }),
       );
       const msgs   = (res as any).messages as any[];
-      return msgs
-        .filter((m) => m.className === 'Message')
-        .map((m) => this.toRawMessage(m));
+      return {
+        access:   'ok',
+        messages: msgs.filter((m) => m.className === 'Message').map((m) => this.toRawMessage(m)),
+      };
     } catch (err: any) {
       if (this.isEntityMiss(err)) {
         this.logger.debug(`getHistory: ${usernameOrId} not reachable by session (not subscribed)`);
-        return [];
+        return { access: 'not_subscribed', messages: [] };
       }
       this.handleApiError('getHistory', err);
-      return [];
+      return { access: 'unavailable', messages: [] };
     }
   }
 

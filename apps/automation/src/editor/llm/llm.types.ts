@@ -9,7 +9,9 @@ import type { Workspace } from './workspace';
 export type EditorRole =
   | 'planner' | 'executor' | 'reviewer' | 'checker' | 'composer'
   // Agent platform (specs 017–022): network/resource orchestrators, the idea reviewer, the MANAGER and the @ai0 builder.
-  | 'orchestrator' | 'idea_reviewer' | 'manager' | 'builder';
+  | 'orchestrator' | 'idea_reviewer' | 'manager' | 'builder'
+  // Spec 042: channel setup from the channel's last posts (one analysis run, no publishing tools).
+  | 'onboarder';
 /** Roles that run for one channel with its editorial card (the scheduler's roles). */
 export type CardRole = 'planner' | 'executor' | 'reviewer';
 

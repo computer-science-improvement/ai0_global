@@ -119,6 +119,16 @@ import { NetworkService } from './network/network.service';
 import { NetworkOffers } from './network/network-offers';
 import { buildNetworkModeTool } from './network/network-mode-tool';
 import { NETWORK_SERVICE, NetworkController } from './network/network.controller';
+import { TrackingMtprotoClient } from '../tracking/mtproto/tracking-mtproto.client';
+import { resolveModel } from './llm/model-registry';
+import { agentModelIn, readModelContext } from './llm/workspace';
+import { storedFormat } from './agents/resource-profile';
+import { ChannelSetupRepository } from './setup/setup.repository';
+import { ChannelSetupService } from './setup/setup.service';
+import { CHANNEL_SETUP_SERVICE, ChannelSetupController } from './setup/setup.controller';
+import { collectPosts } from './setup/setup-posts';
+import { VOICE_SKILL_NAME } from './setup/setup-analysis';
+import { buildAnalyzeHistoryTool } from './setup/setup-tool';
 import { DirectivesRepository } from './manager/directives.repository';
 import { KpiDigestService } from './manager/kpi-digest.service';
 import { SqlQuality } from './manager/quality-digest';
@@ -460,6 +470,23 @@ export class EditorCron {
   @Cron('* * * * *', { name: 'editor-tick' })
   async tick(): Promise<void> {
     await this.scheduler.cronTick();
+  }
+}
+
+/** Spec 042 FR-007: the channel setup queue (the proposals table) — a tick a minute and one at boot. */
+@Injectable()
+export class ChannelSetupWorker implements OnModuleInit {
+  private readonly logger = new Logger('ChannelSetup');
+
+  constructor(@Inject(CHANNEL_SETUP_SERVICE) private readonly setup: ChannelSetupService) {}
+
+  onModuleInit(): void {
+    void this.tick();
+  }
+
+  @Cron('* * * * *', { name: 'channel-setup-tick' })
+  async tick(): Promise<void> {
+    try { await this.setup.tick(); } catch (err: any) { this.logger.warn(`channel setup tick failed: ${err?.message ?? err}`); }
   }
 }
 
@@ -977,6 +1004,8 @@ export const EDITOR_PROVIDERS = [
             agents: infra.agents, catalog: infra.catalog, profiles: infra.profiles, creator: infra.creator, skills: infra.skills, actions: infra.actions,
             conflicts: configConflictsOf(pool, repos, infra),
           }),
+          // Spec 042 FR-007: @ai0 queues a channel's setup from its history (the owner reviews the proposal on /app/setup).
+          buildAnalyzeHistoryTool({ pool, repo: new ChannelSetupRepository(pool) }),
           // Spec 034 FR-008: example posts and warnings in the agent-creation chat (a content_examples card).
           buildContentExamplesTool({
             agents: infra.agents, actions: infra.actions,
@@ -1584,6 +1613,73 @@ export const EDITOR_PROVIDERS = [
       useFactory: (pool: Pool, infra: AgentInfra, promo: PromoInfra) =>
         new PromoService({ pool, agents: infra.agents, network: new NetworkRepository(pool), links: promo.links }),
     },
+    {
+      // Spec 042: channel setup from history (posts → metrics → one onboarder run → a proposal applied by section).
+      provide: CHANNEL_SETUP_SERVICE,
+      inject: [
+        DB_POOL, ConfigService, AGENT_INFRA, EDITOR_REPOS, EDITOR_OPS, AGENTS_SERVICE, NETWORK_SERVICE, MODEL_DEFAULTS, TelegramNotifier,
+        { token: TrackingMtprotoClient, optional: true }, { token: PriceService, optional: true }, { token: LlmBudgetService, optional: true },
+      ],
+      useFactory: (
+        pool: Pool, cfg: ConfigService, infra: AgentInfra, repos: EditorRepos, ops: EditorOpsService, agentsSvc: AgentsService,
+        networkSvc: NetworkService, models: WorkspaceModelStore, notifier: TelegramNotifier, mtproto?: TrackingMtprotoClient,
+        prices?: PriceService, caps?: LlmBudgetService,
+      ): ChannelSetupService => {
+        const logger = new Logger('ChannelSetup');
+        const env = (k: string) => cfg.get<string>(k) ?? undefined;
+        // Owner-started like a chat turn: it runs whenever a model key is configured, not only with EDITOR_ENABLED.
+        const loop = new AgentLoop({
+          llm: new RoutingLlmClient({
+            openrouter: new OpenRouterClient({ apiKey: env('OPENROUTER_API_KEY'), baseUrl: env('OPENROUTER_BASE_URL'), prices }),
+            anthropic:  new AnthropicClient({ apiKey: anthropicApiKey(env), baseUrl: env('ANTHROPIC_BASE_URL'), prices }),
+          }),
+          recorder: new PgRunRecorder(pool, (m) => logger.warn(m)),
+          budget: editorBudget(pool, env, (t) => notifier.notifyAlert(t), caps),
+          enabled: () => !!env('OPENROUTER_API_KEY') || !!anthropicApiKey(env),
+        });
+        const orchOf = (key: string) => infra.agents.findTop('orchestrator', 'resource', `telegram:${key}`);
+        const network = new NetworkRepository(pool);
+        return new ChannelSetupService({
+          pool, repo: new ChannelSetupRepository(pool), loop,
+          collect: (key) => collectPosts({ pool, readHistory: mtproto ? (target, limit) => mtproto.readHistory(target, 0, limit) : undefined }, key),
+          model: async (agent, card) => {
+            const mctx = await readModelContext({ workspace: () => models.workspace(), defaultModel: (ws) => models.get(ws) });
+            return resolveModel('onboarder', env, card?.models ?? null, {
+              agentModel: agent ? agentModelIn(agent, mctx.workspace) : null, defaultModel: mctx.defaultModel,
+              reasoningEffort: agent?.reasoningEffort ?? null, workspace: mctx.workspace,
+            });
+          },
+          state: async (key) => {
+            const ref = `telegram:${key}`;
+            const [card, agent, stored] = await Promise.all([repos.channels.get(key), orchOf(key), infra.profiles.get(ref)]);
+            const raw = stored ? (await pool.query(`SELECT profile FROM resource_profiles WHERE resource_ref = $1`, [ref])).rows[0]?.profile : null;
+            const playbook = agent ? (await network.activePlaybook(agent.id))?.body ?? null : null;
+            const voice = agent ? (await infra.skills.findForAgent(agent.id, VOICE_SKILL_NAME))?.body ?? null : null;
+            return { card, agent, profile: stored?.profile ?? null, locks: storedFormat(raw).locks, playbook, voice };
+          },
+          writers: {
+            upsertCard: (key, patch) => ops.upsertChannel(key, patch),
+            getCard: (key) => repos.channels.get(key),
+            ensureAgent: async (key) => {
+              await infra.registry.run();
+              const a = await orchOf(key);
+              if (!a) throw new Error(`agent_not_created: no orchestrator for ${key}`);
+              return a;
+            },
+            setProfile: (ref, profile) => agentsSvc.setProfile(ref, profile, 'owner'),
+            patchFormat: (ref, patch) => infra.profiles.patchFormat(ref, patch, { by: 'owner', reason: 'Setup from the channel history' }),
+            onBrief: (agent, brief) => agentsSvc.onBrief(agent, brief),
+            putPlaybook: (handle, body, rationale) => networkSvc.putPlaybook(handle, { body, rationale }),
+            putVoiceSkill: async (handle, skill) => {
+              await agentsSvc.putSkill(handle, VOICE_SKILL_NAME, { description: skill.description, body: skill.body, applies_to: ['executor', 'checker'] });
+              await agentsSvc.patchSkill(handle, VOICE_SKILL_NAME, { enabled: true });
+            },
+          },
+          log: (m) => logger.warn(m),
+        });
+      },
+    },
+    ChannelSetupWorker,
     EditorCron,
     AgentsUpkeep,
     StoryBackfill,
@@ -1593,7 +1689,7 @@ export const EDITOR_PROVIDERS = [
 @Module({
   // AuthModule: EditorController is guarded by TrackingAuthGuard, which injects AuthService.
   imports:     [ChannelConfigModule, PublishersModule, AuthModule],
-  controllers: [EditorController, EditorChatController, AgentsController, ModelsController, NetworkController, ManagerController, PromoController, PromoRedirectController, ApprovalsController, AutonomyController, ScheduleController, StrategyMigrationController, UpcomingSlotsController, ResourcePausesController, PostAuditController],
+  controllers: [EditorController, EditorChatController, AgentsController, ModelsController, NetworkController, ManagerController, PromoController, PromoRedirectController, ApprovalsController, AutonomyController, ScheduleController, StrategyMigrationController, UpcomingSlotsController, ResourcePausesController, PostAuditController, ChannelSetupController],
   providers:   [...EDITOR_PROVIDERS, TrackingAuthGuard],
   exports:     [EDITOR_REPOS, EDITOR_RUNNER, AGENT_INFRA, PLATFORM_INFRA, EDITOR_MANAGER],
 })

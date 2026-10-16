@@ -60,7 +60,7 @@ export function builtinDefaultModel(ws: Workspace = 'openrouter'): string {
 
 /** Every role a run can use (the env override keys are EDITOR_MODEL_<ROLE>). */
 export const EDITOR_ROLES: readonly EditorRole[] = [
-  'planner', 'executor', 'reviewer', 'checker', 'composer', 'orchestrator', 'idea_reviewer', 'manager', 'builder',
+  'planner', 'executor', 'reviewer', 'checker', 'composer', 'orchestrator', 'idea_reviewer', 'manager', 'builder', 'onboarder',
 ];
 
 // max_tokens includes reasoning tokens on reasoning models, so leave headroom above the visible output.
@@ -75,6 +75,8 @@ const ROLE_DEFAULTS: Record<EditorRole, { maxTokens: number; temperature: number
   idea_reviewer: { maxTokens: 6000, temperature: 0.2, reasoningEffort: 'low' },
   manager:       { maxTokens: 8000, temperature: 0.3, reasoningEffort: 'medium' },
   builder:       { maxTokens: 6000, temperature: 0.4, reasoningEffort: 'low' },
+  // Spec 042 FR-003: one structured analysis of 20 posts (six sections with evidence).
+  onboarder:     { maxTokens: 8000, temperature: 0.3, reasoningEffort: 'medium' },
 };
 
 /** The env key that overrides a role's model (it beats the owner's global default); the Anthropic workspace has its own keys. */

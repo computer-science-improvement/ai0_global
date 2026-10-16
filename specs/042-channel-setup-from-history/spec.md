@@ -33,8 +33,7 @@ Owner decisions (brainstorm 2026-10-16):
 - Access is checked before the pull: the entity resolution distinguishes "no access" from "no posts". No access → status
   `no_access` with the hint "Add the tracking account to the channel"; the model is not called.
 - Fewer than **5** usable posts → status `too_few_posts`; the model is not called.
-- `FLOOD_WAIT` → the job is delayed by the wait (batch) or the run gets `retry_at` (single), using the tracking queue's flood
-  handling.
+- `FLOOD_WAIT` → the proposal goes back to `queued` with `retry_at` = now + the wait (FR-007).
 
 ### FR-002 Metrics in code
 Computed from the collected posts, no LLM, stored on the proposal and shown in the dialog:
@@ -59,7 +58,7 @@ Computed from the collected posts, no LLM, stored on the proposal and shown in t
 - Validation beyond the schema (the tool returns an error with a numbered checklist, spec 040 style):
   - every `post_ids` entry is one of the given posts;
   - a series needs ≥ 2 evidence posts;
-  - pillar shares sum to 1 (± 0.02);
+  - pillar shares sum to 100 (± 5, the playbook rule);
   - format weights only use formats the channel has;
   - example ids are among the given posts.
 - On `no_terminal` / budget / errors the proposal gets status `failed` with the reason; no partial sections.
@@ -72,10 +71,11 @@ Computed from the collected posts, no LLM, stored on the proposal and shown in t
    `emoji_policy`, `link_style` when the metrics show a repeated pattern.
 3. **format_mix:** card `formats` weights from the observed shares.
 4. **series_pillars:** `series[]` (name, cadence `daily@HH:MM` | `weekly:<days>@HH:MM`, format, brief, source `free` unless the
-   evidence shows another) and `pillars[]` (3–5, shares sum 1).
-5. **schedule:** card `posts_per_day_min/max`, `quiet_start/end_hour`; agent `schedule.times` = peak hours.
+   evidence shows another) and `pillars[]` (3–5, shares in % summing to 100, as the playbook stores them).
+5. **schedule:** card `posts_per_day_min/max`, `quiet_start/end_hour`; playbook `best_hours` of the channel's section = peak hours.
+   (`agents.schedule.times` is when the orchestrator runs, not when posts go out, so it is not touched.)
 6. **examples_voice:** 3–5 example post ids (texts copied verbatim from `tracked_posts` at Apply, never from the model), and a skill
-   `voice-<handle>` (markdown: 5–8 do / don't rules, 2–3 short quotes from the posts, `applies_to` executor + checker).
+   `channel-voice` on the channel's agent (markdown: 5–8 do / don't rules, 2–3 short quotes from the posts, `applies_to` executor + checker).
 
 Locked values are kept: `format_locks[]` fields and `locked` series are not overwritten; the dialog shows them as "kept (locked)".
 The proposal never changes mode, budgets, sources, models or tools.
@@ -89,13 +89,17 @@ The proposal never changes mode, budgets, sources, models or tools.
 - A new run for a channel marks its open (`ready`) proposal `superseded`. No TTL.
 
 ### FR-006 Apply
-- `POST /api/channel-setup/proposals/:id/apply` `{sections: string[]}` (owner only). In one transaction:
-  1. No card/agent → `AgentCreator.create` path with mode `off`, the handle derived like registry sync, created_by `owner`.
+- `POST /api/channel-setup/proposals/:id/apply` `{sections: string[]}` (owner only). Sections are written in the order below;
+  each section's write is atomic (the existing repositories' own transactions). A failing section stops the Apply: the
+  sections before it stay applied, it and the rest stay `pending`, the error is returned per section (`partially_applied`).
+  1. No card/agent → the card is created through the owner card upsert with mode `off`, then the registry sync creates the
+     orchestrator and its children (handle derived from the channel key, `created_by` `sync`, mode mirrors the card: `off`).
   2. brief_profile → `setProfile(..., 'owner')` (tone skill attaches as today) + `setBrief`.
   3. formatting → format_prefs/style through the owner path (not the agent's 3-per-day `patchFormat` limit) + card fields.
-  4. format_mix, schedule → card fields (`upsertChannel` validation) + `agents.schedule`.
-  5. series_pillars and examples_voice → one new **active** playbook version (current body + proposed series/pillars/examples);
-     the skill is written and attached.
+  4. format_mix, schedule → card fields (`upsertChannel` validation).
+  5. series_pillars, schedule (best hours) and examples_voice → one new **active** playbook version through the owner's
+     `putPlaybook` (current body + proposed series/pillars/examples and the channel section's formats, per_day and best_hours;
+     a channel without a playbook gets a single `core` section); the skill is written and attached.
 - When brief and series are applied together, the `onBrief` playbook rebuild is skipped. A brief applied without series keeps
   today's rebuild.
 - **Drift check:** before writing, each section's current value is compared with `baseline`; a changed one is refused
@@ -104,10 +108,11 @@ The proposal never changes mode, budgets, sources, models or tools.
 - Every write keeps the existing version tables (`resource_profile_versions`, playbook versions), `updated_by` = `owner`.
 
 ### FR-007 Runs and API
-- `POST /api/channel-setup/analyze` `{channelKeys: string[]}` (1…50) → proposals `queued`; a BullMQ queue `channel-setup` runs
-  them one at a time (concurrency 1).
+- `POST /api/channel-setup/analyze` `{channelKeys: string[]}` (1…50) → proposals `queued`. The queue is the table: an in-process
+  worker takes the oldest `queued` proposal whose `retry_at` has passed, one at a time; it is kicked on enqueue and by the
+  editor's minute tick, so a restart loses nothing. FLOOD_WAIT puts the proposal back to `queued` with `retry_at`.
 - `GET /api/channel-setup/overview`: own channels with tracked posts count, whether brief / profile / active playbook / card
-  exist, last proposal status, and a cost estimate per channel (from the onboarder model's prices and ~prompt size).
+  exist, last proposal status, and a cost estimate per channel (the average cost of the last 20 successful onboarder runs; none until the first run).
 - `GET /api/channel-setup/proposals/:id`, `GET /api/channel-setup/proposals?channel=`.
 - @ai0 builder tool `analyze_channel_history {channel_key}`: queues a run and returns the proposal link (no card, no other logic).
 
@@ -130,7 +135,7 @@ The proposal never changes mode, budgets, sources, models or tools.
   check; lock handling.
 - FakeLlm replay: posts → proposal → Apply all; every write checked; the playbook rebuild did not run; Apply of brief alone does
   rebuild.
-- PG (scratch): 080 applies twice; Apply all in a rolled-back transaction; new channel → card + agent in `off`; `superseded`;
+- PG (scratch): 080 applies twice; Apply all against real repositories (scratch rows removed after); new channel → card + agent in `off`; `superseded`;
   `getHistory` top-up upsert with a fake client.
 - Dashboard: tests for the table and the dialog; browser check on mocks at desktop and mobile width.
 - No paid model calls, no real Telegram calls in tests.

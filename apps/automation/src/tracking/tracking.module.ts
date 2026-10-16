@@ -39,6 +39,6 @@ import { RoiAnalyzerService } from './processors/roi-analyzer.service';
     TrackingAuthGuard,
     RoiAnalyzerService,
   ],
-  exports: [REDIS_CLIENT, TrackedChannelsRepository],
+  exports: [REDIS_CLIENT, TrackedChannelsRepository, TrackingMtprotoClient],
 })
 export class TrackingModule {}
