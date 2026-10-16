@@ -8,5 +8,5 @@ Linear epic: AI0-140 (T1–T8: AI0-141 … AI0-148).
 - [x] T4 (AI0-144) FR-003 + FR-004 Analysis: role `onboarder`, prompt, terminal `submit_channel_setup` (six sections + evidence), checks with a checklist, locks.
 - [x] T5 (AI0-145) FR-006 Apply: per-section writers in order (each atomic, stop on failure), new channel → card `off` + registry sync, playbook version without the brief rebuild, voice skill, drift check, discard.
 - [x] T6 (AI0-146) FR-007 API + table-driven worker (one at a time, minute tick, retry_at), overview with cost estimate, @ai0 `analyze_channel_history`.
-- [ ] T7 (AI0-147) FR-008 Dashboard: `/app/setup` table + batch run, agent page button/badge, proposal dialog.
-- [ ] T8 (AI0-148) Verification: FakeLlm replay, PG tests, dashboard tests, browser check on mocks, runbook section, README row.
+- [x] T7 (AI0-147) FR-008 Dashboard: `/app/setup` table + batch run, agent page button/badge, proposal dialog.
+- [x] T8 (AI0-148) Verification: FakeLlm replay, PG tests, dashboard tests, browser check on mocks, runbook section, README row.

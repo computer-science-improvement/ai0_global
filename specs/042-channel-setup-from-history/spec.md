@@ -1,6 +1,6 @@
 # 042: Channel setup from history
 
-**Status:** PLANNED · **Priority:** P1 · **Linear:** AI0-140 (T1–T8: AI0-141…AI0-148) · **Depends on:** 017–022 (agents, profiles, playbooks), 024 (formatting),
+**Status:** DONE (2026-10-17) · **Priority:** P1 · **Linear:** AI0-140 (T1–T8: AI0-141…AI0-148) · **Depends on:** 017–022 (agents, profiles, playbooks), 024 (formatting),
 029 (llm_usage / budgets), 040 (loop breaker, owner skills reach the writers) · **Migration:** `080_channel_setup.sql`
 
 **Owner request (2026-10-16):** «у мене ще є багато каналів, мені потрібен функціонал для налаштування автоматичного агента для

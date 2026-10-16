@@ -99,3 +99,41 @@ cd apps/automation && EVAL_DB_URL=<scratch PG> npx tsx --env-file=../../.env eva
 ```
 
 The baseline is `evals/results/baseline-2026-10-02-agents.md`: 18/18, about $0.05 for the whole suite.
+
+## 9. Setup from history (spec 042)
+
+The onboarder reads an own channel's last 20 posts and proposes its agent's setup. Nothing changes until you apply a section.
+
+**Needs**
+
+- Migration `080_channel_setup`.
+- A model key: `OPENROUTER_API_KEY` or the Anthropic key. `EDITOR_ENABLED` is not needed; the owner starts each run.
+- The channel is marked as yours (`tracked_channels.is_mine`).
+- For channels with fewer than 20 stored posts, a logged-in tracking userbot that can read the channel. It tops up `tracked_posts` once, with up to 50 messages.
+
+**Use**
+
+- Open `/app/setup` (Agents → Setup from history). You can also use "Set up from history" on a channel agent's page, or ask `@ai0` with `analyze_channel_history`.
+- Tick channels and choose **Analyze selected**. The confirm shows the cost, which is the average of the last 20 successful onboarder runs. There is no estimate before the first run.
+- Each run takes about a minute. The worker runs one channel at a time, every minute and at boot. Rows refresh by themselves.
+- Open a proposal. Each section shows "now → proposed" and the posts it rests on. Tick the sections you want, then choose **Apply selected**.
+- Sections are written in order: brief and profile, formatting, format mix, series and pillars, schedule, examples and voice. Apply stops at the first failure, and the dialog names the section that failed.
+- What Apply keeps and writes:
+  - Owner-locked formatting fields and locked series are kept.
+  - A new series is written as locked, and its origin is the owner.
+  - The voice goes to the agent skill `channel-voice`, for the executor and the checker.
+- A channel without an editor card gets one in mode **off**, and its agent is created by the registry sync. Nothing publishes until you switch the mode.
+
+**Statuses**
+
+| Status | Meaning |
+|---|---|
+| `queued` / `collecting` / `analyzing` | Running. A FLOOD_WAIT puts the run back in the queue with a retry time; a run stuck for 15 min is requeued. |
+| `ready` / `partially_applied` | Waiting for you. A new analysis of the same channel supersedes the open proposal. |
+| `no_access` | The tracking account cannot read the channel. Add it to the channel, then analyze again. |
+| `too_few_posts` | Fewer than 5 usable posts. The model is not called. |
+| `failed` | The reason is on the row. The run trace is under "Open the run" (role `onboarder`, usage feature `editor.onboarder`, at most 4 steps and $0.30). |
+
+**Changed since analysis**
+
+If you edited a section after the analysis, Apply refuses that section and applies the rest. Analyze again to review it with the new values.
