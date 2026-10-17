@@ -139,6 +139,9 @@ test('chat → draft → schedule → reserved slot → dispatcher publishes at 
   assert.deepEqual([slot.kind, slot.status, slot.scheduledAt.toISOString(), slot.topic], ['reserved', 'planned', AT.toISOString(), 'Чат: Туманність Кільце від Webb']);
   const plan = await plans.getActivePlan(CH, '2030-03-05');
   assert.equal(plan?.rationale, 'reserved only');
+  // a second draft of the same source, saved while the first one is still unpublished (checked in step 3)
+  const early: any = await drafts.save({ chatId: c.id, channel: CH, spec: SPEC });
+  assert.equal(early.ok, true, JSON.stringify(early));
 
   // 2. the dispatcher (no LLM) — claims only this test channel's slots so it never touches other rows in a shared scratch DB
   const claimMine = async (at: Date, limit: number) => {
@@ -172,8 +175,10 @@ test('chat → draft → schedule → reserved slot → dispatcher publishes at 
   assert.equal(await dispatcher.publishDue(new Date(AT.getTime() + 120_000)), 0, 'never twice');
   assert.deepEqual(notes, []);
 
-  // 3. dedup: the same source cannot be published to the channel again within 7 days
+  // 3. dedup: the same source cannot go to the channel again — save refuses it up front,
+  //    and publish re-checks a draft saved before the source was used
   clock = new Date(); // published_posts.posted_at is the DB's now()
-  const again: any = await drafts.save({ chatId: c.id, channel: CH, spec: SPEC });
-  assert.equal(((await drafts.publish(again.draft.id)) as any).error, 'source_already_posted');
+  assert.equal(((await drafts.save({ chatId: c.id, channel: CH, spec: SPEC })) as any).error, 'source_already_posted');
+  assert.equal(((await drafts.publish(early.draft.id)) as any).error, 'source_already_posted');
+  assert.equal(sent.length, 1, 'the refused draft is not sent');
 });
