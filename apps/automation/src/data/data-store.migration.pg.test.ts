@@ -14,6 +14,7 @@ import { seedLegacyTables, SEEDED_TABLES } from './testing/legacy-seed';
 import { DataStore } from './data-store';
 import { libraryRef } from '../editor/tools/library-tables';
 import { checkQuizGroundTruth } from '../editor/post/quiz-ground-truth';
+import { pgDbName, pgWithDb } from '../common/testing/pg-test-url';
 
 const url = process.env.EDITOR_PG_TEST_URL;
 const skip = !url ? 'EDITOR_PG_TEST_URL not set' : false;
@@ -28,12 +29,6 @@ let dbName: string;
 let dbUrl: string;
 const snapshot: Record<string, any[]> = {};
 
-function withDb(u: string, db: string): string {
-  const x = new URL(u);
-  x.pathname = '/' + db;
-  return x.toString();
-}
-
 async function applyFile(c: Pick<Client, 'query'>, sql: string) {
   await c.query('BEGIN');
   try { await c.query(sql); await c.query('COMMIT'); } catch (e) { await c.query('ROLLBACK'); throw e; }
@@ -43,7 +38,7 @@ async function applyFile(c: Pick<Client, 'query'>, sql: string) {
 async function freshDb(name: string, upto = '058'): Promise<string> {
   await admin.query(`DROP DATABASE IF EXISTS ${name}`);
   await admin.query(`CREATE DATABASE ${name}`);
-  const u = withDb(url!, name);
+  const u = pgWithDb(url!, name);
   const c = new Client({ connectionString: u });
   await c.connect();
   try {
@@ -64,7 +59,7 @@ before(async () => {
   if (!url) return;
   admin = new Client({ connectionString: url });
   await admin.connect();
-  dbName = `${new URL(url).pathname.slice(1) || 'postgres'}_m058_${process.pid}`.toLowerCase();
+  dbName = `${pgDbName(url)}_m058_${process.pid}`.toLowerCase();
   dbUrl = await freshDb(dbName);
   pool = new Pool({ connectionString: dbUrl, max: 4 });
   for (const t of SEEDED_TABLES) snapshot[t] = (await pool.query(`SELECT * FROM ${t} ORDER BY id`)).rows;

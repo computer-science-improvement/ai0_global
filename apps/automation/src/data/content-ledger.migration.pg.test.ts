@@ -19,6 +19,7 @@ import { DataStore } from './data-store';
 import { EditorPlansRepository } from '../editor/repo/editor-plans.repository';
 import { buildReadTools } from '../editor/tools/read-tools';
 import type { ToolContext } from '../editor/harness/tool';
+import { pgDbName, pgWithDb } from '../common/testing/pg-test-url';
 
 const url = process.env.EDITOR_PG_TEST_URL;
 const skip = !url ? 'EDITOR_PG_TEST_URL not set' : false;
@@ -33,12 +34,6 @@ let pool: Pool;
 let dbName: string;
 let firstRun: Record<string, number> = {};
 const recipeIds: Record<string, string> = {};
-
-function withDb(u: string, db: string): string {
-  const x = new URL(u);
-  x.pathname = '/' + db;
-  return x.toString();
-}
 
 async function applyFile(c: Pick<Client, 'query'>, sql: string) {
   await c.query('BEGIN');
@@ -90,10 +85,10 @@ before(async () => {
   if (!url) return;
   admin = new Client({ connectionString: url });
   await admin.connect();
-  dbName = `${new URL(url).pathname.slice(1) || 'postgres'}_m060_${process.pid}`.toLowerCase();
+  dbName = `${pgDbName(url)}_m060_${process.pid}`.toLowerCase();
   await admin.query(`DROP DATABASE IF EXISTS ${dbName}`);
   await admin.query(`CREATE DATABASE ${dbName}`);
-  const c = new Client({ connectionString: withDb(url, dbName) });
+  const c = new Client({ connectionString: pgWithDb(url, dbName) });
   await c.connect();
   try {
     await c.query(`CREATE TABLE IF NOT EXISTS schema_migrations (version VARCHAR(64) PRIMARY KEY, applied_at TIMESTAMPTZ NOT NULL DEFAULT now())`);
@@ -111,7 +106,7 @@ before(async () => {
   } finally {
     await c.end();
   }
-  pool = new Pool({ connectionString: withDb(url, dbName), max: 4 });
+  pool = new Pool({ connectionString: pgWithDb(url, dbName), max: 4 });
 });
 
 after(async () => {

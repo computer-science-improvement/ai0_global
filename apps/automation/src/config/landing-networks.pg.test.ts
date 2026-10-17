@@ -22,6 +22,7 @@ import { MetaAccountsRepository } from './meta-accounts.repository';
 import { TikTokAccountsRepository } from './tiktok-accounts.repository';
 import { TrackedChannelsConfigRepository } from './tracked-channels.repository';
 import { YoutubeLandingRepository } from './youtube-landing.repository';
+import { pgDbName, pgWithDb } from '../common/testing/pg-test-url';
 
 const url = process.env.EDITOR_PG_TEST_URL;
 const skip = !url ? 'EDITOR_PG_TEST_URL not set' : false;
@@ -32,20 +33,14 @@ let admin: Client;
 let pool: Pool;
 let dbName: string;
 
-function withDb(u: string, db: string): string {
-  const x = new URL(u);
-  x.pathname = '/' + db;
-  return x.toString();
-}
-
 before(async () => {
   if (!url) return;
   admin = new Client({ connectionString: url });
   await admin.connect();
-  dbName = `${new URL(url).pathname.slice(1) || 'postgres'}_l026n_${process.pid}`.toLowerCase();
+  dbName = `${pgDbName(url)}_l026n_${process.pid}`.toLowerCase();
   await admin.query(`DROP DATABASE IF EXISTS ${dbName}`);
   await admin.query(`CREATE DATABASE ${dbName}`);
-  const c = new Client({ connectionString: withDb(url, dbName), options: '-c client_min_messages=warning' });
+  const c = new Client({ connectionString: pgWithDb(url, dbName), options: '-c client_min_messages=warning' });
   await c.connect();
   try {
     await c.query(readFileSync(join(DB_DIR, 'init.sql'), 'utf8'));
@@ -57,7 +52,7 @@ before(async () => {
   } finally {
     await c.end();
   }
-  pool = new Pool({ connectionString: withDb(url, dbName) });
+  pool = new Pool({ connectionString: pgWithDb(url, dbName) });
 });
 
 after(async () => {

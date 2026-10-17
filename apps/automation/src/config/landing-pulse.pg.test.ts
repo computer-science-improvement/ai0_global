@@ -17,6 +17,7 @@ import { join } from 'path';
 import { Client, Pool } from 'pg';
 import { LandingPulseService } from './landing-pulse.service';
 import { LandingConfigService } from './landing-config.service';
+import { pgDbName, pgWithDb } from '../common/testing/pg-test-url';
 
 const url = process.env.EDITOR_PG_TEST_URL;
 const skip = !url ? 'EDITOR_PG_TEST_URL not set' : false;
@@ -28,12 +29,6 @@ let admin: Client;
 let pool: Pool;
 let dbName: string;
 
-function withDb(u: string, db: string): string {
-  const x = new URL(u);
-  x.pathname = '/' + db;
-  return x.toString();
-}
-
 async function applyFile(c: Pick<Client, 'query'>, sql: string) {
   await c.query('BEGIN');
   try { await c.query(sql); await c.query('COMMIT'); } catch (e) { await c.query('ROLLBACK'); throw e; }
@@ -43,10 +38,10 @@ before(async () => {
   if (!url) return;
   admin = new Client({ connectionString: url });
   await admin.connect();
-  dbName = `${new URL(url).pathname.slice(1) || 'postgres'}_l026_${process.pid}`.toLowerCase();
+  dbName = `${pgDbName(url)}_l026_${process.pid}`.toLowerCase();
   await admin.query(`DROP DATABASE IF EXISTS ${dbName}`);
   await admin.query(`CREATE DATABASE ${dbName}`);
-  const c = new Client({ connectionString: withDb(url, dbName), options: '-c client_min_messages=warning' });
+  const c = new Client({ connectionString: pgWithDb(url, dbName), options: '-c client_min_messages=warning' });
   await c.connect();
   try {
     await c.query(readFileSync(join(DB_DIR, 'init.sql'), 'utf8'));
@@ -57,7 +52,7 @@ before(async () => {
   } finally {
     await c.end();
   }
-  pool = new Pool({ connectionString: withDb(url, dbName) });
+  pool = new Pool({ connectionString: pgWithDb(url, dbName) });
 });
 
 after(async () => {
