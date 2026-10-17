@@ -60,7 +60,7 @@ test('an applied directive of the same kind must be named in supersedes, and is 
   assert.equal(ok.ok, true);
   assert.equal(a.inserted[0].supersedes, applied.id);
   const closed = a.updates.find(([id]) => id === applied.id);
-  assert.deepEqual([closed[1].status, closed[2]], ['superseded', ['applied']]);
+  assert.deepEqual([closed[1].status, closed[2]], ['superseded', ['accepted', 'applied']]);
 
   // A shadow filing never closes the live one.
   const s = setup({ applied });
@@ -70,6 +70,17 @@ test('an applied directive of the same kind must be named in supersedes, and is 
   // supersedes without an applied directive is a mistake, not ignored.
   const none: any = await fileDirective(setup().deps, input({ supersedes: applied.id }), { from: null, runId: 'r', shadow: false });
   assert.equal(none.error, 'supersedes_mismatch');
+});
+
+test('046: an accepted directive is replaceable too (named in supersedes), and the error says it was accepted', async () => {
+  const accepted = { id: '33333333-3333-4333-8333-333333333333', body: 'Додай чек-лист у бриф', reviewAt: null, status: 'accepted' };
+  const a = setup({ applied: accepted });
+  const r1: any = await fileDirective(a.deps, input(), { from: null, runId: 'r', shadow: false });
+  assert.equal(r1.error, 'supersedes_required');
+  assert.match(r1.details, /прийнята/);
+  const ok: any = await fileDirective(a.deps, input({ supersedes: accepted.id }), { from: null, runId: 'r', shadow: false });
+  assert.equal(ok.ok, true);
+  assert.equal(a.updates.find(([id]) => id === accepted.id)[1].status, 'superseded');
 });
 
 test('a change already in place answers already_satisfied and files nothing', async () => {

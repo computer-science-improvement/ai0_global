@@ -131,8 +131,8 @@ test('switching: Anthropic needs a key on the server; the info lists each worksp
   assert.equal(info.active, 'anthropic');
   assert.equal(info.anthropicKey, true);
   assert.deepEqual(info.workspaces, [
-    { id: 'openrouter', defaultModel: 'z-ai/glm-5.3-flash', agentsWithOwnModel: 2 },
-    { id: 'anthropic', defaultModel: 'claude-sonnet-5-5', agentsWithOwnModel: 2 },
+    { id: 'openrouter', defaultModel: 'z-ai/glm-5.3-flash', perRole: false, agentsWithOwnModel: 2 },
+    { id: 'anthropic', defaultModel: 'claude-sonnet-5-5', perRole: true, agentsWithOwnModel: 2 },
   ]);
   await k.svc.setWorkspace({ workspace: 'openrouter' });
   assert.equal(k.ws, 'openrouter', 'back to OpenRouter needs nothing');
@@ -197,4 +197,15 @@ test('agent PATCH: `model` is the agent model of the active workspace', async ()
   ws = 'openrouter';
   await svc.patch('news', { model: null });
   assert.deepEqual(patches[1], { model: null });
+});
+
+test('046: without the owner default the Anthropic workspace picks a model per role; the owner default still wins', () => {
+  const none = () => undefined;
+  assert.deepEqual(pickModel('executor', none, null, { workspace: 'anthropic' }), { model: 'claude-sonnet-5-5', source: 'default' });
+  assert.deepEqual(pickModel('checker', none, null, { workspace: 'anthropic' }), { model: 'claude-sonnet-5-5', source: 'default' });
+  for (const r of ['planner', 'orchestrator', 'idea_reviewer'] as const) {
+    assert.deepEqual(pickModel(r, none, null, { workspace: 'anthropic' }), { model: 'claude-haiku-5-5', source: 'default' }, r);
+  }
+  assert.deepEqual(pickModel('orchestrator', none, null, { workspace: 'anthropic', defaultModel: 'claude-sonnet-5-5' }), { model: 'claude-sonnet-5-5', source: 'default' });
+  assert.deepEqual(pickModel('orchestrator', none, null, {}), { model: 'z-ai/glm-5.3-flash', source: 'default' }, 'OpenRouter keeps one default');
 });

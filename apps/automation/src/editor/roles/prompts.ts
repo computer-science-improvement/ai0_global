@@ -77,7 +77,8 @@ export function buildSystemPrompt(
   role: CardRole, card: EditorCard, memory: MemoryEntry[], skills: SkillSource, prefs: MemoryEntry[] = [],
   /** Spec 034 FR-008: the resource's example posts (renderExamples), few-shot right after voice-core (executor only). */
   /** Spec 045 FR-005: the steering rules of the channel's active sets (planner and executor), the lowest-priority block. */
-  o: { examples?: string | null; steering?: SteeringPromptRule[] | null } = {},
+  /** Spec 046 FR-003: the manager's accepted / applied advice and directives in force for this channel's orchestrator (planner only). */
+  o: { examples?: string | null; steering?: SteeringPromptRule[] | null; commitments?: string | null } = {},
 ): string {
   const writer = role === 'executor';
   const names = [...new Set([`editor-${role}-workflow`, ...card.skills, ...(skills.inlineNames?.() ?? [])])].filter((n) => n !== VOICE_CORE);
@@ -105,6 +106,7 @@ export function buildSystemPrompt(
       ? shownMemory.map((m) => `- [${m.kind}${m.createdBy === 'owner' ? ', власник' : ''}] ${m.text}`).join('\n')
       : '- (поки порожня)',
     ...ownerPreferencesSection(prefs),
+    ...(role === 'planner' && o.commitments ? ['', '## Чинні поради й директиви менеджера (оркестратор їх прийняв — план має їх виконувати)', o.commitments] : []),
     ...(role === 'reviewer' ? [] : steeringSection(o.steering)),
     '',
     '## Скіли, завантажені одразу',

@@ -16,7 +16,8 @@ export interface WorkspaceInfo {
   /** Whether the server has an Anthropic API key (never the value). */
   anthropicKey: boolean;
   switchable:   boolean;
-  workspaces:   Array<{ id: Workspace; defaultModel: string; agentsWithOwnModel: number }>;
+  /** perRole (spec 046): no saved default — each role runs its built-in model of that workspace. */
+  workspaces:   Array<{ id: Workspace; defaultModel: string; perRole?: boolean; agentsWithOwnModel: number }>;
 }
 
 export type ModelSource = 'agent' | 'channel' | 'env' | 'default';
@@ -74,7 +75,8 @@ export interface ChannelModelOverride {
 export interface ModelsOverview {
   /** Spec 038: the active workspace (absent on an older server = openrouter). */
   workspace?:       Workspace;
-  defaultModel:     { model: string; saved: string | null; builtin: string; price: ModelPrice | null };
+  /** roleModels (spec 046): the built-in model of each role while the Anthropic workspace has no saved default. */
+  defaultModel:     { model: string; saved: string | null; builtin: string; price: ModelPrice | null; roleModels?: Record<string, string> | null };
   /** Spec 034 FR-004: the pre-publish critic's model — the owner's choice, else env EDITOR_MODEL_CHECKER, else the default. */
   criticModel?:     { model: string; saved: string | null; source: 'critic' | 'env' | 'default'; price: ModelPrice | null };
   envOverrides:     Array<{ role: string; key: string }>;

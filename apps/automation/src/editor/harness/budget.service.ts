@@ -6,10 +6,18 @@ import { isChatFeature } from '../../common/ai/usage/features';
 
 export type BudgetVerdict =
   | { ok: true }
-  | { ok: false; scope: 'channel' | 'global' | 'agent' | 'total' | 'feature' | 'provider'; spentUsd: number; limitUsd: number; key?: string };
+  | { ok: false; scope: 'channel' | 'global' | 'agent' | 'total' | 'feature' | 'provider' | 'reserve' | 'headroom'; spentUsd: number; limitUsd: number; key?: string };
 
 /** Production editor spend: `editor.*` without owner chat turns (spec 040 FR-001). */
 const PRODUCTION = `u.feature LIKE 'editor.%' AND u.feature <> 'editor.chat' AND u.feature NOT LIKE 'editor.chat.%'`;
+
+/**
+ * Spec 046 FR-005: the share of the agents' daily cap kept for the writer and the critic. Review 2: the manager spent
+ * $1.10 of a $2 cap before noon and the next slots failed on budget. The roles below stop at (1 − reserve) of the
+ * cap; the writer, the critic, the planner and owner-started runs may use all of it.
+ */
+export const DEFAULT_WRITER_RESERVE_PCT = 40;
+export const RESERVE_YIELDING_FEATURES: readonly string[] = ['editor.manager', 'editor.orchestrator', 'editor.idea_reviewer', 'editor.reviewer'];
 
 /** A registry agent's own daily cap (spec 017), checked in addition to the channel and global caps. */
 export interface AgentBudget {
@@ -18,15 +26,23 @@ export interface AgentBudget {
   limitUsd?: number | null;
 }
 
+/** Spec 046 FR-005: what one executor + critic run of a slot costs at most on Sonnet (review 2: ≈ $0.05–0.15). */
+export const DEFAULT_RUN_HEADROOM_USD = 0.15;
+
+/** Spec 046 FR-005: `headroomUsd` — also refuse when less than this is left under the agents' or the channel cap (a whole run must fit). */
+export interface BudgetCheckOptions { headroomUsd?: number }
+
 export interface BudgetGate {
   /** `provider`: the run's workspace (spec 038), for provider-scoped llm_budgets caps; default openrouter. */
-  check(channelKey: string | null, channelLimitUsd?: number | null, agent?: AgentBudget | null, provider?: string): Promise<BudgetVerdict>;
+  check(channelKey: string | null, channelLimitUsd?: number | null, agent?: AgentBudget | null, provider?: string, o?: BudgetCheckOptions): Promise<BudgetVerdict>;
 }
 
 export interface BudgetLimits {
   /** The agents' cap (`editor.*`) when no llm_budgets row is wired. */
   globalDailyUsd:  number;
   channelDailyUsd: number;
+  /** Spec 046 FR-005: the writer's reserve in % of the agents' cap (default DEFAULT_WRITER_RESERVE_PCT; 0 = off). */
+  writerReservePct?: number;
 }
 
 /**
@@ -50,7 +66,7 @@ export class BudgetService implements BudgetGate {
     private readonly caps?: LlmBudgetService,
   ) {}
 
-  async check(channelKey: string | null, channelLimitUsd?: number | null, agent?: AgentBudget | null, provider = 'openrouter'): Promise<BudgetVerdict> {
+  async check(channelKey: string | null, channelLimitUsd?: number | null, agent?: AgentBudget | null, provider = 'openrouter', o: BudgetCheckOptions = {}): Promise<BudgetVerdict> {
     const feature = currentLlmContext().feature?.startsWith('editor.') ? currentLlmContext().feature! : 'editor.unknown';
     if (this.caps) {
       // Total, agents (editor.*) or chat (editor.chat), and any feature/provider caps covering this editor call.
@@ -87,6 +103,19 @@ export class BudgetService implements BudgetGate {
       return { ok: false, scope: 'global', spentUsd: globalUsd, limitUsd: this.limits.globalDailyUsd };
     }
 
+    // Spec 046 FR-005: the writer's reserve and the headroom of a whole run, both against the agents' cap.
+    const agentsCap = await this.agentsCapUsd();
+    if (agentsCap != null && agentsCap > 0) {
+      const reservePct = Math.min(90, Math.max(0, this.limits.writerReservePct ?? DEFAULT_WRITER_RESERVE_PCT));
+      const line = Math.round(agentsCap * (1 - reservePct / 100) * 10_000) / 10_000;
+      if (reservePct > 0 && RESERVE_YIELDING_FEATURES.includes(feature) && globalUsd >= line) {
+        return { ok: false, scope: 'reserve', spentUsd: globalUsd, limitUsd: line };
+      }
+      if (o.headroomUsd && agentsCap - globalUsd < o.headroomUsd) {
+        return { ok: false, scope: 'headroom', spentUsd: globalUsd, limitUsd: agentsCap };
+      }
+    }
+
     if (channelKey) {
       const resource = this.caps && channelLimitUsd == null ? await this.caps.resourceCap(`telegram:${channelKey}`) : null;
       const channelLimit = channelLimitUsd ?? resource?.capUsd ?? this.limits.channelDailyUsd;
@@ -96,6 +125,7 @@ export class BudgetService implements BudgetGate {
         ? await this.caps.thresholds(`channel:${channelKey}`, day, info, resource?.row.alertPct ?? 80, enforce)
         : channelUsd >= channelLimit && (await this.alertOnce(`channel:${channelKey}:${day}`, `💸 Editor: бюджет каналу ${channelKey} вичерпано ($${channelUsd.toFixed(3)} / $${channelLimit}).`), true);
       if (blocked) return { ok: false, scope: 'channel', spentUsd: channelUsd, limitUsd: channelLimit };
+      if (o.headroomUsd && enforce && channelLimit - channelUsd < o.headroomUsd) return { ok: false, scope: 'headroom', spentUsd: channelUsd, limitUsd: channelLimit };
     }
 
     if (agent?.limitUsd != null) {
@@ -106,6 +136,15 @@ export class BudgetService implements BudgetGate {
       if (blocked) return { ok: false, scope: 'agent', spentUsd: agentUsd, limitUsd: agent.limitUsd };
     }
     return { ok: true };
+  }
+
+  /** The agents' daily cap: the llm_budgets `editor.` row (owner-editable), else the env limit. */
+  private async agentsCapUsd(): Promise<number | null> {
+    if (!this.caps) return this.limits.globalDailyUsd;
+    try {
+      const r = (await this.caps.caps()).find((x) => x.scopeKind === 'feature_prefix' && x.scopeKey === 'editor.' && x.enforce);
+      return r ? r.dailyUsd ?? null : null;
+    } catch { return null; }
   }
 
   /** Feature-level caps (spec 029 FR-008) for callers outside the editor loop. */

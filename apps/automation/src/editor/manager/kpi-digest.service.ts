@@ -25,7 +25,8 @@ export interface KpiDigest {
   today:       string;
   resources:   ResourceDigest[];
   agents:      Array<{ handle: string; mode: string; paused: boolean; slotsToday: Record<string, number>; spentTodayUsd: number }>;
-  budget:      { spentTodayUsd: number; capUsd: number };
+  /** perPost7dUsd (spec 046 FR-005): 7-day production spend per published / shadowed post; null without posts or when unread. */
+  budget:      { spentTodayUsd: number; capUsd: number; spent7dUsd?: number | null; posts7d?: number | null; perPost7dUsd?: number | null };
   directives:  { open: Array<{ id: string; to: string; kind: string; status: string; body: string; createdAt: string; binding?: string; reviewAt?: string | null }>; outcomes: Array<{ to: string; kind: string; outcome: string | null; body: string; detail: unknown }> };
   /** Spec 025 FR-017: how each orchestrator answered the MANAGER over 30 days. */
   compliance?: ComplianceRow[];
@@ -113,24 +114,123 @@ export function reviewSignature(d: Pick<KpiDigest, 'resources'>): string {
 }
 
 const flagged = (r: ResourceDigest) => (r.quality?.flags.length ?? 0) > 0;
+const loud = (r: ResourceDigest) => r.anomalies.length > 0 || flagged(r);
+const cut = (s: string, n: number) => (s.length > n ? `${s.slice(0, n - 1)}…` : s);
+const QUIET_NOTE = 'без аномалій і прапорців якості';
+
+/** Spec 046 FR-001: a flagged resource's quality block without the long parts (samples, plan days, feed lists). */
+function compactQuality(q: ResourceQuality): Record<string, unknown> {
+  const { samples: _s, signature: _g, plan, feeds, reader_questions, owner, critic, events_not_covered, ...rest } = q;
+  return {
+    ...rest,
+    critic: { ...critic, notes: critic.notes.slice(0, 2).map((n) => cut(n, 120)) },
+    owner: { ...owner, reasons: owner.reasons.slice(0, 2).map((n) => cut(n, 120)), edits: owner.edits.slice(0, 1).map((n) => cut(n, 120)) },
+    reader_questions: { ...reader_questions, examples: [] },
+    ...(plan ? { plan: { dark_days: plan.dark_days, series_missed: plan.series_missed, fallback: plan.fallback } } : {}),
+    ...(feeds?.length ? { feeds: feeds.slice(0, 3) } : {}),
+    ...(events_not_covered?.length ? { events_not_covered: events_not_covered.slice(0, 3) } : {}),
+  };
+}
+
+/** The smallest quality view that still carries the flags and the numbers a quality_check cites. */
+const tinyQuality = (q: ResourceQuality) => ({
+  flags: q.flags, posts: q.posts, critic_pass_rate: q.critic.pass_rate, critic: { pass: q.critic.pass, revise: q.critic.revise, reject: q.critic.reject },
+  owner_rejection_rate: q.owner.rejection_rate, polls: { count: q.polls.count, cap: q.polls.cap, over: q.polls.over },
+});
+
+export interface DigestView {
+  /** Valid JSON, at most `limit` characters. */
+  text:     string;
+  /** Resources whose quality block (at least the flags and the numbers) is in the text — submit_review asks only for these. */
+  detailed: Set<string>;
+  /** How far the render had to slim (0 = complete). */
+  level:    number;
+}
+
+/**
+ * Spec 046 FR-001: the digest as the MANAGER reads it, always valid JSON under `limit`. The head (budget, config
+ * conflicts, directives, agents, compliance) comes before the resources, so slimming never loses it. Steps:
+ * quiet samples go → flagged keep one short sample → quiet resources become a stub → flagged blocks lose their long
+ * parts and the head its long texts → quality shrinks to flags and numbers, quiet resources to a list of refs →
+ * the least anomalous resources are left out (`resources_omitted`; get_kpi_digest({resource}) reads one) → the
+ * head keeps only ids. Never a cut string (review 2: a sliced JSON failed every get_kpi_digest call).
+ */
+export function digestView(d: KpiDigest, limit = DIGEST_LIMIT_CHARS): DigestView {
+  type Res = Record<string, unknown> & { ref: string };
+  const head = (o: { outcomesBody?: number; openBody?: number; detail?: boolean; reasons?: number; bare?: boolean } = {}) => {
+    const dir = d.directives;
+    if (o.bare) {
+      return {
+        budget: d.budget, config_conflicts: d.config_conflicts?.map((c) => ({ agent: c.agent, ref: c.ref, code: c.code })),
+        directives: { open: dir.open.map((x) => ({ id: x.id, to: x.to, kind: x.kind, status: x.status })) },
+        agents: d.agents.map((a) => ({ handle: a.handle, mode: a.mode, paused: a.paused, spentTodayUsd: a.spentTodayUsd })),
+      };
+    }
+    return {
+      budget: d.budget,
+      config_conflicts: d.config_conflicts,
+      directives: {
+        open: o.openBody ? dir.open.map((x) => ({ ...x, body: cut(x.body, o.openBody!) })) : dir.open,
+        outcomes: o.outcomesBody
+          ? dir.outcomes.map((x) => ({ ...x, body: cut(x.body, o.outcomesBody!), detail: o.detail === false ? undefined : x.detail }))
+          : dir.outcomes,
+      },
+      agents: d.agents,
+      compliance: o.reasons == null ? d.compliance : d.compliance?.map((c) => ({ ...c, decline_reasons: c.decline_reasons.slice(0, o.reasons).map((x) => ({ kind: x.kind, reason: cut(x.reason, 100) })) })),
+    };
+  };
+  const doc = (h: object, resources: Res[], extra: Record<string, unknown> = {}) =>
+    JSON.stringify({ generatedAt: d.generatedAt, today: d.today, ...h, resources, ...extra });
+  const withQ = (r: ResourceDigest, q: unknown): Res => ({ ...r, quality: q } as Res);
+  const stub = (r: ResourceDigest): Res => ({ ref: r.ref, agent: r.agent, anomalies: [], note: QUIET_NOTE });
+  const short = (r: ResourceDigest): Res => (r.quality ? withQ(r, slimQuality(r.quality, { samples: flagged(r) ? 1 : 0, sampleChars: 200 })) : (r as unknown as Res));
+  const noSamples = (r: ResourceDigest): Res => (r.quality && !flagged(r) ? withQ(r, slimQuality(r.quality, { samples: 0, sampleChars: 0 })) : (r as unknown as Res));
+  const compact = (r: ResourceDigest): Res => (r.quality ? withQ(r, compactQuality(r.quality)) : (r as unknown as Res));
+  const tiny = (r: ResourceDigest): Res => ({ ref: r.ref, agent: r.agent, health: r.health, kpis: r.kpis, anomalies: r.anomalies, quality: r.quality ? tinyQuality(r.quality) : r.quality } as Res);
+  const rs = d.resources;
+  const loudRows = rs.filter(loud);
+  const quietRefs = rs.filter((r) => !loud(r)).map((r) => r.ref);
+  const all = new Set(rs.filter((r) => r.quality).map((r) => r.ref));
+  const loudSet = new Set(loudRows.filter((r) => r.quality).map((r) => r.ref));
+
+  const steps: Array<() => { text: string; detailed: Set<string> }> = [
+    () => ({ text: doc(head(), rs as unknown as Res[]), detailed: all }),
+    () => ({ text: doc(head(), rs.map(noSamples)), detailed: all }),
+    () => ({ text: doc(head(), rs.map(short)), detailed: all }),
+    () => ({ text: doc(head(), rs.map((r) => (loud(r) ? short(r) : stub(r)))), detailed: loudSet }),
+    () => ({ text: doc(head({ outcomesBody: 100, openBody: 160, reasons: 1 }), rs.map((r) => (loud(r) ? compact(r) : stub(r)))), detailed: loudSet }),
+    () => ({ text: doc(head({ outcomesBody: 80, openBody: 120, detail: false, reasons: 1 }), loudRows.map(tiny), { quiet: quietRefs }), detailed: loudSet }),
+  ];
+  for (let i = 0; i < steps.length; i++) {
+    const s = steps[i]();
+    if (s.text.length <= limit) return { ...s, level: i };
+  }
+  // Leave out the least anomalous resources (the list is sorted by anomaly count) until it fits.
+  const h = head({ outcomesBody: 80, openBody: 120, detail: false, reasons: 1 });
+  const hint = 'get_kpi_digest({resource}) — повний блок одного ресурсу';
+  for (let n = loudRows.length - 1; n >= 0; n--) {
+    const kept = loudRows.slice(0, n);
+    const text = doc(h, kept.map(tiny), { quiet: quietRefs, resources_omitted: loudRows.slice(n).map((r) => r.ref), hint });
+    if (text.length <= limit) return { text, detailed: new Set(kept.filter((r) => r.quality).map((r) => r.ref)), level: steps.length };
+  }
+  const refs = rs.map((r) => r.ref);
+  const bare = doc(head({ bare: true }), [], { resources_omitted: refs, hint });
+  if (bare.length <= limit) return { text: bare, detailed: new Set(), level: steps.length + 1 };
+  const min = (omitted: unknown) => JSON.stringify({ generatedAt: d.generatedAt, today: d.today, budget: d.budget, open_directives: d.directives.open.length, resources: [], resources_omitted: omitted, hint });
+  const listed = min(refs);
+  return { text: listed.length <= limit ? listed : min(refs.length), detailed: new Set(), level: steps.length + 2 };
+}
 
 /** See KpiDigestService.render. */
 export function renderDigest(d: KpiDigest, limit = DIGEST_LIMIT_CHARS): string {
-  const strip = (x: object) => JSON.stringify({ ...x, raw: undefined, hash: undefined });
-  const map = (f: (r: ResourceDigest) => object) => ({ ...d, resources: d.resources.map(f) });
-  const short = (r: ResourceDigest) => (r.quality ? { ...r, quality: slimQuality(r.quality, { samples: flagged(r) ? 1 : 0, sampleChars: 200 }) } : r);
-  const steps: Array<() => string> = [
-    () => strip(d),
-    () => strip(map((r) => (r.quality && !flagged(r) ? { ...r, quality: slimQuality(r.quality, { samples: 0, sampleChars: 0 }) } : r))),
-    () => strip(map(short)),
-    () => strip(map((r) => (r.anomalies.length || flagged(r) ? short(r) : { ref: r.ref, agent: r.agent, anomalies: [], note: 'без аномалій і прапорців якості' }))),
-  ];
-  let s = '';
-  for (const step of steps) {
-    s = step();
-    if (s.length <= limit) return s;
-  }
-  return `${s.slice(0, limit - 20)}…(обрізано)`;
+  return digestView(d, limit).text;
+}
+
+/** Spec 046 FR-001: one resource in full (get_kpi_digest({resource})); samples bounded so one block stays readable. */
+export function resourceView(d: KpiDigest, ref: string): ResourceDigest | null {
+  const r = d.resources.find((x) => x.ref === ref) ?? d.resources.find((x) => x.ref.endsWith(`:${ref}`) || x.ref.endsWith(`:@${ref}`));
+  if (!r) return null;
+  return r.quality ? { ...r, quality: slimQuality(r.quality, { samples: 3, sampleChars: 600 }) } : r;
 }
 
 /**
@@ -230,6 +330,7 @@ export class KpiDigestService {
           AND at >= ($1::date::timestamp AT TIME ZONE 'Europe/Kyiv') AND at < (($1::date + 1)::timestamp AT TIME ZONE 'Europe/Kyiv')`, [today]);
     // The spend ledger (spec 029) is the source; the cap is the agents' llm_budgets row.
     const capUsd = this.d.capUsd ? await this.d.capUsd().catch(() => this.d.globalCapUsd) : this.d.globalCapUsd;
+    const week = await this.costPerPost().catch(() => null);
 
     const { rows: open } = await this.d.pool.query(
       `SELECT d.id, a.handle AS to_handle, d.kind, d.binding, d.status, d.body, d.created_at, d.review_at FROM agent_directives d JOIN agents a ON a.id = d.to_agent_id
@@ -247,7 +348,7 @@ export class KpiDigestService {
 
     const digest: Omit<KpiDigest, 'hash' | 'raw'> = {
       generatedAt: now.toISOString(), today, resources: out, agents,
-      budget: { spentTodayUsd: Math.round(Number(spend[0]?.usd ?? 0) * 10000) / 10000, capUsd },
+      budget: { spentTodayUsd: Math.round(Number(spend[0]?.usd ?? 0) * 10000) / 10000, capUsd, ...(week ?? {}) },
       directives: {
         open: open.map((o) => ({
           id: o.id, to: o.to_handle, kind: o.kind, status: o.status, body: String(o.body).slice(0, 200), createdAt: new Date(o.created_at).toISOString(),
@@ -261,11 +362,19 @@ export class KpiDigestService {
     return { ...digest, hash: digestHash(digest), raw };
   }
 
-  /**
-   * Prompt text under DIGEST_LIMIT_CHARS: anomalies and quality flags first. When it does not fit: the sample
-   * texts of resources without quality flags go first, then every resource keeps at most one short sample, then
-   * quiet resources (no anomaly, no quality flag) lose their detail, then the text is cut.
-   */
+  /** Spec 046 FR-005: the agents' production spend of the last 7 days per post that went out (published or shadowed). */
+  private async costPerPost(): Promise<{ spent7dUsd: number; posts7d: number; perPost7dUsd: number | null }> {
+    const { rows } = await this.d.pool.query(
+      `SELECT (SELECT COALESCE(SUM(cost_usd), 0)::float8 FROM llm_usage
+                WHERE feature LIKE 'editor.%' AND feature <> 'editor.chat' AND feature NOT LIKE 'editor.chat.%' AND at >= now() - interval '7 days') AS usd,
+              (SELECT COUNT(*)::int FROM editor_slots WHERE status IN ('published','shadowed') AND updated_at >= now() - interval '7 days') AS posts`);
+    const usd = Number(rows[0]?.usd ?? 0);
+    const posts = Number(rows[0]?.posts ?? 0);
+    const r4 = (x: number) => Math.round(x * 10000) / 10000;
+    return { spent7dUsd: r4(usd), posts7d: posts, perPost7dUsd: posts > 0 ? r4(usd / posts) : null };
+  }
+
+  /** Prompt text under DIGEST_LIMIT_CHARS, always valid JSON (see digestView). */
   render(d: KpiDigest): string {
     return renderDigest(d);
   }

@@ -230,6 +230,8 @@ export interface SlotResultPatch {
   scheduledAt?:     Date;
   /** Spec 040 FR-008: the retry time of a failed attempt (cleared when the slot is claimed). */
   retryAt?:         Date | null;
+  /** Spec 046 FR-005: a wait for the budget gives the claim's attempt back. */
+  attempts?:        number;
   // spec 031
   renderMessages?:    ApprovalRender | null;
   preparedMedia?:     { slideUrls?: string[]; longreadUrl?: string } | null;
@@ -662,6 +664,7 @@ export class EditorPlansRepository {
     if (p.error !== undefined)           add('error', p.error);
     if (p.scheduledAt !== undefined)     add('scheduled_at', p.scheduledAt);
     if (p.retryAt !== undefined)         add('retry_at', p.retryAt);
+    if (p.attempts !== undefined)        add('attempts', Math.max(0, Math.round(p.attempts)));
     if (p.renderMessages !== undefined)  add('render_messages', p.renderMessages === null ? null : JSON.stringify(p.renderMessages));
     if (p.preparedMedia !== undefined)   add('prepared_media', p.preparedMedia === null ? null : JSON.stringify(p.preparedMedia));
     if (p.lintWarnings !== undefined)    add('lint_warnings', p.lintWarnings === null ? null : JSON.stringify(p.lintWarnings));

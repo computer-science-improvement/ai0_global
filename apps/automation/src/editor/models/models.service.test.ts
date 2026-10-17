@@ -100,7 +100,7 @@ test('overview: effective model + source per agent, inheritance, channel overrid
   const o: any = await w.svc.overview();
   const row = (h: string) => o.agents.find((r: any) => r.handle === h);
   assert.deepEqual(o.agents.map((r: any) => r.handle), ['manager', 'ai0', 'news', 'news_planner', 'news_executor', 'news_ideas', 'space', 'space_reviewer']);
-  assert.deepEqual(o.defaultModel, { model: 'z-ai/glm-5.3-flash', saved: null, builtin: 'z-ai/glm-5.3-flash', price: { inPerM: 0.11, outPerM: 0.22, source: 'llm_prices' } });
+  assert.deepEqual(o.defaultModel, { model: 'z-ai/glm-5.3-flash', saved: null, builtin: 'z-ai/glm-5.3-flash', price: { inPerM: 0.11, outPerM: 0.22, source: 'llm_prices' }, roleModels: null });
 
   assert.deepEqual([row('manager').effective.model, row('manager').effective.source], ['z-ai/glm-5.3-flash', 'default']);
   assert.deepEqual([row('ai0').effective.model, row('ai0').effective.source], ['openai/gpt-5-mini', 'agent']);

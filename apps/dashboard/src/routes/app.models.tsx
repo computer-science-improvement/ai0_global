@@ -99,6 +99,9 @@ function WorkspaceCard({ info }: { info: WorkspaceInfo }) {
           From their next run, agents use the {WORKSPACE_LABEL[next]} models: the default {target ? <span style={mono}>{target.defaultModel}</span> : null}
           {target && target.agentsWithOwnModel > 0 ? `, and ${target.agentsWithOwnModel} agent${target.agentsWithOwnModel === 1 ? '' : 's'} with their own ${WORKSPACE_LABEL[next]} model` : ''}.
           Your {WORKSPACE_LABEL[info.active]} choices are kept and come back when you switch back. Runs already in progress finish where they started.
+          {next === 'anthropic' && (
+            <><br /><br />Cost: Claude models cost far more per post than the OpenRouter default (the last review measured about $1.21 per published post on Claude against $0.06). Without a default of your own, each role gets its built-in Claude model (Sonnet for the writer, critic, manager and chats; Haiku for plans, idea reviews and the daily orchestration), and the agents cap under Budgets stops runs above your daily limit.</>
+          )}
         </p>
       ),
     });
@@ -133,7 +136,7 @@ function WorkspaceCard({ info }: { info: WorkspaceInfo }) {
               {w.id === info.active && <Badge tone="accent">Active</Badge>}
             </div>
             <div className="text-micro" style={{ color: 'var(--color-ink-muted)', overflowWrap: 'anywhere' }}>
-              Default <span style={mono}>{w.defaultModel}</span> · {w.agentsWithOwnModel} agent{w.agentsWithOwnModel === 1 ? '' : 's'} with their own model
+              Default {w.perRole ? 'per role (Sonnet / Haiku)' : <span style={mono}>{w.defaultModel}</span>} · {w.agentsWithOwnModel} agent{w.agentsWithOwnModel === 1 ? '' : 's'} with their own model
             </div>
           </div>
         ))}
@@ -182,6 +185,13 @@ function PriceFacts({ inPerM, outPerM, context }: { inPerM: number | null | unde
   );
 }
 
+/** "claude-sonnet-5-5 — executor, checker…; claude-haiku-5-5 — planner…" (spec 046 built-in per-role models). */
+function roleModelsText(m: Record<string, string>): string {
+  const by = new Map<string, string[]>();
+  for (const [role, model] of Object.entries(m)) by.set(model, [...(by.get(model) ?? []), role.replace('_', ' ')]);
+  return [...by.entries()].map(([model, roles]) => `${model} for ${roles.join(', ')}`).join('; ');
+}
+
 function DefaultCard({ data }: { data: ModelsOverview }) {
   const def = data.defaultModel;
   const catalog = useModelCatalog();
@@ -222,6 +232,11 @@ function DefaultCard({ data }: { data: ModelsOverview }) {
           <PriceFacts inPerM={entry?.inPerM ?? def.price?.inPerM} outPerM={entry?.outPerM ?? def.price?.outPerM} context={entry?.contextLength} />
         </div>
       </div>
+      {def.roleModels && (
+        <p className="text-micro" style={{ margin: '0 0 8px', color: 'var(--color-ink-muted)', lineHeight: 1.6, maxWidth: 760 }}>
+          No default chosen, so each role runs its built-in Claude model: {roleModelsText(def.roleModels)}. Choosing a default here puts every role on that model.
+        </p>
+      )}
       {def.saved && (
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
           <button type="button" className="btn-secondary" style={{ gap: 6 }} disabled={save.isPending} onClick={() => change(null)}>
@@ -423,7 +438,7 @@ function AgentsSection({ data }: { data: ModelsOverview }) {
       )}
       <p className="text-micro" style={{ color: 'var(--color-ink-dim)', margin: '10px 0 0' }}>
         {data.workspace === 'anthropic'
-          ? <>Precedence: the agent's own Anthropic model (role agents inherit their orchestrator's), then an env variable, then the default. Channel overrides apply to OpenRouter only.</>
+          ? <>Precedence: the agent's own Anthropic model (role agents inherit their orchestrator's), then an env variable, then the default (without one, the role's built-in model). Channel overrides apply to OpenRouter only.</>
           : <>Precedence: the agent's own model (role agents inherit their orchestrator's), then a channel override, then an env variable, then the default.</>}
       </p>
 

@@ -63,6 +63,24 @@ export const EDITOR_ROLES: readonly EditorRole[] = [
   'planner', 'executor', 'reviewer', 'checker', 'composer', 'orchestrator', 'idea_reviewer', 'manager', 'builder', 'onboarder',
 ];
 
+/**
+ * Spec 046 FR-010: the built-in model of each role in the Anthropic workspace while the owner has no default
+ * there. Review 2: Sonnet everywhere (+ Opus on the manager, the critic and the weekly reviewers) cost ≈ $1.21 per
+ * post against ≈ $0.06 on GLM. The writer, the critic, the manager and the owner-facing roles stay on Sonnet; the
+ * structured, high-volume roles (plans, idea reviews, the daily orchestration) run on Haiku. Target: the owner's
+ * $3/day for the agents at the current volume (spec 046 §Budget).
+ */
+export const ANTHROPIC_ROLE_MODELS: Readonly<Record<EditorRole, string>> = {
+  executor: DEFAULT_ANTHROPIC_MODEL, checker: DEFAULT_ANTHROPIC_MODEL, manager: DEFAULT_ANTHROPIC_MODEL, reviewer: DEFAULT_ANTHROPIC_MODEL,
+  composer: DEFAULT_ANTHROPIC_MODEL, builder: DEFAULT_ANTHROPIC_MODEL, onboarder: DEFAULT_ANTHROPIC_MODEL,
+  planner: 'claude-haiku-5-5', orchestrator: 'claude-haiku-5-5', idea_reviewer: 'claude-haiku-5-5',
+};
+
+/** The built-in model of a role in a workspace (OpenRouter has one default for every role). */
+export function builtinRoleModel(role: EditorRole, ws: Workspace = 'openrouter'): string {
+  return ws === 'anthropic' ? ANTHROPIC_ROLE_MODELS[role] ?? DEFAULT_ANTHROPIC_MODEL : DEFAULT_EDITOR_MODEL;
+}
+
 // max_tokens includes reasoning tokens on reasoning models, so leave headroom above the visible output.
 const ROLE_DEFAULTS: Record<EditorRole, { maxTokens: number; temperature: number; reasoningEffort: ReasoningEffort }> = {
   planner:  { maxTokens: 8000, temperature: 0.6, reasoningEffort: 'medium' },
@@ -106,9 +124,10 @@ export const isReasoningEffort = (s: unknown): s is ReasoningEffort => s === 'lo
  * Pure model choice for a role (spec 035). Precedence: the agent's model
  * → the channel card's legacy `models[role]` → env EDITOR_MODEL_<ROLE>
  * → the owner's global default setting → DEFAULT_EDITOR_MODEL.
- * Every role defaults to the same model (there are no per-role defaults).
+ * On OpenRouter every role defaults to the same model.
  * Anthropic workspace (spec 038): the channel cards' legacy overrides are OpenRouter ids and are skipped; the env
- * key is EDITOR_ANTHROPIC_MODEL_<ROLE>; the built-in default is DEFAULT_ANTHROPIC_MODEL.
+ * key is EDITOR_ANTHROPIC_MODEL_<ROLE>; without the owner's default each role has its own built-in model
+ * (ANTHROPIC_ROLE_MODELS, spec 046 FR-010).
  */
 export function pickModel(
   role: EditorRole,
@@ -123,7 +142,7 @@ export function pickModel(
   if (channel) return { model: channel, source: 'channel' };
   const fromEnv = clean(env(envModelKey(role, ws)));
   if (fromEnv) return { model: fromEnv, source: 'env' };
-  return { model: clean(o.defaultModel) ?? builtinDefaultModel(ws), source: 'default' };
+  return { model: clean(o.defaultModel) ?? builtinRoleModel(role, ws), source: 'default' };
 }
 
 /** Reasoning effort: the agent's own → env EDITOR_REASONING_<ROLE> → env EDITOR_REASONING → the role default. */

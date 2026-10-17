@@ -5,7 +5,7 @@ import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { audienceCaps } from '../post/audience-asks';
 import { assembleQuality, qualityActive, qualityMetricValue, slotText, SAMPLE_CHARS, type CriticRow, type OwnerRow, type PostRow, type ResourceQuality } from './quality-digest';
-import { digestHash, DIGEST_LIMIT_CHARS, renderDigest, type KpiDigest } from './kpi-digest.service';
+import { digestHash, digestView, DIGEST_LIMIT_CHARS, renderDigest, resourceView, type KpiDigest } from './kpi-digest.service';
 import { canSkip, ManagerRunner, managerSystemPrompt } from './manager-runner';
 import { buildDirectiveTools, checkQualityReview, fileDirective } from './directive-tools';
 import { admitDirective, metricValue } from './directive-kinds';
@@ -300,4 +300,79 @@ test('037 T4: the quality block shows the share of sources by tier per resource 
   assert.equal(q.sources!.share!.aggregator, 0.4);
   assert.deepEqual(q.sources!.top[0], { host: 'marktechpost.com', n: 2, tier: 'aggregator' });
   assert.equal(assembleQuality({ critic: [], owner: [], caps: audienceCaps(null), posts: [post('x', 1, 'text', 'т')] }).sources, undefined);
+});
+
+// ── Spec 046 FR-001/FR-002: the digest is always valid JSON; the gate asks only for what the render shows ─────
+
+const heavyDigest = (n: number, flaggedEvery = 1) => {
+  const flaggedQ = quality();
+  const resources = Array.from({ length: n }, (_, i) => ({
+    ref: `telegram:@r${i}`, title: `R${i}`, agent: `a${i}`, health: 'ok', kpis: { views_per_post: { v: 1, base: 1, d: 0, z: 0 } } as any,
+    anomalies: i % 3 === 0 ? ['views_per_post_low'] : [] as string[], quality: i % flaggedEvery === 0 ? flaggedQ : null,
+  }));
+  const open = Array.from({ length: 20 }, (_, i) => ({ id: `00000000-0000-4000-8000-${String(i).padStart(12, '0')}`, to: `a${i}`, kind: 'voice_fix', status: 'new', body: 'Б'.repeat(200), createdAt: T0.toISOString() }));
+  const outcomes = Array.from({ length: 20 }, (_, i) => ({ to: `a${i}`, kind: 'format_mix', outcome: 'improved', body: 'О'.repeat(160), detail: { before: 1, after: 2, note: 'x'.repeat(400) } }));
+  const compliance = Array.from({ length: n }, (_, i) => ({ agent: `a${i}`, advice_followed: 1, advice_declined: 2, decline_reasons: [{ kind: 'data', reason: 'r'.repeat(160) }], contested: 0, auto_applied: 0 }));
+  return digest(null, { resources, directives: { open, outcomes }, compliance, config_conflicts: [{ agent: 'a1', ref: 'telegram:@r1', code: 'hashtag_while_off', detail: 'd' }] });
+};
+
+test('render: always valid JSON under the limit; the head (budget, directives, conflicts) survives; omitted resources are named', () => {
+  for (const n of [1, 10, 40, 120]) {
+    const d = heavyDigest(n);
+    for (const limit of [DIGEST_LIMIT_CHARS, 8_000, 3_000]) {
+      const v = digestView(d, limit);
+      assert.ok(v.text.length <= limit, `n=${n} limit=${limit}: ${v.text.length}`);
+      const o = JSON.parse(v.text);
+      assert.deepEqual(o.budget, d.budget, `n=${n} limit=${limit}`);
+      if (limit >= 8_000) {
+        assert.equal(o.directives.open.length, 20, 'open directives are never dropped while they fit');
+        assert.ok(o.config_conflicts?.length === 1);
+      }
+      const shown = new Set<string>([...(o.resources ?? []).map((r: any) => r.ref), ...(o.quiet ?? []), ...(o.resources_omitted ?? [])]);
+      for (const r of d.resources) assert.ok(shown.has(r.ref), `n=${n} limit=${limit}: ${r.ref} is listed somewhere`);
+      for (const ref of v.detailed) assert.ok(o.resources.find((r: any) => r.ref === ref)?.quality?.flags, `${ref} is detailed → its flags are in the text`);
+    }
+  }
+  assert.equal(digestView(digest(quality())).level, 0, 'a small digest is complete');
+  assert.doesNotMatch(renderDigest(heavyDigest(120), 3_000), /обрізано/);
+});
+
+test('get_kpi_digest: no args parses; {resource} returns one block with its open directives', async () => {
+  const d = heavyDigest(60);
+  const tools = buildDirectiveTools({ digest: { build: async () => d, render: (x: KpiDigest) => renderDigest(x) } } as any);
+  const t = tools.find((x) => x.name === 'get_kpi_digest')!;
+  const ctx = { extras: {}, role: 'manager' } as any;
+  const all = await t.execute({}, ctx) as any;
+  assert.ok(all.budget && Array.isArray(all.resources));
+  const one = await t.execute({ resource: '@r7' }, ctx) as any;
+  assert.equal(one.resource.ref, 'telegram:@r7');
+  assert.ok(one.resource.quality.samples.length > 0, 'the single view keeps samples');
+  assert.deepEqual(one.open_directives.map((x: any) => x.to), ['a7']);
+  assert.equal((await t.execute({ resource: 'telegram:@nope' }, ctx) as any).error, 'unknown_resource');
+  assert.equal(resourceView(d, 'telegram:@r3')?.ref, 'telegram:@r3');
+});
+
+test('quality_check (046): stubbed / left-out, young and agentless resources are exempt; all problems come back at once', () => {
+  // 120 flagged resources do not fit: the render leaves some out — those are not required.
+  const big = heavyDigest(120);
+  const v = digestView(big);
+  assert.ok(v.detailed.size < big.resources.length, 'fixture must leave resources out');
+  const entries = [...v.detailed].map((ref) => ({ resource_ref: ref, status: 'issue' as const, evidence: ev, issues: ['voice' as const] }));
+  assert.equal(checkQualityReview({ verdict: 'directives', quality_check: entries }, big), null);
+  // Young: < 5 posts and no flag.
+  const youngQ = assembleQuality({ critic: [crit('a', 1, 'pass')], posts: [post('p', 1, 'text', 'Текст')], owner: [], caps: audienceCaps(null) });
+  assert.equal(youngQ.flags.length, 0);
+  assert.equal(checkQualityReview({ verdict: 'continue', quality_check: [] }, digest(youngQ)), null, 'a young quiet resource is not required');
+  // Agentless: an "ok" over flags is not held against it.
+  const agentless = digest(quality());
+  agentless.resources[0].agent = null;
+  assert.equal(checkQualityReview({ verdict: 'continue', quality_check: [{ resource_ref: 'telegram:@space', status: 'ok', evidence: ev, issues: [] }] }, agentless), null);
+  // Every problem at once.
+  const dg = reviewDigest();
+  const r = checkQualityReview({ verdict: 'continue', quality_check: [
+    { resource_ref: 'telegram:@ghost', status: 'ok', evidence: ev, issues: [] },
+    { resource_ref: 'telegram:@space', status: 'issue', evidence: 'усе виглядає нормально', issues: [] },
+  ] }, dg);
+  assert.deepEqual(r?.problems?.map((p) => p.error), ['quality_check_unknown', 'quality_evidence_required', 'quality_issues_required', 'quality_issue_unaddressed']);
+  assert.equal(r?.error, 'quality_check_unknown');
 });

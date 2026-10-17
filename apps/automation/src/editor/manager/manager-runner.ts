@@ -13,6 +13,7 @@ import { reviewSignature, type KpiDigest, type KpiDigestService } from './kpi-di
 import type { ScopeKpis } from './kpi-math';
 import { DirectiveExecution, PROMO_KINDS } from './executors';
 import { isQualityMetric, qualityMetricValue } from './quality-digest';
+import { requiredQualityRefs } from './directive-tools';
 
 export const DEFAULT_MANAGER_TIMES = ['08:00', '13:00', '18:00', '22:30'];
 export const DELIVERY_DEBOUNCE_MS = 10 * 60_000;
@@ -63,7 +64,7 @@ export function bindingLabel(x: Pick<Directive, 'binding'>): string {
 }
 
 /** System prompt of the scheduled manager run. */
-export function managerSystemPrompt(o: { agent: Agent; now: Date; digest: string; memory: string; skills: { inline: string; listed: string }; open?: KpiDigest['directives']['open'] }): string {
+export function managerSystemPrompt(o: { agent: Agent; now: Date; digest: string; memory: string; skills: { inline: string; listed: string }; open?: KpiDigest['directives']['open']; qualityRefs?: string[] }): string {
   const tz = 'Europe/Kyiv';
   return [
     `Ти — ${o.agent.name} (@${o.agent.handle}), менеджер медіамережі ai0. Бачиш усі ресурси, KPI, якість текстів і директиви. Ти НЕ публікуєш і не керуєш постами напряму — лише даєш поради й директиви оркестраторам.`,
@@ -77,7 +78,8 @@ export function managerSystemPrompt(o: { agent: Agent; now: Date; digest: string
     '## Дайджест: KPI (7 днів проти 28-денної норми; d — зміна %, z — у шумах) і quality по ресурсах (7 днів)',
     o.digest,
     '',
-    '## Відкриті директиви (не дублюй; застосовану того ж типу замінюй лише через supersedes)',
+    ...(o.qualityRefs ? ['## quality_check обовʼязковий для (решта — за бажанням)', o.qualityRefs.length ? o.qualityRefs.join(', ') : '- нікого: verdict continue з quality_check: [] — можна', ''] : []),
+    '## Відкриті директиви (не дублюй; прийняту чи застосовану того ж типу замінюй лише через supersedes)',
     openDirectivesText(o.open ?? []),
     '',
     '## Памʼять менеджера (уроки минулих директив)',
@@ -89,6 +91,15 @@ export function managerSystemPrompt(o: { agent: Agent; now: Date; digest: string
     '## Інші скіли (load_skill)',
     o.skills.listed || '- немає',
   ].join('\n');
+}
+
+/** Spec 046 FR-003: accepted / applied directives as the planner reads them (the orchestrator's plan is the resolution). */
+export function commitmentsText(list: Array<Pick<Directive, 'kind' | 'binding' | 'status' | 'body' | 'resolution' | 'reviewAt'>>): string | null {
+  if (!list.length) return null;
+  return list.map((x) => [
+    `- ${bindingLabel(x)} · ${x.kind} · ${x.status}${x.reviewAt ? ` · перевірка ${x.reviewAt.toISOString().slice(0, 10)}` : ''}: ${x.body.slice(0, 300)}`,
+    x.resolution ? `  план оркестратора: ${x.resolution.slice(0, 300)}` : '',
+  ].filter(Boolean).join('\n')).join('\n');
 }
 
 /** Spec 040 FR-007: the open directives as the manager prompt lists them — target, kind, binding, status, review date. */
@@ -174,7 +185,7 @@ export class ManagerRunner {
     const mctx = await readModelContext(this.d);
     const res = await this.d.loop.run({
       role: 'manager', channelKey: null, model: resolveModel('manager', this.d.env, null, { agentModel: agentModelIn(m, mctx.workspace), defaultModel: mctx.defaultModel, reasoningEffort: m.reasoningEffort, workspace: mctx.workspace }),
-      system: managerSystemPrompt({ agent: m, now: this.now(), digest: this.d.digest.render(digest), memory, skills: { inline: inlineSkill, listed }, open: digest.directives?.open }),
+      system: managerSystemPrompt({ agent: m, now: this.now(), digest: this.d.digest.render(digest), memory, skills: { inline: inlineSkill, listed }, open: digest.directives?.open, qualityRefs: requiredQualityRefs(digest) }),
       user: 'Проаналізуй дайджест: KPI і якість контенту по кожному ресурсу (чекліст якості). Є підстава — file_directive (до 3; для якості — voice_fix / format_mix) і submit_review directives. Нічого робити не треба — submit_review continue, але з quality_check по кожному активному ресурсу з доказами.',
       tools: this.d.registry.forRole('manager'), maxSteps: 20,
       agent: { id: m.id, handle: m.handle, limitUsd: m.dailyBudgetUsd },
@@ -213,6 +224,12 @@ export class ManagerRunner {
       x.expected ? `  очікуємо: ${x.expected.metric} ${x.expected.direction === 'up' ? '↑' : '↓'} ≥ ${x.expected.min_change_pct}% до ${x.reviewAt?.toISOString().slice(0, 10)}` : '',
       Object.keys(x.params ?? {}).length ? `  параметри: ${JSON.stringify(x.params)}` : '',
     ].filter(Boolean).join('\n')).join('\n');
+  }
+
+  /** Spec 046 FR-003: the planner's block of what the orchestrator accepted (null when nothing is in force). */
+  async commitments(orchestratorId: string): Promise<string | null> {
+    const list = await this.d.repo.inForce(orchestratorId);
+    return commitmentsText(list);
   }
 
   /**

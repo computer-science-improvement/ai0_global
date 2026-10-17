@@ -7,7 +7,7 @@ import type { PendingActionsService } from '../agents/pending-actions';
 import { proposeCard } from '../agents/builder-tools';
 import type { EditorMemoryRepository } from '../repo/editor-memory.repository';
 import { DIRECTIVE_KINDS, DIRECTIVE_STATUSES, Directive, DirectiveKind, DirectivesRepository, Expected, KPI_METRICS } from './directives.repository';
-import { reviewSignature, type KpiDigest, type KpiDigestService } from './kpi-digest.service';
+import { digestView, resourceView, reviewSignature, type KpiDigest, type KpiDigestService, type ResourceDigest } from './kpi-digest.service';
 import { admitDirective, BINDINGS, checkBinding, ESCALATION_WINDOW_MS, metricValue, paramStructural } from './directive-kinds';
 import type { DirectiveExecution } from './executors';
 import { describe as describeChange } from './executors/playbook-executors';
@@ -55,7 +55,7 @@ export const FileDirectiveInput = z.object({
     resource_ref: z.string().max(200).optional(),
   }).optional(),
   review_in_days: z.number().int().min(REVIEW_DAYS.min).max(REVIEW_DAYS.max).default(7),
-  supersedes: z.string().uuid().optional().describe('id застосованої (applied) директиви того ж типу цьому ж оркестратору, яку нова замінює — тоді стара закривається як superseded'),
+  supersedes: z.string().uuid().optional().describe('id прийнятої (accepted) чи застосованої (applied) директиви того ж типу цьому ж оркестратору, яку нова замінює — тоді стара закривається як superseded'),
 });
 export type FileDirective = z.infer<typeof FileDirectiveInput>;
 
@@ -81,37 +81,60 @@ export const SubmitReviewInput = z.object({
 });
 export type SubmitReview = z.infer<typeof SubmitReviewInput>;
 
+/** Spec 046 FR-002: a resource with fewer written posts in the window has too little to judge — no checklist entry required. */
+export const QUALITY_MIN_POSTS = 5;
+
+/**
+ * Spec 046 FR-002: the resources submit_review needs a quality_check for — an agent to advise (spec 040), activity in
+ * the window, not young (< QUALITY_MIN_POSTS posts and no flag) and a quality block the rendered digest kept.
+ */
+export function requiredQualityRefs(dg: KpiDigest | Pick<KpiDigest, 'resources'> | null | undefined): string[] {
+  const rows = dg?.resources ?? [];
+  const visible = dg && 'directives' in dg ? digestView(dg as KpiDigest).detailed : null;
+  const young = (q: NonNullable<ResourceDigest['quality']>) => q.posts < QUALITY_MIN_POSTS && !q.flags.length;
+  return rows.filter((r) => r.agent && qualityActive(r.quality) && !young(r.quality!) && (!visible || visible.has(r.ref))).map((r) => r.ref);
+}
+
 /**
  * Spec 034 FR-006: the code side of the quality checklist. Every resource with activity in the quality block must
  * be answered with evidence (a number or a quote); a resource the code flagged cannot be "ok" without a note; a
  * "continue" over an issue needs a note saying why no advice is filed now. Null = the review may be stored.
+ *
+ * Spec 046 FR-002: required only where the manager can see the block — the render kept it (a stubbed or left-out
+ * resource is not), the resource has an agent, and it is not young (< QUALITY_MIN_POSTS posts and no flag). A
+ * resource without an agent is never held to its flags. Every problem comes back at once (`problems`), so one
+ * retry fixes all of them; `error` is the first problem's code.
  */
-export function checkQualityReview(i: Pick<SubmitReview, 'verdict' | 'quality_check'>, dg: Pick<KpiDigest, 'resources'> | null | undefined): { error: string; details: string } | null {
+export function checkQualityReview(i: Pick<SubmitReview, 'verdict' | 'quality_check'>, dg: KpiDigest | Pick<KpiDigest, 'resources'> | null | undefined): { error: string; details: string; problems?: Array<{ error: string; details: string }> } | null {
   const rows = dg?.resources ?? [];
   const byRef = new Map(rows.map((r) => [r.ref, r]));
+  const problems: Array<{ error: string; details: string }> = [];
   const unknown = i.quality_check.filter((e) => !byRef.has(e.resource_ref)).map((e) => e.resource_ref);
-  if (unknown.length) return { error: 'quality_check_unknown', details: `таких ресурсів немає в дайджесті: ${unknown.join(', ')}` };
+  if (unknown.length) problems.push({ error: 'quality_check_unknown', details: `таких ресурсів немає в дайджесті: ${unknown.join(', ')} — прибери їх із quality_check` });
   const given = new Set(i.quality_check.map((e) => e.resource_ref));
-  // Spec 040 FR-007: a resource without an agent has nobody to advise — it is exempt.
-  const missing = rows.filter((r) => r.agent && qualityActive(r.quality) && !given.has(r.ref)).map((r) => r.ref);
+  const missing = requiredQualityRefs(dg).filter((ref) => !given.has(ref));
   if (missing.length) {
-    return { error: 'quality_check_missing', details: `пройди чекліст якості й для: ${missing.join(', ')} (quality_check: status, evidence з цифрами чи цитатами, issues)` };
+    problems.push({ error: 'quality_check_missing', details: `пройди чекліст якості й для: ${missing.join(', ')} (quality_check: status, evidence з цифрами чи цитатами, issues)` });
   }
   for (const e of i.quality_check) {
-    const flags = byRef.get(e.resource_ref)?.quality?.flags ?? [];
+    const row = byRef.get(e.resource_ref);
+    if (!row) continue;
+    const flags = row.agent ? row.quality?.flags ?? [] : [];
     const note = (e.note ?? '').trim().length >= QUALITY_NOTE_MIN;
     if (!/\d|«|"/.test(e.evidence)) {
-      return { error: 'quality_evidence_required', details: `${e.resource_ref}: evidence має містити цифри (вердикти, частки, ліміти) або цитату з тексту — не загальні слова` };
+      problems.push({ error: 'quality_evidence_required', details: `${e.resource_ref}: evidence має містити цифри (вердикти, частки, ліміти) або цитату з тексту — не загальні слова` });
     }
-    if (e.status === 'issue' && !e.issues.length) return { error: 'quality_issues_required', details: `${e.resource_ref}: status issue — назви пункти чекліста в issues` };
+    if (e.status === 'issue' && !e.issues.length) problems.push({ error: 'quality_issues_required', details: `${e.resource_ref}: status issue — назви пункти чекліста в issues` });
     if (e.status === 'ok' && flags.length && !note) {
-      return { error: 'quality_flags_ignored', details: `${e.resource_ref}: код позначив ${flags.join(', ')} — познач status issue або поясни в note (≥ ${QUALITY_NOTE_MIN} символів), чому це не проблема` };
+      problems.push({ error: 'quality_flags_ignored', details: `${e.resource_ref}: код позначив ${flags.join(', ')} — познач status issue або поясни в note (≥ ${QUALITY_NOTE_MIN} символів), чому це не проблема` });
     }
     if (i.verdict === 'continue' && e.status === 'issue' && !note) {
-      return { error: 'quality_issue_unaddressed', details: `${e.resource_ref}: проблема якості (${e.issues.join(', ')}), а verdict continue — подай пораду voice_fix чи format_mix (verdict directives) або поясни в note, чому зараз не треба (напр. порада вже відкрита)` };
+      problems.push({ error: 'quality_issue_unaddressed', details: `${e.resource_ref}: проблема якості (${e.issues.join(', ')}), а verdict continue — подай пораду voice_fix чи format_mix (verdict directives) або поясни в note, чому зараз не треба (напр. порада вже відкрита)` });
     }
   }
-  return null;
+  if (!problems.length) return null;
+  if (problems.length === 1) return problems[0];
+  return { error: problems[0].error, details: `${problems.length} проблем, виправ усі за один раз: ${problems.map((p) => p.details).join(' | ')}`, problems };
 }
 
 export interface DirectiveToolDeps {
@@ -197,16 +220,20 @@ export async function fileDirective(d: DirectiveToolDeps, i: FileDirective, o: {
   if (!target || target.kind !== 'orchestrator' || target.parentId) return { error: 'not_an_orchestrator', details: i.to };
   if (o.runId && await d.repo.countForRun(o.runId) >= MAX_DIRECTIVES_PER_RUN) return { error: 'too_many_directives', details: `не більше ${MAX_DIRECTIVES_PER_RUN} за прогін` };
   const open = await d.repo.openFor(target.id, i.kind);
-  if (open) return { error: 'directive_open', details: `у @${target.handle} вже є відкрита директива ${i.kind} (${open.id}, ${open.status})` };
-  // Spec 040 FR-007: an applied one of the same kind no longer blocks — the new one names it and replaces it.
+  if (open) {
+    const wait = open.status === 'new' ? 'оркестратор ще не відповів — дочекайся його відповіді'
+      : open.status === 'awaiting_owner' ? 'вона чекає рішення власника' : 'вона оскаржена й чекає рішення власника';
+    return { error: 'directive_open', details: `у @${target.handle} вже є відкрита ${i.kind} (${open.id}, ${open.status}): ${wait}. Не змінюй kind, щоб обійти це; іншу тему подай іншим kind лише якщо вона справді інша` };
+  }
+  // Spec 040 FR-007 / 046 FR-003: an accepted or applied one of the same kind no longer blocks — the new one names it and replaces it.
   const applied = await d.repo.appliedFor(target.id, i.kind);
   if (applied && i.supersedes !== applied.id) {
     return {
       error: i.supersedes ? 'supersedes_mismatch' : 'supersedes_required',
-      details: `у @${target.handle} діє застосована ${i.kind} ${applied.id} («${applied.body.slice(0, 120)}», перевірка ${applied.reviewAt?.toISOString().slice(0, 10) ?? '—'}): якщо нова її замінює — supersedes: "${applied.id}"; інакше дочекайся її оцінки`,
+      details: `у @${target.handle} діє ${applied.status === 'accepted' ? 'прийнята' : 'застосована'} ${i.kind} ${applied.id} («${applied.body.slice(0, 120)}», перевірка ${applied.reviewAt?.toISOString().slice(0, 10) ?? '—'}): якщо нова її замінює — supersedes: "${applied.id}"; інакше дочекайся її оцінки`,
     };
   }
-  if (!applied && i.supersedes) return { error: 'supersedes_mismatch', details: `${i.supersedes} — не застосована директива ${i.kind} для @${target.handle}; прибери supersedes` };
+  if (!applied && i.supersedes) return { error: 'supersedes_mismatch', details: `${i.supersedes} — не прийнята й не застосована директива ${i.kind} для @${target.handle}; прибери supersedes` };
   const rejected = await d.repo.lastRejected(target.id, i.kind);
   if (rejected && now.getTime() - rejected.getTime() < REJECT_COOLDOWN_MS) return { error: 'cooldown', details: 'після відхиленої директиви такого типу — пауза 48 год' };
   if (!hasNumber(i.evidence)) return { error: 'evidence_required', details: 'evidence має містити цифри з дайджесту' };
@@ -256,7 +283,7 @@ export async function fileDirective(d: DirectiveToolDeps, i: FileDirective, o: {
   });
   if (o.ownerApproved) await d.repo.update(dir.id, { ownerDecision: 'approved' });
   // A shadow filing never closes a live directive.
-  if (applied && !o.shadow) await d.repo.update(applied.id, { status: 'superseded', resolution: `superseded by ${dir.id}` }, ['applied']);
+  if (applied && !o.shadow) await d.repo.update(applied.id, { status: 'superseded', resolution: `superseded by ${dir.id}` }, ['accepted', 'applied']);
   if (status === 'awaiting_owner' && !o.shadow) {
     const expected = i.expected ? `${i.expected.metric} ${i.expected.direction === 'up' ? '↑' : '↓'} ≥ ${i.expected.min_change_pct}%` : '—';
     await d.inbox.post({
@@ -284,10 +311,16 @@ export function buildDirectiveTools(d: DirectiveToolDeps): EditorTool[] {
 
   const getDigest = defineTool({
     name: 'get_kpi_digest',
-    description: 'KPI-дайджест мережі: по кожному ресурсу перегляди на пост, залученість, кількість постів, ріст підписників, переходи, дохід — 7 днів проти 28-денної норми, z і аномалії; плани на сьогодні, бюджет, відкриті директиви й результати минулих.',
+    description: 'KPI-дайджест мережі: по кожному ресурсу перегляди на пост, залученість, кількість постів, ріст підписників, переходи, дохід — 7 днів проти 28-денної норми, z і аномалії; плани на сьогодні, бюджет, відкриті директиви й результати минулих. resource — повний блок одного ресурсу (з quality і зразками), коли загальний дайджест його скоротив.',
     kind: 'read', roles: ['manager'],
-    input: z.object({}),
-    execute: async (_i, ctx) => JSON.parse(d.digest.render(await digestOf(ctx))),
+    input: z.object({ resource: z.string().min(2).max(200).optional().describe('ref ресурсу (telegram:@x) або @handle каналу') }),
+    execute: async ({ resource }, ctx) => {
+      const dg = await digestOf(ctx);
+      if (!resource) return JSON.parse(d.digest.render(dg));
+      const r = resourceView(dg, resource);
+      if (!r) return { error: 'unknown_resource', details: `немає в дайджесті; є: ${dg.resources.map((x) => x.ref).join(', ').slice(0, 1500)}` };
+      return { resource: r, open_directives: dg.directives.open.filter((x) => x.to === r.agent) };
+    },
   });
 
   const listDirectives = defineTool({
@@ -313,7 +346,7 @@ export function buildDirectiveTools(d: DirectiveToolDeps): EditorTool[] {
     description: [
       'Дати пораду чи директиву оркестратору (@handle) — коли є підстава в цифрах дайджесту: KPI або блок quality (voice_fix — правила голосу й приклади з реальних відхилених постів; format_mix — менше опитувань, нижчі ліміти, прибрати формат, що не пасує).',
       'binding: advice (порада, за замовчуванням) — оркестратор може відхилити; directive (обовʼязково) — лише коли метрика expected позначена anomaly в дайджесті або після відхиленої поради, коли метрика пішла ще далі; не більше 2 відкритих директив на агента.',
-      'Не більше 3 за прогін; не дублюй відкриту директиву; застосовану (applied) того ж типу заміняй лише явно — supersedes: її id; структурні (cross_promo, pause_resource, strategy, частота ±30%, нова платформа) — завжди directive і підуть власнику на рішення.',
+      'Не більше 3 за прогін; не дублюй відкриту директиву; прийняту чи застосовану (accepted/applied) того ж типу заміняй лише явно — supersedes: її id; структурні (cross_promo, pause_resource, strategy, частота ±30%, нова платформа) — завжди directive і підуть власнику на рішення.',
     ].join(' '),
     kind: 'act', roles: ['manager'],
     input: FileDirectiveInput,

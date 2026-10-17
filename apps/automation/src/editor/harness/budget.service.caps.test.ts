@@ -131,3 +131,20 @@ test('spec 040 FR-001: the production spend query leaves chat features out', asy
   assert.match(q, /global_usd/);
   assert.equal((q.match(/NOT LIKE 'editor\.chat\.%'/g) ?? []).length, 3, 'agents, channel and agent sums');
 });
+
+test('046: the manager / orchestrator / reviewers leave the writer reserve (40% of the agents cap); writers may use it', async () => {
+  const s = setup({ total: 1.3, editor: 1.3 });
+  const as = (feature: string) => withLlmContext({ feature }, () => s.svc.check('ch'));
+  assert.deepEqual(await as('editor.manager'), { ok: false, scope: 'reserve', spentUsd: 1.3, limitUsd: 1.2 });
+  assert.equal((await as('editor.orchestrator')).ok, false);
+  assert.equal((await as('editor.executor')).ok, true);
+  assert.equal((await as('editor.checker')).ok, true);
+  assert.equal((await withLlmContext({ feature: 'editor.manager' }, () => setup({ total: 1.1, editor: 1.1 }).svc.check('ch'))).ok, true, 'below the line');
+});
+
+test('046: headroom — a whole run must fit under the agents cap', async () => {
+  const s = setup({ total: 1.9, editor: 1.9 });
+  const v = await withLlmContext({ feature: 'editor.executor' }, () => s.svc.check('ch', 5, null, 'openrouter', { headroomUsd: 0.15 }));
+  assert.deepEqual(v, { ok: false, scope: 'headroom', spentUsd: 1.9, limitUsd: 2 });
+  assert.equal((await withLlmContext({ feature: 'editor.executor' }, () => s.svc.check('ch', 5))).ok, true, 'a single call still fits');
+});

@@ -48,6 +48,8 @@ export interface NetworkRunnerDeps {
   now?:     () => Date;
   /** Spec 045 FR-005: the steering rules of a resource's active sets (enabled, non-conflicting); absent = none. */
   steering?: (targetRef: string) => Promise<SteeringPromptRule[]>;
+  /** Spec 046 FR-003: the manager's advice / directives the orchestrator accepted and that are in force (planner block). */
+  commitments?: (orchestratorId: string) => Promise<string | null>;
   /** Spec 023 FR-008: the ≤ 1,500-char source catalog for the orchestrator and planner prompts. */
   catalogSummary?: (card: EditorCard) => Promise<string | null>;
   /** Spec 023 FR-008: low_runway Inbox items for datasets the active series use (after the daily run). */
@@ -197,7 +199,8 @@ export class NetworkRunner {
     const memory = await this.d.memory.listActive(card.channelKey, 30, { excludeApprovalPrefs: prefs.length > 0 });
     const profiles = await this.memberProfiles(c.net);
     const steering = this.d.steering ? await this.d.steering(`telegram:${card.channelKey}`).catch(() => []) : [];
-    const system = `${buildSystemPrompt('planner', card, memory, c.agentCtx.skills, prefs, { steering })}\n\n${networkPlannerBlock({ net: c.net, accepted, now, tz: card.timezone, planDate, profiles })}`;
+    const commitments = this.d.commitments ? await this.d.commitments(c.net.orchestrator.id).catch(() => null) : null;
+    const system = `${buildSystemPrompt('planner', card, memory, c.agentCtx.skills, prefs, { steering, commitments })}\n\n${networkPlannerBlock({ net: c.net, accepted, now, tz: card.timezone, planDate, profiles })}`;
     const quotas = await this.quotas(card.channelKey, planDate);
     const stories = this.d.stories ? await this.d.stories.activeBlock(card, 'planner', now).catch(() => null) : null;
     const user = [plannerUserPrompt(card, now, reserved, planDate), renderExperimentQuotas(quotas), await this.catalog(card), stories].filter(Boolean).join('\n\n');

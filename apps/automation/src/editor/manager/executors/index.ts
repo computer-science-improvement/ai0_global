@@ -17,6 +17,7 @@ export { pauseResourceExecutor, PAUSE_RESOURCE_DAYS, type PauseResourceDeps } fr
 export { experimentExecutor, SqlExperimentQuotas, EXPERIMENT, type ExperimentExecutorDeps } from './experiment-executor';
 export { strategyExecutor, PlaybookBuildPort, type PlaybookBuildFn, type StrategyExecutorDeps } from './strategy-executor';
 export { promoVerifier } from './promo-verifier';
+export { adviceVerifier, ADVICE_VERIFY_GIVE_UP_MS } from './advice-verifier';
 export { voiceFixExecutor, formatMixExecutor, VOICE_FIX, MANAGER_EXAMPLE_TAG, type QualityExecutorDeps } from './quality-executors';
 export { taskRefCheck, type TaskRefType, TASK_REF_TYPES } from './task-report';
 export { executionContextOf } from './context';

@@ -54,6 +54,8 @@ export interface EditorRunnerDeps {
   now?:     () => Date;
   /** Spec 045 FR-005: the steering rules of a resource's active sets (enabled, non-conflicting); absent = none. */
   steering?: (targetRef: string) => Promise<SteeringPromptRule[]>;
+  /** Spec 046 FR-003: the manager's advice / directives the orchestrator accepted and that are in force (planner block). */
+  commitments?: (orchestratorId: string) => Promise<string | null>;
   /**
    * Network context of a non-Telegram slot (spec 020): the playbook section for
    * the resource, its profile and limits. Optional; without it the platform
@@ -153,6 +155,10 @@ const PLATFORM_ONLY = new Set(['publish_platform_post']);
 
 export const MAX_SLOT_ATTEMPTS = 2;
 export const RETRY_DELAY_MS = 15 * 60_000;
+/** Spec 046 FR-005: a slot the budget cannot afford waits this long, then tries again (the owner may raise a cap). */
+export const BUDGET_RETRY_MS = 60 * 60_000;
+/** ...but not later than this after its planned time — then it is skipped with the budget reason. */
+export const BUDGET_MAX_LATE_MS = 6 * 3600_000;
 
 const MAX_STEPS: Record<CardRole, number> = { planner: 10, executor: 14, reviewer: 14 };
 
@@ -291,6 +297,7 @@ export class EditorRunnerService {
       system: buildSystemPrompt(role, card, memory, skills, prefs, {
         examples: typeof extras.examples === 'string' ? extras.examples : null,
         steering: role === 'reviewer' || extras.systemOverride ? null : await this.steeringFor(`telegram:${card.channelKey}`),
+        commitments: role === 'planner' && ctx?.orchestrator && this.d.commitments ? await this.d.commitments(ctx.orchestrator.id).catch(() => null) : null,
       }),
       user,
       tools: ((extras.wrapTools as ((t: EditorTool[]) => EditorTool[]) | undefined) ?? ((t) => t))(
@@ -366,6 +373,11 @@ export class EditorRunnerService {
     const attempt: Attempt = (s, n, sc, probe) => target && target.platform !== 'telegram'
       ? this.runPlatformExecutor(s, card, ctx, target.platform, n, sc, null, probe)
       : this.runTelegramExecutor(s, card, ctx, n, sc, null, probe);
+    // Spec 046 FR-005: a slot that cannot afford a whole run waits for the budget instead of starting and failing.
+    if (this.d.budget) {
+      const b = await this.d.budget(card, EditorRunnerService.agentBudget(ctx)).catch(() => ({ ok: true as const }));
+      if (!b.ok) return this.waitForBudget(slot, card, b.reason);
+    }
     const probe = new PublishProbe();
     const first = await attempt(slot, note ?? null, scan, probe);
     await this.d.plans.updateSlot(slot.id, { runId: first.runId });
@@ -378,7 +390,8 @@ export class EditorRunnerService {
       const retryAt = new Date(this.now().getTime() + RETRY_DELAY_MS);
       const quiet = isQuietHour(localHour(retryAt, card.timezone), card.quietStartHour, card.quietEndHour);
       const reason = `${res.status}${res.error ? `: ${res.error}` : ''}`;
-      if (after.attempts < MAX_SLOT_ATTEMPTS && res.status !== 'budget_exceeded' && res.status !== 'disabled' && !quiet) {
+      if (res.status === 'budget_exceeded') return this.waitForBudget(after, card, reason, res);
+      if (after.attempts < MAX_SLOT_ATTEMPTS && res.status !== 'disabled' && !quiet) {
         // Spec 040 FR-008: the planned time stays, so the delay of the post that goes out is visible.
         await this.d.plans.updateSlot(slot.id, { status: 'planned', retryAt, error: `retry after ${reason}` });
       } else {
@@ -546,6 +559,26 @@ export class EditorRunnerService {
   }
 
   /** A slot skipped by code before any LLM call (spec 023 FR-005: a required series source is exhausted). */
+  /**
+   * Spec 046 FR-005 (review 2: two slots failed on budget and were never retried after the owner raised the cap):
+   * the slot goes back to `planned` with retry_at in BUDGET_RETRY_MS and its attempt back; past BUDGET_MAX_LATE_MS
+   * after the planned time, or when the retry would land in quiet hours, it is skipped with the budget reason.
+   */
+  private async waitForBudget(slot: EditorSlot, card: EditorCard, reason: string, res?: AgentLoopResult): Promise<AgentLoopResult> {
+    const now = this.now();
+    const retryAt = new Date(now.getTime() + BUDGET_RETRY_MS);
+    const late = retryAt.getTime() - slot.scheduledAt.getTime() > BUDGET_MAX_LATE_MS;
+    const quiet = isQuietHour(localHour(retryAt, card.timezone), card.quietStartHour, card.quietEndHour);
+    const out = res ?? { runId: null, status: 'budget_exceeded' as const, error: reason, totals: { steps: 0, promptTokens: 0, completionTokens: 0, costUsd: 0 } };
+    if (late || quiet) {
+      await this.d.plans.updateSlot(slot.id, { status: 'skipped', error: `budget: ${reason}` });
+      if (this.d.onSlotDone) await this.d.onSlotDone(slot).catch(() => {});
+      return out;
+    }
+    await this.d.plans.updateSlot(slot.id, { status: 'planned', retryAt, attempts: Math.max(0, slot.attempts - 1), error: `waiting for budget: ${reason}` });
+    return out;
+  }
+
   private async skipByCode(slot: EditorSlot, reason: string): Promise<AgentLoopResult> {
     await this.d.plans.updateSlot(slot.id, { status: 'skipped', error: reason });
     if (this.d.onSlotDone) await this.d.onSlotDone(slot).catch(() => {});

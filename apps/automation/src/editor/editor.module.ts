@@ -22,7 +22,7 @@ import { WorkspaceModelStore, WorkspaceStore, anthropicApiKey } from './llm/work
 import { AgentLoop } from './harness/agent-loop';
 import { ToolRegistry } from './harness/tool-registry';
 import { PgRunRecorder } from './harness/run-recorder';
-import { BudgetService } from './harness/budget.service';
+import { BudgetService, DEFAULT_RUN_HEADROOM_USD, DEFAULT_WRITER_RESERVE_PCT } from './harness/budget.service';
 import { DEFAULT_REJECT_STREAK, SilentDaysWatch } from './silent/silent-days';
 import { EVERGREEN_KPI_SAMPLE_FILTER, EvergreenStep, evergreenPerDay } from './silent/evergreen';
 import { ReadonlyQueryService } from './db/readonly-query.service';
@@ -141,14 +141,14 @@ import { DirectivesRepository } from './manager/directives.repository';
 import { KpiDigestService } from './manager/kpi-digest.service';
 import { SqlQuality } from './manager/quality-digest';
 import { recentAuditPosts } from './post/variety/recent-posts';
-import { ManagerRunner } from './manager/manager-runner';
+import { commitmentsText, ManagerRunner } from './manager/manager-runner';
 import { buildDirectiveTools, fileDirective, FileDirectiveInput } from './manager/directive-tools';
 import { ManagerService } from './manager/manager.service';
 import { MANAGER_SERVICE, ManagerController } from './manager/manager.controller';
 import type { Playbook } from './network/playbook';
 import {
   DirectiveExecution, executionContextOf, experimentExecutor, formatMixExecutor, formatShiftExecutor, frequencyExecutor, pauseResourceExecutor, pauseSeriesExecutor,
-  PlaybookBuildPort, promoVerifier, SqlExperimentQuotas, SqlPlanObserver, strategyExecutor, taskRefCheck, voiceFixExecutor,
+  adviceVerifier, PlaybookBuildPort, promoVerifier, SqlExperimentQuotas, SqlPlanObserver, strategyExecutor, taskRefCheck, voiceFixExecutor,
 } from './manager/executors';
 import { channelHeldBy, ResourcePauseService } from './pauses/resource-pauses';
 import { RESOURCE_PAUSES, ResourcePausesApi, ResourcePausesController } from './pauses/resource-pauses.controller';
@@ -417,7 +417,7 @@ function directiveExecution(pool: Pool, repos: EditorRepos, infra: AgentInfra, p
       experimentExecutor({ quotas }), strategyExecutor({ network, builder: buildPort }),
       voiceFixExecutor(qdeps), formatMixExecutor(qdeps),
     ],
-    verifiers: [promoVerifier(pool, 'cross_promo'), promoVerifier(pool, 'repost')],
+    verifiers: [promoVerifier(pool, 'cross_promo'), promoVerifier(pool, 'repost'), adviceVerifier(pool)],
     quotas,
     log: (m) => logger.warn(m),
   });
@@ -457,7 +457,11 @@ function envNum(env: (k: string) => string | undefined, key: string, def: number
  */
 function editorBudget(pool: Pool, env: (k: string) => string | undefined, alert: (t: string) => Promise<void>, caps?: LlmBudgetService): BudgetService {
   const d = capDefaults(env);
-  return new BudgetService(pool, { globalDailyUsd: d.agentsDailyUsd, channelDailyUsd: d.resourceDailyUsd }, alert, caps);
+  return new BudgetService(pool, {
+    globalDailyUsd: d.agentsDailyUsd, channelDailyUsd: d.resourceDailyUsd,
+    // Spec 046 FR-005: the share of the agents' cap the manager / orchestrators / reviewers leave to the writer and critic.
+    writerReservePct: envNum(env, 'EDITOR_WRITER_RESERVE_PCT', DEFAULT_WRITER_RESERVE_PCT),
+  }, alert, caps);
 }
 
 /** The agents' cap (`editor.*` row of llm_budgets) for the KPI digest; the env default without the ledger module. */
@@ -1278,6 +1282,7 @@ export const EDITOR_PROVIDERS = [
           loop, registry, runtime: infra.runtime, memory: repos.memory, repo: new NetworkRepository(pool), plans: repos.plans, profiles: infra.profiles,
           usable: (ref) => platform.health.usable(ref), time: resourceTime(repos, infra.profiles),
           steering: (ref) => new SteeringRepository(pool).promptRules(ref),
+          commitments: (orchId) => manager.runner.commitments(orchId),
           // Spec 025 FR-013: paused resources are out of every orchestrator / planner run.
           paused: (ref) => new ResourcePauseService({ pool }).isPaused(ref),
           directives: (orch) => manager.runner.deliver(orch),
@@ -1331,6 +1336,8 @@ export const EDITOR_PROVIDERS = [
           loop, registry, skills, runtime: infra.runtime, plans: repos.plans, memory: repos.memory, env, notify, defaultModel: (ws) => models.get(ws), workspace: () => models.workspace(),
           // Spec 045 FR-005: the channel's active steering rules (lowest priority) for the writer, planner and critic.
           steering: (ref) => new SteeringRepository(pool).promptRules(ref),
+          // Spec 046 FR-003: what the orchestrator accepted from the manager reaches the single-channel planner too.
+          commitments: async (orchId) => commitmentsText(await new DirectivesRepository(pool).inForce(orchId)),
           network, platformContext: (slot, orchId) => network.platformContext(slot, orchId),
           catalogSummary: withSchedule(catalogSummaryOf(pool, env), schedule),
           seriesContext: (slot) => schedule.executorContext(slot),
@@ -1357,8 +1364,10 @@ export const EDITOR_PROVIDERS = [
           // Spec 037 FR-010: the fallback ladder of a failed post stops at the daily caps (the same gate as every LLM call).
           budget: (() => {
             const gate = editorBudget(pool, env, notify, caps);
+            // Spec 046 FR-005: a step starts only when a whole executor + critic run fits under the caps.
+            const headroomUsd = envNum(env, 'EDITOR_RUN_HEADROOM_USD', DEFAULT_RUN_HEADROOM_USD);
             return async (card, agent) => {
-              const v = await gate.check(card.channelKey, card.dailyBudgetUsd, agent);
+              const v = await gate.check(card.channelKey, card.dailyBudgetUsd, agent, 'openrouter', { headroomUsd });
               return v.ok ? { ok: true as const } : { ok: false as const, reason: `${v.scope} cap: $${v.spentUsd.toFixed(3)} / $${v.limitUsd}` };
             };
           })(),

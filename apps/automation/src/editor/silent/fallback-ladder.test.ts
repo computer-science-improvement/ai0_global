@@ -115,7 +115,8 @@ test('ladder: a lint failure that ran the executor out of steps climbs the ladde
 });
 
 test('ladder: the daily budget stops it before the next step (the failed reason stays, final code budget)', async () => {
-  const s = setup([reject, shadow], { budget: () => false });
+  // Call 1 is the pre-run check (spec 046 FR-005): the first run fits, the ladder step does not.
+  const s = setup([reject, shadow], { budget: (n) => n < 2 });
   await s.runner.runExecutor(baseSlot, s.card);
   assert.equal(s.runs.length, 1, 'no executor / critic call after the cap');
   assert.equal(s.st.status, 'skipped');
@@ -125,11 +126,25 @@ test('ladder: the daily budget stops it before the next step (the failed reason 
 });
 
 test('ladder: the budget is checked before each step; hit after the first extra step', async () => {
-  const s = setup([reject, reject, shadow], { budget: (n) => n < 2 });
+  const s = setup([reject, reject, shadow], { budget: (n) => n < 3 });
   await s.runner.runExecutor(baseSlot, s.card);
   assert.equal(s.runs.length, 2);
   assert.deepEqual(fallbackOf(s.st).steps.map((x) => x.step), ['initial', 'next_candidate']);
   assert.equal(fallbackOf(s.st).final?.code, 'budget');
+});
+
+test('046: a slot the budget cannot afford waits (planned, retry_at, attempt given back) — skipped when too late', async () => {
+  const s = setup([shadow], { budget: () => false });
+  await s.runner.runExecutor({ ...baseSlot, attempts: 1 }, s.card);
+  assert.equal(s.runs.length, 0, 'no run starts');
+  assert.equal(s.st.status, 'planned');
+  assert.ok(s.st.retryAt instanceof Date && s.st.retryAt.getTime() > NOW.getTime());
+  assert.equal(s.st.attempts, 0);
+  assert.match(s.st.error, /^waiting for budget: channel cap/);
+  const late = setup([shadow], { budget: () => false, slot: { ...baseSlot, scheduledAt: new Date(NOW.getTime() - 6 * 3600_000) } });
+  await late.runner.runExecutor(late.st, late.card);
+  assert.equal(late.st.status, 'skipped');
+  assert.match(late.st.error, /^budget: /);
 });
 
 test('ladder: a run that hit a cap stops it too', async () => {

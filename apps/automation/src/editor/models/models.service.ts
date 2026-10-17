@@ -3,7 +3,7 @@ import type { Pool } from 'pg';
 import { z } from 'zod';
 import type { EditorRole } from '../llm/llm.types';
 import {
-  ANTHROPIC_PRICES, EDITOR_ROLES, STATIC_PRICES, builtinDefaultModel, envModelKey, pickModel, pickReasoningEffort,
+  ANTHROPIC_PRICES, EDITOR_ROLES, STATIC_PRICES, builtinDefaultModel, builtinRoleModel, envModelKey, pickModel, pickReasoningEffort,
   type ModelSource, type ReasoningEffort,
 } from '../llm/model-registry';
 import { WORKSPACES, agentModelIn, type Workspace } from '../llm/workspace';
@@ -108,7 +108,8 @@ export class ModelsService {
     const [ws, all] = await Promise.all([this.active(), this.d.agents.list()]);
     const workspaces = await Promise.all(WORKSPACES.map(async (w) => {
       const saved = await this.d.defaults.get(w).catch(() => null);
-      return { id: w, defaultModel: saved ?? builtinDefaultModel(w), agentsWithOwnModel: all.filter((a) => !!agentModelIn(a, w)).length };
+      // Spec 046 FR-010: without a saved default the Anthropic workspace has a model per role.
+      return { id: w, defaultModel: saved ?? builtinDefaultModel(w), perRole: !saved && w === 'anthropic', agentsWithOwnModel: all.filter((a) => !!agentModelIn(a, w)).length };
     }));
     return { active: ws, anthropicKey: !!this.d.anthropicKey?.(), switchable: !!this.d.workspace, workspaces };
   }
@@ -159,7 +160,8 @@ export class ModelsService {
       const own = agentModelIn(a, ws);
       const parentOwn = agentModelIn(parent, ws);
       const agentModel = own ?? parentOwn;
-      const pick = pickModel(role, this.d.env, channelKey ? cardOf.get(channelKey) ?? null : null, { agentModel, defaultModel: def, workspace: ws });
+      // The owner's saved default (null → each role's built-in model, as the runners resolve it).
+      const pick = pickModel(role, this.d.env, channelKey ? cardOf.get(channelKey) ?? null : null, { agentModel, defaultModel: saved, workspace: ws });
       const effort = pickReasoningEffort(role, this.d.env, a.reasoningEffort ?? parent?.reasoningEffort ?? null);
       return {
         id: a.id, handle: a.handle, name: a.name, emoji: a.emoji, kind: a.kind, role, scope: a.scope,
@@ -175,10 +177,14 @@ export class ModelsService {
     }));
     // Spec 034 FR-004: the critic runs as the `checker` role; the owner's choice beats env, env beats the default.
     const criticSaved = this.d.critic ? await this.d.critic.get(ws) : null;
-    const criticPick = pickModel('checker', this.d.env, null, { agentModel: criticSaved, defaultModel: def, workspace: ws });
+    const criticPick = pickModel('checker', this.d.env, null, { agentModel: criticSaved, defaultModel: saved, workspace: ws });
     return {
       workspace: ws,
-      defaultModel: { model: def, saved, builtin: builtinDefaultModel(ws), price: await priceOf(def) },
+      defaultModel: {
+        model: def, saved, builtin: builtinDefaultModel(ws), price: await priceOf(def),
+        // Spec 046 FR-010: the built-in per-role models in force while the Anthropic workspace has no saved default.
+        roleModels: !saved && ws === 'anthropic' ? Object.fromEntries(EDITOR_ROLES.map((r) => [r, builtinRoleModel(r, ws)])) : null,
+      },
       criticModel: {
         model: criticPick.model, saved: criticSaved,
         source: (criticPick.source === 'agent' ? 'critic' : criticPick.source) as 'critic' | 'env' | 'default',

@@ -172,18 +172,32 @@ export class NetworkRepository {
    * Spec 025 FR-009: a directive executor's write. In one transaction (advisory lock per agent) it reads the
    * current active version, lets `patch` compute the next body on top of it (null = the active version already
    * holds the change: a no-op) and inserts that as the new active version (created_by 'directive',
-   * directive_id). A pending owner draft is kept.
+   * directive_id). A pending owner draft is kept — spec 046 FR-003: with the same patch applied to it in place, so
+   * approving the draft later does not drop the directive's change (review 2: @loko v8 lost v7's fallback chain).
    */
-  async applyDirectivePatch(agentId: string, directiveId: string, patch: (active: Playbook) => Playbook | null, rationale: string): Promise<{ noop: boolean; row: PlaybookRow } | { error: 'no_playbook' }> {
+  async applyDirectivePatch(agentId: string, directiveId: string, patch: (active: Playbook) => Playbook | null, rationale: string): Promise<{ noop: boolean; row: PlaybookRow; pendingRebased?: number } | { error: 'no_playbook' }> {
     return this.tx(async (q) => {
       await q.query(`SELECT pg_advisory_xact_lock(hashtext($1))`, [`playbook:${agentId}`]).catch(() => {});
       const { rows } = await q.query(`SELECT * FROM playbooks WHERE agent_id = $1 AND status = 'active' FOR UPDATE`, [agentId]);
       if (!rows[0]) return { error: 'no_playbook' as const };
       const active = toPlaybook(rows[0]);
+      const rebased = await this.rebasePending(q, agentId, patch);
       const next = patch(active.body);
-      if (!next) return { noop: true, row: active };
-      return { noop: false, row: await this.insertVersion(q, { agentId, status: 'active', brief: null, body: next, rationale, createdBy: 'directive', directiveId }) };
+      if (!next) return { noop: true, row: active, ...(rebased ? { pendingRebased: rebased } : {}) };
+      const row = await this.insertVersion(q, { agentId, status: 'active', brief: null, body: next, rationale, createdBy: 'directive', directiveId }, { keepPending: true });
+      return { noop: false, row, ...(rebased ? { pendingRebased: rebased } : {}) };
     });
+  }
+
+  /** Spec 046 FR-003: apply a directive's patch to the pending owner draft in place; returns its version (0 = none or no change). */
+  private async rebasePending(q: Q, agentId: string, patch: (body: Playbook) => Playbook | null): Promise<number> {
+    const { rows } = await q.query(`SELECT * FROM playbooks WHERE agent_id = $1 AND status = 'pending_owner' ORDER BY version DESC LIMIT 1 FOR UPDATE`, [agentId]);
+    if (!rows[0]) return 0;
+    const pending = toPlaybook(rows[0]);
+    const next = patch(pending.body);
+    if (!next) return 0;
+    await q.query(`UPDATE playbooks SET body = $2 WHERE id = $1`, [pending.id, JSON.stringify(next)]);
+    return pending.version;
   }
 
   /**

@@ -73,8 +73,14 @@ const toDirective = (r: any): Directive => ({
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 /** Open for the binding limit (spec 025 FR-003): an applied directive is still being evaluated. */
 const OPEN: DirectiveStatus[] = ['new', 'awaiting_owner', 'accepted', 'applied', 'contested'];
-/** Spec 040 FR-007: open for dedup — an applied advice no longer blocks a new one (it must be named in `supersedes`). */
-export const OPEN_FOR_DEDUP: DirectiveStatus[] = ['new', 'awaiting_owner', 'accepted', 'contested'];
+/**
+ * Spec 040 FR-007: open for dedup — an applied advice no longer blocks a new one (it must be named in `supersedes`).
+ * Spec 046 FR-003: neither does an accepted one (review 2: an accepted task blocked the manager, which switched the
+ * kind to get around it) — both are replaceable (REPLACEABLE).
+ */
+export const OPEN_FOR_DEDUP: DirectiveStatus[] = ['new', 'awaiting_owner', 'contested'];
+/** Spec 046 FR-003: a new directive of the same kind may replace these by naming them in `supersedes`. */
+export const REPLACEABLE: DirectiveStatus[] = ['accepted', 'applied'];
 
 type Q = Pick<Pool, 'query'>;
 
@@ -137,11 +143,12 @@ export class DirectivesRepository {
     return rows[0] ? toDirective(rows[0]) : null;
   }
 
-  /** Spec 040 FR-007: the newest applied (not yet evaluated) directive of a kind to a target. */
+  /** Spec 040 FR-007 / 046 FR-003: the newest replaceable (accepted, or applied and not yet evaluated) directive of a kind to a target. */
   async appliedFor(toAgentId: string, kind: DirectiveKind): Promise<Directive | null> {
     const { rows } = await this.pool.query(
-      `SELECT * FROM agent_directives WHERE to_agent_id = $1 AND kind = $2 AND status = 'applied' AND NOT shadow ORDER BY applied_at DESC NULLS LAST, created_at DESC LIMIT 1`,
-      [toAgentId, kind]);
+      `SELECT * FROM agent_directives WHERE to_agent_id = $1 AND kind = $2 AND status = ANY($3::text[]) AND NOT shadow
+        ORDER BY applied_at DESC NULLS LAST, created_at DESC LIMIT 1`,
+      [toAgentId, kind, REPLACEABLE]);
     return rows[0] ? toDirective(rows[0]) : null;
   }
 
@@ -161,6 +168,17 @@ export class DirectivesRepository {
   async inbox(toAgentId: string): Promise<Directive[]> {
     const { rows } = await this.pool.query(
       `SELECT * FROM agent_directives WHERE to_agent_id = $1 AND status = 'new' AND NOT shadow ORDER BY created_at`, [toAgentId]);
+    return rows.map(toDirective);
+  }
+
+  /**
+   * Spec 046 FR-003: what the orchestrator agreed to and is still in force (accepted, or applied and not yet
+   * evaluated) — the planners see it, so an accepted advice reaches the plan, not only the orchestrator's reply.
+   */
+  async inForce(toAgentId: string, limit = 8): Promise<Directive[]> {
+    const { rows } = await this.pool.query(
+      `SELECT * FROM agent_directives WHERE to_agent_id = $1 AND status = ANY($2::text[]) AND NOT shadow
+        ORDER BY created_at DESC LIMIT $3`, [toAgentId, REPLACEABLE, limit]);
     return rows.map(toDirective);
   }
 

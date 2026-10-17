@@ -52,16 +52,28 @@ test('executor: no terminal → retry once in 15 min; the planned time stays (sp
   assert.equal(last.scheduledAt, undefined, 'scheduled_at is not moved');
 });
 
-test('executor: second failure, budget, or quiet retry → failed', async () => {
+test('executor: second failure or quiet retry → failed', async () => {
   for (const [res, after, cardOver] of [
     [{ runId: 'r', status: 'error' }, { ...slot, status: 'running', attempts: 2 }, {}],
-    [{ runId: 'r', status: 'budget_exceeded' }, { ...slot, status: 'running', attempts: 1 }, {}],
     [{ runId: 'r', status: 'error' }, { ...slot, status: 'running', attempts: 1 }, { quietStartHour: 12, quietEndHour: 14 }],
   ] as any[]) {
     const { runner, updates, card } = setup(res, after, cardOver);
     await runner.runExecutor(slot, card);
     assert.equal(updates.at(-1)[1].status, 'failed');
   }
+});
+
+test('046: a run stopped by the budget waits for it (planned, retry in an hour, attempt back), skipped in quiet hours', async () => {
+  const { runner, updates, card } = setup({ runId: 'r', status: 'budget_exceeded', error: 'global budget' }, { ...slot, status: 'running', attempts: 1 });
+  await runner.runExecutor(slot, card);
+  const p = updates.at(-1)[1];
+  assert.equal(p.status, 'planned');
+  assert.equal(p.attempts, 0);
+  assert.equal(p.retryAt.getTime() - NOW.getTime(), 3600_000);
+  assert.match(p.error, /^waiting for budget: budget_exceeded: global budget/);
+  const q = setup({ runId: 'r', status: 'budget_exceeded' }, { ...slot, status: 'running', attempts: 1 }, { quietStartHour: 12, quietEndHour: 14 });
+  await q.runner.runExecutor(slot, q.card);
+  assert.equal(q.updates.at(-1)[1].status, 'skipped');
 });
 
 test('executor: terminal outcome leaves slot as the tool set it', async () => {
