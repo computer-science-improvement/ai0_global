@@ -70,6 +70,8 @@ export const NAV_REGISTRY: ReadonlyArray<NavEntry> = [
   // Spec 035: which LLM each agent runs on (global default, per agent, bulk).
   // Spec 042: an own channel's agent set up from its last 20 posts.
   { id: 'channel-setup', to: '/app/setup', label: 'Setup from history', icon: 'sparkles', defaultGroup: 'g_agents', parent: 'agents', keywords: ['onboard', 'onboarding', 'brief', 'analyze channel', 'last posts', 'profile', 'voice', 'new channel'] },
+  // Spec 045: a reference channel that is not ours steers one of our channels (lowest-priority rules).
+  { id: 'steering', to: '/app/steering', label: 'Steering', icon: 'compass', defaultGroup: 'g_agents', parent: 'agents', keywords: ['reference', 'inspiration', 'like this channel', 'learn from', 'competitor', 'style of', 'rules'] },
   { id: 'models', to: '/app/models', label: 'Models', icon: 'cpu', defaultGroup: 'g_agents', keywords: ['llm', 'model', 'openrouter', 'glm', 'ai model', 'reasoning', 'default model'] },
   { id: 'agents-inbox', to: '/app/agents/inbox', label: 'Agent inbox', icon: 'inbox', defaultGroup: 'g_agents', badge: 'agentsInbox', parent: 'agents', hiddenByDefault: true, keywords: ['notifications', 'alerts', 'unread'] },
   { id: 'directives', to: '/app/agents/manager', search: { tab: 'directives' }, label: 'Directives', icon: 'agents', defaultGroup: 'g_agents', badge: 'directives', parent: 'agents', hiddenByDefault: true, keywords: ['manager', 'decisions', 'awaiting'] },

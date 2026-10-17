@@ -18,6 +18,7 @@ import { Route as ReportTokenRouteImport } from './routes/report.$token'
 import { Route as AppTrackedRouteImport } from './routes/app.tracked'
 import { Route as AppTelegraphRouteImport } from './routes/app.telegraph'
 import { Route as AppStrategiesRouteImport } from './routes/app.strategies'
+import { Route as AppSteeringRouteImport } from './routes/app.steering'
 import { Route as AppSpendRouteImport } from './routes/app.spend'
 import { Route as AppSetupRouteImport } from './routes/app.setup'
 import { Route as AppSettingsRouteImport } from './routes/app.settings'
@@ -98,6 +99,11 @@ const AppTelegraphRoute = AppTelegraphRouteImport.update({
 const AppStrategiesRoute = AppStrategiesRouteImport.update({
   id: '/strategies',
   path: '/strategies',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppSteeringRoute = AppSteeringRouteImport.update({
+  id: '/steering',
+  path: '/steering',
   getParentRoute: () => AppRoute,
 } as any)
 const AppSpendRoute = AppSpendRouteImport.update({
@@ -310,6 +316,7 @@ export interface FileRoutesByFullPath {
   '/app/settings': typeof AppSettingsRoute
   '/app/setup': typeof AppSetupRoute
   '/app/spend': typeof AppSpendRoute
+  '/app/steering': typeof AppSteeringRoute
   '/app/strategies': typeof AppStrategiesRoute
   '/app/telegraph': typeof AppTelegraphRoute
   '/app/tracked': typeof AppTrackedRoute
@@ -356,6 +363,7 @@ export interface FileRoutesByTo {
   '/app/settings': typeof AppSettingsRoute
   '/app/setup': typeof AppSetupRoute
   '/app/spend': typeof AppSpendRoute
+  '/app/steering': typeof AppSteeringRoute
   '/app/strategies': typeof AppStrategiesRoute
   '/app/telegraph': typeof AppTelegraphRoute
   '/app/tracked': typeof AppTrackedRoute
@@ -404,6 +412,7 @@ export interface FileRoutesById {
   '/app/settings': typeof AppSettingsRoute
   '/app/setup': typeof AppSetupRoute
   '/app/spend': typeof AppSpendRoute
+  '/app/steering': typeof AppSteeringRoute
   '/app/strategies': typeof AppStrategiesRoute
   '/app/telegraph': typeof AppTelegraphRoute
   '/app/tracked': typeof AppTrackedRoute
@@ -453,6 +462,7 @@ export interface FileRouteTypes {
     | '/app/settings'
     | '/app/setup'
     | '/app/spend'
+    | '/app/steering'
     | '/app/strategies'
     | '/app/telegraph'
     | '/app/tracked'
@@ -499,6 +509,7 @@ export interface FileRouteTypes {
     | '/app/settings'
     | '/app/setup'
     | '/app/spend'
+    | '/app/steering'
     | '/app/strategies'
     | '/app/telegraph'
     | '/app/tracked'
@@ -546,6 +557,7 @@ export interface FileRouteTypes {
     | '/app/settings'
     | '/app/setup'
     | '/app/spend'
+    | '/app/steering'
     | '/app/strategies'
     | '/app/telegraph'
     | '/app/tracked'
@@ -637,6 +649,13 @@ declare module '@tanstack/react-router' {
       path: '/strategies'
       fullPath: '/app/strategies'
       preLoaderRoute: typeof AppStrategiesRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/steering': {
+      id: '/app/steering'
+      path: '/steering'
+      fullPath: '/app/steering'
+      preLoaderRoute: typeof AppSteeringRouteImport
       parentRoute: typeof AppRoute
     }
     '/app/spend': {
@@ -918,6 +937,7 @@ interface AppRouteChildren {
   AppSettingsRoute: typeof AppSettingsRoute
   AppSetupRoute: typeof AppSetupRoute
   AppSpendRoute: typeof AppSpendRoute
+  AppSteeringRoute: typeof AppSteeringRoute
   AppStrategiesRoute: typeof AppStrategiesRoute
   AppTelegraphRoute: typeof AppTelegraphRoute
   AppTrackedRoute: typeof AppTrackedRoute
@@ -961,6 +981,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppSettingsRoute: AppSettingsRoute,
   AppSetupRoute: AppSetupRoute,
   AppSpendRoute: AppSpendRoute,
+  AppSteeringRoute: AppSteeringRoute,
   AppStrategiesRoute: AppStrategiesRoute,
   AppTelegraphRoute: AppTelegraphRoute,
   AppTrackedRoute: AppTrackedRoute,

@@ -27,6 +27,7 @@ import { ownModelIn, WORKSPACE_LABEL } from '../../lib/models';
 import { useEditorChannel } from '../../api/editor';
 import { planScheduleNote } from '../../lib/slot-plan';
 import { ModelSelect } from '../models/ModelSelect';
+import { useActiveSteering } from '../../api/steering';
 
 const HANDLE_RE = /^[a-z][a-z0-9_]{2,31}$/;
 const TIME_RE = /^([01]\d|2[0-3]):[0-5]\d$/;
@@ -116,6 +117,7 @@ export function AgentOverview({ data }: { data: AgentDetail }) {
       {a.kind === 'orchestrator' && <ActiveEffects agent={a} delay={20} />}
       {a.kind === 'orchestrator' && a.scopeId && <ResourceSection handle={a.handle} />}
       {a.kind === 'orchestrator' && a.scopeId && <FormattingSection handle={a.handle} />}
+      {a.kind === 'orchestrator' && a.scopeId && <SteeringLine targetRef={a.scopeId} />}
 
       <ProfileSummary data={data} ws={ws} />
 
@@ -349,6 +351,23 @@ function PlanTimesNote({ channelKey }: { channelKey: string | null }) {
         ? <span>{planScheduleNote({ planHour: c.planHour, timezone: c.timezone, approval: c.mode === 'approve', batchHour: 20 })}</span>
         : <span>The orchestrator and the planner run at the channel card's plan hour.</span>}
       {channelKey && <Link to="/app/editor/$channel" params={{ channel: channelKey }} className="link-accent">Change on the card →</Link>}
+    </div>
+  );
+}
+
+/** Spec 045 FR-008: "Steering: N active from @a, @b", linking to the Steering page filtered by this channel. */
+function SteeringLine({ targetRef }: { targetRef: string }) {
+  const q = useActiveSteering(targetRef);
+  if (!targetRef.startsWith('telegram:@') || !q.data) return null;
+  const key = targetRef.replace(/^telegram:/, '');
+  const { active, sources } = q.data;
+  return (
+    <div className="text-body-sm compose-rise" style={{ display: 'flex', alignItems: 'center', gap: 8, margin: '12px 0 4px', color: 'var(--color-ink-muted)', flexWrap: 'wrap' }}>
+      <Icon name="compass" size={14} />
+      {active
+        ? <span>Steering: {active} active from {sources.join(', ')}</span>
+        : <span>No steering: the channel follows only its own rules</span>}
+      <Link to="/app/steering" search={{ target: key }} className="link-accent">{active ? 'Manage' : 'Add a reference'}</Link>
     </div>
   );
 }
