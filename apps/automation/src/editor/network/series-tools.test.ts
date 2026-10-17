@@ -163,3 +163,14 @@ test('pause_series directive on an owner-locked series is refused as an owner ru
   const ok: any = await tools.accept_directive.execute({ id: '00000000-0000-4000-8000-000000000001', plan: 'Поставлю серію на паузу на тиждень', conflicting_rule_ids: [] }, ctx);
   assert.equal(ok.ok, true);
 });
+
+test('046: a platform that left the network does not block update_series; a new problem still does', async () => {
+  const w = world();
+  w.net.resources = [RES[0]];                    // instagram:ig1 left the network; the active playbook still has its section
+  const r: any = await w.tools.update_series.execute({ name: 'Рецепт дня', patch: { cadence: 'daily@20:00' }, rationale: 'Вечірні пости після 20:00 мають +30 % переглядів' }, w.ctx());
+  assert.equal(r.status, 'active');
+  assert.ok(r.warnings.some((x: string) => /успадковано з v1.*instagram:ig1/.test(x)));
+  const bad: any = await w.tools.update_series.execute({ name: 'Рецепт дня', patch: { cadence: 'daily@02:00' }, rationale: 'Нічний пост для тих, хто не спить після роботи' }, w.ctx('run-2'));
+  assert.equal(bad.error, 'playbook_invalid');
+  assert.ok(bad.details.every((x: string) => !/instagram:ig1/.test(x)), 'only the new problem is named');
+});

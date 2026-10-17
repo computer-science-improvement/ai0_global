@@ -43,3 +43,25 @@ test('DB errors are returned as data and connection released', async () => {
   assert.equal(p.released(), 1);
   assert.equal(p.sqls.at(-1), 'ROLLBACK');
 });
+
+test('046: a guessed column gets the real columns of the tables the query names', async () => {
+  const sqls: string[] = [];
+  const client = {
+    query: async (sql: string, params?: unknown[]) => {
+      sqls.push(sql);
+      if (sql.startsWith('SELECT * FROM')) throw Object.assign(new Error('column "body" does not exist'), { code: '42703', hint: 'Perhaps you meant to reference the column "data_items.data".' });
+      if (sql.includes('information_schema.columns')) {
+        assert.deepEqual(params, [['data_items', 'data_schemas']]);
+        return { rows: [{ table_name: 'data_items', cols: ['id', 'schema_id', 'data', 'title'] }] };
+      }
+      return { rows: [] };
+    },
+    release: () => {},
+  };
+  const res: any = await new ReadonlyQueryService({ connect: async () => client } as any)
+    .run('SELECT i.body FROM data_items i JOIN public.data_schemas s ON s.id = i.schema_id', 5);
+  assert.equal(res.error, 'sql_failed');
+  assert.match(res.details, /Perhaps you meant/);
+  assert.deepEqual(res.columns, { data_items: ['id', 'schema_id', 'data', 'title'] });
+  assert.ok(sqls.indexOf('ROLLBACK') < sqls.findIndex((x) => x.includes('information_schema')), 'columns are read after the failed transaction rolls back');
+});

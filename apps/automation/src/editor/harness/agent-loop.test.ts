@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { z } from 'zod';
-import { AgentLoop } from './agent-loop';
+import { AgentLoop, decodeJsonStrings } from './agent-loop';
 import { defineTool } from './tool';
 import { FakeBudget, FakeLlm, MemoryRecorder } from './testing/fakes';
 import { resolveModel } from '../llm/model-registry';
@@ -275,4 +275,21 @@ test('spec 038: an Anthropic-workspace profile sends provider anthropic and chec
   await l.run(input());
   assert.deepEqual(llm.requests.map((r) => [r.model, r.provider]), [['claude-sonnet-5-5', 'anthropic'], ['z-ai/glm-5.3-flash', undefined]]);
   assert.deepEqual(providers, ['anthropic', 'openrouter']);
+});
+
+test('046: nested objects sent as JSON strings (even with a leaked tool-call tag) are read as objects', async () => {
+  let got: any = null;
+  const setup = defineTool({
+    name: 'setup', description: 'nested', kind: 'terminal', roles: ['executor'],
+    input: z.object({ summary: z.string(), schedule: z.object({ per_day: z.number(), hours: z.array(z.number()) }), note: z.string().optional() }),
+    execute: async (i) => { got = i; return { ok: true }; },
+  });
+  const llm = new FakeLlm([{ calls: [{ name: 'setup', args: {
+    summary: '{не JSON, а текст}', schedule: '{"per_day": 3, "hours": "[9, 19]"}</parameter>\n</invoke>', note: '',
+  } }] }]);
+  const res = await loop(llm).l.run(input({ tools: [setup] }));
+  assert.equal(res.status, 'ok');
+  assert.deepEqual(got, { summary: '{не JSON, а текст}', schedule: { per_day: 3, hours: [9, 19] } });
+  const plain = { a: 'text', b: ['x'] };
+  assert.equal(decodeJsonStrings(plain), plain, 'nothing to decode → the same object');
 });

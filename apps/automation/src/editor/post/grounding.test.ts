@@ -87,3 +87,18 @@ test('037 grounding: «4 центи» is money ($0.04) and matches "$0.04 per mi
   assert.deepEqual(r.missing.map((m) => m.text), []);
   assert.deepEqual(groundNumbers(post, [{ url: 'u', text: 'At $0.40 per million tokens.' }]).missing.map((m) => m.text), ['262 тисяч', '4 центи']);
 });
+
+test('046: thousands separators, ranges, compound words and enumerations are not false misses', () => {
+  const miss = (post: string, src: string) => groundNumbers(post, [{ url: 'u', text: src }]).missing.map((n) => n.text);
+  assert.deepEqual(miss('Ядер CUDA: 5,120 у новій картці.', 'The card has 5120 CUDA cores.'), [], '«5,120» also reads as 5120');
+  assert.deepEqual(miss('Роздільність 3,552x3,840 на око.', 'Resolution of 3552 x 3840 per eye.'), []);
+  assert.deepEqual(miss('Ціна — $2,599.99 за базову версію.', 'Base price is $2599.99.'), []);
+  assert.deepEqual(miss('Ціна 1.299,50 € у Німеччині.', 'Kostet 1299,50 Euro.'), []);
+  assert.deepEqual(miss('Процесор на 18‑core з частотою 5.2 ГГц.', 'An 18-core CPU at 5.2 GHz.'), [], 'U+2011 hyphen');
+  assert.deepEqual(miss('Від 20–30 тисяч гривень за пристрій.', 'Prices from 20000 to 30000 UAH.'), [], 'the range start takes the scale');
+  assert.deepEqual(miss('Від 20–30 млн користувачів.', 'Between 20 and 30 million users.'), []);
+  assert.deepEqual(miss('Версії 1,2,3 вже вийшли.', 'Versions out.'), [], 'an enumeration is not a decimal');
+  assert.deepEqual(miss('Податок 25 тисяч гривень.', 'Tax 7 UAH.'), ['25 тисяч гривень'], 'a real miss stays a miss');
+  const n = postNumbers('Ядер CUDA: 5,120.')[0];
+  assert.deepEqual([n.value, n.alt?.map((a) => a.value)], [5.12, [5120]]);
+});

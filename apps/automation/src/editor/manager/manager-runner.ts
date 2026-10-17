@@ -7,7 +7,7 @@ import { isPaused } from '../agents/agent.types';
 import type { AgentRuntime } from '../agents/agent-runtime';
 import type { AgentsRepository } from '../agents/agents.repository';
 import type { OwnerInbox } from '../agents/owner-inbox';
-import { localDate, localTimeLabel } from '../roles/time';
+import { localDate, localTimeLabel, zonedToUtc } from '../roles/time';
 import type { Directive, DirectivesRepository } from './directives.repository';
 import { reviewSignature, type KpiDigest, type KpiDigestService } from './kpi-digest.service';
 import type { ScopeKpis } from './kpi-math';
@@ -15,9 +15,17 @@ import { DirectiveExecution, PROMO_KINDS } from './executors';
 import { isQualityMetric, qualityMetricValue } from './quality-digest';
 import { requiredQualityRefs } from './directive-tools';
 
-export const DEFAULT_MANAGER_TIMES = ['08:00', '13:00', '18:00', '22:30'];
+/** Spec 046 FR-004: two looks a day (the skip rule makes the second one cheap when nothing changed); was four. */
+export const DEFAULT_MANAGER_TIMES = ['09:00', '19:00'];
+/** Spec 046 FR-004: the manager's own daily cap when the owner set none (review 2: the Opus manager spent $1.67 a day). */
+export const DEFAULT_MANAGER_DAILY_USD = 0.6;
 export const DELIVERY_DEBOUNCE_MS = 10 * 60_000;
 export const WAKE_INTERVAL_MS = 60 * 60_000;
+/**
+ * Spec 046 FR-007: directive kinds that wake an orchestrator before its daily run — they need new ideas or posts.
+ * The rest wait for the daily run (unanswered() gives a never-delivered directive twice the answer window).
+ */
+export const WAKE_KINDS = ['task', 'experiment', 'cross_promo'] as const;
 export const RESOLVE_WITHIN_MS = 24 * 3600_000;
 export const NOT_RESPONDING_AFTER = 5;
 
@@ -116,7 +124,7 @@ export function openDirectivesText(open: KpiDigest['directives']['open']): strin
  */
 export function canSkip(
   last: { digestHash: string | null; signature?: string | null; lastRunAt?: Date | null } | null,
-  digest: Pick<KpiDigest, 'hash' | 'resources'>,
+  digest: Pick<KpiDigest, 'hash' | 'resources'> & { directives?: Pick<KpiDigest['directives'], 'open'> },
   o: { now?: Date } = {},
 ): boolean {
   if (!last) return false;
@@ -159,13 +167,19 @@ export class ManagerRunner {
     return this.done.has(key) ? null : key;
   }
 
-  /** Scheduler tick entry point. */
+  /**
+   * Scheduler tick entry point. Spec 046 FR-004: a due time is done when a review (run or skip) was stored after it —
+   * the in-memory set alone ran the same time again after every restart (review 2: 6/16 runs off-schedule).
+   */
   async tick(): Promise<AgentLoopResult | { skipped: string } | null> {
     const m = await this.manager();
     if (!m || m.mode === 'off' || isPaused(m, this.now())) return null;
     const key = this.dueSlot(m, this.now());
     if (!key) return null;
     this.done.add(key);
+    const [day, hm] = key.split('@');
+    const last = await this.d.repo.lastReview().catch(() => null);
+    if (last?.createdAt && new Date(last.createdAt).getTime() >= zonedToUtc(day, hm, 'Europe/Kyiv').getTime()) return null;
     return this.run(m);
   }
 
@@ -188,7 +202,7 @@ export class ManagerRunner {
       system: managerSystemPrompt({ agent: m, now: this.now(), digest: this.d.digest.render(digest), memory, skills: { inline: inlineSkill, listed }, open: digest.directives?.open, qualityRefs: requiredQualityRefs(digest) }),
       user: 'Проаналізуй дайджест: KPI і якість контенту по кожному ресурсу (чекліст якості). Є підстава — file_directive (до 3; для якості — voice_fix / format_mix) і submit_review directives. Нічого робити не треба — submit_review continue, але з quality_check по кожному активному ресурсу з доказами.',
       tools: this.d.registry.forRole('manager'), maxSteps: 20,
-      agent: { id: m.id, handle: m.handle, limitUsd: m.dailyBudgetUsd },
+      agent: { id: m.id, handle: m.handle, limitUsd: m.dailyBudgetUsd ?? DEFAULT_MANAGER_DAILY_USD },
       extras: { agent: m, skills: ctx.skills, digest },
     });
     if (res.terminalTool !== 'submit_review') {
@@ -202,7 +216,7 @@ export class ManagerRunner {
 
   /** At most one event run per orchestrator per WAKE_INTERVAL_MS, whatever the outcome of the last one. */
   async orchestratorsToWake(): Promise<Agent[]> {
-    const ids = await this.d.repo.undeliveredTargets(DELIVERY_DEBOUNCE_MS);
+    const ids = await this.d.repo.undeliveredTargets(DELIVERY_DEBOUNCE_MS, WAKE_KINDS);
     const out: Agent[] = [];
     const t = this.now().getTime();
     for (const id of ids) {

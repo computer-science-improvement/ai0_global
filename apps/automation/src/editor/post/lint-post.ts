@@ -114,7 +114,7 @@ export function lintPost(spec: PostSpec, card: LintCard, integrity: LintIntegrit
     else if (vocab.size && !vocab.has(t)) err('hashtag_not_in_vocabulary', `хештег "${t}" не зі словника: ${[...vocab].join(', ')}`);
   }
   if (new Set(tags).size !== tags.length) err('hashtag_duplicate', 'хештеги повторюються');
-  // Spec 037 FR-008: with style.hashtags = off the count does not apply (any hashtag is hashtags_disabled).
+  // Spec 037 FR-008: with style.hashtags = off the count does not apply (any hashtag is hashtag_while_off).
   if (spec.format !== 'poll' && spec.format !== 'quiz' && card.style?.hashtags !== 'off' && (tags.length < card.hashtagMin || tags.length > card.hashtagMax)) {
     err('hashtag_count', `хештегів має бути ${card.hashtagMin}–${card.hashtagMax}, зараз ${tags.length}`);
   }

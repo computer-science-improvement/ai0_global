@@ -216,7 +216,7 @@ test('planner and orchestrator prompts show a clock line per non-Kyiv resource; 
   assert.match(block, /плануєш день 2026-10-07/);
   const kyivOnly = networkPlannerBlock({ net: netWith({ 'instagram:ny': KYIV }), accepted: [], now, tz: KYIV });
   assert.doesNotMatch(kyivOnly, /Час ресурсів/);
-  const daily = orchestratorDailyPrompt({ net: netWith(), card, now, open: [], target: 3, hasDirectives: false });
+  const daily = orchestratorDailyPrompt({ net: netWith(), card, now, open: [], quota: 4, hasDirectives: false });
   assert.match(daily, /instagram:ny — America\/New_York, зараз 09:12/);
 });
 

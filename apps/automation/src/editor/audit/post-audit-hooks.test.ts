@@ -20,12 +20,12 @@ test('approval findings: sections in order (stories, facts, dates, lint), errors
     { code: 'slop_em_dash', level: 'warning', message: 'тире' },
     { code: 'stale_source', level: 'warning', message: 'старе джерело' },
     { code: 'number_not_in_sources', level: 'warning', message: 'число', excerpt: '90%' },
-    { code: 'hashtags_disabled', level: 'error', message: 'хештеги' },
+    { code: 'hashtag_while_off', level: 'error', message: 'хештеги' },
     { code: 'story_repeat', level: 'error', message: 'та сама історія', ...({ matches: [{ url: 'https://t.me/a/1', slot_id: 'x' }] } as object) },
     { code: 'slop_em_dash', level: 'warning', message: 'тире' },
   ]);
   assert.deepEqual(list.map((f) => [f.section, f.code]), [
-    ['stories', 'story_repeat'], ['facts', 'number_not_in_sources'], ['dates', 'stale_source'], ['lint', 'hashtags_disabled'], ['lint', 'slop_em_dash'],
+    ['stories', 'story_repeat'], ['facts', 'number_not_in_sources'], ['dates', 'stale_source'], ['lint', 'hashtag_while_off'], ['lint', 'slop_em_dash'],
   ]);
   assert.deepEqual(list[0].extra, { matches: [{ url: 'https://t.me/a/1', slot_id: 'x' }] });
   assert.equal(list[0].title, 'Same story again');
@@ -41,7 +41,7 @@ test('approval findings hook: a waiting Telegram post is checked with the card s
   const spec = makeSpec({ hashtags: ['новини'] });
   const item = { id: '00000000-0000-0000-0000-000000000001', channelKey: '@news', resourceRef: 'telegram:@news', scheduledAt: new Date('2026-10-15T09:00:00Z'), timezone: 'Europe/Kyiv', postSpec: spec, topic: 'Тема', topicMode: 'fixed' };
   const findings = await hook(item);
-  assert.ok(findings.some((f) => f.code === 'hashtags_disabled' && f.level === 'error' && f.fix.includes('hashtags')), JSON.stringify(findings.map((f) => f.code)));
+  assert.ok(findings.some((f) => f.code === 'hashtag_while_off' && f.level === 'error' && f.fix.includes('hashtags')), JSON.stringify(findings.map((f) => f.code)));
   assert.ok(queries.some((q) => /FROM editor_slots/.test(q)), 'recent posts read');
   assert.deepEqual(await hook({ ...item, renderMessages: { kind: 'forward' } }), []);
   assert.deepEqual(await hook({ ...item, postSpec: { nope: true } }), []);
@@ -115,7 +115,7 @@ test('scheduler: the post-audit hook runs every tick with the time; a failing ho
 test('digest: audit groups with findings become quality flags; the summary rides on the block', () => {
   assert.ok(['story_repeat', 'fact_conflict', 'date_issue', 'text_hygiene', 'style_violation', 'dark_day'].every((f) => (QUALITY_FLAGS as readonly string[]).includes(f)));
   const q = assembleQuality({ critic: [], posts: [], owner: [], caps: { pollsPerWeek: null, questionsPerDay: 1 } as any });
-  const audit: AuditSummary = { audited_at: '2026-10-15T00:00:00.000Z', posts: 9, findings: 4, groups: { date_issue: 1, style_violation: 3 }, codes: [{ code: 'hashtags_disabled', level: 'error', n: 3 }] };
+  const audit: AuditSummary = { audited_at: '2026-10-15T00:00:00.000Z', posts: 9, findings: 4, groups: { date_issue: 1, style_violation: 3 }, codes: [{ code: 'hashtag_while_off', level: 'error', n: 3 }] };
   const out = withAudit(q, audit);
   assert.deepEqual(out.flags, ['date_issue', 'style_violation']);
   assert.equal(out.audit, audit);

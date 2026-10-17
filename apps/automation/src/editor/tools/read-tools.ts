@@ -6,7 +6,7 @@ import type { SkillSource } from '../skills/skill-library';
 import { safeGet, RawGet } from '../net/safe-http';
 import type { Lookup } from '../net/ssrf-guard';
 import { extractPage } from '../net/extract-page';
-import { classifyFetchError, fetchPageGuarded, hostBlockedError, hostOf, isFetchFailure, REFUSAL_STATUSES, type HostFailures } from '../net/host-failures';
+import { classifyFetchError, feedKey, fetchPageGuarded, hostBlockedError, hostOf, isFetchFailure, isTooLarge, REFUSAL_STATUSES, type HostFailures } from '../net/host-failures';
 import type { EditorCard } from '../card';
 import { topMatches } from '../post/similarity';
 import { EXTRA_MAX_CHARS, LIBRARY_EXTRA, LIBRARY_TABLE_NAMES } from './library-tables';
@@ -127,7 +127,7 @@ export function buildReadTools(d: ReadToolDeps): EditorTool[] {
 
   const sqlReadonly = defineTool({
     name: 'sql_readonly',
-    description: 'Довільний SELECT/WITH по БД (тільки читання, ≤50 рядків, 3с). Корисні таблиці/вʼю: editor_v_post_performance, editor_v_channel_daily, published_posts, post_stats_snapshots, channel_stats_snapshots, tracked_channels, tracked_posts, editor_slots. Контент: data_schemas (датасети: key, title, description, fields), data_items (рядки: schema_id, data jsonb, title, body, category, event_month, event_day, status, legacy_ref), data_schema_stats. Для вибору матеріалу краще library_catalog + query_data. Секретні таблиці недоступні.',
+    description: 'Довільний SELECT/WITH по БД (тільки читання, ≤50 рядків, 3с). Корисні таблиці/вʼю: editor_v_post_performance, editor_v_channel_daily, published_posts, post_stats_snapshots, channel_stats_snapshots, tracked_channels, tracked_posts, editor_slots. Контент: data_schemas (датасети: key, title, description, fields), data_items (рядки: schema_id, data jsonb, title, body, category, event_month, event_day, status, legacy_ref), data_schema_stats. Для вибору матеріалу краще library_catalog + query_data. Секретні таблиці недоступні. Помилка «column … does not exist» повертає columns — справжні колонки названих таблиць; не вгадуй назви.',
     kind: 'read', roles: [...ALL_ROLES],
     input: z.object({ query: z.string().min(1).max(4000), limit: z.number().int().min(1).max(50).default(50) }),
     execute: async ({ query, limit }) => d.readonly.run(query, limit),
@@ -210,9 +210,11 @@ export function buildReadTools(d: ReadToolDeps): EditorTool[] {
     execute: async ({ url, limit, since_hours, exclude_posted }, ctx) => {
       const t = now();
       const host = hostOf(url);
+      const key = feedKey(url);
       const sources = (ctx.extras?.card as EditorCard | undefined)?.sources;
       if (host && d.hosts) {
-        const b = await d.hosts.blocked(host, 'feed');
+        // The host (refused, DNS, TLS) or this one feed address (spec 046 FR-009: not a feed, too large).
+        const b = (await d.hosts.blocked(host, 'feed')) ?? (key && key !== host ? await d.hosts.blocked(key, 'feed') : null);
         if (b) return hostBlockedError(b, sources);
       }
       let feed: Awaited<ReturnType<typeof readFeed>>;
@@ -227,8 +229,12 @@ export function buildReadTools(d: ReadToolDeps): EditorTool[] {
           return { error: 'http_error', details: status === 404 ? 'status 404: стрічки за цією адресою немає — бери фіди з картки чи плейбука, адреси не вгадуй' : `status ${status}` };
         }
         if (err instanceof FeedParseError) {
-          if (host) await d.hosts?.record(host, 'feed_unparseable');
-          return { error: 'feed_unparseable', details: `це не RSS/Atom-стрічка (${err.message}). Не читай її знову сьогодні — інша стрічка або web_fetch сторінки` };
+          if (key) await d.hosts?.record(key, 'feed_unparseable');
+          return { error: 'feed_unparseable', details: `це не RSS/Atom-стрічка (${err.message}). Не читай цю адресу знову сьогодні — інша стрічка (інші стрічки сайту працюють) або web_fetch сторінки` };
+        }
+        if (isTooLarge(err)) {
+          if (key) await d.hosts?.record(key, 'feed_too_large');
+          return { error: 'feed_too_large', details: 'стрічка більша за 2 МБ — не читай її сьогодні; візьми іншу стрічку цього сайту (категорію) або інше джерело' };
         }
         const kind = classifyFetchError(err);
         if (kind && host) {

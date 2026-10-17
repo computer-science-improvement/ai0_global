@@ -256,7 +256,7 @@ export const CODE_EXPLANATIONS: Record<string, CodeExplanation> = {
     explain: 'A person\'s name is written in a script other than the resource name policy.',
     fix: 'Write names as the style sheet says: transliterated or in the original Latin.',
   },
-  hashtags_disabled: {
+  hashtag_while_off: {
     title: 'Hashtags present while off',
     explain: 'Hashtags present while the channel has them off: the post has hashtags, the resource style says no hashtags. Not a setting to switch on.',
     fix: 'Remove the hashtags, or switch hashtags to Vocabulary in the style sheet.',

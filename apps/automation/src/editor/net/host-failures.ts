@@ -6,12 +6,15 @@ import type { CardSource } from '../card';
  * (48 times in a week), guess article paths that do not exist and re-read a broken feed daily. A refusal (401 / 403 / 451 /
  * 429), a DNS or TLS failure marks the host for 24 h; web_fetch / extract_images / fetch_feed then answer `host_blocked`
  * at once, without a request. A feed that does not parse marks the host for fetch_feed only.
+ *
+ * Spec 046 FR-009: a feed failure (not a feed, too large) marks that feed's address (`feedKey`), not the whole host — a
+ * JSON API sent to fetch_feed used to block every feed of gamerpower.com for a day. An oversized feed is remembered too.
  */
 export const HOST_BLOCK_HOURS = 24;
 export const REFUSAL_STATUSES = new Set([401, 403, 451, 429]);
 
 /** `feed_*` reasons block fetch_feed only; the others block every page fetch of the host. */
-export type HostFailureReason = 'refused' | 'dns' | 'tls' | 'feed_unparseable';
+export type HostFailureReason = 'refused' | 'dns' | 'tls' | 'feed_unparseable' | 'feed_too_large';
 
 export interface HostBlock {
   host:       string;
@@ -33,6 +36,19 @@ export function hostOf(url: string): string | null {
   } catch {
     return null;
   }
+}
+
+/** The key a feed failure is stored under: host + path (+ query), so one bad address blocks only itself. */
+export function feedKey(url: string): string | null {
+  const host = hostOf(url);
+  if (!host) return null;
+  const u = new URL(url);
+  return `${host}${u.pathname.replace(/\/+$/, '')}${u.search}`;
+}
+
+/** An axios / safe-http size-limit failure (the body is over the 2 MB cap). */
+export function isTooLarge(err: unknown): boolean {
+  return /maxContentLength|content length|too large/i.test(String((err as { message?: string } | null)?.message ?? ''));
 }
 
 /** Where to go instead of a blocked host, when the code knows. */
@@ -62,11 +78,12 @@ const REASON_TEXT: Record<HostFailureReason, string> = {
   dns:              'домен не знаходиться (DNS)',
   tls:              'помилка TLS-сертифіката',
   feed_unparseable: 'стрічка не читається як RSS/Atom',
+  feed_too_large:   'стрічка більша за 2 МБ',
 };
 
 /** The `host_blocked` answer: why, until when, and what to use instead. */
 export function hostBlockedError(b: HostBlock, cardSources?: CardSource[]) {
-  const alt = alternativeFor(b.host, cardSources);
+  const alt = alternativeFor(b.host.split('/')[0], cardSources);
   const why = `${REASON_TEXT[b.reason]}${b.statusCode ? ` (status ${b.statusCode})` : ''}`;
   return {
     error: 'host_blocked',

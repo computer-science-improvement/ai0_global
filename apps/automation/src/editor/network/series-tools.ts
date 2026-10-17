@@ -99,6 +99,7 @@ export function buildSeriesTools(d: SeriesToolDeps): EditorTool[] {
       ok: true, version: res.version, status: res.status, applied: res.status === 'active', changes: res.changes,
       note: res.status === 'active' ? 'застосовано одразу' : 'структурна зміна (або режим апруву) — чекає рішення власника',
       ...(b.fromDraft ? { based_on: 'твоя чернетка, що чекає власника' } : {}),
+      ...(res.warnings?.length ? { warnings: res.warnings } : {}),
     };
   }
 

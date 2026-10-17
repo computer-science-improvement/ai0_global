@@ -171,8 +171,8 @@ test('T8 units: «49B», «270M» in words mode; model names and resolutions sta
 // ── hashtags ────────────────────────────────────────────────────────────────
 
 test('T8 hashtags: off → any hashtag is an error (the tag line or the text); links, code, #1 and C# are not hashtags', () => {
-  assert.deepEqual(codes(hashtagFindings('Текст', ['apple'], { hashtags: 'off' })), ['hashtags_disabled:error']);
-  assert.deepEqual(codes(hashtagFindings('Текст про #гаджети', [], { hashtags: 'off' })), ['hashtags_disabled:error']);
+  assert.deepEqual(codes(hashtagFindings('Текст', ['apple'], { hashtags: 'off' })), ['hashtag_while_off:error']);
+  assert.deepEqual(codes(hashtagFindings('Текст про #гаджети', [], { hashtags: 'off' })), ['hashtag_while_off:error']);
   assert.deepEqual(textHashtags('Навіть «#1 trending» на https://hf.co/#top, мова C# і `#include`'), []);
   assert.deepEqual(hashtagFindings('Текст про #гаджети', ['apple'], { hashtags: 'vocabulary' }), []);
   assert.deepEqual(hashtagFindings('Текст', ['apple'], {}), []);
@@ -184,9 +184,9 @@ test('T8 lintPost: hashtags off — no count rule, any hashtag blocks; address a
   const style: ResourceStyle = { ...VY };
   const clean = lintPost(makeSpec({ hashtags: [] }), makeCard({ style, hashtagMin: 1 }));
   assert.ok(!clean.errors.some((e) => e.code === 'hashtag_count'), JSON.stringify(clean.errors));
-  assert.ok(!clean.errors.some((e) => e.code === 'hashtags_disabled'));
+  assert.ok(!clean.errors.some((e) => e.code === 'hashtag_while_off'));
   const tagged = lintPost(makeSpec({ hashtags: ['космос'] }), makeCard({ style }));
-  assert.ok(tagged.errors.some((e) => e.code === 'hashtags_disabled'));
+  assert.ok(tagged.errors.some((e) => e.code === 'hashtag_while_off'));
   const mixed = lintPost(makeSpec({
     hashtags: [],
     body: [{ type: 'lead', text: 'Телескоп показав туманність' }, { type: 'p', text: 'Забирай знімок собі. Ви побачите оболонки газу через АПІ NASA.' }],

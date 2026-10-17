@@ -92,7 +92,7 @@ export function orchestratorSystemPrompt(o: { net: NetworkCtx; card: EditorCard;
   ].join('\n');
 }
 
-export function orchestratorDailyPrompt(o: { net: NetworkCtx; card: EditorCard; now: Date; open: IdeaRow[]; target: number; hasDirectives: boolean }): string {
+export function orchestratorDailyPrompt(o: { net: NetworkCtx; card: EditorCard; now: Date; open: IdeaRow[]; quota: number; hasDirectives: boolean }): string {
   const tz = o.card.timezone;
   const accepted = o.open.filter((i) => i.status === 'accepted').length;
   const fresh = o.open.filter((i) => i.status === 'new').length;
@@ -101,8 +101,12 @@ export function orchestratorDailyPrompt(o: { net: NetworkCtx; card: EditorCard; 
     `Сьогодні ${WEEKDAYS[localWeekday(o.now, tz)]}, ${localDate(o.now, tz)} ${localTimeLabel(o.now, tz)}${tz === DEFAULT_TZ ? '' : ` (${tz})`}.`,
     ...resourceClocksBlock(o.net, o.now).slice(1),
     o.hasDirectives ? '1. Спершу дай відповідь на кожну позицію менеджера: ДИРЕКТИВА — accept_directive з планом або contest_directive (правило власника чи безпека); порада — accept_directive або decline_advice з причиною. Без відповіді за 24 год директиву з виконавцем код застосує сам.' : '',
-    `${o.hasDirectives ? '2' : '1'}. Пул: прийнятих ${accepted}, на рецензії ${fresh}${revise.length ? `, на доопрацюванні ${revise.length} (revise_idea: ${revise.map((i) => i.id).join(', ')})` : ''}. Ціль — ${o.target} ідей на 2 дні вперед для всіх ресурсів.`,
-    'Подивись статистику (get_network_posts, get_platform_stats, get_format_performance), нещодавні пости й джерела (fetch_feed, fetch_api, library_catalog), і додай ідеї через add_idea — кожна з варіантами під ресурси й форматами плейбука.',
+    `${o.hasDirectives ? '2' : '1'}. Пул: прийнятих ${accepted}, на рецензії ${fresh}${revise.length ? `, на доопрацюванні ${revise.length} (revise_idea: ${revise.map((i) => i.id).join(', ')})` : ''}. ${o.quota
+      ? `Сьогодні додай до ${o.quota} ідей (слоти дня + 1 запасна; більше add_idea не прийме) — краще менше, але сильних.`
+      : 'Ідей у пулі вистачає на 2 дні — сьогодні нових не додавай (add_idea відмовить); доопрацюй ті, що на доопрацюванні.'}`,
+    o.quota
+      ? 'Подивись статистику (get_network_posts, get_platform_stats, get_format_performance), нещодавні пости й джерела (fetch_feed, fetch_api, library_catalog), і додай ідеї через add_idea — кожна з варіантами під ресурси й форматами плейбука. Новина для новинного ресурсу — з 2 джерел з різних сайтів.'
+      : 'Подивись статистику (get_network_posts, get_platform_stats, get_format_performance), щоб вирішити, чи щось у подачі варто змінити.',
     'Пост, що вже добре зайшов на одному ресурсі (get_network_posts), можна продублювати чи адаптувати на інші ресурси мережі через repurpose_post — час і інтервал обираєш ти, оформлення під ресурс теж твоє (як вирішувати — скіл resource-decisions).',
     'Форматування кожного ресурсу (format_prefs: get_resource_format) — твоє: змінюй update_resource_format, коли KPI або правки власника (у режимі апруву його правки постів — у памʼяті) показують, що інша подача працює краще. Поля, закріплені власником, не чіпай; не більше 3 змін на ресурс за день, не туди-сюди.',
     'Серії (рубрики) змінюй точково: list_series, define_series, update_series, set_series_active (так виконується директива pause_series), retire_series — не більше 5 змін за прогін. Серії власника (locked) не чіпай: якщо бачиш, що їх варто змінити, напиши це в підсумку.',

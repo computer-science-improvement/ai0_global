@@ -15,6 +15,7 @@ import { submitPlaybookVersion, type SubmitDeps } from './series-edit';
 import type { ScheduleService } from '../schedule/schedule.service';
 import type { ExperimentQuota } from '../manager/experiment-quota';
 import type { PollCapCtx } from '../roles/poll-cap';
+import type { AgentsRepository } from '../agents/agents.repository';
 
 export const IDEA_DEDUP_SIMILARITY = 0.6;
 export const IDEA_MAX_DAYS = 7;
@@ -26,6 +27,24 @@ export const MAX_NEW_IDEAS = 30;
 export const IDEA_PAGE_MAX = 50;
 /** Spec 040 FR-004: the reviewer's batch in its prompt, and the longest kept summary. */
 export const REVIEW_BATCH = 15;
+/** Spec 046 FR-007: the accepted + new ideas that cover this many days of slots stop the adding. */
+export const IDEA_RUNWAY_DAYS = 2;
+/** Spec 046 FR-007: distinct source hosts a factual idea for a news resource needs. */
+export const NEWS_MIN_SOURCES = 2;
+
+/**
+ * Spec 046 FR-007: ideas one orchestrator run may add — a day of slots plus one spare, never past the runway
+ * (`slotsPerDay` × IDEA_RUNWAY_DAYS ideas accepted or waiting for review).
+ */
+export function ideaQuota(slotsPerDay: number, waiting: number): number {
+  const slots = Math.max(1, Math.ceil(slotsPerDay));
+  return Math.max(0, Math.min(slots + 1, MAX_IDEAS_PER_RUN, slots * IDEA_RUNWAY_DAYS - waiting));
+}
+
+/** Spec 046 FR-007: distinct hosts (or raw strings for non-URL sources) of an idea's sources. */
+export function sourceHosts(sources: string[]): number {
+  return new Set(sources.map((s) => hostOf(s) ?? s.trim().toLowerCase())).size;
+}
 export const REVIEW_SUMMARY_MAX = 4000;
 const REASON_CODES = ['duplicate', 'unverifiable', 'off_topic', 'weak', 'risky', 'platform_mismatch', 'off_playbook'] as const;
 const REASON_UK: Record<typeof REASON_CODES[number], string> = {
@@ -48,6 +67,8 @@ export interface NetworkToolDeps {
   experimentQuotas?: (anchorKey: string, planDate: string, now: Date) => Promise<ExperimentQuota[]>;
   /** Spec 034 FR-005: per-resource poll caps and the polls already in the 7-day window (SqlPollCaps.load). */
   pollCaps?: (o: { refs: string[]; planDate: string; tz: string; defaultRef?: string }) => Promise<PollCapCtx>;
+  /** Spec 046 FR-008: get_playbook(handle) for the manager, which has no orchestrator context. */
+  agents?: Pick<AgentsRepository, 'getByHandle'>;
   now?:   () => Date;
 }
 
@@ -88,11 +109,24 @@ export function buildNetworkTools(d: NetworkToolDeps): EditorTool[] {
 
   const getPlaybook = defineTool({
     name: 'get_playbook',
-    description: 'Активний плейбук мережі (що, куди, як часто) і чернетка, що чекає власника. Ресурси мережі й доступні формати.',
+    description: 'Активний плейбук мережі (що, куди, як часто) і чернетка, що чекає власника. Ресурси мережі й доступні формати. Менеджер передає handle оркестратора (лише читання).',
     kind: 'read', roles: ['orchestrator', 'planner', 'idea_reviewer', 'executor', 'manager'],
-    input: z.object({}),
-    execute: async (_i, ctx) => {
-      const net = netOf(ctx);
+    input: z.object({ handle: z.string().min(2).max(40).optional().describe('Оркестратор, чий плейбук читати (для менеджера)') }),
+    execute: async ({ handle }, ctx) => {
+      const own = ctx.extras?.network as NetworkCtx | undefined;
+      // Spec 046 FR-008: the manager reads any orchestrator's playbook by handle (it has no network context).
+      if (handle && (!own || own.orchestrator.handle !== handle.replace(/^@/, ''))) {
+        const orch = d.agents ? await d.agents.getByHandle(handle.replace(/^@/, '').toLowerCase()) : null;
+        if (!orch || orch.kind !== 'orchestrator') return { error: 'unknown_orchestrator', details: `@${handle.replace(/^@/, '')} — не оркестратор; список агентів є в get_kpi_digest (agents)` };
+        const [active, pending] = await Promise.all([d.repo.activePlaybook(orch.id), d.repo.pendingPlaybook(orch.id)]);
+        return {
+          orchestrator: `@${orch.handle}`,
+          active: active ? { version: active.version, body: active.body } : null,
+          pending: pending ? { id: pending.id, version: pending.version, rationale: pending.rationale, review: pending.review } : null,
+        };
+      }
+      if (!own) return { error: 'handle_required', details: 'назви handle оркестратора, чий плейбук прочитати' };
+      const net = own;
       const pending = await d.repo.pendingPlaybook(net.orchestrator.id);
       return {
         network: net.groupName, mode: net.mode,
@@ -165,7 +199,7 @@ export function buildNetworkTools(d: NetworkToolDeps): EditorTool[] {
     name: 'add_idea',
     description: [
       'Додати ідею в пул: тема, кут, джерела, варіанти під ресурси (resource_ref + нативний формат), чому вона спрацює (з даних).',
-      'Код відхиляє дублікати (схоже вже є в пулі або публікувалось за 14 днів), ідеї без джерел, недоступні формати.',
+      'Код відхиляє дублікати (схоже вже є в пулі або публікувалось за 14 днів), ідеї без джерел, недоступні формати; ідея для новинного ресурсу потребує 2 джерел з різних сайтів. За прогін — не більше квоти з завдання (слоти дня + 1).',
     ].join(' '),
     kind: 'act', roles: ['orchestrator'],
     input: z.object({
@@ -182,8 +216,16 @@ export function buildNetworkTools(d: NetworkToolDeps): EditorTool[] {
     execute: async (i, ctx) => {
       const net = netOf(ctx);
       const run = ideaRun(ctx);
-      if (run.added >= MAX_IDEAS_PER_RUN) {
-        return { error: 'run_quota', details: `за цей прогін уже додано ${run.added} ідей — більше не додавай, переходь до наступного кроку` };
+      // Spec 046 FR-007: the run's quota (slots + 1, 0 when the pool covers the runway) set by the runner.
+      const x = ctx.extras as { ideaQuota?: number; newsRefs?: string[] } | undefined;
+      const quota = Math.min(MAX_IDEAS_PER_RUN, x?.ideaQuota ?? MAX_IDEAS_PER_RUN);
+      if (run.added >= quota) {
+        return {
+          error: 'run_quota',
+          details: quota === 0
+            ? `ідей у пулі вистачає на ${IDEA_RUNWAY_DAYS} дні — сьогодні нових не додавай, переходь до наступного кроку`
+            : `за цей прогін уже додано ${run.added} ідей (межа ${quota}: слоти дня + 1) — більше не додавай, переходь до наступного кроку`,
+        };
       }
       const waiting = await d.repo.countIdeas(net.orchestrator.id, ['new']);
       if (waiting >= MAX_NEW_IDEAS) {
@@ -191,6 +233,11 @@ export function buildNetworkTools(d: NetworkToolDeps): EditorTool[] {
       }
       const errs = validateVariants(net, i.variants);
       if (!i.sources.length && i.origin !== 'series' && i.origin !== 'owner') errs.push('потрібні джерела (sources), з яких можна перевірити факти');
+      // Spec 046 FR-007: a news resource's idea stands on two independent sources (a sole source the critic rejects kills it).
+      const news = (i.origin === 'orchestrator' || i.origin === 'trend') ? i.variants.filter((v) => x?.newsRefs?.includes(v.resource_ref)).map((v) => v.resource_ref) : [];
+      if (news.length && i.sources.length && sourceHosts(i.sources) < NEWS_MIN_SOURCES) {
+        errs.push(`${[...new Set(news)].join(', ')} — новинний ресурс: потрібні щонайменше ${NEWS_MIN_SOURCES} незалежні джерела (різні сайти), щоб факти можна було звірити`);
+      }
       if (errs.length) return { error: 'idea_invalid', details: errs };
       const text = `${i.title} ${i.angle ?? ''}`;
       const open = await d.repo.listIdeas(net.orchestrator.id, ['new', 'accepted', 'needs_revision', 'planned'], 200);

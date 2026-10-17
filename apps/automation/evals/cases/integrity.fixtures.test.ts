@@ -52,7 +52,7 @@ test('037 critic cases: the context states the publish time in Kyiv, the style a
 });
 
 test('037 critic cases agree with the golden labels', () => {
-  const benign = new Set(['hashtags_disabled', 'lead_too_long', 'slop_em_dash']);
+  const benign = new Set(['hashtag_while_off', 'lead_too_long', 'slop_em_dash']);
   for (const c of INTEGRITY_CRITIC_CASES) {
     const codes = labels.posts[c.post].expect.map((l) => parseLabelCode(l).code);
     if (c.expect === 'pass') assert.deepEqual(codes.filter((x) => !benign.has(x)), [], `${c.id}: a clean case must not carry content problems`);

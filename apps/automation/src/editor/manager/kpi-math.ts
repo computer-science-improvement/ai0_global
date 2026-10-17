@@ -69,9 +69,15 @@ export function meanMetric(series: DailySeries, today: string, minRecentDays = 2
  * 1–7; baseline = weekly-equivalent of days 8–35 (missing days count as 0 for
  * revenue/joins, are skipped for followers via `skipMissing`).
  */
-export function sumMetric(series: DailySeries, today: string, o: { skipMissing?: boolean; staleIfNoRecent?: boolean } = {}): MetricValue {
-  const recentDays = windowDays(today, 1, 7);
-  const baseDays = windowDays(today, 8, 35);
+export function sumMetric(series: DailySeries, today: string, o: { skipMissing?: boolean; staleIfNoRecent?: boolean; since?: string | null } = {}): MetricValue {
+  // Spec 046 FR-004: days before the scope's first data day are not zeros — a new resource has no baseline yet.
+  const live = (d: string) => !o.since || d >= o.since;
+  const recentDays = windowDays(today, 1, 7).filter(live);
+  const baseDays = windowDays(today, 8, 35).filter(live);
+  if (o.since && baseDays.length < MIN_BASELINE_DAYS) {
+    const recent = o.skipMissing ? recentDays.map((d) => series.get(d)).filter((v): v is number => v != null) : recentDays.map((d) => series.get(d) ?? 0);
+    return finish(recent.length ? (recent.reduce((a, b) => a + b, 0) / recent.length) * 7 : null, null, null, !!o.staleIfNoRecent && recent.length < 2);
+  }
   const pick = (days: string[]) => (o.skipMissing ? days.map((d) => series.get(d)).filter((v): v is number => v != null) : days.map((d) => series.get(d) ?? 0));
   const recent = pick(recentDays);
   const base = pick(baseDays);
@@ -100,14 +106,24 @@ export interface ScopeSeries {
   revenue:       DailySeries;
 }
 
+/** Spec 046 FR-004: fewer baseline days than this since the first data day → no baseline (no anomaly from launch). */
+export const MIN_BASELINE_DAYS = 7;
+
+/** The scope's first day with any post or view (its launch); null without data. */
+export function firstDataDay(s: ScopeSeries): string | null {
+  const days = [...s.posts.entries(), ...s.viewsPerPost.entries()].filter(([, v]) => v > 0).map(([d]) => d).sort();
+  return days[0] ?? null;
+}
+
 export function computeKpis(s: ScopeSeries, today: string): ScopeKpis {
+  const since = firstDataDay(s);
   return {
     views_per_post:   meanMetric(s.viewsPerPost, today),
     engagement_rate:  meanMetric(s.engagementRate, today),
-    posts:            sumMetric(s.posts, today),
+    posts:            sumMetric(s.posts, today, { since }),
     followers_growth: sumMetric(s.followerDelta, today, { skipMissing: true, staleIfNoRecent: true }),
-    transitions:      sumMetric(s.joins, today),
-    revenue:          sumMetric(s.revenue, today),
+    transitions:      sumMetric(s.joins, today, { since }),
+    revenue:          sumMetric(s.revenue, today, { since }),
   };
 }
 

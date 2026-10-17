@@ -165,14 +165,39 @@ test('ladder: no new step long after the slot time', async () => {
   assert.equal(fallbackOf(s.st).final?.code, 'too_late');
 });
 
-test('ladder: the evergreen seam runs after the lighter format when wired', async () => {
-  const s = setup([reject, reject, reject], { evergreen: true });
+test('ladder: the evergreen seam runs after the other steps when wired (within the critic pass cap)', async () => {
+  const s = setup([reject, reject], { evergreen: true, card: { formats: { photo: 1 } } });
   await s.runner.runExecutor(baseSlot, s.card);
   assert.equal(s.evergreenCalls.length, 1);
   assert.equal(s.evergreenCalls[0].failure.kind, 'critic_reject');
-  assert.deepEqual(s.evergreenCalls[0].steps.map((x: any) => x.step), ['initial', 'next_candidate', 'lighter_format']);
+  assert.deepEqual(s.evergreenCalls[0].steps.map((x: any) => x.step), ['initial', 'next_candidate']);
   const f = fallbackOf(s.st);
   assert.deepEqual([f.final?.outcome, f.final?.step], ['rescued', 'evergreen']);
+});
+
+test('046: no new step after 3 critic passes on the slot (a revise + rewrite counts 2)', async () => {
+  const s = setup([reject, reject, reject], { evergreen: true });
+  await s.runner.runExecutor(baseSlot, s.card);
+  assert.equal(s.evergreenCalls.length, 0);
+  const f = fallbackOf(s.st);
+  assert.deepEqual(f.steps.map((x) => [x.step, x.critic_passes]), [['initial', 1], ['next_candidate', 1], ['lighter_format', 1]]);
+  assert.deepEqual([f.final?.outcome, f.final?.code], ['skipped', 'critic_cap']);
+  const revised: Behaviour = (st) => {
+    Object.assign(st, { status: 'skipped', error: 'critic_rejected: reject', critic: { verdict: 'reject', notes: 'n', cost_usd: 0.002, history: [{ verdict: 'revise' }] } });
+    return { ok: true, failed: 'critic_rejected' } as any;
+  };
+  const r = setup([revised, revised, shadow]);
+  await r.runner.runExecutor(baseSlot, r.card);
+  assert.equal(r.runs.length, 2, 'initial (2 passes) + next candidate (2 passes) → stop');
+  assert.equal(fallbackOf(r.st).final?.code, 'critic_cap');
+});
+
+test('046: a live (news) slot never falls back to an evergreen post', async () => {
+  const live = { sources: ['https://feed.example/rss'], brief: 'Новини', max_age_hours: 12, origin: 'planner' };
+  const s = setup([reject, reject], { evergreen: true, card: { formats: { photo: 1 } }, slot: { ...baseSlot, topicMode: 'live', liveSpec: live } });
+  await s.runner.runExecutor(s.st, s.card);
+  assert.equal(s.evergreenCalls.length, 0);
+  assert.equal(s.st.status, 'skipped');
 });
 
 test('ladder: no lighter format allowed → next candidate, then skip', async () => {

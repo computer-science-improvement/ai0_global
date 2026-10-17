@@ -201,10 +201,12 @@ export class DirectivesRepository {
   }
 
   /** Orchestrators with directives waiting longer than `minAgeMs` and not yet delivered (event runs). */
-  async undeliveredTargets(minAgeMs: number): Promise<string[]> {
+  /** Agents with undelivered directives older than `minAgeMs`; `kinds` (spec 046 FR-007) keeps only those kinds. */
+  async undeliveredTargets(minAgeMs: number, kinds?: readonly string[]): Promise<string[]> {
     const { rows } = await this.pool.query(
       `SELECT DISTINCT to_agent_id FROM agent_directives
-        WHERE status = 'new' AND NOT shadow AND delivered_at IS NULL AND created_at < now() - ($1 || ' milliseconds')::interval`, [String(minAgeMs)]);
+        WHERE status = 'new' AND NOT shadow AND delivered_at IS NULL AND created_at < now() - ($1 || ' milliseconds')::interval
+          AND ($2::text[] IS NULL OR kind = ANY($2::text[]))`, [String(minAgeMs), kinds ? [...kinds] : null]);
     return rows.map((r) => r.to_agent_id);
   }
 

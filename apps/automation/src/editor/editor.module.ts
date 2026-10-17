@@ -1080,7 +1080,7 @@ export const EDITOR_PROVIDERS = [
             repo: new NetworkRepository(pool), plans: repos.plans, memory: repos.memory, inbox: infra.inbox,
             sourceCatalog: (card) => seriesSourceCatalog(pool, card), schedule, directiveLock,
             experimentQuotas: experimentQuotasOf(pool),
-            pollCaps: pollCapsOf(pool),
+            pollCaps: pollCapsOf(pool), agents: new AgentsRepository(pool),
           }),
           // Spec 023 FR-003: the orchestrator's series tools (one submit path with submit_playbook).
           ...buildSeriesTools({ repo: new NetworkRepository(pool), inbox: infra.inbox, sourceCatalog: (card) => seriesSourceCatalog(pool, card), directiveLock }),
@@ -1342,6 +1342,7 @@ export const EDITOR_PROVIDERS = [
           catalogSummary: withSchedule(catalogSummaryOf(pool, env), schedule),
           seriesContext: (slot) => schedule.executorContext(slot),
           onSlotDone: async (slot) => { if (slot.ideaId) await ideas.settleIdea(slot.ideaId); },
+          deadSource: async (slot, url, reason) => (slot.ideaId ? ideas.rejectSoleSourceIdeas(slot.ideaId, url, reason) : 0),
           // Spec 024 FR-007: duplicate / adapt slots — the agent formats every target post itself.
           derived: derivedPorts(pool, ideas, infra, ports.holds ?? null),
           // Spec 034 FR-002: humour / slang / emoji of a slot's target resource (owner-only switches, off by default).
@@ -1488,7 +1489,7 @@ export const EDITOR_PROVIDERS = [
             for (const orch of await manager.runner.orchestratorsToWake()) {
               const key = telegramKeyOf(orch);
               const card = key ? await repos.channels.get(key) : null;
-              if (card && card.mode !== 'off' && !(await held(card, await pauses.pausedRefs(new Date())))) await network.runOrchestrator(card);
+              if (card && card.mode !== 'off' && !(await held(card, await pauses.pausedRefs(new Date())))) await network.runOrchestrator(card, { wake: true });
             }
           },
           // Spec 031: approval channels write ahead; approved posts, expiry and alerts run in their own lane.

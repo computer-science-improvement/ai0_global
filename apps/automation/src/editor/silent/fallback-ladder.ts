@@ -53,6 +53,8 @@ export interface FallbackStepRecord {
   run_id:     string | null;
   /** The executor run's cost plus the critic's (both already in the usage ledger). */
   cost_usd:   number;
+  /** Spec 046 FR-006: critic passes of this attempt (a revise + its rewrite = 2). */
+  critic_passes?: number;
   source_url?: string | null;
 }
 
@@ -73,6 +75,18 @@ export interface SlotFallback {
 
 /** The ladder does not start a new step this long after the slot's time (stale slots are skipped at 3 h). */
 export const LADDER_MAX_LATE_MS = 90 * 60_000;
+
+/**
+ * Spec 046 FR-006: no new ladder step once a slot used this many critic passes (review 2: one off-topic slot took
+ * 3 executor and 5–6 critic runs; 43% of slot spend bought no post).
+ */
+export const MAX_CRITIC_PASSES_PER_SLOT = 3;
+
+/** Critic passes of the attempt whose verdict is stored on the slot (0 when the post never reached the critic). */
+export function criticPasses(slot: { critic?: { history?: unknown[] | null } | null } | null | undefined): number {
+  if (!slot?.critic) return 0;
+  return 1 + (Array.isArray(slot.critic.history) ? slot.critic.history.length : 0);
+}
 
 const RESCUED = new Set(['published', 'shadowed', 'awaiting_approval', 'approved']);
 export const isRescued = (status: string | null | undefined): boolean => !!status && RESCUED.has(status);
@@ -168,12 +182,13 @@ export function lighterFormat(format: string, allowed: ReadonlySet<string>): str
 }
 
 /** The steps after the initial attempt (each at most once). */
-export function ladderPlan(o: { format: string; allowed: ReadonlySet<string>; evergreen: boolean }): Array<{ step: Exclude<LadderStep, 'initial'>; format: string }> {
+export function ladderPlan(o: { format: string; allowed: ReadonlySet<string>; evergreen: boolean; live?: boolean }): Array<{ step: Exclude<LadderStep, 'initial'>; format: string }> {
   const out: Array<{ step: Exclude<LadderStep, 'initial'>; format: string }> = [{ step: 'next_candidate', format: o.format }];
   const lighter = lighterFormat(o.format, o.allowed);
   if (lighter) out.push({ step: 'lighter_format', format: lighter });
   // Spec 037 T10: the evergreen step (`fallbackEvergreen`, silent/evergreen.ts); plain text when allowed (no image needed).
-  if (o.evergreen) out.push({ step: 'evergreen', format: o.allowed.has('text') ? 'text' : lighter ?? o.format });
+  // Spec 046 FR-006: never for a live (news) slot — review 2: an evergreen glossary went out on a news channel.
+  if (o.evergreen && !o.live) out.push({ step: 'evergreen', format: o.allowed.has('text') ? 'text' : lighter ?? o.format });
   return out;
 }
 
@@ -213,6 +228,7 @@ export function stepRecord(
     step, at: at.toISOString(), format, outcome, reason: reason ? clip(reason, 300) : null,
     verdict: slot?.critic?.verdict ?? null, run_id: run?.runId ?? null,
     cost_usd: Number(((run?.totals?.costUsd ?? 0) + Number(slot?.critic?.cost_usd ?? 0)).toFixed(6)),
+    critic_passes: criticPasses(slot as { critic?: { history?: unknown[] | null } | null } | null),
     ...(failure?.sourceUrl || (slot?.postSpec && sourceOf(slot.postSpec)) ? { source_url: failure?.sourceUrl ?? sourceOf(slot!.postSpec) } : {}),
   };
 }

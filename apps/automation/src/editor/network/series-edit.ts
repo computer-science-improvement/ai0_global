@@ -110,11 +110,17 @@ export async function submitPlaybookVersion(d: SubmitDeps, net: NetworkCtx, ctx:
   const guard = guardAgentSeries(active, normalizePlaybook(bodyIn));
   if ('error' in guard) return guard;
   const body = guard.body;
-  const errors = validatePlaybook(body, net.resources, net.telegramFormats, {
+  const opts = {
     quiet: card ? { startHour: card.quietStartHour, endHour: card.quietEndHour } : undefined,
     sources: d.sourceCatalog ? await d.sourceCatalog(card) : null,
-  });
+  };
+  // Spec 046 FR-009: problems the active version already has (a platform that left the network, …) never block an
+  // unrelated edit such as update_series — only problems this version adds do; the inherited ones go back as warnings.
+  const inherited = new Set(active ? validatePlaybook(active, net.resources, net.telegramFormats, opts) : []);
+  const found = validatePlaybook(body, net.resources, net.telegramFormats, opts);
+  const errors = found.filter((e) => !inherited.has(e));
   if (errors.length) return { error: 'playbook_invalid', details: errors };
+  const carried = found.filter((e) => inherited.has(e)).map((e) => `успадковано з v${net.playbookVersion ?? '?'} (виправ, коли зможеш): ${e}`);
   const lock = d.directiveLock ? await d.directiveLock(net.orchestrator.id, body) : null;
   if (lock) return lock;
   const change = classifyPlaybookChange(active, body, { mode: networkMode(net, card) });
@@ -143,5 +149,6 @@ export async function submitPlaybookVersion(d: SubmitDeps, net: NetworkCtx, ctx:
     },
     refType: 'playbook', refId: pb.id,
   });
-  return { ok: true, id: pb.id, version: pb.version, status, changes: change.reasons, ...(warnings.length ? { warnings: warnings.map((w) => w.uk) } : {}) };
+  const notes = [...warnings.map((w) => w.uk), ...carried];
+  return { ok: true, id: pb.id, version: pb.version, status, changes: change.reasons, ...(notes.length ? { warnings: notes } : {}) };
 }

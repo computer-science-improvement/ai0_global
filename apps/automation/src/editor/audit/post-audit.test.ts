@@ -110,7 +110,7 @@ test('catalogue: every integrity code has an English title, explanation and fix;
   assert.equal(auditFlagOf('number_not_in_sources'), 'fact_conflict');
   assert.equal(auditFlagOf('date_relative_mismatch'), 'date_issue');
   assert.equal(auditFlagOf('lead_too_long'), 'text_hygiene');
-  assert.equal(auditFlagOf('hashtags_disabled'), 'style_violation');
+  assert.equal(auditFlagOf('hashtag_while_off'), 'style_violation');
   assert.equal(auditFlagOf('slop_em_dash'), null);
   assert.equal(auditFlagOf('jargon_over_level'), null);
   assert.deepEqual([catalogueEntry('stale_source').section, catalogueEntry('story_repeat').section, catalogueEntry('number_not_in_sources').section, catalogueEntry('banned_term').section],
@@ -150,10 +150,10 @@ test('grouped view and digest summary: errors first, counts, distinct posts, fla
   });
   const groups = groupFindings([
     row({}), row({ postId: 's2', publishedAt: '2026-10-11T10:00:00.000Z' }), row({ postId: 's2', fingerprint: 'g', level: 'error' }),
-    row({ code: 'hashtags_disabled', level: 'error' }), row({ code: 'slop_em_dash' }),
+    row({ code: 'hashtag_while_off', level: 'error' }), row({ code: 'slop_em_dash' }),
   ]);
   assert.deepEqual(groups.map((g) => [g.code, g.level, g.count, g.posts]), [
-    ['lead_too_long', 'error', 3, 2], ['hashtags_disabled', 'error', 1, 1], ['slop_em_dash', 'warning', 1, 1],
+    ['lead_too_long', 'error', 3, 2], ['hashtag_while_off', 'error', 1, 1], ['slop_em_dash', 'warning', 1, 1],
   ]);
   assert.equal(groups[0].items[0].postId, 's2', 'newest first');
   assert.equal(groups[0].title, 'Headline too long');

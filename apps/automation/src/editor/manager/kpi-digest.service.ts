@@ -104,10 +104,13 @@ export function digestHash(d: Pick<KpiDigest, 'resources' | 'directives'>): stri
  * Spec 040 FR-007: what a manager review reacts to — per resource with an agent, the KPI anomalies and the quality
  * flags (sorted). The same signature as the last review skips the scheduled run (one forced review a day).
  */
-export function reviewSignature(d: Pick<KpiDigest, 'resources'>): string {
+export function reviewSignature(d: Pick<KpiDigest, 'resources'> & { directives?: Pick<KpiDigest['directives'], 'open'> }): string {
+  // Spec 046 FR-004: quality flags of an agent that already has an open / in-force directive are covered — they no
+  // longer force a review (review 2: per-post flag noise meant the skip almost never fired).
+  const covered = new Set((d.directives?.open ?? []).map((x) => x.to));
   const rows = d.resources
     .filter((r) => r.agent)
-    .map((r) => [r.ref, [...r.anomalies].sort(), [...(r.quality?.flags ?? [])].sort()] as const)
+    .map((r) => [r.ref, [...r.anomalies].sort(), covered.has(r.agent!) ? [] : [...(r.quality?.flags ?? [])].sort()] as const)
     .filter(([, a, f]) => a.length || f.length)
     .sort((x, y) => x[0].localeCompare(y[0]));
   return createHash('sha1').update(JSON.stringify(rows)).digest('hex');

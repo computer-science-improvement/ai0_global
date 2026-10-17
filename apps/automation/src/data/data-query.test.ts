@@ -20,6 +20,9 @@ test('agents: a field that is not agent_visible (or deprecated, or unknown) is r
   await refused({ fields: ['title', 'isbn'] }, 'field_not_visible', /"isbn" of "books" is not visible/);
   await refused({ fields: ['old_note'] }, 'field_not_visible', /deprecated/);
   await refused({ fields: ['nope'] }, 'unknown_field', /no field "nope"/);
+  // Spec 046 FR-008: the error names the fields that can be asked for (the visible ones only).
+  await refused({ fields: ['body'] }, 'unknown_field', /no field "body"; its fields: title,[^"]*$/);
+  await refused({ filters: [{ field: 'nope', op: 'eq', value: 'x' }] }, 'unknown_field', /filterable: isbn, genre/);
 });
 
 test('filters only on filterable fields, with an operator that fits the type', async () => {

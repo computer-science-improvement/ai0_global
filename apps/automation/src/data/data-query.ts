@@ -41,7 +41,7 @@ export interface QueryOptions {
   /** Fields to return (agent); undefined = every visible field. */
   fields?:     string[];
   filters?:    DataFilter[];
-  /** Full-text search over the title/body envelope and `searchable` fields. */
+  /** Full-text search over the row's text envelope and the `searchable` fields. */
   search?:     string;
   /** Resource ref or Telegram channel key: drop rows already used there. */
   unpostedOn?: string | null;
@@ -203,7 +203,8 @@ export async function queryDataset(pool: Pick<Pool, 'query'>, schema: DataSchema
     fields = [];
     for (const name of [...new Set(o.fields)]) {
       const f = byName.get(name);
-      if (!f) throw new DataQueryError('unknown_field', `dataset "${schema.key}" has no field "${name}"; read library_catalog for its fields`);
+      // Spec 046 FR-008: the error lists the fields the caller may ask for (agents kept guessing title / body).
+      if (!f) throw new DataQueryError('unknown_field', `dataset "${schema.key}" has no field "${name}"; its fields: ${readable.map((x) => x.name).join(', ') || 'none'}`);
       if (!readableNames.has(name)) {
         throw new DataQueryError('field_not_visible', `field "${name}" of "${schema.key}" is not visible to agents${f.deprecated ? ' (deprecated)' : ''}`);
       }
@@ -221,7 +222,10 @@ export async function queryDataset(pool: Pick<Pool, 'query'>, schema: DataSchema
 
   for (const flt of o.filters ?? []) {
     const f = byName.get(flt.field);
-    if (!f) throw new DataQueryError('unknown_field', `dataset "${schema.key}" has no field "${flt.field}"`);
+    if (!f) {
+      const allowed = schema.fields.filter((x) => x.filterable && !x.deprecated).map((x) => x.name);
+      throw new DataQueryError('unknown_field', `dataset "${schema.key}" has no field "${flt.field}"; filterable: ${allowed.join(', ') || 'none'}`);
+    }
     if (!f.filterable) {
       const allowed = schema.fields.filter((x) => x.filterable && !x.deprecated).map((x) => x.name);
       throw new DataQueryError('field_not_filterable', `field "${flt.field}" of "${schema.key}" is not filterable; filterable: ${allowed.join(', ') || 'none'}`);

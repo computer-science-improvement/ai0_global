@@ -238,3 +238,40 @@ test('evaluator (spec 025 FR-016): an unverified applied directive → inconclus
   assert.equal(by.has('open-exp'), false, 'an experiment is not judged before its deadline');
   assert.equal(s.memory.length, 0, 'no lessons from unverified changes even when the metric moved');
 });
+
+test('046: the posts baseline starts at the first data day — a resource launched 10 days ago has no anomaly from launch', () => {
+  const empty = () => new Map<string, number>();
+  const launched = series(10, () => 3); // 3 posts a day for 10 days, nothing before
+  const k = computeKpis({ viewsPerPost: series(10, () => 50), engagementRate: empty(), posts: launched, followerDelta: empty(), joins: empty(), revenue: empty() }, TODAY);
+  assert.equal(k.posts.anomaly, false);
+  assert.equal(k.posts.baseline28d, null, 'fewer than 7 baseline days → no baseline');
+  assert.equal(k.posts.value7d, 21);
+  // Without `since` the old math compared 21 with zeros and flagged it.
+  assert.equal(sumMetric(launched, TODAY).anomaly, true);
+  // A long-running resource keeps its baseline.
+  const old = computeKpis({ viewsPerPost: series(35, () => 50), engagementRate: empty(), posts: series(35, () => 3), followerDelta: empty(), joins: empty(), revenue: empty() }, TODAY);
+  assert.equal(old.posts.baseline28d, 21);
+});
+
+test('046: a due time already reviewed (e.g. before a restart) is not run again', async () => {
+  const s = managerSetup({ lastHash: 'other' });
+  (s.runner as any).now = () => new Date('2026-10-20T08:30:00+03:00');
+  const d = (s.runner as any).d;
+  d.repo.lastReview = async () => ({ verdict: 'continue', digestHash: 'other', createdAt: new Date('2026-10-20T08:10:00+03:00') });
+  assert.equal(await s.runner.tick(), null, 'reviewed at 08:10 → the 08:00 time is done');
+  assert.equal(s.llmRuns.length, 0);
+  // A review from before the due time does not count: the next process runs it.
+  const t = managerSetup({ lastHash: 'other' });
+  (t.runner as any).now = () => new Date('2026-10-20T08:30:00+03:00');
+  (t.runner as any).d.repo.lastReview = async () => ({ verdict: 'continue', digestHash: 'other', createdAt: new Date('2026-10-19T22:00:00+03:00') });
+  await t.runner.tick();
+  assert.equal(t.llmRuns.length, 1);
+});
+
+test('046: quality flags of an agent with an open directive no longer change the review signature', async () => {
+  const { reviewSignature } = await import('./kpi-digest.service');
+  const res = (flags: string[]) => [{ ref: 'telegram:@space', agent: 'kira', anomalies: [], quality: { flags } }] as any;
+  const open = [{ id: 'x', to: 'kira', kind: 'voice_fix', status: 'accepted', body: 'b', createdAt: '' }];
+  assert.notEqual(reviewSignature({ resources: res(['critic_reject']) }), reviewSignature({ resources: res([]) }));
+  assert.equal(reviewSignature({ resources: res(['critic_reject']), directives: { open } }), reviewSignature({ resources: res([]), directives: { open } }));
+});

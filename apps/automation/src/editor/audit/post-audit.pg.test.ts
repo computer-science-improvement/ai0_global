@@ -104,7 +104,7 @@ test('golden posts as published slots: the audit stores exactly the labelled cod
   assert.deepEqual(diffs, []);
   // Spot checks from the epic: hashtags in a news channel, a long lead, the US date «already tomorrow, 12 October».
   const all = [...got.values()].flat();
-  for (const code of ['hashtags_disabled', 'lead_too_long', 'date_relative_mismatch', 'address_mixed']) assert.ok(all.includes(code), code);
+  for (const code of ['hashtag_while_off', 'lead_too_long', 'date_relative_mismatch', 'address_mixed']) assert.ok(all.includes(code), code);
 });
 
 test('rows carry the post: publish time, t.me link, excerpt, catalogue text in the grouped view', { skip }, async () => {
@@ -120,7 +120,7 @@ test('rows carry the post: publish time, t.me link, excerpt, catalogue text in t
   const api = new PostAuditApi(service(), () => NOW);
   const view = await api.view({ resource: REF(p.channel) });
   assert.equal(view.current, true);
-  const hashtags = view.groups.find((g) => g.code === 'hashtags_disabled')!;
+  const hashtags = view.groups.find((g) => g.code === 'hashtag_while_off')!;
   assert.equal(hashtags.title, 'Hashtags present while off');
   assert.match(hashtags.fix, /Remove the hashtags/);
   assert.equal(hashtags.group, 'style_violation');
@@ -148,15 +148,15 @@ test('idempotent rerun; a finding the rules no longer give is deleted; a new rul
   await pool.query(`UPDATE editor_post_audit_runs SET rules_hash = 'old' WHERE resource_ref = $1`, [REF(CHANNELS[0])]);
   assert.deepEqual((await audit.dueRefs(new Date(later.getTime() + 3600_000))).filter((r) => CHANNEL_OF.has(r)), [REF(CHANNELS[0])]);
 
-  // A post edited so it no longer has hashtags: its hashtags_disabled row goes, the rest stays.
+  // A post edited so it no longer has hashtags: its hashtag_while_off row goes, the rest stays.
   const edited = golden.posts.filter((p) => p.channel === CHANNELS[0] && p.hashtags.length).at(-1)!;
   const spec = { ...specOfGoldenPost(edited), hashtags: [] };
   await pool.query(`UPDATE editor_slots SET post_spec = $2 WHERE id = $1`, [SLOT.get(edited.id), JSON.stringify(spec)]);
   const n = await audit.tick(new Date(later.getTime() + 2 * 3600_000));
   assert.equal(n, 1, 'only the resource with the old rules hash');
   const after = await stored();
-  assert.ok(!after.get(edited.id)!.includes('hashtags_disabled'));
-  assert.deepEqual(after.get(edited.id), expectedNow(golden, edited.id).filter((c) => c !== 'hashtags_disabled'));
+  assert.ok(!after.get(edited.id)!.includes('hashtag_while_off'));
+  assert.deepEqual(after.get(edited.id), expectedNow(golden, edited.id).filter((c) => c !== 'hashtag_while_off'));
 });
 
 test('MANAGER digest: the audit flags and the summary on the quality block', { skip }, async () => {
@@ -182,7 +182,7 @@ test('approval card: a waiting post gets its findings against the real slots (hi
   const codes = new Set(findings.map((f) => f.code));
   // The same text as the published original: its labelled codes (history-free ones) are on the card.
   const want = expectedNow(golden, src.id).filter((c) => !c.startsWith('monotony_'));
-  assert.ok(want.includes('hashtags_disabled'));
+  assert.ok(want.includes('hashtag_while_off'));
   assert.deepEqual(want.filter((c) => !codes.has(c)), [], [...codes].join(', '));
   assert.ok(findings.every((f) => f.title && f.fix && f.section));
   await pool.query(`DELETE FROM editor_slots WHERE id = $1`, [id]);

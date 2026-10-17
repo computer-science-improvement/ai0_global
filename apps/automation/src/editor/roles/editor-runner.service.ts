@@ -30,7 +30,7 @@ import type { AgentBudget } from '../harness/budget.service';
 import { alreadyUsedBlock } from '../post/variety/monotony';
 import type { AuditPost } from '../post/integrity/types';
 import {
-  classifyFailure, isRescued, LADDER_MAX_LATE_MS, ladderNote, ladderPlan, PublishProbe, stepRecord,
+  classifyFailure, isRescued, LADDER_MAX_LATE_MS, ladderNote, ladderPlan, MAX_CRITIC_PASSES_PER_SLOT, PublishProbe, stepRecord,
   type FallbackFinal, type FallbackStepRecord, type LadderStep, type SlotFailure,
 } from '../silent/fallback-ladder';
 import { EvergreenProbe } from '../silent/evergreen';
@@ -129,6 +129,11 @@ export interface EditorRunnerDeps {
    * judged like every other step) or null when no evergreen post is possible today (cap, platform, switched off).
    */
   fallbackEvergreen?: (i: EvergreenRequest) => Promise<AgentLoopResult | null>;
+  /**
+   * Spec 046 FR-006: a slot skipped after the critic rejected a post written from `url` — the ideas of the same
+   * orchestrator that rest on that one source (the slot's own included) are rejected. Returns how many.
+   */
+  deadSource?: (slot: EditorSlot, url: string, reason: string) => Promise<number>;
   /** Spec 037 T2: the "Active stories (14 days)" block of the planner / writer prompt (story/story-context.ts); null for none. */
   stories?: { activeBlock(card: EditorCard, role: 'planner' | 'executor', now: Date): Promise<string | null> };
 }
@@ -435,7 +440,7 @@ export class EditorRunnerService {
     const steps: FallbackStepRecord[] = [stepRecord('initial', slot.format, this.now(), after, failure, first)];
     const avoid: string[] = failure.sourceUrl ? [failure.sourceUrl] : [];
     const live = slot.topicMode === 'live' && !!slot.liveSpec;
-    const plan = ladderPlan({ format: slot.format, allowed: EditorRunnerService.allowedFormats(card, o.platform), evergreen: !!this.d.fallbackEvergreen });
+    const plan = ladderPlan({ format: slot.format, allowed: EditorRunnerService.allowedFormats(card, o.platform), evergreen: !!this.d.fallbackEvergreen, live });
     const agent = EditorRunnerService.agentBudget(ctx);
     const maxLate = this.d.ladder?.maxLateMs ?? LADDER_MAX_LATE_MS;
     let res = first;
@@ -444,7 +449,14 @@ export class EditorRunnerService {
     const skipped = (step: FallbackStepRecord['step'], format: string, outcome: 'no_candidate' | 'unavailable', reason: string): FallbackStepRecord =>
       ({ step, at: this.now().toISOString(), format, outcome, reason, verdict: null, run_id: null, cost_usd: 0 });
 
+    // Spec 046 FR-006: sources the critic rejected (a sole-source idea built on one of them is dead).
+    const rejectedSources = new Set<string>(failure.kind === 'critic_reject' && failure.sourceUrl ? [failure.sourceUrl] : []);
     for (const st of plan) {
+      const passes = steps.reduce((n, x) => n + (x.critic_passes ?? 0), 0);
+      if (passes >= MAX_CRITIC_PASSES_PER_SLOT) {
+        final = { outcome: 'skipped', code: 'critic_cap', step: last, reason: `${passes} critic passes on this slot (cap ${MAX_CRITIC_PASSES_PER_SLOT})` };
+        break;
+      }
       // Budget: a run that hit a cap, or the caps on the usage ledger (executor + critic spend so far today).
       if (res.status === 'budget_exceeded') { final = { outcome: 'skipped', code: 'budget', step: last, reason: res.error ?? 'budget_exceeded' }; break; }
       if (this.now().getTime() - slot.scheduledAt.getTime() > maxLate) {
@@ -496,10 +508,14 @@ export class EditorRunnerService {
       }
       failure = f;
       if (f.sourceUrl && !avoid.includes(f.sourceUrl)) avoid.push(f.sourceUrl);
+      if (f.kind === 'critic_reject' && f.sourceUrl) rejectedSources.add(f.sourceUrl);
     }
     if (failure) {
       final ??= { outcome: 'skipped', code: 'exhausted', step: last, reason: failure.reason };
       await this.d.plans.updateSlot(slot.id, { status: 'skipped', error: failure.reason.slice(0, 500) });
+      if (this.d.deadSource) {
+        for (const url of rejectedSources) await this.d.deadSource(slot, url, failure.reason).catch(() => 0);
+      }
     }
     await this.d.plans.updateSlot(slot.id, { fallback: { steps, final } });
     return res;

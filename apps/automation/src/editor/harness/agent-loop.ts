@@ -101,6 +101,39 @@ export function dropPlaceholders(v: unknown): unknown {
   return changed ? out : v;
 }
 
+/** A leaked tool-call tag at the end of a string argument («…}</parameter>», «…]</invoke>»). */
+const LEAKED_TAG_RE = /(?:\s*<\/?[A-Za-z_][\w:-]*>)+\s*$/u;
+
+/**
+ * Spec 046 FR-009: nested objects / arrays a model sent as JSON strings (the onboarder's submit_channel_setup failed 2/4
+ * so), decoded at any depth — a leaked tool-call tag after the JSON is dropped first. Same value when nothing decodes.
+ */
+export function decodeJsonStrings(v: unknown): unknown {
+  if (typeof v === 'string') {
+    const t = v.trim().replace(LEAKED_TAG_RE, '');
+    if (!/^[[{]/.test(t)) return v;
+    try {
+      const parsed = JSON.parse(t);
+      return parsed && typeof parsed === 'object' ? decodeJsonStrings(parsed) : v;
+    } catch {
+      return v;
+    }
+  }
+  if (Array.isArray(v)) {
+    const out = v.map(decodeJsonStrings);
+    return out.some((x, i) => x !== v[i]) ? out : v;
+  }
+  if (!v || typeof v !== 'object') return v;
+  let changed = false;
+  const out: Record<string, unknown> = {};
+  for (const [k, x] of Object.entries(v as Record<string, unknown>)) {
+    const y = decodeJsonStrings(x);
+    if (y !== x) changed = true;
+    out[k] = y;
+  }
+  return changed ? out : v;
+}
+
 /** The error code of a tool result ('' for a success). */
 function errorCode(output: unknown): string {
   return isToolError(output) ? String(output.error) : '';
@@ -369,6 +402,12 @@ export class AgentLoop {
       if (cleaned !== args) {
         const again = tool.input.safeParse(cleaned);
         if (again.success) parsed = again;
+      }
+      // Spec 046 FR-009: objects sent as JSON strings are read as the objects (only when that makes the call valid).
+      const decoded = parsed.success ? args : decodeJsonStrings(args);
+      if (decoded !== args) {
+        const again = tool.input.safeParse(dropPlaceholders(decoded));
+        if (again.success) { parsed = again; args = decoded; }
       }
     }
     if (!parsed.success) {

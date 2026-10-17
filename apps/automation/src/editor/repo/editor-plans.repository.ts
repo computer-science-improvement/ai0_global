@@ -551,9 +551,14 @@ export class EditorPlansRepository {
       `UPDATE editor_slots SET status = 'failed', error = COALESCE(error, 'stuck in running (crash?)'), updated_at = now()
         WHERE status = 'running' AND updated_at < $1 RETURNING *`,
       [new Date(now.getTime() - stuckMs)]);
+    // Spec 046 FR-009: a swept run keeps what its steps cost (it used to show $0).
     await this.pool.query(
-      `UPDATE editor_runs SET status = 'error', error = COALESCE(error, 'stuck (swept)'), finished_at = now()
-        WHERE status = 'running' AND started_at < $1`,
+      `UPDATE editor_runs r SET status = 'error', error = COALESCE(r.error, 'stuck (swept)'), finished_at = now(),
+              prompt_tokens = GREATEST(r.prompt_tokens, s.pt), completion_tokens = GREATEST(r.completion_tokens, s.ct), cost_usd = GREATEST(r.cost_usd, s.cost)
+         FROM (SELECT r2.id, COALESCE(SUM(st.prompt_tokens), 0)::int AS pt, COALESCE(SUM(st.completion_tokens), 0)::int AS ct, COALESCE(SUM(st.cost_usd), 0) AS cost
+                 FROM editor_runs r2 LEFT JOIN editor_run_steps st ON st.run_id = r2.id
+                WHERE r2.status = 'running' AND r2.started_at < $1 GROUP BY r2.id) s
+        WHERE r.id = s.id`,
       [new Date(now.getTime() - stuckMs)]);
     return rows.map(rowToSlot);
   }

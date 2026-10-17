@@ -390,6 +390,21 @@ export class NetworkRepository {
   }
 
   /**
+   * Spec 046 FR-006: the critic rejected a post written from `url` — every idea of the slot's orchestrator that rests
+   * on that one source (the slot's own idea included) is rejected, so the pool stops feeding a dead source.
+   */
+  async rejectSoleSourceIdeas(ideaId: string, url: string, reason: string): Promise<number> {
+    const { rowCount } = await this.pool.query(
+      `UPDATE content_ideas SET status = 'rejected', updated_at = now(),
+              review = COALESCE(review, '{}'::jsonb) || jsonb_build_object('dead_source', $2::text, 'reason', left($3::text, 300))
+        WHERE agent_id = (SELECT agent_id FROM content_ideas WHERE id = $1)
+          AND status IN ('new','accepted','needs_revision','planned')
+          AND jsonb_array_length(sources) = 1
+          AND rtrim(lower(sources->>0), '/') = rtrim(lower($2::text), '/')`, [ideaId, url, reason]);
+    return rowCount ?? 0;
+  }
+
+  /**
    * Ideas left `planned` with no pending slot (replanned, skipped as stale, paused):
    * used when any slot of theirs went out, otherwise back to the pool.
    */

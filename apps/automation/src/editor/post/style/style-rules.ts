@@ -244,13 +244,13 @@ export function textHashtags(text: string): string[] {
   return [...t.matchAll(/(?<![\p{L}\p{N}_&#/])#(?=[\p{N}_]*\p{L})([\p{L}\p{N}_]+)/gu)].map((m) => m[1]);
 }
 
-/** `hashtags_disabled` (error): with `hashtags: off`, any hashtag in the post (the hashtag line or the text). */
+/** `hashtag_while_off` (error): with `hashtags: off`, any hashtag in the post (the hashtag line or the text). */
 export function hashtagFindings(text: string, tags: readonly string[], style: ResourceStyle | null | undefined): StyleFinding[] {
   if (style?.hashtags !== 'off') return [];
   const all = [...new Set([...tags, ...textHashtags(text)].map((h) => h.replace(/^#/, '')))];
   if (!all.length) return [];
   return [{
-    code: 'hashtags_disabled', level: 'error',
+    code: 'hashtag_while_off', level: 'error',
     message: `хештеги на цьому ресурсі вимкнено — прибери ${all.slice(0, 5).map((h) => `#${h}`).join(' ')}`,
     excerpt: `#${all[0]}`,
   }];

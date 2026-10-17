@@ -54,7 +54,7 @@ export const INTEGRITY_CODES: Record<string, CodeInfo> = {
   address_mixed:              { task: 'T8', level: 'mixed',   what: 'ти and ви in one post (error) or a form other than the resource\'s (warning)' },
   glossary_violation:         { task: 'T8', level: 'error',   what: 'banned transliteration / translated brand (АПІ, КЛІ, Разом AI, спотифай)' },
   name_script_mixed:          { task: 'T8', level: 'warning', what: 'a person\'s name in a script other than the resource policy' },
-  hashtags_disabled:          { task: 'T8', level: 'error',   what: 'a hashtag on a resource with style.hashtags = off' },
+  hashtag_while_off:          { task: 'T8', level: 'error',   what: 'a hashtag on a resource with style.hashtags = off' },
   hashtag_not_in_vocabulary:  { task: 'T8', level: 'error',   what: 'vocabulary mode: hashtag outside card.hashtags' },
   units_latin:                { task: 'T8', level: 'warning', what: 'style.units = words: «3B», «270M» instead of «3 млрд», «270 млн» (model names stay)' },
   // T9 variety and audience level.

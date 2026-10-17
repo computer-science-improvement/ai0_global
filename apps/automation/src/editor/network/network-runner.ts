@@ -12,10 +12,10 @@ import { buildSystemPrompt, plannerUserPrompt } from '../roles/prompts';
 import { localDate, zonedToUtc } from '../roles/time';
 import type { AgentRuntime, RunAgentContext } from '../agents/agent-runtime';
 import type { Agent } from '../agents/agent.types';
-import { renderFormatPrefs, renderProfile, ResourceProfile, ResourceProfilesRepository } from '../agents/resource-profile';
+import { profileCaps, renderFormatPrefs, renderProfile, ResourceProfile, ResourceProfilesRepository } from '../agents/resource-profile';
 import { networkContext, NetworkContextDeps, NetworkCtx } from './network-context';
 import type { NetworkRepository } from './network.repository';
-import { REVIEW_BATCH } from './network-tools';
+import { ideaQuota, REVIEW_BATCH } from './network-tools';
 import {
   ideaReviewerSystemPrompt, ideaReviewerUserPrompt, networkPlannerBlock, orchestratorDailyPrompt, orchestratorSystemPrompt, playbookBuildPrompt,
 } from './network-prompts';
@@ -113,11 +113,13 @@ export class NetworkRunner {
   }
 
   /** The daily run: directives, then the idea pool (and minor playbook upkeep). Builds a playbook first when there is none. */
-  async runOrchestrator(card: EditorCard): Promise<AgentLoopResult | null> {
+  async runOrchestrator(card: EditorCard, o: { wake?: boolean } = {}): Promise<AgentLoopResult | null> {
     const c = await this.context(card);
     if (this.paused(c)) return null;
     const { net } = c!;
     const directives = this.d.directives ? await this.d.directives(net.orchestrator) : null;
+    // Spec 046 FR-007: a wake-up run is for the directives that woke it — none left (delivered by another run) → no run.
+    if (o.wake && !directives) return null;
     // Directives are always answered first; a playbook build waits for a run without them.
     if (!directives && !net.playbook && !(await this.d.repo.pendingPlaybook(net.orchestrator.id))) {
       // A playbook the owner rejected recently is not rebuilt every day: ideas go on without one until the owner asks.
@@ -127,14 +129,15 @@ export class NetworkRunner {
     }
     await this.d.repo.expireIdeas(net.orchestrator.id, this.now());
     const open = await this.d.repo.listIdeas(net.orchestrator.id, ['new', 'accepted', 'needs_revision'], 200);
-    const perDay = net.playbook ? net.playbook.platforms.reduce((a, s) => a + s.per_day.max, 0) : card.postsPerDayMax;
-    const target = Math.max(3, Math.ceil(perDay * 2 / Math.max(1, net.resources.length)));
+    // Spec 046 FR-007: one idea feeds every resource it has a variant for, so a day needs about the busiest resource's slots.
+    const slotsPerDay = net.playbook?.platforms.length ? Math.max(...net.playbook.platforms.map((s) => s.per_day.max)) : card.postsPerDayMax;
+    const quota = ideaQuota(slotsPerDay, open.filter((i) => i.status === 'accepted' || i.status === 'new').length);
     await this.d.repo.releaseStalePlanned(net.orchestrator.id);
     const memory = await this.d.memory.listActive(card.channelKey);
     const res = await this.run('orchestrator', card, c!,
       orchestratorSystemPrompt({ net, card, profile: await this.profileText(net), memory, skills: c!.agentCtx.skills, directives, profiles: await this.memberProfiles(net) }),
-      [orchestratorDailyPrompt({ net, card, now: this.now(), open, target, hasDirectives: !!directives }), await this.catalog(card)].filter(Boolean).join('\n\n'),
-      STEPS.orchestrate, { brief: card.brief });
+      [orchestratorDailyPrompt({ net, card, now: this.now(), open, quota, hasDirectives: !!directives }), await this.catalog(card)].filter(Boolean).join('\n\n'),
+      STEPS.orchestrate, { brief: card.brief, ideaQuota: quota, newsRefs: await this.newsRefs(net) });
     if (this.d.afterOrchestration) await this.d.afterOrchestration(net.orchestrator).catch(() => {});
     if (this.d.runwayCheck) await this.d.runwayCheck(net.orchestrator, net.playbook).catch(() => {});
     await this.runIdeaReview(card);
@@ -174,9 +177,13 @@ export class NetworkRunner {
     const pending = !!(await this.d.repo.pendingPlaybook(c!.net.orchestrator.id));
     if (!fresh && !pending) return null;
     const memory = await this.d.memory.listActive(card.channelKey);
-    return this.run('idea_reviewer', card, c!,
-      ideaReviewerSystemPrompt({ net: c!.net, profile: await this.profileText(c!.net), memory, skills: c!.agentCtx.skills }),
-      ideaReviewerUserPrompt({ fresh, batch: queue.rows, pendingPlaybook: pending }), STEPS.ideaReview);
+    const system = ideaReviewerSystemPrompt({ net: c!.net, profile: await this.profileText(c!.net), memory, skills: c!.agentCtx.skills });
+    const res = await this.run('idea_reviewer', card, c!, system, ideaReviewerUserPrompt({ fresh, batch: queue.rows, pendingPlaybook: pending }), STEPS.ideaReview);
+    // Spec 046 FR-007: a backlog over one batch gets a second batch at once (only when the first one moved it).
+    if (fresh <= REVIEW_BATCH || res.status !== 'ok') return res;
+    const next = await this.d.repo.pageIdeas(c!.net.orchestrator.id, ['new'], { limit: REVIEW_BATCH, offset: 0, oldestFirst: true });
+    if (!next.total || next.total >= fresh) return res;
+    return this.run('idea_reviewer', card, c!, system, ideaReviewerUserPrompt({ fresh: next.total, batch: next.rows, pendingPlaybook: false }), STEPS.ideaReview);
   }
 
   /**
@@ -209,6 +216,15 @@ export class NetworkRunner {
       await this.safeNotify(`🗓 @${c.net.orchestrator.handle}: план мережі не складено (${res.status}${res.error ? `: ${res.error}` : ''}).`);
     }
     return res;
+  }
+
+  /** Spec 046 FR-007: the network's news resources (content_kind news, or a news topic) — their ideas need 2 sources. */
+  private async newsRefs(net: NetworkCtx): Promise<string[]> {
+    const kinds = await Promise.all(net.resources.map(async (r) => {
+      const p = (await this.d.profiles.get(r.ref).catch(() => null))?.profile ?? null;
+      return profileCaps(p).kind === 'news' ? r.ref : null;
+    }));
+    return kinds.filter((r): r is string => !!r);
   }
 
   /** Spec 024 FR-012: each member resource's own profile (the anchor's is the network profile above), for the per-resource decisions. */

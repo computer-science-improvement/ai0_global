@@ -69,7 +69,7 @@ test('a feed that does not parse: feed_unparseable, blocks fetch_feed only; game
   const w = tools(async () => ({ status: 200, headers: { 'content-type': 'text/html' }, data: '<html><body>not a feed</body></html>' }));
   const r = await w.call('fetch_feed', { url: 'https://www.gamerpower.com/rss/giveaways' });
   assert.equal(r.error, 'feed_unparseable');
-  assert.equal(w.hosts.rows.get('gamerpower.com')?.reason, 'feed_unparseable');
+  assert.equal(w.hosts.rows.get('gamerpower.com/rss/giveaways')?.reason, 'feed_unparseable', 'spec 046: the address, not the host');
   const again = await w.call('fetch_feed', { url: 'https://www.gamerpower.com/rss/giveaways' });
   assert.equal(again.error, 'host_blocked');
   assert.match(again.alternative, /fetch_api з source gamerpower_giveaways/);
@@ -103,4 +103,25 @@ test('PgHostFailures: blocked reads the live window; a feed reason does not bloc
   // A failing read never stops a fetch.
   const broken = new PgHostFailures({ query: async () => { throw new Error('relation does not exist'); } } as any);
   assert.equal(await broken.blocked('x.com', 'page'), null);
+});
+
+test('046: a bad feed blocks only its address; an oversized feed is remembered, not thrown', async () => {
+  let big = true;
+  const w = tools(async (url) => {
+    if (url.includes('/all')) { if (big) throw new Error('maxContentLength size of 2000000 exceeded'); }
+    if (url.includes('/api')) return { status: 200, headers: { 'content-type': 'application/json' }, data: '{"a":1}' };
+    return { status: 200, headers: { 'content-type': 'application/rss+xml' }, data: '<rss version="2.0"><channel><title>T</title><item><title>A</title><link>https://pcgamer.com/a</link></item></channel></rss>' };
+  });
+  assert.equal((await w.call('fetch_feed', { url: 'https://www.pcgamer.com/api/giveaways' })).error, 'feed_unparseable');
+  const other = await w.call('fetch_feed', { url: 'https://www.pcgamer.com/rss/news/' });
+  assert.equal(other.items.length, 1, 'another feed of the host still reads');
+  const r = await w.call('fetch_feed', { url: 'https://www.pcgamer.com/rss/all' });
+  assert.equal(r.error, 'feed_too_large');
+  assert.equal(w.hosts.rows.get('pcgamer.com/rss/all')?.reason, 'feed_too_large');
+  big = false;
+  const n = w.urls.length;
+  const again = await w.call('fetch_feed', { url: 'https://pcgamer.com/rss/all/' });
+  assert.equal(again.error, 'host_blocked');
+  assert.match(again.details, /більша за 2 МБ/);
+  assert.equal(w.urls.length, n, 'no request for a remembered oversized feed');
 });

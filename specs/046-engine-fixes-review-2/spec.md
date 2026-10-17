@@ -90,7 +90,7 @@ The cap itself stays the owner's llm_budgets row (Settings → Budgets). On the 
 - No idle wake-ups.
 - A second review batch runs when the backlog is over 15.
 - A factual news idea needs 2 sources.
-- The orchestrator's `schedule.times` is honoured or removed from its UI.
+- The orchestrator's `schedule.times` is removed: only @manager runs at its times; builder tools and the API refuse a schedule for other agents (the Overview already shows the plan hour).
 
 ### FR-008 Tool hints (T8, AI0-189)
 

@@ -161,7 +161,11 @@ export class AgentsService {
       else patch.model = v.model;
     }
     if (v.reasoning_effort !== undefined) patch.reasoningEffort = v.reasoning_effort;
-    if (v.schedule !== undefined) patch.schedule = v.schedule;
+    if (v.schedule !== undefined) {
+      // Spec 046 FR-007 (034 FR-013): only @manager runs at its times; the others follow the channel card's plan hour.
+      if (a.kind !== 'manager') throw new BadRequestException({ error: 'schedule_not_used', details: 'only @manager runs at schedule times; other agents run at the channel card plan hour' });
+      patch.schedule = v.schedule;
+    }
     if (v.daily_budget_usd !== undefined) patch.dailyBudgetUsd = v.daily_budget_usd;
     if (v.mode !== undefined && v.mode !== a.mode) {
       // Spec 023 FR-012: no live switch while a strategy binding still publishes to the agent's resources.

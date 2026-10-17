@@ -35,6 +35,11 @@ before(async () => {
 after(async () => {
   if (!url) return;
   await cleanup();
+  // 065 re-applied above narrows the kind / status CHECKs; the later migrations that widen them run again (idempotent),
+  // so the PG tests after this one see the current schema.
+  for (const m of ['071_manager_quality.sql', '079_agent_reliability.sql']) {
+    await pool.query(readFileSync(join(__dirname, '../../../../../database/migrations', m), 'utf8'));
+  }
   await pool.end();
 });
 

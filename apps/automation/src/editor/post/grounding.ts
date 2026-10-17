@@ -30,6 +30,8 @@ export interface PostNumber {
   unit: number;
   /** «понад», «майже», «близько», «до», «~»: a looser match. */
   approx: boolean;
+  /** Spec 046 FR-009: the other readings of an ambiguous core («5,120» = 5.12 or 5120); any of them may match. */
+  alt?: Array<{ value: number; unit: number }>;
   /** [start, end) in the text it was read from. */
   span: [number, number];
 }
@@ -105,6 +107,11 @@ interface RawNumber { value: number; unit: number; kind: ClaimKind; span: [numbe
 /** Values a number core may mean: «1,050» is 1050 (English thousands) or 1.05 (Ukrainian decimal). */
 function coreValues(core: string, source: boolean): Array<{ value: number; unit: number }> {
   const c = core.replace(/[\u00A0\u202F\u2009]/g, ' ');
+  // Spec 046 FR-009: thousands with decimals, English «2,599.99» and European «1.299,50».
+  const en = /^\d{1,3}(?:,\d{3})+\.(\d+)$/.exec(c);
+  if (en) return [{ value: Number(c.replace(/,/g, '')), unit: 10 ** -en[1].length }];
+  const eu = /^\d{1,3}(?:\.\d{3})+,(\d+)$/.exec(c);
+  if (eu) return [{ value: Number(c.replace(/\./g, '').replace(',', '.')), unit: 10 ** -eu[1].length }];
   if (/^\d{1,3}(?: \d{3})+$/.test(c)) return [{ value: Number(c.replace(/ /g, '')), unit: 1 }];
   const groups = /^\d{1,3}(?:([,.])\d{3})+$/.exec(c);
   if (groups) {
@@ -121,7 +128,14 @@ function coreValues(core: string, source: boolean): Array<{ value: number; unit:
   return [{ value: Number(`${d[1]}${d[2] ? `.${d[2]}` : ''}`), unit: decimals ? 10 ** -decimals : 1 }];
 }
 
-const NUM_CORE = String.raw`\d{1,3}(?:${SP}\d{3})+(?![.,]?\d)|\d{1,3}(?:[,.]\d{3})+(?![\d])|\d+(?:[.,]\d+)?`;
+// Spec 046 FR-009: thousands with decimals first; a plain number followed by «,2» / «.3» is an enumeration («1,2,3») or
+// a version («2.5.1») and is not read at all.
+const NUM_CORE = String.raw`\d{1,3}(?:,\d{3})+\.\d+|\d{1,3}(?:\.\d{3})+,\d+|\d{1,3}(?:${SP}\d{3})+(?![.,]?\d)|\d{1,3}(?:[,.]\d{3})+(?![\d])|\d+(?:[.,]\d+)?(?![.,]\d)`;
+/**
+ * A range to a second number («20–30 тисяч», «5 до 7 млн», «20 and 30 million»): the first number also reads with the
+ * second's scale (both readings are kept, the scaled one first).
+ */
+const RANGE_RE = new RegExp(String.raw`^${SP}?(?:[-‐‑–—]|до|to|and|or|і|й|та|або)${SP}?\d[\d.,]*`, 'u');
 const NUM_RE = new RegExp(String.raw`(?<![\p{L}\p{N}.,_/])(${NUM_CORE})`, 'gu');
 
 /** A version: the number follows a Latin word (or is glued to one by a hyphen): «Gemini 4», «GPT-6», «Redemption 2». */
@@ -137,10 +151,14 @@ function scanNumbers(text: string, source: boolean): RawNumber[] {
     const before = text.slice(Math.max(0, start - 24), start);
     let rest = text.slice(end, end + 24);
     // An ordinal or a compound word («25-річчя», «5-й», «8-step») is not a quantity.
-    if (/^-[\p{L}]/u.test(rest) && !/^-(?:річн|відсот)/u.test(rest)) continue;
+    // Spec 046 FR-009: any hyphen («18‑core» with U+2011 too).
+    if (/^[-‐‑–][\p{L}]/u.test(rest) && !/^[-‐‑–](?:річн|відсот)/u.test(rest)) continue;
     let scale = 1;
     const sc = SCALE_RE.exec(rest);
     if (sc) { scale = scaleOf(sc[1]); end += sc[0].length; rest = text.slice(end, end + 24); }
+    const range = !sc ? RANGE_RE.exec(rest) : null;
+    const rangeScale = range ? SCALE_RE.exec(text.slice(end + range[0].length, end + range[0].length + 24)) : null;
+    if (rangeScale) scale = scaleOf(rangeScale[1]);
     let kind: ClaimKind = 'count';
     const pc = PERCENT_RE.exec(rest);
     const cur = CURRENCY_AFTER_RE.exec(rest);
@@ -149,7 +167,7 @@ function scanNumbers(text: string, source: boolean): RawNumber[] {
     if (pc) { kind = 'percent'; end += pc[0].length; } else if (cur) { kind = 'money'; end += cur[0].length; } else if (cents) { kind = 'money'; scale *= 0.01; end += cents[0].length; }
     if (curBefore) kind = kind === 'percent' ? kind : 'money';
     const begin = curBefore ? start - curBefore[0].length : start;
-    const marked = kind !== 'count' || scale !== 1;
+    const marked = kind !== 'count' || scale !== 1 || !!rangeScale;
     const vals = coreValues(m[1], source);
     if (!vals.length) continue;
     const approx = APPROX_RE.test(before.replace(/[−–-]\s?$/, ''));
@@ -162,6 +180,7 @@ function scanNumbers(text: string, source: boolean): RawNumber[] {
         value: v.value * scale, unit: v.unit * scale, kind, span: [begin, end], text: text.slice(begin, end).trim(),
         approx, version, year, bare,
       });
+      if (rangeScale) out.push({ value: v.value, unit: v.unit, kind, span: [begin, end], text: text.slice(begin, end).trim(), approx, version, year, bare });
     }
   }
   return out;
@@ -206,13 +225,15 @@ export function postNumbers(text: string, o: { publishedAt?: string; timezone?: 
     if (d.value === ownValue) continue;
     out.push({ text: d.text.trim(), kind: 'date', value: d.value, unit: 1, approx: false, span: d.span });
   }
-  const seen = new Set<string>();
+  const seen = new Map<number, PostNumber>();
   for (const n of scanNumbers(masked, false)) {
-    const key = `${n.span[0]}`;
-    if (seen.has(key)) continue; // the first reading of an ambiguous core is the post's
-    seen.add(key);
-    if (n.year || n.version || n.bare) continue;
-    out.push({ text: n.text, kind: n.kind, value: n.value, unit: n.unit, approx: n.approx, span: n.span });
+    // The first reading of an ambiguous core is the post's; the others are kept as alternatives (spec 046 FR-009).
+    const first = seen.get(n.span[0]);
+    if (first) { (first.alt ??= []).push({ value: n.value, unit: n.unit }); continue; }
+    if (n.year || n.version || n.bare) { seen.set(n.span[0], {} as PostNumber); continue; }
+    const p: PostNumber = { text: n.text, kind: n.kind, value: n.value, unit: n.unit, approx: n.approx, span: n.span };
+    seen.set(n.span[0], p);
+    out.push(p);
   }
   return out.sort((a, b) => a.span[0] - b.span[0]);
 }
@@ -234,7 +255,7 @@ function sourceIndex(text: string): SourceIndex {
   return idx;
 }
 
-function tolerance(n: PostNumber): number {
+function tolerance(n: Pick<PostNumber, 'value' | 'unit' | 'approx' | 'kind'>): number {
   const rounding = n.unit / 2 + Math.abs(n.value) * 1e-9;
   // «понад 850 тисяч» for 857 000; a percentage is looser by less («понад 80%» is not 75%).
   return n.approx ? Math.max(rounding, Math.abs(n.value) * (n.kind === 'percent' ? 0.05 : 0.1)) : rounding;
@@ -244,9 +265,9 @@ function tolerance(n: PostNumber): number {
 export function findInSource(n: PostNumber, text: string): Array<[number, number]> {
   const idx = sourceIndex(text);
   if (n.kind === 'date') return idx.dates.filter((d) => d.value === n.value).map((d) => d.span);
-  const tol = tolerance(n);
+  const readings = [{ value: n.value, unit: n.unit }, ...(n.alt ?? [])].map((r) => ({ value: r.value, tol: tolerance({ ...n, ...r }) }));
   return idx.values
-    .filter((s) => (n.kind === 'percent' ? s.percent : true) && Math.abs(s.value - n.value) <= tol)
+    .filter((s) => (n.kind === 'percent' ? s.percent : true) && readings.some((r) => Math.abs(s.value - r.value) <= r.tol))
     .map((s) => s.span);
 }
 

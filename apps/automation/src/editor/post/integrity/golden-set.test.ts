@@ -76,7 +76,7 @@ test('labels: one row per post, known codes only, story pairs point at real post
   const codes = (id: string) => labels.posts[id].expect.map((l) => parseLabelCode(l).code);
   // Owner decision 2026-10-15: hashtags are off in all three DEV channels.
   for (const p of fixture.posts) {
-    assert.equal(codes(p.id).includes('hashtags_disabled'), p.hashtags.length > 0, `${p.id}: hashtags_disabled iff the post has hashtags`);
+    assert.equal(codes(p.id).includes('hashtag_while_off'), p.hashtags.length > 0, `${p.id}: hashtag_while_off iff the post has hashtags`);
   }
   const { positive, allowed_followup, negative, mention } = labels.story_pairs;
   for (const p of [...positive, ...allowed_followup, ...negative, ...mention]) {

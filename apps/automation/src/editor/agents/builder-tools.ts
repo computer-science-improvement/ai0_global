@@ -164,7 +164,6 @@ export function buildBuilderTools(d: BuilderToolDeps): EditorTool[] {
         .describe('1–4 формати, що пасують ресурсу: { format, reason } — чому саме цей формат цій аудиторії'),
       banned_terms:     z.array(z.string().trim().min(1).max(80)).max(50).optional()
         .describe('Лише слова, які власник прямо назвав забороненими (lint). Табу-теми — у profile.taboo'),
-      schedule:         z.object({ times: z.array(z.string()).max(8) }).optional(),
       daily_budget_usd: z.number().min(0).max(50).optional(),
     }),
     execute: async (i, ctx) => {
@@ -180,7 +179,7 @@ export function buildBuilderTools(d: BuilderToolDeps): EditorTool[] {
 
   const updateAgent = defineTool({
     name: 'update_agent',
-    description: 'Запропонувати зміну агента: імʼя, handle, емодзі, опис, пауза (status або paused_until), модель, розклад, бюджет. Режим (off/shadow/approve/live) змінює лише власник у дашборді.',
+    description: 'Запропонувати зміну агента: імʼя, handle, емодзі, опис, пауза (status або paused_until), модель, розклад (лише @manager), бюджет. Режим (off/shadow/approve/live) змінює лише власник у дашборді.',
     kind: 'act', roles: ['builder'],
     input: z.object({ handle: z.string().min(2).max(40), patch: AgentPatchInput }),
     execute: async ({ handle, patch }, ctx) => {
@@ -194,6 +193,10 @@ export function buildBuilderTools(d: BuilderToolDeps): EditorTool[] {
         patch.handle = h;
       }
       if (patch.paused_until && Number.isNaN(new Date(patch.paused_until).getTime())) return { error: 'invalid_paused_until' };
+      // Spec 046 FR-007: only @manager runs at its schedule times; the others run at the channel card's plan hour.
+      if (patch.schedule && a.kind !== 'manager') {
+        return { error: 'schedule_not_used', details: `@${a.handle} працює за годиною планування картки каналу (plan hour), а не за schedule.times — змінюй картку каналу, не розклад агента` };
+      }
       const parts = Object.entries(patch).map(([k, v]) => `${k} → ${typeof v === 'object' ? JSON.stringify(v) : String(v)}`);
       if (!parts.length) return { error: 'empty_patch' };
       return proposeCard(d, ctx, 'update_agent', { handle: a.handle, patch }, `Change @${a.handle}: ${parts.join('; ')}`, a.id);

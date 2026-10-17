@@ -45,7 +45,7 @@ export const QueryDataInput = z.object({
   schema:      z.string().min(2).max(63).describe('Dataset key from library_catalog'),
   fields:      z.array(z.string().min(1).max(63)).min(1).max(30).describe('Only the fields you need (agent-visible ones from the catalog)'),
   filters:     z.array(filterSchema).max(10).default([]).describe('Only on fields the catalog marks filterable'),
-  search:      z.string().max(200).optional().describe('Full-text search over the title/body and searchable fields'),
+  search:      z.string().max(200).optional().describe('Full-text search over the row text and the fields the catalog marks searchable'),
   unposted_on: z.string().max(200).nullable().optional().describe('Resource ref (telegram:@x, instagram:123…) whose used rows to skip. Default: the resource you work on; null = include used rows'),
   order:       z.enum(ORDERS).default('random'),
   limit:       z.number().int().min(1).max(MAX_AGENT_LIMIT).default(5),
@@ -149,7 +149,7 @@ export function buildDataTools(d: DataToolDeps): EditorTool[] {
 
   const queryData = defineTool({
     name: 'query_data',
-    description: 'Fetch rows of one dataset: only the fields you list (agent-visible ones), filters only on filterable fields (op: eq, in, ilike, gte, lte, between, is_null, today), rows already used on your resource skipped by default, ≤ 20 rows, long text cut at 2000 characters unless full: true. Each row has ref = data://<dataset>/<id> for library_ref.',
+    description: 'Fetch rows of one dataset: only the fields you list, named exactly as library_catalog lists them for that dataset (there is no generic title / body; an unknown field returns the valid list), filters only on filterable fields (op: eq, in, ilike, gte, lte, between, is_null, today), rows already used on your resource skipped by default, ≤ 20 rows, long text cut at 2000 characters unless full: true. Each row has ref = data://<dataset>/<id> for library_ref.',
     kind: 'read', roles: [...READ_ROLES],
     input: QueryDataInput,
     execute: async (i, ctx) => runQueryData(d, i, ctx),
