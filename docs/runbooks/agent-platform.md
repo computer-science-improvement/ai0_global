@@ -137,3 +137,40 @@ The onboarder reads an own channel's last 20 posts and proposes its agent's setu
 **Changed since analysis**
 
 If you edited a section after the analysis, Apply refuses that section and applies the rest. Analyze again to review it with the new values.
+
+## 10. Steering (spec 045)
+
+Steering points one of your channels at a public channel you like. The onboarder reads that channel's last 20 posts and writes rules for your channel: the form (structure, opening line, length, formatting, calls to action, series) and the direction of the content, adapted to your channel's own subject. It never copies the reference's voice, text or facts. Steering is the lowest-priority rule source. Your owner rules, the playbook, the profile, formatting, style and examples always win.
+
+**Needs**
+
+- Migration `081_steering`.
+- A model key: `OPENROUTER_API_KEY` or the Anthropic key. `EDITOR_ENABLED` is not needed; the owner starts each run.
+- Your channel is yours (`tracked_channels.is_mine`) and has an editor card.
+- A logged-in tracking userbot. It reads public channels without joining them; private channels and invite links are refused.
+
+**Use**
+
+- Open `/app/steering` (Agents → Steering) and choose **New steering**. Pick your channel and give the reference as `@username` or a `t.me/…` link. You can also ask `@ai0` with `steer_channel`.
+- One model run per analysis (role `onboarder`, usage feature `editor.steering`, at most 4 steps and $0.30). The dialog shows the average cost of past runs. A worker takes one set at a time, every minute and at boot.
+- Open the set when it shows **Ready to review**. It shows a summary, then the rules: kind, text, the reference posts behind each rule (linked), and a switch per rule. You can edit a rule's text. An edit that quotes 60+ characters of a reference post, or asks the agent to pose as a human or to copy, is refused.
+- A rule that contradicts your channel's own rules is marked **Conflict**. It stays on the set so you can see it, but the agent never gets it.
+- **Activate** gives the rules to the agent from its next run. The rules go to the planner and the writer prompts, below all your other rules. The critic reads them as advice for `format_fit` only, never as a reason to reject.
+- A channel follows at most 3 references at once. **Pause** and **Resume** take a set out of the prompts and back. **Analyze again** reads the reference again into a new set; the old one stays active until you activate the new one, and then it becomes `superseded`.
+- **Discard** closes a set. Closed sets (discarded, superseded, failed) keep the post ids, dates and numbers, but not the reference texts.
+- A post that repeats 80+ characters of an active reference's post is refused at publish with `steering_copy`. This applies to the agent, the chat and native-platform posts.
+- The agent page Overview shows "Steering: N active from @a, @b" with a link to the filtered page.
+
+**Statuses**
+
+| Status | Meaning |
+|---|---|
+| `queued` / `collecting` / `analyzing` | Running. A FLOOD_WAIT puts the set back in the queue with a retry time; a set stuck for 15 min is requeued. |
+| `ready` | Waiting for your review. |
+| `active` / `paused` | In the prompts / out of them. |
+| `no_access` | The tracking account cannot read the channel. It must be public. |
+| `too_few_posts` | Fewer than 5 usable posts. The model is not called. |
+| `failed` | The reason is on the set. The run trace has role `onboarder` and feature `editor.steering`. |
+| `discarded` / `superseded` | Closed by you, or replaced by a newer analysis of the same reference. |
+
+Other platforms come later: Instagram can be read through the Graph API `business_discovery` field of one of our IG business accounts (spec 045 FR-010).

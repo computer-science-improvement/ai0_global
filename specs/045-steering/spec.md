@@ -1,6 +1,6 @@
 # 045: Steering — rules from a reference resource
 
-**Status:** IN PROGRESS · **Priority:** P1 · **Linear:** AI0-170 (T1–T7: AI0-171…AI0-177) · **Depends on:** 040 (owner rules
+**Status:** DONE (2026-10-17) · **Priority:** P1 · **Linear:** AI0-170 (T1–T7: AI0-171…AI0-177) · **Depends on:** 040 (owner rules
 block, critic), 042 (post reading, metrics, onboarder run, queue) · **Migration:** `081_steering.sql`
 
 **Owner request (2026-10-17):** "a new functionality for channels and Instagram in the future … for any resources … I want to
@@ -88,7 +88,7 @@ rules**. Statuses: `queued → collecting → analyzing → ready → active ⇄
 ### FR-007 API (`/api/steering`, owner auth)
 - `GET /` — sets (optionally `?target=`), newest first, with counts and the rules; `GET /:id` — one set with posts (links
   `https://t.me/<ref>/<msgId>`) and metrics; `GET /estimate` — cost per analysis (average of the last 20 ok steering runs,
-  else of onboarder runs, else null).
+  else of onboarder runs, else null); `GET /active?target=` — the active count and sources (the agent Overview line).
 - `POST /` `{ target, source }` — validates and queues; refusals: `not_own_channel`, `no_card`, `same_channel`,
   `invalid_source`, `already_open` (returns the open set).
 - `POST /:id/activate`, `/pause`, `/resume`, `/discard`, `/reanalyze`; `PATCH /:id/rules/:ruleId` `{ enabled?, text? }`.
