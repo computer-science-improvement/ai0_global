@@ -96,7 +96,7 @@ done
 for t in published_posts platform_posts platform_post_metrics scheduled_publications content_ledger content_decisions; do
   dump "$t"
 done
-for t in resource_profiles resource_profile_versions resource_pauses approval_alerts; do
+for t in resource_profiles resource_profile_versions resource_pauses approval_alerts channel_setup_proposals steering_sets; do
   dump "$t" "SELECT row_to_json(t) FROM $t t"
 done
 dump resource_daily_stats
@@ -108,7 +108,7 @@ dump ai_logs "SELECT json_build_object(
     'input',  left(a.input::text, $STEP_INPUT_CHARS),  'input_chars',  length(a.input::text),
     'output', left(a.output,      $STEP_OUTPUT_CHARS), 'output_chars', length(a.output))
   FROM ai_logs a WHERE a.created_at > now() - interval '$DAYS days' ORDER BY a.created_at"
-for t in bot_logs llm_usage llm_usage_daily llm_budget_alerts news_watch_log strategy_runs; do
+for t in bot_logs llm_usage llm_usage_daily llm_budget_alerts news_watch_log strategy_runs source_host_failures; do
   dump "$t"
 done
 
