@@ -62,6 +62,11 @@ const BLOCKED: Array<{ code: string; re: RegExp; hard: boolean; message: string 
   },
 ];
 
+/** The blocked instructions found in a text (spec 045: steering rules go through the same list). */
+export function blockedInstructions(text: string): Array<{ code: string; message: string }> {
+  return BLOCKED.filter((b) => b.re.test(text)).map((b) => ({ code: b.code, message: b.message }));
+}
+
 function parseFront(text: string): Record<string, string> {
   const out: Record<string, string> = {};
   for (const line of text.split('\n')) {

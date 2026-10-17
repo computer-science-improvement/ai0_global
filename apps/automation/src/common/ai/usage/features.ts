@@ -8,7 +8,7 @@
  * owner's on-demand dry-run slot preview (spec 034 FR-012).
  */
 export const EDITOR_FEATURE_ROLES = [
-  'planner', 'executor', 'reviewer', 'checker', 'composer', 'orchestrator', 'idea_reviewer', 'manager', 'builder', 'onboarder', 'chat', 'preview',
+  'planner', 'executor', 'reviewer', 'checker', 'composer', 'orchestrator', 'idea_reviewer', 'manager', 'builder', 'onboarder', 'steering', 'chat', 'preview',
 ] as const;
 
 export const FEATURES = {

@@ -1,3 +1,4 @@
+import type { SteeringPromptRule } from '../steering/steering.types';
 import type { EditorCard } from '../card';
 import type { AgentLoop, AgentLoopResult } from '../harness/agent-loop';
 import type { ToolRegistry } from '../harness/tool-registry';
@@ -45,6 +46,8 @@ export interface NetworkRunnerDeps {
   workspace?: () => Promise<Workspace>;
   notify:   (text: string) => Promise<void>;
   now?:     () => Date;
+  /** Spec 045 FR-005: the steering rules of a resource's active sets (enabled, non-conflicting); absent = none. */
+  steering?: (targetRef: string) => Promise<SteeringPromptRule[]>;
   /** Spec 023 FR-008: the ≤ 1,500-char source catalog for the orchestrator and planner prompts. */
   catalogSummary?: (card: EditorCard) => Promise<string | null>;
   /** Spec 023 FR-008: low_runway Inbox items for datasets the active series use (after the daily run). */
@@ -193,7 +196,8 @@ export class NetworkRunner {
     const prefs = this.d.memory.ownerPreferences ? await this.d.memory.ownerPreferences(card.channelKey, APPROVAL_PREFS_IN_PROMPT).catch(() => []) : [];
     const memory = await this.d.memory.listActive(card.channelKey, 30, { excludeApprovalPrefs: prefs.length > 0 });
     const profiles = await this.memberProfiles(c.net);
-    const system = `${buildSystemPrompt('planner', card, memory, c.agentCtx.skills, prefs)}\n\n${networkPlannerBlock({ net: c.net, accepted, now, tz: card.timezone, planDate, profiles })}`;
+    const steering = this.d.steering ? await this.d.steering(`telegram:${card.channelKey}`).catch(() => []) : [];
+    const system = `${buildSystemPrompt('planner', card, memory, c.agentCtx.skills, prefs, { steering })}\n\n${networkPlannerBlock({ net: c.net, accepted, now, tz: card.timezone, planDate, profiles })}`;
     const quotas = await this.quotas(card.channelKey, planDate);
     const stories = this.d.stories ? await this.d.stories.activeBlock(card, 'planner', now).catch(() => null) : null;
     const user = [plannerUserPrompt(card, now, reserved, planDate), renderExperimentQuotas(quotas), await this.catalog(card), stories].filter(Boolean).join('\n\n');

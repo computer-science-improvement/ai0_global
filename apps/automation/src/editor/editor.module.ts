@@ -126,8 +126,16 @@ import { storedFormat } from './agents/resource-profile';
 import { ChannelSetupRepository } from './setup/setup.repository';
 import { ChannelSetupService } from './setup/setup.service';
 import { CHANNEL_SETUP_SERVICE, ChannelSetupController } from './setup/setup.controller';
-import { collectPosts } from './setup/setup-posts';
+import { collectPosts, trackedChannel } from './setup/setup-posts';
 import { VOICE_SKILL_NAME } from './setup/setup-analysis';
+import { SteeringRepository } from './steering/steering.repository';
+import { SteeringService } from './steering/steering.service';
+import { STEERING_SERVICE, SteeringController } from './steering/steering.controller';
+import { telegramReader } from './steering/steering-source';
+import { buildSteerChannelTool } from './steering/steering-tool';
+import { ownerRulesOf } from './rules/owner-rules-prompt';
+import { renderPlaybook } from './network/playbook';
+import { renderProfile } from './agents/resource-profile';
 import { buildAnalyzeHistoryTool } from './setup/setup-tool';
 import { DirectivesRepository } from './manager/directives.repository';
 import { KpiDigestService } from './manager/kpi-digest.service';
@@ -453,6 +461,35 @@ function editorBudget(pool: Pool, env: (k: string) => string | undefined, alert:
 }
 
 /** The agents' cap (`editor.*` row of llm_budgets) for the KPI digest; the env default without the ledger module. */
+/**
+ * The loop of an owner-started analysis (spec 042 setup, spec 045 steering): like a chat turn, it runs whenever a model
+ * key is configured, not only with EDITOR_ENABLED.
+ */
+function ownerStartedLoop(
+  pool: Pool, env: (k: string) => string | undefined, notifier: TelegramNotifier, logger: Logger, prices?: PriceService, caps?: LlmBudgetService,
+): AgentLoop {
+  return new AgentLoop({
+    llm: new RoutingLlmClient({
+      openrouter: new OpenRouterClient({ apiKey: env('OPENROUTER_API_KEY'), baseUrl: env('OPENROUTER_BASE_URL'), prices }),
+      anthropic:  new AnthropicClient({ apiKey: anthropicApiKey(env), baseUrl: env('ANTHROPIC_BASE_URL'), prices }),
+    }),
+    recorder: new PgRunRecorder(pool, (m) => logger.warn(m)),
+    budget: editorBudget(pool, env, (t) => notifier.notifyAlert(t), caps),
+    enabled: () => !!env('OPENROUTER_API_KEY') || !!anthropicApiKey(env),
+  });
+}
+
+/** The onboarder's model for a channel: its agent's and the workspace's choices. */
+function onboarderModel(env: (k: string) => string | undefined, models: WorkspaceModelStore) {
+  return async (agent: Agent | null, card: EditorCard | null) => {
+    const mctx = await readModelContext({ workspace: () => models.workspace(), defaultModel: (ws) => models.get(ws) });
+    return resolveModel('onboarder', env, card?.models ?? null, {
+      agentModel: agent ? agentModelIn(agent, mctx.workspace) : null, defaultModel: mctx.defaultModel,
+      reasoningEffort: agent?.reasoningEffort ?? null, workspace: mctx.workspace,
+    });
+  };
+}
+
 function agentsCapUsd(env: (k: string) => string | undefined, caps?: LlmBudgetService): () => Promise<number> {
   return async () => (await caps?.caps())?.find((r) => r.scopeKind === 'feature_prefix' && r.scopeKey === 'editor.')?.dailyUsd
     ?? capDefaults(env).agentsDailyUsd;
@@ -487,6 +524,23 @@ export class ChannelSetupWorker implements OnModuleInit {
   @Cron('* * * * *', { name: 'channel-setup-tick' })
   async tick(): Promise<void> {
     try { await this.setup.tick(); } catch (err: any) { this.logger.warn(`channel setup tick failed: ${err?.message ?? err}`); }
+  }
+}
+
+/** Spec 045: the steering queue (steering_sets) — a tick a minute and one at boot. */
+@Injectable()
+export class SteeringWorker implements OnModuleInit {
+  private readonly logger = new Logger('Steering');
+
+  constructor(@Inject(STEERING_SERVICE) private readonly steering: SteeringService) {}
+
+  onModuleInit(): void {
+    void this.tick();
+  }
+
+  @Cron('* * * * *', { name: 'steering-tick' })
+  async tick(): Promise<void> {
+    try { await this.steering.tick(); } catch (err: any) { this.logger.warn(`steering tick failed: ${err?.message ?? err}`); }
   }
 }
 
@@ -962,11 +1016,11 @@ export const EDITOR_PROVIDERS = [
     {
       // One registry for the runner, the chat and the ops surface (REST tools endpoint → MCP).
       provide: EDITOR_REGISTRY,
-      inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_SKILLS, EDITOR_PUBLISH, EDITOR_DRAFTS, TelegramNotifier, PostingThrottleService, AGENT_INFRA, PLATFORM_INFRA, SCHEDULE_INFRA, STRATEGY_MIGRATION, ChannelConfigService, { token: LlmBudgetService, optional: true }],
+      inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_SKILLS, EDITOR_PUBLISH, EDITOR_DRAFTS, TelegramNotifier, PostingThrottleService, AGENT_INFRA, PLATFORM_INFRA, SCHEDULE_INFRA, STRATEGY_MIGRATION, ChannelConfigService, STEERING_SERVICE, { token: LlmBudgetService, optional: true }],
       useFactory: (
         pool: Pool, cfg: ConfigService, repos: EditorRepos, skills: SkillLibrary, ports: PublishPorts, drafts: DraftsService,
         notifier: TelegramNotifier, throttle: PostingThrottleService, infra: AgentInfra, platform: PlatformInfra, schedule: ScheduleService,
-        migration: StrategyMigrationInfra, channelConfig: ChannelConfigService, caps?: LlmBudgetService,
+        migration: StrategyMigrationInfra, channelConfig: ChannelConfigService, steering: SteeringService, caps?: LlmBudgetService,
       ): ToolRegistry => {
         const env = (k: string) => cfg.get<string>(k) ?? undefined;
         // Spec 037 T2: the story registry (publish guard, prompts, fetch_feed, story reposts).
@@ -1006,6 +1060,8 @@ export const EDITOR_PROVIDERS = [
           }),
           // Spec 042 FR-007: @ai0 queues a channel's setup from its history (the owner reviews the proposal on /app/setup).
           buildAnalyzeHistoryTool({ pool, repo: new ChannelSetupRepository(pool) }),
+          // Spec 045 FR-009: @ai0 queues a steering analysis (the owner activates the rules on /app/steering).
+          buildSteerChannelTool({ steering }),
           // Spec 034 FR-008: example posts and warnings in the agent-creation chat (a content_examples card).
           buildContentExamplesTool({
             agents: infra.agents, actions: infra.actions,
@@ -1221,6 +1277,7 @@ export const EDITOR_PROVIDERS = [
         const runner = new NetworkRunner({
           loop, registry, runtime: infra.runtime, memory: repos.memory, repo: new NetworkRepository(pool), plans: repos.plans, profiles: infra.profiles,
           usable: (ref) => platform.health.usable(ref), time: resourceTime(repos, infra.profiles),
+          steering: (ref) => new SteeringRepository(pool).promptRules(ref),
           // Spec 025 FR-013: paused resources are out of every orchestrator / planner run.
           paused: (ref) => new ResourcePauseService({ pool }).isPaused(ref),
           directives: (orch) => manager.runner.deliver(orch),
@@ -1272,6 +1329,8 @@ export const EDITOR_PROVIDERS = [
         logger.log(`editor ${isEnabled(cfg) ? 'ENABLED' : 'disabled'}: ${registry.all().length} tools, ${skills.list().length} skills`);
         return new EditorRunnerService({
           loop, registry, skills, runtime: infra.runtime, plans: repos.plans, memory: repos.memory, env, notify, defaultModel: (ws) => models.get(ws), workspace: () => models.workspace(),
+          // Spec 045 FR-005: the channel's active steering rules (lowest priority) for the writer, planner and critic.
+          steering: (ref) => new SteeringRepository(pool).promptRules(ref),
           network, platformContext: (slot, orchId) => network.platformContext(slot, orchId),
           catalogSummary: withSchedule(catalogSummaryOf(pool, env), schedule),
           seriesContext: (slot) => schedule.executorContext(slot),
@@ -1627,28 +1686,13 @@ export const EDITOR_PROVIDERS = [
       ): ChannelSetupService => {
         const logger = new Logger('ChannelSetup');
         const env = (k: string) => cfg.get<string>(k) ?? undefined;
-        // Owner-started like a chat turn: it runs whenever a model key is configured, not only with EDITOR_ENABLED.
-        const loop = new AgentLoop({
-          llm: new RoutingLlmClient({
-            openrouter: new OpenRouterClient({ apiKey: env('OPENROUTER_API_KEY'), baseUrl: env('OPENROUTER_BASE_URL'), prices }),
-            anthropic:  new AnthropicClient({ apiKey: anthropicApiKey(env), baseUrl: env('ANTHROPIC_BASE_URL'), prices }),
-          }),
-          recorder: new PgRunRecorder(pool, (m) => logger.warn(m)),
-          budget: editorBudget(pool, env, (t) => notifier.notifyAlert(t), caps),
-          enabled: () => !!env('OPENROUTER_API_KEY') || !!anthropicApiKey(env),
-        });
+        const loop = ownerStartedLoop(pool, env, notifier, logger, prices, caps);
         const orchOf = (key: string) => infra.agents.findTop('orchestrator', 'resource', `telegram:${key}`);
         const network = new NetworkRepository(pool);
         return new ChannelSetupService({
           pool, repo: new ChannelSetupRepository(pool), loop,
           collect: (key) => collectPosts({ pool, readHistory: mtproto ? (target, limit) => mtproto.readHistory(target, 0, limit) : undefined }, key),
-          model: async (agent, card) => {
-            const mctx = await readModelContext({ workspace: () => models.workspace(), defaultModel: (ws) => models.get(ws) });
-            return resolveModel('onboarder', env, card?.models ?? null, {
-              agentModel: agent ? agentModelIn(agent, mctx.workspace) : null, defaultModel: mctx.defaultModel,
-              reasoningEffort: agent?.reasoningEffort ?? null, workspace: mctx.workspace,
-            });
-          },
+          model: onboarderModel(env, models),
           state: async (key) => {
             const ref = `telegram:${key}`;
             const [card, agent, stored] = await Promise.all([repos.channels.get(key), orchOf(key), infra.profiles.get(ref)]);
@@ -1679,7 +1723,60 @@ export const EDITOR_PROVIDERS = [
         });
       },
     },
+    {
+      // Spec 045: steering (a reference's last posts → one onboarder run → rules the owner activates for a channel).
+      provide: STEERING_SERVICE,
+      inject: [
+        DB_POOL, ConfigService, AGENT_INFRA, EDITOR_REPOS, MODEL_DEFAULTS, TelegramNotifier,
+        { token: TrackingMtprotoClient, optional: true }, { token: PriceService, optional: true }, { token: LlmBudgetService, optional: true },
+      ],
+      useFactory: (
+        pool: Pool, cfg: ConfigService, infra: AgentInfra, repos: EditorRepos, models: WorkspaceModelStore, notifier: TelegramNotifier,
+        mtproto?: TrackingMtprotoClient, prices?: PriceService, caps?: LlmBudgetService,
+      ): SteeringService => {
+        const logger = new Logger('Steering');
+        const env = (k: string) => cfg.get<string>(k) ?? undefined;
+        const network = new NetworkRepository(pool);
+        return new SteeringService({
+          repo: new SteeringRepository(pool),
+          readers: {
+            telegram: telegramReader({
+              readHistory: mtproto ? (target, limit) => mtproto.readHistory(target, 0, limit) : undefined,
+              fullChannel: mtproto ? async (target) => {
+                const f = await mtproto.getFullChannel(target);
+                return f && f !== 'not_subscribed' ? { title: f.title ?? null, about: f.about ?? null, subsCount: f.subsCount ?? null } : f;
+              } : undefined,
+            }),
+          },
+          isOwn: async (key) => !!(await trackedChannel(pool, key))?.isMine,
+          target: async (ref) => {
+            const key = ref.replace(/^telegram:/, '');
+            const [card, agent, stored, format, memory] = await Promise.all([
+              repos.channels.get(key), infra.agents.findTop('orchestrator', 'resource', ref), infra.profiles.get(ref),
+              infra.profiles.formatOf(ref), repos.memory.listActive(key, 60).catch(() => []),
+            ]);
+            const pb = agent ? (await network.activePlaybook(agent.id))?.body ?? null : null;
+            // The target's part of the playbook: its section and series, the shared pillars and rules.
+            const mine = pb ? { ...pb, platforms: pb.platforms.filter((x) => x.resource_ref === ref), series: pb.series.filter((x) => x.resource_ref === ref), examples: [] } : null;
+            return {
+              card, agent,
+              target: {
+                ref, title: card?.title ?? null, brief: card?.brief?.trim() || null,
+                profile: stored?.profile ? renderProfile(stored.profile, { ref }) : null,
+                ownerRules: ownerRulesOf(memory),
+                playbook: mine && (mine.platforms.length || mine.series.length || mine.rules.length || mine.pillars.length) ? renderPlaybook(mine) : null,
+                formatPrefs: renderFormatPrefs(format.prefs, format.locks), locks: format.locks,
+              },
+            };
+          },
+          loop: ownerStartedLoop(pool, env, notifier, logger, prices, caps),
+          model: onboarderModel(env, models),
+          log: (m) => logger.warn(m),
+        });
+      },
+    },
     ChannelSetupWorker,
+    SteeringWorker,
     EditorCron,
     AgentsUpkeep,
     StoryBackfill,
@@ -1689,7 +1786,7 @@ export const EDITOR_PROVIDERS = [
 @Module({
   // AuthModule: EditorController is guarded by TrackingAuthGuard, which injects AuthService.
   imports:     [ChannelConfigModule, PublishersModule, AuthModule],
-  controllers: [EditorController, EditorChatController, AgentsController, ModelsController, NetworkController, ManagerController, PromoController, PromoRedirectController, ApprovalsController, AutonomyController, ScheduleController, StrategyMigrationController, UpcomingSlotsController, ResourcePausesController, PostAuditController, ChannelSetupController],
+  controllers: [EditorController, EditorChatController, AgentsController, ModelsController, NetworkController, ManagerController, PromoController, PromoRedirectController, ApprovalsController, AutonomyController, ScheduleController, StrategyMigrationController, UpcomingSlotsController, ResourcePausesController, PostAuditController, ChannelSetupController, SteeringController],
   providers:   [...EDITOR_PROVIDERS, TrackingAuthGuard],
   exports:     [EDITOR_REPOS, EDITOR_RUNNER, AGENT_INFRA, PLATFORM_INFRA, EDITOR_MANAGER],
 })

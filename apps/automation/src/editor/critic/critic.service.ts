@@ -1,3 +1,5 @@
+import { criticSteeringLines } from '../steering/steering-prompt';
+import type { SteeringPromptRule } from '../steering/steering.types';
 import type { AgentLoop, AgentLoopResult } from '../harness/agent-loop';
 import type { AgentBudget } from '../harness/budget.service';
 import { defineTool } from '../harness/tool';
@@ -69,6 +71,8 @@ export interface CriticRequest {
   media?:       CriticMediaContext | null;
   /** Spec 040 FR-011: the channel's owner rules; the critic scores `owner_rules` against them. */
   ownerRules?:  OwnerRuleLine[] | null;
+  /** Spec 045 FR-005: the steering rules (advice for format_fit, never a reason to reject). */
+  steering?:    SteeringPromptRule[] | null;
 }
 
 export type CriticResult =
@@ -134,6 +138,7 @@ export function criticUserPrompt(r: CriticRequest): string {
   }
   if (r.profile && /Табу-теми/.test(r.profile)) s.push('', 'Табу-теми з профілю — це теми, про які ресурс не пише: пост на табу-тему → sense ≤ 2.');
   s.push(...criticOwnerRulesLines(r.ownerRules));
+  s.push(...criticSteeringLines(r.steering));
   s.push('', '## Слот');
   s.push(`Формат: ${r.format}.${r.topic ? ` Тема: ${r.topic}.` : ''}${r.angle ? ` Кут: ${r.angle}.` : ''}`);
   if (r.dates) s.push(...criticDatesLines(r.dates));

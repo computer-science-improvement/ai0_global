@@ -4,7 +4,8 @@ import { channelOf, defineTool, EditorTool, ToolContext } from '../harness/tool'
 import { AgentPostSpecSchema, PostSpec } from '../post/post-spec';
 import { lintPost } from '../post/lint-post';
 import { checkQuizGroundTruth } from '../post/quiz-ground-truth';
-import { checkVerbatim } from '../post/verbatim-guard';
+import { checkVerbatim, postPlainText } from '../post/verbatim-guard';
+import { checkSteeringCopy } from '../steering/steering-guard';
 import { renderTelegram } from '../post/render-telegram';
 import { htmlToPlain } from '../post/inline-markup';
 import { criticGateOf, criticSummary, PUBLISH_TOOL_TIMEOUT_MS } from '../critic/critic-gate';
@@ -158,6 +159,9 @@ export async function checkPublishGuards(d: RoleToolDeps, ctx: ToolContext, spec
   if (truth) return truth;
   const verbatim = await checkVerbatim(d.pool, spec);
   if (verbatim) return verbatim;
+  // Spec 045 FR-006: nor the text of a reference the channel is steered by.
+  const steered = await checkSteeringCopy(d.pool, `telegram:${channelKey}`, `${spec.title ?? ''}\n${postPlainText(spec)}`);
+  if (steered) return steered;
 
   const rendered = renderTelegram(spec, card);
   const corpus = await d.plans.recentTexts(channelKey);

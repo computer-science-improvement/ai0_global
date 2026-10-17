@@ -1,3 +1,4 @@
+import type { SteeringPromptRule } from '../steering/steering.types';
 import { createHash } from 'crypto';
 import type { AgentBudget } from '../harness/budget.service';
 import { isToolError, type EditorTool, type ToolContext, type ToolError } from '../harness/tool';
@@ -84,6 +85,8 @@ export interface CriticGateContext {
   skills?:      CriticSkillsContext | null;
   /** Spec 040 FR-011: the channel's owner rules (the critic's `owner_rules` axis). */
   ownerRules?:  OwnerRuleLine[] | null;
+  /** Spec 045 FR-005: the steering rules of the resource's active sets (advice for format_fit). */
+  steering?:    SteeringPromptRule[] | null;
 }
 
 const SOURCE_CAP = 4_000;
@@ -297,6 +300,7 @@ export class CriticGate {
       story: post.story ?? null,
       media: this.media(post.spec),
       ownerRules: this.c.ownerRules ?? null,
+      steering: this.c.steering ?? null,
     });
     this.passes++;
     const history = this.first ? [{

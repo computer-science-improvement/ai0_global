@@ -4,7 +4,8 @@ import { PostSpec, PostSpecSchema } from '../post/post-spec';
 import { lintPost, LintResult } from '../post/lint-post';
 import { renderTelegram, TgMessage } from '../post/render-telegram';
 import { checkQuizGroundTruth } from '../post/quiz-ground-truth';
-import { checkVerbatim } from '../post/verbatim-guard';
+import { checkVerbatim, postPlainText } from '../post/verbatim-guard';
+import { checkSteeringCopy } from '../steering/steering-guard';
 import { pollCapGuard } from '../post/polls/poll-cap-guard';
 import { publishSpecNow, PublishSpecDeps } from '../publish/publish-spec';
 import { ChannelPausedForEditorError } from '../publish/telegram-editor.publisher';
@@ -172,6 +173,9 @@ export class DraftsService {
     if (truth) return truth;
     const verbatim = await checkVerbatim(this.d.pool, spec);
     if (verbatim) return verbatim;
+    // Spec 045 FR-006: nor the text of a reference the channel is steered by.
+    const steered = await checkSteeringCopy(this.d.pool, `telegram:${channelKey}`, `${spec.title ?? ''}\n${postPlainText(spec)}`);
+    if (steered) return steered;
     // Spec 037 T7: a chat poll counts against polls_per_week like the agent's (published, waiting and approved posts).
     const polls = await pollCapGuard(this.d.pool, { channelKey, format: spec.format, at: now, timezone: card.timezone || CHAT_TIMEZONE, cap: card.pollsPerWeek, slotId });
     if (polls) return polls;

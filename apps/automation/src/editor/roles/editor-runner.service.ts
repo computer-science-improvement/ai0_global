@@ -35,6 +35,7 @@ import {
 } from '../silent/fallback-ladder';
 import { EvergreenProbe } from '../silent/evergreen';
 import { memoryWithoutRules, ownerRulesOf, ownerRulesSection } from '../rules/owner-rules-prompt';
+import type { SteeringPromptRule } from '../steering/steering.types';
 
 export interface EditorRunnerDeps {
   loop:     Pick<AgentLoop, 'run'>;
@@ -51,6 +52,8 @@ export interface EditorRunnerDeps {
   workspace?: () => Promise<Workspace>;
   notify:   (text: string) => Promise<void>;
   now?:     () => Date;
+  /** Spec 045 FR-005: the steering rules of a resource's active sets (enabled, non-conflicting); absent = none. */
+  steering?: (targetRef: string) => Promise<SteeringPromptRule[]>;
   /**
    * Network context of a non-Telegram slot (spec 020): the playbook section for
    * the resource, its profile and limits. Optional; without it the platform
@@ -225,6 +228,8 @@ export class EditorRunnerService {
       : null;
     // Spec 040 FR-011: the critic checks the channel's owner rules (its own axis).
     const ownerRules = ownerRulesOf(await this.d.memory.listActive(card.channelKey, 60).catch(() => []));
+    // Spec 045 FR-005: what the owner steers towards — advice for format_fit only.
+    const steering = await this.steeringFor(target.ref);
     return new CriticGate(
       // A dry-run preview (spec 034 FR-012): the verdict goes to the preview, never onto the slot or into the Inbox.
       dry
@@ -241,9 +246,13 @@ export class EditorRunnerService {
         inboxAgentId: ctx?.orchestrator?.id ?? null,
         // Spec 037 FR-012: the critic judges with the writer's skills (resource tone, format, topic).
         skills: slotSkillsContext(slot, card, ctx?.skills ?? this.d.skills),
-        ownerRules,
+        ownerRules, steering,
       },
     );
+  }
+
+  private async steeringFor(ref: string): Promise<SteeringPromptRule[]> {
+    return this.d.steering ? this.d.steering(ref).catch(() => []) : [];
   }
 
   /** extras of a run with a critic: the gate, and the read tools wrapped so it sees the sources the executor read. */
@@ -279,7 +288,10 @@ export class EditorRunnerService {
       channelKey: card.channelKey,
       slotId,
       model: resolveModel(role, this.d.env, card.models, { agentModel, defaultModel, reasoningEffort: agentEffort, workspace }),
-      system: buildSystemPrompt(role, card, memory, skills, prefs, { examples: typeof extras.examples === 'string' ? extras.examples : null }),
+      system: buildSystemPrompt(role, card, memory, skills, prefs, {
+        examples: typeof extras.examples === 'string' ? extras.examples : null,
+        steering: role === 'reviewer' || extras.systemOverride ? null : await this.steeringFor(`telegram:${card.channelKey}`),
+      }),
       user,
       tools: ((extras.wrapTools as ((t: EditorTool[]) => EditorTool[]) | undefined) ?? ((t) => t))(
         this.d.registry.forRole(role, card.toolsAllow)

@@ -2,6 +2,7 @@ import { parseResourceRef, Platform } from '../agents/agent.types';
 import type { ResourceHealth } from '../agents/resource-profile';
 import { similarity } from '../post/similarity';
 import { checkVerbatim } from '../post/verbatim-guard';
+import { checkSteeringCopy } from '../steering/steering-guard';
 import type { PostSpec } from '../post/post-spec';
 import type { VoicePrefs } from '../post/slop-lint';
 import type { PreparedPublish } from '../publish/prepare-media';
@@ -88,6 +89,9 @@ export async function publishPlatformNow(d: PublishPlatformDeps, i: PublishPlatf
       media: [], placement: 'above', hashtags: [], buttons: [], library_ref: i.spec.library_ref,
     } as PostSpec);
     if (verbatim) return verbatim;
+    // Spec 045 FR-006: nor the text of a reference the resource is steered by.
+    const steered = await checkSteeringCopy(d.pool, i.resourceRef, `${i.spec.title ?? ''}\n${text}`);
+    if (steered) return steered;
   }
 
   const sourceRef = i.spec.library_ref ?? i.spec.source?.url ?? null;

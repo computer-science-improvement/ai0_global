@@ -12,6 +12,8 @@ import { isNewsCard } from '../live/news-watch-config';
 import { examplesPromptSection } from '../network/playbook';
 import { styleSection } from '../post/style/resource-style';
 import { memoryWithoutRules, ownerRulesOf, ownerRulesSection } from '../rules/owner-rules-prompt';
+import { steeringSection } from '../steering/steering-prompt';
+import type { SteeringPromptRule } from '../steering/steering.types';
 
 const ROLE_TITLE: Record<CardRole, string> = {
   planner:  'редактор-планувальник',
@@ -74,7 +76,8 @@ export function agentInlineSkills(skills: SkillSource, exclude: readonly string[
 export function buildSystemPrompt(
   role: CardRole, card: EditorCard, memory: MemoryEntry[], skills: SkillSource, prefs: MemoryEntry[] = [],
   /** Spec 034 FR-008: the resource's example posts (renderExamples), few-shot right after voice-core (executor only). */
-  o: { examples?: string | null } = {},
+  /** Spec 045 FR-005: the steering rules of the channel's active sets (planner and executor), the lowest-priority block. */
+  o: { examples?: string | null; steering?: SteeringPromptRule[] | null } = {},
 ): string {
   const writer = role === 'executor';
   const names = [...new Set([`editor-${role}-workflow`, ...card.skills, ...(skills.inlineNames?.() ?? [])])].filter((n) => n !== VOICE_CORE);
@@ -102,6 +105,7 @@ export function buildSystemPrompt(
       ? shownMemory.map((m) => `- [${m.kind}${m.createdBy === 'owner' ? ', власник' : ''}] ${m.text}`).join('\n')
       : '- (поки порожня)',
     ...ownerPreferencesSection(prefs),
+    ...(role === 'reviewer' ? [] : steeringSection(o.steering)),
     '',
     '## Скіли, завантажені одразу',
     inline.join('\n\n') || '- немає',
