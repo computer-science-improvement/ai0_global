@@ -16,7 +16,7 @@ import {
 import { applySections, driftedSections, formatPatch, mergePlaybook, sectionBaseline, type ApplyWriters, type ChannelState } from './setup-apply';
 import { computeMetrics, type ChannelMetrics } from './setup-metrics';
 import { trackedChannel, type CollectResult } from './setup-posts';
-import type { SetupPost } from './setup-posts.types';
+import { hasPostText, MIN_SPAN_DAYS, MIN_TEXT_POSTS, type SetupPost } from './setup-posts.types';
 import type { ChannelSetupRepository, SectionState, SetupProposal } from './setup.repository';
 
 /**
@@ -127,6 +127,14 @@ export class ChannelSetupService {
       const status = collected.status === 'not_tracked' ? 'failed' : collected.status;
       return this.d.repo.update(p.id, { status, reason: collected.reason, postIds: collected.posts.map((x) => x.id) });
     }
+    // Spec 041 FR-008: a style is learnt from text — too few posts with text is a refusal before any LLM run.
+    const texted = collected.posts.filter(hasPostText).length;
+    if (texted < MIN_TEXT_POSTS) {
+      return this.d.repo.update(p.id, {
+        status: 'too_few_posts', postIds: collected.posts.map((x) => x.id),
+        reason: `insufficient_data: ${texted} of ${collected.posts.length} posts have text — at least ${MIN_TEXT_POSTS} are needed to learn the style`,
+      });
+    }
     const state = await this.d.state(p.channelKey);
     const metrics = computeMetrics(collected.posts, state.card?.timezone ?? 'Europe/Kyiv');
     await this.d.repo.update(p.id, {
@@ -148,8 +156,12 @@ export class ChannelSetupService {
       });
     }
     const pending = Object.fromEntries(SETUP_SECTIONS.map((s) => [s, 'pending'])) as Record<SetupSection, SectionState>;
+    // Spec 041 FR-008: under 7 days of history the posting rate and quiet hours are not proposed (best hours stay).
+    const short = metrics.spanDays < MIN_SPAN_DAYS;
+    const sections = short ? { ...parsed.data, schedule: { ...parsed.data.schedule, insufficient_span: true } } : parsed.data;
     return this.d.repo.update(p.id, {
-      status: 'ready', runId: res.runId, costUsd: res.totals.costUsd, sections: parsed.data, sectionStatus: pending,
+      status: 'ready', runId: res.runId, costUsd: res.totals.costUsd, sections, sectionStatus: pending,
+      ...(short ? { reason: `insufficient_span: the posts span ${metrics.spanDays} days (under ${MIN_SPAN_DAYS}) — the posting rate and quiet hours are not proposed` } : {}),
     });
   }
 

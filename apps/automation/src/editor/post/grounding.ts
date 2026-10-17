@@ -296,7 +296,49 @@ export function statisticalPercents(text: string, o: { publishedAt?: string; tim
 
 // ── critic passages ──────────────────────────────────────────────────────────
 
-export const PASSAGE = { radius: 400, max: 6, chars: 6_000 } as const;
+/** Spec 041 FR-006: up to 8 passages (claims without numbers get their own), 8000 chars. */
+export const PASSAGE = { radius: 400, max: 8, chars: 8_000 } as const;
+
+/**
+ * Spec 041 FR-006: a sentence that claims something on someone's word — a quote or an attribution verb. Quotes and
+ * statements without numbers had no passage, so the critic could not check «Маск заявив…» against the source.
+ */
+export const ATTRIBUTION_RE = /(?<![\p{L}ʼ])(?:заяви(?:в|ла|ли)|сказа(?:в|ла|ли)|за\s+словами|повідоми(?:в|ла|ли)|каже|кажуть|пише|пишуть|зазначи(?:в|ла|ли)|наголоси(?:в|ла|ли)|визна(?:в|ла|ли)|підтверди(?:в|ла|ли)|пообіця(?:в|ла|ли)|за\s+даними)(?![\p{L}ʼ])/iu;
+export const QUOTE_RE = /«[^»]{12,}»|“[^”]{12,}”|"[^"]{12,}"/u;
+
+const LATIN_STOP = new Set(['the', 'and', 'for', 'with', 'that', 'this', 'from', 'are', 'was', 'has', 'have', 'will', 'not', 'you', 'its', 'our']);
+
+/** The claim sentences of a post without numbers, each with the words to look for in a source (Latin words, names). */
+export function claimAnchors(postText: string): Array<{ label: string; tokens: string[] }> {
+  const out: Array<{ label: string; tokens: string[] }> = [];
+  const sentences = postText.split(/\n+/).flatMap((l) => l.split(/(?<=[.!?…])\s+/));
+  for (const raw of sentences) {
+    const s = raw.trim();
+    if (!s || /\d/.test(s) || !(QUOTE_RE.test(s) || ATTRIBUTION_RE.test(s))) continue;
+    const latin = (s.match(/[A-Za-z][A-Za-z0-9'’-]{2,}/g) ?? []).map((w) => w.toLowerCase()).filter((w) => !LATIN_STOP.has(w));
+    const names = [...extractEntities(s).entities.values()].filter((e) => e.kind === 'name' || e.kind === 'person').map((e) => e.text.toLowerCase().split(/\s+/)[0]);
+    const tokens = [...new Set([...latin, ...names])].filter((t) => t.length >= 3);
+    if (tokens.length) out.push({ label: `твердження: «${s.length > 60 ? `${s.slice(0, 59)}…` : s}»`, tokens });
+  }
+  return out;
+}
+
+/** The position in a page where most of the claim's tokens meet (within one passage radius), or null. */
+function claimHit(tokens: readonly string[], page: string): [number, number] | null {
+  const lower = page.toLowerCase();
+  const at = tokens.map((t) => {
+    const xs: number[] = [];
+    for (let i = lower.indexOf(t); i >= 0 && xs.length < 30; i = lower.indexOf(t, i + t.length)) xs.push(i);
+    return xs;
+  });
+  let best: { i: number; n: number } | null = null;
+  for (const xs of at) for (const i of xs) {
+    const n = at.filter((ys) => ys.some((y) => Math.abs(y - i) <= PASSAGE.radius)).length;
+    if (!best || n > best.n) best = { i, n };
+  }
+  const need = Math.min(2, tokens.length);
+  return best && best.n >= need ? [best.i, best.i + 1] : null;
+}
 
 export interface SourcePage {
   url: string;
@@ -335,9 +377,9 @@ function postNames(text: string): string[] {
 }
 
 /**
- * The critic's source context (spec 037 T4): passages of ±400 chars around the post's numbers (first) and names
- * (then) on the pages read — the cited page first, other pages for what the cited one lacks — at most 6 passages
- * and 6000 chars, in page order. Empty when nothing of the post is on the pages (the caller then says so).
+ * The critic's source context (spec 037 T4): passages of ±400 chars around the post's numbers (first), names
+ * (then) and claims without numbers (spec 041: quotes, «заявив / за словами») on the pages read — the cited page
+ * first, other pages for what the cited one lacks — at most 8 passages and 8000 chars, in page order. Empty when nothing of the post is on the pages (the caller then says so).
  */
 export function sourcePassages(postText: string, pages: readonly SourcePage[], o: { publishedAt?: string; timezone?: string } = {}): Passage[] {
   const hits: Hit[] = [];
@@ -363,6 +405,13 @@ export function sourcePassages(postText: string, pages: readonly SourcePage[], o
       const i = near ?? at.find((x) => x >= title) ?? at[0];
       hits.push({ page: p, at: [i, i + needle.length], label: name });
       break;
+    }
+  }
+  // Spec 041 FR-006: quotes and attributed claims without numbers, by their Latin words and names.
+  for (const c of claimAnchors(postText)) {
+    for (let p = 0; p < pages.length; p++) {
+      const at = claimHit(c.tokens, pages[p].text);
+      if (at) { hits.push({ page: p, at, label: c.label }); break; }
     }
   }
   const windows: Array<{ page: number; a: number; b: number; about: string[] }> = [];

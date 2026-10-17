@@ -158,7 +158,7 @@ test('the critic prompt stays within the limit for every format and the fullest 
 
 test('the service sends the skills in the system prompt; the critic model is never set by code', async () => {
   const run = async (criticModel: string | null, skills: CriticRequest['skills']) => {
-    const llm = new FakeLlm([{ calls: [{ name: 'submit_critique', args: { scores: { ai_likeness: 5, sense: 5, voice: 5, grounding: 5, audience_asks: 5, format_fit: 5 }, verdict: 'pass', notes: 'Добре.' } }] }]);
+    const llm = new FakeLlm([{ calls: [{ name: 'submit_critique', args: { scores: { ai_likeness: 5, sense: 5, voice: 5, grounding: 5, audience_asks: 5, format_fit: 5, language: 5 }, verdict: 'pass', notes: 'Добре.' } }] }]);
     const loop = new AgentLoop({ llm, recorder: new MemoryRecorder(), budget: new FakeBudget(), enabled: () => true });
     const service = new CriticService({ loop, env: () => undefined, defaultModel: async () => 'z-ai/glm-5.3-flash', criticModel: async () => criticModel, now: () => NOW });
     const r = await service.review(birzhaPoll({ skills }));

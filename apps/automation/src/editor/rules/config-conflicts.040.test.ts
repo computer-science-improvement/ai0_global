@@ -7,7 +7,7 @@ import { buildBuilderTools, FIX_CONFIG_CONFLICTS_KIND } from '../agents/builder-
 import { memoryWithoutRules, ownerRulesOf, ownerRulesSection } from './owner-rules-prompt';
 import { buildSystemPrompt } from '../roles/prompts';
 import { makeCard } from '../post/testing/fixtures';
-import { criticOwnerRulesLines, criticUserPrompt, normalizeOwnerRules } from '../critic/critic.service';
+import { criticOwnerRulesLines, criticRules, criticUserPrompt, isTextRule, normalizeOwnerRules } from '../critic/critic.service';
 import { criticLine, CritiqueInput, decideVerdict } from '../critic/critic';
 
 /** Spec 040 FR-011: rules reach the writers — rules-vs-config, the fix card, owner rules in the executor and critic. */
@@ -183,7 +183,7 @@ test('the executor sees owner rules as their own block above the playbook; appro
   assert.match(planner, /- \[rule, власник\] Без хештегів/);
 });
 
-const scores = { ai_likeness: 5, sense: 5, voice: 5, grounding: 5, audience_asks: 5, format_fit: 5 };
+const scores = { ai_likeness: 5, sense: 5, voice: 5, grounding: 5, audience_asks: 5, format_fit: 5, language: 5 };
 
 test('critic: owner_rules ≤ 2 rejects and names the broken rule; a named rule caps the axis; unknown ids are dropped', () => {
   const rules = [rule(3, 'Без хештегів'), rule(4, 'Без сленгу')];
@@ -193,9 +193,10 @@ test('critic: owner_rules ≤ 2 rejects and names the broken rule; a named rule 
   assert.deepEqual(n.broken_rules, [3]);
   assert.deepEqual(decideVerdict(n), { verdict: 'reject', reason: 'score_le_2: owner_rules (#3)' });
 
-  const ok = normalizeOwnerRules(CritiqueInput.parse({ scores: { ...scores, owner_rules: 5 }, verdict: 'pass', notes: 'Ок.' }), rules);
+  const kept = [{ id: 3, kept: true }, { id: 4, kept: true }];
+  const ok = normalizeOwnerRules(CritiqueInput.parse({ scores: { ...scores, owner_rules: 5 }, rule_checks: kept, verdict: 'pass', notes: 'Ок.' }), rules);
   assert.deepEqual(decideVerdict(ok), { verdict: 'pass', reason: 'scores_ok' });
-  const three = normalizeOwnerRules(CritiqueInput.parse({ scores: { ...scores, owner_rules: 3 }, verdict: 'pass', notes: 'Майже.' }), rules);
+  const three = normalizeOwnerRules(CritiqueInput.parse({ scores: { ...scores, owner_rules: 3 }, rule_checks: kept, verdict: 'pass', notes: 'Майже.' }), rules);
   assert.deepEqual(decideVerdict(three), { verdict: 'revise', reason: 'score_le_3: owner_rules' });
   assert.match(criticLine({ verdict: 'revise', scores: three.scores, notes: 'Майже.' }), /owner_rules 3/);
 
@@ -216,4 +217,30 @@ test('critic prompt lists the owner rules and says they outrank the playbook', (
   });
   assert.match(prompt, /### Правила власника каналу \(обовʼязкові, важливіші за плейбук, профіль і приклади\)\n- #3 Без хештегів\nОціни owner_rules/);
   assert.match(prompt, /broken_rules/);
+});
+
+test('spec 041 FR-005: every rule in the prompt needs a verdict; a broken check names the rule; schedule rules are not the critic\'s', () => {
+  const rules = [rule(3, 'Без хештегів'), rule(4, 'Пиши простіше, без складних термінів'), rule(5, 'Публікуй о 09:30 і 19:00'), rule(6, 'Не більше 2 постів на день')];
+  const text = criticRules(rules);
+  assert.deepEqual(text.map((r) => r.id), [3, 4], 'times and frequency are left out');
+  assert.equal(isTextRule({ text: 'Не більше 3 хештегів' }), true);
+  // No score at all → every rule is missing.
+  const noScore = normalizeOwnerRules(CritiqueInput.parse({ scores, verdict: 'pass', notes: 'Ок.' }), text);
+  assert.deepEqual(decideVerdict(noScore), { verdict: 'revise', reason: 'owner_rules_missing: #3, #4' });
+  // A score but one rule unchecked.
+  const partial = normalizeOwnerRules(CritiqueInput.parse({ scores: { ...scores, owner_rules: 5 }, rule_checks: [{ id: 3, kept: true }], verdict: 'pass', notes: 'Ок.' }), text);
+  assert.deepEqual(decideVerdict(partial), { verdict: 'revise', reason: 'owner_rules_missing: #4' });
+  // A broken check (1717: rule «простіше» against «816 млрд параметрів… MCP-Atlas») rejects by the rule.
+  const broken = normalizeOwnerRules(CritiqueInput.parse({
+    scores: { ...scores, owner_rules: 4 }, verdict: 'pass', notes: '#4 порушено.',
+    rule_checks: [{ id: 3, kept: true }, { id: 4, kept: false, quote: '816 млрд параметрів, з яких одночасно працюють 42 млрд' }, { id: 99, kept: false }],
+  }), text);
+  assert.equal(broken.scores.owner_rules, 2);
+  assert.deepEqual(broken.broken_rules, [4]);
+  assert.deepEqual(broken.rule_checks?.map((x) => x.id), [3, 4], 'unknown ids dropped');
+  assert.deepEqual(decideVerdict(broken), { verdict: 'reject', reason: 'score_le_2: owner_rules (#4)' });
+  // The prompt asks for rule_checks and lists only the text rules.
+  const lines = criticOwnerRulesLines(text).join('\n');
+  assert.match(lines, /rule_checks/);
+  assert.doesNotMatch(lines, /09:30/);
 });

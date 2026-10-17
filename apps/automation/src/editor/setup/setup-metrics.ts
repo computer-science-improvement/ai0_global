@@ -1,5 +1,5 @@
 import { localDate, localHour } from '../roles/time';
-import type { SetupPost } from './setup-posts.types';
+import { hasPostText, type SetupPost } from './setup-posts.types';
 
 /**
  * Spec 042 FR-002: what a channel's last posts show, computed in code (no LLM). The model gets these numbers with the
@@ -11,6 +11,8 @@ export type ObservedFormat = 'text' | 'photo' | 'video' | 'other';
 
 export interface ChannelMetrics {
   posts:       number;
+  /** Spec 041 FR-008: posts with text; the text medians and shares count only these. */
+  textPosts?:  number;
   timezone:    string;
   /** Days from the oldest to the newest post (≥ 1), the days with a post, and posts per active day. */
   spanDays:    number;
@@ -42,8 +44,8 @@ export interface ChannelMetrics {
   medianViews: number | null;
 }
 
-const EMOJI_RE = /\p{Extended_Pictographic}/gu;
-const HASHTAG_RE = /#([\p{L}\p{N}_]{1,50})/gu;
+export const EMOJI_RE = /\p{Extended_Pictographic}/gu;
+export const HASHTAG_RE = /#([\p{L}\p{N}_]{1,50})/gu;
 const LINK_RE = /https?:\/\/\S+|\bt\.me\/\S+/iu;
 const MENTION_RE = /(?:^|[^\p{L}\p{N}_])@[A-Za-z][A-Za-z0-9_]{3,}/u;
 const CTA_RE = /(?<![\p{L}])(?:підпис\p{L}*|пиш\p{L}*\s+в\s+коментар\p{L}*|діл\p{L}*сь|постав\p{L}*|переход\p{L}*|чита\p{L}*\s+(?:далі|більше)|дивіть\p{L}*|голосу\p{L}*|долуча\p{L}*|subscribe|follow|share|join|read\s+more)(?![\p{L}])|👇|⬇️/iu;
@@ -132,7 +134,9 @@ export function computeMetrics(posts: SetupPost[], timezone: string): ChannelMet
   for (const p of posts) { const f = observedFormat(p); mix[f] = (mix[f] ?? 0) + 1; }
   for (const k of Object.keys(mix) as ObservedFormat[]) mix[k] = share(mix[k]!, n);
 
-  const texts = posts.map((p) => p.text ?? '');
+  // Spec 041 FR-008: a media post without text is not a zero-length, zero-emoji post — style numbers come from text.
+  const texts = posts.filter(hasPostText).map((p) => p.text);
+  const nt = texts.length;
   const emojiCounts = texts.map((t) => (t.match(EMOJI_RE) ?? []).length);
   const tags = new Map<string, number>();
   let tagged = 0;
@@ -159,18 +163,18 @@ export function computeMetrics(posts: SetupPost[], timezone: string): ChannelMet
   const views = posts.map((p) => p.views).filter((v): v is number => v != null);
 
   return {
-    posts: n, timezone, spanDays, activeDays: days.size,
+    posts: n, textPosts: nt, timezone, spanDays, activeDays: days.size,
     perDay: days.size ? Math.round((n / days.size) * 10) / 10 : 0,
     hours, peakHours, quiet: quietWindow(hours),
     formatMix: mix,
     length: { median: median(texts.map((t) => t.length)), p90: percentile(texts.map((t) => t.length), 90) },
     lineBreaks: median(texts.map((t) => (t.match(/\n/g) ?? []).length)),
-    emoji: { share: share(emojiCounts.filter((c) => c > 0).length, n), median: median(emojiCounts.filter((c) => c > 0)) },
-    hashtags: { share: share(tagged, n), vocabulary: [...tags.entries()].filter(([, c]) => c >= 2).sort((a, b) => b[1] - a[1]).map(([t]) => t).slice(0, 20) },
-    links: share(texts.filter((t) => LINK_RE.test(t)).length, n),
-    mentions: share(texts.filter((t) => MENTION_RE.test(t)).length, n),
-    cta: share(texts.filter((t) => CTA_RE.test(lastLine(t))).length, n),
-    signature: sig && sig[1] >= 2 && sig[1] / n >= 0.3 ? sig[0] : null,
+    emoji: { share: share(emojiCounts.filter((c) => c > 0).length, nt), median: median(emojiCounts.filter((c) => c > 0)) },
+    hashtags: { share: share(tagged, nt), vocabulary: [...tags.entries()].filter(([, c]) => c >= 2).sort((a, b) => b[1] - a[1]).map(([t]) => t).slice(0, 20) },
+    links: share(texts.filter((t) => LINK_RE.test(t)).length, nt),
+    mentions: share(texts.filter((t) => MENTION_RE.test(t)).length, nt),
+    cta: share(texts.filter((t) => CTA_RE.test(lastLine(t))).length, nt),
+    signature: sig && sig[1] >= 2 && sig[1] / Math.max(1, nt) >= 0.3 ? sig[0] : null,
     address: {
       ty: texts.reduce((a, t) => a + (t.match(TY_RE) ?? []).length, 0),
       vy: texts.reduce((a, t) => a + (t.match(VY_RE) ?? []).length, 0),
@@ -192,6 +196,7 @@ export function renderMetrics(m: ChannelMetrics): string {
     `Найкращі години за медіаною переглядів: ${m.peakHours.length ? m.peakHours.map((h) => `${h}:00`).join(', ') : 'замало даних'}.`,
     `Тиха пора без постів: ${m.quiet ? `${m.quiet.start}:00–${m.quiet.end}:00` : 'немає'}.`,
     `Формати: ${mix}.`,
+    m.textPosts != null && m.textPosts < m.posts ? `Постів із текстом: ${m.textPosts} з ${m.posts}; довжина, емодзі, хештеги, посилання й звертання нижче — лише з них.` : null,
     `Довжина: медіана ${m.length.median} символів, p90 ${m.length.p90}; переносів рядка в пості (медіана) ${m.lineBreaks}.`,
     `Емодзі: у ${pct(m.emoji.share)} постів, медіана ${m.emoji.median} на пост.`,
     `Хештеги: у ${pct(m.hashtags.share)} постів${m.hashtags.vocabulary.length ? `; повторювані: ${m.hashtags.vocabulary.map((t) => `#${t}`).join(' ')}` : ''}.`,
@@ -200,5 +205,5 @@ export function renderMetrics(m: ChannelMetrics): string {
     `Звертання: «ти»-форм ${m.address.ty}, «ви»-форм ${m.address.vy}.`,
     `Медіана переглядів: ${m.medianViews ?? 'невідомо'}; найкраще залучення: ${m.topPosts.join(', ') || '—'}.`,
     `Повторювані початки (кандидати в рубрики): ${m.rubrics.length ? m.rubrics.map((r) => `«${r.label}» (${r.posts.join(', ')})`).join('; ') : 'немає'}.`,
-  ].join('\n');
+  ].filter((x) => x !== null).join('\n');
 }

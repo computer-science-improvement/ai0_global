@@ -1,4 +1,6 @@
 import type { SteeringPromptRule } from '../steering/steering.types';
+import { RECENT_TOPIC_DAYS, recentTopicsBlock, recentTopicsOf } from '../story/recent-topics';
+import { plannerStyleLine } from '../rules/owner-style-overlay';
 import type { EditorCard } from '../card';
 import type { AgentLoop, AgentLoopResult } from '../harness/agent-loop';
 import type { ToolRegistry } from '../harness/tool-registry';
@@ -136,7 +138,9 @@ export class NetworkRunner {
     const memory = await this.d.memory.listActive(card.channelKey);
     const res = await this.run('orchestrator', card, c!,
       orchestratorSystemPrompt({ net, card, profile: await this.profileText(net), memory, skills: c!.agentCtx.skills, directives, profiles: await this.memberProfiles(net) }),
-      [orchestratorDailyPrompt({ net, card, now: this.now(), open, quota, hasDirectives: !!directives }), await this.catalog(card)].filter(Boolean).join('\n\n'),
+      [orchestratorDailyPrompt({ net, card, now: this.now(), open, quota, hasDirectives: !!directives }), await this.catalog(card),
+        // Spec 041 FR-004: the network's topics of 30 days (add_idea refuses an evergreen idea on one).
+        recentTopicsBlock(recentTopicsOf(await this.d.repo.recentExcerpts(net.resources.map((r) => r.ref), RECENT_TOPIC_DAYS).catch(() => [])))].filter(Boolean).join('\n\n'),
       STEPS.orchestrate, { brief: card.brief, ideaQuota: quota, newsRefs: await this.newsRefs(net) });
     if (this.d.afterOrchestration) await this.d.afterOrchestration(net.orchestrator).catch(() => {});
     if (this.d.runwayCheck) await this.d.runwayCheck(net.orchestrator, net.playbook).catch(() => {});
@@ -207,7 +211,9 @@ export class NetworkRunner {
     const profiles = await this.memberProfiles(c.net);
     const steering = this.d.steering ? await this.d.steering(`telegram:${card.channelKey}`).catch(() => []) : [];
     const commitments = this.d.commitments ? await this.d.commitments(c.net.orchestrator.id).catch(() => null) : null;
-    const system = `${buildSystemPrompt('planner', card, memory, c.agentCtx.skills, prefs, { steering, commitments })}\n\n${networkPlannerBlock({ net: c.net, accepted, now, tz: card.timezone, planDate, profiles })}`;
+    // Spec 041 FR-003: the anchor's effective style (owner rules on top) as one line.
+    const styleLine = plannerStyleLine(card.style, card.slang);
+    const system = `${buildSystemPrompt('planner', card, memory, c.agentCtx.skills, prefs, { steering, commitments })}\n\n${networkPlannerBlock({ net: c.net, accepted, now, tz: card.timezone, planDate, profiles })}${styleLine ? `\n\n${styleLine}` : ''}`;
     const quotas = await this.quotas(card.channelKey, planDate);
     const stories = this.d.stories ? await this.d.stories.activeBlock(card, 'planner', now).catch(() => null) : null;
     const user = [plannerUserPrompt(card, now, reserved, planDate), renderExperimentQuotas(quotas), await this.catalog(card), stories].filter(Boolean).join('\n\n');

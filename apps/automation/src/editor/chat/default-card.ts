@@ -1,5 +1,6 @@
 import type { EditorCard } from '../card';
 import { POST_FORMATS } from '../post/post-spec';
+import { effectiveStyle } from '../post/style/resource-style';
 
 export const CHAT_TIMEZONE = 'Europe/Kyiv';
 
@@ -34,5 +35,8 @@ export function makeDefaultCard(channelKey: string, title: string | null): Edito
  * published with the rules it was drafted under.
  */
 export function makeChatCard(channelKey: string, title: string | null): EditorCard {
-  return { ...makeDefaultCard(channelKey, title), formats: Object.fromEntries(POST_FORMATS.map((f) => [f, 1])) };
+  const card = makeDefaultCard(channelKey, title);
+  // Spec 041 FR-003: the style the stored card is read with (no vocabulary → hashtags off), so a draft lints the same
+  // before and after scheduling stores the card.
+  return { ...card, formats: Object.fromEntries(POST_FORMATS.map((f) => [f, 1])), style: effectiveStyle(null, { vocabulary: card.hashtags }) };
 }

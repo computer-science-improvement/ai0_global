@@ -1,4 +1,5 @@
 import type { EditorCard } from '../card';
+import { briefMediaMissing, specHasPicture } from './brief-media';
 import { MAX_BLOCKS, PostSpec, SUPPORTED_FORMATS } from './post-spec';
 import { inlineToPlain, visibleLength } from './inline-markup';
 import { blockWords, countBlocks, usesRichBlocks } from './blocks';
@@ -12,7 +13,12 @@ import { auditPostFromSpec } from './integrity/from-post-spec';
 import { INTEGRITY_CHECKS, runIntegrityChecks } from './integrity/registry';
 import type { AuditCard, AuditContext } from './integrity/types';
 
-export interface LintIssue { code: string; message: string }
+export interface LintIssue {
+  code: string;
+  message: string;
+  /** Spec 041 T2: an exact replacement code applies after the critic passes (language_euphony). */
+  fix?: { from: string; to: string };
+}
 /**
  * `warnings` never fail a post. Spec 034: the slop counters arrive here as `slop_*` codes
  * (see SLOP_WARNING_CODES / isSlopWarning in slop-lint.ts) for the pre-publish critic.
@@ -85,13 +91,13 @@ export interface LintIntegrity {
 }
 
 type LintCard = Pick<EditorCard, 'formats' | 'hashtags' | 'hashtagMin' | 'hashtagMax' | 'footer' | 'linkStyle' | 'emojiPolicy' | 'bannedTerms' | 'language'> & RenderCard
-  & Partial<Pick<EditorCard, 'humor' | 'slang' | 'emojiPref' | 'readerQuestionsMax' | 'style'>>;
+  & Partial<Pick<EditorCard, 'humor' | 'slang' | 'emojiPref' | 'readerQuestionsMax' | 'style' | 'brief'>>;
 
 export function lintPost(spec: PostSpec, card: LintCard, integrity: LintIntegrity = {}): LintResult {
   const errors: LintIssue[] = [];
   const warnings: LintIssue[] = [];
   const err = (code: string, message: string) => errors.push({ code, message });
-  const warn = (code: string, message: string) => warnings.push({ code, message });
+  const warn = (code: string, message: string, fix?: LintIssue['fix']) => warnings.push(fix ? { code, message, fix } : { code, message });
 
   // ── format ────────────────────────────────────────────────────────────────
   if (!(SUPPORTED_FORMATS as readonly string[]).includes(spec.format)) {
@@ -115,12 +121,17 @@ export function lintPost(spec: PostSpec, card: LintCard, integrity: LintIntegrit
   }
   if (new Set(tags).size !== tags.length) err('hashtag_duplicate', 'хештеги повторюються');
   // Spec 037 FR-008: with style.hashtags = off the count does not apply (any hashtag is hashtag_while_off).
-  if (spec.format !== 'poll' && spec.format !== 'quiz' && card.style?.hashtags !== 'off' && (tags.length < card.hashtagMin || tags.length > card.hashtagMax)) {
-    err('hashtag_count', `хештегів має бути ${card.hashtagMin}–${card.hashtagMax}, зараз ${tags.length}`);
+  // Spec 041 FR-003: no vocabulary, no minimum (there is nothing to take the hashtags from).
+  const tagMin = card.hashtags.length ? card.hashtagMin : 0;
+  if (spec.format !== 'poll' && spec.format !== 'quiz' && card.style?.hashtags !== 'off' && (tags.length < tagMin || tags.length > card.hashtagMax)) {
+    err('hashtag_count', `хештегів має бути ${tagMin}–${card.hashtagMax}, зараз ${tags.length}`);
   }
 
   // ── media ─────────────────────────────────────────────────────────────────
   const n = spec.media.length;
+  // Spec 041 FR-008: the brief's picture requirement («опитування з картинкою», «кожен пост — фото»).
+  const briefMedia = briefMediaMissing(spec.format, specHasPicture(spec), card.brief);
+  if (briefMedia) err('brief_media_missing', briefMedia);
   if (spec.format === 'photo' && n !== 1) {
     err('media_count', n === 0
       ? 'photo потребує рівно 1 зображення, зараз 0 — додай media: [{"url": "https://…"}] (пряме посилання на картинку з джерела, бібліотеки чи від власника) або зміни format на text'
@@ -265,7 +276,7 @@ export function lintPost(spec: PostSpec, card: LintCard, integrity: LintIntegrit
  */
 function integrityIssues(
   spec: PostSpec, card: LintCard, i: LintIntegrity,
-  err: (code: string, message: string) => void, warn: (code: string, message: string) => void,
+  err: (code: string, message: string) => void, warn: (code: string, message: string, fix?: LintIssue['fix']) => void,
 ): void {
   const timezone = i.timezone ?? (card as { timezone?: string }).timezone ?? 'Europe/Kyiv';
   const post = auditPostFromSpec(spec, {
@@ -277,6 +288,6 @@ function integrityIssues(
     const message = f.excerpt ? `${f.message} («${f.excerpt}»)` : f.message;
     if (f.code === 'check_failed') warn(f.code, message);
     else if (f.level === 'error') err(f.code, message);
-    else warn(f.code, message);
+    else warn(f.code, message, f.fix);
   }
 }

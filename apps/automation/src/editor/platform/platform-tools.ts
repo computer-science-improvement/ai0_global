@@ -3,7 +3,7 @@ import { z } from 'zod';
 import { defineTool, EditorTool, ToolContext } from '../harness/tool';
 import { parseResourceRef, Platform } from '../agents/agent.types';
 import type { EditorPlansRepository } from '../repo/editor-plans.repository';
-import { AgentPlatformPostSpecSchema, lintPlatformPost, renderPlatform } from './platform-spec';
+import { AgentPlatformPostSpecSchema, lintPlatformPost, renderPlatform, type PlatformLintResult } from './platform-spec';
 import type { VoicePrefs } from '../post/slop-lint';
 import { lintFailed } from '../post/lint-post';
 import { publishPlatformNow, PublishPlatformDeps } from './publish-platform';
@@ -66,7 +66,8 @@ export function buildPlatformTools(d: PlatformToolDeps): EditorTool[] {
     description: 'Опублікувати нативний пост у ресурс слота (Instagram / Facebook / Threads / TikTok) — завершує роботу. Перед збереженням пост читає критик: critic_revise — виправ зауваження й виклич ще раз (одна спроба). У shadow-режимі лише зберігає превʼю; у режимі апруву пост готується повністю і чекає схвалення власника. Перед цим lint_platform_post.',
     kind: 'terminal', roles: ['executor'], timeoutMs: PUBLISH_TOOL_TIMEOUT_MS,
     input: z.object({ spec: AgentPlatformPostSpecSchema }),
-    execute: async ({ spec }, ctx) => {
+    execute: async (input, ctx) => {
+      let spec = input.spec;
       const slot = slotOf(ctx);
       if (!slot || !ctx.slotId) return { error: 'no_platform_slot', details: 'цей прогін не має слота іншої платформи' };
       const s = await d.plans.getSlot(ctx.slotId);
@@ -92,9 +93,26 @@ export function buildPlatformTools(d: PlatformToolDeps): EditorTool[] {
         maxPerDay: slot.maxPerDay, vocabulary: slot.vocabulary, bannedTerms: slot.bannedTerms, voice: slot.voice, ...(dry ? { dry: true } : {}),
         ...(gate ? {
           review: async ({ text, lint }) => {
-            const c = await gate.check({ text, spec, format: spec.format, warnings: [...lint.warnings, ...media.warnings] });
+            const c = await gate.check({
+              text, spec, format: spec.format, warnings: [...lint.warnings, ...media.warnings],
+              // Spec 041 FR-002: the critic's exact edits are linted again (the same lint and media rules) before going out.
+              relint: async (edited) => {
+                const e = edited as typeof spec;
+                const l = lintPlatformPost(e, { platform: parseResourceRef(slot.resourceRef)!.platform as Exclude<Platform, 'telegram'>, bannedTerms: slot.bannedTerms, vocabulary: slot.vocabulary, voice: slot.voice });
+                const m = platformMediaFindings(e, {
+                  resourceRef: slot.resourceRef, sources: await gate.groundingSources(e),
+                  style: (ctx.extras?.card as { style?: unknown } | undefined)?.style, topic: s.topicMode === 'live' ? null : s.topic,
+                });
+                const errors = [...l.errors, ...m.errors].map((x: any) => `${x.code}: ${x.message}`);
+                return errors.length ? { ok: false, errors } : { ok: true, state: l };
+              },
+            });
             if (c.kind !== 'proceed') return { halt: c.result };
             critic = criticSummary(c.critic);
+            if (c.edited) {
+              spec = c.edited.spec as typeof spec;
+              return { spec, lint: c.edited.state as PlatformLintResult };
+            }
             return null;
           },
         } : {}),

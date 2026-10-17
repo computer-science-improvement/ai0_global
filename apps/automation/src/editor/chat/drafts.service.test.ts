@@ -95,11 +95,14 @@ test('save: validates with the channel card, stores preview + lint, lint errors 
   assert.equal((upd.draft.spec as any).title, 'Інший заголовок');
 });
 
-test('save: default card for an own channel without a card (any hashtag, every format); unknown channel refused', async () => {
+test('save: default card for an own channel without a card (no hashtags, every format); unknown channel refused', async () => {
   const s = setup({ mine: [{ channelKey: '@mine', title: 'Мій канал' }] });
-  const r: any = await s.svc.save({ chatId: null, channel: '@mine', spec: makeSpec({ hashtags: ['будь_що', 'ще'], format: 'photo' }) });
+  const r: any = await s.svc.save({ chatId: null, channel: '@mine', spec: makeSpec({ hashtags: [], format: 'photo' }) });
   assert.equal(r.ok, true);
   assert.equal(r.lint.ok, true, JSON.stringify(r.lint));
+  // Spec 041 FR-003: no vocabulary → hashtags off, as the minimal card scheduling stores is read.
+  const tagged: any = await s.svc.save({ chatId: null, channel: '@mine', spec: makeSpec({ hashtags: ['будь_що'], format: 'photo' }) });
+  assert.deepEqual(tagged.lint.errors.map((e: any) => e.code), ['hashtag_while_off']);
   assert.equal(r.card.title, 'Мій канал');
   assert.equal(r.card.formats.carousel, 1);
   const unknown: any = await s.svc.save({ chatId: null, channel: '@stranger', spec: makeSpec() });
@@ -160,7 +163,7 @@ test('publish: guards (lint, paused, content-ledger dedup, verbatim copy) then s
 
 test('publish: no mirrors without a real card; a Telegram failure marks the draft failed', async () => {
   const s = setup({ mine: [{ channelKey: '@mine', title: null }] });
-  const draft = await save(s, makeSpec(), '@mine');
+  const draft = await save(s, makeSpec({ hashtags: [] }), '@mine');
   assert.equal(((await s.svc.publish(draft.id)) as any).ok, true);
   assert.equal(s.crossposts.length, 0);
 
@@ -174,7 +177,7 @@ test('publish: no mirrors without a real card; a Telegram failure marks the draf
 
 test('schedule: time window, minimal card + reserved slot, draft scheduled', async () => {
   const s = setup({ mine: [{ channelKey: '@mine', title: 'Мій канал' }] });
-  const draft = await save(s, makeSpec(), '@mine');
+  const draft = await save(s, makeSpec({ hashtags: [] }), '@mine');
   assert.equal(((await s.svc.schedule(draft.id, new Date(NOW.getTime() + 60_000))) as any).error, 'too_soon');
   assert.equal(((await s.svc.schedule(draft.id, new Date(NOW.getTime() + 61 * 86_400_000))) as any).error, 'too_far');
 
@@ -244,7 +247,7 @@ const slotOf = (s: ReturnType<typeof setup>, id: string, over: Partial<EditorSlo
 
 test('publishScheduled: publishes at the time through the same steps, slot + draft published', async () => {
   const s = setup({ mine: [{ channelKey: '@mine', title: 'Мій канал' }] });
-  const draft = await save(s, makeSpec(), '@mine');
+  const draft = await save(s, makeSpec({ hashtags: [] }), '@mine');
   const at = new Date('2026-10-02T16:00:00Z');
   await s.svc.schedule(draft.id, at);
   const ok = await s.svc.publishScheduled(slotOf(s, 'slot1'), new Date(at.getTime() + 30_000));

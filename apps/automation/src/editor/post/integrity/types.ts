@@ -129,6 +129,8 @@ export interface Finding {
   message: string;
   /** The words of the post the finding is about (short). */
   excerpt?: string;
+  /** Spec 041 T2: an exact replacement code may apply to the spec without an LLM turn (`from` as written in the post). */
+  fix?: { from: string; to: string };
 }
 
 /**

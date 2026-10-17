@@ -8,7 +8,7 @@ import type { IntegrityCheck } from '../types';
  */
 export const storyCheck: IntegrityCheck = {
   id: 'story',
-  codes: ['story_repeat', 'followup_without_new_facts', 'followup_restates', 'story_cross_channel'],
+  codes: ['story_repeat', 'followup_without_new_facts', 'followup_restates', 'story_cross_channel', 'topic_repeat'],
   run: (post, ctx) => assessStory(post, ctx).findings,
   // Before publishing the story guard of publish_post enforces it with the whole history (14 / 30 days, the network's
   // 24 h, posts scheduled later): lintPost's `previous` (T9, the last 20 posts) is too short for a story.

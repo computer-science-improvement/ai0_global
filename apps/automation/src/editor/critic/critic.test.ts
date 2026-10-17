@@ -521,3 +521,33 @@ test('prompts: the critic system prompt carries its rubric and voice-core; the u
   const u = criticUserPrompt(req({ source: null }));
   assert.match(u, /Джерела немає/);
 });
+
+// ── spec 041 FR-002: pass_with_edits through the publish tools ─────────────────
+
+test('live publish_post: a pass_with_edits publishes the edited spec (one critic call, no rewrite turn)', async () => {
+  const spec = makeSpec({ body: [{ type: 'lead', text: 'Телескоп Вебб показав туманність Кільце' }, { type: 'p', text: 'Оболонки газу, які зоря скинула тисячі років тому, світяться.' }] });
+  const h = telegramHarness({
+    mode: 'live',
+    critic: [{ calls: [{ name: 'submit_critique', args: { scores: scores({ language: 4 }), verdict: 'pass_with_edits', notes: '«які зоря скинула» — краще «що їх скинула зоря».', edits: [{ from: 'які зоря скинула', to: 'що їх скинула зоря' }] } }] }],
+    executor: [publishCall(spec)],
+  });
+  const res = await h.run();
+  assert.equal(res.status, 'ok');
+  assert.equal(h.sent.length, 1);
+  assert.match(JSON.stringify(h.sent[0]), /що їх скинула зоря/);
+  assert.doesNotMatch(JSON.stringify(h.sent[0]), /які зоря скинула/);
+  assert.equal(h.critic.recorder.runs.length, 1);
+  assert.equal(h.execLlm.requests.length, 1, 'no rewrite turn');
+  const published = h.updates.find((u) => u.status === 'published');
+  assert.match(JSON.stringify(published.postSpec), /що їх скинула зоря/);
+  assert.deepEqual((res.terminalResult as any).critic.edits_applied, [{ from: 'які зоря скинула', to: 'що їх скинула зоря' }]);
+});
+
+test('platform: a pass_with_edits publishes the edited caption', async () => {
+  const h = platformHarness('live', [{ calls: [{ name: 'submit_critique', args: { scores: scores(), verdict: 'pass_with_edits', notes: 'Дрібниця.', edits: [{ from: 'червона планета', to: 'Червона планета' }] } }] }]);
+  const r: any = await h.tool.execute({ spec: pspec() }, h.ctx);
+  assert.equal(r.ok, true, JSON.stringify(r));
+  assert.equal(h.published.length, 1);
+  assert.match(h.published[0][1].caption, /Марс — Червона планета/);
+  assert.match(JSON.stringify(h.updates.at(-1).postSpec ?? h.inserted.at(-1)?.spec), /Червона планета/);
+});

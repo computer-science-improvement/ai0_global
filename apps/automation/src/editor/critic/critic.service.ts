@@ -4,7 +4,8 @@ import type { AgentLoop, AgentLoopResult } from '../harness/agent-loop';
 import type { AgentBudget } from '../harness/budget.service';
 import { defineTool } from '../harness/tool';
 import type { EditorRole } from '../llm/llm.types';
-import { resolveModel } from '../llm/model-registry';
+import { lightCheckerModel, resolveModel } from '../llm/model-registry';
+import type { DraftRisk } from './critic-risk';
 import { readModelContext, type Workspace } from '../llm/workspace';
 import type { VoicePrefs } from '../post/slop-lint';
 import { SkillLibrary, type Skill } from '../skills/skill-library';
@@ -57,6 +58,8 @@ export interface CriticRequest {
   slopWarnings: Array<{ code: string; message: string }>;
   /** Spec 037 T6: every lint warning (hygiene, dates, style, … and the slop ones) for the prompt; absent = slopWarnings. */
   lintWarnings?: Array<{ code: string; message: string }>;
+  /** Spec 041 FR-007: the draft's risk; a low one is read by the light checker model. Absent = high (the normal model). */
+  risk?:        DraftRisk | null;
   /** Pass 2: the first verdict, so the critic sees what was asked. */
   previous?:    Pick<StoredCritic, 'verdict' | 'notes' | 'scores'> | null;
   /** Registry agent whose budget the critic run counts against (the executor's). */
@@ -137,7 +140,7 @@ export function criticUserPrompt(r: CriticRequest): string {
       clip(r.examples, CAP.examples));
   }
   if (r.profile && /Табу-теми/.test(r.profile)) s.push('', 'Табу-теми з профілю — це теми, про які ресурс не пише: пост на табу-тему → sense ≤ 2.');
-  s.push(...criticOwnerRulesLines(r.ownerRules));
+  s.push(...criticOwnerRulesLines(criticRules(r.ownerRules)));
   s.push(...criticSteeringLines(r.steering));
   s.push('', '## Слот');
   s.push(`Формат: ${r.format}.${r.topic ? ` Тема: ${r.topic}.` : ''}${r.angle ? ` Кут: ${r.angle}.` : ''}`);
@@ -179,20 +182,43 @@ export function criticOwnerRulesLines(rules: readonly OwnerRuleLine[] | null | u
     '', '### Правила власника каналу (обовʼязкові, важливіші за плейбук, профіль і приклади)',
     ...rules.map((x) => `- #${x.id} ${clip(x.text, RULE_CAP)}`),
     'Оціни owner_rules: 5 — пост не порушує жодного правила; порушене правило → owner_rules ≤ 2, його id у broken_rules і назви його в нотатках («#12: без хештегів»). Якщо плейбук чи профіль кажуть інше — правило власника перемагає. Правило не про цей пост (інший формат, інша тема) — не порушення.',
+    'У rule_checks дай вердикт по КОЖНОМУ правилу зі списку: {id, kept} і для порушеного — quote, дослівна цитата з поста. Пропущене правило — код поверне пост на доопрацювання.',
   ];
 }
 
+/** Spec 041 FR-005: the owner rules the critic checks — those a post's text can show (`isTextRule`). */
+export function criticRules(rules: readonly OwnerRuleLine[] | null | undefined): OwnerRuleLine[] {
+  return (rules ?? []).filter(isTextRule);
+}
+
 /**
- * Spec 040 FR-011: broken rules are kept only when they were in the prompt, and a named broken rule caps
- * `owner_rules` at the reject threshold. Without rules in the prompt the axis is dropped.
+ * Spec 040 FR-011 / 041 FR-005: broken rules are kept only when they were in the prompt, and a named broken rule
+ * (in `broken_rules` or a `rule_checks` entry with kept = false) caps `owner_rules` at the reject threshold. Every
+ * rule in the prompt needs a verdict and the axis a score: what is missing comes back as `missing_rules` (a revise).
+ * Without rules in the prompt the axis and the checks are dropped.
  */
-export function normalizeOwnerRules(c: Critique, rules: readonly OwnerRuleLine[] | null | undefined): Critique {
+export function normalizeOwnerRules(c: Critique, rules: readonly OwnerRuleLine[] | null | undefined): Critique & { missing_rules?: number[] } {
   const { owner_rules, ...base } = c.scores;
-  if (!rules?.length) return { ...c, scores: base, broken_rules: undefined };
+  if (!rules?.length) return { ...c, scores: base, broken_rules: undefined, rule_checks: undefined };
   const known = new Set(rules.map((x) => x.id));
-  const broken = [...new Set((c.broken_rules ?? []).filter((id) => known.has(id)))];
+  const checks = (c.rule_checks ?? []).filter((x) => known.has(x.id));
+  const broken = [...new Set([...(c.broken_rules ?? []), ...checks.filter((x) => !x.kept).map((x) => x.id)].filter((id) => known.has(id)))];
+  const checked = new Set(checks.map((x) => x.id));
+  const missing = owner_rules == null ? rules.map((x) => x.id) : rules.map((x) => x.id).filter((id) => !checked.has(id) && !broken.includes(id));
   const score = broken.length ? Math.min(owner_rules ?? CRITIC_REJECT_AT, CRITIC_REJECT_AT) : owner_rules;
-  return { ...c, scores: score == null ? base : { ...base, owner_rules: score }, broken_rules: broken.length ? broken : undefined };
+  return {
+    ...c, scores: score == null ? base : { ...base, owner_rules: score }, broken_rules: broken.length ? broken : undefined,
+    rule_checks: checks.length ? checks : undefined, ...(missing.length && !broken.length ? { missing_rules: missing } : {}),
+  };
+}
+
+/**
+ * Spec 041 FR-005: owner rules a post's text cannot show — times, frequency, the schedule, formats per week,
+ * approvals — are left out of the critic's prompt (the planner and the schedule enforce them).
+ */
+const NON_TEXT_RULE = /(?:\b\d{1,2}[:.]\d{2}\b|(?:^|\s)о\s\d{1,2}(?:\s|$|[:.])|годин|разів|на\s+день|на\s+тиждень|у\s+день|щодня|щотижня|щоранку|щовечора|розклад|тихі\s+години|не\s+частіше|не\s+рідше|інтервал|апрув|схвален|погодж|публікуй\s+о|постів\s+на|постів\s+у)/iu;
+export function isTextRule(r: Pick<OwnerRuleLine, 'text'>): boolean {
+  return !NON_TEXT_RULE.test(r.text);
 }
 
 /**
@@ -210,10 +236,14 @@ export class CriticService {
   async review(r: CriticRequest): Promise<CriticResult> {
     const { workspace, defaultModel } = await readModelContext(this.d);
     const criticModel = this.d.criticModel ? await this.d.criticModel(workspace).catch(() => null) : null;
-    const model = resolveModel('checker', this.d.env, r.card?.models ?? null, { agentModel: criticModel, defaultModel, workspace });
+    const strong = resolveModel('checker', this.d.env, r.card?.models ?? null, { agentModel: criticModel, defaultModel, workspace });
+    // Spec 041 FR-007: a low-risk draft (no external facts to verify) goes to the light model; the lexicon in lint
+    // covers the language. High risk keeps the owner's critic model or the role default.
+    const light = r.risk?.level === 'low' ? lightCheckerModel(this.d.env, workspace) : null;
+    const model = light ? resolveModel('checker', this.d.env, null, { agentModel: light, workspace }) : strong;
     const tool = defineTool({
       name: 'submit_critique',
-      description: 'Віддати оцінку поста (завершує роботу): оцінки 1–5 за шістьма осями (і owner_rules, коли є правила власника), порушені правила (broken_rules), вердикт pass / revise / reject і короткі нотатки українською.',
+      description: 'Віддати оцінку поста (завершує роботу): оцінки 1–5 за сімома осями (і owner_rules, коли є правила власника), порушені правила (broken_rules), вердикт pass / pass_with_edits (з точними правками edits) / revise / reject і короткі нотатки українською.',
       kind: 'terminal', roles: ['checker'],
       input: CritiqueInput,
       execute: async (c) => ({ ok: true, ...c }),
@@ -243,7 +273,10 @@ export class CriticService {
       cost += res.totals?.costUsd ?? 0;
       if (res.terminalTool === 'submit_critique' && res.terminalResult) {
         const parsed = CritiqueInput.safeParse(res.terminalResult);
-        if (parsed.success) return { ok: true, critic: this.store(parsed.data, r, model.model, res.runId, cost) };
+        if (parsed.success) {
+          const critic = this.store(parsed.data, r, model.model, res.runId, cost);
+          return { ok: true, critic: r.risk ? { ...critic, route: { risk: r.risk.score, level: r.risk.level, factors: r.risk.factors, model: model.model } } : critic };
+        }
         error = 'invalid verdict';
         continue;
       }
@@ -256,11 +289,14 @@ export class CriticService {
 
   private store(raw: Critique, r: CriticRequest, model: string, runId: string | null, cost: number): StoredCritic {
     const slop = r.slopWarnings.map((w) => w.code);
-    const c = normalizeOwnerRules(raw, r.ownerRules);
+    const c = normalizeOwnerRules(raw, criticRules(r.ownerRules));
     const d = decideVerdict(c, slop);
+    const edits = c.verdict === 'pass_with_edits' && d.verdict === 'pass' ? (c.edits ?? []).filter((e) => e.from !== e.to) : [];
     return {
       verdict: d.verdict, scores: c.scores, notes: c.notes.trim(), model_verdict: c.verdict, reason: d.reason,
       ...(c.broken_rules ? { broken_rules: c.broken_rules } : {}),
+      ...(c.rule_checks ? { rule_checks: c.rule_checks } : {}),
+      ...(edits.length ? { edits } : {}),
       pass: r.previous ? 2 : 1, slop_warnings: slop, model, run_id: runId, cost_usd: Number(cost.toFixed(6)),
       at: (this.d.now ?? (() => new Date()))().toISOString(),
     };

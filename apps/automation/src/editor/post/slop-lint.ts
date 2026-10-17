@@ -133,12 +133,21 @@ function adjEnding(w: string): string | null {
   return s ? s[1] : null;
 }
 
-/** «яскравий, сміливий і неймовірний» — three agreeing adjectives in a row. */
+/**
+ * Spec 041 FR-006: a relative adjective names a kind, not a quality — «англійська, французька й німецька»,
+ * «математичних, логічних і символьних задачах» is a list of categories, not slop.
+ */
+const RELATIVE_STEM = /(?:ичн|ічн|ськ|цьк|зьк|ов|ев|єв|альн|ильн)(?:ий|ого|ому|им|их|ими|ої|ій|ою|ую|а|е|і|у)$/u;
+
+/** «яскравий, сміливий і неймовірний» — three agreeing adjectives in a row (not a list of kinds). */
 export function adjectiveTriple(text: string): string | null {
   const re = /(?<![\p{L}ʼ])([\p{L}ʼ]{4,}),\s+([\p{L}ʼ]{4,})(?:,\s+|\s+(?:і|й|та)\s+)([\p{L}ʼ]{4,})(?![\p{L}ʼ])/gu;
   for (const m of text.matchAll(re)) {
-    const e = [m[1], m[2], m[3]].map(adjEnding);
-    if (e[0] && e[0] === e[1] && e[1] === e[2]) return m[0];
+    const words = [m[1], m[2], m[3]];
+    const e = words.map(adjEnding);
+    if (!(e[0] && e[0] === e[1] && e[1] === e[2])) continue;
+    if (words.filter((w) => RELATIVE_STEM.test(w.toLowerCase())).length >= 2) continue;
+    return m[0];
   }
   return null;
 }
@@ -153,6 +162,14 @@ export const SLANG_MARKERS: readonly string[] = [
   'треш', 'трешак', 'трешов*', 'капець', 'капєц', 'жесть', 'кайф*', 'прикол', 'приколи', 'приколу', 'прикольн*', 'хайп*', 'агонь', 'кста', 'имхо', 'імхо',
   'офігенн*', 'фігня', 'чувак*', 'пацани', 'шок контент', 'ізі', 'изи',
 ];
+/**
+ * Spec 041 FR-001: domain slang — gaming and IT words a news or explainer text should say in plain Ukrainian
+ * («досягнення», «одиночна гра», «користувач», «оновлення»). Gated by format_prefs.slang like SLANG_MARKERS.
+ */
+export const DOMAIN_SLANG: Readonly<Record<'gaming' | 'it', readonly string[]>> = {
+  gaming: ['ачівк*', 'ачивк*', 'синґл*', 'сінгл*', 'тімейт*', 'тіммейт*', 'тиммейт*', 'каточк*', 'нуб', 'нуби', 'нубів', 'нубам', 'нубськ*', 'нерф*', 'апнул*', 'апнут*', 'донатер*', 'фармит*', 'фармил*', 'гріндит*', 'гріндил*', 'рейдж*', 'скіл', 'скіли', 'скілл*'],
+  it:     ['юзер*', 'юзат*', 'заюзат*', 'апдейт*', 'фіча', 'фічі', 'фічу', 'фічею', 'фіч', 'фічами', 'фічах', 'пофікс*', 'пофіксил*', 'фіксанул*', 'запушил*', 'задеплоїл*', 'гуглит*', 'загуглит*'],
+};
 
 /** Markers are whole words: a hyphen also bounds them out («краш-тест» is not «краш»). */
 const MARKER_EDGE = '[\\p{L}\\p{N}ʼ-]';
@@ -163,7 +180,7 @@ function markerRegex(m: string): RegExp {
   return new RegExp(`${lw ? `(?<!${MARKER_EDGE})` : ''}${body}${rw ? `(?!${MARKER_EDGE})` : ''}`, 'u');
 }
 const HUMOR_RE = HUMOR_MARKERS.map((m) => ({ m, re: markerRegex(m) }));
-const SLANG_RE = SLANG_MARKERS.map((m) => ({ m, re: markerRegex(m) }));
+const SLANG_RE = [...SLANG_MARKERS, ...DOMAIN_SLANG.gaming, ...DOMAIN_SLANG.it].map((m) => ({ m, re: markerRegex(m) }));
 
 function hits(text: string, list: Array<{ re: RegExp }>): string[] {
   const t = normalizeSlop(text);

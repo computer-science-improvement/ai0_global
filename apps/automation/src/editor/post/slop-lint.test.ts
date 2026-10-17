@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { findBannedTerms, findSlopPhrases, normalizeSlop, phraseRegex, SLOP_PHRASES } from './slop-phrases';
 import {
-  adjectiveTriple, HUMOR_MARKERS, isSlopWarning, moralCloser, rhetoricalQa, SLANG_MARKERS, SLOP_WARNING_CODES, slopWarnings,
+  adjectiveTriple, DOMAIN_SLANG, HUMOR_MARKERS, isSlopWarning, moralCloser, rhetoricalQa, SLANG_MARKERS, SLOP_WARNING_CODES, slopWarnings,
 } from './slop-lint';
 import { lintPost } from './lint-post';
 import { lintPlatformPost, PlatformPostSpecSchema } from '../platform/platform-spec';
@@ -119,7 +119,7 @@ test('humour and slang markers: warnings while off (default), silent once the ow
   assert.ok(codes('Це кринж.', { humor: 'light' }).includes('slop_slang_off'), 'humour on does not allow slang');
   // Plain news vocabulary is not slang.
   assert.deepEqual(codes('Краш-тест показав пʼять зірок. Чілі підписала угоду. База даних виросла до 2 млн записів.'), []);
-  for (const m of [...HUMOR_MARKERS, ...SLANG_MARKERS]) assert.equal(normalizeSlop(m), m, `marker normalised: ${m}`);
+  for (const m of [...HUMOR_MARKERS, ...SLANG_MARKERS, ...DOMAIN_SLANG.gaming, ...DOMAIN_SLANG.it]) assert.equal(normalizeSlop(m), m, `marker normalised: ${m}`);
 });
 
 test('a clean Ukrainian news post has no slop warnings', () => {

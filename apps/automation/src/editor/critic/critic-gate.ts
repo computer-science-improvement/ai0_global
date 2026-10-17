@@ -18,6 +18,8 @@ import { sourcePassages, type GroundingSource, type SourcePage } from '../post/g
 import { groundingCheckOf } from './critic-passages';
 import { criticMediaOf } from './critic-media';
 import { storedSourcesOf, type StoredSource } from './stored-sources';
+import { applySpecEdits, lintFixes, type TextEdit } from './spec-edits';
+import { draftRisk } from './critic-risk';
 import type { OwnerRuleLine } from '../rules/owner-rules-prompt';
 
 /** Publish tools wait for the critic (two attempts) and then for the send itself. */
@@ -31,7 +33,12 @@ export interface CriticPost {
   text:     string;
   spec:     unknown;
   format:   string;
-  warnings: ReadonlyArray<{ code: string; message: string }>;
+  warnings: ReadonlyArray<{ code: string; message: string; fix?: TextEdit }>;
+  /**
+   * Spec 041 FR-002: runs the publish tool's guards (lint first) and render again on an edited spec. Without it the
+   * gate never edits (the critic's edits stay on the verdict as advice).
+   */
+  relint?:  (spec: unknown) => Promise<RelintResult>;
   /** Spec 037 T5: the (scheduled) publish instant and the resource zone, for the critic's date line. */
   publishAt?: string;
   timezone?:  string;
@@ -39,19 +46,25 @@ export interface CriticPost {
   story?:     CriticStoryContext | null;
 }
 
+/** Spec 041 FR-002: the guards on an edited spec — `state` is whatever the publish tool needs to go on with it. */
+export type RelintResult = { ok: true; state?: unknown } | { ok: false; errors: string[] };
+
 /**
  * The gate's answer to a publish tool:
- * - `proceed`: store / publish / create the approval card (the verdict is already on the slot);
+ * - `proceed`: store / publish / create the approval card (the verdict is already on the slot); with `edited`, the
+ *   spec code edited after the pass (spec 041 FR-002) and the guards' state for it replace the tool's own;
  * - `revise`: return `result` (a tool error with the notes) — the executor rewrites once;
  * - `halt`: the slot is already `skipped` (reject) or `failed` (critic error); return `result` to end the run;
  * - `blocked`: the text has a broken character (spec 037 T6) — return `result`, the executor rewrites the word; the
  *   critic is not called and nothing is stored.
  */
 export type CriticGateOutcome =
-  | { kind: 'proceed'; critic: StoredCritic }
+  | { kind: 'proceed'; critic: StoredCritic; edited?: EditedSpec }
   | { kind: 'blocked'; result: ToolError }
   | { kind: 'revise'; critic: StoredCritic; result: ToolError & { _grantSteps: number } }
   | { kind: 'halt'; critic: StoredCritic; result: Record<string, unknown> };
+
+export interface EditedSpec { spec: unknown; state?: unknown }
 
 export interface CriticGateDeps {
   critic: Pick<CriticService, 'review'>;
@@ -121,9 +134,11 @@ export function criticGateOf(ctx: ToolContext): CriticGate | null {
  */
 export class CriticGate {
   private passes = 0;
+  /** Spec 041 FR-007: what the critic cost on this post so far (every pass, errors included). */
+  private spent = 0;
   private first: StoredCritic | null = null;
   /** The spec that already proceeded: a retry of the same post after a later error is not reviewed again. */
-  private proceeded: { hash: string; critic: StoredCritic } | null = null;
+  private proceeded: { hash: string; critic: StoredCritic; edited?: EditedSpec } | null = null;
   private readonly fetched = new Map<string, string>();
   /** Spec 037 T5: what the run read, with the publication date when the page or the feed item gave one. */
   private readonly read = new Map<string, AuditSource>();
@@ -283,7 +298,9 @@ export class CriticGate {
       };
     }
     const hash = hashOf(post.spec);
-    if (this.proceeded?.hash === hash) return { kind: 'proceed', critic: this.proceeded.critic };
+    if (this.proceeded?.hash === hash) {
+      return { kind: 'proceed', critic: this.proceeded.critic, ...(this.proceeded.edited ? { edited: this.proceeded.edited } : {}) };
+    }
 
     const slop = slopCodes(post.warnings);
     const read = this.storedSources(post.spec);
@@ -301,17 +318,23 @@ export class CriticGate {
       media: this.media(post.spec),
       ownerRules: this.c.ownerRules ?? null,
       steering: this.c.steering ?? null,
+      risk: draftRisk({ spec: post.spec, text: post.text, contentKind: this.c.voice?.style?.content_kind ?? null }),
     });
     this.passes++;
     const history = this.first ? [{
       verdict: this.first.verdict, scores: this.first.scores, notes: this.first.notes, reason: this.first.reason, pass: this.first.pass, at: this.first.at,
+      cost_usd: this.first.cost_usd, ...(this.first.route ? { route: this.first.route } : {}),
     }] : undefined;
+    // Spec 041 FR-007: the critic's spend on this post across the passes of the run.
+    this.spent += r.ok ? r.critic.cost_usd : r.costUsd;
+    const lintCodes = [...new Set(post.warnings.map((w) => w.code))];
+    const total = { cost_total_usd: Number(this.spent.toFixed(6)), ...(lintCodes.length ? { lint_warnings: lintCodes } : {}) };
 
     if (!r.ok) {
       const critic: StoredCritic = {
         verdict: 'error', scores: null, notes: `Критик не відповів: ${r.error}`, model_verdict: null, reason: r.error,
         pass: this.passes, slop_warnings: slop, model: null, run_id: r.runIds.at(-1) ?? null, cost_usd: Number(r.costUsd.toFixed(6)),
-        at: new Date().toISOString(), ...(history ? { history } : {}), ...withSources,
+        at: new Date().toISOString(), ...(history ? { history } : {}), ...withSources, ...total,
       };
       if (this.c.mode === 'approve') {
         // The owner reviews every waiting post anyway: the card shows the critic error and is never auto-approved.
@@ -326,27 +349,14 @@ export class CriticGate {
       return { kind: 'halt', critic, result: { ok: true, failed: 'critic_failed', details: r.error } };
     }
 
-    const critic: StoredCritic = { ...r.critic, ...(history ? { history } : {}), ...withSources };
-    if (critic.verdict === 'pass') return this.proceed(hash, critic);
-
-    if (critic.verdict === 'revise' && this.passes === 1) {
-      this.first = critic;
-      await this.d.plans.updateSlot(this.c.slotId, { critic });
-      const after = this.c.mode === 'approve'
-        ? 'Якщо й друга версія не пройде — пост піде власнику разом із цими зауваженнями.'
-        : 'Друге «revise» пропускає слот.';
-      return {
-        kind: 'revise', critic,
-        result: {
-          error: 'critic_revise',
-          details: {
-            notes: critic.notes, scores: critic.scores, reason: critic.reason,
-            instruction: `Критик просить переписати пост. Виправ саме ці зауваження і виклич ${this.c.platform === 'telegram' ? 'publish_post' : 'publish_platform_post'} ще раз — це єдина спроба. ${after} Якщо пост не врятувати — skip_slot з причиною.`,
-          },
-          _grantSteps: CRITIC_REVISE_GRANT_STEPS,
-        },
-      };
+    let critic: StoredCritic = { ...r.critic, ...(history ? { history } : {}), ...withSources, ...total };
+    if (critic.verdict === 'pass') {
+      const e = await this.edit(post, critic);
+      if (!e.revise) return this.proceed(hash, e.critic, e.edited);
+      critic = e.critic;
     }
+
+    if (critic.verdict === 'revise' && this.passes === 1) return this.revise(critic);
 
     if (critic.verdict === 'revise' && this.c.mode === 'approve') {
       return this.proceed(hash, { ...critic, final: true });
@@ -361,10 +371,64 @@ export class CriticGate {
     return { kind: 'halt', critic: stored, result: { ok: true, skipped: true, critic_rejected: true, verdict: critic.verdict, notes: critic.notes } };
   }
 
-  private async proceed(hash: string, critic: StoredCritic): Promise<CriticGateOutcome> {
+  private async proceed(hash: string, critic: StoredCritic, edited?: EditedSpec): Promise<CriticGateOutcome> {
     await this.d.plans.updateSlot(this.c.slotId, { critic });
-    this.proceeded = { hash, critic };
-    return { kind: 'proceed', critic };
+    this.proceeded = { hash, critic, ...(edited ? { edited } : {}) };
+    return { kind: 'proceed', critic, ...(edited ? { edited } : {}) };
+  }
+
+  /** The first `revise`: the notes go back to the executor, which rewrites once in the same run. */
+  private async revise(critic: StoredCritic): Promise<CriticGateOutcome> {
+    this.first = critic;
+    await this.d.plans.updateSlot(this.c.slotId, { critic });
+    const after = this.c.mode === 'approve'
+      ? 'Якщо й друга версія не пройде — пост піде власнику разом із цими зауваженнями.'
+      : 'Друге «revise» пропускає слот.';
+    return {
+      kind: 'revise', critic,
+      result: {
+        error: 'critic_revise',
+        details: {
+          notes: critic.notes, scores: critic.scores, reason: critic.reason,
+          ...(critic.edits_failed?.length ? { edits: critic.edits_failed.map((e) => ({ from: e.from, to: e.to })) } : {}),
+          instruction: `Критик просить переписати пост. Виправ саме ці зауваження і виклич ${this.c.platform === 'telegram' ? 'publish_post' : 'publish_platform_post'} ще раз — це єдина спроба. ${after} Якщо пост не врятувати — skip_slot з причиною.`,
+        },
+        _grantSteps: CRITIC_REVISE_GRANT_STEPS,
+      },
+    };
+  }
+
+  /**
+   * Spec 041 FR-002: a pass applies the critic's exact edits and the lint's euphony fixes to the spec, then the
+   * publish tool's guards run again on it — no new LLM turn. A critic edit that does not match exactly once, or an
+   * edited spec the guards refuse, turns the first pass into a `revise` (the notes name the edits); on a later pass
+   * the post goes out as written and the failed edits are recorded. A lint fix that does not match is skipped.
+   */
+  private async edit(post: CriticPost, critic: StoredCritic): Promise<{ critic: StoredCritic; edited?: EditedSpec; revise?: true }> {
+    const proposed = critic.edits ?? [];
+    const fixes = lintFixes(post.warnings);
+    if (!post.relint || (!proposed.length && !fixes.length)) return { critic };
+    const firstPass = this.passes === 1;
+    const toRevise = (c: StoredCritic, why: string) => ({
+      critic: {
+        ...c, verdict: 'revise' as const, reason: why,
+        notes: `${c.notes} Точкові правки не застосувались — внеси їх сам: ${(c.edits_failed ?? []).map((e) => `«${e.from}» → «${e.to}»`).join('; ')}`.slice(0, 1200),
+      },
+      revise: true as const,
+    });
+    const a = applySpecEdits(post.spec, proposed);
+    const failedNote = a.failed.length ? { edits_failed: a.failed } : {};
+    if (a.failed.length && firstPass) return toRevise({ ...critic, ...failedNote }, `edits_failed: ${a.failed.length}`);
+    const b = applySpecEdits(a.spec, fixes);
+    const applied = [...a.applied, ...b.applied];
+    if (!applied.length) return { critic: { ...critic, ...failedNote } };
+    const re = await post.relint(b.spec);
+    if (!re.ok) {
+      const all = [...a.failed, ...applied.map((e) => ({ ...e, found: 1 }))];
+      if (firstPass) return toRevise({ ...critic, edits_failed: all }, `edits_lint: ${re.errors.join('; ')}`.slice(0, 300));
+      return { critic: { ...critic, edits_failed: all } };
+    }
+    return { critic: { ...critic, edits_applied: applied, ...failedNote }, edited: { spec: b.spec, ...(re.state !== undefined ? { state: re.state } : {}) } };
   }
 
   private async inbox(title: string, body: string): Promise<void> {
@@ -380,5 +444,8 @@ export class CriticGate {
 
 /** A short summary for a publish tool's success result (the trace shows it next to the step). */
 export function criticSummary(c: StoredCritic): Record<string, unknown> {
-  return { verdict: c.verdict, scores: c.scores, notes: c.notes, pass: c.pass, ...(c.final ? { final: true } : {}) };
+  return {
+    verdict: c.verdict, scores: c.scores, notes: c.notes, pass: c.pass, ...(c.final ? { final: true } : {}),
+    ...(c.edits_applied?.length ? { edits_applied: c.edits_applied } : {}),
+  };
 }

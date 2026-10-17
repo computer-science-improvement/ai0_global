@@ -5,7 +5,7 @@ import { FormatPrefsSchema, ResourceProfileSchema, type FormatPrefField } from '
 import { StyleSchema } from '../post/style/resource-style';
 import { CadenceSchema } from '../network/series';
 import { renderMetrics, type ChannelMetrics, type ObservedFormat } from './setup-metrics';
-import { POST_TEXT_IN_PROMPT, type SetupPost } from './setup-posts.types';
+import { hasPostText, MIN_SPAN_DAYS, POST_TEXT_IN_PROMPT, type SetupPost } from './setup-posts.types';
 
 /**
  * Spec 042 FR-003 / FR-004: the onboarder's one run. It reads the channel's last posts (full texts) and the metrics from
@@ -85,6 +85,8 @@ export const SubmitSetupInput = z.object({
     quiet_end_hour:    hour,
     best_hours:        z.array(hour).max(6).default([]),
     evidence:          Evidence,
+    /** Spec 041 FR-008: set by code when the history spans under 7 days — posting rate and quiet hours stay as they are. */
+    insufficient_span: z.boolean().optional(),
   }),
   examples_voice: z.object({
     example_ids: z.array(PostKey).min(3).max(5).describe('3–5 найкращих постів-зразків (ключі; текст код візьме з бази)'),
@@ -227,6 +229,17 @@ export function onboarderUserPrompt(i: OnboarderPromptInput): string {
     i.lockedFormat.length ? `Закріплені власником поля форматування (не пропонуй): ${i.lockedFormat.join(', ')}.` : null,
     i.lockedSeries.length ? `Закріплені власником рубрики (лишаються як є): ${i.lockedSeries.join(', ')}.` : null,
     `## Цифри з коду\n${renderMetrics(i.metrics)}`,
+    // Spec 041 FR-008: what the history cannot tell.
+    i.metrics.spanDays < MIN_SPAN_DAYS
+      ? `Історія охоплює лише ${i.metrics.spanDays} дн. (менше ${MIN_SPAN_DAYS}): частоту постів і тиху пору код не застосує — у schedule лиши найкращі години, а в evidence напиши, що даних замало.`
+      : null,
+    noTextNote(i.posts),
     `## Останні пости (${i.posts.length}, від найновішого)\n${posts.join('\n\n')}`,
   ].filter(Boolean).join('\n\n');
+}
+
+/** Spec 041 FR-008: how many posts have no text — style conclusions never come from them. */
+export function noTextNote(posts: ReadonlyArray<{ text: string }>): string | null {
+  const none = posts.filter((p) => !hasPostText(p)).length;
+  return none ? `${none} з ${posts.length} постів без тексту (медіа без підпису чи з коротким підписом): висновки про стиль, довжину, емодзі й звертання роби лише з постів із текстом.` : null;
 }

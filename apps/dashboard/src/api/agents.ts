@@ -544,6 +544,8 @@ export function usePutResourceFormatting(handle: string) {
     onSuccess: (r) => {
       qc.setQueryData([...KEY, 'formatting', handle], r);
       qc.invalidateQueries({ queryKey: [...KEY, 'profile'] });
+      // Spec 041 FR-003: what the saved style now contradicts in the owner's rules.
+      qc.invalidateQueries({ queryKey: [...KEY, 'config-conflicts', handle] });
     },
   });
 }
@@ -586,6 +588,7 @@ export function usePutResourceProfile(handle: string) {
     onSuccess: (r) => {
       qc.setQueryData([...KEY, 'profile', handle], r);
       qc.invalidateQueries({ queryKey: [...KEY, 'profile'] });
+      qc.invalidateQueries({ queryKey: [...KEY, 'config-conflicts', handle] });
     },
   });
 }

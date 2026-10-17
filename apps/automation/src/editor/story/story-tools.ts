@@ -6,7 +6,7 @@ import { dryRunOf } from '../roles/preview-run';
 import { localDate, zonedToUtc } from '../roles/time';
 import { PromoExecutor } from '../promo/promo-executor';
 import type { EditorPlansRepository } from '../repo/editor-plans.repository';
-import { CROSS_CHANNEL_HOURS } from './story-match';
+import { REPOST_HOURS } from './story-match';
 import type { StoryRegistry } from './story.repository';
 
 /**
@@ -76,7 +76,7 @@ export function buildStoryTools(d: StoryToolDeps): EditorTool[] {
         return { error: 'story_repost_source_not_found', details: `немає опублікованого посту ${source_post_id} сусіднього каналу в історії ${story_key} — візьми story_key і source_post_id з «Активних історій»` };
       }
       const ageH = (t.getTime() - src.postedAt.getTime()) / 3_600_000;
-      if (ageH > CROSS_CHANNEL_HOURS) return { error: 'story_repost_stale', details: `пост сусіда вийшов ${Math.round(ageH)} год тому — репост лише в перші ${CROSS_CHANNEL_HOURS} год` };
+      if (ageH > REPOST_HOURS) return { error: 'story_repost_stale', details: `пост сусіда вийшов ${Math.round(ageH)} год тому — репост лише в перші ${REPOST_HOURS} год` };
       const dayStart = zonedToUtc(localDate(t, card.timezone), '00:00', card.timezone);
       const counts = await d.stories.repostCounts(channelKey, src.storyId, dayStart);
       if (counts.story >= limits.perStory) return { error: 'story_repost_limit', details: `репост цієї історії вже був (${counts.story}/${limits.perStory}) — skip_slot або власний кут` };

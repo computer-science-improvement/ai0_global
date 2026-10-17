@@ -60,8 +60,9 @@ test('a retelling of the story is story_repeat; a scheduled sibling slot counts 
   // An approved post scheduled for later on the resource: the post written now repeats it.
   const later = post('s3', '2026-10-10T18:00:00+03:00', HUB);
   assert.equal(assessStory(again, { previous: [later] }).role, 'repeat');
-  // Outside the 14 days: a new post of the topic.
-  assert.equal(assessStory(post('s4', '2026-10-25T10:00:00+03:00', HUB_AGAIN), { previous: [orig] }).role, 'original');
+  // Outside the 14 days: a new post of the topic (a news post with its source; a sourceless one is evergreen by
+  // code since spec 041 and keeps its topic for 30 days).
+  assert.equal(assessStory({ ...post('s4', '2026-10-25T10:00:00+03:00', HUB_AGAIN), sourceUrl: 'https://www.apple.com/newsroom/x' }, { previous: [orig] }).role, 'original');
   // lintPost passes no history: nothing to compare with, nothing found.
   assert.deepEqual(assessStory(again, { previous: [] }).findings, []);
 });
@@ -119,12 +120,13 @@ test('a digest may include covered stories; an evergreen topic does not come bac
   assert.equal(assessStory(post('e3', '2026-11-05T10:00:00+03:00', HUB_AGAIN, { kind: 'evergreen' }), { previous: [ever] }).role, 'evergreen');
 });
 
-test('a sibling channel told the story in the last 24 h: story_cross_channel warning', () => {
+test('a sibling channel told the story in the last 72 h (041): story_cross_channel warning', () => {
   const sib = post('x1', '2026-10-07T09:00:00+03:00', HUB, {}, '@ai_tech');
   const mine = post('s1', '2026-10-07T15:00:00+03:00', HUB_AGAIN);
   const a = assessStory(mine, { previous: [], network: [sib] });
   assert.equal(a.role, 'original');
   assert.deepEqual(a.findings.map((f) => [f.code, f.level]), [['story_cross_channel', 'warning']]);
   assert.match(a.findings[0].message, /@ai_tech/);
-  assert.deepEqual(assessStory(post('s2', '2026-10-08T15:00:00+03:00', HUB_AGAIN), { previous: [], network: [sib] }).findings, [], 'after 24 h the sibling does not matter');
+  assert.equal(assessStory(post('s2', '2026-10-09T15:00:00+03:00', HUB_AGAIN), { previous: [], network: [sib] }).findings[0]?.code, 'story_cross_channel', '54 h later: still within 72 h');
+  assert.deepEqual(assessStory(post('s3', '2026-10-10T15:00:00+03:00', HUB_AGAIN), { previous: [], network: [sib] }).findings, [], 'after 72 h the sibling does not matter');
 });

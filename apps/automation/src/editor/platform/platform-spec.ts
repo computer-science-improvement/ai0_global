@@ -9,6 +9,7 @@ import { normalizeHashtag } from '../post/render-telegram';
 import { normalizeTypography } from '../post/typography';
 import { brokenCharText, findBrokenChars } from '../post/text-hygiene';
 import { addressFindings, glossaryFindings } from '../post/style/style-rules';
+import { languageFindings } from '../post/language/lexicon';
 import type { ResourceStyle } from '../post/style/resource-style';
 import { CAPABILITIES, formatSpec, NATIVE_FORMATS, platformOfFormat } from './capabilities';
 import type { Platform } from '../agents/agent.types';
@@ -34,7 +35,7 @@ export const PlatformPostSpecSchema = z.object({
 });
 export type PlatformPostSpec = z.infer<typeof PlatformPostSpecSchema>;
 
-export interface PlatformLintIssue { code: string; message: string }
+export interface PlatformLintIssue { code: string; message: string; fix?: { from: string; to: string } }
 export interface PlatformLintResult { ok: boolean; errors: PlatformLintIssue[]; warnings: PlatformLintIssue[]; captionLength: number }
 
 const LINK_RE = /\[([^\]\n]{1,200})\]\((https?:\/\/[^\s)]{1,2000})\)/g;
@@ -122,6 +123,11 @@ export function lintPlatformPost(spec: PlatformPostSpec, c: PlatformLintContext)
   const reader = [caption, slidesText, spec.first_comment ?? ''].filter(Boolean).join('\n');
   for (const f of [...addressFindings(reader, style), ...glossaryFindings(`${spec.title}\n${reader}\n${spec.hashtags.map((h) => `#${h}`).join(' ')}`, style)]) {
     (f.level === 'error' ? errors : warnings).push({ code: f.code, message: f.message });
+  }
+  // Spec 041 FR-001: the same Ukrainian language gate as the Telegram lint (euphony warnings carry their fix).
+  for (const f of languageFindings(reader)) {
+    if (f.level === 'error') errors.push({ code: f.code, message: f.message });
+    else warnings.push(f.fix ? { code: f.code, message: f.message, fix: f.fix } : { code: f.code, message: f.message });
   }
   if ((spec.format === 'tt_photo' || spec.format === 'yt_short') && spec.title.length > 90) {
     errors.push({ code: 'title_too_long', message: 'заголовок TikTok/YouTube до 90 символів' });

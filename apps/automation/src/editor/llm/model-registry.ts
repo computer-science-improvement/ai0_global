@@ -76,6 +76,17 @@ export const ANTHROPIC_ROLE_MODELS: Readonly<Record<EditorRole, string>> = {
   planner: 'claude-haiku-5-5', orchestrator: 'claude-haiku-5-5', idea_reviewer: 'claude-haiku-5-5',
 };
 
+/**
+ * Spec 041 FR-007: the critic's model for a low-risk draft (no external source, no quotes; evergreen, library).
+ * Anthropic: env EDITOR_ANTHROPIC_MODEL_CHECKER_LIGHT, else Haiku. OpenRouter: env EDITOR_MODEL_CHECKER_LIGHT, else
+ * null — the normal checker model (one default for every role there).
+ */
+export const ANTHROPIC_LIGHT_CHECKER = 'claude-haiku-5-5';
+export function lightCheckerModel(env: (key: string) => string | undefined, ws: Workspace = 'openrouter'): string | null {
+  const fromEnv = clean(env(ws === 'anthropic' ? 'EDITOR_ANTHROPIC_MODEL_CHECKER_LIGHT' : 'EDITOR_MODEL_CHECKER_LIGHT'));
+  return fromEnv ?? (ws === 'anthropic' ? ANTHROPIC_LIGHT_CHECKER : null);
+}
+
 /** The built-in model of a role in a workspace (OpenRouter has one default for every role). */
 export function builtinRoleModel(role: EditorRole, ws: Workspace = 'openrouter'): string {
   return ws === 'anthropic' ? ANTHROPIC_ROLE_MODELS[role] ?? DEFAULT_ANTHROPIC_MODEL : DEFAULT_EDITOR_MODEL;

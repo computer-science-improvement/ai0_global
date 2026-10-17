@@ -4,7 +4,7 @@ import { findInSource, groundNumbers, type GroundingSource, type Passage } from 
 /**
  * Spec 037 FR-004 (T4): the critic's source block. The first 4000 chars of a page are mostly navigation and the
  * lead; the fact the post took is often further down. The critic gets the page title and publication date and the
- * passages around the post's numbers and names (`sourcePassages`, ±400 chars, ≤ 6, ≤ 6000 chars), so it checks each
+ * passages around the post's numbers and names (`sourcePassages`, ±400 chars; spec 041: ≤ 8 passages, ≤ 8000 chars, claims without numbers too), so it checks each
  * claim against the words it came from — «1 мільйон токенів» next to "context window" is not an output length.
  */
 export interface CriticSourceContext {
@@ -59,7 +59,8 @@ export function criticGroundingLines(g: CriticGroundingCheck | null | undefined)
 }
 
 
-export const PASSAGES_CAP = 6_000;
+/** Spec 041 FR-006: as many chars as the passages may have (PASSAGE.chars). */
+export const PASSAGES_CAP = 8_000;
 
 const day = (s: string) => (/^\d{4}-\d{2}-\d{2}$/.test(s) ? `${s.slice(8, 10)}.${s.slice(5, 7)}.${s.slice(0, 4)}` : null);
 

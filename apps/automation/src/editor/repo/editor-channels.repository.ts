@@ -3,6 +3,7 @@ import type { ChannelMode, EditorCard } from '../card';
 import { bindingsStillEnabled, enabledBindingExtIds, liveRefsOf } from '../migration/binding-guard';
 import { audienceCapsOfProfile } from '../post/audience-asks';
 import { styleOfRow } from '../post/style/resource-style';
+import { ownerStyleOverlay, rowOwnerRules } from '../rules/owner-style-overlay';
 
 export function rowToCard(r: any): EditorCard & { createdAt: Date } {
   return {
@@ -38,12 +39,18 @@ export function rowToCard(r: any): EditorCard & { createdAt: Date } {
     ...(r.rich_pref === 'auto' || r.rich_pref === 'prefer' || r.rich_pref === 'never' ? { richPref: r.rich_pref } : {}),
     ...(r.rich_unsupported ? { richUnsupported: true } : {}),
     ...(r.humor_pref === 'none' || r.humor_pref === 'light' ? { humor: r.humor_pref } : {}),
-    ...(r.slang_pref === 'true' || r.slang_pref === true ? { slang: true } : r.slang_pref === 'false' || r.slang_pref === false ? { slang: false } : {}),
+    ...slangOfRow(r),
     ...(r.emoji_pref === 'none' || r.emoji_pref === 'light' || r.emoji_pref === 'rich' ? { emojiPref: r.emoji_pref } : {}),
     ...capsOfRow(r),
     ...styleOfRow(r),
     createdAt:      r.created_at,
   };
+}
+
+/** Spec 034 FR-002 format_prefs.slang; spec 041 FR-003: an owner rule «без сленгу» turns it off. */
+function slangOfRow(r: any): Pick<EditorCard, 'slang'> {
+  if (ownerStyleOverlay(rowOwnerRules(r.owner_rules)).slang === false) return { slang: false };
+  return r.slang_pref === 'true' || r.slang_pref === true ? { slang: true } : r.slang_pref === 'false' || r.slang_pref === false ? { slang: false } : {};
 }
 
 /** Spec 034 FR-005: reader-question and poll caps of the channel's resource (defaults without a profile). */
@@ -85,6 +92,10 @@ const CARD_SELECT = `
          rp.profile->'format_prefs'->>'emoji' AS emoji_pref,
          rp.profile->'format_prefs' AS format_prefs_json,
          rp.profile->>'topic' AS profile_topic,
+         (SELECT COALESCE(json_agg(json_build_object('id', m.id, 'text', m.text) ORDER BY m.id), '[]'::json)
+            FROM editor_channel_memory m
+           WHERE m.channel_key = c.channel_key AND m.active AND m.created_by = 'owner'
+             AND COALESCE(m.evidence->>'source', '') <> 'approval') AS owner_rules,
          CASE WHEN s.value ~ '^\\d{4}-\\d{2}-\\d{2}T' THEN s.value::timestamptz > now() ELSE false END AS rich_unsupported
     FROM editor_channels c
     LEFT JOIN resource_profiles rp ON rp.resource_ref = 'telegram:' || c.channel_key
@@ -142,6 +153,13 @@ export class EditorChannelsRepository {
   }
 
   /** Spec 034 FR-009: the brief @ai0's create_agent card gave a resource whose card already exists. */
+  /** Spec 041 FR-003: the `hashtag_min_without_vocabulary` fix (a minimum with no vocabulary to take hashtags from). */
+  async setHashtagMin(channelKey: string, min: number): Promise<boolean> {
+    const { rowCount } = await this.pool.query(
+      `UPDATE editor_channels SET hashtag_min = $2, updated_at = now() WHERE channel_key = $1 AND hashtag_min <> $2`, [channelKey, min]);
+    return (rowCount ?? 0) > 0;
+  }
+
   async setBrief(channelKey: string, brief: string): Promise<boolean> {
     const { rowCount } = await this.pool.query(
       `UPDATE editor_channels SET brief = $2, updated_at = now() WHERE channel_key = $1`, [channelKey, brief]);

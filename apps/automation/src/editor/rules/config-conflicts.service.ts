@@ -8,7 +8,7 @@ import { configConflicts, patchPlaybook, type ConfigConflict, type ResourceConfi
 export interface ConfigConflictsDeps {
   memory:   Pick<EditorMemoryRepository, 'listActive'>;
   network:  Pick<NetworkRepository, 'groupOfChannel' | 'groupResources' | 'activePlaybook' | 'applyOwnerPatch'>;
-  channels: Pick<EditorChannelsRepository, 'get'>;
+  channels: Pick<EditorChannelsRepository, 'get' | 'setHashtagMin'>;
   profiles: Pick<ResourceProfilesRepository, 'get' | 'setProfile' | 'patchFormat'>;
 }
 
@@ -34,7 +34,7 @@ export class ConfigConflictsService {
       const profile = (await this.d.profiles.get(ref).catch(() => null))?.profile ?? null;
       const prefs = (profile?.format_prefs ?? {}) as Record<string, any>;
       resources.push(ref === anchor && card
-        ? { ref, style: card.style ?? null, slang: card.slang === true, pollsPerWeek: card.pollsPerWeek ?? null, profile }
+        ? { ref, style: card.style ?? null, slang: card.slang === true, pollsPerWeek: card.pollsPerWeek ?? null, profile, vocabulary: card.hashtags, hashtagMin: card.hashtagMin }
         : { ref, style: prefs.style ?? null, slang: prefs.slang === true, pollsPerWeek: profileCaps(profile).pollsPerWeek, profile });
     }
     const pb = await this.d.network.activePlaybook(orch.id);
@@ -53,8 +53,15 @@ export class ConfigConflictsService {
     }
     for (const c of conflicts) {
       const f = c.fix;
+      if (f.target === 'card') {
+        if (await this.d.channels.setHashtagMin(f.channelKey, 0)) applied.push(c.code);
+        continue;
+      }
       if (f.target !== 'profile') continue;
-      if (f.op === 'hashtags_off') {
+      if (f.op === 'style') {
+        const r = await this.d.profiles.patchFormat(f.ref, { style: f.style, ...(f.slang === false ? { slang: false } : {}) }, { by: 'owner', reason: 'owner rules: written into the style' });
+        if ('ok' in r) applied.push(c.code);
+      } else if (f.op === 'hashtags_off') {
         const r = await this.d.profiles.patchFormat(f.ref, { hashtags: null }, { by: 'owner', reason: 'owner rules: hashtags off' });
         if ('ok' in r) applied.push(c.code);
       } else if (f.op === 'tone' && f.field === 'format_prefs.tone') {

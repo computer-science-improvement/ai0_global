@@ -12,6 +12,7 @@ import { isNewsCard } from '../live/news-watch-config';
 import { examplesPromptSection } from '../network/playbook';
 import { styleSection } from '../post/style/resource-style';
 import { memoryWithoutRules, ownerRulesOf, ownerRulesSection } from '../rules/owner-rules-prompt';
+import { plannerStyleLine } from '../rules/owner-style-overlay';
 import { steeringSection } from '../steering/steering-prompt';
 import type { SteeringPromptRule } from '../steering/steering.types';
 
@@ -207,8 +208,10 @@ export function plannerUserPrompt(card: EditorCard, now: Date, reserved: EditorS
     isNewsCard(card)
       ? 'Це новинний ресурс: новинні слоти став live (topic_mode: "live", source — фід картки, brief — що шукати) — тему обере виконавець у час слота з найсвіжішого. fixed — лише для рубрик і матеріалів, тема яких відома зараз.'
       : 'Слот, що має взяти свіжу новину з фіду чи API, став live (topic_mode: "live", source, brief) — тему обере виконавець у час слота.',
+    // Spec 041 FR-003: the effective style (owner rules on top), so no slot is planned against it.
+    plannerStyleLine(card.style, card.slang) ?? '',
     'Спершу подивись статистику, нещодавні пости й ефективність форматів. Заверши викликом submit_plan.',
-  ].join('\n');
+  ].filter(Boolean).join('\n');
 }
 
 export function executorUserPrompt(

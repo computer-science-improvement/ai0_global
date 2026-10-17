@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { isEvergreenTopic, RECENT_TOPIC_DAYS, recentTopicHit, recentTopicsOf } from '../story/recent-topics';
 import { defineTool, EditorTool, ToolContext } from '../harness/tool';
 import { similarity } from '../post/similarity';
 import type { EditorMemoryRepository } from '../repo/editor-memory.repository';
@@ -199,7 +200,7 @@ export function buildNetworkTools(d: NetworkToolDeps): EditorTool[] {
     name: 'add_idea',
     description: [
       'Додати ідею в пул: тема, кут, джерела, варіанти під ресурси (resource_ref + нативний формат), чому вона спрацює (з даних).',
-      'Код відхиляє дублікати (схоже вже є в пулі або публікувалось за 14 днів), ідеї без джерел, недоступні формати; ідея для новинного ресурсу потребує 2 джерел з різних сайтів. За прогін — не більше квоти з завдання (слоти дня + 1).',
+      'Код відхиляє дублікати (схоже вже є в пулі або публікувалось за 14 днів; пояснення, поради й «що таке» — тема за 30 днів), ідеї без джерел, недоступні формати; ідея для новинного ресурсу потребує 2 джерел з різних сайтів. За прогін — не більше квоти з завдання (слоти дня + 1).',
     ].join(' '),
     kind: 'act', roles: ['orchestrator'],
     input: z.object({
@@ -251,6 +252,12 @@ export function buildNetworkTools(d: NetworkToolDeps): EditorTool[] {
       const recent = await d.repo.recentExcerpts(net.resources.map((r) => r.ref), 14);
       const dupPost = recent.map((t) => ({ t, s: similarity(text, t) })).sort((a, b) => b.s - a.s)[0];
       if (dupPost && dupPost.s >= IDEA_DEDUP_SIMILARITY) return { error: 'already_published', details: `схоже на нещодавній пост «${dupPost.t.slice(0, 80)}» (${dupPost.s.toFixed(2)})` };
+      // Spec 041 FR-004: an evergreen idea on a topic of the variants' resources in the last 30 days.
+      if (isEvergreenTopic(i.title, i.angle)) {
+        const topics = recentTopicsOf(await d.repo.recentExcerpts([...new Set(i.variants.map((v) => v.resource_ref))], RECENT_TOPIC_DAYS));
+        const hit = recentTopicHit({ title: i.title, angle: i.angle }, topics);
+        if (hit) return { error: 'recent_topic', details: `ця тема вже була за ${RECENT_TOPIC_DAYS} днів: «${hit.title.slice(0, 100)}» (спільне: ${hit.shared.join(', ')}) — запропонуй іншу тему` };
+      }
       const idea = await d.repo.addIdea({
         agentId: net.orchestrator.id, title: i.title, angle: i.angle ?? null, sources: i.sources, variants: i.variants, why: i.why,
         evidence: i.evidence ?? null, origin: i.origin, originRef: i.origin_ref ?? null,

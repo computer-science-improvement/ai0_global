@@ -2,6 +2,7 @@ import { z } from 'zod';
 import type { EditorCard } from '../../card';
 import { NEWS_TOPIC_RE } from '../audience-asks';
 import { isNewsCard } from '../../live/news-watch-config';
+import { applyStyleOverlay, ownerStyleOverlay, rowOwnerRules } from '../../rules/owner-style-overlay';
 
 /**
  * Spec 037 FR-008 (T8): the resource style sheet — `format_prefs.style` of a resource. Every field is optional; the
@@ -12,7 +13,8 @@ import { isNewsCard } from '../../live/news-watch-config';
  *     by the spec 034 news detection (content_kind news, a news topic, or a card with RSS feeds whose title / brief
  *     says news: AI Шукає Новини, AI Технології);
  *   • hashtags off on news and games resources (so all three DEV channels), the card's vocabulary elsewhere — and on
- *     any resource whose card already has a hashtag vocabulary (an owner's earlier choice is never switched off).
+ *     any resource whose card already has a hashtag vocabulary (an owner's earlier choice is never switched off);
+ *     spec 041 FR-003: a card with an empty vocabulary has no hashtags either (there is nothing to take them from).
  * `names`, `headline`, `numbers`, `units` and `audience` have no default: a check that needs one stays silent.
  * The style is the owner's: agents cannot change it (OWNER_ONLY_ON in resource-profile.ts).
  */
@@ -86,7 +88,7 @@ export function effectiveStyle(stored: ResourceStyle | null | undefined, o: { ki
     ...s,
     address: s.address ?? DEFAULT_ADDRESS,
     glossary: s.glossary ?? DEFAULT_GLOSSARY,
-    hashtags: s.hashtags ?? ((kind === 'news' || kind === 'games') && !o.vocabulary?.length ? 'off' : 'vocabulary'),
+    hashtags: s.hashtags ?? (!o.vocabulary?.length && (kind === 'news' || kind === 'games' || Array.isArray(o.vocabulary)) ? 'off' : 'vocabulary'),
     ...(kind ? { content_kind: kind } : {}),
   };
 }
@@ -126,7 +128,7 @@ export function resourceKind(o: Parameters<typeof isNewsResource>[0]): StyleKind
 
 /**
  * The effective style of an editor_channels row read with the profile join (CARD_SELECT: `format_prefs_json`,
- * `profile_topic`). A row read without the join gets no style, so the style checks stay silent.
+ * `profile_topic`, `owner_rules`). A row read without the join gets no style, so the style checks stay silent.
  */
 export function styleOfRow(r: any): { style?: ResourceStyle } {
   if (!('format_prefs_json' in r) && !('profile_topic' in r)) return {};
@@ -136,7 +138,9 @@ export function styleOfRow(r: any): { style?: ResourceStyle } {
     topic: r.profile_topic ?? null,
     card: { brief: r.brief ?? '', title: r.title ?? null, formats: r.formats ?? {}, sources: r.sources ?? [] },
   });
-  return { style: effectiveStyle(parseStoredStyle(fp.style), { kind, vocabulary: Array.isArray(r.hashtags) ? r.hashtags : null }) };
+  const style = effectiveStyle(parseStoredStyle(fp.style), { kind, vocabulary: Array.isArray(r.hashtags) ? r.hashtags : null });
+  // Spec 041 FR-003: the owner's rules beat the stored style (CARD_SELECT joins them in as `owner_rules`).
+  return { style: applyStyleOverlay(style, ownerStyleOverlay(rowOwnerRules(r.owner_rules))) };
 }
 
 export interface GlossaryEntry { term: string; use?: string }

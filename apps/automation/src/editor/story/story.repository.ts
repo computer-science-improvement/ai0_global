@@ -1,4 +1,5 @@
 import type { Pool } from 'pg';
+import { loadRecentTopics, type RecentTopic } from './recent-topics';
 import type { Entity, PostEntities } from '../post/entities';
 import { entityOverlap, mergeEntities } from '../post/entities';
 import type { PostSpec } from '../post/post-spec';
@@ -152,7 +153,7 @@ export class StoryRegistry {
   /**
    * The history a post is checked against, read by the same loader as T9's variety history (recentAuditPosts, the
    * written Telegram slots with their spec): the channel's slots of 30 days on either side of `at` (evergreen needs
-   * 30; the check narrows news to 14; a slot scheduled later counts) and the siblings' slots within 24 h of it.
+   * 30; the check narrows news to 14; a slot scheduled later counts) and the siblings' slots within 72 h of it (spec 041).
    */
   async history(channelKey: string, excludeSlotId: string | null, at: Date): Promise<StoryHistory> {
     const { scope, siblings } = await this.scopeOf(channelKey);
@@ -259,6 +260,11 @@ export class StoryRegistry {
     // Spec 037 T3: the event the post announces (event_at + name), kept apart from the entities above.
     await new StoryEventRepository(this.pool).noteEvent(storyId, i.post, role, i.postedAt);
     return { storyId, storyKey: cur.story_key };
+  }
+
+  /** Spec 041 FR-004: the channel's post titles of 30 days as topics (the planner's «Теми за 30 днів»). */
+  async recentTopics(channelKey: string): Promise<RecentTopic[]> {
+    return loadRecentTopics(this.pool as any, [`telegram:${channelKey}`]);
   }
 
   /** The active stories of the channel's scope (14 days; evergreen 30), the channel's own posts and the siblings'. */

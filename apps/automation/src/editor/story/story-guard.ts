@@ -3,7 +3,7 @@ import type { RenderCard } from '../post/render-telegram';
 import { auditPostFromSpec } from '../post/integrity/from-post-spec';
 import { bodyText, type AuditPost, type Finding } from '../post/integrity/types';
 import type { AuditCard } from '../post/integrity/types';
-import { assessStory, storyView, type StoryAssessment } from './story-match';
+import { assessStory, CROSS_CHANNEL_HOURS, storyView, type StoryAssessment } from './story-match';
 import type { CriticStoryContext } from './story-context';
 import type { StoryRegistry } from './story.repository';
 import { factConflicts } from '../post/fact-conflict';
@@ -11,9 +11,9 @@ import { factConflicts } from '../post/fact-conflict';
 /**
  * Spec 037 T2: the story guard of publish_post. The post (as the reader will see it) is matched with the resource's
  * posts of 14 days (statuses published, shadowed, awaiting_approval, approved; evergreen 30) and the network
- * siblings' posts of 24 h:
+ * siblings' posts of 72 h (spec 041 FR-004; was 24):
  *   • a repeat (`story_repeat`) or a follow-up without new facts (`followup_without_new_facts`) is an error;
- *   • a sibling's story within 24 h needs a decision: skip_slot, `story.decision: "own_angle"` with a reason (the post
+ *   • a sibling's story (or, spec 041, the same topic) within 72 h needs a decision: skip_slot, `story.decision: "own_angle"` with a reason (the post
  *     goes out with the `story_cross_channel` warning) or request_story_repost — without one the guard refuses
  *     (`story_decision_required`);
  *   • warnings (`followup_restates`, `story_cross_channel`) join the lint warnings the critic reads.
@@ -73,7 +73,7 @@ export async function storyGuard(reg: Pick<StoryRegistry, 'history'>, i: StoryGu
     if (st?.decision !== 'own_angle') {
       return {
         error: 'story_decision_required',
-        details: `${s.channel} уже опублікував цю історію за останні 24 год («${(s.lead ?? bodyText(s).split('\n')[0] ?? '').slice(0, 90)}»). `
+        details: `${s.channel} уже опублікував цю історію чи тему за останні ${CROSS_CHANNEL_HOURS} год («${(s.lead ?? bodyText(s).split('\n')[0] ?? '').slice(0, 90)}»). `
           + `Виріши: skip_slot (code story_skip), власний кут — story.decision "own_angle" і story.reason (чим твій пост інший), `
           + `або request_story_repost${ref ? ` (source_post_id ${ref})` : ' (коли пост сусіда вийде)'}.`,
       };

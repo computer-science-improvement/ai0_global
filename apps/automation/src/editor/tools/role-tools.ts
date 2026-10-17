@@ -1,4 +1,5 @@
 import type { Pool } from 'pg';
+import { loadRecentTopics, planTopicErrors } from '../story/recent-topics';
 import { z } from 'zod';
 import { channelOf, defineTool, EditorTool, ToolContext } from '../harness/tool';
 import { AgentPostSpecSchema, PostSpec } from '../post/post-spec';
@@ -236,7 +237,9 @@ export function buildRoleTools(d: RoleToolDeps): EditorTool[] {
       const pollCap = d.pollCaps ? await d.pollCaps({ refs: [anchor], planDate, tz: card.timezone, defaultRef: anchor }) : undefined;
       const ideas = await planIdeas(d.pool, plan.slots.map((s) => s.idea_id).filter((x): x is string => !!x));
       const v = validatePlan(plan, sched ? d.schedule!.effectiveCard(card, sched) : card, planDate, t, reserved.map((r) => r.scheduledAt), sched, quotas, pollCap, ideas);
-      if (!v.ok) return { error: 'plan_invalid', details: v.errors };
+      // Spec 041 FR-004: an evergreen fixed slot on a topic of the last 30 days.
+      const topicErrors = planTopicErrors(plan.slots, await loadRecentTopics(d.pool, [anchor]));
+      if (!v.ok || topicErrors.length) return { error: 'plan_invalid', details: [...(v.ok ? [] : v.errors), ...topicErrors] };
       const planId = await d.plans.createPlan(card.channelKey, planDate, plan.rationale, ctx.runId, v.slots);
       // Pool ideas taken into the plan (spec 020) leave the pool; they become `used` once their slots are done.
       const ideaIds = [...new Set(v.slots.map((s) => s.ideaId).filter(Boolean))];
@@ -253,10 +256,12 @@ export function buildRoleTools(d: RoleToolDeps): EditorTool[] {
     description: 'Опублікувати PostSpec у слот (завершує роботу). Перед збереженням пост читає критик: critic_revise — виправ зауваження й виклич ще раз (одна спроба). У shadow-режимі пост зберігається як превʼю без публікації; у режимі апруву — повністю готується і чекає схвалення власника. Перед цим обовʼязково lint_post.',
     kind: 'terminal', roles: ['executor'], timeoutMs: PUBLISH_TOOL_TIMEOUT_MS,
     input: z.object({ spec: AgentPostSpecSchema }),
-    execute: async ({ spec }, ctx) => {
+    execute: async (input, ctx) => {
       const t = now();
-      const g = await checkPublishGuards(d, ctx, spec, t);
-      if ('error' in g) return g;
+      let spec = input.spec;
+      const guarded = await checkPublishGuards(d, ctx, spec, t);
+      if ('error' in guarded) return guarded;
+      let g = guarded;
       const { channelKey, slotId } = requireSlotCtx(ctx);
       const card = cardFrom(ctx);
       // Spec 037 T2: the stored / sent post joins its story (best-effort: the post is already stored or out).
@@ -273,8 +278,19 @@ export function buildRoleTools(d: RoleToolDeps): EditorTool[] {
       const gate = criticGateOf(ctx);
       let critic: Record<string, unknown> | null = null;
       if (gate) {
-        const c = await gate.check({ text: htmlToPlain(g.rendered.preview), spec, format: spec.format, warnings: g.lint.warnings, publishAt: g.at.toISOString(), timezone: card.timezone, story: g.story?.critic ?? null });
+        const c = await gate.check({
+          text: htmlToPlain(g.rendered.preview), spec, format: spec.format, warnings: g.lint.warnings, publishAt: g.at.toISOString(), timezone: card.timezone, story: g.story?.critic ?? null,
+          // Spec 041 FR-002: the critic's exact edits (and lint euphony fixes) go out only after every guard passes again.
+          relint: async (edited) => {
+            const g2 = await checkPublishGuards(d, ctx, edited as PostSpec, t);
+            return 'error' in g2 ? { ok: false, errors: [`${g2.error}${'details' in g2 && g2.details ? `: ${JSON.stringify(g2.details).slice(0, 300)}` : ''}`] } : { ok: true, state: g2 };
+          },
+        });
         if (c.kind !== 'proceed') return c.result;
+        if (c.edited) {
+          spec = c.edited.spec as PostSpec;
+          g = c.edited.state as typeof guarded;
+        }
         critic = criticSummary(c.critic);
       }
       const withCritic = critic ? { critic } : {};

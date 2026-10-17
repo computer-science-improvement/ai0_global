@@ -34,6 +34,8 @@ export interface CodeCatalogueEntry extends CodeExplanation {
 
 const GROUP_OF_TASK: Record<string, AuditFlag> = {
   T2: 'story_repeat', T4: 'fact_conflict', T5: 'date_issue', T6: 'text_hygiene', T8: 'style_violation',
+  // Spec 041 T1: the language gate counts with text hygiene in the digest.
+  '041': 'text_hygiene',
 };
 const SECTION_OF_TASK: Record<string, FindingSection> = { T2: 'stories', T3: 'stories', T4: 'facts', T5: 'dates' };
 
@@ -107,7 +109,7 @@ export const CODE_EXPLANATIONS: Record<string, CodeExplanation> = {
   },
   story_cross_channel: {
     title: 'Sibling channel posted it',
-    explain: 'Another channel of the network published this story in the last 24 hours.',
+    explain: 'Another channel of the network published this story, or a post on the same topic, in the last 72 hours.',
     fix: 'Choose deliberately: skip, write an angle of your own, or repost the sibling post.',
   },
   // T3 announcement → recap.
@@ -313,6 +315,37 @@ export const CODE_EXPLANATIONS: Record<string, CodeExplanation> = {
     title: 'Poster does not fit',
     explain: 'An AI poster is off topic for the post, or used on a news post (error).',
     fix: 'Pick a poster whose use matches the topic, or publish without one; never on news.',
+  },
+  // Spec 041 T1 language gate.
+  language_calque: {
+    title: 'Russism or calque',
+    explain: 'The post uses a russism or a calque from Russian or English where Ukrainian has its own word (for example "take part" built the Russian way).',
+    fix: 'Use the Ukrainian word the finding names.',
+  },
+  language_case: {
+    title: 'Suspect grammatical case',
+    explain: 'A construction looks like a wrong grammatical case taken from Russian ("happens at the services" instead of "with the services").',
+    fix: 'Rephrase with the right case; the critic checks it too.',
+  },
+  language_suspect: {
+    title: 'Possible calque',
+    explain: 'A contested or context-dependent calque ("on board" about a mug, "along the ramp" built the Russian way).',
+    fix: 'Use the plain Ukrainian wording the finding suggests, unless the context makes it right.',
+  },
+  language_euphony: {
+    title: 'u/v or i/y alternation',
+    explain: 'The preposition u/v or the conjunction i/y breaks the Ukrainian alternation rule (for example "u" before a vowel at the start of a sentence).',
+    fix: 'Applied automatically when the critic passes the post; otherwise use the form the finding names.',
+  },
+  brief_media_missing: {
+    title: 'Picture the brief asks for is missing',
+    explain: 'The channel brief asks for a picture on this kind of post (for example on every poll), and the post has none.',
+    fix: 'Add an image from the source or the library, or change the brief if pictures are no longer wanted.',
+  },
+  topic_repeat: {
+    title: 'Topic repeated',
+    explain: 'An explainer, how-to, glossary or list post on a topic this resource already covered in the last 30 days.',
+    fix: 'Pick another topic, or a clearly different aspect with its own key words.',
   },
   // runIntegrityChecks: a check that threw.
   check_failed: {

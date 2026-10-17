@@ -81,6 +81,8 @@ export function formatPatch(i: SubmitSetupInput, locks: readonly string[], curre
 export function cardPatch(i: SubmitSetupInput, section: 'formatting' | 'format_mix' | 'schedule'): Record<string, unknown> {
   if (section === 'format_mix') return { formats: i.format_mix.formats };
   if (section === 'schedule') {
+    // Spec 041 FR-008: under 7 days of history the rate and the quiet hours are not proposed.
+    if (i.schedule.insufficient_span) return {};
     return {
       postsPerDayMin: i.schedule.posts_per_day_min, postsPerDayMax: i.schedule.posts_per_day_max,
       quietStartHour: i.schedule.quiet_start_hour, quietEndHour: i.schedule.quiet_end_hour,
@@ -116,7 +118,7 @@ export function exampleTexts(i: SubmitSetupInput, posts: SetupPost[]): Array<{ t
  * one `core` section.
  */
 export function mergePlaybook(current: Playbook | null, ref: string, card: Pick<EditorCard, 'formats' | 'postsPerDayMin' | 'postsPerDayMax'>, o: {
-  formatMix?: Record<string, number>; schedule?: { min: number; max: number; bestHours: number[] };
+  formatMix?: Record<string, number>; schedule?: { min?: number; max?: number; bestHours: number[] };
   series?: SubmitSetupInput['series_pillars']; examples?: Array<{ text: string; format: string }>;
 }): Playbook {
   const base: Playbook = current ?? PlaybookSchema.parse({ platforms: [{ resource_ref: ref, role: 'core', formats: card.formats, per_day: { min: card.postsPerDayMin, max: card.postsPerDayMax } }] });
@@ -128,7 +130,10 @@ export function mergePlaybook(current: Playbook | null, ref: string, card: Pick<
     if (p.resource_ref !== ref) return p;
     const next = { ...p };
     if (o.formatMix) next.formats = { ...o.formatMix };
-    if (o.schedule) { next.per_day = { min: o.schedule.min, max: o.schedule.max }; next.best_hours = [...o.schedule.bestHours].sort((a, b) => a - b); }
+    if (o.schedule) {
+      if (o.schedule.min != null && o.schedule.max != null) next.per_day = { min: o.schedule.min, max: o.schedule.max };
+      next.best_hours = [...o.schedule.bestHours].sort((a, b) => a - b);
+    }
     return next;
   });
   let series = base.series;
@@ -260,8 +265,9 @@ export async function applySections(w: ApplyWriters, a: ApplyInput): Promise<App
       cur = { ...cur, formats: i.format_mix.formats as Record<string, number> };
       out.applied.push(section);
     } else if (section === 'schedule') {
-      if (!(await step(section, () => w.upsertCard(a.channelKey, cardPatch(i, 'schedule')).then(() => undefined)))) return out;
-      cur = { ...cur, postsPerDayMin: i.schedule.posts_per_day_min, postsPerDayMax: i.schedule.posts_per_day_max };
+      const cp = cardPatch(i, 'schedule');
+      if (Object.keys(cp).length && !(await step(section, () => w.upsertCard(a.channelKey, cp).then(() => undefined)))) return out;
+      if (!i.schedule.insufficient_span) cur = { ...cur, postsPerDayMin: i.schedule.posts_per_day_min, postsPerDayMax: i.schedule.posts_per_day_max };
       // Applied once the playbook (best hours) is written below.
     }
   }
@@ -271,7 +277,9 @@ export async function applySections(w: ApplyWriters, a: ApplyInput): Promise<App
     const ok = await step(pbSections[0], async () => {
       const body = mergePlaybook(a.state.playbook, a.ref, cur, {
         formatMix: order.includes('format_mix') ? i.format_mix.formats as Record<string, number> : undefined,
-        schedule: order.includes('schedule') ? { min: i.schedule.posts_per_day_min, max: i.schedule.posts_per_day_max, bestHours: i.schedule.best_hours } : undefined,
+        schedule: order.includes('schedule')
+          ? { ...(i.schedule.insufficient_span ? {} : { min: i.schedule.posts_per_day_min, max: i.schedule.posts_per_day_max }), bestHours: i.schedule.best_hours }
+          : undefined,
         series: order.includes('series_pillars') ? i.series_pillars : undefined,
         examples: order.includes('examples_voice') ? exampleTexts(i, a.posts) : undefined,
       });

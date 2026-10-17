@@ -1,6 +1,7 @@
 // The pre-publish critic's verdict (spec 034 FR-004): verdict badge, the scores
 // (1–5; `owner_rules` when the channel has rules, spec 040), the owner rules the
-// post broke and the critic's notes, as written. Used on approval cards, on chat
+// post broke, the critic's notes as written and (spec 041) the exact edits code
+// applied before publishing. Used on approval cards, on chat
 // draft cards (advisory there) and on plan slots (written posts, dry-run previews).
 
 import { Badge } from '../ui/Badge';
@@ -42,6 +43,11 @@ export function CriticBlock({ critic, where }: { critic: CriticVerdict; where: C
           {critic.notes}
         </div>
       )}
+      {critic.edits_applied?.length ? (
+        <div className="text-micro" style={{ color: 'var(--color-ink-dim)', overflowWrap: 'anywhere' }}>
+          Edits applied before publishing: {critic.edits_applied.map((e) => `«${e.from}» → «${e.to}»`).join('; ')}
+        </div>
+      ) : null}
       {earlier && (
         <div className="text-micro" style={{ color: 'var(--color-ink-dim)', overflowWrap: 'anywhere' }}>
           First pass ({earlier.verdict}): {earlier.notes}

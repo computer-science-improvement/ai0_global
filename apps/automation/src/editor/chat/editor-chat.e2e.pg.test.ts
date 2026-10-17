@@ -68,7 +68,7 @@ const SPEC = {
     { type: 'p', text: 'Оболонки газу навколо білого карлика — рештки зорі, схожої на Сонце. Їм кілька тисяч років.' },
   ],
   media: [{ url: 'https://images-assets.nasa.gov/ring.jpg' }],
-  hashtags: ['космос'],
+  hashtags: [], // spec 041: a card without a vocabulary has hashtags off
   source: { url: 'https://www.nasa.gov/chat-test-ring-nebula', label: 'NASA' },
 };
 

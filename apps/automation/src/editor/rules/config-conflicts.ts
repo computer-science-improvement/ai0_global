@@ -2,6 +2,7 @@ import type { Playbook } from '../network/playbook';
 import { instancesPerDay, parseCadence } from '../network/series';
 import type { ResourceStyle } from '../post/style/resource-style';
 import { ruleOverlap } from '../agents/mentions';
+import { NO_HASHTAGS_RE, NO_SLANG_RE, SIMPLER_RE } from './owner-style-overlay';
 
 /**
  * Spec 040 FR-011: `rules-vs-config` — the owner's rules and the resource style against the active playbook and the
@@ -20,10 +21,13 @@ export interface ResourceConfig {
   slang?:        boolean;
   /** Poll + quiz posts a week (null = no cap). */
   pollsPerWeek?: number | null;
+  /** Spec 041 FR-003, Telegram only: the card's hashtag vocabulary and its stored minimum. */
+  vocabulary?:   readonly string[] | null;
+  hashtagMin?:   number | null;
   profile?: {
     tone?:         string;
     audience?:     { who: string };
-    format_prefs?: { tone?: string; hashtags?: { count: number } };
+    format_prefs?: { tone?: string; hashtags?: { count: number }; slang?: boolean; style?: Partial<ResourceStyle> | null };
   } | null;
 }
 
@@ -39,10 +43,14 @@ export type ConflictFix =
   | { target: 'playbook'; op: 'tone'; ref: string; tone: string }
   | { target: 'profile'; op: 'hashtags_off'; ref: string }
   | { target: 'profile'; op: 'tone'; ref: string; field: 'tone' | 'format_prefs.tone'; tone: string }
-  | { target: 'profile'; op: 'audience'; ref: string; who: string };
+  | { target: 'profile'; op: 'audience'; ref: string; who: string }
+  /** Spec 041 FR-003: the owner rule written into format_prefs (`style` replaces the stored style sheet). */
+  | { target: 'profile'; op: 'style'; ref: string; style: ResourceStyle; slang?: false }
+  | { target: 'card'; op: 'hashtag_min_zero'; channelKey: string };
 
 export interface ConfigConflict {
-  code:     'hashtags_off_playbook' | 'hashtags_off_profile' | 'poll_series_over_cap' | 'slang_in_tone' | 'audience_mismatch';
+  code:     'hashtags_off_playbook' | 'hashtags_off_profile' | 'poll_series_over_cap' | 'slang_in_tone' | 'audience_mismatch'
+    | 'hashtag_min_without_vocabulary' | 'rule_not_in_profile';
   ref:      string;
   /** English, for the agent page and the manager digest. */
   detail:   string;
@@ -50,8 +58,6 @@ export interface ConfigConflict {
   fix:      ConflictFix;
 }
 
-const NO_HASHTAGS_RE = /(без|ні|не\s+(?:став|додав|пиши|використов)\w*|no|without|don't\s+use)\s+(?:\p{L}+\s+){0,2}?(хештег|хэштег|hashtag|#)/iu;
-const NO_SLANG_RE = /(без|не\s+(?:вживай|використов|пиши)\w*|no|without)\s+(?:\p{L}+\s+){0,2}?(сленг|slang)/iu;
 const SLANG_RE = /сленг|slang/iu;
 const NEGATED_SLANG_RE = /(без|ні|не|no|without|avoid)\s+(?:\p{L}+\s+){0,2}?(сленг|slang)/iu;
 const AUDIENCE_RULE_RE = /(аудиторі|читач\w*\s+(?:—|-|це)|пишемо\s+для|пиши\s+для|для\s+(?:новачк|початківц|експерт|розробник|школяр|студент|батьк|геймер|дітей|підлітк)|audience|write\s+for)/iu;
@@ -81,11 +87,14 @@ export function configConflicts(i: ConflictInput): ConfigConflict[] {
   const noHashtagsRule = ruleMatching(i.rules, NO_HASHTAGS_RE);
   const noSlangRule = ruleMatching(i.rules, NO_SLANG_RE);
   const audienceRule = ruleMatching(i.rules, AUDIENCE_RULE_RE);
+  const simplerRule = ruleMatching(i.rules, SIMPLER_RE);
   for (const r of i.resources) {
     const section = i.playbook?.platforms.find((p) => p.resource_ref === r.ref) ?? null;
     // Hashtags off (the style sheet or an owner rule) ⇒ the playbook asks for none and format_prefs suggests none.
     const hashtagsOff = r.style?.hashtags === 'off' || !!noHashtagsRule;
-    const why = r.style?.hashtags === 'off' ? 'hashtags are off in the resource style' : `owner rule #${noHashtagsRule?.id}`;
+    const why = noHashtagsRule ? `owner rule #${noHashtagsRule.id}`
+      : r.style?.hashtags === 'off' && r.vocabulary && !r.vocabulary.length && !r.profile?.format_prefs?.style?.hashtags
+        ? 'the card has no hashtag vocabulary' : 'hashtags are off in the resource style';
     if (hashtagsOff && section && section.hashtag_policy.max > 0) {
       out.push({
         code: 'hashtags_off_playbook', ref: r.ref, rule_id: noHashtagsRule?.id,
@@ -134,6 +143,32 @@ export function configConflicts(i: ConflictInput): ConfigConflict[] {
         const t = r.profile!.format_prefs!.tone!;
         out.push({ code: 'slang_in_tone', ref: r.ref, rule_id: noSlangRule?.id, detail: `Format tone of ${r.ref} asks for slang («${t}»), but ${why2}.`, fix: { target: 'profile', op: 'tone', ref: r.ref, field: 'format_prefs.tone', tone: toneWithoutSlang(t) } });
       }
+    }
+    // Spec 041 FR-003: a minimum with nothing to take the hashtags from.
+    if (r.ref.startsWith('telegram:') && r.vocabulary && !r.vocabulary.length && (r.hashtagMin ?? 0) > 0) {
+      out.push({
+        code: 'hashtag_min_without_vocabulary', ref: r.ref,
+        detail: `The card of ${r.ref} asks for at least ${r.hashtagMin} hashtags but has no hashtag vocabulary.`,
+        fix: { target: 'card', op: 'hashtag_min_zero', channelKey: r.ref.slice('telegram:'.length) },
+      });
+    }
+    // Spec 041 FR-003: an owner rule the stored style sheet says the opposite of ⇒ write the rule into format_prefs.
+    const stored = r.profile?.format_prefs?.style ?? {};
+    const against: Array<{ id: number; what: string }> = [];
+    const next: ResourceStyle = { ...stored } as ResourceStyle;
+    let slangFix = false;
+    if (noHashtagsRule && stored.hashtags === 'vocabulary') { against.push({ id: noHashtagsRule.id, what: 'hashtags: vocabulary' }); next.hashtags = 'off'; }
+    if (noSlangRule && r.profile?.format_prefs?.slang === true) { against.push({ id: noSlangRule.id, what: 'slang: on' }); slangFix = true; }
+    if (simplerRule && stored.audience?.level && stored.audience.level !== 'beginner') {
+      against.push({ id: simplerRule.id, what: `audience: ${stored.audience.level}` });
+      next.audience = { level: 'beginner' };
+    }
+    if (against.length) {
+      out.push({
+        code: 'rule_not_in_profile', ref: r.ref, rule_id: against[0].id,
+        detail: `Owner rules ${against.map((a) => `#${a.id}`).join(', ')} say otherwise than the stored style of ${r.ref} (${against.map((a) => a.what).join(', ')}); the rule wins.`,
+        fix: { target: 'profile', op: 'style', ref: r.ref, style: next, ...(slangFix ? { slang: false as const } : {}) },
+      });
     }
     // An owner rule about the audience ⇒ the profile describes the same readers.
     const who = r.profile?.audience?.who;

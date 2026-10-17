@@ -1,4 +1,5 @@
 import type { EditorCard } from '../card';
+import { recentTopicsBlock } from './recent-topics';
 import { activeStoriesBlock, coveringStory } from './story-context';
 import { recapNeededBlock } from './story-event';
 import type { StoryRegistry } from './story.repository';
@@ -8,15 +9,17 @@ import type { StoryRegistry } from './story.repository';
  * planner and writer prompts and the feed items an active story covers. Errors stay out of the run (callers catch).
  */
 export class StoryContextService {
-  constructor(private readonly reg: Pick<StoryRegistry, 'activeStories'> & Partial<Pick<StoryRegistry, 'recapItems'>>) {}
+  constructor(private readonly reg: Pick<StoryRegistry, 'activeStories'> & Partial<Pick<StoryRegistry, 'recapItems' | 'recentTopics'>>) {}
 
   /** Spec 037 T3: the "recap needed" block (announced events without a post after them) goes first, then the active stories. */
   async activeBlock(card: Pick<EditorCard, 'channelKey' | 'timezone'>, role: 'planner' | 'executor', now: Date): Promise<string | null> {
-    const [stories, recap] = await Promise.all([
+    const [stories, recap, topics] = await Promise.all([
       this.reg.activeStories(card.channelKey, now),
       this.reg.recapItems ? this.reg.recapItems(card.channelKey, now).catch(() => []) : Promise.resolve([]),
+      // Spec 041 FR-004: the planner sees the channel's topics of 30 days (submit_plan refuses an evergreen repeat).
+      role === 'planner' && this.reg.recentTopics ? this.reg.recentTopics(card.channelKey).catch(() => []) : Promise.resolve([]),
     ]);
-    const blocks = [recapNeededBlock(recap, { timezone: card.timezone, role }), activeStoriesBlock(stories, { timezone: card.timezone, now, role })].filter(Boolean);
+    const blocks = [recapNeededBlock(recap, { timezone: card.timezone, role }), activeStoriesBlock(stories, { timezone: card.timezone, now, role }), recentTopicsBlock(topics)].filter(Boolean);
     return blocks.length ? blocks.join('\n\n') : null;
   }
 

@@ -47,7 +47,11 @@ export interface PublishPlatformInput {
    * anything is stored or sent. `null` = proceed; otherwise its result is returned
    * as is (a `critic_revise` error, or the terminal result of a rejected / held slot).
    */
-  review?: (p: { text: string; lint: PlatformLintResult }) => Promise<null | { halt: object }>;
+  /**
+   * The critic. `spec` (spec 041 FR-002): the critic passed with exact edits; the edited spec and its lint replace
+   * the input's from here on.
+   */
+  review?: (p: { text: string; lint: PlatformLintResult }) => Promise<null | { halt: object } | { spec: PlatformPostSpec; lint: PlatformLintResult }>;
   /** Spec 034 FR-012: the owner's dry-run Preview — every check and the critic, then stop: no row, no API call. */
   dry?: boolean;
 }
@@ -69,13 +73,21 @@ const BLOCKING_HEALTH = new Set(['no_access', 'token_invalid']);
  * platform executor and the scheduled path. Shadow mode renders and records,
  * never calls a platform API.
  */
-export async function publishPlatformNow(d: PublishPlatformDeps, i: PublishPlatformInput): Promise<PublishPlatformResult> {
+/** What the critic reads of a platform post: the caption, the slides and the first comment. */
+export function platformReviewText(spec: PlatformPostSpec, platform: Exclude<Platform, 'telegram'>): string {
+  const caption = captionPlain(spec, CAPABILITIES[platform].linksClickable);
+  return [caption, ...(spec.slides ?? []).map((sl, k) => `Слайд ${k + 1}: ${sl.title}. ${sl.text}`),
+    spec.first_comment ? `Перший коментар: ${spec.first_comment}` : null].filter(Boolean).join('\n');
+}
+
+export async function publishPlatformNow(d: PublishPlatformDeps, input: PublishPlatformInput): Promise<PublishPlatformResult> {
+  let i = input;
   const now = (d.now ?? (() => new Date()))();
   const ref = parseResourceRef(i.resourceRef);
   if (!ref || ref.platform === 'telegram') return { error: 'not_a_platform_resource', details: 'Telegram публікується через publish_post' };
   const platform = ref.platform as Exclude<Platform, 'telegram'>;
 
-  const lint = lintPlatformPost(i.spec, { platform, bannedTerms: i.bannedTerms, vocabulary: i.vocabulary, voice: i.voice });
+  let lint = lintPlatformPost(i.spec, { platform, bannedTerms: i.bannedTerms, vocabulary: i.vocabulary, voice: i.voice });
   if (!lint.ok) return { error: 'lint_failed', details: lint.errors };
 
   const health = await d.health(i.resourceRef);
@@ -111,10 +123,12 @@ export async function publishPlatformNow(d: PublishPlatformDeps, i: PublishPlatf
   }
 
   if (i.review) {
-    const text = [caption, ...(i.spec.slides ?? []).map((sl, k) => `Слайд ${k + 1}: ${sl.title}. ${sl.text}`),
-      i.spec.first_comment ? `Перший коментар: ${i.spec.first_comment}` : null].filter(Boolean).join('\n');
-    const r = await i.review({ text, lint });
-    if (r) return { halted: r.halt };
+    const r = await i.review({ text: platformReviewText(i.spec, platform), lint });
+    if (r && 'halt' in r) return { halted: r.halt };
+    if (r) {
+      i = { ...i, spec: r.spec };
+      lint = r.lint;
+    }
   }
 
   const preview = renderPlatform(i.spec, platform);

@@ -307,7 +307,8 @@ export class AgentsService {
     const key = this.profileKey(orch);
     if (!key) throw new BadRequestException({ error: 'no_resource', details: 'system agents have no resource profile' });
     await this.setProfile(key, body, 'owner');
-    return this.getProfile(handle);
+    // Spec 041 FR-003: what the saved profile now contradicts, shown right away.
+    return { ...(await this.getProfile(handle)), conflicts: (await this.configConflicts(handle)).conflicts };
   }
 
   async setProfile(ref: string, body: unknown, by: 'owner' | 'builder' | 'agent') {
@@ -372,7 +373,7 @@ export class AgentsService {
       by: 'owner', locks: p.data.format_locks, replace: true, reason: p.data.reason ?? 'owner edit',
     });
     if ('error' in r && r.error !== 'no_change') throw new BadRequestException(r);
-    return this.getFormatting(handle);
+    return { ...(await this.getFormatting(handle)), conflicts: (await this.configConflicts(handle)).conflicts };
   }
 
   private briefHook: ((agent: Agent, brief: string) => Promise<void>) | null = null;

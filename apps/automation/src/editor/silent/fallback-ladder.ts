@@ -219,7 +219,7 @@ export function stepOutcome(slot: SlotState | null, failure: SlotFailure | null)
 
 /** One step's record (verdict, cost, run) from the run result and the slot after it. */
 export function stepRecord(
-  step: LadderStep, format: string, at: Date, slot: (SlotState & { critic?: { verdict?: string | null; cost_usd?: number | null } | null }) | null,
+  step: LadderStep, format: string, at: Date, slot: (SlotState & { critic?: { verdict?: string | null; cost_usd?: number | null; cost_total_usd?: number | null } | null }) | null,
   failure: SlotFailure | null, run: { runId: string | null; totals?: { costUsd?: number } | null } | null,
 ): FallbackStepRecord {
   const outcome = stepOutcome(slot, failure);
@@ -227,7 +227,8 @@ export function stepRecord(
   return {
     step, at: at.toISOString(), format, outcome, reason: reason ? clip(reason, 300) : null,
     verdict: slot?.critic?.verdict ?? null, run_id: run?.runId ?? null,
-    cost_usd: Number(((run?.totals?.costUsd ?? 0) + Number(slot?.critic?.cost_usd ?? 0)).toFixed(6)),
+    // Spec 041 FR-007: every critic pass of the step (cost_total_usd), not only the last one.
+    cost_usd: Number(((run?.totals?.costUsd ?? 0) + Number(slot?.critic?.cost_total_usd ?? slot?.critic?.cost_usd ?? 0)).toFixed(6)),
     critic_passes: criticPasses(slot as { critic?: { history?: unknown[] | null } | null } | null),
     ...(failure?.sourceUrl || (slot?.postSpec && sourceOf(slot.postSpec)) ? { source_url: failure?.sourceUrl ?? sourceOf(slot!.postSpec) } : {}),
   };

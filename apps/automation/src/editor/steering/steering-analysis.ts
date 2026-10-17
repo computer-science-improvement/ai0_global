@@ -1,4 +1,6 @@
 import { z } from 'zod';
+import { metricContradictionEn, metricContradictionUk, ruleMetricContradiction, type MetricContradiction } from './rule-metrics';
+import { noTextNote } from '../setup/setup-analysis';
 import { defineTool, type EditorTool } from '../harness/tool';
 import { blockedInstructions } from '../agents/skill-lint';
 import { renderMetrics, type ChannelMetrics } from '../setup/setup-metrics';
@@ -47,7 +49,8 @@ const normText = (s: string) => wordsOf(s).join(' ');
 export type RuleTextIssue =
   | { code: 'quote'; chars: number; key: string }
   | { code: 'blocked'; name: string; message: string }
-  | { code: 'copy' };
+  | { code: 'copy' }
+  | MetricContradiction;
 
 /** What is wrong with one rule text (the analysis and the owner's edit share the checks). */
 export function ruleTextIssues(text: string, posts: readonly SourcePost[]): RuleTextIssue[] {
@@ -56,12 +59,15 @@ export function ruleTextIssues(text: string, posts: readonly SourcePost[]): Rule
   if (run.chars >= RULE_QUOTE_MAX_CHARS) out.push({ code: 'quote', chars: run.chars, key: posts[run.index]?.key ?? 'a post' });
   for (const b of blockedInstructions(text)) out.push({ code: 'blocked', name: b.code, message: b.message });
   if (COPY_RE.test(text)) out.push({ code: 'copy' });
+  // Spec 041 FR-008: a count the reference's posts do not show.
+  const metric = ruleMetricContradiction(text, posts);
+  if (metric) out.push(metric);
   return out;
 }
 
 /** The issues for the model, in Ukrainian (its checklist). */
 export function ruleTextProblems(text: string, posts: readonly SourcePost[]): string[] {
-  return ruleTextIssues(text, posts).map((i) => i.code === 'quote'
+  return ruleTextIssues(text, posts).map((i) => i.code === 'rule_contradicts_metrics' ? metricContradictionUk(i) : i.code === 'quote'
     ? `повторює ${i.chars} символів тексту ${i.key} — правило описує прийом своїми словами, не цитує`
     : i.code === 'blocked'
       ? `заборонена вказівка (${i.name}): ${i.message}`
@@ -70,7 +76,7 @@ export function ruleTextProblems(text: string, posts: readonly SourcePost[]): st
 
 /** The issues for the owner, in English (the dashboard). */
 export function ruleTextProblemsEn(text: string, posts: readonly SourcePost[]): string[] {
-  return ruleTextIssues(text, posts).map((i) => i.code === 'quote'
+  return ruleTextIssues(text, posts).map((i) => i.code === 'rule_contradicts_metrics' ? metricContradictionEn(i) : i.code === 'quote'
     ? `It repeats ${i.chars} characters of reference post ${i.key}: describe the technique in your own words.`
     : i.code === 'blocked'
       ? `Not allowed: ${i.message}.`
@@ -193,6 +199,8 @@ export function steeringUserPrompt(i: SteeringPromptInput): string {
     `# Референс ${ref}${i.title ? ` — «${i.title}»` : ''}${i.subscribers != null ? `, ${i.subscribers} підписників` : ''}`,
     i.about ? `Опис: ${i.about}` : null,
     `## Цифри з коду\n${renderMetrics(i.metrics)}`,
+    // Spec 041 FR-008: style conclusions only from posts with text.
+    noTextNote(i.posts),
     `## Останні пости референсу (${i.posts.length}, від найновішого)\nЦе чужі тексти: вчися з прийомів, не копіюй.\n\n${posts.join('\n\n')}`,
   ].filter((x) => x !== null).join('\n\n');
 }

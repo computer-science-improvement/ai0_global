@@ -11,7 +11,7 @@ import { makeCard } from '../post/testing/fixtures';
 import type { Agent } from '../agents/agent.types';
 import { PlaybookSchema, type Playbook } from '../network/playbook';
 import { computeMetrics, openingKey } from './setup-metrics';
-import { allowedFormats, checkSetup, SUBMIT_SETUP_TOOL } from './setup-analysis';
+import { allowedFormats, checkSetup, noTextNote, onboarderUserPrompt, SUBMIT_SETUP_TOOL } from './setup-analysis';
 import { applySections, driftedSections, formatPatch, mergePlaybook, sectionBaseline, type ApplyWriters, type ChannelState } from './setup-apply';
 import { collectPosts } from './setup-posts';
 import { ChannelSetupService } from './setup.service';
@@ -333,4 +333,52 @@ test('posts: fewer than 20 stored → one live read, upserted, then read again; 
   assert.equal(denied.status, 'no_access');
   const few = await collectPosts({ pool: { query: async (sql: string) => (sql.includes('FROM tracked_channels') ? { rows: [{ id: 'tc-1', channel_key: KEY, is_mine: true, tracking_status: 'ok' }] } : { rows: [] }) } as any, readHistory: async () => ({ access: 'ok', messages: messages.slice(0, 2) }) }, KEY);
   assert.equal(few.status, 'too_few_posts');
+});
+
+// ── spec 041 FR-008 (T8): text-only metrics, insufficient data / span ────────
+
+test('041 metrics: medians and shares count only posts with text; the prompt says how many have none', () => {
+  const posts = samplePosts();
+  const bare = posts.map((p, i) => (i < 3 ? { ...p, text: '', hasMedia: true, mediaType: 'photo' } : p));
+  const m = computeMetrics(bare, 'Europe/Kyiv');
+  assert.equal(m.posts, 8);
+  assert.equal(m.textPosts, 5);
+  assert.ok(m.length.median > 40, `median ${m.length.median}: no zero-length posts in it`);
+  assert.match(onboarderUserPrompt({
+    channelKey: KEY, title: 'Tips', about: null, subscribers: null, posts: bare, metrics: m, lockedFormat: [], lockedSeries: [],
+    current: { brief: null, profile: null },
+  }), /Історія охоплює лише \d+ дн\.[\s\S]*3 з 8 постів без тексту/u);
+  assert.equal(noTextNote(posts), null);
+});
+
+test('041 run: fewer than 5 posts with text is insufficient_data without a model call', async () => {
+  const posts = samplePosts().map((p, i) => (i < 4 ? { ...p, text: 'Фото', hasMedia: true, mediaType: 'photo' } : p));
+  const tracked = { id: 'tc-1', channelKey: KEY, username: 'tips_ua', tgChatId: null, title: 'Tips', about: null, subsCount: 10, isMine: true, trackingStatus: 'ok' };
+  const s = setupService({ turns: [], collect: async () => ({ status: 'ok', channel: tracked, posts, toppedUp: 0 }) });
+  await s.svc.analyze({ channelKeys: [KEY] });
+  await drain(s.svc);
+  assert.equal(s.repo.rows[0].status, 'too_few_posts');
+  assert.match(s.repo.rows[0].reason ?? '', /^insufficient_data: 4 of 8 posts have text/);
+  assert.equal(s.llm.requests.length, 0);
+});
+
+test('041 run: under 7 days of history the proposal is ready without the rate and quiet hours (insufficient_span)', async () => {
+  const s = setupService({ turns: [{ calls: [{ name: SUBMIT_SETUP_TOOL, args: validSetup() }] }] });
+  await s.svc.analyze({ channelKeys: [KEY] });
+  await drain(s.svc);
+  const p = s.repo.rows[0];
+  assert.equal(p.status, 'ready');
+  assert.match(p.reason ?? '', /^insufficient_span: the posts span \d days/);
+  assert.equal((p.sections as any).schedule.insufficient_span, true);
+  const { w, calls } = writersSpy();
+  const out = await applySections(w, { channelKey: KEY, ref: REF, title: 'Tips', input: p.sections as any, posts: samplePosts(), sections: ['schedule'], state: state() });
+  assert.equal(out.failed, null);
+  assert.ok(out.applied.includes('schedule'));
+  assert.ok(!calls.some(([k]) => k === 'upsertCard'), JSON.stringify(calls));
+  const written = calls.find(([k]) => k === 'putPlaybook')?.[1] as any;
+  assert.deepEqual(written.platforms[0].per_day, { min: 2, max: 5 }, 'the card\'s rate, not the proposal\'s');
+  assert.deepEqual(written.platforms[0].best_hours, [...validSetup().schedule.best_hours].sort((x, y) => x - y));
+  const pb = mergePlaybook(null, REF, makeCard({ postsPerDayMin: 2, postsPerDayMax: 3, formats: { text: 1 } }), { schedule: { bestHours: [9, 18] } });
+  assert.deepEqual(pb.platforms[0].per_day, { min: 2, max: 3 }, 'the rate stays the card\'s');
+  assert.deepEqual(pb.platforms[0].best_hours, [9, 18]);
 });

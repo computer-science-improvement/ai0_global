@@ -1,0 +1,58 @@
+{
+  "about": "Spec 041 FR-009 (T9): review-2 defects only the critic can judge. Input for the critic eval runner of spec 051; not run by the unit tests (each case is a paid model call). `post` is the reader text; `expect` is what a correct critique does.",
+  "cases": [
+    {
+      "id": "review2-1713-case",
+      "post_id": 1713,
+      "channel": "@ai0_global",
+      "post": "Галюцинація — це коли ШІ впевнено вигадує факт.\n\nТаке трапляється навіть у найвідоміших сервісів: ChatGPT назвав статтю, якої не існує.",
+      "lint_warnings": ["language_case"],
+      "expect": {
+        "verdict": ["pass_with_edits", "revise"],
+        "max_score": { "language": 3 },
+        "edit": { "from": "у найвідоміших сервісів", "to": "з найвідомішими сервісами" }
+      }
+    },
+    {
+      "id": "review2-1719-ramp",
+      "post_id": 1719,
+      "channel": "@ai0_news_dev",
+      "post": "Tesla показала Roadster другого покоління з прискорювачами SpaceX\n\nНа демо під Вейко в Техасі авто з допомогою вентиляторів і прискорювачів виїхало по перевернутій рампі, розвернулося й приземлилося.",
+      "lint_warnings": ["language_suspect"],
+      "expect": {
+        "verdict": ["pass_with_edits", "revise"],
+        "max_score": { "language": 3 },
+        "edit": { "from": "виїхало по перевернутій рампі", "to": "виїхало перевернутою рампою" }
+      }
+    },
+    {
+      "id": "review2-1724-pronoun",
+      "post_id": 1724,
+      "channel": "@ai0_global",
+      "post": "Perplexity відкрила код SPACE — «пісочниці», в якій працюють її ШІ-агенти\n\nКод опублікований на GitHub за ліцензією Apache 2.0, її можуть використовувати й інші команди, що створюють ШІ-агентів.",
+      "lint_warnings": [],
+      "expect": {
+        "verdict": ["pass_with_edits", "revise"],
+        "max_score": { "language": 3 },
+        "edit": { "from": "її можуть використовувати", "to": "його можуть використовувати" },
+        "note": "«її» points at «ліцензією»; the code is what other teams use."
+      }
+    },
+    {
+      "id": "review2-1717-rule11",
+      "post_id": 1717,
+      "channel": "@ai0_global",
+      "owner_rules": [
+        { "id": 11, "text": "Пости коротші й простіші: аудиторія — звичайні люди, не професійні програмісти. Обирати простіші матеріали, мінімум технічної специфіки." }
+      ],
+      "post": "За останню добу дві новини про відкриті AI-моделі. Коротко.\n\nMeta випустила Muse Spark Open: відкрита модель на 816 млрд параметрів, з яких одночасно працюють 42 млрд. Контекст сягає 1 мільйона токенів. Серед відкритих моделей вона зараз перша в бенчмарку MCP-Atlas.",
+      "lint_warnings": [],
+      "expect": {
+        "verdict": ["revise", "reject"],
+        "max_score": { "owner_rules": 2 },
+        "broken_rules": [11],
+        "rule_checks": [{ "id": 11, "kept": false }]
+      }
+    }
+  ]
+}

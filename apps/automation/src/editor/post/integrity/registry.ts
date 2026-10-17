@@ -13,6 +13,7 @@ import { POLL_CHECKS } from './checks/polls';
 import { SOURCE_CHECKS } from './checks/sources';
 import { mediaCheck } from './checks/media';
 import { evergreenCheck } from './checks/evergreen';
+import { languageCheck } from './checks/language';
 
 /**
  * Spec 037 FR-001: every deterministic integrity check, in report order. A new check (T2–T11) is one file under
@@ -36,6 +37,8 @@ export const INTEGRITY_CHECKS: IntegrityCheck[] = [
   ...SOURCE_CHECKS,
   mediaCheck,
   evergreenCheck,
+  // Spec 041 T1: the Ukrainian language gate.
+  languageCheck,
 ];
 
 /** Every finding of every check on one post. A check that throws is reported as `check_failed`, never swallowed. */

@@ -19,7 +19,7 @@ export const INTEGRITY_CODES: Record<string, CodeInfo> = {
   story_repeat:               { task: 'T2', level: 'error',   what: 'same story as a post of the last 14 days without a follow-up' },
   followup_without_new_facts: { task: 'T2', level: 'error',   what: 'follow-up whose new facts are absent or already in the original' },
   followup_restates:          { task: 'T2', level: 'warning', what: 'follow-up restating more than half of the original' },
-  story_cross_channel:        { task: 'T2', level: 'warning', what: 'a sibling channel posted the story in the last 24 h (own angle / repost / skip)' },
+  story_cross_channel:        { task: 'T2', level: 'warning', what: 'a sibling channel posted the story or topic in the last 72 h (own angle / repost / skip)' },
   // T3 announcement → recap (digest level, not per post).
   event_not_covered:          { task: 'T3', level: 'warning', what: 'announced event without a recap within 24 h' },
   event_date_missing:         { task: 'T3', level: 'error',   what: 'an announcement (story.event_at) whose text does not name the event date / time' },
@@ -68,6 +68,13 @@ export const INTEGRITY_CODES: Record<string, CodeInfo> = {
   // T11 media.
   image_not_from_source:      { task: 'T11', level: 'error',  what: 'news media other than the source\'s own image' },
   poster_mismatch:            { task: 'T11', level: 'mixed',  what: 'ai_posters poster off topic (warning) or on a news post (error)' },
+  // Spec 041 T1 language gate (post/language/lexicon.ts).
+  language_calque:            { task: '041', level: 'error',   what: 'an unambiguous russism / calque («приймати участь», «на протязі», «являється», «заточений»)' },
+  language_case:              { task: '041', level: 'warning', what: 'a suspect case («трапляється у найвідоміших сервісів» → «з …ими»)' },
+  language_suspect:           { task: '041', level: 'warning', what: 'a contested or context-dependent calque («вражаючий», «на борту» outside a vehicle, «по рампі» for a path)' },
+  language_euphony:           { task: '041', level: 'warning', what: 'у/в, і/й against the alternation rule, with the exact replacement' },
+  brief_media_missing:        { task: '041', level: 'error',   what: 'the brief asks for a picture on this format and the post has none' },
+  topic_repeat:               { task: 'T2', level: 'error',   what: '(041) an evergreen post (explainer, how-to, glossary, listicle) on a topic of the last 30 days' },
 };
 
 /** `code@T6` in a label: expected once task T6 extends an already implemented check. Returns the bare code and the task. */

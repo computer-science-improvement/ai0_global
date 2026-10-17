@@ -6,7 +6,8 @@ import type { Tone } from '../components/ui/primitives';
 
 export type CriticVerdictKind = 'pass' | 'revise' | 'reject' | 'error';
 // `owner_rules` (spec 040) is scored only when the channel has owner rules, so older verdicts lack it.
-export const CRITIC_SCORE_KEYS = ['ai_likeness', 'sense', 'voice', 'grounding', 'audience_asks', 'format_fit', 'owner_rules'] as const;
+// `language` (spec 041) is absent on verdicts written before it.
+export const CRITIC_SCORE_KEYS = ['ai_likeness', 'sense', 'voice', 'grounding', 'audience_asks', 'format_fit', 'language', 'owner_rules'] as const;
 export type CriticScoreKey = typeof CRITIC_SCORE_KEYS[number];
 
 export interface CriticVerdict {
@@ -15,7 +16,9 @@ export interface CriticVerdict {
   notes:          string;
   /** Ids of the owner rules the post broke (spec 040). */
   broken_rules?:  number[];
-  model_verdict?: 'pass' | 'revise' | 'reject' | null;
+  model_verdict?: 'pass' | 'pass_with_edits' | 'revise' | 'reject' | null;
+  /** Spec 041: exact replacements code applied before the post went out (critic edits, u/v fixes). */
+  edits_applied?: Array<{ from: string; to: string }>;
   reason:         string;
   pass:           number;
   slop_warnings:  string[];
@@ -34,6 +37,7 @@ export const SCORE_LABEL: Record<CriticScoreKey, string> = {
   grounding:     'Grounded',
   audience_asks: 'Reader asks',
   format_fit:    'Format fit',
+  language:      'Language',
   owner_rules:   'Your rules',
 };
 
@@ -44,6 +48,7 @@ export const SCORE_HINT: Record<CriticScoreKey, string> = {
   grounding:     'Every fact is in the source',
   audience_asks: 'Questions to readers and polls fit (none is fine)',
   format_fit:    'The format and length suit the content and the platform',
+  language:      'Correct Ukrainian: no russisms, calques or wrong cases',
   owner_rules:   "Keeps the channel's owner rules (scored only when the channel has rules)",
 };
 
