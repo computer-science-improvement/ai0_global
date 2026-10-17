@@ -305,7 +305,8 @@ test('lifecycle: activate, edit and switch rules, pause / resume, re-analyze sup
   const { set } = await svc.create({ target: '@pdr_mine', source: '@ref_channel' });
   await svc.idle();
   await assert.rejects(svc.patchRule(set.id, 's3', { enabled: true }), (e: any) => e.getResponse().error === 'rule_conflict');
-  await assert.rejects(svc.patchRule(set.id, 's1', { text: `Пиши: ${LONG_POST.slice(0, 90)}` }), (e: any) => e.getResponse().error === 'rule_invalid');
+  await assert.rejects(svc.patchRule(set.id, 's1', { text: `Пиши: ${LONG_POST.slice(0, 90)}` }),
+    (e: any) => e.getResponse().error === 'rule_invalid' && /^It repeats \d+ characters of reference post r1/.test(e.getResponse().details[0]));
   const edited = await svc.patchRule(set.id, 's1', { text: 'Перший рядок — хибна думка, другий — коротке «насправді».', enabled: false });
   assert.deepEqual([edited.set!.rules[0].edited, edited.set!.rules[0].enabled], [true, false]);
   assert.equal((await svc.activate(set.id)).set.status, 'active');

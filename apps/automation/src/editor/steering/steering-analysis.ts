@@ -44,16 +44,37 @@ const COPY_RE = /(?:скопіюй|копіюй|копіювати|перепи�
 
 const normText = (s: string) => wordsOf(s).join(' ');
 
-/** Problems in one rule text (the analysis and the owner's edit share them); Ukrainian lines. */
-export function ruleTextProblems(text: string, posts: readonly SourcePost[]): string[] {
-  const out: string[] = [];
+export type RuleTextIssue =
+  | { code: 'quote'; chars: number; key: string }
+  | { code: 'blocked'; name: string; message: string }
+  | { code: 'copy' };
+
+/** What is wrong with one rule text (the analysis and the owner's edit share the checks). */
+export function ruleTextIssues(text: string, posts: readonly SourcePost[]): RuleTextIssue[] {
+  const out: RuleTextIssue[] = [];
   const run = longestSharedRun(text, posts.map((p) => p.text));
-  if (run.chars >= RULE_QUOTE_MAX_CHARS) {
-    out.push(`повторює ${run.chars} символів тексту ${posts[run.index]?.key ?? 'поста'} — правило описує прийом своїми словами, не цитує`);
-  }
-  for (const b of blockedInstructions(text)) out.push(`заборонена вказівка (${b.code}): ${b.message}`);
-  if (COPY_RE.test(text)) out.push('правило не може казати копіювати чи репостити референс — лише описувати, як писати свої пости');
+  if (run.chars >= RULE_QUOTE_MAX_CHARS) out.push({ code: 'quote', chars: run.chars, key: posts[run.index]?.key ?? 'a post' });
+  for (const b of blockedInstructions(text)) out.push({ code: 'blocked', name: b.code, message: b.message });
+  if (COPY_RE.test(text)) out.push({ code: 'copy' });
   return out;
+}
+
+/** The issues for the model, in Ukrainian (its checklist). */
+export function ruleTextProblems(text: string, posts: readonly SourcePost[]): string[] {
+  return ruleTextIssues(text, posts).map((i) => i.code === 'quote'
+    ? `повторює ${i.chars} символів тексту ${i.key} — правило описує прийом своїми словами, не цитує`
+    : i.code === 'blocked'
+      ? `заборонена вказівка (${i.name}): ${i.message}`
+      : 'правило не може казати копіювати чи репостити референс — лише описувати, як писати свої пости');
+}
+
+/** The issues for the owner, in English (the dashboard). */
+export function ruleTextProblemsEn(text: string, posts: readonly SourcePost[]): string[] {
+  return ruleTextIssues(text, posts).map((i) => i.code === 'quote'
+    ? `It repeats ${i.chars} characters of reference post ${i.key}: describe the technique in your own words.`
+    : i.code === 'blocked'
+      ? `Not allowed: ${i.message}.`
+      : 'A rule cannot tell the agent to copy or repost the reference.');
 }
 
 /** Problems the model must fix, in Ukrainian (it reads them as a numbered checklist). */

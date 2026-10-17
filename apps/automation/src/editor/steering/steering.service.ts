@@ -8,7 +8,7 @@ import { editorFeature } from '../../common/ai/usage/features';
 import { isFloodWait } from '../../common/telegram/flood-wait';
 import { computeMetrics } from '../setup/setup-metrics';
 import {
-  buildSubmitSteeringTool, ruleTextProblems, steeringSystemPrompt, steeringUserPrompt, SUBMIT_STEERING_TOOL, SubmitSteeringInput,
+  buildSubmitSteeringTool, ruleTextProblemsEn, steeringSystemPrompt, steeringUserPrompt, SUBMIT_STEERING_TOOL, SubmitSteeringInput,
   toRules, type SteeringTarget,
 } from './steering-analysis';
 import { asSetupPosts, parseSourceRef, type ReadResult, type SteeringSourceReader } from './steering-source';
@@ -281,7 +281,7 @@ export class SteeringService {
     }
     let text = rule.text;
     if (b.data.text !== undefined && b.data.text !== rule.text) {
-      const problems = ruleTextProblems(b.data.text, s.posts);
+      const problems = ruleTextProblemsEn(b.data.text, s.posts);
       if (problems.length) throw new BadRequestException({ error: 'rule_invalid', details: problems });
       text = b.data.text;
     }
