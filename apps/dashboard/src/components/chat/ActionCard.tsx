@@ -5,7 +5,7 @@
 // reason. Decided cards show their final status.
 
 import { Link } from '@tanstack/react-router';
-import { useMemo, useState, type ReactNode } from 'react';
+import { createContext, useContext, useMemo, useState, type ReactNode } from 'react';
 import { Badge } from '../ui/Badge';
 import { Icon, type IconName } from '../ui/Icon';
 import type { Tone } from '../ui/primitives';
@@ -256,7 +256,11 @@ const BOXED = new Set(['create_agent', 'update_agent', 'write_skill', 'set_brief
  * An agent's confirmation card as a compact card: what it proposes, its status and two lines of the summary.
  * A click opens the dialog with the full payload (and the example posts to mark) and Apply / Discard.
  */
+/** The card a deep link points at (`/app/chat?c=…&card=…`, from "Waiting for you"): it scrolls into view and opens. */
+export const FocusedCardContext = createContext<string | undefined>(undefined);
+
 export function ActionCard({ action }: { action: PendingAction }) {
+  const focusedId = useContext(FocusedCardContext);
   const decide = useDecideAction();
   // The decision's response until the chat refetch brings the same status.
   const [local, setLocal] = useState<PendingAction | null>(null);
@@ -285,7 +289,7 @@ export function ActionCard({ action }: { action: PendingAction }) {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 6, maxWidth: 560, minWidth: 0 }}>
-      <CompactCard hint="Open the card" attention={pending}
+      <CompactCard hint="Open the card" attention={pending} focused={focusedId === a.id}
         top={<>
           <span className="section-glyph" style={{ width: 22, height: 22 }}><Icon name={meta.icon} size={12} /></span>
           <span className="text-caption" style={{ color: 'var(--color-ink)', fontWeight: 600 }}>{meta.label}</span>

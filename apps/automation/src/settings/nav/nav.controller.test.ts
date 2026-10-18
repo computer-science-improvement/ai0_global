@@ -16,7 +16,7 @@ import { AuthService } from '../../auth/auth.service';
 import { TrackingAuthGuard } from '../../tracking/api/tracking-auth.guard';
 import { makeAuth } from '../../auth/testing/fakes';
 import { NavConfigService } from './nav-config.service';
-import { NAV_BADGES, NAV_CONFIG, NavController } from './nav.controller';
+import { NAV_ATTENTION, NAV_BADGES, NAV_CONFIG, NavController } from './nav.controller';
 
 const TOKEN = 'test-token';
 
@@ -63,6 +63,7 @@ before(async () => {
       { provide: AuthService, useValue: makeAuth({ TRACKING_TOKEN: TOKEN }).auth },
       { provide: NAV_CONFIG, useValue: new NavConfigService(table as any) },
       { provide: NAV_BADGES, useValue: { get: async () => ({ generatedAt: '2026-10-06T09:00:00.000Z', counts: { agentInboxUnread: 2, slotsFailedToday: null } }) } },
+      { provide: NAV_ATTENTION, useValue: { get: async () => ({ inbox: { total: 0, items: [] }, directives: { total: 0, items: [] }, chatCards: { total: 0, items: [] } }) } },
     ],
   })
   class TestModule {}

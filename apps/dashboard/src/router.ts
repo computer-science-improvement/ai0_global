@@ -5,7 +5,7 @@ import { ApiError, setUnauthorizedHandler } from './api/client';
 import { describeError, toast } from './components/ui/Toast';
 import { SESSION_KEY, type SessionInfo } from './auth/session';
 import { createUnauthorizedHandler } from './auth/unauthorized';
-import { NAV_BADGES_KEY, requestFreshBadges } from './api/nav';
+import { NAV_ATTENTION_KEY, NAV_BADGES_KEY, requestFreshBadges } from './api/nav';
 
 const is401 = (e: unknown) => e instanceof ApiError && e.status === 401;
 
@@ -31,6 +31,7 @@ export const queryClient = new QueryClient({
       if (mutation.meta?.skipNavBadges) return;
       requestFreshBadges();
       void queryClient.invalidateQueries({ queryKey: NAV_BADGES_KEY });
+      void queryClient.invalidateQueries({ queryKey: NAV_ATTENTION_KEY });
     },
   }),
 });

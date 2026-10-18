@@ -1,5 +1,6 @@
 import { Logger } from '@nestjs/common';
 import type { Pool } from 'pg';
+import { chatCardLive } from './nav-attention.service';
 
 /**
  * Spec 027 FR-010: the menu counters, `GET /api/nav/badges` → {generatedAt, counts}.
@@ -26,7 +27,7 @@ export const BADGE_SOURCES: ReadonlyArray<{ key: BadgeKey; table: string; expr: 
   { key: 'agentInboxUnread',        table: 'agent_inbox',            expr: `(SELECT count(*)::int FROM agent_inbox WHERE read_at IS NULL)` },
   { key: 'agentInboxCritical',      table: 'agent_inbox',            expr: `(SELECT count(*)::int FROM agent_inbox WHERE read_at IS NULL AND severity = 'critical')` },
   { key: 'directivesAwaitingOwner', table: 'agent_directives',       expr: `(SELECT count(*)::int FROM agent_directives WHERE status IN ('awaiting_owner', 'contested'))` },
-  { key: 'chatPendingActions',      table: 'pending_actions',        expr: `(SELECT count(*)::int FROM pending_actions WHERE status = 'pending')` },
+  { key: 'chatPendingActions',      table: 'pending_actions',        expr: `(SELECT count(*)::int FROM pending_actions WHERE ${chatCardLive()})` },
   { key: 'dmThreadsNew',            table: 'agent_dm_threads',       expr: `(SELECT count(*)::int FROM agent_dm_threads WHERE status = 'new')` },
   { key: 'dmActionsPending',        table: 'agent_actions',          expr: `(SELECT count(*)::int FROM agent_actions WHERE status = 'pending')` },
   { key: 'slotsFailedToday',        table: 'editor_slots',           expr: `(SELECT count(*)::int FROM editor_slots WHERE status = 'failed' AND scheduled_at >= t.since)` },

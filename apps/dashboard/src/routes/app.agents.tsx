@@ -9,6 +9,7 @@ import { fmtUsd } from '../components/editor/EditorUi';
 import { AgentGlyph, KIND_LABEL, LastRun, ScopeChip, StateBadges, runsLabel } from '../components/agents/AgentsUi';
 import { useAgentInbox, useAgentTree, type AgentNode } from '../api/agents';
 import { MigrationBanner } from '../components/strategies/MigrationBanner';
+import { NeedsYou } from '../components/nav/NeedsYou';
 
 export const Route = createFileRoute('/app/agents')({ component: AgentsPage });
 
@@ -36,6 +37,9 @@ function AgentsPage() {
   return (
     <div>
       <PageHeader title="Agents" subtitle="Named agents per resource and network: profiles, skills, memory and run history" actions={<InboxButton />} />
+
+      {/* What the menu counter of Agents counts: unread Inbox notes and directives waiting for a decision. */}
+      <NeedsYou show={['inbox', 'directives']} />
 
       {tree.error && <div className="callout-danger" style={{ marginBottom: 16 }}>{describeError(tree.error)}</div>}
       {!tree.data && !tree.error && <div className="panel compose-rise" style={{ height: 120, opacity: 0.55 }} />}

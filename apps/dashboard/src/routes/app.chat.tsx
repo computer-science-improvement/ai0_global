@@ -7,7 +7,9 @@ import { useConfirm } from '../components/ui/ConfirmDialog';
 import { describeError, toast } from '../components/ui/Toast';
 import { DraftCard, DRAFT_TONE } from '../components/chat/DraftCard';
 import { ToolChips, type ToolActivity } from '../components/chat/ToolChips';
-import { ActionCard } from '../components/chat/ActionCard';
+import { ActionCard, FocusedCardContext } from '../components/chat/ActionCard';
+import { NeedsYou, chatsWaiting } from '../components/nav/NeedsYou';
+import { useNavAttention } from '../api/nav';
 import { MENTION_LIST_ID, MentionMenu, useMentionMenu } from '../components/chat/MentionMenu';
 import { indexTree } from '../components/agents/AgentsUi';
 import { ApprovalList } from '../components/approvals/ApprovalList';
@@ -31,8 +33,10 @@ import type { ChatAgentRef, EditorChatEvent, EditorChatMessage, EditorDraft, Pen
 
 export const Route = createFileRoute('/app/chat')({
   // `q` prefills the composer once (e.g. "Discuss" on a contested directive → "@manager about …").
-  validateSearch: (s: Record<string, unknown>): { c?: string; q?: string } => ({
+  // `card`: a confirmation card to scroll to and open (from "Waiting for you").
+  validateSearch: (s: Record<string, unknown>): { c?: string; q?: string; card?: string } => ({
     c: typeof s.c === 'string' ? s.c : undefined,
+    card: typeof s.card === 'string' && s.card ? s.card : undefined,
     q: typeof s.q === 'string' && s.q ? s.q.slice(0, 2000) : undefined,
   }),
   component: ChatPage,
@@ -60,7 +64,7 @@ const EXAMPLES = [
 ];
 
 function ChatPage() {
-  const { c: chatId, q: prefill } = Route.useSearch();
+  const { c: chatId, q: prefill, card: focusCard } = Route.useSearch();
   const navigate = Route.useNavigate();
   const isMobile = useMediaQuery('(max-width: 860px)');
   const [listOpen, setListOpen] = useState(false);
@@ -144,8 +148,15 @@ function ChatPage() {
   }, [chatId, chat.data?.drafts]);
 
   useEffect(() => {
+    if (focusCard) return; // the linked card scrolls itself into view
     endRef.current?.scrollIntoView({ block: 'end' });
-  }, [shown.length, live?.activities.length, live?.text, live && Object.keys(live.actions).length, chatId]);
+  }, [shown.length, live?.activities.length, live?.text, live && Object.keys(live.actions).length, chatId, focusCard]);
+  // The card has scrolled into view and opened: drop the param so the thread follows new messages again.
+  useEffect(() => {
+    if (!focusCard || !chat.data) return;
+    const t = setTimeout(() => navigate({ search: (s) => ({ ...s, card: undefined }), replace: true }), 1500);
+    return () => clearTimeout(t);
+  }, [focusCard, chat.data, navigate]);
   useEffect(() => () => abortRef.current?.abort(), []);
 
   // A prefilled message (?q=) lands in the composer once; the URL drops it so a reload does not refill it.
@@ -291,6 +302,9 @@ function ChatPage() {
           </span>
         </div>
 
+        {/* What the Chat menu counter counts: cards in any chat that still need a confirmation. Above the thread,
+            which scrolls to its end, so it is always in view. */}
+        <NeedsYou show={['chatCards']} currentChatId={chatId} style={{ margin: '10px 0 0', maxHeight: 180, overflowY: 'auto', flexShrink: 0 }} />
         <div style={{ flex: 1, overflowY: 'auto', padding: '16px 2px' }}>
           {approvalChannel && <ApprovalStrip channel={approvalChannel} />}
           {chat.data?.enabled === false && (
@@ -318,6 +332,7 @@ function ChatPage() {
               } />
           )}
 
+          <FocusedCardContext.Provider value={focusCard}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 18, maxWidth: 780, margin: '0 auto' }}>
             {shown.map((m, i) => {
               const before = placement.loose.filter((a) => ts(a.createdAt) < ts(m.createdAt) && (i === 0 || ts(a.createdAt) >= ts(shown[i - 1].createdAt)));
@@ -350,6 +365,7 @@ function ChatPage() {
             )}
             <div ref={endRef} />
           </div>
+          </FocusedCardContext.Provider>
         </div>
 
         <Composer value={input} onChange={setInput} onSend={() => send()} onStop={stop} busy={!!live}
@@ -541,6 +557,7 @@ function ChatSidebar({ activeId, onPick, onNew }: { activeId?: string; onPick: (
   const del = useDeleteChat();
   const confirm = useConfirm();
   const navigate = Route.useNavigate();
+  const waiting = chatsWaiting(useNavAttention().data);
   return (
     <aside style={{ display: 'flex', flexDirection: 'column', gap: 14, minHeight: 0, overflowY: 'auto' }}>
       <button className="btn-primary" onClick={onNew} style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
@@ -561,7 +578,10 @@ function ChatSidebar({ activeId, onPick, onNew }: { activeId?: string; onPick: (
                   <button type="button" onClick={() => onPick(c.id)} style={{
                     flex: 1, minWidth: 0, textAlign: 'left', background: 'none', border: 'none', cursor: 'pointer', color: 'var(--color-ink)', padding: 0,
                   }}>
-                    <div className="text-body-sm" style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{c.title}</div>
+                    <div className="text-body-sm" style={{ display: 'flex', alignItems: 'center', gap: 6, minWidth: 0 }}>
+                      <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', minWidth: 0 }}>{c.title}</span>
+                      {waiting.has(c.id) && <Badge tone="warning">to confirm</Badge>}
+                    </div>
                     <div className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>{fmtRelative(c.updatedAt)}</div>
                   </button>
                   <button className="btn-act btn-act-danger" title="Delete chat" aria-label="Delete chat" disabled={del.isPending}
