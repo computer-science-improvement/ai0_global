@@ -24,6 +24,8 @@ export interface ResourceConfig {
   /** Spec 041 FR-003, Telegram only: the card's hashtag vocabulary and its stored minimum. */
   vocabulary?:   readonly string[] | null;
   hashtagMin?:   number | null;
+  /** Telegram only: the channel card's language — `uk` turns on the Ukrainian check (lint `not_ukrainian`). */
+  language?:     string | null;
   profile?: {
     tone?:         string;
     audience?:     { who: string };
@@ -46,11 +48,13 @@ export type ConflictFix =
   | { target: 'profile'; op: 'audience'; ref: string; who: string }
   /** Spec 041 FR-003: the owner rule written into format_prefs (`style` replaces the stored style sheet). */
   | { target: 'profile'; op: 'style'; ref: string; style: ResourceStyle; slang?: false }
-  | { target: 'card'; op: 'hashtag_min_zero'; channelKey: string };
+  | { target: 'card'; op: 'hashtag_min_zero'; channelKey: string }
+  /** An owner rule that turns the Ukrainian check off ⇒ the card's language (`en` for an English channel, else `mixed`). */
+  | { target: 'card'; op: 'language'; channelKey: string; language: string };
 
 export interface ConfigConflict {
   code:     'hashtags_off_playbook' | 'hashtags_off_profile' | 'poll_series_over_cap' | 'slang_in_tone' | 'audience_mismatch'
-    | 'hashtag_min_without_vocabulary' | 'rule_not_in_profile';
+    | 'hashtag_min_without_vocabulary' | 'rule_not_in_profile' | 'language_check_rule';
   ref:      string;
   /** English, for the agent page and the manager digest. */
   detail:   string;
@@ -64,6 +68,14 @@ const AUDIENCE_RULE_RE = /(аудиторі|читач\w*\s+(?:—|-|це)|пи�
 const POLL_FORMATS = new Set(['poll', 'quiz', 'ig_poll', 'threads_poll']);
 /** Below this share of the rule's words in `audience.who`, the profile describes someone else. */
 const AUDIENCE_OVERLAP_MIN = 0.3;
+
+/**
+ * An owner rule that turns the Ukrainian check off. Review 10-18 (@ai0_prompts_dev): rule #23 «вимкнути перевірку мови»
+ * was stored, but the check is the card's language, so every post kept failing `not_ukrainian`.
+ */
+export const LANGUAGE_CHECK_OFF_RE = /(?:(?:вимкн|вимик|відключ|прибер|прибира|ігнор|disable|turn\s+off|switch\s+off|ignore|skip|drop)\p{L}*|без|не\s+перевіря\p{L}*)\s+(?:\p{L}+\s+){0,3}?(?:перевірк\p{L}*\s+(?:\p{L}+\s+)?мов|мовн\p{L}*\s+(?:перевірк|правил)|not_ukrainian|кирилиц|language\s+(?:check|rule)|правил\p{L}*\s+(?:про\s+)?(?:українськ\p{L}*\s+)?мов|українськ\p{L}*\s+мов)/iu;
+/** An owner rule that the channel writes in English. */
+export const ENGLISH_CHANNEL_RE = /(?:пиш\p{L}*|пост\p{L}*|контент|канал\p{L}*|мова\p{L}*|тексти?|write|posts?|language)\s+(?:\p{L}+\s+){0,3}?(?:англійськ|english)/iu;
 
 const ruleMatching = (rules: OwnerRule[], re: RegExp) => rules.find((r) => re.test(r.text));
 
@@ -88,7 +100,17 @@ export function configConflicts(i: ConflictInput): ConfigConflict[] {
   const noSlangRule = ruleMatching(i.rules, NO_SLANG_RE);
   const audienceRule = ruleMatching(i.rules, AUDIENCE_RULE_RE);
   const simplerRule = ruleMatching(i.rules, SIMPLER_RE);
+  const languageRule = ruleMatching(i.rules, LANGUAGE_CHECK_OFF_RE) ?? ruleMatching(i.rules, ENGLISH_CHANNEL_RE);
   for (const r of i.resources) {
+    // An owner rule that turns the Ukrainian check off ⇒ the card's language is not `uk` (the check reads only that).
+    if (languageRule && r.ref.startsWith('telegram:') && r.language === 'uk') {
+      const language = ENGLISH_CHANNEL_RE.test(languageRule.text) ? 'en' : 'mixed';
+      out.push({
+        code: 'language_check_rule', ref: r.ref, rule_id: languageRule.id,
+        detail: `Owner rule #${languageRule.id} («${languageRule.text.slice(0, 80)}») turns the Ukrainian check off, but the card of ${r.ref} still says language "uk", so the check keeps failing posts; the fix sets it to "${language}".`,
+        fix: { target: 'card', op: 'language', channelKey: r.ref.slice('telegram:'.length), language },
+      });
+    }
     const section = i.playbook?.platforms.find((p) => p.resource_ref === r.ref) ?? null;
     // Hashtags off (the style sheet or an owner rule) ⇒ the playbook asks for none and format_prefs suggests none.
     const hashtagsOff = r.style?.hashtags === 'off' || !!noHashtagsRule;

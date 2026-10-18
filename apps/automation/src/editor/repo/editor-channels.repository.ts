@@ -160,6 +160,13 @@ export class EditorChannelsRepository {
     return (rowCount ?? 0) > 0;
   }
 
+  /** The card's language (`uk` turns on the Ukrainian check); an owner card only. */
+  async setLanguage(channelKey: string, language: string): Promise<boolean> {
+    const { rowCount } = await this.pool.query(
+      `UPDATE editor_channels SET language = $2, updated_at = now() WHERE channel_key = $1 AND language IS DISTINCT FROM $2`, [channelKey, language]);
+    return (rowCount ?? 0) > 0;
+  }
+
   async setBrief(channelKey: string, brief: string): Promise<boolean> {
     const { rowCount } = await this.pool.query(
       `UPDATE editor_channels SET brief = $2, updated_at = now() WHERE channel_key = $1`, [channelKey, brief]);

@@ -9,7 +9,7 @@ export interface ConfigConflictsDeps {
   memory:   Pick<EditorMemoryRepository, 'listActive'> & Partial<Pick<EditorMemoryRepository, 'retireByOwner'>>;
   network:  Pick<NetworkRepository, 'groupOfChannel' | 'groupResources' | 'activePlaybook' | 'applyOwnerPatch'>
     & Partial<Pick<NetworkRepository, 'pendingPlaybook' | 'decidePlaybook'>>;
-  channels: Pick<EditorChannelsRepository, 'get' | 'setHashtagMin'>;
+  channels: Pick<EditorChannelsRepository, 'get' | 'setHashtagMin'> & Partial<Pick<EditorChannelsRepository, 'setLanguage'>>;
   profiles: Pick<ResourceProfilesRepository, 'get' | 'setProfile' | 'patchFormat'>;
   /** Spec 047 FR-005: the lint of an owner rule (rule-lint.ts); a rule it flags is retired by the resolver card. */
   ruleLint?: (text: string, orch: Agent) => Promise<Array<{ code: string; detail: string }>>;
@@ -59,7 +59,7 @@ export class ConfigConflictsService {
       const profile = (await this.d.profiles.get(ref).catch(() => null))?.profile ?? null;
       const prefs = (profile?.format_prefs ?? {}) as Record<string, any>;
       resources.push(ref === anchor && card
-        ? { ref, style: card.style ?? null, slang: card.slang === true, pollsPerWeek: card.pollsPerWeek ?? null, profile, vocabulary: card.hashtags, hashtagMin: card.hashtagMin }
+        ? { ref, style: card.style ?? null, slang: card.slang === true, pollsPerWeek: card.pollsPerWeek ?? null, profile, vocabulary: card.hashtags, hashtagMin: card.hashtagMin, language: card.language }
         : { ref, style: prefs.style ?? null, slang: prefs.slang === true, pollsPerWeek: profileCaps(profile).pollsPerWeek, profile });
     }
     const pb = await this.d.network.activePlaybook(orch.id);
@@ -139,7 +139,9 @@ export class ConfigConflictsService {
     for (const c of conflicts) {
       const f = c.fix;
       if (f.target === 'card') {
-        if (await this.d.channels.setHashtagMin(f.channelKey, 0)) applied.push(c.code);
+        if (f.op === 'language') {
+          if (this.d.channels.setLanguage && await this.d.channels.setLanguage(f.channelKey, f.language)) applied.push(c.code);
+        } else if (await this.d.channels.setHashtagMin(f.channelKey, 0)) applied.push(c.code);
         continue;
       }
       if (f.target !== 'profile') continue;

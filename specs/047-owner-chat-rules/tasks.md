@@ -41,6 +41,10 @@
   - `effectiveMode` on role agents (tree and detail) from the `channelMode` dep, and `mode_follows_orchestrator`.
   - Dashboard: the Mode tile "follows @parent"; `StateBadges` shows the effective mode.
   - Tests: `setup/dataset-formats.047.test.ts`.
+- [x] Follow-up 2026-10-18 (@ai0_prompts_dev): owner rule #23 «вимкнути перевірку мови» was stored, but `not_ukrainian` is switched only by the card's `language`, and the agent told the owner that only a code change could help.
+  - A rule that turns the check off, or says the channel writes in English, against a `uk` card is now the conflict `language_check_rule`. Its fix sets the card's language: `en` for an English channel, else `mixed`. The fix goes through the resolver card.
+  - The lint message says where the check comes from.
+  - Tests: `rules/language-check.047.test.ts`.
 
 ## Deltas from the spec
 

@@ -238,7 +238,7 @@ export function lintPost(spec: PostSpec, card: LintCard, integrity: LintIntegrit
   const plain = [spec.title, readerPlain(spec), spec.poll?.question ?? '', ...(spec.poll?.options ?? [])].join('\n');
   const share = cyrillicShare(readerPlain(spec) || plain);
   if (card.language === 'uk' && share < 0.6) {
-    err('not_ukrainian', `текст має бути українською: кирилиці ${Math.round(share * 100)}% із потрібних 60% — перекажи англійські цитати й назви українською або винеси їх у посилання`);
+    err('not_ukrainian', `текст має бути українською: кирилиці ${Math.round(share * 100)}% із потрібних 60% — перекажи англійські цитати й назви українською або винеси їх у посилання. Перевірку вмикає мова в картці каналу (language = uk); правило в памʼяті її не вимикає. Якщо канал пише іншою мовою, власник міняє Language у картці каналу (/app/editor) або застосовує картку fix_config_conflicts`);
   }
   // Spec 034 FR-003: normalised (case, ʼ ’ ') banned phrases are errors; the slop counters are warnings for the critic.
   for (const term of findSlopPhrases(plain)) err('banned_term', `заборонена фраза: "${term}"`);
