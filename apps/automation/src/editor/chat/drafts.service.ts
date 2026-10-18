@@ -147,7 +147,7 @@ export class DraftsService {
     const preview = previewOf(spec.data, card, lint);
     const slop = lint.warnings.filter((w) => slopCodes([w]).length > 0);
     const r = await this.d.critic.review({
-      channelKey: draft.channelKey, slotId: null, mode: 'draft', card: { models: card.models, dailyBudgetUsd: card.dailyBudgetUsd },
+      channelKey: draft.channelKey, slotId: null, mode: 'draft', card: { models: card.models, dailyBudgetUsd: card.dailyBudgetUsd, language: card.language },
       resourceRef: `telegram:${draft.channelKey}`, platform: 'telegram', format: spec.data.format, topic: spec.data.title,
       text: preview ? htmlToPlain(preview) : spec.data.title, spec: spec.data,
       voice: { humor: card.humor, slang: card.slang, emoji: card.emojiPref, style: card.style }, brief: card.brief || null,

@@ -73,7 +73,7 @@ export function creativeFromText(text: string): SponsoredCreative {
 }
 
 /** Advertiser wording is the advertiser's responsibility: these become warnings. */
-const RELAXED = new Set(['banned_term', 'not_ukrainian', 'emoji_policy']);
+const RELAXED = new Set(['banned_term', 'not_ukrainian', 'wrong_language', 'emoji_policy']);
 
 /**
  * Relaxed lint for sponsored creatives: no hashtag vocabulary/count rules and

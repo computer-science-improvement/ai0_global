@@ -83,7 +83,7 @@ export interface CriticGateContext {
   platform:     string;
   topic?:       string | null;
   angle?:       string | null;
-  card?:        { models?: Partial<Record<EditorRole, string>>; dailyBudgetUsd?: number | null } | null;
+  card?:        { models?: Partial<Record<EditorRole, string>>; dailyBudgetUsd?: number | null; language?: string | null } | null;
   voice:        VoicePrefs;
   brief?:       string | null;
   profile?:     string | null;

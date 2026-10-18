@@ -24,6 +24,12 @@ const DEFAULTS: Omit<EditorCardFields, 'mode'> = {
   sources: [], toolsAllow: null, exploreRatio: 0.2, dailyBudgetUsd: null, models: {}, bannedTerms: [], crosspost: true,
 };
 
+/** Reader languages offered first (the server takes any ISO 639-1 code; one set elsewhere stays in the list). */
+const LANGUAGES: Array<[string, string]> = [
+  ['uk', 'Ukrainian'], ['mixed', 'Ukrainian + verbatim foreign text'], ['en', 'English'], ['pl', 'Polish'], ['de', 'German'],
+  ['es', 'Spanish'], ['fr', 'French'], ['it', 'Italian'], ['pt', 'Portuguese'],
+];
+
 const list = (s: string) => s.split(',').map((x) => x.trim().replace(/^#/, '')).filter(Boolean);
 const grid: CSSProperties = { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))', gap: 12 };
 const inputStyle: CSSProperties = { width: '100%', boxSizing: 'border-box' };
@@ -151,7 +157,12 @@ export function CardEditorModal({ open, onClose, card }: { open: boolean; onClos
         </div>
         <div style={grid}>
           <Field label="Time zone"><input className="input-field" style={inputStyle} value={f.timezone} onChange={(e) => set('timezone', e.target.value)} /></Field>
-          <Field label="Language"><input className="input-field" style={inputStyle} value={f.language} onChange={(e) => set('language', e.target.value)} /></Field>
+          <Field label="Language" hint="of the posts">
+            <select className="input-field" style={inputStyle} value={f.language} onChange={(e) => set('language', e.target.value)}>
+              {LANGUAGES.some(([code]) => code === f.language) ? null : <option value={f.language}>{f.language}</option>}
+              {LANGUAGES.map(([code, label]) => <option key={code} value={code}>{label}</option>)}
+            </select>
+          </Field>
           <Field label="Explore ratio"><Num value={f.exploreRatio} onChange={(v) => set('exploreRatio', v)} step={0.05} min={0} max={1} /></Field>
           <Field label="Budget $/day" hint="blank = env"><Num value={f.dailyBudgetUsd} onChange={(v) => set('dailyBudgetUsd', v)} step={0.05} min={0} /></Field>
         </div>

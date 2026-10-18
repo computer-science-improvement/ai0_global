@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import type { EditorCard } from '../card';
 import { makeDefaultCard } from '../chat/default-card';
+import { normalizeChannelLanguage } from '../post/channel-language';
 import { Agent, parseResourceRef, Platform, validateHandle } from './agent.types';
 import { implementedFormats } from '../platform/capabilities';
 import { MAX_FITTING_FORMATS } from '../network/playbook';
@@ -166,6 +167,8 @@ export class AgentCreator {
         const base = makeDefaultCard(tg.id, input.name);
         cardCreated = await this.d.channels.insertIfMissing({
           ...base, mode: NEW_RESOURCE_MODE, brief: briefFromProfile(input),
+          // The profile's reader language is the card's (prompts, lint and critic read the card).
+          language: normalizeChannelLanguage(input.profile.language) ?? base.language,
           // Spec 034 FR-007: only the formats picked with a reason (else text + photo); polls stay off.
           formats: input.formats?.length ? Object.fromEntries(input.formats.map((f) => [f.format, 1])) : base.formats,
           // Spec 034 FR-009: taboo is a list of topics (prompts and the critic), not lint terms; only words the owner listed.

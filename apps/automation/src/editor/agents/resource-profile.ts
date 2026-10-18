@@ -153,7 +153,8 @@ export const ResourceProfileSchema = z.object({
     age:    z.string().trim().max(40).optional(),
     region: z.string().trim().max(80).optional(),
   }),
-  language:       z.string().trim().min(2).max(10).default('uk'),
+  language:       z.string().trim().min(2).max(10).default('uk')
+    .describe('Мова постів для читачів: код ISO 639-1 (uk, en, pl…) або mixed — українська проза з дослівними іншомовними вставками (промпти, код). Стає мовою картки каналу'),
   goals:          z.array(z.enum(KPI_GOALS)).min(1).max(4),
   tone:           z.string().trim().max(300).optional(),
   taboo:          z.array(z.string().trim().min(1).max(80)).max(30).default([]),

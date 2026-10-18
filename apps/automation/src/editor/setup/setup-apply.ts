@@ -4,6 +4,7 @@ import type { FormatPrefField, ResourceProfile } from '../agents/resource-profil
 import { MAX_PLAYBOOK_EXAMPLES, PlaybookSchema, type Playbook, type PlaybookExample } from '../network/playbook';
 import { SETUP_FORMAT_FIELDS, SETUP_SECTIONS, VOICE_SKILL_NAME, type BoundDataset, type SetupSection, type SubmitSetupInput } from './setup-analysis';
 import type { SetupPost } from './setup-posts.types';
+import { channelLanguage, normalizeChannelLanguage, proseLanguage } from '../post/channel-language';
 
 /**
  * Spec 042 FR-004 / FR-006: what each section would replace (`baseline`, stored at analysis for the drift check), the
@@ -29,6 +30,15 @@ function pick<T extends object>(o: T | null | undefined, keys: readonly string[]
   const out: Record<string, unknown> = {};
   for (const k of keys) if ((o as Record<string, unknown>)[k] !== undefined) out[k] = (o as Record<string, unknown>)[k];
   return out;
+}
+
+/**
+ * The card language the analysed posts are written in, when it differs from the card's prose language (a card set to
+ * `mixed` stays `mixed` for Ukrainian posts); nothing for an unknown value.
+ */
+export function languagePatch(analysed: string | null | undefined, card: Pick<EditorCard, 'language'>): { language?: string } {
+  const lang = normalizeChannelLanguage(analysed);
+  return lang && proseLanguage(lang) !== proseLanguage(channelLanguage(card)) ? { language: lang } : {};
 }
 
 /** The values each section would replace, as JSON-comparable data. */
@@ -247,7 +257,7 @@ export async function applySections(w: ApplyWriters, a: ApplyInput): Promise<App
     if (section === 'brief_profile') {
       if (!(await step(section, async () => {
         await w.setProfile(a.ref, mergedProfile(a.state.profile, i));
-        await w.upsertCard(a.channelKey, { brief: i.brief_profile.brief });
+        await w.upsertCard(a.channelKey, { brief: i.brief_profile.brief, ...languagePatch(i.brief_profile.profile.language, cur) });
       }))) return out;
       out.applied.push(section);
     } else if (section === 'formatting') {

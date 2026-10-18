@@ -3,6 +3,7 @@ import { instancesPerDay, parseCadence } from '../network/series';
 import type { ResourceStyle } from '../post/style/resource-style';
 import { ruleOverlap } from '../agents/mentions';
 import { NO_HASHTAGS_RE, NO_SLANG_RE, SIMPLER_RE } from './owner-style-overlay';
+import { channelLanguage, normalizeChannelLanguage, proseLanguage } from '../post/channel-language';
 
 /**
  * Spec 040 FR-011: `rules-vs-config` — the owner's rules and the resource style against the active playbook and the
@@ -27,6 +28,8 @@ export interface ResourceConfig {
   /** Telegram only: the channel card's language — `uk` turns on the Ukrainian check (lint `not_ukrainian`). */
   language?:     string | null;
   profile?: {
+    /** The profile's reader language (the card's `language` decides; a different one here contradicts it in the prompts). */
+    language?:     string;
     tone?:         string;
     audience?:     { who: string };
     format_prefs?: { tone?: string; hashtags?: { count: number }; slang?: boolean; style?: Partial<ResourceStyle> | null };
@@ -46,6 +49,8 @@ export type ConflictFix =
   | { target: 'profile'; op: 'hashtags_off'; ref: string }
   | { target: 'profile'; op: 'tone'; ref: string; field: 'tone' | 'format_prefs.tone'; tone: string }
   | { target: 'profile'; op: 'audience'; ref: string; who: string }
+  /** The profile's language follows the card's (the card is the switch the prompts, lint and critic read). */
+  | { target: 'profile'; op: 'language'; ref: string; language: string }
   /** Spec 041 FR-003: the owner rule written into format_prefs (`style` replaces the stored style sheet). */
   | { target: 'profile'; op: 'style'; ref: string; style: ResourceStyle; slang?: false }
   | { target: 'card'; op: 'hashtag_min_zero'; channelKey: string }
@@ -54,7 +59,7 @@ export type ConflictFix =
 
 export interface ConfigConflict {
   code:     'hashtags_off_playbook' | 'hashtags_off_profile' | 'poll_series_over_cap' | 'slang_in_tone' | 'audience_mismatch'
-    | 'hashtag_min_without_vocabulary' | 'rule_not_in_profile' | 'language_check_rule';
+    | 'hashtag_min_without_vocabulary' | 'rule_not_in_profile' | 'language_check_rule' | 'language_profile_card';
   ref:      string;
   /** English, for the agent page and the manager digest. */
   detail:   string;
@@ -110,6 +115,17 @@ export function configConflicts(i: ConflictInput): ConfigConflict[] {
         detail: `Owner rule #${languageRule.id} («${languageRule.text.slice(0, 80)}») turns the Ukrainian check off, but the card of ${r.ref} still says language "uk", so the check keeps failing posts; the fix sets it to "${language}".`,
         fix: { target: 'card', op: 'language', channelKey: r.ref.slice('telegram:'.length), language },
       });
+    } else if (r.language != null && r.profile?.language) {
+      // The card's language decides; a profile in another language tells the writer the opposite in the same prompt.
+      const card = channelLanguage({ language: r.language });
+      const profile = normalizeChannelLanguage(r.profile.language);
+      if (profile && proseLanguage(profile) !== proseLanguage(card)) {
+        out.push({
+          code: 'language_profile_card', ref: r.ref,
+          detail: `The profile of ${r.ref} says language "${r.profile.language}", but the channel card writes posts in "${card}" (the card decides); the fix sets the profile's language to "${card}".`,
+          fix: { target: 'profile', op: 'language', ref: r.ref, language: card },
+        });
+      }
     }
     const section = i.playbook?.platforms.find((p) => p.resource_ref === r.ref) ?? null;
     // Hashtags off (the style sheet or an owner rule) ⇒ the playbook asks for none and format_prefs suggests none.

@@ -12,6 +12,7 @@ import { isProtectedSkill } from '../skills/skill-library';
 import { lintSkill, SKILL_ROLES } from './skill-lint';
 import type { SkillStore } from './skill-store';
 import { defaultAppliesTo } from '../skills/skill-defaults';
+import { SCRIPT_MIN_SHARE, scriptShares } from '../post/channel-language';
 
 /** Per-run state of an agent chat turn (spec 018), put into ctx.extras by the chat service. */
 export interface AgentChatExtras {
@@ -81,6 +82,12 @@ const AgentPatchInput = z.object({
   grammatical_gender: z.enum(['masculine', 'feminine']).nullable().optional().describe('Рід, яким агент говорить про себе: я зробив / я зробила'),
 }).strict();
 
+/** `uk` when the resource's recent posts are Ukrainian-script prose; null when the owner has to name the language. */
+function guessLanguage(texts: string[]): string | null {
+  const shares = scriptShares(texts.join('\n'));
+  return !shares || shares.cyrillic >= SCRIPT_MIN_SHARE ? 'uk' : null;
+}
+
 /** Tools of the @ai0 builder (spec 018 FR-004). Mutations only propose cards. */
 export function buildBuilderTools(d: BuilderToolDeps): EditorTool[] {
   const listResources = defineTool({
@@ -110,15 +117,16 @@ export function buildBuilderTools(d: BuilderToolDeps): EditorTool[] {
       const existing = await d.profiles.get(ref.trim());
       if (existing?.profile) return { draft: existing.profile, missing: [], note: 'профіль уже існує — показую його' };
       const title = i.resource.title ?? i.resource.username ?? ref;
+      const language = guessLanguage(i.recentPosts.map((x) => x.text));
       const draft: Partial<ResourceProfile> = {
         topic: i.about?.trim() ? i.about.trim().slice(0, 300) : `${title}${i.themes.length ? ` — ${i.themes.slice(0, 5).join(', ')}` : ''}`,
-        language: 'uk',
+        language: language ?? 'uk',
         goals: ['growth', 'engagement'],
         taboo: [], sources: [], examples: [],
         frequency_hint: i.stats.postsPerDay ? `зараз ~${i.stats.postsPerDay} постів/день` : undefined,
         ads_allowed: { allowed: true, categories: [] },
       };
-      const missing = ['audience.who', 'goals (підтвердити пріоритет: ' + KPI_GOALS.join(', ') + ')', 'tone', 'taboo (теми, про які ресурс не пише — не окремі слова)', 'formats (1–4, що пасують темі, з причиною кожного)'];
+      const missing = [...(language ? [] : ['language (мова постів для читачів: uk, en, pl… або mixed — пости не українською кирилицею)']), 'audience.who', 'goals (підтвердити пріоритет: ' + KPI_GOALS.join(', ') + ')', 'tone', 'taboo (теми, про які ресурс не пише — не окремі слова)', 'formats (1–4, що пасують темі, з причиною кожного)'];
       return { draft, missing, recent_posts: i.recentPosts.slice(0, 8), stats: i.stats, access: i.access };
     },
   });

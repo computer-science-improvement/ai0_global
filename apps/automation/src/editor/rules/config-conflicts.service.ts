@@ -157,7 +157,9 @@ export class ConfigConflictsService {
       } else {
         const stored = (await this.d.profiles.get(f.ref))?.profile;
         if (!stored) continue;
-        const next = f.op === 'tone' ? { ...stored, tone: f.tone || undefined } : { ...stored, audience: { ...stored.audience, who: f.who } };
+        const next = f.op === 'tone' ? { ...stored, tone: f.tone || undefined }
+          : f.op === 'language' ? { ...stored, language: f.language }
+          : { ...stored, audience: { ...stored.audience, who: f.who } };
         await this.d.profiles.setProfile(f.ref, next, 'owner', { reason: `owner rules: ${c.code}` });
         applied.push(c.code);
       }

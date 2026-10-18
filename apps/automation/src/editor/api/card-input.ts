@@ -2,6 +2,7 @@ import { z } from 'zod';
 import type { EditorCard } from '../card';
 import { SUPPORTED_FORMATS } from '../post/post-spec';
 import { API_SOURCE_NAMES } from '../tools/api-adapters/names';
+import { normalizeChannelLanguage } from '../post/channel-language';
 
 /**
  * Defaults of a card created through the API: the editor_channels column
@@ -45,7 +46,12 @@ const SourceSchema = z.object({
 const CardFields = z.object({
   mode:           z.enum(['off', 'shadow', 'approve', 'live']),
   title:          z.string().trim().max(200).nullable(),
-  language:       z.string().trim().min(2).max(10),
+  // The reader language (post/channel-language.ts): an ISO 639-1 code or `mixed`; `en-US` / `ua` are stored as `en` / `uk`.
+  language:       z.string().trim().max(10).transform((v, ctx) => {
+                    const l = normalizeChannelLanguage(v);
+                    if (!l) { ctx.addIssue({ code: 'custom', message: 'an ISO 639-1 language code (uk, en, pl, …) or "mixed"' }); return z.NEVER; }
+                    return l;
+                  }),
   timezone:       z.string().refine(isTimeZone, 'unknown IANA time zone'),
   postsPerDayMin: smallint(0, 48),
   postsPerDayMax: smallint(1, 48),

@@ -11,6 +11,7 @@ import type { VoicePrefs } from '../post/slop-lint';
 import { SkillLibrary, type Skill } from '../skills/skill-library';
 import { voiceCoreBody, voiceSettingsLine } from '../roles/voice';
 import { styleSection } from '../post/style/resource-style';
+import { channelLanguage, criticLanguageLines } from '../post/channel-language';
 import { CRITIC_REJECT_AT, CritiqueInput, decideVerdict, type Critique, type StoredCritic } from './critic';
 import type { OwnerRuleLine } from '../rules/owner-rules-prompt';
 import { criticSkillsSection, type CriticSkillsContext, type CriticSkillsRequest } from './critic-skills';
@@ -35,7 +36,7 @@ export interface CriticRequest {
   /** `live` / `shadow` / `approve` for a slot; `draft` for a chat draft (advisory). */
   mode:         'live' | 'shadow' | 'approve' | 'draft';
   /** Model overrides and budget of the channel card (legacy `models.checker`, daily budget). */
-  card?:        { models?: Partial<Record<EditorRole, string>>; dailyBudgetUsd?: number | null; mode?: string } | null;
+  card?:        { models?: Partial<Record<EditorRole, string>>; dailyBudgetUsd?: number | null; mode?: string; language?: string | null } | null;
   resourceRef:  string;
   platform:     string;
   format:       string;
@@ -126,6 +127,8 @@ export function criticUserPrompt(r: CriticRequest): string {
   const s: string[] = [];
   s.push(`## Ресурс: ${r.resourceRef} (${r.platform})`);
   s.push(voiceSettingsLine(r.voice));
+  // The card's reader language: the language axis follows it (nothing for Ukrainian, the rubric's default).
+  s.push(...criticLanguageLines(channelLanguage(r.card)));
   // Spec 037 FR-008: the resource style sheet the post must follow (address, glossary, names, units, hashtags).
   s.push(...styleSection(r.voice?.style));
   if (r.brief) s.push(`Бриф каналу: ${clip(r.brief, CAP.profile)}`);

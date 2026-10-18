@@ -45,6 +45,15 @@
   - A rule that turns the check off, or says the channel writes in English, against a `uk` card is now the conflict `language_check_rule`. Its fix sets the card's language: `en` for an English channel, else `mixed`. The fix goes through the resolver card.
   - The lint message says where the check comes from.
   - Tests: `rules/language-check.047.test.ts`.
+- [x] Follow-up 2026-10-18: the card's `language` is a per-channel reader-language setting, for any future channel. Module `post/channel-language.ts`.
+  - Values: an ISO 639-1 code or `mixed` (Ukrainian prose with verbatim foreign text). The card API normalises and validates it (`en-US` → `en`, `ua` → `uk`, `klingon` → 400).
+  - Prompts: the writer, chat composer and platform writer take their reader-language line from the card. `uk` keeps the old line word for word. The model instructions stay Ukrainian.
+  - Critic: a "Мова поста" line for a non-Ukrainian card. The language axis then follows that language's norms.
+  - Lint: `not_ukrainian` stays for `uk`. A new `wrong_language` error fires when a Latin- or Cyrillic-script language's post is below 60 % of its script. `mixed` and other scripts are not checked. The Ukrainian lexicon gate runs for `uk` and `mixed`.
+  - Card creation: a new agent's card takes the profile language. Setup from history writes the analysed language to the card when the prose language differs, so `mixed` stays `mixed`. The builder's profile draft asks for the language when the recent posts are not Ukrainian.
+  - New conflict `language_profile_card`: the profile language differs from the card's. The fix sets the profile to the card's language.
+  - Dashboard: Language in the card editor is a select (Ukrainian, mixed, English, Polish, German, Spanish, French, Italian, Portuguese). A stored value outside the list is kept as an option.
+  - Tests: `post/channel-language.test.ts`.
 
 ## Deltas from the spec
 

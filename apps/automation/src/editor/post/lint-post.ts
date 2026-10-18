@@ -8,6 +8,7 @@ import { RICH_MAX_BLOCKS, RICH_MAX_CHARS, RICH_MAX_DEPTH, richStats } from './re
 /** Spec 034 FR-003: signature AI phrasings (the anti-slop list, normalised) live in slop-phrases.ts. */
 import { bannedTermContext, findBannedTerms, findSlopPhrases, normalizeSlop } from './slop-phrases';
 import { slopWarnings } from './slop-lint';
+import { SCRIPT_MIN_SHARE, channelLanguage, languageNameUk, languageScript, scriptShares } from './channel-language';
 import { readerQuestionsIssue } from './audience-asks';
 import { auditPostFromSpec } from './integrity/from-post-spec';
 import { INTEGRITY_CHECKS, runIntegrityChecks } from './integrity/registry';
@@ -251,8 +252,15 @@ export function lintPost(spec: PostSpec, card: LintCard, integrity: LintIntegrit
   const plain = [spec.title, readerPlain(spec), spec.poll?.question ?? '', ...(spec.poll?.options ?? [])].join('\n');
   const hasCode = spec.body.some((b) => b.type === 'code') || !!spec.longread?.blocks.some((b) => b.type === 'code');
   const share = hasCode ? cyrillicShare(readerProse(spec)) : cyrillicShare(readerPlain(spec) || plain);
-  if (card.language === 'uk' && share < 0.6) {
+  const lang = channelLanguage(card);
+  if (lang === 'uk' && share < SCRIPT_MIN_SHARE) {
     err('not_ukrainian', `текст має бути українською: кирилиці ${Math.round(share * 100)}% із потрібних 60% — перекажи англійські цитати й назви українською, винеси їх у посилання, а дослівний текст для копіювання (промпт, команду, код) — у блок code: він не рахується. Перевірку вмикає мова в картці каналу (language = uk); правило в памʼяті її не вимикає. Якщо канал пише іншою мовою, власник міняє Language у картці каналу (/app/editor) або застосовує картку fix_config_conflicts`);
+  }
+  // Any other card language: the prose must be in its script (mixed and other scripts are not checked).
+  const script = lang === 'uk' ? null : languageScript(lang);
+  const shares = script ? scriptShares(hasCode ? readerProse(spec) : (readerPlain(spec) || plain)) : null;
+  if (script && shares && shares[script] < SCRIPT_MIN_SHARE) {
+    err('wrong_language', `текст має бути мовою каналу — ${languageNameUk(lang)}: ${script === 'latin' ? 'латиниці' : 'кирилиці'} ${Math.round(shares[script] * 100)}% із потрібних ${SCRIPT_MIN_SHARE * 100}% — перепиши пост цією мовою; дослівний текст іншою мовою (промпт, команду, код) — у блок code. Мову задає картка каналу (Language у /app/editor)`);
   }
   // Spec 034 FR-003: normalised (case, ʼ ’ ') banned phrases are errors; the slop counters are warnings for the critic.
   for (const term of findSlopPhrases(plain)) err('banned_term', `заборонена фраза: "${term}"`);

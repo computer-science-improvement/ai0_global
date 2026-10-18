@@ -36,6 +36,7 @@ import {
 import { EvergreenProbe } from '../silent/evergreen';
 import { memoryWithoutRules, ownerRulesOf, ownerRulesSection } from '../rules/owner-rules-prompt';
 import type { SteeringPromptRule } from '../steering/steering.types';
+import { channelLanguage, readerLanguageRule } from '../post/channel-language';
 
 export interface EditorRunnerDeps {
   loop:     Pick<AgentLoop, 'run'>;
@@ -265,7 +266,7 @@ export class EditorRunnerService {
         : { critic: this.d.critic.service, plans: this.d.plans, inbox: this.d.critic.inbox, libraryText: this.d.critic.libraryText },
       {
         slotId: slot.id, channelKey: card.channelKey, mode: target.mode, resourceRef: target.ref, platform: target.platform,
-        topic: slot.topic, angle: slot.angle, card: { models: card.models, dailyBudgetUsd: card.dailyBudgetUsd }, voice: target.voice,
+        topic: slot.topic, angle: slot.angle, card: { models: card.models, dailyBudgetUsd: card.dailyBudgetUsd, language: card.language }, voice: target.voice,
         brief: card.brief || null, profile: context?.profile ?? null, formatPrefs: context?.formatPrefs ?? null, playbook: context?.playbook ?? null,
         examples: context?.examples ?? null,
         agent: ctx?.agent
@@ -753,7 +754,7 @@ export class EditorRunnerService {
     const own = agentInlineSkills(skills, [...(skill ? [skill.name] : []), ...vs.names]);
     const system = [
       `Ти — автор нативних постів для ${platform} у мережі ai0 (ресурс ${slot.resourceRef}). Пишеш НЕ переробку Telegram-поста, а пост, що працює саме на цій платформі.`,
-      'Усі тексти — українською, живою мовою, без AI-штампів. Факти — лише з джерел, які ти прочитав. Код перевіряє ліміти — якщо інструмент повернув error, виправ.',
+      `${readerLanguageRule(channelLanguage(card))} Факти — лише з джерел, які ти прочитав. Код перевіряє ліміти — якщо інструмент повернув error, виправ.`,
       'Порядок: прочитай джерела ідеї (web_fetch), за потреби статистику, потім publish_platform_post (сам перевіряє lint; lint_platform_post — лише для складного посту). Слабкий чи неперевірений пост — skip_slot.',
       'Факти бери з джерел ідеї. Якщо джерело недоступне — не перебирай адреси навмання: одна спроба альтернативи, далі skip_slot з причиною. Хештеги — лише в полі hashtags, не в тексті підпису.',
       ...voiceCoreSection(voice, skills),
