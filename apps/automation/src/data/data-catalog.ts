@@ -2,6 +2,7 @@ import type { Pool } from 'pg';
 import type { DataSchema, FieldDef, RoleName } from './data.types';
 import { readableFields } from './data-query';
 import { resourceKeys, usedRefsCte } from './data-refs';
+import { describePostRequires } from './post-requires';
 
 /**
  * The agents' library catalog (spec 032 FR-010, extends 023 FR-008). Agents read this first and decide
@@ -10,6 +11,10 @@ import { resourceKeys, usedRefsCte } from './data-refs';
  * Built from `data_schemas` (active datasets only) and `data_schema_stats` (refreshed after each import
  * and nightly): network-wide unposted rows, top categories and per-field fill rate. Two numbers are live
  * because they change during the day: rows unposted on the asking resource, and rows for today's date.
+ *
+ * Rows that miss what the dataset needs for posting (`post_requires`, migration 083) are never counted as
+ * unposted: they are reported as `not_postable`, so an agent is not told there are thousands of usable
+ * rows when only a few can be posted.
  */
 
 export interface CatalogField {
@@ -37,6 +42,10 @@ export interface CatalogEntry {
   roles:                  Partial<Record<RoleName, string | string[]>>;
   fields:                 CatalogField[];
   rows:                   number;
+  /** What a row needs before it can be posted, one entry per group ("prompt_text or media_url"). */
+  post_requires?:         string[];
+  /** Active rows that miss `post_requires`: never offered by query_data, never counted as unposted. */
+  not_postable?:          number;
   unposted_network:       number | null;
   unposted_here?:         number;
   today_items?:           number;
@@ -63,6 +72,7 @@ function reuseText(p: DataSchema['reuse_policy']): string {
 export function catalogEntry(s: DataSchema, st: {
   rows?: number; unposted_network?: number | null; top_categories?: Array<{ category: string; rows: number }>;
   fill_rate?: Record<string, number>; stats_at?: string | null; unposted_here?: number; today_items?: number;
+  not_postable?: number;
 }): CatalogEntry {
   const hasDate = DATE_ROLES.some((r) => s.roles?.[r]);
   const fields: CatalogField[] = readableFields(s, 'agent').map((f) => {
@@ -81,7 +91,10 @@ export function catalogEntry(s: DataSchema, st: {
   return {
     dataset: s.key, title: s.title, entity: s.entity, description: s.description, suitable_for: s.suitable_for,
     language: s.language, license: s.default_license, reuse: reuseText(s.reuse_policy), contains_personal_data: s.contains_personal_data,
-    roles, fields, rows: st.rows ?? 0, unposted_network: st.unposted_network ?? null,
+    roles, fields, rows: st.rows ?? 0,
+    ...(s.post_requires?.length ? { post_requires: describePostRequires(s.post_requires) } : {}),
+    ...(st.not_postable ? { not_postable: st.not_postable } : {}),
+    unposted_network: st.unposted_network ?? null,
     ...(st.unposted_here !== undefined ? { unposted_here: st.unposted_here } : {}),
     ...(hasDate ? { today_items: st.today_items ?? 0 } : {}),
     top_categories: (st.top_categories ?? []).slice(0, 5), stats_at: st.stats_at ?? null,
@@ -99,6 +112,7 @@ export interface CatalogSummary {
   personal_data?: true;
   fields:         string[];
   rows:           number;
+  not_postable?:  number;
   unposted_here?: number;
   unposted_network: number | null;
   today_items?:   number;
@@ -112,6 +126,7 @@ export function summarize(e: CatalogEntry): CatalogSummary {
     dataset: e.dataset, title: e.title, entity: e.entity, description: cut(e.description, 240), suitable_for: cut(e.suitable_for, 160),
     language: e.language, ...(e.contains_personal_data ? { personal_data: true as const } : {}),
     fields: e.fields.map((f) => f.name), rows: e.rows,
+    ...(e.not_postable ? { not_postable: e.not_postable } : {}),
     ...(e.unposted_here !== undefined ? { unposted_here: e.unposted_here } : {}),
     unposted_network: e.unposted_network,
     ...(e.today_items !== undefined ? { today_items: e.today_items } : {}),
@@ -122,7 +137,7 @@ export function summarize(e: CatalogEntry): CatalogSummary {
 export async function buildCatalog(pool: Pick<Pool, 'query'>, o: CatalogOptions): Promise<CatalogEntry[]> {
   const { rows: schemas } = await pool.query(
     `SELECT s.id, s.key, s.title, s.description, s.entity, s.version, s.fields, s.roles, s.dedup_key, s.language, s.default_license,
-            s.reuse_policy, s.suitable_for, s.contains_personal_data, s.legacy, s.status,
+            s.reuse_policy, s.suitable_for, s.contains_personal_data, s.legacy, s.post_requires, s.status,
             st.unposted_network::int AS unposted_network, st.top_categories, st.fill_rate, st.computed_at AS stats_at
        FROM data_schemas s LEFT JOIN data_schema_stats st ON st.schema_id = s.id
       WHERE s.status = 'active' AND ($1::text IS NULL OR s.key = $1)
@@ -130,7 +145,8 @@ export async function buildCatalog(pool: Pick<Pool, 'query'>, o: CatalogOptions)
   if (!schemas.length) return [];
   const ids = schemas.map((s: any) => s.id);
 
-  // Live counts: active rows, today's rows and (with a resource) rows not yet used there.
+  // Live counts: active rows, today's rows, rows that cannot be posted and (with a resource) postable rows
+  // not yet used there.
   const params: unknown[] = [ids, o.today.month, o.today.day];
   let cte = '';
   let here = 'NULL::int';
@@ -138,12 +154,14 @@ export async function buildCatalog(pool: Pick<Pool, 'query'>, o: CatalogOptions)
     const { resourceRef } = resourceKeys(o.resource);
     params.push(resourceRef);
     cte = `WITH ${usedRefsCte('$4')} `;
-    here = `count(*) FILTER (WHERE NOT EXISTS (SELECT 1 FROM used u WHERE u.ref = 'data://' || s.key || '/' || d.id::text)
+    here = `count(*) FILTER (WHERE data_postable(s.post_requires, d.data)
+              AND NOT EXISTS (SELECT 1 FROM used u WHERE u.ref = 'data://' || s.key || '/' || d.id::text)
               AND (d.legacy_ref IS NULL OR NOT EXISTS (SELECT 1 FROM used u WHERE u.ref = d.legacy_ref)))::int`;
   }
   const { rows: counts } = await pool.query(
     `${cte}SELECT d.schema_id, count(*)::int AS rows,
             count(*) FILTER (WHERE d.event_month = $2 AND d.event_day = $3)::int AS today_items,
+            count(*) FILTER (WHERE NOT data_postable(s.post_requires, d.data))::int AS not_postable,
             ${here} AS unposted_here
        FROM data_items d JOIN data_schemas s ON s.id = d.schema_id
       WHERE d.schema_id = ANY($1::uuid[]) AND d.status = 'active'
@@ -154,6 +172,7 @@ export async function buildCatalog(pool: Pick<Pool, 'query'>, o: CatalogOptions)
     const c: any = bySchema.get(s.id) ?? { rows: 0, today_items: 0, unposted_here: o.resource ? 0 : null };
     return catalogEntry(s as DataSchema, {
       rows: c.rows, today_items: c.today_items, unposted_here: o.resource ? (c.unposted_here ?? 0) : undefined,
+      not_postable: c.not_postable ?? 0,
       unposted_network: s.unposted_network, top_categories: s.top_categories ?? [], fill_rate: s.fill_rate ?? {},
       stats_at: s.stats_at ? new Date(s.stats_at).toISOString() : null,
     });

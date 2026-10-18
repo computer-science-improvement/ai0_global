@@ -101,7 +101,9 @@ export function catalogPromptSummary(c: { datasets: CatalogOverviewRow[]; apis: 
   for (const d of ds) {
     const runway = d.runway_days != null ? `, запас ${d.runway_days} дн.` : '';
     const today = d.today_items ? `, сьогодні ${d.today_items}` : '';
-    lines.push(`• ${d.dataset}: ${d.title} — невикористаних тут ${d.unposted_here ?? '?'} з ${d.rows}${today}${runway}`);
+    // Migration 083: rows without what a post needs are not material; the total counts only usable rows.
+    const broken = d.not_postable ? ` (ще ${d.not_postable} без даних для поста)` : '';
+    lines.push(`• ${d.dataset}: ${d.title} — невикористаних тут ${d.unposted_here ?? '?'} з ${d.rows - (d.not_postable ?? 0)}${broken}${today}${runway}`);
   }
   const apis = c.apis.filter((a) => a.configured).map((a) => a.name);
   if (apis.length) lines.push(`• API (fetch_api): ${apis.join(', ')}`);

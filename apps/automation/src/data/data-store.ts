@@ -50,6 +50,12 @@ export interface SchemaListStats {
 const SCHEMA_COLUMNS = `id, key, title, description, entity, version, fields, roles, dedup_key, language, default_license,
   reuse_policy, suitable_for, contains_personal_data, legacy, status, created_by, created_at, updated_at`;
 
+/**
+ * `post_requires` came with migration 083. Read through the row's JSON so code that runs against an older
+ * schema (the 058 migration test, a boot before the runner) still loads datasets, with no rule.
+ */
+const postRequiresCol = (row: string) => `COALESCE(to_jsonb(${row}) -> 'post_requires', '[]'::jsonb) AS post_requires`;
+
 export class DataStore {
   constructor(private readonly pool: Queryable) {}
 
@@ -59,7 +65,7 @@ export class DataStore {
    */
   async listSchemas(): Promise<Array<DataSchema & SchemaListStats>> {
     const { rows } = await this.pool.query(
-      `SELECT ${SCHEMA_COLUMNS.split(',').map((c) => 's.' + c.trim()).join(', ')},
+      `SELECT ${SCHEMA_COLUMNS.split(',').map((c) => 's.' + c.trim()).join(', ')}, ${postRequiresCol('s')},
               COALESCE(c.rows, 0)::int AS rows, COALESCE(c.active, 0)::int AS rows_active,
               (SELECT max(created_at) FROM data_imports i WHERE i.schema_id = s.id AND i.status = 'committed') AS last_import_at,
               st.unposted_network::int AS unposted_network, st.today_items::int AS today_items, st.computed_at AS stats_at
@@ -90,7 +96,7 @@ export class DataStore {
   }
 
   async getSchema(key: string): Promise<DataSchema | null> {
-    const { rows } = await this.pool.query(`SELECT ${SCHEMA_COLUMNS} FROM data_schemas WHERE key = $1`, [key]);
+    const { rows } = await this.pool.query(`SELECT ${SCHEMA_COLUMNS}, ${postRequiresCol('data_schemas')} FROM data_schemas WHERE key = $1`, [key]);
     return rows[0] ?? null;
   }
 
@@ -116,12 +122,12 @@ export class DataStore {
     return this.withSession(createdBy, 'created', async (c) => {
       const { rows } = await c.query(
         `INSERT INTO data_schemas (key, title, description, entity, fields, roles, dedup_key, language, default_license,
-                                   reuse_policy, suitable_for, contains_personal_data, status, created_by)
-         VALUES ($1, $2, $3, $4, $5::jsonb, $6::jsonb, $7::text[], $8, $9, $10::jsonb, $11, $12, $13, $14)
-         RETURNING ${SCHEMA_COLUMNS}`,
+                                   reuse_policy, suitable_for, contains_personal_data, status, created_by${s.post_requires?.length ? ', post_requires' : ''})
+         VALUES ($1, $2, $3, $4, $5::jsonb, $6::jsonb, $7::text[], $8, $9, $10::jsonb, $11, $12, $13, $14${s.post_requires?.length ? ', $15::jsonb' : ''})
+         RETURNING ${SCHEMA_COLUMNS}, ${postRequiresCol('data_schemas')}`,
         [s.key, s.title, s.description, s.entity, JSON.stringify(s.fields), JSON.stringify(s.roles), s.dedup_key,
          s.language ?? null, s.default_license, JSON.stringify(s.reuse_policy), s.suitable_for,
-         s.contains_personal_data, s.status, createdBy]);
+         s.contains_personal_data, s.status, createdBy, ...(s.post_requires?.length ? [JSON.stringify(s.post_requires)] : [])]);
       return rows[0];
     });
   }
@@ -143,6 +149,11 @@ export class DataStore {
     const preview = await this.previewSchemaEdit(key, parsed.data);
     if (preview.errors.length) throw new DataStoreError('invalid', preview.errors[0], preview.errors);
     const p = parsed.data;
+    if (p.post_requires) {
+      const names = new Set((p.fields ?? (await this.requireSchema(key)).fields).map((f) => f.name));
+      const unknown = p.post_requires.flat().find((n) => !names.has(n));
+      if (unknown) throw new DataStoreError('invalid', `post_requires points to unknown field ${unknown}`);
+    }
     const sets: string[] = [];
     const params: unknown[] = [key];
     const add = (col: string, v: unknown, cast = '') => { params.push(v); sets.push(`${col} = $${params.length}${cast}`); };
@@ -157,10 +168,11 @@ export class DataStore {
     if (p.reuse_policy !== undefined) add('reuse_policy', JSON.stringify(p.reuse_policy), '::jsonb');
     if (p.suitable_for !== undefined) add('suitable_for', p.suitable_for);
     if (p.contains_personal_data !== undefined) add('contains_personal_data', p.contains_personal_data);
+    if (p.post_requires !== undefined) add('post_requires', JSON.stringify(p.post_requires), '::jsonb');
     if (p.status !== undefined) add('status', p.status);
     if (!sets.length) return { schema: await this.requireSchema(key), diff: preview };
     const schema = await this.withSession(meta.changedBy, meta.reason ?? null, async (c) => {
-      const { rows } = await c.query(`UPDATE data_schemas SET ${sets.join(', ')} WHERE key = $1 RETURNING ${SCHEMA_COLUMNS}`, params);
+      const { rows } = await c.query(`UPDATE data_schemas SET ${sets.join(', ')} WHERE key = $1 RETURNING ${SCHEMA_COLUMNS}, ${postRequiresCol('data_schemas')}`, params);
       return rows[0];
     });
     return { schema, diff: preview };
