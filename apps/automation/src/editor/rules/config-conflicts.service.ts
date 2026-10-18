@@ -6,11 +6,36 @@ import type { EditorMemoryRepository } from '../repo/editor-memory.repository';
 import { configConflicts, patchPlaybook, type ConfigConflict, type ResourceConfig } from './config-conflicts';
 
 export interface ConfigConflictsDeps {
-  memory:   Pick<EditorMemoryRepository, 'listActive'>;
-  network:  Pick<NetworkRepository, 'groupOfChannel' | 'groupResources' | 'activePlaybook' | 'applyOwnerPatch'>;
+  memory:   Pick<EditorMemoryRepository, 'listActive'> & Partial<Pick<EditorMemoryRepository, 'retireByOwner'>>;
+  network:  Pick<NetworkRepository, 'groupOfChannel' | 'groupResources' | 'activePlaybook' | 'applyOwnerPatch'>
+    & Partial<Pick<NetworkRepository, 'pendingPlaybook' | 'decidePlaybook'>>;
   channels: Pick<EditorChannelsRepository, 'get' | 'setHashtagMin'>;
   profiles: Pick<ResourceProfilesRepository, 'get' | 'setProfile' | 'patchFormat'>;
+  /** Spec 047 FR-005: the lint of an owner rule (rule-lint.ts); a rule it flags is retired by the resolver card. */
+  ruleLint?: (text: string, orch: Agent) => Promise<Array<{ code: string; detail: string }>>;
 }
+
+/**
+ * Spec 047 FR-005: one line of the resolver card. `key` is what the owner unticks to keep it out of the Apply
+ * (`input.skip`): `playbook:<id>`, `rule:<id>`, `conflict:<code>:<ref>`.
+ */
+export interface ResolverItem {
+  key:    string;
+  kind:   'pending_playbook' | 'junk_rule' | 'conflict';
+  detail: string;
+  rule_id?: number | null;
+}
+
+export interface ResolverResult {
+  playbook_approved: number | null;
+  rules_retired:     number[];
+  applied:           string[];
+  playbook_version:  number | null;
+  skipped:           string[];
+  remaining:         ConfigConflict[];
+}
+
+export const conflictKey = (c: Pick<ConfigConflict, 'code' | 'ref'>) => `conflict:${c.code}:${c.ref}`;
 
 /**
  * Spec 040 FR-011: reads an orchestrator's owner rules, resources, profiles and active playbook and runs
@@ -41,9 +66,69 @@ export class ConfigConflictsService {
     return configConflicts({ rules, playbook: pb?.body ?? null, resources });
   }
 
-  /** Apply every current fix (recomputed now, so the card never writes a stale change). */
-  async apply(orch: Agent): Promise<{ applied: string[]; playbook_version: number | null; remaining: ConfigConflict[] }> {
-    const conflicts = await this.forAgent(orch);
+  /**
+   * Spec 047 FR-005: everything that keeps the channel's config from matching the owner's rules, in the order the card
+   * applies it — a playbook draft waiting for the owner (approving it makes it live), owner rules the lint flags (retired),
+   * then the rules-vs-config conflicts (recomputed on the playbook that is live after the first step).
+   */
+  async resolverFor(orch: Agent): Promise<ResolverItem[]> {
+    const out: ResolverItem[] = [];
+    const pending = this.d.network.pendingPlaybook ? await this.d.network.pendingPlaybook(orch.id).catch(() => null) : null;
+    if (pending) {
+      out.push({
+        key: `playbook:${pending.id}`, kind: 'pending_playbook',
+        detail: `Playbook v${pending.version} waits for your approval${pending.createdAt ? ` since ${new Date(pending.createdAt).toISOString().slice(0, 10)}` : ''}${pending.rationale ? `: ${pending.rationale.replace(/\s+/g, ' ').slice(0, 160)}` : ''} — approve it to make it live`,
+      });
+    }
+    out.push(...(await this.junkRules(orch)).map((r) => ({
+      key: `rule:${r.id}`, kind: 'junk_rule' as const, rule_id: r.id,
+      detail: `Retire rule #${r.id} «${r.text.replace(/\s+/g, ' ').slice(0, 80)}»: ${r.issues.join('; ')}`,
+    })));
+    out.push(...(await this.forAgent(orch)).map((c) => ({ key: conflictKey(c), kind: 'conflict' as const, detail: c.detail, rule_id: c.rule_id ?? null })));
+    return out;
+  }
+
+  /** Owner rules of the channel the lint flags (nothing without a lint). */
+  private async junkRules(orch: Agent): Promise<Array<{ id: number; text: string; issues: string[] }>> {
+    const key = telegramKeyOf(orch);
+    if (!key || !this.d.ruleLint) return [];
+    const rules = (await this.d.memory.listActive(key, 60))
+      .filter((m) => m.createdBy === 'owner' && (m.evidence as { source?: string } | null)?.source !== 'approval');
+    const out: Array<{ id: number; text: string; issues: string[] }> = [];
+    for (const r of rules) {
+      const issues = await this.d.ruleLint(r.text, orch).catch(() => []);
+      if (issues.length) out.push({ id: r.id, text: r.text, issues: issues.map((i) => i.detail) });
+    }
+    return out;
+  }
+
+  /**
+   * Spec 047 FR-005: the resolver card's Apply — the items the owner kept (`skip` lists the unticked keys), each step
+   * recomputed now so the card never writes a stale change.
+   */
+  async resolve(orch: Agent, skip: readonly string[] = []): Promise<ResolverResult> {
+    const skipped = new Set(skip);
+    let approved: number | null = null;
+    const pending = this.d.network.pendingPlaybook ? await this.d.network.pendingPlaybook(orch.id) : null;
+    if (pending && this.d.network.decidePlaybook && !skipped.has(`playbook:${pending.id}`)) {
+      const r = await this.d.network.decidePlaybook(pending.id, true);
+      if (r) approved = r.version;
+    }
+    const retired: number[] = [];
+    const key = telegramKeyOf(orch);
+    if (key && this.d.memory.retireByOwner) {
+      for (const r of await this.junkRules(orch)) {
+        if (skipped.has(`rule:${r.id}`)) continue;
+        if (await this.d.memory.retireByOwner(key, r.id)) retired.push(r.id);
+      }
+    }
+    const fixed = await this.apply(orch, (c) => !skipped.has(conflictKey(c)));
+    return { playbook_approved: approved, rules_retired: retired, applied: fixed.applied, playbook_version: fixed.playbook_version, skipped: [...skipped], remaining: fixed.remaining };
+  }
+
+  /** Apply every current fix (recomputed now, so the card never writes a stale change); `keep` filters them. */
+  async apply(orch: Agent, keep: (c: ConfigConflict) => boolean = () => true): Promise<{ applied: string[]; playbook_version: number | null; remaining: ConfigConflict[] }> {
+    const conflicts = (await this.forAgent(orch)).filter(keep);
     const applied: string[] = [];
     let version: number | null = null;
     const fixes = conflicts.map((c) => c.fix);

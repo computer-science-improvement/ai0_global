@@ -125,7 +125,7 @@ import { TrackingMtprotoClient } from '../tracking/mtproto/tracking-mtproto.clie
 import { resolveModel } from './llm/model-registry';
 import { agentModelIn, readModelContext } from './llm/workspace';
 import { storedFormat } from './agents/resource-profile';
-import { ChannelSetupRepository } from './setup/setup.repository';
+import { boundDatasets, ChannelSetupRepository } from './setup/setup.repository';
 import { ChannelSetupService } from './setup/setup.service';
 import { CHANNEL_SETUP_SERVICE, ChannelSetupController } from './setup/setup.controller';
 import { collectPosts, trackedChannel } from './setup/setup-posts';
@@ -345,8 +345,19 @@ function chatNetwork(pool: Pool, repos: EditorRepos, infra: AgentInfra, usable?:
 
 /** Spec 024 FR-004: one per-resource time resolver (card for Telegram, then the profile, then Kyiv). */
 /** Spec 040 FR-011: rules-vs-config over the editor repositories. */
-function configConflictsOf(pool: Pool, repos: Pick<EditorRepos, 'memory' | 'channels'>, infra: Pick<AgentInfra, 'profiles'>): ConfigConflictsService {
-  return new ConfigConflictsService({ memory: repos.memory, network: new NetworkRepository(pool), channels: repos.channels, profiles: infra.profiles });
+function configConflictsOf(pool: Pool, repos: Pick<EditorRepos, 'memory' | 'channels'>, infra: Pick<AgentInfra, 'profiles' | 'skills' | 'agents'>): ConfigConflictsService {
+  return new ConfigConflictsService({
+    memory: repos.memory, network: new NetworkRepository(pool), channels: repos.channels, profiles: infra.profiles,
+    ruleLint: (text, orch) => ownerRuleLint(infra, text, orch),
+  });
+}
+
+/** Spec 047 FR-004: an owner rule against the agent's skills and the network's agents. */
+async function ownerRuleLint(infra: Pick<AgentInfra, 'skills' | 'agents'>, text: string, orch: Agent) {
+  return lintOwnerRule(text, {
+    skillExists: async (name) => !!((await infra.skills.findForAgent(orch.id, name)) ?? (await infra.skills.findShared(name))),
+    handles: (await infra.agents.list()).map((x) => x.handle),
+  });
 }
 
 /** Every top-level orchestrator's conflicts, for the manager digest. */
@@ -1586,12 +1597,11 @@ export const EDITOR_PROVIDERS = [
         const svc: AgentsService = new AgentsService({
           pool, agents: infra.agents, skills: infra.skills, inbox: infra.inbox, profiles: infra.profiles, actions: infra.actions,
           setChannelMode: (key, mode) => ops.upsertChannel(key, { mode }),
+          channelMode: async (key) => (await repos.channels.get(key))?.mode ?? null,
           memory: (key) => repos.memory.listActive(key, 100),
           conflicts: (orch) => configConflictsOf(pool, repos, infra).forAgent(orch),
-          ruleLint: async (text, orch) => lintOwnerRule(text, {
-            skillExists: async (name) => !!((await infra.skills.findForAgent(orch.id, name)) ?? (await infra.skills.findShared(name))),
-            handles: (await infra.agents.list()).map((x) => x.handle),
-          }),
+          resolver: (orch) => configConflictsOf(pool, repos, infra).resolverFor(orch),
+          ruleLint: (text, orch) => ownerRuleLint(infra, text, orch),
           sync: () => infra.registry.run(),
           // Spec 035: agent models are checked against the catalog and priced in llm_prices when new.
           models: { check: (m, cur) => models.checkAgentModel(m, cur), chosen: (m) => models.ensurePrice(m), workspace: () => models.active() },
@@ -1624,10 +1634,12 @@ export const EDITOR_PROVIDERS = [
           return { ...r, saved: examples.length, handle: orch.handle };
         });
         // Spec 040 FR-011: the owner aligned a playbook and profiles with their rules (recomputed at Apply).
-        infra.actions.register(FIX_CONFIG_CONFLICTS_KIND, async (p) => {
+        infra.actions.register(FIX_CONFIG_CONFLICTS_KIND, async (p, _a, input) => {
           const orch = await infra.agents.getByHandle(String((p as Record<string, unknown>).handle ?? ''));
           if (!orch) throw new Error('unknown_agent: the agent no longer exists');
-          return configConflictsOf(pool, repos, infra).apply(orch);
+          // Spec 047 FR-005: the items the owner unticked stay out (input.skip); old 040 cards apply everything.
+          const skip = Array.isArray((input as { skip?: unknown } | null)?.skip) ? ((input as { skip: unknown[] }).skip).map(String) : [];
+          return configConflictsOf(pool, repos, infra).resolve(orch, skip);
         });
         // Spec 040 FR-010: an owner rule the owner confirmed with a card (its words did not match the chat closely enough).
         infra.actions.register(OWNER_RULE_KIND, (p) => applyOwnerRule(repos.memory, p as Record<string, unknown>));
@@ -1726,7 +1738,8 @@ export const EDITOR_PROVIDERS = [
             const raw = stored ? (await pool.query(`SELECT profile FROM resource_profiles WHERE resource_ref = $1`, [ref])).rows[0]?.profile : null;
             const playbook = agent ? (await network.activePlaybook(agent.id))?.body ?? null : null;
             const voice = agent ? (await infra.skills.findForAgent(agent.id, VOICE_SKILL_NAME))?.body ?? null : null;
-            return { card, agent, profile: stored?.profile ?? null, locks: storedFormat(raw).locks, playbook, voice };
+            const datasets = await boundDatasets(pool, ref, playbook);
+            return { card, agent, profile: stored?.profile ?? null, locks: storedFormat(raw).locks, playbook, voice, datasets };
           },
           writers: {
             upsertCard: (key, patch) => ops.upsertChannel(key, patch),

@@ -140,25 +140,25 @@ test('the service reads owner rules only (not reviewer insights) and the card ap
   assert.deepEqual(await svc.forAgent({ ...ORCH, scope: 'network', scopeId: null }), [], 'no telegram anchor → nothing to check');
 });
 
-test('fix_config_conflicts proposes one card with the conflicts; none → no card', async () => {
+test('fix_config_conflicts proposes one resolver card with the items; none → no card (047: items, not only conflicts)', async () => {
   const proposed: any[] = [];
-  let conflicts: any[] = [{ code: 'slang_in_tone', ref: TG, detail: 'Playbook tone of telegram:@loko asks for slang', rule_id: 4, fix: {} }];
+  let items: any[] = [{ key: `conflict:slang_in_tone:${TG}`, kind: 'conflict', detail: 'Playbook tone of telegram:@loko asks for slang', rule_id: 4 }];
   const tool = buildBuilderTools({
     agents: { getByHandle: async (h: string) => (h === 'loko' ? ORCH : null) } as any,
     catalog: {} as any, profiles: {} as any, creator: {} as any, skills: {} as any,
     actions: { propose: async (a: any) => { proposed.push(a); return { id: 'pa1', ...a }; } } as any,
-    conflicts: { forAgent: async () => conflicts },
+    conflicts: { resolverFor: async () => items },
   }).find((t) => t.name === 'fix_config_conflicts')!;
   const ctx: any = { runId: 'r', role: 'builder', channelKey: null, extras: { chat: { chatId: 'c1' }, agentIntent: true } };
   const r: any = await tool.execute({ handle: 'loko' }, ctx);
   assert.equal(r.pending_action, 'pa1');
   assert.equal(proposed[0].kind, FIX_CONFIG_CONFLICTS_KIND);
-  assert.deepEqual(proposed[0].payload, { handle: 'loko', conflicts: [{ code: 'slang_in_tone', ref: TG, detail: 'Playbook tone of telegram:@loko asks for slang', rule_id: 4 }] });
-  assert.match(proposed[0].summary, /1 conflict$/);
+  assert.deepEqual(proposed[0].payload, { handle: 'loko', items });
+  assert.match(proposed[0].summary, /1 item \(conflict\)$/);
 
-  conflicts = [];
+  items = [];
   const none: any = await tool.execute({ handle: 'loko' }, ctx);
-  assert.deepEqual(none.conflicts, []);
+  assert.deepEqual(none.items, []);
   assert.equal(proposed.length, 1);
   const unknown: any = await tool.execute({ handle: 'nobody' }, ctx);
   assert.equal(unknown.error, 'unknown_agent');

@@ -38,6 +38,8 @@ export const CreateAgentSchema = z.object({
   schedule:         z.object({ times: z.array(z.string().regex(/^([01]\d|2[0-3]):[0-5]\d$/)).max(8) }).optional(),
   daily_budget_usd: z.number().min(0).max(50).optional(),
   model:            z.string().trim().min(3).max(100).optional(),
+  /** Spec 047 FR-006: the voice the agent uses for itself (absent = masculine). */
+  grammatical_gender: z.enum(['masculine', 'feminine']).optional(),
 }).refine((v) => !!v.resource_ref !== !!v.network_id, { message: 'exactly one of resource_ref or network_id is required' });
 export type CreateAgentInput = z.infer<typeof CreateAgentSchema>;
 
@@ -151,7 +153,7 @@ export class AgentCreator {
       kind: 'orchestrator', scope, scopeId, name: input.name, handle: input.handle, emoji: input.emoji ?? '📣',
       description: input.description ?? input.profile.topic, mode: NEW_RESOURCE_MODE, shadowUntil: null,
       schedule: input.schedule ?? { times: ['06:30'] }, dailyBudgetUsd: input.daily_budget_usd ?? null, model: input.model ?? null,
-      createdBy: 'builder',
+      grammaticalGender: input.grammatical_gender ?? null, createdBy: 'builder',
     });
     await this.d.registry.ensureChildren(agent);
     await this.d.profiles.setProfile(scope === 'resource' ? scopeId : `network:${scopeId}`, input.profile, 'builder');

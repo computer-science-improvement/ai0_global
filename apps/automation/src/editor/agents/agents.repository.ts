@@ -1,5 +1,5 @@
 import type { Pool } from 'pg';
-import type { Agent, AgentKind, AgentMode, AgentSchedule, AgentScope, AgentStatus } from './agent.types';
+import type { Agent, AgentKind, AgentMode, AgentSchedule, AgentScope, AgentStatus, GrammaticalGender } from './agent.types';
 
 export function rowToAgent(r: any): Agent {
   return {
@@ -7,6 +7,7 @@ export function rowToAgent(r: any): Agent {
     name: r.name, handle: r.handle, emoji: r.emoji ?? null, description: r.description ?? null,
     mode: r.mode, status: r.status, pausedUntil: r.paused_until ?? null,
     model: r.model ?? null, anthropicModel: r.anthropic_model ?? null, reasoningEffort: r.reasoning_effort ?? null,
+    grammaticalGender: r.grammatical_gender ?? null,
     schedule: r.schedule ?? {}, dailyBudgetUsd: r.daily_budget_usd == null ? null : Number(r.daily_budget_usd),
     shadowUntil: r.shadow_until ?? null, createdBy: r.created_by, createdAt: r.created_at, updatedAt: r.updated_at,
   };
@@ -26,6 +27,7 @@ export interface NewAgent {
   dailyBudgetUsd?: number | null;
   model?:          string | null;
   shadowUntil?:    Date | null;
+  grammaticalGender?: GrammaticalGender | null;
   createdBy:       Agent['createdBy'];
 }
 
@@ -40,6 +42,7 @@ export interface AgentPatch {
   model?:           string | null;
   anthropicModel?:  string | null;
   reasoningEffort?: 'low' | 'medium' | 'high' | null;
+  grammaticalGender?: GrammaticalGender | null;
   schedule?:        AgentSchedule;
   dailyBudgetUsd?:  number | null;
   shadowUntil?:     Date | null;
@@ -47,7 +50,7 @@ export interface AgentPatch {
 
 const COLS: Record<keyof AgentPatch, string> = {
   name: 'name', handle: 'handle', emoji: 'emoji', description: 'description', mode: 'mode', status: 'status',
-  pausedUntil: 'paused_until', model: 'model', anthropicModel: 'anthropic_model', reasoningEffort: 'reasoning_effort', schedule: 'schedule',
+  pausedUntil: 'paused_until', model: 'model', anthropicModel: 'anthropic_model', reasoningEffort: 'reasoning_effort', grammaticalGender: 'grammatical_gender', schedule: 'schedule',
   dailyBudgetUsd: 'daily_budget_usd', shadowUntil: 'shadow_until',
 };
 
@@ -115,10 +118,11 @@ export class AgentsRepository {
 
   async insert(a: NewAgent): Promise<Agent> {
     const { rows } = await this.pool.query(
-      `INSERT INTO agents (kind, scope, scope_id, parent_id, name, handle, emoji, description, mode, schedule, daily_budget_usd, model, shadow_until, created_by)
-       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14) RETURNING *`,
+      `INSERT INTO agents (kind, scope, scope_id, parent_id, name, handle, emoji, description, mode, schedule, daily_budget_usd, model, shadow_until, created_by${a.grammaticalGender ? ', grammatical_gender' : ''})
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14${a.grammaticalGender ? ', $15' : ''}) RETURNING *`,
       [a.kind, a.scope, a.scopeId, a.parentId ?? null, a.name, a.handle, a.emoji ?? null, a.description ?? null,
-        a.mode ?? 'approve', JSON.stringify(a.schedule ?? {}), a.dailyBudgetUsd ?? null, a.model ?? null, a.shadowUntil ?? null, a.createdBy]);
+        a.mode ?? 'approve', JSON.stringify(a.schedule ?? {}), a.dailyBudgetUsd ?? null, a.model ?? null, a.shadowUntil ?? null, a.createdBy,
+        ...(a.grammaticalGender ? [a.grammaticalGender] : [])]);
     return rowToAgent(rows[0]);
   }
 

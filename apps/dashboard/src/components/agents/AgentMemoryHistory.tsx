@@ -19,18 +19,21 @@ const KIND_TONE: Record<AgentMemoryEntry['kind'], 'accent' | 'warning' | 'neutra
 /** Spec 040 FR-011: the playbook / profiles against the owner's rules; @ai0 aligns them with one card. */
 function ConfigConflicts({ handle }: { handle: string }) {
   const q = useAgentConfigConflicts(handle);
-  const list = q.data?.conflicts ?? [];
+  // Spec 047 FR-005: the resolver's items (a waiting playbook draft, rules the agent cannot follow, conflicts).
+  const list = q.data?.items ?? (q.data?.conflicts ?? []).map((c) => ({ key: c.code, kind: 'conflict' as const, detail: c.detail, rule_id: c.rule_id }));
   if (!list.length) return null;
+  const who = q.data?.handle ?? handle;
   return (
     <div className="callout-warning" style={{ marginBottom: 12 }}>
       <div style={{ fontWeight: 600, marginBottom: 6 }}>
-        The playbook or a profile contradicts your rules · {list.length}
+        Not aligned with your rules · {list.length}
       </div>
       <ul style={{ margin: 0, paddingLeft: 18, display: 'grid', gap: 4 }}>
-        {list.map((c, i) => <li key={i} className="text-body-sm" style={{ overflowWrap: 'anywhere' }}>{c.detail}</li>)}
+        {list.map((c) => <li key={c.key} className="text-body-sm" style={{ overflowWrap: 'anywhere' }}>{c.detail}</li>)}
       </ul>
-      <div className="text-micro" style={{ marginTop: 8, color: 'var(--color-ink-muted)' }}>
-        Ask in the chat: “@ai0 fix config conflicts for @{q.data?.handle ?? handle}” — one card aligns them.
+      <div className="text-micro" style={{ marginTop: 8, color: 'var(--color-ink-muted)', display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }}>
+        One card resolves them; untick what you want to keep before Apply.
+        <Link to="/app/chat" search={{ q: `@${who} fix config conflicts` } as any} className="link-accent">Ask @{who} in the chat</Link>
       </div>
     </div>
   );

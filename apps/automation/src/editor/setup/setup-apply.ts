@@ -2,7 +2,7 @@ import type { EditorCard } from '../card';
 import type { Agent } from '../agents/agent.types';
 import type { FormatPrefField, ResourceProfile } from '../agents/resource-profile';
 import { MAX_PLAYBOOK_EXAMPLES, PlaybookSchema, type Playbook, type PlaybookExample } from '../network/playbook';
-import { SETUP_FORMAT_FIELDS, SETUP_SECTIONS, VOICE_SKILL_NAME, type SetupSection, type SubmitSetupInput } from './setup-analysis';
+import { SETUP_FORMAT_FIELDS, SETUP_SECTIONS, VOICE_SKILL_NAME, type BoundDataset, type SetupSection, type SubmitSetupInput } from './setup-analysis';
 import type { SetupPost } from './setup-posts.types';
 
 /**
@@ -18,6 +18,8 @@ export interface ChannelState {
   locks:     FormatPrefField[];
   playbook:  Playbook | null;
   voice:     string | null;
+  /** Spec 047 FR-007: datasets the channel publishes from (series sources and its content ledger). */
+  datasets?: BoundDataset[];
 }
 
 const PROFILE_KEYS = ['topic', 'audience', 'language', 'goals', 'tone', 'taboo', 'notes'] as const;

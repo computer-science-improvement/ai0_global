@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import type { ConfigConflictsService } from '../rules/config-conflicts.service';
 import { defineTool, EditorTool, ToolContext } from '../harness/tool';
-import { parseResourceRef, validateHandle } from './agent.types';
+import { parseResourceRef, validateHandle, type Agent } from './agent.types';
 import type { AgentsRepository } from './agents.repository';
 import { FittingFormatSchema, type AgentCreator } from './agent-creator';
 import { MAX_FITTING_FORMATS } from '../network/playbook';
@@ -29,14 +29,14 @@ export interface AgentChatExtras {
 }
 
 export interface BuilderToolDeps {
-  agents:   Pick<AgentsRepository, 'list' | 'getByHandle' | 'handleTaken'>;
+  agents:   Pick<AgentsRepository, 'list' | 'getByHandle' | 'handleTaken'> & Partial<Pick<AgentsRepository, 'get'>>;
   catalog:  Pick<ResourceCatalog, 'list' | 'inspect'>;
   profiles: Pick<ResourceProfilesRepository, 'get'>;
   creator:  Pick<AgentCreator, 'validate'>;
   skills:   Pick<SkillStore, 'findShared'> & Partial<Pick<SkillStore, 'findForAgent'>>;
   actions:  Pick<PendingActionsService, 'propose'>;
-  /** Spec 040 FR-011: rules-vs-config of an orchestrator (fix_config_conflicts). */
-  conflicts?: Pick<ConfigConflictsService, 'forAgent'>;
+  /** Spec 040 FR-011 / 047 FR-005: what keeps an orchestrator's config from its owner's rules (fix_config_conflicts). */
+  conflicts?: Pick<ConfigConflictsService, 'resolverFor'>;
 }
 
 /** Spec 040 FR-011: the owner card that aligns a playbook and profiles with the owner's rules. */
@@ -78,6 +78,7 @@ const AgentPatchInput = z.object({
   model:            z.string().trim().max(100).nullable().optional(),
   schedule:         z.object({ times: z.array(z.string()).max(8) }).optional(),
   daily_budget_usd: z.number().min(0).max(50).nullable().optional(),
+  grammatical_gender: z.enum(['masculine', 'feminine']).nullable().optional().describe('Рід, яким агент говорить про себе: я зробив / я зробила'),
 }).strict();
 
 /** Tools of the @ai0 builder (spec 018 FR-004). Mutations only propose cards. */
@@ -280,18 +281,24 @@ export function buildBuilderTools(d: BuilderToolDeps): EditorTool[] {
 
   const fixConflicts = defineTool({
     name: 'fix_config_conflicts',
-    description: 'Знайти, де плейбук чи профіль ресурсу суперечать правилам власника й стилю (хештеги вимкнені, ліміт опитувань, без сленгу, аудиторія), і запропонувати одну картку, що все узгоджує. Без конфліктів — нічого не пропонує.',
-    kind: 'act', roles: ['builder'],
-    input: z.object({ handle: z.string().min(2).max(40) }),
+    description: [
+      'Одна картка, що узгоджує канал із правилами власника: схвалити чернетку плейбука, що чекає власника; прибрати правила, які неможливо виконати (вказівник, надто розмиті, неіснуючий скіл чи агент);',
+      'виправити плейбук і профілі, що суперечать правилам (хештеги вимкнені, ліміт опитувань, без сленгу, аудиторія). Власник може зняти окремі пункти перед Apply. Нічого не пропонує, коли все узгоджено.',
+      'Агент каналу — для свого каналу (handle не потрібен); @ai0 — для агента за handle.',
+    ].join(' '),
+    kind: 'act', roles: ['builder', 'composer'],
+    input: z.object({ handle: z.string().min(2).max(40).optional() }),
     execute: async ({ handle }, ctx) => {
       if (!d.conflicts) return { error: 'unavailable' };
-      const a = await d.agents.getByHandle(handle);
-      if (!a) return { error: 'unknown_agent', details: handle };
-      const conflicts = await d.conflicts.forAgent(a);
-      if (!conflicts.length) return { ok: true, conflicts: [], note: `у @${a.handle} плейбук і профілі не суперечать правилам власника` };
-      const list = conflicts.map((c) => ({ code: c.code, ref: c.ref, detail: c.detail, rule_id: c.rule_id ?? null }));
-      return proposeCard(d, ctx, FIX_CONFIG_CONFLICTS_KIND, { handle: a.handle, conflicts: list },
-        `Align @${a.handle}'s playbook and profiles with the owner's rules: ${conflicts.length} conflict${conflicts.length > 1 ? 's' : ''}`, a.id);
+      const own = (ctx.extras as { agent?: Agent } | undefined)?.agent ?? null;
+      const a = handle ? await d.agents.getByHandle(handle.replace(/^@/, '')) : own;
+      if (!a) return { error: handle ? 'unknown_agent' : 'handle_required', details: handle ?? 'назви агента: handle' };
+      const orch = a.parentId ? (await d.agents.get?.(a.parentId)) ?? a : a;
+      const items = await d.conflicts.resolverFor(orch);
+      if (!items.length) return { ok: true, items: [], note: `у @${orch.handle} плейбук, профілі й правила власника узгоджені` };
+      const n = items.length;
+      return proposeCard(d, ctx, FIX_CONFIG_CONFLICTS_KIND, { handle: orch.handle, items },
+        `Align @${orch.handle} with the owner's rules: ${n} item${n > 1 ? 's' : ''} (${[...new Set(items.map((i) => i.kind.replace('_', ' ')))].join(', ')})`, orch.id);
     },
   });
 

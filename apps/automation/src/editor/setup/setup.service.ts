@@ -169,7 +169,7 @@ export class ChannelSetupService {
     const locks = state.locks;
     const lockedSeries = (state.playbook?.series ?? []).filter((s) => s.resource_ref === p.resourceRef && s.locked).map((s) => s.name);
     const tool = buildSubmitSetupTool({
-      posts: c.posts, metrics,
+      posts: c.posts, metrics, datasets: state.datasets,
       // The would-be playbook must pass the playbook checks (series per day, formats, cadence).
       extra: (i) => {
         const card = state.card ?? { formats: i.format_mix.formats as Record<string, number>, postsPerDayMin: i.schedule.posts_per_day_min, postsPerDayMax: i.schedule.posts_per_day_max };
@@ -190,6 +190,7 @@ export class ChannelSetupService {
         channelKey: p.channelKey, title: state.card?.title ?? c.channel.title, about: c.channel.about, subscribers: c.channel.subsCount,
         posts: c.posts, metrics, lockedFormat: locks, lockedSeries,
         current: { brief: state.card?.brief?.trim() || null, profile: state.profile ? renderProfile(state.profile) : null },
+        datasets: state.datasets,
       }),
       tools: [tool], maxSteps: ONBOARDER_MAX_STEPS,
       channelBudgetUsd: state.card?.dailyBudgetUsd ?? null,

@@ -45,11 +45,12 @@ export function ScopeChip({ agent }: { agent: Pick<Agent, 'scope' | 'scopeId'> }
   return <span className="chip" style={{ fontSize: 11, maxWidth: '100%', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }} title={label}>{label}</span>;
 }
 
-/** Mode + paused badges. */
-export function StateBadges({ agent }: { agent: Pick<Agent, 'mode' | 'pausedUntil'> & { paused: boolean } }) {
+/** Mode + paused badges. A role agent shows the mode its runs follow (its orchestrator's channel mode, spec 047 FR-007). */
+export function StateBadges({ agent }: { agent: Pick<Agent, 'mode' | 'pausedUntil' | 'effectiveMode'> & { paused: boolean } }) {
+  const mode = agent.effectiveMode ?? agent.mode;
   return (
     <>
-      <Badge tone={MODE_TONE[agent.mode]}>{MODE_LABEL[agent.mode]}</Badge>
+      <Badge tone={MODE_TONE[mode]}>{MODE_LABEL[mode]}</Badge>
       {agent.paused && (
         <Badge tone="danger" title={agent.pausedUntil ? `until ${fmtDate(agent.pausedUntil)}` : 'until resumed'}>
           paused{agent.pausedUntil ? ` · until ${fmtDate(agent.pausedUntil)}` : ''}

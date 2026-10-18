@@ -12,6 +12,8 @@ export type AgentKind = 'manager' | 'builder' | 'orchestrator' | 'planner' | 'id
 export type AgentScope = 'system' | 'network' | 'resource';
 export type AgentMode = EditorMode;
 export type ReasoningEffort = 'low' | 'medium' | 'high';
+/** Spec 047 FR-006: one voice per agent in chat. */
+export type GrammaticalGender = 'masculine' | 'feminine';
 
 export interface AgentSchedule { times?: string[] }
 
@@ -32,6 +34,10 @@ export interface Agent {
   /** Spec 038: the agent's own model in the Anthropic workspace. */
   anthropicModel?: string | null;
   reasoningEffort: ReasoningEffort | null;
+  /** Spec 047 FR-006: the agent's grammatical gender in chat; null = masculine. */
+  grammaticalGender?: GrammaticalGender | null;
+  /** Spec 047 FR-007: a role agent's runs follow its orchestrator's channel mode; `mode` is not read for it. */
+  effectiveMode?:  AgentMode;
   schedule:        AgentSchedule;
   dailyBudgetUsd:  number | null;
   shadowUntil:     string | null;
@@ -70,6 +76,7 @@ export interface AgentPatch {
   paused_until?:     string | null;
   model?:            string | null;
   reasoning_effort?: ReasoningEffort | null;
+  grammatical_gender?: GrammaticalGender | null;
   schedule?:         { times: string[] };
   daily_budget_usd?: number | null;
 }
@@ -233,11 +240,13 @@ export function useAgentMemory(handle: string) {
 
 /** Spec 040 FR-011: where the playbook or a profile contradicts the owner's rules. */
 export interface ConfigConflict { code: string; ref: string; detail: string; rule_id: number | null }
+/** Spec 047 FR-005: one line of the resolver card (a waiting playbook draft, a rule the agent cannot follow, a conflict). */
+export interface ResolverItem { key: string; kind: 'pending_playbook' | 'junk_rule' | 'conflict'; detail: string; rule_id: number | null }
 
 export function useAgentConfigConflicts(handle: string) {
   return useQuery({
     queryKey: [...KEY, 'config-conflicts', handle],
-    queryFn:  () => api<{ handle: string; conflicts: ConfigConflict[] }>(`/api/agents/${enc(handle)}/config-conflicts`),
+    queryFn:  () => api<{ handle: string; conflicts: ConfigConflict[]; items?: ResolverItem[] }>(`/api/agents/${enc(handle)}/config-conflicts`),
   });
 }
 

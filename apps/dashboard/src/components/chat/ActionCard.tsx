@@ -161,8 +161,39 @@ function OwnerRuleView({ p }: { p: Record<string, unknown> }) {
   );
 }
 
-/** Spec 040 FR-011: what the card changes in the playbook and profiles. */
+/** Spec 047 FR-005: the owner's ticks on a resolver card (unticked keys are skipped at Apply). */
+const ResolverSkipContext = createContext<{ skip: string[]; toggle: (key: string) => void; pending: boolean } | null>(null);
+const ITEM_KIND_LABEL: Record<string, string> = { pending_playbook: 'Playbook', junk_rule: 'Rule', conflict: 'Conflict' };
+
+/** Spec 040 FR-011 / 047 FR-005: what the card changes — each item can be unticked before Apply. */
 function FixConflictsView({ p }: { p: Record<string, unknown> }) {
+  const ctx = useContext(ResolverSkipContext);
+  const items = Array.isArray(p.items) ? p.items.map(obj) : null;
+  if (items) {
+    return (
+      <>
+        {str(p.handle) && <Row label="Agent">@{p.handle as string}</Row>}
+        <Row label="Items">
+          <span style={{ display: 'grid', gap: 6 }}>
+            {items.map((it) => {
+              const key = str(it.key) ?? '';
+              const on = !ctx?.skip.includes(key);
+              return (
+                <label key={key} style={{ display: 'flex', gap: 8, alignItems: 'flex-start', cursor: ctx?.pending ? 'pointer' : 'default', opacity: on ? 1 : 0.55 }}>
+                  <input type="checkbox" checked={on} disabled={!ctx?.pending} onChange={() => ctx?.toggle(key)} style={{ marginTop: 3 }} aria-label={str(it.detail) ?? key} />
+                  <span style={{ minWidth: 0, overflowWrap: 'anywhere' }}>
+                    <Badge tone={it.kind === 'conflict' ? 'warning' : it.kind === 'junk_rule' ? 'danger' : 'accent'}>{ITEM_KIND_LABEL[str(it.kind) ?? ''] ?? str(it.kind)}</Badge>{' '}
+                    {str(it.detail) ?? key}
+                  </span>
+                </label>
+              );
+            })}
+          </span>
+        </Row>
+        <Row label="Then">ticked items apply in this order: the playbook draft goes live, the rules are retired, the conflicts are fixed (recomputed at Apply)</Row>
+      </>
+    );
+  }
   const list = Array.isArray(p.conflicts) ? p.conflicts.map(obj) : [];
   return (
     <>
@@ -271,9 +302,15 @@ export function ActionCard({ action }: { action: PendingAction }) {
   // Spec 034 FR-008: the example-posts card keeps the owner's verdicts and edits until Apply (here, across dialog openings).
   const examples = useMemo(() => (a.kind === 'content_examples' ? parsePayload(a.payload) : null), [a.kind, a.payload]);
   const [choices, setChoices] = useState<ContentExamplesState | null>(() => (examples ? initialState(examples) : null));
+  // Spec 047 FR-005: the resolver card's unticked items.
+  const [skip, setSkip] = useState<string[]>([]);
+  const resolver = a.kind === 'fix_config_conflicts' && Array.isArray(obj(a.payload).items);
+  const toggle = (key: string) => setSkip((s) => (s.includes(key) ? s.filter((k) => k !== key) : [...s, key]));
 
   const run = (decision: 'apply' | 'discard', onDone: () => void) => decide.mutate({
-    id: a.id, decision, ...(decision === 'apply' && examples && choices ? { input: choiceInput(examples, choices) } : {}),
+    id: a.id, decision,
+    ...(decision === 'apply' && examples && choices ? { input: choiceInput(examples, choices) } : {}),
+    ...(decision === 'apply' && resolver && skip.length ? { input: { skip } } : {}),
   }, {
     onSuccess: (r) => {
       setLocal(r.action);
@@ -304,8 +341,10 @@ export function ActionCard({ action }: { action: PendingAction }) {
           size: examples ? 'xl' : 'lg', icon: meta.icon, title: meta.label,
           subtitle: pending ? 'Nothing changes until you apply' : `${a.status}${a.decidedAt ? ` · ${fmtRelative(a.decidedAt)}` : ''}`,
           body: () => (
-            <ActionDetails a={a} pending={pending} createdHandle={createdHandle} error={decide.error}
-              examples={examples && choices ? <ContentExamplesBody payload={examples} state={choices} onChange={setChoices} pending={pending} /> : null} />
+            <ResolverSkipContext.Provider value={{ skip, toggle, pending }}>
+              <ActionDetails a={a} pending={pending} createdHandle={createdHandle} error={decide.error}
+                examples={examples && choices ? <ContentExamplesBody payload={examples} state={choices} onChange={setChoices} pending={pending} /> : null} />
+            </ResolverSkipContext.Provider>
           ),
           actions: pending ? (close) => (
             <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', justifyContent: 'flex-end', alignItems: 'center', width: '100%' }}>

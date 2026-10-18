@@ -1,5 +1,27 @@
 import type { Pool } from 'pg';
-import type { SetupSection } from './setup-analysis';
+import type { BoundDataset, SetupSection } from './setup-analysis';
+import type { Playbook } from '../network/playbook';
+
+/** Days of the content ledger that count a dataset as the channel's own. */
+export const BOUND_DATASET_DAYS = 90;
+
+/**
+ * Spec 047 FR-007: the datasets a resource publishes from — library sources of its series in the playbook and datasets
+ * with published rows in its content ledger (last BOUND_DATASET_DAYS days), with their entity.
+ */
+export async function boundDatasets(pool: Pick<Pool, 'query'>, resourceRef: string, playbook: Playbook | null): Promise<BoundDataset[]> {
+  const tables = [...new Set((playbook?.series ?? [])
+    .filter((s) => s.resource_ref === resourceRef && s.source?.kind === 'library')
+    .map((s) => (s.source as { table: string }).table))];
+  const { rows } = await pool.query(
+    `SELECT s.key, s.entity FROM data_schemas s
+      WHERE s.key = ANY($2::text[])
+         OR s.key IN (SELECT split_part(substr(l.source_ref, 8), '/', 1) FROM content_ledger l
+                       WHERE l.resource_ref = $1 AND l.status = 'published' AND l.source_ref LIKE 'data://%'
+                         AND l.used_at > now() - make_interval(days => $3))
+      ORDER BY s.key`, [resourceRef, tables, BOUND_DATASET_DAYS]);
+  return rows.map((r) => ({ key: String(r.key), entity: String(r.entity ?? 'item') }));
+}
 
 /** channel_setup_proposals (080, spec 042 FR-005). */
 

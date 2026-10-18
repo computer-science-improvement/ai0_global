@@ -130,7 +130,7 @@ export function validatePlaybook(p: Playbook, resources: NetworkResource[], tele
       const bad = cad.times.filter((t) => isQuietHour(Number(t.slice(0, 2)), opts.quiet!.startHour, opts.quiet!.endHour));
       if (bad.length) errors.push(`серія «${se.name}»: час ${bad.join(', ')} у тихі години`);
     }
-    errors.push(...seriesSourceErrors(se.name, se.source, opts.sources ?? null));
+    errors.push(...seriesSourceErrors(se.name, se.source, opts.sources ?? null, se.format));
   }
   // Active series instances per day on a resource must fit its per_day.max.
   for (const sec of p.platforms) {

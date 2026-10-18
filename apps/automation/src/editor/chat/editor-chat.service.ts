@@ -467,7 +467,7 @@ export class EditorChatService {
     const role: EditorRole = agent.kind === 'builder' ? 'builder' : 'manager';
     const ctx = await ag.forAgent(agent, role);
     const system = role === 'builder'
-      ? buildBuilderPrompt({ now: this.now(), skills: ctx.skills, agentsSummary: await ag.agentsSummary() })
+      ? buildBuilderPrompt({ now: this.now(), skills: ctx.skills, agentsSummary: await ag.agentsSummary(), agent })
       : buildManagerChatPrompt({ now: this.now(), skills: ctx.skills, agent, digest: ag.managerDigest ? await ag.managerDigest() : null });
     const rec = new TurnRecorder();
     const extras: AgentChatExtras & Record<string, unknown> = {

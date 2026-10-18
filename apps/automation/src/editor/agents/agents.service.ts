@@ -28,6 +28,8 @@ export interface AgentsServiceDeps {
   actions?:  PendingActionsService;
   /** Channel mode changes go through the editor ops (audit row, validation). */
   setChannelMode: (channelKey: string, mode: AgentMode) => Promise<unknown>;
+  /** Spec 047 FR-007: the channel card's mode (the one runs and publishing follow); absent → the orchestrator's mode. */
+  channelMode?: (channelKey: string) => Promise<AgentMode | null>;
   /** "Run now" per kind; each returns at once (the run continues in the background). */
   runNow: (agent: Agent, orchestrator: Agent) => Promise<{ started: boolean; what: string }>;
   memory: (channelKey: string) => Promise<MemoryEntry[]>;
@@ -46,6 +48,8 @@ export interface AgentsServiceDeps {
   now?:   () => Date;
   /** Spec 040 FR-011: rules-vs-config of the agent's orchestrator (agent page). */
   conflicts?: (orchestrator: Agent) => Promise<Array<{ code: string; ref: string; detail: string; rule_id?: number }>>;
+  /** Spec 047 FR-005: everything the resolver card would fix (pending playbook, junk rules, conflicts). */
+  resolver?: (orchestrator: Agent) => Promise<Array<{ key: string; kind: string; detail: string; rule_id?: number | null }>>;
   /** Spec 047 FR-004: the lint of an owner rule of this orchestrator (shown on the agent page). */
   ruleLint?: (text: string, orchestrator: Agent) => Promise<Array<{ code: string; detail: string }>>;
 }
@@ -62,6 +66,8 @@ const PatchSchema = z.object({
   paused_until:     z.string().datetime({ offset: true }).nullable().optional(),
   model:            z.string().trim().min(3).max(100).nullable().optional(),
   reasoning_effort: z.enum(['low', 'medium', 'high']).nullable().optional(),
+  /** Spec 047 FR-006: «я зробив» / «я зробила» (null = masculine). */
+  grammatical_gender: z.enum(['masculine', 'feminine']).nullable().optional(),
   schedule:         z.object({ times: z.array(z.string().regex(TIME_RE)).max(8).optional() }).optional(),
   daily_budget_usd: z.number().min(0).max(50).nullable().optional(),
 }).strict();
@@ -84,6 +90,8 @@ export interface AgentNode extends Agent {
   activity: { spentTodayUsd: number; lastRunAt: Date | null; lastStatus: string | null; runsToday: number };
   paused:   boolean;
   children: AgentNode[];
+  /** Spec 047 FR-007: a role agent's runs follow its orchestrator's channel mode; its own `mode` column is not read. */
+  effectiveMode?: AgentMode;
 }
 
 const badRequest = (r: z.ZodError) => new BadRequestException({ error: 'invalid_body', issues: r.issues.map((i) => ({ path: i.path.join('.'), message: i.message })) });
@@ -104,6 +112,16 @@ export class AgentsService {
     return a.parentId ? ((await this.d.agents.get(a.parentId)) ?? a) : a;
   }
 
+  /**
+   * Spec 047 FR-007: the mode an orchestrator's runs really follow — the channel card's for a Telegram resource, else its
+   * own. Review 2: @pdr's planner/executor showed `off` but published; older channels' roles showed `approve` but went live.
+   */
+  private async effectiveModeOf(orch: Agent): Promise<AgentMode> {
+    const key = telegramKeyOf(orch);
+    const card = key && this.d.channelMode ? await this.d.channelMode(key).catch(() => null) : null;
+    return card ?? orch.mode;
+  }
+
   /** manager → builder → orchestrators (with role children), each with today's activity. */
   async tree(): Promise<{ agents: AgentNode[] }> {
     if (this.d.sync) {
@@ -112,8 +130,11 @@ export class AgentsService {
     const [all, act] = await Promise.all([this.d.agents.list(), this.d.agents.activity()]);
     const now = this.now();
     const empty = { spentTodayUsd: 0, lastRunAt: null, lastStatus: null, runsToday: 0 };
+    const modes = new Map<string, AgentMode>();
+    await Promise.all(all.filter((a) => !a.parentId && all.some((c) => c.parentId === a.id)).map(async (a) => modes.set(a.id, await this.effectiveModeOf(a))));
     const node = (a: Agent): AgentNode => ({
       ...a, activity: act.get(a.id) ?? empty, paused: isPaused(a, now),
+      ...(a.parentId && modes.has(a.parentId) ? { effectiveMode: modes.get(a.parentId) } : {}),
       children: all.filter((c) => c.parentId === a.id).map(node),
     });
     const order = { manager: 0, builder: 1, orchestrator: 2 } as Record<string, number>;
@@ -125,10 +146,11 @@ export class AgentsService {
     const orch = await this.orchestratorOf(a);
     const [children, act] = await Promise.all([this.d.agents.children(a.id), this.d.agents.activity()]);
     const parent = a.parentId ? orch : null;
+    const effective = parent || children.length ? await this.effectiveModeOf(orch) : null;
     return {
-      agent: { ...a, paused: isPaused(a, this.now()), activity: act.get(a.id) ?? null },
+      agent: { ...a, paused: isPaused(a, this.now()), activity: act.get(a.id) ?? null, ...(parent && effective ? { effectiveMode: effective } : {}) },
       parent: parent ? { id: parent.id, handle: parent.handle, name: parent.name, emoji: parent.emoji } : null,
-      children: children.map((c) => ({ ...c, activity: act.get(c.id) ?? null })),
+      children: children.map((c) => ({ ...c, activity: act.get(c.id) ?? null, ...(effective ? { effectiveMode: effective } : {}) })),
       channelKey: telegramKeyOf(orch),
     };
   }
@@ -165,12 +187,18 @@ export class AgentsService {
       else patch.model = v.model;
     }
     if (v.reasoning_effort !== undefined) patch.reasoningEffort = v.reasoning_effort;
+    if (v.grammatical_gender !== undefined) patch.grammaticalGender = v.grammatical_gender;
     if (v.schedule !== undefined) {
       // Spec 046 FR-007 (034 FR-013): only @manager runs at its times; the others follow the channel card's plan hour.
       if (a.kind !== 'manager') throw new BadRequestException({ error: 'schedule_not_used', details: 'only @manager runs at schedule times; other agents run at the channel card plan hour' });
       patch.schedule = v.schedule;
     }
     if (v.daily_budget_usd !== undefined) patch.dailyBudgetUsd = v.daily_budget_usd;
+    if (v.mode !== undefined && v.mode !== a.mode && a.parentId) {
+      // Spec 047 FR-007: a role agent has no mode of its own — its runs follow the orchestrator's channel mode.
+      const orch = await this.orchestratorOf(a);
+      throw new BadRequestException({ error: 'mode_follows_orchestrator', details: `@${a.handle} runs in the mode of @${orch.handle} — switch the mode there` });
+    }
     if (v.mode !== undefined && v.mode !== a.mode) {
       // Spec 023 FR-012: no live switch while a strategy binding still publishes to the agent's resources.
       if (v.mode === 'live') {
@@ -283,7 +311,12 @@ export class AgentsService {
   async configConflicts(handle: string) {
     const orch = await this.orchestratorOf(await this.require(handle));
     const conflicts = this.d.conflicts ? await this.d.conflicts(orch).catch(() => []) : [];
-    return { handle: orch.handle, conflicts: conflicts.map((c) => ({ code: c.code, ref: c.ref, detail: c.detail, rule_id: c.rule_id ?? null })) };
+    const items = this.d.resolver ? await this.d.resolver(orch).catch(() => []) : [];
+    return {
+      handle: orch.handle,
+      conflicts: conflicts.map((c) => ({ code: c.code, ref: c.ref, detail: c.detail, rule_id: c.rule_id ?? null })),
+      items: items.map((i) => ({ key: i.key, kind: i.kind, detail: i.detail, rule_id: i.rule_id ?? null })),
+    };
   }
 
   async memory(handle: string) {

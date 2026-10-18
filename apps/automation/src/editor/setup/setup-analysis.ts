@@ -3,7 +3,7 @@ import { defineTool, type EditorTool } from '../harness/tool';
 import { POST_FORMATS } from '../post/post-spec';
 import { FormatPrefsSchema, ResourceProfileSchema, type FormatPrefField } from '../agents/resource-profile';
 import { StyleSchema } from '../post/style/resource-style';
-import { CadenceSchema } from '../network/series';
+import { CadenceSchema, datasetFormat } from '../network/series';
 import { renderMetrics, type ChannelMetrics, type ObservedFormat } from './setup-metrics';
 import { hasPostText, MIN_SPAN_DAYS, POST_TEXT_IN_PROMPT, type SetupPost } from './setup-posts.types';
 
@@ -100,9 +100,22 @@ export const SubmitSetupInput = z.object({
 });
 export type SubmitSetupInput = z.infer<typeof SubmitSetupInput>;
 
-/** Formats the card may weight, by what the posts show (`other` = a poll, a file or an album part). */
-export function allowedFormats(mix: Partial<Record<ObservedFormat, number>>): Set<string> {
-  const out = new Set<string>();
+/** A dataset the channel publishes from (its series sources and its content ledger) and the rows' entity. */
+export interface BoundDataset { key: string; entity: string }
+
+/** Spec 047 FR-007: formats the bound datasets need (`quiz_question` → quiz), with the dataset that needs each. */
+export function datasetFormats(datasets: readonly BoundDataset[] = []): Map<string, BoundDataset> {
+  const out = new Map<string, BoundDataset>();
+  for (const d of datasets) { const f = datasetFormat(d.entity); if (f && !out.has(f)) out.set(f, d); }
+  return out;
+}
+
+/**
+ * Formats the card may weight, by what the posts show (`other` = a poll, a file or an album part) and, spec 047 FR-007,
+ * by what the bound datasets need: a Telegram quiz reads as a plain poll in the history.
+ */
+export function allowedFormats(mix: Partial<Record<ObservedFormat, number>>, datasets: readonly BoundDataset[] = []): Set<string> {
+  const out = new Set<string>(datasetFormats(datasets).keys());
   if (mix.text) out.add('text');
   if (mix.photo) { out.add('photo'); out.add('album'); }
   if (mix.video) out.add('video');
@@ -111,11 +124,15 @@ export function allowedFormats(mix: Partial<Record<ObservedFormat, number>>): Se
   return out;
 }
 
+const datasetLine = (d: BoundDataset) => `${d.key} (${d.entity})`;
+
 const norm = (s: string) => s.toLowerCase().replace(/[«»"“”'’ʼ`]/g, '').replace(/\s+/g, ' ').trim();
 
 export interface SetupCheckContext {
   posts:   SetupPost[];
   metrics: ChannelMetrics;
+  /** Spec 047 FR-007: datasets the channel publishes from. */
+  datasets?: BoundDataset[];
   /** Extra checks with the channel's context (the would-be playbook); Ukrainian lines. */
   extra?:  (input: SubmitSetupInput) => Promise<string[]> | string[];
 }
@@ -138,9 +155,12 @@ export async function checkSetup(i: SubmitSetupInput, c: SetupCheckContext): Pro
   const sum = i.series_pillars.pillars.reduce((a, p) => a + p.share, 0);
   if (sum < 95 || sum > 105) errors.push(`pillars: частки мають давати 100 ± 5, зараз ${sum}`);
 
-  const allowed = allowedFormats(c.metrics.formatMix);
+  const allowed = allowedFormats(c.metrics.formatMix, c.datasets);
   const mixBad = Object.keys(i.format_mix.formats).filter((f) => !allowed.has(f));
   if (mixBad.length) errors.push(`format_mix: формати ${mixBad.join(', ')} у постах не трапляються (можна: ${[...allowed].join(', ')})`);
+  for (const [f, d] of datasetFormats(c.datasets)) {
+    if (!(f in i.format_mix.formats)) errors.push(`format_mix: канал публікує з датасету ${datasetLine(d)} — потрібен формат ${f} (у постах він виглядає як опитування)`);
+  }
   if (!Object.keys(i.format_mix.formats).length) errors.push('format_mix: потрібен хоча б один формат');
   const seriesBad = i.series_pillars.series.filter((s) => !(s.format in i.format_mix.formats)).map((s) => `«${s.name}» (${s.format})`);
   if (seriesBad.length) errors.push(`рубрики ${seriesBad.join(', ')}: формат має бути серед format_mix`);
@@ -189,6 +209,8 @@ export interface OnboarderPromptInput {
   lockedFormat: string[];
   lockedSeries: string[];
   current:    { brief: string | null; profile: string | null };
+  /** Spec 047 FR-007: datasets the channel publishes from. */
+  datasets?:  BoundDataset[];
 }
 
 export function onboarderSystemPrompt(): string {
@@ -228,6 +250,7 @@ export function onboarderUserPrompt(i: OnboarderPromptInput): string {
     i.current.profile ? `Поточний профіль:\n${i.current.profile}` : 'Профілю ще немає.',
     i.lockedFormat.length ? `Закріплені власником поля форматування (не пропонуй): ${i.lockedFormat.join(', ')}.` : null,
     i.lockedSeries.length ? `Закріплені власником рубрики (лишаються як є): ${i.lockedSeries.join(', ')}.` : null,
+    datasetsNote(i.datasets),
     `## Цифри з коду\n${renderMetrics(i.metrics)}`,
     // Spec 041 FR-008: what the history cannot tell.
     i.metrics.spanDays < MIN_SPAN_DAYS
@@ -236,6 +259,16 @@ export function onboarderUserPrompt(i: OnboarderPromptInput): string {
     noTextNote(i.posts),
     `## Останні пости (${i.posts.length}, від найновішого)\n${posts.join('\n\n')}`,
   ].filter(Boolean).join('\n\n');
+}
+
+/** Spec 047 FR-007: the bound datasets and the formats they need — a quiz in the history looks like a poll. */
+export function datasetsNote(datasets: readonly BoundDataset[] = []): string | null {
+  if (!datasets.length) return null;
+  const need = [...datasetFormats(datasets)].map(([f, d]) => `${datasetLine(d)} → формат ${f}`);
+  return [
+    `Канал публікує з датасетів: ${datasets.map(datasetLine).join(', ')}.`,
+    need.length ? `Пости з них мають свій формат (${need.join('; ')}): додай його в format_mix з вагою за часткою таких постів, а рубрики з цих датасетів — цим форматом.` : null,
+  ].filter(Boolean).join('\n');
 }
 
 /** Spec 041 FR-008: how many posts have no text — style conclusions never come from them. */

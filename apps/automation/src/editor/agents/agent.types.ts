@@ -35,6 +35,8 @@ export interface Agent {
   /** Spec 038: the agent's own model in the Anthropic workspace (null = the workspace default). */
   anthropicModel?: string | null;
   reasoningEffort: 'low' | 'medium' | 'high' | null;
+  /** Spec 047 FR-006: the grammatical gender the agent uses for itself (null = masculine). */
+  grammaticalGender?: GrammaticalGender | null;
   schedule:       AgentSchedule;
   dailyBudgetUsd: number | null;
   shadowUntil:    Date | null;
@@ -42,6 +44,9 @@ export interface Agent {
   createdAt:      Date;
   updatedAt:      Date;
 }
+
+export type GrammaticalGender = 'masculine' | 'feminine';
+export const GRAMMATICAL_GENDERS = ['masculine', 'feminine'] as const;
 
 export const HANDLE_RE = /^[a-z][a-z0-9_]{2,31}$/;
 // System agents, plus REST path words under /api/agents/… that must never be mistaken for a handle.

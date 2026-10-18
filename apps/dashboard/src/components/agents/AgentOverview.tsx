@@ -15,13 +15,13 @@ import { Badge } from '../ui/Badge';
 import { Icon } from '../ui/Icon';
 import { describeError, toast } from '../ui/Toast';
 import { Modal } from '../Modal';
-import { fmtUsd } from '../editor/EditorUi';
+import { fmtUsd, MODE_LABEL, MODE_TONE } from '../editor/EditorUi';
 import { fmtDate, fmtRelative } from '../../lib/format';
 import { AgentGlyph, AgentModeSwitch, KIND_LABEL, LastRun, ScopeChip, runsLabel } from './AgentsUi';
 import { ResourceSection } from './ResourceProfile';
 import { FormattingSection } from './ResourceFormatting';
 import { ActiveEffects } from './ActiveEffects';
-import { errorBody, usePatchAgent, type AgentDetail, type AgentPatch, type ReasoningEffort } from '../../api/agents';
+import { errorBody, useAgentConfigConflicts, usePatchAgent, type AgentDetail, type AgentPatch, type GrammaticalGender, type ReasoningEffort } from '../../api/agents';
 import { useModelCatalog, type Workspace } from '../../api/models';
 import { ownModelIn, WORKSPACE_LABEL } from '../../lib/models';
 import { useEditorChannel } from '../../api/editor';
@@ -36,13 +36,13 @@ const grid: CSSProperties = { display: 'grid', gridTemplateColumns: 'repeat(auto
 
 interface Form {
   name: string; handle: string; emoji: string; description: string; model: string;
-  effort: '' | ReasoningEffort; budget: string; times: string[];
+  effort: '' | ReasoningEffort; voice: GrammaticalGender; budget: string; times: string[];
 }
 
 function toForm(a: AgentDetail['agent'], ws: Workspace): Form {
   return {
     name: a.name, handle: a.handle, emoji: a.emoji ?? '', description: a.description ?? '', model: ownModelIn(a, ws) ?? '',
-    effort: a.reasoningEffort ?? '', budget: a.dailyBudgetUsd == null ? '' : String(a.dailyBudgetUsd),
+    effort: a.reasoningEffort ?? '', voice: a.grammaticalGender ?? 'masculine', budget: a.dailyBudgetUsd == null ? '' : String(a.dailyBudgetUsd),
     times: [...(a.schedule.times ?? [])].sort(),
   };
 }
@@ -77,11 +77,29 @@ function diff(a: AgentDetail['agent'], f: Form, ws: Workspace): AgentPatch {
   if ((f.description.trim() || null) !== (a.description ?? null)) p.description = f.description.trim() || null;
   if ((f.model.trim() || null) !== ownModelIn(a, ws)) p.model = f.model.trim() || null;
   if ((f.effort || null) !== a.reasoningEffort) p.reasoning_effort = f.effort || null;
+  if (f.voice !== (a.grammaticalGender ?? 'masculine')) p.grammatical_gender = f.voice;
   const budget = f.budget.trim() === '' ? null : Number(f.budget);
   if (budget !== a.dailyBudgetUsd) p.daily_budget_usd = budget;
   const before = [...(a.schedule.times ?? [])].sort().join(',');
   if (scheduleEditable(a) && f.times.join(',') !== before) p.schedule = { times: f.times };
   return p;
+}
+
+/** Spec 047 FR-005: "N conflicts" — what keeps the channel from the owner's rules, and the way to resolve it in one card. */
+function ConflictsLine({ handle }: { handle: string }) {
+  const q = useAgentConfigConflicts(handle);
+  const n = q.data?.items?.length ?? q.data?.conflicts.length ?? 0;
+  if (!n) return null;
+  return (
+    <div className="callout-warning" role="status" style={{ marginBottom: 14, alignItems: 'center', flexWrap: 'wrap', gap: 10 }}>
+      <Icon name="warning" size={16} />
+      <span style={{ flex: '1 1 240px', minWidth: 0 }}>
+        <strong>{n} conflict{n === 1 ? '' : 's'}</strong> with your rules — the agent cannot follow the rules and its config at once.
+      </span>
+      <Link to="/app/agents/$handle" params={{ handle }} search={{ tab: 'memory' } as any} className="btn-tiny">See them</Link>
+      <Link to="/app/chat" search={{ q: `@${handle} fix config conflicts` } as any} className="btn-tiny">Resolve in one card</Link>
+    </div>
+  );
 }
 
 export function AgentOverview({ data }: { data: AgentDetail }) {
@@ -99,8 +117,16 @@ export function AgentOverview({ data }: { data: AgentDetail }) {
       <div className="stat-grid compose-rise" style={{ marginBottom: 18 }}>
         <div className="stat-tile">
           <div className="text-micro" style={{ color: 'var(--color-ink-dim)', textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: 10 }}>Mode</div>
-          <AgentModeSwitch agent={a} />
-          {a.shadowUntil && a.mode === 'shadow' && (
+          {data.parent ? (
+            // Spec 047 FR-007: a role agent has no mode of its own — it runs in its orchestrator's channel mode.
+            <>
+              <Badge tone={MODE_TONE[a.effectiveMode ?? a.mode]}>{MODE_LABEL[a.effectiveMode ?? a.mode]}</Badge>
+              <div className="text-micro" style={{ marginTop: 8, color: 'var(--color-ink-muted)' }}>
+                follows <Link to="/app/agents/$handle" params={{ handle: data.parent.handle }} style={{ color: 'inherit' }}>@{data.parent.handle}</Link>
+              </div>
+            </>
+          ) : <AgentModeSwitch agent={a} />}
+          {!data.parent && a.shadowUntil && a.mode === 'shadow' && (
             <div className="text-micro" style={{ marginTop: 8, color: 'var(--color-ink-muted)' }}>shadow until {fmtDate(a.shadowUntil)}</div>
           )}
         </div>
@@ -114,6 +140,7 @@ export function AgentOverview({ data }: { data: AgentDetail }) {
         </div>
       </div>
 
+      {a.kind === 'orchestrator' && a.scopeId && <ConflictsLine handle={a.handle} />}
       {a.kind === 'orchestrator' && <ActiveEffects agent={a} delay={20} />}
       {a.kind === 'orchestrator' && a.scopeId && <ResourceSection handle={a.handle} />}
       {a.kind === 'orchestrator' && a.scopeId && <FormattingSection handle={a.handle} />}
@@ -182,6 +209,7 @@ function ProfileSummary({ data, ws }: { data: AgentDetail; ws: Workspace }) {
           {model ?? dim(data.parent ? `inherit from @${data.parent.handle}` : `default (${defaultModel ?? 'global default'})`)}
         </Meta>
         <Meta label="Reasoning effort">{a.reasoningEffort ?? dim('default')}</Meta>
+        <Meta label="Voice">{a.grammaticalGender === 'feminine' ? 'Feminine' : 'Masculine'}</Meta>
         <Meta label="Daily budget">{a.dailyBudgetUsd == null ? dim('default cap') : fmtUsd(a.dailyBudgetUsd)}</Meta>
         <Meta label="Schedule">
           {scheduleEditable(a)
@@ -289,6 +317,11 @@ function ProfileForm({ data, ws, onClose }: { data: AgentDetail; ws: Workspace; 
         <Field label="Reasoning effort">
           <select className="input-field" style={input} value={f.effort} onChange={(e) => set('effort', e.target.value as Form['effort'])}>
             <option value="">default</option><option value="low">low</option><option value="medium">medium</option><option value="high">high</option>
+          </select>
+        </Field>
+        <Field label="Voice" hint="grammatical gender in chat replies">
+          <select className="input-field" style={input} value={f.voice} onChange={(e) => set('voice', e.target.value as GrammaticalGender)} aria-label="Agent voice">
+            <option value="masculine">Masculine</option><option value="feminine">Feminine</option>
           </select>
         </Field>
         <Field label="Daily budget, USD" hint="blank = default cap">

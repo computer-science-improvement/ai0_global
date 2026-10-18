@@ -63,9 +63,9 @@ export function lockOwnerSeries(active: Playbook | null, next: Playbook): Playbo
 
 /** Active library datasets and the card's feeds (rss / url sources, by id and by ref). */
 export async function seriesSourceCatalog(pool: { query: (sql: string, params?: unknown[]) => Promise<{ rows: any[] }> }, card: EditorCard | null): Promise<SeriesSourceCatalog> {
-  const { rows } = await pool.query(`SELECT key FROM data_schemas WHERE status = 'active' ORDER BY key`);
+  const { rows } = await pool.query(`SELECT key, entity FROM data_schemas WHERE status = 'active' ORDER BY key`);
   const feeds = (card?.sources ?? []).filter((s) => s.kind === 'rss' || s.kind === 'url').flatMap((s) => [s.id, s.ref]).filter(Boolean);
-  return { tables: rows.map((r) => String(r.key)), feeds };
+  return { tables: rows.map((r) => String(r.key)), feeds, entities: Object.fromEntries(rows.map((r) => [String(r.key), String(r.entity ?? 'item')])) };
 }
 
 /** Is this series owner-locked in the active playbook? (manager `pause_series` directives, spec 021). */

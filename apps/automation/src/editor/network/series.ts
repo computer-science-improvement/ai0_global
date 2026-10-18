@@ -100,10 +100,23 @@ export interface SeriesSourceCatalog {
   tables: string[];
   /** Card sources of kind rss / url (ids and refs). */
   feeds:  string[];
+  /** Spec 047 FR-007: dataset key → its entity (`quiz_question`…); absent → formats are not checked against datasets. */
+  entities?: Record<string, string>;
+}
+
+/**
+ * Spec 047 FR-007: the post format a dataset's rows need. Review 2: @pdr's onboarder allowed only poll / text / photo for
+ * a `quiz_question` dataset, and post 1725 went out as a poll with no correct answer.
+ */
+export const DATASET_FORMATS: Readonly<Record<string, string>> = { quiz_question: 'quiz', poll_question: 'poll' };
+
+/** The format a dataset implies, by its entity (null = any format). */
+export function datasetFormat(entity: string | null | undefined): string | null {
+  return (entity && DATASET_FORMATS[entity]) || null;
 }
 
 /** One line per problem with a series source (empty = fine). */
-export function seriesSourceErrors(name: string, src: SeriesSource | undefined, cat: SeriesSourceCatalog | null): string[] {
+export function seriesSourceErrors(name: string, src: SeriesSource | undefined, cat: SeriesSourceCatalog | null, format?: string): string[] {
   if (!src) return [];
   const label = `серія «${name}»`;
   if (src.kind === 'api' && !(API_SOURCE_NAMES as readonly string[]).includes(src.source)) {
@@ -111,6 +124,10 @@ export function seriesSourceErrors(name: string, src: SeriesSource | undefined, 
   }
   if (!cat) return [];
   if (src.kind === 'library' && !cat.tables.includes(src.table)) return [`${label}: датасету ${src.table} немає в бібліотеці`];
+  if (src.kind === 'library' && format) {
+    const need = datasetFormat(cat.entities?.[src.table]);
+    if (need && need !== format) return [`${label}: датасет ${src.table} (${cat.entities?.[src.table]}) публікується форматом ${need}, не ${format}`];
+  }
   if (src.kind === 'feed' && !cat.feeds.includes(src.ref)) return [`${label}: фіду ${src.ref} немає в картці каналу`];
   return [];
 }
