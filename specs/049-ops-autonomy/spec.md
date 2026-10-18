@@ -1,6 +1,6 @@
 # 049 Ops autonomy
 
-**Epic:** AI0-216 (T1–T5 = AI0-221…225) · **Priority:** P1 · **Depends on:** 012, 017, 040, 046 · **Status:** T1–T2 done 2026-10-18, T3–T5 planned (deltas in [tasks.md](tasks.md))
+**Epic:** AI0-216 (T1–T5 = AI0-221…225) · **Priority:** P1 · **Depends on:** 012, 017, 040, 046 · **Status:** done 2026-10-18 (T1–T5; deltas in [tasks.md](tasks.md))
 
 ## Why
 
@@ -62,7 +62,7 @@ A daily cron (`ConnectionKeeperUpkeep`, 05:40 server time) runs before the resou
   - "Fix the connection", which links to the Meta account, the TikTok section or the Telegram section;
   - "Mute reminders".
 
-### FR-003 Source health per resource (T3, AI0-223), planned
+### FR-003 Source health per resource (T3, AI0-223), done
 
 Per resource:
 
@@ -71,11 +71,11 @@ Per resource:
 - blocked hosts;
 - the slots skipped because of each source.
 
-### FR-004 Replacement source proposals (T4, AI0-224), planned
+### FR-004 Replacement source proposals (T4, AI0-224), done
 
 When a source keeps failing, the channel agent proposes a new or an extra source as an owner card.
 
-### FR-005 Network health view (T5, AI0-225), planned
+### FR-005 Network health view (T5, AI0-225), done
 
 One place that shows:
 

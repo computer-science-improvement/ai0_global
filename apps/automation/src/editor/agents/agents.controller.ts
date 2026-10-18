@@ -99,6 +99,12 @@ export class AgentsController {
     return this.svc.configConflicts(handle);
   }
 
+  /** Spec 049 FR-003: the health of the channel card's sources (14 days). */
+  @Get('agents/:handle/sources')
+  sources(@Param('handle') handle: string) {
+    return this.svc.sources(handle);
+  }
+
   @Get('agents/:handle/memory')
   memory(@Param('handle') handle: string) {
     return this.svc.memory(handle);

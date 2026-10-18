@@ -18,6 +18,7 @@ import { resourceStyleOf } from '../post/style/style-store';
 import { defaultAppliesTo } from '../skills/skill-defaults';
 import { attachProfileTone } from '../skills/profile-tone';
 import { dismissHealth } from '../platform/resource-health.service';
+import type { SourceHealthReport } from '../sources/source-health';
 
 export interface AgentsServiceDeps {
   pool:    Pick<Pool, 'query'>;
@@ -52,6 +53,8 @@ export interface AgentsServiceDeps {
   resolver?: (orchestrator: Agent) => Promise<Array<{ key: string; kind: string; detail: string; rule_id?: number | null }>>;
   /** Spec 047 FR-004: the lint of an owner rule of this orchestrator (shown on the agent page). */
   ruleLint?: (text: string, orchestrator: Agent) => Promise<Array<{ code: string; detail: string }>>;
+  /** Spec 049 FR-003: the source health of a channel card (null without a card). */
+  sourceHealth?: (channelKey: string) => Promise<SourceHealthReport | null>;
 }
 
 const TIME_RE = /^([01]\d|2[0-3]):[0-5]\d$/;
@@ -317,6 +320,14 @@ export class AgentsService {
       conflicts: conflicts.map((c) => ({ code: c.code, ref: c.ref, detail: c.detail, rule_id: c.rule_id ?? null })),
       items: items.map((i) => ({ key: i.key, kind: i.kind, detail: i.detail, rule_id: i.rule_id ?? null })),
     };
+  }
+
+  /** Spec 049 FR-003: how the sources of the agent's channel card behaved (empty for an agent without a card). */
+  async sources(handle: string) {
+    const orch = await this.orchestratorOf(await this.require(handle));
+    const key = telegramKeyOf(orch);
+    const report = key && this.d.sourceHealth ? await this.d.sourceHealth(key) : null;
+    return report ?? { channelKey: key, days: 0, sources: [], otherHosts: [] };
   }
 
   async memory(handle: string) {

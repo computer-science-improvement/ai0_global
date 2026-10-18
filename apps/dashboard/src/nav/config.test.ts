@@ -46,7 +46,7 @@ test('manual scenario: reorder, rename, hide, pin, add the directives board as "
   const reloaded = JSON.parse(JSON.stringify(c));
   const nav = resolveNav(NAV_REGISTRY, reloaded, { routeExists });
   const ids = nav.groups.flatMap((g) => g.items.map((i) => i.id));
-  assert.deepEqual(nav.groups[0].items.map((i) => i.id), ['overview', 'chat', 'approvals']);
+  assert.deepEqual(nav.groups[0].items.map((i) => i.id), ['overview', 'chat', 'approvals', 'health']);
   assert.equal(nav.groups.flatMap((g) => g.items).find((i) => i.id === 'agents')!.label, 'Team');
   assert.ok(!ids.includes('landing') && nav.hidden.some((i) => i.id === 'landing'));
   assert.deepEqual(nav.pinned.map((i) => i.id), ['approvals']);
@@ -54,7 +54,7 @@ test('manual scenario: reorder, rename, hide, pin, add the directives board as "
   assert.deepEqual([dir.label, dir.to, dir.search, dir.custom, dir.unavailable], ['Directives', '/app/agents/manager', { tab: 'directives' }, true, undefined]);
   // Reset = no config → the FR-003 default again.
   const reset = resolveNav(NAV_REGISTRY, null);
-  assert.deepEqual(reset.groups[0].items.map((i) => i.id), ['overview', 'approvals']);
+  assert.deepEqual(reset.groups[0].items.map((i) => i.id), ['overview', 'approvals', 'health']);
   assert.ok(reset.groups.flatMap((g) => g.items).some((i) => i.id === 'landing'));
 });
 

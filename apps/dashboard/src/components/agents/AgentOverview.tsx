@@ -28,6 +28,7 @@ import { useEditorChannel } from '../../api/editor';
 import { planScheduleNote } from '../../lib/slot-plan';
 import { ModelSelect } from '../models/ModelSelect';
 import { useActiveSteering } from '../../api/steering';
+import { SourcesSection } from './SourcesSection';
 
 const HANDLE_RE = /^[a-z][a-z0-9_]{2,31}$/;
 const TIME_RE = /^([01]\d|2[0-3]):[0-5]\d$/;
@@ -144,6 +145,7 @@ export function AgentOverview({ data }: { data: AgentDetail }) {
       {a.kind === 'orchestrator' && <ActiveEffects agent={a} delay={20} />}
       {a.kind === 'orchestrator' && a.scopeId && <ResourceSection handle={a.handle} />}
       {a.kind === 'orchestrator' && a.scopeId && <FormattingSection handle={a.handle} />}
+      {a.kind === 'orchestrator' && a.scopeId?.startsWith('telegram:') && <SourcesSection handle={a.handle} />}
       {a.kind === 'orchestrator' && a.scopeId && <SteeringLine targetRef={a.scopeId} />}
 
       <ProfileSummary data={data} ws={ws} />

@@ -27,6 +27,7 @@ import { Route as AppRecommendationsRouteImport } from './routes/app.recommendat
 import { Route as AppModelsRouteImport } from './routes/app.models'
 import { Route as AppLogsRouteImport } from './routes/app.logs'
 import { Route as AppLandingRouteImport } from './routes/app.landing'
+import { Route as AppHealthRouteImport } from './routes/app.health'
 import { Route as AppGraphRouteImport } from './routes/app.graph'
 import { Route as AppEditorRouteImport } from './routes/app.editor'
 import { Route as AppDmRouteImport } from './routes/app.dm'
@@ -144,6 +145,11 @@ const AppLogsRoute = AppLogsRouteImport.update({
 const AppLandingRoute = AppLandingRouteImport.update({
   id: '/landing',
   path: '/landing',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppHealthRoute = AppHealthRouteImport.update({
+  id: '/health',
+  path: '/health',
   getParentRoute: () => AppRoute,
 } as any)
 const AppGraphRoute = AppGraphRouteImport.update({
@@ -308,6 +314,7 @@ export interface FileRoutesByFullPath {
   '/app/dm': typeof AppDmRoute
   '/app/editor': typeof AppEditorRoute
   '/app/graph': typeof AppGraphRoute
+  '/app/health': typeof AppHealthRoute
   '/app/landing': typeof AppLandingRoute
   '/app/logs': typeof AppLogsRoute
   '/app/models': typeof AppModelsRoute
@@ -355,6 +362,7 @@ export interface FileRoutesByTo {
   '/app/dm': typeof AppDmRoute
   '/app/editor': typeof AppEditorRoute
   '/app/graph': typeof AppGraphRoute
+  '/app/health': typeof AppHealthRoute
   '/app/landing': typeof AppLandingRoute
   '/app/logs': typeof AppLogsRoute
   '/app/models': typeof AppModelsRoute
@@ -404,6 +412,7 @@ export interface FileRoutesById {
   '/app/dm': typeof AppDmRoute
   '/app/editor': typeof AppEditorRoute
   '/app/graph': typeof AppGraphRoute
+  '/app/health': typeof AppHealthRoute
   '/app/landing': typeof AppLandingRoute
   '/app/logs': typeof AppLogsRoute
   '/app/models': typeof AppModelsRoute
@@ -454,6 +463,7 @@ export interface FileRouteTypes {
     | '/app/dm'
     | '/app/editor'
     | '/app/graph'
+    | '/app/health'
     | '/app/landing'
     | '/app/logs'
     | '/app/models'
@@ -501,6 +511,7 @@ export interface FileRouteTypes {
     | '/app/dm'
     | '/app/editor'
     | '/app/graph'
+    | '/app/health'
     | '/app/landing'
     | '/app/logs'
     | '/app/models'
@@ -549,6 +560,7 @@ export interface FileRouteTypes {
     | '/app/dm'
     | '/app/editor'
     | '/app/graph'
+    | '/app/health'
     | '/app/landing'
     | '/app/logs'
     | '/app/models'
@@ -712,6 +724,13 @@ declare module '@tanstack/react-router' {
       path: '/landing'
       fullPath: '/app/landing'
       preLoaderRoute: typeof AppLandingRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/health': {
+      id: '/app/health'
+      path: '/health'
+      fullPath: '/app/health'
+      preLoaderRoute: typeof AppHealthRouteImport
       parentRoute: typeof AppRoute
     }
     '/app/graph': {
@@ -929,6 +948,7 @@ interface AppRouteChildren {
   AppDmRoute: typeof AppDmRoute
   AppEditorRoute: typeof AppEditorRoute
   AppGraphRoute: typeof AppGraphRoute
+  AppHealthRoute: typeof AppHealthRoute
   AppLandingRoute: typeof AppLandingRoute
   AppLogsRoute: typeof AppLogsRoute
   AppModelsRoute: typeof AppModelsRoute
@@ -973,6 +993,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppDmRoute: AppDmRoute,
   AppEditorRoute: AppEditorRoute,
   AppGraphRoute: AppGraphRoute,
+  AppHealthRoute: AppHealthRoute,
   AppLandingRoute: AppLandingRoute,
   AppLogsRoute: AppLogsRoute,
   AppModelsRoute: AppModelsRoute,

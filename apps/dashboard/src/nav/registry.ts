@@ -62,6 +62,8 @@ export const NAV_REGISTRY: ReadonlyArray<NavEntry> = [
   // ── Home ──
   { id: 'overview', to: '/app', label: 'Overview', icon: 'overview', defaultGroup: 'g_home', exact: true, keywords: ['home', 'dashboard', 'start'] },
   { id: 'approvals', to: '/app/agents/inbox', search: { tab: 'approvals' }, label: 'Posts to approve', icon: 'check', defaultGroup: 'g_home', badge: 'approvals', parent: 'agents', keywords: ['approve', 'approval', 'review', 'waiting', 'queue'] },
+  // Spec 049 FR-005: connections, sources, budget headroom and stuck work in one place.
+  { id: 'health', to: '/app/health', label: 'Network health', icon: 'health', defaultGroup: 'g_home', keywords: ['status', 'problems', 'stuck', 'failing', 'sources', 'tokens', 'budget', 'headroom', 'ops'] },
 
   // ── Agents ──
   { id: 'agents', to: '/app/agents', label: 'Agents', icon: 'agents', defaultGroup: 'g_agents', badge: 'agents', keywords: ['bots', 'network', 'orchestrator', 'team'] },

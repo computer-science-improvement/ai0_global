@@ -189,6 +189,21 @@ export function budgetStatuses(rows: any[], today: SpendSlice[], monthBefore: Sp
   });
 }
 
+/** Every cap's state today, the per-agent caps and what blocks calls now (the Budgets tab; spec 049 network health). */
+export async function budgetSnapshot(repo: Pick<SpendRepository, 'listBudgets' | 'todaySlices' | 'monthSlicesBeforeToday' | 'agentCaps'>): Promise<{
+  rows: BudgetStatus[]; agentCaps: AgentCapStatus[]; blocking: BlockingCap[];
+}> {
+  const [rows, today, month, agentRows] = await Promise.all([repo.listBudgets(), repo.todaySlices(), repo.monthSlicesBeforeToday(), repo.agentCaps()]);
+  const statuses = budgetStatuses(rows, today, month);
+  const agentCaps: AgentCapStatus[] = agentRows.map((a) => ({
+    agentId: a.id, handle: a.handle, capUsd: a.capUsd, spentUsd: round6(a.spentUsd),
+    pct: a.capUsd > 0 ? Math.round((a.spentUsd / a.capUsd) * 1000) / 10 : 100,
+    // Per-agent caps always block (BudgetService passes enforce = true).
+    state: capState(a.spentUsd, a.capUsd, true),
+  }));
+  return { rows: statuses, agentCaps, blocking: blockingNow(statuses, agentCaps) };
+}
+
 /** Everything that blocks calls right now. */
 export function blockingNow(statuses: BudgetStatus[], agents: AgentCapStatus[]): BlockingCap[] {
   const out: BlockingCap[] = [];
@@ -566,17 +581,7 @@ export class SpendService {
   // ── budgets ──────────────────────────────────────────────────────────────
 
   async budgetsView() {
-    const [rows, today, month, agentRows] = await Promise.all([
-      this.d.repo.listBudgets(), this.d.repo.todaySlices(), this.d.repo.monthSlicesBeforeToday(), this.d.repo.agentCaps(),
-    ]);
-    const statuses = budgetStatuses(rows, today, month);
-    const agentCaps: AgentCapStatus[] = agentRows.map((a) => ({
-      agentId: a.id, handle: a.handle, capUsd: a.capUsd, spentUsd: round6(a.spentUsd),
-      pct: a.capUsd > 0 ? Math.round((a.spentUsd / a.capUsd) * 1000) / 10 : 100,
-      // Per-agent caps always block (BudgetService passes enforce = true).
-      state: capState(a.spentUsd, a.capUsd, true),
-    }));
-    return { today: this.today(), rows: statuses, agentCaps, blocking: blockingNow(statuses, agentCaps) };
+    return { today: this.today(), ...(await budgetSnapshot(this.d.repo)) };
   }
 
   async putBudget(raw: unknown) {

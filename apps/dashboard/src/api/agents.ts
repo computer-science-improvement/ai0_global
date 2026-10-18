@@ -250,6 +250,27 @@ export function useAgentConfigConflicts(handle: string) {
   });
 }
 
+/** Spec 049 FR-003: how one source of the channel card behaved over the window. */
+export type SourceState = 'blocked' | 'failing' | 'exhausted' | 'ok' | 'unused';
+export interface SourceHealth {
+  id: string; kind: 'rss' | 'url' | 'library' | 'api'; ref: string; state: SourceState;
+  calls: number; ok: number; empty: number; errors: number; successRate: number | null;
+  lastOkAt: string | null; lastError: { at: string; code: string; details: string | null } | null;
+  blocked: { host: string; reason: string; statusCode: number | null; until: string; failures: number } | null;
+  slotsLost: number; detail: string;
+}
+export interface SourceHealthReport {
+  channelKey: string | null; days: number; sources: SourceHealth[];
+  otherHosts: Array<{ host: string; reason: string; statusCode: number | null; until: string; calls: number }>;
+}
+
+export function useAgentSources(handle: string) {
+  return useQuery({
+    queryKey: [...KEY, 'sources', handle],
+    queryFn:  () => api<SourceHealthReport>(`/api/agents/${enc(handle)}/sources`),
+  });
+}
+
 export function useAgentSkills(handle: string) {
   return useQuery({
     queryKey: [...KEY, 'skills', handle],

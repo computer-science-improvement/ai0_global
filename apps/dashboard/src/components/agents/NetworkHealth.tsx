@@ -7,6 +7,7 @@
 // sample texts). Spec 037 FR-014: "Notes and sample posts" also lists the post
 // audit (issues by code with the posts, the rule and the fix) and the feed fit.
 // On phones the resources without anomalies or quality flags collapse into one line.
+// Spec 049 FR-005: "Problems" in the header opens the network health page (connections, sources, budget, stuck work).
 // Each resource is a compact card (name, health, three KPIs, flag count); a click opens all of it.
 
 import { Link } from '@tanstack/react-router';
@@ -249,9 +250,15 @@ export function NetworkHealthCard({ delay }: { delay?: number }) {
   const phone = useMediaQuery('(max-width: 600px)');
   const [showAll, setShowAll] = useState(false);
 
-  const head = q.data
-    ? <span className="text-micro" style={{ color: 'var(--color-ink-dim)', whiteSpace: 'nowrap' }} title={fmtDate(q.data.generatedAt)}>updated {fmtRelative(q.data.generatedAt)}</span>
-    : undefined;
+  // Spec 049 FR-005: connections, sources, budget headroom and stuck work have their own page.
+  const head = (
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 10, whiteSpace: 'nowrap' }}>
+      {q.data && <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }} title={fmtDate(q.data.generatedAt)}>updated {fmtRelative(q.data.generatedAt)}</span>}
+      <Link to="/app/health" className="link-accent text-micro" style={{ display: 'inline-flex', alignItems: 'center', gap: 3 }}>
+        Problems <Icon name="chevron-right" size={11} />
+      </Link>
+    </span>
+  );
 
   if (q.error) {
     return (

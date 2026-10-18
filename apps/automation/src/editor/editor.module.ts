@@ -32,6 +32,14 @@ import { scanLive } from './live/feed-items';
 import { NewsWatchService } from './live/news-watch';
 import { buildComposeTools } from './tools/compose-tools';
 import { PgHostFailures } from './net/host-failures';
+import { buildSourceTools, applySourceChangeAction } from './sources/source-tools';
+import { candidateDeps, sourceChangeHandled, sourceHealthOf } from './sources/source-wiring';
+import { NETWORK_HEALTH, NetworkHealthController } from './health/network-health.controller';
+import { NetworkHealthService } from './health/network-health.service';
+import { budgetSnapshot } from '../spend/spend.service';
+import { SpendRepository } from '../spend/spend.repository';
+import { sourcesToReplaceBlock } from './sources/source-health.service';
+import { SOURCE_CHANGE_KIND } from './sources/source-change';
 import { buildRoleTools, STORY_KPI_SAMPLE_FILTER } from './tools/role-tools';
 import { StoryRegistry } from './story/story.repository';
 import { StoryContextService } from './story/story-service';
@@ -730,6 +738,11 @@ function registerAgentActions(infra: AgentInfra, svc: AgentsService, ops: Editor
     await svc.onBrief(agent, String(p.brief));
     return { ok: true, channel: key };
   });
+  // Spec 049 FR-004: a source change the channel agent proposed (the card as it is now, validated by the editor ops).
+  a.register(SOURCE_CHANGE_KIND, (p) => applySourceChangeAction(p, {
+    channels: { get: async (k) => (await ops.getChannel(k)) as EditorCard | null },
+    upsert: (k, patch) => ops.upsertChannel(k, patch),
+  }));
   a.register('set_resource_profile', async (p) => {
     await svc.setProfile(String(p.ref), p.profile, 'owner');
     return { ok: true };
@@ -1054,6 +1067,11 @@ export const EDITOR_PROVIDERS = [
           ...buildHighlightsTools({ pool }),
           ...buildComposeTools({ hosts }),
           ...buildApiTools({ env }),
+          // Spec 049 FR-003 / FR-004: the card's source health and owner cards for a source change.
+          ...buildSourceTools({
+            health: sourceHealthOf(pool, repos.channels), channels: repos.channels, actions: infra.actions,
+            candidate: candidateDeps(pool, env, hosts), handled: sourceChangeHandled(pool),
+          }),
           ...buildRoleTools({
             pool, plans: repos.plans, memory: repos.memory, channels: repos.channels, ...ports,
             recordPublish: (k) => throttle.recordPublish(k),
@@ -1326,6 +1344,10 @@ export const EDITOR_PROVIDERS = [
           stories: new StoryContextService(new StoryRegistry(pool)),
           // Spec 053 FR-005: the last 7 days in the orchestrator prompt.
           statsSummary: (refs) => statsSummaryOf(pool, refs),
+          // Spec 049 FR-004: failing sources (asked about at most weekly) in the daily run; SOURCE_PROPOSALS=off turns it off.
+          sourcesToReplace: cfg.get<string>('SOURCE_PROPOSALS') === 'off'
+            ? undefined
+            : async (card, orchId) => sourcesToReplaceBlock(await sourceHealthOf(pool, repos.channels, infra.inbox).toReplaceToday(card, orchId)),
         });
         // Spec 025 FR-015: a strategy directive rebuilds the playbook through this runner (late-bound: the MANAGER exists first).
         manager.buildPort.bind(async (orchId, brief, directiveId) => {
@@ -1602,6 +1624,7 @@ export const EDITOR_PROVIDERS = [
           conflicts: (orch) => configConflictsOf(pool, repos, infra).forAgent(orch),
           resolver: (orch) => configConflictsOf(pool, repos, infra).resolverFor(orch),
           ruleLint: (text, orch) => ownerRuleLint(infra, text, orch),
+          sourceHealth: (key) => sourceHealthOf(pool, repos.channels).forChannel(key),
           sync: () => infra.registry.run(),
           // Spec 035: agent models are checked against the catalog and priced in llm_prices when new.
           models: { check: (m, cur) => models.checkAgentModel(m, cur), chosen: (m) => models.ensurePrice(m), workspace: () => models.active() },
@@ -1676,6 +1699,16 @@ export const EDITOR_PROVIDERS = [
         infra.creator.setOnBrief((agent, brief) => svc.onBrief(agent, brief));
         return svc;
       },
+    },
+    {
+      // Spec 049 FR-005: connections, sources, budget headroom and stuck work in one view.
+      provide: NETWORK_HEALTH,
+      inject: [DB_POOL, AGENT_INFRA, EDITOR_REPOS],
+      useFactory: (pool: Pool, infra: AgentInfra, repos: EditorRepos) => new NetworkHealthService({
+        pool, channels: repos.channels, catalog: infra.catalog,
+        sources: (card) => sourceHealthOf(pool, repos.channels).forCard(card),
+        budgets: () => budgetSnapshot(new SpendRepository(pool)),
+      }),
     },
     {
       provide: NETWORK_SERVICE,
@@ -1826,7 +1859,7 @@ export const EDITOR_PROVIDERS = [
 @Module({
   // AuthModule: EditorController is guarded by TrackingAuthGuard, which injects AuthService.
   imports:     [ChannelConfigModule, PublishersModule, AuthModule],
-  controllers: [EditorController, EditorChatController, AgentsController, ModelsController, NetworkController, ManagerController, PromoController, PromoRedirectController, ApprovalsController, AutonomyController, ScheduleController, StrategyMigrationController, UpcomingSlotsController, ResourcePausesController, PostAuditController, ChannelSetupController, SteeringController],
+  controllers: [EditorController, EditorChatController, AgentsController, ModelsController, NetworkController, ManagerController, PromoController, PromoRedirectController, ApprovalsController, AutonomyController, ScheduleController, StrategyMigrationController, UpcomingSlotsController, ResourcePausesController, PostAuditController, ChannelSetupController, SteeringController, NetworkHealthController],
   providers:   [...EDITOR_PROVIDERS, TrackingAuthGuard],
   exports:     [EDITOR_REPOS, EDITOR_RUNNER, AGENT_INFRA, PLATFORM_INFRA, EDITOR_MANAGER],
 })

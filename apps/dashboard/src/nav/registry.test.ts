@@ -41,11 +41,11 @@ test('parents exist, chains have no cycles, templates never reach a menu', () =>
   assert.ok(menuEntries().every((e) => e.menu !== false));
 });
 
-test('the default menu is FR-003 plus Posts to approve, Data and Spend; no Legacy group since 023 phase B', () => {
+test('the default menu is FR-003 plus Posts to approve, Network health, Data and Spend; no Legacy group since 023 phase B', () => {
   const nav = defaultNav();
   const shape = Object.fromEntries(nav.groups.map((g) => [g.title, g.items.map((i) => i.label)]));
   assert.deepEqual(shape, {
-    Home: ['Overview', 'Posts to approve'],
+    Home: ['Overview', 'Posts to approve', 'Network health'],
     Agents: ['Agents', 'Chat', 'DM inbox', 'Setup from history', 'Steering', 'Models'],
     Publishing: ['Compose', 'Scheduled', 'Editor', 'Logs', 'My channels'],
     Content: ['Data'],

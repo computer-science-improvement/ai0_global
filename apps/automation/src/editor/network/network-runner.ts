@@ -62,6 +62,8 @@ export interface NetworkRunnerDeps {
   statsSummary?: (refs: string[]) => Promise<string | null>;
   /** Spec 037 T2: the "Active stories (14 days)" block of the planner / writer prompt (story/story-context.ts); null for none. */
   stories?: { activeBlock(card: EditorCard, role: 'planner' | 'executor', now: Date): Promise<string | null> };
+  /** Spec 049 FR-004: the card's failing sources the daily run is asked to replace today (a prompt block); null for none. */
+  sourcesToReplace?: (card: EditorCard, orchestratorId: string) => Promise<string | null>;
 }
 
 const STEPS: Record<string, number> = { orchestrate: 15, playbook: 18, ideaReview: 6, plan: 14 };
@@ -150,8 +152,10 @@ export class NetworkRunner {
     const slotsPerDay = net.playbook?.platforms.length ? Math.max(...net.playbook.platforms.map((s) => s.per_day.max)) : card.postsPerDayMax;
     const quota = ideaQuota(slotsPerDay, open.filter((i) => i.status === 'accepted' || i.status === 'new').length);
     await this.d.repo.releaseStalePlanned(net.orchestrator.id);
+    // Spec 049 FR-004: sources that keep failing are work too — the run looks for a replacement and proposes it.
+    const sources = this.d.sourcesToReplace ? await this.d.sourcesToReplace(card, net.orchestrator.id).catch(() => null) : null;
     // Spec 053 FR-005: nothing to answer, no ideas to add or revise — the day's upkeep runs without the model.
-    if (!directives && !quota && !open.some((i) => i.status === 'needs_revision')) {
+    if (!directives && !quota && !open.some((i) => i.status === 'needs_revision') && !sources) {
       if (this.d.afterOrchestration) await this.d.afterOrchestration(net.orchestrator).catch(() => {});
       if (this.d.runwayCheck) await this.d.runwayCheck(net.orchestrator, net.playbook).catch(() => {});
       await this.runIdeaReview(card);
@@ -163,7 +167,7 @@ export class NetworkRunner {
       [orchestratorDailyPrompt({ net, card, now: this.now(), open, quota, hasDirectives: !!directives }), await this.catalog(card),
         // Spec 041 FR-004: the network's topics of 30 days (add_idea refuses an evergreen idea on one).
         recentTopicsBlock(recentTopicsOf(await this.d.repo.recentExcerpts(net.resources.map((r) => r.ref), RECENT_TOPIC_DAYS).catch(() => []))),
-        this.d.statsSummary ? await this.d.statsSummary(net.resources.map((r) => r.ref)).catch(() => null) : null].filter(Boolean).join('\n\n'),
+        this.d.statsSummary ? await this.d.statsSummary(net.resources.map((r) => r.ref)).catch(() => null) : null, sources].filter(Boolean).join('\n\n'),
       STEPS.orchestrate, { brief: card.brief, ideaQuota: quota, newsRefs: await this.newsRefs(net) }, ORCHESTRATOR_EXCLUDE);
     if (this.d.afterOrchestration) await this.d.afterOrchestration(net.orchestrator).catch(() => {});
     if (this.d.runwayCheck) await this.d.runwayCheck(net.orchestrator, net.playbook).catch(() => {});

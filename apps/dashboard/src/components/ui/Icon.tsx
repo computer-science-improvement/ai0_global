@@ -10,7 +10,7 @@ import {
   Megaphone, Radar, Users, Workflow, Lock, LockOpen, Inbox, History, ImageOff, Image as ImageIcon, ArrowUpRight, Lightbulb,
   CircleDollarSign, Download, SquarePlay, Copy, Cpu,
   EyeOff, GripVertical, Command, Link2, Pin, PinOff, RotateCcw, FolderPlus, CornerDownLeft,
-  Compass,
+  Compass, Activity,
   type LucideIcon,
 } from 'lucide-react';
 
@@ -30,7 +30,7 @@ const ICONS = {
   clock: Clock, ban: Ban, database: Database, book: BookOpen, 'panel-left': PanelLeft,
   megaphone: Megaphone, radar: Radar, users: Users,
   agents: Workflow, lock: Lock, unlock: LockOpen, inbox: Inbox, history: History,
-  image: ImageIcon, compass: Compass, 'image-off': ImageOff, external: ArrowUpRight, hint: Lightbulb,
+  image: ImageIcon, compass: Compass, health: Activity, 'image-off': ImageOff, external: ArrowUpRight, hint: Lightbulb,
   spend: CircleDollarSign, download: Download, copy: Copy, cpu: Cpu,
   // Navigation (spec 027): pin/star, hide, drag handle, palette.
   star: Star, 'eye-off': EyeOff, grip: GripVertical, command: Command, link: Link2,
