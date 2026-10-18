@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { Outlet, useNavigate, useRouter } from '@tanstack/react-router';
+import { Outlet, useNavigate, useRouter, useRouterState } from '@tanstack/react-router';
 import { useQueryClient } from '@tanstack/react-query';
 import { useAuth } from '../auth/use-auth';
 import { authApi } from '../api/auth';
@@ -19,6 +19,10 @@ import { menuEntries } from '../nav/registry';
 import { pinPage } from '../nav/ops';
 
 const COLLAPSED_KEY = 'dashboard:sidebar-collapsed';
+/** Spec 048 FR-004: on the chat page the menu is the icon rail unless the viewer opened it there (kept apart from the global choice). */
+const CHAT_NAV_KEY = 'dashboard:chat-nav';
+
+export const isChatPath = (pathname: string) => pathname === '/app/chat' || pathname.startsWith('/app/chat/');
 const IS_MAC = typeof navigator !== 'undefined' && /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent);
 
 export function AppShell() {
@@ -34,11 +38,24 @@ export function AppShell() {
   const [collapsed, setCollapsed] = useState<boolean>(() => {
     try { return localStorage.getItem(COLLAPSED_KEY) === '1'; } catch { return false; }
   });
-  const toggleCollapsed = useCallback(() => setCollapsed((prev) => {
+  const toggleGlobal = useCallback(() => setCollapsed((prev) => {
     const next = !prev;
     try { localStorage.setItem(COLLAPSED_KEY, next ? '1' : '0'); } catch { /* ignore */ }
     return next;
   }), []);
+  const onChat = isChatPath(useRouterState({ select: (s) => s.location.pathname }));
+  const [chatNavOpen, setChatNavOpen] = useState<boolean>(() => {
+    try { return localStorage.getItem(CHAT_NAV_KEY) === 'open'; } catch { return false; }
+  });
+  const toggleChatNav = useCallback(() => setChatNavOpen((prev) => {
+    const next = !prev;
+    try { localStorage.setItem(CHAT_NAV_KEY, next ? 'open' : 'rail'); } catch { /* ignore */ }
+    return next;
+  }), []);
+  const railCollapsed = onChat ? !chatNavOpen : collapsed;
+  const toggleCollapsed = onChat ? toggleChatNav : toggleGlobal;
+  // The chat fills the window below the header: its columns scroll on their own (FR-004).
+  const fullBleed = onChat;
 
   // Spec 027 FR-012: ⌘K / Ctrl+K anywhere in /app, except while typing in a field.
   const [paletteOpen, setPaletteOpen] = useState(false);
@@ -97,12 +114,12 @@ export function AppShell() {
 
   return (
     <ConfirmProvider>
-      <div style={{ display: 'flex', minHeight: '100vh', background: 'var(--color-canvas)' }}>
+      <div style={{ display: 'flex', minHeight: '100vh', ...(fullBleed ? { height: '100dvh' } : {}), background: 'var(--color-canvas)' }}>
         <AppSidebar
           isMobile={isMobile}
           mobileOpen={navOpen}
           onNavigate={() => setNavOpen(false)}
-          collapsed={collapsed}
+          collapsed={railCollapsed}
           onToggleCollapsed={toggleCollapsed}
         />
 
@@ -117,7 +134,7 @@ export function AppShell() {
           />
         )}
 
-        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0 }}>
+        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0, minHeight: 0 }}>
           <header style={{
             display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap',
             padding: isMobile ? '10px 14px' : '12px 20px',
@@ -168,7 +185,7 @@ export function AppShell() {
             </div>
           </header>
 
-          <main style={{
+          <main style={fullBleed ? { flex: 1, minHeight: 0, width: '100%', overflow: 'hidden' } : {
             flex: 1,
             padding: isMobile ? '16px 14px 48px' : '24px 30px 60px',
             maxWidth: 1320, margin: '0 auto', width: '100%',

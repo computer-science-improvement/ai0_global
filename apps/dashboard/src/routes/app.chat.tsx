@@ -11,6 +11,7 @@ import { ActionCard, FocusedCardContext } from '../components/chat/ActionCard';
 import { NeedsYou, chatsWaiting } from '../components/nav/NeedsYou';
 import { useNavAttention } from '../api/nav';
 import { MENTION_LIST_ID, MentionMenu, useMentionMenu } from '../components/chat/MentionMenu';
+import { chatGroup } from '../lib/chat-groups';
 import { isSlashCommand, SLASH_LIST_ID, SlashMenu, useSlashMenu } from '../components/chat/SlashMenu';
 import { indexTree } from '../components/agents/AgentsUi';
 import { ApprovalList } from '../components/approvals/ApprovalList';
@@ -67,6 +68,10 @@ const EXAMPLES = [
   'Prepare a 4-option quiz about the movie of the week',
   'Write a post about this article and schedule it for tomorrow at 19:00: https://',
 ];
+
+/** Spec 048 FR-004: the chat list column and the thread's readable width. */
+const CHAT_LIST_WIDTH = 272;
+const THREAD_WIDTH = 760;
 
 function ChatPage() {
   const { c: chatId, q: prefill, card: focusCard } = Route.useSearch();
@@ -285,22 +290,27 @@ function ChatPage() {
   ];
 
   return (
+    // Spec 048 FR-004: the page fills the shell's full-bleed main — chat list | thread (readable width) | artifact panel.
     <div style={{
-      display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '260px 1fr', gap: 16,
-      height: isMobile ? 'calc(100dvh - 120px)' : 'calc(100dvh - 140px)', minHeight: 420,
+      display: 'grid', gridTemplateColumns: isMobile ? 'minmax(0, 1fr)' : `${CHAT_LIST_WIDTH}px minmax(0, 1fr)`,
+      height: '100%', minHeight: 0,
     }}>
-      {!isMobile && sidebar}
+      {!isMobile && (
+        <div style={{ minHeight: 0, display: 'flex', flexDirection: 'column', padding: '16px 12px', borderRight: '1px solid var(--color-hairline)', background: 'var(--color-surface-1)' }}>
+          {sidebar}
+        </div>
+      )}
       {isMobile && listOpen && (
         <>
           <div onClick={() => setListOpen(false)} aria-hidden
             style={{ position: 'fixed', inset: 0, zIndex: 55, background: 'rgba(0,0,0,0.5)' }} />
-          <div style={{ position: 'fixed', top: 0, bottom: 0, left: 0, width: 'min(300px, 85vw)', zIndex: 56, padding: 12, background: 'var(--color-canvas)', borderRight: '1px solid var(--color-hairline)' }}>
+          <div role="dialog" aria-label="Chats" style={{ position: 'fixed', top: 0, bottom: 0, left: 0, width: 'min(300px, 85vw)', zIndex: 56, padding: 12, display: 'flex', flexDirection: 'column', background: 'var(--color-canvas)', borderRight: '1px solid var(--color-hairline)' }}>
             {sidebar}
           </div>
         </>
       )}
 
-      <section style={{ display: 'flex', flexDirection: 'column', minWidth: 0, minHeight: 0 }}>
+      <section style={{ display: 'flex', flexDirection: 'column', minWidth: 0, minHeight: 0, padding: isMobile ? '10px 12px 10px' : '14px 24px 16px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, paddingBottom: 10, borderBottom: '1px solid var(--color-hairline-soft)', minWidth: 0 }}>
           {isMobile && (
             <button className="btn-icon" onClick={() => setListOpen(true)} aria-label="Chats" style={{ width: 34, height: 34, flexShrink: 0 }}>
@@ -354,7 +364,7 @@ function ChatPage() {
           )}
 
           <FocusedCardContext.Provider value={focusCard}>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 18, maxWidth: 780, margin: '0 auto' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 18, maxWidth: THREAD_WIDTH, margin: '0 auto' }}>
             {shown.map((m, i) => {
               const before = placement.loose.filter((a) => ts(a.createdAt) < ts(m.createdAt) && (i === 0 || ts(a.createdAt) >= ts(shown[i - 1].createdAt)));
               return (
@@ -393,9 +403,11 @@ function ChatPage() {
           </FocusedCardContext.Provider>
         </div>
 
+        <div style={{ width: '100%', maxWidth: THREAD_WIDTH, margin: '0 auto' }}>
         <Composer value={input} onChange={setInput} onSend={() => send()} onStop={stop} busy={!!live}
           channel={channel} onChannel={setChannel} disabled={chat.data?.enabled === false}
           textareaRef={textareaRef} isMobile={isMobile} />
+        </div>
       </section>
     </div>
   );
@@ -590,24 +602,45 @@ function ChatSidebar({ activeId, onPick, onNew }: { activeId?: string; onPick: (
   const confirm = useConfirm();
   const navigate = Route.useNavigate();
   const waiting = chatsWaiting(useNavAttention().data);
+  const [query, setQuery] = useState('');
+  const q = query.trim().toLowerCase();
+  const found = (chats.data ?? []).filter((c) => !q || c.title.toLowerCase().includes(q));
+  const groups = found.reduce<Array<{ name: string; items: typeof found }>>((acc, c) => {
+    const name = chatGroup(c.updatedAt);
+    const g = acc.find((x) => x.name === name);
+    if (g) g.items.push(c); else acc.push({ name, items: [c] });
+    return acc;
+  }, []);
   return (
-    <aside style={{ display: 'flex', flexDirection: 'column', gap: 14, minHeight: 0, overflowY: 'auto' }}>
-      <button className="btn-primary" onClick={onNew} style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
+    <aside style={{ display: 'flex', flexDirection: 'column', gap: 14, minHeight: 0, flex: 1, overflowY: 'auto' }}>
+      <button className="btn-primary" onClick={onNew} style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 6, flexShrink: 0 }}>
         <Icon name="plus" size={14} /> New chat
       </button>
+      {(chats.data ?? []).length > 5 && (
+        <input className="input-field" type="search" value={query} onChange={(e) => setQuery(e.target.value)}
+          placeholder="Search chats" aria-label="Search chats" style={{ padding: '6px 10px', fontSize: 13, flexShrink: 0 }} />
+      )}
 
       <div>
-        <div className="text-eyebrow" style={{ marginBottom: 6 }}>Chats</div>
         {(chats.data ?? []).length === 0
-          ? <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>{chats.isLoading ? '…' : 'No conversations yet'}</span>
-          : (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-              {chats.data!.map((c) => (
+          ? (
+            <>
+              <div className="text-eyebrow" style={{ marginBottom: 6 }}>Chats</div>
+              <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>{chats.isLoading ? '…' : 'No conversations yet'}</span>
+            </>
+          )
+          : !found.length
+            ? <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>No chat matches “{query.trim()}”</span>
+            : groups.map((g) => (
+            <div key={g.name} style={{ marginBottom: 10 }}>
+              <div className="text-eyebrow" style={{ marginBottom: 4 }}>{g.name}</div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+              {g.items.map((c) => (
                 <div key={c.id} className="row-lift" style={{
                   display: 'flex', alignItems: 'center', gap: 6, borderRadius: 'var(--radius-sm)', padding: '6px 6px 6px 10px',
                   background: c.id === activeId ? 'var(--color-surface-3)' : 'transparent',
                 }}>
-                  <button type="button" onClick={() => onPick(c.id)} style={{
+                  <button type="button" onClick={() => onPick(c.id)} aria-current={c.id === activeId ? 'page' : undefined} style={{
                     flex: 1, minWidth: 0, textAlign: 'left', background: 'none', border: 'none', cursor: 'pointer', color: 'var(--color-ink)', padding: 0,
                   }}>
                     <div className="text-body-sm" style={{ display: 'flex', alignItems: 'center', gap: 6, minWidth: 0 }}>
@@ -625,8 +658,9 @@ function ChatSidebar({ activeId, onPick, onNew }: { activeId?: string; onPick: (
                   </button>
                 </div>
               ))}
+              </div>
             </div>
-          )}
+          ))}
       </div>
 
       <div>

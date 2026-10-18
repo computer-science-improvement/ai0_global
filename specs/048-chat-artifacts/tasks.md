@@ -5,7 +5,7 @@ Order: T1 + T2 → T3 → T4 → T5 → T6 + T7 → T8. Each stage ends with tes
 - [x] T1 (AI0-208) Artifact registry, versions table (migration 084), API.
 - [x] T2 (AI0-209) `get_artifact` / `update_artifact` tools; `update_artifact` cards for live artifacts.
 - [x] T3 (AI0-210) Slash commands `/setup`, `/steer`, `/rules`, `/skills`, `/memory`, `/help`; the `/` menu.
-- [ ] T4 (AI0-211) Chat layout: icon rail, three columns, mobile drawer and sheet.
+- [x] T4 (AI0-211) Chat layout: icon rail, three columns, mobile drawer and sheet.
 - [ ] T5 (AI0-212) `editor_chat_messages.artifacts`, chips, side panel with edit, actions, versions and Ask the agent.
 - [ ] T6 (AI0-213) `/app/artifacts` page.
 - [ ] T7 (AI0-214) Agent page Artifacts tab and Overview line.
@@ -26,4 +26,5 @@ Order: T1 + T2 → T3 → T4 → T5 → T6 + T7 → T8. Each stage ends with tes
 - T2: owner rules always go through a card for an agent, even when the channel has none yet: rules are the owner's words.
 - T3: an unknown `/word` answers with the command list instead of going to the model; a path such as `/app/setup` is an ordinary message. A command never gets the composer's "Channel:" line — the picked channel goes with the request, and the chat agent's channel comes first.
 - T3: `/setup` and `/steer` start the work as the owner (the same services as the pages), so `/steer` checks the target has an editor card.
+- T4: the rail's own toggle on /app/chat opens the full menu there only (`dashboard:chat-nav` = open / rail; the ⌘K "Collapse sidebar" action flips the same choice on that page). The chat search field shows from six chats on. The artifact column comes with the panel in T5.
 - T2: adapters got `check` (rules: schema, ids, lint; steering: schema, ids, status). A change the type refuses never becomes a card.
