@@ -4,7 +4,7 @@ Order: T1 + T2 → T3 → T4 → T5 → T6 + T7 → T8. Each stage ends with tes
 
 - [x] T1 (AI0-208) Artifact registry, versions table (migration 084), API.
 - [x] T2 (AI0-209) `get_artifact` / `update_artifact` tools; `update_artifact` cards for live artifacts.
-- [ ] T3 (AI0-210) Slash commands `/setup`, `/steer`, `/rules`, `/skills`, `/memory`, `/help`; the `/` menu.
+- [x] T3 (AI0-210) Slash commands `/setup`, `/steer`, `/rules`, `/skills`, `/memory`, `/help`; the `/` menu.
 - [ ] T4 (AI0-211) Chat layout: icon rail, three columns, mobile drawer and sheet.
 - [ ] T5 (AI0-212) `editor_chat_messages.artifacts`, chips, side panel with edit, actions, versions and Ask the agent.
 - [ ] T6 (AI0-213) `/app/artifacts` page.
@@ -24,4 +24,6 @@ Order: T1 + T2 → T3 → T4 → T5 → T6 + T7 → T8. Each stage ends with tes
 - T1: steering sets got a hand edit (`SteeringService.editRules`: enable or disable, rewrite, add, remove). It uses the same rule checks as the analysis and refuses to enable a conflicting rule.
 - T1: owner-rule edits retire the old line and add a new one (`evidence.replaces`), so the memory history stays.
 - T2: owner rules always go through a card for an agent, even when the channel has none yet: rules are the owner's words.
+- T3: an unknown `/word` answers with the command list instead of going to the model; a path such as `/app/setup` is an ordinary message. A command never gets the composer's "Channel:" line — the picked channel goes with the request, and the chat agent's channel comes first.
+- T3: `/setup` and `/steer` start the work as the owner (the same services as the pages), so `/steer` checks the target has an editor card.
 - T2: adapters got `check` (rules: schema, ids, lint; steering: schema, ids, status). A change the type refuses never becomes a card.

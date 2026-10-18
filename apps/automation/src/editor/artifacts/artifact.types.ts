@@ -34,6 +34,14 @@ export interface ArtifactRow {
   live:      boolean;
 }
 
+/** An artifact as a chat message carries it (editor_chat_messages.artifacts, FR-005); the dashboard reads the rest. */
+export interface ArtifactChip {
+  type:   ArtifactType;
+  id:     string;
+  title:  string;
+  status: string;
+}
+
 export interface ArtifactVersionMeta {
   version:   number;
   author:    string;

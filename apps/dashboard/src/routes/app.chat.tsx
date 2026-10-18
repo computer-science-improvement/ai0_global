@@ -11,6 +11,7 @@ import { ActionCard, FocusedCardContext } from '../components/chat/ActionCard';
 import { NeedsYou, chatsWaiting } from '../components/nav/NeedsYou';
 import { useNavAttention } from '../api/nav';
 import { MENTION_LIST_ID, MentionMenu, useMentionMenu } from '../components/chat/MentionMenu';
+import { isSlashCommand, SLASH_LIST_ID, SlashMenu, useSlashMenu } from '../components/chat/SlashMenu';
 import { indexTree } from '../components/agents/AgentsUi';
 import { ApprovalList } from '../components/approvals/ApprovalList';
 import { useApprovals } from '../api/approvals';
@@ -231,7 +232,8 @@ function ChatPage() {
     // A message to an agent goes without the "Channel:" line — its @channel would read as a mention.
     const known = new Set((handles.data?.agents ?? []).map((a) => a.handle.toLowerCase()));
     const toAgent = [...text.matchAll(/(^|[^\p{L}\p{N}_@])@([A-Za-z][A-Za-z0-9_]{1,63})/gu)].some((m) => known.has(m[2].toLowerCase()));
-    const full = first && channel && !toAgent && !text.includes(channel) ? `Channel: ${channel}\n${text}` : text;
+    // A slash command (spec 048 FR-003) goes as typed: the server reads the picked channel from the request.
+    const full = first && channel && !toAgent && !isSlashCommand(text) && !text.includes(channel) ? `Channel: ${channel}\n${text}` : text;
     setInput('');
     activitiesRef.current = [];
     setLive({ userText: full, activities: [], text: '', drafts: {}, actions: {}, agent: null, addressees: [], done: [], base: id === chatId ? messages.length : 0 });
@@ -517,6 +519,7 @@ function Composer({ value, onChange, onSend, onStop, busy, channel, onChannel, d
   const handles = useAgentHandles();
   const ref = textareaRef;
   const mention = useMentionMenu({ value, onChange, handles: handles.data?.agents ?? [], disabled, textarea: () => ref.current });
+  const slash = useSlashMenu({ value, onChange, disabled, textarea: () => ref.current });
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
@@ -525,6 +528,7 @@ function Composer({ value, onChange, onSend, onStop, busy, channel, onChannel, d
     el.style.height = `${Math.max(48, Math.min(el.scrollHeight, 200))}px`;
   }, [value, ref]);
   const onKey = (e: KeyboardEvent<HTMLTextAreaElement>) => {
+    if (slash.onKeyDown(e)) return;
     if (mention.onKeyDown(e)) return;
     if (e.key === 'Enter' && !e.shiftKey && !e.nativeEvent.isComposing) {
       e.preventDefault();
@@ -533,17 +537,22 @@ function Composer({ value, onChange, onSend, onStop, busy, channel, onChannel, d
   };
   return (
     <div className="panel" style={{ padding: 10, marginTop: 6, position: 'relative' }}>
-      {mention.open && (
+      {slash.open && (
+        <SlashMenu matches={slash.matches} hi={slash.hi} onHover={slash.setHi} onPick={slash.insert} isMobile={isMobile} />
+      )}
+      {!slash.open && mention.open && (
         <MentionMenu matches={mention.matches} hi={mention.hi} onHover={mention.setHi} onPick={mention.insert} isMobile={isMobile} />
       )}
       <textarea ref={ref} value={value} rows={2} disabled={disabled}
-        onChange={(e) => { onChange(e.target.value); mention.track(e.target); }}
-        onSelect={(e) => mention.track(e.currentTarget)}
+        onChange={(e) => { onChange(e.target.value); mention.track(e.target); slash.track(e.target); }}
+        onSelect={(e) => { mention.track(e.currentTarget); slash.track(e.currentTarget); }}
         onKeyDown={onKey}
-        role="combobox" aria-expanded={mention.open} aria-autocomplete="list" aria-haspopup="listbox"
-        aria-controls={mention.open ? MENTION_LIST_ID : undefined}
-        aria-activedescendant={mention.open && mention.matches[mention.hi] ? `mention-${mention.matches[mention.hi].handle}` : undefined}
-        placeholder="Describe the post, or type @ to talk to an agent… Enter to send, Shift+Enter for a new line"
+        role="combobox" aria-expanded={slash.open || mention.open} aria-autocomplete="list" aria-haspopup="listbox"
+        aria-controls={slash.open ? SLASH_LIST_ID : mention.open ? MENTION_LIST_ID : undefined}
+        aria-activedescendant={slash.open && slash.matches[slash.hi]
+          ? `slash-${slash.matches[slash.hi].name}`
+          : mention.open && mention.matches[mention.hi] ? `mention-${mention.matches[mention.hi].handle}` : undefined}
+        placeholder="Describe the post, type @ to talk to an agent or / for a command… Enter to send, Shift+Enter for a new line"
         className="text-body-sm"
         style={{ width: '100%', resize: 'none', border: 'none', outline: 'none', background: 'transparent', color: 'var(--color-ink)', lineHeight: 1.5, padding: '4px 4px 8px' }} />
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>

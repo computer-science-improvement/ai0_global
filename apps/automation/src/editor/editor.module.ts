@@ -143,7 +143,8 @@ import { ChannelSetupService } from './setup/setup.service';
 import { CHANNEL_SETUP_SERVICE, ChannelSetupController } from './setup/setup.controller';
 import { collectPosts, trackedChannel } from './setup/setup-posts';
 import { VOICE_SKILL_NAME } from './setup/setup-analysis';
-import { SteeringRepository } from './steering/steering.repository';
+import { refName, SteeringRepository } from './steering/steering.repository';
+import type { SlashDeps } from './chat/slash-commands';
 import { SteeringService } from './steering/steering.service';
 import { STEERING_SERVICE, SteeringController } from './steering/steering.controller';
 import { telegramReader } from './steering/steering-source';
@@ -1566,10 +1567,14 @@ export const EDITOR_PROVIDERS = [
     {
       // Editor chat (spec 010): needs only an LLM key, independent of EDITOR_ENABLED.
       provide: EDITOR_CHAT,
-      inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_SKILLS, EDITOR_REGISTRY, EDITOR_DRAFTS, TelegramNotifier, AGENT_INFRA, EDITOR_MANAGER, MODEL_DEFAULTS, { token: PriceService, optional: true }, { token: LlmBudgetService, optional: true }],
+      inject: [
+        DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_SKILLS, EDITOR_REGISTRY, EDITOR_DRAFTS, TelegramNotifier, AGENT_INFRA, EDITOR_MANAGER, MODEL_DEFAULTS,
+        CHANNEL_SETUP_SERVICE, STEERING_SERVICE, ARTIFACTS_SERVICE, { token: PriceService, optional: true }, { token: LlmBudgetService, optional: true },
+      ],
       useFactory: (
         pool: Pool, cfg: ConfigService, repos: EditorRepos, skills: SkillLibrary, registry: ToolRegistry, drafts: DraftsService,
-        notifier: TelegramNotifier, infra: AgentInfra, manager: ManagerInfra, models: WorkspaceModelStore, prices?: PriceService, caps?: LlmBudgetService,
+        notifier: TelegramNotifier, infra: AgentInfra, manager: ManagerInfra, models: WorkspaceModelStore,
+        setup: ChannelSetupService, steering: SteeringService, artifacts: ArtifactsService, prices?: PriceService, caps?: LlmBudgetService,
       ): EditorChatService => {
         const logger = new Logger('EditorChat');
         const env = (k: string) => cfg.get<string>(k) ?? undefined;
@@ -1599,8 +1604,23 @@ export const EDITOR_PROVIDERS = [
           actionsForChat: (chatId) => infra.actionsRepo.listForChat(chatId),
           managerDigest: async () => manager.digest.render(await manager.digest.build()),
         };
+        // Spec 048 FR-003: slash commands start the same work as the setup and steering pages, as the owner.
+        const slash: SlashDeps = {
+          setup: async (key) => {
+            const r = await setup.analyze({ channelKeys: [key] }, 'owner');
+            const p = r.queued[0];
+            return p ? { ok: true, chip: { type: 'setup', id: p.id, title: `Setup from history · ${key}`, status: p.status } } : { ok: false, error: r.refused[0]?.error ?? 'not_queued' };
+          },
+          steer: async (key, reference) => {
+            const r = await steering.createSet({ target: key, source: reference }, 'owner');
+            if (!r.ok) return { ok: false, error: r.error, details: typeof r.details === 'string' ? r.details : undefined };
+            return { ok: true, chip: { type: 'steering', id: r.set.id, title: `Steering from ${r.set.sourceTitle ?? refName(r.set.sourceRef)}`, status: r.set.status } };
+          },
+          list: async (q) => (await artifacts.list({ ...q, limit: 50 })).rows,
+        };
         return new EditorChatService({
           repo: repos.chat, drafts, memory: repos.memory, loop, registry, skills, env, enabled, agents: agentsPort, defaultModel: (ws) => models.get(ws), workspace: () => models.workspace(),
+          slash,
         });
       },
     },

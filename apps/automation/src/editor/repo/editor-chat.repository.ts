@@ -2,6 +2,7 @@ import type { StoredCritic } from '../critic/critic';
 import type { Pool } from 'pg';
 import type { LintResult } from '../post/lint-post';
 import type { TurnActions } from '../chat/turn-record';
+import type { ArtifactChip } from '../artifacts/artifact.types';
 
 export const DRAFT_STATUSES = ['draft', 'scheduled', 'published', 'failed', 'canceled'] as const;
 export type DraftStatus = typeof DRAFT_STATUSES[number];
@@ -26,6 +27,8 @@ export interface EditorChatMessage {
   agentId?:  string | null;
   /** Spec 040 FR-014: what the turn's tools did (assistant turns since migration 079). */
   actions?:  TurnActions | null;
+  /** Spec 048 FR-005: the artifacts the message made or names (chips; migration 084). */
+  artifacts?: ArtifactChip[] | null;
   createdAt: Date;
 }
 
@@ -75,6 +78,7 @@ const toMessage = (r: any): EditorChatMessage => ({
   id: Number(r.id), chatId: r.chat_id, role: r.role, content: r.content, draftIds: r.draft_ids ?? [],
   runId: r.run_id ?? null, createdAt: r.created_at, ...(r.agent_id ? { agentId: r.agent_id } : {}),
   ...(r.actions ? { actions: r.actions } : {}),
+  ...(r.artifacts ? { artifacts: r.artifacts } : {}),
 });
 
 export const toDraft = (r: any): EditorDraft => ({
@@ -123,12 +127,13 @@ export class EditorChatRepository {
 
   async addMessage(m: {
     chatId: string; role: 'user' | 'assistant'; content: string; draftIds?: string[]; runId?: string | null; agentId?: string | null;
-    actions?: TurnActions | null;
+    actions?: TurnActions | null; artifacts?: ArtifactChip[] | null;
   }): Promise<EditorChatMessage> {
     const cols = ['chat_id', 'role', 'content', 'draft_ids', 'run_id'];
     const vals: unknown[] = [m.chatId, m.role, m.content, m.draftIds ?? [], m.runId ?? null];
     if (m.agentId) { cols.push('agent_id'); vals.push(m.agentId); }
     if (m.actions) { cols.push('actions'); vals.push(JSON.stringify(m.actions)); }
+    if (m.artifacts?.length) { cols.push('artifacts'); vals.push(JSON.stringify(m.artifacts)); }
     const { rows } = await this.pool.query(
       `INSERT INTO editor_chat_messages (${cols.join(', ')}) VALUES (${cols.map((_, i) => `$${i + 1}`).join(', ')}) RETURNING *`, vals);
     return toMessage(rows[0]);

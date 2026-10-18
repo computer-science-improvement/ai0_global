@@ -20,6 +20,7 @@ import type { PendingAction } from '../agents/pending-actions';
 import type { ResourceProfile } from '../agents/resource-profile';
 import type { AgentChatExtras } from '../agents/builder-tools';
 import { leadingMentions, parseMentions, startsWithMention } from '../agents/mentions';
+import { parseSlash, runSlash, type SlashCommand, type SlashContext, type SlashDeps, type SlashResult } from './slash-commands';
 import { ownerChangeIntent } from './owner-intent';
 import { contradictedDenials, denialNote, denialRePrompt, factsBlock, restatesFact, type ChatFacts } from './chat-facts';
 import { agentPersona, buildBuilderPrompt, buildManagerChatPrompt } from '../agents/agent-prompts';
@@ -80,6 +81,8 @@ export interface EditorChatDeps {
   defaultModel?: (ws?: Workspace) => Promise<string | null>;
   /** Spec 038: the active model workspace. */
   workspace?: () => Promise<Workspace>;
+  /** Spec 048 FR-003: slash commands, run in code without a model turn. */
+  slash?:   SlashDeps;
   /** The chat needs an LLM key only; it does not depend on EDITOR_ENABLED. */
   enabled:  () => boolean;
   now?:     () => Date;
@@ -306,6 +309,8 @@ export class EditorChatService {
       const prior = await this.d.repo.listMessages(chatId, HISTORY_MESSAGES);
       const chatDrafts = await this.d.repo.listDrafts({ chatId, limit: 200 });
       const chat = await this.d.repo.getChat(chatId);
+      const cmd = this.d.slash ? parseSlash(text) : null;
+      if (cmd) return await this.runCommand(chatId, text, cmd, chat?.agentId ?? null, prior.length === 0, opts, emit);
       const route = await this.route(text, opts.channel ?? null, chat?.agentId ?? null);
       const addressee = route.kind === 'agent' ? route.agent : null;
       await this.d.repo.addMessage({ chatId, role: 'user', content: text, agentId: addressee?.id ?? null });
@@ -334,6 +339,30 @@ export class EditorChatService {
     } finally {
       this.running.delete(chatId);
     }
+  }
+
+  /** Spec 048 FR-003: a slash command — the owner's message and a code-made answer with its artifact chips. */
+  private async runCommand(
+    chatId: string, text: string, cmd: SlashCommand, chatAgentId: string | null, first: boolean, opts: SendOptions,
+    emit: (e: ChatStreamEvent) => void,
+  ): Promise<{ message: EditorChatMessage; drafts: EditorDraft[] }> {
+    await this.d.repo.addMessage({ chatId, role: 'user', content: text });
+    await this.d.repo.touchChat(chatId, first ? text.replace(/\s+/g, ' ').slice(0, TITLE_CHARS) : undefined);
+    const agent = chatAgentId && this.d.agents ? await this.d.agents.get(chatAgentId) : null;
+    const own = agent && agent.kind !== 'builder' && agent.kind !== 'manager' ? agent : null;
+    const ctx: SlashContext = {
+      agent: own?.handle ?? null,
+      channel: (own && this.d.agents ? await this.d.agents.channelKeyOf(own) : null) ?? opts.channel ?? null,
+    };
+    let result: SlashResult;
+    try {
+      result = await runSlash(cmd, ctx, this.d.slash!);
+    } catch (err: any) {
+      result = { content: `/${cmd.word} failed: ${String(err?.message ?? err).slice(0, 200)}`, artifacts: [] };
+    }
+    const message = await this.d.repo.addMessage({ chatId, role: 'assistant', content: result.content, artifacts: result.artifacts });
+    emit({ type: 'message', message });
+    return { message, drafts: [] };
   }
 
   /**
