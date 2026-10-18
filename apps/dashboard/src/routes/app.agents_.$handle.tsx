@@ -23,11 +23,12 @@ import { ApprovalList } from '../components/approvals/ApprovalList';
 import { ApprovalStatsPanel } from '../components/approvals/ApprovalStatsPanel';
 import { AgentSetupButton } from '../components/setup/AgentSetupButton';
 import { ConnectionBanner } from '../components/agents/ConnectionBanner';
+import { ArtifactList } from '../components/artifacts/ArtifactList';
 import { errorBody, useAgent, useRunAgent } from '../api/agents';
 import { useRunManager, type DirectiveBinding } from '../api/manager';
 import { directiveFilterSearch, parseDirectiveFilters, type DirectiveFilters } from '../lib/directive-view';
 
-const TABS = ['overview', 'approvals', 'reviews', 'directives', 'skills', 'memory', 'history', 'playbook', 'schedule', 'ideas', 'plan', 'inbox', 'promo'] as const;
+const TABS = ['overview', 'approvals', 'reviews', 'directives', 'artifacts', 'skills', 'memory', 'history', 'playbook', 'schedule', 'ideas', 'plan', 'inbox', 'promo'] as const;
 type Tab = typeof TABS[number];
 const NETWORK_TABS: readonly Tab[] = ['approvals', 'playbook', 'schedule', 'ideas', 'plan', 'inbox', 'promo'];
 const MANAGER_TABS: readonly Tab[] = ['reviews', 'directives'];
@@ -37,6 +38,7 @@ const TAB_OPTIONS = [
   { key: 'approvals' as const, label: 'Posts to approve', icon: 'check' as const },
   { key: 'reviews' as const,  label: 'Reviews',  icon: 'history' as const },
   { key: 'directives' as const, label: 'Directives', icon: 'agents' as const },
+  { key: 'artifacts' as const, label: 'Artifacts', icon: 'layers' as const },
   { key: 'skills' as const,   label: 'Skills',   icon: 'book' as const },
   { key: 'memory' as const,   label: 'Memory',   icon: 'bots' as const },
   { key: 'history' as const,  label: 'History',  icon: 'history' as const },
@@ -178,6 +180,10 @@ function AgentPage() {
         : <div className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>This agent has no Telegram channel.</div>)}
       {tab === 'reviews' && <ManagerReviews />}
       {tab === 'directives' && <ManagerDirectives focus={directive} filters={filters} onFilters={setFilters} />}
+      {tab === 'artifacts' && (
+        <ArtifactList filter={{ agent: a.handle }}
+          empty={{ title: `Nothing shapes @${a.handle} yet`, note: `Type /setup @${a.handle} or /steer @${a.handle} @theirs in the chat, or tell the agent a rule.` }} />
+      )}
       {tab === 'skills' && <AgentSkills data={d} />}
       {tab === 'memory' && <AgentMemory data={d} />}
       {tab === 'history' && <AgentHistory data={d} />}

@@ -68,6 +68,8 @@ export const NAV_REGISTRY: ReadonlyArray<NavEntry> = [
   // ── Agents ──
   { id: 'agents', to: '/app/agents', label: 'Agents', icon: 'agents', defaultGroup: 'g_agents', badge: 'agents', keywords: ['bots', 'network', 'orchestrator', 'team'] },
   { id: 'chat', to: '/app/chat', label: 'Chat', icon: 'chat', defaultGroup: 'g_agents', badge: 'chat', keywords: ['ai0', 'talk', 'ask', 'conversation'] },
+  // Spec 048: what shapes an agent (setup, steering, rules, memory, skills, playbooks…) in one place.
+  { id: 'artifacts', to: '/app/artifacts', label: 'Artifacts', icon: 'layers', defaultGroup: 'g_agents', parent: 'agents', keywords: ['rules', 'memory', 'skills', 'playbook', 'profile', 'formatting', 'setup', 'steering', 'versions'] },
   { id: 'dm-inbox', to: '/app/dm', label: 'DM inbox', icon: 'inbox', defaultGroup: 'g_agents', badge: 'dm', keywords: ['messages', 'direct', 'triage', 'ad requests', 'cross-promo'] },
   // Spec 035: which LLM each agent runs on (global default, per agent, bulk).
   // Spec 042: an own channel's agent set up from its last 20 posts.

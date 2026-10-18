@@ -39,6 +39,7 @@ import { Route as AppChatRouteImport } from './routes/app.chat'
 import { Route as AppChannelsRouteImport } from './routes/app.channels'
 import { Route as AppCalendarRouteImport } from './routes/app.calendar'
 import { Route as AppBotsRouteImport } from './routes/app.bots'
+import { Route as AppArtifactsRouteImport } from './routes/app.artifacts'
 import { Route as AppAnalyticsRouteImport } from './routes/app.analytics'
 import { Route as AppAgentsRouteImport } from './routes/app.agents'
 import { Route as AppAgentRouteImport } from './routes/app.agent'
@@ -207,6 +208,11 @@ const AppBotsRoute = AppBotsRouteImport.update({
   path: '/bots',
   getParentRoute: () => AppRoute,
 } as any)
+const AppArtifactsRoute = AppArtifactsRouteImport.update({
+  id: '/artifacts',
+  path: '/artifacts',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppAnalyticsRoute = AppAnalyticsRouteImport.update({
   id: '/analytics',
   path: '/analytics',
@@ -303,6 +309,7 @@ export interface FileRoutesByFullPath {
   '/app/agent': typeof AppAgentRoute
   '/app/agents': typeof AppAgentsRoute
   '/app/analytics': typeof AppAnalyticsRoute
+  '/app/artifacts': typeof AppArtifactsRoute
   '/app/bots': typeof AppBotsRoute
   '/app/calendar': typeof AppCalendarRoute
   '/app/channels': typeof AppChannelsRoute
@@ -351,6 +358,7 @@ export interface FileRoutesByTo {
   '/app/agent': typeof AppAgentRoute
   '/app/agents': typeof AppAgentsRoute
   '/app/analytics': typeof AppAnalyticsRoute
+  '/app/artifacts': typeof AppArtifactsRoute
   '/app/bots': typeof AppBotsRoute
   '/app/calendar': typeof AppCalendarRoute
   '/app/channels': typeof AppChannelsRoute
@@ -401,6 +409,7 @@ export interface FileRoutesById {
   '/app/agent': typeof AppAgentRoute
   '/app/agents': typeof AppAgentsRoute
   '/app/analytics': typeof AppAnalyticsRoute
+  '/app/artifacts': typeof AppArtifactsRoute
   '/app/bots': typeof AppBotsRoute
   '/app/calendar': typeof AppCalendarRoute
   '/app/channels': typeof AppChannelsRoute
@@ -452,6 +461,7 @@ export interface FileRouteTypes {
     | '/app/agent'
     | '/app/agents'
     | '/app/analytics'
+    | '/app/artifacts'
     | '/app/bots'
     | '/app/calendar'
     | '/app/channels'
@@ -500,6 +510,7 @@ export interface FileRouteTypes {
     | '/app/agent'
     | '/app/agents'
     | '/app/analytics'
+    | '/app/artifacts'
     | '/app/bots'
     | '/app/calendar'
     | '/app/channels'
@@ -549,6 +560,7 @@ export interface FileRouteTypes {
     | '/app/agent'
     | '/app/agents'
     | '/app/analytics'
+    | '/app/artifacts'
     | '/app/bots'
     | '/app/calendar'
     | '/app/channels'
@@ -810,6 +822,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppBotsRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/artifacts': {
+      id: '/app/artifacts'
+      path: '/artifacts'
+      fullPath: '/app/artifacts'
+      preLoaderRoute: typeof AppArtifactsRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/analytics': {
       id: '/app/analytics'
       path: '/analytics'
@@ -937,6 +956,7 @@ interface AppRouteChildren {
   AppAgentRoute: typeof AppAgentRoute
   AppAgentsRoute: typeof AppAgentsRoute
   AppAnalyticsRoute: typeof AppAnalyticsRoute
+  AppArtifactsRoute: typeof AppArtifactsRoute
   AppBotsRoute: typeof AppBotsRoute
   AppCalendarRoute: typeof AppCalendarRoute
   AppChannelsRoute: typeof AppChannelsRoute
@@ -982,6 +1002,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppAgentRoute: AppAgentRoute,
   AppAgentsRoute: AppAgentsRoute,
   AppAnalyticsRoute: AppAnalyticsRoute,
+  AppArtifactsRoute: AppArtifactsRoute,
   AppBotsRoute: AppBotsRoute,
   AppCalendarRoute: AppCalendarRoute,
   AppChannelsRoute: AppChannelsRoute,

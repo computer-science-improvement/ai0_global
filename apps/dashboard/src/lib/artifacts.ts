@@ -56,3 +56,12 @@ export function versionText(type: ArtifactType, body: unknown): string {
   }
   return JSON.stringify(body ?? null, null, 2);
 }
+
+/** The Artifacts page's status filter (FR-006): what waits for the owner, what is in use, what is closed. */
+export type ArtifactView = 'all' | 'needs-you' | 'in-use' | 'closed';
+const NEEDS_YOU = new Set(['ready', 'pending_owner']);
+const CLOSED = new Set(['discarded', 'superseded', 'failed', 'no_access', 'too_few_posts', 'none']);
+export function artifactView(status: string): Exclude<ArtifactView, 'all'> {
+  return NEEDS_YOU.has(status) ? 'needs-you' : CLOSED.has(status) ? 'closed' : 'in-use';
+}
+export const inView = (view: ArtifactView, status: string) => view === 'all' || artifactView(status) === view;

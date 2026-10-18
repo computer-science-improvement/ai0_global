@@ -117,6 +117,13 @@ test('the registry lists every type for an agent, records versions and refuses w
     assert.equal(sk.row.version, 1);
     assert.equal((await svc.edit('skill', skill, { body: '' }, { author: 'owner' })).ok, false);
 
+    // FR-006: the chat whose message carries the artifact.
+    const chat = (await c.query(`INSERT INTO editor_chats (title) VALUES ('t') RETURNING id`)).rows[0].id as string;
+    await c.query(`INSERT INTO editor_chat_messages (chat_id, role, content, artifacts) VALUES ($1, 'assistant', 'x', $2)`,
+      [chat, JSON.stringify([{ type: 'steering', id: set, title: 'S', status: 'ready' }])]);
+    assert.equal((await svc.get('steering', set)).chatId, chat);
+    assert.equal((await svc.get('setup', setup)).chatId, null);
+
     // Memory is read only except retiring a line; playbooks list one row per agent.
     assert.equal((await svc.get('playbook', agent)).row.status, 'active');
     assert.equal((await svc.edit('memory', CH, { retire: [999999] }, { author: 'owner' })).ok, false);

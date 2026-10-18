@@ -28,6 +28,8 @@ import { useEditorChannel } from '../../api/editor';
 import { planScheduleNote } from '../../lib/slot-plan';
 import { ModelSelect } from '../models/ModelSelect';
 import { useActiveSteering } from '../../api/steering';
+import { useArtifacts } from '../../api/artifacts';
+import { statusLabel } from '../../lib/artifacts';
 import { SourcesSection } from './SourcesSection';
 
 const HANDLE_RE = /^[a-z][a-z0-9_]{2,31}$/;
@@ -146,7 +148,7 @@ export function AgentOverview({ data }: { data: AgentDetail }) {
       {a.kind === 'orchestrator' && a.scopeId && <ResourceSection handle={a.handle} />}
       {a.kind === 'orchestrator' && a.scopeId && <FormattingSection handle={a.handle} />}
       {a.kind === 'orchestrator' && a.scopeId?.startsWith('telegram:') && <SourcesSection handle={a.handle} />}
-      {a.kind === 'orchestrator' && a.scopeId && <SteeringLine targetRef={a.scopeId} />}
+      {a.kind === 'orchestrator' && a.scopeId && <ArtifactsLine handle={a.handle} targetRef={a.scopeId} />}
 
       <ProfileSummary data={data} ws={ws} />
 
@@ -390,19 +392,28 @@ function PlanTimesNote({ channelKey }: { channelKey: string | null }) {
   );
 }
 
-/** Spec 045 FR-008: "Steering: N active from @a, @b", linking to the Steering page filtered by this channel. */
-function SteeringLine({ targetRef }: { targetRef: string }) {
-  const q = useActiveSteering(targetRef);
-  if (!targetRef.startsWith('telegram:@') || !q.data) return null;
-  const key = targetRef.replace(/^telegram:/, '');
-  const { active, sources } = q.data;
+/**
+ * Spec 048 FR-007 (was the 045 steering line): what shapes this channel at a glance — the latest setup from history,
+ * the active steering and the owner rules — linking to the agent's Artifacts tab.
+ */
+function ArtifactsLine({ handle, targetRef }: { handle: string; targetRef: string }) {
+  const q = useArtifacts({ agent: handle, limit: 200 });
+  const steering = useActiveSteering(targetRef.startsWith('telegram:@') ? targetRef : null);
+  if (!q.data) return null;
+  const rows = q.data.rows;
+  const setup = rows.filter((r) => r.type === 'setup').sort((x, y) => y.updatedAt.localeCompare(x.updatedAt))[0];
+  const rules = rows.find((r) => r.type === 'rules');
+  const active = steering.data?.active ?? rows.filter((r) => r.type === 'steering' && r.status === 'active').length;
+  const parts = [
+    setup ? `Setup from history: ${statusLabel(setup.status)} ${new Date(setup.updatedAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })}` : 'No setup from history',
+    active ? `Steering: ${active} active${steering.data?.sources.length ? ` from ${steering.data.sources.join(', ')}` : ''}` : 'No steering',
+    rules?.live ? `Owner rules: ${rules.summary.replace(/ rules?$/, '')}` : 'No owner rules',
+  ];
   return (
     <div className="text-body-sm compose-rise" style={{ display: 'flex', alignItems: 'center', gap: 8, margin: '12px 0 4px', color: 'var(--color-ink-muted)', flexWrap: 'wrap' }}>
-      <Icon name="compass" size={14} />
-      {active
-        ? <span>Steering: {active} active from {sources.join(', ')}</span>
-        : <span>No steering: the channel follows only its own rules</span>}
-      <Link to="/app/steering" search={{ target: key }} className="link-accent">{active ? 'Manage' : 'Add a reference'}</Link>
+      <Icon name="layers" size={14} />
+      <span>{parts.join(' · ')}</span>
+      <Link to="/app/agents/$handle" params={{ handle }} search={{ tab: 'artifacts' }} className="link-accent">Artifacts →</Link>
     </div>
   );
 }

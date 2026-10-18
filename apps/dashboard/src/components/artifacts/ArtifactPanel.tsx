@@ -31,15 +31,17 @@ function refusal(e: unknown): string {
   return typeof b?.details === 'string' ? `${b.error}: ${b.details}` : describeError(e);
 }
 
-export function ArtifactPanel({ type, id, onClose, onAsk }: {
+export function ArtifactPanel({ type, id, onClose, onAsk, bare = false }: {
   type: ArtifactType; id: string; onClose: () => void; onAsk?: (type: ArtifactType, id: string) => void;
+  /** Inside a dialog that has its own title: no header, no own scroll. */
+  bare?: boolean;
 }) {
   const q = useArtifact(type, id);
   const meta = ARTIFACT_META[type];
   const d = q.data;
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', minHeight: 0, height: '100%' }}>
-      <div style={{ display: 'flex', alignItems: 'flex-start', gap: 10, padding: '14px 16px 12px', borderBottom: '1px solid var(--color-hairline)' }}>
+    <div style={bare ? { display: 'grid' } : { display: 'flex', flexDirection: 'column', minHeight: 0, height: '100%' }}>
+      {!bare && <div style={{ display: 'flex', alignItems: 'flex-start', gap: 10, padding: '14px 16px 12px', borderBottom: '1px solid var(--color-hairline)' }}>
         <span className="btn-icon" aria-hidden style={{ width: 32, height: 32, flexShrink: 0, pointerEvents: 'none' }}><Icon name={meta.icon} size={16} /></span>
         <div style={{ flex: 1, minWidth: 0 }}>
           <div className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>{meta.label}{d?.row.agent ? ` · @${d.row.agent}` : ''}</div>
@@ -55,9 +57,9 @@ export function ArtifactPanel({ type, id, onClose, onAsk }: {
         <button type="button" className="btn-icon" onClick={onClose} aria-label="Close the artifact" title="Close" style={{ width: 32, height: 32, flexShrink: 0 }}>
           <Icon name="x" size={15} />
         </button>
-      </div>
+      </div>}
 
-      <div style={{ flex: 1, minHeight: 0, overflowY: 'auto', padding: 16, display: 'grid', gap: 18, alignContent: 'start' }}>
+      <div style={bare ? { display: 'grid', gap: 18 } : { flex: 1, minHeight: 0, overflowY: 'auto', padding: 16, display: 'grid', gap: 18, alignContent: 'start' }}>
         {q.error && <div className="callout-danger">{describeError(q.error)}</div>}
         {!d && !q.error && <div className="panel" style={{ height: 140, opacity: 0.55 }} />}
         {d && (

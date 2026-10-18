@@ -31,6 +31,8 @@ export interface ArtifactDetail {
   body:     unknown;
   versions: ArtifactVersionMeta[];
   actions:  ArtifactAction[];
+  /** The latest chat whose message made or named it ("Open in chat"). */
+  chatId?:  string | null;
 }
 
 /** An artifact as a chat message carries it; the chip reads the rest live. */

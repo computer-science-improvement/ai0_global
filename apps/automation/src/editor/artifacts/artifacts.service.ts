@@ -57,11 +57,20 @@ export class ArtifactsService {
     return { row: got.row, body: got.body, versions: await a.versions(id), actions: a.actions(got.row, got.body) };
   }
 
-  async get(type: string, id: string): Promise<ArtifactDetail> {
+  async get(type: string, id: string): Promise<ArtifactDetail & { chatId: string | null }> {
     const a = this.adapter(type);
     const found = await this.find(a.type, id);
     if (!found) throw new NotFoundException({ error: 'artifact_not_found' });
-    return found;
+    return { ...found, chatId: await this.chatOf(a.type, id) };
+  }
+
+  /** FR-006 "Open in chat": the latest chat whose message made or named the artifact. */
+  private async chatOf(type: ArtifactType, id: string): Promise<string | null> {
+    const { rows } = await this.d.pool.query(
+      `SELECT m.chat_id FROM editor_chat_messages m JOIN editor_chats c ON c.id = m.chat_id
+        WHERE m.artifacts @> $1::jsonb ORDER BY m.created_at DESC LIMIT 1`,
+      [JSON.stringify([{ type, id }])]).catch(() => ({ rows: [] as any[] }));
+    return rows[0]?.chat_id ?? null;
   }
 
   async version(type: string, id: string, v: number): Promise<{ version: number; body: unknown }> {
