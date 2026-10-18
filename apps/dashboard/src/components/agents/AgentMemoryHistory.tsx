@@ -6,7 +6,10 @@ import { SectionCard, EmptyState } from '../ui/primitives';
 import { Badge } from '../ui/Badge';
 import { CompactCard } from '../ui/CompactCard';
 import { Icon } from '../ui/Icon';
-import { describeError } from '../ui/Toast';
+import { describeError, toast } from '../ui/Toast';
+import { useConfirm } from '../ui/ConfirmDialog';
+import { useQueryClient } from '@tanstack/react-query';
+import { useRetireEditorMemory } from '../../api/editor';
 import { RUN_TONE, fmtDuration, fmtUsd } from '../editor/EditorUi';
 import { fmtDate } from '../../lib/format';
 import { useAgentConfigConflicts, useAgentMemory, useAgentRuns, type AgentDetail, type AgentMemoryEntry } from '../../api/agents';
@@ -33,6 +36,29 @@ function ConfigConflicts({ handle }: { handle: string }) {
   );
 }
 
+const LINT_LABEL: Record<string, string> = {
+  pointer_only: 'Points at other text', too_vague: 'Too vague', meta_request: 'A request, not a rule', unknown_skill: 'Unknown skill', unknown_agent: 'Unknown agent',
+};
+
+/** Spec 047 FR-004: retire an owner rule the lint flags (soft delete; the row stays in the history). */
+function RetireRule({ channelKey, entry, handle, onDone }: { channelKey: string; entry: AgentMemoryEntry; handle: string; onDone: () => void }) {
+  const confirm = useConfirm();
+  const qc = useQueryClient();
+  const retire = useRetireEditorMemory(channelKey);
+  const onClick = async () => {
+    if (!(await confirm(`retire rule #${entry.id}`, { confirmLabel: 'Retire' }))) return;
+    retire.mutate(entry.id, {
+      onSuccess: () => { qc.invalidateQueries({ queryKey: ['agents', 'memory', handle] }); toast.success(`Rule #${entry.id} retired`); onDone(); },
+      onError: (e) => toast.error(describeError(e)),
+    });
+  };
+  return (
+    <button type="button" className="btn-secondary" disabled={retire.isPending} onClick={onClick} style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+      <Icon name="trash" size={14} /> Retire rule
+    </button>
+  );
+}
+
 export function AgentMemory({ data }: { data: AgentDetail }) {
   const q = useAgentMemory(data.agent.handle);
   const key = q.data?.channelKey ?? data.channelKey;
@@ -45,6 +71,11 @@ export function AgentMemory({ data }: { data: AgentDetail }) {
         </Link>
       ) : undefined}>
       <ConfigConflicts handle={data.agent.handle} />
+      {memory.some((m) => m.lint?.length) && (
+        <div className="callout-warning" style={{ marginBottom: 12 }}>
+          {memory.filter((m) => m.lint?.length).length} owner rule{memory.filter((m) => m.lint?.length).length === 1 ? '' : 's'} need fixing — the agent cannot follow them as written. Open one to see why and retire it; then tell the agent the rule itself.
+        </div>
+      )}
       {q.error && <div className="callout-danger">{describeError(q.error)}</div>}
       {!q.data && !q.error && <div className="panel" style={{ height: 80, opacity: 0.5 }} />}
       {q.data && memory.length === 0 && (
@@ -59,6 +90,7 @@ export function AgentMemory({ data }: { data: AgentDetail }) {
               <>
                 <Badge tone={KIND_TONE[m.kind]}>{m.kind}</Badge>
                 <Badge tone={m.createdBy === 'owner' ? 'success' : 'neutral'} title={m.createdBy === 'owner' ? 'Written by you' : 'Learned by the weekly reviewer'}>{who}</Badge>
+                {m.lint?.length ? <Badge tone="danger" title={m.lint.map((x) => x.detail).join('; ')}>needs fixing</Badge> : null}
               </>
             );
             return (
@@ -66,18 +98,30 @@ export function AgentMemory({ data }: { data: AgentDetail }) {
                 top={badges}
                 meta={<span className="tabular-nums">{fmtDate(m.createdAt)}</span>}
                 body={m.text}
+                note={m.lint?.length ? m.lint.map((x) => LINT_LABEL[x.code] ?? x.code).join(' · ') : undefined}
                 dialog={{
                   size: 'md', icon: 'bots', title: `Memory ${m.kind}`, subtitle: `${who} · ${fmtDate(m.createdAt)}`,
                   body: () => (
                     <div style={{ minWidth: 0 }}>
                       <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap', marginBottom: 10 }}>{badges}</div>
                       <div className="text-body-sm" style={{ color: 'var(--color-ink)', whiteSpace: 'pre-wrap', overflowWrap: 'anywhere', lineHeight: 1.55 }}>{m.text}</div>
+                      {m.lint?.length ? (
+                        <div className="callout-danger" style={{ marginTop: 12 }}>
+                          <div style={{ fontWeight: 600, marginBottom: 4 }}>The agent cannot follow this rule as written</div>
+                          <ul style={{ margin: 0, paddingLeft: 18, display: 'grid', gap: 2 }}>
+                            {m.lint.map((x, j) => <li key={j} className="text-body-sm"><strong>{LINT_LABEL[x.code] ?? x.code}:</strong> {x.detail}</li>)}
+                          </ul>
+                        </div>
+                      ) : null}
                     </div>
                   ),
-                  actions: key ? () => (
+                  actions: key ? (close) => (
+                    <>
+                    {m.lint?.length ? <RetireRule channelKey={key} entry={m} handle={data.agent.handle} onDone={close} /> : null}
                     <Link to="/app/editor/$channel" params={{ channel: key }} className="btn-secondary" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
                       <Icon name="pencil" size={14} /> Manage memory
                     </Link>
+                    </>
                   ) : undefined,
                 }} />
             );

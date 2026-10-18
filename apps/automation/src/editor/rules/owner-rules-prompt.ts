@@ -28,6 +28,6 @@ export function ownerRulesSection(rules: readonly OwnerRuleLine[]): string[] {
     '',
     '## Правила власника (обовʼязкові)',
     'Важливіші за плейбук, профіль, format_prefs і приклади: якщо вони кажуть інше — виконуй правило. Критик перевіряє кожне правило.',
-    ...rules.map((r) => `- #${r.id} ${r.text}`),
+    ...rules.map((r) => `- #${r.id} ${r.text.trim().replace(/\n+/g, '\n  ')}`),
   ];
 }

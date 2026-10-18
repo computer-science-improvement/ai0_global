@@ -4,6 +4,7 @@ import type { Pool } from 'pg';
 import { z } from 'zod';
 import type { EditorRunRow } from '../repo/editor-runs.repository';
 import type { MemoryEntry } from '../repo/editor-memory.repository';
+import { ownerRulesOf } from '../rules/owner-rules-prompt';
 import { Agent, AgentMode, isPaused, telegramKeyOf, validateHandle } from './agent.types';
 import type { AgentPatch, AgentsRepository } from './agents.repository';
 import type { OwnerInbox } from './owner-inbox';
@@ -45,6 +46,8 @@ export interface AgentsServiceDeps {
   now?:   () => Date;
   /** Spec 040 FR-011: rules-vs-config of the agent's orchestrator (agent page). */
   conflicts?: (orchestrator: Agent) => Promise<Array<{ code: string; ref: string; detail: string; rule_id?: number }>>;
+  /** Spec 047 FR-004: the lint of an owner rule of this orchestrator (shown on the agent page). */
+  ruleLint?: (text: string, orchestrator: Agent) => Promise<Array<{ code: string; detail: string }>>;
 }
 
 const TIME_RE = /^([01]\d|2[0-3]):[0-5]\d$/;
@@ -285,8 +288,18 @@ export class AgentsService {
 
   async memory(handle: string) {
     const a = await this.require(handle);
-    const key = telegramKeyOf(await this.orchestratorOf(a));
-    return { channelKey: key, memory: key ? await this.d.memory(key) : [] };
+    const orch = await this.orchestratorOf(a);
+    const key = telegramKeyOf(orch);
+    const memory = key ? await this.d.memory(key) : [];
+    const rules = new Set(ownerRulesOf(memory).map((r) => r.id));
+    const lint = this.d.ruleLint;
+    // Spec 047 FR-004: the rules written before the lint get the same check, so junk is visible and can be retired.
+    return {
+      channelKey: key,
+      memory: await Promise.all(memory.map(async (m) => (lint && rules.has(m.id)
+        ? { ...m, lint: await lint(m.text, orch).catch(() => []) }
+        : m))),
+    };
   }
 
   // ── resource profile (spec 018) ───────────────────────────────────────────

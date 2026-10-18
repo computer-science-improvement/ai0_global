@@ -1,11 +1,10 @@
 import { z } from 'zod';
 import { defineTool, EditorTool, ToolContext } from '../harness/tool';
 import type { Agent } from '../agents/agent.types';
-import { chatExtras, NEEDS_CHANGE_REQUEST } from '../agents/builder-tools';
+import { chatExtras } from '../agents/builder-tools';
 import type { PendingActionsService } from '../agents/pending-actions';
 import type { EditorCard } from '../card';
 import { localDate } from '../roles/time';
-import { hasScheduleChangeIntent } from './schedule-intent';
 import { ScheduleRulePatch, shiftDate, type ScheduleRuleInput } from './schedule-rules';
 import { isFail, type Fail, type ScheduleScope, ScheduleService, SLOT_CHANGE_HOURS } from './schedule.service';
 import { SERIES_OPS, SeriesFields } from './series-change';
@@ -61,12 +60,6 @@ const CHANNEL_ARG = z.string().min(2).max(200).optional()
 
 const outFail = (f: Fail) => ({ error: f.error, ...(f.details !== undefined ? { details: f.details } : {}) });
 
-/** The explicit-request gate (BR-EDT-38): the agent-change verbs or a schedule request in the last message. */
-function requested(ctx: ToolContext): boolean {
-  const x = chatExtras(ctx);
-  return x.agentIntent || hasScheduleChangeIntent(x.ownerText);
-}
-
 async function propose(d: ScheduleToolDeps, ctx: ToolContext, kind: string, payload: Record<string, unknown>, summary: string, agentId: string, extra: Record<string, unknown> = {}) {
   const x = chatExtras(ctx);
   const action = await d.actions.propose({ chatId: x.chat.chatId, agentId, kind, payload, summary });
@@ -111,7 +104,6 @@ export function buildScheduleTools(d: ScheduleToolDeps): EditorTool[] {
     kind: 'act', roles: ['composer'], chatOnly: true,
     input: z.object({ op: z.enum(SERIES_OPS), series: SeriesFields }),
     execute: async ({ op, series }, ctx) => {
-      if (!requested(ctx)) return NEEDS_CHANGE_REQUEST;
       const sc = await scopeOf(d, ctx);
       if (isFail(sc)) return outFail(sc);
       const prep = await d.schedule.prepareSeriesChange(sc, op, series);
@@ -131,7 +123,6 @@ export function buildScheduleTools(d: ScheduleToolDeps): EditorTool[] {
       rule:    ScheduleRulePatch.optional().describe('Для add — повне правило (resource_ref, kind, …); для update — лише змінені поля'),
     }),
     execute: async ({ op, rule_id, rule }, ctx) => {
-      if (!requested(ctx)) return NEEDS_CHANGE_REQUEST;
       const sc = await scopeOf(d, ctx);
       if (isFail(sc)) return outFail(sc);
       if (op === 'add') {
@@ -162,7 +153,6 @@ export function buildScheduleTools(d: ScheduleToolDeps): EditorTool[] {
     kind: 'act', roles: ['composer', 'manager'], chatOnly: true,
     input: z.object({ slot_id: z.string().uuid(), op: z.enum(['move', 'skip', 'regenerate']), to_local: z.string().max(20).optional() }),
     execute: async ({ slot_id, op, to_local }, ctx) => {
-      if (!requested(ctx)) return NEEDS_CHANGE_REQUEST;
       const sc = await scopeOf(d, ctx, { slotId: slot_id });
       if (isFail(sc)) return outFail(sc);
       if (op === 'regenerate') {
@@ -184,7 +174,6 @@ export function buildScheduleTools(d: ScheduleToolDeps): EditorTool[] {
     kind: 'act', roles: ['composer', 'manager'], chatOnly: true,
     input: z.object({ channel: CHANNEL_ARG, reason: z.string().max(300).optional().describe('Що змінити в плані — піде в підсумок картки') }),
     execute: async ({ channel, reason }, ctx) => {
-      if (!requested(ctx)) return NEEDS_CHANGE_REQUEST;
       const sc = await scopeOf(d, ctx, { channel: channel ?? null });
       if (isFail(sc)) return outFail(sc);
       const tz = sc.card.timezone;

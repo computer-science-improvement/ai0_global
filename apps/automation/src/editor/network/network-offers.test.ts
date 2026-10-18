@@ -54,10 +54,11 @@ test('set_network_mode (@ai0): proposes an Apply card for the orchestrator; erro
   assert.deepEqual(proposed[0].payload, { handle: 'nova', mode: 'independent' });
   assert.equal(proposed[0].agentId, 'o1');
   assert.match(proposed[0].summary, /In shadow the agent records decisions as previews/);
-  assert.equal(((await tool.execute({ handle: 'nova', mode: 'independent' }, ctx(false))) as any).error, 'needs_explicit_request');
+  // Spec 047 FR-001: a card is not gated by the owner's wording — Apply is the confirmation.
+  assert.equal(((await tool.execute({ handle: 'nova', mode: 'independent' }, ctx(false))) as any).ok, true);
   assert.equal(((await tool.execute({ handle: 'ghost', mode: 'independent' }, ctx())) as any).error, 'unknown_agent');
   assert.equal(((await tool.execute({ handle: 'nova', mode: 'legacy_duplicate' }, ctx())) as any).error, 'already_in_mode');
   group = null;
   assert.equal(((await tool.execute({ handle: 'nova', mode: 'independent' }, ctx())) as any).error, 'no_network');
-  assert.equal(proposed.length, 1);
+  assert.equal(proposed.length, 2);
 });

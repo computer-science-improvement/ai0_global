@@ -16,9 +16,10 @@ test('explicit-request check: schedule verbs, time + cadence; negations and smal
   }
 });
 
-test('the propose tools answer needs_explicit_request without a request in the last message (nothing proposed)', async () => {
+test('spec 047 FR-001: the propose tools only make cards, so they are not gated by the wording of the last message', async () => {
   const proposed: unknown[] = [];
-  const schedule: any = new Proxy({}, { get: () => () => { throw new Error('the service must not be called'); } });
+  const reached: string[] = [];
+  const schedule: any = new Proxy({}, { get: (_t, k) => () => { reached.push(String(k)); return { error: 'stop' }; } });
   const tools = Object.fromEntries(buildScheduleTools({ schedule, actions: { propose: async (a: any) => { proposed.push(a); return a; } } }).map((t) => [t.name, t]));
   const ctx: any = { runId: 'r', role: 'composer', channelKey: null, extras: { chat: { chatId: null, channelKey: '@food' }, agentIntent: false, ownerText: 'що в плані на завтра?' } };
   for (const [name, input] of [
@@ -26,9 +27,9 @@ test('the propose tools answer needs_explicit_request without a request in the l
     ['propose_schedule_rule', { op: 'add', rule: { resource_ref: 'telegram:@food', kind: 'blackout', at_local: '13:00', until_local: '15:00' } }],
     ['propose_slot_change', { slot_id: '6b1d1b0e-3f2a-4c55-9d8e-1a2b3c4d5e6f', op: 'skip' }],
   ] as const) {
-    assert.equal(((await tools[name].execute(input as any, ctx)) as any).error, 'needs_explicit_request', name);
+    assert.notEqual(((await tools[name].execute(input as any, ctx)) as any).error, 'needs_explicit_request', name);
   }
-  assert.equal(proposed.length, 0);
+  assert.ok(reached.length >= 3, 'the service is asked; the Apply click is the confirmation');
   // Spec 040 FR-013: chat-only (never in an autonomous run); @manager gets the read tool and the slot cards.
   assert.deepEqual(tools.get_schedule.roles, ['composer', 'manager']);
   assert.ok(Object.values(tools).every((t) => t.chatOnly === true && t.roles.includes('composer')));

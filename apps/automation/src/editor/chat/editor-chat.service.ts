@@ -19,8 +19,9 @@ import type { RunAgentContext } from '../agents/agent-runtime';
 import type { PendingAction } from '../agents/pending-actions';
 import type { ResourceProfile } from '../agents/resource-profile';
 import type { AgentChatExtras } from '../agents/builder-tools';
-import { parseMentions, startsWithMention } from '../agents/mentions';
+import { leadingMentions, parseMentions, startsWithMention } from '../agents/mentions';
 import { ownerChangeIntent } from './owner-intent';
+import { contradictedDenials, denialNote, denialRePrompt, factsBlock, restatesFact, type ChatFacts } from './chat-facts';
 import { agentPersona, buildBuilderPrompt, buildManagerChatPrompt } from '../agents/agent-prompts';
 import type { EditorRole } from '../llm/llm.types';
 import { chatFeature, CHAT_FEATURE_PREFIX } from '../../common/ai/usage/features';
@@ -38,6 +39,8 @@ export type ChatStreamEvent =
   | { type: 'draft';       draft: EditorDraft }
   | { type: 'message';     message: EditorChatMessage }
   | { type: 'agent';       agent: { id: string; handle: string; name: string; emoji: string | null; kind: string } }
+  /** Spec 047 FR-003: the message goes to several agents, answering in this order. */
+  | { type: 'addressees';  agents: Array<{ id: string; handle: string; name: string; emoji: string | null; kind: string }> }
   | { type: 'action';      action: PendingAction }
   | { type: 'error';       error: string }
   | { type: 'done' };
@@ -59,7 +62,8 @@ export interface AgentChatPort {
 type Route =
   | { kind: 'legacy' }
   | { kind: 'unknown'; handle: string }
-  | { kind: 'agent'; agent: Agent; note: string | null };
+  | { kind: 'agent'; agent: Agent; note: string | null }
+  | { kind: 'agents'; agents: Agent[] };
 
 export interface EditorChatDeps {
   repo:     Pick<EditorChatRepository,
@@ -89,6 +93,15 @@ export interface SendOptions {
 
 const draftLine = (d: EditorDraft) =>
   `${d.id} · ${d.channelKey} · ${(d.spec as any)?.format ?? '?'} · «${(d.spec as any)?.title ?? ''}» · ${d.status}${d.scheduledAt ? ` на ${d.scheduledAt.toISOString()}` : ''}`;
+
+/** Spec 047 FR-003: the least a further addressee needs of the shared turn cap; how much of each answer the next one reads. */
+const MIN_ADDRESSEE_USD = 0.02;
+const MAX_ADDRESSEES = 5;
+const ANSWER_NOTE_CHARS = 600;
+const agentRef = (a: Agent) => ({ id: a.id, handle: a.handle, name: a.name, emoji: a.emoji, kind: a.kind });
+
+/** Spec 047 FR-002: the chat facts go last in the system prompt, after the cacheable part. */
+const withFacts = (system: string, facts: string | null) => (facts ? `${system}\n\n${facts}` : system);
 
 /** A chat turn's own spend cap (spec 040 FR-001); setting EDITOR_CHAT_TURN_MAX_USD, 0 = off. */
 export const CHAT_TURN_MAX_USD = 0.3;
@@ -212,6 +225,8 @@ export class EditorChatService {
   private async route(text: string, picked: string | null, chatAgentId: string | null): Promise<Route> {
     const ag = this.d.agents;
     if (!ag) return { kind: 'legacy' };
+    const multi = await this.addressees(text);
+    if (multi) return multi;
     const mentions = parseMentions(text);
     for (const m of mentions) {
       const a = await ag.byHandle(m.handle);
@@ -234,6 +249,30 @@ export class EditorChatService {
     }
     if (picked) return { kind: 'legacy' };
     return { kind: 'legacy' };
+  }
+
+  /**
+   * Spec 047 FR-003: a message that opens with several agent mentions goes to each channel agent in turn (a role resolves
+   * to its orchestrator). With @manager among them it goes to @manager, which coordinates the others.
+   */
+  private async addressees(text: string): Promise<Route | null> {
+    const ag = this.d.agents!;
+    const lead = leadingMentions(text);
+    if (lead.length < 2) return null;
+    const found: Agent[] = [];
+    for (const h of lead) {
+      let a = await ag.byHandle(h);
+      if (!a) continue;
+      if (a.parentId) a = (await ag.get(a.parentId)) ?? a;
+      if (!found.some((x) => x.id === a!.id)) found.push(a);
+    }
+    const manager = found.find((a) => a.kind === 'manager');
+    const channel = found.filter((a) => a.kind !== 'manager' && a.kind !== 'builder');
+    if (manager && channel.length) {
+      return { kind: 'agent', agent: manager, note: `Власник звернувся одразу до ${found.map((a) => `@${a.handle}`).join(', ')}: ти координуєш — зроби або запропонуй картками те, що стосується кожного з них.` };
+    }
+    if (channel.length < 2 || found.some((a) => a.kind === 'builder')) return null;
+    return { kind: 'agents', agents: channel.slice(0, MAX_ADDRESSEES) };
   }
 
   async deleteChat(id: string) {
@@ -289,69 +328,125 @@ export class EditorChatService {
         }
       }
 
-      const agentKey = addressee && this.d.agents ? await this.d.agents.channelKeyOf(addressee) : null;
-      const channelKey = agentKey ?? await this.resolveChannel(text, opts.channel ?? null, prior, chatDrafts);
-      const resolved = channelKey ? await this.d.drafts.resolveCard(channelKey) : null;
-      const memory = channelKey && resolved?.hasCard ? await this.d.memory.listActive(channelKey) : [];
-      const agentCtx = addressee && this.d.agents ? await this.d.agents.forAgent(addressee, 'composer') : null;
-      const persona = addressee && this.d.agents
-        ? agentPersona(addressee, await this.d.agents.profileOf(addressee), route.kind === 'agent' && route.note ? [route.note] : [])
-        : null;
-
-      const touched = new Map<string, EditorDraft>();
-      const actions: PendingAction[] = [];
-      const rec = new TurnRecorder();
-      const extras: ComposerExtras & AgentChatExtras & Record<string, unknown> = {
-        chat: { chatId, channelKey },
-        card: resolved?.card,
-        userIntent: hasPublishIntent(text),
-        // The card in extras is the draft's channel card (save_draft switches it), so the preview renders like the post.
-        onDraft: (draft) => { touched.set(draft.id, draft); rec.draft(draft.id); emit({ type: 'draft', draft: renderDraft(draft, (extras.card as EditorCard | undefined) ?? null) }); },
-        agentIntent: ownerChangeIntent(text, lastAssistantText(prior)),
-        ownerText: text,
-        ownerRecent: ownerRecent(prior, text),
-        onAction: (a) => { actions.push(a); rec.card(a.id, a.kind); emit({ type: 'action', action: a }); },
-        ...(agentCtx ? { agent: addressee, skills: agentCtx.skills } : {}),
-      };
-      const onEvent = (e: AgentLoopEvent) => {
-        if (e.type === 'llm_text') emit({ type: 'text', text: e.text });
-        else emit(e);
-      };
-
-      const history = await this.history(chatId, prior, chatDrafts);
-      let res: AgentLoopResult;
-      try {
-        res = await this.runGuarded(rec, {
-          role: 'composer', channelKey: null,
-          model: await (async () => {
-            const { workspace, defaultModel } = await readModelContext(this.d);
-            return resolveModel('composer', this.d.env, null, {
-              agentModel: agentModelIn(addressee, workspace), defaultModel, reasoningEffort: addressee?.reasoningEffort, workspace,
-            });
-          })(),
-          system: buildComposerSystemPrompt({
-            now: this.now(), card: resolved?.card ?? null, hasCard: !!resolved?.hasCard, memory, skills: agentCtx?.skills ?? this.d.skills, persona,
-          }),
-          user: text, history, tools: this.chatTools('composer'),
-          maxSteps: COMPOSER_MAX_STEPS, extras: extras as unknown as Record<string, unknown>, onEvent,
-          agent: addressee ? { id: addressee.id, handle: addressee.handle, limitUsd: addressee.dailyBudgetUsd } : null,
-          usage: { feature: chatFeature('composer'), shadow: false }, maxCostUsd: chatTurnCap(this.d.env),
-        });
-      } catch (err: any) {
-        res = { runId: null, status: 'error', totals: { steps: 0, promptTokens: 0, completionTokens: 0, costUsd: 0 }, error: err?.message ?? String(err) };
-      }
-      const ok = res.status === 'ok' && !!res.finalText?.trim();
-      if (!ok) emit({ type: 'error', error: res.error ?? res.status });
-      const message = await this.d.repo.addMessage({
-        chatId, role: 'assistant', content: ok ? res.finalText!.trim() : failureText(res, [...touched.values()]), draftIds: [...touched.keys()], runId: res.runId,
-        agentId: addressee?.id ?? null, actions: rec.turn,
-      });
-      await this.d.repo.touchChat(chatId);
-      emit({ type: 'message', message });
-      return { message, drafts: [...touched.values()] };
+      if (route.kind === 'agents') return await this.runAddressees(chatId, text, route.agents, prior, chatDrafts, emit, opts);
+      const turn = await this.composerTurn(chatId, text, addressee, route.kind === 'agent' ? route.note : null, prior, chatDrafts, emit, opts, chatTurnCap(this.d.env));
+      return { message: turn.message, drafts: turn.drafts };
     } finally {
       this.running.delete(chatId);
     }
+  }
+
+  /**
+   * The composer turn of one addressee (a channel agent) or of the plain composer: its channel, card, memory and tools;
+   * the answer is stored as its own message. `maxCostUsd` is what is left of this turn's cap.
+   */
+  private async composerTurn(
+    chatId: string, text: string, addressee: Agent | null, note: string | null, prior: EditorChatMessage[], chatDrafts: EditorDraft[],
+    emit: (e: ChatStreamEvent) => void, opts: SendOptions, maxCostUsd: number | null,
+  ): Promise<{ message: EditorChatMessage; drafts: EditorDraft[]; costUsd: number }> {
+    const agentKey = addressee && this.d.agents ? await this.d.agents.channelKeyOf(addressee) : null;
+    const channelKey = agentKey ?? await this.resolveChannel(text, opts.channel ?? null, prior, chatDrafts);
+    const resolved = channelKey ? await this.d.drafts.resolveCard(channelKey) : null;
+    const memory = channelKey && resolved?.hasCard ? await this.d.memory.listActive(channelKey) : [];
+    const agentCtx = addressee && this.d.agents ? await this.d.agents.forAgent(addressee, 'composer') : null;
+    const persona = addressee && this.d.agents
+      ? agentPersona(addressee, await this.d.agents.profileOf(addressee), note ? [note] : [])
+      : null;
+
+    const touched = new Map<string, EditorDraft>();
+    const actions: PendingAction[] = [];
+    const rec = new TurnRecorder();
+    const extras: ComposerExtras & AgentChatExtras & Record<string, unknown> = {
+      chat: { chatId, channelKey },
+      card: resolved?.card,
+      userIntent: hasPublishIntent(text),
+      // The card in extras is the draft's channel card (save_draft switches it), so the preview renders like the post.
+      onDraft: (draft) => { touched.set(draft.id, draft); rec.draft(draft.id); emit({ type: 'draft', draft: renderDraft(draft, (extras.card as EditorCard | undefined) ?? null) }); },
+      agentIntent: ownerChangeIntent(text, lastAssistantText(prior)),
+      ownerText: text,
+      ownerRecent: ownerRecent(prior, text),
+      onAction: (a) => { actions.push(a); rec.card(a.id, a.kind); emit({ type: 'action', action: a }); },
+      ...(agentCtx ? { agent: addressee, skills: agentCtx.skills } : {}),
+    };
+    const onEvent = (e: AgentLoopEvent) => {
+      if (e.type === 'llm_text') emit({ type: 'text', text: e.text });
+      else emit(e);
+    };
+
+    const history = await this.history(chatId, prior, chatDrafts);
+    const facts = await this.chatFacts(chatId);
+    const factText = facts ? factsBlock(facts) : null;
+    let res: AgentLoopResult;
+    try {
+      res = await this.runGuarded(rec, {
+        role: 'composer', channelKey: null,
+        model: await (async () => {
+          const { workspace, defaultModel } = await readModelContext(this.d);
+          return resolveModel('composer', this.d.env, null, {
+            agentModel: agentModelIn(addressee, workspace), defaultModel, reasoningEffort: addressee?.reasoningEffort, workspace,
+          });
+        })(),
+        system: withFacts(buildComposerSystemPrompt({
+          now: this.now(), card: resolved?.card ?? null, hasCard: !!resolved?.hasCard, memory, skills: agentCtx?.skills ?? this.d.skills, persona,
+        }), factText),
+        user: text, history, tools: this.chatTools('composer'),
+        maxSteps: COMPOSER_MAX_STEPS, extras: extras as unknown as Record<string, unknown>, onEvent,
+        agent: addressee ? { id: addressee.id, handle: addressee.handle, limitUsd: addressee.dailyBudgetUsd } : null,
+        usage: { feature: chatFeature('composer'), shadow: false }, maxCostUsd,
+      }, facts);
+    } catch (err: any) {
+      res = { runId: null, status: 'error', totals: { steps: 0, promptTokens: 0, completionTokens: 0, costUsd: 0 }, error: err?.message ?? String(err) };
+    }
+    const ok = res.status === 'ok' && !!res.finalText?.trim();
+    if (!ok) emit({ type: 'error', error: res.error ?? res.status });
+    const message = await this.d.repo.addMessage({
+      chatId, role: 'assistant', content: ok ? res.finalText!.trim() : failureText(res, [...touched.values()]), draftIds: [...touched.keys()], runId: res.runId,
+      agentId: addressee?.id ?? null, actions: rec.turn,
+    });
+    await this.d.repo.touchChat(chatId);
+    emit({ type: 'message', message });
+    return { message, drafts: [...touched.values()], costUsd: res.totals.costUsd };
+  }
+
+  /**
+   * Spec 047 FR-003: a message addressed to several channel agents («@ai_global @loko_games @nova_dev переплануйте…») runs
+   * for each in turn — one streamed answer per agent, each stored with its author — under one shared turn cap. A later
+   * agent sees the earlier answers in its history. Agents the cap leaves out are named in a final note.
+   */
+  private async runAddressees(
+    chatId: string, text: string, agents: Agent[], prior: EditorChatMessage[], chatDrafts: EditorDraft[],
+    emit: (e: ChatStreamEvent) => void, opts: SendOptions,
+  ): Promise<{ message: EditorChatMessage; drafts: EditorDraft[] }> {
+    const cap = chatTurnCap(this.d.env);
+    const all = agents.map((x) => `@${x.handle}`).join(', ');
+    emit({ type: 'addressees', agents: agents.map(agentRef) });
+    let spent = 0;
+    let last: { message: EditorChatMessage; drafts: EditorDraft[] } | null = null;
+    const drafts: EditorDraft[] = [];
+    const answers: string[] = [];
+    for (const [i, a] of agents.entries()) {
+      const left = cap === null ? null : cap - spent;
+      if (left !== null && left < MIN_ADDRESSEE_USD) {
+        const message = await this.d.repo.addMessage({
+          chatId, role: 'assistant',
+          content: `Stopped before ${agents.slice(i).map((x) => `@${x.handle}`).join(', ')} — this message reached the per-turn chat cap ($${cap!.toFixed(2)}, EDITOR_CHAT_TURN_MAX_USD in Settings → Configuration). Write to them again to continue.`,
+        });
+        emit({ type: 'message', message });
+        return { message, drafts };
+      }
+      emit({ type: 'agent', agent: agentRef(a) });
+      const note = [
+        `Повідомлення власника адресоване кільком агентам: ${all}. Ти — @${a.handle}: відповідай лише за свій канал і роби свою частину; інші агенти відповідають окремо.`,
+        ...(answers.length ? ['Уже відповіли в цьому ході:', ...answers] : []),
+      ].join('\n');
+      const r = await this.composerTurn(chatId, text, a, note, prior, chatDrafts, emit, opts, left);
+      answers.push(`@${a.handle}: ${r.message.content.replace(/\s+/g, ' ').slice(0, ANSWER_NOTE_CHARS)}`);
+      spent += r.costUsd;
+      drafts.push(...r.drafts);
+      last = { message: r.message, drafts };
+    }
+    if (this.d.repo.setChatAgent) await this.d.repo.setChatAgent(chatId, agents[agents.length - 1].id);
+    return last!;
   }
 
   /**
@@ -391,14 +486,15 @@ export class EditorChatService {
     let res: AgentLoopResult;
     try {
       const history = await this.history(chatId, prior, chatDrafts);
+      const facts = await this.chatFacts(chatId);
       res = await this.runGuarded(rec, {
         role, channelKey: null, model: resolveModel(role, this.d.env, null, { agentModel: agentModelIn(agent, mctx.workspace), defaultModel: mctx.defaultModel, reasoningEffort: agent.reasoningEffort, workspace: mctx.workspace }),
-        system: note ? `${system}\n\n${note}` : system,
+        system: withFacts(note ? `${system}\n\n${note}` : system, facts ? factsBlock(facts) : null),
         user: text, history, tools: this.chatTools(role),
         maxSteps: COMPOSER_MAX_STEPS, extras, onEvent,
         agent: { id: agent.id, handle: agent.handle, limitUsd: agent.dailyBudgetUsd },
         usage: { feature: chatFeature(role), shadow: false }, maxCostUsd: chatTurnCap(this.d.env),
-      });
+      }, facts);
     } catch (err: any) {
       res = { runId: null, status: 'error', totals: { steps: 0, promptTokens: 0, completionTokens: 0, costUsd: 0 }, error: err?.message ?? String(err) };
     }
@@ -438,23 +534,44 @@ export class EditorChatService {
 
   /**
    * Spec 040 FR-014: one run with the turn's tools recorded; a reply claiming an action no tool did gets one re-prompt
-   * (its tool calls count too), and a reply that still claims it ends with a visible note.
+   * (its tool calls count too), and a reply that still claims it ends with a visible note. Spec 047 FR-002: a reply that
+   * denies what the chat facts show (an applied card, a real agent, a tool this turn called) is re-prompted the same way.
    */
-  private async runGuarded(rec: TurnRecorder, input: AgentLoopInput): Promise<AgentLoopResult> {
+  private async runGuarded(rec: TurnRecorder, input: AgentLoopInput, facts: ChatFacts | null = null): Promise<AgentLoopResult> {
     const run = { ...input, tools: rec.wrap(input.tools) };
     const first = await this.d.loop.run(run);
     if (first.status !== 'ok' || !first.finalText?.trim()) return first;
-    const claims = unbackedClaims(first.finalText, rec.turn);
-    if (!claims.length) return first;
+    const denialsOf = (t: string) => (facts ? contradictedDenials(t, facts, rec.turn) : []);
+    const claimsOf = (t: string) => unbackedClaims(t, rec.turn).filter((c) => !restatesFact(c.sentence, facts));
+    const claims = claimsOf(first.finalText);
+    const denials = denialsOf(first.finalText);
+    if (!claims.length && !denials.length) return first;
     let second: AgentLoopResult | null = null;
     try {
       second = await this.d.loop.run({
         ...run, history: [...(input.history ?? []), { role: 'user', content: input.user }, { role: 'assistant', content: first.finalText.trim() }],
-        user: claimRePrompt(claims),
+        user: [claims.length ? claimRePrompt(claims) : null, denials.length ? denialRePrompt(denials) : null].filter(Boolean).join('\n\n'),
       });
     } catch { /* the first reply stands, with the note */ }
     const res = second?.status === 'ok' && second.finalText?.trim() ? second : first;
-    return unbackedClaims(res.finalText!, rec.turn).length ? { ...res, finalText: `${res.finalText!.trim()}\n\n${NOT_DONE_NOTE}` } : res;
+    const final = res.finalText!.trim();
+    const notes = [
+      claimsOf(final).length ? NOT_DONE_NOTE : null,
+      (() => { const left = denialsOf(final); return left.length ? denialNote(left) : null; })(),
+    ].filter(Boolean);
+    return notes.length ? { ...res, finalText: `${final}\n\n${notes.join('\n')}` } : res;
+  }
+
+  /** Spec 047 FR-002: the chat's cards with their statuses now, and the agent roster. Null without the agent platform. */
+  private async chatFacts(chatId: string): Promise<ChatFacts | null> {
+    const ag = this.d.agents;
+    if (!ag) return null;
+    const [cards, handles] = await Promise.all([
+      ag.actionsForChat(chatId).catch(() => [] as PendingAction[]),
+      ag.handles().catch(() => [] as string[]),
+    ]);
+    const sorted = [...cards].sort((a, b) => new Date(a.createdAt ?? 0).getTime() - new Date(b.createdAt ?? 0).getTime());
+    return { cards: sorted, handles: handles.map((h) => h.replace(/^@/, '').toLowerCase()) };
   }
 
   /**

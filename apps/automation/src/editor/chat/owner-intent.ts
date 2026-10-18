@@ -36,11 +36,51 @@ export function proposedChange(assistantText: string | null | undefined): boolea
   return OFFER_VERB_RE.test(assistantText) || hasAgentChangeIntent(assistantText) || hasScheduleChangeIntent(assistantText);
 }
 
+const MAX_PICK_CHARS = 120;
+const ORDINALS: Record<string, number> = {
+  перший: 1, перша: 1, перше: 1, другий: 2, друга: 2, друге: 2, третій: 3, третя: 3, третє: 3, четвертий: 4, четверта: 4, четверте: 4,
+  first: 1, second: 2, third: 3, fourth: 4,
+};
+const norm = (s: string) => s.toLowerCase().replace(/[*_`«»"“”'’.,!?…:;()\[\]]+/gu, ' ').replace(/\s+/g, ' ').trim();
+
 /**
- * The owner's change intent for this turn (the builder / schedule gates): the verbs of the message itself, or a short "yes"
- * to the previous assistant turn when that turn proposed a change.
+ * Spec 047 FR-001: the options an assistant turn offered — list items («1. Машина», «- Ракета»), quoted names («Машина»,
+ * "Rocket") and bold ones (**Машина**). In order; a list item counts from its text before a dash or a colon.
+ */
+export function offeredOptions(assistantText: string | null | undefined): string[] {
+  if (!assistantText) return [];
+  const out: string[] = [];
+  const add = (v: string) => { const n = norm(v); if (n.length >= 2 && n.length <= 80 && !out.includes(n)) out.push(n); };
+  for (const line of assistantText.split('\n')) {
+    const m = /^\s*(?:\d{1,2}[.)]|[-•*–])\s+(.+)$/u.exec(line);
+    if (m) add(m[1].split(/\s[—–-]\s|:\s/u)[0]);
+  }
+  for (const m of assistantText.matchAll(/«([^»\n]{2,80})»|"([^"\n]{2,80})"|“([^”\n]{2,80})”|\*\*([^*\n]{2,80})\*\*/gu)) add(m[1] ?? m[2] ?? m[3] ?? m[4]);
+  return out;
+}
+
+/**
+ * Spec 047 FR-001: the owner's reply picks one of the options the assistant just offered with a change — «Машина»,
+ * «давай другий», «2», «хай буде Ракета». Short replies only; negation wins.
+ */
+export function picksOfferedOption(message: string, lastAssistant: string | null | undefined): boolean {
+  const raw = unquoted(message).replace(/(^|\s)@[a-z][a-z0-9_]*/gi, ' ').trim();
+  if (!raw || raw.length > MAX_PICK_CHARS || NEGATIVE_RE.test(raw) || !proposedChange(lastAssistant)) return false;
+  const options = offeredOptions(lastAssistant);
+  if (!options.length) return false;
+  const t = norm(raw);
+  const num = /^(?:(?:варіант|option|номер|#)\s*)?(\d{1,2})$/u.exec(t.replace(/^(?:давай|let's|go with|беру|обираю)\s+/u, ''));
+  if (num) return Number(num[1]) >= 1 && Number(num[1]) <= options.length;
+  for (const w of t.split(' ')) if (ORDINALS[w] && ORDINALS[w] <= options.length) return true;
+  return options.some((o) => t.includes(o) || (t.length >= 3 && o.includes(t)));
+}
+
+/**
+ * The owner's change intent for this turn (the gates of tools that write or start a paid run): the verbs or a requirement
+ * in the message itself, a short "yes" to the previous assistant turn when that turn proposed a change, or a reply that
+ * picks one of the options it offered (spec 047 FR-001).
  */
 export function ownerChangeIntent(message: string, lastAssistant: string | null | undefined): boolean {
   if (hasAgentChangeIntent(message)) return true;
-  return isAffirmative(message) && proposedChange(lastAssistant);
+  return (isAffirmative(message) && proposedChange(lastAssistant)) || picksOfferedOption(message, lastAssistant);
 }

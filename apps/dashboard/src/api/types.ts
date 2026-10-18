@@ -890,6 +890,8 @@ export type EditorChatEvent =
   | { type: 'draft';       draft: EditorDraft }
   | { type: 'message';     message: EditorChatMessage }
   | { type: 'agent';       agent: ChatAgentRef }
+  /** Spec 047 FR-003: the message goes to several agents, answering in this order. */
+  | { type: 'addressees';  agents: ChatAgentRef[] }
   | { type: 'action';      action: PendingAction }
   | { type: 'error';       error: string }
   | { type: 'done' };

@@ -136,6 +136,7 @@ import { STEERING_SERVICE, SteeringController } from './steering/steering.contro
 import { telegramReader } from './steering/steering-source';
 import { buildSteerChannelTool } from './steering/steering-tool';
 import { ownerRulesOf } from './rules/owner-rules-prompt';
+import { lintOwnerRule } from './agents/rule-lint';
 import { renderPlaybook } from './network/playbook';
 import { renderProfile } from './agents/resource-profile';
 import { buildAnalyzeHistoryTool } from './setup/setup-tool';
@@ -1073,7 +1074,10 @@ export const EDITOR_PROVIDERS = [
             agents: infra.agents, actions: infra.actions,
             cardOf: async (ref) => { const id = parseResourceRef(ref)?.id; return id ? repos.channels.get(id) : null; },
           }),
-          ...buildAgentChatTools({ pool, memory: repos.memory, skills: infra.skills, actions: infra.actions, conflicts: configConflictsOf(pool, repos, infra) }),
+          ...buildAgentChatTools({
+            pool, memory: repos.memory, skills: infra.skills, actions: infra.actions, conflicts: configConflictsOf(pool, repos, infra),
+            handles: async () => (await infra.agents.list()).map((a) => a.handle),
+          }),
           // Spec 023 FR-006: the owner steers the schedule from the chat (cards only).
           ...buildScheduleTools({ schedule, actions: infra.actions }),
           // Spec 023 FR-011: @ai0 previews a strategy migration and proposes its cards.
@@ -1584,6 +1588,10 @@ export const EDITOR_PROVIDERS = [
           setChannelMode: (key, mode) => ops.upsertChannel(key, { mode }),
           memory: (key) => repos.memory.listActive(key, 100),
           conflicts: (orch) => configConflictsOf(pool, repos, infra).forAgent(orch),
+          ruleLint: async (text, orch) => lintOwnerRule(text, {
+            skillExists: async (name) => !!((await infra.skills.findForAgent(orch.id, name)) ?? (await infra.skills.findShared(name))),
+            handles: (await infra.agents.list()).map((x) => x.handle),
+          }),
           sync: () => infra.registry.run(),
           // Spec 035: agent models are checked against the catalog and priced in llm_prices when new.
           models: { check: (m, cur) => models.checkAgentModel(m, cur), chosen: (m) => models.ensurePrice(m), workspace: () => models.active() },

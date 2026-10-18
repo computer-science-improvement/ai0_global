@@ -12,6 +12,7 @@ import { lintSkill, SKILL_ROLES } from './skill-lint';
 import type { SkillStore } from './skill-store';
 import type { ConfigConflictsService } from '../rules/config-conflicts.service';
 import { CHANNEL_SKILL_ROLES, defaultAppliesTo } from '../skills/skill-defaults';
+import { lintOwnerRule, MAX_POINT_CHARS, MAX_RULE_POINTS, multiPointRule, ownerListPoints, type RuleIssue } from './rule-lint';
 
 /** Spec 040 FR-010: the pending-action kind of a rule the owner confirms with a card. */
 export const OWNER_RULE_KIND = 'owner_rule';
@@ -49,7 +50,34 @@ export interface AgentChatToolDeps {
   actions: Pick<PendingActionsService, 'propose'>;
   /** Spec 040 FR-011: rules-vs-config, run when a rule is stored. */
   conflicts?: Pick<ConfigConflictsService, 'forAgent'>;
+  /** Spec 047 FR-004: the agent handles of the network (a rule naming an unknown @agent is refused). */
+  handles?: () => Promise<string[]>;
   now?:    () => Date;
+}
+
+const VAGUE: ReadonlyArray<RuleIssue['code']> = ['pointer_only', 'too_vague', 'meta_request'];
+
+/**
+ * Spec 047 FR-004: the rule text to store — the model's text, or its heading with the points it passed, or, when the text
+ * only points at the owner's list («ці правила…»), that list from the owner's latest message — and the lint issues left.
+ */
+export async function ruleToStore(
+  i: { text: string; points?: string[] }, ownerText: string, lint: (t: string) => Promise<RuleIssue[]>,
+): Promise<{ text: string; issues: RuleIssue[]; fromOwnerList: boolean }> {
+  const headIssues = await lint(i.text);
+  const headOk = !headIssues.some((x) => VAGUE.includes(x.code));
+  if (i.points?.length) {
+    // A short heading («Оформлення постів») is fine above its points; a pointer or a request is not.
+    const heading = !headIssues.some((x) => x.code === 'pointer_only' || x.code === 'meta_request');
+    const text = multiPointRule(i.points, heading ? i.text : null);
+    return { text, issues: await lint(text), fromOwnerList: false };
+  }
+  const owned = ownerListPoints(ownerText);
+  if (!headOk && owned.length) {
+    const text = multiPointRule(owned, null);
+    return { text, issues: await lint(text), fromOwnerList: true };
+  }
+  return { text: i.text, issues: headIssues, fromOwnerList: false };
 }
 
 const agentOf = (ctx: ToolContext): Agent | null => (ctx.extras?.agent as Agent | null | undefined) ?? null;
@@ -133,15 +161,39 @@ export function buildAgentChatTools(d: AgentChatToolDeps): EditorTool[] {
 
   const addOwnerRule = defineTool({
     name: 'add_owner_rule',
-    description: 'Записати правило власника в памʼять каналу (діє на всі прогони агента). Лише те, що власник сказав у своїх останніх повідомленнях — його словами, коротко й конкретно. Якщо слова не збігаються з його повідомленнями, правило піде йому карткою на підтвердження.',
+    description: [
+      'Записати правило власника в памʼять каналу (діє на всі прогони агента). Лише те, що власник сказав у своїх останніх повідомленнях — його словами, коротко й конкретно.',
+      'Кілька пунктів (список власника) — одне правило: text — короткий заголовок, points — пункти його словами. Не пиши правило-вказівник («ці правила завжди виконуються») — лише самі пункти.',
+      'Якщо слова не збігаються з його повідомленнями, правило піде йому карткою на підтвердження.',
+    ].join(' '),
     kind: 'act', roles: ['composer'],
-    input: z.object({ text: z.string().min(8).max(400), kind: z.enum(['rule', 'avoid']).default('rule') }),
-    execute: async ({ text, kind }, ctx) => {
+    input: z.object({
+      text:   z.string().min(8).max(400),
+      points: z.array(z.string().trim().min(3).max(MAX_POINT_CHARS)).max(MAX_RULE_POINTS).optional()
+        .describe('Пункти одного правила зі списку власника, його словами'),
+      kind:   z.enum(['rule', 'avoid']).default('rule'),
+    }),
+    execute: async (input, ctx) => {
       const x = chatExtras(ctx);
       const key = channelOf(ctx);
       if (!key) return { error: 'no_channel' };
-      const missing = await unknownSkills(text, ctx.extras?.skills as { get(name: string): unknown } | undefined, d.skills);
-      if (missing.length) return { error: 'unknown_skill', details: `таких скілів немає: ${missing.join(', ')} — назви наявний скіл або прибери посилання` };
+      const kind = input.kind;
+      const known = ctx.extras?.skills as { get(name: string): unknown } | undefined;
+      const handles = d.handles ? await d.handles().catch(() => undefined) : undefined;
+      const lint = (t: string) => lintOwnerRule(t, {
+        skillExists: async (name) => !!(known?.get(name) || await d.skills.findShared(name).catch(() => null)),
+        handles,
+      });
+      const built = await ruleToStore(input, x.ownerText, lint);
+      if (built.issues.length) {
+        // An unknown name keeps its own code (040: unknown_skill); anything else is a rule the agent cannot follow.
+        const named = built.issues.every((i) => i.code === 'unknown_skill' || i.code === 'unknown_agent');
+        return {
+          error: named ? built.issues[0].code : 'rule_lint_failed', details: built.issues.map((i) => `${i.code}: ${i.detail}`).join('; '),
+          hint: 'нічого не записано — сформулюй саме правило (що робити чи чого уникати) або попроси власника уточнити',
+        };
+      }
+      const text = built.text;
       const sources = ruleSources(text, x.ownerRecent?.length ? x.ownerRecent : [x.ownerText]);
       const best = sources[0];
       if (best && best.overlap >= RULE_OVERLAP_MIN) {
@@ -151,6 +203,7 @@ export function buildAgentChatTools(d: AgentChatToolDeps): EditorTool[] {
         const conflicts = a && d.conflicts ? await d.conflicts.forAgent(a).catch(() => []) : [];
         return {
           ok: true, id, channel: key,
+          ...(built.fromOwnerList ? { stored_text: text, note_points: 'записано пункти зі списку власника його словами (одне правило)' } : {}),
           ...(conflicts.length ? { config_conflicts: conflicts.map((c) => c.detail), note: 'плейбук чи профіль суперечать правилам власника — скажи власнику; @ai0 узгодить їх карткою fix_config_conflicts' } : {}),
         };
       }

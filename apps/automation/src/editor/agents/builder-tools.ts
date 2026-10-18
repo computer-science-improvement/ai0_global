@@ -16,7 +16,10 @@ import { defaultAppliesTo } from '../skills/skill-defaults';
 /** Per-run state of an agent chat turn (spec 018), put into ctx.extras by the chat service. */
 export interface AgentChatExtras {
   chat:        { chatId: string | null; channelKey: string | null };
-  /** The owner's latest message explicitly asks to change agents (hasAgentChangeIntent). */
+  /**
+   * The owner asked for a change in this turn (ownerChangeIntent). Gates direct writes and paid runs only; card proposals
+   * are not gated (spec 047 FR-001).
+   */
   agentIntent: boolean;
   /** The owner's latest message (add_owner_rule checks the rule paraphrases it). */
   ownerText:   string;
@@ -50,12 +53,15 @@ export function chatExtras(ctx: ToolContext): AgentChatExtras {
   return x;
 }
 
-/** Propose a confirmation card (pending action) and stream it to the UI. */
+/**
+ * Propose a confirmation card (pending action) and stream it to the UI. Spec 047 FR-001: not gated by the owner's wording —
+ * the Apply click is the confirmation, and a card the owner did not want is one Discard away. Tools that write directly or
+ * start a paid run keep the `agentIntent` gate.
+ */
 export async function proposeCard(
   d: Pick<BuilderToolDeps, 'actions'>, ctx: ToolContext, kind: string, payload: Record<string, unknown>, summary: string, agentId?: string | null,
 ) {
   const x = chatExtras(ctx);
-  if (!x.agentIntent) return NEEDS_CHANGE_REQUEST;
   const action = await d.actions.propose({ chatId: x.chat.chatId, agentId: agentId ?? null, kind, payload, summary });
   try { x.onAction?.(action); } catch { /* UI stream only */ }
   return { ok: true, pending_action: action.id, summary, note: 'Власник побачить картку з кнопками Apply / Discard — дія виконається лише після його кліку.' };

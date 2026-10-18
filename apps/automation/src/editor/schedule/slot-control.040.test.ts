@@ -104,10 +104,10 @@ test('regenerate only a planned own slot within 48 h; a derived slot waits for i
   }
 });
 
-test('the cards need the owner\'s request; replan / regenerate verbs count', async () => {
+test('spec 047: a replan card needs no request wording (Apply confirms); replan / regenerate verbs still count as intent', async () => {
   const { tools, ctx, proposed } = setup(MANAGER, 'що там у плані?');
-  assert.equal(((await tools.propose_replan_today.execute({ channel: '@loko' }, ctx)) as any).error, 'needs_explicit_request');
-  assert.equal(proposed.length, 0);
+  assert.equal(((await tools.propose_replan_today.execute({ channel: '@loko' }, ctx)) as any).ok, true);
+  assert.equal(proposed.length, 1);
   for (const t of ['перепиши вечірній пост', 'regenerate the 18:00 post', 'replan today please', 'напиши зараз пост про запуск']) assert.equal(hasScheduleChangeIntent(t), true, t);
 });
 

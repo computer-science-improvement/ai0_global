@@ -188,7 +188,7 @@ test('without a mention the chat continues with its last agent', async () => {
   assert.equal(s.recorder.runs[0].agentId, 'a-kira');
 });
 
-test('@ai0: builder tools only propose cards; no intent → refused', async () => {
+test('@ai0: builder tools only propose cards; spec 047: a card needs no request wording (Apply confirms)', async () => {
   const s = setup([
     { calls: [{ name: 'update_agent', args: { handle: 'kira', patch: { handle: 'nova', paused_until: '2026-10-05T00:00:00+03:00' } } }] },
     { text: 'Пропоную перейменувати і поставити на паузу — підтвердіть карткою.' },
@@ -204,8 +204,9 @@ test('@ai0: builder tools only propose cards; no intent → refused', async () =
   assert.match(action.action.summary, /handle → nova/);
 
   await s.svc.sendMessage('c1', '@ai0 що в тебе нового?');
-  const toolMsg = s.llm.requests[3].messages.find((m: any) => m.role === 'tool') as any;
-  assert.match(toolMsg.content, /needs_explicit_request/);
+  const toolMsg = [...s.llm.requests[3].messages].reverse().find((m: any) => m.role === 'tool') as any;
+  assert.match(toolMsg.content, /"pending_action"/);
+  assert.doesNotMatch(toolMsg.content, /needs_explicit_request/);
 });
 
 test('@kira: an owner rule is stored only when it paraphrases the owner', async () => {

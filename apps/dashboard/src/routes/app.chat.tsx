@@ -49,6 +49,10 @@ interface LiveTurn {
   drafts:     Record<string, EditorDraft>;
   actions:    Record<string, PendingAction>;
   agent:      ChatAgentRef | null;
+  /** Spec 047 FR-003: every addressee of a message to several agents, in answer order. */
+  addressees: ChatAgentRef[];
+  /** Answers already finished in this turn (several addressees): shown before the live one. */
+  done:       EditorChatMessage[];
   /** How many saved messages existed when this turn started (later ones belong to the turn). */
   base:       number;
 }
@@ -185,6 +189,8 @@ function ChatPage() {
     } else if (e.type === 'message') {
       const acts = activitiesRef.current;
       if (acts.length) setActivityByMsg((m) => ({ ...m, [e.message.id]: acts }));
+    } else if (e.type === 'addressees') {
+      setSeen((s) => ({ ...s, ...Object.fromEntries(e.agents.map((a) => [a.id, a])) }));
     } else if (e.type === 'agent') {
       setSeen((s) => ({ ...s, [e.agent.id]: e.agent }));
       setLastAgent({ chatId: forChat, agent: e.agent });
@@ -197,6 +203,12 @@ function ChatPage() {
       if (e.type === 'draft') return { ...t, drafts: { ...t.drafts, [e.draft.id]: e.draft } };
       if (e.type === 'action') return { ...t, actions: { ...t.actions, [e.action.id]: e.action } };
       if (e.type === 'agent') return { ...t, agent: e.agent };
+      if (e.type === 'addressees') return { ...t, addressees: e.agents };
+      // Several addressees: a finished answer moves above the live bubble, the next agent streams from scratch.
+      if (e.type === 'message' && t.addressees.length > 1) {
+        activitiesRef.current = [];
+        return { ...t, done: [...t.done, e.message], text: '', activities: [] };
+      }
       return { ...t, activities: activitiesRef.current };
     });
   };
@@ -222,7 +234,7 @@ function ChatPage() {
     const full = first && channel && !toAgent && !text.includes(channel) ? `Channel: ${channel}\n${text}` : text;
     setInput('');
     activitiesRef.current = [];
-    setLive({ userText: full, activities: [], text: '', drafts: {}, actions: {}, agent: null, base: id === chatId ? messages.length : 0 });
+    setLive({ userText: full, activities: [], text: '', drafts: {}, actions: {}, agent: null, addressees: [], done: [], base: id === chatId ? messages.length : 0 });
     const ctrl = new AbortController();
     abortRef.current = ctrl;
     gotReplyRef.current = false;
@@ -297,7 +309,14 @@ function ChatPage() {
             {chat.data?.chat?.title ?? 'New chat'}
           </h1>
           <span style={{ marginLeft: 'auto', display: 'inline-flex', alignItems: 'center', gap: 8, minWidth: 0, flexShrink: 0, maxWidth: isMobile ? '55%' : '50%' }}>
-            {live && <span className="text-micro" style={{ color: 'var(--color-ink-muted)', whiteSpace: 'nowrap' }}>{live.agent ? `${live.agent.name} is working…` : 'agent is working…'}</span>}
+            {live && (
+              <span className="text-micro" style={{ color: 'var(--color-ink-muted)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}
+                title={live.addressees.length > 1 ? live.addressees.map((a) => `@${a.handle}`).join(', ') : undefined}>
+                {live.addressees.length > 1
+                  ? `To ${live.addressees.map((a) => `@${a.handle}`).join(', ')} · ${live.agent ? `${live.agent.name} is answering (${live.done.length + 1}/${live.addressees.length})` : 'starting…'}`
+                  : live.agent ? `${live.agent.name} is working…` : 'agent is working…'}
+              </span>
+            )}
             {addressee && !live && <Addressee agent={addressee} compact={isMobile} />}
           </span>
         </div>
@@ -348,6 +367,10 @@ function ChatPage() {
             {live && (
               <>
                 <UserBubble text={live.userText} />
+                {live.done.map((m) => (
+                  <Message key={m.id} m={m} drafts={drafts} lastMention={lastMention} activities={activityByMsg[m.id] ?? []}
+                    agent={m.agentId ? agentIndex.get(m.agentId) ?? null : null} actions={[]} />
+                ))}
                 <div style={{ display: 'flex', gap: 10 }}>
                   <BotGlyph agent={live.agent} />
                   <div style={{ minWidth: 0, flex: 1 }}>

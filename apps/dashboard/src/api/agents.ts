@@ -91,7 +91,9 @@ export interface AgentRun {
   agentId:          string | null;
 }
 
-export type AgentMemoryEntry = Omit<EditorMemoryEntry, 'active'>;
+/** Spec 047 FR-004: an owner rule's lint issues (pointer-only, too vague, a request, an unknown skill or agent). */
+export interface RuleLintIssue { code: string; detail: string }
+export type AgentMemoryEntry = Omit<EditorMemoryEntry, 'active'> & { lint?: RuleLintIssue[] };
 
 export const SKILL_ROLES = ['planner', 'executor', 'reviewer', 'checker', 'composer', 'orchestrator', 'idea_reviewer', 'manager', 'builder'] as const;
 export type SkillRole = typeof SKILL_ROLES[number];

@@ -24,6 +24,23 @@ export function parseMentions(text: string): Mention[] {
   return out;
 }
 
+/**
+ * Spec 047 FR-003: the mentions the message opens with — «@ai_global @loko_games, @nova_dev переплануйте…», «@a і @b …».
+ * Mentions later in the text are data (someone the owner talks about), not addressees. Lower-cased, unique, in order.
+ */
+export function leadingMentions(text: string): string[] {
+  let rest = unquoted(text).trimStart();
+  const out: string[] = [];
+  for (;;) {
+    const m = /^@([A-Za-z][A-Za-z0-9_]{1,63})(?![A-Za-z0-9_])[\s,;]*(?:(?:і|й|та|and|&)(?![\p{L}])[\s,]*)?/u.exec(rest);
+    if (!m) break;
+    const h = m[1].toLowerCase();
+    if (!out.includes(h)) out.push(h);
+    rest = rest.slice(m[0].length);
+  }
+  return out;
+}
+
 /** Does the (unquoted) message start with this mention (after whitespace)? */
 export function startsWithMention(text: string, handle: string): boolean {
   return new RegExp(`^\\s*@${handle.replace(/[^a-z0-9_]/gi, '')}(?![A-Za-z0-9_])`, 'i').test(unquoted(text));
@@ -46,6 +63,20 @@ const CHANGE_VERB_RE = /(?<![\p{L}])(?:переплан(?:уй|уйте|уват
 const NEGATION_RE = /(?:^|[^\p{L}])(?:не|не\s+треба|не\s+потрібно|don't|do\s+not|не\s+надо)\s+(?:\p{L}+\s+){0,1}?(?:створ|перейменуй|зміни|видали|переплан|скасов|відмін|перенос|пропуск|перезапуск|перегенер|create|rename|change|delete|pause|паузу|cancel|reschedule|skip|move|regenerate)/iu;
 
 /**
+ * Spec 047 FR-001: a requirement is a request too — «хай буде ім'я — Машина», «потрібно щоб ці правила завжди
+ * виконувались», «хочу щоб», «дай йому інший емодзі», «let it be», «I want it to». Whole words, so «дайджест» is not «дай».
+ */
+const REQUIREMENT_RE = /(?<![\p{L}])(?:хай(?:\s+буде)?|нехай|потрібно(?:,)?\s+щоб|треба(?:,)?\s+щоб|треба|хочу(?:,)?\s+щоб|хочу|хотів\s+би|хотіла\s+б|дай(?:те)?|пусть|нужно(?:,)?\s+чтобы|хочу(?:,)?\s+чтобы|let\s+it\s+be|i\s+want|i'd\s+like|make\s+it|should\s+be|must\s+be)(?![\p{L}])/giu;
+
+/** «не треба», «не хочу», «don't want»: a negated requirement asks for nothing. */
+function hasRequirement(t: string): boolean {
+  for (const m of t.matchAll(REQUIREMENT_RE)) {
+    if (!/(?:^|[^\p{L}])(?:не|ні|not|don't|do\s+not)\s*$/iu.test(t.slice(0, m.index ?? 0))) return true;
+  }
+  return false;
+}
+
+/**
  * Did the owner ask, in THIS message, to change agents (create, rename, pause,
  * edit skills…)? Mutating builder tools refuse without it (FR-005), so text from
  * an inspected channel can never trigger a change. Deliberately broad: the card
@@ -54,7 +85,7 @@ const NEGATION_RE = /(?:^|[^\p{L}])(?:не|не\s+треба|не\s+потріб
 export function hasAgentChangeIntent(message: string): boolean {
   const t = unquoted(message).toLowerCase();
   if (NEGATION_RE.test(t)) return false;
-  return CHANGE_VERBS.some((v) => t.includes(v)) || CHANGE_VERB_RE.test(t);
+  return CHANGE_VERBS.some((v) => t.includes(v)) || CHANGE_VERB_RE.test(t) || hasRequirement(t);
 }
 
 const WORD_RE = /[\p{L}\p{N}]{3,}/gu;
