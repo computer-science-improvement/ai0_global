@@ -35,6 +35,11 @@ import { PgHostFailures } from './net/host-failures';
 import { buildSourceTools, applySourceChangeAction } from './sources/source-tools';
 import { candidateDeps, sourceChangeHandled, sourceHealthOf } from './sources/source-wiring';
 import { NETWORK_HEALTH, NetworkHealthController } from './health/network-health.controller';
+import { ARTIFACTS_SERVICE, ArtifactsController } from './artifacts/artifacts.controller';
+import { ArtifactsService } from './artifacts/artifacts.service';
+import { ArtifactVersionsRepository } from './artifacts/artifact-versions.repository';
+import { buildArtifactTools, applyUpdateArtifact, UPDATE_ARTIFACT_KIND } from './artifacts/artifact-tools';
+import { memoryAdapter, playbookAdapter, profileAdapter, rulesAdapter, setupAdapter, skillAdapter, steeringAdapter } from './artifacts/artifact-adapters';
 import { NetworkHealthService } from './health/network-health.service';
 import { budgetSnapshot } from '../spend/spend.service';
 import { SpendRepository } from '../spend/spend.repository';
@@ -361,6 +366,9 @@ function configConflictsOf(pool: Pool, repos: Pick<EditorRepos, 'memory' | 'chan
 }
 
 /** Spec 047 FR-004: an owner rule against the agent's skills and the network's agents. */
+/** Spec 048: the artifact registry, for the chat tools built before it (the registry → agents → runner cycle). */
+const ARTIFACTS: { svc?: ArtifactsService } = {};
+
 async function ownerRuleLint(infra: Pick<AgentInfra, 'skills' | 'agents'>, text: string, orch: Agent) {
   return lintOwnerRule(text, {
     skillExists: async (name) => !!((await infra.skills.findForAgent(orch.id, name)) ?? (await infra.skills.findShared(name))),
@@ -1098,6 +1106,8 @@ export const EDITOR_PROVIDERS = [
           buildAnalyzeHistoryTool({ pool, repo: new ChannelSetupRepository(pool) }),
           // Spec 045 FR-009: @ai0 queues a steering analysis (the owner activates the rules on /app/steering).
           buildSteerChannelTool({ steering }),
+          // Spec 048 FR-002: read and change the artifacts that shape an agent (live ones through an Apply / Discard card).
+          ...buildArtifactTools({ artifacts: () => ARTIFACTS.svc, actions: infra.actions }),
           // Spec 034 FR-008: example posts and warnings in the agent-creation chat (a content_examples card).
           buildContentExamplesTool({
             agents: infra.agents, actions: infra.actions,
@@ -1666,6 +1676,8 @@ export const EDITOR_PROVIDERS = [
         });
         // Spec 040 FR-010: an owner rule the owner confirmed with a card (its words did not match the chat closely enough).
         infra.actions.register(OWNER_RULE_KIND, (p) => applyOwnerRule(repos.memory, p as Record<string, unknown>));
+        // Spec 048 FR-002: an agent's change to a live artifact, applied by the owner.
+        infra.actions.register(UPDATE_ARTIFACT_KIND, (p) => applyUpdateArtifact(ARTIFACTS.svc, p as Record<string, unknown>));
         // A directive the owner approved in the chat with @manager (spec 021): filed as owner-approved, never shadow.
         infra.actions.register('file_directive', async (p) => {
           const input = FileDirectiveInput.parse(p);
@@ -1697,6 +1709,36 @@ export const EDITOR_PROVIDERS = [
         });
         // Spec 034 FR-009: create_agent with a brief starts the first playbook build (the creator is built before this service).
         infra.creator.setOnBrief((agent, brief) => svc.onBrief(agent, brief));
+        return svc;
+      },
+    },
+    {
+      // Spec 048 FR-001: one registry over the artifacts that shape an agent (each type keeps its own table).
+      provide: ARTIFACTS_SERVICE,
+      inject: [DB_POOL, AGENT_INFRA, EDITOR_REPOS, AGENTS_SERVICE, NETWORK_SERVICE, STEERING_SERVICE],
+      useFactory: (pool: Pool, infra: AgentInfra, repos: EditorRepos, agentsSvc: AgentsService, network: NetworkService, steering: SteeringService) => {
+        const versions = new ArtifactVersionsRepository(pool);
+        const networkRepo = new NetworkRepository(pool);
+        const svc = new ArtifactsService({
+          pool,
+          adapters: [
+            setupAdapter({ setup: new ChannelSetupRepository(pool), versions }),
+            steeringAdapter({ repo: new SteeringRepository(pool), editRules: (id, body) => steering.editRules(id, body), versions }),
+            rulesAdapter({
+              pool, memory: repos.memory, versions,
+              lint: async (text, key) => {
+                const orch = await infra.agents.findTop('orchestrator', 'resource', `telegram:${key}`).catch(() => null);
+                return orch ? ownerRuleLint(infra, text, orch) : lintOwnerRule(text);
+              },
+            }),
+            memoryAdapter({ pool, memory: repos.memory }),
+            skillAdapter({ pool, skills: infra.skills }),
+            playbookAdapter({ pool, history: (agentId) => networkRepo.playbookHistory(agentId), put: (handle, body) => network.putPlaybook(handle, body) }),
+            profileAdapter({ pool, raw: (ref) => infra.profiles.rawProfile(ref), put: (handle, _ref, body) => agentsSvc.putProfile(handle, body) }, 'profile'),
+            profileAdapter({ pool, raw: (ref) => infra.profiles.rawProfile(ref), put: (handle, ref, body) => agentsSvc.putFormatting(handle, ref, body) }, 'formatting'),
+          ],
+        });
+        ARTIFACTS.svc = svc;
         return svc;
       },
     },
@@ -1859,7 +1901,7 @@ export const EDITOR_PROVIDERS = [
 @Module({
   // AuthModule: EditorController is guarded by TrackingAuthGuard, which injects AuthService.
   imports:     [ChannelConfigModule, PublishersModule, AuthModule],
-  controllers: [EditorController, EditorChatController, AgentsController, ModelsController, NetworkController, ManagerController, PromoController, PromoRedirectController, ApprovalsController, AutonomyController, ScheduleController, StrategyMigrationController, UpcomingSlotsController, ResourcePausesController, PostAuditController, ChannelSetupController, SteeringController, NetworkHealthController],
+  controllers: [EditorController, EditorChatController, AgentsController, ModelsController, NetworkController, ManagerController, PromoController, PromoRedirectController, ApprovalsController, AutonomyController, ScheduleController, StrategyMigrationController, UpcomingSlotsController, ResourcePausesController, PostAuditController, ChannelSetupController, SteeringController, NetworkHealthController, ArtifactsController],
   providers:   [...EDITOR_PROVIDERS, TrackingAuthGuard],
   exports:     [EDITOR_REPOS, EDITOR_RUNNER, AGENT_INFRA, PLATFORM_INFRA, EDITOR_MANAGER],
 })

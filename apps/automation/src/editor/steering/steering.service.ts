@@ -13,7 +13,7 @@ import {
 } from './steering-analysis';
 import { asSetupPosts, parseSourceRef, type ReadResult, type SteeringSourceReader } from './steering-source';
 import { refName, withoutTexts, type SteeringRepository } from './steering.repository';
-import { MAX_ACTIVE_SETS, RULE_TEXT_MAX, type SteeringSet, type SteeringStatus } from './steering.types';
+import { MAX_ACTIVE_SETS, MAX_RULES, RULE_TEXT_MAX, STEERING_RULE_KINDS, type SteeringRule, type SteeringSet, type SteeringStatus } from './steering.types';
 
 /**
  * Spec 045: steering. `create` queues a set (target = an own channel with a card, source = a public resource); one
@@ -71,6 +71,13 @@ export function targetOf(input: string): { ref: string; key: string } | null {
   if (!/^[A-Za-z][A-Za-z0-9_]{3,31}$/.test(bare)) return null;
   return { ref: `telegram:@${bare}`, key: `@${bare}` };
 }
+
+/** Spec 048 FR-001 / FR-002: several rule changes at once (the artifact panel, an agent's update_artifact). */
+export const RulesEdit = z.object({
+  rules:  z.array(z.object({ id: z.string().min(1).max(20), enabled: z.boolean().optional(), text: z.string().trim().min(10).max(RULE_TEXT_MAX).optional() }).strict()).max(MAX_RULES).optional(),
+  add:    z.array(z.object({ kind: z.enum(STEERING_RULE_KINDS), text: z.string().trim().min(10).max(RULE_TEXT_MAX) }).strict()).max(MAX_RULES).optional(),
+  remove: z.array(z.string().min(1).max(20)).max(MAX_RULES).optional(),
+}).strict().refine((b) => !!(b.rules?.length || b.add?.length || b.remove?.length), { message: 'rules, add or remove' });
 
 const platformOf = (ref: string) => ref.slice(0, ref.indexOf(':'));
 
@@ -288,6 +295,37 @@ export class SteeringService {
     const rules = s.rules.map((r) => r.id !== ruleId ? r : {
       ...r, text, enabled: b.data.enabled ?? r.enabled, ...(text !== rule.text ? { edited: true } : {}),
     });
+    return { set: await this.d.repo.update(id, { rules }, { from: ['ready', 'active', 'paused'] }) };
+  }
+
+  /** Spec 048: change, add and remove rules in one step; every new or changed text passes the rule lint and copy check. */
+  async editRules(id: string, body: unknown) {
+    const b = RulesEdit.safeParse(body ?? {});
+    if (!b.success) throw new BadRequestException({ error: 'invalid_body', issues: b.error.issues.map((i) => ({ path: i.path.join('.'), message: i.message })) });
+    const s = await this.require(id);
+    if (!['ready', 'active', 'paused'].includes(s.status)) throw new ConflictException({ error: 'not_open', details: `the set is ${s.status}` });
+    const problems: string[] = [];
+    const known = new Set(s.rules.map((r) => r.id));
+    for (const ch of [...(b.data.rules ?? []).map((r) => r.id), ...(b.data.remove ?? [])]) {
+      if (!known.has(ch)) throw new NotFoundException({ error: 'rule_not_found', details: ch });
+    }
+    const gone = new Set(b.data.remove ?? []);
+    let rules: SteeringRule[] = s.rules.filter((r) => !gone.has(r.id)).map((r) => {
+      const ch = b.data.rules?.find((c) => c.id === r.id);
+      if (!ch) return r;
+      if (ch.enabled && r.conflict) problems.push(`${r.id}: contradicts ${r.conflict.with}; the channel's own rules win`);
+      const text = ch.text !== undefined && ch.text !== r.text ? ch.text : r.text;
+      if (text !== r.text) problems.push(...ruleTextProblemsEn(text, s.posts).map((p) => `${r.id}: ${p}`));
+      return { ...r, text, enabled: ch.enabled ?? r.enabled, ...(text !== r.text ? { edited: true } : {}) };
+    });
+    let n = s.rules.reduce((m, r) => Math.max(m, Number(r.id.replace(/\D/g, '')) || 0), 0);
+    for (const a of b.data.add ?? []) {
+      problems.push(...ruleTextProblemsEn(a.text, s.posts).map((p) => `new rule: ${p}`));
+      rules = [...rules, { id: `s${++n}`, kind: a.kind, text: a.text, evidence: { post_ids: [], note: 'added by hand' }, conflict: null, enabled: true, edited: true }];
+    }
+    if (rules.length > MAX_RULES) problems.push(`a set keeps at most ${MAX_RULES} rules`);
+    if (!rules.length) problems.push('a set keeps at least one rule — discard the set instead');
+    if (problems.length) throw new BadRequestException({ error: 'rule_invalid', details: problems });
     return { set: await this.d.repo.update(id, { rules }, { from: ['ready', 'active', 'paused'] }) };
   }
 

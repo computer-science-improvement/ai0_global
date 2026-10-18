@@ -32,6 +32,7 @@ const KIND_META: Record<string, { label: string; icon: IconName }> = {
   slot_change:          { label: 'Change a slot', icon: 'clock' },
   slot_regenerate:      { label: 'Write the post now', icon: 'play' },
   replan_today:         { label: 'Replan today', icon: 'calendar-sync' },
+  update_artifact:      { label: 'Change an artifact', icon: 'pencil' },
 };
 
 export const ACTION_TONE: Record<PendingActionStatus, Tone> = {
@@ -270,6 +271,24 @@ function WriteSkillView({ p }: { p: Record<string, unknown> }) {
   );
 }
 
+/** Spec 048 FR-002: an agent's change to a live artifact (steering, owner rules, a skill…), as the type's patch. */
+function UpdateArtifactView({ p }: { p: Record<string, unknown> }) {
+  return (
+    <>
+      {str(p.title) && <Row label="Artifact">{p.title as string}</Row>}
+      {str(p.reason) && <Row label="Why"><LongText text={p.reason as string} /></Row>}
+      <Row label="Change">
+        <pre className="text-micro" style={{
+          margin: 0, padding: 10, maxHeight: 280, overflow: 'auto', whiteSpace: 'pre-wrap', wordBreak: 'break-word',
+          background: 'var(--color-canvas)', border: '1px solid var(--color-hairline)', borderRadius: 'var(--radius-sm)',
+          color: 'var(--color-ink-muted)', fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace',
+        }}>{JSON.stringify(p.patch ?? {}, null, 2)}</pre>
+      </Row>
+      <Row label="Then">the artifact gets a new version; the change is checked again at Apply</Row>
+    </>
+  );
+}
+
 function PayloadView({ action }: { action: PendingAction }) {
   const p = obj(action.payload);
   if (action.kind === 'create_agent') return <CreateAgentView p={p} />;
@@ -278,10 +297,11 @@ function PayloadView({ action }: { action: PendingAction }) {
   if (action.kind === 'set_brief') return <SetBriefView p={p} />;
   if (action.kind === 'owner_rule') return <OwnerRuleView p={p} />;
   if (action.kind === 'fix_config_conflicts') return <FixConflictsView p={p} />;
+  if (action.kind === 'update_artifact') return <UpdateArtifactView p={p} />;
   return null;
 }
 
-const BOXED = new Set(['create_agent', 'update_agent', 'write_skill', 'set_brief', 'owner_rule', 'fix_config_conflicts']);
+const BOXED = new Set(['create_agent', 'update_agent', 'write_skill', 'set_brief', 'owner_rule', 'fix_config_conflicts', 'update_artifact']);
 
 /**
  * An agent's confirmation card as a compact card: what it proposes, its status and two lines of the summary.
