@@ -311,12 +311,12 @@ export function buildDirectiveTools(d: DirectiveToolDeps): EditorTool[] {
 
   const getDigest = defineTool({
     name: 'get_kpi_digest',
-    description: 'KPI-дайджест мережі: по кожному ресурсу перегляди на пост, залученість, кількість постів, ріст підписників, переходи, дохід — 7 днів проти 28-денної норми, z і аномалії; плани на сьогодні, бюджет, відкриті директиви й результати минулих. resource — повний блок одного ресурсу (з quality і зразками), коли загальний дайджест його скоротив.',
+    description: 'Повний блок KPI-дайджесту одного ресурсу (з quality і зразками постів), коли дайджест у промпті його скоротив: 7 днів проти 28-денної норми, z і аномалії, відкриті директиви цьому агенту. Загальний дайджест уже в промпті — його не запитуй.',
     kind: 'read', roles: ['manager'],
-    input: z.object({ resource: z.string().min(2).max(200).optional().describe('ref ресурсу (telegram:@x) або @handle каналу') }),
+    // Spec 053 FR-006: the whole digest is in the manager's prompt; asking for it again re-sent ~10k characters every step.
+    input: z.object({ resource: z.string().min(2).max(200).describe('ref ресурсу (telegram:@x) або @handle каналу') }),
     execute: async ({ resource }, ctx) => {
       const dg = await digestOf(ctx);
-      if (!resource) return JSON.parse(d.digest.render(dg));
       const r = resourceView(dg, resource);
       if (!r) return { error: 'unknown_resource', details: `немає в дайджесті; є: ${dg.resources.map((x) => x.ref).join(', ').slice(0, 1500)}` };
       return { resource: r, open_directives: dg.directives.open.filter((x) => x.to === r.agent) };
@@ -325,17 +325,32 @@ export function buildDirectiveTools(d: DirectiveToolDeps): EditorTool[] {
 
   const listDirectives = defineTool({
     name: 'list_directives',
-    description: 'Директиви (відкриті й нещодавні) з їхнім статусом і результатом; для оркестратора — лише його.',
+    description: 'Директиви (відкриті й нещодавні): компактні рядки зі статусом і результатом; для оркестратора — лише його. Повні дані (обґрунтування, рішення, перевірка) — list_directives з ids.',
     kind: 'read', roles: ['manager', 'orchestrator'],
-    input: z.object({ status: z.array(z.enum(DIRECTIVE_STATUSES)).optional(), limit: z.number().int().min(1).max(50).default(20) }),
-    execute: async ({ status, limit }, ctx) => {
+    input: z.object({
+      status: z.array(z.enum(DIRECTIVE_STATUSES)).optional(),
+      limit:  z.number().int().min(1).max(50).default(10),
+      ids:    z.array(z.string().uuid()).min(1).max(10).optional().describe('Повні дані цих директив замість списку'),
+    }),
+    execute: async ({ status, limit, ids }, ctx) => {
       const me = agentOf(ctx);
       const toAgentId = ctx.role === 'orchestrator' ? (ctx.extras?.orchestrator as Agent | undefined)?.id ?? me?.id ?? null : null;
-      const list = (await d.repo.list({ status: status ?? null, toAgentId, limit })).filter((x) => !(toAgentId && x.shadow));
+      const visible = (x: Directive | null): x is Directive => !!x && !(toAgentId && (x.shadow || x.toAgentId !== toAgentId));
+      if (ids) {
+        const rows = (await Promise.all(ids.map((id) => d.repo.get(id)))).filter(visible);
+        return {
+          directives: rows.map((x) => ({
+            id: x.id, kind: x.kind, binding: x.binding, status: x.status, body: x.body, rationale: x.rationale, expected: x.expected, outcome: x.outcome,
+            resolution: x.resolution, verification: x.verification, adherence: x.verification?.adherence ?? null, created_at: x.createdAt,
+          })),
+        };
+      }
+      const list = (await d.repo.list({ status: status ?? null, toAgentId, limit })).filter(visible);
+      // Spec 053 FR-003: a list row is what decides the next step; the long fields stay behind `ids`.
       return {
         directives: list.map((x) => ({
-          id: x.id, kind: x.kind, binding: x.binding, status: x.status, body: x.body, rationale: x.rationale, expected: x.expected, outcome: x.outcome,
-          resolution: x.resolution, verification: x.verification, adherence: x.verification?.adherence ?? null, created_at: x.createdAt,
+          id: x.id, kind: x.kind, binding: x.binding, status: x.status, body: clipText(x.body, 240), expected: x.expected, outcome: x.outcome,
+          adherence: x.verification?.adherence ?? null, created_at: x.createdAt,
         })),
       };
     },
@@ -517,4 +532,8 @@ export function buildDirectiveTools(d: DirectiveToolDeps): EditorTool[] {
   });
 
   return [getDigest, listDirectives, fileTool, submitReview, acceptDirective, declineAdvice, contestDirective, reportDone];
+}
+
+function clipText(s: string | null, max: number): string | null {
+  return s && s.length > max ? `${s.slice(0, max - 1).trimEnd()}…` : s;
 }

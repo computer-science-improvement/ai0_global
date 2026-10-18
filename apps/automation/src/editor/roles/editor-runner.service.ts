@@ -30,7 +30,7 @@ import type { AgentBudget } from '../harness/budget.service';
 import { alreadyUsedBlock } from '../post/variety/monotony';
 import type { AuditPost } from '../post/integrity/types';
 import {
-  classifyFailure, isRescued, LADDER_MAX_LATE_MS, ladderNote, ladderPlan, MAX_CRITIC_PASSES_PER_SLOT, PublishProbe, stepRecord,
+  classifyFailure, isRescued, LADDER_MAX_LATE_MS, ladderNote, ladderPlan, MAX_CRITIC_PASSES_PER_SLOT, MAX_LADDER_EXTRA_STEPS, priorCriticPasses, criticPasses, PublishProbe, stepRecord,
   type FallbackFinal, type FallbackStepRecord, type LadderStep, type SlotFailure,
 } from '../silent/fallback-ladder';
 import { EvergreenProbe } from '../silent/evergreen';
@@ -121,7 +121,8 @@ export interface EditorRunnerDeps {
   /** Spec 037 FR-009: the channel's last written posts (newest first) for the writer's «Уже було» block. Optional. */
   recentPosts?: (card: EditorCard, slot: EditorSlot) => Promise<AuditPost[]>;
   /** Spec 037 FR-010: the fallback ladder (default on); `maxLateMs` — no new step this long after the slot time. */
-  ladder?: { enabled?: boolean; maxLateMs?: number };
+  /** `maxExtraSteps` (spec 053 FR-007): ladder steps after the first attempt (default MAX_LADDER_EXTRA_STEPS, env EDITOR_LADDER_EXTRA_STEPS). */
+  ladder?: { enabled?: boolean; maxLateMs?: number; maxExtraSteps?: number };
   /**
    * Spec 037 FR-010 — the evergreen step of the fallback ladder (silent/evergreen.ts `EvergreenStep`, wired in
    * editor.module). Absent: the ladder goes from the lighter format straight to skip. When set, it runs after the
@@ -156,7 +157,7 @@ type PlatformContext = Awaited<ReturnType<NonNullable<EditorRunnerDeps['platform
 
 /** Telegram-only tools that must never run on a slot of another platform, and vice versa. */
 const TELEGRAM_ONLY = new Set(['publish_post', 'lint_post', 'preview_post', 'request_story_repost']);
-const PLATFORM_ONLY = new Set(['publish_platform_post']);
+const PLATFORM_ONLY = new Set(['publish_platform_post', 'lint_platform_post']);
 
 export const MAX_SLOT_ATTEMPTS = 2;
 export const RETRY_DELAY_MS = 15 * 60_000;
@@ -166,6 +167,21 @@ export const BUDGET_RETRY_MS = 60 * 60_000;
 export const BUDGET_MAX_LATE_MS = 6 * 3600_000;
 
 const MAX_STEPS: Record<CardRole, number> = { planner: 10, executor: 14, reviewer: 14 };
+
+/**
+ * Spec 053 FR-001: tools a writer never needs — the card, its memory and the skill list are already in its prompt, and
+ * raw SQL is the reviewer's. Every tool schema is re-sent on every step, so these are dropped for the executor unless the
+ * channel's `tools_allow` names them.
+ */
+export const EXECUTOR_PREFS_IN_PROMPT = 10;
+
+export const EXECUTOR_DENY = new Set(['sql_readonly', 'get_channel_card', 'get_channel_memory', 'list_skills']);
+
+export function executorTools(role: CardRole, tools: EditorTool[], allow: string[] | null | undefined): EditorTool[] {
+  if (role !== 'executor') return tools;
+  const allowed = new Set(allow ?? []);
+  return tools.filter((t) => !EXECUTOR_DENY.has(t.name) || allowed.has(t.name));
+}
 
 /** Tools of a duplicate's short formatting run (FR-007): lint, publish or skip — nothing else. */
 const DUPLICATE_TOOLS: Record<'telegram' | 'platform', Set<string>> = {
@@ -213,7 +229,8 @@ export class EditorRunnerService {
   /** Spec 031 FR-008: the last owner preferences from approvals (planner and executor only). */
   private async prefs(role: CardRole, channelKey: string) {
     if ((role !== 'planner' && role !== 'executor') || !this.d.memory.ownerPreferences) return [];
-    return this.d.memory.ownerPreferences(channelKey, APPROVAL_PREFS_IN_PROMPT).catch(() => []);
+    // Spec 053 FR-001: the writer gets the newest 10 (every one of its steps re-sends them), the planner all 20.
+    return this.d.memory.ownerPreferences(channelKey, role === 'executor' ? EXECUTOR_PREFS_IN_PROMPT : APPROVAL_PREFS_IN_PROMPT).catch(() => []);
   }
 
   /** The voice settings of the resource a slot writes for (spec 034); a Telegram target falls back to the card. */
@@ -306,7 +323,7 @@ export class EditorRunnerService {
       }),
       user,
       tools: ((extras.wrapTools as ((t: EditorTool[]) => EditorTool[]) | undefined) ?? ((t) => t))(
-        this.d.registry.forRole(role, card.toolsAllow)
+        executorTools(role, this.d.registry.forRole(role, card.toolsAllow), card.toolsAllow)
           .filter((t) => !(extras.excludeTools as Set<string> | undefined)?.has(t.name))
           .filter((t) => !(extras.allowTools as Set<string> | undefined) || (extras.allowTools as Set<string>).has(t.name))),
       maxSteps: typeof extras.maxSteps === 'number' ? extras.maxSteps : MAX_STEPS[role],
@@ -383,6 +400,11 @@ export class EditorRunnerService {
       const b = await this.d.budget(card, EditorRunnerService.agentBudget(ctx)).catch(() => ({ ok: true as const }));
       if (!b.ok) return this.waitForBudget(slot, card, b.reason);
     }
+    // Spec 053 FR-007: critic passes count across the slot's attempts — a retry does not start a fresh allowance.
+    const priorPasses = priorCriticPasses(slot.fallback);
+    if (priorPasses >= MAX_CRITIC_PASSES_PER_SLOT) {
+      return this.skipByCode(slot, `critic_cap: ${priorPasses} critic passes on this slot (cap ${MAX_CRITIC_PASSES_PER_SLOT})`);
+    }
     const probe = new PublishProbe();
     const first = await attempt(slot, note ?? null, scan, probe);
     await this.d.plans.updateSlot(slot.id, { runId: first.runId });
@@ -396,11 +418,19 @@ export class EditorRunnerService {
       const quiet = isQuietHour(localHour(retryAt, card.timezone), card.quietStartHour, card.quietEndHour);
       const reason = `${res.status}${res.error ? `: ${res.error}` : ''}`;
       if (res.status === 'budget_exceeded') return this.waitForBudget(after, card, reason, res);
-      if (after.attempts < MAX_SLOT_ATTEMPTS && res.status !== 'disabled' && !quiet) {
+      // Spec 053 FR-007: a post that failed on its content (lint, a guard) is not rewritten from scratch in 15 minutes —
+      // the ladder already had its step; the retry is for crashes and timeouts.
+      const content = classifyFailure(after, probe);
+      if (after.attempts < MAX_SLOT_ATTEMPTS && res.status !== 'disabled' && !quiet && !content) {
         // Spec 040 FR-008: the planned time stays, so the delay of the post that goes out is visible.
-        await this.d.plans.updateSlot(slot.id, { status: 'planned', retryAt, error: `retry after ${reason}` });
+        // An attempt the critic read goes into the trace, so its passes count on the retry.
+        const record = criticPasses(after) > 0 && !(after.fallback?.steps ?? []).some((x) => x.run_id && x.run_id === res.runId);
+        await this.d.plans.updateSlot(slot.id, {
+          status: 'planned', retryAt, error: `retry after ${reason}`,
+          ...(!record ? {} : { fallback: { steps: [...(after.fallback?.steps ?? []), stepRecord('initial', slot.format, this.now(), after, null, res)], final: null } }),
+        });
       } else {
-        await this.d.plans.updateSlot(slot.id, { status: 'failed', error: reason });
+        await this.d.plans.updateSlot(slot.id, { status: 'failed', error: content ? content.reason.slice(0, 500) : reason });
       }
     }
     if (this.d.onSlotDone) await this.d.onSlotDone(slot).catch(() => {});
@@ -437,10 +467,12 @@ export class EditorRunnerService {
     let failure = after ? classifyFailure(after, probe) : null;
     if (!after || !failure) return first;
 
-    const steps: FallbackStepRecord[] = [stepRecord('initial', slot.format, this.now(), after, failure, first)];
+    // Spec 053 FR-007: the trace keeps the slot's earlier attempts (the retry), so critic passes add up across them.
+    const steps: FallbackStepRecord[] = [...(slot.fallback?.steps ?? []), stepRecord('initial', slot.format, this.now(), after, failure, first)];
     const avoid: string[] = failure.sourceUrl ? [failure.sourceUrl] : [];
     const live = slot.topicMode === 'live' && !!slot.liveSpec;
-    const plan = ladderPlan({ format: slot.format, allowed: EditorRunnerService.allowedFormats(card, o.platform), evergreen: !!this.d.fallbackEvergreen, live });
+    const plan = ladderPlan({ format: slot.format, allowed: EditorRunnerService.allowedFormats(card, o.platform), evergreen: !!this.d.fallbackEvergreen, live, failure: failure.kind });
+    let ran = 0;
     const agent = EditorRunnerService.agentBudget(ctx);
     const maxLate = this.d.ladder?.maxLateMs ?? LADDER_MAX_LATE_MS;
     let res = first;
@@ -452,6 +484,7 @@ export class EditorRunnerService {
     // Spec 046 FR-006: sources the critic rejected (a sole-source idea built on one of them is dead).
     const rejectedSources = new Set<string>(failure.kind === 'critic_reject' && failure.sourceUrl ? [failure.sourceUrl] : []);
     for (const st of plan) {
+      if (ran >= (this.d.ladder?.maxExtraSteps ?? MAX_LADDER_EXTRA_STEPS)) break;
       const passes = steps.reduce((n, x) => n + (x.critic_passes ?? 0), 0);
       if (passes >= MAX_CRITIC_PASSES_PER_SLOT) {
         final = { outcome: 'skipped', code: 'critic_cap', step: last, reason: `${passes} critic passes on this slot (cap ${MAX_CRITIC_PASSES_PER_SLOT})` };
@@ -489,6 +522,7 @@ export class EditorRunnerService {
         ? await this.d.fallbackEvergreen!({ slot: stepSlot, card, failure, steps: [...steps], run: (e) => attempt(e.slot, e.note, null, p) }).catch(() => null)
         : await attempt(stepSlot, [o.note, ladderNote(st.step, { failure, format: st.format, original: slot.format, avoid, live })].filter(Boolean).join('\n'), scan, p);
       if (!r) { steps.push(skipped(st.step, st.format, 'unavailable', 'no evergreen post today')); continue; }
+      ran++;
       res = r;
       await this.d.plans.updateSlot(slot.id, { runId: r.runId });
       after = await this.d.plans.getSlot(slot.id);
@@ -720,7 +754,7 @@ export class EditorRunnerService {
     const system = [
       `Ти — автор нативних постів для ${platform} у мережі ai0 (ресурс ${slot.resourceRef}). Пишеш НЕ переробку Telegram-поста, а пост, що працює саме на цій платформі.`,
       'Усі тексти — українською, живою мовою, без AI-штампів. Факти — лише з джерел, які ти прочитав. Код перевіряє ліміти — якщо інструмент повернув error, виправ.',
-      'Порядок: прочитай джерела ідеї (web_fetch), за потреби статистику, потім lint_platform_post, потім publish_platform_post. Слабкий чи неперевірений пост — skip_slot.',
+      'Порядок: прочитай джерела ідеї (web_fetch), за потреби статистику, потім publish_platform_post (сам перевіряє lint; lint_platform_post — лише для складного посту). Слабкий чи неперевірений пост — skip_slot.',
       'Факти бери з джерел ідеї. Якщо джерело недоступне — не перебирай адреси навмання: одна спроба альтернативи, далі skip_slot з причиною. Хештеги — лише в полі hashtags, не в тексті підпису.',
       ...voiceCoreSection(voice, skills),
       ...styleSection(voice.style),
@@ -762,7 +796,7 @@ export class EditorRunnerService {
       mode === 'approve' ? 'Режим апруву: пост буде повністю підготовлений і чекатиме схвалення власника; публікує код у час слота після апруву.' : '',
       note ?? '',
       'Якщо цей пост варто також дати на інший ресурс мережі — до завершення виклич repurpose_post з source.slot_id цього слота (вийде після публікації цього поста).',
-      'Підготуй пост і заверши publish_platform_post (після lint_platform_post) або skip_slot з причиною.',
+      'Підготуй пост і заверши publish_platform_post або skip_slot з причиною.',
     ].filter(Boolean).join('\n');
     const platformSlot: PlatformSlotExtras = {
       resourceRef: slot.resourceRef!, mode, maxPerDay: pc?.maxPerDay ?? null, vocabulary: pc?.vocabulary ?? [], bannedTerms: card.bannedTerms,

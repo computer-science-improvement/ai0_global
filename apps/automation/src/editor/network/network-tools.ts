@@ -48,6 +48,15 @@ export function sourceHosts(sources: string[]): number {
 }
 export const REVIEW_SUMMARY_MAX = 4000;
 const REASON_CODES = ['duplicate', 'unverifiable', 'off_topic', 'weak', 'risky', 'platform_mismatch', 'off_playbook'] as const;
+
+const IdeaReviewInput = z.object({
+  id:      z.string().uuid(),
+  verdict: z.enum(['accept', 'revise', 'reject']),
+  scores:  z.object({ fit: z.number().int().min(1).max(5), novelty: z.number().int().min(1).max(5), verifiability: z.number().int().min(1).max(5), platform_fit: z.number().int().min(1).max(5), risk: z.number().int().min(1).max(5) }),
+  comment: z.string().min(5).max(600),
+  reason_code: z.enum(REASON_CODES).optional(),
+});
+type IdeaReview = z.infer<typeof IdeaReviewInput>;
 const REASON_UK: Record<typeof REASON_CODES[number], string> = {
   duplicate: 'повтори вже опублікованого', unverifiable: 'ідеї без джерел, які можна перевірити', off_topic: 'теми поза профілем ресурсу',
   weak: 'слабкі, загальні ідеї без конкретики', risky: 'ризиковані теми', platform_mismatch: 'формати, що не пасують платформі', off_playbook: 'ідеї поза плейбуком',
@@ -157,6 +166,8 @@ export function buildNetworkTools(d: NetworkToolDeps): EditorTool[] {
       '(offset, total, next_offset). Повні ідеї (кут, джерела, варіанти, рецензія) — list_ideas з ids.',
     ].join(' '),
     kind: 'read', roles: ['orchestrator', 'planner', 'idea_reviewer', 'manager'],
+    // Spec 053 FR-003: a page of compact rows is the reviewer's whole input — one page, not a cut one.
+    maxResultChars: 16_000,
     input: z.object({
       status: z.array(z.enum(IDEA_STATUSES)).max(7).optional(),
       limit:  z.number().int().min(1).max(IDEA_PAGE_MAX).default(20),
@@ -298,21 +309,7 @@ export function buildNetworkTools(d: NetworkToolDeps): EditorTool[] {
 
   // ── idea reviewer ─────────────────────────────────────────────────────────
 
-  const reviewIdea = defineTool({
-    name: 'review_idea',
-    description: [
-      'Оцінка ідеї: verdict accept | revise | reject, бали 1–5 (fit, novelty, verifiability, platform_fit, risk — де 5 = безпечно), коментар і reason_code при відмові.',
-      'Код відхиляє автоматично при risk ≤ 2 або verifiability ≤ 2 (крім серій і ідей власника).',
-    ].join(' '),
-    kind: 'act', roles: ['idea_reviewer'],
-    input: z.object({
-      id:      z.string().uuid(),
-      verdict: z.enum(['accept', 'revise', 'reject']),
-      scores:  z.object({ fit: z.number().int().min(1).max(5), novelty: z.number().int().min(1).max(5), verifiability: z.number().int().min(1).max(5), platform_fit: z.number().int().min(1).max(5), risk: z.number().int().min(1).max(5) }),
-      comment: z.string().min(5).max(600),
-      reason_code: z.enum(REASON_CODES).optional(),
-    }),
-    execute: async (i, ctx) => {
+  const reviewOne = async (i: IdeaReview, ctx: ToolContext) => {
       const net = netOf(ctx);
       const idea = await d.repo.idea(i.id);
       if (!idea || idea.agentId !== net.orchestrator.id) return { error: 'idea_not_found' };
@@ -332,7 +329,34 @@ export function buildNetworkTools(d: NetworkToolDeps): EditorTool[] {
         await d.memory.add(net.anchorKey, 'avoid',
           `Рецензент ідей 3+ рази за 14 днів відхилив ${REASON_UK[code as keyof typeof REASON_UK] ?? code} — не пропонуй таких.`, { reason_code: code }, 'reviewer');
       }
-      return { ok: true, status, ...(verdict !== i.verdict ? { overridden: `код змінив вердикт на ${verdict}` } : {}) };
+      return { ok: true as const, status, ...(verdict !== i.verdict ? { overridden: `код змінив вердикт на ${verdict}` } : {}) };
+  };
+
+  const reviewIdea = defineTool({
+    name: 'review_idea',
+    description: [
+      'Оцінка ідеї: verdict accept | revise | reject, бали 1–5 (fit, novelty, verifiability, platform_fit, risk — де 5 = безпечно), коментар і reason_code при відмові.',
+      'Код відхиляє автоматично при risk ≤ 2 або verifiability ≤ 2 (крім серій і ідей власника).',
+    ].join(' '),
+    kind: 'act', roles: ['idea_reviewer'],
+    input: IdeaReviewInput,
+    execute: async (i, ctx) => reviewOne(i, ctx),
+  });
+
+  // Spec 053 FR-004: the whole batch in one call — the reviewer paid a step (and a re-sent prompt) per idea.
+  const reviewIdeas = defineTool({
+    name: 'review_ideas',
+    description: [
+      `Оцінка пачки ідей одним викликом (до ${REVIEW_BATCH}): для кожної id, verdict accept | revise | reject, бали 1–5 (fit, novelty, verifiability, platform_fit, risk — де 5 = безпечно), коментар і reason_code при відмові.`,
+      'Код відхиляє автоматично при risk ≤ 2 або verifiability ≤ 2 (крім серій і ідей власника). Повертає результат по кожній ідеї.',
+    ].join(' '),
+    kind: 'act', roles: ['idea_reviewer'],
+    input: z.object({ reviews: z.array(IdeaReviewInput).min(1).max(REVIEW_BATCH) }),
+    execute: async ({ reviews }, ctx) => {
+      const results: Array<{ id: string } & Record<string, unknown>> = [];
+      for (const r of reviews) results.push({ id: r.id, ...(await reviewOne(r, ctx)) });
+      const failed = results.filter((r) => 'error' in r).length;
+      return { reviewed: results.length - failed, ...(failed ? { failed } : {}), results };
     },
   });
 
@@ -359,7 +383,7 @@ export function buildNetworkTools(d: NetworkToolDeps): EditorTool[] {
       // Spec 040 FR-004: a review run that reviewed nothing while ideas wait is not finished.
       if (ideaRun(ctx).reviewed === 0) {
         const waiting = await d.repo.countIdeas(netOf(ctx).orchestrator.id, ['new']);
-        if (waiting > 0) return { error: 'nothing_reviewed', details: `${waiting} нових ідей чекають: спершу review_idea хоча б для пачки з промпту, потім підсумок` };
+        if (waiting > 0) return { error: 'nothing_reviewed', details: `${waiting} нових ідей чекають: спершу review_ideas хоча б для пачки з промпту, потім підсумок` };
       }
       const cut = summary.length > REVIEW_SUMMARY_MAX;
       return { ok: true, summary: cut ? `${summary.slice(0, REVIEW_SUMMARY_MAX - 1)}…` : summary, ...(cut ? { truncated: true } : {}) };
@@ -406,7 +430,7 @@ export function buildNetworkTools(d: NetworkToolDeps): EditorTool[] {
     },
   });
 
-  return [getPlaybook, submitPlaybook, listIdeas, addIdea, reviseIdea, finishOrchestration, reviewIdea, reviewPlaybook, finishIdeaReview, submitNetworkPlan];
+  return [getPlaybook, submitPlaybook, listIdeas, addIdea, reviseIdea, finishOrchestration, reviewIdea, reviewIdeas, reviewPlaybook, finishIdeaReview, submitNetworkPlan];
 }
 
 export { renderPlaybook };

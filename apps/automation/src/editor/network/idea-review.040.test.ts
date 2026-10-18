@@ -80,7 +80,7 @@ test('the reviewer prompt carries the oldest new ideas, one line each, and how t
   assert.match(p, new RegExp(`- ${idea(1).id} · «Ідея номер 1`));
   assert.match(p, /джерела: https:\/\/www\.example\.com\/a\/1 https:\/\/b\.example\.org\/x/);
   assert.match(p, /джерела: немає · варіанти: telegram:@chan\/text, threads:1\/text · походження: owner, уже доопрацьована/);
-  assert.match(p, /Решта \(38\) — list_ideas\(status=\[new\], oldest_first=true, offset=2\)/);
+  assert.match(p, /Решта \(38\) — наступним прогоном/);
   assert.equal(ideaReviewerUserPrompt({ fresh: 0, pendingPlaybook: true }).split('\n')[0], 'Нових ідей немає.');
 });
 

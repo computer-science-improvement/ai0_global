@@ -253,7 +253,7 @@ export function buildRoleTools(d: RoleToolDeps): EditorTool[] {
   // ── executor ──────────────────────────────────────────────────────────────
   const publishPost = defineTool({
     name: 'publish_post',
-    description: 'Опублікувати PostSpec у слот (завершує роботу). Перед збереженням пост читає критик: critic_revise — виправ зауваження й виклич ще раз (одна спроба). У shadow-режимі пост зберігається як превʼю без публікації; у режимі апруву — повністю готується і чекає схвалення власника. Перед цим обовʼязково lint_post.',
+    description: 'Опублікувати PostSpec у слот (завершує роботу). Перед збереженням пост читає критик: critic_revise — виправ зауваження й виклич ще раз (одна спроба). У shadow-режимі пост зберігається як превʼю без публікації; у режимі апруву — повністю готується і чекає схвалення власника. Сам перевіряє lint і повертає errors — виправ їх і виклич ще раз.',
     kind: 'terminal', roles: ['executor'], timeoutMs: PUBLISH_TOOL_TIMEOUT_MS,
     input: z.object({ spec: AgentPostSpecSchema }),
     execute: async (input, ctx) => {

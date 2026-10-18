@@ -19,6 +19,19 @@ import { requiredQualityRefs } from './directive-tools';
 export const DEFAULT_MANAGER_TIMES = ['09:00', '19:00'];
 /** Spec 046 FR-004: the manager's own daily cap when the owner set none (review 2: the Opus manager spent $1.67 a day). */
 export const DEFAULT_MANAGER_DAILY_USD = 0.6;
+
+/** Spec 053 FR-006: the scheduled review's turn cap (was 20 — a review is: read, file up to 3, submit). */
+export const MANAGER_MAX_STEPS = 12;
+export const MANAGER_INLINE_SKILLS = ['manager-workflow'];
+/**
+ * Spec 053 FR-006: the tools of the scheduled review. The digest is in the prompt; library, feeds, web and dataset
+ * edits are not a manager's work, and every tool schema is re-sent on every step. The owner's chat with the manager
+ * keeps its own set.
+ */
+export const MANAGER_TOOLS = new Set([
+  'get_kpi_digest', 'file_directive', 'list_directives', 'submit_review', 'explain_decision', 'get_network_posts', 'get_platform_stats',
+  'sql_readonly', 'list_ideas', 'list_series', 'get_playbook', 'list_agents', 'get_agent', 'propose_skill_edit', 'load_skill',
+]);
 export const DELIVERY_DEBOUNCE_MS = 10 * 60_000;
 export const WAKE_INTERVAL_MS = 60 * 60_000;
 /**
@@ -194,14 +207,15 @@ export class ManagerRunner {
     }
     const ctx = await this.d.runtime.forAgent(m, 'manager');
     const memory = (await this.d.repo.memory(m.id)).map((x) => `- [${x.kind}${x.createdBy === 'owner' ? ', власник' : ''}] ${x.text}`).join('\n');
-    const inlineSkill = ['manager-workflow', 'kpi-reading'].map((n) => ctx.skills.get(n)).filter(Boolean).map((s) => `### skill: ${s!.name}\n${s!.body}`).join('\n\n');
-    const listed = ctx.skills.list('manager').filter((s) => !['manager-workflow', 'kpi-reading'].includes(s.name)).map((s) => `- ${s.name}: ${s.description}`).join('\n');
+    // Spec 053 FR-006: the workflow inline; kpi-reading (how z, anomaly, insufficient read) is listed and loaded on demand.
+    const inlineSkill = MANAGER_INLINE_SKILLS.map((n) => ctx.skills.get(n)).filter(Boolean).map((s) => `### skill: ${s!.name}\n${s!.body}`).join('\n\n');
+    const listed = ctx.skills.list('manager').filter((s) => !MANAGER_INLINE_SKILLS.includes(s.name)).map((s) => `- ${s.name}: ${s.description}`).join('\n');
     const mctx = await readModelContext(this.d);
     const res = await this.d.loop.run({
       role: 'manager', channelKey: null, model: resolveModel('manager', this.d.env, null, { agentModel: agentModelIn(m, mctx.workspace), defaultModel: mctx.defaultModel, reasoningEffort: m.reasoningEffort, workspace: mctx.workspace }),
       system: managerSystemPrompt({ agent: m, now: this.now(), digest: this.d.digest.render(digest), memory, skills: { inline: inlineSkill, listed }, open: digest.directives?.open, qualityRefs: requiredQualityRefs(digest) }),
       user: 'Проаналізуй дайджест: KPI і якість контенту по кожному ресурсу (чекліст якості). Є підстава — file_directive (до 3; для якості — voice_fix / format_mix) і submit_review directives. Нічого робити не треба — submit_review continue, але з quality_check по кожному активному ресурсу з доказами.',
-      tools: this.d.registry.forRole('manager'), maxSteps: 20,
+      tools: this.d.registry.forRole('manager').filter((t) => MANAGER_TOOLS.has(t.name)), maxSteps: MANAGER_MAX_STEPS,
       agent: { id: m.id, handle: m.handle, limitUsd: m.dailyBudgetUsd ?? DEFAULT_MANAGER_DAILY_USD },
       extras: { agent: m, skills: ctx.skills, digest },
     });

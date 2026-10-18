@@ -118,7 +118,7 @@ function harness(executor: ConstructorParameters<typeof FakeLlm>[0], critic: Con
   const step = new EvergreenStep({ pool, plans, perDay: 1, inbox: new OwnerInbox(pool) });
   const runner = new EditorRunnerService({
     loop, registry, skills, plans, memory, env: () => undefined, notify: async () => {}, now: () => now,
-    critic: { service: criticService }, fallbackEvergreen: (req) => step.run(req),
+    critic: { service: criticService }, fallbackEvergreen: (req) => step.run(req), ladder: { maxExtraSteps: 3 },
   });
   return { runner, plans, llm };
 }

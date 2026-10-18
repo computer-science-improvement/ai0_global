@@ -13,6 +13,7 @@ import type { ScheduleService } from '../schedule/schedule.service';
 import { dryRunOf } from '../roles/preview-run';
 import { slotText } from '../manager/quality-digest';
 import { platformMediaFindings } from './platform-media';
+import { parseSpecArg, specRefInput } from '../tools/spec-arg';
 
 /** Per-run data of a platform slot (put into ctx.extras by the runner, spec 019/020). */
 export interface PlatformSlotExtras {
@@ -48,10 +49,14 @@ const READ_ROLES = ['planner', 'executor', 'reviewer', 'composer', 'orchestrator
 export function buildPlatformTools(d: PlatformToolDeps): EditorTool[] {
   const lintPlatform = defineTool({
     name: 'lint_platform_post',
-    description: 'Перевірити нативний пост для Instagram / Facebook / Threads / TikTok перед публікацією: ліміти підпису, хештеги, посилання, кількість медіа, формат. Повертає помилки й превʼю підпису.',
+    description: 'Перевірити нативний пост для Instagram / Facebook / Threads / TikTok перед публікацією: ліміти підпису, хештеги, посилання, кількість медіа, формат. Повертає помилки й превʼю підпису. publish_platform_post перевіряє те саме сам — окремо лише для складного посту.',
     kind: 'read', roles: ['executor', 'composer'], keepOnError: true,
-    input: z.object({ resource: z.string().min(3).max(200).optional().describe('ref ресурсу; у слоті — береться зі слота'), spec: AgentPlatformPostSpecSchema }),
-    execute: async ({ resource, spec }, ctx) => {
+    // Spec 053 FR-001: the schema lives on publish_platform_post only.
+    input: specRefInput('publish_platform_post').extend({ resource: z.string().min(3).max(200).optional().describe('ref ресурсу; у слоті — береться зі слота') }),
+    execute: async ({ resource, spec: raw }, ctx) => {
+      const parsed = parseSpecArg(AgentPlatformPostSpecSchema, raw);
+      if ('error' in parsed) return parsed;
+      const spec = parsed.spec;
       const ref = resource ?? slotOf(ctx)?.resourceRef;
       const p = ref ? parseResourceRef(ref) : null;
       if (!p || p.platform === 'telegram') return { error: 'not_a_platform_resource' };
@@ -63,7 +68,7 @@ export function buildPlatformTools(d: PlatformToolDeps): EditorTool[] {
 
   const publishPlatform = defineTool({
     name: 'publish_platform_post',
-    description: 'Опублікувати нативний пост у ресурс слота (Instagram / Facebook / Threads / TikTok) — завершує роботу. Перед збереженням пост читає критик: critic_revise — виправ зауваження й виклич ще раз (одна спроба). У shadow-режимі лише зберігає превʼю; у режимі апруву пост готується повністю і чекає схвалення власника. Перед цим lint_platform_post.',
+    description: 'Опублікувати нативний пост у ресурс слота (Instagram / Facebook / Threads / TikTok) — завершує роботу. Перед збереженням пост читає критик: critic_revise — виправ зауваження й виклич ще раз (одна спроба). У shadow-режимі лише зберігає превʼю; у режимі апруву пост готується повністю і чекає схвалення власника. Сам перевіряє lint і повертає errors — виправ і виклич ще раз.',
     kind: 'terminal', roles: ['executor'], timeoutMs: PUBLISH_TOOL_TIMEOUT_MS,
     input: z.object({ spec: AgentPlatformPostSpecSchema }),
     execute: async (input, ctx) => {
@@ -165,13 +170,13 @@ export function buildPlatformTools(d: PlatformToolDeps): EditorTool[] {
 
   const networkPosts = defineTool({
     name: 'get_network_posts',
-    description: 'Пости мережі на всіх платформах (Telegram + інші) за N днів: ресурс, формат, уривок, текст (перші 400 символів, коли пост написав агент), перегляди, залученість. Фільтр за ресурсом або групою.',
+    description: 'Пости мережі на всіх платформах (Telegram + інші) за N днів: ресурс, формат, уривок, текст (перші 200 символів, коли пост написав агент), перегляди, залученість. Фільтр за ресурсом або групою.',
     kind: 'read', roles: [...READ_ROLES],
     input: z.object({
       resource: z.string().max(200).optional(),
       network:  z.string().uuid().optional().describe('id мережі (групи акаунтів)'),
       days:     z.number().int().min(1).max(60).default(14),
-      limit:    z.number().int().min(1).max(100).default(40),
+      limit:    z.number().int().min(1).max(100).default(15),
     }),
     execute: async ({ resource, network, days, limit }) => {
       const { rows } = await d.pool.query(
@@ -196,7 +201,7 @@ export function buildPlatformTools(d: PlatformToolDeps): EditorTool[] {
       return {
         posts: rows.map(({ post_ref, slot_spec, slot_preview, ...r }) => ({
           ...r,
-          ...(slot_spec || slot_preview ? { text: slotText(slot_spec, slot_preview).slice(0, 400) } : {}),
+          ...(slot_spec || slot_preview ? { text: slotText(slot_spec, slot_preview).slice(0, 200) } : {}),
           ...(typeof post_ref === 'string' && post_ref.startsWith('tg:') ? { published_post_id: Number(post_ref.slice(3)) } : {}),
           ...(typeof post_ref === 'string' && post_ref.startsWith('pp:') ? { platform_post_id: Number(post_ref.slice(3)) } : {}),
         })),

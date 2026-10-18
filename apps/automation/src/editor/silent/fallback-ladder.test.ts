@@ -24,7 +24,7 @@ const shadow: Behaviour = (st) => {
 const lint: Behaviour = () => ({ error: 'lint_failed', details: [{ code: 'caption_too_long', message: 'задовго' }] });
 const agentSkip: Behaviour = (st) => { Object.assign(st, { status: 'skipped', error: 'skipped by agent: нічого гідного' }); return { ok: true, skipped: true }; };
 
-function setup(script: Behaviour[], o: { slot?: any; budget?: (n: number) => boolean; evergreen?: boolean; live?: any; card?: any } = {}) {
+function setup(script: Behaviour[], o: { slot?: any; budget?: (n: number) => boolean; evergreen?: boolean; live?: any; card?: any; extraSteps?: number } = {}) {
   const st: any = { ...(o.slot ?? baseSlot), status: 'running', error: null, critic: null };
   const runs: any[] = [];
   const patches: any[] = [];
@@ -52,6 +52,8 @@ function setup(script: Behaviour[], o: { slot?: any; budget?: (n: number) => boo
     },
     memory: { listActive: async () => [] },
     env: () => undefined, notify: async () => {}, now: () => NOW,
+    // The full ladder (spec 037); spec 053's default of one extra step has its own test.
+    ladder: { maxExtraSteps: o.extraSteps ?? 3 },
     ...(o.budget ? { budget: async () => (o.budget!(++budgetCalls) ? { ok: true as const } : { ok: false as const, reason: 'channel cap: $0.300 / $0.3' }) } : {}),
     ...(o.evergreen ? {
       fallbackEvergreen: async (req: any) => {
@@ -274,4 +276,47 @@ test('pure: classify, lighter formats, plan', () => {
   assert.deepEqual(ladderPlan({ format: 'text', allowed: new Set(['text']), evergreen: false }).map((x) => x.step), ['next_candidate']);
   assert.deepEqual(ladderPlan({ format: 'carousel', allowed: new Set(['photo']), evergreen: true }).map((x) => `${x.step}:${x.format}`),
     ['next_candidate:carousel', 'lighter_format:photo', 'evergreen:photo']);
+});
+
+// ── spec 053 FR-007: fewer re-runs ──────────────────────────────────────────
+
+test('053: by default one ladder step after the first attempt; a lint failure tries the lighter format first', async () => {
+  const s = setup([reject, reject, reject], { extraSteps: 1 });
+  await s.runner.runExecutor(baseSlot, s.card);
+  assert.equal(s.runs.length, 2, 'the first attempt and one step');
+  assert.equal(s.st.status, 'skipped');
+  assert.deepEqual(fallbackOf(s.st).steps.map((x) => x.step), ['initial', 'next_candidate']);
+  assert.equal(fallbackOf(s.st).final!.code, 'exhausted');
+  assert.deepEqual(ladderPlan({ format: 'photo', allowed: new Set(['photo', 'text']), evergreen: false, failure: 'lint' }).map((x) => x.step), ['lighter_format', 'next_candidate']);
+  assert.deepEqual(ladderPlan({ format: 'photo', allowed: new Set(['photo', 'text']), evergreen: false, failure: 'critic_reject' }).map((x) => x.step), ['next_candidate', 'lighter_format']);
+});
+
+test('053: no 15-minute retry after a content failure; a crash still retries', async () => {
+  const content = setup([lint, lint]);
+  (content.runner as any).d.ladder = { enabled: false };
+  await content.runner.runExecutor(baseSlot, content.card);
+  assert.equal(content.st.status, 'failed');
+  assert.match(content.st.error, /^lint_failed: caption_too_long/);
+  assert.equal(content.patches.some((p: any) => p.status === 'planned'), false);
+
+  const crash = setup([() => ({ error: 'http_502', details: 'upstream' })]);
+  await crash.runner.runExecutor(baseSlot, crash.card);
+  assert.equal(crash.st.status, 'planned');
+  assert.ok(crash.st.retryAt);
+});
+
+test('053: critic passes count across the retry — a slot that used them is skipped before another run', async () => {
+  const spent = setup([shadow]);
+  const slot = { ...baseSlot, fallback: { steps: [{ step: 'initial', critic_passes: 2 }, { step: 'next_candidate', critic_passes: 1 }], final: null } };
+  Object.assign(spent.st, { fallback: slot.fallback });
+  await spent.runner.runExecutor(slot, spent.card);
+  assert.equal(spent.runs.length, 0, 'no executor run');
+  assert.equal(spent.st.status, 'skipped');
+  assert.match(spent.st.error, /critic_cap: 3 critic passes/);
+
+  // A run the critic read that then crashed goes into the trace, so the retry counts its passes.
+  const read = setup([(st) => { Object.assign(st, { critic: { verdict: 'revise', notes: 'штампи', history: [{}] } }); return { error: 'http_502', details: 'upstream' }; }]);
+  await read.runner.runExecutor(baseSlot, read.card);
+  assert.equal(read.st.status, 'planned');
+  assert.equal(fallbackOf(read.st).steps.at(-1)!.critic_passes, 2);
 });

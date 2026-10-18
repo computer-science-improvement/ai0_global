@@ -4,7 +4,7 @@ import { estimateCostUsd, resolveModel } from './model-registry';
 import { llmUsage, type LlmUsageRecorder } from '../../common/ai/usage/llm-usage.service';
 import type { EstimateResult, TokenUsage } from '../../common/ai/usage/price.service';
 
-type HttpPost = (url: string, body: unknown, cfg: { headers: Record<string, string>; timeout: number }) => Promise<{ data: any }>;
+type HttpPost = (url: string, body: unknown, cfg: { headers: Record<string, string>; timeout: number; signal?: AbortSignal }) => Promise<{ data: any }>;
 
 export interface OpenRouterClientOptions {
   apiKey:    string | undefined;
@@ -20,6 +20,32 @@ export interface OpenRouterClientOptions {
 }
 
 const RETRY_DELAYS_MS = [1_000, 3_000];
+
+/**
+ * Spec 053 FR-009: models OpenRouter caches only when the request marks `cache_control` (Anthropic, Gemini). Others
+ * (GLM, DeepSeek, OpenAI…) cache a repeated prefix by themselves.
+ */
+export function needsCacheMarks(model: string): boolean {
+  return /^(anthropic|google)\//.test(model);
+}
+
+const EPHEMERAL = { type: 'ephemeral' } as const;
+
+/**
+ * Wire messages with the Anthropic-client breakpoints: the system prompt and a rolling one on the newest user / tool
+ * message, so the next step of the loop reads the whole prefix (tools included) from the cache.
+ */
+export function withCacheMarks(wire: Array<Record<string, unknown>>): Array<Record<string, unknown>> {
+  const out = wire.map((m) => ({ ...m }));
+  const mark = (m: Record<string, unknown>) => {
+    if (typeof m.content === 'string' && m.content) m.content = [{ type: 'text', text: m.content, cache_control: EPHEMERAL }];
+  };
+  const sys = out.find((m) => m.role === 'system');
+  if (sys) mark(sys);
+  const last = out[out.length - 1];
+  if (last && (last.role === 'user' || last.role === 'tool')) mark(last);
+  return out;
+}
 
 /**
  * OpenRouter chat-completions client (OpenAI wire format). Retries twice on
@@ -45,9 +71,10 @@ export class OpenRouterClient implements LlmClient {
   async chat(req: LlmRequest): Promise<LlmResponse> {
     if (!this.opts.apiKey) throw new Error('OPENROUTER_API_KEY is not set');
 
+    const wire = req.messages.map(toWireMessage);
     const body: Record<string, unknown> = {
       model:    req.model,
-      messages: req.messages.map(toWireMessage),
+      messages: req.cache !== false && needsCacheMarks(req.model) ? withCacheMarks(wire) : wire,
       ...(req.tools?.length ? {
         tools: req.tools.map((t) => ({ type: 'function', function: { name: t.name, description: t.description, parameters: t.parameters } })),
         tool_choice: 'auto',
@@ -65,15 +92,18 @@ export class OpenRouterClient implements LlmClient {
     let data: any;
     let attempts: number;
     try {
-      ({ data, attempts } = await this.postWithRetry(body));
+      ({ data, attempts } = await this.postWithRetry(body, req.signal));
     } catch (err: any) {
       tracker.fail(err, { attempts: err?.attempts });
       throw err;
     }
     const promptTokens     = Number(data?.usage?.prompt_tokens ?? 0);
     const completionTokens = Number(data?.usage?.completion_tokens ?? 0);
-    const cachedTokens     = typeof data?.usage?.prompt_tokens_details?.cached_tokens === 'number' ? data.usage.prompt_tokens_details.cached_tokens : null;
-    const tokens = data?.usage ? { tokensIn: promptTokens, tokensOut: completionTokens, tokensCachedRead: cachedTokens } : {};
+    const details          = data?.usage?.prompt_tokens_details;
+    const cachedTokens     = typeof details?.cached_tokens === 'number' ? details.cached_tokens : null;
+    // Spec 053 FR-009: cache writes (Anthropic / Gemini via OpenRouter) in the ledger, like the Anthropic workspace.
+    const cacheWrite       = typeof details?.cache_write_tokens === 'number' ? details.cache_write_tokens : null;
+    const tokens = data?.usage ? { tokensIn: promptTokens, tokensOut: completionTokens, tokensCachedRead: cachedTokens, ...(cacheWrite !== null ? { tokensCachedWrite: cacheWrite } : {}) } : {};
 
     const choice = data?.choices?.[0];
     if (!choice?.message) {
@@ -106,7 +136,7 @@ export class OpenRouterClient implements LlmClient {
     };
   }
 
-  private async postWithRetry(body: unknown): Promise<{ data: any; attempts: number }> {
+  private async postWithRetry(body: unknown, signal?: AbortSignal): Promise<{ data: any; attempts: number }> {
     for (let attempt = 0; ; attempt++) {
       try {
         const res = await this.http.post(`${this.baseUrl}/chat/completions`, body, {
@@ -116,11 +146,13 @@ export class OpenRouterClient implements LlmClient {
             'X-Title':      'ai0_global editor',
           },
           timeout: this.timeoutMs,
+          ...(signal ? { signal } : {}),
         });
         return { data: res.data, attempts: attempt + 1 };
       } catch (err: any) {
         const status: number | undefined = err?.response?.status;
-        const retryable = status === undefined || status === 429 || status >= 500;
+        const canceled = err?.code === 'ERR_CANCELED' || signal?.aborted === true;
+        const retryable = !canceled && (status === undefined || status === 429 || status >= 500);
         if (!retryable || attempt >= RETRY_DELAYS_MS.length) {
           const detail = err?.response?.data?.error?.message ?? err?.message ?? String(err);
           // status / code / attempts let the spend ledger classify the failure (error vs timeout).

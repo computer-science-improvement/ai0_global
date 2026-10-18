@@ -4,6 +4,7 @@ import type { AgentBudget, BudgetGate } from './budget.service';
 import type { RunRecorder, RunStatus, RunTotals } from './run-recorder';
 import { EditorTool, ToolContext, ToolError, isToolError, toToolSpec } from './tool';
 import { toToolContent } from './truncate';
+import { elideOldToolResults } from './context-trim';
 import { withLlmContext, type LlmContext } from '../../common/ai/usage/llm-context';
 import { editorFeature, telegramResource } from '../../common/ai/usage/features';
 
@@ -48,6 +49,10 @@ export interface AgentLoopInput {
   usage?:            { feature?: string; shadow?: boolean };
   /** The run's own spend cap (spec 040 FR-001, a chat turn's EDITOR_CHAT_TURN_MAX_USD): reaching it ends the run `budget_exceeded`. */
   maxCostUsd?:       number | null;
+  /** Spec 053 FR-002: false for a run that is one call (the critic): no prompt-cache breakpoints, nothing reads them back. */
+  cache?:            boolean;
+  /** Spec 053 FR-002: the caller gave up on the run (a timed-out critic): no further steps, the HTTP call is cancelled. */
+  signal?:           AbortSignal;
 }
 
 export interface AgentLoopResult {
@@ -226,10 +231,14 @@ export class AgentLoop {
     const errorCounts = new Map<string, number>();
     const dropped = new Set<string>();
     let repeatBlocked = 0;
-    const liveSpecs = () => input.tools.filter((t) => !dropped.has(t.name)).map(toToolSpec);
-    // The last turn may only end the run: a role that has terminal tools must not run out of turns mid-research.
-    const terminalSpecs = input.tools.filter((t) => t.kind === 'terminal').map(toToolSpec);
+    // Spec 053 FR-002: one tool list for the run. Tools open the provider's cached prefix, so swapping them re-writes the
+    // whole prompt at the cache-write price: the last turn keeps every tool and says in text that only a terminal one
+    // counts. A tool dropped by the breaker still leaves the list (rare, and a stubborn model keeps calling what it sees).
+    const allSpecs = input.tools.map(toToolSpec);
+    const liveSpecs = () => (dropped.size ? allSpecs.filter((t) => !dropped.has(t.name)) : allSpecs);
     const terminalNames = input.tools.filter((t) => t.kind === 'terminal').map((t) => t.name);
+    const toolOfCall = new Map<string, string>();
+    let graceUsed = false;
 
     let runId: string;
     try {
@@ -270,6 +279,7 @@ export class AgentLoop {
 
     try {
       for (let turn = 0; turn < maxSteps; turn++) {
+        if (input.signal?.aborted) return finish('error', { error: 'aborted by the caller' });
         if (input.maxCostUsd != null && input.maxCostUsd > 0 && totals.costUsd >= input.maxCostUsd) {
           return finish('budget_exceeded', { error: `turn budget: $${totals.costUsd.toFixed(4)} >= $${input.maxCostUsd}` });
         }
@@ -279,15 +289,19 @@ export class AgentLoop {
           return finish('budget_exceeded', { error: `${verdict.scope} budget${key}: $${verdict.spentUsd.toFixed(4)} >= $${verdict.limitUsd}` });
         }
 
-        const lastTurn = turn === maxSteps - 1 && terminalSpecs.length > 0;
+        const lastTurn = turn === maxSteps - 1 && terminalNames.length > 0;
         if (lastTurn) {
-          messages.push({ role: 'user', content: `Це останній крок. Заверши роботу зараз викликом одного з інструментів: ${terminalSpecs.map((t) => t.name).join(', ')}. Якщо матеріалу для поста не вистачає — пропусти слот і коротко назви причину.` });
+          messages.push({ role: 'user', content: `Це останній крок. Заверши роботу зараз викликом одного з інструментів: ${terminalNames.join(', ')} — інші інструменти вже не виконуються. Якщо матеріалу для поста не вистачає — пропусти слот і коротко назви причину.` });
         }
+        // Spec 053 FR-003: old tool results give way to stubs once the run's results pass the cap.
+        elideOldToolResults(messages, (id) => toolOfCall.get(id));
         const t0 = now();
         const res = await withLlmContext({ ...usage, stepIdx: totals.steps }, () => this.deps.llm.chat({
-          model: input.model.model, messages, tools: lastTurn ? terminalSpecs : liveSpecs(),
+          model: input.model.model, messages, tools: liveSpecs(),
           maxTokens: input.model.maxTokens, temperature: input.model.temperature, reasoningEffort: input.model.reasoningEffort,
           ...(input.model.workspace === 'anthropic' ? { provider: 'anthropic' as const } : {}),
+          ...(input.cache === false ? { cache: false } : {}),
+          ...(input.signal ? { signal: input.signal } : {}),
         }));
         totals.promptTokens     += res.usage.promptTokens;
         totals.completionTokens += res.usage.completionTokens;
@@ -325,6 +339,7 @@ export class AgentLoop {
         }
 
         const notes: string[] = [];
+        let lastTurnBlocked = false;
         for (const call of calls) {
           if (input.onEvent) emit({ type: 'tool_call', name: call.name, args: parseArgs(call.arguments) });
           const stepCtx = { ...usage, stepIdx: totals.steps };
@@ -332,7 +347,11 @@ export class AgentLoop {
           const previous = failedCalls.get(callKey);
           // LLM calls a tool makes itself are attributed to the run's feature, but without run/step ids:
           // (run_id, step_idx) belongs to the tool step row.
-          const outcome = previous !== undefined
+          const lateCall = lastTurn && byName.has(call.name) && byName.get(call.name)!.kind !== 'terminal';
+          if (lateCall) lastTurnBlocked = true;
+          const outcome = lateCall
+            ? blockedOutcome(call.arguments, 'last_turn', `це був останній крок — ${call.name} не виконано; виклич ${terminalNames.join(' або ')}`)
+            : previous !== undefined
             ? repeatOutcome(call.arguments, byName.get(call.name)?.repeatError ?? 'repeated_failed_call', previous)
             : dropped.has(call.name)
               ? blockedOutcome(call.arguments, 'tool_dropped', `${call.name} is off for the rest of this run after ${MAX_SAME_TOOL_ERRORS} errors of the same kind`)
@@ -343,7 +362,8 @@ export class AgentLoop {
           const toolCost = typeof (outcome.output as any)?._costUsd === 'number' ? (outcome.output as any)._costUsd as number : 0;
           totals.costUsd += toolCost;
           await withLlmContext(stepCtx, () => this.deps.recorder.toolStep(runId, totals.steps++, call, outcome.input, outcome.output, outcome.isError, outcome.durationMs, toolCost || null));
-          messages.push({ role: 'tool', toolCallId: call.id, content: toToolContent(outcome.output) });
+          toolOfCall.set(call.id, call.name);
+          messages.push({ role: 'tool', toolCallId: call.id, content: toToolContent(outcome.output, byName.get(call.name)?.maxResultChars) });
           if (!outcome.isError) toolsOk.push(call.name);
           else {
             const code = errorCode(outcome.output);
@@ -370,6 +390,11 @@ export class AgentLoop {
         }
         // After every tool result of this turn (the API wants them right after the assistant message).
         if (notes.length) messages.push({ role: 'user', content: notes.join('\n') });
+        // Spec 053 FR-002: the last turn keeps every tool, so a model may still reach for research — one more turn, once.
+        if (lastTurnBlocked && !graceUsed && turn === maxSteps - 1) {
+          graceUsed = true;
+          maxSteps += 1;
+        }
       }
       return finish('max_steps', { error: `no terminal tool after ${maxSteps} turns` });
     } catch (err: any) {

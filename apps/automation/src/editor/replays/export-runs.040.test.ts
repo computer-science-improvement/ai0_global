@@ -164,7 +164,8 @@ test('79124a8a: list_ideas answers 34 waiting ideas as one compact page (no cut 
     finish: { name: 'finish_idea_review', args: { summary: 'Прийнято 34 ідеї.' } },
   });
   const r = await replay('idea_reviewer', llm, pick(tools, 'list_ideas', 'review_idea', 'finish_idea_review'), { network: NET, agent: { id: 'a-rev' } }, 25);
-  const page = JSON.parse(toToolContent(r.steps[0].output));
+  // What the model saw: the tool's own cap (spec 053 — list_ideas keeps a whole page).
+  const page = JSON.parse(toToolContent(r.steps[0].output, tools.find((t) => t.name === 'list_ideas')!.maxResultChars));
   assert.equal(page.preview, undefined, 'the export got {"preview": "…"} here and fell back to SQL');
   assert.equal(page.total, 34);
   assert.deepEqual(page.ideas.map((i: any) => i.id), [...ideas].reverse().map((i) => i.id));

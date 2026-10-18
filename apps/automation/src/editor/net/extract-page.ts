@@ -20,7 +20,8 @@ export interface ExtractedPage {
   primary_links?: string[];
 }
 
-const TEXT_MAX = 12_000;
+/** Spec 053 FR-003: every later step re-sends the page — 6k characters carry the facts of a news page. */
+const TEXT_MAX = 6_000;
 
 /** Readable text + key metadata from an HTML page, for the model to read. */
 export function extractPage(html: string, baseUrl: string): ExtractedPage {

@@ -132,7 +132,7 @@ test('T9 snapshot: the writer prompt carries the «Уже було» block', () 
     '## Уже було (останні 16 постів) — не повторюй',
     '- Початки й структура за 3 дні: «N X» зі списком (5 термінів, пʼять шаблонів) ×2.',
     '- Фрази: «трлн параметрів у» ×2; «параметрів у архітектурі» ×2; «на кожен токен» ×2.',
-    'Підготуй пост і опублікуй його через publish_post (після lint_post) або пропусти через skip_slot з причиною.',
+    'Підготуй пост і опублікуй його через publish_post (він сам перевіряє lint і повертає errors) або пропусти через skip_slot з причиною.',
   ].join('\n'));
   // Without history the prompt is what it was before T9.
   assert.doesNotMatch(executorUserPrompt(card, slot, new Date('2026-10-12T15:50:00Z')), /Уже було/);

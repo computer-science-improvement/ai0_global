@@ -82,6 +82,17 @@ export const LADDER_MAX_LATE_MS = 90 * 60_000;
  */
 export const MAX_CRITIC_PASSES_PER_SLOT = 3;
 
+/**
+ * Spec 053 FR-007: at most this many ladder steps run after the first attempt (a step skipped for want of a candidate
+ * does not count). Each step is a whole executor + critic run.
+ */
+export const MAX_LADDER_EXTRA_STEPS = 1;
+
+/** Spec 053 FR-007: critic passes a slot used in its earlier attempts (the 15-minute retry included), from its trace. */
+export function priorCriticPasses(fallback: SlotFallback | null | undefined): number {
+  return (fallback?.steps ?? []).reduce((n, s) => n + (s.critic_passes ?? 0), 0);
+}
+
 /** Critic passes of the attempt whose verdict is stored on the slot (0 when the post never reached the critic). */
 export function criticPasses(slot: { critic?: { history?: unknown[] | null } | null } | null | undefined): number {
   if (!slot?.critic) return 0;
@@ -182,10 +193,11 @@ export function lighterFormat(format: string, allowed: ReadonlySet<string>): str
 }
 
 /** The steps after the initial attempt (each at most once). */
-export function ladderPlan(o: { format: string; allowed: ReadonlySet<string>; evergreen: boolean; live?: boolean }): Array<{ step: Exclude<LadderStep, 'initial'>; format: string }> {
+export function ladderPlan(o: { format: string; allowed: ReadonlySet<string>; evergreen: boolean; live?: boolean; failure?: SlotFailure['kind'] }): Array<{ step: Exclude<LadderStep, 'initial'>; format: string }> {
   const out: Array<{ step: Exclude<LadderStep, 'initial'>; format: string }> = [{ step: 'next_candidate', format: o.format }];
   const lighter = lighterFormat(o.format, o.allowed);
-  if (lighter) out.push({ step: 'lighter_format', format: lighter });
+  // Spec 053 FR-007: only one step runs — a post that failed lint tries the lighter format first.
+  if (lighter) out[o.failure === 'lint' ? 'unshift' : 'push']({ step: 'lighter_format', format: lighter });
   // Spec 037 T10: the evergreen step (`fallbackEvergreen`, silent/evergreen.ts); plain text when allowed (no image needed).
   // Spec 046 FR-006: never for a live (news) slot — review 2: an evergreen glossary went out on a news channel.
   if (o.evergreen && !o.live) out.push({ step: 'evergreen', format: o.allowed.has('text') ? 'text' : lighter ?? o.format });

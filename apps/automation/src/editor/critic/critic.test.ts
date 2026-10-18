@@ -145,12 +145,15 @@ test('critic run: an error or a missing verdict is retried once, then reported (
   assert.match((b as any).error, /budget_exceeded/);
   assert.equal(capped.recorder.runs.length, 1);
   // A hung model times out (each attempt), then fails.
+  const inputs: any[] = [];
   const hung = new CriticService({
-    loop: { run: () => new Promise(() => {}) }, env: () => undefined, timeoutMs: 20,
+    loop: { run: (i: any) => { inputs.push(i); return new Promise(() => {}); } }, env: () => undefined, timeoutMs: 20,
   });
   const t = await hung.review(req());
   assert.equal(t.ok, false);
   assert.match((t as any).error, /timed out/);
+  // Spec 053 FR-002: one call, no cache breakpoints; the timed-out attempt is cancelled, not left running.
+  assert.ok(inputs.length >= 1 && inputs.every((i) => i.cache === false && i.signal?.aborted === true));
 });
 
 test('critic spend is a ledger row of its own feature (editor.checker), attributed to the slot resource', async () => {
@@ -282,9 +285,10 @@ test('a revise on the last step still ends in publish or skip (the loop grants t
   assert.equal(res.status, 'ok', res.error);
   assert.equal(res.terminalTool, 'publish_post');
   assert.equal(h.sent.length, 1);
-  // Turn 1 offered every tool (the rewrite may lint); the granted last turn offers terminal tools only.
+  // Spec 053 FR-002: every turn offers the same tools (the cached prefix holds); the last one says in text to finish.
   assert.deepEqual(h.execLlm.requests[1].tools!.map((t) => t.name).sort(), ['lint_post', 'publish_post', 'skip_slot']);
-  assert.deepEqual(h.execLlm.requests[2].tools!.map((t) => t.name).sort(), ['publish_post', 'skip_slot']);
+  assert.deepEqual(h.execLlm.requests[2].tools!.map((t) => t.name).sort(), ['lint_post', 'publish_post', 'skip_slot']);
+  assert.match(String(h.execLlm.requests[2].messages.at(-1)!.content), /останній крок/);
   assert.equal(CRITIC_REVISE_GRANT_STEPS, 2);
 });
 

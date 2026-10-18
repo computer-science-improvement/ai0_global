@@ -10,6 +10,8 @@ import { DEFAULT_TZ, resourceTimeLines } from '../time/resource-time';
 import type { IdeaRow } from './network.repository';
 import { renderPlaybook, seriesDue } from './playbook';
 import type { ResourceProfile } from '../agents/resource-profile';
+import { similarity } from '../post/similarity';
+import { isEvergreenTopic, recentTopicHit, type RecentTopic } from '../story/recent-topics';
 
 const WEEKDAYS = ['неділя', 'понеділок', 'вівторок', 'середа', 'четвер', 'пʼятниця', 'субота'];
 const BUDGET = 8_000;
@@ -79,7 +81,7 @@ export function orchestratorSystemPrompt(o: { net: NetworkCtx; card: EditorCard;
     ...resourceProfilesBlock(o.profiles ?? []),
     '',
     '## Картка Telegram-каналу',
-    JSON.stringify({ ...cardSummary(o.card), capabilities: undefined }, null, 1),
+    JSON.stringify({ ...cardSummary(o.card), capabilities: undefined }),
     '',
     '## Плейбук',
     net.playbook ? `v${net.playbookVersion}\n${renderPlaybook(net.playbook)}` : '- ще немає',
@@ -105,8 +107,8 @@ export function orchestratorDailyPrompt(o: { net: NetworkCtx; card: EditorCard; 
       ? `Сьогодні додай до ${o.quota} ідей (слоти дня + 1 запасна; більше add_idea не прийме) — краще менше, але сильних.`
       : 'Ідей у пулі вистачає на 2 дні — сьогодні нових не додавай (add_idea відмовить); доопрацюй ті, що на доопрацюванні.'}`,
     o.quota
-      ? 'Подивись статистику (get_network_posts, get_platform_stats, get_format_performance), нещодавні пости й джерела (fetch_feed, fetch_api, library_catalog), і додай ідеї через add_idea — кожна з варіантами під ресурси й форматами плейбука. Новина для новинного ресурсу — з 2 джерел з різних сайтів.'
-      : 'Подивись статистику (get_network_posts, get_platform_stats, get_format_performance), щоб вирішити, чи щось у подачі варто змінити.',
+      ? 'Статистика 7 днів — нижче (глибше — get_network_posts, get_platform_stats). Подивись джерела (fetch_feed, library_catalog) і додай ідеї через add_idea — кожна з варіантами під ресурси й форматами плейбука. Новина для новинного ресурсу — з 2 джерел з різних сайтів.'
+      : 'Статистика 7 днів — нижче: виріши за нею, чи щось у подачі варто змінити (глибше — get_network_posts, get_platform_stats).',
     'Пост, що вже добре зайшов на одному ресурсі (get_network_posts), можна продублювати чи адаптувати на інші ресурси мережі через repurpose_post — час і інтервал обираєш ти, оформлення під ресурс теж твоє (як вирішувати — скіл resource-decisions).',
     'Форматування кожного ресурсу (format_prefs: get_resource_format) — твоє: змінюй update_resource_format, коли KPI або правки власника (у режимі апруву його правки постів — у памʼяті) показують, що інша подача працює краще. Поля, закріплені власником, не чіпай; не більше 3 змін на ресурс за день, не туди-сюди.',
     'Серії (рубрики) змінюй точково: list_series, define_series, update_series, set_series_active (так виконується директива pause_series), retire_series — не більше 5 змін за прогін. Серії власника (locked) не чіпай: якщо бачиш, що їх варто змінити, напиши це в підсумку.',
@@ -126,7 +128,7 @@ export function playbookBuildPrompt(o: { net: NetworkCtx; brief: string | null; 
     'Заклик (cta) — необовʼязковий і за замовчуванням відсутній: став його, лише якщо власник просив. Не закінчуй пости питаннями до аудиторії за звичкою.',
     'Опитування й вікторини (poll, quiz) — вага 0, якщо власник прямо не просив їх у брифі і ресурс не освітній чи вікторинний (content_kind education / quiz в audience_caps з get_resource_format). Навіть тоді код пропустить не більше polls_per_week на ресурс за 7 днів (за замовчуванням 1).',
     'Серії — лише ті, що просив власник або явно випливають з даних. Правила з брифу перенеси в rules дослівно-коротко.',
-    'Спершу подивись статистику (get_network_posts, get_platform_stats, get_format_performance). Заверши submit_playbook.',
+    'Спершу подивись статистику (get_network_posts, get_platform_stats). Заверши submit_playbook.',
   ].join('\n');
 }
 
@@ -152,7 +154,7 @@ export function ideaReviewerSystemPrompt(o: { net: NetworkCtx; profile: string |
 const clip = (s: string | null | undefined, n: number) => (s && s.length > n ? `${s.slice(0, n - 1)}…` : s ?? '');
 
 /** One idea of the reviewer's batch (spec 040 FR-004): everything a verdict needs, on one line. */
-export function ideaReviewLine(i: IdeaRow): string {
+export function ideaReviewLine(i: IdeaRow, novelty?: string | null): string {
   return [
     `- ${i.id} · «${clip(i.title, 140)}»`,
     i.angle ? `кут: ${clip(i.angle, 300)}` : '',
@@ -160,20 +162,38 @@ export function ideaReviewLine(i: IdeaRow): string {
     `джерела: ${i.sources.length ? i.sources.slice(0, 3).map((u) => clip(u, 160)).join(' ') : 'немає'}`,
     `варіанти: ${i.variants.map((v) => `${v.resource_ref}/${v.format}`).join(', ')}`,
     `походження: ${i.origin}${i.revisions ? ', уже доопрацьована' : ''}`,
+    novelty ? `новизна: ${novelty}` : '',
   ].filter(Boolean).join(' · ');
 }
 
-export function ideaReviewerUserPrompt(o: { fresh: number; batch?: IdeaRow[]; pendingPlaybook: boolean }): string {
+/**
+ * Spec 053 FR-004: the novelty facts the reviewer used to dig out with get_network_posts and SQL (9.6 calls a run):
+ * the closest network post of 14 days and an evergreen topic of 30 days, computed by code.
+ */
+export function ideaNovelty(i: Pick<IdeaRow, 'title' | 'angle'>, recent: readonly string[], topics: readonly RecentTopic[]): string {
+  const text = [i.title, i.angle ?? ''].join(' ');
+  const best = recent.map((t) => ({ t, s: similarity(text, t) })).sort((a, b) => b.s - a.s)[0];
+  const hit = isEvergreenTopic(i.title, i.angle) ? recentTopicHit({ title: i.title, angle: i.angle }, topics) : null;
+  return [
+    best && best.s >= NOVELTY_NOTE_SIMILARITY ? `найближчий пост 14 днів «${clip(best.t.split('\n')[0], 80)}» (схожість ${best.s.toFixed(2)})` : 'схожих постів за 14 днів немає',
+    hit ? `тема вже була за 30 днів: «${clip(hit.title, 80)}»` : '',
+  ].filter(Boolean).join('; ');
+}
+
+/** Below this the closest post is not worth naming. */
+const NOVELTY_NOTE_SIMILARITY = 0.3;
+
+export function ideaReviewerUserPrompt(o: { fresh: number; batch?: IdeaRow[]; pendingPlaybook: boolean; novelty?: ReadonlyMap<string, string> }): string {
   const batch = o.batch ?? [];
   return [
     !o.fresh ? 'Нових ідей немає.'
-      : batch.length ? `На рецензії ${o.fresh} нових ідей. Ось ${batch.length} найстаріших — оціни кожну через review_idea (кілька викликів за крок):`
-      : `На рецензії ${o.fresh} нових ідей: list_ideas(status=[new], oldest_first=true) і review_idea для кожної.`,
-    ...batch.map(ideaReviewLine),
+      : batch.length ? `На рецензії ${o.fresh} нових ідей. Ось ${batch.length} найстаріших — оціни їх усі одним викликом review_ideas:`
+      : `На рецензії ${o.fresh} нових ідей: list_ideas(status=[new], oldest_first=true), потім review_ideas для пачки.`,
+    ...batch.map((i) => ideaReviewLine(i, o.novelty?.get(i.id))),
     o.fresh > batch.length && batch.length
-      ? `Решта (${o.fresh - batch.length}) — list_ideas(status=[new], oldest_first=true, offset=${batch.length}), якщо лишаться кроки; інакше наступним прогоном.` : '',
+      ? `Решта (${o.fresh - batch.length}) — наступним прогоном.` : '',
     o.pendingPlaybook ? 'Є чернетка плейбука на затвердження власнику: get_playbook і review_playbook (коротко, по пунктах).' : '',
-    'Для перевірки новизни дивись get_network_posts; для перевірки джерел можна web_fetch. Заверши finish_idea_review коротким підсумком.',
+    'Новизну код уже порахував (поле «новизна»); web_fetch — лише для сумнівного джерела. Заверши finish_idea_review коротким підсумком.',
   ].filter(Boolean).join('\n');
 }
 

@@ -256,8 +256,11 @@ export class CriticService {
     for (let attempt = 1; attempt <= CRITIC_ATTEMPTS; attempt++) {
       let res: AgentLoopResult;
       try {
-        res = await this.withTimeout(this.d.loop.run({
+        res = await this.withTimeout((signal) => this.d.loop.run({
           role: 'checker', channelKey: r.channelKey, slotId: r.slotId, model, system, user, tools: [tool],
+          // Spec 053 FR-002: a critic run is one call — a cache write would cost 1.25× and never be read back; a timed-out
+          // run is cancelled, not left to bill in the background.
+          cache: false, signal,
           maxSteps: CRITIC_MAX_STEPS, channelBudgetUsd: r.card?.dailyBudgetUsd ?? null, agent: r.agent ?? null,
           // Usage attribution (spec 029): the target resource and whether the slot is a shadow one.
           extras: {
@@ -302,13 +305,16 @@ export class CriticService {
     };
   }
 
-  private async withTimeout<T>(p: Promise<T>): Promise<T> {
+  private async withTimeout<T>(run: (signal: AbortSignal) => Promise<T>): Promise<T> {
     const ms = this.d.timeoutMs ?? CRITIC_TIMEOUT_MS;
+    const ctl = new AbortController();
     let timer: NodeJS.Timeout | undefined;
     try {
       return await Promise.race([
-        p,
-        new Promise<never>((_, reject) => { timer = setTimeout(() => reject(new Error(`critic timed out after ${ms}ms`)), ms); }),
+        run(ctl.signal),
+        new Promise<never>((_, reject) => {
+          timer = setTimeout(() => { ctl.abort(); reject(new Error(`critic timed out after ${ms}ms`)); }, ms);
+        }),
       ]);
     } finally {
       if (timer) clearTimeout(timer);

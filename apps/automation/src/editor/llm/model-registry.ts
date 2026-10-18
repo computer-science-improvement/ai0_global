@@ -102,7 +102,8 @@ const ROLE_DEFAULTS: Record<EditorRole, { maxTokens: number; temperature: number
   composer: { maxTokens: 6000, temperature: 0.6, reasoningEffort: 'low' },
   orchestrator:  { maxTokens: 8000, temperature: 0.6, reasoningEffort: 'medium' },
   idea_reviewer: { maxTokens: 6000, temperature: 0.2, reasoningEffort: 'low' },
-  manager:       { maxTokens: 8000, temperature: 0.3, reasoningEffort: 'medium' },
+  // Spec 053 FR-006: the digest is pre-computed (z, anomalies) — low effort; thinking is billed as output.
+  manager:       { maxTokens: 8000, temperature: 0.3, reasoningEffort: 'low' },
   builder:       { maxTokens: 6000, temperature: 0.4, reasoningEffort: 'low' },
   // Spec 042 FR-003: one structured analysis of 20 posts (six sections with evidence).
   onboarder:     { maxTokens: 8000, temperature: 0.3, reasoningEffort: 'medium' },

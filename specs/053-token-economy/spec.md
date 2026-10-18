@@ -1,6 +1,6 @@
 # 053 Token economy
 
-**Epic:** AI0-226 (T1–T10 = AI0-227…236) · **Priority:** P1 · **Depends on:** 038, 041, 046 · **Status:** planned, not started · **Applies to:** both workspaces (OpenRouter and Anthropic)
+**Epic:** AI0-226 (T1–T10 = AI0-227…236) · **Priority:** P1 · **Depends on:** 038, 041, 046 · **Status:** done 2026-10-18 (deltas in [tasks.md](tasks.md)) · **Applies to:** both workspaces (OpenRouter and Anthropic)
 
 ## Why
 

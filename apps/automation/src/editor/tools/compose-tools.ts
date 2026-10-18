@@ -8,6 +8,7 @@ import { safeGet, RawGet } from '../net/safe-http';
 import type { Lookup } from '../net/ssrf-guard';
 import { extractPage } from '../net/extract-page';
 import { fetchPageGuarded, isFetchFailure, type HostFailures } from '../net/host-failures';
+import { parseSpecArg, specRefInput } from './spec-arg';
 
 export interface ComposeToolDeps {
   http?: { lookup?: Lookup; get?: RawGet };
@@ -33,18 +34,26 @@ export function buildComposeTools(d: ComposeToolDeps = {}): EditorTool[] {
 
   const lint = defineTool({
     name: 'lint_post',
-    description: 'Перевірити PostSpec за правилами каналу (формат, хештеги, атрибуція, довжина, мова, заборонені фрази, емодзі). Виправ усі errors перед publish_post.',
+    description: 'Перевірити PostSpec за правилами каналу (формат, хештеги, атрибуція, довжина, мова, заборонені фрази, емодзі). publish_post / save_draft перевіряють те саме самі — окремо варто лише для складного формату.',
     kind: 'read', roles: ['executor', 'composer'], keepOnError: true,
-    input: z.object({ spec: AgentPostSpecSchema }),
-    execute: async ({ spec }, ctx) => lintFailed(lintPost(spec, cardFrom(ctx))),
+    // Spec 053 FR-001: no second copy of the PostSpec schema — the terminal tool has it.
+    input: specRefInput('publish_post (у чаті — save_draft)'),
+    execute: async (input, ctx) => {
+      const p = parseSpecArg(AgentPostSpecSchema, input.spec);
+      if ('error' in p) return p;
+      return lintFailed(lintPost(p.spec, cardFrom(ctx)));
+    },
   });
 
   const preview = defineTool({
     name: 'preview_post',
     description: 'Показати, як PostSpec виглядатиме в Telegram після рендеру (HTML/текст), разом із результатом lint.',
     kind: 'read', roles: ['executor', 'composer'],
-    input: z.object({ spec: AgentPostSpecSchema }),
-    execute: async ({ spec }, ctx) => {
+    input: specRefInput('publish_post (у чаті — save_draft)'),
+    execute: async (input, ctx) => {
+      const p = parseSpecArg(AgentPostSpecSchema, input.spec);
+      if ('error' in p) return p;
+      const spec = p.spec;
       const card = cardFrom(ctx);
       const l = lintPost(spec, card);
       if (l.errors.some((e) => e.code === 'format_not_supported_yet' || e.code === 'poll_missing')) return { lint: l };

@@ -337,13 +337,13 @@ test('render: always valid JSON under the limit; the head (budget, directives, c
   assert.doesNotMatch(renderDigest(heavyDigest(120), 3_000), /обрізано/);
 });
 
-test('get_kpi_digest: no args parses; {resource} returns one block with its open directives', async () => {
+test('get_kpi_digest: {resource} returns one block with its open directives; the whole digest is not asked for (053)', async () => {
   const d = heavyDigest(60);
   const tools = buildDirectiveTools({ digest: { build: async () => d, render: (x: KpiDigest) => renderDigest(x) } } as any);
   const t = tools.find((x) => x.name === 'get_kpi_digest')!;
   const ctx = { extras: {}, role: 'manager' } as any;
-  const all = await t.execute({}, ctx) as any;
-  assert.ok(all.budget && Array.isArray(all.resources));
+  // Spec 053 FR-006: the whole digest is in the prompt — the tool takes a resource.
+  assert.equal(t.input.safeParse({}).success, false);
   const one = await t.execute({ resource: '@r7' }, ctx) as any;
   assert.equal(one.resource.ref, 'telegram:@r7');
   assert.ok(one.resource.quality.samples.length > 0, 'the single view keeps samples');

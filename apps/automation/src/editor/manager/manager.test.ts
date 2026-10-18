@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { computeKpis, dayBefore, DailySeries, meanMetric, sumMetric } from './kpi-math';
 import { fileDirective, isStructural, buildDirectiveTools } from './directive-tools';
-import { ManagerRunner } from './manager-runner';
+import { MANAGER_MAX_STEPS, ManagerRunner } from './manager-runner';
 import type { Directive } from './directives.repository';
 
 const TODAY = '2026-10-20';
@@ -140,7 +140,7 @@ test('accept_directive refuses a conflict with an owner rule (contest it); rejec
   assert.equal(decline.input.safeParse({ id: '00000000-0000-4000-8000-000000000001', reason_kind: 'preference', reason: 'не пасує нашому тону' }).success, true);
 });
 
-function managerSetup(o: { lastHash?: string | null; anomalies?: boolean; due?: Directive[]; awaiting?: any[]; after?: number | null } = {}) {
+function managerSetup(o: { lastHash?: string | null; anomalies?: boolean; due?: Directive[]; awaiting?: any[]; after?: number | null; tools?: string[] } = {}) {
   const reviews: any[] = [];
   const updates: any[] = [];
   const memory: any[] = [];
@@ -151,8 +151,11 @@ function managerSetup(o: { lastHash?: string | null; anomalies?: boolean; due?: 
   } as any;
   const runner = new ManagerRunner({
     loop: { run: async (i: any) => { llmRuns.push(i); return { runId: 'r', status: 'ok', terminalTool: 'submit_review', totals: {} as any }; } },
-    registry: { forRole: () => [] },
-    runtime: { forAgent: async () => ({ skills: { get: () => undefined, list: () => [] } }) as any },
+    registry: { forRole: () => (o.tools ?? []).map((name) => ({ name })) as any },
+    runtime: { forAgent: async () => ({ skills: {
+      get: (n: string) => ({ name: n, body: `тіло ${n}` }),
+      list: () => [{ name: 'kpi-reading', description: 'Як читати z' }, { name: 'manager-workflow', description: 'Порядок' }],
+    } }) as any },
     agents: { findTop: async () => ({ id: 'm', handle: 'manager', mode: 'live', status: 'active', schedule: { times: ['08:00'] } }) as any, get: async () => null, list: async () => [{ id: 'o1', handle: 'kira' }] as any },
     repo: {
       lastReview: async () => (o.lastHash !== undefined ? { verdict: 'continue', digestHash: o.lastHash, createdAt: new Date() } : null),
@@ -188,6 +191,19 @@ test('manager: an unchanged digest without anomalies is skipped without an LLM c
   const a = managerSetup({ lastHash: 'h1', anomalies: true });
   await a.runner.run({ id: 'm', handle: 'manager', mode: 'live' } as any);
   assert.equal(a.llmRuns.length, 1, 'anomalies always get a look');
+});
+
+test('053: the review runs on 12 turns and its own tools; kpi-reading is listed, not inline', async () => {
+  const s = managerSetup({ anomalies: true, tools: ['get_kpi_digest', 'file_directive', 'submit_review', 'web_fetch', 'query_data', 'edit_data_schema', 'fetch_feed', 'list_skills'] });
+  await s.runner.run({ id: 'm', handle: 'manager', mode: 'live' } as any);
+  const run = s.llmRuns[0];
+  assert.equal(run.maxSteps, MANAGER_MAX_STEPS);
+  assert.equal(MANAGER_MAX_STEPS, 12);
+  assert.deepEqual(run.tools.map((t: any) => t.name), ['get_kpi_digest', 'file_directive', 'submit_review']);
+  assert.match(run.system, /### skill: manager-workflow/);
+  assert.doesNotMatch(run.system, /### skill: kpi-reading/);
+  assert.match(run.system, /- kpi-reading: Як читати z/);
+  assert.equal(run.model.reasoningEffort, 'low');
 });
 
 test('manager schedule: each due time once per day', () => {

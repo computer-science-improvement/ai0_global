@@ -126,7 +126,7 @@ test('brief → playbook → independent network → ideas → plan → native p
     { calls: [{ name: 'finish_orchestration', args: { summary: 'Додав 1 ідею' } }] },
     // idea review
     { calls: [{ name: 'list_ideas', args: { status: ['new'] } }] },
-    { text: null, calls: [{ name: 'review_idea', args: { id: '__IDEA__', verdict: 'accept', scores: { fit: 5, novelty: 4, verifiability: 5, platform_fit: 4, risk: 5 }, comment: 'Джерело NASA, нова тема' } }] },
+    { text: null, calls: [{ name: 'review_ideas', args: { reviews: [{ id: '__IDEA__', verdict: 'accept', scores: { fit: 5, novelty: 4, verifiability: 5, platform_fit: 4, risk: 5 }, comment: 'Джерело NASA, нова тема' }] } }] },
     { calls: [{ name: 'finish_idea_review', args: { summary: '1 прийнято' } }] },
     // network planner
     { calls: [{ name: 'submit_network_plan', args: { rationale: 'Сатурн: спершу TG, потім IG', slots: [
@@ -185,6 +185,10 @@ test('brief → playbook → independent network → ideas → plan → native p
 
   // 3. Daily orchestration + idea review.
   await network.runOrchestrator(card);
+  // Spec 053 FR-004: one fresh idea waits for company — a day later it is reviewed alone.
+  assert.equal((await repo.listIdeas(orch.id, ['new'], 10)).length, 1);
+  await pool.query(`UPDATE content_ideas SET created_at = now() - interval '25 hours' WHERE agent_id = $1 AND status = 'new'`, [orch.id]);
+  await network.runIdeaReview(card);
   const accepted = await repo.listIdeas(orch.id, ['accepted'], 10);
   assert.equal(accepted.length, 1);
   assert.equal(accepted[0].title, IDEA_TITLE);

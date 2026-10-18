@@ -115,7 +115,8 @@ test('overview: effective model + source per agent, inheritance, channel overrid
   assert.deepEqual([row('space_reviewer').effective.model, row('space_reviewer').effective.source, row('space_reviewer').effective.inheritedFrom],
     ['anthropic/claude-haiku-4.5', 'agent', 'space']);
   assert.deepEqual([row('news_planner').effective.reasoningEffort, row('news_planner').effective.reasoningSource], ['high', 'agent']);
-  assert.deepEqual([row('manager').effective.reasoningEffort, row('manager').effective.reasoningSource], ['medium', 'default']);
+  // Spec 053 FR-006: the manager's default effort is low.
+  assert.deepEqual([row('manager').effective.reasoningEffort, row('manager').effective.reasoningSource], ['low', 'default']);
   assert.equal(row('news_planner').parentHandle, 'news');
 
   assert.deepEqual(o.envOverrides, [{ role: 'reviewer', key: 'EDITOR_MODEL_REVIEWER' }]);

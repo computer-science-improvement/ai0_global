@@ -114,6 +114,8 @@ import { networkContext } from './network/network-context';
 import { buildSeriesTools } from './network/series-tools';
 import { buildHighlightsTools } from './tools/highlights-tools';
 import { catalogSummaryOf, checkLowRunway } from './tools/catalog-context';
+import { statsSummaryOf } from './network/network-stats';
+import { MAX_LADDER_EXTRA_STEPS } from './silent/fallback-ladder';
 import { isSeriesLocked, seriesSourceCatalog } from './network/series-edit';
 import { NetworkService } from './network/network.service';
 import { NetworkOffers } from './network/network-offers';
@@ -475,7 +477,7 @@ function ownerStartedLoop(
   return new AgentLoop({
     llm: new RoutingLlmClient({
       openrouter: new OpenRouterClient({ apiKey: env('OPENROUTER_API_KEY'), baseUrl: env('OPENROUTER_BASE_URL'), prices }),
-      anthropic:  new AnthropicClient({ apiKey: anthropicApiKey(env), baseUrl: env('ANTHROPIC_BASE_URL'), prices }),
+      anthropic:  new AnthropicClient({ apiKey: anthropicApiKey(env), baseUrl: env('ANTHROPIC_BASE_URL'), prices, toolsCacheTtl: env('EDITOR_ANTHROPIC_TOOLS_CACHE_TTL') === '1h' ? '1h' : null }),
     }),
     recorder: new PgRunRecorder(pool, (m) => logger.warn(m)),
     budget: editorBudget(pool, env, (t) => notifier.notifyAlert(t), caps),
@@ -1212,7 +1214,7 @@ export const EDITOR_PROVIDERS = [
         return new AgentLoop({
           llm: new RoutingLlmClient({
             openrouter: new OpenRouterClient({ apiKey: env('OPENROUTER_API_KEY'), baseUrl: env('OPENROUTER_BASE_URL'), prices }),
-            anthropic:  new AnthropicClient({ apiKey: anthropicApiKey(env), baseUrl: env('ANTHROPIC_BASE_URL'), prices }),
+            anthropic:  new AnthropicClient({ apiKey: anthropicApiKey(env), baseUrl: env('ANTHROPIC_BASE_URL'), prices, toolsCacheTtl: env('EDITOR_ANTHROPIC_TOOLS_CACHE_TTL') === '1h' ? '1h' : null }),
           }),
           recorder: new PgRunRecorder(pool, (m) => logger.warn(m)),
           budget: editorBudget(pool, env, (text) => notifier.notifyAlert(text), caps),
@@ -1307,6 +1309,8 @@ export const EDITOR_PROVIDERS = [
           experimentQuotas: experimentQuotasOf(pool),
           // Spec 037 T2: the active stories in the planner prompt.
           stories: new StoryContextService(new StoryRegistry(pool)),
+          // Spec 053 FR-005: the last 7 days in the orchestrator prompt.
+          statsSummary: (refs) => statsSummaryOf(pool, refs),
         });
         // Spec 025 FR-015: a strategy directive rebuilds the playbook through this runner (late-bound: the MANAGER exists first).
         manager.buildPort.bind(async (orchId, brief, directiveId) => {
@@ -1368,11 +1372,14 @@ export const EDITOR_PROVIDERS = [
             // Spec 046 FR-005: a step starts only when a whole executor + critic run fits under the caps.
             const headroomUsd = envNum(env, 'EDITOR_RUN_HEADROOM_USD', DEFAULT_RUN_HEADROOM_USD);
             return async (card, agent) => {
-              const v = await gate.check(card.channelKey, card.dailyBudgetUsd, agent, 'openrouter', { headroomUsd });
+              // Spec 053 FR-007: the caps of the provider the run will use (a provider cap on anthropic counted, too).
+              const provider = await Promise.resolve(models.workspace()).catch(() => 'openrouter' as const);
+              const v = await gate.check(card.channelKey, card.dailyBudgetUsd, agent, provider, { headroomUsd });
               return v.ok ? { ok: true as const } : { ok: false as const, reason: `${v.scope} cap: $${v.spentUsd.toFixed(3)} / $${v.limitUsd}` };
             };
           })(),
-          ladder: { enabled: env('EDITOR_FALLBACK_LADDER') !== 'off' },
+          // Spec 053 FR-007: one extra step by default (EDITOR_LADDER_EXTRA_STEPS=3 restores the full ladder with the evergreen step).
+          ladder: { enabled: env('EDITOR_FALLBACK_LADDER') !== 'off', maxExtraSteps: Math.max(0, Math.min(3, envNum(env, 'EDITOR_LADDER_EXTRA_STEPS', MAX_LADDER_EXTRA_STEPS))) },
           // Spec 037 FR-009: the writer's «Уже було» block reads the channel's last 20 written posts.
           recentPosts: (card, slot) => recentAuditPosts(pool, { channelKey: card.channelKey, timezone: card.timezone, excludeSlotId: slot.id, card }),
           // Spec 037 T2: the active stories in the planner and writer prompts.
@@ -1521,7 +1528,7 @@ export const EDITOR_PROVIDERS = [
         const loop = new AgentLoop({
           llm: new RoutingLlmClient({
             openrouter: new OpenRouterClient({ apiKey: env('OPENROUTER_API_KEY'), baseUrl: env('OPENROUTER_BASE_URL'), prices }),
-            anthropic:  new AnthropicClient({ apiKey: anthropicApiKey(env), baseUrl: env('ANTHROPIC_BASE_URL'), prices }),
+            anthropic:  new AnthropicClient({ apiKey: anthropicApiKey(env), baseUrl: env('ANTHROPIC_BASE_URL'), prices, toolsCacheTtl: env('EDITOR_ANTHROPIC_TOOLS_CACHE_TTL') === '1h' ? '1h' : null }),
           }),
           recorder: new PgRunRecorder(pool, (m) => logger.warn(m)),
           budget: editorBudget(pool, env, (t) => notifier.notifyAlert(t), caps),

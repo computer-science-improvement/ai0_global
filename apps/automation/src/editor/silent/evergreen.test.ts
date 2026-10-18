@@ -70,6 +70,7 @@ function setup(script: Behaviour[], o: { used?: number; perDay?: number } = {}) 
     plans,
     memory: { listActive: async () => [] },
     env: () => undefined, notify: async () => {}, now: () => NOW,
+    ladder: { maxExtraSteps: 3 },
     fallbackEvergreen: (req) => step.run(req),
   });
   return { runner, st, runs, inputs, inbox, queries, card: makeCard() };

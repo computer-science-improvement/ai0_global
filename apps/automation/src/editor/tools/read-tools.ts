@@ -203,7 +203,7 @@ export function buildReadTools(d: ReadToolDeps): EditorTool[] {
     kind: 'read', roles: [...ALL_ROLES],
     input: z.object({
       url:            z.string().url(),
-      limit:          z.number().int().min(1).max(30).default(10),
+      limit:          z.number().int().min(1).max(30).default(6),
       since_hours:    z.number().min(0.5).max(720).optional().describe('Лише записи, не старші за стільки годин (записи без дати відкидаються)'),
       exclude_posted: z.boolean().default(false).describe('Відкинути вже опубліковане/зайняте на ресурсі й схоже на пости останніх 7 днів'),
     }),
@@ -294,10 +294,12 @@ export function buildReadTools(d: ReadToolDeps): EditorTool[] {
     name: 'load_skill',
     description: 'Завантажити повний текст скіла за назвою (правила форматування, голосу, фактчеку тощо). Завантажуй перед тим, як використовувати відповідний формат.',
     kind: 'read', roles: [...ALL_ROLES],
+    // Spec 053 FR-003: a skill is read whole — over the usual result cap, but bounded.
+    maxResultChars: 12_000,
     input: z.object({ name: z.string().min(1).max(100) }),
     execute: async ({ name }, ctx) => {
       const s = skillsOf(ctx).get(name);
-      return s ? { name: s.name, body: s.body } : { error: 'unknown_skill', details: `no skill "${name}" — call list_skills` };
+      return s ? { name: s.name, body: s.body } : { error: 'unknown_skill', details: `no skill "${name}" — the names are in your prompt («Інші скіли»)` };
     },
   });
 

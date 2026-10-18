@@ -16,10 +16,10 @@ import type { AgentRuntime, RunAgentContext } from '../agents/agent-runtime';
 import type { Agent } from '../agents/agent.types';
 import { profileCaps, renderFormatPrefs, renderProfile, ResourceProfile, ResourceProfilesRepository } from '../agents/resource-profile';
 import { networkContext, NetworkContextDeps, NetworkCtx } from './network-context';
-import type { NetworkRepository } from './network.repository';
+import type { IdeaRow, NetworkRepository } from './network.repository';
 import { ideaQuota, REVIEW_BATCH } from './network-tools';
 import {
-  ideaReviewerSystemPrompt, ideaReviewerUserPrompt, networkPlannerBlock, orchestratorDailyPrompt, orchestratorSystemPrompt, playbookBuildPrompt,
+  ideaNovelty, ideaReviewerSystemPrompt, ideaReviewerUserPrompt, networkPlannerBlock, orchestratorDailyPrompt, orchestratorSystemPrompt, playbookBuildPrompt,
 } from './network-prompts';
 import { renderExamples, renderSection } from './playbook';
 import { renderExperimentQuotas, type ExperimentQuota } from '../manager/experiment-quota';
@@ -58,11 +58,26 @@ export interface NetworkRunnerDeps {
   runwayCheck?: (orch: Agent, playbook: unknown) => Promise<unknown>;
   /** Spec 025 FR-014: open experiment quotas of an anchor for a plan date (shown to the planners). */
   experimentQuotas?: (anchorKey: string, planDate: string, now: Date) => Promise<ExperimentQuota[]>;
+  /** Spec 053 FR-005: the network's last 7 days as prompt lines (network-stats.ts); null for none. */
+  statsSummary?: (refs: string[]) => Promise<string | null>;
   /** Spec 037 T2: the "Active stories (14 days)" block of the planner / writer prompt (story/story-context.ts); null for none. */
   stories?: { activeBlock(card: EditorCard, role: 'planner' | 'executor', now: Date): Promise<string | null> };
 }
 
-const STEPS: Record<string, number> = { orchestrate: 30, playbook: 18, ideaReview: 25, plan: 14 };
+const STEPS: Record<string, number> = { orchestrate: 15, playbook: 18, ideaReview: 6, plan: 14 };
+/**
+ * Spec 053 FR-005: tools the daily orchestration never needs — the playbook is in its prompt, raw SQL and dataset
+ * edits are other roles' work. Every tool schema is re-sent on every step.
+ */
+export const ORCHESTRATOR_EXCLUDE = new Set(['get_playbook', 'sql_readonly', 'edit_data_schema', 'search_library']);
+/**
+ * Spec 053 FR-004: the reviewer's tools — the batch verdict, the playbook review, a source check and its skill. Novelty
+ * is computed by code into the prompt, so get_network_posts and SQL (9.6 calls a run) are not offered.
+ */
+export const IDEA_REVIEW_TOOLS = new Set(['review_ideas', 'review_playbook', 'get_playbook', 'list_ideas', 'web_fetch', 'load_skill', 'finish_idea_review']);
+/** Spec 053 FR-004: fewer new ideas than this wait for the next run — unless the oldest has waited a day. */
+export const IDEA_REVIEW_MIN = 3;
+const IDEA_REVIEW_MAX_WAIT_MS = 24 * 3600_000;
 const TERMINAL_EXCLUDE_SINGLE = new Set(['submit_network_plan']);
 const TERMINAL_EXCLUDE_NETWORK = new Set(['submit_plan']);
 
@@ -91,14 +106,14 @@ export class NetworkRunner {
     return p ? renderProfile(p, { now: this.now(), ref: `telegram:${net.anchorKey}` }) : null;
   }
 
-  private async run(role: EditorRole, card: EditorCard, c: { agentCtx: RunAgentContext; net: NetworkCtx }, system: string, user: string, steps: number, extras: Record<string, unknown> = {}, exclude?: Set<string>): Promise<AgentLoopResult> {
+  private async run(role: EditorRole, card: EditorCard, c: { agentCtx: RunAgentContext; net: NetworkCtx }, system: string, user: string, steps: number, extras: Record<string, unknown> = {}, exclude?: Set<string>, allow?: Set<string>): Promise<AgentLoopResult> {
     const agent = c.agentCtx.agent ?? c.agentCtx.orchestrator!;
     const { workspace, defaultModel } = await readModelContext(this.d);
     const model = agentModelIn(agent, workspace) ?? agentModelIn(c.agentCtx.orchestrator, workspace);
     const effort = agent.reasoningEffort ?? c.agentCtx.orchestrator?.reasoningEffort ?? null;
     return this.d.loop.run({
       role, channelKey: card.channelKey, model: resolveModel(role, this.d.env, card.models, { agentModel: model, defaultModel, reasoningEffort: effort, workspace }),
-      system, user, tools: this.d.registry.forRole(role, card.toolsAllow).filter((t) => !exclude?.has(t.name)), maxSteps: steps,
+      system, user, tools: this.d.registry.forRole(role, card.toolsAllow).filter((t) => !exclude?.has(t.name) && (!allow || allow.has(t.name))), maxSteps: steps,
       channelBudgetUsd: card.dailyBudgetUsd,
       agent: { id: agent.id, handle: agent.handle, limitUsd: agent.dailyBudgetUsd ?? c.agentCtx.orchestrator?.dailyBudgetUsd ?? null },
       extras: { card, network: c.net, skills: c.agentCtx.skills, agent, orchestrator: c.agentCtx.orchestrator, ...extras },
@@ -135,13 +150,21 @@ export class NetworkRunner {
     const slotsPerDay = net.playbook?.platforms.length ? Math.max(...net.playbook.platforms.map((s) => s.per_day.max)) : card.postsPerDayMax;
     const quota = ideaQuota(slotsPerDay, open.filter((i) => i.status === 'accepted' || i.status === 'new').length);
     await this.d.repo.releaseStalePlanned(net.orchestrator.id);
+    // Spec 053 FR-005: nothing to answer, no ideas to add or revise — the day's upkeep runs without the model.
+    if (!directives && !quota && !open.some((i) => i.status === 'needs_revision')) {
+      if (this.d.afterOrchestration) await this.d.afterOrchestration(net.orchestrator).catch(() => {});
+      if (this.d.runwayCheck) await this.d.runwayCheck(net.orchestrator, net.playbook).catch(() => {});
+      await this.runIdeaReview(card);
+      return null;
+    }
     const memory = await this.d.memory.listActive(card.channelKey);
     const res = await this.run('orchestrator', card, c!,
       orchestratorSystemPrompt({ net, card, profile: await this.profileText(net), memory, skills: c!.agentCtx.skills, directives, profiles: await this.memberProfiles(net) }),
       [orchestratorDailyPrompt({ net, card, now: this.now(), open, quota, hasDirectives: !!directives }), await this.catalog(card),
         // Spec 041 FR-004: the network's topics of 30 days (add_idea refuses an evergreen idea on one).
-        recentTopicsBlock(recentTopicsOf(await this.d.repo.recentExcerpts(net.resources.map((r) => r.ref), RECENT_TOPIC_DAYS).catch(() => [])))].filter(Boolean).join('\n\n'),
-      STEPS.orchestrate, { brief: card.brief, ideaQuota: quota, newsRefs: await this.newsRefs(net) });
+        recentTopicsBlock(recentTopicsOf(await this.d.repo.recentExcerpts(net.resources.map((r) => r.ref), RECENT_TOPIC_DAYS).catch(() => []))),
+        this.d.statsSummary ? await this.d.statsSummary(net.resources.map((r) => r.ref)).catch(() => null) : null].filter(Boolean).join('\n\n'),
+      STEPS.orchestrate, { brief: card.brief, ideaQuota: quota, newsRefs: await this.newsRefs(net) }, ORCHESTRATOR_EXCLUDE);
     if (this.d.afterOrchestration) await this.d.afterOrchestration(net.orchestrator).catch(() => {});
     if (this.d.runwayCheck) await this.d.runwayCheck(net.orchestrator, net.playbook).catch(() => {});
     await this.runIdeaReview(card);
@@ -179,15 +202,33 @@ export class NetworkRunner {
     const queue = await this.d.repo.pageIdeas(c!.net.orchestrator.id, ['new'], { limit: REVIEW_BATCH, offset: 0, oldestFirst: true });
     const fresh = queue.total;
     const pending = !!(await this.d.repo.pendingPlaybook(c!.net.orchestrator.id));
-    if (!fresh && !pending) return null;
+    // Spec 053 FR-004: one or two new ideas wait for company (a run costs the same prompt), but not longer than a day.
+    const oldest = queue.rows[0]?.createdAt?.getTime() ?? Infinity;
+    const due = fresh >= IDEA_REVIEW_MIN || this.now().getTime() - oldest >= IDEA_REVIEW_MAX_WAIT_MS;
+    if (!pending && (!fresh || !due)) return null;
     const memory = await this.d.memory.listActive(card.channelKey);
     const system = ideaReviewerSystemPrompt({ net: c!.net, profile: await this.profileText(c!.net), memory, skills: c!.agentCtx.skills });
-    const res = await this.run('idea_reviewer', card, c!, system, ideaReviewerUserPrompt({ fresh, batch: queue.rows, pendingPlaybook: pending }), STEPS.ideaReview);
+    const novelty = await this.novelty(c!.net, queue.rows);
+    const res = await this.run('idea_reviewer', card, c!, system, ideaReviewerUserPrompt({ fresh, batch: queue.rows, pendingPlaybook: pending, novelty }), STEPS.ideaReview, {}, undefined, IDEA_REVIEW_TOOLS);
     // Spec 046 FR-007: a backlog over one batch gets a second batch at once (only when the first one moved it).
     if (fresh <= REVIEW_BATCH || res.status !== 'ok') return res;
     const next = await this.d.repo.pageIdeas(c!.net.orchestrator.id, ['new'], { limit: REVIEW_BATCH, offset: 0, oldestFirst: true });
     if (!next.total || next.total >= fresh) return res;
-    return this.run('idea_reviewer', card, c!, system, ideaReviewerUserPrompt({ fresh: next.total, batch: next.rows, pendingPlaybook: false }), STEPS.ideaReview);
+    return this.run('idea_reviewer', card, c!, system,
+      ideaReviewerUserPrompt({ fresh: next.total, batch: next.rows, pendingPlaybook: false, novelty: await this.novelty(c!.net, next.rows) }),
+      STEPS.ideaReview, {}, undefined, IDEA_REVIEW_TOOLS);
+  }
+
+  /** Spec 053 FR-004: the novelty line of each idea of a batch (best-effort: no line when the history is unreadable). */
+  private async novelty(net: NetworkCtx, ideas: IdeaRow[]): Promise<Map<string, string>> {
+    const out = new Map<string, string>();
+    if (!ideas.length) return out;
+    const refs = net.resources.map((r) => r.ref);
+    const recent = await this.d.repo.recentExcerpts(refs, 14).catch(() => null);
+    if (!recent) return out;
+    const topics = recentTopicsOf(await this.d.repo.recentExcerpts(refs, RECENT_TOPIC_DAYS).catch(() => []));
+    for (const i of ideas) out.set(i.id, ideaNovelty(i, recent, topics));
+    return out;
   }
 
   /**

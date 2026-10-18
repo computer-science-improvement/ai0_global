@@ -39,6 +39,8 @@ export interface EditorTool<I = any, O = any> {
   placeholdersAbsent?: boolean;
   /** Spec 040 FR-013: needs a chat (cards, the owner's message) — offered to the role in chat only, never in its autonomous runs. */
   chatOnly?:   boolean;
+  /** Spec 053 FR-003: its result may be longer than TOOL_RESULT_MAX_CHARS (a skill body). */
+  maxResultChars?: number;
   execute(input: I, ctx: ToolContext): Promise<O | ToolError>;
 }
 
@@ -53,6 +55,7 @@ export function defineTool<S extends z.ZodType, O>(t: {
   keepOnError?: boolean;
   placeholdersAbsent?: boolean;
   chatOnly?:   boolean;
+  maxResultChars?: number;
   execute(input: z.infer<S>, ctx: ToolContext): Promise<O | ToolError>;
 }): EditorTool<z.infer<S>, O> {
   return t as unknown as EditorTool<z.infer<S>, O>;

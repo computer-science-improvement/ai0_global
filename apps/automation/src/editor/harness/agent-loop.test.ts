@@ -95,12 +95,14 @@ test('tool timeout becomes tool_failed', async () => {
 });
 
 test('max steps', async () => {
-  const llm = new FakeLlm(Array.from({ length: 3 }, () => ({ calls: [{ name: 'echo', args: { text: 'x' } }] })));
+  // Spec 053: research on the last turn is answered `last_turn` and buys one grace turn.
+  const llm = new FakeLlm(Array.from({ length: 4 }, () => ({ calls: [{ name: 'echo', args: { text: 'x' } }] })));
   const res = await loop(llm).l.run(input({ maxSteps: 3 }));
   assert.equal(res.status, 'max_steps');
+  assert.equal(llm.requests.length, 4);
 });
 
-test('the last turn offers only the terminal tools and says so, so a run ends instead of running out of turns', async () => {
+test('spec 053: the last turn keeps every tool (cache prefix), says in text that only a terminal tool counts', async () => {
   published = [];
   const llm = new FakeLlm([
     { calls: [{ name: 'echo', args: { text: 'x' } }] },
@@ -110,11 +112,29 @@ test('the last turn offers only the terminal tools and says so, so a run ends in
   const res = await loop(llm).l.run(input({ maxSteps: 3 }));
   assert.equal(res.status, 'ok');
   assert.equal(res.terminalTool, 'publish');
-  assert.ok(llm.requests[1].tools!.length > 1, 'earlier turns keep every tool');
-  assert.deepEqual(llm.requests[2].tools!.map((t: any) => t.name), ['publish']);
+  assert.deepEqual(llm.requests[2].tools, llm.requests[0].tools, 'one tool list for the whole run');
   const last = llm.requests[2].messages.at(-1) as any;
   assert.equal(last.role, 'user');
   assert.match(last.content, /останній крок.*publish/i);
+});
+
+test('spec 053: research on the last turn is not run; one grace turn, then the run ends', async () => {
+  published = [];
+  const { l, recorder } = loop(new FakeLlm([
+    { calls: [{ name: 'echo', args: { text: 'x' } }] },
+    { calls: [{ name: 'echo', args: { text: 'late' } }] },
+    { calls: [{ name: 'publish', args: { title: 'Grace' } }] },
+  ]));
+  const res = await l.run(input({ maxSteps: 2 }));
+  assert.equal(res.status, 'ok');
+  assert.equal(res.terminalTool, 'publish');
+  const late = recorder.steps.find((x: any) => x.tool === 'echo' && (x.output as any)?.error);
+  assert.equal((late!.output as any).error, 'last_turn');
+
+  const never = loop(new FakeLlm(Array.from({ length: 4 }, () => ({ calls: [{ name: 'echo', args: { text: 'z' } }] }))));
+  const r2 = await never.l.run(input({ maxSteps: 2 }));
+  assert.equal(r2.status, 'max_steps');
+  assert.equal(never.recorder.steps.filter((x: any) => x.type === 'llm').length, 3, '2 turns + 1 grace, never more');
 });
 
 test('a role without terminal tools keeps every tool on its last turn', async () => {
@@ -251,7 +271,7 @@ test('spec 034: a tool error with _grantSteps extends the run once (capped at 3 
   assert.equal(res.status, 'ok');
   assert.equal(res.terminalTool, 'gated');
   assert.deepEqual(llm.requests[2].tools!.map((t) => t.name), ['echo', 'gated']);
-  assert.deepEqual(llm.requests[3].tools!.map((t) => t.name), ['gated'], 'the granted last turn is terminal-only again');
+  assert.deepEqual(llm.requests[3].tools!.map((t) => t.name), ['echo', 'gated'], 'spec 053: the granted last turn keeps the list too');
 
   const patient = defineTool({
     name: 'patient', description: 'slow but allowed', kind: 'read', roles: ['executor'], input: z.object({}), timeoutMs: 500,

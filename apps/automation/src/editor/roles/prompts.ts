@@ -85,7 +85,10 @@ export function buildSystemPrompt(
   const names = [...new Set([`editor-${role}-workflow`, ...card.skills, ...(skills.inlineNames?.() ?? [])])].filter((n) => n !== VOICE_CORE);
   const { inline, shown, voiceRef } = inlineSkills(skills, names, writer);
   const listed = skills.list(role).filter((s) => !names.includes(s.name) && !shown.includes(s.name) && !(writer && s.name === VOICE_CORE));
-  const shownMemory = writer ? memoryWithoutRules(memory) : memory;
+  // Spec 053 FR-001: the writer's prompt is re-sent on every step — its lessons are the newest 15, each kept short.
+  const shownMemory = writer
+    ? memoryWithoutRules(memory).slice(0, WRITER_MEMORY_MAX).map((m) => ({ ...m, text: clip(m.text, WRITER_MEMORY_CHARS) }))
+    : memory;
 
   return [
     `Ти — ${ROLE_TITLE[role]} Telegram-каналу «${card.title ?? card.channelKey}» (${card.channelKey}) в українській медіамережі ai0.`,
@@ -100,7 +103,8 @@ export function buildSystemPrompt(
     ...(writer ? ownerRulesSection(ownerRulesOf(memory)) : []),
     '',
     '## Картка каналу',
-    JSON.stringify(cardSummary(card), null, 1),
+    // Spec 053 FR-001: compact JSON — the indentation alone was ~15% of the card.
+    JSON.stringify(cardSummary(card)),
     '',
     writer ? '## Памʼять каналу (висновки минулих тижнів)' : '## Памʼять каналу (правила власника і висновки минулих тижнів)',
     shownMemory.length
@@ -115,8 +119,17 @@ export function buildSystemPrompt(
     ...(voiceRef ? ['', voiceRef] : []),
     '',
     '## Інші скіли (завантаж через load_skill, коли потрібні)',
-    listed.map((s) => `- ${s.name}: ${s.description}`).join('\n') || '- немає',
+    listed.map((s) => `- ${s.name}: ${writer ? clip(s.description, WRITER_SKILL_HINT_CHARS) : s.description}`).join('\n') || '- немає',
   ].join('\n');
+}
+
+/** Spec 053 FR-001: how much of the writer's memory and skill list its every step carries. */
+export const WRITER_MEMORY_MAX = 15;
+export const WRITER_MEMORY_CHARS = 300;
+export const WRITER_SKILL_HINT_CHARS = 80;
+
+function clip(s: string, max: number): string {
+  return s.length <= max ? s : `${s.slice(0, max - 1).trimEnd()}…`;
 }
 
 /**
@@ -233,7 +246,7 @@ export function executorUserPrompt(
       ? 'Режим апруву: пишеш заздалегідь. publish_post нічого не надсилає — пост чекатиме схвалення власника, і код опублікує його в час слота.'
       : '',
     o.alreadyUsed ?? '',
-    'Підготуй пост і опублікуй його через publish_post (після lint_post) або пропусти через skip_slot з причиною.',
+    'Підготуй пост і опублікуй його через publish_post (він сам перевіряє lint і повертає errors) або пропусти через skip_slot з причиною.',
   ].filter(Boolean).join('\n');
 }
 

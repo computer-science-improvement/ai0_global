@@ -36,16 +36,32 @@ export interface TokenUsage {
 }
 
 /**
+ * Spec 053 FR-008: models whose every rate goes up once one request's prompt (cached tokens included) passes a size.
+ * Claude Haiku 5.5: 5× above 100K prompt tokens ($0.50 / $2.50 per M instead of $0.10 / $0.50). The tier is per
+ * request, so it is applied here rather than as another llm_prices row.
+ */
+export const LONG_PROMPT_TIERS: Record<string, { overTokens: number; multiplier: number }> = {
+  'claude-haiku-5-5': { overTokens: 100_000, multiplier: 5 },
+};
+
+/** The rate multiplier of one request (1 below a model's long-prompt tier). */
+export function longPromptMultiplier(model: string, tokensIn: number | null | undefined): number {
+  const t = LONG_PROMPT_TIERS[normalizeModel(model).replace(/^anthropic\//, '').replace(/\./g, '-')];
+  return t && (tokensIn ?? 0) > t.overTokens ? t.multiplier : 1;
+}
+
+/**
  * USD for one call at a price row. Cached tokens are billed at their own
  * rate (falling back to the input rate when the row has none); the rest of
- * tokens_in at the input rate.
+ * tokens_in at the input rate. A request past the model's long-prompt tier pays the tier's multiple of every rate.
  */
 export function costFromPrice(p: PriceRow, u: TokenUsage): number {
   const read  = Math.max(0, u.tokensCachedRead ?? 0);
   const write = Math.max(0, u.tokensCachedWrite ?? 0);
   const plain = Math.max(0, (u.tokensIn ?? 0) - read - write);
   const out   = Math.max(0, u.tokensOut ?? 0);
-  const usd = (plain * p.inPerM
+  const k = longPromptMultiplier(p.model, u.tokensIn);
+  const usd = k * (plain * p.inPerM
     + read  * (p.cachedReadPerM  ?? p.inPerM)
     + write * (p.cachedWritePerM ?? p.inPerM)
     + out   * p.outPerM) / 1_000_000

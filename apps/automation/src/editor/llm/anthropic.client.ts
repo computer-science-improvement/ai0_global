@@ -2,9 +2,9 @@ import axios from 'axios';
 import type { ChatMessage, LlmClient, LlmRequest, LlmResponse, ToolCall } from './llm.types';
 import { ANTHROPIC_PRICES } from './model-registry';
 import { llmUsage, type LlmUsageRecorder } from '../../common/ai/usage/llm-usage.service';
-import type { EstimateResult, TokenUsage } from '../../common/ai/usage/price.service';
+import { longPromptMultiplier, type EstimateResult, type TokenUsage } from '../../common/ai/usage/price.service';
 
-type HttpPost = (url: string, body: unknown, cfg: { headers: Record<string, string>; timeout: number }) => Promise<{ data: any }>;
+type HttpPost = (url: string, body: unknown, cfg: { headers: Record<string, string>; timeout: number; signal?: AbortSignal }) => Promise<{ data: any }>;
 
 export interface AnthropicClientOptions {
   apiKey:     string | undefined;
@@ -17,6 +17,12 @@ export interface AnthropicClientOptions {
   usage?:     LlmUsageRecorder;
   /** llm_prices lookup (provider `anthropic`); the static ANTHROPIC_PRICES map is the fallback. */
   prices?:    { estimate(provider: string, model: string, u: TokenUsage): Promise<EstimateResult> };
+  /**
+   * Spec 053 FR-008: the tools breakpoint lives an hour instead of 5 minutes (2× the write price), so runs of one role
+   * that start more than 5 minutes apart still read the tool block from the cache. Off unless measured worth it
+   * (EDITOR_ANTHROPIC_TOOLS_CACHE_TTL=1h).
+   */
+  toolsCacheTtl?: '1h' | null;
 }
 
 const RETRY_DELAYS_MS = [2_000, 6_000];
@@ -50,7 +56,7 @@ function parseArgs(raw: string): unknown {
  * - Tool results and the user text after them merge into one user turn (tool_result blocks first), as the API
  *   requires the results right after the assistant's tool_use turn. Consecutive turns of one role merge.
  */
-export function toAnthropicMessages(msgs: readonly ChatMessage[]): { system: string; messages: Array<{ role: 'user' | 'assistant'; content: any[] }> } {
+export function toAnthropicMessages(msgs: readonly ChatMessage[], o: { cache?: boolean } = {}): { system: string; messages: Array<{ role: 'user' | 'assistant'; content: any[] }> } {
   const system: string[] = [];
   const out: Array<{ role: 'user' | 'assistant'; content: any[] }> = [];
   const push = (role: 'user' | 'assistant', blocks: any[]) => {
@@ -84,7 +90,7 @@ export function toAnthropicMessages(msgs: readonly ChatMessage[]): { system: str
   if (out[0]?.role === 'assistant') out.unshift({ role: 'user', content: [{ type: 'text', text: '…' }] });
   // Rolling prompt-cache breakpoint on the newest block: the next step of the loop reads the whole prefix from the cache.
   const last = out[out.length - 1];
-  if (last) {
+  if (last && o.cache !== false) {
     const i = last.content.length - 1;
     const b = last.content[i];
     if (b && (b.type === 'text' || b.type === 'tool_result')) last.content[i] = { ...b, cache_control: EPHEMERAL };
@@ -115,15 +121,18 @@ export class AnthropicClient implements LlmClient {
 
   /** The request body (exported for tests). */
   body(req: LlmRequest): Record<string, unknown> {
-    const { system, messages } = toAnthropicMessages(req.messages);
+    // Spec 053 FR-002: a one-call request (cache: false) sends no breakpoints — a cache write nobody reads costs 1.25×.
+    const cache = req.cache !== false;
+    const { system, messages } = toAnthropicMessages(req.messages, { cache });
+    const toolsMark = this.opts.toolsCacheTtl === '1h' ? { type: 'ephemeral', ttl: '1h' } : EPHEMERAL;
     const tools = (req.tools ?? []).map((t, i, all) => ({
       name: t.name, description: t.description, input_schema: t.parameters,
-      ...(i === all.length - 1 ? { cache_control: EPHEMERAL } : {}),
+      ...(cache && i === all.length - 1 ? { cache_control: toolsMark } : {}),
     }));
     return {
       model: req.model,
       max_tokens: Math.max(req.maxTokens ?? 0, ANTHROPIC_MIN_MAX_TOKENS),
-      ...(system ? { system: [{ type: 'text', text: system, cache_control: EPHEMERAL }] } : {}),
+      ...(system ? { system: [{ type: 'text', text: system, ...(cache ? { cache_control: EPHEMERAL } : {}) }] } : {}),
       messages,
       ...(tools.length ? { tools, tool_choice: { type: 'auto' } } : {}),
       ...(req.reasoningEffort && supportsEffort(req.model) ? { output_config: { effort: req.reasoningEffort } } : {}),
@@ -138,7 +147,7 @@ export class AnthropicClient implements LlmClient {
     let data: any;
     let attempts: number;
     try {
-      ({ data, attempts } = await this.postWithRetry(body));
+      ({ data, attempts } = await this.postWithRetry(body, req.signal));
     } catch (err: any) {
       tracker.fail(err, { attempts: err?.attempts });
       throw err;
@@ -177,7 +186,7 @@ export class AnthropicClient implements LlmClient {
     };
   }
 
-  private async postWithRetry(body: unknown): Promise<{ data: any; attempts: number }> {
+  private async postWithRetry(body: unknown, signal?: AbortSignal): Promise<{ data: any; attempts: number }> {
     for (let attempt = 0; ; attempt++) {
       try {
         const res = await this.http.post(`${this.baseUrl}/v1/messages`, body, {
@@ -187,11 +196,14 @@ export class AnthropicClient implements LlmClient {
             'content-type':      'application/json',
           },
           timeout: this.timeoutMs,
+          ...(signal ? { signal } : {}),
         });
         return { data: res.data, attempts: attempt + 1 };
       } catch (err: any) {
         const status: number | undefined = err?.response?.status;
-        const retryable = status === undefined || status === 429 || status >= 500;
+        // A cancelled request (spec 053: the caller timed out) is never retried.
+        const canceled = err?.code === 'ERR_CANCELED' || signal?.aborted === true;
+        const retryable = !canceled && (status === undefined || status === 429 || status >= 500);
         if (!retryable || attempt >= RETRY_DELAYS_MS.length) {
           const detail = err?.response?.data?.error?.message ?? err?.message ?? String(err);
           throw Object.assign(new Error(`Anthropic request failed${status ? ` (${status})` : ''}: ${detail}`),
@@ -207,7 +219,9 @@ export class AnthropicClient implements LlmClient {
 export function staticCost(model: string, t: { tokensIn: number; tokensOut: number; tokensCachedRead: number; tokensCachedWrite: number }): number {
   const p = ANTHROPIC_PRICES[model] ?? ANTHROPIC_PRICES['claude-sonnet-5-5'];
   const plain = Math.max(0, t.tokensIn - t.tokensCachedRead - t.tokensCachedWrite);
-  const usd = (plain * p.inPerM + t.tokensCachedRead * p.cacheReadPerM + t.tokensCachedWrite * p.cacheWritePerM + t.tokensOut * p.outPerM) / 1_000_000;
+  // Spec 053 FR-008: the long-prompt tier (Haiku 5.5 above 100K prompt tokens).
+  const k = longPromptMultiplier(ANTHROPIC_PRICES[model] ? model : 'claude-sonnet-5-5', t.tokensIn);
+  const usd = k * (plain * p.inPerM + t.tokensCachedRead * p.cacheReadPerM + t.tokensCachedWrite * p.cacheWritePerM + t.tokensOut * p.outPerM) / 1_000_000;
   return Math.round(usd * 1e6) / 1e6;
 }
 

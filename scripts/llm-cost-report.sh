@@ -43,8 +43,9 @@ section "2. Spend by day × provider"
 q "SELECT (at AT TIME ZONE 'Europe/Kyiv')::date AS day, provider, count(*) AS calls, round(sum(cost_usd)::numeric, 2) AS usd
      FROM llm_usage WHERE at > $W AND NOT shadow GROUP BY 1, 2 ORDER BY 1, usd DESC"
 
-section "3. Runs per role: steps, prompt tokens and cost per run"
+section "3. Runs per role: model turns (what maxSteps caps), steps (turns + tool calls), prompt tokens and cost per run"
 q "SELECT r.role, r.model, count(*) AS runs,
+          round(avg(t.turns), 1) AS avg_turns, max(t.turns) AS max_turns,
           round(avg(r.steps), 1) AS avg_steps, max(r.steps) AS max_steps,
           round(avg(r.prompt_tokens)/1e3) AS avg_prompt_k,
           round((percentile_cont(0.9) WITHIN GROUP (ORDER BY r.prompt_tokens))::numeric/1e3) AS p90_prompt_k,
@@ -52,7 +53,9 @@ q "SELECT r.role, r.model, count(*) AS runs,
           round(avg(r.completion_tokens)/1e3, 1) AS avg_out_k,
           round(avg(r.cost_usd)::numeric, 3) AS avg_usd, round(sum(r.cost_usd)::numeric, 2) AS usd,
           count(*) FILTER (WHERE r.status <> 'ok') AS not_ok
-     FROM editor_runs r WHERE r.started_at > $W
+     FROM editor_runs r
+     LEFT JOIN LATERAL (SELECT count(*) AS turns FROM editor_run_steps s WHERE s.run_id = r.id AND s.type = 'llm') t ON true
+    WHERE r.started_at > $W
     GROUP BY 1, 2 ORDER BY usd DESC LIMIT 40"
 
 section "4. Run endings per role (status)"
@@ -71,12 +74,12 @@ q "SELECT u.feature,
     GROUP BY 1 ORDER BY sum(u.cost_usd) DESC NULLS LAST LIMIT 15"
 
 section "6. Cache: share of prompt tokens read from cache, and cache writes per call"
-q "SELECT feature, model,
+q "SELECT provider, feature, model,
           round(100.0 * sum(coalesce(tokens_cached_read,0)) / nullif(sum(tokens_in),0)) AS read_pct,
           round(100.0 * sum(coalesce(tokens_cached_write,0)) / nullif(sum(tokens_in),0)) AS write_pct,
           round(avg(coalesce(tokens_cached_write,0))/1e3, 1) AS avg_write_k_per_call
-     FROM llm_usage WHERE at > $W AND kind = 'llm' AND NOT shadow AND provider = 'anthropic'
-    GROUP BY 1, 2 ORDER BY sum(cost_usd) DESC NULLS LAST LIMIT 20"
+     FROM llm_usage WHERE at > $W AND kind = 'llm' AND NOT shadow
+    GROUP BY 1, 2, 3 ORDER BY sum(cost_usd) DESC NULLS LAST LIMIT 25"
 
 section "7. The 20 most expensive runs"
 q "SELECT to_char(r.started_at AT TIME ZONE 'Europe/Kyiv', 'MM-DD HH24:MI') AS at_kyiv, r.role, r.channel_key, r.model,

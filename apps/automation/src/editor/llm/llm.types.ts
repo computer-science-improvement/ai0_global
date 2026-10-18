@@ -47,6 +47,10 @@ export interface LlmRequest {
   reasoningEffort?: 'low' | 'medium' | 'high';
   /** Spec 038: which workspace serves the request (absent = openrouter); the RoutingLlmClient dispatches on it. */
   provider?:    Workspace;
+  /** Spec 053 FR-002: false = send no prompt-cache breakpoints (a one-call run never reads them back). Default true. */
+  cache?:       boolean;
+  /** Spec 053 FR-002: cancels the HTTP call (a caller that timed out). */
+  signal?:      AbortSignal;
 }
 
 export interface LlmUsage {

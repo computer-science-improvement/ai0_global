@@ -56,7 +56,7 @@ test('a reject reason is an "avoid" note; a rejection without a reason teaches n
   assert.equal(rejectPreference({ slotId: 's3', topic: 't', resourceRef: null, reason: null }), null);
 });
 
-test('a reject reason appears in the next planner and executor prompts (last 20, own section)', async () => {
+test('a reject reason appears in the next planner and executor prompts (last 20 / 10, own section)', async () => {
   const memory: Array<{ channelKey: string } & OwnerPreference> = [];
   const item = {
     id: 'slot-1', planId: 'p', channelKey: '@space', scheduledAt: new Date('2030-03-04T10:00:00Z'), kind: 'content', format: 'text',
@@ -78,6 +78,7 @@ test('a reject reason appears in the next planner and executor prompts (last 20,
   const asEntries = (): MemoryEntry[] => memory.map((m, i) => ({ id: i + 1, kind: m.kind, text: m.text, evidence: m.evidence, createdBy: 'owner', createdAt: new Date() }));
   const seen: any[] = [];
   const listed: any[] = [];
+  const asked: Array<number | undefined> = [];
   const runner = new EditorRunnerService({
     loop: { run: async (i: any) => { seen.push(i); return { runId: 'r', status: 'ok', terminalTool: 'submit_plan', totals: { steps: 1, promptTokens: 0, completionTokens: 0, costUsd: 0 } } as any; } },
     registry: { forRole: () => [] },
@@ -85,7 +86,7 @@ test('a reject reason appears in the next planner and executor prompts (last 20,
     plans: { reservedSlots: async () => [], getSlot: async () => ({ ...item, status: 'published' }) as any, updateSlot: async () => {} },
     memory: {
       listActive: async (_k: string, _n?: number, o?: any) => { listed.push(o); return [{ id: 99, kind: 'rule', text: 'Без емодзі в заголовках', evidence: null, createdBy: 'owner', createdAt: new Date() }]; },
-      ownerPreferences: async (_k: string, n?: number) => { assert.equal(n, 20); return asEntries(); },
+      ownerPreferences: async (_k: string, n?: number) => { asked.push(n); return asEntries(); },
     },
     env: () => undefined, notify: async () => {},
   });
@@ -99,6 +100,8 @@ test('a reject reason appears in the next planner and executor prompts (last 20,
   assert.match(seen[1].system, /тема була вчора в іншому каналі мережі/);
   await runner.runReviewer(makeCard({ channelKey: '@space' }));
   assert.doesNotMatch(seen[2].system, /## Вподобання власника/, 'the reviewer prompt is unchanged');
+  // Spec 053 FR-001: the planner reads the last 20, the writer (whose every step re-sends them) the last 10.
+  assert.deepEqual(asked, [20, 10]);
 });
 
 test('approval stats of a fixture: rates, top reasons (grouped), median time to approve, expired', () => {
