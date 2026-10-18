@@ -16,6 +16,7 @@ import { assertNoEnabledBindings, liveRefsOf } from '../migration/binding-guard'
 import { resourceStyleOf } from '../post/style/style-store';
 import { defaultAppliesTo } from '../skills/skill-defaults';
 import { attachProfileTone } from '../skills/profile-tone';
+import { dismissHealth } from '../platform/resource-health.service';
 
 export interface AgentsServiceDeps {
   pool:    Pick<Pool, 'query'>;
@@ -300,6 +301,16 @@ export class AgentsService {
     const key = this.profileKey(orch);
     const stored = key && this.d.profiles ? await this.d.profiles.get(key) : null;
     return { ref: key, profile: stored?.profile ?? null, health: stored?.health ?? null, updatedAt: stored?.updatedAt ?? null };
+  }
+
+  /** Spec 049 FR-002: the owner mutes the daily "connection broken" reminders of the agent's resource. */
+  async dismissHealth(handle: string) {
+    const orch = await this.orchestratorOf(await this.require(handle));
+    const key = this.profileKey(orch);
+    if (!key || !this.d.profiles) throw new BadRequestException({ error: 'no_resource', details: 'this agent has no resource' });
+    const muted = await dismissHealth(this.d.profiles, key, new Date());
+    if (!muted) throw new BadRequestException({ error: 'not_broken', details: 'the resource is not in a bad state' });
+    return this.getProfile(handle);
   }
 
   async putProfile(handle: string, body: unknown) {

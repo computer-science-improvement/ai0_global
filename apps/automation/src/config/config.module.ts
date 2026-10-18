@@ -52,6 +52,7 @@ import { StrategiesController } from './api/strategies.controller';
 import { ForwardRoutesController } from './api/forward-routes.controller';
 import { AuthModule } from '../auth/auth.module';
 import { LegacyBindingsCheck } from './legacy-bindings.check';
+import { ConnectionKeeperUpkeep } from './connection-keeper.upkeep';
 
 @Global()
 @Module({
@@ -79,6 +80,8 @@ import { LegacyBindingsCheck } from './legacy-bindings.check';
     TikTokAccountsRepository,
     TikTokTokenService,
     TikTokOAuthService,
+    // Spec 049 FR-001: the daily connection upkeep (Threads refresh, Meta expiry, bots / Telegraph / TikTok checks).
+    ConnectionKeeperUpkeep,
     YoutubeLandingRepository,
     LandingResourcesService,
     // Spec 026: the public page settings (app_settings landing.*) and the live autonomy proof.

@@ -561,13 +561,26 @@ export function useStyleProposal(ref: string, enabled: boolean) {
 }
 
 export type HealthState = 'ok' | 'no_access' | 'token_expiring' | 'token_invalid' | 'rate_limited' | 'unknown';
-export interface ResourceHealth { state: HealthState; detail?: string | null; checkedAt: string }
+export interface ResourceHealth {
+  state: HealthState; detail?: string | null; checkedAt: string;
+  /** Spec 049: since when the resource is in this bad state, the token's expiry, the owner muted the reminders. */
+  since?: string; expiresAt?: string; dismissedAt?: string;
+}
 
 export interface ResourceProfileResponse {
   ref:       string | null;
   profile:   ResourceProfile | null;
   health:    ResourceHealth | null;
   updatedAt: string | null;
+}
+
+/** Spec 049 FR-002: mute the daily "connection broken" reminders (until the resource's state changes). */
+export function useDismissHealth(handle: string) {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: () => api<ResourceProfileResponse>(`/api/agents/${enc(handle)}/health/dismiss`, { method: 'POST' }),
+    onSuccess: () => qc.invalidateQueries({ queryKey: [...KEY, 'profile', handle] }),
+  });
 }
 
 export function useResourceProfile(handle: string, enabled = true) {

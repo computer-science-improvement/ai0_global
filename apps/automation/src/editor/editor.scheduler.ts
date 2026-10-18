@@ -53,6 +53,11 @@ export interface EditorSchedulerDeps {
    * resource (`skipped`, error `resource_paused`) — approval write-ahead included, so nothing waits for the owner.
    * Reserved slots (paid ads) are not this lane's.
    */
+  /**
+   * Spec 049 FR-002: why a claimed slot's resource cannot publish now (a broken connection), or null. Such a slot
+   * is skipped with that reason instead of running the writer for a post that cannot go out.
+   */
+  unavailable?: (ref: string) => Promise<string | null>;
   pauses?: {
     liftDue(now: Date): Promise<unknown>;
     pausedRefs(now: Date): Promise<Set<string>>;
@@ -195,7 +200,9 @@ export class EditorScheduler {
     const due: EditorSlot[] = [];
     for (const s of [...early, ...rest]) {
       if (!byKey.has(s.channelKey)) continue;
-      if (paused.has(slotRef(s))) await this.skipPaused(s);
+      if (paused.has(slotRef(s))) { await this.skipPaused(s); continue; }
+      const broken = await this.unavailable(s);
+      if (broken) await this.skip(s, broken);
       else due.push(s);
     }
     await this.runLimited(due, EXECUTOR_PARALLEL, async (slot) => {
@@ -221,6 +228,23 @@ export class EditorScheduler {
     try { return await this.d.pauses.held(card, paused); } catch (err: any) {
       this.d.log?.(`pause check of ${card.channelKey} failed: ${err?.message ?? err}`);
       return false;
+    }
+  }
+
+  /** Spec 049 FR-002: the reason a slot's resource cannot publish (null without the hook or on an error). */
+  private async unavailable(slot: EditorSlot): Promise<string | null> {
+    if (!this.d.unavailable) return null;
+    try { return await this.d.unavailable(slotRef(slot)); } catch (err: any) {
+      this.d.log?.(`health check of ${slotRef(slot)} failed: ${err?.message ?? err}`);
+      return null;
+    }
+  }
+
+  private async skip(slot: EditorSlot, reason: string): Promise<void> {
+    try {
+      await this.d.plans.updateSlot?.(slot.id, { status: 'skipped', error: reason });
+    } catch (err: any) {
+      this.d.log?.(`skipping slot ${slot.id} failed: ${err?.message ?? err}`);
     }
   }
 

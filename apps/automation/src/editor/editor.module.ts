@@ -1408,11 +1408,11 @@ export const EDITOR_PROVIDERS = [
     },
     {
       provide: EDITOR_SCHEDULER,
-      inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_RUNNER, EDITOR_PUBLISH, EDITOR_DRAFTS, TelegramNotifier, PostingThrottleService, EDITOR_NETWORK, EDITOR_MANAGER, AGENT_INFRA, ChannelConfigService, APPROVAL_INFRA, SCHEDULE_INFRA],
+      inject: [DB_POOL, ConfigService, EDITOR_REPOS, EDITOR_RUNNER, EDITOR_PUBLISH, EDITOR_DRAFTS, TelegramNotifier, PostingThrottleService, EDITOR_NETWORK, EDITOR_MANAGER, AGENT_INFRA, ChannelConfigService, APPROVAL_INFRA, SCHEDULE_INFRA, PLATFORM_INFRA],
       useFactory: (
         pool: Pool, cfg: ConfigService, repos: EditorRepos, runner: EditorRunnerService, ports: PublishPorts, drafts: DraftsService,
         notifier: TelegramNotifier, throttle: PostingThrottleService, network: NetworkRunner, manager: ManagerInfra, infra: AgentInfra,
-        channelConfig: ChannelConfigService, approval: ApprovalInfra, schedule: ScheduleService,
+        channelConfig: ChannelConfigService, approval: ApprovalInfra, schedule: ScheduleService, platform: PlatformInfra,
       ) => {
         const logger = new Logger('EditorScheduler');
         const notify = (t: string) => notifier.notifyAlert(t);
@@ -1478,6 +1478,8 @@ export const EDITOR_PROVIDERS = [
         const eventRecaps = new EventRecapWatch({ pool, inbox: infra.inbox, log: (m) => logger.warn(m) });
         return new EditorScheduler({
           pool, channels: repos.channels, plans: repos.plans, runner, reserved,
+          // Spec 049 FR-002: a slot on a resource that cannot publish (broken connection) is skipped with the reason.
+          unavailable: (ref) => platform.health.blocked(ref),
           postAudit: (now) => audit.tick(now),
           newsWatch: (card, now) => newsWatch.check(card, now),
           silentDays: (cards, now, paused) => silent.check(cards, now, paused),

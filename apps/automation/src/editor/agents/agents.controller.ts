@@ -66,6 +66,12 @@ export class AgentsController {
     return this.svc.getProfile(handle);
   }
 
+  /** Spec 049 FR-002: mute the daily reminders of the agent's broken resource (until its state changes). */
+  @Post('agents/:handle/health/dismiss')
+  dismissHealth(@Param('handle') handle: string) {
+    return this.svc.dismissHealth(handle);
+  }
+
   @Put('agents/:handle/profile')
   putProfile(@Param('handle') handle: string, @Body() body: unknown) {
     return this.svc.putProfile(handle, body);

@@ -249,9 +249,15 @@ export type FormatPatchResult =
 
 export type HealthState = 'ok' | 'no_access' | 'token_expiring' | 'token_invalid' | 'rate_limited' | 'unknown';
 export interface ResourceHealth {
-  state:     HealthState;
-  detail?:   string;
-  checkedAt: string;
+  state:        HealthState;
+  detail?:      string;
+  checkedAt:    string;
+  /** Spec 049: when the resource entered its current bad state (kept across checks while it stays). */
+  since?:       string;
+  /** When the token stops working, if known (token_expiring). */
+  expiresAt?:   string;
+  /** The owner muted the daily reminders (cleared when the state changes). */
+  dismissedAt?: string;
 }
 
 export interface StoredProfile {

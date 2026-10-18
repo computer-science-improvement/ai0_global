@@ -111,6 +111,7 @@ export function skipReason(error: string | null | undefined): SkipReason | null 
   if (/^skipped by owner/.test(e)) return { code: 'owner', label: 'Skipped by you', detail: rest(/^skipped by owner:?/) };
   if (/^skipped by agent/.test(e)) return { code: 'agent', label: 'Skipped by the agent', detail: rest(/^skipped by agent:?/) };
   if (/^resource_paused/.test(e)) return { code: 'paused', label: 'Resource paused', detail: '' };
+  if (/^resource_unavailable\b/.test(e)) return { code: 'unavailable', label: 'Connection broken', detail: rest(/^resource_unavailable:?/) };
   return { code: 'other', label: 'Note', detail: e };
 }
 

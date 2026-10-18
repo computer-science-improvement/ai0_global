@@ -16,9 +16,14 @@ export interface ResourceListItem {
 }
 
 export interface AccessCheck {
-  state:  HealthState;
-  detail: string;
+  state:      HealthState;
+  detail:     string;
+  /** When the token expires, if known (spec 049: the reminder gets closer to it). */
+  expiresAt?: string;
 }
+
+/** Spec 049 FR-001: a Meta token this close to its expiry is `token_expiring` (the owner reconnects it). */
+export const META_EXPIRING_DAYS = 7;
 
 export interface ResourceInspection {
   resource:   ResourceListItem;
@@ -117,11 +122,20 @@ export class ResourceCatalog {
           : { state: 'unknown', detail: 'access check unavailable' };
       }
       if (parsed.platform === 'instagram' || parsed.platform === 'facebook' || parsed.platform === 'threads') {
-        const { rows } = await this.d.pool.query(`SELECT active, last_verified_at, verify_error FROM meta_accounts WHERE id::text = $1`, [parsed.id]);
+        const { rows } = await this.d.pool.query(
+          `SELECT active, last_verified_at, verify_error, token_expires_at, token_valid FROM meta_accounts WHERE id::text = $1`, [parsed.id]);
         const r = rows[0];
+        // Spec 049 FR-001: the token's expiry and debug_token validity count too (they were stored but never read).
+        const exp = r?.token_expires_at ? new Date(r.token_expires_at) : null;
+        const left = exp ? exp.getTime() - this.now().getTime() : null;
+        const day = (d: Date) => d.toISOString().slice(0, 10);
         return !r ? { state: 'no_access', detail: 'account not found' }
           : !r.active ? { state: 'no_access', detail: 'account disabled' }
+          : exp && left! <= 0 ? { state: 'token_invalid', detail: `token expired on ${day(exp)}`, expiresAt: exp.toISOString() }
+          : r.token_valid === false ? { state: 'token_invalid', detail: 'the token is no longer valid (Meta debug_token)' }
           : r.verify_error ? { state: 'token_invalid', detail: String(r.verify_error) }
+          : exp && left! < META_EXPIRING_DAYS * DAY
+            ? { state: 'token_expiring', detail: `token expires ${day(exp)} (${Math.ceil(left! / DAY)} d left)`, expiresAt: exp.toISOString() }
           : r.last_verified_at ? { state: 'ok', detail: `verified ${new Date(r.last_verified_at).toISOString().slice(0, 10)}` }
           : { state: 'unknown', detail: 'not verified yet' };
       }
@@ -133,7 +147,7 @@ export class ResourceCatalog {
           : !r.active ? { state: 'no_access', detail: 'account disabled' }
           : r.refresh_error ? { state: 'token_invalid', detail: String(r.refresh_error) }
           : refreshLeft < 0 ? { state: 'token_invalid', detail: 'refresh token expired' }
-          : refreshLeft < 7 * DAY ? { state: 'token_expiring', detail: `refresh token expires ${new Date(r.refresh_token_expires_at).toISOString().slice(0, 10)}` }
+          : refreshLeft < 7 * DAY ? { state: 'token_expiring', detail: `refresh token expires ${new Date(r.refresh_token_expires_at).toISOString().slice(0, 10)}`, expiresAt: new Date(r.refresh_token_expires_at).toISOString() }
           : { state: 'ok', detail: 'token valid' };
       }
       const { rows } = await this.d.pool.query(`SELECT active, expires_at FROM youtube_accounts WHERE id::text = $1`, [parsed.id]);

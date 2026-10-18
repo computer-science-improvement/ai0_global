@@ -22,6 +22,7 @@ import { AgentPromo } from '../components/agents/AgentPromo';
 import { ApprovalList } from '../components/approvals/ApprovalList';
 import { ApprovalStatsPanel } from '../components/approvals/ApprovalStatsPanel';
 import { AgentSetupButton } from '../components/setup/AgentSetupButton';
+import { ConnectionBanner } from '../components/agents/ConnectionBanner';
 import { errorBody, useAgent, useRunAgent } from '../api/agents';
 import { useRunManager, type DirectiveBinding } from '../api/manager';
 import { directiveFilterSearch, parseDirectiveFilters, type DirectiveFilters } from '../lib/directive-view';
@@ -154,6 +155,9 @@ function AgentPage() {
       {a.description && (
         <p className="text-body-sm" style={{ margin: '0 0 16px', color: 'var(--color-ink-muted)', maxWidth: 760, whiteSpace: 'pre-wrap' }}>{a.description}</p>
       )}
+
+      {/* Spec 049 FR-002: the resource's connection is broken (or expiring): since when, and where to fix it. */}
+      {!manager && a.kind !== 'builder' && <ConnectionBanner handle={a.handle} />}
 
       <div style={{ marginBottom: 16, overflowX: 'auto', maxWidth: '100%' }}>
         <SegmentedTabs value={tab} onChange={setTab} options={tabOptions} />

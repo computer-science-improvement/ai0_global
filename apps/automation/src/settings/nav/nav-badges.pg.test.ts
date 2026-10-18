@@ -27,7 +27,7 @@ before(async () => {
     CREATE TABLE agent_inbox (id bigserial PRIMARY KEY, severity text NOT NULL DEFAULT 'info', read_at timestamptz, created_at timestamptz NOT NULL DEFAULT now());
     CREATE INDEX ON agent_inbox (created_at DESC) WHERE read_at IS NULL;
     CREATE TABLE agent_directives (id bigserial PRIMARY KEY, status text NOT NULL);
-    CREATE TABLE pending_actions (id bigserial PRIMARY KEY, status text NOT NULL);
+    CREATE TABLE pending_actions (id bigserial PRIMARY KEY, status text NOT NULL, created_at timestamptz NOT NULL DEFAULT now());
     CREATE TABLE agent_dm_threads (id bigserial PRIMARY KEY, status text NOT NULL);
     -- agent_actions is deliberately missing (an older DB).
     CREATE TABLE editor_slots (id bigserial PRIMARY KEY, status text NOT NULL, scheduled_at timestamptz NOT NULL);
@@ -37,7 +37,7 @@ before(async () => {
   await pool.query(`
     INSERT INTO agent_inbox (severity, read_at) VALUES ('info', NULL), ('critical', NULL), ('action', now()), ('critical', now());
     INSERT INTO agent_directives (status) VALUES ('awaiting_owner'), ('awaiting_owner'), ('accepted');
-    INSERT INTO pending_actions (status) VALUES ('pending'), ('applied');
+    INSERT INTO pending_actions (status, created_at) VALUES ('pending', now()), ('applied', now()), ('pending', now() - interval '25 hours');
     INSERT INTO agent_dm_threads (status) VALUES ('new'), ('new'), ('new'), ('replied');
     INSERT INTO editor_slots (status, scheduled_at) VALUES
       ('failed', '2026-10-06T20:59:59Z'),  -- 23:59:59 yesterday in Kyiv: not today

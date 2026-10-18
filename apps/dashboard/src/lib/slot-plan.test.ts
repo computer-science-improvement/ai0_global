@@ -35,6 +35,9 @@ test('skip reasons: no_fresh_item, critic reject / failure, replaced, owner, age
   assert.equal(skipReason('superseded by a new plan')!.code, 'superseded');
   assert.equal(skipReason('skipped by owner: duplicate')!.detail, 'duplicate');
   assert.equal(skipReason('skipped by agent: no verified source')!.code, 'agent');
+  // Spec 049 FR-002: a slot skipped because its resource's connection is broken.
+  assert.deepEqual(skipReason('resource_unavailable: token_invalid — token expired on 2026-08-17'),
+    { code: 'unavailable', label: 'Connection broken', detail: 'token_invalid — token expired on 2026-08-17' });
   assert.deepEqual(skipReason('retry after max_steps'), { code: 'other', label: 'Note', detail: 'retry after max_steps' });
   assert.equal(skipReason(null), null);
 });
