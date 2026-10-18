@@ -93,6 +93,11 @@ export class PendingActionsService {
     return this.handlers.has(kind);
   }
 
+  /** One card by id (a card made outside a chat opens from "Waiting for you"). */
+  get(id: string): Promise<PendingAction | null> {
+    return this.repo.get(id);
+  }
+
   propose(a: { chatId: string | null; agentId?: string | null; kind: string; payload: Record<string, unknown>; summary: string }): Promise<PendingAction> {
     if (!this.handlers.has(a.kind)) throw new Error(`unknown action kind ${a.kind}`);
     return this.repo.create(a);

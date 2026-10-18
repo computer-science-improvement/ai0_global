@@ -455,6 +455,13 @@ export class AgentsService {
 
   // ── confirmation cards (spec 018 FR-005) ──────────────────────────────────
 
+  /** One confirmation card — a card made outside a chat (manager, data, migration) opens in a dialog from "Waiting for you". */
+  async action(id: string) {
+    const a = this.d.actions ? await this.d.actions.get(id) : null;
+    if (!a) throw new NotFoundException({ error: 'action_not_found' });
+    return { action: a };
+  }
+
   async applyAction(id: string, input: unknown = null) {
     if (!this.d.actions) throw new NotFoundException({ error: 'actions_unavailable' });
     try {

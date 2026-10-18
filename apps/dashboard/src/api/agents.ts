@@ -373,7 +373,17 @@ export function useDecideAction() {
     onSettled: () => {
       qc.invalidateQueries({ queryKey: KEY });
       qc.invalidateQueries({ queryKey: ['editor-chat', 'chat'] });
+      qc.invalidateQueries({ queryKey: ['nav'] });
     },
+  });
+}
+
+/** One confirmation card by id (a card made outside a chat opens in a dialog from "Waiting for you"). */
+export function usePendingAction(id: string | null) {
+  return useQuery({
+    queryKey: [...KEY, 'action', id],
+    queryFn:  () => api<{ action: PendingAction }>(`/api/agents/actions/${enc(id!)}`).then((r) => r.action),
+    enabled:  !!id,
   });
 }
 
