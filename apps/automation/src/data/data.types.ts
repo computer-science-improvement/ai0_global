@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import type { PostRequires } from './post-requires';
 
 /**
  * Spec 032: the unified data store. A dataset is a `data_schemas` row that describes the data and every
@@ -58,6 +59,8 @@ export interface DataSchema {
   suitable_for:           string;
   contains_personal_data: boolean;
   legacy:                 { table: string; id: 'uuid' | 'text'; id_field?: string } | null;
+  /** Groups of fields a row needs before it can be posted (migration 083; see post-requires.ts). */
+  post_requires?:         PostRequires;
   status:                 'draft' | 'active' | 'archived';
   created_by:             string | null;
   created_at:             string;
@@ -100,6 +103,9 @@ export const reusePolicySchema = z.union([
   z.object({ kind: z.literal('after_days'), days: z.number().int().min(1).max(3650) }),
 ]);
 
+/** Groups of field names a row needs for posting: every group needs one filled field. */
+export const postRequiresSchema = z.array(z.array(z.string().regex(FIELD_NAME_RE)).min(1).max(10)).max(10);
+
 /** Everything an owner may set on a schema. */
 export const schemaInputSchema = z.object({
   key:                    z.string().regex(SCHEMA_KEY_RE, 'keys are snake_case: a-z, 0-9 and _, 2–63 characters'),
@@ -114,6 +120,7 @@ export const schemaInputSchema = z.object({
   reuse_policy:           reusePolicySchema.default({ kind: 'never' }),
   suitable_for:           z.string().max(2000).default(''),
   contains_personal_data: z.boolean().default(false),
+  post_requires:          postRequiresSchema.optional(),
   status:                 z.enum(['draft', 'active', 'archived']).default('active'),
 }).superRefine((s, ctx) => {
   const names = new Set<string>();
@@ -128,6 +135,9 @@ export const schemaInputSchema = z.object({
   }
   for (const k of s.dedup_key) {
     if (!names.has(k)) ctx.addIssue({ code: 'custom', message: `dedup_key points to unknown field ${k}`, path: ['dedup_key'] });
+  }
+  for (const k of (s.post_requires ?? []).flat()) {
+    if (!names.has(k)) ctx.addIssue({ code: 'custom', message: `post_requires points to unknown field ${k}`, path: ['post_requires'] });
   }
 });
 export type SchemaInput = z.infer<typeof schemaInputSchema>;
@@ -145,6 +155,7 @@ export const schemaPatchSchema = z.object({
   reuse_policy:           reusePolicySchema.optional(),
   suitable_for:           z.string().max(2000).optional(),
   contains_personal_data: z.boolean().optional(),
+  post_requires:          postRequiresSchema.optional(),
   status:                 z.enum(['draft', 'active', 'archived']).optional(),
 }).strict();
 export type SchemaPatch = z.infer<typeof schemaPatchSchema>;

@@ -157,7 +157,8 @@ export function buildReadTools(d: ReadToolDeps): EditorTool[] {
       const extraFields = [...new Set(Object.values(extra).flat())].filter((n) => names.has(n));
       const channelKey = channelOf(ctx);
       const r = await queryDataset(d.pool, schema, {
-        audience: 'owner', fields: extraFields,
+        // Agent-facing despite the owner row shape: never offer rows that miss post_requires (migration 083).
+        audience: 'owner', fields: extraFields, postableOnly: true,
         search: i.query, categoryLike: i.category, todayOnly: i.today_only,
         unpostedOn: !i.include_used && channelKey ? channelKey : null,
         order: i.query ? 'newest' : 'random', limit: i.limit, today: today(), bodyChars: 800,

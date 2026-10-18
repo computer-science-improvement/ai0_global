@@ -11,6 +11,7 @@ import { dataRef, resourceKeys, usedRefsCte } from './data-refs';
  *   • fields are validated against the schema (agents: only `agent_visible`, non-deprecated fields);
  *   • filters only on `filterable` fields, with an operator that fits the field type;
  *   • `unposted_on` drops rows already used on a resource (see `usedRefsCte` for what "used" means);
+ *   • agents never get rows that miss what the dataset needs for posting (`post_requires`, migration 083);
  *   • long text is cut to 2000 characters unless the caller asks for `full`.
  *
  * Field names never reach SQL unvalidated: they must exist in the schema and match the snake_case rule.
@@ -51,6 +52,8 @@ export interface QueryOptions {
   status?:     'active' | 'hidden' | 'all';
   /** Return long text uncut. */
   full?:       boolean;
+  /** Only rows that have what the dataset's `post_requires` asks for. Default: on for agents, off for the owner. */
+  postableOnly?: boolean;
   today:       { month: number; day: number };
   withTotal?:  boolean;
   /** Internal (search_library wrapper): envelope category ILIKE, envelope "today", owner body length. */
@@ -219,6 +222,9 @@ export async function queryDataset(pool: Pick<Pool, 'query'>, schema: DataSchema
   const where: string[] = [`d.schema_id = ${p(schema.id)}`];
   const status = o.status ?? 'active';
   if (status !== 'all') where.push(`d.status = ${p(status)}`);
+  if ((o.postableOnly ?? o.audience === 'agent') && schema.post_requires?.length) {
+    where.push(`data_postable(${p(JSON.stringify(schema.post_requires))}::jsonb, d.data)`);
+  }
 
   for (const flt of o.filters ?? []) {
     const f = byName.get(flt.field);

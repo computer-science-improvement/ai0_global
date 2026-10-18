@@ -5,6 +5,7 @@ import type { Pool } from 'pg';
 import { DataStore, DataStoreError } from '../data-store';
 import type { DataSchema, FieldDef, Roles } from '../data.types';
 import { compileRowSchema, validateRow } from '../field-validation';
+import { postMissing } from '../post-requires';
 import { autoMapColumns, inferSchemaDraft, INFER_SAMPLE, type SchemaDraft } from './type-inference';
 import { detectFormat, MAX_IMPORT_BYTES, MAX_IMPORT_ROWS, readSourceRows, type ImportFormat, type ReadResult } from './source-reader';
 
@@ -393,6 +394,13 @@ export class DataImportService {
         if (k.external_key === null && schema.dedup_key.length) {
           a.invalidRows.add(b.row);
           this.pushError(a.errors, { row: b.row, line: b.line, field: schema.dedup_key[0], error: 'dedup key fields are empty' });
+          continue;
+        }
+        // Migration 083: a new row must have what the dataset needs for posting (the write path refuses it too).
+        const missing = k.item_exists ? [] : postMissing(schema.post_requires, b.data);
+        if (missing.length) {
+          a.invalidRows.add(b.row);
+          this.pushError(a.errors, { row: b.row, line: b.line, field: missing[0].split(' or ')[0], error: `required for posting: ${missing.join('; ')}` });
           continue;
         }
         keyed.push({ ...b, exists: Boolean(k.item_exists), key: k.external_key });
