@@ -1,6 +1,6 @@
 # 048 Chat workspace and artifacts
 
-**Epic:** AI0-181 (T1–T8 = AI0-208…215) · **Priority:** P1 · **Depends on:** 042, 045, 047 · **Status:** in progress (design approved by the owner 2026-10-18)
+**Epic:** AI0-181 (T1–T8 = AI0-208…215) · **Priority:** P1 · **Depends on:** 042, 045, 047 · **Status:** DONE 2026-10-18 (design approved by the owner 2026-10-18)
 
 ## Why
 

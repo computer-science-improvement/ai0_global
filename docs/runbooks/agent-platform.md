@@ -113,10 +113,9 @@ The onboarder reads an own channel's last 20 posts and proposes its agent's setu
 
 **Use**
 
-- Open `/app/setup` (Agents → Setup from history). You can also use "Set up from history" on a channel agent's page, or ask `@ai0` with `analyze_channel_history`.
-- Tick channels and choose **Analyze selected**. The confirm shows the cost, which is the average of the last 20 successful onboarder runs. There is no estimate before the first run.
-- Each run takes about a minute. The worker runs one channel at a time, every minute and at boot. Rows refresh by themselves.
-- Open a proposal. Each section shows "now → proposed" and the posts it rests on. Tick the sections you want, then choose **Apply selected**.
+- Type `/setup @channel` in the chat (spec 048), one channel per command. You can also use "Set up from history" on a channel agent's page, which shows the cost first, or ask `@ai0` with `analyze_channel_history`. The cost is the average of the last 20 successful onboarder runs. There is no estimate before the first run.
+- Each run takes about a minute. The worker runs one channel at a time, every minute and at boot. The proposal's chip in the chat follows its status.
+- Open the proposal from its chip, from Agents → Artifacts (type "Setups from history"), or from the agent's Artifacts tab. `/app/setup` redirects there. Each section shows "now → proposed" and the posts it rests on. Tick the sections you want, then choose **Apply selected**.
 - Sections are written in order: brief and profile, formatting, format mix, series and pillars, schedule, examples and voice. Apply stops at the first failure, and the dialog names the section that failed.
 - What Apply keeps and writes:
   - Owner-locked formatting fields and locked series are kept.
@@ -151,15 +150,15 @@ Steering points one of your channels at a public channel you like. The onboarder
 
 **Use**
 
-- Open `/app/steering` (Agents → Steering) and choose **New steering**. Pick your channel and give the reference as `@username` or a `t.me/…` link. You can also ask `@ai0` with `steer_channel`.
-- One model run per analysis (role `onboarder`, usage feature `editor.steering`, at most 4 steps and $0.30). The dialog shows the average cost of past runs. A worker takes one set at a time, every minute and at boot.
-- Open the set when it shows **Ready to review**. It shows a summary, then the rules: kind, text, the reference posts behind each rule (linked), and a switch per rule. You can edit a rule's text. An edit that quotes 60+ characters of a reference post, or asks the agent to pose as a human or to copy, is refused.
+- Type `/steer @yours @theirs` in the chat (spec 048). The reference can be `@username` or a `t.me/…` link. You can also choose **New steering** on Agents → Artifacts, which opens the chat with `/steer` typed, or ask `@ai0` with `steer_channel`.
+- One model run per analysis (role `onboarder`, usage feature `editor.steering`, at most 4 steps and $0.30). A worker takes one set at a time, every minute and at boot.
+- Open the set from its chip in the chat or from Agents → Artifacts (type "Steering") when it shows **Ready to review**. `/app/steering` redirects there. It shows a summary, then the rules: kind, text, the reference posts behind each rule (linked), and a switch per rule. You can edit a rule's text. An edit that quotes 60+ characters of a reference post, or asks the agent to pose as a human or to copy, is refused.
 - A rule that contradicts your channel's own rules is marked **Conflict**. It stays on the set so you can see it, but the agent never gets it.
 - **Activate** gives the rules to the agent from its next run. The rules go to the planner and the writer prompts, below all your other rules. The critic reads them as advice for `format_fit` only, never as a reason to reject.
 - A channel follows at most 3 references at once. **Pause** and **Resume** take a set out of the prompts and back. **Analyze again** reads the reference again into a new set; the old one stays active until you activate the new one, and then it becomes `superseded`.
 - **Discard** closes a set. Closed sets (discarded, superseded, failed) keep the post ids, dates and numbers, but not the reference texts.
 - A post that repeats 80+ characters of an active reference's post is refused at publish with `steering_copy`. This applies to the agent, the chat and native-platform posts.
-- The agent page Overview shows "Steering: N active from @a, @b" with a link to the filtered page.
+- The agent page Overview shows "Setup from history · Steering: N active from @a, @b · Owner rules" with a link to the agent's Artifacts tab.
 
 **Statuses**
 
@@ -174,3 +173,29 @@ Steering points one of your channels at a public channel you like. The onboarder
 | `discarded` / `superseded` | Closed by you, or replaced by a newer analysis of the same reference. |
 
 Other platforms come later: Instagram can be read through the Graph API `business_discovery` field of one of our IG business accounts (spec 045 FR-010).
+
+## 11. Chat workspace and artifacts (spec 048)
+
+Artifacts are what shapes an agent: setups from history, steering sets, owner rules, memory, skills, playbooks, profiles and formatting. One registry lists them all, and setups, steering and owner rules keep their versions.
+
+**Needs**
+
+- Migration `084_artifacts` (the `artifact_versions` table). Nothing to enable.
+
+**Use**
+
+- **Commands.** Type `/` at the start of the chat composer for the menu:
+  - `/setup @channel` and `/steer @yours @theirs` start the work. They are the same as `analyze_channel_history` and `steer_channel`, run as the owner.
+  - `/rules`, `/skills` and `/memory` list the matching artifacts.
+  - `/help` lists the commands.
+  - Commands run in code with no model turn.
+  - A missing `@channel` falls back to the chat agent's channel, then to the picked one.
+- **Chips.** A message shows the artifacts it made or changed as chips. A chip shows the current status and version. A click opens the panel next to the thread. On a phone the panel is a full-screen sheet. The open artifact is in the URL (`?art=type:id`).
+- **Panel.** It shows the details, your edit (through the type's own checks), the type's actions, and the versions with a diff against the one before. **Ask the agent** puts `[[type:id]]` into the composer, and the agent reads it with `get_artifact`.
+- **Agent changes.** When an agent changes a live artifact or owner rules, it proposes an **Apply / Discard** card. The change is checked before the card and again at Apply. A draft changes at once, but only when you asked for the change.
+- **Artifacts page.** Agents → Artifacts (`/app/artifacts`) has:
+  - filters by type, view (All / Needs you / In use / Closed) and agent, kept in the URL (`?type`, `?view`, `?agent`);
+  - `?open=type:id`, which opens one artifact;
+  - **Open in chat**, which goes to the chat that made the artifact, or starts a new chat that names it.
+- **Agent page.** Each agent page has an Artifacts tab with that agent's artifacts. The Skills, Memory and Playbook tabs stay.
+- **Chat layout.** On `/app/chat` the app menu is the icon rail. Its toggle opens the full menu on this page only. The chat list is its own column, and it becomes a drawer on a phone or when the panel is open under 1280 px.

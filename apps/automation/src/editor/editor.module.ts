@@ -1103,9 +1103,9 @@ export const EDITOR_PROVIDERS = [
             agents: infra.agents, catalog: infra.catalog, profiles: infra.profiles, creator: infra.creator, skills: infra.skills, actions: infra.actions,
             conflicts: configConflictsOf(pool, repos, infra),
           }),
-          // Spec 042 FR-007: @ai0 queues a channel's setup from its history (the owner reviews the proposal on /app/setup).
+          // Spec 042 FR-007: @ai0 queues a channel's setup from its history (the owner reviews the proposal as an artifact, spec 048).
           buildAnalyzeHistoryTool({ pool, repo: new ChannelSetupRepository(pool) }),
-          // Spec 045 FR-009: @ai0 queues a steering analysis (the owner activates the rules on /app/steering).
+          // Spec 045 FR-009: @ai0 queues a steering analysis (the owner activates the rules as an artifact, spec 048).
           buildSteerChannelTool({ steering }),
           // Spec 048 FR-002: read and change the artifacts that shape an agent (live ones through an Apply / Discard card).
           ...buildArtifactTools({ artifacts: () => ARTIFACTS.svc, actions: infra.actions }),

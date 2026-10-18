@@ -68,14 +68,11 @@ export const NAV_REGISTRY: ReadonlyArray<NavEntry> = [
   // ── Agents ──
   { id: 'agents', to: '/app/agents', label: 'Agents', icon: 'agents', defaultGroup: 'g_agents', badge: 'agents', keywords: ['bots', 'network', 'orchestrator', 'team'] },
   { id: 'chat', to: '/app/chat', label: 'Chat', icon: 'chat', defaultGroup: 'g_agents', badge: 'chat', keywords: ['ai0', 'talk', 'ask', 'conversation'] },
-  // Spec 048: what shapes an agent (setup, steering, rules, memory, skills, playbooks…) in one place.
-  { id: 'artifacts', to: '/app/artifacts', label: 'Artifacts', icon: 'layers', defaultGroup: 'g_agents', parent: 'agents', keywords: ['rules', 'memory', 'skills', 'playbook', 'profile', 'formatting', 'setup', 'steering', 'versions'] },
+  // Spec 048: what shapes an agent (setup, steering, rules, memory, skills, playbooks…) in one place; it replaced
+  // the Setup from history (042) and Steering (045) pages.
+  { id: 'artifacts', to: '/app/artifacts', label: 'Artifacts', icon: 'layers', defaultGroup: 'g_agents', parent: 'agents', keywords: ['rules', 'memory', 'skills', 'playbook', 'profile', 'formatting', 'versions', 'setup from history', 'onboard', 'analyze channel', 'steering', 'reference', 'inspiration', 'like this channel', 'learn from', 'style of'] },
   { id: 'dm-inbox', to: '/app/dm', label: 'DM inbox', icon: 'inbox', defaultGroup: 'g_agents', badge: 'dm', keywords: ['messages', 'direct', 'triage', 'ad requests', 'cross-promo'] },
   // Spec 035: which LLM each agent runs on (global default, per agent, bulk).
-  // Spec 042: an own channel's agent set up from its last 20 posts.
-  { id: 'channel-setup', to: '/app/setup', label: 'Setup from history', icon: 'sparkles', defaultGroup: 'g_agents', parent: 'agents', keywords: ['onboard', 'onboarding', 'brief', 'analyze channel', 'last posts', 'profile', 'voice', 'new channel'] },
-  // Spec 045: a reference channel that is not ours steers one of our channels (lowest-priority rules).
-  { id: 'steering', to: '/app/steering', label: 'Steering', icon: 'compass', defaultGroup: 'g_agents', parent: 'agents', keywords: ['reference', 'inspiration', 'like this channel', 'learn from', 'competitor', 'style of', 'rules'] },
   { id: 'models', to: '/app/models', label: 'Models', icon: 'cpu', defaultGroup: 'g_agents', keywords: ['llm', 'model', 'openrouter', 'glm', 'ai model', 'reasoning', 'default model'] },
   { id: 'agents-inbox', to: '/app/agents/inbox', label: 'Agent inbox', icon: 'inbox', defaultGroup: 'g_agents', badge: 'agentsInbox', parent: 'agents', hiddenByDefault: true, keywords: ['notifications', 'alerts', 'unread'] },
   { id: 'directives', to: '/app/agents/manager', search: { tab: 'directives' }, label: 'Directives', icon: 'agents', defaultGroup: 'g_agents', badge: 'directives', parent: 'agents', hiddenByDefault: true, keywords: ['manager', 'decisions', 'awaiting'] },

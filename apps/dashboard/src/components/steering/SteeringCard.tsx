@@ -1,8 +1,7 @@
-// Steering (spec 045 FR-008): one set as a compact card (target ← reference, status, rules on / total, conflicts,
-// date); the dialog has the summary, the rules with a switch and an edit each, the evidence posts and the actions.
+// Steering (spec 045 FR-008): a set's details — the summary, the rules with a switch and an edit each, the evidence
+// posts — and its actions. Spec 048 shows them in the artifact panel (the Artifacts page and the chat).
 
 import { useState } from 'react';
-import { CompactCard } from '../ui/CompactCard';
 import { Badge } from '../ui/Badge';
 import { Field } from '../ui/primitives';
 import { Modal } from '../Modal';
@@ -14,45 +13,14 @@ import {
   usePatchSteeringRule, useSteeringAction, useSteeringSet, type SteeringAction, type SteeringPostRef, type SteeringRule, type SteeringSetBrief,
 } from '../../api/steering';
 import {
-  ACTION_LABEL, isBusy, refLabel, RULE_KIND_LABEL, rulesEditable, rulesLine, STEERING_STATUS, steeringActions, steeringErrorText,
+  ACTION_LABEL, isBusy, refLabel, RULE_KIND_LABEL, rulesEditable, STEERING_STATUS, steeringActions, steeringErrorText,
 } from '../../lib/steering';
-
-const when = (iso: string) => new Date(iso).toLocaleString('en-GB', { dateStyle: 'short', timeStyle: 'short' });
 
 /** The API error as owner text: the specific reasons when there is a list, else the known code, else the details. */
 export function steeringError(e: unknown): string {
   const b = errorBody(e);
   if (Array.isArray(b?.details) && b!.details.length) return (b!.details as string[]).join(' ');
   return steeringErrorText(b?.error, typeof b?.details === 'string' ? b.details : describeError(e));
-}
-
-export function SteeringCard({ s, focused, delay }: { s: SteeringSetBrief; focused: boolean; delay: number }) {
-  const st = STEERING_STATUS[s.status];
-  const source = s.sourceTitle ? `${refLabel(s.sourceRef)} «${s.sourceTitle}»` : refLabel(s.sourceRef);
-  const line = rulesLine(s);
-  return (
-    <CompactCard
-      id={`steering-${s.id}`}
-      focused={focused}
-      delay={delay}
-      attention={s.status === 'ready'}
-      top={<><Badge tone={st.tone} title={s.reason ?? st.hint}>{st.label}</Badge><span className="chip">{refLabel(s.targetRef)}</span></>}
-      meta={when(s.activatedAt ?? s.createdAt)}
-      title={<>← {source}</>}
-      body={s.summary ?? s.reason ?? (isBusy(s.status) ? 'Reading the reference and writing the rules. It takes about a minute.' : null)}
-      extra={line ? <span className="text-micro" style={{ color: s.conflicts ? 'var(--color-warning)' : 'var(--color-ink-muted)' }}>{line}</span> : undefined}
-      note={s.status === 'ready' ? 'Review the rules and activate them' : undefined}
-      hint="Open the rules"
-      dialog={{
-        title: `${refLabel(s.targetRef)} ← ${refLabel(s.sourceRef)}`,
-        subtitle: st.label,
-        icon: 'compass',
-        size: 'lg',
-        body: () => <SteeringDetails id={s.id} />,
-        actions: (close) => <SteeringActions s={s} onDone={close} />,
-      }}
-    />
-  );
 }
 
 export function SteeringDetails({ id }: { id: string }) {

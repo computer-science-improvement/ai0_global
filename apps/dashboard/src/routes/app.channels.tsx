@@ -62,8 +62,8 @@ function ChannelsPage() {
         title="My channels"
         subtitle="Owned channels you publish into. Each row shows its bound bot, poll tier, and legacy strategy bindings."
         actions={<>
-          {/* Spec 042: set an own channel's agent up from its last 20 posts. */}
-          <Link to="/app/setup" className="btn-secondary" style={{ gap: 6, display: 'inline-flex', alignItems: 'center', flexShrink: 0, textDecoration: 'none' }}>
+          {/* Spec 042 / 048: set an own channel's agent up from its last 20 posts — /setup in the chat. */}
+          <Link to="/app/chat" search={{ q: '/setup ' }} className="btn-secondary" style={{ gap: 6, display: 'inline-flex', alignItems: 'center', flexShrink: 0, textDecoration: 'none' }}>
             <Icon name="sparkle" size={14} /> Setup from history
           </Link>
           <button

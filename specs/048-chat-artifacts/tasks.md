@@ -9,7 +9,7 @@ Order: T1 + T2 → T3 → T4 → T5 → T6 + T7 → T8. Each stage ends with tes
 - [x] T5 (AI0-212) `editor_chat_messages.artifacts`, chips, side panel with edit, actions, versions and Ask the agent.
 - [x] T6 (AI0-213) `/app/artifacts` page.
 - [x] T7 (AI0-214) Agent page Artifacts tab and Overview line.
-- [ ] T8 (AI0-215) Remove `/app/setup` and `/app/steering`, redirects, menu, docs.
+- [x] T8 (AI0-215) Remove `/app/setup` and `/app/steering`, redirects, menu, docs.
 
 ## Owner decisions (2026-10-18)
 
@@ -34,3 +34,4 @@ Order: T1 + T2 → T3 → T4 → T5 → T6 + T7 → T8. Each stage ends with tes
 - T2: adapters got `check` (rules: schema, ids, lint; steering: schema, ids, status). A change the type refuses never becomes a card.
 - T6: the status filter is a view, not a status: All / Needs you (ready, pending) / In use / Closed (discarded, superseded, failed…), filtered in the page (`?view=`); `?type`, `?agent`, `?open=type:id` as planned. "Open in chat" goes to the chat that made or named the artifact (`chatId`, the latest message whose chips hold it); with none it opens a new chat with `@agent [[type:id]]` in the composer and the panel. The page header keeps "Setup from history" and "New steering", which open the chat with `/setup ` or `/steer ` typed.
 - T7: the tab lists the agent's own artifacts (`agent=<handle>`; a role agent shows its own). The Overview line replaces the 045 steering line: latest setup with its status and date · active steering with sources · owner rules count, linking to the tab.
+- T8: `/app/setup` and `/app/steering` are redirect-only (`?proposal=` / `?set=` open the item on Artifacts; the old `?target=` filter is dropped). The setup page's batch "Analyze selected" is gone: `/setup` takes one channel, and the agent page keeps its "Set up from history" button with the cost confirm. The menu loses Setup from history and Steering (their search keywords moved to Artifacts); My channels' "Setup from history" opens the chat with `/setup ` typed. `analyze_channel_history` and `steer_channel` link to the artifact. The steering list card and the create dialog are removed with the page (the set's details and actions live on in the panel).

@@ -67,15 +67,6 @@ export interface SteeringSetView {
 const KEY = ['steering'] as const;
 const busy = (s: SteeringStatus | undefined) => s === 'queued' || s === 'collecting' || s === 'analyzing';
 
-export function useSteeringSets(target?: string | null) {
-  return useQuery({
-    queryKey: [...KEY, 'list', target ?? null],
-    queryFn:  () => api<{ sets: SteeringSetBrief[] }>(`/api/steering${target ? `?target=${encodeURIComponent(target)}` : ''}`),
-    // Polls while an analysis is queued or running.
-    refetchInterval: (q) => (q.state.data?.sets.some((s) => busy(s.status)) ? 4_000 : false),
-  });
-}
-
 export function useSteeringSet(id: string | null | undefined) {
   return useQuery({
     queryKey: [...KEY, 'set', id],
@@ -83,10 +74,6 @@ export function useSteeringSet(id: string | null | undefined) {
     enabled:  !!id,
     refetchInterval: (q) => (busy(q.state.data?.set.status) ? 4_000 : false),
   });
-}
-
-export function useSteeringEstimate() {
-  return useQuery({ queryKey: [...KEY, 'estimate'], queryFn: () => api<{ estimateUsd: number | null }>('/api/steering/estimate') });
 }
 
 /** "Steering: N active from @a, @b" on the agent page. */
@@ -102,15 +89,6 @@ function useDone() {
   const qc = useQueryClient();
   // Spec 048: a steering set is also an artifact (its chip and panel read /api/artifacts).
   return () => { void qc.invalidateQueries({ queryKey: KEY }); void qc.invalidateQueries({ queryKey: ['artifacts'] }); };
-}
-
-export function useCreateSteering() {
-  const done = useDone();
-  return useMutation({
-    meta: { silentError: true },
-    mutationFn: (v: { target: string; source: string }) => api<{ set: SteeringSetBrief }>('/api/steering', { method: 'POST', body: JSON.stringify(v) }),
-    onSuccess: done,
-  });
 }
 
 export type SteeringAction = 'activate' | 'pause' | 'resume' | 'discard' | 'reanalyze';
