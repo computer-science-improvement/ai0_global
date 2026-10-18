@@ -179,6 +179,7 @@ function useInvalidate() {
   const qc = useQueryClient();
   return () => {
     void qc.invalidateQueries({ queryKey: ['channel-setup'] });
+    void qc.invalidateQueries({ queryKey: ['artifacts'] });
     // Apply changes the agent, its playbook and skills.
     void qc.invalidateQueries({ queryKey: ['agents'] });
     void qc.invalidateQueries({ queryKey: ['network'] });

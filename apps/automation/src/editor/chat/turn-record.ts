@@ -1,5 +1,6 @@
-import type { EditorTool } from '../harness/tool';
-import { isToolError } from '../harness/tool';
+import type { EditorTool, ToolContext } from '../harness/tool';
+import { channelOf, isToolError } from '../harness/tool';
+import { parseArtifactRef, type ArtifactType } from '../artifacts/artifact.types';
 import { unquoted } from '../agents/mentions';
 
 /**
@@ -24,22 +25,33 @@ export const emptyTurn = (): TurnActions => ({ cards: [], rules: [], drafts: [],
 /** Records the successful results of a turn's tools (the loop runs the wrapped tools). */
 export class TurnRecorder {
   readonly turn: TurnActions = emptyTurn();
+  /** Spec 048 FR-005: the artifacts the turn's tools made or changed (stored as `editor_chat_messages.artifacts`). */
+  readonly artifacts: Array<{ type: ArtifactType; id: string }> = [];
 
   wrap(tools: EditorTool[]): EditorTool[] {
     return tools.map((t) => ({
       ...t,
       execute: async (input: unknown, ctx: any) => {
         const out = await t.execute(input, ctx);
-        try { this.record(t.name, input, out); } catch { /* recording never fails a tool */ }
+        try { this.record(t.name, input, out, ctx); } catch { /* recording never fails a tool */ }
         return out;
       },
     }));
   }
 
-  record(tool: string, input: unknown, out: unknown): void {
+  private artifact(type: ArtifactType, id: unknown): void {
+    if (typeof id !== 'string' || !id || this.artifacts.some((a) => a.type === type && a.id === id)) return;
+    this.artifacts.push({ type, id });
+  }
+
+  record(tool: string, input: unknown, out: unknown, ctx?: ToolContext): void {
     if (isToolError(out)) return;
     const o = (out && typeof out === 'object' ? out : {}) as Record<string, any>;
     this.turn.tools.push(tool);
+    if (tool === 'steer_channel') this.artifact('steering', o.set_id);
+    if (tool === 'analyze_channel_history') this.artifact('setup', o.proposal_id);
+    if (tool === 'update_artifact' && typeof o.ref === 'string') { const r = parseArtifactRef(o.ref); if (r?.id) this.artifact(r.type, r.id); }
+    if (tool === 'add_owner_rule' && o.stored !== false) this.artifact('rules', o.channel ?? (ctx ? channelOf(ctx) : null));
     if (typeof o.pending_action === 'string' && !this.turn.cards.some((c) => c.id === o.pending_action)) {
       this.turn.cards.push({ id: o.pending_action, kind: typeof o.kind === 'string' ? o.kind : tool });
     }

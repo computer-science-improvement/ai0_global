@@ -86,3 +86,17 @@ test('the card\'s Apply edits as the agent and throws the type\'s refusal', asyn
   await assert.rejects(applyUpdateArtifact({ edit: async () => ({ ok: false, error: 'rule_not_found', details: [5] }) }, { type: 'rules', id: '@news', patch: {}, reason: 'r' }), /rule_not_found: \[5\]/);
   await assert.rejects(applyUpdateArtifact(undefined, { type: 'rules', id: '@news' }), /artifacts_not_ready/);
 });
+
+test('the turn recorder links the artifacts a turn made or changed (spec 048 FR-005)', async () => {
+  const { TurnRecorder } = await import('../chat/turn-record');
+  const rec = new TurnRecorder();
+  const ctx: any = { channelKey: null, extras: { chat: { chatId: 'c', channelKey: '@news' } } };
+  rec.record('steer_channel', {}, { ok: true, set_id: 'set-1' });
+  rec.record('analyze_channel_history', {}, { ok: true, proposal_id: 'p-1' });
+  rec.record('update_artifact', {}, { ok: true, pending_action: 'card', ref: 'rules:@news' });
+  rec.record('add_owner_rule', {}, { ok: true, id: 5, channel: '@news' }, ctx);
+  rec.record('add_owner_rule', {}, { ok: true, pending_action: 'c2', stored: false }, ctx);
+  rec.record('steer_channel', {}, { error: 'not_own_channel' });
+  rec.record('get_artifact', {}, { ref: 'skill:s1' });
+  assert.deepEqual(rec.artifacts, [{ type: 'steering', id: 'set-1' }, { type: 'setup', id: 'p-1' }, { type: 'rules', id: '@news' }]);
+});

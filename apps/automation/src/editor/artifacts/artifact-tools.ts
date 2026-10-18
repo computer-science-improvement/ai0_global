@@ -79,6 +79,7 @@ export function buildArtifactTools(d: ArtifactToolDeps): EditorTool[] {
     description: [
       'Артефакти, що формують агента: setup (налаштування з історії), steering (правила-напрям з референсу), rules (правила власника), memory (вивчене з рецензій), skill, playbook, profile, formatting.',
       'Без ref — список артефактів агента / каналу (ref, статус, версія, live). З ref (type:id; rules / memory / playbook / profile / formatting можна без id — твій канал) — повний вміст і версії.',
+      'Посилання [[type:id]] у повідомленні власника — це ref артефакту, про який він питає: прочитай його цим інструментом.',
     ].join(' '),
     kind: 'read', roles: ['composer', 'builder', 'orchestrator', 'manager'],
     input: z.object({
@@ -131,7 +132,8 @@ export function buildArtifactTools(d: ArtifactToolDeps): EditorTool[] {
       // Owner rules are the owner's words: an agent never writes them without the owner's click, even the first one.
       if (found.row.live || r.type === 'rules') {
         const payload: UpdateArtifactPayload = { type: r.type, id: r.id, patch: i.patch, reason: i.reason, agentId: agent?.id ?? null, title: found.row.title };
-        return proposeCard(d, ctx, UPDATE_ARTIFACT_KIND, payload as unknown as Record<string, unknown>, `Change ${found.row.title}: ${i.reason}`, agent?.id ?? null);
+        const card = await proposeCard(d, ctx, UPDATE_ARTIFACT_KIND, payload as unknown as Record<string, unknown>, `Change ${found.row.title}: ${i.reason}`, agent?.id ?? null);
+        return { ...card, ref: artifactRef(r.type, r.id) };
       }
       if (!x.agentIntent) return NEEDS_CHANGE_REQUEST;
       const done = await svc.edit(r.type, r.id, i.patch, { author: 'agent', agentId: agent?.id ?? null, reason: i.reason });

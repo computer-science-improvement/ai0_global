@@ -55,7 +55,7 @@ export function SteeringCard({ s, focused, delay }: { s: SteeringSetBrief; focus
   );
 }
 
-function SteeringDetails({ id }: { id: string }) {
+export function SteeringDetails({ id }: { id: string }) {
   const q = useSteeringSet(id);
   if (q.error) return <div className="callout-danger">{describeError(q.error)}</div>;
   if (!q.data) return <div className="panel" style={{ height: 120, opacity: 0.55 }} />;
@@ -184,7 +184,7 @@ const DONE: Record<SteeringAction, string> = {
   pause: 'Paused', resume: 'Resumed', discard: 'Discarded', reanalyze: 'Queued a new analysis. It takes about a minute.',
 };
 
-export function SteeringActions({ s, onDone }: { s: SteeringSetBrief; onDone: () => void }) {
+export function SteeringActions({ s, onDone }: { s: Pick<SteeringSetBrief, 'id' | 'status' | 'sourceRef'>; onDone: () => void }) {
   const act = useSteeringAction();
   const confirm = useConfirm();
   const actions = steeringActions(s.status);

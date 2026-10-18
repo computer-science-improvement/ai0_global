@@ -100,7 +100,8 @@ export function useActiveSteering(targetRef: string | null | undefined) {
 
 function useDone() {
   const qc = useQueryClient();
-  return () => { void qc.invalidateQueries({ queryKey: KEY }); };
+  // Spec 048: a steering set is also an artifact (its chip and panel read /api/artifacts).
+  return () => { void qc.invalidateQueries({ queryKey: KEY }); void qc.invalidateQueries({ queryKey: ['artifacts'] }); };
 }
 
 export function useCreateSteering() {

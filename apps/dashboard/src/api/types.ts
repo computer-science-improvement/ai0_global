@@ -837,6 +837,8 @@ export interface EditorChatMessage {
   createdAt: string;
   /** The agent the message was addressed to / answered by (spec 018). */
   agentId?:  string | null;
+  /** Spec 048 FR-005: the artifacts the turn made or changed, or a slash command found. */
+  artifacts?: Array<{ type: import('./artifacts').ArtifactType; id: string; title: string; status: string }> | null;
 }
 
 /** The addressee of a chat turn (spec 018 `agent` stream event). */

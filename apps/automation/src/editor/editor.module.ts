@@ -1621,6 +1621,10 @@ export const EDITOR_PROVIDERS = [
         return new EditorChatService({
           repo: repos.chat, drafts, memory: repos.memory, loop, registry, skills, env, enabled, agents: agentsPort, defaultModel: (ws) => models.get(ws), workspace: () => models.workspace(),
           slash,
+          artifactChip: async (type, id) => {
+            const a = await artifacts.find(type, id);
+            return a ? { type, id, title: a.row.title, status: a.row.status } : null;
+          },
         });
       },
     },

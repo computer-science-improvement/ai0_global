@@ -20,6 +20,7 @@ import type { PendingAction } from '../agents/pending-actions';
 import type { ResourceProfile } from '../agents/resource-profile';
 import type { AgentChatExtras } from '../agents/builder-tools';
 import { leadingMentions, parseMentions, startsWithMention } from '../agents/mentions';
+import type { ArtifactChip, ArtifactType } from '../artifacts/artifact.types';
 import { parseSlash, runSlash, type SlashCommand, type SlashContext, type SlashDeps, type SlashResult } from './slash-commands';
 import { ownerChangeIntent } from './owner-intent';
 import { contradictedDenials, denialNote, denialRePrompt, factsBlock, restatesFact, type ChatFacts } from './chat-facts';
@@ -83,6 +84,8 @@ export interface EditorChatDeps {
   workspace?: () => Promise<Workspace>;
   /** Spec 048 FR-003: slash commands, run in code without a model turn. */
   slash?:   SlashDeps;
+  /** Spec 048 FR-005: an artifact as a message chip (its title and status now); null when it is gone. */
+  artifactChip?: (type: ArtifactType, id: string) => Promise<ArtifactChip | null>;
   /** The chat needs an LLM key only; it does not depend on EDITOR_ENABLED. */
   enabled:  () => boolean;
   now?:     () => Date;
@@ -341,6 +344,16 @@ export class EditorChatService {
     }
   }
 
+  /** Spec 048 FR-005: the turn's artifacts as chips; a lookup that fails keeps the bare reference. */
+  private async chips(rec: TurnRecorder): Promise<ArtifactChip[]> {
+    const out: ArtifactChip[] = [];
+    for (const a of rec.artifacts.slice(0, 12)) {
+      const chip = this.d.artifactChip ? await this.d.artifactChip(a.type, a.id).catch(() => undefined) : undefined;
+      if (chip !== null) out.push(chip ?? { type: a.type, id: a.id, title: a.type, status: '' });
+    }
+    return out;
+  }
+
   /** Spec 048 FR-003: a slash command — the owner's message and a code-made answer with its artifact chips. */
   private async runCommand(
     chatId: string, text: string, cmd: SlashCommand, chatAgentId: string | null, first: boolean, opts: SendOptions,
@@ -430,7 +443,7 @@ export class EditorChatService {
     if (!ok) emit({ type: 'error', error: res.error ?? res.status });
     const message = await this.d.repo.addMessage({
       chatId, role: 'assistant', content: ok ? res.finalText!.trim() : failureText(res, [...touched.values()]), draftIds: [...touched.keys()], runId: res.runId,
-      agentId: addressee?.id ?? null, actions: rec.turn,
+      agentId: addressee?.id ?? null, actions: rec.turn, artifacts: await this.chips(rec),
     });
     await this.d.repo.touchChat(chatId);
     emit({ type: 'message', message });
@@ -531,6 +544,7 @@ export class EditorChatService {
     if (!ok) emit({ type: 'error', error: res.error ?? res.status });
     const message = await this.d.repo.addMessage({
       chatId, role: 'assistant', content: ok ? res.finalText!.trim() : failureText(res), runId: res.runId, agentId: agent.id, actions: rec.turn,
+      artifacts: await this.chips(rec),
     });
     await this.d.repo.touchChat(chatId);
     emit({ type: 'message', message });

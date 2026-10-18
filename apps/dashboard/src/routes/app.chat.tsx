@@ -12,6 +12,10 @@ import { NeedsYou, chatsWaiting } from '../components/nav/NeedsYou';
 import { useNavAttention } from '../api/nav';
 import { MENTION_LIST_ID, MentionMenu, useMentionMenu } from '../components/chat/MentionMenu';
 import { chatGroup } from '../lib/chat-groups';
+import { artifactMention, artifactParam, parseArtifactParam } from '../lib/artifacts';
+import type { ArtifactType } from '../api/artifacts';
+import { ArtifactChips, ArtifactOpenContext, mentionedArtifacts } from '../components/artifacts/ArtifactChip';
+import { ArtifactPanel } from '../components/artifacts/ArtifactPanel';
 import { isSlashCommand, SLASH_LIST_ID, SlashMenu, useSlashMenu } from '../components/chat/SlashMenu';
 import { indexTree } from '../components/agents/AgentsUi';
 import { ApprovalList } from '../components/approvals/ApprovalList';
@@ -36,10 +40,12 @@ import type { ChatAgentRef, EditorChatEvent, EditorChatMessage, EditorDraft, Pen
 export const Route = createFileRoute('/app/chat')({
   // `q` prefills the composer once (e.g. "Discuss" on a contested directive → "@manager about …").
   // `card`: a confirmation card to scroll to and open (from "Waiting for you").
-  validateSearch: (s: Record<string, unknown>): { c?: string; q?: string; card?: string } => ({
+  // `art`: the artifact open in the side panel (`type:id`, spec 048 FR-005).
+  validateSearch: (s: Record<string, unknown>): { c?: string; q?: string; card?: string; art?: string } => ({
     c: typeof s.c === 'string' ? s.c : undefined,
     card: typeof s.card === 'string' && s.card ? s.card : undefined,
     q: typeof s.q === 'string' && s.q ? s.q.slice(0, 2000) : undefined,
+    art: typeof s.art === 'string' && parseArtifactParam(s.art) ? s.art : undefined,
   }),
   component: ChatPage,
 });
@@ -72,12 +78,22 @@ const EXAMPLES = [
 /** Spec 048 FR-004: the chat list column and the thread's readable width. */
 const CHAT_LIST_WIDTH = 272;
 const THREAD_WIDTH = 760;
+const PANEL_WIDTH = 420;
 
 function ChatPage() {
-  const { c: chatId, q: prefill, card: focusCard } = Route.useSearch();
+  const { c: chatId, q: prefill, card: focusCard, art: artParam } = Route.useSearch();
   const navigate = Route.useNavigate();
   const isMobile = useMediaQuery('(max-width: 860px)');
   const [listOpen, setListOpen] = useState(false);
+  const art = parseArtifactParam(artParam);
+  // With the artifact panel open on a narrow desktop, the chat list moves to the drawer so the thread keeps its room.
+  const narrow = useMediaQuery('(max-width: 1279px)');
+  const listAsDrawer = isMobile || (narrow && !!art);
+  const artifactCtx = useMemo(() => ({
+    activeKey: artParam ?? null,
+    open: (type: ArtifactType, id: string) => navigate({ search: (p) => ({ ...p, art: artifactParam(type, id) }) }),
+  }), [artParam, navigate]);
+  const closeArtifact = () => navigate({ search: (p) => ({ ...p, art: undefined }) });
 
   const chat = useChat(chatId);
   const createChat = useCreateChat();
@@ -271,6 +287,17 @@ function ChatPage() {
 
   const stop = () => abortRef.current?.abort();
 
+  /** "Ask the agent": the artifact's reference and the cursor go into the composer (spec 048 FR-005). */
+  const askAbout = (type: ArtifactType, id: string) => {
+    const ref = artifactMention(type, id);
+    const next = input.includes(ref) ? input : `${ref} ${input}`.trimEnd() + ' ';
+    setInput(next);
+    requestAnimationFrame(() => {
+      const el = textareaRef.current;
+      if (el) { el.focus(); el.setSelectionRange(next.length, next.length); }
+    });
+  };
+
   const pick = (x: string) => {
     setInput(x);
     requestAnimationFrame(() => {
@@ -292,15 +319,16 @@ function ChatPage() {
   return (
     // Spec 048 FR-004: the page fills the shell's full-bleed main — chat list | thread (readable width) | artifact panel.
     <div style={{
-      display: 'grid', gridTemplateColumns: isMobile ? 'minmax(0, 1fr)' : `${CHAT_LIST_WIDTH}px minmax(0, 1fr)`,
+      display: 'grid',
+      gridTemplateColumns: isMobile ? 'minmax(0, 1fr)' : `${listAsDrawer ? '' : `${CHAT_LIST_WIDTH}px `}minmax(0, 1fr)${art ? ` ${PANEL_WIDTH}px` : ''}`,
       height: '100%', minHeight: 0,
     }}>
-      {!isMobile && (
+      {!listAsDrawer && (
         <div style={{ minHeight: 0, display: 'flex', flexDirection: 'column', padding: '16px 12px', borderRight: '1px solid var(--color-hairline)', background: 'var(--color-surface-1)' }}>
           {sidebar}
         </div>
       )}
-      {isMobile && listOpen && (
+      {listAsDrawer && listOpen && (
         <>
           <div onClick={() => setListOpen(false)} aria-hidden
             style={{ position: 'fixed', inset: 0, zIndex: 55, background: 'rgba(0,0,0,0.5)' }} />
@@ -312,7 +340,7 @@ function ChatPage() {
 
       <section style={{ display: 'flex', flexDirection: 'column', minWidth: 0, minHeight: 0, padding: isMobile ? '10px 12px 10px' : '14px 24px 16px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, paddingBottom: 10, borderBottom: '1px solid var(--color-hairline-soft)', minWidth: 0 }}>
-          {isMobile && (
+          {listAsDrawer && (
             <button className="btn-icon" onClick={() => setListOpen(true)} aria-label="Chats" style={{ width: 34, height: 34, flexShrink: 0 }}>
               <Icon name="panel-left" size={16} />
             </button>
@@ -363,6 +391,7 @@ function ChatPage() {
               } />
           )}
 
+          <ArtifactOpenContext.Provider value={artifactCtx}>
           <FocusedCardContext.Provider value={focusCard}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 18, maxWidth: THREAD_WIDTH, margin: '0 auto' }}>
             {shown.map((m, i) => {
@@ -401,6 +430,7 @@ function ChatPage() {
             <div ref={endRef} />
           </div>
           </FocusedCardContext.Provider>
+          </ArtifactOpenContext.Provider>
         </div>
 
         <div style={{ width: '100%', maxWidth: THREAD_WIDTH, margin: '0 auto' }}>
@@ -409,6 +439,15 @@ function ChatPage() {
           textareaRef={textareaRef} isMobile={isMobile} />
         </div>
       </section>
+
+      {art && (
+        <aside aria-label="Artifact" style={isMobile
+          ? { position: 'fixed', inset: 0, zIndex: 57, background: 'var(--color-canvas)', display: 'flex', flexDirection: 'column' }
+          : { minHeight: 0, borderLeft: '1px solid var(--color-hairline)', background: 'var(--color-surface-1)', display: 'flex', flexDirection: 'column' }}>
+          <ArtifactPanel key={artParam} type={art.type} id={art.id} onClose={closeArtifact}
+            onAsk={(type, id) => { if (isMobile) closeArtifact(); askAbout(type, id); }} />
+        </aside>
+      )}
     </div>
   );
 }
@@ -480,12 +519,14 @@ function LooseAction({ action }: { action: PendingAction }) {
 }
 
 function UserBubble({ text }: { text: string }) {
+  const named = mentionedArtifacts(text);
   return (
-    <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
       <div className="text-body-sm" style={{
         maxWidth: '85%', background: 'var(--color-surface-3)', color: 'var(--color-ink)', borderRadius: 'var(--radius-lg)',
         padding: '9px 13px', whiteSpace: 'pre-wrap', wordBreak: 'break-word',
       }}>{text}</div>
+      {named.length > 0 && <div style={{ maxWidth: '85%' }}><ArtifactChips chips={named} /></div>}
     </div>
   );
 }
@@ -505,6 +546,7 @@ function Message({ m, drafts, lastMention, activities, agent, actions }: {
         <div className="text-body-sm" style={{ color: 'var(--color-ink)', lineHeight: 1.55, wordBreak: 'break-word' }}>
           <MarkdownLite text={m.content} />
         </div>
+        <ArtifactChips chips={m.artifacts ?? []} />
         {(own.length > 0 || actions.length > 0) && (
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginTop: 6 }}>
             {own.map((id) => (lastMention[id] === m.id

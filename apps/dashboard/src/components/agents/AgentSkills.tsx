@@ -377,7 +377,7 @@ export function lineDiff(a: string, b: string): DiffLine[] {
   return out;
 }
 
-function DiffView({ from, to }: { from: string; to: string }) {
+export function DiffView({ from, to }: { from: string; to: string }) {
   const lines = useMemo(() => lineDiff(from, to), [from, to]);
   const changed = lines.filter((l) => l.t !== ' ').length;
   // Collapse long unchanged stretches to 2 lines of context.

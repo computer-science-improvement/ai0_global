@@ -31,7 +31,7 @@ export function SetupProposalDialog({ id, onClose }: { id: string | null; onClos
   );
 }
 
-function ProposalBody({ v, onClose }: { v: SetupProposalView; onClose: () => void }) {
+export function ProposalBody({ v, onClose }: { v: SetupProposalView; onClose: () => void }) {
   const p = v.proposal;
   const st = SETUP_STATUS[p.status];
   const pending = useMemo(() => SETUP_SECTIONS.filter((s) => (p.sectionStatus[s] ?? 'pending') === 'pending'), [p.sectionStatus]);
