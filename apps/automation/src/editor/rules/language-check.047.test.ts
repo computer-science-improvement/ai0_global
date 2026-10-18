@@ -55,3 +55,15 @@ test('the resolver card sets the card language, and the lint no longer fails', a
   assert.match(failed!.message, /мова в картці каналу \(language = uk\); правило в памʼяті її не вимикає/);
   assert.ok(!lintPost(english, makeCard({ language: 'mixed' })).errors.some((e) => e.code === 'not_ukrainian'));
 });
+
+test('a verbatim prompt in a code block does not count against the Ukrainian check; the same prompt as prose does', () => {
+  const PROMPT = 'a woman walking through a lush green field,vogue fashion photo,brown tuffle coat,beautiful swedish forest view,mages,film still from dune 2020 --v 5.2 --ar 3:4';
+  const lead = { type: 'lead', text: 'Промпт дня: жінка в полі, модне фото' };
+  const meta = { type: 'p', text: '🤖 Модель: Midjourney 5.2 · 📐 Розмір: 3:4' };
+  const asCode = makeSpec({ title: 'Midjourney 5.2: жінка в полі', body: [lead, { type: 'code', text: PROMPT }, meta] });
+  const asProse = makeSpec({ title: 'Midjourney 5.2: жінка в полі', body: [lead, { type: 'p', text: PROMPT }, meta] });
+  const uk = makeCard({ language: 'uk' });
+  assert.ok(!lintPost(asCode, uk).errors.some((e) => e.code === 'not_ukrainian'));
+  const err = lintPost(asProse, uk).errors.find((e) => e.code === 'not_ukrainian');
+  assert.match(err!.message, /у блок code: він не рахується/);
+});
