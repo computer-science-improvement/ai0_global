@@ -39,9 +39,18 @@ export interface InboxItem extends Required<Omit<InboxItemInput, 'agentId' | 'al
 }
 
 /**
+ * Spec 012 FR-002: while the owner bot's cards are on, a stored note goes to the bot instead of the plain alert (a
+ * critical or action note becomes a card, an info note waits for the daily summary). The sink returns true when it
+ * took the note; false (or a throw) falls back to the alert. Module-level, as every OwnerInbox shares the one bot.
+ */
+export type InboxCardSink = (id: number, i: InboxItemInput) => Promise<boolean>;
+let cardSink: InboxCardSink | null = null;
+export function setInboxCardSink(sink: InboxCardSink | null): void { cardSink = sink; }
+
+/**
  * The owner's inbox for agent events (skill self-edits, rollbacks, cards that
- * need a decision). Every item is stored and also pushed to the admin bot as a
- * plain alert; the 012 owner bot will later replace the alert with a card.
+ * need a decision). Every item is stored and also pushed to the admin bot: as a
+ * card while the 012 owner bot's cards are on, else as a plain alert.
  */
 export class OwnerInbox {
   constructor(
@@ -54,7 +63,7 @@ export class OwnerInbox {
     const { rows } = await this.pool.query(
       `INSERT INTO agent_inbox (agent_id, kind, title, body, ref_type, ref_id, severity) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id`,
       [i.agentId ?? null, i.kind, i.title.slice(0, 300), i.body ?? null, i.refType ?? null, i.refId ?? null, i.severity ?? 'info']);
-    await this.sendAlert(i);
+    await this.deliver(Number(rows[0].id), i);
     return Number(rows[0].id);
   }
 
@@ -76,8 +85,17 @@ export class OwnerInbox {
       throw err;
     }
     if (!rows.length) return null;
-    await this.sendAlert(i);
+    await this.deliver(Number(rows[0].id), i);
     return Number(rows[0].id);
+  }
+
+  private async deliver(id: number, i: InboxItemInput): Promise<void> {
+    if (cardSink) {
+      try {
+        if (await cardSink(id, i)) return;
+      } catch { /* the plain alert below */ }
+    }
+    await this.sendAlert(i);
   }
 
   private async sendAlert(i: InboxItemInput): Promise<void> {

@@ -162,6 +162,12 @@ export const SETTINGS: readonly SettingDef[] = [
   { key: 'TELEGRAM_API_HASH', group: 'telegram', label: 'MTProto API hash (fallback)', help: 'Used only when the MTProto session on the Connections page has no API hash.', type: 'secret', default: '', apply: 'restart' },
   { key: 'TELEGRAM_SESSION_STRING', group: 'telegram', label: 'Stats session (fallback)', help: 'MTProto session string used when no statistics session is set on the Connections page.', type: 'secret', default: '', apply: 'restart' },
   { key: 'TELEGRAM_TRACKING_SESSION_STRING', group: 'telegram', label: 'Tracking session (fallback)', help: 'MTProto session string used when no tracking session is set on the Connections page.', type: 'secret', default: '', apply: 'restart' },
+  // Spec 012: the owner bot (cards with buttons in the owner chat, the daily and weekly reports). Read on every sweep.
+  { key: 'OWNER_BOT_CARDS', group: 'telegram', label: 'Owner bot cards', help: 'Things that wait for you come to Telegram as cards with buttons. Off brings back the plain inbox alerts.', type: 'bool', bool: OFF, default: 'on', apply: 'live' },
+  { key: 'OWNER_QUIET_HOURS', group: 'telegram', label: 'Quiet hours (Kyiv)', help: 'Hours when only critical cards are sent, as start-end (23-8). "off" turns quiet hours off.', type: 'string', default: '23-8', apply: 'live', pattern: /^(off|([01]?\d|2[0-3])-([01]?\d|2[0-3]))$/ },
+  { key: 'OWNER_BOT_MAX_PER_HOUR', group: 'telegram', label: 'Cards per hour', help: 'At most this many cards are sent per hour; critical cards first, the rest wait.', type: 'int', default: '30', apply: 'live', min: 1, max: 200 },
+  { key: 'OWNER_DAILY_REPORT_AT', group: 'telegram', label: 'Daily summary at (Kyiv)', help: 'When the daily summary is sent (HH:MM). "off" turns it off.', type: 'string', default: '21:00', apply: 'live', pattern: /^(off|([01]\d|2[0-3]):[0-5]\d)$/ },
+  { key: 'OWNER_WEEKLY_REPORT_AT', group: 'telegram', label: 'Weekly report at (Kyiv)', help: 'When the weekly report is sent, as "Mon 09:00". "off" turns it off.', type: 'string', default: 'Mon 09:00', apply: 'live', pattern: /^(off|(Mon|Tue|Wed|Thu|Fri|Sat|Sun) ([01]\d|2[0-3]):[0-5]\d)$/ },
 
   // ── Integrations ───────────────────────────────────────────────────────────
   { key: 'STATS_API_KEY', group: 'integrations', label: 'Stats API key', help: 'Key external clients send in X-API-Key to read the stats API.', type: 'secret', default: '', apply: 'live' },

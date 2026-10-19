@@ -1,8 +1,11 @@
-import { Injectable, Logger, OnModuleInit, OnModuleDestroy } from '@nestjs/common';
+import { Inject, Injectable, Logger, OnModuleInit, OnModuleDestroy, Optional } from '@nestjs/common';
 import { emitChatMember } from './chat-member-bus';
 import { ConfigService } from '@nestjs/config';
 import axios from 'axios';
+import type { Pool } from 'pg';
 import { LogAnalyzerAgent } from '../common/logging/log-analyzer.agent';
+import { DB_POOL } from '../database/database.tokens';
+import { ownerBotHandler, pollState } from './owner-bot-bus';
 
 interface TgMessage {
   message_id: number;
@@ -14,6 +17,7 @@ interface TgMessage {
 interface TgCallbackQuery {
   id: string;
   from: { id: number };
+  chat_instance?: string;
   message?: TgMessage;
   data?: string;
 }
@@ -24,10 +28,25 @@ interface TgUpdate {
   callback_query?: TgCallbackQuery;
 }
 
+/** The app_settings row that keeps the getUpdates offset across restarts (spec 012 FR-001). */
+export const OFFSET_KEY = 'owner_bot.offset';
+
 /**
- * Long-poll Telegram getUpdates on the same bot that publishes.
- * Owner-only commands: /analyze, /help. The legacy /run and /list (run a strategy binding by hand) were removed
- * with the strategy runtime (spec 023 phase B).
+ * Spec 012 FR-001: a message or a button counts only in a private chat, from the owner (TELEGRAM_OWNER_ID) or an id
+ * of TRACKING_ALLOWED_TG_USER_IDS.
+ */
+export function isOwnerUpdate(u: { fromId?: number | null; chatType?: string | null }, ownerId: string | null, allowed: string): boolean {
+  if (u.chatType !== 'private' || u.fromId == null) return false;
+  const id = String(u.fromId);
+  if (ownerId && id === ownerId) return true;
+  return allowed.split(',').map((x) => x.trim()).filter(Boolean).includes(id);
+}
+
+/**
+ * Long-poll Telegram getUpdates on the same bot that publishes: the one consumer of this token.
+ * Owner-only commands: /analyze, plus the owner bot's commands and buttons (spec 012), handed over through
+ * owner-bot-bus. The legacy /run and /list (run a strategy binding by hand) were removed with the strategy runtime
+ * (spec 023 phase B). The offset is stored in app_settings, so a restart neither replays nor drops updates.
  * Silently disabled if TELEGRAM_BOT_TOKEN / TELEGRAM_OWNER_ID are missing.
  */
 @Injectable()
@@ -41,6 +60,7 @@ export class AdminBotService implements OnModuleInit, OnModuleDestroy {
   constructor(
     private readonly config:           ConfigService,
     private readonly analyzer:         LogAnalyzerAgent,
+    @Optional() @Inject(DB_POOL) private readonly pool?: Pool,
   ) {}
 
   onModuleInit() {
@@ -52,14 +72,38 @@ export class AdminBotService implements OnModuleInit, OnModuleDestroy {
       return;
     }
     this.logger.log('AdminBotService started');
-    this.poll().catch((err) => this.logger.error(`poll loop crashed: ${err.message}`));
+    this.poll().catch((err) => this.logger.error(`poll loop crashed: ${err.message}`)).finally(() => { pollState.running = false; });
   }
 
   onModuleDestroy() { this.stopped = true; }
 
+  private async loadOffset(): Promise<void> {
+    if (!this.pool) return;
+    try {
+      const { rows } = await this.pool.query(`SELECT value FROM app_settings WHERE key = $1`, [OFFSET_KEY]);
+      const n = Number(rows[0]?.value);
+      if (Number.isSafeInteger(n) && n > 0) this.offset = n;
+    } catch (err: any) {
+      this.logger.warn(`offset not loaded: ${err.message}`);
+    }
+  }
+
+  private async saveOffset(): Promise<void> {
+    if (!this.pool) return;
+    try {
+      await this.pool.query(
+        `INSERT INTO app_settings (key, value, updated_at) VALUES ($1, $2, now())
+         ON CONFLICT (key) DO UPDATE SET value = EXCLUDED.value, updated_at = now()`, [OFFSET_KEY, String(this.offset)]);
+    } catch (err: any) {
+      this.logger.warn(`offset not saved: ${err.message}`);
+    }
+  }
+
   // ─── Polling ────────────────────────────────────────────────────────────────
 
   private async poll(): Promise<void> {
+    await this.loadOffset();
+    pollState.running = true;
     while (!this.stopped) {
       try {
         const res = await axios.get(
@@ -71,35 +115,59 @@ export class AdminBotService implements OnModuleInit, OnModuleDestroy {
           },
         );
         const updates: TgUpdate[] = res.data?.result ?? [];
+        pollState.lastPollAt = new Date();
+        pollState.lastError = null;
         for (const u of updates) {
           this.offset = u.update_id + 1;
+          pollState.lastUpdateAt = new Date();
           try {
             if (u.message)        await this.handleMessage(u.message);
-            // Old /run keyboards may still be clicked: answer so the button stops spinning.
-            if (u.callback_query) await this.answerCb(u.callback_query.id);
+            if (u.callback_query) await this.handleCallback(u.callback_query);
             if ((u as any).chat_member) await emitChatMember((u as any).chat_member);
           } catch (err: any) {
             this.logger.warn(`update handler failed: ${err.message}`);
           }
         }
+        if (updates.length) await this.saveOffset();
       } catch (err: any) {
+        pollState.lastError = String(err?.message ?? err).slice(0, 200);
         this.logger.debug(`getUpdates error: ${err.message}`);
         await new Promise((r) => setTimeout(r, 5_000));
       }
     }
   }
 
-  private isOwner(userId: number | undefined): boolean {
-    return !!this.ownerId && String(userId ?? '') === this.ownerId;
+  private isOwner(u: { fromId?: number | null; chatType?: string | null }): boolean {
+    return isOwnerUpdate(u, this.ownerId, this.config.get<string>('TRACKING_ALLOWED_TG_USER_IDS') ?? '');
+  }
+
+  // ─── Buttons ────────────────────────────────────────────────────────────────
+
+  private async handleCallback(cb: TgCallbackQuery): Promise<void> {
+    const h = ownerBotHandler();
+    if (!cb.data?.startsWith('oc:') || !h) {
+      // Old /run keyboards may still be clicked: answer so the button stops spinning.
+      await this.answerCb(cb.id);
+      return;
+    }
+    if (!this.isOwner({ fromId: cb.from?.id, chatType: cb.message?.chat.type ?? null })) {
+      await this.answerCb(cb.id, 'Недоступно');
+      return;
+    }
+    await h.callback({
+      id: cb.id, fromId: cb.from.id, chatId: cb.message?.chat.id ?? null, chatType: cb.message?.chat.type ?? null,
+      messageId: cb.message?.message_id ?? null, data: cb.data,
+    });
   }
 
   // ─── Messages ───────────────────────────────────────────────────────────────
 
   private async handleMessage(msg: TgMessage): Promise<void> {
-    if (!msg.text || !this.isOwner(msg.from?.id)) return;
+    if (!msg.text || !this.isOwner({ fromId: msg.from?.id, chatType: msg.chat.type })) return;
 
     const text = msg.text.trim();
-    const [cmd, ...args] = text.split(/\s+/);
+    const [raw, ...args] = text.split(/\s+/);
+    const cmd = raw.replace(/@\w+$/, '');
 
     switch (cmd) {
       case '/analyze': return this.cmdAnalyze(msg.chat.id, args);
@@ -108,6 +176,8 @@ export class AdminBotService implements OnModuleInit, OnModuleDestroy {
       case '/help':
       case '/start':   return this.cmdHelp(msg.chat.id);
     }
+    const h = ownerBotHandler();
+    if (h && cmd.startsWith('/')) await h.command({ chatId: msg.chat.id, chatType: msg.chat.type, fromId: msg.from!.id, text: [cmd, ...args].join(' ') });
   }
 
   private async cmdAnalyze(chatId: number, args: string[]): Promise<void> {
@@ -205,11 +275,11 @@ export class AdminBotService implements OnModuleInit, OnModuleDestroy {
   }
 
   private async cmdHelp(chatId: number): Promise<void> {
+    const owner = ownerBotHandler()?.help() ?? [];
     await this.sendText(
       chatId,
-      'Admin commands:\n' +
-      '/analyze [hours=24] — AI-аналіз логів\n' +
-      '/help — ця довідка',
+      'Команди:\n' +
+      [...owner, '/analyze [hours=24] — AI-аналіз логів', '/help — ця довідка'].join('\n'),
     );
   }
 

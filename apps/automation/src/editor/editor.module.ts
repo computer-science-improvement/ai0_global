@@ -148,6 +148,12 @@ import type { SlashDeps } from './chat/slash-commands';
 import { SteeringService } from './steering/steering.service';
 import { STEERING_SERVICE, SteeringController } from './steering/steering.controller';
 import { telegramReader } from './steering/steering-source';
+import { OwnerBotService } from './owner-bot/owner-bot.service';
+import { OWNER_BOT, OwnerBotWorker } from './owner-bot/owner-bot.worker';
+import { OwnerCardsRepository } from './owner-bot/owner-cards.repository';
+import { cardSources } from './owner-bot/card-sources';
+import { telegramBotApi } from './owner-bot/bot-api';
+import { SETUP_SECTIONS } from './setup/setup-analysis';
 import { buildSteerChannelTool } from './steering/steering-tool';
 import { ownerRulesOf } from './rules/owner-rules-prompt';
 import { lintOwnerRule } from './agents/rule-lint';
@@ -1914,6 +1920,29 @@ export const EDITOR_PROVIDERS = [
         });
       },
     },
+    {
+      // Spec 012 part A: the owner bot (cards with buttons for what waits, delivered on the admin bot's chat).
+      provide: OWNER_BOT,
+      inject: [DB_POOL, ConfigService, APPROVALS_SERVICE, MANAGER_SERVICE, AGENT_INFRA, STEERING_SERVICE, CHANNEL_SETUP_SERVICE, NETWORK_SERVICE],
+      useFactory: (
+        pool: Pool, cfg: ConfigService, approvals: ApprovalsService, manager: ManagerService, infra: AgentInfra, steering: SteeringService,
+        setup: ChannelSetupService, network: NetworkService,
+      ) => {
+        const logger = new Logger('OwnerBot');
+        const token = cfg.get<string>('TELEGRAM_BOT_TOKEN');
+        return new OwnerBotService({
+          pool, repo: new OwnerCardsRepository(pool), api: token ? telegramBotApi(token) : null,
+          // Live settings: the settings overlay keeps process.env current (spec 039).
+          env: (k) => process.env[k] ?? cfg.get<string>(k) ?? undefined,
+          sources: cardSources({
+            pool, approvals, directives: manager, actions: infra.actions, steering, setup, playbooks: network,
+            inbox: { markRead: (ids) => infra.inbox.markRead(ids) }, setupSections: SETUP_SECTIONS,
+          }),
+          log: (m) => logger.warn(m),
+        });
+      },
+    },
+    OwnerBotWorker,
     ChannelSetupWorker,
     SteeringWorker,
     EditorCron,
