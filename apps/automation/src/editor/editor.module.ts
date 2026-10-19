@@ -151,6 +151,7 @@ import { telegramReader } from './steering/steering-source';
 import { OwnerBotService } from './owner-bot/owner-bot.service';
 import { OWNER_BOT, OwnerBotWorker, type OwnerBotInfra } from './owner-bot/owner-bot.worker';
 import { OwnerReports } from './owner-bot/owner-reports';
+import { OwnerBotController } from './owner-bot/owner-bot.controller';
 import { OwnerCardsRepository } from './owner-bot/owner-cards.repository';
 import { cardSources } from './owner-bot/card-sources';
 import { telegramBotApi } from './owner-bot/bot-api';
@@ -1966,7 +1967,7 @@ export const EDITOR_PROVIDERS = [
 @Module({
   // AuthModule: EditorController is guarded by TrackingAuthGuard, which injects AuthService.
   imports:     [ChannelConfigModule, PublishersModule, AuthModule],
-  controllers: [EditorController, EditorChatController, AgentsController, ModelsController, NetworkController, ManagerController, PromoController, PromoRedirectController, ApprovalsController, AutonomyController, ScheduleController, StrategyMigrationController, UpcomingSlotsController, ResourcePausesController, PostAuditController, ChannelSetupController, SteeringController, NetworkHealthController, ArtifactsController],
+  controllers: [EditorController, EditorChatController, AgentsController, ModelsController, NetworkController, ManagerController, PromoController, PromoRedirectController, ApprovalsController, AutonomyController, ScheduleController, StrategyMigrationController, UpcomingSlotsController, ResourcePausesController, PostAuditController, ChannelSetupController, SteeringController, NetworkHealthController, ArtifactsController, OwnerBotController],
   providers:   [...EDITOR_PROVIDERS, TrackingAuthGuard],
   exports:     [EDITOR_REPOS, EDITOR_RUNNER, AGENT_INFRA, PLATFORM_INFRA, EDITOR_MANAGER],
 })

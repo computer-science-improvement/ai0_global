@@ -1,7 +1,7 @@
 /**
  * Spec 012 T1 (AI0-237): owner-only routing, callback parsing and the confirm step, idempotent and stale taps, the
  * sources' buttons and actions, quiet hours and the hourly limit, the backlog rule, closing a card decided elsewhere,
- * the inbox card sink and /waiting. All against fakes: nothing reaches Telegram.
+ * the inbox card sink, /waiting and the dashboard endpoints (T4). All against fakes: nothing reaches Telegram.
  */
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
@@ -57,6 +57,7 @@ class MemRepo {
     return { ...c };
   }
   async sentSince(since: Date) { return this.cards.filter((c) => c.sentAt && c.sentAt >= since).length; }
+  async lastReports() { return { daily: null, weekly: null }; }
   async counts() {
     return { open: this.cards.filter((c) => c.status === 'open').length, queued: this.cards.filter((c) => c.status === 'queued').length, sentToday: 0, failed: 0 };
   }
@@ -467,4 +468,42 @@ test('setup source: apply all asks to confirm and reports applied and drifted se
   const out = await s.act('p1', 'apply_all');
   assert.match(out, /Застосовано: розклад; змінено після аналізу: форматування/);
   assert.deepEqual(calls, ['setupApply(p1,{"sections":["formatting","schedule"]})']);
+});
+
+// ── T4 (AI0-240): the dashboard endpoints ──────────────────────────────────
+
+test('controller: the state, a test card, reports sent now; refusals are 400 / 503', async () => {
+  const { OwnerBotController } = await import('./owner-bot.controller');
+  const sent: string[] = [];
+  let ok = true;
+  const infra = {
+    bot: {
+      state: async (from: Date) => ({ from: from.toISOString() }),
+      testCard: async () => (ok ? { sent: true } : { sent: false, error: 'chat not found' }),
+      sendToOwner: async (t: string) => { sent.push(t); return ok; },
+    },
+    reports: {
+      dayBounds: async () => ({ from: new Date('2026-10-18T21:00:00Z'), to: new Date('2026-10-19T21:00:00Z') }),
+      daily: async () => ({ text: 'DAY', keyboard: [] }), weekly: async () => ({ text: 'WEEK', keyboard: [] }),
+    },
+  };
+  const c = new OwnerBotController(infra as any);
+  assert.deepEqual(await c.status(), { from: '2026-10-18T21:00:00.000Z' });
+  assert.deepEqual(await c.testCard(), { sent: true });
+  assert.deepEqual(await c.report('weekly'), { sent: true });
+  assert.deepEqual(sent, ['WEEK']);
+  await assert.rejects(c.report('monthly'), (e: any) => e.getStatus() === 400);
+  ok = false;
+  await assert.rejects(c.testCard(), (e: any) => e.getStatus() === 503 && e.getResponse().details === 'chat not found');
+  await assert.rejects(c.report('daily'), (e: any) => e.getStatus() === 503);
+});
+
+test('state: configured, polling and the settings for the Owner bot section', async () => {
+  const { bot } = setup({ env: { OWNER_QUIET_HOURS: 'off' } });
+  const s = await bot.state(new Date('2026-10-18T21:00:00Z'));
+  assert.deepEqual(s.configured, { token: true, owner: true });
+  assert.equal(s.cardsOn, true);
+  assert.equal(s.settings.quietHours, 'off');
+  assert.equal(s.settings.maxPerHour, 30);
+  assert.deepEqual(s.reports, { dailyAt: null, weeklyAt: null });
 });

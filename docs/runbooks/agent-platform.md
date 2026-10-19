@@ -199,3 +199,40 @@ Artifacts are what shapes an agent: setups from history, steering sets, owner ru
   - **Open in chat**, which goes to the chat that made the artifact, or starts a new chat that names it.
 - **Agent page.** Each agent page has an Artifacts tab with that agent's artifacts. The Skills, Memory and Playbook tabs stay.
 - **Chat layout.** On `/app/chat` the app menu is the icon rail. Its toggle opens the full menu on this page only. The chat list is its own column, and it becomes a drawer on a phone or when the panel is open under 1280 px.
+
+## 12. Owner bot (spec 012 part A)
+
+What waits for you comes to Telegram as a card with buttons. A tap does what the same button does in the dashboard. A daily summary and a weekly report come on their own. The bot is the admin bot (`TELEGRAM_BOT_TOKEN`); cards go to the `TELEGRAM_OWNER_ID` chat, like the alerts.
+
+**Needs**
+
+- Migration `085_owner_cards` (`owner_cards`, `owner_reports`).
+- `TELEGRAM_BOT_TOKEN` and `TELEGRAM_OWNER_ID` set. Write to the bot once (`/start`) so it may message you.
+- One service instance only: the bot is the one `getUpdates` consumer of its token. Its offset is in `app_settings` (`owner_bot.offset`).
+
+**Settings** (Settings → Configuration → Telegram, applied at once)
+
+| Setting | Default | What it does |
+|---|---|---|
+| `OWNER_BOT_CARDS` | `on` | `off` stops the cards and brings back the plain inbox alerts |
+| `OWNER_QUIET_HOURS` | `23-8` | Kyiv hours when only critical cards go; `off` = none |
+| `OWNER_BOT_MAX_PER_HOUR` | `30` | Cards per hour; critical cards go anyway |
+| `OWNER_DAILY_REPORT_AT` | `21:00` | Daily summary time (Kyiv); `off` turns it off |
+| `OWNER_WEEKLY_REPORT_AT` | `Mon 09:00` | Weekly report time (Kyiv); `off` turns it off |
+
+**Cards**
+
+- Posts to approve (after the batch alert), directives and contested directives, agent cards made outside a chat, ready steering sets, ready setups from history ("Застосувати все" asks to confirm), playbook versions, and critical or action inbox notes.
+- Items that already waited when cards were switched on do not come by themselves: send `/waiting` (10 at a time, oldest first).
+- A card decided in the dashboard loses its buttons and says "Вирішено в дашборді" (or "Минув термін") within a minute.
+- A post due within 2 hours and a critical inbox note are critical: they skip quiet hours and the hourly limit.
+- While cards are on, inbox notes are not sent as plain alerts: info notes go into the daily summary.
+
+**Commands** (private chat, from the owner or an id in `TRACKING_ALLOWED_TG_USER_IDS`): `/status`, `/waiting`, `/today`, `/week`, `/analyze`, `/help`.
+
+**Check it**
+
+- Network health (`/app/health`) → **Owner bot**: whether it polls, the cards (open, queued, sent today, not sent), when the reports last went out.
+- **Send a test card** sends a card with one "Працює" button; a tap closes it and proves the buttons reach the service.
+- **Send today's summary** / **Send the weekly report** send them now; the scheduled ones still go at their time.
+- A card that Telegram refused 5 times is counted under "Not sent today"; `/waiting` sends it again.

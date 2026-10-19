@@ -1,6 +1,6 @@
 # 012 Owner control bot
 
-**Epic:** AI0-219 (T1–T4 = AI0-237…240) · **Priority:** P1 · **Depends on:** 017–022, 031, 042, 045, 048, 049 (part A); 011 (part B) · **Status:** part A in progress (2026-10-19, the owner said "just do it": the design below is my call from the AI0-219 outline)
+**Epic:** AI0-219 (T1–T4 = AI0-237…240) · **Priority:** P1 · **Depends on:** 017–022, 031, 042, 045, 048, 049 (part A); 011 (part B) · **Status:** part A done (2026-10-19; the owner said "just do it": the design below is my call from the AI0-219 outline; deltas in tasks.md); part B waits for 011
 
 ## Why
 

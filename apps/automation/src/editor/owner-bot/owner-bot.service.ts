@@ -1,6 +1,6 @@
 import type { Pool } from 'pg';
 import type { InboxItemInput } from '../agents/owner-inbox';
-import type { OwnerCallback, OwnerCommand, OwnerBotHandler } from '../../publishers/owner-bot-bus';
+import { pollState, type OwnerCallback, type OwnerCommand, type OwnerBotHandler } from '../../publishers/owner-bot-bus';
 import { BotApiError, type BotApi, type Keyboard } from './bot-api';
 import { OWN_CARD_REF_TYPES, inboxItem, type CardSource, type WaitingItem } from './card-sources';
 import type { CardButton, OwnerCard, OwnerCardsRepository } from './owner-cards.repository';
@@ -410,6 +410,26 @@ export class OwnerBotService implements OwnerBotHandler {
       if (!todo.length) return 'Нічого не чекає ✓';
       return left ? `Надіслано ${sent}. Ще чекає: ${left} — /waiting ще раз.` : `Надіслано ${sent}. Це все.`;
     });
+  }
+
+  /** FR-007: the Owner bot section of /app/health. `dayStart` = the start of today (Kyiv) for "sent today". */
+  async state(dayStart: Date) {
+    const [cards, waiting, reports] = await Promise.all([
+      this.d.repo.counts(dayStart), this.waitingCounts(), this.d.repo.lastReports(),
+    ]);
+    const iso = (d: Date | null) => (d ? new Date(d).toISOString() : null);
+    return {
+      configured: { token: !!this.d.api, owner: !!this.chat() },
+      cardsOn: cardsOn(this.d.env),
+      polling: { running: pollState.running, lastPollAt: iso(pollState.lastPollAt), lastUpdateAt: iso(pollState.lastUpdateAt), lastError: pollState.lastError },
+      cards: { open: cards.open, queued: cards.queued, sentToday: cards.sentToday, failedToday: cards.failed },
+      waiting: waiting.map((w) => ({ kind: w.kind, count: w.n })),
+      settings: {
+        quietHours: this.d.env('OWNER_QUIET_HOURS') ?? '23-8', maxPerHour: maxPerHour(this.d.env),
+        dailyAt: this.d.env('OWNER_DAILY_REPORT_AT') ?? '21:00', weeklyAt: this.d.env('OWNER_WEEKLY_REPORT_AT') ?? 'Mon 09:00',
+      },
+      reports: { dailyAt: iso(reports.daily), weeklyAt: iso(reports.weekly) },
+    };
   }
 
   /** FR-007: a card with one "Працює" button that closes it. */
