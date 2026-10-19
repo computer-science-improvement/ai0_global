@@ -428,12 +428,13 @@ test('approval source: a post due within 2 hours is critical; approve and reject
   const calls: string[] = [];
   const now = new Date('2026-10-19T09:00:00Z');
   const s = approvalSource(deps([
-    { id: 's1', channel_key: '@a', topic: 'T', rendered_preview: 'html', scheduled_at: new Date('2026-10-19T10:30:00Z'), channel_title: 'A', sent_at: new Date('2026-10-19T06:00:00Z') },
+    { id: 's1', channel_key: '@a', topic: 'T', rendered_preview: '<b>Жирний</b> &amp; <a href="https://x.example">лінк</a>', scheduled_at: new Date('2026-10-19T10:30:00Z'), channel_title: 'A', sent_at: new Date('2026-10-19T06:00:00Z') },
     { id: 's2', channel_key: '@a', topic: null, rendered_preview: null, scheduled_at: new Date('2026-10-19T15:00:00Z'), channel_title: null, sent_at: new Date('2026-10-19T06:00:00Z') },
   ], calls));
   const items = await s.waiting(now);
   assert.deepEqual(items.map((i) => i.critical), [true, false]);
   assert.equal(items[0].path, '/app/editor/slot/s1');
+  assert.equal(items[0].body, 'Жирний & лінк (https://x.example)');
   assert.deepEqual(items[0].buttons.map((b) => b.key), ['approve', 'reject', 'open']);
   assert.match(await s.act('s1', 'approve'), /^✅ Схвалено · /);
   assert.match(await s.act('s1', 'reject'), /^❌ Відхилено · /);

@@ -1,5 +1,6 @@
 import type { Pool } from 'pg';
 import type { CardButton } from './owner-cards.repository';
+import { htmlToPlain } from '../post/inline-markup';
 import { kyivTime } from './owner-text';
 
 /**
@@ -75,7 +76,8 @@ export function approvalSource(d: SourceDeps): CardSource {
       return rows.map((r: any) => ({
         refId: r.id,
         title: `${r.channel_title || r.channel_key} · ${kyivDay(r.scheduled_at)}${r.topic ? ` · ${r.topic}` : ''}`,
-        body: r.rendered_preview ?? null,
+        // The preview is Telegram HTML: the card shows it as text (the card escapes it again).
+        body: r.rendered_preview ? htmlToPlain(r.rendered_preview) : null,
         path: `/app/editor/slot/${r.id}`,
         critical: new Date(r.scheduled_at).getTime() <= soon,
         since: new Date(r.sent_at),

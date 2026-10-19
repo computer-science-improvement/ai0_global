@@ -6,7 +6,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import type { BudgetStatus } from '../../spend/spend.service';
 import type { NetworkHealth } from '../health/network-health';
-import { OwnerReports, channelText, dailyDue, healthLines, isoWeek, kyivDate, kyivHM, kyivWeekday, spendLines, weekWorkLines, weeklyDue } from './owner-reports';
+import { MAX_CHANNEL_LINES, OwnerReports, channelBlock, channelText, dailyDue, healthLines, isoWeek, kyivDate, kyivHM, kyivWeekday, spendLines, weekWorkLines, weeklyDue } from './owner-reports';
 import { OwnerBotService } from './owner-bot.service';
 
 test('Kyiv time: date, HH:MM, weekday, ISO week', () => {
@@ -233,4 +233,12 @@ test('the weekly schedule: Monday 09:00 Kyiv, once a week; /week sends it now', 
   assert.deepEqual(await r.tick(async () => true), []);
   const tue = reports({ now: '2026-10-20T06:00:00Z', pool: weekPool(), env: { OWNER_DAILY_REPORT_AT: 'off' } });
   assert.deepEqual(await tue.r.tick(async () => true), []);
+});
+
+test('a report lists at most 25 channels and says how many more', () => {
+  const l = (n: number) => ({ ref: `telegram:@c${n}`, title: `C${n}`, published: 1, skipped: 0, skipWhy: null, failed: 0, awaiting: 0, subs: null });
+  const out = channelBlock(Array.from({ length: 30 }, (_, n) => l(n)), 'none');
+  assert.equal(out.length, MAX_CHANNEL_LINES + 1);
+  assert.equal(out.at(-1), '…і ще 5 (дашборд → Analytics)');
+  assert.deepEqual(channelBlock([], 'none'), ['none']);
 });

@@ -156,6 +156,16 @@ export async function channelLines(pool: ReportDeps['pool'], from: Date, to: Dat
     .sort((a, b) => a.title.localeCompare(b.title));
 }
 
+/** At most 25 channel lines, so a report stays within Telegram's 4096 characters. */
+export const MAX_CHANNEL_LINES = 25;
+
+export function channelBlock(lines: ChannelLine[], empty: string): string[] {
+  if (!lines.length) return [empty];
+  const out = lines.slice(0, MAX_CHANNEL_LINES).map(channelText);
+  if (lines.length > MAX_CHANNEL_LINES) out.push(`…і ще ${lines.length - MAX_CHANNEL_LINES} (дашборд → Analytics)`);
+  return out;
+}
+
 export function channelText(l: ChannelLine): string {
   const bits = [`✅ ${l.published}`];
   if (l.skipped) bits.push(`⏭ ${l.skipped}${l.skipWhy ? ` (${l.skipWhy})` : ''}`);
@@ -290,7 +300,7 @@ export class OwnerReports {
     const info = Number(rows[0]?.n ?? 0);
 
     const lines = [`📊 <b>Підсумок дня · ${ddmm(kyivDate(now))}</b>`, ''];
-    lines.push('<b>Канали</b>', ...(channels.length ? channels.map(channelText) : ['Сьогодні постів не було']), '');
+    lines.push('<b>Канали</b>', ...channelBlock(channels, 'Сьогодні постів не було'), '');
     const spend = spendLines(budgets.rows);
     if (spend.length) lines.push('<b>Витрати сьогодні</b>', ...spend, '');
     lines.push('<b>Чекає на вас</b>');
@@ -315,7 +325,7 @@ export class OwnerReports {
     const published = channels.reduce((n, c) => n + c.published, 0);
     const w = weekWorkLines(work, published);
     const lines = [`🗓 <b>Тиждень · ${ddmm(kyivDate(from))}–${ddmm(kyivDate(to))}</b>`, ''];
-    lines.push('<b>Канали</b>', ...(channels.length ? channels.map(channelText) : ['Постів не було']), '');
+    lines.push('<b>Канали</b>', ...channelBlock(channels, 'Постів не було'), '');
     lines.push('<b>Витрати за 7 днів</b>', ...w.spend, '');
     lines.push('<b>Що зробив менеджер</b>', ...w.manager, '');
     lines.push('<b>Чого навчились агенти</b>', ...w.learnt, '');
