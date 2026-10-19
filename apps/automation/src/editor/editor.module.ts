@@ -149,7 +149,8 @@ import { SteeringService } from './steering/steering.service';
 import { STEERING_SERVICE, SteeringController } from './steering/steering.controller';
 import { telegramReader } from './steering/steering-source';
 import { OwnerBotService } from './owner-bot/owner-bot.service';
-import { OWNER_BOT, OwnerBotWorker } from './owner-bot/owner-bot.worker';
+import { OWNER_BOT, OwnerBotWorker, type OwnerBotInfra } from './owner-bot/owner-bot.worker';
+import { OwnerReports } from './owner-bot/owner-reports';
 import { OwnerCardsRepository } from './owner-bot/owner-cards.repository';
 import { cardSources } from './owner-bot/card-sources';
 import { telegramBotApi } from './owner-bot/bot-api';
@@ -1923,23 +1924,34 @@ export const EDITOR_PROVIDERS = [
     {
       // Spec 012 part A: the owner bot (cards with buttons for what waits, delivered on the admin bot's chat).
       provide: OWNER_BOT,
-      inject: [DB_POOL, ConfigService, APPROVALS_SERVICE, MANAGER_SERVICE, AGENT_INFRA, STEERING_SERVICE, CHANNEL_SETUP_SERVICE, NETWORK_SERVICE],
+      inject: [
+        DB_POOL, ConfigService, APPROVALS_SERVICE, MANAGER_SERVICE, AGENT_INFRA, STEERING_SERVICE, CHANNEL_SETUP_SERVICE, NETWORK_SERVICE, NETWORK_HEALTH,
+      ],
       useFactory: (
         pool: Pool, cfg: ConfigService, approvals: ApprovalsService, manager: ManagerService, infra: AgentInfra, steering: SteeringService,
-        setup: ChannelSetupService, network: NetworkService,
-      ) => {
+        setup: ChannelSetupService, network: NetworkService, health: NetworkHealthService,
+      ): OwnerBotInfra => {
         const logger = new Logger('OwnerBot');
         const token = cfg.get<string>('TELEGRAM_BOT_TOKEN');
-        return new OwnerBotService({
-          pool, repo: new OwnerCardsRepository(pool), api: token ? telegramBotApi(token) : null,
-          // Live settings: the settings overlay keeps process.env current (spec 039).
-          env: (k) => process.env[k] ?? cfg.get<string>(k) ?? undefined,
+        // Live settings: the settings overlay keeps process.env current (spec 039).
+        const env = (k: string) => process.env[k] ?? cfg.get<string>(k) ?? undefined;
+        const repo = new OwnerCardsRepository(pool);
+        let bot: OwnerBotService | null = null;
+        const reports = new OwnerReports({
+          pool, repo, env, budgets: () => budgetSnapshot(new SpendRepository(pool)), health: () => health.health(),
+          waiting: async () => (bot ? bot.waitingCounts() : []),
+        });
+        bot = new OwnerBotService({
+          pool, repo, env, api: token ? telegramBotApi(token) : null,
           sources: cardSources({
             pool, approvals, directives: manager, actions: infra.actions, steering, setup, playbooks: network,
             inbox: { markRead: (ids) => infra.inbox.markRead(ids) }, setupSections: SETUP_SECTIONS,
           }),
+          status: () => reports.statusLines(),
+          reports: { today: () => reports.daily() },
           log: (m) => logger.warn(m),
         });
+        return { bot, reports };
       },
     },
     OwnerBotWorker,

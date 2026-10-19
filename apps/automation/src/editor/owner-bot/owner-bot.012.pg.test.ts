@@ -10,6 +10,7 @@ import { join } from 'node:path';
 import { Pool } from 'pg';
 import { OwnerCardsRepository } from './owner-cards.repository';
 import { cardSources, type SourceDeps } from './card-sources';
+import { OwnerReports, channelLines } from './owner-reports';
 
 const url = process.env.EDITOR_PG_TEST_URL;
 const skip = !url ? 'EDITOR_PG_TEST_URL not set' : false;
@@ -29,6 +30,7 @@ async function cleanup() {
   await pool.query(`DELETE FROM agent_directives WHERE to_agent_id IN (SELECT id FROM agents WHERE handle = $1)`, [HANDLE]);
   await pool.query(`DELETE FROM agent_inbox WHERE kind = 'pg012'`);
   await pool.query(`DELETE FROM agents WHERE handle = $1`, [HANDLE]);
+  await pool.query(`DELETE FROM channel_stats_snapshots WHERE channel_id = $1`, [CH]);
 }
 
 before(async () => {
@@ -143,4 +145,32 @@ test('sources: a post waits for a card only after its batch alert; directives, c
 
   // The other sources' queries run.
   for (const k of ['action', 'steering', 'setup', 'playbook']) assert.ok(Array.isArray(await byKind.get(k)!.waiting(now)), k);
+});
+
+test('daily summary data: the Kyiv day, per-channel counts and the main skip reason, subscriber change', { skip }, async () => {
+  const r = new OwnerReports({
+    pool, repo, env: () => undefined, budgets: async () => ({ rows: [] }), health: async () => { throw new Error('n/a'); }, waiting: async () => [],
+  });
+  const { from, to } = await r.dayBounds(new Date('2026-10-19T18:00:00Z'));
+  assert.equal(from.toISOString(), '2026-10-18T21:00:00.000Z');
+  assert.equal(to.toISOString(), '2026-10-19T21:00:00.000Z');
+
+  await pool.query(`INSERT INTO editor_channels (channel_key, title) VALUES ($1, 'PG Owner') ON CONFLICT DO NOTHING`, [CH]);
+  const plan = (await pool.query(`INSERT INTO editor_plans (channel_key, plan_date) VALUES ($1, '2026-10-21') RETURNING id`, [CH])).rows[0].id;
+  const slot = (status: string, at: string, error: string | null) => pool.query(
+    `INSERT INTO editor_slots (plan_id, channel_key, scheduled_at, format, topic, status, error) VALUES ($1, $2, $3, 'text', 't', $4, $5)`,
+    [plan, CH, at, status, error]);
+  await slot('published', '2026-10-21T08:00:00Z', null);
+  await slot('skipped', '2026-10-21T09:00:00Z', 'daily_cap_reached');
+  await slot('skipped', '2026-10-21T10:00:00Z', 'daily_cap_reached');
+  await slot('skipped', '2026-10-21T11:00:00Z', 'critic_rejected: weak');
+  await slot('skipped', '2026-10-21T12:00:00Z', 'superseded by a new plan');
+  await slot('failed', '2026-10-21T13:00:00Z', 'boom');
+  await slot('published', '2026-10-22T08:00:00Z', null); // the next day
+  await pool.query(`INSERT INTO channel_stats_snapshots (channel_id, captured_at, subscribers) VALUES ($1, '2026-10-20T20:00:00Z', 100), ($1, '2026-10-21T15:00:00Z', 112)`, [CH]);
+
+  const lines = (await channelLines(pool, new Date('2026-10-20T21:00:00Z'), new Date('2026-10-21T21:00:00Z'))).filter((l) => l.ref === `telegram:${CH}`);
+  assert.equal(lines.length, 1);
+  const { awaiting: _a, ...l } = lines[0];
+  assert.deepEqual(l, { ref: `telegram:${CH}`, title: 'PG Owner', published: 1, skipped: 3, skipWhy: 'ліміти', failed: 1, subs: 12 });
 });

@@ -227,6 +227,19 @@ export class OwnerBotService implements OwnerBotHandler {
     }
   }
 
+  /** A message to the owner chat (the reports); false when it did not go out. */
+  async sendToOwner(text: string, kb?: Keyboard | null): Promise<boolean> {
+    const chat = this.chat();
+    if (!this.d.api || !chat) return false;
+    try {
+      await this.d.api.send(chat, text, kb ?? null);
+      return true;
+    } catch (err: any) {
+      this.log(`owner bot: message not sent: ${errorText(err)}`);
+      return false;
+    }
+  }
+
   private async say(chatId: string, text: string, kb?: Keyboard | null): Promise<void> {
     try {
       await this.d.api?.send(chatId, text, kb ?? null);
@@ -258,6 +271,13 @@ export class OwnerBotService implements OwnerBotHandler {
   async callback(cb: OwnerCallback): Promise<void> {
     const api = this.d.api;
     if (!api) return;
+    if (cb.data === 'oc:waiting') {
+      // The reports' "Що чекає" button: the same as /waiting.
+      await api.answer(cb.id);
+      const chat = cb.chatId != null ? String(cb.chatId) : this.chat();
+      if (chat) await this.say(chat, await this.waitingNow());
+      return;
+    }
     const p = parseCallback(cb.data);
     const card = p ? await this.d.repo.get(p.cardId) : null;
     if (!p || !card) { await api.answer(cb.id, 'Картку не знайдено'); return; }
