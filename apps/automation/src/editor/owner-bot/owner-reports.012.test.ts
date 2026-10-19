@@ -1,12 +1,12 @@
 /**
- * Spec 012 T2 (AI0-238): the daily summary — Kyiv time and the due rule, the channel / spend / health lines, the text,
+ * Spec 012 T2–T3 (AI0-238, AI0-239): the daily summary and the weekly report — Kyiv time and the due rule, the channel / spend / health lines, the text,
  * the once-per-day claim with retries, /today and the "Що чекає" button. Fakes only.
  */
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import type { BudgetStatus } from '../../spend/spend.service';
 import type { NetworkHealth } from '../health/network-health';
-import { OwnerReports, channelText, dailyDue, healthLines, isoWeek, kyivDate, kyivHM, kyivWeekday, spendLines, weeklyDue } from './owner-reports';
+import { OwnerReports, channelText, dailyDue, healthLines, isoWeek, kyivDate, kyivHM, kyivWeekday, spendLines, weekWorkLines, weeklyDue } from './owner-reports';
 import { OwnerBotService } from './owner-bot.service';
 
 test('Kyiv time: date, HH:MM, weekday, ISO week', () => {
@@ -181,4 +181,56 @@ test('/today sends the summary; the "Що чекає" button runs /waiting', asy
   assert.ok(bot.help().includes('/today — підсумок дня'));
   await bot.callback({ id: 'c', fromId: 42, chatId: 42, chatType: 'private', messageId: 5, data: 'oc:waiting' });
   assert.equal(sent[1].text, 'Нічого не чекає ✓');
+});
+
+// ── T3 (AI0-239): the weekly report ────────────────────────────────────────
+
+test('weekly lines: spend per published post, the manager, what the agents learnt', () => {
+  const w = weekWorkLines({
+    filed: 5, applied: 3, declined: 1, open: 2, measured: { worked: 2, no_effect: 1, hurt: 0, inconclusive: 1 },
+    memory: 7, skills: 2, steering: 1, rules: 3, spendUsd: 12.5,
+  }, 25);
+  assert.deepEqual(w.spend, ['Разом: $12.50 · $0.50 на опублікований пост']);
+  assert.deepEqual(w.manager, [
+    'Директив: 5 · застосовано 3 · відхилено 1 · ще відкрито 2',
+    'Оцінено результат: 4 (спрацювало 2, без ефекту 1, зашкодило 0, неясно 1)',
+  ]);
+  assert.deepEqual(w.learnt, ['Нотаток у памʼяті: 7 · версій скілів: 2 · стилів за референсом: 1 · ваших правил: 3']);
+  const none = weekWorkLines({ filed: 0, applied: 0, declined: 0, open: 0, measured: { worked: 0, no_effect: 0, hurt: 0, inconclusive: 0 }, memory: 0, skills: 0, steering: 0, rules: 0, spendUsd: 0 }, 0);
+  assert.deepEqual(none.spend, ['Разом: $0.00']);
+  assert.equal(none.manager[1], 'Результатів ще не оцінено');
+});
+
+function weekPool() {
+  const base = reportPool({
+    slots: [{ ref: 'telegram:@a', channel_key: '@a', title: 'Канал А', status: 'published', error: null, verdict: null }],
+    subs: [{ key: '@a', now_subs: 150, before_subs: 100 }],
+  });
+  return {
+    async query(sql: string, params: any[] = []) {
+      if (/FROM editor_v_post_performance/.test(sql)) return { rows: [{ channel_id: '@a', views: 840 }] };
+      if (/FROM agent_directives WHERE NOT shadow/.test(sql)) return { rows: [{ filed: 2, applied: 1, declined: 0, open: 1, worked: 1, no_effect: 0, hurt: 0, inconclusive: 0 }] };
+      if (/FROM skill_versions/.test(sql)) return { rows: [{ memory: 4, skills: 1, steering: 0, rules: 2, spend: 3 }] };
+      return base.query(sql, params);
+    },
+  } as any;
+}
+
+test('weekly report: 7 days per channel with views, spend, manager, learning, health and no targets yet', async () => {
+  const { r } = reports({ now: '2026-10-19T06:00:00Z', pool: weekPool() });
+  const { text } = await r.weekly();
+  assert.equal(text.split('\n')[0], '🗓 <b>Тиждень · 12.10–19.10</b>');
+  assert.match(text, /• <b>Канал А<\/b>: ✅ 1 · 👥 \+50 · 👁 840 на пост/);
+  assert.match(text, /Разом: \$3\.00 · \$3\.00 на опублікований пост/);
+  assert.match(text, /Директив: 2 · застосовано 1/);
+  assert.match(text, /ваших правил: 2/);
+  assert.match(text, /<b>Цілі<\/b>\nЦілей ще немає$/);
+});
+
+test('the weekly schedule: Monday 09:00 Kyiv, once a week; /week sends it now', async () => {
+  const { r } = reports({ now: '2026-10-19T06:00:00Z', pool: weekPool(), env: { OWNER_DAILY_REPORT_AT: 'off' } });
+  assert.deepEqual(await r.tick(async () => true), ['weekly:2026-W43']);
+  assert.deepEqual(await r.tick(async () => true), []);
+  const tue = reports({ now: '2026-10-20T06:00:00Z', pool: weekPool(), env: { OWNER_DAILY_REPORT_AT: 'off' } });
+  assert.deepEqual(await tue.r.tick(async () => true), []);
 });

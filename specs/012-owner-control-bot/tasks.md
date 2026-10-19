@@ -4,7 +4,7 @@ Order: T1 → T2 → T3 → T4. Each stage ends with tests and a commit.
 
 - [x] T1 (AI0-237) The bot and cards: migration 085, owner-only routing on the admin bot, stored offset, card sources and buttons, the sweep (quiet hours, hourly limit, backlog rule, closing cards decided elsewhere), `/status`, `/waiting`, `/help`, inbox alerts become cards, settings.
 - [x] T2 (AI0-238) Daily summary at 21:00 Kyiv and `/today`.
-- [ ] T3 (AI0-239) Weekly report on Monday 09:00 Kyiv and `/week`.
+- [x] T3 (AI0-239) Weekly report on Monday 09:00 Kyiv and `/week`.
 - [ ] T4 (AI0-240) The Owner bot section on `/app/health` (status, test card, send reports), runbook, specs/README.
 
 ## Decisions (2026-10-19)
@@ -28,3 +28,6 @@ The owner said "just do it" (no questions), so these are my calls:
 - T2: spend shows two lines, the agents cap (`editor.*`) and the whole account (global), as Settings → Spend has them.
 - T2: a report that is due is sent the first minute from its time until the end of that Kyiv day (a restart after 21:00 still sends it, once); a failed send is retried each minute, 5 times.
 - T2: `/status` gets today's posts, spend and the health problem count from the same data.
+- T3: the week is the last 7 days up to the send time (not a calendar week); the period claimed is the ISO week of the Kyiv date.
+- T3: "memory lines added" counts the agents' channel and agent memory lines (not the owner's); "owner rules added" counts the owner's channel memory lines that are not approval preferences; spend is all LLM spend in `llm_usage` for the 7 days.
+- T3: "outcomes that were measured" counts directives whose outcome (worked / no effect / hurt / inconclusive) was set in the week.

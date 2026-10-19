@@ -1948,7 +1948,7 @@ export const EDITOR_PROVIDERS = [
             inbox: { markRead: (ids) => infra.inbox.markRead(ids) }, setupSections: SETUP_SECTIONS,
           }),
           status: () => reports.statusLines(),
-          reports: { today: () => reports.daily() },
+          reports: { today: () => reports.daily(), week: () => reports.weekly() },
           log: (m) => logger.warn(m),
         });
         return { bot, reports };

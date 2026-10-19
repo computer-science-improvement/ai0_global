@@ -10,7 +10,7 @@ import { join } from 'node:path';
 import { Pool } from 'pg';
 import { OwnerCardsRepository } from './owner-cards.repository';
 import { cardSources, type SourceDeps } from './card-sources';
-import { OwnerReports, channelLines } from './owner-reports';
+import { OwnerReports, channelLines, weekViews, weekWork } from './owner-reports';
 
 const url = process.env.EDITOR_PG_TEST_URL;
 const skip = !url ? 'EDITOR_PG_TEST_URL not set' : false;
@@ -173,4 +173,17 @@ test('daily summary data: the Kyiv day, per-channel counts and the main skip rea
   assert.equal(lines.length, 1);
   const { awaiting: _a, ...l } = lines[0];
   assert.deepEqual(l, { ref: `telegram:${CH}`, title: 'PG Owner', published: 1, skipped: 3, skipWhy: 'ліміти', failed: 1, subs: 12 });
+});
+
+test('weekly data: the queries run and count this week only', { skip }, async () => {
+  const from = new Date('2026-10-20T21:00:00Z');
+  const to = new Date('2026-10-21T21:00:00Z');
+  const agent = (await pool.query(`SELECT id FROM agents WHERE handle = $1`, [HANDLE])).rows[0].id;
+  await pool.query(
+    `INSERT INTO agent_directives (to_agent_id, kind, body, rationale, status, created_at, applied_at, outcome, updated_at)
+     VALUES ($1, 'advice', 'b', 'r', 'evaluated', '2026-10-21T08:00:00Z', '2026-10-21T09:00:00Z', 'worked', '2026-10-21T10:00:00Z')`, [agent]);
+  const w = await weekWork(pool, from, to);
+  assert.ok(w.filed >= 1 && w.applied >= 1 && w.measured.worked >= 1);
+  assert.ok(Number.isFinite(w.spendUsd));
+  assert.ok((await weekViews(pool, from, to)) instanceof Map);
 });

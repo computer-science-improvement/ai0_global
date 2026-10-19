@@ -81,6 +81,8 @@ export interface ChannelLine {
   awaiting:  number;
   /** Subscriber change over the period, when tracked. */
   subs:      number | null;
+  /** Average views per published post (weekly, when tracked). */
+  views?:    number | null;
 }
 
 const SKIP_UK: Record<string, string> = {
@@ -160,6 +162,7 @@ export function channelText(l: ChannelLine): string {
   if (l.failed) bits.push(`❌ ${l.failed}`);
   if (l.awaiting) bits.push(`⏳ ${l.awaiting} на схвалення`);
   if (l.subs != null) bits.push(`👥 ${signed(l.subs)}`);
+  if (l.views != null) bits.push(`👁 ${l.views} на пост`);
   return `• <b>${esc(l.title)}</b>: ${bits.join(' · ')}`;
 }
 
@@ -186,6 +189,66 @@ export function healthLines(h: NetworkHealth | null): string[] {
   if (h.budget.blocking.length) out.push(`💸 Бюджет зупинив: ${h.budget.blocking.length}`);
   for (const g of h.stuck) out.push(`⏱ ${STUCK_UK[g.kind] ?? g.label}: ${g.count}`);
   return out.length ? out : ['Все гаразд ✓'];
+}
+
+/** FR-006: what the manager did and what the agents learnt over [from, to). */
+export interface WeekWork {
+  filed: number; applied: number; declined: number; open: number;
+  measured: Record<'worked' | 'no_effect' | 'hurt' | 'inconclusive', number>;
+  memory: number; skills: number; steering: number; rules: number;
+  spendUsd: number;
+}
+
+export async function weekWork(pool: ReportDeps['pool'], from: Date, to: Date): Promise<WeekWork> {
+  const { rows: [d] } = await pool.query(
+    `SELECT count(*) FILTER (WHERE created_at >= $1 AND created_at < $2)::int AS filed,
+            count(*) FILTER (WHERE applied_at >= $1 AND applied_at < $2)::int AS applied,
+            count(*) FILTER (WHERE status IN ('declined', 'rejected') AND updated_at >= $1 AND updated_at < $2)::int AS declined,
+            count(*) FILTER (WHERE status IN ('new', 'awaiting_owner', 'accepted', 'contested'))::int AS open,
+            count(*) FILTER (WHERE outcome = 'worked' AND updated_at >= $1 AND updated_at < $2)::int AS worked,
+            count(*) FILTER (WHERE outcome = 'no_effect' AND updated_at >= $1 AND updated_at < $2)::int AS no_effect,
+            count(*) FILTER (WHERE outcome = 'hurt' AND updated_at >= $1 AND updated_at < $2)::int AS hurt,
+            count(*) FILTER (WHERE outcome = 'inconclusive' AND updated_at >= $1 AND updated_at < $2)::int AS inconclusive
+       FROM agent_directives WHERE NOT shadow`, [from, to]);
+  const { rows: [l] } = await pool.query(
+    `SELECT (SELECT count(*) FROM editor_channel_memory WHERE created_at >= $1 AND created_at < $2 AND created_by <> 'owner')::int
+          + (SELECT count(*) FROM agent_memory WHERE created_at >= $1 AND created_at < $2 AND created_by <> 'owner')::int AS memory,
+            (SELECT count(*) FROM skill_versions WHERE created_at >= $1 AND created_at < $2)::int AS skills,
+            (SELECT count(*) FROM steering_sets WHERE activated_at >= $1 AND activated_at < $2)::int AS steering,
+            (SELECT count(*) FROM editor_channel_memory WHERE created_at >= $1 AND created_at < $2 AND created_by = 'owner'
+                AND COALESCE(evidence->>'source', '') <> 'approval')::int AS rules,
+            (SELECT COALESCE(sum(cost_usd), 0) FROM llm_usage WHERE at >= $1 AND at < $2)::float8 AS spend`, [from, to]);
+  const n = (v: unknown) => Number(v ?? 0);
+  return {
+    filed: n(d?.filed), applied: n(d?.applied), declined: n(d?.declined), open: n(d?.open),
+    measured: { worked: n(d?.worked), no_effect: n(d?.no_effect), hurt: n(d?.hurt), inconclusive: n(d?.inconclusive) },
+    memory: n(l?.memory), skills: n(l?.skills), steering: n(l?.steering), rules: n(l?.rules), spendUsd: n(l?.spend),
+  };
+}
+
+/** Average views per post over [from, to), per Telegram channel (tracked posts only). */
+export async function weekViews(pool: ReportDeps['pool'], from: Date, to: Date): Promise<Map<string, number>> {
+  const { rows } = await pool.query(
+    `SELECT channel_id, round(avg(views))::int AS views FROM editor_v_post_performance
+      WHERE posted_at >= $1 AND posted_at < $2 AND views IS NOT NULL GROUP BY channel_id`, [from, to]);
+  return new Map(rows.map((r: any) => [String(r.channel_id), Number(r.views)]));
+}
+
+export function weekWorkLines(w: WeekWork, published: number): { spend: string[]; manager: string[]; learnt: string[] } {
+  const m = w.measured;
+  const measured = m.worked + m.no_effect + m.hurt + m.inconclusive;
+  return {
+    spend: [`Разом: ${usd(w.spendUsd)}${published ? ` · ${usd(w.spendUsd / published)} на опублікований пост` : ''}`],
+    manager: [
+      `Директив: ${w.filed} · застосовано ${w.applied} · відхилено ${w.declined} · ще відкрито ${w.open}`,
+      measured
+        ? `Оцінено результат: ${measured} (спрацювало ${m.worked}, без ефекту ${m.no_effect}, зашкодило ${m.hurt}, неясно ${m.inconclusive})`
+        : 'Результатів ще не оцінено',
+    ],
+    learnt: [
+      `Нотаток у памʼяті: ${w.memory} · версій скілів: ${w.skills} · стилів за референсом: ${w.steering} · ваших правил: ${w.rules}`,
+    ],
+  };
 }
 
 function keyboard(env: ReportDeps['env']): Keyboard {
@@ -237,6 +300,30 @@ export class OwnerReports {
     return { text: lines.join('\n'), keyboard: keyboard(this.d.env) };
   }
 
+  /** FR-006: the weekly report over the last 7 days. */
+  async weekly(): Promise<{ text: string; keyboard: Keyboard }> {
+    const now = this.now();
+    const to = now;
+    const from = new Date(now.getTime() - 7 * DAY);
+    const [channels, views, work, health] = await Promise.all([
+      channelLines(this.d.pool, from, to),
+      weekViews(this.d.pool, from, to).catch(() => new Map<string, number>()),
+      weekWork(this.d.pool, from, to),
+      this.d.health().catch(() => null),
+    ]);
+    for (const c of channels) if (c.ref.startsWith('telegram:')) c.views = views.get(c.ref.slice('telegram:'.length)) ?? null;
+    const published = channels.reduce((n, c) => n + c.published, 0);
+    const w = weekWorkLines(work, published);
+    const lines = [`🗓 <b>Тиждень · ${ddmm(kyivDate(from))}–${ddmm(kyivDate(to))}</b>`, ''];
+    lines.push('<b>Канали</b>', ...(channels.length ? channels.map(channelText) : ['Постів не було']), '');
+    lines.push('<b>Витрати за 7 днів</b>', ...w.spend, '');
+    lines.push('<b>Що зробив менеджер</b>', ...w.manager, '');
+    lines.push('<b>Чого навчились агенти</b>', ...w.learnt, '');
+    lines.push("<b>Здоров'я</b>", ...healthLines(health), '');
+    lines.push('<b>Цілі</b>', 'Цілей ще немає');
+    return { text: lines.join('\n'), keyboard: keyboard(this.d.env) };
+  }
+
   /** /status extra lines: today's posts, spend and health in short. */
   async statusLines(): Promise<string[]> {
     const now = this.now();
@@ -263,6 +350,7 @@ export class OwnerReports {
     const out: string[] = [];
     const jobs: Array<['daily' | 'weekly', string | null, () => Promise<{ text: string; keyboard: Keyboard }>]> = [
       ['daily', dailyDue(now, this.d.env('OWNER_DAILY_REPORT_AT')), () => this.daily()],
+      ['weekly', weeklyDue(now, this.d.env('OWNER_WEEKLY_REPORT_AT')), () => this.weekly()],
     ];
     for (const [kind, period, build] of jobs) {
       if (!period) continue;
