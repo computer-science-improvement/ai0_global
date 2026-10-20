@@ -6,7 +6,7 @@ Linear epic: AI0-247.
 - [x] T2 FR-002: role `auditor` wiring (types, model registry, features, skill roles), @sysadmin via registry sync, the `auditor-workflow` builtin skill, the runner with `submit_audit` and code validation (fake LLM tests only).
 - [x] T3 FR-003: migration `088_audit_reports.sql`, repository, `AuditService` (run, apply, dismiss), controller, the `audit` artifact type and adapter, dashboard `AuditBody`, chip, `/audit`, mocks, browser check.
 - [x] T4 FR-004: settings, the weekly tick with the ISO-week claim, the inbox note, the manager digest line.
-- [ ] T5: runbook section, specs README row, spec status.
+- [x] T5: runbook §14, specs README row (DONE, migration 088 landed), spec status done.
 
 ## Status
 
@@ -14,6 +14,7 @@ Linear epic: AI0-247.
 - T2: done — role `auditor` through types, model registry (Haiku on the Anthropic workspace, low effort), features, budget reserve, skill lint and read tools; @sysadmin (kind `auditor`, system scope, live) is created by the registry sync; `auditor-workflow` builtin skill; `AuditorRunner` (code checks, then one model pass with `submit_audit`, every key and id checked in code); 4 + 5 + 3 unit tests with a fake LLM.
 - T3: done — migration 088 (two tables, `agents_kind_check` widened, down file; applied twice in a PG test), `AuditRepository` (weekly claim by the unique insert, dead runs closed after 30 minutes, row-locked finding updates), `AuditService` (begin / execute / run / runInBackground, apply, dismiss, delta), controller `/api/audits`, artifact type `audit`, `/audit` slash command, dashboard `AuditBody` with compact finding cards, apply/dismiss dialogs and the handled list; looked at in the browser against a throwaway mock API (list, report, running, failed, no-model note, refused fix, dismiss).
 - T4: done — five `AUDITOR_*` settings (group editor, live); `sysadmin/audit-schedule.ts` (`auditDue`, `auditInboxItem`, `AuditTick`) and `AuditWorker` (a tick a minute, registered in the editor module); the audit's loop is now `ownerStartedLoop` (runs without `EDITOR_ENABLED`, needs only a model key); the inbox note by `postOnce`; the `audit` line of the manager digest (`auditLineOf`); the dashboard Inbox links the note to the report. 10 unit tests, 2 PG tests (week claimed once across two tick objects, one inbox note, digest line).
+- T5: done — `docs/runbooks/agent-platform.md` §14 (needs, settings, checks, the report and its fixes, the owner note and the digest line, how to check); the specs README row is DONE and 088 moves to landed; the spec's Status is done.
 
 ## Deltas from the spec
 

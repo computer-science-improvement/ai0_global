@@ -270,3 +270,52 @@ A new channel from a brief: you create the channel in Telegram, the agents plan 
 - The panel's checklist says what waits and who does it; a failed Start keeps the launch ready with the step in the reason (press Start again: each step is idempotent).
 - `GET /api/launches?channel=@name`, `GET /api/launches/:id` (with the checklist and growth).
 - **Stop the launch** (running) closes the launch only; the channel keeps its mode. Discard before Start also discards the reference sets that were not activated.
+
+## 14. Sysadmin audit (spec 055)
+
+Once a week @sysadmin looks over the material that shapes the agents: skills, memory, owner rules, config conflicts, playbooks, steering sets, tool errors and the inline skill budget. The code runs the checks, then one bounded model pass adds a summary, comments and a few findings of its own. You get a report with one-click fixes. @sysadmin never changes anything by itself.
+
+**Needs**
+
+- Migration `088_audit_reports` (`audit_reports`, `audit_dismissals`, and `agents_kind_check` widened to the `auditor` kind). The registry sync creates @sysadmin (kind `auditor`, system scope, live) on the next hourly sync after the migration, or at boot.
+- A model key (OpenRouter or Anthropic) only for the model pass. Without one, or with the pass switched off, the report holds the code's findings and says so. The weekly run needs neither `EDITOR_ENABLED` nor a running writer: it publishes nothing.
+- One service instance schedules the run, but a second one is harmless: the week is claimed by a unique insert.
+
+**Settings** (Settings → Configuration → Editor, applied at once)
+
+| Setting | Default | What it does |
+|---|---|---|
+| `AUDITOR_ENABLED` | `true` | `false` stops the weekly run; `/audit` and Run again still work |
+| `AUDITOR_LLM` | `on` | `off` = the report has the code checks only (no model call, no cost) |
+| `AUDITOR_WEEKDAY` | `1` | Day of the weekly run, 1 = Monday … 7 = Sunday (Kyiv) |
+| `AUDITOR_AT` | `06:30` | Time of the weekly run, `HH:MM` Kyiv |
+| `AUDITOR_BUDGET_USD` | `0.15` | Cap of the model pass; over it, the report goes on without comments |
+
+The model pass uses the `auditor` role: Haiku on the Anthropic workspace, low effort, at most 8 steps; its spend is under the feature `editor.auditor`.
+
+**What it checks** (all in code, at most 25 findings per check)
+
+- Skills: lint errors and warnings, unknown tool names, enabled skills no run of the agent loaded in 30 days (agents with at least 10 runs), near-identical skills of one agent, skills rolled back twice in 60 days.
+- Memory: rows no prompt shows (more than 30 active), duplicates, old reviewer insights nothing confirms.
+- Rules: owner-rule lint, rules against config (the config conflicts), playbook validation, steering sets with no rules or a missing channel.
+- Tools: error rate of 20 % or more over 7 days, runs of a role that end without a result.
+- Prompt: inline skills over the 8000-character budget.
+
+**The report**
+
+- Artifacts → Audits (or `/audit` in the chat, which starts a run and shows the report as a chip). The report lists the open findings by area as compact rows; a row opens the detail, the evidence, @sysadmin's comment and the buttons.
+- **Apply fix** is one of four, each through the service that already does it: disable a skill, turn a skill's inline off, retire a reviewer memory row (never an owner row), resolve the config conflicts of an agent. A fix whose subject changed since the report is refused with the reason and the finding is marked "fix failed".
+- **Dismiss 30 days** leaves the finding out of the next reports until the date. Handled findings (applied, dismissed) collapse at the bottom.
+- **Run again** starts a run at once and the page refreshes by itself while it runs. A run left running for 30 minutes (a crash) stops blocking new ones.
+
+**Owner note and manager**
+
+- After the scheduled run, if at least one finding is open, one inbox note (kind `audit_report`) comes: «Аудит системи: N знахідок (E помилок), F можна виправити одним кліком» with the first line of the summary. It is an action note when any finding is an error, else info; the dashboard Inbox links it to the report. Your own Run does not post a note.
+- The MANAGER's digest gets one `audit` line (open findings by severity, the report id, week) while the newest report has open findings. No directive kind and no change to the digest hash.
+
+**Check it**
+
+- `GET /api/audits` (reports with counts), `GET /api/audits/:id`; `POST /api/audits/run` starts a run in the background (409 `already_running` while another is alive).
+- The week was run if `SELECT week, trigger, status FROM audit_reports ORDER BY started_at DESC LIMIT 3` shows a `schedule` row for it. A failed scheduled run is not retried that week: press Run again.
+- No report on Monday: check `AUDITOR_ENABLED`, `AUDITOR_WEEKDAY` and `AUDITOR_AT`, and that the service was up after the time.
+- The report's amber note says why the model pass was skipped (switched off, no key, @sysadmin off, budget, no answer).
