@@ -5,7 +5,7 @@ import { api } from './client';
 // memory, skills, playbooks, profiles and formatting. GET /api/artifacts?type&agent&channel&status&limit,
 // GET /api/artifacts/:type/:id, GET /api/artifacts/:type/:id/versions/:v, PATCH /api/artifacts/:type/:id {patch, reason?}.
 
-export const ARTIFACT_TYPES = ['setup', 'steering', 'rules', 'memory', 'skill', 'playbook', 'profile', 'formatting', 'launch'] as const;
+export const ARTIFACT_TYPES = ['setup', 'steering', 'rules', 'memory', 'skill', 'playbook', 'profile', 'formatting', 'launch', 'audit'] as const;
 export type ArtifactType = typeof ARTIFACT_TYPES[number];
 
 export interface ArtifactRow {
@@ -53,7 +53,7 @@ export function useArtifacts(f: ArtifactFilter) {
   return useQuery({
     queryKey: [...KEY, 'list', f],
     queryFn: () => api<{ rows: ArtifactRow[] }>(`/api/artifacts${qs.size ? `?${qs}` : ''}`),
-    refetchInterval: (q) => (q.state.data?.rows.some((r) => BUSY.has(r.status)) ? 5_000 : false),
+    refetchInterval: (q) => (q.state.data?.rows.some((r) => BUSY.has(r.status) || (r.type === 'audit' && r.status === 'running')) ? 5_000 : false),
   });
 }
 
@@ -65,7 +65,7 @@ export function useArtifact(type: ArtifactType | null | undefined, id: string | 
     staleTime: 15_000,
     refetchInterval: (q) => {
       const s = q.state.data?.row.status ?? '';
-      return BUSY.has(s) ? 4_000 : type === 'launch' && LIVE_LAUNCH.has(s) ? 20_000 : false;
+      return BUSY.has(s) || (type === 'audit' && s === 'running') ? 4_000 : type === 'launch' && LIVE_LAUNCH.has(s) ? 20_000 : false;
     },
   });
 }

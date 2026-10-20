@@ -22,6 +22,7 @@ import { ProposalBody } from '../setup/SetupProposalDialog';
 import { SteeringActions, SteeringDetails } from '../steering/SteeringCard';
 import { DiffView } from '../agents/AgentSkills';
 import { LaunchBody } from '../launch/LaunchBody';
+import { AuditBody } from '../sysadmin/AuditBody';
 
 const mono = 'ui-monospace, SFMono-Regular, Menlo, monospace';
 
@@ -89,6 +90,7 @@ function ArtifactBody({ d, onClose }: { d: ArtifactDetail; onClose: () => void }
   if (type === 'memory') return <MemoryBody d={d} />;
   if (type === 'skill') return <SkillBody d={d} />;
   if (type === 'launch') return <LaunchBody d={d} />;
+  if (type === 'audit') return <AuditBody d={d} />;
   return <JsonBody d={d} />;
 }
 
@@ -257,6 +259,7 @@ function JsonBody({ d }: { d: ArtifactDetail }) {
 const CONFIRM: Record<string, string> = {
   'launch:start': 'apply the plan and put the channel into approval mode (posts wait for you)',
   'launch:go_live': 'let the channel publish without your approval (clean waiting posts are approved too)',
+  'audit:run': 'run the audit again (a minute; it adds one model call, about a cent)',
 };
 
 /** The type's own actions the reused views do not show already (approve a playbook version…). */

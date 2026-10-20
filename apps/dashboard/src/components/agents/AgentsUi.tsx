@@ -16,18 +16,18 @@ import { AutonomyDialog } from '../approvals/AutonomyDialog';
 import { usePatchAgent, type Agent, type AgentActivity, type AgentKind, type AgentMode, type AgentNode } from '../../api/agents';
 
 export const KIND_LABEL: Record<AgentKind, string> = {
-  manager: 'Manager', builder: 'Builder', orchestrator: 'Orchestrator', planner: 'Planner', ideator: 'Ideator',
+  manager: 'Manager', builder: 'Builder', auditor: 'Sysadmin', orchestrator: 'Orchestrator', planner: 'Planner', ideator: 'Ideator',
   idea_reviewer: 'Idea reviewer', executor: 'Executor', reviewer: 'Reviewer',
 };
 
 /** Default role a new skill applies to, by agent kind (mirrors roleOfKind on the server). */
 export const ROLE_OF_KIND: Record<AgentKind, string> = {
-  manager: 'manager', builder: 'builder', orchestrator: 'orchestrator', ideator: 'orchestrator',
+  manager: 'manager', builder: 'builder', auditor: 'auditor', orchestrator: 'orchestrator', ideator: 'orchestrator',
   idea_reviewer: 'idea_reviewer', planner: 'planner', executor: 'executor', reviewer: 'reviewer',
 };
 
 const KIND_ICON = {
-  manager: 'agents', builder: 'wrench', orchestrator: 'agents', planner: 'calendar', ideator: 'sparkles',
+  manager: 'agents', builder: 'wrench', auditor: 'check', orchestrator: 'agents', planner: 'calendar', ideator: 'sparkles',
   idea_reviewer: 'check', executor: 'rocket', reviewer: 'eye',
 } as const;
 

@@ -1,7 +1,7 @@
 import type { EditorRole } from '../llm/llm.types';
 import type { ChannelMode } from '../card';
 
-export const AGENT_KINDS = ['manager', 'builder', 'orchestrator', 'planner', 'ideator', 'idea_reviewer', 'executor', 'reviewer'] as const;
+export const AGENT_KINDS = ['manager', 'builder', 'orchestrator', 'planner', 'ideator', 'idea_reviewer', 'executor', 'reviewer', 'auditor'] as const;
 export type AgentKind = typeof AGENT_KINDS[number];
 export type AgentScope = 'system' | 'network' | 'resource';
 /** Same ladder as a channel card (spec 031): off < shadow < approve < live. */
@@ -50,7 +50,7 @@ export const GRAMMATICAL_GENDERS = ['masculine', 'feminine'] as const;
 
 export const HANDLE_RE = /^[a-z][a-z0-9_]{2,31}$/;
 // System agents, plus REST path words under /api/agents/… that must never be mistaken for a handle.
-export const RESERVED_HANDLES = new Set(['ai0', 'manager', 'all', 'owner', 'admin', 'inbox', 'handles', 'actions']);
+export const RESERVED_HANDLES = new Set(['ai0', 'manager', 'sysadmin', 'all', 'owner', 'admin', 'inbox', 'handles', 'actions']);
 
 /** The EditorRole an agent kind runs as (the AgentLoop role; tools and skills are selected by it). */
 export function roleOfKind(kind: AgentKind): EditorRole {
@@ -63,6 +63,7 @@ export function roleOfKind(kind: AgentKind): EditorRole {
     case 'planner':       return 'planner';
     case 'executor':      return 'executor';
     case 'reviewer':      return 'reviewer';
+    case 'auditor':       return 'auditor';
   }
 }
 

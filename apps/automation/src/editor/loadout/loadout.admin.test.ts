@@ -173,8 +173,10 @@ test('registry sync forms a loadout for the agents it creates and for no other',
     loadout: { form: async (a) => { formed.push(a.id); } },
   });
   await sync.run();
-  assert.equal(inserted.length, 5, 'the fresh channel\'s orchestrator and its four role children');
-  assert.deepEqual(formed, inserted.map((a) => a.id), 'a loadout for each new agent, none for the existing channel\'s agents');
+  // Spec 055: the sync also creates @sysadmin; its tools are its runner's own short list, so it gets no loadout.
+  const channelAgents = inserted.filter((a) => a.kind !== 'auditor');
+  assert.equal(channelAgents.length, 5, 'the fresh channel\'s orchestrator and its four role children');
+  assert.deepEqual(formed, channelAgents.map((a) => a.id), 'a loadout for each new agent, none for the existing channel\'s agents nor @sysadmin');
 });
 
 // ── suggestions and apply (FR-005) ───────────────────────────────────────────

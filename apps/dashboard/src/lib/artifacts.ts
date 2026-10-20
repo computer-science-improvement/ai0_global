@@ -13,13 +13,14 @@ export const ARTIFACT_META: Record<ArtifactType, { label: string; plural: string
   profile:    { label: 'Profile',    plural: 'Profiles',            icon: 'globe' },
   formatting: { label: 'Formatting', plural: 'Formatting',          icon: 'wrench' },
   launch:     { label: 'Launch',     plural: 'Launches',            icon: 'rocket' },
+  audit:      { label: 'Audit',      plural: 'Audits',              icon: 'eye' },
 };
 
 const STATUS_TONE: Record<string, Tone> = {
   active: 'success', applied: 'success', partially_applied: 'success',
   ready: 'accent', pending_owner: 'warning',
   queued: 'neutral', collecting: 'neutral', preparing: 'neutral', analyzing: 'neutral', paused: 'warning',
-  running: 'accent', graduated: 'success',
+  running: 'accent', graduated: 'success', done: 'success',
   failed: 'danger', no_access: 'danger', too_few_posts: 'warning',
   discarded: 'neutral', superseded: 'neutral',
 };

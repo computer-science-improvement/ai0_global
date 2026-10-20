@@ -2,7 +2,7 @@ import type { ToolRegistry } from '../harness/tool-registry';
 import { Agent, parseResourceRef, roleOfKind, type Platform } from '../agents/agent.types';
 import type { LoadoutRepository } from './loadout.repository';
 import type { LoadoutUsage } from './loadout-usage';
-import { creationLoadout, needsOf, PEER_MIN_RUNS, PEER_START_RATE } from './loadout-profiles';
+import { creationLoadout, LOADOUT_ROLES, needsOf, PEER_MIN_RUNS, PEER_START_RATE } from './loadout-profiles';
 
 export interface LoadoutCreationDeps {
   repo:     Pick<LoadoutRepository, 'initTools'>;
@@ -28,6 +28,8 @@ export class LoadoutCreation {
       const registry = this.d.registry();
       if (!registry) return false;
       const role = roleOfKind(agent.kind);
+      // A role without a profile (the sysadmin's auditor, spec 055) keeps its runner's own tool list.
+      if (!LOADOUT_ROLES.includes(role)) return false;
       const platforms = await this.d.platforms(agent);
       const peers = await this.d.usage.peerTools(role, [agent.id], PEER_START_RATE, PEER_MIN_RUNS);
       const tools = creationLoadout(role, registry.all(), needsOf(platforms), peers);

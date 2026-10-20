@@ -1,6 +1,6 @@
 # 055 Sysadmin: the auditor agent
 
-**Epic:** AI0-247 · **Priority:** P1 · **Depends on:** 017, 021, 040, 041, 045, 047, 048, 053 · **Status:** spec · **Migration:** 088
+**Epic:** AI0-247 · **Priority:** P1 · **Depends on:** 017, 021, 040, 041, 045, 047, 048, 053 · **Status:** done · **Migration:** 088
 
 ## Why
 

@@ -60,7 +60,7 @@ export function builtinDefaultModel(ws: Workspace = 'openrouter'): string {
 
 /** Every role a run can use (the env override keys are EDITOR_MODEL_<ROLE>). */
 export const EDITOR_ROLES: readonly EditorRole[] = [
-  'planner', 'executor', 'reviewer', 'checker', 'composer', 'orchestrator', 'idea_reviewer', 'manager', 'builder', 'onboarder',
+  'planner', 'executor', 'reviewer', 'checker', 'composer', 'orchestrator', 'idea_reviewer', 'manager', 'builder', 'onboarder', 'auditor',
 ];
 
 /**
@@ -74,6 +74,8 @@ export const ANTHROPIC_ROLE_MODELS: Readonly<Record<EditorRole, string>> = {
   executor: DEFAULT_ANTHROPIC_MODEL, checker: DEFAULT_ANTHROPIC_MODEL, manager: DEFAULT_ANTHROPIC_MODEL, reviewer: DEFAULT_ANTHROPIC_MODEL,
   composer: DEFAULT_ANTHROPIC_MODEL, builder: DEFAULT_ANTHROPIC_MODEL, onboarder: DEFAULT_ANTHROPIC_MODEL,
   planner: 'claude-haiku-5-5', orchestrator: 'claude-haiku-5-5', idea_reviewer: 'claude-haiku-5-5',
+  // Spec 055 FR-002: the audit pass reads a few thousand tokens of findings and comments on them — a cheap model is enough.
+  auditor: 'claude-haiku-5-5',
 };
 
 /**
@@ -107,6 +109,8 @@ const ROLE_DEFAULTS: Record<EditorRole, { maxTokens: number; temperature: number
   builder:       { maxTokens: 6000, temperature: 0.4, reasoningEffort: 'low' },
   // Spec 042 FR-003: one structured analysis of 20 posts (six sections with evidence).
   onboarder:     { maxTokens: 8000, temperature: 0.3, reasoningEffort: 'medium' },
+  // Spec 055 FR-002: a summary, up to 60 short comments and up to 8 judgement findings.
+  auditor:       { maxTokens: 6000, temperature: 0.2, reasoningEffort: 'low' },
 };
 
 /** The env key that overrides a role's model (it beats the owner's global default); the Anthropic workspace has its own keys. */

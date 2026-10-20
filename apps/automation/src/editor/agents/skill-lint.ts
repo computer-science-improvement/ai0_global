@@ -5,7 +5,7 @@ export const SKILL_MAX_BODY = 12_000;
 export const SKILL_MAX_INLINE_BODY = 4_000;
 
 export const SKILL_ROLES: readonly EditorRole[] = [
-  'planner', 'executor', 'reviewer', 'checker', 'composer', 'orchestrator', 'idea_reviewer', 'manager', 'builder',
+  'planner', 'executor', 'reviewer', 'checker', 'composer', 'orchestrator', 'idea_reviewer', 'manager', 'builder', 'auditor',
 ];
 
 export interface SkillDraft {

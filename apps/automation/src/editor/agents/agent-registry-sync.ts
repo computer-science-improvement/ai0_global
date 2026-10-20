@@ -10,6 +10,10 @@ export interface RegistrySyncDeps {
   loadout?: { form(agent: Agent): Promise<unknown> };
 }
 
+/** Spec 055 FR-002: the system agents the registry keeps (the manager and @ai0 are seeded by migration 049). */
+export const SYSADMIN_HANDLE = 'sysadmin';
+export const SYSADMIN_DESCRIPTION = 'Раз на тиждень перевіряє скіли, памʼять, правила й інструменти мережі, оцінює, що зайве чи не працює, і пропонує виправлення. Сам нічого не змінює — виправляє власник.';
+
 const CHILD_NAMES: Record<string, string> = {
   planner: 'Planner', executor: 'Executor', reviewer: 'Reviewer', idea_reviewer: 'Idea reviewer',
 };
@@ -48,8 +52,34 @@ export class AgentRegistrySync {
       }
       created += await this.ensureChildren(orch, handles);
     }
+    await this.ensureSystemAgents(handles);
     const linkedRuns = await this.d.agents.linkLegacyRuns();
     return { created, updated, linkedRuns };
+  }
+
+  /**
+   * Spec 055 FR-002: @sysadmin (kind `auditor`, system scope). It audits and proposes, never changes — so it starts live: the
+   * mode only decides whether its weekly LLM pass runs. A failure here (an older database without migration 088) never
+   * stops the sync.
+   */
+  async ensureSystemAgents(handles?: Set<string>): Promise<boolean> {
+    try {
+      if (await this.d.agents.findTop('auditor', 'system', null)) return false;
+      const taken = handles ?? await this.d.agents.allHandles();
+      // The handle is reserved for the system agent, so withSuffix (which skips reserved names) does not apply.
+      let handle = SYSADMIN_HANDLE;
+      for (let i = 2; taken.has(handle); i++) handle = `${SYSADMIN_HANDLE}_${i}`;
+      taken.add(handle);
+      await this.d.agents.insert({
+        kind: 'auditor', scope: 'system', scopeId: null, name: 'Sysadmin', handle, emoji: '🛠️', description: SYSADMIN_DESCRIPTION,
+        mode: 'live', createdBy: 'sync',
+      });
+      this.d.log?.(`agent registry: @${handle} (system)`);
+      return true;
+    } catch (err: any) {
+      this.d.log?.(`agent registry: @${SYSADMIN_HANDLE} not created: ${err?.message ?? err}`);
+      return false;
+    }
   }
 
   /** Planner, executor, reviewer and idea reviewer under an orchestrator (handles `<parent>_<kind>`). */

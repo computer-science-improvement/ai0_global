@@ -25,6 +25,7 @@ export const MAKE_HINT: Record<ArtifactType, string> = {
   profile:    '@ai0 drafts the profile when it creates a channel agent.',
   formatting: 'Set the formatting on the agent page, or ask @ai0 in the chat.',
   launch:     'Create the channel in Telegram, then type /launch @new_channel [@reference …] and a brief in the chat.',
+  audit:      'The sysadmin audits the network every week; type /audit in the chat to run one now.',
 };
 
 export function ArtifactList({ filter, view = 'all', focus, empty }: {

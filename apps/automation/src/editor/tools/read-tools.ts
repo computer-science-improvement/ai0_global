@@ -30,7 +30,7 @@ export interface ReadToolDeps {
   hosts?:    HostFailures;
 }
 
-const ALL_ROLES = ['planner', 'executor', 'reviewer', 'composer', 'orchestrator', 'idea_reviewer', 'manager', 'builder'] as const;
+const ALL_ROLES = ['planner', 'executor', 'reviewer', 'composer', 'orchestrator', 'idea_reviewer', 'manager', 'builder', 'auditor'] as const;
 
 function kyivToday(): { month: number; day: number } {
   const parts = new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Kyiv', month: 'numeric', day: 'numeric' }).formatToParts(new Date());

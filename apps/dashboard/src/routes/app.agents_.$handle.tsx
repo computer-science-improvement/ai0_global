@@ -161,7 +161,7 @@ function AgentPage() {
       )}
 
       {/* Spec 049 FR-002: the resource's connection is broken (or expiring): since when, and where to fix it. */}
-      {!manager && a.kind !== 'builder' && <ConnectionBanner handle={a.handle} />}
+      {!manager && a.kind !== 'builder' && a.kind !== 'auditor' && <ConnectionBanner handle={a.handle} />}
 
       <div style={{ marginBottom: 16, overflowX: 'auto', maxWidth: '100%' }}>
         <SegmentedTabs value={tab} onChange={setTab} options={tabOptions} />
