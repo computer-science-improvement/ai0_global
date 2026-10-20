@@ -18,6 +18,9 @@
 /* ── territories, headquarters ───────────────────────────────────────────── */
 .map-territory-name { font-size: 13px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; fill: var(--map-tint); }
 .map-territory-count { font-size: 11px; fill: var(--color-ink-dim); }
+.map-territory-hit rect { fill: transparent; stroke: none; transition: fill 0.15s; }
+.map-territory-hit:hover rect, .map-territory-hit.is-selected rect { fill: color-mix(in srgb, var(--map-tint) 13%, transparent); }
+.map-territory-hit:focus-visible rect { stroke: var(--color-accent); stroke-width: 2; }
 .map-hq-name { font-size: 12px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; fill: var(--color-ink-muted); }
 
 /* ── buildings ───────────────────────────────────────────────────────────── */
@@ -186,6 +189,18 @@
 .map-pick-meta { display: inline-flex; align-items: center; gap: 6px; flex: none; }
 .map-toggle-btn { display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 10px; border-radius: var(--radius-md); border: 1px solid var(--color-hairline-strong); background: var(--color-surface-3); color: var(--color-ink); font-size: 13px; cursor: pointer; white-space: nowrap; }
 .map-toggle-btn:hover { background: var(--color-surface-2); border-color: var(--color-ink-dim); }
+
+/* ── link mode (spec 058): a hint under the top bar, a crosshair over the buildings, a popover at the second one ── */
+.map-hint { position: absolute; z-index: 5; top: 68px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 8px; padding: 6px 12px; font-size: 12.5px; color: var(--color-ink); max-width: calc(100% - 24px); }
+.map-hint svg { color: var(--color-accent); flex: none; }
+.map-stage.is-linking .map-building { cursor: crosshair; }
+.map-stage.is-linking .map-unit, .map-stage.is-linking .map-road-group, .map-stage.is-linking .map-territory-hit { pointer-events: none; }
+.map-popover { position: absolute; z-index: 6; transform: translate(-50%, 34px); width: 260px; max-width: calc(100% - 16px); padding: 10px; display: flex; flex-direction: column; gap: 8px; }
+.map-popover-title { margin: 0; display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 6px; font-size: 13px; font-weight: 600; text-align: center; overflow-wrap: anywhere; }
+.map-popover-title svg { color: var(--color-accent); flex: none; }
+.map-popover-actions { display: flex; flex-direction: column; gap: 6px; }
+.map-popover-actions .btn-secondary { display: inline-flex; align-items: center; justify-content: flex-start; gap: 8px; }
+.map-popover-actions .btn-tiny { align-self: flex-end; }
 .map-toggle-btn[aria-pressed='true'] { border-color: var(--color-accent); color: var(--color-accent); }
 
 /* ── keyframes ───────────────────────────────────────────────────────────── */

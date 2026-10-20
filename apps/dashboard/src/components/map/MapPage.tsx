@@ -4,11 +4,12 @@ import { useQuery } from '@tanstack/react-query';
 import { MAP_KEY, mapApi, type MapEvent, type MapSnapshot } from '../../api/map';
 import { EmptyState } from '../ui/primitives';
 import { useMediaQuery } from '../../lib/useMediaQuery';
-import { layoutMap, type MapLayout } from '../../lib/map-layout';
+import { BUILDING_R, layoutMap, type MapLayout } from '../../lib/map-layout';
 import { pollInterval } from '../../lib/map-diff';
-import { roadKey } from '../../lib/map-state';
+import { resourceTitle, roadKey } from '../../lib/map-state';
 import { pastRoadCount } from '../../lib/map-links';
-import { AlertsDrawer, BuildingDrawer, InfraDrawer, RoadDrawer, UnitDrawer } from './MapDrawers';
+import { AlertsDrawer, BuildingDrawer, InfraDrawer, NetworkDrawer, RoadDrawer, UnitDrawer } from './MapDrawers';
+import { LinkHint, LinkPopover } from './MapLinkMode';
 import { FeedPanel, Legend, TopBar, ZoomControls } from './MapHud';
 import { MapStage, anyWorking, sameSelection, type Selection } from './MapStage';
 import { useFxRenderers } from './MapFx';
@@ -60,10 +61,43 @@ export function MapPage() {
   const feedOpen = feedUser ?? wide;
   const legendOpen = legendUser ?? wide;
 
+  // Link mode (spec 058): click a building, then another one; the popover at the second offers what to do with the pair.
+  const [linkMode, setLinkMode] = useState(false);
+  const [linkFrom, setLinkFrom] = useState<string | null>(null);
+  const [linkTo, setLinkTo] = useState<string | null>(null);
+  const pickForLink = useCallback((ref: string) => {
+    if (!linkFrom || linkTo) { setLinkFrom(ref); setLinkTo(null); return; }
+    if (ref === linkFrom) { setLinkFrom(null); return; }
+    setLinkTo(ref);
+  }, [linkFrom, linkTo]);
+  const resetLink = useCallback(() => { setLinkFrom(null); setLinkTo(null); }, []);
+  const toggleLinkMode = useCallback(() => {
+    setLinkMode((on) => !on);
+    setLinkFrom(null);
+    setLinkTo(null);
+    setSelection(null);
+  }, []);
+  useEffect(() => {
+    if (!linkMode) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== 'Escape' || document.querySelector('.modal-backdrop')) return;
+      setLinkMode(false);
+      setLinkFrom(null);
+      setLinkTo(null);
+    };
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
+  }, [linkMode]);
+
   const select = useCallback((s: Selection | null) => {
+    if (linkMode) {
+      if (s?.type === 'building') pickForLink(s.ref);
+      else if (!s) resetLink();
+      return;
+    }
     setSelection((cur) => (sameSelection(cur, s) ? null : s));
     if (s && phone) setFeedUser(false);
-  }, [phone]);
+  }, [phone, linkMode, pickForLink, resetLink]);
   const close = useCallback(() => setSelection(null), []);
   const togglePast = useCallback(() => setShowPast((on) => !on), []);
   // Past links are drawn on request: when they are hidden (or a link was just broken), the drawer of a past road closes with its line.
@@ -78,6 +112,7 @@ export function MapPage() {
   }, [layout, viewport]);
   const pickInfra = useCallback((id: string) => { setSelection({ type: 'infra', id }); focusRef(id); }, [focusRef]);
   const pickBuilding = useCallback((ref: string) => { setSelection({ type: 'building', ref }); focusRef(ref); }, [focusRef]);
+  const pickNetwork = useCallback((id: string) => setSelection({ type: 'network', id }), []);
 
   const onPickEvent = useCallback((e: MapEvent) => {
     if (!snap || !layout) return;
@@ -105,11 +140,20 @@ export function MapPage() {
   const selectedUnit = selection?.type === 'unit' ? snap.units.find((u) => u.id === selection.id) : undefined;
   const selectedRoad = selection?.type === 'road' ? snap.roads.find((r) => roadKey(r) === selection.key) : undefined;
   const selectedInfra = selection?.type === 'infra' ? snap.infra?.find((i) => i.id === selection.id) : undefined;
-  const drawerOpen = selection?.type === 'alerts' || !!selectedBuilding || !!selectedUnit || !!selectedRoad || !!selectedInfra;
+  const selectedNetwork = selection?.type === 'network' ? snap.networks.find((n) => n.id === selection.id) : undefined;
+  const drawerOpen = selection?.type === 'alerts' || !!selectedBuilding || !!selectedUnit || !!selectedRoad || !!selectedInfra || !!selectedNetwork;
+
+  // The popover hangs under the second building, in the page's own pixels.
+  const linkSpot = linkMode && linkFrom && linkTo ? layout.buildings[linkTo] : undefined;
+  const { view, size } = viewport;
+  const popX = linkSpot ? Math.min(Math.max(view.x + linkSpot.x * view.k, 138), Math.max(138, size.w - 138)) : 0;
+  const popY = linkSpot ? Math.min(view.y + (linkSpot.y + BUILDING_R) * view.k, Math.max(80, size.h - 210)) : 0;
+  const linkFirst = linkFrom ? snap.resources.find((r) => r.ref === linkFrom) : undefined;
 
   return (
     <div className="map-root">
-      <MapStage snap={snap} layout={layout} viewport={viewport} selection={selection} onSelect={select}
+      <MapStage snap={snap} layout={layout} viewport={viewport} onSelect={select} linkMode={linkMode}
+        selection={linkMode ? (linkFrom ? { type: 'building', ref: linkFrom } : null) : selection}
         buildingFx={fx.buildingFx} unitFx={fx.unitFx} roadFx={fx.roadFx} isShaking={fx.isShaking} showPast={showPast} />
 
       {snap.resources.length === 0 && (
@@ -128,11 +172,16 @@ export function MapPage() {
       <TopBar
         snap={snap} phone={phone} updatedAt={q.dataUpdatedAt || Date.now()} fast={anyWorking(snap)}
         bump={live.bump} alertsOpen={selection?.type === 'alerts'} feedOpen={feedOpen} legendOpen={legendOpen}
-        showPast={showPast} pastCount={pastRoadCount(snap.roads)} onPast={togglePast}
+        showPast={showPast} pastCount={pastRoadCount(snap.roads)} onPast={togglePast} linkMode={linkMode} onLinkMode={toggleLinkMode}
         onAlerts={() => select({ type: 'alerts' })}
         onFeed={() => { setFeedUser(!feedOpen); if (phone && !feedOpen) setSelection(null); }}
         onLegend={() => setLegendUser(!legendOpen)}
       />
+
+      {linkMode && <LinkHint first={linkFirst ? resourceTitle(linkFirst) : null} />}
+      {linkMode && linkFrom && linkTo && (
+        <LinkPopover snap={snap} a={linkFrom} b={linkTo} x={popX} y={popY} onDone={resetLink} onCancel={resetLink} />
+      )}
 
       {feedOpen && !drawerOpen && (
         <FeedPanel events={snap.events} freshIds={live.freshIds} snap={snap} onPick={onPickEvent} onClose={() => setFeedUser(false)} />
@@ -141,7 +190,8 @@ export function MapPage() {
       <ZoomControls view={viewport.view} onIn={viewport.zoomIn} onOut={viewport.zoomOut} onFit={viewport.fit} />
 
       {selection?.type === 'alerts' && <AlertsDrawer snap={snap} onClose={close} onShow={(ref) => { focusRef(ref); }} />}
-      {selectedBuilding && <BuildingDrawer snap={snap} res={selectedBuilding} onClose={close} onPickUnit={(id) => setSelection({ type: 'unit', id })} onShow={focusRef} onPickInfra={pickInfra} onPickBuilding={pickBuilding} />}
+      {selectedBuilding && <BuildingDrawer snap={snap} res={selectedBuilding} onClose={close} onPickUnit={(id) => setSelection({ type: 'unit', id })} onShow={focusRef} onPickInfra={pickInfra} onPickBuilding={pickBuilding} onPickNetwork={pickNetwork} />}
+      {selectedNetwork && <NetworkDrawer snap={snap} network={selectedNetwork} onClose={close} onPickBuilding={pickBuilding} />}
       {selectedUnit && <UnitDrawer snap={snap} unit={selectedUnit} onClose={close} onPickBuilding={pickBuilding} />}
       {selectedInfra && <InfraDrawer snap={snap} item={selectedInfra} onClose={close} onPickBuilding={pickBuilding} onShow={focusRef} />}
       {selectedRoad && <RoadDrawer snap={snap} road={selectedRoad} onClose={close} onPickBuilding={pickBuilding} />}

@@ -6,7 +6,8 @@ import { useConfirm } from '../ui/ConfirmDialog';
 import { errorText } from '../agents/NetworkUi';
 import { useSetNetworkMode } from '../../api/network';
 import { useCreateMetaAccountGroup, useMetaAccountGroups } from '../../api/meta-accounts';
-import { useSetLinks, useSetResourceNetwork, type MapResource, type MapRoad, type MapSnapshot } from '../../api/map';
+import { useQueryClient } from '@tanstack/react-query';
+import { MAP_KEY, useSetLinks, useSetResourceNetwork, type MapResource, type MapRoad, type MapSnapshot } from '../../api/map';
 import { PLATFORM_META, resourceTitle } from '../../lib/map-state';
 import { PLATFORM_SECTION_NAME } from '../../lib/map-layout';
 import { UNLINK_HELP, plannedPromos } from '../../lib/map-links';
@@ -212,16 +213,20 @@ export function RoadActions({ snap, road }: { snap: MapSnapshot; road: MapRoad }
   );
 }
 
-function IndependentButton({ handle, network }: { handle: string; network: string }) {
+export function IndependentButton({ handle, network }: { handle: string; network: string }) {
   const confirm = useConfirm();
   const set = useSetNetworkMode(handle);
+  const qc = useQueryClient();
   const go = async () => {
     const ok = await confirm(`switch «${network}» to independent`, {
       danger: false, confirmLabel: 'Switch to independent',
       details: <p className="text-micro" style={{ margin: 0, color: 'var(--color-ink-muted)' }}>Each member becomes its own resource; @{handle} decides per post: duplicate, adapt, unique or skip. Auto-duplication stops from the next plan day once the agent is live with an active playbook.</p>,
     });
     if (!ok) return;
-    set.mutate('independent', { onSuccess: (r) => toast.success(`«${r.group}» → ${r.mode}`), onError: (e) => toast.error(errorText(e)) });
+    set.mutate('independent', {
+      onSuccess: (r) => { toast.success(`«${r.group}» → ${r.mode}`); void qc.invalidateQueries({ queryKey: MAP_KEY }); },
+      onError: (e) => toast.error(errorText(e)),
+    });
   };
   return (
     <button type="button" className="btn-secondary" disabled={set.isPending} onClick={() => void go()}

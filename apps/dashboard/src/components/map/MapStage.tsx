@@ -13,6 +13,8 @@ export type Selection =
   | { type: 'unit'; id: string }
   | { type: 'road'; key: string }
   | { type: 'infra'; id: string }
+  /** Spec 058: a network (its territory label). */
+  | { type: 'network'; id: string }
   | { type: 'alerts' };
 
 export const sameSelection = (a: Selection | null, b: Selection | null): boolean =>
@@ -33,10 +35,12 @@ export interface MapStageProps {
   roadFx?: (key: string) => ReactNode;
   /** Spec 058: also draw the past links (activity of the last 30 days between resources no longer linked). */
   showPast?: boolean;
+  /** Spec 058: link mode — only buildings can be clicked (the page decides what the clicks do). */
+  linkMode?: boolean;
 }
 
 /** The SVG of the network map: territories, headquarters, roads, buildings, units — inside a pan / zoom transform. */
-export function MapStage({ snap, layout, viewport, selection, onSelect, overlay, buildingFx, unitFx, isShaking, roadFx, showPast }: MapStageProps) {
+export function MapStage({ snap, layout, viewport, selection, onSelect, overlay, buildingFx, unitFx, isShaking, roadFx, showPast, linkMode }: MapStageProps) {
   const { view, size, animated, dragging } = viewport;
   const beacons = useMemo(() => alertsByRef(snap.alerts), [snap.alerts]);
   const infra = snap.infra ?? [];
@@ -49,7 +53,7 @@ export function MapStage({ snap, layout, viewport, selection, onSelect, overlay,
 
   return (
     <div
-      ref={viewport.ref} className={`map-stage${dragging ? ' is-dragging' : ''}`} tabIndex={0} role="group"
+      ref={viewport.ref} className={`map-stage${dragging ? ' is-dragging' : ''}${linkMode ? ' is-linking' : ''}`} tabIndex={0} role="group"
       aria-label="Network map. Drag to pan, scroll or pinch to zoom, plus and minus to zoom, 0 to fit."
       {...viewport.handlers}
       onClick={(e) => {
@@ -61,7 +65,10 @@ export function MapStage({ snap, layout, viewport, selection, onSelect, overlay,
         <MapDefs />
         <g className={`map-world${animated ? ' is-animated' : ''}`} style={{ transform: `translate(${view.x}px, ${view.y}px) scale(${view.k})` }}>
           <rect x={-3000} y={-3000} width={9000} height={9000} fill="url(#map-dots)" opacity="0.35" pointerEvents="none" />
-          {layout.territories.map((t) => <TerritoryShape key={t.id} t={t} />)}
+          {layout.territories.map((t) => (
+            <TerritoryShape key={t.id} t={t} selected={selection?.type === 'network' && selection.id === t.id}
+              onSelect={t.kind === 'network' && !linkMode ? () => onSelect({ type: 'network', id: t.id }) : undefined} />
+          ))}
           <HqShape rect={layout.hq} />
 
           {visibleRoads(snap.roads, !!showPast).map((r) => {

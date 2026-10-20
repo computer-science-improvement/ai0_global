@@ -1,16 +1,17 @@
-import { useEffect, type ReactNode } from 'react';
+import { useEffect, useState, type ReactNode } from 'react';
 import { Link, useNavigate } from '@tanstack/react-router';
 import { Icon, type IconName } from '../ui/Icon';
 import { Badge } from '../ui/Badge';
-import type { MapAlert, MapInfra, MapResource, MapRoad, MapSnapshot, MapUnit } from '../../api/map';
+import type { MapAlert, MapInfra, MapNetwork, MapResource, MapRoad, MapSnapshot, MapUnit } from '../../api/map';
 import {
   HEALTH_META, MODE_META, PLATFORM_META, ROAD_META, STATE_META, ago, alertTone, compactNumber, infraMeta, kindLabel, levelLine, modeLabel, resourceTitle, usd,
 } from '../../lib/map-state';
 import { PLATFORM_SECTION_NAME } from '../../lib/map-layout';
 import { parseNavTarget } from '../../nav/config';
 import { Avatar, UnitFace } from './MapAvatar';
-import { RoadActions } from './MapActions';
-import { LinksSection } from './MapLinks';
+import { IndependentButton, RoadActions } from './MapActions';
+import { LinksSection, MembersModal } from './MapLinks';
+import { networkMembers } from '../../lib/map-links';
 
 // Spec 056 FR-003: the drawers behind a click — a building, a unit, a road, a connection (bot, session, Telegraph),
 // the list of what waits for the owner.
@@ -112,10 +113,12 @@ function StateChip({ unit }: { unit: Pick<MapUnit, 'state'> }) {
   return <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, color: st.color, fontWeight: 600 }}><Icon name={st.icon} size={13} strokeWidth={2.6} />{st.label}</span>;
 }
 
-export function BuildingDrawer({ snap, res, onClose, onPickUnit, onShow, onPickInfra, onPickBuilding }: {
+export function BuildingDrawer({ snap, res, onClose, onPickUnit, onShow, onPickInfra, onPickBuilding, onPickNetwork }: {
   snap: MapSnapshot; res: MapResource; onClose: () => void; onPickUnit: (id: string) => void; onShow: (ref: string) => void; onPickInfra?: (id: string) => void;
   /** Select another building (the chips of the Links section). */
   onPickBuilding?: (ref: string) => void;
+  /** Open the drawer of the building's network. */
+  onPickNetwork?: (id: string) => void;
 }) {
   const bots = (snap.infra ?? []).filter((i) => i.serves.includes(res.ref));
   const meta = PLATFORM_META[res.platform];
@@ -133,7 +136,9 @@ export function BuildingDrawer({ snap, res, onClose, onPickUnit, onShow, onPickI
     >
       <Facts rows={[
         ['Mode', res.mode ? <span key="m"><strong style={{ color: MODE_META[res.mode].color }}>{MODE_META[res.mode].label}</strong> · {MODE_META[res.mode].help}{res.agent ? <> · <Link to="/app/agents/$handle" params={{ handle: res.agent }} className="link-accent">change</Link></> : null}</span> : 'No agent runs it yet'],
-        ['Network', network?.name ?? `None (in ${PLATFORM_SECTION_NAME[res.platform]})`],
+        ['Network', network
+          ? (onPickNetwork ? <button key="n" type="button" className="link-accent" style={linkBtn} onClick={() => onPickNetwork(network.id)} title="Open the network">{network.name}</button> : network.name)
+          : `None (in ${PLATFORM_SECTION_NAME[res.platform]})`],
         ['Served by', bots.length ? <span key="b" style={{ display: 'inline-flex', gap: 8, flexWrap: 'wrap' }}>{bots.map((b) => (
           <button key={b.id} type="button" className="link-accent" style={linkBtn} onClick={() => onPickInfra?.(b.id)}>{b.title}{b.isDefault ? ' (default bot)' : b.kind === 'mtproto' ? ' (reads stats)' : ''}</button>
         ))}</span> : null],
@@ -164,6 +169,68 @@ export function BuildingDrawer({ snap, res, onClose, onPickUnit, onShow, onPickI
         <LinkChip icon="connections" to="/app/connections" search={{ section: CONNECTION_SECTION[res.platform] }}>Connections</LinkChip>
         <button type="button" className="map-link" onClick={() => onShow(res.ref)}><Icon name="fit" size={14} />Center</button>
       </div>
+    </MapDrawer>
+  );
+}
+
+/** Spec 058: a network (the label of its territory, or its name in a building's drawer): who is in it, how it copies, and the Members… editor. */
+export function NetworkDrawer({ snap, network, onClose, onPickBuilding }: { snap: MapSnapshot; network: MapNetwork; onClose: () => void; onPickBuilding: (ref: string) => void }) {
+  const [editing, setEditing] = useState(false);
+  const members = networkMembers(snap, network.id);
+  const anchor = members.find((r) => r.ref === network.anchorRef) ?? null;
+  const agent = anchor?.agent ?? null;
+  const independent = network.mode === 'independent';
+  const free = (Object.keys(PLATFORM_META) as MapResource['platform'][]).filter((p) => p !== 'youtube' && !members.some((m) => m.platform === p));
+  return (
+    <MapDrawer
+      title={network.name}
+      lead={<span style={{ width: 38, height: 38, borderRadius: 10, display: 'grid', placeItems: 'center', background: 'var(--color-surface-3)', color: 'var(--color-accent)', border: '2px solid var(--color-hairline-strong)', flex: 'none' }}><Icon name="layers" size={20} /></span>}
+      subtitle={<><span>Network</span>{network.mode && <Badge tone={independent ? 'accent' : 'neutral'}>{independent ? 'Independent' : 'Auto-duplicate'}</Badge>}<Badge tone="neutral">{members.length} {members.length === 1 ? 'member' : 'members'}</Badge></>}
+      onClose={onClose}
+    >
+      <Facts rows={[
+        ['Mode', network.mode ? (independent
+          ? 'Independent: the network\'s agent decides per post whether to copy, adapt or write a unique post for each member.'
+          : 'Auto-duplicate: the network\'s Telegram posts are copied to the other members.') : null],
+        ['Telegram channel', anchor ? resourceTitle(anchor) : 'None yet: a network needs a Telegram channel to copy from'],
+        ['Run by', agent ? <Link key="a" to="/app/agents/$handle" params={{ handle: agent }} className="link-accent">@{agent}</Link> : 'No agent yet'],
+        ['Free places', free.length ? free.map((p) => PLATFORM_META[p].label).join(', ') : 'None'],
+      ]} />
+      <Section title="Members">
+        {members.length
+          ? (
+            <div className="map-chips" aria-label="Members of the network">
+              {members.map((m) => {
+                const meta = PLATFORM_META[m.platform];
+                return (
+                  <span key={m.ref} className="map-chip">
+                    <button type="button" className="map-chip-main" onClick={() => onPickBuilding(m.ref)} title={`Show ${resourceTitle(m)}`}>
+                      <span style={{ color: meta.tint, display: 'inline-flex' }}><Icon name={meta.icon} size={13} /></span>
+                      <span className="map-chip-text">{resourceTitle(m)}</span>
+                    </button>
+                  </span>
+                );
+              })}
+            </div>
+          )
+          : <p className="text-caption" style={{ margin: 0, color: 'var(--color-ink-muted)' }}>Nobody is in this network yet.</p>}
+        <div style={{ marginTop: 10 }}>
+          <button type="button" className="btn-secondary" style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }} onClick={() => setEditing(true)}>
+            <Icon name="pencil" size={14} />Members…
+          </button>
+        </div>
+        <p className="text-micro" style={{ margin: '8px 0 0', color: 'var(--color-ink-muted)' }}>
+          Adding a resource draws a copy line from the network's Telegram channel to it; taking one out removes the line and skips the copies planned for it.
+        </p>
+      </Section>
+      {network.mode === 'legacy_duplicate' && agent && (
+        <Section title="Mode"><IndependentButton handle={agent} network={network.name} /></Section>
+      )}
+      <div className="map-links">
+        {agent && <LinkChip icon="agents" to="/app/agents/$handle" params={{ handle: agent }}>Agent page</LinkChip>}
+        <LinkChip icon="connections" to="/app/connections/groups">Groups</LinkChip>
+      </div>
+      {editing && <MembersModal snap={snap} network={network} onClose={() => setEditing(false)} />}
     </MapDrawer>
   );
 }

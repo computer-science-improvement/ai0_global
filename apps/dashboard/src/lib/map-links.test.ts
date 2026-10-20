@@ -2,8 +2,8 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { demoSnapshot } from './map-demo';
 import {
-  LINK_LIMIT, diffLine, isCurrentRoad, linkDiff, linkSections, networkMates, pastRoadCount, plannedPromos, promoPartners,
-  stoppedPartners, visibleRoads,
+  LINK_LIMIT, diffLine, isCurrentRoad, linkChoices, linkDiff, linkHint, linkSections, memberOutcome, memberSections, networkMates, networkMembers,
+  pastRoadCount, plannedPromos, promoPartners, stoppedPartners, visibleRoads,
 } from './map-links';
 
 const snap = demoSnapshot(0);
@@ -89,4 +89,99 @@ test('the demo has a linked pair with no traffic, a past road, and a network wit
   assert.ok(snap.roads.some((r) => r.past && r.blocked));
   const space = snap.resources.filter((r) => r.groupId === 'g-space');
   assert.deepEqual(space.map((r) => r.platform), ['telegram']);
+});
+
+// ── T4: the Members picker ──
+
+const rowsOf = (groupId: string, checked: string[], query = '') =>
+  memberSections(snap, groupId, new Set(checked), query).flatMap((s) => s.items.map((i) => [i.res.ref, i.member, i.blockedBy?.ref ?? null] as const));
+
+test('network members are listed A–Z', () => {
+  const titles = networkMembers(snap, 'g-food').map((r) => r.title ?? r.ref);
+  assert.deepEqual(titles, [...titles].sort((a, b) => a.localeCompare(b)));
+  assert.deepEqual(refs(networkMembers(snap, 'g-food')), ['instagram:ig-food', 'telegram:@recipes_ua', 'tiktok:tt-food']);
+  assert.deepEqual(networkMembers(snap, 'nope'), []);
+});
+
+test('the Members picker offers the members and the resources in no network, never one of another network', () => {
+  const rows = rowsOf('g-space', ['telegram:@space_ua']);
+  const offered = rows.map(([ref]) => ref).sort();
+  assert.deepEqual(offered, ['facebook:fb-old', 'instagram:ig-solo', 'telegram:@gaming_ua', 'telegram:@movies_ua', 'telegram:@space_ua']);
+  assert.ok(!offered.includes('instagram:ig-tech'));
+  assert.deepEqual(memberSections(snap, 'g-space', new Set(), '').map((s) => s.title), ['Telegram channels', 'Instagram', 'Facebook pages']);
+});
+
+test('one place per platform: a checked resource blocks the other rows of its platform, and says which one holds it', () => {
+  // Space has only Telegram: the other Telegram channels are blocked by it, the free platforms are not
+  const rows = rowsOf('g-space', ['telegram:@space_ua']);
+  assert.deepEqual(rows.find(([r]) => r === 'telegram:@movies_ua'), ['telegram:@movies_ua', false, 'telegram:@space_ua']);
+  assert.deepEqual(rows.find(([r]) => r === 'instagram:ig-solo'), ['instagram:ig-solo', false, null]);
+  assert.deepEqual(rows.find(([r]) => r === 'telegram:@space_ua'), ['telegram:@space_ua', true, null]);
+  // unchecking the holder frees the place
+  assert.equal(rowsOf('g-space', []).find(([r]) => r === 'telegram:@movies_ua')![2], null);
+  // checking a free-platform resource does not block anything else
+  const withSolo = rowsOf('g-space', ['telegram:@space_ua', 'instagram:ig-solo']);
+  assert.equal(withSolo.find(([r]) => r === 'instagram:ig-solo')![2], null);
+  assert.equal(withSolo.find(([r]) => r === 'facebook:fb-old')![2], null);
+  // a full network blocks every unnetworked row of its platforms
+  const tech = rowsOf('g-tech', networkMembers(snap, 'g-tech').map((r) => r.ref));
+  assert.equal(tech.find(([r]) => r === 'instagram:ig-solo')![2], 'instagram:ig-tech');
+  assert.equal(tech.find(([r]) => r === 'facebook:fb-old')![2], 'facebook:fb-tech');
+});
+
+test('members come first inside a platform, and the picker filters on title, handle and ref', () => {
+  const tg = memberSections(snap, 'g-space', new Set(), '')[0].items.map((i) => i.res.ref);
+  assert.equal(tg[0], 'telegram:@space_ua');
+  assert.deepEqual(rowsOf('g-space', [], 'movies').map(([r]) => r), ['telegram:@movies_ua']);
+  assert.deepEqual(rowsOf('g-space', [], 'zzzz'), []);
+});
+
+test('a partial success: what went through, what was refused', () => {
+  const out = memberOutcome(
+    [{ ref: 'a', ok: true }, { ref: 'b', ok: false, error: 'already has a Telegram channel' }, { ref: 'c', ok: true }, { ref: 'd', ok: false }],
+    ['a', 'b'], ['c', 'd'],
+  );
+  assert.deepEqual(out.added, ['a']);
+  assert.deepEqual(out.removed, ['c']);
+  assert.deepEqual(out.failed, [{ ref: 'b', error: 'already has a Telegram channel' }, { ref: 'd', error: 'failed' }]);
+});
+
+// ── T4: link mode ──
+
+test('link mode: a free place in the first one\'s network offers to put the second one in it', () => {
+  const free = linkChoices(snap, 'telegram:@space_ua', 'instagram:ig-solo')!;
+  assert.deepEqual(free.putIn, { id: 'g-space', name: 'Space' });
+  assert.equal(free.full, null);
+  assert.equal(free.leaves, null);
+  assert.equal(free.linked, false);
+
+  // the second one is in another network: it would leave it
+  assert.equal(linkChoices(snap, 'telegram:@space_ua', 'facebook:fb-tech')!.leaves, 'Tech & Science');
+
+  // a taken place is not offered, and the holder is named
+  const taken = linkChoices(snap, 'telegram:@ai0_global', 'instagram:ig-solo')!;
+  assert.equal(taken.putIn, null);
+  assert.equal(taken.full?.holder.ref, 'instagram:ig-tech');
+
+  // already in the same network: nothing to put
+  const same = linkChoices(snap, 'telegram:@ai0_global', 'facebook:fb-tech')!;
+  assert.equal(same.putIn, null);
+  assert.equal(same.full, null);
+});
+
+test('link mode: no network on the first one means promo partners only; already linked and stopped pairs are flagged', () => {
+  const none = linkChoices(snap, 'telegram:@movies_ua', 'telegram:@gaming_ua')!;
+  assert.equal(none.putIn, null);
+  assert.equal(none.full, null);
+  assert.equal(none.stopped, true);
+  assert.equal(none.linked, false);
+  assert.equal(linkChoices(snap, 'telegram:@ai0_global', 'telegram:@space_ua')!.linked, true);
+  assert.equal(linkChoices(snap, 'telegram:@ai0_global', 'telegram:@ai0_global'), null);
+  assert.equal(linkChoices(snap, 'telegram:@ai0_global', 'telegram:@nope'), null);
+});
+
+test('the hint under the HUD asks for the first, then the second building', () => {
+  assert.match(linkHint(null), /click a building, then another/);
+  assert.match(linkHint('AI0 Global'), /Now click .* with AI0 Global/);
+  assert.match(linkHint(null), /Esc/);
 });

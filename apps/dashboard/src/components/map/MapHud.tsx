@@ -36,12 +36,15 @@ export interface TopBarProps {
   showPast?: boolean;
   pastCount?: number;
   onPast?: () => void;
+  /** Spec 058: link mode (click a building, then another to link them). */
+  linkMode?: boolean;
+  onLinkMode?: () => void;
   onAlerts: () => void;
   onFeed: () => void;
   onLegend: () => void;
 }
 
-export function TopBar({ snap, phone, updatedAt, fast, alertsOpen, feedOpen, legendOpen, bump, showPast, pastCount = 0, onPast, onAlerts, onFeed, onLegend }: TopBarProps) {
+export function TopBar({ snap, phone, updatedAt, fast, alertsOpen, feedOpen, legendOpen, bump, showPast, pastCount = 0, onPast, linkMode, onLinkMode, onAlerts, onFeed, onLegend }: TopBarProps) {
   const now = useNow(1000);
   const b = snap.budget;
   const total = alertTotal(snap.alerts);
@@ -69,6 +72,12 @@ export function TopBar({ snap, phone, updatedAt, fast, alertsOpen, feedOpen, leg
           title={total ? 'Things that wait for you' : 'Nothing waits for you'}>
           <Icon name="bell" size={15} />{total}
         </button>
+        {onLinkMode && (
+          <button type="button" className="map-toggle-btn" aria-pressed={!!linkMode} aria-label="Link mode" onClick={onLinkMode}
+            title={linkMode ? 'Leave link mode (Esc)' : 'Link mode: click one building, then another, to link them as promo partners or put them in one network'}>
+            <Icon name="link" size={15} /><span className="map-hide-phone">Link</span>
+          </button>
+        )}
         {onPast && (
           <button type="button" className="map-toggle-btn" aria-pressed={!!showPast} onClick={onPast}
             title={showPast ? 'Hide the links that are not linked any more' : 'Also draw the links that are not linked any more (activity of the last 30 days), faint with a ⊘'}>

@@ -54,7 +54,7 @@ export function MapDefs() {
  * A section: a network (solid, its own tint), the resources of one platform outside any network (solid, the platform's
  * tint, its icon) or a kind of connection — bots, sessions, Telegraph (dashed, dim, its icon).
  */
-export function TerritoryShape({ t }: { t: Territory }) {
+export function TerritoryShape({ t, selected = false, onSelect }: { t: Territory; selected?: boolean; onSelect?: () => void }) {
   const tint = t.kind === 'platform' && t.platform ? PLATFORM_META[t.platform].tint : t.kind === 'infra' ? 'var(--color-ink-dim)' : tintOf(t.tint);
   const icon = t.kind === 'platform' && t.platform ? PLATFORM_META[t.platform].icon : t.kind === 'infra' && t.infra ? INFRA_META[t.infra].icon : null;
   const count = sectionCount(t);
@@ -71,6 +71,14 @@ export function TerritoryShape({ t }: { t: Territory }) {
       {icon && <g transform={`translate(${t.x + 26} ${t.y + 18})`} style={{ color: tint }}><Icon name={icon} size={16} strokeWidth={2} /></g>}
       <text x={t.x + (icon ? 48 : 28)} y={t.y + 31} className="map-territory-name">{clip(t.name, icon ? 24 : 28)}</text>
       <text x={t.x + t.w - 28} y={t.y + 31} textAnchor="end" className="map-territory-count">{count}</text>
+      {/* Spec 058: a network's label opens its drawer (members, mode). */}
+      {onSelect && (
+        <g className={`map-node map-territory-hit${selected ? ' is-selected' : ''}`} role="button" tabIndex={0} aria-pressed={selected}
+          aria-label={`${t.name}, ${count}. Open the network.`} onClick={onSelect} onKeyDown={onActivate(onSelect)}>
+          <title>{`${t.name}: open the network`}</title>
+          <rect x={t.x + 6} y={t.y + 6} width={t.w - 12} height={44} rx={24} />
+        </g>
+      )}
     </g>
   );
 }

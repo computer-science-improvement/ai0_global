@@ -5,8 +5,10 @@ import { toast } from '../ui/Toast';
 import { useConfirm } from '../ui/ConfirmDialog';
 import { Modal } from '../Modal';
 import { errorText } from '../agents/NetworkUi';
-import { useSetLinks, type MapResource, type MapSnapshot } from '../../api/map';
-import { LINK_LIMIT, UNLINK_HELP, diffLine, linkDiff, linkSections, networkMates, plannedPromos, promoPartners } from '../../lib/map-links';
+import { useSetLinks, useSetNetworkMembers, type MapNetwork, type MapResource, type MapSnapshot } from '../../api/map';
+import {
+  LINK_LIMIT, UNLINK_HELP, diffLine, linkDiff, linkSections, memberOutcome, memberSections, networkMates, networkMembers, plannedPromos, promoPartners,
+} from '../../lib/map-links';
 import { PLATFORM_META, resourceTitle } from '../../lib/map-state';
 import { NetworkPicker } from './MapActions';
 
@@ -143,6 +145,109 @@ function LinkResourcesModal({ snap, res, onClose }: { snap: MapSnapshot; res: Ma
         <span className="text-caption" style={{ marginRight: 'auto', color: 'var(--color-ink-muted)' }} aria-live="polite">{diffLine(add.length, remove.length)}</span>
         <button type="button" className="btn-secondary" onClick={onClose}>Cancel</button>
         <button type="button" className="btn-primary" disabled={(!add.length && !remove.length) || tooMany || setLinks.isPending} onClick={() => void apply()}>Apply</button>
+      </div>
+    </Modal>
+  );
+}
+
+/** The title of a resource by ref, for the lists of refused changes. */
+const nameOfRef = (snap: MapSnapshot, ref: string): string => {
+  const r = snap.resources.find((x) => x.ref === ref);
+  return r ? resourceTitle(r) : ref;
+};
+
+/**
+ * Spec 058: the members of a network in bulk. Checked = in the network; checking adds (one per platform: a row whose platform
+ * is taken is disabled and says who holds the place), unchecking takes out. A partial success keeps the dialog open with the
+ * refused ones listed, and what went through is already the new starting point.
+ */
+export function MembersModal({ snap, network, onClose }: { snap: MapSnapshot; network: MapNetwork; onClose: () => void }) {
+  const confirm = useConfirm();
+  const setMembers = useSetNetworkMembers();
+  const [initial, setInitial] = useState<ReadonlySet<string>>(() => new Set(networkMembers(snap, network.id).map((r) => r.ref)));
+  const [checked, setChecked] = useState<Set<string>>(() => new Set(initial));
+  const [query, setQuery] = useState('');
+  const [failed, setFailed] = useState<Array<{ ref: string; error: string }>>([]);
+  const sections = useMemo(() => memberSections(snap, network.id, checked, query), [snap, network.id, checked, query]);
+  const { add, remove } = linkDiff(initial, checked);
+  const tooMany = add.length > LINK_LIMIT || remove.length > LINK_LIMIT;
+  const toggle = (ref: string) => setChecked((cur) => { const n = new Set(cur); if (n.has(ref)) n.delete(ref); else n.add(ref); return n; });
+
+  const apply = async () => {
+    if (remove.length) {
+      const ok = await confirm(`take ${remove.length} ${remove.length === 1 ? 'resource' : 'resources'} out of «${network.name}»`, {
+        confirmLabel: 'Apply', danger: true,
+        details: (
+          <p className="text-micro" style={MUTED}>
+            The line to each disappears: the network's posts are no longer copied or adapted to them, copies already planned for them are skipped, and they move
+            to their platform section. You can put them back any time.
+          </p>
+        ),
+      });
+      if (!ok) return;
+    }
+    try {
+      const r = await setMembers.mutateAsync({ groupId: network.id, add, remove });
+      const out = memberOutcome(r.results, add, remove);
+      const parts = [out.added.length ? `Added ${out.added.length}` : '', out.removed.length ? `Took out ${out.removed.length}` : ''].filter(Boolean);
+      const skipped = r.canceled > 0 ? ` · ${r.canceled} planned ${r.canceled === 1 ? 'copy' : 'copies'} skipped` : '';
+      if (!out.failed.length) {
+        toast.success(`${network.name}: ${parts.join(' · ') || 'nothing changed'}${skipped}`);
+        onClose();
+        return;
+      }
+      // What went through is the new starting point; the refused ones stay checked / unchecked and are listed.
+      setInitial((cur) => { const n = new Set(cur); out.added.forEach((x) => n.add(x)); out.removed.forEach((x) => n.delete(x)); return n; });
+      setFailed(out.failed);
+      toast.error(`${network.name}: ${parts.join(' · ') || 'nothing changed'}, ${out.failed.length} refused${skipped}`);
+    } catch (e) {
+      toast.error(errorText(e));
+    }
+  };
+
+  return (
+    <Modal open onClose={onClose} title="Network members" subtitle={`${network.name} — one account per platform`} icon="layers" size="lg">
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+        <input className="input-field" type="search" autoFocus placeholder="Search by name or handle" aria-label="Search resources" value={query} onChange={(e) => setQuery(e.target.value)} />
+        <div className="map-pick-list" role="group" aria-label="Resources">
+          {sections.length === 0 && <p className="text-caption" style={MUTED}>{query ? 'No resource matches.' : 'No resource can be added: every other one is in a network.'}</p>}
+          {sections.map((s) => (
+            <section key={s.id}>
+              <h4 className="map-subhead" style={{ margin: '8px 0 4px' }}>{s.title}</h4>
+              {s.items.map(({ res: r, member, blockedBy }) => {
+                const meta = PLATFORM_META[r.platform];
+                return (
+                  <label key={r.ref} className={`map-pick-row${checked.has(r.ref) ? ' is-checked' : ''}${blockedBy ? ' is-disabled' : ''}`}>
+                    <input type="checkbox" checked={checked.has(r.ref)} disabled={!!blockedBy} onChange={() => toggle(r.ref)} />
+                    <span style={{ color: meta.tint, display: 'inline-flex', flex: 'none' }}><Icon name={meta.icon} size={15} /></span>
+                    <span className="map-pick-title">{resourceTitle(r)}</span>
+                    <span className="map-pick-meta">
+                      {member && <Badge tone="success">member</Badge>}
+                      {r.ref === network.anchorRef && <Badge tone="accent" title="The network's Telegram channel: its agent and playbook are anchored on it">anchor</Badge>}
+                      {blockedBy && <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>network already has {resourceTitle(blockedBy)}</span>}
+                    </span>
+                  </label>
+                );
+              })}
+            </section>
+          ))}
+        </div>
+        {failed.length > 0 && (
+          <div className="callout-warning" role="alert">
+            <strong>{failed.length} {failed.length === 1 ? 'change was' : 'changes were'} refused:</strong>
+            <ul style={{ margin: '6px 0 0', paddingLeft: 18 }}>
+              {failed.map((f) => <li key={f.ref}>{nameOfRef(snap, f.ref)}: {f.error}</li>)}
+            </ul>
+          </div>
+        )}
+        {tooMany && <p className="text-micro" style={{ margin: 0, color: 'var(--color-warning)' }}>At most {LINK_LIMIT} additions and {LINK_LIMIT} removals at a time. Apply these, then open the list again.</p>}
+      </div>
+      <div className="modal-foot" style={{ alignItems: 'center' }}>
+        <span className="text-caption" style={{ marginRight: 'auto', color: 'var(--color-ink-muted)' }} aria-live="polite">
+          {!add.length && !remove.length ? 'No changes' : [add.length ? `${add.length} to add` : '', remove.length ? `${remove.length} to take out` : ''].filter(Boolean).join(', ')}
+        </span>
+        <button type="button" className="btn-secondary" onClick={onClose}>{failed.length ? 'Close' : 'Cancel'}</button>
+        <button type="button" className="btn-primary" disabled={(!add.length && !remove.length) || tooMany || setMembers.isPending} onClick={() => void apply()}>Apply</button>
       </div>
     </Modal>
   );

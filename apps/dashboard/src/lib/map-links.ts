@@ -90,3 +90,91 @@ export function linkSections(snap: Pick<MapSnapshot, 'resources' | 'networks' | 
   }
   return sections;
 }
+
+// ── Spec 058 T4: a network's members, and link mode ──
+
+export interface MemberCandidate {
+  res: MapResource;
+  /** In the network now (before any change). */
+  member: boolean;
+  /** Another checked resource of the same platform that holds the place (the server allows one per platform). */
+  blockedBy: MapResource | null;
+}
+export interface MemberSection { id: string; title: string; items: MemberCandidate[] }
+
+/** The current members of a network. */
+export const networkMembers = (snap: Pick<MapSnapshot, 'resources'>, groupId: string): MapResource[] =>
+  snap.resources.filter((r) => r.groupId === groupId).sort((a, b) => resourceTitle(a).localeCompare(resourceTitle(b)));
+
+/**
+ * The Members picker: the network's members and the resources in no network (one in another network is not offered — move it
+ * from its own drawer), grouped by platform, members first. `checked` is the working selection: a platform that already has a
+ * checked resource blocks the other rows of that platform (one account per platform in a network).
+ */
+export function memberSections(snap: Pick<MapSnapshot, 'resources'>, groupId: string, checked: ReadonlySet<string>, query = ''): MemberSection[] {
+  const q = query.trim().toLowerCase();
+  const pool = snap.resources.filter((r) => r.groupId === groupId || !r.groupId);
+  const holder = new Map<string, MapResource>();
+  for (const r of pool) if (checked.has(r.ref) && !holder.has(r.platform)) holder.set(r.platform, r);
+  const byTitle = (a: MemberCandidate, b: MemberCandidate) => Number(b.member) - Number(a.member) || resourceTitle(a.res).localeCompare(resourceTitle(b.res));
+  const sections: MemberSection[] = [];
+  for (const p of PLATFORM_ORDER) {
+    const items: MemberCandidate[] = pool.filter((r) => r.platform === p)
+      .filter((r) => !q || [resourceTitle(r), r.username ?? '', r.ref].some((s) => s.toLowerCase().includes(q)))
+      .map((res) => {
+        const h = holder.get(p);
+        return { res, member: res.groupId === groupId, blockedBy: !checked.has(res.ref) && h && h.ref !== res.ref ? h : null };
+      }).sort(byTitle);
+    if (items.length) sections.push({ id: `platform:${p}`, title: PLATFORM_SECTION_NAME[p], items });
+  }
+  return sections;
+}
+
+/** What a partial success did: the refs that were added, removed and refused (with the server's reason). */
+export function memberOutcome(
+  results: ReadonlyArray<{ ref: string; ok: boolean; error?: string }>, add: readonly string[], remove: readonly string[],
+): { added: string[]; removed: string[]; failed: Array<{ ref: string; error: string }> } {
+  const ok = new Set(results.filter((r) => r.ok).map((r) => r.ref));
+  return {
+    added: add.filter((r) => ok.has(r)),
+    removed: remove.filter((r) => ok.has(r)),
+    failed: results.filter((r) => !r.ok).map((r) => ({ ref: r.ref, error: r.error ?? 'failed' })),
+  };
+}
+
+export interface LinkChoices {
+  a: MapResource;
+  b: MapResource;
+  /** Promo partners already. */
+  linked: boolean;
+  /** The owner unlinked this pair before (linking brings it back). */
+  stopped: boolean;
+  /** A's network, when B can be put in it: the place for B's platform is free and B is not a member already. */
+  putIn: { id: string; name: string } | null;
+  /** A's network when B's platform has no free place there. */
+  full: { id: string; name: string; holder: MapResource } | null;
+  /** The network B would leave (it is in another one). */
+  leaves: string | null;
+}
+
+/** What link mode offers once the owner clicked building A and then building B. */
+export function linkChoices(snap: Pick<MapSnapshot, 'resources' | 'networks' | 'roads'>, aRef: string, bRef: string): LinkChoices | null {
+  const a = snap.resources.find((r) => r.ref === aRef);
+  const b = snap.resources.find((r) => r.ref === bRef);
+  if (!a || !b || a.ref === b.ref) return null;
+  const net = a.groupId ? snap.networks.find((n) => n.id === a.groupId) ?? null : null;
+  const holder = net ? snap.resources.find((r) => r.groupId === net.id && r.platform === b.platform && r.ref !== b.ref) : undefined;
+  const member = !!net && b.groupId === net.id;
+  return {
+    a, b,
+    linked: promoPartners(snap, a.ref).some((r) => r.ref === b.ref),
+    stopped: stoppedPartners(snap, a.ref).has(b.ref),
+    putIn: net && !member && !holder ? { id: net.id, name: net.name } : null,
+    full: net && !member && holder ? { id: net.id, name: net.name, holder } : null,
+    leaves: net && !member && !holder && b.groupId ? snap.networks.find((n) => n.id === b.groupId)?.name ?? null : null,
+  };
+}
+
+/** The line under the HUD while link mode is on. */
+export const linkHint = (first: string | null): string =>
+  first ? `Now click the resource to link with ${first}, or click it again to start over. Esc leaves link mode.` : 'Link mode: click a building, then another one. Esc leaves link mode.';
