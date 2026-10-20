@@ -4,9 +4,10 @@
  */
 import { test, before, after } from 'node:test';
 import assert from 'node:assert/strict';
-import { Pool, type PoolClient } from 'pg';
+import type { Pool, PoolClient } from 'pg';
 import { AgentsRepository } from '../agents/agents.repository';
 import { ResourceCatalog } from '../agents/resource-catalog';
+import { createMigratedDb, type FreshDb } from '../sysadmin/testing/fresh-db';
 import { BLOCKED_SLOT_ERROR, MapActions } from './map.actions';
 import { MapService } from './map.service';
 
@@ -14,9 +15,11 @@ const url = process.env.EDITOR_PG_TEST_URL;
 const skip = !url ? 'EDITOR_PG_TEST_URL not set' : false;
 const TG = '@pgtest_map_act';
 let pool: Pool;
+let db: FreshDb | undefined;
 
-before(async () => { if (url) pool = new Pool({ connectionString: url }); });
-after(async () => { await pool?.end(); });
+// A throwaway database with every migration (091 adds promo_pairs.linked_at); dropped at the end.
+before(async () => { if (url) { db = await createMigratedDb(url, 'map058a'); pool = db.pool; } });
+after(async () => { await db?.drop(); });
 
 async function inTx(fn: (c: PoolClient) => Promise<void>): Promise<void> {
   const c = await pool.connect();
@@ -38,7 +41,7 @@ test('a resource moves between networks, one per platform per network, and out o
     const actions = new MapActions({ pool: c, catalog: new ResourceCatalog({ pool: c }), invalidate: () => { invalidated++; } });
 
     assert.equal(await status(c, () => actions.setGroup({ ref: `instagram:${ig1}`, groupId: g2 })), 409, 'the other network already has an Instagram account');
-    assert.deepEqual(await actions.setGroup({ ref: `instagram:${ig1}`, groupId: null }), { ref: `instagram:${ig1}`, groupId: null, groupName: null });
+    assert.deepEqual(await actions.setGroup({ ref: `instagram:${ig1}`, groupId: null }), { ref: `instagram:${ig1}`, groupId: null, groupName: null, canceled: 0 });
     assert.equal((await c.query(`SELECT group_id FROM meta_accounts WHERE id = $1`, [ig1])).rows[0].group_id, null);
     assert.equal(await status(c, () => actions.setGroup({ ref: `instagram:${ig2}`, groupId: g1 })), 'ok');
     assert.equal((await c.query(`SELECT group_id FROM meta_accounts WHERE id = $1`, [ig2])).rows[0].group_id, g1);

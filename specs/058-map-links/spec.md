@@ -102,3 +102,17 @@ LinkedIn, YouTube, TikTok-specific work; changing how copies are written; the ot
 - Dashboard tsc/tests/build green; lead verifies in the browser on mocks: unlink → line gone; link several → lines appear;
   members modal; link mode; past toggle.
 - Runbook §15 (network map) updated; specs README row 058 DONE.
+
+## Status
+
+- T1 — pending hash: migration 091, `setLinks`, `setMembers`, copies skipped on leaving a network, endpoints, PG tests.
+
+## Deltas from the spec
+
+- **Fresh PG test databases.** `map.actions.pg.test.ts` now runs in a throwaway database with every migration (the shared scratch DB does not have 091), like the 055 / 054 tests.
+- **`setLinks` returns what changed.** `linked` / `unlinked` list the resources whose link actually changed (a pair that was linked already, or already stopped, is not listed), so the toast counts are true. `canceled` counts the pending promo slots skipped.
+- **Extra table in 091: `map_link_events`** (id, at, kind, ref, other_ref, detail). The feed events "linked", "unlinked" and "left Network" need a record; the spec had only the `linked_at` column. Resource refs and the network name only.
+- **Seed runs once**, when the column is created (a `DO` block checks `information_schema`), so re-applying the migration never relinks a pair the owner unlinked.
+- **Copies stop in both directions.** When a resource leaves a network its pending derived slots are skipped whether it was the target of the copy or its source (the anchor leaving cancels the copies from its posts), not only slots with `resource_ref = ref`; a Telegram member's slots have no `resource_ref`, so the match is on the slot's ref.
+- **`setMembers` applies removals first**, then additions, so one call can swap a member for another of the same platform. Limits: 30 refs per list (400 above).
+- **`setGroup` and the move rules are one code path** (`move`) shared with `setMembers`; `setGroup` now also returns `canceled`.
