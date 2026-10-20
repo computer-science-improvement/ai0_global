@@ -155,6 +155,7 @@ import { storedFormat } from './agents/resource-profile';
 import { boundDatasets, ChannelSetupRepository } from './setup/setup.repository';
 import { ChannelSetupService } from './setup/setup.service';
 import { CHANNEL_SETUP_SERVICE, ChannelSetupController } from './setup/setup.controller';
+import { SetupExpiry, setupTtlDays } from './setup/setup-expiry';
 import type { ApplyWriters, ChannelState } from './setup/setup-apply';
 import { LAUNCH_SERVICE, LaunchController } from './launch/launch.controller';
 import { MAP_ACTIONS, MAP_SERVICE, MapController } from './map/map.controller';
@@ -2234,8 +2235,11 @@ export const EDITOR_PROVIDERS = [
         const logger = new Logger('ChannelSetup');
         const env = (k: string) => cfg.get<string>(k) ?? undefined;
         const loop = ownerStartedLoop(pool, env, notifier, logger, prices, caps);
+        const setupRepo = new ChannelSetupRepository(pool);
         return new ChannelSetupService({
-          pool, repo: new ChannelSetupRepository(pool), loop,
+          pool, repo: setupRepo, loop,
+          // Spec 057: forgotten proposals expire after SETUP_PROPOSAL_TTL_DAYS (a live setting).
+          expiry: new SetupExpiry({ repo: setupRepo, inbox: infra.inbox, ttlDays: () => setupTtlDays(env('SETUP_PROPOSAL_TTL_DAYS')), log: (m) => logger.warn(m) }),
           collect: (key) => collectPosts({ pool, readHistory: mtproto ? (target, limit) => mtproto.readHistory(target, 0, limit) : undefined }, key),
           model: onboarderModel(env, models),
           state: channelStateOf(pool, repos, infra),

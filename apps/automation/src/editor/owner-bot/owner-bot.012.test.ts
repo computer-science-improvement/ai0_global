@@ -508,3 +508,15 @@ test('state: configured, polling and the settings for the Owner bot section', as
   assert.equal(s.settings.maxPerHour, 30);
   assert.deepEqual(s.reports, { dailyAt: null, weeklyAt: null });
 });
+
+test('setup source (spec 057): a card of an expired proposal closes as expired; only ready proposals wait', async () => {
+  const seen: string[] = [];
+  const d = deps([{ id: 'p1' }]);
+  d.pool = { query: async (sql: string) => { seen.push(sql); return { rows: [{ id: '00000000-0000-4000-9000-000000000001' }] }; } } as any;
+  const s = setupSource(d);
+  const gone = await s.expired!(['00000000-0000-4000-9000-000000000001', 'not-a-uuid']);
+  assert.deepEqual([...gone], ['00000000-0000-4000-9000-000000000001']);
+  assert.match(seen[0], /status = 'expired'/);
+  await s.waiting(new Date());
+  assert.match(seen[1], /status = 'ready'/);
+});

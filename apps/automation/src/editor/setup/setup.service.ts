@@ -17,6 +17,7 @@ import { applySections, driftedSections, formatPatch, mergePlaybook, sectionBase
 import { computeMetrics, type ChannelMetrics } from './setup-metrics';
 import { trackedChannel, type CollectResult } from './setup-posts';
 import { hasPostText, MIN_SPAN_DAYS, MIN_TEXT_POSTS, type SetupPost } from './setup-posts.types';
+import type { SetupExpiry } from './setup-expiry';
 import type { ChannelSetupRepository, SectionState, SetupProposal } from './setup.repository';
 
 /**
@@ -56,6 +57,8 @@ export interface ChannelSetupDeps {
   /** The channel's card, agent, profile, locks, active playbook and voice skill now. */
   state:    (channelKey: string) => Promise<ChannelState>;
   writers:  ApplyWriters;
+  /** Spec 057: the hourly expiry sweep run from the minute tick (absent = proposals never expire). */
+  expiry?:  Pick<SetupExpiry, 'sweep'>;
   now?:     () => Date;
   log?:     (msg: string) => void;
 }
@@ -103,9 +106,10 @@ export class ChannelSetupService {
     while (this.worker) await this.worker;
   }
 
-  /** The editor's minute tick: stuck proposals back to the queue, then the worker. */
+  /** The editor's minute tick: stuck proposals back to the queue, forgotten ones expire (spec 057), then the worker. */
   async tick(): Promise<void> {
     await this.d.repo.requeueStuck(new Date(this.now().getTime() - STUCK_MS)).catch(() => 0);
+    await this.d.expiry?.sweep().catch((err) => this.d.log?.(`setup expiry sweep failed: ${err?.message ?? err}`));
     this.kick();
   }
 

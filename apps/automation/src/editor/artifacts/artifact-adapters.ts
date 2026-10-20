@@ -85,7 +85,7 @@ const issues = (e: z.ZodError) => e.issues.map((i) => `${i.path.join('.') || 'bo
 const SETUP_LABEL: Record<string, string> = {
   queued: 'queued', collecting: 'reading posts', analyzing: 'analysing', ready: 'ready', applied: 'applied',
   partially_applied: 'partly applied', discarded: 'discarded', superseded: 'superseded', failed: 'failed',
-  no_access: 'no access', too_few_posts: 'too few posts',
+  no_access: 'no access', too_few_posts: 'too few posts', expired: 'expired',
 };
 
 function setupBody(p: SetupProposal) {

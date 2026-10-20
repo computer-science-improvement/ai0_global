@@ -228,6 +228,11 @@ export function setupSource(d: SourceDeps): CardSource {
       if (r.failed) parts.push(`помилка в «${SECTION_UK[r.failed.section] ?? r.failed.section}»: ${r.failed.error}`);
       return at(parts.join('; '));
     },
+    // Spec 057: a proposal that expired before the owner answered closes its card as "expired", not "decided in the dashboard".
+    async expired(refIds) {
+      const { rows } = await d.pool.query(`SELECT id FROM channel_setup_proposals WHERE id = ANY($1::uuid[]) AND status = 'expired'`, [ids(refIds)]);
+      return new Set(rows.map((r: any) => r.id));
+    },
   };
 }
 
