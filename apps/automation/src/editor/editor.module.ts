@@ -154,6 +154,13 @@ import { makeLaunchBotCheck } from './launch/launch-bot';
 import { launchAdapter, launchTitle } from './launch/launch-artifact';
 import { buildLaunchChannelTool } from './launch/launch-tool';
 import { buildAuditorTools } from './sysadmin/auditor-tools';
+import { AuditorRunner } from './sysadmin/auditor-runner';
+import { AuditQueries } from './sysadmin/audit-queries';
+import { AuditRepository } from './sysadmin/audit-report';
+import { AuditService } from './sysadmin/audit.service';
+import { AUDIT_SERVICE, AuditController } from './sysadmin/audit.controller';
+import { auditAdapter, auditTitle } from './sysadmin/audit-artifact';
+import { playbookPort } from './sysadmin/audit-ports';
 import { collectPosts, trackedChannel } from './setup/setup-posts';
 import { VOICE_SKILL_NAME } from './setup/setup-analysis';
 import { refName, SteeringRepository } from './steering/steering.repository';
@@ -392,6 +399,8 @@ function configConflictsOf(pool: Pool, repos: Pick<EditorRepos, 'memory' | 'chan
 const ARTIFACTS: { svc?: ArtifactsService } = {};
 /** Spec 052: the launch service, bound late (the tool registry and the artifacts come before it). */
 const LAUNCH: { svc?: LaunchService } = {};
+/** Spec 055: the audit service, bound late (the chat's /audit command is built before it). */
+const AUDIT: { svc?: AuditService } = {};
 
 async function ownerRuleLint(infra: Pick<AgentInfra, 'skills' | 'agents'>, text: string, orch: Agent) {
   return lintOwnerRule(text, {
@@ -1706,6 +1715,15 @@ export const EDITOR_PROVIDERS = [
             if (!r.ok) return { ok: false, error: r.error, details: r.details, ...(r.launch ? { chip: chipOf(r.launch) } : {}) };
             return { ok: true, chip: chipOf(r.launch) };
           },
+          // Spec 055 FR-003: /audit starts an audit in the background; the chip is the running report.
+          audit: async () => {
+            if (!AUDIT.svc) return { ok: false, error: 'not_ready', details: 'the audit is not ready yet — try again in a minute' };
+            const r = await AUDIT.svc.runInBackground('owner');
+            const chipOf = (x: { id: string; week: string; trigger: 'schedule' | 'owner'; status: string }) => ({ type: 'audit' as const, id: x.id, title: auditTitle(x), status: x.status });
+            if (r.ok) return { ok: true, chip: chipOf(r.report) };
+            const running = r.error === 'already_running' ? await AUDIT.svc.running() : null;
+            return { ok: false, error: r.error, details: r.error === 'already_running' ? 'an audit is already running' : r.error === 'week_taken' ? 'this week\'s audit already ran' : r.details, ...(running ? { chip: chipOf(running) } : {}) };
+          },
           list: async (q) => (await artifacts.list({ ...q, limit: 50 })).rows,
         };
         return new EditorChatService({
@@ -1855,9 +1873,49 @@ export const EDITOR_PROVIDERS = [
               list: (f) => new LaunchRepository(pool).list(f), get: (id) => new LaunchRepository(pool).get(id),
               view: (l) => (LAUNCH.svc ? LAUNCH.svc.view(l) : Promise.resolve(launchJson(l))),
             }),
+            // Spec 055 FR-003: the sysadmin's audit reports.
+            auditAdapter({ list: (n) => new AuditRepository(pool).list(n), get: (id) => new AuditRepository(pool).get(id) }),
           ],
         });
         ARTIFACTS.svc = svc;
+        return svc;
+      },
+    },
+    {
+      // Spec 055: the sysadmin's audit (checks in code, one model pass, a stored report, closed-list fixes).
+      provide: AUDIT_SERVICE,
+      inject: [DB_POOL, ConfigService, EDITOR_LOOP, EDITOR_REGISTRY, AGENT_INFRA, EDITOR_REPOS, PLATFORM_INFRA, MODEL_DEFAULTS, AGENTS_SERVICE],
+      useFactory: (
+        pool: Pool, cfg: ConfigService, loop: AgentLoop, registry: ToolRegistry, infra: AgentInfra, repos: EditorRepos, platform: PlatformInfra,
+        models: WorkspaceModelStore, agentsSvc: AgentsService,
+      ): AuditService => {
+        const logger = new Logger('Audit');
+        const env = (k: string) => cfg.get<string>(k) ?? undefined;
+        const conflicts = configConflictsOf(pool, repos, infra);
+        const networkRepo = new NetworkRepository(pool);
+        const queries = new AuditQueries({
+          pool, agents: infra.agents, skills: infra.skills, tools: () => new Set(registry.all().map((t) => t.name)),
+          ruleLint: (text, orch) => (orch ? ownerRuleLint(infra, text, orch) : Promise.resolve(lintOwnerRule(text))),
+          conflicts: (orch) => conflicts.forAgent(orch),
+          playbook: playbookPort({
+            repo: networkRepo, card: (k) => repos.channels.get(k), catalog: (card) => seriesSourceCatalog(pool, card),
+            net: (orch, card) => networkContext({ repo: networkRepo, usable: (ref) => platform.health.usable(ref), time: resourceTime(repos, infra.profiles) }, orch, card),
+          }),
+        });
+        const runner = new AuditorRunner({
+          loop, registry, runtime: infra.runtime, agents: infra.agents, load: () => queries.load(), env,
+          defaultModel: (ws) => models.get(ws), workspace: () => models.workspace(),
+        });
+        const svc = new AuditService({
+          repo: new AuditRepository(pool), pass: () => runner.run(), log: (m) => logger.warn(m),
+          fixes: {
+            agentByHandle: (h) => infra.agents.getByHandle(h),
+            patchSkill: (handle, name, patch) => agentsSvc.patchSkill(handle, name, patch),
+            retireMemory: (channel, id) => repos.memory.retireByReviewer(channel, id),
+            applyConflicts: (orch) => conflicts.apply(orch),
+          },
+        });
+        AUDIT.svc = svc;
         return svc;
       },
     },
@@ -2185,7 +2243,7 @@ export const EDITOR_PROVIDERS = [
 @Module({
   // AuthModule: EditorController is guarded by TrackingAuthGuard, which injects AuthService.
   imports:     [ChannelConfigModule, PublishersModule, AuthModule],
-  controllers: [EditorController, EditorChatController, AgentsController, ModelsController, NetworkController, ManagerController, PromoController, PromoRedirectController, ApprovalsController, AutonomyController, ScheduleController, StrategyMigrationController, UpcomingSlotsController, ResourcePausesController, PostAuditController, ChannelSetupController, SteeringController, NetworkHealthController, ArtifactsController, OwnerBotController, LaunchController],
+  controllers: [EditorController, EditorChatController, AgentsController, ModelsController, NetworkController, ManagerController, PromoController, PromoRedirectController, ApprovalsController, AutonomyController, ScheduleController, StrategyMigrationController, UpcomingSlotsController, ResourcePausesController, PostAuditController, ChannelSetupController, SteeringController, NetworkHealthController, ArtifactsController, OwnerBotController, LaunchController, AuditController],
   providers:   [...EDITOR_PROVIDERS, TrackingAuthGuard],
   exports:     [EDITOR_REPOS, EDITOR_RUNNER, AGENT_INFRA, PLATFORM_INFRA, EDITOR_MANAGER],
 })

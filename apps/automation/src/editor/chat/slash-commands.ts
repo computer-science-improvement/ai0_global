@@ -8,6 +8,7 @@ export const SLASH_COMMANDS = [
   { name: 'setup',  args: '@channel',            description: 'Set a channel up from its last 20 posts (one model run in the background)' },
   { name: 'steer',  args: '@channel @reference', description: 'Steer a channel by a public reference channel (@name or a t.me link)' },
   { name: 'launch', args: '@new_channel [@ref …] brief', description: 'Launch a new channel from a brief and up to 3 reference channels (one model run in the background)' },
+  { name: 'audit',  args: '',                    description: 'Run the sysadmin\'s audit of skills, memory, rules and tools now (about a minute)' },
   { name: 'rules',  args: '[@channel]',          description: 'Your rules for a channel' },
   { name: 'skills', args: '[@agent]',            description: 'An agent\'s skills' },
   { name: 'memory', args: '[@channel]',          description: 'What a channel\'s agent learnt from reviews and approvals' },
@@ -37,6 +38,8 @@ export interface SlashDeps {
   steer(channelKey: string, reference: string): Promise<SlashStart>;
   /** Spec 052 FR-001. */
   launch(q: { target: string; references: string[]; brief: string }): Promise<SlashStart>;
+  /** Spec 055 FR-003: starts an audit in the background (the chip is the running report). */
+  audit?(): Promise<SlashStart>;
   list(q: { type: ArtifactType; agent?: string; channel?: string }): Promise<ArtifactRow[]>;
 }
 
@@ -152,6 +155,17 @@ export async function runSlash(cmd: SlashCommand, ctx: SlashContext, d: SlashDep
       }
       const refs = a.references.length ? ` The ${a.references.length === 1 ? 'reference is' : `${a.references.length} references are`} read first.` : '';
       return say(`Launch of ${a.target} queued.${refs} The plan is ready in a few minutes; the card below shows it and what only you can do (add the bot as an admin).`, [r.chip]);
+    }
+
+    case 'audit': {
+      if (cmd.args.length) return wrong();
+      if (!d.audit) return say('The audit is not available here.');
+      const r = await d.audit();
+      if (!r.ok) {
+        if (r.error === 'already_running') return say('An audit is already running — open it from the card below.', r.chip ? [r.chip] : []);
+        return say(`The audit did not start: ${r.details ?? r.error}.`);
+      }
+      return say('Audit started. The sysadmin checks skills, memory, rules and tools; the report fills in within a minute — open it from the card below.', [r.chip]);
     }
 
     case 'rules':

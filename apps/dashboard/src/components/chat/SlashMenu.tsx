@@ -11,6 +11,7 @@ export const SLASH_COMMANDS: SlashCommandInfo[] = [
   { name: 'setup',  args: '@channel',            description: 'Set a channel up from its last 20 posts (one model run in the background)' },
   { name: 'steer',  args: '@channel @reference', description: 'Steer a channel by a public reference channel (@name or a t.me link)' },
   { name: 'launch', args: '@new_channel [@ref …] brief', description: 'Launch a new channel from a brief and up to 3 reference channels' },
+  { name: 'audit',  args: '',                    description: 'Run the sysadmin\'s audit of skills, memory, rules and tools now (about a minute)' },
   { name: 'rules',  args: '[@channel]',          description: 'Your rules for a channel' },
   { name: 'skills', args: '[@agent]',            description: 'An agent\'s skills' },
   { name: 'memory', args: '[@channel]',          description: 'What a channel\'s agent learnt from reviews and approvals' },

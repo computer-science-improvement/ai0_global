@@ -27,7 +27,7 @@ export type AuditLlmStatus = 'ok' | 'off' | 'no_agent' | 'budget' | 'failed';
 
 export interface AuditLlmNote {
   status:  AuditLlmStatus;
-  /** Ukrainian, one line, for the report and the owner (empty when ok). */
+  /** English, one line, shown in the report (empty when ok). */
   note:    string;
   runId:   string | null;
   costUsd: number;
@@ -115,10 +115,10 @@ export class AuditorRunner {
 
   private async model(facts: AuditFacts, code: Finding[]): Promise<{ note: AuditLlmNote; submission?: AuditSubmission }> {
     const none = (status: AuditLlmStatus, note: string, runId: string | null = null, costUsd = 0): { note: AuditLlmNote } => ({ note: { status, note, runId, costUsd } });
-    if (OFF.has((this.d.env('AUDITOR_LLM') ?? '').trim().toLowerCase())) return none('off', 'Коментарі моделі вимкнено (AUDITOR_LLM).');
+    if (OFF.has((this.d.env('AUDITOR_LLM') ?? '').trim().toLowerCase())) return none('off', 'The model pass is switched off (AUDITOR_LLM): the report has the checks of the code only.');
     const agent = await this.agent();
-    if (!agent) return none('no_agent', 'Агента @sysadmin немає — звіт лише з перевірок коду.');
-    if (agent.mode === 'off') return none('off', 'Агент @sysadmin вимкнений — звіт лише з перевірок коду.');
+    if (!agent) return none('no_agent', 'There is no @sysadmin agent: the report has the checks of the code only.');
+    if (agent.mode === 'off') return none('off', '@sysadmin is off: the report has the checks of the code only.');
 
     const ctx = await this.d.runtime.forAgent(agent, 'auditor');
     const all = skillSourceOf(facts);
@@ -140,10 +140,10 @@ export class AuditorRunner {
       extras: { agent, skills: all, audit: extras },
     });
     const costUsd = res.totals?.costUsd ?? 0;
-    if (res.status === 'disabled') return none('off', 'Модель не налаштована (немає ключа) — звіт лише з перевірок коду.', res.runId, costUsd);
-    if (res.status === 'budget_exceeded') return none('budget', 'Бюджет аудиту вичерпано — звіт лише з перевірок коду.', res.runId, costUsd);
+    if (res.status === 'disabled') return none('off', 'No model key is set: the report has the checks of the code only.', res.runId, costUsd);
+    if (res.status === 'budget_exceeded') return none('budget', 'The audit budget ran out: the report has the checks of the code only.', res.runId, costUsd);
     if (res.terminalTool !== 'submit_audit' || !extras.submission) {
-      return none('failed', `Модель не дала підсумку (${res.status}${res.error ? `: ${clip(res.error, 120)}` : ''}) — звіт лише з перевірок коду.`, res.runId, costUsd);
+      return none('failed', `The model gave no summary (${res.status}${res.error ? `: ${clip(res.error, 120)}` : ''}): the report has the checks of the code only.`, res.runId, costUsd);
     }
     return { note: { status: 'ok', note: '', runId: res.runId, costUsd }, submission: extras.submission };
   }

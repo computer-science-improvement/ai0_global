@@ -108,7 +108,7 @@ test('no key (loop disabled) and an exhausted budget are clean skips', async () 
 test('a model that ends without submit_audit or throws does not lose the findings', async () => {
   const noSubmit = await setup({ turns: [{ text: 'Все гаразд.' }] }).runner.run();
   assert.equal(noSubmit.llm.status, 'failed');
-  assert.match(noSubmit.llm.note, /не дала підсумку/);
+  assert.match(noSubmit.llm.note, /gave no summary/);
   assert.equal(noSubmit.findings.length, 1);
   const boom = await setup({ turns: [new Error('provider down')] }).runner.run();
   assert.equal(boom.llm.status, 'failed');
