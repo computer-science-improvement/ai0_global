@@ -16,6 +16,9 @@ export class LoadoutController {
   @Put(':handle/loadout/tools')
   putTools(@Param('handle') handle: string, @Body() body: unknown) { return this.svc.putTools(handle, body); }
 
+  @Post(':handle/loadout/apply')
+  apply(@Param('handle') handle: string, @Body() body: unknown) { return this.svc.apply(handle, body); }
+
   @Post(':handle/loadout/reset')
   reset(@Param('handle') handle: string) { return this.svc.reset(handle); }
 }

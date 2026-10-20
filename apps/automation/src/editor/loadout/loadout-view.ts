@@ -2,7 +2,8 @@ import type { EditorRole } from '../llm/llm.types';
 import type { EditorTool, ToolKind } from '../harness/tool';
 import type { AgentSkillEntry } from '../agents/skill-store';
 import type { LoadoutMode } from './loadout.repository';
-import type { AgentUsage } from './loadout-usage';
+import type { AgentUsage, PeerRates } from './loadout-usage';
+import { loadoutSuggestions, type LoadoutSuggestion } from './loadout-suggestions';
 import { coreOf, hardExcluded, roleDefaultOf, toolTokens, universeOf } from './loadout-profiles';
 
 export interface ToolRowView {
@@ -48,7 +49,7 @@ export interface LoadoutView {
   rules:       RulesView;
   tokens:      { current: number; roleDefault: number };
   runs30d:     number;
-  suggestions: unknown[];
+  suggestions: LoadoutSuggestion[];
 }
 
 const KIND_ORDER: Record<ToolKind, number> = { read: 0, act: 1, terminal: 2 };
@@ -62,7 +63,8 @@ export interface ViewInput {
   usage:   AgentUsage;
   skills:  AgentSkillEntry[];
   rules:   RulesView;
-  suggestions?: unknown[];
+  /** How the role's other agents use the tools (no peers: no peer suggestions). */
+  peers?:  PeerRates | null;
 }
 
 /** The effective tool names of a scheduled run for a mode and an enabled set (what `tokens.current` counts). */
@@ -110,6 +112,8 @@ export function buildLoadoutView(i: ViewInput): LoadoutView {
       roleDefault: sum(roleDefaultOf(i.role, universe)),
     },
     runs30d: i.usage.runs,
-    suggestions: i.suggestions ?? [],
+    suggestions: loadoutSuggestions({
+      role: i.role, mode: i.mode, enabled: i.enabled, universe, core, hardOut: out, usage: i.usage, peers: i.peers, skills: i.skills.filter((e) => e.skill.appliesTo.includes(i.role)),
+    }),
   };
 }

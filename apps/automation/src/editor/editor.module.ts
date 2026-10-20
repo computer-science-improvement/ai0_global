@@ -97,6 +97,10 @@ import { LoadoutCreation, resourcePlatforms } from './loadout/loadout-creation';
 import { LoadoutAdminService, rulesTarget } from './loadout/loadout.admin.service';
 import { LoadoutController, LOADOUT_SERVICE } from './loadout/loadout.controller';
 import { rulesSummary } from './loadout/loadout-rules';
+import { LoadoutScan, postWeeklyLoadoutNote } from './loadout/loadout-notes';
+
+/** Spec 054 FR-005: the loadout suggestions of every agent (digest block, weekly owner note). */
+export const LOADOUT_SCAN = 'LOADOUT_SCAN';
 import type { ToolRegistry as LoadoutRegistry } from './harness/tool-registry';
 import { SkillVersionEvaluator } from './agents/skill-version-evaluator';
 import { buildAgentSkillTools } from './agents/agent-skill-tools';
@@ -688,7 +692,18 @@ export class AgentsUpkeep implements OnModuleInit {
     @Inject(PROMO_INFRA) private readonly promo: PromoInfra,
     @Inject(APPROVAL_INFRA) private readonly approval: ApprovalInfra,
     @Inject(NETWORK_SERVICE) private readonly network: NetworkService,
+    @Inject(LOADOUT_SCAN) private readonly loadoutScan: LoadoutScan,
   ) {}
+
+  /** Spec 054 FR-005: once a week (Monday), the owner's inbox hears about agents whose tool set could change. */
+  @Cron('30 9 * * 1', { name: 'loadout-suggestions' })
+  async loadoutSuggestions(): Promise<void> {
+    try {
+      if (await postWeeklyLoadoutNote({ scan: this.loadoutScan, inbox: this.infra.inbox })) this.logger.log('loadout suggestions: weekly note posted');
+    } catch (err: any) {
+      this.logger.warn(`loadout suggestions failed: ${err?.message ?? err}`);
+    }
+  }
 
   /** Spec 024 FR-010: once-per-group offers to convert legacy auto-duplicate networks (idempotent by group). */
   @Cron('29 * * * *', { name: 'network-offers' })
@@ -1375,16 +1390,17 @@ export const EDITOR_PROVIDERS = [
     },
     {
       provide: EDITOR_MANAGER,
-      inject: [DB_POOL, ConfigService, EDITOR_LOOP, EDITOR_REGISTRY, AGENT_INFRA, EDITOR_REPOS, PLATFORM_INFRA, MODEL_DEFAULTS, { token: LlmBudgetService, optional: true }],
+      inject: [DB_POOL, ConfigService, EDITOR_LOOP, EDITOR_REGISTRY, AGENT_INFRA, EDITOR_REPOS, PLATFORM_INFRA, MODEL_DEFAULTS, { token: LlmBudgetService, optional: true }, LOADOUT_SCAN],
       useFactory: (
         pool: Pool, cfg: ConfigService, loop: AgentLoop, registry: ToolRegistry, infra: AgentInfra, repos: EditorRepos, platform: PlatformInfra,
-        models: WorkspaceModelStore, caps?: LlmBudgetService,
+        models: WorkspaceModelStore, caps: LlmBudgetService | undefined, loadoutScan: LoadoutScan,
       ): ManagerInfra => {
         const env = (k: string) => cfg.get<string>(k) ?? undefined;
         const repo = new DirectivesRepository(pool);
         const digest = new KpiDigestService({
           pool, catalog: infra.catalog, globalCapUsd: capDefaults(env).agentsDailyUsd, capUsd: agentsCapUsd(env, caps),
           conflicts: networkConflicts(infra, configConflictsOf(pool, repos, infra)),
+          loadout: () => loadoutScan.digestLines(),
         });
         const buildPort = new PlaybookBuildPort();
         const runner = new ManagerRunner({
@@ -1767,6 +1783,11 @@ export const EDITOR_PROVIDERS = [
           rules: async (agent, orch) => rulesSummary(pool, rulesTarget(orch, await infra.channelKeyOf(agent))),
         });
       },
+    },
+    {
+      provide: LOADOUT_SCAN,
+      inject: [LOADOUT_SERVICE, AGENT_INFRA],
+      useFactory: (admin: LoadoutAdminService, infra: AgentInfra): LoadoutScan => new LoadoutScan({ agents: infra.agents, admin }),
     },
     {
       provide: AGENTS_SERVICE,

@@ -35,6 +35,8 @@ export interface KpiDigest {
   config_conflicts?: Array<{ agent: string; ref: string; code: string; detail: string }>;
   /** Spec 041 FR-006: lint warning codes the critic passed over the last 7 days (posts per code, top 8). */
   lint_overruled?: Array<{ code: string; posts: number }>;
+  /** Spec 054 FR-005: agents whose tool set the owner could trim or extend (≤ 5 lines across the network; advice only, no directive kind). */
+  loadout?: string[];
   hash:        string;
   raw:         Map<string, ScopeKpis>;
 }
@@ -83,6 +85,8 @@ export interface KpiDigestDeps {
   quality?: Pick<SqlQuality, 'digest'>;
   /** Spec 040 FR-011: rules-vs-config conflicts of every orchestrator (agent handle + conflict). */
   conflicts?: () => Promise<Array<{ agent: string; ref: string; code: string; detail: string }>>;
+  /** Spec 054 FR-005: the loadout suggestion lines (≤ 5). */
+  loadout?: () => Promise<string[]>;
   now?:    () => Date;
 }
 
@@ -184,6 +188,7 @@ export function digestView(d: KpiDigest, limit = DIGEST_LIMIT_CHARS): DigestView
       agents: d.agents,
       compliance: o.reasons == null ? d.compliance : d.compliance?.map((c) => ({ ...c, decline_reasons: c.decline_reasons.slice(0, o.reasons).map((x) => ({ kind: x.kind, reason: cut(x.reason, 100) })) })),
       ...(d.lint_overruled?.length ? { lint_overruled: d.lint_overruled } : {}),
+      ...(d.loadout?.length ? { loadout: d.loadout } : {}),
     };
   };
   const doc = (h: object, resources: Res[], extra: Record<string, unknown> = {}) =>
@@ -349,6 +354,7 @@ export class KpiDigestService {
     // Spec 040 FR-011: a conflict flags its resource, so it changes the hash and the review signature.
     const conflicts = this.d.conflicts ? await this.d.conflicts().catch(() => []) : [];
     const overruled = await overruledWarningsOf(this.d.pool);
+    const loadout = this.d.loadout ? (await this.d.loadout().catch(() => [])).slice(0, 5) : [];
     for (const c of conflicts) {
       const q = out.find((r) => r.ref === c.ref)?.quality;
       if (q && !q.flags.includes('config_conflict')) q.flags.push('config_conflict');
@@ -367,6 +373,7 @@ export class KpiDigestService {
       compliance: await complianceOf(this.d.pool),
       ...(conflicts.length ? { config_conflicts: conflicts } : {}),
       ...(overruled.length ? { lint_overruled: overruled } : {}),
+      ...(loadout.length ? { loadout } : {}),
     };
     return { ...digest, hash: digestHash(digest), raw };
   }

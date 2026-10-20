@@ -1,8 +1,9 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import type { LoadoutSkill, LoadoutTool } from '../api/loadout';
+import type { LoadoutSkill, LoadoutSuggestion, LoadoutTool } from '../api/loadout';
 import {
-  fmtChars, groupTools, KIND_LABEL, loadoutErrorText, lockReason, ruleLines, savedPct, skillsSummary, tokensLine, toolsAfterToggle, usageLine,
+  applyBody, applySummary, evidenceLine, fmtChars, groupTools, KIND_LABEL, loadoutErrorText, lockReason, ruleLines, savedPct, skillsSummary, SUGGESTION_LABEL,
+  suggestionName, tokensLine, toolsAfterToggle, usageLine,
 } from './loadout';
 
 const tool = (name: string, over: Partial<LoadoutTool> = {}): LoadoutTool => ({
@@ -76,4 +77,35 @@ test('server refusals read in plain English', () => {
   assert.match(loadoutErrorText('core_tool', 'x'), /Core tools/);
   assert.equal(loadoutErrorText('something_else', 'raw'), 'raw');
   assert.equal(loadoutErrorText(undefined, 'raw'), 'raw');
+});
+
+const sug = (kind: LoadoutSuggestion['kind'], name: string, action: LoadoutSuggestion['action'], evidence: Record<string, number> = {}): LoadoutSuggestion => ({
+  id: `${kind}:${name}`, kind, ...(kind === 'skills_unused' ? { skill: name } : { tool: name }), action, reason: 'reason', evidence,
+});
+
+test('apply body splits suggestions into tools to add, tools to remove and skills to turn off', () => {
+  const list = [sug('missing', 'lint_post', 'add'), sug('peer', 'get_top_posts', 'add'), sug('unused', 'act_x', 'remove'), sug('stale', 'old', 'remove'), sug('skills_unused', 'poll', 'disable')];
+  assert.deepEqual(applyBody(list), { add: ['lint_post', 'get_top_posts'], remove: ['act_x', 'old'], disableSkills: ['poll'] });
+  assert.deepEqual(applyBody([]), { add: [], remove: [], disableSkills: [] });
+  assert.deepEqual(applyBody([list[2]]), { add: [], remove: ['act_x'], disableSkills: [] });
+});
+
+test('apply summary names one or two tools and counts more', () => {
+  assert.equal(applySummary([sug('missing', 'lint_post', 'add')]), 'add lint_post');
+  assert.equal(
+    applySummary([sug('unused', 'a', 'remove'), sug('unused', 'b', 'remove'), sug('unused', 'c', 'remove'), sug('skills_unused', 'poll', 'disable')]),
+    'remove 3 tools · turn off 1 skill',
+  );
+  assert.equal(applySummary([]), '');
+});
+
+test('evidence lines and labels for every kind', () => {
+  assert.equal(evidenceLine(sug('unused', 'x', 'remove', { offered: 12, calls: 0 })), 'offered in 12 runs, 0 calls');
+  assert.equal(evidenceLine(sug('missing', 'x', 'add', { denied: 3 })), 'refused 3 times');
+  assert.equal(evidenceLine(sug('peer', 'x', 'add', { peerPct: 45, peerRuns: 40 })), '45% of 40 peer runs');
+  assert.equal(evidenceLine(sug('skills_unused', 'x', 'disable', { runs: 20 })), '0 loads in 20 runs');
+  assert.match(evidenceLine(sug('stale', 'x', 'remove')), /not a tool/);
+  assert.deepEqual(Object.keys(SUGGESTION_LABEL).sort(), ['missing', 'peer', 'skills_unused', 'stale', 'unused']);
+  assert.equal(suggestionName(sug('skills_unused', 'poll', 'disable')), 'poll');
+  assert.equal(suggestionName(sug('unused', 'act_x', 'remove')), 'act_x');
 });

@@ -28,8 +28,8 @@ const agent = (over: Partial<Agent> = {}): Agent => ({
   createdBy: 'sync', createdAt: new Date(), updatedAt: new Date(), ...over,
 });
 
-function setup(initial: { mode?: LoadoutMode; enabled?: string[]; usage?: AgentUsage; skills?: AgentSkillEntry[] } = {}) {
-  const state = { mode: initial.mode ?? 'role', enabled: initial.enabled ?? [] as string[], by: '' };
+function setup(initial: { mode?: LoadoutMode; enabled?: string[]; usage?: AgentUsage; skills?: AgentSkillEntry[]; peers?: { runs: number; rates: Map<string, number> } } = {}) {
+  const state = { mode: initial.mode ?? 'role', enabled: initial.enabled ?? [] as string[], by: '', toggled: [] as Array<[string, string, boolean | undefined]> };
   const a = agent();
   const svc = new LoadoutAdminService({
     agents: { getByHandle: async (h: string) => (h === a.handle ? a : null), get: async () => agent({ id: 'o1', kind: 'orchestrator', parentId: null }) } as any,
@@ -39,9 +39,9 @@ function setup(initial: { mode?: LoadoutMode; enabled?: string[]; usage?: AgentU
       setTools: async (_id: string, names: string[], by: string) => { state.mode = 'custom'; state.enabled = names; state.by = by; },
       reset: async () => { state.mode = 'role'; state.enabled = []; },
     },
-    usage: { forAgents: async () => new Map([[a.id, initial.usage ?? emptyUsage()]]) },
+    usage: { forAgents: async () => new Map([[a.id, initial.usage ?? emptyUsage()]]), peerRates: async () => initial.peers ?? { runs: 0, rates: new Map() } },
     registry: registry(),
-    skills: { listForAgent: async () => initial.skills ?? [] },
+    skills: { listForAgent: async () => initial.skills ?? [], setToggle: async (agentId: string, skillId: string, p: { enabled?: boolean }) => { state.toggled.push([agentId, skillId, p.enabled]); } },
     rules: async () => ({ ownerRules: 2, memory: 5, steeringSets: 1, playbookRules: 3, chars: 900 }),
   });
   return { svc, state, a };
@@ -175,4 +175,75 @@ test('registry sync forms a loadout for the agents it creates and for no other',
   await sync.run();
   assert.equal(inserted.length, 5, 'the fresh channel\'s orchestrator and its four role children');
   assert.deepEqual(formed, inserted.map((a) => a.id), 'a loadout for each new agent, none for the existing channel\'s agents');
+});
+
+// ── suggestions and apply (FR-005) ───────────────────────────────────────────
+
+const entry = (name: string, id: string, over: Partial<AgentSkillEntry> = {}, safety = false): AgentSkillEntry => ({
+  skill: { id, name, scope: 'builtin', appliesTo: ['executor'], body: 'x'.repeat(50), safety } as any, origin: 'builtin', enabled: true, inline: false, baseChanged: false, pending: false, ...over,
+});
+
+function busy(): AgentUsage {
+  const u = emptyUsage();
+  u.runs = 20;
+  u.offered = new Map([['get_recent_posts', 20], ['fetch_feed', 20], ['act_x', 20]]);
+  u.tools.set('act_x', { calls: 4, errors: 0, lastUsedAt: new Date() });
+  u.denied.set('lint_post', 3);
+  return u;
+}
+
+test('view: suggestions come from the usage, the peers and the skills', async () => {
+  const { svc } = setup({
+    mode: 'custom', enabled: [...CORE, 'get_recent_posts', 'old_tool'], usage: busy(),
+    peers: { runs: 30, rates: new Map([['get_top_posts', 0.5]]) }, skills: [entry('format-poll-quiz', 's1')],
+  });
+  const v = await svc.view('ch_executor');
+  assert.deepEqual(v.suggestions.map((s) => s.id), ['missing:lint_post', 'peer:get_top_posts', 'unused:get_recent_posts', 'stale:old_tool', 'skills_unused:format-poll-quiz']);
+});
+
+test('apply: add and remove on top of the effective tools, written as "recommend", terminal kept', async () => {
+  const { svc, state } = setup({ mode: 'custom', enabled: [...CORE, 'get_recent_posts', 'old_tool', 'publish_post', 'skip_slot'], usage: busy() });
+  const v = await svc.apply('ch_executor', { add: ['lint_post', 'get_top_posts'], remove: ['get_recent_posts', 'old_tool'] });
+  assert.equal(state.by, 'recommend');
+  assert.equal(v.mode, 'custom');
+  const want = new Set([...CORE, 'lint_post', 'get_top_posts', 'publish_post', 'skip_slot']);
+  assert.deepEqual(state.enabled, registry().all().map((t) => t.name).filter((n) => want.has(n)), 'the stale name is gone');
+});
+
+test('apply from mode role: the role default minus a removed tool becomes a custom loadout', async () => {
+  const { svc, state } = setup();
+  const v = await svc.apply('ch_executor', { remove: ['get_recent_posts'] });
+  assert.equal(state.mode, 'custom');
+  assert.ok(!state.enabled.includes('get_recent_posts') && state.enabled.includes('get_top_posts') && state.enabled.includes('publish_post'));
+  assert.equal(v.tools.find((t) => t.name === 'get_recent_posts')!.enabled, false);
+});
+
+test('apply is validated like a PUT: core tools stay, unknown names to add are refused', async () => {
+  const { svc, state } = setup({ mode: 'custom', enabled: CORE });
+  await assert.rejects(svc.apply('ch_executor', { remove: ['fetch_feed'] }), (e: any) => e.getResponse().error === 'core_tool');
+  await assert.rejects(svc.apply('ch_executor', { add: ['nope'] }), (e: any) => e.getResponse().error === 'unknown_tool');
+  await assert.rejects(svc.apply('ch_executor', { add: 'x' }), (e: any) => e.getResponse().error === 'invalid_body');
+  await assert.rejects(svc.apply('ch_executor', { add: [], extra: 1 }), (e: any) => e.getResponse().error === 'invalid_body');
+  assert.deepEqual(state.enabled, CORE, 'nothing was written');
+});
+
+test('apply: disableSkills switches the agent toggle off; a safety skill or an unknown one is refused; a skill-only apply keeps the mode', async () => {
+  const other = entry('planner-only', 's3');
+  other.skill = { ...other.skill, appliesTo: ['planner'] };
+  const skills = [entry('format-poll-quiz', 's1'), entry('anti-slop', 's2', {}, true), other];
+  const { svc, state } = setup({ skills });
+  const v = await svc.apply('ch_executor', { disableSkills: ['format-poll-quiz'] });
+  assert.deepEqual(state.toggled, [['a1', 's1', false]]);
+  assert.equal(v.mode, 'role', 'only a skill changed');
+  await assert.rejects(svc.apply('ch_executor', { disableSkills: ['anti-slop'] }), (e: any) => e.getResponse().error === 'safety_skill');
+  await assert.rejects(svc.apply('ch_executor', { disableSkills: ['planner-only'] }), (e: any) => e.getResponse().error === 'unknown_skill');
+  await assert.rejects(svc.apply('ch_executor', { disableSkills: ['ghost'] }), (e: any) => e.getResponse().error === 'unknown_skill');
+  assert.equal(state.toggled.length, 1);
+});
+
+test('an empty apply changes nothing', async () => {
+  const { svc, state } = setup();
+  const v = await svc.apply('ch_executor', {});
+  assert.equal(v.mode, 'role');
+  assert.equal(state.by, '');
 });

@@ -103,6 +103,9 @@ function InboxLinks({ it, agent }: { it: InboxItem; agent: TreeAgent | undefined
       {agent && it.kind === 'ready_for_autonomy' && (
         <Link to="/app/agents/$handle" params={{ handle: agent.handle }} className="link-accent text-micro" style={linkStyle}>Review and switch →</Link>
       )}
+      {agent && it.kind === 'loadout_suggestions' && (
+        <Link to="/app/agents/$handle" params={{ handle: agent.handle }} search={{ tab: 'loadout' }} className="link-accent text-micro" style={linkStyle}>Open loadout →</Link>
+      )}
       {it.kind === 'landing_lead' && (
         <Link to="/app/landing" search={{ tab: 'leads' }} className="link-accent text-micro" style={linkStyle}>Open leads →</Link>
       )}

@@ -9,11 +9,14 @@ import { useConfirm } from '../ui/ConfirmDialog';
 import { describeError, toast } from '../ui/Toast';
 import { Toggle } from './AgentsUi';
 import {
-  fmtChars, fmtTokens, groupTools, loadoutErrorText, lockReason, MODE_LABEL, ruleLines, savedPct, skillsSummary, tokensLine,
-  toolsAfterToggle, usageLine,
+  applyBody, applySummary, evidenceLine, fmtChars, fmtTokens, groupTools, loadoutErrorText, lockReason, MODE_LABEL, ruleLines, savedPct,
+  skillsSummary, SUGGESTION_LABEL, suggestionName, tokensLine, toolsAfterToggle, usageLine,
 } from '../../lib/loadout';
 import { errorBody, type AgentDetail } from '../../api/agents';
-import { useLoadout, usePutLoadoutTools, useResetLoadout, type LoadoutRules, type LoadoutSkill, type LoadoutTool } from '../../api/loadout';
+import {
+  useApplyLoadout, useLoadout, usePutLoadoutTools, useResetLoadout,
+  type LoadoutRules, type LoadoutSkill, type LoadoutSuggestion, type LoadoutTool,
+} from '../../api/loadout';
 
 const mono = 'ui-monospace, SFMono-Regular, Menlo, monospace';
 
@@ -22,6 +25,7 @@ export function AgentLoadout({ data }: { data: AgentDetail }) {
   const q = useLoadout(handle);
   const put = usePutLoadoutTools(handle);
   const reset = useResetLoadout(handle);
+  const applyMut = useApplyLoadout(handle);
   const confirm = useConfirm();
 
   if (q.error) {
@@ -33,9 +37,29 @@ export function AgentLoadout({ data }: { data: AgentDetail }) {
   if (!q.data) return <div className="panel compose-rise" style={{ height: 120, opacity: 0.55 }} />;
 
   const l = q.data;
-  const busy = put.isPending || reset.isPending;
+  const busy = put.isPending || reset.isPending || applyMut.isPending;
   const groups = groupTools(l.tools);
   const saved = savedPct(l.tokens);
+  const suggestions = l.suggestions ?? [];
+
+  const applyList = (list: LoadoutSuggestion[]) => applyMut.mutate(applyBody(list), {
+    onSuccess: () => toast.success(`Done: ${applySummary(list)}`),
+    onError: (e) => toast.error(loadoutErrorText(errorBody(e)?.error, describeError(e))),
+  });
+  const applyRecommended = async () => {
+    const ok = await confirm('apply the recommended loadout', {
+      confirmLabel: 'Apply', danger: false,
+      details: <>
+        <p className="text-micro" style={{ margin: '0 0 8px', color: 'var(--color-ink-muted)' }}>
+          @{handle} will be offered a custom set of tools: {applySummary(suggestions)}. You can switch any tool back on, or reset to the role default, at any time.
+        </p>
+        <ul className="text-micro" style={{ margin: 0, paddingLeft: 18, color: 'var(--color-ink-dim)' }}>
+          {suggestions.map((s) => <li key={s.id}><span style={{ fontFamily: mono }}>{suggestionName(s)}</span>: {s.reason}</li>)}
+        </ul>
+      </>,
+    });
+    if (ok) applyList(suggestions);
+  };
 
   const toggle = (t: LoadoutTool, on: boolean) => put.mutate(toolsAfterToggle(l.tools, t.name, on), {
     onError: (e) => toast.error(loadoutErrorText(errorBody(e)?.error, describeError(e))),
@@ -52,12 +76,31 @@ export function AgentLoadout({ data }: { data: AgentDetail }) {
 
   return (
     <div>
+      {suggestions.length > 0 && (
+        <SectionCard title={`Suggestions (${suggestions.length})`} icon="sparkles" style={{ marginBottom: 16 }}>
+          <p className="text-micro" style={{ margin: '0 0 12px', color: 'var(--color-ink-dim)', maxWidth: 760 }}>
+            Counted from the last 30 days of @{handle}'s runs — no model is involved. Nothing changes until you apply it.
+          </p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+            {suggestions.map((s, i) => <SuggestionRow key={s.id} s={s} delay={Math.min(i, 12) * 20} busy={busy} onApply={() => applyList([s])} />)}
+          </div>
+        </SectionCard>
+      )}
+
       <SectionCard title="Tools" icon="wrench" style={{ marginBottom: 16 }}
         action={
-          <button type="button" className="btn-secondary" style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}
-            disabled={busy || l.mode === 'role'} title={l.mode === 'role' ? 'Already on the role default' : 'Offer every tool of the role again'} onClick={resetToRole}>
-            <Icon name="reset" size={14} /> Reset to role default
-          </button>
+          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+            <button type="button" className="btn-primary" style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}
+              disabled={busy || suggestions.length === 0}
+              title={suggestions.length ? `Apply: ${applySummary(suggestions)}` : 'Nothing to recommend yet — suggestions come from the last 30 days of runs'}
+              onClick={applyRecommended}>
+              <Icon name="sparkles" size={14} /> Use recommended
+            </button>
+            <button type="button" className="btn-secondary" style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}
+              disabled={busy || l.mode === 'role'} title={l.mode === 'role' ? 'Already on the role default' : 'Offer every tool of the role again'} onClick={resetToRole}>
+              <Icon name="reset" size={14} /> Reset to role default
+            </button>
+          </div>
         }>
         <div style={{ display: 'flex', gap: 10, alignItems: 'center', flexWrap: 'wrap', marginBottom: 6 }}>
           <Badge tone={l.mode === 'custom' ? 'accent' : 'neutral'}
@@ -88,6 +131,25 @@ export function AgentLoadout({ data }: { data: AgentDetail }) {
 
       <SkillsSummary handle={handle} skills={l.skills} />
       <RulesSummary handle={handle} rules={l.rules} />
+    </div>
+  );
+}
+
+function SuggestionRow({ s, delay, busy, onApply }: { s: LoadoutSuggestion; delay: number; busy: boolean; onApply: () => void }) {
+  const label = SUGGESTION_LABEL[s.kind];
+  return (
+    <div className="card row-lift compose-rise" style={{ padding: '10px 14px', animationDelay: `${delay}ms` }}>
+      <div style={{ display: 'flex', gap: 12, alignItems: 'center', flexWrap: 'wrap' }}>
+        <div style={{ flex: 1, minWidth: 200 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap', marginBottom: 3 }}>
+            <Badge tone={label.tone}>{label.label}</Badge>
+            <span style={{ fontFamily: mono, fontSize: 13, color: 'var(--color-ink)', fontWeight: 600, overflowWrap: 'anywhere' }}>{suggestionName(s)}</span>
+          </div>
+          <div className="text-body-sm clamp" title={s.reason} style={{ ['--clamp' as string]: 2, color: 'var(--color-ink-muted)', marginBottom: 2 }}>{s.reason}</div>
+          <div className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>{evidenceLine(s)}</div>
+        </div>
+        <button type="button" className="btn-secondary" disabled={busy} onClick={onApply}>{label.verb}</button>
+      </div>
     </div>
   );
 }

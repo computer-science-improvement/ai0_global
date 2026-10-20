@@ -7,20 +7,25 @@ import type { AgentsRepository } from '../agents/agents.repository';
 import type { SkillStore } from '../agents/skill-store';
 import type { LoadoutRepository } from './loadout.repository';
 import type { LoadoutUsage } from './loadout-usage';
+import { isProtectedSkill } from '../skills/skill-library';
 import { coreOf, universeOf } from './loadout-profiles';
 import { buildLoadoutView, type LoadoutView, type RulesView } from './loadout-view';
 
 export interface LoadoutAdminDeps {
   agents:   Pick<AgentsRepository, 'getByHandle' | 'get'>;
   repo:     Pick<LoadoutRepository, 'mode' | 'enabledTools' | 'setTools' | 'reset'>;
-  usage:    Pick<LoadoutUsage, 'forAgents'>;
+  usage:    Pick<LoadoutUsage, 'forAgents'> & Partial<Pick<LoadoutUsage, 'peerRates'>>;
   registry: Pick<ToolRegistry, 'all'>;
-  skills:   Pick<SkillStore, 'listForAgent'>;
+  skills:   Pick<SkillStore, 'listForAgent'> & Partial<Pick<SkillStore, 'setToggle'>>;
   /** The channel's rules the agent follows (read-only counts). */
   rules:    (agent: Agent, orchestrator: Agent) => Promise<RulesView>;
 }
 
 const ToolsBody = z.object({ tools: z.array(z.string().min(1).max(100)).max(300) }).strict();
+const toolName = z.string().min(1).max(100);
+const ApplyBody = z.object({
+  add: z.array(toolName).max(300).default([]), remove: z.array(toolName).max(300).default([]), disableSkills: z.array(toolName).max(100).default([]),
+}).strict();
 
 const badRequest = (r: z.ZodError) => new BadRequestException({ error: 'invalid_body', issues: r.issues.map((i) => ({ path: i.path.join('.'), message: i.message })) });
 
@@ -41,14 +46,15 @@ export class LoadoutAdminService {
   async viewOf(a: Agent): Promise<LoadoutView> {
     const orch = a.parentId ? ((await this.d.agents.get(a.parentId)) ?? a) : a;
     const mode = await this.d.repo.mode(a.id);
-    const [enabled, usage, skills, rules] = await Promise.all([
+    const [enabled, usage, skills, rules, peers] = await Promise.all([
       mode === 'custom' ? this.d.repo.enabledTools(a.id) : Promise.resolve([]),
       this.d.usage.forAgents([a.id]),
       this.d.skills.listForAgent(a.parentId ? [a.id, a.parentId] : [a.id]),
       this.d.rules(a, orch).catch(() => ({ ownerRules: 0, memory: 0, steeringSets: 0, playbookRules: 0, chars: 0 })),
+      this.d.usage.peerRates?.(roleOfKind(a.kind), [a.id]).catch(() => null) ?? Promise.resolve(null),
     ]);
     return buildLoadoutView({
-      role: roleOfKind(a.kind), mode, enabled, tools: this.d.registry.all(), usage: usage.get(a.id)!, skills, rules,
+      role: roleOfKind(a.kind), mode, enabled, tools: this.d.registry.all(), usage: usage.get(a.id)!, skills, rules, peers,
     });
   }
 
@@ -64,6 +70,40 @@ export class LoadoutAdminService {
     const names = await this.checked(a, p.data.tools);
     await this.d.repo.setTools(a.id, names, 'owner');
     return this.viewOf(a);
+  }
+
+  /**
+   * Applies suggestions (FR-004/FR-005): the agent's effective tools plus `add` minus `remove`, as a custom loadout
+   * written by 'recommend'; `disableSkills` switches skills off for the agent. Validated like a PUT: a core tool in
+   * `remove` is `core_tool`, an unknown name in `add` is `unknown_tool` (a stale name in `remove` is fine).
+   */
+  async apply(handle: string, body: unknown): Promise<LoadoutView> {
+    const a = await this.require(handle);
+    const p = ApplyBody.safeParse(body ?? {});
+    if (!p.success) throw badRequest(p.error);
+    const { add, remove, disableSkills } = p.data;
+    if (disableSkills.length) await this.disableSkills(a, disableSkills);
+    if (add.length || remove.length) {
+      const now = await this.viewOf(a);
+      const wanted = new Set(now.tools.filter((t) => t.enabled).map((t) => t.name));
+      for (const n of add) wanted.add(n);
+      for (const n of remove) wanted.delete(n);
+      const names = await this.checked(a, [...wanted]);
+      await this.d.repo.setTools(a.id, names, 'recommend');
+    }
+    return this.viewOf(a);
+  }
+
+  private async disableSkills(a: Agent, wanted: string[]): Promise<void> {
+    const role = roleOfKind(a.kind);
+    const entries = await this.d.skills.listForAgent(a.parentId ? [a.id, a.parentId] : [a.id]);
+    const picked = [...new Set(wanted)].map((n) => ({ n, e: entries.find((x) => x.skill.name === n && x.skill.appliesTo.includes(role)) }));
+    const unknown = picked.filter((x) => !x.e).map((x) => x.n);
+    if (unknown.length) throw new BadRequestException({ error: 'unknown_skill', details: `not a skill of the ${role} role: ${unknown.join(', ')}`, skills: unknown });
+    const locked = picked.filter((x) => x.e!.skill.safety || isProtectedSkill(x.n)).map((x) => x.n);
+    if (locked.length) throw new BadRequestException({ error: 'safety_skill', details: `safety and voice skills stay on: ${locked.join(', ')}`, skills: locked });
+    if (!this.d.skills.setToggle) throw new BadRequestException({ error: 'skills_unavailable' });
+    for (const x of picked) await this.d.skills.setToggle(a.id, x.e!.skill.id, { enabled: false });
   }
 
   /** Back to the role default. */

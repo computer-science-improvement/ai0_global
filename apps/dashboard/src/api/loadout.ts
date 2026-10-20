@@ -2,7 +2,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { api } from './client';
 
 // Agent loadout (spec 054): which tools an agent is offered. GET /api/agents/:handle/loadout, PUT …/loadout/tools,
-// POST …/loadout/reset. Responses are camelCase; the PUT body is { tools: string[] }.
+// POST …/loadout/reset, POST …/loadout/apply. Responses are camelCase; the PUT body is { tools: string[] }.
 
 export type LoadoutMode = 'role' | 'custom';
 export type ToolKind = 'read' | 'act' | 'terminal';
@@ -42,6 +42,23 @@ export interface LoadoutRules {
   chars:         number;
 }
 
+export type SuggestionKind = 'unused' | 'missing' | 'peer' | 'stale' | 'skills_unused';
+export type SuggestionAction = 'add' | 'remove' | 'disable';
+
+/** A finding counted from the last 30 days of runs (spec 054 FR-005). */
+export interface LoadoutSuggestion {
+  id:       string;
+  kind:     SuggestionKind;
+  tool?:    string;
+  skill?:   string;
+  action:   SuggestionAction;
+  reason:   string;
+  evidence: Record<string, number>;
+}
+
+/** What POST …/loadout/apply takes: tools to switch on and off, skills to disable. */
+export interface ApplyBody { add: string[]; remove: string[]; disableSkills: string[] }
+
 export interface Loadout {
   mode:    LoadoutMode;
   role:    string;
@@ -50,7 +67,7 @@ export interface Loadout {
   rules:   LoadoutRules;
   tokens:  { current: number; roleDefault: number };
   runs30d: number;
-  suggestions: unknown[];
+  suggestions: LoadoutSuggestion[];
 }
 
 const enc = encodeURIComponent;
@@ -77,6 +94,14 @@ export function useResetLoadout(handle: string) {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: () => api<Loadout>(`/api/agents/${enc(handle)}/loadout/reset`, { method: 'POST' }),
+    onSuccess: (r) => { qc.setQueryData(key(handle), r); },
+  });
+}
+
+export function useApplyLoadout(handle: string) {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (body: ApplyBody) => api<Loadout>(`/api/agents/${enc(handle)}/loadout/apply`, { method: 'POST', body: JSON.stringify(body) }),
     onSuccess: (r) => { qc.setQueryData(key(handle), r); },
   });
 }

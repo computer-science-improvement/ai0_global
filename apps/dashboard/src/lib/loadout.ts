@@ -1,6 +1,6 @@
 // Agent loadout (spec 054): grouping, locks, token lines and the skills / rules summaries of the Loadout tab.
 // Pure (type-only imports), so node tests can import it.
-import type { LoadoutMode, LoadoutRules, LoadoutSkill, LoadoutTool, ToolKind } from '../api/loadout';
+import type { ApplyBody, LoadoutMode, LoadoutRules, LoadoutSkill, LoadoutSuggestion, LoadoutTool, SuggestionKind, ToolKind } from '../api/loadout';
 import { fmtRelative } from './format';
 
 export const KIND_ORDER: readonly ToolKind[] = ['read', 'act', 'terminal'];
@@ -108,5 +108,54 @@ const ERROR_TEXT: Record<string, string> = {
   core_tool: 'Core tools cannot be switched off',
   unknown_tool: 'That is not a tool of this agent\'s role',
   agent_not_found: 'The agent no longer exists',
+  safety_skill: 'Safety and voice skills stay on',
+  unknown_skill: 'That is not a skill of this agent\'s role',
 };
 export const loadoutErrorText = (code: string | undefined, fallback: string) => (code && ERROR_TEXT[code]) || fallback;
+
+// ── suggestions (spec 054 FR-005) ────────────────────────────────────────────
+
+export type SuggestionTone = 'success' | 'warning' | 'neutral' | 'accent';
+
+export const SUGGESTION_LABEL: Record<SuggestionKind, { label: string; tone: SuggestionTone; verb: string }> = {
+  missing:       { label: 'Missing',       tone: 'warning', verb: 'Add' },
+  peer:          { label: 'Peers use it',  tone: 'accent',  verb: 'Add' },
+  unused:        { label: 'Unused',        tone: 'neutral', verb: 'Remove' },
+  stale:         { label: 'Stale',         tone: 'neutral', verb: 'Remove' },
+  skills_unused: { label: 'Skill unused',  tone: 'neutral', verb: 'Turn off' },
+};
+
+/** The request body that applies the given suggestions: tools to add, tools to remove, skills to turn off. */
+export function applyBody(list: LoadoutSuggestion[]): ApplyBody {
+  return {
+    add: list.filter((s) => s.action === 'add' && s.tool).map((s) => s.tool!),
+    remove: list.filter((s) => s.action === 'remove' && s.tool).map((s) => s.tool!),
+    disableSkills: list.filter((s) => s.action === 'disable' && s.skill).map((s) => s.skill!),
+  };
+}
+
+/** The name a suggestion is about. */
+export const suggestionName = (s: LoadoutSuggestion): string => s.tool ?? s.skill ?? s.id;
+
+/** One line of what applying a list does: "add lint_post · remove 3 tools · turn off 1 skill". */
+export function applySummary(list: LoadoutSuggestion[]): string {
+  const b = applyBody(list);
+  const plural = (n: number, one: string) => `${n} ${one}${n === 1 ? '' : 's'}`;
+  return [
+    b.add.length ? `add ${b.add.length <= 2 ? b.add.join(', ') : plural(b.add.length, 'tool')}` : '',
+    b.remove.length ? `remove ${b.remove.length <= 2 ? b.remove.join(', ') : plural(b.remove.length, 'tool')}` : '',
+    b.disableSkills.length ? `turn off ${plural(b.disableSkills.length, 'skill')}` : '',
+  ].filter(Boolean).join(' · ');
+}
+
+/** The counts behind a suggestion, as short text. */
+export function evidenceLine(s: LoadoutSuggestion): string {
+  const e = s.evidence;
+  switch (s.kind) {
+    case 'unused':        return `offered in ${e.offered ?? 0} runs, 0 calls`;
+    case 'missing':       return `refused ${e.denied ?? 0} times`;
+    case 'peer':          return `${e.peerPct ?? 0}% of ${e.peerRuns ?? 0} peer runs`;
+    case 'skills_unused': return `0 loads in ${e.runs ?? 0} runs`;
+    case 'stale':         return 'not a tool of this role any more';
+  }
+}
