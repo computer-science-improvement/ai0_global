@@ -1,6 +1,6 @@
 # 052 Channel launch
 
-**Epic:** AI0-220 (T1–T5 = AI0-241…245) · **Priority:** P2 · **Depends on:** 012, 017–022, 031, 042, 045, 048, 049 · **Status:** in progress
+**Epic:** AI0-220 (T1–T5 = AI0-241…245) · **Priority:** P2 · **Depends on:** 012, 017–022, 031, 042, 045, 048, 049 · **Status:** done (2026-10-20)
 
 ## Why
 

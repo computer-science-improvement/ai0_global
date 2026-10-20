@@ -236,3 +236,37 @@ What waits for you comes to Telegram as a card with buttons. A tap does what the
 - **Send a test card** sends a card with one "Працює" button; a tap closes it and proves the buttons reach the service.
 - **Send today's summary** / **Send the weekly report** send them now; the scheduled ones still go at their time.
 - A card that Telegram refused 5 times is counted under "Not sent today"; `/waiting` sends it again.
+
+## 13. Channel launch (spec 052)
+
+A new channel from a brief: you create the channel in Telegram, the agents plan it, you approve its first posts, and it goes live once the approvals show the agent writes well.
+
+**Needs**
+
+- Migration `086_channel_launches`.
+- The channel exists in Telegram with a public @username (the launch never creates channels).
+- A bot that can post there: the channel's own bot from Settings → Telegram, else the default bot. Add it as an administrator with "Post messages".
+
+**Steps**
+
+1. In the chat: `/launch @new_channel [@reference …] brief` (up to 3 public reference channels, a brief of at least 30 characters), or ask @ai0 to launch it. A card and an agent in `off` appear at once.
+2. The references are read as steering sets (up to an hour), then one onboarder run makes the plan (a few cents, feature `editor.launch`). The launch panel (chat chip or Artifacts → Launches) shows the plan and the checklist. **Make the plan again** takes a new brief.
+3. **Start** (panel or the owner bot card) applies the plan (profile, card, formatting, mix, schedule, playbook, voice skill), activates the reference sets, puts the first-week ideas into the pool as accepted and switches the channel to approval. Pressed before the bot is an admin, Start waits and runs on the minute the bot check passes (checked every 2 minutes; **Check the bot now** asks at once).
+4. Approve the first posts in Approvals or the owner bot. After 3 published posts up to 3 of your other channels (in approval or live, healthy, relevant ≥ 3/5) get a cross-promo, scheduled through the 022 promo limits.
+5. Graduation is checked hourly: 7 days in approval, 10 approved posts, 80 % without edits, no rejection in the last 5, critic passes 80 % over 5+ verdicts, the channel healthy. Then a "Ready to go live" card: **У Live** runs the autonomy switch (clean waiting posts are approved too), **Ще ні** waits 7 days and 5 more approved posts.
+
+**Settings** (Settings → Configuration → Editor, applied at once)
+
+| Setting | Default | What it does |
+|---|---|---|
+| `LAUNCH_GRADUATION` | `propose` | `propose` = a card; `auto` = goes live by itself and files an inbox note; `off` = progress only |
+| `LAUNCH_GRADUATE_MIN_DAYS` | `7` | Days in approval since Start |
+| `LAUNCH_GRADUATE_MIN_APPROVED` | `10` | Approved posts since Start |
+| `LAUNCH_GRADUATE_MIN_CLEAN_PCT` | `80` | Share approved without edits |
+| `LAUNCH_GRADUATE_MIN_CRITIC_PCT` | `80` | Critic pass rate (over at least 5 verdicts) |
+
+**Check it**
+
+- The panel's checklist says what waits and who does it; a failed Start keeps the launch ready with the step in the reason (press Start again: each step is idempotent).
+- `GET /api/launches?channel=@name`, `GET /api/launches/:id` (with the checklist and growth).
+- **Stop the launch** (running) closes the launch only; the channel keeps its mode. Discard before Start also discards the reference sets that were not activated.
