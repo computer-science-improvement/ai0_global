@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { MAX_K, MIN_K, centreOn, clampK, clampPan, fitView, panBy, pinch, toWorld, zoomAt, zoomBy, zoomPercent } from './map-view';
+import { MAX_K, MIN_K, centreOn, clampK, clampPan, fitView, panBy, pinch, toWorld, zoomAt, zoomBy, zoomPercent, showBuildingMeta, showUnitBadges, showUnitLabels } from './map-view';
 
 const vp = { w: 1000, h: 600 };
 
@@ -61,4 +61,14 @@ test('centreOn puts a world point in the middle and zooms in to at least the min
 test('pinch reports distance and midpoint', () => {
   assert.deepEqual(pinch({ x: 0, y: 0 }, { x: 6, y: 8 }), { dist: 10, mx: 3, my: 4 });
   assert.equal(zoomPercent({ x: 0, y: 0, k: 0.854 }), '85%');
+});
+
+test('detail appears as the map zooms in: building meta, then unit badges, then unit labels', () => {
+  assert.equal(showBuildingMeta(0.3), false);
+  assert.equal(showBuildingMeta(0.45), true);
+  assert.equal(showUnitBadges(0.55), false);
+  assert.equal(showUnitBadges(0.6), true);
+  assert.equal(showUnitLabels(0.79), false);
+  assert.equal(showUnitLabels(0.8), true);
+  assert.ok(showBuildingMeta(MIN_K) === false && showUnitLabels(MAX_K));
 });

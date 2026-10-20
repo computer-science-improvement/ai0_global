@@ -6,6 +6,7 @@ import {
   EVENT_ICON, PLATFORM_META, ROAD_META, STATE_META, ago, alertTone, alertTotal, isBadEvent, resourceTitle, usd,
 } from '../../lib/map-state';
 import { zoomPercent, type View } from '../../lib/map-view';
+import { Avatar } from './MapAvatar';
 
 // Spec 056 FR-003: the map's heads-up display — the top bar (minerals, runs, posts, what waits for you), the zoom
 // buttons, the event feed and the legend.
@@ -52,12 +53,12 @@ export function TopBar({ snap, phone, updatedAt, fast, alertsOpen, feedOpen, leg
         <span><b style={{ fontWeight: 600 }}>{usd(b.spentUsd)}</b>{b.capUsd != null && <span className="map-stat-label"> / {usd(b.capUsd)}</span>}</span>
         {b.capUsd != null && <span className={`map-meter ${tone}`} role="progressbar" aria-label="Spend today" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.min(100, b.pct ?? 0)}><i style={{ width: `${Math.min(100, b.pct ?? 0)}%` }} /></span>}
       </div>
-      <div className="map-stat map-hide-phone" title="Agent runs started today"><Icon name="play" size={14} /><span>{snap.totals.runsToday}</span><span className="map-stat-label">runs</span></div>
-      <div className="map-stat map-hide-phone" title="Posts published today"><Icon name="send" size={14} /><span>{snap.totals.postsToday}</span><span className="map-stat-label">posts</span></div>
+      <div className="map-stat map-hide-phone map-hide-narrow" title="Agent runs started today"><Icon name="play" size={14} /><span>{snap.totals.runsToday}</span><span className="map-stat-label">runs</span></div>
+      <div className="map-stat map-hide-phone map-hide-narrow" title="Posts published today"><Icon name="send" size={14} /><span>{snap.totals.postsToday}</span><span className="map-stat-label">posts</span></div>
       <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 10 }}>
         <span className="map-stat map-hide-phone" title={`Updated ${ago(new Date(updatedAt).toISOString(), now)}. The map refreshes every ${fast ? '5' : '30'} seconds.`}>
           <span className={`map-live-dot${stale ? ' is-stale' : ''}${fast && !stale ? ' is-fast' : ''}`} />
-          <span className="map-stat-label">{stale ? 'Offline' : `Updated ${ago(new Date(updatedAt).toISOString(), now)}`}</span>
+          <span className="map-stat-label map-hide-narrow">{stale ? 'Offline' : `Updated ${ago(new Date(updatedAt).toISOString(), now)}`}</span>
         </span>
         <button type="button" className={`map-alerts-btn${total ? (critical ? ' has-critical' : ' has-alerts') : ''}${bump ? ' is-bump' : ''}`} aria-pressed={alertsOpen}
           aria-label={total ? `${total} ${total === 1 ? 'thing waits' : 'things wait'} for you. Open the list.` : 'Nothing waits for you'} onClick={onAlerts}
@@ -86,14 +87,25 @@ export interface FeedProps {
   events: MapEvent[];
   /** The ids that arrived with the last poll (highlighted for a moment). */
   freshIds: ReadonlySet<string>;
-  snap: Pick<MapSnapshot, 'resources'>;
+  snap: Pick<MapSnapshot, 'resources' | 'units'>;
   onPick: (e: MapEvent) => void;
   onClose: () => void;
+}
+
+/** The unit's avatar with the kind of event as a small badge; an event with no unit on the map shows the event's icon alone. */
+function FeedAvatar({ event, unit }: { event: MapEvent; unit?: MapSnapshot['units'][number] }) {
+  const bad = isBadEvent(event.kind);
+  const badge = (
+    <span className="map-feed-badge" style={{ color: bad ? 'var(--color-danger)' : 'var(--color-ink-muted)' }}><Icon name={EVENT_ICON[event.kind]} size={unit ? 9 : 14} strokeWidth={unit ? 2.8 : 2} /></span>
+  );
+  if (!unit) return <span className="map-feed-icon" style={{ color: bad ? 'var(--color-danger)' : 'var(--color-ink-muted)' }}>{badge}</span>;
+  return <span className="map-feed-avatar"><Avatar handle={unit.handle} kind={unit.kind} size={28} />{badge}</span>;
 }
 
 export function FeedPanel({ events, freshIds, snap, onPick, onClose }: FeedProps) {
   const now = useNow(15_000);
   const titles = new Map(snap.resources.map((r) => [r.ref, resourceTitle(r)]));
+  const units = new Map(snap.units.map((u) => [u.handle, u]));
   return (
     <section className="map-hud map-feed" aria-label="Activity feed">
       <div className="map-drawer-grip" aria-hidden />
@@ -108,9 +120,7 @@ export function FeedPanel({ events, freshIds, snap, onPick, onClose }: FeedProps
             {events.map((e) => (
               <li key={e.id}>
                 <button type="button" className={`map-feed-row${isBadEvent(e.kind) ? ' is-bad' : ''}${freshIds.has(e.id) ? ' is-new' : ''}`} onClick={() => onPick(e)}>
-                  <span className="map-feed-icon" style={{ flex: 'none', width: 26, height: 26, borderRadius: 8, display: 'grid', placeItems: 'center', background: 'var(--color-surface-3)', color: isBadEvent(e.kind) ? 'var(--color-danger)' : 'var(--color-ink-muted)' }}>
-                    <Icon name={EVENT_ICON[e.kind]} size={14} />
-                  </span>
+                  <FeedAvatar event={e} unit={e.agent ? units.get(e.agent) : undefined} />
                   <span style={{ minWidth: 0 }}>
                     <span className="map-feed-text">{e.agent && <b style={{ fontWeight: 600 }}>@{e.agent} </b>}{e.text}</span>
                     <span className="map-feed-meta block">{[e.ref ? titles.get(e.ref) ?? e.ref : null, ago(e.at, now)].filter(Boolean).join(' · ')}</span>

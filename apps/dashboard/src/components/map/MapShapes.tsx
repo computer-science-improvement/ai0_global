@@ -157,11 +157,13 @@ export interface UnitProps {
   face: ReactNode;
   /** Shakes once (a new failure, spec 056 FR-004). */
   shaking?: boolean;
+  /** Draw the level and emoji badges (only when zoomed in enough to read them). */
+  badges?: boolean;
   children?: ReactNode;
 }
 
 /** A unit: its face in a ring coloured by its state, a tiny state glyph, a bob while it works. */
-export function UnitShape({ unit, pos, selected, label, onSelect, face, shaking, children }: UnitProps) {
+export function UnitShape({ unit, pos, selected, label, onSelect, face, shaking, badges, children }: UnitProps) {
   const st = STATE_META[unit.state];
   const text = `@${unit.handle}, ${kindLabel(unit.kind)}, ${stateLine(unit)}${unit.level != null ? `, level ${unit.level}` : ''}`;
   const isChild = unit.parentId != null;
@@ -182,6 +184,16 @@ export function UnitShape({ unit, pos, selected, label, onSelect, face, shaking,
           <circle r={6.5} style={{ fill: st.color }} />
           <g transform="translate(-4.5 -4.5)"><Icon name={st.icon} size={9} strokeWidth={2.8} /></g>
         </g>
+        {badges && unit.level != null && (
+          <g transform={`translate(${-UNIT_R + 2} ${-UNIT_R + 2})`} className="map-level-badge">
+            <circle r={6.4} /><text>{unit.level}</text>
+          </g>
+        )}
+        {badges && unit.emoji && (
+          <g transform={`translate(${-UNIT_R + 2} ${UNIT_R - 3})`} className="map-emoji-badge">
+            <circle r={6.4} /><text>{unit.emoji}</text>
+          </g>
+        )}
       </g>
       {label && <text y={UNIT_R + 15} className={`map-unit-label${isChild ? ' is-child' : ''}`}>@{clip(unit.handle, 16)}</text>}
       {children}

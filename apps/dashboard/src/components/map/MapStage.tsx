@@ -2,7 +2,7 @@ import { useMemo, type ReactNode } from 'react';
 import type { MapSnapshot } from '../../api/map';
 import type { MapLayout } from '../../lib/map-layout';
 import { alertsByRef, roadKey, isWorking } from '../../lib/map-state';
-import { showBuildingMeta, showUnitLabels } from '../../lib/map-view';
+import { showBuildingMeta, showUnitBadges, showUnitLabels } from '../../lib/map-view';
 import { BuildingShape, HqShape, MapDefs, RoadShape, TerritoryShape, UnitShape } from './MapShapes';
 import { UnitFace } from './MapAvatar';
 import type { MapViewport } from './useMapViewport';
@@ -81,7 +81,7 @@ export function MapStage({ snap, layout, viewport, selection, onSelect, overlay,
             const pos = layout.units[u.id];
             if (!pos) return null;
             return (
-              <UnitShape key={u.id} unit={u} pos={pos} label={showUnitLabels(view.k)} face={<UnitFace unit={u} />} shaking={isShaking?.(u.id)}
+              <UnitShape key={u.id} unit={u} pos={pos} label={showUnitLabels(view.k)} face={<UnitFace unit={u} />} shaking={isShaking?.(u.id)} badges={showUnitBadges(view.k)}
                 selected={selection?.type === 'unit' && selection.id === u.id} onSelect={() => onSelect({ type: 'unit', id: u.id })}>
                 {unitFx?.(u.id)}
               </UnitShape>

@@ -67,3 +67,5 @@ export const zoomPercent = (v: View): string => `${Math.round(v.k * 100)}%`;
 /** Labels (handles, titles) are drawn only when the map is zoomed in enough to read them. */
 export const showUnitLabels = (k: number): boolean => k >= 0.8;
 export const showBuildingMeta = (k: number): boolean => k >= 0.45;
+/** The level and emoji badges on a unit are drawn when they would be readable. */
+export const showUnitBadges = (k: number): boolean => k >= 0.6;

@@ -7,7 +7,7 @@ import {
   HEALTH_META, PLATFORM_META, ROAD_META, STATE_META, ago, alertTone, compactNumber, kindLabel, levelLine, modeLabel, resourceTitle, usd,
 } from '../../lib/map-state';
 import { parseNavTarget } from '../../nav/config';
-import { UnitFace } from './MapAvatar';
+import { Avatar, UnitFace } from './MapAvatar';
 
 // Spec 056 FR-003: the drawers behind a click — a building, a unit, a road, the list of what waits for the owner.
 // On a phone (< 640 px) the CSS turns them into bottom sheets.
@@ -135,7 +135,8 @@ export function BuildingDrawer({ snap, res, onClose, onPickUnit, onShow }: {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
             {here.map((u) => (
               <button key={u.id} type="button" className="map-alert-row" onClick={() => onPickUnit(u.id)} style={{ alignItems: 'center' }}>
-                <span style={{ flex: 1 }}>@{u.handle}</span><StateChip unit={u} />
+                <Avatar handle={u.handle} kind={u.kind} size={24} />
+                <span style={{ flex: 1, minWidth: 0, overflowWrap: 'anywhere' }}>@{u.handle}{u.level != null && <span className="text-micro" style={{ color: 'var(--color-ink-muted)' }}> · Lv {u.level}</span>}</span><StateChip unit={u} />
               </button>
             ))}
           </div>
@@ -165,6 +166,12 @@ export function UnitDrawer({ snap, unit, onClose, onPickBuilding }: { snap: MapS
           <circle r="20" fill="none" strokeWidth="3" style={{ stroke: st.color }} />
           <circle r="17.5" style={{ fill: 'var(--color-surface-2)' }} />
           <g transform="scale(1.6)"><UnitFace unit={unit} /></g>
+          {unit.emoji && (
+            <g transform="translate(13 14)">
+              <circle r="8.5" style={{ fill: 'var(--color-surface-2)', stroke: 'var(--color-hairline-strong)' }} />
+              <text textAnchor="middle" dominantBaseline="central" fontSize="10">{unit.emoji}</text>
+            </g>
+          )}
         </svg>
       }
       subtitle={<><span>@{unit.handle}</span><span>·</span><span>{kindLabel(unit.kind)}</span>{unit.level != null && <Badge tone="accent">Lv {unit.level}</Badge>}</>}
@@ -186,7 +193,7 @@ export function UnitDrawer({ snap, unit, onClose, onPickBuilding }: { snap: MapS
         ['Last run', unit.lastRunAt ? ago(unit.lastRunAt) : 'No runs yet'],
         ['Stands at', home ? <button key="h" type="button" className="link-accent" style={{ background: 'none', border: 0, padding: 0, cursor: 'pointer', font: 'inherit' }} onClick={() => onPickBuilding(home.ref)}>{resourceTitle(home)}</button> : 'Headquarters'],
         ['Works for', parent ? `@${parent.handle}` : null],
-        ['Level', unit.level != null ? `${unit.level} of 10` : null],
+        ['Level', unit.level != null ? `${unit.level} of 10${unit.level < 10 && unit.levelStats ? ` · score ${unit.levelStats.score}, the next level at ${unit.level * 10}` : ''}` : null],
       ]} />
       {unit.levelStats && (
         <p className="text-micro" style={{ margin: 0, color: 'var(--color-ink-muted)' }}>
