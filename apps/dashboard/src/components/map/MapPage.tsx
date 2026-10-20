@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from '@tanstack/react-router';
 import { useQuery } from '@tanstack/react-query';
 import { MAP_KEY, mapApi, type MapEvent, type MapSnapshot } from '../../api/map';
@@ -7,6 +7,7 @@ import { useMediaQuery } from '../../lib/useMediaQuery';
 import { layoutMap, type MapLayout } from '../../lib/map-layout';
 import { pollInterval } from '../../lib/map-diff';
 import { roadKey } from '../../lib/map-state';
+import { pastRoadCount } from '../../lib/map-links';
 import { AlertsDrawer, BuildingDrawer, InfraDrawer, RoadDrawer, UnitDrawer } from './MapDrawers';
 import { FeedPanel, Legend, TopBar, ZoomControls } from './MapHud';
 import { MapStage, anyWorking, sameSelection, type Selection } from './MapStage';
@@ -55,6 +56,7 @@ export function MapPage() {
   const [selection, setSelection] = useState<Selection | null>(null);
   const [feedUser, setFeedUser] = useState<boolean | null>(null);
   const [legendUser, setLegendUser] = useState<boolean | null>(null);
+  const [showPast, setShowPast] = useState(false);
   const feedOpen = feedUser ?? wide;
   const legendOpen = legendUser ?? wide;
 
@@ -63,6 +65,12 @@ export function MapPage() {
     if (s && phone) setFeedUser(false);
   }, [phone]);
   const close = useCallback(() => setSelection(null), []);
+  const togglePast = useCallback(() => setShowPast((on) => !on), []);
+  // Past links are drawn on request: when they are hidden (or a link was just broken), the drawer of a past road closes with its line.
+  useEffect(() => {
+    if (showPast) return;
+    setSelection((cur) => (cur?.type === 'road' && snap?.roads.find((r) => roadKey(r) === cur.key)?.past ? null : cur));
+  }, [showPast, snap]);
 
   const focusRef = useCallback((ref: string) => {
     const b = layout?.buildings[ref] ?? layout?.structures[ref];
@@ -102,7 +110,7 @@ export function MapPage() {
   return (
     <div className="map-root">
       <MapStage snap={snap} layout={layout} viewport={viewport} selection={selection} onSelect={select}
-        buildingFx={fx.buildingFx} unitFx={fx.unitFx} roadFx={fx.roadFx} isShaking={fx.isShaking} />
+        buildingFx={fx.buildingFx} unitFx={fx.unitFx} roadFx={fx.roadFx} isShaking={fx.isShaking} showPast={showPast} />
 
       {snap.resources.length === 0 && (
         <div className="map-empty">
@@ -120,6 +128,7 @@ export function MapPage() {
       <TopBar
         snap={snap} phone={phone} updatedAt={q.dataUpdatedAt || Date.now()} fast={anyWorking(snap)}
         bump={live.bump} alertsOpen={selection?.type === 'alerts'} feedOpen={feedOpen} legendOpen={legendOpen}
+        showPast={showPast} pastCount={pastRoadCount(snap.roads)} onPast={togglePast}
         onAlerts={() => select({ type: 'alerts' })}
         onFeed={() => { setFeedUser(!feedOpen); if (phone && !feedOpen) setSelection(null); }}
         onLegend={() => setLegendUser(!legendOpen)}
@@ -132,7 +141,7 @@ export function MapPage() {
       <ZoomControls view={viewport.view} onIn={viewport.zoomIn} onOut={viewport.zoomOut} onFit={viewport.fit} />
 
       {selection?.type === 'alerts' && <AlertsDrawer snap={snap} onClose={close} onShow={(ref) => { focusRef(ref); }} />}
-      {selectedBuilding && <BuildingDrawer snap={snap} res={selectedBuilding} onClose={close} onPickUnit={(id) => setSelection({ type: 'unit', id })} onShow={focusRef} onPickInfra={pickInfra} />}
+      {selectedBuilding && <BuildingDrawer snap={snap} res={selectedBuilding} onClose={close} onPickUnit={(id) => setSelection({ type: 'unit', id })} onShow={focusRef} onPickInfra={pickInfra} onPickBuilding={pickBuilding} />}
       {selectedUnit && <UnitDrawer snap={snap} unit={selectedUnit} onClose={close} onPickBuilding={pickBuilding} />}
       {selectedInfra && <InfraDrawer snap={snap} item={selectedInfra} onClose={close} onPickBuilding={pickBuilding} onShow={focusRef} />}
       {selectedRoad && <RoadDrawer snap={snap} road={selectedRoad} onClose={close} onPickBuilding={pickBuilding} />}

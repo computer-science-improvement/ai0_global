@@ -41,7 +41,7 @@ export function MapDefs() {
         <stop offset="0" style={{ stopColor: 'var(--color-surface-3)' }} />
         <stop offset="1" style={{ stopColor: 'var(--color-surface-2)' }} />
       </linearGradient>
-      {(['promo', 'repost', 'duplicate'] as const).map((k) => (
+      {(['promo', 'repost', 'duplicate', 'adapt'] as const).map((k) => (
         <marker key={k} id={`map-arrow-${k}`} viewBox="0 0 10 10" refX="8" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto-start-reverse">
           <path d="M 1 1 L 9 5 L 1 9 z" style={{ fill: ROAD_META[k].color }} />
         </marker>
@@ -288,16 +288,19 @@ export interface RoadProps {
 export function RoadShape({ road, from, to, selected, onSelect, children }: RoadProps) {
   const meta = ROAD_META[road.kind];
   const g = roadGeometry(from, to);
-  const width = 1.6 + Math.min(3.2, Math.log2(1 + road.count30d) * 0.7);
-  const label = `${meta.label} road, ${road.count30d} in 30 days${road.blocked ? ', promos stopped' : ''}`;
+  // Spec 058: a link with no traffic yet is a thin line; a past link (not linked any more) is faint with a ⊘.
+  const idle = road.count30d === 0 && !road.past;
+  const width = idle ? 1.3 : 1.6 + Math.min(3.2, Math.log2(1 + road.count30d) * 0.7);
+  const state = road.past ? ', not linked any more' : idle ? ', no posts yet' : '';
+  const label = `${meta.label} road, ${road.count30d} in 30 days${state}`;
   return (
-    <g className={`map-road-group${selected ? ' is-selected' : ''}${road.blocked ? ' is-blocked' : ''}`} role="button" tabIndex={0} aria-label={label} aria-pressed={selected}
+    <g className={`map-road-group${selected ? ' is-selected' : ''}${road.past ? ' is-past' : ''}${idle ? ' is-idle' : ''}`} role="button" tabIndex={0} aria-label={label} aria-pressed={selected}
       data-road={`${road.from}>${road.to}>${road.kind}`} onClick={onSelect} onKeyDown={onActivate(onSelect)} style={{ cursor: 'pointer', outline: 'none' }}>
       <title>{label}</title>
       <path d={g.d} className="map-road-hit" />
       <path d={g.d} className="map-road" strokeWidth={selected ? width + 1.2 : width} strokeDasharray={meta.dash || undefined}
         style={{ stroke: meta.color }} markerEnd={`url(#map-arrow-${road.kind})`} />
-      {road.blocked && (() => { const m = g.at(0.5); return (
+      {road.past && (() => { const m = g.at(0.5); return (
         <g transform={`translate(${m.x} ${m.y})`} style={{ color: 'var(--color-danger)' }} pointerEvents="none">
           <circle r={8} style={{ fill: 'var(--color-surface-2)', stroke: 'var(--color-danger)' }} strokeWidth={1.4} />
           <g transform="translate(-5 -5)"><Icon name="ban" size={10} strokeWidth={2.6} /></g>

@@ -32,12 +32,16 @@ export interface TopBarProps {
   legendOpen: boolean;
   /** The number of things that wait for you just went up (the counter bumps). */
   bump?: boolean;
+  /** Spec 058: past links (activity between resources no longer linked) are drawn on request. */
+  showPast?: boolean;
+  pastCount?: number;
+  onPast?: () => void;
   onAlerts: () => void;
   onFeed: () => void;
   onLegend: () => void;
 }
 
-export function TopBar({ snap, phone, updatedAt, fast, alertsOpen, feedOpen, legendOpen, bump, onAlerts, onFeed, onLegend }: TopBarProps) {
+export function TopBar({ snap, phone, updatedAt, fast, alertsOpen, feedOpen, legendOpen, bump, showPast, pastCount = 0, onPast, onAlerts, onFeed, onLegend }: TopBarProps) {
   const now = useNow(1000);
   const b = snap.budget;
   const total = alertTotal(snap.alerts);
@@ -65,6 +69,12 @@ export function TopBar({ snap, phone, updatedAt, fast, alertsOpen, feedOpen, leg
           title={total ? 'Things that wait for you' : 'Nothing waits for you'}>
           <Icon name="bell" size={15} />{total}
         </button>
+        {onPast && (
+          <button type="button" className="map-toggle-btn" aria-pressed={!!showPast} onClick={onPast}
+            title={showPast ? 'Hide the links that are not linked any more' : 'Also draw the links that are not linked any more (activity of the last 30 days), faint with a ⊘'}>
+            <Icon name="history" size={15} /><span className="map-hide-phone">{showPast ? 'Hide past links' : 'Show past links'}</span>{pastCount > 0 && <span className="map-stat-label">{pastCount}</span>}
+          </button>
+        )}
         <button type="button" className="map-icon-btn" aria-pressed={feedOpen} aria-label="Activity feed" title="Activity feed" onClick={onFeed}><Icon name="logs" size={16} /></button>
         <button type="button" className="map-icon-btn" aria-pressed={legendOpen} aria-label="Legend" title="Legend" onClick={onLegend}><Icon name="info" size={16} /></button>
       </div>
@@ -134,6 +144,13 @@ export function FeedPanel({ events, freshIds, snap, onPick, onClose }: FeedProps
   );
 }
 
+const LEGEND_ROAD_HELP = {
+  duplicate: 'Same network, Auto-duplicate: the network\'s Telegram posts are copied to the member',
+  adapt: 'Same network, Independent: the network\'s agent decides per post',
+  promo: 'The two may promote each other (you linked them)',
+  repost: 'A promo link whose traffic is reposts',
+} as const;
+
 export function Legend({ onClose }: { onClose: () => void }) {
   return (
     <section className="map-hud map-legend" aria-label="Legend">
@@ -152,14 +169,22 @@ export function Legend({ onClose }: { onClose: () => void }) {
           </span>
         ))}
       </div>
-      <div className="map-legend-sub">Roads</div>
+      <div className="map-legend-sub">Links (roads)</div>
       <div className="map-legend-grid">
-        {(Object.keys(ROAD_META) as Array<keyof typeof ROAD_META>).map((k) => (
-          <span key={k} className="map-legend-item">
+        {(['duplicate', 'adapt', 'promo', 'repost'] as const).map((k) => (
+          <span key={k} className="map-legend-item" title={LEGEND_ROAD_HELP[k]}>
             <svg width="26" height="8" aria-hidden><line x1="1" y1="4" x2="25" y2="4" strokeWidth="2.4" strokeLinecap="round" strokeDasharray={ROAD_META[k].dash || undefined} style={{ stroke: ROAD_META[k].color }} /></svg>
-            {ROAD_META[k].label}
+            {k === 'duplicate' ? 'Copy (auto)' : k === 'adapt' ? 'Copy (agent)' : ROAD_META[k].label}
           </span>
         ))}
+        <span className="map-legend-item" style={{ gridColumn: '1 / -1', color: 'var(--color-ink-muted)' }} title="A thin line is a link with no posts yet">
+          <svg width="26" height="8" aria-hidden><line x1="1" y1="4" x2="25" y2="4" strokeWidth="1.2" strokeLinecap="round" style={{ stroke: ROAD_META.adapt.color }} opacity="0.6" /></svg>
+          Thin: linked, no posts yet
+        </span>
+        <span className="map-legend-item" style={{ gridColumn: '1 / -1', color: 'var(--color-ink-muted)' }} title="Shown only with Show past links">
+          <svg width="26" height="14" aria-hidden><line x1="1" y1="7" x2="25" y2="7" strokeWidth="2.4" strokeLinecap="round" strokeDasharray="6 5" style={{ stroke: ROAD_META.promo.color }} opacity="0.35" /></svg>
+          ⊘ Past link: not linked any more
+        </span>
       </div>
       <div className="map-legend-sub">Buildings</div>
       <div className="map-legend-grid">

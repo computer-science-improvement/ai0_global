@@ -9,7 +9,8 @@ import {
 import { PLATFORM_SECTION_NAME } from '../../lib/map-layout';
 import { parseNavTarget } from '../../nav/config';
 import { Avatar, UnitFace } from './MapAvatar';
-import { NetworkPicker, RoadActions } from './MapActions';
+import { RoadActions } from './MapActions';
+import { LinksSection } from './MapLinks';
 
 // Spec 056 FR-003: the drawers behind a click — a building, a unit, a road, a connection (bot, session, Telegraph),
 // the list of what waits for the owner.
@@ -111,8 +112,10 @@ function StateChip({ unit }: { unit: Pick<MapUnit, 'state'> }) {
   return <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, color: st.color, fontWeight: 600 }}><Icon name={st.icon} size={13} strokeWidth={2.6} />{st.label}</span>;
 }
 
-export function BuildingDrawer({ snap, res, onClose, onPickUnit, onShow, onPickInfra }: {
+export function BuildingDrawer({ snap, res, onClose, onPickUnit, onShow, onPickInfra, onPickBuilding }: {
   snap: MapSnapshot; res: MapResource; onClose: () => void; onPickUnit: (id: string) => void; onShow: (ref: string) => void; onPickInfra?: (id: string) => void;
+  /** Select another building (the chips of the Links section). */
+  onPickBuilding?: (ref: string) => void;
 }) {
   const bots = (snap.infra ?? []).filter((i) => i.serves.includes(res.ref));
   const meta = PLATFORM_META[res.platform];
@@ -120,7 +123,7 @@ export function BuildingDrawer({ snap, res, onClose, onPickUnit, onShow, onPickI
   const network = snap.networks.find((n) => n.id === res.groupId);
   const here = snap.units.filter((u) => u.homeRef === res.ref && u.parentId == null);
   const alerts = snap.alerts.filter((a) => a.ref === res.ref);
-  const roads = snap.roads.filter((r) => r.from === res.ref || r.to === res.ref);
+  const roads = snap.roads.filter((r) => !r.past && (r.from === res.ref || r.to === res.ref));
   return (
     <MapDrawer
       title={resourceTitle(res)}
@@ -140,7 +143,7 @@ export function BuildingDrawer({ snap, res, onClose, onPickUnit, onShow, onPickI
         ['Connection', res.healthDetail],
         ['Run by', res.agent ? `@${res.agent}` : 'No agent yet'],
       ]} />
-      <Section title="Network"><NetworkPicker snap={snap} res={res} /></Section>
+      <Section title="Links"><LinksSection snap={snap} res={res} onPick={(ref) => (onPickBuilding ?? onShow)(ref)} /></Section>
       <Section title="Waiting here"><AlertRows alerts={alerts} /></Section>
       {here.length > 0 && (
         <Section title="Agents">
@@ -222,58 +225,67 @@ export function UnitDrawer({ snap, unit, onClose, onPickBuilding }: { snap: MapS
   );
 }
 
-/** What a road is and where it is controlled: roads are activity of the last 30 days, not a setting. */
-const ROAD_HELP: Record<MapRoad['kind'], { what: string; control: string }> = {
-  promo: {
-    what: 'The first channel published a cross-promo post that points to the second. A promo goes out only after you approve the manager\'s cross-promo directive, or as part of a channel launch.',
-    control: 'Stop promos between the two below (or reject the next cross-promo directive). To add one, ask the manager in the chat to promote one channel in another; it comes to you as a directive.',
-  },
-  repost: {
-    what: 'The second resource published a repost or an adapted copy of a post of the first one.',
-    control: 'Promo reposts stop with the promos. Adapted copies follow the network: switch it to Independent or take the resource out of the network.',
-  },
-  duplicate: {
-    what: 'The same post was copied to the second resource, because the network mode is Auto-duplicate or the plan duplicated this post.',
-    control: 'Switch the network to Independent (its agent then decides per post), or take the resource out of the network.',
-  },
-};
+/** What a road is (spec 058): a line is a link that exists now; breaking it makes it disappear at once. */
+function roadHelp(road: MapRoad): { what: string; control: string } {
+  if (road.past) {
+    return {
+      what: road.blocked
+        ? 'You unlinked this pair. This is what went between the two in the last 30 days; the line is only shown because you asked for past links.'
+        : 'The two are not linked any more. This is what went between them in the last 30 days; the line is only shown because you asked for past links.',
+      control: road.relation === 'network' ? 'To copy posts again, put the resource back in the network.' : 'Link them again to let them promote each other; the manager may then propose promos again, each one still needs your approval.',
+    };
+  }
+  if (road.kind === 'duplicate') {
+    return { what: 'Both are in the same network and its mode is Auto-duplicate: the network\'s Telegram posts are copied to the second one.', control: 'Take the resource out of the network to break the link, or switch the network to Independent (its agent then decides per post).' };
+  }
+  if (road.kind === 'adapt') {
+    return { what: 'Both are in the same network and it is Independent: the network\'s agent decides per post whether to copy, adapt or write a unique post for the second one.', control: 'Take the resource out of the network to break the link. The line stays while both are members, even when nothing was copied yet.' };
+  }
+  return {
+    what: 'The two may promote each other: the manager proposes cross-promos and reposts between them, and each one still needs your approval (approving one for an unlinked pair links it).',
+    control: 'Unlink them to break the line. Planned promos of the pair are skipped and the manager will not propose the pair again until you link it again.',
+  };
+}
 
 export function RoadDrawer({ snap, road, onClose, onPickBuilding }: { snap: MapSnapshot; road: MapRoad; onClose: () => void; onPickBuilding: (ref: string) => void }) {
   const meta = ROAD_META[road.kind];
-  const help = ROAD_HELP[road.kind];
+  const help = roadHelp(road);
   const a = snap.resources.find((r) => r.ref === road.from);
   const b = snap.resources.find((r) => r.ref === road.to);
   const nameOf = (r: MapResource | undefined, ref: string) => (r ? resourceTitle(r) : ref);
   const agent = a?.agent;
-  const verb = road.kind === 'promo' ? 'promos' : road.kind === 'repost' ? 'reposts' : 'duplicated posts';
+  const copy = road.kind === 'duplicate' || road.kind === 'adapt';
+  const verb = road.kind === 'promo' ? 'promos' : road.kind === 'repost' ? 'reposts' : road.kind === 'duplicate' ? 'duplicated posts' : 'adapted posts';
   return (
     <MapDrawer
       title={`${nameOf(a, road.from)} → ${nameOf(b, road.to)}`}
-      lead={<svg width="38" height="38" viewBox="0 0 38 38" aria-hidden style={{ flex: 'none' }}><line x1="4" y1="19" x2="34" y2="19" strokeWidth="3.5" strokeLinecap="round" strokeDasharray={meta.dash || undefined} style={{ stroke: meta.color }} /></svg>}
-      subtitle={<><Badge tone="neutral">{meta.label}</Badge>{road.blocked && <Badge tone="danger">Promos stopped</Badge>}</>}
+      lead={<svg width="38" height="38" viewBox="0 0 38 38" aria-hidden style={{ flex: 'none', opacity: road.past ? 0.5 : 1 }}><line x1="4" y1="19" x2="34" y2="19" strokeWidth="3.5" strokeLinecap="round" strokeDasharray={meta.dash || undefined} style={{ stroke: meta.color }} /></svg>}
+      subtitle={<>
+        <Badge tone="neutral">{copy ? 'Copy link' : 'Promo link'}</Badge><Badge tone="neutral">{meta.label}</Badge>
+        {road.past && <Badge tone={road.blocked ? 'danger' : 'warning'}>{road.blocked ? 'Unlinked by you' : 'Not linked any more'}</Badge>}
+      </>}
       onClose={onClose}
     >
+      {road.past && <p className="text-caption" style={{ margin: 0, color: 'var(--color-warning)' }}>Not linked any more — traffic from the last 30 days.</p>}
       <Facts rows={[
-        [`Last 30 days`, `${road.count30d} ${road.count30d === 1 ? verb.replace(/s$/, '') : verb}`],
-        ['Last one', road.lastAt ? ago(road.lastAt) : '—'],
-        ['Joined through links', road.joins30d != null ? `${road.joins30d} subscribers` : road.kind === 'promo' ? 'Not tracked' : null],
+        ['Last 30 days', road.count30d > 0 ? `${road.count30d} ${road.count30d === 1 ? verb.replace(/s$/, '') : verb}` : 'No posts yet'],
+        ['Last one', road.lastAt ? ago(road.lastAt) : null],
+        ['Linked since', !road.past && road.linkedAt ? new Date(road.linkedAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) : null],
+        ['Joined through links', road.joins30d != null ? `${road.joins30d} subscribers` : road.kind === 'promo' && !road.past ? 'Not tracked' : null],
       ]} />
       <Section title="What this line is">
         <p className="text-caption" style={{ margin: 0 }}>{help.what}</p>
-        <p className="text-micro" style={{ margin: '6px 0 0', color: 'var(--color-ink-muted)' }}>
-          A line is past activity, not a setting: it disappears after 30 days without a new post of this kind.
-        </p>
       </Section>
-      <Section title="Change it">
+      <Section title={road.past ? 'Link again' : 'Break the link'}>
         <p className="text-caption" style={{ margin: '0 0 8px' }}>{help.control}</p>
         <RoadActions snap={snap} road={road} />
       </Section>
       <div className="map-links">
         <button type="button" className="map-link" onClick={() => onPickBuilding(road.from)}><Icon name="send" size={14} />{nameOf(a, road.from)}</button>
         <button type="button" className="map-link" onClick={() => onPickBuilding(road.to)}><Icon name="download" size={14} />{nameOf(b, road.to)}</button>
-        {road.kind === 'promo' && <LinkChip icon="agents" to="/app/agents/$handle" params={{ handle: 'manager' }} search={{ tab: 'directives' }}>Directives</LinkChip>}
-        {agent && road.kind === 'promo' && <LinkChip icon="megaphone" to="/app/agents/$handle" params={{ handle: agent }} search={{ tab: 'promo' }}>Promo plan</LinkChip>}
-        {agent && road.kind !== 'promo' && <LinkChip icon="logs" to="/app/agents/$handle" params={{ handle: agent }} search={{ tab: 'playbook' }}>Playbook</LinkChip>}
+        {!copy && <LinkChip icon="agents" to="/app/agents/$handle" params={{ handle: 'manager' }} search={{ tab: 'directives' }}>Directives</LinkChip>}
+        {agent && !copy && <LinkChip icon="megaphone" to="/app/agents/$handle" params={{ handle: agent }} search={{ tab: 'promo' }}>Promo plan</LinkChip>}
+        {agent && copy && <LinkChip icon="logs" to="/app/agents/$handle" params={{ handle: agent }} search={{ tab: 'playbook' }}>Playbook</LinkChip>}
       </div>
     </MapDrawer>
   );

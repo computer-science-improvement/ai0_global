@@ -26,8 +26,8 @@ test('every unit state has a label, a colour token and a glyph; the working ones
 test('the lookup tables cover every platform, health, road kind and event kind', () => {
   assert.deepEqual(Object.keys(PLATFORM_META).sort(), ['facebook', 'instagram', 'telegram', 'threads', 'tiktok', 'youtube']);
   assert.deepEqual(Object.keys(HEALTH_META).sort(), ['broken', 'ok', 'unknown', 'warning']);
-  assert.deepEqual(Object.keys(ROAD_META).sort(), ['duplicate', 'promo', 'repost']);
-  assert.equal(Object.keys(EVENT_ICON).length, 11);
+  assert.deepEqual(Object.keys(ROAD_META).sort(), ['adapt', 'duplicate', 'promo', 'repost']);
+  assert.equal(Object.keys(EVENT_ICON).length, 14);
   assert.equal(isBadEvent('run_failed'), true);
   assert.equal(isBadEvent('post_published'), false);
 });

@@ -29,11 +29,11 @@ test('every resource gets a building and every unit a place', () => {
 test('sections: the largest network first, then one per platform outside a network, then the connections on a row of their own; none overlapping', () => {
   const l = layoutMap(input());
   assert.deepEqual(l.territories.map((t) => t.id), [
-    'g-tech', 'g-food', 'g-space', platformSectionId('telegram'), platformSectionId('instagram'),
+    'g-tech', 'g-food', 'g-space', platformSectionId('telegram'), platformSectionId('instagram'), platformSectionId('facebook'),
     infraSectionId('bot'), infraSectionId('mtproto'), infraSectionId('telegraph'),
   ]);
   assert.deepEqual(l.territories.slice(3).map((t) => [t.name, t.kind]), [
-    ['Telegram channels', 'platform'], ['Instagram', 'platform'], ['Telegram bots', 'infra'], ['MTProto sessions', 'infra'], ['Telegraph accounts', 'infra'],
+    ['Telegram channels', 'platform'], ['Instagram', 'platform'], ['Facebook pages', 'platform'], ['Telegram bots', 'infra'], ['MTProto sessions', 'infra'], ['Telegraph accounts', 'infra'],
   ]);
   const lastResourceBottom = Math.max(...l.territories.filter((t) => t.kind !== 'infra').map((t) => t.y + t.h));
   for (const t of l.territories.filter((x) => x.kind === 'infra')) assert.ok(t.y >= lastResourceBottom, `${t.id} below every channel section`);

@@ -57,7 +57,9 @@
 .map-road-group:hover .map-road, .map-road-group.is-selected .map-road { opacity: 1; }
 .map-service-line { fill: none; stroke: var(--color-ink-muted); stroke-width: 1.4; stroke-dasharray: 1 5; stroke-linecap: round; opacity: 0.85; pointer-events: none; }
 .map-service-line.is-mtproto { stroke: var(--color-chart-5); stroke-dasharray: 4 4; }
-.map-road-group.is-blocked .map-road { opacity: 0.3; }
+.map-road-group.is-past .map-road { opacity: 0.28; }
+.map-road-group.is-past:hover .map-road, .map-road-group.is-past.is-selected .map-road { opacity: 0.7; }
+.map-road-group.is-idle .map-road { opacity: 0.5; }
 .map-structure.is-off .map-building-title { fill: var(--color-ink-muted); }
 .map-road-hit { fill: none; stroke: transparent; stroke-width: 18px; cursor: pointer; }
 
@@ -163,6 +165,28 @@
   .map-drawer { z-index: 9; height: auto; }
   .map-drawer-grip { display: block; width: 36px; height: 4px; border-radius: 2px; background: var(--color-hairline-strong); margin: 8px auto 0; flex: none; }
 }
+
+/* ── links (spec 058): chips, the picker, link mode ─────────────────────── */
+.map-subhead { margin: 0; font-size: 12px; font-weight: 600; color: var(--color-ink-muted); letter-spacing: 0.02em; }
+.map-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.map-chip { display: inline-flex; align-items: stretch; border: 1px solid var(--color-hairline-strong); border-radius: var(--radius-pill); background: var(--color-surface-3); overflow: hidden; max-width: 100%; }
+.map-chip-main, .map-chip-x { display: inline-flex; align-items: center; gap: 6px; border: 0; background: none; color: var(--color-ink); font: inherit; font-size: 12.5px; cursor: pointer; padding: 4px 9px; }
+.map-chip-main { min-width: 0; }
+.map-chip-main:hover { background: var(--color-surface-2); }
+.map-chip-text { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 150px; }
+.map-chip-x { padding: 4px 7px; border-left: 1px solid var(--color-hairline-strong); color: var(--color-ink-muted); }
+.map-chip-x:hover { color: var(--color-danger); background: var(--color-danger-soft); }
+.map-pick-list { max-height: min(52vh, 420px); overflow-y: auto; overscroll-behavior: contain; display: flex; flex-direction: column; gap: 2px; padding-right: 2px; }
+.map-pick-row { display: flex; align-items: center; gap: 9px; padding: 7px 8px; border-radius: var(--radius-md); cursor: pointer; font-size: 13px; }
+.map-pick-row:hover { background: var(--color-surface-3); }
+.map-pick-row.is-checked { background: color-mix(in srgb, var(--color-accent) 9%, transparent); }
+.map-pick-row.is-disabled { opacity: 0.55; cursor: not-allowed; }
+.map-pick-row input { accent-color: var(--color-accent); flex: none; }
+.map-pick-title { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.map-pick-meta { display: inline-flex; align-items: center; gap: 6px; flex: none; }
+.map-toggle-btn { display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 10px; border-radius: var(--radius-md); border: 1px solid var(--color-hairline-strong); background: var(--color-surface-3); color: var(--color-ink); font-size: 13px; cursor: pointer; white-space: nowrap; }
+.map-toggle-btn:hover { background: var(--color-surface-2); border-color: var(--color-ink-dim); }
+.map-toggle-btn[aria-pressed='true'] { border-color: var(--color-accent); color: var(--color-accent); }
 
 /* ── keyframes ───────────────────────────────────────────────────────────── */
 @keyframes map-pulse { 0% { transform: scale(0.9); opacity: 0.95; } 100% { transform: scale(2.1); opacity: 0; } }

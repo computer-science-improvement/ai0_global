@@ -21,6 +21,7 @@ const RESOURCES: DemoResource[] = [
   { ref: 'telegram:@movies_ua', platform: 'telegram', title: 'Movies', followers: 6700, group: null },
   { ref: 'telegram:@gaming_ua', platform: 'telegram', title: 'Gaming', followers: 3400, group: null },
   { ref: 'instagram:ig-solo', platform: 'instagram', title: 'solo.shop', followers: 1200, group: null },
+  { ref: 'facebook:fb-old', platform: 'facebook', title: 'Old test page', followers: 310, group: null },
 ];
 
 const INFRA: MapInfra[] = [
@@ -91,13 +92,29 @@ export function demoSnapshot(tick = 0, now: Date = new Date('2026-10-20T12:00:00
     mode: (['live', 'live', 'approve', 'shadow', 'live', 'approve', 'live', 'off', 'live', 'shadow', 'live', 'approve'] as const)[i % 12],
   }));
 
+  // Roads are the current links (spec 058): the networks' copy links, the promo links the owner made, and — on request — past ones.
+  const road = (r: Partial<MapRoad> & Pick<MapRoad, 'from' | 'to' | 'kind'>): MapRoad => ({
+    count30d: 0, lastAt: null, joins30d: null, relation: 'promo', past: false, linkedAt: null, blocked: false, ...r,
+  });
+  const copy = (from: string, to: string, kind: 'duplicate' | 'adapt', count30d: number, minAgo: number | null) =>
+    road({ from, to, kind, relation: 'network', count30d, lastAt: minAgo == null ? null : at(minAgo) });
   const roads: MapRoad[] = [
-    { from: 'telegram:@ai0_global', to: 'instagram:ig-tech', kind: 'promo', count30d: 9, lastAt: at(180), joins30d: 41 },
-    { from: 'instagram:ig-tech', to: 'telegram:@ai0_global', kind: 'promo', count30d: 4, lastAt: at(900), joins30d: null },
-    { from: 'telegram:@recipes_ua', to: 'instagram:ig-food', kind: 'repost', count30d: 15, lastAt: at(60), joins30d: null },
-    { from: 'telegram:@recipes_ua', to: 'tiktok:tt-food', kind: 'duplicate', count30d: 6, lastAt: at(300), joins30d: null },
-    { from: 'telegram:@ai0_global', to: 'telegram:@space_ua', kind: 'promo', count30d: 2, lastAt: at(2600), joins30d: 7 },
-    { from: 'telegram:@movies_ua', to: 'telegram:@gaming_ua', kind: 'promo', count30d: 3, lastAt: at(1500), joins30d: null, blocked: true },
+    // copy links: an Independent network (Tech & Science; Threads is a member with no copies yet), an Auto-duplicate one (Food)
+    copy('telegram:@ai0_global', 'instagram:ig-tech', 'adapt', 12, 60),
+    copy('telegram:@ai0_global', 'facebook:fb-tech', 'adapt', 8, 240),
+    copy('telegram:@ai0_global', 'threads:th-tech', 'adapt', 0, null),
+    copy('telegram:@ai0_global', 'tiktok:tt-tech', 'adapt', 3, 1500),
+    copy('telegram:@recipes_ua', 'instagram:ig-food', 'duplicate', 15, 60),
+    copy('telegram:@recipes_ua', 'tiktok:tt-food', 'duplicate', 6, 300),
+    // promo links: with traffic, a repost link, and a pair linked a moment ago with no traffic yet
+    road({ from: 'telegram:@ai0_global', to: 'instagram:ig-tech', kind: 'promo', count30d: 13, lastAt: at(180), joins30d: 41, linkedAt: at(60 * 24 * 20) }),
+    road({ from: 'telegram:@ai0_global', to: 'telegram:@space_ua', kind: 'promo', count30d: 2, lastAt: at(2600), joins30d: 7, linkedAt: at(60 * 24 * 9) }),
+    road({ from: 'telegram:@recipes_ua', to: 'telegram:@movies_ua', kind: 'repost', count30d: 5, lastAt: at(500), linkedAt: at(60 * 24 * 12) }),
+    road({ from: 'instagram:ig-solo', to: 'telegram:@movies_ua', kind: 'promo', linkedAt: at(4) }),
+    // past links: a pair the owner unlinked, an old pair nobody unlinked, a resource that left the Food network
+    road({ from: 'telegram:@movies_ua', to: 'telegram:@gaming_ua', kind: 'promo', count30d: 3, lastAt: at(1500), past: true, blocked: true }),
+    road({ from: 'telegram:@gaming_ua', to: 'instagram:ig-solo', kind: 'promo', count30d: 2, lastAt: at(3200), past: true }),
+    road({ from: 'telegram:@recipes_ua', to: 'facebook:fb-old', kind: 'duplicate', relation: 'network', count30d: 4, lastAt: at(2000), past: true }),
   ];
 
   const events: MapEvent[] = [];
@@ -115,6 +132,8 @@ export function demoSnapshot(tick = 0, now: Date = new Date('2026-10-20T12:00:00
   }
   ev('slot:base:approved', 40, 'post_approved', 'recipes_ua', 'telegram:@recipes_ua', 'you approved "Borscht, the quick way"');
   ev('dir:base', 95, 'directive', 'ai0_global', 'telegram:@ai0_global', 'received a cross promo directive');
+  ev('link:base:1', 25, 'link_made', null, 'instagram:ig-solo', 'you linked solo.shop and Movies', 'telegram:@movies_ua');
+  ev('link:base:2', 70, 'network_left', null, 'facebook:fb-old', 'Old test page left Food');
   events.sort((a, b) => (a.at < b.at ? 1 : a.at > b.at ? -1 : 0));
 
   return {

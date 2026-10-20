@@ -2,6 +2,7 @@ import { useMemo, type ReactNode } from 'react';
 import type { MapSnapshot } from '../../api/map';
 import type { MapLayout } from '../../lib/map-layout';
 import { alertsByRef, roadKey, isWorking } from '../../lib/map-state';
+import { visibleRoads } from '../../lib/map-links';
 import { showBuildingMeta, showUnitBadges, showUnitLabels } from '../../lib/map-view';
 import { BuildingShape, HqShape, MapDefs, RoadShape, ServiceLine, StructureShape, TerritoryShape, UnitShape } from './MapShapes';
 import { UnitFace } from './MapAvatar';
@@ -30,10 +31,12 @@ export interface MapStageProps {
   unitFx?: (id: string) => ReactNode;
   isShaking?: (id: string) => boolean;
   roadFx?: (key: string) => ReactNode;
+  /** Spec 058: also draw the past links (activity of the last 30 days between resources no longer linked). */
+  showPast?: boolean;
 }
 
 /** The SVG of the network map: territories, headquarters, roads, buildings, units — inside a pan / zoom transform. */
-export function MapStage({ snap, layout, viewport, selection, onSelect, overlay, buildingFx, unitFx, isShaking, roadFx }: MapStageProps) {
+export function MapStage({ snap, layout, viewport, selection, onSelect, overlay, buildingFx, unitFx, isShaking, roadFx, showPast }: MapStageProps) {
   const { view, size, animated, dragging } = viewport;
   const beacons = useMemo(() => alertsByRef(snap.alerts), [snap.alerts]);
   const infra = snap.infra ?? [];
@@ -61,7 +64,7 @@ export function MapStage({ snap, layout, viewport, selection, onSelect, overlay,
           {layout.territories.map((t) => <TerritoryShape key={t.id} t={t} />)}
           <HqShape rect={layout.hq} />
 
-          {snap.roads.map((r) => {
+          {visibleRoads(snap.roads, !!showPast).map((r) => {
             const a = layout.buildings[r.from];
             const b = layout.buildings[r.to];
             if (!a || !b) return null;

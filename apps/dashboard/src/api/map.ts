@@ -10,11 +10,14 @@ export type MapPlatform = 'telegram' | 'instagram' | 'facebook' | 'threads' | 't
 export type MapAgentKind = 'manager' | 'builder' | 'orchestrator' | 'planner' | 'ideator' | 'idea_reviewer' | 'executor' | 'reviewer';
 export type MapMode = 'off' | 'shadow' | 'approve' | 'live';
 export type MapHealth = 'ok' | 'warning' | 'broken' | 'unknown';
-export type RoadKind = 'promo' | 'repost' | 'duplicate';
+/** A copy road of a network is `duplicate` (Auto-duplicate) or `adapt` (Independent); a promo road is `promo`, or `repost` when all its traffic is reposts. */
+export type RoadKind = 'promo' | 'repost' | 'duplicate' | 'adapt';
+/** What a road means (spec 058): the network's copy link, or a promo link the owner made. */
+export type RoadRelation = 'network' | 'promo';
 
 export type MapEventKind =
   | 'run_started' | 'run_finished' | 'run_failed' | 'post_published' | 'post_failed' | 'post_approved' | 'post_rejected' | 'promo'
-  | 'directive' | 'launch_started' | 'launch_graduated';
+  | 'directive' | 'launch_started' | 'launch_graduated' | 'link_made' | 'link_broken' | 'network_left';
 
 /** How a network's resources share posts: each its own, or the Telegram posts copied to all (legacy auto-duplicate). */
 export type MapNetworkMode = 'independent' | 'legacy_duplicate';
@@ -43,9 +46,17 @@ export interface MapUnit {
   level: number | null; levelStats: LevelStats | null;
 }
 
+/**
+ * A road is a current link (spec 058): the network's copy link (anchor → member) or a promo link. `count30d` is the traffic
+ * of the last 30 days, 0 for a link with no traffic yet. A `past` road is activity of the last 30 days between two
+ * resources that are not linked any more; the map draws it only on request. The three new fields are absent from an older server.
+ */
 export interface MapRoad {
   from: string; to: string; kind: RoadKind; count30d: number; lastAt: string | null; joins30d: number | null;
-  /** The owner blocked promos between the two: the line is history, no new promo goes out. */
+  relation?: RoadRelation;
+  past?: boolean;
+  linkedAt?: string | null;
+  /** A past promo road the owner broke: the manager does not propose the pair until it is linked again. */
   blocked?: boolean;
 }
 
@@ -79,7 +90,7 @@ export function useSetResourceNetwork() {
   return useMutation({
     meta: { silentError: true },
     mutationFn: (b: { ref: string; groupId: string | null }) =>
-      api<{ ref: string; groupId: string | null; groupName: string | null }>('/api/map/resource-network', { method: 'POST', body: JSON.stringify(b) }),
+      api<{ ref: string; groupId: string | null; groupName: string | null; canceled?: number }>('/api/map/resource-network', { method: 'POST', body: JSON.stringify(b) }),
     onSuccess: () => {
       void qc.invalidateQueries({ queryKey: MAP_KEY });
       void qc.invalidateQueries({ queryKey: ['meta-account-groups'] });
@@ -95,5 +106,33 @@ export function useSetPromoBlock() {
     mutationFn: (b: { a: string; b: string; blocked: boolean }) =>
       api<{ a: string; b: string; blocked: boolean; canceled: number }>('/api/map/promo-block', { method: 'POST', body: JSON.stringify(b) }),
     onSuccess: () => void qc.invalidateQueries({ queryKey: MAP_KEY }),
+  });
+}
+
+/** Spec 058: link a resource with others and break its links (promo links, both ways). Returns what actually changed. */
+export interface SetLinksBody { ref: string; add: string[]; remove: string[] }
+export interface SetLinksResult { ref: string; linked: string[]; unlinked: string[]; canceled: number }
+export function useSetLinks() {
+  const qc = useQueryClient();
+  return useMutation({
+    meta: { silentError: true },
+    mutationFn: (b: SetLinksBody) => api<SetLinksResult>('/api/map/links', { method: 'POST', body: JSON.stringify(b) }),
+    onSuccess: () => void qc.invalidateQueries({ queryKey: MAP_KEY }),
+  });
+}
+
+/** Spec 058: put several resources in a network and take several out. Partial success: each ref has its own result. */
+export interface MemberResult { ref: string; ok: boolean; error?: string }
+export interface SetMembersBody { groupId: string; add: string[]; remove: string[] }
+export interface SetMembersResult { groupId: string; groupName: string; results: MemberResult[]; canceled: number }
+export function useSetNetworkMembers() {
+  const qc = useQueryClient();
+  return useMutation({
+    meta: { silentError: true },
+    mutationFn: (b: SetMembersBody) => api<SetMembersResult>('/api/map/network-members', { method: 'POST', body: JSON.stringify(b) }),
+    onSuccess: () => {
+      void qc.invalidateQueries({ queryKey: MAP_KEY });
+      void qc.invalidateQueries({ queryKey: ['meta-account-groups'] });
+    },
   });
 }

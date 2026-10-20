@@ -6,12 +6,16 @@ import { useConfirm } from '../ui/ConfirmDialog';
 import { errorText } from '../agents/NetworkUi';
 import { useSetNetworkMode } from '../../api/network';
 import { useCreateMetaAccountGroup, useMetaAccountGroups } from '../../api/meta-accounts';
-import { useSetPromoBlock, useSetResourceNetwork, type MapResource, type MapRoad, type MapSnapshot } from '../../api/map';
+import { useSetLinks, useSetResourceNetwork, type MapResource, type MapRoad, type MapSnapshot } from '../../api/map';
 import { PLATFORM_META, resourceTitle } from '../../lib/map-state';
 import { PLATFORM_SECTION_NAME } from '../../lib/map-layout';
+import { UNLINK_HELP, plannedPromos } from '../../lib/map-links';
 
-// Spec 056 follow-up: what the owner changes from the map — a resource's network, a promo pair, a network's mode.
+// Spec 056 follow-up and 058: what the owner changes from the map — a resource's network, a promo link, a network's mode.
 // Each change asks first and says what follows from it.
+
+/** How many planned copies a break skipped, for a toast. */
+const copiesSkipped = (n: number): string => (n > 0 ? ` · ${n} planned ${n === 1 ? 'copy' : 'copies'} skipped` : '');
 
 const NEW = '__new__';
 const NONE = '__none__';
@@ -50,7 +54,7 @@ export function NetworkPicker({ snap, res }: { snap: MapSnapshot; res: MapResour
           <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
             {isAnchor && <div className="callout-warning"><strong>This is the network's Telegram channel: the network's agent and its playbook are anchored on it.</strong></div>}
             <p className="text-micro" style={{ margin: 0, color: 'var(--color-ink-muted)' }}>
-              The network's posts are no longer copied or adapted to it and it moves to the {PLATFORM_SECTION_NAME[res.platform]} section. You can put it back any time.
+              The line disappears: the network's posts are no longer copied or adapted to it, copies already planned for it are skipped, and it moves to the {PLATFORM_SECTION_NAME[res.platform]} section. You can put it back any time.
             </p>
           </div>
         ),
@@ -58,7 +62,7 @@ export function NetworkPicker({ snap, res }: { snap: MapSnapshot; res: MapResour
     if (!ok) return false;
     try {
       const r = await setNetwork.mutateAsync({ ref: res.ref, groupId });
-      toast.success(r.groupName ? `${title} → ${r.groupName}` : `${title} is in no network now`);
+      toast.success(`${r.groupName ? `${title} → ${r.groupName}` : `${title} is in no network now`}${copiesSkipped(r.canceled ?? 0)}`);
       return true;
     } catch (e) {
       toast.error(errorText(e));
@@ -113,34 +117,33 @@ export function NetworkPicker({ snap, res }: { snap: MapSnapshot; res: MapResour
   );
 }
 
-/** The changes a road offers: block or allow promos between the pair; for copies, the network's mode or taking the copy target out. */
+/**
+ * The changes a road offers (spec 058): one "break link" that matches the road — a copy road takes the target out of the
+ * network, a promo road unlinks the pair — and, on a past road, linking again. For copies, the network's mode.
+ */
 export function RoadActions({ snap, road }: { snap: MapSnapshot; road: MapRoad }) {
   const confirm = useConfirm();
-  const block = useSetPromoBlock();
+  const links = useSetLinks();
   const setNetwork = useSetResourceNetwork();
   const a = snap.resources.find((r) => r.ref === road.from);
   const b = snap.resources.find((r) => r.ref === road.to);
-  const shared = a?.groupId && a.groupId === b?.groupId ? snap.networks.find((n) => n.id === a.groupId) ?? null : null;
+  const copy = (road.relation ?? (road.kind === 'duplicate' || road.kind === 'adapt' ? 'network' : 'promo')) === 'network';
+  const shared = !road.past && a?.groupId && a.groupId === b?.groupId ? snap.networks.find((n) => n.id === a.groupId) ?? null : null;
   const anchorAgent = shared?.anchorRef ? snap.resources.find((r) => r.ref === shared.anchorRef)?.agent ?? null : null;
   const nameA = a ? resourceTitle(a) : road.from;
   const nameB = b ? resourceTitle(b) : road.to;
+  // a past copy road can be made again when the source is in a network and the target's platform has a free place there
+  const homeNetwork = copy && road.past && a?.groupId && b && !b.groupId ? snap.networks.find((n) => n.id === a.groupId) ?? null : null;
+  const placeTaken = homeNetwork && b ? snap.resources.find((r) => r.groupId === homeNetwork.id && r.platform === b.platform) : undefined;
 
-  const toggleBlock = async () => {
-    const blocked = !road.blocked;
-    const ok = await confirm(blocked ? `stop promos between «${nameA}» and «${nameB}»` : `allow promos between «${nameA}» and «${nameB}» again`, {
-      danger: blocked, confirmLabel: blocked ? 'Stop promos' : 'Allow promos',
-      details: (
-        <p className="text-micro" style={{ margin: 0, color: 'var(--color-ink-muted)' }}>
-          {blocked
-            ? 'Both ways. Promo posts of this pair that have not gone out yet are skipped, and a cross-promo or repost directive for the pair is refused until you allow it again. Published promos stay; the line fades out within 30 days.'
-            : 'The manager may propose promos between them again; each one still needs your approval.'}
-        </p>
-      ),
-    });
+  const setLinked = async (linked: boolean) => {
+    const ok = linked
+      ? true
+      : await confirm(`unlink «${nameA}» and «${nameB}»`, { confirmLabel: 'Unlink', details: <p className="text-micro" style={{ margin: 0, color: 'var(--color-ink-muted)' }}>{UNLINK_HELP}</p> });
     if (!ok) return;
     try {
-      const r = await block.mutateAsync({ a: road.from, b: road.to, blocked });
-      toast.success(blocked ? `Promos stopped${r.canceled ? ` · ${r.canceled} planned ${r.canceled === 1 ? 'promo' : 'promos'} skipped` : ''}` : 'Promos allowed again');
+      const r = await links.mutateAsync({ ref: road.from, add: linked ? [road.to] : [], remove: linked ? [] : [road.to] });
+      toast.success(linked ? `${nameA} ↔ ${nameB} linked` : `Unlinked${plannedPromos(r.canceled)}`);
     } catch (e) {
       toast.error(errorText(e));
     }
@@ -149,29 +152,58 @@ export function RoadActions({ snap, road }: { snap: MapSnapshot; road: MapRoad }
   const takeOut = async () => {
     if (!b || !shared) return;
     const ok = await confirm(`take «${nameB}» out of «${shared.name}»`, {
-      danger: false, confirmLabel: 'Take out',
-      details: <p className="text-micro" style={{ margin: 0, color: 'var(--color-ink-muted)' }}>The network's posts are no longer copied or adapted to it; it moves to the {PLATFORM_SECTION_NAME[b.platform]} section. You can put it back from its drawer.</p>,
+      danger: true, confirmLabel: 'Take out',
+      details: <p className="text-micro" style={{ margin: 0, color: 'var(--color-ink-muted)' }}>The line disappears: the network's posts are no longer copied or adapted to it, copies already planned for it are skipped, and it moves to the {PLATFORM_SECTION_NAME[b.platform]} section. You can put it back from its drawer.</p>,
     });
     if (!ok) return;
-    try { await setNetwork.mutateAsync({ ref: b.ref, groupId: null }); toast.success(`${nameB} is in no network now`); } catch (e) { toast.error(errorText(e)); }
+    try {
+      const r = await setNetwork.mutateAsync({ ref: b.ref, groupId: null });
+      toast.success(`${nameB} is in no network now${copiesSkipped(r.canceled ?? 0)}`);
+    } catch (e) { toast.error(errorText(e)); }
   };
 
+  const putBack = async () => {
+    if (!b || !homeNetwork) return;
+    try {
+      await setNetwork.mutateAsync({ ref: b.ref, groupId: homeNetwork.id });
+      toast.success(`${nameB} → ${homeNetwork.name}`);
+    } catch (e) { toast.error(errorText(e)); }
+  };
+
+  const btn = { justifyContent: 'flex-start', display: 'inline-flex', alignItems: 'center', gap: 8 } as const;
+  if (road.past) {
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+        {!copy && (
+          <button type="button" className="btn-secondary" disabled={links.isPending} onClick={() => void setLinked(true)} style={btn}>
+            <Icon name="link" size={14} />Link again
+          </button>
+        )}
+        {homeNetwork && b && (
+          <button type="button" className="btn-secondary" disabled={setNetwork.isPending || !!placeTaken} onClick={() => void putBack()} style={btn}>
+            <Icon name="link" size={14} />Put {nameB} back in {homeNetwork.name}
+          </button>
+        )}
+        {placeTaken && <p className="text-micro" style={{ margin: 0, color: 'var(--color-ink-muted)' }}>«{homeNetwork!.name}» already has {resourceTitle(placeTaken)} on this platform.</p>}
+        {copy && !homeNetwork && <p className="text-micro" style={{ margin: 0, color: 'var(--color-ink-muted)' }}>To copy posts again, put the resource back in a network from its drawer.</p>}
+      </div>
+    );
+  }
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-      {road.kind !== 'duplicate' && (
-        <button type="button" className="btn-secondary" disabled={block.isPending} onClick={() => void toggleBlock()}
-          style={{ justifyContent: 'flex-start', display: 'inline-flex', alignItems: 'center', gap: 8, color: road.blocked ? undefined : 'var(--color-danger)' }}>
-          <Icon name={road.blocked ? 'play' : 'ban'} size={14} />{road.blocked ? 'Allow promos between them again' : 'Stop promos between them'}
+      {!copy && (
+        <button type="button" className="btn-secondary" disabled={links.isPending} onClick={() => void setLinked(false)}
+          style={{ ...btn, color: 'var(--color-danger)' }}>
+          <Icon name="x" size={14} />Unlink {nameA} and {nameB}
         </button>
       )}
-      {road.kind !== 'promo' && shared && anchorAgent && shared.mode === 'legacy_duplicate' && <IndependentButton handle={anchorAgent} network={shared.name} />}
-      {road.kind !== 'promo' && shared && (
-        <button type="button" className="btn-secondary" disabled={setNetwork.isPending} onClick={() => void takeOut()}
-          style={{ justifyContent: 'flex-start', display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+      {copy && shared && (
+        <button type="button" className="btn-secondary" disabled={setNetwork.isPending} onClick={() => void takeOut()} style={{ ...btn, color: 'var(--color-danger)' }}>
           <Icon name="x" size={14} />Take {nameB} out of {shared.name}
         </button>
       )}
-      {road.kind !== 'promo' && shared && shared.mode === 'independent' && (
+      {copy && shared && anchorAgent && shared.mode === 'legacy_duplicate' && <IndependentButton handle={anchorAgent} network={shared.name} />}
+      {copy && shared && shared.mode === 'independent' && (
         <p className="text-micro" style={{ margin: 0, color: 'var(--color-ink-muted)' }}>
           «{shared.name}» is Independent: @{anchorAgent ?? 'the network agent'} decides per post whether to copy, adapt or write a unique one (its playbook).
         </p>

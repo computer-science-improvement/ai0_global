@@ -107,4 +107,7 @@ export function diffSnapshots(prev: MapSnapshot | null | undefined, next: MapSna
 export const fxForUnit = (fx: readonly MapFx[], id: string): MapFx[] => fx.filter((f) => 'unitId' in f && f.unitId === id);
 export const fxForBuilding = (fx: readonly MapFx[], ref: string): MapFx[] =>
   fx.filter((f) => (f.kind === 'flare' && f.ref === ref) || (f.kind === 'alert' && f.ref === ref));
-export const fxForRoad = (fx: readonly MapFx[], key: string): MapFx[] => fx.filter((f) => f.kind === 'promo' && f.road === key);
+/** A promo road is one line for the pair (spec 058), so a promo the other way along it travels the same line. */
+const reverseKey = (key: string): string => { const [a, b, kind] = key.split('>'); return `${b}>${a}>${kind}`; };
+export const fxForRoad = (fx: readonly MapFx[], key: string): MapFx[] =>
+  fx.filter((f) => f.kind === 'promo' && (f.road === key || f.road === reverseKey(key)));

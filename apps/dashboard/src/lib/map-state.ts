@@ -82,6 +82,7 @@ export const ROAD_META: Record<RoadKind, { label: string; color: string; dash: s
   promo:     { label: 'Cross-promo', color: 'var(--color-tg-link)', dash: '6 5' },
   repost:    { label: 'Repost',      color: 'var(--color-chart-5)', dash: '2 4' },
   duplicate: { label: 'Duplicate',   color: 'var(--color-chart-7)', dash: '' },
+  adapt:     { label: 'Adapted copy', color: 'var(--color-chart-7)', dash: '' },
 };
 
 const KIND_LABEL: Record<MapAgentKind, string> = {
@@ -104,6 +105,7 @@ export const MODE_META: Record<MapMode, { label: string; short: string; color: s
 export const EVENT_ICON: Record<MapEventKind, IconName> = {
   run_started: 'play', run_finished: 'check', run_failed: 'warning', post_published: 'send', post_failed: 'warning',
   post_approved: 'check', post_rejected: 'x', promo: 'megaphone', directive: 'agents', launch_started: 'rocket', launch_graduated: 'rocket',
+  link_made: 'link', link_broken: 'ban', network_left: 'x',
 };
 
 /** The feed line is red for failures. */

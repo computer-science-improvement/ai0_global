@@ -106,7 +106,8 @@ LinkedIn, YouTube, TikTok-specific work; changing how copies are written; the ot
 ## Status
 
 - T1 `11fb1c09` — migration 091, `setLinks`, `setMembers`, copies skipped on leaving a network, endpoints, PG tests.
-- T2 — pending hash: planner (linked skips relevance, an approved promo links the pair), `linked` / `blocked` on the promo overview pairs, the directive tool refuses a blocked pair, roads = current links + past roads, link events in the feed.
+- T2 `3927fd9e` — planner (linked skips relevance, an approved promo links the pair), `linked` / `blocked` on the promo overview pairs, the directive tool refuses a blocked pair, roads = current links + past roads, link events in the feed.
+- T3 — pending hash: dashboard API hooks, building drawer Links section with the "Link resources…" modal, road drawer break / link again, "Show past links" toggle and legend, demo data (a linked pair with no traffic, past roads, a network with free platform slots), tests.
 
 ## Deltas from the spec
 
@@ -124,3 +125,8 @@ LinkedIn, YouTube, TikTok-specific work; changing how copies are written; the ot
 - **A promo slot's `relevance` can be null** (a linked pair skips the check, so none is computed when none is cached).
 - **Events from the owner have no agent:** "linked / unlinked / left" stand at the building of the first resource, with `agent: null`, and `toRef` for the other end.
 - **PG tests of the map and promo run in throwaway databases** (`map.056`, `map.actions`, `promo.pg` too), since the shared scratch DB has no migration 091.
+- **One promo line per pair.** The dashboard draws a promo link as a single line (the server already merges both directions); a promo animation travelling the other way along it uses the same line (`fxForRoad` also matches the reversed key).
+- **A past road can be opened and re-linked.** The road drawer of a past road offers "Link again" for a promo pair; a past copy road only explains how to put the resource back in the network, since copy links are network membership.
+- **The picker lists every other resource** (grouped by network, then by platform for resources in no network); a resource can be linked to one in its own network too. The server refuses more than 30 changes at a time, so the modal warns and disables Apply above that.
+- **Failed calls toast, never crash.** Both mutations toast `errorText(e)`; a server without the new endpoints (404) leaves the map unchanged.
+- **Demo data.** `map-demo.ts` gets a Facebook page that left a network (so a platform section appears in the layout test), and the road list is rewritten to the new model (copy roads, promo links, past roads).
