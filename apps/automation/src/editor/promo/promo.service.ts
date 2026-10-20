@@ -22,14 +22,16 @@ export class PromoService {
     const group = await this.d.network.groupOfChannel(key);
     const refs = group ? (await this.d.network.groupResources(group.id)).map((r) => r.ref) : [`telegram:${key}`];
     const { rows: pairs } = await this.d.pool.query(
-      `SELECT source_ref, target_ref, last_promo_at, count_30d, relevance, relevance_at FROM promo_pairs
+      `SELECT source_ref, target_ref, last_promo_at, count_30d, relevance, relevance_at, linked_at, blocked_at FROM promo_pairs
         WHERE source_ref = ANY($1::text[]) OR target_ref = ANY($1::text[]) ORDER BY last_promo_at DESC NULLS LAST`, [refs]);
     const { rows: slots } = await this.d.pool.query(
       `SELECT s.id, s.scheduled_at, s.status, s.error, s.promo, s.rendered_preview, d.outcome
          FROM editor_slots s LEFT JOIN agent_directives d ON d.id::text = s.promo->>'directive_id'
         WHERE s.channel_key = $1 AND s.promo IS NOT NULL ORDER BY s.scheduled_at DESC LIMIT 50`, [key]);
     return {
-      pairs: pairs.map((p) => ({ sourceRef: p.source_ref, targetRef: p.target_ref, lastPromoAt: p.last_promo_at, count30d: p.count_30d, relevance: p.relevance })),
+      pairs: pairs.map((p) => ({ sourceRef: p.source_ref, targetRef: p.target_ref, lastPromoAt: p.last_promo_at, count30d: p.count_30d, relevance: p.relevance,
+        // Spec 058: the owner's link on the map (promos are proposed for linked pairs; a blocked pair is never proposed)
+        linked: !!p.linked_at && !p.blocked_at, blocked: !!p.blocked_at })),
       slots: slots.map((s) => ({ id: s.id, at: s.scheduled_at, status: s.status, error: s.error, promo: s.promo, preview: s.rendered_preview, outcome: s.outcome })),
       links: await this.d.links.stats(refs),
     };

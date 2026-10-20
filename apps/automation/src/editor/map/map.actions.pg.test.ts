@@ -80,11 +80,12 @@ test('a blocked pair cancels its pending promo slots, shows on the road and can 
     assert.deepEqual(rows.map((r) => [r.source_ref, r.count_30d, r.b]), [[B, 0, true], [A, 2, true]].sort((x, y) => String(x[0]).localeCompare(String(y[0]))), 'both ways; the history count stays');
 
     const svc = new MapService({ pool: c, agents: new AgentsRepository(c), catalog: new ResourceCatalog({ pool: c }), budgets: async () => ({ rows: [], agentCaps: [], blocking: [] }), pausedRefs: async () => new Set(), cacheMs: 0 });
-    assert.equal((await svc.build()).roads.find((r) => r.from === A && r.to === B)?.blocked, true);
+    const promoRoad = async () => (await svc.build()).roads.find((r) => r.relation === 'promo' && r.from === A && r.to === B);
+    assert.deepEqual([(await promoRoad())?.past, (await promoRoad())?.blocked, (await promoRoad())?.count30d], [true, true, 2], 'a broken link is only history now');
 
     assert.equal((await actions.setPairBlocked({ a: B, b: A, blocked: false })).canceled, 0);
     assert.equal((await c.query(`SELECT count(*)::int AS n FROM promo_pairs WHERE blocked_at IS NOT NULL AND $1 IN (source_ref, target_ref)`, [A])).rows[0].n, 0);
-    assert.equal((await svc.build()).roads.find((r) => r.from === A && r.to === B)?.blocked, false);
+    assert.deepEqual([(await promoRoad())?.past, (await promoRoad())?.blocked], [false, false], 'allowing links the pair again');
     assert.equal(await status(c, () => actions.setPairBlocked({ a: A, b: A, blocked: true })), 400);
   });
 });

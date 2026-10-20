@@ -5,9 +5,10 @@
  */
 import { test, before, after } from 'node:test';
 import assert from 'node:assert/strict';
-import { Pool, type PoolClient } from 'pg';
+import type { Pool, PoolClient } from 'pg';
 import { AgentsRepository } from '../agents/agents.repository';
 import { ResourceCatalog } from '../agents/resource-catalog';
+import { createMigratedDb, type FreshDb } from '../sysadmin/testing/fresh-db';
 import { MapService } from './map.service';
 
 const url = process.env.EDITOR_PG_TEST_URL;
@@ -15,9 +16,11 @@ const skip = !url ? 'EDITOR_PG_TEST_URL not set' : false;
 const TG = '@pgtest_map_056';
 const SECRET = 'SECRET BODY of the post that must never reach the map';
 let pool: Pool;
+let db: FreshDb | undefined;
 
-before(async () => { if (url) pool = new Pool({ connectionString: url }); });
-after(async () => { await pool?.end(); });
+// A throwaway database with every migration (091 adds promo_pairs.linked_at and map_link_events); dropped at the end.
+before(async () => { if (url) { db = await createMigratedDb(url, 'map056'); pool = db.pool; } });
+after(async () => { await db?.drop(); });
 
 async function inTx(fn: (c: PoolClient) => Promise<void>): Promise<void> {
   const c = await pool.connect();
@@ -61,7 +64,8 @@ test('the snapshot is built from the real schema: units, resources, roads, alert
 
     await c.query(`INSERT INTO editor_runs (role, channel_key, slot_id, model, status, agent_id) VALUES ('executor', $1, $2, 'm', 'running', $3)`, [TG, running, executor]);
     await c.query(`INSERT INTO editor_runs (role, channel_key, model, status, agent_id, finished_at) VALUES ('planner', $1, 'm', 'budget_exceeded', $2, now() - interval '10 minutes')`, [TG, planner]);
-    await c.query(`INSERT INTO promo_pairs (source_ref, target_ref, last_promo_at, count_30d) VALUES ($1, $2, now(), 3)`, [`telegram:${TG}`, IG]);
+    await c.query(`INSERT INTO promo_pairs (source_ref, target_ref, last_promo_at, count_30d, linked_at) VALUES ($1, $2, now(), 3, now()), ($2, $1, NULL, 0, now())`, [`telegram:${TG}`, IG]);
+    await c.query(`INSERT INTO map_link_events (kind, ref, other_ref) VALUES ('link_made', $1, $2)`, [`telegram:${TG}`, IG]);
     await c.query(`INSERT INTO agent_directives (to_agent_id, kind, body, rationale, status) VALUES ($1, 'strategy', 'b', 'r', 'awaiting_owner')`, [tg]);
     await c.query(`INSERT INTO channel_launches (channel_key, target_ref, brief, status, agent_id) VALUES ('@pgtest_map_056_new', 'telegram:@pgtest_map_056_new', 'brief', 'ready', $1)`, [tg]);
     await c.query(`INSERT INTO resource_profiles (resource_ref, resource_health, updated_by) VALUES ($1, $2, 'system')`, [IG, { state: 'token_invalid', detail: 'token expired', checkedAt: new Date().toISOString() }]);
@@ -123,7 +127,10 @@ test('the snapshot is built from the real schema: units, resources, roads, alert
     assert.equal(mine('pgmap_tg_ex').level, mine('pgmap_tg').level, 'role children show their orchestrator level');
 
     // roads
-    assert.deepEqual(snap.roads.map((r) => [r.from, r.to, r.kind, r.count30d]), [[`telegram:${TG}`, IG, 'promo', 3]]);
+    // the network's copy link (anchor → member, no traffic yet) and the promo link of the pair
+    assert.deepEqual(snap.roads.map((r) => [r.from, r.to, r.kind, r.relation, r.past, r.count30d]),
+      [[`telegram:${TG}`, IG, 'promo', 'promo', false, 3], [`telegram:${TG}`, IG, 'adapt', 'network', false, 0]]);
+    assert.ok(snap.roads[0].linkedAt, 'the promo link has its date');
 
     // alerts
     const kinds = snap.alerts.map((a) => a.kind);
@@ -137,6 +144,7 @@ test('the snapshot is built from the real schema: units, resources, roads, alert
     assert.ok(ids.some((i) => i.startsWith('run:')) && ids.some((i) => i.endsWith(':published')) && ids.some((i) => i.endsWith(':promo')));
     assert.ok(snap.events.some((e) => e.kind === 'post_failed' && e.text.includes('publish_failed')));
     assert.ok(snap.events.some((e) => e.kind === 'promo' && e.toRef === IG && e.ref === `telegram:${TG}`));
+    assert.ok(snap.events.some((e) => e.kind === 'link_made' && e.agent === null && e.text.startsWith('linked ')), 'what the owner linked is in the feed');
     assert.ok(snap.events.every((e, i, a) => i === 0 || new Date(a[i - 1].at) >= new Date(e.at)));
     assert.ok(snap.events.length <= 30);
     assert.ok(!JSON.stringify(snap).includes('SECRET BODY'), 'no post text in the snapshot');

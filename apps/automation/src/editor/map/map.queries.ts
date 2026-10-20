@@ -34,7 +34,11 @@ export interface SlotFacts {
 }
 export interface LevelRow { ref: string; clean: number; pass: number; rejected: number }
 export interface RawEvent { id: string; at: Date; kind: string; agentId?: string | null; ref?: string | null; toRef?: string | null; topic?: string | null; extra?: string | null }
-export interface RawRoad { from: string; to: string; kind: 'promo' | 'repost' | 'duplicate'; count: number; lastAt: Date | null }
+export interface RawTrafficRow { from: string; to: string; count: number; lastAt: Date | null }
+export interface RawDerivedRow extends RawTrafficRow { kind: 'duplicate' | 'adapt' }
+export interface RawTraffic { promo: RawTrafficRow[]; reposts: RawTrafficRow[]; derived: RawDerivedRow[] }
+/** One pair of resources (a < b): linked on the map since `linkedAt`, and/or stopped by the owner. */
+export interface PairLink { a: string; b: string; linkedAt: Date | null; blocked: boolean }
 export interface DirectiveWait { handle: string; count: number }
 export interface LaunchWait { id: string; channelKey: string; targetRef: string; status: string; handle: string | null; since: Date }
 export interface RawInfra {
@@ -194,38 +198,41 @@ export class MapQueries {
     });
   }
 
-  /** Roads: cross-promo pairs, reposts and derived duplicates of the last 30 days. */
+  /** The traffic of the last 30 days that roads show: promo pairs, published reposts, published copies (derived slots). */
   roads() {
-    return safe([] as RawRoad[], async () => {
-      const out: RawRoad[] = [];
+    return safe({ promo: [], reposts: [], derived: [] } as RawTraffic, async () => {
+      const promo: RawTrafficRow[] = [];
       const pairs = await this.pool.query(
         `SELECT source_ref, target_ref, count_30d, last_promo_at FROM promo_pairs WHERE count_30d > 0 AND last_promo_at > now() - interval '30 days'`);
-      for (const r of pairs.rows) out.push({ from: r.source_ref, to: r.target_ref, kind: 'promo', count: Number(r.count_30d), lastAt: iso(r.last_promo_at) });
-      const reposts = await this.pool.query(
+      for (const r of pairs.rows) promo.push({ from: r.source_ref, to: r.target_ref, count: Number(r.count_30d), lastAt: iso(r.last_promo_at) });
+      const reposts: RawTrafficRow[] = [];
+      const rp = await this.pool.query(
         `SELECT s.promo->>'source_ref' AS source_ref, s.promo->>'target_ref' AS target_ref, count(*)::int AS n, max(s.updated_at) AS last_at
            FROM editor_slots s
           WHERE s.status = 'published' AND s.promo->>'kind' = 'repost' AND s.updated_at > now() - interval '30 days'
             AND s.promo->>'source_ref' IS NOT NULL AND s.promo->>'target_ref' IS NOT NULL
           GROUP BY 1, 2`);
-      for (const r of reposts.rows) out.push({ from: r.source_ref, to: r.target_ref, kind: 'repost', count: Number(r.n), lastAt: iso(r.last_at) });
-      const derived = await this.pool.query(
+      for (const r of rp.rows) reposts.push({ from: r.source_ref, to: r.target_ref, count: Number(r.n), lastAt: iso(r.last_at) });
+      const derived: RawDerivedRow[] = [];
+      const dv = await this.pool.query(
         `SELECT COALESCE(p.resource_ref, 'telegram:' || p.channel_key) AS from_ref, ${REF} AS to_ref, s.treatment, count(*)::int AS n, max(s.updated_at) AS last_at
            FROM editor_slots s JOIN editor_slots p ON p.id = s.derived_from_slot_id
           WHERE s.status = 'published' AND s.treatment IN ('duplicate', 'adapt') AND s.updated_at > now() - interval '30 days'
           GROUP BY 1, 2, 3`);
-      for (const r of derived.rows) {
-        if (r.from_ref === r.to_ref) continue;
-        out.push({ from: r.from_ref, to: r.to_ref, kind: r.treatment === 'duplicate' ? 'duplicate' : 'repost', count: Number(r.n), lastAt: iso(r.last_at) });
+      for (const r of dv.rows) {
+        if (r.from_ref !== r.to_ref) derived.push({ from: r.from_ref, to: r.to_ref, kind: r.treatment === 'duplicate' ? 'duplicate' : 'adapt', count: Number(r.n), lastAt: iso(r.last_at) });
       }
-      return out;
+      return { promo, reposts, derived };
     });
   }
 
-  /** Pairs the owner blocked from promoting each other (migration 089), as `a>b` both ways. */
-  blockedPairs() {
-    return safe(new Set<string>(), async () => {
-      const { rows } = await this.pool.query(`SELECT source_ref, target_ref FROM promo_pairs WHERE blocked_at IS NOT NULL`);
-      return new Set(rows.flatMap((r) => [`${r.source_ref}>${r.target_ref}`, `${r.target_ref}>${r.source_ref}`]));
+  /** Promo links the owner made (migration 091) and pairs the owner stopped (089), one row per unordered pair. */
+  pairLinks() {
+    return safe([] as PairLink[], async () => {
+      const { rows } = await this.pool.query(
+        `SELECT LEAST(source_ref, target_ref) AS a, GREATEST(source_ref, target_ref) AS b, min(linked_at) AS linked_at, bool_or(blocked_at IS NOT NULL) AS blocked
+           FROM promo_pairs WHERE linked_at IS NOT NULL OR blocked_at IS NOT NULL GROUP BY 1, 2`);
+      return rows.map((r) => ({ a: r.a as string, b: r.b as string, linkedAt: iso(r.linked_at), blocked: !!r.blocked }));
     });
   }
 
@@ -340,6 +347,15 @@ export class MapQueries {
         if (r.graduated_at) out.push({ id: `launch:${r.id}:live`, at: new Date(r.graduated_at), kind: 'launch_graduated', agentId: r.agent_id ?? null, ref: r.target_ref, extra: r.channel_key });
       }
       return out;
+    });
+  }
+
+  /** What the owner changed on the map in the last 24 hours (migration 091). */
+  linkEvents() {
+    return safe([] as RawEvent[], async () => {
+      const { rows } = await this.pool.query(
+        `SELECT id::text, at, kind, ref, other_ref, detail FROM map_link_events WHERE at > now() - interval '24 hours' ORDER BY at DESC, id DESC LIMIT 30`);
+      return rows.map((r): RawEvent => ({ id: `link:${r.id}`, at: new Date(r.at), kind: r.kind, ref: r.ref, toRef: r.other_ref ?? null, extra: r.detail ?? null }));
     });
   }
 }

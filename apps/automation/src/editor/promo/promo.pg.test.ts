@@ -1,7 +1,7 @@
 /** Spec 022 on a throwaway Postgres: promo scheduling with its limits, tracked joins and the transitions KPI. Skipped unless EDITOR_PG_TEST_URL is set. */
 import { test, before, after } from 'node:test';
 import assert from 'node:assert/strict';
-import { Pool } from 'pg';
+import type { Pool } from 'pg';
 import { AgentsRepository } from '../agents/agents.repository';
 import { ResourceProfilesRepository, ResourceProfileSchema } from '../agents/resource-profile';
 import { EditorChannelsRepository } from '../repo/editor-channels.repository';
@@ -11,6 +11,8 @@ import { DirectivesRepository } from '../manager/directives.repository';
 import { KpiDigestService } from '../manager/kpi-digest.service';
 import { TrackedLinks } from './tracked-links';
 import { PromoPlanner } from './promo-planner';
+import { linkPairs } from './promo-links';
+import { createMigratedDb, type FreshDb } from '../sysadmin/testing/fresh-db';
 
 const url = process.env.EDITOR_PG_TEST_URL;
 const skip = !url ? 'EDITOR_PG_TEST_URL not set' : false;
@@ -21,6 +23,7 @@ const C = '@promo_pg_food';
 const D = '@promo_pg_sky_appr';
 const E = '@promo_pg_stars_appr';
 let pool: Pool;
+let db: FreshDb | undefined;
 
 async function cleanup() {
   const refs = [A, B, C, D, E].map((k) => `telegram:${k}`);
@@ -36,7 +39,9 @@ async function cleanup() {
 
 before(async () => {
   if (!url) return;
-  pool = new Pool({ connectionString: url });
+  // A throwaway database with every migration (091 adds promo_pairs.linked_at); dropped at the end.
+  db = await createMigratedDb(url, 'promo058');
+  pool = db.pool;
   await cleanup();
   const channels = new EditorChannelsRepository(pool);
   for (const k of [A, B, C]) await channels.insertIfMissing({ ...makeDefaultCard(k, k), mode: 'live', quietStartHour: 23, quietEndHour: 8 });
@@ -48,8 +53,7 @@ before(async () => {
 });
 after(async () => {
   if (!url) return;
-  await cleanup();
-  await pool.end();
+  await db?.drop();
 });
 
 test('cross-promo: scheduled with a tracked invite link; pair cooldown, relevance and joins → transitions KPI', { skip }, async () => {
@@ -75,6 +79,10 @@ test('cross-promo: scheduled with a tracked invite link; pair cooldown, relevanc
   assert.equal(r1.tracked, true);
   assert.equal(created.length, 1);
   assert.equal((await directives.get(d1.id))!.status, 'applied');
+  // Spec 058: approving a promo for a pair that was not linked links it, both ways
+  const linkedRows = async (x: string, y: string) => (await pool.query(
+    `SELECT source_ref, linked_at IS NOT NULL AS linked FROM promo_pairs WHERE (source_ref = $1 AND target_ref = $2) OR (source_ref = $2 AND target_ref = $1) ORDER BY source_ref`, [`telegram:${x}`, `telegram:${y}`])).rows;
+  assert.deepEqual((await linkedRows(A, B)).map((r) => r.linked), [true, true]);
   const { rows: slot } = await pool.query(`SELECT kind, promo, scheduled_at FROM editor_slots WHERE id = $1`, [r1.slotId]);
   assert.equal(slot[0].kind, 'reserved');
   assert.equal(slot[0].promo.kind, 'cross_promo');
@@ -95,6 +103,14 @@ test('cross-promo: scheduled with a tracked invite link; pair cooldown, relevanc
   const d3 = await file(C);
   await directives.update(d3.id, { status: 'accepted' });
   assert.equal(((await planner.schedule((await directives.get(d3.id))!, orch, A)) as any).error, 'low_relevance');
+  assert.deepEqual((await linkedRows(A, C)).map((r) => r.linked), [false], 'a refused promo links nothing');
+  // Spec 058: the owner linked the pair on the map on purpose — the relevance check is skipped, and the pair stays linked
+  assert.deepEqual(await linkPairs(pool, `telegram:${A}`, [`telegram:${C}`]), [`telegram:${C}`]);
+  const d3b = await file(C);
+  await directives.update(d3b.id, { status: 'accepted' });
+  const r3b: any = await planner.schedule((await directives.get(d3b.id))!, orch, A);
+  assert.equal(r3b.ok, true, JSON.stringify(r3b));
+  assert.deepEqual((await linkedRows(A, C)).map((r) => r.linked), [true, true]);
 
   // Review fix: the source must belong to this orchestrator's network; a repost goes only into its own channel.
   const foreign = await directives.insert({

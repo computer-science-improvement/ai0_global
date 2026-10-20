@@ -9,11 +9,14 @@ export const UNIT_STATES = ['idle', 'planning', 'writing', 'reviewing', 'waiting
 export type UnitState = typeof UNIT_STATES[number];
 
 export type ResourceHealthView = 'ok' | 'warning' | 'broken' | 'unknown';
-export type RoadKind = 'promo' | 'repost' | 'duplicate';
+/** A copy road is `duplicate` (a legacy network) or `adapt` (an independent one); a promo road is `promo` or, when all its traffic is reposts, `repost`. */
+export type RoadKind = 'promo' | 'repost' | 'duplicate' | 'adapt';
+/** What a road means (spec 058): the network's copy link, or a promo link the owner made. */
+export type RoadRelation = 'network' | 'promo';
 
 export const EVENT_KINDS = [
   'run_started', 'run_finished', 'run_failed', 'post_published', 'post_failed', 'post_approved', 'post_rejected', 'promo',
-  'directive', 'launch_started', 'launch_graduated',
+  'directive', 'launch_started', 'launch_graduated', 'link_made', 'link_broken', 'network_left',
 ] as const;
 export type MapEventKind = typeof EVENT_KINDS[number];
 
@@ -67,9 +70,18 @@ export interface MapUnit {
   levelStats:    LevelStats | null;
 }
 
+/**
+ * A road is a current link between two resources (spec 058): the network's copy link (anchor → every other member) or a
+ * promo link. `count30d` / `lastAt` are the traffic of the last 30 days (0 is fine: a new link has none yet). A `past`
+ * road is activity of the last 30 days between two resources that are not linked any more; the map draws it on request.
+ */
 export interface MapRoad {
   from: string; to: string; kind: RoadKind; count30d: number; lastAt: string | null; joins30d: number | null;
-  /** The owner blocked promos between the two (migration 089): the line is history, no new promo goes out. */
+  relation: RoadRelation;
+  past: boolean;
+  /** When the owner (or an approved promo) linked the pair; null for copy links and past roads. */
+  linkedAt: string | null;
+  /** A past promo road the owner broke (the manager does not propose the pair until it is linked again). */
   blocked: boolean;
 }
 

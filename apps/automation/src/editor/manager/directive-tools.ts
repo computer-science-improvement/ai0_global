@@ -13,6 +13,7 @@ import type { DirectiveExecution } from './executors';
 import { describe as describeChange } from './executors/playbook-executors';
 import { TASK_REF_TYPES, type TaskRefResult, type TaskRefType } from './executors/task-report';
 import { isQualityMetric, qualityActive } from './quality-digest';
+import { PAIR_BLOCKED_DETAILS, promoRefsOf } from '../promo/promo-links';
 
 export const MAX_DIRECTIVES_PER_RUN = 3;
 export const REJECT_COOLDOWN_MS = 48 * 3600_000;
@@ -156,6 +157,8 @@ export interface DirectiveToolDeps {
   usable?: (ref: string) => Promise<boolean>;
   /** Spec 025 FR-015: the reference check of report_directive_done (taskRefCheck). */
   taskRef?: (type: TaskRefType, id: string, orch: Agent, since: Date) => Promise<TaskRefResult>;
+  /** Spec 058: has the owner stopped promos between the two resources (network map)? cross_promo / repost for such a pair are refused at filing. */
+  pairBlocked?: (a: string, b: string) => Promise<boolean>;
   now?:    () => Date;
 }
 
@@ -219,6 +222,9 @@ export async function fileDirective(d: DirectiveToolDeps, i: FileDirective, o: {
   const target = await d.agents.getByHandle(i.to);
   if (!target || target.kind !== 'orchestrator' || target.parentId) return { error: 'not_an_orchestrator', details: i.to };
   if (o.runId && await d.repo.countForRun(o.runId) >= MAX_DIRECTIVES_PER_RUN) return { error: 'too_many_directives', details: `не більше ${MAX_DIRECTIVES_PER_RUN} за прогін` };
+  // Spec 058: the owner broke this pair on the map — the planner would refuse it anyway, so it is not even filed.
+  const pair = d.pairBlocked ? promoRefsOf(i.kind, i.params) : null;
+  if (pair && await d.pairBlocked!(pair.sourceRef, pair.targetRef)) return { error: 'pair_blocked', details: PAIR_BLOCKED_DETAILS };
   const open = await d.repo.openFor(target.id, i.kind);
   if (open) {
     const wait = open.status === 'new' ? 'оркестратор ще не відповів — дочекайся його відповіді'

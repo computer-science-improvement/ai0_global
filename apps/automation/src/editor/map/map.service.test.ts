@@ -73,6 +73,9 @@ test('event texts name a post by its topic only', () => {
   assert.equal(eventText({ id: 'a', at: T0, kind: 'promo', toRef: 'instagram:1', extra: 'cross_promo' }, titleOf), 'promoted Shop IG');
   assert.equal(eventText({ id: 'a', at: T0, kind: 'promo', toRef: 'instagram:1', extra: 'repost' }, titleOf), 'reposted Shop IG');
   assert.equal(eventText({ id: 'a', at: T0, kind: 'directive', extra: 'cross_promo' }, titleOf), 'received a cross promo directive');
+  assert.equal(eventText({ id: 'a', at: T0, kind: 'link_made', ref: 'telegram:@a', toRef: 'instagram:1' }, titleOf), 'linked x ↔ Shop IG');
+  assert.equal(eventText({ id: 'a', at: T0, kind: 'link_broken', ref: 'instagram:1', toRef: 'telegram:@a' }, titleOf), 'unlinked Shop IG ↔ x');
+  assert.equal(eventText({ id: 'a', at: T0, kind: 'network_left', ref: 'instagram:1', extra: 'Space network' }, titleOf), 'Shop IG left Space network');
   assert.equal(eventText({ id: 'a', at: T0, kind: 'post_published', topic: 'x'.repeat(200) }, titleOf).length < 100, true, 'a long topic is clipped');
 });
 
@@ -128,4 +131,14 @@ test('a broken active bot is a connection alert; an inactive one is not', async 
   const s = await svc.snapshot();
   assert.deepEqual(s.alerts.map((a) => [a.kind, a.ref, a.path]), [['connection', 'bot:1', '/app/connections?section=telegram&tab=bots']]);
   assert.equal(s.infra.length, 2);
+});
+
+test('what the owner changed on the map reaches the feed, at the building and with no agent', async () => {
+  const pool = { query: async (sql: string) => (/FROM map_link_events/.test(sql)
+    ? { rows: [{ id: '7', at: new Date(T0.getTime() - 60_000), kind: 'link_made', ref: 'telegram:@a', other_ref: 'instagram:1', detail: null }] }
+    : { rows: [] }) };
+  const item = (ref: string, title: string) => ({ ref, platform: ref.split(':')[0], title, username: null, followers: null, groupId: null, groupName: null, agent: 'nova' }) as any;
+  const { svc } = service({ pool: pool as any, catalog: { list: async () => [item('telegram:@a', 'Space'), item('instagram:1', 'Space IG')] } });
+  const s = await svc.snapshot();
+  assert.deepEqual(s.events.map((e) => [e.id, e.kind, e.agent, e.ref, e.toRef, e.text]), [['link:7', 'link_made', null, 'telegram:@a', 'instagram:1', 'linked Space ↔ Space IG']]);
 });

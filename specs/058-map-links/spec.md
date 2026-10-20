@@ -105,7 +105,8 @@ LinkedIn, YouTube, TikTok-specific work; changing how copies are written; the ot
 
 ## Status
 
-- T1 — pending hash: migration 091, `setLinks`, `setMembers`, copies skipped on leaving a network, endpoints, PG tests.
+- T1 `11fb1c09` — migration 091, `setLinks`, `setMembers`, copies skipped on leaving a network, endpoints, PG tests.
+- T2 — pending hash: planner (linked skips relevance, an approved promo links the pair), `linked` / `blocked` on the promo overview pairs, the directive tool refuses a blocked pair, roads = current links + past roads, link events in the feed.
 
 ## Deltas from the spec
 
@@ -116,3 +117,10 @@ LinkedIn, YouTube, TikTok-specific work; changing how copies are written; the ot
 - **Copies stop in both directions.** When a resource leaves a network its pending derived slots are skipped whether it was the target of the copy or its source (the anchor leaving cancels the copies from its posts), not only slots with `resource_ref = ref`; a Telegram member's slots have no `resource_ref`, so the match is on the slot's ref.
 - **`setMembers` applies removals first**, then additions, so one call can swap a member for another of the same platform. Limits: 30 refs per list (400 above).
 - **`setGroup` and the move rules are one code path** (`move`) shared with `setMembers`; `setGroup` now also returns `canceled`.
+- **`RoadKind` gets `adapt`.** A copy road of an independent network is kind `adapt` (legacy: `duplicate`), as the spec says; the old code reported `adapt` copies as `repost`, which is gone.
+- **Roads need an anchor.** A network whose resources include no Telegram channel has no anchor, so it draws no copy roads (there is nothing to copy from).
+- **Promo traffic counts.** `promo_pairs.count_30d` counts every scheduled promo (reposts too); the road count is `max(count_30d sum, published reposts)` and its kind is `repost` when reposts cover all of it. Joins of both directions of a pair are added.
+- **The "manager's promo context" is `PromoService.overview`** (`GET /api/agents/:handle/promo`, `pairs[]` now carries `linked` and `blocked`); the manager's digest has no pair list to extend. The directive tool takes an optional `pairBlocked` dependency (wired in `editor.module.ts`), so the manager gets `pair_blocked` at filing for both `cross_promo` and `repost`.
+- **A promo slot's `relevance` can be null** (a linked pair skips the check, so none is computed when none is cached).
+- **Events from the owner have no agent:** "linked / unlinked / left" stand at the building of the first resource, with `agent: null`, and `toRef` for the other end.
+- **PG tests of the map and promo run in throwaway databases** (`map.056`, `map.actions`, `promo.pg` too), since the shared scratch DB has no migration 091.

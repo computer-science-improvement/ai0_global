@@ -218,6 +218,7 @@ import { TrackedLinks } from './promo/tracked-links';
 import { PromoPlanner, relevance } from './promo/promo-planner';
 import { PromoExecutor } from './promo/promo-executor';
 import { PromoService } from './promo/promo.service';
+import { isPairBlocked } from './promo/promo-links';
 import { PROMO_SERVICE, PromoController, PromoRedirectController } from './promo/promo.controller';
 import { onChatMember } from '../publishers/chat-member-bus';
 import { createHash, randomBytes } from 'crypto';
@@ -1299,6 +1300,8 @@ export const EDITOR_PROVIDERS = [
             scopeOf: directiveScope(pool), usable: (ref) => platform.health.usable(ref),
             // Spec 025 FR-015: report_directive_done checks the referenced row.
             taskRef: taskRefCheck(pool),
+            // Spec 058: a pair the owner broke on the map is not proposed again.
+            pairBlocked: (a, b) => isPairBlocked(pool, a, b),
           }),
           // Spec 024 FR-010: @ai0 proposes a network mode change (Apply card).
           ...buildNetworkModeTool({

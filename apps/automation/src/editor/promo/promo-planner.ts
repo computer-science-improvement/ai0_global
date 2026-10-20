@@ -8,6 +8,7 @@ import { localDate, zonedToUtc, isQuietHour } from '../roles/time';
 import { minMode, type EditorCard } from '../card';
 import type { Directive, DirectivesRepository } from '../manager/directives.repository';
 import { publicUrlOf, TrackedLinks } from './tracked-links';
+import { linkPairs, PAIR_BLOCKED_DETAILS } from './promo-links';
 
 export const PAIR_COOLDOWN_DAYS = 14;
 export const MAX_PROMO_PER_RESOURCE_DAY = 1;
@@ -114,14 +115,16 @@ export class PromoPlanner {
     const { rows: pair } = await this.d.pool.query(
       `SELECT * FROM promo_pairs WHERE (source_ref = $1 AND target_ref = $2) OR (source_ref = $2 AND target_ref = $1)`, [sourceRef, targetRef]);
     // The owner blocked this pair on the network map (migration 089): no promo either way until they allow it again.
-    if (pair.some((x) => x.blocked_at)) return { error: 'pair_blocked', details: 'власник заблокував промо між цими ресурсами (карта мережі) — не пропонуй цю пару' };
+    if (pair.some((x) => x.blocked_at)) return { error: 'pair_blocked', details: PAIR_BLOCKED_DETAILS };
+    // Spec 058: a pair the owner linked on the map skips the relevance check (they linked it on purpose).
+    const linked = pair.some((x) => x.linked_at);
     const last = pair.map((x) => x.last_promo_at).filter(Boolean).map((x) => new Date(x).getTime()).sort().pop();
     if (last && now.getTime() - last < PAIR_COOLDOWN_DAYS * 86_400_000) return { error: 'pair_cooldown', details: `ця пара вже мала промо за останні ${PAIR_COOLDOWN_DAYS} днів` };
 
     const cached = pair.find((x) => x.source_ref === sourceRef && x.relevance != null && x.relevance_at && now.getTime() - new Date(x.relevance_at).getTime() < RELEVANCE_TTL_DAYS * 86_400_000);
     let score = cached ? Number(cached.relevance) : null;
     let note = cached ? 'кеш' : '';
-    if (score == null) {
+    if (score == null && !linked) {
       const rel = relevance((await this.d.profiles.get(sourceRef))?.profile ?? null, (await this.d.profiles.get(targetRef))?.profile ?? null);
       score = rel.score;
       note = rel.note;
@@ -129,7 +132,7 @@ export class PromoPlanner {
         `INSERT INTO promo_pairs (source_ref, target_ref, relevance, relevance_at) VALUES ($1, $2, $3, now())
          ON CONFLICT (source_ref, target_ref) DO UPDATE SET relevance = EXCLUDED.relevance, relevance_at = now()`, [sourceRef, targetRef, score]);
     }
-    if (score < MIN_RELEVANCE) return { error: 'low_relevance', details: `релевантність ${score}/5 (${note})` };
+    if (!linked && score != null && score < MIN_RELEVANCE) return { error: 'low_relevance', details: `релевантність ${score}/5 (${note})` };
 
     const card = await this.d.card(anchorKey);
     if (!card) return { error: 'no_card', details: anchorKey };
@@ -153,7 +156,7 @@ export class PromoPlanner {
     const live = ['approve', 'live'].includes(minMode(orch.mode, card.mode));
     const planDate = localDate(at, card.timezone);
     const promo: Record<string, unknown> = {
-      kind, source_ref: sourceRef, target_ref: targetRef, directive_id: dir.id, relevance: score,
+      kind, source_ref: sourceRef, target_ref: targetRef, directive_id: dir.id, relevance: score ?? null,
       ...(kind === 'repost' ? { post_ref: p.post_ref } : {}),
     };
     const slotId = await this.d.plans.reserveSlot({
@@ -176,6 +179,8 @@ export class PromoPlanner {
     await this.d.pool.query(
       `INSERT INTO promo_pairs (source_ref, target_ref, last_promo_at, count_30d) VALUES ($1, $2, $3, 1)
        ON CONFLICT (source_ref, target_ref) DO UPDATE SET last_promo_at = $3, count_30d = promo_pairs.count_30d + 1`, [sourceRef, targetRef, at]);
+    // Spec 058: the owner approved this directive, so the pair is linked on the map from now on.
+    if (!linked) await linkPairs(this.d.pool, sourceRef, [targetRef]);
     return { ok: true, slotId, at, tracked, ...(linkNote ? { note: linkNote } : {}) };
   }
 

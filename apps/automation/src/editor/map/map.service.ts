@@ -5,9 +5,10 @@ import type { ResourceListItem } from '../agents/resource-catalog';
 import type { NetworkHealth } from '../health/network-health';
 import type { AgentCapStatus, BlockingCap, BudgetStatus } from '../../spend/spend.service';
 import { levelOf, levelStats } from './level';
-import { MapQueries, type RawEvent, type RawInfra, type RawRoad, type SlotFacts } from './map.queries';
+import { buildRoads } from './map-roads';
+import { MapQueries, type RawEvent, type RawInfra, type SlotFacts } from './map.queries';
 import type {
-  MapAlert, MapBudget, MapEvent, MapInfra, MapNetwork, MapRoad, MapResource, MapSnapshot, MapUnit, ResourceHealthView,
+  MapAlert, MapBudget, MapEvent, MapInfra, MapNetwork, MapResource, MapSnapshot, MapUnit, ResourceHealthView,
 } from './map.types';
 import { errorCode, stateOfRole, unitState, type UnitFacts } from './unit-state';
 
@@ -87,6 +88,9 @@ export function infraItems(raw: RawInfra[], catalogRefs: string[], channelBots: 
   });
 }
 
+/** Events the owner caused from the map; they stand at the building, with no agent. */
+const OWNER_EVENTS = new Set<string>(['link_made', 'link_broken', 'network_left']);
+
 const VERB = { planning: 'planning', writing: 'writing', reviewing: 'reviewing' } as Record<string, string>;
 const STATUS_TEXT: Record<string, string> = {
   error: 'failed', budget_exceeded: 'hit its budget', max_steps: 'ran out of steps', no_terminal: 'ended without a result',
@@ -113,6 +117,9 @@ export function eventText(e: RawEvent, titleOf: (ref: string | null | undefined)
     case 'directive': return `received a ${(e.extra ?? 'new').replace(/_/g, ' ')} directive`;
     case 'launch_started': return `${e.extra ?? 'a channel'} launch started`;
     case 'launch_graduated': return `${e.extra ?? 'a channel'} went live`;
+    case 'link_made': return `linked ${titleOf(e.ref)} ↔ ${titleOf(e.toRef)}`;
+    case 'link_broken': return `unlinked ${titleOf(e.ref)} ↔ ${titleOf(e.toRef)}`;
+    case 'network_left': return `${titleOf(e.ref)} left ${e.extra ?? 'its network'}`;
     default: return e.kind;
   }
 }
@@ -174,15 +181,15 @@ export class MapService {
     const q = this.q;
     const [
       agents, activity, catalog, budget, paused, health,
-      networks, modes, running, lastRuns, slotFacts, levelRows, failedRuns, resHealth, roads, joins, dirWait, launchWait, rawInfra, channelBots, blocked,
-      evRuns, evSlots, evDirs, evLaunches,
+      networks, modes, running, lastRuns, slotFacts, levelRows, failedRuns, resHealth, traffic, joins, dirWait, launchWait, rawInfra, channelBots, pairLinks,
+      evRuns, evSlots, evDirs, evLaunches, evLinks,
     ] = await Promise.all([
       this.d.agents.list(), this.d.agents.activity(), this.d.catalog.list(),
       this.d.budgets().catch(() => ({ rows: [] as BudgetStatus[], agentCaps: [] as AgentCapStatus[], blocking: [] as BlockingCap[] })),
       this.d.pausedRefs().catch(() => new Set<string>()), this.stuckHealth(),
       q.networks(), q.channelModes(), q.runningRuns(), q.lastRuns(), q.slotFacts(), q.levelRows(), q.failedRuns(), q.resourceHealth(),
-      q.roads(), q.joins(), q.directivesWaiting(), q.launchesWaiting(), q.infra(), q.channelBots(), q.blockedPairs(),
-      q.runEvents(), q.slotEvents(), q.directiveEvents(), q.launchEvents(),
+      q.roads(), q.joins(), q.directivesWaiting(), q.launchesWaiting(), q.infra(), q.channelBots(), q.pairLinks(),
+      q.runEvents(), q.slotEvents(), q.directiveEvents(), q.launchEvents(), q.linkEvents(),
     ]);
 
     const byId = new Map(agents.map((a) => [a.id, a]));
@@ -288,19 +295,10 @@ export class MapService {
       };
     });
 
-    // ── roads ──
-    const roadMap = new Map<string, RawRoad>();
-    for (const r of roads) {
-      const k = `${r.from}>${r.to}>${r.kind}`;
-      const cur = roadMap.get(k);
-      if (!cur) roadMap.set(k, { ...r });
-      else { cur.count += r.count; if (r.lastAt && (!cur.lastAt || r.lastAt > cur.lastAt)) cur.lastAt = r.lastAt; }
-    }
-    const mapRoads: MapRoad[] = [...roadMap.values()]
-      .filter((r) => r.from !== r.to && catalogByRef.has(r.from) && catalogByRef.has(r.to))
-      .map((r) => ({ from: r.from, to: r.to, kind: r.kind, count30d: r.count, lastAt: iso(r.lastAt), joins30d: r.kind === 'promo' ? joins.get(`${r.from}>${r.to}`) ?? null : null,
-        blocked: r.kind !== 'duplicate' && blocked.has(`${r.from}>${r.to}`) }))
-      .sort((a, b) => b.count30d - a.count30d || (a.from + a.to).localeCompare(b.from + b.to));
+    // ── roads: the current links (spec 058), plus the last 30 days between resources no longer linked ──
+    const mapRoads = buildRoads({
+      resources: catalog.map((c) => ({ ref: c.ref, groupId: c.groupId })), networks: mapNetworks, traffic, links: pairLinks, joins,
+    });
 
     // ── alerts ──
     const alerts: MapAlert[] = [];
@@ -346,11 +344,12 @@ export class MapService {
     // ── events ──
     const unitById = new Map(units.map((u) => [u.id, u]));
     const agentHandleOf = (e: RawEvent): string | null => {
+      if (OWNER_EVENTS.has(e.kind)) return null; // the owner did it, not an agent
       if (e.agentId) return byId.get(e.agentId)?.handle ?? null;
       const owner = (e.ref ? catalogByRef.get(e.ref)?.agent : null) ?? null;
       return owner;
     };
-    const events: MapEvent[] = [...evRuns, ...evSlots, ...evDirs, ...evLaunches]
+    const events: MapEvent[] = [...evRuns, ...evSlots, ...evDirs, ...evLaunches, ...evLinks]
       .sort((a, b) => b.at.getTime() - a.at.getTime() || a.id.localeCompare(b.id))
       .slice(0, MAX_EVENTS)
       .map((e) => ({
