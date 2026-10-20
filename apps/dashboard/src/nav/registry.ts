@@ -74,6 +74,8 @@ export const NAV_REGISTRY: ReadonlyArray<NavEntry> = [
   { id: 'dm-inbox', to: '/app/dm', label: 'DM inbox', icon: 'inbox', defaultGroup: 'g_agents', badge: 'dm', keywords: ['messages', 'direct', 'triage', 'ad requests', 'cross-promo'] },
   // Spec 035: which LLM each agent runs on (global default, per agent, bulk).
   { id: 'models', to: '/app/models', label: 'Models', icon: 'cpu', defaultGroup: 'g_agents', keywords: ['llm', 'model', 'openrouter', 'glm', 'ai model', 'reasoning', 'default model'] },
+  // Spec 056: the whole network as a game map — who works now, what waits for you, how the channels feed each other.
+  { id: 'network-map', to: '/app/map', label: 'Network map', icon: 'map', defaultGroup: 'g_agents', parent: 'agents', keywords: ['map', 'game', 'network', 'overview', 'live', 'agents', 'avatars', 'territory'] },
   { id: 'agents-inbox', to: '/app/agents/inbox', label: 'Agent inbox', icon: 'inbox', defaultGroup: 'g_agents', badge: 'agentsInbox', parent: 'agents', hiddenByDefault: true, keywords: ['notifications', 'alerts', 'unread'] },
   { id: 'directives', to: '/app/agents/manager', search: { tab: 'directives' }, label: 'Directives', icon: 'agents', defaultGroup: 'g_agents', badge: 'directives', parent: 'agents', hiddenByDefault: true, keywords: ['manager', 'decisions', 'awaiting'] },
 

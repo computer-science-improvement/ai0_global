@@ -313,3 +313,29 @@ Each agent has its own tool set. Every tool offered is re-sent to the model on e
 - After a run: `SELECT tools_offered FROM editor_runs ORDER BY started_at DESC LIMIT 1;` lists the names that run was offered (null for runs before the migration).
 - A Telegram-only agent created before its channel joined a network has no `lint_platform_post`; a *Missing* suggestion appears after two refused calls, or add it on the tab.
 - Roll back one agent with **Reset to role default**; roll back everything by applying the down migration (agents go back to the full role set).
+
+## 15. Network map (spec 056)
+
+`/app/map` ("Network map" in the sidebar) shows the whole network as one live map: networks are territories, channels and accounts are buildings, agents are units with pixel avatars, cross-promo and repost flows are roads, today's spend is the gem in the top bar, and what waits for you is a beacon on the building.
+
+**Needs**
+
+- Nothing to enable and no migration: the page reads `GET /api/map`, built from the resource catalog, the agents, the spend caps, network health, promo pairs and the last 24 hours of runs and slots. Tables from later migrations that are missing are skipped, not fatal.
+
+**Reading the map**
+
+- A unit's ring is its state: idle, planning, writing, reviewing, waiting (posts wait for you), publishing, error, paused or off. The state is derived from live facts (a running run, a slot about to go out, posts waiting, the last run or post failing, a pause on the resource); the legend (bottom left) lists them.
+- The level badge (1–10) counts quality, never volume: clean approvals plus critic passes, minus twice the rejections, minus failed runs, over 30 days; every 10 points is a level. Role agents show their orchestrator's level. The unit drawer states the numbers.
+- A building's border is the connection health (connected, needs attention, broken); hatching means paused; the number badge is what waits for you there. Roads: dashed blue is cross-promo, dotted is repost, solid is duplicate.
+- Everything clicks through: the drawers link to the agent page, its Artifacts, a chat with the agent, Approvals and the right Connections section. The bell in the top bar lists everything that waits for you.
+
+**Live updates**
+
+- The page polls every 5 s while any unit is planning, writing, reviewing or publishing, otherwise every 30 s, and not at all while the tab is hidden. "Offline" in the top bar means the last answer is older than 90 s.
+- Only what is new animates (a state change, a published post, a promo, a failure, a new alert); nothing animates on the first load, and nothing replays after a long time in a background tab. With `prefers-reduced-motion` nothing moves, only colours change.
+
+**Check it**
+
+- `GET /api/map` as the owner: one JSON snapshot, cached for 5 s, no post text (an event names a post by its topic only).
+- The map says "not available right now" with a Try again button when the snapshot fails; the rest of the dashboard is unaffected.
+- Rendering is deterministic: the same network always lays out the same way, so a poll never moves anything; the positions change only when channels, networks or agents are added or removed.

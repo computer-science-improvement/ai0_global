@@ -157,6 +157,8 @@ import { ChannelSetupService } from './setup/setup.service';
 import { CHANNEL_SETUP_SERVICE, ChannelSetupController } from './setup/setup.controller';
 import type { ApplyWriters, ChannelState } from './setup/setup-apply';
 import { LAUNCH_SERVICE, LaunchController } from './launch/launch.controller';
+import { MAP_SERVICE, MapController } from './map/map.controller';
+import { MapService } from './map/map.service';
 import { launchSource } from './launch/launch-cards';
 import { graduationLineUk, graduationSettings } from './launch/launch-graduation';
 import { launchQueries } from './launch/launch-queries';
@@ -2080,6 +2082,16 @@ export const EDITOR_PROVIDERS = [
       }),
     },
     {
+      // Spec 056 FR-001: the network map snapshot (5 s cache; stuck work from the network health view).
+      provide: MAP_SERVICE,
+      inject: [DB_POOL, AGENT_INFRA, NETWORK_HEALTH],
+      useFactory: (pool: Pool, infra: AgentInfra, health: NetworkHealthService) => new MapService({
+        pool, agents: infra.agents, catalog: infra.catalog, budgets: () => budgetSnapshot(new SpendRepository(pool)),
+        pausedRefs: () => new ResourcePauseService({ pool }).pausedRefs(), health: () => health.health(),
+        log: (m) => new Logger('Map').warn(m),
+      }),
+    },
+    {
       provide: NETWORK_SERVICE,
       inject: [DB_POOL, AGENT_INFRA, EDITOR_REPOS, EDITOR_NETWORK, PLATFORM_INFRA, EDITOR_MANAGER],
       useFactory: (pool: Pool, infra: AgentInfra, repos: EditorRepos, network: NetworkRunner, platform: PlatformInfra, manager: ManagerInfra) => {
@@ -2242,7 +2254,7 @@ export const EDITOR_PROVIDERS = [
 @Module({
   // AuthModule: EditorController is guarded by TrackingAuthGuard, which injects AuthService.
   imports:     [ChannelConfigModule, PublishersModule, AuthModule],
-  controllers: [EditorController, EditorChatController, AgentsController, LoadoutController, ModelsController, NetworkController, ManagerController, PromoController, PromoRedirectController, ApprovalsController, AutonomyController, ScheduleController, StrategyMigrationController, UpcomingSlotsController, ResourcePausesController, PostAuditController, ChannelSetupController, SteeringController, NetworkHealthController, ArtifactsController, OwnerBotController, LaunchController],
+  controllers: [EditorController, EditorChatController, AgentsController, LoadoutController, ModelsController, NetworkController, ManagerController, PromoController, PromoRedirectController, ApprovalsController, AutonomyController, ScheduleController, StrategyMigrationController, UpcomingSlotsController, ResourcePausesController, PostAuditController, ChannelSetupController, SteeringController, NetworkHealthController, ArtifactsController, OwnerBotController, LaunchController, MapController],
   providers:   [...EDITOR_PROVIDERS, TrackingAuthGuard],
   exports:     [EDITOR_REPOS, EDITOR_RUNNER, AGENT_INFRA, PLATFORM_INFRA, EDITOR_MANAGER],
 })

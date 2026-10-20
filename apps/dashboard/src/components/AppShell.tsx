@@ -55,7 +55,9 @@ export function AppShell() {
   const railCollapsed = onChat ? !chatNavOpen : collapsed;
   const toggleCollapsed = onChat ? toggleChatNav : toggleGlobal;
   // The chat fills the window below the header: its columns scroll on their own (FR-004).
-  const fullBleed = onChat;
+  // Spec 056: the network map fills the window as well (its HUD floats over it).
+  const onMap = useRouterState({ select: (s) => s.location.pathname === '/app/map' });
+  const fullBleed = onChat || onMap;
 
   // Spec 027 FR-012: ⌘K / Ctrl+K anywhere in /app, except while typing in a field.
   const [paletteOpen, setPaletteOpen] = useState(false);
