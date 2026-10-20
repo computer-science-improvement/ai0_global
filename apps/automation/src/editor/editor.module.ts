@@ -146,6 +146,7 @@ import { CHANNEL_SETUP_SERVICE, ChannelSetupController } from './setup/setup.con
 import type { ApplyWriters, ChannelState } from './setup/setup-apply';
 import { LAUNCH_SERVICE, LaunchController } from './launch/launch.controller';
 import { launchSource } from './launch/launch-cards';
+import { graduationLineUk, graduationSettings } from './launch/launch-graduation';
 import { launchJson, LaunchService } from './launch/launch.service';
 import { LaunchRepository } from './launch/launch.repository';
 import { makeLaunchBotCheck } from './launch/launch-bot';
@@ -1861,7 +1862,7 @@ export const EDITOR_PROVIDERS = [
       provide: LAUNCH_SERVICE,
       inject: [
         DB_POOL, ConfigService, AGENT_INFRA, EDITOR_REPOS, EDITOR_OPS, STEERING_SERVICE, MODEL_DEFAULTS, TelegramNotifier, ChannelConfigService,
-        AGENTS_SERVICE, NETWORK_SERVICE, EDITOR_RUNNER,
+        AGENTS_SERVICE, NETWORK_SERVICE, EDITOR_RUNNER, AUTONOMY_SERVICE, APPROVAL_INFRA, PLATFORM_INFRA,
         { token: PriceService, optional: true }, { token: LlmBudgetService, optional: true },
         { token: TrackingService, optional: true }, { token: TrackedChannelsRepository, optional: true },
       ],
@@ -1869,6 +1870,7 @@ export const EDITOR_PROVIDERS = [
         pool: Pool, cfg: ConfigService, infra: AgentInfra, repos: EditorRepos, ops: EditorOpsService, steering: SteeringService,
         models: WorkspaceModelStore, notifier: TelegramNotifier, channelConfig: ChannelConfigService,
         agentsSvc: AgentsService, networkSvc: NetworkService, runner: EditorRunnerService,
+        autonomy: AutonomyService, approval: ApprovalInfra, platform: PlatformInfra,
         prices?: PriceService, caps?: LlmBudgetService, tracking?: TrackingService, trackedRepo?: TrackedChannelsRepository,
       ): LaunchService => {
         const logger = new Logger('Launch');
@@ -1943,6 +1945,43 @@ export const EDITOR_PROVIDERS = [
             const card = await repos.channels.get(key);
             if (!card) return;
             await runner.runPlanner(card);
+          },
+          // T3: graduation from approval (FR-003).
+          graduation: {
+            settings: () => graduationSettings((k) => process.env[k] ?? cfg.get<string>(k) ?? undefined),
+            facts: async (key, since) => {
+              const ref = `telegram:${key}`;
+              const [dec, crit, usable] = await Promise.all([
+                pool.query(
+                  `SELECT CASE WHEN approved_at IS NOT NULL THEN CASE WHEN owner_edited THEN 'edited' ELSE 'clean' END ELSE 'rejected' END AS outcome
+                     FROM editor_slots
+                    WHERE channel_key = $1 AND (resource_ref IS NULL OR resource_ref = $2)
+                      AND (approved_at IS NOT NULL OR (status = 'skipped' AND error = 'rejected by owner'))
+                      AND COALESCE(approved_at, updated_at) >= $3
+                    ORDER BY COALESCE(approved_at, updated_at), id`, [key, ref, since]),
+                pool.query(
+                  `SELECT critic->>'verdict' AS verdict, count(*)::int AS n FROM editor_slots
+                    WHERE channel_key = $1 AND (resource_ref IS NULL OR resource_ref = $2) AND critic IS NOT NULL AND updated_at >= $3
+                    GROUP BY 1`, [key, ref, since]),
+                platform.health.usable(ref).catch(() => true),
+              ]);
+              const n = (v: string) => Number(crit.rows.find((r: any) => r.verdict === v)?.n ?? 0);
+              return { decisions: dec.rows.map((r: any) => r.outcome), critic: { pass: n('pass'), revise: n('revise'), reject: n('reject') }, usable };
+            },
+            mode: async (key) => {
+              const card = await repos.channels.get(key);
+              return card ? approval.mode(card) : 'off';
+            },
+            goLive: (key) => autonomy.switchMode({ channel: key, mode: 'live', approve_waiting: true }),
+            note: async (l, stats) => {
+              const orch = await orchOf(l.channelKey).catch(() => null);
+              await infra.inbox.post({
+                agentId: orch?.id ?? null, kind: 'launch_graduated', severity: 'action', refType: 'launch', refId: l.id,
+                title: `${l.channelKey} went live`,
+                body: `The launch criteria were met (${stats.criteria.map((c) => c.label).join('; ')}); posts now go out without approval. Switch back to approval on the agent page.`,
+                alert: { title: `🚀 ${l.channelKey} перейшов у Live`, body: `${graduationLineUk(stats)}. Пости тепер виходять без схвалення; повернути режим схвалення можна на сторінці агента.` },
+              });
+            },
           },
           log: (m) => logger.warn(m),
         });

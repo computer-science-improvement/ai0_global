@@ -25,6 +25,12 @@ export class LaunchController {
   @Post(':id/check')
   check(@Param('id') id: string) { return this.svc.check(id); }
 
+  @Post(':id/go-live')
+  goLive(@Param('id') id: string) { return this.svc.goLive(id); }
+
+  @Post(':id/not-yet')
+  notYet(@Param('id') id: string) { return this.svc.notYet(id); }
+
   @Post(':id/redo')
   redo(@Param('id') id: string, @Body() body: unknown) { return this.svc.redo(id, body); }
 

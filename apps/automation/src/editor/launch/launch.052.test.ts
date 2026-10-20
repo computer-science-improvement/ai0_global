@@ -9,13 +9,14 @@ import { FakeBudget, FakeLlm, MemoryRecorder } from '../harness/testing/fakes';
 import { resolveModel } from '../llm/model-registry';
 import { makeCard } from '../post/testing/fixtures';
 import type { Agent } from '../agents/agent.types';
-import type { EditorCard } from '../card';
+import type { ChannelMode, EditorCard } from '../card';
 import type { SteeringSet } from '../steering/steering.types';
 import { parseLaunchArgs, parseSlash, runSlash, type SlashDeps } from '../chat/slash-commands';
 import { checkLaunch, SUBMIT_LAUNCH_TOOL, SubmitLaunchInput } from './launch-analysis';
 import { launchActions, launchSummary } from './launch-artifact';
 import { BOT_RECHECK_MS, LaunchService, REFERENCE_WAIT_MS, type LaunchDeps } from './launch.service';
 import { launchSource } from './launch-cards';
+import { evaluateGraduation, graduationSettings, GRADUATION_CHECK_MS, type GraduationFacts } from './launch-graduation';
 import type { LaunchRepository } from './launch.repository';
 import type { LaunchBotState } from './launch.types';
 import { MemoryLaunchRepo, validLaunch } from './testing/launch-fixtures';
@@ -45,7 +46,11 @@ function service(o: {
   failStep?: 'playbook';
 } = {}) {
   const now = o.now ?? (() => NOW);
-  const box = { bot: o.bot ?? NO_BOT, tracked: null as { isMine: boolean; subs: number | null } | null, published: 0, ideas: 0 };
+  const box = {
+    bot: o.bot ?? NO_BOT, tracked: null as { isMine: boolean; subs: number | null } | null, published: 0, ideas: 0,
+    env: {} as Record<string, string>, mode: 'approve' as ChannelMode,
+    facts: { decisions: [], critic: { pass: 0, revise: 0, reject: 0 }, usable: true } as GraduationFacts,
+  };
   const repo = new MemoryLaunchRepo(now);
   const sets = new Map<string, SteeringSet>();
   const calls: unknown[][] = [];
@@ -88,6 +93,13 @@ function service(o: {
     ideas: { count: async () => box.ideas, add: async (i) => { box.ideas++; calls.push(['idea', i.title, i.originRef, i.variants[0].resource_ref]); } },
     setMode: async (key, mode) => { calls.push(['mode', key, mode]); if (card) card = { ...card, mode }; },
     planAhead: async (key) => { calls.push(['plan', key]); },
+    graduation: {
+      settings: () => graduationSettings((k) => box.env[k]),
+      facts: async () => box.facts,
+      mode: async () => box.mode,
+      goLive: async (key) => { calls.push(['goLive', key]); box.mode = 'live'; },
+      note: async (l) => { calls.push(['note', l.channelKey]); },
+    },
     now,
   };
   return { svc: new LaunchService(d), repo, sets, calls, llm, box };
@@ -403,4 +415,127 @@ test('owner bot: a ready plan waits for Start; a Start waiting for the bot asks 
   assert.match(await src.act(card.refId, 'check'), /запуск стартував/);
   assert.equal(repo.rows[0].status, 'running');
   await svc.idle();
+});
+
+// ── T3: graduation ───────────────────────────────────────────────────────────
+
+const meets = (): GraduationFacts => ({
+  decisions: [...Array(9).fill('clean'), 'edited', 'clean', 'clean'] as GraduationFacts['decisions'],
+  critic: { pass: 9, revise: 1, reject: 0 }, usable: true,
+});
+
+test('graduation: the criteria from Start (days, approved, clean, recent rejection, critic over 5 verdicts, health)', () => {
+  const s = graduationSettings(() => undefined);
+  assert.deepEqual(s, { mode: 'propose', minDays: 7, minApproved: 10, minCleanPct: 80, minCriticPct: 80 });
+  assert.equal(graduationSettings((k) => ({ LAUNCH_GRADUATION: 'AUTO', LAUNCH_GRADUATE_MIN_DAYS: '0' } as Record<string, string>)[k]).mode, 'auto');
+  assert.equal(graduationSettings((k) => ({ LAUNCH_GRADUATE_MIN_DAYS: '0' } as Record<string, string>)[k]).minDays, 1, 'clamped');
+  const day8 = new Date(NOW.getTime() + 8 * 86_400_000);
+  const ok = evaluateGraduation(meets(), s, NOW, day8);
+  assert.equal(ok.met, true);
+  assert.deepEqual([ok.days, ok.approved, ok.cleanPct, ok.criticPct], [8, 12, 92, 90]);
+  const fail = (f: Partial<GraduationFacts>, at = day8) => evaluateGraduation({ ...meets(), ...f }, s, NOW, at).criteria.filter((c) => !c.ok).map((c) => c.key);
+  assert.deepEqual(fail({}, new Date(NOW.getTime() + 3 * 86_400_000)), ['days']);
+  assert.deepEqual(fail({ decisions: Array(9).fill('clean') }), ['approved']);
+  assert.deepEqual(fail({ decisions: [...Array(8).fill('clean'), ...Array(4).fill('edited')] }), ['clean']);
+  assert.deepEqual(fail({ decisions: [...meets().decisions, 'rejected', 'clean'] }), ['recent']);
+  assert.deepEqual(fail({ critic: { pass: 4, revise: 0, reject: 0 } }), ['critic']);
+  assert.deepEqual(fail({ critic: { pass: 7, revise: 2, reject: 1 } }), ['critic']);
+  assert.deepEqual(fail({ usable: false }), ['usable']);
+});
+
+async function runningLaunch() {
+  let t = NOW;
+  const tt = await readyLaunch({ bot: BOT_OK, now: () => t });
+  await tt.svc.start(tt.repo.rows[0].id);
+  await tt.svc.idle();
+  assert.equal(tt.repo.rows[0].status, 'running');
+  return { ...tt, at: (ms: number) => { t = new Date(NOW.getTime() + ms); } };
+}
+
+test('graduation (propose): hourly; a proposal card when met; Not yet snoozes 7 days and 5 more approved; Go live switches', async () => {
+  const { svc, repo, calls, box, at } = await runningLaunch();
+  const id = repo.rows[0].id;
+  at(60_000);
+  await run(svc);
+  assert.equal(repo.rows[0].graduation.proposedAt ?? null, null);
+  assert.ok(repo.rows[0].graduation.checkedAt);
+  assert.match((await svc.view(repo.rows[0])).checklist.find((x) => x.key === 'graduation')!.detail ?? '', /days in approval/);
+
+  box.facts = meets();
+  at(8 * 86_400_000);
+  await run(svc);
+  const checked = repo.rows[0].graduation.checkedAt;
+  assert.ok(repo.rows[0].graduation.proposedAt, 'proposed');
+  assert.ok(!calls.some((c) => c[0] === 'goLive'), 'propose never switches by itself');
+  at(8 * 86_400_000 + 10 * 60_000);
+  await run(svc);
+  assert.equal(repo.rows[0].graduation.checkedAt, checked, 'checked at most hourly');
+  const v = await svc.view(repo.rows[0]);
+  assert.equal(v.checklist.find((x) => x.key === 'graduation')!.state, 'needs_you');
+  assert.deepEqual(launchActions({ id, status: 'running' }, { startRequested: false, proposed: true }).map((a) => a.key), ['go_live', 'not_yet', 'discard']);
+
+  const rows = [{ id, channel_key: KEY, status: 'running', summary: null, start_requested: false, bot_state: BOT_OK, graduation: repo.rows[0].graduation, updated_at: NOW }];
+  const src = launchSource({ pool: { query: async () => ({ rows }) } as any, launches: svc });
+  const [card] = await src.waiting(NOW);
+  assert.equal(card.refId, `${id}:graduate`);
+  assert.deepEqual(card.buttons.map((b) => b.key), ['go_live', 'not_yet', 'open']);
+  assert.match(card.body ?? '', /8 дн\. у схваленні · схвалено 12 · без правок 92% · критик пропускає 90% \(10\)/);
+
+  assert.match(await src.act(card.refId, 'not_yet'), /через 7 днів і ще 5 схвалених/);
+  const g = repo.rows[0].graduation;
+  assert.equal(g.proposedAt, null);
+  assert.equal(g.snoozedApproved, 17);
+  at(8 * 86_400_000 + GRADUATION_CHECK_MS + 1);
+  await run(svc);
+  assert.equal(repo.rows[0].graduation.proposedAt, null, 'snoozed');
+  box.facts = { ...meets(), decisions: [...meets().decisions, ...Array(5).fill('clean')] };
+  at(16 * 86_400_000);
+  await run(svc);
+  assert.ok(repo.rows[0].graduation.proposedAt, 'proposed again after the week and 5 more approved posts');
+
+  assert.match(await src.act(card.refId, 'go_live'), /Канал у Live/);
+  const l = repo.rows[0];
+  assert.equal(l.status, 'graduated');
+  assert.equal(l.graduation.by, 'owner');
+  assert.deepEqual(calls.filter((c) => c[0] === 'goLive'), [['goLive', KEY]]);
+  assert.equal((await svc.goLive(id)).changed, false);
+  assert.equal((await svc.view(l)).checklist.find((x) => x.key === 'graduation')!.state, 'done');
+});
+
+test('graduation: auto switches with a note; off only shows progress; live elsewhere graduates; off on the channel is paused', async () => {
+  {
+    const { svc, repo, calls, box, at } = await runningLaunch();
+    box.env.LAUNCH_GRADUATION = 'auto';
+    box.facts = meets();
+    at(8 * 86_400_000);
+    await run(svc);
+    assert.equal(repo.rows[0].status, 'graduated');
+    assert.equal(repo.rows[0].graduation.by, 'auto');
+    assert.deepEqual(calls.filter((c) => c[0] === 'note'), [['note', KEY]]);
+  }
+  {
+    const { svc, repo, calls, box, at } = await runningLaunch();
+    box.env.LAUNCH_GRADUATION = 'off';
+    box.facts = meets();
+    at(8 * 86_400_000);
+    await run(svc);
+    assert.equal(repo.rows[0].status, 'running');
+    assert.equal(repo.rows[0].graduation.proposedAt, null);
+    assert.ok(!calls.some((c) => c[0] === 'goLive'));
+    assert.match((await svc.view(repo.rows[0])).checklist.find((x) => x.key === 'graduation')!.detail ?? '', /Automatic graduation is off; all criteria met/);
+  }
+  {
+    const { svc, repo, box, at } = await runningLaunch();
+    box.mode = 'off';
+    at(60_000);
+    await run(svc);
+    assert.equal(repo.rows[0].status, 'running');
+    assert.equal(repo.rows[0].graduation.paused, true);
+    assert.equal(launchSummary(repo.rows[0]), 'paused (the channel is off) · @coffee_ref');
+    box.mode = 'live';
+    at(60_000 + GRADUATION_CHECK_MS);
+    await run(svc);
+    assert.equal(repo.rows[0].status, 'graduated');
+    assert.equal(repo.rows[0].graduation.by, 'owner_elsewhere');
+  }
 });

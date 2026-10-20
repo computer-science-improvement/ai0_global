@@ -2,10 +2,12 @@ import type { Pool } from 'pg';
 import type { CardSource, WaitingItem } from '../owner-bot/card-sources';
 import { kyivTime } from '../owner-bot/owner-text';
 import type { LaunchBotState } from './launch.types';
+import { graduationLineUk, SNOOZE_DAYS, SNOOZE_MORE_APPROVED, type GraduationStats } from './launch-graduation';
 
 /**
  * Spec 052 FR-002: the launch in the owner bot (kind `launch`). A ready plan waits for Start (it asks to confirm); a
- * Start waiting for the bot asks the owner to make the bot an administrator, with "Перевірити" to check now. The text is
+ * Start waiting for the bot asks the owner to make the bot an administrator, with "Перевірити" to check now; a running
+ * launch that met the graduation criteria offers Live (FR-003, "Ще ні" snoozes). The text is
  * the owner's Telegram text (Ukrainian); the buttons call the same service methods as the dashboard.
  */
 
@@ -13,6 +15,8 @@ export interface LaunchCardDeps {
   pool:     Pick<Pool, 'query'>;
   launches: {
     start(id: string): Promise<{ started: boolean; waitingFor: string | null }>;
+    goLive(id: string): Promise<{ changed: boolean }>;
+    notYet(id: string): Promise<unknown>;
     check(id: string): Promise<{ launch: { status: string; channelKey: string; bot: LaunchBotState | null } }>;
   };
 }
@@ -35,9 +39,22 @@ export function launchSource(d: LaunchCardDeps): CardSource {
     kind: 'launch', emoji: '🚀', label: 'Запуск каналу',
     async waiting() {
       const { rows } = await d.pool.query(
-        `SELECT id, channel_key, plan->>'summary' AS summary, start_requested, bot_state, updated_at
-           FROM channel_launches WHERE status = 'ready' ORDER BY updated_at`);
+        `SELECT id, channel_key, status, plan->>'summary' AS summary, start_requested, bot_state, graduation, updated_at
+           FROM channel_launches
+          WHERE status = 'ready'
+             OR (status = 'running' AND graduation->>'proposedAt' IS NOT NULL AND graduation->>'decidedAt' IS NULL)
+          ORDER BY updated_at`);
       return rows.map((r: any): WaitingItem => {
+        if (r.status === 'running') {
+          const st = r.graduation?.stats as GraduationStats | undefined;
+          return {
+            refId: `${r.id}:graduate`, title: `${r.channel_key}: готовий до Live`,
+            body: [st ? graduationLineUk(st) : null,
+              'Live: пости виходять без вашого схвалення; чисті пости, що зараз чекають, буде схвалено.'].filter(Boolean).join('\n\n'),
+            path: launchPath(r.id), critical: false, since: new Date(r.graduation?.proposedAt ?? r.updated_at),
+            buttons: [{ key: 'go_live', label: 'У Live', confirm: 'Так, у Live' }, { key: 'not_yet', label: 'Ще ні' }, { key: 'open', label: 'Відкрити' }],
+          };
+        }
         const bot = (r.bot_state && Object.keys(r.bot_state).length ? r.bot_state : null) as LaunchBotState | null;
         const botOk = bot?.state === 'ok';
         if (r.start_requested && !botOk) {
@@ -72,6 +89,14 @@ export function launchSource(d: LaunchCardDeps): CardSource {
         if (launch.status === 'running') return at('✅ Бот — адміністратор, запуск стартував');
         if (launch.bot?.state === 'ok') return at('✅ Бот — адміністратор');
         throw new Error(botLineUk(launch.channelKey, launch.bot));
+      }
+      if (key === 'go_live') {
+        const r = await d.launches.goLive(id);
+        return at(r.changed ? '✅ Канал у Live' : 'Канал уже в Live');
+      }
+      if (key === 'not_yet') {
+        await d.launches.notYet(id);
+        return at(`Добре: запропоную знову через ${SNOOZE_DAYS} днів і ще ${SNOOZE_MORE_APPROVED} схвалених постів`);
       }
       throw new Error(`unknown button ${key}`);
     },

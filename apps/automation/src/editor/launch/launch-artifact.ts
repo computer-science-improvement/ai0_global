@@ -18,13 +18,15 @@ export const launchTitle = (l: Pick<ChannelLaunch, 'channelKey'>) => `Launch · 
 export function launchSummary(l: ChannelLaunch): string {
   const refs = l.refs.length ? ` · ${l.refs.map((r) => refName(r.ref)).join(', ')}` : '';
   if (l.status === 'failed' || l.status === 'discarded') return `${LABEL[l.status]}${l.reason ? ` — ${l.reason}` : ''}`;
+  if (l.status === 'running' && l.graduation?.proposedAt && !l.graduation.decidedAt) return `ready to go live${refs}`;
+  if (l.status === 'running' && l.graduation?.paused) return `paused (the channel is off)${refs}`;
   if (l.status === 'running') return `in approval since ${l.startedAt ? new Date(l.startedAt).toISOString().slice(0, 10) : '—'}${refs}`;
   if (l.status === 'ready' && l.startRequested) return `starts when the bot is an admin${refs}`;
   return `${LABEL[l.status] ?? l.status}${refs}`;
 }
 
 /** The owner's actions now: each one is an endpoint of the launch API. */
-export function launchActions(r: Pick<ArtifactRow, 'id' | 'status'>, l: Pick<ChannelLaunch, 'startRequested'> | null): ArtifactAction[] {
+export function launchActions(r: Pick<ArtifactRow, 'id' | 'status'>, l: { startRequested: boolean; proposed?: boolean } | null): ArtifactAction[] {
   const p = (a: string) => `/api/launches/${r.id}/${a}`;
   const out: ArtifactAction[] = [];
   if (r.status === 'ready' && !l?.startRequested) out.push({ key: 'start', label: 'Start', method: 'POST', path: p('start') });
@@ -32,6 +34,7 @@ export function launchActions(r: Pick<ArtifactRow, 'id' | 'status'>, l: Pick<Cha
     out.push({ key: 'check', label: 'Check the bot now', method: 'POST', path: p('check') });
   }
   if (r.status === 'running') out.push({ key: 'go_live', label: 'Go live', method: 'POST', path: p('go-live') });
+  if (r.status === 'running' && l?.proposed) out.push({ key: 'not_yet', label: 'Not yet', method: 'POST', path: p('not-yet') });
   if (r.status === 'ready' || r.status === 'failed') out.push({ key: 'redo', label: 'Make the plan again', method: 'POST', path: p('redo') });
   if (['queued', 'preparing', 'analyzing', 'ready', 'failed', 'running'].includes(r.status)) {
     out.push({ key: 'discard', label: r.status === 'running' ? 'Stop the launch' : 'Discard', method: 'POST', path: p('discard'), danger: true });
@@ -64,8 +67,8 @@ export function launchAdapter(d: {
     versions: async () => [],
     version: async () => undefined,
     actions(r, body) {
-      const b = body as { startRequested?: boolean } | null;
-      return launchActions(r, b ? { startRequested: !!b.startRequested } : null);
+      const b = body as { startRequested?: boolean; graduation?: { proposedAt?: string | null; decidedAt?: string | null } } | null;
+      return launchActions(r, b ? { startRequested: !!b.startRequested, proposed: !!b.graduation?.proposedAt && !b.graduation?.decidedAt } : null);
     },
   };
 }

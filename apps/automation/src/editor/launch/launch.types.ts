@@ -35,6 +35,8 @@ export interface LaunchGraduation {
   by?:              'owner' | 'auto' | 'owner_elsewhere' | null;
   checkedAt?:       string | null;
   stats?:           unknown;
+  /** The channel was switched back to off after Start (shown as paused; the launch keeps running). */
+  paused?:          boolean;
 }
 
 /** One promo filed for the launch (FR-004). */

@@ -1,6 +1,6 @@
 import { BadRequestException, ConflictException, NotFoundException } from '@nestjs/common';
 import { z } from 'zod';
-import type { EditorCard } from '../card';
+import type { ChannelMode, EditorCard } from '../card';
 import type { Agent } from '../agents/agent.types';
 import type { AgentLoop, AgentLoopResult } from '../harness/agent-loop';
 import type { ModelProfile } from '../llm/model-registry';
@@ -18,6 +18,10 @@ import {
 } from './launch-analysis';
 import type { LaunchRepository } from './launch.repository';
 import { buildChecklist, type ChecklistFacts, type LaunchStep } from './launch-checklist';
+import {
+  dueToGraduate, evaluateGraduation, GRADUATION_CHECK_MS, graduationStep, SNOOZE_DAYS, SNOOZE_MORE_APPROVED,
+  type GraduationFacts, type GraduationSettings, type GraduationStats,
+} from './launch-graduation';
 import {
   MAX_BRIEF_CHARS, MAX_REFERENCES, MIN_BRIEF_CHARS, PRE_START_STATUSES, type ChannelLaunch, type LaunchBotState, type LaunchRef,
 } from './launch.types';
@@ -96,6 +100,17 @@ export interface LaunchDeps {
   setMode:  (channelKey: string, mode: 'approve' | 'live') => Promise<void>;
   /** Plan today (when hours are left) and tomorrow — in the background after Start. */
   planAhead?: (channelKey: string) => Promise<void>;
+  // ── T3: graduation from approval ──
+  graduation: {
+    settings(): GraduationSettings;
+    facts(channelKey: string, since: Date): Promise<GraduationFacts>;
+    /** The channel's effective mode now (card ∧ orchestrator). */
+    mode(channelKey: string): Promise<ChannelMode>;
+    /** The 031 autonomy switch approve → live (it approves the clean waiting posts too). */
+    goLive(channelKey: string): Promise<unknown>;
+    /** `auto`: the action note that the channel went live. */
+    note?(l: ChannelLaunch, stats: GraduationStats): Promise<void>;
+  };
   now?:     () => Date;
   log?:     (msg: string) => void;
 }
@@ -224,7 +239,67 @@ export class LaunchService {
     if (cur.status === 'ready' && cur.startRequested && cur.botState?.state === 'ok') {
       cur = await this.doStart(cur).catch((err) => { this.d.log?.(`launch ${cur!.channelKey} start: ${errText(err)}`); return cur; });
     }
+    if (cur?.status === 'running') cur = await this.checkGraduation(cur);
     return cur;
+  }
+
+  // ── graduation (FR-003) ───────────────────────────────────────────────────
+
+  /** At most hourly: live elsewhere → graduated; off → paused; the criteria → a proposal (propose) or the switch (auto). */
+  async checkGraduation(l: ChannelLaunch, force = false): Promise<ChannelLaunch | null> {
+    const g = l.graduation ?? {};
+    const now = this.now();
+    if (!force && g.checkedAt && now.getTime() - new Date(g.checkedAt).getTime() < GRADUATION_CHECK_MS) return l;
+    const mode = await this.d.graduation.mode(l.channelKey);
+    if (mode === 'live') {
+      return this.d.repo.transition(l.id, ['running'], {
+        status: 'graduated', graduatedAt: now,
+        graduation: { ...g, proposedAt: null, decidedAt: now.toISOString(), by: g.by ?? 'owner_elsewhere', checkedAt: now.toISOString(), paused: false },
+      });
+    }
+    const settings = this.d.graduation.settings();
+    const stats = evaluateGraduation(await this.d.graduation.facts(l.channelKey, l.startedAt ?? l.createdAt), settings, l.startedAt ?? l.createdAt, now);
+    const due = mode === 'approve' && settings.mode !== 'off' && dueToGraduate(stats, g, now);
+    if (due && settings.mode === 'auto') {
+      await this.d.graduation.goLive(l.channelKey);
+      const next = await this.d.repo.transition(l.id, ['running'], {
+        status: 'graduated', graduatedAt: now,
+        graduation: { ...g, stats, proposedAt: null, decidedAt: now.toISOString(), by: 'auto', checkedAt: now.toISOString(), paused: false },
+      });
+      if (next) await this.d.graduation.note?.(next, stats).catch((err) => this.d.log?.(`launch ${l.channelKey}: note: ${errText(err)}`));
+      return next;
+    }
+    const proposedAt = due ? (g.proposedAt ?? now.toISOString()) : null;
+    return this.d.repo.update(l.id, { graduation: { ...g, stats, proposedAt, checkedAt: now.toISOString(), paused: mode === 'off' } });
+  }
+
+  /** The owner's Go live (dashboard, chat panel or the owner bot card). */
+  async goLive(id: string) {
+    const l = await this.get(id);
+    if (l.status === 'graduated') return { launch: await this.view(l), changed: false };
+    if (l.status !== 'running') throw new ConflictException({ error: 'not_running', details: `the launch is ${l.status} — Go live comes after Start` });
+    await this.d.graduation.goLive(l.channelKey);
+    const now = this.now();
+    const next = await this.d.repo.transition(id, ['running'], {
+      status: 'graduated', graduatedAt: now,
+      graduation: { ...l.graduation, proposedAt: null, decidedAt: now.toISOString(), by: 'owner', paused: false },
+    });
+    return { launch: await this.view(next ?? l), changed: true };
+  }
+
+  /** "Not yet": no proposal for 7 days and until 5 more posts are approved. */
+  async notYet(id: string) {
+    const l = await this.get(id);
+    if (l.status !== 'running') throw new ConflictException({ error: 'not_running', details: `the launch is ${l.status}` });
+    const g = l.graduation ?? {};
+    const approved = (g.stats as GraduationStats | undefined)?.approved ?? 0;
+    const next = await this.d.repo.update(id, {
+      graduation: {
+        ...g, proposedAt: null,
+        snoozedUntil: new Date(this.now().getTime() + SNOOZE_DAYS * 86_400_000).toISOString(), snoozedApproved: approved + SNOOZE_MORE_APPROVED,
+      },
+    });
+    return { launch: await this.view(next ?? l) };
   }
 
   private async refreshBot(l: ChannelLaunch): Promise<ChannelLaunch | null> {
@@ -477,7 +552,8 @@ export class LaunchService {
       l.startedAt ? this.d.published(l.channelKey, l.startedAt).catch(() => 0) : Promise.resolve(0),
       this.d.platforms(l.channelKey).catch((): ChecklistFacts['platforms'] => []),
     ]);
-    return buildChecklist(l, { tracked, published, platforms });
+    const graduation = graduationStep(l, this.d.graduation.settings(), !!l.graduation?.paused);
+    return buildChecklist(l, { tracked, published, platforms, graduation });
   }
 
   async viewById(id: string) {
