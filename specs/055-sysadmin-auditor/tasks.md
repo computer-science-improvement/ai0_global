@@ -3,7 +3,7 @@
 Linear epic: AI0-247.
 
 - [x] T1 FR-001: `skills/skills-audit.ts` lifted from the test, `sysadmin/checks/*` (skills, memory, rules, tools, prompt) pure and tested, `sysadmin/audit-queries.ts` with a PG test.
-- [ ] T2 FR-002: role `auditor` wiring (types, model registry, features, skill roles), @sysadmin via registry sync, the `auditor-workflow` builtin skill, the runner with `submit_audit` and code validation (fake LLM tests only).
+- [x] T2 FR-002: role `auditor` wiring (types, model registry, features, skill roles), @sysadmin via registry sync, the `auditor-workflow` builtin skill, the runner with `submit_audit` and code validation (fake LLM tests only).
 - [ ] T3 FR-003: migration `088_audit_reports.sql`, repository, `AuditService` (run, apply, dismiss), controller, the `audit` artifact type and adapter, dashboard `AuditBody`, chip, `/audit`, mocks, browser check.
 - [ ] T4 FR-004: settings, the weekly tick with the ISO-week claim, the inbox note, the manager digest line.
 - [ ] T5: runbook section, specs README row, spec status.
@@ -11,6 +11,7 @@ Linear epic: AI0-247.
 ## Status
 
 - T1: done — the checks are pure functions over `AuditFacts` (`sysadmin/audit.types.ts`); `AuditQueries` loads the facts; 19 unit tests on fixtures and 3 PG tests on a throwaway database (init.sql + every migration).
+- T2: done — role `auditor` through types, model registry (Haiku on the Anthropic workspace, low effort), features, budget reserve, skill lint and read tools; @sysadmin (kind `auditor`, system scope, live) is created by the registry sync; `auditor-workflow` builtin skill; `AuditorRunner` (code checks, then one model pass with `submit_audit`, every key and id checked in code); 4 + 5 + 3 unit tests with a fake LLM.
 
 ## Deltas from the spec
 
@@ -25,3 +26,8 @@ Linear epic: AI0-247.
 - **One finding per agent for config conflicts** (not one per conflict): the fix is the resolver for the agent, so the findings would all share it.
 - **A check never fills the report**: past 25 findings of one check the rest become one `<check>_more` info line.
 - **Tool registry at run time** comes from the `ToolRegistry` (the sources are not shipped); `toolRegistryFromSource` stays for tests.
+- **Tools of the audit pass.** `get_channel_memory` / `get_channel_card` need a run channel, which the audit has not; the auditor gets `inspect_channel_memory` and `inspect_channel_card` (by channel key) instead. `load_skill` / `list_skills` serve every skill of the database (a source built from the facts), not one agent's view.
+- **The model may not fail the report.** Off (`AUDITOR_LLM=off`, agent off or missing, no key), over budget (`maxCostUsd` = `AUDITOR_BUDGET_USD`, default $0.15) or no `submit_audit`: the report is the code's findings with a note (`llm.status`, `llm.note`, Ukrainian).
+- **Model findings** carry check `llm_judgement`, never a fix; at most 8; the subject must be an id the model was shown (flagged texts and the ten largest skills and rules).
+- **@sysadmin starts `live`**: it only audits and proposes, so the mode decides nothing but whether the model pass runs. The `agents_kind_check` widening is migration 088 (T3); until then the registry sync logs that @sysadmin was not created.
+- **Chat.** @sysadmin has no chat turn: a message to it gets a fixed answer pointing to the Audits artifact and `/audit`; it is left out of multi-agent addressing and of the channel-agent slash scope.

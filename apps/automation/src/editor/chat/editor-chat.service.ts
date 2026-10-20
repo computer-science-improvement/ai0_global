@@ -273,7 +273,7 @@ export class EditorChatService {
       if (!found.some((x) => x.id === a!.id)) found.push(a);
     }
     const manager = found.find((a) => a.kind === 'manager');
-    const channel = found.filter((a) => a.kind !== 'manager' && a.kind !== 'builder');
+    const channel = found.filter((a) => a.kind !== 'manager' && a.kind !== 'builder' && a.kind !== 'auditor');
     if (manager && channel.length) {
       return { kind: 'agent', agent: manager, note: `Власник звернувся одразу до ${found.map((a) => `@${a.handle}`).join(', ')}: ти координуєш — зроби або запропонуй картками те, що стосується кожного з них.` };
     }
@@ -334,6 +334,15 @@ export class EditorChatService {
         if (addressee.kind === 'builder' || addressee.kind === 'manager') {
           return await this.runSystemAgent(chatId, text, addressee, prior, chatDrafts, emit, route.kind === 'agent' ? route.note : null);
         }
+        // Spec 055: @sysadmin works on a schedule (its report is the /audit artifact); it has no chat turn of its own.
+        if (addressee.kind === 'auditor') {
+          const message = await this.d.repo.addMessage({
+            chatId, role: 'assistant', agentId: addressee.id,
+            content: `@${addressee.handle} audits the network once a week and does not chat. Its report is on the Artifacts page (Audits); /audit runs one now.`,
+          });
+          emit({ type: 'message', message });
+          return { message, drafts: [] };
+        }
       }
 
       if (route.kind === 'agents') return await this.runAddressees(chatId, text, route.agents, prior, chatDrafts, emit, opts);
@@ -362,7 +371,7 @@ export class EditorChatService {
     await this.d.repo.addMessage({ chatId, role: 'user', content: text });
     await this.d.repo.touchChat(chatId, first ? text.replace(/\s+/g, ' ').slice(0, TITLE_CHARS) : undefined);
     const agent = chatAgentId && this.d.agents ? await this.d.agents.get(chatAgentId) : null;
-    const own = agent && agent.kind !== 'builder' && agent.kind !== 'manager' ? agent : null;
+    const own = agent && agent.kind !== 'builder' && agent.kind !== 'manager' && agent.kind !== 'auditor' ? agent : null;
     const ctx: SlashContext = {
       agent: own?.handle ?? null,
       channel: (own && this.d.agents ? await this.d.agents.channelKeyOf(own) : null) ?? opts.channel ?? null,

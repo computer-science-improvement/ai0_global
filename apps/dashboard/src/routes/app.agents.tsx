@@ -27,8 +27,8 @@ function InboxButton() {
 function AgentsPage() {
   const tree = useAgentTree();
   const all = tree.data?.agents ?? [];
-  const system = all.filter((a) => a.kind === 'manager' || a.kind === 'builder');
-  const orchestrators = all.filter((a) => a.kind !== 'manager' && a.kind !== 'builder');
+  const system = all.filter((a) => a.kind === 'manager' || a.kind === 'builder' || a.kind === 'auditor');
+  const orchestrators = all.filter((a) => a.kind !== 'manager' && a.kind !== 'builder' && a.kind !== 'auditor');
   const spend = all.reduce((s, a) => s + a.activity.spentTodayUsd + a.children.reduce((c, k) => c + k.activity.spentTodayUsd, 0), 0);
   const runs = all.reduce((s, a) => s + a.activity.runsToday + a.children.reduce((c, k) => c + k.activity.runsToday, 0), 0);
   const live = orchestrators.filter((a) => a.mode === 'live').length;

@@ -17,7 +17,7 @@ const PRODUCTION = `u.feature LIKE 'editor.%' AND u.feature <> 'editor.chat' AND
  * cap; the writer, the critic, the planner and owner-started runs may use all of it.
  */
 export const DEFAULT_WRITER_RESERVE_PCT = 40;
-export const RESERVE_YIELDING_FEATURES: readonly string[] = ['editor.manager', 'editor.orchestrator', 'editor.idea_reviewer', 'editor.reviewer'];
+export const RESERVE_YIELDING_FEATURES: readonly string[] = ['editor.manager', 'editor.orchestrator', 'editor.idea_reviewer', 'editor.reviewer', 'editor.auditor'];
 
 /** A registry agent's own daily cap (spec 017), checked in addition to the channel and global caps. */
 export interface AgentBudget {

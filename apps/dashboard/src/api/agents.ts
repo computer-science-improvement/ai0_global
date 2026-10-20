@@ -8,7 +8,7 @@ export type { PendingAction } from './types';
 // Agent registry (spec 017 FR-010/FR-011). Responses are camelCase, PATCH/PUT
 // bodies snake_case. Handles are [a-z0-9_] but are still URL-encoded.
 
-export type AgentKind = 'manager' | 'builder' | 'orchestrator' | 'planner' | 'ideator' | 'idea_reviewer' | 'executor' | 'reviewer';
+export type AgentKind = 'manager' | 'builder' | 'auditor' | 'orchestrator' | 'planner' | 'ideator' | 'idea_reviewer' | 'executor' | 'reviewer';
 export type AgentScope = 'system' | 'network' | 'resource';
 export type AgentMode = EditorMode;
 export type ReasoningEffort = 'low' | 'medium' | 'high';
@@ -102,7 +102,7 @@ export interface AgentRun {
 export interface RuleLintIssue { code: string; detail: string }
 export type AgentMemoryEntry = Omit<EditorMemoryEntry, 'active'> & { lint?: RuleLintIssue[] };
 
-export const SKILL_ROLES = ['planner', 'executor', 'reviewer', 'checker', 'composer', 'orchestrator', 'idea_reviewer', 'manager', 'builder'] as const;
+export const SKILL_ROLES = ['planner', 'executor', 'reviewer', 'checker', 'composer', 'orchestrator', 'idea_reviewer', 'manager', 'builder', 'auditor'] as const;
 export type SkillRole = typeof SKILL_ROLES[number];
 export const SKILL_MAX_BODY = 12_000;
 export const SKILL_MAX_INLINE_BODY = 4_000;

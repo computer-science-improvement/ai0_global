@@ -153,6 +153,7 @@ import { LaunchRepository } from './launch/launch.repository';
 import { makeLaunchBotCheck } from './launch/launch-bot';
 import { launchAdapter, launchTitle } from './launch/launch-artifact';
 import { buildLaunchChannelTool } from './launch/launch-tool';
+import { buildAuditorTools } from './sysadmin/auditor-tools';
 import { collectPosts, trackedChannel } from './setup/setup-posts';
 import { VOICE_SKILL_NAME } from './setup/setup-analysis';
 import { refName, SteeringRepository } from './steering/steering.repository';
@@ -1187,6 +1188,8 @@ export const EDITOR_PROVIDERS = [
           buildSteerChannelTool({ steering }),
           // Spec 052 FR-001: @ai0 launches a new channel (the owner starts it from the launch artifact).
           buildLaunchChannelTool({ launches: { createLaunch: (b, by) => (LAUNCH.svc ? LAUNCH.svc.createLaunch(b, by) : Promise.resolve({ ok: false, error: 'invalid_body', details: 'launches are not ready yet' } as const)) } }),
+          // Spec 055 FR-002: the sysadmin's audit pass (submit_audit, inspect_channel_memory / _card).
+          ...buildAuditorTools({ memory: repos.memory, card: (k) => repos.channels.get(k) }),
           // Spec 048 FR-002: read and change the artifacts that shape an agent (live ones through an Apply / Discard card).
           ...buildArtifactTools({ artifacts: () => ARTIFACTS.svc, actions: infra.actions }),
           // Spec 034 FR-008: example posts and warnings in the agent-creation chat (a content_examples card).
