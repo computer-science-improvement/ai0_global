@@ -90,6 +90,18 @@ import { TelegramScopeKpi } from './agents/scope-kpi';
 import type { ScopeKpi } from './agents/scope-kpi';
 import { AgentRuntime } from './agents/agent-runtime';
 import { AgentRegistrySync } from './agents/agent-registry-sync';
+import { LoadoutRepository } from './loadout/loadout.repository';
+import { LoadoutService } from './loadout/loadout.service';
+import { LoadoutUsage } from './loadout/loadout-usage';
+import { LoadoutCreation, resourcePlatforms } from './loadout/loadout-creation';
+import { LoadoutAdminService, rulesTarget } from './loadout/loadout.admin.service';
+import { LoadoutController, LOADOUT_SERVICE } from './loadout/loadout.controller';
+import { rulesSummary } from './loadout/loadout-rules';
+import { LoadoutScan, postWeeklyLoadoutNote } from './loadout/loadout-notes';
+
+/** Spec 054 FR-005: the loadout suggestions of every agent (digest block, weekly owner note). */
+export const LOADOUT_SCAN = 'LOADOUT_SCAN';
+import type { ToolRegistry as LoadoutRegistry } from './harness/tool-registry';
 import { SkillVersionEvaluator } from './agents/skill-version-evaluator';
 import { buildAgentSkillTools } from './agents/agent-skill-tools';
 import { AgentsService } from './agents/agents.service';
@@ -334,6 +346,10 @@ export interface AgentInfra {
   actions:  PendingActionsService;
   actionsRepo: PendingActionsRepository;
   creator:  AgentCreator;
+  /** Spec 054: the agent's own tool set (agent_tools), resolved once per run. */
+  loadout:  LoadoutService;
+  loadoutRepo:  LoadoutRepository;
+  loadoutUsage: LoadoutUsage;
   /** The Telegram channel an orchestrator publishes to: its resource, or its network's channel. */
   channelKeyOf(agent: Agent): Promise<string | null>;
 }
@@ -391,6 +407,8 @@ function configConflictsOf(pool: Pool, repos: Pick<EditorRepos, 'memory' | 'chan
 const ARTIFACTS: { svc?: ArtifactsService } = {};
 /** Spec 052: the launch service, bound late (the tool registry and the artifacts come before it). */
 const LAUNCH: { svc?: LaunchService } = {};
+/** Spec 054: the tool registry for the loadout of a new agent, bound late (the registry is built after the agent infrastructure). */
+const LOADOUT_REGISTRY: { reg?: Pick<LoadoutRegistry, 'all'> } = {};
 
 async function ownerRuleLint(infra: Pick<AgentInfra, 'skills' | 'agents'>, text: string, orch: Agent) {
   return lintOwnerRule(text, {
@@ -674,7 +692,18 @@ export class AgentsUpkeep implements OnModuleInit {
     @Inject(PROMO_INFRA) private readonly promo: PromoInfra,
     @Inject(APPROVAL_INFRA) private readonly approval: ApprovalInfra,
     @Inject(NETWORK_SERVICE) private readonly network: NetworkService,
+    @Inject(LOADOUT_SCAN) private readonly loadoutScan: LoadoutScan,
   ) {}
+
+  /** Spec 054 FR-005: once a week (Monday), the owner's inbox hears about agents whose tool set could change. */
+  @Cron('30 9 * * 1', { name: 'loadout-suggestions' })
+  async loadoutSuggestions(): Promise<void> {
+    try {
+      if (await postWeeklyLoadoutNote({ scan: this.loadoutScan, inbox: this.infra.inbox })) this.logger.log('loadout suggestions: weekly note posted');
+    } catch (err: any) {
+      this.logger.warn(`loadout suggestions failed: ${err?.message ?? err}`);
+    }
+  }
 
   /** Spec 024 FR-010: once-per-group offers to convert legacy auto-duplicate networks (idempotent by group). */
   @Cron('29 * * * *', { name: 'network-offers' })
@@ -933,7 +962,18 @@ export const EDITOR_PROVIDERS = [
         const agents = new AgentsRepository(pool);
         const skills = new SkillStore(pool);
         const profiles = new ResourceProfilesRepository(pool);
-        const registry = new AgentRegistrySync({ agents, channels: repos.channels, log: (m) => logger.log(m) });
+        const loadoutRepo = new LoadoutRepository(pool);
+        const loadoutUsage = new LoadoutUsage(pool);
+        const groups = new NetworkRepository(pool);
+        // Spec 054 FR-003: a new agent starts with its role's core tools, what its resource needs and what its peers use.
+        const loadoutCreation = new LoadoutCreation({
+          repo: loadoutRepo, usage: loadoutUsage, registry: () => LOADOUT_REGISTRY.reg ?? null, log: (m) => logger.log(m),
+          platforms: resourcePlatforms(async (key) => {
+            const g = await groups.groupOfChannel(key);
+            return g ? (await groups.groupResources(g.id)).map((r) => r.platform) : [];
+          }),
+        });
+        const registry = new AgentRegistrySync({ agents, channels: repos.channels, log: (m) => logger.log(m), loadout: loadoutCreation });
         const catalog = new ResourceCatalog({
           pool,
           telegramAccess: makeTelegramAccessCheck((key) => {
@@ -958,7 +998,9 @@ export const EDITOR_PROVIDERS = [
           kpi: new TelegramScopeKpi(pool),
           runtime: new AgentRuntime({ agents, store: skills, fallback: files, log: (m) => logger.warn(m) }),
           actions: new PendingActionsService(actionsRepo),
-          creator: new AgentCreator({ agents, registry, catalog, profiles, channels: repos.channels }),
+          creator: new AgentCreator({ agents, registry, catalog, profiles, channels: repos.channels, loadout: loadoutCreation }),
+          loadout: new LoadoutService({ repo: loadoutRepo, log: (m) => logger.warn(m) }),
+          loadoutRepo, loadoutUsage,
         };
       },
     },
@@ -1348,20 +1390,21 @@ export const EDITOR_PROVIDERS = [
     },
     {
       provide: EDITOR_MANAGER,
-      inject: [DB_POOL, ConfigService, EDITOR_LOOP, EDITOR_REGISTRY, AGENT_INFRA, EDITOR_REPOS, PLATFORM_INFRA, MODEL_DEFAULTS, { token: LlmBudgetService, optional: true }],
+      inject: [DB_POOL, ConfigService, EDITOR_LOOP, EDITOR_REGISTRY, AGENT_INFRA, EDITOR_REPOS, PLATFORM_INFRA, MODEL_DEFAULTS, { token: LlmBudgetService, optional: true }, LOADOUT_SCAN],
       useFactory: (
         pool: Pool, cfg: ConfigService, loop: AgentLoop, registry: ToolRegistry, infra: AgentInfra, repos: EditorRepos, platform: PlatformInfra,
-        models: WorkspaceModelStore, caps?: LlmBudgetService,
+        models: WorkspaceModelStore, caps: LlmBudgetService | undefined, loadoutScan: LoadoutScan,
       ): ManagerInfra => {
         const env = (k: string) => cfg.get<string>(k) ?? undefined;
         const repo = new DirectivesRepository(pool);
         const digest = new KpiDigestService({
           pool, catalog: infra.catalog, globalCapUsd: capDefaults(env).agentsDailyUsd, capUsd: agentsCapUsd(env, caps),
           conflicts: networkConflicts(infra, configConflictsOf(pool, repos, infra)),
+          loadout: () => loadoutScan.digestLines(),
         });
         const buildPort = new PlaybookBuildPort();
         const runner = new ManagerRunner({
-          loop, registry, runtime: infra.runtime, agents: infra.agents, repo, digest, inbox: infra.inbox, env, defaultModel: (ws) => models.get(ws), workspace: () => models.workspace(),
+          loop, registry, runtime: infra.runtime, loadout: infra.loadout, agents: infra.agents, repo, digest, inbox: infra.inbox, env, defaultModel: (ws) => models.get(ws), workspace: () => models.workspace(),
           timeoutHours: envNum(env, 'DIRECTIVE_TIMEOUT_HOURS', 12),
           timeoutApplyKinds: (env('DIRECTIVE_TIMEOUT_APPLY_KINDS') ?? '').split(',').map((x) => x.trim()).filter(Boolean),
           exec: directiveExecution(pool, repos, infra, platform, buildPort),
@@ -1405,7 +1448,7 @@ export const EDITOR_PROVIDERS = [
         notifier: TelegramNotifier, manager: ManagerInfra, promo: PromoInfra, schedule: ScheduleService, models: WorkspaceModelStore,
       ): NetworkRunner => {
         const runner = new NetworkRunner({
-          loop, registry, runtime: infra.runtime, memory: repos.memory, repo: new NetworkRepository(pool), plans: repos.plans, profiles: infra.profiles,
+          loop, registry, runtime: infra.runtime, loadout: infra.loadout, memory: repos.memory, repo: new NetworkRepository(pool), plans: repos.plans, profiles: infra.profiles,
           usable: (ref) => platform.health.usable(ref), time: resourceTime(repos, infra.profiles),
           steering: (ref) => new SteeringRepository(pool).promptRules(ref),
           commitments: (orchId) => manager.runner.commitments(orchId),
@@ -1465,7 +1508,7 @@ export const EDITOR_PROVIDERS = [
         const ideas = new NetworkRepository(pool);
         logger.log(`editor ${isEnabled(cfg) ? 'ENABLED' : 'disabled'}: ${registry.all().length} tools, ${skills.list().length} skills`);
         return new EditorRunnerService({
-          loop, registry, skills, runtime: infra.runtime, plans: repos.plans, memory: repos.memory, env, notify, defaultModel: (ws) => models.get(ws), workspace: () => models.workspace(),
+          loop, registry, skills, runtime: infra.runtime, loadout: infra.loadout, plans: repos.plans, memory: repos.memory, env, notify, defaultModel: (ws) => models.get(ws), workspace: () => models.workspace(),
           // Spec 045 FR-005: the channel's active steering rules (lowest priority) for the writer, planner and critic.
           steering: (ref) => new SteeringRepository(pool).promptRules(ref),
           // Spec 046 FR-003: what the orchestrator accepted from the manager reaches the single-channel planner too.
@@ -1706,7 +1749,7 @@ export const EDITOR_PROVIDERS = [
           list: async (q) => (await artifacts.list({ ...q, limit: 50 })).rows,
         };
         return new EditorChatService({
-          repo: repos.chat, drafts, memory: repos.memory, loop, registry, skills, env, enabled, agents: agentsPort, defaultModel: (ws) => models.get(ws), workspace: () => models.workspace(),
+          repo: repos.chat, drafts, memory: repos.memory, loop, registry, loadout: infra.loadout, skills, env, enabled, agents: agentsPort, defaultModel: (ws) => models.get(ws), workspace: () => models.workspace(),
           slash,
           artifactChip: async (type, id) => {
             const a = await artifacts.find(type, id);
@@ -1728,6 +1771,23 @@ export const EDITOR_PROVIDERS = [
           styleProposal: (ref) => proposeStyle(pool, ref),
         });
       },
+    },
+    {
+      // Spec 054: the owner surface of an agent's loadout; it also hands the tool registry to the creation of new agents.
+      provide: LOADOUT_SERVICE,
+      inject: [DB_POOL, EDITOR_REGISTRY, AGENT_INFRA],
+      useFactory: (pool: Pool, registry: ToolRegistry, infra: AgentInfra): LoadoutAdminService => {
+        LOADOUT_REGISTRY.reg = registry;
+        return new LoadoutAdminService({
+          agents: infra.agents, repo: infra.loadoutRepo, usage: infra.loadoutUsage, registry, skills: infra.skills,
+          rules: async (agent, orch) => rulesSummary(pool, rulesTarget(orch, await infra.channelKeyOf(agent))),
+        });
+      },
+    },
+    {
+      provide: LOADOUT_SCAN,
+      inject: [LOADOUT_SERVICE, AGENT_INFRA],
+      useFactory: (admin: LoadoutAdminService, infra: AgentInfra): LoadoutScan => new LoadoutScan({ agents: infra.agents, admin }),
     },
     {
       provide: AGENTS_SERVICE,
@@ -2182,7 +2242,7 @@ export const EDITOR_PROVIDERS = [
 @Module({
   // AuthModule: EditorController is guarded by TrackingAuthGuard, which injects AuthService.
   imports:     [ChannelConfigModule, PublishersModule, AuthModule],
-  controllers: [EditorController, EditorChatController, AgentsController, ModelsController, NetworkController, ManagerController, PromoController, PromoRedirectController, ApprovalsController, AutonomyController, ScheduleController, StrategyMigrationController, UpcomingSlotsController, ResourcePausesController, PostAuditController, ChannelSetupController, SteeringController, NetworkHealthController, ArtifactsController, OwnerBotController, LaunchController],
+  controllers: [EditorController, EditorChatController, AgentsController, LoadoutController, ModelsController, NetworkController, ManagerController, PromoController, PromoRedirectController, ApprovalsController, AutonomyController, ScheduleController, StrategyMigrationController, UpcomingSlotsController, ResourcePausesController, PostAuditController, ChannelSetupController, SteeringController, NetworkHealthController, ArtifactsController, OwnerBotController, LaunchController],
   providers:   [...EDITOR_PROVIDERS, TrackingAuthGuard],
   exports:     [EDITOR_REPOS, EDITOR_RUNNER, AGENT_INFRA, PLATFORM_INFRA, EDITOR_MANAGER],
 })

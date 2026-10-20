@@ -244,6 +244,7 @@ export class AgentLoop {
     try {
       runId = await this.deps.recorder.start({
         role: input.role, channelKey: input.channelKey, slotId: input.slotId, model: input.model.model, agentId: input.agent?.id ?? null,
+        toolsOffered: input.tools.map((t) => t.name),
       });
     } catch (err: any) {
       return { runId: null, status: 'error', totals, error: `run start failed: ${err.message}` };

@@ -14,6 +14,7 @@ import { buildSystemPrompt, plannerUserPrompt } from '../roles/prompts';
 import { localDate, zonedToUtc } from '../roles/time';
 import type { AgentRuntime, RunAgentContext } from '../agents/agent-runtime';
 import type { Agent } from '../agents/agent.types';
+import { intersectAllow, type LoadoutService } from '../loadout/loadout.service';
 import { profileCaps, renderFormatPrefs, renderProfile, ResourceProfile, ResourceProfilesRepository } from '../agents/resource-profile';
 import { networkContext, NetworkContextDeps, NetworkCtx } from './network-context';
 import type { IdeaRow, NetworkRepository } from './network.repository';
@@ -28,6 +29,8 @@ export interface NetworkRunnerDeps {
   loop:     Pick<AgentLoop, 'run'>;
   registry: Pick<ToolRegistry, 'forRole'>;
   runtime:  Pick<AgentRuntime, 'forChannel'>;
+  /** Spec 054: the agent's own tool set; its allowlist narrows the channel's. Optional for tests. */
+  loadout?: Pick<LoadoutService, 'allowFor'>;
   memory:   Pick<EditorMemoryRepository, 'listActive'> & Partial<Pick<EditorMemoryRepository, 'ownerPreferences'>>;
   repo:     NetworkRepository;
   plans:    Pick<EditorPlansRepository, 'reservedSlots'>;
@@ -113,9 +116,10 @@ export class NetworkRunner {
     const { workspace, defaultModel } = await readModelContext(this.d);
     const model = agentModelIn(agent, workspace) ?? agentModelIn(c.agentCtx.orchestrator, workspace);
     const effort = agent.reasoningEffort ?? c.agentCtx.orchestrator?.reasoningEffort ?? null;
+    const loadoutAllow = this.d.loadout ? await this.d.loadout.allowFor(agent, { role, registry: this.d.registry }) : null;
     return this.d.loop.run({
       role, channelKey: card.channelKey, model: resolveModel(role, this.d.env, card.models, { agentModel: model, defaultModel, reasoningEffort: effort, workspace }),
-      system, user, tools: this.d.registry.forRole(role, card.toolsAllow).filter((t) => !exclude?.has(t.name) && (!allow || allow.has(t.name))), maxSteps: steps,
+      system, user, tools: this.d.registry.forRole(role, intersectAllow(card.toolsAllow, loadoutAllow)).filter((t) => !exclude?.has(t.name) && (!allow || allow.has(t.name))), maxSteps: steps,
       channelBudgetUsd: card.dailyBudgetUsd,
       agent: { id: agent.id, handle: agent.handle, limitUsd: agent.dailyBudgetUsd ?? c.agentCtx.orchestrator?.dailyBudgetUsd ?? null },
       extras: { card, network: c.net, skills: c.agentCtx.skills, agent, orchestrator: c.agentCtx.orchestrator, ...extras },

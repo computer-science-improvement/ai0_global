@@ -5,6 +5,7 @@ import { agentModelIn, readModelContext, type Workspace } from '../llm/workspace
 import type { Agent } from '../agents/agent.types';
 import { isPaused } from '../agents/agent.types';
 import type { AgentRuntime } from '../agents/agent-runtime';
+import { intersectAllow, type LoadoutService } from '../loadout/loadout.service';
 import type { AgentsRepository } from '../agents/agents.repository';
 import type { OwnerInbox } from '../agents/owner-inbox';
 import { localDate, localTimeLabel, zonedToUtc } from '../roles/time';
@@ -46,6 +47,8 @@ export interface ManagerRunnerDeps {
   loop:     Pick<AgentLoop, 'run'>;
   registry: Pick<ToolRegistry, 'forRole'>;
   runtime:  Pick<AgentRuntime, 'forAgent'>;
+  /** Spec 054: the manager's own tool set (intersected with MANAGER_TOOLS). Optional for tests. */
+  loadout?: Pick<LoadoutService, 'allowFor'>;
   agents:   Pick<AgentsRepository, 'findTop' | 'get' | 'list'>;
   repo:     DirectivesRepository;
   digest:   Pick<KpiDigestService, 'build' | 'render' | 'snapshot'>;
@@ -211,11 +214,12 @@ export class ManagerRunner {
     const inlineSkill = MANAGER_INLINE_SKILLS.map((n) => ctx.skills.get(n)).filter(Boolean).map((s) => `### skill: ${s!.name}\n${s!.body}`).join('\n\n');
     const listed = ctx.skills.list('manager').filter((s) => !MANAGER_INLINE_SKILLS.includes(s.name)).map((s) => `- ${s.name}: ${s.description}`).join('\n');
     const mctx = await readModelContext(this.d);
+    const loadoutAllow = this.d.loadout ? await this.d.loadout.allowFor(m, { role: 'manager', registry: this.d.registry }) : null;
     const res = await this.d.loop.run({
       role: 'manager', channelKey: null, model: resolveModel('manager', this.d.env, null, { agentModel: agentModelIn(m, mctx.workspace), defaultModel: mctx.defaultModel, reasoningEffort: m.reasoningEffort, workspace: mctx.workspace }),
       system: managerSystemPrompt({ agent: m, now: this.now(), digest: this.d.digest.render(digest), memory, skills: { inline: inlineSkill, listed }, open: digest.directives?.open, qualityRefs: requiredQualityRefs(digest) }),
       user: 'Проаналізуй дайджест: KPI і якість контенту по кожному ресурсу (чекліст якості). Є підстава — file_directive (до 3; для якості — voice_fix / format_mix) і submit_review directives. Нічого робити не треба — submit_review continue, але з quality_check по кожному активному ресурсу з доказами.',
-      tools: this.d.registry.forRole('manager').filter((t) => MANAGER_TOOLS.has(t.name)), maxSteps: MANAGER_MAX_STEPS,
+      tools: this.d.registry.forRole('manager', intersectAllow(null, loadoutAllow)).filter((t) => MANAGER_TOOLS.has(t.name)), maxSteps: MANAGER_MAX_STEPS,
       agent: { id: m.id, handle: m.handle, limitUsd: m.dailyBudgetUsd ?? DEFAULT_MANAGER_DAILY_USD },
       extras: { agent: m, skills: ctx.skills, digest },
     });

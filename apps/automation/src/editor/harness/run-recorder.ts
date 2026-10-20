@@ -21,6 +21,8 @@ export interface RunStart {
   model:      string;
   /** The registry agent this run belongs to (spec 017). */
   agentId?:   string | null;
+  /** Spec 054 FR-002: the tool names offered to the run (fixed for the whole run), written once at the start. */
+  toolsOffered?: string[];
 }
 
 export interface RunTotals {
@@ -55,8 +57,8 @@ export class PgRunRecorder implements RunRecorder {
 
   async start(r: RunStart): Promise<string> {
     const { rows } = await this.pool.query(
-      `INSERT INTO editor_runs (role, channel_key, slot_id, model, agent_id) VALUES ($1, $2, $3, $4, $5) RETURNING id`,
-      [r.role, r.channelKey, r.slotId ?? null, r.model, r.agentId ?? null],
+      `INSERT INTO editor_runs (role, channel_key, slot_id, model, agent_id, tools_offered) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id`,
+      [r.role, r.channelKey, r.slotId ?? null, r.model, r.agentId ?? null, r.toolsOffered ?? null],
     );
     this.runs.set(rows[0].id, r);
     return rows[0].id;

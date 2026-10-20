@@ -56,6 +56,8 @@ export interface AgentCreatorDeps {
   };
   /** Spec 020: build the first playbook from the brief in the background. */
   onBrief?: (agent: Agent, brief: string) => Promise<void>;
+  /** Spec 054 FR-003: forms the new orchestrator's loadout (its role children get theirs from the registry sync). */
+  loadout?: { form(agent: Agent): Promise<unknown> };
   now?:     () => Date;
 }
 
@@ -156,6 +158,7 @@ export class AgentCreator {
       schedule: input.schedule ?? { times: ['06:30'] }, dailyBudgetUsd: input.daily_budget_usd ?? null, model: input.model ?? null,
       grammaticalGender: input.grammatical_gender ?? null, createdBy: 'builder',
     });
+    await this.d.loadout?.form(agent);
     await this.d.registry.ensureChildren(agent);
     await this.d.profiles.setProfile(scope === 'resource' ? scopeId : `network:${scopeId}`, input.profile, 'builder');
 

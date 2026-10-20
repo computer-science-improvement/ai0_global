@@ -11,6 +11,7 @@ import { SegmentedTabs } from '../components/SegmentedTabs';
 import { AgentGlyph, KIND_LABEL, PauseButton, ScopeChip, StateBadges } from '../components/agents/AgentsUi';
 import { AgentEditDialog, AgentOverview } from '../components/agents/AgentOverview';
 import { AgentSkills } from '../components/agents/AgentSkills';
+import { AgentLoadout } from '../components/agents/AgentLoadout';
 import { AgentHistory, AgentMemory } from '../components/agents/AgentMemoryHistory';
 import { AgentPlaybook } from '../components/agents/AgentPlaybook';
 import { AgentIdeas } from '../components/agents/AgentIdeas';
@@ -28,7 +29,7 @@ import { errorBody, useAgent, useRunAgent } from '../api/agents';
 import { useRunManager, type DirectiveBinding } from '../api/manager';
 import { directiveFilterSearch, parseDirectiveFilters, type DirectiveFilters } from '../lib/directive-view';
 
-const TABS = ['overview', 'approvals', 'reviews', 'directives', 'artifacts', 'skills', 'memory', 'history', 'playbook', 'schedule', 'ideas', 'plan', 'inbox', 'promo'] as const;
+const TABS = ['overview', 'approvals', 'reviews', 'directives', 'artifacts', 'skills', 'loadout', 'memory', 'history', 'playbook', 'schedule', 'ideas', 'plan', 'inbox', 'promo'] as const;
 type Tab = typeof TABS[number];
 const NETWORK_TABS: readonly Tab[] = ['approvals', 'playbook', 'schedule', 'ideas', 'plan', 'inbox', 'promo'];
 const MANAGER_TABS: readonly Tab[] = ['reviews', 'directives'];
@@ -40,6 +41,7 @@ const TAB_OPTIONS = [
   { key: 'directives' as const, label: 'Directives', icon: 'agents' as const },
   { key: 'artifacts' as const, label: 'Artifacts', icon: 'layers' as const },
   { key: 'skills' as const,   label: 'Skills',   icon: 'book' as const },
+  { key: 'loadout' as const,  label: 'Loadout',  icon: 'wrench' as const },
   { key: 'memory' as const,   label: 'Memory',   icon: 'bots' as const },
   { key: 'history' as const,  label: 'History',  icon: 'history' as const },
   { key: 'playbook' as const, label: 'Playbook', icon: 'logs' as const },
@@ -185,6 +187,7 @@ function AgentPage() {
           empty={{ title: `Nothing shapes @${a.handle} yet`, note: `Type /setup @${a.handle} or /steer @${a.handle} @theirs in the chat, or tell the agent a rule.` }} />
       )}
       {tab === 'skills' && <AgentSkills data={d} />}
+      {tab === 'loadout' && <AgentLoadout data={d} />}
       {tab === 'memory' && <AgentMemory data={d} />}
       {tab === 'history' && <AgentHistory data={d} />}
       {tab === 'playbook' && <AgentPlaybook handle={a.handle} orchestrator={orchestrator} />}
