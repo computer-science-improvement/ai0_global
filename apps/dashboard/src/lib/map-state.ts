@@ -93,6 +93,14 @@ export const kindLabel = (k: MapAgentKind): string => KIND_LABEL[k] ?? k;
 const MODE_LABEL: Record<MapMode, string> = { off: 'Off', shadow: 'Shadow', approve: 'Approval', live: 'Live' };
 export const modeLabel = (m: MapMode): string => MODE_LABEL[m] ?? m;
 
+/** A resource's mode on the map: the pill over a building, the badge in its drawer, the legend. */
+export const MODE_META: Record<MapMode, { label: string; short: string; color: string; tone: 'success' | 'accent' | 'neutral' | 'warning'; help: string }> = {
+  live:    { label: 'Live',     short: 'LIVE',   color: 'var(--color-accent)',   tone: 'success', help: 'Publishes on its own' },
+  approve: { label: 'Approval', short: 'APPROVE', color: 'var(--color-tg-link)', tone: 'accent',  help: 'Writes posts; each waits for your approval' },
+  shadow:  { label: 'Shadow',   short: 'SHADOW', color: 'var(--color-chart-5)',  tone: 'neutral', help: 'Writes previews only; publishes nothing' },
+  off:     { label: 'Off',      short: 'OFF',    color: 'var(--color-ink-dim)',  tone: 'neutral', help: 'Switched off: nothing is planned' },
+};
+
 export const EVENT_ICON: Record<MapEventKind, IconName> = {
   run_started: 'play', run_finished: 'check', run_failed: 'warning', post_published: 'send', post_failed: 'warning',
   post_approved: 'check', post_rejected: 'x', promo: 'megaphone', directive: 'agents', launch_started: 'rocket', launch_graduated: 'rocket',

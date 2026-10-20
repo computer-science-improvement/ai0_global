@@ -4,11 +4,12 @@ import { Icon, type IconName } from '../ui/Icon';
 import { Badge } from '../ui/Badge';
 import type { MapAlert, MapInfra, MapResource, MapRoad, MapSnapshot, MapUnit } from '../../api/map';
 import {
-  HEALTH_META, PLATFORM_META, ROAD_META, STATE_META, ago, alertTone, compactNumber, infraMeta, kindLabel, levelLine, modeLabel, resourceTitle, usd,
+  HEALTH_META, MODE_META, PLATFORM_META, ROAD_META, STATE_META, ago, alertTone, compactNumber, infraMeta, kindLabel, levelLine, modeLabel, resourceTitle, usd,
 } from '../../lib/map-state';
 import { PLATFORM_SECTION_NAME } from '../../lib/map-layout';
 import { parseNavTarget } from '../../nav/config';
 import { Avatar, UnitFace } from './MapAvatar';
+import { NetworkPicker, RoadActions } from './MapActions';
 
 // Spec 056 FR-003: the drawers behind a click — a building, a unit, a road, a connection (bot, session, Telegraph),
 // the list of what waits for the owner.
@@ -124,13 +125,14 @@ export function BuildingDrawer({ snap, res, onClose, onPickUnit, onShow, onPickI
     <MapDrawer
       title={resourceTitle(res)}
       lead={<span style={{ width: 38, height: 38, borderRadius: 10, display: 'grid', placeItems: 'center', background: 'var(--color-surface-3)', color: meta.tint, border: `2px solid ${health.color}`, flex: 'none' }}><Icon name={meta.icon} size={20} /></span>}
-      subtitle={<><span>{meta.label}</span><Badge tone={healthTone(res.health)}>{health.label}</Badge>{res.paused && <Badge tone="neutral">Paused</Badge>}</>}
+      subtitle={<><span>{meta.label}</span>{res.mode && <Badge tone={MODE_META[res.mode].tone}>{MODE_META[res.mode].label}</Badge>}<Badge tone={healthTone(res.health)}>{health.label}</Badge>{res.paused && <Badge tone="neutral">Paused</Badge>}</>}
       onClose={onClose}
     >
       <Facts rows={[
+        ['Mode', res.mode ? <span key="m"><strong style={{ color: MODE_META[res.mode].color }}>{MODE_META[res.mode].label}</strong> · {MODE_META[res.mode].help}{res.agent ? <> · <Link to="/app/agents/$handle" params={{ handle: res.agent }} className="link-accent">change</Link></> : null}</span> : 'No agent runs it yet'],
         ['Network', network?.name ?? `None (in ${PLATFORM_SECTION_NAME[res.platform]})`],
-        ['Published by', bots.length ? <span key="b" style={{ display: 'inline-flex', gap: 8, flexWrap: 'wrap' }}>{bots.map((b) => (
-          <button key={b.id} type="button" className="link-accent" style={linkBtn} onClick={() => onPickInfra?.(b.id)}>{b.title}{b.isDefault ? ' (default bot)' : ''}</button>
+        ['Served by', bots.length ? <span key="b" style={{ display: 'inline-flex', gap: 8, flexWrap: 'wrap' }}>{bots.map((b) => (
+          <button key={b.id} type="button" className="link-accent" style={linkBtn} onClick={() => onPickInfra?.(b.id)}>{b.title}{b.isDefault ? ' (default bot)' : b.kind === 'mtproto' ? ' (reads stats)' : ''}</button>
         ))}</span> : null],
         ['Followers', res.followers != null ? compactNumber(res.followers) : null],
         ['Posts today', String(res.postsToday)],
@@ -138,6 +140,7 @@ export function BuildingDrawer({ snap, res, onClose, onPickUnit, onShow, onPickI
         ['Connection', res.healthDetail],
         ['Run by', res.agent ? `@${res.agent}` : 'No agent yet'],
       ]} />
+      <Section title="Network"><NetworkPicker snap={snap} res={res} /></Section>
       <Section title="Waiting here"><AlertRows alerts={alerts} /></Section>
       {here.length > 0 && (
         <Section title="Agents">
@@ -223,15 +226,15 @@ export function UnitDrawer({ snap, unit, onClose, onPickBuilding }: { snap: MapS
 const ROAD_HELP: Record<MapRoad['kind'], { what: string; control: string }> = {
   promo: {
     what: 'The first channel published a cross-promo post that points to the second. A promo goes out only after you approve the manager\'s cross-promo directive, or as part of a channel launch.',
-    control: 'To stop it, reject or contest the cross-promo directive (or pause either side). To add one, ask the manager in the chat to promote one channel in another; it comes to you as a directive.',
+    control: 'Stop promos between the two below (or reject the next cross-promo directive). To add one, ask the manager in the chat to promote one channel in another; it comes to you as a directive.',
   },
   repost: {
     what: 'The second resource published a repost or an adapted copy of a post of the first one.',
-    control: 'Adapted copies follow the network mode on the Playbook tab: Independent stops them. Promo reposts are directives you approve.',
+    control: 'Promo reposts stop with the promos. Adapted copies follow the network: switch it to Independent or take the resource out of the network.',
   },
   duplicate: {
     what: 'The same post was copied to the second resource, because the network mode is Auto-duplicate or the plan duplicated this post.',
-    control: 'Switch the network mode on the Playbook tab to Independent to stop the copies.',
+    control: 'Switch the network to Independent (its agent then decides per post), or take the resource out of the network.',
   },
 };
 
@@ -247,7 +250,7 @@ export function RoadDrawer({ snap, road, onClose, onPickBuilding }: { snap: MapS
     <MapDrawer
       title={`${nameOf(a, road.from)} → ${nameOf(b, road.to)}`}
       lead={<svg width="38" height="38" viewBox="0 0 38 38" aria-hidden style={{ flex: 'none' }}><line x1="4" y1="19" x2="34" y2="19" strokeWidth="3.5" strokeLinecap="round" strokeDasharray={meta.dash || undefined} style={{ stroke: meta.color }} /></svg>}
-      subtitle={<Badge tone="neutral">{meta.label}</Badge>}
+      subtitle={<><Badge tone="neutral">{meta.label}</Badge>{road.blocked && <Badge tone="danger">Promos stopped</Badge>}</>}
       onClose={onClose}
     >
       <Facts rows={[
@@ -261,10 +264,13 @@ export function RoadDrawer({ snap, road, onClose, onPickBuilding }: { snap: MapS
           A line is past activity, not a setting: it disappears after 30 days without a new post of this kind.
         </p>
       </Section>
-      <Section title="How to change it"><p className="text-caption" style={{ margin: 0 }}>{help.control}</p></Section>
+      <Section title="Change it">
+        <p className="text-caption" style={{ margin: '0 0 8px' }}>{help.control}</p>
+        <RoadActions snap={snap} road={road} />
+      </Section>
       <div className="map-links">
-        <button type="button" className="map-link" onClick={() => onPickBuilding(road.from)}><Icon name="send" size={14} />From</button>
-        <button type="button" className="map-link" onClick={() => onPickBuilding(road.to)}><Icon name="download" size={14} />To</button>
+        <button type="button" className="map-link" onClick={() => onPickBuilding(road.from)}><Icon name="send" size={14} />{nameOf(a, road.from)}</button>
+        <button type="button" className="map-link" onClick={() => onPickBuilding(road.to)}><Icon name="download" size={14} />{nameOf(b, road.to)}</button>
         {road.kind === 'promo' && <LinkChip icon="agents" to="/app/agents/$handle" params={{ handle: 'manager' }} search={{ tab: 'directives' }}>Directives</LinkChip>}
         {agent && road.kind === 'promo' && <LinkChip icon="megaphone" to="/app/agents/$handle" params={{ handle: agent }} search={{ tab: 'promo' }}>Promo plan</LinkChip>}
         {agent && road.kind !== 'promo' && <LinkChip icon="logs" to="/app/agents/$handle" params={{ handle: agent }} search={{ tab: 'playbook' }}>Playbook</LinkChip>}
@@ -299,6 +305,8 @@ export function InfraDrawer({ snap, item, onClose, onPickBuilding, onShow }: {
         ['Last check', item.lastVerifiedAt ? ago(item.lastVerifiedAt) : 'Not checked yet'],
         ['Problem', item.healthDetail],
         ['Publishes to', item.kind === 'bot' ? (served.length ? `${served.length} ${served.length === 1 ? 'channel' : 'channels'}` : 'No channel on the map') : null],
+        ['Reads stats of', item.kind === 'mtproto' && item.role !== 'agent' ? (served.length ? `${served.length} ${served.length === 1 ? 'channel' : 'channels'}` : item.active ? 'Nothing — another tracker session is in use (standby)' : 'Nothing — switched off') : null],
+        ['Channels', item.kind === 'mtproto' && item.role === 'agent' ? (item.inUse ? 'Not tied to channels: the agents write DMs from it' : 'Standby — another agent session is in use') : null],
       ]} />
       {alerts.length > 0 && <Section title="Waiting here"><AlertRows alerts={alerts} /></Section>}
       {served.length > 0 && (

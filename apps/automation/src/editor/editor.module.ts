@@ -157,7 +157,8 @@ import { ChannelSetupService } from './setup/setup.service';
 import { CHANNEL_SETUP_SERVICE, ChannelSetupController } from './setup/setup.controller';
 import type { ApplyWriters, ChannelState } from './setup/setup-apply';
 import { LAUNCH_SERVICE, LaunchController } from './launch/launch.controller';
-import { MAP_SERVICE, MapController } from './map/map.controller';
+import { MAP_ACTIONS, MAP_SERVICE, MapController } from './map/map.controller';
+import { MapActions } from './map/map.actions';
 import { MapService } from './map/map.service';
 import { launchSource } from './launch/launch-cards';
 import { graduationLineUk, graduationSettings } from './launch/launch-graduation';
@@ -2177,6 +2178,12 @@ export const EDITOR_PROVIDERS = [
         pausedRefs: () => new ResourcePauseService({ pool }).pausedRefs(), health: () => health.health(),
         log: (m) => new Logger('Map').warn(m),
       }),
+    },
+    {
+      // Spec 056 follow-up: a resource's network and blocked promo pairs, changed from the map.
+      provide: MAP_ACTIONS,
+      inject: [DB_POOL, AGENT_INFRA, MAP_SERVICE],
+      useFactory: (pool: Pool, infra: AgentInfra, map: MapService) => new MapActions({ pool, catalog: infra.catalog, invalidate: () => map.invalidate() }),
     },
     {
       provide: NETWORK_SERVICE,

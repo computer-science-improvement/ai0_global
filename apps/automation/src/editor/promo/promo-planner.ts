@@ -113,6 +113,8 @@ export class PromoPlanner {
     const now = this.now();
     const { rows: pair } = await this.d.pool.query(
       `SELECT * FROM promo_pairs WHERE (source_ref = $1 AND target_ref = $2) OR (source_ref = $2 AND target_ref = $1)`, [sourceRef, targetRef]);
+    // The owner blocked this pair on the network map (migration 089): no promo either way until they allow it again.
+    if (pair.some((x) => x.blocked_at)) return { error: 'pair_blocked', details: 'власник заблокував промо між цими ресурсами (карта мережі) — не пропонуй цю пару' };
     const last = pair.map((x) => x.last_promo_at).filter(Boolean).map((x) => new Date(x).getTime()).sort().pop();
     if (last && now.getTime() - last < PAIR_COOLDOWN_DAYS * 86_400_000) return { error: 'pair_cooldown', details: `ця пара вже мала промо за останні ${PAIR_COOLDOWN_DAYS} днів` };
 

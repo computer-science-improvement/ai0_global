@@ -98,12 +98,14 @@ test('slot facts of the resources of a network orchestrator are merged', () => {
 
 test('infra: health from the last verify; a channel without its own bot is served by the default bot', () => {
   const raw = (o: Partial<RawInfra> & Pick<RawInfra, 'id' | 'kind'>): RawInfra => ({
-    name: null, username: null, active: true, isDefault: false, role: null, lastVerifiedAt: null, verifyError: null, ...o,
+    name: null, username: null, active: true, isDefault: false, role: null, inUse: true, lastVerifiedAt: null, verifyError: null, ...o,
   });
   const items = infraItems([
     raw({ id: 'bot:d', kind: 'bot', username: 'main_bot', isDefault: true, lastVerifiedAt: T0 }),
     raw({ id: 'bot:x', kind: 'bot', name: 'Side', verifyError: '401  Unauthorized\n' }),
     raw({ id: 'mtproto:s', kind: 'mtproto', name: 'Tracker', username: 'me', role: 'tracker' }),
+    raw({ id: 'mtproto:spare', kind: 'mtproto', name: 'Spare', role: 'tracker', inUse: false }),
+    raw({ id: 'mtproto:dm', kind: 'mtproto', name: 'DMs', role: 'agent' }),
     raw({ id: 'telegraph:t', kind: 'telegraph', name: 'ai0', username: 'Author' }),
   ], ['telegram:@a', 'telegram:@b', 'telegram:@c', 'instagram:1'], new Map([['telegram:@b', 'bot:x'], ['telegram:@c', 'bot:gone']]));
   const by = new Map(items.map((i) => [i.id, i]));
@@ -112,6 +114,9 @@ test('infra: health from the last verify; a channel without its own bot is serve
   assert.deepEqual([by.get('bot:d')!.title, by.get('bot:d')!.health], ['@main_bot', 'ok']);
   assert.deepEqual([by.get('bot:x')!.title, by.get('bot:x')!.health, by.get('bot:x')!.healthDetail], ['Side', 'broken', '401 Unauthorized']);
   assert.deepEqual([by.get('mtproto:s')!.title, by.get('mtproto:s')!.health, by.get('mtproto:s')!.path], ['Tracker', 'unknown', '/app/connections?section=telegram&tab=sessions']);
+  assert.deepEqual(by.get('mtproto:s')!.serves, ['telegram:@a', 'telegram:@b', 'telegram:@c'], 'the tracker in use reads every Telegram channel');
+  assert.deepEqual([by.get('mtproto:spare')!.serves, by.get('mtproto:spare')!.inUse], [[], false], 'a standby tracker reads nothing');
+  assert.deepEqual(by.get('mtproto:dm')!.serves, []);
   assert.equal(by.get('telegraph:t')!.path, '/app/connections?section=telegram&tab=telegraph');
 });
 

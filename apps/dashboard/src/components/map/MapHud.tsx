@@ -3,7 +3,7 @@ import { Icon } from '../ui/Icon';
 import type { MapEvent, MapSnapshot } from '../../api/map';
 import { UNIT_STATES } from '../../api/map';
 import {
-  EVENT_ICON, INFRA_META, PLATFORM_META, ROAD_META, STATE_META, ago, alertTone, alertTotal, isBadEvent, resourceTitle, usd,
+  EVENT_ICON, INFRA_META, MODE_META, PLATFORM_META, ROAD_META, STATE_META, ago, alertTone, alertTotal, isBadEvent, resourceTitle, usd,
 } from '../../lib/map-state';
 import { zoomPercent, type View } from '../../lib/map-view';
 import { Avatar } from './MapAvatar';
@@ -175,6 +175,15 @@ export function Legend({ onClose }: { onClose: () => void }) {
           {Object.values(PLATFORM_META).map((p) => <Icon key={p.label} name={p.icon} size={12} />)}
         </span>
       </div>
+      <div className="map-legend-sub">Resource mode (the pill)</div>
+      <div className="map-legend-grid">
+        {Object.values(MODE_META).map((m) => (
+          <span key={m.label} className="map-legend-item" title={m.help}>
+            <span style={{ fontSize: 8.5, fontWeight: 700, letterSpacing: '0.08em', color: m.color, border: `1px solid ${m.color}`, borderRadius: 7, padding: '1px 5px', flex: 'none' }}>{m.short}</span>
+            {m.label}
+          </span>
+        ))}
+      </div>
       <div className="map-legend-sub">Connections</div>
       <div className="map-legend-grid">
         {Object.values(INFRA_META).map((m) => (
@@ -182,7 +191,7 @@ export function Legend({ onClose }: { onClose: () => void }) {
         ))}
         <span className="map-legend-item" style={{ gridColumn: '1 / -1' }}>
           <svg width="26" height="8" aria-hidden><line x1="1" y1="4" x2="25" y2="4" strokeWidth="1.6" strokeLinecap="round" strokeDasharray="1 5" style={{ stroke: 'var(--color-ink-muted)' }} /></svg>
-          A bot publishes to this channel (on select)
+          A bot publishes / a session reads (on select)
         </span>
       </div>
     </section>

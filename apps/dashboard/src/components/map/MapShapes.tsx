@@ -5,7 +5,7 @@ import {
   BUILDING_R, STRUCT_R, UNIT_R, hexPoints, roadGeometry, type PlacedBuilding, type PlacedStructure, type PlacedUnit, type Rect, type Territory,
 } from '../../lib/map-layout';
 import {
-  HEALTH_META, INFRA_META, PLATFORM_META, ROAD_META, STATE_META, compactNumber, infraMeta, isDormant, isWorking, kindLabel, resourceTitle, sectionCount,
+  HEALTH_META, INFRA_META, MODE_META, PLATFORM_META, ROAD_META, STATE_META, compactNumber, infraMeta, isDormant, isWorking, kindLabel, resourceTitle, sectionCount,
   stateLine, type AlertTone,
 } from '../../lib/map-state';
 
@@ -117,7 +117,8 @@ export function BuildingShape({ res, pos, beacon, selected, showMeta, onSelect, 
   const meta = PLATFORM_META[res.platform];
   const health = HEALTH_META[res.health];
   const title = resourceTitle(res);
-  const label = `${title}, ${meta.label}${res.followers != null ? `, ${compactNumber(res.followers)} followers` : ''}, ${health.label.toLowerCase()}${res.paused ? ', paused' : ''}${beacon ? `, ${beacon.count} waiting for you` : ''}`;
+  const mode = res.mode ? MODE_META[res.mode] : null;
+  const label = `${title}, ${meta.label}${mode ? `, ${mode.label.toLowerCase()}` : ''}${res.followers != null ? `, ${compactNumber(res.followers)} followers` : ''}, ${health.label.toLowerCase()}${res.paused ? ', paused' : ''}${beacon ? `, ${beacon.count} waiting for you` : ''}`;
   const beaconColor = beacon?.tone === 'danger' ? 'var(--color-danger)' : 'var(--color-warning)';
   return (
     <g transform={`translate(${pos.x} ${pos.y})`} className={`map-node map-building${selected ? ' is-selected' : ''}`} data-ref={res.ref}
@@ -129,8 +130,9 @@ export function BuildingShape({ res, pos, beacon, selected, showMeta, onSelect, 
       <g className="map-plate">
         <polygon points={hexPoints(BUILDING_R + 2)} fill="url(#map-plate)" strokeWidth={res.health === 'unknown' ? 1.5 : 3} strokeLinejoin="round" style={{ stroke: health.color }} />
         {res.paused && <polygon points={hexPoints(BUILDING_R + 2)} fill="url(#map-hatch)" pointerEvents="none" />}
-        <PlatformGlyph platform={res.platform} tint={res.paused ? 'var(--color-ink-dim)' : meta.tint} />
-        {pos.anchor && <circle cx={0} cy={BUILDING_R - 8} r={2.5} style={{ fill: meta.tint }} opacity="0.9" />}
+        <g transform={mode ? 'translate(0 -5)' : undefined}><PlatformGlyph platform={res.platform} tint={res.paused ? 'var(--color-ink-dim)' : meta.tint} /></g>
+        {pos.anchor && <circle cx={0} cy={mode ? -BUILDING_R + 7 : BUILDING_R - 8} r={2.5} style={{ fill: meta.tint }} opacity="0.9" />}
+        {mode && <ModePill y={BUILDING_R - 13} text={mode.short} color={mode.color} />}
       </g>
       {beacon && (
         <g transform={`translate(${BUILDING_R - 4} ${-BUILDING_R + 4})`}>
@@ -202,10 +204,21 @@ export function StructureShape({ item, pos, beacon, selected, showMeta, onSelect
   );
 }
 
-/** A thin line from a bot to a channel it publishes to — drawn only while the bot (or the channel) is selected. */
-export function ServiceLine({ from, to }: { from: { x: number; y: number }; to: { x: number; y: number } }) {
+/** A thin line from a bot to a channel it publishes to (a session to a channel it reads) — drawn only while one end is selected. */
+export function ServiceLine({ from, to, kind }: { from: { x: number; y: number }; to: { x: number; y: number }; kind: MapInfra['kind'] }) {
   const g = roadGeometry(from, to, 0.08);
-  return <path d={g.d} className="map-service-line" />;
+  return <path d={g.d} className={`map-service-line is-${kind}`} />;
+}
+
+/** A resource's mode over its building: LIVE, APPROVE, SHADOW, OFF. */
+function ModePill({ y, text, color }: { y: number; text: string; color: string }) {
+  const w = text.length * 4.9 + 9;
+  return (
+    <g transform={`translate(0 ${y})`} className="map-mode-pill" pointerEvents="none">
+      <rect x={-w / 2} y={-6} width={w} height={12} rx={6} style={{ fill: `color-mix(in srgb, ${color} 18%, var(--color-surface-1))`, stroke: color }} strokeWidth={1} />
+      <text style={{ fill: color }}>{text}</text>
+    </g>
+  );
 }
 
 export interface UnitProps {
@@ -276,14 +289,20 @@ export function RoadShape({ road, from, to, selected, onSelect, children }: Road
   const meta = ROAD_META[road.kind];
   const g = roadGeometry(from, to);
   const width = 1.6 + Math.min(3.2, Math.log2(1 + road.count30d) * 0.7);
-  const label = `${meta.label} road, ${road.count30d} in 30 days`;
+  const label = `${meta.label} road, ${road.count30d} in 30 days${road.blocked ? ', promos stopped' : ''}`;
   return (
-    <g className={`map-road-group${selected ? ' is-selected' : ''}`} role="button" tabIndex={0} aria-label={label} aria-pressed={selected}
+    <g className={`map-road-group${selected ? ' is-selected' : ''}${road.blocked ? ' is-blocked' : ''}`} role="button" tabIndex={0} aria-label={label} aria-pressed={selected}
       data-road={`${road.from}>${road.to}>${road.kind}`} onClick={onSelect} onKeyDown={onActivate(onSelect)} style={{ cursor: 'pointer', outline: 'none' }}>
       <title>{label}</title>
       <path d={g.d} className="map-road-hit" />
       <path d={g.d} className="map-road" strokeWidth={selected ? width + 1.2 : width} strokeDasharray={meta.dash || undefined}
         style={{ stroke: meta.color }} markerEnd={`url(#map-arrow-${road.kind})`} />
+      {road.blocked && (() => { const m = g.at(0.5); return (
+        <g transform={`translate(${m.x} ${m.y})`} style={{ color: 'var(--color-danger)' }} pointerEvents="none">
+          <circle r={8} style={{ fill: 'var(--color-surface-2)', stroke: 'var(--color-danger)' }} strokeWidth={1.4} />
+          <g transform="translate(-5 -5)"><Icon name="ban" size={10} strokeWidth={2.6} /></g>
+        </g>
+      ); })()}
       {children}
     </g>
   );

@@ -17,7 +17,9 @@ export const EVENT_KINDS = [
 ] as const;
 export type MapEventKind = typeof EVENT_KINDS[number];
 
-export interface MapNetwork { id: string; name: string; anchorRef: string | null }
+/** How a network's resources share posts: each its own (independent) or the Telegram posts copied to all (legacy auto-duplicate). */
+export type MapNetworkMode = 'independent' | 'legacy_duplicate';
+export interface MapNetwork { id: string; name: string; anchorRef: string | null; mode: MapNetworkMode }
 
 export interface MapResource {
   ref:       string;
@@ -35,6 +37,8 @@ export interface MapResource {
   waiting:   number;
   /** The @handle of the agent that runs it. */
   agent:     string | null;
+  /** How it runs: a Telegram channel's card mode, else its agent's effective mode; null without an agent. */
+  mode:      AgentMode | null;
 }
 
 /** How the level is made (FR-005): the numbers of the last 30 days. */
@@ -63,7 +67,11 @@ export interface MapUnit {
   levelStats:    LevelStats | null;
 }
 
-export interface MapRoad { from: string; to: string; kind: RoadKind; count30d: number; lastAt: string | null; joins30d: number | null }
+export interface MapRoad {
+  from: string; to: string; kind: RoadKind; count30d: number; lastAt: string | null; joins30d: number | null;
+  /** The owner blocked promos between the two (migration 089): the line is history, no new promo goes out. */
+  blocked: boolean;
+}
 
 export interface MapAlert {
   /** approval · directive · connection · stuck · launch */
@@ -109,8 +117,11 @@ export interface MapInfra {
   isDefault: boolean;
   /** An MTProto session's job: tracker (reads stats) or agent (DMs). */
   role:      string | null;
+  /** The one the system uses: an active bot or Telegraph account, the first active session of its role (others stand by). */
+  inUse:     boolean;
   lastVerifiedAt: string | null;
-  /** The channels on the map it publishes to (a bot: its own channels, the default bot also the ones without a bot). */
+  /** The channels on the map it works for: a bot publishes to them (the default bot also to channels without a bot);
+   *  the tracker session in use reads the stats of every Telegram channel. */
   serves:    string[];
   /** Where it is managed (Connections). */
   path:      string;

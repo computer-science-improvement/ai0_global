@@ -86,6 +86,12 @@ test('cross-promo: scheduled with a tracked invite link; pair cooldown, relevanc
   await directives.update(d2.id, { status: 'accepted' });
   assert.equal(((await planner.schedule((await directives.get(d2.id))!, orch, A)) as any).error, 'pair_cooldown');
   assert.equal((await directives.get(d2.id))!.status, 'rejected');
+  // The owner stopped promos between the two on the map (migration 089): refused before the cooldown, either way.
+  await pool.query(`UPDATE promo_pairs SET blocked_at = now() WHERE source_ref = ANY($1::text[]) AND target_ref = ANY($1::text[])`, [[`telegram:${A}`, `telegram:${B}`]]);
+  const dB = await file(B);
+  await directives.update(dB.id, { status: 'accepted' });
+  assert.equal(((await planner.schedule((await directives.get(dB.id))!, orch, A)) as any).error, 'pair_blocked');
+  await pool.query(`UPDATE promo_pairs SET blocked_at = NULL WHERE source_ref = ANY($1::text[])`, [[`telegram:${A}`, `telegram:${B}`]]);
   const d3 = await file(C);
   await directives.update(d3.id, { status: 'accepted' });
   assert.equal(((await planner.schedule((await directives.get(d3.id))!, orch, A)) as any).error, 'low_relevance');

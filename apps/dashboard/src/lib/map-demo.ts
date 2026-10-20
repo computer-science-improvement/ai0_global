@@ -24,24 +24,24 @@ const RESOURCES: DemoResource[] = [
 ];
 
 const INFRA: MapInfra[] = [
-  { id: 'bot:main', kind: 'bot', title: '@ai0_publisher_bot', username: 'ai0_publisher_bot', health: 'ok', healthDetail: null, active: true, isDefault: true, role: null,
+  { id: 'bot:main', kind: 'bot', title: '@ai0_publisher_bot', username: 'ai0_publisher_bot', health: 'ok', healthDetail: null, active: true, isDefault: true, role: null, inUse: true,
     lastVerifiedAt: '2026-10-20T09:00:00Z', serves: ['telegram:@ai0_global', 'telegram:@gaming_ua', 'telegram:@recipes_ua', 'telegram:@space_ua'], path: '/app/connections?section=telegram&tab=bots' },
-  { id: 'bot:movies', kind: 'bot', title: '@movies_poster_bot', username: 'movies_poster_bot', health: 'broken', healthDetail: '401 Unauthorized', active: true, isDefault: false, role: null,
+  { id: 'bot:movies', kind: 'bot', title: '@movies_poster_bot', username: 'movies_poster_bot', health: 'broken', healthDetail: '401 Unauthorized', active: true, isDefault: false, role: null, inUse: true,
     lastVerifiedAt: '2026-10-19T09:00:00Z', serves: ['telegram:@movies_ua'], path: '/app/connections?section=telegram&tab=bots' },
-  { id: 'bot:old', kind: 'bot', title: '@old_test_bot', username: 'old_test_bot', health: 'unknown', healthDetail: null, active: false, isDefault: false, role: null,
+  { id: 'bot:old', kind: 'bot', title: '@old_test_bot', username: 'old_test_bot', health: 'unknown', healthDetail: null, active: false, isDefault: false, role: null, inUse: false,
     lastVerifiedAt: null, serves: [], path: '/app/connections?section=telegram&tab=bots' },
-  { id: 'mtproto:tracker', kind: 'mtproto', title: 'Stats reader', username: 'ai0_stats', health: 'ok', healthDetail: null, active: true, isDefault: false, role: 'tracker',
+  { id: 'mtproto:tracker', kind: 'mtproto', title: 'Stats reader', username: 'ai0_stats', health: 'ok', healthDetail: null, active: true, isDefault: false, role: 'tracker', inUse: true,
+    lastVerifiedAt: '2026-10-20T08:00:00Z', serves: ['telegram:@ai0_global', 'telegram:@gaming_ua', 'telegram:@movies_ua', 'telegram:@recipes_ua', 'telegram:@space_ua'], path: '/app/connections?section=telegram&tab=sessions' },
+  { id: 'mtproto:agent', kind: 'mtproto', title: 'Agent account', username: 'ai0_agent', health: 'ok', healthDetail: null, active: true, isDefault: false, role: 'agent', inUse: true,
     lastVerifiedAt: '2026-10-20T08:00:00Z', serves: [], path: '/app/connections?section=telegram&tab=sessions' },
-  { id: 'mtproto:agent', kind: 'mtproto', title: 'Agent account', username: 'ai0_agent', health: 'ok', healthDetail: null, active: true, isDefault: false, role: 'agent',
-    lastVerifiedAt: '2026-10-20T08:00:00Z', serves: [], path: '/app/connections?section=telegram&tab=sessions' },
-  { id: 'telegraph:default', kind: 'telegraph', title: 'ai0', username: 'AI0 Global', health: 'ok', healthDetail: null, active: true, isDefault: false, role: null,
+  { id: 'telegraph:default', kind: 'telegraph', title: 'ai0', username: 'AI0 Global', health: 'ok', healthDetail: null, active: true, isDefault: false, role: null, inUse: true,
     lastVerifiedAt: '2026-10-18T08:00:00Z', serves: [], path: '/app/connections?section=telegram&tab=telegraph' },
 ];
 
 const NETWORKS = [
-  { id: 'g-tech', name: 'Tech & Science', anchorRef: 'telegram:@ai0_global' },
-  { id: 'g-food', name: 'Food', anchorRef: 'telegram:@recipes_ua' },
-  { id: 'g-space', name: 'Space', anchorRef: 'telegram:@space_ua' },
+  { id: 'g-tech', name: 'Tech & Science', anchorRef: 'telegram:@ai0_global', mode: 'independent' as const },
+  { id: 'g-food', name: 'Food', anchorRef: 'telegram:@recipes_ua', mode: 'legacy_duplicate' as const },
+  { id: 'g-space', name: 'Space', anchorRef: 'telegram:@space_ua', mode: 'independent' as const },
 ];
 
 const handleOf = (ref: string) => ref.replace(/^[a-z]+:/, '').replace(/^@/, '').replace(/[^a-z0-9_]+/gi, '_').toLowerCase();
@@ -88,6 +88,7 @@ export function demoSnapshot(tick = 0, now: Date = new Date('2026-10-20T12:00:00
     followers: r.followers, groupId: r.group, health: r.ref === 'instagram:ig-food' ? 'broken' : r.ref === 'tiktok:tt-tech' ? 'warning' : 'ok',
     healthDetail: r.ref === 'instagram:ig-food' ? 'token expired' : r.ref === 'tiktok:tt-tech' ? 'token expires in 5 days' : null,
     paused: r.ref === 'telegram:@gaming_ua', postsToday: (i * 3) % 5, waiting: waitingOf(r.ref), agent: handleOf(r.ref),
+    mode: (['live', 'live', 'approve', 'shadow', 'live', 'approve', 'live', 'off', 'live', 'shadow', 'live', 'approve'] as const)[i % 12],
   }));
 
   const roads: MapRoad[] = [
@@ -96,7 +97,7 @@ export function demoSnapshot(tick = 0, now: Date = new Date('2026-10-20T12:00:00
     { from: 'telegram:@recipes_ua', to: 'instagram:ig-food', kind: 'repost', count30d: 15, lastAt: at(60), joins30d: null },
     { from: 'telegram:@recipes_ua', to: 'tiktok:tt-food', kind: 'duplicate', count30d: 6, lastAt: at(300), joins30d: null },
     { from: 'telegram:@ai0_global', to: 'telegram:@space_ua', kind: 'promo', count30d: 2, lastAt: at(2600), joins30d: 7 },
-    { from: 'telegram:@movies_ua', to: 'telegram:@gaming_ua', kind: 'promo', count30d: 3, lastAt: at(1500), joins30d: null },
+    { from: 'telegram:@movies_ua', to: 'telegram:@gaming_ua', kind: 'promo', count30d: 3, lastAt: at(1500), joins30d: null, blocked: true },
   ];
 
   const events: MapEvent[] = [];

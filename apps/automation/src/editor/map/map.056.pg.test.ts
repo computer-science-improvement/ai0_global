@@ -77,15 +77,17 @@ test('the snapshot is built from the real schema: units, resources, roads, alert
     const mine = (h: string) => snap.units.find((u) => u.handle === h)!;
 
     // resources and networks
-    assert.deepEqual(snap.networks.find((n) => n.id === g), { id: g, name: 'Pgtest map net', anchorRef: `telegram:${TG}` });
+    assert.deepEqual(snap.networks.find((n) => n.id === g), { id: g, name: 'Pgtest map net', anchorRef: `telegram:${TG}`, mode: 'independent' }, 'a new group is independent');
     const rTg = snap.resources.find((r) => r.ref === `telegram:${TG}`)!;
     assert.equal(rTg.followers, 1200);
     assert.equal(rTg.waiting, 2);
     assert.equal(rTg.postsToday, 3, 'two published and the promo post');
     assert.equal(rTg.groupId, g);
+    assert.equal(rTg.mode, 'live', 'the card mode');
     const rIg = snap.resources.find((r) => r.ref === IG)!;
     assert.equal(rIg.health, 'broken');
     assert.equal(rIg.healthDetail, 'token expired');
+    assert.equal(rIg.mode, 'live', 'its agent\'s mode');
 
     // infra: bots, sessions, Telegraph — the default bot serves the channel without its own bot; never a phone or a session
     const bA = snap.infra.find((i) => i.id === `bot:${botA}`)!;

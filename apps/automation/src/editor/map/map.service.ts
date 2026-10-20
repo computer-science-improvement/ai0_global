@@ -7,7 +7,7 @@ import type { AgentCapStatus, BlockingCap, BudgetStatus } from '../../spend/spen
 import { levelOf, levelStats } from './level';
 import { MapQueries, type RawEvent, type RawInfra, type RawRoad, type SlotFacts } from './map.queries';
 import type {
-  MapAlert, MapBudget, MapEvent, MapInfra, MapRoad, MapResource, MapSnapshot, MapUnit, ResourceHealthView,
+  MapAlert, MapBudget, MapEvent, MapInfra, MapNetwork, MapRoad, MapResource, MapSnapshot, MapUnit, ResourceHealthView,
 } from './map.types';
 import { errorCode, stateOfRole, unitState, type UnitFacts } from './unit-state';
 
@@ -64,18 +64,21 @@ export function infraItems(raw: RawInfra[], catalogRefs: string[], channelBots: 
   const known = new Set(raw.map((r) => r.id));
   const fallback = raw.find((r) => r.kind === 'bot' && r.isDefault)?.id ?? null;
   const serves = new Map<string, string[]>();
-  for (const ref of catalogRefs) {
-    if (!ref.startsWith('telegram:')) continue;
+  const telegram = catalogRefs.filter((ref) => ref.startsWith('telegram:'));
+  for (const ref of telegram) {
     const named = channelBots.get(ref);
     const bot = named && known.has(named) ? named : fallback;
     if (bot) serves.set(bot, [...(serves.get(bot) ?? []), ref]);
   }
+  // The tracker session in use reads the views and subscribers of every Telegram channel.
+  const tracker = raw.find((r) => r.kind === 'mtproto' && r.role === 'tracker' && r.inUse);
+  if (tracker) serves.set(tracker.id, [...telegram]);
   return raw.map((r) => {
     const handle = r.username ? `@${r.username.replace(/^@/, '')}` : null;
     return {
       id: r.id, kind: r.kind,
       title: (r.kind === 'bot' ? handle ?? r.name : r.kind === 'telegraph' ? r.name : r.name ?? handle) ?? INFRA_NOUN[r.kind],
-      username: r.username, active: r.active, isDefault: r.isDefault, role: r.role,
+      username: r.username, active: r.active, isDefault: r.isDefault, role: r.role, inUse: r.inUse,
       health: r.verifyError ? 'broken' : r.lastVerifiedAt ? 'ok' : 'unknown',
       healthDetail: r.verifyError ? clip(r.verifyError.replace(/\s+/g, ' ').trim(), 160) : null,
       lastVerifiedAt: iso(r.lastVerifiedAt), serves: [...(serves.get(r.id) ?? [])].sort(),
@@ -143,6 +146,9 @@ export class MapService {
 
   private now(): Date { return (this.d.now ?? (() => new Date()))(); }
 
+  /** The next snapshot is built fresh (after the owner changed something from the map). */
+  invalidate(): void { this.cache = null; }
+
   /** The snapshot; shared for 5 s by every caller, and one build at a time. */
   async snapshot(): Promise<MapSnapshot> {
     const now = this.now().getTime();
@@ -168,14 +174,14 @@ export class MapService {
     const q = this.q;
     const [
       agents, activity, catalog, budget, paused, health,
-      networks, modes, running, lastRuns, slotFacts, levelRows, failedRuns, resHealth, roads, joins, dirWait, launchWait, rawInfra, channelBots,
+      networks, modes, running, lastRuns, slotFacts, levelRows, failedRuns, resHealth, roads, joins, dirWait, launchWait, rawInfra, channelBots, blocked,
       evRuns, evSlots, evDirs, evLaunches,
     ] = await Promise.all([
       this.d.agents.list(), this.d.agents.activity(), this.d.catalog.list(),
       this.d.budgets().catch(() => ({ rows: [] as BudgetStatus[], agentCaps: [] as AgentCapStatus[], blocking: [] as BlockingCap[] })),
       this.d.pausedRefs().catch(() => new Set<string>()), this.stuckHealth(),
       q.networks(), q.channelModes(), q.runningRuns(), q.lastRuns(), q.slotFacts(), q.levelRows(), q.failedRuns(), q.resourceHealth(),
-      q.roads(), q.joins(), q.directivesWaiting(), q.launchesWaiting(), q.infra(), q.channelBots(),
+      q.roads(), q.joins(), q.directivesWaiting(), q.launchesWaiting(), q.infra(), q.channelBots(), q.blockedPairs(),
       q.runEvents(), q.slotEvents(), q.directiveEvents(), q.launchEvents(),
     ]);
 
@@ -195,11 +201,13 @@ export class MapService {
         ref: c.ref, platform: c.platform, title: c.title, username: c.username, followers: c.followers, groupId: c.groupId,
         health: view, healthDetail: view === 'warning' || view === 'broken' ? (h?.detail ? clip(h.detail, 160) : null) : null,
         paused: paused.has(c.ref), postsToday: slotByRef.get(c.ref)?.postsToday ?? 0, waiting: slotByRef.get(c.ref)?.awaiting ?? 0, agent: c.agent,
+        mode: null,
       };
     });
     const infra = infraItems(rawInfra, catalog.map((c) => c.ref), channelBots);
     const groupsWithResources = new Set(catalog.map((c) => c.groupId).filter(Boolean));
-    const mapNetworks = networks.filter((n) => groupsWithResources.has(n.id));
+    const mapNetworks: MapNetwork[] = networks.filter((n) => groupsWithResources.has(n.id))
+      .map((n) => ({ id: n.id, name: n.name, anchorRef: n.anchorRef, mode: n.mode === 'independent' || n.mode === 'orchestrated' ? 'independent' : 'legacy_duplicate' }));
 
     // ── units ──
     const orchestratorOf = (a: Agent): Agent => (a.parentId ? byId.get(a.parentId) ?? a : a);
@@ -222,6 +230,12 @@ export class MapService {
       const key = telegramKeyOf(o) ? `telegram:${telegramKeyOf(o)}` : homeOf(o);
       return (key ? (modes.get(key) as AgentMode | undefined) : undefined) ?? o.mode;
     };
+
+    // A resource's mode: the Telegram card's mode, else the mode of the agent that runs it.
+    for (const r of resources) {
+      const owner = r.agent ? byHandle.get(r.agent) : undefined;
+      r.mode = (modes.get(r.ref) as AgentMode | undefined) ?? (owner ? modeOf(owner) : null);
+    }
 
     const runningBy = new Map(running.map((r) => [r.agentId, r]));
     const lastBy = new Map(lastRuns.map((r) => [r.agentId, r]));
@@ -284,7 +298,8 @@ export class MapService {
     }
     const mapRoads: MapRoad[] = [...roadMap.values()]
       .filter((r) => r.from !== r.to && catalogByRef.has(r.from) && catalogByRef.has(r.to))
-      .map((r) => ({ from: r.from, to: r.to, kind: r.kind, count30d: r.count, lastAt: iso(r.lastAt), joins30d: r.kind === 'promo' ? joins.get(`${r.from}>${r.to}`) ?? null : null }))
+      .map((r) => ({ from: r.from, to: r.to, kind: r.kind, count30d: r.count, lastAt: iso(r.lastAt), joins30d: r.kind === 'promo' ? joins.get(`${r.from}>${r.to}`) ?? null : null,
+        blocked: r.kind !== 'duplicate' && blocked.has(`${r.from}>${r.to}`) }))
       .sort((a, b) => b.count30d - a.count30d || (a.from + a.to).localeCompare(b.from + b.to));
 
     // ── alerts ──

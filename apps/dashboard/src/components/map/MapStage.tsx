@@ -39,8 +39,8 @@ export function MapStage({ snap, layout, viewport, selection, onSelect, overlay,
   const infra = snap.infra ?? [];
   // A selected bot shows the channels it publishes to; a selected channel shows its bot.
   const service = useMemo(() => {
-    if (selection?.type === 'infra') return infra.filter((i) => i.id === selection.id).flatMap((i) => i.serves.map((ref) => [i.id, ref] as const));
-    if (selection?.type === 'building') return infra.filter((i) => i.serves.includes(selection.ref)).map((i) => [i.id, selection.ref] as const);
+    if (selection?.type === 'infra') return infra.filter((i) => i.id === selection.id).flatMap((i) => i.serves.map((ref) => [i, ref] as const));
+    if (selection?.type === 'building') return infra.filter((i) => i.serves.includes(selection.ref)).map((i) => [i, selection.ref] as const);
     return [];
   }, [infra, selection]);
 
@@ -74,10 +74,10 @@ export function MapStage({ snap, layout, viewport, selection, onSelect, overlay,
             );
           })}
 
-          {service.map(([id, ref]) => {
-            const a = layout.structures[id];
+          {service.map(([i, ref]) => {
+            const a = layout.structures[i.id];
             const b = layout.buildings[ref];
-            return a && b ? <ServiceLine key={`${id}>${ref}`} from={a} to={b} /> : null;
+            return a && b ? <ServiceLine key={`${i.id}>${ref}`} from={a} to={b} kind={i.kind} /> : null;
           })}
 
           {infra.map((i) => {

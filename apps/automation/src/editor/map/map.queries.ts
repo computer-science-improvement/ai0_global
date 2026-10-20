@@ -39,7 +39,7 @@ export interface DirectiveWait { handle: string; count: number }
 export interface LaunchWait { id: string; channelKey: string; targetRef: string; status: string; handle: string | null; since: Date }
 export interface RawInfra {
   id: string; kind: 'bot' | 'mtproto' | 'telegraph'; name: string | null; username: string | null; active: boolean; isDefault: boolean;
-  role: string | null; lastVerifiedAt: Date | null; verifyError: string | null;
+  role: string | null; inUse: boolean; lastVerifiedAt: Date | null; verifyError: string | null;
 }
 export interface HealthRow { ref: string; state: string; detail: string | null; muted: boolean }
 
@@ -48,13 +48,13 @@ export class MapQueries {
 
   /** Networks: the group and the Telegram channel at its centre (the anchor). */
   networks() {
-    return safe([] as Array<{ id: string; name: string; anchorRef: string | null }>, async () => {
+    return safe([] as Array<{ id: string; name: string; anchorRef: string | null; mode: string | null }>, async () => {
       const { rows } = await this.pool.query(
-        `SELECT g.id::text, g.name,
+        `SELECT g.id::text, g.name, g.mode,
                 (SELECT 'telegram:' || t.channel_key FROM tracked_channels t WHERE t.group_id = g.id AND t.channel_key IS NOT NULL
                   ORDER BY t.is_mine DESC, t.channel_key LIMIT 1) AS anchor
            FROM meta_account_groups g ORDER BY g.name, g.id`);
-      return rows.map((r) => ({ id: r.id as string, name: r.name as string, anchorRef: (r.anchor as string | null) ?? null }));
+      return rows.map((r) => ({ id: r.id as string, name: r.name as string, anchorRef: (r.anchor as string | null) ?? null, mode: (r.mode as string | null) ?? null }));
     });
   }
 
@@ -159,16 +159,18 @@ export class MapQueries {
         `SELECT id::text, username, first_name, active, is_default, last_verified_at, verify_error FROM my_bots ORDER BY is_default DESC, username NULLS LAST, id`);
       return rows.map((r): RawInfra => ({
         id: `bot:${r.id}`, kind: 'bot', name: r.first_name ?? null, username: r.username ?? null, active: !!r.active, isDefault: !!r.is_default,
-        role: null, lastVerifiedAt: iso(r.last_verified_at), verifyError: r.verify_error ?? null,
+        role: null, inUse: !!r.active, lastVerifiedAt: iso(r.last_verified_at), verifyError: r.verify_error ?? null,
       }));
     });
     // never the phone or the session string
     const sessions = safe([] as RawInfra[], async () => {
       const { rows } = await this.pool.query(
-        `SELECT id::text, label, username, active, role, last_verified_at, verify_error FROM mtproto_sessions ORDER BY role, label, id`);
+        `SELECT m.id::text, m.label, m.username, m.active, m.role, m.last_verified_at, m.verify_error,
+                m.active AND m.id = (SELECT x.id FROM mtproto_sessions x WHERE x.active AND x.role = m.role ORDER BY x.created_at LIMIT 1) AS in_use
+           FROM mtproto_sessions m ORDER BY m.role, m.label, m.id`);
       return rows.map((r): RawInfra => ({
         id: `mtproto:${r.id}`, kind: 'mtproto', name: r.label ?? null, username: r.username ?? null, active: !!r.active, isDefault: false,
-        role: r.role ?? 'tracker', lastVerifiedAt: iso(r.last_verified_at), verifyError: r.verify_error ?? null,
+        role: r.role ?? 'tracker', inUse: !!r.in_use, lastVerifiedAt: iso(r.last_verified_at), verifyError: r.verify_error ?? null,
       }));
     });
     const telegraph = safe([] as RawInfra[], async () => {
@@ -176,7 +178,7 @@ export class MapQueries {
         `SELECT id::text, account_id, short_name, author_name, active, last_verified_at, verify_error FROM telegraph_accounts ORDER BY account_id, id`);
       return rows.map((r): RawInfra => ({
         id: `telegraph:${r.id}`, kind: 'telegraph', name: r.short_name ?? r.account_id ?? null, username: r.author_name ?? null, active: !!r.active,
-        isDefault: false, role: null, lastVerifiedAt: iso(r.last_verified_at), verifyError: r.verify_error ?? null,
+        isDefault: false, role: null, inUse: !!r.active, lastVerifiedAt: iso(r.last_verified_at), verifyError: r.verify_error ?? null,
       }));
     });
     return (await Promise.all([bots, sessions, telegraph])).flat();
@@ -216,6 +218,14 @@ export class MapQueries {
         out.push({ from: r.from_ref, to: r.to_ref, kind: r.treatment === 'duplicate' ? 'duplicate' : 'repost', count: Number(r.n), lastAt: iso(r.last_at) });
       }
       return out;
+    });
+  }
+
+  /** Pairs the owner blocked from promoting each other (migration 089), as `a>b` both ways. */
+  blockedPairs() {
+    return safe(new Set<string>(), async () => {
+      const { rows } = await this.pool.query(`SELECT source_ref, target_ref FROM promo_pairs WHERE blocked_at IS NOT NULL`);
+      return new Set(rows.flatMap((r) => [`${r.source_ref}>${r.target_ref}`, `${r.target_ref}>${r.source_ref}`]));
     });
   }
 
