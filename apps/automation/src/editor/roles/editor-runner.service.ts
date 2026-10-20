@@ -160,8 +160,8 @@ export interface EvergreenRequest {
 type PlatformContext = Awaited<ReturnType<NonNullable<EditorRunnerDeps['platformContext']>>>;
 
 /** Telegram-only tools that must never run on a slot of another platform, and vice versa. */
-const TELEGRAM_ONLY = new Set(['publish_post', 'lint_post', 'preview_post', 'request_story_repost']);
-const PLATFORM_ONLY = new Set(['publish_platform_post', 'lint_platform_post']);
+export const TELEGRAM_ONLY = new Set(['publish_post', 'lint_post', 'preview_post', 'request_story_repost']);
+export const PLATFORM_ONLY = new Set(['publish_platform_post', 'lint_platform_post']);
 
 export const MAX_SLOT_ATTEMPTS = 2;
 export const RETRY_DELAY_MS = 15 * 60_000;

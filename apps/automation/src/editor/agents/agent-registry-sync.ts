@@ -6,6 +6,8 @@ export interface RegistrySyncDeps {
   agents:   Pick<AgentsRepository, 'findTop' | 'findChild' | 'insert' | 'update' | 'allHandles' | 'linkLegacyRuns'>;
   channels: { list(): Promise<EditorCard[]> };
   log?:     (msg: string) => void;
+  /** Spec 054 FR-003: forms the loadout of an agent this sync creates (never of an existing one). */
+  loadout?: { form(agent: Agent): Promise<unknown> };
 }
 
 const CHILD_NAMES: Record<string, string> = {
@@ -39,6 +41,7 @@ export class AgentRegistrySync {
         });
         created++;
         this.d.log?.(`agent registry: @${handle} for ${card.channelKey}`);
+        await this.d.loadout?.form(orch);
       } else if (orch.mode !== card.mode) {
         await this.d.agents.update(orch.id, { mode: card.mode });
         updated++;
@@ -57,10 +60,11 @@ export class AgentRegistrySync {
       if (await this.d.agents.findChild(orch.id, kind)) continue;
       const handle = withSuffix(deriveHandle(`${orch.handle}_${kind === 'idea_reviewer' ? 'ideas' : kind}`), (h) => taken.has(h));
       taken.add(handle);
-      await this.d.agents.insert({
+      const child = await this.d.agents.insert({
         kind, scope: orch.scope, scopeId: orch.scopeId, parentId: orch.id, name: `${CHILD_NAMES[kind]} · ${orch.name}`,
         handle, mode: orch.mode, createdBy: 'sync',
       });
+      await this.d.loadout?.form(child);
       n++;
     }
     return n;

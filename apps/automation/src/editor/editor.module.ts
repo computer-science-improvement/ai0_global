@@ -92,6 +92,12 @@ import { AgentRuntime } from './agents/agent-runtime';
 import { AgentRegistrySync } from './agents/agent-registry-sync';
 import { LoadoutRepository } from './loadout/loadout.repository';
 import { LoadoutService } from './loadout/loadout.service';
+import { LoadoutUsage } from './loadout/loadout-usage';
+import { LoadoutCreation, resourcePlatforms } from './loadout/loadout-creation';
+import { LoadoutAdminService, rulesTarget } from './loadout/loadout.admin.service';
+import { LoadoutController, LOADOUT_SERVICE } from './loadout/loadout.controller';
+import { rulesSummary } from './loadout/loadout-rules';
+import type { ToolRegistry as LoadoutRegistry } from './harness/tool-registry';
 import { SkillVersionEvaluator } from './agents/skill-version-evaluator';
 import { buildAgentSkillTools } from './agents/agent-skill-tools';
 import { AgentsService } from './agents/agents.service';
@@ -338,6 +344,8 @@ export interface AgentInfra {
   creator:  AgentCreator;
   /** Spec 054: the agent's own tool set (agent_tools), resolved once per run. */
   loadout:  LoadoutService;
+  loadoutRepo:  LoadoutRepository;
+  loadoutUsage: LoadoutUsage;
   /** The Telegram channel an orchestrator publishes to: its resource, or its network's channel. */
   channelKeyOf(agent: Agent): Promise<string | null>;
 }
@@ -395,6 +403,8 @@ function configConflictsOf(pool: Pool, repos: Pick<EditorRepos, 'memory' | 'chan
 const ARTIFACTS: { svc?: ArtifactsService } = {};
 /** Spec 052: the launch service, bound late (the tool registry and the artifacts come before it). */
 const LAUNCH: { svc?: LaunchService } = {};
+/** Spec 054: the tool registry for the loadout of a new agent, bound late (the registry is built after the agent infrastructure). */
+const LOADOUT_REGISTRY: { reg?: Pick<LoadoutRegistry, 'all'> } = {};
 
 async function ownerRuleLint(infra: Pick<AgentInfra, 'skills' | 'agents'>, text: string, orch: Agent) {
   return lintOwnerRule(text, {
@@ -937,7 +947,18 @@ export const EDITOR_PROVIDERS = [
         const agents = new AgentsRepository(pool);
         const skills = new SkillStore(pool);
         const profiles = new ResourceProfilesRepository(pool);
-        const registry = new AgentRegistrySync({ agents, channels: repos.channels, log: (m) => logger.log(m) });
+        const loadoutRepo = new LoadoutRepository(pool);
+        const loadoutUsage = new LoadoutUsage(pool);
+        const groups = new NetworkRepository(pool);
+        // Spec 054 FR-003: a new agent starts with its role's core tools, what its resource needs and what its peers use.
+        const loadoutCreation = new LoadoutCreation({
+          repo: loadoutRepo, usage: loadoutUsage, registry: () => LOADOUT_REGISTRY.reg ?? null, log: (m) => logger.log(m),
+          platforms: resourcePlatforms(async (key) => {
+            const g = await groups.groupOfChannel(key);
+            return g ? (await groups.groupResources(g.id)).map((r) => r.platform) : [];
+          }),
+        });
+        const registry = new AgentRegistrySync({ agents, channels: repos.channels, log: (m) => logger.log(m), loadout: loadoutCreation });
         const catalog = new ResourceCatalog({
           pool,
           telegramAccess: makeTelegramAccessCheck((key) => {
@@ -962,8 +983,9 @@ export const EDITOR_PROVIDERS = [
           kpi: new TelegramScopeKpi(pool),
           runtime: new AgentRuntime({ agents, store: skills, fallback: files, log: (m) => logger.warn(m) }),
           actions: new PendingActionsService(actionsRepo),
-          creator: new AgentCreator({ agents, registry, catalog, profiles, channels: repos.channels }),
-          loadout: new LoadoutService({ repo: new LoadoutRepository(pool), log: (m) => logger.warn(m) }),
+          creator: new AgentCreator({ agents, registry, catalog, profiles, channels: repos.channels, loadout: loadoutCreation }),
+          loadout: new LoadoutService({ repo: loadoutRepo, log: (m) => logger.warn(m) }),
+          loadoutRepo, loadoutUsage,
         };
       },
     },
@@ -1735,6 +1757,18 @@ export const EDITOR_PROVIDERS = [
       },
     },
     {
+      // Spec 054: the owner surface of an agent's loadout; it also hands the tool registry to the creation of new agents.
+      provide: LOADOUT_SERVICE,
+      inject: [DB_POOL, EDITOR_REGISTRY, AGENT_INFRA],
+      useFactory: (pool: Pool, registry: ToolRegistry, infra: AgentInfra): LoadoutAdminService => {
+        LOADOUT_REGISTRY.reg = registry;
+        return new LoadoutAdminService({
+          agents: infra.agents, repo: infra.loadoutRepo, usage: infra.loadoutUsage, registry, skills: infra.skills,
+          rules: async (agent, orch) => rulesSummary(pool, rulesTarget(orch, await infra.channelKeyOf(agent))),
+        });
+      },
+    },
+    {
       provide: AGENTS_SERVICE,
       inject: [DB_POOL, AGENT_INFRA, EDITOR_REPOS, EDITOR_OPS, EDITOR_RUNNER, EDITOR_NETWORK, EDITOR_MANAGER, MODELS_SERVICE],
       useFactory: (
@@ -2187,7 +2221,7 @@ export const EDITOR_PROVIDERS = [
 @Module({
   // AuthModule: EditorController is guarded by TrackingAuthGuard, which injects AuthService.
   imports:     [ChannelConfigModule, PublishersModule, AuthModule],
-  controllers: [EditorController, EditorChatController, AgentsController, ModelsController, NetworkController, ManagerController, PromoController, PromoRedirectController, ApprovalsController, AutonomyController, ScheduleController, StrategyMigrationController, UpcomingSlotsController, ResourcePausesController, PostAuditController, ChannelSetupController, SteeringController, NetworkHealthController, ArtifactsController, OwnerBotController, LaunchController],
+  controllers: [EditorController, EditorChatController, AgentsController, LoadoutController, ModelsController, NetworkController, ManagerController, PromoController, PromoRedirectController, ApprovalsController, AutonomyController, ScheduleController, StrategyMigrationController, UpcomingSlotsController, ResourcePausesController, PostAuditController, ChannelSetupController, SteeringController, NetworkHealthController, ArtifactsController, OwnerBotController, LaunchController],
   providers:   [...EDITOR_PROVIDERS, TrackingAuthGuard],
   exports:     [EDITOR_REPOS, EDITOR_RUNNER, AGENT_INFRA, PLATFORM_INFRA, EDITOR_MANAGER],
 })
