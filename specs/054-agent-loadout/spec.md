@@ -1,6 +1,6 @@
 # 054 Agent loadout
 
-**Epic:** AI0-246 · **Priority:** P1 · **Depends on:** 017, 018, 040, 053 · **Status:** spec · **Migration:** 087
+**Epic:** AI0-246 · **Priority:** P1 · **Depends on:** 017, 018, 040, 053 · **Status:** done (2026-10-20) · **Migration:** 087
 
 ## Why
 
