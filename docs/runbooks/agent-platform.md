@@ -339,8 +339,8 @@ Each agent has its own tool set. Every tool offered is re-sent to the model on e
 - A building's border is the connection health (connected, needs attention, broken); hatching means paused; the number badge is what waits for you there. Roads: dashed blue is cross-promo, dotted is repost, solid is duplicate.
 - Everything clicks through: the drawers link to the agent page, its Artifacts, a chat with the agent, Approvals and the right Connections section. The bell in the top bar lists everything that waits for you.
 - Sections: each network is its own section; resources outside any network sit in one section per platform (Telegram channels, Instagram, Facebook pages, Threads, TikTok, YouTube). Below, on a row of their own, are the connections the channels work through: Telegram bots, MTProto sessions (tracker or agent) and Telegraph accounts. Their border is the last verify (a broken one that is switched on is also an alert); the default bot wears a star. A selected bot draws dotted lines to the channels it publishes to (its own channels, and as the default bot every channel without a bot); a selected channel draws the line to its bot. No token, session string or phone ever reaches the map.
-- Roads are activity of the last 30 days, not settings: a cross-promo road exists because promo posts went out (a cross-promo directive you approved, or a launch), a repost or duplicate road because posts were copied (a promo repost, or the network mode Auto-duplicate on the Playbook tab). A road disappears after 30 days without a new post of its kind; to stop one, reject the directive or set the network mode to Independent. The road drawer says this for each road and links to the place.
-- Changing it from the map (needs migration 089 for the promo block): a building's drawer has a **Network** picker — move the resource into another network (one per platform per network; a network that already has that platform is greyed out), take it out of any, or start a **New network** with it; taking out a network's Telegram channel warns that the network's agent is anchored on it. A road's drawer can **Stop promos between them** (both ways: pending promo posts of the pair are skipped with `promo pair blocked by owner`, and the planner refuses the pair with `pair_blocked` until **Allow promos again**; a stopped road is faded with a ⊘), switch a legacy network to **Independent**, or take the copy's target out of the network. Endpoints: `POST /api/map/resource-network {ref, groupId|null}`, `POST /api/map/promo-block {a, b, blocked}`.
+- Roads are the links that exist now (spec 058, §17), not 30 days of traffic: a copy link between a network's Telegram channel and each other member, and a promo link for each pair the owner linked (or an approved promo linked). A link with no posts yet is drawn thin. Past links (activity of the last 30 days between resources no longer linked) are drawn only after **Show past links**. The road drawer says what each line is and breaks it.
+- Changing it from the map: a building's drawer has a **Network** picker — move the resource into another network (one per platform per network; a network that already has that platform is greyed out), take it out of any, or start a **New network** with it; taking out a network's Telegram channel warns that the network's agent is anchored on it. A road's drawer breaks the link (§17) or switches a legacy network to **Independent**. Endpoint: `POST /api/map/resource-network {ref, groupId|null}` (`POST /api/map/promo-block {a, b, blocked}` stays: block = unlink, allow = link).
 - Each building wears its mode — LIVE, APPROVE, SHADOW or OFF (the Telegram card's mode, else the mode of the agent that runs it); the drawer repeats it with a link to change it on the agent page.
 - The MTProto tracker session in use (the first active one) draws lines to every Telegram channel when selected — it reads their views and subscribers; another active tracker is on standby, an agent session writes DMs and is tied to no channel.
 
@@ -403,3 +403,45 @@ The model pass uses the `auditor` role: Haiku on the Anthropic workspace, low ef
 - The week was run if `SELECT week, trigger, status FROM audit_reports ORDER BY started_at DESC LIMIT 3` shows a `schedule` row for it. A failed scheduled run is not retried that week: press Run again.
 - No report on Monday: check `AUDITOR_ENABLED`, `AUDITOR_WEEKDAY` and `AUDITOR_AT`, and that the service was up after the time.
 - The report's amber note says why the model pass was skipped (switched off, no key, @sysadmin off, budget, no answer).
+
+## 17. Map links the owner controls (spec 058)
+
+On `/app/map` a road is a link that exists now. Two kinds: a **copy link** (network membership: the network's Telegram channel to each other member, solid; "Duplicate" for an Auto-duplicate network, "Adapted copy" for an Independent one) and a **promo link** (a pair the owner linked: cross-promos and reposts between them, dashed or dotted). The owner makes and breaks both from the map; breaking makes the line disappear at once.
+
+**Needs**
+
+- Migration `091_promo_links` (`promo_pairs.linked_at`, table `map_link_events`). The seed runs once, when the column is created: every pair with a promo in the last 60 days that is not blocked is linked both ways, so today's active pairs stay on the map. Re-applying never relinks a pair you unlinked. Down: `database/migrations/down/091_promo_links.down.sql`.
+- Nothing to enable. Without the migration the new endpoints answer with an error and the map shows it as a toast; the map itself still loads.
+
+**What a link means**
+
+- A promo pair is linked when `linked_at` is set and `blocked_at` is not (both directions are kept in step). A linked pair skips the relevance check in the promo planner; an unlinked pair still has to pass it, and approving a promo for an unlinked pair links it.
+- **Unlink** sets `blocked_at`, clears `linked_at` and skips the pair's pending promo slots (`promo pair blocked by owner`). The planner and the manager's `cross_promo` / `repost` tools refuse the pair with `pair_blocked` until it is linked again. The promo overview (`GET /api/agents/:handle/promo`) lists `linked` and `blocked` on each pair.
+- A copy link follows membership: a resource that leaves a network (or the anchor leaving) has its pending derived copies skipped (`resource left the network`), in both directions. A network without a Telegram channel has no anchor and draws no copy links.
+- Past links: the last 30 days of promo pairs no longer linked, and copy traffic of a resource that left a network. They are never drawn unless **Show past links** is on; the road drawer says "Not linked any more" and offers **Link again** for a promo pair.
+- The feed shows what you changed: "linked X and Y", "unlinked X and Y", "X left Network" (`map_link_events`, refs and the network name only).
+
+**On the map**
+
+- A building's drawer, **Links**: the network picker with the network's other members as chips, the promo partners as chips (× unlinks after a confirm), and **Link resources…**, a searchable checklist of every other resource grouped by network and platform (checked = linked; the footer says "N to link, M to unlink"; Apply sends one call).
+- A road's drawer: a copy road takes the target out of the network (or switches a legacy network to Independent), a promo road unlinks the pair; both say how many planned copies or promos were skipped. A past road offers Link again.
+- A network's drawer (click its label on the map, or its name in a building's drawer): mode, Telegram channel, agent, free places, the members and **Members…**, a checklist of the network's members and the resources in no network (one per platform: a taken platform is disabled and names who holds it). Removals go first, so one Apply can swap a member for another of the same platform. A partial success lists the refused ones.
+- **Link** in the top bar starts link mode: click a building, then another; the popover offers **Promo partners** and, when the first is in a network with a free place for the second's platform, **Put <B> in <network>**. The mode stays on for the next pair; Esc leaves it.
+
+**Endpoints** (owner only)
+
+| Call | Body | Answer |
+|---|---|---|
+| `POST /api/map/links` | `{ref, add: [ref], remove: [ref]}` (30 refs per list at most) | `{ref, linked, unlinked, canceled}` (only the pairs that actually changed) |
+| `POST /api/map/network-members` | `{groupId, add: [ref], remove: [ref]}` (30 per list; 400 above) | `{groupId, groupName, results: [{ref, ok, error?}], canceled}` (partial success) |
+| `POST /api/map/resource-network` | `{ref, groupId \| null}` | `{ref, groupId, groupName, canceled}` |
+| `POST /api/map/promo-block` | `{a, b, blocked}` | block = unlink, allow = link |
+
+Each change drops the snapshot cache, so the next `GET /api/map` is current.
+
+**Check it**
+
+- `SELECT source_ref, target_ref, linked_at, blocked_at FROM promo_pairs WHERE linked_at IS NOT NULL OR blocked_at IS NOT NULL ORDER BY 1, 2;` shows the pairs both ways. A pair must not have both columns set.
+- `SELECT at, kind, ref, other_ref, detail FROM map_link_events ORDER BY at DESC LIMIT 10;` is the feed's owner changes.
+- After an unlink, `SELECT id, status, error FROM editor_slots WHERE error = 'promo pair blocked by owner'` shows the skipped slots.
+- Tests: `map.links.pg.test.ts` (setLinks, setMembers, copies skipped, seed), `map-roads.test.ts` (roads = links + past), `manager/directive-pair-blocked.test.ts`, `promo.pg.test.ts`; in the dashboard `lib/map-links.test.ts`. `lib/map-demo.ts` has a linked pair with no traffic, past roads and a network with free places for a mock-server check.

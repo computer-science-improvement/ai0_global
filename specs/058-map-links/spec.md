@@ -1,6 +1,6 @@
 # 058 — Map links the owner controls
 
-Status: in progress · Follow-up of [056](../056-network-map/spec.md) · Migration 091
+Status: done · Follow-up of [056](../056-network-map/spec.md) · Migration 091
 
 ## Why (the owner's words, 2026-10-21)
 
@@ -108,7 +108,8 @@ LinkedIn, YouTube, TikTok-specific work; changing how copies are written; the ot
 - T1 `11fb1c09` — migration 091, `setLinks`, `setMembers`, copies skipped on leaving a network, endpoints, PG tests.
 - T2 `3927fd9e` — planner (linked skips relevance, an approved promo links the pair), `linked` / `blocked` on the promo overview pairs, the directive tool refuses a blocked pair, roads = current links + past roads, link events in the feed.
 - T3 `beac6fc3` — dashboard API hooks, building drawer Links section with the "Link resources…" modal, road drawer break / link again, "Show past links" toggle and legend, demo data (a linked pair with no traffic, past roads, a network with free platform slots), tests.
-- T4 — pending hash: network territory drawer (click a territory label or the network name in a building's drawer) with the Members… modal, link mode in the HUD with the popover at the second building, tests.
+- T4 `01b53233` — network territory drawer (click a territory label or the network name in a building's drawer) with the Members… modal, link mode in the HUD with the popover at the second building, tests.
+- T5 — this commit: runbook §17 (and §15 roads bullets), specs README row 058 DONE and migration 091 in the landed list, spec Status done.
 
 ## Deltas from the spec
 
