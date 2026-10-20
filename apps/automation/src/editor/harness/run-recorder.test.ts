@@ -21,7 +21,14 @@ test('start inserts a run and returns id', async () => {
   const id = await new PgRunRecorder(pool).start({ role: 'executor', channelKey: 'ch', slotId: 's1', model: 'm' });
   assert.equal(id, 'run-1');
   assert.match(calls[0].sql, /INSERT INTO editor_runs/);
-  assert.deepEqual(calls[0].params, ['executor', 'ch', 's1', 'm', null]);
+  assert.deepEqual(calls[0].params, ['executor', 'ch', 's1', 'm', null, null]);
+});
+
+test('start writes the offered tool names once (spec 054)', async () => {
+  const { pool, calls } = fakePool();
+  await new PgRunRecorder(pool).start({ role: 'executor', channelKey: 'ch', model: 'm', agentId: 'a1', toolsOffered: ['read_a', 'publish'] });
+  assert.match(calls[0].sql, /tools_offered/);
+  assert.deepEqual(calls[0].params, ['executor', 'ch', null, 'm', 'a1', ['read_a', 'publish']]);
 });
 
 test('llmStep records usage', async () => {

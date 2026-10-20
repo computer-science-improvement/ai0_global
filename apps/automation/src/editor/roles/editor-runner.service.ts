@@ -28,6 +28,7 @@ import type { InboxItemInput } from '../agents/owner-inbox';
 import { PREVIEW_FEATURE, PreviewSink, previewWithoutRun, type SlotPreview } from './preview-run';
 import type { AgentBudget } from '../harness/budget.service';
 import { alreadyUsedBlock } from '../post/variety/monotony';
+import { intersectAllow, type LoadoutService } from '../loadout/loadout.service';
 import type { AuditPost } from '../post/integrity/types';
 import {
   classifyFailure, isRescued, LADDER_MAX_LATE_MS, ladderNote, ladderPlan, MAX_CRITIC_PASSES_PER_SLOT, MAX_LADDER_EXTRA_STEPS, priorCriticPasses, criticPasses, PublishProbe, stepRecord,
@@ -44,6 +45,8 @@ export interface EditorRunnerDeps {
   skills:   SkillSource;
   /** Registry agents (spec 017): recorded agent, its DB skills, pause and budget. Optional for tests. */
   runtime?: Pick<AgentRuntime, 'forChannel'>;
+  /** Spec 054: the agent's own tool set; its allowlist narrows the channel's. Optional for tests. */
+  loadout?: Pick<LoadoutService, 'allowFor'>;
   plans:    Pick<EditorPlansRepository, 'reservedSlots' | 'getSlot' | 'updateSlot'>;
   memory:   Pick<EditorMemoryRepository, 'listActive'> & Partial<Pick<EditorMemoryRepository, 'ownerPreferences'>>;
   env:      (key: string) => string | undefined;
@@ -312,6 +315,8 @@ export class EditorRunnerService {
     const { workspace, defaultModel } = await readModelContext(this.d);
     const agentModel = agentModelIn(ctx?.agent, workspace) ?? agentModelIn(ctx?.orchestrator, workspace);
     const agentEffort = ctx?.agent?.reasoningEffort ?? ctx?.orchestrator?.reasoningEffort ?? null;
+    // Spec 054: the agent's loadout, resolved once for the run; with the channel's allowlist it is an intersection.
+    const loadoutAllow = this.d.loadout ? await this.d.loadout.allowFor(ctx?.agent, { role, registry: this.d.registry }) : null;
     return this.d.loop.run({
       role,
       channelKey: card.channelKey,
@@ -324,7 +329,7 @@ export class EditorRunnerService {
       }),
       user,
       tools: ((extras.wrapTools as ((t: EditorTool[]) => EditorTool[]) | undefined) ?? ((t) => t))(
-        executorTools(role, this.d.registry.forRole(role, card.toolsAllow), card.toolsAllow)
+        executorTools(role, this.d.registry.forRole(role, intersectAllow(card.toolsAllow, loadoutAllow)), card.toolsAllow)
           .filter((t) => !(extras.excludeTools as Set<string> | undefined)?.has(t.name))
           .filter((t) => !(extras.allowTools as Set<string> | undefined) || (extras.allowTools as Set<string>).has(t.name))),
       maxSteps: typeof extras.maxSteps === 'number' ? extras.maxSteps : MAX_STEPS[role],

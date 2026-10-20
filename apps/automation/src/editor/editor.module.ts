@@ -90,6 +90,8 @@ import { TelegramScopeKpi } from './agents/scope-kpi';
 import type { ScopeKpi } from './agents/scope-kpi';
 import { AgentRuntime } from './agents/agent-runtime';
 import { AgentRegistrySync } from './agents/agent-registry-sync';
+import { LoadoutRepository } from './loadout/loadout.repository';
+import { LoadoutService } from './loadout/loadout.service';
 import { SkillVersionEvaluator } from './agents/skill-version-evaluator';
 import { buildAgentSkillTools } from './agents/agent-skill-tools';
 import { AgentsService } from './agents/agents.service';
@@ -334,6 +336,8 @@ export interface AgentInfra {
   actions:  PendingActionsService;
   actionsRepo: PendingActionsRepository;
   creator:  AgentCreator;
+  /** Spec 054: the agent's own tool set (agent_tools), resolved once per run. */
+  loadout:  LoadoutService;
   /** The Telegram channel an orchestrator publishes to: its resource, or its network's channel. */
   channelKeyOf(agent: Agent): Promise<string | null>;
 }
@@ -959,6 +963,7 @@ export const EDITOR_PROVIDERS = [
           runtime: new AgentRuntime({ agents, store: skills, fallback: files, log: (m) => logger.warn(m) }),
           actions: new PendingActionsService(actionsRepo),
           creator: new AgentCreator({ agents, registry, catalog, profiles, channels: repos.channels }),
+          loadout: new LoadoutService({ repo: new LoadoutRepository(pool), log: (m) => logger.warn(m) }),
         };
       },
     },
@@ -1361,7 +1366,7 @@ export const EDITOR_PROVIDERS = [
         });
         const buildPort = new PlaybookBuildPort();
         const runner = new ManagerRunner({
-          loop, registry, runtime: infra.runtime, agents: infra.agents, repo, digest, inbox: infra.inbox, env, defaultModel: (ws) => models.get(ws), workspace: () => models.workspace(),
+          loop, registry, runtime: infra.runtime, loadout: infra.loadout, agents: infra.agents, repo, digest, inbox: infra.inbox, env, defaultModel: (ws) => models.get(ws), workspace: () => models.workspace(),
           timeoutHours: envNum(env, 'DIRECTIVE_TIMEOUT_HOURS', 12),
           timeoutApplyKinds: (env('DIRECTIVE_TIMEOUT_APPLY_KINDS') ?? '').split(',').map((x) => x.trim()).filter(Boolean),
           exec: directiveExecution(pool, repos, infra, platform, buildPort),
@@ -1405,7 +1410,7 @@ export const EDITOR_PROVIDERS = [
         notifier: TelegramNotifier, manager: ManagerInfra, promo: PromoInfra, schedule: ScheduleService, models: WorkspaceModelStore,
       ): NetworkRunner => {
         const runner = new NetworkRunner({
-          loop, registry, runtime: infra.runtime, memory: repos.memory, repo: new NetworkRepository(pool), plans: repos.plans, profiles: infra.profiles,
+          loop, registry, runtime: infra.runtime, loadout: infra.loadout, memory: repos.memory, repo: new NetworkRepository(pool), plans: repos.plans, profiles: infra.profiles,
           usable: (ref) => platform.health.usable(ref), time: resourceTime(repos, infra.profiles),
           steering: (ref) => new SteeringRepository(pool).promptRules(ref),
           commitments: (orchId) => manager.runner.commitments(orchId),
@@ -1465,7 +1470,7 @@ export const EDITOR_PROVIDERS = [
         const ideas = new NetworkRepository(pool);
         logger.log(`editor ${isEnabled(cfg) ? 'ENABLED' : 'disabled'}: ${registry.all().length} tools, ${skills.list().length} skills`);
         return new EditorRunnerService({
-          loop, registry, skills, runtime: infra.runtime, plans: repos.plans, memory: repos.memory, env, notify, defaultModel: (ws) => models.get(ws), workspace: () => models.workspace(),
+          loop, registry, skills, runtime: infra.runtime, loadout: infra.loadout, plans: repos.plans, memory: repos.memory, env, notify, defaultModel: (ws) => models.get(ws), workspace: () => models.workspace(),
           // Spec 045 FR-005: the channel's active steering rules (lowest priority) for the writer, planner and critic.
           steering: (ref) => new SteeringRepository(pool).promptRules(ref),
           // Spec 046 FR-003: what the orchestrator accepted from the manager reaches the single-channel planner too.
@@ -1706,7 +1711,7 @@ export const EDITOR_PROVIDERS = [
           list: async (q) => (await artifacts.list({ ...q, limit: 50 })).rows,
         };
         return new EditorChatService({
-          repo: repos.chat, drafts, memory: repos.memory, loop, registry, skills, env, enabled, agents: agentsPort, defaultModel: (ws) => models.get(ws), workspace: () => models.workspace(),
+          repo: repos.chat, drafts, memory: repos.memory, loop, registry, loadout: infra.loadout, skills, env, enabled, agents: agentsPort, defaultModel: (ws) => models.get(ws), workspace: () => models.workspace(),
           slash,
           artifactChip: async (type, id) => {
             const a = await artifacts.find(type, id);

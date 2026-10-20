@@ -26,6 +26,7 @@ import { ownerChangeIntent } from './owner-intent';
 import { contradictedDenials, denialNote, denialRePrompt, factsBlock, restatesFact, type ChatFacts } from './chat-facts';
 import { agentPersona, buildBuilderPrompt, buildManagerChatPrompt } from '../agents/agent-prompts';
 import type { EditorRole } from '../llm/llm.types';
+import type { LoadoutService } from '../loadout/loadout.service';
 import { chatFeature, CHAT_FEATURE_PREFIX } from '../../common/ai/usage/features';
 
 export const COMPOSER_MAX_STEPS = 16;
@@ -76,6 +77,8 @@ export interface EditorChatDeps {
   memory:   Pick<EditorMemoryRepository, 'listActive'>;
   loop:     Pick<AgentLoop, 'run'>;
   registry: Pick<ToolRegistry, 'forRole'>;
+  /** Spec 054: the addressed agent's own tool set; the chat-only and composer tools stay. Optional for tests. */
+  loadout?: Pick<LoadoutService, 'allowFor'>;
   skills:   SkillLibrary;
   env:      (key: string) => string | undefined;
   /** The owner's global default model (spec 035, app_settings `ai.default_model`); cached by ModelDefaultsStore. */
@@ -431,7 +434,7 @@ export class EditorChatService {
         system: withFacts(buildComposerSystemPrompt({
           now: this.now(), card: resolved?.card ?? null, hasCard: !!resolved?.hasCard, memory, skills: agentCtx?.skills ?? this.d.skills, persona,
         }), factText),
-        user: text, history, tools: this.chatTools('composer'),
+        user: text, history, tools: await this.chatTools('composer', addressee),
         maxSteps: COMPOSER_MAX_STEPS, extras: extras as unknown as Record<string, unknown>, onEvent,
         agent: addressee ? { id: addressee.id, handle: addressee.handle, limitUsd: addressee.dailyBudgetUsd } : null,
         usage: { feature: chatFeature('composer'), shadow: false }, maxCostUsd,
@@ -496,8 +499,10 @@ export class EditorChatService {
    * the answer ends the turn, and the loop would otherwise nudge — and on the last step force — the agent to call one,
    * which records a run summary and leaves the owner with no reply.
    */
-  private chatTools(role: EditorRole) {
-    return this.d.registry.forRole(role, null, { chat: true }).filter((t) => t.kind !== 'terminal');
+  private async chatTools(role: EditorRole, agent?: Agent | null) {
+    // Spec 054: the addressed agent's loadout narrows its own tools; the chat's own (chat-only, composer) stay.
+    const allow = this.d.loadout && agent ? await this.d.loadout.allowFor(agent, { role, registry: this.d.registry, chat: true }) : null;
+    return this.d.registry.forRole(role, allow, { chat: true }).filter((t) => t.kind !== 'terminal');
   }
 
   /** @ai0 (builder) and @manager: their own prompts and tools; mutations only as confirmation cards. */
@@ -532,7 +537,7 @@ export class EditorChatService {
       res = await this.runGuarded(rec, {
         role, channelKey: null, model: resolveModel(role, this.d.env, null, { agentModel: agentModelIn(agent, mctx.workspace), defaultModel: mctx.defaultModel, reasoningEffort: agent.reasoningEffort, workspace: mctx.workspace }),
         system: withFacts(note ? `${system}\n\n${note}` : system, facts ? factsBlock(facts) : null),
-        user: text, history, tools: this.chatTools(role),
+        user: text, history, tools: await this.chatTools(role, agent),
         maxSteps: COMPOSER_MAX_STEPS, extras, onEvent,
         agent: { id: agent.id, handle: agent.handle, limitUsd: agent.dailyBudgetUsd },
         usage: { feature: chatFeature(role), shadow: false }, maxCostUsd: chatTurnCap(this.d.env),
