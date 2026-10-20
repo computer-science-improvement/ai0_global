@@ -10,7 +10,7 @@ Each feature directory has `spec.md` (what and why), `plan.md` (how, plus Consti
 | # | Feature | Priority | Depends on | Status |
 |---|---------|----------|------------|--------|
 | 001 | [Audit critical fixes](001-audit-critical-fixes/spec.md): security, ops, CI | P0 | — | DONE |
-| 002 | [Publish correctness](002-publish-correctness/spec.md): legacy strategies | P1 | 001 | TODO |
+| 002 | [Publish correctness](002-publish-correctness/spec.md): legacy strategies | P1 | 001 | DONE (migration 045 pending owner apply) |
 | 003 | [Editor harness core](003-editor-harness/spec.md): LLM client, loop, tools, budget, trace | P0 | — | DONE |
 | 004 | [PostSpec, renderers, lint, format skills](004-post-spec-and-skills/spec.md) | P0 | 003 | DONE |
 | 005 | [Editor roles](005-editor-roles/spec.md): planner, executor, reviewer, scheduler, shadow mode | P0 | 003, 004 | DONE (shadow-ready; live after owner review) |
@@ -61,6 +61,7 @@ Each feature directory has `spec.md` (what and why), `plan.md` (how, plus Consti
 | 054 | [Agent loadout](054-agent-loadout/spec.md): each agent's own tool set formed at creation (role core + what the resource and peers need), owner-managed on a Loadout tab with usage, errors and token size per tool, skills and rules summary; suggestions in code (unused, missing, peer, stale, unused skills) in the tab, the manager digest and a weekly inbox note (migration 087, AI0-246) | P1 | 017, 018, 040, 053 | DONE |
 | 055 | [Sysadmin auditor](055-sysadmin-auditor/spec.md): weekly @sysadmin (role `auditor`) — code checks over skills, memory, owner rules, config conflicts, playbooks, steering, tool errors and inline budgets, one bounded LLM pass with comments and judgement findings, an `audit` artifact report with one-click fixes (disable skill, inline off, retire memory, resolve conflicts) and dismissals; never changes anything itself (migration 088, AI0-247) | P1 | 017, 021, 040, 041, 045, 047, 048, 053 | DONE |
 | 056 | [Network map](056-network-map/spec.md): gamified `/app/map` — networks as territories, resources as buildings, agents as units with pixel avatars and live states, cross-promo roads, spend as minerals, owner alerts as beacons, event feed, quality levels; `GET /api/map` snapshot with adaptive polling (AI0-248) | P2 | 017–022, 025, 031, 049, 053 | DONE |
+| 057 | [Setup proposals expire](057-setup-proposal-expiry/spec.md): a `ready` / `partially_applied` channel-setup proposal untouched for `SETUP_PROPOSAL_TTL_DAYS` (default 14) becomes `expired` — pending sections skipped, applied ones stay, one owner Inbox note per sweep (migration 090) | P2 | 042 | IN PROGRESS |
 
 Suggested order for the next wave: 012 → 011 (phases 0–1) → 015 → 013 → 014; 016 is independent.
 
