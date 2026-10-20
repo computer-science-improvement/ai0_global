@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import type { SetupOverviewRow, SetupPostRef, SetupSections } from '../api/channel-setup';
 import { SETUP_SECTIONS } from '../api/channel-setup';
-import { currentRows, estimateText, evidencePosts, fmtUsd, isReviewable, isRunning, missingSetup, proposedRows, SECTION_LABEL, SETUP_STATUS, sectionPostKeys } from './channel-setup';
+import { currentRows, estimateText, evidencePosts, expiredText, fmtUsd, isReviewable, isRunning, missingSetup, proposedRows, SECTION_LABEL, SETUP_STATUS, sectionPostKeys } from './channel-setup';
 
 const sections: SetupSections = {
   summary: 'Short tips on digital safety.',
@@ -35,9 +35,12 @@ const row = (p: Partial<SetupOverviewRow> = {}): SetupOverviewRow => ({
 });
 
 test('statuses: every server status has a label; running and reviewable states', () => {
-  for (const s of ['queued', 'collecting', 'analyzing', 'ready', 'applied', 'partially_applied', 'discarded', 'superseded', 'failed', 'no_access', 'too_few_posts'] as const) {
+  for (const s of ['queued', 'collecting', 'analyzing', 'ready', 'applied', 'partially_applied', 'discarded', 'superseded', 'failed', 'no_access', 'too_few_posts', 'expired'] as const) {
     assert.ok(SETUP_STATUS[s].label);
   }
+  assert.deepEqual([SETUP_STATUS.expired.label, SETUP_STATUS.expired.tone], ['Expired', 'neutral']);
+  assert.equal(isReviewable('expired'), false, 'an expired proposal is not waiting for a review');
+  assert.equal(isRunning('expired'), false);
   assert.equal(isRunning('analyzing'), true);
   assert.equal(isRunning('ready'), false);
   assert.equal(isReviewable('partially_applied'), true);
@@ -89,4 +92,11 @@ test('evidence: section keys include series and example posts; unknown keys are 
     key, id: `id-${i}`, msgId: 10 + i, postedAt: '2026-10-15T09:00:00Z', firstLine: key, views: 1, hasMedia: false, mediaType: null, link: `https://t.me/tips/${10 + i}`,
   }));
   assert.deepEqual(evidencePosts(['p3', 'p9', 'p1'], posts).map((p) => p.key), ['p3', 'p1']);
+});
+
+test('expired (spec 057): the dialog line names the days from the reason and says what stays', () => {
+  assert.equal(expiredText('expired: closed after 14 days without an apply'),
+    'Closed after 14 days without an apply. Applied sections stay — analyze again for a fresh proposal.');
+  assert.match(expiredText('expired: closed after 1 day without an apply'), /^Closed after 1 day without/);
+  assert.equal(expiredText(null), 'Closed without an apply. Applied sections stay — analyze again for a fresh proposal.');
 });

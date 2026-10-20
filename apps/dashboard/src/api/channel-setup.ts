@@ -13,7 +13,7 @@ export type SectionState = 'pending' | 'applied' | 'skipped';
 export const OPEN_SETUP_STATUSES = ['queued', 'collecting', 'analyzing', 'ready'] as const;
 export type SetupStatus =
   | typeof OPEN_SETUP_STATUSES[number]
-  | 'applied' | 'partially_applied' | 'discarded' | 'superseded' | 'failed' | 'no_access' | 'too_few_posts';
+  | 'applied' | 'partially_applied' | 'discarded' | 'superseded' | 'failed' | 'no_access' | 'too_few_posts' | 'expired';
 
 export interface SetupProposalBrief {
   id:            string;

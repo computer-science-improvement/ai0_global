@@ -138,6 +138,7 @@ export class ChannelSetupRepository {
     if (!(ttlDays > 0)) return [];
     const { rows } = await this.pool.query(
       `UPDATE channel_setup_proposals SET status = 'expired', updated_at = $1,
+              reason = 'expired: closed after ' || $2::int || ' days without an apply',
               section_status = section_status || COALESCE((
                 SELECT jsonb_object_agg(s, 'skipped'::text) FROM unnest($3::text[]) AS s
                  WHERE sections IS NOT NULL AND COALESCE(section_status->>s, 'pending') = 'pending'), '{}'::jsonb)

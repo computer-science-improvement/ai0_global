@@ -78,6 +78,7 @@ test('expireStale: only ready / partially_applied older than the TTL; pending se
   assert.equal(ready?.status, 'expired');
   assert.deepEqual(ready?.sectionStatus, Object.fromEntries(SETUP_SECTIONS.map((s) => [s, 'skipped'])));
   assert.equal(ready?.updatedAt.toISOString(), NOW.toISOString());
+  assert.equal(ready?.reason, 'expired: closed after 14 days without an apply', 'the dashboard reads the days from the reason');
 
   const partial = await repo.get(oldPartial);
   assert.equal(partial?.status, 'expired');

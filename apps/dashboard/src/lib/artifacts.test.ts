@@ -1,7 +1,7 @@
 // Spec 048 FR-005: artifact references, the panel's URL param and the version text the diff compares.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { artifactMention, artifactParam, artifactView, inView, parseArtifactParam, versionText } from './artifacts';
+import { artifactMention, artifactParam, artifactTone, artifactView, inView, parseArtifactParam, versionText } from './artifacts';
 import { mentionedArtifacts } from '../components/artifacts/ArtifactChip';
 
 test('the panel param and the composer reference round-trip; unknown types are refused', () => {
@@ -25,6 +25,8 @@ test('status views: ready and pending wait for the owner, discarded and failed a
   assert.equal(artifactView('pending_owner'), 'needs-you');
   assert.equal(artifactView('failed'), 'closed');
   assert.equal(artifactView('superseded'), 'closed');
+  assert.equal(artifactView('expired'), 'closed', 'an expired setup proposal is not waiting for the owner');
+  assert.equal(artifactTone('expired'), 'neutral');
   assert.equal(artifactView('active'), 'in-use');
   assert.equal(artifactView('analyzing'), 'in-use');
   assert.ok(inView('all', 'discarded'));

@@ -16,6 +16,7 @@ export const SETUP_STATUS: Record<SetupStatus, { label: string; tone: Tone; hint
   failed:            { label: 'Failed', tone: 'danger' },
   no_access:         { label: 'No access', tone: 'danger', hint: 'The tracking account cannot read this channel' },
   too_few_posts:     { label: 'Too few posts', tone: 'neutral', hint: 'Fewer than 5 posts to learn from' },
+  expired:           { label: 'Expired', tone: 'neutral', hint: 'Closed after a while without an apply' },
 };
 
 export const SECTION_LABEL: Record<SetupSection, string> = {
@@ -37,6 +38,11 @@ export const SECTION_HINT: Record<SetupSection, string> = {
 };
 
 export const isRunning = (s: SetupStatus | null | undefined) => s === 'queued' || s === 'collecting' || s === 'analyzing';
+/** Spec 057: a proposal nobody applied closes by itself; its reason says after how many days ("expired: closed after 14 days …"). */
+export function expiredText(reason: string | null | undefined): string {
+  const days = /closed after (\d+) days?/i.exec(reason ?? '')?.[1];
+  return `Closed ${days ? `after ${days} day${days === '1' ? '' : 's'} ` : ''}without an apply. Applied sections stay — analyze again for a fresh proposal.`;
+}
 export const isReviewable = (s: SetupStatus | null | undefined) => s === 'ready' || s === 'partially_applied';
 
 /** A channel whose agent lacks any part of the setup (card, brief, profile or playbook). */

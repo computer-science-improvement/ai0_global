@@ -6,11 +6,11 @@ import { Icon } from '../ui/Icon';
 import { useConfirm } from '../ui/ConfirmDialog';
 import { describeError, toast } from '../ui/Toast';
 import {
-  SETUP_SECTIONS, useApplySetup, useDiscardSetup, useSetupProposal,
+  SETUP_SECTIONS, useAnalyzeChannels, useApplySetup, useDiscardSetup, useSetupOverview, useSetupProposal,
   type ChannelMetrics, type SetupPostRef, type SetupProposalView, type SetupSection,
 } from '../../api/channel-setup';
 import {
-  currentRows, evidencePosts, fmtUsd, isReviewable, isRunning, proposedRows, SECTION_HINT, SECTION_LABEL, SETUP_STATUS, sectionPostKeys, type Row,
+  currentRows, estimateText, evidencePosts, expiredText, fmtUsd, isReviewable, isRunning, proposedRows, SECTION_HINT, SECTION_LABEL, SETUP_STATUS, sectionPostKeys, type Row,
 } from '../../lib/channel-setup';
 
 // Spec 042 FR-008: one proposal per channel. Six sections, each "now → proposed" with the posts it rests on;
@@ -42,6 +42,8 @@ export function ProposalBody({ v, onClose }: { v: SetupProposalView; onClose: ()
   useEffect(() => { setPicked(new Set(pending.filter((s) => !v.drift.includes(s)))); }, [p.id, pending, v.drift]);
   const apply = useApplySetup();
   const discard = useDiscardSetup();
+  const analyze = useAnalyzeChannels();
+  const overview = useSetupOverview();
   const confirm = useConfirm();
   const changed = new Set<SetupSection>([...v.drift, ...refused]);
 
@@ -81,6 +83,20 @@ export function ProposalBody({ v, onClose }: { v: SetupProposalView; onClose: ()
     discard.mutate(p.id, { onSuccess: onClose, onError: (e) => toast.error(describeError(e)) });
   };
 
+  // Spec 057: an expired proposal is analysed again (a fresh one replaces it) instead of being applied or discarded.
+  const doAnalyzeAgain = async () => {
+    if (!(await confirm(`analyze the last 20 posts of ${p.channelKey} again: ${estimateText(overview.data?.estimateUsd ?? null, 1)}`,
+      { danger: false, confirmLabel: 'Analyze again' }))) return;
+    analyze.mutate([p.channelKey], {
+      onSuccess: (r) => {
+        if (!r.queued[0]) { toast.error(r.refused[0]?.error === 'not_own_channel' ? `${p.channelKey} is not marked as your channel on Tracked` : 'Not queued'); return; }
+        toast.success(`Analysis of ${p.channelKey} queued. The new proposal appears in a minute.`);
+        onClose();
+      },
+      onError: (e) => toast.error(describeError(e)),
+    });
+  };
+
   return (
     <div style={{ display: 'grid', gap: 14 }}>
       <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>
@@ -91,6 +107,11 @@ export function ProposalBody({ v, onClose }: { v: SetupProposalView; onClose: ()
 
       {isRunning(p.status) && (
         <div className="callout-warning"><Icon name="clock" size={16} /><div>The agent is reading the posts. This takes a minute; the dialog updates by itself.</div></div>
+      )}
+      {p.status === 'expired' && (
+        <div className="text-body-sm" style={{ display: 'flex', gap: 8, alignItems: 'flex-start', color: 'var(--color-ink-muted)' }}>
+          <span style={{ flex: '0 0 auto', marginTop: 2 }}><Icon name="clock" size={14} /></span><span>{expiredText(p.reason)}</span>
+        </div>
       )}
       {(p.status === 'failed' || p.status === 'no_access' || p.status === 'too_few_posts') && (
         <div className="callout-danger"><Icon name="warning" size={16} /><div>{p.reason ?? st.hint ?? 'The analysis did not finish.'}</div></div>
@@ -121,6 +142,12 @@ export function ProposalBody({ v, onClose }: { v: SetupProposalView; onClose: ()
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
           <button type="button" className="btn-secondary" onClick={onClose}>Close</button>
+          {p.status === 'expired' && (
+            <button type="button" className="btn-primary" disabled={analyze.isPending} onClick={() => void doAnalyzeAgain()}
+              style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+              <Icon name="refresh" size={14} /> {analyze.isPending ? 'Queuing…' : 'Analyze again'}
+            </button>
+          )}
           {reviewable && (
             <button type="button" className="btn-primary" disabled={!picked.size || apply.isPending} onClick={doApply}
               style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
