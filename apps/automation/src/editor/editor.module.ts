@@ -159,6 +159,7 @@ import { AuditQueries } from './sysadmin/audit-queries';
 import { AuditRepository } from './sysadmin/audit-report';
 import { AuditService } from './sysadmin/audit.service';
 import { AUDIT_SERVICE, AuditController } from './sysadmin/audit.controller';
+import { AuditTick } from './sysadmin/audit-schedule';
 import { auditAdapter, auditTitle } from './sysadmin/audit-artifact';
 import { playbookPort } from './sysadmin/audit-ports';
 import { collectPosts, trackedChannel } from './setup/setup-posts';
@@ -664,6 +665,26 @@ export class LaunchWorker implements OnModuleInit {
   @Cron('* * * * *', { name: 'launch-tick' })
   async tick(): Promise<void> {
     try { await this.launches.tick(); } catch (err: any) { this.logger.warn(`launch tick failed: ${err?.message ?? err}`); }
+  }
+}
+
+/** Spec 055: the weekly audit of the sysadmin — a tick a minute; the ISO-week claim makes a restart or a second instance harmless. */
+@Injectable()
+export class AuditWorker {
+  private readonly logger = new Logger('Audit');
+  private readonly job: AuditTick;
+
+  constructor(
+    @Inject(AUDIT_SERVICE) svc: AuditService,
+    @Inject(AGENT_INFRA) infra: AgentInfra,
+    config: ConfigService,
+  ) {
+    this.job = new AuditTick({ svc, inbox: infra.inbox, env: (k) => config.get<string>(k) ?? undefined, log: (m) => this.logger.warn(m) });
+  }
+
+  @Cron('* * * * *', { name: 'audit-tick' })
+  async tick(): Promise<void> {
+    try { await this.job.tick(); } catch (err: any) { this.logger.warn(`audit tick failed: ${err?.message ?? err}`); }
   }
 }
 
@@ -1884,13 +1905,18 @@ export const EDITOR_PROVIDERS = [
     {
       // Spec 055: the sysadmin's audit (checks in code, one model pass, a stored report, closed-list fixes).
       provide: AUDIT_SERVICE,
-      inject: [DB_POOL, ConfigService, EDITOR_LOOP, EDITOR_REGISTRY, AGENT_INFRA, EDITOR_REPOS, PLATFORM_INFRA, MODEL_DEFAULTS, AGENTS_SERVICE],
+      inject: [
+        DB_POOL, ConfigService, EDITOR_REGISTRY, AGENT_INFRA, EDITOR_REPOS, PLATFORM_INFRA, MODEL_DEFAULTS, AGENTS_SERVICE, TelegramNotifier,
+        { token: PriceService, optional: true }, { token: LlmBudgetService, optional: true },
+      ],
       useFactory: (
-        pool: Pool, cfg: ConfigService, loop: AgentLoop, registry: ToolRegistry, infra: AgentInfra, repos: EditorRepos, platform: PlatformInfra,
-        models: WorkspaceModelStore, agentsSvc: AgentsService,
+        pool: Pool, cfg: ConfigService, registry: ToolRegistry, infra: AgentInfra, repos: EditorRepos, platform: PlatformInfra,
+        models: WorkspaceModelStore, agentsSvc: AgentsService, notifier: TelegramNotifier, prices?: PriceService, caps?: LlmBudgetService,
       ): AuditService => {
         const logger = new Logger('Audit');
         const env = (k: string) => cfg.get<string>(k) ?? undefined;
+        // Like a chat turn: the audit publishes nothing, so it needs a model key, not EDITOR_ENABLED.
+        const loop = ownerStartedLoop(pool, env, notifier, logger, prices, caps);
         const conflicts = configConflictsOf(pool, repos, infra);
         const networkRepo = new NetworkRepository(pool);
         const queries = new AuditQueries({
@@ -2234,6 +2260,7 @@ export const EDITOR_PROVIDERS = [
     ChannelSetupWorker,
     SteeringWorker,
     LaunchWorker,
+    AuditWorker,
     EditorCron,
     AgentsUpkeep,
     StoryBackfill,

@@ -5,7 +5,7 @@ Linear epic: AI0-247.
 - [x] T1 FR-001: `skills/skills-audit.ts` lifted from the test, `sysadmin/checks/*` (skills, memory, rules, tools, prompt) pure and tested, `sysadmin/audit-queries.ts` with a PG test.
 - [x] T2 FR-002: role `auditor` wiring (types, model registry, features, skill roles), @sysadmin via registry sync, the `auditor-workflow` builtin skill, the runner with `submit_audit` and code validation (fake LLM tests only).
 - [x] T3 FR-003: migration `088_audit_reports.sql`, repository, `AuditService` (run, apply, dismiss), controller, the `audit` artifact type and adapter, dashboard `AuditBody`, chip, `/audit`, mocks, browser check.
-- [ ] T4 FR-004: settings, the weekly tick with the ISO-week claim, the inbox note, the manager digest line.
+- [x] T4 FR-004: settings, the weekly tick with the ISO-week claim, the inbox note, the manager digest line.
 - [ ] T5: runbook section, specs README row, spec status.
 
 ## Status
@@ -13,6 +13,7 @@ Linear epic: AI0-247.
 - T1: done — the checks are pure functions over `AuditFacts` (`sysadmin/audit.types.ts`); `AuditQueries` loads the facts; 19 unit tests on fixtures and 3 PG tests on a throwaway database (init.sql + every migration).
 - T2: done — role `auditor` through types, model registry (Haiku on the Anthropic workspace, low effort), features, budget reserve, skill lint and read tools; @sysadmin (kind `auditor`, system scope, live) is created by the registry sync; `auditor-workflow` builtin skill; `AuditorRunner` (code checks, then one model pass with `submit_audit`, every key and id checked in code); 4 + 5 + 3 unit tests with a fake LLM.
 - T3: done — migration 088 (two tables, `agents_kind_check` widened, down file; applied twice in a PG test), `AuditRepository` (weekly claim by the unique insert, dead runs closed after 30 minutes, row-locked finding updates), `AuditService` (begin / execute / run / runInBackground, apply, dismiss, delta), controller `/api/audits`, artifact type `audit`, `/audit` slash command, dashboard `AuditBody` with compact finding cards, apply/dismiss dialogs and the handled list; looked at in the browser against a throwaway mock API (list, report, running, failed, no-model note, refused fix, dismiss).
+- T4: done — five `AUDITOR_*` settings (group editor, live); `sysadmin/audit-schedule.ts` (`auditDue`, `auditInboxItem`, `AuditTick`) and `AuditWorker` (a tick a minute, registered in the editor module); the audit's loop is now `ownerStartedLoop` (runs without `EDITOR_ENABLED`, needs only a model key); the inbox note by `postOnce`; the `audit` line of the manager digest (`auditLineOf`); the dashboard Inbox links the note to the report. 10 unit tests, 2 PG tests (week claimed once across two tick objects, one inbox note, digest line).
 
 ## Deltas from the spec
 
@@ -40,3 +41,8 @@ Linear epic: AI0-247.
 - **Dismissed keys** are dropped when a report is made; a dismissal lasts 1–365 days (default 30), keyed by finding key alone.
 - **The slash command answers with the running report as a chip**; `SlashDeps.audit` is optional so other suites that build the deps are untouched.
 - **Dashboard:** findings are `CompactCard`s (the compact-card rule) rather than table rows; Apply asks first with the fix text; the artifact list and filters need no change (`done` is "in use", `failed` is "closed"). There is no separate mocks folder in the dashboard: the browser check used a throwaway API outside the repo.
+- **Inbox note key.** The note is `kind audit_report`, `ref_type audit`, `ref_id <report id>` (not `audit:<week>`): a week has one scheduled report, so `postOnce` still posts at most one note a week, and the dashboard link needs the report id. The link is the artifact panel (`/app/artifacts?type=audit&open=audit:<id>`), the route the other artifact links use.
+- **Note text.** Stored title and body are English (the Inbox page shows them); the Telegram alert is Ukrainian: «Аудит системи: N знахідок (E помилок), F можна виправити одним кліком», with the first line of the summary as the body. Only a scheduled run posts a note; the owner's own Run does not (the owner is looking at it).
+- **Week marker.** The tick keeps the handled week in memory so the table is hit once a week per process; the unique insert is the real claim, so a restart or a second instance gets `week_taken`. A failed scheduled run is not retried that week (the owner can press Run again); `already_running` is retried the next minute.
+- **Digest line** is read by SQL in `KpiDigestService.build` (`auditLineOf`, the newest finished report with at least one open finding; a missing table gives no line) and stays in the head at every slimming level. It is not part of the digest hash: a new audit does not by itself wake the MANAGER.
+- **Weekday setting** is a number 1–7 (Mon–Sun), as the spec says, and `AUDITOR_AT` is `HH:MM`, both Kyiv time.

@@ -2,6 +2,7 @@ import { createHash } from 'crypto';
 import { localDate } from '../roles/time';
 import type { Pool } from 'pg';
 import { overruledWarningsOf } from '../critic/overruled';
+import { reportCounts } from '../sysadmin/audit-report';
 import type { ResourceCatalog } from '../agents/resource-catalog';
 import { compactKpis, computeKpis, DailySeries, dayBefore, ScopeKpis } from './kpi-math';
 import { markSampleConfidence } from './kpi-confidence';
@@ -35,8 +36,24 @@ export interface KpiDigest {
   config_conflicts?: Array<{ agent: string; ref: string; code: string; detail: string }>;
   /** Spec 041 FR-006: lint warning codes the critic passed over the last 7 days (posts per code, top 8). */
   lint_overruled?: Array<{ code: string; posts: number }>;
+  /** Spec 055 FR-004: the newest finished audit of the sysadmin — open findings by severity (one line, no directive kind). */
+  audit?: AuditDigestLine;
   hash:        string;
   raw:         Map<string, ScopeKpis>;
+}
+
+export interface AuditDigestLine { reportId: string; week: string; at: string; open: number; error: number; warn: number; info: number; fixable: number }
+
+/** Spec 055 FR-004: the newest finished audit as one digest line; null with no report, nothing open or no table. */
+export async function auditLineOf(pool: Pick<Pool, 'query'>): Promise<AuditDigestLine | null> {
+  try {
+    const { rows } = await pool.query(`SELECT id, week, findings, COALESCE(finished_at, started_at) AS at FROM audit_reports WHERE status = 'done' ORDER BY started_at DESC LIMIT 1`);
+    const r = rows?.[0];
+    if (!r) return null;
+    const c = reportCounts(Array.isArray(r.findings) ? r.findings : []);
+    if (c.open === 0) return null;
+    return { reportId: String(r.id), week: String(r.week), at: new Date(r.at).toISOString(), open: c.open, error: c.error, warn: c.warn, info: c.info, fixable: c.fixable };
+  } catch { return null; }
 }
 
 export interface ComplianceRow {
@@ -168,6 +185,7 @@ export function digestView(d: KpiDigest, limit = DIGEST_LIMIT_CHARS): DigestView
     if (o.bare) {
       return {
         budget: d.budget, config_conflicts: d.config_conflicts?.map((c) => ({ agent: c.agent, ref: c.ref, code: c.code })),
+        ...(d.audit ? { audit: d.audit } : {}),
         directives: { open: dir.open.map((x) => ({ id: x.id, to: x.to, kind: x.kind, status: x.status })) },
         agents: d.agents.map((a) => ({ handle: a.handle, mode: a.mode, paused: a.paused, spentTodayUsd: a.spentTodayUsd })),
       };
@@ -184,6 +202,7 @@ export function digestView(d: KpiDigest, limit = DIGEST_LIMIT_CHARS): DigestView
       agents: d.agents,
       compliance: o.reasons == null ? d.compliance : d.compliance?.map((c) => ({ ...c, decline_reasons: c.decline_reasons.slice(0, o.reasons).map((x) => ({ kind: x.kind, reason: cut(x.reason, 100) })) })),
       ...(d.lint_overruled?.length ? { lint_overruled: d.lint_overruled } : {}),
+      ...(d.audit ? { audit: d.audit } : {}),
     };
   };
   const doc = (h: object, resources: Res[], extra: Record<string, unknown> = {}) =>
@@ -349,6 +368,7 @@ export class KpiDigestService {
     // Spec 040 FR-011: a conflict flags its resource, so it changes the hash and the review signature.
     const conflicts = this.d.conflicts ? await this.d.conflicts().catch(() => []) : [];
     const overruled = await overruledWarningsOf(this.d.pool);
+    const audit = await auditLineOf(this.d.pool);
     for (const c of conflicts) {
       const q = out.find((r) => r.ref === c.ref)?.quality;
       if (q && !q.flags.includes('config_conflict')) q.flags.push('config_conflict');
@@ -367,6 +387,7 @@ export class KpiDigestService {
       compliance: await complianceOf(this.d.pool),
       ...(conflicts.length ? { config_conflicts: conflicts } : {}),
       ...(overruled.length ? { lint_overruled: overruled } : {}),
+      ...(audit ? { audit } : {}),
     };
     return { ...digest, hash: digestHash(digest), raw };
   }

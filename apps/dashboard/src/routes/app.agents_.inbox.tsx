@@ -114,6 +114,9 @@ function InboxLinks({ it, agent }: { it: InboxItem; agent: TreeAgent | undefined
       {target?.to === 'pauses' && target.handle && (
         <Link to="/app/agents/$handle" params={{ handle: target.handle }} className="link-accent text-micro" style={linkStyle}>Open active effects →</Link>
       )}
+      {it.refType === 'audit' && it.refId && (
+        <Link to="/app/artifacts" search={{ type: 'audit', open: `audit:${it.refId}` }} className="link-accent text-micro" style={linkStyle}>Open audit report →</Link>
+      )}
       {it.refType === 'run' && it.refId && (
         <Link to="/app/editor/run/$id" params={{ id: it.refId }} className="link-accent text-micro" style={linkStyle}>Open run →</Link>
       )}
