@@ -11,6 +11,7 @@ import {
   CircleDollarSign, Download, SquarePlay, Copy, Cpu,
   EyeOff, GripVertical, Command, Link2, Pin, PinOff, RotateCcw, FolderPlus, CornerDownLeft,
   Compass, Activity, Layers,
+  Map as MapIcon, PenLine, ZoomIn, ZoomOut, Maximize, Bell, Gem,
   type LucideIcon,
 } from 'lucide-react';
 
@@ -35,6 +36,8 @@ const ICONS = {
   // Navigation (spec 027): pin/star, hide, drag handle, palette.
   star: Star, 'eye-off': EyeOff, grip: GripVertical, command: Command, link: Link2,
   pin: Pin, 'pin-off': PinOff, reset: RotateCcw, 'folder-plus': FolderPlus, enter: CornerDownLeft, search: Search,
+  // Network map (spec 056): the page, unit-state glyphs, view controls, the spend gem.
+  map: MapIcon, pen: PenLine, send: Send, 'zoom-in': ZoomIn, 'zoom-out': ZoomOut, fit: Maximize, bell: Bell, gem: Gem,
 } satisfies Record<string, LucideIcon>;
 
 export type IconName = keyof typeof ICONS;

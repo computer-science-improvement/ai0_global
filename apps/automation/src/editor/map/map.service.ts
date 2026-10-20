@@ -53,6 +53,9 @@ export function healthView(state: string | undefined): ResourceHealthView {
   }
 }
 
+/** The Connections page section that manages each platform. */
+const CONNECTION_SECTION: Record<string, string> = { telegram: 'telegram', instagram: 'meta', facebook: 'meta', threads: 'meta', tiktok: 'tiktok', youtube: 'telegram' };
+
 const VERB = { planning: 'planning', writing: 'writing', reviewing: 'reviewing' } as Record<string, string>;
 const STATUS_TEXT: Record<string, string> = {
   error: 'failed', budget_exceeded: 'hit its budget', max_steps: 'ran out of steps', no_terminal: 'ended without a result',
@@ -267,7 +270,7 @@ export class MapService {
       if (r.health === 'warning' || r.health === 'broken') {
         const muted = healthByRef.get(r.ref)?.muted;
         if (muted) continue;
-        alerts.push({ kind: 'connection', count: 1, ref: r.ref, agent: r.agent, path: '/app/connections',
+        alerts.push({ kind: 'connection', count: 1, ref: r.ref, agent: r.agent, path: `/app/connections?section=${CONNECTION_SECTION[r.platform]}`,
           title: `${titleOf(r.ref)}: ${r.healthDetail ?? (r.health === 'broken' ? 'connection problem' : 'connection needs attention')}` });
       }
     }

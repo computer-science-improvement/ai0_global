@@ -25,6 +25,7 @@ import { Route as AppSettingsRouteImport } from './routes/app.settings'
 import { Route as AppScheduledRouteImport } from './routes/app.scheduled'
 import { Route as AppRecommendationsRouteImport } from './routes/app.recommendations'
 import { Route as AppModelsRouteImport } from './routes/app.models'
+import { Route as AppMapRouteImport } from './routes/app.map'
 import { Route as AppLogsRouteImport } from './routes/app.logs'
 import { Route as AppLandingRouteImport } from './routes/app.landing'
 import { Route as AppHealthRouteImport } from './routes/app.health'
@@ -136,6 +137,11 @@ const AppRecommendationsRoute = AppRecommendationsRouteImport.update({
 const AppModelsRoute = AppModelsRouteImport.update({
   id: '/models',
   path: '/models',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppMapRoute = AppMapRouteImport.update({
+  id: '/map',
+  path: '/map',
   getParentRoute: () => AppRoute,
 } as any)
 const AppLogsRoute = AppLogsRouteImport.update({
@@ -324,6 +330,7 @@ export interface FileRoutesByFullPath {
   '/app/health': typeof AppHealthRoute
   '/app/landing': typeof AppLandingRoute
   '/app/logs': typeof AppLogsRoute
+  '/app/map': typeof AppMapRoute
   '/app/models': typeof AppModelsRoute
   '/app/recommendations': typeof AppRecommendationsRoute
   '/app/scheduled': typeof AppScheduledRoute
@@ -373,6 +380,7 @@ export interface FileRoutesByTo {
   '/app/health': typeof AppHealthRoute
   '/app/landing': typeof AppLandingRoute
   '/app/logs': typeof AppLogsRoute
+  '/app/map': typeof AppMapRoute
   '/app/models': typeof AppModelsRoute
   '/app/recommendations': typeof AppRecommendationsRoute
   '/app/scheduled': typeof AppScheduledRoute
@@ -424,6 +432,7 @@ export interface FileRoutesById {
   '/app/health': typeof AppHealthRoute
   '/app/landing': typeof AppLandingRoute
   '/app/logs': typeof AppLogsRoute
+  '/app/map': typeof AppMapRoute
   '/app/models': typeof AppModelsRoute
   '/app/recommendations': typeof AppRecommendationsRoute
   '/app/scheduled': typeof AppScheduledRoute
@@ -476,6 +485,7 @@ export interface FileRouteTypes {
     | '/app/health'
     | '/app/landing'
     | '/app/logs'
+    | '/app/map'
     | '/app/models'
     | '/app/recommendations'
     | '/app/scheduled'
@@ -525,6 +535,7 @@ export interface FileRouteTypes {
     | '/app/health'
     | '/app/landing'
     | '/app/logs'
+    | '/app/map'
     | '/app/models'
     | '/app/recommendations'
     | '/app/scheduled'
@@ -575,6 +586,7 @@ export interface FileRouteTypes {
     | '/app/health'
     | '/app/landing'
     | '/app/logs'
+    | '/app/map'
     | '/app/models'
     | '/app/recommendations'
     | '/app/scheduled'
@@ -722,6 +734,13 @@ declare module '@tanstack/react-router' {
       path: '/models'
       fullPath: '/app/models'
       preLoaderRoute: typeof AppModelsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/map': {
+      id: '/app/map'
+      path: '/map'
+      fullPath: '/app/map'
+      preLoaderRoute: typeof AppMapRouteImport
       parentRoute: typeof AppRoute
     }
     '/app/logs': {
@@ -971,6 +990,7 @@ interface AppRouteChildren {
   AppHealthRoute: typeof AppHealthRoute
   AppLandingRoute: typeof AppLandingRoute
   AppLogsRoute: typeof AppLogsRoute
+  AppMapRoute: typeof AppMapRoute
   AppModelsRoute: typeof AppModelsRoute
   AppRecommendationsRoute: typeof AppRecommendationsRoute
   AppScheduledRoute: typeof AppScheduledRoute
@@ -1017,6 +1037,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppHealthRoute: AppHealthRoute,
   AppLandingRoute: AppLandingRoute,
   AppLogsRoute: AppLogsRoute,
+  AppMapRoute: AppMapRoute,
   AppModelsRoute: AppModelsRoute,
   AppRecommendationsRoute: AppRecommendationsRoute,
   AppScheduledRoute: AppScheduledRoute,
