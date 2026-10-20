@@ -12,7 +12,10 @@ const DRAG_THRESHOLD = 5;
 const ANIMATE_MS = 480;
 
 export function useMapViewport(bounds: Rect | null, inset: Inset) {
-  const ref = useRef<HTMLDivElement>(null);
+  // A callback ref: the stage mounts after the data has loaded, so effects must wait for the element, not for the first render.
+  const elRef = useRef<HTMLDivElement | null>(null);
+  const [el, setEl] = useState<HTMLDivElement | null>(null);
+  const ref = useCallback((node: HTMLDivElement | null) => { elRef.current = node; setEl(node); }, []);
   const [size, setSize] = useState<Size>({ w: 0, h: 0 });
   const [view, setViewState] = useState<View>({ x: 0, y: 0, k: 1 });
   const [animated, setAnimated] = useState(false);
@@ -41,7 +44,6 @@ export function useMapViewport(bounds: Rect | null, inset: Inset) {
 
   // The container's size.
   useEffect(() => {
-    const el = ref.current;
     if (!el) return;
     const read = () => setSize({ w: el.clientWidth, h: el.clientHeight });
     read();
@@ -49,7 +51,7 @@ export function useMapViewport(bounds: Rect | null, inset: Inset) {
     const ro = new ResizeObserver(read);
     ro.observe(el);
     return () => ro.disconnect();
-  }, []);
+  }, [el]);
 
   // Stay fitted until the viewer moves the map.
   const boundsKey = bounds ? `${Math.round(bounds.x)},${Math.round(bounds.y)},${Math.round(bounds.w)},${Math.round(bounds.h)}` : '';
@@ -85,7 +87,7 @@ export function useMapViewport(bounds: Rect | null, inset: Inset) {
   const gesture = useRef<{ view0: View; x0: number; y0: number; dist0: number; mx0: number; my0: number } | null>(null);
 
   const local = (e: { clientX: number; clientY: number }) => {
-    const r = ref.current?.getBoundingClientRect();
+    const r = elRef.current?.getBoundingClientRect();
     return { x: e.clientX - (r?.left ?? 0), y: e.clientY - (r?.top ?? 0) };
   };
 
@@ -137,7 +139,6 @@ export function useMapViewport(bounds: Rect | null, inset: Inset) {
 
   // The wheel needs a non-passive listener to stop the page from scrolling.
   useEffect(() => {
-    const el = ref.current;
     if (!el) return;
     const onWheel = (e: WheelEvent) => {
       e.preventDefault();
@@ -148,7 +149,7 @@ export function useMapViewport(bounds: Rect | null, inset: Inset) {
     };
     el.addEventListener('wheel', onWheel, { passive: false });
     return () => el.removeEventListener('wheel', onWheel);
-  }, [setView]);
+  }, [el, setView]);
 
   const onKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
     if (e.target !== e.currentTarget) return; // a focused building or unit handles its own keys

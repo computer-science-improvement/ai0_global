@@ -155,17 +155,19 @@ export interface UnitProps {
   onSelect: () => void;
   /** The face inside the ring (the avatar). */
   face: ReactNode;
+  /** Shakes once (a new failure, spec 056 FR-004). */
+  shaking?: boolean;
   children?: ReactNode;
 }
 
 /** A unit: its face in a ring coloured by its state, a tiny state glyph, a bob while it works. */
-export function UnitShape({ unit, pos, selected, label, onSelect, face, children }: UnitProps) {
+export function UnitShape({ unit, pos, selected, label, onSelect, face, shaking, children }: UnitProps) {
   const st = STATE_META[unit.state];
   const text = `@${unit.handle}, ${kindLabel(unit.kind)}, ${stateLine(unit)}${unit.level != null ? `, level ${unit.level}` : ''}`;
   const isChild = unit.parentId != null;
   return (
     <g transform={`translate(${pos.x} ${pos.y})`} data-unit={unit.id}
-      className={`map-node map-unit${isDormant(unit.state) ? ' is-dormant' : ''}${isWorking(unit.state) ? ' is-working' : ''}${selected ? ' is-selected' : ''}`}
+      className={`map-node map-unit${isDormant(unit.state) ? ' is-dormant' : ''}${isWorking(unit.state) ? ' is-working' : ''}${shaking ? ' is-shaking' : ''}${selected ? ' is-selected' : ''}`}
       role="button" tabIndex={0} aria-label={text} aria-pressed={selected} onClick={onSelect} onKeyDown={onActivate(onSelect)}>
       <title>{text}</title>
       <circle r={UNIT_R + 6} className="map-focus-ring" />

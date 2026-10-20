@@ -29,12 +29,14 @@ export interface TopBarProps {
   alertsOpen: boolean;
   feedOpen: boolean;
   legendOpen: boolean;
+  /** The number of things that wait for you just went up (the counter bumps). */
+  bump?: boolean;
   onAlerts: () => void;
   onFeed: () => void;
   onLegend: () => void;
 }
 
-export function TopBar({ snap, phone, updatedAt, fast, alertsOpen, feedOpen, legendOpen, onAlerts, onFeed, onLegend }: TopBarProps) {
+export function TopBar({ snap, phone, updatedAt, fast, alertsOpen, feedOpen, legendOpen, bump, onAlerts, onFeed, onLegend }: TopBarProps) {
   const now = useNow(1000);
   const b = snap.budget;
   const total = alertTotal(snap.alerts);
@@ -57,7 +59,7 @@ export function TopBar({ snap, phone, updatedAt, fast, alertsOpen, feedOpen, leg
           <span className={`map-live-dot${stale ? ' is-stale' : ''}${fast && !stale ? ' is-fast' : ''}`} />
           <span className="map-stat-label">{stale ? 'Offline' : `Updated ${ago(new Date(updatedAt).toISOString(), now)}`}</span>
         </span>
-        <button type="button" className={`map-alerts-btn${total ? (critical ? ' has-critical' : ' has-alerts') : ''}`} aria-pressed={alertsOpen}
+        <button type="button" className={`map-alerts-btn${total ? (critical ? ' has-critical' : ' has-alerts') : ''}${bump ? ' is-bump' : ''}`} aria-pressed={alertsOpen}
           aria-label={total ? `${total} ${total === 1 ? 'thing waits' : 'things wait'} for you. Open the list.` : 'Nothing waits for you'} onClick={onAlerts}
           title={total ? 'Things that wait for you' : 'Nothing waits for you'}>
           <Icon name="bell" size={15} />{total}

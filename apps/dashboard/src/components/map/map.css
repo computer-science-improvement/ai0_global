@@ -35,6 +35,8 @@
 /* ── units ───────────────────────────────────────────────────────────────── */
 .map-unit .map-unit-body { transition: opacity 0.2s; }
 .map-unit.is-dormant .map-unit-body { opacity: 0.45; filter: grayscale(0.7); }
+.map-unit-ring { transition: stroke 0.45s ease; }
+.map-unit.is-shaking .map-unit-body { animation: map-shake 0.55s ease-in-out 1; }
 .map-unit.is-working .map-unit-bob { animation: map-bob 1.7s ease-in-out infinite; }
 .map-unit.is-working .map-unit-ring { animation: map-ring 1.8s ease-in-out infinite; }
 .map-unit:hover .map-unit-body, .map-unit.is-selected .map-unit-body { filter: brightness(1.2); }
@@ -48,6 +50,17 @@
 .map-road { fill: none; stroke-linecap: round; opacity: 0.7; transition: opacity 0.15s, stroke-width 0.15s; }
 .map-road-group:hover .map-road, .map-road-group.is-selected .map-road { opacity: 1; }
 .map-road-hit { fill: none; stroke: transparent; stroke-width: 18px; cursor: pointer; }
+
+/* ── one-off effects (FR-004): each under 1.2 s, only for a new event ─────── */
+.map-fx { pointer-events: none; }
+.map-fx-pulse { fill: none; stroke-width: 3; transform-box: fill-box; transform-origin: center; animation: map-pulse 0.9s ease-out 1 forwards; }
+.map-fx-rise { animation: map-rise 1.1s ease-out 1 forwards; }
+.map-fx-dot { fill: currentColor; }
+.map-fx-fly { animation: map-fly 1.1s cubic-bezier(0.4, 0, 0.2, 1) 1 forwards; }
+.map-fx-flare { fill: color-mix(in srgb, var(--color-accent) 25%, transparent); stroke: var(--color-accent); stroke-width: 2.5; transform-box: fill-box; transform-origin: center; animation: map-flare 1s ease-out 1 forwards; }
+.map-fx-float { font-size: 12px; font-weight: 700; text-anchor: middle; fill: var(--color-accent); paint-order: stroke; stroke: var(--color-canvas); stroke-width: 3px; stroke-linejoin: round; animation: map-float 1.15s ease-out 1 forwards; }
+.map-fx-alert { fill: none; stroke: var(--color-warning); stroke-width: 3; transform-box: fill-box; transform-origin: center; animation: map-flare 0.9s ease-out 1 forwards; }
+.map-fx-travel { animation: map-travel 1s linear 1 forwards; }
 
 /* ── HUD ─────────────────────────────────────────────────────────────────── */
 .map-hud {
@@ -67,6 +80,7 @@
 .map-sep { width: 1px; align-self: stretch; background: var(--color-hairline-strong); }
 .map-alerts-btn { display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px; border-radius: var(--radius-pill); border: 1px solid var(--color-hairline-strong); background: var(--color-surface-3); color: var(--color-ink); font-size: 13px; font-weight: 500; cursor: pointer; }
 .map-alerts-btn.has-alerts { border-color: var(--color-warning); color: var(--color-warning); background: var(--color-warning-soft); }
+.map-alerts-btn.is-bump { animation: map-bump 0.7s ease-out 1; }
 .map-alerts-btn.has-critical { border-color: var(--color-danger); color: var(--color-danger); background: var(--color-danger-soft); }
 .map-icon-btn { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: var(--radius-md); border: 1px solid var(--color-hairline-strong); background: var(--color-surface-3); color: var(--color-ink); cursor: pointer; }
 .map-icon-btn:hover { background: var(--color-surface-2); border-color: var(--color-ink-dim); }
@@ -130,6 +144,14 @@
 }
 
 /* ── keyframes ───────────────────────────────────────────────────────────── */
+@keyframes map-pulse { 0% { transform: scale(0.9); opacity: 0.95; } 100% { transform: scale(2.1); opacity: 0; } }
+@keyframes map-rise { 0% { transform: translate(0, 0); opacity: 0; } 20% { opacity: 1; } 100% { transform: translate(0, -16px); opacity: 0; } }
+@keyframes map-fly { 0% { transform: translate(0, 0) scale(0.6); opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { transform: translate(var(--dx), var(--dy)) scale(1); opacity: 0; } }
+@keyframes map-flare { 0% { transform: scale(0.9); opacity: 0.9; } 100% { transform: scale(2.1); opacity: 0; } }
+@keyframes map-float { 0% { transform: translateY(0); opacity: 0; } 15% { opacity: 1; } 100% { transform: translateY(-26px); opacity: 0; } }
+@keyframes map-travel { 0% { opacity: 0; } 10% { opacity: 1; } 85% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes map-shake { 0%, 100% { transform: translateX(0); } 20% { transform: translateX(-3px); } 40% { transform: translateX(3px); } 60% { transform: translateX(-2px); } 80% { transform: translateX(2px); } }
+@keyframes map-bump { 0% { transform: scale(1); } 30% { transform: scale(1.22); } 100% { transform: scale(1); } }
 @keyframes map-beacon { 0% { transform: scale(0.85); opacity: 0.9; } 100% { transform: scale(1.55); opacity: 0; } }
 @keyframes map-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2px); } }
 @keyframes map-ring { 0%, 100% { stroke-opacity: 1; } 50% { stroke-opacity: 0.45; } }
@@ -140,6 +162,8 @@
 
 @media (prefers-reduced-motion: reduce) {
   .map-beacon, .map-unit.is-working .map-unit-bob, .map-unit.is-working .map-unit-ring, .map-live-dot.is-fast,
-  .map-drawer, .map-feed-row.is-new, .map-fx { animation: none !important; }
+  .map-drawer, .map-feed-row.is-new, .map-fx, .map-unit.is-shaking .map-unit-body, .map-alerts-btn.is-bump { animation: none !important; }
+  .map-feed-row.is-new { background: color-mix(in srgb, var(--color-accent) 14%, transparent); }
   .map-world.is-animated, .map-meter > i, .map-plate, .map-unit .map-unit-body, .map-road { transition: none !important; }
+  /* colour changes stay: the ring still changes colour, it just does not fade */
 }

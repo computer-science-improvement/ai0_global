@@ -27,11 +27,12 @@ export interface MapStageProps {
   /** Per-building / per-unit / per-road extra layers (flares, floaters, sparks). */
   buildingFx?: (ref: string) => ReactNode;
   unitFx?: (id: string) => ReactNode;
+  isShaking?: (id: string) => boolean;
   roadFx?: (key: string) => ReactNode;
 }
 
 /** The SVG of the network map: territories, headquarters, roads, buildings, units — inside a pan / zoom transform. */
-export function MapStage({ snap, layout, viewport, selection, onSelect, overlay, buildingFx, unitFx, roadFx }: MapStageProps) {
+export function MapStage({ snap, layout, viewport, selection, onSelect, overlay, buildingFx, unitFx, isShaking, roadFx }: MapStageProps) {
   const { view, size, animated, dragging } = viewport;
   const beacons = useMemo(() => alertsByRef(snap.alerts), [snap.alerts]);
 
@@ -80,7 +81,7 @@ export function MapStage({ snap, layout, viewport, selection, onSelect, overlay,
             const pos = layout.units[u.id];
             if (!pos) return null;
             return (
-              <UnitShape key={u.id} unit={u} pos={pos} label={showUnitLabels(view.k)} face={<UnitFace unit={u} />}
+              <UnitShape key={u.id} unit={u} pos={pos} label={showUnitLabels(view.k)} face={<UnitFace unit={u} />} shaking={isShaking?.(u.id)}
                 selected={selection?.type === 'unit' && selection.id === u.id} onSelect={() => onSelect({ type: 'unit', id: u.id })}>
                 {unitFx?.(u.id)}
               </UnitShape>

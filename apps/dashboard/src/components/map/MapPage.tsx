@@ -5,10 +5,13 @@ import { MAP_KEY, mapApi, type MapEvent, type MapSnapshot } from '../../api/map'
 import { EmptyState } from '../ui/primitives';
 import { useMediaQuery } from '../../lib/useMediaQuery';
 import { layoutMap, type MapLayout } from '../../lib/map-layout';
+import { pollInterval } from '../../lib/map-diff';
 import { roadKey } from '../../lib/map-state';
 import { AlertsDrawer, BuildingDrawer, RoadDrawer, UnitDrawer } from './MapDrawers';
 import { FeedPanel, Legend, TopBar, ZoomControls } from './MapHud';
 import { MapStage, anyWorking, sameSelection, type Selection } from './MapStage';
+import { useFxRenderers } from './MapFx';
+import { useMapLive } from './useMapLive';
 import { useMapViewport } from './useMapViewport';
 import './map.css';
 
@@ -21,16 +24,15 @@ export function structureKey(s: Pick<MapSnapshot, 'networks' | 'resources' | 'un
   ].join('|');
 }
 
-/** Slow polling: 30 s, 5 s while any unit works (spec 056 FR-004; T3 adds the diff and the tab-visibility rule). */
-const SLOW_MS = 30_000;
-
 export function MapPage() {
   const phone = useMediaQuery('(max-width: 639px)');
   const wide = useMediaQuery('(min-width: 1100px)');
+  const reduced = useMediaQuery('(prefers-reduced-motion: reduce)');
   const q = useQuery({
     queryKey: MAP_KEY,
     queryFn: mapApi.snapshot,
-    refetchInterval: SLOW_MS,
+    // 5 s while any unit works, 30 s otherwise, and none while the tab is hidden (FR-004). Coming back refetches at once.
+    refetchInterval: (query) => pollInterval(query.state.data, typeof document !== 'undefined' && document.hidden),
     refetchIntervalInBackground: false,
     retry: false,
   });
@@ -44,13 +46,16 @@ export function MapPage() {
     return layoutRef.current.layout;
   }, [snap]);
 
+  const live = useMapLive(snap, reduced);
+  const fx = useFxRenderers(live.fx, layout, snap?.roads ?? NO_ROADS);
+
   const viewport = useMapViewport(layout?.bounds ?? null, phone ? { top: 62, right: 0, bottom: 64, left: 0 } : { top: 76, right: 0, bottom: 20, left: 0 });
 
   const [selection, setSelection] = useState<Selection | null>(null);
   const [feedUser, setFeedUser] = useState<boolean | null>(null);
   const [legendUser, setLegendUser] = useState<boolean | null>(null);
   const feedOpen = feedUser ?? wide;
-  const legendOpen = legendUser ?? !phone;
+  const legendOpen = legendUser ?? wide;
 
   const select = useCallback((s: Selection | null) => {
     setSelection((cur) => (sameSelection(cur, s) ? null : s));
@@ -93,7 +98,8 @@ export function MapPage() {
 
   return (
     <div className="map-root">
-      <MapStage snap={snap} layout={layout} viewport={viewport} selection={selection} onSelect={select} />
+      <MapStage snap={snap} layout={layout} viewport={viewport} selection={selection} onSelect={select}
+        buildingFx={fx.buildingFx} unitFx={fx.unitFx} roadFx={fx.roadFx} isShaking={fx.isShaking} />
 
       {snap.resources.length === 0 && (
         <div className="map-empty">
@@ -110,14 +116,14 @@ export function MapPage() {
 
       <TopBar
         snap={snap} phone={phone} updatedAt={q.dataUpdatedAt || Date.now()} fast={anyWorking(snap)}
-        alertsOpen={selection?.type === 'alerts'} feedOpen={feedOpen} legendOpen={legendOpen}
+        bump={live.bump} alertsOpen={selection?.type === 'alerts'} feedOpen={feedOpen} legendOpen={legendOpen}
         onAlerts={() => select({ type: 'alerts' })}
         onFeed={() => { setFeedUser(!feedOpen); if (phone && !feedOpen) setSelection(null); }}
         onLegend={() => setLegendUser(!legendOpen)}
       />
 
       {feedOpen && !drawerOpen && (
-        <FeedPanel events={snap.events} freshIds={NO_IDS} snap={snap} onPick={onPickEvent} onClose={() => setFeedUser(false)} />
+        <FeedPanel events={snap.events} freshIds={live.freshIds} snap={snap} onPick={onPickEvent} onClose={() => setFeedUser(false)} />
       )}
       {legendOpen && !(phone && drawerOpen) && <Legend onClose={() => setLegendUser(false)} />}
       <ZoomControls view={viewport.view} onIn={viewport.zoomIn} onOut={viewport.zoomOut} onFit={viewport.fit} />
@@ -130,4 +136,4 @@ export function MapPage() {
   );
 }
 
-const NO_IDS: ReadonlySet<string> = new Set();
+const NO_ROADS: MapSnapshot['roads'] = [];
