@@ -16,6 +16,7 @@ import { checkLaunch, SUBMIT_LAUNCH_TOOL, SubmitLaunchInput } from './launch-ana
 import { launchActions, launchSummary } from './launch-artifact';
 import { BOT_RECHECK_MS, LaunchService, REFERENCE_WAIT_MS, type LaunchDeps } from './launch.service';
 import { launchSource } from './launch-cards';
+import { pickPromoSources, type PromoCandidate } from './launch-promo';
 import { evaluateGraduation, graduationSettings, GRADUATION_CHECK_MS, type GraduationFacts } from './launch-graduation';
 import type { LaunchRepository } from './launch.repository';
 import type { LaunchBotState } from './launch.types';
@@ -50,6 +51,7 @@ function service(o: {
     bot: o.bot ?? NO_BOT, tracked: null as { isMine: boolean; subs: number | null } | null, published: 0, ideas: 0,
     env: {} as Record<string, string>, mode: 'approve' as ChannelMode,
     facts: { decisions: [], critic: { pass: 0, revise: 0, reject: 0 }, usable: true } as GraduationFacts,
+    candidates: [] as PromoCandidate[],
   };
   const repo = new MemoryLaunchRepo(now);
   const sets = new Map<string, SteeringSet>();
@@ -93,6 +95,15 @@ function service(o: {
     ideas: { count: async () => box.ideas, add: async (i) => { box.ideas++; calls.push(['idea', i.title, i.originRef, i.variants[0].resource_ref]); } },
     setMode: async (key, mode) => { calls.push(['mode', key, mode]); if (card) card = { ...card, mode }; },
     planAhead: async (key) => { calls.push(['plan', key]); },
+    promo: {
+      candidates: async () => box.candidates,
+      file: async (src) => {
+        calls.push(['promo', src.key]);
+        return src.key === '@busy_one' ? { directiveId: 'd-busy', slotId: null, at: null, error: 'no_window: немає вільного часу' }
+          : { directiveId: `d-${src.key}`, slotId: `s-${src.key}`, at: new Date(NOW.getTime() + 86_400_000), error: null };
+      },
+      joins: async () => 4,
+    },
     graduation: {
       settings: () => graduationSettings((k) => box.env[k]),
       facts: async () => box.facts,
@@ -538,4 +549,59 @@ test('graduation: auto switches with a note; off only shows progress; live elsew
     assert.equal(repo.rows[0].status, 'graduated');
     assert.equal(repo.rows[0].graduation.by, 'owner_elsewhere');
   }
+});
+
+// ── T4: growth ───────────────────────────────────────────────────────────────
+
+const cand = (key: string, p: Partial<PromoCandidate> = {}): PromoCandidate => ({
+  key, title: key, subs: 100, agentId: `a${key}`, mode: 'live', paused: false, usable: true, relevance: 4, note: '', ...p,
+});
+
+test('promo sources: approve or live, not paused, healthy, relevance ≥ 3; by relevance then subscribers; at most 3', () => {
+  assert.deepEqual(pickPromoSources([]), { picked: [], note: 'No other own Telegram channel to promote from' });
+  const r = pickPromoSources([
+    cand('@a', { relevance: 3, subs: 5000 }), cand('@b', { relevance: 5, subs: 10 }), cand('@c', { relevance: 4, subs: 900 }),
+    cand('@d', { relevance: 4, subs: 100 }), cand('@e', { mode: 'shadow' }), cand('@f', { paused: true }), cand('@g', { usable: false }),
+    cand('@h', { relevance: 2 }), cand('@i', { agentId: null }), cand('@j', { mode: 'approve', relevance: 3, subs: 1 }),
+  ]);
+  assert.deepEqual(r.picked.map((c) => c.key), ['@b', '@c', '@d']);
+  const none = pickPromoSources([cand('@e', { mode: 'off' }), cand('@h', { relevance: 1 })]);
+  assert.equal(none.note, 'None of the network channels fits: @e (in off), @h (relevance 1/5)');
+});
+
+test('promo: after the first 3 published posts the launch files promos once; the step and the growth show them', async () => {
+  const { svc, repo, calls, box, at } = await runningLaunch();
+  box.candidates = [cand('@tea_home', { relevance: 5 }), cand('@busy_one'), cand('@off_one', { mode: 'off' })];
+  box.published = 2;
+  at(60_000);
+  await run(svc);
+  assert.equal(repo.rows[0].promo, null, 'not before the first 3 posts');
+  box.published = 3;
+  at(2 * 60_000);
+  await run(svc);
+  const p = repo.rows[0].promo!;
+  assert.deepEqual(p.items.map((i) => [i.sourceRef, i.slotId, i.error]), [
+    ['telegram:@tea_home', 's-@tea_home', null], ['telegram:@busy_one', null, 'no_window: немає вільного часу'],
+  ]);
+  at(3 * 60_000);
+  await run(svc);
+  assert.equal(calls.filter((c) => c[0] === 'promo').length, 2, 'filed once');
+  const v = await svc.view(repo.rows[0]);
+  const step = v.checklist.find((x) => x.key === 'cross_promo')!;
+  assert.equal(step.state, 'done');
+  assert.match(step.title, /Cross-promo scheduled in @tea_home/);
+  assert.match(step.detail ?? '', /@busy_one: no_window/);
+  assert.equal(v.checklist.find((x) => x.key === 'first_posts')!.state, 'done');
+  assert.deepEqual(v.growth, { subsAtStart: 12, subsNow: 12, published: 3, promoJoins: 4 });
+});
+
+test('promo: with no source that fits the step says why', async () => {
+  const { svc, repo, box, at } = await runningLaunch();
+  box.published = 5;
+  at(60_000);
+  await run(svc);
+  assert.equal(repo.rows[0].promo?.note, 'No other own Telegram channel to promote from');
+  const step = (await svc.view(repo.rows[0])).checklist.find((x) => x.key === 'cross_promo')!;
+  assert.equal(step.state, 'skipped');
+  assert.equal(step.detail, 'No other own Telegram channel to promote from');
 });

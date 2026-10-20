@@ -17,13 +17,14 @@ import {
   buildSubmitLaunchTool, launchSystemPrompt, launchUserPrompt, SUBMIT_LAUNCH_TOOL, SubmitLaunchInput, type LaunchReference,
 } from './launch-analysis';
 import type { LaunchRepository } from './launch.repository';
-import { buildChecklist, type ChecklistFacts, type LaunchStep } from './launch-checklist';
+import { buildChecklist, FIRST_POSTS, type ChecklistFacts, type LaunchStep } from './launch-checklist';
+import { pickPromoSources, type PromoCandidate } from './launch-promo';
 import {
   dueToGraduate, evaluateGraduation, GRADUATION_CHECK_MS, graduationStep, SNOOZE_DAYS, SNOOZE_MORE_APPROVED,
   type GraduationFacts, type GraduationSettings, type GraduationStats,
 } from './launch-graduation';
 import {
-  MAX_BRIEF_CHARS, MAX_REFERENCES, MIN_BRIEF_CHARS, PRE_START_STATUSES, type ChannelLaunch, type LaunchBotState, type LaunchRef,
+  MAX_BRIEF_CHARS, MAX_REFERENCES, MIN_BRIEF_CHARS, PRE_START_STATUSES, type ChannelLaunch, type LaunchBotState, type LaunchPromoItem, type LaunchRef,
 } from './launch.types';
 
 /**
@@ -110,6 +111,15 @@ export interface LaunchDeps {
     goLive(channelKey: string): Promise<unknown>;
     /** `auto`: the action note that the channel went live. */
     note?(l: ChannelLaunch, stats: GraduationStats): Promise<void>;
+  };
+  // ── T4: growth ──
+  promo: {
+    /** Our other Telegram channels with cards, with what decides whether they may promote the new one. */
+    candidates(channelKey: string): Promise<PromoCandidate[]>;
+    /** An owner-approved accepted cross_promo directive to the source's orchestrator, scheduled by the 022 planner. */
+    file(source: PromoCandidate, l: ChannelLaunch): Promise<{ directiveId: string | null; slotId: string | null; at: Date | null; error: string | null }>;
+    /** Joins through the promo links to the channel since a time (022 link_joins). */
+    joins(targetRef: string, since: Date): Promise<number>;
   };
   now?:     () => Date;
   log?:     (msg: string) => void;
@@ -239,8 +249,23 @@ export class LaunchService {
     if (cur.status === 'ready' && cur.startRequested && cur.botState?.state === 'ok') {
       cur = await this.doStart(cur).catch((err) => { this.d.log?.(`launch ${cur!.channelKey} start: ${errText(err)}`); return cur; });
     }
+    if (cur?.status === 'running' && !cur.promo && cur.startedAt) cur = await this.maybePromo(cur);
     if (cur?.status === 'running') cur = await this.checkGraduation(cur);
     return cur;
+  }
+
+  // ── growth (FR-004) ───────────────────────────────────────────────────────
+
+  /** After the first posts: up to 3 network channels promote the new one (once per launch). */
+  private async maybePromo(l: ChannelLaunch): Promise<ChannelLaunch | null> {
+    if ((await this.d.published(l.channelKey, l.startedAt!)) < FIRST_POSTS) return l;
+    const { picked, note } = pickPromoSources(await this.d.promo.candidates(l.channelKey));
+    const items: LaunchPromoItem[] = [];
+    for (const src of picked) {
+      const r = await this.d.promo.file(src, l).catch((err) => ({ directiveId: null, slotId: null, at: null, error: errText(err) }));
+      items.push({ sourceRef: `telegram:${src.key}`, directiveId: r.directiveId, slotId: r.slotId, at: r.at ? r.at.toISOString() : null, error: r.error });
+    }
+    return this.d.repo.update(l.id, { promo: { filedAt: this.now().toISOString(), items, note } });
   }
 
   // ── graduation (FR-003) ───────────────────────────────────────────────────
@@ -541,9 +566,21 @@ export class LaunchService {
     return { launches: (await this.d.repo.list({ channel: channel || null })).map(launchJson) };
   }
 
-  /** The launch for the API and the artifact panel, with its live checklist. */
+  /** The launch for the API and the artifact panel, with its live checklist and, after Start, its growth. */
   async view(l: ChannelLaunch) {
-    return { ...launchJson(l), checklist: await this.checklist(l) };
+    const [checklist, growth] = await Promise.all([this.checklist(l), this.growth(l)]);
+    return { ...launchJson(l), checklist, growth };
+  }
+
+  /** Subscribers at Start and now, posts published and joins through the promo links since Start. */
+  async growth(l: ChannelLaunch): Promise<{ subsAtStart: number | null; subsNow: number | null; published: number; promoJoins: number } | null> {
+    if (!l.startedAt) return null;
+    const [t, published, promoJoins] = await Promise.all([
+      this.d.tracked(l.channelKey).catch(() => null),
+      this.d.published(l.channelKey, l.startedAt).catch(() => 0),
+      this.d.promo.joins(l.targetRef, l.startedAt).catch(() => 0),
+    ]);
+    return { subsAtStart: l.subsAtStart, subsNow: t?.subs ?? null, published, promoJoins };
   }
 
   async checklist(l: ChannelLaunch): Promise<LaunchStep[]> {

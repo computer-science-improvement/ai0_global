@@ -94,7 +94,7 @@ import { SkillVersionEvaluator } from './agents/skill-version-evaluator';
 import { buildAgentSkillTools } from './agents/agent-skill-tools';
 import { AgentsService } from './agents/agents.service';
 import { AGENTS_SERVICE, AgentsController } from './agents/agents.controller';
-import { telegramKeyOf, parseResourceRef, resourceRef } from './agents/agent.types';
+import { telegramKeyOf, parseResourceRef, resourceRef, isPaused as isAgentPaused } from './agents/agent.types';
 import type { Agent } from './agents/agent.types';
 import { renderFormatPrefs, ResourceProfilesRepository } from './agents/resource-profile';
 import { ResourceCatalog, makeTelegramAccessCheck } from './agents/resource-catalog';
@@ -147,6 +147,7 @@ import type { ApplyWriters, ChannelState } from './setup/setup-apply';
 import { LAUNCH_SERVICE, LaunchController } from './launch/launch.controller';
 import { launchSource } from './launch/launch-cards';
 import { graduationLineUk, graduationSettings } from './launch/launch-graduation';
+import { launchQueries } from './launch/launch-queries';
 import { launchJson, LaunchService } from './launch/launch.service';
 import { LaunchRepository } from './launch/launch.repository';
 import { makeLaunchBotCheck } from './launch/launch-bot';
@@ -189,7 +190,7 @@ import {
 import { channelHeldBy, ResourcePauseService } from './pauses/resource-pauses';
 import { RESOURCE_PAUSES, ResourcePausesApi, ResourcePausesController } from './pauses/resource-pauses.controller';
 import { TrackedLinks } from './promo/tracked-links';
-import { PromoPlanner } from './promo/promo-planner';
+import { PromoPlanner, relevance } from './promo/promo-planner';
 import { PromoExecutor } from './promo/promo-executor';
 import { PromoService } from './promo/promo.service';
 import { PROMO_SERVICE, PromoController, PromoRedirectController } from './promo/promo.controller';
@@ -1862,7 +1863,7 @@ export const EDITOR_PROVIDERS = [
       provide: LAUNCH_SERVICE,
       inject: [
         DB_POOL, ConfigService, AGENT_INFRA, EDITOR_REPOS, EDITOR_OPS, STEERING_SERVICE, MODEL_DEFAULTS, TelegramNotifier, ChannelConfigService,
-        AGENTS_SERVICE, NETWORK_SERVICE, EDITOR_RUNNER, AUTONOMY_SERVICE, APPROVAL_INFRA, PLATFORM_INFRA,
+        AGENTS_SERVICE, NETWORK_SERVICE, EDITOR_RUNNER, AUTONOMY_SERVICE, APPROVAL_INFRA, PLATFORM_INFRA, EDITOR_MANAGER, PROMO_INFRA,
         { token: PriceService, optional: true }, { token: LlmBudgetService, optional: true },
         { token: TrackingService, optional: true }, { token: TrackedChannelsRepository, optional: true },
       ],
@@ -1870,13 +1871,14 @@ export const EDITOR_PROVIDERS = [
         pool: Pool, cfg: ConfigService, infra: AgentInfra, repos: EditorRepos, ops: EditorOpsService, steering: SteeringService,
         models: WorkspaceModelStore, notifier: TelegramNotifier, channelConfig: ChannelConfigService,
         agentsSvc: AgentsService, networkSvc: NetworkService, runner: EditorRunnerService,
-        autonomy: AutonomyService, approval: ApprovalInfra, platform: PlatformInfra,
+        autonomy: AutonomyService, approval: ApprovalInfra, platform: PlatformInfra, manager: ManagerInfra, promoInfra: PromoInfra,
         prices?: PriceService, caps?: LlmBudgetService, tracking?: TrackingService, trackedRepo?: TrackedChannelsRepository,
       ): LaunchService => {
         const logger = new Logger('Launch');
         const env = (k: string) => cfg.get<string>(k) ?? undefined;
         const steeringRepo = new SteeringRepository(pool);
         const orchOf = (key: string) => infra.agents.findTop('orchestrator', 'resource', `telegram:${key}`);
+        const q = launchQueries(pool);
         const svc = new LaunchService({
           repo: new LaunchRepository(pool),
           card: (key) => repos.channels.get(key),
@@ -1894,16 +1896,7 @@ export const EDITOR_PROVIDERS = [
             discard: (id) => steering.discard(id),
             activate: (id) => steering.activate(id),
           },
-          network: async (key) => {
-            const { rows } = await pool.query(
-              `SELECT ec.channel_key, COALESCE(ec.title, tc.title) AS title, rp.profile->>'topic' AS topic
-                 FROM editor_channels ec
-                 JOIN tracked_channels tc ON tc.channel_key = ec.channel_key AND tc.is_mine
-                 LEFT JOIN resource_profiles rp ON rp.resource_ref = 'telegram:' || ec.channel_key
-                WHERE lower(ec.channel_key) <> lower($1)
-                ORDER BY ec.channel_key LIMIT 30`, [key]);
-            return rows.map((r: any) => ({ key: r.channel_key, title: r.title ?? null, topic: r.topic ?? null }));
-          },
+          network: async (key) => (await q.ownChannels(key, 30)).map((c) => ({ key: c.key, title: c.title, topic: c.topic })),
           state: channelStateOf(pool, repos, infra),
           loop: ownerStartedLoop(pool, env, notifier, logger, prices, caps),
           model: onboarderModel(env, models),
@@ -1918,10 +1911,7 @@ export const EDITOR_PROVIDERS = [
             if (!tracking) throw new Error('tracking is not available');
             await tracking.createFullChannel({ kind: 'public', username: key.replace(/^@/, ''), isMine: true, ...(title ? { title } : {}) });
           },
-          published: async (key, since) => Number((await pool.query(
-            `SELECT count(*)::int AS n FROM editor_slots
-              WHERE status = 'published' AND channel_key = $1 AND (resource_ref IS NULL OR resource_ref = $2) AND scheduled_at >= $3`,
-            [key, `telegram:${key}`, since])).rows[0]?.n ?? 0),
+          published: (key, since) => q.published(key, since),
           platforms: async (key) => {
             const all = await infra.catalog.list();
             const me = all.find((r) => r.ref === `telegram:${key}`);
@@ -1946,27 +1936,57 @@ export const EDITOR_PROVIDERS = [
             if (!card) return;
             await runner.runPlanner(card);
           },
+          // T4: growth — network cross-promo first (FR-004).
+          promo: {
+            candidates: async (key) => {
+              const targetRef = `telegram:${key}`;
+              const rows = await q.ownChannels(key);
+              const target = (await infra.profiles.get(targetRef))?.profile ?? null;
+              const pauses = new ResourcePauseService({ pool });
+              const now = new Date();
+              return Promise.all(rows.map(async (r) => {
+                const ref = `telegram:${r.key}`;
+                const [orch, card, usable, paused, prof] = await Promise.all([
+                  orchOf(r.key).catch(() => null), repos.channels.get(r.key), platform.health.usable(ref).catch(() => true),
+                  pauses.isPaused(ref).catch(() => false), infra.profiles.get(ref).catch(() => null),
+                ]);
+                const rel = relevance(prof?.profile ?? null, target);
+                return {
+                  key: r.key, title: r.title, subs: r.subs, agentId: orch?.id ?? null,
+                  mode: card ? await approval.mode(card) : 'off', paused: paused || (!!orch && isAgentPaused(orch, now)), usable,
+                  relevance: rel.score, note: rel.note,
+                };
+              }));
+            },
+            file: async (src, l) => {
+              const orch = src.agentId ? await infra.agents.get(src.agentId) : null;
+              if (!orch) return { directiveId: null, slotId: null, at: null, error: 'no_agent: no orchestrator runs the source' };
+              const sourceRef = `telegram:${src.key}`;
+              const filed = await manager.repo.insert({
+                fromAgentId: null, toAgentId: orch.id, kind: 'cross_promo', structural: false,
+                body: `Promote the new channel ${l.channelKey} in ${src.key} (channel launch)`,
+                params: { source_ref: sourceRef, target_ref: l.targetRef, window_days: 7, launch_id: l.id },
+                rationale: `The owner launched ${l.channelKey}; growth starts inside the network (spec 052).`,
+                evidence: { launch_id: l.id, relevance: src.relevance }, expected: null, reviewAt: null, status: 'awaiting_owner', shadow: false,
+              });
+              // Owner-approved and accepted at once: the owner started the launch (spec 052 FR-004).
+              const dir = await manager.repo.update(filed.id, { status: 'accepted', ownerDecision: 'approved' }, ['awaiting_owner']);
+              if (!dir) return { directiveId: filed.id, slotId: null, at: null, error: 'directive_changed: the directive was decided meanwhile' };
+              const r = await promoInfra.planner.schedule(dir, orch, src.key);
+              if (!('ok' in r)) return { directiveId: dir.id, slotId: null, at: null, error: `${r.error}: ${r.details}` };
+              await manager.runner.recordBaseline((await manager.repo.get(dir.id))!, null).catch(() => undefined);
+              return { directiveId: dir.id, slotId: r.slotId, at: r.at, error: null };
+            },
+            joins: (targetRef, since) => q.joins(targetRef, since),
+          },
           // T3: graduation from approval (FR-003).
           graduation: {
             settings: () => graduationSettings((k) => process.env[k] ?? cfg.get<string>(k) ?? undefined),
             facts: async (key, since) => {
-              const ref = `telegram:${key}`;
-              const [dec, crit, usable] = await Promise.all([
-                pool.query(
-                  `SELECT CASE WHEN approved_at IS NOT NULL THEN CASE WHEN owner_edited THEN 'edited' ELSE 'clean' END ELSE 'rejected' END AS outcome
-                     FROM editor_slots
-                    WHERE channel_key = $1 AND (resource_ref IS NULL OR resource_ref = $2)
-                      AND (approved_at IS NOT NULL OR (status = 'skipped' AND error = 'rejected by owner'))
-                      AND COALESCE(approved_at, updated_at) >= $3
-                    ORDER BY COALESCE(approved_at, updated_at), id`, [key, ref, since]),
-                pool.query(
-                  `SELECT critic->>'verdict' AS verdict, count(*)::int AS n FROM editor_slots
-                    WHERE channel_key = $1 AND (resource_ref IS NULL OR resource_ref = $2) AND critic IS NOT NULL AND updated_at >= $3
-                    GROUP BY 1`, [key, ref, since]),
-                platform.health.usable(ref).catch(() => true),
+              const [decisions, critic, usable] = await Promise.all([
+                q.decisions(key, since), q.critic(key, since), platform.health.usable(`telegram:${key}`).catch(() => true),
               ]);
-              const n = (v: string) => Number(crit.rows.find((r: any) => r.verdict === v)?.n ?? 0);
-              return { decisions: dec.rows.map((r: any) => r.outcome), critic: { pass: n('pass'), revise: n('revise'), reject: n('reject') }, usable };
+              return { decisions, critic, usable };
             },
             mode: async (key) => {
               const card = await repos.channels.get(key);
