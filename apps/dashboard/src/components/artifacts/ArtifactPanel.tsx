@@ -21,6 +21,7 @@ import { fmtRelative } from '../../lib/format';
 import { ProposalBody } from '../setup/SetupProposalDialog';
 import { SteeringActions, SteeringDetails } from '../steering/SteeringCard';
 import { DiffView } from '../agents/AgentSkills';
+import { LaunchBody } from '../launch/LaunchBody';
 
 const mono = 'ui-monospace, SFMono-Regular, Menlo, monospace';
 
@@ -87,6 +88,7 @@ function ArtifactBody({ d, onClose }: { d: ArtifactDetail; onClose: () => void }
   if (type === 'rules') return <RulesBody d={d} />;
   if (type === 'memory') return <MemoryBody d={d} />;
   if (type === 'skill') return <SkillBody d={d} />;
+  if (type === 'launch') return <LaunchBody d={d} />;
   return <JsonBody d={d} />;
 }
 
@@ -251,6 +253,12 @@ function JsonBody({ d }: { d: ArtifactDetail }) {
   );
 }
 
+/** Actions that change what gets published ask first (spec 052: Start and Go live). */
+const CONFIRM: Record<string, string> = {
+  'launch:start': 'apply the plan and put the channel into approval mode (posts wait for you)',
+  'launch:go_live': 'let the channel publish without your approval (clean waiting posts are approved too)',
+};
+
 /** The type's own actions the reused views do not show already (approve a playbook version…). */
 function GenericActions({ d }: { d: ArtifactDetail }) {
   const act = useArtifactAction();
@@ -259,7 +267,8 @@ function GenericActions({ d }: { d: ArtifactDetail }) {
   const actions = d.actions.filter((a) => a.key !== 'edit' && a.path);
   if (!actions.length) return null;
   const run = async (a: ArtifactAction) => {
-    if (a.danger && !(await confirm(`${a.label.toLowerCase()} — ${d.row.title}`, { confirmLabel: a.label }))) return;
+    const ask = a.danger ? `${a.label.toLowerCase()} — ${d.row.title}` : CONFIRM[`${d.row.type}:${a.key}`];
+    if (ask && !(await confirm(ask, { confirmLabel: a.label }))) return;
     act.mutate(a, { onSuccess: () => toast.success(`${a.label}: done`), onError: (e) => toast.error(refusal(e)) });
   };
   return (

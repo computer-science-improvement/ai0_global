@@ -40,7 +40,7 @@ export const ArtifactOpenContext = createContext<{ activeKey: string | null; ope
 /** `[[type:id]]` references in a message (what "Ask the agent" puts into the composer). */
 export function mentionedArtifacts(text: string): Chip[] {
   const out: Chip[] = [];
-  for (const m of text.matchAll(/\[\[(setup|steering|rules|memory|skill|playbook|profile|formatting):([^\]\s]{1,120})\]\]/g)) {
+  for (const m of text.matchAll(/\[\[(setup|steering|rules|memory|skill|playbook|profile|formatting|launch):([^\]\s]{1,120})\]\]/g)) {
     if (!out.some((c) => c.type === m[1] && c.id === m[2])) out.push({ type: m[1] as ArtifactType, id: m[2], title: '', status: '' });
   }
   return out;

@@ -9,6 +9,7 @@ const KIND: Record<string, [string, string]> = {
   action:    ['agent card', 'agent cards'],
   steering:  ['steering set', 'steering sets'],
   setup:     ['setup from history', 'setups from history'],
+  launch:    ['channel launch', 'channel launches'],
   playbook:  ['playbook', 'playbooks'],
   inbox:     ['inbox note', 'inbox notes'],
 };
