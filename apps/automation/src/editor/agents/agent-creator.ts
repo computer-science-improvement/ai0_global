@@ -66,7 +66,7 @@ export function briefFromProfile(input: CreateAgentInput): string {
 
 /** Polls and quizzes at creation only for a quiz / education resource or when the brief asks for them (spec 034 FR-005). */
 const POLL_FORMATS = new Set(['poll', 'quiz']);
-const ASKS_FOR_POLLS = /опитуван|вікторин|голосуван|\bpolls?\b|\bquiz/iu;
+export const ASKS_FOR_POLLS = /опитуван|вікторин|голосуван|\bpolls?\b|\bquiz/iu;
 
 /** Problems of the picked formats (English: the builder reads them as tool errors, the owner on a failed card). */
 export function fittingFormatErrors(input: Pick<CreateAgentInput, 'formats' | 'brief' | 'profile'>, platform: Platform): string[] {

@@ -90,6 +90,21 @@ export class ChannelConfigService implements OnApplicationBootstrap {
     };
   }
 
+  /**
+   * Spec 052: a channel that may not be configured yet (a launch before the bot is an admin) — its own bot when it is
+   * configured, else the default bot with the public `@name` as the chat.
+   */
+  resolveChannelOrDefault(channelKey: string): ResolvedChannel {
+    const ch = this.cache.getChannelByKey(channelKey) ?? this.cache.getChannelById(channelKey);
+    if (ch) return this.resolveChannel(channelKey);
+    if (!/^@[A-Za-z][A-Za-z0-9_]{3,31}$/.test(channelKey)) throw new Error(`Channel "${channelKey}" not found in config`);
+    const bot = this.cache.getDefaultBot();
+    if (!bot) throw new Error('no default bot is set — add a bot in Connections and mark it default');
+    const token = this.secrets.resolveToken({ enc: bot.token_enc, env: bot.token_env }, (k) => this.env.get<string>(k));
+    if (!token) throw new Error(`the default bot's token is not set (bot: ${bot.bot_id})`);
+    return { platform: 'telegram', chatId: channelKey, botToken: token, botId: bot.bot_id };
+  }
+
   /** Resolve a channel key/id → its UUID + public username (for cross-posting). */
   getChannelMeta(channelKeyOrId: string): { id: string; username: string | null } | null {
     const ch = this.cache.getChannelByKey(channelKeyOrId)

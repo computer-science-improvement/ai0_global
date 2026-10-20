@@ -32,14 +32,14 @@ export const SETUP_FORMAT_FIELDS = [
   'tone', 'length', 'emoji', 'hashtags', 'mentions', 'cta', 'links', 'line_breaks', 'signature', 'humor', 'slang', 'content_kind',
 ] as const satisfies readonly FormatPrefField[];
 
-const ProposedFormat = FormatPrefsSchema.pick({
+export const ProposedFormat = FormatPrefsSchema.pick({
   tone: true, length: true, emoji: true, hashtags: true, mentions: true, cta: true, links: true, line_breaks: true, signature: true,
   humor: true, slang: true, content_kind: true,
 }).partial();
 
-const ProposedStyle = StyleSchema.pick({ address: true, hashtags: true, headline: true, names: true, audience: true, content_kind: true }).partial();
+export const ProposedStyle = StyleSchema.pick({ address: true, hashtags: true, headline: true, names: true, audience: true, content_kind: true }).partial();
 
-const ProposedCard = z.object({
+export const ProposedCard = z.object({
   hashtags:     z.array(z.string().regex(/^[\p{L}\p{N}_]{1,50}$/u, 'без #, лише літери, цифри, _')).max(30).optional()
     .describe('Словник хештегів каналу (лише ті, що повторюються в постах)'),
   hashtag_min:  z.number().int().min(0).max(10).optional(),

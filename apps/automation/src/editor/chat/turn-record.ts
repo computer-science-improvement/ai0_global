@@ -50,6 +50,7 @@ export class TurnRecorder {
     this.turn.tools.push(tool);
     if (tool === 'steer_channel') this.artifact('steering', o.set_id);
     if (tool === 'analyze_channel_history') this.artifact('setup', o.proposal_id);
+    if (tool === 'launch_channel') this.artifact('launch', o.launch_id);
     if (tool === 'update_artifact' && typeof o.ref === 'string') { const r = parseArtifactRef(o.ref); if (r?.id) this.artifact(r.type, r.id); }
     if (tool === 'add_owner_rule' && o.stored !== false) this.artifact('rules', o.channel ?? (ctx ? channelOf(ctx) : null));
     if (typeof o.pending_action === 'string' && !this.turn.cards.some((c) => c.id === o.pending_action)) {

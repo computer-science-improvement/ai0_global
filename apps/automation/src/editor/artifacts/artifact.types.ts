@@ -3,7 +3,7 @@
  * read model with one adapter per type.
  */
 
-export const ARTIFACT_TYPES = ['setup', 'steering', 'rules', 'memory', 'skill', 'playbook', 'profile', 'formatting'] as const;
+export const ARTIFACT_TYPES = ['setup', 'steering', 'rules', 'memory', 'skill', 'playbook', 'profile', 'formatting', 'launch'] as const;
 export type ArtifactType = typeof ARTIFACT_TYPES[number];
 
 /** Types whose versions live in artifact_versions (the others version in their own tables, or not at all). */

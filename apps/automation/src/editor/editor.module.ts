@@ -141,6 +141,13 @@ import { storedFormat } from './agents/resource-profile';
 import { boundDatasets, ChannelSetupRepository } from './setup/setup.repository';
 import { ChannelSetupService } from './setup/setup.service';
 import { CHANNEL_SETUP_SERVICE, ChannelSetupController } from './setup/setup.controller';
+import type { ApplyWriters, ChannelState } from './setup/setup-apply';
+import { LAUNCH_SERVICE, LaunchController } from './launch/launch.controller';
+import { launchJson, LaunchService } from './launch/launch.service';
+import { LaunchRepository } from './launch/launch.repository';
+import { makeLaunchBotCheck } from './launch/launch-bot';
+import { launchAdapter, launchTitle } from './launch/launch-artifact';
+import { buildLaunchChannelTool } from './launch/launch-tool';
 import { collectPosts, trackedChannel } from './setup/setup-posts';
 import { VOICE_SKILL_NAME } from './setup/setup-analysis';
 import { refName, SteeringRepository } from './steering/steering.repository';
@@ -377,6 +384,8 @@ function configConflictsOf(pool: Pool, repos: Pick<EditorRepos, 'memory' | 'chan
 /** Spec 047 FR-004: an owner rule against the agent's skills and the network's agents. */
 /** Spec 048: the artifact registry, for the chat tools built before it (the registry → agents → runner cycle). */
 const ARTIFACTS: { svc?: ArtifactsService } = {};
+/** Spec 052: the launch service, bound late (the tool registry and the artifacts come before it). */
+const LAUNCH: { svc?: LaunchService } = {};
 
 async function ownerRuleLint(infra: Pick<AgentInfra, 'skills' | 'agents'>, text: string, orch: Agent) {
   return lintOwnerRule(text, {
@@ -533,6 +542,45 @@ function onboarderModel(env: (k: string) => string | undefined, models: Workspac
   };
 }
 
+/** Spec 042: a channel's card, agent, profile, locks, active playbook, voice skill and bound datasets now (also 052). */
+function channelStateOf(pool: Pool, repos: EditorRepos, infra: AgentInfra): (key: string) => Promise<ChannelState> {
+  const network = new NetworkRepository(pool);
+  return async (key) => {
+    const ref = `telegram:${key}`;
+    const [card, agent, stored] = await Promise.all([repos.channels.get(key), infra.agents.findTop('orchestrator', 'resource', ref), infra.profiles.get(ref)]);
+    const raw = stored ? (await pool.query(`SELECT profile FROM resource_profiles WHERE resource_ref = $1`, [ref])).rows[0]?.profile : null;
+    const playbook = agent ? (await network.activePlaybook(agent.id))?.body ?? null : null;
+    const voice = agent ? (await infra.skills.findForAgent(agent.id, VOICE_SKILL_NAME))?.body ?? null : null;
+    const datasets = await boundDatasets(pool, ref, playbook);
+    return { card, agent, profile: stored?.profile ?? null, locks: storedFormat(raw).locks, playbook, voice, datasets };
+  };
+}
+
+/** Spec 042 FR-006: the writers a setup (and, spec 052, a launch Start) applies through, as the owner. */
+function setupWriters(
+  repos: EditorRepos, infra: AgentInfra, ops: EditorOpsService, agentsSvc: AgentsService, networkSvc: NetworkService, reason: string,
+): ApplyWriters {
+  const orchOf = (key: string) => infra.agents.findTop('orchestrator', 'resource', `telegram:${key}`);
+  return {
+    upsertCard: (key, patch) => ops.upsertChannel(key, patch),
+    getCard: (key) => repos.channels.get(key),
+    ensureAgent: async (key) => {
+      await infra.registry.run();
+      const a = await orchOf(key);
+      if (!a) throw new Error(`agent_not_created: no orchestrator for ${key}`);
+      return a;
+    },
+    setProfile: (ref, profile) => agentsSvc.setProfile(ref, profile, 'owner'),
+    patchFormat: (ref, patch) => infra.profiles.patchFormat(ref, patch, { by: 'owner', reason }),
+    onBrief: (agent, brief) => agentsSvc.onBrief(agent, brief),
+    putPlaybook: (handle, body, rationale) => networkSvc.putPlaybook(handle, { body, rationale }),
+    putVoiceSkill: async (handle, skill) => {
+      await agentsSvc.putSkill(handle, VOICE_SKILL_NAME, { description: skill.description, body: skill.body, applies_to: ['executor', 'checker'] });
+      await agentsSvc.patchSkill(handle, VOICE_SKILL_NAME, { enabled: true });
+    },
+  };
+}
+
 function agentsCapUsd(env: (k: string) => string | undefined, caps?: LlmBudgetService): () => Promise<number> {
   return async () => (await caps?.caps())?.find((r) => r.scopeKind === 'feature_prefix' && r.scopeKey === 'editor.')?.dailyUsd
     ?? capDefaults(env).agentsDailyUsd;
@@ -584,6 +632,23 @@ export class SteeringWorker implements OnModuleInit {
   @Cron('* * * * *', { name: 'steering-tick' })
   async tick(): Promise<void> {
     try { await this.steering.tick(); } catch (err: any) { this.logger.warn(`steering tick failed: ${err?.message ?? err}`); }
+  }
+}
+
+/** Spec 052: channel launches — a tick a minute (preparation, then the checklist, graduation and promos) and one at boot. */
+@Injectable()
+export class LaunchWorker implements OnModuleInit {
+  private readonly logger = new Logger('Launch');
+
+  constructor(@Inject(LAUNCH_SERVICE) private readonly launches: LaunchService) {}
+
+  onModuleInit(): void {
+    void this.tick();
+  }
+
+  @Cron('* * * * *', { name: 'launch-tick' })
+  async tick(): Promise<void> {
+    try { await this.launches.tick(); } catch (err: any) { this.logger.warn(`launch tick failed: ${err?.message ?? err}`); }
   }
 }
 
@@ -1115,6 +1180,8 @@ export const EDITOR_PROVIDERS = [
           buildAnalyzeHistoryTool({ pool, repo: new ChannelSetupRepository(pool) }),
           // Spec 045 FR-009: @ai0 queues a steering analysis (the owner activates the rules as an artifact, spec 048).
           buildSteerChannelTool({ steering }),
+          // Spec 052 FR-001: @ai0 launches a new channel (the owner starts it from the launch artifact).
+          buildLaunchChannelTool({ launches: { createLaunch: (b, by) => (LAUNCH.svc ? LAUNCH.svc.createLaunch(b, by) : Promise.resolve({ ok: false, error: 'invalid_body', details: 'launches are not ready yet' } as const)) } }),
           // Spec 048 FR-002: read and change the artifacts that shape an agent (live ones through an Apply / Discard card).
           ...buildArtifactTools({ artifacts: () => ARTIFACTS.svc, actions: infra.actions }),
           // Spec 034 FR-008: example posts and warnings in the agent-creation chat (a content_examples card).
@@ -1624,6 +1691,13 @@ export const EDITOR_PROVIDERS = [
             if (!r.ok) return { ok: false, error: r.error, details: typeof r.details === 'string' ? r.details : undefined };
             return { ok: true, chip: { type: 'steering', id: r.set.id, title: `Steering from ${r.set.sourceTitle ?? refName(r.set.sourceRef)}`, status: r.set.status } };
           },
+          launch: async (q) => {
+            if (!LAUNCH.svc) return { ok: false, error: 'not_ready', details: 'launches are not ready yet — try again in a minute' };
+            const r = await LAUNCH.svc.createLaunch(q, 'owner');
+            const chipOf = (l: { id: string; channelKey: string; status: string }) => ({ type: 'launch' as const, id: l.id, title: launchTitle(l), status: l.status });
+            if (!r.ok) return { ok: false, error: r.error, details: r.details, ...(r.launch ? { chip: chipOf(r.launch) } : {}) };
+            return { ok: true, chip: chipOf(r.launch) };
+          },
           list: async (q) => (await artifacts.list({ ...q, limit: 50 })).rows,
         };
         return new EditorChatService({
@@ -1768,9 +1842,64 @@ export const EDITOR_PROVIDERS = [
             playbookAdapter({ pool, history: (agentId) => networkRepo.playbookHistory(agentId), put: (handle, body) => network.putPlaybook(handle, body) }),
             profileAdapter({ pool, raw: (ref) => infra.profiles.rawProfile(ref), put: (handle, _ref, body) => agentsSvc.putProfile(handle, body) }, 'profile'),
             profileAdapter({ pool, raw: (ref) => infra.profiles.rawProfile(ref), put: (handle, ref, body) => agentsSvc.putFormatting(handle, ref, body) }, 'formatting'),
+            // Spec 052 FR-005: launches (their panel body is the live view with the checklist).
+            launchAdapter({
+              list: (f) => new LaunchRepository(pool).list(f), get: (id) => new LaunchRepository(pool).get(id),
+              view: (l) => (LAUNCH.svc ? LAUNCH.svc.view(l) : Promise.resolve(launchJson(l))),
+            }),
           ],
         });
         ARTIFACTS.svc = svc;
+        return svc;
+      },
+    },
+    {
+      // Spec 052: channel launch (brief + references → plan → checklist → Start into approval → graduation).
+      provide: LAUNCH_SERVICE,
+      inject: [
+        DB_POOL, ConfigService, AGENT_INFRA, EDITOR_REPOS, EDITOR_OPS, STEERING_SERVICE, MODEL_DEFAULTS, TelegramNotifier, ChannelConfigService,
+        { token: PriceService, optional: true }, { token: LlmBudgetService, optional: true },
+      ],
+      useFactory: (
+        pool: Pool, cfg: ConfigService, infra: AgentInfra, repos: EditorRepos, ops: EditorOpsService, steering: SteeringService,
+        models: WorkspaceModelStore, notifier: TelegramNotifier, channelConfig: ChannelConfigService, prices?: PriceService, caps?: LlmBudgetService,
+      ): LaunchService => {
+        const logger = new Logger('Launch');
+        const env = (k: string) => cfg.get<string>(k) ?? undefined;
+        const steeringRepo = new SteeringRepository(pool);
+        const orchOf = (key: string) => infra.agents.findTop('orchestrator', 'resource', `telegram:${key}`);
+        const svc = new LaunchService({
+          repo: new LaunchRepository(pool),
+          card: (key) => repos.channels.get(key),
+          prepareChannel: async (key, title) => {
+            if (!(await repos.channels.get(key))) await ops.upsertChannel(key, { mode: 'off', ...(title ? { title } : {}) });
+            await infra.registry.run();
+            const a = await orchOf(key);
+            if (!a) throw new Error(`agent_not_created: no orchestrator for ${key}`);
+            return a;
+          },
+          botCheck: makeLaunchBotCheck((key) => channelConfig.resolveChannelOrDefault(key)),
+          steering: {
+            createSet: (body, by) => steering.createSet(body, by),
+            set: (id) => steeringRepo.get(id),
+            discard: (id) => steering.discard(id),
+          },
+          network: async (key) => {
+            const { rows } = await pool.query(
+              `SELECT ec.channel_key, COALESCE(ec.title, tc.title) AS title, rp.profile->>'topic' AS topic
+                 FROM editor_channels ec
+                 JOIN tracked_channels tc ON tc.channel_key = ec.channel_key AND tc.is_mine
+                 LEFT JOIN resource_profiles rp ON rp.resource_ref = 'telegram:' || ec.channel_key
+                WHERE lower(ec.channel_key) <> lower($1)
+                ORDER BY ec.channel_key LIMIT 30`, [key]);
+            return rows.map((r: any) => ({ key: r.channel_key, title: r.title ?? null, topic: r.topic ?? null }));
+          },
+          state: channelStateOf(pool, repos, infra),
+          loop: ownerStartedLoop(pool, env, notifier, logger, prices, caps),
+          model: onboarderModel(env, models),
+          log: (m) => logger.warn(m),
+        });
+        LAUNCH.svc = svc;
         return svc;
       },
     },
@@ -1833,39 +1962,12 @@ export const EDITOR_PROVIDERS = [
         const logger = new Logger('ChannelSetup');
         const env = (k: string) => cfg.get<string>(k) ?? undefined;
         const loop = ownerStartedLoop(pool, env, notifier, logger, prices, caps);
-        const orchOf = (key: string) => infra.agents.findTop('orchestrator', 'resource', `telegram:${key}`);
-        const network = new NetworkRepository(pool);
         return new ChannelSetupService({
           pool, repo: new ChannelSetupRepository(pool), loop,
           collect: (key) => collectPosts({ pool, readHistory: mtproto ? (target, limit) => mtproto.readHistory(target, 0, limit) : undefined }, key),
           model: onboarderModel(env, models),
-          state: async (key) => {
-            const ref = `telegram:${key}`;
-            const [card, agent, stored] = await Promise.all([repos.channels.get(key), orchOf(key), infra.profiles.get(ref)]);
-            const raw = stored ? (await pool.query(`SELECT profile FROM resource_profiles WHERE resource_ref = $1`, [ref])).rows[0]?.profile : null;
-            const playbook = agent ? (await network.activePlaybook(agent.id))?.body ?? null : null;
-            const voice = agent ? (await infra.skills.findForAgent(agent.id, VOICE_SKILL_NAME))?.body ?? null : null;
-            const datasets = await boundDatasets(pool, ref, playbook);
-            return { card, agent, profile: stored?.profile ?? null, locks: storedFormat(raw).locks, playbook, voice, datasets };
-          },
-          writers: {
-            upsertCard: (key, patch) => ops.upsertChannel(key, patch),
-            getCard: (key) => repos.channels.get(key),
-            ensureAgent: async (key) => {
-              await infra.registry.run();
-              const a = await orchOf(key);
-              if (!a) throw new Error(`agent_not_created: no orchestrator for ${key}`);
-              return a;
-            },
-            setProfile: (ref, profile) => agentsSvc.setProfile(ref, profile, 'owner'),
-            patchFormat: (ref, patch) => infra.profiles.patchFormat(ref, patch, { by: 'owner', reason: 'Setup from the channel history' }),
-            onBrief: (agent, brief) => agentsSvc.onBrief(agent, brief),
-            putPlaybook: (handle, body, rationale) => networkSvc.putPlaybook(handle, { body, rationale }),
-            putVoiceSkill: async (handle, skill) => {
-              await agentsSvc.putSkill(handle, VOICE_SKILL_NAME, { description: skill.description, body: skill.body, applies_to: ['executor', 'checker'] });
-              await agentsSvc.patchSkill(handle, VOICE_SKILL_NAME, { enabled: true });
-            },
-          },
+          state: channelStateOf(pool, repos, infra),
+          writers: setupWriters(repos, infra, ops, agentsSvc, networkSvc, 'Setup from the channel history'),
           log: (m) => logger.warn(m),
         });
       },
@@ -1895,7 +1997,8 @@ export const EDITOR_PROVIDERS = [
               } : undefined,
             }),
           },
-          isOwn: async (key) => !!(await trackedChannel(pool, key))?.isMine,
+          // Spec 052 FR-001: a channel with an open launch counts as ours (the bot-admin check proves it before Start).
+          isOwn: async (key) => !!(await trackedChannel(pool, key))?.isMine || !!(await new LaunchRepository(pool).openFor(key)),
           target: async (ref) => {
             const key = ref.replace(/^telegram:/, '');
             const [card, agent, stored, format, memory] = await Promise.all([
@@ -1958,6 +2061,7 @@ export const EDITOR_PROVIDERS = [
     OwnerBotWorker,
     ChannelSetupWorker,
     SteeringWorker,
+    LaunchWorker,
     EditorCron,
     AgentsUpkeep,
     StoryBackfill,
@@ -1967,7 +2071,7 @@ export const EDITOR_PROVIDERS = [
 @Module({
   // AuthModule: EditorController is guarded by TrackingAuthGuard, which injects AuthService.
   imports:     [ChannelConfigModule, PublishersModule, AuthModule],
-  controllers: [EditorController, EditorChatController, AgentsController, ModelsController, NetworkController, ManagerController, PromoController, PromoRedirectController, ApprovalsController, AutonomyController, ScheduleController, StrategyMigrationController, UpcomingSlotsController, ResourcePausesController, PostAuditController, ChannelSetupController, SteeringController, NetworkHealthController, ArtifactsController, OwnerBotController],
+  controllers: [EditorController, EditorChatController, AgentsController, ModelsController, NetworkController, ManagerController, PromoController, PromoRedirectController, ApprovalsController, AutonomyController, ScheduleController, StrategyMigrationController, UpcomingSlotsController, ResourcePausesController, PostAuditController, ChannelSetupController, SteeringController, NetworkHealthController, ArtifactsController, OwnerBotController, LaunchController],
   providers:   [...EDITOR_PROVIDERS, TrackingAuthGuard],
   exports:     [EDITOR_REPOS, EDITOR_RUNNER, AGENT_INFRA, PLATFORM_INFRA, EDITOR_MANAGER],
 })

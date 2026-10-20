@@ -7,6 +7,7 @@ import type { ArtifactChip, ArtifactRow, ArtifactType } from '../artifacts/artif
 export const SLASH_COMMANDS = [
   { name: 'setup',  args: '@channel',            description: 'Set a channel up from its last 20 posts (one model run in the background)' },
   { name: 'steer',  args: '@channel @reference', description: 'Steer a channel by a public reference channel (@name or a t.me link)' },
+  { name: 'launch', args: '@new_channel [@ref …] brief', description: 'Launch a new channel from a brief and up to 3 reference channels (one model run in the background)' },
   { name: 'rules',  args: '[@channel]',          description: 'Your rules for a channel' },
   { name: 'skills', args: '[@agent]',            description: 'An agent\'s skills' },
   { name: 'memory', args: '[@channel]',          description: 'What a channel\'s agent learnt from reviews and approvals' },
@@ -20,6 +21,8 @@ export interface SlashCommand {
   /** The word after `/` as typed (an unknown command keeps it for the answer). */
   word: string;
   args: string[];
+  /** Everything after the command word as typed (line breaks kept), for commands with free text. */
+  rest: string;
 }
 
 export interface SlashResult {
@@ -27,11 +30,13 @@ export interface SlashResult {
   artifacts: ArtifactChip[];
 }
 
-export type SlashStart = { ok: true; chip: ArtifactChip } | { ok: false; error: string; details?: string };
+export type SlashStart = { ok: true; chip: ArtifactChip } | { ok: false; error: string; details?: string; chip?: ArtifactChip };
 
 export interface SlashDeps {
   setup(channelKey: string): Promise<SlashStart>;
   steer(channelKey: string, reference: string): Promise<SlashStart>;
+  /** Spec 052 FR-001. */
+  launch(q: { target: string; references: string[]; brief: string }): Promise<SlashStart>;
   list(q: { type: ArtifactType; agent?: string; channel?: string }): Promise<ArtifactRow[]>;
 }
 
@@ -50,7 +55,29 @@ export function parseSlash(text: string): SlashCommand | null {
   const m = /^\/([a-z]+)(?=\s|$)([\s\S]*)$/.exec(text.trim());
   if (!m) return null;
   const known = SLASH_COMMANDS.find((c) => c.name === m[1]);
-  return { name: known?.name ?? null, word: m[1], args: m[2].trim().split(/\s+/).filter(Boolean) };
+  return { name: known?.name ?? null, word: m[1], args: m[2].trim().split(/\s+/).filter(Boolean), rest: m[2].trim() };
+}
+
+const REF_TOKEN = /^(?:telegram:)?@[A-Za-z][A-Za-z0-9_]{3,31}$|^(?:https?:\/\/)?(?:www\.)?(?:t|telegram)\.me\/\S+$/i;
+
+/**
+ * Spec 052: `/launch @new [@ref …] brief…` — the first handle is the new channel, the handles right after it are the
+ * references, the rest (a leading dash or colon dropped) is the brief with its line breaks.
+ */
+export function parseLaunchArgs(rest: string): { target: string; references: string[]; brief: string } | null {
+  let text = rest.trim();
+  const take = (): string | null => {
+    const m = /^(\S+)(\s+|$)/.exec(text);
+    if (!m || !REF_TOKEN.test(m[1].replace(/[,;]$/, ''))) return null;
+    text = text.slice(m[0].length);
+    return m[1].replace(/[,;]$/, '');
+  };
+  const target = take();
+  if (!target) return null;
+  const references: string[] = [];
+  for (let ref = take(); ref; ref = take()) references.push(ref);
+  const brief = text.replace(/^[—–:\-]+\s*/, '').trim();
+  return { target, references, brief };
 }
 
 const usage = (name: SlashName) => {
@@ -75,6 +102,13 @@ const ERRORS: Record<string, string> = {
   same_channel:    'the reference must be another channel',
   invalid_source:  'the reference is not a public channel',
   already_open:    'this reference is already being analysed for the channel',
+};
+
+const LAUNCH_ERRORS: Record<string, string> = {
+  invalid_target:      'the new channel must be a handle: /launch @new_channel [@reference …] what the channel is about',
+  brief_too_short:     'describe the channel after the handles in at least 30 characters: what it publishes and for whom',
+  too_many_references: 'at most 3 reference channels',
+  already_running:     'already runs in approval or live mode — use /setup or the agent page',
 };
 
 export async function runSlash(cmd: SlashCommand, ctx: SlashContext, d: SlashDeps): Promise<SlashResult> {
@@ -106,6 +140,18 @@ export async function runSlash(cmd: SlashCommand, ctx: SlashContext, d: SlashDep
         return say(r.error === 'not_own_channel' || r.error === 'no_card' ? `${target} ${why}.` : `Steering for ${target}: ${why}.`);
       }
       return say(`Steering for ${target} queued. The reference's last 20 posts are read within a minute; review and activate the rules from the card below.`, [r.chip]);
+    }
+
+    case 'launch': {
+      const a = parseLaunchArgs(cmd.rest);
+      if (!a) return wrong();
+      const r = await d.launch(a);
+      if (!r.ok) {
+        if (r.error === 'already_open') return say(`${a.target} already has a launch — open it from the card below.`, r.chip ? [r.chip] : []);
+        return say(`Launch of ${a.target}: ${LAUNCH_ERRORS[r.error] ?? r.details ?? r.error}.`);
+      }
+      const refs = a.references.length ? ` The ${a.references.length === 1 ? 'reference is' : `${a.references.length} references are`} read first.` : '';
+      return say(`Launch of ${a.target} queued.${refs} The plan is ready in a few minutes; the card below shows it and what only you can do (add the bot as an admin).`, [r.chip]);
     }
 
     case 'rules':

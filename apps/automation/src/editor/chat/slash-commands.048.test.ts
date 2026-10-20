@@ -21,17 +21,18 @@ function deps() {
   const d: SlashDeps = {
     setup: async (key) => { calls.push(['setup', key]); return key === '@other' ? { ok: false, error: 'not_own_channel' } : { ok: true, chip: { type: 'setup', id: 'p1', title: `Setup from history · ${key}`, status: 'queued' } }; },
     steer: async (key, ref) => { calls.push(['steer', key, ref]); return ref === '@news' ? { ok: false, error: 'same_channel' } : { ok: true, chip: { type: 'steering', id: 's1', title: 'Steering from ref', status: 'queued' } }; },
+    launch: async (q) => { calls.push(['launch', q]); return { ok: true, chip: { type: 'launch', id: 'l1', title: `Launch · ${q.target}`, status: 'queued' } }; },
     list: async (q) => { calls.push(['list', q]); return q.channel === '@empty' ? [] : [row(q.type, q.channel ?? q.agent ?? 'all')]; },
   };
   return { d, calls };
 }
 
 test('parse: a command word at the start; a path is not a command; unknown words are kept', () => {
-  assert.deepEqual(parseSlash('/steer @news t.me/ref'), { name: 'steer', word: 'steer', args: ['@news', 't.me/ref'] });
-  assert.deepEqual(parseSlash('  /help  '), { name: 'help', word: 'help', args: [] });
+  assert.deepEqual(parseSlash('/steer @news t.me/ref'), { name: 'steer', word: 'steer', args: ['@news', 't.me/ref'], rest: '@news t.me/ref' });
+  assert.deepEqual(parseSlash('  /help  '), { name: 'help', word: 'help', args: [], rest: '' });
   assert.equal(parseSlash('/app/setup is broken'), null);
   assert.equal(parseSlash('hello /setup'), null);
-  assert.deepEqual(parseSlash('/stear @x'), { name: null, word: 'stear', args: ['@x'] });
+  assert.deepEqual(parseSlash('/stear @x'), { name: null, word: 'stear', args: ['@x'], rest: '@x' });
 });
 
 test('commands: the chat\'s channel fills a missing @channel; wrong arguments get the usage; refusals are one line', async () => {
