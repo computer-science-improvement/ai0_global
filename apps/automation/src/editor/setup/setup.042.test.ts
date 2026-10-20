@@ -304,6 +304,12 @@ test('apply through the service: a section the owner changed since the analysis 
   assert.deepEqual(r.applied, ['format_mix']);
   assert.equal(r.proposal?.status, 'partially_applied');
   assert.equal(r.proposal?.sectionStatus.brief_profile, 'pending');
+
+  // The owner applies the changed section anyway: the override replaces the newer change and closes the proposal's last section.
+  const o = await svc.apply(repo.rows[0].id, { sections: ['brief_profile'], override: ['brief_profile'] });
+  assert.deepEqual(o.changedSinceAnalysis, []);
+  assert.deepEqual(o.applied, ['brief_profile']);
+  assert.equal(o.proposal?.sectionStatus.brief_profile, 'applied');
 });
 
 // ── post collection ──────────────────────────────────────────────────────────

@@ -61,7 +61,11 @@ export interface ChannelSetupDeps {
 }
 
 const AnalyzeBody = z.object({ channelKeys: z.array(z.string().trim().min(2).max(200)).min(1).max(MAX_CHANNELS_PER_RUN) }).strict();
-const ApplyBody = z.object({ sections: z.array(z.enum(SETUP_SECTIONS)).min(1).max(SETUP_SECTIONS.length) }).strict();
+const ApplyBody = z.object({
+  sections: z.array(z.enum(SETUP_SECTIONS)).min(1).max(SETUP_SECTIONS.length),
+  // Sections the owner applies although they changed since the analysis: the proposal replaces the newer change.
+  override: z.array(z.enum(SETUP_SECTIONS)).max(SETUP_SECTIONS.length).optional(),
+}).strict();
 
 export class ChannelSetupService {
   private worker: Promise<void> | null = null;
@@ -280,7 +284,8 @@ export class ChannelSetupService {
     if (!wanted.length) throw new BadRequestException({ error: 'nothing_to_apply', details: 'these sections are already applied' });
 
     const state = await this.d.state(p.channelKey);
-    const drift = driftedSections(p.baseline, sectionBaseline(state, p.resourceRef), wanted);
+    const override = new Set(b.data.override ?? []);
+    const drift = driftedSections(p.baseline, sectionBaseline(state, p.resourceRef), wanted).filter((s) => !override.has(s));
     const go = wanted.filter((s) => !drift.includes(s));
     const posts = await this.postsOf(p);
     const out = go.length

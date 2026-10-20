@@ -51,9 +51,15 @@ export function ProposalBody({ v, onClose }: { v: SetupProposalView; onClose: ()
     return n;
   });
 
-  const doApply = () => {
+  const doApply = async () => {
     const sections = SETUP_SECTIONS.filter((s) => picked.has(s));
-    apply.mutate({ id: p.id, sections }, {
+    // A section changed after the analysis is applied only when the owner says so: it replaces that newer change.
+    const override = sections.filter((s) => changed.has(s));
+    if (override.length && !(await confirm(
+      `replace what changed since the analysis in ${override.map((s) => SECTION_LABEL[s].toLowerCase()).join(', ')} with the proposal`,
+      { confirmLabel: 'Replace' },
+    ))) return;
+    apply.mutate({ id: p.id, sections, override }, {
       onSuccess: (r) => {
         setRefused(r.changedSinceAnalysis);
         setFailed(r.failed);
@@ -69,7 +75,9 @@ export function ProposalBody({ v, onClose }: { v: SetupProposalView; onClose: ()
     });
   };
   const doDiscard = async () => {
-    if (!(await confirm(`discard this proposal for ${p.channelKey}`, { confirmLabel: 'Discard' }))) return;
+    const rest = p.status === 'partially_applied';
+    if (!(await confirm(rest ? `skip the sections not applied yet and close this proposal for ${p.channelKey}` : `discard this proposal for ${p.channelKey}`,
+      { confirmLabel: rest ? 'Skip the rest' : 'Discard' }))) return;
     discard.mutate(p.id, { onSuccess: onClose, onError: (e) => toast.error(describeError(e)) });
   };
 
@@ -105,7 +113,10 @@ export function ProposalBody({ v, onClose }: { v: SetupProposalView; onClose: ()
       <div className="modal-foot" style={{ justifyContent: 'space-between', flexWrap: 'wrap' }}>
         <div>
           {['ready', 'partially_applied', 'queued', 'failed', 'no_access', 'too_few_posts'].includes(p.status) && (
-            <button type="button" className="btn-secondary" disabled={discard.isPending} onClick={doDiscard}>Discard</button>
+            <button type="button" className="btn-secondary" disabled={discard.isPending} onClick={doDiscard}
+              title={p.status === 'partially_applied' ? 'Close the proposal: the sections not applied are skipped, the applied ones stay' : undefined}>
+              {p.status === 'partially_applied' ? 'Skip the rest' : 'Discard'}
+            </button>
           )}
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
@@ -159,7 +170,7 @@ function SectionBlock({ section, v, reviewable, state, checked, onToggle, change
     <section style={{ border: '1px solid var(--color-hairline-soft)', borderRadius: 'var(--radius-md, 8px)', padding: 12 }}>
       <div style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
         {canPick && (
-          <input id={boxId} type="checkbox" checked={checked} onChange={onToggle} disabled={changed}
+          <input id={boxId} type="checkbox" checked={checked} onChange={onToggle}
             style={{ marginTop: 3, width: 16, height: 16, accentColor: 'var(--color-accent)' }} />
         )}
         <div style={{ flex: 1, minWidth: 0 }}>
@@ -169,10 +180,17 @@ function SectionBlock({ section, v, reviewable, state, checked, onToggle, change
             </label>
             {state === 'applied' && <Badge tone="success">applied</Badge>}
             {state === 'skipped' && <Badge>skipped</Badge>}
-            {changed && <Badge tone="danger" title="This section was edited after the analysis; run the analysis again to review it">changed since analysis</Badge>}
+            {changed && <Badge tone="danger" title="This section was edited after the analysis">changed since analysis</Badge>}
           </div>
           <div className="text-micro" style={{ color: 'var(--color-ink-muted)', marginTop: 2 }}>{SECTION_HINT[section]}</div>
           {failed && <div className="callout-danger" style={{ marginTop: 8 }}><Icon name="warning" size={14} /><div>{failed}</div></div>}
+          {changed && canPick && (
+            <div className="text-micro" style={{ marginTop: 6, color: checked ? 'var(--color-warning)' : 'var(--color-ink-muted)' }}>
+              {checked
+                ? 'Applying replaces what changed after the analysis (Now) with the proposal.'
+                : 'Edited after the analysis. Tick it to replace that change with the proposal, skip it, or run the analysis again.'}
+            </div>
+          )}
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 10, marginTop: 10 }}>
             <Rows title="Now" rows={now} empty="Not set" muted />

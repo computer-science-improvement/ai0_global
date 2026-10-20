@@ -201,8 +201,11 @@ export function useApplySetup() {
   const done = useInvalidate();
   return useMutation({
     meta: { silentError: true },
-    mutationFn: ({ id, sections }: { id: string; sections: SetupSection[] }) =>
-      api<ApplyResult>(`/api/channel-setup/proposals/${encodeURIComponent(id)}/apply`, { method: 'POST', body: JSON.stringify({ sections }) }),
+    // `override`: sections applied although they changed since the analysis (the proposal replaces the newer change).
+    mutationFn: ({ id, sections, override }: { id: string; sections: SetupSection[]; override?: SetupSection[] }) =>
+      api<ApplyResult>(`/api/channel-setup/proposals/${encodeURIComponent(id)}/apply`, {
+        method: 'POST', body: JSON.stringify(override?.length ? { sections, override } : { sections }),
+      }),
     onSuccess: done,
   });
 }
