@@ -348,3 +348,6 @@ BEGIN
 END $$;
 
 SELECT data_schema_stats_refresh();
+
+INSERT INTO schema_migrations (version) VALUES ('083_post_requires')
+  ON CONFLICT (version) DO NOTHING;

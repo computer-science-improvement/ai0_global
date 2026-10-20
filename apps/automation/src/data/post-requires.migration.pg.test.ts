@@ -2,7 +2,7 @@
  * Migration 083 (post_requires) on a database shaped like production on 2026-10-18: PromptHero rows of
  * `prompts` loaded by the old pipeline mapping (gallery page in page_url, the single-prompt link only in
  * prompt_source, the image only in id). Creates its own database next to EDITOR_PG_TEST_URL (init.sql +
- * migrations before 083), applies 083 twice, and checks the repair, the undo, the catalog numbers, the
+ * every other migration, 084+ included), applies 083 twice, and checks the repair, the undo, the catalog numbers, the
  * agents' row picking, the stats and the write path. Skipped unless EDITOR_PG_TEST_URL is set (needs
  * CREATEDB). Never point this at a real database.
  */
@@ -64,7 +64,7 @@ before(async () => {
     await c.query(`CREATE TABLE IF NOT EXISTS schema_migrations (version VARCHAR(64) PRIMARY KEY, applied_at TIMESTAMPTZ NOT NULL DEFAULT now())`);
     await c.query(readFileSync(join(DB_DIR, 'init.sql'), 'utf8'));
     for (const f of readdirSync(MIGRATIONS).filter((x) => x.endsWith('.sql')).sort()) {
-      if (f >= '083') break;
+      if (f.startsWith('083')) continue; // later migrations (084+) are already in place when 083 lands
       await applyFile(c, readFileSync(join(MIGRATIONS, f), 'utf8'));
     }
     // The pre-083 write path accepts these rows (that is the bug).
@@ -208,4 +208,31 @@ test('undo of the 083 repair restores the old values', { skip }, async () => {
   assert.equal(r.restored, 6);
   assert.deepEqual((await rowOf(img(0))).data, pre.get(img(0)));
   assert.deepEqual((await rowOf(img(4))).data, pre.get(img(4)));
+});
+
+test('083 is recorded in schema_migrations; its down file restores the 058/060 functions and drops the rule', { skip }, async () => {
+  const rec = () => pool.query(`SELECT 1 FROM schema_migrations WHERE version = '083_post_requires'`);
+  assert.equal((await rec()).rowCount, 1);
+
+  const down = readFileSync(join(MIGRATIONS, 'down', '083_post_requires.down.sql'), 'utf8');
+  const c = await pool.connect();
+  try { await applyFile(c, down); } finally { c.release(); }
+  assert.equal((await rec()).rowCount, 0);
+  const cols = (await pool.query(
+    `SELECT table_name, column_name FROM information_schema.columns
+      WHERE (table_name = 'data_schemas' AND column_name = 'post_requires') OR (table_name = 'data_schema_stats' AND column_name = 'rows_unpostable')`)).rows;
+  assert.deepEqual(cols, []);
+  assert.equal((await pool.query(`SELECT 1 FROM pg_proc WHERE proname IN ('data_postable', 'data_post_missing', 'data_value_present')`)).rowCount, 0);
+  // The pre-083 write path is back: a row nothing can be posted from is accepted again, and stats refresh runs.
+  const res = (await pool.query(`SELECT data_items_upsert('prompts', $1::jsonb) AS r`,
+    [JSON.stringify([{ id: img(30), prompt_source: one(30), provider: 'prompthero' }])])).rows[0].r;
+  assert.equal(res.inserted, 1);
+  await pool.query(`SELECT data_schema_stats_refresh()`);
+
+  // 083 applies again on top of the reverted schema.
+  const c2 = await pool.connect();
+  try { await applyFile(c2, M083); } finally { c2.release(); }
+  assert.equal((await rec()).rowCount, 1);
+  const s = (await pool.query(`SELECT post_requires FROM data_schemas WHERE key = 'prompts'`)).rows[0];
+  assert.deepEqual(s.post_requires, [['page_url'], ['prompt_text', 'media_url']]);
 });
