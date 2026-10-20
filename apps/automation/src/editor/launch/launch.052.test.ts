@@ -14,7 +14,8 @@ import type { SteeringSet } from '../steering/steering.types';
 import { parseLaunchArgs, parseSlash, runSlash, type SlashDeps } from '../chat/slash-commands';
 import { checkLaunch, SUBMIT_LAUNCH_TOOL, SubmitLaunchInput } from './launch-analysis';
 import { launchActions, launchSummary } from './launch-artifact';
-import { LaunchService, REFERENCE_WAIT_MS, type LaunchDeps } from './launch.service';
+import { BOT_RECHECK_MS, LaunchService, REFERENCE_WAIT_MS, type LaunchDeps } from './launch.service';
+import { launchSource } from './launch-cards';
 import type { LaunchRepository } from './launch.repository';
 import type { LaunchBotState } from './launch.types';
 import { MemoryLaunchRepo, validLaunch } from './testing/launch-fixtures';
@@ -36,8 +37,15 @@ const set = (id: string, source: string, status: SteeringSet['status'], p: Parti
   runId: null, costUsd: 0.01, createdBy: 'launch', createdAt: NOW, updatedAt: NOW, activatedAt: null, ...p,
 });
 
-function service(o: { turns?: ConstructorParameters<typeof FakeLlm>[0]; card?: EditorCard | null; bot?: LaunchBotState; refuse?: Record<string, string>; now?: () => Date } = {}) {
+const NO_BOT: LaunchBotState = { state: 'no_access', detail: '@ai0_bot is not an administrator yet', bot: '@ai0_bot', chatTitle: 'Кава вдома', chatAbout: 'Про каву' };
+const BOT_OK: LaunchBotState = { state: 'ok', detail: '@ai0_bot can post', bot: '@ai0_bot', chatTitle: 'Кава вдома', chatAbout: 'Про каву' };
+
+function service(o: {
+  turns?: ConstructorParameters<typeof FakeLlm>[0]; card?: EditorCard | null; bot?: LaunchBotState; refuse?: Record<string, string>; now?: () => Date;
+  failStep?: 'playbook';
+} = {}) {
   const now = o.now ?? (() => NOW);
+  const box = { bot: o.bot ?? NO_BOT, tracked: null as { isMine: boolean; subs: number | null } | null, published: 0, ideas: 0 };
   const repo = new MemoryLaunchRepo(now);
   const sets = new Map<string, SteeringSet>();
   const calls: unknown[][] = [];
@@ -48,7 +56,7 @@ function service(o: { turns?: ConstructorParameters<typeof FakeLlm>[0]; card?: E
     repo: repo as unknown as LaunchRepository,
     card: async () => card,
     prepareChannel: async (key, title) => { calls.push(['prepare', key, title]); card = card ?? makeCard({ channelKey: key, mode: 'off', title: title ?? key }); return agent(); },
-    botCheck: async () => o.bot ?? { state: 'no_access', detail: '@ai0_bot is not an administrator yet', bot: '@ai0_bot', chatTitle: 'Кава вдома', chatAbout: 'Про каву' },
+    botCheck: async () => { calls.push(['bot']); return box.bot; },
     steering: {
       createSet: async (body) => {
         calls.push(['steer', body.source]);
@@ -60,14 +68,29 @@ function service(o: { turns?: ConstructorParameters<typeof FakeLlm>[0]; card?: E
       },
       set: async (id) => sets.get(id) ?? null,
       discard: async (id) => { calls.push(['discard', id]); const s = sets.get(id); if (s) sets.set(id, { ...s, status: 'discarded' }); },
+      activate: async (id) => { calls.push(['activate', id]); const s = sets.get(id); if (s) sets.set(id, { ...s, status: 'active' }); },
     },
     network: async () => [{ key: '@tea_home', title: 'Чай вдома', topic: 'Чай' }],
     state: async () => ({ card, agent: agent(), profile: null, locks: [], playbook: null, voice: null }),
     loop,
     model: async () => resolveModel('onboarder', () => undefined),
+    tracked: async () => box.tracked,
+    trackOwn: async (key) => { calls.push(['trackOwn', key]); box.tracked = { isMine: true, subs: 12 }; },
+    published: async () => box.published,
+    platforms: async () => [],
+    writers: {
+      upsertCard: async (key, patch) => { calls.push(['card', key, patch]); },
+      setProfile: async () => { calls.push(['profile']); },
+      patchFormat: async () => { calls.push(['format']); return null; },
+      putPlaybook: async () => { if (o.failStep === 'playbook') throw new Error('playbook_invalid: platforms[0]'); calls.push(['playbook']); },
+      putVoiceSkill: async (_h, v) => { calls.push(['voice', v.body]); },
+    },
+    ideas: { count: async () => box.ideas, add: async (i) => { box.ideas++; calls.push(['idea', i.title, i.originRef, i.variants[0].resource_ref]); } },
+    setMode: async (key, mode) => { calls.push(['mode', key, mode]); if (card) card = { ...card, mode }; },
+    planAhead: async (key) => { calls.push(['plan', key]); },
     now,
   };
-  return { svc: new LaunchService(d), repo, sets, calls, llm };
+  return { svc: new LaunchService(d), repo, sets, calls, llm, box };
 }
 
 const run = async (svc: LaunchService) => { await svc.tick(); await svc.idle(); };
@@ -252,4 +275,132 @@ test('artifact: actions follow the status; the summary says what happens next', 
   assert.deepEqual(keys('graduated'), []);
   const base = { refs: [{ ref: 'telegram:@coffee_ref', setId: null, status: 'ready', reason: null, title: null }], reason: null, startedAt: null, startRequested: true } as any;
   assert.equal(launchSummary({ ...base, status: 'ready' }), 'starts when the bot is an admin · @coffee_ref');
+});
+
+// ── T2: the checklist and Start ──────────────────────────────────────────────
+
+/** A launch with one reference read and a valid plan (status ready). */
+async function readyLaunch(o: Parameters<typeof service>[0] = {}) {
+  const t = service({ turns: [{ calls: [{ name: SUBMIT_LAUNCH_TOOL, args: validLaunch() }] }], ...o });
+  await t.svc.createLaunch({ target: KEY, brief: BRIEF, references: ['@coffee_ref'] });
+  await t.svc.idle();
+  t.sets.set('set-1', set('set-1', 'telegram:@coffee_ref', 'ready'));
+  await run(t.svc);
+  assert.equal(t.repo.rows[0].status, 'ready', t.repo.rows[0].reason ?? '');
+  return t;
+}
+
+test('checklist: what the owner does and what code does, with live states', async () => {
+  const { svc, repo } = await readyLaunch();
+  const steps = (await svc.view(repo.rows[0])).checklist;
+  const st = Object.fromEntries(steps.map((x) => [x.key, x.state]));
+  assert.deepEqual(st, {
+    bot_admin: 'needs_you', tracked: 'waiting', references: 'done', plan: 'done', start: 'needs_you',
+    first_posts: 'waiting', cross_promo: 'waiting', platforms: 'optional', graduation: 'waiting',
+  });
+  const bot = steps.find((x) => x.key === 'bot_admin')!;
+  assert.equal(bot.who, 'owner');
+  assert.match(bot.title, /Add @ai0_bot to @coffee_home as an administrator/);
+  assert.equal(bot.link, 'https://t.me/coffee_home');
+});
+
+test('start: with the bot not an admin the Start is remembered; the tick that sees the bot starts it', async () => {
+  let t = NOW;
+  const { svc, repo, calls, box } = await readyLaunch({ now: () => t });
+  const id = repo.rows[0].id;
+  const r = await svc.start(id);
+  assert.equal(r.started, false);
+  assert.equal(r.waitingFor, 'bot_admin');
+  assert.equal(repo.rows[0].startRequested, true);
+  assert.equal(repo.rows[0].status, 'ready');
+  assert.ok(!calls.some((c) => c[0] === 'mode'), 'nothing applied yet');
+
+  box.bot = BOT_OK;
+  const before = calls.filter((c) => c[0] === 'bot').length;
+  t = new Date(NOW.getTime() + 30_000);
+  await run(svc);
+  assert.equal(calls.filter((c) => c[0] === 'bot').length, before, 'the bot is not asked again within two minutes');
+  t = new Date(NOW.getTime() + BOT_RECHECK_MS + 1_000);
+  await run(svc);
+  const l = repo.rows[0];
+  assert.equal(l.status, 'running', l.reason ?? '');
+  assert.equal(l.startRequested, false);
+  assert.equal(l.subsAtStart, 12);
+  assert.deepEqual(calls.filter((c) => c[0] === 'trackOwn'), [['trackOwn', KEY]]);
+  const order = calls.map((c) => c[0]).filter((k) => ['profile', 'card', 'format', 'playbook', 'voice', 'activate', 'idea', 'mode'].includes(k as string));
+  assert.deepEqual([...new Set(order)], ['profile', 'card', 'format', 'playbook', 'voice', 'activate', 'idea', 'mode']);
+  assert.deepEqual(calls.find((c) => c[0] === 'activate'), ['activate', 'set-1']);
+  assert.deepEqual(calls.find((c) => c[0] === 'mode'), ['mode', KEY, 'approve']);
+  const card = calls.find((c) => c[0] === 'card')![2] as Record<string, unknown>;
+  assert.equal(card.brief, validLaunch().brief_profile.brief);
+  assert.deepEqual(card.formats, validLaunch().format_mix.formats);
+  assert.equal(card.postsPerDayMax, validLaunch().schedule.posts_per_day_max);
+  const ideas = calls.filter((c) => c[0] === 'idea');
+  assert.equal(ideas.length, validLaunch().first_week.ideas.length);
+  assert.equal(ideas[0][1], validLaunch().first_week.ideas.find((i) => i.intro)!.title, 'the day-1 intro comes first');
+  assert.equal(ideas[0][2], `launch:${l.id}`);
+  assert.equal(ideas[0][3], `telegram:${KEY}`);
+  assert.match(String(calls.find((c) => c[0] === 'voice')![1]), /^# Голос каналу @coffee_home/);
+  await svc.idle();
+  assert.deepEqual(calls.filter((c) => c[0] === 'plan'), [['plan', KEY]]);
+});
+
+test('start: with the bot an admin the launch runs at once; a second Start changes nothing', async () => {
+  const { svc, repo, calls } = await readyLaunch({ bot: BOT_OK });
+  const id = repo.rows[0].id;
+  const r = await svc.start(id);
+  assert.equal(r.started, true);
+  assert.equal(r.launch.status, 'running');
+  assert.ok(r.launch.checklist.find((x) => x.key === 'start')!.state === 'done');
+  const n = calls.length;
+  const again = await svc.start(id);
+  assert.equal(again.started, true);
+  assert.equal(calls.length, n);
+  await svc.idle();
+});
+
+test('start: a failing step stops the Start, keeps the launch ready and says which step', async () => {
+  const { svc, repo, calls } = await readyLaunch({ bot: BOT_OK, failStep: 'playbook' });
+  await assert.rejects(svc.start(repo.rows[0].id), /Conflict|start_failed/);
+  const l = repo.rows[0];
+  assert.equal(l.status, 'ready');
+  assert.match(l.reason ?? '', /^start: playbook: playbook_invalid/);
+  assert.ok(!calls.some((c) => c[0] === 'mode'));
+  await assert.rejects(service().svc.start('nope'), /launch_not_found|Not Found/);
+});
+
+test('check: asks the Bot API now; a remembered Start then runs', async () => {
+  const { svc, repo, box } = await readyLaunch();
+  const id = repo.rows[0].id;
+  await svc.start(id);
+  box.bot = BOT_OK;
+  const { launch } = await svc.check(id);
+  assert.equal(launch.status, 'running');
+  assert.equal(launch.bot?.state, 'ok');
+  assert.equal(launch.checklist.find((x) => x.key === 'tracked')!.state, 'done');
+  await svc.idle();
+});
+
+test('owner bot: a ready plan waits for Start; a Start waiting for the bot asks for the admin rights', async () => {
+  const { svc, repo, box } = await readyLaunch();
+  const l = repo.rows[0];
+  const rows = [{ id: l.id, channel_key: KEY, summary: 'Кавовий канал для початківців', start_requested: false, bot_state: NO_BOT, updated_at: NOW }];
+  const src = launchSource({ pool: { query: async () => ({ rows }) } as any, launches: svc });
+  let [card] = await src.waiting(NOW);
+  assert.equal(card.refId, `${l.id}:start`);
+  assert.deepEqual(card.buttons.map((b) => b.key), ['start', 'check', 'open']);
+  assert.equal(card.buttons[0].confirm, 'Так, запустити');
+  assert.match(card.body ?? '', /Додайте @ai0_bot в @coffee_home адміністратором/);
+  assert.equal(card.path, `/app/artifacts?type=launch&open=launch:${l.id}`);
+
+  assert.match(await src.act(card.refId, 'start'), /Старт прийнято/);
+  rows[0].start_requested = true;
+  [card] = await src.waiting(NOW);
+  assert.equal(card.refId, `${l.id}:bot`);
+  assert.deepEqual(card.buttons.map((b) => b.key), ['check', 'open']);
+  await assert.rejects(src.act(card.refId, 'check'), /Додайте @ai0_bot в @coffee_home/);
+  box.bot = BOT_OK;
+  assert.match(await src.act(card.refId, 'check'), /запуск стартував/);
+  assert.equal(repo.rows[0].status, 'running');
+  await svc.idle();
 });

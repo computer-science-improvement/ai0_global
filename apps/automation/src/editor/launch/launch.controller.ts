@@ -19,6 +19,12 @@ export class LaunchController {
   @Get(':id')
   get(@Param('id') id: string) { return this.svc.viewById(id); }
 
+  @Post(':id/start')
+  start(@Param('id') id: string) { return this.svc.start(id); }
+
+  @Post(':id/check')
+  check(@Param('id') id: string) { return this.svc.check(id); }
+
   @Post(':id/redo')
   redo(@Param('id') id: string, @Body() body: unknown) { return this.svc.redo(id, body); }
 

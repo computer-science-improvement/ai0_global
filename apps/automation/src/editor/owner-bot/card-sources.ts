@@ -182,11 +182,12 @@ export function actionSource(d: SourceDeps): CardSource {
 
 /** Steering sets (045) ready to activate. */
 export function steeringSource(d: SourceDeps): CardSource {
+  // A launch's reference sets (052) are activated by its Start — they are not a card of their own.
   return {
     kind: 'steering', emoji: '🎯', label: 'Стиль за референсом',
     async waiting() {
       const { rows } = await d.pool.query(
-        `SELECT id, channel_key, source_ref, source_title, summary, updated_at FROM steering_sets WHERE status = 'ready' ORDER BY updated_at`);
+        `SELECT id, channel_key, source_ref, source_title, summary, updated_at FROM steering_sets WHERE status = 'ready' AND created_by IS DISTINCT FROM 'launch' ORDER BY updated_at`);
       return rows.map((r: any) => ({
         refId: r.id, title: `${r.channel_key} ← ${r.source_title || r.source_ref}`, body: r.summary ?? null,
         path: `/app/artifacts?open=steering:${r.id}`, critical: false, since: new Date(r.updated_at),

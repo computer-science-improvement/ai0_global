@@ -135,6 +135,8 @@ import { NetworkOffers } from './network/network-offers';
 import { buildNetworkModeTool } from './network/network-mode-tool';
 import { NETWORK_SERVICE, NetworkController } from './network/network.controller';
 import { TrackingMtprotoClient } from '../tracking/mtproto/tracking-mtproto.client';
+import { TrackingService } from '../tracking/api/tracking.service';
+import { TrackedChannelsRepository } from '../tracking/repositories/tracked-channels.repository';
 import { resolveModel } from './llm/model-registry';
 import { agentModelIn, readModelContext } from './llm/workspace';
 import { storedFormat } from './agents/resource-profile';
@@ -143,6 +145,7 @@ import { ChannelSetupService } from './setup/setup.service';
 import { CHANNEL_SETUP_SERVICE, ChannelSetupController } from './setup/setup.controller';
 import type { ApplyWriters, ChannelState } from './setup/setup-apply';
 import { LAUNCH_SERVICE, LaunchController } from './launch/launch.controller';
+import { launchSource } from './launch/launch-cards';
 import { launchJson, LaunchService } from './launch/launch.service';
 import { LaunchRepository } from './launch/launch.repository';
 import { makeLaunchBotCheck } from './launch/launch-bot';
@@ -1858,11 +1861,15 @@ export const EDITOR_PROVIDERS = [
       provide: LAUNCH_SERVICE,
       inject: [
         DB_POOL, ConfigService, AGENT_INFRA, EDITOR_REPOS, EDITOR_OPS, STEERING_SERVICE, MODEL_DEFAULTS, TelegramNotifier, ChannelConfigService,
+        AGENTS_SERVICE, NETWORK_SERVICE, EDITOR_RUNNER,
         { token: PriceService, optional: true }, { token: LlmBudgetService, optional: true },
+        { token: TrackingService, optional: true }, { token: TrackedChannelsRepository, optional: true },
       ],
       useFactory: (
         pool: Pool, cfg: ConfigService, infra: AgentInfra, repos: EditorRepos, ops: EditorOpsService, steering: SteeringService,
-        models: WorkspaceModelStore, notifier: TelegramNotifier, channelConfig: ChannelConfigService, prices?: PriceService, caps?: LlmBudgetService,
+        models: WorkspaceModelStore, notifier: TelegramNotifier, channelConfig: ChannelConfigService,
+        agentsSvc: AgentsService, networkSvc: NetworkService, runner: EditorRunnerService,
+        prices?: PriceService, caps?: LlmBudgetService, tracking?: TrackingService, trackedRepo?: TrackedChannelsRepository,
       ): LaunchService => {
         const logger = new Logger('Launch');
         const env = (k: string) => cfg.get<string>(k) ?? undefined;
@@ -1883,6 +1890,7 @@ export const EDITOR_PROVIDERS = [
             createSet: (body, by) => steering.createSet(body, by),
             set: (id) => steeringRepo.get(id),
             discard: (id) => steering.discard(id),
+            activate: (id) => steering.activate(id),
           },
           network: async (key) => {
             const { rows } = await pool.query(
@@ -1897,6 +1905,45 @@ export const EDITOR_PROVIDERS = [
           state: channelStateOf(pool, repos, infra),
           loop: ownerStartedLoop(pool, env, notifier, logger, prices, caps),
           model: onboarderModel(env, models),
+          // T2: the checklist facts and Start.
+          tracked: async (key) => {
+            const t = await trackedChannel(pool, key);
+            return t ? { isMine: t.isMine, subs: t.subsCount } : null;
+          },
+          trackOwn: async (key, title) => {
+            const t = await trackedChannel(pool, key);
+            if (t) { if (!t.isMine && trackedRepo) await trackedRepo.patch(t.id, { isMine: true }); return; }
+            if (!tracking) throw new Error('tracking is not available');
+            await tracking.createFullChannel({ kind: 'public', username: key.replace(/^@/, ''), isMine: true, ...(title ? { title } : {}) });
+          },
+          published: async (key, since) => Number((await pool.query(
+            `SELECT count(*)::int AS n FROM editor_slots
+              WHERE status = 'published' AND channel_key = $1 AND (resource_ref IS NULL OR resource_ref = $2) AND scheduled_at >= $3`,
+            [key, `telegram:${key}`, since])).rows[0]?.n ?? 0),
+          platforms: async (key) => {
+            const all = await infra.catalog.list();
+            const me = all.find((r) => r.ref === `telegram:${key}`);
+            const others = me?.groupId ? all.filter((r) => r.groupId === me.groupId && r.platform !== 'telegram') : [];
+            if (!others.length) return [];
+            const { rows } = await pool.query(`SELECT resource_ref, resource_health->>'state' AS state FROM resource_profiles WHERE resource_ref = ANY($1::text[])`, [others.map((r) => r.ref)]);
+            const st = new Map(rows.map((r: any) => [r.resource_ref, r.state ?? null]));
+            return others.map((r) => ({ ref: r.ref, platform: r.platform, title: r.title, state: (st.get(r.ref) as string | null) ?? null }));
+          },
+          writers: setupWriters(repos, infra, ops, agentsSvc, networkSvc, 'Channel launch (spec 052)'),
+          ideas: {
+            count: async (originRef) => Number((await pool.query(`SELECT count(*)::int AS n FROM content_ideas WHERE origin = 'owner' AND origin_ref = $1`, [originRef])).rows[0]?.n ?? 0),
+            add: (i) => new NetworkRepository(pool).addIdea({ ...i, sources: [], origin: 'owner', status: 'accepted' }),
+          },
+          setMode: async (key, mode) => {
+            await ops.upsertChannel(key, { mode });
+            const orch = await orchOf(key);
+            if (orch && orch.mode !== mode) await infra.agents.update(orch.id, { mode, shadowUntil: null });
+          },
+          planAhead: async (key) => {
+            const card = await repos.channels.get(key);
+            if (!card) return;
+            await runner.runPlanner(card);
+          },
           log: (m) => logger.warn(m),
         });
         LAUNCH.svc = svc;
@@ -2030,10 +2077,11 @@ export const EDITOR_PROVIDERS = [
       provide: OWNER_BOT,
       inject: [
         DB_POOL, ConfigService, APPROVALS_SERVICE, MANAGER_SERVICE, AGENT_INFRA, STEERING_SERVICE, CHANNEL_SETUP_SERVICE, NETWORK_SERVICE, NETWORK_HEALTH,
+        LAUNCH_SERVICE,
       ],
       useFactory: (
         pool: Pool, cfg: ConfigService, approvals: ApprovalsService, manager: ManagerService, infra: AgentInfra, steering: SteeringService,
-        setup: ChannelSetupService, network: NetworkService, health: NetworkHealthService,
+        setup: ChannelSetupService, network: NetworkService, health: NetworkHealthService, launches: LaunchService,
       ): OwnerBotInfra => {
         const logger = new Logger('OwnerBot');
         const token = cfg.get<string>('TELEGRAM_BOT_TOKEN');
@@ -2047,10 +2095,14 @@ export const EDITOR_PROVIDERS = [
         });
         bot = new OwnerBotService({
           pool, repo, env, api: token ? telegramBotApi(token) : null,
-          sources: cardSources({
-            pool, approvals, directives: manager, actions: infra.actions, steering, setup, playbooks: network,
-            inbox: { markRead: (ids) => infra.inbox.markRead(ids) }, setupSections: SETUP_SECTIONS,
-          }),
+          sources: [
+            ...cardSources({
+              pool, approvals, directives: manager, actions: infra.actions, steering, setup, playbooks: network,
+              inbox: { markRead: (ids) => infra.inbox.markRead(ids) }, setupSections: SETUP_SECTIONS,
+            }),
+            // Spec 052 FR-002: a launch plan waiting for Start, a Start waiting for the bot.
+            launchSource({ pool, launches }),
+          ],
           status: () => reports.statusLines(),
           reports: { today: () => reports.daily(), week: () => reports.weekly() },
           log: (m) => logger.warn(m),

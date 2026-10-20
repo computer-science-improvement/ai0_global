@@ -6,7 +6,8 @@ import type { AgentLoop, AgentLoopResult } from '../harness/agent-loop';
 import type { ModelProfile } from '../llm/model-registry';
 import { editorFeature } from '../../common/ai/usage/features';
 import { validatePlaybook } from '../network/playbook';
-import { mergePlaybook, type ChannelState } from '../setup/setup-apply';
+import { cardPatch, formatPatch, languagePatch, mergedProfile, mergePlaybook, type ApplyWriters, type ChannelState } from '../setup/setup-apply';
+import type { SubmitSetupInput } from '../setup/setup-analysis';
 import type { ChannelMetrics } from '../setup/setup-metrics';
 import { parseSourceRef } from '../steering/steering-source';
 import { targetOf, type CreateResult } from '../steering/steering.service';
@@ -16,6 +17,7 @@ import {
   buildSubmitLaunchTool, launchSystemPrompt, launchUserPrompt, SUBMIT_LAUNCH_TOOL, SubmitLaunchInput, type LaunchReference,
 } from './launch-analysis';
 import type { LaunchRepository } from './launch.repository';
+import { buildChecklist, type ChecklistFacts, type LaunchStep } from './launch-checklist';
 import {
   MAX_BRIEF_CHARS, MAX_REFERENCES, MIN_BRIEF_CHARS, PRE_START_STATUSES, type ChannelLaunch, type LaunchBotState, type LaunchRef,
 } from './launch.types';
@@ -50,6 +52,18 @@ export interface LaunchSteering {
   createSet(body: { target: string; source: string }, createdBy: string): Promise<CreateResult>;
   set(id: string): Promise<SteeringSet | null>;
   discard(id: string): Promise<unknown>;
+  activate(id: string): Promise<unknown>;
+}
+
+/** A first-week idea as the pool stores it (020 content_ideas, accepted, origin owner). */
+export interface LaunchIdea {
+  agentId:   string;
+  title:     string;
+  angle:     string;
+  why:       string;
+  variants:  Array<{ resource_ref: string; format: string; note?: string }>;
+  originRef: string;
+  expiresAt: Date;
 }
 
 export interface LaunchDeps {
@@ -66,9 +80,31 @@ export interface LaunchDeps {
   state:    (channelKey: string) => Promise<ChannelState>;
   loop:     Pick<AgentLoop, 'run'>;
   model:    (agent: Agent | null, card: EditorCard | null) => Promise<ModelProfile>;
+  // ── T2: the checklist and Start ──
+  /** The channel's tracking row (null = not tracked) and its subscribers. */
+  tracked:  (channelKey: string) => Promise<{ isMine: boolean; subs: number | null } | null>;
+  /** Add the channel to tracking as ours (public, the default bot), or mark the existing row ours. */
+  trackOwn: (channelKey: string, title: string | null) => Promise<void>;
+  /** Posts of the channel published since a time. */
+  published: (channelKey: string, since: Date) => Promise<number>;
+  /** The channel network's other platforms and their stored connection state. */
+  platforms: (channelKey: string) => Promise<ChecklistFacts['platforms']>;
+  /** The 042 writers Start applies the plan through. */
+  writers:  Pick<ApplyWriters, 'upsertCard' | 'setProfile' | 'patchFormat' | 'putPlaybook' | 'putVoiceSkill'>;
+  ideas:    { count(originRef: string): Promise<number>; add(i: LaunchIdea): Promise<unknown> };
+  /** The card and its orchestrator into a mode (Start: approve). */
+  setMode:  (channelKey: string, mode: 'approve' | 'live') => Promise<void>;
+  /** Plan today (when hours are left) and tomorrow — in the background after Start. */
+  planAhead?: (channelKey: string) => Promise<void>;
   now?:     () => Date;
   log?:     (msg: string) => void;
 }
+
+/** A launch whose bot is not an admin yet is checked again this often (FR-002). */
+export const BOT_RECHECK_MS = 2 * 60_000;
+/** First-week ideas stay in the pool this long after Start. */
+export const IDEA_DAYS = 10;
+const VOICE_SKILL = 'channel-voice';
 
 const CreateBody = z.object({
   target:     z.string().trim().min(2).max(200),
@@ -165,6 +201,44 @@ export class LaunchService {
         this.d.log?.(`launch ${l.channelKey}: ${errText(err)}`);
       }
     }
+    // FR-002: the bot check, tracking as ours, a requested Start; later the graduation and the promos (T3, T4).
+    const watched = await this.d.repo.active(['preparing', 'ready', 'running'], this.now());
+    for (const l of watched) {
+      try {
+        await this.watch(l);
+      } catch (err) {
+        this.d.log?.(`launch ${l.channelKey}: ${errText(err)}`);
+      }
+    }
+  }
+
+  /** One minute of a launch after its preparation started. Exported for tests. */
+  async watch(l: ChannelLaunch): Promise<ChannelLaunch | null> {
+    let cur: ChannelLaunch | null = l;
+    if (cur.status !== 'running' && cur.botState?.state !== 'ok') {
+      const due = !cur.botCheckedAt || this.now().getTime() - cur.botCheckedAt.getTime() >= BOT_RECHECK_MS;
+      if (due) cur = await this.refreshBot(cur);
+    }
+    if (!cur) return null;
+    if (cur.botState?.state === 'ok') await this.ensureTracked(cur);
+    if (cur.status === 'ready' && cur.startRequested && cur.botState?.state === 'ok') {
+      cur = await this.doStart(cur).catch((err) => { this.d.log?.(`launch ${cur!.channelKey} start: ${errText(err)}`); return cur; });
+    }
+    return cur;
+  }
+
+  private async refreshBot(l: ChannelLaunch): Promise<ChannelLaunch | null> {
+    const bot = await this.d.botCheck(l.channelKey).catch((err): LaunchBotState => ({ state: 'unknown', detail: errText(err), bot: null }));
+    // An unreachable Bot API keeps the last known answer (its time moves on, so it is asked again later).
+    const keep = bot.state === 'unknown' && l.botState && l.botState.state !== 'unknown';
+    return this.d.repo.update(l.id, { botState: keep ? l.botState : bot, botCheckedAt: this.now(), ...(l.title ? {} : bot.chatTitle ? { title: bot.chatTitle } : {}) });
+  }
+
+  /** The bot is an admin with the right to post: the channel is ours (FR-002 `tracked`). */
+  private async ensureTracked(l: ChannelLaunch): Promise<void> {
+    const t = await this.d.tracked(l.channelKey).catch(() => null);
+    if (t?.isMine) return;
+    await this.d.trackOwn(l.channelKey, l.title);
   }
 
   /** One step of a launch before Start. Exported for tests. */
@@ -285,6 +359,101 @@ export class LaunchService {
     });
   }
 
+  // ── Start (FR-002) ─────────────────────────────────────────────────────────
+
+  /**
+   * The owner's Start. With the bot not an admin yet the launch remembers it and starts on the tick the check passes;
+   * otherwise the plan is applied and the channel goes into approval mode now.
+   */
+  async start(id: string): Promise<{ launch: Awaited<ReturnType<LaunchService['view']>>; started: boolean; waitingFor: 'bot_admin' | null }> {
+    let l = await this.get(id);
+    if (l.status === 'running' || l.status === 'graduated') return { launch: await this.view(l), started: true, waitingFor: null };
+    if (l.status !== 'ready') throw new ConflictException({ error: 'not_ready', details: `the launch is ${l.status} — Start comes after the plan` });
+    if (l.botState?.state !== 'ok') l = (await this.refreshBot(l)) ?? l;
+    if (l.botState?.state !== 'ok') {
+      const next = await this.d.repo.transition(id, ['ready'], { startRequested: true });
+      return { launch: await this.view(next ?? l), started: false, waitingFor: 'bot_admin' };
+    }
+    await this.ensureTracked(l);
+    const next = await this.doStart(l);
+    return { launch: await this.view(next ?? l), started: next?.status === 'running', waitingFor: null };
+  }
+
+  /** "Check the bot now": the Bot API now, tracking as ours, and a requested Start. */
+  async check(id: string) {
+    const l = await this.get(id);
+    if (!['preparing', 'ready', 'running'].includes(l.status)) throw new ConflictException({ error: 'not_open', details: `the launch is ${l.status}` });
+    const fresh = (await this.refreshBot(l)) ?? l;
+    const next = (await this.watch({ ...fresh, botCheckedAt: this.now() })) ?? fresh;
+    return { launch: await this.view(next) };
+  }
+
+  /** Apply the plan, activate the references, seed the first week, approval mode, plan ahead (each step idempotent). */
+  private async doStart(l: ChannelLaunch): Promise<ChannelLaunch | null> {
+    const parsed = SubmitLaunchInput.safeParse(l.plan);
+    if (!parsed.success) throw new ConflictException({ error: 'no_plan', details: 'the launch has no valid plan — make it again' });
+    const plan = parsed.data;
+    const step = async (name: string, fn: () => Promise<unknown>) => {
+      try { await fn(); } catch (err) {
+        await this.d.repo.update(l.id, { reason: `start: ${name}: ${errText(err)}` });
+        throw new ConflictException({ error: 'start_failed', details: `${name}: ${errText(err)}` });
+      }
+    };
+    const state = await this.d.state(l.channelKey);
+    if (!state.agent) throw new ConflictException({ error: 'no_agent', details: `no agent runs ${l.channelKey} yet` });
+    const agent = state.agent;
+    const si = toSetupInput(plan);
+    const card = state.card;
+
+    await step('profile', () => this.d.writers.setProfile(l.targetRef, mergedProfile(state.profile, si)));
+    await step('card', () => this.d.writers.upsertCard(l.channelKey, {
+      brief: plan.brief_profile.brief,
+      ...(card ? languagePatch(plan.brief_profile.profile.language, card) : {}),
+      ...cardPatch(si, 'formatting'), ...cardPatch(si, 'format_mix'), ...cardPatch(si, 'schedule'),
+    }));
+    const { patch } = formatPatch(si, state.locks, state.profile?.format_prefs?.style ?? null);
+    if (Object.keys(patch).length) {
+      await step('formatting', async () => {
+        const r = await this.d.writers.patchFormat(l.targetRef, patch) as { error?: string; details?: unknown } | null;
+        if (r && typeof r === 'object' && 'error' in r && r.error && r.error !== 'no_change') throw new Error(`${r.error}: ${JSON.stringify(r.details ?? '')}`);
+      });
+    }
+    await step('playbook', () => this.d.writers.putPlaybook(agent.handle, mergePlaybook(state.playbook, l.targetRef,
+      { formats: plan.format_mix.formats as Record<string, number>, postsPerDayMin: plan.schedule.posts_per_day_min, postsPerDayMax: plan.schedule.posts_per_day_max },
+      {
+        formatMix: plan.format_mix.formats as Record<string, number>,
+        schedule: { min: plan.schedule.posts_per_day_min, max: plan.schedule.posts_per_day_max, bestHours: plan.schedule.best_hours },
+        series: si.series_pillars,
+      }), 'Channel launch (spec 052)'));
+    await step('voice', () => this.d.writers.putVoiceSkill(agent.handle, launchVoice(plan, l.channelKey)));
+    for (const r of l.refs) {
+      if (!r.setId || r.status !== 'ready') continue;
+      // Too many active sets or a set changed meanwhile never stops the launch.
+      await this.d.steering.activate(r.setId).catch((err) => this.d.log?.(`launch ${l.channelKey}: steering ${r.setId}: ${errText(err)}`));
+    }
+    const originRef = `launch:${l.id}`;
+    await step('ideas', async () => {
+      if ((await this.d.ideas.count(originRef)) > 0) return;
+      const expiresAt = new Date(this.now().getTime() + IDEA_DAYS * 86_400_000);
+      for (const i of [...plan.first_week.ideas].sort((a, b) => a.day - b.day)) {
+        await this.d.ideas.add({
+          agentId: agent.id, title: i.title, angle: i.angle, originRef, expiresAt,
+          why: `${i.intro ? 'Пост-знайомство з каналом. ' : ''}Ідея першого тижня запуску (день ${i.day}).`,
+          variants: [{ resource_ref: l.targetRef, format: i.format, note: `день ${i.day}` }],
+        });
+      }
+    });
+    await step('mode', () => this.d.setMode(l.channelKey, 'approve'));
+    const subs = (await this.d.tracked(l.channelKey).catch(() => null))?.subs ?? null;
+    const next = await this.d.repo.transition(l.id, ['ready'], {
+      status: 'running', startedAt: this.now(), startRequested: false, reason: null, subsAtStart: subs,
+    });
+    if (next && this.d.planAhead) {
+      void this.d.planAhead(l.channelKey).catch((err) => this.d.log?.(`launch ${l.channelKey}: plan ahead: ${errText(err)}`));
+    }
+    return next;
+  }
+
   // ── reading ───────────────────────────────────────────────────────────────
 
   async get(id: string): Promise<ChannelLaunch> {
@@ -297,9 +466,18 @@ export class LaunchService {
     return { launches: (await this.d.repo.list({ channel: channel || null })).map(launchJson) };
   }
 
-  /** The launch for the API and the artifact panel. */
+  /** The launch for the API and the artifact panel, with its live checklist. */
   async view(l: ChannelLaunch) {
-    return launchJson(l);
+    return { ...launchJson(l), checklist: await this.checklist(l) };
+  }
+
+  async checklist(l: ChannelLaunch): Promise<LaunchStep[]> {
+    const [tracked, published, platforms] = await Promise.all([
+      this.d.tracked(l.channelKey).catch(() => null),
+      l.startedAt ? this.d.published(l.channelKey, l.startedAt).catch(() => 0) : Promise.resolve(0),
+      this.d.platforms(l.channelKey).catch((): ChecklistFacts['platforms'] => []),
+    ]);
+    return buildChecklist(l, { tracked, published, platforms });
   }
 
   async viewById(id: string) {
@@ -348,6 +526,30 @@ export class LaunchService {
   }
 
 }
+
+/** The launch plan in the 042 setup shape, so Start reuses the setup writers' helpers (no post evidence). */
+export function toSetupInput(p: SubmitLaunchInput): SubmitSetupInput {
+  const none = { post_ids: [], note: 'channel launch (spec 052)' };
+  return {
+    summary: p.summary,
+    brief_profile: { ...p.brief_profile, evidence: none },
+    formatting: { ...p.formatting, evidence: none },
+    format_mix: { ...p.format_mix, evidence: none },
+    series_pillars: { series: p.series_pillars.series.map((s) => ({ ...s, post_ids: [] })), pillars: p.series_pillars.pillars, evidence: none },
+    schedule: { ...p.schedule, evidence: none },
+    examples_voice: { example_ids: [], voice: { description: p.voice.description, rules: p.voice.rules, quotes: [] }, evidence: none },
+  } as unknown as SubmitSetupInput;
+}
+
+/** The voice skill (`channel-voice`) from the launch plan: the description and the rules (no quotes: no posts yet). */
+export function launchVoice(p: SubmitLaunchInput, channelKey: string): { description: string; body: string } {
+  return {
+    description: `How ${channelKey} sounds, set at its launch: ${p.voice.description}`.slice(0, 300),
+    body: [`# Голос каналу ${channelKey}`, '', p.voice.description, '', '## Правила', ...p.voice.rules.map((r) => `- ${r}`)].join('\n'),
+  };
+}
+
+export { VOICE_SKILL };
 
 /** The stored launch as JSON (dates as ISO strings; the references with their names). */
 export function launchJson(l: ChannelLaunch) {
