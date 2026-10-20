@@ -1,6 +1,6 @@
 # 057 — Setup proposals expire
 
-Status: in progress · Follow-up of [042](../042-channel-setup-from-history/spec.md) · Migration 090
+Status: done · Follow-up of [042](../042-channel-setup-from-history/spec.md) · Migration 090
 
 ## Why
 

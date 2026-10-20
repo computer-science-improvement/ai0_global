@@ -106,7 +106,7 @@ The onboarder reads an own channel's last 20 posts and proposes its agent's setu
 
 **Needs**
 
-- Migration `080_channel_setup`.
+- Migration `080_channel_setup` (and `090_setup_proposal_expired` for the expiry below).
 - A model key: `OPENROUTER_API_KEY` or the Anthropic key. `EDITOR_ENABLED` is not needed; the owner starts each run.
 - The channel is marked as yours (`tracked_channels.is_mine`).
 - For channels with fewer than 20 stored posts, a logged-in tracking userbot that can read the channel. It tops up `tracked_posts` once, with up to 50 messages.
@@ -129,6 +129,7 @@ The onboarder reads an own channel's last 20 posts and proposes its agent's setu
 |---|---|
 | `queued` / `collecting` / `analyzing` | Running. A FLOOD_WAIT puts the run back in the queue with a retry time; a run stuck for 15 min is requeued. |
 | `ready` / `partially_applied` | Waiting for you. A new analysis of the same channel supersedes the open proposal. |
+| `expired` | Nobody applied it within `SETUP_PROPOSAL_TTL_DAYS`; closed by itself (see Expiry). Analyze again for a fresh one. |
 | `no_access` | The tracking account cannot read the channel. Add it to the channel, then analyze again. |
 | `too_few_posts` | Fewer than 5 usable posts. The model is not called. |
 | `failed` | The reason is on the row. The run trace is under "Open the run" (role `onboarder`, usage feature `editor.onboarder`, at most 4 steps and $0.30). |
@@ -136,6 +137,15 @@ The onboarder reads an own channel's last 20 posts and proposes its agent's setu
 **Changed since analysis**
 
 If you edited a section after the analysis, Apply refuses that section and applies the rest. Analyze again to review it with the new values.
+
+**Expiry (spec 057)**
+
+- A proposal that stays `ready` or `partially_applied` for `SETUP_PROPOSAL_TTL_DAYS` days (Settings → Configuration → Editor, default 14, applied at once, `0` = never expire) becomes `expired`. The age counts from its last change (the analysis, or the last Apply). Needs migration `090_setup_proposal_expired`.
+- Its sections that were still pending are skipped, as with Discard; sections already applied stay applied. `queued`, `collecting`, `analyzing`, `failed`, `no_access` and `too_few_posts` are never expired.
+- `expired` is final like `discarded`: Apply and Discard answer 409 `not_open`, and the channel's open-proposal slot is free again. The dialog says "Closed after N days without an apply" and offers **Analyze again** (cost shown first). In the Artifacts page it sits under Closed; the owner bot's "Налаштування з історії" card of it closes as «Минув термін».
+- The sweep is code only (no model call). It runs from the minute tick of the setup worker, at most once an hour per instance (the SQL is idempotent, so a second instance is harmless), and at boot.
+- After a sweep that expired anything you get one Inbox note (kind `setup_expired`, info) listing the channels, saying that applied sections stay and how to run a new analysis. The dashboard Inbox shows it in English, the Telegram alert is in Ukrainian.
+- **Check it**: `SELECT channel_key, status, reason, updated_at FROM channel_setup_proposals WHERE status = 'expired' ORDER BY updated_at DESC LIMIT 5` (the reason reads "expired: closed after N days without an apply"). Nothing expires: check the setting is not `0` and that the service ran for an hour. To bring one back, run the analysis again.
 
 ## 10. Steering (spec 045)
 
