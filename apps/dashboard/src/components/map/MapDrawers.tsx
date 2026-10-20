@@ -203,6 +203,7 @@ export function UnitDrawer({ snap, unit, onClose, onPickBuilding }: { snap: MapS
       <div className="map-links">
         <LinkChip icon="agents" to="/app/agents/$handle" params={{ handle: unit.handle }}>Agent page</LinkChip>
         <LinkChip icon="layers" to="/app/agents/$handle" params={{ handle: unit.handle }} search={{ tab: 'artifacts' }}>Artifacts</LinkChip>
+        <LinkChip icon="wrench" to="/app/agents/$handle" params={{ handle: unit.handle }} search={{ tab: 'loadout' }}>Loadout</LinkChip>
         <LinkChip icon="chat" to="/app/chat" search={{ q: `@${unit.handle} ` }}>Chat</LinkChip>
       </div>
     </MapDrawer>

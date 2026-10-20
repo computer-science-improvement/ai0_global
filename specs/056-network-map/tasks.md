@@ -22,7 +22,7 @@ Verified: automation `npm test` and `npm run build` on Node 20; dashboard `npx t
 
 ## Deltas from the spec
 
-- **Chat link:** `/app/chat` has no `agent=` search parameter, so the unit drawer links to `/app/chat?q=@handle ` (the composer starts with the mention). No link to a Loadout tab (spec 054 is not part of this work).
+- **Chat link:** `/app/chat` has no `agent=` search parameter, so the unit drawer links to `/app/chat?q=@handle ` (the composer starts with the mention). The Loadout link (spec 054) was added at the merge.
 - **Connection alerts** point to `/app/connections?section=telegram|meta|tiktok` (the page needs a section), not to the bare page.
 - **No migration.** Roads, levels and states are derived from existing tables; every query skips a table or column that is missing (42P01 / 42703).
 - **State precedence** in `unitState`: paused, off, running (planning, writing or reviewing by the run's role), error, publishing (a slot going out within 10 min, or being posted), waiting, idle. A running slot therefore outranks "waiting".
