@@ -1,6 +1,6 @@
 # 056 Network map
 
-**Epic:** AI0-248 (T1–T4) · **Priority:** P2 · **Depends on:** 017–022, 025, 031, 049, 053 · **Status:** spec
+**Epic:** AI0-248 (T1–T4) · **Priority:** P2 · **Depends on:** 017–022, 025, 031, 049, 053 · **Status:** done
 
 ## Why
 
