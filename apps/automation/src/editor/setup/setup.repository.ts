@@ -28,7 +28,7 @@ export async function boundDatasets(pool: Pick<Pool, 'query'>, resourceRef: stri
 export const OPEN_STATUSES = ['queued', 'collecting', 'analyzing', 'ready'] as const;
 export type ProposalStatus =
   | typeof OPEN_STATUSES[number]
-  | 'applied' | 'partially_applied' | 'discarded' | 'superseded' | 'failed' | 'no_access' | 'too_few_posts';
+  | 'applied' | 'partially_applied' | 'discarded' | 'superseded' | 'failed' | 'no_access' | 'too_few_posts' | 'expired';
 export type SectionState = 'pending' | 'applied' | 'skipped';
 
 export interface SetupProposal {
@@ -128,6 +128,22 @@ export class ChannelSetupRepository {
       `UPDATE channel_setup_proposals SET status = 'queued', updated_at = now()
         WHERE status IN ('collecting','analyzing') AND updated_at < $1`, [olderThan]);
     return rowCount ?? 0;
+  }
+
+  /**
+   * Spec 057: `ready` / `partially_applied` proposals untouched for `ttlDays` become `expired`; their pending sections
+   * are skipped (as `discard` does), the applied ones stay. 0 days (or less) = never. One statement, idempotent.
+   */
+  async expireStale(now: Date, ttlDays: number, sections: readonly string[]): Promise<SetupProposal[]> {
+    if (!(ttlDays > 0)) return [];
+    const { rows } = await this.pool.query(
+      `UPDATE channel_setup_proposals SET status = 'expired', updated_at = $1,
+              section_status = section_status || COALESCE((
+                SELECT jsonb_object_agg(s, 'skipped'::text) FROM unnest($3::text[]) AS s
+                 WHERE sections IS NOT NULL AND COALESCE(section_status->>s, 'pending') = 'pending'), '{}'::jsonb)
+        WHERE status IN ('ready','partially_applied') AND updated_at < $1::timestamptz - make_interval(days => $2::int)
+        RETURNING *`, [now, Math.floor(ttlDays), [...sections]]);
+    return rows.map(toProposal).sort((a, b) => a.channelKey.localeCompare(b.channelKey));
   }
 
   async update(id: string, p: Partial<{
