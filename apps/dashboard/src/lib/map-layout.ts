@@ -1,14 +1,15 @@
-import type { MapNetwork, MapResource, MapUnit, MapPlatform } from '../api/map';
+import type { InfraKind, MapInfra, MapNetwork, MapResource, MapUnit, MapPlatform } from '../api/map';
 import { KIND_ORDER } from './map-state';
 
 // Spec 056 FR-003: the deterministic layout of the network map. A pure function: the same input (in any order) gives
 // the same positions, there is no force simulation, so a building never moves between two polls. World units are
 // pixels at zoom 1; the origin is the top-left of the bounds.
 //
-//   • territories (a network, or the Frontier of resources outside any network) sit on a shelf-packed grid, the
-//     network with the most resources first; each row is centred;
+//   • sections (territories) sit on a shelf-packed grid: the networks first (the one with the most resources first), then
+//     one section per platform for the resources outside any network (Telegram channels, Instagram…), then — on a row of
+//     their own — the connections the channels work through (Telegram bots, MTProto sessions, Telegraph accounts);
 //   • in a network, the anchor (its Telegram channel) is in the middle and the other buildings on a ring around it;
-//     the Frontier is a plain grid;
+//     a platform section is a plain grid; a connection section a grid of small structures;
 //   • the headquarters is at the top centre and holds the system agents (and any unit whose building is missing);
 //   • units stand around their home building: orchestrators in a row in front, their role children on an arc behind.
 
@@ -37,18 +38,38 @@ const HQ_GAP = 70;
 const CELL_W = 2 * FOOT_X + 12;
 const CELL_H = FOOT_TOP + FOOT_BOTTOM + 10;
 
-export const FRONTIER_ID = '__frontier__';
+/** A connection (bot, session, Telegraph account): a small structure, no units. */
+export const STRUCT_R = 22;
+const STRUCT_CELL_W = 150;
+const STRUCT_CELL_H = 2 * STRUCT_R + 64;
+const STRUCT_MAX_COLS = 4;
+
+export type TerritoryKind = 'network' | 'platform' | 'infra';
+/** The section of the resources of one platform that are in no network. */
+export const platformSectionId = (p: MapPlatform): string => `__platform:${p}__`;
+export const infraSectionId = (k: InfraKind): string => `__infra:${k}__`;
+
+export const PLATFORM_SECTION_NAME: Record<MapPlatform, string> = {
+  telegram: 'Telegram channels', instagram: 'Instagram', facebook: 'Facebook pages', threads: 'Threads', tiktok: 'TikTok', youtube: 'YouTube',
+};
+export const INFRA_SECTION_NAME: Record<InfraKind, string> = { bot: 'Telegram bots', mtproto: 'MTProto sessions', telegraph: 'Telegraph accounts' };
+const INFRA_ORDER: InfraKind[] = ['bot', 'mtproto', 'telegraph'];
 
 export interface Rect { x: number; y: number; w: number; h: number }
 export interface Territory extends Rect {
   id: string;
   name: string;
-  kind: 'network' | 'frontier';
+  kind: TerritoryKind;
   /** Index into the territory tint palette (stable for the order). */
   tint: number;
+  /** A platform section's platform (its tint); an infra section's kind. */
+  platform?: MapPlatform;
+  infra?: InfraKind;
+  /** Buildings, or the structures of an infra section. */
   refs: string[];
 }
 export interface PlacedBuilding { x: number; y: number; territory: string; anchor: boolean }
+export interface PlacedStructure { x: number; y: number; territory: string }
 export interface PlacedUnit { x: number; y: number; zone: 'hq' | 'front' | 'back' }
 
 export interface MapLayout {
@@ -56,6 +77,8 @@ export interface MapLayout {
   hq: Rect;
   territories: Territory[];
   buildings: Record<string, PlacedBuilding>;
+  /** Bots, sessions and Telegraph accounts by their id. */
+  structures: Record<string, PlacedStructure>;
   units: Record<string, PlacedUnit>;
 }
 
@@ -63,6 +86,7 @@ export interface LayoutInput {
   networks: Array<Pick<MapNetwork, 'id' | 'name' | 'anchorRef'>>;
   resources: Array<Pick<MapResource, 'ref' | 'groupId' | 'platform'>>;
   units: Array<Pick<MapUnit, 'id' | 'handle' | 'kind' | 'parentId' | 'homeRef'>>;
+  infra?: Array<Pick<MapInfra, 'id' | 'kind'>>;
 }
 
 const PLATFORM_ORDER: MapPlatform[] = ['telegram', 'instagram', 'facebook', 'threads', 'tiktok', 'youtube'];
@@ -70,7 +94,10 @@ const cmp = (a: string, b: string) => (a < b ? -1 : a > b ? 1 : 0);
 const platformIdx = (p: MapPlatform) => { const i = PLATFORM_ORDER.indexOf(p); return i < 0 ? PLATFORM_ORDER.length : i; };
 const kindIdx = (k: MapUnit['kind']) => { const i = KIND_ORDER.indexOf(k); return i < 0 ? KIND_ORDER.length : i; };
 
-interface Group { id: string; name: string; kind: 'network' | 'frontier'; anchor: string | null; members: Array<Pick<MapResource, 'ref' | 'groupId' | 'platform'>> }
+interface Group {
+  id: string; name: string; kind: TerritoryKind; anchor: string | null; platform?: MapPlatform; infra?: InfraKind;
+  members: Array<Pick<MapResource, 'ref' | 'groupId' | 'platform'>>;
+}
 
 /** Members of a group in a stable order: platform order, then ref. */
 const sortMembers = (m: Group['members']) => [...m].sort((a, b) => platformIdx(a.platform) - platformIdx(b.platform) || cmp(a.ref, b.ref));
@@ -79,7 +106,14 @@ const sortMembers = (m: Group['members']) => [...m].sort((a, b) => platformIdx(a
 function arrange(g: Group): { w: number; h: number; at: Array<{ ref: string; x: number; y: number; anchor: boolean }> } {
   const members = sortMembers(g.members);
   const at: Array<{ ref: string; x: number; y: number; anchor: boolean }> = [];
-  if (g.kind === 'frontier') {
+  if (g.kind === 'infra') {
+    const ids = g.members.map((m) => m.ref).sort(cmp);
+    const cols = Math.max(1, Math.min(STRUCT_MAX_COLS, ids.length));
+    const rows = Math.ceil(ids.length / cols);
+    ids.forEach((ref, i) => at.push({ ref, x: TERRITORY_PAD + (i % cols) * STRUCT_CELL_W + STRUCT_CELL_W / 2, y: TERRITORY_HEAD + TERRITORY_PAD + Math.floor(i / cols) * STRUCT_CELL_H + STRUCT_R + 6, anchor: false }));
+    return { w: Math.max(260, cols * STRUCT_CELL_W + 2 * TERRITORY_PAD), h: TERRITORY_HEAD + 2 * TERRITORY_PAD + rows * STRUCT_CELL_H - 10, at };
+  }
+  if (g.kind === 'platform') {
     const cols = Math.max(1, Math.ceil(Math.sqrt(members.length)));
     const rows = Math.ceil(members.length / cols);
     members.forEach((m, i) => at.push({ ref: m.ref, x: TERRITORY_PAD + (i % cols) * CELL_W + CELL_W / 2, y: TERRITORY_HEAD + TERRITORY_PAD + Math.floor(i / cols) * CELL_H + FOOT_TOP, anchor: false }));
@@ -109,19 +143,34 @@ export function layoutMap(input: LayoutInput): MapLayout {
   const known = new Set(input.networks.map((n) => n.id));
   const groups = new Map<string, Group>();
   for (const n of input.networks) groups.set(n.id, { id: n.id, name: n.name, kind: 'network', anchor: n.anchorRef, members: [] });
-  const frontier: Group = { id: FRONTIER_ID, name: 'Frontier', kind: 'frontier', anchor: null, members: [] };
-  for (const r of input.resources) (r.groupId && known.has(r.groupId) ? groups.get(r.groupId)! : frontier).members.push(r);
+  const solo = new Map<MapPlatform, Group>();
+  for (const r of input.resources) {
+    if (r.groupId && known.has(r.groupId)) { groups.get(r.groupId)!.members.push(r); continue; }
+    let g = solo.get(r.platform);
+    if (!g) solo.set(r.platform, g = { id: platformSectionId(r.platform), name: PLATFORM_SECTION_NAME[r.platform] ?? r.platform, kind: 'platform', anchor: null, platform: r.platform, members: [] });
+    g.members.push(r);
+  }
+  const infra = new Map<InfraKind, Group>();
+  for (const i of input.infra ?? []) {
+    let g = infra.get(i.kind);
+    if (!g) infra.set(i.kind, g = { id: infraSectionId(i.kind), name: INFRA_SECTION_NAME[i.kind] ?? i.kind, kind: 'infra', anchor: null, infra: i.kind, members: [] });
+    g.members.push({ ref: i.id, groupId: null, platform: 'telegram' });
+  }
 
-  const ordered: Group[] = [...groups.values()].filter((g) => g.members.length > 0)
-    .sort((a, b) => b.members.length - a.members.length || cmp(a.name, b.name) || cmp(a.id, b.id));
-  if (frontier.members.length) ordered.push(frontier);
+  const ordered: Group[] = [
+    ...[...groups.values()].filter((g) => g.members.length > 0)
+      .sort((a, b) => b.members.length - a.members.length || cmp(a.name, b.name) || cmp(a.id, b.id)),
+    ...[...solo.values()].sort((a, b) => platformIdx(a.platform!) - platformIdx(b.platform!)),
+    ...INFRA_ORDER.map((k) => infra.get(k)).filter((g): g is Group => !!g),
+  ];
 
-  // ── shelf-pack the territories ──
+  // ── shelf-pack the territories (the connections start a row of their own) ──
   const arranged = ordered.map((g) => ({ g, ...arrange(g) }));
   const rows: Array<typeof arranged> = [];
   let rowW = 0;
   for (const t of arranged) {
-    if (!rows.length || (rowW > 0 && rowW + TERRITORY_GAP + t.w > ROW_MAX_W)) { rows.push([]); rowW = 0; }
+    const firstInfra = t.g.kind === 'infra' && rows.length > 0 && rows[rows.length - 1].every((x) => x.g.kind !== 'infra');
+    if (!rows.length || firstInfra || (rowW > 0 && rowW + TERRITORY_GAP + t.w > ROW_MAX_W)) { rows.push([]); rowW = 0; }
     rows[rows.length - 1].push(t);
     rowW += (rowW > 0 ? TERRITORY_GAP : 0) + t.w;
   }
@@ -131,13 +180,20 @@ export function layoutMap(input: LayoutInput): MapLayout {
 
   const territories: Territory[] = [];
   const buildings: Record<string, PlacedBuilding> = {};
+  const structures: Record<string, PlacedStructure> = {};
   let y = HQ_H + HQ_GAP;
   rows.forEach((row, ri) => {
     let x = (totalW - widths[ri]) / 2;
     const rowH = Math.max(...row.map((t) => t.h));
     for (const t of row) {
-      territories.push({ id: t.g.id, name: t.g.name, kind: t.g.kind, x, y, w: t.w, h: t.h, tint: territories.length, refs: t.at.map((a) => a.ref) });
-      for (const a of t.at) buildings[a.ref] = { x: x + a.x, y: y + a.y, territory: t.g.id, anchor: a.anchor };
+      territories.push({
+        id: t.g.id, name: t.g.name, kind: t.g.kind, x, y, w: t.w, h: t.h, tint: territories.length, refs: t.at.map((a) => a.ref),
+        ...(t.g.platform && t.g.kind === 'platform' ? { platform: t.g.platform } : {}), ...(t.g.infra ? { infra: t.g.infra } : {}),
+      });
+      for (const a of t.at) {
+        if (t.g.kind === 'infra') structures[a.ref] = { x: x + a.x, y: y + a.y, territory: t.g.id };
+        else buildings[a.ref] = { x: x + a.x, y: y + a.y, territory: t.g.id, anchor: a.anchor };
+      }
       x += t.w + TERRITORY_GAP;
     }
     y += rowH + TERRITORY_GAP;
@@ -185,7 +241,7 @@ export function layoutMap(input: LayoutInput): MapLayout {
   }
 
   const bounds = boundsOf(hq, territories);
-  return { bounds, hq, territories, buildings, units };
+  return { bounds, hq, territories, buildings, structures, units };
 }
 
 function boundsOf(hq: Rect, territories: Territory[]): Rect {
@@ -195,9 +251,10 @@ function boundsOf(hq: Rect, territories: Territory[]): Rect {
 }
 
 /** The centre of a territory, hq, building or unit — where "focus" pans to. */
-export function centreOf(layout: MapLayout, target: { building?: string; unit?: string }): { x: number; y: number } | null {
+export function centreOf(layout: MapLayout, target: { building?: string; unit?: string; structure?: string }): { x: number; y: number } | null {
   if (target.unit && layout.units[target.unit]) return layout.units[target.unit];
   if (target.building && layout.buildings[target.building]) return layout.buildings[target.building];
+  if (target.structure && layout.structures[target.structure]) return layout.structures[target.structure];
   return null;
 }
 

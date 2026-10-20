@@ -87,6 +87,35 @@ export interface MapEvent {
   text:  string;
 }
 
+/**
+ * The connections a channel works through, which are not channels themselves: Telegram bots (they publish), MTProto
+ * sessions (a user account that reads stats or writes DMs) and Telegraph accounts (long pages). Never a token, a session
+ * string or a phone number.
+ */
+export type InfraKind = 'bot' | 'mtproto' | 'telegraph';
+
+export interface MapInfra {
+  /** `bot:<id>` · `mtproto:<id>` · `telegraph:<id>` (the row id; never a token). */
+  id:        string;
+  kind:      InfraKind;
+  title:     string;
+  /** The bot's or the session account's @username, the Telegraph author name. */
+  username:  string | null;
+  health:    ResourceHealthView;
+  /** The last verify error in one line. */
+  healthDetail: string | null;
+  active:    boolean;
+  /** The bot a channel without its own bot publishes through. */
+  isDefault: boolean;
+  /** An MTProto session's job: tracker (reads stats) or agent (DMs). */
+  role:      string | null;
+  lastVerifiedAt: string | null;
+  /** The channels on the map it publishes to (a bot: its own channels, the default bot also the ones without a bot). */
+  serves:    string[];
+  /** Where it is managed (Connections). */
+  path:      string;
+}
+
 export interface MapBudget { spentUsd: number; capUsd: number | null; pct: number | null; blocking: boolean }
 
 export interface MapSnapshot {
@@ -96,6 +125,7 @@ export interface MapSnapshot {
   totals:      { runsToday: number; postsToday: number };
   networks:    MapNetwork[];
   resources:   MapResource[];
+  infra:       MapInfra[];
   units:       MapUnit[];
   roads:       MapRoad[];
   alerts:      MapAlert[];

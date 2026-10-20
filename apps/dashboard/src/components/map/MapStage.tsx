@@ -3,7 +3,7 @@ import type { MapSnapshot } from '../../api/map';
 import type { MapLayout } from '../../lib/map-layout';
 import { alertsByRef, roadKey, isWorking } from '../../lib/map-state';
 import { showBuildingMeta, showUnitBadges, showUnitLabels } from '../../lib/map-view';
-import { BuildingShape, HqShape, MapDefs, RoadShape, TerritoryShape, UnitShape } from './MapShapes';
+import { BuildingShape, HqShape, MapDefs, RoadShape, ServiceLine, StructureShape, TerritoryShape, UnitShape } from './MapShapes';
 import { UnitFace } from './MapAvatar';
 import type { MapViewport } from './useMapViewport';
 
@@ -11,6 +11,7 @@ export type Selection =
   | { type: 'building'; ref: string }
   | { type: 'unit'; id: string }
   | { type: 'road'; key: string }
+  | { type: 'infra'; id: string }
   | { type: 'alerts' };
 
 export const sameSelection = (a: Selection | null, b: Selection | null): boolean =>
@@ -35,6 +36,13 @@ export interface MapStageProps {
 export function MapStage({ snap, layout, viewport, selection, onSelect, overlay, buildingFx, unitFx, isShaking, roadFx }: MapStageProps) {
   const { view, size, animated, dragging } = viewport;
   const beacons = useMemo(() => alertsByRef(snap.alerts), [snap.alerts]);
+  const infra = snap.infra ?? [];
+  // A selected bot shows the channels it publishes to; a selected channel shows its bot.
+  const service = useMemo(() => {
+    if (selection?.type === 'infra') return infra.filter((i) => i.id === selection.id).flatMap((i) => i.serves.map((ref) => [i.id, ref] as const));
+    if (selection?.type === 'building') return infra.filter((i) => i.serves.includes(selection.ref)).map((i) => [i.id, selection.ref] as const);
+    return [];
+  }, [infra, selection]);
 
   return (
     <div
@@ -63,6 +71,21 @@ export function MapStage({ snap, layout, viewport, selection, onSelect, overlay,
                 onSelect={() => onSelect({ type: 'road', key })}>
                 {roadFx?.(key)}
               </RoadShape>
+            );
+          })}
+
+          {service.map(([id, ref]) => {
+            const a = layout.structures[id];
+            const b = layout.buildings[ref];
+            return a && b ? <ServiceLine key={`${id}>${ref}`} from={a} to={b} /> : null;
+          })}
+
+          {infra.map((i) => {
+            const pos = layout.structures[i.id];
+            if (!pos) return null;
+            return (
+              <StructureShape key={i.id} item={i} pos={pos} beacon={beacons.get(i.id)} showMeta={showBuildingMeta(view.k)}
+                selected={selection?.type === 'infra' && selection.id === i.id} onSelect={() => onSelect({ type: 'infra', id: i.id })} />
             );
           })}
 

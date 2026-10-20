@@ -1,9 +1,12 @@
 import type { KeyboardEvent, ReactNode } from 'react';
 import { Icon } from '../ui/Icon';
-import type { MapResource, MapRoad, MapUnit } from '../../api/map';
-import { BUILDING_R, UNIT_R, hexPoints, roadGeometry, type PlacedBuilding, type PlacedUnit, type Rect, type Territory } from '../../lib/map-layout';
+import type { MapInfra, MapResource, MapRoad, MapUnit } from '../../api/map';
 import {
-  HEALTH_META, PLATFORM_META, ROAD_META, STATE_META, compactNumber, isDormant, isWorking, kindLabel, resourceTitle, stateLine, type AlertTone,
+  BUILDING_R, STRUCT_R, UNIT_R, hexPoints, roadGeometry, type PlacedBuilding, type PlacedStructure, type PlacedUnit, type Rect, type Territory,
+} from '../../lib/map-layout';
+import {
+  HEALTH_META, INFRA_META, PLATFORM_META, ROAD_META, STATE_META, compactNumber, infraMeta, isDormant, isWorking, kindLabel, resourceTitle, sectionCount,
+  stateLine, type AlertTone,
 } from '../../lib/map-state';
 
 // Spec 056 FR-003: the SVG pieces of the network map — territories, headquarters, buildings, units and roads.
@@ -47,21 +50,27 @@ export function MapDefs() {
   );
 }
 
-/** A territory: a rounded region with a name tag and corner ticks. */
+/**
+ * A section: a network (solid, its own tint), the resources of one platform outside any network (solid, the platform's
+ * tint, its icon) or a kind of connection — bots, sessions, Telegraph (dashed, dim, its icon).
+ */
 export function TerritoryShape({ t }: { t: Territory }) {
-  const tint = t.kind === 'frontier' ? 'var(--color-ink-dim)' : tintOf(t.tint);
+  const tint = t.kind === 'platform' && t.platform ? PLATFORM_META[t.platform].tint : t.kind === 'infra' ? 'var(--color-ink-dim)' : tintOf(t.tint);
+  const icon = t.kind === 'platform' && t.platform ? PLATFORM_META[t.platform].icon : t.kind === 'infra' && t.infra ? INFRA_META[t.infra].icon : null;
+  const count = sectionCount(t);
   const tick = 16;
   return (
-    <g style={{ ['--map-tint' as string]: tint }} aria-label={`${t.name}, ${t.refs.length} ${t.refs.length === 1 ? 'resource' : 'resources'}`} role="group">
+    <g style={{ ['--map-tint' as string]: tint }} aria-label={`${t.name}, ${count}`} role="group" data-section={t.id}>
       <rect x={t.x} y={t.y} width={t.w} height={t.h} rx={30}
-        style={{ fill: `color-mix(in srgb, ${tint} 5%, var(--color-surface-1))`, stroke: `color-mix(in srgb, ${tint} 38%, transparent)` }}
-        strokeWidth="1.5" strokeDasharray={t.kind === 'frontier' ? '3 7' : undefined} opacity="0.92" />
+        style={{ fill: `color-mix(in srgb, ${tint} ${t.kind === 'infra' ? 3 : 5}%, var(--color-surface-1))`, stroke: `color-mix(in srgb, ${tint} ${t.kind === 'network' ? 38 : 30}%, transparent)` }}
+        strokeWidth="1.5" strokeDasharray={t.kind === 'infra' ? '3 7' : undefined} opacity="0.92" />
       <rect x={t.x} y={t.y} width={t.w} height={t.h} rx={30} fill="url(#map-dots)" opacity="0.5" pointerEvents="none" />
-      {[[t.x + 10, t.y + 10, 1, 1], [t.x + t.w - 10, t.y + 10, -1, 1], [t.x + 10, t.y + t.h - 10, 1, -1], [t.x + t.w - 10, t.y + t.h - 10, -1, -1]].map(([x, y, sx, sy], i) => (
+      {t.kind !== 'infra' && [[t.x + 10, t.y + 10, 1, 1], [t.x + t.w - 10, t.y + 10, -1, 1], [t.x + 10, t.y + t.h - 10, 1, -1], [t.x + t.w - 10, t.y + t.h - 10, -1, -1]].map(([x, y, sx, sy], i) => (
         <path key={i} d={`M ${x} ${y + sy * tick} L ${x} ${y} L ${x + sx * tick} ${y}`} fill="none" strokeWidth="2" strokeLinecap="round" style={{ stroke: tint }} opacity="0.6" />
       ))}
-      <text x={t.x + 28} y={t.y + 31} className="map-territory-name">{clip(t.name, 28)}</text>
-      <text x={t.x + t.w - 28} y={t.y + 31} textAnchor="end" className="map-territory-count">{t.refs.length} {t.refs.length === 1 ? 'resource' : 'resources'}</text>
+      {icon && <g transform={`translate(${t.x + 26} ${t.y + 18})`} style={{ color: tint }}><Icon name={icon} size={16} strokeWidth={2} /></g>}
+      <text x={t.x + (icon ? 48 : 28)} y={t.y + 31} className="map-territory-name">{clip(t.name, icon ? 24 : 28)}</text>
+      <text x={t.x + t.w - 28} y={t.y + 31} textAnchor="end" className="map-territory-count">{count}</text>
     </g>
   );
 }
@@ -144,6 +153,59 @@ export function BuildingShape({ res, pos, beacon, selected, showMeta, onSelect, 
       {children}
     </g>
   );
+}
+
+export interface StructureProps {
+  item: MapInfra;
+  pos: PlacedStructure;
+  beacon?: { count: number; tone: AlertTone };
+  selected: boolean;
+  showMeta: boolean;
+  onSelect: () => void;
+}
+
+/** A connection: a rounded square with its glyph, ringed by its last check; the default bot wears a star, an inactive one is hatched. */
+export function StructureShape({ item, pos, beacon, selected, showMeta, onSelect }: StructureProps) {
+  const meta = infraMeta(item);
+  const health = HEALTH_META[item.health];
+  const r = STRUCT_R;
+  const label = `${meta.label} ${item.title}, ${health.label.toLowerCase()}${item.isDefault ? ', default bot' : ''}${item.active ? '' : ', switched off'}${item.kind === 'bot' ? `, publishes to ${item.serves.length} ${item.serves.length === 1 ? 'channel' : 'channels'}` : ''}`;
+  const beaconColor = beacon?.tone === 'danger' ? 'var(--color-danger)' : 'var(--color-warning)';
+  const sub = item.kind === 'bot' ? `${item.serves.length} ${item.serves.length === 1 ? 'channel' : 'channels'}${item.isDefault ? ' · default' : ''}` : item.kind === 'mtproto' ? meta.short : item.username;
+  return (
+    <g transform={`translate(${pos.x} ${pos.y})`} className={`map-node map-building map-structure${selected ? ' is-selected' : ''}${item.active ? '' : ' is-off'}`} data-infra={item.id}
+      role="button" tabIndex={0} aria-label={label} aria-pressed={selected} onClick={onSelect} onKeyDown={onActivate(onSelect)}>
+      <title>{label}</title>
+      {beacon && <rect x={-r - 6} y={-r - 6} width={2 * r + 12} height={2 * r + 12} rx={14} className="map-beacon" style={{ stroke: beaconColor }} />}
+      {selected && <rect x={-r - 8} y={-r - 8} width={2 * r + 16} height={2 * r + 16} rx={15} className="map-selected-ring" />}
+      <rect x={-r - 7} y={-r - 7} width={2 * r + 14} height={2 * r + 14} rx={14} className="map-focus-ring" />
+      <g className="map-plate">
+        <rect x={-r} y={-r} width={2 * r} height={2 * r} rx={10} fill="url(#map-plate)" strokeWidth={item.health === 'unknown' ? 1.5 : 2.6} style={{ stroke: health.color }} />
+        {!item.active && <rect x={-r} y={-r} width={2 * r} height={2 * r} rx={10} fill="url(#map-hatch)" pointerEvents="none" />}
+        <g transform="translate(-10 -10)" style={{ color: item.active ? meta.tint : 'var(--color-ink-dim)' }}><Icon name={meta.icon} size={20} strokeWidth={1.9} /></g>
+      </g>
+      {item.isDefault && (
+        <g transform={`translate(${-r + 2} ${-r + 2})`} style={{ color: 'var(--color-warning)' }}>
+          <circle r={7.5} style={{ fill: 'var(--color-surface-3)', stroke: 'var(--color-hairline-strong)' }} />
+          <g transform="translate(-4.5 -4.5)"><Icon name="star" size={9} strokeWidth={2.6} /></g>
+        </g>
+      )}
+      {beacon && (
+        <g transform={`translate(${r - 2} ${-r + 2})`}>
+          <circle r={8.5} style={{ fill: beaconColor }} />
+          <text className="map-badge-text">!</text>
+        </g>
+      )}
+      <text y={r + 16} textAnchor="middle" className="map-building-title">{clip(item.title, 18)}</text>
+      {showMeta && sub && <text y={r + 30} textAnchor="middle" className="map-building-meta">{clip(sub, 24)}</text>}
+    </g>
+  );
+}
+
+/** A thin line from a bot to a channel it publishes to — drawn only while the bot (or the channel) is selected. */
+export function ServiceLine({ from, to }: { from: { x: number; y: number }; to: { x: number; y: number } }) {
+  const g = roadGeometry(from, to, 0.08);
+  return <path d={g.d} className="map-service-line" />;
 }
 
 export interface UnitProps {

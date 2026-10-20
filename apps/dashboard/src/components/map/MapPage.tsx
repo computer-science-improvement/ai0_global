@@ -7,7 +7,7 @@ import { useMediaQuery } from '../../lib/useMediaQuery';
 import { layoutMap, type MapLayout } from '../../lib/map-layout';
 import { pollInterval } from '../../lib/map-diff';
 import { roadKey } from '../../lib/map-state';
-import { AlertsDrawer, BuildingDrawer, RoadDrawer, UnitDrawer } from './MapDrawers';
+import { AlertsDrawer, BuildingDrawer, InfraDrawer, RoadDrawer, UnitDrawer } from './MapDrawers';
 import { FeedPanel, Legend, TopBar, ZoomControls } from './MapHud';
 import { MapStage, anyWorking, sameSelection, type Selection } from './MapStage';
 import { useFxRenderers } from './MapFx';
@@ -16,8 +16,9 @@ import { useMapViewport } from './useMapViewport';
 import './map.css';
 
 /** Only the structure decides the layout: ids, homes, networks. A poll that changes states must not move anything. */
-export function structureKey(s: Pick<MapSnapshot, 'networks' | 'resources' | 'units'>): string {
+export function structureKey(s: Pick<MapSnapshot, 'networks' | 'resources' | 'units' | 'infra'>): string {
   return [
+    (s.infra ?? []).map((i) => `${i.id}:${i.kind}`).sort().join(','),
     s.networks.map((n) => `${n.id}:${n.anchorRef ?? ''}`).sort().join(','),
     s.resources.map((r) => `${r.ref}:${r.groupId ?? ''}:${r.platform}`).sort().join(','),
     s.units.map((u) => `${u.id}:${u.homeRef ?? ''}:${u.parentId ?? ''}:${u.kind}`).sort().join(','),
@@ -64,9 +65,10 @@ export function MapPage() {
   const close = useCallback(() => setSelection(null), []);
 
   const focusRef = useCallback((ref: string) => {
-    const b = layout?.buildings[ref];
+    const b = layout?.buildings[ref] ?? layout?.structures[ref];
     if (b) viewport.focusOn(b.x, b.y);
   }, [layout, viewport]);
+  const pickInfra = useCallback((id: string) => { setSelection({ type: 'infra', id }); focusRef(id); }, [focusRef]);
   const pickBuilding = useCallback((ref: string) => { setSelection({ type: 'building', ref }); focusRef(ref); }, [focusRef]);
 
   const onPickEvent = useCallback((e: MapEvent) => {
@@ -94,7 +96,8 @@ export function MapPage() {
   const selectedBuilding = selection?.type === 'building' ? snap.resources.find((r) => r.ref === selection.ref) : undefined;
   const selectedUnit = selection?.type === 'unit' ? snap.units.find((u) => u.id === selection.id) : undefined;
   const selectedRoad = selection?.type === 'road' ? snap.roads.find((r) => roadKey(r) === selection.key) : undefined;
-  const drawerOpen = selection?.type === 'alerts' || !!selectedBuilding || !!selectedUnit || !!selectedRoad;
+  const selectedInfra = selection?.type === 'infra' ? snap.infra?.find((i) => i.id === selection.id) : undefined;
+  const drawerOpen = selection?.type === 'alerts' || !!selectedBuilding || !!selectedUnit || !!selectedRoad || !!selectedInfra;
 
   return (
     <div className="map-root">
@@ -129,8 +132,9 @@ export function MapPage() {
       <ZoomControls view={viewport.view} onIn={viewport.zoomIn} onOut={viewport.zoomOut} onFit={viewport.fit} />
 
       {selection?.type === 'alerts' && <AlertsDrawer snap={snap} onClose={close} onShow={(ref) => { focusRef(ref); }} />}
-      {selectedBuilding && <BuildingDrawer snap={snap} res={selectedBuilding} onClose={close} onPickUnit={(id) => setSelection({ type: 'unit', id })} onShow={focusRef} />}
+      {selectedBuilding && <BuildingDrawer snap={snap} res={selectedBuilding} onClose={close} onPickUnit={(id) => setSelection({ type: 'unit', id })} onShow={focusRef} onPickInfra={pickInfra} />}
       {selectedUnit && <UnitDrawer snap={snap} unit={selectedUnit} onClose={close} onPickBuilding={pickBuilding} />}
+      {selectedInfra && <InfraDrawer snap={snap} item={selectedInfra} onClose={close} onPickBuilding={pickBuilding} onShow={focusRef} />}
       {selectedRoad && <RoadDrawer snap={snap} road={selectedRoad} onClose={close} onPickBuilding={pickBuilding} />}
     </div>
   );

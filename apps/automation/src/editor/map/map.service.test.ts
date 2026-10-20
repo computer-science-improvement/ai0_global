@@ -1,6 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { eventText, healthView, MapService, mergeSlotFacts } from './map.service';
+import { eventText, healthView, infraItems, MapService, mergeSlotFacts } from './map.service';
+import type { RawInfra } from './map.queries';
 import type { SlotFacts } from './map.queries';
 
 const T0 = new Date('2026-10-20T12:00:00Z');
@@ -23,7 +24,7 @@ function service(over: Partial<ConstructorParameters<typeof MapService>[0]> = {}
 test('an empty network gives an empty snapshot, not an error', async () => {
   const { svc } = service();
   const s = await svc.snapshot();
-  assert.deepEqual([s.units, s.resources, s.roads, s.alerts, s.events, s.networks], [[], [], [], [], [], []]);
+  assert.deepEqual([s.units, s.resources, s.infra, s.roads, s.alerts, s.events, s.networks], [[], [], [], [], [], [], []]);
   assert.deepEqual(s.budget, { spentUsd: 0, capUsd: null, pct: null, blocking: false });
   assert.equal(s.generatedAt, T0.toISOString());
 });
@@ -93,4 +94,33 @@ test('slot facts of the resources of a network orchestrator are merged', () => {
   assert.equal(m.failed?.error, 'b', 'the newest failure');
   assert.equal(m.approvedDue?.topic, 'D');
   assert.equal(m.running, null);
+});
+
+test('infra: health from the last verify; a channel without its own bot is served by the default bot', () => {
+  const raw = (o: Partial<RawInfra> & Pick<RawInfra, 'id' | 'kind'>): RawInfra => ({
+    name: null, username: null, active: true, isDefault: false, role: null, lastVerifiedAt: null, verifyError: null, ...o,
+  });
+  const items = infraItems([
+    raw({ id: 'bot:d', kind: 'bot', username: 'main_bot', isDefault: true, lastVerifiedAt: T0 }),
+    raw({ id: 'bot:x', kind: 'bot', name: 'Side', verifyError: '401  Unauthorized\n' }),
+    raw({ id: 'mtproto:s', kind: 'mtproto', name: 'Tracker', username: 'me', role: 'tracker' }),
+    raw({ id: 'telegraph:t', kind: 'telegraph', name: 'ai0', username: 'Author' }),
+  ], ['telegram:@a', 'telegram:@b', 'telegram:@c', 'instagram:1'], new Map([['telegram:@b', 'bot:x'], ['telegram:@c', 'bot:gone']]));
+  const by = new Map(items.map((i) => [i.id, i]));
+  assert.deepEqual(by.get('bot:d')!.serves, ['telegram:@a', 'telegram:@c'], 'a named bot that is gone falls back to the default');
+  assert.deepEqual(by.get('bot:x')!.serves, ['telegram:@b']);
+  assert.deepEqual([by.get('bot:d')!.title, by.get('bot:d')!.health], ['@main_bot', 'ok']);
+  assert.deepEqual([by.get('bot:x')!.title, by.get('bot:x')!.health, by.get('bot:x')!.healthDetail], ['Side', 'broken', '401 Unauthorized']);
+  assert.deepEqual([by.get('mtproto:s')!.title, by.get('mtproto:s')!.health, by.get('mtproto:s')!.path], ['Tracker', 'unknown', '/app/connections?section=telegram&tab=sessions']);
+  assert.equal(by.get('telegraph:t')!.path, '/app/connections?section=telegram&tab=telegraph');
+});
+
+test('a broken active bot is a connection alert; an inactive one is not', async () => {
+  const pool = { query: async (sql: string) => (/FROM my_bots/.test(sql)
+    ? { rows: [{ id: '1', username: 'b1', active: true, verify_error: 'boom' }, { id: '2', username: 'b2', active: false, verify_error: 'boom' }] }
+    : { rows: [] }) };
+  const { svc } = service({ pool: pool as any });
+  const s = await svc.snapshot();
+  assert.deepEqual(s.alerts.map((a) => [a.kind, a.ref, a.path]), [['connection', 'bot:1', '/app/connections?section=telegram&tab=bots']]);
+  assert.equal(s.infra.length, 2);
 });

@@ -22,6 +22,13 @@ export interface MapResource {
   health: MapHealth; healthDetail: string | null; paused: boolean; postsToday: number; waiting: number; agent: string | null;
 }
 
+/** Spec 056 follow-up: what a channel works through — Telegram bots, MTProto sessions, Telegraph accounts (never a token or a phone). */
+export type InfraKind = 'bot' | 'mtproto' | 'telegraph';
+export interface MapInfra {
+  id: string; kind: InfraKind; title: string; username: string | null; health: MapHealth; healthDetail: string | null; active: boolean;
+  isDefault: boolean; role: string | null; lastVerifiedAt: string | null; serves: string[]; path: string;
+}
+
 export interface LevelStats { clean: number; pass: number; rejected: number; failedRuns: number; score: number }
 
 export interface MapUnit {
@@ -43,6 +50,8 @@ export interface MapSnapshot {
   totals: { runsToday: number; postsToday: number };
   networks: MapNetwork[];
   resources: MapResource[];
+  /** Absent from a server older than the infra sections. */
+  infra?: MapInfra[];
   units: MapUnit[];
   roads: MapRoad[];
   alerts: MapAlert[];

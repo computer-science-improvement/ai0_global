@@ -37,6 +37,10 @@ export interface RawEvent { id: string; at: Date; kind: string; agentId?: string
 export interface RawRoad { from: string; to: string; kind: 'promo' | 'repost' | 'duplicate'; count: number; lastAt: Date | null }
 export interface DirectiveWait { handle: string; count: number }
 export interface LaunchWait { id: string; channelKey: string; targetRef: string; status: string; handle: string | null; since: Date }
+export interface RawInfra {
+  id: string; kind: 'bot' | 'mtproto' | 'telegraph'; name: string | null; username: string | null; active: boolean; isDefault: boolean;
+  role: string | null; lastVerifiedAt: Date | null; verifyError: string | null;
+}
 export interface HealthRow { ref: string; state: string; detail: string | null; muted: boolean }
 
 export class MapQueries {
@@ -145,6 +149,46 @@ export class MapQueries {
                 (resource_health->>'dismissedAt') IS NOT NULL AS muted
            FROM resource_profiles WHERE resource_health IS NOT NULL`);
       return rows.map((r) => ({ ref: r.resource_ref, state: r.state ?? 'unknown', detail: r.detail ?? null, muted: !!r.muted }));
+    });
+  }
+
+  /** Telegram bots, MTProto sessions and Telegraph accounts — each table on its own, so an older database still shows the rest. */
+  async infra(): Promise<RawInfra[]> {
+    const bots = safe([] as RawInfra[], async () => {
+      const { rows } = await this.pool.query(
+        `SELECT id::text, username, first_name, active, is_default, last_verified_at, verify_error FROM my_bots ORDER BY is_default DESC, username NULLS LAST, id`);
+      return rows.map((r): RawInfra => ({
+        id: `bot:${r.id}`, kind: 'bot', name: r.first_name ?? null, username: r.username ?? null, active: !!r.active, isDefault: !!r.is_default,
+        role: null, lastVerifiedAt: iso(r.last_verified_at), verifyError: r.verify_error ?? null,
+      }));
+    });
+    // never the phone or the session string
+    const sessions = safe([] as RawInfra[], async () => {
+      const { rows } = await this.pool.query(
+        `SELECT id::text, label, username, active, role, last_verified_at, verify_error FROM mtproto_sessions ORDER BY role, label, id`);
+      return rows.map((r): RawInfra => ({
+        id: `mtproto:${r.id}`, kind: 'mtproto', name: r.label ?? null, username: r.username ?? null, active: !!r.active, isDefault: false,
+        role: r.role ?? 'tracker', lastVerifiedAt: iso(r.last_verified_at), verifyError: r.verify_error ?? null,
+      }));
+    });
+    const telegraph = safe([] as RawInfra[], async () => {
+      const { rows } = await this.pool.query(
+        `SELECT id::text, account_id, short_name, author_name, active, last_verified_at, verify_error FROM telegraph_accounts ORDER BY account_id, id`);
+      return rows.map((r): RawInfra => ({
+        id: `telegraph:${r.id}`, kind: 'telegraph', name: r.short_name ?? r.account_id ?? null, username: r.author_name ?? null, active: !!r.active,
+        isDefault: false, role: null, lastVerifiedAt: iso(r.last_verified_at), verifyError: r.verify_error ?? null,
+      }));
+    });
+    return (await Promise.all([bots, sessions, telegraph])).flat();
+  }
+
+  /** The bot each Telegram channel names (a channel without one publishes through the default bot). */
+  channelBots() {
+    return safe(new Map<string, string>(), async () => {
+      const { rows } = await this.pool.query(
+        `SELECT DISTINCT ON (channel_key) channel_key, bot_id::text AS bot_id FROM tracked_channels
+          WHERE channel_key IS NOT NULL AND bot_id IS NOT NULL ORDER BY channel_key, is_mine DESC`);
+      return new Map(rows.map((r) => [`telegram:${r.channel_key}`, `bot:${r.bot_id}`]));
     });
   }
 

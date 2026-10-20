@@ -1,5 +1,5 @@
 import type {
-  MapAgentKind, MapEvent, MapPlatform, MapResource, MapRoad, MapSnapshot, MapUnit, UnitState,
+  MapAgentKind, MapEvent, MapInfra, MapPlatform, MapResource, MapRoad, MapSnapshot, MapUnit, UnitState,
 } from '../api/map';
 
 // Spec 056: a deterministic demo network for the tests and for a mock backend (`demoSnapshot(tick)`: every tick moves a
@@ -20,6 +20,22 @@ const RESOURCES: DemoResource[] = [
   { ref: 'telegram:@space_ua', platform: 'telegram', title: 'Space', followers: 9300, group: 'g-space' },
   { ref: 'telegram:@movies_ua', platform: 'telegram', title: 'Movies', followers: 6700, group: null },
   { ref: 'telegram:@gaming_ua', platform: 'telegram', title: 'Gaming', followers: 3400, group: null },
+  { ref: 'instagram:ig-solo', platform: 'instagram', title: 'solo.shop', followers: 1200, group: null },
+];
+
+const INFRA: MapInfra[] = [
+  { id: 'bot:main', kind: 'bot', title: '@ai0_publisher_bot', username: 'ai0_publisher_bot', health: 'ok', healthDetail: null, active: true, isDefault: true, role: null,
+    lastVerifiedAt: '2026-10-20T09:00:00Z', serves: ['telegram:@ai0_global', 'telegram:@gaming_ua', 'telegram:@recipes_ua', 'telegram:@space_ua'], path: '/app/connections?section=telegram&tab=bots' },
+  { id: 'bot:movies', kind: 'bot', title: '@movies_poster_bot', username: 'movies_poster_bot', health: 'broken', healthDetail: '401 Unauthorized', active: true, isDefault: false, role: null,
+    lastVerifiedAt: '2026-10-19T09:00:00Z', serves: ['telegram:@movies_ua'], path: '/app/connections?section=telegram&tab=bots' },
+  { id: 'bot:old', kind: 'bot', title: '@old_test_bot', username: 'old_test_bot', health: 'unknown', healthDetail: null, active: false, isDefault: false, role: null,
+    lastVerifiedAt: null, serves: [], path: '/app/connections?section=telegram&tab=bots' },
+  { id: 'mtproto:tracker', kind: 'mtproto', title: 'Stats reader', username: 'ai0_stats', health: 'ok', healthDetail: null, active: true, isDefault: false, role: 'tracker',
+    lastVerifiedAt: '2026-10-20T08:00:00Z', serves: [], path: '/app/connections?section=telegram&tab=sessions' },
+  { id: 'mtproto:agent', kind: 'mtproto', title: 'Agent account', username: 'ai0_agent', health: 'ok', healthDetail: null, active: true, isDefault: false, role: 'agent',
+    lastVerifiedAt: '2026-10-20T08:00:00Z', serves: [], path: '/app/connections?section=telegram&tab=sessions' },
+  { id: 'telegraph:default', kind: 'telegraph', title: 'ai0', username: 'AI0 Global', health: 'ok', healthDetail: null, active: true, isDefault: false, role: null,
+    lastVerifiedAt: '2026-10-18T08:00:00Z', serves: [], path: '/app/connections?section=telegram&tab=telegraph' },
 ];
 
 const NETWORKS = [
@@ -104,10 +120,11 @@ export function demoSnapshot(tick = 0, now: Date = new Date('2026-10-20T12:00:00
     generatedAt: now.toISOString(),
     budget: { spentUsd: 1.84 + tick * 0.01, capUsd: 3, pct: Math.round(((1.84 + tick * 0.01) / 3) * 1000) / 10, blocking: false },
     totals: { runsToday: units.reduce((s, u) => s + u.runsToday, 0), postsToday: resources.reduce((s, r) => s + r.postsToday, 0) },
-    networks: NETWORKS, resources, units, roads,
+    networks: NETWORKS, resources, infra: INFRA, units, roads,
     alerts: [
       { kind: 'approval', count: 2, ref: 'telegram:@ai0_global', agent: 'ai0_global', title: '2 posts wait for approval on AI0 Global', path: '/app/agents/inbox?tab=approvals' },
       { kind: 'connection', count: 1, ref: 'instagram:ig-food', agent: 'ig_food', title: 'recipes.ua: token expired', path: '/app/connections' },
+      { kind: 'connection', count: 1, ref: 'bot:movies', agent: null, title: 'Telegram bot @movies_poster_bot: 401 Unauthorized', path: '/app/connections?section=telegram&tab=bots' },
       { kind: 'directive', count: 1, ref: 'telegram:@space_ua', agent: 'space_ua', title: '1 directive waits for your decision (@space_ua)', path: '/app/agents/manager?tab=directives' },
     ],
     events: events.slice(0, 30),

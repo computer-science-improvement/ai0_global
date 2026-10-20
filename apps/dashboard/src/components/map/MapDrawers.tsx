@@ -2,14 +2,16 @@ import { useEffect, type ReactNode } from 'react';
 import { Link, useNavigate } from '@tanstack/react-router';
 import { Icon, type IconName } from '../ui/Icon';
 import { Badge } from '../ui/Badge';
-import type { MapAlert, MapResource, MapRoad, MapSnapshot, MapUnit } from '../../api/map';
+import type { MapAlert, MapInfra, MapResource, MapRoad, MapSnapshot, MapUnit } from '../../api/map';
 import {
-  HEALTH_META, PLATFORM_META, ROAD_META, STATE_META, ago, alertTone, compactNumber, kindLabel, levelLine, modeLabel, resourceTitle, usd,
+  HEALTH_META, PLATFORM_META, ROAD_META, STATE_META, ago, alertTone, compactNumber, infraMeta, kindLabel, levelLine, modeLabel, resourceTitle, usd,
 } from '../../lib/map-state';
+import { PLATFORM_SECTION_NAME } from '../../lib/map-layout';
 import { parseNavTarget } from '../../nav/config';
 import { Avatar, UnitFace } from './MapAvatar';
 
-// Spec 056 FR-003: the drawers behind a click — a building, a unit, a road, the list of what waits for the owner.
+// Spec 056 FR-003: the drawers behind a click — a building, a unit, a road, a connection (bot, session, Telegraph),
+// the list of what waits for the owner.
 // On a phone (< 640 px) the CSS turns them into bottom sheets.
 
 export function MapDrawer({ title, subtitle, lead, onClose, children }: {
@@ -52,6 +54,9 @@ function Section({ title, children }: { title: string; children: ReactNode }) {
     </section>
   );
 }
+
+const linkBtn = { background: 'none', border: 0, padding: 0, cursor: 'pointer', font: 'inherit' } as const;
+const healthTone = (h: MapResource['health']) => (h === 'ok' ? 'success' : h === 'warning' ? 'warning' : h === 'broken' ? 'danger' : 'neutral');
 
 const LinkChip = ({ icon, children, ...rest }: { icon: IconName; children: ReactNode } & Record<string, unknown>) => (
   <Link {...(rest as any)} className="map-link"><Icon name={icon} size={14} />{children}</Link>
@@ -105,9 +110,10 @@ function StateChip({ unit }: { unit: Pick<MapUnit, 'state'> }) {
   return <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, color: st.color, fontWeight: 600 }}><Icon name={st.icon} size={13} strokeWidth={2.6} />{st.label}</span>;
 }
 
-export function BuildingDrawer({ snap, res, onClose, onPickUnit, onShow }: {
-  snap: MapSnapshot; res: MapResource; onClose: () => void; onPickUnit: (id: string) => void; onShow: (ref: string) => void;
+export function BuildingDrawer({ snap, res, onClose, onPickUnit, onShow, onPickInfra }: {
+  snap: MapSnapshot; res: MapResource; onClose: () => void; onPickUnit: (id: string) => void; onShow: (ref: string) => void; onPickInfra?: (id: string) => void;
 }) {
+  const bots = (snap.infra ?? []).filter((i) => i.serves.includes(res.ref));
   const meta = PLATFORM_META[res.platform];
   const health = HEALTH_META[res.health];
   const network = snap.networks.find((n) => n.id === res.groupId);
@@ -118,11 +124,14 @@ export function BuildingDrawer({ snap, res, onClose, onPickUnit, onShow }: {
     <MapDrawer
       title={resourceTitle(res)}
       lead={<span style={{ width: 38, height: 38, borderRadius: 10, display: 'grid', placeItems: 'center', background: 'var(--color-surface-3)', color: meta.tint, border: `2px solid ${health.color}`, flex: 'none' }}><Icon name={meta.icon} size={20} /></span>}
-      subtitle={<><span>{meta.label}</span><Badge tone={res.health === 'ok' ? 'success' : res.health === 'warning' ? 'warning' : res.health === 'broken' ? 'danger' : 'neutral'}>{health.label}</Badge>{res.paused && <Badge tone="neutral">Paused</Badge>}</>}
+      subtitle={<><span>{meta.label}</span><Badge tone={healthTone(res.health)}>{health.label}</Badge>{res.paused && <Badge tone="neutral">Paused</Badge>}</>}
       onClose={onClose}
     >
       <Facts rows={[
-        ['Network', network?.name ?? 'Frontier (no network)'],
+        ['Network', network?.name ?? `None (in ${PLATFORM_SECTION_NAME[res.platform]})`],
+        ['Published by', bots.length ? <span key="b" style={{ display: 'inline-flex', gap: 8, flexWrap: 'wrap' }}>{bots.map((b) => (
+          <button key={b.id} type="button" className="link-accent" style={linkBtn} onClick={() => onPickInfra?.(b.id)}>{b.title}{b.isDefault ? ' (default bot)' : ''}</button>
+        ))}</span> : null],
         ['Followers', res.followers != null ? compactNumber(res.followers) : null],
         ['Posts today', String(res.postsToday)],
         ['Waiting for you', res.waiting ? `${res.waiting} ${res.waiting === 1 ? 'post' : 'posts'} to approve` : 'Nothing'],
@@ -191,7 +200,7 @@ export function UnitDrawer({ snap, unit, onClose, onPickBuilding }: { snap: MapS
         </span>],
         ['Runs today', String(unit.runsToday)],
         ['Last run', unit.lastRunAt ? ago(unit.lastRunAt) : 'No runs yet'],
-        ['Stands at', home ? <button key="h" type="button" className="link-accent" style={{ background: 'none', border: 0, padding: 0, cursor: 'pointer', font: 'inherit' }} onClick={() => onPickBuilding(home.ref)}>{resourceTitle(home)}</button> : 'Headquarters'],
+        ['Stands at', home ? <button key="h" type="button" className="link-accent" style={linkBtn} onClick={() => onPickBuilding(home.ref)}>{resourceTitle(home)}</button> : 'Headquarters'],
         ['Works for', parent ? `@${parent.handle}` : null],
         ['Level', unit.level != null ? `${unit.level} of 10${unit.level < 10 && unit.levelStats ? ` · score ${unit.levelStats.score}, the next level at ${unit.level * 10}` : ''}` : null],
       ]} />
@@ -210,8 +219,25 @@ export function UnitDrawer({ snap, unit, onClose, onPickBuilding }: { snap: MapS
   );
 }
 
+/** What a road is and where it is controlled: roads are activity of the last 30 days, not a setting. */
+const ROAD_HELP: Record<MapRoad['kind'], { what: string; control: string }> = {
+  promo: {
+    what: 'The first channel published a cross-promo post that points to the second. A promo goes out only after you approve the manager\'s cross-promo directive, or as part of a channel launch.',
+    control: 'To stop it, reject or contest the cross-promo directive (or pause either side). To add one, ask the manager in the chat to promote one channel in another; it comes to you as a directive.',
+  },
+  repost: {
+    what: 'The second resource published a repost or an adapted copy of a post of the first one.',
+    control: 'Adapted copies follow the network mode on the Playbook tab: Independent stops them. Promo reposts are directives you approve.',
+  },
+  duplicate: {
+    what: 'The same post was copied to the second resource, because the network mode is Auto-duplicate or the plan duplicated this post.',
+    control: 'Switch the network mode on the Playbook tab to Independent to stop the copies.',
+  },
+};
+
 export function RoadDrawer({ snap, road, onClose, onPickBuilding }: { snap: MapSnapshot; road: MapRoad; onClose: () => void; onPickBuilding: (ref: string) => void }) {
   const meta = ROAD_META[road.kind];
+  const help = ROAD_HELP[road.kind];
   const a = snap.resources.find((r) => r.ref === road.from);
   const b = snap.resources.find((r) => r.ref === road.to);
   const nameOf = (r: MapResource | undefined, ref: string) => (r ? resourceTitle(r) : ref);
@@ -229,10 +255,68 @@ export function RoadDrawer({ snap, road, onClose, onPickBuilding }: { snap: MapS
         ['Last one', road.lastAt ? ago(road.lastAt) : '—'],
         ['Joined through links', road.joins30d != null ? `${road.joins30d} subscribers` : road.kind === 'promo' ? 'Not tracked' : null],
       ]} />
+      <Section title="What this line is">
+        <p className="text-caption" style={{ margin: 0 }}>{help.what}</p>
+        <p className="text-micro" style={{ margin: '6px 0 0', color: 'var(--color-ink-muted)' }}>
+          A line is past activity, not a setting: it disappears after 30 days without a new post of this kind.
+        </p>
+      </Section>
+      <Section title="How to change it"><p className="text-caption" style={{ margin: 0 }}>{help.control}</p></Section>
       <div className="map-links">
         <button type="button" className="map-link" onClick={() => onPickBuilding(road.from)}><Icon name="send" size={14} />From</button>
         <button type="button" className="map-link" onClick={() => onPickBuilding(road.to)}><Icon name="download" size={14} />To</button>
-        {agent && <LinkChip icon="megaphone" to="/app/agents/$handle" params={{ handle: agent }} search={{ tab: 'promo' }}>Promo plan</LinkChip>}
+        {road.kind === 'promo' && <LinkChip icon="agents" to="/app/agents/$handle" params={{ handle: 'manager' }} search={{ tab: 'directives' }}>Directives</LinkChip>}
+        {agent && road.kind === 'promo' && <LinkChip icon="megaphone" to="/app/agents/$handle" params={{ handle: agent }} search={{ tab: 'promo' }}>Promo plan</LinkChip>}
+        {agent && road.kind !== 'promo' && <LinkChip icon="logs" to="/app/agents/$handle" params={{ handle: agent }} search={{ tab: 'playbook' }}>Playbook</LinkChip>}
+      </div>
+    </MapDrawer>
+  );
+}
+
+export function InfraDrawer({ snap, item, onClose, onPickBuilding, onShow }: {
+  snap: MapSnapshot; item: MapInfra; onClose: () => void; onPickBuilding: (ref: string) => void; onShow: (id: string) => void;
+}) {
+  const go = useGo();
+  const meta = infraMeta(item);
+  const health = HEALTH_META[item.health];
+  const served = item.serves.map((ref) => snap.resources.find((r) => r.ref === ref)).filter((r): r is MapResource => !!r);
+  const alerts = snap.alerts.filter((a) => a.ref === item.id);
+  return (
+    <MapDrawer
+      title={item.title}
+      lead={<span style={{ width: 38, height: 38, borderRadius: 10, display: 'grid', placeItems: 'center', background: 'var(--color-surface-3)', color: meta.tint, border: `2px solid ${health.color}`, flex: 'none' }}><Icon name={meta.icon} size={20} /></span>}
+      subtitle={<>
+        <span>{meta.label}</span><Badge tone={healthTone(item.health)}>{health.label}</Badge>
+        {item.isDefault && <Badge tone="accent">Default bot</Badge>}{!item.active && <Badge tone="neutral">Switched off</Badge>}
+      </>}
+      onClose={onClose}
+    >
+      <p className="text-caption" style={{ margin: 0, color: 'var(--color-ink-muted)' }}>{meta.help}</p>
+      <Facts rows={[
+        ['Account', item.username && item.kind !== 'telegraph' ? `@${item.username.replace(/^@/, '')}` : null],
+        ['Author', item.kind === 'telegraph' ? item.username : null],
+        ['Role', item.kind === 'mtproto' ? meta.short : null],
+        ['Last check', item.lastVerifiedAt ? ago(item.lastVerifiedAt) : 'Not checked yet'],
+        ['Problem', item.healthDetail],
+        ['Publishes to', item.kind === 'bot' ? (served.length ? `${served.length} ${served.length === 1 ? 'channel' : 'channels'}` : 'No channel on the map') : null],
+      ]} />
+      {alerts.length > 0 && <Section title="Waiting here"><AlertRows alerts={alerts} /></Section>}
+      {served.length > 0 && (
+        <Section title="Channels">
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+            {served.map((r) => (
+              <button key={r.ref} type="button" className="map-alert-row" onClick={() => onPickBuilding(r.ref)} style={{ alignItems: 'center' }}>
+                <span style={{ color: PLATFORM_META[r.platform].tint, flex: 'none' }}><Icon name={PLATFORM_META[r.platform].icon} size={16} /></span>
+                <span style={{ flex: 1, minWidth: 0, overflowWrap: 'anywhere' }}>{resourceTitle(r)}</span>
+              </button>
+            ))}
+          </div>
+          {item.isDefault && <p className="text-micro" style={{ margin: '6px 0 0', color: 'var(--color-ink-muted)' }}>As the default bot it also publishes to every channel that has no bot of its own.</p>}
+        </Section>
+      )}
+      <div className="map-links">
+        <button type="button" className="map-link" onClick={() => go(item.path)}><Icon name="connections" size={14} />Connections</button>
+        <button type="button" className="map-link" onClick={() => onShow(item.id)}><Icon name="fit" size={14} />Center</button>
       </div>
     </MapDrawer>
   );

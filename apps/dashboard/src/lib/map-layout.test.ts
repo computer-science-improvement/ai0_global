@@ -1,10 +1,10 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { ARC_R, BUILDING_R, FRONT_DY, FRONTIER_ID, UNIT_R, hexPoints, layoutMap, roadGeometry, type MapLayout } from './map-layout';
+import { ARC_R, BUILDING_R, FRONT_DY, STRUCT_R, UNIT_R, hexPoints, infraSectionId, layoutMap, platformSectionId, roadGeometry, type MapLayout } from './map-layout';
 import { demoSnapshot } from './map-demo';
 
 const demo = demoSnapshot(0);
-const input = (s = demo) => ({ networks: s.networks, resources: s.resources, units: s.units });
+const input = (s = demo) => ({ networks: s.networks, resources: s.resources, units: s.units, infra: s.infra });
 const dist = (a: { x: number; y: number }, b: { x: number; y: number }) => Math.hypot(a.x - b.x, a.y - b.y);
 
 test('same input in any order gives the same positions', () => {
@@ -13,6 +13,7 @@ test('same input in any order gives the same positions', () => {
     networks: [...demo.networks].reverse(),
     resources: [...demo.resources].sort((x, y) => (x.ref < y.ref ? 1 : -1)),
     units: [...demo.units].reverse(),
+    infra: [...(demo.infra ?? [])].reverse(),
   };
   assert.deepEqual(layoutMap(shuffled), a);
   assert.deepEqual(layoutMap(input()), a, 'and run twice');
@@ -25,10 +26,17 @@ test('every resource gets a building and every unit a place', () => {
   assert.equal(Object.keys(l.buildings).length, demo.resources.length);
 });
 
-test('territories: the largest network first, the Frontier last, none overlapping', () => {
+test('sections: the largest network first, then one per platform outside a network, then the connections on a row of their own; none overlapping', () => {
   const l = layoutMap(input());
-  assert.deepEqual(l.territories.map((t) => t.id), ['g-tech', 'g-food', 'g-space', FRONTIER_ID]);
-  assert.equal(l.territories[3].name, 'Frontier');
+  assert.deepEqual(l.territories.map((t) => t.id), [
+    'g-tech', 'g-food', 'g-space', platformSectionId('telegram'), platformSectionId('instagram'),
+    infraSectionId('bot'), infraSectionId('mtproto'), infraSectionId('telegraph'),
+  ]);
+  assert.deepEqual(l.territories.slice(3).map((t) => [t.name, t.kind]), [
+    ['Telegram channels', 'platform'], ['Instagram', 'platform'], ['Telegram bots', 'infra'], ['MTProto sessions', 'infra'], ['Telegraph accounts', 'infra'],
+  ]);
+  const lastResourceBottom = Math.max(...l.territories.filter((t) => t.kind !== 'infra').map((t) => t.y + t.h));
+  for (const t of l.territories.filter((x) => x.kind === 'infra')) assert.ok(t.y >= lastResourceBottom, `${t.id} below every channel section`);
   for (let i = 0; i < l.territories.length; i++) {
     for (let j = i + 1; j < l.territories.length; j++) {
       const a = l.territories[i], b = l.territories[j];
@@ -38,9 +46,24 @@ test('territories: the largest network first, the Frontier last, none overlappin
   }
 });
 
+test('every connection gets a structure inside its section, none overlapping, and never a building', () => {
+  const l = layoutMap(input());
+  for (const i of demo.infra ?? []) {
+    const p = l.structures[i.id];
+    assert.ok(p, i.id);
+    assert.equal(l.buildings[i.id], undefined);
+    const t = l.territories.find((x) => x.id === p.territory)!;
+    assert.equal(t.id, infraSectionId(i.kind));
+    assert.ok(p.x - STRUCT_R >= t.x && p.x + STRUCT_R <= t.x + t.w && p.y - STRUCT_R >= t.y && p.y + STRUCT_R <= t.y + t.h, `${i.id} inside`);
+  }
+  const ps = Object.values(l.structures);
+  for (let i = 0; i < ps.length; i++) for (let j = i + 1; j < ps.length; j++) assert.ok(dist(ps[i], ps[j]) > 2 * STRUCT_R + 40);
+  assert.deepEqual(layoutMap({ ...input(), infra: undefined }).structures, {}, 'an older server without infra');
+});
+
 test('a building sits inside its territory; the anchor is in the middle of its network', () => {
   const l = layoutMap(input());
-  for (const t of l.territories) {
+  for (const t of l.territories.filter((x) => x.kind !== 'infra')) {
     for (const ref of t.refs) {
       const b = l.buildings[ref];
       assert.ok(b.x - BUILDING_R >= t.x && b.x + BUILDING_R <= t.x + t.w && b.y - BUILDING_R >= t.y && b.y + BUILDING_R <= t.y + t.h, `${ref} inside ${t.id}`);
@@ -107,7 +130,7 @@ test('an empty network still has bounds (the headquarters)', () => {
   assert.ok(l.bounds.w > 0 && l.bounds.h > 0);
 });
 
-test('a resource whose network is unknown goes to the Frontier; a network with one resource is a small territory', () => {
+test('a resource whose network is unknown goes to its platform section; a network with one resource is a small territory', () => {
   const l = layoutMap({
     networks: [{ id: 'n1', name: 'Solo', anchorRef: 'telegram:@a' }],
     resources: [
@@ -117,7 +140,7 @@ test('a resource whose network is unknown goes to the Frontier; a network with o
     ],
     units: [],
   });
-  assert.deepEqual(l.territories.map((t) => [t.id, t.refs.length]), [['n1', 1], [FRONTIER_ID, 2]]);
+  assert.deepEqual(l.territories.map((t) => [t.id, t.refs.length]), [['n1', 1], [platformSectionId('telegram'), 1], [platformSectionId('instagram'), 1]]);
   const solo = l.territories[0];
   assert.ok(solo.w < 300);
 });

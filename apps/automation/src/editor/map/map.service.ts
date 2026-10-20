@@ -5,9 +5,9 @@ import type { ResourceListItem } from '../agents/resource-catalog';
 import type { NetworkHealth } from '../health/network-health';
 import type { AgentCapStatus, BlockingCap, BudgetStatus } from '../../spend/spend.service';
 import { levelOf, levelStats } from './level';
-import { MapQueries, type RawEvent, type RawRoad, type SlotFacts } from './map.queries';
+import { MapQueries, type RawEvent, type RawInfra, type RawRoad, type SlotFacts } from './map.queries';
 import type {
-  MapAlert, MapBudget, MapEvent, MapRoad, MapResource, MapSnapshot, MapUnit, ResourceHealthView,
+  MapAlert, MapBudget, MapEvent, MapInfra, MapRoad, MapResource, MapSnapshot, MapUnit, ResourceHealthView,
 } from './map.types';
 import { errorCode, stateOfRole, unitState, type UnitFacts } from './unit-state';
 
@@ -55,6 +55,34 @@ export function healthView(state: string | undefined): ResourceHealthView {
 
 /** The Connections page section that manages each platform. */
 const CONNECTION_SECTION: Record<string, string> = { telegram: 'telegram', instagram: 'meta', facebook: 'meta', threads: 'meta', tiktok: 'tiktok', youtube: 'telegram' };
+
+const INFRA_TAB: Record<MapInfra['kind'], string> = { bot: 'bots', mtproto: 'sessions', telegraph: 'telegraph' };
+const INFRA_NOUN: Record<MapInfra['kind'], string> = { bot: 'Telegram bot', mtproto: 'MTProto session', telegraph: 'Telegraph account' };
+
+/** A bot, a session or a Telegraph account on the map: health from its last verify; the default bot serves channels without one. */
+export function infraItems(raw: RawInfra[], catalogRefs: string[], channelBots: Map<string, string>): MapInfra[] {
+  const known = new Set(raw.map((r) => r.id));
+  const fallback = raw.find((r) => r.kind === 'bot' && r.isDefault)?.id ?? null;
+  const serves = new Map<string, string[]>();
+  for (const ref of catalogRefs) {
+    if (!ref.startsWith('telegram:')) continue;
+    const named = channelBots.get(ref);
+    const bot = named && known.has(named) ? named : fallback;
+    if (bot) serves.set(bot, [...(serves.get(bot) ?? []), ref]);
+  }
+  return raw.map((r) => {
+    const handle = r.username ? `@${r.username.replace(/^@/, '')}` : null;
+    return {
+      id: r.id, kind: r.kind,
+      title: (r.kind === 'bot' ? handle ?? r.name : r.kind === 'telegraph' ? r.name : r.name ?? handle) ?? INFRA_NOUN[r.kind],
+      username: r.username, active: r.active, isDefault: r.isDefault, role: r.role,
+      health: r.verifyError ? 'broken' : r.lastVerifiedAt ? 'ok' : 'unknown',
+      healthDetail: r.verifyError ? clip(r.verifyError.replace(/\s+/g, ' ').trim(), 160) : null,
+      lastVerifiedAt: iso(r.lastVerifiedAt), serves: [...(serves.get(r.id) ?? [])].sort(),
+      path: `/app/connections?section=telegram&tab=${INFRA_TAB[r.kind]}`,
+    };
+  });
+}
 
 const VERB = { planning: 'planning', writing: 'writing', reviewing: 'reviewing' } as Record<string, string>;
 const STATUS_TEXT: Record<string, string> = {
@@ -140,14 +168,14 @@ export class MapService {
     const q = this.q;
     const [
       agents, activity, catalog, budget, paused, health,
-      networks, modes, running, lastRuns, slotFacts, levelRows, failedRuns, resHealth, roads, joins, dirWait, launchWait,
+      networks, modes, running, lastRuns, slotFacts, levelRows, failedRuns, resHealth, roads, joins, dirWait, launchWait, rawInfra, channelBots,
       evRuns, evSlots, evDirs, evLaunches,
     ] = await Promise.all([
       this.d.agents.list(), this.d.agents.activity(), this.d.catalog.list(),
       this.d.budgets().catch(() => ({ rows: [] as BudgetStatus[], agentCaps: [] as AgentCapStatus[], blocking: [] as BlockingCap[] })),
       this.d.pausedRefs().catch(() => new Set<string>()), this.stuckHealth(),
       q.networks(), q.channelModes(), q.runningRuns(), q.lastRuns(), q.slotFacts(), q.levelRows(), q.failedRuns(), q.resourceHealth(),
-      q.roads(), q.joins(), q.directivesWaiting(), q.launchesWaiting(),
+      q.roads(), q.joins(), q.directivesWaiting(), q.launchesWaiting(), q.infra(), q.channelBots(),
       q.runEvents(), q.slotEvents(), q.directiveEvents(), q.launchEvents(),
     ]);
 
@@ -169,6 +197,7 @@ export class MapService {
         paused: paused.has(c.ref), postsToday: slotByRef.get(c.ref)?.postsToday ?? 0, waiting: slotByRef.get(c.ref)?.awaiting ?? 0, agent: c.agent,
       };
     });
+    const infra = infraItems(rawInfra, catalog.map((c) => c.ref), channelBots);
     const groupsWithResources = new Set(catalog.map((c) => c.groupId).filter(Boolean));
     const mapNetworks = networks.filter((n) => groupsWithResources.has(n.id));
 
@@ -274,6 +303,10 @@ export class MapService {
           title: `${titleOf(r.ref)}: ${r.healthDetail ?? (r.health === 'broken' ? 'connection problem' : 'connection needs attention')}` });
       }
     }
+    for (const i of infra) {
+      if (!i.active || i.health !== 'broken') continue;
+      alerts.push({ kind: 'connection', count: 1, ref: i.id, agent: null, path: i.path, title: `${INFRA_NOUN[i.kind]} ${i.title}: ${i.healthDetail ?? 'the last check failed'}` });
+    }
     for (const d of dirWait) {
       const a = byHandle.get(d.handle);
       alerts.push({ kind: 'directive', count: d.count, ref: a ? homeOf(a) : null, agent: d.handle, path: '/app/agents/manager?tab=directives',
@@ -323,7 +356,7 @@ export class MapService {
     return {
       generatedAt: now.toISOString(), budget: mapBudget,
       totals: { runsToday: units.reduce((t, u) => t + u.runsToday, 0), postsToday: resources.reduce((t, r) => t + r.postsToday, 0) },
-      networks: mapNetworks, resources, units, roads: mapRoads, alerts, events,
+      networks: mapNetworks, resources, infra, units, roads: mapRoads, alerts, events,
     };
   }
 }

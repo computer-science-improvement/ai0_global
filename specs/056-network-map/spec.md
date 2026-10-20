@@ -83,7 +83,7 @@ A new route `/app/map` in the nav (group Agents, icon `globe` or a new `map` ico
 
 - Territories are rounded regions on a grid (largest network first).
 - Buildings sit on a ring inside their territory, with the anchor Telegram channel in the middle.
-- Unaffiliated resources share one "Frontier" territory.
+- Unaffiliated resources sit in one section per platform (Telegram channels, Instagram…); the Telegram bots, MTProto sessions and Telegraph accounts get sections of their own on the last row (follow-up 2026-10-20, replaced the single "Frontier").
 - HQ is at the top centre and holds the system agents.
 - Units stand around their home building: the orchestrator in front, its role children in a small arc behind it.
 

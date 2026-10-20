@@ -1,6 +1,6 @@
 import type { IconName } from '../components/ui/Icon';
 import type {
-  LevelStats, MapAgentKind, MapAlert, MapEventKind, MapHealth, MapMode, MapPlatform, MapRoad, MapUnit, RoadKind, UnitState,
+  InfraKind, LevelStats, MapAgentKind, MapInfra, MapAlert, MapEventKind, MapHealth, MapMode, MapPlatform, MapRoad, MapUnit, RoadKind, UnitState,
 } from '../api/map';
 
 // Spec 056: the words, colours and glyphs of the network map — one place, so the legend, the drawers and the map agree.
@@ -43,6 +43,33 @@ export const PLATFORM_META: Record<MapPlatform, PlatformMeta> = {
   tiktok:    { label: 'TikTok',    icon: 'tiktok',    tint: 'var(--color-chart-8)' },
   youtube:   { label: 'YouTube',   icon: 'youtube',   tint: 'var(--color-danger)' },
 };
+
+export interface InfraMeta { label: string; icon: IconName; tint: string; short: string; help: string }
+export const INFRA_META: Record<InfraKind, InfraMeta> = {
+  bot:       { label: 'Telegram bot',      icon: 'bots',      tint: 'var(--color-tg-link)', short: 'bot', help: 'Publishes posts to the channels it is bound to; the default bot also to channels without a bot of their own.' },
+  mtproto:   { label: 'MTProto session',   icon: 'radar',     tint: 'var(--color-chart-5)', short: 'session', help: 'A Telegram user account the system logs in as.' },
+  telegraph: { label: 'Telegraph account', icon: 'telegraph', tint: 'var(--color-ink)',     short: 'account', help: 'Creates the long Telegraph pages that posts link to.' },
+};
+const SESSION_ROLE: Record<string, { short: string; help: string }> = {
+  tracker: { short: 'tracker · reads stats', help: 'Reads views, reactions and subscriber counts of the channels (the Bot API cannot).' },
+  agent:   { short: 'agent · writes DMs',    help: 'The account the agents write direct messages from.' },
+};
+/** The words of a connection: a session's role decides its line. */
+export function infraMeta(i: Pick<MapInfra, 'kind' | 'role'>): InfraMeta {
+  const base = INFRA_META[i.kind];
+  const role = i.kind === 'mtproto' ? SESSION_ROLE[i.role ?? 'tracker'] : null;
+  return role ? { ...base, short: role.short, help: role.help } : base;
+}
+
+/** "3 channels", "2 bots": the count in a section's corner. */
+export function sectionCount(t: { kind: 'network' | 'platform' | 'infra'; infra?: InfraKind; platform?: string; refs: unknown[] }): string {
+  const n = t.refs.length;
+  const [one, many] = t.kind === 'infra'
+    ? ({ bot: ['bot', 'bots'], mtproto: ['session', 'sessions'], telegraph: ['account', 'accounts'] } as const)[t.infra ?? 'bot']
+    : t.kind === 'platform' ? (t.platform === 'telegram' ? ['channel', 'channels'] : t.platform === 'facebook' ? ['page', 'pages'] : ['account', 'accounts'])
+    : ['resource', 'resources'];
+  return `${n} ${n === 1 ? one : many}`;
+}
 
 export const HEALTH_META: Record<MapHealth, { label: string; color: string }> = {
   ok:      { label: 'Connected',        color: 'var(--color-accent)' },

@@ -65,6 +65,10 @@ test('the snapshot is built from the real schema: units, resources, roads, alert
     await c.query(`INSERT INTO agent_directives (to_agent_id, kind, body, rationale, status) VALUES ($1, 'strategy', 'b', 'r', 'awaiting_owner')`, [tg]);
     await c.query(`INSERT INTO channel_launches (channel_key, target_ref, brief, status, agent_id) VALUES ('@pgtest_map_056_new', 'telegram:@pgtest_map_056_new', 'brief', 'ready', $1)`, [tg]);
     await c.query(`INSERT INTO resource_profiles (resource_ref, resource_health, updated_by) VALUES ($1, $2, 'system')`, [IG, { state: 'token_invalid', detail: 'token expired', checkedAt: new Date().toISOString() }]);
+    await c.query(`UPDATE my_bots SET is_default = false`);
+    const botA = (await c.query(`INSERT INTO my_bots (bot_id, username, token_env, is_default, last_verified_at) VALUES ('pgmap1', 'pgmap_bot', 'PGMAP_TOKEN', true, now()) RETURNING id`)).rows[0].id as string;
+    const botB = (await c.query(`INSERT INTO my_bots (bot_id, username, token_env, verify_error) VALUES ('pgmap2', 'pgmap_bot2', 'PGMAP_TOKEN2', '401 Unauthorized') RETURNING id`)).rows[0].id as string;
+    const ses = (await c.query(`INSERT INTO mtproto_sessions (label, session_enc, username, phone, role) VALUES ('Pgmap tracker', 'enc:v1:SECRETSESSION', 'pgmap_user', '+380SECRETPHONE', 'tracker') RETURNING id`)).rows[0].id as string;
 
     const svc = new MapService({
       pool: c, agents: new AgentsRepository(c), catalog: new ResourceCatalog({ pool: c }), budgets: emptyBudgets, pausedRefs: async () => new Set(), cacheMs: 0,
@@ -82,6 +86,21 @@ test('the snapshot is built from the real schema: units, resources, roads, alert
     const rIg = snap.resources.find((r) => r.ref === IG)!;
     assert.equal(rIg.health, 'broken');
     assert.equal(rIg.healthDetail, 'token expired');
+
+    // infra: bots, sessions, Telegraph — the default bot serves the channel without its own bot; never a phone or a session
+    const bA = snap.infra.find((i) => i.id === `bot:${botA}`)!;
+    assert.equal(bA.title, '@pgmap_bot');
+    assert.equal(bA.health, 'ok');
+    assert.ok(bA.isDefault);
+    assert.ok(bA.serves.includes(`telegram:${TG}`));
+    assert.equal(bA.path, '/app/connections?section=telegram&tab=bots');
+    const bB = snap.infra.find((i) => i.id === `bot:${botB}`)!;
+    assert.equal(bB.health, 'broken');
+    assert.deepEqual(bB.serves, []);
+    assert.ok(snap.alerts.some((a) => a.kind === 'connection' && a.ref === `bot:${botB}`));
+    const s1 = snap.infra.find((i) => i.id === `mtproto:${ses}`)!;
+    assert.deepEqual([s1.kind, s1.title, s1.role, s1.health], ['mtproto', 'Pgmap tracker', 'tracker', 'unknown']);
+    assert.ok(!JSON.stringify(snap).includes('SECRETPHONE') && !JSON.stringify(snap).includes('SECRETSESSION'), 'no phone, no session');
 
     // units: state rules from the rows
     assert.equal(mine('pgmap_tg').state, 'publishing', 'a slot of its resource is running (it comes before waiting)');

@@ -3,7 +3,7 @@ import { Icon } from '../ui/Icon';
 import type { MapEvent, MapSnapshot } from '../../api/map';
 import { UNIT_STATES } from '../../api/map';
 import {
-  EVENT_ICON, PLATFORM_META, ROAD_META, STATE_META, ago, alertTone, alertTotal, isBadEvent, resourceTitle, usd,
+  EVENT_ICON, INFRA_META, PLATFORM_META, ROAD_META, STATE_META, ago, alertTone, alertTotal, isBadEvent, resourceTitle, usd,
 } from '../../lib/map-state';
 import { zoomPercent, type View } from '../../lib/map-view';
 import { Avatar } from './MapAvatar';
@@ -173,6 +173,16 @@ export function Legend({ onClose }: { onClose: () => void }) {
         </span>
         <span className="map-legend-item" style={{ gridColumn: '1 / -1', color: 'var(--color-ink-muted)' }}>
           {Object.values(PLATFORM_META).map((p) => <Icon key={p.label} name={p.icon} size={12} />)}
+        </span>
+      </div>
+      <div className="map-legend-sub">Connections</div>
+      <div className="map-legend-grid">
+        {Object.values(INFRA_META).map((m) => (
+          <span key={m.label} className="map-legend-item"><Icon name={m.icon} size={12} />{m.label}</span>
+        ))}
+        <span className="map-legend-item" style={{ gridColumn: '1 / -1' }}>
+          <svg width="26" height="8" aria-hidden><line x1="1" y1="4" x2="25" y2="4" strokeWidth="1.6" strokeLinecap="round" strokeDasharray="1 5" style={{ stroke: 'var(--color-ink-muted)' }} /></svg>
+          A bot publishes to this channel (on select)
         </span>
       </div>
     </section>
