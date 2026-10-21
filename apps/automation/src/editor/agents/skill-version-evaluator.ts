@@ -8,7 +8,7 @@ export const REVIEW_POSTPONE_DAYS = 7;
 export const MAX_POSTPONES = 2;
 
 export interface SkillEvaluatorDeps {
-  skills:  Pick<SkillStore, 'duePending' | 'setOutcome' | 'rollback' | 'deleteAgentSkill' | 'get'>;
+  skills:  Pick<SkillStore, 'duePending' | 'setOutcome' | 'rollback' | 'deleteAgentSkill' | 'get'> & Partial<Pick<SkillStore, 'previousLive'>>;
   agents:  Pick<AgentsRepository, 'get'>;
   kpi:     ScopeKpi;
   inbox:   Pick<OwnerInbox, 'post'>;
@@ -61,8 +61,11 @@ export class SkillVersionEvaluator {
         }
 
         // Roll back: restore the previous version, or remove a skill the agent created from scratch.
-        if (v.version > 1) {
-          const r = await this.d.skills.rollback(v.skillId, v.version - 1, 'agent', `auto-rollback: KPI ${verdict.deltaPct.toFixed(0)}% (z ${verdict.z.toFixed(1)})`);
+        // Spec 059: "previous" is the version that was live before this one — an earlier proposal the probe rejected or
+        // a newer write replaced never was.
+        const prev = v.version > 1 ? ((await this.d.skills.previousLive?.(v.skillId, v.version))?.version ?? v.version - 1) : null;
+        if (prev != null) {
+          const r = await this.d.skills.rollback(v.skillId, prev, 'agent', `auto-rollback: KPI ${verdict.deltaPct.toFixed(0)}% (z ${verdict.z.toFixed(1)})`);
           if ('error' in r) { this.d.log?.(`skill rollback ${name} failed: ${r.error}`); continue; }
         } else if (skill?.agentId) {
           await this.d.skills.deleteAgentSkill(skill.agentId, skill.name);
@@ -78,7 +81,7 @@ export class SkillVersionEvaluator {
           refType: 'skill', refId: v.skillId,
         });
         if (this.d.remember) {
-          try { await this.d.remember(scopeAgent, `Не повторювати зміну скіла «${name}»: ${v.reason ?? ''} — після неї ${text}`.slice(0, 400), { skill: name, ...verdict }); }
+          try { await this.d.remember(scopeAgent, `Не повторювати зміну скіла «${name}»: ${v.reason ?? ''} — після неї ${text}`.slice(0, 400), { skill: name, skillId: v.skillId, version: v.version, versionId: v.id, source: 'kpi_rollback', ...verdict }); }
           catch { /* memory note is best-effort */ }
         }
       } catch (err: any) {

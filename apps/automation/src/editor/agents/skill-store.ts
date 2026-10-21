@@ -2,10 +2,12 @@ import type { Pool, PoolClient } from 'pg';
 import type { EditorRole } from '../llm/llm.types';
 import { isOptionalSkill, isProtectedSkill, Skill, SkillLibrary, SkillView } from '../skills/skill-library';
 import { lintSkill, SKILL_MAX_INLINE_BODY, SkillLintResult } from './skill-lint';
+import type { ProbeRecord } from './skill-probe.types';
 
 export type SkillScope = 'builtin' | 'global' | 'agent';
 export type SkillAuthor = 'repo' | 'owner' | 'agent';
-export type VersionOutcome = 'pending' | 'kept' | 'rolled_back' | 'superseded';
+/** `probing` / `rejected` (spec 059): written but not live yet / found worse by the probe and never live. */
+export type VersionOutcome = 'pending' | 'kept' | 'rolled_back' | 'superseded' | 'probing' | 'rejected';
 
 export interface SkillRow {
   id:             string;
@@ -37,6 +39,8 @@ export interface SkillVersionRow {
   reviewAt:      Date | null;
   outcome:       VersionOutcome | null;
   outcomeDetail: unknown;
+  /** Spec 059: the probe's evidence (null for a version made without one). */
+  probe:         ProbeRecord | null;
   createdAt:     Date;
 }
 
@@ -51,6 +55,8 @@ export interface AgentSkillEntry {
   baseChanged: boolean;
   /** The current version is an agent self-edit still under review. */
   pending:     boolean;
+  /** Spec 059: a newer self-edit of this skill is being probed (it is not live yet). */
+  probing?:    boolean;
 }
 
 export interface WriteSkillInput {
@@ -66,10 +72,17 @@ export interface WriteSkillInput {
   reviewAt?:      Date | null;
   /** Owner only: accept soft lint errors. */
   force?:         boolean;
+  /**
+   * Spec 059: write an agent's edit of an existing skill as `probing` — the version is stored, the live text stays the
+   * previous version until `adoptVersion`. Ignored (the edit goes live) for a skill that has no live text yet, and for owner writes.
+   */
+  probing?:       boolean;
+  /** Spec 059: the probe record stored on the version (`probing` carries the empty one; a live write may carry `unprobed`). */
+  probe?:         ProbeRecord | null;
 }
 
 export type WriteSkillResult =
-  | { ok: true; skill: SkillRow; version: number; lint: SkillLintResult }
+  | { ok: true; skill: SkillRow; version: number; lint: SkillLintResult; /** Spec 059: stored for the probe, not live. */ probing?: boolean }
   | { error: string; details?: unknown };
 
 const rowToSkill = (r: any): SkillRow => ({
@@ -83,7 +96,7 @@ const rowToVersion = (r: any): SkillVersionRow => ({
   id: Number(r.id), skillId: r.skill_id, version: Number(r.version), body: r.body, description: r.description,
   appliesTo: r.applies_to ?? [], author: r.author, authorAgentId: r.author_agent_id ?? null, reason: r.reason ?? null,
   kpiBaseline: r.kpi_baseline ?? null, reviewAt: r.review_at ?? null, outcome: r.outcome ?? null,
-  outcomeDetail: r.outcome_detail ?? null, createdAt: r.created_at,
+  outcomeDetail: r.outcome_detail ?? null, probe: r.probe ?? null, createdAt: r.created_at,
 });
 
 const toSkill = (r: SkillRow): Skill => ({
@@ -173,10 +186,12 @@ export class SkillStore {
     const { rows: shared } = await this.pool.query(`SELECT * FROM skills WHERE agent_id IS NULL ORDER BY name`);
     const { rows: own } = await this.pool.query(`SELECT * FROM skills WHERE agent_id = ANY($1::uuid[]) ORDER BY name`, [chain]);
     const { rows: toggles } = await this.pool.query(`SELECT * FROM agent_skills WHERE agent_id = ANY($1::uuid[])`, [chain]);
+    // The live version's review state, and (spec 059) whether a newer self-edit waits for its probe.
     const { rows: pend } = await this.pool.query(
-      `SELECT DISTINCT ON (skill_id) skill_id, outcome FROM skill_versions
-        WHERE skill_id = ANY($1::uuid[]) ORDER BY skill_id, version DESC`, [own.map((r) => r.id)]);
+      `SELECT v.skill_id, v.outcome FROM skill_versions v JOIN skills s ON s.id = v.skill_id
+        WHERE v.skill_id = ANY($1::uuid[]) AND (v.version = s.current_version OR v.outcome = 'probing')`, [own.map((r) => r.id)]);
     const pendingSet = new Set(pend.filter((r) => r.outcome === 'pending').map((r) => r.skill_id));
+    const probingSet = new Set(pend.filter((r) => r.outcome === 'probing').map((r) => r.skill_id));
 
     const rank = (agentId: string) => { const i = chain.indexOf(agentId); return i < 0 ? 99 : i; };
     const toggleOf = (skillId: string) => toggles
@@ -194,7 +209,7 @@ export class SkillStore {
       const t = toggleOf(s.id);
       // Spec 034 FR-014: a builtin tone skill is off until attached to this agent's resource.
       const byDefault = !(s.scope === 'builtin' && isOptionalSkill(s.name));
-      out.push({ skill: s, origin: s.scope === 'builtin' ? 'builtin' : 'global', enabled: t ? !!t.enabled : byDefault, inline: t ? !!t.inline : false, baseChanged: false, pending: false });
+      out.push({ skill: s, origin: s.scope === 'builtin' ? 'builtin' : 'global', enabled: t ? !!t.enabled : byDefault, inline: t ? !!t.inline : false, baseChanged: false, pending: false, probing: false });
     }
     for (const s of ownByName.values()) {
       const t = toggleOf(s.id);
@@ -206,6 +221,7 @@ export class SkillStore {
         inline: t ? !!t.inline : false,
         baseChanged: isOverride && s.baseVersion != null && (builtinVersion.get(s.name) ?? 0) > s.baseVersion,
         pending: pendingSet.has(s.id),
+        probing: probingSet.has(s.id),
       });
     }
     return out.sort((a, b) => a.skill.name.localeCompare(b.skill.name));
@@ -280,31 +296,48 @@ export class SkillStore {
         if (rows[0]?.author === 'owner') return { error: 'owner_authored', details: 'поточну версію написав власник — агент її не змінює' };
       }
     }
+    // Spec 059: an agent's edit of a skill that already has a live text is stored for the probe; anything else goes live.
+    const probing = !!i.probing && i.author === 'agent' && !!(existing || shared);
+    const probeJson = i.probe == null ? null : JSON.stringify(i.probe);
 
     return this.tx(async (c) => {
       let skillId: string;
       let version: number;
       if (!existing) {
+        const live = probing && shared ? shared : null;
         const ins = await c.query(
           `INSERT INTO skills (name, scope, agent_id, description, applies_to, body, safety, base_version, created_by)
            VALUES ($1, 'agent', $2, $3, $4, $5, $6, $7, $8) RETURNING id`,
-          [i.name, i.agentId, i.description, i.appliesTo, i.body, !!shared?.safety || isProtectedSkill(i.name), shared?.scope === 'builtin' ? shared.currentVersion : null, i.author]);
+          [i.name, i.agentId, live ? live.description : i.description, live ? live.appliesTo : i.appliesTo, live ? live.body : i.body,
+            !!shared?.safety || isProtectedSkill(i.name), shared?.scope === 'builtin' ? shared.currentVersion : null, i.author]);
         skillId = ins.rows[0].id;
         version = 1;
+        if (live) {
+          // An override of a shared skill is proposed: the agent's row starts as a copy of the shared text (what is live
+          // today), the proposal is version 2 and goes live only when the probe adopts it.
+          await c.query(
+            `INSERT INTO skill_versions (skill_id, version, body, description, applies_to, author, reason) VALUES ($1, 1, $2, $3, $4, 'repo', $5)`,
+            [skillId, live.body, live.description, live.appliesTo, 'baseline: the shared skill as it was before the proposal']);
+          version = 2;
+        }
       } else {
         skillId = existing.id;
-        version = existing.currentVersion + 1;
-        await c.query(
-          `UPDATE skills SET description = $2, applies_to = $3, body = $4, current_version = $5, updated_at = now() WHERE id = $1`,
-          [skillId, i.description, i.appliesTo, i.body, version]);
-        await c.query(
-          `UPDATE skill_versions SET outcome = 'superseded' WHERE skill_id = $1 AND outcome = 'pending'`, [skillId]);
+        version = (await this.topVersion(c, skillId, existing.currentVersion)) + 1;
+        if (!probing) {
+          await c.query(
+            `UPDATE skills SET description = $2, applies_to = $3, body = $4, current_version = $5, updated_at = now() WHERE id = $1`,
+            [skillId, i.description, i.appliesTo, i.body, version]);
+          await c.query(`UPDATE skill_versions SET outcome = 'superseded' WHERE skill_id = $1 AND outcome = 'pending'`, [skillId]);
+        }
       }
+      // A newer write replaces a proposal that is still being probed (its probe is abandoned).
+      await this.supersedeProbing(c, skillId);
       await c.query(
-        `INSERT INTO skill_versions (skill_id, version, body, description, applies_to, author, author_agent_id, reason, kpi_baseline, review_at, outcome)
-         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)`,
+        `INSERT INTO skill_versions (skill_id, version, body, description, applies_to, author, author_agent_id, reason, kpi_baseline, review_at, outcome, probe)
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)`,
         [skillId, version, i.body, i.description, i.appliesTo, i.author, i.authorAgentId ?? null, i.reason ?? null,
-          i.kpiBaseline == null ? null : JSON.stringify(i.kpiBaseline), i.reviewAt ?? null, i.author === 'agent' ? 'pending' : null]);
+          i.kpiBaseline == null ? null : JSON.stringify(i.kpiBaseline), i.reviewAt ?? null,
+          probing ? 'probing' : i.author === 'agent' ? 'pending' : null, probeJson]);
       // Spec 040 FR-012: the agent's own skill is on and always in context (when it fits) from its first write; a
       // toggle the owner set earlier is kept. Overrides of shared skills keep the shared skill's toggles.
       if (!shared) {
@@ -313,8 +346,21 @@ export class SkillStore {
           [i.agentId, skillId, i.body.length <= SKILL_MAX_INLINE_BODY]);
       }
       const { rows } = await c.query(`SELECT * FROM skills WHERE id = $1`, [skillId]);
-      return { ok: true as const, skill: rowToSkill(rows[0]), version, lint };
+      return { ok: true as const, skill: rowToSkill(rows[0]), version, lint, ...(probing ? { probing: true } : {}) };
     });
+  }
+
+  /** The highest version number of a skill (probing and rejected versions count: numbers are never reused). */
+  private async topVersion(c: Pick<PoolClient, 'query'>, skillId: string, current: number): Promise<number> {
+    const { rows } = await c.query(`SELECT COALESCE(MAX(version), 0)::int AS v FROM skill_versions WHERE skill_id = $1`, [skillId]);
+    return Math.max(current, Number(rows[0].v));
+  }
+
+  /** A newer write, an owner edit or a rollback abandons a proposal that is still being probed. */
+  private async supersedeProbing(c: Pick<PoolClient, 'query'>, skillId: string): Promise<void> {
+    await c.query(
+      `UPDATE skill_versions SET outcome = 'superseded', probe = COALESCE(probe, '{}'::jsonb) || '{"verdict":"superseded"}'::jsonb
+        WHERE skill_id = $1 AND outcome = 'probing'`, [skillId]);
   }
 
   /** Remove an agent's override or own skill ("reset to default" / delete). */
@@ -337,17 +383,90 @@ export class SkillStore {
     if (!rows[0]) return { error: 'version_not_found' };
     const v = rowToVersion(rows[0]);
     return this.tx(async (c) => {
-      const next = skill.currentVersion + 1;
+      const next = (await this.topVersion(c, skillId, skill.currentVersion)) + 1;
       await c.query(
         `UPDATE skills SET body = $2, description = $3, applies_to = $4, current_version = $5, updated_at = now() WHERE id = $1`,
         [skillId, v.body, v.description, v.appliesTo, next]);
       await c.query(`UPDATE skill_versions SET outcome = 'superseded' WHERE skill_id = $1 AND outcome = 'pending'`, [skillId]);
+      await this.supersedeProbing(c, skillId);
       await c.query(
         `INSERT INTO skill_versions (skill_id, version, body, description, applies_to, author, reason) VALUES ($1, $2, $3, $4, $5, $6, $7)`,
         [skillId, next, v.body, v.description, v.appliesTo, author === 'agent' ? 'agent' : 'owner', reason]);
       const { rows: s } = await c.query(`SELECT * FROM skills WHERE id = $1`, [skillId]);
       return { ok: true as const, skill: rowToSkill(s[0]), version: next, lint: { ok: true, errors: [], warnings: [] } };
     });
+  }
+
+  // ── spec 059: probe before adopt ────────────────────────────────────────────
+
+  /** Versions written for the probe and not decided yet, oldest first. `agentId` is the skill's owner agent. */
+  async probing(limit = 50): Promise<Array<SkillVersionRow & { agentId: string; skillName: string; liveVersion: number }>> {
+    const { rows } = await this.pool.query(
+      `SELECT v.*, s.agent_id AS skill_agent_id, s.name AS skill_name, s.current_version AS skill_current_version
+         FROM skill_versions v JOIN skills s ON s.id = v.skill_id
+        WHERE v.outcome = 'probing' ORDER BY v.created_at, v.id LIMIT $1`, [limit]);
+    return rows.map((r) => ({ ...rowToVersion(r), agentId: r.skill_agent_id, skillName: r.skill_name, liveVersion: Number(r.skill_current_version) }));
+  }
+
+  async version(skillId: string, version: number): Promise<SkillVersionRow | null> {
+    const { rows } = await this.pool.query(`SELECT * FROM skill_versions WHERE skill_id = $1 AND version = $2`, [skillId, version]);
+    return rows[0] ? rowToVersion(rows[0]) : null;
+  }
+
+  /**
+   * Make a stored version live: the skill's text becomes the version's, the version goes under the usual 7-day KPI
+   * review (`pending`, review at `reviewAt`) and the live version it replaces is superseded. `from` names the states it
+   * may leave: the probe adopts a `probing` version; the owner's "Adopt anyway" takes a `rejected` one, and only while it
+   * is still the newest version (an older rejection is restored with a rollback instead). Null = the guard refused it
+   * (decided already, replaced by a newer write, or not found).
+   */
+  async adoptVersion(skillId: string, version: number, o: { from: Array<'probing' | 'rejected'>; probe: ProbeRecord; reviewAt: Date }): Promise<SkillRow | null> {
+    return this.tx(async (c) => {
+      const { rows } = await c.query(`SELECT * FROM skill_versions WHERE skill_id = $1 AND version = $2 FOR UPDATE`, [skillId, version]);
+      const v = rows[0] ? rowToVersion(rows[0]) : null;
+      if (!v || !v.outcome || !(o.from as string[]).includes(v.outcome)) return null;
+      const { rows: sk } = await c.query(`SELECT * FROM skills WHERE id = $1 FOR UPDATE`, [skillId]);
+      if (!sk[0]) return null;
+      if (v.outcome === 'rejected' && version < (await this.topVersion(c, skillId, 0))) return null;
+      await c.query(
+        `UPDATE skills SET body = $2, description = $3, applies_to = $4, current_version = $5, updated_at = now() WHERE id = $1`,
+        [skillId, v.body, v.description, v.appliesTo, version]);
+      await c.query(`UPDATE skill_versions SET outcome = 'superseded' WHERE skill_id = $1 AND outcome = 'pending' AND version <> $2`, [skillId, version]);
+      await c.query(
+        `UPDATE skill_versions SET outcome = 'pending', outcome_detail = NULL, probe = $3, review_at = $4 WHERE skill_id = $1 AND version = $2`,
+        [skillId, version, JSON.stringify(o.probe), o.reviewAt]);
+      const { rows: s } = await c.query(`SELECT * FROM skills WHERE id = $1`, [skillId]);
+      return rowToSkill(s[0]);
+    });
+  }
+
+  /** The probe found the version worse: it stays in the history as `rejected`, the live text is untouched. False = already decided. */
+  async rejectVersion(skillId: string, version: number, probe: ProbeRecord): Promise<boolean> {
+    const { rowCount } = await this.pool.query(
+      `UPDATE skill_versions SET outcome = 'rejected', probe = $3 WHERE skill_id = $1 AND version = $2 AND outcome = 'probing'`,
+      [skillId, version, JSON.stringify(probe)]);
+    return (rowCount ?? 0) > 0;
+  }
+
+  /** Probes decided since `since` (adopted, rejected or inconclusive; an unprobed version cost nothing) — the daily cap. */
+  async probesSince(since: Date): Promise<number> {
+    const { rows } = await this.pool.query(
+      `SELECT COUNT(*)::int AS n FROM skill_versions
+        WHERE probe->>'verdict' IN ('adopted', 'rejected', 'inconclusive') AND (probe->>'at')::timestamptz >= $1`, [since]);
+    return Number(rows[0]?.n ?? 0);
+  }
+
+  /**
+   * The version that was live just before `version`: the newest earlier one that did go live (not a proposal the probe
+   * rejected or a newer write replaced). The KPI rollback restores this one — `version - 1` may be a proposal that never was live.
+   */
+  async previousLive(skillId: string, version: number): Promise<SkillVersionRow | null> {
+    const { rows } = await this.pool.query(
+      `SELECT * FROM skill_versions
+        WHERE skill_id = $1 AND version < $2 AND outcome IS DISTINCT FROM 'probing' AND outcome IS DISTINCT FROM 'rejected'
+          AND COALESCE(probe->>'verdict', '') NOT IN ('probing', 'rejected', 'superseded')
+        ORDER BY version DESC LIMIT 1`, [skillId, version]);
+    return rows[0] ? rowToVersion(rows[0]) : null;
   }
 
   /** Self-edits under review whose review date has come. */
