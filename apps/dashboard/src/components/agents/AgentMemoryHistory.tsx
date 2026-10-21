@@ -12,6 +12,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useRetireEditorMemory } from '../../api/editor';
 import { RUN_TONE, fmtDuration, fmtUsd } from '../editor/EditorUi';
 import { fmtDate } from '../../lib/format';
+import { memoryWhy } from '../../lib/skill-probe';
 import { useAgentConfigConflicts, useAgentMemory, useAgentRuns, type AgentDetail, type AgentMemoryEntry } from '../../api/agents';
 
 const KIND_TONE: Record<AgentMemoryEntry['kind'], 'accent' | 'warning' | 'neutral'> = { rule: 'accent', avoid: 'warning', insight: 'neutral' };
@@ -89,6 +90,8 @@ export function AgentMemory({ data }: { data: AgentDetail }) {
         <div className="compact-grid">
           {memory.map((m, i) => {
             const who = m.createdBy === 'owner' ? 'owner' : 'reviewer';
+            // Spec 059: a line written after a probe rejection or a KPI rollback says why, from its evidence.
+            const why = memoryWhy(m.evidence);
             const badges = (
               <>
                 <Badge tone={KIND_TONE[m.kind]}>{m.kind}</Badge>
@@ -101,13 +104,14 @@ export function AgentMemory({ data }: { data: AgentDetail }) {
                 top={badges}
                 meta={<span className="tabular-nums">{fmtDate(m.createdAt)}</span>}
                 body={m.text}
-                note={m.lint?.length ? m.lint.map((x) => LINT_LABEL[x.code] ?? x.code).join(' · ') : undefined}
+                note={m.lint?.length ? m.lint.map((x) => LINT_LABEL[x.code] ?? x.code).join(' · ') : why ?? undefined}
                 dialog={{
                   size: 'md', icon: 'bots', title: `Memory ${m.kind}`, subtitle: `${who} · ${fmtDate(m.createdAt)}`,
                   body: () => (
                     <div style={{ minWidth: 0 }}>
                       <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap', marginBottom: 10 }}>{badges}</div>
                       <div className="text-body-sm" style={{ color: 'var(--color-ink)', whiteSpace: 'pre-wrap', overflowWrap: 'anywhere', lineHeight: 1.55 }}>{m.text}</div>
+                      {why && <div className="text-micro" style={{ marginTop: 10, color: 'var(--color-ink-muted)', overflowWrap: 'anywhere' }}><strong>Why:</strong> {why}</div>}
                       {m.lint?.length ? (
                         <div className="callout-danger" style={{ marginTop: 12 }}>
                           <div style={{ fontWeight: 600, marginBottom: 4 }}>The agent cannot follow this rule as written</div>

@@ -132,9 +132,31 @@ export interface AgentSkillEntry {
   inline:      boolean;
   baseChanged: boolean;
   pending:     boolean;
+  /** Spec 059: a newer self-edit of this skill is being checked on recent posts (older servers do not send it). */
+  probing?:    boolean;
 }
 
 export interface SkillLintIssue { code: string; message: string; hard?: boolean }
+
+/** Spec 059: the probe of a skill self-edit (`skill_versions.probe`); absent on versions written before it. */
+export type ProbeVerdict = 'probing' | 'adopted' | 'rejected' | 'inconclusive' | 'unprobed' | 'owner_override' | 'superseded';
+export type ProbeCritic = 'pass' | 'pass_with_edits' | 'revise' | 'reject';
+export interface ProbeSide { critic: ProbeCritic; lint: number; chars: number; preview: string | null }
+export interface ProbeSample {
+  slotId: string;
+  topic:  string;
+  old:    ProbeSide;
+  new:    ProbeSide;
+  judge:  { better: 'old' | 'new' | 'same'; reasons: string[]; risks: string[]; by: 'judge' | 'code' };
+}
+export interface ProbeRecord {
+  verdict:  ProbeVerdict;
+  reason?:  string;
+  samples:  ProbeSample[];
+  dropped?: number;
+  costUsd:  number;
+  at:       string;
+}
 
 export interface SkillVersion {
   id:            string;
@@ -148,8 +170,9 @@ export interface SkillVersion {
   reason:        string | null;
   kpiBaseline:   unknown;
   reviewAt:      string | null;
-  outcome:       'pending' | 'kept' | 'rolled_back' | 'superseded' | null;
+  outcome:       'pending' | 'kept' | 'rolled_back' | 'superseded' | 'probing' | 'rejected' | null;
   outcomeDetail: unknown;
+  probe?:        ProbeRecord | null;
   createdAt:     string;
 }
 
@@ -333,6 +356,21 @@ export function useRollbackSkill() {
       toast.success(`Rolled back to v${v.version}`);
       qc.invalidateQueries({ queryKey: [...KEY, 'skills'] });
       qc.invalidateQueries({ queryKey: [...KEY, 'skill-versions', v.id] });
+    },
+  });
+}
+
+/** Spec 059: "Adopt anyway" — the owner makes the version the probe rejected live (under the usual 7-day review). */
+export function useAdoptRejectedSkill() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (v: { id: string; version: number }) =>
+      api<{ ok: true }>(`/api/skills/${enc(v.id)}/versions/${v.version}/adopt`, { method: 'POST' }),
+    onSuccess: (_r, v) => {
+      toast.success(`v${v.version} adopted`);
+      qc.invalidateQueries({ queryKey: [...KEY, 'skills'] });
+      qc.invalidateQueries({ queryKey: [...KEY, 'skill-versions', v.id] });
+      qc.invalidateQueries({ queryKey: [...KEY, 'inbox'] });
     },
   });
 }

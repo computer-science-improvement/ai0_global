@@ -13,6 +13,8 @@ import { useConfirm } from '../ui/ConfirmDialog';
 import { describeError, toast } from '../ui/Toast';
 import { fmtDate, fmtRelative } from '../../lib/format';
 import { ROLE_OF_KIND, Toggle } from './AgentsUi';
+import { SkillProbeDialog } from './SkillProbeDialog';
+import { canAdoptAnyway, hasProbeDetails, probeBadge, probeSummary } from '../../lib/skill-probe';
 import {
   errorBody, SKILL_MAX_BODY, SKILL_MAX_INLINE_BODY, SKILL_ROLES, useAgentSkills, useDeleteSkill, usePatchSkill, usePutSkill,
   useRollbackSkill, useSkillVersions, type AgentDetail, type AgentSkillEntry, type SkillLintIssue, type SkillOrigin, type SkillVersion,
@@ -21,7 +23,7 @@ import {
 const ORIGIN_TONE: Record<SkillOrigin, 'accent' | 'neutral' | 'success'> = {
   own: 'accent', override: 'accent', builtin: 'neutral', global: 'neutral', inherited: 'neutral',
 };
-const OUTCOME_TONE = { pending: 'warning', kept: 'success', rolled_back: 'danger', superseded: 'neutral' } as const;
+const OUTCOME_TONE = { pending: 'warning', kept: 'success', rolled_back: 'danger', superseded: 'neutral', probing: 'warning', rejected: 'danger' } as const;
 const AUTHOR_TONE = { repo: 'neutral', owner: 'success', agent: 'warning' } as const;
 const mono = 'ui-monospace, SFMono-Regular, Menlo, monospace';
 
@@ -109,6 +111,7 @@ function SkillRow({ entry: e, data, delay, onEdit, onVersions }: {
             {s.safety && <Badge tone="danger" title="System safety skill — agents can never change it">safety</Badge>}
             {s.locked && <Badge tone="neutral" title="Locked by the owner — agents cannot edit it"><Icon name="lock" size={10} /> locked</Badge>}
             {e.pending && <Badge tone="warning" title="An agent-written version is waiting for its 7-day KPI review">pending review</Badge>}
+            {e.probing && <Badge tone="warning" title="A newer edit of this skill is being tried on recent posts; the text below stays live until the probe decides">probing</Badge>}
             {e.baseChanged && <Badge tone="warning" title="The built-in this override is based on changed in the repository">base changed</Badge>}
           </div>
           <div className="text-body-sm clamp" title={s.description} style={{ ['--clamp' as string]: 1, color: 'var(--color-ink-muted)', marginBottom: 6 }}>{s.description}</div>
@@ -192,7 +195,7 @@ function SkillEditorModal({ data, entry, existing, onClose }: {
     ? `A new skill for @${handle}. A name that matches a built-in creates an override of it.`
     : shared
       ? `Editing a ${entry!.origin === 'builtin' ? 'built-in' : 'global'} skill creates an override for @${handle} — the shared text stays unchanged; “Reset to default” removes the override.`
-      : `Saving creates v${entry!.skill.currentVersion + 1}${entry!.pending ? ' and supersedes the agent version waiting for review' : ''}. Owner versions are never overwritten by agents.`;
+      : `Saving creates a new version${entry!.pending ? ' and supersedes the agent version waiting for review' : ''}${entry!.probing ? ' and drops the agent edit being probed' : ''}. Owner versions are never overwritten by agents.`;
 
   const save = async (force = false) => {
     if (errors.length) return;
@@ -416,12 +419,18 @@ function VersionsModal({ entry, onClose }: { entry: AgentSkillEntry; onClose: ()
   const rollback = useRollbackSkill();
   const confirm = useConfirm();
   const [open, setOpen] = useState<number | null>(null);
+  const [probeOf, setProbeOf] = useState<number | null>(null);
   const skill = q.data?.skill ?? entry.skill;
   const versions = [...(q.data?.versions ?? [])].sort((a, b) => b.version - a.version);
   const canRollback = skill.scope !== 'builtin' && entry.origin !== 'inherited';
-  const prevOf = (v: SkillVersion) => versions.find((x) => x.version < v.version);
+  // A version that never went live (probing / rejected) is compared with the text that is live; the others with the
+  // version before them that was live.
+  const wasLive = (x: SkillVersion) => x.outcome !== 'probing' && x.outcome !== 'rejected';
+  const prevOf = (v: SkillVersion) => (wasLive(v) ? versions.find((x) => x.version < v.version && wasLive(x)) : versions.find((x) => x.version === skill.currentVersion));
+  const probeV = probeOf != null ? versions.find((x) => x.version === probeOf) ?? null : null;
 
   return (
+    <>
     <Modal open onClose={onClose} size="lg" icon="history" title={`Versions · ${skill.name}`}
       subtitle={`Current v${skill.currentVersion}${canRollback ? '' : skill.scope === 'builtin' ? ' · built-in skills change only in the repository' : ' · roll back from the orchestrator'}`}>
       {q.error && <div className="callout-danger">{describeError(q.error)}</div>}
@@ -438,11 +447,15 @@ function VersionsModal({ entry, onClose }: { entry: AgentSkillEntry; onClose: ()
                 <span className="tabular-nums" style={{ fontWeight: 600, color: 'var(--color-ink)' }}>v{v.version}</span>
                 {current && <Badge tone="accent">current</Badge>}
                 <Badge tone={AUTHOR_TONE[v.author]}>{v.author}</Badge>
-                {v.outcome && <Badge tone={OUTCOME_TONE[v.outcome]} title={v.reviewAt ? `review ${fmtDate(v.reviewAt)}` : undefined}>{v.outcome.replace('_', ' ')}</Badge>}
+                {v.outcome && v.outcome !== 'probing' && v.outcome !== 'rejected' && <Badge tone={OUTCOME_TONE[v.outcome] ?? 'neutral'} title={v.reviewAt ? `review ${fmtDate(v.reviewAt)}` : undefined}>{v.outcome.replace('_', ' ')}</Badge>}
+                {(() => { const pb = probeBadge(v); return pb ? <Badge tone={pb.tone} title={pb.title}>{pb.label}</Badge> : null; })()}
                 <span className="text-micro tabular-nums" style={{ color: 'var(--color-ink-dim)' }}>{fmtDate(v.createdAt)}</span>
                 <span style={{ marginLeft: 'auto', display: 'inline-flex', gap: 6 }}>
+                  {(hasProbeDetails(v) || v.outcome === 'probing' || v.outcome === 'rejected') && (
+                    <TableAction icon="eye" title="Probe: old and new text side by side" onClick={() => setProbeOf(v.version)} />
+                  )}
                   <TableAction icon={expanded ? 'chevron-up' : 'chevron-down'} title={expanded ? 'Hide diff' : prev ? `Diff vs v${prev.version}` : 'Show text'} onClick={() => setOpen(expanded ? null : v.version)} />
-                  {canRollback && !current && (
+                  {canRollback && !current && v.outcome !== 'probing' && (
                     <TableAction icon="refresh" title={`Roll back to v${v.version}`} disabled={rollback.isPending}
                       onClick={async () => {
                         if (await confirm(`roll “${skill.name}” back to v${v.version}`, { danger: false, confirmLabel: 'Roll back', details: (
@@ -456,6 +469,9 @@ function VersionsModal({ entry, onClose }: { entry: AgentSkillEntry; onClose: ()
                 <div className="text-micro" style={{ color: 'var(--color-ink-muted)', marginTop: 4 }}>
                   {v.reason}{v.reviewAt && v.outcome === 'pending' ? ` · KPI review ${fmtDate(v.reviewAt)}` : ''}
                 </div>
+              )}
+              {probeSummary(v.probe) && (
+                <div className="text-micro" style={{ color: 'var(--color-ink-muted)', marginTop: 2 }}>Probe: {probeSummary(v.probe)}</div>
               )}
               {expanded && (
                 <div style={{ marginTop: 8 }}>
@@ -472,5 +488,10 @@ function VersionsModal({ entry, onClose }: { entry: AgentSkillEntry; onClose: ()
         <button type="button" className="btn-secondary" onClick={onClose}>Close</button>
       </div>
     </Modal>
+    {probeV && (
+      <SkillProbeDialog skillId={skill.id} skillName={skill.name} version={probeV}
+        newest={canAdoptAnyway(probeV, versions)} onClose={() => setProbeOf(null)} />
+    )}
+    </>
   );
 }
