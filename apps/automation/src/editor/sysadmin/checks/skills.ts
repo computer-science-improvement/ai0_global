@@ -123,4 +123,31 @@ export function skillRollbackFindings(f: AuditFacts): Finding[] {
   });
 }
 
-export const SKILL_CHECKS = [skillLintFindings, skillUnknownToolFindings, skillUnusedFindings, skillDuplicateFindings, skillRollbackFindings];
+/** Spec 059: a self-edit that has waited for its probe longer than the probe's own schedule explains. */
+export function skillProbeStuckFindings(f: AuditFacts): Finding[] {
+  return f.probes.stuck.map((p) => {
+    const subject = skillSubject(p.name, p.skillId, p.agent);
+    const days = Math.max(AUDIT_LIMITS.probeStuckDays, Math.floor((f.now.getTime() - p.since.getTime()) / 86_400_000));
+    return {
+      key: findingKey('skills', 'skill_probe_stuck', { ...subject, id: `${p.skillId}@v${p.version}` }), area: 'skills' as const, check: 'skill_probe_stuck', severity: 'warn' as const, subject,
+      title: `Edit of skill «${p.name}» (v${p.version}) has waited ${days} days for its probe`,
+      detail: `The edit is not live: the previous text is still what the agent reads. The probe runs every hour within SKILL_PROBE_PER_DAY, so a wait this long means the probe is not reaching it — check the daily limit and budget in Settings, that the editor is enabled and a model key is set, and the "SkillProbe" lines in the logs. Until it is decided the edit changes nothing.`,
+      evidence: { version: p.version, since: p.since.toISOString(), days_limit: AUDIT_LIMITS.probeStuckDays },
+    };
+  });
+}
+
+/** Spec 059: an agent whose skill edits the probe keeps rejecting. */
+export function skillProbeRejectFindings(f: AuditFacts): Finding[] {
+  return f.probes.rejects.filter((r) => r.count >= AUDIT_LIMITS.probeRejectCount).map((r) => {
+    const subject: FindingSubject = { type: 'agent', id: r.agent, label: `@${r.agent}`, agent: r.agent };
+    return {
+      key: findingKey('skills', 'skill_probe_rejects', subject), area: 'skills' as const, check: 'skill_probe_rejects', severity: 'info' as const, subject,
+      title: `@${r.agent}'s skill edits keep failing the probe`,
+      detail: `The probe rejected ${r.count} edits of @${r.agent}'s skills in ${AUDIT_LIMITS.probeRejectDays} days (${r.skills.map((s) => `«${s}»`).join(', ')}): the agent keeps proposing changes that make its posts worse. Self-edits keep failing — consider locking its skills.`,
+      evidence: { rejected: r.count, days: AUDIT_LIMITS.probeRejectDays, skills: r.skills },
+    };
+  });
+}
+
+export const SKILL_CHECKS = [skillLintFindings, skillUnknownToolFindings, skillUnusedFindings, skillDuplicateFindings, skillRollbackFindings, skillProbeStuckFindings, skillProbeRejectFindings];

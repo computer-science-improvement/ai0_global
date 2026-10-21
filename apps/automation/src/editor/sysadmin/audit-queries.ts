@@ -3,7 +3,7 @@ import { telegramKeyOf, type Agent } from '../agents/agent.types';
 import type { AgentsRepository } from '../agents/agents.repository';
 import type { SkillStore } from '../agents/skill-store';
 import {
-  AUDIT_LIMITS, type AgentConflictsFact, type AgentFact, type AuditFacts, type MemoryFact, type PlaybookFact, type RollbackFact, type RoleRunFact,
+  AUDIT_LIMITS, type AgentConflictsFact, type AgentFact, type AuditFacts, type MemoryFact, type PlaybookFact, type ProbeFacts, type RollbackFact, type RoleRunFact,
   type RuleFact, type SkillFact, type SteeringFact, type ToolStatFact,
 } from './audit.types';
 
@@ -41,10 +41,11 @@ export class AuditQueries {
     const now = this.now();
     const all = await this.d.agents.list();
     const top = all.filter((a) => !a.parentId);
-    const [skills, agents, rollbacks, memory, steering, toolStats, roleRuns] = await Promise.all([
+    const [skills, agents, rollbacks, probes, memory, steering, toolStats, roleRuns] = await Promise.all([
       this.skillRows().catch(() => []),
       this.agentFacts(top, all, now).catch(() => []),
       this.rollbacks(now).catch(() => []),
+      this.probes(now).catch((): ProbeFacts => ({ stuck: [], rejects: [] })),
       this.memory().catch(() => []),
       this.steering().catch(() => []),
       this.toolStats(now).catch(() => []),
@@ -60,7 +61,7 @@ export class AuditQueries {
       this.conflictFacts(top).catch(() => []),
       this.playbookFacts(top).catch(() => []),
     ]);
-    return { now, knownTools: this.d.tools(), skills, agents, rollbacks, memory, rules, conflicts, playbooks, steering, toolStats, roleRuns };
+    return { now, knownTools: this.d.tools(), skills, agents, rollbacks, probes, memory, rules, conflicts, playbooks, steering, toolStats, roleRuns };
   }
 
   // ── skills ────────────────────────────────────────────────────────────────
@@ -116,6 +117,26 @@ export class AuditQueries {
          FROM skill_versions sv JOIN skills s ON s.id = sv.skill_id LEFT JOIN agents a ON a.id = s.agent_id
         WHERE sv.outcome = 'rolled_back' AND sv.created_at > $1 GROUP BY sv.skill_id, s.name, a.handle`, [since]);
     return rows.map((r) => ({ skillId: r.skill_id, name: r.name, agent: r.agent ?? null, count: r.n }));
+  }
+
+  /** Spec 059: edits waiting for their probe for too long, and the probe's rejections per agent in the window. */
+  async probes(now: Date): Promise<ProbeFacts> {
+    const stuckBefore = new Date(now.getTime() - AUDIT_LIMITS.probeStuckDays * DAY_MS);
+    const since = new Date(now.getTime() - AUDIT_LIMITS.probeRejectDays * DAY_MS);
+    const [stuck, rejects] = await Promise.all([
+      this.d.pool.query(
+        `SELECT sv.skill_id, s.name, a.handle AS agent, sv.version, sv.created_at
+           FROM skill_versions sv JOIN skills s ON s.id = sv.skill_id LEFT JOIN agents a ON a.id = s.agent_id
+          WHERE sv.outcome = 'probing' AND sv.created_at < $1 ORDER BY sv.created_at`, [stuckBefore]),
+      this.d.pool.query(
+        `SELECT a.handle AS agent, count(*)::int AS n, array_agg(DISTINCT s.name ORDER BY s.name) AS skills
+           FROM skill_versions sv JOIN skills s ON s.id = sv.skill_id JOIN agents a ON a.id = s.agent_id
+          WHERE sv.outcome = 'rejected' AND sv.created_at > $1 GROUP BY a.handle ORDER BY n DESC, a.handle`, [since]),
+    ]);
+    return {
+      stuck: stuck.rows.map((r) => ({ skillId: r.skill_id, name: r.name, agent: r.agent ?? null, version: Number(r.version), since: r.created_at })),
+      rejects: rejects.rows.map((r) => ({ agent: r.agent, count: r.n, skills: r.skills ?? [] })),
+    };
   }
 
   // ── memory and rules ──────────────────────────────────────────────────────

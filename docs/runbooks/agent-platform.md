@@ -48,7 +48,7 @@ and cross-promo between own resources. Everything below runs inside the automati
 | Card plan hour (default 06:00) | The orchestrator's daily run: it resolves directives and tops up the idea pool. The idea reviewer reviews new ideas. Then the planner plans the day; in a network, it plans all resources. |
 | Every minute | Due slots run. Telegram slots use the editor executor. Instagram, Facebook, Threads and TikTok slots use the platform executor. Reserved slots (ads, chat posts, promos) are published by code. |
 | 08:00, 13:00, 18:00, 22:30 | `@manager` reviews the KPI digest. If nothing changed and there is no anomaly, the run is skipped without an LLM call. |
-| Hourly | Registry sync (:17), expired confirmation cards and shadow → "go live?" cards (:23), and directive timeouts, expiry and effect evaluation (:47). |
+| Hourly | Registry sync (:17), expired confirmation cards and shadow → "go live?" cards (:23), and directive timeouts, expiry and effect evaluation (:47). Skill probes (:50, §18). |
 | Every 3 h | Platform post metrics plus a daily follower rollup (`resource_daily_stats`). |
 | 05:40 | Review of skill self-edits: kept, or rolled back on a KPI drop. |
 | 06:10 | Resource health check. A resource that becomes unusable triggers a card, and nothing is planned on it until it is fixed. |
@@ -62,6 +62,7 @@ and cross-promo between own resources. Everything below runs inside the automati
   - the LLM-free reserved publishing (ads, scheduled chat posts) keeps running on purpose.
 - **Skills:** edit, override, lock or roll back on the agent page's Skills tab.
   - Agents may self-edit at most one skill a day. You get an inbox item with the diff.
+  - An edit of a live skill is tried on recent posts before it goes live (§18); the old text stays live meanwhile.
   - A self-edit is rolled back automatically when views per post drop ≥ 15 % beyond the noise band within 7 days.
   - Safety skills (`fact-check`, `source-licensing`) and locked skills cannot be edited by agents.
 - **Chat** (`/app/chat`):
@@ -379,7 +380,7 @@ The model pass uses the `auditor` role: Haiku on the Anthropic workspace, low ef
 
 **What it checks** (all in code, at most 25 findings per check)
 
-- Skills: lint errors and warnings, unknown tool names, enabled skills no run of the agent loaded in 30 days (agents with at least 10 runs), near-identical skills of one agent, skills rolled back twice in 60 days.
+- Skills: lint errors and warnings, unknown tool names, enabled skills no run of the agent loaded in 30 days (agents with at least 10 runs), near-identical skills of one agent, skills rolled back twice in 60 days, self-edits stuck in `probing` for more than 3 days, and agents whose edits the probe rejected 3 times in 30 days (§18).
 - Memory: rows no prompt shows (more than 30 active), duplicates, old reviewer insights nothing confirms.
 - Rules: owner-rule lint, rules against config (the config conflicts), playbook validation, steering sets with no rules or a missing channel.
 - Tools: error rate of 20 % or more over 7 days, runs of a role that end without a result.
@@ -445,3 +446,48 @@ Each change drops the snapshot cache, so the next `GET /api/map` is current.
 - `SELECT at, kind, ref, other_ref, detail FROM map_link_events ORDER BY at DESC LIMIT 10;` is the feed's owner changes.
 - After an unlink, `SELECT id, status, error FROM editor_slots WHERE error = 'promo pair blocked by owner'` shows the skipped slots.
 - Tests: `map.links.pg.test.ts` (setLinks, setMembers, copies skipped, seed), `map-roads.test.ts` (roads = links + past), `manager/directive-pair-blocked.test.ts`, `promo.pg.test.ts`; in the dashboard `lib/map-links.test.ts`. `lib/map-demo.ts` has a linked pair with no traffic, past roads and a network with free places for a mock-server check.
+
+## 18. Probe before adopt (spec 059)
+
+An agent's `propose_skill_edit` no longer goes live at once. The edit is stored as a `probing` version and the previous text stays live. An hourly job (:50) tries it on the agent's latest posts, then adopts it, rejects it or says it could not tell. The owner gets one Inbox item per decision.
+
+**Needs**
+
+- Migration `092_skill_probe` (`skill_versions.probe`, outcomes `probing` and `rejected`, a partial index). Apply it before deploying the code that reads it. Down: `database/migrations/down/092_skill_probe.down.sql` (probing and rejected rows become `superseded`).
+- Nothing to enable. The probe needs the editor on and a model key like any run; a probe that cannot run adopts the edit as before, marked `unprobed` with the reason.
+
+**What happens**
+
+1. `propose_skill_edit` on a live skill returns `probing: true` ("зміну перевіряю на N недавніх постах, рішення — у наступному прогоні"). A new skill, an owner edit, a safety or locked skill, and any edit while probes are off apply at once, as before. A newer write (an agent proposal or your edit) drops a waiting probe.
+2. The job takes the waiting edits oldest first, at most `SKILL_PROBE_PER_DAY` per Kyiv day, each within `SKILL_PROBE_BUDGET_USD`. For each it picks the `SKILL_PROBE_SAMPLES` newest published or approved posts of the agent's scope (a `format-` or `platform-` skill prefers posts of that format or platform), writes each post twice as a dry run (the live text, then the proposed text for that run only, nothing stored or sent), and a pairwise judge on the critic's model compares the two in random order. The spend is `editor.probe`; the critic's own passes stay `editor.checker`.
+3. Code decides:
+   - **Rejected**: the new text's post got a critic `reject` / `revise` that the old text's post did not, or the judge preferred the old text in most pairs. The version is never live; the agent gets an `avoid` memory line with the evidence.
+   - **Adopted**: never worse on the critic's ladder, at least one win, and wins plus ties above half. It goes live under the usual 7-day KPI review.
+   - **Inconclusive** (anything else, or the budget ran out) and **Unprobed** (probes off, the writer does not read the skill, no post to re-write, every run failed): live as before, same KPI review.
+4. The evidence is in the version's row (`skill_versions.probe`): per post the old and new text, critic verdicts, lint counts, the judge's call, reasons and risks, and the cost.
+
+**On the dashboard** (agent page → Skills → a skill's versions)
+
+- Badges: `Probing…`, `Rejected by probe`, `Adopted after probe`, `Adopted anyway`, `Inconclusive`, `Unprobed`. The eye button opens the Probe dialog with the posts side by side.
+- **Adopt anyway** (in that dialog, behind a confirm) makes the newest rejected version live under the 7-day review. An older rejection is restored with a rollback.
+- The Memory tab shows a short "Why" under a line written by a probe rejection or a KPI rollback.
+- The Inbox item (kind `skill_probe`) opens the Skills tab; a rejection also tells you where to adopt anyway.
+
+**Settings** (Settings → Configuration → Editor, applied at once)
+
+| Setting | Default | What it does |
+|---|---|---|
+| `SKILL_PROBE_PER_DAY` | `3` | Probes per Kyiv day; the rest wait. `0` = off: edits go live at once, as before |
+| `SKILL_PROBE_SAMPLES` | `3` | Recent posts re-written for each probe (1–5) |
+| `SKILL_PROBE_BUDGET_USD` | `0.30` | One probe's cap (the dry runs and the judge); over it the probe ends as inconclusive |
+
+**Endpoint** (owner only): `POST /api/skills/:id/versions/:version/adopt`, no body. `409 not_rejected` for any other state, `409 cannot_adopt` when a newer version exists, `404` for an unknown skill or version.
+
+**Audit** (§16): a version in `probing` for more than 3 days is a warning (the probe is not reaching it: check the daily limit and budget, that the editor is enabled and a key is set, and the `SkillProbe` log lines); an agent with 3 or more probe rejections in 30 days gets "self-edits keep failing — consider locking its skills".
+
+**Troubleshooting**
+
+- Nothing is probed: `SKILL_PROBE_PER_DAY` is 0 or already used today, the budget is 0, or the editor is off. A probe that skips ends as `unprobed` with the reason in the dialog.
+- Every probe is `unprobed` "no recent published or approved posts": a new agent has nothing to re-write yet.
+- A probe costs about two dry runs, two critic passes and one judge call per post; with the defaults that is under the $0.30 cap, at most $0.90 a day.
+- Tests: `agents/skill-probe.059.test.ts` (decision, order, budget, cap, judge), `agents/skill-probe.059.pg.test.ts` and `skill-probe.059.pick.pg.test.ts` (store, sample picking, adopt anyway), `roles/preview-probe.059.test.ts` (the dry run of a published slot and the override), `sysadmin/checks/checks.059.test.ts`, `sysadmin/audit-probes.059.pg.test.ts`; in the dashboard `lib/skill-probe.test.ts`.

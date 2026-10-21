@@ -1,6 +1,6 @@
 # 059 — Probe before adopt
 
-Status: in progress · Builds on 017 (skill self-edits), 034 FR-012 (dry-run preview), 041 (critic), 053 (token economy) · Migration 092
+Status: done · Builds on 017 (skill self-edits), 034 FR-012 (dry-run preview), 041 (critic), 053 (token economy) · Migration 092
 
 ## Why
 
@@ -97,7 +97,8 @@ runs on the live path); new LLM providers.
 
 - T1 `5068f539` — migration 092, store (probing writes, adopt / reject, previous live), `propose_skill_edit` returns probing, KPI rollback restores the version that was really live, PG tests.
 - T2 `922e307a` — `SkillProbe` (hourly worker, daily cap, budget), sample picking, `SkillOverlay`, probe flag on the dry-run path, pairwise judge, settings, `editor.probe`, Inbox note, `POST /api/skills/:id/versions/:version/adopt`, memory evidence, tests.
-- T3 (hash filled in by the next commit) — dashboard: probe badges on skill versions and skill rows, the Probe dialog (old and new text side by side per post, critic verdict, lint, judge reasons and risks), Adopt anyway behind a confirm, a short "why" on memory lines from a probe rejection or a KPI rollback, tests.
+- T3 `51a533fe` — dashboard: probe badges on skill versions and skill rows, the Probe dialog (old and new text side by side per post, critic verdict, lint, judge reasons and risks), Adopt anyway behind a confirm, a short "why" on memory lines from a probe rejection or a KPI rollback, tests.
+- T4 — this commit: @sysadmin checks (`skill_probe_stuck`, `skill_probe_rejects`) with the facts query, runbook §18 (and the §4, §5, §16 lines), specs README row 059 DONE and migration 092 in the landed list, spec Status done.
 
 ## Deltas from the spec
 
@@ -118,3 +119,4 @@ runs on the live path); new LLM providers.
 - **Inbox** kind `skill_probe` (refType `skill`, opens the agent's Skills tab), one item per probed version; a rejection also writes an `avoid` memory line (`evidence.source = 'skill_probe'`), as the KPI rollback does with `source = 'kpi_rollback'`.
 - **Dashboard.** The versions dialog shows a probe badge per version (`Probing…`, `Rejected by probe`, `Adopted after probe`, `Adopted anyway`, `Inconclusive`, `Unprobed`; nothing for versions made before probes) and an eye button that opens the Probe dialog: per post the old and the new text side by side with the critic's verdict, lint warnings, length, the judge's call (marked "decided by code" when no model was asked) and its reasons and risks. A rejected newest version has "Adopt anyway" in that dialog, behind a confirm. A version that never went live is diffed against the live text. A skill row gets a `probing` badge while a newer edit waits. Everything tolerates a server that sends no `probe` (404 of the new endpoint shows the error toast and changes nothing).
 - **Memory "why".** On the agent's Memory tab a line written by a probe rejection or a KPI rollback shows a one-line why under its text, built from `evidence` (tally and the judge's first reason; the change in views per post).
+- **Audit checks.** `skill_probe_stuck` (warn): an edit in `probing` for more than 3 days, one finding per version, no fix (the cause is the probe, the detail says where to look). `skill_probe_rejects` (info): an agent with 3 or more rejected edits in 30 days, counted per owning agent of the skill; the text says "self-edits keep failing — consider locking its skills". Both read a new `probes` part of the audit facts (`AuditQueries.probes`); a failing query leaves it empty like the other facts.

@@ -90,6 +90,12 @@ export interface AgentFact {
 
 export interface RollbackFact { skillId: string; name: string; agent: string | null; count: number }
 
+/** Spec 059: a skill edit that has waited as `probing` since `since` (not live, not decided). */
+export interface StuckProbeFact { skillId: string; name: string; agent: string | null; version: number; since: Date }
+/** Spec 059: how many edits of an agent's skills the probe rejected in the window. */
+export interface ProbeRejectFact { agent: string; count: number; skills: string[] }
+export interface ProbeFacts { stuck: StuckProbeFact[]; rejects: ProbeRejectFact[] }
+
 export interface MemoryFact {
   id:        number;
   channel:   string;
@@ -140,6 +146,8 @@ export interface AuditFacts {
   skills:     SkillFact[];
   agents:     AgentFact[];
   rollbacks:  RollbackFact[];
+  /** Spec 059: skill edits waiting for their probe, and probe rejections per agent. */
+  probes:     ProbeFacts;
   memory:     MemoryFact[];
   rules:      RuleFact[];
   conflicts:  AgentConflictsFact[];
@@ -150,7 +158,7 @@ export interface AuditFacts {
 }
 
 export const emptyFacts = (now = new Date()): AuditFacts => ({
-  now, knownTools: new Set(), skills: [], agents: [], rollbacks: [], memory: [], rules: [], conflicts: [], playbooks: [],
+  now, knownTools: new Set(), skills: [], agents: [], rollbacks: [], probes: { stuck: [], rejects: [] }, memory: [], rules: [], conflicts: [], playbooks: [],
   steering: [], toolStats: [], roleRuns: [],
 });
 
@@ -165,6 +173,11 @@ export const AUDIT_LIMITS = {
   duplicateMinTokens: 20,
   rollbackCount:     2,
   rollbackDays:      60,
+  /** Spec 059: a self-edit still `probing` after this many days means the probe is not running or not reaching it. */
+  probeStuckDays:    3,
+  /** Spec 059: an agent whose skill edits the probe rejected at least this many times in the window keeps failing. */
+  probeRejectCount:  3,
+  probeRejectDays:   30,
   memoryPromptCap:   30,
   memoryWriterCap:   15,
   memoryDuplicateSim: 0.8,
