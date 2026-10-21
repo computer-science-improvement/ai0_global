@@ -92,3 +92,26 @@ runs on the live path); new LLM providers.
 - No paid calls in tests; the judge and executor are fakes.
 - Dashboard tsc/tests/build; the lead checks the versions dialog in the browser on mocks.
 - Runbook: a new § in `docs/runbooks/agent-platform.md` (next free number); specs README row 059 DONE.
+
+## Status
+
+- T1 `5068f539` — migration 092, store (probing writes, adopt / reject, previous live), `propose_skill_edit` returns probing, KPI rollback restores the version that was really live, PG tests.
+- T2 (hash filled in by the next commit): `SkillProbe` (hourly worker, daily cap, budget), sample picking, `SkillOverlay`, probe flag on the dry-run path, pairwise judge, settings, `editor.probe`, Inbox note, `POST /api/skills/:id/versions/:version/adopt`, memory evidence, tests.
+
+## Deltas from the spec
+
+- **A probe re-runs slots that are already published, so the dry-run path gets a `probe` flag** on `PreviewSink`. The publish tools normally refuse a preview of anything but a `planned` slot, and the ledger guards would block the re-write of a post that is in the ledger itself (`too_similar` with its own text, `source_already_posted`, the schedule and story guards, the poll cap). With the flag those ledger guards stand aside; every other check (lint, integrity, critic) still runs, and nothing is stored, sent or put in the ledger. An ordinary preview is unchanged (tested).
+- **The old text is also run, not read from the stored post.** Both sides come from a fresh dry run of the same slot, so the only difference is the skill text (the spec says the same; stated here because the stored post is never compared).
+- **Version numbers are never reused.** A probing or rejected version holds a number above `current_version`, so the next number is `max(version) + 1`, not `current_version + 1`. A newer write (an agent proposal or an owner edit) abandons a waiting probe as `superseded`.
+- **Overriding a shared skill starts from a baseline copy.** The agent's own row is created as v1 (author `repo`, the shared text) and the proposal waits as v2, so the old text stays live for that agent.
+- **`previousLive` for the KPI rollback.** The rollback target is the version that was really live before, not `version - 1` (which may be a rejected or never-adopted proposal).
+- **The decision rules, in code (`decideProbe`).** reject: the new text's post got `reject` / `revise` where the old one did not, or the judge preferred the old text in more than half of the pairs; adopt: never worse on the critic ladder (reject < revise < pass_with_edits < pass), at least one win and wins + ties above half; anything else, and every probe the budget cut short, is inconclusive (adopted as before). A pair where the critic stopped one side is decided by code (`by: 'code'`), not by the judge. A judge that does not answer counts the pair as a tie.
+- **Budget is a hard stop for the probe, not a target.** Each dry run gets what is left of `SKILL_PROBE_BUDGET_USD` as its `maxCostUsd`; when it is spent the probe ends as inconclusive with the pairs it has.
+- **Daily cap counts decided probes** (adopted, rejected or inconclusive) since Kyiv midnight; unprobed adoptions (probes off, nothing to probe on) do not use a place. Over the cap a version simply waits for the next day.
+- **When it cannot probe, it adopts as today.** Probes off or budget 0, the writer does not read the skill (off, or not for the executor role), no published or approved slot to re-write, or every run failing: the version goes live as `pending` with an `unprobed` record and the reason, and the owner is told.
+- **Sample picking.** Newest published or approved content slots (fixed topic, unique treatment, not promo) of the agent's own channels or resource; for `format-<x>` and `platform-<p>` skills the slots of that format or platform come first.
+- **Judge** uses the critic's model (Models page) with the role `checker`, no cache, two attempts, 90 s each, tool `submit_comparison`; its spend is `editor.probe` like the dry runs.
+- **Settings** `SKILL_PROBE_PER_DAY`, `SKILL_PROBE_SAMPLES`, `SKILL_PROBE_BUDGET_USD` in the catalog (group Editor, apply live).
+- **Worker** runs at :50 every hour (`agents-skill-probe`); the daily KPI review (05:40) is unchanged and only sees `pending` versions.
+- **Adopt anyway** is `POST /api/skills/:id/versions/:version/adopt`: only the newest version, only while it is `rejected`; the record becomes `owner_override`, the version `pending` under the usual 7-day review. An older rejection is restored with a rollback instead (409 `cannot_adopt`).
+- **Inbox** kind `skill_probe` (refType `skill`, opens the agent's Skills tab), one item per probed version; a rejection also writes an `avoid` memory line (`evidence.source = 'skill_probe'`), as the KPI rollback does with `source = 'kpi_rollback'`.

@@ -25,7 +25,8 @@ import { slotSkillsContext } from '../critic/critic-skills';
 import { examplesPromptSection } from '../network/playbook';
 import type { CriticService } from '../critic/critic.service';
 import type { InboxItemInput } from '../agents/owner-inbox';
-import { PREVIEW_FEATURE, PreviewSink, previewWithoutRun, type SlotPreview } from './preview-run';
+import { PREVIEW_FEATURE, PROBE_FEATURE, PreviewSink, previewWithoutRun, type SlotPreview } from './preview-run';
+import { SkillOverlay, type SkillOverride } from '../skills/skill-overlay';
 import type { AgentBudget } from '../harness/budget.service';
 import { alreadyUsedBlock } from '../post/variety/monotony';
 import { intersectAllow, type LoadoutService } from '../loadout/loadout.service';
@@ -220,6 +221,16 @@ const probed = (probe: PublishProbe | null): Record<string, unknown> => (probe ?
 
 const normUrl = (u: string): string => u.trim().replace(/#.*$/, '').replace(/\/+$/, '').toLowerCase();
 
+/** Spec 059: how a skill probe runs a slot preview. */
+export interface PreviewOptions {
+  /** The skill text to use for this run only (no write anywhere). */
+  skillOverride?: SkillOverride;
+  /** A probe on a slot that was written already: ledger guards off, spend as `editor.probe`. */
+  probe?:         boolean;
+  /** Stop the executor run once it has cost this much. */
+  maxCostUsd?:    number | null;
+}
+
 /** Runs one role over the AgentLoop and applies the slot state machine around it. */
 export class EditorRunnerService {
   constructor(private readonly d: EditorRunnerDeps) {}
@@ -301,7 +312,12 @@ export class EditorRunnerService {
   private static dryExtras(extras: Record<string, unknown>, dry: PreviewSink | null): Record<string, unknown> {
     if (!dry) return extras;
     const own = extras.wrapTools as ((t: EditorTool[]) => EditorTool[]) | undefined;
-    return { ...extras, dryRun: dry, wrapTools: (t: EditorTool[]) => dry.wrapTools(own ? own(t) : t), usage: { feature: PREVIEW_FEATURE, shadow: false } };
+    return {
+      ...extras, dryRun: dry, wrapTools: (t: EditorTool[]) => dry.wrapTools(own ? own(t) : t),
+      // Spec 059: a skill probe's runs are `editor.probe` and stop at the probe's own budget.
+      usage: { feature: dry.probe ? PROBE_FEATURE : PREVIEW_FEATURE, shadow: false },
+      ...(dry.maxCostUsd != null ? { maxCostUsd: dry.maxCostUsd } : {}),
+    };
   }
 
   private async run(
@@ -340,6 +356,7 @@ export class EditorRunnerService {
       extras: { card, skills, agent: ctx?.agent ?? null, orchestrator: ctx?.orchestrator ?? null, ...extras },
       ...(extras.systemOverride ? { system: String(extras.systemOverride) } : {}),
       ...(extras.usage ? { usage: extras.usage as { feature?: string; shadow?: boolean } } : {}),
+      ...(typeof extras.maxCostUsd === 'number' ? { maxCostUsd: extras.maxCostUsd } : {}),
     });
   }
 
@@ -588,7 +605,7 @@ export class EditorRunnerService {
    * min gap) are not checked — they depend on the moment of publishing. Spend: `editor.preview` (+ the
    * critic's `editor.checker`), against the channel, agent and blocking caps like every run.
    */
-  async runPreview(slot: EditorSlot, cardIn: EditorCard): Promise<SlotPreview> {
+  async runPreview(slot: EditorSlot, cardIn: EditorCard, opts: PreviewOptions = {}): Promise<SlotPreview> {
     const startedAt = this.now().toISOString();
     const target = slot.resourceRef ? parseResourceRef(slot.resourceRef) : null;
     const platform = target?.platform ?? 'telegram';
@@ -596,14 +613,17 @@ export class EditorRunnerService {
     if (slot.treatment === 'duplicate' || slot.treatment === 'adapt') {
       return previewWithoutRun('failed', `preview_unavailable: a ${slot.treatment} is written from its source after the source is written`, startedAt, platform);
     }
-    const ctx = await this.agentOf(cardIn, 'executor');
+    const base = await this.agentOf(cardIn, 'executor');
+    // Spec 059: the proposed text of one skill for this run only; it needs the agent's own skill set to overlay.
+    if (opts.skillOverride && !base) return previewWithoutRun('failed', 'preview_unavailable: the channel has no agent whose skills could be overridden', startedAt, platform);
+    const ctx = opts.skillOverride && base ? { ...base, skills: new SkillOverlay(base.skills, opts.skillOverride) } : base;
     const off = this.paused(ctx);
     if (off) return previewWithoutRun('failed', off.error ?? 'agent paused', startedAt, platform);
     // Shadow semantics for the tools (no live caps); the publish tools stop at the dry-run sink anyway.
     const card: EditorCard = { ...cardIn, mode: 'shadow' };
     const series = this.d.seriesContext ? await this.d.seriesContext(slot).catch(() => null) : null;
     if (series?.skip) return previewWithoutRun('skipped', series.skip, startedAt, platform);
-    const dry = new PreviewSink();
+    const dry = new PreviewSink(!!opts.probe, opts.maxCostUsd ?? null);
     const res = target && target.platform !== 'telegram'
       ? await this.runPlatformExecutor(slot, card, ctx, target.platform, series?.note ?? null, null, dry)
       : await this.runTelegramExecutor(slot, card, ctx, series?.note ?? null, null, dry);

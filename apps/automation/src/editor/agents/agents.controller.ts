@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Inject, Param, ParseUUIDPipe, Patch, Post, Put, Query, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Inject, Param, ParseIntPipe, ParseUUIDPipe, Patch, Post, Put, Query, UseGuards } from '@nestjs/common';
 import { TrackingAuthGuard } from '../../tracking/api/tracking-auth.guard';
 import type { AgentsService } from './agents.service';
 
@@ -133,6 +133,12 @@ export class AgentsController {
   @Get('skills/:id/versions')
   versions(@Param('id', ParseUUIDPipe) id: string) {
     return this.svc.versions(id);
+  }
+
+  /** Spec 059: "Adopt anyway" for a version the probe rejected. */
+  @Post('skills/:id/versions/:version/adopt')
+  adopt(@Param('id', ParseUUIDPipe) id: string, @Param('version', ParseIntPipe) version: number) {
+    return this.svc.adoptRejected(id, version);
   }
 
   @Post('skills/:id/rollback')

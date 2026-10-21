@@ -5,10 +5,11 @@
 
 /**
  * Roles of the editor harness that make LLM calls (`editor.<role>`), plus `preview`: the executor run of an
- * owner's on-demand dry-run slot preview (spec 034 FR-012).
+ * owner's on-demand dry-run slot preview (spec 034 FR-012), and `probe`: the dry-run pairs and the pairwise judge of a skill
+ * self-edit's probe (spec 059).
  */
 export const EDITOR_FEATURE_ROLES = [
-  'planner', 'executor', 'reviewer', 'checker', 'composer', 'orchestrator', 'idea_reviewer', 'manager', 'builder', 'onboarder', 'auditor', 'steering', 'launch', 'chat', 'preview',
+  'planner', 'executor', 'reviewer', 'checker', 'composer', 'orchestrator', 'idea_reviewer', 'manager', 'builder', 'onboarder', 'auditor', 'steering', 'launch', 'chat', 'preview', 'probe',
 ] as const;
 
 export const FEATURES = {

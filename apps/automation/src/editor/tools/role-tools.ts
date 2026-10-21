@@ -143,8 +143,11 @@ export async function checkPublishGuards(d: RoleToolDeps, ctx: ToolContext, spec
   const slot = await d.plans.getSlot(slotId);
   if (!slot || slot.channelKey !== channelKey) return { error: 'slot_not_found' };
   // Spec 034 FR-012: the owner's dry-run Preview runs on a slot that stays `planned`.
-  const dry = !!dryRunOf(ctx) && slot.status === 'planned';
+  const sink = dryRunOf(ctx);
+  const dry = !!sink && (slot.status === 'planned' || sink.probe);
   if (slot.status !== 'running' && !dry) return { error: 'slot_not_running', details: `slot status is ${slot.status}` };
+  // Spec 059: a skill probe re-runs a written slot; its own post is in the ledger, so the ledger guards do not apply.
+  const ledger = !sink?.probe;
   if (card.mode === 'off') return { error: 'channel_off' };
 
   // Spec 037: the integrity checks resolve dates against the slot time (now for a late slot), in the resource zone.
@@ -165,25 +168,25 @@ export async function checkPublishGuards(d: RoleToolDeps, ctx: ToolContext, spec
   if (steered) return steered;
 
   const rendered = renderTelegram(spec, card);
-  const corpus = await d.plans.recentTexts(channelKey);
+  const corpus = ledger ? await d.plans.recentTexts(channelKey) : [];
   const maxSim = corpus.reduce((m, t) => Math.max(m, similarity(rendered.preview, t)), 0);
   if (maxSim >= SIMILARITY_LIMIT) return { error: 'too_similar', details: `схожість ${maxSim.toFixed(2)} з нещодавнім постом — інший матеріал або кут` };
   const ref = spec.library_ref ?? spec.source?.url ?? null;
-  const dup = await sourceGuard(d, channelKey, spec);
+  const dup = ledger ? await sourceGuard(d, channelKey, spec) : null;
   if (dup) return dup;
-  if (d.schedule) {
+  if (d.schedule && ledger) {
     const sg = await d.schedule.publishGuard(slot, { libraryRef: spec.library_ref, sourceUrl: spec.source?.url }, { live: card.mode === 'live', now, card, feeds: card.sources });
     if (sg) return sg;
   }
   // Spec 037 T7: polls + quizzes over polls_per_week on what is really out, waiting or approved (live, approval, shadow).
-  const polls = await pollCapGuard(d.pool, {
+  const polls = !ledger ? null : await pollCapGuard(d.pool, {
     channelKey, format: spec.format, at, timezone: card.timezone, cap: card.pollsPerWeek, slotId, series: slotSeriesOf(slot),
     playbookSeries: (ctx.extras?.network as NetworkCtx | undefined)?.playbook?.series,
   });
   if (polls) return polls;
   // Spec 037 T2: one story, one post (the resource's 14 days, the network's 24 h); warnings go to the critic.
   let story: Extract<StoryGuardResult, { ok: true }> | null = null;
-  if (d.stories) {
+  if (d.stories && ledger) {
     const st = await storyGuard(d.stories, { channelKey, slotId, spec, card, at, now });
     if ('error' in st) return st;
     story = st;

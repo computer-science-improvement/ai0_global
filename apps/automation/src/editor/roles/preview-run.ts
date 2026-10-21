@@ -34,6 +34,8 @@ export const PREVIEW_STALE_MS = 10 * 60_000;
 
 /** The usage-ledger feature of a preview's executor run (spec 029); its critic passes stay `editor.checker`. */
 export const PREVIEW_FEATURE = 'editor.preview';
+/** Spec 059: the usage-ledger feature of a skill probe's executor runs (its critic passes stay `editor.checker`). */
+export const PROBE_FEATURE = 'editor.probe';
 
 export interface DryPost { platform: string; preview: string; spec: unknown; warnings: string[] }
 
@@ -42,8 +44,15 @@ export interface DryPost { platform: string; preview: string; spec: unknown; war
  * `store` instead of storing / sending (see `dryRunOf`); the CriticGate gets
  * `plans` (its slot writes land here, never on the slot); skip_slot is wrapped
  * by `wrapTools`. Act tools (repurpose_post, edit_data_schema) are dropped.
+ *
+ * `probe` (spec 059): the run is a skill probe on a slot that was written long ago — the slot is `published` and its own
+ * post, source and story are in the ledger, so the guards that compare a post with the ledger (similarity, source already
+ * posted, poll cap, story registry, the schedule's publish guard) are skipped; lint, the critic and the content checks stay.
+ * `maxCostUsd` stops the executor run once it has cost that much (the probe's own budget).
  */
 export class PreviewSink {
+  constructor(readonly probe = false, readonly maxCostUsd: number | null = null) {}
+
   post: DryPost | null = null;
   skipped: string | null = null;
   critic: StoredCritic | null = null;

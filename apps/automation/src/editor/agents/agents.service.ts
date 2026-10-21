@@ -12,6 +12,7 @@ import type { PendingActionsService } from './pending-actions';
 import { FORMAT_CHANGES_PER_DAY, FormatLocksSchema, FormatPrefsSchema, ResourceProfileSchema, ResourceProfilesRepository } from './resource-profile';
 import { NetworkRepository } from '../network/network.repository';
 import type { SkillStore } from './skill-store';
+import { SELF_EDIT_REVIEW_DAYS } from './agent-skill-tools';
 import { SKILL_ROLES } from './skill-lint';
 import { assertNoEnabledBindings, liveRefsOf } from '../migration/binding-guard';
 import { resourceStyleOf } from '../post/style/style-store';
@@ -308,6 +309,27 @@ export class AgentsService {
     const r = await this.d.skills.rollback(skillId, p.data.version, 'owner', `owner rollback to v${p.data.version}`);
     if ('error' in r) throw new BadRequestException(r);
     return r;
+  }
+
+  /**
+   * Spec 059: "Adopt anyway" — the owner makes a version the probe rejected live. It goes under the usual 7-day KPI review
+   * and keeps the probe's evidence (verdict `owner_override`). Only the newest version can be adopted this way; an older
+   * rejection is restored with a rollback.
+   */
+  async adoptRejected(skillId: string, version: number) {
+    const skill = await this.d.skills.get(skillId);
+    if (!skill) throw new NotFoundException({ error: 'skill_not_found' });
+    const v = await this.d.skills.version(skillId, version);
+    if (!v) throw new NotFoundException({ error: 'version_not_found' });
+    if (v.outcome !== 'rejected') throw new ConflictException({ error: 'not_rejected', details: `version ${version} is ${v.outcome ?? 'live history'}, not a rejected one` });
+    const now = this.now();
+    const probe = {
+      ...(v.probe ?? { samples: [], costUsd: 0 }), verdict: 'owner_override' as const,
+      reason: `rejected by the probe${v.probe?.reason ? ` (${v.probe.reason})` : ''}; adopted anyway by the owner`, at: now.toISOString(),
+    };
+    const r = await this.d.skills.adoptVersion(skillId, version, { from: ['rejected'], probe, reviewAt: new Date(now.getTime() + SELF_EDIT_REVIEW_DAYS * 86_400_000) });
+    if (!r) throw new ConflictException({ error: 'cannot_adopt', details: 'a newer version exists or the version was decided already — restore it with a rollback instead' });
+    return { ok: true, skill: r, version };
   }
 
   /** Spec 040 FR-011: where the playbook or a profile contradicts the owner's rules (empty when none or unavailable). */

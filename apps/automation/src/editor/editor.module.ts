@@ -104,6 +104,9 @@ export const LOADOUT_SCAN = 'LOADOUT_SCAN';
 import type { ToolRegistry as LoadoutRegistry } from './harness/tool-registry';
 import { SkillVersionEvaluator } from './agents/skill-version-evaluator';
 import { buildAgentSkillTools } from './agents/agent-skill-tools';
+import { probeSettings, SkillProbe } from './agents/skill-probe';
+import { LlmPairwiseJudge } from './agents/skill-probe-judge';
+import { pickProbeSlots } from './agents/skill-probe-samples';
 import { AgentsService } from './agents/agents.service';
 import { AGENTS_SERVICE, AgentsController } from './agents/agents.controller';
 import { telegramKeyOf, parseResourceRef, resourceRef, isPaused as isAgentPaused } from './agents/agent.types';
@@ -305,6 +308,8 @@ export const EDITOR_LOOP      = 'EDITOR_LOOP';
 export const MODEL_DEFAULTS   = 'MODEL_DEFAULTS';
 /** Spec 034 FR-004: the owner's critic model (app_settings `ai.critic_model`) and the pre-publish critic. */
 export const CRITIC_MODEL     = 'CRITIC_MODEL';
+/** Spec 059: tries a skill self-edit on recent posts before it goes live. */
+export const SKILL_PROBE      = 'SKILL_PROBE';
 /** Spec 038: the active model workspace (WorkspaceStore). */
 export const MODEL_WORKSPACE  = 'MODEL_WORKSPACE';
 export const EDITOR_CRITIC    = 'EDITOR_CRITIC';
@@ -688,6 +693,26 @@ export class LaunchWorker implements OnModuleInit {
   @Cron('* * * * *', { name: 'launch-tick' })
   async tick(): Promise<void> {
     try { await this.launches.tick(); } catch (err: any) { this.logger.warn(`launch tick failed: ${err?.message ?? err}`); }
+  }
+}
+
+/** Spec 059: probes the skill edits that wait as `probing`, a few at a time (the day's cap is in the probe), at :50 every hour. */
+@Injectable()
+export class SkillProbeWorker {
+  private readonly logger = new Logger('SkillProbe');
+
+  constructor(@Inject(SKILL_PROBE) private readonly probe: SkillProbe) {}
+
+  @Cron('50 * * * *', { name: 'agents-skill-probe' })
+  async tick(): Promise<void> {
+    try {
+      const r = await this.probe.run();
+      if (r.adopted || r.rejected || r.inconclusive || r.unprobed) {
+        this.logger.log(`skill probes: adopted ${r.adopted}, rejected ${r.rejected}, inconclusive ${r.inconclusive}, unprobed ${r.unprobed}, deferred ${r.deferred}`);
+      }
+    } catch (err: any) {
+      this.logger.warn(`skill probe failed: ${err?.message ?? err}`);
+    }
   }
 }
 
@@ -1254,7 +1279,11 @@ export const EDITOR_PROVIDERS = [
             forward: async (to, from, messageId) => (await botCall(channelConfig, to, 'forwardMessage', { from_chat_id: from, message_id: messageId })).message_id,
           }),
           ...buildComposerTools({ drafts, repo: repos.chat }),
-          ...buildAgentSkillTools({ agents: infra.agents, skills: infra.skills, kpi: infra.kpi, inbox: infra.inbox }),
+          // Spec 059: an edit of a live skill is probed on recent posts before it is adopted (SKILL_PROBE_PER_DAY = 0: at once).
+          ...buildAgentSkillTools({
+            agents: infra.agents, skills: infra.skills, kpi: infra.kpi, inbox: infra.inbox,
+            probe: { enabled: () => probeSettings(env).perDay > 0 && probeSettings(env).budgetUsd > 0, samples: () => probeSettings(env).samples },
+          }),
           ...buildBuilderTools({
             agents: infra.agents, catalog: infra.catalog, profiles: infra.profiles, creator: infra.creator, skills: infra.skills, actions: infra.actions,
             conflicts: configConflictsOf(pool, repos, infra),
@@ -2342,6 +2371,56 @@ export const EDITOR_PROVIDERS = [
         return { bot, reports };
       },
     },
+    {
+      // Spec 059: a skill self-edit is tried on the agent's latest posts (old text vs new, dry runs, a pairwise judge on the
+      // critic's model) before it goes live. Anything that cannot run adopts as before.
+      provide: SKILL_PROBE,
+      inject: [DB_POOL, ConfigService, AGENT_INFRA, EDITOR_REPOS, EDITOR_RUNNER, EDITOR_LOOP, MODEL_DEFAULTS, CRITIC_MODEL],
+      useFactory: (
+        pool: Pool, cfg: ConfigService, infra: AgentInfra, repos: EditorRepos, runner: EditorRunnerService, loop: AgentLoop,
+        models: WorkspaceModelStore, critic: WorkspaceModelStore,
+      ): SkillProbe => {
+        const logger = new Logger('SkillProbe');
+        const env = (k: string) => cfg.get<string>(k) ?? undefined;
+        const judge = new LlmPairwiseJudge({
+          loop, env, defaultModel: (ws) => models.get(ws), workspace: () => models.workspace(), criticModel: (ws) => critic.get(ws),
+        });
+        return new SkillProbe({
+          skills: infra.skills, agents: infra.agents, inbox: infra.inbox,
+          settings: () => probeSettings(env),
+          pick: (agent, skill, limit) => pickProbeSlots(pool, agent, skill, limit),
+          run: async (slotId, o) => {
+            const slot = await repos.plans.getSlot(slotId);
+            if (!slot) throw new Error('slot_not_found');
+            const card = await repos.channels.get(slot.channelKey);
+            if (!card) throw new Error('channel_not_found');
+            return runner.runPreview(slot, card, { probe: true, skillOverride: o.override ?? undefined, maxCostUsd: o.maxCostUsd });
+          },
+          judge,
+          judgeContext: async (slotId) => {
+            const slot = await repos.plans.getSlot(slotId);
+            if (!slot) return null;
+            const [card, stored, memory] = await Promise.all([
+              repos.channels.get(slot.channelKey),
+              slot.resourceRef ? infra.profiles.get(slot.resourceRef).catch(() => null) : Promise.resolve(null),
+              repos.memory.listActive(slot.channelKey, 60).catch(() => []),
+            ]);
+            const rules = ownerRulesOf(memory).map((r) => `- ${r.text.trim()}`);
+            return [
+              card?.brief ? `Бриф: ${card.brief}` : '',
+              stored?.profile ? renderProfile(stored.profile, { ref: slot.resourceRef ?? undefined }) : '',
+              rules.length ? `Правила власника:\n${rules.join('\n')}` : '',
+            ].filter(Boolean).join('\n\n') || null;
+          },
+          remember: async (agent, text, evidence) => {
+            const key = telegramKeyOf(agent.parentId ? (await infra.agents.get(agent.parentId)) ?? agent : agent);
+            if (key) await repos.memory.add(key, 'avoid', text, evidence, 'reviewer');
+          },
+          log: (m) => logger.warn(m),
+        });
+      },
+    },
+    SkillProbeWorker,
     OwnerBotWorker,
     ChannelSetupWorker,
     SteeringWorker,

@@ -67,7 +67,7 @@ export function buildStoryTools(d: StoryToolDeps): EditorTool[] {
       const slot = await d.plans.getSlot(slotId);
       if (!slot || slot.channelKey !== channelKey) return { error: 'slot_not_found' };
       const dry = dryRunOf(ctx);
-      if (slot.status !== 'running' && !(dry && slot.status === 'planned')) return { error: 'slot_not_running', details: `slot status is ${slot.status}` };
+      if (slot.status !== 'running' && !(dry && (slot.status === 'planned' || dry.probe))) return { error: 'slot_not_running', details: `slot status is ${slot.status}` };
       if (card.mode === 'off') return { error: 'channel_off' };
       if (slot.resourceRef && !slot.resourceRef.startsWith('telegram:')) return { error: 'story_repost_telegram_only' };
 

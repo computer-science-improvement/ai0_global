@@ -78,8 +78,9 @@ export function buildPlatformTools(d: PlatformToolDeps): EditorTool[] {
       const s = await d.plans.getSlot(ctx.slotId);
       // Spec 034 FR-012: the owner's dry-run Preview runs on a slot that stays `planned`.
       const dry = dryRunOf(ctx);
-      if (!s || (s.status !== 'running' && !(dry && s.status === 'planned'))) return { error: 'slot_not_running' };
-      if (d.schedule) {
+      if (!s || (s.status !== 'running' && !(dry && (s.status === 'planned' || dry.probe)))) return { error: 'slot_not_running' };
+      // Spec 059: a skill probe re-runs a written slot — the ledger guards (schedule, already posted, similar) do not apply.
+      if (d.schedule && !dry?.probe) {
         const card = (ctx.extras?.card as { sources?: any[] } | undefined) ?? null;
         const sg = await d.schedule.publishGuard(s, { libraryRef: spec.library_ref, sourceUrl: spec.source?.url }, { live: slot.mode === 'live', now: new Date(), feeds: card?.sources ?? [] });
         if (sg) return sg;
@@ -95,7 +96,7 @@ export function buildPlatformTools(d: PlatformToolDeps): EditorTool[] {
       let critic = null as Record<string, unknown> | null;
       const r = await publishPlatformNow(d.publish, {
         resourceRef: slot.resourceRef, spec, mode: slot.mode, slotId: ctx.slotId, agentId: slot.agentId ?? null,
-        maxPerDay: slot.maxPerDay, vocabulary: slot.vocabulary, bannedTerms: slot.bannedTerms, voice: slot.voice, ...(dry ? { dry: true } : {}),
+        maxPerDay: slot.maxPerDay, vocabulary: slot.vocabulary, bannedTerms: slot.bannedTerms, voice: slot.voice, ...(dry ? { dry: true, ...(dry.probe ? { probe: true } : {}) } : {}),
         ...(gate ? {
           review: async ({ text, lint }) => {
             const c = await gate.check({

@@ -54,6 +54,8 @@ export interface PublishPlatformInput {
   review?: (p: { text: string; lint: PlatformLintResult }) => Promise<null | { halt: object } | { spec: PlatformPostSpec; lint: PlatformLintResult }>;
   /** Spec 034 FR-012: the owner's dry-run Preview — every check and the critic, then stop: no row, no API call. */
   dry?: boolean;
+  /** Spec 059: a skill probe's dry run of a slot that was written already — the ledger checks (already posted, similar) are skipped. */
+  probe?: boolean;
 }
 
 export type PublishPlatformResult =
@@ -111,12 +113,12 @@ export async function publishPlatformNow(d: PublishPlatformDeps, input: PublishP
   // Approval mode also counts posts that already wait (spec 031), so two waiting posts never share a source.
   const waiting = i.mode === 'approve';
   const secondRef = i.spec.library_ref && i.spec.source?.url ? i.spec.source.url : null;
-  if (await d.posts.alreadyPosted(i.resourceRef, { source: sourceRef, ideaId: i.spec.idea_id ?? null }, since, waiting)
-    || (secondRef && await d.posts.alreadyPosted(i.resourceRef, { source: secondRef }, since, waiting))) {
+  if (!i.probe && (await d.posts.alreadyPosted(i.resourceRef, { source: sourceRef, ideaId: i.spec.idea_id ?? null }, since, waiting)
+    || (secondRef && await d.posts.alreadyPosted(i.resourceRef, { source: secondRef }, since, waiting)))) {
     return { error: 'already_posted', details: 'це джерело вже використане на цьому ресурсі (журнал контенту) або ця ідея вже виходила тут за 7 днів' };
   }
   const caption = captionPlain(i.spec, CAPABILITIES[platform].linksClickable);
-  const recent = await d.posts.recentCaptions(i.resourceRef, 40, waiting);
+  const recent = i.probe ? [] : await d.posts.recentCaptions(i.resourceRef, 40, waiting);
   const maxSim = recent.reduce((m, t) => Math.max(m, similarity(caption, t)), 0);
   if (caption.length > 40 && maxSim >= PLATFORM_SIMILARITY_LIMIT) {
     return { error: 'too_similar', details: `схожість ${maxSim.toFixed(2)} з нещодавнім постом цього ресурсу` };
