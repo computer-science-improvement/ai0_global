@@ -34,6 +34,8 @@ const KIND_META: Record<string, { label: string; icon: IconName }> = {
   slot_regenerate:      { label: 'Write the post now', icon: 'play' },
   replan_today:         { label: 'Replan today', icon: 'calendar-sync' },
   update_artifact:      { label: 'Change an artifact', icon: 'pencil' },
+  import_list:          { label: 'Import a list into a dataset', icon: 'database' },
+  resync_import:        { label: 'Re-sync an imported list', icon: 'database' },
 };
 
 export const ACTION_TONE: Record<PendingActionStatus, Tone> = {
