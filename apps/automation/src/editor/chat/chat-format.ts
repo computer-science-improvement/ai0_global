@@ -9,3 +9,6 @@ export const CHAT_FORMAT_RULE = [
   'Таблиця — лише для порівняння кількох обʼєктів за 2–5 ознаками (канали, цифри). Символ | усередині клітинки пиши як \\|. Одну-дві речі подавай текстом чи списком.',
   'Не використовуй HTML, вкладені списки, зображення, виноски й чекбокси — вони покажуться сирим текстом. Це правило лише для відповідей у чаті; текст поста пишеш за правилами PostSpec.',
 ].join('\n');
+
+/** Spec 062 FR-001: the history shows each turn with system footers; the model must not write its own. Goes into every chat prompt. */
+export const NO_SYSTEM_FOOTERS_RULE = 'Не пиши рядки [дії: …], [чернетки: …] чи «@handle:» — їх додає система.';

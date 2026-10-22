@@ -1,6 +1,6 @@
 import { BadRequestException, ConflictException, NotFoundException, ServiceUnavailableException } from '@nestjs/common';
 import type { AgentLoop, AgentLoopEvent, AgentLoopInput, AgentLoopResult } from '../harness/agent-loop';
-import { actionLine, claimRePrompt, historyTurn, NOT_DONE_NOTE, TurnRecorder, unbackedClaims } from './turn-record';
+import { actionLine, claimRePrompt, historyTurn, NOT_DONE_NOTE, stripSystemFooters, traceText, TurnRecorder, unbackedClaims } from './turn-record';
 import type { ToolRegistry } from '../harness/tool-registry';
 import type { ChatMessage } from '../llm/llm.types';
 import { resolveModel } from '../llm/model-registry';
@@ -584,7 +584,8 @@ export class EditorChatService {
     return prior.map((m) => {
       if (m.role === 'user') return { role: 'user', content: m.content };
       const lines = m.draftIds.map((id) => byId.get(id)).filter((x): x is EditorDraft => !!x).map(draftLine);
-      const content = lines.length ? `${m.content}\n\n[чернетки: ${lines.join('; ')}]` : m.content;
+      const text = stripSystemFooters(m.content);
+      const content = lines.length ? `${text}\n\n[чернетки: ${lines.join('; ')}]` : text;
       return { role: 'assistant', content: historyTurn(content, m.agentId ? handles.get(m.agentId) ?? null : null, actionLine(m.actions, (id) => cards.get(id))) };
     });
   }
@@ -593,24 +594,45 @@ export class EditorChatService {
    * Spec 040 FR-014: one run with the turn's tools recorded; a reply claiming an action no tool did gets one re-prompt
    * (its tool calls count too), and a reply that still claims it ends with a visible note. Spec 047 FR-002: a reply that
    * denies what the chat facts show (an applied card, a real agent, a tool this turn called) is re-prompted the same way.
+   *
+   * Spec 062: the model's own `[дії: …]` / `[чернетки: …]` footers and `@handle:` prefix are cut before the guards read the
+   * text (FR-001). The re-prompt carries the first run's tool trace, so the retry knows what the tools did (FR-003; in review
+   * 3 it had text only and apologised for a turn that was right). Rule per case: a reply whose only fault is «I called no
+   * tools» (`did_not_call`) keeps its answer — the tools produced it — and gets the English note appended, no second run;
+   * an unbacked claim, a denied card or a denied agent is re-run with the trace. A replacing answer stays traceable:
+   * `actions.retried_from` is the first run's id.
    */
   private async runGuarded(rec: TurnRecorder, input: AgentLoopInput, facts: ChatFacts | null = null): Promise<AgentLoopResult> {
     const run = { ...input, tools: rec.wrap(input.tools) };
-    const first = await this.d.loop.run(run);
+    const clean = (r: AgentLoopResult): AgentLoopResult => ({
+      ...r,
+      ...(r.finalText ? { finalText: stripSystemFooters(r.finalText) } : {}),
+      ...(r.lastText ? { lastText: stripSystemFooters(r.lastText) } : {}),
+    });
+    const first = clean(await this.d.loop.run(run));
     if (first.status !== 'ok' || !first.finalText?.trim()) return first;
     const denialsOf = (t: string) => (facts ? contradictedDenials(t, facts, rec.turn) : []);
     const claimsOf = (t: string) => unbackedClaims(t, rec.turn).filter((c) => !restatesFact(c.sentence, facts));
     const claims = claimsOf(first.finalText);
     const denials = denialsOf(first.finalText);
     if (!claims.length && !denials.length) return first;
+    if (!claims.length && denials.every((d) => d.kind === 'did_not_call')) {
+      return { ...first, finalText: `${first.finalText.trim()}\n\n${denialNote(denials)}` };
+    }
     let second: AgentLoopResult | null = null;
+    const trace = traceText(rec.trace);
     try {
-      second = await this.d.loop.run({
+      second = clean(await this.d.loop.run({
         ...run, history: [...(input.history ?? []), { role: 'user', content: input.user }, { role: 'assistant', content: first.finalText.trim() }],
-        user: [claims.length ? claimRePrompt(claims) : null, denials.length ? denialRePrompt(denials) : null].filter(Boolean).join('\n\n'),
-      });
+        user: [
+          claims.length ? claimRePrompt(claims) : null, denials.length ? denialRePrompt(denials) : null,
+          trace ? `Інструменти, які ти викликав у цьому ході (результат — один рядок):\n${trace}` : null,
+        ].filter(Boolean).join('\n\n'),
+      }));
     } catch { /* the first reply stands, with the note */ }
-    const res = second?.status === 'ok' && second.finalText?.trim() ? second : first;
+    const replaced = second?.status === 'ok' && !!second.finalText?.trim();
+    const res = replaced ? second! : first;
+    if (replaced && first.runId) rec.turn.retried_from = first.runId;
     const final = res.finalText!.trim();
     const notes = [
       claimsOf(final).length ? NOT_DONE_NOTE : null,

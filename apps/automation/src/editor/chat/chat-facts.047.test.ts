@@ -78,7 +78,7 @@ function setup(turns: ConstructorParameters<typeof FakeLlm>[0]) {
 
 test('replay of review 1 msg 124: «нічого не застосовано» with card a657a845 applied → one re-prompt; the corrected reply stands', async () => {
   const s = setup([
-    { text: 'Нічого не застосовано: правило не записане.' },
+    { text: 'Нічого не застосовано: картку з правилом не підтверджено.' },
     { text: 'Виправляю: картку a657a845 застосовано, правило для @nova_dev записане.' },
   ]);
   const r = await s.svc.sendMessage('c1', '@ai0 що з правилом для nova?');

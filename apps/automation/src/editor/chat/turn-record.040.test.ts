@@ -34,7 +34,7 @@ test('the recorder keeps what the tools did: cards, stored rules, drafts, skills
 test('the action line shows the cards with their status now; a turn without changes says so', () => {
   const t = { ...emptyTurn(), cards: [{ id: 'aaaaaaaa-1111', kind: 'write_skill' }], rules: [12] };
   assert.equal(actionLine(t, (id) => (id === 'aaaaaaaa-1111' ? 'applied' : undefined)), '[дії: картка write_skill aaaaaaaa (застосовано); правило #12 записано]');
-  assert.equal(actionLine(emptyTurn()), '[дії: немає — інструменти нічого не змінили]');
+  assert.equal(actionLine(emptyTurn()), '[дії: інструменти не викликались]');
   assert.equal(actionLine(null), null, 'old messages without a record show no line');
   assert.equal(historyTurn('Готово.', 'kira', '[дії: немає]'), '@kira: Готово.\n\n[дії: немає]');
   assert.equal(historyTurn('Готово.', null, null), 'Готово.');
@@ -116,7 +116,7 @@ test('a reply that still claims an action after the re-prompt gets the visible n
   const r = await s.svc.sendMessage('c1', '@kira запамʼятай: без хештегів');
   assert.equal(r.message.content, `Так, записав правило.\n\n${NOT_DONE_NOTE}`);
   assert.equal(s.llm.requests.length, 2, 'one re-prompt only');
-  assert.deepEqual(s.stored.at(-1).actions, emptyTurn());
+  assert.deepEqual(s.stored.at(-1).actions, { ...emptyTurn(), retried_from: 'run-1' });
 });
 
 test('the history shows the author and the action line with the card status now', async () => {
@@ -129,6 +129,6 @@ test('the history shows the author and the action line with the card status now'
   const s = setup([{ text: 'Картка вже застосована.' }], prior);
   await s.svc.sendMessage('c1', '@kira що з карткою?');
   const msgs = s.llm.requests[0].messages as any[];
-  assert.equal(msgs[2].content, '@kira: Надіслав картку.\n\n[дії: картка write_skill pa-card- (застосовано)]');
+  assert.equal(msgs[2].content, '@kira: Надіслав картку.\n\n[дії: картка write_skill pa-card- (застосовано); викликано: edit_my_skill]');
   assert.equal(msgs[3].content, 'Старе повідомлення.');
 });

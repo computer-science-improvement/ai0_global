@@ -41,7 +41,11 @@ export interface Denial { kind: DenialKind; sentence: string; evidence: string; 
 
 const NOT_APPLIED_RE = /(?<![\p{L}])(?:(?:нічого\s+)?не\s+(?:було\s+)?(?:застосован\p{L}*|застосува\p{L}*|записан\p{L}*|збережен\p{L}*)|нічого\s+не\s+змінилос\p{L}*|картк\p{L}*\s+(?:не\s+існує|немає|нема)|(?:nothing\s+(?:was\s+)?|not\s+(?:been\s+)?|wasn't\s+|was\s+not\s+|hasn't\s+been\s+)applied|no\s+such\s+card)(?![\p{L}])/iu;
 const NO_AGENT_RE = /(?<![\p{L}])(?:немає\s+такого\s+агента|такого\s+агента\s+(?:@\S+\s+)?(?:немає|нема|не\s+існує)|агента?\s+@\S+\s+(?:немає|нема)|агента?\s+\S+\s+не\s+існує|не\s+існує\s+(?:такого\s+)?агента|неправильн\p{L}*\s+(?:назв\p{L}*|ім['ʼ]\p{L}*|хендл\p{L}*|handle)|помилк\p{L}*\s+в\s+(?:назві|імені|хендлі)|no\s+such\s+agent|(?:agent|handle)\s+\S+\s+does\s+not\s+exist|wrong\s+(?:name|handle))(?![\p{L}])/iu;
-const DID_NOT_CALL_RE = /(?<![\p{L}])(?:я\s+не\s+(?:викликав|викликала|запускав|запускала|використовував|використовувала|створював|створювала|надсилав|надсилала)|не\s+викликав|i\s+(?:did\s+not|didn't|haven't)\s+(?:call|run|use|create|send))(?![\p{L}])/iu;
+const DID_NOT_CALL_RE = /(?<![\p{L}])(?:я\s+не\s+(?:викликав|викликала|запускав|запускала|використовував|використовувала|створював|створювала|надсилав|надсилала)|не\s+викликав|(?:нічого\s+)?не\s+перевіряв(?:ла)?\s+інструмент\p{L}*|жодн\p{L}*\s+інструмент\p{L}*\s+(?:я\s+)?не\s+(?:викликав\p{L}*|використовув\p{L}*)|i\s+(?:did\s+not|didn't|haven't)\s+(?:call|run|use|create|send)|no\s+tools?\s+(?:were\s+)?(?:called|used))(?![\p{L}])/iu;
+/** The sentence is about a card: the words, or «Apply» (an 8-hex card id is checked separately). */
+const CARD_WORD_RE = /(?<![\p{L}])(?:картк\p{L}*|card\p{L}*|apply|застосув\p{L}*)/iu;
+/** «Я не викликав інструментів запису» after a read-only turn is true, not a denial of the reads. */
+const WRITE_WORD_RE = /(?<![\p{L}])(?:запис\p{L}*|змін\p{L}*|write|writes|mutat\p{L}*|edit\p{L}*|publish\p{L}*|публік\p{L}*)(?![\p{L}])/iu;
 const HANDLE_RE = /@([a-z][a-z0-9_]{1,63})/gi;
 const ID8_RE = /(?<![0-9a-f])([0-9a-f]{8})(?![0-9a-f])/gi;
 
@@ -58,9 +62,10 @@ export function contradictedDenials(text: string, f: ChatFacts, turn: TurnAction
     if (!sentence) continue;
     if (NOT_APPLIED_RE.test(sentence)) {
       const named = [...sentence.matchAll(ID8_RE)].map((m) => m[1].toLowerCase());
+      // Spec 062 FR-003: the latest card stands in only when the sentence is about a card; «чернетку не збережено» is not.
       const card = named.length
         ? f.cards.find((c) => named.includes(c.id.slice(0, 8).toLowerCase()))
-        : f.cards.at(-1);
+        : CARD_WORD_RE.test(sentence) ? f.cards.at(-1) : undefined;
       if (card?.status === 'applied') {
         out.push({ kind: 'not_applied', sentence: sentence.slice(0, 200), evidence: `картка ${card.id.slice(0, 8)} (${card.kind}) — застосована`, note: `card ${card.id.slice(0, 8)} (${card.kind}) is applied` });
         continue;
@@ -73,12 +78,15 @@ export function contradictedDenials(text: string, f: ChatFacts, turn: TurnAction
         continue;
       }
     }
-    if (DID_NOT_CALL_RE.test(sentence)) {
+    if (DID_NOT_CALL_RE.test(sentence) && turn.tools.length) {
+      // Spec 062 FR-003: any tool call of the turn contradicts «I called nothing», named or not, written or only read.
       const lower = sentence.toLowerCase();
-      const named = [...new Set(turn.tools)].filter((t) => lower.includes(t.toLowerCase()));
+      const called = [...new Set(turn.tools)];
+      const named = called.filter((t) => lower.includes(t.toLowerCase()));
+      const namesOther = !named.length && /[a-z]+_[a-z_]+/.test(lower);
       const wrote = turn.cards.length + turn.rules.length + turn.drafts.length + turn.skills.length > 0;
-      if (named.length || (wrote && !/[a-z]+_[a-z_]+/.test(lower))) {
-        const tools = (named.length ? named : [...new Set(turn.tools)]).join(', ');
+      if (!namesOther && (named.length || wrote || !WRITE_WORD_RE.test(lower))) {
+        const tools = (named.length ? named : called).join(', ');
         out.push({ kind: 'did_not_call', sentence: sentence.slice(0, 200), evidence: `цей хід викликав: ${tools}`, note: `this turn called ${tools}` });
       }
     }

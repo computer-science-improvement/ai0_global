@@ -18,6 +18,8 @@ export interface TurnActions {
   skills: string[];
   /** Successful tool calls, in order (reads included). */
   tools:  string[];
+  /** Spec 062 FR-003: the run id of the first answer, when a guard replaced it with a corrected one. */
+  retried_from?: string;
 }
 
 export const emptyTurn = (): TurnActions => ({ cards: [], rules: [], drafts: [], skills: [], tools: [] });
@@ -28,11 +30,15 @@ export class TurnRecorder {
   /** Spec 048 FR-005: the artifacts the turn's tools made or changed (stored as `editor_chat_messages.artifacts`). */
   readonly artifacts: Array<{ type: ArtifactType; id: string }> = [];
 
+  /** Spec 062 FR-003: every call of the turn with a one-line result (errors too), for the guards' retry. Not stored. */
+  readonly trace: Array<{ tool: string; result: string }> = [];
+
   wrap(tools: EditorTool[]): EditorTool[] {
     return tools.map((t) => ({
       ...t,
       execute: async (input: unknown, ctx: any) => {
         const out = await t.execute(input, ctx);
+        try { this.trace.push({ tool: t.name, result: traceResult(out) }); } catch { /* the trace is best effort */ }
         try { this.record(t.name, input, out, ctx); } catch { /* recording never fails a tool */ }
         return out;
       },
@@ -83,9 +89,41 @@ export class TurnRecorder {
   }
 }
 
+const TRACE_RESULT_CHARS = 140;
+export const TRACE_CHARS = 1500;
+
+/** One line about a tool result: the error code (+details) or the start of the JSON. */
+function traceResult(out: unknown): string {
+  const text = isToolError(out)
+    ? `error: ${out.error}${out.details === undefined ? '' : ` ${typeof out.details === 'string' ? out.details : JSON.stringify(out.details)}`}`
+    : typeof out === 'string' ? out : JSON.stringify(out) ?? '';
+  const one = text.replace(/\s+/g, ' ').trim();
+  return one.length > TRACE_RESULT_CHARS ? `${one.slice(0, TRACE_RESULT_CHARS - 1)}…` : one;
+}
+
+/** The tool trace of a run as the retry reads it: «- name: result» per call, at most `max` chars (older calls first dropped last). */
+export function traceText(trace: ReadonlyArray<{ tool: string; result: string }>, max = TRACE_CHARS): string {
+  const lines: string[] = [];
+  let used = 0;
+  for (const t of trace) {
+    const line = `- ${t.tool}: ${t.result || 'ok'}`;
+    if (used + line.length + 1 > max) { lines.push(`- … ще ${trace.length - lines.length} викликів`); break; }
+    lines.push(line);
+    used += line.length + 1;
+  }
+  return lines.join('\n');
+}
+
 const STATUS_UK: Record<string, string> = { pending: 'чекає Apply', applied: 'застосовано', discarded: 'відхилено', failed: 'не вдалося', expired: 'прострочено' };
 
-/** The history line of a turn: «[дії: картка write_skill (застосовано); правило #12 записано]», or «[дії: немає]». */
+/** The most tool names one history line lists. */
+const LINE_TOOLS = 10;
+
+/**
+ * The history line of a turn: «[дії: картка write_skill (застосовано); правило #12 записано; викликано: …]». Spec 062 FR-002:
+ * a read-only turn says «змін немає; викликано: library_catalog, sql_readonly» (it used to say «немає — інструменти нічого не
+ * змінили», which the model read as «I checked nothing»); «інструменти не викликались» only when none were called.
+ */
 export function actionLine(t: TurnActions | null | undefined, statusOf: (cardId: string) => string | undefined = () => undefined): string | null {
   if (!t) return null;
   const parts = [
@@ -94,7 +132,31 @@ export function actionLine(t: TurnActions | null | undefined, statusOf: (cardId:
     ...t.drafts.map((d) => `чернетка ${d.slice(0, 8)} збережена`),
     ...t.skills.map((s) => `скіл ${s} змінено`),
   ];
-  return `[дії: ${parts.length ? parts.join('; ') : 'немає — інструменти нічого не змінили'}]`;
+  const called = [...new Set(t.tools ?? [])];
+  const shown = called.length > LINE_TOOLS ? `${called.slice(0, LINE_TOOLS).join(', ')} та ще ${called.length - LINE_TOOLS}` : called.join(', ');
+  if (!parts.length) {
+    if (!called.length) return `[дії: ${t.tools ? 'інструменти не викликались' : 'змін немає'}]`;
+    return `[дії: змін немає; викликано: ${shown}]`;
+  }
+  return `[дії: ${parts.join('; ')}${called.length ? `; викликано: ${shown}` : ''}]`;
+}
+
+// ── system footers (spec 062 FR-001) ────────────────────────────────────────
+
+/** A trailing «[дії: …]», «[чернетки: …]» or «[actions: …]» block. */
+const FOOTER_RE = /\s*\[(?:дії|чернетки|actions)\s*:[^\]]*\]\s*$/iu;
+/** A leading «@handle:» (the history shows the author that way). */
+const HANDLE_PREFIX_RE = /^\s*@[a-z][a-z0-9_]{1,63}\s*:[ \t]*/i;
+
+/**
+ * The model's final text without what only the system writes: the trailing action/draft footers (one or more) and a
+ * leading «@handle:». They are claims dressed as system facts (review 3: «[дії: немає — нічого не збережено]» after a turn
+ * that ran three tools). The history adds the real ones.
+ */
+export function stripSystemFooters(text: string): string {
+  let out = text;
+  for (let k = 0; k < 8 && FOOTER_RE.test(out); k++) out = out.replace(FOOTER_RE, '');
+  return out.replace(HANDLE_PREFIX_RE, '').trim();
 }
 
 /** The assistant turn as the history shows it: the author and the action line. */

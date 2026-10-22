@@ -1,4 +1,4 @@
-import { CHAT_FORMAT_RULE } from '../chat/chat-format';
+import { CHAT_FORMAT_RULE, NO_SYSTEM_FOOTERS_RULE } from '../chat/chat-format';
 import type { CardRole } from '../llm/llm.types';
 import { cardSummary, EditorCard } from '../card';
 import type { SkillSource } from '../skills/skill-library';
@@ -188,6 +188,7 @@ export function buildComposerSystemPrompt(o: {
     // Spec 047 FR-006: review 2 — «Я не бачу цього поста в даних» after one step with no tool; it was found a turn later.
     'Перш ніж оцінювати пост, який власник вставив чи назвав, знайди його в даних (get_recent_posts; інші платформи — get_network_posts) і звір. Не кажи «не бачу в даних», доки не пошукав. Критикуй лише те, що перевірив за даними.',
     CHAT_FORMAT_RULE,
+    NO_SYSTEM_FOOTERS_RULE,
     // Spec 034 FR-001/FR-002: the voice of every post; the humour/slang line is the channel's (off until the owner turns it on).
     ...voiceCoreSection(o.card ? { humor: o.card.humor, slang: o.card.slang } : null, o.skills),
     ...(o.hasCard ? styleSection(o.card?.style) : []),
