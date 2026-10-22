@@ -18,6 +18,7 @@ import { CHAT_TIMEZONE, makeChatCard } from './default-card';
 import { htmlToPlain } from '../post/inline-markup';
 import { slopCodes, type StoredCritic } from '../critic/critic';
 import type { CriticService } from '../critic/critic.service';
+import { isReusableHost, sourceRefOf } from '../../data/ledger-anchor';
 
 export const SCHEDULE_MIN_LEAD_MS = 2 * 60_000;
 export const SCHEDULE_MAX_AHEAD_MS = 60 * 86_400_000;
@@ -197,8 +198,11 @@ export class DraftsService {
         details: `this library item was already used in ${channelKey} (content ledger). Pick another row: query_data skips used rows by default.`,
       };
     }
-    if (spec.source && await this.d.plans.sourceUsed(channelKey, spec.source.url)) {
-      return { error: 'source_already_posted', details: `this source was already used in ${channelKey} (content ledger). Use another source.` };
+    // Spec 061 FR-002: a reference document (a law) is keyed by URL + anchor.
+    const ref = sourceRefOf(spec.source);
+    if (ref && await this.d.plans.sourceUsed(channelKey, ref)) {
+      const clause = isReusableHost(spec.source!.url) ? 'another clause of the document (source.anchor)' : 'for a reference document, set source.anchor (the clause)';
+      return { error: 'source_already_posted', details: `this source was already used in ${channelKey} (content ledger). Use another source or ${clause}.` };
     }
     return null;
   }

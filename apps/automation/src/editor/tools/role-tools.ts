@@ -31,6 +31,8 @@ import { NO_FRESH_ITEM } from '../live/live-slot';
 import { storyGuard, type StoryGuardResult } from '../story/story-guard';
 import type { StoryRegistry } from '../story/story.repository';
 import { dryRunOf } from '../roles/preview-run';
+import { anchorOf, isReusableHost, sourceRefOf, sourceUsedDetails } from '../../data/ledger-anchor';
+import type { LedgerVerdict } from '../../data/content-ledger';
 import { recentAuditPosts } from '../post/variety/recent-posts';
 import { pollCapGuard, slotSeriesOf } from '../post/polls/poll-cap-guard';
 import {
@@ -48,7 +50,8 @@ export interface RoleToolDeps {
   pool:      Pool;
   plans:     Pick<EditorPlansRepository,
     'createPlan' | 'reservedSlots' | 'getSlot' | 'updateSlot' | 'countPublishedSince' | 'lastPostAt'
-    | 'sourceAlreadyPosted' | 'recentTexts' | 'insertPublication'>;
+    | 'sourceAlreadyPosted' | 'recentTexts' | 'insertPublication'>
+    & Partial<Pick<EditorPlansRepository, 'sourceVerdict'>>;
   memory:    Pick<EditorMemoryRepository, 'listActive' | 'add' | 'retireByReviewer'>;
   channels:  Pick<EditorChannelsRepository, 'setFormatWeights'>;
   publisher: { send(channelKey: string, messages: TgMessage[], opts?: { replyTo?: number }): Promise<SendResult> };
@@ -131,7 +134,21 @@ function requireSlotCtx(ctx: ToolContext): { channelKey: string; slotId: string 
  */
 export async function sourceGuard(d: Pick<RoleToolDeps, 'plans'>, channelKey: string, spec: PostSpec) {
   if (spec.library_ref && await d.plans.sourceAlreadyPosted(channelKey, spec.library_ref)) return { error: 'library_item_already_posted' as const };
-  if (spec.source && await d.plans.sourceAlreadyPosted(channelKey, spec.source.url)) return { error: 'source_already_posted' as const };
+  // Spec 061 FR-002: a reference document is keyed by URL + anchor; the error says what was used, when, and what to do.
+  const ref = sourceRefOf(spec.source);
+  if (ref) {
+    const hit = d.plans.sourceVerdict
+      ? await d.plans.sourceVerdict(channelKey, ref)
+      : { used: await d.plans.sourceAlreadyPosted(channelKey, ref) } as LedgerVerdict;
+    if (hit.used) {
+      const url = spec.source!.url;
+      const reusable = isReusableHost(url);
+      const detail = 'status' in hit
+        ? { at: hit.at, slotId: hit.slotId, status: hit.status, anchor: hit.anchor ?? null }
+        : { anchor: reusable ? anchorOf(spec.source) : null };
+      return { error: 'source_already_posted' as const, details: sourceUsedDetails(url, detail, reusable) };
+    }
+  }
   return null;
 }
 
@@ -256,7 +273,7 @@ export function buildRoleTools(d: RoleToolDeps): EditorTool[] {
   // ── executor ──────────────────────────────────────────────────────────────
   const publishPost = defineTool({
     name: 'publish_post',
-    description: 'Опублікувати PostSpec у слот (завершує роботу). Перед збереженням пост читає критик: critic_revise — виправ зауваження й виклич ще раз (одна спроба). У shadow-режимі пост зберігається як превʼю без публікації; у режимі апруву — повністю готується і чекає схвалення власника. Сам перевіряє lint і повертає errors — виправ їх і виклич ще раз.',
+    description: 'Опублікувати PostSpec у слот (завершує роботу). Перед збереженням пост читає критик: critic_revise — виправ зауваження й виклич ще раз (одна спроба). У shadow-режимі пост зберігається як превʼю без публікації; у режимі апруву — повністю готується і чекає схвалення власника. Сам перевіряє lint і повертає errors — виправ їх і виклич ще раз. Довідковий документ (закон) можна цитувати знову, якщо вказати інший пункт у source.anchor («п.1.10»); той самий пункт двічі не пройде.',
     kind: 'terminal', roles: ['executor'], timeoutMs: PUBLISH_TOOL_TIMEOUT_MS,
     input: z.object({ spec: AgentPostSpecSchema }),
     execute: async (input, ctx) => {

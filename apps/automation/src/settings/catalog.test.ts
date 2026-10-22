@@ -60,4 +60,7 @@ test('normalizeSetting: types, bounds and shapes', () => {
   assert.ok('error' in v('META_GRAPH_VERSION', '21'));
   assert.ok('error' in v('POSTING_COOLDOWN_MIN', ''), 'empty is a reset, not a value');
   assert.ok('error' in v('SUPABASE_CAROUSEL_BUCKET', 'a\nb'));
+  assert.equal(settingDef('LEDGER_REUSABLE_HOSTS')!.default, 'zakon.rada.gov.ua');
+  assert.deepEqual(v('LEDGER_REUSABLE_HOSTS', 'zakon.rada.gov.ua, iso.org'), { value: 'zakon.rada.gov.ua,iso.org' });
+  assert.ok('error' in v('LEDGER_REUSABLE_HOSTS', 'https://zakon.rada.gov.ua/'), 'a host, not a URL');
 });

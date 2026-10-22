@@ -98,8 +98,13 @@ export const PostSpecSchema = z.object({
   })).max(10).default([]),
   placement:   z.enum(['above', 'below']).default('above').describe('Зображення над текстом (above) чи під ним (below)'),
   hashtags:    z.array(z.string().min(1).max(40)).max(10).default([]).describe('Без #, лише зі словника каналу'),
-  source:      z.object({ url: httpUrl, label: z.string().min(1).max(60).optional() }).optional(),
-  cta:         z.object({ url: httpUrl, label: z.string().min(1).max(40) }).optional(),
+  // Spec 061 FR-002: `anchor` — the cited clause of a reference document (a law); the same document may be cited again with another clause.
+  source:      z.object({
+    url:    httpUrl,
+    label:  z.string().min(1).max(60).optional(),
+    anchor: z.string().trim().min(1).max(40).optional().describe('Лише для довідкового документа (закон, стандарт): пункт, на який посилається пост, напр. «п.1.10». Той самий документ можна цитувати знову з іншим пунктом'),
+  }).optional(),
+  cta:        z.object({ url: httpUrl, label: z.string().min(1).max(40) }).optional(),
   buttons:     z.array(z.array(z.object({ text: z.string().min(1).max(40), url: httpUrl })).min(1).max(3)).max(4).default([]),
   poll:        z.object({
     question:      z.string().min(1).max(300),

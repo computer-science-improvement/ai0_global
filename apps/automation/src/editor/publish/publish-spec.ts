@@ -1,4 +1,5 @@
 import type { EditorCard } from '../card';
+import { specRefs } from '../../data/content-ledger';
 import type { PostSpec } from '../post/post-spec';
 import { renderTelegram, type PreparedMedia, type RenderResult, type TgMessage } from '../post/render-telegram';
 import type { EditorPlansRepository } from '../repo/editor-plans.repository';
@@ -96,7 +97,7 @@ export async function sendRendered(
   const sent = i.replyTo ? await d.publisher.send(channelKey, r.rendered.messages, { replyTo: i.replyTo }) : await d.publisher.send(channelKey, r.rendered.messages);
   const messageId = sent.messageIds[r.rendered.primary] ?? sent.messageIds[0];
   // The content ledger gets every source ref of the post; published_posts.source_url keeps only one.
-  const extraRefs = [spec.library_ref, spec.source?.url].filter((x): x is string => !!x && x !== i.sourceRef);
+  const extraRefs = specRefs(spec).filter((x) => x !== i.sourceRef);
   // Spec 037 T10: an evergreen post (the fallback ladder's last step) is its own category in stats and Analytics.
   const strategyType = i.strategyType ?? (spec.story?.kind === 'evergreen' ? 'evergreen' as const : undefined);
   const postId = await d.plans.insertPublication({

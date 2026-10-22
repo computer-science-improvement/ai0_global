@@ -1,5 +1,5 @@
 import type { Pool } from 'pg';
-import { ContentLedger, specRefs } from '../../data/content-ledger';
+import { ContentLedger, specRefs, type LedgerVerdict } from '../../data/content-ledger';
 import type { PlannedSlot } from '../roles/plan-rules';
 import type { LiveSpec } from '../live/live-slot';
 import type { StoredCritic } from '../critic/critic';
@@ -720,6 +720,11 @@ export class EditorPlansRepository {
    */
   async sourceAlreadyPosted(channelKey: string, sourceUrl: string, excludeSlotId: string | null = null): Promise<boolean> {
     return this.ledger.used(channelKey, sourceUrl, { waiting: true, excludeSlotId });
+  }
+
+  /** `sourceAlreadyPosted` with the ledger's answer (spec 061 FR-002): which row stopped it, when, in which slot, with which anchor. */
+  async sourceVerdict(channelKey: string, sourceRef: string, o: { excludeSlotId?: string | null; waiting?: boolean } = {}): Promise<LedgerVerdict> {
+    return this.ledger.check(channelKey, sourceRef, { waiting: o.waiting ?? true, excludeSlotId: o.excludeSlotId ?? null });
   }
 
   /** The chat's dedup (spec 010 → 023 FR-010): the same ledger rules, without the waiting posts. */

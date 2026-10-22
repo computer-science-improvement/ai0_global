@@ -72,3 +72,16 @@ Pausing whole series (060). Choosing new sources (owner).
 - Unit tests with fakes for the four pre-flight checks and the swap, the reusable-host ledger key, the error details, the idea settle outcomes, host strike escalation, the fetch cache, expired-token detection and collector backoff.
 - PG tests for migration 094, ledger anchor uniqueness, `settleIdea` by outcome, and `source_host_failures` strikes.
 - Fixture from review 3: 7 pdr slots on one URL with different clauses → 0 `source_already_posted`; same clause twice → blocked with details.
+
+## Status
+
+- T1 — this commit: migration 094 (`content_ledger.anchor`, `content_ledger_record_anchored`, `content_anchor_norm` / `content_ref_anchored`, `source_host_failures.strikes` / `noted_at` for T3), `LEDGER_REUSABLE_HOSTS`, reusable-host ledger key (`data/ledger-anchor.ts`, `ContentLedger`), `source.anchor` in the post spec and tool descriptions, `source_already_posted` with details and remedy, tests (unit + PG).
+
+## Deltas from the spec
+
+- **The anchor is part of the ledger ref, not a column in the unique index.** An anchored row is stored as `source_ref = <canonical url>#<anchor>` with the anchor also in a nullable `anchor` column (a CHECK ties them). The existing `UNIQUE (resource_ref, source_ref, status)` therefore already makes "the same clause once" unique, and every `ON CONFLICT (resource_ref, source_ref, status)` of 060 / 075 keeps working (a unique index including the anchor would have broken the 060 backfill and the 075 rewrite). `content_url_canonical` is untouched, so the canonical form of a URL does not change.
+- **The anchor travels as the `#fragment` of the ref string** (`specRefs`, `sourceRefOf`), so every caller that already passes a ref (publish guards, approval re-check, shadow / publish recording) works without new parameters. Only hosts in `LEDGER_REUSABLE_HOSTS` act on it; elsewhere the fragment is dropped as before.
+- **`content_ledger_record` is not changed.** A new `content_ledger_record_anchored` records the anchored form; a second overload with a defaulted argument made the 060 triggers ambiguous after a rerun of 060 (found by the 060 migration test).
+- **Old plain rows of a reusable host stay and block nothing**: on a reusable host only a row with the same anchor blocks; a source without an anchor is allowed (as the spec says).
+- **Migration 094 also holds the T3 columns** (`source_host_failures.strikes`, `noted_at`), so one migration number covers the spec.
+- **`source_already_posted` details** come from the ledger verdict (`EditorPlansRepository.sourceVerdict`: status, time, slot id, anchor); a fake without that method falls back to the boolean answer with the generic remedy. The chat path keeps its English text and gets the anchor remedy.

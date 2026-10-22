@@ -349,3 +349,33 @@ test('no fan-out in shadow mode or when the card has crosspost=false', async () 
   assert.equal(r.ok, true);
   assert.equal(shadow.calls.length + off.calls.length, 0);
 });
+
+test('061 FR-002: source_already_posted says what was used, when and in which slot, and how to proceed', async () => {
+  const at = new Date('2026-10-20T10:00:00Z');
+  const h = deps({ sourceAlreadyPosted: async () => true, sourceVerdict: async () => ({ used: true, status: 'published', resourceRef: 'telegram:@chan', ref: 'https://nasa.gov/ring', at, slotId: 'slot-77' }) } as any);
+  const r: any = await h.tools.publish_post.execute({ spec: makeSpec() }, ctx());
+  assert.equal(r.error, 'source_already_posted');
+  assert.match(r.details, /https:\/\/nasa\.gov\/ring уже використано 2026-10-20 у слоті slot-77/);
+  assert.match(r.details, /source\.anchor/);
+  // Without the verdict method (an older fake) the boolean answer still stops the post, with a generic remedy.
+  const plain: any = await deps({ sourceAlreadyPosted: async () => true }).tools.publish_post.execute({ spec: makeSpec() }, ctx());
+  assert.equal(plain.error, 'source_already_posted');
+  assert.match(plain.details, /source\.anchor/);
+});
+
+test('061 FR-002: the ledger is asked with url#anchor for a cited clause; another clause of a law is not stopped', async () => {
+  const LAW = 'https://zakon.rada.gov.ua/laws/show/1306-2001-%D0%BF';
+  const asked: string[] = [];
+  const used = new Set([`${LAW}#п.1.10`]);
+  const over = { sourceAlreadyPosted: async (_k: string, ref: string) => { asked.push(ref); return used.has(ref); } };
+  const spec = (anchor?: string) => makeSpec({ source: { url: LAW, ...(anchor ? { anchor } : {}) } });
+  const a: any = await deps(over).tools.publish_post.execute({ spec: spec('п.1.10') }, ctx());
+  assert.equal(a.error, 'source_already_posted');
+  assert.match(a.details, /п\.1\.10/);
+  assert.match(a.details, /інший пункт/);
+  const h = deps(over);
+  const b: any = await h.tools.publish_post.execute({ spec: spec('п.1.11') }, ctx());
+  assert.equal(b.ok, true, 'another clause of the same law goes out');
+  assert.ok(asked.includes(`${LAW}#п.1.10`) && asked.includes(`${LAW}#п.1.11`));
+  assert.deepEqual(h.pubs[0].refs, [`${LAW}#п.1.11`], 'the publication records the anchored ref');
+});
