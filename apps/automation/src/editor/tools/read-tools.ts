@@ -3,10 +3,12 @@ import { z } from 'zod';
 import { channelOf, defineTool, EditorTool, ToolContext } from '../harness/tool';
 import type { ReadonlyQueryService } from '../db/readonly-query.service';
 import type { SkillSource } from '../skills/skill-library';
-import { safeGet, RawGet } from '../net/safe-http';
+import type { RawGet } from '../net/safe-http';
 import type { Lookup } from '../net/ssrf-guard';
 import { extractPage } from '../net/extract-page';
 import { classifyFetchError, classifyTimeout, feedKey, fetchPageGuarded, hostBlockedError, hostOf, isFetchFailure, isTooLarge, REFUSAL_STATUSES, type HostFailures } from '../net/host-failures';
+import { sharedDocStore, type DocStore } from '../docs/doc-store';
+import { fetchDocument, webFetchAnswer } from '../docs/doc-fetch';
 import type { EditorCard } from '../card';
 import { topMatches } from '../post/similarity';
 import { EXTRA_MAX_CHARS, LIBRARY_EXTRA, LIBRARY_TABLE_NAMES } from './library-tables';
@@ -29,7 +31,12 @@ export interface ReadToolDeps {
   stories?:  { coveredBy(channelKey: string, items: Array<{ title?: string | null; snippet?: string | null }>, now: Date): Promise<Array<string | null>> };
   /** Spec 040 FR-006: hosts that refused or failed a fetch (web_fetch, fetch_feed). */
   hosts?:    HostFailures;
+  /** Spec 065: the documents web_fetch keeps (read_doc / find_in_doc read them); the service-wide store when absent. */
+  docs?:     DocStore;
 }
+
+/** Spec 065: a large document's answer (outline + first chunk) is longer than the usual 8k tool result. */
+const WEB_FETCH_RESULT_MAX = 14_000;
 
 const ALL_ROLES = ['planner', 'executor', 'reviewer', 'composer', 'orchestrator', 'idea_reviewer', 'manager', 'builder', 'auditor'] as const;
 
@@ -57,6 +64,7 @@ const clip = (s: unknown, n: number) => (typeof s === 'string' && s.length > n ?
 export function buildReadTools(d: ReadToolDeps): EditorTool[] {
   const today = d.today ?? kyivToday;
   const now = d.now ?? (() => new Date());
+  const docs = d.docs ?? sharedDocStore();
 
   const getChannelStats = defineTool({
     name: 'get_channel_stats',
@@ -187,15 +195,14 @@ export function buildReadTools(d: ReadToolDeps): EditorTool[] {
 
   const webFetch = defineTool({
     name: 'web_fetch',
-    description: 'Завантажити публічну веб-сторінку і отримати її читабельний текст, заголовок, опис та зображення. Для фактчеку й першоджерел. image — головне зображення сторінки (og:image або перше зображення статті), images — усі зображення сторінки (головне першим, далі зі статті): новина з цього джерела може мати лише їх (альбом — кілька з images); image = null → новина без зображення (format text).',
-    kind: 'read', roles: [...ALL_ROLES],
+    description: 'Завантажити публічну веб-сторінку і отримати її читабельний текст, заголовок, опис та зображення. Для фактчеку й першоджерел. image — головне зображення сторінки (og:image або перше зображення статті), images — усі зображення сторінки (головне першим, далі зі статті): новина з цього джерела може мати лише їх (альбом — кілька з images); image = null → новина без зображення (format text). Великий документ (понад ~6000 символів або кілька розділів) повертається як doc_id + outline (секції) + перший шматок: решту читай через read_doc / find_in_doc, не завантажуючи його знову; повторний web_fetch тієї самої адреси за кілька годин віддається з пам\'яті (cached: true). Бібліотечний контент бери з датасету (query_data); web_fetch — лише для перевірки.',
+    kind: 'read', roles: [...ALL_ROLES], maxResultChars: WEB_FETCH_RESULT_MAX,
     input: z.object({ url: z.string().url() }),
     execute: async ({ url }, ctx) => {
       const sources = (ctx.extras?.card as EditorCard | undefined)?.sources;
-      const res = await fetchPageGuarded(url, d.hosts, sources, () => safeGet(url, { lookup: d.http?.lookup, get: d.http?.get }));
-      if (isFetchFailure(res)) return res;
-      if (!/html|xml|text/i.test(res.contentType) && res.contentType) return { error: 'unsupported_content', details: res.contentType };
-      return { url: res.url, ...extractPage(res.body, res.url) };
+      const r = await fetchDocument(url, { docs, http: d.http, hosts: d.hosts, sources });
+      if (isFetchFailure(r)) return r;
+      return webFetchAnswer(r.doc, r.cached);
     },
   });
 

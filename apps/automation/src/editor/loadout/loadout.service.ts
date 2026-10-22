@@ -3,6 +3,7 @@ import type { ToolRegistry } from '../harness/tool-registry';
 import { roleOfKind, type Agent } from '../agents/agent.types';
 import type { LoadoutRepository } from './loadout.repository';
 import { errText } from '../../common/err-text';
+import { withFamilies } from './tool-families';
 
 /**
  * A name no tool has. `forRole` reads an empty allowlist as "no limit", so "nothing but the terminal tools" is an
@@ -43,7 +44,7 @@ export class LoadoutService {
   async toolsAllow(agentId: string): Promise<string[] | null> {
     if ((await this.d.repo.mode(agentId)) !== 'custom') return null;
     const names = await this.d.repo.enabledTools(agentId);
-    return names.length ? names : [NO_TOOL];
+    return names.length ? withFamilies(names) : [NO_TOOL];
   }
 
   /**

@@ -2,6 +2,7 @@ import * as cheerio from 'cheerio';
 import { normalizePublishedAt } from '../post/dates';
 import { primaryLinksOf, sourceTier } from '../../data/source-tier';
 import { normalizeImageUrl } from '../post/media/image-url';
+import type { RawSection } from '../docs/doc-types';
 
 export interface ExtractedPage {
   title:       string | null;
@@ -21,10 +22,25 @@ export interface ExtractedPage {
 }
 
 /** Spec 053 FR-003: every later step re-sends the page — 6k characters carry the facts of a news page. */
-const TEXT_MAX = 6_000;
+export const TEXT_MAX = 6_000;
 
 /** Readable text + key metadata from an HTML page, for the model to read. */
 export function extractPage(html: string, baseUrl: string): ExtractedPage {
+  return extractPageFull(html, baseUrl).page;
+}
+
+/** An HTML page read whole (spec 065): the page as `extractPage` shows it, plus the full text and its sections. */
+export interface ExtractedDocument {
+  page:     ExtractedPage;
+  /** The text before the `TEXT_MAX` cut; `page.text` is this when it is short enough. */
+  fullText: string;
+  /** Sections by h1–h3 headings over `fullText` (an intro first when text precedes the first heading); the article's images sit in them. */
+  sections: RawSection[];
+}
+
+const TEXT_BLOCKS = 'h1, h2, h3, p, li, blockquote';
+
+export function extractPageFull(html: string, baseUrl: string): ExtractedDocument {
   const $ = cheerio.load(html);
   const abs = (u: string | undefined | null): string | null => {
     if (!u) return null;
@@ -43,9 +59,10 @@ export function extractPage(html: string, baseUrl: string): ExtractedPage {
   const article = articleImagesOf($, root, abs);
   const image = socialImage ?? article[0] ?? null;
 
-  const blocks = root.find('h1, h2, h3, p, li, blockquote').map((_, el) => $(el).text().replace(/\s+/g, ' ').trim()).get()
+  const blocks = root.find(TEXT_BLOCKS).map((_, el) => $(el).text().replace(/\s+/g, ' ').trim()).get()
     .filter((t) => t.length > 1);
-  let text = (blocks.length ? blocks.join('\n') : root.text().replace(/\s+/g, ' ')).trim();
+  const fullText = (blocks.length ? blocks.join('\n') : root.text().replace(/\s+/g, ' ')).trim();
+  let text = fullText;
   if (text.length > TEXT_MAX) text = `${text.slice(0, TEXT_MAX)}…`;
 
   // Spec 037 T4: an aggregator (MarkTechPost, GamerPower) retells a primary source; its links to it are the better source.
@@ -53,7 +70,55 @@ export function extractPage(html: string, baseUrl: string): ExtractedPage {
     ? primaryLinksOf(baseUrl, root.find('a[href]').map((_, el) => abs($(el).attr('href'))).get().filter((u): u is string => !!u))
     : [];
 
-  return { title, description, image, images: dedupeImages([...(image ? [image] : []), ...article]), text, published_at, ...(primary.length ? { primary_links: primary } : {}) };
+  const page: ExtractedPage = {
+    title, description, image, images: dedupeImages([...(image ? [image] : []), ...article]), text, published_at,
+    ...(primary.length ? { primary_links: primary } : {}),
+  };
+  return { page, fullText, sections: htmlSections($, root, blocks.length > 0, fullText, new Set(article.map(normalizeImageUrl)), abs, title) };
+}
+
+/** The src of an `<img>` the way `articleImagesOf` reads it (lazy-load attributes after `src`). */
+function imgSrc($img: cheerio.Cheerio<any>, abs: (u: string | undefined | null) => string | null): string | null {
+  const raw = [$img.attr('src'), $img.attr('data-src'), $img.attr('data-lazy-src'), $img.attr('data-original')]
+    .map((v) => v?.trim()).find((v) => !!v && !/^data:/i.test(v));
+  return abs(raw);
+}
+
+/**
+ * Spec 065 FR-002: sections of an HTML page by its h1–h3 headings, as offsets into the same text `extractPage` builds,
+ * with the article's images (the ones `articleImagesOf` kept) in the section they sit in. No headings: one section.
+ */
+function htmlSections(
+  $: cheerio.CheerioAPI, root: cheerio.Cheerio<any>, hasBlocks: boolean, fullText: string,
+  kept: Set<string>, abs: (u: string | undefined | null) => string | null, title: string | null,
+): RawSection[] {
+  const sections: RawSection[] = [];
+  const whole = (): RawSection[] => (fullText ? [{ heading: title ?? '', level: 1, start: 0, end: fullText.length, images: [], links: [], code_blocks: [] }] : []);
+  if (!hasBlocks) return whole();
+  let pos = 0;
+  let cur: RawSection | null = null;
+  const open = (heading: string, level: number, at: number) => {
+    if (cur) cur.end = at;
+    cur = { heading, level, start: at, end: fullText.length, images: [], links: [], code_blocks: [] };
+    sections.push(cur);
+  };
+  root.find(`${TEXT_BLOCKS}, img`).each((_, el) => {
+    const $el = $(el);
+    if (el.tagName === 'img') {
+      const u = imgSrc($el, abs);
+      if (!u || !kept.has(normalizeImageUrl(u))) return;
+      if (!cur) open('', 1, pos);
+      if (!cur!.images.some((i) => i.src === u)) cur!.images.push({ src: u, alt: ($el.attr('alt') ?? '').trim(), at: pos });
+      return;
+    }
+    const t = $el.text().replace(/\s+/g, ' ').trim();
+    if (t.length <= 1) return;
+    const level = /^h([1-3])$/.exec(el.tagName)?.[1];
+    if (level) open(t, Number(level), pos);
+    else if (!cur) open('', 1, pos);
+    pos += t.length + 1;
+  });
+  return sections.length ? sections : whole();
 }
 
 /** How many page images are kept (the main one included). */

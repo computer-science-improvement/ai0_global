@@ -36,6 +36,8 @@ import { scanLive } from './live/feed-items';
 import { NewsWatchService } from './live/news-watch';
 import { buildComposeTools } from './tools/compose-tools';
 import { PgHostFailures } from './net/host-failures';
+import { sharedDocStore } from './docs/doc-store';
+import { buildDocTools } from './docs/doc-tools';
 import { buildSourceTools, applySourceChangeAction } from './sources/source-tools';
 import { candidateDeps, sourceChangeHandled, sourceHealthOf } from './sources/source-wiring';
 import { NETWORK_HEALTH, NetworkHealthController } from './health/network-health.controller';
@@ -1258,8 +1260,11 @@ export const EDITOR_PROVIDERS = [
         const directiveLock = (orchId: string, body: Playbook) => directives.lockFor(orchId, body);
         // Spec 040 FR-006: hosts that refused or failed a fetch are not asked again for 24 h.
         const hosts = new PgHostFailures(pool);
+        // Spec 065: web_fetch keeps whole documents here; read_doc / find_in_doc read them.
+        const docs = sharedDocStore(env);
         return new ToolRegistry([
-          ...buildReadTools({ pool, readonly: new ReadonlyQueryService(pool), skills, stories: new StoryContextService(stories), hosts }),
+          ...buildReadTools({ pool, readonly: new ReadonlyQueryService(pool), skills, stories: new StoryContextService(stories), hosts, docs }),
+          ...buildDocTools({ docs }),
           ...buildDataTools({ pool, actions: infra.actions, env }),
           ...buildHighlightsTools({ pool }),
           ...buildComposeTools({ hosts, drafts }),

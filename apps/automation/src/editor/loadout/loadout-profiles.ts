@@ -5,6 +5,7 @@ import { EXECUTOR_DENY, PLATFORM_ONLY, TELEGRAM_ONLY } from '../roles/editor-run
 import { ORCHESTRATOR_EXCLUDE, IDEA_REVIEW_TOOLS } from '../network/network-runner';
 import { MANAGER_TOOLS } from '../manager/manager-runner';
 import { roleOfKind, type Platform, type Agent } from '../agents/agent.types';
+import { withFamilies } from './tool-families';
 
 /**
  * Loadout profiles (spec 054 FR-003). Per role, the **core** tools: the ones every agent of the role needs — the tools
@@ -51,7 +52,9 @@ export function universeOf(role: EditorRole, tools: EditorTool[]): EditorTool[] 
 
 /** Core tools of the role: the profile's names plus the role's terminal tools. */
 export function coreOf(role: EditorRole, universe: ToolInfo[]): Set<string> {
-  const named = new Set(CORE_TOOLS[role] ?? []);
+  const base = CORE_TOOLS[role] ?? [];
+  const hard = hardExcluded(role, universe);
+  const named = new Set([...base, ...withFamilies(base).filter((n) => !hard.has(n))]);
   return new Set(universe.filter((t) => t.kind === 'terminal' || named.has(t.name)).map((t) => t.name));
 }
 
