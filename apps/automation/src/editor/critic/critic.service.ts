@@ -162,6 +162,7 @@ export function criticUserPrompt(r: CriticRequest): string {
   s.push(...criticGroundingLines(r.source?.grounding));
   s.push(...criticMediaLines(r.media));
   s.push('', '## Попередження lint (AI-штампи, гумор і сленг, гігієна тексту та інші перевірки коду)');
+  s.push('Це підказки перевірити, а не докази: підтвердь кожне в тексті й уривках, а чого не знайшов — цитуй уривок.');
   const lintWarnings = r.lintWarnings ?? r.slopWarnings;
   s.push(lintWarnings.length ? lintWarnings.map((w) => `- ${w.code}: ${w.message}`).join('\n') : '- немає');
   if (r.previous) {

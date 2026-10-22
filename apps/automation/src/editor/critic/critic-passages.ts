@@ -53,7 +53,7 @@ export function criticGroundingLines(g: CriticGroundingCheck | null | undefined)
       'Ці числа й дати є в джерелі, навіть якщо записані інакше (інша мова, формат дати, K/M, центи): не знижуй за них grounding і не пиши, що їх немає у фрагменті. Перевір лише, чи вони означають те саме, що в пості.');
   }
   if (g.missing.length) {
-    out.push(`Не знайдено в жодному прочитаному тексті: ${g.missing.slice(0, GROUNDING_MAX).map((m) => `«${m}»`).join(', ')} — їх оцінюй як неперевірені (grounding).`);
+    out.push(`Не знайдено в жодному прочитаному тексті: ${g.missing.slice(0, GROUNDING_MAX).map((m) => `«${m}»`).join(', ')} — це підказка коду, а не доказ: джерело могло записати число словами («over a billion» = «$1 млрд», «Senate Bill 53» = «SB 53»). Звір із уривками; відсутність підтверджуй цитатою уривка.`);
   }
   return out;
 }

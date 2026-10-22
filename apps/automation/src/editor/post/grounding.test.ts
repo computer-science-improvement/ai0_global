@@ -102,3 +102,36 @@ test('046: thousands separators, ranges, compound words and enumerations are not
   const n = postNumbers('Ядер CUDA: 5,120.')[0];
   assert.deepEqual([n.value, n.alt?.map((a) => a.value)], [5.12, [5120]]);
 });
+
+test('063 FR-001: spelled scales («$1 млрд» = "over a billion dollars"), bill names, separators and written-out percents', () => {
+  const miss = (post: string, src: string) => groundNumbers(post, [{ url: 'u', text: src }]).missing.map((n) => n.text);
+  // Review 3, slot 11d73ed6: the TechCrunch text spells both out.
+  const tc = 'The startup, which has raised over a billion dollars, backed Senate Bill 53 in California.';
+  assert.deepEqual(miss('Стартап залучив понад $1 млрд і підтримав SB 53.', tc), []);
+  assert.deepEqual(miss('Стартап залучив $1B.', 'It raised one billion dollars.'), []);
+  assert.deepEqual(miss('Залучили 2 мільярди.', 'It raised two billion.'), []);
+  assert.deepEqual(miss('Залучили 5 млн.', 'It raised a billion dollars.'), ['5 млн'], 'a real miss stays a miss');
+  assert.deepEqual(miss('Підтримали SB 54.', tc), ['SB 54'], 'another bill number is a miss');
+  assert.deepEqual(miss('Закон AB 1018 у Каліфорнії.', 'Assembly Bill 1018 passed.'), []);
+  assert.deepEqual(miss('Закон SB53 підписано.', 'S.B. 53 was signed.'), []);
+  assert.deepEqual(miss('Закон Senate Bill 53 підписано.', 'The bill, SB 53, was signed.'), []);
+  assert.equal(postNumbers('Законопроєкт SB 53 підписано.')[0].kind, 'bill');
+  assert.deepEqual(postNumbers('Законопроєкт SB 53 підписано.').map((n) => n.text), ['SB 53']);
+  // Percent: digits, words, «відсотків».
+  assert.deepEqual(miss('Зросло на 40%.', 'Sales grew 40 percent.'), []);
+  assert.deepEqual(miss('Зросло на 40 відсотків.', 'Sales grew forty percent.'), []);
+  assert.deepEqual(miss('Зросло на 55%.', 'Sales grew fifty-five per cent.'), []);
+  assert.deepEqual(miss('Зросло на 45%.', 'Sales grew forty percent.'), ['45%']);
+  // Review 2: separators and compounds stay no false positives.
+  assert.deepEqual(miss('Ядер CUDA: 5 120.', 'The card has 5,120 CUDA cores.'), []);
+  assert.deepEqual(miss('Ядер CUDA: 5,120.', 'The card has 5120 CUDA cores.'), []);
+  assert.deepEqual(miss('Ціна $2,599.99, 18-core, 3,552x3,840.', 'Priced at $2599.99. An 18-core chip with 3552 x 3840 pixels.'), []);
+});
+
+test('063 FR-001: the critic passages find the sentence that spells a number or a bill out', () => {
+  const page = `${'Filler. '.repeat(300)}The startup has raised over a billion dollars and backed Senate Bill 53. ${'More filler. '.repeat(300)}`;
+  const ps = sourcePassages('Стартап залучив $1 млрд і підтримав SB 53.', [{ url: 'u', text: page }], AT);
+  assert.equal(ps.length, 1);
+  assert.match(ps[0].text, /over a billion dollars and backed Senate Bill 53/);
+  assert.deepEqual(ps[0].about, ['$1 млрд', 'SB 53']);
+});

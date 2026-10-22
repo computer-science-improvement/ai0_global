@@ -93,6 +93,14 @@ test('037: the critic is told which numbers and dates code found in the sources 
   assert.match(lines, /Знайдено в джерелі: «19 жовтня» \(там: «10\/19\/2026»\)/);
   assert.match(lines, /не знижуй за них grounding/);
   assert.match(lines, /Не знайдено в жодному прочитаному тексті: «1 799 грн»/);
+  assert.match(lines, /підказка коду, а не доказ/, '063: a missing number is a hint, quote the passage');
   assert.deepEqual(criticGroundingLines(null), []);
   assert.equal(groundingCheckOf('Без чисел.', [{ url: 'u', text: 'x' }]), null);
+});
+
+test('063: the critic reads lint warnings as hints to verify, not as proof; spelled-out numbers count as found', () => {
+  const g = groundingCheckOf('Стартап залучив понад $1 млрд і підтримав SB 53.', [{ url: 'u', text: 'It has raised over a billion dollars and backed Senate Bill 53.' }],
+    { publishedAt: '2026-10-15T09:00:00Z', timezone: 'Europe/Kyiv' });
+  assert.deepEqual(g!.missing, []);
+  assert.deepEqual(g!.found.map((f) => [f.text, f.as]), [['$1 млрд', 'a billion'], ['SB 53', 'Senate Bill 53']]);
 });

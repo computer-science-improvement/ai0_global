@@ -18,7 +18,7 @@ import { localDay, MONTHS_GENITIVE } from './dates';
  * names on the pages read, ≤ 6 passages, ≤ 6000 chars, instead of the page head.
  */
 
-export type ClaimKind = 'percent' | 'money' | 'count' | 'date';
+export type ClaimKind = 'percent' | 'money' | 'count' | 'date' | 'bill';
 
 export interface PostNumber {
   /** As written in the post. */
@@ -34,6 +34,8 @@ export interface PostNumber {
   alt?: Array<{ value: number; unit: number }>;
   /** [start, end) in the text it was read from. */
   span: [number, number];
+  /** Spec 063 FR-001: a bill's canonical name («sb53» for "Senate Bill 53" and «SB 53»); the match is by name, not by value. */
+  key?: string;
 }
 
 /** A page or feed item the run read, as grounding needs it. */
@@ -100,6 +102,58 @@ function maskPost(text: string): string {
   t = blankAll(t, /^[ \t•·\-–]*\d{1,2}[.)](?=\s)/gmu);
   t = blankAll(t, /^→.*$/gmu);
   return t;
+}
+
+// ── spec 063 FR-001: spelled scales and bill names ───────────────────────────
+
+const WORD_ONES: Record<string, number> = {
+  a: 1, an: 1, one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9, ten: 10, eleven: 11, twelve: 12,
+  thirteen: 13, fourteen: 14, fifteen: 15, sixteen: 16, seventeen: 17, eighteen: 18, nineteen: 19,
+  один: 1, одна: 1, одне: 1, два: 2, дві: 2, три: 3, чотири: 4, "п'ять": 5, шість: 6, сім: 7, вісім: 8, "дев'ять": 9, десять: 10,
+};
+const WORD_TENS: Record<string, number> = { twenty: 20, thirty: 30, forty: 40, fifty: 50, sixty: 60, seventy: 70, eighty: 80, ninety: 90 };
+const NUM_WORD = String.raw`(?:${Object.keys(WORD_TENS).join('|')})(?:[- ](?:one|two|three|four|five|six|seven|eight|nine))?|${Object.keys(WORD_ONES).map((w) => w.replace(/'/g, "['ʼ’]")).join('|')}`;
+/** "over a billion dollars", "two million users", «один мільярд»: a scale with a number word and no digit. */
+const SPELLED_SCALE_RE = new RegExp(String.raw`(?<![\p{L}\p{N}])(${NUM_WORD})${SP}+(trillion|billion|million|thousand|трильйон\p{L}*|мільярд\p{L}*|мільйон\p{L}*|тисяч\p{L}*)(?![\p{L}])`, 'giu');
+/** "forty percent", "fifty-five per cent". */
+const SPELLED_PERCENT_RE = new RegExp(String.raw`(?<![\p{L}\p{N}])(${NUM_WORD})${SP}+(?:percent|per cent)(?![\p{L}])`, 'giu');
+
+function wordValue(w: string): number | null {
+  const k = w.toLowerCase().replace(/[ʼ’]/g, "'");
+  const [a, b] = k.split(/[- ]/);
+  if (WORD_TENS[a] != null) return WORD_TENS[a] + (b ? WORD_ONES[b] ?? 0 : 0);
+  return WORD_ONES[k] ?? null;
+}
+
+/** Spelled-out numbers of a source text, as number entries (the post side writes digits). */
+function scanSpelled(text: string): RawNumber[] {
+  const out: RawNumber[] = [];
+  const push = (v: number, scale: number, kind: ClaimKind, m: RegExpMatchArray) => {
+    out.push({ value: v * scale, unit: scale, kind, span: [m.index!, m.index! + m[0].length], text: m[0], approx: false, version: false, year: false, bare: false });
+  };
+  for (const m of text.matchAll(SPELLED_SCALE_RE)) {
+    const v = wordValue(m[1]);
+    if (v != null) push(v, scaleOf(m[2]), 'count', m);
+  }
+  for (const m of text.matchAll(SPELLED_PERCENT_RE)) {
+    const v = wordValue(m[1]);
+    if (v != null) push(v, 1, 'percent', m);
+  }
+  return out;
+}
+
+/** "Senate Bill 53", "S.B. 53", «SB53», "Assembly Bill 1018", "H.R. 1": one key per bill (spec 063 FR-001). */
+const BILL_RE = /(?<![\p{L}\p{N}])(?:(Senate|Assembly|House)\s+Bill|(S|A|H)\.?\s?B\.?|H\.?\s?R\.?)\s?(?:No\.?\s?)?(\d{1,5})(?![\p{N}])/gu;
+
+interface RawBill { key: string; text: string; span: [number, number] }
+
+function scanBills(text: string): RawBill[] {
+  const out: RawBill[] = [];
+  for (const m of text.matchAll(BILL_RE)) {
+    const body = m[1] ? `${m[1][0].toLowerCase()}b` : m[2] ? `${m[2].toLowerCase()}b` : 'hr';
+    out.push({ key: `${body}${Number(m[3])}`, text: m[0], span: [m.index!, m.index! + m[0].length] });
+  }
+  return out;
 }
 
 interface RawNumber { value: number; unit: number; kind: ClaimKind; span: [number, number]; text: string; approx: boolean; version: boolean; year: boolean; bare: boolean }
@@ -220,6 +274,10 @@ export function postNumbers(text: string, o: { publishedAt?: string; timezone?: 
   const own = o.publishedAt ? localDay(o.publishedAt, o.timezone || 'Europe/Kyiv') : null;
   const ownValue = own ? Number(own.slice(5, 7)) * 100 + Number(own.slice(8, 10)) : null;
   const out: PostNumber[] = [];
+  for (const b of scanBills(masked)) {
+    masked = blank(masked, b.span[0], b.span[1]);
+    out.push({ text: b.text.trim(), kind: 'bill', value: Number(b.key.replace(/\D/g, '')), unit: 1, approx: false, span: b.span, key: b.key });
+  }
   for (const d of scanDates(masked, false)) {
     masked = blank(masked, d.span[0], d.span[1]);
     if (d.value === ownValue) continue;
@@ -238,7 +296,7 @@ export function postNumbers(text: string, o: { publishedAt?: string; timezone?: 
   return out.sort((a, b) => a.span[0] - b.span[0]);
 }
 
-interface SourceIndex { values: Array<{ value: number; percent: boolean; span: [number, number] }>; dates: Array<{ value: number; span: [number, number] }> }
+interface SourceIndex { values: Array<{ value: number; percent: boolean; span: [number, number] }>; dates: Array<{ value: number; span: [number, number] }>; bills: Array<{ key: string; span: [number, number] }> }
 
 const indexCache = new Map<string, SourceIndex>();
 
@@ -247,8 +305,9 @@ function sourceIndex(text: string): SourceIndex {
   const hit = indexCache.get(text);
   if (hit) return hit;
   const idx: SourceIndex = {
-    values: scanNumbers(text, true).map((n) => ({ value: n.value, percent: n.kind === 'percent', span: n.span })),
+    values: [...scanNumbers(text, true), ...scanSpelled(text)].map((n) => ({ value: n.value, percent: n.kind === 'percent', span: n.span })),
     dates: scanDates(text, true).map((d) => ({ value: d.value, span: d.span })),
+    bills: scanBills(text).map((b) => ({ key: b.key, span: b.span })),
   };
   if (indexCache.size > 64) indexCache.clear();
   indexCache.set(text, idx);
@@ -264,6 +323,7 @@ function tolerance(n: Pick<PostNumber, 'value' | 'unit' | 'approx' | 'kind'>): n
 /** Where a post number occurs in a source text: the spans of the matching source numbers (empty = not there). */
 export function findInSource(n: PostNumber, text: string): Array<[number, number]> {
   const idx = sourceIndex(text);
+  if (n.kind === 'bill') return idx.bills.filter((b) => b.key === n.key).map((b) => b.span);
   if (n.kind === 'date') return idx.dates.filter((d) => d.value === n.value).map((d) => d.span);
   const readings = [{ value: n.value, unit: n.unit }, ...(n.alt ?? [])].map((r) => ({ value: r.value, tol: tolerance({ ...n, ...r }) }));
   return idx.values
