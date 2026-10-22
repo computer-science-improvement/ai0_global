@@ -75,8 +75,11 @@ export function catalogEntry(s: DataSchema, st: {
   not_postable?: number;
 }): CatalogEntry {
   const hasDate = DATE_ROLES.some((r) => s.roles?.[r]);
+  // Spec 062 FR-005: once the stats were computed, a field no row carries is 0 % filled — not «unknown» (that left media_url,
+  // prompt_text and title without a number, and the model answered a question about the data from the metadata).
+  const measured = !!st.stats_at;
   const fields: CatalogField[] = readableFields(s, 'agent').map((f) => {
-    const fill = st.fill_rate?.[f.name];
+    const fill = st.fill_rate?.[f.name] ?? (measured ? 0 : undefined);
     return {
       name: f.name, type: f.type, description: f.description,
       ...(f.filterable ? { filterable: true as const } : {}),

@@ -1255,7 +1255,7 @@ export const EDITOR_PROVIDERS = [
           ...buildReadTools({ pool, readonly: new ReadonlyQueryService(pool), skills, stories: new StoryContextService(stories), hosts }),
           ...buildDataTools({ pool, actions: infra.actions, env }),
           ...buildHighlightsTools({ pool }),
-          ...buildComposeTools({ hosts }),
+          ...buildComposeTools({ hosts, drafts }),
           ...buildApiTools({ env }),
           // Spec 049 FR-003 / FR-004: the card's source health and owner cards for a source change.
           ...buildSourceTools({

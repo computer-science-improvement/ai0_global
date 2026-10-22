@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { defineTool, EditorTool, ToolContext } from '../harness/tool';
-import { AgentPostSpecSchema } from '../post/post-spec';
+import { ChatPostSpecSchema, mergeDraftSpec, omittedSpecKeys } from './draft-spec-merge';
 import { DRAFT_STATUSES, EditorDraft } from '../repo/editor-chat.repository';
 import type { EditorChatRepository } from '../repo/editor-chat.repository';
 import type { DraftsService } from './drafts.service';
@@ -28,7 +28,7 @@ export interface ComposerExtras {
 export const MAX_LINT_RETRIES = 3;
 
 export interface ComposerToolDeps {
-  drafts: Pick<DraftsService, 'save' | 'publish' | 'schedule' | 'cancel' | 'list'>;
+  drafts: Pick<DraftsService, 'save' | 'publish' | 'schedule' | 'cancel' | 'list'> & Partial<Pick<DraftsService, 'get'>>;
   repo:   Pick<EditorChatRepository, 'myChannels'>;
 }
 
@@ -72,11 +72,12 @@ export function buildComposerTools(d: ComposerToolDeps): EditorTool[] {
       'Зберегти чернетку поста для каналу (нову або оновити існуючу через draft_id) і показати її власнику як превʼю.',
       'Перевіряє за карткою каналу (або типовою, якщо картки немає) і повертає {draft_id, preview, lint}.',
       'Якщо lint.ok=false — виправ помилки і збережи знову з тим самим draft_id. Нічого не публікує.',
+      'З draft_id поля spec, яких ти не надіслав (media, source, hashtags…), лишаються зі збереженої чернетки; null очищає поле.',
     ].join(' '),
     kind: 'act', roles: ['composer'],
     input: z.object({
       channel:  z.string().min(2).max(200).describe('Ключ каналу, напр. @my_channel (з list_my_channels)'),
-      spec:     AgentPostSpecSchema,
+      spec:     ChatPostSpecSchema,
       draft_id: z.string().uuid().optional().describe('Оновити цю чернетку замість створення нової'),
     }),
     execute: async ({ channel, spec, draft_id }, ctx) => {
@@ -89,10 +90,18 @@ export function buildComposerTools(d: ComposerToolDeps): EditorTool[] {
       if (target && (fails.get(target) ?? 0) >= MAX_LINT_RETRIES) {
         return {
           error: 'lint_stuck', draft_id: target,
-          details: `Перевірка не пройшла ${MAX_LINT_RETRIES} рази поспіль. Не зберігай знову: поясни власнику, яка саме перевірка не проходить (коди й тексти помилок з lint) і запитай, як бути.`,
+          details: `Перевірка не пройшла ${MAX_LINT_RETRIES} рази поспіль у цьому ході. Не зберігай знову в цьому ході: поясни власнику, яка саме перевірка не проходить (коди й тексти помилок з lint) і запитай, як бути.`,
         };
       }
-      const r = await d.drafts.save({ chatId: x.chat.chatId, channel: key, spec, draftId: target });
+      // Spec 062 FR-006: the keys the model left out stay as the stored draft has them.
+      let toSave: Record<string, unknown> = spec as Record<string, unknown>;
+      let kept: string[] = [];
+      const omitted = omittedSpecKeys(spec);
+      if (target && omitted.length && d.drafts.get) {
+        const stored = await d.drafts.get(target);
+        if (stored) ({ spec: toSave, kept } = mergeDraftSpec(stored.spec, toSave, omitted));
+      }
+      const r = await d.drafts.save({ chatId: x.chat.chatId, channel: key, spec: toSave, draftId: target });
       if ('error' in r) return r;
       // The chat now works on this channel: channel-scoped tools follow the draft.
       x.chat.channelKey = r.draft.channelKey;
@@ -106,8 +115,9 @@ export function buildComposerTools(d: ComposerToolDeps): EditorTool[] {
       }
       return {
         draft_id: r.draft.id, status: r.draft.status, preview: r.draft.preview, lint: r.lint,
+        ...(kept.length ? { kept_from_draft: kept } : {}),
         ...(attempts >= MAX_LINT_RETRIES
-          ? { stop: 'Перевірка не пройшла кілька разів поспіль. Більше не зберігай: поясни власнику помилки й запитай, як бути.' }
+          ? { stop: 'Перевірка не пройшла кілька разів поспіль у цьому ході. Більше не зберігай у цьому ході: поясни власнику помилки й запитай, як бути.' }
           : attempts > 0 ? { attempt: attempts, max_attempts: MAX_LINT_RETRIES } : {}),
       };
     },

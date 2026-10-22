@@ -13,6 +13,17 @@ export function specRefInput(where: string) {
   });
 }
 
+/**
+ * Spec 062 FR-004: lint_post / preview_post in the chat also take `draft_id` — the stored spec is checked, and `spec`
+ * (when given) overrides its top-level fields. The executor has no drafts and sends `spec` as before.
+ */
+export function specOrDraftInput(where: string) {
+  return z.object({
+    spec: z.record(z.string(), z.unknown()).optional().describe(`Пост у тій самій формі, що й spec у ${where} (схема — там). У чаті замість нього можна дати draft_id.`),
+    draft_id: z.string().uuid().optional().describe('Чат: перевірити збережену чернетку; поля з spec (якщо є) перекривають її поля'),
+  });
+}
+
 /** Validate a schemaless spec argument; the same `invalid_args` error the loop returns for a schema miss. */
 export function parseSpecArg<T>(schema: z.ZodType<T>, raw: unknown): { spec: T } | ToolError {
   let parsed = schema.safeParse(raw);

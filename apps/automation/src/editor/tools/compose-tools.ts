@@ -8,12 +8,16 @@ import { safeGet, RawGet } from '../net/safe-http';
 import type { Lookup } from '../net/ssrf-guard';
 import { extractPage } from '../net/extract-page';
 import { fetchPageGuarded, isFetchFailure, type HostFailures } from '../net/host-failures';
-import { parseSpecArg, specRefInput } from './spec-arg';
+import { parseSpecArg, specOrDraftInput } from './spec-arg';
+import { madeUpMediaError } from '../post/made-up-media';
+import type { EditorDraft } from '../repo/editor-chat.repository';
 
 export interface ComposeToolDeps {
   http?: { lookup?: Lookup; get?: RawGet };
   /** Spec 040 FR-006: hosts that refused or failed a fetch. */
   hosts?: HostFailures;
+  /** Spec 062 FR-004: stored drafts, for lint_post / preview_post in the chat (`draft_id`). */
+  drafts?: { get(id: string): Promise<Pick<EditorDraft, 'spec'> | null> };
 }
 
 /** The runner puts the channel card into ctx.extras.card for every run. */
@@ -24,6 +28,22 @@ export function cardFrom(ctx: ToolContext): EditorCard {
 }
 
 export function buildComposeTools(d: ComposeToolDeps = {}): EditorTool[] {
+  /** The spec lint_post / preview_post check: the stored draft's with the given fields on top, or the given spec alone. */
+  const specOf = async (input: { spec?: Record<string, unknown>; draft_id?: string }) => {
+    let raw: unknown = input.spec;
+    if (input.draft_id) {
+      if (!d.drafts) return { error: 'draft_id_unavailable', details: 'draft_id works in the chat only; pass spec' };
+      const draft = await d.drafts.get(input.draft_id);
+      if (!draft) return { error: 'draft_not_found' };
+      raw = { ...(draft.spec as object), ...(input.spec ?? {}) };
+    } else if (!input.spec) {
+      return { error: 'invalid_args', details: 'pass spec (or draft_id in the chat)' };
+    }
+    const made = madeUpMediaError(raw);
+    if (made) return made;
+    return parseSpecArg(AgentPostSpecSchema, raw);
+  };
+
   const getChannelCard = defineTool({
     name: 'get_channel_card',
     description: 'Редакційна картка каналу: тематика, формати з вагами, словник хештегів, стиль посилань, футер, політика емодзі, джерела, ліміти, можливості Telegram.',
@@ -34,12 +54,12 @@ export function buildComposeTools(d: ComposeToolDeps = {}): EditorTool[] {
 
   const lint = defineTool({
     name: 'lint_post',
-    description: 'Перевірити PostSpec за правилами каналу (формат, хештеги, атрибуція, довжина, мова, заборонені фрази, емодзі). publish_post / save_draft перевіряють те саме самі — окремо варто лише для складного формату.',
+    description: 'Перевірити PostSpec за правилами каналу (формат, хештеги, атрибуція, довжина, мова, заборонені фрази, емодзі). publish_post / save_draft перевіряють те саме самі — окремо варто лише для складного формату. У чаті: draft_id перевіряє збережену чернетку, а не вигаданий spec.',
     kind: 'read', roles: ['executor', 'composer'], keepOnError: true,
     // Spec 053 FR-001: no second copy of the PostSpec schema — the terminal tool has it.
-    input: specRefInput('publish_post (у чаті — save_draft)'),
+    input: specOrDraftInput('publish_post (у чаті — save_draft)'),
     execute: async (input, ctx) => {
-      const p = parseSpecArg(AgentPostSpecSchema, input.spec);
+      const p = await specOf(input);
       if ('error' in p) return p;
       return lintFailed(lintPost(p.spec, cardFrom(ctx)));
     },
@@ -49,9 +69,9 @@ export function buildComposeTools(d: ComposeToolDeps = {}): EditorTool[] {
     name: 'preview_post',
     description: 'Показати, як PostSpec виглядатиме в Telegram після рендеру (HTML/текст), разом із результатом lint.',
     kind: 'read', roles: ['executor', 'composer'],
-    input: specRefInput('publish_post (у чаті — save_draft)'),
+    input: specOrDraftInput('publish_post (у чаті — save_draft)'),
     execute: async (input, ctx) => {
-      const p = parseSpecArg(AgentPostSpecSchema, input.spec);
+      const p = await specOf(input);
       if ('error' in p) return p;
       const spec = p.spec;
       const card = cardFrom(ctx);

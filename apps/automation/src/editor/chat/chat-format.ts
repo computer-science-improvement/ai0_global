@@ -12,3 +12,6 @@ export const CHAT_FORMAT_RULE = [
 
 /** Spec 062 FR-001: the history shows each turn with system footers; the model must not write its own. Goes into every chat prompt. */
 export const NO_SYSTEM_FOOTERS_RULE = 'Не пиши рядки [дії: …], [чернетки: …] чи «@handle:» — їх додає система.';
+
+/** Spec 062 FR-005: review 3 — a yes/no question about the data was answered from catalog metadata without reading a row. Composer and @ai0. */
+export const DATA_QUESTION_RULE = 'На питання про зміст даних спершу query_data (3 рядки), потім відповідь.';

@@ -84,7 +84,7 @@ test('catalog entry from a fixture: visible fields with descriptions, values, fi
   assert.equal(e.suitable_for, 'book clubs, literature channels');
   assert.equal(e.reuse, 'may be posted again on the same resource after 365 days');
   assert.deepEqual(e.fields.map((f) => f.name), ['title', 'summary', 'genre', 'pages', 'tags', 'birthday', 'raw'], 'no isbn (hidden), no old_note (deprecated)');
-  assert.deepEqual(e.fields.find((f) => f.name === 'genre'), { name: 'genre', type: 'enum', description: 'Genre', filterable: true, values: ['novel', 'poetry'] });
+  assert.deepEqual(e.fields.find((f) => f.name === 'genre'), { name: 'genre', type: 'enum', description: 'Genre', filterable: true, values: ['novel', 'poetry'], fill_pct: 0 }, 'spec 062: no row carries it → 0 %');
   assert.equal(e.fields.find((f) => f.name === 'summary')!.fill_pct, 46);
   assert.equal(e.fields.find((f) => f.name === 'title')!.searchable, true);
   assert.equal(e.rows, 120);
