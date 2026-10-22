@@ -37,7 +37,7 @@ export class ListResyncWorker {
 
   constructor(@Inject(DB_POOL) pool: Pool, @Inject(ConfigService) private readonly config: ConfigService) {
     const env = (k: string) => config.get<string>(k) ?? undefined;
-    this.deps = { pool, docs: sharedDocStore(env), hosts: new PgHostFailures(pool) };
+    this.deps = { pool, docs: sharedDocStore(env), hosts: new PgHostFailures(pool), env };
   }
 
   @Cron('20 4 * * 1', { name: 'list-resync', timeZone: 'Europe/Kyiv' })

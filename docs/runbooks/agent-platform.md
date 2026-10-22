@@ -696,3 +696,41 @@ Small fixes to the loop, the loadout and the audit. No migration, no new setting
 - An existing dataset must have a `list_ref` field or a mapped dedup key, otherwise a re-sync would add entries twice (`no_dedup`).
 - Tests: `docs/doc-store.test.ts`, `doc-tools.test.ts`, `doc-fetch.test.ts`, `markdown-doc.test.ts`, `github-url.test.ts`, `import-list.test.ts` (fixture `docs/testing/nanobanana-fixture.ts`), `import-list.pg.test.ts` (Apply, no-op re-sync, new entry, weekly job, undo).
 
+## 25. JSON APIs in the reader and import (spec 066)
+
+A public JSON API is read like any large page and imported like a list: `web_fetch` of a JSON address returns its shape, `read_doc` / `find_in_doc` read records, `import_list` maps record fields into dataset rows and follows the API's pages. No site-specific code; first use is https://prompts.chat/api/prompts for @ai_global.
+
+**Needs**
+
+- No migration. Nothing to enable. Two settings (Settings → Configuration, live): `IMPORT_MAX_PAGES` (default 30) and `IMPORT_MAX_ROWS` (default 3,000) cap one run of an import or a re-sync.
+- Not covered: pages drawn by scripts (no headless browser), APIs that need a login, XML APIs (RSS stays in `fetch_feed`), pagination in the `Link` response header (the HTTP helper does not return headers).
+
+**How the agent reads JSON**
+
+1. `web_fetch` accepts `application/json`, `*/*+json`, `text/json`, and a `text/plain` or untyped body that parses as an object or array. A broken body is `unsupported_content` / `invalid JSON`. The cap is still 2 MB.
+2. The answer has `doc_id`, `json` (`records_path`, record count, the scalar root values, up to 40 `fields` as `{ path, type, filled, sample }`, and `pagination` with `next_url` when found), `first_record` (≤ 3,000 characters), a short `outline` and a hint. A small object with no records array comes back whole.
+3. Records are the largest array of objects at the root or one level below it (`prompts`, `data.items`), or the root array. Each record is one section of pretty-printed JSON, labelled by `title`, `name`, `slug`, `id` or `#n`; the other root keys are the intro section. `read_doc(doc_id, section)` returns one record, `find_in_doc` finds records.
+4. Pagination is read from the root keys: `page` / `currentPage` / `page_number` with `totalPages` / `total_pages` / `pages` / `last_page` (or `total` with `perPage` / `per_page` / `limit`), a `next` / `next_url` / `nextPage` / `links.next` address, or a `next_cursor` / `cursor` / `nextCursor` token. None found = one page.
+
+**prompts.chat for @ai_global (first use)**
+
+1. In the chat with @ai_global: «імпортуй https://prompts.chat/api/prompts?perPage=100 у датасет promptschat».
+2. The agent fetches it, reads a few records, and calls `import_list` with a mapping like `title: field:title`, `prompt_text: field:content`, `media_url: field:mediaUrl`, `type: field:type`, `category: field:category.name`, `author: first_of:author.name|author.username`, `tags: field:tags[].tag.name`, optionally `where: {"type": ["TEXT", "IMAGE"]}` to leave out the SKILL, TASTE and VIDEO records.
+3. Read the preview: the counts are of the first page; `pages` says how many pages and records the API has and how many Apply reads (`pages_to_read`). With `?perPage=100` the 2,571 records are 26 pages, inside both caps; at the default page size of 24 they are 108 pages and Apply stops at page 30. When the list outgrows a cap, raise it in Settings or narrow the request with the API's own parameters (`?type=IMAGE`).
+4. **Check the prompts.chat licence** and give it as `license` (stored per row; the dataset default is `unknown`).
+5. Press **Apply**. The dataset is created (`post_requires` = the text or the picture; `dedup_key` = `list_ref`, which is the address without paging parameters plus the record id; `type`, `kind` and `category` are filterable). A page that fails (429, a timeout) stops the run: the rows already read are imported and the result says «прочитано 12 з 30 сторінок: status 429».
+6. Ask @ai_global to write its skill on top of the dataset (`query_data` with `type` as the filter). A record of type SKILL is content for a post, never copied into the agent's own skills or rules; the skill about *how to use* the dataset (pick a row, keep the prompt in a code block, credit the author) is fine.
+7. A channel that only wants pictures imports `?type=IMAGE` into a dataset of its own.
+
+**Updates**
+
+- A re-sync of a paged source reads from page 1 and stops after the first page that adds no new record (newest-first APIs pay one or two requests), or at the caps; the weekly job does the same. Changes to older records on later pages are not seen by it; run `import_list` again for a full read.
+- Pages are fetched fresh, about half a second apart, through the host guard (a refusing host is blocked like any other), and are not kept in the document store.
+
+**Troubleshooting**
+
+- `wrong_extractor`: `heading`, `first_code_block` and the other markdown extractors do not read JSON, and `field:` / `first_of:` do not read markdown; the message lists the ones that apply. `wrong_filter`: the same for the filters (`heading_matches`… for markdown; `where` / `has` for JSON).
+- A default `required` of «text or picture» keeps TEXT records (no picture) and IMAGE records; pass `required` to demand a field (each listed field is then needed).
+- A note «no id, uuid, slug or title» means refs are positions in the list: a re-sync may add shifted records again; map a stable field or accept it.
+- Tests: `docs/doc-json.test.ts`, `list-extract-json.test.ts`, `import-list-json.test.ts` (fixture `docs/testing/promptschat-fixture.ts`), `import-list-json.pg.test.ts` (two-page Apply, one-page no-op re-sync, incremental re-sync, failing page, caps, undo).
+

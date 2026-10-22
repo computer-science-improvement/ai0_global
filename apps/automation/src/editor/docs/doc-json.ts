@@ -44,6 +44,13 @@ export function findRecords(value: unknown): { path: string; records: Record<str
   return best;
 }
 
+/** The records at a path found on an earlier page (`prompts`, `data.items`, '' for a root array); none when the page has no such array. */
+export function recordsAt(value: unknown, path: string): Record<string, unknown>[] {
+  let cur: unknown = value;
+  for (const k of path ? path.split('.') : []) cur = isObject(cur) ? cur[k] : undefined;
+  return Array.isArray(cur) && cur.every(isObject) ? (cur as Record<string, unknown>[]) : [];
+}
+
 const clip = (s: string, n: number): string => (s.length > n ? `${s.slice(0, n - 1)}…` : s);
 
 /** The label of a record: the first non-empty of title, name, slug, id; else its position. */

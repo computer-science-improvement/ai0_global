@@ -1,6 +1,6 @@
 # 066 — JSON APIs in the document reader and list import
 
-Status: planned · Builds on 065 (DocStore, `read_doc` / `find_in_doc`, `import_list`, re-sync), 058 (data store), 083 (`post_requires`) · No migration expected
+Status: done · Builds on 065 (DocStore, `read_doc` / `find_in_doc`, `import_list`, re-sync), 058 (data store), 083 (`post_requires`) · No migration expected
 
 ## Why
 

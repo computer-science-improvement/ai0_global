@@ -126,3 +126,12 @@ export function webFetchAnswer(doc: StoredDoc, cached: boolean): Record<string, 
     text: chunk.text, next_from: chunk.next_from, hint: LARGE_HINT, ...cachedFlag,
   };
 }
+
+/** Spec 066 FR-003: one more page of a paged JSON API, fetched fresh through the host guard and not kept in the store. */
+export async function fetchJsonPage(url: string, d: Pick<FetchDocDeps, 'http' | 'hosts' | 'sources'>): Promise<{ url: string; value: unknown } | FetchFailure> {
+  const res = await fetchPageGuarded(url, d.hosts, d.sources, () => safeGet(url, { lookup: d.http?.lookup, get: d.http?.get }));
+  if (isFetchFailure(res)) return res;
+  const value = parseJsonBody(res.body);
+  if (value === null) return { error: 'unsupported_content', details: 'invalid JSON' };
+  return { url, value };
+}
