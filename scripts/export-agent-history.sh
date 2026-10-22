@@ -102,6 +102,16 @@ done
 dump resource_daily_stats
 dump kpi_snapshots
 
+# The owner's side (specs 012, 048, 052, 054–059): Inbox notes, owner-bot cards and reports, artifact history, channel
+# launches, per-agent tool sets, the weekly @sysadmin audit, promo pairs and map links. Missing tables are skipped.
+for t in agent_inbox owner_cards owner_reports artifact_versions channel_launches audit_reports audit_dismissals map_link_events network_offers media_holds; do
+  dump "$t"
+done
+for t in agent_tools promo_pairs tracked_links; do
+  dump "$t" "SELECT row_to_json(t) FROM $t t"
+done
+dump link_joins
+
 # Logs. ai_logs holds the full prompt and output of every AI call: cut like the run steps.
 dump ai_logs "SELECT json_build_object(
     'id', a.id, 'agent', a.agent, 'model', a.model, 'status', a.status, 'error', a.error, 'created_at', a.created_at,
