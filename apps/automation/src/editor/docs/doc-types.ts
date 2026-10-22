@@ -18,10 +18,18 @@ export interface DocSection {
   code_blocks: DocCodeBlock[];
 }
 
-export type DocKind = 'html' | 'markdown' | 'text';
+export type DocKind = 'html' | 'markdown' | 'text' | 'json';
 
 /** What a parser hands over before the store gives sections their ids. */
 export type RawSection = Omit<DocSection, 'id'>;
+
+/** Spec 066: the parsed value of a JSON document, kept beside its text; `records` are the objects the sections stand for. */
+export interface JsonDocData {
+  value:        unknown;
+  /** Where the records array sits (`prompts`, `data.items`), '' for a root array, null when the document has none. */
+  records_path: string | null;
+  records:      unknown[];
+}
 
 export interface StoredDoc {
   id:           string;
@@ -38,6 +46,8 @@ export interface StoredDoc {
   images:       string[];
   published_at: string | null;
   primary_links?: string[];
+  /** Only for `kind: 'json'`. */
+  json?:        JsonDocData;
   text:         string;
   sections:     DocSection[];
   fetched_at:   number;

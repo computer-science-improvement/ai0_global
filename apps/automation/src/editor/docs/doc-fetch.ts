@@ -5,6 +5,7 @@ import { fetchPageGuarded, isFetchFailure, type FetchFailure, type HostFailures 
 import type { CardSource } from '../card';
 import type { DocStore, NewDoc } from './doc-store';
 import type { StoredDoc } from './doc-types';
+import { buildJsonDoc, isJsonContentType, jsonAnswer, parseJsonBody } from './doc-json';
 import { firstChunk, LARGE_DOC_CHARS, outlineOf } from './doc-view';
 import { githubRawCandidates, isMarkdownPath, isRawGithub } from './github-url';
 import { isBadgeImage, parseMarkdown } from './markdown-doc';
@@ -54,11 +55,19 @@ export async function fetchDocument(url: string, d: FetchDocDeps): Promise<Fetch
   }
   if (!res) res = await get(url);
   if (isFetchFailure(res)) return res;
-  if (!/html|xml|text/i.test(res.contentType) && res.contentType) return { error: 'unsupported_content', details: res.contentType };
+  const jsonType = isJsonContentType(res.contentType);
+  if (!jsonType && !/html|xml|text/i.test(res.contentType) && res.contentType) return { error: 'unsupported_content', details: res.contentType };
 
   const base = { url, fetched_url: fetchedUrl ?? (res.url !== url && isRawGithub(res.url) ? res.url : null), final_url: res.url };
   let doc: NewDoc;
-  if (isMarkdown(res, url)) {
+  // Spec 066 FR-001: JSON by its content type, or a plain-text / untyped body that parses as an object or an array.
+  const plainBody = !res.contentType || /text\/plain/i.test(res.contentType);
+  const json = jsonType || (plainBody && !isMarkdown(res, url)) ? parseJsonBody(res.body) : null;
+  if (jsonType && json === null) return { error: 'unsupported_content', details: 'invalid JSON' };
+  if (json !== null) {
+    const j = buildJsonDoc(json);
+    doc = { ...base, kind: 'json', title: null, description: null, image: null, images: [], published_at: null, text: j.text, sections: j.sections, json: j.json };
+  } else if (isMarkdown(res, url)) {
     const md = parseMarkdown(res.body, res.url);
     const heading = md.sections.find((s) => s.level === 1) ?? md.sections.find((s) => s.level > 0);
     const pictures = md.sections.flatMap((s) => s.images.map((i) => i.src)).filter((s) => !isBadgeImage(s));
@@ -96,6 +105,8 @@ export const isLargeDoc = (doc: StoredDoc): boolean =>
 /** What web_fetch answers for a stored document. A short page keeps the shape it always had. */
 export function webFetchAnswer(doc: StoredDoc, cached: boolean): Record<string, unknown> {
   const cachedFlag = cached ? { cached: true } : {};
+  const asJson = doc.kind === 'json' ? jsonAnswer(doc, cachedFlag) : null;
+  if (asJson) return asJson;
   const where = { url: doc.kind === 'html' ? doc.final_url : doc.url, ...(doc.fetched_url ? { fetched_url: doc.fetched_url } : {}) };
   if (!isLargeDoc(doc)) {
     return {
