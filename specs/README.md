@@ -69,6 +69,7 @@ Each feature directory has `spec.md` (what and why), `plan.md` (how, plus Consti
 | 062 | [Chat truthfulness](062-chat-truthfulness/spec.md): system footers stripped from model text, history names read tools, precise denial check with the tool trace on retry, lint/preview by draft id, merged saves, conflicts of the new rule only, `/align @channel` | P1 | 040, 047, 048 | TODO |
 | 063 | [Critic precision](063-critic-precision/spec.md): spelled numbers and bill names in grounding, revise keeps the source, never substitute the topic, safe edits, Kyiv-local times from tools, one link per source, voice-tell warnings, critic prefix cache | P1 | 037, 041, 046 | TODO |
 | 064 | [Ops batch from review 3](064-ops-batch-review-3/spec.md): rollup lock, non-empty error text, planner grace turns and schema friction, host-keyed breaker, elision gist, loadout trims, result cap, sub-agent mode badge, @sysadmin over stored rules, Meta metric backoff | P2 | 040, 049, 053, 054, 055 | TODO |
+| 065 | [Document reader and list import](065-document-reader-and-list-import/spec.md): `web_fetch` keeps the whole document (outline + first chunk + `read_doc` / `find_in_doc`, fetch cache), GitHub and markdown parsed with sections/images/code bound together, `import_list` turns a list source into dataset rows through an Apply card with undo and weekly re-sync — first use: nanobanana prompts for @ai0_prompts_dev | P1 | 053, 058, 083 | TODO |
 
 Suggested order for the next wave: 012 → 011 (phases 0–1) → 015 → 013 → 014; 016 is independent.
 
