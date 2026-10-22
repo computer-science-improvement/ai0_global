@@ -30,6 +30,7 @@ import { ModelSelect } from '../models/ModelSelect';
 import { useActiveSteering } from '../../api/steering';
 import { useArtifacts } from '../../api/artifacts';
 import { statusLabel } from '../../lib/artifacts';
+import { alignPrompt } from '../../lib/align';
 import { SourcesSection } from './SourcesSection';
 
 const HANDLE_RE = /^[a-z][a-z0-9_]{2,31}$/;
@@ -100,7 +101,7 @@ function ConflictsLine({ handle }: { handle: string }) {
         <strong>{n} conflict{n === 1 ? '' : 's'}</strong> with your rules — the agent cannot follow the rules and its config at once.
       </span>
       <Link to="/app/agents/$handle" params={{ handle }} search={{ tab: 'memory' } as any} className="btn-tiny">See them</Link>
-      <Link to="/app/chat" search={{ q: `@${handle} fix config conflicts` } as any} className="btn-tiny">Resolve in one card</Link>
+      <Link to="/app/chat" search={{ q: alignPrompt(handle) } as any} className="btn-tiny">Resolve in one card</Link>
     </div>
   );
 }

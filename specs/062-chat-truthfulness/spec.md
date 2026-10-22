@@ -1,6 +1,6 @@
 # 062 — Chat truthfulness
 
-Status: draft · Builds on 040 (claim guard), 047 (denial check, intent gate, paste lookup), 048 (slash commands) · No migration
+Status: done · Builds on 040 (claim guard), 047 (denial check, intent gate, paste lookup), 048 (slash commands) · No migration
 
 ## Why
 

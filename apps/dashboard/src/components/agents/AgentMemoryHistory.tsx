@@ -12,6 +12,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useRetireEditorMemory } from '../../api/editor';
 import { RUN_TONE, fmtDuration, fmtUsd } from '../editor/EditorUi';
 import { fmtDate } from '../../lib/format';
+import { alignPrompt } from '../../lib/align';
 import { memoryWhy } from '../../lib/skill-probe';
 import { useAgentConfigConflicts, useAgentMemory, useAgentRuns, type AgentDetail, type AgentMemoryEntry } from '../../api/agents';
 
@@ -34,7 +35,7 @@ function ConfigConflicts({ handle }: { handle: string }) {
       </ul>
       <div className="text-micro" style={{ marginTop: 8, color: 'var(--color-ink-muted)', display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }}>
         One card resolves them; untick what you want to keep before Apply.
-        <Link to="/app/chat" search={{ q: `@${who} fix config conflicts` } as any} className="link-accent">Ask @{who} in the chat</Link>
+        <Link to="/app/chat" search={{ q: alignPrompt(who) } as any} className="link-accent">Resolve in one card</Link>
       </div>
     </div>
   );

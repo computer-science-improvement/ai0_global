@@ -16,6 +16,7 @@ import type { PendingAction, PendingActionStatus } from '../../api/types';
 import { choiceInput, initialState, parsePayload, type ContentExamplesState } from '../../lib/content-examples';
 import { ContentExamplesBody, examplesCardLine } from './ContentExamplesCard';
 import { CompactCard } from '../ui/CompactCard';
+import { resolverItemLines } from '../../lib/align';
 
 const KIND_META: Record<string, { label: string; icon: IconName }> = {
   create_agent:         { label: 'Create agent',      icon: 'sparkles' },
@@ -343,6 +344,8 @@ export function ActionCard({ action }: { action: PendingAction }) {
   });
 
   const examplesLine = examples ? examplesCardLine(examples, pending) : null;
+  // Spec 062 FR-008: the resolver card's bubble lists what it will change.
+  const resolverLines = resolver ? resolverItemLines(a.payload) : null;
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 6, maxWidth: 560, minWidth: 0 }}>
@@ -355,6 +358,7 @@ export function ActionCard({ action }: { action: PendingAction }) {
         meta={!pending && a.decidedAt ? <span title={fmtDate(a.decidedAt)}>{fmtRelative(a.decidedAt)}</span> : undefined}
         title={examplesLine ?? undefined}
         body={a.summary || undefined}
+        extra={resolverLines ? <ResolverLines lines={resolverLines.lines} more={resolverLines.more} /> : undefined}
         note={a.status === 'failed' && a.error ? a.error : undefined}
         noteTone="danger"
         dialog={{
@@ -380,6 +384,17 @@ export function ActionCard({ action }: { action: PendingAction }) {
         }} />
       {createdHandle && <CreatedLink handle={createdHandle} />}
     </div>
+  );
+}
+
+/** The first items of a resolver card, in the chat bubble (the dialog has them all, each with a checkbox). */
+function ResolverLines({ lines, more }: { lines: string[]; more: number }) {
+  if (!lines.length) return null;
+  return (
+    <span className="text-micro" style={{ display: 'grid', gap: 2, color: 'var(--color-ink-muted)', textAlign: 'left' }}>
+      {lines.map((l, i) => <span key={i} className="clamp" style={{ ['--clamp' as string]: 1 }}>• {l}</span>)}
+      {more > 0 && <span style={{ color: 'var(--color-ink-dim)' }}>+ {more} more</span>}
+    </span>
   );
 }
 

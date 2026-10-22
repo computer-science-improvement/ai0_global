@@ -378,6 +378,7 @@ export class EditorChatService {
     const ctx: SlashContext = {
       agent: own?.handle ?? null,
       channel: (own && this.d.agents ? await this.d.agents.channelKeyOf(own) : null) ?? opts.channel ?? null,
+      chatId,
     };
     let result: SlashResult;
     try {
@@ -386,6 +387,7 @@ export class EditorChatService {
       result = { content: `/${cmd.word} failed: ${String(err?.message ?? err).slice(0, 200)}`, artifacts: [] };
     }
     const message = await this.d.repo.addMessage({ chatId, role: 'assistant', content: result.content, artifacts: result.artifacts });
+    if (result.action) emit({ type: 'action', action: result.action });
     emit({ type: 'message', message });
     return { message, drafts: [] };
   }

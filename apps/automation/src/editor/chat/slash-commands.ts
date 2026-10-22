@@ -1,4 +1,5 @@
 import type { ArtifactChip, ArtifactRow, ArtifactType } from '../artifacts/artifact.types';
+import type { PendingAction } from '../agents/pending-actions';
 
 /**
  * Spec 048 FR-003: chat slash commands. They run in code — no model turn, no cost — and answer with one line and the
@@ -7,6 +8,7 @@ import type { ArtifactChip, ArtifactRow, ArtifactType } from '../artifacts/artif
 export const SLASH_COMMANDS = [
   { name: 'setup',  args: '@channel',            description: 'Set a channel up from its last 20 posts (one model run in the background)' },
   { name: 'steer',  args: '@channel @reference', description: 'Steer a channel by a public reference channel (@name or a t.me link)' },
+  { name: 'align',  args: '@channel',            description: 'Align a channel\'s agent with your rules: one card for everything that keeps it from following them (no model run)' },
   { name: 'launch', args: '@new_channel [@ref …] brief', description: 'Launch a new channel from a brief and up to 3 reference channels (one model run in the background)' },
   { name: 'audit',  args: '',                    description: 'Run the sysadmin\'s audit of skills, memory, rules and tools now (about a minute)' },
   { name: 'rules',  args: '[@channel]',          description: 'Your rules for a channel' },
@@ -29,7 +31,12 @@ export interface SlashCommand {
 export interface SlashResult {
   content:   string;
   artifacts: ArtifactChip[];
+  /** Spec 062 FR-008: a confirmation card the command proposed (the chat streams it like an agent's card). */
+  action?:   PendingAction;
 }
+
+/** Spec 062 FR-008: the outcome of `/align`: the card (none when everything agrees) and one line per item. */
+export type SlashAlign = { ok: true; handle: string; action: PendingAction | null; items: string[] } | { ok: false; error: string; details?: string };
 
 export type SlashStart = { ok: true; chip: ArtifactChip } | { ok: false; error: string; details?: string; chip?: ArtifactChip };
 
@@ -40,6 +47,8 @@ export interface SlashDeps {
   launch(q: { target: string; references: string[]; brief: string }): Promise<SlashStart>;
   /** Spec 055 FR-003: starts an audit in the background (the chip is the running report). */
   audit?(): Promise<SlashStart>;
+  /** Spec 062 FR-008: the fix_config_conflicts card for the agent a handle or channel points at, proposed in this chat. */
+  align?(target: string, chatId: string | null): Promise<SlashAlign>;
   list(q: { type: ArtifactType; agent?: string; channel?: string }): Promise<ArtifactRow[]>;
 }
 
@@ -47,6 +56,8 @@ export interface SlashDeps {
 export interface SlashContext {
   agent:   string | null;
   channel: string | null;
+  /** The chat the command runs in (a card it proposes belongs to it). */
+  chatId?: string | null;
 }
 
 const CHANNEL = /^@[A-Za-z0-9_]{3,64}$/;
@@ -107,6 +118,8 @@ const ERRORS: Record<string, string> = {
   already_open:    'this reference is already being analysed for the channel',
 };
 
+const ALIGN_ITEMS_SHOWN = 8;
+
 const LAUNCH_ERRORS: Record<string, string> = {
   invalid_target:      'the new channel must be a handle: /launch @new_channel [@reference …] what the channel is about',
   brief_too_short:     'describe the channel after the handles in at least 30 characters: what it publishes and for whom',
@@ -143,6 +156,19 @@ export async function runSlash(cmd: SlashCommand, ctx: SlashContext, d: SlashDep
         return say(r.error === 'not_own_channel' || r.error === 'no_card' ? `${target} ${why}.` : `Steering for ${target}: ${why}.`);
       }
       return say(`Steering for ${target} queued. The reference's last 20 posts are read within a minute; review and activate the rules from the card below.`, [r.chip]);
+    }
+
+    case 'align': {
+      if (cmd.args.length > 1) return wrong();
+      if (!d.align) return say('Aligning is not available here.');
+      const target = cmd.args.length ? channelArg(cmd.args[0]) : (ctx.agent ? `@${ctx.agent}` : ctx.channel);
+      if (!target) return cmd.args.length ? wrong() : say(`Name the channel: ${usage('align')}`);
+      const r = await d.align(target, ctx.chatId ?? null);
+      if (!r.ok) return say(r.error === 'unknown_agent' ? `${target} is not a channel or agent of the network.` : `Align ${target}: ${r.details ?? r.error}.`);
+      if (!r.action) return say(`@${r.handle}: the playbook, profiles and your rules already agree — nothing to align.`);
+      const shown = r.items.slice(0, ALIGN_ITEMS_SHOWN).map((i) => `- ${i}`);
+      const more = r.items.length > ALIGN_ITEMS_SHOWN ? [`- … and ${r.items.length - ALIGN_ITEMS_SHOWN} more`] : [];
+      return { content: [`@${r.handle} has ${r.items.length} item${r.items.length === 1 ? '' : 's'} to align with your rules. The card below applies them — untick what you want to keep, then press Apply:`, ...shown, ...more].join('\n'), artifacts: [], action: r.action };
     }
 
     case 'launch': {

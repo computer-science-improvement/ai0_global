@@ -491,3 +491,26 @@ An agent's `propose_skill_edit` no longer goes live at once. The edit is stored 
 - Every probe is `unprobed` "no recent published or approved posts": a new agent has nothing to re-write yet.
 - A probe costs about two dry runs, two critic passes and one judge call per post; with the defaults that is under the $0.30 cap, at most $0.90 a day.
 - Tests: `agents/skill-probe.059.test.ts` (decision, order, budget, cap, judge), `agents/skill-probe.059.pg.test.ts` and `skill-probe.059.pick.pg.test.ts` (store, sample picking, adopt anyway), `roles/preview-probe.059.test.ts` (the dry run of a published slot and the override), `sysadmin/checks/checks.059.test.ts`, `sysadmin/audit-probes.059.pg.test.ts`; in the dashboard `lib/skill-probe.test.ts`.
+
+## 21. Chat truthfulness (spec 062)
+
+What the chat tells you about its own turn now comes from the system, not from the model. No migration, nothing to enable.
+
+**What changed**
+
+- **System footers are the system's.** A trailing `[дії: …]`, `[чернетки: …]` or `[actions: …]` block and a leading `@handle:` in the model's answer are cut before the guards read it and before it is stored. The history the model reads still adds the real ones. Every chat prompt says so.
+- **The history line names the tools.** A read-only turn shows `[дії: змін немає; викликано: library_catalog, sql_readonly]`, a writing turn adds `; викликано: …`, and `[дії: інструменти не викликались]` means none were called. (It used to say "tools changed nothing", which the model read as "I checked nothing".)
+- **The denial check is precise.** "Nothing was applied" falls back to the chat's latest card only when the sentence is about a card (`картк…`, `card`, `Apply`, `застосув…` or a card id). "I called no tools" fires whenever the turn called any tool, named or not, written or only read. "No write tools" after a read-only turn is true and passes.
+- **The retry knows what happened.** A denied card, a denied agent or an unbacked claim is re-run once with the first run's tool trace (tool names, one line of result each, up to ~1500 characters). A reply whose only fault is "I called no tools" keeps its answer and gets the English note `(Check: the data says otherwise — this turn called …)`, with no second run. When a corrected answer replaces the first, the stored message has `actions.retried_from = <first run id>` (find the first run in Logs).
+- **`lint_post` / `preview_post` take `draft_id`** in the chat: they check the stored draft, and `spec` fields given with it override it. A picture URL that looks made up (`example.*` host, `placeholder` or `example` as a path segment or file name) is refused with `invalid_media_url`.
+- **`save_draft` with `draft_id` merges.** Top-level keys the model did not send (media, source, hashtags…) stay as stored, `null` clears one; the result lists `kept_from_draft`. The lint-attempt stop text says "у цьому ході" (this turn): the counter resets with every turn.
+- **Data questions read rows.** The composer and @ai0 prompts say to `query_data` three rows before answering a question about the data. `library_catalog` gives every listed field a `fill_pct` once the dataset's stats exist (a field no row carries is 0 %).
+- **Rules and skills.** `add_owner_rule` returns only the config conflicts the new rule causes (the ones that were not there before it, or that name it). `edit_my_skill` returns `warnings` when the body prescribes reader text in a language the channel card's lint rejects (`not_ukrainian` / `wrong_language`) or states dated facts («станом на 2026-10-18», "as of today"). They are warnings: the card still goes, and the model must tell you.
+- **`/align @channel`** (or `@agent`; without an argument, the chat's agent) runs `fix_config_conflicts` in code: no model turn, $0. The reply lists the items and the card follows; nothing to align says so. On the dashboard, "Resolve in one card" (agent Overview, Memory tab) prefills `/align @handle`, and the card bubble lists its first items.
+
+**Troubleshooting**
+
+- A reply ends with "(Check: the data says otherwise …)": the model denied something the data contradicts (a card, an agent, its own tool calls) and the check kept its answer. The facts are in the note.
+- A saved draft lost a field you wanted removed: send the key as `null` (an empty list `[]` also replaces it).
+- `/align` says "not a channel or agent of the network": use the agent's handle or its channel key.
+- Tests: `chat/chat-truthfulness.062.test.ts` (replay of chat e8c11647), `chat/chat-tools.062.test.ts`, `chat/chat-rules-align.062.test.ts`; in the dashboard `lib/align.test.ts`.

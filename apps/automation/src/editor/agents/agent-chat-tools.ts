@@ -9,6 +9,7 @@ import type { PendingActionsService } from './pending-actions';
 import { ruleOverlap } from './mentions';
 import { isProtectedSkill } from '../skills/skill-library';
 import { lintSkill, SKILL_ROLES } from './skill-lint';
+import { skillWarnings } from './skill-warnings';
 import type { SkillStore } from './skill-store';
 import type { ConfigConflictsService } from '../rules/config-conflicts.service';
 import { CHANNEL_SKILL_ROLES, defaultAppliesTo } from '../skills/skill-defaults';
@@ -78,6 +79,15 @@ export async function ruleToStore(
     return { text, issues: await lint(text), fromOwnerList: true };
   }
   return { text: i.text, issues: headIssues, fromOwnerList: false };
+}
+
+/**
+ * Spec 062 FR-007: the config conflicts a new rule causes — those that were not there before it, and those that name it
+ * (`rule_id`).
+ */
+export function newConflicts<C extends { code: string; ref: string; rule_id?: number | null }>(before: readonly C[], after: readonly C[], ruleId: number): C[] {
+  const had = new Set(before.map((c) => `${c.code}:${c.ref}`));
+  return after.filter((c) => c.rule_id === ruleId || !had.has(`${c.code}:${c.ref}`));
 }
 
 const agentOf = (ctx: ToolContext): Agent | null => (ctx.extras?.agent as Agent | null | undefined) ?? null;
@@ -197,14 +207,17 @@ export function buildAgentChatTools(d: AgentChatToolDeps): EditorTool[] {
       const sources = ruleSources(text, x.ownerRecent?.length ? x.ownerRecent : [x.ownerText]);
       const best = sources[0];
       if (best && best.overlap >= RULE_OVERLAP_MIN) {
-        const id = await d.memory.add(key, kind, text, { source: 'chat', agent: agentOf(ctx)?.handle ?? null, overlap: Math.round(best.overlap * 100) / 100 }, 'owner', best.text.slice(0, 2000));
-        // Spec 040 FR-011: a new rule may contradict the playbook or a profile — say so now, @ai0 fixes it with one card.
+        // Spec 062 FR-007: only the conflicts this rule causes — the ones the channel already had are not news (an old hashtag
+        // conflict reported here became an unrequested card the owner applied in 7 s). Read before the rule is stored.
         const a = agentOf(ctx);
-        const conflicts = a && d.conflicts ? await d.conflicts.forAgent(a).catch(() => []) : [];
+        const before = a && d.conflicts ? await d.conflicts.forAgent(a).catch(() => []) : [];
+        const id = await d.memory.add(key, kind, text, { source: 'chat', agent: a?.handle ?? null, overlap: Math.round(best.overlap * 100) / 100 }, 'owner', best.text.slice(0, 2000));
+        // Spec 040 FR-011: a new rule may contradict the playbook or a profile — say so now, @ai0 fixes it with one card.
+        const conflicts = newConflicts(before, a && d.conflicts ? await d.conflicts.forAgent(a).catch(() => []) : [], id);
         return {
           ok: true, id, channel: key,
           ...(built.fromOwnerList ? { stored_text: text, note_points: 'записано пункти зі списку власника його словами (одне правило)' } : {}),
-          ...(conflicts.length ? { config_conflicts: conflicts.map((c) => c.detail), note: 'плейбук чи профіль суперечать правилам власника — скажи власнику; @ai0 узгодить їх карткою fix_config_conflicts' } : {}),
+          ...(conflicts.length ? { config_conflicts: conflicts.map((c) => c.detail), note: 'цей запис суперечить плейбуку чи профілю — скажи власнику; картку fix_config_conflicts пропонуй лише якщо він просить узгодити (/align @channel)' } : {}),
         };
       }
       // Spec 040 FR-010: not the owner's words (a paraphrase, or text from elsewhere) — the owner decides with a card, never refused.
@@ -225,10 +238,10 @@ export function buildAgentChatTools(d: AgentChatToolDeps): EditorTool[] {
 
   const editMySkill = defineTool({
     name: 'edit_my_skill',
-    description: 'Запропонувати власнику новий скіл або зміну свого скіла (повний текст). Застосується після його кліку Apply.',
+    description: 'Запропонувати власнику новий скіл або зміну свого скіла (повний текст). Застосується після його кліку Apply. Якщо результат має warnings (мова скіла проти lint каналу, датовані факти) — перекажи їх власнику.',
     kind: 'act', roles: ['composer'],
     input: z.object({
-      name:        z.string().min(3).max(48),
+      name:       z.string().min(3).max(48),
       description: z.string().min(10).max(300),
       applies_to:  z.array(z.enum(SKILL_ROLES as unknown as [string, ...string[]])).min(1).optional()
         .describe('Ролі; без значення — автор поста, чат і критик (executor, composer, checker)'),
@@ -243,7 +256,10 @@ export function buildAgentChatTools(d: AgentChatToolDeps): EditorTool[] {
       const lint = lintSkill({ name: i.name, description: i.description, appliesTo, body: i.body, inline: i.inline });
       if (!lint.ok) return { error: 'skill_lint_failed', details: lint.errors };
       if (isProtectedSkill(i.name) || (await d.skills.findShared(i.name))?.safety) return { error: 'safety_skill' };
-      return proposeCard(d, ctx, 'write_skill', { ...i, applies_to: appliesTo, handle: a.handle }, `Skill "${i.name}" for @${a.handle}: ${i.description}`, a.id);
+      const card = await proposeCard(d, ctx, 'write_skill', { ...i, applies_to: appliesTo, handle: a.handle }, `Skill "${i.name}" for @${a.handle}: ${i.description}`, a.id);
+      // Spec 062 FR-007: the body against the channel card — a language its lint rejects, dated facts. Warnings; the card still goes.
+      const warnings = skillWarnings(i.body, ctx.extras?.card as { language?: string | null } | undefined);
+      return warnings.length ? { ...card, warnings, warnings_note: 'Картку надіслано, але скажи власнику про ці попередження у відповіді — він вирішує, застосовувати чи ні.' } : card;
     },
   });
 

@@ -43,6 +43,12 @@ export interface BuilderToolDeps {
 /** Spec 040 FR-011: the owner card that aligns a playbook and profiles with the owner's rules. */
 export const FIX_CONFIG_CONFLICTS_KIND = 'fix_config_conflicts';
 
+/** The card's summary line (the tool and the spec 062 `/align` command write the same one). */
+export function fixConflictsSummary(handle: string, items: ReadonlyArray<{ kind: string }>): string {
+  const n = items.length;
+  return `Align @${handle} with the owner's rules: ${n} item${n > 1 ? 's' : ''} (${[...new Set(items.map((i) => i.kind.replace('_', ' ')))].join(', ')})`;
+}
+
 export const NEEDS_CHANGE_REQUEST = {
   error: 'needs_explicit_request',
   details: 'власник не просив цю зміну в останньому повідомленні — опиши, що пропонуєш, і запитай підтвердження',
@@ -304,9 +310,7 @@ export function buildBuilderTools(d: BuilderToolDeps): EditorTool[] {
       const orch = a.parentId ? (await d.agents.get?.(a.parentId)) ?? a : a;
       const items = await d.conflicts.resolverFor(orch);
       if (!items.length) return { ok: true, items: [], note: `у @${orch.handle} плейбук, профілі й правила власника узгоджені` };
-      const n = items.length;
-      return proposeCard(d, ctx, FIX_CONFIG_CONFLICTS_KIND, { handle: orch.handle, items },
-        `Align @${orch.handle} with the owner's rules: ${n} item${n > 1 ? 's' : ''} (${[...new Set(items.map((i) => i.kind.replace('_', ' ')))].join(', ')})`, orch.id);
+      return proposeCard(d, ctx, FIX_CONFIG_CONFLICTS_KIND, { handle: orch.handle, items }, fixConflictsSummary(orch.handle, items), orch.id);
     },
   });
 

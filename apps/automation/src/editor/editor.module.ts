@@ -185,6 +185,7 @@ import { collectPosts, trackedChannel } from './setup/setup-posts';
 import { VOICE_SKILL_NAME } from './setup/setup-analysis';
 import { refName, SteeringRepository } from './steering/steering.repository';
 import type { SlashDeps } from './chat/slash-commands';
+import { alignAgent } from './chat/align';
 import { SteeringService } from './steering/steering.service';
 import { STEERING_SERVICE, SteeringController } from './steering/steering.controller';
 import { telegramReader } from './steering/steering-source';
@@ -1824,6 +1825,10 @@ export const EDITOR_PROVIDERS = [
             const running = r.error === 'already_running' ? await AUDIT.svc.running() : null;
             return { ok: false, error: r.error, details: r.error === 'already_running' ? 'an audit is already running' : r.error === 'week_taken' ? 'this week\'s audit already ran' : r.details, ...(running ? { chip: chipOf(running) } : {}) };
           },
+          // Spec 062 FR-008: /align is the fix_config_conflicts card without a model turn.
+          align: (target, chatId) => alignAgent({
+            agents: infra.agents, channelKeyOf: (a) => infra.channelKeyOf(a), conflicts: configConflictsOf(pool, repos, infra), actions: infra.actions,
+          }, target, chatId),
           list: async (q) => (await artifacts.list({ ...q, limit: 50 })).rows,
         };
         return new EditorChatService({
