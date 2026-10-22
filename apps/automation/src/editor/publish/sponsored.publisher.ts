@@ -4,6 +4,7 @@ import { lintSponsored, renderSponsored, SponsoredCreativeSchema } from '../post
 import type { TgMessage } from '../post/render-telegram';
 import type { SendResult } from './telegram-editor.publisher';
 import { ChannelPausedForEditorError } from './telegram-editor.publisher';
+import { errText } from '../../common/err-text';
 
 /** A reserved slot is never posted more than this long after the agreed time. */
 export const RESERVED_MAX_LATE_MS = 6 * 3600_000;
@@ -63,7 +64,7 @@ export class SponsoredPublisher {
     try {
       return await this.publishSlot(slot, now);
     } catch (err: any) {
-      return this.fail(slot, `crashed: ${err?.message ?? err}`);
+      return this.fail(slot, `crashed: ${errText(err)}`);
     }
   }
 
@@ -96,7 +97,7 @@ export class SponsoredPublisher {
     try {
       sent = await this.d.publisher.send(slot.channelKey, rendered.messages);
     } catch (err: any) {
-      const reason = err instanceof ChannelPausedForEditorError ? err.message : `send failed: ${err?.message ?? err}`;
+      const reason = err instanceof ChannelPausedForEditorError ? err.message : `send failed: ${errText(err)}`;
       return this.fail(slot, reason, order);
     }
 

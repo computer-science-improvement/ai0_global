@@ -8,6 +8,7 @@ import { liveTopicLabel, type LiveSpec } from './live-slot';
 import {
   itemScore, keywordHits, NEWS_WATCH_MIN_SCORE, newsWatchConfig, type NewsWatch, type ResolvedNewsWatch,
 } from './news-watch-config';
+import { errText } from '../../common/err-text';
 
 /**
  * The news watch (spec 034 FR-011): on a news resource, every `every_hours` within its active hours, a
@@ -95,7 +96,7 @@ export class NewsWatchService {
         items.push(...(await readFeed(f.url, now, this.d.http)).items.map((it) => ({ ...it, feed: f.id })));
       } catch (err: any) {
         failed++;
-        this.d.log?.(`news watch ${card.channelKey}: feed ${f.id} failed: ${err?.message ?? err}`);
+        this.d.log?.(`news watch ${card.channelKey}: feed ${f.id} failed: ${errText(err)}`);
       }
     }
     const fresh = await filterFresh(items, { sinceHours: cfg.maxAgeHours, pool: this.d.pool, resourceRef: ref, now });
@@ -208,7 +209,7 @@ export class NewsWatchService {
         [card.channelKey, `telegram:${card.channelKey}`, r.decision, r.reason.slice(0, 1000), r.item?.link ?? null, r.item?.title?.slice(0, 500) ?? null,
           at && !Number.isNaN(at.getTime()) ? at : null, r.item?.feed ?? null, r.item ? r.item.score : null, r.slotId ?? null]);
     } catch (err: any) {
-      this.d.log?.(`news watch log of ${card.channelKey} failed: ${err?.message ?? err}`);
+      this.d.log?.(`news watch log of ${card.channelKey} failed: ${errText(err)}`);
     }
   }
 }

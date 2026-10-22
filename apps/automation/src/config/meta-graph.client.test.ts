@@ -192,3 +192,39 @@ test('refreshThreadsToken throws a token-redacted error on failure', async () =>
     },
   );
 });
+
+// Spec 064 FR-010: a metric the platform calls unsupported (HTTP 400) is remembered per account and not requested again.
+function badMetric(msg: string) {
+  return Object.assign(new Error('Request failed with status code 400'), { response: { status: 400, data: { error: { message: msg, code: 100 } } } });
+}
+
+test('facebook: a 400 "invalid metric" is remembered per account for 7 days; other accounts and metrics still ask', async () => {
+  const asked: string[] = [];
+  mock.method(axios, 'get', async (url: string, opts: any) => {
+    const metric = opts.params.metric;
+    asked.push(`${url.includes('/FB1/') ? 'FB1' : 'FB2'}:${metric}`);
+    if (metric === 'page_impressions') throw badMetric('(#100) The value must be a valid insights metric');
+    return { data: graphBody(metric, [['2026-06-10T07:00:00+0000', 3]]) };
+  });
+  const c = client();
+  await c.fetchInsights('facebook', 'FB1', 'tok', 7);
+  await c.fetchInsights('facebook', 'FB1', 'tok', 7);
+  await c.fetchInsights('facebook', 'FB2', 'tok', 7);
+  assert.equal(asked.filter((a) => a === 'FB1:page_impressions').length, 1, 'asked once, then skipped');
+  assert.equal(asked.filter((a) => a === 'FB1:page_views_total').length, 2, 'other metrics keep being requested');
+  assert.equal(asked.filter((a) => a === 'FB2:page_impressions').length, 1, 'another account asks for itself');
+});
+
+test('a transient failure (500) is not remembered', async () => {
+  let calls = 0;
+  mock.method(axios, 'get', async () => { calls++; throw Object.assign(new Error('boom'), { response: { status: 500, data: {} } }); });
+  const c = client();
+  await c.fetchInsights('threads', 'TH1', 'tok', 7);
+  await c.fetchInsights('threads', 'TH1', 'tok', 7);
+  assert.equal(calls, 2);
+});
+
+test('verify failure with an empty reason still prints one', async () => {
+  mock.method(axios, 'get', async () => { throw Object.assign(new Error(''), { code: 'ECONNRESET' }); });
+  await assert.rejects(client().verify('instagram', 'IG1', 'tok'), /verify failed: ECONNRESET/);
+});

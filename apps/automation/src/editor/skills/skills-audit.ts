@@ -6,6 +6,7 @@
  */
 import { isOptionalSkill, parseSkill } from './skill-library';
 import { SKILL_MAX_INLINE_BODY, SKILL_ROLES } from '../agents/skill-lint';
+import { errText } from '../../common/err-text';
 
 /**
  * Every tool name an agent can be given, read from source text: `defineTool({ name: '…' })` literals, plus the names of
@@ -76,7 +77,7 @@ export function auditSkills(files: Array<{ file: string; text: string }>, tools:
     try {
       skill = parseSkill(file, text);
     } catch (err: any) {
-      add(file, 'frontmatter', err?.message ?? String(err));
+      add(file, 'frontmatter', errText(err));
       continue;
     }
     const front = text.match(/^---\n([\s\S]*?)\n---/)?.[1] ?? '';

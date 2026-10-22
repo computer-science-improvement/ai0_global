@@ -18,6 +18,7 @@ import { buildProposal, migratedSeries, proposalKey, type MigrationProposal, typ
 import { toneSkillsFor } from './type-mapping';
 import { DIGEST_STRATEGY_TYPES } from '../../payments/sponsor-orders.repository';
 import type { SponsorFulfilment } from '../../payments/sponsor-fulfilment';
+import { errText } from '../../common/err-text';
 
 /**
  * Strategy bindings → agent series (spec 023 FR-011/FR-012): the proposal (deterministic, no LLM), the
@@ -195,7 +196,7 @@ export class StrategyMigrationService {
       try {
         if ((await this.d.attachSkill(agent.id, name)) === 'attached') attached.push(name);
       } catch (err: any) {
-        this.d.log?.(`tone skill ${name} for @${agent.handle}: ${err?.message ?? err}`);
+        this.d.log?.(`tone skill ${name} for @${agent.handle}: ${errText(err)}`);
       }
     }
     return attached;
@@ -332,7 +333,7 @@ export class StrategyMigrationService {
         channelKeys: [...new Set(digests.map(keyOf))], agentId: agent.id, handle: agent.handle, now: this.now(), staticSponsors,
       });
     } catch (err: any) {
-      this.d.log?.(`digest sponsor cutover report failed: ${err?.message ?? err}`);
+      this.d.log?.(`digest sponsor cutover report failed: ${errText(err)}`);
     }
   }
 
@@ -373,7 +374,7 @@ export class StrategyMigrationService {
   }
 
   private async config(): Promise<void> {
-    try { await this.d.publishConfig?.(); } catch (err: any) { this.d.log?.(`config:changed publish failed: ${err?.message ?? err}`); }
+    try { await this.d.publishConfig?.(); } catch (err: any) { this.d.log?.(`config:changed publish failed: ${errText(err)}`); }
   }
 
   private async tx(fn: (c: PoolClient) => Promise<void>): Promise<void> {

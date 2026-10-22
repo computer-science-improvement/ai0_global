@@ -5,6 +5,7 @@ import { localDate, localHour, localTimeLabel } from '../roles/time';
 import { attemptRejections, type SlotFallback } from './fallback-ladder';
 import { evergreenFilled } from './evergreen-stats';
 import { addSkip, isCriticRejection, isNotAMiss, isOwnerDecision, skipGroupOf, type SkipCounts } from './skip-reasons';
+import { errText } from '../../common/err-text';
 
 /**
  * Spec 037 FR-010 (T10): the owner's Inbox notes about silent days, computed by code from the slots (no LLM):
@@ -248,7 +249,7 @@ export class SilentDaysWatch {
       try {
         if ((await this.d.inbox.postOnce(item)) != null) n++;
       } catch (err: any) {
-        this.d.log?.(`silent-day note ${a.kind} for ${a.ref} failed: ${err?.message ?? err}`);
+        this.d.log?.(`silent-day note ${a.kind} for ${a.ref} failed: ${errText(err)}`);
       }
     }
     return n;

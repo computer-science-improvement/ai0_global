@@ -26,6 +26,7 @@ import {
 import {
   MAX_BRIEF_CHARS, MAX_REFERENCES, MIN_BRIEF_CHARS, PRE_START_STATUSES, type ChannelLaunch, type LaunchBotState, type LaunchPromoItem, type LaunchRef,
 } from './launch.types';
+import { errText as errMessage } from '../../common/err-text';
 
 /**
  * Spec 052 FR-001: the launch of a new channel. `create` checks and stores the launch; one in-process worker (kicked on
@@ -141,7 +142,7 @@ const RedoBody = z.object({
   brief:      z.string().trim().min(MIN_BRIEF_CHARS).max(MAX_BRIEF_CHARS).optional(),
 }).strict();
 
-const errText = (err: unknown) => String((err as Error)?.message ?? err).slice(0, 300);
+const errText = (err: unknown) => errMessage(err).slice(0, 300);
 
 export class LaunchService {
   private worker: Promise<void> | null = null;

@@ -5,6 +5,7 @@ import { MAX_PLAYBOOK_EXAMPLES, PlaybookSchema, type Playbook, type PlaybookExam
 import { SETUP_FORMAT_FIELDS, SETUP_SECTIONS, VOICE_SKILL_NAME, type BoundDataset, type SetupSection, type SubmitSetupInput } from './setup-analysis';
 import type { SetupPost } from './setup-posts.types';
 import { channelLanguage, normalizeChannelLanguage, proseLanguage } from '../post/channel-language';
+import { errText as errMessage } from '../../common/err-text';
 
 /**
  * Spec 042 FR-004 / FR-006: what each section would replace (`baseline`, stored at analysis for the drift check), the
@@ -225,7 +226,7 @@ export interface ApplyOutcome {
 const errText = (err: any): string => {
   const r = err?.response ?? err?.getResponse?.();
   if (r && typeof r === 'object') return [r.error, r.details ? (typeof r.details === 'string' ? r.details : JSON.stringify(r.details)) : null, r.issues ? JSON.stringify(r.issues) : null].filter(Boolean).join(': ');
-  return String(err?.message ?? err);
+  return errMessage(err);
 };
 
 /** Apply the chosen sections in order (FR-006). */

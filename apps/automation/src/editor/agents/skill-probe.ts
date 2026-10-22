@@ -10,6 +10,7 @@ import type { PairwiseJudge } from './skill-probe-judge';
 import type { ProbeSlotRef } from './skill-probe-samples';
 import type { ProbeJudgement, ProbeRecord, ProbeSample, ProbeSide, ProbeVerdict, SideCritic } from './skill-probe.types';
 import type { SkillStore, SkillVersionRow } from './skill-store';
+import { errText } from '../../common/err-text';
 
 export interface ProbeSettings {
   /** Probes per Kyiv day; 0 = probes are off. */
@@ -156,7 +157,7 @@ export class SkillProbe {
           out[r.verdict]++;
           if (r.verdict === 'adopted' || r.verdict === 'rejected' || r.verdict === 'inconclusive') done++;
         } catch (err: any) {
-          this.d.log?.(`skill probe of version ${v.id} failed: ${err?.message ?? err}`);
+          this.d.log?.(`skill probe of version ${v.id} failed: ${errText(err)}`);
         }
       }
     } finally {
@@ -237,7 +238,7 @@ export class SkillProbe {
       return await this.d.run(slotId, { override, maxCostUsd });
     } catch (err: any) {
       const t = this.now().toISOString();
-      return { status: 'failed', platform: null, preview: null, spec: null, critic: null, reason: `probe run failed: ${String(err?.message ?? err).slice(0, 200)}`, warnings: [], runId: null, costUsd: 0, startedAt: t, finishedAt: t };
+      return { status: 'failed', platform: null, preview: null, spec: null, critic: null, reason: `probe run failed: ${errText(err).slice(0, 200)}`, warnings: [], runId: null, costUsd: 0, startedAt: t, finishedAt: t };
     }
   }
 
@@ -270,7 +271,7 @@ export class SkillProbe {
     try {
       await this.d.inbox.post(probeNote(agent, { id: v.skillId, name: v.skillName }, v.version, liveBefore, r, v.reason));
     } catch (err: any) {
-      this.d.log?.(`skill probe note for version ${v.id} failed: ${err?.message ?? err}`);
+      this.d.log?.(`skill probe note for version ${v.id} failed: ${errText(err)}`);
     }
   }
 

@@ -2,6 +2,7 @@ import type { EditorRole } from '../llm/llm.types';
 import type { ToolRegistry } from '../harness/tool-registry';
 import { roleOfKind, type Agent } from '../agents/agent.types';
 import type { LoadoutRepository } from './loadout.repository';
+import { errText } from '../../common/err-text';
 
 /**
  * A name no tool has. `forRole` reads an empty allowlist as "no limit", so "nothing but the terminal tools" is an
@@ -64,7 +65,7 @@ export class LoadoutService {
       const outside = opts.registry.forRole(opts.role, null, { chat: true }).map((t) => t.name).filter((n) => !inOwn.has(n));
       return [...new Set([...allow, ...outside])];
     } catch (err: any) {
-      this.d.log?.(`loadout of @${agent.handle} unavailable, using the role default: ${err?.message ?? err}`);
+      this.d.log?.(`loadout of @${agent.handle} unavailable, using the role default: ${errText(err)}`);
       return null;
     }
   }

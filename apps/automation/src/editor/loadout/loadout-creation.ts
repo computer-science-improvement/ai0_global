@@ -3,6 +3,7 @@ import { Agent, parseResourceRef, roleOfKind, type Platform } from '../agents/ag
 import type { LoadoutRepository } from './loadout.repository';
 import type { LoadoutUsage } from './loadout-usage';
 import { creationLoadout, LOADOUT_ROLES, needsOf, PEER_MIN_RUNS, PEER_START_RATE } from './loadout-profiles';
+import { errText } from '../../common/err-text';
 
 export interface LoadoutCreationDeps {
   repo:     Pick<LoadoutRepository, 'initTools'>;
@@ -39,7 +40,7 @@ export class LoadoutCreation {
       return wrote;
     } catch (err: any) {
       // The agent keeps the role default (mode role): a creation never fails on its loadout.
-      this.d.log?.(`loadout of @${agent.handle} not formed: ${err?.message ?? err}`);
+      this.d.log?.(`loadout of @${agent.handle} not formed: ${errText(err)}`);
       return false;
     }
   }

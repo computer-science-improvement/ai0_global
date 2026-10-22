@@ -2,6 +2,7 @@ import { PostSpecSchema } from '../post/post-spec';
 import type { EditorPlansRepository, EditorSlot } from '../repo/editor-plans.repository';
 import { RESERVED_CLAIM_BATCH, SponsoredOrdersPort } from './sponsored.publisher';
 import { PAUSED_ERROR, slotRef } from '../pauses/resource-pauses';
+import { errText } from '../../common/err-text';
 
 export interface ReservedDispatcherDeps {
   plans:     Pick<EditorPlansRepository, 'claimDueReserved'> & Partial<Pick<EditorPlansRepository, 'updateSlot'>>;
@@ -41,14 +42,14 @@ export class ReservedDispatcher {
             continue;
           }
           if (await this.d.promo.publishPromo(slot, now)) published++;
-        } catch (err: any) { this.d.log?.(`promo slot ${slot.id} failed: ${err?.message ?? err}`); }
+        } catch (err: any) { this.d.log?.(`promo slot ${slot.id} failed: ${errText(err)}`); }
         continue;
       }
       let manual = false;
       try {
         manual = !(await this.d.orders.findBySlot(slot.id)) && PostSpecSchema.safeParse(slot.postSpec).success;
       } catch (err: any) {
-        this.d.log?.(`reserved slot ${slot.id}: order lookup failed: ${err?.message ?? err}`);
+        this.d.log?.(`reserved slot ${slot.id}: order lookup failed: ${errText(err)}`);
       }
       const ok = manual ? await this.d.manual.publishScheduled(slot, now) : await this.d.sponsored.publishClaimed(slot, now);
       if (ok) published++;

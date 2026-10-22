@@ -1,6 +1,7 @@
 import type { EditorCard } from '../card';
 import { Agent, deriveHandle, ORCHESTRATOR_CHILDREN, resourceRef, withSuffix } from './agent.types';
 import type { AgentsRepository } from './agents.repository';
+import { errText } from '../../common/err-text';
 
 export interface RegistrySyncDeps {
   agents:   Pick<AgentsRepository, 'findTop' | 'findChild' | 'insert' | 'update' | 'allHandles' | 'linkLegacyRuns'>;
@@ -77,7 +78,7 @@ export class AgentRegistrySync {
       this.d.log?.(`agent registry: @${handle} (system)`);
       return true;
     } catch (err: any) {
-      this.d.log?.(`agent registry: @${SYSADMIN_HANDLE} not created: ${err?.message ?? err}`);
+      this.d.log?.(`agent registry: @${SYSADMIN_HANDLE} not created: ${errText(err)}`);
       return false;
     }
   }

@@ -3,6 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import type { Pool } from 'pg';
 import { DB_POOL } from '../../database/database.module';
 import { StoryRegistry } from './story.repository';
+import { errText } from '../../common/err-text';
 
 /**
  * Spec 037 T2: at boot, fill the story registry from the last 30 days of published posts, in the background (the
@@ -20,6 +21,6 @@ export class StoryBackfill implements OnApplicationBootstrap {
     const reg = new StoryRegistry(this.pool, (m) => this.logger.warn(m));
     void reg.backfill(new Date())
       .then((n) => { if (n) this.logger.log(`story registry backfill: ${n} posts registered`); })
-      .catch((e) => this.logger.warn(`story registry backfill failed: ${e?.message ?? e}`));
+      .catch((e) => this.logger.warn(`story registry backfill failed: ${errText(e)}`));
   }
 }

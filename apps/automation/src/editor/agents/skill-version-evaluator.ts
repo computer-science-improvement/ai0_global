@@ -3,6 +3,7 @@ import type { AgentsRepository } from './agents.repository';
 import type { OwnerInbox } from './owner-inbox';
 import { judgeKpiChange, KpiPoint, ScopeKpi } from './scope-kpi';
 import type { SkillStore } from './skill-store';
+import { errText } from '../../common/err-text';
 
 export const REVIEW_POSTPONE_DAYS = 7;
 export const MAX_POSTPONES = 2;
@@ -85,7 +86,7 @@ export class SkillVersionEvaluator {
           catch { /* memory note is best-effort */ }
         }
       } catch (err: any) {
-        this.d.log?.(`skill evaluation of version ${v.id} failed: ${err?.message ?? err}`);
+        this.d.log?.(`skill evaluation of version ${v.id} failed: ${errText(err)}`);
       }
     }
     return { kept, rolledBack, postponed };

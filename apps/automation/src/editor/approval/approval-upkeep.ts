@@ -1,5 +1,6 @@
 import type { ChannelMode, EditorCard } from '../card';
 import type { ApprovalsRepository } from './approvals.repository';
+import { errText } from '../../common/err-text';
 
 export interface ApprovalUpkeepDeps {
   repo:      Pick<ApprovalsRepository, 'expire' | 'channelsWithWaiting' | 'dropWaiting'>;
@@ -37,7 +38,7 @@ export class ApprovalUpkeep {
     if (r.published || r.skipped || r.failed) this.d.log?.(`approval: published ${r.published}, skipped ${r.skipped}, failed ${r.failed}`);
 
     if (this.d.alerts) {
-      try { await this.d.alerts.run(now); } catch (err: any) { this.d.log?.(`approval alerts failed: ${err?.message ?? err}`); }
+      try { await this.d.alerts.run(now); } catch (err: any) { this.d.log?.(`approval alerts failed: ${errText(err)}`); }
     }
   }
 }

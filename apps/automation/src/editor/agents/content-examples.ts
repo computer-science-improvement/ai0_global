@@ -12,6 +12,7 @@ import { parseResourceRef } from './agent.types';
 import type { AgentsRepository } from './agents.repository';
 import { chatExtras, proposeCard, type BuilderToolDeps } from './builder-tools';
 import { KeepPendingError } from './pending-actions';
+import { errText } from '../../common/err-text';
 
 /**
  * Spec 034 FR-008: example posts and "bad post" warnings in the agent-creation chat.
@@ -97,7 +98,7 @@ export function exampleCard(ref: string, card: EditorCard | null): EditorCard {
  */
 export function checkExample(e: { title: string; text: string }, card: EditorCard): { ok: true; render: TgMessage[] | null; notes: string[] } | { ok: false; problems: string[] } {
   let spec: PostSpec;
-  try { spec = exampleSpec(e); } catch (err: any) { return { ok: false, problems: [`не вдалося зібрати пост: ${String(err?.message ?? err).slice(0, 200)}`] }; }
+  try { spec = exampleSpec(e); } catch (err: any) { return { ok: false, problems: [`не вдалося зібрати пост: ${errText(err).slice(0, 200)}`] }; }
   const lint = lintPost(spec, card);
   const hard = lint.warnings.filter((w) => w.code === 'slop_humor_off' || w.code === 'slop_slang_off');
   if (!lint.ok || hard.length) return { ok: false, problems: [...lint.errors, ...hard].map((x) => `${x.code}: ${x.message}`) };

@@ -14,6 +14,7 @@ import {
 import { asSetupPosts, parseSourceRef, type ReadResult, type SteeringSourceReader } from './steering-source';
 import { refName, withoutTexts, type SteeringRepository } from './steering.repository';
 import { MAX_ACTIVE_SETS, MAX_RULES, RULE_TEXT_MAX, STEERING_RULE_KINDS, type SteeringRule, type SteeringSet, type SteeringStatus } from './steering.types';
+import { errText } from '../../common/err-text';
 
 /**
  * Spec 045: steering. `create` queues a set (target = an own channel with a card, source = a public resource); one
@@ -124,7 +125,7 @@ export class SteeringService {
   kick(): void {
     if (this.worker) return;
     this.worker = this.drain()
-      .catch((err) => this.d.log?.(`steering worker failed: ${err?.message ?? err}`))
+      .catch((err) => this.d.log?.(`steering worker failed: ${errText(err)}`))
       .finally(() => { this.worker = null; });
   }
 
@@ -189,7 +190,7 @@ export class SteeringService {
         maxCostUsd: STEERING_MAX_COST_USD,
       });
     } catch (err: any) {
-      return this.d.repo.update(s.id, { status: 'failed', reason: `analysis: ${String(err?.message ?? err).slice(0, 300)}` }, { from: ['analyzing'] });
+      return this.d.repo.update(s.id, { status: 'failed', reason: `analysis: ${errText(err).slice(0, 300)}` }, { from: ['analyzing'] });
     }
     const out = res.terminalTool === SUBMIT_STEERING_TOOL ? (res.terminalResult as { steering?: unknown } | undefined)?.steering : undefined;
     const parsed = out ? SubmitSteeringInput.safeParse(out) : null;

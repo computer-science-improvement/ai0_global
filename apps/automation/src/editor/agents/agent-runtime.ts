@@ -3,6 +3,7 @@ import type { SkillSource } from '../skills/skill-library';
 import { Agent, AgentKind, isPaused, resourceRef } from './agent.types';
 import type { AgentsRepository } from './agents.repository';
 import type { SkillStore } from './skill-store';
+import { errText } from '../../common/err-text';
 
 /** What a run needs from the registry: who runs, its skill set, and whether it may run at all. */
 export interface RunAgentContext {
@@ -43,7 +44,7 @@ export class AgentRuntime {
       const child = kind ? await this.d.agents.findChild(orch.id, kind) : null;
       return this.context(child ?? orch, orch, role);
     } catch (err: any) {
-      this.d.log?.(`agent runtime for ${channelKey}/${role} failed: ${err?.message ?? err}`);
+      this.d.log?.(`agent runtime for ${channelKey}/${role} failed: ${errText(err)}`);
       return this.bare();
     }
   }
@@ -54,7 +55,7 @@ export class AgentRuntime {
       const orch = agent.parentId ? await this.d.agents.get(agent.parentId) : agent;
       return this.context(agent, orch ?? agent, role);
     } catch (err: any) {
-      this.d.log?.(`agent runtime for @${agent.handle} failed: ${err?.message ?? err}`);
+      this.d.log?.(`agent runtime for @${agent.handle} failed: ${errText(err)}`);
       return { agent, orchestrator: agent, skills: this.d.fallback, paused: isPaused(agent, this.now()) };
     }
   }
@@ -73,7 +74,7 @@ export class AgentRuntime {
         // An empty view means the builtins were never synced — the file library is the safe default.
         if (view.list().length) skills = view;
       } catch (err: any) {
-        this.d.log?.(`skills of @${agent.handle} unavailable, using files: ${err?.message ?? err}`);
+        this.d.log?.(`skills of @${agent.handle} unavailable, using files: ${errText(err)}`);
       }
     }
     return { agent, orchestrator: orch, skills, paused };

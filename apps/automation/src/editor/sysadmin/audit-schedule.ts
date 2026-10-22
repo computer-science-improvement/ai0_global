@@ -5,6 +5,7 @@ import type { AuditReport } from './audit-report';
 import { reportCounts } from './audit-report';
 import type { AuditService } from './audit.service';
 import { clip } from './audit-text';
+import { errText } from '../../common/err-text';
 
 /**
  * Spec 055 FR-004: the weekly audit. A tick a minute asks `auditDue`; a due week is claimed by the unique insert of the
@@ -83,7 +84,7 @@ export class AuditTick {
     const item = r.report.status === 'done' ? auditInboxItem(r.report) : null;
     let posted = false;
     if (item) {
-      try { posted = (await this.d.inbox.postOnce(item)) !== null; } catch (err: any) { this.d.log?.(`audit inbox note failed: ${err?.message ?? err}`); }
+      try { posted = (await this.d.inbox.postOnce(item)) !== null; } catch (err: any) { this.d.log?.(`audit inbox note failed: ${errText(err)}`); }
     }
     return { ran: true, week, reportId: r.report.id, posted };
   }

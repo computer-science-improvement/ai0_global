@@ -1,4 +1,5 @@
 import type { Pool } from 'pg';
+import { errText } from '../../common/err-text';
 
 /** How long hosted slides of a source wait for its derived slots at most (spec 024 FR-007). */
 export const MEDIA_HOLD_MS = 24 * 3600_000;
@@ -56,7 +57,7 @@ export class MediaHolds {
       try {
         if (this.hosting && r.paths?.length) await this.hosting.delete(r.paths);
       } catch (err: any) {
-        this.log(`media hold ${r.slot_id}: delete failed: ${err?.message ?? err}`);
+        this.log(`media hold ${r.slot_id}: delete failed: ${errText(err)}`);
       }
       await this.pool.query(`DELETE FROM media_holds WHERE slot_id = $1`, [r.slot_id]);
       n++;

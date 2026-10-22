@@ -20,6 +20,7 @@ import { defaultAppliesTo } from '../skills/skill-defaults';
 import { attachProfileTone } from '../skills/profile-tone';
 import { dismissHealth } from '../platform/resource-health.service';
 import type { SourceHealthReport } from '../sources/source-health';
+import { errText } from '../../common/err-text';
 
 export interface AgentsServiceDeps {
   pool:    Pick<Pool, 'query'>;
@@ -129,7 +130,7 @@ export class AgentsService {
   /** manager → builder → orchestrators (with role children), each with today's activity. */
   async tree(): Promise<{ agents: AgentNode[] }> {
     if (this.d.sync) {
-      try { await this.d.sync(); } catch (err: any) { this.d.log?.(`agent registry sync failed: ${err?.message ?? err}`); }
+      try { await this.d.sync(); } catch (err: any) { this.d.log?.(`agent registry sync failed: ${errText(err)}`); }
     }
     const [all, act] = await Promise.all([this.d.agents.list(), this.d.agents.activity()]);
     const now = this.now();
@@ -475,7 +476,7 @@ export class AgentsService {
 
   async onBrief(agent: Agent, brief: string): Promise<void> {
     if (!this.briefHook) return;
-    try { await this.briefHook(await this.orchestratorOf(agent), brief); } catch (err: any) { this.d.log?.(`brief hook failed: ${err?.message ?? err}`); }
+    try { await this.briefHook(await this.orchestratorOf(agent), brief); } catch (err: any) { this.d.log?.(`brief hook failed: ${errText(err)}`); }
   }
 
   /** Mentionable agents for the chat's @ autocomplete. */

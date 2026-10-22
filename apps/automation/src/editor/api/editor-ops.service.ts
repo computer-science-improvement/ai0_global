@@ -14,6 +14,7 @@ import { localDate } from '../roles/time';
 import { previewWithoutRun, type SlotPreview } from '../roles/preview-run';
 import { mergeCard } from './card-input';
 import type { StyleProposal } from '../post/style/style-proposal';
+import { errText } from '../../common/err-text';
 
 export interface EditorOpsDeps {
   channels: Pick<EditorChannelsRepository, 'get' | 'list' | 'upsert'>;
@@ -101,7 +102,7 @@ export class EditorOpsService {
   /** Kick off `job`: await it when asked to, otherwise run it in the background and log failures. */
   private async start(job: () => Promise<AgentLoopResult>, opts: RunOptions, label: string): Promise<AgentLoopResult | null> {
     if (opts.wait) return job();
-    void job().catch((err) => this.d.log?.(`${label} failed: ${err?.message ?? err}`));
+    void job().catch((err) => this.d.log?.(`${label} failed: ${errText(err)}`));
     return null;
   }
 
@@ -253,7 +254,7 @@ export class EditorOpsService {
       try {
         result = await this.d.runner.runPreview!(claimed, card);
       } catch (err: any) {
-        result = previewWithoutRun('failed', `preview failed: ${String(err?.message ?? err).slice(0, 300)}`, startedAt);
+        result = previewWithoutRun('failed', `preview failed: ${errText(err).slice(0, 300)}`, startedAt);
       }
       try {
         await this.d.plans.setPreview!(id, result);
@@ -263,7 +264,7 @@ export class EditorOpsService {
       return result;
     };
     if (opts.wait) return { started: true, slotId: id, preview: await job() };
-    void job().catch((err) => { this.previewing.delete(id); this.d.log?.(`preview of slot ${id} failed: ${err?.message ?? err}`); });
+    void job().catch((err) => { this.previewing.delete(id); this.d.log?.(`preview of slot ${id} failed: ${errText(err)}`); });
     return { started: true, slotId: id, preview: claimed.previewDraft! };
   }
 
@@ -362,7 +363,7 @@ export class EditorOpsService {
       const result = await tool.execute(args.data, { runId: 'ops', role, channelKey: card.channelKey, extras: { card } });
       return { result };
     } catch (err: any) {
-      return { result: { error: 'tool_failed', details: String(err?.message ?? err) } };
+      return { result: { error: 'tool_failed', details: errText(err) } };
     }
   }
 }

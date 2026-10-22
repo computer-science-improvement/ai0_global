@@ -10,6 +10,7 @@ import { WORKSPACES, agentModelIn, type Workspace } from '../llm/workspace';
 import { ORCHESTRATOR_CHILDREN, roleOfKind, telegramKeyOf, type Agent } from '../agents/agent.types';
 import type { PriceRow } from '../../common/ai/usage/llm-prices.repository';
 import type { CatalogModel, CatalogSnapshot, ModelCatalog } from './model-catalog';
+import { errText } from '../../common/err-text';
 
 /** Spend accounting key of the OpenRouter workspace's models (the Anthropic workspace's provider is `anthropic`). */
 const PROVIDER = 'openrouter';
@@ -310,7 +311,7 @@ export class ModelsService {
       if (rowCount) this.d.log?.(`llm_prices: added ${model} from the OpenRouter catalog`);
       return !!rowCount;
     } catch (err: any) {
-      this.d.log?.(`price upsert for ${model} failed: ${err?.message ?? err}`);
+      this.d.log?.(`price upsert for ${model} failed: ${errText(err)}`);
       return false;
     }
   }

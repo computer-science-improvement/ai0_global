@@ -10,6 +10,7 @@ import type { PlaybookRow } from '../../network/network.repository';
 import type { AnyChange, AnyExecutor, Change, DirectiveVerifier, ExecContext, ExperimentChange, FormatMixChange, PlanResult, VoiceFixChange } from './types';
 import type { SqlExperimentQuotas } from './experiment-executor';
 import { revertsMix, revertsVoice } from './quality-executors';
+import { errText } from '../../../common/err-text';
 
 export * from './types';
 export { frequencyExecutor, formatShiftExecutor, pauseSeriesExecutor, type PlaybookExecutorDeps } from './playbook-executors';
@@ -188,7 +189,7 @@ export class DirectiveExecution {
         await this.d.repo.setVerification(dir.id, { kind: 'observed', adherence: r.adherence, detail: r.detail, checked_at: this.now().toISOString() }, r.verified);
         n++;
       } catch (err: any) {
-        this.d.log?.(`directive ${dir.id}: verify failed: ${err?.message ?? err}`);
+        this.d.log?.(`directive ${dir.id}: verify failed: ${errText(err)}`);
       }
     }
     return n;

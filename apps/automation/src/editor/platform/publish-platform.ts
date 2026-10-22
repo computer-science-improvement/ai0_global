@@ -10,6 +10,7 @@ import { CAPABILITIES } from './capabilities';
 import { captionPlain, lintPlatformPost, PlatformLintResult, PlatformPostSpec, renderPlatform, RenderedPlatformPost } from './platform-spec';
 import type { PlatformPostsRepository } from './platform-posts.repository';
 import type { ResourcePublisher } from './resource-publisher';
+import { errText } from '../../common/err-text';
 
 /** The same idea is a repeat on a resource within this window. Sources go through the content ledger (023 FR-010). */
 export const PLATFORM_IDEA_DEDUP_DAYS = 7;
@@ -147,7 +148,7 @@ export async function publishPlatformNow(d: PublishPlatformDeps, input: PublishP
         prepared = await d.hostSlides(i.spec.slides, { channelKey: i.resourceRef, slotId: i.slotId ?? `now-${now.getTime()}` });
       }
     } catch (err: any) {
-      return { error: 'prepare_failed', details: String(err?.message ?? err).slice(0, 1000) };
+      return { error: 'prepare_failed', details: errText(err).slice(0, 1000) };
     }
     const rendered = renderPlatform(i.spec, platform, prepared?.prepared.slideUrls ?? []);
     const row = await d.posts.insert({
@@ -184,7 +185,7 @@ export async function publishPlatformNow(d: PublishPlatformDeps, input: PublishP
     try {
       published = await d.publisher.publish(i.resourceRef, rendered);
     } catch (err: any) {
-      const msg = String(err?.message ?? err).slice(0, 1000);
+      const msg = errText(err).slice(0, 1000);
       await d.posts.insert({
         resourceRef: i.resourceRef, platform, slotId: i.slotId ?? null, ideaId: i.spec.idea_id ?? null, format: i.spec.format,
         caption: rendered.caption, spec: i.spec, sourceRef, status: 'failed', error: msg, agentId: i.agentId ?? null,
@@ -201,7 +202,7 @@ export async function publishPlatformNow(d: PublishPlatformDeps, input: PublishP
       warnings: [...lint.warnings.map((w) => w.message), ...published.warnings], lint,
     };
   } catch (err: any) {
-    return { error: 'publish_failed', details: String(err?.message ?? err).slice(0, 1000) };
+    return { error: 'publish_failed', details: errText(err).slice(0, 1000) };
   } finally {
     if (prepared) await prepared.cleanup();
   }
@@ -257,7 +258,7 @@ export async function publishApprovedPlatform(d: PublishPlatformDeps, i: Approve
     try { d.recordPublish?.(`${platform}:${ref.id}`); } catch { /* throttle bookkeeping only */ }
     return { ok: true, externalId: published.externalId, url: published.url, warnings: published.warnings };
   } catch (err: any) {
-    const msg = String(err?.message ?? err).slice(0, 1000);
+    const msg = errText(err).slice(0, 1000);
     await settle('failed', { error: msg });
     return { error: 'publish_failed', details: msg };
   }

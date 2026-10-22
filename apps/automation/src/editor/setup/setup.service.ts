@@ -19,6 +19,7 @@ import { trackedChannel, type CollectResult } from './setup-posts';
 import { hasPostText, MIN_SPAN_DAYS, MIN_TEXT_POSTS, type SetupPost } from './setup-posts.types';
 import type { SetupExpiry } from './setup-expiry';
 import type { ChannelSetupRepository, SectionState, SetupProposal } from './setup.repository';
+import { errText } from '../../common/err-text';
 
 /**
  * Spec 042: channel setup from history. The queue is `channel_setup_proposals` itself: `analyze` queues proposals, one
@@ -97,7 +98,7 @@ export class ChannelSetupService {
   kick(): void {
     if (this.worker) return;
     this.worker = this.drain()
-      .catch((err) => this.d.log?.(`channel setup worker failed: ${err?.message ?? err}`))
+      .catch((err) => this.d.log?.(`channel setup worker failed: ${errText(err)}`))
       .finally(() => { this.worker = null; });
   }
 
@@ -109,7 +110,7 @@ export class ChannelSetupService {
   /** The editor's minute tick: stuck proposals back to the queue, forgotten ones expire (spec 057), then the worker. */
   async tick(): Promise<void> {
     await this.d.repo.requeueStuck(new Date(this.now().getTime() - STUCK_MS)).catch(() => 0);
-    await this.d.expiry?.sweep().catch((err) => this.d.log?.(`setup expiry sweep failed: ${err?.message ?? err}`));
+    await this.d.expiry?.sweep().catch((err) => this.d.log?.(`setup expiry sweep failed: ${errText(err)}`));
     this.kick();
   }
 
@@ -153,7 +154,7 @@ export class ChannelSetupService {
     try {
       res = await this.runOnboarder(p, collected, state, metrics);
     } catch (err: any) {
-      return this.d.repo.update(p.id, { status: 'failed', reason: `analysis: ${String(err?.message ?? err).slice(0, 300)}` });
+      return this.d.repo.update(p.id, { status: 'failed', reason: `analysis: ${errText(err).slice(0, 300)}` });
     }
     const setup = res.terminalTool === SUBMIT_SETUP_TOOL ? (res.terminalResult as { setup?: unknown } | undefined)?.setup : undefined;
     const parsed = setup ? SubmitSetupInput.safeParse(setup) : null;

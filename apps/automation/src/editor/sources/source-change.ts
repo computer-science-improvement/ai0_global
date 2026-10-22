@@ -1,6 +1,7 @@
 import type { CardSource } from '../card';
 import { feedKey, hostOf, type HostFailures } from '../net/host-failures';
 import type { FeedItem } from '../live/feed-items';
+import { errText as errMessage } from '../../common/err-text';
 
 /**
  * Spec 049 FR-004: a source change the channel agent proposes and the owner applies — replace a failing source, add
@@ -71,7 +72,7 @@ export interface CandidateDeps {
 
 export type CandidateCheck = { ok: true; evidence: string } | { ok: false; error: string; details: string };
 
-const errText = (err: unknown): string => String((err as { message?: string } | null)?.message ?? err).slice(0, 200);
+const errText = (err: unknown): string => errMessage(err).slice(0, 200);
 
 /** Read the candidate once: a live feed with recent items, a page that answers, an api with items, a dataset with rows. */
 export async function checkCandidate(s: Pick<CardSource, 'kind' | 'ref'>, d: CandidateDeps): Promise<CandidateCheck> {

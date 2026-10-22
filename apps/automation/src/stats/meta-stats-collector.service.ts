@@ -10,6 +10,7 @@ import { MetaGraphClient } from '../config/meta-graph.client';
 import { MetaFollowerHistoryRepository } from './meta-follower-history.repository';
 import { MetaAccountInsightsRepository } from './meta-account-insights.repository';
 import { SecretsService } from '../common/crypto/secrets.service';
+import { errText } from '../common/err-text';
 
 @Injectable()
 export class MetaStatsCollectorService {
@@ -74,11 +75,11 @@ export class MetaStatsCollectorService {
               insightDays++;
             }
           } catch (err: any) {
-            this.logger.warn(`Meta collector: insights for ${a.id} failed: ${err.message}`);
+            this.logger.warn(`Meta collector: insights for ${a.id} failed: ${errText(err)}`);
           }
         } catch (err: any) {
-          this.logger.warn(`Meta collector: account ${a.id} failed: ${err.message}`);
-          try { await this.accounts.markVerifyError(a.id, err.message); } catch { /* best-effort */ }
+          this.logger.warn(`Meta collector: account ${a.id} failed: ${errText(err)}`);
+          try { await this.accounts.markVerifyError(a.id, errText(err)); } catch { /* best-effort */ }
         }
       }
       this.logger.log(`Meta collector: ${snaps} follower snapshots, ${insightDays} insight-days across ${n} accounts`);

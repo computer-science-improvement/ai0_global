@@ -18,6 +18,7 @@ import { editPreference, rejectPreference, type OwnerPreference } from './owner-
 import { heldByCritic, type StoredCritic } from '../critic/critic';
 import type { ResourceStyle } from '../post/style/resource-style';
 import type { ApprovalFinding } from '../audit/approval-findings';
+import { errText } from '../../common/err-text';
 
 export interface ApprovalsServiceDeps {
   repo:  ApprovalsRepository;
@@ -155,7 +156,7 @@ export class ApprovalsService {
 
   private async learn(channelKey: string, pref: OwnerPreference | null): Promise<void> {
     if (!pref || !this.d.remember) return;
-    try { await this.d.remember(channelKey, pref); } catch (err: any) { this.d.log?.(`owner preference not saved: ${err?.message ?? err}`); }
+    try { await this.d.remember(channelKey, pref); } catch (err: any) { this.d.log?.(`owner preference not saved: ${errText(err)}`); }
   }
 
   private async require(id: string): Promise<ApprovalItem> {

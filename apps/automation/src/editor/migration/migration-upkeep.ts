@@ -2,6 +2,7 @@ import { Inject, Injectable, Logger } from '@nestjs/common';
 import { Cron } from '@nestjs/schedule';
 import { offerCutovers } from './migration-actions';
 import { STRATEGY_MIGRATION, type StrategyMigrationInfra } from './strategy-migration.controller';
+import { errText } from '../../common/err-text';
 
 /** Daily cutover offers (spec 023 FR-012): a chatless card plus an Inbox item; never a mode change by itself. */
 @Injectable()
@@ -16,7 +17,7 @@ export class StrategyMigrationUpkeep {
       const n = await offerCutovers({ svc: this.m.svc, actions: this.m.actions, inbox: this.m.inbox, pool: this.m.pool });
       if (n) this.logger.log(`strategy cutover offered on ${n} channel(s)`);
     } catch (err: any) {
-      this.logger.warn(`strategy cutover offers failed: ${err?.message ?? err}`);
+      this.logger.warn(`strategy cutover offers failed: ${errText(err)}`);
     }
   }
 }

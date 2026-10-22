@@ -5,6 +5,7 @@ import type { EditorPlansRepository } from '../repo/editor-plans.repository';
 import type { SendResult } from './telegram-editor.publisher';
 import { NEEDS_PREPARE, PreparedPublish } from './prepare-media';
 import type { CrossPostRequest } from './editor-crosspost';
+import { errText } from '../../common/err-text';
 
 export interface PublishSpecDeps {
   plans:         Pick<EditorPlansRepository, 'insertPublication'>;
@@ -71,7 +72,7 @@ export async function prepareAndRender(
     try {
       prep = await d.media.prepare(spec, { channelKey: i.channelKey, slotId: i.mediaKey });
     } catch (err: any) {
-      return { error: 'prepare_failed', details: `${spec.format}: ${err?.message ?? err} — обери інший формат або пропусти слот` };
+      return { error: 'prepare_failed', details: `${spec.format}: ${errText(err)} — обери інший формат або пропусти слот` };
     }
   }
   try {
@@ -116,7 +117,7 @@ export async function sendRendered(
     try {
       mirrorWarnings = await d.crosspost.fanOut({ channelKey, messageId, spec, card, prepared: r.prepared });
     } catch (err: any) {
-      mirrorWarnings = [`crosspost: ${err?.message ?? err}`];
+      mirrorWarnings = [`crosspost: ${errText(err)}`];
     }
   }
   // Spec 033 FR-003: the HTML fallback is recorded with the publish (callers store warnings on the slot).

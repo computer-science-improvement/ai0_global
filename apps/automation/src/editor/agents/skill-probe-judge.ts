@@ -6,6 +6,7 @@ import { resolveModel } from '../llm/model-registry';
 import { readModelContext, type Workspace } from '../llm/workspace';
 import { PROBE_FEATURE } from '../roles/preview-run';
 import type { SideCritic } from './skill-probe.types';
+import { errText } from '../../common/err-text';
 
 /** One side of the comparison, as the judge sees it. */
 export interface JudgeSide {
@@ -127,7 +128,7 @@ export class LlmPairwiseJudge implements PairwiseJudge {
           new Promise<never>((_, reject) => { timer = setTimeout(() => { ctl.abort(); reject(new Error(`judge timed out after ${this.d.timeoutMs ?? JUDGE_TIMEOUT_MS}ms`)); }, this.d.timeoutMs ?? JUDGE_TIMEOUT_MS); }),
         ]);
       } catch (err: any) {
-        error = err?.message ?? String(err);
+        error = errText(err);
         continue;
       } finally {
         if (timer) clearTimeout(timer);

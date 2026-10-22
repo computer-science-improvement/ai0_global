@@ -7,6 +7,7 @@
  */
 
 import { ANTHROPIC_PRICES } from '../llm/model-registry';
+import { errText } from '../../common/err-text';
 
 export const OPENROUTER_MODELS_URL = 'https://openrouter.ai/api/v1/models';
 /** Spec 038: Anthropic's model list (needs the API key). */
@@ -115,7 +116,7 @@ export class ModelCatalog {
       };
     }
     let models: CatalogModel[] = [];
-    try { models = await this.d.fallback(); } catch (err: any) { this.d.log?.(`model catalog fallback failed: ${err?.message ?? err}`); }
+    try { models = await this.d.fallback(); } catch (err: any) { this.d.log?.(`model catalog fallback failed: ${errText(err)}`); }
     return { models, fetchedAt: null, stale: true, source: 'fallback' };
   }
 
@@ -127,7 +128,7 @@ export class ModelCatalog {
     if (!this.inflight) {
       this.inflight = this.fetchOnce()
         .then((models) => { this.good = { models, at: this.now() }; this.failedAt = 0; })
-        .catch((err: any) => { this.failedAt = this.now(); this.d.log?.(`model catalog fetch failed: ${err?.message ?? err}`); })
+        .catch((err: any) => { this.failedAt = this.now(); this.d.log?.(`model catalog fetch failed: ${errText(err)}`); })
         .finally(() => { this.inflight = null; });
     }
     return this.inflight;

@@ -1,6 +1,7 @@
 import type { Pool } from 'pg';
 import { parseResourceRef } from '../agents/agent.types';
 import type { PlatformPostsRepository } from './platform-posts.repository';
+import { errText } from '../../common/err-text';
 
 export interface PostMetrics { views?: number | null; reach?: number | null; likes?: number | null; comments?: number | null; shares?: number | null; saves?: number | null; extra?: unknown }
 
@@ -74,7 +75,7 @@ export class PlatformStatsCollector {
         posts++;
       } catch (err: any) {
         failed++;
-        this.d.log?.(`metrics ${p.resourceRef} post ${p.id}: ${err?.message ?? err}`);
+        this.d.log?.(`metrics ${p.resourceRef} post ${p.id}: ${errText(err)}`);
       }
     }
     return { posts, failed };
@@ -115,7 +116,7 @@ export class PlatformStatsCollector {
           const f = await this.d.tiktokFollowers(r.id);
           if (f != null) { await this.d.posts.upsertDaily(`tiktok:${r.id}`, r.day, { followers: f }); n++; }
         } catch (err: any) {
-          this.d.log?.(`tiktok followers ${r.id}: ${err?.message ?? err}`);
+          this.d.log?.(`tiktok followers ${r.id}: ${errText(err)}`);
         }
       }
     }
@@ -124,9 +125,9 @@ export class PlatformStatsCollector {
 
   async run(): Promise<{ posts: number; failed: number; resources: number }> {
     let resources = 0;
-    try { resources = await this.rollupDaily(); } catch (err: any) { this.d.log?.(`daily rollup failed: ${err?.message ?? err}`); }
+    try { resources = await this.rollupDaily(); } catch (err: any) { this.d.log?.(`daily rollup failed: ${errText(err)}`); }
     let r = { posts: 0, failed: 0 };
-    try { r = await this.collectPosts(); } catch (err: any) { this.d.log?.(`post metrics failed: ${err?.message ?? err}`); }
+    try { r = await this.collectPosts(); } catch (err: any) { this.d.log?.(`post metrics failed: ${errText(err)}`); }
     return { ...r, resources };
   }
 }

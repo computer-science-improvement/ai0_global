@@ -6,6 +6,7 @@ import type { Lookup } from '../net/ssrf-guard';
 import { ledgerResource } from '../../data/content-ledger';
 import { containment, similarity } from '../post/similarity';
 import type { LiveCandidate, LiveScan, LiveSpec } from './live-slot';
+import { errText } from '../../common/err-text';
 
 /**
  * Feed items for live slots and the news watch (spec 034 FR-010/FR-011): read a feed, compute each
@@ -52,7 +53,7 @@ export async function readFeed(url: string, now: Date, http: HttpSeams = {}): Pr
   try {
     feed = await parser.parseString(res.body);
   } catch (err: any) {
-    throw new FeedParseError(String(err?.message ?? err).slice(0, 200));
+    throw new FeedParseError(errText(err).slice(0, 200));
   }
   return {
     title: feed.title ?? null,

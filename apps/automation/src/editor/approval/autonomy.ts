@@ -4,6 +4,7 @@ import { parseResourceRef } from '../agents/agent.types';
 import type { ChannelMode, EditorCard } from '../card';
 import type { ApprovalStats, ApprovalStatsReport, ApprovalStatsRepository } from './approval-stats';
 import { heldByCritic, type StoredCritic } from '../critic/critic';
+import { errText } from '../../common/err-text';
 
 /**
  * Switching a resource between approval and autonomous work (spec 031 FR-010).
@@ -218,7 +219,7 @@ export class ReadyForAutonomy {
         await this.d.file(card, report.totals);
         filed.push(card.channelKey);
       } catch (err: any) {
-        this.d.log?.(`ready-for-autonomy check of ${card.channelKey} failed: ${err?.message ?? err}`);
+        this.d.log?.(`ready-for-autonomy check of ${card.channelKey} failed: ${errText(err)}`);
       }
     }
     return filed;

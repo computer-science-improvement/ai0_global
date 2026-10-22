@@ -1,6 +1,7 @@
 import { createHash, randomBytes } from 'crypto';
 import type { Pool } from 'pg';
 import { parseResourceRef } from '../agents/agent.types';
+import { errText } from '../../common/err-text';
 
 export interface TrackedLink {
   id:           string;
@@ -93,7 +94,7 @@ export class TrackedLinks {
         return { link: toLink(rows[0]), url, tracked: true };
       } catch (err: any) {
         const fallback = o.username ? `https://t.me/${o.username.replace(/^@/, '')}` : t.id.startsWith('@') ? `https://t.me/${t.id.slice(1)}` : null;
-        return { link: null, url: fallback, tracked: false, note: `invite link unavailable (${err?.message ?? err}) — public link, joins unknown` };
+        return { link: null, url: fallback, tracked: false, note: `invite link unavailable (${errText(err)}) — public link, joins unknown` };
       }
     }
     if (!o.targetUrl) return { link: null, url: null, tracked: false, note: 'no public URL for the target' };

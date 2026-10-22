@@ -1,6 +1,7 @@
 import axios from 'axios';
 import type { TgHtmlMessage, TgMessage, TgRichMessage, UrlButton } from '../post/render-telegram';
 import { classifyRichRejection, type RichCapability } from './rich-capability';
+import { errText } from '../../common/err-text';
 
 export interface TelegramChannelResolver {
   resolveChannel(channelKey: string): { chatId: string; botToken: string };
@@ -85,7 +86,7 @@ export class TelegramEditorPublisher {
           ids.push(await this.sendOne(base, chatId, m, reply));
         }
       } catch (err: any) {
-        const reason = err?.response?.data?.description ?? err?.message ?? String(err);
+        const reason = err?.response?.data?.description ?? errText(err);
         if (!ids.length) throw new Error(`Telegram ${m.method} failed: ${reason}`);
         return { messageIds: ids, partialError: `${m.method}: ${reason}`, ...fallback };
       }
@@ -167,7 +168,7 @@ export class TelegramEditorPublisher {
     if (!r) throw err;
     this.opts.log?.(`${channelKey}: ${method} rejected (${r.kind}: ${r.reason}) — retrying once with the HTML fallback`);
     if (r.kind === 'unsupported' && this.opts.richCapability) {
-      await this.opts.richCapability.markUnsupported(channelKey, this.now).catch((e) => this.opts.log?.(`${channelKey}: rich capability flag not saved: ${e?.message ?? e}`));
+      await this.opts.richCapability.markUnsupported(channelKey, this.now).catch((e) => this.opts.log?.(`${channelKey}: rich capability flag not saved: ${errText(e)}`));
     }
     return r.reason;
   }

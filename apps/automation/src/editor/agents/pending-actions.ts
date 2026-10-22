@@ -1,4 +1,5 @@
 import type { Pool } from 'pg';
+import { errText } from '../../common/err-text';
 
 export type ActionStatus = 'pending' | 'applied' | 'discarded' | 'expired' | 'failed';
 
@@ -133,7 +134,7 @@ export class PendingActionsService {
       if (err instanceof KeepPendingError) throw err;
       const msg = typeof err?.response === 'object' && err.response
         ? JSON.stringify(err.response)
-        : String(err?.message ?? err);
+        : errText(err);
       // Validation failures (stale rename, taken handle…) leave the card failed with the reason.
       return (await this.repo.decide(id, 'failed', null, msg.slice(0, 1000))) ?? a;
     }

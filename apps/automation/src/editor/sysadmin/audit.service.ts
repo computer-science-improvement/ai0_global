@@ -4,6 +4,7 @@ import type { Fix, Finding } from './audit.types';
 import { AuditRepository, reportCounts, type AuditReport, type ReportFinding, type ReportTrigger } from './audit-report';
 import type { AuditPass } from './auditor-runner';
 import { clip } from './audit-text';
+import { errText } from '../../common/err-text';
 
 /**
  * Spec 055 FR-003: run an audit, store it, and apply or dismiss its findings. The fixes are a closed list; each one is a call
@@ -83,7 +84,7 @@ export class AuditService {
       const report = await this.d.repo.finish(row.id, { findings, summary: pass.summary, llm: pass.llm, costUsd: pass.llm.costUsd }, this.now());
       return report ? { ok: true, report } : { ok: false, error: 'run_failed', details: 'the report row is gone' };
     } catch (err: any) {
-      const details = clip(String(err?.message ?? err), 300);
+      const details = clip(errText(err), 300);
       this.d.log?.(`audit run failed: ${details}`);
       await this.d.repo.fail(row.id, details, this.now()).catch(() => undefined);
       return { ok: false, error: 'run_failed', details };
@@ -116,7 +117,7 @@ export class AuditService {
     try {
       result = await this.runFix(f.fix);
     } catch (err: any) {
-      const msg = clip(String(err?.response?.error ?? err?.message ?? err), 200);
+      const msg = clip(String(err?.response?.error ?? errText(err)), 200);
       const detail = err?.response?.details ? `: ${clip(String(err.response.details), 150)}` : '';
       const failed = await this.d.repo.updateFinding(reportId, key, (cur) => ({ ...cur, status: 'failed', result: `${msg}${detail}`, at: this.now().toISOString() }));
       return { ok: false, error: 'fix_failed', details: `${msg}${detail}`, report: failed ?? report };

@@ -1,6 +1,8 @@
 // Spec 012: the owner bot's Telegram text. Ukrainian, as the owner's alerts already are; HTML parse mode, so every
 // dynamic piece goes through `esc`.
 
+import { errText } from '../../common/err-text';
+
 export const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
 /** At most `n` characters, cut at a word when one is near, with an ellipsis. */
@@ -42,5 +44,5 @@ export function errorText(err: any): string {
   if (typeof details === 'string' && details) return details;
   if (Array.isArray(details) && details.length) return details.map(String).join('; ');
   if (typeof body?.error === 'string') return body.error;
-  return String(err?.message ?? err);
+  return errText(err);
 }

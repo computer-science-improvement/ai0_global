@@ -2,6 +2,7 @@ import { createHash } from 'node:crypto';
 import type { OwnerInbox } from '../agents/owner-inbox';
 import { SETUP_SECTIONS } from './setup-analysis';
 import type { ChannelSetupRepository, SetupProposal } from './setup.repository';
+import { errText } from '../../common/err-text';
 
 /**
  * Spec 057: proposals that nobody applied close by themselves. A `ready` / `partially_applied` proposal untouched for
@@ -76,7 +77,7 @@ export class SetupExpiry {
       try {
         await this.d.inbox.postOnce({ kind: SETUP_EXPIRED_KIND, severity: 'info', ...expiryNote(expired, ttl) });
       } catch (err: any) {
-        this.d.log?.(`setup expiry note failed: ${err?.message ?? err}`);
+        this.d.log?.(`setup expiry note failed: ${errText(err)}`);
       }
     }
     return expired;

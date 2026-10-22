@@ -11,6 +11,7 @@ import type {
   MapAlert, MapBudget, MapEvent, MapInfra, MapNetwork, MapResource, MapSnapshot, MapUnit, ResourceHealthView,
 } from './map.types';
 import { errorCode, stateOfRole, unitState, type UnitFacts } from './unit-state';
+import { errText } from '../../common/err-text';
 
 /**
  * Spec 056 FR-001: builds the network map snapshot from the services the engine already has — the resource catalog,
@@ -171,7 +172,7 @@ export class MapService {
     if (!this.d.health) return null;
     const now = this.now().getTime();
     if (this.healthCache && now - this.healthCache.at < HEALTH_CACHE_MS) return this.healthCache.health;
-    const health = await this.d.health().catch((err) => { this.d.log?.(`map: network health unavailable: ${err?.message ?? err}`); return null; });
+    const health = await this.d.health().catch((err) => { this.d.log?.(`map: network health unavailable: ${errText(err)}`); return null; });
     this.healthCache = { at: now, health };
     return health;
   }

@@ -1,6 +1,7 @@
 import { escapeHtml } from '../post/inline-markup';
 import { parseResourceRef } from '../agents/agent.types';
 import type { RenderedPlatformPost } from './platform-spec';
+import { errText } from '../../common/err-text';
 
 type MetaPlatform = 'instagram' | 'facebook' | 'threads';
 
@@ -58,7 +59,7 @@ export class ResourcePublisher {
           ? await this.d.dispatcher.publishCarousel(ref.platform, { text, source: r.link ?? '', tags: [] }, r.imageUrls, target)
           : await this.d.dispatcher.publish(ref.platform, { text, imageUrl: r.imageUrls[0], source: r.link ?? '', tags: [] }, target);
         if (ref.platform === 'instagram' && r.firstComment && this.d.igComment) {
-          try { await this.d.igComment(id, acct.token, r.firstComment); } catch (err: any) { warnings.push(`first_comment: ${err?.message ?? err}`); }
+          try { await this.d.igComment(id, acct.token, r.firstComment); } catch (err: any) { warnings.push(`first_comment: ${errText(err)}`); }
         }
         const url = ref.platform === 'facebook' ? `https://www.facebook.com/${id}`
           : ref.platform === 'threads' && acct.username ? `https://www.threads.net/@${acct.username}/post/${id}` : null;

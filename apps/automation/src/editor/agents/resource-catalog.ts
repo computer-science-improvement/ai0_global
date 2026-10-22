@@ -1,6 +1,7 @@
 import type { Pool } from 'pg';
 import { parseResourceRef, Platform, resourceRef } from './agent.types';
 import type { HealthState } from './resource-profile';
+import { errText } from '../../common/err-text';
 
 export interface ResourceListItem {
   ref:       string;
@@ -118,7 +119,7 @@ export class ResourceCatalog {
     try {
       if (parsed.platform === 'telegram') {
         return this.d.telegramAccess
-          ? await this.d.telegramAccess(parsed.id).catch((e: any) => ({ state: 'unknown' as const, detail: String(e?.message ?? e) }))
+          ? await this.d.telegramAccess(parsed.id).catch((e: any) => ({ state: 'unknown' as const, detail: errText(e) }))
           : { state: 'unknown', detail: 'access check unavailable' };
       }
       if (parsed.platform === 'instagram' || parsed.platform === 'facebook' || parsed.platform === 'threads') {
@@ -153,7 +154,7 @@ export class ResourceCatalog {
       const { rows } = await this.d.pool.query(`SELECT active, expires_at FROM youtube_accounts WHERE id::text = $1`, [parsed.id]);
       return !rows[0] ? { state: 'no_access', detail: 'account not found' } : { state: 'unknown', detail: 'YouTube — 019b' };
     } catch (err: any) {
-      return { state: 'unknown', detail: String(err?.message ?? err) };
+      return { state: 'unknown', detail: errText(err) };
     }
   }
 
@@ -222,7 +223,7 @@ export class ResourceCatalog {
 export function makeTelegramAccessCheck(resolve: (key: string) => { chatId: string | number; botToken: string }, fetchImpl: typeof fetch = fetch) {
   return async (channelKey: string): Promise<AccessCheck> => {
     let ch: { chatId: string | number; botToken: string };
-    try { ch = resolve(channelKey); } catch (err: any) { return { state: 'no_access', detail: `channel not configured: ${err?.message ?? err}` }; }
+    try { ch = resolve(channelKey); } catch (err: any) { return { state: 'no_access', detail: `channel not configured: ${errText(err)}` }; }
     const call = async (method: string, params: Record<string, unknown>) => {
       const res = await fetchImpl(`https://api.telegram.org/bot${ch.botToken}/${method}`, {
         method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(params), signal: AbortSignal.timeout(10_000),
@@ -240,7 +241,7 @@ export function makeTelegramAccessCheck(resolve: (key: string) => { chatId: stri
       if (m.can_post_messages === false) return { state: 'no_access', detail: 'the bot is an admin without the right to post' };
       return { state: 'ok', detail: `bot @${me.result.username} is an admin with the right to post` };
     } catch (err: any) {
-      return { state: 'unknown', detail: `Bot API unavailable: ${err?.message ?? err}` };
+      return { state: 'unknown', detail: `Bot API unavailable: ${errText(err)}` };
     }
   };
 }

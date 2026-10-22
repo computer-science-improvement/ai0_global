@@ -1,5 +1,6 @@
 import type { Pool } from 'pg';
 import { classifySql, wrapWithLimit } from './readonly-sql';
+import { errText } from '../../common/err-text';
 
 export interface ReadonlyResult {
   columns:  string[];
@@ -40,7 +41,7 @@ export class ReadonlyQueryService {
         rowCount: res.rowCount ?? res.rows.length,
       };
     } catch (err: any) {
-      const details = [err?.message ?? String(err), err?.hint].filter(Boolean).join(' — ');
+      const details = [errText(err), err?.hint].filter(Boolean).join(' — ');
       if (err?.code !== UNDEFINED_COLUMN) return { error: 'sql_failed', details };
       // Spec 046 FR-008: a guessed column gets the real columns of the tables the query names.
       try { await client.query('ROLLBACK'); } catch { /* rolled back below anyway */ }

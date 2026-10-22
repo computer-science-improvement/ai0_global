@@ -14,6 +14,8 @@ export const DAILY_SELECT = `
          COALESCE(SUM(cost_usd) FILTER (WHERE shadow), 0) AS shadow_usd
     FROM llm_usage`;
 const GROUP_BY = `GROUP BY 1, 2, 3, 4, 5, 6, 7`;
+/** Key of the transaction-scoped advisory lock of the rollup: the five-minute job and the midnight cron fire in the same second (spec 064 FR-001). */
+export const ROLLUP_LOCK_KEY = 6_400_029_001;
 
 /**
  * Daily rollup and raw retention of the LLM ledger (spec 029 FR-007).
@@ -32,6 +34,8 @@ export class LlmUsageRollup {
     const client = await this.pool.connect();
     try {
       await client.query('BEGIN');
+      // Serialises concurrent rollups: the second waits for the first to commit, then recomputes on top of it.
+      await client.query('SELECT pg_advisory_xact_lock($1)', [ROLLUP_LOCK_KEY]);
       await client.query(`DELETE FROM llm_usage_daily WHERE day > ${KYIV_TODAY} - $1::int`, [days]);
       const { rowCount } = await client.query(
         `INSERT INTO llm_usage_daily (day, provider, model, feature, root_agent_id, role, resource_ref, calls, errors,

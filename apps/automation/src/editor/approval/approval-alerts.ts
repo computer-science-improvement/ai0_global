@@ -2,6 +2,7 @@ import type { EditorCard } from '../card';
 import { localDate } from '../roles/time';
 import { addDays, writeAt } from './approval-timing';
 import type { ApprovalsRepository } from './approvals.repository';
+import { errText } from '../../common/err-text';
 
 export interface ApprovalAlertsDeps {
   repo:   Pick<ApprovalsRepository, 'settledBatches' | 'plannedOfBatch' | 'claimAlert' | 'releaseAlert'>;
@@ -44,7 +45,7 @@ export class ApprovalAlerts {
       } catch (err: any) {
         // Not delivered: release the claim so the next tick tries again.
         await this.d.repo.releaseAlert(b.channelKey, b.batchDate).catch(() => {});
-        this.d.log?.(`approval alert for ${b.channelKey} ${b.batchDate} failed: ${err?.message ?? err}`);
+        this.d.log?.(`approval alert for ${b.channelKey} ${b.batchDate} failed: ${errText(err)}`);
       }
     }
     return sent;

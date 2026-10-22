@@ -6,6 +6,7 @@ import { MirrorPlatform, MirrorPost, renderMeta } from '../post/render-meta';
 import type { CrossPostInput, CrossPostOutcome, RenderedCrossPost } from '../../publishers/cross-post.service';
 import type { FanOutOutcome, GroupContent } from '../../common/content-strategy/group-fanout.service';
 import type { PublishDestination } from '../../common/content-strategy/publish-destination';
+import { errText } from '../../common/err-text';
 
 export interface EditorCrossPostDeps {
   /** CrossPostService: the channel's meta_crosspost_targets (what every Telegram strategy uses). */
@@ -70,7 +71,7 @@ export class EditorCrossPoster {
     try {
       record(await this.d.crossPost.afterPublish({ channelKey: r.channelKey, messageId: r.messageId, render }));
     } catch (err: any) {
-      warnings.push(`crosspost: ${err?.message ?? err}`);
+      warnings.push(`crosspost: ${errText(err)}`);
     }
 
     try {
@@ -83,7 +84,7 @@ export class EditorCrossPoster {
         render: (platform) => (platform === 'telegram' ? null : render(platform, link)),
       }, async () => {}));
     } catch (err: any) {
-      warnings.push(`crosspost: group: ${err?.message ?? err}`);
+      warnings.push(`crosspost: group: ${errText(err)}`);
     }
     return warnings;
   }

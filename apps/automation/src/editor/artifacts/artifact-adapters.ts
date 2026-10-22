@@ -12,6 +12,7 @@ import type { ArtifactVersionsRepository } from './artifact-versions.repository'
 import type {
   ArtifactAction, ArtifactEditor, ArtifactRow, ArtifactType, ArtifactVersionMeta,
 } from './artifact.types';
+import { errText } from '../../common/err-text';
 
 /**
  * Spec 048 FR-001: one adapter per artifact type over its own table. Lists never write; a single read records a body
@@ -70,7 +71,7 @@ export interface ArtifactAdapter {
 export function errorOf(err: any): { error: string; details?: unknown } {
   const r = typeof err?.getResponse === 'function' ? err.getResponse() : null;
   if (r && typeof r === 'object') return { error: String((r as any).error ?? 'invalid'), details: (r as any).details ?? (r as any).issues ?? (r as any).message };
-  return { error: 'failed', details: String(err?.message ?? err) };
+  return { error: 'failed', details: errText(err) };
 }
 
 async function tryEdit(fn: () => Promise<unknown>): Promise<AdapterEdit> {

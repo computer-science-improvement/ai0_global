@@ -8,6 +8,7 @@ import type { EvergreenRequest } from '../roles/editor-runner.service';
 import { parseResourceRef } from '../agents/agent.types';
 import { localDate, localTimeLabel, zonedToUtc } from '../roles/time';
 import { isRescued, PublishProbe, type SlotFailure } from './fallback-ladder';
+import { errText } from '../../common/err-text';
 
 /**
  * Spec 037 FR-010 (T10): the evergreen step of the fallback ladder (decision 9, owner 15.10: allowed).
@@ -157,7 +158,7 @@ export class EvergreenStep {
     const after = await this.d.plans.getSlot(slot.id).catch(() => null);
     if (after && isRescued(after.status) && isEvergreenSpec(after.postSpec) && this.d.inbox) {
       await this.d.inbox.postOnce(evergreenInboxItem({ slot, card, failure, status: after.status }))
-        .catch((e) => this.d.log?.(`evergreen inbox note failed: ${e?.message ?? e}`));
+        .catch((e) => this.d.log?.(`evergreen inbox note failed: ${errText(e)}`));
     }
     return res;
   }

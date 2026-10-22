@@ -1,5 +1,6 @@
 import type { Pool } from 'pg';
 import type { OwnerInbox } from '../agents/owner-inbox';
+import { errText } from '../../common/err-text';
 
 /**
  * Offers to convert a legacy auto-duplicate network into independent resources
@@ -172,7 +173,7 @@ export class NetworkOffers {
         else if (step === 'reoffer' && await this.reoffer(c)) done.push({ groupId: c.groupId, step });
         else if (step === 'close_switched' && await this.decide(c.groupId, 'switched', 'mode_change')) done.push({ groupId: c.groupId, step });
       } catch (err: any) {
-        this.d.log?.(`network offer for "${c.groupName}" failed: ${err?.message ?? err}`);
+        this.d.log?.(`network offer for "${c.groupName}" failed: ${errText(err)}`);
       }
     }
     return done;

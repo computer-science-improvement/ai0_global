@@ -5,6 +5,7 @@ import type { EditorPlansRepository, EditorSlot } from '../repo/editor-plans.rep
 import type { ResourceCatalog } from '../agents/resource-catalog';
 import { renderProfile, ResourceProfilesRepository } from '../agents/resource-profile';
 import { slotRef } from '../pauses/resource-pauses';
+import { errText } from '../../common/err-text';
 
 export interface PromoExecutorDeps {
   plans:    Pick<EditorPlansRepository, 'updateSlot' | 'getSlot'> & Partial<Pick<EditorPlansRepository, 'plannedPromoBefore' | 'claimPromoSlot'>>;
@@ -63,10 +64,10 @@ export class PromoExecutor {
       try {
         const id = await this.d.forward(slot.channelKey, m[1], Number(m[2]));
         await this.d.plans.updateSlot(slot.id, { status: 'published', renderedPreview: `↪️ Forwarded ${m[1]}/${m[2]} → ${id}`, error: null });
-        if (this.d.onForwarded) await this.d.onForwarded(slot, m[1], Number(m[2]), id).catch((e) => this.d.log?.(`repost row of ${slot.id}: ${e?.message ?? e}`));
+        if (this.d.onForwarded) await this.d.onForwarded(slot, m[1], Number(m[2]), id).catch((e) => this.d.log?.(`repost row of ${slot.id}: ${errText(e)}`));
         return true;
       } catch (err: any) {
-        const msg = String(err?.message ?? err);
+        const msg = errText(err);
         await this.d.plans.updateSlot(slot.id, { status: /not found|message to forward/i.test(msg) ? 'skipped' : 'failed', error: /not found|message to forward/i.test(msg) ? `source_missing: ${msg}` : msg });
         return false;
       }
@@ -113,7 +114,7 @@ export class PromoExecutor {
       try {
         if (await this.publishPromo(claimed, now)) written++;
       } catch (err: any) {
-        this.d.log?.(`promo slot ${s.id} (write-ahead) failed: ${err?.message ?? err}`);
+        this.d.log?.(`promo slot ${s.id} (write-ahead) failed: ${errText(err)}`);
       }
     }
     return written;

@@ -10,6 +10,7 @@ import {
   type AuditRenderCard, type AuditRow, type AuditTarget,
 } from './post-audit';
 import { AUDIT_FLAGS, catalogueEntry, type AuditFlag, type FindingSection } from './code-catalogue';
+import { errText } from '../../common/err-text';
 
 /**
  * Spec 037 FR-014 (T14): the post audit against the DB. Daily (from the editor scheduler's minute tick, throttled)
@@ -343,7 +344,7 @@ export class PostAuditService {
       try {
         out.push(await this.auditResource(ref, now));
       } catch (e: any) {
-        const error = String(e?.message ?? e);
+        const error = errText(e);
         this.d.log?.(`post audit of ${ref} failed: ${error}`);
         await this.recordError(ref, now, error);
         out.push({ resource: ref, posts: 0, findings: 0, rulesHash: this.hash, error });

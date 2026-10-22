@@ -1,4 +1,5 @@
 import type { LaunchBotState } from './launch.types';
+import { errText } from '../../common/err-text';
 
 /**
  * Spec 052 FR-002 `bot_admin`: the Bot API check of a channel being launched — `getMe`, `getChat` (title, description)
@@ -11,7 +12,7 @@ export function makeLaunchBotCheck(
 ) {
   return async (channelKey: string): Promise<LaunchBotState> => {
     let ch: { chatId: string | number; botToken: string };
-    try { ch = resolve(channelKey); } catch (err: any) { return { state: 'unknown', detail: String(err?.message ?? err).slice(0, 200), bot: null }; }
+    try { ch = resolve(channelKey); } catch (err: any) { return { state: 'unknown', detail: errText(err).slice(0, 200), bot: null }; }
     const call = async (method: string, params: Record<string, unknown>) => {
       const res = await fetchImpl(`https://api.telegram.org/bot${ch.botToken}/${method}`, {
         method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(params), signal: AbortSignal.timeout(10_000),
@@ -39,7 +40,7 @@ export function makeLaunchBotCheck(
       if (m.can_post_messages === false) return { state: 'no_access', bot, detail: `${bot} is an administrator without the right to post messages`, ...info };
       return { state: 'ok', bot, detail: `${bot} is an administrator and may post`, ...info };
     } catch (err: any) {
-      return { state: 'unknown', bot: null, detail: `Bot API unavailable: ${String(err?.message ?? err).slice(0, 160)}` };
+      return { state: 'unknown', bot: null, detail: `Bot API unavailable: ${errText(err).slice(0, 160)}` };
     }
   };
 }

@@ -3,6 +3,8 @@ import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import axios from 'axios';
 import type { MetaPlatform } from './meta-accounts.repository';
+import { MetaInsightBackoff, isMetricUnsupported } from './meta-insight-backoff';
+import { errText } from '../common/err-text';
 import { INSIGHT_METRICS, mergeInsightValues, parseMetricValues, type InsightKey, type MetaInsightDay, type DayValue } from './meta-insights';
 
 export interface MetaVerifyResult {
@@ -46,6 +48,8 @@ function redactToken(s: string, token: string): string {
 @Injectable()
 export class MetaGraphClient {
   private readonly logger = new Logger(MetaGraphClient.name);
+  /** Insight metrics a platform answered "not supported" for, per account (spec 064 FR-010). */
+  private readonly insightBackoff = new MetaInsightBackoff();
 
   constructor(private readonly config: ConfigService) {}
 
@@ -101,7 +105,7 @@ export class MetaGraphClient {
         resolvedTargetId: isThreads && d.id != null ? String(d.id) : null,
       };
     } catch (err: any) {
-      const desc = err?.response?.data?.error?.message ?? err?.message ?? 'unknown';
+      const desc = err?.response?.data?.error?.message || errText(err);
       throw new Error(`verify failed: ${redactToken(String(desc), token)}`);
     }
   }
@@ -161,7 +165,7 @@ export class MetaGraphClient {
         isValid:             d.is_valid ?? false,
       };
     } catch (err: any) {
-      this.logger.debug(`inspectToken failed: ${redactToken(String(err?.message ?? err), token)}`);
+      this.logger.debug(`inspectToken failed: ${redactToken(errText(err), token)}`);
       return null;
     }
   }
@@ -186,7 +190,7 @@ export class MetaGraphClient {
       const expiresInSec = typeof d.expires_in === 'number' ? d.expires_in : 0;
       return { accessToken, expiresInSec };
     } catch (err: any) {
-      const desc = err?.response?.data?.error?.message ?? err?.message ?? 'unknown';
+      const desc = err?.response?.data?.error?.message || errText(err);
       throw new Error(`refreshThreadsToken failed: ${redactToken(String(desc), token)}`);
     }
   }
@@ -211,6 +215,7 @@ export class MetaGraphClient {
     const byMetric: Partial<Record<InsightKey, DayValue[]>> = {};
     for (const key of Object.keys(metrics) as (keyof typeof metrics)[]) {
       const metric = metrics[key]!;
+      if (this.insightBackoff.skipped(platform, targetId, metric)) continue;
       try {
         const res = await axios.get(`${base}/${ver}/${encodeURIComponent(targetId)}/${edge}`, {
           params: { metric, period: 'day', since, until, access_token: token },
@@ -218,10 +223,17 @@ export class MetaGraphClient {
         });
         byMetric[key] = parseMetricValues(res.data);
       } catch (err: any) {
+        if (isMetricUnsupported(err)) {
+          // Spec 064 FR-010: remembered for 7 days; one warning a day instead of one failure an hour.
+          if (this.insightBackoff.remember(platform, targetId, metric)) {
+            this.logger.warn(`fetchInsights: metric "${metric}" is not supported for ${platform}/${targetId} - not requested for 7 days`);
+          }
+          continue;
+        }
         // metric unavailable on this platform/version → leave it null for all days.
         // Debug (not warn): this is expected degradation, but logging it lets us
         // tell "unsupported metric" apart from a transient error or a request bug.
-        this.logger.debug(`fetchInsights: metric "${metric}" failed for ${platform}/${targetId}: ${redactToken(String(err?.message ?? err), token)}`);
+        this.logger.debug(`fetchInsights: metric "${metric}" failed for ${platform}/${targetId}: ${redactToken(errText(err), token)}`);
       }
     }
     return mergeInsightValues(byMetric);
@@ -244,7 +256,7 @@ export class MetaGraphClient {
       const v = res.data?.data?.[0]?.total_value?.value;
       return typeof v === 'number' ? v : null;
     } catch (err: any) {
-      this.logger.debug(`fetchThreadsFollowers failed for ${targetId}: ${redactToken(String(err?.message ?? err), token)}`);
+      this.logger.debug(`fetchThreadsFollowers failed for ${targetId}: ${redactToken(errText(err), token)}`);
       return null;
     }
   }

@@ -12,6 +12,7 @@ import { localDate, zonedToUtc } from '../roles/time';
 import type { ApprovalsRepository } from './approvals.repository';
 import { PAUSED_ERROR, slotRef } from '../pauses/resource-pauses';
 import { specRefs } from '../../data/content-ledger';
+import { errText } from '../../common/err-text';
 
 export interface ApprovalPublisherDeps {
   repo:     Pick<ApprovalsRepository, 'claimApprovedDue' | 'publishedSource' | 'publishedTexts' | 'cancelPlatformPosts'>;
@@ -60,7 +61,7 @@ export class ApprovalPublisher {
         r = await this.publishOne(slot, now);
       } catch (err: any) {
         r = 'failed';
-        await this.fail(slot, `publish failed: ${err?.message ?? err}`);
+        await this.fail(slot, `publish failed: ${errText(err)}`);
       }
       out[r]++;
       if (this.d.onSlotDone) await this.d.onSlotDone(slot).catch(() => {});
@@ -96,10 +97,10 @@ export class ApprovalPublisher {
       try {
         const id = await this.d.forward(slot.channelKey, render.fromKey, render.messageId);
         await this.d.plans.updateSlot(slot.id, { status: 'published', renderedPreview: `↪️ Forwarded ${render.fromKey}/${render.messageId} → ${id}`, error: null });
-        if (this.d.onForwarded) await this.d.onForwarded(slot, render.fromKey, render.messageId, id).catch((e) => this.d.log?.(`repost row of ${slot.id}: ${e?.message ?? e}`));
+        if (this.d.onForwarded) await this.d.onForwarded(slot, render.fromKey, render.messageId, id).catch((e) => this.d.log?.(`repost row of ${slot.id}: ${errText(e)}`));
         return 'published';
       } catch (err: any) {
-        const msg = String(err?.message ?? err);
+        const msg = errText(err);
         if (/not found|message to forward/i.test(msg)) return this.skip(slot, `source_missing: ${msg}`.slice(0, 2000));
         return this.fail(slot, msg);
       }
@@ -163,7 +164,7 @@ export class ApprovalPublisher {
       }
       return 'published';
     } catch (err: any) {
-      return this.fail(slot, String(err?.message ?? err));
+      return this.fail(slot, errText(err));
     }
   }
 }

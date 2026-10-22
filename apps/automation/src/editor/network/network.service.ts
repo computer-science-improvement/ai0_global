@@ -14,6 +14,7 @@ import { IDEA_STATUSES, IdeaStatus, NETWORK_MODE_ALIASES, NETWORK_MODES, Network
 import { PlaybookSchema, validatePlaybook } from './playbook';
 import { lockOwnerSeries, normalizePlaybook, seriesSourceCatalog } from './series-edit';
 import type { NetworkOffers } from './network-offers';
+import { errText } from '../../common/err-text';
 
 /** A content_decisions row as the dashboard reads it (spec 024 FR-006/FR-011). */
 function toDecisionView(d: any) {
@@ -80,7 +81,7 @@ export class NetworkService {
     if (!pb) throw new ConflictException({ error: 'not_pending', details: 'this version no longer awaits a decision' });
     if (approve) await this.playbookActive(pb.agentId);
     if (pb.directiveId && this.d.onPlaybookDecided) {
-      await this.d.onPlaybookDecided(pb, approve).catch((err) => this.d.log?.(`strategy directive after the playbook decision failed: ${err?.message ?? err}`));
+      await this.d.onPlaybookDecided(pb, approve).catch((err) => this.d.log?.(`strategy directive after the playbook decision failed: ${errText(err)}`));
     }
     return { playbook: pb };
   }
@@ -106,7 +107,7 @@ export class NetworkService {
 
   /** Spec 024 FR-010: a legacy group offered without a playbook is offered again once its first playbook is active. */
   private async playbookActive(agentId: string): Promise<void> {
-    await this.d.offers?.onPlaybookActive(agentId).catch((err) => this.d.log?.(`network offer after playbook failed: ${err?.message ?? err}`));
+    await this.d.offers?.onPlaybookActive(agentId).catch((err) => this.d.log?.(`network offer after playbook failed: ${errText(err)}`));
   }
 
   /** Spec 024 FR-010: every offer to convert a legacy network, with the owner's answer. */
@@ -135,7 +136,7 @@ export class NetworkService {
     const { card } = await this.orch(handle);
     const p = z.object({ brief: z.string().max(4000).optional() }).safeParse(body ?? {});
     if (!p.success) throw new BadRequestException({ error: 'invalid_body' });
-    void this.d.rebuild(card, p.data.brief ?? (card.brief || null)).catch((err) => this.d.log?.(`playbook rebuild failed: ${err?.message ?? err}`));
+    void this.d.rebuild(card, p.data.brief ?? (card.brief || null)).catch((err) => this.d.log?.(`playbook rebuild failed: ${errText(err)}`));
     return { started: true };
   }
 
@@ -247,7 +248,7 @@ export class NetworkService {
     await this.d.repo.setGroupMode(group.id, mode, now);
     // Spec 024 FR-010: switching answers an open offer; explicitly choosing legacy keeps it.
     await this.d.offers?.decide(group.id, mode === 'independent' ? 'switched' : 'kept', 'owner')
-      .catch((err) => this.d.log?.(`network offer update failed: ${err?.message ?? err}`));
+      .catch((err) => this.d.log?.(`network offer update failed: ${errText(err)}`));
     const hasPlaybook = !!(await this.d.repo.activePlaybook(agent.id));
     const independent = mode === 'independent';
     await this.d.inbox.post({

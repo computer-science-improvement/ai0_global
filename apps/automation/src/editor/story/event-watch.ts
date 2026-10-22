@@ -2,6 +2,7 @@ import type { Pool } from 'pg';
 import type { InboxItemInput, OwnerInbox } from '../agents/owner-inbox';
 import { eventNote, eventRef, eventsNotCovered, EVENT_COVER_HOURS, type EventStory } from './story-event';
 import { StoryEventRepository } from './story-event.repository';
+import { errText } from '../../common/err-text';
 
 /**
  * Spec 037 FR-003 (T3): the owner's Inbox note about an announced event that got no post within 24 h after it
@@ -56,7 +57,7 @@ export class EventRecapWatch {
       try {
         if ((await this.d.inbox.postOnce(item)) != null) n++;
       } catch (err: any) {
-        this.d.log?.(`event note for ${g.key} failed: ${err?.message ?? err}`);
+        this.d.log?.(`event note for ${g.key} failed: ${errText(err)}`);
       }
     }
     return n;
