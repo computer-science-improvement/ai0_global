@@ -51,7 +51,7 @@ export function ConnectionBanner({ handle }: { handle: string }) {
       </Link>
       {!h.dismissedAt && (
         <button type="button" className="btn-tiny" disabled={dismiss.isPending} onClick={() => dismiss.mutate()}
-          title="No more daily Telegram reminders until the state changes">
+          title="No more daily Telegram reminders for 7 days, or until the state changes">
           Mute reminders
         </button>
       )}

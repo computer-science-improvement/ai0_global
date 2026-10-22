@@ -17,6 +17,9 @@
 -- new), or once per OWNER_NOTE_REPEAT_DAYS as "still"; a newer note of the same subject supersedes the older unread ones.
 -- NULL for every note that does not use the rule.
 --
+-- agent_inbox.actions (spec 060 FR-004): the buttons the note's owner-bot card gets before Read / Open, as a JSON list of
+-- {key, label} (resume / keep / pause series / mute health). NULL for a note without actions.
+--
 -- Additive and idempotent (CI re-applies it).
 
 CREATE TABLE IF NOT EXISTS series_pauses (
@@ -37,6 +40,7 @@ CREATE INDEX IF NOT EXISTS idx_series_pauses_channel ON series_pauses (channel_k
 
 ALTER TABLE agent_inbox ADD COLUMN IF NOT EXISTS subject TEXT;
 ALTER TABLE agent_inbox ADD COLUMN IF NOT EXISTS parts   TEXT[];
+ALTER TABLE agent_inbox ADD COLUMN IF NOT EXISTS actions JSONB;
 CREATE INDEX IF NOT EXISTS idx_agent_inbox_subject ON agent_inbox (subject, created_at DESC) WHERE subject IS NOT NULL;
 
 INSERT INTO schema_migrations (version) VALUES ('093_series_pauses') ON CONFLICT DO NOTHING;

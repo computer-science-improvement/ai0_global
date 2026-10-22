@@ -25,6 +25,7 @@ import { PgRunRecorder } from './harness/run-recorder';
 import { BudgetService, DEFAULT_RUN_HEADROOM_USD, DEFAULT_WRITER_RESERVE_PCT } from './harness/budget.service';
 import { DEFAULT_REJECT_STREAK, SilentDaysWatch } from './silent/silent-days';
 import { DEFAULT_SERIES_SKIP_STREAK, SeriesBreaker } from './series-pause/series-breaker';
+import { SeriesPauseActions } from './series-pause/pause-actions';
 import { SeriesPausesRepository } from './series-pause/series-pauses.repository';
 import { PlannerPauseView } from './series-pause/planner-view';
 import { EVERGREEN_KPI_SAMPLE_FILTER, EvergreenStep, evergreenPerDay } from './silent/evergreen';
@@ -1903,6 +1904,7 @@ export const EDITOR_PROVIDERS = [
           resolver: (orch) => configConflictsOf(pool, repos, infra).resolverFor(orch),
           ruleLint: (text, orch) => ownerRuleLint(infra, text, orch),
           sourceHealth: (key) => sourceHealthOf(pool, repos.channels).forChannel(key),
+          pauses: new SeriesPauseActions({ pool, repo: new SeriesPausesRepository(pool), profiles: infra.profiles }),
           sync: () => infra.registry.run(),
           // Spec 035: agent models are checked against the catalog and priced in llm_prices when new.
           models: { check: (m, cur) => models.checkAgentModel(m, cur), chosen: (m) => models.ensurePrice(m), workspace: () => models.active() },
@@ -2379,6 +2381,8 @@ export const EDITOR_PROVIDERS = [
             ...cardSources({
               pool, approvals, directives: manager, actions: infra.actions, steering, setup, playbooks: network,
               inbox: { markRead: (ids) => infra.inbox.markRead(ids) }, setupSections: SETUP_SECTIONS,
+              // Spec 060 FR-004: Відновити / Залишити на паузі / Пауза серії / Заглушити на 7 днів on an Inbox note's card.
+              noteActions: new SeriesPauseActions({ pool, repo: new SeriesPausesRepository(pool), profiles: infra.profiles }),
             }),
             // Spec 052 FR-002: a launch plan waiting for Start, a Start waiting for the bot.
             launchSource({ pool, launches }),

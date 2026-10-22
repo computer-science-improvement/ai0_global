@@ -105,6 +105,17 @@ export class AgentsController {
     return this.svc.sources(handle);
   }
 
+  /** Spec 060 FR-001: the channel's paused series (the dead-series breaker, or the owner) — Resume on the agent Overview. */
+  @Get('agents/:handle/series-pauses')
+  seriesPauses(@Param('handle') handle: string) {
+    return this.svc.seriesPauses(handle);
+  }
+
+  @Post('agents/:handle/series-pauses')
+  seriesPauseAction(@Param('handle') handle: string, @Body() body: unknown) {
+    return this.svc.seriesPauseAction(handle, body);
+  }
+
   @Get('agents/:handle/memory')
   memory(@Param('handle') handle: string) {
     return this.svc.memory(handle);

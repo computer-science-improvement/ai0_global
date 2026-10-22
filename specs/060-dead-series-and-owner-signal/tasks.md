@@ -2,7 +2,7 @@
 
 - [x] T1 Migration 093 (+ down) `series_pauses`; streak counter over closed slots using `skip-reasons.ts` classes; pause on threshold (`SERIES_SKIP_STREAK` in the settings catalog); planner filter and `series_paused` skips; last-3 skip reasons + paused series in the planner input/prompt; unit + PG tests.
 - [x] T2 Owner notes: merge series_missed + dark_day per resource/day, re-fire only on change or every `OWNER_NOTE_REPEAT_DAYS`, critical health same rule; a newer card closes older open cards of the same (kind, subject); tests.
-- [ ] T3 Card actions: Відновити / Залишити на паузі on series-paused cards, Пауза серії on silent-day cards, Заглушити на 7 днів on health cards (existing dismiss path); dashboard: paused series with Resume on the agent Overview (English), API `GET/POST /api/agents/:handle/series-pauses`; tests.
+- [x] T3 Card actions: Відновити / Залишити на паузі on series-paused cards, Пауза серії on silent-day cards, Заглушити на 7 днів on health cards (existing dismiss path); dashboard: paused series with Resume on the agent Overview (English), API `GET/POST /api/agents/:handle/series-pauses`; tests.
 - [ ] T4 Manager: adherence + age in the digest and open list, signature does not count not_followed / overdue accepted, forced review triggers, prompt lines, unmeasurable expected metric rejected, memory line for not_followed / inconclusive; tests; docs (runbook §, specs README row 060 DONE, spec status done).
 
 ## Status
@@ -11,6 +11,7 @@ In progress. One commit per task:
 
 - T1 — migration 093 `series_pauses`, `series-pause/` (cause classes, streak counter, repository, breaker, planner view), scheduler hook, planner context and prompt lines, `SERIES_SKIP_STREAK`, unit and PG tests.
 - T2 — `agents/note-gate.ts` (the repeat rule), `OwnerInbox` gate on `post`/`postOnce` with subject/parts (columns added to migration 093), supersede of older unread notes and their owner-bot cards, silent-day merge (`mergeDayNotes`), health and connection notes on the same rule, Ukrainian alert wording, `OWNER_NOTE_REPEAT_DAYS`, unit and PG tests (the old silent-days PG test is updated to the merged behaviour).
+- T3 — `series-pause/note-actions.ts` (button keys and labels), `pause-actions.ts` (`SeriesPauseActions`: resume, keep, owner pause, health mute, each logged on the Inbox row), `agent_inbox.actions` (093), the inbox card source and the `actions` of `OwnerInbox` notes, buttons on the series-paused, silent-day and health notes, `GET/POST /api/agents/:handle/series-pauses`, dashboard Paused series on the agent Overview (Resume), health mute lasting 7 days, unit and PG tests.
 
 ## Deltas from the spec
 
@@ -27,3 +28,10 @@ In progress. One commit per task:
 - **Merge = supersede.** A new row is written (the ref_id of a gated note gets a `#hash` of its parts, so the unique index on resource-day does not block a changed note) and the older unread notes of the subject are marked read; the owner bot closes their live cards ("Замінено новішою карткою"). The day's `series_missed` and `dark_day` share the subject `silent:<ref>:miss`, so a dark day that carries the series miss replaces the earlier series note instead of sitting beside it.
 - **Silent-day Telegram wording is Ukrainian** (a new `alert` per kind); stored title and body stay English.
 - **Existing PG test `silent-days.pg.test.ts`** now expects the merged flow: series note at 13:00, a dark-day note at 18:05 that supersedes it, nothing at 21:00, one more note at 23:00 (a new cause) with the earlier ones read.
+- **Card buttons live on the note.** A note carries its buttons (`agent_inbox.actions`, a list of key and label, added to migration 093): the card made at post time and the card the sweep makes later are identical. The callback data stays `oc:<card>:<index>`; the key (`resume:<pause id>`, `keep:<pause id>`, `pause:[channel, series key, label]`, `mute:<resource ref>`) sits in the card's stored buttons.
+- **«Пауза серії» names its series.** The silent-day alert lists the series of the slots it is about (the missed ones; for a critic streak, the rejected ones). One series gives «Пауза серії», two give «Пауза: <name>» each, more than two are not offered, and a plain slot (no series, no pin) gets no button: pausing a whole resource from a card is too heavy. The pause is an ordinary one with `cause = 'owner'`, `streak = 0`; its planned slots are skipped with `series_paused`.
+- **«Залишити на паузі»** marks the note read and logs it; the pause stays. **«Відновити»** from the card or the dashboard sets `resumed_by = 'owner'`, marks the pause's note read, and a second press says it is already resumed.
+- **Logging.** Each action adds an "Owner action: …" line to the Inbox note's body (English) and the card's outcome line (Ukrainian). A repeated or refused press still marks the note read.
+- **«Заглушити на 7 днів» is a real 7 days.** The existing dismiss (spec 049) muted until the state changed; it now also ends after `DISMISS_DAYS = 7` (`resource-health.service.ts`), so the label is true. The Mute reminders tooltip on the connection banner says so.
+- **API.** `GET /api/agents/:handle/series-pauses` returns `{ channelKey, open, recent }`; `POST` takes `{ action: 'resume', id }` (400 for any other body, 404 for a pause of another channel, 409 when already resumed). Only Resume is offered on the page; an owner pause is made from a card.
+- **Dashboard.** `PausedSeries` on the Overview of a Telegram channel's orchestrator, between the resource section and Sources; hidden when nothing is paused or the endpoint is missing.

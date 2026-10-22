@@ -21,6 +21,8 @@ import { attachProfileTone } from '../skills/profile-tone';
 import { dismissHealth } from '../platform/resource-health.service';
 import type { SourceHealthReport } from '../sources/source-health';
 import { errText } from '../../common/err-text';
+import type { SeriesPauseActions } from '../series-pause/pause-actions';
+import type { SeriesPause } from '../series-pause/series-pauses.repository';
 
 export interface AgentsServiceDeps {
   pool:    Pick<Pool, 'query'>;
@@ -57,6 +59,18 @@ export interface AgentsServiceDeps {
   ruleLint?: (text: string, orchestrator: Agent) => Promise<Array<{ code: string; detail: string }>>;
   /** Spec 049 FR-003: the source health of a channel card (null without a card). */
   sourceHealth?: (channelKey: string) => Promise<SourceHealthReport | null>;
+  /** Spec 060 FR-001: the dead-series breaker's pauses (agent page → Paused series → Resume). */
+  pauses?: Pick<SeriesPauseActions, 'list' | 'resume'>;
+}
+
+const ResumeBody = z.object({ action: z.literal('resume'), id: z.string().uuid() });
+
+/** The dashboard's view of a pause (the repository's row, dates as ISO strings). */
+function pauseView(p: SeriesPause) {
+  return {
+    id: p.id, key: p.key, label: p.label, cause: p.cause, reason: p.reason, streak: p.streak,
+    pausedAt: p.pausedAt.toISOString(), resumedAt: p.resumedAt ? p.resumedAt.toISOString() : null, resumedBy: p.resumedBy,
+  };
 }
 
 const TIME_RE = /^([01]\d|2[0-3]):[0-5]\d$/;
@@ -357,6 +371,32 @@ export class AgentsService {
     const key = telegramKeyOf(orch);
     const report = key && this.d.sourceHealth ? await this.d.sourceHealth(key) : null;
     return report ?? { channelKey: key, days: 0, sources: [], otherHosts: [] };
+  }
+
+  /** Spec 060 FR-001: the series of the agent's channel the breaker (or the owner) paused, and the last resumed ones. */
+  async seriesPauses(handle: string) {
+    const orch = await this.orchestratorOf(await this.require(handle));
+    const key = telegramKeyOf(orch);
+    const all = key && this.d.pauses ? await this.d.pauses.list(key, 25) : [];
+    return {
+      channelKey: key,
+      open: all.filter((p) => !p.resumedAt).map(pauseView),
+      recent: all.filter((p) => p.resumedAt).slice(0, 5).map(pauseView),
+    };
+  }
+
+  /** Spec 060 FR-001: `{ action: 'resume', id }` resumes a pause of this agent's channel (`resumed_by = 'owner'`). */
+  async seriesPauseAction(handle: string, body: unknown) {
+    const parsed = ResumeBody.safeParse(body);
+    if (!parsed.success) throw new BadRequestException({ error: 'invalid_body', details: 'expected { action: "resume", id }' });
+    const orch = await this.orchestratorOf(await this.require(handle));
+    const key = telegramKeyOf(orch);
+    if (!key || !this.d.pauses) throw new NotFoundException({ error: 'no_channel', details: 'this agent has no channel' });
+    const mine = (await this.d.pauses.list(key, 100)).find((p) => p.id === parsed.data.id);
+    if (!mine) throw new NotFoundException({ error: 'pause_not_found' });
+    if (mine.resumedAt) throw new ConflictException({ error: 'not_paused', details: 'this series is already resumed' });
+    await this.d.pauses.resume(mine.id, 'dashboard');
+    return this.seriesPauses(handle);
   }
 
   async memory(handle: string) {

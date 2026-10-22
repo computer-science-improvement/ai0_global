@@ -294,6 +294,33 @@ export function useAgentSources(handle: string) {
   });
 }
 
+/** Spec 060 FR-001: a series the dead-series breaker (or the owner) paused. `cause` says why. */
+export type SeriesPauseCause = 'no_material' | 'source_unreachable' | 'owner';
+export interface SeriesPause {
+  id: string; key: string; label: string; cause: SeriesPauseCause; reason: string; streak: number;
+  pausedAt: string; resumedAt: string | null; resumedBy: string | null;
+}
+export interface SeriesPausesResponse { channelKey: string | null; open: SeriesPause[]; recent: SeriesPause[] }
+
+/** The channel's paused series (empty for an agent without a Telegram channel; a server without the endpoint shows nothing). */
+export function useSeriesPauses(handle: string, enabled = true) {
+  return useQuery({
+    queryKey: [...KEY, 'series-pauses', handle],
+    queryFn:  () => api<SeriesPausesResponse>(`/api/agents/${enc(handle)}/series-pauses`),
+    enabled,
+    retry: false,
+  });
+}
+
+/** Resume a paused series: the planner plans it again from the next plan. */
+export function useResumeSeries(handle: string) {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (id: string) => api<SeriesPausesResponse>(`/api/agents/${enc(handle)}/series-pauses`, { method: 'POST', body: JSON.stringify({ action: 'resume', id }) }),
+    onSuccess: (data) => qc.setQueryData([...KEY, 'series-pauses', handle], data),
+  });
+}
+
 export function useAgentSkills(handle: string) {
   return useQuery({
     queryKey: [...KEY, 'skills', handle],

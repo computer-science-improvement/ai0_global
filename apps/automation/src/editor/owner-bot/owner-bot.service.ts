@@ -261,7 +261,7 @@ export class OwnerBotService implements OwnerBotHandler {
     if (severity === 'info') return true;
     if (i.refType && OWN_CARD_REF_TYPES.includes(i.refType)) return true;
     const words = i.alert ?? { title: i.title, body: i.body ?? null };
-    const card = await this.d.repo.insert(this.newCard('inbox', inboxItem(id, { title: words.title, body: words.body ?? null, severity }, this.now())));
+    const card = await this.d.repo.insert(this.newCard('inbox', inboxItem(id, { title: words.title, body: words.body ?? null, severity, actions: i.actions }, this.now())));
     if (card?.critical) void this.serial(() => this.send(card)).catch(() => undefined);
     return true;
   }

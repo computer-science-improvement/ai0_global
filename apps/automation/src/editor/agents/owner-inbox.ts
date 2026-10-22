@@ -1,5 +1,6 @@
 import type { Pool } from 'pg';
 import { decideNote, noteRepeatDays, partsKey, stillWording, type NoteGate } from './note-gate';
+import type { NoteAction } from '../series-pause/note-actions';
 
 export type InboxSeverity = 'info' | 'action' | 'critical';
 
@@ -23,6 +24,11 @@ export interface InboxItemInput {
    * older unread ones (and closes their owner-bot cards).
    */
   gate?:     NoteGate | null;
+  /**
+   * Spec 060 FR-004: buttons the owner-bot card gets before Read / Open (Відновити, Пауза серії, Заглушити на 7 днів, …).
+   * Stored with the note (`agent_inbox.actions`) so a card the sweep makes later has them too.
+   */
+  actions?:  NoteAction[] | null;
 }
 
 /**
@@ -38,7 +44,7 @@ export function dailyRef(resourceRef: string, day: string): { refType: string; r
   return { refType: RESOURCE_DAY_REF, refId: `${resourceRef}|${day}` };
 }
 
-export interface InboxItem extends Required<Omit<InboxItemInput, 'agentId' | 'alert' | 'gate'>> {
+export interface InboxItem extends Required<Omit<InboxItemInput, 'agentId' | 'alert' | 'gate' | 'actions'>> {
   id:        number;
   agentId:   string | null;
   readAt:    Date | null;
@@ -80,6 +86,7 @@ export class OwnerInbox {
         `INSERT INTO agent_inbox (agent_id, kind, title, body, ref_type, ref_id, severity) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id`,
         [i.agentId ?? null, i.kind, i.title.slice(0, 300), i.body ?? null, i.refType ?? null, i.refId ?? null, i.severity ?? 'info']);
     const id = Number(rows[0].id);
+    await this.storeActions(id, i);
     if (i.gate) await this.supersede(id, i.gate.subject);
     await this.deliver(id, i);
     return id;
@@ -123,9 +130,15 @@ export class OwnerInbox {
     }
     if (!rows.length) return null;
     const id = Number(rows[0].id);
+    await this.storeActions(id, i);
     if (i.gate) await this.supersede(id, i.gate.subject);
     await this.deliver(id, i);
     return id;
+  }
+
+  private async storeActions(id: number, i: InboxItemInput): Promise<void> {
+    if (!i.actions?.length) return;
+    try { await this.pool.query(`UPDATE agent_inbox SET actions = $2::jsonb WHERE id = $1`, [id, JSON.stringify(i.actions)]); } catch { /* the note stands without its buttons */ }
   }
 
   /** The subject's notes, newest first (the memory of the repeat rule). */

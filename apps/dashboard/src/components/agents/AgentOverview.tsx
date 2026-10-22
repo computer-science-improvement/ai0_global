@@ -32,6 +32,7 @@ import { useArtifacts } from '../../api/artifacts';
 import { statusLabel } from '../../lib/artifacts';
 import { alignPrompt } from '../../lib/align';
 import { SourcesSection } from './SourcesSection';
+import { PausedSeries } from './PausedSeries';
 
 const HANDLE_RE = /^[a-z][a-z0-9_]{2,31}$/;
 const TIME_RE = /^([01]\d|2[0-3]):[0-5]\d$/;
@@ -148,6 +149,7 @@ export function AgentOverview({ data }: { data: AgentDetail }) {
       {a.kind === 'orchestrator' && <ActiveEffects agent={a} delay={20} />}
       {a.kind === 'orchestrator' && a.scopeId && <ResourceSection handle={a.handle} />}
       {a.kind === 'orchestrator' && a.scopeId && <FormattingSection handle={a.handle} />}
+      {a.kind === 'orchestrator' && a.scopeId?.startsWith('telegram:') && <PausedSeries handle={a.handle} />}
       {a.kind === 'orchestrator' && a.scopeId?.startsWith('telegram:') && <SourcesSection handle={a.handle} />}
       {a.kind === 'orchestrator' && a.scopeId && <ArtifactsLine handle={a.handle} targetRef={a.scopeId} />}
 

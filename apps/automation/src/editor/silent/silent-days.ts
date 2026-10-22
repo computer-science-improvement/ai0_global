@@ -4,6 +4,8 @@ import { dailyRef, type InboxItemInput, type OwnerInbox, type SilentDayKind } fr
 import { localDate, localHour, localTimeLabel } from '../roles/time';
 import { attemptRejections, type SlotFallback } from './fallback-ladder';
 import { evergreenFilled } from './evergreen-stats';
+import { pauseActions, type PauseTarget } from '../series-pause/note-actions';
+import { seriesIdOf } from '../series-pause/streak';
 import { addSkip, isCriticRejection, isNotAMiss, isOwnerDecision, skipGroupOf, type SkipCounts } from './skip-reasons';
 import { errText } from '../../common/err-text';
 
@@ -68,6 +70,22 @@ export interface SilentAlert {
   subject:  string;
   parts:    string[];
   alert:    { title: string; body: string };
+  /** Spec 060 FR-004: the series this note is about (a «Пауза серії» button each, at most two). Empty when none is a series. */
+  pauses:   PauseTarget[];
+}
+
+/** The series a set of slots belongs to, as `series_pauses` keys them (a plain slot has none: pausing a whole resource is not offered). */
+export function pauseTargets(slots: WatchSlot[]): PauseTarget[] {
+  const out: PauseTarget[] = [];
+  for (const s of slots) {
+    if (!s.ref.startsWith('telegram:') || (!s.seriesName && !s.scheduleRuleId)) continue;
+    const id = seriesIdOf({
+      id: s.id, channelKey: s.ref.slice('telegram:'.length), resourceRef: s.ref, seriesName: s.seriesName, scheduleRuleId: s.scheduleRuleId, topic: s.topic,
+      scheduledAt: s.scheduledAt, updatedAt: s.updatedAt, status: s.status, error: s.error, criticVerdict: s.criticVerdict,
+    });
+    if (!out.some((t) => t.channelKey === id.channelKey && t.key === id.key)) out.push({ channelKey: id.channelKey, key: id.key, label: id.label });
+  }
+  return out;
 }
 
 /** Spec 060 FR-003: one subject for the day's misses (series_missed + dark_day merge into it) and one for the critic streak. */
@@ -148,6 +166,7 @@ export function evaluateSilentDays(i: {
           kind: 'dark_day', ref: r.ref, day: today, agentId: r.agentId ?? null, slotIds: planned.map((s) => s.id),
           title: `Silent day: nothing went out on ${r.ref} by ${darkHour}:00`, body,
           subject: missSubject(r.ref), parts: planned.length ? ['dark', ...groups.map((g) => `dark:${g}`)] : ['dark', 'dark:no_plan'],
+          pauses: pauseTargets(planned.filter((s) => ENDED_NOT_OUT.has(s.status))),
           alert: {
             title: `Тихий день: на ${r.ref} до ${darkHour}:00 нічого не вийшло`,
             body: [
@@ -183,7 +202,7 @@ export function evaluateSilentDays(i: {
         kind: 'series_missed', ref: r.ref, day, agentId: r.agentId ?? null, slotIds: miss.map((s) => s.id),
         title: `Series or fixed slot missed on ${r.ref} (${day})`,
         body: [`${miss.length} series / fixed slot(s) did not go out:`, ...lines.map((l) => `• ${l}`), miss.length > 4 ? `• … and ${miss.length - 4} more` : ''].filter(Boolean).join('\n'),
-        subject: missSubject(r.ref), parts,
+        subject: missSubject(r.ref), parts, pauses: pauseTargets(miss),
         alert: {
           title: `Серія чи слот за розкладом не вийшли на ${r.ref} (${day})`,
           body: [`Не вийшло: ${miss.length}.`, ...lines.map((l) => `• ${l}`), miss.length > 4 ? `• … і ще ${miss.length - 4}` : ''].filter(Boolean).join('\n'),
@@ -199,7 +218,7 @@ export function evaluateSilentDays(i: {
         title: `Critic rejected ${streak.n} posts in a row on ${r.ref}`,
         body: `The last ${streak.n} critic verdicts on ${r.ref} were rejections (fallback attempts included). `
           + 'Posts are being written and thrown away: check the critic notes on the slots, the resource profile and the sources on /app/editor.',
-        subject: criticSubject(r.ref), parts: [`streak:${streak.n}`],
+        subject: criticSubject(r.ref), parts: [`streak:${streak.n}`], pauses: pauseTargets(slots.filter((s) => streak.slotIds.includes(s.id))),
         alert: {
           title: `Критик відхилив пости поспіль на ${r.ref}: ${streak.n}`,
           body: 'Пости пишуться й відкидаються: перегляньте нотатки критика на слотах, профіль ресурсу й джерела на /app/editor.',
@@ -224,6 +243,7 @@ export function mergeDayNotes(alerts: SilentAlert[]): SilentAlert[] {
     dark.alert = { title: dark.alert.title, body: `${dark.alert.body}\n\n${a.alert.body}` };
     dark.parts = [...new Set([...dark.parts, ...a.parts])];
     dark.slotIds = [...new Set([...dark.slotIds, ...a.slotIds])];
+    dark.pauses = [...dark.pauses, ...a.pauses.filter((t) => !dark.pauses.some((d) => d.channelKey === t.channelKey && d.key === t.key))];
   }
   return out;
 }
@@ -296,7 +316,7 @@ export class SilentDaysWatch {
     for (const a of alerts) {
       const item: InboxItemInput & { refType: string; refId: string } = {
         agentId: a.agentId, kind: a.kind, severity: 'action', title: a.title, body: a.body, ...dailyRef(a.ref, a.day),
-        alert: a.alert, gate: { subject: a.subject, parts: a.parts },
+        alert: a.alert, gate: { subject: a.subject, parts: a.parts }, actions: pauseActions(a.pauses),
       };
       try {
         if ((await this.d.inbox.postOnce(item)) != null) n++;

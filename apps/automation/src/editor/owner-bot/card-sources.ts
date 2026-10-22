@@ -2,6 +2,7 @@ import type { Pool } from 'pg';
 import type { CardButton } from './owner-cards.repository';
 import { htmlToPlain } from '../post/inline-markup';
 import { kyivTime } from './owner-text';
+import { cleanActions, parseNoteAction, type NoteAction } from '../series-pause/note-actions';
 
 /**
  * Spec 012 FR-002: what waits for the owner, kind by kind. A source lists its waiting items (the sweep makes cards of
@@ -43,6 +44,8 @@ export interface SourceDeps {
   };
   playbooks:  { decide(id: string, approve: boolean): Promise<unknown> };
   inbox:      { markRead(ids: number[]): Promise<number> };
+  /** Spec 060 FR-004: runs the action key of an Inbox note's card (resume / keep / pause series / mute health); returns the outcome line. */
+  noteActions?: { run(noteId: number, key: string): Promise<string> };
   /** The setup sections "Застосувати все" applies (setup-analysis SETUP_SECTIONS). */
   setupSections: readonly string[];
   /** A post due within this window is a critical card (FR-002: 2 hours). */
@@ -271,12 +274,16 @@ export function inboxSource(d: SourceDeps): CardSource {
     kind: 'inbox', emoji: '🔔', label: 'Сповіщення',
     async waiting() {
       const { rows } = await d.pool.query(
-        `SELECT id, title, body, severity, created_at FROM agent_inbox
+        `SELECT id, title, body, severity, created_at, actions FROM agent_inbox
           WHERE read_at IS NULL AND severity IN ('critical', 'action')
             AND (ref_type IS NULL OR ref_type <> ALL($1::text[])) ORDER BY created_at`, [OWN_CARD_REF_TYPES]);
-      return rows.map((r: any) => inboxItem(Number(r.id), { title: r.title, body: r.body ?? null, severity: r.severity }, new Date(r.created_at)));
+      return rows.map((r: any) => inboxItem(Number(r.id), { title: r.title, body: r.body ?? null, severity: r.severity, actions: cleanActions(r.actions) }, new Date(r.created_at)));
     },
     async act(id, key) {
+      if (parseNoteAction(key)) {
+        if (!d.noteActions) throw new Error('недоступно');
+        return at(await d.noteActions.run(Number(id), key));
+      }
       if (key !== 'read') throw new Error(`unknown button ${key}`);
       await d.inbox.markRead([Number(id)]);
       return at('✓ Прочитано');
@@ -284,10 +291,11 @@ export function inboxSource(d: SourceDeps): CardSource {
   };
 }
 
-export function inboxItem(id: number, n: { title: string; body: string | null; severity: string }, since: Date): WaitingItem {
+export function inboxItem(id: number, n: { title: string; body: string | null; severity: string; actions?: NoteAction[] | null }, since: Date): WaitingItem {
   return {
     refId: String(id), title: n.title, body: n.body, path: '/app/agents/inbox', critical: n.severity === 'critical', since,
-    buttons: [{ key: 'read', label: '✓ Прочитано' }, open()],
+    // Spec 060 FR-004: a note's own actions come first, then Read and Open.
+    buttons: [...(n.actions ?? []).map((a) => ({ key: a.key, label: a.label, ...(a.confirm ? { confirm: a.confirm } : {}) })), { key: 'read', label: '✓ Прочитано' }, open()],
   };
 }
 

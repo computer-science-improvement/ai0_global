@@ -1,4 +1,5 @@
 import type { OwnerInbox } from '../agents/owner-inbox';
+import { pausedActions } from './note-actions';
 import { classifyClose, PAUSING_CAUSES, skipsUk } from './skip-cause';
 import { skipLine, type RecentSkip, type SeriesPause, type SeriesPausesRepository } from './series-pauses.repository';
 import { pauseMapKey, seriesIdOf, skipStreaks, type StreakHit, type StreakSlot } from './streak';
@@ -96,7 +97,7 @@ export class SeriesBreaker {
     try {
       await this.d.inbox.post({
         agentId: await this.d.repo.agentOf(p.channelKey).catch(() => null), kind: SERIES_PAUSED_KIND, severity: 'action',
-        title: note.title, body: note.body, refType: SERIES_PAUSE_REF, refId: p.id, alert: note.alert,
+        title: note.title, body: note.body, refType: SERIES_PAUSE_REF, refId: p.id, alert: note.alert, actions: pausedActions(p.id),
       });
     } catch (err: any) { this.d.log?.(`series pause note for ${p.channelKey} failed: ${err?.message ?? err}`); }
     return p;

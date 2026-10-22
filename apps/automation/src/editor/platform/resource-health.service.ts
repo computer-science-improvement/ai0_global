@@ -1,4 +1,5 @@
 import { dailyRef, type OwnerInbox } from '../agents/owner-inbox';
+import { muteAction } from '../series-pause/note-actions';
 import type { ResourceCatalog } from '../agents/resource-catalog';
 import type { HealthState, ResourceHealth, ResourceProfilesRepository } from '../agents/resource-profile';
 import { kyivDay } from '../../common/ai/usage/kyiv-day';
@@ -23,6 +24,8 @@ export const RECHECK_MS = 30 * 60_000;
 export const UNAVAILABLE_ERROR = 'resource_unavailable';
 
 const DAY = 86_400_000;
+/** Spec 060 FR-004: «Заглушити на 7 днів» — a mute (dismiss) lasts this long, or until the state changes, whichever comes first. */
+export const DISMISS_DAYS = 7;
 const fmtDay = (iso: string) => iso.slice(0, 10);
 const daysSince = (iso: string, now: Date) => Math.max(0, Math.floor((now.getTime() - Date.parse(iso)) / DAY));
 
@@ -47,15 +50,15 @@ export class ResourceHealthService {
       state: a.state, detail: a.detail, checkedAt: now.toISOString(),
       ...(BAD.has(a.state) ? { since: same && prev?.since ? prev.since : now.toISOString() } : {}),
       ...(a.expiresAt ? { expiresAt: a.expiresAt } : {}),
-      ...(same && prev?.dismissedAt ? { dismissedAt: prev.dismissedAt } : {}),
+      ...(same && prev?.dismissedAt && now.getTime() - Date.parse(prev.dismissedAt) < DISMISS_DAYS * DAY ? { dismissedAt: prev.dismissedAt } : {}),
     };
     await this.d.profiles.setHealth(ref, health);
 
     if (BAD.has(health.state) && !same) {
       // Spec 060 FR-003: one subject per resource; the reminders below follow the repeat rule (once, then every OWNER_NOTE_REPEAT_DAYS).
-      await this.d.inbox.post({ kind: 'resource_health', severity: severity(health.state), ...this.note(ref, health, now, false), refType: 'resource', refId: ref, gate: { subject: `resource:${ref}`, parts: [`state:${health.state}`] } });
+      await this.d.inbox.post({ kind: 'resource_health', severity: severity(health.state), ...this.note(ref, health, now, false), refType: 'resource', refId: ref, gate: { subject: `resource:${ref}`, parts: [`state:${health.state}`] }, actions: [muteAction(ref)] });
     } else if (BAD.has(health.state) && !health.dismissedAt && this.d.inbox.postOnce && this.remindToday(health, now)) {
-      await this.d.inbox.postOnce({ kind: 'resource_health_daily', severity: severity(health.state), ...this.note(ref, health, now, true), ...dailyRef(ref, kyivDay(now)), gate: { subject: `resource:${ref}`, parts: [`state:${health.state}`] } });
+      await this.d.inbox.postOnce({ kind: 'resource_health_daily', severity: severity(health.state), ...this.note(ref, health, now, true), ...dailyRef(ref, kyivDay(now)), gate: { subject: `resource:${ref}`, parts: [`state:${health.state}`] }, actions: [muteAction(ref)] });
     } else if (health.state === 'ok' && prev && BAD.has(prev.state)) {
       await this.d.inbox.post({
         kind: 'resource_health_ok', severity: 'info', refType: 'resource', refId: ref, gate: { subject: `resource:${ref}`, parts: ['state:ok'] },
