@@ -154,7 +154,10 @@ function filterSql(schema: DataSchema, f: FieldDef, flt: DataFilter, p: (v: unkn
     }
     case 'ilike': {
       if (!TEXT_TYPES.has(f.type)) throw new DataQueryError('invalid_op', `ilike works on text fields; "${f.name}" is ${f.type}`);
-      const s = String(coerce(f, flt.value, 'ilike')).replace(/^%+|%+$/g, '');
+      const raw = String(coerce(f, flt.value, 'ilike'));
+      // Spec 064 FR-003: a pattern of only `%` means "any value" — no filter, not an error.
+      if (/^%+$/.test(raw.trim())) return 'TRUE';
+      const s = raw.replace(/^%+|%+$/g, '');
       if (!s.trim()) throw new DataQueryError('invalid_value', `ilike on "${f.name}" needs some text`);
       return `${txt} ILIKE ${p(`%${escapeLike(s)}%`)}`;
     }

@@ -71,7 +71,7 @@ export async function loadRecentTopics(pool: { query: (sql: string, params?: unk
  * topic repeats one of the last 30 days.
  */
 export function planTopicErrors(
-  slots: ReadonlyArray<{ time: string; topic?: string; angle?: string; topic_mode?: string; idea_id?: string; series?: string; directive_id?: string }>,
+  slots: ReadonlyArray<{ time: string; topic?: string; angle?: string; topic_mode?: string; idea_id?: string; series?: string | null; directive_id?: string }>,
   recent: readonly RecentTopic[],
 ): string[] {
   if (!recent.length) return [];

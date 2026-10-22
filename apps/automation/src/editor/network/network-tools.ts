@@ -14,6 +14,7 @@ import { SubmitNetworkPlanInput, validateNetworkPlan } from './network-plan';
 import { PlaybookSchema, renderPlaybook } from './playbook';
 import { submitPlaybookVersion, type SubmitDeps } from './series-edit';
 import type { ScheduleService } from '../schedule/schedule.service';
+import { longText, longTextNote } from '../harness/clip-text';
 import type { ExperimentQuota } from '../manager/experiment-quota';
 import type { PollCapCtx } from '../roles/poll-cap';
 import type { AgentsRepository } from '../agents/agents.repository';
@@ -303,7 +304,7 @@ export function buildNetworkTools(d: NetworkToolDeps): EditorTool[] {
     name: 'finish_orchestration',
     description: 'Завершити щоденний прогін оркестратора коротким підсумком (що в пулі, які директиви прийнято/відхилено).',
     kind: 'terminal', roles: ['orchestrator'],
-    input: z.object({ summary: z.string().min(10).max(1500) }),
+    input: z.object({ summary: longText(10, 1500).describe(`Підсумок; ${longTextNote(1500)}`) }),
     execute: async ({ summary }) => ({ ok: true, summary }),
   });
 

@@ -2,6 +2,7 @@ import { z } from 'zod';
 import { isSlopWarning } from '../post/slop-lint';
 import type { StoredSource } from './stored-sources';
 import type { FailedEdit, TextEdit } from './spec-edits';
+import { longText, longTextNote } from '../harness/clip-text';
 
 /**
  * Spec 034 FR-004: the pre-publish critic's verdict.
@@ -75,7 +76,7 @@ export const CritiqueInput = z.object({
     to:   z.string().max(300).describe('Чим замінити'),
   })).max(MAX_CRITIC_EDITS).optional()
     .describe('Лише для pass_with_edits: дрібні точкові правки (слово, відмінок, займенник, у/в), які код застосує сам без переписування'),
-  notes:   z.string().min(3).max(800).describe('Коротко українською: що саме виправити (цитуй проблемні місця). Для pass — одне речення.'),
+  notes:   longText(3, 800).describe(`Коротко українською: що саме виправити (цитуй проблемні місця). Для pass — одне речення; ${longTextNote(800)}`),
 });
 export type Critique = z.infer<typeof CritiqueInput>;
 

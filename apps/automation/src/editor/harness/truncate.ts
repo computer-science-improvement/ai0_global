@@ -8,7 +8,19 @@ export function truncateString(s: string, maxChars: number): string {
   return `${s.slice(0, maxChars)}…[truncated ${s.length - maxChars} chars]`;
 }
 
-export function truncateJson(value: unknown, maxChars = 8_192): unknown {
+/**
+ * Spec 053 FR-003: a tool result the model sees is at most this long. Every later step of the run re-sends it, so a
+ * tool that needs more says so itself (`EditorTool.maxResultChars`, e.g. load_skill).
+ */
+export const TOOL_RESULT_MAX_CHARS = 8_000;
+
+/**
+ * The value to persist for a tool step: itself when its JSON fits `maxChars`, else the same JSON shrunk by rows (spec 064
+ * FR-007: «[N more items omitted]» in the largest array, long strings cut), else a `{truncated, preview}` wrapper whose
+ * own serialised length — escapes and wrapper included — stays within `maxChars`. The old cut counted the preview alone,
+ * and the escaped quotes of a JSON string inside JSON pushed stored results to 9 KB.
+ */
+export function truncateJson(value: unknown, maxChars = TOOL_RESULT_MAX_CHARS): unknown {
   if (value === undefined) return null;
   let json: string;
   try {
@@ -18,14 +30,18 @@ export function truncateJson(value: unknown, maxChars = 8_192): unknown {
   }
   if (json === undefined) return null;
   if (json.length <= maxChars) return value;
-  return { truncated: true, preview: truncateString(json, maxChars) };
+  const fitted = fitJson(value, maxChars);
+  if (fitted) return JSON.parse(fitted);
+  // Last resort: the largest preview whose wrapped form fits (halving the overshoot, as escapes make it non-linear).
+  let keep = Math.max(0, maxChars - 60);
+  for (let i = 0; i < 12; i++) {
+    const wrapped = { truncated: true, preview: truncateString(json, keep) };
+    const over = JSON.stringify(wrapped).length - maxChars;
+    if (over <= 0 || keep === 0) return wrapped;
+    keep = Math.max(0, keep - Math.max(over, 1));
+  }
+  return { truncated: true, preview: truncateString(json, 0) };
 }
-
-/**
- * Spec 053 FR-003: a tool result the model sees is at most this long. Every later step of the run re-sends it, so a
- * tool that needs more says so itself (`EditorTool.maxResultChars`, e.g. load_skill).
- */
-export const TOOL_RESULT_MAX_CHARS = 8_000;
 
 /** A string longer than this is a candidate for cutting when a result must shrink. */
 const MIN_CUT_STRING = 400;
@@ -98,6 +114,14 @@ export function fitJson(value: unknown, maxChars: number): string | null {
   return json.length <= maxChars ? json : null;
 }
 
+/** `s` cut so that the result, marker included, is at most `maxChars` (spec 064 FR-007). */
+function truncateWithin(s: string, maxChars: number): string {
+  let keep = Math.max(0, maxChars - 30);
+  let out = truncateString(s, keep);
+  while (out.length > maxChars && keep > 0) { keep = Math.max(0, keep - (out.length - maxChars)); out = truncateString(s, keep); }
+  return out;
+}
+
 /** Serialize for a tool message, capped (spec 053: by rows, so the JSON stays valid; a plain cut only as the last resort). */
 export function toToolContent(value: unknown, maxChars = TOOL_RESULT_MAX_CHARS): string {
   let json: string;
@@ -107,5 +131,5 @@ export function toToolContent(value: unknown, maxChars = TOOL_RESULT_MAX_CHARS):
     json = JSON.stringify({ error: 'unserializable_result' });
   }
   if (json.length <= maxChars) return json;
-  return fitJson(value, maxChars) ?? truncateString(json, maxChars);
+  return fitJson(value, maxChars) ?? truncateWithin(json, maxChars);
 }

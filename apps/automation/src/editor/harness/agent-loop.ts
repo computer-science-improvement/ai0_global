@@ -5,6 +5,7 @@ import type { RunRecorder, RunStatus, RunTotals } from './run-recorder';
 import { EditorTool, ToolContext, ToolError, isToolError, toToolSpec } from './tool';
 import { toToolContent } from './truncate';
 import { elideOldToolResults } from './context-trim';
+import { errText } from '../../common/err-text';
 import { withLlmContext, type LlmContext } from '../../common/ai/usage/llm-context';
 import { editorFeature, telegramResource } from '../../common/ai/usage/features';
 
@@ -139,6 +140,19 @@ export function decodeJsonStrings(v: unknown): unknown {
   return changed ? out : v;
 }
 
+/**
+ * Spec 064 FR-003: an argument sent as a JSON string that does not parse fails validation as «expected object, received
+ * string» and the model cannot see why; the issue gets the JSON.parse message.
+ */
+function withJsonParseNote(args: unknown, path: ReadonlyArray<PropertyKey>, message: string): string {
+  let v: unknown = args;
+  for (const k of path) v = (v as Record<PropertyKey, unknown> | null | undefined)?.[k];
+  if (typeof v !== 'string') return message;
+  const t = v.trim();
+  if (!/^[[{]/.test(t)) return message;
+  try { JSON.parse(t); return message; } catch (err: any) { return `${message} (the value is a JSON string that does not parse: ${errText(err)})`; }
+}
+
 /** The error code of a tool result ('' for a success). */
 function errorCode(output: unknown): string {
   return isToolError(output) ? String(output.error) : '';
@@ -207,6 +221,23 @@ const MAX_EMPTY_RETRIES = 1;
 /** The most turns a tool error can add to a run (`_grantSteps`), once per run. */
 export const MAX_GRANT_STEPS = 3;
 const MAX_TRUNCATION_RETRIES = 2;
+/** Spec 064 FR-003: turns a terminal-tool error on the last turn adds to a run (a planner's `plan_invalid`), at most this many per run. */
+export const MAX_TERMINAL_ERROR_GRANTS = 2;
+/** Spec 064 FR-004: tools whose circuit-breaker key is tool + host, so one bad site does not switch off every other site. */
+const HOST_KEYED_TOOLS = new Set(['web_fetch', 'fetch_feed']);
+
+/** The host a fetch call targets (its `url` argument), lower-cased and without `www.`; null for anything else. */
+export function callHost(toolName: string, rawArgs: string): string | null {
+  if (!HOST_KEYED_TOOLS.has(toolName)) return null;
+  try {
+    const url = (JSON.parse(rawArgs) as { url?: unknown })?.url;
+    if (typeof url !== 'string') return null;
+    const u = new URL(url);
+    return /^https?:$/.test(u.protocol) ? u.hostname.toLowerCase().replace(/^www\./, '') : null;
+  } catch {
+    return null;
+  }
+}
 
 /**
  * The editor's tool-calling loop. Model proposes tool calls; this loop
@@ -230,7 +261,10 @@ export class AgentLoop {
     const failedCalls = new Map<string, ToolError>();
     const errorCounts = new Map<string, number>();
     const dropped = new Set<string>();
+    // Spec 064 FR-004: a fetch tool that keeps failing on one host is off for that host only («web_fetch@host»).
+    const droppedHosts = new Set<string>();
     let repeatBlocked = 0;
+    let terminalGrants = 0;
     // Spec 053 FR-002: one tool list for the run. Tools open the provider's cached prefix, so swapping them re-writes the
     // whole prompt at the cache-write price: the last turn keeps every tool and says in text that only a terminal one
     // counts. A tool dropped by the breaker still leaves the list (rare, and a stubborn model keeps calling what it sees).
@@ -238,6 +272,7 @@ export class AgentLoop {
     const liveSpecs = () => (dropped.size ? allSpecs.filter((t) => !dropped.has(t.name)) : allSpecs);
     const terminalNames = input.tools.filter((t) => t.kind === 'terminal').map((t) => t.name);
     const toolOfCall = new Map<string, string>();
+    const argsOfCall = new Map<string, string>();
     let graceUsed = false;
 
     let runId: string;
@@ -247,14 +282,14 @@ export class AgentLoop {
         toolsOffered: input.tools.map((t) => t.name),
       });
     } catch (err: any) {
-      return { runId: null, status: 'error', totals, error: `run start failed: ${err.message}` };
+      return { runId: null, status: 'error', totals, error: `run start failed: ${errText(err)}` };
     }
 
     let lastText: string | null = null;
     const toolsOk: string[] = [];
     const finish = async (status: RunStatus, extra: Partial<AgentLoopResult> = {}): Promise<AgentLoopResult> => {
       try {
-        await this.deps.recorder.finish(runId, status, totals, extra.error ?? null, { repeatBlocked, toolsDropped: [...dropped] });
+        await this.deps.recorder.finish(runId, status, totals, extra.error ?? null, { repeatBlocked, toolsDropped: [...dropped, ...droppedHosts] });
       } catch { /* trace only */ }
       return { runId, status, totals, lastText, toolsOk, ...extra };
     };
@@ -295,7 +330,7 @@ export class AgentLoop {
           messages.push({ role: 'user', content: `Це останній крок. Заверши роботу зараз викликом одного з інструментів: ${terminalNames.join(', ')} — інші інструменти вже не виконуються. Якщо матеріалу для поста не вистачає — пропусти слот і коротко назви причину.` });
         }
         // Spec 053 FR-003: old tool results give way to stubs once the run's results pass the cap.
-        elideOldToolResults(messages, (id) => toolOfCall.get(id));
+        elideOldToolResults(messages, (id) => toolOfCall.get(id), { argsOf: (id) => argsOfCall.get(id) });
         const t0 = now();
         const res = await withLlmContext({ ...usage, stepIdx: totals.steps }, () => this.deps.llm.chat({
           model: input.model.model, messages, tools: liveSpecs(),
@@ -348,6 +383,8 @@ export class AgentLoop {
           const previous = failedCalls.get(callKey);
           // LLM calls a tool makes itself are attributed to the run's feature, but without run/step ids:
           // (run_id, step_idx) belongs to the tool step row.
+          const host = callHost(call.name, call.arguments);
+          const hostKey = host ? `${call.name}@${host}` : null;
           const lateCall = lastTurn && byName.has(call.name) && byName.get(call.name)!.kind !== 'terminal';
           if (lateCall) lastTurnBlocked = true;
           const outcome = lateCall
@@ -356,6 +393,8 @@ export class AgentLoop {
             ? repeatOutcome(call.arguments, byName.get(call.name)?.repeatError ?? 'repeated_failed_call', previous)
             : dropped.has(call.name)
               ? blockedOutcome(call.arguments, 'tool_dropped', `${call.name} is off for the rest of this run after ${MAX_SAME_TOOL_ERRORS} errors of the same kind`)
+            : hostKey && droppedHosts.has(hostKey)
+              ? blockedOutcome(call.arguments, 'tool_dropped', `${call.name} is off for ${host} for the rest of this run after ${MAX_SAME_TOOL_ERRORS} errors of the same kind; other sites still work`)
               : await withLlmContext({ ...usage, runId: null }, () => this.runTool(call, byName, ctx, toolTimeoutMs));
           if (previous !== undefined) repeatBlocked++;
           if (input.onEvent) emit({ type: 'tool_result', name: call.name, ok: !outcome.isError, summary: summarize(outcome.output) });
@@ -364,18 +403,26 @@ export class AgentLoop {
           totals.costUsd += toolCost;
           await withLlmContext(stepCtx, () => this.deps.recorder.toolStep(runId, totals.steps++, call, outcome.input, outcome.output, outcome.isError, outcome.durationMs, toolCost || null));
           toolOfCall.set(call.id, call.name);
+          argsOfCall.set(call.id, call.arguments);
           messages.push({ role: 'tool', toolCallId: call.id, content: toToolContent(outcome.output, byName.get(call.name)?.maxResultChars) });
           if (!outcome.isError) toolsOk.push(call.name);
           else {
             const code = errorCode(outcome.output);
             if (previous === undefined && rememberFailure(outcome.output)) failedCalls.set(callKey, outcome.output as ToolError);
-            const k = `${call.name}\u0000${code}`;
+            const k = `${hostKey ?? call.name}\u0000${code}`;
             const n = (errorCounts.get(k) ?? 0) + 1;
             errorCounts.set(k, n);
             const tool = byName.get(call.name);
-            if (n >= MAX_SAME_TOOL_ERRORS && tool && tool.kind !== 'terminal' && !tool.keepOnError && !dropped.has(call.name)) {
-              dropped.add(call.name);
-              notes.push(`Інструмент ${call.name} вимкнено до кінця цього прогону: ${n} помилки «${code}». Зроби інакше або заверши роботу.`);
+            if (n >= MAX_SAME_TOOL_ERRORS && tool && tool.kind !== 'terminal' && !tool.keepOnError) {
+              if (hostKey) {
+                if (!droppedHosts.has(hostKey)) {
+                  droppedHosts.add(hostKey);
+                  notes.push(`Інструмент ${call.name} для ${host} вимкнено до кінця цього прогону: ${n} помилки «${code}». Інші сайти доступні — візьми інше джерело або заверши роботу.`);
+                }
+              } else if (!dropped.has(call.name)) {
+                dropped.add(call.name);
+                notes.push(`Інструмент ${call.name} вимкнено до кінця цього прогону: ${n} помилки «${code}». Зроби інакше або заверши роботу.`);
+              }
             }
           }
           if (outcome.terminal && !outcome.isError) {
@@ -388,6 +435,12 @@ export class AgentLoop {
             granted = true;
             maxSteps = Math.max(maxSteps, turn + 1 + Math.min(Math.floor(grant), MAX_GRANT_STEPS));
           }
+          // Spec 064 FR-003: a terminal tool's own error (a planner's `plan_invalid`) on the last turn leaves one more turn to fix it,
+          // at most MAX_TERMINAL_ERROR_GRANTS per run — otherwise the run ends `max_steps` on a plan that was one edit from valid.
+          if (outcome.isError && byName.get(call.name)?.kind === 'terminal' && turn === maxSteps - 1 && terminalGrants < MAX_TERMINAL_ERROR_GRANTS && grant === 0) {
+            terminalGrants++;
+            maxSteps += 1;
+          }
         }
         // After every tool result of this turn (the API wants them right after the assistant message).
         if (notes.length) messages.push({ role: 'user', content: notes.join('\n') });
@@ -399,7 +452,7 @@ export class AgentLoop {
       }
       return finish('max_steps', { error: `no terminal tool after ${maxSteps} turns` });
     } catch (err: any) {
-      return finish('error', { error: err?.message ?? String(err) });
+      return finish('error', { error: errText(err) });
     }
   }
 
@@ -416,8 +469,8 @@ export class AgentLoop {
     let args: unknown;
     try {
       args = call.arguments?.trim() ? JSON.parse(call.arguments) : {};
-    } catch {
-      return done(call.arguments, { error: 'invalid_json', details: 'arguments must be a JSON object' });
+    } catch (err: any) {
+      return done(call.arguments, { error: 'invalid_json', details: `arguments must be a JSON object (JSON.parse: ${errText(err)})` });
     }
     // A plan's optional fields filled with "" or the nil UUID pass the schema (the nil UUID is a UUID) but are not values.
     if (tool.placeholdersAbsent) args = dropPlaceholders(args);
@@ -437,7 +490,7 @@ export class AgentLoop {
       }
     }
     if (!parsed.success) {
-      return done(args, { error: 'invalid_args', details: parsed.error.issues.map((i) => ({ path: i.path.join('.'), message: i.message })) });
+      return done(args, { error: 'invalid_args', details: parsed.error.issues.map((i) => ({ path: i.path.join('.'), message: withJsonParseNote(args, i.path, i.message) })) });
     }
 
     let timer: NodeJS.Timeout | undefined;
@@ -449,7 +502,7 @@ export class AgentLoop {
       ]);
       return done(parsed.data, output ?? { ok: true }, tool.kind === 'terminal');
     } catch (err: any) {
-      return done(parsed.data, { error: 'tool_failed', details: err?.message ?? String(err) });
+      return done(parsed.data, { error: 'tool_failed', details: errText(err) });
     } finally {
       if (timer) clearTimeout(timer);
     }

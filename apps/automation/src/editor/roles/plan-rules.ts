@@ -6,18 +6,19 @@ import { planScheduleErrors, PlanScheduleCtx, SkippedSeriesInput } from '../sche
 import { experimentQuotaErrors, type ExperimentQuota } from '../manager/experiment-quota';
 import { pollCapErrors, type PollCapCtx } from './poll-cap';
 import { cardFeedIds, LIVE_SLOT_FIELDS, resolveSlotTopic, type LiveSpec } from '../live/live-slot';
+import { longText, longTextNote } from '../harness/clip-text';
 
 export const PlanSlotInput = z.object({
   time:          z.string().regex(/^([01]\d|2[0-3]):[0-5]\d$/).describe('Локальний час каналу HH:MM'),
   format:        z.string().min(1).max(20),
-  topic:         z.string().min(5).max(300).optional().describe('Конкретна тема поста (обовʼязкова для fixed-слота)'),
+  topic:         longText(5, 300).optional().describe(`Конкретна тема поста (обовʼязкова для fixed-слота); ${longTextNote(300)}`),
   // Spec 034 FR-010: live slots (topic chosen by the executor at slot time from a fresh item of the source).
   ...LIVE_SLOT_FIELDS,
   angle:         z.string().max(400).optional().describe('Кут подачі / що саме підкреслити'),
   source_hints:  z.array(z.string().max(300)).max(5).default([]).describe('id джерел з картки, таблиці бібліотеки (library:recipes) або URL'),
   is_experiment: z.boolean().default(false),
   idea_id:       z.string().uuid().optional().describe('id прийнятої ідеї з пулу (list_ideas), якщо слот її реалізує'),
-  series:        z.string().max(80).optional().describe('Назва серії з плейбука, якщо це її випуск (±90 хв від її часу)'),
+  series:        z.string().max(80).nullish().describe('Назва серії з плейбука, якщо це її випуск (±90 хв від її часу); null або без поля — не серія'),
   directive_id:  z.string().uuid().optional().describe('Слот-експеримент за директивою менеджера (див. «Експерименти за директивою»)'),
 });
 export const SubmitPlanInput = z.object({

@@ -5,6 +5,7 @@ import type { NetworkCtx } from './network-context';
 import { Playbook, Series, SeriesSchema } from './playbook';
 import { CadenceSchema, instancesPerDay, parseCadence, SERIES_SOURCE_MODES, seriesSourceLabel, SeriesSourceSchema } from './series';
 import { agentDraft, networkMode, normalizePlaybook, submitPlaybookVersion, SubmitDeps } from './series-edit';
+import { longText, longTextNote } from '../harness/clip-text';
 
 /**
  * The orchestrator's series tools (spec 023 FR-003): "building a strategy" becomes small, reviewable tool
@@ -23,7 +24,7 @@ const SeriesFields = {
   cadence:      CadenceSchema.describe('daily@HH:MM[,HH:MM] або weekly:mon[,thu]@HH:MM[,…] — до 6 часів, час картки ресурсу'),
   resource_ref: z.string().min(3).max(200),
   format:       z.string().min(2).max(30),
-  brief:        z.string().min(10).max(600),
+  brief:        longText(10, 600).describe(`Бриф серії; ${longTextNote(600)}`),
   source:       SeriesSourceSchema.optional().describe('Джерело: {kind:"library", table} | {kind:"api", source, params} | {kind:"feed", ref} | {kind:"network_highlights", scope} | {kind:"free"}'),
   source_mode:  z.enum(SERIES_SOURCE_MODES).optional().describe('suggested (типово) або required'),
 };

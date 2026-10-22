@@ -106,3 +106,13 @@ test('resource keys: a Telegram username without "@" gets it, so unposted_on sti
   assert.deepEqual(resourceKeys('telegram:-1001234567890').resourceRef, 'telegram:-1001234567890');
   assert.deepEqual(resourceKeys('instagram:1789').resourceRef, 'instagram:1789');
 });
+
+test('spec 064 FR-003: ilike with only % means any value (no filter); empty text is still refused', async () => {
+  const { pool, calls } = fakePool();
+  await queryDataset(pool, BOOKS, { ...base, audience: 'owner', filters: [{ field: 'isbn', op: 'ilike', value: '%' }] });
+  assert.ok(!calls[0].params.some((p) => typeof p === 'string' && p.includes('%')), 'no pattern parameter');
+  assert.doesNotMatch(calls[0].sql, /ILIKE/);
+  await queryDataset(pool, BOOKS, { ...base, audience: 'owner', filters: [{ field: 'isbn', op: 'ilike', value: '%%' }] });
+  assert.doesNotMatch(calls[1].sql, /ILIKE/);
+  await refused({ filters: [{ field: 'genre', op: 'ilike', value: '   ' }] }, 'invalid_value', /needs some text/);
+});
