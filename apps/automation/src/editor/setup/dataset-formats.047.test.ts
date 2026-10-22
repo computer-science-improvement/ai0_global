@@ -82,4 +82,9 @@ test('a role agent shows its orchestrator\'s channel mode and refuses a mode of 
   const tree = await svc.tree();
   assert.equal(tree.agents[0].children[0].effectiveMode, 'live');
   await assert.rejects(svc.patch('pdr_planner', { mode: 'live' }), (e: any) => e.response?.error === 'mode_follows_orchestrator');
+  // Spec 064 FR-008: refused whatever the value (even the one its own column holds), and the error names whom it follows.
+  await assert.rejects(svc.patch('pdr_planner', { mode: 'off' }), (e: any) => {
+    const r = e.response;
+    return r?.error === 'mode_follows_orchestrator' && r.follows === 'pdr' && r.mode === 'live' && /follows @pdr, which is live/.test(r.details);
+  });
 });

@@ -15,9 +15,9 @@ import { Badge } from '../ui/Badge';
 import { Icon } from '../ui/Icon';
 import { describeError, toast } from '../ui/Toast';
 import { Modal } from '../Modal';
-import { fmtUsd, MODE_LABEL, MODE_TONE } from '../editor/EditorUi';
+import { fmtUsd } from '../editor/EditorUi';
 import { fmtDate, fmtRelative } from '../../lib/format';
-import { AgentGlyph, AgentModeSwitch, KIND_LABEL, LastRun, ScopeChip, runsLabel } from './AgentsUi';
+import { AgentGlyph, AgentModeSwitch, FollowsBadge, KIND_LABEL, LastRun, ScopeChip, runsLabel } from './AgentsUi';
 import { ResourceSection } from './ResourceProfile';
 import { FormattingSection } from './ResourceFormatting';
 import { ActiveEffects } from './ActiveEffects';
@@ -124,9 +124,9 @@ export function AgentOverview({ data }: { data: AgentDetail }) {
           {data.parent ? (
             // Spec 047 FR-007: a role agent has no mode of its own — it runs in its orchestrator's channel mode.
             <>
-              <Badge tone={MODE_TONE[a.effectiveMode ?? a.mode]}>{MODE_LABEL[a.effectiveMode ?? a.mode]}</Badge>
+              <FollowsBadge agent={a} parent={data.parent} />
               <div className="text-micro" style={{ marginTop: 8, color: 'var(--color-ink-muted)' }}>
-                follows <Link to="/app/agents/$handle" params={{ handle: data.parent.handle }} style={{ color: 'inherit' }}>@{data.parent.handle}</Link>
+                change it on <Link to="/app/agents/$handle" params={{ handle: data.parent.handle }} style={{ color: 'inherit' }}>@{data.parent.handle}</Link>
               </div>
             </>
           ) : <AgentModeSwitch agent={a} />}

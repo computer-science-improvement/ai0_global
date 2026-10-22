@@ -180,7 +180,11 @@ const MAX_STEPS: Record<CardRole, number> = { planner: 10, executor: 14, reviewe
  */
 export const EXECUTOR_PREFS_IN_PROMPT = 10;
 
-export const EXECUTOR_DENY = new Set(['sql_readonly', 'get_channel_card', 'get_channel_memory', 'list_skills']);
+export const EXECUTOR_DENY = new Set([
+  'sql_readonly', 'get_channel_card', 'get_channel_memory', 'list_skills',
+  // Spec 064 FR-006: publish_post lints itself since 053 T1 and returns the errors; the two check tools were 0 calls in 7 days.
+  'lint_post', 'preview_post',
+]);
 
 export function executorTools(role: CardRole, tools: EditorTool[], allow: string[] | null | undefined): EditorTool[] {
   if (role !== 'executor') return tools;
@@ -188,9 +192,9 @@ export function executorTools(role: CardRole, tools: EditorTool[], allow: string
   return tools.filter((t) => !EXECUTOR_DENY.has(t.name) || allowed.has(t.name));
 }
 
-/** Tools of a duplicate's short formatting run (FR-007): lint, publish or skip — nothing else. */
+/** Tools of a duplicate's short formatting run (FR-007): publish (it lints) or skip — nothing else. */
 const DUPLICATE_TOOLS: Record<'telegram' | 'platform', Set<string>> = {
-  telegram: new Set(['lint_post', 'preview_post', 'publish_post', 'skip_slot']),
+  telegram: new Set(['publish_post', 'skip_slot']),
   platform: new Set(['lint_platform_post', 'publish_platform_post', 'skip_slot']),
 };
 

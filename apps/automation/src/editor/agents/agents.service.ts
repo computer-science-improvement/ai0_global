@@ -199,10 +199,16 @@ export class AgentsService {
       patch.schedule = v.schedule;
     }
     if (v.daily_budget_usd !== undefined) patch.dailyBudgetUsd = v.daily_budget_usd;
-    if (v.mode !== undefined && v.mode !== a.mode && a.parentId) {
-      // Spec 047 FR-007: a role agent has no mode of its own — its runs follow the orchestrator's channel mode.
+    if (v.mode !== undefined && a.parentId) {
+      // Spec 047 FR-007: a role agent has no mode of its own — its runs follow the orchestrator's channel mode. Spec 064
+      // FR-008: refused whatever the value (its own column may say `off` while it runs live), naming the mode it follows.
       const orch = await this.orchestratorOf(a);
-      throw new BadRequestException({ error: 'mode_follows_orchestrator', details: `@${a.handle} runs in the mode of @${orch.handle} — switch the mode there` });
+      const following = await this.effectiveModeOf(orch);
+      throw new BadRequestException({
+        error: 'mode_follows_orchestrator',
+        details: `@${a.handle} has no mode of its own: it follows @${orch.handle}, which is ${following} — switch the mode on @${orch.handle}`,
+        follows: orch.handle, mode: following,
+      });
     }
     if (v.mode !== undefined && v.mode !== a.mode) {
       // Spec 023 FR-012: no live switch while a strategy binding still publishes to the agent's resources.

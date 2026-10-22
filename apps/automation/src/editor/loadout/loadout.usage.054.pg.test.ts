@@ -172,7 +172,8 @@ test('registry sync forms the loadout of a new channel\'s agents (peers\' tools 
   const planner = (await agents.findChild(newOrch.id, 'planner'))!;
   assert.equal(await loadoutRepo.mode(exec.id), 'custom');
   const got = await loadoutRepo.enabledTools(exec.id);
-  for (const n of ['fetch_feed', 'web_fetch', 'lint_post', 'publish_post', 'skip_slot', 'get_top_posts']) assert.ok(got.includes(n), n);
+  for (const n of ['fetch_feed', 'web_fetch', 'publish_post', 'skip_slot', 'get_top_posts']) assert.ok(got.includes(n), n);
+  assert.ok(!got.includes('lint_post'), 'spec 064 FR-006: publish_post lints itself, so lint_post is not in a new writer\'s tools');
   assert.ok(!got.includes('get_recent_posts') && !got.includes('lint_platform_post') && !got.includes('submit_plan'), 'optional and foreign tools stay out');
   assert.ok(got.includes('get_top_posts'), 'peers called it in a third of their runs');
   assert.deepEqual((await loadoutRepo.rows(exec.id)).map((r) => r.createdBy).filter((x, i, a) => a.indexOf(x) === i), ['creation']);

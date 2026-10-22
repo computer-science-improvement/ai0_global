@@ -12,6 +12,7 @@ import { useConfirm } from '../ui/ConfirmDialog';
 import { describeError, toast } from '../ui/Toast';
 import { MODE_LABEL, MODE_OPTIONS, MODE_TONE, RUN_TONE } from '../editor/EditorUi';
 import { fmtDate, fmtRelative } from '../../lib/format';
+import { followedMode, followsText, followsTitle } from '../../lib/agent-mode';
 import { AutonomyDialog } from '../approvals/AutonomyDialog';
 import { usePatchAgent, type Agent, type AgentActivity, type AgentKind, type AgentMode, type AgentNode } from '../../api/agents';
 
@@ -45,12 +46,21 @@ export function ScopeChip({ agent }: { agent: Pick<Agent, 'scope' | 'scopeId'> }
   return <span className="chip" style={{ fontSize: 11, maxWidth: '100%', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }} title={label}>{label}</span>;
 }
 
-/** Mode + paused badges. A role agent shows the mode its runs follow (its orchestrator's channel mode, spec 047 FR-007). */
-export function StateBadges({ agent }: { agent: Pick<Agent, 'mode' | 'pausedUntil' | 'effectiveMode'> & { paused: boolean } }) {
+/**
+ * The read-only badge of a role agent (spec 064 FR-008): «Follows @orchestrator (live)». It has no mode of its own — its
+ * runs follow its orchestrator's channel mode (spec 047 FR-007) — so there is no switch, and the tooltip says where to change it.
+ */
+export function FollowsBadge({ agent, parent }: { agent: Pick<Agent, 'handle' | 'mode' | 'effectiveMode'>; parent: { handle: string; mode?: AgentMode } }) {
+  const mode = followedMode(agent, parent.mode ? { mode: parent.mode } : null);
+  return <Badge tone={MODE_TONE[mode]} title={followsTitle(agent.handle, parent.handle, mode)}>{followsText(parent.handle, mode)}</Badge>;
+}
+
+/** Mode + paused badges. A role agent (`follows` = its orchestrator) shows what it follows instead of a mode. */
+export function StateBadges({ agent, follows }: { agent: Pick<Agent, 'handle' | 'mode' | 'pausedUntil' | 'effectiveMode'> & { paused: boolean }; follows?: { handle: string; mode?: AgentMode } | null }) {
   const mode = agent.effectiveMode ?? agent.mode;
   return (
     <>
-      <Badge tone={MODE_TONE[mode]}>{MODE_LABEL[mode]}</Badge>
+      {follows ? <FollowsBadge agent={agent} parent={follows} /> : <Badge tone={MODE_TONE[mode]}>{MODE_LABEL[mode]}</Badge>}
       {agent.paused && (
         <Badge tone="danger" title={agent.pausedUntil ? `until ${fmtDate(agent.pausedUntil)}` : 'until resumed'}>
           paused{agent.pausedUntil ? ` · until ${fmtDate(agent.pausedUntil)}` : ''}

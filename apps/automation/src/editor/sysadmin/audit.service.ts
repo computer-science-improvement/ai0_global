@@ -152,7 +152,7 @@ export class AuditService {
         await p.patchSkill(fix.agent, fix.skill, { inline: false });
         return describe(fix);
       case 'memory_retire': {
-        if (!(await p.retireMemory(fix.channel, fix.id))) throw Object.assign(new Error('nothing_to_retire'), { response: { error: 'nothing_to_retire', details: 'the row is already inactive or is not a reviewer row' } });
+        if (!(await p.retireMemory(fix.channel, fix.id))) throw Object.assign(new Error('nothing_to_retire'), { response: { error: 'nothing_to_retire', details: 'the row is already inactive' } });
         return describe(fix);
       }
       case 'conflicts_resolve': {

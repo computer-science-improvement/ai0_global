@@ -18,7 +18,7 @@ const mk = (name: string, kind: any = 'read', roles: any[] = ['executor'], extra
 
 const CORE = ['load_skill', 'fetch_feed', 'fetch_api', 'web_fetch', 'library_catalog', 'query_data', 'check_similarity'];
 const registry = () => new ToolRegistry([
-  ...CORE.map((n) => mk(n)), mk('get_top_posts'), mk('get_recent_posts'), mk('lint_post'), mk('sql_readonly'), mk('act_x', 'act'),
+  ...CORE.map((n) => mk(n)), mk('get_top_posts'), mk('get_recent_posts'), mk('check_links'), mk('sql_readonly'), mk('act_x', 'act'),
   mk('publish_post', 'terminal'), mk('skip_slot', 'terminal'), mk('chat_only_tool', 'act', ['executor'], { chatOnly: true }), mk('plan_tool', 'read', ['planner']),
 ]);
 
@@ -140,7 +140,7 @@ test('creation: core tools, Telegram tools, peers\' tools — written once as th
   const { c, wrote } = creation({ peers: ['get_top_posts'] });
   assert.equal(await c.form(agent()), true);
   assert.equal(wrote[0].by, 'creation');
-  const want = new Set([...CORE, 'get_top_posts', 'lint_post', 'publish_post', 'skip_slot']);
+  const want = new Set([...CORE, 'get_top_posts', 'publish_post', 'skip_slot']);
   assert.deepEqual(wrote[0].names, registry().all().map((t) => t.name).filter((n) => want.has(n)));
 });
 
@@ -190,7 +190,7 @@ function busy(): AgentUsage {
   u.runs = 20;
   u.offered = new Map([['get_recent_posts', 20], ['fetch_feed', 20], ['act_x', 20]]);
   u.tools.set('act_x', { calls: 4, errors: 0, lastUsedAt: new Date() });
-  u.denied.set('lint_post', 3);
+  u.denied.set('check_links', 3);
   return u;
 }
 
@@ -200,15 +200,15 @@ test('view: suggestions come from the usage, the peers and the skills', async ()
     peers: { runs: 30, rates: new Map([['get_top_posts', 0.5]]) }, skills: [entry('format-poll-quiz', 's1')],
   });
   const v = await svc.view('ch_executor');
-  assert.deepEqual(v.suggestions.map((s) => s.id), ['missing:lint_post', 'peer:get_top_posts', 'unused:get_recent_posts', 'stale:old_tool', 'skills_unused:format-poll-quiz']);
+  assert.deepEqual(v.suggestions.map((s) => s.id), ['missing:check_links', 'peer:get_top_posts', 'unused:get_recent_posts', 'stale:old_tool', 'skills_unused:format-poll-quiz']);
 });
 
 test('apply: add and remove on top of the effective tools, written as "recommend", terminal kept', async () => {
   const { svc, state } = setup({ mode: 'custom', enabled: [...CORE, 'get_recent_posts', 'old_tool', 'publish_post', 'skip_slot'], usage: busy() });
-  const v = await svc.apply('ch_executor', { add: ['lint_post', 'get_top_posts'], remove: ['get_recent_posts', 'old_tool'] });
+  const v = await svc.apply('ch_executor', { add: ['check_links', 'get_top_posts'], remove: ['get_recent_posts', 'old_tool'] });
   assert.equal(state.by, 'recommend');
   assert.equal(v.mode, 'custom');
-  const want = new Set([...CORE, 'lint_post', 'get_top_posts', 'publish_post', 'skip_slot']);
+  const want = new Set([...CORE, 'check_links', 'get_top_posts', 'publish_post', 'skip_slot']);
   assert.deepEqual(state.enabled, registry().all().map((t) => t.name).filter((n) => want.has(n)), 'the stale name is gone');
 });
 

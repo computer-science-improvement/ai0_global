@@ -6,7 +6,7 @@ import { Badge } from '../components/ui/Badge';
 import { Icon } from '../components/ui/Icon';
 import { describeError } from '../components/ui/Toast';
 import { fmtUsd } from '../components/editor/EditorUi';
-import { AgentGlyph, KIND_LABEL, LastRun, ScopeChip, StateBadges, runsLabel } from '../components/agents/AgentsUi';
+import { AgentGlyph, FollowsBadge, KIND_LABEL, LastRun, ScopeChip, StateBadges, runsLabel } from '../components/agents/AgentsUi';
 import { useAgentInbox, useAgentTree, type AgentNode } from '../api/agents';
 import { MigrationBanner } from '../components/strategies/MigrationBanner';
 import { NeedsYou } from '../components/nav/NeedsYou';
@@ -135,14 +135,14 @@ function OrchestratorRow({ a, delay }: { a: AgentNode; delay: number }) {
       </div>
       {open && (
         <div style={{ borderTop: '1px solid var(--color-hairline-soft)', background: 'var(--color-surface-1)', padding: '6px 10px' }}>
-          {a.children.map((c, i) => <ChildRow key={c.id} c={c} delay={i * 30} />)}
+          {a.children.map((c, i) => <ChildRow key={c.id} c={c} parent={a} delay={i * 30} />)}
         </div>
       )}
     </div>
   );
 }
 
-function ChildRow({ c, delay }: { c: AgentNode; delay: number }) {
+function ChildRow({ c, parent, delay }: { c: AgentNode; parent: AgentNode; delay: number }) {
   return (
     <Link to="/app/agents/$handle" params={{ handle: c.handle }} className="row-lift compose-rise"
       style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '8px 8px', borderRadius: 'var(--radius-sm)', textDecoration: 'none', color: 'inherit', flexWrap: 'wrap', animationDelay: `${delay}ms` }}>
@@ -150,6 +150,7 @@ function ChildRow({ c, delay }: { c: AgentNode; delay: number }) {
       <div style={{ minWidth: 140, flex: 1, display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap' }}>
         <span className="text-body-sm" style={{ color: 'var(--color-ink)', fontWeight: 500 }}>{KIND_LABEL[c.kind]}</span>
         <span className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>@{c.handle}</span>
+        <FollowsBadge agent={c} parent={{ handle: parent.handle, mode: parent.effectiveMode ?? parent.mode }} />
         {c.paused && <Badge tone="danger">paused</Badge>}
       </div>
       <span style={{ display: 'inline-flex', alignItems: 'center', gap: 10, marginLeft: 'auto' }}>

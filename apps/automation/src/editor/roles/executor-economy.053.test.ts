@@ -42,11 +42,13 @@ test('the schemaless check tools validate the spec themselves: invalid_args with
 
 test('the executor loses the tools its prompt already answers, unless the channel allowlist names them', () => {
   const tool = (name: string) => ({ name }) as EditorTool;
-  const all = ['sql_readonly', 'get_channel_card', 'get_channel_memory', 'list_skills', 'web_fetch', 'publish_post'].map(tool);
+  const all = ['sql_readonly', 'get_channel_card', 'get_channel_memory', 'list_skills', 'lint_post', 'preview_post', 'web_fetch', 'publish_post'].map(tool);
   assert.deepEqual(executorTools('executor', all, null).map((t) => t.name), ['web_fetch', 'publish_post']);
   assert.deepEqual(executorTools('executor', all, ['sql_readonly']).map((t) => t.name), ['sql_readonly', 'web_fetch', 'publish_post']);
+  // Spec 064 FR-006: publish_post lints itself; the check tools come back only when the channel allowlist names them.
+  assert.deepEqual(executorTools('executor', all, ['lint_post']).map((t) => t.name), ['lint_post', 'web_fetch', 'publish_post']);
   assert.equal(executorTools('reviewer', all, null).length, all.length, 'the reviewer keeps SQL and memory');
-  assert.equal(EXECUTOR_DENY.size, 4);
+  assert.equal(EXECUTOR_DENY.size, 6);
 });
 
 test('the writer prompt: compact card, the newest 15 lessons each clipped, short skill hints; the planner keeps all', () => {

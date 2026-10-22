@@ -168,13 +168,13 @@ test('stale insights: reviewer insights over 90 days with no later confirmation;
 
 // ── rules ───────────────────────────────────────────────────────────────────
 
-test('rule lint findings carry the codes and no fix', () => {
+test('rule lint findings carry the codes and the memory_retire fix (spec 064 FR-009)', () => {
   const r = ruleLintFindings(facts({ rules: [
     { id: 15, channel: '@news', agent: 'news_ch', text: 'Ці правила завжди виконуються для всіх постів', issues: [{ code: 'pointer_only', detail: 'points at other text' }] },
     { id: 16, channel: '@news', agent: 'news_ch', text: 'Без хештегів у новинах', issues: [] },
   ] }));
   assert.equal(r.length, 1);
-  assert.equal(r[0].fix, undefined);
+  assert.deepEqual(r[0].fix, { kind: 'memory_retire', channel: '@news', id: 15 });
   assert.deepEqual(r[0].evidence.codes, ['pointer_only']);
   assert.equal(r[0].subject.channel, '@news');
 });
@@ -262,6 +262,6 @@ test('runChecks: sorted by severity, deduplicated by key, one check cannot flood
   assert.equal(new Set(out.map((x) => x.key)).size, out.length, 'keys are unique');
   const withThrow = runChecks(f, [() => { throw new Error('boom'); }, toolErrorFindings]);
   assert.equal(withThrow.length, 1);
-  assert.deepEqual(countFindings(out).fixable, 0);
+  assert.deepEqual(countFindings(out).fixable, 25, 'the listed rule-lint findings carry a fix; the «more like this» line does not');
   assert.equal(countFindings(out).total, out.length);
 });

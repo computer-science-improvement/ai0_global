@@ -1,6 +1,6 @@
 # 064 — Ops batch from review 3
 
-Status: draft · Builds on 040 (loop guards), 049 (keeper), 053 (token economy), 054 (loadout), 055 (@sysadmin) · No migration
+Status: done · Builds on 040 (loop guards), 049 (keeper), 053 (token economy), 054 (loadout), 055 (@sysadmin) · No migration
 
 ## Why
 

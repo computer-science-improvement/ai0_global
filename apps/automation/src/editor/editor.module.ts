@@ -180,7 +180,7 @@ import { AuditService } from './sysadmin/audit.service';
 import { AUDIT_SERVICE, AuditController } from './sysadmin/audit.controller';
 import { AuditTick } from './sysadmin/audit-schedule';
 import { auditAdapter, auditTitle } from './sysadmin/audit-artifact';
-import { playbookPort } from './sysadmin/audit-ports';
+import { playbookPort, retireMemoryPort } from './sysadmin/audit-ports';
 import { collectPosts, trackedChannel } from './setup/setup-posts';
 import { VOICE_SKILL_NAME } from './setup/setup-analysis';
 import { refName, SteeringRepository } from './steering/steering.repository';
@@ -2038,7 +2038,7 @@ export const EDITOR_PROVIDERS = [
           fixes: {
             agentByHandle: (h) => infra.agents.getByHandle(h),
             patchSkill: (handle, name, patch) => agentsSvc.patchSkill(handle, name, patch),
-            retireMemory: (channel, id) => repos.memory.retireByReviewer(channel, id),
+            retireMemory: retireMemoryPort(repos.memory),
             applyConflicts: (orch) => conflicts.apply(orch),
           },
         });

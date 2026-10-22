@@ -153,7 +153,7 @@ function AgentPage() {
       </div>
       <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap', margin: '-12px 0 16px' }}>
         <ScopeChip agent={a} />
-        <StateBadges agent={a} />
+        <StateBadges agent={a} follows={d.parent} />
         {a.status === 'active' && !a.paused && <Badge tone="success">active</Badge>}
       </div>
       {a.description && (

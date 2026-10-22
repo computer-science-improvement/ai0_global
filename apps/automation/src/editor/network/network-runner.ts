@@ -74,7 +74,11 @@ const STEPS: Record<string, number> = { orchestrate: 15, playbook: 18, ideaRevie
  * Spec 053 FR-005: tools the daily orchestration never needs — the playbook is in its prompt, raw SQL and dataset
  * edits are other roles' work. Every tool schema is re-sent on every step.
  */
-export const ORCHESTRATOR_EXCLUDE = new Set(['get_playbook', 'sql_readonly', 'edit_data_schema', 'search_library']);
+export const ORCHESTRATOR_EXCLUDE = new Set([
+  'get_playbook', 'sql_readonly', 'edit_data_schema', 'search_library',
+  // Spec 064 FR-006: 0 calls in 3,831 steps; the manager keeps it (skills are edited from its review, not the daily run).
+  'propose_skill_edit',
+]);
 /**
  * Spec 053 FR-004: the reviewer's tools — the batch verdict, the playbook review, a source check and its skill. Novelty
  * is computed by code into the prompt, so get_network_posts and SQL (9.6 calls a run) are not offered.

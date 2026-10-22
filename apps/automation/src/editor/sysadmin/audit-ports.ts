@@ -20,6 +20,14 @@ export interface PlaybookPortDeps {
   catalog: (card: EditorCard) => Promise<SeriesSourceCatalog | null>;
 }
 
+/**
+ * The `memory_retire` fix (spec 064 FR-009). A reviewer row is retired as before; a row of the owner is retired only
+ * because a finding of the report (a rule the lint flags) carries this fix and the owner applied it.
+ */
+export function retireMemoryPort(repo: { retireByReviewer(channel: string, id: number): Promise<boolean>; retireByOwner(channel: string, id: number): Promise<boolean> }) {
+  return async (channel: string, id: number): Promise<boolean> => (await repo.retireByReviewer(channel, id)) || (await repo.retireByOwner(channel, id));
+}
+
 /** The active playbook of an orchestrator with its hard errors and soft warnings; null = no playbook or no network. */
 export function playbookPort(d: PlaybookPortDeps): AuditQueriesDeps['playbook'] {
   return async (orch) => {

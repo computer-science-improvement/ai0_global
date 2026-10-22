@@ -25,7 +25,7 @@ const skip = !url ? 'EDITOR_PG_TEST_URL not set' : false;
 const mk = (name: string, kind: any = 'read') =>
   defineTool({ name, description: `${name} does a thing`, input: z.object({}), kind, roles: ['executor'], execute: async () => ({ ok: true }) });
 const CORE = ['load_skill', 'fetch_feed', 'fetch_api', 'web_fetch', 'library_catalog', 'query_data', 'check_similarity'];
-const registry = new ToolRegistry([...CORE.map((n) => mk(n)), mk('get_top_posts'), mk('get_recent_posts'), mk('lint_post'), mk('publish_post', 'terminal'), mk('skip_slot', 'terminal')]);
+const registry = new ToolRegistry([...CORE.map((n) => mk(n)), mk('get_top_posts'), mk('get_recent_posts'), mk('check_links'), mk('publish_post', 'terminal'), mk('skip_slot', 'terminal')]);
 
 let db: LoadoutDb;
 let pool: Pool;
@@ -43,7 +43,7 @@ before(async () => {
   await skills.syncBuiltins({ all: () => [{ name: 'format-poll-quiz', description: 'polls', appliesTo: ['executor'], body: 'How to write a poll.' }] } as any);
 
   const offered = [...CORE, 'get_top_posts', 'get_recent_posts', 'publish_post', 'skip_slot'];
-  // A custom loadout without lint_post: the runs below tried to call it anyway.
+  // A custom loadout without check_links: the runs below tried to call it anyway.
   await new LoadoutRepository(pool).setTools(execId, offered, 'owner');
   for (let i = 0; i < 12; i++) {
     const { rows } = await pool.query(
@@ -54,8 +54,8 @@ before(async () => {
     if (i < 3) {
       // The harness's own refusal of a tool that was not offered.
       await pool.query(
-        `INSERT INTO editor_run_steps (run_id, idx, type, tool_name, input, output, is_error) VALUES ($1, 1, 'tool', 'lint_post', '{}', $2, true)`,
-        [run, JSON.stringify({ error: 'tool_not_allowed', details: 'unknown or disallowed tool "lint_post"' })]);
+        `INSERT INTO editor_run_steps (run_id, idx, type, tool_name, input, output, is_error) VALUES ($1, 1, 'tool', 'check_links', '{}', $2, true)`,
+        [run, JSON.stringify({ error: 'tool_not_allowed', details: 'unknown or disallowed tool "check_links"' })]);
     }
   }
   admin = new LoadoutAdminService({
@@ -68,16 +68,16 @@ after(async () => { if (db) await db.drop(); });
 test('suggestions from real runs: refused calls are missing, never-called tools unused, an unloaded skill unused', { skip }, async () => {
   const v = await admin.view('lo_sug_executor');
   assert.equal(v.runs30d, 12);
-  assert.deepEqual(v.suggestions.map((s) => s.id), ['missing:lint_post', 'unused:get_recent_posts', 'unused:get_top_posts', 'skills_unused:format-poll-quiz']);
+  assert.deepEqual(v.suggestions.map((s) => s.id), ['missing:check_links', 'unused:get_recent_posts', 'unused:get_top_posts', 'skills_unused:format-poll-quiz']);
   assert.deepEqual(v.suggestions[0].evidence, { denied: 3 });
-  assert.equal(v.tools.find((t) => t.name === 'lint_post')!.calls30d, 0, 'a refused call is not a use');
+  assert.equal(v.tools.find((t) => t.name === 'check_links')!.calls30d, 0, 'a refused call is not a use');
 });
 
 test('digest block and the weekly note read the same suggestions', { skip }, async () => {
   const scan = new LoadoutScan({ agents: new AgentsRepository(pool), admin, ttlMs: 0 });
   const digest = new KpiDigestService({ pool, catalog: { list: async () => [] }, globalCapUsd: 3, loadout: () => scan.digestLines() });
   const dg = await digest.build();
-  assert.deepEqual(dg.loadout, ['@lo_sug_executor: add lint_post · remove get_recent_posts, get_top_posts · skills off format-poll-quiz']);
+  assert.deepEqual(dg.loadout, ['@lo_sug_executor: add check_links · remove get_recent_posts, get_top_posts · skills off format-poll-quiz']);
   assert.deepEqual(JSON.parse(digest.render(dg)).loadout, dg.loadout);
 
   const inbox = new OwnerInbox(pool);
@@ -92,13 +92,13 @@ test('digest block and the weekly note read the same suggestions', { skip }, asy
 test('apply writes the "recommend" rows, switches to custom and turns the skill off; the suggestions are gone', { skip }, async () => {
   const before = await admin.view('lo_sug_executor');
   assert.equal(before.mode, 'custom');
-  const v = await admin.apply('lo_sug_executor', { add: ['lint_post'], remove: ['get_recent_posts', 'get_top_posts'], disableSkills: ['format-poll-quiz'] });
+  const v = await admin.apply('lo_sug_executor', { add: ['check_links'], remove: ['get_recent_posts', 'get_top_posts'], disableSkills: ['format-poll-quiz'] });
   assert.equal(v.mode, 'custom');
   assert.deepEqual(v.suggestions, []);
   const { rows } = await pool.query(`SELECT tool_name, enabled, created_by FROM agent_tools WHERE agent_id = $1 ORDER BY tool_name`, [execId]);
-  assert.equal(rows.find((r) => r.tool_name === 'lint_post')!.created_by, 'recommend');
+  assert.equal(rows.find((r) => r.tool_name === 'check_links')!.created_by, 'recommend');
   assert.equal(rows.find((r) => r.tool_name === 'get_top_posts')!.enabled, false, 'a dropped tool stays as a disabled row');
-  assert.deepEqual(rows.filter((r) => r.enabled).map((r) => r.tool_name), [...CORE, 'lint_post', 'publish_post', 'skip_slot'].sort());
+  assert.deepEqual(rows.filter((r) => r.enabled).map((r) => r.tool_name), [...CORE, 'check_links', 'publish_post', 'skip_slot'].sort());
   const sk = await pool.query(`SELECT enabled FROM agent_skills WHERE agent_id = $1`, [execId]);
   assert.deepEqual(sk.rows, [{ enabled: false }]);
   assert.equal((await admin.view('lo_sug_executor')).skills.find((s) => s.name === 'format-poll-quiz')!.enabled, false);

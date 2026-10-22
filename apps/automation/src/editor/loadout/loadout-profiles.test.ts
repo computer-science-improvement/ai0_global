@@ -76,7 +76,9 @@ test('the writer\'s denied tools are not core and cannot be switched on; the ide
 
 test('a new executor of a Telegram resource gets the Telegram-only tools, not the platform ones', () => {
   const set = creationLoadout('executor', tools, needsOf(['telegram']), []);
-  for (const t of ['lint_post', 'preview_post', 'publish_post', 'fetch_feed', 'skip_slot']) assert.ok(set.includes(t), t);
+  for (const t of ['publish_post', 'fetch_feed', 'skip_slot']) assert.ok(set.includes(t), t);
+  // Spec 064 FR-006: publish_post lints itself, so the writer starts without the two check tools.
+  assert.ok(!set.includes('lint_post') && !set.includes('preview_post'), 'lint_post / preview_post are off by default');
   assert.ok(!set.includes('lint_platform_post'), 'lint_platform_post is not for a Telegram-only resource');
   assert.ok(set.includes('publish_platform_post'), 'a terminal tool is core whatever the resource: the harness offers it anyway');
   assert.ok(!set.includes('sql_readonly') && !set.includes('get_channel_card'), 'the writer\'s denied tools stay out');
@@ -85,7 +87,8 @@ test('a new executor of a Telegram resource gets the Telegram-only tools, not th
 
 test('a resource with other platforms gets the platform tools; one without Telegram loses the Telegram-only', () => {
   const both = creationLoadout('executor', tools, needsOf(['telegram', 'instagram']), []);
-  for (const t of ['lint_post', 'publish_post', 'lint_platform_post', 'publish_platform_post']) assert.ok(both.includes(t), t);
+  for (const t of ['publish_post', 'lint_platform_post', 'publish_platform_post']) assert.ok(both.includes(t), t);
+  assert.ok(!both.includes('lint_post'));
   const ig = creationLoadout('executor', tools, needsOf(['instagram']), []);
   assert.ok(ig.includes('lint_platform_post') && !ig.includes('lint_post'));
 });
@@ -119,4 +122,15 @@ test('the new loadout is smaller than the role default for every resource role',
 test('toolTokens is the schema size over four', () => {
   const t = tools.find((x) => x.name === 'fetch_feed')!;
   assert.ok(toolTokens(t) > 20 && toolTokens(t) < 2000);
+});
+
+test('spec 064 FR-006: the role defaults drop lint_post / preview_post (executor) and propose_skill_edit (orchestrator); the manager keeps it', () => {
+  const def = (role: any) => names(roleDefaultOf(role, universeOf(role, tools)));
+  const executor = def('executor');
+  assert.ok(!executor.includes('lint_post') && !executor.includes('preview_post'));
+  assert.ok(executor.includes('publish_post') && executor.includes('lint_platform_post'));
+  assert.ok(!def('orchestrator').includes('propose_skill_edit'));
+  assert.ok(universeOf('manager', tools).some((t) => t.name === 'propose_skill_edit'), 'the manager owns it');
+  assert.ok(hardExcluded('orchestrator', universeOf('orchestrator', tools)).has('propose_skill_edit'));
+  assert.ok(!coreOf('executor', universeOf('executor', tools)).has('lint_post'));
 });

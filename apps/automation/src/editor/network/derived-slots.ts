@@ -191,7 +191,7 @@ export function derivedPrompts(o: {
       : `Ти АДАПТУЄШ пост для ${o.targetRef}: та сама ідея й ті самі факти, але текст і структура — нативні для цієї платформи. Нових фактів не додаєш, лише з джерела (можеш перечитати його джерела).`,
     'Чернетка нижче — лише стартова точка від коду, не готовий результат. Налаштування форматування ресурсу (format_prefs) і твої нотатки мають пріоритет над чернеткою; жорсткі ліміти платформи — понад усе.',
     tg
-      ? 'Порядок: lint_post → publish_post (PostSpec). Якщо дубль тут недоречний — skip_slot з причиною.'
+      ? 'Порядок: publish_post (PostSpec) — він сам перевіряє lint і повертає помилки. Якщо дубль тут недоречний — skip_slot з причиною.'
       : 'Порядок: lint_platform_post → publish_platform_post (PlatformPostSpec). Якщо дубль тут недоречний — skip_slot з причиною.',
     'Якщо публікація повернула lint_failed — виправ саме ці коди один раз; друга помилка завершить слот як failed.',
     ...voiceCoreSection(o.voice ?? null),
@@ -199,7 +199,7 @@ export function derivedPrompts(o: {
     ...ownerRulesSection(o.ownerRules ?? []),
     '',
     '## Жорсткі ліміти платформи',
-    tg ? '- Telegram: розмітка, кнопки й альбоми — за PostSpec; lint_post покаже порушення.' : capabilitiesSummary([o.targetPlatform]),
+    tg ? '- Telegram: розмітка, кнопки й альбоми — за PostSpec; publish_post покаже порушення lint.' : capabilitiesSummary([o.targetPlatform]),
     ...(o.profile ? ['', '## Профіль ресурсу', o.profile] : []),
     '',
     '## Форматування ресурсу (format_prefs)',

@@ -514,3 +514,25 @@ What the chat tells you about its own turn now comes from the system, not from t
 - A saved draft lost a field you wanted removed: send the key as `null` (an empty list `[]` also replaces it).
 - `/align` says "not a channel or agent of the network": use the agent's handle or its channel key.
 - Tests: `chat/chat-truthfulness.062.test.ts` (replay of chat e8c11647), `chat/chat-tools.062.test.ts`, `chat/chat-rules-align.062.test.ts`; in the dashboard `lib/align.test.ts`.
+
+## 23. Ops batch from review 3 (spec 064)
+
+Small fixes to the loop, the loadout and the audit. No migration, no new setting.
+
+**What changed**
+
+- Usage rollup: concurrent rollups are serialised with `pg_advisory_xact_lock(6400029001)`, so two runs no longer double-count a day.
+- Log lines use one `errText(err)` (`common/err-text.ts`): message, else code, else cause, else name. An empty `err.message` no longer produces a blank error in the log or the Inbox.
+- Planner and executor loops: a terminal-tool error on the last turn adds a turn (at most 2 per run). `series: null` is accepted. Long `topic`, `summary`, `notes` and series `brief` text is cut, not rejected, and the limit is in the field description. A bad JSON argument now carries the parse message. `ilike '%'` matches everything.
+- The circuit breaker counts errors per `tool@host` for `web_fetch` and `fetch_feed`: one dead host is dropped for the run, the tool stays. The run record's dropped list shows `web_fetch@host`.
+- An elided tool result keeps a one-line gist and its arguments. Stored tool results are capped at 8,000 characters including the wrapper.
+- Meta insights: an unsupported metric is remembered for 7 days per account and not asked again (`config/meta-insight-backoff.ts`, in memory, resets on restart).
+- Loadout: the executor no longer gets `sql_readonly`, `get_channel_card`, `get_channel_memory`, `list_skills`, `lint_post`, `preview_post` by default, and an orchestrator no longer gets `propose_skill_edit`. A channel's `tools_allow` can still add the executor tools back.
+- A role agent (planner, executor, ideas) has no mode. `PATCH /api/agents/:handle` with `mode` on a role child answers `409 mode_follows_orchestrator` (with `follows` and `mode`). The dashboard shows a read-only badge "Follows @orchestrator (live)" on the agents list, the agent page and its overview; the mode switch stays on the orchestrator.
+- @sysadmin (§16): the weekly audit lints the active owner rules in memory with the same lint the owner chat uses. Each flagged rule (a request to the agent, an unknown skill, a pointer with no content) is a finding with a **Retire rule** fix (`memory_retire`), which retires the row.
+
+**Troubleshooting**
+
+- A rule you want to keep is flagged: reword it in the owner chat (the lint explains why), or dismiss the finding.
+- An executor lost a tool it needs: add it under the channel's `tools_allow` in its loadout.
+- Tests: `common/err-text.test.ts`, `common/ai/usage/llm-usage-rollup.lock.pg.test.ts`, `config/meta-insight-backoff.test.ts`, `editor/harness/ops.064.test.ts`, `editor/sysadmin/stored-rules.064.test.ts`, `editor/loadout/loadout-profiles.test.ts`, `editor/setup/dataset-formats.047.test.ts`; in the dashboard `lib/agent-mode.test.ts`.

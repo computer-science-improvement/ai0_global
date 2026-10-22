@@ -3,15 +3,20 @@ import type { AuditFacts, Finding } from '../audit.types';
 
 /** Spec 055 FR-001, rules: owner-rule lint, rules vs config, playbooks, steering sets. */
 
-/** Every owner rule the lint flags. No fix: the owner rewrites or retires it (the finding links to the Rules artifact). */
+/**
+ * Every active owner rule the lint flags (an unknown skill named, a pointer with no content, a request that asks the agent
+ * to save or update something). Spec 064 FR-009: the fix retires the row, the owner's click on the report; the text of a
+ * good rule can be written again afterwards (the finding links to the Rules artifact).
+ */
 export function ruleLintFindings(f: AuditFacts): Finding[] {
   return f.rules.filter((r) => r.issues.length).map((r) => {
     const subject = { type: 'rule' as const, id: `${r.channel}#${r.id}`, label: clip(r.text, 80), channel: r.channel, ...(r.agent ? { agent: r.agent } : {}) };
     return {
       key: findingKey('rules', 'rule_lint', subject), area: 'rules' as const, check: 'rule_lint', severity: 'warn' as const, subject,
       title: `${r.channel}: your rule #${r.id} does not work as a rule`,
-      detail: `«${clip(r.text, 200)}»\n${r.issues.map((i) => `${i.code}: ${i.detail}`).join('\n')}`,
+      detail: `«${clip(r.text, 200)}»\n${r.issues.map((i) => `${i.code}: ${i.detail}`).join('\n')}\nApplying the fix retires this rule; add a corrected one if the idea still matters.`,
       evidence: { codes: r.issues.map((i) => i.code), ruleId: r.id },
+      fix: { kind: 'memory_retire' as const, channel: r.channel, id: r.id },
     };
   });
 }
