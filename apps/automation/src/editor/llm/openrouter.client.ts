@@ -35,7 +35,7 @@ const EPHEMERAL = { type: 'ephemeral' } as const;
  * Wire messages with the Anthropic-client breakpoints: the system prompt and a rolling one on the newest user / tool
  * message, so the next step of the loop reads the whole prefix (tools included) from the cache.
  */
-export function withCacheMarks(wire: Array<Record<string, unknown>>): Array<Record<string, unknown>> {
+export function withCacheMarks(wire: Array<Record<string, unknown>>, o: { rolling?: boolean } = {}): Array<Record<string, unknown>> {
   const out = wire.map((m) => ({ ...m }));
   const mark = (m: Record<string, unknown>) => {
     if (typeof m.content === 'string' && m.content) m.content = [{ type: 'text', text: m.content, cache_control: EPHEMERAL }];
@@ -43,7 +43,7 @@ export function withCacheMarks(wire: Array<Record<string, unknown>>): Array<Reco
   const sys = out.find((m) => m.role === 'system');
   if (sys) mark(sys);
   const last = out[out.length - 1];
-  if (last && (last.role === 'user' || last.role === 'tool')) mark(last);
+  if (o.rolling !== false && last && (last.role === 'user' || last.role === 'tool')) mark(last);
   return out;
 }
 
@@ -74,7 +74,7 @@ export class OpenRouterClient implements LlmClient {
     const wire = req.messages.map(toWireMessage);
     const body: Record<string, unknown> = {
       model:    req.model,
-      messages: req.cache !== false && needsCacheMarks(req.model) ? withCacheMarks(wire) : wire,
+      messages: req.cache !== false && needsCacheMarks(req.model) ? withCacheMarks(wire, { rolling: req.cache !== 'prefix' }) : wire,
       ...(req.tools?.length ? {
         tools: req.tools.map((t) => ({ type: 'function', function: { name: t.name, description: t.description, parameters: t.parameters } })),
         tool_choice: 'auto',

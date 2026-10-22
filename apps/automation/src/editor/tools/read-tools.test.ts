@@ -105,6 +105,16 @@ test('fetch_feed parses RSS items', async () => {
   assert.equal(res.items[0].link, 'https://example.com/1');
 });
 
+test('063: fetch_feed items carry date_local in Kyiv time next to the date', async () => {
+  const xml = `<?xml version="1.0"?><rss version="2.0"><channel><title>F</title>
+    <item><title>One</title><link>https://example.com/1</link><pubDate>Thu, 22 Oct 2026 15:00:00 GMT</pubDate></item>
+    <item><title>Two</title><link>https://example.com/2</link></item></channel></rss>`;
+  const get = async () => ({ status: 200, headers: { 'content-type': 'application/rss+xml' }, data: xml });
+  const res: any = await tools(fakePool().pool, { get }).fetch_feed.execute({ url: 'https://example.com/rss', limit: 2 }, ctx);
+  assert.equal(res.items[0].date_local, '22.10, 18:00 (Київ)');
+  assert.equal(res.items[1].date_local, undefined, 'an item without a date has none');
+});
+
 test('check_similarity flags near-duplicates', async () => {
   const { pool } = fakePool(() => [{ text: 'NASA запустила новий телескоп для пошуку екзопланет', at: new Date() }, { text: 'Рецепт борщу', at: new Date() }]);
   const res: any = await tools(pool).check_similarity.execute({ text: 'NASA запустило новий телескоп, щоб шукати екзопланети' }, ctx);

@@ -101,3 +101,22 @@ test('agent tool inputs are normalised: AgentPostSpecSchema and AgentPlatformPos
   });
   assert.equal(p.caption, "Нове «оновлення» зʼявилось [тут](https://ex.com/a'b) #з'явилось");
 });
+
+test('063: dropDuplicateSourceLink keeps the words and drops the link to the spec source (lists, tables, details too); other links stay', () => {
+  const url = 'https://techcrunch.com/2026/10/08/openai/';
+  const spec = makeSpec({
+    body: [
+      { type: 'lead', text: 'OpenAI випустила [модель](https://www.techcrunch.com/2026/10/08/openai) вчора' },
+      { type: 'p', text: 'Деталі в [іншій статті](https://example.com/other) і [тут](https://techcrunch.com/2026/10/08/openai/#top).' },
+      { type: 'list', items: ['перше [джерело](https://techcrunch.com/2026/10/08/openai?utm_source=tg)', 'друге'] },
+    ],
+    source: { url, label: 'TechCrunch' },
+  });
+  const out = normalizePostSpec(spec);
+  assert.equal((out.body[0] as any).text, 'OpenAI випустила модель вчора');
+  assert.equal((out.body[1] as any).text, 'Деталі в [іншій статті](https://example.com/other) і тут.');
+  assert.deepEqual((out.body[2] as any).items, ['перше джерело', 'друге']);
+  assert.deepEqual(normalizePostSpec(out), out, 'idempotent');
+  const none = makeSpec({ body: [{ type: 'p', text: 'Є [посилання](https://techcrunch.com/x).' }], source: undefined });
+  assert.equal((normalizePostSpec(none).body[0] as any).text, 'Є [посилання](https://techcrunch.com/x).', 'no source: nothing to deduplicate');
+});

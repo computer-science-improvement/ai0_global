@@ -60,7 +60,7 @@ test('spaceflight_news: limit/search query, normalized items', async () => {
   assert.equal(urls[0].hostname, 'api.spaceflightnewsapi.net');
   assert.equal(urls[0].searchParams.get('limit'), '3');
   assert.equal(urls[0].searchParams.get('search'), 'starship');
-  assert.deepEqual(r.items[0], { title: 'Starship flies', summary: 'It flew.', url: 'https://spacenews.com/a', image: 'https://img/a.jpg', date: '2026-10-01T08:00:00Z', extra: { news_site: 'SpaceNews' } });
+  assert.deepEqual(r.items[0], { title: 'Starship flies', summary: 'It flew.', url: 'https://spacenews.com/a', image: 'https://img/a.jpg', date: '2026-10-01T08:00:00Z', date_local: '01.10, 11:00 (Київ)', extra: { news_site: 'SpaceNews' } });
 });
 
 test('tmdb_trending: needs TMDB_API_KEY; maps tv/movie; vote filter', async () => {
@@ -91,6 +91,9 @@ test('epic_free_games: only currently-free offers, end date in extra', async () 
   assert.equal(r.items.length, 1);
   assert.equal(r.items[0].url, 'https://store.epicgames.com/en-US/p/free-game');
   assert.equal(r.items[0].extra.ends_at, '2026-10-02T15:00:00Z');
+  // Spec 063 FR-005 (pp1716): 15:00Z is 18:00 in Kyiv in October; the model never converts the zone.
+  assert.equal(r.items[0].extra.ends_at_local, '02.10, 18:00 (Київ)');
+  assert.equal(r.items[0].date_local, '25.09, 18:00 (Київ)');
 });
 
 test('steam_deals: discount filter, limit, best-effort enrichment', async () => {
@@ -153,4 +156,23 @@ test('invalid params, upstream HTTP errors and SSRF are returned as tool errors'
 test('redactSecrets / withQuery', () => {
   assert.equal(redactSecrets('GET https://api.nasa.gov/x?api_key=abc123&date=1 failed'), 'GET https://api.nasa.gov/x?api_key=***&date=1 failed');
   assert.equal(withQuery('https://a.b/c?x=1', { y: 2, z: undefined }), 'https://a.b/c?x=1&y=2');
+});
+
+test('063: *_local fields — Kyiv wall clock for ISO instants (DST aware), GamerPower dates read as UTC, no twin for date-only values', async () => {
+  const { kyivLocal, withLocalTimes } = await import('./local-time');
+  assert.equal(kyivLocal('2026-10-22T15:00:00Z'), '22.10, 18:00 (Київ)');
+  assert.equal(kyivLocal('2026-12-22T15:00:00Z'), '22.12, 17:00 (Київ)', 'winter time');
+  assert.equal(kyivLocal('2026-10-22T15:00:00+00:00'), '22.10, 18:00 (Київ)');
+  assert.equal(kyivLocal('2026-10-22T18:00:00+03:00'), '22.10, 18:00 (Київ)');
+  assert.equal(kyivLocal('2026-10-22 23:59:00'), '23.10, 02:59 (Київ)', 'zoneless API time is UTC');
+  assert.equal(kyivLocal('2026-10-22'), null);
+  assert.equal(kyivLocal('N/A'), null);
+  assert.equal(kyivLocal(5), null);
+  assert.deepEqual(withLocalTimes({ ends_at: '2026-10-22T15:00:00Z', title: 'x', n: 1 }), { ends_at: '2026-10-22T15:00:00Z', ends_at_local: '22.10, 18:00 (Київ)', title: 'x', n: 1 });
+  const { call } = fakeHttp(() => ({ body: [
+    { id: 1, title: 'Loot', description: 'd', instructions: 'Claim', type: 'Loot', platforms: 'PC', end_date: '2026-10-25 12:00:00', gamerpower_url: 'https://gamerpower.com/1', image: '', published_date: '2026-09-30 10:00:00', status: 'Active' },
+  ] }));
+  const r = await call('gamerpower_giveaways');
+  assert.equal(r.items[0].extra.ends_at_local, '25.10, 14:00 (Київ)', 'Kyiv leaves summer time on 25.10 at 04:00');
+  assert.equal(r.items[0].date_local, '30.09, 13:00 (Київ)');
 });

@@ -27,6 +27,8 @@ export const SLOP_WARNING_CODES = [
   'slop_emoji_over_pref', 'slop_humor_off', 'slop_slang_off',
   // Spec 037 T6: soft slop phrases («це той випадок, коли», sentence-initial «коротко —»).
   'slop_cliche',
+  // Spec 063 FR-007: a trailing emoji on a channel that limits emoji; the analogy opener repeated in the channel's last posts.
+  'slop_emoji_tail', 'slop_analogy_opener',
 ] as const;
 export type SlopWarningCode = typeof SLOP_WARNING_CODES[number];
 
@@ -192,6 +194,30 @@ function hits(text: string, list: Array<{ re: RegExp }>): string[] {
 export const humorHits = (text: string) => hits(text, HUMOR_RE);
 export const slangHits = (text: string) => hits(text, SLANG_RE);
 
+/**
+ * Spec 063 FR-007: the post ends with an emoji (review 3: two Haiku explainers closed with one on a channel that limits
+ * emoji). The body is the author's text without the source and hashtag lines.
+ */
+export const endsWithEmoji = (body: string): string | null => /(\p{Extended_Pictographic}[\uFE0F\u200D\p{Extended_Pictographic}\p{Emoji_Modifier}]*)\s*$/u.exec(body)?.[1] ?? null;
+
+/** `format_prefs.emoji` values that limit emoji (a channel with `rich` is exempt from the trailing-emoji warning). */
+const EMOJI_LIMITED: ReadonlySet<string> = new Set(['none', 'light']);
+
+/**
+ * Spec 063 FR-007: an analogy opener — the first sentence is «X — це як Y», «Це як …» or «Уявіть, що …» / «Уяви, що …» /
+ * «Уявіть собі …». Review 3: one of them opened every explainer of a channel. Returns the opener's first words or null.
+ */
+const ANALOGY_FIRST: readonly RegExp[] = [
+  /^уяв(?:іть|и)(?:\s+собі)?[,\s]/iu,
+  /^[^.!?…\n]{1,80}?\s[—–-]\s+це\s+як(?:\s|$)/iu,
+  /^це\s+як(?:\s|$)/iu,
+];
+export function analogyOpener(body: string): string | null {
+  const first = sentencesOf(body.replace(/^[\p{Extended_Pictographic}\uFE0F\s]+/u, ''))[0]?.trim();
+  if (!first || !ANALOGY_FIRST.some((re) => re.test(first))) return null;
+  return first.split(/\s+/).slice(0, 6).join(' ');
+}
+
 /** Em dashes (— and a spaced –) in a text. */
 export const emDashes = (text: string) => (text.match(/—|\s–\s/g) ?? []).length;
 
@@ -209,6 +235,9 @@ export function slopWarnings(o: { body: string; all?: string; prefs?: VoicePrefs
   const dashes = emDashes(o.body);
   const allowed = Math.max(1, Math.floor(o.body.length / EM_DASH_CHARS_PER));
   if (dashes > allowed) add('slop_em_dash', `${dashes} тире на ${o.body.length} символів (до ${allowed}) — заміни частину комами або крапками`);
+
+  const tail = prefs.emoji && EMOJI_LIMITED.has(prefs.emoji) ? endsWithEmoji(o.body.trimEnd()) : null;
+  if (tail) add('slop_emoji_tail', `пост закінчується емодзі «${tail}», а format_prefs.emoji = ${prefs.emoji} — прибери його з кінця`);
 
   const excl = (all.match(/!/g) ?? []).length;
   if (excl > MAX_EXCLAMATIONS) add('slop_exclamation', `${excl} знаків оклику — максимум ${MAX_EXCLAMATIONS} на пост`);

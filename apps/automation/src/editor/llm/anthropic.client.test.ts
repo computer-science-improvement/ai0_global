@@ -51,6 +51,24 @@ test('request: system on top, tools as input_schema with a cache breakpoint, eff
   assert.deepEqual(body.messages, [{ role: 'user', content: [{ type: 'text', text: 'Plan the day.', cache_control: { type: 'ephemeral' } }] }]);
 });
 
+test("cache 'prefix' (spec 063 FR-008): one breakpoint after the system prompt, none on tools or messages", async () => {
+  const c = client(fakeHttp([]));
+  const req = {
+    model: 'claude-sonnet-5-5', provider: 'anthropic' as const, cache: 'prefix' as const,
+    messages: [{ role: 'system' as const, content: 'Stable rubric.' }, { role: 'user' as const, content: 'This post.' }],
+    tools: TOOLS,
+  };
+  const body = c.body(req) as any;
+  assert.deepEqual(body.system, [{ type: 'text', text: 'Stable rubric.', cache_control: { type: 'ephemeral' } }]);
+  assert.deepEqual(body.messages, [{ role: 'user', content: [{ type: 'text', text: 'This post.' }] }]);
+  assert.ok(body.tools.every((t: any) => t.cache_control === undefined));
+  // false stays fully off; the default keeps the rolling breakpoint.
+  const off = c.body({ ...req, cache: false }) as any;
+  assert.equal(off.system[0].cache_control, undefined);
+  const def = c.body({ ...req, cache: undefined }) as any;
+  assert.deepEqual(def.messages[0].content[0].cache_control, { type: 'ephemeral' });
+});
+
 test('effort only for models that take it', () => {
   assert.ok(supportsEffort('claude-opus-5-5'));
   assert.ok(supportsEffort('claude-haiku-5-5'));

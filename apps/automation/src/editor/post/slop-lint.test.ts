@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { findBannedTerms, findSlopPhrases, normalizeSlop, phraseRegex, SLOP_PHRASES } from './slop-phrases';
 import {
-  adjectiveTriple, DOMAIN_SLANG, HUMOR_MARKERS, isSlopWarning, moralCloser, rhetoricalQa, SLANG_MARKERS, SLOP_WARNING_CODES, slopWarnings,
+  adjectiveTriple, analogyOpener, DOMAIN_SLANG, endsWithEmoji, HUMOR_MARKERS, isSlopWarning, moralCloser, rhetoricalQa, SLANG_MARKERS, SLOP_WARNING_CODES, slopWarnings,
 } from './slop-lint';
 import { lintPost } from './lint-post';
 import { lintPlatformPost, PlatformPostSpecSchema } from '../platform/platform-spec';
@@ -163,4 +163,29 @@ test('lint messages: an owner banned term names the word it was found in; not_uk
   assert.match(banned!.message, /"ставк" \(знайдено в «доставка»\)/);
   const en = lintPost(makeSpec({ body: [{ type: 'lead', text: 'Use this prompt to write better system instructions for agents and tools every day.' }] }), makeCard());
   assert.match(en.errors.find((e) => e.code === 'not_ukrainian')!.message, /кирилиці \d+% із потрібних 60%/);
+});
+
+test('063 slop_emoji_tail: a closing emoji on a channel that limits emoji; rich channels and mid-text emoji are fine', () => {
+  const text = 'Контекстне вікно — це памʼять моделі на одну розмову. Чим воно більше, тим довше вона тримає нитку. 😊';
+  assert.ok(codes(text, { emoji: 'light' }).includes('slop_emoji_tail'));
+  assert.ok(codes(text, { emoji: 'none' }).includes('slop_emoji_tail'));
+  assert.ok(!codes(text, { emoji: 'rich' }).includes('slop_emoji_tail'));
+  assert.ok(!codes(text).includes('slop_emoji_tail'), 'no emoji preference: nothing to limit');
+  assert.ok(!codes('😊 Контекстне вікно — це памʼять моделі.', { emoji: 'light' }).includes('slop_emoji_tail'));
+  assert.ok(codes('Готово 👍🏽\n', { emoji: 'light' }).includes('slop_emoji_tail'), 'a skin-tone emoji with trailing whitespace');
+  assert.equal(endsWithEmoji('Кінець ❤️'), '❤️');
+  assert.equal(endsWithEmoji('Кінець.'), null);
+  assert.match(slopWarnings({ body: text, prefs: { emoji: 'light' } }).find((w) => w.code === 'slop_emoji_tail')!.message, /light/);
+});
+
+test('063 analogyOpener: «X — це як Y», «Це як…», «Уявіть, що…»; plain sentences and questions are not', () => {
+  assert.equal(analogyOpener('Контекстне вікно — це як памʼять розмови. Далі текст.'), 'Контекстне вікно — це як памʼять');
+  assert.ok(analogyOpener('Уявіть, що ваш асистент забуває усе щоп’ять хвилин.'));
+  assert.ok(analogyOpener('Уявіть собі бібліотеку без каталогу.'));
+  assert.ok(analogyOpener('Це як USB-порт для ШІ.'));
+  assert.ok(analogyOpener('🧠 RAG — це як шпаргалка перед іспитом.'), 'a leading emoji is skipped');
+  assert.equal(analogyOpener('Контекстне вікно — ліміт на розмову. Це як ліміт у чаті.'), null, 'only the first sentence counts');
+  assert.equal(analogyOpener('Як працює RAG? Це пошук перед відповіддю.'), null);
+  assert.equal(analogyOpener('OpenAI випустила модель, яка працює як агент.'), null);
+  assert.equal(analogyOpener('Модель — це система, яка передбачає слова.'), null);
 });

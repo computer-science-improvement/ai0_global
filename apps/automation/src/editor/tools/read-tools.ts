@@ -13,6 +13,7 @@ import { EXTRA_MAX_CHARS, LIBRARY_EXTRA, LIBRARY_TABLE_NAMES } from './library-t
 import { DataStore } from '../../data/data-store';
 import { FeedParseError, filterFresh, readFeed } from '../live/feed-items';
 import { queryDataset } from '../../data/data-query';
+import { kyivLocal } from './local-time';
 
 export interface ReadToolDeps {
   pool:      Pool;
@@ -251,7 +252,7 @@ export function buildReadTools(d: ReadToolDeps): EditorTool[] {
         ? await filterFresh(feed.items, { sinceHours: since_hours ?? null, pool: resourceRef ? d.pool : undefined, resourceRef, now: t, excludeSlotId: ctx.slotId ?? null })
         : null;
       const items = (r ? r.kept : feed.items).slice(0, limit).map((it) => ({
-        title: it.title, link: it.link, date: it.date, age_hours: it.age_hours != null && it.age_hours >= 0 ? it.age_hours : null,
+        title: it.title, link: it.link, date: it.date, ...(kyivLocal(it.date) ? { date_local: kyivLocal(it.date) } : {}), age_hours: it.age_hours != null && it.age_hours >= 0 ? it.age_hours : null,
         snippet: it.snippet, image: it.image,
       }));
       const covered = d.stories && ctx.channelKey ? await d.stories.coveredBy(ctx.channelKey, items, t).catch(() => null) : null;

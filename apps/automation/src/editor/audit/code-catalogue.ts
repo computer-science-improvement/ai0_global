@@ -206,6 +206,11 @@ export const CODE_EXPLANATIONS: Record<string, CodeExplanation> = {
     explain: 'The text names the source although the code already renders the source line under the post.',
     fix: 'Remove the "Source: ..." line from the text.',
   },
+  duplicate_source_link: {
+    title: 'Source linked twice',
+    explain: 'The same page is linked in the text and again by the source line or button under the post.',
+    fix: 'Keep the source line and write the words in the text without the link (the typography step does this before publishing).',
+  },
   lead_too_long: {
     title: 'Headline too long',
     explain: 'The bold first line is longer than 140 characters (over 220 is an error).',
@@ -225,6 +230,16 @@ export const CODE_EXPLANATIONS: Record<string, CodeExplanation> = {
     title: 'Cliche phrase',
     explain: 'The post uses a soft cliche ("this is the case when", a sentence starting with "in short").',
     fix: 'Say the point directly without the stock phrase.',
+  },
+  slop_emoji_tail: {
+    title: 'Post ends with an emoji',
+    explain: 'The last character of the post is an emoji on a channel whose style limits emoji.',
+    fix: 'End on the last fact; keep emoji (if any) at the start of a line.',
+  },
+  slop_analogy_opener: {
+    title: 'Same analogy opener again',
+    explain: 'The post opens with an analogy ("X is like Y", "Imagine that...") and so did at least two of the channel\'s last five posts.',
+    fix: 'Open with the fact or a concrete example; keep the analogy for the middle of the post.',
   },
   // T7 polls and quizzes.
   knowledge_poll: {

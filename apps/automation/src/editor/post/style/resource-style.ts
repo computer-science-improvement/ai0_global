@@ -15,7 +15,9 @@ import { applyStyleOverlay, ownerStyleOverlay, rowOwnerRules } from '../../rules
  *   • hashtags off on news and games resources (so all three DEV channels), the card's vocabulary elsewhere — and on
  *     any resource whose card already has a hashtag vocabulary (an owner's earlier choice is never switched off);
  *     spec 041 FR-003: a card with an empty vocabulary has no hashtags either (there is nothing to take them from).
- * `names`, `headline`, `numbers`, `units` and `audience` have no default: a check that needs one stays silent.
+ * Spec 063 FR-007: `names` defaults to `original` (people's names as in the source, Latin); an owner who wants
+ *   Ukrainian transliteration sets `uk_translit`.
+ * `headline`, `numbers`, `units` and `audience` have no default: a check that needs one stays silent.
  * The style is the owner's: agents cannot change it (OWNER_ONLY_ON in resource-profile.ts).
  */
 
@@ -73,9 +75,11 @@ export const DEFAULT_GLOSSARY: Glossary = {
   prefer: { 'АПІ': 'API', 'КЛІ': 'CLI', 'Разом AI': 'Together AI', 'спотифа*': 'Spotify' },
 };
 export const DEFAULT_ADDRESS: AddressForm = 'vy';
+/** Spec 063 FR-007: names as the source writes them (Latin, «Mustafa Suleyman»); review 3 found Latin and Cyrillic forms mixed in one channel. */
+export const DEFAULT_NAMES = 'original' as const;
 
 /** Style fields the effective style fills when the owner has not set them. */
-export const STYLE_DEFAULTED = ['address', 'glossary', 'hashtags', 'content_kind'] as const;
+export const STYLE_DEFAULTED = ['address', 'glossary', 'hashtags', 'content_kind', 'names'] as const;
 
 /**
  * The style the checks, the prompts and the platform lint use: the stored one plus the owner's defaults. `kind` is
@@ -88,6 +92,7 @@ export function effectiveStyle(stored: ResourceStyle | null | undefined, o: { ki
     ...s,
     address: s.address ?? DEFAULT_ADDRESS,
     glossary: s.glossary ?? DEFAULT_GLOSSARY,
+    names: s.names ?? DEFAULT_NAMES,
     hashtags: s.hashtags ?? (!o.vocabulary?.length && (kind === 'news' || kind === 'games' || Array.isArray(o.vocabulary)) ? 'off' : 'vocabulary'),
     ...(kind ? { content_kind: kind } : {}),
   };

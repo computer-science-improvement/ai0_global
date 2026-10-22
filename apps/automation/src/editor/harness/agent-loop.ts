@@ -51,7 +51,7 @@ export interface AgentLoopInput {
   /** The run's own spend cap (spec 040 FR-001, a chat turn's EDITOR_CHAT_TURN_MAX_USD): reaching it ends the run `budget_exceeded`. */
   maxCostUsd?:       number | null;
   /** Spec 053 FR-002: false for a run that is one call (the critic): no prompt-cache breakpoints, nothing reads them back. */
-  cache?:            boolean;
+  cache?:            boolean | 'prefix';
   /** Spec 053 FR-002: the caller gave up on the run (a timed-out critic): no further steps, the HTTP call is cancelled. */
   signal?:           AbortSignal;
 }
@@ -336,7 +336,7 @@ export class AgentLoop {
           model: input.model.model, messages, tools: liveSpecs(),
           maxTokens: input.model.maxTokens, temperature: input.model.temperature, reasoningEffort: input.model.reasoningEffort,
           ...(input.model.workspace === 'anthropic' ? { provider: 'anthropic' as const } : {}),
-          ...(input.cache === false ? { cache: false } : {}),
+          ...(input.cache === false || input.cache === 'prefix' ? { cache: input.cache } : {}),
           ...(input.signal ? { signal: input.signal } : {}),
         }));
         totals.promptTokens     += res.usage.promptTokens;

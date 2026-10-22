@@ -23,6 +23,10 @@ import { criticGroundingLines, criticPassageLines, type CriticSourceContext } fr
 /** One attempt of the critic; a second attempt follows a timeout or an error (fail-safe, FR-004). */
 export const CRITIC_TIMEOUT_MS = 90_000;
 export const CRITIC_ATTEMPTS = 2;
+/** Spec 063 FR-008: the provider caches a prefix only from this size (Anthropic's minimum, in tokens). */
+export const CRITIC_CACHE_MIN_TOKENS = 1024;
+/** A rough token count for a prompt (Ukrainian and code run about 3.5 characters a token). */
+export const roughTokens = (text: string): number => Math.ceil(text.length / 3.5);
 const CRITIC_MAX_STEPS = 3;
 export const CRITIC_SKILL = 'editor-critic-workflow';
 /** Prompt caps: the critic sees the post in full, the context clipped. */
@@ -262,9 +266,11 @@ export class CriticService {
       try {
         res = await this.withTimeout((signal) => this.d.loop.run({
           role: 'checker', channelKey: r.channelKey, slotId: r.slotId, model, system, user, tools: [tool],
-          // Spec 053 FR-002: a critic run is one call — a cache write would cost 1.25× and never be read back; a timed-out
-          // run is cancelled, not left to bill in the background.
-          cache: false, signal,
+          // Spec 053 FR-002: a critic run is one call — a rolling cache write would cost 1.25× and never be read back; a
+          // timed-out run is cancelled, not left to bill in the background. Spec 063 FR-008: the stable system prompt
+          // (rubric, channel profile and rules; the post is in `user`) is cached when it is big enough to be worth it —
+          // the next post of the resource reads it back.
+          cache: roughTokens(system) >= CRITIC_CACHE_MIN_TOKENS ? 'prefix' : false, signal,
           maxSteps: CRITIC_MAX_STEPS, channelBudgetUsd: r.card?.dailyBudgetUsd ?? null, agent: r.agent ?? null,
           // Usage attribution (spec 029): the target resource and whether the slot is a shadow one.
           extras: {

@@ -1,6 +1,6 @@
 # 063 — Critic precision
 
-Status: draft · Builds on 037 (integrity checks), 041 (critic axes, pass_with_edits), 046 (fallback ladder) · No migration
+Status: done · Builds on 037 (integrity checks), 041 (critic axes, pass_with_edits), 046 (fallback ladder) · No migration
 
 ## Why
 
@@ -72,3 +72,19 @@ On the Anthropic path, the critic's stable part (rubric, channel profile and rul
 
 - Unit tests: the number normaliser (true positives kept, review-3 and review-2 false positives gone), the revise/reject ladder, the edit guard (pp1732 case rejected, «тими самі»→«ті самі» kept), `*_local` fields, `duplicate_source_link` + fix, the slop warnings, and the cache breakpoint placement.
 - No paid calls.
+
+## Status
+
+- T1 `a854b5b1` — grounding reads spelled scales, bill names, written-out percents and separators; lint warnings are hints for the critic (it quotes the passage); tests with the review-2 and review-3 cases.
+- T2 `d147c62c` — ladder step `revise_source` (a fixable revise keeps its source), executor never substitutes the topic, edit guards (`critic/safe-edits.ts`: dropped words, lexicon re-check), the dash rule as code (`post/dash-fix.ts`), tests.
+- T3 — this commit: `*_local` fields (`tools/local-time.ts`, used by `fetch_api` and the read tools), `duplicate_source_link` (lint, normaliser fix, golden labels), slop warnings `slop_emoji_tail` and `slop_analogy_opener`, rubric anchors, `style.names` default, critic prefix cache (`cache: 'prefix'`), runbook §22, specs README row 063 DONE.
+
+## Deltas from the spec
+
+- **FR-006, which link is kept.** The spec kept the inline anchor and dropped the arrow line. A PostSpec has no way to hide the code-rendered source line (grounding, the ledger and the story registry read `spec.source`), so the line wins for every channel: the typography normaliser turns an inline link to the source into plain text (`post/source-link.ts`). A link to a different page stays. No per-channel style switch.
+- **FR-006, the lint.** `duplicate_source_link` is a warning with the normaliser as its fix (before publishing); in the audit it flags posts that were published with both. With a «Джерело» button the first inline occurrence already counts as the duplicate.
+- **FR-007, "channels whose style limits emoji".** `slop_emoji_tail` fires when a post ends with an emoji and the resource's `format_prefs.emoji` is `none` or `light` (the channels that limit emoji); other levels are not warned. `slop_analogy_opener` is a variety check over the channel's last 5 posts (it needs the channel history), not a per-post counter.
+- **FR-007, `style.names`.** The default `original` is applied in `effectiveStyle` and listed in `STYLE_DEFAULTED`, so the dashboard shows it as a default, not as an owner choice.
+- **FR-004, dash transform.** The code transform follows the existing em-dash allowance (the `slop_em_dash` allowance, a protected «— це» counts as one) and converts a dash pair as a whole, which can remove one dash more than the allowance asks. The critic no longer proposes dash edits.
+- **FR-005, which tools.** `fetch_api` (all adapters; this covers the Epic / free-games path) and the read tools that return event or deadline times. A date without a time gets no `_local` field. Zone-less times from GamerPower-style APIs are read as UTC.
+- **FR-008, what is in the prefix.** The cached part is the critic's system prompt: the rubric, the skills and the rules for the resource, format and content type. The channel profile, playbook, preferences and the post are in the user message, after the breakpoint, because they change per post and the system prompt is already stable per resource. The breakpoint is a new request mode `cache: 'prefix'` (system block only, no breakpoint on tools or messages); OpenRouter models that need marks get the same. The threshold is a rough 3.5 characters per token against 1024 tokens; a prompt below it stays uncached. The cache pays back only when two checks of the same resource come within 5 minutes; measure `tokensCachedRead` on `checker` runs after deploy.

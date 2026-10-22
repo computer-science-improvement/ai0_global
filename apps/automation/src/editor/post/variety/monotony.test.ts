@@ -8,6 +8,7 @@ import { lintPost } from '../lint-post';
 import { makeCard, makeSpec } from '../testing/fixtures';
 import { executorUserPrompt } from '../../roles/prompts';
 import type { AuditPost } from '../integrity/types';
+import { analogyOpenerCheck } from '../integrity/checks/variety';
 import type { EditorCard } from '../../card';
 import type { EditorSlot } from '../../repo/editor-plans.repository';
 
@@ -136,4 +137,23 @@ test('T9 snapshot: the writer prompt carries the «Уже було» block', () 
   ].join('\n'));
   // Without history the prompt is what it was before T9.
   assert.doesNotMatch(executorUserPrompt(card, slot, new Date('2026-10-12T15:50:00Z')), /Уже було/);
+});
+
+// ── spec 063 FR-007: the analogy opener as a template ────────────────────────
+
+
+test('063 slop_analogy_opener: an analogy opener used by ≥ 2 of the last 5 posts is flagged; one earlier use or a plain opener is not', () => {
+  const mk = (id: string, text: string): AuditPost => ({
+    id, channel: 'c', publishedAt: '2026-10-10T10:00:00Z', timezone: 'Europe/Kyiv', text, links: [], buttons: [], hashtags: [], media: null,
+  });
+  const analogy = (n: number) => mk(`a${n}`, `Термін ${n} — це як шухляда для речей.\n\nДалі пояснення.`);
+  const plain = (n: number) => mk(`p${n}`, `OpenAI випустила модель ${n}.\n\nДеталі.`);
+  const now = mk('now', 'Токен — це як цеглинка тексту.\n\nМодель читає цеглинки.');
+  const f = analogyOpenerCheck.run(now, { previous: [plain(1), analogy(2), plain(3), analogy(4), plain(5)] });
+  assert.deepEqual(f.map((x) => [x.code, x.level]), [['slop_analogy_opener', 'warning']]);
+  assert.match(f[0].message, /2 із 5/);
+  assert.deepEqual(analogyOpenerCheck.run(now, { previous: [plain(1), analogy(2), plain(3), plain(4), plain(5)] }), [], 'one earlier use');
+  assert.deepEqual(analogyOpenerCheck.run(now, { previous: [plain(1), plain(2), plain(3), plain(4), plain(5), analogy(6), analogy(7)] }), [], 'older than the last five');
+  assert.deepEqual(analogyOpenerCheck.run(plain(9), { previous: [analogy(1), analogy(2)] }), [], 'this post opens plainly');
+  assert.deepEqual(analogyOpenerCheck.run(now, { previous: [] }), [], 'no history');
 });

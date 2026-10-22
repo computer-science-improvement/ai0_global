@@ -2,6 +2,7 @@ import type { Block, InnerBlock, PostSpec } from './post-spec';
 import { attributionOf, fixHomoglyphWord, sourceNames } from './text-hygiene';
 import { sentencesOf } from './slop-lint';
 import { inlineToPlain } from './inline-markup';
+import { dropDuplicateSourceLink } from './source-link';
 
 /**
  * Spec 037 T6: the typography normaliser — the code, not the model, owns these details. Pure and idempotent:
@@ -109,5 +110,6 @@ export function normalizePostSpec(spec: PostSpec): PostSpec {
     };
   }
   if (spec.longread) out.longread = { ...spec.longread, title: t(spec.longread.title), blocks: spec.longread.blocks.map(normBlock) };
-  return dropDuplicateAttribution(out);
+  // Spec 063 FR-006: one link per source — the inline anchor to `spec.source` becomes plain text.
+  return dropDuplicateSourceLink(dropDuplicateAttribution(out));
 }

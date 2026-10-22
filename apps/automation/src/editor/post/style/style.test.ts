@@ -39,7 +39,9 @@ test('T8 style: schema takes every field; prefer as a map or a list; unknown key
 });
 
 test('T8 style: owner defaults — «ви» and the glossary everywhere, hashtags off on news and games, the owner wins', () => {
-  assert.deepEqual(effectiveStyle({}, { kind: null }), { address: 'vy', glossary: DEFAULT_GLOSSARY, hashtags: 'vocabulary' });
+  assert.deepEqual(effectiveStyle({}, { kind: null }), { address: 'vy', glossary: DEFAULT_GLOSSARY, names: 'original', hashtags: 'vocabulary' });
+  // Spec 063 FR-007: names default to the source's own spelling; the owner's choice wins.
+  assert.equal(effectiveStyle({ names: 'uk_translit' }, { kind: null }).names, 'uk_translit');
   assert.equal(effectiveStyle({}, { kind: 'news' }).hashtags, 'off');
   assert.equal(effectiveStyle({}, { kind: 'games' }).hashtags, 'off');
   assert.equal(effectiveStyle({}, { kind: 'games' }).content_kind, 'games');

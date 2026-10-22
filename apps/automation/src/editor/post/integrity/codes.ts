@@ -15,6 +15,8 @@ export const INTEGRITY_CODES: Record<string, CodeInfo> = {
   banned_term:                { task: '034', level: 'error',   what: 'listed AI phrase (slop-phrases.ts) or an owner banned term' },
   reader_questions:           { task: '034', level: 'error',   what: 'questions to the readers over the resource cap' },
   ...Object.fromEntries(SLOP_WARNING_CODES.map((c) => [c, { task: '034', level: 'warning' as const, what: 'slop counter (slop-lint.ts)' }])),
+  slop_emoji_tail:            { task: '063', level: 'warning', what: 'the post ends with an emoji on a channel that limits emoji (format_prefs.emoji none / light)' },
+  slop_analogy_opener:        { task: '063', level: 'warning', what: 'analogy opener («X — це як Y», «Уявіть, що…») used by ≥ 2 of the last 5 posts' },
   // T2 story registry.
   story_repeat:               { task: 'T2', level: 'error',   what: 'same story as a post of the last 14 days without a follow-up' },
   followup_without_new_facts: { task: 'T2', level: 'error',   what: 'follow-up whose new facts are absent or already in the original' },
@@ -42,6 +44,7 @@ export const INTEGRITY_CODES: Record<string, CodeInfo> = {
   mixed_script_word:          { task: 'T6', level: 'error',   what: 'Cyrillic and Latin letters in one word or hashtag' },
   process_leak:               { task: 'T6', level: 'mixed',   what: 'a sentence about the agent\'s own work' },
   duplicate_attribution:      { task: 'T6', level: 'warning', what: '«Джерело: X» in the text next to the rendered source line' },
+  duplicate_source_link:      { task: '063', level: 'warning', what: 'the source URL as an inline anchor and as the rendered source line / button' },
   lead_too_long:              { task: 'T6', level: 'mixed',   what: 'bold lead over 140 chars (warning) / 220 (error)' },
   decimal_mixed:              { task: 'T6', level: 'warning', what: 'both «1,05» and «0.10» decimal separators in one post' },
   verbatim_repeat:            { task: 'T6', level: 'warning', what: 'a 4+-word sequence repeated inside one post' },

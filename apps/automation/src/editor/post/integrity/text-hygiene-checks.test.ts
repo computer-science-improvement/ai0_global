@@ -6,6 +6,7 @@ import { textReplacementCharCheck } from './checks/text-replacement-char';
 import { mixedScriptWordCheck } from './checks/mixed-script-word';
 import { processLeakCheck } from './checks/process-leak';
 import { duplicateAttributionCheck } from './checks/duplicate-attribution';
+import { duplicateSourceLinkCheck } from './checks/duplicate-source-link';
 import { leadLimits, leadTooLongCheck } from './checks/lead-too-long';
 import { verbatimRepeat, verbatimRepeatCheck } from './checks/verbatim-repeat';
 import { decimalMixedCheck, mixedDecimals } from './checks/decimal-mixed';
@@ -92,4 +93,17 @@ test('lintPost: a broken char and an over-long lead block the post; the hygiene 
   const repeat = lintPost(makeSpec({ body: [{ type: 'lead', text: 'Вебб зняв туманність' }, { type: 'p', text: 'Ця гра стала хітом сезону. А ця гра стала хітом сезону теж.' }] }), card);
   assert.ok(repeat.ok);
   assert.ok(repeat.warnings.some((w) => w.code === 'verbatim_repeat'));
+});
+
+test('063 duplicate_source_link: an inline anchor to the source next to the rendered source line is a warning (www, slash, utm do not matter)', () => {
+  const url = 'https://www.techcrunch.com/2026/10/08/openai/';
+  const arrow = { text: 'TechCrunch', url };
+  const f = duplicateSourceLinkCheck.run(post({ citedSourceUrl: url, sourceUrl: url, links: [{ text: 'за даними TechCrunch', url: 'https://techcrunch.com/2026/10/08/openai?utm_source=x' }, arrow] }), ctx);
+  assert.deepEqual(f.map((x) => [x.code, x.level, x.excerpt]), [['duplicate_source_link', 'warning', 'за даними TechCrunch']]);
+  assert.deepEqual(duplicateSourceLinkCheck.run(post({ citedSourceUrl: url, sourceUrl: url, links: [arrow] }), ctx), [], 'the source line alone');
+  assert.deepEqual(duplicateSourceLinkCheck.run(post({ citedSourceUrl: url, sourceUrl: url, links: [{ text: 'інша стаття', url: 'https://techcrunch.com/other' }, arrow] }), ctx), [], 'another page');
+  assert.deepEqual(duplicateSourceLinkCheck.run(post({ links: [{ text: 'a', url }, { text: 'b', url }] }), ctx), [], 'no cited source');
+  // A «Джерело» button is the rendered source: one inline anchor is enough.
+  const button = post({ citedSourceUrl: url, links: [{ text: 'TechCrunch', url }], buttons: [{ text: 'Джерело: TechCrunch', url }] });
+  assert.equal(duplicateSourceLinkCheck.run(button, ctx).length, 1);
 });

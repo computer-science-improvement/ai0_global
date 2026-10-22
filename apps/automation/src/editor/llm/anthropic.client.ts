@@ -56,7 +56,7 @@ function parseArgs(raw: string): unknown {
  * - Tool results and the user text after them merge into one user turn (tool_result blocks first), as the API
  *   requires the results right after the assistant's tool_use turn. Consecutive turns of one role merge.
  */
-export function toAnthropicMessages(msgs: readonly ChatMessage[], o: { cache?: boolean } = {}): { system: string; messages: Array<{ role: 'user' | 'assistant'; content: any[] }> } {
+export function toAnthropicMessages(msgs: readonly ChatMessage[], o: { cache?: boolean; rolling?: boolean } = {}): { system: string; messages: Array<{ role: 'user' | 'assistant'; content: any[] }> } {
   const system: string[] = [];
   const out: Array<{ role: 'user' | 'assistant'; content: any[] }> = [];
   const push = (role: 'user' | 'assistant', blocks: any[]) => {
@@ -90,7 +90,7 @@ export function toAnthropicMessages(msgs: readonly ChatMessage[], o: { cache?: b
   if (out[0]?.role === 'assistant') out.unshift({ role: 'user', content: [{ type: 'text', text: '…' }] });
   // Rolling prompt-cache breakpoint on the newest block: the next step of the loop reads the whole prefix from the cache.
   const last = out[out.length - 1];
-  if (last && o.cache !== false) {
+  if (last && o.cache !== false && o.rolling !== false) {
     const i = last.content.length - 1;
     const b = last.content[i];
     if (b && (b.type === 'text' || b.type === 'tool_result')) last.content[i] = { ...b, cache_control: EPHEMERAL };
@@ -123,11 +123,13 @@ export class AnthropicClient implements LlmClient {
   body(req: LlmRequest): Record<string, unknown> {
     // Spec 053 FR-002: a one-call request (cache: false) sends no breakpoints — a cache write nobody reads costs 1.25×.
     const cache = req.cache !== false;
-    const { system, messages } = toAnthropicMessages(req.messages, { cache });
+    // Spec 063 FR-008: 'prefix' keeps the system breakpoint (tools sit before it, so they are covered) and drops the rolling one.
+    const prefixOnly = req.cache === 'prefix';
+    const { system, messages } = toAnthropicMessages(req.messages, { cache, rolling: !prefixOnly });
     const toolsMark = this.opts.toolsCacheTtl === '1h' ? { type: 'ephemeral', ttl: '1h' } : EPHEMERAL;
     const tools = (req.tools ?? []).map((t, i, all) => ({
       name: t.name, description: t.description, input_schema: t.parameters,
-      ...(cache && i === all.length - 1 ? { cache_control: toolsMark } : {}),
+      ...(cache && !prefixOnly && i === all.length - 1 ? { cache_control: toolsMark } : {}),
     }));
     return {
       model: req.model,

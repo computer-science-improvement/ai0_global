@@ -49,8 +49,12 @@ export interface LlmRequest {
   reasoningEffort?: 'low' | 'medium' | 'high';
   /** Spec 038: which workspace serves the request (absent = openrouter); the RoutingLlmClient dispatches on it. */
   provider?:    Workspace;
-  /** Spec 053 FR-002: false = send no prompt-cache breakpoints (a one-call run never reads them back). Default true. */
-  cache?:       boolean;
+  /**
+   * Spec 053 FR-002: false = send no prompt-cache breakpoints (a one-call run never reads them back). Default true.
+   * Spec 063 FR-008: 'prefix' = one breakpoint after the system prompt (tools and system are the stable part), none
+   * on the messages: a one-call run whose per-item text follows a stable prefix (the critic) reads the prefix back.
+   */
+  cache?:       boolean | 'prefix';
   /** Spec 053 FR-002: cancels the HTTP call (a caller that timed out). */
   signal?:      AbortSignal;
 }

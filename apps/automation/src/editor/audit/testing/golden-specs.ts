@@ -17,8 +17,10 @@ const ARROW = /^→\s*(.+)$/;
 /** The export's inline links back as `[text](url)` at their text's first occurrence (the source line is rendered by code). */
 function withLinks(body: string, p: AuditPost): string {
   let out = body;
-  for (const l of p.links) {
-    if (l.url === p.sourceUrl || !l.text.trim()) continue;
+  // The last link to the source is the code-rendered `→` line; an earlier one (spec 063 FR-006) is an inline anchor.
+  const arrowAt = p.links.map((l) => l.url).lastIndexOf(p.sourceUrl ?? '\0');
+  for (const [i, l] of p.links.entries()) {
+    if (i === arrowAt || !l.text.trim()) continue;
     const at = out.indexOf(l.text);
     if (at >= 0 && !out.slice(Math.max(0, at - 1), at).includes('[')) out = `${out.slice(0, at)}[${l.text}](${l.url})${out.slice(at + l.text.length)}`;
   }

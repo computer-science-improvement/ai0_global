@@ -27,7 +27,7 @@ import { ModelsService } from '../models/models.service';
 import {
   CRITIC_SCORE_KEYS, decideVerdict, heldByCritic, slopCodes, type CriticScores, type StoredCritic,
 } from './critic';
-import { CRITIC_ATTEMPTS, CriticService, criticSystemPrompt, criticUserPrompt, type CriticRequest } from './critic.service';
+import { CRITIC_ATTEMPTS, CRITIC_CACHE_MIN_TOKENS, roughTokens, CriticService, criticSystemPrompt, criticUserPrompt, type CriticRequest } from './critic.service';
 import { CriticGate, CRITIC_REVISE_GRANT_STEPS } from './critic-gate';
 
 const NOW = new Date('2026-10-07T09:00:00Z');
@@ -153,7 +153,23 @@ test('critic run: an error or a missing verdict is retried once, then reported (
   assert.equal(t.ok, false);
   assert.match((t as any).error, /timed out/);
   // Spec 053 FR-002: one call, no cache breakpoints; the timed-out attempt is cancelled, not left running.
-  assert.ok(inputs.length >= 1 && inputs.every((i) => i.cache === false && i.signal?.aborted === true));
+  assert.ok(inputs.length >= 1 && inputs.every((i) => i.cache !== true && i.signal?.aborted === true));
+});
+
+test('critic cache (spec 063 FR-008): a stable prefix over 1024 tokens is cached as a prefix, the post stays after it', async () => {
+  const c = criticOver([critique('pass')]);
+  await c.service.review(req({ profile: 'Аудиторія: школярі' }));
+  const sent = c.llm.requests[0];
+  const [system, user] = [sent.messages[0].content as string, sent.messages[1].content as string];
+  assert.ok(roughTokens(system) >= CRITIC_CACHE_MIN_TOKENS, 'the rubric prefix is big enough');
+  assert.equal(sent.cache, 'prefix');
+  assert.ok(!system.includes('Аудиторія: школярі'), 'per-post text is not in the cached prefix');
+  assert.ok(user.includes('Аудиторія: школярі'), 'it is in the user message after the breakpoint');
+});
+
+test('critic cache: a small prefix gets no breakpoint at all (a 1.25× write nobody reads back)', () => {
+  assert.ok(roughTokens('x'.repeat(3000)) < CRITIC_CACHE_MIN_TOKENS);
+  assert.ok(roughTokens('x'.repeat(4000)) >= CRITIC_CACHE_MIN_TOKENS);
 });
 
 test('critic spend is a ledger row of its own feature (editor.checker), attributed to the slot resource', async () => {

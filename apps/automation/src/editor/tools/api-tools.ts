@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { defineTool, EditorTool } from '../harness/tool';
+import { withLocalTimes } from './local-time';
 import { API_ADAPTERS, API_SOURCE_NAMES, AdapterContextDeps, ApiAdapterError, makeAdapterContext, redactSecrets } from './api-adapters';
 
 export type ApiToolDeps = AdapterContextDeps;
@@ -14,7 +15,7 @@ export function buildApiTools(d: ApiToolDeps): EditorTool[] {
       'Отримати свіжі дані з публічного API (без ключів у відповіді). Повертає {items:[{title, summary, url, image, date, extra}]}.',
       'Джерела (source → params):',
       ...API_SOURCE_NAMES.map((n) => `• ${API_ADAPTERS[n].description}`),
-      'Тексти здебільшого англійською — перекладай і переказуй своїми словами; url — це source.url для PostSpec.',
+      'Тексти здебільшого англійською — перекладай і переказуй своїми словами; url — це source.url для PostSpec. Час для читача бери з полів *_local (Київ), зони сам не перераховуй.',
     ].join('\n'),
     kind: 'read', roles: ['planner', 'executor', 'reviewer', 'composer'],
     input: z.object({
@@ -29,7 +30,9 @@ export function buildApiTools(d: ApiToolDeps): EditorTool[] {
       }
       try {
         const res = await adapter.fetch(p.data, ctx);
-        return { source, ...res };
+        // Spec 063 FR-005: a time the API gives (an end date, a publication time) comes with its Kyiv wall-clock form.
+        const items = res.items.map((it) => ({ ...withLocalTimes(it as unknown as Record<string, unknown>), ...(it.extra ? { extra: withLocalTimes(it.extra) } : {}) }));
+        return { source, ...res, items };
       } catch (err: any) {
         if (err instanceof ApiAdapterError) return { error: err.code, details: redactSecrets(err.message) };
         return { error: 'fetch_failed', details: redactSecrets(String(err?.message ?? err)) };

@@ -515,6 +515,34 @@ What the chat tells you about its own turn now comes from the system, not from t
 - `/align` says "not a channel or agent of the network": use the agent's handle or its channel key.
 - Tests: `chat/chat-truthfulness.062.test.ts` (replay of chat e8c11647), `chat/chat-tools.062.test.ts`, `chat/chat-rules-align.062.test.ts`; in the dashboard `lib/align.test.ts`.
 
+## 22. Critic precision (spec 063)
+
+Fewer good posts lost to the critic, and a few real defects caught in code. No migration, no setting, nothing to enable; it is all in the next deploy.
+
+**What changed for a post**
+
+1. **Grounding reads spelled numbers.** «$1 млрд» matches "over a billion dollars", «SB 53» matches "Senate Bill 53" (also AB, HB), «40%» matches "40 percent", «5 120» matches "5,120". A number still missing is `number_not_in_sources`, but the critic gets it as a hint to check against the passages and quotes the passage when it confirms the number is there.
+2. **A fixable `revise` keeps its source.** The fallback ladder is now `initial → revise_source → next_candidate → lighter_format → evergreen`, still one extra step at most. `revise_source` re-runs the executor on the same article with the critic's notes. Only `reject`, a revise with grounding ≤ 2 or a wrong topic bans the source and goes to the next candidate.
+3. **The executor never substitutes the topic.** No article found for the slot: `skip_slot` with the reason, not a post about something else.
+4. **Edits are guarded.** A critic `pass_with_edits` edit is dropped when its `to` loses a word, and when the Ukrainian lexicon finds a new problem in the edited text. The dash rule is code (`post/dash-fix.ts`), not a model edit; «— це» stays.
+5. **Kyiv times from tools.** `fetch_api` items and the tools that read event or deadline times add `<field>_local`, e.g. `"ends_at_local": "22.10, 18:00 (Київ)"`. The executor is told to take the reader's time from these fields.
+6. **One link per source.** The typography normaliser turns an inline link to the post's own source into plain text, keeping the `→ Джерело` line or the button. The lint `duplicate_source_link` (warning) flags published posts that have both; it is in the audit catalogue and the golden set.
+7. **Voice tells.** New lint warnings `slop_emoji_tail` (a post that ends with an emoji where `format_prefs.emoji` is none or light) and `slop_analogy_opener` («X — це як Y», «Уявіть, що…» in 2 of the channel's last 5 posts). The critic skill now anchors `voice` and `ai_likeness` with concrete low-score examples. An unset resource style now means `names: original` (names as in the source, Latin), so the critic stops flagging mixed Latin / Cyrillic names.
+8. **Critic prefix cache.** On the Anthropic workspace (and OpenRouter models that need marks) the critic sends one cache breakpoint after its system prompt when that prompt is at least 1024 tokens (rough count: characters / 3.5); the post is in the user message after it. Below the threshold the call stays uncached as in 053.
+
+**How to see it working**
+
+- Dashboard → Runs → a `checker` run: `tokensCachedWrite` on the first post of a resource, `tokensCachedRead` on the next within 5 minutes. A cache read on every check with no write means the breakpoint holds.
+- A slot whose first critic verdict was `revise` now shows a second run on the same source (ladder step `revise_source`) instead of `next_candidate`.
+- Audit §16: `duplicate_source_link` appears in the post-integrity findings (warning); it should fade as new posts go out.
+
+**Troubleshooting**
+
+- Still a false `number_not_in_sources`: look at the passages the critic received. The extractor reads English and Ukrainian scales; a spelled number in another language is not matched.
+- The critic's edit was not applied: the run's `critic.edits_rejected` lists each edit with the reason (`word_dropped`, `language_regression`).
+- A post kept an inline link to its source: the link points to another page (different path), which is kept on purpose.
+- Tests: `post/grounding.test.ts`, `critic/critic-passages.test.ts`, `silent/fallback-ladder.test.ts`, `critic/pass-with-edits.test.ts` (edit guards and the dash transform), `post/typography.test.ts`, `post/integrity/text-hygiene-checks.test.ts`, `tools/api-tools.test.ts`, `tools/read-tools.test.ts`, `post/slop-lint.test.ts`, `critic/critic.test.ts`, `llm/anthropic.client.test.ts`.
+
 ## 23. Ops batch from review 3 (spec 064)
 
 Small fixes to the loop, the loadout and the audit. No migration, no new setting.
