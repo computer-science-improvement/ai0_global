@@ -4,6 +4,7 @@ import type { MyBotRow } from './my-bots.repository';
 import type { TelegraphAccountRow } from './telegraph-accounts.repository';
 import type { TikTokAccountRow } from './tiktok-accounts.repository';
 import type { MtprotoSessionRow } from './mtproto-sessions.repository';
+import { EXPIRED_PREFIX, isExpiredSessionError } from './token-expiry';
 
 const DAY = 86_400_000;
 
@@ -18,6 +19,8 @@ export interface KeeperDeps {
     setTokenEnc(id: string, enc: string): Promise<void>;
     setTokenMeta(id: string, info: TokenMeta): Promise<void>;
     markVerifyError(id: string, error: string): Promise<void>;
+    /** Spec 061 FR-006: the session is over; `token_expires_at` becomes the date in the error (else now). */
+    markTokenExpired?(id: string, error: string): Promise<void>;
   };
   graph: {
     refreshThreadsToken(token: string): Promise<{ accessToken: string; expiresInSec: number }>;
@@ -54,6 +57,8 @@ export interface KeeperResult {
   threadsRefreshed: number;
   threadsFailed:    number;
   threadsExpired:   number;
+  /** Facebook / Instagram accounts whose upkeep found the session over (spec 061 FR-006). */
+  metaExpired:      number;
   metaInspected:    number;
   botsBroken:       number;
   telegraphBroken:  number;
@@ -76,7 +81,7 @@ const isoDay = (d: Date) => d.toISOString().slice(0, 10);
  * verify state is reported instead.
  */
 export async function runConnectionKeeper(d: KeeperDeps, now: Date): Promise<KeeperResult> {
-  const r: KeeperResult = { threadsRefreshed: 0, threadsFailed: 0, threadsExpired: 0, metaInspected: 0, botsBroken: 0, telegraphBroken: 0, tiktokFailed: 0, alerts: 0 };
+  const r: KeeperResult = { threadsRefreshed: 0, threadsFailed: 0, threadsExpired: 0, metaExpired: 0, metaInspected: 0, botsBroken: 0, telegraphBroken: 0, tiktokFailed: 0, alerts: 0 };
   const day = d.day(now);
   const retry = async <T>(fn: () => Promise<T>): Promise<T> => {
     try { return await fn(); } catch { await sleep(d.retryMs ?? 5_000); return fn(); }
@@ -97,7 +102,7 @@ export async function runConnectionKeeper(d: KeeperDeps, now: Date): Promise<Kee
         const exp = a.token_expires_at ? new Date(a.token_expires_at) : null;
         if (exp && exp.getTime() <= now.getTime()) {
           // Threads cannot refresh an expired token: only a reconnect helps. Stated so the health check says why.
-          if (!a.verify_error?.startsWith('Threads token expired')) {
+          if (!a.verify_error?.startsWith('Threads token expired') && !a.verify_error?.startsWith(EXPIRED_PREFIX)) {
             await d.meta.markVerifyError(a.id, `Threads token expired on ${isoDay(exp)} — reconnect the account in /app/connections`);
           }
           r.threadsExpired++;
@@ -111,8 +116,15 @@ export async function runConnectionKeeper(d: KeeperDeps, now: Date): Promise<Kee
           await d.meta.setTokenMeta(a.id, { type: 'THREADS', expiresAt: new Date(now.getTime() + fresh.expiresInSec * 1000), dataAccessExpiresAt: null, scopes: [], isValid: true });
           r.threadsRefreshed++;
         } catch (err: any) {
+          const msg = String(err?.message ?? err);
+          if (isExpiredSessionError(msg) && d.meta.markTokenExpired) {
+            // Spec 061 FR-006: the session is over - only a reconnect helps; stated once, counted as expired.
+            await d.meta.markTokenExpired(a.id, msg);
+            r.threadsExpired++;
+            continue;
+          }
           // The token may still work (e.g. it is under 24 h old); the health check flags it when expiry nears.
-          d.log?.(`Threads ${a.id}: token refresh failed: ${err?.message ?? err}`);
+          d.log?.(`Threads ${a.id}: token refresh failed: ${msg}`);
           r.threadsFailed++;
         }
       } else {
@@ -120,7 +132,9 @@ export async function runConnectionKeeper(d: KeeperDeps, now: Date): Promise<Kee
         if (info) { await d.meta.setTokenMeta(a.id, info); r.metaInspected++; }
       }
     } catch (err: any) {
-      d.log?.(`Meta ${a.id}: upkeep failed: ${err?.message ?? err}`);
+      const msg = String(err?.message ?? err);
+      if (isExpiredSessionError(msg) && d.meta.markTokenExpired) { await d.meta.markTokenExpired(a.id, msg).catch(() => {}); r.metaExpired++; continue; }
+      d.log?.(`Meta ${a.id}: upkeep failed: ${msg}`);
     }
   }
 

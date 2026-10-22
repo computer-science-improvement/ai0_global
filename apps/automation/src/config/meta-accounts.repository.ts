@@ -1,6 +1,7 @@
 // apps/automation/src/config/meta-accounts.repository.ts
 import { Inject, Injectable } from '@nestjs/common';
 import { Pool } from 'pg';
+import { expiredAtFrom, expiredErrorText } from './token-expiry';
 import { DB_POOL } from '../database/database.module';
 
 export type MetaPlatform = 'instagram' | 'facebook' | 'threads';
@@ -142,6 +143,22 @@ export class MetaAccountsRepository {
     await this.pool.query(
       `UPDATE meta_accounts SET verify_error = $2::text, last_verified_at = now() WHERE id = $1`,
       [id, error],
+    );
+  }
+
+  /**
+   * Spec 061 FR-006: the token's session is over ("Session has expired", code 190 subcode 463 / 467). The account counts as
+   * expired from the date in the error (else now): the keeper counts it, health says «токен прострочено з <date>», and the
+   * hourly collector asks it once a day.
+   */
+  async markTokenExpired(id: string, error: string, now: Date = new Date()): Promise<void> {
+    const at = expiredAtFrom(error, now) ?? now;
+    await this.pool.query(
+      `UPDATE meta_accounts
+         SET token_expires_at = $2, token_valid = false, token_checked_at = $4,
+             verify_error = $3::text, last_verified_at = $4
+       WHERE id = $1`,
+      [id, at, expiredErrorText(at), now],
     );
   }
 

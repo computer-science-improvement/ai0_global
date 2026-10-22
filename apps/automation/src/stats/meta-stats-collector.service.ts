@@ -11,6 +11,7 @@ import { MetaFollowerHistoryRepository } from './meta-follower-history.repositor
 import { MetaAccountInsightsRepository } from './meta-account-insights.repository';
 import { SecretsService } from '../common/crypto/secrets.service';
 import { errText } from '../common/err-text';
+import { EXPIRED_RETRY_MS, isExpiredSessionError, isTokenExpired } from '../config/token-expiry';
 
 @Injectable()
 export class MetaStatsCollectorService {
@@ -41,6 +42,9 @@ export class MetaStatsCollectorService {
     try {
       const active = (await this.accounts.list()).filter(a => a.active);
       for (const a of active) {
+        // Spec 061 FR-006: an account whose token is over is asked once a day, not every hour.
+        const checked = a.last_verified_at ? new Date(a.last_verified_at).getTime() : 0;
+        if (isTokenExpired(a, new Date()) && Date.now() - checked < EXPIRED_RETRY_MS) continue;
         try {
           const token = this.secrets.resolveToken(
             { enc: a.token_enc, env: a.token_env }, (k) => this.config.get<string>(k),
@@ -78,8 +82,14 @@ export class MetaStatsCollectorService {
             this.logger.warn(`Meta collector: insights for ${a.id} failed: ${errText(err)}`);
           }
         } catch (err: any) {
-          this.logger.warn(`Meta collector: account ${a.id} failed: ${errText(err)}`);
-          try { await this.accounts.markVerifyError(a.id, errText(err)); } catch { /* best-effort */ }
+          const msg = errText(err);
+          const expired = isExpiredSessionError(msg);
+          // One line a day for an expired token (the account is retried daily), the error itself for anything else.
+          this.logger.warn(`Meta collector: account ${a.id} ${expired ? 'token expired — retried once a day' : 'failed'}: ${msg}`);
+          try {
+            if (expired) await this.accounts.markTokenExpired(a.id, msg);
+            else await this.accounts.markVerifyError(a.id, msg);
+          } catch { /* best-effort */ }
         }
       }
       this.logger.log(`Meta collector: ${snaps} follower snapshots, ${insightDays} insight-days across ${n} accounts`);

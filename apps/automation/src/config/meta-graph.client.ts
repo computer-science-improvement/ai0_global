@@ -5,6 +5,7 @@ import axios from 'axios';
 import type { MetaPlatform } from './meta-accounts.repository';
 import { MetaInsightBackoff, isMetricUnsupported } from './meta-insight-backoff';
 import { errText } from '../common/err-text';
+import { graphCodeSuffix } from './token-expiry';
 import { INSIGHT_METRICS, mergeInsightValues, parseMetricValues, type InsightKey, type MetaInsightDay, type DayValue } from './meta-insights';
 
 export interface MetaVerifyResult {
@@ -106,7 +107,7 @@ export class MetaGraphClient {
       };
     } catch (err: any) {
       const desc = err?.response?.data?.error?.message || errText(err);
-      throw new Error(`verify failed: ${redactToken(String(desc), token)}`);
+      throw new Error(`verify failed: ${redactToken(String(desc), token)}${graphCodeSuffix(err)}`);
     }
   }
 
@@ -191,7 +192,7 @@ export class MetaGraphClient {
       return { accessToken, expiresInSec };
     } catch (err: any) {
       const desc = err?.response?.data?.error?.message || errText(err);
-      throw new Error(`refreshThreadsToken failed: ${redactToken(String(desc), token)}`);
+      throw new Error(`refreshThreadsToken failed: ${redactToken(String(desc), token)}${graphCodeSuffix(err)}`);
     }
   }
 

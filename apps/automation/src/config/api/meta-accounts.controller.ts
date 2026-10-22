@@ -13,6 +13,7 @@ import { MetaStatsCollectorService } from '../../stats/meta-stats-collector.serv
 import { StrategyBindingsRepository } from '../strategy-bindings.repository';
 import { ConfigEventsPublisher } from '../config-events.publisher';
 import { SecretsService } from '../../common/crypto/secrets.service';
+import { isExpiredSessionError } from '../token-expiry';
 import { CreateMetaAccountDto, PatchMetaAccountDto } from './dto/meta-accounts.dto';
 
 @Controller('api/meta-accounts')
@@ -186,7 +187,8 @@ export class MetaAccountsController {
       });
       return { ok: true, ...r };
     } catch (err: any) {
-      await this.accounts.markVerifyError(id, err.message);
+      if (isExpiredSessionError(err.message)) await this.accounts.markTokenExpired(id, err.message);
+      else await this.accounts.markVerifyError(id, err.message);
       return { ok: false, error: err.message };
     }
   }

@@ -1,5 +1,6 @@
 import type { Pool } from 'pg';
 import { parseResourceRef, Platform, resourceRef } from './agent.types';
+import { EXPIRED_PREFIX } from '../../config/token-expiry';
 import type { HealthState } from './resource-profile';
 import { errText } from '../../common/err-text';
 
@@ -132,7 +133,7 @@ export class ResourceCatalog {
         const day = (d: Date) => d.toISOString().slice(0, 10);
         return !r ? { state: 'no_access', detail: 'account not found' }
           : !r.active ? { state: 'no_access', detail: 'account disabled' }
-          : exp && left! <= 0 ? { state: 'token_invalid', detail: `token expired on ${day(exp)}`, expiresAt: exp.toISOString() }
+          : exp && left! <= 0 ? { state: 'token_invalid', detail: String(r.verify_error ?? '').startsWith(EXPIRED_PREFIX) ? String(r.verify_error) : `token expired on ${day(exp)}`, expiresAt: exp.toISOString() }
           : r.token_valid === false ? { state: 'token_invalid', detail: 'the token is no longer valid (Meta debug_token)' }
           : r.verify_error ? { state: 'token_invalid', detail: String(r.verify_error) }
           : exp && left! < META_EXPIRING_DAYS * DAY

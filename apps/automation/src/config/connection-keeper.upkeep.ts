@@ -64,7 +64,7 @@ export class ConnectionKeeperUpkeep {
         inbox, changed: (kind, id) => this.events.publish(kind, id), day: kyivDay,
         log: (m) => this.logger.warn(m),
       }, new Date());
-      this.logger.log(`connections: Threads refreshed ${r.threadsRefreshed}, failed ${r.threadsFailed}, expired ${r.threadsExpired}; Meta inspected ${r.metaInspected}; broken bots ${r.botsBroken}, Telegraph ${r.telegraphBroken}; TikTok failed ${r.tiktokFailed}; alerts ${r.alerts}`);
+      this.logger.log(`connections: Threads refreshed ${r.threadsRefreshed}, failed ${r.threadsFailed}, expired ${r.threadsExpired}; Meta inspected ${r.metaInspected}, expired ${r.metaExpired}; broken bots ${r.botsBroken}, Telegraph ${r.telegraphBroken}; TikTok failed ${r.tiktokFailed}; alerts ${r.alerts}`);
     } catch (err: any) {
       this.logger.warn(`connection keeper failed: ${err?.message ?? err}`);
     } finally {

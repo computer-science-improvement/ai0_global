@@ -492,6 +492,43 @@ An agent's `propose_skill_edit` no longer goes live at once. The edit is stored 
 - A probe costs about two dry runs, two critic passes and one judge call per post; with the defaults that is under the $0.30 cap, at most $0.90 a day.
 - Tests: `agents/skill-probe.059.test.ts` (decision, order, budget, cap, judge), `agents/skill-probe.059.pg.test.ts` and `skill-probe.059.pick.pg.test.ts` (store, sample picking, adopt anyway), `roles/preview-probe.059.test.ts` (the dry run of a published slot and the override), `sysadmin/checks/checks.059.test.ts`, `sysadmin/audit-probes.059.pg.test.ts`; in the dashboard `lib/skill-probe.test.ts`.
 
+## 20. Slot pre-flight and sources (spec 061)
+
+Code checks what code can know before the executor is paid to discover it, and the sources stop wasting calls. Apply migration `094` before deploying the code that reads it (the content ledger `anchor` column and `content_ledger_record_anchored`, `source_host_failures.strikes` and `noted_at`).
+
+**Pre-flight** (before the executor of a content slot)
+
+- For the idea's `sources` and the slot's source hints, code checks: spent in the content ledger (published, waiting, error), too old for the resource's freshness limit (`style.freshness_hours`, else news 36 h / games 72 h; evergreen exempt), the host blocked (§ below), and the format available (a carousel needs the slide hosting: SUPABASE_URL, SUPABASE_SERVICE_KEY, SUPABASE_CAROUSEL_BUCKET).
+- A failing slot is swapped once for the next accepted idea of the same orchestrator that passes all checks and fits the resource and format (the slot's lint warnings keep `preflight_swap: …`; the old idea is `rejected` with the reason). With nothing to swap to, the slot is skipped with `preflight_source_used`, `preflight_stale`, `preflight_host_blocked` or `preflight_format_unavailable` and the reason. No executor run is paid.
+- Reserved, promo, derived (duplicate / adapt), live and series slots and owner previews are not pre-flighted; a library ref or free text as a source lets the slot run.
+- **Ideas are not burned by skips.** A slot that goes out (published, shadowed, waiting for you) makes the idea `used`. Infra, budget, a missing format, a paused series or a crashed run send it back to `accepted`. No material (a spent, stale or blocked source, nothing fresh) makes it `rejected` with `review.slot_outcome`. Critic and content failures stay `used`.
+
+**Reference documents** (a law cited many times)
+
+- `LEDGER_REUSABLE_HOSTS` (Settings → Configuration, default `zakon.rada.gov.ua`, comma-separated hosts) are keyed by `url#anchor`: each clause is posted once, the document many times. The post spec takes `source.anchor` (a clause, e.g. `п12.3`, up to 40 characters). A source without an anchor on such a host is allowed.
+- `source_already_posted` now says what was posted, when, in which slot and the remedy ("cite a different clause with `source.anchor`" for a reference host, "pick another source" otherwise).
+
+**Host blocks escalate**
+
+- A refusal (401 / 403 / 429 / 451), DNS or TLS failure blocks the host 1 day, then 3 days, then 7 days (cap). The strike count is not reset when a block ends; only a page that loads resets it. Feed failures stay a flat day on their own address.
+- A timeout blocks the host for 1 hour and is not a strike. The pre-flight does not reject an idea over a timeout block.
+- Source health (`get_source_health`, `/app/health`) now also lists the feeds the orchestrator's playbook reads (series `source: feed <url>` and links in its rules) with `origin: playbook`; the card's sources come first.
+- **Third strike.** One Inbox note, severity action, in Ukrainian («marktechpost.com відмовляє нам 3 рази поспіль — прибрати з плейбука @ai0_global?») per streak, from the orchestrator's daily run. For a card source the channel agent is already asked for a replacement (Apply / Discard card); for a playbook feed remove the address from the playbook with a directive to the MANAGER, or leave it if the site may come back.
+
+**Expired tokens**
+
+- "Session has expired", or Meta code 190 with subcode 463 / 467, on verify or refresh marks the account expired: `token_expires_at` is the date in the error (else now), `token_valid` false, and the health text is «токен прострочено з <date> — перепідключіть акаунт у /app/connections». The keeper counts it (`expired` in its log line: Threads and Meta).
+- The hourly Meta stats collector asks such an account once a day and logs one line a day, not one per hour. Reconnect the account in `/app/connections`; a good verify and the new token's expiry clear the state.
+- Note dedup of the repeated alerts is spec 060, not this one.
+
+**Troubleshooting**
+
+- Many `preflight_stale` skips: the idea sources are older than the resource's freshness limit; refresh the pool or set `style.freshness_hours` for the resource.
+- `preflight_format_unavailable` for carousels: set the slide hosting variables (above). The idea goes back to the pool.
+- A host you trust is blocked for days: its strikes only reset on a working page fetch; open a page of it once with `web_fetch` after the block ends, or delete its row in `source_host_failures`.
+- A reference-host source is still `source_already_posted`: the same clause (`source.anchor`) was posted; pick another clause.
+- Tests: `preflight/slot-preflight.test.ts`, `preflight/preflight.pg.test.ts`, `data/ledger-anchor.test.ts`, `data/ledger-anchor.pg.test.ts`, `net/host-strikes.061.test.ts`, `net/host-strikes.061.pg.test.ts`, `config/token-expiry.061.test.ts`, `config/token-expiry.061.pg.test.ts`.
+
 ## 21. Chat truthfulness (spec 062)
 
 What the chat tells you about its own turn now comes from the system, not from the model. No migration, nothing to enable.
