@@ -92,7 +92,7 @@ test('gate: the critic edits and the lint euphony fix are applied, the guards ru
 });
 
 test('gate: an edit that does not match once revises on the first pass; the guards refusing the edit revises too; later passes publish as written', async () => {
-  const miss = gateOver([answer('pass_with_edits', { edits: [{ from: 'нема такого', to: 'x' }] })]);
+  const miss = gateOver([answer('pass_with_edits', { edits: [{ from: 'нема такого', to: 'немає того' }] })]);
   const r1 = await miss.gate.check({ text: 't', spec: post(), format: 'photo', warnings: [], relint: async () => ({ ok: true }) });
   assert.equal(r1.kind, 'revise');
   assert.match(JSON.stringify((r1 as any).result.details), /нема такого/);
@@ -104,7 +104,7 @@ test('gate: an edit that does not match once revises on the first pass; the guar
   assert.match((r2 as any).critic.reason, /^edits_lint: lint_failed/);
 
   // Second pass (after a revise): failed edits are recorded, the post goes out as the writer wrote it.
-  const late = gateOver([answer('revise', { scores: { sense: 3 }, notes: 'Переписати лід.' }), answer('pass_with_edits', { edits: [{ from: 'нема такого', to: 'x' }] })]);
+  const late = gateOver([answer('revise', { scores: { sense: 3 }, notes: 'Переписати лід.' }), answer('pass_with_edits', { edits: [{ from: 'нема такого', to: 'немає того' }] })]);
   assert.equal((await late.gate.check({ text: 't', spec: post(), format: 'photo', warnings: [] })).kind, 'revise');
   const r3 = await late.gate.check({ text: 't2', spec: makeSpec({ title: 'Друга версія' }), format: 'photo', warnings: [], relint: async () => ({ ok: true }) });
   assert.equal(r3.kind, 'proceed');
@@ -118,4 +118,85 @@ test('gate: without relint (chat drafts) the edits stay on the verdict as advice
   assert.equal(out.kind, 'proceed');
   assert.equal((out as any).edited, undefined);
   assert.deepEqual(g.updates.at(-1).critic.edits, [{ from: 'брати всі', to: 'використовувати всі' }]);
+});
+
+// ── spec 063 FR-004: safe edits ───────────────────────────────────────────────
+
+import { dropsWord, guardEdits, wordTokens } from './safe-edits';
+import { dashFixes } from '../post/dash-fix';
+
+test('063: an edit that drops a word is rejected (pp1732 «— це ліміт»); a word-for-word replacement stays', () => {
+  assert.deepEqual(wordTokens('(context window) — це ліміт'), ['context', 'window', 'це', 'ліміт']);
+  assert.equal(dropsWord('(context window) — це ліміт', '(context window) ліміт'), true, 'pp1732');
+  assert.equal(dropsWord('тими самі', 'ті самі'), false);
+  assert.equal(dropsWord('У інших', 'В інших'), false);
+  assert.equal(dropsWord('що що вийшло', 'що вийшло'), false, 'a duplicated word may go');
+  assert.equal(dropsWord('коротка — і ясна', 'коротка, і ясна'), false, 'punctuation is not a word');
+  assert.equal(dropsWord('брати участь', 'брати'), true);
+  const text = 'Контекстне вікно (context window) — це ліміт. Вони говорили про тими самі речі.';
+  const g = guardEdits(text, [
+    { from: '(context window) — це ліміт', to: '(context window) ліміт' },
+    { from: 'тими самі речі', to: 'ті самі речі' },
+  ]);
+  assert.deepEqual(g.ok.map((e) => e.to), ['ті самі речі']);
+  assert.deepEqual(g.rejected.map((e) => [e.from, e.why]), [['(context window) — це ліміт', 'word_dropped']]);
+});
+
+test('063: the Ukrainian lexicon runs on the edited text: an edit that makes a new finding is reverted', () => {
+  const text = 'Сервіс працює швидко. Він вийшов у Києві.';
+  const g = guardEdits(text, [
+    { from: 'Сервіс працює швидко', to: 'Сервіс являється швидким' },
+    { from: 'Він вийшов у Києві', to: 'Він з’явився у Києві' },
+  ]);
+  assert.deepEqual(g.rejected.map((e) => [e.to, e.why]), [['Сервіс являється швидким', 'language_regression']]);
+  assert.match(g.rejected[0].detail ?? '', /являється/);
+  assert.equal(g.ok.length, 1, 'the harmless edit stays');
+  // A finding the post already had is not blamed on the edit.
+  const had = guardEdits('Це являється проблемою. Ціна 5 доларів.', [{ from: 'Ціна 5 доларів', to: 'Ціна 6 доларів' }]);
+  assert.equal(had.rejected.length, 0);
+});
+
+test('063: dashFixes — the excess dashes become commas or a colon in code; «— це», dialogue and ranges stay', () => {
+  const long = (s: string) => `${s} ${'Слово. '.repeat(120)}`; // > 800 chars: 2 dashes allowed
+  assert.deepEqual(dashFixes('Модель вийшла — вона швидша.'), [], 'one dash is allowed');
+  const base = 'Модель вийшла — вона швидша. Є одна проблема — ціна. Контекстне вікно — це ліміт.';
+  const fixes = dashFixes(base);
+  assert.ok(fixes.length >= 1);
+  const out = applySpecEdits({ t: base }, fixes).spec.t;
+  assert.match(out, /Є одна проблема: ціна/);
+  assert.match(out, /вікно — це ліміт/, '«— це» stays');
+  assert.equal(out.match(/—/g)?.length, 1, 'the lint allowance is one dash: the protected one');
+  // A parenthetical pair becomes two commas; the edit applies exactly once.
+  const pair = 'Компанія випустила модель — повільну й дорогу — минулого тижня. Вона перша — і остання.';
+  const p = applySpecEdits({ t: pair }, dashFixes(pair));
+  assert.equal(p.failed.length, 0);
+  assert.ok((p.spec.t.match(/—/g)?.length ?? 0) <= 1, 'within the allowance of a short text (a pair is converted whole)');
+  assert.match(p.spec.t, /модель, повільну й дорогу, минулого тижня/);
+  // Dialogue, a range and a quote after the dash stay.
+  const keep = 'Він спитав:\n— Куди?\nДіапазон 10 — 20 днів. Один — «Два». Три — Чотири. Ще — ось так.';
+  assert.deepEqual(dashFixes(keep), []);
+  // The text is long: the allowance grows with it.
+  assert.deepEqual(dashFixes(long('Модель — вона швидша. Друга — теж.')), []);
+});
+
+test('gate 063: a word-dropping critic edit is refused and recorded; the safe lint fix and the dash transform still go out', async () => {
+  const body = 'Контекстне вікно (context window) — це ліміт. Вони тими самі речі. Код вийшов — швидкий. Далі — повільний.';
+  const spec = makeSpec({ body: [{ type: 'lead', text: 'Огляд' }, { type: 'p', text: body }] });
+  const g = gateOver([answer('pass_with_edits', {
+    scores: { sense: 4 }, notes: '«(context window) — це ліміт» — тире.',
+    edits: [{ from: '(context window) — це ліміт', to: '(context window) ліміт' }, { from: 'тими самі речі', to: 'ті самі речі' }],
+  })]);
+  const out = await g.gate.check({
+    text: `Огляд\n${body}`, spec, format: 'photo',
+    warnings: [{ code: 'slop_em_dash', message: '4 тире' }],
+    relint: async () => ({ ok: true }),
+  });
+  assert.equal(out.kind, 'proceed');
+  const text = ((out as any).edited.spec.body[1]).text as string;
+  assert.match(text, /\(context window\) — це ліміт/, 'pp1732 stays as written');
+  assert.match(text, /ті самі речі/);
+  assert.match(text, /Далі: повільний|Далі, повільний/, 'the dash transform in code');
+  const stored = g.updates.at(-1).critic;
+  assert.deepEqual(stored.edits_rejected.map((e: any) => [e.from, e.why]), [['(context window) — це ліміт', 'word_dropped']]);
+  assert.ok(stored.edits_applied.some((e: any) => e.to === 'ті самі речі'));
 });

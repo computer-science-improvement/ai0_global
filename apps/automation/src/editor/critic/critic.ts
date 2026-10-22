@@ -3,6 +3,7 @@ import { isSlopWarning } from '../post/slop-lint';
 import type { StoredSource } from './stored-sources';
 import type { FailedEdit, TextEdit } from './spec-edits';
 import { longText, longTextNote } from '../harness/clip-text';
+import type { RejectedEdit } from './safe-edits';
 
 /**
  * Spec 034 FR-004: the pre-publish critic's verdict.
@@ -166,6 +167,8 @@ export interface StoredCritic {
   edits_applied?: TextEdit[];
   /** Spec 041 FR-002: edits that did not match exactly once (dropped on the last pass, a revise before it). */
   edits_failed?:  FailedEdit[];
+  /** Spec 063 FR-004: edits code refused to apply (they drop a word, or the Ukrainian lexicon finds something new in the edited text). */
+  edits_rejected?: RejectedEdit[];
 }
 
 /** A short line for traces, Inbox items and slot errors: «revise (ai_likeness 3, voice 2): notes». */

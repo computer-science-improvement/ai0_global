@@ -6,7 +6,7 @@ import { EditorRunnerService } from '../roles/editor-runner.service';
 import { SkillLibrary } from '../skills/skill-library';
 import { makeCard } from '../post/testing/fixtures';
 import { isToolError } from '../harness/tool';
-import { classifyFailure, ladderPlan, lighterFormat, PublishProbe, type SlotFallback } from './fallback-ladder';
+import { classifyFailure, isFixableRevise, isWrongTopic, ladderPlan, lighterFormat, PublishProbe, type SlotFallback } from './fallback-ladder';
 import { skipGroupOf } from './skip-reasons';
 
 const NOW = new Date('2026-10-12T09:00:00Z');
@@ -319,4 +319,93 @@ test('053: critic passes count across the retry — a slot that used them is ski
   await read.runner.runExecutor(baseSlot, read.card);
   assert.equal(read.st.status, 'planned');
   assert.equal(fallbackOf(read.st).steps.at(-1)!.critic_passes, 2);
+});
+
+// ── spec 063 FR-002: a fixable revise keeps its source ────────────────────────
+
+const secondRevise = (grounding: number, notes: string): Behaviour => (st) => {
+  Object.assign(st, {
+    status: 'skipped', error: `critic_rejected: second revise — revise: ${notes}`,
+    critic: { verdict: 'revise', notes, scores: { grounding, sense: 4 }, cost_usd: 0.002, history: [{ verdict: 'revise' }] },
+  });
+  return { ok: true, skipped: true, critic_rejected: true };
+};
+
+test('063: a fixable revise re-runs the executor on the SAME source with the notes (nothing banned)', async () => {
+  const s = setup([secondRevise(4, 'Прибери зайве питання в кінці.'), shadow]);
+  const dead: string[] = [];
+  (s.runner as any).d.deadSource = async (_slot: any, url: string) => { dead.push(url); return 1; };
+  await s.runner.runExecutor(baseSlot, s.card);
+  assert.equal(s.runs.length, 2);
+  assert.match(s.runs[1].user, /Запасний крок \(revise_source\)/);
+  assert.match(s.runs[1].user, /Прибери зайве питання/);
+  assert.match(s.runs[1].user, /ЗАЛИШ ТОЙ САМИЙ матеріал/);
+  assert.match(s.runs[1].user, /https:\/\/src\.example\/1/, 'the source is named');
+  assert.doesNotMatch(s.runs[1].user, /Не бери повторно/);
+  assert.doesNotMatch(s.runs[1].user, /НАСТУПНИЙ свіжий/);
+  assert.deepEqual(fallbackOf(s.st).steps.map((x) => [x.step, x.outcome]), [['initial', 'critic_reject'], ['revise_source', 'shadowed']]);
+  assert.equal(s.st.status, 'shadowed');
+  assert.deepEqual(dead, []);
+});
+
+test('063: still bounded — one revise_source step, then the slot is skipped without banning the source', async () => {
+  const s = setup([secondRevise(4, 'Штампи.'), secondRevise(4, 'Штампи.'), shadow], { extraSteps: 1 });
+  const dead: string[] = [];
+  (s.runner as any).d.deadSource = async (_slot: any, url: string) => { dead.push(url); return 1; };
+  await s.runner.runExecutor(baseSlot, s.card);
+  assert.equal(s.runs.length, 2);
+  assert.equal(s.st.status, 'skipped');
+  assert.deepEqual(dead, [], 'a revise never kills the source');
+  assert.deepEqual(fallbackOf(s.st).steps.map((x) => x.step), ['initial', 'revise_source']);
+});
+
+test('063: a reject, a grounding of 2 or a wrong topic ban the source and take the next candidate', async () => {
+  for (const b of [
+    reject,
+    secondRevise(2, 'Цифр немає в джерелі.'),
+    secondRevise(4, 'Пост про іншу тему, ніж слот.'),
+  ]) {
+    const s = setup([b, shadow]);
+    const dead: string[] = [];
+    (s.runner as any).d.deadSource = async (_slot: any, url: string) => { dead.push(url); return 1; };
+    await s.runner.runExecutor(baseSlot, s.card);
+    assert.match(s.runs[1].user, /Запасний крок \(next_candidate\)/);
+    assert.match(s.runs[1].user, /Не бери повторно: https:\/\/src\.example\/1/);
+    assert.deepEqual(fallbackOf(s.st).steps.map((x) => x.step), ['initial', 'next_candidate']);
+  }
+  // A failed next candidate reports the first source dead.
+  const s = setup([reject, reject], { extraSteps: 1 });
+  const dead: string[] = [];
+  (s.runner as any).d.deadSource = async (_slot: any, url: string) => { dead.push(url); return 1; };
+  await s.runner.runExecutor(baseSlot, s.card);
+  assert.deepEqual(dead.sort(), ['https://src.example/1', 'https://src.example/2']);
+});
+
+test('063: a live slot keeps its item on revise_source (the feeds are not re-read without it)', async () => {
+  const live = { sources: ['https://feed.example/rss'], brief: 'Новини', max_age_hours: 12, origin: 'planner' };
+  const slot = { ...baseSlot, topicMode: 'live', liveSpec: live };
+  const scan = { items: [{ title: 'A', url: 'https://src.example/1', ageHours: 1 }], feedsRead: 1, feedsFailed: 0, otherSources: [], dropped: { old: 0, undated: 0, posted: 0, similar: 0 } };
+  const s = setup([secondRevise(4, 'Штампи.'), shadow], { slot, live: scan });
+  let scans = 0;
+  (s.runner as any).d.live = { scan: async () => { scans++; return scan; } };
+  await s.runner.runExecutor(slot, s.card);
+  assert.equal(scans, 1, 'only the initial scan: revise_source does not rescan');
+  assert.deepEqual(fallbackOf(s.st).steps.map((x) => [x.step, x.outcome]), [['initial', 'critic_reject'], ['revise_source', 'shadowed']]);
+});
+
+test('063 pure: isFixableRevise, wrong topic, plan', () => {
+  assert.equal(isFixableRevise({ verdict: 'revise', notes: 'Прибери питання', scores: { grounding: 3 } }), true);
+  assert.equal(isFixableRevise({ verdict: 'revise', notes: 'Прибери питання' }), true, 'no scores: the default for revise');
+  assert.equal(isFixableRevise({ verdict: 'revise', notes: 'x', scores: { grounding: 2 } }), false);
+  assert.equal(isFixableRevise({ verdict: 'reject', notes: 'x', scores: { grounding: 4 } }), false);
+  assert.equal(isFixableRevise({ verdict: 'revise', notes: 'Пост не про тему слота' }), false);
+  assert.equal(isFixableRevise({ verdict: 'revise', notes: 'ok' }, 'skipped by agent: wrong topic'), false);
+  assert.equal(isFixableRevise(null), false);
+  assert.equal(isWrongTopic('пост про іншу тему'), true);
+  assert.equal(isWrongTopic('Пост про тему ШІ у школах, ок'), false);
+  assert.deepEqual(ladderPlan({ format: 'photo', allowed: new Set(['photo', 'text']), evergreen: false, failure: 'critic_reject', fixable: true }).map((x) => x.step),
+    ['revise_source', 'next_candidate', 'lighter_format']);
+  const f = classifyFailure({ status: 'skipped', error: 'critic_rejected: second revise — revise: x', critic: { verdict: 'revise', notes: 'x', scores: { grounding: 4 } } }, null);
+  assert.equal(f?.fixable, true);
+  assert.equal(classifyFailure({ status: 'skipped', error: 'critic_rejected: reject: x', critic: { verdict: 'reject', notes: 'x' } }, null)?.fixable, false);
 });

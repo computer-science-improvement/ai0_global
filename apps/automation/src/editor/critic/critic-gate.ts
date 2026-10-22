@@ -19,6 +19,8 @@ import { groundingCheckOf } from './critic-passages';
 import { criticMediaOf } from './critic-media';
 import { storedSourcesOf, type StoredSource } from './stored-sources';
 import { applySpecEdits, lintFixes, type TextEdit } from './spec-edits';
+import { guardEdits } from './safe-edits';
+import { dashFixes } from '../post/dash-fix';
 import { draftRisk } from './critic-risk';
 import type { OwnerRuleLine } from '../rules/owner-rules-prompt';
 
@@ -405,8 +407,15 @@ export class CriticGate {
    * the post goes out as written and the failed edits are recorded. A lint fix that does not match is skipped.
    */
   private async edit(post: CriticPost, critic: StoredCritic): Promise<{ critic: StoredCritic; edited?: EditedSpec; revise?: true }> {
-    const proposed = critic.edits ?? [];
-    const fixes = lintFixes(post.warnings);
+    // Spec 063 FR-004: the dash rule is code (never the model's edit); every edit is guarded against dropped words and
+    // new language findings before it is applied. A refused edit is recorded and not retried through a revise.
+    const proposedIn = critic.edits ?? [];
+    const fixesIn = [...lintFixes(post.warnings), ...(post.warnings.some((w) => w.code === 'slop_em_dash') ? dashFixes(post.text) : [])];
+    const guarded = guardEdits(post.text, [...proposedIn, ...fixesIn]);
+    const safe = new Set<TextEdit>(guarded.ok);
+    const proposed = proposedIn.filter((e) => safe.has(e));
+    const fixes = fixesIn.filter((e) => safe.has(e));
+    if (guarded.rejected.length) critic = { ...critic, edits_rejected: guarded.rejected };
     if (!post.relint || (!proposed.length && !fixes.length)) return { critic };
     const firstPass = this.passes === 1;
     const toRevise = (c: StoredCritic, why: string) => ({
@@ -447,5 +456,6 @@ export function criticSummary(c: StoredCritic): Record<string, unknown> {
   return {
     verdict: c.verdict, scores: c.scores, notes: c.notes, pass: c.pass, ...(c.final ? { final: true } : {}),
     ...(c.edits_applied?.length ? { edits_applied: c.edits_applied } : {}),
+    ...(c.edits_rejected?.length ? { edits_rejected: c.edits_rejected } : {}),
   };
 }

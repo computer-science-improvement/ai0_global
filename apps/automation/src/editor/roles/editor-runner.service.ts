@@ -496,9 +496,10 @@ export class EditorRunnerService {
 
     // Spec 053 FR-007: the trace keeps the slot's earlier attempts (the retry), so critic passes add up across them.
     const steps: FallbackStepRecord[] = [...(slot.fallback?.steps ?? []), stepRecord('initial', slot.format, this.now(), after, failure, first)];
-    const avoid: string[] = failure.sourceUrl ? [failure.sourceUrl] : [];
+    // Spec 063 FR-002: a fixable revise keeps its source; only a reject (or a low grounding, a wrong topic) bans it.
+    const avoid: string[] = failure.sourceUrl && !failure.fixable ? [failure.sourceUrl] : [];
     const live = slot.topicMode === 'live' && !!slot.liveSpec;
-    const plan = ladderPlan({ format: slot.format, allowed: EditorRunnerService.allowedFormats(card, o.platform), evergreen: !!this.d.fallbackEvergreen, live, failure: failure.kind });
+    const plan = ladderPlan({ format: slot.format, allowed: EditorRunnerService.allowedFormats(card, o.platform), evergreen: !!this.d.fallbackEvergreen, live, failure: failure.kind, fixable: !!failure.fixable });
     let ran = 0;
     const agent = EditorRunnerService.agentBudget(ctx);
     const maxLate = this.d.ladder?.maxLateMs ?? LADDER_MAX_LATE_MS;
@@ -509,7 +510,7 @@ export class EditorRunnerService {
       ({ step, at: this.now().toISOString(), format, outcome, reason, verdict: null, run_id: null, cost_usd: 0 });
 
     // Spec 046 FR-006: sources the critic rejected (a sole-source idea built on one of them is dead).
-    const rejectedSources = new Set<string>(failure.kind === 'critic_reject' && failure.sourceUrl ? [failure.sourceUrl] : []);
+    const rejectedSources = new Set<string>(failure.kind === 'critic_reject' && !failure.fixable && failure.sourceUrl ? [failure.sourceUrl] : []);
     for (const st of plan) {
       if (ran >= (this.d.ladder?.maxExtraSteps ?? MAX_LADDER_EXTRA_STEPS)) break;
       const passes = steps.reduce((n, x) => n + (x.critic_passes ?? 0), 0);
@@ -529,7 +530,7 @@ export class EditorRunnerService {
       }
       // A live slot takes the next fresh item: the code re-reads its feeds without the items that already failed.
       let scan = o.scan;
-      if (live && this.d.live) {
+      if (live && this.d.live && st.step !== 'revise_source') {
         const fresh = await this.d.live.scan(slot, card).catch(() => null);
         if (fresh) {
           const used = new Set(avoid.map(normUrl));
@@ -568,8 +569,9 @@ export class EditorRunnerService {
         break;
       }
       failure = f;
-      if (f.sourceUrl && !avoid.includes(f.sourceUrl)) avoid.push(f.sourceUrl);
-      if (f.kind === 'critic_reject' && f.sourceUrl) rejectedSources.add(f.sourceUrl);
+      // The source of a failed revise_source step is out too (it had its chance); a fixable revise elsewhere keeps its source.
+      if (f.sourceUrl && (!f.fixable || st.step === 'revise_source') && !avoid.includes(f.sourceUrl)) avoid.push(f.sourceUrl);
+      if (f.kind === 'critic_reject' && !f.fixable && f.sourceUrl) rejectedSources.add(f.sourceUrl);
     }
     if (failure) {
       final ??= { outcome: 'skipped', code: 'exhausted', step: last, reason: failure.reason };

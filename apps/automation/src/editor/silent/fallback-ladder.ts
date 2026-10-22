@@ -5,6 +5,8 @@ import { isContentFailureCode } from './skip-reasons';
  * Spec 037 FR-010 (T10): the fallback ladder of a slot whose post failed.
  *
  *   initial run (the critic's one rewrite on `revise` is inside it, spec 034)
+ *     → revise_source   — spec 063 FR-002: a fixable `revise` (the default for revise) re-runs the executor on the SAME
+ *                          source with the critic's notes; only a `reject`, a grounding ≤ 2 or a wrong topic bans it;
  *     → next_candidate  — once: a live slot takes the next fresh feed item, a fixed slot re-runs the executor with the
  *                          failure notes and an instruction to pick different material;
  *     → lighter_format  — a lighter format the card / platform allows (longread / carousel → text or photo, …);
@@ -21,7 +23,7 @@ import { isContentFailureCode } from './skip-reasons';
  * (`editor_slots.fallback`, migration 076) next to the run id of the step (the run trace).
  */
 
-export type LadderStep = 'initial' | 'next_candidate' | 'lighter_format' | 'evergreen';
+export type LadderStep = 'initial' | 'revise_source' | 'next_candidate' | 'lighter_format' | 'evergreen';
 
 /** Why the post of an attempt did not pass. */
 export interface SlotFailure {
@@ -34,6 +36,11 @@ export interface SlotFailure {
   notes:     string | null;
   /** The source the failed post was written from (a live slot takes another item next). */
   sourceUrl: string | null;
+  /**
+   * Spec 063 FR-002: the critic asked for fixable edits (`revise`, grounding above 2, the right topic): the source is
+   * good and the next attempt keeps it. A reject, a low grounding or a wrong topic leave this false.
+   */
+  fixable?:  boolean;
 }
 
 export type StepOutcome =
@@ -136,8 +143,24 @@ export class PublishProbe {
 export interface SlotState {
   status:    string;
   error:     string | null;
-  critic?:   { verdict?: string | null; notes?: string | null } | null;
+  critic?:   { verdict?: string | null; notes?: string | null; scores?: Record<string, number | undefined> | null } | null;
   postSpec?: unknown;
+}
+
+/** Spec 063 FR-002: the critic or the executor says the post is not about the slot's topic (the material was not found). */
+const WRONG_TOPIC_RE = /(?:не\s+про\s+(?:тему|матеріал|джерел)|(?:про|на)\s+ін(?:шу|ший|ша|шої|шого)\s+(?:тему|матеріал|новин|подію)|ін(?:ша|ший)\s+тем|не\s+та\s+тема|не\s+за\s+темою|поза\s+темою|тема\s+слота\s+не|wrong\s+topic|off[- ]topic)/iu;
+export const isWrongTopic = (text: string | null | undefined): boolean => WRONG_TOPIC_RE.test(text ?? '');
+
+/**
+ * Spec 063 FR-002: is the critic's `revise` fixable on the same source? Review 3, slot 1fb75a76: the critic asked for
+ * fixable edits and the ladder banned the very source («Не бери повторно») — a lost slot. A reject, a grounding of
+ * 2 or less (the source does not carry the facts) and a wrong topic stay bans.
+ */
+export function isFixableRevise(critic: SlotState['critic'] | undefined, extra?: string | null): boolean {
+  if (critic?.verdict !== 'revise') return false;
+  const grounding = critic.scores?.grounding;
+  if (typeof grounding === 'number' && grounding <= 2) return false;
+  return !isWrongTopic(critic.notes) && !isWrongTopic(extra);
 }
 
 function sourceOf(spec: any): string | null {
@@ -158,11 +181,11 @@ function classify(slot: SlotState, probe: PublishProbe['last']): SlotFailure | n
   const verdict = slot.critic?.verdict ?? null;
   const notes = slot.critic?.notes ?? null;
   if (slot.status === 'skipped' && /^critic_rejected\b/.test(err)) {
-    return { kind: 'critic_reject', code: 'critic_rejected', reason: err, notes, sourceUrl: sourceOf(slot.postSpec) };
+    return { kind: 'critic_reject', code: 'critic_rejected', reason: err, notes, sourceUrl: sourceOf(slot.postSpec), fixable: isFixableRevise(slot.critic, err) };
   }
   if (slot.status === 'skipped' && /^skipped by agent\b/.test(err) && (verdict === 'revise' || verdict === 'reject')) {
     // The critic asked for a rewrite and the executor gave up on it: a critic rejection, not an editorial choice.
-    return { kind: 'critic_reject', code: 'critic_rejected', reason: `critic_rejected: executor skipped after revise — ${clip(notes ?? err, 300)}`, notes, sourceUrl: null };
+    return { kind: 'critic_reject', code: 'critic_rejected', reason: `critic_rejected: executor skipped after revise — ${clip(notes ?? err, 300)}`, notes, sourceUrl: null, fixable: isFixableRevise(slot.critic, err) };
   }
   if (slot.status === 'failed' && /^lint_failed\b/.test(err)) {
     return { kind: 'lint', code: 'lint_failed', reason: err, notes: err, sourceUrl: null };
@@ -193,8 +216,11 @@ export function lighterFormat(format: string, allowed: ReadonlySet<string>): str
 }
 
 /** The steps after the initial attempt (each at most once). */
-export function ladderPlan(o: { format: string; allowed: ReadonlySet<string>; evergreen: boolean; live?: boolean; failure?: SlotFailure['kind'] }): Array<{ step: Exclude<LadderStep, 'initial'>; format: string }> {
-  const out: Array<{ step: Exclude<LadderStep, 'initial'>; format: string }> = [{ step: 'next_candidate', format: o.format }];
+export function ladderPlan(o: { format: string; allowed: ReadonlySet<string>; evergreen: boolean; live?: boolean; failure?: SlotFailure['kind']; fixable?: boolean }): Array<{ step: Exclude<LadderStep, 'initial'>; format: string }> {
+  // Spec 063 FR-002: a fixable revise keeps its source; the next candidate is the step after it.
+  const out: Array<{ step: Exclude<LadderStep, 'initial'>; format: string }> = [
+    ...(o.fixable ? [{ step: 'revise_source' as const, format: o.format }] : []), { step: 'next_candidate', format: o.format },
+  ];
   const lighter = lighterFormat(o.format, o.allowed);
   // Spec 053 FR-007: only one step runs — a post that failed lint tries the lighter format first.
   if (lighter) out[o.failure === 'lint' ? 'unshift' : 'push']({ step: 'lighter_format', format: lighter });
@@ -210,7 +236,10 @@ export function ladderNote(step: Exclude<LadderStep, 'initial'>, o: { failure: S
   const lines = [`## Запасний крок (${step}): попередня спроба цього слота не вийшла — ${why}.`];
   if (o.failure.notes) lines.push(`Зауваження: ${clip(o.failure.notes, 600)}`);
   if (o.avoid.length) lines.push(`Не бери повторно: ${o.avoid.slice(0, 5).join('; ')}.`);
-  if (step === 'next_candidate') {
+  if (step === 'revise_source') {
+    // Spec 063 FR-002: the source is fine, the text is not.
+    lines.push(`Матеріал і джерело ${o.failure.sourceUrl ? `(${o.failure.sourceUrl}) ` : ''}добрі: ЗАЛИШ ТОЙ САМИЙ матеріал і тему слота, перепиши пост і виправ саме ці зауваження. Не міняй джерело і не пиши про інше.`);
+  } else if (step === 'next_candidate') {
     lines.push(o.live
       ? 'Візьми НАСТУПНИЙ свіжий матеріал зі списку (не той, що не пройшов) і напиши пост заново з урахуванням зауважень.'
       : 'Візьми ІНШИЙ матеріал чи джерело в межах теми слота (не той, що не пройшов) і напиши пост заново з урахуванням зауважень.');
