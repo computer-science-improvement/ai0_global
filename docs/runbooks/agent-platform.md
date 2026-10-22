@@ -492,6 +492,63 @@ An agent's `propose_skill_edit` no longer goes live at once. The edit is stored 
 - A probe costs about two dry runs, two critic passes and one judge call per post; with the defaults that is under the $0.30 cap, at most $0.90 a day.
 - Tests: `agents/skill-probe.059.test.ts` (decision, order, budget, cap, judge), `agents/skill-probe.059.pg.test.ts` and `skill-probe.059.pick.pg.test.ts` (store, sample picking, adopt anyway), `roles/preview-probe.059.test.ts` (the dry run of a published slot and the override), `sysadmin/checks/checks.059.test.ts`, `sysadmin/audit-probes.059.pg.test.ts`; in the dashboard `lib/skill-probe.test.ts`.
 
+## 19. Dead series and owner signal (spec 060)
+
+A series whose slots keep being skipped for the same reason is paused by code, and the notes about it are said once instead of every day.
+
+**Needs**
+
+- Migration `093_series_pauses` (`series_pauses`; `agent_inbox.subject`, `parts` and `actions`). Apply it before deploying the code that reads it. Down: `database/migrations/down/093_series_pauses.down.sql` (the pauses are dropped, so every series is planned again).
+- Nothing to enable. The breaker runs from the scheduler tick (at most every 2 minutes, code only, no LLM).
+
+**What happens**
+
+1. **Breaker.** Over the closed slots of the last 14 days it counts, per series, the skips in a row that have the same cause. At `SERIES_SKIP_STREAK` (default 3) the series is paused if the cause is `no_material` (no fresh item, empty library, rows without the needed fields, source already posted) or `source_unreachable` (403, timeout, too large, host blocked). A series is the `series_name`, else the fixed-time pin, else the resource itself (a plain resource needs a streak that spans 20 hours). Owner decisions, budget waits, expired approvals and slots already skipped as `series_paused` neither count nor break a streak; a post going out (or waiting for approval) ends it. A critic streak is not paused: it keeps its own note.
+2. **Pause.** One open pause per series (`series_pauses`). The planner does not plan it (a slot of it in a plan is a plan error, and it is no longer "due"), its already planned slots are skipped with `series_paused` at $0, and `series_missed` is not raised for them. The channel's mode and `resource_pauses` are untouched. The planners also read the last 3 skip reasons per series and the paused series in their schedule block.
+3. **One note, one card.** The Inbox note (kind `series_paused`) is English; the Telegram card is Ukrainian and has **Відновити**, **Залишити на паузі** and **Відкрити**.
+4. **Resume.** From the card, or on the agent page (**Overview → Paused series → Resume**, the section is hidden when nothing is paused). `resumed_by` is `owner`; only skips after the resume count towards a new pause.
+
+**Owner notes say it once**
+
+- Each note has a subject (what it is about: `silent:<resource>:miss`, `silent:<resource>:critic`, `resource:<ref>`, `connection:<ref>`) and parts (its causes and numbers). It fires again only when its parts bring something new, or once per `OWNER_NOTE_REPEAT_DAYS` as «досі … N днів» (title "still going, N days" in the dashboard). The memory is in the Inbox rows themselves.
+- `series_missed` and `dark_day` of one resource and day are one note (the dark-day one lists the missed series). A newer note of the same subject marks the older unread ones read and closes their cards ("Замінено новішою карткою"), so there is one live card per problem.
+- Health notes (`token_invalid`, source down, …) and `connection_broken` follow the same rule: once, then every `OWNER_NOTE_REPEAT_DAYS`.
+
+**Card buttons** (callback data is only card id and button index)
+
+| Note | Button | Does |
+|---|---|---|
+| Health | Заглушити на 7 днів | The health dismiss of spec 049, now for 7 days (or until the state changes) |
+| Silent day, critic streak | Пауза серії (or «Пауза: <name>» for two series) | An owner pause (`cause = owner`) of that series; none is offered for a plain slot |
+| Series paused | Відновити, Залишити на паузі | Resume; mark the note read, the pause stays |
+
+Each action is logged on the card (the outcome line) and on the Inbox note (an "Owner action: …" line in its body, the note marked read).
+
+**The manager**
+
+- The digest's open directives and the prompt list carry `adherence` (spec 025) and the age in days.
+- The review signature counts no cover from an applied directive that was `not_followed` or an accepted one past its review date; a `dark_day`, a paused series (`signals: series_paused`) and a critic streak of 3 or more (`signals: critic_streak`) force a review even when covered. At most one forced review a day, as before.
+- The prompt: advice that was not followed is re-filed as a directive with `supersedes`; not followed twice goes to the owner as a structural directive; a paused series is not advised again.
+- `owner_rejection_rate` / `owner_edit_rate` are refused as `expected.metric` (`unmeasurable_metric`) when the channel had no owner approvals in 7 days.
+- A directive that was not followed (`avoid`) or could not be judged (`insight`) leaves one line in the manager's memory with its id.
+
+**Settings** (Settings → Configuration, applied at once)
+
+| Setting | Default | What it does |
+|---|---|---|
+| `SERIES_SKIP_STREAK` | `3` | Same-cause skips in a row that pause a series. `0` = off |
+| `OWNER_NOTE_REPEAT_DAYS` | `3` | A note about a problem that has not changed comes again after this many days (1–30) |
+
+**Endpoints** (owner only): `GET /api/agents/:handle/series-pauses` (`{ channelKey, open, recent }`), `POST /api/agents/:handle/series-pauses` with `{ "action": "resume", "id": "<pause id>" }` (`404` for a pause of another channel, `409 not_paused` when already resumed).
+
+**Troubleshooting**
+
+- A series was paused but the source is back: Resume it (card or page). It is planned again from the next plan, and a new pause needs a fresh streak.
+- A series should have been paused but was not: its skips must all be the same cause class, the latest slots must be closed, and `SERIES_SKIP_STREAK` must not be 0. A skip with free text the patterns do not know ends the streak.
+- A note comes every day: its parts keep changing (a new cause or number each day is news). Check the subject and parts in `agent_inbox`.
+- Mute does not stop the reminders: the mute lasts 7 days; after that the next health check sends them again.
+- Tests: `series-pause/series-pause.060.test.ts` and `.pg.test.ts` (counter, breaker, planner view), `note-actions.060.test.ts` and `pause-actions.060.pg.test.ts` (card buttons, actions, endpoint, mute), `agents/note-gate.060.test.ts` and `owner-notes.060.pg.test.ts` (repeat rule, merge, supersede), `manager/manager-060.test.ts`.
+
 ## 20. Slot pre-flight and sources (spec 061)
 
 Code checks what code can know before the executor is paid to discover it, and the sources stop wasting calls. Apply migration `094` before deploying the code that reads it (the content ledger `anchor` column and `content_ledger_record_anchored`, `source_host_failures.strikes` and `noted_at`).

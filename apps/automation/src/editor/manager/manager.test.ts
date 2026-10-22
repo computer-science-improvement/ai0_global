@@ -241,18 +241,23 @@ test('evaluator (spec 025 FR-016): an unverified applied directive → inconclus
     after: 2000,
     due: [
       { ...base, id: 'violated', verification: { kind: 'observed', adherence: 'violated' }, verifiedAt: null },
+      { ...base, id: 'ignored', verification: { kind: 'observed', adherence: 'not_followed' }, verifiedAt: null },
       { ...base, id: 'unverified', kind: 'pause_resource', verification: { kind: 'unverified' }, verifiedAt: null },
       { ...base, id: 'advice', kind: 'advice', expected: null, verification: { kind: 'self_reported' }, verifiedAt: null },
       { ...base, id: 'open-exp', kind: 'experiment', change: { deadline: new Date(Date.now() + 86_400_000).toISOString() }, verification: null, verifiedAt: null },
     ] as any,
   });
-  assert.equal(await s.runner.evaluate(), 3);
+  assert.equal(await s.runner.evaluate(), 4);
   const by = new Map(s.updates.map((u) => [u[0], u[1]]));
   assert.deepEqual([by.get('violated').outcome, by.get('violated').outcomeDetail.reason, by.get('violated').outcomeDetail.adherence], ['inconclusive', 'not_verified', 'violated']);
   assert.deepEqual([by.get('unverified').outcome, by.get('unverified').outcomeDetail.reason], ['inconclusive', 'not_verified']);
   assert.deepEqual([by.get('advice').status, by.get('advice').outcome, by.get('advice').outcomeDetail.reason], ['evaluated', undefined, 'self_reported']);
   assert.equal(by.has('open-exp'), false, 'an experiment is not judged before its deadline');
-  assert.equal(s.memory.length, 0, 'no lessons from unverified changes even when the metric moved');
+  // Spec 060 FR-005: no lesson about the metric from an unverified change, but one line each for what was not followed (avoid)
+  // and what could not be judged (insight), with the directive id; self-reported advice leaves none.
+  assert.deepEqual(s.memory.map((m) => [m[1], m[3].directive, m[3].adherence]), [['insight', 'violated', 'violated'], ['avoid', 'ignored', 'not_followed'], ['insight', 'unverified', null]]);
+  assert.match(s.memory[1][2], /не виконав/);
+  assert.doesNotMatch(s.memory.map((m) => m[2]).join(' '), /спрацювало|зашкодило/);
 });
 
 test('046: the posts baseline starts at the first data day — a resource launched 10 days ago has no anomaly from launch', () => {

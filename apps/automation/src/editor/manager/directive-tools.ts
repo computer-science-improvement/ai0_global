@@ -39,6 +39,9 @@ export function isStructural(kind: DirectiveKind, params: Record<string, unknown
 const hasNumber = (v: unknown): boolean =>
   typeof v === 'number' || (!!v && typeof v === 'object' && Object.values(v as object).some(hasNumber));
 
+/** Spec 060 FR-005: metrics that need owner approvals in the window to mean anything. */
+export const UNMEASURABLE_WITHOUT_APPROVALS: string[] = ['owner_rejection_rate', 'owner_edit_rate'];
+
 /** Spec 040 FR-007: the default minimal change of `expected` (the models left it out and the call failed). */
 export const DEFAULT_MIN_CHANGE_PCT = 10;
 
@@ -249,6 +252,13 @@ export async function fileDirective(d: DirectiveToolDeps, i: FileDirective, o: {
     const rows = o.digest.resources.filter((r) => (ref ? r.ref === ref : r.agent === target.handle));
     const stale = rows.length > 0 && rows.every((r) => (r.kpis as any)[i.expected!.metric]?.stale);
     if (stale) return { error: 'stale_metric', details: `${i.expected.metric} без свіжих даних — директиви на ній не даються` };
+    // Spec 060 FR-005: the owner's rejection / edit rate cannot be measured on a channel where the owner approved nothing this week.
+    if (UNMEASURABLE_WITHOUT_APPROVALS.includes(i.expected.metric) && rows.length > 0 && rows.every((r) => r.quality && r.quality.owner.approved === 0)) {
+      return {
+        error: 'unmeasurable_metric',
+        details: `${i.expected.metric}: власник не схвалив жодного поста за 7 днів (owner.approved = 0), тож ефекту не буде видно. Обери critic_pass_rate чи poll_share, або подай пораду без expected`,
+      };
+    }
     // Spec 034 FR-006: a quality metric needs data in the quality block (critic verdicts, owner decisions, slots).
     if (isQualityMetric(i.expected.metric) && metricValue(o.digest, target.handle, i.expected.metric, ref) == null) {
       return { error: 'stale_metric', details: `${i.expected.metric}: за 7 днів немає даних якості для ${ref ?? `@${target.handle}`} — директиви на ній не даються` };

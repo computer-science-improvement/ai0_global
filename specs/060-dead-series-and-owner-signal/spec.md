@@ -1,6 +1,6 @@
 # 060 — Dead series breaker and owner signal
 
-Status: draft · Builds on 037 FR-010 (silent days), 012 (owner bot), 046 (manager), 049 (health, keeper) · Migration 093
+Status: done · Builds on 037 FR-010 (silent days), 012 (owner bot), 046 (manager), 049 (health, keeper) · Migration 093
 
 ## Why
 

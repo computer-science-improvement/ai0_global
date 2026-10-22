@@ -87,6 +87,15 @@ export function bindingLabel(x: Pick<Directive, 'binding'>): string {
   return x.binding === 'advice' ? 'порада (на твій розсуд)' : 'ДИРЕКТИВА (обовʼязково)';
 }
 
+/**
+ * Spec 060 FR-005: what the manager does with the "виконання" (adherence) of an open directive and with a paused series.
+ * Review 3: advice nobody followed counted as cover, and the manager kept silent about it.
+ */
+export const NOT_FOLLOWED_LINES = [
+  'У списку відкритих директив «виконання not_followed» означає, що застосовану пораду оркестратор не виконав — вона нічого не покриває. Один раз не виконано: подай те саме як директиву (binding: directive) з supersedes на стару пораду. Не виконано двічі (директиву теж): ескалюй власнику — структурна директива, яка піде йому на рішення. «inconclusive» — без вимірюваного ефекту, не повторюй її слово в слово.',
+  'Серія на паузі (signals: series_paused у дайджесті) зупинена кодом після кількох пропусків поспіль: не радь планувати її знову — це рішення власника (Відновити). Критик, що відхиляє 3 пости поспіль (signals: critic_streak), і dark_day — привід для voice_fix / format_mix, навіть коли відкрита директива вже є.',
+];
+
 /** System prompt of the scheduled manager run. */
 export function managerSystemPrompt(o: { agent: Agent; now: Date; digest: string; memory: string; skills: { inline: string; listed: string }; open?: KpiDigest['directives']['open']; qualityRefs?: string[] }): string {
   const tz = 'Europe/Kyiv';
@@ -96,6 +105,8 @@ export function managerSystemPrompt(o: { agent: Agent; now: Date; digest: string
     '«continue» (submit_review) — лише після чекліста: quality_check по кожному ресурсу з цифрами чи цитатами. Проблема з якістю (тексти звучать як ШІ, безглузді, забагато опитувань чи питань, власник відхиляє чи править) — це порада voice_fix або format_mix, а не «все гаразд». Директива на KPI — коли цифри дають конкретну підставу (аномалія, стійкий тренд, явна можливість).',
     'Правила власника важливіші за твої директиви. Не давай директив на метриках зі stale. Не більше 3 директив за прогін. Не мікроменеджь окремі пости — працюй через правила, приклади, ваги й ліміти.',
     'Кожну подаєш з binding: порада (advice, за замовчуванням — оркестратор може відхилити) або директива (directive, обовʼязкова — лише при anomaly чи ескалації; структурні — завжди директива).',
+    // Spec 060 FR-005: advice nobody followed is not "in force"; a series stopped by code is not advised again.
+    ...NOT_FOLLOWED_LINES,
     '',
     `Зараз ${localDate(o.now, tz)} ${localTimeLabel(o.now, tz)} (Київ).`,
     '',
@@ -129,7 +140,8 @@ export function commitmentsText(list: Array<Pick<Directive, 'kind' | 'binding' |
 /** Spec 040 FR-007: the open directives as the manager prompt lists them — target, kind, binding, status, review date. */
 export function openDirectivesText(open: KpiDigest['directives']['open']): string {
   if (!open.length) return '- немає';
-  return open.map((x) => `- @${x.to} · ${x.kind}${x.binding ? ` (${x.binding})` : ''} · ${x.status} · перевірка ${x.reviewAt?.slice(0, 10) ?? '—'} · id ${x.id}`).join('\n');
+  // Spec 060 FR-005: whether the advice was followed (adherence) and its age, so a not_followed one is not mistaken for in force.
+  return open.map((x) => `- @${x.to} · ${x.kind}${x.binding ? ` (${x.binding})` : ''} · ${x.status}${x.adherence ? ` · виконання ${x.adherence}` : ''}${x.ageDays != null ? ` · ${x.ageDays} дн.` : ''} · перевірка ${x.reviewAt?.slice(0, 10) ?? '—'} · id ${x.id}`).join('\n');
 }
 
 /**
@@ -472,6 +484,22 @@ export class ManagerRunner {
     return n;
   }
 
+  /**
+   * Spec 060 FR-005: one agent_memory line for a directive that was not followed (`avoid`) or whose effect could not be judged
+   * (`insight`), with the directive id — the same as `worked` / `hurt` write today.
+   */
+  private async rememberUnscored(managerId: string, dir: Directive, adherence: string | null): Promise<void> {
+    const who = `@${this.handleCache.get(dir.toAgentId) ?? '?'}`;
+    const what = `${dir.kind} для ${who} (${dir.body.slice(0, 120)})`;
+    try {
+      if (adherence === 'not_followed') {
+        await this.d.repo.addMemory(managerId, 'avoid', `${what} — оркестратор не виконав: не ставити тієї самої поради знову, а ескалювати.`, { directive: dir.id, adherence }, 'system');
+      } else {
+        await this.d.repo.addMemory(managerId, 'insight', `${what} — ефект не вдалося оцінити (inconclusive${adherence ? `, виконання ${adherence}` : ''}).`, { directive: dir.id, adherence }, 'system');
+      }
+    } catch { /* memory is best-effort */ }
+  }
+
   /** Effect of applied directives on their review date (FR-007). */
   async evaluate(): Promise<number> {
     const due = await this.d.repo.dueForEvaluation(this.now());
@@ -499,6 +527,8 @@ export class ManagerRunner {
           outcomeDetail: { before: before ?? null, reason: 'not_verified', adherence: dir.verification?.adherence ?? null, verification: vkind },
         });
         n++;
+        // Spec 060 FR-005: a directive nobody followed (avoid) or that could not be judged (insight) is a lesson too.
+        if (m) await this.rememberUnscored(m.id, dir, dir.verification?.adherence ?? null);
         continue;
       }
       const after = this.metricFor(dg, dir);
@@ -512,6 +542,7 @@ export class ManagerRunner {
       }
       await this.d.repo.update(dir.id, { status: 'evaluated', outcome, outcomeDetail: { before: before ?? null, after, changePct, confounders } });
       n++;
+      if (m && outcome === 'inconclusive') await this.rememberUnscored(m.id, dir, dir.verification?.adherence ?? null);
       if (m && (outcome === 'worked' || outcome === 'hurt')) {
         await this.d.repo.addMemory(m.id, 'insight',
           `${dir.kind} для @${this.handleCache.get(dir.toAgentId) ?? '?'} (${dir.body.slice(0, 120)}) — ${outcome === 'worked' ? 'спрацювало' : 'зашкодило'}: ${dir.expected?.metric} ${changePct?.toFixed(0)}%.`,

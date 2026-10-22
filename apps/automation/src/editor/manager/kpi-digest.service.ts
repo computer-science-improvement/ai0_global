@@ -20,6 +20,11 @@ export interface ResourceDigest {
   anomalies: string[];
   /** Spec 034 FR-006: the content-quality block (7 days); null when it could not be read. */
   quality?:  ResourceQuality | null;
+  /**
+   * Spec 060 FR-005: facts that force a manager review even when the resource's flags are covered by an open directive:
+   * `series_paused` (the dead-series breaker paused a series here), `critic_streak` (the critic rejected 3 or more posts in a row).
+   */
+  signals?:  Array<'series_paused' | 'critic_streak'>;
 }
 
 export interface KpiDigest {
@@ -29,7 +34,7 @@ export interface KpiDigest {
   agents:      Array<{ handle: string; mode: string; paused: boolean; slotsToday: Record<string, number>; spentTodayUsd: number }>;
   /** perPost7dUsd (spec 046 FR-005): 7-day production spend per published / shadowed post; null without posts or when unread. */
   budget:      { spentTodayUsd: number; capUsd: number; spent7dUsd?: number | null; posts7d?: number | null; perPost7dUsd?: number | null };
-  directives:  { open: Array<{ id: string; to: string; kind: string; status: string; body: string; createdAt: string; binding?: string; reviewAt?: string | null }>; outcomes: Array<{ to: string; kind: string; outcome: string | null; body: string; detail: unknown }> };
+  directives:  { open: Array<{ id: string; to: string; kind: string; status: string; body: string; createdAt: string; binding?: string; reviewAt?: string | null; adherence?: string | null; ageDays?: number }>; outcomes: Array<{ to: string; kind: string; outcome: string | null; body: string; detail: unknown }> };
   /** Spec 025 FR-017: how each orchestrator answered the MANAGER over 30 days. */
   compliance?: ComplianceRow[];
   /** Spec 040 FR-011: where a playbook or profile contradicts the owner's rules (fixed by @ai0's fix_config_conflicts card). */
@@ -120,7 +125,7 @@ function series(): { viewsPerPost: DailySeries; engagementRate: DailySeries; pos
  */
 export function digestHash(d: Pick<KpiDigest, 'resources' | 'directives'>): string {
   return createHash('sha1').update(JSON.stringify({
-    r: d.resources.map((x) => [x.ref, x.kpis]), o: d.directives.open.map((x) => [x.id, x.status]), q: qualitySignature(d.resources),
+    r: d.resources.map((x) => (x.signals?.length ? [x.ref, x.kpis, x.signals] : [x.ref, x.kpis])), o: d.directives.open.map((x) => [x.id, x.status]), q: qualitySignature(d.resources),
   })).digest('hex');
 }
 
@@ -128,20 +133,39 @@ export function digestHash(d: Pick<KpiDigest, 'resources' | 'directives'>): stri
  * Spec 040 FR-007: what a manager review reacts to — per resource with an agent, the KPI anomalies and the quality
  * flags (sorted). The same signature as the last review skips the scheduled run (one forced review a day).
  */
-export function reviewSignature(d: Pick<KpiDigest, 'resources'> & { directives?: Pick<KpiDigest['directives'], 'open'> }): string {
-  // Spec 046 FR-004: quality flags of an agent that already has an open / in-force directive are covered — they no
+export function reviewSignature(d: Pick<KpiDigest, 'resources'> & { directives?: Pick<KpiDigest['directives'], 'open'>; generatedAt?: string }): string {
+  // Spec 046 FR-004: quality flags of an agent that already has an open / in-force directive are covered: they no
   // longer force a review (review 2: per-post flag noise meant the skip almost never fired).
-  const covered = new Set((d.directives?.open ?? []).map((x) => x.to));
+  // Spec 060 FR-005: a directive covers only while it can still work. An applied one the orchestrator did not follow
+  // (`adherence = not_followed`) and an accepted one past its review date cover nothing; a dark day, a paused series
+  // and a critic streak are never covered (review 3: the manager stayed blind to advice nobody followed).
+  const now = d.generatedAt ? Date.parse(d.generatedAt) : Date.now();
+  const covered = new Set((d.directives?.open ?? []).filter((x) => countsAsCover(x, now)).map((x) => x.to));
   const rows = d.resources
     .filter((r) => r.agent)
-    .map((r) => [r.ref, [...r.anomalies].sort(), covered.has(r.agent!) ? [] : [...(r.quality?.flags ?? [])].sort()] as const)
-    .filter(([, a, f]) => a.length || f.length)
+    .map((r) => {
+      const flags = [...(r.quality?.flags ?? [])].sort();
+      const row: unknown[] = [r.ref, [...r.anomalies].sort(), covered.has(r.agent!) ? flags.filter((f) => UNCOVERABLE_FLAGS.includes(f)) : flags];
+      if (r.signals?.length) row.push([...r.signals].sort());
+      return row as [string, string[], string[], string[]?];
+    })
+    .filter(([, a, f, sig]) => a.length || f.length || (sig?.length ?? 0) > 0)
     .sort((x, y) => x[0].localeCompare(y[0]));
   return createHash('sha1').update(JSON.stringify(rows)).digest('hex');
 }
 
+/** Spec 060 FR-005: quality flags no open directive covers. */
+const UNCOVERABLE_FLAGS: string[] = ['dark_day'];
+
+/** Spec 060 FR-005: does an open directive still cover its agent's flags? */
+export function countsAsCover(x: Pick<KpiDigest['directives']['open'][number], 'status' | 'adherence' | 'reviewAt'>, nowMs: number): boolean {
+  if (x.status === 'applied' && x.adherence === 'not_followed') return false;
+  if (x.status === 'accepted' && x.reviewAt && Date.parse(x.reviewAt) < nowMs) return false;
+  return true;
+}
+
 const flagged = (r: ResourceDigest) => (r.quality?.flags.length ?? 0) > 0;
-const loud = (r: ResourceDigest) => r.anomalies.length > 0 || flagged(r);
+const loud = (r: ResourceDigest) => r.anomalies.length > 0 || flagged(r) || (r.signals?.length ?? 0) > 0;
 const cut = (s: string, n: number) => (s.length > n ? `${s.slice(0, n - 1)}…` : s);
 const QUIET_NOTE = 'без аномалій і прапорців якості';
 
@@ -364,7 +388,7 @@ export class KpiDigestService {
     const week = await this.costPerPost().catch(() => null);
 
     const { rows: open } = await this.d.pool.query(
-      `SELECT d.id, a.handle AS to_handle, d.kind, d.binding, d.status, d.body, d.created_at, d.review_at FROM agent_directives d JOIN agents a ON a.id = d.to_agent_id
+      `SELECT d.id, a.handle AS to_handle, d.kind, d.binding, d.status, d.body, d.created_at, d.review_at, d.verification FROM agent_directives d JOIN agents a ON a.id = d.to_agent_id
         WHERE d.status IN ('new','awaiting_owner','contested','accepted','applied') AND NOT d.shadow ORDER BY d.created_at DESC LIMIT 20`);
     const { rows: outcomes } = await this.d.pool.query(
       `SELECT a.handle AS to_handle, d.kind, d.outcome, d.body, d.outcome_detail FROM agent_directives d JOIN agents a ON a.id = d.to_agent_id
@@ -380,6 +404,12 @@ export class KpiDigestService {
       if (q && !q.flags.includes('config_conflict')) q.flags.push('config_conflict');
     }
 
+    // Spec 060 FR-005: a paused series and a critic streak force a review (reviewSignature); the manager reads them in the digest.
+    for (const [ref, sig] of await this.signalsOf()) {
+      const r = out.find((x) => x.ref === ref);
+      if (r) r.signals = [...new Set([...(r.signals ?? []), ...sig])];
+    }
+
     const digest: Omit<KpiDigest, 'hash' | 'raw'> = {
       generatedAt: now.toISOString(), today, resources: out, agents,
       budget: { spentTodayUsd: Math.round(Number(spend[0]?.usd ?? 0) * 10000) / 10000, capUsd, ...(week ?? {}) },
@@ -387,6 +417,8 @@ export class KpiDigestService {
         open: open.map((o) => ({
           id: o.id, to: o.to_handle, kind: o.kind, status: o.status, body: String(o.body).slice(0, 200), createdAt: new Date(o.created_at).toISOString(),
           binding: o.binding ?? undefined, reviewAt: o.review_at ? new Date(o.review_at).toISOString() : null,
+          // Spec 060 FR-005: was the advice followed (spec 025 verification), and how long has it been open.
+          adherence: o.verification?.adherence ?? null, ageDays: Math.max(0, Math.floor((now.getTime() - new Date(o.created_at).getTime()) / 86_400_000)),
         })),
         outcomes: outcomes.map((o) => ({ to: o.to_handle, kind: o.kind, outcome: o.outcome ?? null, body: String(o.body).slice(0, 160), detail: o.outcome_detail ?? null })),
       },
@@ -397,6 +429,32 @@ export class KpiDigestService {
       ...(audit ? { audit } : {}),
     };
     return { ...digest, hash: digestHash(digest), raw };
+  }
+
+  /**
+   * Spec 060 FR-005: per resource, the paused series (open `series_pauses`) and a critic streak of 3 or more (the latest
+   * `critic_reject_streak` note of the last 4 days). Best-effort: an unreadable table means no signal.
+   */
+  private async signalsOf(): Promise<Map<string, Array<'series_paused' | 'critic_streak'>>> {
+    const out = new Map<string, Array<'series_paused' | 'critic_streak'>>();
+    const add = (ref: string, s: 'series_paused' | 'critic_streak') => out.set(ref, [...new Set([...(out.get(ref) ?? []), s])]);
+    try {
+      const { rows } = await this.d.pool.query(`SELECT DISTINCT channel_key FROM series_pauses WHERE resumed_at IS NULL`);
+      for (const r of rows ?? []) add(`telegram:${r.channel_key}`, 'series_paused');
+    } catch { /* migration 093 not applied */ }
+    try {
+      const { rows } = await this.d.pool.query(
+        `SELECT DISTINCT ON (subject) subject, parts FROM agent_inbox
+          WHERE kind = 'critic_reject_streak' AND subject IS NOT NULL AND created_at > now() - interval '4 days'
+          ORDER BY subject, created_at DESC`);
+      for (const r of rows ?? []) {
+        const part = ((r.parts ?? []) as string[]).find((x) => /^streak:\d+$/.test(x));
+        const n = part ? Number(part.slice('streak:'.length)) : 0;
+        const m = /^silent:(.+):critic$/.exec(String(r.subject));
+        if (n >= 3 && m) add(m[1], 'critic_streak');
+      }
+    } catch { /* migration 093 not applied */ }
+    return out;
   }
 
   /** Spec 046 FR-005: the agents' production spend of the last 7 days per post that went out (published or shadowed). */
