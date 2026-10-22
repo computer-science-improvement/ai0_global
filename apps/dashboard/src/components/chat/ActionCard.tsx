@@ -225,6 +225,26 @@ function ExamplesResult({ result }: { result: unknown }) {
   );
 }
 
+const STOP_TEXT: Record<string, string> = {
+  failed: 'a failed page', max_pages: 'the page limit', max_rows: 'the row limit', pages: 'the pages asked for', no_new: 'a page with nothing new',
+};
+
+/** What an applied list import wrote, and where a paged API stopped short of its end. */
+function ImportResultView({ result }: { result: unknown }) {
+  const r = obj(result);
+  const n = (k: string) => (typeof r[k] === 'number' ? (r[k] as number) : 0);
+  const read = typeof r.pages_read === 'number' ? r.pages_read : null;
+  const total = typeof r.pages_total === 'number' ? r.pages_total : null;
+  const stop = str(r.stopped);
+  const short = read != null && stop && STOP_TEXT[stop] && (total == null || read < total);
+  return (
+    <p className="text-micro" style={{ margin: '10px 0 0', color: 'var(--color-ink-muted)', overflowWrap: 'anywhere' }}>
+      {n('inserted')} added, {n('updated')} updated, {n('skipped')} unchanged{n('not_postable') ? `, ${n('not_postable')} not postable` : ''}{str(r.dataset) ? ` in ${r.dataset as string}` : ''}.
+      {short && ` Read ${read}${total != null ? ` of ${total}` : ''} pages: stopped at ${STOP_TEXT[stop]}${stop === 'failed' && str(r.failure) ? ` (${r.failure as string})` : ''}.`}
+    </p>
+  );
+}
+
 function UpdateAgentView({ p }: { p: Record<string, unknown> }) {
   const patch = Object.entries(obj(p.patch));
   return (
@@ -437,6 +457,7 @@ function ActionDetails({ a, pending, createdHandle, error, examples }: {
       )}
       {examples}
       {a.kind === 'content_examples' && a.status === 'applied' && <ExamplesResult result={a.result} />}
+      {(a.kind === 'import_list' || a.kind === 'resync_import') && a.status === 'applied' && <ImportResultView result={a.result} />}
 
       {a.status === 'failed' && a.error && (
         <div className="callout-danger" style={{ marginTop: 10 }}><span className="text-micro" style={{ overflowWrap: 'anywhere' }}>{a.error}</span></div>

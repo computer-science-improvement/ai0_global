@@ -358,6 +358,8 @@ export interface ImportResult {
   pages_read?:       number;
   pages_total?:      number | null;
   stopped?:          string;
+  /** Why the page that stopped the run failed (`status 429`). */
+  failure?:          string;
   /** Owner-facing line when the run did not reach the end of the list («прочитано 12 з 30 сторінок: status 429»). */
   note?:             string;
 }
@@ -416,7 +418,7 @@ export async function runImport(d: ImportDeps, p: ImportPayload, by: string, o: 
     throw err;
   }
   const paging = plan.paging;
-  const pagingOut = paging ? { pages_read: paging.pages_read, pages_total: paging.pages_total, stopped: paging.stopped, ...(pagingNote(paging, { pages: p.pages, caps }) ? { note: pagingNote(paging, { pages: p.pages, caps })! } : {}) } : {};
+  const pagingOut = paging ? { pages_read: paging.pages_read, pages_total: paging.pages_total, stopped: paging.stopped, ...(paging.failure ? { failure: paging.failure } : {}), ...(pagingNote(paging, { pages: p.pages, caps }) ? { note: pagingNote(paging, { pages: p.pages, caps })! } : {}) } : {};
   if (!plan.rows.length) return { dataset: p.dataset, import_id: null, created_dataset: created, inserted: 0, updated: 0, skipped: 0, invalid: 0, not_postable: plan.incomplete.length, ...pagingOut };
 
   const report = await new DataImportService(d.pool).importRows(p.dataset, plan.rows, { createdBy: by });
