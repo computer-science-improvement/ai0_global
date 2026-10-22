@@ -19,6 +19,8 @@ export interface FetchDocDeps {
   http?:    { lookup?: Lookup; get?: RawGet };
   hosts?:   HostFailures;
   sources?: CardSource[];
+  /** Fetch again even when the store holds the page (a re-sync wants the page as it is now). */
+  fresh?:   boolean;
 }
 
 export interface FetchedDoc { doc: StoredDoc; cached: boolean }
@@ -36,7 +38,7 @@ function isMarkdown(res: SafeGetResult, asked: string): boolean {
 }
 
 export async function fetchDocument(url: string, d: FetchDocDeps): Promise<FetchedDoc | FetchFailure> {
-  const hit = d.docs.getByUrl(url);
+  const hit = d.fresh ? null : d.docs.getByUrl(url);
   if (hit) return { doc: hit, cached: true };
   const get = (u: string) => fetchPageGuarded(u, d.hosts, d.sources, () => safeGet(u, { lookup: d.http?.lookup, get: d.http?.get }));
 

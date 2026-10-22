@@ -38,6 +38,8 @@ import { buildComposeTools } from './tools/compose-tools';
 import { PgHostFailures } from './net/host-failures';
 import { sharedDocStore } from './docs/doc-store';
 import { buildDocTools } from './docs/doc-tools';
+import { buildImportListTools, importActionHandlers } from './docs/import-list-tools';
+import { ListResyncWorker } from './docs/list-resync.worker';
 import { buildSourceTools, applySourceChangeAction } from './sources/source-tools';
 import { candidateDeps, sourceChangeHandled, sourceHealthOf } from './sources/source-wiring';
 import { NETWORK_HEALTH, NetworkHealthController } from './health/network-health.controller';
@@ -1265,6 +1267,7 @@ export const EDITOR_PROVIDERS = [
         return new ToolRegistry([
           ...buildReadTools({ pool, readonly: new ReadonlyQueryService(pool), skills, stories: new StoryContextService(stories), hosts, docs }),
           ...buildDocTools({ docs }),
+          ...buildImportListTools({ pool, docs, actions: infra.actions, hosts, env }),
           ...buildDataTools({ pool, actions: infra.actions, env }),
           ...buildHighlightsTools({ pool }),
           ...buildComposeTools({ hosts, drafts }),
@@ -1977,6 +1980,8 @@ export const EDITOR_PROVIDERS = [
         });
         // Spec 032 FR-010: an agent's description fix for a dataset, applied by the owner (description-only, never a version bump).
         infra.actions.register('edit_data_schema', (p) => applyDataSchemaSuggestion(new DataStore(pool), p));
+        // Spec 065 FR-003: a list page imported into a dataset (and its re-sync), applied by the owner.
+        for (const [kind, handler] of Object.entries(importActionHandlers({ pool, docs: sharedDocStore(), hosts: new PgHostFailures(pool) }))) infra.actions.register(kind, handler);
         svc.setBriefHook(async (agent, brief) => {
           const key = telegramKeyOf(agent);
           const card = key ? await repos.channels.get(key) : null;
@@ -2454,6 +2459,7 @@ export const EDITOR_PROVIDERS = [
     SteeringWorker,
     LaunchWorker,
     AuditWorker,
+    ListResyncWorker,
     EditorCron,
     AgentsUpkeep,
     StoryBackfill,

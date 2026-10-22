@@ -658,3 +658,41 @@ Small fixes to the loop, the loadout and the audit. No migration, no new setting
 - A rule you want to keep is flagged: reword it in the owner chat (the lint explains why), or dismiss the finding.
 - An executor lost a tool it needs: add it under the channel's `tools_allow` in its loadout.
 - Tests: `common/err-text.test.ts`, `common/ai/usage/llm-usage-rollup.lock.pg.test.ts`, `config/meta-insight-backoff.test.ts`, `editor/harness/ops.064.test.ts`, `editor/sysadmin/stored-rules.064.test.ts`, `editor/loadout/loadout-profiles.test.ts`, `editor/setup/dataset-formats.047.test.ts`; in the dashboard `lib/agent-mode.test.ts`.
+
+## 24. Document reader and list import (spec 065)
+
+`web_fetch` keeps the whole page; a large one comes back as an outline plus the first chunk, and the agent reads the rest with `read_doc` and `find_in_doc`. A list page (a GitHub README of prompts, a catalogue) becomes dataset rows with `import_list`: extraction runs in code, the owner sees a preview and an Apply card, and every import can be undone on the dataset page.
+
+**Needs**
+
+- No migration. Nothing to enable: the tools are in the loadout of the chat roles (`read_doc` and `find_in_doc` follow `web_fetch`; `import_list` and `resync_import` are for the composer and builder in chat only).
+- The documents live in memory (about 100, `DOC_STORE_HOURS` each) and are lost on a restart; an agent that gets `doc_expired` fetches the page again.
+
+**How the agent reads a large page**
+
+1. `web_fetch` returns `doc_id`, `outline` (heading, level, size, number of code blocks and pictures, at most 80 entries and `outline_more`), the first ~3,000 characters and `next_from`. A short page keeps the old shape. A second fetch of the same address inside `DOC_STORE_HOURS` is answered from memory.
+2. `read_doc` takes a section (`id` or heading) or `from`; it never cuts a fenced code block (a prompt stays whole). `find_in_doc` finds a phrase, or the words that occur together, with 300 characters around.
+3. A GitHub repository, `/tree/<branch>`, `blob` or `raw` page is read as the raw file (`README.md` on `main`, then `master`); markdown is split into sections with the code blocks, pictures and links of each entry attached to it. `url` stays as typed, `fetched_url` is the raw one.
+
+**Nanobanana prompts for @ai0_prompts_dev (first use)**
+
+1. In the chat with the @ai0_prompts_dev agent: «імпортуй https://github.com/ZeroLu/awesome-nanobanana-pro у датасет nanobanana_prompts».
+2. The agent fetches the page, reads two or three entries, and calls `import_list` with a mapping like: `title: heading`, `prompt_text: first_code_block`, `media_url: last_image` (the result picture, not the input), `author: link_text_after:Source`, `source_url: last_link_after:Source`, licence `CC BY 4.0` (the repository badge), filter `has_code_block: true` (drops the sponsor blocks).
+3. Read the preview in the chat: number of entries, three sample rows, how full each field is, how many entries are not postable (no picture). Entries without a prompt or picture are skipped, not imported half-empty.
+4. Press **Apply** on the card. The dataset is created (`post_requires` = title, prompt_text, media_url; `dedup_key` = `list_ref`, which is the page address plus the entry's heading) and the rows are written as one import.
+5. Point the channel at it: change the channel's series or skill to take rows from the dataset (the skill `nanobanana-github-prompt-post` needs the one line «рядки з датасету nanobanana_prompts»; it is data in the database, so edit it in the dashboard, not in the repository).
+6. Undo: the dataset page → Imports → the import → Undo.
+
+**Updates**
+
+- After the first Apply the list is re-read silently once a week (Monday 04:20 Kyiv): only new or changed entries are added, as a new undoable import; a week with nothing new leaves no import row. `resync_import` does the same on request.
+- `IMPORT_RESYNC_AUTO` (Settings → Configuration, live, default on): when off, neither the weekly job nor `resync_import` writes by itself; `resync_import` then proposes a card.
+- `DOC_STORE_HOURS` (default 6, 1–72, needs a restart): how long a fetched page stays readable.
+
+**Troubleshooting**
+
+- `bad_extractor` / `unknown_field`: the message lists the valid extractors or the dataset's fields. `nothing_to_import`: no entry has everything the dataset needs; the preview shows which field is empty.
+- `already_pending`: an import card for this page and dataset is waiting in the chat; apply or discard it first.
+- An existing dataset must have a `list_ref` field or a mapped dedup key, otherwise a re-sync would add entries twice (`no_dedup`).
+- Tests: `docs/doc-store.test.ts`, `doc-tools.test.ts`, `doc-fetch.test.ts`, `markdown-doc.test.ts`, `github-url.test.ts`, `import-list.test.ts` (fixture `docs/testing/nanobanana-fixture.ts`), `import-list.pg.test.ts` (Apply, no-op re-sync, new entry, weekly job, undo).
+

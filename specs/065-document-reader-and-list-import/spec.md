@@ -1,6 +1,6 @@
 # 065 — Document reader and list import
 
-Status: draft · Builds on 053 (tool result cap), 058 (data store, `data_items_upsert`, `data_imports` undo), 083 (`post_requires`) · No migration unless the data store needs one
+Status: done · Builds on 053 (tool result cap), 058 (data store, `data_items_upsert`, `data_imports` undo), 083 (`post_requires`) · No migration unless the data store needs one
 
 ## Why
 

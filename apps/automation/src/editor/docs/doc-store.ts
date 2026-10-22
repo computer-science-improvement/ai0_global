@@ -103,7 +103,8 @@ let shared: DocStore | null = null;
 /** The one store of the running service (web_fetch, read_doc, find_in_doc, import_list share it). */
 export function sharedDocStore(env?: (k: string) => string | undefined): DocStore {
   if (!shared) {
-    const h = Number(env?.('DOC_STORE_HOURS'));
+    // The settings overlay runs before the app is built, so process.env has the value whoever asks first.
+    const h = Number(env?.('DOC_STORE_HOURS') ?? process.env.DOC_STORE_HOURS);
     shared = new DocStore({ ttlHours: Number.isFinite(h) && h >= 1 && h <= 72 ? h : DOC_STORE_DEFAULT_HOURS });
   }
   return shared;
