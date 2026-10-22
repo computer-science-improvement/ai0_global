@@ -42,7 +42,7 @@ export function buildSourceTools(d: SourceToolDeps): EditorTool[] {
       if (!r) return { error: 'unknown_channel', details: `${key} не має картки` };
       return {
         channel: key, days: r.days,
-        sources: r.sources.map((s) => ({ id: s.id, kind: s.kind, ref: s.ref, state: s.state, detail: s.detail })),
+        sources: r.sources.map((s) => ({ id: s.id, kind: s.kind, ref: s.ref, state: s.state, detail: s.detail, ...(s.origin === 'playbook' ? { origin: 'playbook' } : {}) })),
         other_blocked_hosts: r.otherHosts,
       };
     },

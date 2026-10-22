@@ -39,12 +39,16 @@ export interface HostBlockRow {
   statusCode: number | null;
   until:      Date;
   failures:   number;
+  /** Blocks in a row (spec 061 FR-004); a row from before it has none. */
+  strikes?:   number;
 }
 
 export type SourceState = 'blocked' | 'failing' | 'exhausted' | 'ok' | 'unused';
 
 export interface SourceHealth {
   id:          string;
+  /** `playbook` - a feed the orchestrator's playbook reads that the card does not list (spec 061 FR-004). Absent = a card source. */
+  origin?:     'card' | 'playbook';
   kind:        CardSource['kind'];
   ref:         string;
   state:       SourceState;
@@ -56,7 +60,7 @@ export interface SourceHealth {
   successRate: number | null;
   lastOkAt:    string | null;
   lastError:   { at: string; code: string; details: string | null } | null;
-  blocked:     { host: string; reason: string; statusCode: number | null; until: string; failures: number } | null;
+  blocked:     { host: string; reason: string; statusCode: number | null; until: string; failures: number; strikes: number } | null;
   /** Slots that ended skipped or failed after this source failed them (and never answered in that slot). */
   slotsLost:   number;
   /** One English line for the dashboard, the agent's prompt and the report. */
@@ -134,7 +138,7 @@ export function sourceHealthOf(s: CardSource, steps: SourceStep[], blocks: HostB
     : own.length ? 'ok' : 'unused';
 
   const parts: string[] = [];
-  if (block) parts.push(`blocked until ${block.until.toISOString().slice(0, 16).replace('T', ' ')} UTC (${block.reason}${block.statusCode ? ` ${block.statusCode}` : ''})`);
+  if (block) parts.push(`blocked until ${block.until.toISOString().slice(0, 16).replace('T', ' ')} UTC (${block.reason}${block.statusCode ? ` ${block.statusCode}` : ''}${(block.strikes ?? 0) > 1 ? `, ${block.strikes} blocks in a row` : ''})`);
   if (own.length) parts.push(`${okSteps.length} of ${own.length} reads worked in ${days} d`);
   else parts.push(`not read in ${days} d`);
   if (state === 'exhausted') parts.push(`the last ${STREAK} reads found nothing new`);
@@ -149,7 +153,7 @@ export function sourceHealthOf(s: CardSource, steps: SourceStep[], blocks: HostB
     successRate: rate === null ? null : Math.round(rate * 100) / 100,
     lastOkAt: lastOk ? lastOk.at.toISOString() : null,
     lastError: lastErr ? { at: lastErr.at.toISOString(), code: lastErr.error ?? 'error', details: lastErr.details } : null,
-    blocked: block ? { host: block.host, reason: block.reason, statusCode: block.statusCode, until: block.until.toISOString(), failures: block.failures } : null,
+    blocked: block ? { host: block.host, reason: block.reason, statusCode: block.statusCode, until: block.until.toISOString(), failures: block.failures, strikes: block.strikes ?? 0 } : null,
     slotsLost: lost.size,
     detail: parts.join('; '),
   };
@@ -187,7 +191,7 @@ export const isTroubled = (h: SourceHealth): boolean => h.state === 'blocked' ||
  * that refused twice in a row, or a block on top of failed reads, is not).
  */
 export const needsReplacement = (h: SourceHealth): boolean =>
-  h.state === 'failing' || h.state === 'exhausted' || (h.state === 'blocked' && ((h.blocked?.failures ?? 1) >= 2 || h.errors >= FAILING_MIN_ERRORS));
+  h.state === 'failing' || h.state === 'exhausted' || (h.state === 'blocked' && h.blocked?.reason !== 'timeout' && ((h.blocked?.failures ?? 1) >= 2 || (h.blocked?.strikes ?? 0) >= 2 || h.errors >= FAILING_MIN_ERRORS));
 
 /** The hosts and feed addresses a card's sources (and the steps' urls) can be blocked under. */
 export function blockKeys(sources: CardSource[], steps: SourceStep[]): string[] {

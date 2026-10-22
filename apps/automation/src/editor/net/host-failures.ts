@@ -7,14 +7,22 @@ import type { CardSource } from '../card';
  * 429), a DNS or TLS failure marks the host for 24 h; web_fetch / extract_images / fetch_feed then answer `host_blocked`
  * at once, without a request. A feed that does not parse marks the host for fetch_feed only.
  *
+ * Spec 061 FR-004: blocks of the same host escalate 1 d -> 3 d -> 7 d (`strikes`, kept when a block expires, reset by a
+ * successful fetch), and a timeout is a 1-hour block that is not a strike (a slow site is not a hostile one).
+ *
  * Spec 046 FR-009: a feed failure (not a feed, too large) marks that feed's address (`feedKey`), not the whole host — a
  * JSON API sent to fetch_feed used to block every feed of gamerpower.com for a day. An oversized feed is remembered too.
  */
 export const HOST_BLOCK_HOURS = 24;
+/** Block length by strike (spec 061 FR-004): the 3rd and every later strike is the cap. */
+export const STRIKE_BLOCK_HOURS = [24, 72, 168] as const;
+export const TIMEOUT_BLOCK_HOURS = 1;
+/** A host struck this many times in a row is raised to the owner (one note, `change_source` card for a card source). */
+export const STRIKES_FOR_OWNER = 3;
 export const REFUSAL_STATUSES = new Set([401, 403, 451, 429]);
 
 /** `feed_*` reasons block fetch_feed only; the others block every page fetch of the host. */
-export type HostFailureReason = 'refused' | 'dns' | 'tls' | 'feed_unparseable' | 'feed_too_large';
+export type HostFailureReason = 'refused' | 'dns' | 'tls' | 'timeout' | 'feed_unparseable' | 'feed_too_large';
 
 export interface HostBlock {
   host:       string;
@@ -26,6 +34,37 @@ export interface HostBlock {
 export interface HostFailures {
   blocked(host: string, use: 'page' | 'feed'): Promise<HostBlock | null>;
   record(host: string, reason: HostFailureReason, statusCode?: number | null): Promise<void>;
+  /** A page of this host answered: its strikes start over (spec 061 FR-004). */
+  succeeded?(host: string): Promise<void>;
+}
+
+/** The block a failure leaves: the strikes after it and when it ends; `keep` = an active longer block stays as it is. */
+export interface NextBlock { strikes: number; until: Date; keep: boolean }
+
+export interface PrevBlock { reason: string; blockedUntil: Date; strikes: number }
+
+/** Block length in hours for the n-th strike in a row (1 d, 3 d, then 7 d). */
+export const strikeHours = (strikes: number): number => STRIKE_BLOCK_HOURS[Math.min(Math.max(strikes, 1), STRIKE_BLOCK_HOURS.length) - 1];
+
+/**
+ * Spec 061 FR-004, pure: what a new failure does to the host's row. A refusal / DNS / TLS failure after the previous block
+ * ended is the next strike (1 d, 3 d, 7 d); a failure inside a block is the same strike. A timeout blocks for an hour and
+ * adds no strike, and never shortens a longer block. Feed failures stay a flat day on their own address.
+ */
+export function nextBlock(prev: PrevBlock | null, reason: HostFailureReason, now: Date): NextBlock {
+  const at = (hours: number) => new Date(now.getTime() + hours * 3_600_000);
+  const prevStrikes = prev?.strikes ?? 0;
+  const active = !!prev && prev.blockedUntil.getTime() > now.getTime();
+  if (reason === 'feed_unparseable' || reason === 'feed_too_large') return { strikes: prevStrikes, until: at(HOST_BLOCK_HOURS), keep: false };
+  if (reason === 'timeout') {
+    if (active && prev!.reason !== 'timeout' && prev!.blockedUntil.getTime() - now.getTime() > TIMEOUT_BLOCK_HOURS * 3_600_000) {
+      return { strikes: prevStrikes, until: prev!.blockedUntil, keep: true };
+    }
+    return { strikes: prevStrikes, until: at(TIMEOUT_BLOCK_HOURS), keep: false };
+  }
+  if (active && prev!.reason !== 'timeout') return { strikes: Math.max(prevStrikes, 1), until: prev!.blockedUntil, keep: true };
+  const strikes = prevStrikes + 1;
+  return { strikes, until: at(strikeHours(strikes)), keep: false };
 }
 
 /** The host of a URL, without `www.` (null for a non-URL). */
@@ -64,6 +103,15 @@ export function alternativeFor(host: string, cardSources: CardSource[] = []): st
   return feed ? `текст запису зі стрічки картки «${feed.id}» (fetch_feed: title і snippet), сторінки сайту не відкривай` : null;
 }
 
+/** A request that ran out of time (Node / axios codes, AbortSignal timeout, "timeout of 10000ms exceeded"). */
+export function classifyTimeout(err: unknown): boolean {
+  const e = err as { code?: string; name?: string; cause?: { code?: string }; message?: string } | null;
+  const code = String(e?.code ?? e?.cause?.code ?? '');
+  if (code === 'ETIMEDOUT' || code === 'ECONNABORTED' || code === 'ESOCKETTIMEDOUT' || /^UND_ERR_.*TIMEOUT$/.test(code)) return true;
+  if (e?.name === 'TimeoutError') return true;
+  return /timeout|timed out/i.test(String(e?.message ?? ''));
+}
+
 /** DNS and TLS failures of a request (by Node / axios error code); null for anything else (timeouts, resets …). */
 export function classifyFetchError(err: unknown): 'dns' | 'tls' | null {
   const e = err as { code?: string; cause?: { code?: string }; message?: string } | null;
@@ -77,6 +125,7 @@ const REASON_TEXT: Record<HostFailureReason, string> = {
   refused:          'сайт відмовляє в доступі',
   dns:              'домен не знаходиться (DNS)',
   tls:              'помилка TLS-сертифіката',
+  timeout:          'сайт не відповів вчасно',
   feed_unparseable: 'стрічка не читається як RSS/Atom',
   feed_too_large:   'стрічка більша за 2 МБ',
 };
@@ -110,15 +159,31 @@ export class PgHostFailures implements HostFailures {
 
   async record(host: string, reason: HostFailureReason, statusCode: number | null = null): Promise<void> {
     const t = this.now();
-    const until = new Date(t.getTime() + HOST_BLOCK_HOURS * 3_600_000);
-    await this.pool.query(
-      `INSERT INTO source_host_failures (host, reason, status_code, first_at, last_at, blocked_until) VALUES ($1, $2, $3, $4, $4, $5)
-       ON CONFLICT (host) DO UPDATE SET reason = EXCLUDED.reason, status_code = EXCLUDED.status_code, last_at = EXCLUDED.last_at,
-         blocked_until = EXCLUDED.blocked_until,
-         failures = CASE WHEN source_host_failures.blocked_until > EXCLUDED.last_at THEN source_host_failures.failures + 1 ELSE 1 END,
-         first_at = CASE WHEN source_host_failures.blocked_until > EXCLUDED.last_at THEN source_host_failures.first_at ELSE EXCLUDED.first_at END`,
-      [host, reason, statusCode, t, until],
-    ).catch(() => {});
+    try {
+      const { rows } = await this.pool.query(`SELECT reason, blocked_until, strikes FROM source_host_failures WHERE host = $1`, [host]);
+      const p = rows[0];
+      const prev: PrevBlock | null = p ? { reason: p.reason, blockedUntil: new Date(p.blocked_until), strikes: Number(p.strikes ?? 0) } : null;
+      const next = nextBlock(prev, reason, t);
+      const active = !!prev && prev.blockedUntil.getTime() > t.getTime();
+      // A timeout inside a longer block (or a repeat inside one) keeps its reason and end; the row only notes the new attempt.
+      await this.pool.query(
+        `INSERT INTO source_host_failures (host, reason, status_code, first_at, last_at, blocked_until, strikes) VALUES ($1, $2, $3, $4, $4, $5, $6)
+         ON CONFLICT (host) DO UPDATE SET
+           reason = CASE WHEN $8 THEN source_host_failures.reason ELSE EXCLUDED.reason END,
+           status_code = CASE WHEN $8 THEN source_host_failures.status_code ELSE EXCLUDED.status_code END,
+           last_at = EXCLUDED.last_at,
+           blocked_until = EXCLUDED.blocked_until,
+           strikes = $6,
+           failures = CASE WHEN $7 THEN source_host_failures.failures + 1 ELSE 1 END,
+           first_at = CASE WHEN $7 THEN source_host_failures.first_at ELSE EXCLUDED.first_at END`,
+        [host, reason, statusCode, t, next.until, next.strikes, active, next.keep],
+      );
+    } catch { /* never stops a fetch (e.g. before migration 094) */ }
+  }
+
+  /** A fetch of the host worked: the strikes start over and the next streak gets its own owner note. */
+  async succeeded(host: string): Promise<void> {
+    await this.pool.query(`UPDATE source_host_failures SET strikes = 0, noted_at = NULL WHERE host = $1 AND strikes > 0`, [host]).catch(() => {});
   }
 }
 
@@ -144,9 +209,16 @@ export async function fetchPageGuarded<T extends { status: number }>(
     res = await get();
   } catch (err) {
     const kind = classifyFetchError(err);
-    if (!kind || !host) throw err;
-    await hosts?.record(host, kind);
-    return { error: 'host_unreachable', details: `${host}: ${REASON_TEXT[kind]}. Не пробуй цей сайт сьогодні — інше джерело або пропусти слот.` };
+    if (kind && host) {
+      await hosts?.record(host, kind);
+      return { error: 'host_unreachable', details: `${host}: ${REASON_TEXT[kind]}. Не пробуй цей сайт сьогодні — інше джерело або пропусти слот.` };
+    }
+    // Spec 061 FR-004: a timeout is a failure too — a one-hour block, so the next ten calls do not wait ten seconds each.
+    if (!kind && host && classifyTimeout(err)) {
+      await hosts?.record(host, 'timeout');
+      return { error: 'host_unreachable', details: `${host}: ${REASON_TEXT.timeout}. Година паузи для цього сайту — візьми інше джерело, snippet зі стрічки або пропусти слот.` };
+    }
+    throw err;
   }
   if (REFUSAL_STATUSES.has(res.status)) {
     if (host) await hosts?.record(host, 'refused', res.status);
@@ -159,6 +231,7 @@ export async function fetchPageGuarded<T extends { status: number }>(
   }
   if (res.status === 404 || res.status === 410) return { error: 'http_error', details: `status ${res.status}: ${NOT_FOUND}` };
   if (res.status >= 400) return { error: 'http_error', details: `status ${res.status}` };
+  if (host) await hosts?.succeeded?.(host);
   return res;
 }
 

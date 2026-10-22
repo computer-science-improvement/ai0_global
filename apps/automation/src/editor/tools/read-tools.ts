@@ -6,7 +6,7 @@ import type { SkillSource } from '../skills/skill-library';
 import { safeGet, RawGet } from '../net/safe-http';
 import type { Lookup } from '../net/ssrf-guard';
 import { extractPage } from '../net/extract-page';
-import { classifyFetchError, feedKey, fetchPageGuarded, hostBlockedError, hostOf, isFetchFailure, isTooLarge, REFUSAL_STATUSES, type HostFailures } from '../net/host-failures';
+import { classifyFetchError, classifyTimeout, feedKey, fetchPageGuarded, hostBlockedError, hostOf, isFetchFailure, isTooLarge, REFUSAL_STATUSES, type HostFailures } from '../net/host-failures';
 import type { EditorCard } from '../card';
 import { topMatches } from '../post/similarity';
 import { EXTRA_MAX_CHARS, LIBRARY_EXTRA, LIBRARY_TABLE_NAMES } from './library-tables';
@@ -242,6 +242,10 @@ export function buildReadTools(d: ReadToolDeps): EditorTool[] {
         if (kind && host) {
           await d.hosts?.record(host, kind);
           return { error: 'host_unreachable', details: `${host}: ${kind === 'dns' ? 'домен не знаходиться (DNS)' : 'помилка TLS-сертифіката'}` };
+        }
+        if (host && classifyTimeout(err)) {
+          await d.hosts?.record(host, 'timeout'); // spec 061 FR-004: a one-hour block, not a strike
+          return { error: 'host_unreachable', details: `${host}: сайт не відповів вчасно. Година паузи для цього сайту — інше джерело або пропусти слот.` };
         }
         throw err;
       }

@@ -99,7 +99,8 @@ test('PgHostFailures: blocked reads the live window; a feed reason does not bloc
   await h.record('x.com', 'refused', 403);
   const ins = calls.at(-1)!;
   assert.match(ins.sql, /ON CONFLICT \(host\) DO UPDATE/);
-  assert.deepEqual(ins.params, ['x.com', 'refused', 403, now, new Date('2026-10-17T10:00:00Z')]);
+  // [host, reason, status, at, until, strikes, in an active block, keep the old block] — the first strike is a day (spec 061 FR-004).
+  assert.deepEqual(ins.params, ['x.com', 'refused', 403, now, new Date('2026-10-17T10:00:00Z'), 1, false, false]);
   // A failing read never stops a fetch.
   const broken = new PgHostFailures({ query: async () => { throw new Error('relation does not exist'); } } as any);
   assert.equal(await broken.blocked('x.com', 'page'), null);

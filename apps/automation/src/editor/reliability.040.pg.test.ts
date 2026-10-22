@@ -101,7 +101,10 @@ test('budget: chat turns do not count against the agents\' production cap and ar
   });
 });
 
-test('host failures: a refused host is blocked for 24 h, repeats count, then it is free again', { skip }, async () => {
+test('host failures: a refused host is blocked for 24 h, repeats count, then it is free again', { skip }, async (t) => {
+  // Spec 061: the strikes column is migration 094 (a scratch DB at an older migration skips; host-strikes.061.pg.test.ts builds its own).
+  const col = await pool.query(`SELECT 1 FROM information_schema.columns WHERE table_name = 'source_host_failures' AND column_name = 'strikes'`);
+  if (!col.rows.length) return t.skip('migration 094 not applied on this database');
   let now = new Date('2026-10-16T08:00:00Z');
   const hosts = new PgHostFailures(pool, () => now);
   await hosts.record(HOST, 'refused', 403);

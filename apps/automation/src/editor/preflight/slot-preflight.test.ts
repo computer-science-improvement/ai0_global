@@ -21,14 +21,14 @@ const slot = (over: any = {}): any => ({
   ideaId: 'a', isExperiment: false, status: 'running', attempts: 0, ...over,
 });
 
-function build(o: { ideas?: any[]; used?: Set<string>; blocked?: Set<string>; env?: Record<string, string>; hours?: number | null; claimed?: string[] } = {}) {
+function build(o: { ideas?: any[]; used?: Set<string>; blocked?: Set<string>; env?: Record<string, string>; hours?: number | null; claimed?: string[]; blockReason?: string } = {}) {
   const pool = new Map((o.ideas ?? []).map((i) => [i.id, i]));
   const retopics: any[] = [];
   const released: any[] = [];
   const claimed = o.claimed ?? [];
   const d: PreflightDeps = {
     ledger: { check: async (_r: string, url: string) => (o.used?.has(url) ? { used: true, status: 'published', resourceRef: 'telegram:@chan', ref: url, at: hoursAgo(30), slotId: 'old-slot' } : { used: false }) } as any,
-    hosts: { blocked: async (host: string) => (o.blocked?.has(host) ? { host, reason: 'refused', statusCode: 403, until: new Date(NOW.getTime() + 86_400_000) } : null) } as any,
+    hosts: { blocked: async (host: string) => (o.blocked?.has(host) ? { host, reason: o.blockReason ?? 'refused', statusCode: 403, until: new Date(NOW.getTime() + 86_400_000) } : null) } as any,
     ideas: {
       idea: async (id) => pool.get(id) ?? null,
       accepted: async (_a, limit) => [...pool.values()].filter((i) => i.status === 'accepted').slice(0, limit),
@@ -73,6 +73,12 @@ test('freshness: an idea older than the channel limit is stale (36 h); a dated U
 
   const exempt = build({ ideas: [idea('a', { createdAt: hoursAgo(115) })], hours: null });
   assert.equal((await exempt.pf.run(slot(), makeCard())).ok, true, 'evergreen / explainer channels have no limit');
+});
+
+test('a one-hour timeout block does not reject the idea (spec 061 FR-004): the slot goes on', async () => {
+  const { pf } = build({ ideas: [idea('a', { sources: ['https://www.marktechpost.com/x'] })], blocked: new Set(['marktechpost.com']), blockReason: 'timeout' });
+  const r = await pf.run(slot({ sourceHints: ['https://www.marktechpost.com/x'] }), makeCard());
+  assert.equal(r.ok, true);
 });
 
 test('host block: every source host blocked → preflight_host_blocked', async () => {

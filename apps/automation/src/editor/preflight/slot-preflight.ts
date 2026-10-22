@@ -142,7 +142,8 @@ export class SlotPreflight {
     }
     const host = hostOf(url);
     const block = host ? await this.d.hosts.blocked(host, 'page') : null;
-    if (block) {
+    // A one-hour timeout block is a slow site, not a dead one (spec 061 FR-004): it must not reject the idea, so the slot goes on.
+    if (block && block.reason !== 'timeout') {
       return { code: 'preflight_host_blocked', reason: `сайт ${block.host} заблокований до ${block.until.toISOString().slice(0, 16)}Z — джерело ${url} недоступне` };
     }
     return null;

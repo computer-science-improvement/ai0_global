@@ -30,13 +30,49 @@ export class SourceHealthRepository {
   /** Blocked-host rows for these hosts / feed addresses (active or ended within the window). */
   async blocks(keys: string[], since: Date): Promise<HostBlockRow[]> {
     if (!keys.length) return [];
+    const toRow = (r: any): HostBlockRow => ({
+      host: r.host, reason: r.reason, statusCode: r.status_code ?? null, until: new Date(r.blocked_until),
+      failures: Number(r.failures ?? 1), strikes: Number(r.strikes ?? 0),
+    });
     try {
       const { rows } = await this.pool.query(
-        `SELECT host, reason, status_code, blocked_until, failures FROM source_host_failures WHERE host = ANY($1) AND blocked_until >= $2`,
+        `SELECT host, reason, status_code, blocked_until, failures, strikes FROM source_host_failures WHERE host = ANY($1) AND blocked_until >= $2`,
         [keys, since]);
-      return rows.map((r: any) => ({ host: r.host, reason: r.reason, statusCode: r.status_code ?? null, until: new Date(r.blocked_until), failures: Number(r.failures ?? 1) }));
+      return rows.map(toRow);
     } catch {
-      return []; // before migration 079
+      return []; // before migration 094 (`strikes`)
+    }
+  }
+
+  /** Hosts struck `min` times in a row that the owner was not told about yet (spec 061 FR-004). */
+  async struck(keys: string[], min: number): Promise<Array<HostBlockRow & { notedAt: Date | null }>> {
+    if (!keys.length) return [];
+    try {
+      const { rows } = await this.pool.query(
+        `SELECT host, reason, status_code, blocked_until, failures, strikes, noted_at FROM source_host_failures
+          WHERE host = ANY($1) AND strikes >= $2 AND noted_at IS NULL AND position('/' in host) = 0`, [keys, min]);
+      return rows.map((r: any) => ({ host: r.host, reason: r.reason, statusCode: r.status_code ?? null, until: new Date(r.blocked_until),
+        failures: Number(r.failures ?? 1), strikes: Number(r.strikes ?? 0), notedAt: r.noted_at ? new Date(r.noted_at) : null }));
+    } catch {
+      return [];
+    }
+  }
+
+  /** Claims the owner note of a host: true for the one caller that got it (the note is written once per streak). */
+  async claimNote(host: string): Promise<boolean> {
+    const { rows } = await this.pool.query(`UPDATE source_host_failures SET noted_at = now() WHERE host = $1 AND noted_at IS NULL RETURNING host`, [host]);
+    return rows.length > 0;
+  }
+
+  /** The active playbook of the orchestrator that owns this channel's resource (null without one). */
+  async playbookOf(resourceRef: string): Promise<unknown | null> {
+    try {
+      const { rows } = await this.pool.query(
+        `SELECT p.body FROM playbooks p JOIN agents a ON a.id = p.agent_id
+          WHERE a.kind = 'orchestrator' AND a.scope = 'resource' AND a.scope_id = $1 AND p.status = 'active' LIMIT 1`, [resourceRef]);
+      return rows[0]?.body ?? null;
+    } catch {
+      return null;
     }
   }
 }
