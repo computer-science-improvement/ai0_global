@@ -48,7 +48,7 @@ export function buildDocTools(d: { docs: DocStore }): EditorTool[] {
         lo = s.start; hi = s.end;
         sec = { id: s.id, heading: s.heading, level: s.level };
       }
-      const page = pageOf(doc, Math.min(Math.max(from ?? lo, lo), hi), hi, max_chars);
+      const page = pageOf(doc, Math.min(Math.max(from ?? lo, lo), hi), hi, max_chars ?? READ_MAX_CHARS);
       const images = imagesOf(doc, page.from, page.to);
       return {
         doc_id, ...(sec ? { section: sec } : {}), from: page.from, to: page.to, size_chars: doc.text.length,
@@ -70,7 +70,7 @@ export function buildDocTools(d: { docs: DocStore }): EditorTool[] {
     execute: async ({ doc_id, query, limit }) => {
       const doc = d.docs.get(doc_id);
       if (!doc) return docExpired(d.docs, doc_id);
-      const r = findIn(doc, query, limit);
+      const r = findIn(doc, query, limit ?? 5);
       return {
         doc_id, query, total: r.total, matches: r.matches,
         ...(r.total === 0 ? { note: 'нічого не знайдено; спробуй одне ключове слово або перегляд outline' } : {}),
