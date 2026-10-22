@@ -73,6 +73,12 @@ export interface EditorSchedulerDeps {
    * the slots, throttled by the hook itself, one Inbox note per resource per day and kind. Paused resources are left out.
    */
   silentDays?: (cards: EditorCard[], now: Date, paused: ReadonlySet<string>) => Promise<unknown>;
+  /**
+   * Spec 060 FR-001: the dead-series breaker. `check` counts same-cause skip streaks, pauses a series that reached
+   * SERIES_SKIP_STREAK and skips the planned slots of every paused series (`series_paused`, $0) — runs before slots
+   * are claimed. `plainPaused` lists the channels whose own plain slots (no series) are paused: they are not planned.
+   */
+  seriesPauses?: { check(now: Date): Promise<unknown>; plainPaused(): Promise<Set<string>> };
   /** Spec 037 FR-014: the post audit — daily per resource and at once after a rule change; throttled by the hook itself. */
   postAudit?: (now: Date) => Promise<unknown>;
   /**
@@ -163,6 +169,7 @@ export class EditorScheduler {
     const byKey = new Map(cards.map((c) => [c.channelKey, c]));
     const approving = await this.approvingCards(cards);
     const paused = await this.pausedRefs(now);
+    const plainPaused = await this.plainPaused();
 
     for (const card of cards) {
       if (this.d.pinGate) {
@@ -171,7 +178,7 @@ export class EditorScheduler {
       const held = await this.held(card, paused);
       if (!held) await this.maybeOrchestrate(card, now);
       if (this.d.pins) await this.d.pins(card, now).catch((err: any) => this.d.log?.(`pins of ${card.channelKey} failed: ${err?.message ?? err}`));
-      if (!held) {
+      if (!held && !plainPaused.has(card.channelKey)) {
         await this.maybePlan(card, now);
         if (approving.has(card.channelKey)) await this.maybePlanAhead(card, now);
         if (this.d.newsWatch) {
@@ -186,6 +193,9 @@ export class EditorScheduler {
     }
     if (this.d.silentDays) {
       try { await this.d.silentDays(cards, now, paused); } catch (err: any) { this.d.log?.(`silent-day check failed: ${err?.message ?? err}`); }
+    }
+    if (this.d.seriesPauses) {
+      try { await this.d.seriesPauses.check(now); } catch (err: any) { this.d.log?.(`series breaker failed: ${err?.message ?? err}`); }
     }
     if (this.d.postAudit) {
       try { await this.d.postAudit(now); } catch (err: any) { this.d.log?.(`post audit failed: ${err?.message ?? err}`); }
@@ -219,6 +229,15 @@ export class EditorScheduler {
       return await this.d.pauses.pausedRefs(now);
     } catch (err: any) {
       this.d.log?.(`resource pauses failed: ${err?.message ?? err}`);
+      return new Set();
+    }
+  }
+
+  /** Spec 060: channels whose own plain slots the breaker paused (empty without the hook or on error). */
+  private async plainPaused(): Promise<Set<string>> {
+    if (!this.d.seriesPauses) return new Set();
+    try { return await this.d.seriesPauses.plainPaused(); } catch (err: any) {
+      this.d.log?.(`series pauses failed: ${err?.message ?? err}`);
       return new Set();
     }
   }

@@ -17,7 +17,7 @@ const CONTENT = new Set<string>(CONTENT_FAILURE_CODES);
 export const isContentFailureCode = (code: string | null | undefined): boolean => !!code && CONTENT.has(code);
 
 /** Skips that are the owner's or the system's own decision, not a missed post (no alert, not counted as planned). */
-const NOT_A_MISS = [/^superseded by a new plan/, /^mode_changed/, /^draft canceled/];
+const NOT_A_MISS = [/^superseded by a new plan/, /^mode_changed/, /^draft canceled/, /^series_paused\b/];   // series_paused: spec 060, the owner got one note
 /** The owner's own decisions: counted as planned and not out, but never a `series_missed` alert. */
 const OWNER = [/^rejected by owner/, /^resource_paused/, /^agent @.* is paused/, /^agent paused/];
 

@@ -24,6 +24,9 @@ import { ToolRegistry } from './harness/tool-registry';
 import { PgRunRecorder } from './harness/run-recorder';
 import { BudgetService, DEFAULT_RUN_HEADROOM_USD, DEFAULT_WRITER_RESERVE_PCT } from './harness/budget.service';
 import { DEFAULT_REJECT_STREAK, SilentDaysWatch } from './silent/silent-days';
+import { DEFAULT_SERIES_SKIP_STREAK, SeriesBreaker } from './series-pause/series-breaker';
+import { SeriesPausesRepository } from './series-pause/series-pauses.repository';
+import { PlannerPauseView } from './series-pause/planner-view';
 import { EVERGREEN_KPI_SAMPLE_FILTER, EvergreenStep, evergreenPerDay } from './silent/evergreen';
 import { ReadonlyQueryService } from './db/readonly-query.service';
 import { SkillLibrary } from './skills/skill-library';
@@ -1176,6 +1179,7 @@ export const EDITOR_PROVIDERS = [
           card: (k) => repos.channels.get(k), plans: repos.plans, inbox: infra.inbox,
           time: resourceTime(repos, infra.profiles), usable: (ref) => platform.health.usable(ref),
           sourceCatalog: (card) => seriesSourceCatalog(pool, card),
+          pauses: new PlannerPauseView(new SeriesPausesRepository(pool)),   // spec 060: paused series + last skip reasons for the planners
           unposted: async (ref, dataset) => (await buildCatalog(pool, { dataset, resource: ref, today: kyivMonthDay() }))[0]?.unposted_here ?? null,
         });
         // Spec 023 FR-006: the chat's series_change / schedule_rule / slot_change cards.
@@ -1716,6 +1720,12 @@ export const EDITOR_PROVIDERS = [
           pool, inbox: infra.inbox, log: (m) => logger.warn(m),
           streakN: Math.max(1, Math.round(envNum((k) => cfg.get<string>(k) ?? undefined, 'EDITOR_CRITIC_REJECT_STREAK', DEFAULT_REJECT_STREAK))),
         });
+        // Spec 060 FR-001: the dead-series breaker (SERIES_SKIP_STREAK, 0 = off; read at each check) — code only.
+        const seriesPausesRepo = new SeriesPausesRepository(pool);
+        const breaker = new SeriesBreaker({
+          repo: seriesPausesRepo, inbox: infra.inbox, log: (m) => logger.warn(m),
+          threshold: () => Math.max(0, Math.round(envNum((k) => cfg.get<string>(k) ?? undefined, 'SERIES_SKIP_STREAK', DEFAULT_SERIES_SKIP_STREAK))),
+        });
         // Spec 037 FR-014: the daily post audit (and at once after a rule change), code only.
         const audit = new PostAuditService({ pool, cardOf: editorCardAudit((k) => repos.channels.get(k)), log: (m) => logger.warn(m) });
         // Spec 037 FR-003 (T3): an announced event with no post within 24 h after it — one Inbox note per event.
@@ -1727,6 +1737,7 @@ export const EDITOR_PROVIDERS = [
           postAudit: (now) => audit.tick(now),
           newsWatch: (card, now) => newsWatch.check(card, now),
           silentDays: (cards, now, paused) => silent.check(cards, now, paused),
+          seriesPauses: { check: (now) => breaker.check(now), plainPaused: () => seriesPausesRepo.plainPausedChannels() },
           eventRecaps: (now) => eventRecaps.check(now),
           enabled: () => isEnabled(cfg),
           orchestrate: cfg.get<string>('EDITOR_ORCHESTRATION') === 'off' ? undefined : (card) => network.runOrchestrator(card),

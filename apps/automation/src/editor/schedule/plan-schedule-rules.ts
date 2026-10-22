@@ -3,7 +3,8 @@ import { isQuietHour, localDate, localTimeLabel, zonedToUtc } from '../roles/tim
 import type { Series } from '../network/playbook';
 import { instancesOn, parseCadence } from '../network/series';
 import type { Quiet } from '../time/resource-time';
-import { blackoutAt, effectivePerDay, frequencyOn, type ScheduleRule, weekdayOf } from './schedule-rules';
+import { skipsUk } from '../series-pause/skip-cause';
+import { blackoutAt,effectivePerDay, frequencyOn, type ScheduleRule, weekdayOf } from './schedule-rules';
 
 /**
  * Schedule rules in the planners (spec 023 FR-004), as pure functions so the single-channel `validatePlan`
@@ -54,6 +55,20 @@ export interface PlanScheduleCtx {
   series:    Series[];
   /** The network validator already rejects a series that is not due; the single planner checks it here. */
   checkSlotSeries?: boolean;
+  /** Spec 060: series the dead-series breaker paused (not planned, not required) and the last skip reasons per series. */
+  paused?:      PausedSeriesCtx[];
+  recentSkips?: Array<{ label: string; lines: string[] }>;
+}
+
+/** A paused series (or pin, or resource) of the plan's scope, as the planner needs it (spec 060). */
+export interface PausedSeriesCtx {
+  /** The series name, or null for a pin / a resource pause. */
+  name:        string | null;
+  /** The resource of a resource-level pause (slots without a series), or null. */
+  resourceRef: string | null;
+  label:       string;
+  streak:      number;
+  reason:      string;
 }
 
 export interface PlanSlotLike { resource_ref?: string; time: string; series?: string | null; source_hints?: string[] }
@@ -67,11 +82,12 @@ export function slotSeries(s: PlanSlotLike): string | null {
 export interface DueInstance { series: Series; time: string; at: Date }
 
 /** Due series instances of the day on the scope's resources (resource-local times). */
-export function dueInstances(ctx: Pick<PlanScheduleCtx, 'series' | 'clocks' | 'planDate'>): DueInstance[] {
+export function dueInstances(ctx: Pick<PlanScheduleCtx, 'series' | 'clocks' | 'planDate' | 'paused'>): DueInstance[] {
   const wd = weekdayOf(ctx.planDate);
   const out: DueInstance[] = [];
   for (const s of ctx.series) {
     if (s.active === false) continue;
+    if (ctx.paused?.some((p) => p.name === s.name)) continue;      // spec 060: a paused series is not due
     const clock = ctx.clocks[s.resource_ref];
     const c = parseCadence(s.cadence);
     if (!clock || !c) continue;
@@ -104,6 +120,12 @@ export function planScheduleErrors(plan: PlanLike, ctx: PlanScheduleCtx, default
           : `${label(x)}: занадто близько до закріпленого поста власника о ${localTimeLabel(p.at, x.clock.tz)} (мінімум ${gap} хв)`);
       }
     }
+  }
+
+  // Spec 060: a paused series (or a resource whose plain slots are paused) is not planned.
+  for (const x of slots) {
+    const p = ctx.paused?.find((y) => (x.series ? y.name === x.series : y.resourceRef === x.ref));
+    if (p) errors.push(`${label(x)}: ${p.name ? `серія «${p.name}»` : `планування ${p.resourceRef}`} на паузі (${p.streak} ${skipsUk(p.streak)} поспіль${p.reason ? `: ${p.reason}` : ''}) — не плануй її, обери іншу серію чи формат`);
   }
 
   // Due series: planned within ±90 min, covered by a pin, or skipped with a reason.
@@ -151,7 +173,7 @@ export function planPerDay(ctx: Pick<PlanScheduleCtx, 'rules' | 'pins' | 'planDa
 }
 
 /** The prompt lines for the planner about the day's schedule (pins, blackouts, frequency, due series). */
-export function scheduleBlock(ctx: PlanScheduleCtx): string | null {
+export function scheduleBlock(ctx: PlanScheduleCtx, withPauses = true): string | null {
   const lines: string[] = [];
   for (const p of ctx.pins) {
     const clock = ctx.clocks[p.resourceRef];
@@ -175,6 +197,12 @@ export function scheduleBlock(ctx: PlanScheduleCtx): string | null {
   }
   for (const d of dueInstances(ctx)) {
     lines.push(`- серія «${d.series.name}» ${d.series.resource_ref} о ${d.time} (±${SERIES_WINDOW_MIN} хв, format ${d.series.format})${d.series.locked ? ' — заблокована власником, обовʼязкова' : ' — або skipped_series з причиною'}`);
+  }
+  for (const p of withPauses ? ctx.paused ?? [] : []) {
+    lines.push(`- ${p.name ? `серія «${p.name}»` : p.resourceRef ? `планування ${p.resourceRef}` : p.label} НА ПАУЗІ: ${p.streak} ${skipsUk(p.streak)} поспіль${p.reason ? ` (${p.reason})` : ''} — не плануй слотів цієї серії, код їх відхилить; обери іншу серію чи формат`);
+  }
+  for (const r of withPauses ? ctx.recentSkips ?? [] : []) {
+    lines.push(`- останні пропуски «${r.label}»: ${r.lines.map((l, i) => `${i + 1}) ${l}`).join('; ')} — якщо матеріалу для слота, схоже, немає, не плануй його: обери іншу серію чи формат`);
   }
   return lines.length ? `Розклад власника на ${ctx.planDate} (код перевіряє):\n${lines.join('\n')}` : null;
 }

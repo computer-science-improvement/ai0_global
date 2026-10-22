@@ -15,7 +15,7 @@ import { Playbook, validatePlaybook } from '../network/playbook';
 import { instancesOn, parseCadence, SeriesSourceCatalog, seriesSourceLabel, type SeriesSource } from '../network/series';
 import { normalizePlaybook } from '../network/series-edit';
 import { API_SOURCE_NAMES } from '../tools/api-adapters/names';
-import { planPerDay, PlanScheduleCtx, scheduleBlock } from './plan-schedule-rules';
+import { planPerDay, PausedSeriesCtx, PlanScheduleCtx, scheduleBlock } from './plan-schedule-rules';
 import type { ScheduleRepository } from './schedule.repository';
 import {
   blackoutAt, pinInstant, ruleDto, ruleLabel, ruleOn, ruleProblems, ruleToInput, ScheduleRule, ScheduleRuleInput, ScheduleRulePatch, shiftDate, weekdayOf,
@@ -55,6 +55,8 @@ export interface ScheduleServiceDeps {
   sourceCatalog?: (card: EditorCard | null) => Promise<SeriesSourceCatalog>;
   /** Unposted rows of a dataset on a resource (content ledger); null = unknown. */
   unposted?: (resourceRef: string, dataset: string) => Promise<number | null>;
+  /** Spec 060: the dead-series breaker's view for the planners (paused series, last skip reasons). */
+  pauses?:  { forChannel(channelKey: string, now: Date): Promise<{ paused: PausedSeriesCtx[]; recentSkips: Array<{ label: string; lines: string[] }> }> };
   now?:     () => Date;
 }
 
@@ -176,7 +178,12 @@ export class ScheduleService {
       }
     }
     const series = (net?.playbook ? normalizePlaybook(net.playbook).series : []).filter((s) => clocks[s.resource_ref]);
-    return { planDate, defaultRef: anchorRef, now, clocks, rules, pins, series, checkSlotSeries: scope === 'single' };
+    // Spec 060: paused series are not planned or required; the last skip reasons per series go to the planner.
+    const view = this.d.pauses ? await this.d.pauses.forChannel(card.channelKey, now).catch(() => null) : null;
+    return {
+      planDate, defaultRef: anchorRef, now, clocks, rules, pins, series, checkSlotSeries: scope === 'single',
+      ...(view ? { paused: view.paused, recentSkips: view.recentSkips } : {}),
+    };
   }
 
   /** The card with the day's posts per day (frequency rule, minus pins) — for validatePlan. */
@@ -201,7 +208,7 @@ export class ScheduleService {
     const scope = net?.mode === 'independent' && net.playbook ? 'network' : 'single';
     const out: string[] = [];
     for (const date of [today, shiftDate(today, 1)]) {
-      const b = scheduleBlock(await this.planContext(card, net, date, now, scope));
+      const b = scheduleBlock(await this.planContext(card, net, date, now, scope), date === today);   // paused series once, not per day
       if (b) out.push(b);
     }
     return out.length ? out.join('\n\n') : null;
