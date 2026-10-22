@@ -1,4 +1,5 @@
 import type { Pool } from 'pg';
+import { decideNote, noteRepeatDays, partsKey, stillWording, type NoteGate } from './note-gate';
 
 export type InboxSeverity = 'info' | 'action' | 'critical';
 
@@ -16,6 +17,12 @@ export interface InboxItemInput {
    * as they were until the owner decides. Without it the alert repeats title/body.
    */
   alert?:    { title: string; body?: string | null } | null;
+  /**
+   * Spec 060 FR-003: the problem this note is about and what it says. A gated note (`postOnce`) fires again only when it
+   * says something new or once per OWNER_NOTE_REPEAT_DAYS as "still"; a newer note of the same subject supersedes the
+   * older unread ones (and closes their owner-bot cards).
+   */
+  gate?:     NoteGate | null;
 }
 
 /**
@@ -31,7 +38,7 @@ export function dailyRef(resourceRef: string, day: string): { refType: string; r
   return { refType: RESOURCE_DAY_REF, refId: `${resourceRef}|${day}` };
 }
 
-export interface InboxItem extends Required<Omit<InboxItemInput, 'agentId' | 'alert'>> {
+export interface InboxItem extends Required<Omit<InboxItemInput, 'agentId' | 'alert' | 'gate'>> {
   id:        number;
   agentId:   string | null;
   readAt:    Date | null;
@@ -47,6 +54,11 @@ export type InboxCardSink = (id: number, i: InboxItemInput) => Promise<boolean>;
 let cardSink: InboxCardSink | null = null;
 export function setInboxCardSink(sink: InboxCardSink | null): void { cardSink = sink; }
 
+/** Spec 060 FR-003: told which notes a newer note superseded, so the owner bot can close their cards. */
+export type InboxSupersedeSink = (ids: number[]) => Promise<void>;
+let supersedeSink: InboxSupersedeSink | null = null;
+export function setInboxSupersedeSink(sink: InboxSupersedeSink | null): void { supersedeSink = sink; }
+
 /**
  * The owner's inbox for agent events (skill self-edits, rollbacks, cards that
  * need a decision). Every item is stored and also pushed to the admin bot: as a
@@ -60,33 +72,78 @@ export class OwnerInbox {
   ) {}
 
   async post(i: InboxItemInput): Promise<number> {
-    const { rows } = await this.pool.query(
-      `INSERT INTO agent_inbox (agent_id, kind, title, body, ref_type, ref_id, severity) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id`,
-      [i.agentId ?? null, i.kind, i.title.slice(0, 300), i.body ?? null, i.refType ?? null, i.refId ?? null, i.severity ?? 'info']);
-    await this.deliver(Number(rows[0].id), i);
-    return Number(rows[0].id);
+    const { rows } = i.gate
+      ? await this.pool.query(
+        `INSERT INTO agent_inbox (agent_id, kind, title, body, ref_type, ref_id, severity, subject, parts) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING id`,
+        [i.agentId ?? null, i.kind, i.title.slice(0, 300), i.body ?? null, i.refType ?? null, i.refId ?? null, i.severity ?? 'info', i.gate.subject, i.gate.parts])
+      : await this.pool.query(
+        `INSERT INTO agent_inbox (agent_id, kind, title, body, ref_type, ref_id, severity) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id`,
+        [i.agentId ?? null, i.kind, i.title.slice(0, 300), i.body ?? null, i.refType ?? null, i.refId ?? null, i.severity ?? 'info']);
+    const id = Number(rows[0].id);
+    if (i.gate) await this.supersede(id, i.gate.subject);
+    await this.deliver(id, i);
+    return id;
   }
 
   /**
    * Store and alert only when no item of the same kind and ref exists yet (the once-per-resource-per-day notes,
    * spec 037 FR-010). Returns the new id, or null when it was a duplicate (no alert either).
    */
-  async postOnce(i: InboxItemInput & { refType: string; refId: string }): Promise<number | null> {
+  async postOnce(i0: InboxItemInput & { refType: string; refId: string }): Promise<number | null> {
+    let i = i0;
+    if (i.gate) {
+      // Spec 060 FR-003: a gated note fires again only on a new cause or number, or as "still" after OWNER_NOTE_REPEAT_DAYS.
+      const d = decideNote(await this.past(i.gate.subject), i.gate.parts, new Date(), noteRepeatDays());
+      if (!d.fire) return null;
+      if (d.why === 'repeat') {
+        const w = stillWording(i.title, i.alert?.title, d.stillDays);
+        i = { ...i, title: w.title, alert: i.alert && w.alertTitle ? { ...i.alert, title: w.alertTitle } : i.alert };
+      }
+      // The same cause and number cannot be stored twice on a day; a changed one can.
+      i = { ...i, refId: `${i.refId}#${partsKey(i.gate!.parts)}` };
+    }
     let rows: any[];
     try {
-      ({ rows } = await this.pool.query(
-        `INSERT INTO agent_inbox (agent_id, kind, title, body, ref_type, ref_id, severity)
-         SELECT $1::uuid, $2::text, $3::text, $4::text, $5::text, $6::text, $7::text
-          WHERE NOT EXISTS (SELECT 1 FROM agent_inbox WHERE kind = $2 AND ref_type = $5 AND ref_id = $6)
-         RETURNING id`,
-        [i.agentId ?? null, i.kind, i.title.slice(0, 300), i.body ?? null, i.refType, i.refId, i.severity ?? 'info']));
+      ({ rows } = i.gate
+        ? await this.pool.query(
+          `INSERT INTO agent_inbox (agent_id, kind, title, body, ref_type, ref_id, severity, subject, parts)
+           SELECT $1::uuid, $2::text, $3::text, $4::text, $5::text, $6::text, $7::text, $8::text, $9::text[]
+            WHERE NOT EXISTS (SELECT 1 FROM agent_inbox WHERE kind = $2 AND ref_type = $5 AND ref_id = $6)
+           RETURNING id`,
+          [i.agentId ?? null, i.kind, i.title.slice(0, 300), i.body ?? null, i.refType, i.refId, i.severity ?? 'info', i.gate.subject, i.gate.parts])
+        : await this.pool.query(
+          `INSERT INTO agent_inbox (agent_id, kind, title, body, ref_type, ref_id, severity)
+           SELECT $1::uuid, $2::text, $3::text, $4::text, $5::text, $6::text, $7::text
+            WHERE NOT EXISTS (SELECT 1 FROM agent_inbox WHERE kind = $2 AND ref_type = $5 AND ref_id = $6)
+           RETURNING id`,
+          [i.agentId ?? null, i.kind, i.title.slice(0, 300), i.body ?? null, i.refType, i.refId, i.severity ?? 'info']));
     } catch (err: any) {
       if (err?.code === '23505') return null; // a concurrent insert won the unique index (migration 076)
       throw err;
     }
     if (!rows.length) return null;
-    await this.deliver(Number(rows[0].id), i);
-    return Number(rows[0].id);
+    const id = Number(rows[0].id);
+    if (i.gate) await this.supersede(id, i.gate.subject);
+    await this.deliver(id, i);
+    return id;
+  }
+
+  /** The subject's notes, newest first (the memory of the repeat rule). */
+  private async past(subject: string): Promise<Array<{ parts: string[] | null; createdAt: Date }>> {
+    const { rows } = await this.pool.query(
+      `SELECT parts, created_at FROM agent_inbox WHERE subject = $1 AND created_at > now() - interval '60 days' ORDER BY created_at DESC, id DESC LIMIT 60`, [subject]);
+    return rows.map((r: any) => ({ parts: r.parts ?? null, createdAt: new Date(r.created_at) }));
+  }
+
+  /** Spec 060 FR-003: a newer note of the same subject answers the older unread ones (read) and closes their cards. */
+  async supersede(newId: number, subject: string): Promise<number[]> {
+    const { rows } = await this.pool.query(
+      `UPDATE agent_inbox SET read_at = now() WHERE subject = $1 AND id <> $2 AND read_at IS NULL RETURNING id`, [subject, newId]);
+    const ids = rows.map((r: any) => Number(r.id));
+    if (ids.length && supersedeSink) {
+      try { await supersedeSink(ids); } catch { /* the sweep closes the cards at the latest */ }
+    }
+    return ids;
   }
 
   private async deliver(id: number, i: InboxItemInput): Promise<void> {

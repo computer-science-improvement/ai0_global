@@ -87,7 +87,10 @@ export async function runConnectionKeeper(d: KeeperDeps, now: Date): Promise<Kee
     try { return await fn(); } catch { await sleep(d.retryMs ?? 5_000); return fn(); }
   };
   const note = async (ref: string, title: string, body: string, alert: { title: string; body: string }) => {
-    const id = await d.inbox.postOnce({ kind: 'connection_broken', severity: 'critical', title, body, alert, ...dailyRef(ref, day) });
+    // Spec 060 FR-003: once, then once per OWNER_NOTE_REPEAT_DAYS ("still") while it stays broken — not every morning.
+    const id = await d.inbox.postOnce({
+      kind: 'connection_broken', severity: 'critical', title, body, alert, ...dailyRef(ref, day), gate: { subject: `connection:${ref}`, parts: ['broken'] },
+    });
     if (id != null) r.alerts++;
   };
 

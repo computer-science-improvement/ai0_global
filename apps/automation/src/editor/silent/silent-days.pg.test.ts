@@ -104,17 +104,22 @@ test('watch on a fake clock: dark_day and series_missed once per resource per da
   await watch.check(cards, new Date('2026-10-11T15:05:00Z'));     // 18:05: dark day
   await watch.check(cards, new Date('2026-10-11T18:00:00Z'));     // 21:00: nothing new
   await addSlot({ at: '2026-10-11T19:00:00Z', status: 'skipped', error: 'critic_rejected: reject', series: 'Три новини дня', critic: { verdict: 'reject' } });
-  await watch.check(cards, new Date('2026-10-11T20:00:00Z'));     // 23:00: a second miss, same day — still one note
-  const { rows } = await pool.query(`SELECT kind, ref_id, body FROM agent_inbox WHERE ref_id LIKE $1 ORDER BY id`, [`${REF}|%`]);
-  assert.deepEqual(rows.map((r) => [r.kind, r.ref_id]), [
-    ['series_missed', `${REF}|2026-10-11`], ['dark_day', `${REF}|2026-10-11`],
+  await watch.check(cards, new Date('2026-10-11T20:00:00Z'));     // 23:00: a second miss with a new cause (critic on the series) — one more note, same day
+  // Spec 060 FR-003: the day's series_missed and dark_day are one problem. The 18:05 dark_day carries the series miss
+  // (it is not a second note next to it), the 21:00 check says nothing new, and the 23:00 note — a new cause — supersedes
+  // the earlier ones, so a single note stays unread.
+  const { rows } = await pool.query(`SELECT kind, ref_id, body, read_at FROM agent_inbox WHERE ref_id LIKE $1 ORDER BY id`, [`${REF}|%`]);
+  assert.deepEqual(rows.map((r) => [r.kind, r.ref_id.split('#')[0], r.read_at != null]), [
+    ['series_missed', `${REF}|2026-10-11`, true], ['dark_day', `${REF}|2026-10-11`, true], ['dark_day', `${REF}|2026-10-11`, false],
   ]);
   assert.match(rows[1].body, /Planned today: 2; out: 0; not out by reason: nothing fresh 1, critic 1/);
+  assert.match(rows[1].body, /1 series \/ fixed slot\(s\) did not go out/);
+  assert.match(rows[2].body, /Planned today: 3; out: 0/);
 
-  // The next day (no plan at all) gets its own dark_day note.
+  // The next day (no plan at all) says "no plan" — a new cause — and is one note; the next check adds nothing.
   await watch.check(cards, new Date('2026-10-12T16:00:00Z'));
   await watch.check(cards, new Date('2026-10-12T17:00:00Z'));
-  const { rows: n2 } = await pool.query(`SELECT kind, ref_id FROM agent_inbox WHERE ref_id = $1`, [`${REF}|2026-10-12`]);
+  const { rows: n2 } = await pool.query(`SELECT kind, ref_id FROM agent_inbox WHERE ref_id LIKE $1`, [`${REF}|2026-10-12%`]);
   assert.deepEqual(n2.map((r) => r.kind), ['dark_day']);
 
   // MANAGER digest: planned vs out per day, skip reasons, flags.

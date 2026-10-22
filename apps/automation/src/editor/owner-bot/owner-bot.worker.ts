@@ -1,7 +1,7 @@
 import { Inject, Injectable, Logger, OnModuleDestroy, OnModuleInit } from '@nestjs/common';
 import { Cron } from '@nestjs/schedule';
 import { setOwnerBotHandler } from '../../publishers/owner-bot-bus';
-import { setInboxCardSink } from '../agents/owner-inbox';
+import { setInboxCardSink, setInboxSupersedeSink } from '../agents/owner-inbox';
 import type { OwnerBotService } from './owner-bot.service';
 import type { OwnerReports } from './owner-reports';
 import { errText } from '../../common/err-text';
@@ -22,11 +22,13 @@ export class OwnerBotWorker implements OnModuleInit, OnModuleDestroy {
   onModuleInit(): void {
     setOwnerBotHandler(this.infra.bot);
     setInboxCardSink((id, note) => this.infra.bot.inboxNote(id, note));
+    setInboxSupersedeSink(async (ids) => { await this.infra.bot.supersedeCards(ids); });
   }
 
   onModuleDestroy(): void {
     setOwnerBotHandler(null);
     setInboxCardSink(null);
+    setInboxSupersedeSink(null);
   }
 
   @Cron('* * * * *', { name: 'owner-bot-sweep' })

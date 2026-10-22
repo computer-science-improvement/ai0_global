@@ -52,12 +52,13 @@ export class ResourceHealthService {
     await this.d.profiles.setHealth(ref, health);
 
     if (BAD.has(health.state) && !same) {
-      await this.d.inbox.post({ kind: 'resource_health', severity: severity(health.state), ...this.note(ref, health, now, false), refType: 'resource', refId: ref });
+      // Spec 060 FR-003: one subject per resource; the reminders below follow the repeat rule (once, then every OWNER_NOTE_REPEAT_DAYS).
+      await this.d.inbox.post({ kind: 'resource_health', severity: severity(health.state), ...this.note(ref, health, now, false), refType: 'resource', refId: ref, gate: { subject: `resource:${ref}`, parts: [`state:${health.state}`] } });
     } else if (BAD.has(health.state) && !health.dismissedAt && this.d.inbox.postOnce && this.remindToday(health, now)) {
-      await this.d.inbox.postOnce({ kind: 'resource_health_daily', severity: severity(health.state), ...this.note(ref, health, now, true), ...dailyRef(ref, kyivDay(now)) });
+      await this.d.inbox.postOnce({ kind: 'resource_health_daily', severity: severity(health.state), ...this.note(ref, health, now, true), ...dailyRef(ref, kyivDay(now)), gate: { subject: `resource:${ref}`, parts: [`state:${health.state}`] } });
     } else if (health.state === 'ok' && prev && BAD.has(prev.state)) {
       await this.d.inbox.post({
-        kind: 'resource_health_ok', severity: 'info', refType: 'resource', refId: ref,
+        kind: 'resource_health_ok', severity: 'info', refType: 'resource', refId: ref, gate: { subject: `resource:${ref}`, parts: ['state:ok'] },
         title: `✅ ${ref}: connection works again`, body: `Was ${prev.state}${prev.since ? ` since ${fmtDay(prev.since)}` : ''}. Planning and publishing resume here.`,
         alert: { title: `✅ ${ref}: зʼєднання знову працює`, body: `Було ${prev.state}${prev.since ? ` з ${fmtDay(prev.since)}` : ''}. Планування й публікації тут відновлюються.` },
       });

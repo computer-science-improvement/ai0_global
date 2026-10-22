@@ -11,6 +11,12 @@
 --   reason      the last skip reason, one line
 --   streak      how many skips in a row led to the pause (0 for an owner pause)
 --
+-- agent_inbox.subject / agent_inbox.parts (spec 060 FR-003): what a note is about (one problem: 'silent:<resource>:miss',
+-- 'resource:<ref>', …) and what it said (the causes and numbers as short strings, e.g. 'streak:3'). The memory of a note
+-- across days lives in these rows: a note fires again only when it says something its last note did not (a part that is
+-- new), or once per OWNER_NOTE_REPEAT_DAYS as "still"; a newer note of the same subject supersedes the older unread ones.
+-- NULL for every note that does not use the rule.
+--
 -- Additive and idempotent (CI re-applies it).
 
 CREATE TABLE IF NOT EXISTS series_pauses (
@@ -28,5 +34,9 @@ CREATE TABLE IF NOT EXISTS series_pauses (
 
 CREATE UNIQUE INDEX IF NOT EXISTS uq_series_pauses_open ON series_pauses (channel_key, series_key) WHERE resumed_at IS NULL;
 CREATE INDEX IF NOT EXISTS idx_series_pauses_channel ON series_pauses (channel_key, paused_at DESC);
+
+ALTER TABLE agent_inbox ADD COLUMN IF NOT EXISTS subject TEXT;
+ALTER TABLE agent_inbox ADD COLUMN IF NOT EXISTS parts   TEXT[];
+CREATE INDEX IF NOT EXISTS idx_agent_inbox_subject ON agent_inbox (subject, created_at DESC) WHERE subject IS NOT NULL;
 
 INSERT INTO schema_migrations (version) VALUES ('093_series_pauses') ON CONFLICT DO NOTHING;

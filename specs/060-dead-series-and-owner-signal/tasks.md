@@ -1,7 +1,7 @@
 # 060 tasks
 
 - [x] T1 Migration 093 (+ down) `series_pauses`; streak counter over closed slots using `skip-reasons.ts` classes; pause on threshold (`SERIES_SKIP_STREAK` in the settings catalog); planner filter and `series_paused` skips; last-3 skip reasons + paused series in the planner input/prompt; unit + PG tests.
-- [ ] T2 Owner notes: merge series_missed + dark_day per resource/day, re-fire only on change or every `OWNER_NOTE_REPEAT_DAYS`, critical health same rule; a newer card closes older open cards of the same (kind, subject); tests.
+- [x] T2 Owner notes: merge series_missed + dark_day per resource/day, re-fire only on change or every `OWNER_NOTE_REPEAT_DAYS`, critical health same rule; a newer card closes older open cards of the same (kind, subject); tests.
 - [ ] T3 Card actions: Відновити / Залишити на паузі on series-paused cards, Пауза серії on silent-day cards, Заглушити на 7 днів on health cards (existing dismiss path); dashboard: paused series with Resume on the agent Overview (English), API `GET/POST /api/agents/:handle/series-pauses`; tests.
 - [ ] T4 Manager: adherence + age in the digest and open list, signature does not count not_followed / overdue accepted, forced review triggers, prompt lines, unmeasurable expected metric rejected, memory line for not_followed / inconclusive; tests; docs (runbook §, specs README row 060 DONE, spec status done).
 
@@ -10,6 +10,7 @@
 In progress. One commit per task:
 
 - T1 — migration 093 `series_pauses`, `series-pause/` (cause classes, streak counter, repository, breaker, planner view), scheduler hook, planner context and prompt lines, `SERIES_SKIP_STREAK`, unit and PG tests.
+- T2 — `agents/note-gate.ts` (the repeat rule), `OwnerInbox` gate on `post`/`postOnce` with subject/parts (columns added to migration 093), supersede of older unread notes and their owner-bot cards, silent-day merge (`mergeDayNotes`), health and connection notes on the same rule, Ukrainian alert wording, `OWNER_NOTE_REPEAT_DAYS`, unit and PG tests (the old silent-days PG test is updated to the merged behaviour).
 
 ## Deltas from the spec
 
@@ -21,3 +22,8 @@ In progress. One commit per task:
 - **After a resume** only slots closed after `resumed_at` count, so the old skips do not pause the series again.
 - **Planner input (FR-002)** is added to the existing schedule block (`scheduleBlock`, so both planners read it) instead of a new prompt section: a line per paused series and a line with the last 3 skip reasons per series whose latest slot was a skip. The same context makes a slot of a paused series a plan error (the planner fixes the plan) and removes a paused series from the "due series" it must plan or skip. The lines are printed once (for today), not for tomorrow again.
 - **The Inbox note** is stored in English (the dashboard rule) with the Ukrainian wording in the Telegram `alert`; the card with the three buttons comes in T3.
+- **Migration 093 also carries the note memory.** `agent_inbox` gets `subject` and `parts` (nullable, with an index on subject) so the repeat rule reads what the last note about a problem said. They live in 093 (the only migration this spec owns), not in a second file.
+- **Gate by subject, not by kind.** A note says what it is about (`silent:<ref>:miss`, `silent:<ref>:critic`, `resource:<ref>`, `connection:<ref>`) and what it says (`parts`: causes and numbers). It fires when the parts changed or `OWNER_NOTE_REPEAT_DAYS` (default 3) passed since the first note of the unbroken run; a repeat is titled "still going, N days" (Telegram: «досі, N днів»). Notes without a gate behave exactly as before.
+- **Merge = supersede.** A new row is written (the ref_id of a gated note gets a `#hash` of its parts, so the unique index on resource-day does not block a changed note) and the older unread notes of the subject are marked read; the owner bot closes their live cards ("Замінено новішою карткою"). The day's `series_missed` and `dark_day` share the subject `silent:<ref>:miss`, so a dark day that carries the series miss replaces the earlier series note instead of sitting beside it.
+- **Silent-day Telegram wording is Ukrainian** (a new `alert` per kind); stored title and body stay English.
+- **Existing PG test `silent-days.pg.test.ts`** now expects the merged flow: series note at 13:00, a dark-day note at 18:05 that supersedes it, nothing at 21:00, one more note at 23:00 (a new cause) with the earlier ones read.

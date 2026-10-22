@@ -266,6 +266,21 @@ export class OwnerBotService implements OwnerBotHandler {
     return true;
   }
 
+  /**
+   * Spec 060 FR-003: a newer note of the same subject answered these notes. Their live cards close ("replaced by a
+   * newer one"), so the owner sees one live card per problem.
+   */
+  async supersedeCards(inboxIds: number[]): Promise<number> {
+    if (!this.d.api || !inboxIds.length) return 0;
+    const cards = (await this.d.repo.byRefs('inbox', inboxIds.map(String))).filter((c) => c.status === 'queued' || c.status === 'open');
+    if (!cards.length) return 0;
+    return this.serial(async () => {
+      let n = 0;
+      for (const c of cards) if (await this.close(c, 'Замінено новішою карткою')) n++;
+      return n;
+    });
+  }
+
   // ── buttons ───────────────────────────────────────────────────────────────
 
   async callback(cb: OwnerCallback): Promise<void> {

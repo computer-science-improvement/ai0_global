@@ -64,7 +64,18 @@ export interface SilentAlert {
   body:     string;
   agentId:  string | null;
   slotIds:  string[];
+  /** Spec 060 FR-003: the problem and what the note says (see `OwnerInbox.postOnce`), and the owner's Telegram wording. */
+  subject:  string;
+  parts:    string[];
+  alert:    { title: string; body: string };
 }
+
+/** Spec 060 FR-003: one subject for the day's misses (series_missed + dark_day merge into it) and one for the critic streak. */
+export const missSubject = (ref: string) => `silent:${ref}:miss`;
+export const criticSubject = (ref: string) => `silent:${ref}:critic`;
+const GROUP_UK: Record<string, string> = {
+  critic: 'критик', lint: 'перевірки тексту', cap: 'ліміти й тихі години', nothing_fresh: 'немає свіжого матеріалу', budget: 'бюджет', other: 'інше',
+};
 
 const clip = (s: string, n: number) => {
   const t = s.replace(/\s+/g, ' ').trim();
@@ -132,9 +143,20 @@ export function evaluateSilentDays(i: {
           lastMiss?.error ? `Latest: ${clip(lastMiss.error, 220)}` : '',
           'Check the slots and the run traces on /app/editor.',
         ].filter(Boolean).join(' ');
+        const groups = Object.keys(reasons).sort();
         out.push({
           kind: 'dark_day', ref: r.ref, day: today, agentId: r.agentId ?? null, slotIds: planned.map((s) => s.id),
           title: `Silent day: nothing went out on ${r.ref} by ${darkHour}:00`, body,
+          subject: missSubject(r.ref), parts: planned.length ? ['dark', ...groups.map((g) => `dark:${g}`)] : ['dark', 'dark:no_plan'],
+          alert: {
+            title: `Тихий день: на ${r.ref} до ${darkHour}:00 нічого не вийшло`,
+            body: [
+              planned.length ? `Заплановано сьогодні: ${planned.length}, вийшло: 0${groups.length ? `; причини: ${groups.map((g) => GROUP_UK[g] ?? g).join(', ')}` : ''}.`
+                : `Сьогодні не заплановано жодного слота, хоча картка просить мінімум ${r.minPerDay}.`,
+              later.length ? `Ще попереду: ${later.length}.` : '',
+              'Слоти й сліди запусків — на /app/editor.',
+            ].filter(Boolean).join('\n'),
+          },
         });
       }
     }
@@ -156,10 +178,16 @@ export function evaluateSilentDays(i: {
         const what = ever ? `filled by an evergreen post (${s.status}); the main post: ${clip(ever.reason, 160)}` : `${s.status}: ${clip(s.error ?? 'no reason recorded', 160)}`;
         return `${localTimeLabel(s.scheduledAt, r.tz)} ${s.seriesName ? `series "${s.seriesName}"` : 'fixed slot'} — ${what}`;
       });
+      const parts = [...new Set(miss.map((s) => `missed:${s.seriesName ?? `rule:${s.scheduleRuleId}`}:${evergreenFilled(s.fallback) ? 'evergreen' : skipGroupOf(s.error, s.criticVerdict)}`))].sort();
       out.push({
         kind: 'series_missed', ref: r.ref, day, agentId: r.agentId ?? null, slotIds: miss.map((s) => s.id),
         title: `Series or fixed slot missed on ${r.ref} (${day})`,
         body: [`${miss.length} series / fixed slot(s) did not go out:`, ...lines.map((l) => `• ${l}`), miss.length > 4 ? `• … and ${miss.length - 4} more` : ''].filter(Boolean).join('\n'),
+        subject: missSubject(r.ref), parts,
+        alert: {
+          title: `Серія чи слот за розкладом не вийшли на ${r.ref} (${day})`,
+          body: [`Не вийшло: ${miss.length}.`, ...lines.map((l) => `• ${l}`), miss.length > 4 ? `• … і ще ${miss.length - 4}` : ''].filter(Boolean).join('\n'),
+        },
       });
     }
 
@@ -171,8 +199,31 @@ export function evaluateSilentDays(i: {
         title: `Critic rejected ${streak.n} posts in a row on ${r.ref}`,
         body: `The last ${streak.n} critic verdicts on ${r.ref} were rejections (fallback attempts included). `
           + 'Posts are being written and thrown away: check the critic notes on the slots, the resource profile and the sources on /app/editor.',
+        subject: criticSubject(r.ref), parts: [`streak:${streak.n}`],
+        alert: {
+          title: `Критик відхилив пости поспіль на ${r.ref}: ${streak.n}`,
+          body: 'Пости пишуться й відкидаються: перегляньте нотатки критика на слотах, профіль ресурсу й джерела на /app/editor.',
+        },
       });
     }
+  }
+  return mergeDayNotes(out);
+}
+
+/**
+ * Spec 060 FR-003: a `series_missed` and a `dark_day` of the same resource and day are one problem — one note, the
+ * `dark_day` one, with the missed series listed under it. (A note posted earlier in the day is superseded by the
+ * merged one: same subject, and its parts are not covered by the earlier note.)
+ */
+export function mergeDayNotes(alerts: SilentAlert[]): SilentAlert[] {
+  const out: SilentAlert[] = [];
+  for (const a of alerts) {
+    const dark = a.kind === 'series_missed' ? alerts.find((x) => x.kind === 'dark_day' && x.ref === a.ref && x.day === a.day) : undefined;
+    if (!dark) { out.push(a); continue; }
+    dark.body = `${dark.body}\n\n${a.body}`;
+    dark.alert = { title: dark.alert.title, body: `${dark.alert.body}\n\n${a.alert.body}` };
+    dark.parts = [...new Set([...dark.parts, ...a.parts])];
+    dark.slotIds = [...new Set([...dark.slotIds, ...a.slotIds])];
   }
   return out;
 }
@@ -245,6 +296,7 @@ export class SilentDaysWatch {
     for (const a of alerts) {
       const item: InboxItemInput & { refType: string; refId: string } = {
         agentId: a.agentId, kind: a.kind, severity: 'action', title: a.title, body: a.body, ...dailyRef(a.ref, a.day),
+        alert: a.alert, gate: { subject: a.subject, parts: a.parts },
       };
       try {
         if ((await this.d.inbox.postOnce(item)) != null) n++;
