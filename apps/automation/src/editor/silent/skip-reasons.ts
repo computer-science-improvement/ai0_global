@@ -66,3 +66,21 @@ export function addSkip(c: SkipCounts, g: SkipGroup): SkipCounts {
   c[g] = (c[g] ?? 0) + 1;
   return c;
 }
+
+// ── Spec 061 FR-001: the slot pre-flight's skip codes ─────────────────────────
+// `preflight_source_used` / `preflight_stale` leave nothing to write about (nothing_fresh); `preflight_host_blocked` is the
+// source's host refusing us (nothing_fresh in the digest, `source_unreachable` as a cause); a missing format is `other` here
+// and `infra` as a cause (spec 060 classes).
+RULES.push(
+  ['nothing_fresh', /^preflight_(source_used|stale|host_blocked)\b/],
+  ['other', /^preflight_format_unavailable\b/],
+);
+
+/** The 060 cause class of a pre-flight skip (null for any other error). */
+export function preflightCauseOf(error: string | null | undefined): 'no_material' | 'source_unreachable' | 'infra' | null {
+  const e = (error ?? '').trim();
+  if (/^preflight_(source_used|stale)\b/.test(e)) return 'no_material';
+  if (/^preflight_host_blocked\b/.test(e)) return 'source_unreachable';
+  if (/^preflight_format_unavailable\b/.test(e)) return 'infra';
+  return null;
+}

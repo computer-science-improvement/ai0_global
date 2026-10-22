@@ -2,6 +2,7 @@ import type { Pool } from 'pg';
 import { ChannelMode, effectiveMode } from '../card';
 import { localDate } from '../roles/time';
 import { mergeExamples, type Playbook, type PlaybookExample } from './playbook';
+import { ideaOutcomeOf, OUT_STATUSES, type IdeaOutcome } from './idea-outcome';
 
 /**
  * Network modes (spec 024 FR-002): `independent` — every member is its own
@@ -381,12 +382,43 @@ export class NetworkRepository {
     return rowCount ?? 0;
   }
 
-  /** Mark an idea used once none of its planned slots is still pending. */
+  /**
+   * Settle an idea once none of its planned slots is still pending (spec 061 FR-003). `used` only when a slot of the idea went
+   * out (published, shadowed, waiting for the owner); a skipped / failed slot returns the idea to the pool (infra, budget,
+   * hosting, a paused series) or rejects it (no material, source unreachable or spent), by `ideaOutcomeOf`; a critic or
+   * content skip stays `used`, as before.
+   */
   async settleIdea(ideaId: string): Promise<void> {
+    const { rows } = await this.pool.query(
+      `SELECT i.status AS idea_status, s.status, s.error, s.critic->>'verdict' AS verdict
+         FROM content_ideas i LEFT JOIN editor_slots s ON s.idea_id = i.id
+        WHERE i.id = $1 ORDER BY s.updated_at DESC NULLS LAST`, [ideaId]);
+    if (!rows.length || rows[0].idea_status !== 'planned') return;
+    const slots = rows.filter((r) => r.status);
+    if (slots.some((r) => r.status === 'planned' || r.status === 'running')) return;
+    const out = slots.find((r) => (OUT_STATUSES as readonly string[]).includes(r.status));
+    const o: IdeaOutcome = out ? { status: 'used' }
+      : slots.length ? ideaOutcomeOf(slots[0].status, slots[0].error, slots[0].verdict)
+      : { status: 'accepted', reason: 'no slot' };
     await this.pool.query(
-      `UPDATE content_ideas SET status = 'used', updated_at = now()
-        WHERE id = $1 AND status = 'planned'
-          AND NOT EXISTS (SELECT 1 FROM editor_slots WHERE idea_id = $1 AND status IN ('planned','running'))`, [ideaId]);
+      `UPDATE content_ideas SET status = $2, updated_at = now(),
+              review = CASE WHEN $2 = 'used' THEN review ELSE COALESCE(review, '{}'::jsonb) || jsonb_build_object('slot_outcome', left($3::text, 300)) END
+        WHERE id = $1 AND status = 'planned'`, [ideaId, o.status, 'reason' in o ? o.reason : '']);
+  }
+
+  /** accepted → planned for a pre-flight swap (spec 061 FR-001); false when the idea is no longer accepted. */
+  async claimIdea(ideaId: string): Promise<boolean> {
+    const { rowCount } = await this.pool.query(
+      `UPDATE content_ideas SET status = 'planned', updated_at = now() WHERE id = $1 AND status = 'accepted'`, [ideaId]);
+    return (rowCount ?? 0) > 0;
+  }
+
+  /** An idea a slot gave up before the writer ran (pre-flight): back to the pool or closed, with the reason in `review`. */
+  async releaseIdea(ideaId: string, to: 'accepted' | 'rejected', reason: string): Promise<void> {
+    await this.pool.query(
+      `UPDATE content_ideas SET status = $2, updated_at = now(),
+              review = COALESCE(review, '{}'::jsonb) || jsonb_build_object('slot_outcome', left($3::text, 300))
+        WHERE id = $1 AND status = 'planned'`, [ideaId, to, reason]);
   }
 
   /**

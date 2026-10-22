@@ -688,6 +688,14 @@ export class EditorPlansRepository {
     }
   }
 
+  /** Spec 061 FR-001: the pre-flight gave the planned slot another idea (topic, angle and source hints follow it); `note` is kept as a lint warning. */
+  async retopicSlot(id: string, p: { ideaId: string; topic: string; angle: string | null; sourceHints: string[]; note: string }): Promise<void> {
+    await this.pool.query(
+      `UPDATE editor_slots SET idea_id = $2, topic = $3, angle = $4, source_hints = $5,
+              lint_warnings = COALESCE(lint_warnings, '[]'::jsonb) || to_jsonb($6::text), updated_at = now()
+        WHERE id = $1`, [id, p.ideaId, p.topic, p.angle, JSON.stringify(p.sourceHints), p.note]);
+  }
+
   /** How many of the channel's most recent finished slots failed in a row. */
   async consecutiveFailures(channelKey: string): Promise<number> {
     const { rows } = await this.pool.query(

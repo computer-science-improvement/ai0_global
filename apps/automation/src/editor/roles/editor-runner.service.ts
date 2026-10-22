@@ -1,3 +1,4 @@
+import { preflightSkipError, type SlotPreflight } from '../preflight/slot-preflight';
 import { effectiveMode, type EditorCard } from '../card';
 import type { AgentLoop, AgentLoopResult } from '../harness/agent-loop';
 import type { ToolRegistry } from '../harness/tool-registry';
@@ -82,6 +83,8 @@ export interface EditorRunnerDeps {
   catalogSummary?: (card: EditorCard) => Promise<string | null>;
   /** Spec 023 FR-005: a series / pin slot's context for the executor, or a code skip (required source exhausted). */
   seriesContext?: (slot: EditorSlot) => Promise<{ note: string | null; skip?: string }>;
+  /** Spec 061 FR-001: the slot pre-flight (ledger, freshness, host block, format) with one idea swap; absent = none. */
+  preflight?: Pick<SlotPreflight, 'run'>;
   /** Called after an executor run (spec 020: an idea becomes `used` once all its slots are done). */
   onSlotDone?: (slot: EditorSlot) => Promise<void>;
   /**
@@ -413,6 +416,12 @@ export class EditorRunnerService {
     if (series?.skip) return this.skipByCode(slot, series.skip);
     note = [note, series?.note].filter(Boolean).join('\n') || null;
     if ((slot.treatment === 'duplicate' || slot.treatment === 'adapt') && this.d.derived) return this.runDerived(slot, card, ctx);
+    // Spec 061 FR-001: what code knows (spent / stale / blocked source, missing hosting) is checked before the writer is paid.
+    if (this.d.preflight) {
+      const pf = await this.d.preflight.run(slot, card);
+      if (!pf.ok) return this.skipByCode(slot, preflightSkipError(pf.code, pf.reason));
+      slot = pf.slot;
+    }
     // Spec 034 FR-010: a live slot looks at its feeds first; with nothing fresh it is skipped by code.
     const scan = slot.topicMode === 'live' && slot.liveSpec && this.d.live ? await this.d.live.scan(slot, card).catch(() => null) : null;
     if (scan && slot.liveSpec && scan.feedsRead > 0 && !scan.items.length && !scan.otherSources.length) {

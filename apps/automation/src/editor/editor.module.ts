@@ -68,6 +68,7 @@ import { ResourceTime } from './time/resource-time';
 import { safeGetBytes } from './net/safe-http';
 import { AdOrdersRepository } from '../payments/ad-orders.repository';
 import { EditorRunnerService, type EditorRunnerDeps } from './roles/editor-runner.service';
+import { buildSlotPreflight } from './preflight/preflight-wiring';
 import { EditorScheduler } from './editor.scheduler';
 import { htmlToPlain } from './post/inline-markup';
 import { EditorRunsRepository } from './repo/editor-runs.repository';
@@ -1588,6 +1589,8 @@ export const EDITOR_PROVIDERS = [
           seriesContext: (slot) => schedule.executorContext(slot),
           onSlotDone: async (slot) => { if (slot.ideaId) await ideas.settleIdea(slot.ideaId); },
           deadSource: async (slot, url, reason) => (slot.ideaId ? ideas.rejectSoleSourceIdeas(slot.ideaId, url, reason) : 0),
+          // Spec 061 FR-001: ledger / freshness / host block / format checks (and one idea swap) before the writer is paid.
+          preflight: buildSlotPreflight({ pool, env, ideas, plans: repos.plans, log: (m) => logger.warn(m) }),
           // Spec 024 FR-007: duplicate / adapt slots — the agent formats every target post itself.
           derived: derivedPorts(pool, ideas, infra, ports.holds ?? null),
           // Spec 034 FR-002: humour / slang / emoji of a slot's target resource (owner-only switches, off by default).
