@@ -14,7 +14,7 @@ const isScalar = (v: unknown): v is string | number | boolean | null => v === nu
 
 /** An object or an array parsed from a body; null when the body is not JSON (or is a bare scalar). */
 export function parseJsonBody(body: string): unknown | null {
-  const t = body.replace(/^﻿/, '').trim();
+  const t = body.replace(/^\uFEFF/, '').trim();
   if (!t || (t[0] !== '{' && t[0] !== '[')) return null;
   try {
     const v: unknown = JSON.parse(t);

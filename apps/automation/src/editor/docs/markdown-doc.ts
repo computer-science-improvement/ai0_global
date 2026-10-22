@@ -70,7 +70,7 @@ function scanLine(line: string, at: number, base: string, images: DocImage[], li
 }
 
 export function parseMarkdown(source: string, baseUrl: string): ParsedMarkdown {
-  const lines = source.replace(/^﻿/, '').replace(/\r\n?/g, '\n').split('\n');
+  const lines = source.replace(/^\uFEFF/, '').replace(/\r\n?/g, '\n').split('\n');
   let text = '';
   const sections: RawSection[] = [];
   const st: { cur: RawSection | null } = { cur: null };

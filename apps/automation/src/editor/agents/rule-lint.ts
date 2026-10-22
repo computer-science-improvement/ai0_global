@@ -66,7 +66,7 @@ export async function lintOwnerRule(text: string, c: RuleLintContext = {}): Prom
   return out;
 }
 
-const POINT_RE = /^\s*(?:\d{1,2}[.)]|[-•*–—]|[✅✔️❌🚫▪️◾️])\s*(.+?)\s*$/u;
+const POINT_RE = /^\s*(?:\d{1,2}[.)]|[-•*–—]|[\u2705\u2714\u274C\u{1F6AB}\u25AA\u25FE]\uFE0F?)\s*(.+?)\s*$/u;
 export const MAX_RULE_POINTS = 12;
 export const MAX_POINT_CHARS = 300;
 
