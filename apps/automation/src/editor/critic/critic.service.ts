@@ -12,7 +12,7 @@ import { SkillLibrary, type Skill } from '../skills/skill-library';
 import { voiceCoreBody, voiceSettingsLine } from '../roles/voice';
 import { styleSection } from '../post/style/resource-style';
 import { channelLanguage, criticLanguageLines } from '../post/channel-language';
-import { CRITIC_REJECT_AT, CritiqueInput, decideVerdict, type Critique, type StoredCritic } from './critic';
+import { CRITIC_REJECT_AT, CritiqueInput, decideVerdict, HARD_LINT_CODES, MAX_CRITIC_ISSUES, previousItemsOf, type Critique, type StoredCritic } from './critic';
 import type { OwnerRuleLine } from '../rules/owner-rules-prompt';
 import { criticSkillsSection, type CriticSkillsContext, type CriticSkillsRequest } from './critic-skills';
 import { criticDatesLines, type CriticDates } from './critic-dates';
@@ -66,8 +66,8 @@ export interface CriticRequest {
   lintWarnings?: Array<{ code: string; message: string }>;
   /** Spec 041 FR-007: the draft's risk; a low one is read by the light checker model. Absent = high (the normal model). */
   risk?:        DraftRisk | null;
-  /** Pass 2: the first verdict, so the critic sees what was asked. */
-  previous?:    Pick<StoredCritic, 'verdict' | 'notes' | 'scores'> | null;
+  /** Pass 2: the first verdict, so the critic sees what was asked (spec 067: its issues and failed edits become the numbered items to check). */
+  previous?:    (Pick<StoredCritic, 'verdict' | 'notes' | 'scores'> & Partial<Pick<StoredCritic, 'issues' | 'edits_failed'>>) | null;
   /** Registry agent whose budget the critic run counts against (the executor's). */
   agent?:       AgentBudget | null;
   /** Spec 037 FR-012: what selects the writer's skills for the critic (resource tone skills, slot signals, skill view). */
@@ -173,12 +173,27 @@ export function criticUserPrompt(r: CriticRequest): string {
   s.push('Це підказки перевірити, а не докази: підтвердь кожне в тексті й уривках, а чого не знайшов — цитуй уривок.');
   const lintWarnings = r.lintWarnings ?? r.slopWarnings;
   s.push(lintWarnings.length ? lintWarnings.map((w) => `- ${w.code}: ${w.message}`).join('\n') : '- немає');
-  if (r.previous) {
-    s.push('', '## Це переписаний пост', `Перший вердикт: ${r.previous.verdict}. Зауваження автору: ${r.previous.notes}`,
-      'Перевір, чи виправлено саме це, і оціни пост заново повністю.');
-  }
+  if (r.previous) s.push(...criticSecondPassLines(r.previous));
   s.push('', 'Оціни пост і виклич submit_critique один раз.');
   return s.join('\n');
+}
+
+/**
+ * Spec 067 FR-002: the second look. The critic does not start again: it says per numbered item of the first pass whether
+ * it is fixed (`previous_checks`), and anything new is advice unless it is a hard error.
+ */
+export function criticSecondPassLines(previous: NonNullable<CriticRequest['previous']>): string[] {
+  const items = previousItemsOf(previous);
+  const out = ['', '## Це переписаний пост', `Перший вердикт: ${previous.verdict}. Зауваження автору: ${previous.notes}`];
+  if (items.length) {
+    out.push('', '### Що треба було виправити (блокуючі пункти першого проходу)',
+      ...items.map((it) => `[${it.n}]${it.axis ? ` (${it.axis})` : ''}${it.quote ? ` «${it.quote}»` : ''} — ${it.fix}`),
+      'У previous_checks дай {n, fixed} по КОЖНОМУ пункту: fixed = true лише коли в новому тексті цього більше немає. Пропущений пункт код вважає невиправленим.');
+  } else {
+    out.push('Перевір, чи виправлено це.');
+  }
+  out.push('Не оцінюй пост заново з нуля: нові зауваження — поради (blocking: false), якщо це не фактична помилка, не мовна помилка з цитатою і не порушене правило власника. Нова трійка в голосі чи форматі — порада, не підстава повертати пост ще раз.');
+  return out;
 }
 
 /** Owner-rules prompt cap: rules are short; a long list is clipped per rule, never dropped. */
@@ -255,7 +270,7 @@ export class CriticService {
     const model = light ? resolveModel('checker', this.d.env, null, { agentModel: light, workspace }) : strong;
     const tool = defineTool({
       name: 'submit_critique',
-      description: 'Віддати оцінку поста (завершує роботу): оцінки 1–5 за сімома осями (і owner_rules, коли є правила власника), порушені правила (broken_rules), вердикт pass / pass_with_edits (з точними правками edits) / revise / reject і короткі нотатки українською.',
+      description: 'Віддати оцінку поста (завершує роботу): оцінки 1–5 за сімома осями (і owner_rules, коли є правила власника), порушені правила (broken_rules), конкретні зауваження issues (blocking лише для фактичної помилки, мовної помилки з цитатою чи порушеного правила власника), на другому проході previous_checks по кожному пункту, вердикт pass / pass_with_edits (з точними правками edits) / revise / reject і короткі нотатки українською.',
       kind: 'terminal', roles: ['checker'],
       input: CritiqueInput,
       execute: async (c) => ({ ok: true, ...c }),
@@ -307,12 +322,27 @@ export class CriticService {
   private store(raw: Critique, r: CriticRequest, model: string, runId: string | null, cost: number): StoredCritic {
     const slop = r.slopWarnings.map((w) => w.code);
     const c = normalizeOwnerRules(raw, criticRules(r.ownerRules));
-    const d = decideVerdict(c, slop);
+    // Spec 067 A2: what the code knows beyond the model's answer — the pass, how much of the source the critic saw, the
+    // numbers the code could not find, the lint that stays a block, and the items pass 1 asked to fix.
+    const coverage = r.source?.coverage ?? 'none';
+    const codeMissing = r.source?.grounding?.missing ?? [];
+    const lintCodes = (r.lintWarnings ?? r.slopWarnings).map((w) => w.code);
+    const hardLint = [...new Set([
+      ...lintCodes.filter((code) => (HARD_LINT_CODES as readonly string[]).includes(code)),
+      ...(codeMissing.length ? ['number_not_in_sources'] : []),
+    ])];
+    const previousBlocking = previousItemsOf(r.previous);
+    const d = decideVerdict(c, slop, { pass: r.previous ? 2 : 1, coverage, codeMissing, hardLint, previousBlocking, postText: r.text });
     const edits = c.verdict === 'pass_with_edits' && d.verdict === 'pass' ? (c.edits ?? []).filter((e) => e.from !== e.to) : [];
+    const issues = (c.issues ?? []).slice(0, MAX_CRITIC_ISSUES);
     return {
       verdict: d.verdict, scores: c.scores, notes: c.notes.trim(), model_verdict: c.verdict, reason: d.reason,
       ...(c.broken_rules ? { broken_rules: c.broken_rules } : {}),
       ...(c.rule_checks ? { rule_checks: c.rule_checks } : {}),
+      ...(issues.length ? { issues } : {}),
+      ...(r.previous && c.previous_checks?.length ? { previous_checks: c.previous_checks } : {}),
+      source_coverage: coverage,
+      ...(codeMissing.length ? { grounding_missing: codeMissing.slice(0, 12) } : {}),
       ...(edits.length ? { edits } : {}),
       pass: r.previous ? 2 : 1, slop_warnings: slop, model, run_id: runId, cost_usd: Number(cost.toFixed(6)),
       at: (this.d.now ?? (() => new Date()))().toISOString(),

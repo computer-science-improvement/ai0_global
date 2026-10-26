@@ -2,7 +2,7 @@
 // Spec 034 FR-004: how the critic's verdict is shown on approval and draft cards.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { criticFootnote, heldByCritic, scoreList, scoreTone, verdictBadge, type CriticVerdict } from './critic';
+import { coverageNote, criticFootnote, heldByCritic, issueList, scoreList, scoreTone, verdictBadge, type CriticVerdict } from './critic';
 
 const v = (o: Partial<CriticVerdict> = {}): CriticVerdict => ({
   verdict: 'pass', scores: { ai_likeness: 5, sense: 4, voice: 3, grounding: 2, audience_asks: 5, format_fit: 5 }, notes: 'n', reason: 'r',
@@ -41,4 +41,20 @@ test('held from "Approve all" unless pass; footnotes per place', () => {
   assert.equal(criticFootnote(v({ verdict: 'error' }), 'slot'), null);
   assert.equal(criticFootnote(v({ pass: 2 }), 'slot'), 'Passed after one rewrite.');
   assert.match(criticFootnote(v(), 'preview')!, /dry-run preview; the real post is reviewed again/);
+});
+
+test('spec 067: the critic\'s remarks — the ones that sent the post back first; older verdicts have none; the source coverage is explained', () => {
+  assert.deepEqual(issueList(v()), []);
+  const list = issueList(v({ issues: [
+    { fix: 'shorten the lead', axis: 'ai_likeness', blocking: false },
+    { quote: 'it happen at services', fix: 'it happens at services', axis: 'language', blocking: true },
+    { fix: 'soften the claim', axis: 'grounding', blocking: false },
+  ] }));
+  assert.deepEqual(list.map((i) => [i.kind, i.label, i.tone]), [['Must fix', 'Language', 'warning'], ['Advice', 'Human voice', 'neutral'], ['Advice', 'Grounded', 'neutral']]);
+  assert.equal(list[0].quote, 'it happen at services');
+  assert.equal(coverageNote(v({ source_coverage: 'full' })), 'The critic saw the whole source page.');
+  assert.match(coverageNote(v({ source_coverage: 'read' }))!, /only the part of the document the agent read/);
+  assert.match(coverageNote(v({ source_coverage: 'snippet' }))!, /feed snippet/);
+  assert.equal(coverageNote(v({ source_coverage: 'none' })), null);
+  assert.equal(coverageNote(v()), null);
 });

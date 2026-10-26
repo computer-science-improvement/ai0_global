@@ -185,13 +185,14 @@ test('the executor sees owner rules as their own block above the playbook; appro
 
 const scores = { ai_likeness: 5, sense: 5, voice: 5, grounding: 5, audience_asks: 5, format_fit: 5, language: 5 };
 
-test('critic: owner_rules ≤ 2 rejects and names the broken rule; a named rule caps the axis; unknown ids are dropped', () => {
+test('critic: owner_rules ≤ 2 sends the post back (pass 1, spec 067) or rejects (pass 2) and names the broken rule; a named rule caps the axis; unknown ids are dropped', () => {
   const rules = [rule(3, 'Без хештегів'), rule(4, 'Без сленгу')];
   const c = CritiqueInput.parse({ scores: { ...scores, owner_rules: 5 }, broken_rules: [3, 99], verdict: 'pass', notes: '#3: у пості три хештеги' });
   const n = normalizeOwnerRules(c, rules);
   assert.equal(n.scores.owner_rules, 2);
   assert.deepEqual(n.broken_rules, [3]);
-  assert.deepEqual(decideVerdict(n), { verdict: 'reject', reason: 'score_le_2: owner_rules (#3)' });
+  assert.deepEqual(decideVerdict(n), { verdict: 'revise', reason: 'score_le_2_fixable: owner_rules (#3)' });
+  assert.deepEqual(decideVerdict(n, [], { pass: 2 }), { verdict: 'reject', reason: 'score_le_2: owner_rules (#3)' });
 
   const kept = [{ id: 3, kept: true }, { id: 4, kept: true }];
   const ok = normalizeOwnerRules(CritiqueInput.parse({ scores: { ...scores, owner_rules: 5 }, rule_checks: kept, verdict: 'pass', notes: 'Ок.' }), rules);
@@ -230,7 +231,7 @@ test('spec 041 FR-005: every rule in the prompt needs a verdict; a broken check 
   // A score but one rule unchecked.
   const partial = normalizeOwnerRules(CritiqueInput.parse({ scores: { ...scores, owner_rules: 5 }, rule_checks: [{ id: 3, kept: true }], verdict: 'pass', notes: 'Ок.' }), text);
   assert.deepEqual(decideVerdict(partial), { verdict: 'revise', reason: 'owner_rules_missing: #4' });
-  // A broken check (1717: rule «простіше» against «816 млрд параметрів… MCP-Atlas») rejects by the rule.
+  // A broken check (1717: rule «простіше» against «816 млрд параметрів… MCP-Atlas») sends the post back by the rule.
   const broken = normalizeOwnerRules(CritiqueInput.parse({
     scores: { ...scores, owner_rules: 4 }, verdict: 'pass', notes: '#4 порушено.',
     rule_checks: [{ id: 3, kept: true }, { id: 4, kept: false, quote: '816 млрд параметрів, з яких одночасно працюють 42 млрд' }, { id: 99, kept: false }],
@@ -238,7 +239,7 @@ test('spec 041 FR-005: every rule in the prompt needs a verdict; a broken check 
   assert.equal(broken.scores.owner_rules, 2);
   assert.deepEqual(broken.broken_rules, [4]);
   assert.deepEqual(broken.rule_checks?.map((x) => x.id), [3, 4], 'unknown ids dropped');
-  assert.deepEqual(decideVerdict(broken), { verdict: 'reject', reason: 'score_le_2: owner_rules (#4)' });
+  assert.deepEqual(decideVerdict(broken), { verdict: 'revise', reason: 'score_le_2_fixable: owner_rules (#4)' });
   // The prompt asks for rule_checks and lists only the text rules.
   const lines = criticOwnerRulesLines(text).join('\n');
   assert.match(lines, /rule_checks/);

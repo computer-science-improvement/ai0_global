@@ -443,12 +443,15 @@ export class CriticGate {
     const after = this.c.mode === 'approve'
       ? 'Якщо й друга версія не пройде — пост піде власнику разом із цими зауваженнями.'
       : 'Друге «revise» пропускає слот.';
+    // Spec 067 FR-002: the blocking issues (quote + fix) are what the second look checks, one by one.
+    const blocking = (critic.issues ?? []).filter((i) => i.blocking).map((i) => ({ ...(i.quote ? { quote: i.quote } : {}), fix: i.fix, axis: i.axis }));
     return {
       kind: 'revise', critic,
       result: {
         error: 'critic_revise',
         details: {
           notes: critic.notes, scores: critic.scores, reason: critic.reason,
+          ...(blocking.length ? { issues: blocking } : {}),
           ...(critic.edits_failed?.length ? { edits: critic.edits_failed.map((e) => ({ from: e.from, to: e.to })) } : {}),
           instruction: `Критик просить переписати пост. Виправ саме ці зауваження і виклич ${this.c.platform === 'telegram' ? 'publish_post' : 'publish_platform_post'} ще раз — це єдина спроба. ${after} Якщо пост не врятувати — skip_slot з причиною.`,
         },

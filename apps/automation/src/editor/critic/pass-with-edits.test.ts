@@ -1,6 +1,6 @@
 /**
  * Spec 041 FR-002 (T2): `pass_with_edits` — exact replacements code applies to the spec (and the lint's euphony
- * fixes), the guards run again on the edited spec, no new LLM turn; a 4 with a quoted problem and no edits revises.
+ * fixes), the guards run again on the edited spec, no new LLM turn; a blocking issue quoted from the post and not fixed by an edit revises (spec 067).
  */
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
@@ -40,12 +40,21 @@ test('applySpecEdits: reader text only, exactly one match, failures reported wit
   assert.deepEqual(lintFixes([{ code: 'a', message: 'm' }, { code: 'language_euphony', message: 'm', fix: { from: 'У інших', to: 'В інших' } } as any]), [{ from: 'У інших', to: 'В інших' }]);
 });
 
-test('decideVerdict: pass_with_edits is a pass; a 4 quoting a problem without edits revises; praise stays a pass', () => {
+test('decideVerdict (spec 067): pass_with_edits is a pass; a blocking issue with a quote found in the post and no edit for it revises; praise in quotes and no issues stays a pass', () => {
   const s = { ...all(5), sense: 4 };
+  const POST = 'Код за ліцензією Apache 2.0, її можуть брати всі.';
   const edits = [{ from: 'її можуть', to: 'його можуть' }];
+  const issue = { quote: 'її можуть', fix: 'його можуть', axis: 'language' as const, blocking: true };
   assert.deepEqual(decideVerdict({ scores: s, verdict: 'pass_with_edits', edits, notes: '«її» — про код, не ліцензію.' }), { verdict: 'pass', reason: 'scores_ok_with_edits' });
-  assert.deepEqual(decideVerdict({ scores: s, verdict: 'pass', notes: '«її» відсилає до ліцензії, а мається на увазі код.' }), { verdict: 'revise', reason: 'quoted_problem: sense' });
-  assert.deepEqual(decideVerdict({ scores: s, verdict: 'pass', notes: 'Факти збігаються з джерелом.' }), { verdict: 'pass', reason: 'scores_ok' });
+  // The model blocks on a quote of the post and does not fix it with an edit: back for a rewrite.
+  assert.deepEqual(decideVerdict({ scores: s, verdict: 'pass', issues: [issue] }, [], { postText: POST }), { verdict: 'revise', reason: 'blocking_issue: language' });
+  // The same issue fixed by an exact edit (the quote lies inside the edit's `from`) is not a block.
+  assert.deepEqual(decideVerdict({ scores: s, verdict: 'pass_with_edits', edits, issues: [issue] }, [], { postText: POST }), { verdict: 'pass', reason: 'scores_ok_with_edits' });
+  // A quote that is not in the post (praise, a paraphrase) or no quote at all does not block.
+  assert.equal(decideVerdict({ scores: s, verdict: 'pass', issues: [{ ...issue, quote: 'Muse Spark' }] }, [], { postText: POST }).verdict, 'pass');
+  assert.equal(decideVerdict({ scores: s, verdict: 'pass', issues: [{ fix: 'тут слабко', axis: 'sense', blocking: true }] }, [], { postText: POST }).verdict, 'pass', 'no quote, no block');
+  assert.equal(decideVerdict({ scores: s, verdict: 'pass', issues: [{ ...issue, blocking: false }] }, [], { postText: POST }).verdict, 'pass', 'advice');
+  assert.deepEqual(decideVerdict({ scores: s, verdict: 'pass', notes: '«її» відсилає до ліцензії, а мається на увазі код.' }), { verdict: 'pass', reason: 'scores_ok' }, 'notes alone are advice now (QUOTED is gone)');
   assert.deepEqual(decideVerdict({ scores: all(5), verdict: 'pass', notes: 'Добре, «Muse Spark» названо правильно.' }), { verdict: 'pass', reason: 'scores_ok' }, 'all fives: a quote is no problem');
   assert.deepEqual(decideVerdict({ scores: { ...all(5), language: 3 }, verdict: 'pass' }), { verdict: 'revise', reason: 'score_le_3: language' });
 });
@@ -61,8 +70,11 @@ function gateOver(turns: ConstructorParameters<typeof FakeLlm>[0]) {
   );
   return { gate, llm, updates };
 }
-const answer = (verdict: string, o: { scores?: Partial<CriticScores>; edits?: Array<{ from: string; to: string }>; notes?: string } = {}) =>
-  ({ calls: [{ name: 'submit_critique', args: { scores: { ...all(5), ...o.scores }, verdict, notes: o.notes ?? 'Добре.', ...(o.edits ? { edits: o.edits } : {}) } }] });
+const answer = (verdict: string, o: { scores?: Partial<CriticScores>; edits?: Array<{ from: string; to: string }>; notes?: string; previous_checks?: Array<{ n: number; fixed: boolean }> } = {}) =>
+  ({ calls: [{ name: 'submit_critique', args: {
+    scores: { ...all(5), ...o.scores }, verdict, notes: o.notes ?? 'Добре.',
+    ...(o.edits ? { edits: o.edits } : {}), ...(o.previous_checks ? { previous_checks: o.previous_checks } : {}),
+  } }] });
 
 const post = () => makeSpec({ body: [{ type: 'lead', text: 'Огляд показав приріст' }, { type: 'p', text: 'Код за ліцензією Apache 2.0, її можуть брати всі. У інших задачах менше.' }] });
 
@@ -104,7 +116,10 @@ test('gate: an edit that does not match once revises on the first pass; the guar
   assert.match((r2 as any).critic.reason, /^edits_lint: lint_failed/);
 
   // Second pass (after a revise): failed edits are recorded, the post goes out as the writer wrote it.
-  const late = gateOver([answer('revise', { scores: { sense: 3 }, notes: 'Переписати лід.' }), answer('pass_with_edits', { edits: [{ from: 'нема такого', to: 'немає того' }] })]);
+  const late = gateOver([
+    answer('revise', { scores: { sense: 3 }, notes: 'Переписати лід.' }),
+    answer('pass_with_edits', { edits: [{ from: 'нема такого', to: 'немає того' }], previous_checks: [{ n: 1, fixed: true }] }),
+  ]);
   assert.equal((await late.gate.check({ text: 't', spec: post(), format: 'photo', warnings: [] })).kind, 'revise');
   const r3 = await late.gate.check({ text: 't2', spec: makeSpec({ title: 'Друга версія' }), format: 'photo', warnings: [], relint: async () => ({ ok: true }) });
   assert.equal(r3.kind, 'proceed');

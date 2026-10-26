@@ -35,8 +35,10 @@ const all = (n: number): CriticScores => Object.fromEntries(CRITIC_SCORE_KEYS.ma
 const scores = (o: Partial<CriticScores> = {}): CriticScores => ({ ...all(5), ...o });
 
 /** One scripted critic answer. */
-const critique = (verdict: 'pass' | 'revise' | 'reject', s: Partial<CriticScores> = {}, notes = 'Добре.') =>
-  ({ calls: [{ name: 'submit_critique', args: { scores: scores(s), verdict, notes } }] });
+const critique = (verdict: 'pass' | 'revise' | 'reject', s: Partial<CriticScores> = {}, notes = 'Добре.', extra: Record<string, unknown> = {}) =>
+  ({ calls: [{ name: 'submit_critique', args: { scores: scores(s), verdict, notes, ...extra } }] });
+/** Spec 067: the second look answers each numbered item of the first pass (pass 1 here had one score ≤ 3, so one item). */
+const FIXED = { previous_checks: [{ n: 1, fixed: true }] };
 
 function criticOver(turns: ConstructorParameters<typeof FakeLlm>[0], o: { budget?: FakeBudget; timeoutMs?: number; criticModel?: string | null } = {}) {
   const llm = new FakeLlm(turns);
@@ -51,18 +53,20 @@ function criticOver(turns: ConstructorParameters<typeof FakeLlm>[0], o: { budget
 
 // ── thresholds ──────────────────────────────────────────────────────────────
 
-test('thresholds: any score ≤ 2 → reject; ≤ 3 → revise; ≥ 2 slop warnings → revise; humour/slang off → revise; the model can only be stricter', () => {
+test('thresholds (pass 1, spec 067): sense ≤ 2 → reject; any other score ≤ 2 → fixable revise; ≤ 3 → revise; ≥ 2 slop warnings → revise; humour/slang off → revise; the model can only be stricter', () => {
   assert.deepEqual(decideVerdict({ scores: all(5), verdict: 'pass' }), { verdict: 'pass', reason: 'scores_ok' });
   assert.equal(decideVerdict({ scores: all(4), verdict: 'pass' }).verdict, 'pass');
   for (const k of CRITIC_SCORE_KEYS) {
-    assert.equal(decideVerdict({ scores: scores({ [k]: 2 }), verdict: 'pass' }).verdict, 'reject', `${k} = 2`);
-    assert.equal(decideVerdict({ scores: scores({ [k]: 1 }), verdict: 'pass' }).verdict, 'reject', `${k} = 1`);
+    // Only a post that is about nothing is lost; any other axis of 2 or less can be fixed by one rewrite.
+    assert.equal(decideVerdict({ scores: scores({ [k]: 2 }), verdict: 'pass' }).verdict, k === 'sense' ? 'reject' : 'revise', `${k} = 2`);
+    assert.equal(decideVerdict({ scores: scores({ [k]: 1 }), verdict: 'pass' }).verdict, k === 'sense' ? 'reject' : 'revise', `${k} = 1`);
     assert.equal(decideVerdict({ scores: scores({ [k]: 3 }), verdict: 'pass' }).verdict, 'revise', `${k} = 3`);
   }
-  assert.match(decideVerdict({ scores: scores({ sense: 2, voice: 1 }), verdict: 'pass' }).reason, /score_le_2: sense, voice/);
+  assert.match(decideVerdict({ scores: scores({ sense: 2, voice: 1 }), verdict: 'pass' }).reason, /score_le_2: sense/);
+  assert.equal(decideVerdict({ scores: scores({ language: 2, voice: 1 }), verdict: 'pass' }).reason, 'score_le_2_fixable: voice, language');
   assert.equal(decideVerdict({ scores: all(5), verdict: 'reject' }).verdict, 'reject', 'the model may reject');
   assert.equal(decideVerdict({ scores: all(5), verdict: 'revise' }).verdict, 'revise', 'the model may ask for a rewrite');
-  assert.equal(decideVerdict({ scores: scores({ grounding: 2 }), verdict: 'revise' }).verdict, 'reject', 'but never be more lenient than the scores');
+  assert.equal(decideVerdict({ scores: scores({ grounding: 2 }), verdict: 'revise' }).verdict, 'revise', 'but never be more lenient than the scores');
   assert.equal(decideVerdict({ scores: all(5), verdict: 'pass' }, ['slop_em_dash']).verdict, 'pass', 'one slop warning is not enough');
   assert.deepEqual(decideVerdict({ scores: all(5), verdict: 'pass' }, ['slop_em_dash', 'slop_exclamation']), { verdict: 'revise', reason: 'slop_warnings: 2' });
   assert.deepEqual(decideVerdict({ scores: all(5), verdict: 'pass' }, ['slop_humor_off']), { verdict: 'revise', reason: 'voice_off: slop_humor_off' });
@@ -74,13 +78,14 @@ test('thresholds: any score ≤ 2 → reject; ≤ 3 → revise; ≥ 2 slop warni
   assert.equal(heldByCritic({ verdict: 'error' }), true);
 });
 
-test('humour on a humor:none resource: the lint marker turns a lenient critic pass into revise; a voice score ≤ 2 rejects', async () => {
+test('humour on a humor:none resource: the lint marker turns a lenient critic pass into revise; a voice score ≤ 2 is a fixable revise (pass 1), a reject on the second look', async () => {
   const card = makeCard({ hashtags: ['космос'] });
   const joke = makeSpec({ body: [{ type: 'lead', text: 'Вебб показав туманність Кільце' }, { type: 'p', text: 'Зоря скинула оболонки газу, ахаха, ну і жарт.' }] });
   const lint = lintPost(joke, card);
   assert.ok(slopCodes(lint.warnings).includes('slop_humor_off'), JSON.stringify(lint.warnings));
   assert.equal(decideVerdict({ scores: all(5), verdict: 'pass' }, slopCodes(lint.warnings)).verdict, 'revise');
-  assert.equal(decideVerdict({ scores: scores({ voice: 2 }), verdict: 'pass' }, slopCodes(lint.warnings)).verdict, 'reject');
+  assert.equal(decideVerdict({ scores: scores({ voice: 2 }), verdict: 'pass' }, slopCodes(lint.warnings)).verdict, 'revise');
+  assert.equal(decideVerdict({ scores: scores({ voice: 2 }), verdict: 'pass' }, slopCodes(lint.warnings), { pass: 2 }).verdict, 'reject');
 
   const c = criticOver([critique('pass')]);
   const r = await c.service.review(req({ text: 'Зоря скинула оболонки газу, ахаха.', slopWarnings: lint.warnings.filter((w) => slopCodes([w]).length) }));
@@ -250,7 +255,7 @@ test('live: revise produces exactly one rewrite in the same run; the second crit
   const second = makeSpec({ title: 'Друга версія', body: [{ type: 'lead', text: 'Вебб показав туманність Кільце' }, { type: 'p', text: 'Оболонки газу зоря скинула тисячі років тому.' }] });
   const h = telegramHarness({
     mode: 'live',
-    critic: [critique('revise', { ai_likeness: 3 }, 'Прибери «варто зазначити».'), critique('pass')],
+    critic: [critique('revise', { ai_likeness: 3 }, 'Прибери «варто зазначити».'), critique('pass', {}, 'Добре.', FIXED)],
     executor: [publishCall(first), publishCall(second)],
   });
   const res = await h.run();
@@ -294,7 +299,7 @@ test('live / shadow: a second revise is a reject; approval: it goes to the owner
 test('a revise on the last step still ends in publish or skip (the loop grants turns), not max_steps', async () => {
   const h = telegramHarness({
     mode: 'live', maxSteps: 1,
-    critic: [critique('revise', { ai_likeness: 3 }), critique('pass')],
+    critic: [critique('revise', { ai_likeness: 3 }), critique('pass', {}, 'Добре.', FIXED)],
     executor: [publishCall(), { calls: [{ name: 'lint_post', args: {} }] }, publishCall(makeSpec({ title: 'Друга' }))],
   });
   const res = await h.run();
@@ -395,7 +400,7 @@ test('platform: a reject never calls the platform API or stores a post; revise i
   assert.equal(rej.status(), 'skipped');
   assert.match(rej.critic.llm.requests[0].messages[1].content as string, /Слайд 2: Олімп/);
 
-  const rev = platformHarness('live', [critique('revise', { audience_asks: 3 }, 'Зайве питання.'), critique('pass')]);
+  const rev = platformHarness('live', [critique('revise', { audience_asks: 3 }, 'Зайве питання.'), critique('pass', {}, 'Добре.', FIXED)]);
   const e: any = await rev.tool.execute({ spec: pspec() }, rev.ctx);
   assert.equal(e.error, 'critic_revise');
   assert.equal(e._grantSteps, CRITIC_REVISE_GRANT_STEPS);

@@ -143,7 +143,11 @@ export class PublishProbe {
 export interface SlotState {
   status:    string;
   error:     string | null;
-  critic?:   { verdict?: string | null; notes?: string | null; scores?: Record<string, number | undefined> | null } | null;
+  critic?:   {
+    verdict?: string | null; notes?: string | null; scores?: Record<string, number | undefined> | null;
+    /** Spec 067 A3: how much of the cited source the critic saw, and the numbers the code found in no text the author read. */
+    source_coverage?: string | null; grounding_missing?: string[] | null;
+  } | null;
   postSpec?: unknown;
 }
 
@@ -153,13 +157,20 @@ export const isWrongTopic = (text: string | null | undefined): boolean => WRONG_
 
 /**
  * Spec 063 FR-002: is the critic's `revise` fixable on the same source? Review 3, slot 1fb75a76: the critic asked for
- * fixable edits and the ladder banned the very source («Не бери повторно») — a lost slot. A reject, a grounding of
- * 2 or less (the source does not carry the facts) and a wrong topic stay bans.
+ * fixable edits and the ladder banned the very source («Не бери повторно») — a lost slot. A reject and a wrong topic
+ * stay bans. Spec 067 A3: a grounding of 2 or less bans the source only when the critic saw the whole of it (`full`) and the
+ * code check also listed numbers missing from it; a document the author read only in part, or a grounding 2 the code did
+ * not confirm, is fixable (the fact may be elsewhere in the source). A critic stored before 067 has no coverage and keeps
+ * the old rule.
  */
 export function isFixableRevise(critic: SlotState['critic'] | undefined, extra?: string | null): boolean {
   if (critic?.verdict !== 'revise') return false;
   const grounding = critic.scores?.grounding;
-  if (typeof grounding === 'number' && grounding <= 2) return false;
+  if (typeof grounding === 'number' && grounding <= 2) {
+    const coverage = critic.source_coverage;
+    if (coverage == null) return false;
+    if (coverage === 'full' && critic.grounding_missing?.length) return false;
+  }
   return !isWrongTopic(critic.notes) && !isWrongTopic(extra);
 }
 
