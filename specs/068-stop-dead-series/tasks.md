@@ -1,0 +1,6 @@
+# 068 tasks
+
+- [ ] T1 Cause and classifier: `skip_slot` `cause` (required) with `skipSlotError` shared with preview-run, prompt lines; `classifyClose` new-format parse, legacy fixes (unanchored code words, Cyrillic-safe regexes, library wins), `planner_*` / `preflight_no_material` codes in skip-cause, skip-reasons, idea-outcome; streak families with critic transparent and the pause-cause mapping; catalog help + runbook § 19; the review-4 replay fixture and tests.
+- [ ] T2 Honest empty day and lower minimum: `skipped_series[].cause`, locked skip with a material cause, `short_day` / `short_days`, placeholder slots in the plan transaction, replan supersedes future placeholders, refusal texts; `planPerDay` with pauses (Telegram and network), silent-days uses the lowered minimum; unit + PG tests.
+- [ ] T3 Pre-flight on library slots and at plan time: `series:` / `directive:` hints ignored, `data://` / `library://` row checks, `library:<table>` empty check, `preflight_no_material`; `assessPlanned` in `submit_plan` / `submit_network_plan`; `formatAvailable` filters allowed formats; shared `SlotPreflight` wiring; tests.
+- [ ] T4 `query_data` `refs` (ids / legacy refs, flags, `ref_dataset_mismatch`, hints); migration 095 (+ down) for `prompts.post_requires` with its PG test; docs (runbook § 27, specs README row 068 DONE, spec status done).

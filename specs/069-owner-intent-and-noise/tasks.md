@@ -1,0 +1,7 @@
+# 069 tasks
+
+- [ ] T1 Follow-ups on cards and the source-change bundle: `payload.then` + `input.skip_then` in `applyOnce` with per-item results; `import_list` `series` / `stop_using` / `disable_skills` with `pendingTables` validation and `import_empty`; active tool descriptions and prompt/skill-file routing; `source_belongs_in_import` refusal; ActionCard follow-up checklist and results (English); runbook §§ 24–25 updated; tests.
+- [ ] T2 Skill conflicts: `skillConflicts` / `sourceInSkill` in skill-warnings, `listForAgent` dep, hard/soft follow-ups on `write_skill` cards; tests with the review-4 pair.
+- [ ] T3 Owner noise: union + numeric growth + `runLength` in `decideNote`; past days fire only first; edit-in-place (`retarget`, `api.edit`, fallbacks) with `supersede` returning ids; demotion to info + the daily «Повторюється без вашої реакції» block; `event_not_covered` gated; tests (unit + owner-bot PG).
+- [ ] T4 Manager: deterministic `escalate()` in housekeeping (two triggers), escalation notes and memory lines, digest `escalations` + not-followed open list, `submit_review` `escalations` with `checkEscalations`, `DEFAULT_MANAGER_TIMES ['09:00']`, `cache: false`, `postOnce` dep; tests (unit + PG for the SQL).
+- [ ] T5 Chat and attribution: write claims, backing from earlier turns and applied cards, claim retry without the first answer; `origin_mismatch` lint, chat read capture into draft lint, skill refusal for `origin=original` with a source; tests; docs (runbook § 28, specs README row 069 DONE, spec status done).
