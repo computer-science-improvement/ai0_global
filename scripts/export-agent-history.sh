@@ -111,6 +111,14 @@ for t in agent_tools promo_pairs tracked_links; do
   dump "$t" "SELECT row_to_json(t) FROM $t t"
 done
 dump link_joins
+# Paused series (060), datasets and list imports (058/065/066): the schemas whole, the imports of the window, and per
+# dataset only counts — the rows themselves are third-party content.
+dump series_pauses "SELECT row_to_json(t) FROM series_pauses t"
+dump data_schemas "SELECT row_to_json(t) FROM data_schemas t"
+dump data_imports
+dump data_items "SELECT json_build_object('schema', s.key, 'items', count(i.id), 'with_image', count(i.image_url),
+    'with_body', count(i.body), 'newest', max(i.created_at))
+  FROM data_schemas s LEFT JOIN data_items i ON i.schema_id = s.id GROUP BY s.key ORDER BY s.key"
 
 # Logs. ai_logs holds the full prompt and output of every AI call: cut like the run steps.
 dump ai_logs "SELECT json_build_object(
