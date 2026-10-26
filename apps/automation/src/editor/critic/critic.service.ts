@@ -30,7 +30,8 @@ export const roughTokens = (text: string): number => Math.ceil(text.length / 3.5
 const CRITIC_MAX_STEPS = 3;
 export const CRITIC_SKILL = 'editor-critic-workflow';
 /** Prompt caps: the critic sees the post in full, the context clipped. */
-const CAP = { text: 6_000, spec: 3_000, source: 3_000, profile: 1_500, playbook: 2_000, prefs: 800, examples: 2_600 } as const;
+/** Spec 067 FR-001: `source` rose from 3000 to 12000 — a library row or a whole short page comes in full. */
+const CAP = { text: 6_000, spec: 3_000, source: 12_000, profile: 1_500, playbook: 2_000, prefs: 800, examples: 2_600 } as const;
 
 /** What the critic reviews and the context it needs (spec 034 FR-004). */
 export interface CriticRequest {
@@ -159,7 +160,10 @@ export function criticUserPrompt(r: CriticRequest): string {
   if (r.source?.url || r.source?.excerpt) {
     if (r.source.url) s.push(`URL: ${r.source.url}`);
     if (r.source.passages) s.push(...criticPassageLines(r.source, r.dates?.timezone, CAP.source));
-    else s.push(r.source.excerpt ? `Фрагмент, який читав автор:\n${clip(r.source.excerpt, CAP.source)}` : 'Фрагмента джерела немає — оціни grounding за перевірюваністю тверджень.');
+    else if (r.source.excerpt) {
+      // Spec 067 FR-001: a library row comes whole (every field): what is not in it is not in the source.
+      s.push(r.source.coverage === 'full' ? 'Це весь рядок бібліотеки (усі поля): чого тут немає — немає в джерелі.' : 'Фрагмент, який читав автор:', clip(r.source.excerpt, CAP.source));
+    } else s.push('Фрагмента джерела немає — оціни grounding за перевірюваністю тверджень.');
   } else {
     s.push('Джерела немає — оціни grounding за перевірюваністю тверджень.');
   }

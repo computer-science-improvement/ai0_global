@@ -18,7 +18,7 @@ import { localDay, MONTHS_GENITIVE } from './dates';
  * names on the pages read, ≤ 6 passages, ≤ 6000 chars, instead of the page head.
  */
 
-export type ClaimKind = 'percent' | 'money' | 'count' | 'date' | 'bill';
+export type ClaimKind = 'percent' | 'money' | 'count' | 'date' | 'bill' | 'ratio';
 
 export interface PostNumber {
   /** As written in the post. */
@@ -34,7 +34,7 @@ export interface PostNumber {
   alt?: Array<{ value: number; unit: number }>;
   /** [start, end) in the text it was read from. */
   span: [number, number];
-  /** Spec 063 FR-001: a bill's canonical name («sb53» for "Senate Bill 53" and «SB 53»); the match is by name, not by value. */
+  /** Spec 063 FR-001: a bill's canonical name («sb53» for "Senate Bill 53" and «SB 53»); the match is by name, not by value. Spec 067: a ratio's «N/M». */
   key?: string;
 }
 
@@ -154,6 +154,37 @@ function scanBills(text: string): RawBill[] {
     out.push({ key: `${body}${Number(m[3])}`, text: m[0], span: [m.index!, m.index! + m[0].length] });
   }
   return out;
+}
+
+// ── spec 067 FR-001: ratios («5 з 10», "5 of 10", "5/10") ──────────────────────
+
+/** «N з M», «N із M», «N зі M», "N out of M", "N of M": a ratio, not two numbers. Not before a month («5 з 10 травня»). */
+const RATIO_WORD_RE = new RegExp(String.raw`(?<![\p{L}\p{N}.,/])(\d{1,5})${SP}+(?:з|із|зі|out${SP}+of|of)${SP}+(\d{1,5})(?![\p{N}]|[.,]\d|/\d|${SP}+${MONTH_UK_RE}(?![\p{L}]))`, 'giu');
+/** "N/M" — not inside a date («10/19/2026»: no lookbehind hit on «19/2026», no lookahead hit on «10/19»). */
+const RATIO_SLASH_RE = new RegExp(String.raw`(?<![\p{L}\p{N}.,/])(\d{1,5})${SP}?/${SP}?(\d{1,5})(?![\p{N}]|[.,]\d|/\d)`, 'gu');
+
+interface RawRatio { key: string; text: string; span: [number, number]; value: number }
+
+/** A part of a ratio that is a claim on its own once it stands alone (the rule of small numbers, years). */
+const claimPart = (p: number): boolean => p >= 10 && !(p >= 1900 && p <= 2100);
+
+/**
+ * Ratios of a text: key «N/M» for every spelling. «5 з 10 млн», «5 з 10%», «5 з 10 грн» are numbers with a unit, not
+ * ratios. On the post side a ratio is a claim only when a part is one on its own (not < 10, not a year).
+ */
+function scanRatios(text: string, post: boolean): RawRatio[] {
+  const out: RawRatio[] = [];
+  for (const re of [RATIO_WORD_RE, RATIO_SLASH_RE]) {
+    for (const m of text.matchAll(re)) {
+      const end = m.index! + m[0].length;
+      const rest = text.slice(end, end + 24);
+      if (SCALE_RE.test(rest) || PERCENT_RE.test(rest) || CURRENCY_AFTER_RE.test(rest)) continue;
+      const [a, b] = [Number(m[1]), Number(m[2])];
+      if (post && !claimPart(a) && !claimPart(b)) continue;
+      out.push({ key: `${a}/${b}`, text: m[0], span: [m.index!, end], value: b ? a / b : 0 });
+    }
+  }
+  return out.sort((x, y) => x.span[0] - y.span[0]);
 }
 
 interface RawNumber { value: number; unit: number; kind: ClaimKind; span: [number, number]; text: string; approx: boolean; version: boolean; year: boolean; bare: boolean }
@@ -278,6 +309,11 @@ export function postNumbers(text: string, o: { publishedAt?: string; timezone?: 
     masked = blank(masked, b.span[0], b.span[1]);
     out.push({ text: b.text.trim(), kind: 'bill', value: Number(b.key.replace(/\D/g, '')), unit: 1, approx: false, span: b.span, key: b.key });
   }
+  // Spec 067: «5 з 10» is one claim (the ratio 5/10); its parts are not checked on their own.
+  for (const r of scanRatios(masked, true)) {
+    masked = blank(masked, r.span[0], r.span[1]);
+    out.push({ text: r.text.trim(), kind: 'ratio', value: r.value, unit: 1, approx: false, span: r.span, key: r.key });
+  }
   for (const d of scanDates(masked, false)) {
     masked = blank(masked, d.span[0], d.span[1]);
     if (d.value === ownValue) continue;
@@ -296,7 +332,10 @@ export function postNumbers(text: string, o: { publishedAt?: string; timezone?: 
   return out.sort((a, b) => a.span[0] - b.span[0]);
 }
 
-interface SourceIndex { values: Array<{ value: number; percent: boolean; span: [number, number] }>; dates: Array<{ value: number; span: [number, number] }>; bills: Array<{ key: string; span: [number, number] }> }
+interface SourceIndex {
+  values: Array<{ value: number; percent: boolean; span: [number, number] }>; dates: Array<{ value: number; span: [number, number] }>;
+  bills: Array<{ key: string; span: [number, number] }>; ratios: Array<{ key: string; span: [number, number] }>;
+}
 
 const indexCache = new Map<string, SourceIndex>();
 
@@ -308,6 +347,8 @@ function sourceIndex(text: string): SourceIndex {
     values: [...scanNumbers(text, true), ...scanSpelled(text)].map((n) => ({ value: n.value, percent: n.kind === 'percent', span: n.span })),
     dates: scanDates(text, true).map((d) => ({ value: d.value, span: d.span })),
     bills: scanBills(text).map((b) => ({ key: b.key, span: b.span })),
+    // The source keeps its plain numbers too (a ratio's parts stay indexed): the post side blanks, this side does not.
+    ratios: scanRatios(text, false).map((r) => ({ key: r.key, span: r.span })),
   };
   if (indexCache.size > 64) indexCache.clear();
   indexCache.set(text, idx);
@@ -325,6 +366,14 @@ export function findInSource(n: PostNumber, text: string): Array<[number, number
   const idx = sourceIndex(text);
   if (n.kind === 'bill') return idx.bills.filter((b) => b.key === n.key).map((b) => b.span);
   if (n.kind === 'date') return idx.dates.filter((d) => d.value === n.value).map((d) => d.span);
+  if (n.kind === 'ratio') {
+    const same = idx.ratios.filter((r) => r.key === n.key).map((r) => r.span);
+    if (same.length) return same;
+    // Spec 067 A9: another way of writing it («5 of the 10 models»): the parts that are claims on their own, by value as before.
+    const parts = (n.key ?? '').split('/').map(Number).filter(claimPart);
+    const spans = parts.map((p) => idx.values.filter((s) => Math.abs(s.value - p) <= 0.5).map((s) => s.span));
+    return parts.length && spans.every((x) => x.length) ? spans.flat() : [];
+  }
   const readings = [{ value: n.value, unit: n.unit }, ...(n.alt ?? [])].map((r) => ({ value: r.value, tol: tolerance({ ...n, ...r }) }));
   return idx.values
     .filter((s) => (n.kind === 'percent' ? s.percent : true) && readings.some((r) => Math.abs(s.value - r.value) <= r.tol))

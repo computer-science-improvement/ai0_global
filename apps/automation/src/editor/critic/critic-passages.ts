@@ -1,5 +1,6 @@
 import { formatLocalStamp } from '../post/dates';
 import { findInSource, groundNumbers, type GroundingSource, type Passage } from '../post/grounding';
+import type { ReadSpan, SourceCoverage } from './read-capture';
 
 /**
  * Spec 037 FR-004 (T4): the critic's source block. The first 4000 chars of a page are mostly navigation and the
@@ -18,6 +19,12 @@ export interface CriticSourceContext {
   passages?:    Passage[];
   /** Code's check of the post's numbers and dates against every text the run read (absent = nothing to check). */
   grounding?:   CriticGroundingCheck | null;
+  /** Spec 067 FR-001: how much of the cited source the author read (absent = unknown, as before). */
+  coverage?:    SourceCoverage;
+  /** `full`: the whole cited page; the critic is told that what is not in it is not in the source. */
+  page?:        string;
+  /** `read`: what the author read of a big document — all of it (`spans`, with offsets) or, over the display cap, only `size` / `chars` and the passages. */
+  read?:        { size: number; chars: number; spans?: ReadSpan[] };
 }
 
 /**
@@ -64,25 +71,60 @@ export const PASSAGES_CAP = 8_000;
 
 const day = (s: string) => (/^\d{4}-\d{2}-\d{2}$/.test(s) ? `${s.slice(8, 10)}.${s.slice(5, 7)}.${s.slice(0, 4)}` : null);
 
-/** The lines of the critic prompt's source block after the URL line (a page with passages). */
+/** Spec 067 FR-001: the most of a big document's read parts the critic is shown whole (over it: passages around the claims). */
+export const READ_DISPLAY_CAP = 12_000;
+
+/** The numbered passages (a page's own, then other pages', labelled) within PASSAGES_CAP chars. */
+function passageEntries(s: CriticSourceContext, from = 0): string[] {
+  const out: string[] = [];
+  let used = 0;
+  (s.passages ?? []).forEach((p, i) => {
+    if (used >= PASSAGES_CAP) return;
+    const text = p.text.slice(0, PASSAGES_CAP - used);
+    used += text.length;
+    const other = s.url && p.url !== s.url ? ` (інша прочитана сторінка: ${p.url})` : '';
+    out.push(`[${from + i + 1}]${other} про ${p.about.map((a) => `«${a}»`).join(', ')}:\n${text}`);
+  });
+  return out;
+}
+
+/** The lines of the critic prompt's source block after the URL line (a page the run read). */
 export function criticPassageLines(s: CriticSourceContext, timezone = 'Europe/Kyiv', headCap = 3_000): string[] {
   const out: string[] = [];
   const when = s.publishedAt ? day(s.publishedAt) ?? formatLocalStamp(s.publishedAt, timezone) : null;
   out.push(`Сторінка: ${s.title ? `«${s.title}»` : 'без заголовка'}; опублікована: ${when ?? 'дата невідома'}.`);
   const passages = s.passages ?? [];
+  // Spec 067 FR-001: a short page (or a document up to 12k) comes whole; what is not on it is not in the source.
+  if (s.coverage === 'full' && s.page) {
+    out.push('Це весь текст сторінки: чого тут немає — немає в джерелі.', s.page);
+    if (passages.length) {
+      out.push('Уривки з інших сторінок, які прочитав автор (±400 знаків) — факт з іншої сторінки теж є в джерелах:', ...passageEntries(s));
+    }
+    return out;
+  }
+  // Spec 067 FR-001: of a big document only what the author read; the rest of it may hold the fact.
+  if (s.coverage === 'read' && s.read) {
+    const of = `${s.read.chars} з ${s.read.size} знаків`;
+    const note = 'Чого тут немає, автор не читав — це не доказ, що факту немає в джерелі: став grounding 3 з приміткою, не ≤ 2. Підстава для ≤ 2 — лише число, якого немає у цих частинах і яке код не знайшов у жодному прочитаному тексті.';
+    if (s.read.spans) {
+      out.push(`Що автор прочитав у документі (${of}); перед кожною частиною — її місце в документі:`);
+      for (const sp of s.read.spans) out.push(`[знаки ${sp.from}–${sp.to}]\n${sp.text}`);
+      if (passages.length) out.push('Уривки з інших сторінок, які прочитав автор (±400 знаків):', ...passageEntries(s));
+    } else if (passages.length) {
+      out.push(`Що автор прочитав у документі (${of}); ось уривки навколо чисел і назв поста (±400 знаків) — звір із ними кожне число й факт, зокрема що саме число означає:`, ...passageEntries(s));
+    } else {
+      out.push(`Що автор прочитав у документі (${of}). Чисел і назв поста у прочитаному не знайдено — кожне число й факт поста неперевірені (grounding).`);
+      if (s.excerpt) out.push(`Початок прочитаного:\n${s.excerpt.slice(0, headCap)}`);
+    }
+    out.push(note);
+    return out;
+  }
   if (!passages.length) {
     out.push('Чисел і назв поста на прочитаних сторінках не знайдено — кожне число й факт поста неперевірені (grounding).');
     if (s.excerpt) out.push(`Початок сторінки:\n${s.excerpt.slice(0, headCap)}`);
     return out;
   }
   out.push('Уривки навколо чисел і назв поста (±400 знаків, не початок сторінки) — звір із ними кожне число й факт, зокрема що саме число означає:');
-  let used = 0;
-  passages.forEach((p, i) => {
-    if (used >= PASSAGES_CAP) return;
-    const text = p.text.slice(0, PASSAGES_CAP - used);
-    used += text.length;
-    const other = s.url && p.url !== s.url ? ` (інша прочитана сторінка: ${p.url})` : '';
-    out.push(`[${i + 1}]${other} про ${p.about.map((a) => `«${a}»`).join(', ')}:\n${text}`);
-  });
+  out.push(...passageEntries(s));
   return out;
 }

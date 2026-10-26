@@ -25,6 +25,7 @@ import { CriticGate } from '../critic/critic-gate';
 import { slotSkillsContext } from '../critic/critic-skills';
 import { examplesPromptSection } from '../network/playbook';
 import type { CriticService } from '../critic/critic.service';
+import type { DocStore } from '../docs/doc-store';
 import type { InboxItemInput } from '../agents/owner-inbox';
 import { PREVIEW_FEATURE, PROBE_FEATURE, PreviewSink, previewWithoutRun, type SlotPreview } from './preview-run';
 import { SkillOverlay, type SkillOverride } from '../skills/skill-overlay';
@@ -119,6 +120,8 @@ export interface EditorRunnerDeps {
     service:      Pick<CriticService, 'review'>;
     inbox?:       (i: InboxItemInput) => Promise<unknown>;
     libraryText?: (ref: string) => Promise<string | null>;
+    /** Spec 067 FR-001: the store read_doc / find_in_doc read — the critic then sees the parts of a big document the writer read. */
+    docs?:        Pick<DocStore, 'get' | 'urlOf'>;
   };
   /**
    * Spec 037 FR-010: the daily budget check the fallback ladder runs before each extra step (BudgetService.check:
@@ -283,8 +286,8 @@ export class EditorRunnerService {
     return new CriticGate(
       // A dry-run preview (spec 034 FR-012): the verdict goes to the preview, never onto the slot or into the Inbox.
       dry
-        ? { critic: this.d.critic.service, plans: dry.plans, libraryText: this.d.critic.libraryText }
-        : { critic: this.d.critic.service, plans: this.d.plans, inbox: this.d.critic.inbox, libraryText: this.d.critic.libraryText },
+        ? { critic: this.d.critic.service, plans: dry.plans, libraryText: this.d.critic.libraryText, docs: this.d.critic.docs }
+        : { critic: this.d.critic.service, plans: this.d.plans, inbox: this.d.critic.inbox, libraryText: this.d.critic.libraryText, docs: this.d.critic.docs },
       {
         slotId: slot.id, channelKey: card.channelKey, mode: target.mode, resourceRef: target.ref, platform: target.platform,
         topic: slot.topic, angle: slot.angle, card: { models: card.models, dailyBudgetUsd: card.dailyBudgetUsd, language: card.language }, voice: target.voice,

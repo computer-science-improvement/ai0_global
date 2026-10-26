@@ -135,3 +135,33 @@ test('063 FR-001: the critic passages find the sentence that spells a number or 
   assert.match(ps[0].text, /over a billion dollars and backed Senate Bill 53/);
   assert.deepEqual(ps[0].about, ['$1 млрд', 'SB 53']);
 });
+
+test('067 FR-001: «N з M», "N of M" and N/M are one ratio claim, matched by key (case a902605d: «5 з 10» against "5/10")', () => {
+  const miss = (post: string, src: string) => groundNumbers(post, [{ url: 'u', text: src }]).missing.map((n) => n.text);
+  assert.deepEqual(values('Рівно 5 з 10 моделей пройшли тест.'), [['5 з 10', 'ratio', 0.5]], 'one claim, the parts are not checked on their own');
+  assert.equal(postNumbers('Рівно 5 з 10 моделей.')[0].key, '5/10');
+  // The source writes the same ratio any way.
+  for (const src of ['Passed: 5/10 models.', '5 of 10 models passed.', '5 out of 10 models passed.', 'Пройшли 5 з 10 моделей.', 'Пройшли 5 із 10 моделей.', 'Score 5 / 10.']) {
+    assert.deepEqual(miss('Рівно 5 з 10 моделей пройшли тест.', src), [], src);
+  }
+  for (const post of ['5 із 10 моделей', '5 out of 10 models', '5 of 10 models', '5/10 моделей']) {
+    assert.deepEqual(miss(post, 'Passed: 5/10 models.'), [], post);
+  }
+  // Another way of writing it (the denominator is in the source): as before, by value of the parts that are claims.
+  assert.deepEqual(miss('Рівно 5 з 10 моделей.', 'Five of the 10 models passed (10 tested).'), []);
+  assert.deepEqual(miss('Рівно 5 з 10 моделей.', 'Seven of the 12 models passed.'), ['5 з 10'], 'a real miss stays a miss');
+  // Small numbers are not claims: nothing to check, as before.
+  assert.deepEqual(values('3 з 5 причин очевидні.'), []);
+  // A ratio with a unit is a number with a unit.
+  assert.deepEqual(values('5 з 10 млн користувачів'), [['10 млн', 'count', 1e7]]);
+  assert.deepEqual(values('Знижка 5 з 10%'), [['10%', 'percent', 10]]);
+});
+
+test('067 FR-001: dates written with slashes are not ratios', () => {
+  const miss = (post: string, src: string) => groundNumbers(post, [{ url: 'u', text: src }], AT).missing.map((n) => n.text);
+  assert.deepEqual(miss('Роздача до 19 жовтня.', 'Offer ends 10/19/2026 11:59 PM UTC.'), []);
+  assert.deepEqual(miss('Роздача до 20 жовтня.', 'Offer ends 10/19/2026 11:59 PM UTC.'), ['20 жовтня']);
+  assert.deepEqual(postNumbers('Див. 10/19/2026 і 5/10/2026.').filter((n) => n.kind === 'ratio'), []);
+  assert.deepEqual(values('Роздача з 5 по 10 травня'), [['10 травня', 'date', 510]]);
+  assert.deepEqual(values('Із 5 з 10 травня'), [['10 травня', 'date', 510]], 'before a month name the second number is a date');
+});

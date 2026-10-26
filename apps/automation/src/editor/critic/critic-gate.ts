@@ -15,7 +15,10 @@ import type { AuditSource } from '../post/integrity/types';
 import type { CriticDates } from './critic-dates';
 import type { CriticStoryContext } from '../story/story-context';
 import { sourcePassages, type GroundingSource, type SourcePage } from '../post/grounding';
-import { groundingCheckOf } from './critic-passages';
+import { groundingCheckOf, READ_DISPLAY_CAP } from './critic-passages';
+import { lowerCoverage, PAGE_CAP, ReadCapture, type SourceCoverage } from './read-capture';
+import { LIBRARY_ROW_CAP } from './critic-source';
+import type { DocStore } from '../docs/doc-store';
 import { criticMediaOf } from './critic-media';
 import { storedSourcesOf, type StoredSource } from './stored-sources';
 import { applySpecEdits, lintFixes, type TextEdit } from './spec-edits';
@@ -74,6 +77,11 @@ export interface CriticGateDeps {
   inbox?: (i: InboxItemInput) => Promise<unknown>;
   /** Text of a library / data row behind `library_ref` (the critic's source excerpt). */
   libraryText?: (ref: string) => Promise<string | null>;
+  /**
+   * Spec 067 FR-001: the store `read_doc` / `find_in_doc` read, so the critic sees the parts of a big document the
+   * author read. The gate never makes one (tests inject `new DocStore()`).
+   */
+  docs?: Pick<DocStore, 'get' | 'urlOf'>;
 }
 
 /** The slot and resource context of one executor run (built by the runner). */
@@ -104,9 +112,14 @@ export interface CriticGateContext {
   steering?:    SteeringPromptRule[] | null;
 }
 
-const SOURCE_CAP = 4_000;
+/** Spec 067 FR-001: the head of a page the critic gets as an excerpt (a library row is up to LIBRARY_ROW_CAP). */
+const SOURCE_CAP = 12_000;
+/** The start of what was read the critic gets when nothing of the post is in a big document's parts (the rest is nav and noise). */
+const READ_HEAD_CAP = 3_000;
 /** Spec 037 T4: a page read in the run is kept whole (up to this), for grounding and the critic's passages. */
-export const PAGE_CAP = 60_000;
+export { PAGE_CAP };
+
+const READ_TOOLS = new Set(['web_fetch', 'fetch_feed', 'extract_images', 'read_doc', 'find_in_doc']);
 
 const normUrl = (u: string): string => u.trim().replace(/#.*$/, '').replace(/\/+$/, '').toLowerCase();
 const hashOf = (v: unknown): string => createHash('sha256').update(JSON.stringify(v ?? null)).digest('hex');
@@ -141,7 +154,8 @@ export class CriticGate {
   private first: StoredCritic | null = null;
   /** The spec that already proceeded: a retry of the same post after a later error is not reviewed again. */
   private proceeded: { hash: string; critic: StoredCritic; edited?: EditedSpec } | null = null;
-  private readonly fetched = new Map<string, string>();
+  /** Spec 067 FR-001: the text of every page, document part and feed item the run read (`readTextOf`). */
+  private readonly capture: ReadCapture;
   /** Spec 037 T5: what the run read, with the publication date when the page or the feed item gave one. */
   private readonly read = new Map<string, AuditSource>();
   /** Spec 037 T4: an aggregator page's links to the primary source (web_fetch `primary_links`). */
@@ -151,12 +165,17 @@ export class CriticGate {
   /** Spec 037 T17: every image of each page read a news post may use (web_fetch / extract_images `images`). */
   private readonly pageImages = new Map<string, string[]>();
 
-  constructor(private readonly d: CriticGateDeps, readonly c: CriticGateContext) {}
+  constructor(private readonly d: CriticGateDeps, readonly c: CriticGateContext) {
+    this.capture = new ReadCapture(d.docs);
+  }
 
-  /** Wrap the run's read tools so the critic sees the source text the executor read (web_fetch, fetch_feed). */
+  /**
+   * Wrap the run's read tools so the critic sees the source text the executor read (web_fetch, fetch_feed and, spec 067,
+   * the parts of a big document read_doc / find_in_doc returned).
+   */
   wrapTools(tools: EditorTool[]): EditorTool[] {
     return tools.map((t) => {
-      if (t.name !== 'web_fetch' && t.name !== 'fetch_feed' && t.name !== 'extract_images') return t;
+      if (!READ_TOOLS.has(t.name)) return t;
       return {
         ...t,
         execute: async (input: any, ctx: ToolContext) => {
@@ -174,9 +193,14 @@ export class CriticGate {
       if (typeof input?.url === 'string') this.rememberImages(input.url, out?.og_image, out?.images);
       return;
     }
+    if (tool === 'read_doc' || tool === 'find_in_doc') {
+      // A document read without a web_fetch in this run: its address comes from the store, and it counts as read.
+      const url = tool === 'read_doc' ? this.capture.readDoc(input, out) : this.capture.findInDoc(input, out);
+      if (url && !this.read.has(normUrl(url))) this.read.set(normUrl(url), { url, publishedAt: null, title: null });
+      return;
+    }
     if (tool === 'web_fetch') {
-      const text = [out?.title, out?.description, out?.text].filter((x) => typeof x === 'string' && x.trim()).join('\n');
-      for (const u of [input?.url, out?.url]) if (typeof u === 'string' && text) this.fetched.set(normUrl(u), text.slice(0, PAGE_CAP));
+      this.capture.webFetch(input, out);
       for (const u of [input?.url, out?.url]) if (typeof u === 'string') this.read.set(normUrl(u), { url: u, publishedAt: normalizePublishedAt(out?.published_at), title: out?.title ?? null });
       const primary = Array.isArray(out?.primary_links) ? out.primary_links.filter((x: unknown): x is string => typeof x === 'string') : [];
       for (const u of [input?.url, out?.url]) if (typeof u === 'string' && primary.length) this.primary.set(normUrl(u), primary);
@@ -188,7 +212,7 @@ export class CriticGate {
       if (typeof it?.link !== 'string') continue;
       if (!this.read.has(normUrl(it.link))) this.read.set(normUrl(it.link), { url: it.link, publishedAt: normalizePublishedAt(it.date), title: it.title ?? null });
       const text = [it.title, it.date ? `(${it.date})` : null, it.snippet].filter(Boolean).join(' ');
-      if (text && !this.fetched.has(normUrl(it.link))) this.fetched.set(normUrl(it.link), text.slice(0, PAGE_CAP));
+      if (text && !this.capture.has(it.link)) this.capture.feedItem(it.link, text);
     }
   }
 
@@ -199,25 +223,58 @@ export class CriticGate {
     this.pageImages.set(normUrl(url), [...new Set(all)].slice(0, 10));
   }
 
+  /**
+   * Spec 067 FR-001: what the critic is shown of the cited source — the whole page (`full`), the parts of a big
+   * document the author read (`read`), or the head / a feed item / a library row — and how much of the source that is.
+   * The lowest coverage among the cited sources (the page, the library row) is the one reported.
+   */
   private async source(spec: any, post?: CriticPost): Promise<CriticRequest['source']> {
     const url: string | null = typeof spec?.source?.url === 'string' ? spec.source.url : null;
+    const ref: string | null = typeof spec?.library_ref === 'string' ? spec.library_ref : null;
+    const dates = { publishedAt: post?.publishAt, timezone: post?.timezone };
+    const cited = url ? this.capture.readTextOf(url) : null;
+    const lib = ref && this.d.libraryText ? await this.d.libraryText(ref).catch(() => null) : null;
+    // A library row at the cap was clipped: the critic read a part of it.
+    const parts: SourceCoverage[] = [...(cited ? [cited.coverage] : []), ...(lib ? [lib.length >= LIBRARY_ROW_CAP ? 'read' as const : 'full' as const] : [])];
+    const coverage: SourceCoverage = parts.length ? parts.reduce(lowerCoverage) : 'none';
     // Spec 037 T4: a page the run read gives the critic its title, date and the passages around the post's claims.
-    const page = url ? this.fetched.get(normUrl(url)) : undefined;
-    if (url && page && post) {
+    if (url && cited && post) {
       const meta = this.read.get(normUrl(url));
-      const pages: SourcePage[] = [{ url, text: page, title: meta?.title ?? null },
-        ...[...this.fetched.entries()].filter(([k]) => k !== normUrl(url)).map(([k, text]) => ({ url: this.read.get(k)?.url ?? k, text, title: this.read.get(k)?.title ?? null }))];
-      const passages = sourcePassages(post.text, pages, { publishedAt: post.publishAt, timezone: post.timezone });
-      const grounding = groundingCheckOf(post.text, await this.textsRead(spec), { publishedAt: post.publishAt, timezone: post.timezone });
-      return { url, excerpt: passages.length ? null : page.slice(0, SOURCE_CAP), title: meta?.title ?? null, publishedAt: meta?.publishedAt ?? null, passages, grounding };
+      const base = { url, title: meta?.title ?? null, publishedAt: meta?.publishedAt ?? null, coverage };
+      const grounding = groundingCheckOf(post.text, await this.textsRead(spec), dates);
+      // The other pages the run read (one document under two addresses is one page).
+      const seen = new Set([cited.text]);
+      const others: SourcePage[] = [];
+      for (const k of this.capture.keys()) {
+        if (k === normUrl(url)) continue;
+        const t = this.capture.readTextOf(k);
+        if (!t || seen.has(t.text)) continue;
+        seen.add(t.text);
+        others.push({ url: this.read.get(k)?.url ?? k, text: t.text, title: this.read.get(k)?.title ?? null });
+      }
+      if (cited.coverage === 'full') {
+        // The whole page is shown: passages only for what the other pages hold.
+        return { ...base, excerpt: null, page: cited.text, passages: others.length ? sourcePassages(post.text, others, dates) : [], grounding };
+      }
+      if (cited.coverage === 'read') {
+        const spans = cited.spans ?? [];
+        const read = { size: cited.size, chars: cited.chars };
+        if (cited.chars <= READ_DISPLAY_CAP) {
+          return { ...base, excerpt: null, read: { ...read, spans }, passages: others.length ? sourcePassages(post.text, others, dates) : [], grounding };
+        }
+        // Too much to show whole: the passages around the post's claims in the parts read, then in the other pages.
+        const asPages: SourcePage[] = spans.map((sp) => ({ url, text: sp.text, title: meta?.title ?? null }));
+        const passages = sourcePassages(post.text, [...asPages, ...others], dates);
+        return { ...base, excerpt: passages.length ? null : (spans[0]?.text ?? '').slice(0, READ_HEAD_CAP), read, passages, grounding };
+      }
+      const pages: SourcePage[] = [{ url, text: cited.text, title: meta?.title ?? null }, ...others];
+      const passages = sourcePassages(post.text, pages, dates);
+      return { ...base, excerpt: passages.length ? null : cited.text.slice(0, SOURCE_CAP), passages, grounding };
     }
-    let excerpt = url ? this.fetched.get(normUrl(url)) ?? null : null;
-    if (!excerpt && typeof spec?.library_ref === 'string' && this.d.libraryText) {
-      excerpt = await this.d.libraryText(spec.library_ref).catch(() => null);
-    }
+    const excerpt = cited?.text ?? lib;
     if (!url && !excerpt) return null;
-    const grounding = post ? groundingCheckOf(post.text, await this.textsRead(spec), { publishedAt: post.publishAt, timezone: post.timezone }) : null;
-    return { url: url ?? (typeof spec?.library_ref === 'string' ? spec.library_ref : null), excerpt: excerpt ? excerpt.slice(0, SOURCE_CAP) : null, grounding };
+    const grounding = post ? groundingCheckOf(post.text, await this.textsRead(spec), dates) : null;
+    return { url: url ?? ref, excerpt: excerpt ? excerpt.slice(0, SOURCE_CAP) : null, grounding, coverage };
   }
 
   /** Every text the run read (pages ≤ 60k, feed items' title + snippet) and the spec's library row, for grounding. */
@@ -238,7 +295,7 @@ export class CriticGate {
    */
   async groundingSources(spec?: { library_ref?: string | null } | null): Promise<AuditSource[]> {
     const out: AuditSource[] = this.sources().map((s) => {
-      const text = this.fetched.get(normUrl(s.url));
+      const text = this.capture.readTextOf(s.url)?.text;
       const primary = this.primary.get(normUrl(s.url));
       const image = this.images.has(normUrl(s.url)) ? { image: this.images.get(normUrl(s.url)) ?? null } : {};
       const images = this.pageImages.get(normUrl(s.url));
