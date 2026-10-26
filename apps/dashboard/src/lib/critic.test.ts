@@ -12,7 +12,7 @@ const v = (o: Partial<CriticVerdict> = {}): CriticVerdict => ({
 test('verdictBadge: "Critic: pass/revise/reject" with tones; a final revise and an unavailable critic say so', () => {
   assert.deepEqual(verdictBadge(v()), { label: 'Critic: pass', tone: 'success' });
   assert.deepEqual(verdictBadge(v({ verdict: 'revise' })), { label: 'Critic: revise', tone: 'warning' });
-  assert.equal(verdictBadge(v({ verdict: 'revise', final: true })).label, 'Critic: revise (after one rewrite)');
+  assert.equal(verdictBadge(v({ verdict: 'revise', final: true, pass: 2 })).label, 'Critic: revise (after one rewrite)');
   assert.deepEqual(verdictBadge(v({ verdict: 'reject' })), { label: 'Critic: reject', tone: 'danger' });
   assert.deepEqual(verdictBadge(v({ verdict: 'error' })), { label: 'Critic: unavailable', tone: 'neutral' });
 });
@@ -32,7 +32,11 @@ test('held from "Approve all" unless pass; footnotes per place', () => {
   assert.equal(heldByCritic(v()), false);
   assert.equal(heldByCritic(v({ verdict: 'revise', final: true })), true);
   assert.equal(heldByCritic(v({ verdict: 'error' })), true);
-  assert.match(criticFootnote(v({ verdict: 'revise', final: true }), 'approval')!, /rewrote it once/);
+  assert.match(criticFootnote(v({ verdict: 'revise', final: true, pass: 2 }), 'approval')!, /rewrote it once/);
+  // Spec 067 FR-004: a final revise on the first pass means the slot's critic allowance was used up: no rewrite happened.
+  assert.match(criticFootnote(v({ verdict: 'revise', final: true, pass: 1 }), 'approval')!, /used up its critic runs/);
+  assert.equal(verdictBadge(v({ verdict: 'revise', final: true, pass: 1 })).label, 'Critic: revise');
+  assert.equal(verdictBadge(v({ verdict: 'revise', final: true, pass: 2 })).label, 'Critic: revise (after one rewrite)');
   assert.match(criticFootnote(v({ verdict: 'error' }), 'approval')!, /did not answer/);
   assert.equal(criticFootnote(v(), 'approval'), null);
   assert.equal(criticFootnote(v({ pass: 2 }), 'approval'), 'Passed after one rewrite.');

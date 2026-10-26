@@ -65,10 +65,11 @@ export const SCORE_HINT: Record<CriticScoreKey, string> = {
 };
 
 /** Badge copy and tone of a verdict ("Critic: pass"). */
-export function verdictBadge(c: Pick<CriticVerdict, 'verdict' | 'final'>): { label: string; tone: Tone } {
+export function verdictBadge(c: Pick<CriticVerdict, 'verdict' | 'final'> & { pass?: number }): { label: string; tone: Tone } {
   switch (c.verdict) {
     case 'pass':   return { label: 'Critic: pass', tone: 'success' };
-    case 'revise': return { label: c.final ? 'Critic: revise (after one rewrite)' : 'Critic: revise', tone: 'warning' };
+    // Spec 067: `final` on the first pass means the slot had used up its critic runs, so there was no rewrite.
+    case 'revise': return { label: c.final && (c.pass ?? 2) > 1 ? 'Critic: revise (after one rewrite)' : 'Critic: revise', tone: 'warning' };
     case 'reject': return { label: 'Critic: reject', tone: 'danger' };
     default:       return { label: 'Critic: unavailable', tone: 'neutral' };
   }
@@ -100,7 +101,11 @@ export function criticFootnote(c: Pick<CriticVerdict, 'verdict' | 'final' | 'pas
   if (where === 'preview') return 'The critic read this dry-run preview; the real post is reviewed again when it is written.';
   if (where === 'slot') return c.verdict === 'pass' && c.pass > 1 ? 'Passed after one rewrite.' : null;
   if (c.verdict === 'error') return 'The critic did not answer, so this post waits for you and is left out of "Approve all".';
-  if (c.verdict === 'revise' && c.final) return 'The agent rewrote it once and the critic still asks for changes. Decide yourself; it is left out of "Approve all".';
+  if (c.verdict === 'revise' && c.final) {
+    return c.pass > 1
+      ? 'The agent rewrote it once and the critic still asks for changes. Decide yourself; it is left out of "Approve all".'
+      : 'The critic asks for changes, but this slot had used up its critic runs, so the agent could not rewrite it. Decide yourself; it is left out of "Approve all".';
+  }
   if (c.verdict === 'pass' && c.pass > 1) return 'Passed after one rewrite.';
   return null;
 }

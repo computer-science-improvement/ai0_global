@@ -34,7 +34,7 @@ import { alreadyUsedBlock } from '../post/variety/monotony';
 import { intersectAllow, type LoadoutService } from '../loadout/loadout.service';
 import type { AuditPost } from '../post/integrity/types';
 import {
-  classifyFailure, isRescued, LADDER_MAX_LATE_MS, ladderNote, ladderPlan, MAX_CRITIC_PASSES_PER_SLOT, MAX_LADDER_EXTRA_STEPS, priorCriticPasses, criticPasses, PublishProbe, stepRecord,
+  classifyFailure, isRescued, LADDER_MAX_LATE_MS, ladderNote, ladderPlan, MAX_CRITIC_PASSES_PER_SLOT, MAX_LADDER_EXTRA_STEPS, passBudgetFor, pinLevelOf, priorCriticPasses, criticPasses, PublishProbe, stepRecord,
   type FallbackFinal, type FallbackStepRecord, type LadderStep, type SlotFailure,
 } from '../silent/fallback-ladder';
 import { EvergreenProbe } from '../silent/evergreen';
@@ -223,8 +223,14 @@ export function lintOnce(tool: EditorTool, onSecond: (details: unknown) => Promi
   };
 }
 
+/**
+ * Spec 067 FR-003 / FR-004: what an attempt may spend in the critic and the level it starts at. `passBudget` is
+ * min(2, 3 − critic passes the slot used so far); `pinLevel` is `high` once an earlier attempt's critic was high.
+ */
+export interface AttemptOpts { passBudget: number; pinLevel: 'high' | null }
+
 /** One executor attempt of a slot (Telegram or platform), with the probe of its publish-tool errors. */
-type Attempt = (slot: EditorSlot, note: string | null, scan: LiveScan | null, probe: PublishProbe) => Promise<AgentLoopResult>;
+type Attempt = (slot: EditorSlot, note: string | null, scan: LiveScan | null, probe: PublishProbe, opts?: AttemptOpts) => Promise<AgentLoopResult>;
 
 /** The extras that record the run's publish-tool errors (spec 037 FR-010). */
 const probed = (probe: PublishProbe | null): Record<string, unknown> => (probe ? { wrapTools: (t: EditorTool[]) => probe.wrap(t) } : {});
@@ -273,7 +279,7 @@ export class EditorRunnerService {
   private async criticGate(
     slot: EditorSlot, card: EditorCard, ctx: RunAgentContext | null,
     target: { ref: string; platform: string; mode: 'live' | 'shadow' | 'approve'; voice: VoicePrefs }, pc?: PlatformContext,
-    dry: PreviewSink | null = null,
+    dry: PreviewSink | null = null, opts: AttemptOpts | null = null,
   ): Promise<CriticGate | null> {
     if (!this.d.critic) return null;
     const context = pc !== undefined ? pc : this.d.platformContext
@@ -300,6 +306,8 @@ export class EditorRunnerService {
         // Spec 037 FR-012: the critic judges with the writer's skills (resource tone, format, topic).
         skills: slotSkillsContext(slot, card, ctx?.skills ?? this.d.skills),
         ownerRules, steering,
+        // Spec 067: the slot's critic allowance and level (absent for a preview, a skill probe and an adapt: the defaults).
+        ...(opts ? { passBudget: opts.passBudget, pinLevel: opts.pinLevel } : {}),
       },
     );
   }
@@ -431,9 +439,9 @@ export class EditorRunnerService {
       return this.skipByCode(slot, noFreshReason(slot.liveSpec, scan));
     }
     const target = slot.resourceRef ? parseResourceRef(slot.resourceRef) : null;
-    const attempt: Attempt = (s, n, sc, probe) => target && target.platform !== 'telegram'
-      ? this.runPlatformExecutor(s, card, ctx, target.platform, n, sc, null, probe)
-      : this.runTelegramExecutor(s, card, ctx, n, sc, null, probe);
+    const attempt: Attempt = (s, n, sc, probe, opts) => target && target.platform !== 'telegram'
+      ? this.runPlatformExecutor(s, card, ctx, target.platform, n, sc, null, probe, opts)
+      : this.runTelegramExecutor(s, card, ctx, n, sc, null, probe, opts);
     // Spec 046 FR-005: a slot that cannot afford a whole run waits for the budget instead of starting and failing.
     if (this.d.budget) {
       const b = await this.d.budget(card, EditorRunnerService.agentBudget(ctx)).catch(() => ({ ok: true as const }));
@@ -441,11 +449,14 @@ export class EditorRunnerService {
     }
     // Spec 053 FR-007: critic passes count across the slot's attempts — a retry does not start a fresh allowance.
     const priorPasses = priorCriticPasses(slot.fallback);
-    if (priorPasses >= MAX_CRITIC_PASSES_PER_SLOT) {
+    // Spec 067 FR-004: the allowance of this attempt is what the slot's cap leaves (2 at most), so the cap of 3 holds for the whole slot.
+    const passBudget = passBudgetFor(priorPasses);
+    if (passBudget <= 0) {
       return this.skipByCode(slot, `critic_cap: ${priorPasses} critic passes on this slot (cap ${MAX_CRITIC_PASSES_PER_SLOT})`);
     }
     const probe = new PublishProbe();
-    const first = await attempt(slot, note ?? null, scan, probe);
+    // Spec 067 FR-003: after the 15-minute retry the critic keeps the level an earlier attempt of the slot ran at.
+    const first = await attempt(slot, note ?? null, scan, probe, { passBudget, pinLevel: pinLevelOf(slot.fallback) });
     await this.d.plans.updateSlot(slot.id, { runId: first.runId });
     // Spec 037 FR-010: a post the critic rejected or that failed lint / a guard climbs the fallback ladder.
     const res = await this.fallback(slot, card, ctx, { note: note ?? null, scan, platform: target?.platform ?? 'telegram' }, first, probe, attempt);
@@ -526,10 +537,13 @@ export class EditorRunnerService {
     for (const st of plan) {
       if (ran >= (this.d.ladder?.maxExtraSteps ?? MAX_LADDER_EXTRA_STEPS)) break;
       const passes = steps.reduce((n, x) => n + (x.critic_passes ?? 0), 0);
-      if (passes >= MAX_CRITIC_PASSES_PER_SLOT) {
+      // Spec 067 FR-004: the step gets what is left of the cap (1 after a revise + rewrite), so the slot never exceeds 3 passes.
+      const passBudget = passBudgetFor(passes);
+      if (passBudget <= 0) {
         final = { outcome: 'skipped', code: 'critic_cap', step: last, reason: `${passes} critic passes on this slot (cap ${MAX_CRITIC_PASSES_PER_SLOT})` };
         break;
       }
+      const opts: AttemptOpts = { passBudget, pinLevel: pinLevelOf({ steps }) };
       // Budget: a run that hit a cap, or the caps on the usage ledger (executor + critic spend so far today).
       if (res.status === 'budget_exceeded') { final = { outcome: 'skipped', code: 'budget', step: last, reason: res.error ?? 'budget_exceeded' }; break; }
       if (this.now().getTime() - slot.scheduledAt.getTime() > maxLate) {
@@ -559,8 +573,8 @@ export class EditorRunnerService {
       const stepSlot: EditorSlot = { ...slot, format: st.format };
       last = st.step;
       const r = st.step === 'evergreen'
-        ? await this.d.fallbackEvergreen!({ slot: stepSlot, card, failure, steps: [...steps], run: (e) => attempt(e.slot, e.note, null, p) }).catch(() => null)
-        : await attempt(stepSlot, [o.note, ladderNote(st.step, { failure, format: st.format, original: slot.format, avoid, live })].filter(Boolean).join('\n'), scan, p);
+        ? await this.d.fallbackEvergreen!({ slot: stepSlot, card, failure, steps: [...steps], run: (e) => attempt(e.slot, e.note, null, p, opts) }).catch(() => null)
+        : await attempt(stepSlot, [o.note, ladderNote(st.step, { failure, format: st.format, original: slot.format, avoid, live })].filter(Boolean).join('\n'), scan, p, opts);
       if (!r) { steps.push(skipped(st.step, st.format, 'unavailable', 'no evergreen post today')); continue; }
       ran++;
       res = r;
@@ -599,7 +613,7 @@ export class EditorRunnerService {
   /** The Telegram executor run of a slot (`dry`: the owner's dry-run preview, spec 034 FR-012). */
   private async runTelegramExecutor(
     slot: EditorSlot, card: EditorCard, ctx: RunAgentContext | null, note: string | null, scan: LiveScan | null, dry: PreviewSink | null = null,
-    probe: PublishProbe | null = null,
+    probe: PublishProbe | null = null, opts: AttemptOpts | null = null,
   ): Promise<AgentLoopResult> {
     const tgRef = `telegram:${card.channelKey}`;
     // The Telegram resource's own context (playbook section, examples): the critic's and the few-shot's (spec 034 T5).
@@ -610,7 +624,7 @@ export class EditorRunnerService {
       ref: tgRef, platform: 'telegram',
       mode: card.mode === 'live' || card.mode === 'approve' ? card.mode : 'shadow',
       voice: { humor: card.humor, slang: card.slang, emoji: card.emojiPref, style: card.style },
-    }, tgContext ?? undefined, dry);
+    }, tgContext ?? undefined, dry, opts);
     return this.run('executor', card, [await this.executorUser(card, slot, ctx, scan), note].filter(Boolean).join('\n'), slot.id,
       EditorRunnerService.withGate(EditorRunnerService.dryExtras({ excludeTools: PLATFORM_ONLY, examples: tgContext?.examples ?? null, ...probed(probe) }, dry), gate), ctx);
   }
@@ -782,7 +796,7 @@ export class EditorRunnerService {
   /** A slot that targets Instagram / Facebook / Threads / TikTok of the channel's network (spec 019 FR-008). */
   private async runPlatformExecutor(
     slot: EditorSlot, card: EditorCard, ctx: RunAgentContext | null, platform: string, note: string | null = null, scan: LiveScan | null = null,
-    dry: PreviewSink | null = null, probe: PublishProbe | null = null,
+    dry: PreviewSink | null = null, probe: PublishProbe | null = null, opts: AttemptOpts | null = null,
   ): Promise<AgentLoopResult> {
     const pc = this.d.platformContext ? await this.d.platformContext(slot, ctx?.orchestrator?.id ?? null).catch(() => null) : null;
     const skills = ctx?.skills ?? this.d.skills;
@@ -846,7 +860,7 @@ export class EditorRunnerService {
       resourceRef: slot.resourceRef!, mode, maxPerDay: pc?.maxPerDay ?? null, vocabulary: pc?.vocabulary ?? [], bannedTerms: card.bannedTerms,
       agentId: ctx?.agent?.id ?? null, voice,
     };
-    const gate = await this.criticGate(slot, card, ctx, { ref: slot.resourceRef!, platform, mode, voice }, pc, dry);
+    const gate = await this.criticGate(slot, card, ctx, { ref: slot.resourceRef!, platform, mode, voice }, pc, dry, opts);
     return this.run('executor', card, user, slot.id,
       EditorRunnerService.withGate(EditorRunnerService.dryExtras({ excludeTools: TELEGRAM_ONLY, systemOverride: system, platformSlot, ...probed(probe) }, dry), gate), ctx);
   }

@@ -66,6 +66,11 @@ export interface CriticRequest {
   lintWarnings?: Array<{ code: string; message: string }>;
   /** Spec 041 FR-007: the draft's risk; a low one is read by the light checker model. Absent = high (the normal model). */
   risk?:        DraftRisk | null;
+  /**
+   * Spec 067 FR-003: an earlier critic run of this slot was high, so this one is too (sticky high): the light model is
+   * never picked, whatever the rewrite's own risk. A level, not a model id — the owner's critic model is still honoured.
+   */
+  pinLevel?:    'high' | null;
   /** Pass 2: the first verdict, so the critic sees what was asked (spec 067: its issues and failed edits become the numbered items to check). */
   previous?:    (Pick<StoredCritic, 'verdict' | 'notes' | 'scores'> & Partial<Pick<StoredCritic, 'issues' | 'edits_failed'>>) | null;
   /** Registry agent whose budget the critic run counts against (the executor's). */
@@ -266,7 +271,8 @@ export class CriticService {
     const strong = resolveModel('checker', this.d.env, r.card?.models ?? null, { agentModel: criticModel, defaultModel, workspace });
     // Spec 041 FR-007: a low-risk draft (no external facts to verify) goes to the light model; the lexicon in lint
     // covers the language. High risk keeps the owner's critic model or the role default.
-    const light = r.risk?.level === 'low' ? lightCheckerModel(this.d.env, workspace) : null;
+    // Spec 067 FR-003: a slot whose earlier run was high keeps the strong model — a Sonnet → Haiku flip between passes or ladder steps judged the same facts with a weaker reader.
+    const light = r.risk?.level === 'low' && r.pinLevel !== 'high' ? lightCheckerModel(this.d.env, workspace) : null;
     const model = light ? resolveModel('checker', this.d.env, null, { agentModel: light, workspace }) : strong;
     const tool = defineTool({
       name: 'submit_critique',
@@ -307,7 +313,14 @@ export class CriticService {
         const parsed = CritiqueInput.safeParse(res.terminalResult);
         if (parsed.success) {
           const critic = this.store(parsed.data, r, model.model, res.runId, cost);
-          return { ok: true, critic: r.risk ? { ...critic, route: { risk: r.risk.score, level: r.risk.level, factors: r.risk.factors, model: model.model } } : critic };
+          // The stored level is the one the critic ran at: a pinned low-risk draft is stored as high, with the `pinned` factor, so the next ladder step reads it from the slot.
+          const pinned = r.pinLevel === 'high' && r.risk?.level === 'low';
+          return {
+            ok: true,
+            critic: r.risk
+              ? { ...critic, route: { risk: r.risk.score, level: pinned ? 'high' as const : r.risk.level, factors: pinned ? [...r.risk.factors, 'pinned' as const] : r.risk.factors, model: model.model } }
+              : critic,
+          };
         }
         error = 'invalid verdict';
         continue;

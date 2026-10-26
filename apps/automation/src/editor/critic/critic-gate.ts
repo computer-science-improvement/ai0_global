@@ -110,6 +110,15 @@ export interface CriticGateContext {
   ownerRules?:  OwnerRuleLine[] | null;
   /** Spec 045 FR-005: the steering rules of the resource's active sets (advice for format_fit). */
   steering?:    SteeringPromptRule[] | null;
+  /**
+   * Spec 067 FR-004: critic passes this run may use (default 2 = a revise and one rewrite). The runner passes
+   * min(2, 3 − passes the slot used so far), so a slot never spends more than MAX_CRITIC_PASSES_PER_SLOT in all. With 1
+   * the first `revise` is final: live / shadow skip with `critic_rejected: cap_revise — …` (the verdict stays `revise`, so
+   * the ladder still reads it as fixable), approval proceeds with `final: true`.
+   */
+  passBudget?:  number;
+  /** Spec 067 FR-003: an earlier run of the slot (another ladder step, the 15-minute retry) was high: this run's critic stays high. */
+  pinLevel?:    'high' | null;
 }
 
 /** Spec 067 FR-001: the head of a page the critic gets as an excerpt (a library row is up to LIBRARY_ROW_CAP). */
@@ -136,10 +145,10 @@ export function criticGateOf(ctx: ToolContext): CriticGate | null {
  * stored, sent or put up for approval:
  *
  * - pass → proceed;
- * - revise (first pass) → a `critic_revise` tool error with the notes; the
+ * - revise (first pass, budget for a second) → a `critic_revise` tool error with the notes; the
  *   executor rewrites exactly once in the same run (the loop grants 2 turns);
- * - revise (second pass) → live / shadow: rejected; approval: proceeds to the
- *   owner with the notes on the card (`final: true`);
+ * - revise (second pass, or the first when the slot's pass budget is 1) → live / shadow: rejected; approval: proceeds
+ *   to the owner with the notes on the card (`final: true`);
  * - reject → the slot is skipped (`critic_rejected: …`);
  * - critic error / timeout / blocking cap (after one retry) → live / shadow:
  *   the slot fails with an Inbox entry, nothing is published; approval: the
@@ -149,6 +158,8 @@ export function criticGateOf(ctx: ToolContext): CriticGate | null {
  */
 export class CriticGate {
   private passes = 0;
+  /** Spec 067 FR-004: critic passes this run may use. */
+  private readonly budget: number;
   /** Spec 041 FR-007: what the critic cost on this post so far (every pass, errors included). */
   private spent = 0;
   private first: StoredCritic | null = null;
@@ -167,6 +178,12 @@ export class CriticGate {
 
   constructor(private readonly d: CriticGateDeps, readonly c: CriticGateContext) {
     this.capture = new ReadCapture(d.docs);
+    this.budget = Math.max(1, Math.floor(c.passBudget ?? 2));
+  }
+
+  /** Spec 067 FR-003: high once the slot has been read at the high level (this run's first pass or an earlier run), so a rewrite never drops to the light model. */
+  private pinned(): 'high' | null {
+    return this.c.pinLevel === 'high' || this.first?.route?.level === 'high' ? 'high' : null;
   }
 
   /**
@@ -378,6 +395,7 @@ export class CriticGate {
       ownerRules: this.c.ownerRules ?? null,
       steering: this.c.steering ?? null,
       risk: draftRisk({ spec: post.spec, text: post.text, contentKind: this.c.voice?.style?.content_kind ?? null }),
+      pinLevel: this.pinned(),
     });
     this.passes++;
     const history = this.first ? [{
@@ -415,17 +433,19 @@ export class CriticGate {
       critic = e.critic;
     }
 
-    if (critic.verdict === 'revise' && this.passes === 1) return this.revise(critic);
+    if (critic.verdict === 'revise' && this.passes < this.budget) return this.revise(critic);
 
     if (critic.verdict === 'revise' && this.c.mode === 'approve') {
       return this.proceed(hash, { ...critic, final: true });
     }
 
-    // reject, or a second revise in live / shadow.
+    // reject, or a second revise in live / shadow; spec 067 FR-004: with a budget of one pass the first revise is final too —
+    // the verdict stays `revise` (the ladder's fixable classification still applies), the reason says no rewrite was left.
     const second = critic.verdict === 'revise';
-    const stored: StoredCritic = second ? { ...critic, reason: `second_revise: ${critic.reason}` } : critic;
+    const capped = second && this.passes === 1;
+    const stored: StoredCritic = second ? { ...critic, reason: `${capped ? 'cap_revise' : 'second_revise'}: ${critic.reason}` } : critic;
     await this.d.plans.updateSlot(this.c.slotId, {
-      status: 'skipped', error: `critic_rejected: ${second ? 'second revise — ' : ''}${criticLine(critic)}`.slice(0, 500), critic: stored,
+      status: 'skipped', error: `critic_rejected: ${capped ? 'cap_revise — ' : second ? 'second revise — ' : ''}${criticLine(critic)}`.slice(0, 500), critic: stored,
     });
     return { kind: 'halt', critic: stored, result: { ok: true, skipped: true, critic_rejected: true, verdict: critic.verdict, notes: critic.notes } };
   }
@@ -477,7 +497,7 @@ export class CriticGate {
     const fixes = fixesIn.filter((e) => safe.has(e));
     if (guarded.rejected.length) critic = { ...critic, edits_rejected: guarded.rejected };
     if (!post.relint || (!proposed.length && !fixes.length)) return { critic };
-    const firstPass = this.passes === 1;
+    const firstPass = this.passes < this.budget;
     const toRevise = (c: StoredCritic, why: string) => ({
       critic: {
         ...c, verdict: 'revise' as const, reason: why,

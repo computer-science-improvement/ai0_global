@@ -62,6 +62,12 @@ export interface FallbackStepRecord {
   cost_usd:   number;
   /** Spec 046 FR-006: critic passes of this attempt (a revise + its rewrite = 2). */
   critic_passes?: number;
+  /**
+   * Spec 067 FR-003: the level the critic ran at in this attempt (`high` when any of its passes was high) and its model.
+   * `editor_slots.critic` is reset before each ladder step, so this is where the next step reads the pin from.
+   */
+  critic_level?: 'high' | 'low';
+  critic_model?: string | null;
   source_url?: string | null;
 }
 
@@ -94,6 +100,22 @@ export const MAX_CRITIC_PASSES_PER_SLOT = 3;
  * does not count). Each step is a whole executor + critic run.
  */
 export const MAX_LADDER_EXTRA_STEPS = 1;
+
+/** Spec 067 FR-004: critic passes one attempt may use (a revise and one rewrite). */
+export const MAX_CRITIC_PASSES_PER_ATTEMPT = 2;
+
+/**
+ * Spec 067 FR-004: the pass budget of the next attempt — at most 2, and never more than the slot's cap of 3 leaves. The
+ * cap used to be checked only before an attempt, so initial (2) + one ladder step (2) cost 4 passes. 0 = no attempt.
+ */
+export function passBudgetFor(passesUsed: number): number {
+  return Math.max(0, Math.min(MAX_CRITIC_PASSES_PER_ATTEMPT, MAX_CRITIC_PASSES_PER_SLOT - passesUsed));
+}
+
+/** Spec 067 FR-003: `high` when the critic ran at the high level in any earlier attempt of the slot (sticky high), else null. */
+export function pinLevelOf(fallback: { steps?: ReadonlyArray<Pick<FallbackStepRecord, 'critic_level'>> } | null | undefined): 'high' | null {
+  return (fallback?.steps ?? []).some((s) => s.critic_level === 'high') ? 'high' : null;
+}
 
 /** Spec 053 FR-007: critic passes a slot used in its earlier attempts (the 15-minute retry included), from its trace. */
 export function priorCriticPasses(fallback: SlotFallback | null | undefined): number {
@@ -269,9 +291,23 @@ export function stepOutcome(slot: SlotState | null, failure: SlotFailure | null)
   return 'ended';
 }
 
+/** What `stepRecord` reads of a stored critic. */
+interface StepCritic {
+  verdict?: string | null; cost_usd?: number | null; cost_total_usd?: number | null;
+  route?: { level?: string | null; model?: string | null } | null;
+  history?: Array<{ route?: { level?: string | null } | null }> | null;
+}
+
+/** The level a slot's critic ran at: `high` when any of its passes was high (a pinned pass 2 is stored high too), else the route's level. */
+function criticLevelOf(critic: StepCritic | null | undefined): 'high' | 'low' | undefined {
+  if (!critic) return undefined;
+  if (critic.route?.level === 'high' || (critic.history ?? []).some((h) => h?.route?.level === 'high')) return 'high';
+  return critic.route?.level === 'low' ? 'low' : undefined;
+}
+
 /** One step's record (verdict, cost, run) from the run result and the slot after it. */
 export function stepRecord(
-  step: LadderStep, format: string, at: Date, slot: (SlotState & { critic?: { verdict?: string | null; cost_usd?: number | null; cost_total_usd?: number | null } | null }) | null,
+  step: LadderStep, format: string, at: Date, slot: (SlotState & { critic?: StepCritic | null }) | null,
   failure: SlotFailure | null, run: { runId: string | null; totals?: { costUsd?: number } | null } | null,
 ): FallbackStepRecord {
   const outcome = stepOutcome(slot, failure);
@@ -282,6 +318,8 @@ export function stepRecord(
     // Spec 041 FR-007: every critic pass of the step (cost_total_usd), not only the last one.
     cost_usd: Number(((run?.totals?.costUsd ?? 0) + Number(slot?.critic?.cost_total_usd ?? slot?.critic?.cost_usd ?? 0)).toFixed(6)),
     critic_passes: criticPasses(slot as { critic?: { history?: unknown[] | null } | null } | null),
+    ...(criticLevelOf(slot?.critic) ? { critic_level: criticLevelOf(slot?.critic) } : {}),
+    ...(slot?.critic?.route?.model ? { critic_model: slot.critic.route.model } : {}),
     ...(failure?.sourceUrl || (slot?.postSpec && sourceOf(slot.postSpec)) ? { source_url: failure?.sourceUrl ?? sourceOf(slot!.postSpec) } : {}),
   };
 }
