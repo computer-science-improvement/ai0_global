@@ -4,7 +4,8 @@ import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import type { AuditPost, AuditStory } from '../post/integrity/types';
 import { timelineContexts } from '../post/integrity/registry';
-import { assessStory, storyMatch, storyView } from './story-match';
+import { entityOverlap } from '../post/entities';
+import { assessStory, isStoryOverlap, STORY_MATCH, storyMatch, storyView } from './story-match';
 
 /** Spec 037 T2: the story matcher on the golden set (labelled pairs) and the declared follow-up / reminder rules. */
 
@@ -129,4 +130,88 @@ test('a sibling channel told the story in the last 72 h (041): story_cross_chann
   assert.match(a.findings[0].message, /@ai_tech/);
   assert.equal(assessStory(post('s2', '2026-10-09T15:00:00+03:00', HUB_AGAIN), { previous: [], network: [sib] }).findings[0]?.code, 'story_cross_channel', '54 h later: still within 72 h');
   assert.deepEqual(assessStory(post('s3', '2026-10-10T15:00:00+03:00', HUB_AGAIN), { previous: [], network: [sib] }).findings, [], 'after 72 h the sibling does not matter');
+});
+
+// ── spec 070 FR-007: the strongScore bypass needs strong evidence and is off for evergreen posts ─────────────────
+
+/** A post with its source (so it is a news post, not evergreen "by having none"). */
+const sourced = (id: string, at: string, text: string, story: AuditStory | undefined = {}): AuditPost => ({
+  ...post(id, at, text, story), sourceUrl: `https://example.com/${id}`,
+});
+const overlapOf = (a: AuditPost, b: AuditPost) => entityOverlap(storyView(a).entities, storyView(b).entities);
+
+test('spec 070 isStoryOverlap: topic words always pass; the bypass needs strong evidence and no evergreen post', () => {
+  const weak = { score: 1, shared: 3, keys: ['name:chatgpt', 'name:midjourney'], stems: 0, strong: false };
+  assert.equal(isStoryOverlap(weak), false, 'two brands, no shared topic words: not a story');
+  assert.equal(isStoryOverlap({ ...weak, strong: true }), true, 'strong evidence: the bypass applies');
+  assert.equal(isStoryOverlap({ ...weak, strong: true }, { evergreen: true }), false, 'never for an evergreen / explainer post');
+  assert.equal(isStoryOverlap({ ...weak, stems: STORY_MATCH.stems }, { evergreen: true }), true, 'shared topic words still match an evergreen post');
+  assert.equal(isStoryOverlap({ ...weak, strong: true, score: 0.79 }), false, 'below the strong score the stems are needed');
+  assert.equal(isStoryOverlap({ ...weak, strong: true, shared: 2.5 }), false, 'the shared weight is still needed');
+});
+
+const PROMPT = 'Промпт дня: портрет в стилі аніме\n\nСкопіюй цей промпт і встав у ChatGPT або Midjourney: «аніме-портрет дівчини, м’яке світло».';
+const EXPLAINER = 'Нейромережа і ШІ: в чому різниця\n\nШІ — це ширше поняття, нейромережа — лише його частина. Приклади: ChatGPT і Midjourney.';
+
+test('spec 070 review 4: a prompt post and an explainer that both name ChatGPT and Midjourney are not one story', () => {
+  const earlier = sourced('p1', '2026-10-20T10:00:00+03:00', PROMPT);
+  const explainer = sourced('p2', '2026-10-22T10:00:00+03:00', EXPLAINER);
+  const o = overlapOf(explainer, earlier);
+  // This is the pair the bypass used to pass: a full containment of two brands, no shared topic words.
+  assert.ok(o.score >= STORY_MATCH.strongScore && o.shared >= STORY_MATCH.shared && o.stems < STORY_MATCH.stems, JSON.stringify(o));
+  assert.equal(o.strong, false);
+  assert.equal(storyMatch(storyView(explainer), storyView(earlier)), null);
+  const a = assessStory(explainer, { previous: [earlier] });
+  assert.equal(a.role, 'original');
+  assert.deepEqual(a.findings, []);
+  // The same pair when the explainer has no source (evergreen by code) or is declared evergreen: still not a repeat.
+  for (const ex of [post('p3', '2026-10-22T10:00:00+03:00', EXPLAINER), sourced('p4', '2026-10-22T10:00:00+03:00', EXPLAINER, { kind: 'evergreen' })]) {
+    const b = assessStory(ex, { previous: [earlier] });
+    assert.deepEqual(b.findings, [], ex.id);
+    assert.notEqual(b.role, 'repeat', ex.id);
+  }
+});
+
+test('spec 070: a real repeat — the same brands and a number, no shared topic words — still matches', () => {
+  const earlier = sourced('n1', '2026-10-20T10:00:00+03:00', 'ChatGPT і Midjourney: $10 на місяць\n\nChatGPT і Midjourney коштують $10.');
+  const again = sourced('n2', '2026-10-21T10:00:00+03:00', 'Тепер дешевше: ChatGPT та Midjourney по $10\n\nПідписки ChatGPT та Midjourney за $10.');
+  const o = overlapOf(again, earlier);
+  assert.ok(o.score >= STORY_MATCH.strongScore && o.stems < STORY_MATCH.stems, JSON.stringify(o));
+  assert.equal(o.strong, true, 'the shared number is strong evidence');
+  assert.ok(storyMatch(storyView(again), storyView(earlier)));
+  const a = assessStory(again, { previous: [earlier] });
+  assert.equal(a.role, 'repeat');
+  assert.deepEqual(a.findings.map((f) => f.code), ['story_repeat']);
+});
+
+test('spec 070: the strong evidence is five shared entities, a strong name, a person, a number or a date', () => {
+  const cases: Array<[string, string, string, boolean]> = [
+    // [label, text of the earlier post, text of the new post, strong?]
+    ['four brands', 'ChatGPT, Midjourney, Gemini, Claude\n\nПорівняння інструментів.', 'Огляд: Claude, Gemini, Midjourney, ChatGPT\n\nЩо вибрати.', false],
+    ['five brands', 'ChatGPT, Midjourney, Gemini, Claude, Copilot\n\nПорівняння інструментів.', 'Огляд: Copilot, Claude, Gemini, Midjourney, ChatGPT\n\nЩо вибрати.', true],
+    ['a strong name', 'Гра Out of Sight\n\nOut of Sight — хорор.', 'Хорор Out of Sight\n\nOut of Sight уже грають.', true],
+    ['a person', 'Ілон Маск про ChatGPT і Midjourney\n\nІлон Маск згадав ChatGPT та Midjourney.', 'Інтерв’ю: Ілон Маск, ChatGPT і Midjourney\n\nІлон Маск назвав ChatGPT та Midjourney.', true],
+    ['a date', '13 жовтня: ChatGPT і Midjourney\n\nПодія 13 жовтня: ChatGPT та Midjourney.', 'Анонс на 13 жовтня: ChatGPT і Midjourney\n\nЧекаємо 13 жовтня: ChatGPT та Midjourney.', true],
+    ['brands only', 'ChatGPT і Midjourney для картинок\n\nПробуй ChatGPT або Midjourney.', 'Нейромережі: ChatGPT та Midjourney\n\nПриклад: ChatGPT чи Midjourney.', false],
+  ];
+  for (const [label, x, y, strong] of cases) {
+    const a = sourced('c1', '2026-10-20T10:00:00+03:00', x);
+    const b = sourced('c2', '2026-10-21T10:00:00+03:00', y);
+    const o = overlapOf(b, a);
+    assert.equal(o.strong, strong, `${label}: ${JSON.stringify(o)}`);
+    assert.ok(o.score >= STORY_MATCH.strongScore && o.shared >= STORY_MATCH.shared && o.stems < STORY_MATCH.stems, `${label}: the case must be one the bypass decides: ${JSON.stringify(o)}`);
+    assert.equal(!!storyMatch(storyView(b), storyView(a)), strong, label);
+  }
+});
+
+test('spec 070: the bypass never applies when either post is an explainer or declared evergreen, even with a number', () => {
+  const earlier = sourced('g1', '2026-10-20T10:00:00+03:00', 'ChatGPT і Midjourney: $10 на місяць\n\nChatGPT і Midjourney коштують $10.');
+  const text = 'Тепер дешевше: ChatGPT та Midjourney по $10\n\nПідписки ChatGPT та Midjourney за $10.';
+  assert.ok(storyMatch(storyView(sourced('g2', '2026-10-21T10:00:00+03:00', text)), storyView(earlier)), 'control: a news post matches');
+  const declared = sourced('g3', '2026-10-21T10:00:00+03:00', text, { kind: 'evergreen' });
+  assert.equal(storyMatch(storyView(declared), storyView(earlier)), null, 'declared evergreen (the new post)');
+  const earlierEver = sourced('g4', '2026-10-20T10:00:00+03:00', 'ChatGPT і Midjourney: $10 на місяць\n\nChatGPT і Midjourney коштують $10.', { kind: 'evergreen' });
+  assert.equal(storyMatch(storyView(sourced('g5', '2026-10-21T10:00:00+03:00', text)), storyView(earlierEver)), null, 'declared evergreen (the earlier post)');
+  const title = sourced('g6', '2026-10-21T10:00:00+03:00', 'Що таке підписка ChatGPT та Midjourney за $10\n\nПідписки ChatGPT та Midjourney за $10.');
+  assert.equal(storyMatch(storyView(title), storyView(earlier)), null, 'an explainer by its title');
 });

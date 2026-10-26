@@ -22,7 +22,7 @@ import {
   errorBody, FORMAT_PREF_FIELDS, usePutResourceFormatting, useResourceFormatting,
   type FormatPrefField, type FormatResource, type FormatVersion,
 } from '../../api/agents';
-import { audienceSummary, CONTENT_KIND_LABEL, FORMAT_LABEL, formatValue, toForm, toPrefs, voiceSummary, type FormatForm as Form } from '../../lib/format-prefs';
+import { audienceSummary, CONTENT_KIND_LABEL, FORMAT_LABEL, formatValue, pollsPlaceholder, toForm, toPrefs, voiceSummary, type FormatForm as Form } from '../../lib/format-prefs';
 import { styleSummary, toStyle, toStyleForm } from '../../lib/style-sheet';
 
 /** Spec 034 FR-005: the audience caps are shown in one chip of their own (unset = the defaults). */
@@ -281,7 +281,7 @@ function FormatModal({ handle, resource, title, onClose }: { handle: string; res
         <Row field="polls_per_week" locked={is('polls_per_week')} onLock={lock('polls_per_week')}>
           <Field label="Polls a week" hint="polls + quizzes, any 7 days">
             <input className="input-field" style={input} type="number" min={0} max={70} value={f.pollsPerWeek}
-              placeholder={f.contentKind === 'quiz' ? 'no limit' : '1 (default)'} onChange={(e) => set('pollsPerWeek', e.target.value)} />
+              placeholder={pollsPlaceholder(f.contentKind, resource.audience)} onChange={(e) => set('pollsPerWeek', e.target.value)} />
           </Field>
         </Row>
         <Row field="questions_to_readers_per_day" locked={is('questions_to_readers_per_day')} onLock={lock('questions_to_readers_per_day')}>

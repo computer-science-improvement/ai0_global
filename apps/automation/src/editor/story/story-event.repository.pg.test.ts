@@ -39,7 +39,9 @@ async function slot(at: Date, lead: string, p: string): Promise<{ id: string; po
     `INSERT INTO editor_slots (plan_id, channel_key, scheduled_at, format, topic, status, post_spec) VALUES ($1, $2, $3, 'text', $4, 'published', $5) RETURNING id`,
     [planId, A, at, lead, JSON.stringify(spec)]);
   const id = rows[0].id;
-  return { id, post: { id, channel: A, publishedAt: at.toISOString(), timezone: TZ, text: `${lead}\n\n${p}`, lead, links: [], buttons: [], hashtags: [], media: null, story: {} } };
+  // Spec 070 FR-007: a post with no source at all is evergreen by code (spec 041), and the near-complete-containment bypass of
+  // the story match is off for it. These are news posts about an announced event, so they carry their source.
+  return { id, post: { id, channel: A, publishedAt: at.toISOString(), timezone: TZ, text: `${lead}\n\n${p}`, lead, links: [], buttons: [], hashtags: [], media: null, story: {}, sourceUrl: 'https://www.apple.com/newsroom/welcome-home' } };
 }
 
 before(async () => {

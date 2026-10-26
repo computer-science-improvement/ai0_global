@@ -9,11 +9,13 @@ import { sentencesOf } from './slop-lint';
  *   • `questions_to_readers_per_day` — reader-directed questions; the lint enforces it per post;
  *   • `content_kind` — what the resource is (general / news / education / quiz); it only moves the defaults.
  * Defaults when a cap is not set:
- *   • polls: 1 a week; a `quiz` resource has no default cap (polls are its content);
+ *   • polls: 1 a week; an explicit `quiz` resource has no default cap (polls are its content); a quiz that is only
+ *     inferred from the topic gets QUIZ_INFERRED_POLLS_PER_WEEK (two a day), because a wrong guess must not
+ *     switch the cap off (spec 070 FR-004);
  *   • reader questions: 1 per post; 0 on a news resource.
- * A resource is "news" when `content_kind` says so or, without `content_kind`, when the profile topic
- * names news (NEWS_TOPIC_RE). Nothing else is inferred: education and quiz resources are set by the
- * builder or the owner.
+ * The kind is, in this order: `content_kind` when set; else "quiz" when the profile topic names a quiz
+ * (QUIZ_TOPIC_RE); else "news" when it names news (NEWS_TOPIC_RE); else "general". Education is never inferred:
+ * it is set by the builder or the owner.
  */
 
 export const POLL_FORMATS: readonly string[] = ['poll', 'quiz'];
@@ -23,11 +25,20 @@ export const CONTENT_KINDS = ['general', 'news', 'education', 'quiz'] as const;
 export type ContentKind = typeof CONTENT_KINDS[number];
 
 export const DEFAULT_POLLS_PER_WEEK = 1;
+/** Spec 070 FR-004: the cap of a resource whose quiz kind is only guessed from the topic (an explicit quiz stays uncapped). */
+export const QUIZ_INFERRED_POLLS_PER_WEEK = 14;
 export const DEFAULT_READER_QUESTIONS = 1;
 export const NEWS_READER_QUESTIONS = 0;
 
 /** A profile topic that names news («Новини Києва», «tech news», «дайджест»). */
 export const NEWS_TOPIC_RE = /новин|news|дайджест|зведенн/iu;
+
+/**
+ * A profile topic that names a quiz («Вікторини з ПДР», «quiz», «trivia», «тестові запитання до іспиту», «екзаменаційні
+ * білети»). A bare «тест» does not match: «тест-драйв» and «тестування» are not quizzes. Letter classes, not `\w`,
+ * because `\w` is ASCII-only even under the `u` flag.
+ */
+export const QUIZ_TOPIC_RE = /вікторин|квіз|quiz|trivia|тестов\p{L}*\s+(?:запитан|питан)|екзаменаційн\p{L}*\s+(?:запитан|питан|білет)/iu;
 
 export interface AudienceCapPrefs {
   content_kind?: ContentKind;
@@ -39,7 +50,7 @@ export interface AudienceCaps {
   kind:            ContentKind;
   /** true when `kind` comes from the topic (no explicit content_kind). */
   kindInferred:    boolean;
-  /** Poll + quiz posts in any 7 days; null = no cap (a quiz resource without an explicit cap). */
+  /** Poll + quiz posts in any 7 days; null = no cap (an explicit quiz resource without an explicit cap). */
   pollsPerWeek:    number | null;
   /** Reader-directed questions allowed in one post. */
   questionsPerDay: number;
@@ -47,6 +58,7 @@ export interface AudienceCaps {
 
 export function contentKindOf(prefs: AudienceCapPrefs | null | undefined, topic?: string | null): { kind: ContentKind; inferred: boolean } {
   if (prefs?.content_kind) return { kind: prefs.content_kind, inferred: false };
+  if (topic && QUIZ_TOPIC_RE.test(topic)) return { kind: 'quiz', inferred: true };
   return { kind: topic && NEWS_TOPIC_RE.test(topic) ? 'news' : 'general', inferred: true };
 }
 
@@ -55,7 +67,7 @@ export function audienceCaps(prefs: AudienceCapPrefs | null | undefined, topic?:
   const { kind, inferred } = contentKindOf(prefs, topic);
   return {
     kind, kindInferred: inferred,
-    pollsPerWeek: prefs?.polls_per_week ?? (kind === 'quiz' ? null : DEFAULT_POLLS_PER_WEEK),
+    pollsPerWeek: prefs?.polls_per_week ?? (kind !== 'quiz' ? DEFAULT_POLLS_PER_WEEK : inferred ? QUIZ_INFERRED_POLLS_PER_WEEK : null),
     questionsPerDay: prefs?.questions_to_readers_per_day ?? (kind === 'news' ? NEWS_READER_QUESTIONS : DEFAULT_READER_QUESTIONS),
   };
 }

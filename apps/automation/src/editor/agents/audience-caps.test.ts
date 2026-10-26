@@ -65,6 +65,7 @@ test('caps in format_prefs: schema, lockable fields, prompt rendering, patch inp
   assert.equal(FormatPatchInput.safeParse({ polls_per_week: 0 }).success, true);
   assert.equal(FormatPatchInput.safeParse({ content_kind: null }).success, true);
   assert.deepEqual(profileCaps({ topic: 'Новини Львова', format_prefs: {} }), { kind: 'news', kindInferred: true, pollsPerWeek: 1, questionsPerDay: 0 });
+  assert.deepEqual(profileCaps({ topic: 'Вікторини з ПДР', format_prefs: {} }), { kind: 'quiz', kindInferred: true, pollsPerWeek: 14, questionsPerDay: 1 });
 });
 
 test('owner-only: an agent may lower the caps, never raise or clear them, and never set content_kind', () => {
@@ -122,6 +123,11 @@ test('card join: caps from format_prefs + topic; a row without the join keeps th
   assert.deepEqual([news.readerQuestionsMax, news.pollsPerWeek], [0, 1]);
   const quiz = rowToCard({ ...base, format_prefs_json: { content_kind: 'quiz', questions_to_readers_per_day: 2 }, profile_topic: null });
   assert.deepEqual([quiz.readerQuestionsMax, quiz.pollsPerWeek], [2, null]);
+  // Spec 070 FR-004: a topic that names a quiz (no explicit kind) caps at 14 a week; тест-драйв stays on the default.
+  const pdr = rowToCard({ ...base, format_prefs_json: null, profile_topic: 'Вікторини з ПДР' });
+  assert.deepEqual([pdr.readerQuestionsMax, pdr.pollsPerWeek], [1, 14]);
+  assert.equal(rowToCard({ ...base, format_prefs_json: null, profile_topic: 'Тест-драйви авто' }).pollsPerWeek, 1);
+  assert.equal(rowToCard({ ...base, format_prefs_json: { content_kind: 'general' }, profile_topic: 'Вікторини з ПДР' }).pollsPerWeek, 1, 'explicit beats inferred');
   const plain = rowToCard(base);
   assert.ok(!('readerQuestionsMax' in plain) && !('pollsPerWeek' in plain));
 });

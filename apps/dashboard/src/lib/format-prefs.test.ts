@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { audienceSummary, formatValue, toForm, toPrefs, voiceSummary } from './format-prefs';
+import { audienceSummary, formatValue, pollsPlaceholder, toForm, toPrefs, voiceSummary } from './format-prefs';
 
 test('format prefs: form round trip drops empty fields (empty = the agent’s judgement)', () => {
   const prefs = {
@@ -53,4 +53,25 @@ test('format prefs: audience caps (spec 034 FR-005) — round trip, labels and t
     'News (from the topic) · polls: up to 1 a week (default) · no reader questions (default)');
   assert.equal(audienceSummary({ content_kind: 'quiz' }), 'Quiz · polls: no limit (default) · reader questions: up to 1 per post (default)');
   assert.equal(audienceSummary({ polls_per_week: 0, questions_to_readers_per_day: 2 }), 'no polls · reader questions: up to 2 per post');
+  assert.equal(audienceSummary({}, { kind: 'quiz', kindInferred: true, pollsPerWeek: 14, questionsPerDay: 1 }),
+    'Quiz (from the topic) · polls: up to 14 a week (default) · reader questions: up to 1 per post (default)');
+});
+
+test('polls placeholder (spec 070 A6): the unsaved choice wins; "From the topic" shows the resolved cap', () => {
+  const inferredQuiz = { pollsPerWeek: 14 };
+  const explicitQuiz = { pollsPerWeek: null };
+  // An explicit choice in the form wins over whatever the server resolved.
+  assert.equal(pollsPlaceholder('quiz', inferredQuiz), 'no limit');
+  assert.equal(pollsPlaceholder('quiz', { pollsPerWeek: 1 }), 'no limit');
+  for (const kind of ['general', 'news', 'education'] as const) {
+    assert.equal(pollsPlaceholder(kind, inferredQuiz), '1 (default)', kind);
+    assert.equal(pollsPlaceholder(kind, explicitQuiz), '1 (default)', kind);
+  }
+  // "From the topic": the server's own answer.
+  assert.equal(pollsPlaceholder('', inferredQuiz), '14 (default)');
+  assert.equal(pollsPlaceholder('', explicitQuiz), 'no limit');
+  assert.equal(pollsPlaceholder('', { pollsPerWeek: 1 }), '1 (default)');
+  assert.equal(pollsPlaceholder('', { pollsPerWeek: 0 }), '0 (default)');
+  assert.equal(pollsPlaceholder('', undefined), '1 (default)');
+  assert.equal(pollsPlaceholder('', null), '1 (default)');
 });

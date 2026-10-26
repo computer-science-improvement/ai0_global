@@ -592,7 +592,7 @@ export interface AudienceCaps {
   kind:            ContentKind;
   /** true when the kind comes from the profile topic (no explicit content_kind). */
   kindInferred:    boolean;
-  /** null = no cap (a quiz resource without an explicit cap). */
+  /** null = no cap (an explicit quiz resource without an explicit cap; a quiz guessed from the topic is capped at 14). */
   pollsPerWeek:    number | null;
   questionsPerDay: number;
 }
