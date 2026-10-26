@@ -1728,6 +1728,7 @@ export const EDITOR_PROVIDERS = [
         const silent = new SilentDaysWatch({
           pool, inbox: infra.inbox, log: (m) => logger.warn(m),
           streakN: Math.max(1, Math.round(envNum((k) => cfg.get<string>(k) ?? undefined, 'EDITOR_CRITIC_REJECT_STREAK', DEFAULT_REJECT_STREAK))),
+          minPerDay: (card, day, now) => schedule.minPerDay(card, day, now),   // spec 068 FR-005: a paused series is not owed
         });
         // Spec 060 FR-001: the dead-series breaker (SERIES_SKIP_STREAK, 0 = off; read at each check) — code only.
         const seriesPausesRepo = new SeriesPausesRepository(pool);

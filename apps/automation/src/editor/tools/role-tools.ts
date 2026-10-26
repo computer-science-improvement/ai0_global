@@ -242,7 +242,7 @@ export function buildRoleTools(d: RoleToolDeps): EditorTool[] {
   // ── planner ───────────────────────────────────────────────────────────────
   const submitPlan = defineTool({
     name: 'submit_plan',
-    description: 'Зберегти план на день плану (сьогодні; у режимі апруву ввечері — завтра) (завершує роботу). Код перевіряє кількість, час, тихі години, інтервали, формати, частку експериментів, експерименти за директивою (directive_id), серії за розкладом (slot.series або skipped_series з причиною) і правила власника (закріплені пости, заборонені вікна, частота) — при помилці виправ і надішли знову.',
+    description: 'Зберегти план на день плану (сьогодні; у режимі апруву ввечері — завтра) (завершує роботу). Код перевіряє кількість, час, тихі години, інтервали, формати, частку експериментів, експерименти за директивою (directive_id), серії за розкладом (slot.series або skipped_series з причиною) і правила власника (закріплені пости, заборонені вікна, частота) — при помилці виправ і надішли знову. Якщо для серії чи для всього дня немає з чого писати — чесно скажи це: skipped_series з cause no_material (знижує мінімум постів) або short_day {cause, reason} (мінімум 0); код запише це як пропущений слот, а не змусить планувати слоти, які однаково не вийдуть.',
     kind: 'terminal', roles: ['planner'], repeatError: 'same_plan_rejected', placeholdersAbsent: true,
     input: SubmitPlanInput,
     execute: async (plan, ctx) => {
@@ -261,13 +261,13 @@ export function buildRoleTools(d: RoleToolDeps): EditorTool[] {
       // Spec 041 FR-004: an evergreen fixed slot on a topic of the last 30 days.
       const topicErrors = planTopicErrors(plan.slots, await loadRecentTopics(d.pool, [anchor]));
       if (!v.ok || topicErrors.length) return { error: 'plan_invalid', details: [...(v.ok ? [] : v.errors), ...topicErrors] };
-      const planId = await d.plans.createPlan(card.channelKey, planDate, plan.rationale, ctx.runId, v.slots);
+      const planId = await d.plans.createPlan(card.channelKey, planDate, plan.rationale, ctx.runId, v.slots, v.empty);
       // Pool ideas taken into the plan (spec 020) leave the pool; they become `used` once their slots are done.
       const ideaIds = [...new Set(v.slots.map((s) => s.ideaId).filter(Boolean))];
       if (ideaIds.length) {
         await d.pool.query(`UPDATE content_ideas SET status = 'planned', updated_at = now() WHERE id = ANY($1::uuid[]) AND status = 'accepted'`, [ideaIds]).catch(() => {});
       }
-      return { ok: true, plan_id: planId, slots: v.slots.length };
+      return { ok: true, plan_id: planId, slots: v.slots.length, ...(v.empty.length ? { empty_day: v.empty.length } : {}) };
     },
   });
 

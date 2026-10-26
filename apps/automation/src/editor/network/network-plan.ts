@@ -8,7 +8,8 @@ import { zonedToUtcStrict } from '../time/resource-time';
 import type { IdeaRow } from './network.repository';
 import { NetworkCtx, resourceClock } from './network-context';
 import { seriesDue } from './playbook';
-import { planScheduleErrors, PlanScheduleCtx, SkippedSeriesInput } from '../schedule/plan-schedule-rules';
+import { EMPTY_DAY_WAY_OUT, materialSkips, planScheduleErrors, PlanScheduleCtx, SkippedSeriesInput } from '../schedule/plan-schedule-rules';
+import { type EmptyDaySlot, ShortDaysInput, shortDayPlaceholder, skippedSeriesPlaceholders } from '../schedule/empty-day';
 import { DecisionReason, DecisionSlot, PlannedDecision, PlanSkipInput, TREATMENTS, validateDecisions } from './plan-decisions';
 import type { Treatment } from '../post/duplicate';
 import { pollCapErrors, type PollCapCtx } from '../roles/poll-cap';
@@ -37,6 +38,7 @@ export const SubmitNetworkPlanInput = z.object({
   rationale: z.string().min(10).max(2000),
   slots:     z.array(NetworkSlotInput).max(60),
   skipped_series: SkippedSeriesInput,
+  short_days: ShortDaysInput,
   skips:     z.array(PlanSkipInput).max(60).optional().describe('Ідея з плану НЕ йде на ресурс: причина обовʼязкова'),
 });
 export type SubmitNetworkPlan = z.infer<typeof SubmitNetworkPlanInput>;
@@ -99,7 +101,7 @@ export function validateNetworkPlan(
     /** Spec 034 FR-005: per-resource poll caps and the polls already in the 7-day window. */
     pollCap?: PollCapCtx;
   },
-): { ok: true; slots: NetworkPlannedSlot[]; decisions: PlannedDecision[] } | { ok: false; errors: string[] } {
+): { ok: true; slots: NetworkPlannedSlot[]; decisions: PlannedDecision[]; empty: EmptyDaySlot[] } | { ok: false; errors: string[] } {
   const errors: string[] = [];
   const { net, card } = o;
   if (!net.playbook) return { ok: false, errors: ['немає активного плейбука — план мережі неможливий'] };
@@ -184,10 +186,20 @@ export function validateNetworkPlan(
       }
     }
   }
+  // Spec 068 FR-004: an honest empty day lowers a resource's minimum — a short day to 0, a series skipped with a material cause by its instances.
+  const shortDays = new Map<string, NonNullable<SubmitNetworkPlan['short_days']>[number]>();
+  for (const sd of plan.short_days ?? []) {
+    if (!resources.has(sd.resource_ref) || !sections.has(sd.resource_ref)) errors.push(`short_days: ресурс ${sd.resource_ref} не в мережі або без секції плейбука`);
+    else if (shortDays.has(sd.resource_ref)) errors.push(`short_days: ресурс ${sd.resource_ref} вказано двічі`);
+    else shortDays.set(sd.resource_ref, sd);
+  }
+  const skippedN = new Map<string, number>();
+  if (o.schedule) for (const m of materialSkips(plan, o.schedule, o.schedule.defaultRef)) skippedN.set(m.series.resource_ref, (skippedN.get(m.series.resource_ref) ?? 0) + 1);
   for (const [ref, sec] of sections) {
     if (!resources.has(ref)) continue;
     const n = (byResource.get(ref)?.length ?? 0) + (resources.get(ref)!.platform === 'telegram' ? o.reservedAt.length : 0);
-    if (n < sec.per_day.min) errors.push(`${ref}: ${n} постів < per_day.min ${sec.per_day.min}`);
+    const min = shortDays.has(ref) ? 0 : Math.max(0, sec.per_day.min - (skippedN.get(ref) ?? 0));
+    if (n < min) errors.push(`${ref}: ${n} постів < per_day.min ${min}; ${EMPTY_DAY_WAY_OUT}`);
   }
   // Spec 024 FR-006 (replaces BR-AGT-72 and "Telegram core first"): one decision per idea × resource.
   const dec = validateDecisions(plan.slots.map((s, i) => decisionSlots[i] ?? {
@@ -221,5 +233,13 @@ export function validateNetworkPlan(
   // Spec 023 FR-004: series, pins, blackouts and frequency rules.
   if (o.schedule) errors.push(...planScheduleErrors(plan, o.schedule, o.schedule.defaultRef));
   if (o.pollCap) errors.push(...pollCapErrors(plan.slots.map((s) => ({ resourceRef: s.resource_ref, format: s.format, series: s.series ?? null })), o.pollCap, net.playbook.series));
-  return errors.length ? { ok: false, errors } : { ok: true, slots: out, decisions };
+  if (errors.length) return { ok: false, errors };
+  const empty = o.schedule ? skippedSeriesPlaceholders(plan, o.schedule, o.schedule.defaultRef) : [];
+  for (const sd of shortDays.values()) {
+    const { tz } = resourceClock(resources.get(sd.resource_ref)!, card);
+    empty.push(shortDayPlaceholder({
+      resourceRef: sd.resource_ref === `telegram:${card.channelKey}` ? null : sd.resource_ref, tz, planDate: o.planDate, now: o.now, cause: sd.cause, reason: sd.reason,
+    }));
+  }
+  return { ok: true, slots: out, decisions, empty };
 }

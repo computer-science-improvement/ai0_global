@@ -1,7 +1,7 @@
 # 068 tasks
 
 - [x] T1 Cause and classifier: `skip_slot` `cause` (required) with `skipSlotError` shared with preview-run, prompt lines; `classifyClose` new-format parse, legacy fixes (unanchored code words, Cyrillic-safe regexes, library wins), `planner_*` / `preflight_no_material` codes in skip-cause, skip-reasons, idea-outcome; streak families with critic transparent and the pause-cause mapping; catalog help + runbook § 19; the review-4 replay fixture and tests.
-- [ ] T2 Honest empty day and lower minimum: `skipped_series[].cause`, locked skip with a material cause, `short_day` / `short_days`, placeholder slots in the plan transaction, replan supersedes future placeholders, refusal texts; `planPerDay` with pauses (Telegram and network), silent-days uses the lowered minimum; unit + PG tests.
+- [x] T2 Honest empty day and lower minimum: `skipped_series[].cause`, locked skip with a material cause, `short_day` / `short_days`, placeholder slots in the plan transaction, replan supersedes future placeholders, refusal texts; `planPerDay` with pauses (Telegram and network), silent-days uses the lowered minimum; unit + PG tests.
 - [ ] T3 Pre-flight on library slots and at plan time: `series:` / `directive:` hints ignored, `data://` / `library://` row checks, `library:<table>` empty check, `preflight_no_material`; `assessPlanned` in `submit_plan` / `submit_network_plan`; `formatAvailable` filters allowed formats; shared `SlotPreflight` wiring; tests.
 - [ ] T4 `query_data` `refs` (ids / legacy refs, flags, `ref_dataset_mismatch`, hints); migration 095 (+ down) for `prompts.post_requires` with its PG test; docs (runbook § 27, specs README row 068 DONE, spec status done).
 
@@ -10,6 +10,7 @@
 In progress. One commit per task:
 
 - T1 — `skip_slot` `cause` and `skipSlotError` (shared with the preview dry run), the executor prompt line, `classifyClose` (the cause first, Cyrillic-safe legacy text, `planner_*` / `preflight_no_material` codes), the streak families with transparent critic closes, `not_next_in_order` in the content-failure codes, `SERIES_SKIP_STREAK` help, runbook § 19, the review-4 replay fixture and tests, dashboard skip labels.
+- T2 — `skipped_series[].cause`, `short_day` / `short_days`, the lowered minimum, placeholder slots in the plan transaction (`createPlan` / `createNetworkPlan` / `replacePlan`), replan supersede and dedupe, the refusal texts with the way out, `planPerDay` and `ScheduleService.minPerDay` with the pauses, silent-days `minPerDay`, runbook § 19 item 5.
 
 ## Deltas from the spec
 
@@ -20,3 +21,10 @@ In progress. One commit per task:
 - **T1: `StreakHit.cause` is `PauseCause`** (`no_material | source_unreachable`). A critic run is no longer a hit at all, so `PAUSING_CAUSES` stays only as the check in the breaker. `SkipCause` gained `source_used` and `quality`.
 - **T1: the fixture holds 45 rows,** all slots of the replayed groups (Prompt, pdr, «AI-новини дня», @game_exchange_dev plain and «Знижки тижня», and 89320f09), not only the skips: the post and the critic rows are what end or pass a run.
 - **T1: dashboard labels** (optional in the spec): `skipReason` shows the named cause, the planner's empty day and `preflight_no_material`.
+- **T2: `cause` has no zod default.** It is optional and read as `other` (A5 wording: «default `other`»), so the inferred plan type keeps old callers and tests compiling; the schema description says so.
+- **T2: `planPerDay` counts paused instances itself.** A7 says «subtracts only `dueInstances`», but a paused series is not due (`dueInstances` skips it), so the function reads the paused series' cadence on the plan weekday (`pausedInstances`). It stays pure and only does so when the context carries `paused`, `series` and `clocks`; old callers (rules, pins, date only) get exactly what they got.
+- **T2: silent days use the pause-only minimum.** `ScheduleService.minPerDay(card, day, now)` returns the card's `postsPerDayMin` minus the paused instances (a resource pause = 0); it does not apply frequency rules or pins, which are the planner's business and would hide a real dark day. The hook is optional, fails open to the card's own minimum, and is wired in `load()` only (069 edits the rest of `silent-days.ts`).
+- **T2: placeholders are channel-wide deduped, and stay where they were.** A replan marks the old plan's future placeholders `superseded by a new plan` (they are not moved to the new plan, as `skipped` slots never are), and `NOT EXISTS` looks at every unsuperseded `planner_*` placeholder of the channel with the same series and time, or, for a short day, the same resource and local day window. A placeholder whose time has passed stays and counts once.
+- **T2: a future placeholder is not a close yet.** The breaker's window ends at `now`, so a 19:00 placeholder declared in the morning counts after 19:00 (a short day counts at once, it is stamped at the planning moment). The planner has no way to bank closes for days to come.
+- **T2: network short day.** `short_days[]` takes only resources of the network with a playbook section, once each; the anchor's placeholder has no `resource_ref`, the others carry theirs, and the day window is the resource's own local day.
+- **T2: the three PG failures seen in the whole `*.pg.test.ts` run** (`data-query` Cyrillic full-text search, two in `ledger-anchor`) fail identically on the shared scratch database: its locale is `C`, so `lower('П')` does not fold. They do not touch this spec.

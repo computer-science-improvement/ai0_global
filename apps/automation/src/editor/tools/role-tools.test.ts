@@ -155,6 +155,35 @@ test('submit_plan validates and creates', async () => {
   assert.equal(updates[0][2], '2026-10-01');
 });
 
+// Spec 068 FR-004: an honest empty day — the placeholder slots go to createPlan with the plan, and the answer says so.
+test('submit_plan: short_day passes the placeholder to createPlan; without it, no slots is refused with the way out', async () => {
+  const { tools, updates } = deps();
+  const c = { ...ctx('shadow'), role: 'planner' as const, extras: { card: makeCard({ postsPerDayMin: 1, postsPerDayMax: 3 }), planDate: '2026-10-01' } };
+  const refused: any = await tools.submit_plan.execute({ rationale: 'сьогодні нічого не планую', slots: [] }, c);
+  assert.equal(refused.error, 'plan_invalid');
+  assert.match(refused.details.join('\n'), /cause: no_material/, 'the refusal names the way out');
+  assert.equal(updates.length, 0);
+
+  const reason = 'Бібліотека порожня, джерела картки вичерпані';
+  const ok: any = await tools.submit_plan.execute({ rationale: 'сьогодні немає з чого писати', slots: [], short_day: { cause: 'no_material', reason } }, c);
+  assert.equal(ok.ok, true, JSON.stringify(ok));
+  assert.equal(ok.slots, 0);
+  assert.equal(ok.empty_day, 1);
+  const call = updates[0];
+  assert.equal(call[0], 'createPlan');
+  assert.deepEqual(call[5], [], 'no slots');
+  assert.equal(call[6].length, 1);
+  assert.equal(call[6][0].error, `planner_no_material: ${reason}`);
+  assert.equal(call[6][0].resourceRef, null);
+
+  // A plain plan carries no placeholders and the answer has no empty_day.
+  const { tools: t2, updates: u2 } = deps();
+  const good: any = await t2.submit_plan.execute({ rationale: 'план на день тест', slots: [{ time: '18:00', format: 'photo', topic: 'Тема про космос', source_hints: [], is_experiment: false }] }, c);
+  assert.equal(good.ok, true);
+  assert.equal('empty_day' in good, false);
+  assert.deepEqual(u2[0][6], []);
+});
+
 // Spec 037 FR-013: editor_v_post_performance rows as the pool returns them (numerics as strings).
 const perfPool = (rows: any[], seen: any[] = []) => ({
   query: async (sql: string, params: any[]) => {

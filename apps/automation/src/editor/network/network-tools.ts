@@ -401,6 +401,7 @@ export function buildNetworkTools(d: NetworkToolDeps): EditorTool[] {
       'Зберегти план мережі на день плану (сьогодні; у режимі апруву ввечері — завтра) (завершує роботу): слоти по всіх ресурсах — resource_ref, час HH:MM (зона ресурсу), формат, тема, idea_id прийнятої ідеї або series.',
       'Для кожної ідеї в плані — рівно одне рішення на кожен ресурс з секцією плейбука: слот з treatment (unique; duplicate чи adapt з from_slot = номер унікального слота-джерела, не раніше за нього — інтервал обираєш ти, 0 теж можна) і reason, або запис у skips з причиною.',
       'Ресурс, що вже на per_day.max, код пропускає сам (cadence). Експеримент за директивою менеджера — слот з directive_id. Код перевіряє частоти, квоти експериментів, тихі години, формати плейбука (для unique) і жорсткі ліміти платформ (для duplicate/adapt).',
+      'Якщо для серії чи ресурсу немає з чого писати — скажи це чесно: skipped_series з cause no_material (знижує мінімум ресурсу) або short_days [{resource_ref, cause, reason}] (мінімум ресурсу 0); код запише це як пропущений слот.',
     ].join(' '),
     kind: 'terminal', roles: ['planner'], repeatError: 'same_plan_rejected', placeholdersAbsent: true,
     input: SubmitNetworkPlanInput,
@@ -424,10 +425,10 @@ export function buildNetworkTools(d: NetworkToolDeps): EditorTool[] {
         pollCap: d.pollCaps ? await d.pollCaps({ refs: net.resources.map((r) => r.ref), planDate, tz: card.timezone }) : undefined,
       });
       if (!v.ok) return { error: 'plan_invalid', details: v.errors };
-      const planId = await d.plans.createNetworkPlan(net.anchorKey, planDate, plan.rationale, ctx.runId, v.slots, v.decisions, net.orchestrator.id);
+      const planId = await d.plans.createNetworkPlan(net.anchorKey, planDate, plan.rationale, ctx.runId, v.slots, v.decisions, net.orchestrator.id, v.empty);
       for (const id of new Set(v.slots.map((s) => s.ideaId).filter(Boolean) as string[])) await d.repo.updateIdea(id, { status: 'planned' });
       return {
-        ok: true, plan_id: planId, slots: v.slots.length,
+        ok: true, plan_id: planId, slots: v.slots.length, ...(v.empty.length ? { empty_day: v.empty.length } : {}),
         decisions: v.decisions.length, auto_skipped: v.decisions.filter((x) => x.decidedBy === 'system').map((x) => `${x.ideaId} → ${x.resourceRef}`),
       };
     },
