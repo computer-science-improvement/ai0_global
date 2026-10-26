@@ -26,7 +26,7 @@ const KIND_META: Record<string, { label: string; icon: IconName }> = {
   write_skill:          { label: 'Write skill',       icon: 'book' },
   attach_skill:         { label: 'Attach skill',      icon: 'plus' },
   detach_skill:         { label: 'Detach skill',      icon: 'ban' },
-  edit_data_schema:     { label: 'Edit dataset description', icon: 'database' },
+  edit_data_schema:     { label: 'Edit dataset', icon: 'database' },
   content_examples:     { label: 'Example posts', icon: 'book' },
   owner_rule:           { label: 'Owner rule', icon: 'logs' },
   fix_config_conflicts: { label: 'Align with your rules', icon: 'wrench' },

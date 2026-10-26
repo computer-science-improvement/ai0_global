@@ -55,7 +55,7 @@ function DataPage() {
               <th>Dataset</th>
               <th>Entity</th>
               <th className="num">Rows</th>
-              <th className="num" title="Active rows not yet posted anywhere in the network (from the last stats run)">Unposted</th>
+              <th className="num" title="Active rows not yet posted anywhere in the network (from the last stats run); for datasets that repeat in rounds, rows not yet posted in the current rounds">Unposted</th>
               <th>Last import</th>
               <th>Status</th>
               <ActionsTh />
@@ -77,7 +77,10 @@ function DataPage() {
                     {fmtInt(d.rows)}
                     {d.rows !== d.rows_active && <div className="meta">{fmtInt(d.rows - d.rows_active)} hidden</div>}
                   </td>
-                  <td className="num" title={d.stats_at ? `Stats from ${fmtDate(d.stats_at)}` : 'No stats yet'}>{fmtInt(d.unposted_network)}</td>
+                  <td className="num" title={d.stats_at ? `Stats from ${fmtDate(d.stats_at)}` : 'No stats yet'}>
+                    {fmtInt(d.unposted_network)}
+                    {d.reuse_policy.kind === 'cycle' && <div className="meta">in current rounds</div>}
+                  </td>
                   <td style={{ whiteSpace: 'nowrap' }} title={d.last_import_at ? fmtDate(d.last_import_at) : undefined}>{d.last_import_at ? fmtRelative(d.last_import_at) : '—'}</td>
                   <td><Badge tone={DATASET_STATUS[d.status].tone}>{DATASET_STATUS[d.status].label}</Badge></td>
                   <td style={{ textAlign: 'right' }}>

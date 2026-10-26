@@ -734,3 +734,54 @@ A public JSON API is read like any large page and imported like a list: `web_fet
 - A note «no id, uuid, slug or title» means refs are positions in the list: a re-sync may add shifted records again; map a stable field or accept it.
 - Tests: `docs/doc-json.test.ts`, `list-extract-json.test.ts`, `import-list-json.test.ts` (fixture `docs/testing/promptschat-fixture.ts`), `import-list-json.pg.test.ts` (two-page Apply, one-page no-op re-sync, incremental re-sync, failing page, caps, undo).
 
+## 30. Datasets that repeat in rounds (spec 071)
+
+A dataset can now be set to **repeat in rounds**: every row is posted once on each channel; when the channel has used them all, a new round starts and the rows are free again. The order of a round is either by fields you choose («in order») or random. Before this the choices were «never again» and «after N days», and `pdr_questions` ran out for good: all 866 rows were used by June.
+
+**Needs**
+
+- Migration `096_data_reuse_rounds.sql` (down: `down/096_data_reuse_rounds.down.sql`; it sets cycle datasets back to «never again», deletes the `passed` ledger rows and drops the round table). Nothing to enable: the setting is per dataset and a dataset stays «never again» until you change it.
+- Nothing is redeployed for the dashboard beyond the normal build: the Reuse field and the Rounds panel are in the Data pages.
+
+**The setting (Data → a dataset → Schema → Reuse)**
+
+- **Never again** (the default), **After N days**, **Repeat in rounds — in order**, **Repeat in rounds — random**. A dataset that does not repeat behaves exactly as before.
+- «In order» has up to three selects: **Order by**, **Then by**, **Then by**, over the dataset's live scalar fields (numbers, dates, text, lists of choices). The default, «Import order», sends no field. Rows are sorted by the first field, ties by the second, and so on, then by import order. A row with an empty value goes last. Numbers sort as numbers (2 before 10).
+- It can also be set from the agent chat: «давай pdr_questions по колу по черзі» makes the agent propose an **Edit dataset** card (target Reuse); you apply it like any dataset suggestion.
+
+**What a round is**
+
+- Each channel (or page) has its own round of each dataset. No round row means round 1, and everything published or posted from the dataset before counts in round 1.
+- A row is **done** on a channel when it was published there, or **put aside** (see below) after the round started. The round rolls to the next one by itself, at the moment the last open row is done: the new round starts that instant and every row is open again. A row that waits for your approval on that channel is neither open nor done, so it does not hold the round back.
+- Only rows that can be posted count (`post_requires`, active, not hidden). An empty dataset or one with nothing postable never rolls.
+- **In order**: the agents are told the next row: `query_data` with `unposted_on` returns the rows in the round's order, the first is `next`, and the note says «бери перший рядок». A series whose source is such a dataset gets the next row in its note, and `publishGuard` refuses another row of that dataset with `not_next_in_order` (series slots only; a free post is not ordered).
+- **Random**: a row published on the channel in the last 7 days is put last, so the last row of one round is not the first of the next. An explicit `newest` or `oldest` from the agent is kept.
+- **Put aside**: when no post can be made from a row (the critic rejects it for a reason a rewrite cannot fix, a failed revise, `quiz_answer_mismatch`, or the executor calls `skip_slot` with `ref`), the row is recorded as `passed` for that channel in this round only and the executor is not asked to retry it. It comes back in the next round. Never network-wide, and never for a guard or lint code (those say the draft was wrong, not the row).
+- The URL a post cites (`source.url`) no longer blocks the second round: the library row is the material, the URL is a citation. The row itself is still checked.
+- Catalog and prompts: a repeating dataset shows as «по колу (по черзі), коло 2: лишилось 840 з 866» and has no runway (a round never runs out; the low-runway warning skips it).
+
+**The Rounds panel (Data → a dataset → Items)**
+
+- One card per channel that has posted from the dataset: **Round N**, how many rows are posted out of how many, how many are left or waiting for approval, and a percentage. Click for the details: when the round started, the order, and for «in order» the **next row** (`data://dataset/id`).
+- **Restart round** (in the details, behind a confirm) starts the next round on that channel now, whatever is left in the current one. Use it to start over; you never need it to finish a round.
+- The **Unposted** number on the dataset page and in the list reads «in current rounds» for these datasets: rows not yet posted in the channels' current rounds.
+- The panel is hidden for a dataset that does not repeat and when the server has no rounds endpoint. API: `GET /api/data/schemas/:key/rounds`, `POST /api/data/schemas/:key/rounds/restart` with `{ "resource_ref": "telegram:@channel" }`.
+
+**What happens at the switch**
+
+- Switching a dataset **to** repeating (from «never again» or «after N days») starts clean: everything already published counts in round 1, and every channel that had used all of the rows rolls to round 2 at once. So a dataset that was used up (pdr_questions on @pdr_dev_channel, 866 of 866) is free again the moment you save, and an in-order dataset starts from the first row.
+- Changing «in order» to «random», or the order fields, keeps the rounds.
+- Switching **away** from repeating deletes nothing, but the rules go back: under «never again» every publication of every round blocks again (a row posted in round 2 is used for good, so the dataset looks used up), and `passed` rows stop blocking. Under «after N days» the clock of each publication counts.
+
+**Owner step after the deploy (pdr_questions)**
+
+1. Data → PDR questions → Schema → Reuse → **Repeat in rounds — in order**, Order by `ticket_number`, Then by `question_num` → Save.
+2. If a later import changed the numbering, check it first: every row needs both numbers (a row without one goes to the end of the round), and the import order must not matter within one ticket. Open the Items tab and look at a few tickets before saving.
+3. After saving, @pdr_dev_channel is in round 2, the Rounds panel shows `next` = the first question of the first ticket, and the series slot's note names it. The next planned slot posts it.
+
+**Troubleshooting**
+
+- A round does not roll although nothing is left: the Rounds card says «waiting for approval». A post of this dataset waits for you on that channel (Posts to approve); decide it. A published post rolls the round at once; a rejected one is noticed at the next read of the dataset by an agent.
+- `not_next_in_order` in a skip reason: the executor picked another row than the next one. It is a content failure (it does not pause the series); the note of the next attempt names the row.
+- A row never appears: it is hidden, or not postable (a required field is empty), or it was put aside in this round. The Rounds card counts only postable rows.
+- Tests: `data/data-rounds.test.ts`, `data-rounds.pg.test.ts`, `data-rounds.migration.pg.test.ts` (migration traps and the down file), `data-rounds.read.test.ts`, `data-rounds.read.pg.test.ts` (round order, lazy roll, the 7-day tail, passed, A7), `data-rounds-api.pg.test.ts` (rounds view and restart), `editor/silent/pass-row.071.test.ts`, `editor/tools/data-tools.rounds.test.ts`, `role-tools.071.test.ts`, `editor/schedule/schedule.071.test.ts`; in the dashboard `lib/data-store.rounds.test.ts`.

@@ -58,3 +58,15 @@ test('rows body parser: JSON POSTs to …/rows only, with its own limit', async 
   await new Promise<void>((r) => { dataRowsJsonBody(big, res2, () => r()); setTimeout(r, 100); });
   assert.equal(res2.statusCode, 413);
 });
+
+// Spec 071: the owner's rounds view and the restart.
+test('rounds: an unknown dataset is a 404, a dataset that does not repeat is a 400, and restart needs a resource', async () => {
+  const c = new DataController(emptyPool);
+  await assert.rejects(c.rounds('nope'), NotFoundException);
+  const never = { query: async () => ({ rows: [{ id: 'x', key: 'k', fields: [], reuse_policy: { kind: 'never' } }] }) } as any;
+  const d = new DataController(never);
+  await assert.rejects(d.rounds('k'), (e: any) => e instanceof BadRequestException && /does not repeat in rounds/.test((e.getResponse() as any).message));
+  await assert.rejects(d.restartRoundOf('k', { resource_ref: '@x' }), (e: any) => e instanceof BadRequestException && /does not repeat in rounds/.test((e.getResponse() as any).message));
+  assert.throws(() => d.restartRoundOf('k', {}), (e: any) => e instanceof BadRequestException && /resource_ref is required/.test((e.getResponse() as any).message));
+  assert.throws(() => d.restartRoundOf('k', { resource_ref: '   ' }), BadRequestException);
+});

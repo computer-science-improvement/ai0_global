@@ -13,6 +13,7 @@ import { SchemaEditor } from '../components/data/SchemaEditor';
 import { ImportHistory } from '../components/data/ImportHistory';
 import { ImportWizard } from '../components/data/ImportWizard';
 import { DataSuggestions } from '../components/data/DataSuggestions';
+import { RoundsPanel } from '../components/data/RoundsPanel';
 import { fmtDate, fmtRelative } from '../lib/format';
 import { DATASET_STATUS, fmtInt } from '../lib/data-store';
 import { ApiError } from '../api/client';
@@ -75,7 +76,7 @@ function DatasetPage() {
       <div className="stat-grid" style={{ marginBottom: 18 }}>
         <StatTile label="Rows" value={fmtInt(stats?.rows ?? null)} icon="database" delta={stats && stats.rows !== stats.rows_active ? `${fmtInt(stats.rows - stats.rows_active)} hidden` : undefined} />
         <StatTile label="Unposted" value={fmtInt(stats?.unposted_network ?? null)} icon="sparkles" accent
-          delta={stats?.stats_at ? `stats ${fmtRelative(stats.stats_at)}` : 'no stats yet'} />
+          delta={`${s.reuse_policy.kind === 'cycle' ? 'in current rounds · ' : ''}${stats?.stats_at ? `stats ${fmtRelative(stats.stats_at)}` : 'no stats yet'}`} />
         <StatTile label="Today" value={fmtInt(stats?.today_items ?? null)} icon="calendar" delta="rows for today's date" />
         <StatTile label="Last import" value={stats?.last_import_at ? fmtRelative(stats.last_import_at) : '—'} icon="history"
           delta={stats?.last_import_at ? fmtDate(stats.last_import_at) : undefined} />
@@ -89,7 +90,10 @@ function DatasetPage() {
         ]} />
       </div>
 
-      {tab === 'items' && <DatasetItems schema={s} />}
+      {tab === 'items' && <>
+        <RoundsPanel schema={s} />
+        <DatasetItems schema={s} />
+      </>}
       {tab === 'schema' && <SchemaEditor schema={s}><DataSuggestions schema={s.key} /></SchemaEditor>}
       {tab === 'imports' && <ImportHistory schema={s.key} />}
 

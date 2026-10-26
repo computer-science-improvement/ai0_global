@@ -10,6 +10,7 @@ import { TrackingAuthGuard } from '../tracking/api/tracking-auth.guard';
 import { DataStore, DataStoreError } from './data-store';
 import { DataQueryError, filterSchema, kyivMonthDay, ORDERS, queryDataset } from './data-query';
 import { schemaInputSchema, schemaPatchSchema } from './data.types';
+import { restartRound, roundStates } from './data-rounds-api';
 import { DataImportService, MAX_API_ROWS } from './import/data-import.service';
 import { MAX_IMPORT_BYTES } from './import/source-reader';
 
@@ -120,6 +121,21 @@ export class DataController {
     const r = schemaPatchSchema.safeParse(patch);
     if (!r.success) throw new BadRequestException({ code: 'invalid', message: 'invalid dataset edit', details: r.error.issues });
     return run(() => this.store.updateSchema(key, r.data, { changedBy: who(req), reason: typeof reason === 'string' ? reason.slice(0, 500) : undefined }));
+  }
+
+  /** Where each channel is in the current round of a dataset that repeats in rounds (spec 071). */
+  @Get('schemas/:key/rounds')
+  rounds(@Param('key') key: string) {
+    return run(async () => roundStates(this.pool, await this.store.requireSchema(key)));
+  }
+
+  /** Start the next round on one channel now, whatever is left in the current one. */
+  @Post('schemas/:key/rounds/restart')
+  @HttpCode(200)
+  restartRoundOf(@Param('key') key: string, @Body() body: unknown) {
+    const r = z.object({ resource_ref: z.string().trim().min(1).max(200) }).safeParse(body);
+    if (!r.success) throw new BadRequestException({ code: 'invalid', message: 'resource_ref is required', details: r.error.issues });
+    return run(async () => restartRound(this.pool, await this.store.requireSchema(key), r.data.resource_ref));
   }
 
   // ─── imports ───────────────────────────────────────────────────────────────

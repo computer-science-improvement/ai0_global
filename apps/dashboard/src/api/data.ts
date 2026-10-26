@@ -4,12 +4,11 @@
 import { useMutation, useQuery, useQueryClient, keepPreviousData } from '@tanstack/react-query';
 import { api, ApiError, unauthorized } from './client';
 import { API_BASE } from '../lib/env';
-import type { DataFilter, FieldDef, FieldType, RoleName } from '../lib/data-store';
+import type { DataFilter, FieldDef, FieldType, ReusePolicy, RoleName } from '../lib/data-store';
 
-export type { DataFilter, FieldDef, FieldType, RoleName };
+export type { DataFilter, FieldDef, FieldType, ReusePolicy, RoleName };
 
 export type Roles = Partial<Record<RoleName, string | string[]>>;
-export type ReusePolicy = { kind: 'never' } | { kind: 'after_days'; days: number };
 export type DatasetStatus = 'draft' | 'active' | 'archived';
 
 export interface DataSchema {
@@ -188,6 +187,49 @@ export function useRefreshStats() {
   });
 }
 
+// ─── rounds (spec 071) ───────────────────────────────────────────────────────
+
+/** One channel's place in the current round of a dataset that repeats in rounds. */
+export interface RoundState {
+  resource_ref: string;
+  round:        number;
+  /** null = round 1, which never rolled. */
+  started_at:   string | null;
+  total:        number;
+  done:         number;
+  waiting:      number;
+  open:         number;
+  /** The row an in-order dataset takes next here (a `data://` ref); null for a random dataset. */
+  next:         string | null;
+}
+
+export interface DatasetRounds {
+  key:       string;
+  order:     'sequential' | 'random';
+  order_by:  string[];
+  resources: RoundState[];
+}
+
+/** Only for a dataset that repeats in rounds; a server without the endpoint (404) leaves the panel hidden. */
+export function useDatasetRounds(key: string, enabled: boolean) {
+  return useQuery({
+    queryKey: ['data', 'rounds', key],
+    enabled,
+    queryFn: () => api<DatasetRounds>(`/api/data/schemas/${enc(key)}/rounds`),
+    retry: (n, e) => !(e instanceof ApiError && (e.status === 404 || e.status === 400)) && n < 2,
+  });
+}
+
+/** Start the next round on one channel now, whatever is left in the current one. */
+export function useRestartRound(key: string) {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (resourceRef: string) =>
+      api<RoundState>(`/api/data/schemas/${enc(key)}/rounds/restart`, { method: 'POST', body: JSON.stringify({ resource_ref: resourceRef }) }),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ['data'] }),
+  });
+}
+
 // ─── items ───────────────────────────────────────────────────────────────────
 
 export interface ItemsQuery {
@@ -233,7 +275,7 @@ export function useSetItemStatus(key: string) {
 export interface DataSuggestion {
   id:         string;
   dataset:    string;
-  target:     'description' | 'suitable_for' | 'field';
+  target:     'description' | 'suitable_for' | 'field' | 'reuse';
   field:      string | null;
   old_text:   string;
   new_text:   string;

@@ -203,14 +203,108 @@ export const EDITABLE_KEYS = [
 ] as const;
 type EditableKey = (typeof EDITABLE_KEYS)[number];
 
+/** JSON with sorted object keys: the server (jsonb) stores keys in its own order, an edited copy may build them in another. */
+function stable(v: unknown): string {
+  return JSON.stringify(v ?? null, (_k, x) => (x && typeof x === 'object' && !Array.isArray(x)
+    ? Object.fromEntries(Object.entries(x as Record<string, unknown>).sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0)))
+    : x));
+}
+
 /** Only what changed between the saved dataset and the edited copy (the server diffs it again for versioning). */
 export function schemaPatch<T extends Partial<Record<EditableKey, unknown>>>(saved: T, edited: T): Partial<T> {
   const out: Partial<T> = {};
   for (const k of EDITABLE_KEYS) {
-    if (JSON.stringify(saved[k] ?? null) !== JSON.stringify(edited[k] ?? null)) (out as Record<string, unknown>)[k] = edited[k];
+    if (stable(saved[k]) !== stable(edited[k])) (out as Record<string, unknown>)[k] = edited[k];
   }
   return out;
 }
+
+// ─── Reuse policy (spec 071: rounds) ────────────────────────────────────────
+
+/** When a row may be posted again on the same channel. A `cycle` dataset posts every row once per round. */
+export type ReusePolicy =
+  | { kind: 'never' }
+  | { kind: 'after_days'; days: number }
+  | { kind: 'cycle'; order: 'sequential' | 'random'; order_by?: string[] };
+export type CyclePolicy = Extract<ReusePolicy, { kind: 'cycle' }>;
+
+/** Field types a round may be ordered by (the server checks again). */
+export const ORDERABLE_TYPES: readonly FieldType[] = ['int', 'number', 'date', 'datetime', 'month_day', 'text', 'enum'];
+export const MAX_ORDER_BY = 3;
+
+/** The fields an in-order round can sort by: live, scalar. */
+export const orderableFields = (fields: Pick<FieldDef, 'name' | 'type' | 'deprecated'>[]): string[] =>
+  fields.filter((f) => !f.deprecated && ORDERABLE_TYPES.includes(f.type)).map((f) => f.name);
+
+export type ReuseChoice = 'never' | 'after_days' | 'cycle_sequential' | 'cycle_random';
+
+export const REUSE_CHOICES: ReadonlyArray<{ value: ReuseChoice; label: string }> = [
+  { value: 'never',            label: 'Never again' },
+  { value: 'after_days',       label: 'After N days' },
+  { value: 'cycle_sequential', label: 'Repeat in rounds — in order' },
+  { value: 'cycle_random',     label: 'Repeat in rounds — random' },
+];
+
+export const ROUNDS_HINT = 'Every row is posted once on each channel; when all are posted, a new round starts.';
+
+export function reuseChoice(p: ReusePolicy): ReuseChoice {
+  if (p.kind === 'cycle') return p.order === 'sequential' ? 'cycle_sequential' : 'cycle_random';
+  return p.kind;
+}
+
+/** The policy after the owner picks an option: what still fits is kept (days, a chosen order), the rest starts fresh. */
+export function reuseFromChoice(choice: ReuseChoice, prev: ReusePolicy): ReusePolicy {
+  switch (choice) {
+    case 'never': return { kind: 'never' };
+    case 'after_days': return { kind: 'after_days', days: prev.kind === 'after_days' ? prev.days : 365 };
+    case 'cycle_random': return { kind: 'cycle', order: 'random' };
+    case 'cycle_sequential': {
+      const by = prev.kind === 'cycle' && prev.order === 'sequential' ? prev.order_by : undefined;
+      return by?.length ? { kind: 'cycle', order: 'sequential', order_by: by } : { kind: 'cycle', order: 'sequential' };
+    }
+  }
+}
+
+/**
+ * One of the "Order by" selects changed. `name` '' is "Import order" / "no further field": it ends the list there.
+ * A field already used by another select is ignored (the same field twice orders nothing). At most MAX_ORDER_BY.
+ */
+export function setOrderBy(p: CyclePolicy, index: number, name: string): CyclePolicy {
+  const cur = p.order_by ?? [];
+  if (index < 0 || index >= MAX_ORDER_BY || index > cur.length) return p;
+  let next: string[];
+  if (!name) next = cur.slice(0, index);
+  else if (cur.some((n, i) => n === name && i !== index)) return p;
+  else next = [...cur.slice(0, index), name, ...cur.slice(index + 1)];
+  return next.length ? { kind: 'cycle', order: p.order, order_by: next } : { kind: 'cycle', order: p.order };
+}
+
+/** The setting in one line: "Never again", "After 30 days", "In rounds, in order (by ticket_number, then question_num)". */
+export function reuseLabel(p: ReusePolicy): string {
+  if (p.kind === 'never') return 'Never again';
+  if (p.kind === 'after_days') return `After ${fmtInt(p.days)} ${p.days === 1 ? 'day' : 'days'}`;
+  if (p.order === 'random') return 'In rounds, random';
+  return p.order_by?.length ? `In rounds, in order (by ${p.order_by.join(', then ')})` : 'In rounds, in order (import order)';
+}
+
+/** One channel's place in a round (GET /api/data/schemas/:key/rounds). */
+export interface RoundLike { round: number; done: number; total: number; waiting: number; open: number }
+
+/** "Round 2 · 14 of 30 posted" — the card line. */
+export function roundLine(r: RoundLike): string {
+  return `Round ${r.round} · ${fmtInt(r.done)} of ${fmtInt(r.total)} posted`;
+}
+
+/** What is left, and why the round has not rolled yet when nothing is open. */
+export function roundLeft(r: RoundLike): string {
+  if (r.total === 0) return 'No postable rows';
+  if (r.open > 0) return `${fmtInt(r.open)} left${r.waiting > 0 ? `, ${fmtInt(r.waiting)} waiting for approval` : ''}`;
+  if (r.waiting > 0) return `${fmtInt(r.waiting)} waiting for approval — the round rolls when they are decided`;
+  return r.done > 0 ? 'Everything is posted — a new round starts when the next post is planned' : 'Nothing posted in this round yet';
+}
+
+/** Share of the round that is posted, 0–100. */
+export const roundPercent = (r: Pick<RoundLike, 'done' | 'total'>): number => (r.total > 0 ? Math.min(100, Math.round((r.done / r.total) * 100)) : 0);
 
 /** A new field as the owner typed it, or an English problem. New fields are optional (FR-002). */
 export function newField(existing: Pick<FieldDef, 'name'>[], v: { name: string; type: FieldType; description: string; enumText?: string }): FieldDef | { error: string } {
