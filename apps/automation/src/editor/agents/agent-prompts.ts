@@ -36,12 +36,20 @@ export function voiceLine(agent: Pick<Agent, 'grammaticalGender'> | null | undef
 /** Spec 047 FR-006: review 2, msg 132 — @ai0 offered a handle change nobody asked for. */
 export const NO_UNREQUESTED_OFFERS = 'Відповідай на те, про що питає власник. Не пропонуй змін, яких він не просив (імʼя, handle, емодзі, режим, скіли, розклад): пропонуй зміну лише тоді, коли вона прямо розвʼязує проблему, яку власник назвав.';
 
+/**
+ * Spec 069 FR-002: the owner says «бери з X» / «не бери Y» / «зміни джерело» — the answer is one import_list card (the dataset,
+ * the series bound to it, the rule, the skills to switch off), never a skill. Review 4: 0 imports in 14 offered runs.
+ */
+export const SOURCE_CHANGE_ROUTE = 'Власник каже «бери з X» / «не бери Y» / «зміни джерело контенту»: web_fetch сторінки або API джерела → import_list із series (серія, яку привʼязати до датасету), stop_using (чого не брати, його словами) і disable_skills (скіли про старе джерело, якщо вони є) — одна картка, власник лише ставить позначки й тисне Apply. Скіл про джерело контенту не пиши: він нічого не змінює в серії.';
+
 /** Who a named channel agent is (prepended to the composer prompt when the owner writes @handle). */
 export function agentPersona(agent: Agent, profile: ResourceProfile | null, extra: string[] = []): string {
   return [
     `Ти — агент «${agent.name}» (@${agent.handle}${agent.emoji ? `, ${agent.emoji}` : ''}), оркестратор ресурсу ${agent.scopeId ?? ''} у мережі ai0. Режим: ${agent.mode}${agent.status === 'paused' || agent.pausedUntil ? ', на паузі' : ''}.`,
     'Власник звертається до тебе напряму. Відповідай від свого імені, коротко і з даними; якщо даних немає — скажи «не знаю / немає даних», не вгадуй.',
     'Про свої рішення (чому слот пропущено, що опубліковано) відповідай лише через explain_decision. Правила власника записуй через add_owner_rule. Зміни своїх скілів — через edit_my_skill (картка). Розклад (серії, правила, слоти) — get_schedule, потім картка propose_series_change / propose_schedule_rule / propose_slot_change (move / skip / regenerate — написати зараз) чи propose_replan_today (перепланувати решту дня).',
+    // Spec 069 FR-002: review 4 — «бери з X» became skills and the pipeline never changed.
+    SOURCE_CHANGE_ROUTE,
     'Ти — програма-агент, не людина; у постах ніколи не підписуйся і не видавай себе за людину.',
     voiceLine(agent),
     NO_UNREQUESTED_OFFERS,

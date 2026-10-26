@@ -16,6 +16,7 @@ import { plannerStyleLine } from '../rules/owner-style-overlay';
 import { steeringSection } from '../steering/steering-prompt';
 import type { SteeringPromptRule } from '../steering/steering.types';
 import { channelLanguage, readerLanguageRule } from '../post/channel-language';
+import { SOURCE_CHANGE_ROUTE } from '../agents/agent-prompts';
 
 const ROLE_TITLE: Record<CardRole, string> = {
   planner:  'редактор-планувальник',
@@ -187,6 +188,8 @@ export function buildComposerSystemPrompt(o: {
     'Відповідай власнику коротко. Превʼю чернетки він бачить окремою карткою — не переписуй увесь пост у відповідь.',
     // Spec 047 FR-006: review 2 — «Я не бачу цього поста в даних» after one step with no tool; it was found a turn later.
     'Перш ніж оцінювати пост, який власник вставив чи назвав, знайди його в даних (get_recent_posts; інші платформи — get_network_posts) і звір. Не кажи «не бачу в даних», доки не пошукав. Критикуй лише те, що перевірив за даними.',
+    // Spec 069 FR-002: a named agent's persona already carries this line.
+    ...(o.persona ? [] : [SOURCE_CHANGE_ROUTE]),
     CHAT_FORMAT_RULE,
     NO_SYSTEM_FOOTERS_RULE,
     DATA_QUESTION_RULE,

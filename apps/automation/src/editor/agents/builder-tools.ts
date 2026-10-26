@@ -10,6 +10,7 @@ import type { ResourceCatalog } from './resource-catalog';
 import { KPI_GOALS, ResourceProfile, ResourceProfileSchema, ResourceProfilesRepository } from './resource-profile';
 import { isProtectedSkill } from '../skills/skill-library';
 import { lintSkill, SKILL_ROLES } from './skill-lint';
+import { sourceRefusal } from './skill-warnings';
 import type { SkillStore } from './skill-store';
 import { defaultAppliesTo } from '../skills/skill-defaults';
 import { SCRIPT_MIN_SHARE, scriptShares } from '../post/channel-language';
@@ -273,6 +274,9 @@ export function buildBuilderTools(d: BuilderToolDeps): EditorTool[] {
       const lint = lintSkill({ name: i.name, description: i.description, appliesTo, body: i.body, inline: i.inline });
       if (!lint.ok) return { error: 'skill_lint_failed', details: lint.errors };
       if (shared?.safety || isProtectedSkill(i.name)) return { error: 'safety_skill', details: 'системний скіл безпеки чи голосу змінюється лише на сторінці агента з підтвердженням' };
+      // Spec 069 FR-002: where the posts come from is an import card, never a skill.
+      const wrongPlace = sourceRefusal(i.body);
+      if (wrongPlace) return wrongPlace;
       return proposeCard(d, ctx, 'write_skill', { ...i, applies_to: appliesTo, handle: a.handle },
         `${shared ? 'Override' : 'Add'} skill "${i.name}" for @${a.handle}${i.inline ? ' (always in context)' : ''}: ${i.description}`, a.id);
     },

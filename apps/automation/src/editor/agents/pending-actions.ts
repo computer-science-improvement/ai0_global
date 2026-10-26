@@ -76,6 +76,62 @@ export class KeepPendingError extends Error {
 }
 
 /**
+ * Spec 069 FR-001: a card may carry follow-ups in `payload.then`. They run after the main handler succeeded, through the
+ * same registered handlers, each in its own try: one failing does not change the card's status (only the main handler
+ * does) and does not stop the next. `ticked: false` starts unticked (a soft suggestion); `requires: 'main_rows'` waits
+ * for an import that actually found rows. An item's own `then` is never run.
+ */
+export interface FollowUp {
+  key:       string;
+  kind:      string;
+  payload:   Record<string, unknown>;
+  summary:   string;
+  ticked?:   boolean;
+  requires?: 'main_rows';
+}
+
+/** How one follow-up went; the card's `result.then` lists them in order. */
+export interface FollowUpResult { key: string; ok: boolean; error?: string; result?: unknown }
+
+export const MAX_FOLLOW_UPS = 8;
+
+/** The follow-ups of a payload (malformed items are left out). */
+export function followUpsOf(payload: Record<string, unknown> | null | undefined): FollowUp[] {
+  const raw = payload?.then;
+  if (!Array.isArray(raw)) return [];
+  return raw.flatMap((x): FollowUp[] => {
+    if (!x || typeof x !== 'object') return [];
+    const o = x as Record<string, unknown>;
+    if (typeof o.key !== 'string' || !o.key || typeof o.kind !== 'string' || !o.kind) return [];
+    const body = o.payload && typeof o.payload === 'object' && !Array.isArray(o.payload) ? o.payload as Record<string, unknown> : {};
+    return [{
+      key: o.key, kind: o.kind, payload: body, summary: typeof o.summary === 'string' ? o.summary : '',
+      ...(o.ticked === false ? { ticked: false } : {}), ...(o.requires === 'main_rows' ? { requires: 'main_rows' as const } : {}),
+    }];
+  });
+}
+
+/** The keys the owner unticked on the card, or null when the caller sent no choice (API, owner bot). */
+const skipThenOf = (input: unknown): Set<string> | null => {
+  const v = (input as { skip_then?: unknown } | null)?.skip_then;
+  return Array.isArray(v) ? new Set(v.map(String)) : null;
+};
+
+/** `inserted + updated + skipped` of an import result: 0 = the import found nothing (a re-import of an unchanged list is not empty). */
+const mainRows = (main: unknown): number => {
+  const r = (main && typeof main === 'object' ? main : {}) as Record<string, unknown>;
+  const n = (k: string) => (typeof r[k] === 'number' ? r[k] as number : 0);
+  return n('inserted') + n('updated') + n('skipped');
+};
+
+const withThen = (main: unknown, then: FollowUpResult[]): Record<string, unknown> =>
+  main && typeof main === 'object' && !Array.isArray(main)
+    ? { ...(main as Record<string, unknown>), then }
+    : { ok: true, ...(main !== undefined && main !== null ? { value: main } : {}), then };
+
+const errorText = (err: any): string => (typeof err?.response === 'object' && err.response ? JSON.stringify(err.response) : errText(err));
+
+/**
  * Confirmation cards (spec 018 FR-005): tools only propose; the owner's
  * [Apply] runs the registered handler once. Later specs register more kinds
  * (playbooks, network mode, directives).
@@ -101,7 +157,22 @@ export class PendingActionsService {
 
   propose(a: { chatId: string | null; agentId?: string | null; kind: string; payload: Record<string, unknown>; summary: string }): Promise<PendingAction> {
     if (!this.handlers.has(a.kind)) throw new Error(`unknown action kind ${a.kind}`);
+    this.checkFollowUps(a.payload);
     return this.repo.create(a);
+  }
+
+  /** Spec 069 A2: every follow-up names a registered kind and a key of its own; a card carries a handful at most. */
+  private checkFollowUps(payload: Record<string, unknown>): void {
+    if (payload.then === undefined) return;
+    const items = followUpsOf(payload);
+    if (!Array.isArray(payload.then) || items.length !== payload.then.length) throw new Error('invalid follow-ups: every item needs a key and a kind');
+    if (items.length > MAX_FOLLOW_UPS) throw new Error(`invalid follow-ups: at most ${MAX_FOLLOW_UPS} per card`);
+    const seen = new Set<string>();
+    for (const it of items) {
+      if (!this.handlers.has(it.kind)) throw new Error(`unknown action kind ${it.kind} in a follow-up`);
+      if (seen.has(it.key)) throw new Error(`duplicate follow-up key ${it.key}`);
+      seen.add(it.key);
+    }
   }
 
   private readonly applying = new Set<string>();
@@ -129,15 +200,38 @@ export class PendingActionsService {
     if (!h) throw Object.assign(new Error(`no handler for ${a.kind}`), { status: 500 });
     try {
       const result = await h(a.payload, a, input);
-      return (await this.repo.decide(id, 'applied', result ?? { ok: true })) ?? a;
+      // Spec 069: the follow-ups run after the main handler; their outcomes join the result, the status is the main one's.
+      const then = await this.runFollowUps(a, result, input);
+      return (await this.repo.decide(id, 'applied', then.length ? withThen(result, then) : result ?? { ok: true })) ?? a;
     } catch (err: any) {
       if (err instanceof KeepPendingError) throw err;
-      const msg = typeof err?.response === 'object' && err.response
-        ? JSON.stringify(err.response)
-        : errText(err);
+      const msg = errorText(err);
       // Validation failures (stale rename, taken handle…) leave the card failed with the reason.
       return (await this.repo.decide(id, 'failed', null, msg.slice(0, 1000))) ?? a;
     }
+  }
+
+  /** Spec 069 FR-001 / A2 / A3: the card's follow-ups, in order, after the main handler succeeded. */
+  private async runFollowUps(a: PendingAction, main: unknown, input: unknown): Promise<FollowUpResult[]> {
+    const items = followUpsOf(a.payload);
+    if (!items.length) return [];
+    const skip = skipThenOf(input);
+    const rows = mainRows(main);
+    const out: FollowUpResult[] = [];
+    for (const it of items) {
+      // The dashboard sends the owner's choice (the unticked keys); without one (API, owner bot) the soft items stay off.
+      if (skip ? skip.has(it.key) : it.ticked === false) { out.push({ key: it.key, ok: false, error: skip ? 'skipped' : 'not_ticked' }); continue; }
+      if (it.requires === 'main_rows' && rows === 0) { out.push({ key: it.key, ok: false, error: 'import_empty' }); continue; }
+      const h = this.handlers.get(it.kind);
+      if (!h) { out.push({ key: it.key, ok: false, error: `no handler for ${it.kind}` }); continue; }
+      try {
+        const result = await h(it.payload, a, null);
+        out.push({ key: it.key, ok: true, ...(result !== undefined && result !== null ? { result } : {}) });
+      } catch (err: any) {
+        out.push({ key: it.key, ok: false, error: errorText(err).slice(0, 500) });
+      }
+    }
+    return out;
   }
 
   async discard(id: string): Promise<PendingAction> {

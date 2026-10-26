@@ -30,13 +30,13 @@ export const SLOT_REGENERATE_KIND = 'slot_regenerate';
 export const REPLAN_TODAY_KIND = 'replan_today';
 
 /** What a tool call names: a target (@handle, channel, resource ref) and / or a slot. */
-interface ScopeTarget { channel?: string | null; slotId?: string | null }
+export interface ScopeTarget { channel?: string | null; slotId?: string | null }
 
 /**
  * The schedule a chat call works on (spec 040 FR-013). A channel agent: its own (another target is out of scope).
  * @manager / @ai0: the slot's, else the named target's, else the chat's channel.
  */
-async function scopeOf(d: ScheduleToolDeps, ctx: ToolContext, t: ScopeTarget = {}): Promise<ScheduleScope | Fail> {
+export async function scopeOf(d: Pick<ScheduleToolDeps, 'schedule'>, ctx: ToolContext, t: ScopeTarget = {}): Promise<ScheduleScope | Fail> {
   const agent = (ctx.extras?.agent as Agent | null | undefined) ?? null;
   if (agent && agent.kind !== 'builder' && agent.kind !== 'manager') {
     const own = await d.schedule.scopeOf(agent);

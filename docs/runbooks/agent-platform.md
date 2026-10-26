@@ -676,12 +676,27 @@ Small fixes to the loop, the loadout and the audit. No migration, no new setting
 
 **Nanobanana prompts for @ai0_prompts_dev (first use)**
 
-1. In the chat with the @ai0_prompts_dev agent: «імпортуй https://github.com/ZeroLu/awesome-nanobanana-pro у датасет nanobanana_prompts».
+1. In the chat with the @ai0_prompts_dev agent say what you want, in your words: «бери промпти з https://github.com/ZeroLu/awesome-nanobanana-pro, PromptHero більше не бери». The agent proposes the whole change as one card (spec 069, below); «імпортуй … у датасет nanobanana_prompts» still works and gives the import alone.
 2. The agent fetches the page, reads two or three entries, and calls `import_list` with a mapping like: `title: heading`, `prompt_text: first_code_block`, `media_url: last_image` (the result picture, not the input), `author: link_text_after:Source`, `source_url: last_link_after:Source`, licence `CC BY 4.0` (the repository badge), filter `has_code_block: true` (drops the sponsor blocks).
 3. Read the preview in the chat: number of entries, three sample rows, how full each field is, how many entries are not postable (no picture). Entries without a prompt or picture are skipped, not imported half-empty.
 4. Press **Apply** on the card. The dataset is created (`post_requires` = title, prompt_text, media_url; `dedup_key` = `list_ref`, which is the page address plus the entry's heading) and the rows are written as one import.
-5. Point the channel at it: change the channel's series or skill to take rows from the dataset (the skill `nanobanana-github-prompt-post` needs the one line «рядки з датасету nanobanana_prompts»; it is data in the database, so edit it in the dashboard, not in the repository).
-6. Undo: the dataset page → Imports → the import → Undo.
+5. Point the channel at it. With the bundle card (below) this is already on the card: the series is bound to the dataset as its required source. Do not write a skill for it: a skill that names a URL, an API, a `provider=` filter or «only from dataset X» is refused (`source_belongs_in_import`), because the planner never reads channel skills and the series kept pinning the old rows (review 4).
+6. Undo: the dataset page → Imports → the import → Undo. (Undo covers the rows only; the series change, the rule and the skill switch-off are undone on the agent's page.)
+
+**Changing the source in one card (spec 069)**
+
+When you say «бери з X» / «не бери Y» / «зміни джерело», the agent calls `import_list` with three more inputs, and the card carries what follows the import as a checklist («Then, in this order — untick what you do not want»):
+
+| Input | Follow-up on the card | What Apply does |
+|---|---|---|
+| `series` | `Series` | binds that series to the new dataset, `source_mode: required` (the series becomes yours: locked). Checked when the card is proposed against a dataset that does not exist yet; skipped with `import_empty` when the import found nothing (a re-import of an unchanged list is not empty). |
+| `stop_using` | `Rule` | stores your words as an «avoid» rule of the channel (the same lint as `add_owner_rule`). |
+| `disable_skills` | `Skill off` (one per skill) | switches the named skills of that agent off (the old «Фільтр provider=prompthero»). |
+
+- The import runs first, then the items in that order. Each runs on its own: a failing one is shown with its reason on the card, the card stays **applied**, the next one still runs. The import has an Undo; the series change, the rule and the skill switch-off do not (use the agent's page).
+- An item you untick is not run (`left unticked`). Cards applied from the API or the owner bot run only the ticked-by-default items.
+- These cards belong to a chat, so they are dashboard-only (the owner bot lists cards without a chat).
+- Tests: `agents/pending-actions.069.test.ts`, `docs/import-list-tools.069.test.ts`, `docs/import-bundle.069.pg.test.ts`, `schedule/schedule-pending-tables.069.test.ts`, `agents/skill-warnings.069.test.ts`; in the dashboard `lib/follow-ups.test.ts`.
 
 **Updates**
 
@@ -714,7 +729,7 @@ A public JSON API is read like any large page and imported like a list: `web_fet
 
 **prompts.chat for @ai_global (first use)**
 
-1. In the chat with @ai_global: «імпортуй https://prompts.chat/api/prompts?perPage=100 у датасет promptschat».
+1. In the chat with @ai_global: «бери промпти з https://prompts.chat/api/prompts?perPage=100» (the agent proposes the import, and with it the series bind, the «avoid» rule and the old skills to switch off, as in § 24); or «імпортуй https://prompts.chat/api/prompts?perPage=100 у датасет promptschat» for the import alone.
 2. The agent fetches it, reads a few records, and calls `import_list` with a mapping like `title: field:title`, `prompt_text: field:content`, `media_url: field:mediaUrl`, `type: field:type`, `category: field:category.name`, `author: first_of:author.name|author.username`, `tags: field:tags[].tag.name`, optionally `where: {"type": ["TEXT", "IMAGE"]}` to leave out the SKILL, TASTE and VIDEO records.
 3. Read the preview: the counts are of the first page; `pages` says how many pages and records the API has and how many Apply reads (`pages_to_read`). With `?perPage=100` the 2,571 records are 26 pages, inside both caps; at the default page size of 24 they are 108 pages and Apply stops at page 30. When the list outgrows a cap, raise it in Settings or narrow the request with the API's own parameters (`?type=IMAGE`).
 4. **Check the prompts.chat licence** and give it as `license` (stored per row; the dataset default is `unknown`).

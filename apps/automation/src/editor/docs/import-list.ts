@@ -52,6 +52,10 @@ export const ImportListInput = z.object({
   title:   z.string().min(1).max(200).optional().describe('title of a new dataset'),
   description: z.string().max(1000).optional().describe('what a new dataset holds'),
   language: z.string().max(20).optional().describe('language of the rows of a new dataset'),
+  // Spec 069 FR-002: «бери з X, не бери Y» — the owner's whole source change on one card (checked now, run by Apply after the import).
+  series:  z.string().min(3).max(80).optional().describe('series (name in the active playbook) to bind to this dataset as its required source — the owner said «бери з X»; runs after the import, skipped when the import found nothing'),
+  stop_using: z.string().min(8).max(400).optional().describe('what the owner no longer wants, in their words («не бери промпти з PromptHero») — stored as an owner rule of the channel when they apply the card'),
+  disable_skills: z.array(z.string().min(3).max(48)).max(5).optional().describe('names of the skills of this agent that prescribe the old source — switched off when the owner applies the card'),
 });
 export type ImportListArgs = z.infer<typeof ImportListInput>;
 

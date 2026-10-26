@@ -1267,7 +1267,11 @@ export const EDITOR_PROVIDERS = [
         return new ToolRegistry([
           ...buildReadTools({ pool, readonly: new ReadonlyQueryService(pool), skills, stories: new StoryContextService(stories), hosts, docs }),
           ...buildDocTools({ docs }),
-          ...buildImportListTools({ pool, docs, actions: infra.actions, hosts, env }),
+          // Spec 069 FR-002: the owner's «бери з X, не бери Y» is one card (the series, the rule and the skills ride on the import).
+          ...buildImportListTools({
+            pool, docs, actions: infra.actions, hosts, env,
+            schedule, agents: infra.agents, skills: infra.skills, handles: async () => (await infra.agents.list()).map((a) => a.handle),
+          }),
           ...buildDataTools({ pool, actions: infra.actions, env }),
           ...buildHighlightsTools({ pool }),
           ...buildComposeTools({ hosts, drafts }),
