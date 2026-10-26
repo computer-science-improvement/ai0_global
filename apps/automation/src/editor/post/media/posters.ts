@@ -66,3 +66,20 @@ export function posterFitsTopic(poster: AiPoster, i: PosterTopicInput): boolean 
   const head = i.head.filter((x): x is string => !!x && !!x.trim()).join('\n');
   return poster.keywords.some((k) => count(head, k) > 0 || count(i.text, k) >= 2);
 }
+
+/** A keyword in the headline counts for more than one in the text: the topic is what the title says. */
+const HEAD_WEIGHT = 3;
+
+/**
+ * Spec 067 FR-005: the posters that fit the post's topic, best first — `posterFitsTopic` decides who is in, the ranking is
+ * the keyword hits (a headline hit weighs 3, a text hit 1; ties keep the catalogue order). Empty = no poster fits and the
+ * post goes without an image. The code names these in the `poster_mismatch` message instead of the model guessing.
+ */
+export function fittingPosters(i: PosterTopicInput): AiPoster[] {
+  const head = i.head.filter((x): x is string => !!x && !!x.trim()).join('\n');
+  return AI_POSTERS
+    .map((poster, order) => ({ poster, order, hits: poster.keywords.reduce((n, k) => n + count(head, k) * HEAD_WEIGHT + count(i.text, k), 0) }))
+    .filter((x) => posterFitsTopic(x.poster, i))
+    .sort((a, b) => b.hits - a.hits || a.order - b.order)
+    .map((x) => x.poster);
+}

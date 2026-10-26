@@ -1,6 +1,6 @@
 # 067 — The critic reads what the author read
 
-Status: planned · Builds on 037 (critic gate), 041 (passages, pass_with_edits), 046 (fallback ladder), 063 (critic precision), 065 (document reader) · No migration
+Status: done · Builds on 037 (critic gate), 041 (passages, pass_with_edits), 046 (fallback ladder), 063 (critic precision), 065 (document reader) · No migration
 
 > **Read the «Amendments after the builder check» section at the end first.** Where it differs from the body, the amendment wins.
 

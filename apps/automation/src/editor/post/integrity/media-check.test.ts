@@ -223,10 +223,11 @@ test('T17: publish_platform_post runs the media rules before the critic (errors 
   const foreign = { ...news, media: [{ url: 'https://cdn.example/stock.jpg', kind: 'image' as const }] };
   assert.deepEqual(platformMediaFindings(foreign, { resourceRef: 'instagram:1', style }).errors, [], 'the page not read in this run: never guess');
   assert.deepEqual(platformMediaFindings(foreign, { resourceRef: 'instagram:1', style, sources: [{ url: PAGE, image: OG, images: [OG] }] }).errors.map((e) => e.code), ['image_not_from_source']);
-  assert.deepEqual(platformMediaFindings({ ...news, media: [{ url: OG, kind: 'image' as const }] }, { resourceRef: 'instagram:1', style, sources: [{ url: PAGE, image: OG }] }), { errors: [], warnings: [] });
+  assert.deepEqual(platformMediaFindings({ ...news, media: [{ url: OG, kind: 'image' as const }] }, { resourceRef: 'instagram:1', style, sources: [{ url: PAGE, image: OG }] }), { errors: [], warnings: [], poster: 'news_no_poster' });
   const explainer = PlatformPostSpecSchema.parse({ format: 'ig_photo', title: 'Що таке MCP-сервер', caption: 'Пояснюємо.', media: [{ url: POSTER('08-agent') }] });
   const r = platformMediaFindings(explainer, { resourceRef: 'instagram:1', style, topic: 'Глосарій: MCP' });
-  assert.deepEqual([r.errors.length, r.warnings.map((w) => w.code)], [0, ['poster_mismatch']], 'a poster off topic on a non-news post is a warning');
+  // Spec 067 FR-005: before publishing the executor can still fix it, so it blocks (the post audit keeps the warning, see poster-fit.067.test.ts).
+  assert.deepEqual([r.errors.map((e) => e.code), r.warnings.length], [['poster_mismatch'], 0], 'a poster off topic on a non-news post is an error before publishing');
 });
 
 test('T17: platformCitedUrl — source, fb_link link, first comment, the only caption link; CTAs and site roots are not sources', () => {

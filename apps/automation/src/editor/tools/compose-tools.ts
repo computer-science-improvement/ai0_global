@@ -61,7 +61,8 @@ export function buildComposeTools(d: ComposeToolDeps = {}): EditorTool[] {
     execute: async (input, ctx) => {
       const p = await specOf(input);
       if ('error' in p) return p;
-      return lintFailed(lintPost(p.spec, cardFrom(ctx)));
+      // Spec 067 FR-005: an executor's check is the one publish_post makes, so an off-topic poster is an error here too (the chat composer keeps the warning).
+      return lintFailed(lintPost(p.spec, cardFrom(ctx), ctx.role === 'executor' ? { ctx: { prePublish: true } } : {}));
     },
   });
 

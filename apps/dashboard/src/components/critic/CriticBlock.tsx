@@ -5,13 +5,14 @@
 // draft cards (advisory there) and on plan slots (written posts, dry-run previews).
 
 import { Badge } from '../ui/Badge';
-import { coverageNote, criticFootnote, issueList, scoreList, verdictBadge, type CriticVerdict, type CriticWhere } from '../../lib/critic';
+import { coverageNote, criticFootnote, issueList, scoreList, skippedRulesNote, verdictBadge, type CriticVerdict, type CriticWhere } from '../../lib/critic';
 
 export function CriticBlock({ critic, where }: { critic: CriticVerdict; where: CriticWhere }) {
   const badge = verdictBadge(critic);
   const scores = scoreList(critic);
   const issues = issueList(critic);
   const coverage = coverageNote(critic);
+  const skipped = skippedRulesNote(critic);
   const foot = criticFootnote(critic, where);
   const earlier = critic.history?.[0];
   return (
@@ -68,6 +69,7 @@ export function CriticBlock({ critic, where }: { critic: CriticVerdict; where: C
         </div>
       )}
       {coverage && <div className="text-micro" style={{ color: 'var(--color-ink-dim)', overflowWrap: 'anywhere' }}>{coverage}</div>}
+      {skipped && <div className="text-micro" style={{ color: 'var(--color-ink-dim)', overflowWrap: 'anywhere' }}>{skipped}</div>}
       {foot && <div className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>{foot}</div>}
     </div>
   );

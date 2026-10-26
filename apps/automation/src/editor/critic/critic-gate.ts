@@ -20,6 +20,7 @@ import { lowerCoverage, PAGE_CAP, ReadCapture, type SourceCoverage } from './rea
 import { LIBRARY_ROW_CAP } from './critic-source';
 import type { DocStore } from '../docs/doc-store';
 import { criticMediaOf } from './critic-media';
+import type { PosterDecision } from '../post/integrity/checks/media';
 import { storedSourcesOf, type StoredSource } from './stored-sources';
 import { applySpecEdits, lintFixes, type TextEdit } from './spec-edits';
 import { guardEdits } from './safe-edits';
@@ -49,6 +50,8 @@ export interface CriticPost {
   timezone?:  string;
   /** Spec 037 T2: the story's earlier posts (the story guard), null for a new story. */
   story?:     CriticStoryContext | null;
+  /** Spec 067 A5: the code's poster decision for this post (set whether or not it has an image); the publish tool computes it from the AuditPost it lints. */
+  poster?:    PosterDecision;
 }
 
 /** Spec 041 FR-002: the guards on an edited spec — `state` is whatever the publish tool needs to go on with it. */
@@ -392,6 +395,7 @@ export class CriticGate {
       skills: this.c.skills ?? null,
       story: post.story ?? null,
       media: this.media(post.spec),
+      ...(post.poster ? { posterDecision: post.poster } : {}),
       ownerRules: this.c.ownerRules ?? null,
       steering: this.c.steering ?? null,
       risk: draftRisk({ spec: post.spec, text: post.text, contentKind: this.c.voice?.style?.content_kind ?? null }),

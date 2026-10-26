@@ -1,3 +1,4 @@
+import { Logger } from '@nestjs/common';
 import { criticSteeringLines } from '../steering/steering-prompt';
 import type { SteeringPromptRule } from '../steering/steering.types';
 import type { AgentLoop, AgentLoopResult } from '../harness/agent-loop';
@@ -18,6 +19,7 @@ import { criticSkillsSection, type CriticSkillsContext, type CriticSkillsRequest
 import { criticDatesLines, type CriticDates } from './critic-dates';
 import { criticStoryLines, type CriticStoryContext } from '../story/story-context';
 import { criticMediaLines, type CriticMediaContext } from './critic-media';
+import type { PosterDecision } from '../post/integrity/checks/media';
 import { criticGroundingLines, criticPassageLines, type CriticSourceContext } from './critic-passages';
 
 /** One attempt of the critic; a second attempt follows a timeout or an error (fail-safe, FR-004). */
@@ -83,6 +85,11 @@ export interface CriticRequest {
   story?:       CriticStoryContext | null;
   /** Spec 037 T11: the post's images (network posters by name and use_for) and the source page's main image. */
   media?:       CriticMediaContext | null;
+  /**
+   * Spec 067 FR-005 / A5: the code's decision on network posters for this post, set for every post with or without an
+   * image. The critic does not judge poster fit; the owner's picture rules are left out of its prompt when no poster applies.
+   */
+  posterDecision?: PosterDecision | null;
   /** Spec 040 FR-011: the channel's owner rules; the critic scores `owner_rules` against them. */
   ownerRules?:  OwnerRuleLine[] | null;
   /** Spec 045 FR-005: the steering rules (advice for format_fit, never a reason to reject). */
@@ -153,7 +160,7 @@ export function criticUserPrompt(r: CriticRequest): string {
       clip(r.examples, CAP.examples));
   }
   if (r.profile && /Табу-теми/.test(r.profile)) s.push('', 'Табу-теми з профілю — це теми, про які ресурс не пише: пост на табу-тему → sense ≤ 2.');
-  s.push(...criticOwnerRulesLines(criticRules(r.ownerRules)));
+  s.push(...criticOwnerRulesLines(criticRules(r.ownerRules, r.posterDecision)));
   s.push(...criticSteeringLines(r.steering));
   s.push('', '## Слот');
   s.push(`Формат: ${r.format}.${r.topic ? ` Тема: ${r.topic}.` : ''}${r.angle ? ` Кут: ${r.angle}.` : ''}`);
@@ -173,7 +180,7 @@ export function criticUserPrompt(r: CriticRequest): string {
     s.push('Джерела немає — оціни grounding за перевірюваністю тверджень.');
   }
   s.push(...criticGroundingLines(r.source?.grounding));
-  s.push(...criticMediaLines(r.media));
+  s.push(...criticMediaLines(r.media, r.posterDecision));
   s.push('', '## Попередження lint (AI-штампи, гумор і сленг, гігієна тексту та інші перевірки коду)');
   s.push('Це підказки перевірити, а не докази: підтвердь кожне в тексті й уривках, а чого не знайшов — цитуй уривок.');
   const lintWarnings = r.lintWarnings ?? r.slopWarnings;
@@ -218,9 +225,40 @@ export function criticOwnerRulesLines(rules: readonly OwnerRuleLine[] | null | u
   ];
 }
 
-/** Spec 041 FR-005: the owner rules the critic checks — those a post's text can show (`isTextRule`). */
-export function criticRules(rules: readonly OwnerRuleLine[] | null | undefined): OwnerRuleLine[] {
-  return (rules ?? []).filter(isTextRule);
+/**
+ * Spec 041 FR-005: the owner rules the critic checks — those a post's text can show (`isTextRule`).
+ * Spec 067 FR-005 / A5: and, when the code says no network poster applies to the post (`news_no_poster`, `none_fits`),
+ * not the owner's picture rules («кожен пост з картинкою») — the poster fit is code's, and the rule would turn every
+ * correct text-only post into a violation (rule #13 of the 10-21…10-26 export). Called with the same decision wherever the
+ * rules are used (the prompt and the verdict), so a rule left out never comes back as `owner_rules_missing`.
+ */
+export function criticRules(rules: readonly OwnerRuleLine[] | null | undefined, posterDecision?: PosterDecision | null): OwnerRuleLine[] {
+  const text = (rules ?? []).filter(isTextRule);
+  return noPosterApplies(posterDecision) ? text.filter((x) => !isMediaRule(x)) : text;
+}
+
+/** The text rules of the owner's that `criticRules` leaves out for this decision (their ids go to `rules_skipped`). */
+export function skippedRules(rules: readonly OwnerRuleLine[] | null | undefined, posterDecision?: PosterDecision | null): OwnerRuleLine[] {
+  return noPosterApplies(posterDecision) ? (rules ?? []).filter((x) => isTextRule(x) && isMediaRule(x)) : [];
+}
+
+const noPosterApplies = (d: PosterDecision | null | undefined): boolean => d === 'news_no_poster' || d === 'none_fits';
+
+/**
+ * Spec 067 FR-005: a rule about the post's picture — its text names a picture, an image, a poster, a photo or media.
+ * Kept narrow on purpose: the word must start a word (nothing is read inside a longer word), and «фотограф…» and
+ * «медіан…» are other things. A rule that only mentions the word still goes (the log says which one).
+ */
+const MEDIA_RULE = /(?<![\p{L}])(?:картинк|зображен|постер|фото(?!граф)|медіа(?!н)|image|picture)/iu;
+export function isMediaRule(r: Pick<OwnerRuleLine, 'text'>): boolean {
+  return MEDIA_RULE.test(r.text);
+}
+
+const ruleLog = new Logger('CriticRules');
+/** Logs the owner rules left out of a critic run (once per run, at the call site that builds the request). */
+export function logSkippedRules(r: Pick<CriticRequest, 'slotId' | 'resourceRef' | 'ownerRules' | 'posterDecision'>): void {
+  const out = skippedRules(r.ownerRules, r.posterDecision);
+  if (out.length) ruleLog.log(`${r.resourceRef} slot ${r.slotId ?? '-'}: poster decision ${r.posterDecision} — owner picture rule(s) left out of the critic prompt: ${out.map((x) => `#${x.id}`).join(', ')}`);
 }
 
 /**
@@ -283,6 +321,7 @@ export class CriticService {
     });
     const system = criticSystemPrompt(r);
     const user = criticUserPrompt(r);
+    logSkippedRules(r);
     const runIds: string[] = [];
     let cost = 0;
     let error = 'no verdict';
@@ -334,7 +373,8 @@ export class CriticService {
 
   private store(raw: Critique, r: CriticRequest, model: string, runId: string | null, cost: number): StoredCritic {
     const slop = r.slopWarnings.map((w) => w.code);
-    const c = normalizeOwnerRules(raw, criticRules(r.ownerRules));
+    const c = normalizeOwnerRules(raw, criticRules(r.ownerRules, r.posterDecision));
+    const skipped = skippedRules(r.ownerRules, r.posterDecision);
     // Spec 067 A2: what the code knows beyond the model's answer — the pass, how much of the source the critic saw, the
     // numbers the code could not find, the lint that stays a block, and the items pass 1 asked to fix.
     const coverage = r.source?.coverage ?? 'none';
@@ -354,6 +394,7 @@ export class CriticService {
       ...(c.rule_checks ? { rule_checks: c.rule_checks } : {}),
       ...(issues.length ? { issues } : {}),
       ...(r.previous && c.previous_checks?.length ? { previous_checks: c.previous_checks } : {}),
+      ...(skipped.length ? { rules_skipped: skipped.map((x) => x.id) } : {}),
       source_coverage: coverage,
       ...(codeMissing.length ? { grounding_missing: codeMissing.slice(0, 12) } : {}),
       ...(edits.length ? { edits } : {}),

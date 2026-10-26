@@ -1,5 +1,5 @@
 import { normalizeImageUrl } from '../../media/image-url';
-import { posterFitsTopic, posterOf, type AiPoster } from '../../media/posters';
+import { fittingPosters, posterFitsTopic, posterOf, type AiPoster } from '../../media/posters';
 import { excerptOf, type AuditCard, type AuditContext, type AuditPost, type Finding, type IntegrityCheck } from '../types';
 
 /**
@@ -9,11 +9,14 @@ import { excerptOf, type AuditCard, type AuditContext, type AuditPost, type Find
  *     from the same article passes — or any image when that page had none (→ no media, format `text`). Without the
  *     page in `ctx.sources` (not read in this run, a feed item only, the export audit) it says nothing.
  *   • `poster_mismatch`: an `ai_posters` poster on a news post (error), or on a non-news post whose topic is not the
- *     poster's `use_for` (warning). Needs only the post, so the post audit of published specs sees it too.
+ *     poster's `use_for` — an error before publishing (`ctx.prePublish`: the executor can still fix it, and the message
+ *     names the posters that fit, or says none does and the post goes without an image), a warning in the post audit of
+ *     published specs (spec 067 FR-005). Needs only the post, so that audit sees it too.
  *
- * A post is news when it cites a web source, unless the resource is evergreen / explainer / education, the post is a
- * round-up or evergreen in its story, the slot topic names a non-news kind (explainer, glossary, round-up, digest),
- * or the post is a list of ≥ 3 items linking ≥ 3 sites (a round-up of resources, the 12.10 free courses).
+ * A post is news when it cites a web source, unless it is made from a library row (spec 067: the cited URL is the row's
+ * page), the resource is evergreen / explainer / education, the post is a round-up or evergreen in its story, the slot
+ * topic names a non-news kind (explainer, glossary, round-up, digest), or the post is a list of ≥ 3 items linking ≥ 3
+ * sites (a round-up of resources, the 12.10 free courses).
  */
 
 const NON_NEWS_KINDS = new Set(['evergreen', 'explainer', 'education']);
@@ -35,6 +38,7 @@ function linkRoundup(post: AuditPost): boolean {
 
 /** Whether the post is news for the media rules (see the file comment). */
 export function isNewsPost(post: AuditPost, card?: AuditCard): boolean {
+  if (post.fromLibrary) return false;
   const kind = typeof card?.style?.content_kind === 'string' ? card.style.content_kind.toLowerCase() : undefined;
   if (kind && NON_NEWS_KINDS.has(kind)) return false;
   if (post.story?.kind === 'roundup' || post.story?.kind === 'evergreen') return false;
@@ -45,6 +49,19 @@ export function isNewsPost(post: AuditPost, card?: AuditCard): boolean {
 }
 
 const posterName = (p: AiPoster) => `«${p.title}»`;
+
+/**
+ * Spec 067 FR-005 / A5: what the code says about network posters for this post, whether or not it carries an image —
+ * `news_no_poster` (a news post: only the source page's image or none), `poster_fits` (not news, and a poster's `use_for`
+ * is the post's topic) or `none_fits` (not news, and no poster fits: the post goes without an image). The critic is told
+ * this instead of judging the fit itself, and the owner's picture rules are not asked of it when no poster applies.
+ */
+export type PosterDecision = 'news_no_poster' | 'poster_fits' | 'none_fits';
+
+export function posterDecisionOf(post: AuditPost, card?: AuditCard): PosterDecision {
+  if (isNewsPost(post, card)) return 'news_no_poster';
+  return fittingPosters({ head: [post.title, post.lead, post.topic], text: post.text }).length ? 'poster_fits' : 'none_fits';
+}
 
 export const mediaCheck: IntegrityCheck = {
   id: 'media',
@@ -66,9 +83,14 @@ export const mediaCheck: IntegrityCheck = {
       const head = [post.title, post.lead, post.topic];
       const off = onPosters.filter((p) => !posterFitsTopic(p, { head, text: post.text }));
       if (off.length) {
+        // The way out is named by code: the posters whose use_for is the topic, or text only when none is.
+        const fits = fittingPosters({ head, text: post.text }).filter((p) => !onPosters.includes(p)).slice(0, 3);
+        const way = fits.length
+          ? `для цієї теми підходить: ${fits.map((p) => `${posterName(p)} (use_for: ${p.useFor})`).join('; ')} — ${fits.length === 1 ? 'візьми його' : 'обери один із них'} або пост без зображення (format text)`
+          : 'жоден постер мережі не підходить до цієї теми — пост без зображення (format text)';
         out.push({
-          code: 'poster_mismatch', level: 'warning', excerpt: off.map(posterName).join(', '),
-          message: `постер ${off.map((p) => `${posterName(p)} (use_for: ${p.useFor})`).join('; ')} не про тему поста «${excerptOf(post.title ?? post.lead ?? post.text, 80)}» — візьми постер, чий use_for збігається з темою, або пост без зображення`,
+          code: 'poster_mismatch', level: ctx.prePublish ? 'error' : 'warning', excerpt: off.map(posterName).join(', '),
+          message: `постер ${off.map((p) => `${posterName(p)} (use_for: ${p.useFor})`).join('; ')} не про тему поста «${excerptOf(post.title ?? post.lead ?? post.text, 80)}»: ${way}`,
         });
       }
     }

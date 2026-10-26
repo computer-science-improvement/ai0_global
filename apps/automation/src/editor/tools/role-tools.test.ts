@@ -379,3 +379,42 @@ test('061 FR-002: the ledger is asked with url#anchor for a cited clause; anothe
   assert.ok(asked.includes(`${LAW}#п.1.10`) && asked.includes(`${LAW}#п.1.11`));
   assert.deepEqual(h.pubs[0].refs, [`${LAW}#п.1.11`], 'the publication records the anchored ref');
 });
+
+// ── Spec 067 FR-005 / A5: posters by code ───────────────────────────────────────────────────────────────────────
+const MCP_POSTER = (id: string) => `https://prdruteophdbnypnikij.supabase.co/storage/v1/object/public/common/${id}.png`;
+const mcpSpec = (over: Record<string, unknown> = {}) => makeSpec({
+  origin: 'library', library_ref: 'data://facts/12', title: 'Що таке MCP-сервер',
+  body: [{ type: 'lead', text: 'MCP-сервер підключає AI-асистента до ваших сервісів.' }, { type: 'p', text: 'Через MCP-сервер асистент читає календар і пошту.' }],
+  media: [{ url: MCP_POSTER('04-mcp-server') }], source: { url: 'https://modelcontextprotocol.io/introduction', label: 'MCP' }, ...over,
+});
+/** A gate that records what publish_post hands it. */
+function recordingGate(seen: any[]) {
+  const gate = passingGate();
+  gate.check = async (post: any) => { seen.push(post); return { kind: 'proceed', critic: { verdict: 'pass', scores: null, notes: 'ok', pass: 1 } as any }; };
+  return gate;
+}
+
+test('067 FR-005: publish_post — an off-topic poster blocks before the critic (pre-publish error naming the fitting poster); a fitting one on a library post passes', async () => {
+  const seen: any[] = [];
+  const c: any = ctx('shadow', { style: { content_kind: 'news' } });
+  c.extras.critic = recordingGate(seen);
+  const off: any = await deps().tools.publish_post.execute({ spec: mcpSpec({ media: [{ url: MCP_POSTER('13-memory') }] }) }, c);
+  assert.equal(off.error, 'lint_failed');
+  assert.ok(off.details.some((d: { code: string; message: string }) => d.code === 'poster_mismatch' && /«MCP server»/.test(d.message)), JSON.stringify(off.details));
+  assert.equal(seen.length, 0, 'the critic never saw it');
+
+  const ok: any = await deps().tools.publish_post.execute({ spec: mcpSpec() }, c);
+  assert.equal(ok.ok, true, JSON.stringify(ok));
+  assert.equal(seen[0].poster, 'poster_fits');
+});
+
+test('067 A5: publish_post hands the critic the code\'s poster decision for every post — news, none fits, no image', async () => {
+  const seen: any[] = [];
+  const c: any = ctx('shadow', { style: { content_kind: 'news' } });
+  c.extras.critic = recordingGate(seen);
+  const h = deps();
+  await h.tools.publish_post.execute({ spec: makeSpec({ media: [], format: 'text' }) }, c);
+  await h.tools.publish_post.execute({ spec: mcpSpec({ title: 'Лайфхаки для сну', library_ref: 'data://facts/3', body: [{ type: 'lead', text: 'Лягайте спати до півночі.' }, { type: 'p', text: 'Темна кімната допомагає заснути.' }], media: [], format: 'text' }) }, c);
+  await h.tools.publish_post.execute({ spec: mcpSpec({ media: [], format: 'text' }) }, c);
+  assert.deepEqual(seen.map((p) => p.poster), ['news_no_poster', 'none_fits', 'poster_fits']);
+});

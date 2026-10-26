@@ -102,6 +102,8 @@ export function auditPostFromSpec(spec: PostSpec, meta: PostSpecMeta): AuditPost
   const imageUrls = [...spec.media.filter((m) => m.kind !== 'video').map((m) => m.url), ...(spec.format === 'carousel' ? (spec.slides ?? []).flatMap((s) => (s.image ? [s.image] : [])) : [])];
   if (imageUrls.length && spec.format !== 'video') post.imageUrls = imageUrls;
   if (spec.title) post.title = spec.title;
+  // Spec 067 FR-005: a post made from a library row is not news, whatever source URL it cites.
+  if (spec.origin === 'library' || spec.library_ref) post.fromLibrary = true;
   if (first?.type === 'lead') post.lead = inlineToPlain(first.text);
   // Spec 037 T2: a spec always says what it is in its story (an empty story = an original post).
   post.story = {

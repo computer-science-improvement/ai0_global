@@ -2,7 +2,7 @@
 // Spec 034 FR-004: how the critic's verdict is shown on approval and draft cards.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { coverageNote, criticFootnote, heldByCritic, issueList, scoreList, scoreTone, verdictBadge, type CriticVerdict } from './critic';
+import { coverageNote, criticFootnote, heldByCritic, issueList, scoreList, scoreTone, skippedRulesNote, verdictBadge, type CriticVerdict } from './critic';
 
 const v = (o: Partial<CriticVerdict> = {}): CriticVerdict => ({
   verdict: 'pass', scores: { ai_likeness: 5, sense: 4, voice: 3, grounding: 2, audience_asks: 5, format_fit: 5 }, notes: 'n', reason: 'r',
@@ -61,4 +61,11 @@ test('spec 067: the critic\'s remarks — the ones that sent the post back first
   assert.match(coverageNote(v({ source_coverage: 'snippet' }))!, /feed snippet/);
   assert.equal(coverageNote(v({ source_coverage: 'none' })), null);
   assert.equal(coverageNote(v()), null);
+});
+
+test('067: a picture rule left out of the critic prompt is named, once or several; nothing otherwise', () => {
+  assert.match(skippedRulesNote(v({ rules_skipped: [13] }))!, /^Not checked by the critic: your picture rule #13\./);
+  assert.match(skippedRulesNote(v({ rules_skipped: [13, 14] }))!, /picture rules #13, #14\./);
+  assert.equal(skippedRulesNote(v({ rules_skipped: [] })), null);
+  assert.equal(skippedRulesNote(v()), null);
 });

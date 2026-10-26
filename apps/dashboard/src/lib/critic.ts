@@ -39,6 +39,8 @@ export interface CriticVerdict {
   source_coverage?: CriticCoverage;
   /** Spec 067: numbers the code found in no text the author read. */
   grounding_missing?: string[];
+  /** Spec 067: owner rules left out of the critic's prompt (a picture rule when the code decided no network poster applies). */
+  rules_skipped?: number[];
   history?:       Array<{ verdict: CriticVerdictKind; scores: Partial<Record<CriticScoreKey, number>> | null; notes: string; reason: string; pass: number; at: string }>;
 }
 
@@ -126,4 +128,12 @@ export function coverageNote(c: Pick<CriticVerdict, 'source_coverage'>): string 
     case 'snippet': return 'The critic saw only a feed snippet of the source.';
     default:        return null;
   }
+}
+
+/** Owner rules the critic was not asked about (spec 067): a picture rule on a post for which no network poster applies. */
+export function skippedRulesNote(c: Pick<CriticVerdict, 'rules_skipped'>): string | null {
+  const ids = c.rules_skipped ?? [];
+  if (!ids.length) return null;
+  const list = ids.map((id) => `#${id}`).join(', ');
+  return `Not checked by the critic: your picture rule${ids.length > 1 ? 's' : ''} ${list}. The code decided no network poster fits this post, so a post without an image is correct.`;
 }

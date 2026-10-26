@@ -214,6 +214,8 @@ export function auditPostFromPlatformSpec(spec: PlatformPostSpec, meta: { id: st
     title: spec.title,
     ...(meta.topic ? { topic: meta.topic } : {}),
     ...(imageUrls.length ? { imageUrls: [...new Set(imageUrls)] } : {}),
+    // Spec 067 FR-005: a post made from a library row is not news (platform specs carry the row's `library_ref`).
+    ...(spec.library_ref ? { fromLibrary: true } : {}),
   };
 }
 

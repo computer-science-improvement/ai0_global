@@ -4,6 +4,9 @@ import { z } from 'zod';
 import { channelOf, defineTool, EditorTool, ToolContext } from '../harness/tool';
 import { AgentPostSpecSchema, PostSpec } from '../post/post-spec';
 import { lintPost } from '../post/lint-post';
+import { auditPostFromSpec } from '../post/integrity/from-post-spec';
+import { posterDecisionOf } from '../post/integrity/checks/media';
+import type { AuditCard } from '../post/integrity/types';
 import { checkQuizGroundTruth } from '../post/quiz-ground-truth';
 import { checkVerbatim, postPlainText } from '../post/verbatim-guard';
 import { checkSteeringCopy } from '../steering/steering-guard';
@@ -174,7 +177,8 @@ export async function checkPublishGuards(d: RoleToolDeps, ctx: ToolContext, spec
   const sources = await criticGateOf(ctx)?.groundingSources(spec);
   // Spec 037 T9: the resource's last 20 posts (monotony) and a fixed slot's topic (same format + topic twice a day).
   const variety = { previous: await recentAuditPosts(d.pool, { channelKey, timezone: card.timezone, excludeSlotId: slotId, card }).catch(() => []), topic: slot.topicMode === 'live' ? undefined : slot.topic };
-  const lint = lintPost(spec, card, { id: slotId, channel: channelKey, publishedAt: at.toISOString(), timezone: card.timezone, ctx: { now: now.toISOString(), ...(sources ? { sources } : {}), previous: variety.previous }, topic: variety.topic });
+  // Spec 067 FR-005: the post is about to be stored or sent, so an off-topic poster is an error the executor fixes now.
+  const lint = lintPost(spec, card, { id: slotId, channel: channelKey, publishedAt: at.toISOString(), timezone: card.timezone, ctx: { now: now.toISOString(), ...(sources ? { sources } : {}), previous: variety.previous, prePublish: true }, topic: variety.topic });
   if (!lint.ok) return { error: 'lint_failed', details: lint.errors };
   const truth = await checkQuizGroundTruth(d.pool, spec);
   if (truth) return truth;
@@ -220,7 +224,12 @@ export async function checkPublishGuards(d: RoleToolDeps, ctx: ToolContext, spec
       return { error: 'min_gap', details: `останній пост ${Math.round((now.getTime() - last.getTime()) / 60_000)} хв тому, мінімум ${card.minGapMinutes}` };
     }
   }
-  return { ok: true as const, rendered, ref, lint, at, story };
+  // Spec 067 A5: the code's poster decision for the critic — for every post, with or without an image.
+  const poster = posterDecisionOf(
+    auditPostFromSpec(spec, { id: slotId, channel: channelKey, publishedAt: at.toISOString(), timezone: card.timezone, card: { linkStyle: card.linkStyle, footer: card.footer }, topic: variety.topic }),
+    card as AuditCard,
+  );
+  return { ok: true as const, rendered, ref, lint, at, story, poster };
 }
 
 /** The pool ideas a single-channel plan names (spec 040 FR-005); a failing read leaves them out (the slot then needs a topic). */
@@ -299,7 +308,7 @@ export function buildRoleTools(d: RoleToolDeps): EditorTool[] {
       let critic: Record<string, unknown> | null = null;
       if (gate) {
         const c = await gate.check({
-          text: htmlToPlain(g.rendered.preview), spec, format: spec.format, warnings: g.lint.warnings, publishAt: g.at.toISOString(), timezone: card.timezone, story: g.story?.critic ?? null,
+          text: htmlToPlain(g.rendered.preview), spec, format: spec.format, warnings: g.lint.warnings, publishAt: g.at.toISOString(), timezone: card.timezone, story: g.story?.critic ?? null, poster: g.poster,
           // Spec 041 FR-002: the critic's exact edits (and lint euphony fixes) go out only after every guard passes again.
           relint: async (edited) => {
             const g2 = await checkPublishGuards(d, ctx, edited as PostSpec, t);

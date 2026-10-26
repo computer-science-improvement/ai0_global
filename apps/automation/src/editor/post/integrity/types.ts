@@ -62,6 +62,12 @@ export interface AuditPost {
    */
   imageUrls?: string[];
   title?: string;
+  /**
+   * Spec 067 FR-005: the post is made from a library row (`origin: library` or a `library_ref`). Its source URL is the row's
+   * own page, not a news item, so the news-only media rules (no poster, only the source image) do not apply. A published
+   * post of an export has no origin: unset.
+   */
+  fromLibrary?: boolean;
 }
 
 /** Spec 037 T2: a post's place in its story. */
@@ -100,6 +106,12 @@ export interface AuditContext {
   now?: string;
   /** Spec 037 T5: the pages and feed items the run read, with their publication date when known. */
   sources?: AuditSource[];
+  /**
+   * Spec 067 FR-005: the check runs on a post that is about to be stored, sent or put up for approval (the publish guards,
+   * the platform media findings), not on a published one. A finding the executor can still fix — an off-topic poster — is an
+   * error then and a warning in the weekly audit.
+   */
+  prePublish?: boolean;
 }
 
 /** A source the writer read: `publishedAt` is ISO (an instant) or `YYYY-MM-DD` (a day), absent when unknown. */
