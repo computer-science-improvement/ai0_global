@@ -6,6 +6,7 @@ import { API_ADAPTERS } from './api-adapters';
 import { buildCatalog, CatalogSummary, summarize } from '../../data/data-catalog';
 import { resourceKeys } from '../../data/data-refs';
 import { kyivMonthDay } from '../../data/data-query';
+import { orderWord } from '../../data/data-rounds';
 import { normalizePlaybook } from '../network/series-edit';
 import { instancesPerDay, parseCadence } from '../network/series';
 
@@ -88,7 +89,8 @@ export async function catalogOverview(pool: Q, o: { resource: string | null; env
     const perDay = (series as Record<string, number>)[e.dataset] ?? 0;
     return {
       ...summarize(e),
-      ...(o.resource ? { last_used_here: u?.last ? u.last.toISOString() : null, runway_days: runwayDays(e.unposted_here, perDay, u?.used28 ?? 0) } : {}),
+      // Spec 071: a dataset that repeats in rounds never runs out — no runway.
+      ...(o.resource ? { last_used_here: u?.last ? u.last.toISOString() : null, runway_days: e.repeat ? null : runwayDays(e.unposted_here, perDay, u?.used28 ?? 0) } : {}),
     };
   });
   return { datasets, apis: o.env ? apiCatalog(o.env) : [], feeds: cardFeeds(o.feeds) };
@@ -103,7 +105,13 @@ export function catalogPromptSummary(c: { datasets: CatalogOverviewRow[]; apis: 
     const today = d.today_items ? `, сьогодні ${d.today_items}` : '';
     // Migration 083: rows without what a post needs are not material; the total counts only usable rows.
     const broken = d.not_postable ? ` (ще ${d.not_postable} без даних для поста)` : '';
-    lines.push(`• ${d.dataset}: ${d.title} — невикористаних тут ${d.unposted_here ?? '?'} з ${d.rows - (d.not_postable ?? 0)}${broken}${today}${runway}`);
+    const total = d.rows - (d.not_postable ?? 0);
+    // Spec 071: a dataset that repeats in rounds is shown by its round, not as a stock that runs out.
+    if (d.repeat) {
+      lines.push(`• ${d.dataset}: ${d.title} — по колу (${orderWord(d.repeat)})${d.repeat.round ? `, коло ${d.repeat.round}` : ''}: лишилось ${d.unposted_here ?? '?'} з ${total}${broken}${today}`);
+      continue;
+    }
+    lines.push(`• ${d.dataset}: ${d.title} — невикористаних тут ${d.unposted_here ?? '?'} з ${total}${broken}${today}${runway}`);
   }
   const apis = c.apis.filter((a) => a.configured).map((a) => a.name);
   if (apis.length) lines.push(`• API (fetch_api): ${apis.join(', ')}`);
@@ -154,7 +162,7 @@ export async function checkLowRunway(d: { pool: Q; inbox: Pick<OwnerInbox, 'post
   for (const { resource, table } of pairs.values()) {
     if (reported.includes(table)) continue;
     const [entry] = await buildCatalog(d.pool, { dataset: table, resource, today: kyivMonthDay() });
-    if (!entry) continue;
+    if (!entry || entry.repeat) continue; // spec 071: a round never runs out
     const use = (await ledgerUsage(d.pool, resource))[table];
     const perDay = (await seriesLibraryUse(d.pool, resource))[table] ?? 0;
     const days = runwayDays(entry.unposted_here, perDay, use?.used28 ?? 0);

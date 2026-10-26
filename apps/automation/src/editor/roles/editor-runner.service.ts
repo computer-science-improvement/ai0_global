@@ -33,9 +33,10 @@ import { alreadyUsedBlock } from '../post/variety/monotony';
 import { intersectAllow, type LoadoutService } from '../loadout/loadout.service';
 import type { AuditPost } from '../post/integrity/types';
 import {
-  classifyFailure, isRescued, LADDER_MAX_LATE_MS, ladderNote, ladderPlan, MAX_CRITIC_PASSES_PER_SLOT, MAX_LADDER_EXTRA_STEPS, priorCriticPasses, criticPasses, PublishProbe, stepRecord,
+  classifyFailure, isRescued, LADDER_MAX_LATE_MS, ladderNote, ladderPlan, MAX_CRITIC_PASSES_PER_SLOT, MAX_LADDER_EXTRA_STEPS, priorCriticPasses, criticPasses, PublishProbe, shouldPassRow, stepRecord,
   type FallbackFinal, type FallbackStepRecord, type LadderStep, type SlotFailure,
 } from '../silent/fallback-ladder';
+import type { PassRow } from '../silent/pass-row';
 import { EvergreenProbe } from '../silent/evergreen';
 import { memoryWithoutRules, ownerRulesOf, ownerRulesSection } from '../rules/owner-rules-prompt';
 import type { SteeringPromptRule } from '../steering/steering.types';
@@ -143,6 +144,12 @@ export interface EditorRunnerDeps {
    * orchestrator that rest on that one source (the slot's own included) are rejected. Returns how many.
    */
   deadSource?: (slot: EditorSlot, url: string, reason: string) => Promise<number>;
+  /**
+   * Spec 071 FR-004 / A2: a failed post whose own `library_ref` is a row of a dataset that repeats in rounds puts that row
+   * aside for the round (the ledger ignores any other ref). Called when the critic rejected it for good, the revise step
+   * failed or the quiz key is wrong (`shouldPassRow`) — never for a guard or lint code. Best-effort.
+   */
+  passRow?: PassRow;
   /** Spec 037 T2: the "Active stories (14 days)" block of the planner / writer prompt (story/story-context.ts); null for none. */
   stories?: { activeBlock(card: EditorCard, role: 'planner' | 'executor', now: Date): Promise<string | null> };
 }
@@ -507,6 +514,7 @@ export class EditorRunnerService {
     const steps: FallbackStepRecord[] = [...(slot.fallback?.steps ?? []), stepRecord('initial', slot.format, this.now(), after, failure, first)];
     // Spec 063 FR-002: a fixable revise keeps its source; only a reject (or a low grounding, a wrong topic) bans it.
     const avoid: string[] = failure.sourceUrl && !failure.fixable ? [failure.sourceUrl] : [];
+    await this.passFailedRow(slot, failure, 'initial');
     const live = slot.topicMode === 'live' && !!slot.liveSpec;
     const plan = ladderPlan({ format: slot.format, allowed: EditorRunnerService.allowedFormats(card, o.platform), evergreen: !!this.d.fallbackEvergreen, live, failure: failure.kind, fixable: !!failure.fixable });
     let ran = 0;
@@ -581,6 +589,7 @@ export class EditorRunnerService {
       // The source of a failed revise_source step is out too (it had its chance); a fixable revise elsewhere keeps its source.
       if (f.sourceUrl && (!f.fixable || st.step === 'revise_source') && !avoid.includes(f.sourceUrl)) avoid.push(f.sourceUrl);
       if (f.kind === 'critic_reject' && !f.fixable && f.sourceUrl) rejectedSources.add(f.sourceUrl);
+      await this.passFailedRow(slot, f, st.step);
     }
     if (failure) {
       final ??= { outcome: 'skipped', code: 'exhausted', step: last, reason: failure.reason };
@@ -591,6 +600,12 @@ export class EditorRunnerService {
     }
     await this.d.plans.updateSlot(slot.id, { fallback: { steps, final } });
     return res;
+  }
+
+  /** Spec 071 A2: put the failed post's own library row aside for the round when the failure says the row is the problem. */
+  private async passFailedRow(slot: EditorSlot, f: SlotFailure, step: LadderStep): Promise<void> {
+    if (!this.d.passRow || !f.libraryRef || !shouldPassRow(f, step)) return;
+    await this.d.passRow(slot, f.libraryRef, f.reason).catch(() => false);
   }
 
   /** The Telegram executor run of a slot (`dry`: the owner's dry-run preview, spec 034 FR-012). */

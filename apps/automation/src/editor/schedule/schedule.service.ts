@@ -21,7 +21,8 @@ import {
   blackoutAt, pinInstant, ruleDto, ruleLabel, ruleOn, ruleProblems, ruleToInput, ScheduleRule, ScheduleRuleInput, ScheduleRulePatch, shiftDate, weekdayOf,
 } from './schedule-rules';
 import { applySeriesOp, SeriesFields, SeriesOp, seriesDiff, seriesKey } from './series-change';
-import { SeriesForSlot, seriesNote, seriesSourceMismatch, sourceHints } from './series-guard';
+import { refDataset, SeriesForSlot, seriesNote, seriesSourceMismatch, sourceHints } from './series-guard';
+import { resolveContentRef } from '../../data/data-refs';
 import { LIVE_DEFAULT_MAX_AGE_HOURS, seriesLiveSources, type TopicMode } from '../live/live-slot';
 
 /** Spec 034 FR-010: a series (or pin) with a feed source runs as a live slot. */
@@ -55,6 +56,11 @@ export interface ScheduleServiceDeps {
   sourceCatalog?: (card: EditorCard | null) => Promise<SeriesSourceCatalog>;
   /** Unposted rows of a dataset on a resource (content ledger); null = unknown. */
   unposted?: (resourceRef: string, dataset: string) => Promise<number | null>;
+  /**
+   * Spec 071 FR-005: the next row (`data://…`) of a dataset that goes in order, on a resource, within a category; null when
+   * the dataset is not an in-order cycle dataset or nothing is left. A cycle dataset with nothing left rolls to the next round first.
+   */
+  nextRow?: (resourceRef: string, dataset: string, category: string | null) => Promise<string | null>;
   /** Spec 060: the dead-series breaker's view for the planners (paused series, last skip reasons). */
   pauses?:  { forChannel(channelKey: string, now: Date): Promise<{ paused: PausedSeriesCtx[]; recentSkips: Array<{ label: string; lines: string[] }> }> };
   now?:     () => Date;
@@ -296,7 +302,15 @@ export class ScheduleService {
         return { note: null, skip: `series "${s.name}": required source library:${s.source.table} has nothing left on ${ref}` };
       }
     }
-    return { note: seriesNote(s, seriesSourceLabel) };
+    // Spec 071 FR-005: a series (or pin) on a dataset that goes in order takes the next row of the round.
+    const next = await this.nextRowOf(s, ref);
+    return { note: seriesNote(s, seriesSourceLabel, { nextRow: next }) };
+  }
+
+  /** The next in-order row of the slot's library source on a resource, or null (not a library source, not in order, nothing left, no dep, a read error). */
+  private async nextRowOf(s: Pick<SeriesForSlot, 'source'>, resourceRef: string): Promise<string | null> {
+    if (s.source?.kind !== 'library' || !this.d.nextRow) return null;
+    return this.d.nextRow(resourceRef, s.source.table, s.source.category ?? null).catch(() => null);
   }
 
   private async sourceEmpty(slot: EditorSlot, s: SeriesForSlot): Promise<void> {
@@ -340,6 +354,15 @@ export class ScheduleService {
     if (s && !s.pin) {
       const why = seriesSourceMismatch(s, refs, (o.feeds ?? []).filter((f) => f.kind === 'rss' || f.kind === 'url'));
       if (why) return { error: 'series_source_mismatch', details: why };
+      // Spec 071 FR-005 / A3: a series on a dataset that goes in order posts the next row. Only a post that names a row of THAT
+      // dataset is checked (another dataset or none is series_source_mismatch's business); free posts and chat posts are not ordered.
+      if (s.source?.kind === 'library' && refs.libraryRef && refDataset(refs.libraryRef) === s.source.table) {
+        const next = await this.nextRowOf(s, ref);
+        if (next) {
+          const got = (await resolveContentRef(this.d.pool, refs.libraryRef).catch(() => null))?.dataRef ?? refs.libraryRef;
+          if (got !== next) return { error: 'not_next_in_order', details: `серія бере рядки по черзі; наступний — ${next} (library_ref цього поста: ${got}). Візьми наступний або, якщо з нього пост неможливий, skip_slot з ref` };
+        }
+      }
     }
     return null;
   }

@@ -33,6 +33,9 @@ import type { StoryRegistry } from '../story/story.repository';
 import { dryRunOf } from '../roles/preview-run';
 import { anchorOf, isReusableHost, sourceRefOf, sourceUsedDetails } from '../../data/ledger-anchor';
 import type { LedgerVerdict } from '../../data/content-ledger';
+import { CONTENT_REF_RE } from '../../data/data-refs';
+import { isCycleRef } from '../../data/data-rounds';
+import type { PassRow } from '../silent/pass-row';
 import { recentAuditPosts } from '../post/variety/recent-posts';
 import { pollCapGuard, slotSeriesOf } from '../post/polls/poll-cap-guard';
 import {
@@ -74,6 +77,8 @@ export interface RoleToolDeps {
   kpiSampleFilter?: string;
   /** Spec 037 T2: the story registry — the story guard of publish_post and the record of a stored / sent post. */
   stories?: Pick<StoryRegistry, 'history' | 'record'>;
+  /** Spec 071 FR-004: `skip_slot` with `ref` puts a library row aside for the round (wired in editor.module; absent = recorded nowhere). */
+  passRow?: PassRow;
   now?: () => Date;
 }
 
@@ -132,10 +137,19 @@ function requireSlotCtx(ctx: ToolContext): { channelKey: string; slotId: string 
  * The content-ledger dedup of a post's refs (spec 023 FR-010): published, shadowed, error-marked, or waiting /
  * approved on another slot of the resource (spec 031). Null when the post may go out.
  */
-export async function sourceGuard(d: Pick<RoleToolDeps, 'plans'>, channelKey: string, spec: PostSpec) {
-  if (spec.library_ref && await d.plans.sourceAlreadyPosted(channelKey, spec.library_ref)) return { error: 'library_item_already_posted' as const };
+export async function sourceGuard(d: Pick<RoleToolDeps, 'plans'> & Partial<Pick<RoleToolDeps, 'pool'>>, channelKey: string, spec: PostSpec) {
+  if (spec.library_ref && await d.plans.sourceAlreadyPosted(channelKey, spec.library_ref)) {
+    // Spec 071: a row put aside for the round says so (the ledger's `passed`), so the executor does not retry it.
+    const hit = d.plans.sourceVerdict ? await d.plans.sourceVerdict(channelKey, spec.library_ref).catch(() => null) : null;
+    return hit?.used && hit.status === 'passed'
+      ? { error: 'library_item_already_posted' as const, details: sourceUsedDetails(spec.library_ref, { status: 'passed' }, false) }
+      : { error: 'library_item_already_posted' as const };
+  }
   // Spec 061 FR-002: a reference document is keyed by URL + anchor; the error says what was used, when, and what to do.
   const ref = sourceRefOf(spec.source);
+  // Spec 071 A7: the library row of a dataset that repeats in rounds is the material; the URL is a citation. The row passed the
+  // ledger above (it is open in the current round), so a URL used in an earlier round does not stop the post.
+  if (ref && spec.library_ref && d.pool && await isCycleRef(d.pool, spec.library_ref)) return null;
   if (ref) {
     const hit = d.plans.sourceVerdict
       ? await d.plans.sourceVerdict(channelKey, ref)
@@ -393,11 +407,19 @@ export function buildRoleTools(d: RoleToolDeps): EditorTool[] {
       reason: z.string().min(5).max(500),
       // Spec 034 FR-010: a live slot with nothing fresh in its source.
       code:   z.enum([NO_FRESH_ITEM, STORY_SKIP]).optional().describe(`${NO_FRESH_ITEM} — у live-слоті немає свіжого неопублікованого матеріалу; ${STORY_SKIP} — історію вже розповів сусідній канал мережі (spec 037 T2)`),
+      // Spec 071 FR-004: the library row this slot cannot be made from; a dataset that repeats in rounds puts it aside for the round.
+      ref:    z.string().regex(CONTENT_REF_RE).optional().describe('Рядок бібліотеки (data://… з query_data), з якого пост неможливий (немає даних, зламаний, не про тему). Датасет, що йде по колах, відкладе його до наступного кола, щоб слоти не впиралися в нього знову; для інших датасетів нічого не змінюється'),
     }),
-    execute: async ({ reason, code }, ctx) => {
+    execute: async ({ reason, code, ref }, ctx) => {
       const { slotId } = requireSlotCtx(ctx);
       await d.plans.updateSlot(slotId, { status: 'skipped', error: code ? `${code}: ${reason}` : `skipped by agent: ${reason}` });
-      return { ok: true, skipped: true, ...(code ? { code } : {}) };
+      // Best-effort and never in a dry-run preview: the slot is skipped either way.
+      let passed = false;
+      if (ref && d.passRow && !dryRunOf(ctx)) {
+        const slot = await d.plans.getSlot(slotId).catch(() => null);
+        if (slot) passed = await d.passRow(slot, ref, reason).catch(() => false);
+      }
+      return { ok: true, skipped: true, ...(code ? { code } : {}), ...(passed ? { passed_ref: ref } : {}) };
     },
   });
 

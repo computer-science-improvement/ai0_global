@@ -83,6 +83,8 @@ export function sourceUsedDetails(url: string, hit: { at?: Date | null; slotId?:
   const when = hit.at ? ` ${hit.at.toISOString().slice(0, 10)}` : '';
   const where = hit.slotId ? ` у слоті ${hit.slotId}` : '';
   const what = hit.anchor ? `${bare} (${hit.anchor})` : bare;
+  // Spec 071: a row of a dataset that repeats in rounds, put aside because no post could be made from it.
+  if (hit.status === 'passed') return `${what}: пропущене в цьому колі — з нього не вийшов пост; воно повернеться в наступному колі, візьміть інший рядок`;
   const used = hit.status === 'waiting' ? `джерело ${what} уже чекає на публікацію${where}` : hit.status === 'shadowed' ? `джерело ${what} уже є в тіньовому прев'ю${when}${where}` : hit.status === 'error' ? `джерело ${what} позначене як непридатне` : `джерело ${what} уже використано${when}${where}`;
   return reusable
     ? `${used}; візьміть інший пункт цього документа — вкажіть source.anchor (пункт, напр. «п.1.10») іншого пункту, або інше джерело`

@@ -260,6 +260,9 @@ import { buildScheduleTools, registerScheduleActions, registerSlotRunActions } f
 import { SCHEDULE_SERVICE, ScheduleController } from './schedule/schedule.controller';
 import { buildCatalog } from '../data/data-catalog';
 import { kyivMonthDay } from '../data/data-query';
+import { ContentLedger } from '../data/content-ledger';
+import { nextRowPort } from './schedule/next-row';
+import { makePassRow } from './silent/pass-row';
 import { AUTONOMY_SERVICE, AutonomyController } from './approval/autonomy.controller';
 import { ConfigEventsPublisher } from '../config/config-events.publisher';
 import { StrategyMigrationService } from './migration/strategy-migration.service';
@@ -1186,6 +1189,7 @@ export const EDITOR_PROVIDERS = [
           sourceCatalog: (card) => seriesSourceCatalog(pool, card),
           pauses: new PlannerPauseView(new SeriesPausesRepository(pool)),   // spec 060: paused series + last skip reasons for the planners
           unposted: async (ref, dataset) => (await buildCatalog(pool, { dataset, resource: ref, today: kyivMonthDay() }))[0]?.unposted_here ?? null,
+          nextRow: nextRowPort(pool),   // spec 071: the next row of an in-order dataset (series note + not_next_in_order guard)
         });
         // Spec 023 FR-006: the chat's series_change / schedule_rule / slot_change cards.
         registerScheduleActions(infra.actions, svc);
@@ -1284,6 +1288,7 @@ export const EDITOR_PROVIDERS = [
               ? undefined
               : (k, html) => notifier.notifyAlert(previewMessage(k, html)),
             schedule,
+            passRow: makePassRow(new ContentLedger(pool, (m) => new Logger('PassRow').warn(m)), (m) => new Logger('PassRow').warn(m)),   // spec 071: skip_slot ref
             // Spec 025 FR-014: directive experiment quotas in the plan check.
             experimentQuotas: experimentQuotasOf(pool),
             pollCaps: pollCapsOf(pool),
@@ -1602,6 +1607,8 @@ export const EDITOR_PROVIDERS = [
           seriesContext: (slot) => schedule.executorContext(slot),
           onSlotDone: async (slot) => { if (slot.ideaId) await ideas.settleIdea(slot.ideaId); },
           deadSource: async (slot, url, reason) => (slot.ideaId ? ideas.rejectSoleSourceIdeas(slot.ideaId, url, reason) : 0),
+          // Spec 071 A2: a row the critic rejected for good (or whose quiz key is wrong) is put aside for the round on a cycle dataset.
+          passRow: makePassRow(new ContentLedger(pool, (m) => logger.warn(m)), (m) => logger.warn(m)),
           // Spec 061 FR-001: ledger / freshness / host block / format checks (and one idea swap) before the writer is paid.
           preflight: buildSlotPreflight({ pool, env, ideas, plans: repos.plans, log: (m) => logger.warn(m) }),
           // Spec 024 FR-007: duplicate / adapt slots — the agent formats every target post itself.

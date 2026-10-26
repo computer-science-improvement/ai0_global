@@ -90,8 +90,16 @@ export function seriesSourceMismatch(
   }
 }
 
-/** The executor's series context (FR-005), in the agents' language. */
-export function seriesNote(s: SeriesForSlot, label: (src: SeriesSource) => string): string {
+/**
+ * Spec 071 FR-005: the line a slot gets when its library source is a dataset that goes in order: the next row of the round.
+ * It outranks any `data://` hint in «Підказки джерел» (the planner's pick).
+ */
+export function nextRowLine(nextRow: string): string {
+  return `Матеріал цього слота — наступний по черзі рядок ${nextRow}; бери саме його (library_ref = ${nextRow}) і не бери інший, навіть якщо в «Підказках джерел» названо інший data://. Якщо пост із нього зробити неможливо — skip_slot з ref цього рядка.`;
+}
+
+/** The executor's series context (FR-005), in the agents' language. `o.nextRow`: spec 071, the next row of an in-order dataset. */
+export function seriesNote(s: SeriesForSlot, label: (src: SeriesSource) => string, o: { nextRow?: string | null } = {}): string {
   const src = s.source ? label(s.source) : null;
   return [
     s.pin
@@ -102,5 +110,6 @@ export function seriesNote(s: SeriesForSlot, label: (src: SeriesSource) => strin
         ? `Джерело серії обовʼязкове: ${src}. Пост має спиратися саме на нього (library_ref з цього датасету або source.url з нього) — інакше publish поверне series_source_mismatch. Якщо матеріалу там немає — skip_slot з причиною.`
         : `Рекомендоване джерело: ${src} (необовʼязкове). Можеш узяти інше джерело чи формат у межах плейбука — тоді коротко поясни чому в підсумку прогону (notes).`
       : 'Джерело серії не задане — обери його сам.',
+    ...(o.nextRow ? [nextRowLine(o.nextRow)] : []),
   ].join('\n');
 }

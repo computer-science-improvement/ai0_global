@@ -12,6 +12,7 @@ export type SkipGroup = typeof SKIP_GROUPS[number];
 export const CONTENT_FAILURE_CODES = [
   'lint_failed', 'too_similar', 'too_verbatim', 'source_already_posted', 'library_item_already_posted', 'already_posted',
   'quiz_answer_mismatch', 'library_ref_not_found', 'series_source_mismatch', 'live_source_missing',
+  'not_next_in_order', // spec 071: a series that takes a dataset's rows in order must post the next one
 ] as const;
 const CONTENT = new Set<string>(CONTENT_FAILURE_CODES);
 export const isContentFailureCode = (code: string | null | undefined): boolean => !!code && CONTENT.has(code);
@@ -24,7 +25,7 @@ const OWNER = [/^rejected by owner/, /^resource_paused/, /^agent @.* is paused/,
 const RULES: Array<[SkipGroup, RegExp]> = [
   ['critic', /^critic_(rejected|failed)\b/],
   ['budget', /^(budget_exceeded|budget\b)/],
-  ['lint', /^(lint_failed|guard_failed|too_similar|too_verbatim|source_already_posted|library_item_already_posted|already_posted|quiz_answer_mismatch|series_source_mismatch|live_source_missing)\b/],
+  ['lint', /^(lint_failed|guard_failed|too_similar|too_verbatim|source_already_posted|library_item_already_posted|already_posted|quiz_answer_mismatch|series_source_mismatch|live_source_missing|not_next_in_order)\b/],
   ['cap', /^(daily_cap_reached|poll_cap_reached|min_gap|quiet_hours|blackout_window)\b/],
   ['nothing_fresh', /^(no_fresh_item\b|series ".*": required source .* has nothing left|source_not_published\b)/],
 ];

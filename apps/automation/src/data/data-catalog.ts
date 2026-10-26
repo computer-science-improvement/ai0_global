@@ -2,6 +2,7 @@ import type { Pool } from 'pg';
 import type { DataSchema, FieldDef, RoleName } from './data.types';
 import { readableFields } from './data-query';
 import { resourceKeys, usedRefsCte } from './data-refs';
+import { cycleOrder, isCycle, repeatOf, rollIfDone, roundsOf, type Repeat } from './data-rounds';
 import { describePostRequires } from './post-requires';
 
 /**
@@ -48,6 +49,8 @@ export interface CatalogEntry {
   not_postable?:          number;
   unposted_network:       number | null;
   unposted_here?:         number;
+  /** Spec 071: the dataset repeats in rounds. `round` is the current round on the asking resource. */
+  repeat?:                Repeat;
   today_items?:           number;
   top_categories:         Array<{ category: string; rows: number }>;
   stats_at:               string | null;
@@ -64,7 +67,17 @@ export interface CatalogOptions {
 const DATE_ROLES: RoleName[] = ['date', 'month_day', 'month', 'day'];
 const clipExample = (v: unknown) => (typeof v === 'string' && v.length > 80 ? `${v.slice(0, 80)}…` : v);
 
-function reuseText(p: DataSchema['reuse_policy']): string {
+/**
+ * The reuse rule in words. Also the text an `edit_data_schema` suggestion on the `reuse` target compares with and shows on
+ * the dashboard card (old and new), so it is English like the two older branches.
+ */
+export function reuseText(p: DataSchema['reuse_policy']): string {
+  if (isCycle(p)) {
+    const by = cycleOrder(p) === 'sequential'
+      ? `in order${p.order_by?.length ? ` (by ${p.order_by.join(', ')}, then import order)` : ' (import order)'}`
+      : 'in random order';
+    return `post each row once per resource in every round, ${by}; when every row has been posted there, a new round starts`;
+  }
   return p?.kind === 'after_days' && p.days ? `may be posted again on the same resource after ${p.days} days` : 'post each row once per resource';
 }
 
@@ -72,7 +85,7 @@ function reuseText(p: DataSchema['reuse_policy']): string {
 export function catalogEntry(s: DataSchema, st: {
   rows?: number; unposted_network?: number | null; top_categories?: Array<{ category: string; rows: number }>;
   fill_rate?: Record<string, number>; stats_at?: string | null; unposted_here?: number; today_items?: number;
-  not_postable?: number;
+  not_postable?: number; round?: number;
 }): CatalogEntry {
   const hasDate = DATE_ROLES.some((r) => s.roles?.[r]);
   // Spec 062 FR-005: once the stats were computed, a field no row carries is 0 % filled — not «unknown» (that left media_url,
@@ -99,6 +112,7 @@ export function catalogEntry(s: DataSchema, st: {
     ...(st.not_postable ? { not_postable: st.not_postable } : {}),
     unposted_network: st.unposted_network ?? null,
     ...(st.unposted_here !== undefined ? { unposted_here: st.unposted_here } : {}),
+    ...(isCycle(s.reuse_policy) ? { repeat: repeatOf(s, st.round)! } : {}),
     ...(hasDate ? { today_items: st.today_items ?? 0 } : {}),
     top_categories: (st.top_categories ?? []).slice(0, 5), stats_at: st.stats_at ?? null,
   };
@@ -117,6 +131,7 @@ export interface CatalogSummary {
   rows:           number;
   not_postable?:  number;
   unposted_here?: number;
+  repeat?:        Repeat;
   unposted_network: number | null;
   today_items?:   number;
   top_categories: string[];
@@ -131,6 +146,7 @@ export function summarize(e: CatalogEntry): CatalogSummary {
     fields: e.fields.map((f) => f.name), rows: e.rows,
     ...(e.not_postable ? { not_postable: e.not_postable } : {}),
     ...(e.unposted_here !== undefined ? { unposted_here: e.unposted_here } : {}),
+    ...(e.repeat ? { repeat: e.repeat } : {}),
     unposted_network: e.unposted_network,
     ...(e.today_items !== undefined ? { today_items: e.today_items } : {}),
     top_categories: e.top_categories.slice(0, 3).map((c) => c.category),
@@ -161,21 +177,39 @@ export async function buildCatalog(pool: Pick<Pool, 'query'>, o: CatalogOptions)
               AND NOT EXISTS (SELECT 1 FROM used u WHERE u.ref = 'data://' || s.key || '/' || d.id::text)
               AND (d.legacy_ref IS NULL OR NOT EXISTS (SELECT 1 FROM used u WHERE u.ref = d.legacy_ref)))::int`;
   }
-  const { rows: counts } = await pool.query(
-    `${cte}SELECT d.schema_id, count(*)::int AS rows,
-            count(*) FILTER (WHERE d.event_month = $2 AND d.event_day = $3)::int AS today_items,
-            count(*) FILTER (WHERE NOT data_postable(s.post_requires, d.data))::int AS not_postable,
-            ${here} AS unposted_here
-       FROM data_items d JOIN data_schemas s ON s.id = d.schema_id
-      WHERE d.schema_id = ANY($1::uuid[]) AND d.status = 'active'
-      GROUP BY d.schema_id`, params);
-  const bySchema = new Map(counts.map((c: any) => [c.schema_id, c]));
+  const countRows = async () => {
+    const { rows: counts } = await pool.query(
+      `${cte}SELECT d.schema_id, count(*)::int AS rows,
+              count(*) FILTER (WHERE d.event_month = $2 AND d.event_day = $3)::int AS today_items,
+              count(*) FILTER (WHERE NOT data_postable(s.post_requires, d.data))::int AS not_postable,
+              ${here} AS unposted_here
+         FROM data_items d JOIN data_schemas s ON s.id = d.schema_id
+        WHERE d.schema_id = ANY($1::uuid[]) AND d.status = 'active'
+        GROUP BY d.schema_id`, params);
+    return new Map<string, any>(counts.map((c: any) => [c.schema_id, c]));
+  };
+  let bySchema = await countRows();
+
+  // Spec 071: rounds. A cycle dataset with postable rows and none left here has finished its round: ask the database to
+  // start the next one (it checks the rule itself, under a lock) and count again. Runs only on zero, so it is cheap.
+  const resource = o.resource ?? null;
+  const cycleIds = schemas.filter((s: any) => isCycle(s.reuse_policy)).map((s: any) => s.id as string);
+  let rounds: Awaited<ReturnType<typeof roundsOf>> | null = null;
+  if (resource && cycleIds.length) {
+    let rolled = false;
+    for (const id of cycleIds) {
+      const c = bySchema.get(id);
+      if (c && (c.unposted_here ?? 0) === 0 && c.rows - (c.not_postable ?? 0) > 0) rolled = (await rollIfDone(pool, id, resource)) || rolled;
+    }
+    if (rolled) bySchema = await countRows();
+    rounds = await roundsOf(pool, cycleIds, resource);
+  }
 
   return schemas.map((s: any) => {
     const c: any = bySchema.get(s.id) ?? { rows: 0, today_items: 0, unposted_here: o.resource ? 0 : null };
     return catalogEntry(s as DataSchema, {
       rows: c.rows, today_items: c.today_items, unposted_here: o.resource ? (c.unposted_here ?? 0) : undefined,
-      not_postable: c.not_postable ?? 0,
+      not_postable: c.not_postable ?? 0, round: rounds?.get(s.id)?.round,
       unposted_network: s.unposted_network, top_categories: s.top_categories ?? [], fill_rate: s.fill_rate ?? {},
       stats_at: s.stats_at ? new Date(s.stats_at).toISOString() : null,
     });

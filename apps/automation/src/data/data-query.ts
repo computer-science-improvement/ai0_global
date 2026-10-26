@@ -3,6 +3,7 @@ import { z } from 'zod';
 import type { DataSchema, FieldDef, FieldType, RoleName } from './data.types';
 import { FIELD_NAME_RE } from './data.types';
 import { dataRef, resourceKeys, usedRefsCte } from './data-refs';
+import { isCycle, isSequential, recentTailSql, rollIfDone, roundOrderSql } from './data-rounds';
 
 /**
  * Reading a dataset (spec 032 FR-007 items browser, FR-010 `query_data`). One query builder for the
@@ -10,7 +11,9 @@ import { dataRef, resourceKeys, usedRefsCte } from './data-refs';
  *
  *   • fields are validated against the schema (agents: only `agent_visible`, non-deprecated fields);
  *   • filters only on `filterable` fields, with an operator that fits the field type;
- *   • `unposted_on` drops rows already used on a resource (see `usedRefsCte` for what "used" means);
+ *   • `unposted_on` drops rows already used on a resource (see `usedRefsCte` for what "used" means; for a dataset that
+ *     repeats in rounds that is the current round, spec 071) and, on a cycle dataset, also sets the order: a sequential
+ *     round goes by the dataset's `order_by` then import order, a random round puts the rows posted in the last 7 days last;
  *   • agents never get rows that miss what the dataset needs for posting (`post_requires`, migration 083);
  *   • long text is cut to 2000 characters unless the caller asks for `full`.
  *
@@ -65,6 +68,8 @@ export interface QueryOptions {
 export interface QueryResult {
   rows:   Array<Record<string, unknown>>;
   total?: number;
+  /** True when the rows came in round order (cycle dataset, `unposted_on`, sequential): rows[0] is the next one. */
+  ordered?: boolean;
   /** Fields that were cut to MAX_TEXT characters in at least one row. */
   truncated: string[];
 }
@@ -254,15 +259,25 @@ export async function queryDataset(pool: Pick<Pool, 'query'>, schema: DataSchema
   }
 
   let cte = '';
+  let rr = '';
+  let key = '';
   if (o.unpostedOn) {
     const { resourceRef } = resourceKeys(o.unpostedOn);
-    cte = `WITH ${usedRefsCte(p(resourceRef))} `;
-    const key = p(schema.key);
+    rr = p(resourceRef);
+    cte = `WITH ${usedRefsCte(rr)} `;
+    key = p(schema.key);
     where.push(`NOT EXISTS (SELECT 1 FROM used u WHERE u.ref = 'data://' || ${key} || '/' || d.id::text)`);
     where.push(`(d.legacy_ref IS NULL OR NOT EXISTS (SELECT 1 FROM used u WHERE u.ref = d.legacy_ref))`);
   }
 
-  const order = o.order === 'newest' ? 'd.created_at DESC, d.id DESC' : o.order === 'oldest' ? 'd.created_at ASC, d.id ASC' : 'random()';
+  // Spec 071: a cycle dataset read against a resource has an order of its own. The ORDER BY reuses `rr` / `key`, so the
+  // count query (which drops the ORDER BY and the last two params) keeps every placeholder in use.
+  const policy = schema.reuse_policy;
+  const seq = rr && isSequential(policy) ? policy : null;
+  let order: string;
+  if (seq) order = roundOrderSql(seq, schema.fields);
+  else if (rr && isCycle(policy) && (o.order ?? 'random') === 'random') order = `${recentTailSql(rr, key)} ASC, random()`;
+  else order = o.order === 'newest' ? 'd.created_at DESC, d.id DESC' : o.order === 'oldest' ? 'd.created_at ASC, d.id ASC' : 'random()';
   const limit = Math.max(1, Math.min(o.limit, o.audience === 'agent' ? MAX_AGENT_LIMIT : 200));
   const whereSql = where.join(' AND ');
   const sql = `${cte}SELECT d.id::text AS id, d.legacy_ref, d.status, d.title, d.body, d.image_url, d.url, d.category,
@@ -309,7 +324,31 @@ export async function queryDataset(pool: Pick<Pool, 'query'>, schema: DataSchema
       data: projected,
     };
   });
-  return { rows: out, total, truncated: [...truncated] };
+  return { rows: out, total, truncated: [...truncated], ...(seq ? { ordered: true } : {}) };
+}
+
+/**
+ * The next row of a sequential round on a resource (spec 071): the first postable row the round order returns, optionally
+ * within one category (a series' `library:<table>/<category>` source). Null for a dataset that is not cycle/sequential, and
+ * when nothing is left. A cycle dataset with nothing left asks the database to start the next round and looks again
+ * (`rolled` tells the caller it did), so a slot is never told «nothing left» on the one read that would have found rows.
+ */
+export async function nextInRound(
+  pool: Pick<Pool, 'query'>, schema: DataSchema, resourceRef: string, today: { month: number; day: number }, category?: string | null,
+): Promise<{ ref: string | null; rolled: boolean }> {
+  if (!isSequential(schema.reuse_policy)) return { ref: null, rolled: false };
+  const read = async () => {
+    const r = await queryDataset(pool, schema, {
+      audience: 'owner', postableOnly: true, unpostedOn: resourceRef, limit: 1, today, bodyChars: 1,
+      fields: schema.fields.length ? [schema.fields[0].name] : undefined,
+      categoryLike: category?.trim() ? escapeLike(category.trim()) : undefined,
+    });
+    return typeof r.rows[0]?.ref === 'string' ? r.rows[0].ref : null;
+  };
+  const first = await read();
+  if (first) return { ref: first, rolled: false };
+  if (!(await rollIfDone(pool, schema.id, resourceRef))) return { ref: null, rolled: false };
+  return { ref: await read(), rolled: true };
 }
 
 /** Kyiv-local month and day ("today" filters, catalog today-items). */
