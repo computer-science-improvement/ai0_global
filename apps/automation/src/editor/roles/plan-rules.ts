@@ -86,6 +86,8 @@ export function validatePlan(
   pollCap?: PollCapCtx,
   /** Spec 040 FR-005: pool ideas the plan names (an idea slot without a topic writes its idea). */
   ideas?: Map<string, PlanIdea>,
+  /** Spec 068 FR-007: can this format be produced here? (a carousel needs slide hosting); a format that cannot is not offered. */
+  formatOk?: (format: string) => boolean,
 ): PlanVerdict {
   const errors: string[] = [];
   const n = plan.slots.length;
@@ -98,7 +100,8 @@ export function validatePlan(
     errors.push(`кількість постів (з резервними: ${reservedAt.length}) має бути ${minToday}–${card.postsPerDayMax}, зараз ${total}${total < minToday ? `; ${EMPTY_DAY_WAY_OUT}` : ''}`);
   }
 
-  const allowed = new Set(Object.entries(card.formats).filter(([f, w]) => Number(w) > 0 && (SUPPORTED_FORMATS as readonly string[]).includes(f)).map(([f]) => f));
+  const allowed = new Set(Object.entries(card.formats)
+    .filter(([f, w]) => Number(w) > 0 && (SUPPORTED_FORMATS as readonly string[]).includes(f) && (!formatOk || formatOk(f))).map(([f]) => f));
   // Spec 025 FR-014: a directive's experiment slot may use the format the directive names (if the platform has it),
   // and it does not count against explore_ratio.
   const quotaOf = new Map(experiments.map((q) => [q.directiveId, q]));

@@ -32,6 +32,8 @@ import { storyGuard, type StoryGuardResult } from '../story/story-guard';
 import type { StoryRegistry } from '../story/story.repository';
 import { dryRunOf } from '../roles/preview-run';
 import { SKIP_SLOT_CAUSES, skipSlotError } from '../silent/skip-reasons';
+import { planTimePreflightErrors } from '../preflight/plan-time';
+import { formatAvailable, type SlotPreflight } from '../preflight/slot-preflight';
 import { anchorOf, isReusableHost, sourceRefOf, sourceUsedDetails } from '../../data/ledger-anchor';
 import type { LedgerVerdict } from '../../data/content-ledger';
 import { recentAuditPosts } from '../post/variety/recent-posts';
@@ -75,6 +77,10 @@ export interface RoleToolDeps {
   kpiSampleFilter?: string;
   /** Spec 037 T2: the story registry — the story guard of publish_post and the record of a stored / sent post. */
   stories?: Pick<StoryRegistry, 'history' | 'record'>;
+  /** Spec 068 FR-007: the cheap pre-flight checks on the slots of a plan (spent / stale / blocked source, a library row without text, an empty dataset). */
+  preflight?: Pick<SlotPreflight, 'assessPlanned'>;
+  /** Spec 068 FR-007: settings, for the formats that need configuration (slide hosting). */
+  env?: (key: string) => string | undefined;
   now?: () => Date;
 }
 
@@ -257,10 +263,16 @@ export function buildRoleTools(d: RoleToolDeps): EditorTool[] {
       const quotas = d.experimentQuotas ? (await d.experimentQuotas(card.channelKey, planDate, t)).filter((q) => q.resourceRef === anchor) : [];
       const pollCap = d.pollCaps ? await d.pollCaps({ refs: [anchor], planDate, tz: card.timezone, defaultRef: anchor }) : undefined;
       const ideas = await planIdeas(d.pool, plan.slots.map((s) => s.idea_id).filter((x): x is string => !!x));
-      const v = validatePlan(plan, sched ? d.schedule!.effectiveCard(card, sched) : card, planDate, t, reserved.map((r) => r.scheduledAt), sched, quotas, pollCap, ideas);
+      const formatOk = d.env ? (f: string) => formatAvailable(f, d.env!).ok : undefined;
+      const v = validatePlan(plan, sched ? d.schedule!.effectiveCard(card, sched) : card, planDate, t, reserved.map((r) => r.scheduledAt), sched, quotas, pollCap, ideas, formatOk);
       // Spec 041 FR-004: an evergreen fixed slot on a topic of the last 30 days.
       const topicErrors = planTopicErrors(plan.slots, await loadRecentTopics(d.pool, [anchor]));
-      if (!v.ok || topicErrors.length) return { error: 'plan_invalid', details: [...(v.ok ? [] : v.errors), ...topicErrors] };
+      // Spec 068 FR-007: the pre-flight's cheap checks, while the planner can still choose another source.
+      const sourceErrors = v.ok ? await planTimePreflightErrors(d.preflight, card, v.slots.map((s, i) => ({
+        label: `слот ${i + 1} (${plan.slots[i].time})`,
+        slot: { channelKey: card.channelKey, format: s.format, sourceHints: s.sourceHints, ...(s.live ? { topicMode: 'live' as const } : {}), ideaId: s.ideaId ?? null },
+      }))) : [];
+      if (!v.ok || topicErrors.length || sourceErrors.length) return { error: 'plan_invalid', details: [...(v.ok ? [] : v.errors), ...topicErrors, ...sourceErrors] };
       const planId = await d.plans.createPlan(card.channelKey, planDate, plan.rationale, ctx.runId, v.slots, v.empty);
       // Pool ideas taken into the plan (spec 020) leave the pool; they become `used` once their slots are done.
       const ideaIds = [...new Set(v.slots.map((s) => s.ideaId).filter(Boolean))];

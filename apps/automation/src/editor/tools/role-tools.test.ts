@@ -184,6 +184,43 @@ test('submit_plan: short_day passes the placeholder to createPlan; without it, n
   assert.deepEqual(u2[0][6], []);
 });
 
+// Spec 068 FR-007: the cheap pre-flight checks run on the planned slots; a refused slot comes back as a plan_invalid line.
+test('submit_plan: the plan-time pre-flight refuses a slot whose row or source cannot post; a format without hosting is not offered', async () => {
+  const seen: any[] = [];
+  const preflight = {
+    assessPlanned: async (slot: any) => {
+      seen.push(slot);
+      return slot.sourceHints.includes('data://prompts/7') ? { code: 'preflight_no_material' as const, reason: 'рядок data://prompts/7 без prompt_text' } : null;
+    },
+  };
+  const c = { ...ctx('shadow'), role: 'planner' as const, extras: { card: makeCard({ postsPerDayMin: 1, postsPerDayMax: 3, formats: { photo: 1, carousel: 1 } }), planDate: '2026-10-01' } };
+  const slotOf = (hints: string[], format = 'photo') => ({ time: '18:00', format, topic: 'Тема про космос', source_hints: hints, is_experiment: false });
+
+  const { tools, updates } = deps({}, { preflight, env: () => undefined });
+  const refused: any = await tools.submit_plan.execute({ rationale: 'план на день тест', slots: [slotOf(['data://prompts/7'])] }, c);
+  assert.equal(refused.error, 'plan_invalid');
+  assert.deepEqual(refused.details, ['слот 1 (18:00): рядок data://prompts/7 без prompt_text — заміни джерело/рядок або постав skipped_series з cause no_material / short_day']);
+  assert.equal(updates.length, 0, 'nothing is stored');
+  assert.deepEqual([seen[0].channelKey, seen[0].format, seen[0].sourceHints], ['@chan', 'photo', ['data://prompts/7']]);
+
+  const { tools: t2, updates: u2 } = deps({}, { preflight, env: () => undefined });
+  const good: any = await t2.submit_plan.execute({ rationale: 'план на день тест', slots: [slotOf(['data://prompts/8'])] }, c);
+  assert.equal(good.ok, true, JSON.stringify(good));
+  assert.equal(u2[0][0], 'createPlan');
+
+  // Without slide hosting the carousel is not an allowed format; with it, it is.
+  const noHost: any = await t2.submit_plan.execute({ rationale: 'карусель без хостингу слайдів', slots: [slotOf([], 'carousel')] }, c);
+  assert.equal(noHost.error, 'plan_invalid');
+  assert.match(noHost.details.join('\n'), /формат carousel не дозволений; дозволені: photo/);
+  const { tools: t3 } = deps({}, { preflight, env: (k: string) => ({ SUPABASE_URL: 'u', SUPABASE_SERVICE_KEY: 'k', SUPABASE_CAROUSEL_BUCKET: 'b' } as any)[k] });
+  const hosted: any = await t3.submit_plan.execute({ rationale: 'карусель із хостингом слайдів', slots: [slotOf([], 'carousel')] }, c);
+  assert.equal(hosted.ok, true, JSON.stringify(hosted));
+
+  // A deployment without the pre-flight keeps the old behaviour.
+  const { tools: t4 } = deps();
+  assert.equal(((await t4.submit_plan.execute({ rationale: 'план на день тест', slots: [slotOf(['data://prompts/7'])] }, c)) as any).ok, true);
+});
+
 // Spec 037 FR-013: editor_v_post_performance rows as the pool returns them (numerics as strings).
 const perfPool = (rows: any[], seen: any[] = []) => ({
   query: async (sql: string, params: any[]) => {

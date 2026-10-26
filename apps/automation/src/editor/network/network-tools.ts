@@ -18,6 +18,8 @@ import { longText, longTextNote } from '../harness/clip-text';
 import type { ExperimentQuota } from '../manager/experiment-quota';
 import type { PollCapCtx } from '../roles/poll-cap';
 import type { AgentsRepository } from '../agents/agents.repository';
+import { planTimePreflightErrors } from '../preflight/plan-time';
+import type { SlotPreflight } from '../preflight/slot-preflight';
 
 export const IDEA_DEDUP_SIMILARITY = 0.6;
 export const IDEA_MAX_DAYS = 7;
@@ -80,6 +82,8 @@ export interface NetworkToolDeps {
   pollCaps?: (o: { refs: string[]; planDate: string; tz: string; defaultRef?: string }) => Promise<PollCapCtx>;
   /** Spec 046 FR-008: get_playbook(handle) for the manager, which has no orchestrator context. */
   agents?: Pick<AgentsRepository, 'getByHandle'>;
+  /** Spec 068 FR-007: the cheap pre-flight checks on the slots of a plan. */
+  preflight?: Pick<SlotPreflight, 'assessPlanned'>;
   now?:   () => Date;
 }
 
@@ -425,6 +429,15 @@ export function buildNetworkTools(d: NetworkToolDeps): EditorTool[] {
         pollCap: d.pollCaps ? await d.pollCaps({ refs: net.resources.map((r) => r.ref), planDate, tz: card.timezone }) : undefined,
       });
       if (!v.ok) return { error: 'plan_invalid', details: v.errors };
+      // Spec 068 FR-007: a source or row that cannot post is told to the planner now, not found by the executor when the slot is due.
+      const sourceErrors = await planTimePreflightErrors(d.preflight, card, v.slots.map((s, i) => ({
+        label: `слот ${i + 1} (${s.resourceRef} ${plan.slots[i].time})`,
+        slot: {
+          channelKey: net.anchorKey, resourceRef: s.resourceRef === `telegram:${net.anchorKey}` ? null : s.resourceRef, format: s.format, sourceHints: s.sourceHints,
+          ...(s.topicMode === 'live' ? { topicMode: 'live' as const } : {}), ideaId: s.ideaId, ...(s.treatment ? { treatment: s.treatment } : {}),
+        },
+      })));
+      if (sourceErrors.length) return { error: 'plan_invalid', details: sourceErrors };
       const planId = await d.plans.createNetworkPlan(net.anchorKey, planDate, plan.rationale, ctx.runId, v.slots, v.decisions, net.orchestrator.id, v.empty);
       for (const id of new Set(v.slots.map((s) => s.ideaId).filter(Boolean) as string[])) await d.repo.updateIdea(id, { status: 'planned' });
       return {

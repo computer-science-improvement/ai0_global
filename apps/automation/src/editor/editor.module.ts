@@ -1264,6 +1264,8 @@ export const EDITOR_PROVIDERS = [
         const hosts = new PgHostFailures(pool);
         // Spec 065: web_fetch keeps whole documents here; read_doc / find_in_doc read them.
         const docs = sharedDocStore(env);
+        // Spec 068 FR-007: the executor's cheap pre-flight checks, run on the slots of a plan too (a second instance of the same checks).
+        const planPreflight = buildSlotPreflight({ pool, env, ideas: new NetworkRepository(pool), plans: repos.plans });
         return new ToolRegistry([
           ...buildReadTools({ pool, readonly: new ReadonlyQueryService(pool), skills, stories: new StoryContextService(stories), hosts, docs }),
           ...buildDocTools({ docs }),
@@ -1287,6 +1289,7 @@ export const EDITOR_PROVIDERS = [
             // Spec 025 FR-014: directive experiment quotas in the plan check.
             experimentQuotas: experimentQuotasOf(pool),
             pollCaps: pollCapsOf(pool),
+            preflight: planPreflight, env,
             stories, kpiSampleFilter: `${STORY_KPI_SAMPLE_FILTER} AND ${EVERGREEN_KPI_SAMPLE_FILTER}`,
           }),
           ...buildStoryTools({
@@ -1330,7 +1333,7 @@ export const EDITOR_PROVIDERS = [
             repo: new NetworkRepository(pool), plans: repos.plans, memory: repos.memory, inbox: infra.inbox,
             sourceCatalog: (card) => seriesSourceCatalog(pool, card), schedule, directiveLock,
             experimentQuotas: experimentQuotasOf(pool),
-            pollCaps: pollCapsOf(pool), agents: new AgentsRepository(pool),
+            pollCaps: pollCapsOf(pool), agents: new AgentsRepository(pool), preflight: planPreflight,
           }),
           // Spec 023 FR-003: the orchestrator's series tools (one submit path with submit_playbook).
           ...buildSeriesTools({ repo: new NetworkRepository(pool), inbox: infra.inbox, sourceCatalog: (card) => seriesSourceCatalog(pool, card), directiveLock }),
