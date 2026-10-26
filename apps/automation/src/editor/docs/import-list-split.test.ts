@@ -150,6 +150,20 @@ test('the preview says how many records, the longest one and which keys repeat',
   assert.equal(view.level, 0);
 });
 
+test('with split_on the default required is only the text / text_without fields: a picture, a code block or the heading is not enough (A3)', async () => {
+  const doc = await pdrDoc();
+  const base = { dataset: 'pdr_pics', split_on: PDR_SPLIT_ON };
+  const withImage = buildPlan(doc, { ...base, mapping: { text: 'text', pic: 'first_image', title: 'heading', code: 'first_code_block' } }, null);
+  assert.deepEqual(withImage.required, ['text'], 'first_image / first_code_block / heading do not count with split_on');
+  assert.deepEqual(buildPlan(doc, { ...base, mapping: { body: 'text_without:^\\{', pic: 'first_image' } }, null).required, ['body']);
+  assert.deepEqual(buildPlan(doc, { ...base, mapping: { title: 'heading', pic: 'first_image', clause: 'split_key' } }, null).required, [], 'no text field: nothing is required by default');
+  // The same mapping without split_on keeps the old default (the heading, a picture and a code block are content).
+  const plain = buildPlan(await pdrDoc(), { ...base, split_on: undefined, level: 2, mapping: { title: 'heading', pic: 'first_image' } } as any, null);
+  assert.deepEqual(plain.required, ['title', 'pic']);
+  // An explicit required still wins.
+  assert.deepEqual(buildPlan(doc, { ...base, mapping: { text: 'text', pic: 'first_image' }, required: [['pic']] }, null).required, [['pic']]);
+});
+
 test('without a group in the pattern a record has no key: its ref comes from the heading as before', async () => {
   const doc = await pdrDoc();
   const plan = buildPlan(doc, { dataset: 'pdr_nokey', mapping: { title: 'heading', text: 'text', k: 'split_key' }, split_on: '^[0-9]{1,2}[.][0-9]{1,2}[.] ' }, null);

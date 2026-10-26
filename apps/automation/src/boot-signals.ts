@@ -1,15 +1,17 @@
 /**
  * Spec 070 FR-005: a stop that arrives while Nest is still booting.
  *
- * `app.enableShutdownHooks()` is what makes the service answer SIGTERM, and it runs only after the modules are built (the
- * settings overlay, the database pool and every onModuleInit come first). In a container the service is PID 1, which has no
- * default action for SIGTERM, so a `docker stop` / `docker compose restart` that lands in that window is ignored until
- * Docker gives up after 10 s and sends SIGKILL, in the middle of a migration check or a half-done onModuleInit. The deploy
- * used to do exactly that: `up -d` followed at once by `restart`.
+ * `app.enableShutdownHooks()` is what makes the service answer SIGTERM, and it used to run before the slow part of boot: the
+ * settings overlay, the database pool and the onModuleInit hooks (migrations, the MTProto connect) all come first. In a
+ * container the service is PID 1, which has no default action for SIGTERM, so a `docker stop` / `docker compose restart`
+ * that lands in that window is ignored until Docker gives up after 10 s and sends SIGKILL, in the middle of a migration check
+ * or a half-done onModuleInit. The deploy used to do exactly that: `up -d` followed at once by `restart`.
  *
  * `armBootSignals` is called before anything slow starts: a SIGTERM or SIGINT then logs «shutdown during boot» and exits
- * with 143 at once. The returned function removes both listeners, and main.ts calls it right before
- * `enableShutdownHooks()` so Nest's graceful stop takes over.
+ * with 143 at once. The onModuleInit hooks run inside `app.init()`, which main.ts now calls explicitly after all the
+ * middleware, pipes and Swagger are set up; only when it returns does main.ts call the function returned here (it removes both
+ * listeners) and `enableShutdownHooks()`, so Nest's graceful stop takes over for a stop after boot. `listen()` skips its own
+ * init once the app is initialised.
  */
 export const BOOT_SIGNALS = ['SIGTERM', 'SIGINT'] as const;
 /** 128 + SIGTERM(15): the code a process stopped by SIGTERM reports. */

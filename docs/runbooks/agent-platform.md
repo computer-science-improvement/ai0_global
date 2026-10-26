@@ -744,7 +744,7 @@ A law or standard on one long page has no headings per clause, so `import_list` 
 
 1. In the chat with @pdr_dev_channel (or `@ai0`): fetch the page of the rules on zakon.rada.gov.ua (the `…/print` address), then ask for an import into `pdr_rules` with `split_on` set to `^([0-9]{1,2}[.][0-9]{1,2}(?:[.][0-9]{1,2})?)[.]` (group 1 is the clause number) and this mapping: `clause` = `split_key`, `title` = `heading`, `text` = `text_without:^\{` (leaves out the editorial notes «{Пункт … в редакції …}»), `category` = `context_line:^[0-9]{1,2}[.] [^.]{3,60}$` (the section title, e.g. «14. ОБГІН»), `source_url` = `url_anchor:п.`, `license` = `const:public domain`.
 2. Read the preview: `records` (one per clause), `longest_record_chars` (one clause that runs to thousands of characters means a section title was not recognised), and `repeated_keys` (`1.1 ×2` means a sign or markup line collides with a clause: narrow the pattern). The patterns are tested on the first 300 characters of each line and are **case-insensitive**, so rely on the numbering, not on capitals.
-3. Press **Apply**. `post_requires` is `[[text]]`; `list_ref` is the page address plus `#<clause>` and is the dedup key; the weekly re-sync repeats the same `split_on` and updates only the clauses that changed.
+3. Press **Apply**. `post_requires` is `[[text]]` (with `split_on` the default is only the fields read by `text` / `text_without`; a picture or the heading is not enough); `list_ref` is the page address plus `#<clause>` and is the dedup key; the weekly re-sync repeats the same `split_on` and updates only the clauses that changed.
 4. Add `pdr_rules` as a library source on the pdr card and allow the `quiz` format. Library posts carry `library_ref` (`data://pdr_rules/N`) and `source.url` = the anchored clause (`…/print#п.14.6`), so the ledger records both and the critic reads the row.
 5. **After spec 071 ships**, set the reuse policy of `pdr_rules` to «Repeat in rounds» (see § 30): otherwise the clauses run out like the questions did.
 
@@ -753,6 +753,7 @@ A law or standard on one long page has no headings per clause, so `import_list` 
 - A site that cuts the connection (`socket hang up`, `ECONNRESET`, a closed socket) is asked once more after a second. If that fails too it is recorded as a `timeout`: one hour of pause, no strike, and the agent is told «сайт обірвав з'єднання; година паузи».
 - A feed's own 401 / 403 / 429 / 451 (`feed_refused`) or 400 / 404 / 410 (`feed_missing`) pauses that feed for a day, without strikes, and **pages of the same site keep working**. A page's 403 no longer blocks the site's RSS. Source health shows the feed as blocked for a day; a feed that keeps failing reaches the owner as `failing` (three failed reads in 14 days), not through a strike note.
 - A feed at the root of a site is stored under `host/`, so it never replaces the row of the host itself.
+- A network failure of a feed (DNS, TLS, timeout, reset) is recorded on the host **and** on the feed's own address. Otherwise a host that already has a live «refused» row (its pages answer 403) would keep the shorter timeout row out, and a feed that keeps failing would be asked again on every call.
 
 **A stale copy when the site fails**
 
@@ -761,7 +762,7 @@ A law or standard on one long page has no headings per clause, so `import_list` 
 
 **Quiz channels**
 
-A profile topic that names a quiz («Вікторини з ПДР», quiz, trivia, «тестові запитання», «екзаменаційні питання / білети») is now a quiz when `content_kind` is not set: the order is the explicit field, then quiz, then news, then general. A quiz guessed this way has a cap of 14 polls and quizzes a week (an explicit `content_kind: quiz` stays uncapped; an explicit `polls_per_week` wins). «Тест-драйв» and «тестування» are not quizzes. The Formatting form shows the resolved cap as the placeholder of «Polls a week» when the kind select says «From the topic».
+A profile topic that names a quiz («Вікторини з ПДР», the words quiz / quizzes / trivia on their own, «тестові запитання», «екзаменаційні питання / білети») is now a quiz when `content_kind` is not set: the order is the explicit field, then quiz, then news, then general. A quiz guessed this way has a cap of 14 polls and quizzes a week (an explicit `content_kind: quiz` stays uncapped; an explicit `polls_per_week` wins). «Тест-драйв» and «тестування» are not quizzes. In the Formatting form the placeholder of «Polls a week» follows the kinds: «Quiz» in the select shows «no limit», any other kind «1 (default)», and «From the topic» shows what the server falls back to after clearing both fields (`defaultPollsPerWeek`: 14 for a quiz guessed from the topic, 1 otherwise); a saved cap is the field's value, never the placeholder.
 
 **Meta metrics**
 
@@ -774,7 +775,7 @@ The `story_repeat` check no longer passes two posts as one story just because on
 **Deploy and stop**
 
 - The `docker compose restart automation` line after `up -d` is gone from `deploy-develop.yml` and `release-prod.yml`. It was added (40d9a951) so that a config-only deploy reloaded `channels.json`, which the service reads once at boot. The config is now copied into the image (`apps/automation/Dockerfile`, `COPY apps/automation/config`), so a config commit builds a new image, `pull` fetches it and `up -d` recreates the container. The restart then only killed the container that had just started: Node is PID 1, had no SIGTERM handler until the shutdown hooks were enabled, and Docker waited 10 s and sent SIGKILL in the middle of boot. Only `*.local.json` files are gitignored and stay on the box.
-- `apps/automation/src/boot-signals.ts`: a SIGTERM or SIGINT that arrives while the service is still booting logs «shutdown during boot» and exits with 143 at once; the listeners are removed right before `enableShutdownHooks()`, so a stop after boot is graceful as before.
+- `apps/automation/src/boot-signals.ts`: a SIGTERM or SIGINT that arrives while the service is still booting logs «shutdown during boot» and exits with 143 at once; the listeners stay armed through `app.init()` (migrations, the MTProto connect and the other onModuleInit hooks) and are removed right before `enableShutdownHooks()` and `listen()`, so a stop after boot is graceful as before.
 - **Owner action, not in the repo:** add `init: true` to the `automation` service in `docker-compose.yml` on the box (and in the dev compose). An init process as PID 1 forwards signals and reaps children, so a stop is never ignored. The compose files carry local changes, so they are not edited by the deploy or by this spec.
 
 **Troubleshooting**

@@ -57,21 +57,30 @@ test('format prefs: audience caps (spec 034 FR-005) — round trip, labels and t
     'Quiz (from the topic) · polls: up to 14 a week (default) · reader questions: up to 1 per post (default)');
 });
 
-test('polls placeholder (spec 070 A6): the unsaved choice wins; "From the topic" shows the resolved cap', () => {
-  const inferredQuiz = { pollsPerWeek: 14 };
-  const explicitQuiz = { pollsPerWeek: null };
-  // An explicit choice in the form wins over whatever the server resolved.
-  assert.equal(pollsPlaceholder('quiz', inferredQuiz), 'no limit');
-  assert.equal(pollsPlaceholder('quiz', { pollsPerWeek: 1 }), 'no limit');
+test('polls placeholder (spec 070 A6): kinds decide; an empty select shows the default after clearing, never the saved cap', () => {
+  // An explicit choice in the unsaved form wins over whatever the server sent.
+  assert.equal(pollsPlaceholder('quiz', { defaultPollsPerWeek: 14 }), 'no limit');
+  assert.equal(pollsPlaceholder('quiz', { defaultPollsPerWeek: 1 }), 'no limit');
+  assert.equal(pollsPlaceholder('quiz', undefined), 'no limit');
   for (const kind of ['general', 'news', 'education'] as const) {
-    assert.equal(pollsPlaceholder(kind, inferredQuiz), '1 (default)', kind);
-    assert.equal(pollsPlaceholder(kind, explicitQuiz), '1 (default)', kind);
+    assert.equal(pollsPlaceholder(kind, { defaultPollsPerWeek: 14 }), '1 (default)', `${kind}: not the 14 of a quiz topic`);
+    assert.equal(pollsPlaceholder(kind, undefined), '1 (default)', kind);
   }
-  // "From the topic": the server's own answer.
-  assert.equal(pollsPlaceholder('', inferredQuiz), '14 (default)');
-  assert.equal(pollsPlaceholder('', explicitQuiz), 'no limit');
-  assert.equal(pollsPlaceholder('', { pollsPerWeek: 1 }), '1 (default)');
-  assert.equal(pollsPlaceholder('', { pollsPerWeek: 0 }), '0 (default)');
+  // "From the topic" (an empty select): the cap the server falls back to after clearing the kind and the cap.
+  assert.equal(pollsPlaceholder('', { defaultPollsPerWeek: 14 }), '14 (default)', 'a quiz guessed from the topic');
+  assert.equal(pollsPlaceholder('', { defaultPollsPerWeek: 1 }), '1 (default)');
+  assert.equal(pollsPlaceholder('', { defaultPollsPerWeek: null }), 'no limit');
+  // An older server has no such field; no audience at all: the default of 1.
+  assert.equal(pollsPlaceholder('', {}), '1 (default)');
   assert.equal(pollsPlaceholder('', undefined), '1 (default)');
   assert.equal(pollsPlaceholder('', null), '1 (default)');
+});
+
+test('polls placeholder: a saved explicit kind and cap are not the default — clearing the select shows the topic default', () => {
+  // The resource has content_kind "general" and polls_per_week 3 saved on a quiz topic: caps say pollsPerWeek 1... and 3 is
+  // the field's own value. The owner clears the select: the placeholder is what clearing gives (14), not the saved 3 or 1.
+  const audience = { kind: 'general' as const, kindInferred: false, pollsPerWeek: 3, questionsPerDay: 1, defaultPollsPerWeek: 14 };
+  assert.equal(pollsPlaceholder('', audience), '14 (default)');
+  assert.equal(pollsPlaceholder('general', audience), '1 (default)');
+  assert.equal(pollsPlaceholder('quiz', audience), 'no limit');
 });

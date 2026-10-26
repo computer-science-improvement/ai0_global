@@ -258,17 +258,24 @@ export function buildReadTools(d: ReadToolDeps): EditorTool[] {
           if (key) await d.hosts?.record(key, 'feed_too_large');
           return { error: 'feed_too_large', details: 'стрічка більша за 2 МБ — не читай її сьогодні; візьми іншу стрічку цього сайту (категорію) або інше джерело' };
         }
+        // Spec 070 (review): a network failure is recorded on the host AND on this feed's own key. The host row alone is not
+        // enough: while the host has a live `refused` row (its pages answer 403) a shorter timeout / reset row is not stored
+        // over it, and `blocked(host, 'feed')` ignores `refused`, so the feed would be asked again on every call. A feed key
+        // always contains «/», so the strike count of `struck()` (host keys only) never sees it.
         const kind = classifyFetchError(err);
         if (kind && host) {
           await d.hosts?.record(host, kind);
+          if (key) await d.hosts?.record(key, kind);
           return { error: 'host_unreachable', details: `${host}: ${kind === 'dns' ? 'домен не знаходиться (DNS)' : 'помилка TLS-сертифіката'}` };
         }
         if (host && classifyTimeout(err)) {
           await d.hosts?.record(host, 'timeout'); // spec 061 FR-004: a one-hour block, not a strike
+          if (key) await d.hosts?.record(key, 'timeout');
           return { error: 'host_unreachable', details: `${host}: сайт не відповів вчасно. Година паузи для цього сайту — інше джерело або пропусти слот.` };
         }
         if (host && classifyTransient(err)) {
           await d.hosts?.record(host, 'timeout'); // spec 070: a reset that survived the retry; recorded on the host like a timeout
+          if (key) await d.hosts?.record(key, 'timeout');
           return resetFailure(host);
         }
         throw err;

@@ -47,7 +47,7 @@ export const ImportListInput = z.object({
   has:     hasSchema.optional().describe('JSON records: keep a record whose paths all hold a value, e.g. ["mediaUrl"] (same as filter.has)'),
   pages:   z.number().int().min(1).max(500).optional().describe('JSON API: read at most this many pages (default: all, up to the IMPORT_MAX_PAGES cap)'),
   sample:  z.number().int().min(1).max(10).default(3),
-  required: z.array(z.string().regex(FIELD_NAME_RE)).max(10).optional().describe('fields a row needs to be postable (a new dataset\'s post_requires, each one needed); default: the fields read by heading / first_code_block / images; for JSON: a row needs its text or its picture (the mapped long-text and image fields, any one)'),
+  required: z.array(z.string().regex(FIELD_NAME_RE)).max(10).optional().describe('fields a row needs to be postable (a new dataset\'s post_requires, each one needed); default: the fields read by heading / first_code_block / images; with split_on: the fields read by text / text_without; for JSON: a row needs its text or its picture (the mapped long-text and image fields, any one)'),
   license: z.string().min(2).max(40).optional().describe('licence of the list, e.g. CC BY 4.0 (stored per row)'),
   title:   z.string().min(1).max(200).optional().describe('title of a new dataset'),
   description: z.string().max(1000).optional().describe('what a new dataset holds'),
@@ -157,8 +157,11 @@ export function planSchema(args: Pick<ImportListArgs, 'dataset' | 'title' | 'des
 
 /** The fields whose value is the entry's content: without them there is nothing to post. */
 const CONTENT = /^(?:heading|text|text_without|first_code_block|code_block|first_image|last_image|image)(?::|$)/;
-/** With `split_on` every record has a heading (its first line), so the heading is not content (spec 070). */
-const SPLIT_CONTENT = /^(?:text|text_without|first_code_block|code_block|first_image|last_image|image)(?::|$)/;
+/**
+ * With `split_on` the content of a record is its text (spec 070, amendment A3): every record has a heading (its first line),
+ * and a picture or code block would only be an extra, so the default `required` is the fields read by `text` / `text_without`.
+ */
+const SPLIT_CONTENT = /^(?:text|text_without)(?::|$)/;
 
 /** «License-CC_BY_4.0» of a badge, or «License: MIT», in the top of a README → «CC BY 4.0». */
 export function licenseHint(doc: StoredDoc): string | null {

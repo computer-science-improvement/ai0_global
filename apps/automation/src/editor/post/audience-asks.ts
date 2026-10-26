@@ -35,10 +35,11 @@ export const NEWS_TOPIC_RE = /новин|news|дайджест|зведенн/iu
 
 /**
  * A profile topic that names a quiz («Вікторини з ПДР», «quiz», «trivia», «тестові запитання до іспиту», «екзаменаційні
- * білети»). A bare «тест» does not match: «тест-драйв» and «тестування» are not quizzes. Letter classes, not `\w`,
+ * білети»). A bare «тест» does not match: «тест-драйв» and «тестування» are not quizzes. The Latin words are whole words
+ * («Non-trivial», «Quizlet» and «Quizzical» are not quizzes); the Cyrillic parts are stems. Letter classes, not `\w`,
  * because `\w` is ASCII-only even under the `u` flag.
  */
-export const QUIZ_TOPIC_RE = /вікторин|квіз|quiz|trivia|тестов\p{L}*\s+(?:запитан|питан)|екзаменаційн\p{L}*\s+(?:запитан|питан|білет)/iu;
+export const QUIZ_TOPIC_RE = /(?<!\p{L})(?:quiz(?:zes)?|trivia)(?!\p{L})|вікторин|квіз|тестов\p{L}*\s+(?:запитан|питан)|екзаменаційн\p{L}*\s+(?:запитан|питан|білет)/iu;
 
 export interface AudienceCapPrefs {
   content_kind?: ContentKind;
@@ -82,6 +83,16 @@ export function audienceCapsOfProfile(raw: unknown): AudienceCaps {
     { content_kind: kind, polls_per_week: int(fp.polls_per_week), questions_to_readers_per_day: int(fp.questions_to_readers_per_day) },
     typeof r.topic === 'string' ? r.topic : null,
   );
+}
+
+/**
+ * Spec 070 FR-004 (review fix): the poll cap a resource falls back to when the owner clears both `content_kind` and
+ * `polls_per_week` — `audienceCaps` over the topic alone, so it follows the topic inference (14 for a quiz guessed from the
+ * topic, 1 otherwise, null for no limit). The dashboard shows it as the placeholder of an empty «Polls a week» field.
+ */
+export function defaultPollsPerWeekOfProfile(raw: unknown): number | null {
+  const r = (raw && typeof raw === 'object' ? raw : {}) as Record<string, unknown>;
+  return audienceCaps({}, typeof r.topic === 'string' ? r.topic : null).pollsPerWeek;
 }
 
 // ── reader-directed questions ────────────────────────────────────────────────

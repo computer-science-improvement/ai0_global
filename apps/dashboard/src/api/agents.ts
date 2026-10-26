@@ -595,6 +595,11 @@ export interface AudienceCaps {
   /** null = no cap (an explicit quiz resource without an explicit cap; a quiz guessed from the topic is capped at 14). */
   pollsPerWeek:    number | null;
   questionsPerDay: number;
+  /**
+   * Spec 070: the poll cap the resource falls back to when the owner clears the kind and the cap (it follows the topic: 14
+   * for a quiz guessed from it, 1 otherwise, null = no limit). Absent on an older server.
+   */
+  defaultPollsPerWeek?: number | null;
 }
 
 export interface FormatResource {

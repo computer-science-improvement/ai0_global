@@ -9,7 +9,7 @@ import { buildReadTools } from '../tools/read-tools';
 import { buildComposeTools } from '../tools/compose-tools';
 import { SkillLibrary } from '../skills/skill-library';
 import type { ToolContext } from '../harness/tool';
-import { alternativeFor, classifyFetchError, feedKey, PgHostFailures, type HostBlock, type HostFailureReason, type HostFailures } from './host-failures';
+import { alternativeFor, classifyFetchError, feedKey, nextBlock, PgHostFailures, type HostBlock, type HostFailureReason, type HostFailures } from './host-failures';
 
 class MemoryHosts implements HostFailures {
   rows = new Map<string, { reason: HostFailureReason; statusCode: number | null }>();
@@ -22,12 +22,39 @@ class MemoryHosts implements HostFailures {
   async record(host: string, reason: HostFailureReason, statusCode: number | null = null) { this.rows.set(host, { reason, statusCode }); }
 }
 
+/**
+ * The write rule of PgHostFailures over a fake clock: `nextBlock` decides the block and whether a longer one stays as it is
+ * (a timeout or a repeat inside a live block only notes the attempt), and `blocked` ignores what `use` ignores.
+ */
+class RulesHosts extends MemoryHosts {
+  meta = new Map<string, { until: Date; strikes: number }>();
+  constructor(readonly clock = new Date('2026-10-17T10:00:00Z')) { super(); }
+  seed(host: string, reason: HostFailureReason, statusCode: number | null, hours: number, strikes = 1) {
+    this.rows.set(host, { reason, statusCode });
+    this.meta.set(host, { until: new Date(this.clock.getTime() + hours * 3_600_000), strikes });
+  }
+  async blocked(host: string, use: 'page' | 'feed'): Promise<HostBlock | null> {
+    const r = this.rows.get(host);
+    const m = this.meta.get(host);
+    if (!r || !m || m.until.getTime() <= this.clock.getTime()) return null;
+    if ((r.reason.startsWith('feed_') && use !== 'feed') || (r.reason === 'refused' && use === 'feed')) return null;
+    return { host, reason: r.reason, statusCode: r.statusCode, until: m.until };
+  }
+  async record(host: string, reason: HostFailureReason, statusCode: number | null = null) {
+    const r = this.rows.get(host);
+    const m = this.meta.get(host);
+    const next = nextBlock(r && m ? { reason: r.reason, blockedUntil: m.until, strikes: m.strikes } : null, reason, this.clock);
+    if (next.keep) return;
+    this.rows.set(host, { reason, statusCode });
+    this.meta.set(host, { until: next.until, strikes: next.strikes });
+  }
+}
+
 const lookup = async () => [{ address: '93.184.216.34', family: 4 }];
 const card = { sources: [{ id: 'mtp', kind: 'rss', ref: 'https://www.marktechpost.com/feed/' }] };
 const ctx: ToolContext = { runId: 'r', role: 'executor', channelKey: '@chan', extras: { card } };
 
-function tools(get: (url: string) => Promise<any>) {
-  const hosts = new MemoryHosts();
+function tools(get: (url: string) => Promise<any>, hosts: MemoryHosts = new MemoryHosts()) {
   const urls: string[] = [];
   const g = async (url: string) => { urls.push(url); return get(url); };
   const read = buildReadTools({ pool: { query: async () => ({ rows: [] }) } as any, readonly: {} as any, skills: new SkillLibrary('/nonexistent'), http: { lookup, get: g }, hosts, retryMs: 0 });
@@ -101,14 +128,15 @@ test('spec 070: a reset that the retry gets past leaves no mark', async () => {
   assert.equal(w.hosts.rows.size, 0);
 });
 
-test('spec 070: fetch_feed retries a reset, then records it on the host as a timeout (not on the feed address)', async () => {
+test('spec 070: fetch_feed retries a reset, then records it as a timeout on the host and on the feed address', async () => {
   const w = tools(async () => { throw reset(); });
   const r = await w.call('fetch_feed', { url: 'https://example.com/rss/news' });
   assert.equal(r.error, 'host_unreachable');
   assert.match(r.details, /example\.com: сайт обірвав з'єднання; година паузи/);
   assert.equal(w.urls.length, 2);
-  assert.deepEqual([...w.hosts.rows.keys()], ['example.com']);
+  assert.deepEqual([...w.hosts.rows.keys()].sort(), ['example.com', 'example.com/rss/news']);
   assert.equal(w.hosts.rows.get('example.com')?.reason, 'timeout');
+  assert.equal(w.hosts.rows.get('example.com/rss/news')?.reason, 'timeout', 'the feed key too (review): the host row can be a longer one that is kept');
   let n = 0;
   const ok = tools(async () => { if (++n === 1) throw reset(); return { status: 200, headers: { 'content-type': 'application/rss+xml' }, data: RSS }; });
   assert.equal((await ok.call('fetch_feed', { url: 'https://example.com/rss/news' })).items.length, 1);
@@ -130,6 +158,48 @@ test('spec 070: a 403 on a page does not stop the host\'s feed (and its timeout 
   assert.equal((await w.call('fetch_feed', { url: 'https://example.com/feed/' })).error, 'host_blocked');
   w.hosts.rows.set('example.com', { reason: 'timeout', statusCode: null });
   assert.equal((await w.call('fetch_feed', { url: 'https://example.com/feed/' })).error, 'host_blocked');
+});
+
+test('spec 070 (review): while the host has a live refused row, a feed that keeps failing on the network still pauses on its own address', async () => {
+  // The host's refused row is a longer block than a timeout: a timeout / DNS write on the host is kept out, and
+  // `blocked(host, 'feed')` ignores `refused`, so without a row on the feed address the feed would be asked on every call.
+  const timeouts: Array<[string, () => Error]> = [['socket hang up', reset], ['timeout', () => Object.assign(new Error('timeout of 10000ms exceeded'), { code: 'ECONNABORTED' })]];
+  for (const [label, fail] of timeouts) {
+    const hosts = new RulesHosts();
+    hosts.seed('example.com', 'refused', 403, 48, 2);
+    const w = tools(async () => { throw fail(); }, hosts);
+    const first = await w.call('fetch_feed', { url: 'https://example.com/rss/news' });
+    assert.equal(first.error, 'host_unreachable', label);
+    const asked = w.urls.length;
+    assert.ok(asked >= 1, label);
+    assert.equal(hosts.rows.get('example.com')?.reason, 'refused', `${label}: the longer host row is kept`);
+    assert.equal(hosts.rows.get('example.com/rss/news')?.reason, 'timeout', `${label}: recorded on the feed address`);
+    const next = await w.call('fetch_feed', { url: 'https://example.com/rss/news' });
+    assert.equal(next.error, 'host_blocked', label);
+    assert.equal(w.urls.length, asked, `${label}: no request for a paused feed`);
+    // Another feed of the same host is not paused by it, and the host's pages stay refused.
+    assert.equal((await w.call('fetch_feed', { url: 'https://example.com/rss/other' })).error, 'host_unreachable', label);
+    assert.ok(w.urls.length > asked, `${label}: another feed address is asked`);
+    assert.equal((await w.call('web_fetch', { url: 'https://example.com/page' })).error, 'host_blocked');
+  }
+  // DNS and TLS: the same.
+  for (const [label, code] of [['dns', 'ENOTFOUND'], ['tls', 'CERT_HAS_EXPIRED']] as const) {
+    const hosts = new RulesHosts();
+    hosts.seed('example.com', 'refused', 403, 48, 2);
+    const w = tools(async () => { throw Object.assign(new Error(code), { code }); }, hosts);
+    assert.equal((await w.call('fetch_feed', { url: 'https://example.com/rss/news' })).error, 'host_unreachable', label);
+    assert.equal(hosts.rows.get('example.com')?.reason, 'refused', label);
+    assert.equal(hosts.rows.get('example.com/rss/news')?.reason, label);
+    const asked = w.urls.length;
+    assert.equal((await w.call('fetch_feed', { url: 'https://example.com/rss/news' })).error, 'host_blocked', label);
+    assert.equal(w.urls.length, asked, label);
+  }
+  // Without a live host row nothing changes for the host: it is paused as before (and the feed address with it).
+  const plain = new RulesHosts();
+  const p = tools(async () => { throw reset(); }, plain);
+  await p.call('fetch_feed', { url: 'https://example.com/rss/news' });
+  assert.equal(plain.rows.get('example.com')?.reason, 'timeout');
+  assert.equal((await p.call('fetch_feed', { url: 'https://example.com/rss/news' })).error, 'host_blocked');
 });
 
 test('spec 070: a feed\'s own 403 / 429 is feed_refused on the feed address; the host\'s pages are still fetched', async () => {

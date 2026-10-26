@@ -2,6 +2,8 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { EventEmitter } from 'node:events';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { armBootSignals, BOOT_EXIT_CODE } from './boot-signals';
 
 function rig() {
@@ -54,6 +56,28 @@ test('the listeners fire once each (process.once), and disarm leaves other liste
   disarm();
   assert.equal(target.listenerCount('SIGTERM'), 1);
   assert.ok(target.listeners('SIGTERM').includes(other));
+});
+
+test('main.ts keeps the handler armed through app.init() (the onModuleInit hooks) and disarms it right before the shutdown hooks and listen (source order guard)', () => {
+  // main.ts boots the whole app at import, so it cannot be run in a test; this pins the order of its calls instead.
+  const src = readFileSync(join(__dirname, 'main.ts'), 'utf8').split('\n').filter((l) => !/^\s*\/\//.test(l)).join('\n');
+  const at = (needle: string) => {
+    const i = src.indexOf(needle);
+    assert.ok(i >= 0, `main.ts has ${needle}`);
+    return i;
+  };
+  const lastUse = Math.max(src.lastIndexOf('app.use('), src.lastIndexOf('app.enableCors('), src.lastIndexOf('app.useGlobalPipes('), src.lastIndexOf('SwaggerModule.setup('));
+  const arm = at('armBootSignals(');
+  const create = at('NestFactory.create');
+  const init = at('await app.init()');
+  const disarm = at('disarmBootSignals();');
+  const hooks = at('app.enableShutdownHooks()');
+  const listen = at('await app.listen(');
+  assert.ok(arm < create, 'armed before the app is created');
+  assert.ok(lastUse < init, 'init() runs after all middleware, CORS, pipes and Swagger are set up (middleware added later would not apply)');
+  assert.ok(init < disarm, 'the handler stays armed while init() runs the onModuleInit hooks');
+  assert.ok(disarm < hooks && hooks < listen, 'disarm, then the shutdown hooks, then listen');
+  assert.equal(src.split('disarmBootSignals();').length - 1, 1, 'disarmed in one place only');
 });
 
 test('with the real process: arming adds one listener per signal and disarming removes exactly those', () => {
