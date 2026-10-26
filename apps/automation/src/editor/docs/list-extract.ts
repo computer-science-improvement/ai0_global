@@ -41,11 +41,14 @@ export interface ListEntry {
   blocks:  DocCodeBlock[];
   /** A record of a JSON document (spec 066): `text` is its pretty-printed JSON, `heading` its label; no images, links or blocks. */
   record?: unknown;
+  /** A record cut out by `split_on` (spec 070): its key (group 1), the page address without its fragment, and for each `context_line:` pattern the nearest matching line before the record. */
+  split?: { key: string | null; base: string; contexts: Record<string, string | null> };
 }
 
 export const EXTRACTORS = [
   'heading', 'heading_raw', 'first_code_block', 'code_block:<n>', 'first_image', 'last_image', 'image:<n>', 'first_paragraph',
   'link_after:<label>', 'link_text_after:<label>', 'last_link_after:<label>', 'line_after:<label>', 'regex:<pattern>', 'const:<value>',
+  'split_key', 'url_anchor:<prefix>', 'text', 'text_without:<line regex>', 'context_line:<line regex>',
 ] as const;
 
 export const JSON_EXTRACTORS = ['field:<path>', 'first_of:<path>|<path>', 'const:<value>', 'regex:<pattern>'] as const;
@@ -95,6 +98,78 @@ export function entriesOf(doc: StoredDoc, level: number): ListEntry[] {
   }
   flush();
   return out;
+}
+
+/** A line is tested on its first characters only: it bounds the cost of a pattern on a text of hundreds of thousands of characters. */
+const LINE_HEAD = 300;
+
+/** Flags of the line patterns (`split_on`, `text_without:`, `context_line:`): under `i`, `\p{Lu}` and `[А-Я]` match lower case too, so patterns rely on numbering. */
+export const LINE_FLAGS = 'iu';
+
+export const linePattern = (src: string, what: string): RegExp => pattern(src, LINE_FLAGS, what);
+
+/**
+ * Spec 070 FR-001: a page that is one long section (a law, a standard) cut into records by a line pattern. A record runs
+ * from a matching line to the next matching line, to the end of its section, or to a line that is a `contexts` pattern
+ * (a section title), whichever comes first; text before the first match is dropped. The key is group 1 of the pattern.
+ * Images, links and code blocks belong to the record they sit in by offset. `max` caps the records (`capped` says it did).
+ */
+export function splitEntries(doc: StoredDoc, re: RegExp, opts: { contexts?: Map<string, RegExp>; max?: number } = {}): { entries: ListEntry[]; capped: boolean } {
+  const contexts = opts.contexts ?? new Map<string, RegExp>();
+  const max = opts.max ?? Number.POSITIVE_INFINITY;
+  const text = doc.text;
+  const sections = doc.sections;
+  type Rec = { start: number; end: number; key: string | null; heading: string; contexts: Record<string, string | null> };
+  const recs: Rec[] = [];
+  const seenContext: Record<string, string | null> = Object.fromEntries([...contexts.keys()].map((k) => [k, null]));
+  let cur: Omit<Rec, 'end'> | null = null;
+  let capped = false;
+  const close = (end: number) => { if (cur) { recs.push({ ...cur, end }); cur = null; } };
+
+  let si = 0;
+  for (let pos = 0; pos < text.length;) {
+    const nl = text.indexOf('\n', pos);
+    const lineEnd = nl < 0 ? text.length : nl;
+    // A record never crosses a section: the footer sections of a page do not join the last clause.
+    while (si + 1 < sections.length && pos >= sections[si + 1].start) { si++; close(pos); }
+    const head = text.slice(pos, Math.min(lineEnd, pos + LINE_HEAD));
+    const m = re.exec(head);
+    const isContext = [...contexts.values()].some((c) => c.test(head));
+    if (m) {
+      close(pos);
+      if (recs.length >= max) { capped = true; break; }
+      cur = { start: pos, key: m[1]?.trim() || null, heading: text.slice(pos, lineEnd).replace(/^\s{0,3}#{1,6}\s+/, '').trim(), contexts: { ...seenContext } };
+    } else if (isContext) {
+      close(pos);
+    }
+    // The nearest line before a record is the one seen before its own first line.
+    for (const [spec, c] of contexts) if (c.test(head)) seenContext[spec] = text.slice(pos, lineEnd).trim();
+    pos = lineEnd + 1;
+  }
+  close(Math.min(text.length, sections[si]?.end ?? text.length));
+
+  let base = doc.url;
+  try { const u = new URL(doc.url); u.hash = ''; base = u.href; } catch { /* the address as it is */ }
+  const starts = recs.map((r) => r.start);
+  // The record that holds an offset: the last one that starts at or before it, if the offset is before its end.
+  const owner = (at: number): number => {
+    let lo = 0, hi = starts.length - 1, found = -1;
+    while (lo <= hi) { const mid = (lo + hi) >> 1; if (starts[mid] <= at) { found = mid; lo = mid + 1; } else hi = mid - 1; }
+    return found >= 0 && at < recs[found].end ? found : -1;
+  };
+  const images: DocImage[][] = recs.map(() => []);
+  const links: DocLink[][] = recs.map(() => []);
+  const blocks: DocCodeBlock[][] = recs.map(() => []);
+  for (const s of sections) {
+    for (const i of s.images) { const o = owner(i.at); if (o >= 0) images[o].push(i); }
+    for (const l of s.links) { const o = owner(l.at); if (o >= 0) links[o].push(l); }
+    for (const b of s.code_blocks) { const o = owner(b.start); if (o >= 0) blocks[o].push(b); }
+  }
+  const entries = recs.map((r, i): ListEntry => ({
+    id: `r${i + 1}`, heading: r.heading, level: 0, start: r.start, text: text.slice(r.start, r.end),
+    images: images[i], links: links[i], blocks: blocks[i], split: { key: r.key, base, contexts: r.contexts },
+  }));
+  return { entries, capped };
 }
 
 /** Entries kept by the filter, plus how many it dropped. */
@@ -156,6 +231,12 @@ function paragraphs(e: ListEntry): string[] {
   });
 }
 
+/** The split data of an entry: `split_key`, `url_anchor:` and `context_line:` read what `split_on` cut out. */
+function splitOf(e: ListEntry, spec: string): NonNullable<ListEntry['split']> {
+  if (!e.split) throw new ExtractError('wrong_extractor', `"${spec}" needs split_on (it reads the records cut out by that pattern)`);
+  return e.split;
+}
+
 const n = (spec: string, what: string): number => {
   const v = Number.parseInt(spec, 10);
   if (!Number.isInteger(v) || v < 1) throw new ExtractError('bad_extractor', `${what}: a position from 1`);
@@ -203,6 +284,17 @@ export function extractValue(spec: string, e: ListEntry): string | null {
       return m ? text((m[1] ?? m[0]).trim()) : null;
     }
     case 'const': return text(arg);
+    case 'split_key': return text(splitOf(e, spec).key);
+    case 'url_anchor': {
+      const sp = splitOf(e, spec);
+      return sp.key === null ? null : `${sp.base}#${arg}${sp.key}`;
+    }
+    case 'text': return text(e.text.trim());
+    case 'text_without': {
+      const re = linePattern(need(), spec);
+      return text(e.text.split('\n').filter((l) => !re.test(l.slice(0, LINE_HEAD))).join('\n').trim());
+    }
+    case 'context_line': return text(splitOf(e, spec).contexts[need()]);
     case 'field': return fieldValue(e.record, need(), spec);
     case 'first_of': {
       for (const path of need().split('|')) {
