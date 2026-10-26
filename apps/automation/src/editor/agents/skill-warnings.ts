@@ -98,6 +98,147 @@ export function sourceInSkill(body: string): SourceInSkill | null {
   return null;
 }
 
+// ── Spec 069 FR-003: a new skill against the skills the agent already has ──────────────────────────────────────────
+
+/**
+ * Review 4: skill 7a054c4f «Фільтр provider=prompthero» stayed on while d3ef5edb «PromptHero не використовую» was added, so
+ * the planner kept pinning the rows the owner had dropped. When a skill is written (or a source is dropped with
+ * `import_list`), the skills it contradicts are found here, in code, and ride on the same card as `detach_skill` items.
+ *
+ * A token is a SOURCE: the second-level label of a host (`prompthero.com` → `prompthero`), a `data://` / `library:` key, a
+ * `provider=` value. A clause (a sentence, a line, a half of `;`) holds a negation marker or it does not; its source tokens
+ * are negated or positive accordingly, and a negated clause also gives its bare words (4+ letters, lower-case), because the
+ * owner writes «PromptHero не використовую», not «provider=prompthero не використовую».
+ */
+export interface ConflictCandidate { name: string; description?: string | null; body: string }
+export interface SkillConflict {
+  name:   string;
+  /** `hard`: one skill rules out a source the other tells the agent to use. `soft`: they name different sources for the same format. */
+  kind:   'hard' | 'soft';
+  /** The source tokens that meet (hard), or the format / series words the two skills share (soft). */
+  tokens: string[];
+  /** English, for the card line. */
+  reason: string;
+}
+
+/** «не бери / не використовуй / не з», «never», «don't use», «avoid», «замість», «instead of», «заборонено»… */
+const NEGATION_RE = /(?<![\p{L}])(?:не\s+(?:бер\p{L}*|бра\p{L}*|взя\p{L}*|візьм\p{L}*|використ\p{L}*|користу\p{L}*|тягн\p{L}*|тягт\p{L}*|качай\p{L}*|завантаж\p{L}*|застосову\p{L}*|з|із|від)|ніколи|заборон\p{L}*|замість|припин\p{L}*|never|(?:don'?t|do\s+not|doesn'?t|must\s+not|mustn'?t|should\s+not|shouldn'?t)\s+(?:use|take|fetch|pull|source|get|scrape|read|rely)|stop\s+using|avoid|forbidden|instead\s+of|rather\s+than|no\s+longer)(?![\p{L}])/iu;
+const URL_HOST_RE = /https?:\/\/(?:www\.)?([a-z0-9][a-z0-9.-]*[a-z0-9])/gi;
+/** A host written without a scheme: only the TLDs people actually write («prompthero.com»), so «skill.md» and «e.g.» are not sources. */
+const BARE_HOST_RE = /(?<![\p{L}\p{N}@/.-])((?:[a-z0-9-]+\.)+(?:com|org|net|io|ai|app|dev|co|ua|info|me|tv|xyz|news|art|so|gg|pro|site|online|shop|cc|ru|de|uk|fr|pl|eu|us|ly))(?![\p{L}\p{N}-])/gi;
+const SOURCE_KEY_RE = /(?:data:\/\/|library:)([\p{L}\p{N}_-]{2,})/giu;
+const PROVIDER_VALUE_RE = /(?<![\p{L}])provider\s*=\s*["']?([\p{L}\p{N}_-]+)/giu;
+const WORD4_RE = /\p{L}{4,}/gu;
+
+const SECOND_LEVEL = new Set(['co', 'com', 'org', 'net', 'gov', 'ac', 'edu']);
+/** `www.prompthero.com` → `prompthero`; `bbc.co.uk` → `bbc`. */
+function hostLabel(host: string): string | null {
+  const parts = host.toLowerCase().split('.').filter((p) => p && p !== 'www');
+  if (parts.length < 2) return parts[0] ?? null;
+  const tld = parts[parts.length - 1];
+  const sld = parts[parts.length - 2];
+  return parts.length >= 3 && tld.length === 2 && SECOND_LEVEL.has(sld) ? parts[parts.length - 3] : sld;
+}
+
+function sourceTokensIn(text: string): string[] {
+  const out = new Set<string>();
+  for (const m of text.matchAll(URL_HOST_RE)) { const l = hostLabel(m[1]); if (l) out.add(l); }
+  for (const m of text.matchAll(BARE_HOST_RE)) { const l = hostLabel(m[1]); if (l) out.add(l); }
+  for (const m of text.matchAll(SOURCE_KEY_RE)) out.add(m[1].toLowerCase());
+  for (const m of text.matchAll(PROVIDER_VALUE_RE)) out.add(m[1].toLowerCase());
+  return [...out];
+}
+
+interface SourceProfile {
+  /** Source tokens outside negated clauses: what the skill tells the agent to use. */
+  positive: Set<string>;
+  /** Source tokens and bare words inside negated clauses: what it rules out. */
+  negated:  Set<string>;
+}
+
+function profileOf(body: string): SourceProfile {
+  const positive = new Set<string>();
+  const negated = new Set<string>();
+  for (const clause of sentences(body).flatMap((s) => s.split(/\s*;\s*/))) {
+    const tokens = sourceTokensIn(clause);
+    if (NEGATION_RE.test(clause)) {
+      for (const t of tokens) negated.add(t);
+      for (const w of clause.toLowerCase().match(WORD4_RE) ?? []) negated.add(w);
+    } else {
+      for (const t of tokens) positive.add(t);
+    }
+  }
+  return { positive, negated };
+}
+
+/** The positive tokens that a negated token rules out: the same word, or the first part of a `nanobanana_prompts`-style key. */
+function ruledOut(negated: ReadonlySet<string>, positive: ReadonlySet<string>): string[] {
+  return [...positive].filter((p) => negated.has(p) || (negated.has(p.split(/[_-]/)[0]) && p.split(/[_-]/)[0].length >= 5));
+}
+
+/** Format words a skill and a series are named by: two skills about the same format that name different sources contradict each other softly. */
+const FORMAT_WORDS: ReadonlyArray<[string, RegExp]> = [
+  ['prompt', /(?<![\p{L}])(?:prompts?|промпт\p{L}*)/iu],
+  ['recipe', /(?<![\p{L}])(?:recipes?|рецепт\p{L}*)/iu],
+  ['quiz', /(?<![\p{L}])(?:quiz\p{L}*|poll\p{L}*|вікторин\p{L}*|опитуван\p{L}*)/iu],
+  ['news', /(?<![\p{L}])(?:news|новин\p{L}*)/iu],
+  ['photo', /(?<![\p{L}])(?:photos?|фото\p{L}*|світлин\p{L}*)/iu],
+  ['meme', /(?<![\p{L}])(?:memes?|мем\p{L}*)/iu],
+  ['video', /(?<![\p{L}])(?:videos?|відео|reels?|shorts?)(?![\p{L}])/iu],
+  ['story', /(?<![\p{L}])(?:stor(?:y|ies)|історі\p{L}*)/iu],
+  ['digest', /(?<![\p{L}])(?:digests?|дайджест\p{L}*)/iu],
+  ['quote', /(?<![\p{L}])(?:quotes?|цитат\p{L}*)/iu],
+];
+/** Words of a skill name that say nothing about the series. */
+const NAME_STOP = new Set(['skill', 'skills', 'channel', 'rules', 'rule', 'style', 'voice', 'canal', 'скіл', 'канал', 'правила', 'стиль', 'source', 'джерело']);
+
+function topicOf(name: string, description: string, body: string): Set<string> {
+  const out = new Set<string>();
+  const hay = `${name}\n${description}\n${body}`;
+  for (const [word, re] of FORMAT_WORDS) if (re.test(hay)) out.add(word);
+  // A word of the name is a series word unless it is a stop word or only a longer spelling of a format word already there («prompts», «prompthero»).
+  for (const w of name.toLowerCase().match(/\p{L}{5,}/gu) ?? []) if (!NAME_STOP.has(w) && ![...out].some((f) => w.startsWith(f))) out.add(w);
+  return out;
+}
+
+/**
+ * The existing skills a new skill body contradicts. Hard: its negated tokens meet an existing skill's positive source
+ * tokens, or the reverse (the existing skill rules out what the new one uses). Soft: both name sources, different ones,
+ * for the same format or series word. Pure; the caller picks the candidates (enabled, not builtin or safety, not the same name).
+ */
+export function skillConflicts(newBody: string, existing: readonly ConflictCandidate[], opts: { name?: string; description?: string } = {}): SkillConflict[] {
+  const mine = profileOf(newBody);
+  const myTopic = topicOf(opts.name ?? '', opts.description ?? '', newBody);
+  const hard: SkillConflict[] = [];
+  const soft: SkillConflict[] = [];
+  for (const e of existing) {
+    if (opts.name && e.name === opts.name) continue;
+    const theirs = profileOf(e.body);
+    const ruledOutByNew = ruledOut(mine.negated, theirs.positive);
+    const ruledOutByOld = ruledOut(theirs.negated, mine.positive);
+    if (ruledOutByNew.length || ruledOutByOld.length) {
+      const tokens = [...new Set([...ruledOutByNew, ...ruledOutByOld])];
+      hard.push({
+        name: e.name, kind: 'hard', tokens,
+        reason: ruledOutByNew.length
+          ? `it tells the agent to use ${ruledOutByNew.map((t) => `"${t}"`).join(', ')}, which the new text rules out`
+          : `it rules out ${ruledOutByOld.map((t) => `"${t}"`).join(', ')}, which the new skill tells the agent to use`,
+      });
+      continue;
+    }
+    if (!mine.positive.size || !theirs.positive.size) continue;
+    if ([...mine.positive].some((t) => theirs.positive.has(t))) continue; // the same source: nothing to choose between
+    const shared = [...topicOf(e.name, e.description ?? '', e.body)].filter((w) => myTopic.has(w));
+    if (shared.length) {
+      soft.push({
+        name: e.name, kind: 'soft', tokens: shared,
+        reason: `it names other sources (${[...theirs.positive].slice(0, 3).map((t) => `"${t}"`).join(', ')}) for the same ${shared.slice(0, 2).map((w) => `"${w}"`).join(' / ')}`,
+      });
+    }
+  }
+  return [...hard, ...soft];
+}
+
 /** The tool error for a skill write that prescribes a content source (`edit_my_skill`, the builder's `write_skill`), or null. */
 export function sourceRefusal(body: string): { error: 'source_belongs_in_import'; details: string; hint: string } | null {
   const found = sourceInSkill(body);

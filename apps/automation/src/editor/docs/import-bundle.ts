@@ -2,7 +2,8 @@ import type { ToolContext } from '../harness/tool';
 import { channelOf } from '../harness/tool';
 import type { Agent } from '../agents/agent.types';
 import type { AgentsRepository } from '../agents/agents.repository';
-import type { FollowUp } from '../agents/pending-actions';
+import { MAX_FOLLOW_UPS, type FollowUp } from '../agents/pending-actions';
+import { conflictFollowUps, detachKey } from '../agents/skill-conflict-followups';
 import type { AgentChatExtras } from '../agents/builder-tools';
 import type { SkillStore } from '../agents/skill-store';
 import { lintOwnerRule } from '../agents/rule-lint';
@@ -37,7 +38,7 @@ export interface BundleFail { error: string; details?: unknown; hint?: string }
 /** Series item of the bundle: bound to the dataset the import creates (required: no other source fills the slot). */
 export const SERIES_ITEM = 'series';
 export const RULE_ITEM = 'rule';
-export const detachKey = (skill: string): string => `detach:${skill}`;
+export { detachKey };
 
 const failOf = (f: { error: string; details?: unknown }): BundleFail => ({ error: f.error, ...(f.details !== undefined ? { details: f.details } : {}) });
 
@@ -114,6 +115,20 @@ export async function buildBundle(d: BundleDeps, ctx: ToolContext, i: BundleInpu
       then.push({ key: detachKey(name), kind: 'detach_skill', payload: { handle, skill: name }, summary: `Disable skill "${name}" for @${handle}` });
     }
   }
+
+  // Spec 069 FR-003 / A7: the skills that still tell the agent to use what the owner just dropped («не використовуй X»).
+  if (i.stop_using && d.skills && d.agents && d.schedule && then.length < MAX_FOLLOW_UPS) {
+    const sc = scope && !isFail(scope) ? scope : await scopeOf({ schedule: d.schedule }, ctx);
+    if (!isFail(sc)) {
+      const found = await conflictFollowUps({ agents: d.agents, skills: d.skills }, sc.agent, { body: `не використовуй ${i.stop_using}` },
+        { skip: new Set(then.map((t) => t.key)), limit: MAX_FOLLOW_UPS - then.length });
+      for (const t of found.then) {
+        then.push(t);
+        notes.push(`скіл "${String(t.payload.skill)}" суперечить правилу — додано до картки ${t.ticked === false ? 'невідміченим' : 'відміченим'}: ${t.summary.replace(/^[^:]*: /, '')}`);
+      }
+      if (found.error) notes.push(`конфлікти зі скілами не перевірено: ${found.error}`);
+    }
+  }
   return { then, notes };
 }
 
@@ -123,7 +138,7 @@ export function thenLine(then: readonly FollowUp[]): string {
   const part = (t: FollowUp): string =>
     t.key === SERIES_ITEM ? 'bind the series to the dataset (required)'
       : t.key === RULE_ITEM ? 'save the rule'
-        : t.kind === 'detach_skill' ? `disable skill “${String(t.payload.skill)}”`
+        : t.kind === 'detach_skill' ? `${t.ticked === false ? 'suggest disabling' : 'disable'} skill “${String(t.payload.skill)}”${t.ticked === false ? ' (unticked)' : ''}`
           : t.summary.slice(0, 80);
   return `Then, in this order: ${then.map(part).join('; ')}. Untick what you do not want.`;
 }

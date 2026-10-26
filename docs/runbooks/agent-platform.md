@@ -696,7 +696,20 @@ When you say «бери з X» / «не бери Y» / «зміни джерел
 - The import runs first, then the items in that order. Each runs on its own: a failing one is shown with its reason on the card, the card stays **applied**, the next one still runs. The import has an Undo; the series change, the rule and the skill switch-off do not (use the agent's page).
 - An item you untick is not run (`left unticked`). Cards applied from the API or the owner bot run only the ticked-by-default items.
 - These cards belong to a chat, so they are dashboard-only (the owner bot lists cards without a chat).
-- Tests: `agents/pending-actions.069.test.ts`, `docs/import-list-tools.069.test.ts`, `docs/import-bundle.069.pg.test.ts`, `schedule/schedule-pending-tables.069.test.ts`, `agents/skill-warnings.069.test.ts`; in the dashboard `lib/follow-ups.test.ts`.
+- **Skills that contradict the change are found in code.** With `stop_using`, the agent's skills (the orchestrator's and its children's, enabled, not builtin / safety / voice) are compared with «не використовуй <your words>»; a skill that still tells the agent to use the dropped source (a `provider=` value, a host, a `data://` or `library:` key) is added to the card as `Skill off`, ticked, after the items you asked for (the review-4 pair: «Фільтр provider=prompthero» against «PromptHero не використовую»). The card never has more than 8 follow-ups; a skill already named in `disable_skills` is not added twice.
+- Tests: `agents/pending-actions.069.test.ts`, `docs/import-list-tools.069.test.ts`, `docs/import-bundle.069.pg.test.ts`, `schedule/schedule-pending-tables.069.test.ts`, `agents/skill-warnings.069.test.ts`, `agents/skill-conflicts.069.test.ts`; in the dashboard `lib/follow-ups.test.ts`.
+
+**A new skill that contradicts an old one (spec 069)**
+
+`edit_my_skill` (the agent's own chat) and the builder's `write_skill` compare the new text with the agent's other skills before the card is proposed. Source tokens are the second-level host label (`prompthero.com` → `prompthero`), a `data://` / `library:` key and a `provider=` value; a clause (a sentence, a line, a half of `;`) with a negation («не бери / не використовуй / не з», «ніколи», «never», «don't use», «avoid», «замість», «instead of») rules its tokens and its words (4+ letters) out, any other clause uses them.
+
+| Found | Item on the `write_skill` card | Starts |
+|---|---|---|
+| **Hard**: one skill rules out a source the other tells the agent to use (either way round) | `Skill off` for the older skill | ticked |
+| **Soft**: both name sources, different ones, for the same format or series word («prompt», «recipe», …) | `Skill off` for the older skill | unticked |
+
+- The agent is told about each (`conflicts`, `conflicts_note`) and must say it in the reply; the card summary ends with «Also disables the conflicting skill …» / «Suggested, unticked: …». The skill being written is never compared with itself; builtin, safety and voice skills (`anti-slop`, `human-voice`, `voice-core`) and switched-off skills are never candidates. A failed lookup (`conflicts_error`) does not stop the card.
+- Limits: the heuristic reads names of sources, not meaning. A negation and a source in the same sentence are taken as «ruled out» («Бери з prompthero, не бери з nanobanana» rules out both), so write one source per sentence.
 
 **Updates**
 

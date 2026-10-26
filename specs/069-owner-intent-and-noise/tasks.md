@@ -1,7 +1,7 @@
 # 069 tasks
 
 - [x] T1 Follow-ups on cards and the source-change bundle: `payload.then` + `input.skip_then` in `applyOnce` with per-item results; `import_list` `series` / `stop_using` / `disable_skills` with `pendingTables` validation and `import_empty`; active tool descriptions and prompt/skill-file routing; `source_belongs_in_import` refusal; ActionCard follow-up checklist and results (English); runbook §§ 24–25 updated; tests.
-- [ ] T2 Skill conflicts: `skillConflicts` / `sourceInSkill` in skill-warnings, `listForAgent` dep, hard/soft follow-ups on `write_skill` cards; tests with the review-4 pair.
+- [x] T2 Skill conflicts: `skillConflicts` / `sourceInSkill` in skill-warnings, `listForAgent` dep, hard/soft follow-ups on `write_skill` cards; tests with the review-4 pair.
 - [ ] T3 Owner noise: union + numeric growth + `runLength` in `decideNote`; past days fire only first; edit-in-place (`retarget`, `api.edit`, fallbacks) with `supersede` returning ids; demotion to info + the daily «Повторюється без вашої реакції» block; `event_not_covered` gated; tests (unit + owner-bot PG).
 - [ ] T4 Manager: deterministic `escalate()` in housekeeping (two triggers), escalation notes and memory lines, digest `escalations` + not-followed open list, `submit_review` `escalations` with `checkEscalations`, `DEFAULT_MANAGER_TIMES ['09:00']`, `cache: false`, `postOnce` dep; tests (unit + PG for the SQL).
 - [ ] T5 Chat and attribution: write claims, backing from earlier turns and applied cards, claim retry without the first answer; `origin_mismatch` lint, chat read capture into draft lint, skill refusal for `origin=original` with a source; tests; docs (runbook § 28, specs README row 069 DONE, spec status done).
@@ -9,6 +9,7 @@
 ## Status
 
 - T1 — done (commit below in `git log`: «069 T1»).
+- T2 — done («069 T2»).
 
 ## Deltas from the spec
 
@@ -19,4 +20,11 @@
 - **T1 · `sourceInSkill` is a heuristic.** It returns the first sentence that (a) has `provider=<x>`, (b) takes posts / prompts / content with a verb of taking and names a URL or «API», or (c) names a dataset (`library:x`, `data://x`, «dataset x») together with «only / instead of / лише / замість». A skill about how to use a row, or a link to put into a post, passes. Negated mentions («PromptHero не використовую») are not refused here: the conflict path of T2 handles them.
 - **T1 · prompt text.** `buildComposerSystemPrompt` adds the source-change line only when there is no persona (the named agent's persona already carries it). The «do not re-announce a corrected answer» etiquette line from the code map belongs to FR-006 and comes in T5.
 - **T1 · loadout.** Nothing to change: `import_list` is `chatOnly`, and loadouts only cover tools that are not chat-only, so a loadout never hides it from the composer. A test pins that (`import-list-tools.069.test.ts`).
+- **T2 · where the code lives.** `skillConflicts` (pure) is in `agents/skill-warnings.ts` as the spec says. The part that reads the family and builds the items is a new file `agents/skill-conflict-followups.ts` (`conflictFollowUps`, `conflictsLine`, `conflictsForModel`, and `detachKey`, which `docs/import-bundle.ts` now imports and re-exports so an explicit `disable_skills` item and a conflict item share one key and never double).
+- **T2 · clause.** A clause is a sentence, a line or a half of `;`, not a half of a comma, so «не бери з X, Y або Z» rules out all three. The price: «Бери з X, не бери з Y» rules out both X and Y. Written into the runbook.
+- **T2 · matching.** A negated word meets a positive token when they are equal, or when it is the first part of a `nanobanana_prompts`-style key (5+ letters). Host labels use the second-level label (`bbc.co.uk` → `bbc`); a host without a scheme counts only with a common TLD, so `skill.md` and `e.g.` are not sources.
+- **T2 · soft conflict.** «Different sources for the same format or series word» is: both skills have positive source tokens, none shared, and they share a format word from a fixed list (prompt, recipe, quiz, news, photo, meme, video, story, digest, quote) or a word of the skill names (5+ letters, minus stop words and spellings of a format word already there). It is a heuristic and the item starts unticked.
+- **T2 · candidates.** Enabled skills of the orchestrator and its children (for a role agent: its parent's family), origin not `builtin`, not safety or `isProtectedSkill`, not the skill's own name, and, for a skill write, with at least one role in common with the new skill's `applies_to`. A shared owner-made (`global`) skill is a candidate and is switched off on the orchestrator. For `import_list` there is no role filter (a dropped source concerns every role).
+- **T2 · budget.** Conflicts fill only what is left of `MAX_FOLLOW_UPS` (8) on an import card: with a series, a rule and 5 named skills there is room for one. A failed skill lookup never stops a card: the write_skill card goes without the items and the tool says `conflicts_error`; `import_list` adds a note to `follow_up_notes`.
+- **T2 · wiring.** `buildAgentChatTools` gets an optional `agents` dep (`editor.module.ts`, one line); `BuilderToolDeps.agents` / `.skills` widen with optional `children` / `listForAgent`. Old wiring (tests that pass only `findShared`) keeps working and finds no conflicts.
 - **T1 · dashboard build** needs `VITE_ALLOW_DEV_AUTH=true` locally (the production-build guard); this is not a change.

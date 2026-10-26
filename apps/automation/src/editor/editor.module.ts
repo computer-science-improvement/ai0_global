@@ -1324,6 +1324,7 @@ export const EDITOR_PROVIDERS = [
           }),
           ...buildAgentChatTools({
             pool, memory: repos.memory, skills: infra.skills, actions: infra.actions, conflicts: configConflictsOf(pool, repos, infra),
+            agents: infra.agents,
             handles: async () => (await infra.agents.list()).map((a) => a.handle),
           }),
           // Spec 023 FR-006: the owner steers the schedule from the chat (cards only).

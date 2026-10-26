@@ -11,6 +11,7 @@ import { KPI_GOALS, ResourceProfile, ResourceProfileSchema, ResourceProfilesRepo
 import { isProtectedSkill } from '../skills/skill-library';
 import { lintSkill, SKILL_ROLES } from './skill-lint';
 import { sourceRefusal } from './skill-warnings';
+import { conflictFollowUps, conflictsForModel, conflictsLine } from './skill-conflict-followups';
 import type { SkillStore } from './skill-store';
 import { defaultAppliesTo } from '../skills/skill-defaults';
 import { SCRIPT_MIN_SHARE, scriptShares } from '../post/channel-language';
@@ -31,11 +32,11 @@ export interface AgentChatExtras {
 }
 
 export interface BuilderToolDeps {
-  agents:   Pick<AgentsRepository, 'list' | 'getByHandle' | 'handleTaken'> & Partial<Pick<AgentsRepository, 'get'>>;
+  agents:   Pick<AgentsRepository, 'list' | 'getByHandle' | 'handleTaken'> & Partial<Pick<AgentsRepository, 'get' | 'children'>>;
   catalog:  Pick<ResourceCatalog, 'list' | 'inspect'>;
   profiles: Pick<ResourceProfilesRepository, 'get'>;
   creator:  Pick<AgentCreator, 'validate'>;
-  skills:   Pick<SkillStore, 'findShared'> & Partial<Pick<SkillStore, 'findForAgent'>>;
+  skills:   Pick<SkillStore, 'findShared'> & Partial<Pick<SkillStore, 'findForAgent' | 'listForAgent'>>;
   actions:  Pick<PendingActionsService, 'propose'>;
   /** Spec 040 FR-011 / 047 FR-005: what keeps an orchestrator's config from its owner's rules (fix_config_conflicts). */
   conflicts?: Pick<ConfigConflictsService, 'resolverFor'>;
@@ -277,8 +278,12 @@ export function buildBuilderTools(d: BuilderToolDeps): EditorTool[] {
       // Spec 069 FR-002: where the posts come from is an import card, never a skill.
       const wrongPlace = sourceRefusal(i.body);
       if (wrongPlace) return wrongPlace;
-      return proposeCard(d, ctx, 'write_skill', { ...i, applies_to: appliesTo, handle: a.handle },
-        `${shared ? 'Override' : 'Add'} skill "${i.name}" for @${a.handle}${i.inline ? ' (always in context)' : ''}: ${i.description}`, a.id);
+      // Spec 069 FR-003: the skills this one contradicts ride on the card as follow-ups.
+      const found = await conflictFollowUps(d, a, { name: i.name, description: i.description, body: i.body, appliesTo });
+      const card = await proposeCard(d, ctx, 'write_skill',
+        { ...i, applies_to: appliesTo, handle: a.handle, ...(found.then.length ? { then: found.then } : {}) },
+        `${shared ? 'Override' : 'Add'} skill "${i.name}" for @${a.handle}${i.inline ? ' (always in context)' : ''}: ${i.description}${conflictsLine(found.then)}`, a.id);
+      return { ...card, ...conflictsForModel(found) };
     },
   });
 

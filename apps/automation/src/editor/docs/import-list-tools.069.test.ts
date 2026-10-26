@@ -41,10 +41,10 @@ function scheduleFake(catalog = { tables: ['prompts'], feeds: [] as string[] }) 
   }) as ScheduleService & { asked: unknown[] };
 }
 
-const skillEntry = (name: string, o: { agentId?: string | null; enabled?: boolean; safety?: boolean } = {}) =>
-  ({ skill: { name, agentId: o.agentId ?? null, safety: !!o.safety }, enabled: o.enabled ?? true, origin: 'own' });
+const skillEntry = (name: string, o: { agentId?: string | null; enabled?: boolean; safety?: boolean; body?: string } = {}) =>
+  ({ skill: { name, agentId: o.agentId ?? null, safety: !!o.safety, body: o.body ?? '' }, enabled: o.enabled ?? true, origin: 'own' });
 
-function rig(o: { pending?: boolean; catalog?: { tables: string[]; feeds: string[] }; skills?: any[] } = {}) {
+function rig(o: { pending?: boolean; catalog?: { tables: string[]; feeds: string[] }; skills?: any[]; listThrows?: boolean } = {}) {
   const proposed: any[] = [];
   const pool = {
     query: async (sql: string) => (/FROM pending_actions/.test(sql) ? { rows: o.pending ? [{ id: 'pa-old' }] : [] } : { rows: [] }),
@@ -53,7 +53,10 @@ function rig(o: { pending?: boolean; catalog?: { tables: string[]; feeds: string
   const schedule = scheduleFake(o.catalog);
   const skills = {
     findShared: async () => null,
-    listForAgent: async () => o.skills ?? [skillEntry('prompthero-filter', { agentId: 'a-orch' }), skillEntry('prompts-chat-source', { agentId: 'a-exec' })],
+    listForAgent: async () => {
+      if (o.listThrows) throw new Error('db down');
+      return o.skills ?? [skillEntry('prompthero-filter', { agentId: 'a-orch' }), skillEntry('prompts-chat-source', { agentId: 'a-exec' })];
+    },
   };
   const agents = { children: async () => [EXEC], get: async () => ORCH };
   const tools = Object.fromEntries(buildImportListTools({
@@ -153,6 +156,56 @@ test('disable_skills: the owner of the skill is resolved over the orchestrator a
   assert.equal((await call(r, { disable_skills: ['nope-skill'] })).error, 'unknown_skill');
   assert.equal((await call(r, { disable_skills: ['anti-slop'] })).error, 'safety_skill');
   assert.equal(r.proposed.length, 1);
+});
+
+// ── FR-003 / A7: the skills that still tell the agent to use what the owner dropped ─────────────────────────────────────
+
+const FILTER = '# Джерело промптів\nФільтр provider=prompthero: бери лише рядки цього провайдера, інші рядки датасету пропускай.';
+const DROP = 'Не бери промпти з PromptHero';
+
+test('stop_using finds the skill that still filters by the dropped source and adds a ticked detach after the rule', async () => {
+  const r = rig({ skills: [skillEntry('prompthero-filter', { agentId: 'a-exec', body: FILTER }), skillEntry('voice-notes', { agentId: 'a-orch', body: 'Пиши коротко, без емодзі.' })] });
+  const out = await call(r, { series: 'Prompt of the day', stop_using: DROP });
+  assert.equal(out.ok, true, JSON.stringify(out));
+  const then = r.proposed[0].payload.then;
+  assert.deepEqual(then.map((t: any) => t.key), ['series', 'rule', 'detach:prompthero-filter']);
+  assert.deepEqual(then[2].payload, { handle: 'ai_global_executor', skill: 'prompthero-filter' }, 'the handle of the agent that owns it');
+  assert.equal(then[2].ticked, undefined, 'a hard conflict is ticked');
+  assert.match(then[2].summary, /^Disable skill "prompthero-filter" for @ai_global_executor: it tells the agent to use "prompthero"/);
+  assert.match(out.follow_up_notes[0], /prompthero-filter.*суперечить правилу.*відміченим/);
+  assert.match(r.proposed[0].summary, /disable skill “prompthero-filter”/);
+});
+
+test('a skill the owner already named in disable_skills is not added twice; a stop_using without a conflict adds nothing', async () => {
+  const skills = [skillEntry('prompthero-filter', { agentId: 'a-orch', body: FILTER })];
+  const named = rig({ skills });
+  await call(named, { stop_using: DROP, disable_skills: ['prompthero-filter'] });
+  assert.deepEqual(named.proposed[0].payload.then.map((t: any) => t.key), ['rule', 'detach:prompthero-filter']);
+
+  const none = rig({ skills: [skillEntry('voice-notes', { agentId: 'a-orch', body: 'Пиши коротко, без емодзі.' })] });
+  const out = await call(none, { stop_using: DROP });
+  assert.deepEqual(none.proposed[0].payload.then.map((t: any) => t.key), ['rule']);
+  assert.equal(out.follow_up_notes, undefined);
+});
+
+test('the conflicts fill only what is left of the 8 follow-ups of a card', async () => {
+  const plain = ['skill-1', 'skill-2', 'skill-3', 'skill-4', 'skill-5'].map((n) => skillEntry(n, { agentId: 'a-orch' }));
+  const conflicting = ['filter-1', 'filter-2', 'filter-3'].map((n) => skillEntry(n, { agentId: 'a-orch', body: FILTER }));
+  const r = rig({ skills: [...plain, ...conflicting] });
+  const out = await call(r, { series: 'Prompt of the day', stop_using: DROP, disable_skills: ['skill-1', 'skill-2', 'skill-3', 'skill-4', 'skill-5'] });
+  assert.equal(out.ok, true, JSON.stringify(out));
+  const keys = r.proposed[0].payload.then.map((t: any) => t.key);
+  assert.equal(keys.length, 8);
+  assert.deepEqual(keys.slice(0, 7), ['series', 'rule', 'detach:skill-1', 'detach:skill-2', 'detach:skill-3', 'detach:skill-4', 'detach:skill-5']);
+  assert.equal(keys[7], 'detach:filter-1');
+});
+
+test('a failing skill lookup never stops the import card; it is told in the notes', async () => {
+  const r = rig({ listThrows: true });
+  const out = await call(r, { stop_using: DROP });
+  assert.equal(out.ok, true, JSON.stringify(out));
+  assert.deepEqual(r.proposed[0].payload.then.map((t: any) => t.key), ['rule']);
+  assert.match(out.follow_up_notes[0], /конфлікти зі скілами не перевірено: db down/);
 });
 
 test('without the new inputs the card is the plain import card (no follow-ups)', async () => {
