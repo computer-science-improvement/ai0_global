@@ -1,6 +1,6 @@
 import type { Pool, PoolClient } from 'pg';
 import type { DataSchema, SchemaInput, SchemaPatch, UpsertResult } from './data.types';
-import { schemaInputSchema, schemaPatchSchema } from './data.types';
+import { reuseOrderByIssue, schemaInputSchema, schemaPatchSchema } from './data.types';
 import { compileRowSchema, validateRow, type RowIssue } from './field-validation';
 import { diffSchemas, type SchemaDiff } from './schema-versioning';
 
@@ -153,6 +153,11 @@ export class DataStore {
       const names = new Set((p.fields ?? (await this.requireSchema(key)).fields).map((f) => f.name));
       const unknown = p.post_requires.flat().find((n) => !names.has(n));
       if (unknown) throw new DataStoreError('invalid', `post_requires points to unknown field ${unknown}`);
+    }
+    // Spec 071: a sequential round sorts by scalar fields of this dataset.
+    if (p.reuse_policy) {
+      const issue = reuseOrderByIssue(p.reuse_policy, p.fields ?? (await this.requireSchema(key)).fields);
+      if (issue) throw new DataStoreError('invalid', issue);
     }
     const sets: string[] = [];
     const params: unknown[] = [key];

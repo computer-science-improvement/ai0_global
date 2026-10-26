@@ -12,7 +12,9 @@ import { reusableHosts, sourceRefOf, splitRef } from './ledger-anchor';
  *   • `error`     — the item is excluded everywhere;
  *   • `published` — never again on the same resource, or after `reuse_policy.days` for a dataset whose
  *                   data_schemas.reuse_policy is `after_days` (the dated datasets);
- *   • `shadowed`  — a shadow preview holds the item on the same resource for 7 days only.
+ *   • `shadowed`  — a shadow preview holds the item on the same resource for 7 days only;
+ *   • cycle datasets (spec 071, migration 096) — `published` blocks only within the resource's current round, and
+ *                   `passed` (a row nothing could be posted from) is done for the round on that resource, never network-wide.
  * Canonical refs: `data://<schema_key>/<id>` (a `library://` alias resolves through legacy_ref); a URL as
  * https, a lower-case host without `www.`, the root as "/" and no trailing slash on a path, without utm_* /
  * fbclid / gclid parameters or the fragment (migration 075, spec 037 T16); anything else as given.
@@ -32,7 +34,7 @@ import { reusableHosts, sourceRefOf, splitRef } from './ledger-anchor';
 
 export const LEDGER_ORIGINS = ['strategy', 'editor', 'chat', 'platform', 'manual', 'backfill'] as const;
 export type LedgerOrigin = typeof LEDGER_ORIGINS[number];
-export const LEDGER_STATUSES = ['published', 'shadowed', 'error'] as const;
+export const LEDGER_STATUSES = ['published', 'shadowed', 'error', 'passed'] as const;
 export type LedgerStatus = typeof LEDGER_STATUSES[number];
 
 /** How long a shadow preview holds its source on the same resource (mirrors content_ledger_blocks). */
@@ -118,6 +120,23 @@ export class ContentLedger {
       }
     }
     return n;
+  }
+
+  /**
+   * Spec 071 FR-004: the row `sourceRef` cannot be posted from — it is done for the round on the resource. Only a `data://`
+   * row of a cycle dataset is recorded (the SQL ignores everything else). Best-effort: a failure (or a database without
+   * migration 096) is logged, never thrown. True when the row was recorded.
+   */
+  async pass(sourceRef: string | null | undefined, u: { resourceRef: string; origin?: LedgerOrigin; slotId?: string | null; note?: string | null }): Promise<boolean> {
+    if (!sourceRef?.trim() || !u.resourceRef?.trim()) return false;
+    try {
+      const { rows } = await this.pool.query(`SELECT content_ledger_pass($1, $2, $3, $4, $5) AS passed`,
+        [ledgerResource(u.resourceRef), sourceRef.trim(), u.origin ?? 'editor', u.slotId && UUID_RE.test(u.slotId) ? u.slotId : null, u.note ? u.note.slice(0, 500) : null]);
+      return rows[0]?.passed === true;
+    } catch (err: any) {
+      this.log?.(`content_ledger: ${sourceRef} on ${u.resourceRef} not passed: ${err?.message ?? err}`);
+      return false;
+    }
   }
 
   /** The canonical form of a ref (null for blank). */

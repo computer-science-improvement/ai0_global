@@ -21,6 +21,16 @@ function structure(f: FieldDef): string {
   return JSON.stringify(entries);
 }
 
+/** JSON with object keys sorted at every level: jsonb stores keys in its own order, zod emits them in another. */
+function stable(v: unknown): string {
+  if (Array.isArray(v)) return `[${v.map(stable).join(',')}]`;
+  if (v && typeof v === 'object') {
+    return `{${Object.entries(v as Record<string, unknown>).filter(([, x]) => x !== undefined).sort(([a], [b]) => a.localeCompare(b))
+      .map(([k, x]) => `${JSON.stringify(k)}:${stable(x)}`).join(',')}}`;
+  }
+  return JSON.stringify(v) ?? 'null';
+}
+
 function canonicalRoles(r: Roles): string {
   return JSON.stringify(Object.entries(r ?? {}).filter(([, v]) => v !== undefined).sort(([a], [b]) => a.localeCompare(b)));
 }
@@ -78,8 +88,9 @@ export function diffSchemas(prev: Comparable, next: Comparable, opts: { hasRows?
     structural = true;
     changes.push({ kind: 'dedup_key' });
   }
-  for (const k of ['title', 'description', 'entity', 'suitable_for', 'language', 'default_license', 'status', 'contains_personal_data'] as const) {
-    if (k in next && next[k] !== undefined && JSON.stringify(next[k]) !== JSON.stringify(prev[k])) changes.push({ kind: 'dataset_text', field: k });
+  // reuse_policy and post_requires are description-only too (no version bump), but the owner sees them change (spec 071).
+  for (const k of ['title', 'description', 'entity', 'suitable_for', 'language', 'default_license', 'status', 'contains_personal_data', 'reuse_policy', 'post_requires'] as const) {
+    if (k in next && next[k] !== undefined && stable(next[k]) !== stable(prev[k])) changes.push({ kind: 'dataset_text', field: k });
   }
   return { structural, nextVersion: structural ? prev.version + 1 : prev.version, changes, errors };
 }

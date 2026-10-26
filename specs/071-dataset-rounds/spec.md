@@ -286,3 +286,14 @@ The builder check (2026-10-27) found gaps. These rules override the body.
 - Build the Rounds panel to the owner's compact card + details dialog rule (`CompactCard`).
 
 **Merge order.** 071 merges last, after 067, 068, 070 and 069.
+
+## Status
+
+- T1 done — migration 096 (+ down): policy validator and CHECK, `passed` status, `data_reuse_rounds`, `content_reuse_at` / `content_ref_reuse_at`, `content_ledger_blocks` (STABLE; cycle + passed), the re-created `content_ledger_blocking` / `content_ledger_used` / `data_schema_stats_refresh` (guarded by the `post_requires` column), `data_round_roll`, `content_ledger_pass`, both triggers; `ReusePolicy` union, zod and `order_by` checks (`schemaInputSchema`, `DataStore.updateSchema`), `ContentLedger.pass`, `LEDGER_STATUSES`, schema-versioning keys with sorted-key compare; PG tests (`data-rounds.pg.test.ts`, `data-rounds.migration.pg.test.ts`) and unit tests (`data-rounds.test.ts`) (one commit, see the log).
+
+## Deltas from the spec
+
+- T1: `data_reuse_policy_valid` keeps the old CHECK's leniency for `after_days` with no `days` (the 058 CHECK allowed it; a stricter one could fail the migration on an odd row); when `days` is present it must be an integer in 1–3650. It uses CASE, not AND, wherever a cast follows a type test (SQL does not promise to stop at the first false).
+- T1: both PG test files create their own database next to `EDITOR_PG_TEST_URL` (`createMigratedDb` of the 055 sysadmin tests), including `data-rounds.pg.test.ts`: the shared scratch database stays at 094, so it cannot run the new SQL, and the rule «code that runs before 096 queries the rounds table only for cycle datasets» keeps the PG tests of the shared database green.
+- T1: `content_ledger_pass` returns true whenever the ref is a `data://` row of a cycle dataset (a first record or a repeat that moves `used_at` forward), not only for a new ledger row. `ContentLedger.pass` is best-effort (A2): an error, also from a database without 096, is logged and returns false.
+- T1: `content_ledger_blocking` orders `error, published, passed, shadowed`.
