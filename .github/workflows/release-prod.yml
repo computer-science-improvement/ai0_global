@@ -143,6 +143,5 @@ jobs:
 
             docker compose --profile prod pull automation dashboard
             docker compose --profile prod up -d automation dashboard
-            docker compose --profile prod restart automation
 
             docker image prune -f

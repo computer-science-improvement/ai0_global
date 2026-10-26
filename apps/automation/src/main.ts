@@ -8,6 +8,7 @@ import * as winston                from 'winston';
 import cookieParser                from 'cookie-parser';
 import { dataRowsJsonBody }        from './data/rows-body.middleware';
 import { bootSettings }            from './settings/boot';
+import { armBootSignals }          from './boot-signals';
 
 const isDev = (process.env.NODE_ENV ?? 'development') !== 'production';
 
@@ -27,6 +28,10 @@ const logger = WinstonModule.createLogger({
   ],
 });
 
+// Spec 070 FR-005: a stop that lands before `enableShutdownHooks()` (below) would be ignored by PID 1 until Docker's SIGKILL.
+// Exit at once instead; the listeners are removed right before Nest registers its own.
+const disarmBootSignals = armBootSignals((m) => logger.warn(m, 'Bootstrap'));
+
 async function bootstrap() {
   // Spec 039: the dashboard's settings go into process.env BEFORE any module is loaded (ConfigService, @Cron
   // expressions and boot-time factories then read them), so AppModule is imported only after the overlay.
@@ -34,6 +39,7 @@ async function bootstrap() {
   const { AppModule } = await import('./app.module');
   const app = await NestFactory.create<NestExpressApplication>(AppModule, { logger });
   // Graceful stop on SIGTERM (docker stop, and the Settings page's "Restart service"): onModuleDestroy hooks run.
+  disarmBootSignals();
   app.enableShutdownHooks();
 
   // Prod chain is host Caddy → dashboard nginx → here, all on loopback/docker

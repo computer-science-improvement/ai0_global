@@ -734,3 +734,53 @@ A public JSON API is read like any large page and imported like a list: `web_fet
 - A note «no id, uuid, slug or title» means refs are positions in the list: a re-sync may add shifted records again; map a stable field or accept it.
 - Tests: `docs/doc-json.test.ts`, `list-extract-json.test.ts`, `import-list-json.test.ts` (fixture `docs/testing/promptschat-fixture.ts`), `import-list-json.pg.test.ts` (two-page Apply, one-page no-op re-sync, incremental re-sync, failing page, caps, undo).
 
+## 29. Source resilience and ops (spec 070)
+
+No migration. One owner action per item below; none of them needs a setting.
+
+**The ПДР as a dataset (`import_list` `split_on`)**
+
+A law or standard on one long page has no headings per clause, so `import_list` cuts it by a line pattern. The first use is the road rules for @pdr_dev_channel: 866 `pdr_questions` rows are used up, and the clauses are the next source of quiz posts.
+
+1. In the chat with @pdr_dev_channel (or `@ai0`): fetch the page of the rules on zakon.rada.gov.ua (the `…/print` address), then ask for an import into `pdr_rules` with `split_on` set to `^([0-9]{1,2}[.][0-9]{1,2}(?:[.][0-9]{1,2})?)[.]` (group 1 is the clause number) and this mapping: `clause` = `split_key`, `title` = `heading`, `text` = `text_without:^\{` (leaves out the editorial notes «{Пункт … в редакції …}»), `category` = `context_line:^[0-9]{1,2}[.] [^.]{3,60}$` (the section title, e.g. «14. ОБГІН»), `source_url` = `url_anchor:п.`, `license` = `const:public domain`.
+2. Read the preview: `records` (one per clause), `longest_record_chars` (one clause that runs to thousands of characters means a section title was not recognised), and `repeated_keys` (`1.1 ×2` means a sign or markup line collides with a clause: narrow the pattern). The patterns are tested on the first 300 characters of each line and are **case-insensitive**, so rely on the numbering, not on capitals.
+3. Press **Apply**. `post_requires` is `[[text]]`; `list_ref` is the page address plus `#<clause>` and is the dedup key; the weekly re-sync repeats the same `split_on` and updates only the clauses that changed.
+4. Add `pdr_rules` as a library source on the pdr card and allow the `quiz` format. Library posts carry `library_ref` (`data://pdr_rules/N`) and `source.url` = the anchored clause (`…/print#п.14.6`), so the ledger records both and the critic reads the row.
+5. **After spec 071 ships**, set the reuse policy of `pdr_rules` to «Repeat in rounds» (see § 30): otherwise the clauses run out like the questions did.
+
+**Connection resets and feeds**
+
+- A site that cuts the connection (`socket hang up`, `ECONNRESET`, a closed socket) is asked once more after a second. If that fails too it is recorded as a `timeout`: one hour of pause, no strike, and the agent is told «сайт обірвав з'єднання; година паузи».
+- A feed's own 401 / 403 / 429 / 451 (`feed_refused`) or 400 / 404 / 410 (`feed_missing`) pauses that feed for a day, without strikes, and **pages of the same site keep working**. A page's 403 no longer blocks the site's RSS. Source health shows the feed as blocked for a day; a feed that keeps failing reaches the owner as `failing` (three failed reads in 14 days), not through a strike note.
+- A feed at the root of a site is stored under `host/`, so it never replaces the row of the host itself.
+
+**A stale copy when the site fails**
+
+- The document store keeps a page for 6 hours as a fetch cache (`DOC_STORE_HOURS`) and for up to 7 days as a stale copy. `read_doc`, `find_in_doc` and `import_list` read a `doc_id` for those 7 days instead of answering `doc_expired`.
+- When the refetch fails because the site is down, blocked or refusing (a reset, a block row, a 5xx, 401, 403, 429, 451), `web_fetch` answers the kept copy with `stale: true`, `fetched_at` and a note «копія від … UTC; сайт зараз недоступний». A 404 or 410, a body that is not a document and a re-sync never get an old copy.
+
+**Quiz channels**
+
+A profile topic that names a quiz («Вікторини з ПДР», quiz, trivia, «тестові запитання», «екзаменаційні питання / білети») is now a quiz when `content_kind` is not set: the order is the explicit field, then quiz, then news, then general. A quiz guessed this way has a cap of 14 polls and quizzes a week (an explicit `content_kind: quiz` stays uncapped; an explicit `polls_per_week` wins). «Тест-драйв» and «тестування» are not quizzes. The Formatting form shows the resolved cap as the placeholder of «Polls a week» when the kind select says «From the topic».
+
+**Meta metrics**
+
+A Graph insights metric that answers HTTP 400 three times in a row for one account (any code except 190, 1, 2, 4, 17, 32, 613) is not requested for 24 hours; after that it gets one request a day while it keeps failing, and one success starts the count again. One warning a UTC day says what Meta answered: `status 400 code=10/2108006 OAuthException: … (fbtrace_id …)`; give the fbtrace_id to Meta support or fix the permission. The 7-day path for «unsupported metric» is unchanged. The count is in memory: a restart asks once more.
+
+**Story repeats**
+
+The `story_repeat` check no longer passes two posts as one story just because one contains the other's names. Without shared topic words it now needs strong evidence: five or more shared entities, a multi-word name, a person, a number or a date. It never applies when either post is an explainer or declared evergreen. A post with no source at all counts as evergreen (spec 041): give a news post its source.
+
+**Deploy and stop**
+
+- The `docker compose restart automation` line after `up -d` is gone from `deploy-develop.yml` and `release-prod.yml`. It was added (40d9a951) so that a config-only deploy reloaded `channels.json`, which the service reads once at boot. The config is now copied into the image (`apps/automation/Dockerfile`, `COPY apps/automation/config`), so a config commit builds a new image, `pull` fetches it and `up -d` recreates the container. The restart then only killed the container that had just started: Node is PID 1, had no SIGTERM handler until the shutdown hooks were enabled, and Docker waited 10 s and sent SIGKILL in the middle of boot. Only `*.local.json` files are gitignored and stay on the box.
+- `apps/automation/src/boot-signals.ts`: a SIGTERM or SIGINT that arrives while the service is still booting logs «shutdown during boot» and exits with 143 at once; the listeners are removed right before `enableShutdownHooks()`, so a stop after boot is graceful as before.
+- **Owner action, not in the repo:** add `init: true` to the `automation` service in `docker-compose.yml` on the box (and in the dev compose). An init process as PID 1 forwards signals and reaps children, so a stop is never ignored. The compose files carry local changes, so they are not edited by the deploy or by this spec.
+
+**Troubleshooting**
+
+- `no_entries` («split_on matches no line of the document»): the pattern does not match any line start; the page may be a different layout than the rules (open the doc with `read_doc` and look at the first characters of a clause line). `bad_pattern`: the regex does not compile.
+- `wrong_extractor` «needs split_on»: `split_key`, `url_anchor:` and `context_line:` read a record made by `split_on` only.
+- Feeds and pages that keep failing show in source health (`/app/health`, spec 049). A feed block expires by itself after a day.
+- Tests: `docs/import-list-split.test.ts` and `.pg.test.ts` (fixture `docs/testing/pdr-fixture.ts`), `net/host-failures.test.ts`, `host-strikes.061.test.ts` and `.pg.test.ts`, `docs/doc-store.test.ts`, `docs/doc-stale.070.test.ts`, `post/audience-asks.test.ts`, `config/meta-insight-backoff.test.ts`, `config/meta-graph.client.test.ts`, `story/story-match.test.ts`, `boot-signals.test.ts`; the dashboard placeholder in `lib/format-prefs.test.ts`.
+
