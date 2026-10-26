@@ -1,4 +1,5 @@
 import type { Pool } from 'pg';
+import { filedSince, negativePostsDays, notFollowedGroups } from './escalation';
 
 export const DIRECTIVE_KINDS = [
   'advice', 'task', 'format_shift', 'frequency', 'repost', 'cross_promo', 'pause_series', 'experiment', 'pause_resource', 'strategy',
@@ -87,6 +88,11 @@ type Q = Pick<Pool, 'query'>;
 /** agent_directives, manager_reviews and agent_memory (053). */
 export class DirectivesRepository {
   constructor(private readonly pool: Q) {}
+
+  // ── spec 069 FR-005: the escalation triggers (the SQL lives in escalation.ts) ──
+  notFollowedGroups(days?: number, min?: number) { return notFollowedGroups(this.pool, days, min); }
+  negativePostsDays(fromDay: string) { return negativePostsDays(this.pool, fromDay); }
+  filedSince(agentId: string, since: Date) { return filedSince(this.pool, agentId, since); }
 
   async insert(d: {
     fromAgentId: string | null; toAgentId: string; kind: DirectiveKind; binding?: DirectiveBinding; structural: boolean; body: string; params: Record<string, unknown>;

@@ -3,7 +3,7 @@
 - [x] T1 Follow-ups on cards and the source-change bundle: `payload.then` + `input.skip_then` in `applyOnce` with per-item results; `import_list` `series` / `stop_using` / `disable_skills` with `pendingTables` validation and `import_empty`; active tool descriptions and prompt/skill-file routing; `source_belongs_in_import` refusal; ActionCard follow-up checklist and results (English); runbook §§ 24–25 updated; tests.
 - [x] T2 Skill conflicts: `skillConflicts` / `sourceInSkill` in skill-warnings, `listForAgent` dep, hard/soft follow-ups on `write_skill` cards; tests with the review-4 pair.
 - [x] T3 Owner noise: union + numeric growth + `runLength` in `decideNote`; past days fire only first; edit-in-place (`retarget`, `api.edit`, fallbacks) with `supersede` returning ids; demotion to info + the daily «Повторюється без вашої реакції» block; `event_not_covered` gated; tests (unit + owner-bot PG).
-- [ ] T4 Manager: deterministic `escalate()` in housekeeping (two triggers), escalation notes and memory lines, digest `escalations` + not-followed open list, `submit_review` `escalations` with `checkEscalations`, `DEFAULT_MANAGER_TIMES ['09:00']`, `cache: false`, `postOnce` dep; tests (unit + PG for the SQL).
+- [x] T4 Manager: deterministic `escalate()` in housekeeping (two triggers), escalation notes and memory lines, digest `escalations` + not-followed open list, `submit_review` `escalations` with `checkEscalations`, `DEFAULT_MANAGER_TIMES ['09:00']`, `cache: false`, `postOnce` dep; tests (unit + PG for the SQL).
 - [ ] T5 Chat and attribution: write claims, backing from earlier turns and applied cards, claim retry without the first answer; `origin_mismatch` lint, chat read capture into draft lint, skill refusal for `origin=original` with a source; tests; docs (runbook § 28, specs README row 069 DONE, spec status done).
 
 ## Status
@@ -11,6 +11,7 @@
 - T1 — done (commit below in `git log`: «069 T1»).
 - T2 — done («069 T2»).
 - T3 — done («069 T3»).
+- T4 — done («069 T4»).
 
 ## Deltas from the spec
 
@@ -35,4 +36,12 @@
 - **T3 · event watch.** `EventWatchDeps.inbox.markRead` and `openNotes` are optional; without them nothing is closed (old wiring works). The notes it reads are the unread `event_not_covered` rows with ref type `story_event`.
 - **T3 · daily block.** `repeatingSubjects` recomputes the demotion rule from the rows (nothing is stored): a subject appears when its unbroken run has at least 3 notes, its newest note is not critical, at least one note of the run is not info, and no card of the run was resolved from Telegram. Capped at 8 lines («… і ще N»).
 - **T3 · tests changed on purpose.** `note-gate.060.test.ts` lines 21–22 (streak 3 → 4 is no longer news, 3 → 6 is) and `owner-notes.060.pg.test.ts` (`streak:4` → `streak:6`, plus the 3 → 4 quiet case). The 060 PG test now has its own throwaway database. A local `decide()` helper in `note-gate.060.test.ts` drops `runLength` / `runSince` so the old `deepEqual`s stay readable.
+- **T4 · where the code lives.** The two trigger queries, the note builders, `openEscalations` (the one definition of an open escalation) and the hash keys are a new file `manager/escalation.ts`; `DirectivesRepository` has three thin delegates (`notFollowedGroups`, `negativePostsDays`, `filedSince`) so `ManagerRunner.escalate()` needs no pool. `checkEscalations` is in `directive-tools.ts` next to `checkQualityReview`; it reads the open list from the digest the review runs on (built by `openEscalations`), so the digest block, `escalate()` and the check share one definition.
+- **T4 · cache mode not changed (A5).** `loop.run` keeps its default; no `cache: false`. The default manager times are `['09:00']` (the prod manager has `schedule {}`, so no data change).
+- **T4 · trigger 1 window.** "Within 14 days" is `agent_directives.updated_at`, not `created_at`: an old advice that is judged `not_followed` today counts as evidence now. Any status counts (a `superseded` advice and its re-filed directive are the pair the prompt escalates on); `shadow` ones do not.
+- **T4 · trigger 2 scope.** The agent of a resource is its own orchestrator (`agents.scope = 'resource'`, `scope_id = <ref>`), not the network / anchor fallback the resource catalog uses; the posts anomaly of a resource run by another agent's orchestrator is not escalated. The run must end yesterday or today (the morning review writes today's snapshot) and the longest streak among the agent's resources is used.
+- **T4 · note refs.** `refType` is `escalation`, `refId` is `<subject>|<Kyiv day>`; the gate appends `#<parts>`. Parts are the sorted directive ids (trigger 1) or `posts_from:<first day>` + `days:<N>` with `grow { days: 3 }` (trigger 2).
+- **T4 · what an answer costs.** An escalation stays open until the owner reads its note (or 14 days pass), so each review has to answer it again with a reason; answers are appended to the stored review summary (no new column). `SubmitReviewInput.escalations` defaults to `[]`; the digest renders the block only when something is open.
+- **T4 · manager-workflow skill untouched.** The skill sits at its 6000-character cap (`skills-audit` / `quality.test.ts`), so the instruction is in the system prompt (`ESCALATION_LINES`) and the `submit_review` description instead.
+- **T4 · wiring.** `ManagerRunnerDeps.inbox` is `Pick<'post'> & Partial<Pick<'postOnce'>>`, so the ten existing `ManagerRunner` fakes compile and `escalate()` is a no-op without `postOnce`. `housekeeping()` returns `escalated`; `editor.module.ts` only logs it.
 - **T1 · dashboard build** needs `VITE_ALLOW_DEV_AUTH=true` locally (the production-build guard); this is not a change.

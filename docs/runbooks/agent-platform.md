@@ -559,6 +559,18 @@ Spec 060 made a note say it once; spec 069 closes the three ways it still came b
 - **Third time in a row, nobody pressing anything: info.** From the third note of an unbroken run (notes at most `OWNER_NOTE_REPEAT_DAYS + 1` days apart) the note is stored as `info`: it stays in the Inbox, but it has no card and no Telegram message. It is never done to a critical note, and not when a card of the run was resolved from Telegram (a button you pressed). The **daily summary** then has a block «Повторюється без вашої реакції» with one line per such problem: what, since when, how many times. Press a button on the problem's card, or fix it, and it rings again from the next note.
 - **«Announced event got no recap»** no longer stays open: when a recap comes out, or the 48-hour alert grace runs out, the note is marked read and its card closes.
 
+**The manager escalates by code (spec 069)**
+
+Advice nobody follows used to disappear from the digest and the manager kept saying `continue`. Now the hourly housekeeping (no LLM) raises it. Nothing to enable, no migration.
+
+- **Trigger 1: advice not followed.** Two or more directives (any status, a superseded advice and its re-filed directive both count) to one agent and one kind whose `verification.adherence` is `not_followed`, changed within 14 days. Shadow directives do not count.
+- **Trigger 2: posts below the norm.** A negative posts anomaly (`kpi_snapshots`, `posts` anomaly with z < 0) on 3 or more days in a row, ending yesterday or today, for an agent that runs the resource itself, with no directive filed for that agent since the run began. A resource run by a network or anchor orchestrator is not covered.
+- **What you get.** One Inbox note (kind `manager_escalation`, severity action, subject `escalation:<handle>:<kind|posts>`, English text; the Telegram card is Ukrainian: «Менеджер: @агент не виконує поради …») and one line in the manager's memory. The same causes say nothing again; trigger 2 comes again only after 3 more days of the same run. From the third note without your reaction the note is info (see above).
+- **The manager has to answer.** The digest has an `escalations` block with the open ones (an unread `manager_escalation` note of the last 14 days, one per subject). `submit_review` takes `escalations: [{ subject, directive_id | decline_reason }]` and refuses a review that leaves one unanswered, a `continue` included: the answer is a directive filed for that agent in the same review (its id also in `directive_ids`), or a reason of 20+ characters. The answers are appended to the stored review summary. An escalation stays open until you read the note, so the manager answers it at each review until then.
+- **The digest.** Open escalations count in the digest hash and the review signature, so a new one wakes the manager even when its flags are covered. Advice that was not followed no longer counts as cover whatever its status; an evaluated one from the last 14 days stays in the open-directives list, marked «не виконано — ескалюй, не дублюй як пораду».
+- **Cadence.** The default manager time is now `09:00` only (an agent that has its own `schedule.times` keeps them). The cache mode of the manager run is unchanged: it makes two or more calls when it files a directive, where the prefix cache is cheaper.
+- Tests: `manager/manager-escalation.069.test.ts`, `manager/manager-escalation.069.pg.test.ts` (the SQL on real rows).
+
 **Troubleshooting (spec 069)**
 
 - A problem you expected a card for did not ring: look for it in the daily summary block above, or in the Inbox as an info note («still going, N days»). It is the third or later note of a run with no reaction from Telegram.

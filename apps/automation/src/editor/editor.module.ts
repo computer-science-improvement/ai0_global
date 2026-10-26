@@ -803,8 +803,8 @@ export class AgentsUpkeep implements OnModuleInit {
   async directives(): Promise<void> {
     try {
       const r = await this.manager.runner.housekeeping();
-      if (r.timedOut || r.expired || r.evaluated || r.executed || r.failed || r.resumed || r.verified || r.autoApplied || r.ignored || r.contestTimedOut) {
-        this.logger.log(`directives: timed out ${r.timedOut}, expired ${r.expired}, auto-applied ${r.autoApplied}, ignored ${r.ignored}, contest timeouts ${r.contestTimedOut}, executed ${r.executed}, failed ${r.failed}, resumed ${r.resumed}, verified ${r.verified}, evaluated ${r.evaluated}`);
+      if (r.timedOut || r.expired || r.evaluated || r.executed || r.failed || r.resumed || r.verified || r.autoApplied || r.ignored || r.contestTimedOut || r.escalated) {
+        this.logger.log(`directives: timed out ${r.timedOut}, expired ${r.expired}, auto-applied ${r.autoApplied}, ignored ${r.ignored}, contest timeouts ${r.contestTimedOut}, executed ${r.executed}, failed ${r.failed}, resumed ${r.resumed}, verified ${r.verified}, evaluated ${r.evaluated}, escalated ${r.escalated}`);
       }
     } catch (err: any) {
       this.logger.warn(`directives housekeeping failed: ${err?.message ?? err}`);
