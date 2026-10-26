@@ -740,3 +740,31 @@ A public JSON API is read like any large page and imported like a list: `web_fet
 - A note «no id, uuid, slug or title» means refs are positions in the list: a re-sync may add shifted records again; map a stable field or accept it.
 - Tests: `docs/doc-json.test.ts`, `list-extract-json.test.ts`, `import-list-json.test.ts` (fixture `docs/testing/promptschat-fixture.ts`), `import-list-json.pg.test.ts` (two-page Apply, one-page no-op re-sync, incremental re-sync, failing page, caps, undo).
 
+## 27. Stop dead series (spec 068)
+
+A series with nothing to post from now stops early, says so, and costs nothing while it is dead. The parts are in § 19 (cause, classifier, empty day, pauses lowering the minimum) and § 20 (pre-flight on library slots and at plan time); this section is what to do on deploy and how to read it.
+
+**Needs**
+
+- Migration `095_prompts_post_requires` (data only: `prompts.post_requires` from `[["page_url"], ["prompt_text", "media_url"]]` to `[["prompt_text"], ["media_url"]]`, one sentence added to the description, the stats refreshed). Apply it with the deploy; the code works without it, the Prompt series just keeps meeting PromptHero rows. It touches the rule only while it is exactly the 083 value and the description only while it is the 083 text: an owner's own rule or wording stays. Down: `database/migrations/down/095_prompts_post_requires.down.sql` (puts the 083 rule back; no row changes).
+- Nothing to enable. The new checks and the cause field are code; no new setting.
+
+**What changes for the owner**
+
+1. **PromptHero rows of `prompts` can no longer be posted.** A post of the Prompt series is the prompt with its example, and a PromptHero row has the page and the picture but no prompt text. After 095 the catalog counts them in `not_postable`, `unposted_here` and `query_data` leave them out, a slot that names one is stopped by the pre-flight (`preflight_no_material`), and the series pauses after 3 dead days (§ 19) instead of a skip a day. Give the series a source that has text: import a curated dataset or prompts.chat (§ 25), or point the series at a dataset with `prompt_text` and `media_url`.
+2. **The 083 insert check now refuses PromptHero loads.** The write path (`data_items_upsert`, the importers, the dry run) rejects a new `prompts` row without `prompt_text` as «required for posting: prompt_text»; a PromptHero loader that writes only page and picture reports those rows as invalid, not inserted. Existing rows are not touched (they stay, flagged not postable). To bring PromptHero rows back, load the prompt text with them, or set another rule for the dataset in the dashboard (an owner rule is never replaced).
+3. **`query_data` by ref.** `refs: ["data://prompts/123", "library://…"]` (1–20) takes those rows whatever their status and returns `postable`, `missing` (what `post_requires` lacks) and `used_here` per row; a ref with no row is `{ ref, found: false }`; a `data://` ref of another dataset is `ref_dataset_mismatch`. Filters, search and `unposted_on` are not applied (`unposted_on` only picks the resource for `used_here`). A filter on a field named `id` is refused with the way to use `refs` (the dataset's `id` field is often a CDN address; the number in the ref is the row id).
+4. **An empty result says why.** With a resource, zero hits is «nothing left that is unposted» only when rows match at all; when nothing matches used or not it says the filtered or searched field may be empty in most rows (fill % in `library_catalog`), or that the dataset has nothing postable.
+
+**Reading it**
+
+- Series planned as `planner_no_material` / `planner_source_unreachable` placeholders, or skipped with `preflight_no_material`, are the intended behaviour for an empty library: three of them in a row pause the series (`/app/health`, the Inbox note and card of § 19).
+- A plan refused with «слот N (HH:MM): … — заміни джерело/рядок або постав skipped_series з cause no_material / short_day» is the planner being told, once, that a source cannot post; it picks another row or declares the empty day. Many such refusals for one dataset mean its rows lack what `post_requires` asks (the catalog's `not_postable`).
+
+**Troubleshooting**
+
+- Prompt series paused right after deploy: expected if its source was PromptHero rows; fix the source (item 1), then Resume.
+- A curated prompts row will not post: it lacks `media_url` or `prompt_text` (the rule is both); `query_data` with `refs` shows `missing`.
+- Rolling back 095 only restores the 083 rule (PromptHero rows are postable again); no row changes either way.
+- Tests: `preflight/slot-preflight.068.test.ts`, `preflight/material.068.pg.test.ts`, `network/plan-preflight.068.test.ts`, `tools/query-refs.068.test.ts` and `.pg.test.ts`, `data/prompts-rule.095.migration.pg.test.ts` (own database: the no-op without 083, the replace, idempotence, the owner's rule, the down file), plus those of § 19.
+
