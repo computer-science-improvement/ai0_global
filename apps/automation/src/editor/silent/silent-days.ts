@@ -72,6 +72,8 @@ export interface SilentAlert {
   alert:    { title: string; body: string };
   /** Spec 060 FR-004: the series this note is about (a «Пауза серії» button each, at most two). Empty when none is a series. */
   pauses:   PauseTarget[];
+  /** Spec 069 A8: the note is about a PAST day; it never supersedes or retargets the notes of a later day. */
+  pastDay?: boolean;
 }
 
 /** The series a set of slots belongs to, as `series_pauses` keys them (a plain slot has none: pausing a whole resource is not offered). */
@@ -130,6 +132,8 @@ export function rejectStreak(slots: WatchSlot[]): { n: number; slotIds: string[]
 /** Every silent-day note due at `now` (pure; dedup is the Inbox's). */
 export function evaluateSilentDays(i: {
   now: Date; resources: WatchResource[]; slots: WatchSlot[]; streakN?: number; paused?: ReadonlySet<string>; darkHour?: number;
+  /** Spec 069 A8: `<ref>|<day>` of the misses already reported (a `series_missed` / `dark_day` note exists); a PAST day among them is not reported again. */
+  reportedDays?: ReadonlySet<string>;
 }): SilentAlert[] {
   const streakN = Math.max(1, i.streakN ?? DEFAULT_REJECT_STREAK);
   const darkHour = i.darkHour ?? DARK_DAY_HOUR;
@@ -188,6 +192,9 @@ export function evaluateSilentDays(i: {
       if ((!ENDED_NOT_OUT.has(s.status) && !evergreenFilled(s.fallback)) || isOwnerDecision(s.error)) continue;
       const d = dayOf(s);
       if (d > today) continue;
+      // Spec 069 A8: yesterday is still inside the 48 h window, but its slot set shrinks as the window slides — a new part
+      // set would be a new note. A past day is told once; a first miss reported late (after midnight) still goes out.
+      if (d < today && i.reportedDays?.has(`${r.ref}|${d}`)) continue;
       missedByDay.set(d, [...(missedByDay.get(d) ?? []), s]);
     }
     for (const [day, miss] of missedByDay) {
@@ -202,7 +209,7 @@ export function evaluateSilentDays(i: {
         kind: 'series_missed', ref: r.ref, day, agentId: r.agentId ?? null, slotIds: miss.map((s) => s.id),
         title: `Series or fixed slot missed on ${r.ref} (${day})`,
         body: [`${miss.length} series / fixed slot(s) did not go out:`, ...lines.map((l) => `• ${l}`), miss.length > 4 ? `• … and ${miss.length - 4} more` : ''].filter(Boolean).join('\n'),
-        subject: missSubject(r.ref), parts, pauses: pauseTargets(miss),
+        subject: missSubject(r.ref), parts, pauses: pauseTargets(miss), ...(day < today ? { pastDay: true } : {}),
         alert: {
           title: `Серія чи слот за розкладом не вийшли на ${r.ref} (${day})`,
           body: [`Не вийшло: ${miss.length}.`, ...lines.map((l) => `• ${l}`), miss.length > 4 ? `• … і ще ${miss.length - 4}` : ''].filter(Boolean).join('\n'),
@@ -305,18 +312,33 @@ export class SilentDaysWatch {
     };
   }
 
+  /**
+   * Spec 069 A8: the `<ref>|<day>` of every series_missed / dark_day note of the last days (their ref is `<ref>|<day>#<parts>`).
+   * A failed lookup is an empty set: the gate still stops a repeat of the same parts.
+   */
+  private async reportedDays(): Promise<Set<string>> {
+    try {
+      const { rows } = await this.d.pool.query(
+        `SELECT DISTINCT split_part(ref_id, '#', 1) AS day_ref FROM agent_inbox
+          WHERE ref_type = 'resource_day' AND kind IN ('series_missed', 'dark_day') AND created_at > now() - interval '7 days'`);
+      return new Set(rows.map((r: any) => String(r.day_ref)));
+    } catch {
+      return new Set();
+    }
+  }
+
   /** Throttled check from the scheduler tick; returns the number of new Inbox notes. */
   async check(cards: EditorCard[], now: Date, paused?: ReadonlySet<string>): Promise<number> {
     const every = this.d.everyMs ?? SILENT_CHECK_EVERY_MS;
     if (every > 0 && now.getTime() - this.lastRun < every) return 0;
     this.lastRun = now.getTime();
     const { slots, resources } = await this.load(cards, now);
-    const alerts = evaluateSilentDays({ now, resources, slots, streakN: this.d.streakN, paused });
+    const alerts = evaluateSilentDays({ now, resources, slots, streakN: this.d.streakN, paused, reportedDays: await this.reportedDays() });
     let n = 0;
     for (const a of alerts) {
       const item: InboxItemInput & { refType: string; refId: string } = {
         agentId: a.agentId, kind: a.kind, severity: 'action', title: a.title, body: a.body, ...dailyRef(a.ref, a.day),
-        alert: a.alert, gate: { subject: a.subject, parts: a.parts }, actions: pauseActions(a.pauses),
+        alert: a.alert, gate: { subject: a.subject, parts: a.parts, ...(a.pastDay ? { standalone: true } : {}) }, actions: pauseActions(a.pauses),
       };
       try {
         if ((await this.d.inbox.postOnce(item)) != null) n++;

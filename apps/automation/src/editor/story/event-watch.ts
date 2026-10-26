@@ -1,6 +1,6 @@
 import type { Pool } from 'pg';
 import type { InboxItemInput, OwnerInbox } from '../agents/owner-inbox';
-import { eventNote, eventRef, eventsNotCovered, EVENT_COVER_HOURS, type EventStory } from './story-event';
+import { eventNote, eventRef, eventsNotCovered, EVENT_COVER_HOURS, EVENT_REF_TYPE, type EventStory } from './story-event';
 import { StoryEventRepository } from './story-event.repository';
 import { errText } from '../../common/err-text';
 
@@ -17,7 +17,9 @@ export const EVENT_CHECK_EVERY_MS = 5 * 60_000;
 export const EVENT_ALERT_GRACE_HOURS = 48;
 
 export interface EventWatchDeps {
-  inbox:    Pick<OwnerInbox, 'postOnce'>;
+  inbox:    Pick<OwnerInbox, 'postOnce'> & Partial<Pick<OwnerInbox, 'markRead'>>;
+  /** Spec 069 A6: the unread `event_not_covered` notes (default: read from `pool`). */
+  openNotes?: () => Promise<Array<{ id: number; refId: string }>>;
   /** The stories whose event starts in [from, to] (default: the story registry). */
   stories?: (from: Date, to: Date) => Promise<EventStory[]>;
   /** The resource zone the note's date is written in (default: `resource_tz(ref)`, else Europe/Kyiv). */
@@ -60,6 +62,30 @@ export class EventRecapWatch {
         this.d.log?.(`event note for ${g.key} failed: ${errText(err)}`);
       }
     }
+    await this.closeSettled(new Set(gaps.map((g) => eventRef(g.storyId, g.event).refId)));
     return n;
+  }
+
+  /**
+   * Spec 069 A6: an unread `event_not_covered` note whose event is no longer an open gap — a recap came out, or the alert
+   * grace ran out — is marked read (the owner-bot sweep then closes its card). The note itself is never re-posted: its ref
+   * is the event's own, so the second identical check posts nothing.
+   */
+  private async closeSettled(open: ReadonlySet<string>): Promise<void> {
+    if (!this.d.inbox.markRead) return;
+    try {
+      const notes = await (this.d.openNotes ?? (() => this.unreadNotes()))();
+      const settled = notes.filter((x) => !open.has(x.refId)).map((x) => x.id);
+      if (settled.length) await this.d.inbox.markRead(settled);
+    } catch (err: any) {
+      this.d.log?.(`event notes not closed: ${errText(err)}`);
+    }
+  }
+
+  private async unreadNotes(): Promise<Array<{ id: number; refId: string }>> {
+    if (!this.d.pool) return [];
+    const { rows } = await this.d.pool.query(
+      `SELECT id, ref_id FROM agent_inbox WHERE kind = 'event_not_covered' AND ref_type = $1 AND read_at IS NULL`, [EVENT_REF_TYPE]);
+    return rows.map((r: any) => ({ id: Number(r.id), refId: String(r.ref_id) }));
   }
 }

@@ -90,6 +90,21 @@ export class OwnerCardsRepository {
     return rows.map(toCard);
   }
 
+  /**
+   * Spec 069 FR-004: an open card is pointed at a newer item of the same problem — one UPDATE that keeps the card (so its
+   * `oc:<card>:<button>` callbacks and its Telegram message stay), guarded against the unique (kind, ref_id). Null when the
+   * card is no longer open or the new item already has a card.
+   */
+  async retarget(id: number, newRefId: string, c: { title: string; body: string | null; buttons: CardButton[]; link: string | null }): Promise<OwnerCard | null> {
+    const { rows } = await this.pool.query(
+      `UPDATE owner_cards SET ref_id = $2, title = $3, body = $4, buttons = $5, link = $6
+        WHERE id = $1 AND status = 'open'
+          AND NOT EXISTS (SELECT 1 FROM owner_cards o WHERE o.kind = owner_cards.kind AND o.ref_id = $2)
+        RETURNING *`,
+      [id, newRefId, c.title.slice(0, 500), c.body, JSON.stringify(c.buttons), c.link]);
+    return rows[0] ? toCard(rows[0]) : null;
+  }
+
   /** A failed or closed card whose item still waits goes back to the queue (/waiting). */
   async requeue(id: number): Promise<OwnerCard | null> {
     const { rows } = await this.pool.query(

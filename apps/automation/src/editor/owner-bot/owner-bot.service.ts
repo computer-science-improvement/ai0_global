@@ -1,9 +1,9 @@
 import type { Pool } from 'pg';
-import type { InboxItemInput } from '../agents/owner-inbox';
+import type { InboxCardOptions, InboxCardRetargeted, InboxItemInput } from '../agents/owner-inbox';
 import { pollState, type OwnerCallback, type OwnerCommand, type OwnerBotHandler } from '../../publishers/owner-bot-bus';
 import { BotApiError, type BotApi, type Keyboard } from './bot-api';
 import { OWN_CARD_REF_TYPES, inboxItem, type CardSource, type WaitingItem } from './card-sources';
-import type { CardButton, OwnerCard, OwnerCardsRepository } from './owner-cards.repository';
+import type { CardButton, NewCard, OwnerCard, OwnerCardsRepository } from './owner-cards.repository';
 import { cardText, errorText, esc, plural } from './owner-text';
 
 /**
@@ -15,6 +15,8 @@ import { cardText, errorText, esc, plural } from './owner-text';
 export const SINCE_KEY = 'owner_bot.cards_since';
 const HOUR = 3_600_000;
 export const WAITING_BATCH = 10;
+/** Spec 069 FR-004: a card older than this is not edited in place; the new note gets a new message. */
+export const EDIT_IN_PLACE_MS = 24 * HOUR;
 
 export interface OwnerBotDeps {
   pool:    Pick<Pool, 'query'>;
@@ -255,15 +257,52 @@ export class OwnerBotService implements OwnerBotHandler {
    * info note waits for the daily summary and a note about a directive or a playbook is covered by that item's card.
    * A critical card goes out at once.
    */
-  async inboxNote(id: number, i: InboxItemInput): Promise<boolean> {
+  async inboxNote(id: number, i: InboxItemInput, o: InboxCardOptions = {}): Promise<boolean | InboxCardRetargeted> {
     if (!this.active()) return false;
     const severity = i.severity ?? 'info';
     if (severity === 'info') return true;
     if (i.refType && OWN_CARD_REF_TYPES.includes(i.refType)) return true;
     const words = i.alert ?? { title: i.title, body: i.body ?? null };
-    const card = await this.d.repo.insert(this.newCard('inbox', inboxItem(id, { title: words.title, body: words.body ?? null, severity, actions: i.actions }, this.now())));
+    const item = this.newCard('inbox', inboxItem(id, { title: words.title, body: words.body ?? null, severity, actions: i.actions }, this.now()));
+    // Spec 069 FR-004: a note that answers an older one of the same problem edits that card's message in place — unless it is
+    // critical (a new message that rings) or the old card is a day old.
+    if (severity !== 'critical' && o.replaces?.length) {
+      const edited = await this.retarget(o.replaces, item);
+      if (edited != null) return { retargeted: edited };
+    }
+    const card = await this.d.repo.insert(item);
     if (card?.critical) void this.serial(() => this.send(card)).catch(() => undefined);
     return true;
+  }
+
+  /**
+   * Points the open, sent, under-a-day-old card of one of the replaced notes at the new one and edits its message (the
+   * `oc:<card>:<button>` callbacks stay valid). Returns the replaced note's id, or null when no card could be reused (a
+   * new card is made instead). The message gone: the card goes back to the queue and is sent again as a new message.
+   */
+  private async retarget(replaces: number[], item: NewCard): Promise<number | null> {
+    return this.serial(async () => {
+      const at = (c: OwnerCard) => (c.sentAt ?? c.createdAt).getTime();
+      const card = (await this.d.repo.byRefs('inbox', replaces.map(String)))
+        .filter((c) => c.status === 'open' && c.messageId != null && !!c.chatId && this.now().getTime() - at(c) < EDIT_IN_PLACE_MS)
+        .sort((a, b) => at(b) - at(a))[0];
+      if (!card) return null;
+      const replaced = Number(card.refId);
+      const moved = await this.d.repo.retarget(card.id, item.refId, { title: item.title, body: item.body ?? null, buttons: item.buttons, link: item.link ?? null });
+      if (!moved) return null;
+      try {
+        await this.d.api!.edit(moved.chatId!, moved.messageId!, this.text(moved), cardKeyboard(moved));
+      } catch (err: any) {
+        if (err instanceof BotApiError && err.notModified) return replaced;
+        if (err instanceof BotApiError && err.gone) {
+          await this.d.repo.resolve(moved.id, 'closed', 'Повідомлення видалено', null);
+          if (await this.d.repo.requeue(moved.id)) await this.deliver(this.now());
+          return replaced;
+        }
+        this.log(`owner bot: card ${moved.id} not edited in place: ${errorText(err)}`);
+      }
+      return replaced;
+    });
   }
 
   /**

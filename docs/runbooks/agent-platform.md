@@ -549,6 +549,22 @@ Each action is logged on the card (the outcome line) and on the Inbox note (an "
 - Mute does not stop the reminders: the mute lasts 7 days; after that the next health check sends them again.
 - Tests: `series-pause/series-pause.060.test.ts` and `.pg.test.ts` (counter, breaker, planner view), `note-actions.060.test.ts` and `pause-actions.060.pg.test.ts` (card buttons, actions, endpoint, mute), `agents/note-gate.060.test.ts` and `owner-notes.060.pg.test.ts` (repeat rule, merge, supersede), `manager/manager-060.test.ts`.
 
+**Less noise from owner notes (spec 069)**
+
+Spec 060 made a note say it once; spec 069 closes the three ways it still came back. Nothing to enable, no migration, no new setting.
+
+- **A cause or number you have seen is not news.** The gate compares a note with everything its subject said inside the repeat window (`OWNER_NOTE_REPEAT_DAYS`), not with the last note: `8 → 6 → 8` and `critic → lint → critic` stay quiet. A number is news only when it grew by a whole step over the largest one said in the window; the step is `EDITOR_CRITIC_REJECT_STREAK` (default 3), a gate may set its own (the manager's «days» uses 3). Everything else is a repeat and comes once per window as «досі … N днів».
+- **One live card per problem, edited in place.** A newer note of the same subject does not send a second message: the open card's Telegram message is edited to the new text (same message, same buttons, `oc:<card>:<button>` taps keep working). A new message is sent instead when the new note is critical, when the old card was sent more than 24 hours ago or never sent, or when Telegram no longer has the message (the card goes back to the queue and is sent again). The old note is marked read as before.
+- **A past day is told once.** A `series_missed` for a day that is over and was already reported is not evaluated again (the 48-hour window used to give it a new set of parts every night). A miss found late, for a day not yet told, still goes out, on its own: it does not replace or edit the notes of the days after it.
+- **Third time in a row, nobody pressing anything: info.** From the third note of an unbroken run (notes at most `OWNER_NOTE_REPEAT_DAYS + 1` days apart) the note is stored as `info`: it stays in the Inbox, but it has no card and no Telegram message. It is never done to a critical note, and not when a card of the run was resolved from Telegram (a button you pressed). The **daily summary** then has a block «Повторюється без вашої реакції» with one line per such problem: what, since when, how many times. Press a button on the problem's card, or fix it, and it rings again from the next note.
+- **«Announced event got no recap»** no longer stays open: when a recap comes out, or the 48-hour alert grace runs out, the note is marked read and its card closes.
+
+**Troubleshooting (spec 069)**
+
+- A problem you expected a card for did not ring: look for it in the daily summary block above, or in the Inbox as an info note («still going, N days»). It is the third or later note of a run with no reaction from Telegram.
+- A card changed its text and did not move to the bottom of the chat: that is the edit in place. Telegram shows the edited message where it was.
+- Tests: `agents/note-gate.069.test.ts`, `agents/owner-inbox.069.test.ts`, `owner-bot/owner-bot.069.test.ts`, `owner-bot/owner-bot.069.pg.test.ts` (retarget, real runs), `owner-bot/owner-reports.069.test.ts`, `silent/silent-days.069.test.ts`, `story/story-event.test.ts`; `agents/note-gate.060.test.ts` and `owner-notes.060.pg.test.ts` were updated on purpose (a streak of 4 after 3 is no longer news).
+
 ## 20. Slot pre-flight and sources (spec 061)
 
 Code checks what code can know before the executor is paid to discover it, and the sources stop wasting calls. Apply migration `094` before deploying the code that reads it (the content ledger `anchor` column and `content_ledger_record_anchored`, `source_host_failures.strikes` and `noted_at`).

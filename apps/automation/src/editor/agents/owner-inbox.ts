@@ -1,5 +1,5 @@
 import type { Pool } from 'pg';
-import { decideNote, noteRepeatDays, partsKey, stillWording, type NoteGate } from './note-gate';
+import { DEMOTE_AFTER, decideNote, noteGrowStep, noteRepeatDays, partsKey, stillWording, type NoteGate } from './note-gate';
 import type { NoteAction } from '../series-pause/note-actions';
 
 export type InboxSeverity = 'info' | 'action' | 'critical';
@@ -56,7 +56,14 @@ export interface InboxItem extends Required<Omit<InboxItemInput, 'agentId' | 'al
  * critical or action note becomes a card, an info note waits for the daily summary). The sink returns true when it
  * took the note; false (or a throw) falls back to the alert. Module-level, as every OwnerInbox shares the one bot.
  */
-export type InboxCardSink = (id: number, i: InboxItemInput) => Promise<boolean>;
+export type InboxCardSink = (id: number, i: InboxItemInput, o?: InboxCardOptions) => Promise<boolean | InboxCardRetargeted>;
+/**
+ * Spec 069 FR-004 / A9: `replaces` are the unread notes of the same subject this one superseded. The sink may edit the
+ * open card of ONE of them in place instead of sending a new message; it then answers `{ retargeted: <that note's id> }`
+ * and the inbox closes the cards of the other ids only.
+ */
+export interface InboxCardOptions { replaces?: number[] }
+export interface InboxCardRetargeted { retargeted: number }
 let cardSink: InboxCardSink | null = null;
 export function setInboxCardSink(sink: InboxCardSink | null): void { cardSink = sink; }
 
@@ -87,8 +94,7 @@ export class OwnerInbox {
         [i.agentId ?? null, i.kind, i.title.slice(0, 300), i.body ?? null, i.refType ?? null, i.refId ?? null, i.severity ?? 'info']);
     const id = Number(rows[0].id);
     await this.storeActions(id, i);
-    if (i.gate) await this.supersede(id, i.gate.subject);
-    await this.deliver(id, i);
+    await this.deliver(id, i, await this.answered(id, i));
     return id;
   }
 
@@ -98,16 +104,28 @@ export class OwnerInbox {
    */
   async postOnce(i0: InboxItemInput & { refType: string; refId: string }): Promise<number | null> {
     let i = i0;
-    if (i.gate) {
-      // Spec 060 FR-003: a gated note fires again only on a new cause or number, or as "still" after OWNER_NOTE_REPEAT_DAYS.
-      const d = decideNote(await this.past(i.gate.subject), i.gate.parts, new Date(), noteRepeatDays());
+    let demoted = false;
+    const gate = i.gate;
+    if (gate) {
+      // Spec 060 FR-003 / 069 FR-004: a gated note fires again only on a new cause or a number that grew by a whole step
+      // (against everything the subject said in the window), or as "still" after OWNER_NOTE_REPEAT_DAYS.
+      const now = new Date();
+      const repeatDays = noteRepeatDays();
+      const d = decideNote(await this.past(gate.subject), gate.parts, now, repeatDays, { step: noteGrowStep(), grow: gate.grow });
       if (!d.fire) return null;
       if (d.why === 'repeat') {
         const w = stillWording(i.title, i.alert?.title, d.stillDays);
         i = { ...i, title: w.title, alert: i.alert && w.alertTitle ? { ...i.alert, title: w.alertTitle } : i.alert };
       }
+      // Spec 069 FR-004 / A10: the third note of a run with no reaction from the owner is posted as info (the daily summary
+      // lists it); a critical note is never demoted.
+      const severity = i.severity ?? 'info';
+      if (d.runLength >= DEMOTE_AFTER && (severity === 'action') && !(await this.ownerActed(gate.subject, d.runSince))) {
+        i = { ...i, severity: 'info' };
+        demoted = true;
+      }
       // The same cause and number cannot be stored twice on a day; a changed one can.
-      i = { ...i, refId: `${i.refId}#${partsKey(i.gate!.parts)}` };
+      i = { ...i, refId: `${i.refId}#${partsKey(gate.parts)}` };
     }
     let rows: any[];
     try {
@@ -131,9 +149,30 @@ export class OwnerInbox {
     if (!rows.length) return null;
     const id = Number(rows[0].id);
     await this.storeActions(id, i);
-    if (i.gate) await this.supersede(id, i.gate.subject);
-    await this.deliver(id, i);
+    await this.deliver(id, i, await this.answered(id, i), demoted);
     return id;
+  }
+
+  /** The unread notes of the subject this one answers (marked read now); none for a note without a gate or a standalone one. */
+  private async answered(id: number, i: InboxItemInput): Promise<number[]> {
+    return i.gate && !i.gate.standalone ? this.supersedeIds(id, i.gate.subject) : [];
+  }
+
+  /**
+   * Spec 069 A10: whether the owner reacted to the subject's run of notes — a card of one of its notes was resolved from
+   * Telegram (`owner_cards.resolved_by LIKE 'telegram:%'`) since the run began. A failed lookup counts as a reaction: a
+   * note is never demoted on a guess.
+   */
+  private async ownerActed(subject: string, since: Date | null): Promise<boolean> {
+    try {
+      const { rows } = await this.pool.query(
+        `SELECT 1 FROM owner_cards c JOIN agent_inbox n ON c.kind = 'inbox' AND c.ref_id = n.id::text
+          WHERE n.subject = $1 AND n.created_at >= $2 AND c.resolved_by LIKE 'telegram:%' LIMIT 1`,
+        [subject, since ?? new Date(0)]);
+      return rows.length > 0;
+    } catch {
+      return true;
+    }
   }
 
   private async storeActions(id: number, i: InboxItemInput): Promise<void> {
@@ -150,22 +189,44 @@ export class OwnerInbox {
 
   /** Spec 060 FR-003: a newer note of the same subject answers the older unread ones (read) and closes their cards. */
   async supersede(newId: number, subject: string): Promise<number[]> {
-    const { rows } = await this.pool.query(
-      `UPDATE agent_inbox SET read_at = now() WHERE subject = $1 AND id <> $2 AND read_at IS NULL RETURNING id`, [subject, newId]);
-    const ids = rows.map((r: any) => Number(r.id));
-    if (ids.length && supersedeSink) {
-      try { await supersedeSink(ids); } catch { /* the sweep closes the cards at the latest */ }
-    }
+    const ids = await this.supersedeIds(newId, subject);
+    await this.closeCardsOf(ids);
     return ids;
   }
 
-  private async deliver(id: number, i: InboxItemInput): Promise<void> {
-    if (cardSink) {
-      try {
-        if (await cardSink(id, i)) return;
-      } catch { /* the plain alert below */ }
+  /** Marks the subject's older unread notes read and returns their ids; their cards are closed by `closeCardsOf`. */
+  private async supersedeIds(newId: number, subject: string): Promise<number[]> {
+    const { rows } = await this.pool.query(
+      `UPDATE agent_inbox SET read_at = now() WHERE subject = $1 AND id <> $2 AND read_at IS NULL RETURNING id`, [subject, newId]);
+    return rows.map((r: any) => Number(r.id));
+  }
+
+  private async closeCardsOf(ids: number[]): Promise<void> {
+    if (ids.length && supersedeSink) {
+      try { await supersedeSink(ids); } catch { /* the sweep closes the cards at the latest */ }
     }
-    await this.sendAlert(i);
+  }
+
+  /**
+   * Spec 069 A9: the card sink first (it may edit one open card in place), then the cards of the other superseded notes
+   * are closed. A demoted note (info) never falls back to the plain alert: the daily summary lists it.
+   */
+  private async deliver(id: number, i: InboxItemInput, replaces: number[] = [], demoted = false): Promise<void> {
+    let retargeted: number | null = null;
+    try {
+      if (cardSink) {
+        try {
+          const r = await cardSink(id, i, { replaces });
+          if (r) {
+            if (typeof r === 'object' && typeof r.retargeted === 'number') retargeted = r.retargeted;
+            return;
+          }
+        } catch { /* the plain alert below */ }
+      }
+      if (!demoted) await this.sendAlert(i);
+    } finally {
+      await this.closeCardsOf(replaces.filter((x) => x !== retargeted));
+    }
   }
 
   private async sendAlert(i: InboxItemInput): Promise<void> {

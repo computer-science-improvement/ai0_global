@@ -1,6 +1,8 @@
 import type { Pool } from 'pg';
 import type { BudgetStatus } from '../../spend/spend.service';
 import type { NetworkHealth, StuckKind } from '../health/network-health';
+import { noteRepeatDays } from '../agents/note-gate';
+import { repeatingSubjects, subjectLabelUk, type RepeatingSubject } from '../agents/note-runs';
 import { isNotAMiss, isOwnerDecision, skipGroupOf } from '../silent/skip-reasons';
 import type { Keyboard } from './bot-api';
 import type { OwnerCardsRepository } from './owner-cards.repository';
@@ -268,6 +270,13 @@ function keyboard(env: ReportDeps['env']): Keyboard {
 
 const ddmm = (date: string) => `${date.slice(8, 10)}.${date.slice(5, 7)}`;
 
+/** Spec 069 FR-004: one line per subject that repeats without a reaction: what, since when, how many times (at most 8). */
+export function repeatingLines(subjects: RepeatingSubject[]): string[] {
+  const shown = subjects.slice(0, 8).map((r) =>
+    `🔁 ${esc(subjectLabelUk(r.subject, r.title))} — з ${ddmm(kyivDate(r.since))}, ${r.count} ${plural(r.count, 'раз', 'рази', 'разів')}`);
+  return subjects.length > 8 ? [...shown, `… і ще ${subjects.length - 8}`] : shown;
+}
+
 export class OwnerReports {
   private readonly attempts = new Map<string, number>();
 
@@ -287,12 +296,14 @@ export class OwnerReports {
   async daily(): Promise<{ text: string; keyboard: Keyboard }> {
     const now = this.now();
     const { from, to } = await this.dayBounds(now);
-    const [channels, budgets, health, waiting, last] = await Promise.all([
+    const [channels, budgets, health, waiting, last, repeating] = await Promise.all([
       channelLines(this.d.pool, from, to),
       this.d.budgets().catch(() => ({ rows: [] as BudgetStatus[] })),
       this.d.health().catch(() => null),
       this.d.waiting().catch(() => [] as WaitingCount[]),
       this.d.repo.lastReports().catch(() => ({ daily: null, weekly: null })),
+      // Spec 069 FR-004: what keeps coming back and was posted as info (no card) because the owner did not react.
+      repeatingSubjects(this.d.pool, now, noteRepeatDays(this.d.env)).catch(() => [] as RepeatingSubject[]),
     ]);
     const since = last.daily && last.daily > from ? last.daily : from;
     const { rows } = await this.d.pool.query(
@@ -306,6 +317,7 @@ export class OwnerReports {
     lines.push('<b>Чекає на вас</b>');
     lines.push(...(waiting.length ? waiting.map((w) => `${w.emoji} ${esc(w.label)}: ${w.n}`) : ['Нічого ✓']));
     if (info) lines.push(`ℹ️ ${info} ${plural(info, 'нове інфо-сповіщення', 'нові інфо-сповіщення', 'нових інфо-сповіщень')} в Inbox`);
+    if (repeating.length) lines.push('', '<b>Повторюється без вашої реакції</b>', ...repeatingLines(repeating));
     lines.push('', "<b>Здоров'я</b>", ...healthLines(health));
     return { text: lines.join('\n'), keyboard: keyboard(this.d.env) };
   }
