@@ -4,7 +4,7 @@ import { skipGroupOf } from '../silent/skip-reasons';
  * Spec 061 FR-003: what happens to a pool idea once none of its slots is pending. `used` only when a slot of the idea went
  * out; a skip returns the idea to the pool or closes it, by what stopped the slot:
  *   infra, budget, preflight_format_unavailable, series_paused, a cap or a quiet hour  → back to `accepted` (may be planned again);
- *   no material, source unreachable or spent (preflight_*, no_fresh_item, host_blocked)  → `rejected`, the reason in `review`;
+ *   no material, source unreachable or spent (preflight_*, no_fresh_item, host_blocked, a skip_slot with a material cause)  → `rejected`, the reason in `review`;
  *   critic and every content failure (lint, similarity)  → `used`, unchanged (rejectSoleSourceIdeas handles a dead source).
  */
 
@@ -23,7 +23,8 @@ const BACK_TO_POOL = [
   /^(retry after|too_late|outage|llm_|infra)/,
 ];
 const NO_MATERIAL = [
-  /^preflight_(source_used|stale|host_blocked)\b/,
+  /^preflight_(source_used|stale|host_blocked|no_material)\b/,
+  /^planner_(no_material|source_unreachable)\b/,                       // spec 068
   /^no_fresh_item\b/,
   /^source_not_published\b/,
   /^(host_blocked|host_unreachable)\b/,

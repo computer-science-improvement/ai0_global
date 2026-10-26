@@ -12,6 +12,7 @@ export type SkipGroup = typeof SKIP_GROUPS[number];
 export const CONTENT_FAILURE_CODES = [
   'lint_failed', 'too_similar', 'too_verbatim', 'source_already_posted', 'library_item_already_posted', 'already_posted',
   'quiz_answer_mismatch', 'library_ref_not_found', 'series_source_mismatch', 'live_source_missing',
+  'not_next_in_order',                                  // spec 071 guard (a dataset row out of its round order): a content failure, the ladder retries
 ] as const;
 const CONTENT = new Set<string>(CONTENT_FAILURE_CODES);
 export const isContentFailureCode = (code: string | null | undefined): boolean => !!code && CONTENT.has(code);
@@ -24,7 +25,7 @@ const OWNER = [/^rejected by owner/, /^resource_paused/, /^agent @.* is paused/,
 const RULES: Array<[SkipGroup, RegExp]> = [
   ['critic', /^critic_(rejected|failed)\b/],
   ['budget', /^(budget_exceeded|budget\b)/],
-  ['lint', /^(lint_failed|guard_failed|too_similar|too_verbatim|source_already_posted|library_item_already_posted|already_posted|quiz_answer_mismatch|series_source_mismatch|live_source_missing)\b/],
+  ['lint', /^(lint_failed|guard_failed|too_similar|too_verbatim|source_already_posted|library_item_already_posted|already_posted|quiz_answer_mismatch|series_source_mismatch|live_source_missing|not_next_in_order)\b/],
   ['cap', /^(daily_cap_reached|poll_cap_reached|min_gap|quiet_hours|blackout_window)\b/],
   ['nothing_fresh', /^(no_fresh_item\b|series ".*": required source .* has nothing left|source_not_published\b)/],
 ];
@@ -49,6 +50,9 @@ export function skipGroupOf(error: string | null | undefined, criticVerdict?: st
   const e = (error ?? '').trim();
   for (const [g, r] of RULES) if (r.test(e)) return g;
   if (/^skipped by agent\b/.test(e) && (criticVerdict === 'revise' || criticVerdict === 'reject')) return 'critic';
+  // Spec 068 FR-002: the cause an executor names in skip_slot. The material causes are "nothing to write from"; quality and other stay `other`.
+  const cause = agentCauseOf(e);
+  if (cause === 'no_material' || cause === 'source_used' || cause === 'source_unreachable') return 'nothing_fresh';
   // A run that hit a publish guard in its last step and ran out of steps / retries keeps the code after the status.
   if (/^(max_steps|no_terminal|error)\b.*\b(lint_failed|too_similar|too_verbatim)\b/.test(e)) return 'lint';
   return 'other';
@@ -72,15 +76,38 @@ export function addSkip(c: SkipCounts, g: SkipGroup): SkipCounts {
 // source's host refusing us (nothing_fresh in the digest, `source_unreachable` as a cause); a missing format is `other` here
 // and `infra` as a cause (spec 060 classes).
 RULES.push(
-  ['nothing_fresh', /^preflight_(source_used|stale|host_blocked)\b/],
+  ['nothing_fresh', /^preflight_(source_used|stale|host_blocked|no_material)\b/],
   ['other', /^preflight_format_unavailable\b/],
+  // Spec 068: the planner's honest empty day (a placeholder slot) and the pre-flight's missing / unpostable library row.
+  ['nothing_fresh', /^planner_(no_material|source_unreachable)\b/],
 );
 
 /** The 060 cause class of a pre-flight skip (null for any other error). */
 export function preflightCauseOf(error: string | null | undefined): 'no_material' | 'source_unreachable' | 'infra' | null {
   const e = (error ?? '').trim();
-  if (/^preflight_(source_used|stale)\b/.test(e)) return 'no_material';
+  if (/^preflight_(source_used|stale|no_material)\b/.test(e)) return 'no_material';
   if (/^preflight_host_blocked\b/.test(e)) return 'source_unreachable';
   if (/^preflight_format_unavailable\b/.test(e)) return 'infra';
   return null;
+}
+
+// ── Spec 068 FR-001: skip_slot names its cause ───────────────────────────────
+/** Why an executor skipped its own slot (`skip_slot.cause`); the first three feed the dead-series breaker (spec 060). */
+export const SKIP_SLOT_CAUSES = ['no_material', 'source_unreachable', 'source_used', 'quality', 'other'] as const;
+export type SkipSlotCause = typeof SKIP_SLOT_CAUSES[number];
+
+/**
+ * The slot error of a `skip_slot` call (shared with the preview dry run). The `skipped by agent:` prefix stays: the critic skip
+ * detection, the fallback ladder, the landing pulse and the dashboard read it. A `code` keeps the old `<code>: <reason>` form
+ * (`no_fresh_item` counts as no_material, `story_skip` as other); a call with neither is the legacy free text.
+ */
+export function skipSlotError(reason: string, cause: SkipSlotCause | undefined, code?: string | null): string {
+  if (code) return `${code}: ${reason}`;
+  return cause ? `skipped by agent: ${cause}: ${reason}` : `skipped by agent: ${reason}`;
+}
+
+/** The cause an executor named in `skipped by agent: <cause>: <reason>` (null for older rows and other errors). */
+export function agentCauseOf(error: string | null | undefined): SkipSlotCause | null {
+  const m = /^skipped by agent:\s*(no_material|source_unreachable|source_used|quality|other):/.exec((error ?? '').trim());
+  return m ? (m[1] as SkipSlotCause) : null;
 }

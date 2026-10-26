@@ -35,6 +35,13 @@ test('skip reasons: no_fresh_item, critic reject / failure, replaced, owner, age
   assert.equal(skipReason('superseded by a new plan')!.code, 'superseded');
   assert.equal(skipReason('skipped by owner: duplicate')!.detail, 'duplicate');
   assert.equal(skipReason('skipped by agent: no verified source')!.code, 'agent');
+  // Spec 068: the cause the agent named, and the planner's / pre-flight's own codes.
+  assert.deepEqual(skipReason('skipped by agent: no_material: row data://prompts/7 has no prompt_text'),
+    { code: 'agent', label: 'Skipped by the agent — no material', detail: 'row data://prompts/7 has no prompt_text' });
+  assert.equal(skipReason('skipped by agent: source_unreachable: 403')!.label, 'Skipped by the agent — source unreachable');
+  assert.deepEqual(skipReason('planner_no_material: the library has no unposted rows'),
+    { code: 'planner_empty', label: 'Declared empty by the planner', detail: 'the library has no unposted rows' });
+  assert.equal(skipReason('preflight_no_material: row not found')!.code, 'preflight_no_material');
   // Spec 049 FR-002: a slot skipped because its resource's connection is broken.
   assert.deepEqual(skipReason('resource_unavailable: token_invalid — token expired on 2026-08-17'),
     { code: 'unavailable', label: 'Connection broken', detail: 'token_invalid — token expired on 2026-08-17' });

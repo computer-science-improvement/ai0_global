@@ -55,7 +55,8 @@ export interface SeriesBreakerDeps {
 
 /**
  * Spec 060 FR-001: the dead-series breaker. From the scheduler's tick (code only, no LLM): counts the consecutive
- * same-cause skips of every series over the closed slots, pauses a series that reached SERIES_SKIP_STREAK (one open
+ * skips of every series that have nothing to post from (spec 068 FR-003: no material, source used or unreachable, one
+ * family; critic closes are transparent) over the closed slots, pauses a series that reached SERIES_SKIP_STREAK (one open
  * pause per series, one Inbox note), and skips the planned slots of every paused series with `series_paused` ($0).
  * A critic streak is not paused: it keeps the critic_reject_streak note.
  */

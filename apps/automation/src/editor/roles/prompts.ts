@@ -252,7 +252,8 @@ export function executorUserPrompt(
       ? 'Режим апруву: пишеш заздалегідь. publish_post нічого не надсилає — пост чекатиме схвалення власника, і код опублікує його в час слота.'
       : '',
     o.alreadyUsed ?? '',
-    'Підготуй пост і опублікуй його через publish_post (він сам перевіряє lint і повертає errors) або пропусти через skip_slot з причиною.',
+    // Spec 068 FR-001: the dead-series breaker counts the cause, so the executor names it (skip_slot fails validation without it).
+    'Підготуй пост і опублікуй його через publish_post (він сам перевіряє lint і повертає errors) або пропусти через skip_slot з причиною і cause: no_material (матеріалу немає, напр. «рядок без prompt_text»), source_used (джерело вже використано), source_unreachable (джерело не читається, напр. «403»), quality (матеріал слабкий або неперевірений), other (все інше).',
   ].filter(Boolean).join('\n');
 }
 

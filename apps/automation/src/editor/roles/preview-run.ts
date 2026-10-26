@@ -1,6 +1,7 @@
 import type { ToolContext, EditorTool } from '../harness/tool';
 import type { SlotResultPatch } from '../repo/editor-plans.repository';
 import type { StoredCritic } from '../critic/critic';
+import { skipSlotError } from '../silent/skip-reasons';
 
 /**
  * Spec 034 FR-012: the owner's on-demand Preview of a fixed planned slot — the
@@ -83,7 +84,7 @@ export class PreviewSink {
     return tools.filter((t) => t.kind !== 'act').map((t) => t.name !== 'skip_slot' ? t : {
       ...t,
       execute: async (input: any) => {
-        this.skipped = input?.code ? `${input.code}: ${input.reason}` : `skipped by agent: ${input?.reason ?? ''}`;
+        this.skipped = skipSlotError(input?.reason ?? '', input?.cause, input?.code);
         return { ok: true, skipped: true, dry: true };
       },
     });

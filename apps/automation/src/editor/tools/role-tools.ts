@@ -31,6 +31,7 @@ import { NO_FRESH_ITEM } from '../live/live-slot';
 import { storyGuard, type StoryGuardResult } from '../story/story-guard';
 import type { StoryRegistry } from '../story/story.repository';
 import { dryRunOf } from '../roles/preview-run';
+import { SKIP_SLOT_CAUSES, skipSlotError } from '../silent/skip-reasons';
 import { anchorOf, isReusableHost, sourceRefOf, sourceUsedDetails } from '../../data/ledger-anchor';
 import type { LedgerVerdict } from '../../data/content-ledger';
 import { recentAuditPosts } from '../post/variety/recent-posts';
@@ -391,13 +392,22 @@ export function buildRoleTools(d: RoleToolDeps): EditorTool[] {
     kind: 'terminal', roles: ['executor'],
     input: z.object({
       reason: z.string().min(5).max(500),
+      // Spec 068 FR-001: why the slot is skipped. The dead-series breaker (spec 060) counts the first three; required unless `code` says it.
+      cause:  z.enum(SKIP_SLOT_CAUSES).optional().describe(
+        'ОБОВʼЯЗКОВО (крім виклику з code): чому слот пропущено. '
+        + 'no_material — матеріалу немає (бібліотека порожня, у рядка немає потрібних полів, свіжого нема), напр. «рядок data://prompts/7 без prompt_text»; '
+        + 'source_used — джерело або рядок уже публікували, напр. «Це джерело вже використано в каналі»; '
+        + 'source_unreachable — джерело не читається (403, таймаут, завелике), напр. «zakon.rada.gov.ua віддає 403»; '
+        + 'quality — матеріал є, але пост вийшов би слабким або неперевіреним, напр. «факти з джерела не підтверджуються»; '
+        + 'other — все інше, напр. «тема не пасує до слота».',
+      ),
       // Spec 034 FR-010: a live slot with nothing fresh in its source.
-      code:   z.enum([NO_FRESH_ITEM, STORY_SKIP]).optional().describe(`${NO_FRESH_ITEM} — у live-слоті немає свіжого неопублікованого матеріалу; ${STORY_SKIP} — історію вже розповів сусідній канал мережі (spec 037 T2)`),
-    }),
-    execute: async ({ reason, code }, ctx) => {
+      code:   z.enum([NO_FRESH_ITEM, STORY_SKIP]).optional().describe(`${NO_FRESH_ITEM} — у live-слоті немає свіжого неопублікованого матеріалу (рахується як no_material); ${STORY_SKIP} — історію вже розповів сусідній канал мережі (spec 037 T2; рахується як other)`),
+    }).refine((v) => !!v.cause || !!v.code, { message: 'вкажи cause: no_material | source_used | source_unreachable | quality | other', path: ['cause'] }),
+    execute: async ({ reason, cause, code }, ctx) => {
       const { slotId } = requireSlotCtx(ctx);
-      await d.plans.updateSlot(slotId, { status: 'skipped', error: code ? `${code}: ${reason}` : `skipped by agent: ${reason}` });
-      return { ok: true, skipped: true, ...(code ? { code } : {}) };
+      await d.plans.updateSlot(slotId, { status: 'skipped', error: skipSlotError(reason, cause, code) });
+      return { ok: true, skipped: true, ...(code ? { code } : {}), ...(cause ? { cause } : {}) };
     },
   });
 

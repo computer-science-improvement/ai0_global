@@ -3,6 +3,8 @@ import assert from 'node:assert/strict';
 import { buildRoleTools, RoleToolDeps } from './role-tools';
 import { makeCard, makeSpec } from '../post/testing/fixtures';
 import { CriticGate } from '../critic/critic-gate';
+import { skipGroupOf, skipSlotError } from '../silent/skip-reasons';
+import { toToolSpec } from '../harness/tool';
 
 const NOW = new Date('2026-10-01T09:00:00Z'); // 12:00 Kyiv
 
@@ -112,11 +114,34 @@ test('shadow mode skips live-only guards (cap/quiet/gap)', async () => {
   assert.equal(r.ok, true);
 });
 
-test('skip_slot marks skipped with reason', async () => {
+test('skip_slot marks skipped with reason and the cause it names (spec 068)', async () => {
   const { tools, updates } = deps();
-  await tools.skip_slot.execute({ reason: 'немає свіжих новин' }, ctx());
+  const r: any = await tools.skip_slot.execute({ reason: 'немає свіжих новин', cause: 'no_material' }, ctx());
   assert.equal(updates[0][1].status, 'skipped');
-  assert.match(updates[0][1].error, /немає свіжих/);
+  assert.equal(updates[0][1].error, 'skipped by agent: no_material: немає свіжих новин');
+  assert.equal(r.cause, 'no_material');
+  // The prefix stays: the critic-skip detection, the ladder, the landing pulse and the dashboard read it.
+  assert.ok(skipGroupOf(updates[0][1].error, 'revise') === 'critic');
+});
+
+test('skip_slot: cause is required unless a code says why; the code keeps its own form (spec 068)', () => {
+  const { tools } = deps();
+  const input = tools.skip_slot.input;
+  assert.equal(input.safeParse({ reason: 'немає свіжих новин' }).success, false, 'a call without cause or code fails validation');
+  assert.equal(input.safeParse({ reason: 'немає свіжих новин', cause: 'invented' }).success, false);
+  for (const cause of ['no_material', 'source_unreachable', 'source_used', 'quality', 'other']) assert.equal(input.safeParse({ reason: 'немає свіжих новин', cause }).success, true, cause);
+  assert.equal(input.safeParse({ reason: 'немає свіжих новин', code: 'no_fresh_item' }).success, true);
+  const json = JSON.stringify(toToolSpec(tools.skip_slot).parameters);
+  assert.match(json, /no_material/);
+  assert.match(json, /source_unreachable/);
+});
+
+test('skipSlotError: cause, code and the legacy form', () => {
+  assert.equal(skipSlotError('рядок без prompt_text', 'no_material'), 'skipped by agent: no_material: рядок без prompt_text');
+  assert.equal(skipSlotError('403 на джерелі', 'source_unreachable', undefined), 'skipped by agent: source_unreachable: 403 на джерелі');
+  assert.equal(skipSlotError('нічого свіжого', undefined, 'no_fresh_item'), 'no_fresh_item: нічого свіжого');
+  assert.equal(skipSlotError('нічого свіжого', 'no_material', 'story_skip'), 'story_skip: нічого свіжого', 'a code wins');
+  assert.equal(skipSlotError('нічого свіжого', undefined), 'skipped by agent: нічого свіжого');
 });
 
 test('submit_plan validates and creates', async () => {

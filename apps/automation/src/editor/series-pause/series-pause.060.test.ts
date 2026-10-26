@@ -74,8 +74,12 @@ test('streak: the trailing run of one cause; a post, another cause or an unclass
   assert.ok(!/^skipped by agent/.test(hit[0].reason), 'the prefix is dropped from the reason');
   // A post in between ends the run; the older skips do not count.
   assert.equal(run({ error: NO_TEXT }, { error: NO_TEXT }, { status: 'published' }, { error: NO_TEXT }, { error: NO_TEXT }).length, 0);
-  // Another cause ends it too.
-  assert.equal(run({ error: NO_TEXT }, { error: 'host_blocked: x' }, { error: NO_TEXT }, { error: NO_TEXT }).length, 0);
+  // Spec 068 FR-003: for a series the three material causes are one family (an unreadable source in between does not end the run) ...
+  const mixed = run({ error: NO_TEXT }, { error: 'host_blocked: x' }, { error: NO_TEXT }, { error: NO_TEXT });
+  assert.equal(mixed.length, 1);
+  assert.equal(mixed[0].n, 4);
+  assert.equal(mixed[0].cause, 'no_material');
+  // ... an unclassified skip (or a quality skip) still ends it.
   assert.equal(run({ error: NO_TEXT }, { error: NO_TEXT }, { error: 'lint_failed: x' }, { error: NO_TEXT }).length, 0);
   // Owner and budget skips are transparent: they neither count nor break.
   const t = run({ error: NO_TEXT }, { error: 'rejected by owner' }, { error: NO_TEXT }, { error: 'budget: cap' }, { error: NO_TEXT });
@@ -83,8 +87,12 @@ test('streak: the trailing run of one cause; a post, another cause or an unclass
   assert.equal(t[0].n, 3);
   // Only closed slots count: a planned slot after the run does not break it.
   assert.equal(run({ error: NO_TEXT }, { error: NO_TEXT }, { error: NO_TEXT }, { status: 'planned' }).length, 1);
-  // A critic streak is reported (the breaker leaves it to critic_reject_streak).
-  assert.equal(run({ error: 'critic_rejected: x' }, { error: 'critic_rejected: x' }, { error: 'critic_rejected: x' })[0].cause, 'critic');
+  // Spec 068 FR-003: critic closes are transparent — a critic streak is no hit (it keeps critic_reject_streak), and a critic close neither counts nor ends a run.
+  assert.equal(run({ error: 'critic_rejected: x' }, { error: 'critic_rejected: x' }, { error: 'critic_rejected: x' }).length, 0);
+  const withCritic = run({ error: NO_TEXT }, { error: 'critic_rejected: x' }, { error: NO_TEXT }, { error: 'critic_rejected: x' }, { error: NO_TEXT });
+  assert.equal(withCritic.length, 1);
+  assert.equal(withCritic[0].n, 3);
+  assert.deepEqual(withCritic[0].slotIds.length, 3);
 });
 
 test('streak: threshold 0 is off; other series and channels are counted apart; a resume starts a new count', () => {

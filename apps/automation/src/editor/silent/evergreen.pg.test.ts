@@ -169,7 +169,7 @@ test('dry run: a second evergreen in the same channel on the same day is not cre
 test('dry run: an evergreen topic repeated within 30 days is blocked by story_repeat', { skip }, async () => {
   const id = await slotAt(DAY3);
   const h = harness(
-    [publish(NEWS(5)), publish(NEWS(6)), publish(MATTER_AGAIN), { calls: [{ name: 'skip_slot', args: { reason: 'тема Matter уже була, іншої немає' } }] }],
+    [publish(NEWS(5)), publish(NEWS(6)), publish(MATTER_AGAIN), { calls: [{ name: 'skip_slot', args: { reason: 'тема Matter уже була, іншої немає', cause: 'other' } }] }],
     [rejectTurn, rejectTurn], new Date(DAY3.getTime() + 60_000));
   const card = (await new EditorChannelsRepository(pool).get(CH))!;
   await h.runner.runExecutor((await h.plans.getSlot(id))!, card);
@@ -182,7 +182,7 @@ test('dry run: an evergreen topic repeated within 30 days is blocked by story_re
   assert.match(slot.error ?? '', /^critic_rejected: reject/, 'the main post reason stays on the slot');
   const f = slot.fallback as SlotFallback;
   assert.deepEqual(f.steps.at(-1)?.step, 'evergreen');
-  assert.match(f.steps.at(-1)?.reason ?? '', /skipped by agent: тема Matter/);
+  assert.match(f.steps.at(-1)?.reason ?? '', /skipped by agent: other: тема Matter/);
   assert.deepEqual([f.final?.outcome, f.final?.step], ['skipped', 'evergreen']);
   const { rows } = await pool.query(`SELECT 1 FROM editor_story_posts WHERE slot_id = $1`, [id]);
   assert.equal(rows.length, 0, 'nothing registered');
