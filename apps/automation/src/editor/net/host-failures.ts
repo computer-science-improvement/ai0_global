@@ -12,6 +12,11 @@ import type { CardSource } from '../card';
  *
  * Spec 046 FR-009: a feed failure (not a feed, too large) marks that feed's address (`feedKey`), not the whole host — a
  * JSON API sent to fetch_feed used to block every feed of gamerpower.com for a day. An oversized feed is remembered too.
+ *
+ * Spec 070 FR-002: a feed is judged by itself. Its own refusal (`feed_refused`: 401 / 403 / 429 / 451) or absence
+ * (`feed_missing`: 400 / 404 / 410) is a flat day on the feed address and never touches the host's pages; a host-wide
+ * `refused` row (a page answered 403) does not stop fetch_feed. A connection reset (socket hang up, TLS cut off before the
+ * handshake) is tried once more after a second, then recorded as a `timeout`: an hour, no strike.
  */
 export const HOST_BLOCK_HOURS = 24;
 /** Block length by strike (spec 061 FR-004): the 3rd and every later strike is the cap. */
@@ -21,8 +26,11 @@ export const TIMEOUT_BLOCK_HOURS = 1;
 export const STRIKES_FOR_OWNER = 3;
 export const REFUSAL_STATUSES = new Set([401, 403, 451, 429]);
 
-/** `feed_*` reasons block fetch_feed only; the others block every page fetch of the host. */
-export type HostFailureReason = 'refused' | 'dns' | 'tls' | 'timeout' | 'feed_unparseable' | 'feed_too_large';
+/** `feed_*` reasons block fetch_feed only; the others block every page fetch of the host (and `refused` spares the host's feeds). */
+export type HostFailureReason = 'refused' | 'dns' | 'tls' | 'timeout' | 'feed_unparseable' | 'feed_too_large' | 'feed_refused' | 'feed_missing';
+/** A feed answers with one of these: it is the feed that refuses (`feed_refused`) or is gone (`feed_missing`). */
+export const FEED_REFUSED_STATUSES = new Set([401, 403, 429, 451]);
+export const FEED_MISSING_STATUSES = new Set([400, 404, 410]);
 
 export interface HostBlock {
   host:       string;
@@ -49,13 +57,14 @@ export const strikeHours = (strikes: number): number => STRIKE_BLOCK_HOURS[Math.
 /**
  * Spec 061 FR-004, pure: what a new failure does to the host's row. A refusal / DNS / TLS failure after the previous block
  * ended is the next strike (1 d, 3 d, 7 d); a failure inside a block is the same strike. A timeout blocks for an hour and
- * adds no strike, and never shortens a longer block. Feed failures stay a flat day on their own address.
+ * adds no strike, and never shortens a longer block. Feed failures (`feed_*`, spec 070) stay a flat day on their own
+ * address and leave the strikes alone: a dead feed reaches the owner through source health, not through strikes.
  */
 export function nextBlock(prev: PrevBlock | null, reason: HostFailureReason, now: Date): NextBlock {
   const at = (hours: number) => new Date(now.getTime() + hours * 3_600_000);
   const prevStrikes = prev?.strikes ?? 0;
   const active = !!prev && prev.blockedUntil.getTime() > now.getTime();
-  if (reason === 'feed_unparseable' || reason === 'feed_too_large') return { strikes: prevStrikes, until: at(HOST_BLOCK_HOURS), keep: false };
+  if (reason.startsWith('feed_')) return { strikes: prevStrikes, until: at(HOST_BLOCK_HOURS), keep: false };
   if (reason === 'timeout') {
     if (active && prev!.reason !== 'timeout' && prev!.blockedUntil.getTime() - now.getTime() > TIMEOUT_BLOCK_HOURS * 3_600_000) {
       return { strikes: prevStrikes, until: prev!.blockedUntil, keep: true };
@@ -77,12 +86,16 @@ export function hostOf(url: string): string | null {
   }
 }
 
-/** The key a feed failure is stored under: host + path (+ query), so one bad address blocks only itself. */
+/**
+ * The key a feed failure is stored under: host + path (+ query), so one bad address blocks only itself. A feed at the root of
+ * the site is `host/`: its key is never the host's own, so a `feed_*` write cannot replace the host's `refused` row (spec 070).
+ */
 export function feedKey(url: string): string | null {
   const host = hostOf(url);
   if (!host) return null;
   const u = new URL(url);
-  return `${host}${u.pathname.replace(/\/+$/, '')}${u.search}`;
+  const key = `${host}${u.pathname.replace(/\/+$/, '')}${u.search}`;
+  return key === host ? `${host}/` : key;
 }
 
 /** An axios / safe-http size-limit failure (the body is over the 2 MB cap). */
@@ -112,6 +125,38 @@ export function classifyTimeout(err: unknown): boolean {
   return /timeout|timed out/i.test(String(e?.message ?? ''));
 }
 
+/** Pause before the one retry of a connection reset; tests pass 0. */
+export const RESET_RETRY_MS = 1000;
+
+const TRANSIENT_CODES = new Set(['ECONNRESET', 'EPIPE', 'ECONNREFUSED', 'EHOSTUNREACH', 'ENETUNREACH', 'UND_ERR_SOCKET', 'UND_ERR_CLOSED']);
+
+/**
+ * Spec 070 FR-002: the connection was cut or refused (socket hang up, TLS dropped before the handshake, other side closed).
+ * Not a timeout (`classifyTimeout` stays as it is) and not DNS / TLS-certificate trouble. zakon.rada.gov.ua failed 13 of 31 fetches this way.
+ */
+export function classifyTransient(err: unknown): boolean {
+  const e = err as { code?: string; cause?: { code?: string }; message?: string } | null;
+  if (TRANSIENT_CODES.has(String(e?.code ?? e?.cause?.code ?? ''))) return true;
+  return /socket hang up|disconnected before secure TLS|other side closed/i.test(String(e?.message ?? ''));
+}
+
+/** Run a request; when the connection is reset, once more after `ms`. Any other error, and a second reset, are thrown. */
+export async function retryReset<T>(get: () => Promise<T>, ms: number = RESET_RETRY_MS): Promise<T> {
+  try {
+    return await get();
+  } catch (err) {
+    if (classifyFetchError(err) || classifyTimeout(err) || !classifyTransient(err)) throw err;
+    if (ms > 0) await new Promise<void>((r) => setTimeout(r, ms));
+    return get();
+  }
+}
+
+/** The answer when the connection was cut: its own words, and the hour of pause the host got. */
+export const resetFailure = (host: string): FetchFailure => ({
+  error: 'host_unreachable',
+  details: `${host}: сайт обірвав з'єднання; година паузи для цього сайту — візьми інше джерело, snippet зі стрічки або пропусти слот.`,
+});
+
 /** DNS and TLS failures of a request (by Node / axios error code); null for anything else (timeouts, resets …). */
 export function classifyFetchError(err: unknown): 'dns' | 'tls' | null {
   const e = err as { code?: string; cause?: { code?: string }; message?: string } | null;
@@ -128,6 +173,8 @@ const REASON_TEXT: Record<HostFailureReason, string> = {
   timeout:          'сайт не відповів вчасно',
   feed_unparseable: 'стрічка не читається як RSS/Atom',
   feed_too_large:   'стрічка більша за 2 МБ',
+  feed_refused:     'стрічка відмовляє в доступі',
+  feed_missing:     'стрічки за цією адресою немає',
 };
 
 /** The `host_blocked` answer: why, until when, and what to use instead. */
@@ -151,6 +198,8 @@ export class PgHostFailures implements HostFailures {
       const r = rows[0];
       if (!r) return null;
       if (String(r.reason).startsWith('feed_') && use !== 'feed') return null;
+      // Spec 070: a refusal of the host's pages (a 403 on an article) says nothing about its feed.
+      if (r.reason === 'refused' && use === 'feed') return null;
       return { host: r.host, reason: r.reason, statusCode: r.status_code ?? null, until: new Date(r.blocked_until) };
     } catch {
       return null; // never stops a fetch (e.g. before migration 079)
@@ -197,7 +246,7 @@ const NOT_FOUND = 'такої сторінки немає. URL бери лише
  * failure marks the host; a 404 says not to guess paths. Other errors are thrown as before (the loop records tool_failed).
  */
 export async function fetchPageGuarded<T extends { status: number }>(
-  url: string, hosts: HostFailures | undefined, cardSources: CardSource[] | undefined, get: () => Promise<T>,
+  url: string, hosts: HostFailures | undefined, cardSources: CardSource[] | undefined, get: () => Promise<T>, retryMs: number = RESET_RETRY_MS,
 ): Promise<T | FetchFailure> {
   const host = hostOf(url);
   if (host && hosts) {
@@ -206,7 +255,7 @@ export async function fetchPageGuarded<T extends { status: number }>(
   }
   let res: T;
   try {
-    res = await get();
+    res = await retryReset(get, retryMs);
   } catch (err) {
     const kind = classifyFetchError(err);
     if (kind && host) {
@@ -217,6 +266,11 @@ export async function fetchPageGuarded<T extends { status: number }>(
     if (!kind && host && classifyTimeout(err)) {
       await hosts?.record(host, 'timeout');
       return { error: 'host_unreachable', details: `${host}: ${REASON_TEXT.timeout}. Година паузи для цього сайту — візьми інше джерело, snippet зі стрічки або пропусти слот.` };
+    }
+    // Spec 070 FR-002: a reset that survived the retry is an hour's pause (recorded as a timeout), not an error every run repeats.
+    if (!kind && host && classifyTransient(err)) {
+      await hosts?.record(host, 'timeout');
+      return resetFailure(host);
     }
     throw err;
   }

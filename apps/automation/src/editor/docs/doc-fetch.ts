@@ -14,17 +14,35 @@ import { isBadgeImage, parseMarkdown } from './markdown-doc';
  * Spec 065 FR-001 / FR-002: web_fetch's body. The page is fetched once, kept whole in the DocStore, and answered either
  * as before (a short page: title, text, images) or, when it is large, as an outline plus a first chunk and a doc_id to
  * read the rest with. A GitHub repository or file page is fetched as the raw file; markdown is parsed as markdown.
+ *
+ * Spec 070 FR-003: when the refetch of an address fails because the site is down or turns the request away, the copy the
+ * store still keeps is answered instead (`stale`), with the time it was fetched.
  */
 export interface FetchDocDeps {
   docs:     DocStore;
   http?:    { lookup?: Lookup; get?: RawGet };
   hosts?:   HostFailures;
   sources?: CardSource[];
-  /** Fetch again even when the store holds the page (a re-sync wants the page as it is now). */
+  /** Fetch again even when the store holds the page (a re-sync wants the page as it is now). It never falls back to a stale copy. */
   fresh?:   boolean;
+  /** Pause before the one retry of a connection reset (default 1000 ms; tests pass 0). */
+  retryMs?: number;
 }
 
-export interface FetchedDoc { doc: StoredDoc; cached: boolean }
+/** `stale`: the site failed (`reason`) and `doc` is the copy kept from an earlier fetch. */
+export interface FetchedDoc { doc: StoredDoc; cached: boolean; stale?: { reason: string } }
+
+/**
+ * Why a failed fetch may be answered with the kept copy, or null: the site is blocked or unreachable, answers 5xx, or turns
+ * the request away (401 / 403 / 429 / 451). A page that is gone (404 / 410) or is not a document is not served from the past.
+ */
+function servableFailure(f: FetchFailure): string | null {
+  if (f.error === 'host_blocked' || f.error === 'host_unreachable') return f.error;
+  if (f.error !== 'http_error') return null;
+  const m = /^status (\d{3})/.exec(f.details);
+  const status = m ? Number(m[1]) : 0;
+  return status >= 500 || [401, 403, 429, 451].includes(status) ? `status ${status}` : null;
+}
 
 const isNotFound = (r: unknown): boolean => isFetchFailure(r) && /^status (404|410)/.test(r.details);
 
@@ -39,9 +57,19 @@ function isMarkdown(res: SafeGetResult, asked: string): boolean {
 }
 
 export async function fetchDocument(url: string, d: FetchDocDeps): Promise<FetchedDoc | FetchFailure> {
-  const hit = d.fresh ? null : d.docs.getByUrl(url);
+  const hit = d.fresh ? null : d.docs.fresh(url);
   if (hit) return { doc: hit, cached: true };
-  const get = (u: string) => fetchPageGuarded(u, d.hosts, d.sources, () => safeGet(u, { lookup: d.http?.lookup, get: d.http?.get }));
+  const kept = d.fresh ? null : d.docs.keptByUrl(url);
+  const r = await fetchLive(url, d);
+  if (kept && isFetchFailure(r)) {
+    const reason = servableFailure(r);
+    if (reason) return { doc: kept, cached: true, stale: { reason } };
+  }
+  return r;
+}
+
+async function fetchLive(url: string, d: FetchDocDeps): Promise<FetchedDoc | FetchFailure> {
+  const get = (u: string) => fetchPageGuarded(u, d.hosts, d.sources, () => safeGet(u, { lookup: d.http?.lookup, get: d.http?.get }), d.retryMs);
 
   // A GitHub repository / file page is its raw file; when no candidate exists the page itself is fetched as before.
   let res: SafeGetResult | FetchFailure | null = null;
@@ -103,8 +131,13 @@ export const isLargeDoc = (doc: StoredDoc): boolean =>
   doc.text.length > LARGE_DOC_CHARS || (doc.kind === 'markdown' && doc.sections.length > 1);
 
 /** What web_fetch answers for a stored document. A short page keeps the shape it always had. */
-export function webFetchAnswer(doc: StoredDoc, cached: boolean): Record<string, unknown> {
-  const cachedFlag = cached ? { cached: true } : {};
+export function webFetchAnswer(doc: StoredDoc, cached: boolean, stale?: { reason: string }): Record<string, unknown> {
+  const fetchedAt = new Date(doc.fetched_at).toISOString();
+  const cachedFlag = {
+    ...(cached ? { cached: true } : {}),
+    // Spec 070: the site failed and this is the copy from an earlier fetch; say so, with its time.
+    ...(stale ? { stale: true, fetched_at: fetchedAt, note: `копія від ${fetchedAt.slice(0, 16).replace('T', ' ')} UTC; сайт зараз недоступний` } : {}),
+  };
   const asJson = doc.kind === 'json' ? jsonAnswer(doc, cachedFlag) : null;
   if (asJson) return asJson;
   const where = { url: doc.kind === 'html' ? doc.final_url : doc.url, ...(doc.fetched_url ? { fetched_url: doc.fetched_url } : {}) };
@@ -128,8 +161,8 @@ export function webFetchAnswer(doc: StoredDoc, cached: boolean): Record<string, 
 }
 
 /** Spec 066 FR-003: one more page of a paged JSON API, fetched fresh through the host guard and not kept in the store. */
-export async function fetchJsonPage(url: string, d: Pick<FetchDocDeps, 'http' | 'hosts' | 'sources'>): Promise<{ url: string; value: unknown } | FetchFailure> {
-  const res = await fetchPageGuarded(url, d.hosts, d.sources, () => safeGet(url, { lookup: d.http?.lookup, get: d.http?.get }));
+export async function fetchJsonPage(url: string, d: Pick<FetchDocDeps, 'http' | 'hosts' | 'sources' | 'retryMs'>): Promise<{ url: string; value: unknown } | FetchFailure> {
+  const res = await fetchPageGuarded(url, d.hosts, d.sources, () => safeGet(url, { lookup: d.http?.lookup, get: d.http?.get }), d.retryMs);
   if (isFetchFailure(res)) return res;
   const value = parseJsonBody(res.body);
   if (value === null) return { error: 'unsupported_content', details: 'invalid JSON' };

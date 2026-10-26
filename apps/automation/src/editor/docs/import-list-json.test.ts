@@ -217,9 +217,15 @@ test('a failing page stops the run and keeps what was read; the note says where 
   assert.match(out.paging.failure!, /^status 429/);
   assert.equal(pagingNote(out.paging, { caps: CAPS }), 'прочитано 1 з 2 сторінок: status 429');
 
-  const boom = api({ ...PC, [promptschatPageUrl(2)]: () => { throw new Error('socket hang up'); } });
+  const boom = api({ ...PC, [promptschatPageUrl(2)]: () => { throw new Error('kaboom'); } });
   const o2 = await readPages(await firstDoc(PROMPTSCHAT_URL, boom.http), { http: boom.http }, { caps: CAPS, delayMs: 0, measure: count });
-  assert.deepEqual([o2.paging.stopped, o2.paging.failure], ['failed', 'socket hang up']);
+  assert.deepEqual([o2.paging.stopped, o2.paging.failure], ['failed', 'kaboom']);
+
+  // Spec 070: a connection reset is tried once more, then it is the host's hour of pause and the run says so in its own words.
+  const cut = api({ ...PC, [promptschatPageUrl(2)]: () => { throw Object.assign(new Error('socket hang up'), { code: 'ECONNRESET' }); } });
+  const o4 = await readPages(await firstDoc(PROMPTSCHAT_URL, cut.http), { http: cut.http, retryMs: 0 }, { caps: CAPS, delayMs: 0, measure: count });
+  assert.equal(o4.paging.stopped, 'failed');
+  assert.match(o4.paging.failure!, /^host_unreachable: prompts\.chat: сайт обірвав з'єднання/);
 
   const html = api({ ...PC, [promptschatPageUrl(2)]: { type: 'application/json', body: '<html>not json</html>' } });
   const o3 = await readPages(await firstDoc(PROMPTSCHAT_URL, html.http), { http: html.http }, { caps: CAPS, delayMs: 0, measure: count });

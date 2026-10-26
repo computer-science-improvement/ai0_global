@@ -93,17 +93,40 @@ test('read_doc pages through a range with next_from and finishes at null', async
   assert.equal(got, r.size_chars, 'every character was read exactly once');
 });
 
-test('an unknown or expired doc_id says what to fetch again', async () => {
+test('spec 070: a doc_id keeps working after the lifetime of the fetch cache (the kept copy is stale, not gone)', async () => {
   const url = 'https://a.example/big';
   let now = 0;
-  const { tools } = rig({ [url]: { body: longArticle(12) } }, new DocStore({ ttlHours: 6, now: () => now }));
+  const { tools, hits } = rig({ [url]: { body: longArticle(12) } }, new DocStore({ ttlHours: 6, now: () => now }));
   const r = await tools.web_fetch.execute({ url }, ctx);
   now += 7 * 3_600_000;
-  const gone = await tools.read_doc.execute({ doc_id: r.doc_id }, ctx);
-  assert.equal(gone.error, 'doc_expired');
-  assert.equal(gone.url, url);
-  assert.match(gone.details, /web_fetch\(https:\/\/a\.example\/big\)/);
+  const page = await tools.read_doc.execute({ doc_id: r.doc_id, section: 's3' }, ctx);
+  assert.equal(page.error, undefined);
+  assert.match(page.text, /Sentence of part 2/);
+  const found = await tools.find_in_doc.execute({ doc_id: r.doc_id, query: 'sentence of part 5' }, ctx);
+  assert.ok(found.total >= 1);
+  assert.equal(hits.length, 1, 'no refetch for reading');
+  const again = await tools.web_fetch.execute({ url }, ctx);
+  assert.equal(again.cached, undefined, 'a web_fetch past the lifetime fetches again');
+  assert.equal(hits.length, 2);
+});
+
+test('an unknown, evicted or too old doc_id says what to fetch again', async () => {
+  const url = 'https://a.example/big';
+  let now = 0;
+  const { tools } = rig({ [url]: { body: longArticle(12) }, 'https://a.example/other': { body: longArticle(2) } }, new DocStore({ ttlHours: 6, max: 1, now: () => now }));
+  const r = await tools.web_fetch.execute({ url }, ctx);
+  await tools.web_fetch.execute({ url: 'https://a.example/other' }, ctx);   // the least recently used goes
+  const evicted = await tools.read_doc.execute({ doc_id: r.doc_id }, ctx);
+  assert.equal(evicted.error, 'doc_expired');
+  assert.equal(evicted.url, url);
+  assert.match(evicted.details, /web_fetch\(https:\/\/a\.example\/big\)/);
   assert.equal((await tools.find_in_doc.execute({ doc_id: 'doc_nope', query: 'x1' }, ctx)).error, 'doc_expired');
+
+  const old = await tools.web_fetch.execute({ url }, ctx);
+  now += 169 * 3_600_000;
+  const gone = await tools.read_doc.execute({ doc_id: old.doc_id }, ctx);
+  assert.equal(gone.error, 'doc_expired', 'older than DOC_STALE_MAX_HOURS (168)');
+  assert.equal(gone.url, url);
 });
 
 test('find_in_doc finds a phrase case-insensitively, else words that sit together; it names the section', async () => {
