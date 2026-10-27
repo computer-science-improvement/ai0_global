@@ -209,13 +209,39 @@ test('the message is gone: the card is queued again and goes out as a new messag
   assert.equal(t.repo.cards[0].messageId, 102);
 });
 
-test('another failure of the edit leaves the card moved, logs it and still reports the note as handled', async () => {
+test('another failure of the edit puts the card back on the old note and makes a new card: the old keyboard can never run the new buttons', async () => {
   const t = setup();
   await sentCard(t);
+  const oldButtons = t.repo.cards[0].buttons;
+  const oldTitle = t.repo.cards[0].title;
   t.api.editError = new Error('socket hang up');
-  assert.deepEqual(await t.bot.inboxNote(2, action('Серія досі не виходить'), { replaces: [1] }), { retargeted: 1 });
-  assert.equal(t.api.sent.length, 1);
+  // No card was reused: the caller (OwnerInbox) closes the old card through supersedeCards and the new note gets a card of its own.
+  assert.equal(await t.bot.inboxNote(2, action('Серія досі не виходить'), { replaces: [1] }), true);
   assert.match(t.logs.join('\n'), /not edited in place/);
+  assert.equal(t.repo.cards.length, 2);
+  const [old, fresh] = t.repo.cards;
+  assert.equal(old.refId, '1', 'the old card is on its old note again');
+  assert.equal(old.title, oldTitle);
+  assert.deepEqual(old.buttons, oldButtons, 'the stored buttons are the ones the message still shows');
+  assert.equal(fresh.refId, '2');
+  assert.equal(fresh.status, 'queued');
+  assert.match(fresh.title, /Серія досі не виходить/);
+  // OwnerInbox then closes the superseded card: the keyboard goes and a late tap meets a closed card.
+  t.api.editError = null;
+  assert.equal(await t.bot.supersedeCards([1]), 1);
+  assert.equal(old.status, 'closed');
+});
+
+test('a failed edit with a different button layout never leaves the new buttons behind the old keyboard', async () => {
+  const t = setup();
+  await sentCard(t);
+  t.api.editError = new Error('429 Too Many Requests');
+  const two = action('Серія досі не виходить', { actions: [{ key: 'pause:A', label: 'Пауза: A' }, { key: 'pause:B', label: 'Пауза: B' }] });
+  await t.bot.inboxNote(2, two, { replaces: [1] });
+  const old = t.repo.cards.find((c) => c.refId === '1')!;
+  assert.deepEqual(old.buttons.map((b: CardButton) => b.key), ['read', 'open'], 'the old card keeps only the buttons its message shows');
+  const fresh = t.repo.cards.find((c) => c.refId === '2')!;
+  assert.deepEqual(fresh.buttons.map((b: CardButton) => b.key), ['pause:A', 'pause:B', 'read', 'open']);
 });
 
 test('when the new ref already has a card, nothing is retargeted and the caller falls back to the normal path', async () => {

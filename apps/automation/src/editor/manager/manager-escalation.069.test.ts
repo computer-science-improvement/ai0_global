@@ -7,10 +7,11 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { OwnerInbox } from '../agents/owner-inbox';
 import {
-  escalationKeys, escalationSubject, notFollowedNote, openEscalations, parseEscalationSubject, postsNote, postsRuns,
-  type DigestEscalation, type NotFollowedGroup, type PostsDay,
+  ESCALATION_ANSWERS_MAX, ESCALATION_POSTS_LOOKBACK_DAYS, escalationKeys, escalationSubject, notFollowedNote, openEscalations,
+  parseEscalationSubject, postsNote, postsRuns, type DigestEscalation, type NotFollowedGroup, type PostsDay,
 } from './escalation';
-import { buildDirectiveTools, checkEscalations } from './directive-tools';
+import { dayBefore } from './kpi-math';
+import { buildDirectiveTools, checkEscalations, SubmitReviewInput } from './directive-tools';
 import { countsAsCover, digestHash, digestView, reviewSignature, type KpiDigest } from './kpi-digest.service';
 import { DEFAULT_MANAGER_TIMES, ManagerRunner, managerSystemPrompt, openDirectivesText } from './manager-runner';
 
@@ -62,20 +63,43 @@ const C = '33333333-3333-4333-8333-333333333333';
 function setup(o: { groups?: NotFollowedGroup[]; days?: PostsDay[]; filed?: number } = {}) {
   const mem = memPool();
   const alerts: string[] = [];
-  const state = { groups: o.groups ?? [], days: o.days ?? [], filed: o.filed ?? 0, memory: [] as any[] };
+  const clock = { now: NOW };
+  const state = {
+    groups: o.groups ?? [], days: o.days ?? [], filed: o.filed ?? 0, memory: [] as any[],
+    /** The `fromDay` of every posts query and the `since` of every filedSince call. */
+    fromDays: [] as string[], filedSince: [] as Date[],
+  };
   const repo = {
     notFollowedGroups: async () => state.groups,
-    negativePostsDays: async () => state.days,
-    filedSince: async () => state.filed,
+    negativePostsDays: async (from: string) => { state.fromDays.push(from); return state.days.filter((d) => d.day >= from); },
+    filedSince: async (_agentId: string, since: Date) => { state.filedSince.push(since); return state.filed; },
     addMemory: async (...a: any[]) => { state.memory.push(a); },
+    /** The real one deactivates the system line of the subject; `state.memory` holds the active lines. */
+    retireEscalationMemory: async (_agentId: string, subject: string) => {
+      const before = state.memory.length;
+      state.memory = state.memory.filter((a) => a[3]?.escalation !== subject);
+      return before - state.memory.length;
+    },
+    /** The open definition over the in-memory table: the newest unread manager_escalation note per subject. */
+    openEscalations: async () => {
+      const newest = new Map<string, Row>();
+      for (const r of [...mem.rows].sort((a, b) => a.created_at.getTime() - b.created_at.getTime() || a.id - b.id)) {
+        if (r.kind === 'manager_escalation') newest.set(r.subject, r);
+      }
+      return [...newest.values()].filter((r) => !r.read_at).map((r) => {
+        const kind = parseEscalationSubject(r.subject)!.kind;
+        const days = r.parts.map((p) => /^days:(\d+)$/.exec(p)).find(Boolean);
+        return { subject: r.subject, directive_ids: kind === 'posts' ? [] : r.parts, days: days ? Number(days[1]) : null };
+      });
+    },
   };
   const runner = new ManagerRunner({
     loop: { run: async () => ({}) as any }, registry: { forRole: () => [] }, runtime: { forAgent: async () => ({}) as any },
     agents: { findTop: async () => ({ id: 'm1', handle: 'manager', mode: 'live' }) as any, get: async () => null, list: async () => [] } as any,
     repo: repo as any, digest: { build: async () => ({}) as any, render: () => '{}', snapshot: async () => 1 },
-    inbox: new OwnerInbox(mem.pool as any, async (t) => { alerts.push(t); }), env: () => undefined, now: () => NOW,
+    inbox: new OwnerInbox(mem.pool as any, async (t) => { alerts.push(t); }), env: () => undefined, now: () => clock.now,
   });
-  return { runner, mem, state, alerts };
+  return { runner, mem, state, alerts, clock };
 }
 
 // ── trigger 1 ──────────────────────────────────────────────────────────────
@@ -160,6 +184,74 @@ test('three negative days with no directive filed give one note; the run growing
   t.state.days = negative('2026-10-23', '2026-10-24', '2026-10-25', '2026-10-26', '2026-10-27', '2026-10-28');
   assert.equal(await t.runner.escalate(), 1, 'three more days: the problem is still there');
   assert.equal(t.mem.rows.length, 2);
+  assert.equal(t.state.memory.length, 1, 'one memory line per escalation: the new one replaced the old');
+  assert.match(t.state.memory[0][2], /нижча за норму 6 днів поспіль \(з 2026-10-23\)/);
+});
+
+test('a posts run longer than the old 10-day window keeps its true first day: it fires on the 3-day step, never once a day', async () => {
+  const START = '2026-10-12';
+  const t = setup();
+  const fired: Array<[string, number, string]> = [];
+  for (let d = 15; d <= 27; d++) {
+    const today = `2026-10-${d}`;
+    t.clock.now = new Date(`${today}T07:30:00Z`);
+    // Every day from START up to yesterday is a negative day; the repo honours the lookback it is asked for.
+    const upTo = d - 1;
+    t.state.days = negative(...Array.from({ length: upTo - 12 + 1 }, (_, i) => `2026-10-${12 + i}`));
+    const before = t.mem.rows.length;
+    await t.runner.escalate();
+    for (const r of t.mem.rows.slice(before)) fired.push([today, Number(r.parts.find((p) => p.startsWith('days:'))!.slice(5)), r.parts[0]]);
+  }
+  // The run is 3, 6, 9, 12 and 15 days long on those days: a note on each step of three, all with the same first day.
+  assert.deepEqual(fired.map((f) => f[1]), [3, 6, 9, 12, 15]);
+  assert.ok(fired.every((f) => f[2] === `posts_from:${START}`), 'posts_from is the real start of the run');
+  assert.equal(t.mem.rows.length, 5);
+  assert.equal(t.state.memory.length, 1, 'and one memory line');
+  // The snapshots are read far enough back for any run (the baseline ends one after ~35 days), not 10 days.
+  assert.ok(ESCALATION_POSTS_LOOKBACK_DAYS >= 35);
+  assert.equal(t.state.fromDays[0], dayBefore('2026-10-15', ESCALATION_POSTS_LOOKBACK_DAYS));
+});
+
+test('"no directive filed" is judged from the true first day of a long run, not from a truncated one', async () => {
+  const t = setup({ days: negative(...Array.from({ length: 14 }, (_, i) => `2026-10-${String(12 + i).padStart(2, '0')}`)) });
+  t.clock.now = new Date('2026-10-26T07:30:00Z');
+  await t.runner.escalate();
+  assert.equal(t.state.filedSince.length, 1);
+  // 2026-10-12 00:00 Kyiv (UTC+3 before 25.10) is 2026-10-11T21:00Z.
+  assert.equal(t.state.filedSince[0].toISOString(), '2026-10-11T21:00:00.000Z');
+});
+
+test('an unread escalation is not posted again as «still going» after the repeat window, and its memory line is not written again', async () => {
+  const t = setup({ groups: [group([A, B])] });
+  assert.equal(await t.runner.escalate(), 1);
+  // Four days on (past OWNER_NOTE_REPEAT_DAYS, inside the 14 days of an open escalation), nobody has read it.
+  t.mem.age(4);
+  t.clock.now = new Date(NOW.getTime() + 4 * DAY);
+  assert.equal(await t.runner.escalate(), 0, 'it is open and says the same thing: the manager answers it in its reviews');
+  assert.equal(t.mem.rows.length, 1);
+  assert.equal(t.state.memory.length, 1);
+  assert.equal(t.alerts.length, 1);
+
+  // Once it is read it is closed; a cause that still goes on is told again as «still going», and the memory line is replaced, not doubled.
+  t.mem.rows[0].read_at = new Date();
+  assert.equal(await t.runner.escalate(), 1);
+  assert.equal(t.mem.rows.length, 2);
+  assert.match(t.mem.rows[1].title, /still going, 4 days$/);
+  assert.equal(t.state.memory.length, 1, 'one line per subject');
+
+  // A changed cause (a third piece of advice nobody followed) goes through while the older one is open, and replaces its line.
+  t.state.groups = [group([A, B, C])];
+  assert.equal(await t.runner.escalate(), 1);
+  assert.equal(t.state.memory.length, 1);
+  assert.match(t.state.memory[0][2], /не виконав 3 поради voice_fix/);
+});
+
+test('memory lines of different subjects do not replace each other', async () => {
+  const t = setup({ groups: [group([A, B]), group([C, A], { agentId: 'a2', handle: 'ai_recipes', kind: 'format_mix' })] });
+  assert.equal(await t.runner.escalate(), 2);
+  t.state.groups = [group([A, B, C]), group([C, A], { agentId: 'a2', handle: 'ai_recipes', kind: 'format_mix' })];
+  assert.equal(await t.runner.escalate(), 1);
+  assert.equal(t.state.memory.length, 2);
 });
 
 test('a directive filed for the agent in that span stops trigger 2', async () => {
@@ -310,6 +402,29 @@ test('submit_review: refused while an escalation is open and unanswered, stored 
   // Without an open escalation nothing changes for the old shape of a review.
   const plain: any = await submit.execute(parse({}), { ...ctx, extras: { digest: { ...dg, escalations: undefined } } });
   assert.equal(plain.ok, true);
+});
+
+test('eleven open escalations can all be answered: submit_review takes as many answers as the digest can list', async () => {
+  const subjects = Array.from({ length: 11 }, (_, i) => `escalation:agent_${i}:posts`);
+  const list = subjects.map((subject, i) => esc({ subject, agent: `agent_${i}`, kind: 'posts', directive_ids: [], days: 3 }));
+  const answers = subjects.map((subject) => ({ subject, decline_reason: LONG }));
+  const parsed = SubmitReviewInput.safeParse({ verdict: 'continue', summary: 'Нічого міняти не треба', quality_check: [], escalations: answers });
+  assert.equal(parsed.success, true, 'eleven answers parse');
+  assert.equal(await checkEscalations(deps(), { escalations: list }, { directive_ids: [], escalations: answers }), null, 'and answer all eleven');
+  assert.equal((await checkEscalations(deps(), { escalations: list }, { directive_ids: [], escalations: answers.slice(0, 10) }))?.error, 'escalation_unaddressed');
+  const tooMany = Array.from({ length: ESCALATION_ANSWERS_MAX + 1 }, (_, i) => ({ subject: `escalation:agent_${i}:posts`, decline_reason: LONG }));
+  assert.equal(SubmitReviewInput.safeParse({ verdict: 'continue', summary: 'Нічого міняти не треба', quality_check: [], escalations: tooMany }).success, false);
+});
+
+test('openEscalations lists at most as many as submit_review takes answers for (the oldest first), so a review can answer every one it is shown', async () => {
+  const rows = Array.from({ length: ESCALATION_ANSWERS_MAX + 5 }, (_, i) => ({
+    subject: `escalation:agent_${String(i).padStart(3, '0')}:posts`, parts: ['posts_from:2026-10-23', 'days:3'], title: 'Manager escalation: posts below the norm',
+    created_at: new Date(Date.UTC(2026, 9, 20, 0, i)),
+  }));
+  const list = await openEscalations({ query: async () => ({ rows }) } as any, NOW);
+  assert.equal(list.length, ESCALATION_ANSWERS_MAX);
+  assert.ok(list.every((e) => Number(e.subject.match(/agent_(\d+)/)![1]) < ESCALATION_ANSWERS_MAX), 'the five newest wait until older ones are read');
+  assert.deepEqual(list.map((e) => e.subject), [...list.map((e) => e.subject)].sort((a, b) => a.localeCompare(b)), 'still in the stable subject order');
 });
 
 // ── cadence ────────────────────────────────────────────────────────────────

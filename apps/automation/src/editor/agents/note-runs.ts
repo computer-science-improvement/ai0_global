@@ -55,12 +55,23 @@ export async function repeatingSubjects(pool: Pick<Pool, 'query'>, now: Date, re
   return found.filter((f) => !reacted(f)).map(({ notes: _notes, ...f }) => f).sort((a, b) => a.since.getTime() - b.since.getTime());
 }
 
+/** The manager's directive kinds in the owner's words (the Telegram summary is Ukrainian); an unknown kind is shown as it is. */
+const DIRECTIVE_KIND_UK: Record<string, string> = {
+  advice: 'загальна порада', task: 'завдання', format_shift: 'зміна формату', pause_series: 'пауза серії', experiment: 'експеримент',
+  repost: 'репост', frequency: 'частота постів', cross_promo: 'крос-промо', pause_resource: 'пауза ресурсу', strategy: 'стратегія',
+  voice_fix: 'правка голосу', format_mix: 'мікс форматів',
+};
+
 /** A subject in the owner's words (Ukrainian, for the Telegram summary); the stored title when the subject is not a known shape. */
 export function subjectLabelUk(subject: string, title: string): string {
   const silent = /^silent:(.+):(miss|critic)$/.exec(subject);
   if (silent) return silent[2] === 'miss' ? `Не виходять серії чи пости на ${silent[1]}` : `Критик відхиляє пости на ${silent[1]}`;
   const escalation = /^escalation:([^:]+):(.+)$/.exec(subject);
-  if (escalation) return `Менеджер: поради не виконуються (@${escalation[1]}, ${escalation[2]})`;
+  if (escalation) {
+    // Trigger 2 is no advice at all: the posts are below the norm and the manager filed nothing.
+    if (escalation[2] === 'posts') return `Менеджер: постів менше за норму (@${escalation[1]})`;
+    return `Менеджер: поради не виконуються (@${escalation[1]}, ${DIRECTIVE_KIND_UK[escalation[2]] ?? escalation[2]})`;
+  }
   const connection = /^connection:(.+)$/.exec(subject);
   if (connection) return `Підключення ${connection[1]}`;
   const resource = /^resource:(.+)$/.exec(subject);

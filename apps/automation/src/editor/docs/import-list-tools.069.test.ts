@@ -176,6 +176,15 @@ test('stop_using finds the skill that still filters by the dropped source and ad
   assert.match(r.proposed[0].summary, /disable skill “prompthero-filter”/);
 });
 
+test('«не бери Y, тепер бери з X» copied whole into stop_using never switches off the skill for X (the dataset the card imports)', async () => {
+  const usage = skillEntry('nanobanana-usage', { agentId: 'a-orch', body: 'Рядки беремо з library:nanobanana_prompts, по одному на пост.' });
+  const hero = skillEntry('prompthero-filter', { agentId: 'a-exec', body: FILTER });
+  const r = rig({ skills: [usage, hero] });
+  const out = await call(r, { series: 'Prompt of the day', stop_using: 'Не бери промпти з PromptHero, тепер бери з nanobanana замість нього' });
+  assert.equal(out.ok, true, JSON.stringify(out));
+  assert.deepEqual(r.proposed[0].payload.then.map((t: any) => t.key), ['series', 'rule', 'detach:prompthero-filter']);
+});
+
 test('a skill the owner already named in disable_skills is not added twice; a stop_using without a conflict adds nothing', async () => {
   const skills = [skillEntry('prompthero-filter', { agentId: 'a-orch', body: FILTER })];
   const named = rig({ skills });

@@ -34,7 +34,7 @@ async function rootOf(d: ConflictDeps, a: Agent): Promise<Agent> {
 export async function conflictFollowUps(
   d: ConflictDeps, agent: Agent,
   written: { name?: string; description?: string; body: string; appliesTo?: readonly string[] },
-  o: { skip?: ReadonlySet<string>; limit?: number } = {},
+  o: { skip?: ReadonlySet<string>; limit?: number; keep?: readonly string[] } = {},
 ): Promise<ConflictFollowUps> {
   const none: ConflictFollowUps = { then: [], conflicts: [] };
   const limit = Math.max(0, Math.min(o.limit ?? MAX_FOLLOW_UPS, MAX_FOLLOW_UPS));
@@ -50,7 +50,7 @@ export async function conflictFollowUps(
       && e.skill.name !== written.name && !o.skip?.has(detachKey(e.skill.name))
       && (!roles || (e.skill.appliesTo ?? []).some((r) => roles.has(r))));
     const conflicts = skillConflicts(written.body, candidates.map((e) => ({ name: e.skill.name, description: e.skill.description, body: e.skill.body ?? '' })),
-      { name: written.name, description: written.description }).slice(0, limit);
+      { name: written.name, description: written.description, keep: o.keep }).slice(0, limit);
     const then = conflicts.map((c): FollowUp => {
       const entry = candidates.find((e) => e.skill.name === c.name)!;
       const handle = (entry.skill.agentId ? owners.get(entry.skill.agentId) : null)?.handle ?? root.handle;

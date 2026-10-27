@@ -299,7 +299,18 @@ export class OwnerBotService implements OwnerBotHandler {
           if (await this.d.repo.requeue(moved.id)) await this.deliver(this.now());
           return replaced;
         }
+        // Any other failure (a 429, a timeout, a 5xx): the message still shows the OLD keyboard, and a tap is resolved by
+        // button position against the card's stored buttons — so the card must not keep the new note's buttons. Put it
+        // back on the old note and report "no card reused": the caller makes a new card for the new note and the
+        // supersede step closes this one (stripping the keyboard), so a stale tap cannot run a different action.
         this.log(`owner bot: card ${moved.id} not edited in place: ${errorText(err)}`);
+        try {
+          const back = await this.d.repo.retarget(moved.id, card.refId, { title: card.title, body: card.body ?? null, buttons: card.buttons, link: card.link ?? null });
+          if (!back) this.log(`owner bot: card ${moved.id} could not be put back on note ${replaced}`);
+        } catch (e) {
+          this.log(`owner bot: card ${moved.id} could not be put back on note ${replaced}: ${errorText(e)}`);
+        }
+        return null;
       }
       return replaced;
     });

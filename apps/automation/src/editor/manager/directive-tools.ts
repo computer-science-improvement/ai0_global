@@ -14,7 +14,7 @@ import { describe as describeChange } from './executors/playbook-executors';
 import { TASK_REF_TYPES, type TaskRefResult, type TaskRefType } from './executors/task-report';
 import { isQualityMetric, qualityActive } from './quality-digest';
 import { PAIR_BLOCKED_DETAILS, promoRefsOf } from '../promo/promo-links';
-import { ESCALATION_REASON_MIN } from './escalation';
+import { ESCALATION_ANSWERS_MAX, ESCALATION_REASON_MIN } from './escalation';
 
 export const MAX_DIRECTIVES_PER_RUN = 3;
 export const REJECT_COOLDOWN_MS = 48 * 3600_000;
@@ -91,7 +91,7 @@ export const SubmitReviewInput = z.object({
   summary:       z.string().min(5).max(1500),
   directive_ids: z.array(z.string().uuid()).max(3).default([]),
   quality_check: z.array(QualityCheckEntry).max(40).describe('Чекліст якості по кожному ресурсу з активністю за 7 днів (дайджест, блок quality)'),
-  escalations:   z.array(EscalationAnswer).max(10).default([]).describe('Відповідь на кожну відкриту ескалацію з блоку escalations дайджесту; без відкритих ескалацій — []'),
+  escalations:   z.array(EscalationAnswer).max(ESCALATION_ANSWERS_MAX).default([]).describe('Відповідь на кожну відкриту ескалацію з блоку escalations дайджесту; без відкритих ескалацій — []'),
 });
 export type SubmitReview = z.infer<typeof SubmitReviewInput>;
 

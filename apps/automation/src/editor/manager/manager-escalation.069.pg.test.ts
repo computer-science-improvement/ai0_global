@@ -99,11 +99,18 @@ test('escalate() with the real repo and Inbox: one note per problem through the 
     loop: { run: async () => ({}) as any }, registry: { forRole: () => [] }, runtime: { forAgent: async () => ({}) as any },
     agents: { findTop: async () => null, get: async () => null, list: async () => [] } as any,
     repo, digest: { build: async () => ({}) as any, render: () => '{}', snapshot: async () => 1 }, inbox, env: () => undefined,
-    now: () => new Date('2026-10-26T07:30:00Z'),
+    now: () => clockNow,
   });
+  let clockNow = new Date('2026-10-26T07:30:00Z');
   // The posts run (4 days to 2026-10-25) has a directive filed since it began (the one made in the previous test): only trigger 1 fires.
   assert.equal(await runner.escalate(), 1);
   assert.equal(await runner.escalate(), 0, 'the gate: the same two directives say nothing again');
+  // Four days on (past the 3-day repeat window) and still unread: the escalation is open, so it is not told again as «still going».
+  await db.pool.query(`UPDATE agent_inbox SET created_at = created_at - interval '4 days' WHERE kind = 'manager_escalation'`);
+  clockNow = new Date('2026-10-30T07:30:00Z');
+  assert.equal(await runner.escalate(), 0, 'open and unchanged: not posted again');
+  clockNow = new Date('2026-10-26T07:30:00Z');
+  await db.pool.query(`UPDATE agent_inbox SET created_at = created_at + interval '4 days' WHERE kind = 'manager_escalation'`);
   const { rows } = await db.pool.query(`SELECT kind, severity, subject, parts, ref_type FROM agent_inbox WHERE kind = 'manager_escalation'`);
   assert.equal(rows.length, 1);
   assert.deepEqual([rows[0].kind, rows[0].severity, rows[0].subject, rows[0].ref_type], ['manager_escalation', 'action', 'escalation:pg069_esc:voice_fix', 'escalation']);
@@ -138,4 +145,37 @@ test('the digest keeps an evaluated, not-followed directive of the last 14 days 
   const after = await svc.build();
   assert.equal(after.escalations, undefined);
   assert.notEqual(after.hash, h, 'an escalation that is read changes the hash');
+});
+
+test('trigger 2 query leaves out channels the owner stopped: switched off, shadow, paused (for good or for a while), under an active resource pause', { skip }, async () => {
+  const agents = new AgentsRepository(db.pool);
+  const make = async (handle: string, mode: 'off' | 'shadow' | 'approve' | 'live') =>
+    (await agents.insert({ kind: 'orchestrator', scope: 'resource', scopeId: `telegram:@${handle}`, name: handle, handle, mode, createdBy: 'owner' })).id;
+  const ids = {
+    approve: await make('pg069_approve', 'approve'), live: await make('pg069_live2', 'live'), off: await make('pg069_off', 'off'),
+    shadow: await make('pg069_shadow', 'shadow'), paused: await make('pg069_paused', 'live'), timed: await make('pg069_timed', 'live'),
+    over: await make('pg069_over', 'live'), pausedRes: await make('pg069_pausedres', 'live'), liftedRes: await make('pg069_liftedres', 'live'),
+  };
+  await db.pool.query(`UPDATE agents SET status = 'paused' WHERE id = $1`, [ids.paused]);
+  await db.pool.query(`UPDATE agents SET paused_until = now() + interval '3 days' WHERE id = $1`, [ids.timed]);
+  await db.pool.query(`UPDATE agents SET paused_until = now() - interval '1 day' WHERE id = $1`, [ids.over]);
+  await db.pool.query(`INSERT INTO resource_pauses (resource_ref, reason, until) VALUES ('telegram:@pg069_pausedres', 't', now() + interval '2 days')`);
+  await db.pool.query(`INSERT INTO resource_pauses (resource_ref, reason, until, lifted_at, lifted_by) VALUES ('telegram:@pg069_liftedres', 't', now() + interval '2 days', now(), 'owner')`);
+  for (const h of ['approve', 'live2', 'off', 'shadow', 'paused', 'timed', 'over', 'pausedres', 'liftedres']) {
+    await snapshot('2026-10-24', { v: 0, base: 3, d: -100, z: -3, anomaly: true }, `telegram:@pg069_${h}`);
+  }
+  const handles = (await negativePostsDays(db.pool, '2026-10-24')).map((r) => r.handle).filter((h) => h !== 'pg069_esc').sort();
+  assert.deepEqual(handles, ['pg069_approve', 'pg069_liftedres', 'pg069_live2', 'pg069_over']);
+});
+
+test('retireEscalationMemory retires only the system lines of that escalation subject', { skip }, async () => {
+  await repo.addMemory(agentId, 'avoid', 'line a', { escalation: 'escalation:x:posts' }, 'system');
+  await repo.addMemory(agentId, 'avoid', 'line a2', { escalation: 'escalation:x:posts', days: 6 }, 'system');
+  await repo.addMemory(agentId, 'avoid', 'line b', { escalation: 'escalation:y:posts' }, 'system');
+  await repo.addMemory(agentId, 'rule', 'owner line', { escalation: 'escalation:x:posts' }, 'owner');
+  assert.equal(await repo.retireEscalationMemory(agentId, 'escalation:x:posts'), 2);
+  const texts = (await repo.memory(agentId)).map((r) => r.text);
+  assert.ok(texts.includes('line b') && texts.includes('owner line'));
+  assert.ok(!texts.includes('line a') && !texts.includes('line a2'));
+  assert.equal(await repo.retireEscalationMemory(agentId, 'escalation:x:posts'), 0, 'nothing left to retire');
 });

@@ -71,6 +71,54 @@ test('hard conflicts come before soft ones; the skill with the same name is neve
   assert.deepEqual(out.map((c) => [c.name, c.kind]), [['prompthero-filter', 'hard'], ['prompts-other', 'soft']]);
 });
 
+test('«бери з X, а не з Y»: the words of the NEW source are not ruled out — a comma or dash before a take verb ends the negated clause', () => {
+  const github = { name: 'github-usage', body: 'Промпти беремо з https://github.com/ZeroLu/awesome-nanobanana-pro, один на пост.' };
+  const hero = { name: 'prompthero-filter', body: FILTER };
+  const names = (text: string) => skillConflicts(text, [github, hero]).map((c) => c.name);
+  assert.deepEqual(names('не використовуй не бери промпти з PromptHero, тепер бери з GitHub'), ['prompthero-filter']);
+  assert.deepEqual(names('Не бери промпти з PromptHero — бери з github.'), ['prompthero-filter']);
+  assert.deepEqual(names('Не використовуй PromptHero, використовуй github.'), ['prompthero-filter']);
+  // The negation still reaches both sides of its marker when nothing starts a new clause (review 4).
+  assert.deepEqual(names('GitHub не використовую.'), ['github-usage']);
+});
+
+test('«X замість Y»: only what follows the marker is ruled out, up to the next take verb', () => {
+  const nano = { name: 'nano', body: 'Рядки беремо з library:nanobanana_prompts, по одному на пост.' };
+  const hero = { name: 'prompthero-filter', body: FILTER };
+  const names = (text: string) => skillConflicts(text, [nano, hero]).map((c) => c.name);
+  assert.deepEqual(names('Пиши пости про промпти nanobanana замість prompthero.'), ['prompthero-filter']);
+  assert.deepEqual(names('Instead of prompthero use nanobanana.'), ['prompthero-filter']);
+  assert.deepEqual(names('Замість PromptHero бери nanobanana.'), ['prompthero-filter']);
+  assert.deepEqual(names('nanobanana замість prompthero'), ['prompthero-filter']);
+  // With another negation marker in the clause both sides are ruled out again.
+  assert.deepEqual(names('Не бери nanobanana замість prompthero.').sort(), ['nano', 'prompthero-filter']);
+});
+
+test('a generic format word does not rule out a dataset whose key starts with it; a source name or the whole key still does', () => {
+  const chat = { name: 'prompts-chat', body: 'Рядки беремо з data://prompts_chat, по одному на пост.' };
+  const recipes = { name: 'recipes-ua', body: 'Рецепти — library:recipes_ua.' };
+  assert.deepEqual(skillConflicts('не використовуй prompts з PromptHero', [chat]), []);
+  assert.deepEqual(skillConflicts('Не використовуй recipes з чужих сайтів.', [recipes]), []);
+  assert.equal(skillConflicts('Не бери data://prompts_chat.', [chat])[0]?.kind, 'hard', 'the whole key');
+  const nano = { name: 'nano', body: 'Рядки беремо з library:nanobanana_prompts.' };
+  assert.equal(skillConflicts('Не використовуй nanobanana.', [nano])[0]?.kind, 'hard', 'the first part names a source');
+});
+
+test('an e-mail address or the tail of a host is not a source', () => {
+  assert.deepEqual(skillConflicts('Never mail anyone.', [{ name: 'contacts', body: 'For collabs write to owner@gmail.com.' }]), []);
+  assert.deepEqual(skillConflicts('Не використовуй cloud сервіси.', [{ name: 'c', body: 'Пишіть на owner@icloud.com.' }]), []);
+  assert.deepEqual(skillConflicts('Never use ompthero.', [{ name: 'c', body: 'Take prompts from https://prompthero.com/x daily.' }]), [], 'no half-host token');
+  assert.equal(skillConflicts('Never use www.lexica.art.', [{ name: 'a', body: 'Take prompts from lexica.art daily.' }])[0]?.kind, 'hard', 'a host without a scheme still counts');
+  assert.equal(skillConflicts('Never use prompthero.', [{ name: 'a', body: 'Take prompts from https://prompthero.com/x daily.' }])[0]?.kind, 'hard');
+});
+
+test('keep: a skill about a source the change starts using is never proposed, whatever else the words ruled out', () => {
+  const civitai = { name: 'civitai-filter', body: 'Фільтр provider=civitai для всіх промптів.' };
+  assert.equal(skillConflicts('не використовуй civitai', [civitai]).length, 1);
+  assert.equal(skillConflicts('не використовуй civitai', [civitai], { keep: ['civitai_images'] }).length, 0, 'the first part of the dataset key');
+  assert.equal(skillConflicts('не використовуй civitai', [civitai], { keep: ['nanobanana_prompts'] }).length, 1);
+});
+
 // ── The follow-ups: who is a candidate, who owns the skill, hard ticked / soft unticked ─────────────────────────────────
 
 const ORCH = { id: 'a-orch', handle: 'ai_global', kind: 'orchestrator', parentId: null } as any;

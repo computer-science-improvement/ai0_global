@@ -121,7 +121,7 @@ export async function buildBundle(d: BundleDeps, ctx: ToolContext, i: BundleInpu
     const sc = scope && !isFail(scope) ? scope : await scopeOf({ schedule: d.schedule }, ctx);
     if (!isFail(sc)) {
       const found = await conflictFollowUps({ agents: d.agents, skills: d.skills }, sc.agent, { body: `не використовуй ${i.stop_using}` },
-        { skip: new Set(then.map((t) => t.key)), limit: MAX_FOLLOW_UPS - then.length });
+        { skip: new Set(then.map((t) => t.key)), limit: MAX_FOLLOW_UPS - then.length, keep: [i.dataset] });
       for (const t of found.then) {
         then.push(t);
         notes.push(`скіл "${String(t.payload.skill)}" суперечить правилу — додано до картки ${t.ticked === false ? 'невідміченим' : 'відміченим'}: ${t.summary.replace(/^[^:]*: /, '')}`);

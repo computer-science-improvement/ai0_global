@@ -66,7 +66,10 @@ test('repeatingSubjects: two notes, a broken run, a critical newest note, an all
 test('the subject label is the owner\'s words for the known shapes, the title otherwise', () => {
   assert.equal(subjectLabelUk('silent:telegram:@x:miss', 't'), 'Не виходять серії чи пости на telegram:@x');
   assert.equal(subjectLabelUk('silent:telegram:@x:critic', 't'), 'Критик відхиляє пости на telegram:@x');
-  assert.equal(subjectLabelUk('escalation:main:posts', 't'), 'Менеджер: поради не виконуються (@main, posts)');
+  assert.equal(subjectLabelUk('escalation:main:posts', 't'), 'Менеджер: постів менше за норму (@main)', 'no advice was given: the posts are below the norm');
+  assert.equal(subjectLabelUk('escalation:main:format_shift', 't'), 'Менеджер: поради не виконуються (@main, зміна формату)', 'the kind in Ukrainian, not the slug');
+  assert.equal(subjectLabelUk('escalation:main:voice_fix', 't'), 'Менеджер: поради не виконуються (@main, правка голосу)');
+  assert.equal(subjectLabelUk('escalation:main:something_new', 't'), 'Менеджер: поради не виконуються (@main, something_new)', 'an unknown kind is shown as it is');
   assert.equal(subjectLabelUk('connection:telegram:@x', 't'), 'Підключення telegram:@x');
   assert.equal(subjectLabelUk('other:thing', 'Something odd — still going, 6 days'), 'Something odd');
 });

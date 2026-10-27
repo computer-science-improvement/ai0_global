@@ -1,5 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { readdirSync, readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { sourceInSkill, sourceRefusal } from './skill-warnings';
 import { buildAgentChatTools } from './agent-chat-tools';
 import { buildBuilderTools } from './builder-tools';
@@ -36,6 +38,30 @@ test('sourceInSkill lets a style-only skill and a skill about HOW to use a datas
   ].join('\n')), null);
   assert.equal(sourceInSkill('Credit the author with the link from the row. Keep the prompt verbatim.'), null);
   assert.equal(sourceInSkill('Додай посилання https://t.me/ai0_global в кінці допису.'), null, 'a link to put in a post is not a source to take posts from');
+});
+
+test('sourceInSkill lets a link or a credit pass: a URL is a source only when posts are taken FROM it', () => {
+  assert.equal(sourceInSkill('Use the link https://t.me/x at the end of posts.'), null);
+  assert.equal(sourceInSkill('У кожному пості використовуй посилання на наш канал https://t.me/ai_global в кінці.'), null);
+  assert.equal(sourceInSkill('Використовуй кнопку з посиланням https://example.com/shop під кожним постом.'), null, '«з посиланням» is a link word, not a source');
+  assert.equal(sourceInSkill('When you use a prompt from the row, add the source link https://github.com/x/y.'), null);
+  assert.equal(sourceInSkill('Use the prompt text verbatim and credit the author with a link to https://github.com/ZeroLu/awesome-nanobanana-pro (CC BY 4.0).'), null);
+  assert.equal(sourceInSkill('Використовуй промпт дослівно і вкажи автора з посиланням https://prompts.chat/u/author.'), null);
+  assert.equal(sourceInSkill('Для кожного промпту використовуй посилання на репозиторій https://github.com/x/y як атрибуцію (CC BY 4.0).'), null);
+  assert.equal(sourceInSkill('Always use the license link https://creativecommons.org/licenses/by/4.0/ under each post.'), null);
+  assert.equal(sourceInSkill('Read the post rules at https://example.com/rules before writing.'), null);
+  assert.equal(sourceInSkill('Add a button with the link https://example.com/shop under each post.'), null);
+  // The refusals above still stand: posts taken FROM a URL / API.
+  assert.equal(sourceInSkill('Беремо промпти з https://prompts.chat/api щодня.')?.kind, 'url');
+  assert.equal(sourceInSkill('Pull the latest posts from the vendor API at 9:00.')?.kind, 'url');
+  assert.equal(sourceInSkill('Тягни новини через API видавця.')?.kind, 'url');
+});
+
+test('every shipped editor skill passes sourceInSkill (the built-in format-links-attribution included)', () => {
+  const dir = join(__dirname, '..', '..', '..', 'editor-skills');
+  const files = readdirSync(dir).filter((f) => f.endsWith('.md'));
+  assert.ok(files.includes('format-links-attribution.md'));
+  for (const f of files) assert.equal(sourceInSkill(readFileSync(join(dir, f), 'utf8')), null, f);
 });
 
 test('sourceRefusal is the tool error: a code, what was found and where the change belongs', () => {

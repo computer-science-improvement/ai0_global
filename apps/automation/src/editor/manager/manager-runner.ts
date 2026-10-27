@@ -11,7 +11,7 @@ import type { OwnerInbox } from '../agents/owner-inbox';
 import { localDate, localTimeLabel, zonedToUtc } from '../roles/time';
 import type { Directive, DirectivesRepository } from './directives.repository';
 import { reviewSignature, type KpiDigest, type KpiDigestService } from './kpi-digest.service';
-import { ESCALATION_DAYS, notFollowedNote, postsNote, postsRuns, type EscalationNote } from './escalation';
+import { ESCALATION_DAYS, ESCALATION_POSTS_LOOKBACK_DAYS, escalationKeys, notFollowedNote, postsNote, postsRuns, type EscalationNote } from './escalation';
 import { dayBefore, type ScopeKpis } from './kpi-math';
 import { DirectiveExecution, PROMO_KINDS } from './executors';
 import { isQualityMetric, qualityMetricValue } from './quality-digest';
@@ -494,17 +494,31 @@ export class ManagerRunner {
     const day = localDate(now, 'Europe/Kyiv');
     const m = await this.manager();
     const notes: EscalationNote[] = (await repo.notFollowedGroups(ESCALATION_DAYS)).map((g) => notFollowedNote(g, day));
-    const rows = await repo.negativePostsDays(dayBefore(day, 10));
+    // The snapshots are read far enough back to find the true first day of a run (a posts anomaly lasts up to ~35 days), so
+    // `posts_from` stays put for the whole run and "no directive filed in that span" is judged on the real span.
+    const rows = await repo.negativePostsDays(dayBefore(day, ESCALATION_POSTS_LOOKBACK_DAYS));
     for (const r of postsRuns(rows, day)) {
       // "No directive filed in that span": the agent was told something since the run began (a shadow directive does not count).
       if (await repo.filedSince(r.agentId, zonedToUtc(r.firstDay, '00:00', 'Europe/Kyiv')) === 0) notes.push(postsNote(r, day));
     }
+    // Spec 069 A5: an escalation that is open (unread) and says the same thing is not posted again as «still going»; the
+    // manager already has to answer it in every review. A changed one (a new directive, a longer run) goes through the gate.
+    const open = new Map<string, string>();
+    try {
+      for (const e of await repo.openEscalations?.(now) ?? []) open.set(e.subject, escalationKeys([e])[0]);
+    } catch { /* the gate in postOnce still stops a repeat */ }
     let n = 0;
     for (const note of notes) {
+      const subject = note.item.gate?.subject;
+      if (subject && open.get(subject) === note.key) continue;
       if (await inbox.postOnce(note.item) == null) continue;
       n++;
       if (m) {
-        try { await repo.addMemory(m.id, 'avoid', note.memory.text, note.memory.evidence, 'system'); } catch { /* memory is best-effort */ }
+        // One memory line per escalation subject: the new one replaces the old.
+        try {
+          if (subject) await repo.retireEscalationMemory?.(m.id, subject);
+          await repo.addMemory(m.id, 'avoid', note.memory.text, note.memory.evidence, 'system');
+        } catch { /* memory is best-effort */ }
       }
     }
     return n;

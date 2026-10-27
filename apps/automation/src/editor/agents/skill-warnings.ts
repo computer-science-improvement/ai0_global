@@ -81,8 +81,14 @@ export interface SourceInSkill { kind: SourceInSkillKind; sentence: string }
 
 const TAKE_RE = /(?<![\p{L}])(?:бер\p{L}*|брат\p{L}*|взят\p{L}*|візьм\p{L}*|тягн\p{L}*|тягт\p{L}*|використ\p{L}*|користу\p{L}*|качай|завантаж\p{L}*|take|takes|use|using|fetch|pull|grab|source|sourced|get|scrape|read)(?![\p{L}])/iu;
 const CONTENT_RE = /(?<![\p{L}])(?:пост\p{L}*|контент\p{L}*|промпт\p{L}*|запис\p{L}*|матеріал\p{L}*|новин\p{L}*|рядк\p{L}*|рядок|posts?|content|prompts?|entries|items?|stor(?:y|ies)|articles?|rows?)(?![\p{L}])/iu;
-const URL_RE = /https?:\/\/\S+/i;
-const API_RE = /(?<![\p{L}])(?:API|апі)(?![\p{L}])/u;
+/**
+ * The URL or API is where posts are taken FROM: a «from» marker (з / from / via / через …) within a few words before it.
+ * A link put INTO a post («use the link https://t.me/x at the end», «credit the author with a link to https://…») has no such
+ * marker; one that does («кнопку з посиланням https://…») is a link word before the URL, which LINK_URL_RE catches.
+ */
+const FROM_SRC_RE = /(?<![\p{L}])(?:from|з|із|зі|від|via|through|using|через|використовуючи|за\s+допомогою)\s+(?:[^\s.,;]+\s+){0,3}(?:https?:\/\/|API(?![\p{L}])|апі(?![\p{L}]))/iu;
+/** A link, a button or a CTA right before the URL: the URL is shown in the post, not read from. */
+const LINK_URL_RE = /(?<![\p{L}])(?:посилан\p{L}*|лінк\p{L}*|links?|кнопк\p{L}*|buttons?|cta)\s+(?:\S+\s+){0,3}https?:\/\//iu;
 const PROVIDER_RE = /(?<![\p{L}])provider\s*=\s*["']?[\p{L}\p{N}_-]+/iu;
 const DATASET_REF_RE = /(?:data:\/\/|library:)[\p{L}\p{N}_-]{2,}|(?:датасет\p{L}*|dataset)\s+["«]?[a-z][a-z0-9_]{2,}/iu;
 const ONLY_RE = /(?<![\p{L}])(?:замість|instead\s+of|лише|тільки|only|exclusively|виключно|а\s+не)(?![\p{L}])/iu;
@@ -92,7 +98,7 @@ export function sourceInSkill(body: string): SourceInSkill | null {
   for (const s of sentences(body)) {
     if (PROVIDER_RE.test(s)) return { kind: 'provider', sentence: s.slice(0, 160) };
     const takes = TAKE_RE.test(s) && CONTENT_RE.test(s);
-    if (takes && (URL_RE.test(s) || API_RE.test(s))) return { kind: 'url', sentence: s.slice(0, 160) };
+    if (takes && FROM_SRC_RE.test(s) && !LINK_URL_RE.test(s)) return { kind: 'url', sentence: s.slice(0, 160) };
     if (takes && DATASET_REF_RE.test(s) && ONLY_RE.test(s)) return { kind: 'dataset', sentence: s.slice(0, 160) };
   }
   return null;
@@ -125,7 +131,9 @@ export interface SkillConflict {
 const NEGATION_RE = /(?<![\p{L}])(?:не\s+(?:бер\p{L}*|бра\p{L}*|взя\p{L}*|візьм\p{L}*|використ\p{L}*|користу\p{L}*|тягн\p{L}*|тягт\p{L}*|качай\p{L}*|завантаж\p{L}*|застосову\p{L}*|з|із|від)|ніколи|заборон\p{L}*|замість|припин\p{L}*|never|(?:don'?t|do\s+not|doesn'?t|must\s+not|mustn'?t|should\s+not|shouldn'?t)\s+(?:use|take|fetch|pull|source|get|scrape|read|rely)|stop\s+using|avoid|forbidden|instead\s+of|rather\s+than|no\s+longer)(?![\p{L}])/iu;
 const URL_HOST_RE = /https?:\/\/(?:www\.)?([a-z0-9][a-z0-9.-]*[a-z0-9])/gi;
 /** A host written without a scheme: only the TLDs people actually write («prompthero.com»), so «skill.md» and «e.g.» are not sources. */
-const BARE_HOST_RE = /(?<![\p{L}\p{N}@/.-])((?:[a-z0-9-]+\.)+(?:com|org|net|io|ai|app|dev|co|ua|info|me|tv|xyz|news|art|so|gg|pro|site|online|shop|cc|ru|de|uk|fr|pl|eu|us|ly))(?![\p{L}\p{N}-])/gi;
+// The `u` flag matters: without it `\p{L}` is just the letters p, L, { and }, the "not after a letter" lookbehind does nothing and
+// an e-mail («owner@gmail.com») or the tail of a host («ompthero.com») yields junk tokens.
+const BARE_HOST_RE = /(?<![\p{L}\p{N}@/.-])((?:[a-z0-9-]+\.)+(?:com|org|net|io|ai|app|dev|co|ua|info|me|tv|xyz|news|art|so|gg|pro|site|online|shop|cc|ru|de|uk|fr|pl|eu|us|ly))(?![\p{L}\p{N}-])/giu;
 const SOURCE_KEY_RE = /(?:data:\/\/|library:)([\p{L}\p{N}_-]{2,})/giu;
 const PROVIDER_VALUE_RE = /(?<![\p{L}])provider\s*=\s*["']?([\p{L}\p{N}_-]+)/giu;
 const WORD4_RE = /\p{L}{4,}/gu;
@@ -156,24 +164,50 @@ interface SourceProfile {
   negated:  Set<string>;
 }
 
+/** «не бери X, тепер бери з Y»: a comma, dash or colon before a positive take verb ends the negated clause and starts a new one. */
+const CLAUSE_END_RE = /\s*(?:,|—|–|\s-\s|:)\s*(?=(?:(?:а|але|тепер|now|but|натомість|and)\s+)?(?:бер\p{L}*|бра\p{L}*|взя\p{L}*|візьм\p{L}*|використ\p{L}*|користу\p{L}*|use|take|fetch|pull|source|get)(?![\p{L}]))/iu;
+/** «X замість Y» / «X instead of Y»: only what comes after the marker is ruled out. */
+const INSTEAD_RE = /(?<![\p{L}])(?:замість|instead\s+of|rather\s+than)(?![\p{L}])/iu;
+const POSITIVE_VERB_RE = /(?<![\p{L}])(?:бер\p{L}*|бра\p{L}*|взя\p{L}*|візьм\p{L}*|використ\p{L}*|користу\p{L}*|use|take|fetch|pull|get)(?![\p{L}])/iu;
+
 function profileOf(body: string): SourceProfile {
   const positive = new Set<string>();
   const negated = new Set<string>();
-  for (const clause of sentences(body).flatMap((s) => s.split(/\s*;\s*/))) {
-    const tokens = sourceTokensIn(clause);
-    if (NEGATION_RE.test(clause)) {
-      for (const t of tokens) negated.add(t);
-      for (const w of clause.toLowerCase().match(WORD4_RE) ?? []) negated.add(w);
-    } else {
-      for (const t of tokens) positive.add(t);
+  const rule = (text: string) => {
+    for (const t of sourceTokensIn(text)) negated.add(t);
+    for (const w of text.toLowerCase().match(WORD4_RE) ?? []) negated.add(w);
+  };
+  const use = (text: string) => { for (const t of sourceTokensIn(text)) positive.add(t); };
+  for (const clause of sentences(body).flatMap((s) => s.split(/\s*;\s*/)).flatMap((s) => s.split(CLAUSE_END_RE))) {
+    if (!NEGATION_RE.test(clause)) { use(clause); continue; }
+    const instead = INSTEAD_RE.exec(clause);
+    if (instead && !NEGATION_RE.test(clause.replace(INSTEAD_RE, ' '))) {
+      // «Пиши про nanobanana замість prompthero»: the part before the marker is what to use, the part after is ruled out (up to a take verb).
+      use(clause.slice(0, instead.index));
+      const after = clause.slice(instead.index + instead[0].length);
+      const verb = after.search(POSITIVE_VERB_RE);
+      rule(verb < 0 ? after : after.slice(0, verb));
+      if (verb >= 0) use(after.slice(verb));
+      continue;
     }
+    rule(clause);
   }
   return { positive, negated };
 }
 
-/** The positive tokens that a negated token rules out: the same word, or the first part of a `nanobanana_prompts`-style key. */
+/**
+ * Words that name a kind of post, not a source: `prompts_chat` or `recipes_ua` starts with one, and an owner who says «не бери
+ * prompts» has not ruled out a dataset called `prompts_chat`. Only an exact match counts for these.
+ */
+const FORMAT_HEADS = new Set(['prompt', 'prompts', 'recipe', 'recipes', 'quote', 'quotes', 'photo', 'photos', 'video', 'videos', 'memes', 'story', 'stories', 'news', 'digest', 'digests', 'quiz', 'quizzes', 'polls', 'items', 'posts', 'entries', 'articles']);
+
+/** The positive tokens that a negated token rules out: the same word, or the first part of a `nanobanana_prompts`-style key (not a generic format word). */
 function ruledOut(negated: ReadonlySet<string>, positive: ReadonlySet<string>): string[] {
-  return [...positive].filter((p) => negated.has(p) || (negated.has(p.split(/[_-]/)[0]) && p.split(/[_-]/)[0].length >= 5));
+  return [...positive].filter((p) => {
+    if (negated.has(p)) return true;
+    const head = p.split(/[_-]/)[0];
+    return head.length >= 5 && !FORMAT_HEADS.has(head) && negated.has(head);
+  });
 }
 
 /** Format words a skill and a series are named by: two skills about the same format that name different sources contradict each other softly. */
@@ -206,14 +240,21 @@ function topicOf(name: string, description: string, body: string): Set<string> {
  * tokens, or the reverse (the existing skill rules out what the new one uses). Soft: both name sources, different ones,
  * for the same format or series word. Pure; the caller picks the candidates (enabled, not builtin or safety, not the same name).
  */
-export function skillConflicts(newBody: string, existing: readonly ConflictCandidate[], opts: { name?: string; description?: string } = {}): SkillConflict[] {
+export function skillConflicts(
+  newBody: string, existing: readonly ConflictCandidate[],
+  opts: { name?: string; description?: string; keep?: readonly string[] } = {},
+): SkillConflict[] {
   const mine = profileOf(newBody);
   const myTopic = topicOf(opts.name ?? '', opts.description ?? '', newBody);
+  // `keep`: the sources the change STARTS using (the dataset an import creates). A skill that is about one of them is the skill
+  // for the new source: it is never proposed for switching off, whatever else the owner's words ruled out.
+  const keep = new Set((opts.keep ?? []).flatMap((k) => [k.toLowerCase(), k.toLowerCase().split(/[_-]/)[0]]).filter((k) => k.length >= 4));
   const hard: SkillConflict[] = [];
   const soft: SkillConflict[] = [];
   for (const e of existing) {
     if (opts.name && e.name === opts.name) continue;
     const theirs = profileOf(e.body);
+    if (keep.size && [...theirs.positive].some((p) => keep.has(p) || keep.has(p.split(/[_-]/)[0]))) continue;
     const ruledOutByNew = ruledOut(mine.negated, theirs.positive);
     const ruledOutByOld = ruledOut(theirs.negated, mine.positive);
     if (ruledOutByNew.length || ruledOutByOld.length) {

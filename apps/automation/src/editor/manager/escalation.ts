@@ -25,6 +25,14 @@ export const ESCALATION_POSTS_DAYS = 3;
 export const ESCALATION_REASON_MIN = 20;
 /** The gate step of the posts trigger: a run that keeps going fires again only after this many more days. */
 export const POSTS_GROW_STEP = 3;
+/**
+ * How far back the posts snapshots are read to find the true start of a run. A posts anomaly lasts until the 28-day baseline
+ * (days 8-35) has caught up with the drop, i.e. up to about 35 days, so a shorter window would slide `posts_from` forward
+ * every day once the run outgrows it (a note a day, and "no directive filed" judged on a truncated span).
+ */
+export const ESCALATION_POSTS_LOOKBACK_DAYS = 60;
+/** The most open escalations the digest lists and `submit_review` takes answers for (one bound for both sides). */
+export const ESCALATION_ANSWERS_MAX = 100;
 const SUBJECT_RE = /^escalation:([^:]+):(.+)$/;
 
 type Q = Pick<Pool, 'query'>;
@@ -70,14 +78,21 @@ export async function notFollowedGroups(pool: Q, days = ESCALATION_DAYS, min = E
 export interface PostsDay { agentId: string; handle: string; ref: string; day: string }
 export interface PostsRun { agentId: string; handle: string; ref: string; firstDay: string; days: number }
 
-/** The days (from `fromDay`) on which an agent's own resource had a negative posts anomaly in its snapshot. */
+/**
+ * The days (from `fromDay`) on which an agent's own resource had a negative posts anomaly in its snapshot. A resource whose
+ * orchestrator is switched off, in shadow mode (it publishes nothing) or paused, or that is under an active resource pause,
+ * is left out: its posts stopped because the owner (or the manager) stopped it, and there is nothing for a directive to fix.
+ */
 export async function negativePostsDays(pool: Q, fromDay: string): Promise<PostsDay[]> {
   const { rows } = await pool.query(
     `SELECT a.id AS agent_id, a.handle, s.scope_id AS ref, s.day::text AS day
        FROM kpi_snapshots s
        JOIN agents a ON a.scope = 'resource' AND a.scope_id = s.scope_id AND a.parent_id IS NULL AND a.kind = 'orchestrator'
+        AND a.mode NOT IN ('off', 'shadow') AND a.status <> 'paused' AND (a.paused_until IS NULL OR a.paused_until <= now())
       WHERE s.scope = 'resource' AND s.day >= $1::date
         AND s.metrics->'posts'->>'anomaly' = 'true' AND (s.metrics->'posts'->>'z')::float8 < 0
+        AND NOT EXISTS (SELECT 1 FROM resource_pauses p
+                         WHERE p.resource_ref = s.scope_id AND p.lifted_at IS NULL AND p.starts_at <= now() AND p.until > now())
       ORDER BY a.handle, s.scope_id, s.day`, [fromDay]);
   return rows.map((r: any) => ({ agentId: String(r.agent_id), handle: String(r.handle), ref: String(r.ref), day: String(r.day) }));
 }
@@ -117,6 +132,8 @@ export function postsRuns(rows: PostsDay[], today: string, min = ESCALATION_POST
 
 export interface EscalationNote {
   item:   InboxItemInput & { refType: string; refId: string };
+  /** `escalationKeys` of this note: when the open escalation of its subject has the same key, that one already says it. */
+  key:    string;
   /** The manager's memory line for it. */
   memory: { text: string; evidence: Record<string, unknown> };
 }
@@ -131,6 +148,7 @@ export function notFollowedNote(g: NotFollowedGroup, day: string): EscalationNot
   const lines = g.bodies.map((b, i) => `• ${clip(b, 140)} (id ${short(g.ids[i])})`);
   const ids = [...g.ids].sort();
   return {
+    key: escalationKeys([{ subject, directive_ids: ids, days: null }])[0],
     item: {
       agentId: g.agentId, kind: ESCALATION_KIND, severity: 'action', refType: ESCALATION_REF_TYPE, refId: `${subject}|${day}`,
       title: `Manager escalation: @${g.handle} did not follow ${n} ${g.kind} items in ${ESCALATION_DAYS} days`,
@@ -161,6 +179,7 @@ export function notFollowedNote(g: NotFollowedGroup, day: string): EscalationNot
 export function postsNote(r: PostsRun, day: string): EscalationNote {
   const subject = escalationSubject(r.handle, 'posts');
   return {
+    key: escalationKeys([{ subject, directive_ids: [], days: r.days }])[0],
     item: {
       agentId: r.agentId, kind: ESCALATION_KIND, severity: 'action', refType: ESCALATION_REF_TYPE, refId: `${subject}|${day}`,
       title: `Manager escalation: posts of ${r.ref} below the norm for ${r.days} days, no directive filed`,
@@ -204,6 +223,8 @@ export interface DigestEscalation {
 /**
  * An open escalation is an unread `manager_escalation` note of the last 14 days, one per gate subject (the newest). The
  * order is stable (by subject), so the digest hash only changes when an escalation appears, is repeated with new parts, or is read.
+ * The list is bounded by `ESCALATION_ANSWERS_MAX` (the oldest first; the rest show up as those are read), the same number
+ * `submit_review` takes answers for, so a review can always answer every escalation it is shown.
  */
 export async function openEscalations(pool: Q, now: Date): Promise<DigestEscalation[]> {
   const { rows } = await pool.query(
@@ -224,7 +245,10 @@ export async function openEscalations(pool: Q, now: Date): Promise<DigestEscalat
       text: clip(r.title, 160),
     });
   }
-  return out.sort((a, b) => a.subject.localeCompare(b.subject));
+  const kept = out.length > ESCALATION_ANSWERS_MAX
+    ? [...out].sort((a, b) => a.since.localeCompare(b.since) || a.subject.localeCompare(b.subject)).slice(0, ESCALATION_ANSWERS_MAX)
+    : out;
+  return kept.sort((a, b) => a.subject.localeCompare(b.subject));
 }
 
 /** What the hash and the review signature see of the open escalations: the subject and its parts, in stable order. */
