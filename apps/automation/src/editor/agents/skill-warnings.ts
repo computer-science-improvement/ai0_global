@@ -249,3 +249,42 @@ export function sourceRefusal(body: string): { error: 'source_belongs_in_import'
     hint: 'зміна джерела контенту — це import_list з series (серія, яку привʼязати), stop_using (чого не брати) і disable_skills: одна картка, власник лише ставить позначки й тисне Apply. Скіл може лише пояснювати, як користуватись рядком датасету (вибрати рядок, залишити промпт дослівно, вказати автора)',
   };
 }
+
+// ── Spec 069 FR-007: a skill must not tell the agent to call read material its own ─────────────────────────────────
+
+/**
+ * Review 4: a prompt copied from the library went out as `origin=original`. The lint now rejects a post that shares a run
+ * of 80 chars with a source the agent read (`origin_mismatch`); a skill that PRESCRIBES `origin=original` for material read
+ * from a page, a feed, a document or the library sends the agent straight into that error, so the write is refused.
+ */
+const ORIGIN_ORIGINAL_RE = /(?<![\p{L}])origin\s*(?:=|:|→|->)?\s*["'«`]*original(?![\p{L}])/iu;
+const ORIGIN_OTHER_RE = /(?<![\p{L}])origin\s*(?:=|:)\s*["'«`]*(?:library|external)(?![\p{L}])/iu;
+const READ_SOURCE_RE = /(?<![\p{L}\p{N}_])(?:web_fetch|fetch_feed|fetch_api|read_doc|find_in_doc|query_data|search_library|library_ref)(?![\p{L}\p{N}_])|data:\/\/|library:|https?:\/\/|(?<![\p{L}])(?:бібліотек\p{L}*|датасет\p{L}*|dataset|library|прочитан\p{L}*|завантажен\p{L}*|сторінк\p{L}*|рядк\p{L}*|рядок)(?![\p{L}])/iu;
+/** «не став original», «without a source»: the sentence rules the pairing out (or is about own text). */
+const RULES_OUT_RE = /(?<![\p{L}])(?:не|без|ніколи|never|not|without|no|don'?t)(?![\p{L}])/iu;
+const LIST_ITEM_RE = /^(?:[-*•]|\d+[.)])\s/;
+
+export interface OriginWithSource { sentence: string }
+
+/** The first sentence (a list item reads its lead line too) that prescribes `origin=original` together with a fetched or library source, or null. */
+export function originWithSource(body: string): OriginWithSource | null {
+  const list = sentences(body);
+  for (let k = 0; k < list.length; k++) {
+    const s = list[k];
+    if (!ORIGIN_ORIGINAL_RE.test(s) || ORIGIN_OTHER_RE.test(s) || RULES_OUT_RE.test(s)) continue;
+    const lead = LIST_ITEM_RE.test(s) && k > 0 ? list[k - 1] : '';
+    if (READ_SOURCE_RE.test(s) || (lead && READ_SOURCE_RE.test(lead) && !RULES_OUT_RE.test(lead))) return { sentence: s.slice(0, 160) };
+  }
+  return null;
+}
+
+/** The tool error for a skill write that prescribes `origin=original` for read material (`edit_my_skill`, `write_skill`), or null. */
+export function originRefusal(body: string): { error: 'origin_original_with_source'; details: string; hint: string } | null {
+  const found = originWithSource(body);
+  if (!found) return null;
+  return {
+    error: 'origin_original_with_source',
+    details: `скіл велить ставити origin=original на матеріал, який агент бере з джерела («${found.sentence}») — lint відхилить такий пост (origin_mismatch)`,
+    hint: 'матеріал зі сторінки чи фіду — origin=external + source.url; рядок бібліотеки — origin=library + library_ref; origin=original лише для власного тексту, який не повторює прочитане',
+  };
+}

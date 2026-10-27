@@ -88,6 +88,7 @@ import type { PublishSpecDeps } from './publish/publish-spec';
 import { DraftsService } from './chat/drafts.service';
 import { buildComposerTools } from './chat/composer-tools';
 import { EditorChatService } from './chat/editor-chat.service';
+import { CHAT_READS } from './chat/chat-reads';
 import { EDITOR_CHAT, EDITOR_DRAFTS, EditorChatController } from './api/editor-chat.controller';
 import { EditorOpsService } from './api/editor-ops.service';
 import { EDITOR_OPS, EditorController } from './api/editor.controller';
@@ -1241,6 +1242,7 @@ export const EDITOR_PROVIDERS = [
           notify: (t) => notifier.notifyAlert(t),
           reservedWarnings: (k, at) => schedule.reservedWarnings(k, at),
           ...(critic ? { critic } : {}),
+          chatReads: CHAT_READS,
           log: (m) => logger.warn(m),
         });
       },
@@ -1860,7 +1862,7 @@ export const EDITOR_PROVIDERS = [
           list: async (q) => (await artifacts.list({ ...q, limit: 50 })).rows,
         };
         return new EditorChatService({
-          repo: repos.chat, drafts, memory: repos.memory, loop, registry, loadout: infra.loadout, skills, env, enabled, agents: agentsPort, defaultModel: (ws) => models.get(ws), workspace: () => models.workspace(),
+          repo: repos.chat, drafts, memory: repos.memory, loop, registry, loadout: infra.loadout, skills, env, enabled, chatReads: CHAT_READS, agents: agentsPort, defaultModel: (ws) => models.get(ws), workspace: () => models.workspace(),
           slash,
           artifactChip: async (type, id) => {
             const a = await artifacts.find(type, id);

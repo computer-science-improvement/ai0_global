@@ -13,6 +13,7 @@ import { readerQuestionsIssue } from './audience-asks';
 import { auditPostFromSpec } from './integrity/from-post-spec';
 import { INTEGRITY_CHECKS, runIntegrityChecks } from './integrity/registry';
 import type { AuditCard, AuditContext } from './integrity/types';
+import { MAX_VERBATIM_RUN, sharedRun } from './verbatim-guard';
 
 export interface LintIssue {
   code: string;
@@ -49,6 +50,16 @@ function readerPlain(spec: PostSpec): string {
   if (spec.format === 'carousel') for (const s of spec.slides ?? []) parts.push(s.title, s.text);
   if (spec.format === 'longread' && spec.longread) parts.push(spec.longread.title, blocksPlain(spec.longread.blocks));
   return parts.filter(Boolean).join('\n');
+}
+
+/** The first read source (page, feed item, document, library row) that shares a verbatim run of MAX_VERBATIM_RUN chars with the post text. */
+function originMismatch(text: string, sources: AuditContext['sources']): { run: number; url: string } | null {
+  for (const s of sources ?? []) {
+    if (!s.text?.trim()) continue;
+    const run = sharedRun(text, s.text);
+    if (run >= MAX_VERBATIM_RUN) return { run, url: s.url.slice(0, 120) };
+  }
+  return null;
 }
 
 /** Spec 033 FR-005: a table in a post shorter than this is a lint warning. */
@@ -125,6 +136,12 @@ export function lintPost(spec: PostSpec, card: LintCard, integrity: LintIntegrit
   // ── origin / attribution ──────────────────────────────────────────────────
   if (spec.origin === 'external' && !spec.source) err('source_required', 'матеріал із зовнішнього джерела — додай source.url');
   if (spec.origin === 'library' && !spec.library_ref) err('library_ref_required', 'origin=library — додай library_ref (ref рядка з query_data або search_library)');
+  // Spec 069 FR-007: «original» is the author's own text; a verbatim run from a page, feed item, document or library row the
+  // run read says it is not (review 4: a prompt copied from the library went out as original).
+  const copied = spec.origin === 'original' ? originMismatch(readerPlain(spec), integrity.ctx?.sources) : null;
+  if (copied) {
+    err('origin_mismatch', `origin=original, але ${copied.run} символів поспіль збігаються з джерелом, яке ти прочитав (${copied.url}) — став origin=library + library_ref (рядок бібліотеки) або origin=external + source.url, або перепиши своїми словами`);
+  }
 
   // ── hashtags ──────────────────────────────────────────────────────────────
   const tags = spec.hashtags.map(normalizeHashtag);

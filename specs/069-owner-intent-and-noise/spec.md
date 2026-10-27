@@ -1,6 +1,6 @@
 # 069 — Owner intent reaches the pipeline, less noise, a manager with teeth
 
-Status: planned · Builds on 047 (owner rules), 048 (chat cards), 060 (note gate, adherence), 062 (chat truthfulness), 065/066 (`import_list`), 012 (owner bot) · No migration
+Status: done · Builds on 047 (owner rules), 048 (chat cards), 060 (note gate, adherence), 062 (chat truthfulness), 065/066 (`import_list`), 012 (owner bot) · No migration
 
 > **Read the «Amendments after the builder check» section at the end first.** Where it differs from the body, the amendment wins.
 

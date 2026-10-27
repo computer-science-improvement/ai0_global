@@ -11,6 +11,7 @@ import { fetchPageGuarded, isFetchFailure, type HostFailures } from '../net/host
 import { parseSpecArg, specOrDraftInput } from './spec-arg';
 import { madeUpMediaError } from '../post/made-up-media';
 import type { EditorDraft } from '../repo/editor-chat.repository';
+import type { AuditSource } from '../post/integrity/types';
 
 export interface ComposeToolDeps {
   http?: { lookup?: Lookup; get?: RawGet };
@@ -25,6 +26,12 @@ export function cardFrom(ctx: ToolContext): EditorCard {
   const card = ctx.extras?.card as EditorCard | undefined;
   if (!card) throw new Error('no channel card in context (in the chat: name the channel first, see list_my_channels)');
   return card;
+}
+
+/** Spec 069 FR-007: in the chat, what the agent has read so far is the lint's source list (executor runs pass their own). */
+function chatLintContext(ctx: ToolContext): { ctx?: { sources: AuditSource[] } } {
+  const sources = (ctx.extras as { chatSources?: () => AuditSource[] } | undefined)?.chatSources?.() ?? [];
+  return sources.length ? { ctx: { sources } } : {};
 }
 
 export function buildComposeTools(d: ComposeToolDeps = {}): EditorTool[] {
@@ -61,7 +68,7 @@ export function buildComposeTools(d: ComposeToolDeps = {}): EditorTool[] {
     execute: async (input, ctx) => {
       const p = await specOf(input);
       if ('error' in p) return p;
-      return lintFailed(lintPost(p.spec, cardFrom(ctx)));
+      return lintFailed(lintPost(p.spec, cardFrom(ctx), chatLintContext(ctx)));
     },
   });
 
@@ -75,7 +82,7 @@ export function buildComposeTools(d: ComposeToolDeps = {}): EditorTool[] {
       if ('error' in p) return p;
       const spec = p.spec;
       const card = cardFrom(ctx);
-      const l = lintPost(spec, card);
+      const l = lintPost(spec, card, chatLintContext(ctx));
       if (l.errors.some((e) => e.code === 'format_not_supported_yet' || e.code === 'poll_missing')) return { lint: l };
       const r = renderTelegram(spec, card);
       return { preview: r.preview, messages: r.messages.map((m) => m.method), lint: l };

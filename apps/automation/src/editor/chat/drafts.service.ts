@@ -19,6 +19,7 @@ import { htmlToPlain } from '../post/inline-markup';
 import { slopCodes, type StoredCritic } from '../critic/critic';
 import type { CriticService } from '../critic/critic.service';
 import { isReusableHost, sourceRefOf } from '../../data/ledger-anchor';
+import type { ChatReadCapture } from './chat-reads';
 
 export const SCHEDULE_MIN_LEAD_MS = 2 * 60_000;
 export const SCHEDULE_MAX_AHEAD_MS = 60 * 86_400_000;
@@ -40,6 +41,8 @@ export interface DraftsDeps {
   reservedWarnings?: (channelKey: string, at: Date) => Promise<string[]>;
   /** Spec 034 FR-004: the pre-publish critic, on demand for a chat draft (advisory: never blocks the owner). */
   critic?:   Pick<CriticService, 'review'>;
+  /** Spec 069 FR-007: the texts the chat's agent read (web, feed, document, library rows): a chat draft is linted against them (`origin_mismatch`). */
+  chatReads?: Pick<ChatReadCapture, 'sourcesFor'>;
   now?:      () => Date;
   log?:      (msg: string) => void;
 }
@@ -85,6 +88,12 @@ export class DraftsService {
     return renderDraft(d, resolved?.card ?? null);
   }
 
+  /** Spec 069 FR-007: `lintPost` for a draft of a chat, with what that chat's agent read as its sources. */
+  private lintFor(spec: PostSpec, card: EditorCard, chatId: string | null | undefined): LintResult {
+    const sources = this.d.chatReads?.sourcesFor(chatId) ?? [];
+    return sources.length ? lintPost(spec, card, { ctx: { sources } }) : lintPost(spec, card);
+  }
+
   get(id: string): Promise<EditorDraft | null> {
     return this.d.repo.getDraft(id);
   }
@@ -105,7 +114,7 @@ export class DraftsService {
     // lets the agent pick another one instead of leaving the owner a draft that can never go out.
     const used = await this.usedRef(i.channel, spec);
     if (used) return used;
-    const lint = lintPost(spec, resolved.card);
+    const lint = this.lintFor(spec, resolved.card, i.chatId);
     const preview = previewOf(spec, resolved.card, lint);
 
     if (!i.draftId) {
@@ -144,7 +153,7 @@ export class DraftsService {
     const resolved = await this.resolveCard(draft.channelKey);
     if (!resolved) return { error: 'unknown_channel' };
     const card = resolved.card;
-    const lint = lintPost(spec.data, card);
+    const lint = this.lintFor(spec.data, card, draft.chatId);
     const preview = previewOf(spec.data, card, lint);
     const slop = lint.warnings.filter((w) => slopCodes([w]).length > 0);
     const r = await this.d.critic.review({
@@ -167,8 +176,8 @@ export class DraftsService {
 
   // ── guards shared by publish-now and the scheduled path ───────────────────
 
-  private async guards(channelKey: string, spec: PostSpec, card: EditorCard, now: Date, slotId: string | null = null): Promise<DraftError | { ref: string | null }> {
-    const lint = lintPost(spec, card);
+  private async guards(channelKey: string, spec: PostSpec, card: EditorCard, now: Date, slotId: string | null = null, chatId: string | null = null): Promise<DraftError | { ref: string | null }> {
+    const lint = this.lintFor(spec, card, chatId);
     if (!lint.ok) return { error: 'lint_failed', details: lint.errors };
     const truth = await checkQuizGroundTruth(this.d.pool, spec);
     if (truth) return truth;
@@ -230,7 +239,7 @@ export class DraftsService {
       const resolved = await this.resolveCard(draft.channelKey);
       if (!resolved) return { error: 'unknown_channel' };
       const now = this.now();
-      const g = await this.guards(draft.channelKey, spec.data, resolved.card, now);
+      const g = await this.guards(draft.channelKey, spec.data, resolved.card, now, null, draft.chatId);
       if (isError(g)) return g;
 
       if (draft.status === 'scheduled' && draft.slotId) {
@@ -279,7 +288,7 @@ export class DraftsService {
     if (!spec.success) return { error: 'invalid_spec' };
     const resolved = await this.resolveCard(draft.channelKey);
     if (!resolved) return { error: 'unknown_channel' };
-    const lint = lintPost(spec.data, resolved.card);
+    const lint = this.lintFor(spec.data, resolved.card, draft.chatId);
     if (!lint.ok) return { error: 'lint_failed', details: lint.errors };
 
     // A channel without a card gets a minimal one in mode 'off' (the planner ignores it).
@@ -333,7 +342,7 @@ export class DraftsService {
       if (!spec.success) return this.failScheduled(slot, draft, 'post_spec is not a valid PostSpec');
       const resolved = await this.resolveCard(slot.channelKey)
         ?? { card: makeChatCard(slot.channelKey, null), hasCard: false };
-      const g = await this.guards(slot.channelKey, spec.data, resolved.card, now, slot.id);
+      const g = await this.guards(slot.channelKey, spec.data, resolved.card, now, slot.id, draft?.chatId ?? null);
       if (isError(g)) return this.failScheduled(slot, draft, `${g.error}${g.details ? `: ${typeof g.details === 'string' ? g.details : JSON.stringify(g.details)}` : ''}`);
 
       let res;

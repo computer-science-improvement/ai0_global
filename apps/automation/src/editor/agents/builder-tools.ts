@@ -10,7 +10,7 @@ import type { ResourceCatalog } from './resource-catalog';
 import { KPI_GOALS, ResourceProfile, ResourceProfileSchema, ResourceProfilesRepository } from './resource-profile';
 import { isProtectedSkill } from '../skills/skill-library';
 import { lintSkill, SKILL_ROLES } from './skill-lint';
-import { sourceRefusal } from './skill-warnings';
+import { originRefusal, sourceRefusal } from './skill-warnings';
 import { conflictFollowUps, conflictsForModel, conflictsLine } from './skill-conflict-followups';
 import type { SkillStore } from './skill-store';
 import { defaultAppliesTo } from '../skills/skill-defaults';
@@ -278,6 +278,9 @@ export function buildBuilderTools(d: BuilderToolDeps): EditorTool[] {
       // Spec 069 FR-002: where the posts come from is an import card, never a skill.
       const wrongPlace = sourceRefusal(i.body);
       if (wrongPlace) return wrongPlace;
+      // Spec 069 FR-007: nor a skill that calls read material «original» (the lint's `origin_mismatch` would reject the post).
+      const wrongOrigin = originRefusal(i.body);
+      if (wrongOrigin) return wrongOrigin;
       // Spec 069 FR-003: the skills this one contradicts ride on the card as follow-ups.
       const found = await conflictFollowUps(d, a, { name: i.name, description: i.description, body: i.body, appliesTo });
       const card = await proposeCard(d, ctx, 'write_skill',

@@ -9,7 +9,7 @@ import type { PendingActionsService } from './pending-actions';
 import { ruleOverlap } from './mentions';
 import { isProtectedSkill } from '../skills/skill-library';
 import { lintSkill, SKILL_ROLES } from './skill-lint';
-import { skillWarnings, sourceRefusal } from './skill-warnings';
+import { originRefusal, skillWarnings, sourceRefusal } from './skill-warnings';
 import { conflictFollowUps, conflictsForModel, conflictsLine } from './skill-conflict-followups';
 import type { AgentsRepository } from './agents.repository';
 import type { SkillStore } from './skill-store';
@@ -263,6 +263,9 @@ export function buildAgentChatTools(d: AgentChatToolDeps): EditorTool[] {
       // Spec 069 FR-002: where the posts come from is an import card, never a skill.
       const wrongPlace = sourceRefusal(i.body);
       if (wrongPlace) return wrongPlace;
+      // Spec 069 FR-007: nor a skill that calls read material «original» (the lint's `origin_mismatch` would reject the post).
+      const wrongOrigin = originRefusal(i.body);
+      if (wrongOrigin) return wrongOrigin;
       // Spec 069 FR-003: the skills this one contradicts (a source it rules out that another skill uses, or the reverse) ride on the card.
       const found = await conflictFollowUps(d, a, { name: i.name, description: i.description, body: i.body, appliesTo });
       const card = await proposeCard(d, ctx, 'write_skill',

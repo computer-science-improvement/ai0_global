@@ -1,4 +1,4 @@
-import { CHAT_FORMAT_RULE, DATA_QUESTION_RULE, NO_SYSTEM_FOOTERS_RULE } from '../chat/chat-format';
+import { CHAT_FORMAT_RULE, DATA_QUESTION_RULE, NO_REANNOUNCE_RULE, NO_SYSTEM_FOOTERS_RULE } from '../chat/chat-format';
 import type { CardRole } from '../llm/llm.types';
 import { cardSummary, EditorCard } from '../card';
 import type { SkillSource } from '../skills/skill-library';
@@ -192,6 +192,7 @@ export function buildComposerSystemPrompt(o: {
     ...(o.persona ? [] : [SOURCE_CHANGE_ROUTE]),
     CHAT_FORMAT_RULE,
     NO_SYSTEM_FOOTERS_RULE,
+    NO_REANNOUNCE_RULE,
     DATA_QUESTION_RULE,
     // Spec 034 FR-001/FR-002: the voice of every post; the humour/slang line is the channel's (off until the owner turns it on).
     ...voiceCoreSection(o.card ? { humor: o.card.humor, slang: o.card.slang } : null, o.skills),

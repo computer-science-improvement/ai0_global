@@ -1,4 +1,4 @@
-import { CHAT_FORMAT_RULE, DATA_QUESTION_RULE, NO_SYSTEM_FOOTERS_RULE } from '../chat/chat-format';
+import { CHAT_FORMAT_RULE, DATA_QUESTION_RULE, NO_REANNOUNCE_RULE, NO_SYSTEM_FOOTERS_RULE } from '../chat/chat-format';
 import type { SkillSource } from '../skills/skill-library';
 import { localDate, localTimeLabel } from '../roles/time';
 import type { Agent } from './agent.types';
@@ -76,6 +76,7 @@ export function buildBuilderPrompt(o: { now: Date; skills: SkillSource; agentsSu
     'Після create_agent і після set_brief виклич propose_content_examples: 3 приклади постів для ресурсу і 2–4 застереження про погані пости саме для цієї теми — власник позначить їх і застосує.',
     CHAT_FORMAT_RULE,
     NO_SYSTEM_FOOTERS_RULE,
+    NO_REANNOUNCE_RULE,
     DATA_QUESTION_RULE,
     '',
     `Зараз ${localDate(o.now, tz)} ${localTimeLabel(o.now, tz)} (Київ).`,
@@ -106,6 +107,7 @@ export function buildManagerChatPrompt(o: { now: Date; skills: SkillSource; dige
     'Це розмова, а не нічний прогін: submit_review тут немає, кроки скілу manager-workflow про нього пропускай. Закінчуй хід відповіддю власнику текстом.',
     CHAT_FORMAT_RULE,
     NO_SYSTEM_FOOTERS_RULE,
+    NO_REANNOUNCE_RULE,
     '',
     `Зараз ${localDate(o.now, tz)} ${localTimeLabel(o.now, tz)} (Київ).`,
     ...(o.digest ? ['', '## KPI-дайджест мережі', o.digest] : []),

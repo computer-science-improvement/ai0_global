@@ -53,6 +53,35 @@ export function longestCommonRun(a: string, b: string): number {
   return best;
 }
 
+/** The most chars of a post and of one source `sharedRun` reads (a page the run read is kept up to 60k). */
+const SHARED_POST_CAP = 20_000;
+const SHARED_SOURCE_CAP = 120_000;
+
+/**
+ * Spec 069 FR-007: the length of a verbatim run (case and whitespace folded, like `longestCommonRun`) of at least `min`
+ * chars that the post shares with the source text, or 0. `longestCommonRun` is quadratic and cuts the source at 8 000
+ * chars, which a 60k page does not fit; this one hashes every `min`-char window of the post and slides over the source
+ * once, so a copied passage anywhere in the page is found (the effect of 8 000-char windows overlapping by `min`).
+ */
+export function sharedRun(post: string, source: string, min = MAX_VERBATIM_RUN): number {
+  const x = squash(post).slice(0, SHARED_POST_CAP);
+  const y = squash(source).slice(0, SHARED_SOURCE_CAP);
+  if (x.length < min || y.length < min) return 0;
+  const windows = new Set<string>();
+  for (let i = 0; i + min <= x.length; i++) windows.add(x.slice(i, i + min));
+  let best = 0;
+  for (let j = 0; j + min <= y.length; j++) {
+    if (!windows.has(y.slice(j, j + min))) continue;
+    // Extend the hit to the full run: from where the window starts in the post, forwards.
+    const at = x.indexOf(y.slice(j, j + min));
+    let len = min;
+    while (at + len < x.length && j + len < y.length && x[at + len] === y[j + len]) len++;
+    if (len > best) best = len;
+    j += len - 1;
+  }
+  return best;
+}
+
 export function postPlainText(spec: PostSpec): string {
   return spec.body.map((b) => blockWords(b, inlineToPlain)).join('\n');
 }

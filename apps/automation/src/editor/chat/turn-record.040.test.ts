@@ -107,7 +107,10 @@ test('a claim with no tool call gets one re-prompt; a corrected reply is kept wi
   const r = await s.svc.sendMessage('c1', '@kira запамʼятай: без хештегів');
   assert.equal(r.message.content, 'Тепер записав правило #41: без хештегів.');
   assert.deepEqual(s.rules, ['Без хештегів']);
-  assert.match((s.llm.requests[1].messages.at(-1) as any).content, /Ти написав, що виконав дію \(«Записав правило: без хештегів\.»\)/);
+  // Spec 069 FR-006 (A1), changed on purpose: the retry asks the owner's message again with a system note; the first answer is not in it.
+  const retry = s.llm.requests[1].messages as any[];
+  assert.match(retry.at(-1).content, /^@kira запамʼятай: без хештегів\n\n\[Системна примітка: відповідай на останнє повідомлення власника ще раз; кажи лише те, що зробили інструменти; ніколи не згадуй перевірку чи виправлення\.\]$/);
+  assert.ok(!retry.some((m) => /Записав правило: без хештегів/.test(String(m.content))), 'the first answer is not shown to the retry');
   assert.deepEqual(s.stored.at(-1).actions.rules, [41]);
 });
 
