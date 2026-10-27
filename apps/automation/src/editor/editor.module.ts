@@ -77,6 +77,8 @@ import { safeGetBytes } from './net/safe-http';
 import { AdOrdersRepository } from '../payments/ad-orders.repository';
 import { EditorRunnerService, type EditorRunnerDeps } from './roles/editor-runner.service';
 import { buildSlotPreflight } from './preflight/preflight-wiring';
+import { producibleQuotas } from './preflight/plan-time';
+import { formatAvailable } from './preflight/slot-preflight';
 import { EditorScheduler } from './editor.scheduler';
 import { htmlToPlain } from './post/inline-markup';
 import { EditorRunsRepository } from './repo/editor-runs.repository';
@@ -499,7 +501,9 @@ function directiveScope(pool: Pool): (orch: Agent) => Promise<string[]> {
  * spec 034 T4: voice_fix, format_mix) and
  * the promo verifiers, with their runner. `buildPort` is bound only for the MANAGER's instance (it applies).
  */
-function directiveExecution(pool: Pool, repos: EditorRepos, infra: AgentInfra, platform: PlatformInfra, buildPort = new PlaybookBuildPort()): DirectiveExecution {
+function directiveExecution(
+  pool: Pool, repos: EditorRepos, infra: AgentInfra, platform: PlatformInfra, buildPort = new PlaybookBuildPort(), env?: (key: string) => string | undefined,
+): DirectiveExecution {
   const logger = new Logger('DirectiveExecution');
   const network = new NetworkRepository(pool);
   const deps = { network, channels: repos.channels, observer: new SqlPlanObserver(pool) };
@@ -516,7 +520,7 @@ function directiveExecution(pool: Pool, repos: EditorRepos, infra: AgentInfra, p
     }),
     executors: [
       frequencyExecutor(deps), formatShiftExecutor(deps), pauseSeriesExecutor(deps), pauseResourceExecutor({ pauses }),
-      experimentExecutor({ quotas }), strategyExecutor({ network, builder: buildPort }),
+      experimentExecutor({ quotas, env }), strategyExecutor({ network, builder: buildPort }),
       voiceFixExecutor(qdeps), formatMixExecutor(qdeps),
     ],
     verifiers: [promoVerifier(pool, 'cross_promo'), promoVerifier(pool, 'repost'), adviceVerifier(pool)],
@@ -532,9 +536,11 @@ const pollCapsOf = (pool: Pool) => {
 };
 
 /** Spec 025 FR-014: open experiment quotas of an anchor (plan validators and planner prompts). */
-const experimentQuotasOf = (pool: Pool) => {
+const experimentQuotasOf = (pool: Pool, env?: (key: string) => string | undefined) => {
   const q = new SqlExperimentQuotas(pool);
-  return (anchorKey: string, planDate: string, now: Date) => q.open(anchorKey, planDate, now);
+  // Spec 068 FR-007: a quota in a format that cannot be produced here (no slide hosting) is not shown and forces no slot.
+  const formatOk = env ? (f: string) => formatAvailable(f, env).ok : undefined;
+  return async (anchorKey: string, planDate: string, now: Date) => producibleQuotas(await q.open(anchorKey, planDate, now), formatOk);
 };
 
 export interface EditorRepos {
@@ -1258,7 +1264,7 @@ export const EDITOR_PROVIDERS = [
         // Spec 037 T2: the story registry (publish guard, prompts, fetch_feed, story reposts).
         const stories = new StoryRegistry(pool);
         // Spec 025: executor dry-run for file_directive; directive_lock on the orchestrator's playbook writes.
-        const directives = directiveExecution(pool, repos, infra, platform);
+        const directives = directiveExecution(pool, repos, infra, platform, undefined, env);
         const directiveLock = (orchId: string, body: Playbook) => directives.lockFor(orchId, body);
         // Spec 040 FR-006: hosts that refused or failed a fetch are not asked again for 24 h.
         const hosts = new PgHostFailures(pool);
@@ -1287,7 +1293,7 @@ export const EDITOR_PROVIDERS = [
               : (k, html) => notifier.notifyAlert(previewMessage(k, html)),
             schedule,
             // Spec 025 FR-014: directive experiment quotas in the plan check.
-            experimentQuotas: experimentQuotasOf(pool),
+            experimentQuotas: experimentQuotasOf(pool, env),
             pollCaps: pollCapsOf(pool),
             preflight: planPreflight, env,
             stories, kpiSampleFilter: `${STORY_KPI_SAMPLE_FILTER} AND ${EVERGREEN_KPI_SAMPLE_FILTER}`,
@@ -1332,8 +1338,8 @@ export const EDITOR_PROVIDERS = [
           ...buildNetworkTools({
             repo: new NetworkRepository(pool), plans: repos.plans, memory: repos.memory, inbox: infra.inbox,
             sourceCatalog: (card) => seriesSourceCatalog(pool, card), schedule, directiveLock,
-            experimentQuotas: experimentQuotasOf(pool),
-            pollCaps: pollCapsOf(pool), agents: new AgentsRepository(pool), preflight: planPreflight,
+            experimentQuotas: experimentQuotasOf(pool, env),
+            pollCaps: pollCapsOf(pool), agents: new AgentsRepository(pool), preflight: planPreflight, env,
           }),
           // Spec 023 FR-003: the orchestrator's series tools (one submit path with submit_playbook).
           ...buildSeriesTools({ repo: new NetworkRepository(pool), inbox: infra.inbox, sourceCatalog: (card) => seriesSourceCatalog(pool, card), directiveLock }),
@@ -1494,7 +1500,7 @@ export const EDITOR_PROVIDERS = [
           loop, registry, runtime: infra.runtime, loadout: infra.loadout, agents: infra.agents, repo, digest, inbox: infra.inbox, env, defaultModel: (ws) => models.get(ws), workspace: () => models.workspace(),
           timeoutHours: envNum(env, 'DIRECTIVE_TIMEOUT_HOURS', 12),
           timeoutApplyKinds: (env('DIRECTIVE_TIMEOUT_APPLY_KINDS') ?? '').split(',').map((x) => x.trim()).filter(Boolean),
-          exec: directiveExecution(pool, repos, infra, platform, buildPort),
+          exec: directiveExecution(pool, repos, infra, platform, buildPort, env),
           // Spec 025 FR-008: the contest timeout and the health guard on uphold.
           contestTimeoutHours: envNum(env, 'DIRECTIVE_CONTEST_TIMEOUT_HOURS', 24),
           usable: (ref) => platform.health.usable(ref),
@@ -1560,7 +1566,7 @@ export const EDITOR_PROVIDERS = [
           catalogSummary: withSchedule(catalogSummaryOf(pool, (k) => cfg.get<string>(k) ?? undefined), schedule),
           runwayCheck: (orch, playbook) => checkLowRunway({ pool, inbox: infra.inbox }, orch, playbook),
           // Spec 025 FR-014: experiment quotas in the planner prompts.
-          experimentQuotas: experimentQuotasOf(pool),
+          experimentQuotas: experimentQuotasOf(pool, (k) => cfg.get<string>(k) ?? undefined),
           // Spec 037 T2: the active stories in the planner prompt.
           stories: new StoryContextService(new StoryRegistry(pool)),
           // Spec 053 FR-005: the last 7 days in the orchestrator prompt.

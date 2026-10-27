@@ -8,7 +8,7 @@ import { SubmitNetworkPlanInput, validateNetworkPlan } from '../network/network-
 import { PlaybookSchema, type Playbook } from '../network/playbook';
 import type { NetworkCtx } from '../network/network-context';
 import { makeCard } from '../post/testing/fixtures';
-import { EMPTY_DAY_WAY_OUT, minAfterPauses, pausedInstances, planPerDay, type PausedSeriesCtx, type PlanScheduleCtx } from './plan-schedule-rules';
+import { EMPTY_DAY_WAY_OUT, NETWORK_EMPTY_DAY_WAY_OUT, minAfterPauses, pausedInstances, planPerDay, type PausedSeriesCtx, type PlanScheduleCtx } from './plan-schedule-rules';
 import { EMPTY_DAY_ERROR_RE, emptyDayError, shortDayPlaceholder } from './empty-day';
 import type { IdeaRow } from '../network/network.repository';
 import type { ScheduleRule } from './schedule-rules';
@@ -173,7 +173,9 @@ test('network: per_day.min per resource; a short day takes one resource to 0, th
   const e = errorsOf(plain);
   assert.match(e, /telegram:@food: 0 постів < per_day\.min 1/);
   assert.match(e, /instagram:ig1: 0 постів < per_day\.min 1/);
-  assert.ok(e.includes(EMPTY_DAY_WAY_OUT));
+  assert.ok(e.includes(NETWORK_EMPTY_DAY_WAY_OUT), 'a network plan is told about short_days (it has no short_day)');
+  assert.doesNotMatch(NETWORK_EMPTY_DAY_WAY_OUT, /short_day\b(?!s)/);
+  assert.match(NETWORK_EMPTY_DAY_WAY_OUT, /short_days \[\{resource_ref, cause, reason\}\]/);
 
   const one = validateNetworkPlan({ rationale: 'Для Instagram немає матеріалу', slots: [tgPost], skips: [igSkip], short_days: [{ resource_ref: IG, cause: 'no_material', reason: 'Фото для Instagram у бібліотеці закінчились' }] }, netOpts());
   assert.equal(one.ok, true, errorsOf(one));

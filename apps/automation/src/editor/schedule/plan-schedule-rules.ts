@@ -159,6 +159,8 @@ export function materialSkips(plan: PlanLike, ctx: PlanScheduleCtx, defaultRef: 
 
 /** The way out a planner is told when a day cannot be filled because there is nothing to post from. */
 export const EMPTY_DAY_WAY_OUT = 'якщо матеріалу немає — skipped_series з cause: no_material (для серії) або short_day (для всього дня)';
+/** The same for a network plan: it has `short_days` (a resource's whole day), not `short_day`. */
+export const NETWORK_EMPTY_DAY_WAY_OUT = 'якщо матеріалу немає — skipped_series з cause: no_material (для серії) або short_days [{resource_ref, cause, reason}] (для всього дня ресурсу)';
 
 /** The schedule-rule errors of a plan (empty = fine). `defaultRef` is the resource of slots without one. */
 export function planScheduleErrors(plan: PlanLike, ctx: PlanScheduleCtx, defaultRef: string): string[] {

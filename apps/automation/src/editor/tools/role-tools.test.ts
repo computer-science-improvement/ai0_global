@@ -221,6 +221,31 @@ test('submit_plan: the plan-time pre-flight refuses a slot whose row or source c
   assert.equal(((await t4.submit_plan.execute({ rationale: 'план на день тест', slots: [slotOf(['data://prompts/7'])] }, c)) as any).ok, true);
 });
 
+// Spec 068 FR-007 (review fix R1): an open experiment quota in a format that cannot be produced here forces no slot.
+test('submit_plan: an open carousel quota without slide hosting does not block the plan; with hosting it still needs its slot', async () => {
+  const quota = { directiveId: 'dir-1', resourceRef: 'telegram:@chan', angle: 'Каруселі з порадами', format: 'carousel', remaining: 1, deadline: '2026-10-10T00:00:00.000Z' };
+  const c = { ...ctx('shadow'), role: 'planner' as const, extras: { card: makeCard({ postsPerDayMin: 1, postsPerDayMax: 3, formats: { photo: 1, carousel: 1 } }), planDate: '2026-10-01' } };
+  const two = { rationale: 'два фото за день тест', slots: [
+    { time: '16:00', format: 'photo', topic: 'Тема про космос', source_hints: [], is_experiment: false },
+    { time: '19:00', format: 'photo', topic: 'Тема про зорі', source_hints: [], is_experiment: false },
+  ] };
+  const hosting = (k: string) => ({ SUPABASE_URL: 'u', SUPABASE_SERVICE_KEY: 'k', SUPABASE_CAROUSEL_BUCKET: 'b' } as Record<string, string>)[k];
+
+  const none = deps({}, { experimentQuotas: async () => [quota], env: () => undefined });
+  const ok: any = await none.tools.submit_plan.execute(two, c);
+  assert.equal(ok.ok, true, JSON.stringify(ok));
+  assert.equal(none.updates[0][0], 'createPlan');
+
+  const hosted = deps({}, { experimentQuotas: async () => [quota], env: hosting });
+  const refused: any = await hosted.tools.submit_plan.execute(two, c);
+  assert.equal(refused.error, 'plan_invalid');
+  assert.match(refused.details.join('\n'), /директива dir-1 .*потрібен щонайменше 1 слот.* у форматі carousel/);
+
+  // A quota that does not name a format is not touched.
+  const free = deps({}, { experimentQuotas: async () => [{ ...quota, format: null }], env: () => undefined });
+  assert.equal(((await free.tools.submit_plan.execute(two, c)) as any).error, 'plan_invalid');
+});
+
 // Spec 037 FR-013: editor_v_post_performance rows as the pool returns them (numerics as strings).
 const perfPool = (rows: any[], seen: any[] = []) => ({
   query: async (sql: string, params: any[]) => {

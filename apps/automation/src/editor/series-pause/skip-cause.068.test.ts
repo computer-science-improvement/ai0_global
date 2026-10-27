@@ -199,6 +199,43 @@ test('068 FR-003 families: series merge all three; a plain resource keeps an unr
   assert.equal(skipStreaks(withPost, { threshold: 3 }).length, 0);
 });
 
+// Review fix R3: the guard's own text names a row id («data://prompts/503»), which the free-text reader took for an HTTP status.
+test('068 R3: not_next_in_order is `other` whatever row id or words its text carries', () => {
+  const real = 'not_next_in_order: серія бере рядки по черзі; наступний — data://prompts/503';
+  const withEmpty = 'not_next_in_order: серія бере рядки по черзі; наступний — data://prompts/404; рядок 40 порожній';
+  for (const status of ['skipped', 'failed']) {
+    for (const e of [real, withEmpty, `skipped by agent: ${real}`]) assert.deepEqual(close(e, null, status), { k: 'other' }, `${status}: ${e}`);
+  }
+  // Three of them never pause a series.
+  const slots: StreakSlot[] = [real, withEmpty, real].map((error, i) => ({
+    id: `n${i}`, channelKey: '@c', resourceRef: null, seriesName: 'S', scheduleRuleId: null, topic: '',
+    scheduledAt: new Date(Date.parse('2026-10-22T00:00:00Z') + i * 3600_000), updatedAt: new Date(Date.parse('2026-10-22T00:00:00Z') + i * 3600_000), status: 'failed', error, criticVerdict: null,
+  }));
+  assert.equal(skipStreaks(slots, { threshold: 3 }).length, 0);
+});
+
+// Review fix R4: a run that crashed did not test the material; it neither counts nor ends a run.
+test('068 R4: an infra failure (error / timeout / disabled) is transparent inside a material run; an agent\'s own skip is judged by what it says', () => {
+  const at = (i: number) => new Date(Date.parse('2026-10-22T00:00:00Z') + i * 3600_000);
+  const run = (...errs: Array<[string, string]>): StreakSlot[] => errs.map(([status, error], i) => ({
+    id: `r${i}`, channelKey: '@c', resourceRef: null, seriesName: 'S', scheduleRuleId: null, topic: '',
+    scheduledAt: at(i), updatedAt: at(i), status, error, criticVerdict: null,
+  }));
+  const N: [string, string] = ['skipped', 'no_fresh_item: нічого свіжого'];
+  const crash: [string, string] = ['failed', 'error: OpenRouter request failed (503): x'];
+  assert.deepEqual(close(crash[1], null, 'failed'), { k: 'ignore' });
+  assert.deepEqual(close('timeout: the run exceeded 300 s', null, 'failed'), { k: 'ignore' });
+  assert.deepEqual(close('disabled: agent paused', null, 'failed'), { k: 'ignore' });
+  assert.equal(skipStreaks(run(N, crash, N), { threshold: 3 }).length, 0, 'N crash N is a run of 2');
+  const hit = skipStreaks(run(N, crash, N, N), { threshold: 3 });
+  assert.equal(hit.length, 1);
+  assert.equal(hit[0].n, 3, 'the crash neither counted nor ended the run');
+  assert.equal(hit[0].cause, 'no_material');
+  // The embedded guard code still reads as material, and an executor's skip about a 503 is still an unreachable source.
+  assert.deepEqual(close('error: max_steps ran out; source_already_posted', null, 'failed'), { k: 'cause', cause: 'no_material' });
+  assert.deepEqual(close('skipped by agent: error 503 від джерела', null), { k: 'cause', cause: 'source_unreachable' });
+});
+
 test('068 the cause prefix round-trips through the readers of the error text', () => {
   const e = skipSlotError('рядок data://prompts/7 без prompt_text', 'no_material');
   assert.equal(e, 'skipped by agent: no_material: рядок data://prompts/7 без prompt_text');

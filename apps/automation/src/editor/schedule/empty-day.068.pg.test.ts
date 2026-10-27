@@ -178,6 +178,48 @@ test('a replan replaces the future placeholders and keeps those whose time has p
   assert.deepEqual(after.map((r) => r.series_name), [null], 'only the past short-day record is left');
 });
 
+// Review fix R5: the executor (or the pre-flight) already closed the instance; the replan's declaration must not close it twice.
+test('an instance the executor already skipped is not counted again when a replan declares the series empty', { skip }, async () => {
+  await wipe();
+  const { svc, plans } = service();
+  const planned = await validated(svc, { rationale: 'Планую рецепт дня на вечір', slots: [
+    { time: '19:00', format: 'photo', topic: 'Рецепт борщу з пампушками', source_hints: ['library:recipes'], series: 'Рецепт дня', is_experiment: false },
+  ] });
+  await plans.createPlan(CH, TODAY, 'pgt068t2 r5 first', null, planned.slots, planned.empty);
+
+  // 21:00 Kyiv: the executor found nothing and skipped the 19:00 slot (agent skip, as the executor writes it).
+  const slotId = (await pool.query(`SELECT id FROM editor_slots WHERE channel_key = $1 AND series_name = 'Рецепт дня'`, [CH])).rows[0].id;
+  await pool.query(`UPDATE editor_slots SET status = 'skipped', error = $2 WHERE id = $1`, [slotId, 'skipped by agent: no_material: у бібліотеці немає непублікованих рецептів']);
+
+  // 19:30 Kyiv: the planner replans and declares the same instance empty.
+  clock = new Date('2030-01-15T17:30:00Z');
+  const second = await validated(svc, { rationale: 'Рецептів немає, пропускаю серію', slots: [], skipped_series: [SKIP_RECIPE], short_day: { cause: 'no_material', reason: REASON } });
+  const recipeDeclared = second.empty.filter((e) => e.seriesName === 'Рецепт дня');
+  assert.equal(recipeDeclared.length, 1, 'the replan does declare the instance');
+  await plans.createPlan(CH, TODAY, 'pgt068t2 r5 second', null, second.slots, second.empty);
+
+  const rows = await placeholders();
+  assert.equal(rows.filter((r) => r.series_name === 'Рецепт дня').length, 0, 'no second close for the instance the executor already skipped');
+  assert.equal(rows.filter((r) => !r.series_name).length, 1, 'the short day is still written (a different record)');
+  const closes = (await pausesRepo().closedSlots(new Date('2030-01-15T22:00:00Z'), CH)).map((x) => classifyClose(x));
+  assert.equal(closes.filter((c) => c.k === 'cause' && c.cause === 'no_material').length, 2, 'the executor skip and the short day: two closes, not three');
+
+  // The guard is not blind: a skip of another series, one that was superseded, one by the breaker and one 2 h away do not shield the declaration.
+  await wipe();
+  const first = await validated(svc, { rationale: 'Планую рецепт дня на вечір', slots: [
+    { time: '19:00', format: 'photo', topic: 'Рецепт борщу з пампушками', source_hints: ['library:recipes'], series: 'Рецепт дня', is_experiment: false },
+  ] });
+  await plans.createPlan(CH, TODAY, 'pgt068t2 r5 third', null, first.slots, first.empty);
+  const id2 = (await pool.query(`SELECT id FROM editor_slots WHERE channel_key = $1 AND series_name = 'Рецепт дня'`, [CH])).rows[0].id;
+  for (const [error, shift] of [['superseded by a new plan', 0], ['series_paused: 3 пропуски поспіль', 0], ['skipped by agent: no_material: x', 150]] as const) {
+    await pool.query(`UPDATE editor_slots SET status = 'skipped', error = $2, scheduled_at = '2030-01-15T17:00:00Z'::timestamptz + make_interval(mins => $3) WHERE id = $1`, [id2, error, shift]);
+    const again = await validated(svc, { rationale: 'Рецептів немає, пропускаю серію', slots: [], skipped_series: [SKIP_RECIPE], short_day: { cause: 'no_material', reason: REASON } });
+    await plans.createPlan(CH, TODAY, `pgt068t2 r5 ${error}`, null, again.slots, again.empty);
+    assert.equal((await placeholders()).filter((r) => r.series_name === 'Рецепт дня' && r.status === 'skipped' && r.error.startsWith('planner_')).length, 1, `a close that does not count (${error}, +${shift} min) leaves the declaration`);
+    await pool.query(`DELETE FROM editor_slots WHERE channel_key = $1 AND error LIKE 'planner\\_%'`, [CH]);
+  }
+});
+
 test('three empty days pause the series; the planner\'s minimum, the network section and the silent-days minimum drop', { skip }, async () => {
   await wipe();
   const { svc, plans } = service();

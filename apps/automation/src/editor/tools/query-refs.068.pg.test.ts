@@ -70,13 +70,13 @@ test('by ref: the rows asked for, in order, any status, with postable / missing 
   assert.deepEqual(r.rows, [
     { ref: ref('c'), name: 'c', postable: true, missing: [], used_here: true },
     { ref: ref('bare'), name: 'bare', postable: false, missing: ['prompt_text'], used_here: false },
-    { ref: ref('hidden'), name: 'hidden', status: 'hidden', postable: true, missing: [], used_here: false },
+    { ref: ref('hidden'), name: 'hidden', status: 'hidden', postable: false, missing: ['status: hidden'], used_here: false },
     { ref: ref('a'), name: 'a', postable: true, missing: [], used_here: false, requested: LEGACY },
     { ref: `data://${K}/999999999`, found: false },
     { ref: ref('a'), name: 'a', postable: true, missing: [], used_here: false },
   ]);
   assert.match(r.note, /1 ref\(s\) have no row/);
-  assert.match(r.note, /1 row\(s\) have postable: false/);
+  assert.match(r.note, /2 row\(s\) have postable: false/, 'the hidden row (status) and the one without prompt text');
 });
 
 test('by ref: filters, search and unposted_on are not applied; without a resource there is no used_here; the dataset must match', { skip }, async () => {

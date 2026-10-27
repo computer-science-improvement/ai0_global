@@ -78,12 +78,12 @@ test('rows come back in the order asked with their flags; a ref with no row is f
   });
   const r: any = await tool(pool).execute(q({ refs: ['library://books_old/abc-1', 'data://books/99', 'data://books/13'] }), ctx);
   assert.deepEqual(r.rows, [
-    { ref: 'data://books/12', title: 'А', status: 'hidden', postable: true, missing: [], used_here: true, requested: 'library://books_old/abc-1' },
+    { ref: 'data://books/12', title: 'А', status: 'hidden', postable: false, missing: ['status: hidden'], used_here: true, requested: 'library://books_old/abc-1' },
     { ref: 'data://books/99', found: false },
     { ref: 'data://books/13', title: 'Б', postable: false, missing: ['summary or genre'], used_here: false },
   ]);
   assert.match(r.note, /1 ref\(s\) have no row in "books" \(found: false\)/);
-  assert.match(r.note, /1 row\(s\) have postable: false/);
+  assert.match(r.note, /2 row\(s\) have postable: false/, 'the hidden row (status) and the one that misses a field');
 
   const none: any = await tool(fakePool({ items: [] }).pool).execute(q({ refs: ['data://books/1'] }), ctx);
   assert.deepEqual(none.rows, [{ ref: 'data://books/1', found: false }]);

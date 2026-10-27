@@ -121,8 +121,11 @@ export class SlotPreflight {
     const idea = slot.ideaId ? await this.d.ideas.idea(slot.ideaId) : null;
     const problem = await this.assess(slot, card, idea, slot.sourceHints ?? []);
     if (!problem) return { ok: true, slot };
-    // A missing format is not cured by another idea of the same format; a series slot has its own source rule.
-    if (problem.code === 'preflight_format_unavailable' || !idea || slot.seriesName) return this.fail(slot, idea, problem);
+    // A missing format is not cured by another idea of the same format; a series slot has its own source rule; a slot that carries
+    // a manager directive (`directive:<id>`, an experiment quota) would lose the hint and the angle in a swap, so it fails instead.
+    if (problem.code === 'preflight_format_unavailable' || !idea || slot.seriesName || (slot.sourceHints ?? []).some((h) => /^directive:/i.test(h.trim()))) {
+      return this.fail(slot, idea, problem);
+    }
     const swap = await this.swap(slot, card, idea);
     if (!swap) return this.fail(slot, idea, problem);
     await this.d.ideas.release(idea.id, 'rejected', `preflight: ${problem.reason}`).catch(() => {});

@@ -92,6 +92,9 @@ export function classifyClose(s: ClosedSlotLike): SlotClose {
   if (/^planner_no_material\b/.test(e)) return { k: 'cause', cause: 'no_material' };
   if (/^planner_source_unreachable\b/.test(e)) return { k: 'cause', cause: 'source_unreachable' };
   if (STORY_TEXT.test(e)) return { k: 'other' };
+  // Spec 071's guard code (the series takes rows in order): the text names a row id («наступний — data://prompts/503»), which the
+  // free-text reader below would take for an HTTP status. It is a content failure, never a dead source.
+  if (/^(skipped by agent:\s*)?not_next_in_order\b/i.test(e)) return { k: 'other' };
   // Spec 068 FR-001: the cause the executor named in skip_slot.
   const named = agentCauseOf(e);
   if (named) return named === 'other' ? { k: 'other' } : { k: 'cause', cause: named };
@@ -108,6 +111,9 @@ function classifyText(e: string): SlotClose {
   const body = e.replace(AGENT_PREFIX, '');
   if (NO_MATERIAL_CODE.test(body) || EMBEDDED_NO_MATERIAL.test(body)) return { k: 'cause', cause: 'no_material' };
   if (agent && USED_ANYWHERE.test(body)) return { k: 'cause', cause: 'source_used' };
+  // A run that crashed, timed out or was switched off did not test the material (idea-outcome reads it the same way): it neither
+  // counts nor ends a run. The executor's own skips (`agent`) are judged by what they say.
+  if (!agent && /^(error|timeout|disabled)\b/.test(body)) return { k: 'ignore' };
   if (UNREACHABLE_CODE.test(body)) return { k: 'cause', cause: 'source_unreachable' };
   const unreachable = UNREACHABLE_TEXT.test(body), nothing = NO_MATERIAL_TEXT.test(body);
   // «недоступний у бібліотеці» names a missing row: with the library in the text, "no material" wins over "unreachable".

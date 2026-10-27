@@ -8,7 +8,7 @@ import { zonedToUtcStrict } from '../time/resource-time';
 import type { IdeaRow } from './network.repository';
 import { NetworkCtx, resourceClock } from './network-context';
 import { seriesDue } from './playbook';
-import { EMPTY_DAY_WAY_OUT, materialSkips, planScheduleErrors, PlanScheduleCtx, SkippedSeriesInput } from '../schedule/plan-schedule-rules';
+import { NETWORK_EMPTY_DAY_WAY_OUT, materialSkips, planScheduleErrors, PlanScheduleCtx, SkippedSeriesInput } from '../schedule/plan-schedule-rules';
 import { type EmptyDaySlot, ShortDaysInput, shortDayPlaceholder, skippedSeriesPlaceholders } from '../schedule/empty-day';
 import { DecisionReason, DecisionSlot, PlannedDecision, PlanSkipInput, TREATMENTS, validateDecisions } from './plan-decisions';
 import type { Treatment } from '../post/duplicate';
@@ -199,7 +199,7 @@ export function validateNetworkPlan(
     if (!resources.has(ref)) continue;
     const n = (byResource.get(ref)?.length ?? 0) + (resources.get(ref)!.platform === 'telegram' ? o.reservedAt.length : 0);
     const min = shortDays.has(ref) ? 0 : Math.max(0, sec.per_day.min - (skippedN.get(ref) ?? 0));
-    if (n < min) errors.push(`${ref}: ${n} постів < per_day.min ${min}; ${EMPTY_DAY_WAY_OUT}`);
+    if (n < min) errors.push(`${ref}: ${n} постів < per_day.min ${min}; ${NETWORK_EMPTY_DAY_WAY_OUT}`);
   }
   // Spec 024 FR-006 (replaces BR-AGT-72 and "Telegram core first"): one decision per idea × resource.
   const dec = validateDecisions(plan.slots.map((s, i) => decisionSlots[i] ?? {

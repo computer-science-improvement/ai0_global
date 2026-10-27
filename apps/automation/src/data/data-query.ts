@@ -350,12 +350,16 @@ export async function queryDataset(pool: Pick<Pool, 'query'>, schema: DataSchema
 /** What the agent is told when it tries to filter by the dataset's own `id` field (spec 068 FR-008). */
 export const REF_HINT = '; щоб взяти рядок за ref — refs: ["data://<dataset>/<id>"] (ref дає query_data у кожному рядку)';
 
-/** The per-row flags of a refs query: can it be posted, what is missing, is it used on the resource (when one is known). */
+/**
+ * The per-row flags of a refs query: can it be posted, what is missing, is it used on the resource (when one is known).
+ * A row that is not active (hidden, e.g. by an import undo) is not postable whatever its fields hold: `missing` says `status: <s>`.
+ */
 function refFlags(r: { status?: string; postable?: boolean; missing?: string[]; used_here?: boolean }): Record<string, unknown> {
+  const inactive = !!r.status && r.status !== 'active';
   return {
-    ...(r.status && r.status !== 'active' ? { status: r.status } : {}),
-    postable: r.postable !== false,
-    missing: r.missing ?? [],
+    ...(inactive ? { status: r.status } : {}),
+    postable: !inactive && r.postable !== false,
+    missing: [...(r.missing ?? []), ...(inactive ? [`status: ${r.status}`] : [])],
     ...(r.used_here !== undefined ? { used_here: !!r.used_here } : {}),
   };
 }

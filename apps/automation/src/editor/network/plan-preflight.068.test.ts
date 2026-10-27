@@ -6,6 +6,8 @@ import { buildNetworkTools, type NetworkToolDeps } from './network-tools';
 import { PlaybookSchema } from './playbook';
 import type { NetworkCtx } from './network-context';
 import type { IdeaRow } from './network.repository';
+import type { ExperimentQuota } from '../manager/experiment-quota';
+import { NETWORK_PLAN_TIME_WAY_OUT } from '../preflight/plan-time';
 import { makeCard } from '../post/testing/fixtures';
 
 const TG = 'telegram:@space';
@@ -29,7 +31,7 @@ const idea = (sources: string[]): IdeaRow => ({
   origin: 'orchestrator', originRef: null, expiresAt: new Date(), status: 'accepted', revisions: 0, review: null, createdAt: new Date(), updatedAt: new Date(),
 });
 
-function tool(o: { sources: string[]; refuse?: (hints: string[]) => string | null }) {
+function tool(o: { sources: string[]; refuse?: (hints: string[]) => string | null; quotas?: ExperimentQuota[]; env?: (key: string) => string | undefined }) {
   const created: any[][] = [];
   const asked: any[] = [];
   const d = {
@@ -43,6 +45,7 @@ function tool(o: { sources: string[]; refuse?: (hints: string[]) => string | nul
         return reason ? { code: 'preflight_no_material' as const, reason } : null;
       },
     },
+    ...(o.quotas ? { experimentQuotas: async () => o.quotas } : {}), ...(o.env ? { env: o.env } : {}),
     now: () => NOW,
   } as unknown as NetworkToolDeps;
   const submit = buildNetworkTools(d).find((t) => t.name === 'submit_network_plan')!;
@@ -58,7 +61,9 @@ test('a refused slot is a plan_invalid line with its resource and time; nothing 
   const t = tool({ sources: ['data://prompts/7'], refuse: (h) => (h.includes('data://prompts/7') ? 'рядок data://prompts/7 без prompt_text' : null) });
   const r: any = await t.submit.execute(t.plan as any, t.ctx as any);
   assert.equal(r.error, 'plan_invalid');
-  assert.deepEqual(r.details, ['слот 1 (telegram:@space 10:00): рядок data://prompts/7 без prompt_text — заміни джерело/рядок або постав skipped_series з cause no_material / short_day']);
+  assert.deepEqual(r.details, [`слот 1 (telegram:@space 10:00): рядок data://prompts/7 без prompt_text — ${NETWORK_PLAN_TIME_WAY_OUT}`]);
+  assert.match(r.details[0], /short_days \[\{resource_ref, cause, reason\}\]/, 'a network plan has short_days, not short_day');
+  assert.doesNotMatch(r.details[0], /short_day\b(?!s)/);
   assert.equal(t.created.length, 0);
   // The anchor channel's slot is judged as the channel itself; the idea's sources are part of its hints.
   assert.deepEqual([t.asked[0].channelKey, t.asked[0].resourceRef ?? null, t.asked[0].format, t.asked[0].sourceHints, t.asked[0].ideaId], ['@space', null, 'longread', ['data://prompts/7'], I1]);
@@ -70,4 +75,23 @@ test('a slot that passes is stored as before, with the empty-day records', async
   assert.equal(r.ok, true, JSON.stringify(r));
   assert.equal(t.created.length, 1);
   assert.deepEqual(t.created[0].at(-1), [], 'no empty day here');
+});
+
+test('a quota in a format that cannot be produced here (no slide hosting) forces no slot; with hosting it does', async () => {
+  const quota: ExperimentQuota = { directiveId: 'dir-1', resourceRef: TG, angle: 'Каруселі з порадами', format: 'carousel', remaining: 1, deadline: '2026-10-10T00:00:00.000Z' };
+  const none = (_k: string) => undefined;
+  const hosted = (k: string) => ({ SUPABASE_URL: 'https://x.supabase.co', SUPABASE_SERVICE_KEY: 'k', SUPABASE_CAROUSEL_BUCKET: 'slides' } as Record<string, string>)[k];
+
+  const noHosting = tool({ sources: ['https://news.example/a'], quotas: [quota], env: none });
+  const ok: any = await noHosting.submit.execute(noHosting.plan as any, noHosting.ctx as any);
+  assert.equal(ok.ok, true, JSON.stringify(ok));
+
+  const withHosting = tool({ sources: ['https://news.example/a'], quotas: [quota], env: hosted });
+  const refused: any = await withHosting.submit.execute(withHosting.plan as any, withHosting.ctx as any);
+  assert.equal(refused.error, 'plan_invalid');
+  assert.match(refused.details.join('\n'), /директива dir-1 .*потрібен щонайменше 1 слот.* у форматі carousel/);
+
+  // Without settings in the context nothing is dropped (the quota rule is as before).
+  const noEnv = tool({ sources: ['https://news.example/a'], quotas: [quota] });
+  assert.equal(((await noEnv.submit.execute(noEnv.plan as any, noEnv.ctx as any)) as any).error, 'plan_invalid');
 });

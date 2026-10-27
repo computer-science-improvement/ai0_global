@@ -384,7 +384,8 @@ export class EditorPlansRepository {
 
   /**
    * Spec 068 FR-004: one placeholder slot of an honest empty day. Written only when the same declaration is not already
-   * counted: a series placeholder with the same series and time, a short-day one on the same resource inside the same day.
+   * counted: a series placeholder with the same series and time, a short-day one on the same resource inside the same day,
+   * and (a series placeholder) an instance the executor or the pre-flight already closed within 90 minutes of it.
    */
   private async insertEmptyDay(client: { query: Pool['query'] }, planId: string, channelKey: string, e: EmptyDaySlot): Promise<void> {
     await client.query(
@@ -395,7 +396,14 @@ export class EditorPlansRepository {
            WHERE x.channel_key = $2 AND x.kind = 'content' AND x.status = 'skipped' AND x.error ~ '${EMPTY_DAY_ERROR_RE}'
              AND (($8::text IS NOT NULL AND x.series_name = $8::text AND x.scheduled_at = $3::timestamptz)
                OR ($8::text IS NULL AND x.series_name IS NULL AND x.resource_ref IS NOT DISTINCT FROM $9::text
-                   AND x.scheduled_at >= $10::timestamptz AND x.scheduled_at < $11::timestamptz)))`,
+                   AND x.scheduled_at >= $10::timestamptz AND x.scheduled_at < $11::timestamptz)))
+          -- The instance was already closed by the executor or the pre-flight (a skip or a failure of the same series within
+          -- 90 minutes of it): the replan's declaration would be a second close of one instance.
+          AND NOT ($8::text IS NOT NULL AND EXISTS (
+            SELECT 1 FROM editor_slots y
+             WHERE y.channel_key = $2 AND y.kind = 'content' AND y.series_name = $8::text AND y.status IN ('skipped', 'failed')
+               AND COALESCE(y.error, '') !~ '^(superseded by a new plan|mode_changed|draft canceled|series_paused)'
+               AND y.scheduled_at BETWEEN $3::timestamptz - interval '90 minutes' AND $3::timestamptz + interval '90 minutes'))`,
       [planId, channelKey, e.scheduledAt, e.format, e.topic, JSON.stringify(e.sourceHints), e.error, e.seriesName, e.resourceRef,
         e.day?.from ?? e.scheduledAt, e.day?.to ?? e.scheduledAt]);
   }

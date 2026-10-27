@@ -14,7 +14,7 @@ const REF = 'telegram:@chan';
 
 interface Rows { [ref: string]: { active?: boolean; postable?: boolean; missing?: string[] } | undefined }
 
-function build(o: { rows?: Rows; unposted?: Record<string, number | null>; used?: Set<string>; blocked?: Set<string>; material?: boolean; env?: Record<string, string>; ledgerThrows?: boolean } = {}) {
+function build(o: { rows?: Rows; unposted?: Record<string, number | null>; used?: Set<string>; blocked?: Set<string>; material?: boolean; env?: Record<string, string>; ledgerThrows?: boolean; idea?: any; accepted?: any[] } = {}) {
   const calls = { ledger: [] as string[], row: [] as string[], unposted: [] as string[], retopic: 0, claim: 0, release: 0, idea: 0 };
   const material: PreflightMaterial = {
     row: async (ref) => {
@@ -35,8 +35,8 @@ function build(o: { rows?: Rows; unposted?: Record<string, number | null>; used?
     ...(o.material === false ? {} : { material }),
     hosts: { blocked: async (host: string) => (o.blocked?.has(host) ? { host, reason: 'refused', statusCode: 403, until: new Date(NOW.getTime() + 86_400_000) } : null) } as any,
     ideas: {
-      idea: async () => { calls.idea++; return null; },
-      accepted: async () => [],
+      idea: async () => { calls.idea++; return o.idea ?? null; },
+      accepted: async () => o.accepted ?? [],
       claim: async () => { calls.claim++; return true; },
       release: async () => { calls.release++; },
     },
@@ -147,6 +147,31 @@ test('a library slot is not swapped for another idea: it is skipped with the cod
   const r = await b.pf.run(slot([ROW], { ideaId: 'i1', seriesName: null }), card);
   assert.equal(r.ok, false, 'no idea in the pool to swap to, and the idea behind it is gone');
   assert.equal(b.calls.retopic + b.calls.claim, 0);
+});
+
+// Review fix R6: a slot that carries a manager directive (an experiment quota) would lose `directive:<id>` and the angle in a swap.
+test('a slot with a directive: hint is failed, not swapped, when its source is spent; the same slot without it is swapped', async () => {
+  const idea = (id: string, sources: string[]) => ({
+    id, agentId: 'o1', title: `Ідея ${id}`, angle: null, sources, variants: [{ resource_ref: REF, format: 'text' }], why: null, evidence: null,
+    origin: 'orchestrator', originRef: null, expiresAt: new Date(NOW.getTime() + 86_400_000), status: 'accepted', revisions: 0, review: null, createdAt: NOW, updatedAt: NOW,
+  });
+  const spent = 'https://a.example/spent';
+  const from = idea('i1', [spent]);
+  const fresh = idea('i2', ['https://a.example/fresh']);
+  const over = { seriesName: null, ideaId: 'i1', isExperiment: true };
+
+  const withDirective = build({ used: new Set([spent]), idea: from, accepted: [from, fresh] });
+  const failed = await withDirective.pf.run(slot(['directive:d1', spent], over), card);
+  assert.equal(failed.ok, false);
+  assert.equal(!failed.ok && failed.code, 'preflight_source_used');
+  assert.deepEqual([withDirective.calls.retopic, withDirective.calls.claim, withDirective.calls.release], [0, 0, 0], 'no swap: the idea stays, nothing is retopiced');
+
+  // The control: without the directive hint the same slot is swapped for the fresh idea.
+  const plain = build({ used: new Set([spent]), idea: from, accepted: [from, fresh] });
+  const swapped = await plain.pf.run(slot([spent], over), card);
+  assert.equal(swapped.ok, true);
+  assert.equal(swapped.ok && swapped.swapped?.toIdeaId, 'i2');
+  assert.equal(plain.calls.retopic, 1);
 });
 
 test('assessPlanned: the same checks on a planned slot, no swap, nothing written; fixed posts, live slots and a broken check are not judged', async () => {
