@@ -26,6 +26,7 @@ import { BudgetService, DEFAULT_RUN_HEADROOM_USD, DEFAULT_WRITER_RESERVE_PCT } f
 import { DEFAULT_REJECT_STREAK, SilentDaysWatch } from './silent/silent-days';
 import { DEFAULT_SERIES_SKIP_STREAK, SeriesBreaker } from './series-pause/series-breaker';
 import { SeriesPauseActions } from './series-pause/pause-actions';
+import { registerPauseResumeAction } from './series-pause/pause-resume-action';
 import { SeriesPausesRepository } from './series-pause/series-pauses.repository';
 import { PlannerPauseView } from './series-pause/planner-view';
 import { EVERGREEN_KPI_SAMPLE_FILTER, EvergreenStep, evergreenPerDay } from './silent/evergreen';
@@ -1202,6 +1203,8 @@ export const EDITOR_PROVIDERS = [
         });
         // Spec 023 FR-006: the chat's series_change / schedule_rule / slot_change cards.
         registerScheduleActions(infra.actions, svc);
+        // Wave fix 068 × 069: the «бери з X» card lifts the breaker's pause of the series it rebinds (and, as a suggestion, of the channel).
+        registerPauseResumeAction(infra.actions, { pauses: new SeriesPauseActions({ pool, repo: new SeriesPausesRepository(pool), profiles: infra.profiles }), schedule: svc });
         return svc;
       },
     },
@@ -1287,6 +1290,7 @@ export const EDITOR_PROVIDERS = [
           ...buildImportListTools({
             pool, docs, actions: infra.actions, hosts, env,
             schedule, agents: infra.agents, skills: infra.skills, handles: async () => (await infra.agents.list()).map((a) => a.handle),
+            pauses: new SeriesPausesRepository(pool),
           }),
           ...buildDataTools({ pool, actions: infra.actions, env }),
           ...buildHighlightsTools({ pool }),

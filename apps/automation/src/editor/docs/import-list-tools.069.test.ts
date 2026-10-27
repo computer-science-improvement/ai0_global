@@ -10,6 +10,9 @@ import { ScheduleService, type ScheduleScope } from '../schedule/schedule.servic
 import { PendingActionsService, type PendingAction } from '../agents/pending-actions';
 import { applyOwnerRule } from '../agents/agent-chat-tools';
 import type { ToolContext } from '../harness/tool';
+import { registerPauseResumeAction, SERIES_PAUSE_RESUME_KIND } from '../series-pause/pause-resume-action';
+import type { SeriesPause } from '../series-pause/series-pauses.repository';
+import { RESUME_CHANNEL_ITEM, RESUME_ITEM } from './import-bundle';
 
 /** Spec 069 FR-002: «бери з X, не бери Y» is one card — the import with the series, the rule and the skills riding on it. */
 
@@ -44,7 +47,7 @@ function scheduleFake(catalog = { tables: ['prompts'], feeds: [] as string[] }) 
 const skillEntry = (name: string, o: { agentId?: string | null; enabled?: boolean; safety?: boolean; body?: string } = {}) =>
   ({ skill: { name, agentId: o.agentId ?? null, safety: !!o.safety, body: o.body ?? '' }, enabled: o.enabled ?? true, origin: 'own' });
 
-function rig(o: { pending?: boolean; catalog?: { tables: string[]; feeds: string[] }; skills?: any[]; listThrows?: boolean } = {}) {
+function rig(o: { pending?: boolean; catalog?: { tables: string[]; feeds: string[] }; skills?: any[]; listThrows?: boolean; pauses?: SeriesPause[] | 'throws' } = {}) {
   const proposed: any[] = [];
   const pool = {
     query: async (sql: string) => (/FROM pending_actions/.test(sql) ? { rows: o.pending ? [{ id: 'pa-old' }] : [] } : { rows: [] }),
@@ -59,11 +62,20 @@ function rig(o: { pending?: boolean; catalog?: { tables: string[]; feeds: string
     },
   };
   const agents = { children: async () => [EXEC], get: async () => ORCH };
+  const asked: string[] = [];
+  // `open(channelKey)` is what the repository does: the open pauses of that channel (case-insensitive), history left out.
+  const pauses = o.pauses ? {
+    open: async (channelKey?: string) => {
+      asked.push(String(channelKey));
+      if (o.pauses === 'throws') throw new Error('db down');
+      return (o.pauses as SeriesPause[]).filter((p) => !p.resumedAt && (!channelKey || p.channelKey.toLowerCase() === channelKey.toLowerCase()));
+    },
+  } : undefined;
   const tools = Object.fromEntries(buildImportListTools({
     pool, docs, actions: { propose: async (a: any) => { proposed.push(a); return { id: `pa-${proposed.length}`, ...a }; } } as any,
-    schedule, agents: agents as any, skills: skills as any, handles: async () => ['ai0', 'ai_global'],
+    schedule, agents: agents as any, skills: skills as any, handles: async () => ['ai0', 'ai_global'], ...(pauses ? { pauses } : {}),
   }).map((t) => [t.name, t])) as Record<string, any>;
-  return { docs, proposed, tools, schedule };
+  return { docs, proposed, tools, schedule, asked };
 }
 
 const OWNER = 'Бери промпти з awesome-nanobanana-pro. Промпти з PromptHero більше не бери.';
@@ -303,4 +315,156 @@ test('Apply: an import that wrote nothing skips the series (import_empty), an un
   const unchanged = applyRig({ inserted: 0, updated: 0, skipped: 4 });
   await unchanged.svc.apply((await bundleCard(unchanged)).id);
   assert.deepEqual(unchanged.log, ['import', 'series_change', 'owner_rule', 'detach_skill:prompthero-filter']);
+});
+
+// ── Wave fix 068 × 069: the card that rebinds a paused series resumes it ─────────────────────────────────────────────────
+
+const pause = (key: string, o: Partial<SeriesPause> = {}): SeriesPause => ({
+  id: `pause-${key}`, channelKey: '@ai_global', key, label: key.replace(/^[a-z]+:/, ''), cause: 'no_material',
+  reason: 'preflight_no_material: рядок data://prompts/12 без prompt_text', streak: 3, pausedAt: new Date('2026-10-26T10:00:00Z'), resumedAt: null, resumedBy: null, ...o,
+});
+
+test('a series with an open pause gets a ticked resume item right after the series item; it waits for rows and names the series and the reason', async () => {
+  const r = rig({ pauses: [pause('series:Prompt of the day')] });
+  const out = await call(r, { series: 'Prompt of the day', stop_using: 'Не бери промпти з PromptHero' });
+  assert.equal(out.ok, true, JSON.stringify(out));
+  const then = r.proposed[0].payload.then;
+  assert.deepEqual(then.map((t: any) => [t.key, t.kind]), [['series', 'series_change'], [RESUME_ITEM, SERIES_PAUSE_RESUME_KIND], ['rule', 'owner_rule']]);
+  const resume = then[1];
+  assert.equal(resume.requires, 'main_rows', 'an empty import does not resume');
+  assert.equal(resume.ticked, undefined, 'ticked');
+  assert.deepEqual(resume.payload, { pause_id: 'pause-series:Prompt of the day', channel_key: '@ai_global', series: 'Prompt of the day', dataset: 'nanobanana_prompts', agent_id: 'a-orch' });
+  assert.match(resume.summary, /^Resume series "Prompt of the day" on @ai_global \(paused: no material to post from: preflight_no_material: рядок data:\/\/prompts\/12 без prompt_text\)$/);
+  assert.deepEqual(out.follow_ups.map((f: any) => [f.key, f.ticked]), [['series', true], ['resume', true], ['rule', true]]);
+  assert.match(r.proposed[0].summary, /Then, in this order: bind the series to the dataset \(required\); resume the paused series; save the rule\./);
+  assert.deepEqual(r.asked, ['@ai_global'], 'the pauses of the card\'s channel');
+});
+
+test('a pause of the channel itself is a second, unticked suggestion; both together keep the order series, resume, channel', async () => {
+  const r = rig({ pauses: [pause('resource:telegram:@ai_global', { label: 'telegram:@ai_global' }), pause('series:Prompt of the day')] });
+  const out = await call(r, { series: 'Prompt of the day' });
+  assert.equal(out.ok, true, JSON.stringify(out));
+  const then = r.proposed[0].payload.then;
+  assert.deepEqual(then.map((t: any) => t.key), ['series', RESUME_ITEM, RESUME_CHANNEL_ITEM]);
+  const ch = then[2];
+  assert.equal(ch.ticked, false, 'a soft suggestion');
+  assert.equal(ch.requires, 'main_rows');
+  assert.deepEqual(ch.payload, { pause_id: 'pause-resource:telegram:@ai_global', channel_key: '@ai_global' });
+  assert.match(ch.summary, /^Resume the plain slots of @ai_global, which the breaker paused \(no material to post from: .*\)/);
+  assert.deepEqual(out.follow_ups.map((f: any) => [f.key, f.ticked]), [['series', true], ['resume', true], ['resume_channel', false]]);
+  assert.match(r.proposed[0].summary, /resume the paused series; suggest resuming the channel’s plain slots \(unticked\)\./);
+
+  // The channel pause alone (the series itself is not paused) is still offered, unticked.
+  const only = rig({ pauses: [pause('resource:telegram:@ai_global')] });
+  await call(only, { series: 'Prompt of the day' });
+  assert.deepEqual(only.proposed[0].payload.then.map((t: any) => [t.key, t.ticked]), [['series', undefined], ['resume_channel', false]]);
+});
+
+test('no pause, a pause of another series, another channel or one already resumed: no resume item; no series: the pauses are not even read', async () => {
+  const none = rig({ pauses: [] });
+  await call(none, { series: 'Prompt of the day' });
+  assert.deepEqual(none.proposed[0].payload.then.map((t: any) => t.key), ['series']);
+
+  const other = rig({ pauses: [
+    pause('series:Another series'), pause('series:Prompt of the day', { channelKey: '@someone_else' }), pause('rule:r1'),
+    pause('series:Prompt of the day', { id: 'old', resumedAt: new Date('2026-10-20T10:00:00Z'), resumedBy: 'owner' }),
+    pause('resource:telegram:@someone_else'), pause('resource:instagram:123'),
+  ] });
+  await call(other, { series: 'Prompt of the day' });
+  assert.deepEqual(other.proposed[0].payload.then.map((t: any) => t.key), ['series']);
+
+  const noSeries = rig({ pauses: [pause('series:Prompt of the day')] });
+  await call(noSeries, { stop_using: DROP });
+  assert.deepEqual(noSeries.proposed[0].payload.then.map((t: any) => t.key), ['rule']);
+  assert.deepEqual(noSeries.asked, []);
+
+  const without = rig();   // no pauses port wired: nothing to offer
+  await call(without, { series: 'Prompt of the day' });
+  assert.deepEqual(without.proposed[0].payload.then.map((t: any) => t.key), ['series']);
+});
+
+test('a pause lookup that fails never stops the import card; the notes say it was not checked', async () => {
+  const r = rig({ pauses: 'throws' });
+  const out = await call(r, { series: 'Prompt of the day' });
+  assert.equal(out.ok, true, JSON.stringify(out));
+  assert.deepEqual(r.proposed[0].payload.then.map((t: any) => t.key), ['series']);
+  assert.match(out.follow_up_notes[0], /паузи серій не перевірено: db down/);
+});
+
+/** Apply with the resume handler of the module over a fake pause store; `onDataset` is what the series reads after its change. */
+function resumeRig(imported: { inserted: number; updated: number; skipped: number }, o: { failSeries?: boolean; onDataset?: string | null; missing?: boolean } = {}) {
+  const a = applyRig(imported, { failSeries: o.failSeries });
+  const resumed: string[] = [];
+  const dataset = o.onDataset === undefined ? 'nanobanana_prompts' : o.onDataset;
+  registerPauseResumeAction(a.svc, {
+    pauses: { resume: async (id: string) => { resumed.push(id); return o.missing ? { outcome: 'x', changed: false, pause: null } : { outcome: `✅ Відновлено: ${id}`, changed: true, pause: pause(id) }; } },
+    schedule: {
+      scopeById: async () => ({ ...scope(), net: { ...scope().net, playbook: PlaybookSchema.parse({
+        platforms: [{ resource_ref: TG, role: 'core', formats: { photo: 1, text: 0.5 }, per_day: { min: 1, max: 4 } }],
+        series: [{ name: 'Prompt of the day', cadence: 'daily@19:00', resource_ref: TG, format: 'photo', brief: 'A prompt with its picture each evening', ...(dataset ? { source: { kind: 'library', table: dataset } } : {}) }],
+      }) } }),
+    } as any,
+  });
+  return { ...a, resumed };
+}
+
+async function pausedCard(a: ReturnType<typeof applyRig>, pauses: SeriesPause[]) {
+  const r = rig({ pauses });
+  const out = await call(r, { series: 'Prompt of the day' });
+  assert.equal(out.ok, true, JSON.stringify(out));
+  return a.svc.propose({ chatId: 'chat-1', kind: IMPORT_LIST_KIND, payload: r.proposed[0].payload, summary: r.proposed[0].summary });
+}
+
+test('Apply: an import that added rows resumes the series pause through the registered kind; the unticked channel pause stays', async () => {
+  const a = resumeRig({ inserted: 4, updated: 0, skipped: 0 });
+  const card = await a.svc.apply((await pausedCard(a, [pause('series:Prompt of the day'), pause('resource:telegram:@ai_global')])).id);
+  assert.equal(card.status, 'applied');
+  assert.deepEqual(a.log, ['import', 'series_change']);
+  assert.deepEqual(a.resumed, ['pause-series:Prompt of the day'], 'only the series pause');
+  assert.deepEqual((card.result as any).then.map((t: any) => [t.key, t.ok, t.error ?? null]), [['series', true, null], ['resume', true, null], ['resume_channel', false, 'not_ticked']]);
+
+  // An unchanged list (skipped rows only) still counts as rows.
+  const same = resumeRig({ inserted: 0, updated: 0, skipped: 4 });
+  await same.svc.apply((await pausedCard(same, [pause('series:Prompt of the day')])).id);
+  assert.deepEqual(same.resumed, ['pause-series:Prompt of the day']);
+});
+
+test('Apply: an empty import does not resume; neither does a series the change did not reach; the owner may also tick the channel item', async () => {
+  const empty = resumeRig({ inserted: 0, updated: 0, skipped: 0 });
+  const card = await empty.svc.apply((await pausedCard(empty, [pause('series:Prompt of the day'), pause('resource:telegram:@ai_global')])).id);
+  assert.deepEqual(empty.resumed, []);
+  assert.deepEqual((card.result as any).then.map((t: any) => [t.key, t.error ?? null]), [['series', 'import_empty'], ['resume', 'import_empty'], ['resume_channel', 'not_ticked']]);
+
+  // The series change failed (stale card): the series still reads its old source, so the pause stays.
+  const failed = resumeRig({ inserted: 4, updated: 0, skipped: 0 }, { failSeries: true, onDataset: 'prompts' });
+  const fc = await failed.svc.apply((await pausedCard(failed, [pause('series:Prompt of the day')])).id);
+  assert.deepEqual(failed.resumed, []);
+  const [s, rs] = (fc.result as any).then;
+  assert.equal(s.ok, false);
+  assert.deepEqual([rs.key, rs.ok], ['resume', false]);
+  assert.match(rs.error, /not_resumed: series "Prompt of the day" does not read dataset "nanobanana_prompts" .* stays paused/);
+  assert.equal(fc.status, 'applied');
+
+  // With the dashboard's choice (nothing unticked) the channel suggestion runs too; unticking the series item leaves its pause alone.
+  const both = resumeRig({ inserted: 4, updated: 0, skipped: 0 });
+  await both.svc.apply((await pausedCard(both, [pause('series:Prompt of the day'), pause('resource:telegram:@ai_global')])).id, { skip_then: [] });
+  assert.deepEqual(both.resumed, ['pause-series:Prompt of the day', 'pause-resource:telegram:@ai_global']);
+  const skipped = resumeRig({ inserted: 4, updated: 0, skipped: 0 });
+  await skipped.svc.apply((await pausedCard(skipped, [pause('series:Prompt of the day'), pause('resource:telegram:@ai_global')])).id, { skip_then: ['resume', 'resume_channel'] });
+  assert.deepEqual(skipped.resumed, []);
+
+  // The pause was lifted by hand before Apply: the item says it is gone, the card stays applied.
+  const gone = resumeRig({ inserted: 4, updated: 0, skipped: 0 }, { missing: true });
+  const gc = await gone.svc.apply((await pausedCard(gone, [pause('series:Prompt of the day')])).id);
+  assert.equal(gc.status, 'applied');
+  assert.match((gc.result as any).then[1].error, /pause_not_found/);
+});
+
+test('the resume kind must be registered, or a card that carries it is refused when proposed', async () => {
+  const a = applyRig({ inserted: 4, updated: 0, skipped: 0 });   // no resume handler registered
+  const r = rig({ pauses: [pause('series:Prompt of the day')] });
+  await call(r, { series: 'Prompt of the day' });
+  assert.throws(() => a.svc.propose({ chatId: 'c', kind: IMPORT_LIST_KIND, payload: r.proposed[0].payload, summary: 's' }), /unknown action kind series_pause_resume in a follow-up/);
+  registerPauseResumeAction(a.svc, { pauses: { resume: async () => ({ outcome: '', changed: true, pause: null }) } });
+  assert.equal((await a.svc.propose({ chatId: 'c', kind: IMPORT_LIST_KIND, payload: r.proposed[0].payload, summary: 's' })).status, 'pending');
 });

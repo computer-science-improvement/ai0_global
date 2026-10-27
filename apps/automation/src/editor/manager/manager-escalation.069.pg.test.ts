@@ -147,7 +147,7 @@ test('the digest keeps an evaluated, not-followed directive of the last 14 days 
   assert.notEqual(after.hash, h, 'an escalation that is read changes the hash');
 });
 
-test('trigger 2 query leaves out channels the owner stopped: switched off, shadow, paused (for good or for a while), under an active resource pause', { skip }, async () => {
+test('trigger 2 query leaves out channels the owner stopped: switched off, shadow, paused (for good or for a while), under an active resource pause, plain slots paused by the breaker', { skip }, async () => {
   const agents = new AgentsRepository(db.pool);
   const make = async (handle: string, mode: 'off' | 'shadow' | 'approve' | 'live') =>
     (await agents.insert({ kind: 'orchestrator', scope: 'resource', scopeId: `telegram:@${handle}`, name: handle, handle, mode, createdBy: 'owner' })).id;
@@ -155,17 +155,28 @@ test('trigger 2 query leaves out channels the owner stopped: switched off, shado
     approve: await make('pg069_approve', 'approve'), live: await make('pg069_live2', 'live'), off: await make('pg069_off', 'off'),
     shadow: await make('pg069_shadow', 'shadow'), paused: await make('pg069_paused', 'live'), timed: await make('pg069_timed', 'live'),
     over: await make('pg069_over', 'live'), pausedRes: await make('pg069_pausedres', 'live'), liftedRes: await make('pg069_liftedres', 'live'),
+    breaker: await make('pg069_breaker', 'live'), resumed: await make('pg069_resumedbrk', 'live'), seriesOnly: await make('pg069_seriesonly', 'live'),
   };
   await db.pool.query(`UPDATE agents SET status = 'paused' WHERE id = $1`, [ids.paused]);
   await db.pool.query(`UPDATE agents SET paused_until = now() + interval '3 days' WHERE id = $1`, [ids.timed]);
   await db.pool.query(`UPDATE agents SET paused_until = now() - interval '1 day' WHERE id = $1`, [ids.over]);
   await db.pool.query(`INSERT INTO resource_pauses (resource_ref, reason, until) VALUES ('telegram:@pg069_pausedres', 't', now() + interval '2 days')`);
   await db.pool.query(`INSERT INTO resource_pauses (resource_ref, reason, until, lifted_at, lifted_by) VALUES ('telegram:@pg069_liftedres', 't', now() + interval '2 days', now(), 'owner')`);
-  for (const h of ['approve', 'live2', 'off', 'shadow', 'paused', 'timed', 'over', 'pausedres', 'liftedres']) {
+  // The dead-series breaker (spec 068/060, migration 093) or the owner paused the channel's plain slots: the key is `resource:<orchestrator scope_id>`.
+  await db.pool.query(
+    `INSERT INTO series_pauses (channel_key, series_key, label, cause, reason, streak) VALUES ('@pg069_breaker', 'resource:telegram:@pg069_breaker', 'telegram:@pg069_breaker', 'no_material', 'no material', 3)`);
+  await db.pool.query(
+    `INSERT INTO series_pauses (channel_key, series_key, label, cause, reason, streak, resumed_at, resumed_by)
+     VALUES ('@pg069_resumedbrk', 'resource:telegram:@pg069_resumedbrk', 'telegram:@pg069_resumedbrk', 'no_material', 'no material', 3, now(), 'owner')`);
+  // A pause on one series only: the channel still plans its other slots, a directive to replace the dead series is a real answer.
+  await db.pool.query(
+    `INSERT INTO series_pauses (channel_key, series_key, label, cause, reason, streak) VALUES ('@pg069_seriesonly', 'series:Prompt', 'Prompt', 'no_material', 'no material', 3)`);
+  for (const h of ['approve', 'live2', 'off', 'shadow', 'paused', 'timed', 'over', 'pausedres', 'liftedres', 'breaker', 'resumedbrk', 'seriesonly']) {
     await snapshot('2026-10-24', { v: 0, base: 3, d: -100, z: -3, anomaly: true }, `telegram:@pg069_${h}`);
   }
   const handles = (await negativePostsDays(db.pool, '2026-10-24')).map((r) => r.handle).filter((h) => h !== 'pg069_esc').sort();
-  assert.deepEqual(handles, ['pg069_approve', 'pg069_liftedres', 'pg069_live2', 'pg069_over']);
+  assert.deepEqual(handles, ['pg069_approve', 'pg069_liftedres', 'pg069_live2', 'pg069_over', 'pg069_resumedbrk', 'pg069_seriesonly'],
+    'an open resource: pause leaves the channel out; a resumed one and a series-only pause do not');
 });
 
 test('retireEscalationMemory retires only the system lines of that escalation subject', { skip }, async () => {

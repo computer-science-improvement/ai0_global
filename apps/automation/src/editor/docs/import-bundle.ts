@@ -9,14 +9,21 @@ import type { SkillStore } from '../agents/skill-store';
 import { lintOwnerRule } from '../agents/rule-lint';
 import { OWNER_RULE_KIND, ruleSources, ruleToStore } from '../agents/agent-chat-tools';
 import { isProtectedSkill } from '../skills/skill-library';
-import { isFail, type ScheduleService } from '../schedule/schedule.service';
+import { isFail, type ScheduleScope, type ScheduleService } from '../schedule/schedule.service';
 import { scopeOf } from '../schedule/schedule-tools';
+import { SERIES_PAUSE_RESUME_KIND } from '../series-pause/pause-resume-action';
+import { seriesNameOfKey, type SeriesPause, type SeriesPausesRepository } from '../series-pause/series-pauses.repository';
 
 /**
  * Spec 069 FR-002: «бери з X, не бери Y» is one card. `import_list` brings the dataset; the bundle is what the owner
  * confirms with the same Apply — the series bound to the new dataset (a required source), the rule «не бери Y», and the
  * skills that say otherwise — as follow-ups the card runs one by one (agents/pending-actions.ts). Nothing here writes:
  * every item is checked now (the series against the dataset that does not exist yet) and again when the card is applied.
+ *
+ * Wave fix 068 × 069: the dead-series breaker pauses a series (or a channel's plain slots) whose source is spent, so a card
+ * that rebinds the series must also lift that pause or nothing is ever posted from the new source. The pause the series
+ * has, if any, is a follow-up right after the series item (ticked); a pause of the channel itself is a soft suggestion
+ * (unticked): it also holds the channel's other plain slots.
  */
 export interface BundleDeps {
   schedule?: ScheduleService;
@@ -24,6 +31,8 @@ export interface BundleDeps {
   skills?:   Pick<SkillStore, 'listForAgent' | 'findShared'>;
   /** The agent handles of the network (a rule naming an unknown @agent is refused, like add_owner_rule). */
   handles?:  () => Promise<string[]>;
+  /** Open pauses (`series_pauses`, spec 060): the card resumes the pause of the series it rebinds. Without it no resume item is offered. */
+  pauses?:   Pick<SeriesPausesRepository, 'open'>;
 }
 
 export interface BundleInput {
@@ -38,6 +47,9 @@ export interface BundleFail { error: string; details?: unknown; hint?: string }
 /** Series item of the bundle: bound to the dataset the import creates (required: no other source fills the slot). */
 export const SERIES_ITEM = 'series';
 export const RULE_ITEM = 'rule';
+/** The series' own pause, lifted right after the series is bound (ticked); the channel's pause beside it (unticked). */
+export const RESUME_ITEM = 'resume';
+export const RESUME_CHANNEL_ITEM = 'resume_channel';
 export { detachKey };
 
 const failOf = (f: { error: string; details?: unknown }): BundleFail => ({ error: f.error, ...(f.details !== undefined ? { details: f.details } : {}) });
@@ -67,6 +79,7 @@ export async function buildBundle(d: BundleDeps, ctx: ToolContext, i: BundleInpu
       payload: { agent_id: scope.agent.id, op: 'update', fields: prep.fields, before: prep.before },
       summary: `Series change for @${scope.agent.handle}: ${prep.diff}`,
     });
+    then.push(...await resumeItems(d, scope, i, notes));
   }
 
   if (i.stop_using) {
@@ -132,13 +145,54 @@ export async function buildBundle(d: BundleDeps, ctx: ToolContext, i: BundleInpu
   return { then, notes };
 }
 
+const CAUSE_TEXT: Record<SeriesPause['cause'], string> = {
+  no_material: 'no material to post from', source_unreachable: 'source unreachable', owner: 'paused by the owner',
+};
+const oneLine = (t: string, n = 140): string => { const x = t.replace(/\s+/g, ' ').trim(); return x.length > n ? `${x.slice(0, n - 1)}…` : x; };
+const why = (p: SeriesPause): string => `${CAUSE_TEXT[p.cause]}${p.reason ? `: ${oneLine(p.reason)}` : ''}`;
+
+/**
+ * The resume items of a card that binds `i.series`: the series' own open pause (`series:<name>`, ticked, only for an import
+ * that found rows, and only if the series now reads the new dataset), and the channel's plain-slot pause (`resource:telegram:<channel>`,
+ * unticked, a suggestion). Both are checked again when the card is applied; a read error offers nothing and says so in the notes.
+ */
+async function resumeItems(d: BundleDeps, scope: ScheduleScope, i: BundleInput, notes: string[]): Promise<FollowUp[]> {
+  if (!d.pauses || !i.series) return [];
+  let open: SeriesPause[];
+  try { open = await d.pauses.open(scope.card.channelKey); } catch (err: any) {
+    notes.push(`паузи серій не перевірено: ${String(err?.message ?? err).slice(0, 120)}`);
+    return [];
+  }
+  const out: FollowUp[] = [];
+  const same = (a: string, b: string) => a.toLowerCase() === b.toLowerCase();
+  const own = open.find((p) => same(seriesNameOfKey(p.key) ?? '\u0000', i.series!));
+  if (own) {
+    out.push({
+      key: RESUME_ITEM, kind: SERIES_PAUSE_RESUME_KIND, requires: 'main_rows',
+      payload: { pause_id: own.id, channel_key: own.channelKey, series: i.series, dataset: i.dataset, agent_id: scope.agent.id },
+      summary: `Resume series "${i.series}" on ${own.channelKey} (paused: ${why(own)})`,
+    });
+  }
+  const channel = open.find((p) => same(p.key, `resource:telegram:${scope.card.channelKey}`));
+  if (channel) {
+    out.push({
+      key: RESUME_CHANNEL_ITEM, kind: SERIES_PAUSE_RESUME_KIND, requires: 'main_rows', ticked: false,
+      payload: { pause_id: channel.id, channel_key: channel.channelKey },
+      summary: `Resume the plain slots of ${channel.channelKey}, which the breaker paused (${why(channel)}); the planner skips the channel while it is paused`,
+    });
+  }
+  return out;
+}
+
 /** One line for the card's summary: what follows the import. */
 export function thenLine(then: readonly FollowUp[]): string {
   if (!then.length) return '';
   const part = (t: FollowUp): string =>
     t.key === SERIES_ITEM ? 'bind the series to the dataset (required)'
       : t.key === RULE_ITEM ? 'save the rule'
-        : t.kind === 'detach_skill' ? `${t.ticked === false ? 'suggest disabling' : 'disable'} skill “${String(t.payload.skill)}”${t.ticked === false ? ' (unticked)' : ''}`
-          : t.summary.slice(0, 80);
+        : t.key === RESUME_ITEM ? 'resume the paused series'
+          : t.key === RESUME_CHANNEL_ITEM ? 'suggest resuming the channel’s plain slots (unticked)'
+            : t.kind === 'detach_skill' ? `${t.ticked === false ? 'suggest disabling' : 'disable'} skill “${String(t.payload.skill)}”${t.ticked === false ? ' (unticked)' : ''}`
+              : t.summary.slice(0, 80);
   return `Then, in this order: ${then.map(part).join('; ')}. Untick what you do not want.`;
 }

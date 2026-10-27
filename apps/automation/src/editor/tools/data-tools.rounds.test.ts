@@ -98,6 +98,22 @@ test('query_data: still nothing after the roll (the filters, or no round ended) 
   assert.doesNotMatch(((await tools(some.pool).query_data.execute(q(), ctx)) as any).note, /lacks what a post needs/);
 });
 
+test('query_data: the post_requires note does not depend on a resource — unposted_on: null, or an agent with no channel, still hears that every row is unpostable', async () => {
+  const dead = () => fakePool({ schema: { ...seq(), post_requires: [['title']] }, items: () => [], counts: { n: 40, ok: 0 } });
+  const a = dead();
+  const noRes: any = await tools(a.pool).query_data.execute(q({ unposted_on: null }), ctx);
+  assert.deepEqual(noRes.rows, []);
+  assert.match(noRes.note, /every one of the 40 rows of this dataset lacks what a post needs \(post_requires\): pick another dataset/);
+  assert.match(noRes.note, /^no rows match these filters; /, 'the general line stays; the dead-rows line is added');
+  assert.equal(a.calls.filter((c) => /data_round_roll/.test(c.sql)).length, 0, 'no resource: no roll');
+  const b = dead();
+  const manager: any = await tools(b.pool).query_data.execute(q(), { runId: 'r', role: 'manager', channelKey: null } as ToolContext);
+  assert.match(manager.note, /every one of the 40 rows/);
+  // A dataset where a postable row exists: no such line.
+  const some = fakePool({ schema: { ...seq(), post_requires: [['title']] }, items: () => [], counts: { n: 40, ok: 5 } });
+  assert.doesNotMatch(((await tools(some.pool).query_data.execute(q({ unposted_on: null }), ctx)) as any).note, /lacks what a post needs/);
+});
+
 test('query_data without unposted_on never rolls a round', async () => {
   const f = fakePool({ items: () => [] });
   await tools(f.pool).query_data.execute(q({ unposted_on: null }), ctx);

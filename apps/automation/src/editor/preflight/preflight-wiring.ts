@@ -2,7 +2,7 @@ import type { Pool } from 'pg';
 import { ContentLedger } from '../../data/content-ledger';
 import { buildCatalog } from '../../data/data-catalog';
 import { kyivMonthDay } from '../../data/data-query';
-import { parseDataRef } from '../../data/data-refs';
+import { parseDataRef, resolveContentRef } from '../../data/data-refs';
 import { PgHostFailures } from '../net/host-failures';
 import type { NetworkRepository } from '../network/network.repository';
 import type { EditorPlansRepository } from '../repo/editor-plans.repository';
@@ -53,6 +53,7 @@ export function buildSlotPreflight(o: {
     ideas: preflightIdeas(o.ideas),
     retopic: (id, patch) => o.plans.retopicSlot(id, patch),
     env: o.env,
+    canonicalRef: async (ref) => (await resolveContentRef(o.pool, ref).catch(() => null))?.dataRef ?? ref,
     freshnessHours: async (slot, card) => {
       const ref = slot.resourceRef ?? `telegram:${slot.channelKey}`;
       const style = (await resourceStyleOf(o.pool, ref)).effective;

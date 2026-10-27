@@ -1,5 +1,5 @@
 // Spec 069 FR-001: a confirmation card may carry follow-ups (`payload.then`) that Apply runs one by one after the main
-// action — the series bound to a new dataset, the rule, the skills switched off. The owner ticks what to run; the
+// action — the series bound to a new dataset (and its pause lifted), the rule, the skills switched off. The owner ticks what to run; the
 // server records each outcome in `result.then`. The card's status is the main action's.
 
 import type { Tone } from '../components/ui/primitives';
@@ -59,6 +59,8 @@ export function outcomeBadge(o: FollowUpOutcome | undefined): { tone: Tone; text
 /** Short name of the kind of a follow-up, for the badge before its summary. */
 export const FOLLOW_UP_LABEL: Record<string, string> = {
   series_change: 'Series', owner_rule: 'Rule', detach_skill: 'Skill off', attach_skill: 'Skill on', write_skill: 'Skill',
+  // Wave fix 068 × 069: the paused series (or channel) the same card lifts.
+  series_pause_resume: 'Resume',
 };
 
 export const followUpLabel = (kind: string): string => FOLLOW_UP_LABEL[kind] ?? kind.replace(/_/g, ' ');

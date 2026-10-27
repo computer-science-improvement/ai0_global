@@ -17,7 +17,7 @@ import { importCaps, pagingPreview } from './json-pages';
 import { buildBundle, thenLine, type BundleDeps } from './import-bundle';
 
 /** Spec 069 FR-002: the routing sentence of `import_list` (it leads the description; the rest is unchanged). */
-export const IMPORT_ROUTING = 'Коли власник каже "бери з X" / "не бери Y" або просить змінити джерело контенту — виклич import_list із series (серія, яку привʼязати до датасету) і stop_using (чого не брати; його словами), а зайві скіли про старе джерело вимкни через disable_skills: це одна картка, власник лише ставить позначки й тисне Apply; ніколи не пиши скіл про джерело контенту.';
+export const IMPORT_ROUTING = 'Коли власник каже "бери з X" / "не бери Y" або просить змінити джерело контенту — виклич import_list із series (серія, яку привʼязати до датасету) і stop_using (чого не брати; його словами), а зайві скіли про старе джерело вимкни через disable_skills: це одна картка, власник лише ставить позначки й тисне Apply; якщо серія чи канал на паузі після мертвих днів, та сама картка її відновить (пункт «Resume») — окремо відновлювати не треба; ніколи не пиши скіл про джерело контенту.';
 
 /**
  * Spec 065 FR-003: the chat tools that turn a list page into a dataset. `import_list` extracts in code and shows a
@@ -38,6 +38,8 @@ export interface ImportToolDeps {
   agents?:   BundleDeps['agents'];
   skills?:   BundleDeps['skills'];
   handles?:  BundleDeps['handles'];
+  /** Wave fix 068 × 069: the open pauses of the card's channel (the card resumes the pause of the series it rebinds). */
+  pauses?:   BundleDeps['pauses'];
 }
 
 /** The weekly job and `resync_import` re-read lists unless the owner switched it off. */

@@ -119,5 +119,5 @@ test('zero hits: used rows say so; nothing matching at all says the field may be
   const noRes = fakePool({ items: [], total: 9 });
   const plain: any = await tool(noRes.pool).execute(q({ unposted_on: null }), ctx);
   assert.equal(plain.note, 'no rows match these filters');
-  assert.equal(noRes.calls.filter((c) => /count\(\*\)/.test(c.sql)).length, 0, 'no second query without a resource');
+  assert.equal(noRes.calls.filter((c) => /SELECT count\(\*\)::int AS n FROM data_items/.test(c.sql)).length, 0, 'no zero-hit total query without a resource');
 });

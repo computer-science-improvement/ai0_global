@@ -14,7 +14,7 @@ const REF = 'telegram:@chan';
 
 interface Rows { [ref: string]: { active?: boolean; postable?: boolean; missing?: string[] } | undefined }
 
-function build(o: { rows?: Rows; unposted?: Record<string, number | null>; used?: Set<string>; blocked?: Set<string>; material?: boolean; env?: Record<string, string>; ledgerThrows?: boolean; idea?: any; accepted?: any[] } = {}) {
+function build(o: { rows?: Rows; unposted?: Record<string, number | null>; used?: Set<string>; blocked?: Set<string>; material?: boolean; env?: Record<string, string>; ledgerThrows?: boolean; idea?: any; accepted?: any[]; canonical?: (ref: string) => string } = {}) {
   const calls = { ledger: [] as string[], row: [] as string[], unposted: [] as string[], retopic: 0, claim: 0, release: 0, idea: 0 };
   const material: PreflightMaterial = {
     row: async (ref) => {
@@ -42,6 +42,7 @@ function build(o: { rows?: Rows; unposted?: Record<string, number | null>; used?
     },
     retopic: async () => { calls.retopic++; },
     env: (k) => o.env?.[k],
+    ...(o.canonical ? { canonicalRef: async (ref: string) => o.canonical!(ref) } : {}),
     freshnessHours: async () => 36,
     now: () => NOW,
   };
@@ -172,6 +173,73 @@ test('a slot with a directive: hint is failed, not swapped, when its source is s
   assert.equal(swapped.ok, true);
   assert.equal(swapped.ok && swapped.swapped?.toIdeaId, 'i2');
   assert.equal(plain.calls.retopic, 1);
+});
+
+// Wave fix (068 × 071 A3): the series' next row overrides the planner's row hints of its dataset at run time.
+test('a series slot whose planner hint is a spent row runs when the series note names the next row; without it the hint still decides', async () => {
+  const SPENT = 'data://prompts/7';
+  const NEXT = 'data://prompts/8';
+  const hints = ['series:S', SPENT];
+  const rows = { [SPENT]: {}, [NEXT]: {} };
+  const used = new Set([SPENT]);
+
+  const without = await build({ rows, used }).pf.run(slot(hints), card);
+  assert.equal(!without.ok && without.code, 'preflight_source_used', 'no next row: the hint is judged as before');
+  const nulled = await build({ rows, used }).pf.run(slot(hints), card, { nextRow: null });
+  assert.equal(!nulled.ok && nulled.code, 'preflight_source_used');
+
+  const b = build({ rows, used });
+  const withNext = await b.pf.run(slot(hints), card, { nextRow: NEXT });
+  assert.equal(withNext.ok, true);
+  assert.deepEqual(b.calls.row, [NEXT], 'the stale hint is not looked at; the next row is');
+  assert.deepEqual(b.calls.ledger, [NEXT]);
+  assert.deepEqual(withNext.ok && withNext.slot.sourceHints, hints, 'the stored hints are not changed');
+});
+
+test('the next row is still judged: a row that cannot post or is spent stops the slot; a hint equal to it is judged once; other datasets and URLs are kept', async () => {
+  const NEXT = 'data://prompts/8';
+  const bad = await build({ rows: { [NEXT]: { postable: false, missing: ['prompt_text'] } } }).pf.run(slot(['series:S', 'data://prompts/7']), card, { nextRow: NEXT });
+  assert.equal(!bad.ok && bad.code, 'preflight_no_material');
+  assert.equal(!bad.ok && bad.reason, `рядок ${NEXT} без prompt_text`);
+  const spent = await build({ rows: { [NEXT]: {} }, used: new Set([NEXT]) }).pf.run(slot(['series:S', NEXT]), card, { nextRow: NEXT });
+  assert.equal(!spent.ok && spent.code, 'preflight_source_used');
+
+  const same = build({ rows: { [NEXT]: {} } });
+  assert.equal((await same.pf.run(slot(['series:S', NEXT, NEXT]), card, { nextRow: NEXT })).ok, true);
+  assert.deepEqual(same.calls.row, [NEXT], 'de-duplicated');
+
+  // A row of another dataset stays material (one usable source is enough), and so does a spent URL beside the next row.
+  const other = build({ rows: { 'data://quotes/3': { postable: false, missing: ['text'] }, [NEXT]: {} } });
+  assert.equal((await other.pf.run(slot(['series:S', 'data://quotes/3', 'data://prompts/7']), card, { nextRow: NEXT })).ok, true);
+  assert.deepEqual(other.calls.row.sort(), ['data://prompts/8', 'data://quotes/3'], 'the quotes row is judged, the prompts hint is replaced');
+  const onlyOther = await build({ rows: { 'data://quotes/3': { postable: false, missing: ['text'] }, [NEXT]: { postable: false, missing: ['prompt_text'] } } })
+    .pf.run(slot(['series:S', 'data://quotes/3']), card, { nextRow: NEXT });
+  assert.equal(!onlyOther.ok && onlyOther.code, 'preflight_no_material');
+  const url = build({ rows: { [NEXT]: {} }, used: new Set(['https://a.example/x']) });
+  assert.equal((await url.pf.run(slot(['series:S', 'https://a.example/x']), card, { nextRow: NEXT })).ok, true, 'a URL-only series slot has the next row as material');
+});
+
+test('a library:// alias of the series dataset is replaced too (canonicalised); without a canonicaliser the table name decides', async () => {
+  const NEXT = 'data://prompts/8';
+  const alias = 'library://prompts/abc-7';
+  const canonical = (ref: string) => (ref === alias ? 'data://prompts/7' : ref);
+  const b = build({ rows: { [NEXT]: {}, [alias]: {} }, used: new Set([alias]), canonical });
+  assert.equal((await b.pf.run(slot(['series:S', alias]), card, { nextRow: NEXT })).ok, true);
+  assert.deepEqual(b.calls.row, [NEXT]);
+
+  const noCanon = build({ rows: { [NEXT]: {}, [alias]: {} }, used: new Set([alias]) });
+  assert.equal((await noCanon.pf.run(slot(['series:S', alias]), card, { nextRow: NEXT })).ok, true, 'library://prompts/… names the dataset prompts');
+  assert.deepEqual(noCanon.calls.row, [NEXT]);
+
+  // A next row given as an alias is canonicalised for the comparison and kept as given for the judgement.
+  const aliasNext = build({ rows: { [alias]: {}, 'data://prompts/7': {} }, used: new Set(['data://prompts/7']), canonical });
+  assert.equal((await aliasNext.pf.run(slot(['series:S', 'data://prompts/7']), card, { nextRow: alias })).ok, true);
+  assert.deepEqual(aliasNext.calls.row, [alias]);
+
+  // A canonicaliser that fails falls back to the raw refs.
+  const broken = build({ rows: { [NEXT]: {} }, used: new Set(['data://prompts/7']) });
+  const bk = new SlotPreflight({ ...(broken.pf as any).d, canonicalRef: async () => { throw new Error('db down'); } });
+  assert.equal((await bk.run(slot(['series:S', alias]), card, { nextRow: NEXT })).ok, true);
 });
 
 test('assessPlanned: the same checks on a planned slot, no swap, nothing written; fixed posts, live slots and a broken check are not judged', async () => {

@@ -5,6 +5,7 @@ import type { IdeaRow } from '../network/network.repository';
 import type { HostFailures } from '../net/host-failures';
 import { hostOf } from '../net/host-failures';
 import { dateFromUrl, sourceAgeHours } from '../post/dates';
+import { refDataset } from '../schedule/series-guard';
 
 /**
  * Spec 061 FR-001: the slot pre-flight. What code already knows is checked before the executor is paid to discover it:
@@ -20,6 +21,11 @@ import { dateFromUrl, sourceAgeHours } from '../post/dates';
  * its dataset needs for posting (`post_requires`) is `preflight_no_material`; a spent one is `preflight_source_used`; an
  * empty dataset on the resource is `preflight_no_material`. The slot fails only when every material hint fails.
  * FR-007: `assessPlanned` runs the same checks on a slot the planner is about to store, without the swap.
+ *
+ * Spec 071 A3 × 068 (wave fix): at run time a series slot on a dataset that goes in order is given the series' next row
+ * (`run`'s `nextRow`). That row overrides the planner's row hints of the same dataset, because the executor is told to take
+ * it whatever the hints say; judging a stale hint (a row an earlier slot of the round already posted, or put aside) would
+ * skip a slot that has material.
  */
 
 export const PREFLIGHT_CODES = ['preflight_no_material', 'preflight_source_used', 'preflight_stale', 'preflight_host_blocked', 'preflight_format_unavailable'] as const;
@@ -71,6 +77,8 @@ export interface PreflightDeps {
   /** Re-topic a slot from another idea (EditorPlansRepository.retopicSlot). */
   retopic: (slotId: string, patch: { ideaId: string; topic: string; angle: string | null; sourceHints: string[]; note: string }) => Promise<void>;
   env:     (key: string) => string | undefined;
+  /** `library://` alias → `data://` ref of the same row (the data store's `resolveContentRef`); without it an alias is compared by its table name. */
+  canonicalRef?: (ref: string) => Promise<string>;
   /** The freshness limit in hours of the slot's resource (the same one the critic and the audit use); null = none. */
   freshnessHours: (slot: Pick<EditorSlot, 'channelKey' | 'resourceRef'>, card: EditorCard) => Promise<number | null>;
   now?:    () => Date;
@@ -98,6 +106,12 @@ export function usedWhy(hit: Extract<LedgerVerdict, { used: true }>): string {
   return hit.status === 'waiting' ? 'уже чекає на публікацію' : hit.status === 'error' ? 'позначене як непридатне' : `уже використано${when}${where}`;
 }
 
+/** What the caller knows about the slot that the slot row does not carry. */
+export interface RunOptions {
+  /** Spec 071: the next row of the series' in-order dataset on this resource (`data://<dataset>/<id>`), from the series context. */
+  nextRow?: string | null;
+}
+
 export class SlotPreflight {
   constructor(private readonly d: PreflightDeps) {}
 
@@ -107,20 +121,21 @@ export class SlotPreflight {
    * Checks the slot and swaps its idea once if it fails. Never throws: a failing check passes the slot on to the executor
    * (the pre-flight saves money, it must not stop a post by its own fault).
    */
-  async run(slot: EditorSlot, card: EditorCard): Promise<PreflightResult> {
+  async run(slot: EditorSlot, card: EditorCard, o: RunOptions = {}): Promise<PreflightResult> {
     try {
-      return await this.runChecked(slot, card);
+      return await this.runChecked(slot, card, o);
     } catch (err: any) {
       this.d.log?.(`preflight ${slot.id}: ${err?.message ?? err} — the slot runs`);
       return { ok: true, slot };
     }
   }
 
-  private async runChecked(slot: EditorSlot, card: EditorCard): Promise<PreflightResult> {
+  private async runChecked(slot: EditorSlot, card: EditorCard, o: RunOptions): Promise<PreflightResult> {
     // A reserved (sponsored) or promo slot has a fixed post; a derived slot is formatted from its source slot's post.
     if (slot.kind === 'reserved' || slot.promo || slot.treatment === 'duplicate' || slot.treatment === 'adapt') return { ok: true, slot };
     const idea = slot.ideaId ? await this.d.ideas.idea(slot.ideaId) : null;
-    const problem = await this.assess(slot, card, idea, slot.sourceHints ?? []);
+    // The slot's stored `sourceHints` stay as the planner wrote them; only what is judged here is changed.
+    const problem = await this.assess(slot, card, idea, await this.withNextRow(slot.sourceHints ?? [], o.nextRow));
     if (!problem) return { ok: true, slot };
     // A missing format is not cured by another idea of the same format; a series slot has its own source rule; a slot that carries
     // a manager directive (`directive:<id>`, an experiment quota) would lose the hint and the angle in a swap, so it fails instead.
@@ -131,6 +146,30 @@ export class SlotPreflight {
     if (!swap) return this.fail(slot, idea, problem);
     await this.d.ideas.release(idea.id, 'rejected', `preflight: ${problem.reason}`).catch(() => {});
     return { ok: true, slot: swap.slot, swapped: { fromIdeaId: idea.id, toIdeaId: swap.idea.id, problem } };
+  }
+
+  /**
+   * Spec 071 A3: the series' next row (`data://<dataset>/<id>`) replaces the row hints (`data://` / `library://` rows) of its
+   * own dataset, and the hints are de-duplicated. `nextRow` comes from `nextInRound`, which returns an active, postable row
+   * that is open in the round, so it passes `assessRow`; the executor is told to take it whatever the planner hinted.
+   * Rows of another dataset, URLs, `library:<table>` datasets and labels are left as they are. Without a next row: unchanged.
+   */
+  private async withNextRow(hints: string[], nextRow: string | null | undefined): Promise<string[]> {
+    const next = nextRow?.trim();
+    if (!next || !ROW_HINT.test(next)) return hints;
+    const canon = async (ref: string): Promise<string> => {
+      const t = ref.trim();
+      if (!this.d.canonicalRef || !/^library:\/\//i.test(t)) return t;
+      return this.d.canonicalRef(t).catch(() => t);
+    };
+    const dataset = refDataset(await canon(next));
+    if (!dataset) return hints;
+    const kept: string[] = [];
+    for (const h of hints) {
+      if (ROW_HINT.test(h.trim()) && refDataset(await canon(h)) === dataset) continue;
+      kept.push(h);
+    }
+    return [...new Set([...kept, next])];
   }
 
   private async fail(slot: EditorSlot, _idea: IdeaRow | null, problem: PreflightProblem): Promise<PreflightResult> {

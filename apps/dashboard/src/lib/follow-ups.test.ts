@@ -51,5 +51,19 @@ test('an outcome is shown as done, left out, not run or failed with the reason',
 
 test('kind labels are short English names', () => {
   assert.equal(followUpLabel('series_change'), 'Series');
+  assert.equal(followUpLabel('series_pause_resume'), 'Resume');
   assert.equal(followUpLabel('some_new_kind'), 'some new kind');
+});
+
+test('the resume items of a source-change card: the series pause is ticked, the channel pause starts unticked', () => {
+  const items = followUpsOf({
+    then: [
+      { key: 'series', kind: 'series_change', summary: 'Series change', payload: {}, requires: 'main_rows' },
+      { key: 'resume', kind: 'series_pause_resume', summary: 'Resume series "Prompt" on @ai0_prompts_dev (paused: no material to post from)', payload: {}, requires: 'main_rows' },
+      { key: 'resume_channel', kind: 'series_pause_resume', summary: 'Resume the plain slots of @ai0_prompts_dev', payload: {}, requires: 'main_rows', ticked: false },
+    ],
+  });
+  assert.deepEqual(items.map((i) => [i.key, followUpLabel(i.kind), i.ticked]), [['series', 'Series', true], ['resume', 'Resume', true], ['resume_channel', 'Resume', false]]);
+  assert.deepEqual(initialSkip(items), ['resume_channel']);
+  assert.deepEqual(followUpInput(items, initialSkip(items)), { skip_then: ['resume_channel'] });
 });

@@ -146,7 +146,8 @@ export async function runQueryData(d: DataToolDeps, i: QueryDataArgs, ctx: ToolC
     if (r.rows.length === 0) {
       const zero = await zeroHitNote(d, s, opts, unposted);
       // Spec 071: when no row of the dataset can be posted at all, say why (post_requires) — in place of 068's general line.
-      const dead = unposted ? await unpostableNote(d.pool, s) : null;
+      // Not tied to a resource: an agent without a channel (the manager, the chat) or with `unposted_on: null` needs it as much.
+      const dead = await unpostableNote(d.pool, s);
       if (dead && zero.startsWith(NO_POSTABLE)) notes.push(dead);
       else notes.push(zero, ...(dead ? [dead] : []));
     }

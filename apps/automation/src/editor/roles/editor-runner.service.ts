@@ -439,7 +439,7 @@ export class EditorRunnerService {
     if ((slot.treatment === 'duplicate' || slot.treatment === 'adapt') && this.d.derived) return this.runDerived(slot, card, ctx);
     // Spec 061 FR-001: what code knows (spent / stale / blocked source, missing hosting) is checked before the writer is paid.
     if (this.d.preflight) {
-      const pf = await this.d.preflight.run(slot, card);
+      const pf = await this.d.preflight.run(slot, card, { nextRow: series?.nextRow ?? null });
       if (!pf.ok) return this.skipByCode(slot, preflightSkipError(pf.code, pf.reason));
       slot = pf.slot;
     }

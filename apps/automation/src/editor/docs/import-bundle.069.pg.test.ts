@@ -21,6 +21,9 @@ import { PlaybookSchema } from '../network/playbook';
 import { ScheduleRepository } from '../schedule/schedule.repository';
 import { ScheduleService } from '../schedule/schedule.service';
 import { registerScheduleActions } from '../schedule/schedule-tools';
+import { SeriesPauseActions } from '../series-pause/pause-actions';
+import { registerPauseResumeAction } from '../series-pause/pause-resume-action';
+import { SeriesPausesRepository } from '../series-pause/series-pauses.repository';
 import { createMigratedDb, type FreshDb } from '../sysadmin/testing/fresh-db';
 import { DocStore } from './doc-store';
 import { fetchDocument } from './doc-fetch';
@@ -78,6 +81,8 @@ function setup() {
   const http = { lookup: async () => [{ address: '93.184.216.34', family: 4 }], get: async () => ({ status: 200, headers: { 'content-type': 'text/plain; charset=utf-8' }, data: NANOBANANA_README }) };
   for (const [kind, handler] of Object.entries(importActionHandlers({ pool, docs, http: http as any }))) actions.register(kind, handler);
   registerScheduleActions(actions, schedule);
+  const pauses = new SeriesPausesRepository(pool);
+  registerPauseResumeAction(actions, { pauses: new SeriesPauseActions({ pool, repo: pauses }), schedule });
   actions.register('owner_rule', (p) => applyOwnerRule(memory, p));
   // The detach card's handler of the module: AgentsService.patchSkill (the agent's own skill first, else the shared one).
   actions.register('detach_skill', async (p) => {
@@ -88,7 +93,7 @@ function setup() {
     return { ok: true };
   });
   const tools = Object.fromEntries(buildImportListTools({
-    pool, docs, actions, http: http as any, schedule, agents, skills, handles: async () => (await agents.list()).map((a) => a.handle),
+    pool, docs, actions, http: http as any, schedule, agents, skills, handles: async () => (await agents.list()).map((a) => a.handle), pauses,
   }).map((t) => [t.name, t])) as Record<string, any>;
   const ctx = async (): Promise<any> => ({
     runId: 'r', role: 'composer', channelKey: null,
@@ -131,4 +136,81 @@ test('the bundle card: Apply imports, binds the series as a required source, sto
 
   const entries = await s.skills.listForAgent([orchId]);
   assert.equal(entries.find((e) => e.skill.name === 'prompthero-filter')?.enabled, false);
+});
+
+// ── Wave fix 068 × 069: the breaker paused the series (and the channel); the card that rebinds the series resumes it ──────
+
+const SERIES = 'Resume me';
+async function pauseRows() {
+  return (await pool.query(`SELECT series_key, resumed_at IS NOT NULL AS resumed, resumed_by FROM series_pauses WHERE channel_key = $1 ORDER BY series_key, paused_at`, [CH])).rows;
+}
+async function seed() {
+  // A second series on the playbook (the first test bound 'Prompt of the day' already), and the two pauses a dead source leaves behind.
+  const repo = new NetworkRepository(pool);
+  const active = (await repo.activePlaybook(orchId))!;
+  const body = normalizePlaybook(active.body);
+  if (!body.series.some((x) => x.name === SERIES)) {
+    await repo.insertPlaybook({
+      agentId: orchId, status: 'active', brief: null, createdBy: 'owner', rationale: 'seed 2',
+      body: PlaybookSchema.parse({ ...body, series: [...body.series, { name: SERIES, cadence: 'daily@12:00', resource_ref: TG, format: 'photo', brief: 'Another prompt a day' }] }),
+    });
+  }
+  await pool.query(`DELETE FROM series_pauses WHERE channel_key = $1`, [CH]);
+  await pool.query(
+    `INSERT INTO series_pauses (channel_key, series_key, label, cause, reason, streak) VALUES
+       ($1, $2, $3, 'no_material', 'preflight_no_material: рядок data://prompts/12 без prompt_text', 3),
+       ($1, $4, $5, 'no_material', 'three dead days', 3)`,
+    [CH, `series:${SERIES}`, SERIES, `resource:${TG}`, TG]);
+}
+
+test('a paused series: the card offers Resume (ticked) and the channel (unticked); Apply imports, binds the series and resumes it, the channel stays paused', { skip }, async () => {
+  await seed();
+  const s = setup();
+  const out = await propose(s, { dataset: 'resume_a_pg069', series: SERIES });
+  assert.equal(out.ok, true, JSON.stringify(out));
+  assert.deepEqual(out.follow_ups.map((f: any) => [f.key, f.ticked]), [['series', true], ['resume', true], ['resume_channel', false]]);
+  assert.match(out.follow_ups[1].summary, /^Resume series "Resume me" on @pgt069_global \(paused: no material to post from: preflight_no_material/);
+  // Nothing is lifted by the proposal.
+  assert.deepEqual((await pauseRows()).map((r) => [r.series_key, r.resumed]), [[`resource:${TG}`, false], [`series:${SERIES}`, false]]);
+
+  const card = await s.actions.apply(out.pending_action);
+  assert.equal(card.status, 'applied', card.error ?? '');
+  assert.deepEqual((card.result as any).then.map((t: any) => [t.key, t.ok, t.error ?? null]), [['series', true, null], ['resume', true, null], ['resume_channel', false, 'not_ticked']]);
+  assert.deepEqual((await pauseRows()).map((r) => [r.series_key, r.resumed, r.resumed_by]), [[`resource:${TG}`, false, null], [`series:${SERIES}`, true, 'owner']]);
+  const pb = normalizePlaybook((await new NetworkRepository(pool).activePlaybook(orchId))!.body);
+  assert.deepEqual(pb.series.find((x) => x.name === SERIES)!.source, { kind: 'library', table: 'resume_a_pg069' });
+  assert.deepEqual([...await new SeriesPausesRepository(pool).plainPausedChannels()], [CH], 'the channel pause is a suggestion: not lifted unless ticked');
+});
+
+test('the owner ticks the channel item: both pauses are lifted and the scheduler plans the channel again', { skip }, async () => {
+  await seed();
+  const s = setup();
+  const out = await propose(s, { dataset: 'resume_b_pg069', series: SERIES });
+  const card = await s.actions.apply(out.pending_action, { skip_then: [] });   // the dashboard sends the unticked keys: none
+  assert.equal(card.status, 'applied', card.error ?? '');
+  assert.deepEqual((card.result as any).then.map((t: any) => [t.key, t.ok]), [['series', true], ['resume', true], ['resume_channel', true]]);
+  assert.deepEqual((await pauseRows()).map((r) => r.resumed), [true, true]);
+  assert.deepEqual([...await new SeriesPausesRepository(pool).plainPausedChannels()], []);
+});
+
+test('an import that adds nothing resumes nothing: the series change and the resume both wait for rows', { skip }, async () => {
+  await seed();
+  const s = setup();
+  const out = await propose(s, { dataset: 'resume_c_pg069', series: SERIES });
+  // The page changed between the proposal and Apply: the stored filter now keeps no entry.
+  await pool.query(`UPDATE pending_actions SET payload = jsonb_set(payload, '{filter}', '{"heading_matches": "^no such heading$"}') WHERE id = $1`, [out.pending_action]);
+  const card = await s.actions.apply(out.pending_action, { skip_then: [] });
+  assert.equal(card.status, 'applied', card.error ?? '');
+  const res = card.result as any;
+  assert.equal(res.inserted + res.updated + res.skipped, 0);
+  assert.deepEqual(res.then.map((t: any) => [t.key, t.error ?? null]), [['series', 'import_empty'], ['resume', 'import_empty'], ['resume_channel', 'import_empty']]);
+  assert.deepEqual((await pauseRows()).map((r) => r.resumed), [false, false]);
+});
+
+test('no pause: the card has no resume item', { skip }, async () => {
+  await seed();
+  await pool.query(`DELETE FROM series_pauses WHERE channel_key = $1`, [CH]);
+  const s = setup();
+  const out = await propose(s, { dataset: 'resume_d_pg069', series: SERIES });
+  assert.deepEqual(out.follow_ups.map((f: any) => f.key), ['series']);
 });

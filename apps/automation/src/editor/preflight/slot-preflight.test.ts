@@ -180,7 +180,7 @@ test('FR-003 idea outcome: used only when a post is out; infra / budget / format
 
 // ── the runner: the pre-flight runs before the executor, a skip costs no LLM call ──────────────────────────────
 
-function runnerWith(preflight: any) {
+function runnerWith(preflight: any, extra: Record<string, unknown> = {}) {
   const updates: any[] = [];
   const runs: any[] = [];
   const done: any[] = [];
@@ -195,6 +195,7 @@ function runnerWith(preflight: any) {
     now: () => NOW,
     onSlotDone: async (s: any) => { done.push(s.id); },
     preflight,
+    ...extra,
   } as any);
   return { runner, updates, runs, done };
 }
@@ -213,4 +214,13 @@ test('runner: a swapped slot runs with the new topic', async () => {
   await h.runner.runExecutor(slot(), makeCard());
   assert.equal(h.runs.length, 1);
   assert.match(h.runs[0].user, /Нова тема/);
+});
+
+test('runner: the series\' next row (spec 071) reaches the pre-flight; a slot without a series context passes none', async () => {
+  const seen: any[] = [];
+  const pf = { run: async (sl: any, _c: any, o: any) => { seen.push(o); return { ok: true, slot: sl }; } };
+  await runnerWith(pf, { seriesContext: async () => ({ note: 'серія', nextRow: 'data://ds/8' }) }).runner.runExecutor(slot({ seriesName: 'S' }), makeCard());
+  await runnerWith(pf, { seriesContext: async () => ({ note: null }) }).runner.runExecutor(slot(), makeCard());
+  await runnerWith(pf).runner.runExecutor(slot(), makeCard());
+  assert.deepEqual(seen, [{ nextRow: 'data://ds/8' }, { nextRow: null }, { nextRow: null }]);
 });

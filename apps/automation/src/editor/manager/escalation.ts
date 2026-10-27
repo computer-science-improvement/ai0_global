@@ -80,8 +80,11 @@ export interface PostsRun { agentId: string; handle: string; ref: string; firstD
 
 /**
  * The days (from `fromDay`) on which an agent's own resource had a negative posts anomaly in its snapshot. A resource whose
- * orchestrator is switched off, in shadow mode (it publishes nothing) or paused, or that is under an active resource pause,
- * is left out: its posts stopped because the owner (or the manager) stopped it, and there is nothing for a directive to fix.
+ * orchestrator is switched off, in shadow mode (it publishes nothing) or paused, that is under an active resource pause, or
+ * whose plain slots the dead-series breaker (spec 068/060) or the owner paused (an open `series_pauses` row keyed
+ * `resource:<ref>`, which the scheduler does not plan) is left out: its posts stopped because someone stopped it, and
+ * there is nothing for a directive to fix. A pause on one series only (`series:<name>`) is NOT left out: the channel still
+ * plans its other slots, and a directive to replace the dead series is a legitimate answer there.
  */
 export async function negativePostsDays(pool: Q, fromDay: string): Promise<PostsDay[]> {
   const { rows } = await pool.query(
@@ -93,6 +96,8 @@ export async function negativePostsDays(pool: Q, fromDay: string): Promise<Posts
         AND s.metrics->'posts'->>'anomaly' = 'true' AND (s.metrics->'posts'->>'z')::float8 < 0
         AND NOT EXISTS (SELECT 1 FROM resource_pauses p
                          WHERE p.resource_ref = s.scope_id AND p.lifted_at IS NULL AND p.starts_at <= now() AND p.until > now())
+        AND NOT EXISTS (SELECT 1 FROM series_pauses sp
+                         WHERE sp.resumed_at IS NULL AND sp.series_key = 'resource:' || s.scope_id)
       ORDER BY a.handle, s.scope_id, s.day`, [fromDay]);
   return rows.map((r: any) => ({ agentId: String(r.agent_id), handle: String(r.handle), ref: String(r.ref), day: String(r.day) }));
 }
