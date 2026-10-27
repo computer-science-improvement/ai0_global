@@ -118,6 +118,8 @@ test('format_prefs: owner locks, 3 agent changes a day, versions with diffs, pro
   const page: any = await svc.getFormatting(orch.handle);
   assert.deepEqual(page.resources.map((r: any) => r.ref).sort(), [`telegram:${CH}`, IG, TH].sort());
   assert.equal(page.resources.find((r: any) => r.ref === IG).changesToday, 3);
+  // Spec 070: the audience payload carries the cap an empty «Polls a week» field falls back to (1 unless the topic names a quiz).
+  assert.equal(page.resources.find((r: any) => r.ref === IG).audience.defaultPollsPerWeek, 1);
   assert.ok(page.history.some((x: any) => x.agentHandle === orch.handle));
   const after: any = await svc.putFormatting(orch.handle, TH, { format_prefs: { emoji: 'light' }, format_locks: ['emoji', 'links'] });
   const thRow = after.resources.find((r: any) => r.ref === TH);

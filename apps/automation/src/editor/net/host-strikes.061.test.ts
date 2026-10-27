@@ -2,13 +2,18 @@
  * Spec 061 FR-004: host blocks escalate 1 d -> 3 d -> 7 d, a timeout is a one-hour block that is not a strike, the
  * strikes start over after a successful fetch, source health sees the playbook's feeds, and the third strike is one owner
  * note. Pure and fake-pool tests; the real tables are covered by host-strikes.061.pg.test.ts.
+ *
+ * Spec 070 changes on purpose: a connection reset is no longer thrown but retried once and recorded as a timeout; feed
+ * failures (`feed_*`) carry no strikes; an RSS source is not blocked by a host `refused` row, so a dead feed reaches the
+ * owner through source health `failing`, not through strikes.
  */
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import type { CardSource } from '../card';
 import { makeCard } from '../post/testing/fixtures';
 import {
-  classifyTimeout, fetchPageGuarded, nextBlock, strikeHours, type HostBlock, type HostFailureReason, type HostFailures, type PrevBlock,
+  classifyTimeout, classifyTransient, fetchPageGuarded, nextBlock, resetFailure, retryReset, strikeHours,
+  type HostBlock, type HostFailureReason, type HostFailures, type PrevBlock,
 } from './host-failures';
 import { playbookSources } from '../sources/playbook-feeds';
 import { SourceHealthService } from '../sources/source-health.service';
@@ -56,6 +61,15 @@ test('nextBlock: a timeout blocks for an hour, adds no strike and never shortens
 test('nextBlock: a feed failure is a flat day on its own address and leaves the strikes alone', () => {
   const f = nextBlock({ reason: 'feed_unparseable', blockedUntil: plus(T0, -1), strikes: 0 }, 'feed_too_large', T0);
   assert.deepEqual([f.strikes, f.until.toISOString(), f.keep], [0, plus(T0, 24).toISOString(), false]);
+  // Spec 070: refused and missing feeds are flat days too, however often they fail: no strike, no 3 d / 7 d.
+  for (const reason of ['feed_refused', 'feed_missing'] as const) {
+    const first = nextBlock(null, reason, T0);
+    assert.deepEqual([first.strikes, first.until.toISOString(), first.keep], [0, plus(T0, 24).toISOString(), false], reason);
+    const again = nextBlock({ reason, blockedUntil: plus(T0, 24), strikes: 0 }, reason, plus(T0, 25));
+    assert.deepEqual([again.strikes, again.until.toISOString(), again.keep], [0, plus(T0, 49).toISOString(), false], `${reason}: a day again`);
+    const inside = nextBlock({ reason, blockedUntil: plus(T0, 24), strikes: 0 }, reason, plus(T0, 3));
+    assert.equal(inside.until.toISOString(), plus(T0, 27).toISOString());
+  }
 });
 
 test('classifyTimeout: node, axios and abort-signal timeouts; a reset or DNS failure is not one', () => {
@@ -63,6 +77,34 @@ test('classifyTimeout: node, axios and abort-signal timeouts; a reset or DNS fai
     assert.equal(classifyTimeout(e), true, JSON.stringify(e));
   }
   for (const e of [new Error('socket hang up'), { code: 'ENOTFOUND' }, null, undefined]) assert.equal(classifyTimeout(e), false);
+});
+
+test('spec 070 classifyTransient: resets, refused and unreachable connections, closed sockets; not timeouts, DNS or certificates', () => {
+  for (const code of ['ECONNRESET', 'EPIPE', 'ECONNREFUSED', 'EHOSTUNREACH', 'ENETUNREACH', 'UND_ERR_SOCKET', 'UND_ERR_CLOSED']) {
+    assert.equal(classifyTransient({ code }), true, code);
+    assert.equal(classifyTransient({ cause: { code } }), true, `cause ${code}`);
+  }
+  for (const message of ['socket hang up', 'Client network socket disconnected before secure TLS connection was established', 'SocketError: other side closed']) {
+    assert.equal(classifyTransient(new Error(message)), true, message);
+  }
+  for (const e of [{ code: 'ETIMEDOUT' }, { code: 'ENOTFOUND' }, { code: 'CERT_HAS_EXPIRED' }, new Error('timeout of 10000ms exceeded'), new Error('status 500'), null, undefined]) {
+    assert.equal(classifyTransient(e), false, JSON.stringify(e));
+  }
+});
+
+test('spec 070 retryReset: one more try for a reset only; the second error, and any other error, are thrown at once', async () => {
+  let calls = 0;
+  assert.equal(await retryReset(async () => { if (++calls === 1) throw new Error('socket hang up'); return 'ok'; }, 0), 'ok');
+  assert.equal(calls, 2);
+  calls = 0;
+  await assert.rejects(retryReset(async () => { calls++; throw new Error('socket hang up'); }, 0), /socket hang up/);
+  assert.equal(calls, 2);
+  for (const err of [new Error('boom'), Object.assign(new Error('x'), { code: 'ENOTFOUND' }), Object.assign(new Error('timeout of 1ms exceeded'), { code: 'ECONNABORTED' })]) {
+    calls = 0;
+    await assert.rejects(retryReset(async () => { calls++; throw err; }, 0));
+    assert.equal(calls, 1, `${err.message} is not retried`);
+  }
+  assert.match(resetFailure('a.example').details, /^a\.example: сайт обірвав з'єднання; година паузи/);
 });
 
 class Memory implements HostFailures {
@@ -79,8 +121,14 @@ test('fetchPageGuarded: a timeout records a one-hour failure and answers instead
   assert.deepEqual(slow, { error: 'host_unreachable', details: slow && 'details' in slow ? slow.details : '' });
   assert.match((slow as { details: string }).details, /^slow\.example: сайт не відповів вчасно\. Година паузи/);
   assert.deepEqual(m.records, [['slow.example', 'timeout']]);
-  await assert.rejects(fetchPageGuarded('https://flaky.example/a', m, undefined, async () => { throw new Error('socket hang up'); }), /socket hang up/);
-  assert.equal(m.records.length, 1);
+  // Spec 070: a reset is tried twice, then recorded as a timeout with its own words; any other error still throws.
+  let tries = 0;
+  const cut = await fetchPageGuarded('https://flaky.example/a', m, undefined, async () => { tries++; throw new Error('socket hang up'); }, 0);
+  assert.deepEqual(cut, resetFailure('flaky.example'));
+  assert.equal(tries, 2);
+  assert.deepEqual(m.records, [['slow.example', 'timeout'], ['flaky.example', 'timeout']]);
+  await assert.rejects(fetchPageGuarded('https://odd.example/a', m, undefined, async () => { throw new Error('something else'); }, 0), /something else/);
+  assert.equal(m.records.length, 2);
   const good = await fetchPageGuarded('https://fine.example/a', m, undefined, async () => ({ status: 200 }));
   assert.deepEqual(good, { status: 200 });
   assert.deepEqual(m.ok, ['fine.example']);
@@ -112,16 +160,52 @@ test('playbookSources: series feed addresses and rule links the card does not re
 const FEED: CardSource = { id: 'verge', kind: 'rss', ref: 'https://www.theverge.com/rss/index.xml' };
 const block = (host: string, o: Partial<HostBlockRow> = {}): HostBlockRow => ({ host, reason: 'refused', statusCode: 403, until: plus(T0, 100), failures: 1, strikes: 1, ...o });
 
-test('source health: a second strike is worth a replacement; a one-hour timeout block is not', () => {
+const PAGE: CardSource = { id: 'verge-pages', kind: 'url', ref: 'https://www.theverge.com/ai-artificial-intelligence' };
+
+test('source health: a second strike is worth a replacement; a one-hour timeout block is not (a url source, or a feed behind a DNS block)', () => {
   const now = T0;
-  const one = sourceHealthOf(FEED, [], [block('theverge.com', { strikes: 1 })], now);
+  const one = sourceHealthOf(PAGE, [], [block('theverge.com', { strikes: 1 })], now);
   assert.equal(needsReplacement(one), false, 'one 24 h block is a blip');
-  const two = sourceHealthOf(FEED, [], [block('theverge.com', { strikes: 2 })], now);
+  const two = sourceHealthOf(PAGE, [], [block('theverge.com', { strikes: 2 })], now);
   assert.equal(needsReplacement(two), true);
   assert.match(two.detail, /2 blocks in a row/);
   assert.equal(two.blocked?.strikes, 2);
-  const slow = sourceHealthOf(FEED, [], [block('theverge.com', { reason: 'timeout', statusCode: null, strikes: 0, failures: 3, until: plus(T0, 1) })], now);
+  const slow = sourceHealthOf(PAGE, [], [block('theverge.com', { reason: 'timeout', statusCode: null, strikes: 0, failures: 3, until: plus(T0, 1) })], now);
   assert.equal(needsReplacement(slow), false);
+  // A feed is stopped by the host's DNS / TLS / timeout rows, so its strikes still count there.
+  const dns = sourceHealthOf(FEED, [], [block('theverge.com', { reason: 'dns', statusCode: null, strikes: 2 })], now);
+  assert.equal(dns.state, 'blocked');
+  assert.equal(needsReplacement(dns), true);
+});
+
+test('spec 070 source health: a host `refused` row does not block an RSS source; its own feed_refused / feed_missing row does', () => {
+  const now = T0;
+  const refused = sourceHealthOf(FEED, [], [block('theverge.com', { strikes: 2 })], now);
+  assert.equal(refused.blocked, null, 'a page 403 says nothing about the feed');
+  assert.notEqual(refused.state, 'blocked');
+  assert.equal(needsReplacement(refused), false);
+  const own = sourceHealthOf(FEED, [], [block('theverge.com/rss/index.xml', { reason: 'feed_refused', statusCode: 403, strikes: 0 })], now);
+  assert.equal(own.state, 'blocked');
+  assert.match(own.detail, /feed_refused 403/);
+  const gone = sourceHealthOf(FEED, [], [block('theverge.com/rss/index.xml', { reason: 'feed_missing', statusCode: 404, strikes: 0 })], now);
+  assert.equal(gone.state, 'blocked');
+  // The page source keeps the old rule: refused blocks it, a feed row does not.
+  assert.equal(sourceHealthOf(PAGE, [], [block('theverge.com')], now).state, 'blocked');
+  assert.notEqual(sourceHealthOf(PAGE, [], [block('theverge.com/rss/index.xml', { reason: 'feed_refused' })], now).state, 'blocked');
+  // A feed at the root of a site: its row is host/, the host's own row is another key.
+  const root: CardSource = { id: 'root', kind: 'rss', ref: 'https://example.com/' };
+  assert.equal(sourceHealthOf(root, [], [block('example.com')], now).blocked, null);
+  assert.equal(sourceHealthOf(root, [], [block('example.com/', { reason: 'feed_refused' })], now).state, 'blocked');
+});
+
+test('spec 070 source health: a dead feed reaches the owner as failing (3 failed reads), not through strikes', () => {
+  const now = T0;
+  const fail = (h: number) => ({ at: plus(T0, -h), tool: 'fetch_feed', input: { url: FEED.ref }, isError: true, error: 'http_error', details: 'status 403', items: null, slotId: null, slotStatus: null });
+  const h = sourceHealthOf(FEED, [fail(30), fail(20), fail(10)], [block('theverge.com/rss/index.xml', { reason: 'feed_refused', statusCode: 403, strikes: 0 })], now);
+  assert.equal(h.state, 'blocked');
+  const noBlock = sourceHealthOf(FEED, [fail(30), fail(20), fail(10)], [], now);
+  assert.equal(noBlock.state, 'failing');
+  assert.equal(needsReplacement(noBlock), true);
 });
 
 function service(o: { card: ReturnType<typeof makeCard>; playbook?: unknown; struck?: Array<HostBlockRow & { notedAt: Date | null }>; noted?: Set<string>; posts?: any[] }) {

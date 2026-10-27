@@ -65,6 +65,7 @@ test('caps in format_prefs: schema, lockable fields, prompt rendering, patch inp
   assert.equal(FormatPatchInput.safeParse({ polls_per_week: 0 }).success, true);
   assert.equal(FormatPatchInput.safeParse({ content_kind: null }).success, true);
   assert.deepEqual(profileCaps({ topic: 'Новини Львова', format_prefs: {} }), { kind: 'news', kindInferred: true, pollsPerWeek: 1, questionsPerDay: 0 });
+  assert.deepEqual(profileCaps({ topic: 'Вікторини з ПДР', format_prefs: {} }), { kind: 'quiz', kindInferred: true, pollsPerWeek: 14, questionsPerDay: 1 });
 });
 
 test('owner-only: an agent may lower the caps, never raise or clear them, and never set content_kind', () => {
@@ -112,6 +113,19 @@ test('patchFormat: an agent raising the poll cap is refused with a Ukrainian rea
   assert.equal(await new ResourceProfilesRepository(o.pool as any).capsOf('telegram:@c').then((c) => c.kind), 'general', 'capsOf reads the stored profile');
 });
 
+test('spec 070: audienceViewOf adds defaultPollsPerWeek — the cap after clearing kind and cap, from the topic alone', async () => {
+  const repo = (stored: Record<string, unknown>) => new ResourceProfilesRepository(fakePool(stored).pool as any);
+  // A quiz topic with an explicit kind "general" and an explicit cap of 3: today's caps say 1 and 3, clearing both gives 14.
+  const explicit = await repo({ topic: 'Вікторини з ПДР', format_prefs: { content_kind: 'general', polls_per_week: 3 } }).audienceViewOf('telegram:@c');
+  assert.deepEqual(explicit, { kind: 'general', kindInferred: false, pollsPerWeek: 3, questionsPerDay: 1, defaultPollsPerWeek: 14 });
+  const inferred = await repo({ topic: 'Вікторини з ПДР', format_prefs: {} }).audienceViewOf('telegram:@c');
+  assert.deepEqual([inferred.kind, inferred.kindInferred, inferred.pollsPerWeek, inferred.defaultPollsPerWeek], ['quiz', true, 14, 14]);
+  const plain = await repo({ topic: 'Космос', format_prefs: { content_kind: 'quiz' } }).audienceViewOf('telegram:@c');
+  assert.deepEqual([plain.pollsPerWeek, plain.defaultPollsPerWeek], [null, 1], 'an explicit quiz is uncapped, but clearing it gives the default of 1');
+  // The plain capsOf (used by the tools) keeps its shape.
+  assert.ok(!('defaultPollsPerWeek' in await repo({ topic: 'Космос' }).capsOf('telegram:@c')));
+});
+
 test('card join: caps from format_prefs + topic; a row without the join keeps the card unchanged', () => {
   const base = {
     channel_key: '@c', mode: 'live', title: null, language: 'uk', timezone: 'Europe/Kyiv', posts_per_day_min: 1, posts_per_day_max: 3,
@@ -122,6 +136,11 @@ test('card join: caps from format_prefs + topic; a row without the join keeps th
   assert.deepEqual([news.readerQuestionsMax, news.pollsPerWeek], [0, 1]);
   const quiz = rowToCard({ ...base, format_prefs_json: { content_kind: 'quiz', questions_to_readers_per_day: 2 }, profile_topic: null });
   assert.deepEqual([quiz.readerQuestionsMax, quiz.pollsPerWeek], [2, null]);
+  // Spec 070 FR-004: a topic that names a quiz (no explicit kind) caps at 14 a week; тест-драйв stays on the default.
+  const pdr = rowToCard({ ...base, format_prefs_json: null, profile_topic: 'Вікторини з ПДР' });
+  assert.deepEqual([pdr.readerQuestionsMax, pdr.pollsPerWeek], [1, 14]);
+  assert.equal(rowToCard({ ...base, format_prefs_json: null, profile_topic: 'Тест-драйви авто' }).pollsPerWeek, 1);
+  assert.equal(rowToCard({ ...base, format_prefs_json: { content_kind: 'general' }, profile_topic: 'Вікторини з ПДР' }).pollsPerWeek, 1, 'explicit beats inferred');
   const plain = rowToCard(base);
   assert.ok(!('readerQuestionsMax' in plain) && !('pollsPerWeek' in plain));
 });

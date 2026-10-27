@@ -487,7 +487,8 @@ export class AgentsService {
         ref: r.ref, platform: r.platform, title: r.title, formatPrefs: f.prefs, locks: f.locks, updatedAt: f.updatedAt,
         changesToday: await this.d.profiles.formatChangesToday(r.ref, now),
         // Spec 034 FR-005: the effective poll / reader-question caps (defaults and the news topic included).
-        audience: await this.d.profiles.capsOf(r.ref),
+        // Spec 070: plus `defaultPollsPerWeek`, the cap an empty «Polls a week» field falls back to (the topic inference).
+        audience: await this.d.profiles.audienceViewOf(r.ref),
         // Spec 037 FR-008: the style sheet as stored, with the owner's defaults, and (Telegram) the hashtag vocabulary.
         style: await resourceStyleOf(this.d.pool, r.ref),
       });

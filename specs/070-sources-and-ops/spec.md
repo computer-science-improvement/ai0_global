@@ -1,6 +1,6 @@
 # 070 — Source resilience and ops batch
 
-Status: planned · Builds on 065/066 (reader, `import_list`), 061 (host strikes, ledger anchors), 034 (content kind), 064 (Meta back-off), 037 (story registry) · No migration
+Status: done · Builds on 065/066 (reader, `import_list`), 061 (host strikes, ledger anchors), 034 (content kind), 064 (Meta back-off), 037 (story registry) · No migration
 
 > **Read the «Amendments after the builder check» section at the end first.** Where it differs from the body, the amendment wins.
 

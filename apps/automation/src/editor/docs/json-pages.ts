@@ -62,7 +62,7 @@ export function failureText(f: FetchFailure): string {
 }
 
 /** The records of every page, in order, starting from the stored first page, and how the reading ended. */
-export async function readPages(first: StoredDoc, d: Pick<FetchDocDeps, 'http' | 'hosts' | 'sources'>, o: ReadPagesOptions): Promise<{ records: unknown[]; paging: PagingInfo }> {
+export async function readPages(first: StoredDoc, d: Pick<FetchDocDeps, 'http' | 'hosts' | 'sources' | 'retryMs'>, o: ReadPagesOptions): Promise<{ records: unknown[]; paging: PagingInfo }> {
   const path = first.json?.records_path ?? '';
   const records: unknown[] = [...(first.json?.records ?? [])];
   let pg = detectPagination(first.json?.value, first.url);

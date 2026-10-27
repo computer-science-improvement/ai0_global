@@ -3,7 +3,7 @@ import { z } from 'zod';
 import { localTimeLabel } from '../roles/time';
 import { DEFAULT_TZ, isValidTimeZone } from '../time/resource-time';
 import {
-  audienceCaps, audienceCapsOfProfile, CONTENT_KINDS, DEFAULT_POLLS_PER_WEEK, DEFAULT_READER_QUESTIONS, type AudienceCaps,
+  audienceCaps, audienceCapsOfProfile, CONTENT_KINDS, DEFAULT_POLLS_PER_WEEK, DEFAULT_READER_QUESTIONS, defaultPollsPerWeekOfProfile, type AudienceCaps,
 } from '../post/audience-asks';
 import { NewsWatchSchema } from '../live/news-watch-config';
 import { StyleSchema, styleSummaryUk, type ResourceStyle } from '../post/style/resource-style';
@@ -326,6 +326,16 @@ export class ResourceProfilesRepository {
   async capsOf(ref: string): Promise<AudienceCaps> {
     const { rows } = await this.pool.query(`SELECT profile FROM resource_profiles WHERE resource_ref = $1`, [ref]);
     return audienceCapsOfProfile(rows[0]?.profile ?? null);
+  }
+
+  /**
+   * The caps as the Formatting page shows them (spec 070 review fix): `capsOf` plus `defaultPollsPerWeek`, the poll cap the
+   * resource would fall back to if the owner cleared `content_kind` and `polls_per_week` (it follows the topic inference).
+   */
+  async audienceViewOf(ref: string): Promise<AudienceCaps & { defaultPollsPerWeek: number | null }> {
+    const { rows } = await this.pool.query(`SELECT profile FROM resource_profiles WHERE resource_ref = $1`, [ref]);
+    const profile = rows[0]?.profile ?? null;
+    return { ...audienceCapsOfProfile(profile), defaultPollsPerWeek: defaultPollsPerWeekOfProfile(profile) };
   }
 
   /** format_prefs, owner locks and the last change of a resource (empty when it has no row). */

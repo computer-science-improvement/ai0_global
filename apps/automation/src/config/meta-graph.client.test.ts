@@ -2,6 +2,7 @@ import { test, mock, afterEach } from 'node:test';
 import assert from 'node:assert/strict';
 import axios from 'axios';
 import { MetaGraphClient } from './meta-graph.client';
+import { MetaInsightBackoff } from './meta-insight-backoff';
 
 afterEach(() => mock.restoreAll());
 
@@ -222,6 +223,129 @@ test('a transient failure (500) is not remembered', async () => {
   await c.fetchInsights('threads', 'TH1', 'tok', 7);
   await c.fetchInsights('threads', 'TH1', 'tok', 7);
   assert.equal(calls, 2);
+});
+
+// ── spec 070 FR-006: three plain 400s in a row back the metric off for a day ─────────────────────────────────────────
+
+function graph400(code: number, extra: Record<string, unknown> = {}) {
+  return Object.assign(new Error('Request failed with status code 400'), {
+    response: { status: 400, data: { error: { message: '(#10) Application does not have permission for this action', type: 'OAuthException', code, error_subcode: 2108006, fbtrace_id: 'AbC123', ...extra } } },
+  });
+}
+
+/** A client whose logger is captured and whose back-off runs on a fake clock. */
+function loggedClient(now: () => number) {
+  const c: any = client();
+  const warns: string[] = [];
+  const debugs: string[] = [];
+  c.logger = { warn: (m: string) => warns.push(m), debug: (m: string) => debugs.push(m) };
+  c.insightBackoff = new MetaInsightBackoff(now);
+  return { c: c as MetaGraphClient, warns, debugs };
+}
+
+const FB_IMPRESSIONS = 'page_impressions';
+
+test('spec 070: three 400s (code 10) in a row → the 4th call does not ask; one warning with the Graph code; 24 h later it asks once', async () => {
+  let now = Date.parse('2026-10-26T10:00:00Z');
+  const asked: string[] = [];
+  let fail = true;
+  mock.method(axios, 'get', async (_url: string, opts: any) => {
+    const metric = opts.params.metric;
+    asked.push(metric);
+    if (metric === FB_IMPRESSIONS && fail) throw graph400(10);
+    return { data: graphBody(metric, [['2026-06-10T07:00:00+0000', 3]]) };
+  });
+  const { c, warns, debugs } = loggedClient(() => now);
+  const impressions = () => asked.filter((m) => m === FB_IMPRESSIONS).length;
+
+  await c.fetchInsights('facebook', 'FB1', 'tok', 7);
+  await c.fetchInsights('facebook', 'FB1', 'tok', 7);
+  assert.equal(warns.length, 0, 'two failures: only debug lines');
+  assert.equal(debugs.length, 2);
+  assert.match(debugs[0], /status 400 code=10\/2108006 OAuthException: \(#10\) Application does not have permission/);
+  assert.match(debugs[0], /fbtrace_id AbC123/);
+  await c.fetchInsights('facebook', 'FB1', 'tok', 7);
+  assert.equal(impressions(), 3);
+  assert.equal(warns.length, 1, 'the third failure warns once');
+  assert.match(warns[0], /"page_impressions" failed 3 times in a row for facebook\/FB1/);
+  assert.match(warns[0], /code=10/);
+  assert.match(warns[0], /not requested for 24 hours/);
+
+  await c.fetchInsights('facebook', 'FB1', 'tok', 7);
+  await c.fetchInsights('facebook', 'FB1', 'tok', 7);
+  assert.equal(impressions(), 3, 'the 4th and 5th calls skip the metric');
+  assert.equal(asked.filter((m) => m === 'page_views_total').length, 5, 'the other metrics keep being asked');
+  await c.fetchInsights('facebook', 'FB2', 'tok', 7);
+  assert.equal(impressions(), 4, 'another account asks for itself');
+
+  now += 86_400_000 + 1_000;                   // the next day
+  await c.fetchInsights('facebook', 'FB1', 'tok', 7);
+  assert.equal(impressions(), 5, 'one request a day after the back-off');
+  assert.equal(warns.filter((w) => /FB1/.test(w)).length, 2, 'a new UTC day warns again');
+  await c.fetchInsights('facebook', 'FB1', 'tok', 7);
+  assert.equal(impressions(), 5, 'and is backed off again');
+
+  fail = false;                                // fixed on the platform side
+  now += 86_400_000 + 1_000;
+  const days = await c.fetchInsights('facebook', 'FB1', 'tok', 7);
+  assert.equal(impressions(), 6);
+  assert.ok(days.length >= 1);
+  fail = true;
+  await c.fetchInsights('facebook', 'FB1', 'tok', 7);
+  assert.equal(impressions(), 7, 'the success reset the count: two more failures are needed before the next back-off');
+  await c.fetchInsights('facebook', 'FB1', 'tok', 7);
+  assert.equal(impressions(), 8);
+  await c.fetchInsights('facebook', 'FB1', 'tok', 7);
+  assert.equal(impressions(), 9, 'the third failure again');
+  await c.fetchInsights('facebook', 'FB1', 'tok', 7);
+  assert.equal(impressions(), 9);
+});
+
+test('spec 070: code 190 and the rate-limit codes are not counted; a 5xx between 400s does not reset the count', async () => {
+  const asked: string[] = [];
+  let next: Error = graph400(190);
+  mock.method(axios, 'get', async (_url: string, opts: any) => {
+    const metric = opts.params.metric;
+    asked.push(metric);
+    if (metric === FB_IMPRESSIONS) throw next;
+    return { data: graphBody(metric, [['2026-06-10T07:00:00+0000', 3]]) };
+  });
+  const { c, warns } = loggedClient(() => 0);
+  const impressions = () => asked.filter((m) => m === FB_IMPRESSIONS).length;
+  for (const code of [190, 4, 17, 613]) {
+    next = graph400(code);
+    for (let i = 0; i < 4; i++) await c.fetchInsights('facebook', `FB${code}`, 'tok', 7);
+  }
+  assert.equal(impressions(), 16, 'asked every time');
+  assert.equal(warns.length, 0);
+
+  next = graph400(10);
+  await c.fetchInsights('facebook', 'FBX', 'tok', 7);
+  await c.fetchInsights('facebook', 'FBX', 'tok', 7);
+  next = Object.assign(new Error('boom'), { response: { status: 502, data: {} } });
+  await c.fetchInsights('facebook', 'FBX', 'tok', 7);
+  next = graph400(10);
+  await c.fetchInsights('facebook', 'FBX', 'tok', 7);
+  assert.equal(impressions(), 20);
+  await c.fetchInsights('facebook', 'FBX', 'tok', 7);
+  assert.equal(impressions(), 20, 'the 5xx neither counted nor reset: the third 400 backed it off');
+  assert.equal(warns.length, 1);
+});
+
+test('spec 070: the 7-day path for an unsupported metric is unchanged, and the warn and debug lines never carry the token', async () => {
+  const asked: string[] = [];
+  mock.method(axios, 'get', async (_url: string, opts: any) => {
+    asked.push(opts.params.metric);
+    if (opts.params.metric === FB_IMPRESSIONS) throw badMetric('(#100) The value must be a valid insights metric');
+    throw graph400(10, { message: 'Permission error access_token=SECRET_TOKEN_VALUE for the page' });
+  });
+  const { c, warns, debugs } = loggedClient(() => 0);
+  for (let i = 0; i < 4; i++) await c.fetchInsights('facebook', 'FB1', 'SECRET_TOKEN_VALUE', 7);
+  assert.equal(asked.filter((m) => m === FB_IMPRESSIONS).length, 1, 'unsupported: asked once (7 days), as before');
+  assert.ok(warns.some((w) => /not supported for facebook\/FB1 - not requested for 7 days/.test(w)));
+  assert.ok(warns.some((w) => /code=10/.test(w)), 'the other two metrics hit the 400 back-off');
+  assert.ok([...warns, ...debugs].every((l) => !l.includes('SECRET_TOKEN_VALUE')), 'token redacted');
+  assert.ok(debugs.some((l) => /access_token=<REDACTED>/.test(l)));
 });
 
 test('verify failure with an empty reason still prints one', async () => {

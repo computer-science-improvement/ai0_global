@@ -3,7 +3,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import axios from 'axios';
 import type { MetaPlatform } from './meta-accounts.repository';
-import { MetaInsightBackoff, isMetricUnsupported } from './meta-insight-backoff';
+import { MetaInsightBackoff, graphErrorText, isMetricUnsupported } from './meta-insight-backoff';
 import { errText } from '../common/err-text';
 import { graphCodeSuffix } from './token-expiry';
 import { INSIGHT_METRICS, mergeInsightValues, parseMetricValues, type InsightKey, type MetaInsightDay, type DayValue } from './meta-insights';
@@ -223,6 +223,7 @@ export class MetaGraphClient {
           timeout: this.timeout,
         });
         byMetric[key] = parseMetricValues(res.data);
+        this.insightBackoff.ok(platform, targetId, metric);
       } catch (err: any) {
         if (isMetricUnsupported(err)) {
           // Spec 064 FR-010: remembered for 7 days; one warning a day instead of one failure an hour.
@@ -234,7 +235,14 @@ export class MetaGraphClient {
         // metric unavailable on this platform/version → leave it null for all days.
         // Debug (not warn): this is expected degradation, but logging it lets us
         // tell "unsupported metric" apart from a transient error or a request bug.
-        this.logger.debug(`fetchInsights: metric "${metric}" failed for ${platform}/${targetId}: ${redactToken(errText(err), token)}`);
+        // Spec 070 FR-006: the line carries the Graph code, subcode, type and message; three plain 400s in a row back the
+        // metric off for a day, with one warning a UTC day.
+        const why = redactToken(graphErrorText(err), token);
+        this.logger.debug(`fetchInsights: metric "${metric}" failed for ${platform}/${targetId}: ${why}`);
+        const strike = this.insightBackoff.failed(platform, targetId, metric, err);
+        if (strike.log) {
+          this.logger.warn(`fetchInsights: metric "${metric}" failed ${strike.count} times in a row for ${platform}/${targetId} (${why}) - not requested for 24 hours`);
+        }
       }
     }
     return mergeInsightValues(byMetric);

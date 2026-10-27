@@ -145,7 +145,14 @@ test('the daily note over the real tables: one inbox note for the struck playboo
   await hosts.record('marktechpost.com', 'refused', 403);
   await svc.toReplaceToday(card, null);
   assert.equal(posts.length, 2);
+  // Spec 070: the host's page refusals (4 strikes, still noted above) no longer stop its feed; only the feed's own row does, with no strikes.
   const report = await svc.forCard(card);
-  assert.deepEqual(report.sources.map((s) => [s.id, s.origin, s.state]), [['playbook:marktechpost.com', 'playbook', 'blocked']]);
-  assert.equal(report.sources[0].blocked?.strikes, 4);
+  assert.deepEqual(report.sources.map((s) => [s.id, s.origin, s.state]), [['playbook:marktechpost.com', 'playbook', 'unused']]);
+  assert.equal(report.sources[0].blocked, null);
+  await hosts.record('marktechpost.com/feed', 'feed_refused', 403);
+  const own = await svc.forCard(card);
+  assert.deepEqual(own.sources.map((s) => [s.id, s.state]), [['playbook:marktechpost.com', 'blocked']]);
+  assert.deepEqual([own.sources[0].blocked?.host, own.sources[0].blocked?.reason, own.sources[0].blocked?.strikes], ['marktechpost.com/feed', 'feed_refused', 0]);
+  await svc.toReplaceToday(card, null);
+  assert.equal(posts.length, 2, 'a feed\'s own refusal carries no strike, so no owner note');
 });

@@ -13,8 +13,8 @@ import { canonicalUrl, type DocStore } from './doc-store';
 import type { StoredDoc } from './doc-types';
 import { fetchDocument } from './doc-fetch';
 import { detectPagination, listBaseUrl } from './doc-json';
-import { entriesOf, entryLevel, ExtractError, extractRow, filterEntries, jsonEntries, stripNumbering, type FilterScalar, type ListEntry, type ListFilter } from './list-extract';
-import { importCaps, PAGE_DELAY_MS, pagingNote, pagingPreview, readPages, type PagingInfo, type PagingPreview } from './json-pages';
+import { entriesOf, entryLevel, ExtractError, extractRow, filterEntries, jsonEntries, linePattern, splitEntries, stripNumbering, type FilterScalar, type ListEntry, type ListFilter } from './list-extract';
+import { IMPORT_MAX_ROWS_DEFAULT, importCaps, PAGE_DELAY_MS, pagingNote, pagingPreview, readPages, type PagingInfo, type PagingPreview } from './json-pages';
 
 /**
  * Spec 065 FR-003 / spec 066 FR-002: a list page, or the records of a JSON API, become dataset rows. `buildPlan` is the pure part — entries, mapped rows, what is
@@ -32,7 +32,7 @@ export const ImportListInput = z.object({
   doc_id:  z.string().min(3).max(40).describe('doc_id from web_fetch of the list page'),
   dataset: z.string().regex(SCHEMA_KEY_RE, 'snake_case: a-z, 0-9 and _, 2–63 characters').describe('dataset key; created at Apply when it does not exist'),
   mapping: z.record(z.string().regex(FIELD_NAME_RE), z.string().min(1).max(300)).refine((m) => Object.keys(m).length >= 1 && Object.keys(m).length <= 20, 'map 1–20 fields')
-    .describe('field → extractor. Markdown list: heading, first_code_block, first_image, last_image, image:<n>, first_paragraph, link_after:<label>, link_text_after:<label>, last_link_after:<label>, line_after:<label>, regex:<pattern>, const:<value>. JSON records: field:<path> (a.b, [n] indexes, [] maps and joins with ", ", e.g. tags[].tag.name), first_of:<path>|<path>, const:<value>, regex:<pattern> (over the record\'s JSON text)'),
+    .describe('field → extractor. Markdown list: heading, first_code_block, first_image, last_image, image:<n>, first_paragraph, link_after:<label>, link_text_after:<label>, last_link_after:<label>, line_after:<label>, regex:<pattern>, const:<value>. JSON records: field:<path> (a.b, [n] indexes, [] maps and joins with ", ", e.g. tags[].tag.name), first_of:<path>|<path>, const:<value>, regex:<pattern> (over the record\'s JSON text). With split_on (markdown only): split_key, url_anchor:<prefix>, text, text_without:<line regex>, context_line:<line regex>'),
   level:   z.number().int().min(1).max(6).optional().describe('heading level of one entry; by default the level whose sections hold the code blocks (not for JSON)'),
   filter:  z.object({
     heading_matches:  z.string().max(200).optional(),
@@ -47,11 +47,12 @@ export const ImportListInput = z.object({
   has:     hasSchema.optional().describe('JSON records: keep a record whose paths all hold a value, e.g. ["mediaUrl"] (same as filter.has)'),
   pages:   z.number().int().min(1).max(500).optional().describe('JSON API: read at most this many pages (default: all, up to the IMPORT_MAX_PAGES cap)'),
   sample:  z.number().int().min(1).max(10).default(3),
-  required: z.array(z.string().regex(FIELD_NAME_RE)).max(10).optional().describe('fields a row needs to be postable (a new dataset\'s post_requires, each one needed); default: the fields read by heading / first_code_block / images; for JSON: a row needs its text or its picture (the mapped long-text and image fields, any one)'),
+  required: z.array(z.string().regex(FIELD_NAME_RE)).max(10).optional().describe('fields a row needs to be postable (a new dataset\'s post_requires, each one needed); default: the fields read by heading / first_code_block / images; with split_on: the fields read by text / text_without; for JSON: a row needs its text or its picture (the mapped long-text and image fields, any one)'),
   license: z.string().min(2).max(40).optional().describe('licence of the list, e.g. CC BY 4.0 (stored per row)'),
   title:   z.string().min(1).max(200).optional().describe('title of a new dataset'),
   description: z.string().max(1000).optional().describe('what a new dataset holds'),
   language: z.string().max(20).optional().describe('language of the rows of a new dataset'),
+  split_on: z.string().min(1).max(200).optional().describe('a page that is one long section (a law): a line pattern that starts a record, e.g. ^([0-9]{1,2}[.][0-9]{1,2}(?:[.][0-9]{1,2})?)[.] — group 1 is the record\'s key. Not for JSON'),
 });
 export type ImportListArgs = z.infer<typeof ImportListInput>;
 
@@ -68,6 +69,8 @@ export interface ImportPayload {
   pages?:     number;
   /** How many rows the preview found importable (the card text; Apply counts again). */
   expected:   number;
+  /** A page cut into records by a line pattern (spec 070). */
+  split_on?:  string;
 }
 
 export class PlanError extends Error {
@@ -95,6 +98,9 @@ export interface ImportPlan {
   notes:       string[];
   /** How a paged JSON source was read (Apply and re-sync only). */
   paging?:     PagingInfo;
+  /** `split_on` (spec 070): the pattern, how many records it cut out, the longest one, and keys that repeat. */
+  split_on?:   string;
+  split?:      { records: number; longest_chars: number; repeated_keys: string[] };
 }
 
 /** Fields of a created dataset, by the names the model gave them. */
@@ -133,7 +139,7 @@ export function planSchema(args: Pick<ImportListArgs, 'dataset' | 'title' | 'des
     name, type: name === 'list_ref' ? 'text' : name === 'list_url' ? 'url' : fieldType(name),
     description: DESCRIBE[name] ?? `${name.replace(/_/g, ' ')} of the entry`,
     ...(name === 'list_ref' ? { agent_visible: false } : {}),
-    ...(['title', 'prompt_text', 'description', 'author', 'category'].includes(name) ? { searchable: true } : {}),
+    ...(['title', 'prompt_text', 'description', 'author', 'category', 'text', 'body'].includes(name) ? { searchable: true } : {}),
     ...(['type', 'kind', 'category'].includes(name) ? { filterable: true } : {}),
   }));
   const parsed = schemaInputSchema.safeParse({
@@ -150,7 +156,12 @@ export function planSchema(args: Pick<ImportListArgs, 'dataset' | 'title' | 'des
 }
 
 /** The fields whose value is the entry's content: without them there is nothing to post. */
-const CONTENT = /^(?:heading|first_code_block|code_block|first_image|last_image|image)(?::|$)/;
+const CONTENT = /^(?:heading|text|text_without|first_code_block|code_block|first_image|last_image|image)(?::|$)/;
+/**
+ * With `split_on` the content of a record is its text (spec 070, amendment A3): every record has a heading (its first line),
+ * and a picture or code block would only be an extra, so the default `required` is the fields read by `text` / `text_without`.
+ */
+const SPLIT_CONTENT = /^(?:text|text_without)(?::|$)/;
 
 /** «License-CC_BY_4.0» of a badge, or «License: MIT», in the top of a README → «CC BY 4.0». */
 export function licenseHint(doc: StoredDoc): string | null {
@@ -203,7 +214,31 @@ function filterOf(args: { filter?: ListFilter; where?: ListFilter['where']; has?
 
 export type PlanArgs = Omit<ImportListArgs, 'sample' | 'doc_id' | 'required'> & { sample?: number; required?: PostRequires };
 
-export function buildPlan(doc: StoredDoc, args: PlanArgs, existing: DataSchema | null, src: { records?: unknown[]; paging?: PagingInfo } = {}): ImportPlan {
+/** Keys that occur more than once among the records, most frequent first: «1.1 ×2». */
+function repeatedKeys(entries: ListEntry[]): string[] {
+  const count = new Map<string, number>();
+  for (const e of entries) if (e.split?.key) count.set(e.split.key, (count.get(e.split.key) ?? 0) + 1);
+  return [...count.entries()].filter(([, n]) => n > 1).sort((a, b) => b[1] - a[1]).map(([k, n]) => `${k} ×${n}`);
+}
+
+/** The records of a page cut by `split_on`; the `context_line:` patterns of the mapping end a record too. */
+function splitRecords(doc: StoredDoc, args: PlanArgs, mapping: Record<string, string>, maxRows: number): { entries: ListEntry[]; capped: boolean } {
+  try {
+    const re = linePattern(args.split_on!, 'split_on');
+    const contexts = new Map<string, RegExp>();
+    for (const spec of Object.values(mapping)) {
+      if (!spec.startsWith('context_line:')) continue;
+      const arg = spec.slice('context_line:'.length).trim();
+      if (arg && !contexts.has(arg)) contexts.set(arg, linePattern(arg, spec));
+    }
+    return splitEntries(doc, re, { contexts, max: maxRows });
+  } catch (err) {
+    if (err instanceof ExtractError) throw new PlanError(err.code, err.message);
+    throw err;
+  }
+}
+
+export function buildPlan(doc: StoredDoc, args: PlanArgs, existing: DataSchema | null, src: { records?: unknown[]; paging?: PagingInfo; maxRows?: number } = {}): ImportPlan {
   const mapping: Record<string, string> = { ...args.mapping };
   if (args.license && !mapping.license && (!existing || existing.fields.some((f) => f.name === 'license'))) mapping.license = `const:${args.license}`;
 
@@ -211,7 +246,19 @@ export function buildPlan(doc: StoredDoc, args: PlanArgs, existing: DataSchema |
   const filter = filterOf(args);
   let level: number | null;
   let all: ListEntry[];
-  if (isJson) {
+  const notes: string[] = [];
+  if (args.split_on !== undefined && isJson) {
+    throw new PlanError('wrong_args', 'split_on cuts a page of text into records; this document is JSON: its records are the array items (use field:<path> in the mapping)');
+  }
+  if (args.split_on !== undefined) {
+    level = 0;
+    const maxRows = src.maxRows ?? IMPORT_MAX_ROWS_DEFAULT;
+    const split = splitRecords(doc, args, mapping, maxRows);
+    all = split.entries;
+    if (!all.length) throw new PlanError('no_entries', 'split_on matches no line of the document; check the pattern against read_doc (it is tested on the first 300 characters of each line, case-insensitive)');
+    if (args.level !== undefined) notes.push('level is ignored with split_on');
+    if (split.capped) notes.push(`split_on found more records than the limit (IMPORT_MAX_ROWS = ${maxRows}): only the first ${all.length} are read`);
+  } else if (isJson) {
     const records = src.records ?? doc.json?.records ?? [];
     if (!records.length) throw new PlanError('no_entries', 'the JSON has no array of records (objects) to import; read the document with read_doc to see its shape');
     level = 1;
@@ -242,7 +289,8 @@ export function buildPlan(doc: StoredDoc, args: PlanArgs, existing: DataSchema |
     }
   }
 
-  const required: PostRequires = args.required ?? (isJson ? jsonRequired(mapping) : Object.entries(mapping).filter(([, spec]) => CONTENT.test(spec)).map(([f]) => f));
+  const content = args.split_on !== undefined ? SPLIT_CONTENT : CONTENT;
+  const required: PostRequires = args.required ?? (isJson ? jsonRequired(mapping) : Object.entries(mapping).filter(([, spec]) => content.test(spec)).map(([f]) => f));
   const bad = required.flat().filter((r) => !(r in mapping));
   if (!existing && bad.length) throw new PlanError('unknown_field', `required lists ${bad.join(', ')}, which the mapping does not fill`);
   const requires: PostRequires = existing ? existing.post_requires ?? [] : required.map((r) => (Array.isArray(r) ? r : [r]));
@@ -265,7 +313,9 @@ export function buildPlan(doc: StoredDoc, args: PlanArgs, existing: DataSchema |
     }
     for (const f of Object.keys(row)) filledCount[f]++;
     if (hasField('list_ref')) {
-      const ref = isJson ? jsonRefOf(base, e.record, i, seen, refNotes) : refOf(doc.url, e.heading, seen);
+      // A split record is named by its key (14.6), not by its first line: refOf strips numbers, and the line changes with every amendment.
+      const ref = isJson ? jsonRefOf(base, e.record, i, seen, refNotes)
+        : e.split?.key ? uniqueRef(`${canonicalUrl(doc.url)}#${e.split.key}`, seen) : refOf(doc.url, e.heading, seen);
       if (ref === null) { duplicates++; continue; }
       row.list_ref = ref;
     }
@@ -277,17 +327,23 @@ export function buildPlan(doc: StoredDoc, args: PlanArgs, existing: DataSchema |
   const fill = Object.fromEntries(Object.entries(filledCount).map(([f, n]) => [f, kept.length ? Math.round((n / kept.length) * 100) : 0]));
 
   const hint = isJson ? null : licenseHint(doc);
-  const notes: string[] = [...refNotes];
+  notes.push(...refNotes);
   if (duplicates) notes.push(`${duplicates} records repeat an id already read (the pages overlap) and are counted once`);
   const several = kept.filter((e) => e.images.length > 1).length;
   if (several && Object.values(mapping).some((s) => s === 'first_image')) notes.push(`${several} entries have several pictures: first_image takes the first (often the input of an edit), last_image the last (the result); image:<n> a given one`);
   if (!mapping.license && !args.license) notes.push(hint ? `the list says it is licensed ${hint}: pass license: "${hint}" to store it per row` : 'no licence given: rows get the dataset default (unknown)');
   if (incomplete.length) notes.push(`${incomplete.length} entries lack ${describePostRequires(requires).join(', ')} and are not imported (they could not be posted)`);
 
+  const split = args.split_on !== undefined
+    ? { records: all.length, longest_chars: Math.max(0, ...all.map((e) => e.text.trim().length)), repeated_keys: repeatedKeys(all) }
+    : undefined;
+  if (split?.repeated_keys.length) notes.push(`${split.repeated_keys.length} keys repeat (${split.repeated_keys.slice(0, 5).join(', ')}): lines of a table or a list may start like clauses; tighten split_on`);
+
   const newSchema = existing ? null : planSchema(args, mapping, required, doc.url);
   return {
     url: doc.url, fetched_url: doc.fetched_url, level, entries: all.length, filtered, mapping, ...(filter ? { filter } : {}),
     required, requires, rows, incomplete, fill, newSchema, license_hint: hint, notes, ...(src.paging ? { paging: src.paging } : {}),
+    ...(split ? { split_on: args.split_on, split } : {}),
   };
 }
 
@@ -305,6 +361,8 @@ export function previewOf(plan: ImportPlan, sample: number, datasetExists: boole
     ...(plan.license_hint ? { license_hint: plan.license_hint } : {}),
     // A paged API: the counts above are of the page that was read; Apply reads `pages_to_read` pages.
     ...(paging ? { pages: { counts_are_of: 'the first page', kind: paging.kind, pages_total: paging.pages_total, records_total: paging.records_total, pages_to_read: paging.pages_to_read } } : {}),
+    // split_on: how many records, the longest one (a sign line swallowed by a clause shows here) and the keys that repeat.
+    ...(plan.split ? { records: plan.split.records, longest_record_chars: plan.split.longest_chars, ...(plan.split.repeated_keys.length ? { repeated_keys: plan.split.repeated_keys.slice(0, 10) } : {}) } : {}),
     ...(plan.notes.length || paging?.notes.length ? { notes: [...plan.notes, ...(paging?.notes ?? [])] } : {}),
   };
 }
@@ -313,6 +371,7 @@ export function payloadOf(plan: ImportPlan, dataset: string, pages?: number): Im
   return {
     url: plan.url, dataset, level: plan.level, mapping: plan.mapping, ...(plan.filter ? { filter: plan.filter } : {}),
     required: plan.required, new_schema: plan.newSchema, ...(pages !== undefined ? { pages } : {}), expected: plan.rows.length,
+    ...(plan.split_on !== undefined ? { split_on: plan.split_on } : {}),
   };
 }
 
@@ -365,9 +424,12 @@ export interface ImportResult {
 }
 
 /** Stored on the import row so a re-sync can run the same extraction again. */
-interface ListImportOptions { url: string; level: number; mapping: Record<string, string>; filter?: ListFilter; required: PostRequires; pages?: number; auto_resync: boolean }
+interface ListImportOptions { url: string; level: number; mapping: Record<string, string>; filter?: ListFilter; required: PostRequires; pages?: number; auto_resync: boolean; split_on?: string }
 
-const argsOf = (p: ImportPayload): PlanArgs => ({ dataset: p.dataset, mapping: p.mapping, level: p.level, filter: p.filter, required: p.required });
+const argsOf = (p: ImportPayload): PlanArgs => ({
+  dataset: p.dataset, mapping: p.mapping, level: p.level, filter: p.filter, required: p.required,
+  ...(p.split_on !== undefined ? { split_on: p.split_on } : {}),
+});
 
 /** Which of these list refs the dataset already holds. */
 async function knownRefs(pool: Pick<Pool, 'query'>, dataset: string, refs: string[]): Promise<Set<string>> {
@@ -397,7 +459,7 @@ export async function runImport(d: ImportDeps, p: ImportPayload, by: string, o: 
   const caps = importCaps(d.env);
   let plan: ImportPlan;
   try {
-    let src: Parameters<typeof buildPlan>[3] = {};
+    let src: Parameters<typeof buildPlan>[3] = { maxRows: caps.maxRows };
     if (doc.kind === 'json' && doc.json?.records.length) {
       const dataset = schema;
       const { records, paging } = await readPages(doc, { http: d.http, hosts: d.hosts, sources: d.sources }, {
@@ -408,7 +470,7 @@ export async function runImport(d: ImportDeps, p: ImportPayload, by: string, o: 
         },
         ...(o.incremental ? { known: (refs: string[]) => knownRefs(d.pool, p.dataset, refs) } : {}),
       });
-      src = { records, paging };
+      src = { records, paging, maxRows: caps.maxRows };
     }
     plan = buildPlan(doc, argsOf(p), schema, src);
     // The cap is on kept entries: a page that crossed it is cut back to exactly that many.
@@ -425,6 +487,7 @@ export async function runImport(d: ImportDeps, p: ImportPayload, by: string, o: 
   const options: ListImportOptions = {
     url: p.url, level: plan.level, mapping: plan.mapping, ...(plan.filter ? { filter: plan.filter } : {}), required: p.required,
     ...(p.pages !== undefined ? { pages: p.pages } : {}), auto_resync: o.autoResync ?? true,
+    ...(p.split_on !== undefined ? { split_on: p.split_on } : {}),
   };
   const changed = (report.inserted ?? 0) + (report.updated ?? 0);
   if (!changed && report.import_id && !created) {
@@ -457,6 +520,6 @@ export async function resyncDataset(d: ImportDeps, li: StoredListImport, by: str
   const o = li.options;
   return runImport(d, {
     url: o.url, dataset: li.dataset, level: o.level, mapping: o.mapping, filter: o.filter, required: o.required, ...(o.pages !== undefined ? { pages: o.pages } : {}),
-    new_schema: null, expected: 0,
+    new_schema: null, expected: 0, ...(o.split_on !== undefined ? { split_on: o.split_on } : {}),
   }, by, { fresh: true, autoResync: o.auto_resync, incremental: true });
 }

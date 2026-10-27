@@ -1,31 +1,63 @@
-/** Spec 040 FR-006: hosts that refused or failed a fetch are not asked again; 404s say not to guess; broken feeds answer. */
+/**
+ * Spec 040 FR-006: hosts that refused or failed a fetch are not asked again; 404s say not to guess; broken feeds answer.
+ * Spec 070 FR-002: a connection reset is tried twice and then paused for an hour; a page's 403 does not stop the host's feed,
+ * and a feed's own 403 / 404 stops that feed only.
+ */
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { buildReadTools } from '../tools/read-tools';
 import { buildComposeTools } from '../tools/compose-tools';
 import { SkillLibrary } from '../skills/skill-library';
 import type { ToolContext } from '../harness/tool';
-import { alternativeFor, classifyFetchError, PgHostFailures, type HostBlock, type HostFailureReason, type HostFailures } from './host-failures';
+import { alternativeFor, classifyFetchError, feedKey, nextBlock, PgHostFailures, type HostBlock, type HostFailureReason, type HostFailures } from './host-failures';
 
 class MemoryHosts implements HostFailures {
   rows = new Map<string, { reason: HostFailureReason; statusCode: number | null }>();
   async blocked(host: string, use: 'page' | 'feed'): Promise<HostBlock | null> {
     const r = this.rows.get(host);
-    if (!r || (r.reason.startsWith('feed_') && use !== 'feed')) return null;
+    // The rule of PgHostFailures.blocked: a feed row stops feeds only, and a page's `refused` does not stop a feed.
+    if (!r || (r.reason.startsWith('feed_') && use !== 'feed') || (r.reason === 'refused' && use === 'feed')) return null;
     return { host, reason: r.reason, statusCode: r.statusCode, until: new Date('2026-10-17T10:00:00Z') };
   }
   async record(host: string, reason: HostFailureReason, statusCode: number | null = null) { this.rows.set(host, { reason, statusCode }); }
+}
+
+/**
+ * The write rule of PgHostFailures over a fake clock: `nextBlock` decides the block and whether a longer one stays as it is
+ * (a timeout or a repeat inside a live block only notes the attempt), and `blocked` ignores what `use` ignores.
+ */
+class RulesHosts extends MemoryHosts {
+  meta = new Map<string, { until: Date; strikes: number }>();
+  constructor(readonly clock = new Date('2026-10-17T10:00:00Z')) { super(); }
+  seed(host: string, reason: HostFailureReason, statusCode: number | null, hours: number, strikes = 1) {
+    this.rows.set(host, { reason, statusCode });
+    this.meta.set(host, { until: new Date(this.clock.getTime() + hours * 3_600_000), strikes });
+  }
+  async blocked(host: string, use: 'page' | 'feed'): Promise<HostBlock | null> {
+    const r = this.rows.get(host);
+    const m = this.meta.get(host);
+    if (!r || !m || m.until.getTime() <= this.clock.getTime()) return null;
+    if ((r.reason.startsWith('feed_') && use !== 'feed') || (r.reason === 'refused' && use === 'feed')) return null;
+    return { host, reason: r.reason, statusCode: r.statusCode, until: m.until };
+  }
+  async record(host: string, reason: HostFailureReason, statusCode: number | null = null) {
+    const r = this.rows.get(host);
+    const m = this.meta.get(host);
+    const next = nextBlock(r && m ? { reason: r.reason, blockedUntil: m.until, strikes: m.strikes } : null, reason, this.clock);
+    if (next.keep) return;
+    this.rows.set(host, { reason, statusCode });
+    this.meta.set(host, { until: next.until, strikes: next.strikes });
+  }
 }
 
 const lookup = async () => [{ address: '93.184.216.34', family: 4 }];
 const card = { sources: [{ id: 'mtp', kind: 'rss', ref: 'https://www.marktechpost.com/feed/' }] };
 const ctx: ToolContext = { runId: 'r', role: 'executor', channelKey: '@chan', extras: { card } };
 
-function tools(get: (url: string) => Promise<any>) {
-  const hosts = new MemoryHosts();
+function tools(get: (url: string) => Promise<any>, hosts: MemoryHosts = new MemoryHosts()) {
   const urls: string[] = [];
   const g = async (url: string) => { urls.push(url); return get(url); };
-  const read = buildReadTools({ pool: { query: async () => ({ rows: [] }) } as any, readonly: {} as any, skills: new SkillLibrary('/nonexistent'), http: { lookup, get: g }, hosts });
+  const read = buildReadTools({ pool: { query: async () => ({ rows: [] }) } as any, readonly: {} as any, skills: new SkillLibrary('/nonexistent'), http: { lookup, get: g }, hosts, retryMs: 0 });
   const compose = buildComposeTools({ http: { lookup, get: g }, hosts });
   const t = Object.fromEntries([...read, ...compose].map((x) => [x.name, x]));
   const call = (name: string, args: unknown) => t[name].execute(t[name].input.parse(args), ctx) as Promise<any>;
@@ -52,7 +84,7 @@ test('404 says not to guess paths and blocks nothing', async () => {
   assert.equal(w.hosts.rows.size, 0);
 });
 
-test('DNS and TLS failures mark the host; other errors still throw', async () => {
+test('DNS and TLS failures mark the host; other errors still throw; a reset is spec 070\'s (below)', async () => {
   const dns = tools(async () => { throw Object.assign(new Error('getaddrinfo ENOTFOUND x'), { code: 'ENOTFOUND' }); });
   const r = await dns.call('web_fetch', { url: 'https://gone.example/a' });
   assert.equal(r.error, 'host_unreachable');
@@ -60,9 +92,158 @@ test('DNS and TLS failures mark the host; other errors still throw', async () =>
   assert.equal(classifyFetchError({ code: 'CERT_HAS_EXPIRED' }), 'tls');
   assert.equal(classifyFetchError({ cause: { code: 'ERR_TLS_CERT_ALTNAME_INVALID' } }), 'tls');
   assert.equal(classifyFetchError(new Error('timeout of 10000ms exceeded')), null);
-  const other = tools(async () => { throw new Error('socket hang up'); });
-  await assert.rejects(other.call('web_fetch', { url: 'https://flaky.example/a' }), /socket hang up/);
+  const other = tools(async () => { throw new Error('something else broke'); });
+  await assert.rejects(other.call('web_fetch', { url: 'https://flaky.example/a' }), /something else broke/);
   assert.equal(other.hosts.rows.size, 0);
+  assert.equal(other.urls.length, 1, 'only a reset is retried');
+});
+
+const reset = () => Object.assign(new Error('socket hang up'), { code: 'ECONNRESET' });
+const tlsCut = () => Object.assign(new Error('Client network socket disconnected before secure TLS connection was established'), { code: 'ECONNRESET' });
+const RSS = '<rss version="2.0"><channel><title>T</title><item><title>A</title><link>https://example.com/a</link></item></channel></rss>';
+
+test('spec 070: a reset on a page is tried once more; a second reset pauses the host for an hour as a timeout', async () => {
+  for (const cut of [reset, tlsCut]) {
+    const w = tools(async () => { throw cut(); });
+    const r = await w.call('web_fetch', { url: 'https://zakon.example/laws/show/1' });
+    assert.equal(r.error, 'host_unreachable');
+    assert.match(r.details, /^zakon\.example: сайт обірвав з'єднання; година паузи/);
+    assert.equal(w.urls.length, 2, 'one immediate retry');
+    assert.deepEqual(w.hosts.rows.get('zakon.example'), { reason: 'timeout', statusCode: null }, 'recorded as a timeout: an hour, no strike');
+    const again = await w.call('web_fetch', { url: 'https://zakon.example/laws/show/2' });
+    assert.equal(again.error, 'host_blocked');
+    assert.equal(w.urls.length, 2, 'the paused host is not asked');
+  }
+});
+
+test('spec 070: a reset that the retry gets past leaves no mark', async () => {
+  let calls = 0;
+  const w = tools(async () => {
+    if (++calls === 1) throw reset();
+    return { status: 200, headers: { 'content-type': 'text/html' }, data: '<title>Law</title><p>Clause 1.1 text.</p>' };
+  });
+  const r = await w.call('web_fetch', { url: 'https://zakon.example/laws/show/1' });
+  assert.equal(r.title, 'Law');
+  assert.equal(w.urls.length, 2);
+  assert.equal(w.hosts.rows.size, 0);
+});
+
+test('spec 070: fetch_feed retries a reset, then records it as a timeout on the host and on the feed address', async () => {
+  const w = tools(async () => { throw reset(); });
+  const r = await w.call('fetch_feed', { url: 'https://example.com/rss/news' });
+  assert.equal(r.error, 'host_unreachable');
+  assert.match(r.details, /example\.com: сайт обірвав з'єднання; година паузи/);
+  assert.equal(w.urls.length, 2);
+  assert.deepEqual([...w.hosts.rows.keys()].sort(), ['example.com', 'example.com/rss/news']);
+  assert.equal(w.hosts.rows.get('example.com')?.reason, 'timeout');
+  assert.equal(w.hosts.rows.get('example.com/rss/news')?.reason, 'timeout', 'the feed key too (review): the host row can be a longer one that is kept');
+  let n = 0;
+  const ok = tools(async () => { if (++n === 1) throw reset(); return { status: 200, headers: { 'content-type': 'application/rss+xml' }, data: RSS }; });
+  assert.equal((await ok.call('fetch_feed', { url: 'https://example.com/rss/news' })).items.length, 1);
+  assert.equal(ok.hosts.rows.size, 0);
+});
+
+test('spec 070: a 403 on a page does not stop the host\'s feed (and its timeout / DNS rows still do)', async () => {
+  const w = tools(async (url) => (url.includes('/feed')
+    ? { status: 200, headers: { 'content-type': 'application/rss+xml' }, data: RSS }
+    : { status: 403, headers: {}, data: '' }));
+  const page = await w.call('web_fetch', { url: 'https://example.com/2026/10/15/a/' });
+  assert.equal(page.error, 'http_error');
+  assert.equal(w.hosts.rows.get('example.com')?.reason, 'refused');
+  const feed = await w.call('fetch_feed', { url: 'https://example.com/feed/' });
+  assert.equal(feed.items.length, 1, 'the feed is read though the host refused a page');
+  const again = await w.call('web_fetch', { url: 'https://example.com/other' });
+  assert.equal(again.error, 'host_blocked', 'pages stay blocked');
+  w.hosts.rows.set('example.com', { reason: 'dns', statusCode: null });
+  assert.equal((await w.call('fetch_feed', { url: 'https://example.com/feed/' })).error, 'host_blocked');
+  w.hosts.rows.set('example.com', { reason: 'timeout', statusCode: null });
+  assert.equal((await w.call('fetch_feed', { url: 'https://example.com/feed/' })).error, 'host_blocked');
+});
+
+test('spec 070 (review): while the host has a live refused row, a feed that keeps failing on the network still pauses on its own address', async () => {
+  // The host's refused row is a longer block than a timeout: a timeout / DNS write on the host is kept out, and
+  // `blocked(host, 'feed')` ignores `refused`, so without a row on the feed address the feed would be asked on every call.
+  const timeouts: Array<[string, () => Error]> = [['socket hang up', reset], ['timeout', () => Object.assign(new Error('timeout of 10000ms exceeded'), { code: 'ECONNABORTED' })]];
+  for (const [label, fail] of timeouts) {
+    const hosts = new RulesHosts();
+    hosts.seed('example.com', 'refused', 403, 48, 2);
+    const w = tools(async () => { throw fail(); }, hosts);
+    const first = await w.call('fetch_feed', { url: 'https://example.com/rss/news' });
+    assert.equal(first.error, 'host_unreachable', label);
+    const asked = w.urls.length;
+    assert.ok(asked >= 1, label);
+    assert.equal(hosts.rows.get('example.com')?.reason, 'refused', `${label}: the longer host row is kept`);
+    assert.equal(hosts.rows.get('example.com/rss/news')?.reason, 'timeout', `${label}: recorded on the feed address`);
+    const next = await w.call('fetch_feed', { url: 'https://example.com/rss/news' });
+    assert.equal(next.error, 'host_blocked', label);
+    assert.equal(w.urls.length, asked, `${label}: no request for a paused feed`);
+    // Another feed of the same host is not paused by it, and the host's pages stay refused.
+    assert.equal((await w.call('fetch_feed', { url: 'https://example.com/rss/other' })).error, 'host_unreachable', label);
+    assert.ok(w.urls.length > asked, `${label}: another feed address is asked`);
+    assert.equal((await w.call('web_fetch', { url: 'https://example.com/page' })).error, 'host_blocked');
+  }
+  // DNS and TLS: the same.
+  for (const [label, code] of [['dns', 'ENOTFOUND'], ['tls', 'CERT_HAS_EXPIRED']] as const) {
+    const hosts = new RulesHosts();
+    hosts.seed('example.com', 'refused', 403, 48, 2);
+    const w = tools(async () => { throw Object.assign(new Error(code), { code }); }, hosts);
+    assert.equal((await w.call('fetch_feed', { url: 'https://example.com/rss/news' })).error, 'host_unreachable', label);
+    assert.equal(hosts.rows.get('example.com')?.reason, 'refused', label);
+    assert.equal(hosts.rows.get('example.com/rss/news')?.reason, label);
+    const asked = w.urls.length;
+    assert.equal((await w.call('fetch_feed', { url: 'https://example.com/rss/news' })).error, 'host_blocked', label);
+    assert.equal(w.urls.length, asked, label);
+  }
+  // Without a live host row nothing changes for the host: it is paused as before (and the feed address with it).
+  const plain = new RulesHosts();
+  const p = tools(async () => { throw reset(); }, plain);
+  await p.call('fetch_feed', { url: 'https://example.com/rss/news' });
+  assert.equal(plain.rows.get('example.com')?.reason, 'timeout');
+  assert.equal((await p.call('fetch_feed', { url: 'https://example.com/rss/news' })).error, 'host_blocked');
+});
+
+test('spec 070: a feed\'s own 403 / 429 is feed_refused on the feed address; the host\'s pages are still fetched', async () => {
+  for (const status of [401, 403, 429, 451]) {
+    const w = tools(async (url) => (url.includes('/feed') ? { status, headers: {}, data: '' } : { status: 200, headers: { 'content-type': 'text/html' }, data: '<title>P</title><p>page</p>' }));
+    const r = await w.call('fetch_feed', { url: 'https://www.example.com/feed/' });
+    assert.equal(r.error, 'http_error');
+    assert.match(r.details, new RegExp(`^status ${status}: стрічка відмовляє в доступі`));
+    assert.deepEqual([...w.hosts.rows.entries()], [['example.com/feed', { reason: 'feed_refused', statusCode: status }]], 'the feed address, not the host');
+    const page = await w.call('web_fetch', { url: `https://example.com/2026/a${status}` });   // the shared document store keeps earlier pages
+    assert.equal(page.title, 'P', 'pages of the host still fetch');
+    const again = await w.call('fetch_feed', { url: 'https://example.com/feed' });
+    assert.equal(again.error, 'host_blocked');
+    assert.match(again.details, /^example\.com\/feed: стрічка відмовляє в доступі/);
+    assert.equal(w.urls.length, 2, 'the second feed read made no request');
+  }
+});
+
+test('spec 070: a feed that answers 400 / 404 / 410 is feed_missing: not read again today; a 500 is not recorded', async () => {
+  for (const status of [400, 404, 410]) {
+    const w = tools(async () => ({ status, headers: {}, data: '' }));
+    const r = await w.call('fetch_feed', { url: 'https://dev.example/rss' });
+    assert.equal(r.error, 'http_error');
+    assert.match(r.details, new RegExp(`^status ${status}: `));
+    assert.deepEqual([...w.hosts.rows.entries()], [['dev.example/rss', { reason: 'feed_missing', statusCode: status }]]);
+    assert.equal((await w.call('fetch_feed', { url: 'https://dev.example/rss' })).error, 'host_blocked');
+    assert.equal(w.urls.length, 1);
+  }
+  const broken = tools(async () => ({ status: 500, headers: {}, data: '' }));
+  assert.equal((await broken.call('fetch_feed', { url: 'https://dev.example/rss' })).details, 'status 500');
+  assert.equal(broken.hosts.rows.size, 0);
+});
+
+test('spec 070: a feed at the root of the site is stored as host/, so it never replaces the host\'s own refused row', async () => {
+  assert.equal(feedKey('https://www.example.com/'), 'example.com/');
+  assert.equal(feedKey('https://example.com'), 'example.com/');
+  assert.equal(feedKey('https://example.com/?feed=rss'), 'example.com?feed=rss');
+  assert.equal(feedKey('https://example.com/rss/'), 'example.com/rss');
+  const w = tools(async (url) => (url === 'https://example.com/' ? { status: 403, headers: {}, data: '' } : { status: 200, headers: { 'content-type': 'text/html' }, data: '<title>P</title><p>x</p>' }));
+  w.hosts.rows.set('example.com', { reason: 'refused', statusCode: 403 });
+  const r = await w.call('fetch_feed', { url: 'https://example.com/' });
+  assert.equal(r.error, 'http_error');
+  assert.deepEqual(w.hosts.rows.get('example.com'), { reason: 'refused', statusCode: 403 }, 'the host row is untouched');
+  assert.equal(w.hosts.rows.get('example.com/')?.reason, 'feed_refused');
 });
 
 test('a feed that does not parse: feed_unparseable, blocks fetch_feed only; gamerpower points to its API', async () => {
@@ -86,7 +267,7 @@ test('alternativeFor: known APIs (also subdomains), then the card\'s feed on tha
   assert.equal(alternativeFor('example.com', card.sources as any), null);
 });
 
-test('PgHostFailures: blocked reads the live window; a feed reason does not block pages; record upserts for 24 h', async () => {
+test('PgHostFailures: blocked reads the live window; a feed reason does not block pages, a refused row does not block feeds; record upserts for 24 h', async () => {
   const calls: Array<{ sql: string; params: any[] }> = [];
   let row: any = { host: 'x.com', reason: 'feed_unparseable', status_code: null, blocked_until: '2026-10-17T10:00:00Z' };
   const pool = { query: async (sql: string, params: any[]) => { calls.push({ sql, params }); return { rows: row ? [row] : [] }; } };
@@ -95,12 +276,31 @@ test('PgHostFailures: blocked reads the live window; a feed reason does not bloc
   assert.equal(await h.blocked('x.com', 'page'), null);
   assert.equal((await h.blocked('x.com', 'feed'))?.reason, 'feed_unparseable');
   assert.match(calls[0].sql, /blocked_until > \$2/);
+  // Spec 070: the host's page refusal is not the feed's; dns, tls and timeout rows block both.
+  row = { host: 'x.com', reason: 'refused', status_code: 403, blocked_until: '2026-10-17T10:00:00Z' };
+  assert.equal((await h.blocked('x.com', 'page'))?.reason, 'refused');
+  assert.equal(await h.blocked('x.com', 'feed'), null);
+  for (const reason of ['dns', 'tls', 'timeout']) {
+    row = { host: 'x.com', reason, status_code: null, blocked_until: '2026-10-17T10:00:00Z' };
+    assert.equal((await h.blocked('x.com', 'feed'))?.reason, reason, `${reason} blocks feeds`);
+    assert.equal((await h.blocked('x.com', 'page'))?.reason, reason);
+  }
+  row = { host: 'x.com/feed', reason: 'feed_missing', status_code: 404, blocked_until: '2026-10-17T10:00:00Z' };
+  assert.equal(await h.blocked('x.com/feed', 'page'), null);
+  assert.equal((await h.blocked('x.com/feed', 'feed'))?.reason, 'feed_missing');
   row = null;
   await h.record('x.com', 'refused', 403);
   const ins = calls.at(-1)!;
   assert.match(ins.sql, /ON CONFLICT \(host\) DO UPDATE/);
   // [host, reason, status, at, until, strikes, in an active block, keep the old block] — the first strike is a day (spec 061 FR-004).
   assert.deepEqual(ins.params, ['x.com', 'refused', 403, now, new Date('2026-10-17T10:00:00Z'), 1, false, false]);
+  // Spec 070: a feed's own refusal is a flat day on its address, whatever came before; the strikes of the row stay as they are.
+  row = { reason: 'feed_refused', blocked_until: '2026-10-15T10:00:00Z', strikes: 0 };
+  await h.record('x.com/feed', 'feed_refused', 403);
+  assert.deepEqual(calls.at(-1)!.params, ['x.com/feed', 'feed_refused', 403, now, new Date('2026-10-17T10:00:00Z'), 0, false, false]);
+  row = { reason: 'feed_missing', blocked_until: '2026-10-15T10:00:00Z', strikes: 0 };
+  await h.record('x.com/feed', 'feed_missing', 404);
+  assert.deepEqual(calls.at(-1)!.params, ['x.com/feed', 'feed_missing', 404, now, new Date('2026-10-17T10:00:00Z'), 0, false, false], 'a repeat the next day is a day again, not a longer block');
   // A failing read never stops a fetch.
   const broken = new PgHostFailures({ query: async () => { throw new Error('relation does not exist'); } } as any);
   assert.equal(await broken.blocked('x.com', 'page'), null);

@@ -118,7 +118,6 @@ jobs:
             # compose file (e.g. the removed bundled caddy) instead of leaving
             # them dangling and warning on every deploy.
             docker compose --profile prod up -d --remove-orphans automation dashboard
-            docker compose --profile prod restart automation
 
             # Best-effort cleanup — never fail the deploy on it (a concurrent
             # prune from an overlapping run returns non-zero: "a prune operation

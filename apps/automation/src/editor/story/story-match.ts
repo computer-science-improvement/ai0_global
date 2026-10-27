@@ -97,9 +97,19 @@ export function storyView(post: AuditPost): StoryView {
   return v;
 }
 
-/** The thresholds over one overlap. */
-export function isStoryOverlap(o: Overlap): boolean {
-  return o.shared >= STORY_MATCH.shared && o.score >= STORY_MATCH.score && (o.stems >= STORY_MATCH.stems || o.score >= STORY_MATCH.strongScore);
+/**
+ * The thresholds over one overlap.
+ *
+ * Spec 070 FR-007: the `strongScore` bypass (a near-complete containment with no shared topic words) needs strong evidence
+ * (`o.strong`: five shared entities, a strong name, a person, a number or a date), and never applies when either post is
+ * evergreen or an explainer (`evergreen`). Review 4: a prompt post naming ChatGPT and Midjourney and the explainer
+ * «Нейромережа і ШІ: в чому різниця» naming both as examples scored 1.0 and the explainer was refused as a repeat.
+ * Without `evergreen` (the story registry joins posts of other channels, and has no posts) the evidence rule alone applies.
+ */
+export function isStoryOverlap(o: Overlap, opts: { evergreen?: boolean } = {}): boolean {
+  if (o.shared < STORY_MATCH.shared || o.score < STORY_MATCH.score) return false;
+  if (o.stems >= STORY_MATCH.stems) return true;
+  return o.score >= STORY_MATCH.strongScore && o.strong === true && !opts.evergreen;
 }
 
 export interface StoryMatch {
@@ -115,7 +125,11 @@ export function storyMatch(a: StoryView, b: StoryView): StoryMatch | null {
   // A post about one item of a digest is that item's story; two digests sharing an item are not one story.
   if (b.roundup && !a.roundup) for (const s of b.sections) tries.push([entityOverlap(a.entities, s), 'section']);
   if (a.roundup && !b.roundup) for (const s of a.sections) tries.push([entityOverlap(s, b.entities), 'section']);
-  const ok = tries.filter(([o]) => isStoryOverlap(o)).sort(([x], [y]) => y.score - x.score || y.shared - x.shared);
+  // The bypass is off for an explainer / evergreen post on either side: it is judged by its topic words (topicMatch).
+  // Only asked when some overlap has no shared topic words, so the common case costs nothing.
+  const evergreen = tries.some(([o]) => o.stems < STORY_MATCH.stems)
+    && (isEvergreenPost(a.post) || isEvergreenPost(b.post) || a.post.story?.kind === 'evergreen' || b.post.story?.kind === 'evergreen');
+  const ok = tries.filter(([o]) => isStoryOverlap(o, { evergreen })).sort(([x], [y]) => y.score - x.score || y.shared - x.shared);
   return ok.length ? { post: b.post, overlap: ok[0][0], via: ok[0][1] } : null;
 }
 
@@ -157,7 +171,7 @@ function topicMatch(a: AuditPost, b: AuditPost): StoryMatch | null {
   const shared = sameTopic(ka, topicOf(b));
   if (!shared) return null;
   const share = shared.length / Math.min(ka.length, topicOf(b).length);
-  return { post: b, overlap: { score: share, shared: shared.length, keys: shared.map((s) => `topic:${s}`), stems: share }, via: 'post' };
+  return { post: b, overlap: { score: share, shared: shared.length, keys: shared.map((s) => `topic:${s}`), stems: share, strong: false }, via: 'post' };
 }
 
 /** The end of a giveaway / deal: the latest «до <дата> [час]» of the posts (a day without a time ends at midnight). */

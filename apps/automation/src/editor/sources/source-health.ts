@@ -98,13 +98,16 @@ export function stepMatches(s: CardSource, step: Pick<SourceStep, 'tool' | 'inpu
 
 const failed = (st: SourceStep): boolean => st.isError || !!st.error;
 
-/** The active block that stops this source (the host for pages, the host or the feed address for a feed). */
+/**
+ * The active block that stops this source (the host for pages, the host or the feed address for a feed). The same rule as
+ * `PgHostFailures.blocked`: a feed row stops feeds only, and a host `refused` row (a page answered 403) does not stop a feed (spec 070).
+ */
 function blockOf(s: CardSource, blocks: HostBlockRow[], now: Date): HostBlockRow | null {
   if (s.kind !== 'rss' && s.kind !== 'url') return null;
   const host = hostOf(s.ref);
   const key = s.kind === 'rss' ? feedKey(s.ref) : null;
   return blocks.find((b) => b.until > now && (
-    (b.host === host && !(s.kind === 'url' && b.reason.startsWith('feed_')))
+    (b.host === host && !(s.kind === 'url' && b.reason.startsWith('feed_')) && !(s.kind === 'rss' && b.reason === 'refused'))
     || (key !== null && b.host === key))) ?? null;
 }
 

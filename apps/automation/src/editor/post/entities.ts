@@ -258,7 +258,16 @@ export interface Overlap {
   keys: string[];
   /** Share of the smaller stem set found in the other one. */
   stems: number;
+  /**
+   * Spec 070 FR-007: the shared entities are strong evidence of one story: five or more of them, or a strong name
+   * (weight 3, a multi-word product), a person, a number or a date. Two shared brands (a prompt post and an explainer that
+   * both name ChatGPT and Midjourney) are not.
+   */
+  strong: boolean;
 }
+
+/** Spec 070 FR-007: this many shared entities are strong evidence on their own. */
+export const STRONG_SHARED_ENTITIES = 5;
 
 /**
  * Overlap of two posts' entities as containment: the weight of what they share over the weight of the poorer one,
@@ -274,7 +283,11 @@ export function entityOverlap(a: PostEntities, b: PostEntities): Overlap {
   let common = 0;
   for (const s of a.stems) if (b.stems.has(s)) common++;
   const stems = Math.min(a.stems.size, b.stems.size) ? common / Math.min(a.stems.size, b.stems.size) : 0;
-  return { score: Math.round(score * 1000) / 1000, shared, keys, stems: Math.round(stems * 1000) / 1000 };
+  const strong = keys.length >= STRONG_SHARED_ENTITIES || keys.some((k) => {
+    const e = a.entities.get(k)!;
+    return e.kind === 'person' || e.kind === 'number' || e.kind === 'date' || (e.kind === 'name' && Math.max(e.weight, b.entities.get(k)?.weight ?? 0) >= 3);
+  });
+  return { score: Math.round(score * 1000) / 1000, shared, keys, stems: Math.round(stems * 1000) / 1000, strong };
 }
 
 /** Keys of `a` that `b` does not have (new entities), heaviest first; weightless keys left out. */

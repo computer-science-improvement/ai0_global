@@ -19,17 +19,65 @@ test('put gives the document a stable id of its address and numbers its sections
   assert.notEqual(docIdOf('https://a.example/x?a=1'), docIdOf('https://a.example/x?a=2'), 'the query is part of the address');
 });
 
-test('a document expires after DOC_STORE_HOURS and its id still names the address', () => {
+const H = 3_600_000;
+
+test('spec 070: past DOC_STORE_HOURS a document is stale: get and keptByUrl still answer, fresh (the fetch cache) does not', () => {
   let now = 1_000_000;
   const store = new DocStore({ ttlHours: 6, now: () => now });
   const d = store.put(doc('https://a.example/x'));
-  now += 5 * 3_600_000;
+  now += 5 * H;
   assert.ok(store.get(d.id), 'inside the lifetime');
-  now += 2 * 3_600_000;
-  assert.equal(store.get(d.id), null, 'past it');
-  assert.equal(store.getByUrl('https://a.example/x'), null);
+  assert.ok(store.fresh('https://a.example/x'));
+  now += 2 * H;
+  assert.equal(store.fresh('https://a.example/x'), null, 'past the lifetime the fetch cache does not serve it');
+  assert.equal(store.getByUrl('https://a.example/x'), null, 'getByUrl is the same fetch cache');
+  assert.equal(store.get(d.id)?.text, 'hello', 'a doc_id still names the latest kept copy');
+  assert.equal(store.keptByUrl('https://a.example/x/')?.id, d.id);
+  assert.equal(store.size, 1);
+});
+
+test('spec 070: a document is dropped at DOC_STALE_MAX_HOURS (168); its id still names the address', () => {
+  let now = 1_000_000;
+  const store = new DocStore({ ttlHours: 6, now: () => now });
+  const d = store.put(doc('https://a.example/x'));
+  now += 167 * H;
+  assert.ok(store.get(d.id), 'a week less an hour: kept');
+  now += 2 * H;
+  assert.equal(store.get(d.id), null, 'past the stale cap');
+  assert.equal(store.keptByUrl('https://a.example/x'), null);
+  assert.equal(store.size, 0);
   assert.equal(store.urlOf(d.id), 'https://a.example/x', 'the tombstone says what to fetch again');
   assert.equal(store.urlOf('doc_unknown'), null);
+  // The cap can be set, and never below the lifetime.
+  const short = new DocStore({ ttlHours: 6, staleHours: 1, now: () => now });
+  const e = short.put(doc('https://a.example/y'));
+  now += 5 * H;
+  assert.ok(short.get(e.id), 'the stale cap is at least the lifetime');
+});
+
+test('spec 070: a fresh fetch of the address replaces the stale copy under the same id', () => {
+  let now = 1_000_000;
+  const store = new DocStore({ ttlHours: 6, now: () => now });
+  const old = store.put(doc('https://a.example/x', 'old'));
+  now += 10 * H;
+  assert.equal(store.fresh('https://a.example/x'), null);
+  const again = store.put(doc('https://a.example/x', 'new'));
+  assert.equal(again.id, old.id);
+  assert.equal(store.fresh('https://a.example/x')?.text, 'new');
+  assert.equal(store.get(old.id)?.fetched_at, again.fetched_at);
+});
+
+test('spec 070: fresh and keptByUrl touch the LRU order like get; a miss touches nothing', () => {
+  const store = new DocStore({ max: 3 });
+  const a = store.put(doc('https://a.example/1'));
+  const b = store.put(doc('https://a.example/2'));
+  const c = store.put(doc('https://a.example/3'));
+  store.fresh('https://a.example/1');
+  store.keptByUrl('https://a.example/2');
+  assert.equal(store.fresh('https://a.example/none'), null);
+  store.put(doc('https://a.example/4'));                // c was the least recently used
+  assert.equal(store.get(c.id), null);
+  assert.ok(store.get(a.id) && store.get(b.id));
 });
 
 test('the least recently used document goes first when the store is full', () => {

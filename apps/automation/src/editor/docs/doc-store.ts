@@ -5,9 +5,16 @@ import type { DocSection, RawSection, StoredDoc } from './doc-types';
  * Spec 065 FR-001: web_fetch keeps the whole fetched document here, in memory: an LRU of about 100 documents that live
  * `DOC_STORE_HOURS` (default 6). `read_doc` and `find_in_doc` read it by `doc_id`; a second fetch of the same address
  * inside the lifetime is answered from it (the fetch cache). Single instance (constitution): nothing is shared.
+ *
+ * Spec 070 FR-003: past that lifetime a document is stale, not gone. It stays until the LRU pushes it out or it is
+ * `DOC_STALE_MAX_HOURS` old: `get(doc_id)` and `keptByUrl(url)` still return it (a doc_id names the latest kept copy of its
+ * address, so read_doc / find_in_doc / import_list keep working), `fresh(url)` does not (that is the fetch cache), and a
+ * fetch that fails because the site is down can answer with the kept copy.
  */
 export const DOC_STORE_MAX = 100;
 export const DOC_STORE_DEFAULT_HOURS = 6;
+/** A document is kept this long at most, fresh or not (spec 070). */
+export const DOC_STALE_MAX_HOURS = 168;
 /** All documents together stay under this many characters (the oldest-used go first). */
 const TOTAL_CHARS_MAX = 40_000_000;
 /** Addresses of documents that are gone, kept so an old doc_id can say what to fetch again. */
@@ -29,19 +36,21 @@ export const docIdOf = (url: string): string => `doc_${createHash('sha1').update
 
 export type NewDoc = Omit<StoredDoc, 'id' | 'fetched_at' | 'sections'> & { sections: RawSection[] };
 
-export interface DocStoreOptions { max?: number; ttlHours?: number; now?: () => number }
+export interface DocStoreOptions { max?: number; ttlHours?: number; staleHours?: number; now?: () => number }
 
 export class DocStore {
   private readonly docs = new Map<string, StoredDoc>();
   private readonly tombstones = new Map<string, string>();
   private readonly max: number;
   private readonly ttlMs: number;
+  private readonly staleMs: number;
   private readonly now: () => number;
   private chars = 0;
 
   constructor(opts: DocStoreOptions = {}) {
     this.max = opts.max ?? DOC_STORE_MAX;
     this.ttlMs = (opts.ttlHours ?? DOC_STORE_DEFAULT_HOURS) * 3_600_000;
+    this.staleMs = Math.max(this.ttlMs, (opts.staleHours ?? DOC_STALE_MAX_HOURS) * 3_600_000);
     this.now = opts.now ?? Date.now;
   }
 
@@ -60,21 +69,25 @@ export class DocStore {
     return doc;
   }
 
-  /** The document, or null when it was never kept, expired or was pushed out. A read makes it the newest-used. */
+  /** The document a doc_id names: the latest kept copy of its address, however old, up to the stale cap. A read makes it the newest-used. */
   get(id: string): StoredDoc | null {
-    const doc = this.docs.get(id);
-    if (!doc) return null;
-    if (this.now() - doc.fetched_at > this.ttlMs) {
-      this.drop(id, true);
-      return null;
-    }
-    this.docs.delete(id);
-    this.docs.set(id, doc);
-    return doc;
+    return this.touch(this.peek(id));
   }
 
+  /** The copy of an address that is within the lifetime (the fetch cache); a stale copy is not returned. */
+  fresh(url: string): StoredDoc | null {
+    const doc = this.peek(docIdOf(url));
+    return doc && this.now() - doc.fetched_at <= this.ttlMs ? this.touch(doc) : null;
+  }
+
+  /** Any kept copy of an address, fresh or stale: what a failed fetch can fall back to. */
+  keptByUrl(url: string): StoredDoc | null {
+    return this.touch(this.peek(docIdOf(url)));
+  }
+
+  /** The fetch cache of before the stale copies (`fresh`). */
   getByUrl(url: string): StoredDoc | null {
-    return this.get(docIdOf(url));
+    return this.fresh(url);
   }
 
   /** The address a gone (or still kept) doc_id stood for. */
@@ -84,6 +97,25 @@ export class DocStore {
 
   get size(): number {
     return this.docs.size;
+  }
+
+  /** The kept copy under an id; one past the stale cap is dropped (its address stays as a tombstone). Does not touch the LRU order. */
+  private peek(id: string): StoredDoc | null {
+    const doc = this.docs.get(id);
+    if (!doc) return null;
+    if (this.now() - doc.fetched_at > this.staleMs) {
+      this.drop(id, true);
+      return null;
+    }
+    return doc;
+  }
+
+  private touch(doc: StoredDoc | null): StoredDoc | null {
+    if (doc) {
+      this.docs.delete(doc.id);
+      this.docs.set(doc.id, doc);
+    }
+    return doc;
   }
 
   private drop(id: string, remember: boolean): void {

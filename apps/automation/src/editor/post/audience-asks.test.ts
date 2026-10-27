@@ -5,7 +5,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
-  audienceCaps, audienceCapsOfProfile, contentKindOf, isReaderQuestion, READER_MARKERS, readerQuestions, readerQuestionsIssue,
+  audienceCaps, audienceCapsOfProfile, contentKindOf, defaultPollsPerWeekOfProfile, isReaderQuestion, QUIZ_INFERRED_POLLS_PER_WEEK, READER_MARKERS, readerQuestions, readerQuestionsIssue,
 } from './audience-asks';
 import { lintPost } from './lint-post';
 import { makeCard, makeSpec } from './testing/fixtures';
@@ -69,6 +69,53 @@ test('caps: a quiz resource has no default poll cap; education keeps the default
   assert.equal(audienceCaps({ content_kind: 'quiz' }, null).pollsPerWeek, null);
   assert.equal(audienceCaps({ content_kind: 'quiz', polls_per_week: 14 }, null).pollsPerWeek, 14);
   assert.equal(audienceCaps({ content_kind: 'education' }, null).pollsPerWeek, 1);
+});
+
+test('spec 070 FR-004: a topic that names a quiz is a quiz (inferred), with the inferred cap of 14 a week', () => {
+  for (const topic of ['Вікторини з ПДР', 'ПДР: вікторина щодня', 'Квіз про кіно', 'Daily quiz', 'Movie TRIVIA', 'Тестові запитання до іспиту в сервісному центрі', 'Екзаменаційні білети ПДР', 'Екзаменаційні питання']) {
+    assert.deepEqual(contentKindOf(null, topic), { kind: 'quiz', inferred: true }, topic);
+    assert.deepEqual(audienceCaps(null, topic), { kind: 'quiz', kindInferred: true, pollsPerWeek: QUIZ_INFERRED_POLLS_PER_WEEK, questionsPerDay: 1 }, topic);
+  }
+  assert.equal(QUIZ_INFERRED_POLLS_PER_WEEK, 14);
+});
+
+test('spec 070 FR-004: a bare «тест» is not a quiz: тест-драйв, тестування and a test of a product stay general', () => {
+  for (const topic of ['Тест-драйви авто', 'Тестування ПЗ', 'Огляди та тести смартфонів', 'Тестові сервери', 'Космос і астрономія', null, '']) {
+    assert.equal(contentKindOf(null, topic).kind, 'general', String(topic));
+    assert.equal(audienceCaps(null, topic).pollsPerWeek, 1, String(topic));
+  }
+});
+
+test('spec 070 FR-004: explicit beats inferred; an explicit quiz stays uncapped; a quiz beats news; an explicit cap wins', () => {
+  assert.deepEqual(contentKindOf({ content_kind: 'general' }, 'Вікторини з ПДР'), { kind: 'general', inferred: false });
+  assert.equal(audienceCaps({ content_kind: 'general' }, 'Вікторини з ПДР').pollsPerWeek, 1, 'the owner said general: the default cap');
+  assert.equal(audienceCaps({ content_kind: 'education' }, 'Вікторини з ПДР').pollsPerWeek, 1);
+  assert.equal(audienceCaps({ content_kind: 'quiz' }, 'Вікторини з ПДР').pollsPerWeek, null, 'an explicit quiz has no cap');
+  assert.equal(audienceCaps({ content_kind: 'quiz' }, null).pollsPerWeek, null);
+  assert.equal(audienceCaps({ polls_per_week: 3 }, 'Вікторини з ПДР').pollsPerWeek, 3, 'an explicit cap beats the inferred one');
+  assert.equal(audienceCaps({ polls_per_week: 0 }, 'Вікторини з ПДР').pollsPerWeek, 0);
+  // Order: explicit > quiz > news > general. «Новини» + «вікторина» is a quiz.
+  assert.equal(contentKindOf(null, 'Новинна вікторина').kind, 'quiz');
+  assert.equal(audienceCaps(null, 'Новинна вікторина').questionsPerDay, 1, 'a quiz is not news: reader questions stay at the default');
+  assert.equal(contentKindOf(null, 'Новини Києва').kind, 'news');
+});
+
+test('spec 070: defaultPollsPerWeekOfProfile is the cap after clearing content_kind and polls_per_week — it follows the topic only', () => {
+  assert.equal(defaultPollsPerWeekOfProfile({ topic: 'Вікторини з ПДР', format_prefs: {} }), 14);
+  assert.equal(defaultPollsPerWeekOfProfile({ topic: 'Вікторини з ПДР', format_prefs: { content_kind: 'general', polls_per_week: 3 } }), 14, 'explicit values are ignored');
+  assert.equal(defaultPollsPerWeekOfProfile({ topic: 'Космос', format_prefs: { content_kind: 'quiz', polls_per_week: 3 } }), 1, 'an explicit quiz is not what clearing gives');
+  assert.equal(defaultPollsPerWeekOfProfile({ topic: 'Новини Києва' }), 1);
+  assert.equal(defaultPollsPerWeekOfProfile(null), 1);
+  assert.equal(defaultPollsPerWeekOfProfile('garbage'), 1);
+});
+
+test('spec 070 FR-004: Latin quiz words need word boundaries: Non-trivial, Quizlet and Quizzical are not quizzes', () => {
+  for (const topic of ['Non-trivial puzzles', 'Quizlet study sets', 'Quizzical looks', 'Trivialization of science', 'Quizás mañana']) {
+    assert.equal(contentKindOf(null, topic).kind, 'general', topic);
+  }
+  for (const topic of ['quiz', 'Daily Quiz!', 'Movie quizzes', 'Pub trivia', 'Trivia night', 'Пабквіз quiz', 'quiz-night']) {
+    assert.equal(contentKindOf(null, topic).kind, 'quiz', topic);
+  }
 });
 
 test('caps of a stored profile JSON tolerate anything malformed', () => {

@@ -8,6 +8,7 @@ import * as winston                from 'winston';
 import cookieParser                from 'cookie-parser';
 import { dataRowsJsonBody }        from './data/rows-body.middleware';
 import { bootSettings }            from './settings/boot';
+import { armBootSignals }          from './boot-signals';
 
 const isDev = (process.env.NODE_ENV ?? 'development') !== 'production';
 
@@ -27,14 +28,17 @@ const logger = WinstonModule.createLogger({
   ],
 });
 
+// Spec 070 FR-005: a stop that lands before `enableShutdownHooks()` (below) would be ignored by PID 1 until Docker's SIGKILL.
+// Exit at once instead. The listeners stay until `app.init()` has run every onModuleInit (migrations, the MTProto connect, ...);
+// they are removed right before Nest registers its own.
+const disarmBootSignals = armBootSignals((m) => logger.warn(m, 'Bootstrap'));
+
 async function bootstrap() {
   // Spec 039: the dashboard's settings go into process.env BEFORE any module is loaded (ConfigService, @Cron
   // expressions and boot-time factories then read them), so AppModule is imported only after the overlay.
   await bootSettings((m) => logger.log(m, 'Settings'));
   const { AppModule } = await import('./app.module');
   const app = await NestFactory.create<NestExpressApplication>(AppModule, { logger });
-  // Graceful stop on SIGTERM (docker stop, and the Settings page's "Restart service"): onModuleDestroy hooks run.
-  app.enableShutdownHooks();
 
   // Prod chain is host Caddy → dashboard nginx → here, all on loopback/docker
   // private addresses. Trusting only those hops makes `req.ip` the real client
@@ -72,6 +76,14 @@ async function bootstrap() {
     const doc = SwaggerModule.createDocument(app, swaggerCfg);
     SwaggerModule.setup('api/docs', app, doc);
   }
+
+  // Spec 070 FR-005: run the module init hooks (migrations, the MTProto connect: the slow part of boot) HERE, with the boot
+  // signal handler still armed, and only after every `app.use` / CORS / pipe / Swagger call above (middleware added after
+  // `init()` would not apply). `listen()` skips its own init once the app is initialised.
+  await app.init();
+  // Booted: graceful stop on SIGTERM (docker stop, and the Settings page's "Restart service"): onModuleDestroy hooks run.
+  disarmBootSignals();
+  app.enableShutdownHooks();
 
   const port = process.env.PORT ?? 3000;
   await app.listen(port);

@@ -6,7 +6,10 @@ import type { SkillSource } from '../skills/skill-library';
 import type { RawGet } from '../net/safe-http';
 import type { Lookup } from '../net/ssrf-guard';
 import { extractPage } from '../net/extract-page';
-import { classifyFetchError, classifyTimeout, feedKey, fetchPageGuarded, hostBlockedError, hostOf, isFetchFailure, isTooLarge, REFUSAL_STATUSES, type HostFailures } from '../net/host-failures';
+import {
+  classifyFetchError, classifyTimeout, classifyTransient, FEED_MISSING_STATUSES, FEED_REFUSED_STATUSES, feedKey, fetchPageGuarded, hostBlockedError, hostOf, isFetchFailure, isTooLarge,
+  resetFailure, retryReset, type HostFailures,
+} from '../net/host-failures';
 import { sharedDocStore, type DocStore } from '../docs/doc-store';
 import { fetchDocument, webFetchAnswer } from '../docs/doc-fetch';
 import type { EditorCard } from '../card';
@@ -33,6 +36,8 @@ export interface ReadToolDeps {
   hosts?:    HostFailures;
   /** Spec 065: the documents web_fetch keeps (read_doc / find_in_doc read them); the service-wide store when absent. */
   docs?:     DocStore;
+  /** Spec 070: pause before the one retry of a connection reset (default 1000 ms; tests pass 0). */
+  retryMs?:  number;
 }
 
 /** Spec 065: a large document's answer (outline + first chunk) is longer than the usual 8k tool result. */
@@ -195,14 +200,14 @@ export function buildReadTools(d: ReadToolDeps): EditorTool[] {
 
   const webFetch = defineTool({
     name: 'web_fetch',
-    description: 'Завантажити публічну веб-сторінку і отримати її читабельний текст, заголовок, опис та зображення. Для фактчеку й першоджерел. image — головне зображення сторінки (og:image або перше зображення статті), images — усі зображення сторінки (головне першим, далі зі статті): новина з цього джерела може мати лише їх (альбом — кілька з images); image = null → новина без зображення (format text). Великий документ (понад ~6000 символів або кілька розділів) повертається як doc_id + outline (секції) + перший шматок: решту читай через read_doc / find_in_doc, не завантажуючи його знову; повторний web_fetch тієї самої адреси за кілька годин віддається з пам\'яті (cached: true). JSON (API) повертається з описом будови (json: records_path, поля з заповненістю й прикладом, pagination) і doc_id: записи читай через read_doc / find_in_doc, імпортуй через import_list. Бібліотечний контент бери з датасету (query_data); web_fetch — лише для перевірки.',
+    description: 'Завантажити публічну веб-сторінку і отримати її читабельний текст, заголовок, опис та зображення. Для фактчеку й першоджерел. image — головне зображення сторінки (og:image або перше зображення статті), images — усі зображення сторінки (головне першим, далі зі статті): новина з цього джерела може мати лише їх (альбом — кілька з images); image = null → новина без зображення (format text). Великий документ (понад ~6000 символів або кілька розділів) повертається як doc_id + outline (секції) + перший шматок: решту читай через read_doc / find_in_doc, не завантажуючи його знову; повторний web_fetch тієї самої адреси за кілька годин віддається з пам\'яті (cached: true); якщо сайт не відповідає, а копія ще є — віддається вона з stale: true і fetched_at (час копії): перевір, чи факти не застаріли. JSON (API) повертається з описом будови (json: records_path, поля з заповненістю й прикладом, pagination) і doc_id: записи читай через read_doc / find_in_doc, імпортуй через import_list. Бібліотечний контент бери з датасету (query_data); web_fetch — лише для перевірки.',
     kind: 'read', roles: [...ALL_ROLES], maxResultChars: WEB_FETCH_RESULT_MAX,
     input: z.object({ url: z.string().url() }),
     execute: async ({ url }, ctx) => {
       const sources = (ctx.extras?.card as EditorCard | undefined)?.sources;
-      const r = await fetchDocument(url, { docs, http: d.http, hosts: d.hosts, sources });
+      const r = await fetchDocument(url, { docs, http: d.http, hosts: d.hosts, sources, retryMs: d.retryMs });
       if (isFetchFailure(r)) return r;
-      return webFetchAnswer(r.doc, r.cached);
+      return webFetchAnswer(r.doc, r.cached, r.stale);
     },
   });
 
@@ -222,20 +227,28 @@ export function buildReadTools(d: ReadToolDeps): EditorTool[] {
       const key = feedKey(url);
       const sources = (ctx.extras?.card as EditorCard | undefined)?.sources;
       if (host && d.hosts) {
-        // The host (refused, DNS, TLS) or this one feed address (spec 046 FR-009: not a feed, too large).
-        const b = (await d.hosts.blocked(host, 'feed')) ?? (key && key !== host ? await d.hosts.blocked(key, 'feed') : null);
+        // The host (DNS, TLS, timeout; its pages' refusals do not count, spec 070) or this one feed address (not a feed, too large, refused, gone).
+        const b = (await d.hosts.blocked(host, 'feed')) ?? (key ? await d.hosts.blocked(key, 'feed') : null);
         if (b) return hostBlockedError(b, sources);
       }
       let feed: Awaited<ReturnType<typeof readFeed>>;
       try {
-        feed = await readFeed(url, t, d.http);
+        feed = await retryReset(() => readFeed(url, t, d.http), d.retryMs);
       } catch (err: any) {
-        // Spec 040 FR-006: a refusal, DNS / TLS failure or a body that is not a feed marks the host; the tool answers.
+        // Spec 040 FR-006: a DNS / TLS failure marks the host; a body that is not a feed marks the feed. Spec 070: so does the feed's own
+        // refusal (401 / 403 / 429 / 451 → feed_refused) or absence (400 / 404 / 410 → feed_missing): a day on that address, the host's pages stay open.
         const m = /^status (\d+)/.exec(err?.message ?? '');
         if (m) {
           const status = Number(m[1]);
-          if (host && REFUSAL_STATUSES.has(status)) await d.hosts?.record(host, 'refused', status);
-          return { error: 'http_error', details: status === 404 ? 'status 404: стрічки за цією адресою немає — бери фіди з картки чи плейбука, адреси не вгадуй' : `status ${status}` };
+          if (key && FEED_REFUSED_STATUSES.has(status)) {
+            await d.hosts?.record(key, 'feed_refused', status);
+            return { error: 'http_error', details: `status ${status}: стрічка відмовляє в доступі. Цю адресу не читай добу; сторінки сайту це не блокує — інша стрічка або web_fetch сторінки-списку` };
+          }
+          if (key && FEED_MISSING_STATUSES.has(status)) {
+            await d.hosts?.record(key, 'feed_missing', status);
+            return { error: 'http_error', details: `status ${status}: стрічки за цією адресою немає — бери фіди з картки чи плейбука, адреси не вгадуй. Цю адресу не читай добу` };
+          }
+          return { error: 'http_error', details: `status ${status}` };
         }
         if (err instanceof FeedParseError) {
           if (key) await d.hosts?.record(key, 'feed_unparseable');
@@ -245,14 +258,25 @@ export function buildReadTools(d: ReadToolDeps): EditorTool[] {
           if (key) await d.hosts?.record(key, 'feed_too_large');
           return { error: 'feed_too_large', details: 'стрічка більша за 2 МБ — не читай її сьогодні; візьми іншу стрічку цього сайту (категорію) або інше джерело' };
         }
+        // Spec 070 (review): a network failure is recorded on the host AND on this feed's own key. The host row alone is not
+        // enough: while the host has a live `refused` row (its pages answer 403) a shorter timeout / reset row is not stored
+        // over it, and `blocked(host, 'feed')` ignores `refused`, so the feed would be asked again on every call. A feed key
+        // always contains «/», so the strike count of `struck()` (host keys only) never sees it.
         const kind = classifyFetchError(err);
         if (kind && host) {
           await d.hosts?.record(host, kind);
+          if (key) await d.hosts?.record(key, kind);
           return { error: 'host_unreachable', details: `${host}: ${kind === 'dns' ? 'домен не знаходиться (DNS)' : 'помилка TLS-сертифіката'}` };
         }
         if (host && classifyTimeout(err)) {
           await d.hosts?.record(host, 'timeout'); // spec 061 FR-004: a one-hour block, not a strike
+          if (key) await d.hosts?.record(key, 'timeout');
           return { error: 'host_unreachable', details: `${host}: сайт не відповів вчасно. Година паузи для цього сайту — інше джерело або пропусти слот.` };
+        }
+        if (host && classifyTransient(err)) {
+          await d.hosts?.record(host, 'timeout'); // spec 070: a reset that survived the retry; recorded on the host like a timeout
+          if (key) await d.hosts?.record(key, 'timeout');
+          return resetFailure(host);
         }
         throw err;
       }

@@ -85,6 +85,21 @@ export function audienceSummary(p: FormatPrefs, caps?: AudienceCaps): string {
   return `${kindText}${pollText}${mark(p.polls_per_week != null)} · ${qText}${mark(p.questions_to_readers_per_day != null)}`;
 }
 
+/**
+ * Spec 070 FR-004 (A6): the placeholder of the "Polls a week" field, i.e. what an empty field means. It follows the kinds,
+ * never the saved cap (a saved explicit cap is the field's value, not the default): an unsaved choice of "quiz" has no
+ * limit, any other explicit kind has the default of 1, and an empty select ("From the topic") shows the server's
+ * `defaultPollsPerWeek`, the cap after clearing both (14 for a quiz guessed from the topic, 1 otherwise, null = no limit).
+ * An older server without that field gets the default of 1.
+ */
+export function pollsPlaceholder(kind: '' | ContentKind, audience?: Pick<AudienceCaps, 'defaultPollsPerWeek'> | null): string {
+  if (kind === 'quiz') return 'no limit';
+  if (kind) return '1 (default)';
+  const d = audience?.defaultPollsPerWeek;
+  if (d === undefined) return '1 (default)';
+  return d === null ? 'no limit' : `${d} (default)`;
+}
+
 export function toPrefs(f: FormatForm): FormatPrefs {
   const t = (s: string) => s.trim() || undefined;
   const n = (s: string) => (s.trim() === '' ? undefined : Number(s));
