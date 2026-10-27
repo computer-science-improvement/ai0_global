@@ -29,16 +29,33 @@ test('criticRules: the owner\'s picture rules go when the code says no poster ap
   assert.deepEqual(skippedRules(RULES, undefined), []);
 });
 
-test('isMediaRule: narrow — picture words at the start of a word; «фотограф…» and «медіан…» are other things; schedule rules stay out anyway', () => {
-  for (const t of ['Кожен пост має мати картинку', 'Пости без зображення не публікуй', 'Постер лише на поясненнях', 'Не бери фото з PromptHero', 'Add an image to every post', 'Використовуй медіа з джерела']) {
+test('isMediaRule: narrow — picture words at the start of a word; a photographer is not a photo, «медіа» is not a picture; schedule rules stay out anyway', () => {
+  for (const t of [
+    'Кожен пост має мати картинку', 'Пости без зображення не публікуй', 'Постер лише на поясненнях', 'Не бери фото з PromptHero', 'Add an image to every post',
+    'Кожен пост має бути з фотографією', 'Пости без фотографій не публікуй', 'Додавай фотографію до кожного посту', 'Пост із двома фотографіями', 'Потрібна ілюстрація',
+  ]) {
     assert.equal(isMediaRule({ text: t }), true, t);
   }
-  for (const t of ['Не пиши про фотографів', 'Згадуй медіану зарплат', 'Без хештегів', 'Пиши коротко']) {
+  for (const t of [
+    'Не пиши про фотографів', 'Не згадуй фотографа', 'Фотографи не потрібні', 'Не називай фотограф імен', 'Згадуй медіану зарплат', 'Не цитуй російські медіа', 'Без хештегів', 'Пиши коротко',
+  ]) {
     assert.equal(isMediaRule({ text: t }), false, t);
   }
   // A picture rule about the schedule («картинка щодня о 9:00») is already left out by isTextRule, so it is never «skipped» twice.
   assert.deepEqual(skippedRules([{ id: 1, text: 'Картинка щодня о 9:00' }], 'none_fits'), []);
   assert.deepEqual(criticRules([{ id: 1, text: 'Картинка щодня о 9:00' }], 'poster_fits'), []);
+});
+
+test('review R3: a news post drops the owner\'s #12 and #13 picture rules (a «фото», a «фотографія») and keeps a rule about Russian media', () => {
+  const rules: OwnerRuleLine[] = [
+    { id: 12, text: 'Завжди додавай фото до посту' }, { id: 13, text: 'Кожен пост має бути з фотографією' },
+    { id: 20, text: 'Не цитуй російські медіа' }, { id: 4, text: 'Без хештегів' },
+  ];
+  for (const d of ['news_no_poster', 'none_fits'] as const) {
+    assert.deepEqual(criticRules(rules, d).map((r) => r.id), [20, 4], d);
+    assert.deepEqual(skippedRules(rules, d).map((r) => r.id), [12, 13], d);
+  }
+  assert.deepEqual(criticRules(rules, 'poster_fits').map((r) => r.id), [12, 13, 20, 4]);
 });
 
 const req = (o: Partial<CriticRequest> = {}): CriticRequest => ({

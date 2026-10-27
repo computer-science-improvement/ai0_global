@@ -59,14 +59,14 @@ test('decideVerdict (spec 067): pass_with_edits is a pass; a blocking issue with
   assert.deepEqual(decideVerdict({ scores: { ...all(5), language: 3 }, verdict: 'pass' }), { verdict: 'revise', reason: 'score_le_3: language' });
 });
 
-function gateOver(turns: ConstructorParameters<typeof FakeLlm>[0]) {
+function gateOver(turns: ConstructorParameters<typeof FakeLlm>[0], mode: 'live' | 'shadow' | 'approve' = 'live') {
   const llm = new FakeLlm(turns);
   const loop = new AgentLoop({ llm, recorder: new MemoryRecorder(), budget: new FakeBudget(), enabled: () => true });
   const service = new CriticService({ loop, env: () => undefined, defaultModel: async () => 'z-ai/glm-5.3-flash', criticModel: async () => null, now: () => NOW });
   const updates: any[] = [];
   const gate = new CriticGate(
     { critic: service, plans: { updateSlot: async (_id: string, p: any) => { updates.push(p); } } },
-    { slotId: 's1', channelKey: '@chan', mode: 'live', resourceRef: 'telegram:@chan', platform: 'telegram', voice: {} },
+    { slotId: 's1', channelKey: '@chan', mode, resourceRef: 'telegram:@chan', platform: 'telegram', voice: {} },
   );
   return { gate, llm, updates };
 }
@@ -214,4 +214,85 @@ test('gate 063: a word-dropping critic edit is refused and recorded; the safe li
   const stored = g.updates.at(-1).critic;
   assert.deepEqual(stored.edits_rejected.map((e: any) => [e.from, e.why]), [['(context window) — це ліміт', 'word_dropped']]);
   assert.ok(stored.edits_applied.some((e: any) => e.to === 'ті самі речі'));
+});
+
+// ── spec 067 review R4: a blocking issue waived by an edit that never lands is not published ──
+
+const BODY_P = 'Код за ліцензією Apache 2.0, її можуть брати всі. Далі йдуть деталі.';
+const TEXT_R4 = `Огляд\n${BODY_P}`;
+const specR4 = (title?: string) => makeSpec({ ...(title ? { title } : {}), body: [{ type: 'lead', text: 'Огляд' }, { type: 'p', text: BODY_P }] });
+const blocking = (quote: string, blockingIssue = true) => ({ quote, fix: 'Виправити займенник', axis: 'language', blocking: blockingIssue });
+const withIssues = (verdict: string, issues: Array<{ quote?: string; fix: string; axis: string; blocking: boolean }>, o: Parameters<typeof answer>[1] = {}) => {
+  const a = answer(verdict, o);
+  (a.calls[0].args as any).issues = issues;
+  return a;
+};
+
+test('review R4: a blocking issue the critic waived with a deletion edit the guard refuses is revised, not published', async () => {
+  const g = gateOver([withIssues('pass_with_edits', [blocking('її можуть брати всі')], {
+    scores: { sense: 4 }, edits: [{ from: 'її можуть брати всі', to: 'можуть брати всі' }],
+  })]);
+  const out = await g.gate.check({ text: TEXT_R4, spec: specR4(), format: 'photo', warnings: [], relint: async () => ({ ok: true }) });
+  assert.equal(out.kind, 'revise', 'the edit was refused, so the issue stands');
+  assert.equal((out as any).critic.verdict, 'revise');
+  assert.match((out as any).critic.reason, /^blocking_issue_unfixed: language/);
+  assert.deepEqual((out as any).critic.edits_rejected.map((e: any) => e.why), ['word_dropped']);
+  assert.match(JSON.stringify((out as any).result.details), /її можуть брати всі/, 'the blocking issue goes back to the author');
+  assert.equal(g.llm.requests.length, 1);
+
+  // Without relint (a caller that cannot apply edits) the waived issue is not published either.
+  const bare = gateOver([withIssues('pass_with_edits', [blocking('її можуть')], { edits: [{ from: 'її можуть', to: 'його можуть' }] })]);
+  const b = await bare.gate.check({ text: TEXT_R4, spec: specR4(), format: 'photo', warnings: [] });
+  assert.equal(b.kind, 'revise');
+  assert.match((b as any).critic.reason, /^blocking_issue_unfixed/);
+});
+
+test('review R4: an edit that did not match once or whose relint was refused, on the last pass: live skips the slot, approval sends the post to the owner with the reason', async () => {
+  // Pass 2 in live mode: the edit that covers the blocking issue matches nothing — the slot is skipped, not published.
+  const miss = gateOver([
+    answer('revise', { scores: { sense: 3 }, notes: 'Переписати лід.' }),
+    withIssues('pass_with_edits', [blocking('її можуть')], { edits: [{ from: 'її можуть брати всі!!', to: 'можуть брати всі' }], previous_checks: [{ n: 1, fixed: true }] }),
+  ]);
+  assert.equal((await miss.gate.check({ text: 't', spec: specR4('Перша версія'), format: 'photo', warnings: [] })).kind, 'revise');
+  const m = await miss.gate.check({ text: TEXT_R4, spec: specR4('Друга версія'), format: 'photo', warnings: [], relint: async () => ({ ok: true }) });
+  assert.equal(m.kind, 'halt', 'not published');
+  assert.equal(miss.updates.at(-1).status, 'skipped');
+  assert.match(miss.updates.at(-1).critic.reason, /^second_revise: blocking_issue_unfixed/);
+
+  // Pass 2 in approval mode: the edit matches, the relint refuses the edited text — the owner gets the post marked final with the reason.
+  const lint = gateOver([
+    answer('revise', { scores: { sense: 3 }, notes: 'Переписати лід.' }),
+    withIssues('pass_with_edits', [blocking('її можуть')], { edits: [{ from: 'її можуть', to: 'його можуть' }], previous_checks: [{ n: 1, fixed: true }] }),
+  ], 'approve');
+  assert.equal((await lint.gate.check({ text: 't', spec: specR4('Перша версія'), format: 'photo', warnings: [] })).kind, 'revise');
+  const l = await lint.gate.check({ text: TEXT_R4, spec: specR4('Друга версія'), format: 'photo', warnings: [], relint: async () => ({ ok: false, errors: ['lint_failed: slop'] }) });
+  assert.equal(l.kind, 'proceed');
+  assert.equal((l as any).edited, undefined, 'the unedited text goes to the owner');
+  assert.equal((l as any).critic.final, true);
+  assert.match((l as any).critic.reason, /^blocking_issue_unfixed/);
+});
+
+test('review R4: control — an edit that lands still publishes; an edit for something that is not a blocking issue keeps today\'s behaviour', async () => {
+  const lands = gateOver([withIssues('pass_with_edits', [blocking('її можуть')], { scores: { sense: 4 }, edits: [{ from: 'її можуть', to: 'його можуть' }] })]);
+  const a = await lands.gate.check({ text: TEXT_R4, spec: specR4(), format: 'photo', warnings: [], relint: async () => ({ ok: true }) });
+  assert.equal(a.kind, 'proceed');
+  assert.match(((a as any).edited.spec.body[1]).text, /його можуть брати всі/);
+  assert.equal(lands.updates.at(-1).critic.reason, 'scores_ok_with_edits');
+
+  // Only advice behind the refused edit (no blocking issue): the post goes out as written, the refusal is recorded.
+  const advice = gateOver([withIssues('pass_with_edits', [blocking('її можуть брати всі', false)], {
+    scores: { sense: 4 }, edits: [{ from: 'її можуть брати всі', to: 'можуть брати всі' }],
+  })]);
+  const b = await advice.gate.check({ text: TEXT_R4, spec: specR4(), format: 'photo', warnings: [], relint: async () => ({ ok: true }) });
+  assert.equal(b.kind, 'proceed');
+  assert.equal((b as any).edited, undefined);
+  assert.equal(advice.updates.at(-1).critic.edits_rejected.length, 1);
+
+  // A blocking issue whose quote the refused edit does not cover is not waived by it, so it was a revise before the gate (unchanged).
+  const other = gateOver([withIssues('pass_with_edits', [blocking('Далі йдуть деталі')], {
+    scores: { sense: 4 }, edits: [{ from: 'її можуть брати всі', to: 'можуть брати всі' }],
+  })]);
+  const c = await other.gate.check({ text: TEXT_R4, spec: specR4(), format: 'photo', warnings: [], relint: async () => ({ ok: true }) });
+  assert.equal(c.kind, 'revise');
+  assert.match((c as any).critic.reason, /^blocking_issue: language/, 'decided by decideVerdict, not by the gate');
 });

@@ -6,7 +6,7 @@ import type { InboxItemInput } from '../agents/owner-inbox';
 import type { EditorPlansRepository } from '../repo/editor-plans.repository';
 import type { VoicePrefs } from '../post/slop-lint';
 import type { EditorRole } from '../llm/llm.types';
-import { criticLine, slopCodes, type StoredCritic } from './critic';
+import { countedIssues, criticLine, slopCodes, type CriticIssue, type StoredCritic } from './critic';
 import { brokenCharText, findBrokenChars } from '../post/text-hygiene';
 import { CRITIC_TIMEOUT_MS, type CriticRequest, type CriticService } from './critic.service';
 import type { CriticSkillsContext } from './critic-skills';
@@ -260,7 +260,9 @@ export class CriticGate {
     // Spec 037 T4: a page the run read gives the critic its title, date and the passages around the post's claims.
     if (url && cited && post) {
       const meta = this.read.get(normUrl(url));
-      const base = { url, title: meta?.title ?? null, publishedAt: meta?.publishedAt ?? null, coverage };
+      // The library row behind `library_ref` is a source of its own: shown whole, or by its passages when it was clipped.
+      const library = lib ? this.libraryContext(lib, ref, post.text, dates) : null;
+      const base = { url, title: meta?.title ?? null, publishedAt: meta?.publishedAt ?? null, coverage, ...(library ? { library } : {}) };
       const grounding = groundingCheckOf(post.text, await this.textsRead(spec), dates);
       // The other pages the run read (one document under two addresses is one page).
       const seen = new Set([cited.text]);
@@ -295,6 +297,13 @@ export class CriticGate {
     if (!url && !excerpt) return null;
     const grounding = post ? groundingCheckOf(post.text, await this.textsRead(spec), dates) : null;
     return { url: url ?? ref, excerpt: excerpt ? excerpt.slice(0, SOURCE_CAP) : null, grounding, coverage };
+  }
+
+  /** The library row for the critic's source block: whole (not clipped), or the passages around the post's claims and, without any, its start. */
+  private libraryContext(lib: string, ref: string | null, postText: string, dates: { publishedAt?: string; timezone?: string }): NonNullable<NonNullable<CriticRequest['source']>['library']> {
+    if (lib.length < LIBRARY_ROW_CAP) return { text: lib };
+    const passages = sourcePassages(postText, [{ url: ref ?? 'library', text: lib, title: null }], dates);
+    return { clipped: true, ...(passages.length ? { passages } : { head: lib.slice(0, READ_HEAD_CAP) }) };
   }
 
   /** Every text the run read (pages ≤ 60k, feed items' title + snippet) and the spec's library row, for grounding. */
@@ -500,27 +509,42 @@ export class CriticGate {
     const proposed = proposedIn.filter((e) => safe.has(e));
     const fixes = fixesIn.filter((e) => safe.has(e));
     if (guarded.rejected.length) critic = { ...critic, edits_rejected: guarded.rejected };
-    if (!post.relint || (!proposed.length && !fixes.length)) return { critic };
     const firstPass = this.passes < this.budget;
-    const toRevise = (c: StoredCritic, why: string) => ({
+    const toRevise = (c: StoredCritic, why: string, tail?: string) => ({
       critic: {
         ...c, verdict: 'revise' as const, reason: why,
-        notes: `${c.notes} Точкові правки не застосувались — внеси їх сам: ${(c.edits_failed ?? []).map((e) => `«${e.from}» → «${e.to}»`).join('; ')}`.slice(0, 1200),
+        notes: `${c.notes} ${tail ?? `Точкові правки не застосувались — внеси їх сам: ${(c.edits_failed ?? []).map((e) => `«${e.from}» → «${e.to}»`).join('; ')}`}`.slice(0, 1200),
       },
       revise: true as const,
     });
+    // Spec 067 review R4: `decideVerdict` waives a blocking issue that one of the critic's edits covers. If that edit never lands
+    // (refused by the guard, did not match once, the relint refused the edited text), the issue stands and the post is not published.
+    const unfixed = (landed: readonly TextEdit[]): CriticIssue[] => {
+      if (!proposedIn.length) return [];
+      const asked = countedIssues({ verdict: 'pass_with_edits', issues: critic.issues, edits: proposedIn }, post.text);
+      return countedIssues({ verdict: 'pass_with_edits', issues: critic.issues, edits: [...landed] }, post.text).filter((i) => !asked.includes(i));
+    };
+    const issueRevise = (landed: readonly TextEdit[]) => {
+      const left = unfixed(landed);
+      if (!left.length) return null;
+      const axes = [...new Set(left.map((i) => i.axis))].join(', ');
+      return toRevise(critic, `blocking_issue_unfixed: ${axes}`, `Правка, що закривала блокуюче зауваження, не застосувалась — виправ сам: ${left.map((i) => `«${i.quote}» — ${i.fix}`).join('; ')}`);
+    };
+    if (!post.relint || (!proposed.length && !fixes.length)) return issueRevise([]) ?? { critic };
     const a = applySpecEdits(post.spec, proposed);
     const failedNote = a.failed.length ? { edits_failed: a.failed } : {};
     if (a.failed.length && firstPass) return toRevise({ ...critic, ...failedNote }, `edits_failed: ${a.failed.length}`);
     const b = applySpecEdits(a.spec, fixes);
     const applied = [...a.applied, ...b.applied];
-    if (!applied.length) return { critic: { ...critic, ...failedNote } };
+    if (!applied.length) return issueRevise([]) ?? { critic: { ...critic, ...failedNote } };
     const re = await post.relint(b.spec);
     if (!re.ok) {
       const all = [...a.failed, ...applied.map((e) => ({ ...e, found: 1 }))];
       if (firstPass) return toRevise({ ...critic, edits_failed: all }, `edits_lint: ${re.errors.join('; ')}`.slice(0, 300));
-      return { critic: { ...critic, edits_failed: all } };
+      return issueRevise([]) ?? { critic: { ...critic, edits_failed: all } };
     }
+    const left = issueRevise(a.applied);
+    if (left) return left;
     return { critic: { ...critic, edits_applied: applied, ...failedNote }, edited: { spec: b.spec, ...(re.state !== undefined ? { state: re.state } : {}) } };
   }
 

@@ -9,6 +9,7 @@ import type { ToolContext } from '../harness/tool';
 import { groundNumbers } from '../post/grounding';
 import { CriticGate, type CriticGateDeps } from './critic-gate';
 import { criticUserPrompt, type CriticRequest } from './critic.service';
+import { criticPassageLines } from './critic-passages';
 import { libraryRowText, LIBRARY_ROW_CAP } from './critic-source';
 import { FULL_PAGE_MAX, lowerCoverage, mergeSpans } from './read-capture';
 
@@ -226,6 +227,56 @@ test('library rows: the whole row is full, a clipped one is read; the lowest cov
   assert.equal(seen[3].source!.coverage, 'full');
   await check('Борщ 5.', { source: { url: 'https://never.example/read' } });
   assert.equal(seen[4].source!.coverage, 'none');
+});
+
+test('067 review R2: the block follows what is present, not the lowered coverage — a whole page next to a clipped library row shows the page and the row\'s passages', async () => {
+  const url = 'https://news.example/short';
+  const page = 'Коротка сторінка про борщ, 1 казан.';
+  const filler = 'Опис страви без чисел. '.repeat(600);
+  const clipped = (filler.slice(0, 6_000) + ' Порція коштує 1700 грн. ' + filler).slice(0, LIBRARY_ROW_CAP);
+  assert.equal(clipped.length, LIBRARY_ROW_CAP);
+  const short = 'description: Борщ\ningredients: ["500 г буряка"]';
+  const { seen, tools, check } = rig({ [url]: page }, { libraryText: async (ref) => (ref === 'data://recipes/2' ? clipped : ref === 'data://recipes/1' ? short : null) });
+  await tools.web_fetch.execute({ url }, ctx);
+
+  await check('Борщ, порція коштує 1700 грн.', { source: { url }, library_ref: 'data://recipes/2' });
+  const src = seen[0].source!;
+  assert.equal(src.coverage, 'read', 'the stored coverage is the lowest (decideVerdict reads it)');
+  assert.equal(src.page, page);
+  assert.equal(src.library?.clipped, true);
+  const prompt = criticUserPrompt(seen[0]);
+  assert.ok(prompt.includes(`Це весь текст цитованої сторінки: чого тут немає — немає на сторінці (рядок бібліотеки — окреме джерело нижче).\n${page}`), prompt);
+  assert.ok(!prompt.includes('Це весь текст сторінки: чого тут немає — немає в джерелі'), 'the page is not claimed to be the only source');
+  assert.ok(prompt.includes('Рядок бібліотеки (library_ref) — друге джерело поста; він довгий, тут лише його частина.'));
+  assert.match(prompt, /\[р1\] про [^\n]*:\n[\s\S]*Порція коштує 1700 грн/);
+  assert.ok(!prompt.includes('Чисел і назв поста на прочитаних сторінках не знайдено'), 'a source is shown');
+
+  // A clipped row with nothing of the post in it: its start.
+  await check('Борщ без чисел.', { source: { url }, library_ref: 'data://recipes/2', title: 'Без чисел' });
+  assert.match(criticUserPrompt(seen[1]), /Чисел і назв поста у цій частині рядка не знайдено\.\nПочаток рядка:\nОпис страви/);
+
+  // A short row next to a whole page: both are shown, the row whole.
+  await check('Борщ 2.', { source: { url }, library_ref: 'data://recipes/1' });
+  assert.equal(seen[2].source!.coverage, 'full');
+  const both = criticUserPrompt(seen[2]);
+  assert.ok(both.includes(page));
+  assert.ok(both.includes(`Рядок бібліотеки (library_ref) — друге джерело поста. Це весь рядок (усі поля): чого тут немає — немає в рядку.\n${short}`), both);
+
+  // No library row: the line is the one of spec 067 T1.
+  await check('Борщ 3.', { source: { url } });
+  assert.ok(criticUserPrompt(seen[3]).includes(`Це весь текст сторінки: чого тут немає — немає в джерелі.\n${page}`));
+  assert.ok(!criticUserPrompt(seen[3]).includes('Рядок бібліотеки'));
+});
+
+test('067 review R2: criticPassageLines chooses the page / read block by what is there, whatever the coverage says', () => {
+  const base = { url: 'https://a.example/x', excerpt: null, title: 'Т', publishedAt: null, passages: [], grounding: null };
+  const lines = (s: Parameters<typeof criticPassageLines>[0]) => criticPassageLines(s).join('\n');
+  const page = lines({ ...base, coverage: 'read', page: 'ТЕКСТ СТОРІНКИ', library: { clipped: true, head: 'ПОЧАТОК РЯДКА' } });
+  assert.ok(page.includes('ТЕКСТ СТОРІНКИ'));
+  assert.ok(page.includes('ПОЧАТОК РЯДКА'));
+  const read = lines({ ...base, coverage: 'snippet', read: { size: 50_000, chars: 20, spans: [{ from: 10, to: 30, text: 'ПРОЧИТАНА ЧАСТИНА' }] }, library: { text: 'ПОВНИЙ РЯДОК' } });
+  assert.ok(read.includes('[знаки 10–30]\nПРОЧИТАНА ЧАСТИНА'), read);
+  assert.match(read, /Це весь рядок \(усі поля\)[^\n]*\nПОВНИЙ РЯДОК/);
 });
 
 test('libraryRowText: the retold fields first, then every other field (a recipe\'s ingredients too), capped', () => {

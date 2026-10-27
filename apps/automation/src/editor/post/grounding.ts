@@ -158,10 +158,18 @@ function scanBills(text: string): RawBill[] {
 
 // ── spec 067 FR-001: ratios («5 з 10», "5 of 10", "5/10") ──────────────────────
 
+/**
+ * One part of a ratio is a whole number token: a space-grouped thousand count («10 000», «1 500», regular, no-break or
+ * thin space) or up to 5 plain digits. The guards keep a match from starting or ending inside a group («000 з 20»,
+ * «200 з 1» of «1 500»).
+ */
+const RATIO_PART = String.raw`(\d{1,3}(?:${SP}\d{3})+|\d{1,5})`;
+const RATIO_START = String.raw`(?<![\p{L}\p{N}.,/])(?<!\p{N}${SP})`;
+const RATIO_NOT_GROUP = String.raw`${SP}\d{3}(?!\p{N})`;
 /** «N з M», «N із M», «N зі M», "N out of M", "N of M": a ratio, not two numbers. Not before a month («5 з 10 травня»). */
-const RATIO_WORD_RE = new RegExp(String.raw`(?<![\p{L}\p{N}.,/])(\d{1,5})${SP}+(?:з|із|зі|out${SP}+of|of)${SP}+(\d{1,5})(?![\p{N}]|[.,]\d|/\d|${SP}+${MONTH_UK_RE}(?![\p{L}]))`, 'giu');
+const RATIO_WORD_RE = new RegExp(String.raw`${RATIO_START}${RATIO_PART}${SP}+(?:з|із|зі|out${SP}+of|of)${SP}+${RATIO_PART}(?![\p{N}]|[.,]\d|/\d|${RATIO_NOT_GROUP}|${SP}+${MONTH_UK_RE}(?![\p{L}]))`, 'giu');
 /** "N/M" — not inside a date («10/19/2026»: no lookbehind hit on «19/2026», no lookahead hit on «10/19»). */
-const RATIO_SLASH_RE = new RegExp(String.raw`(?<![\p{L}\p{N}.,/])(\d{1,5})${SP}?/${SP}?(\d{1,5})(?![\p{N}]|[.,]\d|/\d)`, 'gu');
+const RATIO_SLASH_RE = new RegExp(String.raw`${RATIO_START}${RATIO_PART}${SP}?/${SP}?${RATIO_PART}(?![\p{N}]|[.,]\d|/\d|${RATIO_NOT_GROUP})`, 'gu');
 
 interface RawRatio { key: string; text: string; span: [number, number]; value: number }
 
@@ -170,7 +178,8 @@ const claimPart = (p: number): boolean => p >= 10 && !(p >= 1900 && p <= 2100);
 
 /**
  * Ratios of a text: key «N/M» for every spelling. «5 з 10 млн», «5 з 10%», «5 з 10 грн» are numbers with a unit, not
- * ratios. On the post side a ratio is a claim only when a part is one on its own (not < 10, not a year).
+ * ratios. On the post side a ratio is a claim only when a part is one on its own (not < 10, not a year), and an «N/M»
+ * after a Latin word is a version.
  */
 function scanRatios(text: string, post: boolean): RawRatio[] {
   const out: RawRatio[] = [];
@@ -179,8 +188,11 @@ function scanRatios(text: string, post: boolean): RawRatio[] {
       const end = m.index! + m[0].length;
       const rest = text.slice(end, end + 24);
       if (SCALE_RE.test(rest) || PERCENT_RE.test(rest) || CURRENCY_AFTER_RE.test(rest)) continue;
-      const [a, b] = [Number(m[1]), Number(m[2])];
+      // «10 000» and «1 500» are one number: the digits of a part, whatever its grouping space.
+      const [a, b] = [Number(m[1].replace(/\D/g, '')), Number(m[2].replace(/\D/g, ''))];
       if (post && !claimPart(a) && !claimPart(b)) continue;
+      // «Windows 10/11», «Android 14/15»: versions are not ratios (the numbers are skipped as versions, as before 067).
+      if (post && re === RATIO_SLASH_RE && versionLike(text.slice(Math.max(0, m.index! - 24), m.index!))) continue;
       out.push({ key: `${a}/${b}`, text: m[0], span: [m.index!, end], value: b ? a / b : 0 });
     }
   }

@@ -245,11 +245,13 @@ export function skippedRules(rules: readonly OwnerRuleLine[] | null | undefined,
 const noPosterApplies = (d: PosterDecision | null | undefined): boolean => d === 'news_no_poster' || d === 'none_fits';
 
 /**
- * Spec 067 FR-005: a rule about the post's picture — its text names a picture, an image, a poster, a photo or media.
- * Kept narrow on purpose: the word must start a word (nothing is read inside a longer word), and «фотограф…» and
- * «медіан…» are other things. A rule that only mentions the word still goes (the log says which one).
+ * Spec 067 FR-005: a rule about the post's picture — its text names a picture, an image, an illustration, a poster or a
+ * photo. Kept narrow on purpose: the word must start a word, «фото» is not «фотограф / фотографа / фотографи /
+ * фотографів» (a person) but is «фотографія / фотографією / фотографії» (a picture), and «медіа» is not a picture word
+ * («не цитуй російські медіа» is a rule about sources and stays). A rule that only mentions a picture word still goes
+ * (the log says which one).
  */
-const MEDIA_RULE = /(?<![\p{L}])(?:картинк|зображен|постер|фото(?!граф)|медіа(?!н)|image|picture)/iu;
+const MEDIA_RULE = /(?<![\p{L}])(?:картинк|зображен|ілюстрац|світлин|постер|фото(?!граф(?!і[яюєїй]))|image|picture)/iu;
 export function isMediaRule(r: Pick<OwnerRuleLine, 'text'>): boolean {
   return MEDIA_RULE.test(r.text);
 }
