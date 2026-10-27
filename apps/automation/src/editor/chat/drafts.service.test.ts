@@ -9,7 +9,7 @@ import { ChannelPausedForEditorError } from '../publish/telegram-editor.publishe
 const NOW = new Date('2026-10-01T09:00:00Z'); // 12:00 Kyiv
 
 /** In-memory fakes for every port of DraftsService. */
-function setup(o: { card?: any; mine?: Array<{ channelKey: string; title: string | null }>; paused?: boolean; posted?: string[]; sendError?: Error; skipFails?: boolean; libraryText?: string } = {}) {
+function setup(o: { card?: any; mine?: Array<{ channelKey: string; title: string | null }>; paused?: boolean; posted?: string[]; sendError?: Error; skipFails?: boolean; libraryText?: string; datasetKind?: string } = {}) {
   const drafts = new Map<string, EditorDraft>();
   const slots = new Map<string, any>();
   const sent: any[] = [];
@@ -23,7 +23,14 @@ function setup(o: { card?: any; mine?: Array<{ channelKey: string; title: string
   let n = 0;
   const cards = new Map<string, any>(o.card ? [[o.card.channelKey, o.card]] : []);
   const d: DraftsDeps = {
-    pool: { query: async () => ({ rows: o.libraryText ? [{ key: 'recipes', data: { description: o.libraryText } }] : [] }) } as any,
+    pool: {
+      query: async (sql: string) => {
+        // Spec 071 R1: what data_schemas says about the dataset behind a `data://` library_ref.
+        if (o.datasetKind && /FROM data_items d JOIN data_schemas s/.test(sql)) return { rows: [{ key: 'pdr_questions', id: '42', legacy_ref: null }] };
+        if (o.datasetKind && /SELECT reuse_policy->>'kind'/.test(sql)) return { rows: [{ kind: o.datasetKind }] };
+        return { rows: o.libraryText ? [{ key: 'recipes', data: { description: o.libraryText } }] : [] };
+      },
+    } as any,
     repo: {
       insertDraft: async (x) => {
         const id = `d${++n}`;
@@ -294,4 +301,22 @@ test('renderDraft: the Telegram messages of a draft for the preview card; broken
   assert.deepEqual(r.render!.messages.map((m) => m.method), ['sendPhoto', 'sendPoll']);
   assert.equal(r.render!.channelTitle, 'Тест');
   assert.equal(renderDraft({ ...base, spec: { nope: true } }, null).render, null);
+});
+
+test('071 R1 (A7): a row of a dataset that repeats in rounds is not refused because the URL it cites went out in an earlier round — save and publish', async () => {
+  const spec = () => makeSpec({ origin: 'library', library_ref: 'data://pdr_questions/42' });
+  const cycle = setup({ card: CARD, posted: ['https://nasa.gov/ring'], datasetKind: 'cycle' });
+  const draft = await save(cycle, spec());
+  const out: any = await cycle.svc.publish(draft.id);
+  assert.equal(out.ok, true, JSON.stringify(out));
+  assert.equal(cycle.sent.length, 1);
+
+  // The row itself used in this round is still refused (the ledger answers for the row first).
+  const rowUsed = setup({ card: CARD, posted: ['data://pdr_questions/42'], datasetKind: 'cycle' });
+  assert.equal(((await rowUsed.svc.save({ chatId: 'chat-1', channel: '@chan', spec: spec() })) as any).error, 'library_item_already_posted');
+
+  // The same post under a dataset that never repeats keeps today's answer.
+  const never = setup({ card: CARD, posted: ['https://nasa.gov/ring'], datasetKind: 'never' });
+  assert.equal(((await never.svc.save({ chatId: 'chat-1', channel: '@chan', spec: spec() })) as any).error, 'source_already_posted');
+  assert.equal(never.drafts.size, 0);
 });

@@ -11,6 +11,9 @@ test('reuseLabel reads every policy in one line', () => {
   assert.equal(reuseLabel({ kind: 'after_days', days: 1 }), 'After 1 day');
   assert.equal(reuseLabel({ kind: 'after_days', days: 365 }), 'After 365 days');
   assert.equal(reuseLabel({ kind: 'cycle', order: 'random' }), 'In rounds, random');
+  // R7: a cycle with no order (or an unknown one) is random on the server (cycleOrder), so the label says so.
+  assert.equal(reuseLabel({ kind: 'cycle' } as any), 'In rounds, random');
+  assert.equal(reuseLabel({ kind: 'cycle', order: 'whatever' } as any), 'In rounds, random');
   assert.equal(reuseLabel({ kind: 'cycle', order: 'sequential' }), 'In rounds, in order (import order)');
   assert.equal(reuseLabel({ kind: 'cycle', order: 'sequential', order_by: ['ticket_number', 'question_num'] }),
     'In rounds, in order (by ticket_number, then question_num)');

@@ -262,6 +262,8 @@ import { buildCatalog } from '../data/data-catalog';
 import { kyivMonthDay } from '../data/data-query';
 import { ContentLedger } from '../data/content-ledger';
 import { nextRowPort } from './schedule/next-row';
+import { isCycleRef } from '../data/data-rounds';
+import { resolveContentRef } from '../data/data-refs';
 import { makePassRow } from './silent/pass-row';
 import { AUTONOMY_SERVICE, AutonomyController } from './approval/autonomy.controller';
 import { ConfigEventsPublisher } from '../config/config-events.publisher';
@@ -1401,6 +1403,8 @@ export const EDITOR_PROVIDERS = [
           onSlotDone: async (slot) => { if (slot.ideaId) await ideas.settleIdea(slot.ideaId); },
           // Spec 025 FR-013: an approved post on a paused resource is skipped.
           paused: (ref) => new ResourcePauseService({ pool }).isPaused(ref),
+          // Spec 071 R1 / R2: a round-2 row of a repeating dataset is re-checked by its row only.
+          isCycleRef: (ref) => isCycleRef(pool, ref),
           // Spec 037 T2: an approved follow-up replies to its original; a forward is recorded as a repost.
           replyTarget: (slot) => new StoryRegistry(pool).replyTargetOf(slot.id),
           onForwarded: async (slot, fromKey, fromMessageId, messageId) => { await new StoryRegistry(pool).recordForward({ channelKey: slot.channelKey, slotId: slot.id, fromKey, fromMessageId, messageId }); },
@@ -1605,6 +1609,8 @@ export const EDITOR_PROVIDERS = [
           network, platformContext: (slot, orchId) => network.platformContext(slot, orchId),
           catalogSummary: withSchedule(catalogSummaryOf(pool, env), schedule),
           seriesContext: (slot) => schedule.executorContext(slot),
+          // Spec 071 R4: a post's `library://` alias against the series' next row (`data://`).
+          canonicalRef: async (ref) => (await resolveContentRef(pool, ref).catch(() => null))?.dataRef ?? ref,
           onSlotDone: async (slot) => { if (slot.ideaId) await ideas.settleIdea(slot.ideaId); },
           deadSource: async (slot, url, reason) => (slot.ideaId ? ideas.rejectSoleSourceIdeas(slot.ideaId, url, reason) : 0),
           // Spec 071 A2: a row the critic rejected for good (or whose quiz key is wrong) is put aside for the round on a cycle dataset.

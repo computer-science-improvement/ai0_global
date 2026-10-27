@@ -283,7 +283,8 @@ export function setOrderBy(p: CyclePolicy, index: number, name: string): CyclePo
 export function reuseLabel(p: ReusePolicy): string {
   if (p.kind === 'never') return 'Never again';
   if (p.kind === 'after_days') return `After ${fmtInt(p.days)} ${p.days === 1 ? 'day' : 'days'}`;
-  if (p.order === 'random') return 'In rounds, random';
+  // The server reads a cycle with no order (or an unknown one) as random (cycleOrder).
+  if (p.order !== 'sequential') return 'In rounds, random';
   return p.order_by?.length ? `In rounds, in order (by ${p.order_by.join(', then ')})` : 'In rounds, in order (import order)';
 }
 

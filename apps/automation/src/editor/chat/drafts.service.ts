@@ -19,6 +19,7 @@ import { htmlToPlain } from '../post/inline-markup';
 import { slopCodes, type StoredCritic } from '../critic/critic';
 import type { CriticService } from '../critic/critic.service';
 import { isReusableHost, sourceRefOf } from '../../data/ledger-anchor';
+import { isCycleRef } from '../../data/data-rounds';
 
 export const SCHEDULE_MIN_LEAD_MS = 2 * 60_000;
 export const SCHEDULE_MAX_AHEAD_MS = 60 * 86_400_000;
@@ -200,6 +201,8 @@ export class DraftsService {
     }
     // Spec 061 FR-002: a reference document (a law) is keyed by URL + anchor.
     const ref = sourceRefOf(spec.source);
+    // Spec 071 R1 (A7): beside a row of a dataset that repeats in rounds the URL is a citation, and the row itself passed above.
+    if (ref && spec.library_ref && await isCycleRef(this.d.pool, spec.library_ref)) return null;
     if (ref && await this.d.plans.sourceUsed(channelKey, ref)) {
       const clause = isReusableHost(spec.source!.url) ? 'another clause of the document (source.anchor)' : 'for a reference document, set source.anchor (the clause)';
       return { error: 'source_already_posted', details: `this source was already used in ${channelKey} (content ledger). Use another source or ${clause}.` };

@@ -36,6 +36,8 @@ export interface ApprovalPublisherDeps {
   onForwarded?: (slot: EditorSlot, fromKey: string, fromMessageId: number, messageId: number) => Promise<void>;
   /** Spec 025 FR-013: an approved post on a paused resource is skipped (`resource_paused`), not sent. */
   paused?:  (ref: string) => Promise<boolean>;
+  /** Spec 071 R1: is this `library_ref` a row of a dataset that repeats in rounds? Absent = never (today's re-check). */
+  isCycleRef?: (ref: string) => Promise<boolean>;
   log?:     (msg: string) => void;
 }
 
@@ -130,13 +132,18 @@ export class ApprovalPublisher {
     // Dedup after approval: the source or a near-identical text went out while the post waited. Every ref of
     // the post is asked (spec 037 T16: a library item and a source URL are two refs, either may have gone out).
     const ref = spec.library_ref ?? spec.source?.url ?? null;
-    for (const r of specRefs(spec)) {
+    // Spec 071 R1 (A7): the library row of a dataset that repeats in rounds is the material, the URL it cites is a citation —
+    // only the row is re-checked, and the ledger keeps that check round-aware. Else a round-2 post whose clause URL went out
+    // in round 1 would be dropped after approval, nothing written, and the in-order series would stall on it.
+    const cycleRow = spec.library_ref && this.d.isCycleRef ? await this.d.isCycleRef(spec.library_ref).catch(() => false) : false;
+    for (const r of cycleRow ? [spec.library_ref!] : specRefs(spec)) {
       if (await this.d.repo.publishedSource(slot.channelKey, r, slot.id)) {
         return this.skip(slot, 'dedup_after_approval', dedupNotice(slot, { en: 'this source was already published in the channel', uk: 'це джерело вже опубліковано в каналі' }));
       }
     }
     const preview = slot.renderedPreview ?? '';
-    const maxSim = (await this.d.repo.publishedTexts(slot.channelKey, slot.id)).reduce((m, t) => Math.max(m, similarity(preview, t)), 0);
+    // Spec 071 R2: nor is a round-2 row told apart from its own earlier post.
+    const maxSim = (await this.d.repo.publishedTexts(slot.channelKey, slot.id, cycleRow ? spec.library_ref! : null)).reduce((m, t) => Math.max(m, similarity(preview, t)), 0);
     if (preview && maxSim >= SIMILARITY_LIMIT) {
       return this.skip(slot, 'dedup_after_approval', dedupNotice(slot, { en: `similarity ${maxSim.toFixed(2)} with a published post`, uk: `схожість ${maxSim.toFixed(2)} з опублікованим постом` }));
     }

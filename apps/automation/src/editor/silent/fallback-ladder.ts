@@ -123,6 +123,9 @@ function detailsText(details: unknown): string {
   return String(details);
 }
 
+/** Guard answers that refuse the post's row before anyone read it (the ledger, the series source, the series order). */
+const ROW_GUARD_CODES: ReadonlySet<string> = new Set(['not_next_in_order', 'library_item_already_posted', 'series_source_mismatch']);
+
 /**
  * What the publish tool saw in one run: its last error (lint, guard, critic_revise; null after a success) and the
  * source of the last post it was given (a rejected post is never stored on the slot, so the ladder learns it here).
@@ -141,6 +144,9 @@ export class PublishProbe {
         this.libraryRef = libraryRefOf(input?.spec) ?? this.libraryRef;
         const r = await t.execute(input, ctx);
         this.last = isToolError(r) ? { code: r.error, details: (r as any).details } : null;
+        // Spec 071 R5: a row the guards refused was never judged on its merits, and a later post without a row must not
+        // inherit it — the sticky value is for a post that reached the critic.
+        if (isToolError(r) && ROW_GUARD_CODES.has(r.error)) this.libraryRef = null;
         return r;
       },
     });

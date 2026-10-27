@@ -125,6 +125,29 @@ test('publishPlatformNow: guards — lint, health, dedup, similarity, cap, failu
   assert.equal(((await publishPlatformNow(deps().d, { resourceRef: 'telegram:@x', spec: spec(), mode: 'live' })) as any).error, 'not_a_platform_resource');
 });
 
+test('071 R2: a round-2 row\'s own earlier caption is out of the similarity corpus; under a dataset that never repeats it stays', async () => {
+  const caption = 'Марс — червона планета. Гортай, щоб дізнатися пʼять фактів про сусіда Землі.';
+  const asked: Array<string | null> = [];
+  const mk = (kind: string) => {
+    const s = deps();
+    // Like the repository: the excluded row's earlier captions are not in the corpus.
+    (s.d.posts as any).recentCaptions = async (_r: string, _l: number, _w: boolean, ex: string | null = null) => { asked.push(ex); return ex ? [] : [`${caption}\n\n#космос #марс #наука`]; };
+    (s.d as any).pool = { query: async (sql: string) => {
+      if (/FROM data_items d JOIN data_schemas s/.test(sql)) return { rows: [{ key: 'facts', id: '7', legacy_ref: null }] };
+      if (/SELECT reuse_policy->>'kind'/.test(sql)) return { rows: [{ kind }] };
+      return { rows: [] };
+    } };
+    return s;
+  };
+  const input = { resourceRef: 'instagram:ig1', spec: spec({ caption, library_ref: 'data://facts/7' }), mode: 'live' as const };
+  const cycle: any = await publishPlatformNow(mk('cycle').d, input);
+  assert.equal(cycle.ok, true, JSON.stringify(cycle));
+  assert.deepEqual(asked, ['data://facts/7']);
+  asked.length = 0;
+  assert.equal(((await publishPlatformNow(mk('never').d, input)) as any).error, 'too_similar');
+  assert.deepEqual(asked, [null]);
+});
+
 test('stats collector: per-post Meta metrics and the daily rollup; errors never throw', async () => {
   const metrics: any[] = [];
   const daily: any[] = [];

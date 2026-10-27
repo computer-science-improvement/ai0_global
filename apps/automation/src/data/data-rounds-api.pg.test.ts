@@ -113,6 +113,25 @@ test('rounds view: when the last row is posted the round rolls — round 2 with 
   assert.equal((await stateOn(schema, R1))?.done, 1, 'a repeat in round 2 counts');
 });
 
+test('rounds view: the round start is compared in SQL at full precision — a post a fraction of a millisecond before it is not counted in the round (R6)', { skip }, async () => {
+  const { schema, key, ids } = await mk(SEQ, 3);
+  await publish(key, ids[0]);
+  // The post lands at T + 100 µs and round 2 starts at T + 600 µs: a JS Date holds milliseconds only, so a start passed as a
+  // parameter would read as T and count the earlier post as done in the new round.
+  const T = '2026-10-20 10:00:00.000+00';
+  await pool.query(`UPDATE content_ledger SET used_at = $3::timestamptz + interval '100 microseconds' WHERE source_ref = $1 AND resource_ref = $2`, [ref(key, ids[0]), R1, T]);
+  await pool.query(
+    `INSERT INTO data_reuse_rounds AS r (schema_id, resource_ref, round, started_at) VALUES ($1, $2, 2, $3::timestamptz + interval '600 microseconds')
+     ON CONFLICT (schema_id, resource_ref) DO UPDATE SET round = 2, started_at = EXCLUDED.started_at`, [schema.id, R1, T]);
+  const s = await stateOn(schema, R1);
+  assert.equal(s?.round, 2);
+  assert.deepEqual([s?.total, s?.done, s?.open], [3, 0, 3], 'the earlier post is round 1\'s');
+  assert.equal(s?.next, ref(key, ids[2]));
+  // And one just after the start does count.
+  await pool.query(`UPDATE content_ledger SET used_at = $3::timestamptz + interval '700 microseconds' WHERE source_ref = $1 AND resource_ref = $2`, [ref(key, ids[0]), R1, T]);
+  assert.equal((await stateOn(schema, R1))?.done, 1);
+});
+
 test('restart: starts the next round at once; round-1 posts no longer count; a second restart is round 3', { skip }, async () => {
   const { schema, key, ids } = await mk(SEQ, 3);
   await publish(key, ids[2]);

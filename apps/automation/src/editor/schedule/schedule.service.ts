@@ -291,7 +291,7 @@ export class ScheduleService {
    * The executor's series note; a `required` library source with nothing left skips the slot by code and
    * tells the owner (`series_source_empty`, once per series a day).
    */
-  async executorContext(slot: EditorSlot): Promise<{ note: string | null; skip?: string }> {
+  async executorContext(slot: EditorSlot): Promise<{ note: string | null; skip?: string; nextRow?: string | null }> {
     const s = await this.seriesForSlot(slot);
     if (!s) return { note: null };
     const ref = slot.resourceRef ?? `telegram:${slot.channelKey}`;
@@ -304,7 +304,8 @@ export class ScheduleService {
     }
     // Spec 071 FR-005: a series (or pin) on a dataset that goes in order takes the next row of the round.
     const next = await this.nextRowOf(s, ref);
-    return { note: seriesNote(s, seriesSourceLabel, { nextRow: next }) };
+    // `nextRow` also goes back as data: the ladder keeps the row the series is waiting for (spec 071 R3 / R4).
+    return { note: seriesNote(s, seriesSourceLabel, { nextRow: next }), nextRow: next };
   }
 
   /** The next in-order row of the slot's library source on a resource, or null (not a library source, not in order, nothing left, no dep, a read error). */

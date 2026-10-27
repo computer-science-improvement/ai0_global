@@ -82,12 +82,13 @@ async function stateOf(pool: Q, schema: DataSchema, resource: string, order: str
       CROSS JOIN LATERAL (SELECT
           EXISTS (SELECT 1 FROM content_ledger l
                    WHERE l.source_ref IN ('data://' || $2::text || '/' || d.id, d.legacy_ref) AND l.resource_ref = $3
-                     AND l.status IN ('published', 'passed') AND ($4::timestamptz IS NULL OR l.used_at > $4::timestamptz)) AS done,
+                     AND l.status IN ('published', 'passed')
+                     AND COALESCE(l.used_at > (SELECT r.started_at FROM data_reuse_rounds r WHERE r.schema_id = $1 AND r.resource_ref = $3), true)) AS done,
           EXISTS (SELECT 1 FROM content_ledger l
                    WHERE l.source_ref IN ('data://' || $2::text || '/' || d.id, d.legacy_ref) AND l.status = 'error') AS failed,
-          ('data://' || $2::text || '/' || d.id) = ANY ($5::text[]) AS waiting) f
-      WHERE d.schema_id = $1 AND d.status = 'active' AND data_postable($6::jsonb, d.data)`,
-    [schema.id, schema.key, resource, since, held, requires]);
+          ('data://' || $2::text || '/' || d.id) = ANY ($4::text[]) AS waiting) f
+      WHERE d.schema_id = $1 AND d.status = 'active' AND data_postable($5::jsonb, d.data)`,
+    [schema.id, schema.key, resource, held, requires]);
   const r = rows[0];
   return {
     resource_ref: resource,

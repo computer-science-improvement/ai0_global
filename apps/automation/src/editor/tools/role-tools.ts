@@ -199,7 +199,10 @@ export async function checkPublishGuards(d: RoleToolDeps, ctx: ToolContext, spec
   if (steered) return steered;
 
   const rendered = renderTelegram(spec, card);
-  const corpus = ledger ? await d.plans.recentTexts(channelKey) : [];
+  // Spec 071 R2: a row of a dataset that repeats in rounds comes back in round 2 — its own earlier post is not "a recent post"
+  // to be told apart from (else a small dataset stalls on too_similar); other datasets keep the full corpus.
+  const cycleRow = ledger && spec.library_ref && d.pool && await isCycleRef(d.pool, spec.library_ref) ? spec.library_ref : null;
+  const corpus = ledger ? await d.plans.recentTexts(channelKey, null, cycleRow) : [];
   const maxSim = corpus.reduce((m, t) => Math.max(m, similarity(rendered.preview, t)), 0);
   if (maxSim >= SIMILARITY_LIMIT) return { error: 'too_similar', details: `схожість ${maxSim.toFixed(2)} з нещодавнім постом — інший матеріал або кут` };
   const ref = spec.library_ref ?? spec.source?.url ?? null;

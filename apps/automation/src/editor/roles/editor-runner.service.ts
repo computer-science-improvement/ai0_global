@@ -83,7 +83,9 @@ export interface EditorRunnerDeps {
   /** Spec 023 FR-008: the ≤ 1,500-char source catalog for the planner prompt. Optional. */
   catalogSummary?: (card: EditorCard) => Promise<string | null>;
   /** Spec 023 FR-005: a series / pin slot's context for the executor, or a code skip (required source exhausted). */
-  seriesContext?: (slot: EditorSlot) => Promise<{ note: string | null; skip?: string }>;
+  seriesContext?: (slot: EditorSlot) => Promise<{ note: string | null; skip?: string; nextRow?: string | null }>;
+  /** Spec 071 R4: a `library://` alias → its `data://` ref, to compare a post's row with the series' next row (absent = compare as written). */
+  canonicalRef?: (ref: string) => Promise<string>;
   /** Spec 061 FR-001: the slot pre-flight (ledger, freshness, host block, format) with one idea swap; absent = none. */
   preflight?: Pick<SlotPreflight, 'run'>;
   /** Called after an executor run (spec 020: an idea becomes `used` once all its slots are done). */
@@ -421,6 +423,7 @@ export class EditorRunnerService {
     }
     const series = this.d.seriesContext ? await this.d.seriesContext(slot).catch(() => null) : null;
     if (series?.skip) return this.skipByCode(slot, series.skip);
+    const callerNote = note ?? null;
     note = [note, series?.note].filter(Boolean).join('\n') || null;
     if ((slot.treatment === 'duplicate' || slot.treatment === 'adapt') && this.d.derived) return this.runDerived(slot, card, ctx);
     // Spec 061 FR-001: what code knows (spent / stale / blocked source, missing hosting) is checked before the writer is paid.
@@ -452,7 +455,7 @@ export class EditorRunnerService {
     const first = await attempt(slot, note ?? null, scan, probe);
     await this.d.plans.updateSlot(slot.id, { runId: first.runId });
     // Spec 037 FR-010: a post the critic rejected or that failed lint / a guard climbs the fallback ladder.
-    const res = await this.fallback(slot, card, ctx, { note: note ?? null, scan, platform: target?.platform ?? 'telegram' }, first, probe, attempt);
+    const res = await this.fallback(slot, card, ctx, { note: callerNote, seriesNote: series?.note ?? null, nextRow: series?.nextRow ?? null, scan, platform: target?.platform ?? 'telegram' }, first, probe, attempt);
 
     const after = await this.d.plans.getSlot(slot.id);
     if (after && after.status === 'running') {
@@ -502,7 +505,8 @@ export class EditorRunnerService {
    * Not for promo / reserved slots (their post is fixed) or derived slots (runDerived, their own lint-twice rule).
    */
   private async fallback(
-    slot: EditorSlot, card: EditorCard, ctx: RunAgentContext | null, o: { note: string | null; scan: LiveScan | null; platform: string },
+    slot: EditorSlot, card: EditorCard, ctx: RunAgentContext | null,
+    o: { note: string | null; seriesNote?: string | null; nextRow?: string | null; scan: LiveScan | null; platform: string },
     first: AgentLoopResult, probe: PublishProbe, attempt: Attempt,
   ): Promise<AgentLoopResult> {
     if (this.d.ladder?.enabled === false || slot.promo || slot.kind === 'reserved') return first;
@@ -512,11 +516,30 @@ export class EditorRunnerService {
 
     // Spec 053 FR-007: the trace keeps the slot's earlier attempts (the retry), so critic passes add up across them.
     const steps: FallbackStepRecord[] = [...(slot.fallback?.steps ?? []), stepRecord('initial', slot.format, this.now(), after, failure, first)];
+    // Spec 071 R3: the caller's note and the series note travel apart. A row put aside changes what the series waits for,
+    // so the series note is built again before the next step (and a series that now has nothing left ends the ladder).
+    let series = { note: o.seriesNote ?? null, nextRow: o.nextRow ?? null };
+    let seriesSkip = null as string | null;
+    const afterPass = async (passed: boolean) => {
+      if (!passed || !this.d.seriesContext) return;
+      const s = await this.d.seriesContext(slot).catch(() => null);
+      if (!s) return;
+      if (s.skip) seriesSkip = s.skip;
+      else series = { note: s.note, nextRow: s.nextRow ?? null };
+    };
+    // Spec 071 R4: the series takes the next row and the publish guard accepts only it, so a failure that does not put that
+    // row aside (similarity, lint, a fixable revise) is fixed on the same row, not answered with «take other material».
+    const keepsRow = async (f: SlotFailure, step: LadderStep): Promise<boolean> => {
+      if (!series.nextRow || !f.libraryRef || shouldPassRow(f, step)) return false;
+      const canon = this.d.canonicalRef ?? (async (r: string) => r);
+      return (await canon(f.libraryRef).catch(() => f.libraryRef!)) === series.nextRow;
+    };
     // Spec 063 FR-002: a fixable revise keeps its source; only a reject (or a low grounding, a wrong topic) bans it.
-    const avoid: string[] = failure.sourceUrl && !failure.fixable ? [failure.sourceUrl] : [];
-    await this.passFailedRow(slot, failure, 'initial');
+    let keep = await keepsRow(failure, 'initial');
+    const avoid: string[] = failure.sourceUrl && !failure.fixable && !keep ? [failure.sourceUrl] : [];
+    await afterPass(await this.passFailedRow(slot, failure, 'initial'));
     const live = slot.topicMode === 'live' && !!slot.liveSpec;
-    const plan = ladderPlan({ format: slot.format, allowed: EditorRunnerService.allowedFormats(card, o.platform), evergreen: !!this.d.fallbackEvergreen, live, failure: failure.kind, fixable: !!failure.fixable });
+    const plan = ladderPlan({ format: slot.format, allowed: EditorRunnerService.allowedFormats(card, o.platform), evergreen: !!this.d.fallbackEvergreen, live, failure: failure.kind, fixable: !!failure.fixable || keep });
     let ran = 0;
     const agent = EditorRunnerService.agentBudget(ctx);
     const maxLate = this.d.ladder?.maxLateMs ?? LADDER_MAX_LATE_MS;
@@ -536,6 +559,7 @@ export class EditorRunnerService {
         break;
       }
       // Budget: a run that hit a cap, or the caps on the usage ledger (executor + critic spend so far today).
+      if (seriesSkip) { final = { outcome: 'skipped', code: 'series_skip', step: last, reason: seriesSkip }; break; }
       if (res.status === 'budget_exceeded') { final = { outcome: 'skipped', code: 'budget', step: last, reason: res.error ?? 'budget_exceeded' }; break; }
       if (this.now().getTime() - slot.scheduledAt.getTime() > maxLate) {
         final = { outcome: 'skipped', code: 'too_late', step: last, reason: `more than ${Math.round(maxLate / 60_000)} min after the slot time` };
@@ -544,6 +568,11 @@ export class EditorRunnerService {
       if (this.d.budget) {
         const b = await this.d.budget(card, agent).catch(() => ({ ok: true as const }));
         if (!b.ok) { final = { outcome: 'skipped', code: 'budget', step: last, reason: b.reason }; break; }
+      }
+      // The series waits for this very row: another candidate would be refused by the order guard.
+      if (st.step === 'next_candidate' && keep) {
+        steps.push(skipped(st.step, st.format, 'no_candidate', 'the series takes this row next — no other material'));
+        continue;
       }
       // A live slot takes the next fresh item: the code re-reads its feeds without the items that already failed.
       let scan = o.scan;
@@ -565,7 +594,7 @@ export class EditorRunnerService {
       last = st.step;
       const r = st.step === 'evergreen'
         ? await this.d.fallbackEvergreen!({ slot: stepSlot, card, failure, steps: [...steps], run: (e) => attempt(e.slot, e.note, null, p) }).catch(() => null)
-        : await attempt(stepSlot, [o.note, ladderNote(st.step, { failure, format: st.format, original: slot.format, avoid, live })].filter(Boolean).join('\n'), scan, p);
+        : await attempt(stepSlot, [o.note, series.note, ladderNote(st.step, { failure, format: st.format, original: slot.format, avoid, live })].filter(Boolean).join('\n'), scan, p);
       if (!r) { steps.push(skipped(st.step, st.format, 'unavailable', 'no evergreen post today')); continue; }
       ran++;
       res = r;
@@ -586,14 +615,15 @@ export class EditorRunnerService {
         break;
       }
       failure = f;
+      keep = await keepsRow(f, st.step);
       // The source of a failed revise_source step is out too (it had its chance); a fixable revise elsewhere keeps its source.
-      if (f.sourceUrl && (!f.fixable || st.step === 'revise_source') && !avoid.includes(f.sourceUrl)) avoid.push(f.sourceUrl);
+      if (f.sourceUrl && (!f.fixable || st.step === 'revise_source') && !keep && !avoid.includes(f.sourceUrl)) avoid.push(f.sourceUrl);
       if (f.kind === 'critic_reject' && !f.fixable && f.sourceUrl) rejectedSources.add(f.sourceUrl);
-      await this.passFailedRow(slot, f, st.step);
+      await afterPass(await this.passFailedRow(slot, f, st.step));
     }
     if (failure) {
       final ??= { outcome: 'skipped', code: 'exhausted', step: last, reason: failure.reason };
-      await this.d.plans.updateSlot(slot.id, { status: 'skipped', error: failure.reason.slice(0, 500) });
+      await this.d.plans.updateSlot(slot.id, { status: 'skipped', error: (final.code === 'series_skip' && final.reason ? final.reason : failure.reason).slice(0, 500) });
       if (this.d.deadSource) {
         for (const url of rejectedSources) await this.d.deadSource(slot, url, failure.reason).catch(() => 0);
       }
@@ -603,9 +633,9 @@ export class EditorRunnerService {
   }
 
   /** Spec 071 A2: put the failed post's own library row aside for the round when the failure says the row is the problem. */
-  private async passFailedRow(slot: EditorSlot, f: SlotFailure, step: LadderStep): Promise<void> {
-    if (!this.d.passRow || !f.libraryRef || !shouldPassRow(f, step)) return;
-    await this.d.passRow(slot, f.libraryRef, f.reason).catch(() => false);
+  private async passFailedRow(slot: EditorSlot, f: SlotFailure, step: LadderStep): Promise<boolean> {
+    if (!this.d.passRow || !f.libraryRef || !shouldPassRow(f, step)) return false;
+    return (await this.d.passRow(slot, f.libraryRef, f.reason).catch(() => false)) === true;
   }
 
   /** The Telegram executor run of a slot (`dry`: the owner's dry-run preview, spec 034 FR-012). */

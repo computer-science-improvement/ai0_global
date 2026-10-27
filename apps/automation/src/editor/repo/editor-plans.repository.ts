@@ -740,16 +740,21 @@ export class EditorPlansRepository {
     return this.ledger.used(channelKey, sourceUrl);
   }
 
-  /** Recent texts for the similarity guard; waiting and approved posts count too (spec 031). */
-  async recentTexts(channelKey: string, excludeSlotId: string | null = null): Promise<string[]> {
+  /**
+   * Recent texts for the similarity guard; waiting and approved posts count too (spec 031). `excludeRef` (spec 071 R2): the
+   * earlier posts of that same library row (slots whose `library_ref` canonicalises to it, a legacy alias included) are left out.
+   */
+  async recentTexts(channelKey: string, excludeSlotId: string | null = null, excludeRef: string | null = null): Promise<string[]> {
     const { rows } = await this.pool.query(
       `(SELECT COALESCE(rendered_preview, topic) AS text FROM editor_slots
          WHERE channel_key = $1 AND status IN ('published','shadowed','awaiting_approval','approved')
-           AND ($2::uuid IS NULL OR id <> $2) ORDER BY updated_at DESC LIMIT 60)
+           AND ($2::uuid IS NULL OR id <> $2)
+           AND ($3::text IS NULL OR content_ref_canonical(COALESCE(post_spec->>'library_ref', platform_spec->>'library_ref')) IS DISTINCT FROM content_ref_canonical($3))
+         ORDER BY updated_at DESC LIMIT 60)
        UNION ALL
        (SELECT title AS text FROM published_posts
          WHERE channel_id = $1 AND title IS NOT NULL AND editor_slot_id IS NULL ORDER BY posted_at DESC LIMIT 60)`,
-      [channelKey, excludeSlotId]);
+      [channelKey, excludeSlotId, excludeRef]);
     return rows.map((r) => String(r.text ?? ''));
   }
 
