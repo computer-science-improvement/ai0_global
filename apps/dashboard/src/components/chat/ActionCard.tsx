@@ -17,6 +17,7 @@ import { choiceInput, initialState, parsePayload, type ContentExamplesState } fr
 import { ContentExamplesBody, examplesCardLine } from './ContentExamplesCard';
 import { CompactCard } from '../ui/CompactCard';
 import { resolverItemLines } from '../../lib/align';
+import { followUpInput, followUpLabel, followUpsOf, initialSkip, outcomeBadge, outcomesOf, type FollowUp } from '../../lib/follow-ups';
 
 const KIND_META: Record<string, { label: string; icon: IconName }> = {
   create_agent:         { label: 'Create agent',      icon: 'sparkles' },
@@ -212,6 +213,48 @@ function FixConflictsView({ p }: { p: Record<string, unknown> }) {
   );
 }
 
+/** Spec 069 FR-001: the owner's ticks on a card's follow-ups (unticked keys are skipped at Apply). */
+const FollowUpsContext = createContext<{ skip: string[]; toggle: (key: string) => void; pending: boolean } | null>(null);
+
+/**
+ * Spec 069 FR-001: what runs after the main action of a card — a ticked checklist while the card waits, and each item's
+ * outcome once it is decided (the card stays applied when one of them fails).
+ */
+function FollowUpsView({ action, items }: { action: PendingAction; items: FollowUp[] }) {
+  const ctx = useContext(FollowUpsContext);
+  if (!items.length) return null;
+  const decided = action.status === 'applied';
+  const outcomes = new Map(outcomesOf(action.result).map((o) => [o.key, o]));
+  return (
+    <div style={{ marginTop: 10, display: 'flex', flexDirection: 'column', gap: 6 }}>
+      <span className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>
+        {decided ? 'Then' : 'Then, in this order — untick what you do not want'}
+      </span>
+      <span style={{ display: 'grid', gap: 6 }}>
+        {items.map((it) => {
+          const on = !ctx?.skip.includes(it.key);
+          const badge = outcomeBadge(outcomes.get(it.key));
+          return (
+            <label key={it.key} style={{ display: 'flex', gap: 8, alignItems: 'flex-start', cursor: ctx?.pending ? 'pointer' : 'default', opacity: ctx?.pending && !on ? 0.55 : 1 }}>
+              {!decided && <input type="checkbox" checked={on} disabled={!ctx?.pending} onChange={() => ctx?.toggle(it.key)} style={{ marginTop: 3 }} aria-label={it.summary} />}
+              <span className="text-body-sm" style={{ minWidth: 0, overflowWrap: 'anywhere' }}>
+                <Badge tone="accent">{followUpLabel(it.kind)}</Badge>{' '}
+                {it.summary}
+                {decided && (
+                  <>
+                    {' '}<Badge tone={badge.tone}>{badge.text}</Badge>
+                    {badge.detail && <span className="text-micro" style={{ color: 'var(--color-danger)', display: 'block' }}>{badge.detail}</span>}
+                  </>
+                )}
+              </span>
+            </label>
+          );
+        })}
+      </span>
+    </div>
+  );
+}
+
 function ExamplesResult({ result }: { result: unknown }) {
   const r = obj(result);
   const saved = typeof r.saved === 'number' ? r.saved : null;
@@ -349,11 +392,23 @@ export function ActionCard({ action }: { action: PendingAction }) {
   const [skip, setSkip] = useState<string[]>([]);
   const resolver = a.kind === 'fix_config_conflicts' && Array.isArray(obj(a.payload).items);
   const toggle = (key: string) => setSkip((s) => (s.includes(key) ? s.filter((k) => k !== key) : [...s, key]));
+  // Spec 069 FR-001: follow-ups run after the main action; the owner's ticks go out as input.skip_then (soft ones start unticked).
+  const followUps = useMemo(() => followUpsOf(a.payload), [a.payload]);
+  const [thenSkip, setThenSkip] = useState<string[]>(() => initialSkip(followUps));
+  const toggleThen = (key: string) => setThenSkip((s) => (s.includes(key) ? s.filter((k) => k !== key) : [...s, key]));
+
+  const applyInput = () => {
+    const input = {
+      ...(examples && choices ? choiceInput(examples, choices) : {}),
+      ...(resolver && skip.length ? { skip } : {}),
+      ...(followUpInput(followUps, thenSkip) ?? {}),
+    };
+    return Object.keys(input).length ? { input } : {};
+  };
 
   const run = (decision: 'apply' | 'discard', onDone: () => void) => decide.mutate({
     id: a.id, decision,
-    ...(decision === 'apply' && examples && choices ? { input: choiceInput(examples, choices) } : {}),
-    ...(decision === 'apply' && resolver && skip.length ? { input: { skip } } : {}),
+    ...(decision === 'apply' ? applyInput() : {}),
   }, {
     onSuccess: (r) => {
       setLocal(r.action);
@@ -368,6 +423,8 @@ export function ActionCard({ action }: { action: PendingAction }) {
   const examplesLine = examples ? examplesCardLine(examples, pending) : null;
   // Spec 062 FR-008: the resolver card's bubble lists what it will change.
   const resolverLines = resolver ? resolverItemLines(a.payload) : null;
+  // Spec 069: the follow-ups listed in the chat bubble the same way (the dialog has them all, each with a checkbox).
+  const followLines = followUps.length ? { lines: followUps.slice(0, 3).map((f) => f.summary.replace(/\s+/g, ' ')), more: Math.max(0, followUps.length - 3) } : null;
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 6, maxWidth: 560, minWidth: 0 }}>
@@ -380,7 +437,8 @@ export function ActionCard({ action }: { action: PendingAction }) {
         meta={!pending && a.decidedAt ? <span title={fmtDate(a.decidedAt)}>{fmtRelative(a.decidedAt)}</span> : undefined}
         title={examplesLine ?? undefined}
         body={a.summary || undefined}
-        extra={resolverLines ? <ResolverLines lines={resolverLines.lines} more={resolverLines.more} /> : undefined}
+        extra={resolverLines ? <ResolverLines lines={resolverLines.lines} more={resolverLines.more} />
+          : followLines ? <ResolverLines lines={followLines.lines} more={followLines.more} /> : undefined}
         note={a.status === 'failed' && a.error ? a.error : undefined}
         noteTone="danger"
         dialog={{
@@ -388,8 +446,10 @@ export function ActionCard({ action }: { action: PendingAction }) {
           subtitle: pending ? 'Nothing changes until you apply' : `${a.status}${a.decidedAt ? ` · ${fmtRelative(a.decidedAt)}` : ''}`,
           body: () => (
             <ResolverSkipContext.Provider value={{ skip, toggle, pending }}>
-              <ActionDetails a={a} pending={pending} createdHandle={createdHandle} error={decide.error}
-                examples={examples && choices ? <ContentExamplesBody payload={examples} state={choices} onChange={setChoices} pending={pending} /> : null} />
+              <FollowUpsContext.Provider value={{ skip: thenSkip, toggle: toggleThen, pending }}>
+                <ActionDetails a={a} pending={pending} createdHandle={createdHandle} error={decide.error}
+                  examples={examples && choices ? <ContentExamplesBody payload={examples} state={choices} onChange={setChoices} pending={pending} /> : null} />
+              </FollowUpsContext.Provider>
             </ResolverSkipContext.Provider>
           ),
           actions: pending ? (close) => (
@@ -458,6 +518,7 @@ function ActionDetails({ a, pending, createdHandle, error, examples }: {
       {examples}
       {a.kind === 'content_examples' && a.status === 'applied' && <ExamplesResult result={a.result} />}
       {(a.kind === 'import_list' || a.kind === 'resync_import') && a.status === 'applied' && <ImportResultView result={a.result} />}
+      <FollowUpsView action={a} items={followUpsOf(a.payload)} />
 
       {a.status === 'failed' && a.error && (
         <div className="callout-danger" style={{ marginTop: 10 }}><span className="text-micro" style={{ overflowWrap: 'anywhere' }}>{a.error}</span></div>

@@ -9,7 +9,9 @@ import type { PendingActionsService } from './pending-actions';
 import { ruleOverlap } from './mentions';
 import { isProtectedSkill } from '../skills/skill-library';
 import { lintSkill, SKILL_ROLES } from './skill-lint';
-import { skillWarnings } from './skill-warnings';
+import { originRefusal, skillWarnings, sourceRefusal } from './skill-warnings';
+import { conflictFollowUps, conflictsForModel, conflictsLine } from './skill-conflict-followups';
+import type { AgentsRepository } from './agents.repository';
 import type { SkillStore } from './skill-store';
 import type { ConfigConflictsService } from '../rules/config-conflicts.service';
 import { CHANNEL_SKILL_ROLES, defaultAppliesTo } from '../skills/skill-defaults';
@@ -47,8 +49,10 @@ export function ruleSources(rule: string, recent: string[]): Array<{ text: strin
 export interface AgentChatToolDeps {
   pool:    Pick<Pool, 'query'>;
   memory:  Pick<EditorMemoryRepository, 'add'>;
-  skills:  Pick<SkillStore, 'findShared'>;
+  skills:  Pick<SkillStore, 'findShared'> & Partial<Pick<SkillStore, 'listForAgent'>>;
   actions: Pick<PendingActionsService, 'propose'>;
+  /** Spec 069 FR-003: the agent's family (the skills a new skill is compared with). Without it no conflicts are looked for. */
+  agents?: Partial<Pick<AgentsRepository, 'children' | 'get'>>;
   /** Spec 040 FR-011: rules-vs-config, run when a rule is stored. */
   conflicts?: Pick<ConfigConflictsService, 'forAgent'>;
   /** Spec 047 FR-004: the agent handles of the network (a rule naming an unknown @agent is refused). */
@@ -238,7 +242,7 @@ export function buildAgentChatTools(d: AgentChatToolDeps): EditorTool[] {
 
   const editMySkill = defineTool({
     name: 'edit_my_skill',
-    description: 'Запропонувати власнику новий скіл або зміну свого скіла (повний текст). Застосується після його кліку Apply. Якщо результат має warnings (мова скіла проти lint каналу, датовані факти) — перекажи їх власнику.',
+    description: 'Запропонувати власнику новий скіл або зміну свого скіла (повний текст). Застосується після його кліку Apply. Якщо результат має warnings (мова скіла проти lint каналу, датовані факти) — перекажи їх власнику. Якщо є conflicts — скіли, яким суперечить цей, стоять у картці наступними кроками (відмічені вимкнуться разом із Apply): назви їх власнику.',
     kind: 'act', roles: ['composer'],
     input: z.object({
       name:       z.string().min(3).max(48),
@@ -256,10 +260,21 @@ export function buildAgentChatTools(d: AgentChatToolDeps): EditorTool[] {
       const lint = lintSkill({ name: i.name, description: i.description, appliesTo, body: i.body, inline: i.inline });
       if (!lint.ok) return { error: 'skill_lint_failed', details: lint.errors };
       if (isProtectedSkill(i.name) || (await d.skills.findShared(i.name))?.safety) return { error: 'safety_skill' };
-      const card = await proposeCard(d, ctx, 'write_skill', { ...i, applies_to: appliesTo, handle: a.handle }, `Skill "${i.name}" for @${a.handle}: ${i.description}`, a.id);
+      // Spec 069 FR-002: where the posts come from is an import card, never a skill.
+      const wrongPlace = sourceRefusal(i.body);
+      if (wrongPlace) return wrongPlace;
+      // Spec 069 FR-007: nor a skill that calls read material «original» (the lint's `origin_mismatch` would reject the post).
+      const wrongOrigin = originRefusal(i.body);
+      if (wrongOrigin) return wrongOrigin;
+      // Spec 069 FR-003: the skills this one contradicts (a source it rules out that another skill uses, or the reverse) ride on the card.
+      const found = await conflictFollowUps(d, a, { name: i.name, description: i.description, body: i.body, appliesTo });
+      const card = await proposeCard(d, ctx, 'write_skill',
+        { ...i, applies_to: appliesTo, handle: a.handle, ...(found.then.length ? { then: found.then } : {}) },
+        `Skill "${i.name}" for @${a.handle}: ${i.description}${conflictsLine(found.then)}`, a.id);
       // Spec 062 FR-007: the body against the channel card — a language its lint rejects, dated facts. Warnings; the card still goes.
       const warnings = skillWarnings(i.body, ctx.extras?.card as { language?: string | null } | undefined);
-      return warnings.length ? { ...card, warnings, warnings_note: 'Картку надіслано, але скажи власнику про ці попередження у відповіді — він вирішує, застосовувати чи ні.' } : card;
+      const out = { ...card, ...conflictsForModel(found) };
+      return warnings.length ? { ...out, warnings, warnings_note: 'Картку надіслано, але скажи власнику про ці попередження у відповіді — він вирішує, застосовувати чи ні.' } : out;
     },
   });
 

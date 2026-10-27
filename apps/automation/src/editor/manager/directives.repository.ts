@@ -1,4 +1,5 @@
 import type { Pool } from 'pg';
+import { filedSince, negativePostsDays, notFollowedGroups, openEscalations } from './escalation';
 
 export const DIRECTIVE_KINDS = [
   'advice', 'task', 'format_shift', 'frequency', 'repost', 'cross_promo', 'pause_series', 'experiment', 'pause_resource', 'strategy',
@@ -87,6 +88,13 @@ type Q = Pick<Pool, 'query'>;
 /** agent_directives, manager_reviews and agent_memory (053). */
 export class DirectivesRepository {
   constructor(private readonly pool: Q) {}
+
+  // ── spec 069 FR-005: the escalation triggers (the SQL lives in escalation.ts) ──
+  notFollowedGroups(days?: number, min?: number) { return notFollowedGroups(this.pool, days, min); }
+  negativePostsDays(fromDay: string) { return negativePostsDays(this.pool, fromDay); }
+  filedSince(agentId: string, since: Date) { return filedSince(this.pool, agentId, since); }
+  /** Spec 069 A5: the one definition of an open escalation, shared by the digest, the review check and `escalate()`. */
+  openEscalations(now: Date) { return openEscalations(this.pool, now); }
 
   async insert(d: {
     fromAgentId: string | null; toAgentId: string; kind: DirectiveKind; binding?: DirectiveBinding; structural: boolean; body: string; params: Record<string, unknown>;
@@ -428,6 +436,18 @@ export class DirectivesRepository {
     await this.pool.query(
       `INSERT INTO agent_memory (agent_id, kind, text, evidence, created_by) VALUES ($1, $2, $3, $4, $5)`,
       [agentId, kind, text.slice(0, 400), evidence == null ? null : JSON.stringify(evidence), by]);
+  }
+
+  /**
+   * Spec 069 FR-005: one memory line per escalation subject. A repeated escalation (the run grew, a new directive was not
+   * followed) retires the system line of the same subject before it writes the new one, so the 30-line window of the
+   * manager's prompt does not fill with copies. Returns how many lines were retired.
+   */
+  async retireEscalationMemory(agentId: string, subject: string): Promise<number> {
+    const r = await this.pool.query(
+      `UPDATE agent_memory SET active = false
+        WHERE agent_id = $1 AND created_by = 'system' AND active AND evidence->>'escalation' = $2`, [agentId, subject]);
+    return r.rowCount ?? 0;
   }
 
   async memory(agentId: string, limit = 30): Promise<Array<{ id: number; kind: string; text: string; createdBy: string; createdAt: Date }>> {

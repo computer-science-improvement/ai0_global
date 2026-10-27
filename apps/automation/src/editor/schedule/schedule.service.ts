@@ -42,6 +42,9 @@ export const isFail = (x: unknown): x is Fail => !!x && typeof x === 'object' &&
 
 export interface ScheduleScope { agent: Agent; card: EditorCard; net: NetworkCtx }
 
+/** Spec 069 FR-002: datasets (and their entities) that exist only after the card's own import has run. */
+export interface PendingTables { pendingTables?: string[]; pendingEntities?: Record<string, string> }
+
 export interface ScheduleServiceDeps {
   pool:     Pick<Pool, 'query'>;
   rules:    ScheduleRepository;
@@ -499,10 +502,24 @@ export class ScheduleService {
     return { rule: i, errors, warnings: [...new Set(warnings)] };
   }
 
-  private async sourceProblems(sc: ScheduleScope, src: SeriesSource | null): Promise<string[]> {
+  /**
+   * Spec 069 FR-002: the source catalog, with the datasets the same card still creates (an `import_list` bundle imports the
+   * dataset first and binds the series to it after) counted as existing. A dataset the library already has keeps its entity.
+   */
+  private async catalogFor(sc: ScheduleScope, pending?: PendingTables): Promise<SeriesSourceCatalog | null> {
+    const cat = this.d.sourceCatalog ? await this.d.sourceCatalog(sc.card).catch(() => null) : null;
+    if (!cat || !pending?.pendingTables?.length) return cat;
+    const fresh = pending.pendingTables.filter((t) => !cat.tables.includes(t));
+    return {
+      ...cat, tables: [...cat.tables, ...fresh],
+      entities: { ...Object.fromEntries(fresh.flatMap((t) => (pending.pendingEntities?.[t] ? [[t, pending.pendingEntities[t]]] : []))), ...(cat.entities ?? {}) },
+    };
+  }
+
+  private async sourceProblems(sc: ScheduleScope, src: SeriesSource | null, pending?: PendingTables): Promise<string[]> {
     if (!src) return [];
     if (src.kind === 'api' && !(API_SOURCE_NAMES as readonly string[]).includes(src.source)) return [`no API source ${src.source} (available: ${API_SOURCE_NAMES.join(', ')})`];
-    const cat = this.d.sourceCatalog ? await this.d.sourceCatalog(sc.card).catch(() => null) : null;
+    const cat = await this.catalogFor(sc, pending);
     if (!cat) return [];
     if (src.kind === 'library' && !cat.tables.includes(src.table)) return [`no dataset ${src.table} in the library`];
     if (src.kind === 'feed' && !cat.feeds.includes(src.ref)) return [`no feed ${src.ref} on the channel card`];
@@ -575,7 +592,7 @@ export class ScheduleService {
   }
 
   /** English problems of an owner's series in the next body (the playbook validator is the safety net). */
-  private async seriesProblems(sc: ScheduleScope, body: Playbook, name: string | null): Promise<string[]> {
+  private async seriesProblems(sc: ScheduleScope, body: Playbook, name: string | null, pending?: PendingTables): Promise<string[]> {
     const errors: string[] = [];
     const s = name ? body.series.find((x) => x.name === name) : null;
     if (s) {
@@ -586,23 +603,23 @@ export class ScheduleService {
         if (!allowed.includes(s.format)) errors.push(`format ${s.format} is not available on ${r.ref} (available: ${allowed.join(', ')})`);
         if (!body.platforms.some((p) => p.resource_ref === s.resource_ref)) errors.push(`the playbook has no section for ${s.resource_ref}`);
       }
-      errors.push(...await this.sourceProblems(sc, s.source ?? null));
+      errors.push(...await this.sourceProblems(sc, s.source ?? null, pending));
     }
     if (errors.length) return errors;
-    const cat = this.d.sourceCatalog ? await this.d.sourceCatalog(sc.card).catch(() => null) : null;
+    const cat = await this.catalogFor(sc, pending);
     // Owner precedence: quiet hours are not enforced for the owner's own series.
     return validatePlaybook(body, sc.net.resources, sc.net.telegramFormats, { sources: cat });
   }
 
   /** Validate an owner series change; returns the next body and the human diff. */
-  async prepareSeriesChange(sc: ScheduleScope, op: SeriesOp, fields: unknown): Promise<{ body: Playbook; diff: string; before: string | null; fields: SeriesFields } | Fail> {
+  async prepareSeriesChange(sc: ScheduleScope, op: SeriesOp, fields: unknown, o: PendingTables = {}): Promise<{ body: Playbook; diff: string; before: string | null; fields: SeriesFields } | Fail> {
     const f = SeriesFields.safeParse(fields ?? {});
     if (!f.success) return { error: 'invalid_series', details: f.error.issues.map((i) => `${i.path.join('.')}: ${i.message}`), status: 400 };
     const pb = this.playbookOf(sc);
     if (!pb) return { error: 'no_playbook', details: `@${sc.agent.handle} has no active playbook yet`, status: 409 };
     const r = applySeriesOp(pb, op, f.data);
     if ('error' in r) return { ...r, status: r.error === 'series_not_found' ? 404 : 400 };
-    const errors = await this.seriesProblems(sc, r.body, r.after?.name ?? null);
+    const errors = await this.seriesProblems(sc, r.body, r.after?.name ?? null, o);
     if (errors.length) return { error: 'series_invalid', details: errors, status: 400 };
     return { body: r.body, diff: seriesDiff(r.before, r.after), before: seriesKey(r.before), fields: f.data };
   }

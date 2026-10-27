@@ -21,7 +21,7 @@ export class OwnerBotWorker implements OnModuleInit, OnModuleDestroy {
 
   onModuleInit(): void {
     setOwnerBotHandler(this.infra.bot);
-    setInboxCardSink((id, note) => this.infra.bot.inboxNote(id, note));
+    setInboxCardSink((id, note, o) => this.infra.bot.inboxNote(id, note, o));
     setInboxSupersedeSink(async (ids) => { await this.infra.bot.supersedeCards(ids); });
   }
 

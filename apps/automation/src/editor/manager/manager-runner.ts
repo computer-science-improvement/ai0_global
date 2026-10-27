@@ -11,13 +11,18 @@ import type { OwnerInbox } from '../agents/owner-inbox';
 import { localDate, localTimeLabel, zonedToUtc } from '../roles/time';
 import type { Directive, DirectivesRepository } from './directives.repository';
 import { reviewSignature, type KpiDigest, type KpiDigestService } from './kpi-digest.service';
-import type { ScopeKpis } from './kpi-math';
+import { ESCALATION_DAYS, ESCALATION_POSTS_LOOKBACK_DAYS, escalationKeys, notFollowedNote, postsNote, postsRuns, type EscalationNote } from './escalation';
+import { dayBefore, type ScopeKpis } from './kpi-math';
 import { DirectiveExecution, PROMO_KINDS } from './executors';
 import { isQualityMetric, qualityMetricValue } from './quality-digest';
 import { requiredQualityRefs } from './directive-tools';
 
-/** Spec 046 FR-004: two looks a day (the skip rule makes the second one cheap when nothing changed); was four. */
-export const DEFAULT_MANAGER_TIMES = ['09:00', '19:00'];
+/**
+ * Spec 046 FR-004: two looks a day (the skip rule makes the second one cheap when nothing changed); was four.
+ * Spec 069 FR-005: one look a day. Review 4: the evening run mostly re-read the morning's digest, and the escalations
+ * (hourly, by code) no longer wait for a look to be raised.
+ */
+export const DEFAULT_MANAGER_TIMES = ['09:00'];
 /** Spec 046 FR-004: the manager's own daily cap when the owner set none (review 2: the Opus manager spent $1.67 a day). */
 export const DEFAULT_MANAGER_DAILY_USD = 0.6;
 
@@ -52,7 +57,8 @@ export interface ManagerRunnerDeps {
   agents:   Pick<AgentsRepository, 'findTop' | 'get' | 'list'>;
   repo:     DirectivesRepository;
   digest:   Pick<KpiDigestService, 'build' | 'render' | 'snapshot'>;
-  inbox:    Pick<OwnerInbox, 'post'>;
+  /** `postOnce` (spec 069 FR-005) is what the escalations use; without it `escalate()` does nothing. */
+  inbox:    Pick<OwnerInbox, 'post'> & Partial<Pick<OwnerInbox, 'postOnce'>>;
   env:      (key: string) => string | undefined;
   /** The owner's global default model (spec 035, app_settings `ai.default_model`); cached by ModelDefaultsStore. */
   defaultModel?: (ws?: Workspace) => Promise<string | null>;
@@ -96,6 +102,14 @@ export const NOT_FOLLOWED_LINES = [
   'Серія на паузі (signals: series_paused у дайджесті) зупинена кодом після кількох пропусків поспіль: не радь планувати її знову — це рішення власника (Відновити). Критик, що відхиляє 3 пости поспіль (signals: critic_streak), і dark_day — привід для voice_fix / format_mix, навіть коли відкрита директива вже є.',
 ];
 
+/**
+ * Spec 069 FR-005: what the manager does with the digest's `escalations` (open «ескалація власнику» notes the code raised).
+ * `submit_review` refuses a review that leaves one unanswered.
+ */
+export const ESCALATION_LINES = [
+  'Блок escalations у дайджесті — ескалації, які код уже підняв власнику (поради не виконано двічі за 14 днів; кількість постів нижча за норму три дні поспіль без директив). Це не нова порада: відповідай на кожну в submit_review.escalations — або directive_id (директива цьому агенту, подана в цьому прогоні й названа в directive_ids), або decline_reason (≥ 20 символів, чому директива зараз не потрібна). Рядки відкритих директив із «не виконано — ескалюй» не дублюй порадою.',
+];
+
 /** System prompt of the scheduled manager run. */
 export function managerSystemPrompt(o: { agent: Agent; now: Date; digest: string; memory: string; skills: { inline: string; listed: string }; open?: KpiDigest['directives']['open']; qualityRefs?: string[] }): string {
   const tz = 'Europe/Kyiv';
@@ -107,6 +121,7 @@ export function managerSystemPrompt(o: { agent: Agent; now: Date; digest: string
     'Кожну подаєш з binding: порада (advice, за замовчуванням — оркестратор може відхилити) або директива (directive, обовʼязкова — лише при anomaly чи ескалації; структурні — завжди директива).',
     // Spec 060 FR-005: advice nobody followed is not "in force"; a series stopped by code is not advised again.
     ...NOT_FOLLOWED_LINES,
+    ...ESCALATION_LINES,
     '',
     `Зараз ${localDate(o.now, tz)} ${localTimeLabel(o.now, tz)} (Київ).`,
     '',
@@ -141,7 +156,8 @@ export function commitmentsText(list: Array<Pick<Directive, 'kind' | 'binding' |
 export function openDirectivesText(open: KpiDigest['directives']['open']): string {
   if (!open.length) return '- немає';
   // Spec 060 FR-005: whether the advice was followed (adherence) and its age, so a not_followed one is not mistaken for in force.
-  return open.map((x) => `- @${x.to} · ${x.kind}${x.binding ? ` (${x.binding})` : ''} · ${x.status}${x.adherence ? ` · виконання ${x.adherence}` : ''}${x.ageDays != null ? ` · ${x.ageDays} дн.` : ''} · перевірка ${x.reviewAt?.slice(0, 10) ?? '—'} · id ${x.id}`).join('\n');
+  // Spec 069 FR-005: an evaluated row stays in the list only because nobody followed it — it is for escalating, not for repeating.
+  return open.map((x) => `- @${x.to} · ${x.kind}${x.binding ? ` (${x.binding})` : ''} · ${x.status}${x.adherence ? ` · виконання ${x.adherence}` : ''}${x.status === 'evaluated' && x.adherence === 'not_followed' ? ' · не виконано — ескалюй, не дублюй як пораду' : ''}${x.ageDays != null ? ` · ${x.ageDays} дн.` : ''} · перевірка ${x.reviewAt?.slice(0, 10) ?? '—'} · id ${x.id}`).join('\n');
 }
 
 /**
@@ -434,7 +450,7 @@ export class ManagerRunner {
   }
 
   /** Owner-card timeouts, unresolved expiry, executor retries, series resumes, verification, effect evaluation (hourly). */
-  async housekeeping(): Promise<{ timedOut: number; expired: number; evaluated: number; executed: number; failed: number; resumed: number; verified: number; autoApplied: number; ignored: number; contestTimedOut: number }> {
+  async housekeeping(): Promise<{ timedOut: number; expired: number; evaluated: number; executed: number; failed: number; resumed: number; verified: number; autoApplied: number; ignored: number; contestTimedOut: number; escalated: number }> {
     for (const a of await this.d.agents.list()) this.handleCache.set(a.id, a.handle);
     let timedOut = 0;
     const hours = this.d.timeoutHours ?? 12;
@@ -456,11 +472,56 @@ export class ManagerRunner {
     const failed = retried.filter((x) => x.status === 'failed').length;
     const resumed = await this.exec.resumeSeries();
     const verified = await this.exec.verifyApplied();
+    // Spec 069 FR-005: advice nobody followed and posts below the norm are raised to the owner by code, after the verification above.
+    const escalated = await this.escalate().catch(() => 0);
     // Spec 025 FR-014/FR-015: experiment quotas past their deadline, tasks never reported done.
     const quotasFailed = await this.exec.closeQuotas();
     const overdue = await this.expireOverdueTasks();
     const evaluated = await this.evaluate();
-    return { timedOut, expired: expired + overdue, evaluated, executed: executed.length, failed: failed + quotasFailed, resumed, verified, autoApplied, ignored, contestTimedOut };
+    return { timedOut, expired: expired + overdue, evaluated, executed: executed.length, failed: failed + quotasFailed, resumed, verified, autoApplied, ignored, contestTimedOut, escalated };
+  }
+
+  /**
+   * Spec 069 FR-005: the manager escalates by code (no LLM). Trigger 1: two or more pieces of advice / directives to one agent
+   * and kind that nobody followed within 14 days. Trigger 2: a negative posts anomaly on 3 or more days in a row for an
+   * agent that got no directive in that span. Each becomes one gated Inbox note (`postOnce`: the same causes say nothing again)
+   * and one line in the manager's memory. Returns the number of notes posted.
+   */
+  async escalate(): Promise<number> {
+    const { inbox, repo } = this.d;
+    if (!inbox.postOnce || !repo.notFollowedGroups || !repo.negativePostsDays || !repo.filedSince) return 0;
+    const now = this.now();
+    const day = localDate(now, 'Europe/Kyiv');
+    const m = await this.manager();
+    const notes: EscalationNote[] = (await repo.notFollowedGroups(ESCALATION_DAYS)).map((g) => notFollowedNote(g, day));
+    // The snapshots are read far enough back to find the true first day of a run (a posts anomaly lasts up to ~35 days), so
+    // `posts_from` stays put for the whole run and "no directive filed in that span" is judged on the real span.
+    const rows = await repo.negativePostsDays(dayBefore(day, ESCALATION_POSTS_LOOKBACK_DAYS));
+    for (const r of postsRuns(rows, day)) {
+      // "No directive filed in that span": the agent was told something since the run began (a shadow directive does not count).
+      if (await repo.filedSince(r.agentId, zonedToUtc(r.firstDay, '00:00', 'Europe/Kyiv')) === 0) notes.push(postsNote(r, day));
+    }
+    // Spec 069 A5: an escalation that is open (unread) and says the same thing is not posted again as «still going»; the
+    // manager already has to answer it in every review. A changed one (a new directive, a longer run) goes through the gate.
+    const open = new Map<string, string>();
+    try {
+      for (const e of await repo.openEscalations?.(now) ?? []) open.set(e.subject, escalationKeys([e])[0]);
+    } catch { /* the gate in postOnce still stops a repeat */ }
+    let n = 0;
+    for (const note of notes) {
+      const subject = note.item.gate?.subject;
+      if (subject && open.get(subject) === note.key) continue;
+      if (await inbox.postOnce(note.item) == null) continue;
+      n++;
+      if (m) {
+        // One memory line per escalation subject: the new one replaces the old.
+        try {
+          if (subject) await repo.retireEscalationMemory?.(m.id, subject);
+          await repo.addMemory(m.id, 'avoid', note.memory.text, note.memory.evidence, 'system');
+        } catch { /* memory is best-effort */ }
+      }
+    }
+    return n;
   }
 
   /** Spec 025 FR-015: an accepted task not reported done by its review date expires (binding: `directive_ignored`, action). */

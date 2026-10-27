@@ -552,6 +552,34 @@ Each action is logged on the card (the outcome line) and on the Inbox note (an "
 - Mute does not stop the reminders: the mute lasts 7 days; after that the next health check sends them again.
 - Tests: `series-pause/series-pause.060.test.ts` and `.pg.test.ts` (counter, breaker, planner view), `note-actions.060.test.ts` and `pause-actions.060.pg.test.ts` (card buttons, actions, endpoint, mute), `agents/note-gate.060.test.ts` and `owner-notes.060.pg.test.ts` (repeat rule, merge, supersede), `manager/manager-060.test.ts`; spec 068: `series-pause/skip-cause.068.test.ts` (the cause, the classifier and the replay of the review-4 export from `series-pause/fixtures/review4-skips.ts`), `schedule/empty-day.068.test.ts` and `.pg.test.ts` (the empty day, placeholders, replan, pauses lowering the minimum).
 
+**Less noise from owner notes (spec 069)**
+
+Spec 060 made a note say it once; spec 069 closes the three ways it still came back. Nothing to enable, no migration, no new setting.
+
+- **A cause or number you have seen is not news.** The gate compares a note with everything its subject said inside the repeat window (`OWNER_NOTE_REPEAT_DAYS`), not with the last note: `8 → 6 → 8` and `critic → lint → critic` stay quiet. A number is news only when it grew by a whole step over the largest one said in the window; the step is `EDITOR_CRITIC_REJECT_STREAK` (default 3), a gate may set its own (the manager's «days» uses 3). Everything else is a repeat and comes once per window as «досі … N днів».
+- **One live card per problem, edited in place.** A newer note of the same subject does not send a second message: the open card's Telegram message is edited to the new text (same message, same buttons, `oc:<card>:<button>` taps keep working). A new message is sent instead when the new note is critical, when the old card was sent more than 24 hours ago or never sent, or when Telegram no longer has the message (the card goes back to the queue and is sent again). The old note is marked read as before.
+- **A past day is told once.** A `series_missed` for a day that is over and was already reported is not evaluated again (the 48-hour window used to give it a new set of parts every night). A miss found late, for a day not yet told, still goes out, on its own: it does not replace or edit the notes of the days after it.
+- **Third time in a row, nobody pressing anything: info.** From the third note of an unbroken run (notes at most `OWNER_NOTE_REPEAT_DAYS + 1` days apart) the note is stored as `info`: it stays in the Inbox, but it has no card and no Telegram message. It is never done to a critical note, and not when a card of the run was resolved from Telegram (a button you pressed). The **daily summary** then has a block «Повторюється без вашої реакції» with one line per such problem: what, since when, how many times. Press a button on the problem's card, or fix it, and it rings again from the next note.
+- **«Announced event got no recap»** no longer stays open: when a recap comes out, or the 48-hour alert grace runs out, the note is marked read and its card closes.
+
+**The manager escalates by code (spec 069)**
+
+Advice nobody follows used to disappear from the digest and the manager kept saying `continue`. Now the hourly housekeeping (no LLM) raises it. Nothing to enable, no migration.
+
+- **Trigger 1: advice not followed.** Two or more directives (any status, a superseded advice and its re-filed directive both count) to one agent and one kind whose `verification.adherence` is `not_followed`, changed within 14 days. Shadow directives do not count.
+- **Trigger 2: posts below the norm.** A negative posts anomaly (`kpi_snapshots`, `posts` anomaly with z < 0) on 3 or more days in a row, ending yesterday or today, for an agent that runs the resource itself, with no directive filed for that agent since the run began (the true first day of the run: the snapshots are read 60 days back, so a run of a month keeps its first day). A resource run by a network or anchor orchestrator is not covered, and neither is a channel you stopped: an orchestrator that is off, in shadow mode or paused (for good or until a date), or a resource under an active pause.
+- **What you get.** One Inbox note (kind `manager_escalation`, severity action, subject `escalation:<handle>:<kind|posts>`, English text; the Telegram card is Ukrainian: «Менеджер: @агент не виконує поради …») and one line in the manager's memory. The same causes say nothing again; trigger 2 comes again only after 3 more days of the same run. An escalation you have not read is open, so it is not told again as «still going» (the manager answers it at every review); once you read it, a cause that goes on is told again after 3 days. Each escalation subject keeps one active line in the manager's memory (a repeat replaces it). From the third note without your reaction the note is info (see above), and in the daily summary a posts escalation reads «Менеджер: постів менше за норму (@агент)».
+- **The manager has to answer.** The digest has an `escalations` block with the open ones (an unread `manager_escalation` note of the last 14 days, one per subject). `submit_review` takes `escalations: [{ subject, directive_id | decline_reason }]` and refuses a review that leaves one unanswered, a `continue` included: the answer is a directive filed for that agent in the same review (its id also in `directive_ids`), or a reason of 20+ characters. The answers are appended to the stored review summary. An escalation stays open until you read the note, so the manager answers it at each review until then. The digest lists at most 100 open escalations (the oldest first) and `submit_review` takes as many answers, so a review can always answer every one it is shown.
+- **The digest.** Open escalations count in the digest hash and the review signature, so a new one wakes the manager even when its flags are covered. Advice that was not followed no longer counts as cover whatever its status; an evaluated one from the last 14 days stays in the open-directives list, marked «не виконано — ескалюй, не дублюй як пораду».
+- **Cadence.** The default manager time is now `09:00` only (an agent that has its own `schedule.times` keeps them). The cache mode of the manager run is unchanged: it makes two or more calls when it files a directive, where the prefix cache is cheaper.
+- Tests: `manager/manager-escalation.069.test.ts`, `manager/manager-escalation.069.pg.test.ts` (the SQL on real rows).
+
+**Troubleshooting (spec 069)**
+
+- A problem you expected a card for did not ring: look for it in the daily summary block above, or in the Inbox as an info note («still going, N days»). It is the third or later note of a run with no reaction from Telegram.
+- A card changed its text and did not move to the bottom of the chat: that is the edit in place. Telegram shows the edited message where it was.
+- Tests: `agents/note-gate.069.test.ts`, `agents/owner-inbox.069.test.ts`, `owner-bot/owner-bot.069.test.ts`, `owner-bot/owner-bot.069.pg.test.ts` (retarget, real runs), `owner-bot/owner-reports.069.test.ts`, `silent/silent-days.069.test.ts`, `story/story-event.test.ts`; `agents/note-gate.060.test.ts` and `owner-notes.060.pg.test.ts` were updated on purpose (a streak of 4 after 3 is no longer news).
+
 ## 20. Slot pre-flight and sources (spec 061)
 
 Code checks what code can know before the executor is paid to discover it, and the sources stop wasting calls. Apply migration `094` before deploying the code that reads it (the content ledger `anchor` column and `content_ledger_record_anchored`, `source_host_failures.strikes` and `noted_at`).
@@ -682,12 +710,40 @@ Small fixes to the loop, the loadout and the audit. No migration, no new setting
 
 **Nanobanana prompts for @ai0_prompts_dev (first use)**
 
-1. In the chat with the @ai0_prompts_dev agent: «імпортуй https://github.com/ZeroLu/awesome-nanobanana-pro у датасет nanobanana_prompts».
+1. In the chat with the @ai0_prompts_dev agent say what you want, in your words: «бери промпти з https://github.com/ZeroLu/awesome-nanobanana-pro, PromptHero більше не бери». The agent proposes the whole change as one card (spec 069, below); «імпортуй … у датасет nanobanana_prompts» still works and gives the import alone.
 2. The agent fetches the page, reads two or three entries, and calls `import_list` with a mapping like: `title: heading`, `prompt_text: first_code_block`, `media_url: last_image` (the result picture, not the input), `author: link_text_after:Source`, `source_url: last_link_after:Source`, licence `CC BY 4.0` (the repository badge), filter `has_code_block: true` (drops the sponsor blocks).
 3. Read the preview in the chat: number of entries, three sample rows, how full each field is, how many entries are not postable (no picture). Entries without a prompt or picture are skipped, not imported half-empty.
 4. Press **Apply** on the card. The dataset is created (`post_requires` = title, prompt_text, media_url; `dedup_key` = `list_ref`, which is the page address plus the entry's heading) and the rows are written as one import.
-5. Point the channel at it: change the channel's series or skill to take rows from the dataset (the skill `nanobanana-github-prompt-post` needs the one line «рядки з датасету nanobanana_prompts»; it is data in the database, so edit it in the dashboard, not in the repository).
-6. Undo: the dataset page → Imports → the import → Undo.
+5. Point the channel at it. With the bundle card (below) this is already on the card: the series is bound to the dataset as its required source. Do not write a skill for it: a skill that names a URL, an API, a `provider=` filter or «only from dataset X» is refused (`source_belongs_in_import`), because the planner never reads channel skills and the series kept pinning the old rows (review 4). A URL counts only when posts are taken FROM it («бери з …», «from …», «через API»): a link put into a post, a CTA button or a credit line («вкажи автора з посиланням …») passes.
+6. Undo: the dataset page → Imports → the import → Undo. (Undo covers the rows only; the series change, the rule and the skill switch-off are undone on the agent's page.)
+
+**Changing the source in one card (spec 069)**
+
+When you say «бери з X» / «не бери Y» / «зміни джерело», the agent calls `import_list` with three more inputs, and the card carries what follows the import as a checklist («Then, in this order — untick what you do not want»):
+
+| Input | Follow-up on the card | What Apply does |
+|---|---|---|
+| `series` | `Series` | binds that series to the new dataset, `source_mode: required` (the series becomes yours: locked). Checked when the card is proposed against a dataset that does not exist yet; skipped with `import_empty` when the import found nothing (a re-import of an unchanged list is not empty). |
+| `stop_using` | `Rule` | stores your words as an «avoid» rule of the channel (the same lint as `add_owner_rule`). |
+| `disable_skills` | `Skill off` (one per skill) | switches the named skills of that agent off (the old «Фільтр provider=prompthero»). |
+
+- The import runs first, then the items in that order. Each runs on its own: a failing one is shown with its reason on the card, the card stays **applied**, the next one still runs. The import has an Undo; the series change, the rule and the skill switch-off do not (use the agent's page).
+- An item you untick is not run (`left unticked`). Cards applied from the API or the owner bot run only the ticked-by-default items.
+- These cards belong to a chat, so they are dashboard-only (the owner bot lists cards without a chat).
+- **Skills that contradict the change are found in code.** With `stop_using`, the agent's skills (the orchestrator's and its children's, enabled, not builtin / safety / voice) are compared with «не використовуй <your words>»; a skill that still tells the agent to use the dropped source (a `provider=` value, a host, a `data://` or `library:` key) is added to the card as `Skill off`, ticked, after the items you asked for (the review-4 pair: «Фільтр provider=prompthero» against «PromptHero не використовую»). The card never has more than 8 follow-ups; a skill already named in `disable_skills` is not added twice. Your words are read clause by clause: «не бери Y, тепер бери з X» rules out only the part before the comma or dash that starts «бери …», «X замість Y» rules out only Y, and a generic format word («prompts», «recipes») does not rule out a dataset whose key merely starts with it. A skill about the dataset the card imports is never proposed for switching off.
+- Tests: `agents/pending-actions.069.test.ts`, `docs/import-list-tools.069.test.ts`, `docs/import-bundle.069.pg.test.ts`, `schedule/schedule-pending-tables.069.test.ts`, `agents/skill-warnings.069.test.ts`, `agents/skill-conflicts.069.test.ts`; in the dashboard `lib/follow-ups.test.ts`.
+
+**A new skill that contradicts an old one (spec 069)**
+
+`edit_my_skill` (the agent's own chat) and the builder's `write_skill` compare the new text with the agent's other skills before the card is proposed. Source tokens are the second-level host label (`prompthero.com` → `prompthero`), a `data://` / `library:` key and a `provider=` value; a clause (a sentence, a line, a half of `;`) with a negation («не бери / не використовуй / не з», «ніколи», «never», «don't use», «avoid», «замість», «instead of») rules its tokens and its words (4+ letters) out, any other clause uses them.
+
+| Found | Item on the `write_skill` card | Starts |
+|---|---|---|
+| **Hard**: one skill rules out a source the other tells the agent to use (either way round) | `Skill off` for the older skill | ticked |
+| **Soft**: both name sources, different ones, for the same format or series word («prompt», «recipe», …) | `Skill off` for the older skill | unticked |
+
+- The agent is told about each (`conflicts`, `conflicts_note`) and must say it in the reply; the card summary ends with «Also disables the conflicting skill …» / «Suggested, unticked: …». The skill being written is never compared with itself; builtin, safety and voice skills (`anti-slop`, `human-voice`, `voice-core`) and switched-off skills are never candidates. A failed lookup (`conflicts_error`) does not stop the card.
+- Limits: the heuristic reads names of sources, not meaning. A negation and a source in the same sentence are taken as «ruled out» («Бери з prompthero, не бери з nanobanana» rules out both), so write one source per sentence.
 
 **Updates**
 
@@ -720,7 +776,7 @@ A public JSON API is read like any large page and imported like a list: `web_fet
 
 **prompts.chat for @ai_global (first use)**
 
-1. In the chat with @ai_global: «імпортуй https://prompts.chat/api/prompts?perPage=100 у датасет promptschat».
+1. In the chat with @ai_global: «бери промпти з https://prompts.chat/api/prompts?perPage=100» (the agent proposes the import, and with it the series bind, the «avoid» rule and the old skills to switch off, as in § 24); or «імпортуй https://prompts.chat/api/prompts?perPage=100 у датасет promptschat» for the import alone.
 2. The agent fetches it, reads a few records, and calls `import_list` with a mapping like `title: field:title`, `prompt_text: field:content`, `media_url: field:mediaUrl`, `type: field:type`, `category: field:category.name`, `author: first_of:author.name|author.username`, `tags: field:tags[].tag.name`, optionally `where: {"type": ["TEXT", "IMAGE"]}` to leave out the SKILL, TASTE and VIDEO records.
 3. Read the preview: the counts are of the first page; `pages` says how many pages and records the API has and how many Apply reads (`pages_to_read`). With `?perPage=100` the 2,571 records are 26 pages, inside both caps; at the default page size of 24 they are 108 pages and Apply stops at page 30. When the list outgrows a cap, raise it in Settings or narrow the request with the API's own parameters (`?type=IMAGE`).
 4. **Check the prompts.chat licence** and give it as `license` (stored per row; the dataset default is `unknown`).
@@ -799,6 +855,28 @@ A series with nothing to post from now stops early, says so, and costs nothing w
 - A curated prompts row will not post: it lacks `media_url` or `prompt_text` (the rule is both); `query_data` with `refs` shows `missing`.
 - Rolling back 095 only restores the 083 rule (PromptHero rows are postable again); no row changes either way.
 - Tests: `preflight/slot-preflight.068.test.ts`, `preflight/material.068.pg.test.ts`, `network/plan-preflight.068.test.ts`, `tools/query-refs.068.test.ts` and `.pg.test.ts`, `data/prompts-rule.095.migration.pg.test.ts` (own database: the no-op without 083, the replace, idempotence, the owner's rule, the down file), plus those of § 19.
+
+## 28. Chat claims and attribution (spec 069)
+
+Two things the chat and the lint now know that they did not: what the chat did **earlier**, and what the agent **read** before it called a post its own. No migration, nothing to enable.
+
+**What changed**
+
+- **The claim guard knows the chat's past.** A reply like «я записав скіл nanobanana-prompts» used to be a false claim whenever this turn called no tool, even when the skill card had been applied an hour ago. Now a claim sentence is backed by an earlier action when it **names** it: the skill handle (also in «quotes»; the version is ignored), the rule number (`#12`, «правило 12»), the id of a card (8 hex or longer) or of a draft. The sources are the stored `actions` of the earlier assistant messages and the chat's cards with their status now (`ChatFacts.cards`; a skill card's name is the quoted word of its summary). A card has to be **applied** to back «застосовано» or «записав»; a card that still waits backs «надіслав картку». Free-word overlap is not enough: «я записав скіл про промпти» names nothing and is still re-run.
+- **Write claims.** «записав / зберіг / створив» in a sentence that names a скіл, пост, чернетку (or skill, post, draft) is a **write** claim, backed by any change; with the word «правило» it stays a rule claim (needs a stored rule or its card). «створив» alone says nothing.
+- **The retry hides the first answer.** After an unbacked claim the second run starts from the chat history **without** the first answer, and its last message is the owner's message again plus the note «відповідай на останнє повідомлення власника ще раз; кажи лише те, що зробили інструменти; ніколи не згадуй перевірку чи виправлення», plus the calls this turn already made («Ці виклики вже виконано в цьому ході — не повторюй їх: …»). The owner no longer reads «Я виправляю відповідь… Що було не так у моїй відповіді». With a claim and a denial together the claim shape is used and the denial text follows; a denial alone keeps the old shape (history + first answer + the denial text + the trace).
+- **A retry does not repeat a write.** An act or terminal tool call that already succeeded in the turn (same tool, same input, any key order) answers the retry with its first result plus `already_done` and runs nothing: no second owner rule, no second card, no second draft. A different input is a real call; reads and failed calls run again.
+- **Etiquette.** Every chat prompt (composer, named agent, @ai0, @manager) and the `agent-chat-etiquette` skill say: do not announce a corrected answer.
+- **`origin_mismatch`** (lint error). A post with `origin=original` that shares a verbatim run of 80 characters or more (case and spacing ignored) with anything the agent read is refused: «використай origin=library + library_ref або origin=external + source.url, або перепиши». It looks at the whole text of each source (a 60k page too), and at the body, carousel slides and longread. Only `original` is checked.
+- **Where the sources come from.** Executor runs: the critic gate's pages and feed items (`web_fetch`, `fetch_feed`) and the library row of `library_ref`. Chat: a per-chat, in-memory capture (6 hours, 40 sources per chat, 100 chats, 60k characters a source) written from the results of `web_fetch`, `fetch_feed`, `read_doc`, `find_in_doc`, `query_data` and `search_library`; `save_draft`, `lint_post`, `preview_post`, schedule and publish of a draft all lint against it. Only `{ url, text }` is kept, so the image and freshness checks stay off for chat drafts (the number-grounding warning `number_not_in_sources` can now appear on a chat draft that read a page).
+- **Skills.** `edit_my_skill` and the builder's `write_skill` return `origin_original_with_source` for a body that prescribes `origin=original` next to a fetched or library source (a tool name, a URL, `data://`, «бібліотека», «датасет», «рядок»). A sentence that also names `origin=library` / `origin=external`, or says «не / без / ніколи», passes; a list item reads its lead line too.
+
+**Troubleshooting**
+
+- A post is refused with `origin_mismatch` and it really is the agent's own text: it reused 80 characters of something it read (a prompt row, a page). Rewrite the passage, or label it honestly (`origin=library` + `library_ref`, `origin=external` + `source`). The capture lives in memory: after a restart or 6 hours the chat has no sources and the check is silent.
+- A reply still ends with «(Not done: no tool call recorded this action.)»: the retry also claimed an action no tool did. The sentence has to name the thing it restates (skill handle, `#N`, card id) to count as a restatement of the past.
+- The retry answered a different question than the first run: the retry reads only the chat history plus the owner's last message. If the owner's message depends on text the model wrote earlier in the same turn, say it again in the next message.
+- Tests: `chat/chat-claims.069.test.ts` (claims, backing, the retry shape, no second rule), `chat/chat-reads.069.test.ts` (capture, drafts, `lint_post`), `post/lint-post.069.test.ts`, `tools/origin-mismatch.069.test.ts` (executor), `agents/skill-origin.069.test.ts`.
 
 ## 29. Source resilience and ops (spec 070)
 

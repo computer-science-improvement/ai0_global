@@ -14,20 +14,28 @@ const DAY = 86_400_000;
 const NOW = new Date('2026-10-22T15:00:00Z');
 const past = (daysAgo: number, parts: string[] | null): PastNote => ({ parts, createdAt: new Date(NOW.getTime() - daysAgo * DAY) });
 
+/** The decision without the run (spec 069 adds `runLength` / `runSince`; note-gate.069.test.ts checks them). */
+const decide = (...a: Parameters<typeof decideNote>) => {
+  const { runLength: _l, runSince: _s, ...d } = decideNote(...a);
+  return d;
+};
+
 test('repeat rule: first, new part, same quiet, repeat after N days with the run length', () => {
-  assert.deepEqual(decideNote([], ['streak:3'], NOW, 3), { fire: true, why: 'first' });
-  assert.deepEqual(decideNote([past(0.1, ['streak:3'])], ['streak:3'], NOW, 3), { fire: false });
-  assert.deepEqual(decideNote([past(2.9, ['streak:3'])], ['streak:3'], NOW, 3), { fire: false });
-  assert.deepEqual(decideNote([past(0.5, ['streak:3'])], ['streak:4'], NOW, 3), { fire: true, why: 'changed' }, 'a bigger number is new');
-  assert.deepEqual(decideNote([past(0.5, ['streak:4'])], ['streak:3'], NOW, 3), { fire: true, why: 'changed' }, 'a restart after a break is new too');
-  assert.deepEqual(decideNote([past(0.5, ['a', 'b'])], ['a'], NOW, 3), { fire: false }, 'saying less than the last note is not new');
-  assert.deepEqual(decideNote([past(0.5, ['a'])], ['a', 'c'], NOW, 3), { fire: true, why: 'changed' });
-  assert.deepEqual(decideNote([past(0.5, null)], ['a'], NOW, 3), { fire: true, why: 'changed' }, 'a note without parts says nothing');
+  assert.deepEqual(decide([], ['streak:3'], NOW, 3), { fire: true, why: 'first' });
+  assert.deepEqual(decide([past(0.1, ['streak:3'])], ['streak:3'], NOW, 3), { fire: false });
+  assert.deepEqual(decide([past(2.9, ['streak:3'])], ['streak:3'], NOW, 3), { fire: false });
+  // Spec 069: a number is news only when it grew by a whole step (the critic streak N, 3); a smaller one never is.
+  assert.deepEqual(decide([past(0.5, ['streak:3'])], ['streak:4'], NOW, 3), { fire: false }, 'one more is not news');
+  assert.deepEqual(decide([past(0.5, ['streak:3'])], ['streak:6'], NOW, 3), { fire: true, why: 'changed' }, 'a whole step bigger is');
+  assert.deepEqual(decide([past(0.5, ['streak:4'])], ['streak:3'], NOW, 3), { fire: false }, 'a decrease never fires');
+  assert.deepEqual(decide([past(0.5, ['a', 'b'])], ['a'], NOW, 3), { fire: false }, 'saying less than the last note is not new');
+  assert.deepEqual(decide([past(0.5, ['a'])], ['a', 'c'], NOW, 3), { fire: true, why: 'changed' });
+  assert.deepEqual(decide([past(0.5, null)], ['a'], NOW, 3), { fire: true, why: 'changed' }, 'a note without parts says nothing');
   // Still going: the run is every note that already said all of it.
-  const run = decideNote([past(3, ['x']), past(6, ['x']), past(9, ['x', 'y']), past(12, ['z'])], ['x'], NOW, 3);
+  const run = decide([past(3, ['x']), past(6, ['x']), past(9, ['x', 'y']), past(12, ['z'])], ['x'], NOW, 3);
   assert.deepEqual(run, { fire: true, why: 'repeat', stillDays: 9 });
-  assert.deepEqual(decideNote([past(3, ['x'])], ['x'], NOW, 3), { fire: true, why: 'repeat', stillDays: 3 });
-  assert.deepEqual(decideNote([past(3, ['x'])], ['x'], NOW, 7), { fire: false }, 'OWNER_NOTE_REPEAT_DAYS = 7');
+  assert.deepEqual(decide([past(3, ['x'])], ['x'], NOW, 3), { fire: true, why: 'repeat', stillDays: 3 });
+  assert.deepEqual(decide([past(3, ['x'])], ['x'], NOW, 7), { fire: false }, 'OWNER_NOTE_REPEAT_DAYS = 7');
 });
 
 test('settings and wording', () => {

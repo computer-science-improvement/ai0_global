@@ -13,5 +13,11 @@ export const CHAT_FORMAT_RULE = [
 /** Spec 062 FR-001: the history shows each turn with system footers; the model must not write its own. Goes into every chat prompt. */
 export const NO_SYSTEM_FOOTERS_RULE = 'Не пиши рядки [дії: …], [чернетки: …] чи «@handle:» — їх додає система.';
 
+/**
+ * Spec 069 FR-006: review 4 — the owner read «Я виправляю відповідь… Що було не так у моїй відповіді» in the middle of an answer
+ * that was right. A corrected answer is just the answer: nothing about a check or a correction.
+ */
+export const NO_REANNOUNCE_RULE = 'Виправлену відповідь не оголошуй: без «виправляю», «перевірив», «що було не так» — просто дай правильну відповідь і кажи лише те, що зробили інструменти.';
+
 /** Spec 062 FR-005: review 3 — a yes/no question about the data was answered from catalog metadata without reading a row. Composer and @ai0. */
 export const DATA_QUESTION_RULE = 'На питання про зміст даних спершу query_data (3 рядки), потім відповідь.';

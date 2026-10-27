@@ -1,6 +1,7 @@
 import { BadRequestException, ConflictException, NotFoundException, ServiceUnavailableException } from '@nestjs/common';
 import type { AgentLoop, AgentLoopEvent, AgentLoopInput, AgentLoopResult } from '../harness/agent-loop';
-import { actionLine, claimRePrompt, historyTurn, NOT_DONE_NOTE, stripSystemFooters, traceText, TurnRecorder, unbackedClaims } from './turn-record';
+import { actionLine, claimRetryUser, historyTurn, NOT_DONE_NOTE, stripSystemFooters, traceText, TurnRecorder, unbackedClaims, type ChatPast } from './turn-record';
+import type { ChatReadCapture } from './chat-reads';
 import type { ToolRegistry } from '../harness/tool-registry';
 import type { ChatMessage } from '../llm/llm.types';
 import { resolveModel } from '../llm/model-registry';
@@ -89,6 +90,8 @@ export interface EditorChatDeps {
   slash?:   SlashDeps;
   /** Spec 048 FR-005: an artifact as a message chip (its title and status now); null when it is gone. */
   artifactChip?: (type: ArtifactType, id: string) => Promise<ArtifactChip | null>;
+  /** Spec 069 FR-007: the texts the chat's read tools return, kept per chat for the drafts' `origin_mismatch` lint. */
+  chatReads?: Pick<ChatReadCapture, 'add' | 'sourcesFor'>;
   /** The chat needs an LLM key only; it does not depend on EDITOR_ENABLED. */
   enabled:  () => boolean;
   now?:     () => Date;
@@ -151,6 +154,14 @@ export function ownerRecent(prior: Array<Pick<EditorChatMessage, 'role' | 'conte
 export function lastAssistantText(prior: Array<Pick<EditorChatMessage, 'role' | 'content'>>): string | null {
   for (let k = prior.length - 1; k >= 0; k--) if (prior[k].role === 'assistant') return prior[k].content;
   return null;
+}
+
+/** Spec 069 FR-006: what the chat did before this turn — the stored actions of the earlier assistant messages and the chat's cards. */
+export function pastOf(prior: Array<Pick<EditorChatMessage, 'role' | 'actions'>>, facts: ChatFacts | null): ChatPast {
+  return {
+    turns: prior.flatMap((m) => (m.role === 'assistant' && m.actions ? [m.actions] : [])),
+    cards: (facts?.cards ?? []).map((c) => ({ id: c.id, kind: c.kind, status: c.status, summary: c.summary })),
+  };
 }
 
 /** A turn stopped by its own cap (spec 040 FR-001): what it cost, how far it got and what it did. */
@@ -411,11 +422,13 @@ export class EditorChatService {
 
     const touched = new Map<string, EditorDraft>();
     const actions: PendingAction[] = [];
-    const rec = new TurnRecorder();
+    const rec = new TurnRecorder({ reads: this.d.chatReads, chatId });
     const extras: ComposerExtras & AgentChatExtras & Record<string, unknown> = {
       chat: { chatId, channelKey },
       card: resolved?.card,
       userIntent: hasPublishIntent(text),
+      // Spec 069 FR-007: lint_post / preview_post judge a spec against what this chat has read, like save_draft does.
+      chatSources: () => this.d.chatReads?.sourcesFor(chatId) ?? [],
       // The card in extras is the draft's channel card (save_draft switches it), so the preview renders like the post.
       onDraft: (draft) => { touched.set(draft.id, draft); rec.draft(draft.id); emit({ type: 'draft', draft: renderDraft(draft, (extras.card as EditorCard | undefined) ?? null) }); },
       agentIntent: ownerChangeIntent(text, lastAssistantText(prior)),
@@ -449,7 +462,7 @@ export class EditorChatService {
         maxSteps: COMPOSER_MAX_STEPS, extras: extras as unknown as Record<string, unknown>, onEvent,
         agent: addressee ? { id: addressee.id, handle: addressee.handle, limitUsd: addressee.dailyBudgetUsd } : null,
         usage: { feature: chatFeature('composer'), shadow: false }, maxCostUsd,
-      }, facts);
+      }, facts, pastOf(prior, facts));
     } catch (err: any) {
       res = { runId: null, status: 'error', totals: { steps: 0, promptTokens: 0, completionTokens: 0, costUsd: 0 }, error: err?.message ?? String(err) };
     }
@@ -527,7 +540,7 @@ export class EditorChatService {
     const system = role === 'builder'
       ? buildBuilderPrompt({ now: this.now(), skills: ctx.skills, agentsSummary: await ag.agentsSummary(), agent })
       : buildManagerChatPrompt({ now: this.now(), skills: ctx.skills, agent, digest: ag.managerDigest ? await ag.managerDigest() : null });
-    const rec = new TurnRecorder();
+    const rec = new TurnRecorder({ reads: this.d.chatReads, chatId });
     const extras: AgentChatExtras & Record<string, unknown> = {
       chat: { chatId, channelKey: null },
       agentIntent: ownerChangeIntent(text, lastAssistantText(prior)),
@@ -552,7 +565,7 @@ export class EditorChatService {
         maxSteps: COMPOSER_MAX_STEPS, extras, onEvent,
         agent: { id: agent.id, handle: agent.handle, limitUsd: agent.dailyBudgetUsd },
         usage: { feature: chatFeature(role), shadow: false }, maxCostUsd: chatTurnCap(this.d.env),
-      }, facts);
+      }, facts, pastOf(prior, facts));
     } catch (err: any) {
       res = { runId: null, status: 'error', totals: { steps: 0, promptTokens: 0, completionTokens: 0, costUsd: 0 }, error: err?.message ?? String(err) };
     }
@@ -603,8 +616,15 @@ export class EditorChatService {
    * tools» (`did_not_call`) keeps its answer — the tools produced it — and gets the English note appended, no second run;
    * an unbacked claim, a denied card or a denied agent is re-run with the trace. A replacing answer stays traceable:
    * `actions.retried_from` is the first run's id.
+   *
+   * Spec 069 FR-006: a claim that names what an earlier turn of the chat did (`past`: its skill, rule #N or card id) is not
+   * unbacked. The retry after a claim starts from the history WITHOUT the first answer (review 4: the model read its own
+   * wrong answer and apologised for it: «Я виправляю відповідь…»), asks the owner's message again with a system note and
+   * lists the calls already made; an act call that already succeeded answers with its first result (`rec.replay()`), so a
+   * retry never stores a rule or a card twice. With both a claim and a denial the claim shape is used and the denial text
+   * is appended; a denial alone keeps the old shape.
    */
-  private async runGuarded(rec: TurnRecorder, input: AgentLoopInput, facts: ChatFacts | null = null): Promise<AgentLoopResult> {
+  private async runGuarded(rec: TurnRecorder, input: AgentLoopInput, facts: ChatFacts | null = null, past: ChatPast | null = null): Promise<AgentLoopResult> {
     const run = { ...input, tools: rec.wrap(input.tools) };
     const clean = (r: AgentLoopResult): AgentLoopResult => ({
       ...r,
@@ -614,7 +634,7 @@ export class EditorChatService {
     const first = clean(await this.d.loop.run(run));
     if (first.status !== 'ok' || !first.finalText?.trim()) return first;
     const denialsOf = (t: string) => (facts ? contradictedDenials(t, facts, rec.turn) : []);
-    const claimsOf = (t: string) => unbackedClaims(t, rec.turn).filter((c) => !restatesFact(c.sentence, facts));
+    const claimsOf = (t: string) => unbackedClaims(t, rec.turn, past).filter((c) => !restatesFact(c.sentence, facts));
     const claims = claimsOf(first.finalText);
     const denials = denialsOf(first.finalText);
     if (!claims.length && !denials.length) return first;
@@ -623,14 +643,20 @@ export class EditorChatService {
     }
     let second: AgentLoopResult | null = null;
     const trace = traceText(rec.trace);
+    rec.replay();
     try {
-      second = clean(await this.d.loop.run({
-        ...run, history: [...(input.history ?? []), { role: 'user', content: input.user }, { role: 'assistant', content: first.finalText.trim() }],
-        user: [
-          claims.length ? claimRePrompt(claims) : null, denials.length ? denialRePrompt(denials) : null,
-          trace ? `Інструменти, які ти викликав у цьому ході (результат — один рядок):\n${trace}` : null,
-        ].filter(Boolean).join('\n\n'),
-      }));
+      second = clean(await this.d.loop.run(claims.length
+        ? {
+          ...run, history: [...(input.history ?? [])],
+          user: [claimRetryUser(input.user, trace), denials.length ? denialRePrompt(denials) : null].filter(Boolean).join('\n\n'),
+        }
+        : {
+          ...run, history: [...(input.history ?? []), { role: 'user', content: input.user }, { role: 'assistant', content: first.finalText.trim() }],
+          user: [
+            denialRePrompt(denials),
+            trace ? `Інструменти, які ти викликав у цьому ході (результат — один рядок):\n${trace}` : null,
+          ].filter(Boolean).join('\n\n'),
+        }));
     } catch { /* the first reply stands, with the note */ }
     const replaced = second?.status === 'ok' && !!second.finalText?.trim();
     const res = replaced ? second! : first;

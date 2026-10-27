@@ -14,6 +14,7 @@ import { describe as describeChange } from './executors/playbook-executors';
 import { TASK_REF_TYPES, type TaskRefResult, type TaskRefType } from './executors/task-report';
 import { isQualityMetric, qualityActive } from './quality-digest';
 import { PAIR_BLOCKED_DETAILS, promoRefsOf } from '../promo/promo-links';
+import { ESCALATION_ANSWERS_MAX, ESCALATION_REASON_MIN } from './escalation';
 
 export const MAX_DIRECTIVES_PER_RUN = 3;
 export const REJECT_COOLDOWN_MS = 48 * 3600_000;
@@ -77,11 +78,20 @@ export const QualityCheckEntry = z.object({
 });
 export type QualityCheck = z.infer<typeof QualityCheckEntry>;
 
+/** Spec 069 FR-005: the manager's answer to one open escalation of the digest: a directive filed in this review, or a reason not to. */
+export const EscalationAnswer = z.object({
+  subject:        z.string().min(5).max(200).describe('subject ескалації з блоку escalations дайджесту (escalation:<агент>:<тип>)'),
+  directive_id:   z.string().uuid().optional().describe('id директиви цьому агенту, поданої в цьому прогоні (вона має бути і в directive_ids)'),
+  decline_reason: z.string().max(400).optional().describe(`Чому директива зараз не потрібна (≥ ${ESCALATION_REASON_MIN} символів) — замість directive_id`),
+});
+export type EscalationAnswerT = z.infer<typeof EscalationAnswer>;
+
 export const SubmitReviewInput = z.object({
   verdict:       z.enum(['continue', 'directives']),
   summary:       z.string().min(5).max(1500),
   directive_ids: z.array(z.string().uuid()).max(3).default([]),
   quality_check: z.array(QualityCheckEntry).max(40).describe('Чекліст якості по кожному ресурсу з активністю за 7 днів (дайджест, блок quality)'),
+  escalations:   z.array(EscalationAnswer).max(ESCALATION_ANSWERS_MAX).default([]).describe('Відповідь на кожну відкриту ескалацію з блоку escalations дайджесту; без відкритих ескалацій — []'),
 });
 export type SubmitReview = z.infer<typeof SubmitReviewInput>;
 
@@ -134,6 +144,54 @@ export function checkQualityReview(i: Pick<SubmitReview, 'verdict' | 'quality_ch
     }
     if (i.verdict === 'continue' && e.status === 'issue' && !note) {
       problems.push({ error: 'quality_issue_unaddressed', details: `${e.resource_ref}: проблема якості (${e.issues.join(', ')}), а verdict continue — подай пораду voice_fix чи format_mix (verdict directives) або поясни в note, чому зараз не треба (напр. порада вже відкрита)` });
+    }
+  }
+  if (!problems.length) return null;
+  if (problems.length === 1) return problems[0];
+  return { error: problems[0].error, details: `${problems.length} проблем, виправ усі за один раз: ${problems.map((p) => p.details).join(' | ')}`, problems };
+}
+
+/**
+ * Spec 069 FR-005: the code side of the escalations. Every open escalation of the digest (an unread `manager_escalation` note of
+ * the last 14 days) must be answered: by a directive filed in this review for that agent (`directive_id`, also in
+ * `directive_ids`), or by a `decline_reason` of at least ESCALATION_REASON_MIN characters. A `continue` verdict leaves none
+ * unanswered either. Every problem comes back at once. Null = the review may be stored.
+ */
+export async function checkEscalations(
+  d: Pick<DirectiveToolDeps, 'repo' | 'agents'>,
+  dg: Pick<KpiDigest, 'escalations'> | null | undefined,
+  i: Pick<SubmitReview, 'directive_ids'> & { escalations?: EscalationAnswerT[] },
+): Promise<{ error: string; details: string; problems?: Array<{ error: string; details: string }> } | null> {
+  const open = dg?.escalations ?? [];
+  const answers = i.escalations ?? [];
+  const problems: Array<{ error: string; details: string }> = [];
+  const known = new Set(open.map((o) => o.subject));
+  const unknown = answers.filter((a) => !known.has(a.subject)).map((a) => a.subject);
+  if (unknown.length) problems.push({ error: 'escalation_unknown', details: `таких ескалацій немає в дайджесті: ${unknown.join(', ')} — прибери їх з escalations` });
+  const bySubject = new Map(answers.map((a) => [a.subject, a]));
+  for (const o of open) {
+    const a = bySubject.get(o.subject);
+    if (!a) {
+      problems.push({
+        error: 'escalation_unaddressed',
+        details: `відкрита ескалація ${o.subject} («${o.text}») — подай директиву @${o.agent} (file_directive, її id у directive_ids і в escalations[].directive_id) або поясни у escalations[].decline_reason (≥ ${ESCALATION_REASON_MIN} символів), чому директива зараз не потрібна`,
+      });
+      continue;
+    }
+    if (a.directive_id) {
+      if (!i.directive_ids.includes(a.directive_id)) {
+        problems.push({ error: 'escalation_directive_not_in_review', details: `${o.subject}: директива ${a.directive_id} не названа в directive_ids цього прогону` });
+        continue;
+      }
+      const dir = await d.repo.get(a.directive_id);
+      const agent = await d.agents.getByHandle(o.agent);
+      if (!dir || !agent || dir.toAgentId !== agent.id) {
+        problems.push({ error: 'escalation_directive_wrong_agent', details: `${o.subject}: директива ${a.directive_id} має бути адресована @${o.agent}` });
+      }
+      continue;
+    }
+    if ((a.decline_reason ?? '').trim().length < ESCALATION_REASON_MIN) {
+      problems.push({ error: 'escalation_reason_required', details: `${o.subject}: потрібен directive_id або decline_reason ≥ ${ESCALATION_REASON_MIN} символів` });
     }
   }
   if (!problems.length) return null;
@@ -401,15 +459,23 @@ export function buildDirectiveTools(d: DirectiveToolDeps): EditorTool[] {
       'Завершити прогін менеджера: verdict directives (дано поради чи директиви) або continue (нічого міняти не треба), короткий підсумок для власника.',
       'quality_check обовʼязковий: по кожному ресурсу з активністю за 7 днів — status ok | issue, evidence з цифрами чи цитатами з блоку quality, issues (ai_likeness, sense, voice, audience_asks, owner_feedback, format_fit, silent_days).',
       'Код перевіряє: ресурс із прапорцями якості не може бути «ok» без пояснення в note; continue при status issue — лише з поясненням у note, чому поради зараз не треба.',
+      'escalations: відповідь на кожну відкриту ескалацію з дайджесту (directive_id директиви, поданої в цьому прогоні, або decline_reason ≥ 20 символів); verdict continue теж не лишає жодної без відповіді.',
     ].join(' '),
     kind: 'terminal', roles: ['manager'],
     input: SubmitReviewInput,
     execute: async (i, ctx) => {
       const dg = await digestOf(ctx);
       const bad = checkQualityReview(i, dg);
-      if (bad) return bad;
+      const badEsc = await checkEscalations(d, dg, i);
+      if (bad || badEsc) {
+        if (!bad || !badEsc) return (bad ?? badEsc)!;
+        const problems = [...(bad.problems ?? [bad]), ...(badEsc.problems ?? [badEsc])];
+        return { error: problems[0].error, details: `${problems.length} проблем, виправ усі за один раз: ${problems.map((p) => p.details).join(' | ')}`, problems };
+      }
+      // The answers the manager gave to the escalations are part of the review the owner reads.
+      const answered = (i.escalations ?? []).map((a) => `ескалація ${a.subject}: ${a.directive_id ? `директива ${a.directive_id.slice(0, 8)}` : `без директиви — ${(a.decline_reason ?? '').trim()}`}`);
       await d.repo.addReview({
-        runId: ctx.runId, verdict: i.verdict, summary: i.summary, digestHash: dg?.hash ?? null, directiveIds: i.directive_ids, qualityCheck: i.quality_check,
+        runId: ctx.runId, verdict: i.verdict, summary: [i.summary, ...answered].join('\n').slice(0, 1500), digestHash: dg?.hash ?? null, directiveIds: i.directive_ids, qualityCheck: i.quality_check,
         signature: dg ? reviewSignature(dg) : null,
       });
       return { ok: true };

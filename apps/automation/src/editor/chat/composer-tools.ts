@@ -4,6 +4,7 @@ import { ChatPostSpecSchema, mergeDraftSpec, omittedSpecKeys } from './draft-spe
 import { DRAFT_STATUSES, EditorDraft } from '../repo/editor-chat.repository';
 import type { EditorChatRepository } from '../repo/editor-chat.repository';
 import type { DraftsService } from './drafts.service';
+import type { AuditSource } from '../post/integrity/types';
 import { parseKyivTime } from './intent';
 
 /**
@@ -18,6 +19,8 @@ export interface ComposerExtras {
   userIntent:  boolean;
   /** Called for every draft a tool created or changed (streams a draft card to the UI). */
   onDraft?:    (draft: EditorDraft) => void;
+  /** Spec 069 FR-007: the texts this chat's agent read so far (web, feed, document, library rows), for the `origin_mismatch` lint. */
+  chatSources?: () => AuditSource[];
   /** Per turn: consecutive failing saves per draft id (the save_draft retry guard). */
   lintFails?:  Map<string, number>;
   /** Per turn: the last draft saved per channel, while its lint fails (a retry without draft_id updates it). */

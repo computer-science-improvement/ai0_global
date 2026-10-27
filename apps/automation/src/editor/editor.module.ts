@@ -90,6 +90,7 @@ import type { PublishSpecDeps } from './publish/publish-spec';
 import { DraftsService } from './chat/drafts.service';
 import { buildComposerTools } from './chat/composer-tools';
 import { EditorChatService } from './chat/editor-chat.service';
+import { CHAT_READS } from './chat/chat-reads';
 import { EDITOR_CHAT, EDITOR_DRAFTS, EditorChatController } from './api/editor-chat.controller';
 import { EditorOpsService } from './api/editor-ops.service';
 import { EDITOR_OPS, EditorController } from './api/editor.controller';
@@ -814,8 +815,8 @@ export class AgentsUpkeep implements OnModuleInit {
   async directives(): Promise<void> {
     try {
       const r = await this.manager.runner.housekeeping();
-      if (r.timedOut || r.expired || r.evaluated || r.executed || r.failed || r.resumed || r.verified || r.autoApplied || r.ignored || r.contestTimedOut) {
-        this.logger.log(`directives: timed out ${r.timedOut}, expired ${r.expired}, auto-applied ${r.autoApplied}, ignored ${r.ignored}, contest timeouts ${r.contestTimedOut}, executed ${r.executed}, failed ${r.failed}, resumed ${r.resumed}, verified ${r.verified}, evaluated ${r.evaluated}`);
+      if (r.timedOut || r.expired || r.evaluated || r.executed || r.failed || r.resumed || r.verified || r.autoApplied || r.ignored || r.contestTimedOut || r.escalated) {
+        this.logger.log(`directives: timed out ${r.timedOut}, expired ${r.expired}, auto-applied ${r.autoApplied}, ignored ${r.ignored}, contest timeouts ${r.contestTimedOut}, executed ${r.executed}, failed ${r.failed}, resumed ${r.resumed}, verified ${r.verified}, evaluated ${r.evaluated}, escalated ${r.escalated}`);
       }
     } catch (err: any) {
       this.logger.warn(`directives housekeeping failed: ${err?.message ?? err}`);
@@ -1253,6 +1254,7 @@ export const EDITOR_PROVIDERS = [
           notify: (t) => notifier.notifyAlert(t),
           reservedWarnings: (k, at) => schedule.reservedWarnings(k, at),
           ...(critic ? { critic } : {}),
+          chatReads: CHAT_READS,
           log: (m) => logger.warn(m),
         });
       },
@@ -1281,7 +1283,11 @@ export const EDITOR_PROVIDERS = [
         return new ToolRegistry([
           ...buildReadTools({ pool, readonly: new ReadonlyQueryService(pool), skills, stories: new StoryContextService(stories), hosts, docs }),
           ...buildDocTools({ docs }),
-          ...buildImportListTools({ pool, docs, actions: infra.actions, hosts, env }),
+          // Spec 069 FR-002: the owner's «бери з X, не бери Y» is one card (the series, the rule and the skills ride on the import).
+          ...buildImportListTools({
+            pool, docs, actions: infra.actions, hosts, env,
+            schedule, agents: infra.agents, skills: infra.skills, handles: async () => (await infra.agents.list()).map((a) => a.handle),
+          }),
           ...buildDataTools({ pool, actions: infra.actions, env }),
           ...buildHighlightsTools({ pool }),
           ...buildComposeTools({ hosts, drafts }),
@@ -1336,6 +1342,7 @@ export const EDITOR_PROVIDERS = [
           }),
           ...buildAgentChatTools({
             pool, memory: repos.memory, skills: infra.skills, actions: infra.actions, conflicts: configConflictsOf(pool, repos, infra),
+            agents: infra.agents,
             handles: async () => (await infra.agents.list()).map((a) => a.handle),
           }),
           // Spec 023 FR-006: the owner steers the schedule from the chat (cards only).
@@ -1878,7 +1885,7 @@ export const EDITOR_PROVIDERS = [
           list: async (q) => (await artifacts.list({ ...q, limit: 50 })).rows,
         };
         return new EditorChatService({
-          repo: repos.chat, drafts, memory: repos.memory, loop, registry, loadout: infra.loadout, skills, env, enabled, agents: agentsPort, defaultModel: (ws) => models.get(ws), workspace: () => models.workspace(),
+          repo: repos.chat, drafts, memory: repos.memory, loop, registry, loadout: infra.loadout, skills, env, enabled, chatReads: CHAT_READS, agents: agentsPort, defaultModel: (ws) => models.get(ws), workspace: () => models.workspace(),
           slash,
           artifactChip: async (type, id) => {
             const a = await artifacts.find(type, id);

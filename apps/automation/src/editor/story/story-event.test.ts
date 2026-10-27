@@ -228,6 +228,73 @@ test('the throttle: one look per 5 minutes', async () => {
   assert.equal(inbox.items.length, 1);
 });
 
+// ── spec 069 A6: a note is closed when its event is no longer a gap ──────────
+
+/** An Inbox with `markRead`: the unread `event_not_covered` notes are what `openNotes` lists. */
+function readableInbox() {
+  const base = fakeInbox();
+  const notes: Array<{ id: number; refId: string; read: boolean }> = [];
+  const marked: number[][] = [];
+  return {
+    ...base, notes, marked,
+    postOnce: async (i: Parameters<typeof base.postOnce>[0]) => {
+      const id = await base.postOnce(i);
+      if (id != null) notes.push({ id, refId: i.refId, read: false });
+      return id;
+    },
+    markRead: async (ids: number[]) => { marked.push(ids); for (const n of notes) if (ids.includes(n.id)) n.read = true; return ids.length; },
+    openNotes: async () => notes.filter((n) => !n.read).map((n) => ({ id: n.id, refId: n.refId })),
+  };
+}
+
+test('spec 069: a second identical check posts nothing, and the open note is marked read once a recap comes out', async () => {
+  const inbox = readableInbox();
+  let stories: EventStory[] = [appleStory()];
+  const watch = new EventRecapWatch({ inbox, openNotes: inbox.openNotes, stories: async () => stories, tzOf: async () => TZ, everyMs: 0 });
+  assert.equal(await watch.check(new Date('2026-10-14T13:05:00Z')), 1, 'the first note');
+  assert.equal(await watch.check(new Date('2026-10-14T13:10:00Z')), 0, 'the second identical check posts nothing');
+  assert.deepEqual(inbox.marked, [], 'the event is still a gap: the note stays open');
+  assert.equal(inbox.notes[0].read, false);
+
+  // A followup after the event: the gap is closed, so the note is read (and the owner-bot sweep closes its card).
+  stories = [appleStory([{ resourceRef: `telegram:${CH}`, role: 'followup', at: '2026-10-14T14:00:00.000Z', lead: 'Apple показала HomeView', ref: 'pp:9' }])];
+  assert.equal(await watch.check(new Date('2026-10-14T15:00:00Z')), 0);
+  assert.deepEqual(inbox.marked, [[1]]);
+  assert.equal(inbox.notes[0].read, true);
+  // Nothing left to close on the next look.
+  await watch.check(new Date('2026-10-14T15:10:00Z'));
+  assert.equal(inbox.marked.length, 1);
+});
+
+test('spec 069: the note is marked read when the alert grace runs out with no recap', async () => {
+  const inbox = readableInbox();
+  const watch = new EventRecapWatch({ inbox, openNotes: inbox.openNotes, stories: async () => [appleStory()], tzOf: async () => TZ, everyMs: 0 });
+  assert.equal(await watch.check(new Date('2026-10-15T09:00:00Z')), 1);
+  assert.equal(await watch.check(new Date('2026-10-16T12:00:00Z')), 0, 'still inside 24 h + 48 h: the note stays');
+  assert.deepEqual(inbox.marked, []);
+  assert.equal(await watch.check(new Date('2026-10-16T14:00:00Z')), 0, 'the grace is over: no gap any more');
+  assert.deepEqual(inbox.marked, [[1]]);
+});
+
+test('spec 069: notes of other events stay open, and an Inbox without markRead or a failing lookup changes nothing', async () => {
+  const inbox = readableInbox();
+  inbox.notes.push({ id: 90, refId: 'st-other|2026-10-14T10:00:00.000Z', read: false });
+  const watch = new EventRecapWatch({ inbox, openNotes: inbox.openNotes, stories: async () => [appleStory()], tzOf: async () => TZ, everyMs: 0 });
+  await watch.check(new Date('2026-10-14T13:05:00Z'));
+  assert.deepEqual(inbox.marked, [[90]], 'only the note whose event is not an open gap is read');
+  assert.equal(inbox.notes.find((n) => n.refId.startsWith('st-apple'))!.read, false);
+
+  const plain = fakeInbox();
+  const logs: string[] = [];
+  await new EventRecapWatch({ inbox: plain, stories: async () => [appleStory()], tzOf: async () => TZ, everyMs: 0 }).check(new Date('2026-10-14T13:05:00Z'));
+  assert.equal(plain.items.length, 1, 'no markRead: the note is posted as before');
+
+  const broken = readableInbox();
+  const w = new EventRecapWatch({ inbox: broken, openNotes: async () => { throw new Error('db down'); }, stories: async () => [appleStory()], tzOf: async () => TZ, everyMs: 0, log: (m) => logs.push(m) });
+  assert.equal(await w.check(new Date('2026-10-14T13:05:00Z')), 1);
+  assert.match(logs.join('\n'), /event notes not closed: db down/);
+});
+
 // ── the MANAGER digest ───────────────────────────────────────────────────────
 
 test('MANAGER digest: event_not_covered flag and row per resource', () => {

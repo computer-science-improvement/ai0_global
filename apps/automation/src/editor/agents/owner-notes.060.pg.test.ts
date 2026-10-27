@@ -8,15 +8,17 @@ import { test, before, after, beforeEach } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { Pool } from 'pg';
 import { dailyRef, OwnerInbox, setInboxSupersedeSink } from './owner-inbox';
 import { evaluateSilentDays, type WatchSlot } from '../silent/silent-days';
+import { createMigratedDb, type FreshDb } from '../sysadmin/testing/fresh-db';
 
 const url = process.env.EDITOR_PG_TEST_URL;
 const skip = !url ? 'EDITOR_PG_TEST_URL not set' : false;
 const MIGRATION = readFileSync(join(__dirname, '..', '..', '..', '..', '..', 'database', 'migrations', '093_series_pauses.sql'), 'utf8');
 const P = 'pgt060n';
-let pool: Pool;
+// Spec 069: its own throwaway database (init.sql + every migration) instead of the shared one; dropped in `after`.
+let db: FreshDb;
+let pool: FreshDb['pool'];
 let inbox: OwnerInbox;
 let superseded: number[][] = [];
 
@@ -28,8 +30,8 @@ const age = (subject: string, days: number) => pool.query(`UPDATE agent_inbox SE
 
 before(async () => {
   if (!url) return;
-  pool = new Pool({ connectionString: url });
-  await pool.query(MIGRATION);
+  db = await createMigratedDb(url, 'n060');
+  pool = db.pool;
   await cleanup();
   inbox = new OwnerInbox(pool, async () => {});
   setInboxSupersedeSink(async (ids) => { superseded.push(ids); });
@@ -38,8 +40,7 @@ beforeEach(() => { superseded = []; });
 after(async () => {
   if (!url) return;
   setInboxSupersedeSink(null);
-  await cleanup();
-  await pool.end();
+  await db.drop();
 });
 
 const note = (subject: string, parts: string[], day: string, over: Record<string, unknown> = {}) => inbox.postOnce({
@@ -54,18 +55,19 @@ test('093 applies again; a gated note is stored with its subject and parts', { s
   assert.deepEqual((await rows(s)).map((r) => [r.kind, r.parts, r.read]), [['critic_reject_streak', ['streak:3'], false]]);
 });
 
-test('same cause and number: quiet the same day and the next days; a new number fires and supersedes the older note', { skip }, async () => {
+test('same cause and number: quiet the same day and the next days; a number that grew by a whole step fires and supersedes the older note', { skip }, async () => {
   const s = `${P}:streak`;
   const first = await note(s, ['streak:3'], '2026-10-01');
   assert.ok(first);
   assert.equal(await note(s, ['streak:3'], '2026-10-01'), null, 'same day');
   assert.equal(await note(s, ['streak:3'], '2026-10-02'), null, 'the next day: not every morning');
+  assert.equal(await note(s, ['streak:4'], '2026-10-02'), null, 'one more is not news (spec 069: the step is 3)');
   assert.equal(superseded.length, 0);
-  const second = await note(s, ['streak:4'], '2026-10-02');
-  assert.ok(second && second !== first, 'a bigger streak is news');
+  const second = await note(s, ['streak:6'], '2026-10-02');
+  assert.ok(second && second !== first, 'a streak a whole step bigger is news');
   assert.deepEqual(superseded, [[first!]], 'the card sink hears which note was answered');
   assert.deepEqual((await rows(s)).map((r) => r.read), [true, false], 'one unread note per problem');
-  assert.equal(await note(s, ['streak:4'], '2026-10-03'), null);
+  assert.equal(await note(s, ['streak:6'], '2026-10-03'), null);
 });
 
 test('still going: after OWNER_NOTE_REPEAT_DAYS the note comes once more with its age', { skip }, async () => {

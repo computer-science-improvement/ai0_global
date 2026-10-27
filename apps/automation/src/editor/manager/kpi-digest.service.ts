@@ -7,6 +7,7 @@ import type { ResourceCatalog } from '../agents/resource-catalog';
 import { compactKpis, computeKpis, DailySeries, dayBefore, ScopeKpis } from './kpi-math';
 import { markSampleConfidence } from './kpi-confidence';
 import { qualitySignature, slimQuality, SqlQuality, type ResourceQuality } from './quality-digest';
+import { ESCALATION_DAYS, escalationKeys, openEscalations, type DigestEscalation } from './escalation';
 
 /** Spec 034 T4: the quality blocks (≤ ~3k chars per busy resource) raised the bound from 12k; render() slims to it. */
 export const DIGEST_LIMIT_CHARS = 20_000;
@@ -45,6 +46,11 @@ export interface KpiDigest {
   loadout?: string[];
   /** Spec 055 FR-004: the newest finished audit of the sysadmin — open findings by severity (one line, no directive kind). */
   audit?: AuditDigestLine;
+  /**
+   * Spec 069 FR-005: the open escalations (an unread `manager_escalation` note of the last 14 days, one per subject). Absent
+   * when none is open. `submit_review.escalations` has to answer each; they count in the hash and the review signature.
+   */
+  escalations?: DigestEscalation[];
   hash:        string;
   raw:         Map<string, ScopeKpis>;
 }
@@ -123,9 +129,12 @@ function series(): { viewsPerPost: DailySeries; engagementRate: DailySeries; pos
  * directives and the quality signature — a new critic reject/revise, a new owner rejection/edit or a new quality
  * flag (cap overflow, low pass rate) changes it, so such a run is never skipped.
  */
-export function digestHash(d: Pick<KpiDigest, 'resources' | 'directives'>): string {
+export function digestHash(d: Pick<KpiDigest, 'resources' | 'directives'> & { escalations?: KpiDigest['escalations'] }): string {
+  // Spec 069 FR-005: a new (or newly repeated) escalation changes the hash; with none the hash is what it was.
+  const esc = escalationKeys(d.escalations);
   return createHash('sha1').update(JSON.stringify({
     r: d.resources.map((x) => (x.signals?.length ? [x.ref, x.kpis, x.signals] : [x.ref, x.kpis])), o: d.directives.open.map((x) => [x.id, x.status]), q: qualitySignature(d.resources),
+    ...(esc.length ? { e: esc } : {}),
   })).digest('hex');
 }
 
@@ -133,7 +142,7 @@ export function digestHash(d: Pick<KpiDigest, 'resources' | 'directives'>): stri
  * Spec 040 FR-007: what a manager review reacts to — per resource with an agent, the KPI anomalies and the quality
  * flags (sorted). The same signature as the last review skips the scheduled run (one forced review a day).
  */
-export function reviewSignature(d: Pick<KpiDigest, 'resources'> & { directives?: Pick<KpiDigest['directives'], 'open'>; generatedAt?: string }): string {
+export function reviewSignature(d: Pick<KpiDigest, 'resources'> & { directives?: Pick<KpiDigest['directives'], 'open'>; escalations?: KpiDigest['escalations']; generatedAt?: string }): string {
   // Spec 046 FR-004: quality flags of an agent that already has an open / in-force directive are covered: they no
   // longer force a review (review 2: per-post flag noise meant the skip almost never fired).
   // Spec 060 FR-005: a directive covers only while it can still work. An applied one the orchestrator did not follow
@@ -151,7 +160,9 @@ export function reviewSignature(d: Pick<KpiDigest, 'resources'> & { directives?:
     })
     .filter(([, a, f, sig]) => a.length || f.length || (sig?.length ?? 0) > 0)
     .sort((x, y) => x[0].localeCompare(y[0]));
-  return createHash('sha1').update(JSON.stringify(rows)).digest('hex');
+  // Spec 069 FR-005: an open escalation is something to react to, whatever the flags say. With none the signature is unchanged.
+  const esc = escalationKeys(d.escalations);
+  return createHash('sha1').update(JSON.stringify(esc.length ? { r: rows, e: esc } : rows)).digest('hex');
 }
 
 /** Spec 060 FR-005: quality flags no open directive covers. */
@@ -159,7 +170,8 @@ const UNCOVERABLE_FLAGS: string[] = ['dark_day'];
 
 /** Spec 060 FR-005: does an open directive still cover its agent's flags? */
 export function countsAsCover(x: Pick<KpiDigest['directives']['open'][number], 'status' | 'adherence' | 'reviewAt'>, nowMs: number): boolean {
-  if (x.status === 'applied' && x.adherence === 'not_followed') return false;
+  // Spec 069 FR-005: advice nobody followed covers nothing, whatever its status (an evaluated one is in the list for escalating).
+  if (x.adherence === 'not_followed') return false;
   if (x.status === 'accepted' && x.reviewAt && Date.parse(x.reviewAt) < nowMs) return false;
   return true;
 }
@@ -214,6 +226,7 @@ export function digestView(d: KpiDigest, limit = DIGEST_LIMIT_CHARS): DigestView
       return {
         budget: d.budget, config_conflicts: d.config_conflicts?.map((c) => ({ agent: c.agent, ref: c.ref, code: c.code })),
         ...(d.audit ? { audit: d.audit } : {}),
+        ...(d.escalations?.length ? { escalations: d.escalations.map((e) => ({ subject: e.subject, agent: e.agent, kind: e.kind })) } : {}),
         directives: { open: dir.open.map((x) => ({ id: x.id, to: x.to, kind: x.kind, status: x.status })) },
         agents: d.agents.map((a) => ({ handle: a.handle, mode: a.mode, paused: a.paused, spentTodayUsd: a.spentTodayUsd })),
       };
@@ -232,6 +245,7 @@ export function digestView(d: KpiDigest, limit = DIGEST_LIMIT_CHARS): DigestView
       ...(d.lint_overruled?.length ? { lint_overruled: d.lint_overruled } : {}),
       ...(d.loadout?.length ? { loadout: d.loadout } : {}),
       ...(d.audit ? { audit: d.audit } : {}),
+      ...(d.escalations?.length ? { escalations: d.escalations } : {}),
     };
   };
   const doc = (h: object, resources: Res[], extra: Record<string, unknown> = {}) =>
@@ -389,7 +403,9 @@ export class KpiDigestService {
 
     const { rows: open } = await this.d.pool.query(
       `SELECT d.id, a.handle AS to_handle, d.kind, d.binding, d.status, d.body, d.created_at, d.review_at, d.verification FROM agent_directives d JOIN agents a ON a.id = d.to_agent_id
-        WHERE d.status IN ('new','awaiting_owner','contested','accepted','applied') AND NOT d.shadow ORDER BY d.created_at DESC LIMIT 20`);
+        WHERE (d.status IN ('new','awaiting_owner','contested','accepted','applied')
+               OR (d.status = 'evaluated' AND d.verification->>'adherence' = 'not_followed' AND d.updated_at >= now() - ($1 || ' days')::interval))
+          AND NOT d.shadow ORDER BY d.created_at DESC LIMIT 20`, [String(ESCALATION_DAYS)]);
     const { rows: outcomes } = await this.d.pool.query(
       `SELECT a.handle AS to_handle, d.kind, d.outcome, d.body, d.outcome_detail FROM agent_directives d JOIN agents a ON a.id = d.to_agent_id
         WHERE d.status IN ('evaluated','rejected','expired') ORDER BY d.updated_at DESC LIMIT 30`);
@@ -410,6 +426,9 @@ export class KpiDigestService {
       if (r) r.signals = [...new Set([...(r.signals ?? []), ...sig])];
     }
 
+    // Spec 069 FR-005: the escalations the code raised and nobody has read yet (best effort: an unreadable table means none).
+    const escalations = await openEscalations(this.d.pool, now).catch(() => []);
+
     const digest: Omit<KpiDigest, 'hash' | 'raw'> = {
       generatedAt: now.toISOString(), today, resources: out, agents,
       budget: { spentTodayUsd: Math.round(Number(spend[0]?.usd ?? 0) * 10000) / 10000, capUsd, ...(week ?? {}) },
@@ -427,6 +446,7 @@ export class KpiDigestService {
       ...(overruled.length ? { lint_overruled: overruled } : {}),
       ...(loadout.length ? { loadout } : {}),
       ...(audit ? { audit } : {}),
+      ...(escalations.length ? { escalations } : {}),
     };
     return { ...digest, hash: digestHash(digest), raw };
   }
