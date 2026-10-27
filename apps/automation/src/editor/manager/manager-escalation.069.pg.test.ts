@@ -166,8 +166,9 @@ test('trigger 2 query leaves out channels the owner stopped: switched off, shado
   await db.pool.query(
     `INSERT INTO series_pauses (channel_key, series_key, label, cause, reason, streak) VALUES ('@pg069_breaker', 'resource:telegram:@pg069_breaker', 'telegram:@pg069_breaker', 'no_material', 'no material', 3)`);
   await db.pool.query(
-    `INSERT INTO series_pauses (channel_key, series_key, label, cause, reason, streak, resumed_at, resumed_by)
-     VALUES ('@pg069_resumedbrk', 'resource:telegram:@pg069_resumedbrk', 'telegram:@pg069_resumedbrk', 'no_material', 'no material', 3, now(), 'owner')`);
+    `INSERT INTO series_pauses (channel_key, series_key, label, cause, reason, streak, paused_at, resumed_at, resumed_by)
+     VALUES ('@pg069_resumedbrk', 'resource:telegram:@pg069_resumedbrk', 'telegram:@pg069_resumedbrk', 'no_material', 'no material', 3,
+             '2026-10-01T10:00:00Z', '2026-10-05T10:00:00Z', 'owner')`);   // over long before the day below: its window (10-17..10-23) is clear
   // A pause on one series only: the channel still plans its other slots, a directive to replace the dead series is a real answer.
   await db.pool.query(
     `INSERT INTO series_pauses (channel_key, series_key, label, cause, reason, streak) VALUES ('@pg069_seriesonly', 'series:Prompt', 'Prompt', 'no_material', 'no material', 3)`);
@@ -176,7 +177,7 @@ test('trigger 2 query leaves out channels the owner stopped: switched off, shado
   }
   const handles = (await negativePostsDays(db.pool, '2026-10-24')).map((r) => r.handle).filter((h) => h !== 'pg069_esc').sort();
   assert.deepEqual(handles, ['pg069_approve', 'pg069_liftedres', 'pg069_live2', 'pg069_over', 'pg069_resumedbrk', 'pg069_seriesonly'],
-    'an open resource: pause leaves the channel out; a resumed one and a series-only pause do not');
+    'an open resource: pause leaves the channel out; a resumed one (the day\'s window clear of it) and a series-only pause do not');
 });
 
 test('retireEscalationMemory retires only the system lines of that escalation subject', { skip }, async () => {
@@ -189,4 +190,32 @@ test('retireEscalationMemory retires only the system lines of that escalation su
   assert.ok(texts.includes('line b') && texts.includes('owner line'));
   assert.ok(!texts.includes('line a') && !texts.includes('line a2'));
   assert.equal(await repo.retireEscalationMemory(agentId, 'escalation:x:posts'), 0, 'nothing left to retire');
+});
+
+test('trigger 2 query: after Resume the days whose 7-day window overlapped the pause stay out; a day whose window began after the resume counts again', { skip }, async () => {
+  const REFW = 'telegram:@pg069_resumedwin';
+  await new AgentsRepository(db.pool).insert({ kind: 'orchestrator', scope: 'resource', scopeId: REFW, name: 'Resumed window', handle: 'pg069_resumedwin', mode: 'live', createdBy: 'owner' });
+  // The breaker paused the plain slots on 10-10 and the owner pressed Resume on 10-22: twelve days of the posts anomaly in between
+  // (nothing was planned), and the days after it, which are still compared with a window of paused days.
+  await db.pool.query(
+    `INSERT INTO series_pauses (channel_key, series_key, label, cause, reason, streak, paused_at, resumed_at, resumed_by)
+     VALUES ('@pg069_resumedwin', 'resource:telegram:@pg069_resumedwin', 'telegram:@pg069_resumedwin', 'no_material', 'no material', 3,
+             '2026-10-10T12:00:00Z', '2026-10-22T12:00:00Z', 'owner')`);
+  const anomaly = { v: 0, base: 3, d: -100, z: -3, anomaly: true };
+  await snapshot('2026-10-09', anomaly, REFW);                                                    // its window ended the day before the pause began
+  for (let d = 11; d <= 22; d++) await snapshot(`2026-10-${String(d)}`, anomaly, REFW);          // the twelve paused days
+  for (const d of ['2026-10-23', '2026-10-29', '2026-10-30', '2026-10-31']) await snapshot(d, anomaly, REFW);
+  const days = (await negativePostsDays(db.pool, '2026-10-01')).filter((r) => r.handle === 'pg069_resumedwin').map((r) => r.day);
+  // 10-11 .. 10-29 had 10-10 .. 10-22 inside their windows (D-7..D-1). 10-30 is the first whose window (10-23..10-29) starts after the resume.
+  assert.deepEqual(days, ['2026-10-09', '2026-10-30', '2026-10-31']);
+
+  // The streak as the manager reads it the day after the Resume: nothing to escalate. The same twelve days on a channel that was never paused are a run.
+  const REFN = 'telegram:@pg069_nopause';
+  await new AgentsRepository(db.pool).insert({ kind: 'orchestrator', scope: 'resource', scopeId: REFN, name: 'Never paused', handle: 'pg069_nopause', mode: 'live', createdBy: 'owner' });
+  for (let d = 11; d <= 22; d++) await snapshot(`2026-10-${String(d)}`, anomaly, REFN);
+  const all = (await negativePostsDays(db.pool, '2026-10-01')).filter((r) => r.day <= '2026-10-23');
+  assert.deepEqual(postsRuns(all, '2026-10-23').map((r) => [r.handle, r.firstDay, r.days]), [['pg069_nopause', '2026-10-11', 12]], 'no run for the resumed channel right after Resume');
+  // Still paused: the open-pause clause leaves every day out as before.
+  await db.pool.query(`UPDATE series_pauses SET resumed_at = NULL, resumed_by = NULL WHERE channel_key = '@pg069_resumedwin'`);
+  assert.deepEqual((await negativePostsDays(db.pool, '2026-10-01')).filter((r) => r.handle === 'pg069_resumedwin'), []);
 });

@@ -1,5 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { DocStore } from './doc-store';
 import { fetchDocument } from './doc-fetch';
 import { buildPlan, ImportListInput, IMPORT_LIST_KIND, payloadOf } from './import-list';
@@ -9,6 +11,7 @@ import { PlaybookSchema } from '../network/playbook';
 import { ScheduleService, type ScheduleScope } from '../schedule/schedule.service';
 import { PendingActionsService, type PendingAction } from '../agents/pending-actions';
 import { applyOwnerRule } from '../agents/agent-chat-tools';
+import { SOURCE_CHANGE_ROUTE } from '../agents/agent-prompts';
 import type { ToolContext } from '../harness/tool';
 import { registerPauseResumeAction, SERIES_PAUSE_RESUME_KIND } from '../series-pause/pause-resume-action';
 import type { SeriesPause } from '../series-pause/series-pauses.repository';
@@ -245,6 +248,12 @@ test('the description leads with the routing sentence; the tool stays chat-only 
   assert.ok(t.description.startsWith(IMPORT_ROUTING));
   assert.match(t.description, /бери з X.*не бери Y/);
   assert.match(t.description, /ніколи не пиши скіл про джерело контенту/);
+  // A channel pause is only offered, unticked, and a paused channel plans nothing: the agent must tell the owner to tick it.
+  assert.match(IMPORT_ROUTING, /паузу самого каналу картка лише пропонує, без позначки.*скажи власнику його позначити: канал на паузі не планується зовсім, разом із серією/);
+  assert.doesNotMatch(IMPORT_ROUTING, /чи канал/);
+  assert.match(SOURCE_CHANGE_ROUTE, /Паузу самого каналу картка лише пропонує \(пункт без позначки\).*скажи власнику його позначити.*не планується зовсім, і привʼязана серія теж/);
+  const skill = readFileSync(join(__dirname, '..', '..', '..', 'editor-skills', 'editor-composer-workflow.md'), 'utf8');
+  assert.match(skill, /Паузу самого каналу \(`resource:…`, прості слоти\) картка теж лише пропонує, без позначки: якщо такий пункт є на картці, ОБОВʼЯЗКОВО скажи власнику поставити позначку — канал на паузі не планується зовсім/);
   assert.match(t.description, /Перетворити сторінку-список/, 'the rest of the description is kept');
   assert.equal(t.chatOnly, true);
   assert.ok(t.roles.includes('composer'));
@@ -333,7 +342,7 @@ test('a series with an open pause gets a ticked resume item right after the seri
   const resume = then[1];
   assert.equal(resume.requires, 'main_rows', 'an empty import does not resume');
   assert.equal(resume.ticked, undefined, 'ticked');
-  assert.deepEqual(resume.payload, { pause_id: 'pause-series:Prompt of the day', channel_key: '@ai_global', series: 'Prompt of the day', dataset: 'nanobanana_prompts', agent_id: 'a-orch' });
+  assert.deepEqual(resume.payload, { pause_id: 'pause-series:Prompt of the day', key: 'series:Prompt of the day', channel_key: '@ai_global', series: 'Prompt of the day', dataset: 'nanobanana_prompts', agent_id: 'a-orch' });
   assert.match(resume.summary, /^Resume series "Prompt of the day" on @ai_global \(paused: no material to post from: preflight_no_material: рядок data:\/\/prompts\/12 без prompt_text\)$/);
   assert.deepEqual(out.follow_ups.map((f: any) => [f.key, f.ticked]), [['series', true], ['resume', true], ['rule', true]]);
   assert.match(r.proposed[0].summary, /Then, in this order: bind the series to the dataset \(required\); resume the paused series; save the rule\./);
@@ -360,10 +369,10 @@ test('a pause of the channel itself is a second, unticked suggestion; both toget
   const ch = then[2];
   assert.equal(ch.ticked, false, 'a soft suggestion');
   assert.equal(ch.requires, 'main_rows');
-  assert.deepEqual(ch.payload, { pause_id: 'pause-resource:telegram:@ai_global', channel_key: '@ai_global' });
-  assert.match(ch.summary, /^Resume the plain slots of @ai_global \(paused: no material to post from: .*\)/);
+  assert.deepEqual(ch.payload, { pause_id: 'pause-resource:telegram:@ai_global', key: 'resource:telegram:@ai_global', channel_key: '@ai_global' });
+  assert.match(ch.summary, /^Resume the plain slots of @ai_global \(paused: no material to post from: .*\) — unticked: while the channel is paused nothing on it is planned, the series bound on this card included$/);
   assert.deepEqual(out.follow_ups.map((f: any) => [f.key, f.ticked]), [['series', true], ['resume', true], ['resume_channel', false]]);
-  assert.match(r.proposed[0].summary, /resume the paused series; suggest resuming the channel’s plain slots \(unticked\)\./);
+  assert.match(r.proposed[0].summary, /resume the paused series; suggest resuming the channel \(unticked: the channel and the series bound on this card are not planned until it is ticked\)\./);
 
   // The channel pause alone (the series itself is not paused) is still offered, unticked.
   const only = rig({ pauses: [pause('resource:telegram:@ai_global')] });
@@ -402,13 +411,28 @@ test('a pause lookup that fails never stops the import card; the notes say it wa
   assert.match(out.follow_up_notes[0], /паузи серій не перевірено: db down/);
 });
 
-/** Apply with the resume handler of the module over a fake pause store; `onDataset` is what the series reads after its change. */
-function resumeRig(imported: { inserted: number; updated: number; skipped: number }, o: { failSeries?: boolean; onDataset?: string | null; missing?: boolean } = {}) {
+/**
+ * Apply with the resume handler of the module over a fake pause store; `onDataset` is what the series reads after its change.
+ * `store` is the pauses table as Apply finds it: `resume` flips a still-open row (changed) and reports a resumed one as it is (not changed).
+ */
+function resumeRig(imported: { inserted: number; updated: number; skipped: number }, o: { failSeries?: boolean; onDataset?: string | null; store?: SeriesPause[] | 'none' } = {}) {
   const a = applyRig(imported, { failSeries: o.failSeries });
   const resumed: string[] = [];
   const dataset = o.onDataset === undefined ? 'nanobanana_prompts' : o.onDataset;
+  const store: SeriesPause[] = o.store === 'none' ? [] : o.store ?? [];
+  const known = (id: string) => store.find((x) => x.id === id) ?? (o.store ? null : pause(id.replace(/^pause-/, '')));
   registerPauseResumeAction(a.svc, {
-    pauses: { resume: async (id: string) => { resumed.push(id); return o.missing ? { outcome: 'x', changed: false, pause: null } : { outcome: `✅ Відновлено: ${id}`, changed: true, pause: pause(id) }; } },
+    pauses: {
+      resume: async (id: string) => {
+        const row = known(id);
+        if (!row) return { outcome: 'x', changed: false, pause: null };
+        if (row.resumedAt) return { outcome: 'already resumed', changed: false, pause: row };
+        resumed.push(id);
+        row.resumedAt = new Date();
+        return { outcome: `✅ Відновлено: ${id}`, changed: true, pause: row };
+      },
+      list: async (channelKey?: string) => store.filter((x) => !channelKey || x.channelKey.toLowerCase() === channelKey.toLowerCase()).sort((x, y) => Number(!!x.resumedAt) - Number(!!y.resumedAt)),
+    },
     schedule: {
       scopeById: async () => ({ ...scope(), net: { ...scope().net, playbook: PlaybookSchema.parse({
         platforms: [{ resource_ref: TG, role: 'core', formats: { photo: 1, text: 0.5 }, per_day: { min: 1, max: 4 } }],
@@ -416,7 +440,7 @@ function resumeRig(imported: { inserted: number; updated: number; skipped: numbe
       }) } }),
     } as any,
   });
-  return { ...a, resumed };
+  return { ...a, resumed, store };
 }
 
 async function pausedCard(a: ReturnType<typeof applyRig>, pauses: SeriesPause[]) {
@@ -464,11 +488,100 @@ test('Apply: an empty import does not resume; neither does a series the change d
   await skipped.svc.apply((await pausedCard(skipped, [pause('series:Prompt of the day'), pause('resource:telegram:@ai_global')])).id, { skip_then: ['resume', 'resume_channel'] });
   assert.deepEqual(skipped.resumed, []);
 
-  // The pause was lifted by hand before Apply: the item says it is gone, the card stays applied.
-  const gone = resumeRig({ inserted: 4, updated: 0, skipped: 0 }, { missing: true });
+  // The pause is not in the table any more (unknown id): the item says it is gone, the card stays applied.
+  const gone = resumeRig({ inserted: 4, updated: 0, skipped: 0 }, { store: 'none' });
   const gc = await gone.svc.apply((await pausedCard(gone, [pause('series:Prompt of the day')])).id);
   assert.equal(gc.status, 'applied');
   assert.match((gc.result as any).then[1].error, /pause_not_found/);
+});
+
+/** The card was made with the pause `p1` open; by Apply the table is `store` (p1 itself is in it, as it is now). */
+async function applyAgainst(store: SeriesPause[]) {
+  const a = resumeRig({ inserted: 4, updated: 0, skipped: 0 }, { store });
+  const card = await a.svc.apply((await pausedCard(a, [pause('series:Prompt of the day', { id: 'p1' })])).id);
+  return { a, then: (card.result as any).then as any[] };
+}
+const stale = (o: Partial<SeriesPause> = {}) => pause('series:Prompt of the day', { id: 'p1', resumedAt: new Date('2026-10-26T12:00:00Z'), resumedBy: 'owner', ...o });
+
+test('Apply: the pause the card names was resumed by hand and nothing is open: the item reports "already resumed", not an error', async () => {
+  const { a, then } = await applyAgainst([stale()]);
+  assert.deepEqual(a.resumed, []);
+  assert.deepEqual([then[1].key, then[1].ok], ['resume', true]);
+  assert.deepEqual(then[1].result, { resumed: false, pause_id: 'p1', outcome: 'already resumed' });
+});
+
+test('Apply: the pause was resumed by hand and the breaker opened a new one on the same series: the new one is resumed', async () => {
+  const { a, then } = await applyAgainst([stale(), pause('series:Prompt of the day', { id: 'p2' }), pause('series:Another series', { id: 'p3' })]);
+  assert.deepEqual(a.resumed, ['p2'], 'the open pause of the same key, no other');
+  assert.deepEqual([then[1].key, then[1].ok, then[1].result.resumed, then[1].result.pause_id], ['resume', true, true, 'p2']);
+  // A pause of another channel with the same key is not this card\'s.
+  const other = await applyAgainst([stale(), pause('series:Prompt of the day', { id: 'p9', channelKey: '@someone_else' })]);
+  assert.deepEqual(other.a.resumed, []);
+  assert.equal(other.then[1].result.outcome, 'already resumed');
+});
+
+test('Apply: the owner paused the series again after the card was made: it is not undone, the item says how to do it by hand', async () => {
+  const { a, then } = await applyAgainst([stale(), pause('series:Prompt of the day', { id: 'p2', cause: 'owner', reason: '' })]);
+  assert.deepEqual(a.resumed, []);
+  assert.equal(then[1].ok, false);
+  assert.match(then[1].error, /^not_resumed: "Prompt of the day" was paused again by the owner after this card was made; Resume it from Overview → Paused series$/);
+});
+
+test('Apply: the channel item follows the same rule through its stored key', async () => {
+  const rows = [
+    pause('resource:telegram:@ai_global', { id: 'c1', resumedAt: new Date('2026-10-26T12:00:00Z'), resumedBy: 'owner' }),
+    pause('resource:telegram:@ai_global', { id: 'c2' }), pause('series:Prompt of the day', { id: 'p1' }),
+  ];
+  const a = resumeRig({ inserted: 4, updated: 0, skipped: 0 }, { store: rows });
+  const r = rig({ pauses: [pause('resource:telegram:@ai_global', { id: 'c1' }), pause('series:Prompt of the day', { id: 'p1' })] });
+  await call(r, { series: 'Prompt of the day' });
+  const card = await a.svc.apply((await a.svc.propose({ chatId: 'chat-1', kind: IMPORT_LIST_KIND, payload: r.proposed[0].payload, summary: r.proposed[0].summary })).id, { skip_then: [] });
+  assert.deepEqual(a.resumed.sort(), ['c2', 'p1']);
+  assert.deepEqual((card.result as any).then.map((t: any) => [t.key, t.ok]), [['series', true], ['resume', true], ['resume_channel', true]]);
+});
+
+// ── Wave fix 068 × 069, second check: a card never carries more than 8 follow-ups ───────────────────────────────────────
+
+test('over the cap, the unticked channel suggestion goes first, with a note; the card keeps 8 items', async () => {
+  const skills = ['skill-1', 'skill-2', 'skill-3', 'skill-4', 'skill-5'].map((n) => skillEntry(n, { agentId: 'a-orch' }));
+  const r = rig({ skills, pauses: [pause('series:Prompt of the day'), pause('resource:telegram:@ai_global')] });
+  const out = await call(r, { series: 'Prompt of the day', stop_using: DROP, disable_skills: ['skill-1', 'skill-2', 'skill-3', 'skill-4', 'skill-5'] });
+  assert.equal(out.ok, true, JSON.stringify(out));   // series + resume + channel + rule + 5 skills = 9
+  const keys = r.proposed[0].payload.then.map((t: any) => t.key);
+  assert.deepEqual(keys, ['series', RESUME_ITEM, 'rule', 'detach:skill-1', 'detach:skill-2', 'detach:skill-3', 'detach:skill-4', 'detach:skill-5']);
+  assert.match(out.follow_up_notes[0], /паузу каналу не додано до картки.*максимум 8.*Overview → Paused series/);
+  assert.equal(out.follow_up_notes.length, 1);
+  assert.equal(out.follow_ups.length, 8);
+});
+
+test('still over the cap: the series\' own unticked resume (the owner paused it) goes next; a ticked one is never dropped', async () => {
+  // Six skills only get through when the input skips zod (its own cap is 5), as a direct caller of the tool does.
+  const names = ['skill-1', 'skill-2', 'skill-3', 'skill-4', 'skill-5', 'skill-6'];
+  const skills = names.map((n) => skillEntry(n, { agentId: 'a-orch' }));
+  const inputOf = async (r: ReturnType<typeof rig>, disable: string[]) => ({
+    ...ImportListInput.parse({ doc_id: (await fixtureDoc(r.docs)).id, dataset: 'nanobanana_prompts', mapping: MAPPING, filter: { has_code_block: true }, series: 'Prompt of the day', stop_using: DROP, disable_skills: names.slice(0, 5) }),
+    disable_skills: disable,
+  });
+  const owner = rig({ skills, pauses: [pause('series:Prompt of the day', { cause: 'owner', reason: '' })] });
+  const five = await owner.tools.import_list.execute(await inputOf(owner, names.slice(0, 5)), ctx());
+  assert.equal(five.ok, true, 'five skills + series + resume + rule = 8, no overflow');
+  assert.equal(owner.proposed[0].payload.then.length, 8);
+
+  const six = await owner.tools.import_list.execute(await inputOf(owner, names), ctx());
+  assert.equal(six.ok, true, JSON.stringify(six));   // series + resume(unticked) + rule + 6 skills = 9
+  const keys = owner.proposed[1].payload.then.map((t: any) => t.key);
+  assert.equal(keys.length, 8);
+  assert.ok(!keys.includes(RESUME_ITEM), 'the owner-cause suggestion was dropped');
+  assert.match(six.follow_up_notes[0], /паузу серії, яку поставив власник, не додано до картки.*максимум 8/);
+
+  // The breaker's pause is ticked: it is the point of the card, so the tool refuses instead of dropping it.
+  const breaker = rig({ skills, pauses: [pause('series:Prompt of the day')] });
+  const tooMany = await breaker.tools.import_list.execute(await inputOf(breaker, names), ctx());
+  assert.equal(tooMany.error, 'too_many_follow_ups');
+  assert.match(tooMany.details, /9 пунктів.*максимум 8/);
+  assert.match(tooMany.hint, /менше скілів у disable_skills/);
+  assert.equal(breaker.proposed.length, 0, 'nothing is proposed');
+  assert.ok(tooMany.preview, 'the preview still comes back');
 });
 
 test('the resume kind must be registered, or a card that carries it is refused when proposed', async () => {
@@ -476,6 +589,6 @@ test('the resume kind must be registered, or a card that carries it is refused w
   const r = rig({ pauses: [pause('series:Prompt of the day')] });
   await call(r, { series: 'Prompt of the day' });
   assert.throws(() => a.svc.propose({ chatId: 'c', kind: IMPORT_LIST_KIND, payload: r.proposed[0].payload, summary: 's' }), /unknown action kind series_pause_resume in a follow-up/);
-  registerPauseResumeAction(a.svc, { pauses: { resume: async () => ({ outcome: '', changed: true, pause: null }) } });
+  registerPauseResumeAction(a.svc, { pauses: { resume: async () => ({ outcome: '', changed: true, pause: null }), list: async () => [] } });
   assert.equal((await a.svc.propose({ chatId: 'c', kind: IMPORT_LIST_KIND, payload: r.proposed[0].payload, summary: 's' })).status, 'pending');
 });

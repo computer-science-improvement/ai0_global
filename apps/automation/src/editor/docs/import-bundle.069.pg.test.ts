@@ -214,3 +214,55 @@ test('no pause: the card has no resume item', { skip }, async () => {
   const out = await propose(s, { dataset: 'resume_d_pg069', series: SERIES });
   assert.deepEqual(out.follow_ups.map((f: any) => f.key), ['series']);
 });
+
+// ── Second check: the pause the card names can be resumed by hand (and opened again) before Apply ─────────────────────────
+
+const SERIES_KEY = `series:${SERIES}`;
+const openPauses = async () =>
+  (await pool.query(`SELECT id::text AS id, series_key, cause, resumed_at IS NOT NULL AS resumed FROM series_pauses WHERE channel_key = $1 AND series_key = $2 ORDER BY paused_at, id`, [CH, SERIES_KEY])).rows;
+async function liftByHand() {
+  await pool.query(`UPDATE series_pauses SET resumed_at = now() - interval '1 minute', resumed_by = 'owner' WHERE channel_key = $1 AND series_key = $2 AND resumed_at IS NULL`, [CH, SERIES_KEY]);
+}
+const pauseAgain = async (cause: 'no_material' | 'owner') => (await pool.query(
+  `INSERT INTO series_pauses (channel_key, series_key, label, cause, reason, streak) VALUES ($1, $2, $3, $4, 'dead again', 3) RETURNING id::text AS id`,
+  [CH, SERIES_KEY, SERIES, cause])).rows[0].id as string;
+
+test('the pause was resumed by hand before Apply: nothing open is reported as already resumed; a new breaker pause of the series is resumed; a new owner pause is left alone', { skip }, async () => {
+  // 1. Resumed by hand, nothing open: the item is not an error.
+  await seed();
+  let s = setup();
+  let out = await propose(s, { dataset: 'resume_e_pg069', series: SERIES });
+  await liftByHand();
+  let card = await s.actions.apply(out.pending_action);
+  assert.equal(card.status, 'applied', card.error ?? '');
+  let item = (card.result as any).then[1];
+  assert.deepEqual([item.key, item.ok, item.result?.resumed, item.result?.outcome], ['resume', true, false, 'already resumed'], JSON.stringify(item));
+  assert.deepEqual((await openPauses()).map((r) => r.resumed), [true]);
+
+  // 2. Resumed by hand, then the breaker paused the series again: the card resumes the new pause (found by its key).
+  await seed();
+  s = setup();
+  out = await propose(s, { dataset: 'resume_f_pg069', series: SERIES });
+  const first = (await openPauses())[0].id;
+  await liftByHand();
+  const second = await pauseAgain('no_material');
+  card = await s.actions.apply(out.pending_action);
+  assert.equal(card.status, 'applied', card.error ?? '');
+  item = (card.result as any).then[1];
+  assert.deepEqual([item.ok, item.result.resumed, item.result.pause_id], [true, true, second], JSON.stringify(item));
+  assert.notEqual(second, first);
+  assert.deepEqual((await openPauses()).map((r) => r.resumed), [true, true]);
+
+  // 3. Resumed by hand, then the owner paused it again: not undone, the item says how to lift it by hand.
+  await seed();
+  s = setup();
+  out = await propose(s, { dataset: 'resume_g_pg069', series: SERIES });
+  await liftByHand();
+  const ownerOne = await pauseAgain('owner');
+  card = await s.actions.apply(out.pending_action);
+  assert.equal(card.status, 'applied', card.error ?? '');
+  item = (card.result as any).then[1];
+  assert.equal(item.ok, false);
+  assert.match(item.error, /^not_resumed: "Resume me" was paused again by the owner after this card was made; Resume it from Overview → Paused series$/);
+  assert.deepEqual((await openPauses()).map((r) => [r.id === ownerOne, r.resumed]), [[false, true], [true, false]], 'the owner\'s pause stays open');
+});

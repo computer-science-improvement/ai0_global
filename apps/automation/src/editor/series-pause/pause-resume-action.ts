@@ -12,15 +12,21 @@ import type { SeriesPauseActions } from './pause-actions';
 export const SERIES_PAUSE_RESUME_KIND = 'series_pause_resume';
 
 export interface PauseResumeDeps {
-  pauses:    Pick<SeriesPauseActions, 'resume'>;
+  pauses:    Pick<SeriesPauseActions, 'resume' | 'list'>;
   /** Used to check, before a series is resumed, that its change really reached the new dataset (the series item can fail on its own). */
   schedule?: Pick<ScheduleService, 'scopeById'>;
 }
 
 /**
- * `{ pause_id }` resumes that pause. With `{ series, dataset, agent_id }` the series must now read `dataset` as its library
- * source (the follow-up before it, the series change, may have failed); otherwise it stays paused and the card says why.
- * An unreadable scope does not block the resume (the check is best effort).
+ * `{ pause_id, key, channel_key }` resumes that pause. The card may wait up to a day for Apply, so the pause it names can be
+ * resumed by hand meanwhile, and the breaker (or the owner) can open a new one on the same key: when `pause_id` is already
+ * resumed, the open pause of the same channel and key is resumed instead — unless the owner made it (they paused it again after
+ * the card was made, a new source is no reason to undo that), which fails with the way to do it by hand. Nothing open: reported as
+ * already resumed. A pause that first opens after the card was proposed has no item (see the runbook).
+ *
+ * With `{ series, dataset, agent_id }` the series must now read `dataset` as its library source (the follow-up before it, the
+ * series change, may have failed); otherwise it stays paused and the card says why. An unreadable scope does not block the
+ * resume (the check is best effort).
  */
 export function registerPauseResumeAction(actions: Pick<PendingActionsService, 'register'>, d: PauseResumeDeps): void {
   actions.register(SERIES_PAUSE_RESUME_KIND, async (p) => {
@@ -37,6 +43,17 @@ export function registerPauseResumeAction(actions: Pick<PendingActionsService, '
     }
     const r = await d.pauses.resume(id, 'dashboard');
     if (!r.pause) throw new Error('pause_not_found: the pause is gone');
-    return { resumed: r.changed, outcome: r.outcome };
+    if (r.changed) return { resumed: true, pause_id: id, outcome: r.outcome };
+
+    // The pause this card named was lifted already. Is the same series (or channel) paused again?
+    const key = typeof p.key === 'string' && p.key ? p.key : r.pause.key;
+    const channelKey = typeof p.channel_key === 'string' && p.channel_key ? p.channel_key : r.pause.channelKey;
+    const again = (await d.pauses.list(channelKey, 50)).find((x) => !x.resumedAt && x.key === key);
+    if (!again) return { resumed: false, pause_id: id, outcome: 'already resumed' };
+    if (again.cause === 'owner') {
+      throw new Error(`not_resumed: "${again.label}" was paused again by the owner after this card was made; Resume it from Overview → Paused series`);
+    }
+    const n = await d.pauses.resume(again.id, 'dashboard');
+    return { resumed: n.changed, pause_id: again.id, outcome: n.outcome };
   });
 }

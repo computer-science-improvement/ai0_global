@@ -129,6 +129,9 @@ export async function buildBundle(d: BundleDeps, ctx: ToolContext, i: BundleInpu
     }
   }
 
+  const over = fitFollowUps(then, notes);
+  if (over) return over;
+
   // Spec 069 FR-003 / A7: the skills that still tell the agent to use what the owner just dropped («не використовуй X»).
   if (i.stop_using && d.skills && d.agents && d.schedule && then.length < MAX_FOLLOW_UPS) {
     const sc = scope && !isFail(scope) ? scope : await scopeOf({ schedule: d.schedule }, ctx);
@@ -145,6 +148,27 @@ export async function buildBundle(d: BundleDeps, ctx: ToolContext, i: BundleInpu
   return { then, notes };
 }
 
+/**
+ * A card carries at most MAX_FOLLOW_UPS items. The resume items are the only ones that can tip it over (series + rule + 5 skills
+ * already make 7), and the unticked ones are only suggestions: the channel's goes first, then the series' own when the owner paused
+ * it by hand. Each leaves a note for the model. Still over: the tool says so, instead of `propose` throwing.
+ */
+function fitFollowUps(then: FollowUp[], notes: string[]): BundleFail | null {
+  const drop = (key: string, note: string): void => {
+    const at = then.findIndex((t) => t.key === key && t.ticked === false);
+    if (at < 0) return;
+    then.splice(at, 1);
+    notes.push(note);
+  };
+  if (then.length > MAX_FOLLOW_UPS) drop(RESUME_CHANNEL_ITEM, `паузу каналу не додано до картки: забагато пунктів (максимум ${MAX_FOLLOW_UPS}) — канал на паузі не планується, тож скажи власнику відновити його окремо (Overview → Paused series)`);
+  if (then.length > MAX_FOLLOW_UPS) drop(RESUME_ITEM, `паузу серії, яку поставив власник, не додано до картки: забагато пунктів (максимум ${MAX_FOLLOW_UPS}) — її відновлюють окремо`);
+  if (then.length <= MAX_FOLLOW_UPS) return null;
+  return {
+    error: 'too_many_follow_ups', details: `картка мала б ${then.length} пунктів, а максимум ${MAX_FOLLOW_UPS}`,
+    hint: 'назви менше скілів у disable_skills (або без stop_using) і виклич ще раз',
+  };
+}
+
 const CAUSE_TEXT: Record<SeriesPause['cause'], string> = {
   no_material: 'no material to post from', source_unreachable: 'source unreachable', owner: 'paused by the owner',
 };
@@ -155,7 +179,9 @@ const why = (p: SeriesPause): string => `${CAUSE_TEXT[p.cause]}${p.reason ? `: $
  * The resume items of a card that binds `i.series`: the series' own open pause (`series:<name>`, only for an import that found
  * rows, and only if the series now reads the new dataset — ticked when the breaker made it, unticked when the owner paused the
  * series by hand: a new source is not a reason to undo their decision), and the channel's plain-slot pause (`resource:telegram:<channel>`,
- * unticked, a suggestion). Both are checked again when the card is applied; a read error offers nothing and says so in the notes.
+ * unticked, a suggestion; a paused channel is not planned at all, the series included, so the text of the item says so). Each item stores
+ * the pause id and its key: Apply looks the pause up again by key when the id was resumed meanwhile (pause-resume-action). A pause that
+ * first opens after the card was proposed has no item. A read error offers nothing and says so in the notes.
  */
 async function resumeItems(d: BundleDeps, scope: ScheduleScope, i: BundleInput, notes: string[]): Promise<FollowUp[]> {
   if (!d.pauses || !i.series) return [];
@@ -170,7 +196,7 @@ async function resumeItems(d: BundleDeps, scope: ScheduleScope, i: BundleInput, 
   if (own) {
     out.push({
       key: RESUME_ITEM, kind: SERIES_PAUSE_RESUME_KIND, requires: 'main_rows', ...(own.cause === 'owner' ? { ticked: false } : {}),
-      payload: { pause_id: own.id, channel_key: own.channelKey, series: i.series, dataset: i.dataset, agent_id: scope.agent.id },
+      payload: { pause_id: own.id, key: own.key, channel_key: own.channelKey, series: i.series, dataset: i.dataset, agent_id: scope.agent.id },
       summary: `Resume series "${i.series}" on ${own.channelKey} (paused: ${why(own)})`,
     });
   }
@@ -178,8 +204,8 @@ async function resumeItems(d: BundleDeps, scope: ScheduleScope, i: BundleInput, 
   if (channel) {
     out.push({
       key: RESUME_CHANNEL_ITEM, kind: SERIES_PAUSE_RESUME_KIND, requires: 'main_rows', ticked: false,
-      payload: { pause_id: channel.id, channel_key: channel.channelKey },
-      summary: `Resume the plain slots of ${channel.channelKey} (paused: ${why(channel)}); the planner skips the channel while it is paused`,
+      payload: { pause_id: channel.id, key: channel.key, channel_key: channel.channelKey },
+      summary: `Resume the plain slots of ${channel.channelKey} (paused: ${why(channel)}) — unticked: while the channel is paused nothing on it is planned, the series bound on this card included`,
     });
   }
   return out;
@@ -192,7 +218,7 @@ export function thenLine(then: readonly FollowUp[]): string {
     t.key === SERIES_ITEM ? 'bind the series to the dataset (required)'
       : t.key === RULE_ITEM ? 'save the rule'
         : t.key === RESUME_ITEM ? (t.ticked === false ? 'suggest resuming the series you paused (unticked)' : 'resume the paused series')
-          : t.key === RESUME_CHANNEL_ITEM ? 'suggest resuming the channel’s plain slots (unticked)'
+          : t.key === RESUME_CHANNEL_ITEM ? 'suggest resuming the channel (unticked: the channel and the series bound on this card are not planned until it is ticked)'
             : t.kind === 'detach_skill' ? `${t.ticked === false ? 'suggest disabling' : 'disable'} skill “${String(t.payload.skill)}”${t.ticked === false ? ' (unticked)' : ''}`
               : t.summary.slice(0, 80);
   return `Then, in this order: ${then.map(part).join('; ')}. Untick what you do not want.`;

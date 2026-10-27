@@ -81,10 +81,16 @@ export interface PostsRun { agentId: string; handle: string; ref: string; firstD
 /**
  * The days (from `fromDay`) on which an agent's own resource had a negative posts anomaly in its snapshot. A resource whose
  * orchestrator is switched off, in shadow mode (it publishes nothing) or paused, that is under an active resource pause, or
- * whose plain slots the dead-series breaker (spec 068/060) or the owner paused (an open `series_pauses` row keyed
- * `resource:<ref>`, which the scheduler does not plan) is left out: its posts stopped because someone stopped it, and
- * there is nothing for a directive to fix. A pause on one series only (`series:<name>`) is NOT left out: the channel still
+ * whose plain slots the dead-series breaker (spec 068/060) paused (an open `series_pauses` row keyed `resource:<ref>`, also
+ * one the owner chose to keep, which the scheduler does not plan) is left out: its posts stopped because someone stopped it,
+ * and there is nothing for a directive to fix. A pause on one series only (`series:<name>`) is NOT left out: the channel still
  * plans its other slots, and a directive to replace the dead series is a legitimate answer there.
+ *
+ * After such a pause is resumed, the days whose KPI window still holds paused time are left out too. The snapshot of day D is
+ * made from the days D-7..D-1 (kpi-math `windowDays(today, 1, 7)`; the snapshot's `day` is the Kyiv day, `kyivDay` in
+ * kpi-digest.service, so the pause is put on the same Kyiv calendar): those snapshots keep their anomaly flag for the days the
+ * code had stopped the channel, and counting them would escalate "no directive filed" right after the owner pressed Resume.
+ * A day counts again when the pause ended before its window began (about a week after the resume).
  */
 export async function negativePostsDays(pool: Q, fromDay: string): Promise<PostsDay[]> {
   const { rows } = await pool.query(
@@ -97,7 +103,10 @@ export async function negativePostsDays(pool: Q, fromDay: string): Promise<Posts
         AND NOT EXISTS (SELECT 1 FROM resource_pauses p
                          WHERE p.resource_ref = s.scope_id AND p.lifted_at IS NULL AND p.starts_at <= now() AND p.until > now())
         AND NOT EXISTS (SELECT 1 FROM series_pauses sp
-                         WHERE sp.resumed_at IS NULL AND sp.series_key = 'resource:' || s.scope_id)
+                         WHERE sp.series_key = 'resource:' || s.scope_id
+                           AND (sp.resumed_at IS NULL
+                                OR ((sp.paused_at AT TIME ZONE 'Europe/Kyiv')::date <= s.day - 1
+                                    AND (sp.resumed_at AT TIME ZONE 'Europe/Kyiv')::date >= s.day - 7)))
       ORDER BY a.handle, s.scope_id, s.day`, [fromDay]);
   return rows.map((r: any) => ({ agentId: String(r.agent_id), handle: String(r.handle), ref: String(r.ref), day: String(r.day) }));
 }
