@@ -93,6 +93,31 @@ test('dark_day: a post out, an off card, a paused resource → no note; throttle
   assert.equal(await watch.check(on, at('2026-10-11T16:06:00Z')), 1);
 });
 
+test('068 FR-005: the minimum comes from minPerDay when wired — a paused series is not owed; a failing hook falls back to the card', async () => {
+  const cards = [makeCard({ channelKey: '@birzha', mode: 'live', postsPerDayMin: 1 })];
+  const evening = at('2026-10-11T16:00:00Z');                 // 19:00 Kyiv, no slot at all today
+  const seen: any[] = [];
+
+  const lowered = fakeInbox();
+  const w1 = new SilentDaysWatch({ pool: fakePool(() => []) as any, inbox: lowered, everyMs: 0, minPerDay: async (card, day, now) => { seen.push([card.channelKey, day, now.toISOString()]); return 0; } });
+  assert.equal(await w1.check(cards, evening), 0, 'the lowered minimum is 0: no dark day');
+  assert.deepEqual(seen, [['@birzha', '2026-10-11', evening.toISOString()]]);
+
+  const plain = fakeInbox();
+  const w2 = new SilentDaysWatch({ pool: fakePool(() => []) as any, inbox: plain, everyMs: 0 });
+  assert.equal(await w2.check(cards, evening), 1, 'without the hook the card\'s own minimum counts, as before');
+
+  const broken = fakeInbox();
+  const w3 = new SilentDaysWatch({ pool: fakePool(() => []) as any, inbox: broken, everyMs: 0, minPerDay: async () => { throw new Error('pauses table down'); } });
+  assert.equal(await w3.check(cards, evening), 1, 'a failing hook never hides a silent day');
+
+  // A slot the planner placed still makes the day count, whatever the minimum says.
+  const planned = fakeInbox();
+  const w4 = new SilentDaysWatch({ pool: fakePool(() => [slot({ id: 'x', scheduledAt: at('2026-10-11T08:00:00Z'), status: 'skipped', error: 'planner_no_material: бібліотека порожня' })]) as any, inbox: planned, everyMs: 0, minPerDay: async () => 0 });
+  assert.equal(await w4.check(cards, evening), 1);
+  assert.match(planned.items[0].body, /nothing fresh 1/, 'the planner\'s own reason shows as the cause');
+});
+
 test('series_missed: one note per resource per day listing the misses; owner decisions excluded; next day again', async () => {
   const ref = 'telegram:@ai_tech';
   const data: WatchSlot[] = [

@@ -140,6 +140,22 @@ test('experiment plan: params checked, the quota change (resource, angle, slots,
   assert.equal(bad({ resource_ref: IG }, ctx({ mode: 'legacy_duplicate' })), 'not_executable', 'only an independent network plans other resources');
 });
 
+// Spec 068 FR-007 (review fix R1): a hosted format (a carousel) cannot be the quota's format where the slide hosting is not set.
+test('experiment plan: a carousel quota is not executable without slide hosting; with hosting, or without settings in the context, it is', () => {
+  const counts = { planned: 0, done: 0 };
+  const hosting = (k: string) => ({ SUPABASE_URL: 'u', SUPABASE_SERVICE_KEY: 'k', SUPABASE_CAROUSEL_BUCKET: 'b' } as Record<string, string>)[k];
+  const params = { angle: 'Питання до аудиторії замість висновку', format: 'carousel' };
+  const none = experimentExecutor({ quotas: { counts: async () => counts }, env: () => undefined, now: () => CNOW }).plan(dir('experiment', params), ctx()) as any;
+  assert.equal(none.error, 'not_executable');
+  assert.match(none.details ?? none.reason ?? JSON.stringify(none), /потребує хостингу слайдів/);
+  const hosted = experimentExecutor({ quotas: { counts: async () => counts }, env: hosting, now: () => CNOW }).plan(dir('experiment', params), ctx()) as ExperimentChange;
+  assert.equal(hosted.format, 'carousel');
+  const plain = experimentExecutor({ quotas: { counts: async () => counts }, now: () => CNOW }).plan(dir('experiment', params), ctx()) as ExperimentChange;
+  assert.equal(plain.format, 'carousel', 'no settings, no check');
+  const photo = experimentExecutor({ quotas: { counts: async () => counts }, env: () => undefined, now: () => CNOW }).plan(dir('experiment', { ...params, format: 'photo' }), ctx()) as ExperimentChange;
+  assert.equal(photo.format, 'photo', 'only hosted formats depend on the settings');
+});
+
 test('experiment apply: pending until a slot is planned, then applied; verify: verified when `slots` are published, not followed after the grace', async () => {
   const counts = { planned: 0, done: 0 };
   let at = CNOW;

@@ -3,6 +3,8 @@ import assert from 'node:assert/strict';
 import { buildRoleTools, RoleToolDeps } from './role-tools';
 import { makeCard, makeSpec } from '../post/testing/fixtures';
 import { CriticGate } from '../critic/critic-gate';
+import { skipGroupOf, skipSlotError } from '../silent/skip-reasons';
+import { toToolSpec } from '../harness/tool';
 
 const NOW = new Date('2026-10-01T09:00:00Z'); // 12:00 Kyiv
 
@@ -112,11 +114,34 @@ test('shadow mode skips live-only guards (cap/quiet/gap)', async () => {
   assert.equal(r.ok, true);
 });
 
-test('skip_slot marks skipped with reason', async () => {
+test('skip_slot marks skipped with reason and the cause it names (spec 068)', async () => {
   const { tools, updates } = deps();
-  await tools.skip_slot.execute({ reason: 'немає свіжих новин' }, ctx());
+  const r: any = await tools.skip_slot.execute({ reason: 'немає свіжих новин', cause: 'no_material' }, ctx());
   assert.equal(updates[0][1].status, 'skipped');
-  assert.match(updates[0][1].error, /немає свіжих/);
+  assert.equal(updates[0][1].error, 'skipped by agent: no_material: немає свіжих новин');
+  assert.equal(r.cause, 'no_material');
+  // The prefix stays: the critic-skip detection, the ladder, the landing pulse and the dashboard read it.
+  assert.ok(skipGroupOf(updates[0][1].error, 'revise') === 'critic');
+});
+
+test('skip_slot: cause is required unless a code says why; the code keeps its own form (spec 068)', () => {
+  const { tools } = deps();
+  const input = tools.skip_slot.input;
+  assert.equal(input.safeParse({ reason: 'немає свіжих новин' }).success, false, 'a call without cause or code fails validation');
+  assert.equal(input.safeParse({ reason: 'немає свіжих новин', cause: 'invented' }).success, false);
+  for (const cause of ['no_material', 'source_unreachable', 'source_used', 'quality', 'other']) assert.equal(input.safeParse({ reason: 'немає свіжих новин', cause }).success, true, cause);
+  assert.equal(input.safeParse({ reason: 'немає свіжих новин', code: 'no_fresh_item' }).success, true);
+  const json = JSON.stringify(toToolSpec(tools.skip_slot).parameters);
+  assert.match(json, /no_material/);
+  assert.match(json, /source_unreachable/);
+});
+
+test('skipSlotError: cause, code and the legacy form', () => {
+  assert.equal(skipSlotError('рядок без prompt_text', 'no_material'), 'skipped by agent: no_material: рядок без prompt_text');
+  assert.equal(skipSlotError('403 на джерелі', 'source_unreachable', undefined), 'skipped by agent: source_unreachable: 403 на джерелі');
+  assert.equal(skipSlotError('нічого свіжого', undefined, 'no_fresh_item'), 'no_fresh_item: нічого свіжого');
+  assert.equal(skipSlotError('нічого свіжого', 'no_material', 'story_skip'), 'story_skip: нічого свіжого', 'a code wins');
+  assert.equal(skipSlotError('нічого свіжого', undefined), 'skipped by agent: нічого свіжого');
 });
 
 test('submit_plan validates and creates', async () => {
@@ -128,6 +153,97 @@ test('submit_plan validates and creates', async () => {
   assert.equal(good.ok, true);
   assert.equal(updates[0][0], 'createPlan');
   assert.equal(updates[0][2], '2026-10-01');
+});
+
+// Spec 068 FR-004: an honest empty day — the placeholder slots go to createPlan with the plan, and the answer says so.
+test('submit_plan: short_day passes the placeholder to createPlan; without it, no slots is refused with the way out', async () => {
+  const { tools, updates } = deps();
+  const c = { ...ctx('shadow'), role: 'planner' as const, extras: { card: makeCard({ postsPerDayMin: 1, postsPerDayMax: 3 }), planDate: '2026-10-01' } };
+  const refused: any = await tools.submit_plan.execute({ rationale: 'сьогодні нічого не планую', slots: [] }, c);
+  assert.equal(refused.error, 'plan_invalid');
+  assert.match(refused.details.join('\n'), /cause: no_material/, 'the refusal names the way out');
+  assert.equal(updates.length, 0);
+
+  const reason = 'Бібліотека порожня, джерела картки вичерпані';
+  const ok: any = await tools.submit_plan.execute({ rationale: 'сьогодні немає з чого писати', slots: [], short_day: { cause: 'no_material', reason } }, c);
+  assert.equal(ok.ok, true, JSON.stringify(ok));
+  assert.equal(ok.slots, 0);
+  assert.equal(ok.empty_day, 1);
+  const call = updates[0];
+  assert.equal(call[0], 'createPlan');
+  assert.deepEqual(call[5], [], 'no slots');
+  assert.equal(call[6].length, 1);
+  assert.equal(call[6][0].error, `planner_no_material: ${reason}`);
+  assert.equal(call[6][0].resourceRef, null);
+
+  // A plain plan carries no placeholders and the answer has no empty_day.
+  const { tools: t2, updates: u2 } = deps();
+  const good: any = await t2.submit_plan.execute({ rationale: 'план на день тест', slots: [{ time: '18:00', format: 'photo', topic: 'Тема про космос', source_hints: [], is_experiment: false }] }, c);
+  assert.equal(good.ok, true);
+  assert.equal('empty_day' in good, false);
+  assert.deepEqual(u2[0][6], []);
+});
+
+// Spec 068 FR-007: the cheap pre-flight checks run on the planned slots; a refused slot comes back as a plan_invalid line.
+test('submit_plan: the plan-time pre-flight refuses a slot whose row or source cannot post; a format without hosting is not offered', async () => {
+  const seen: any[] = [];
+  const preflight = {
+    assessPlanned: async (slot: any) => {
+      seen.push(slot);
+      return slot.sourceHints.includes('data://prompts/7') ? { code: 'preflight_no_material' as const, reason: 'рядок data://prompts/7 без prompt_text' } : null;
+    },
+  };
+  const c = { ...ctx('shadow'), role: 'planner' as const, extras: { card: makeCard({ postsPerDayMin: 1, postsPerDayMax: 3, formats: { photo: 1, carousel: 1 } }), planDate: '2026-10-01' } };
+  const slotOf = (hints: string[], format = 'photo') => ({ time: '18:00', format, topic: 'Тема про космос', source_hints: hints, is_experiment: false });
+
+  const { tools, updates } = deps({}, { preflight, env: () => undefined });
+  const refused: any = await tools.submit_plan.execute({ rationale: 'план на день тест', slots: [slotOf(['data://prompts/7'])] }, c);
+  assert.equal(refused.error, 'plan_invalid');
+  assert.deepEqual(refused.details, ['слот 1 (18:00): рядок data://prompts/7 без prompt_text — заміни джерело/рядок або постав skipped_series з cause no_material / short_day']);
+  assert.equal(updates.length, 0, 'nothing is stored');
+  assert.deepEqual([seen[0].channelKey, seen[0].format, seen[0].sourceHints], ['@chan', 'photo', ['data://prompts/7']]);
+
+  const { tools: t2, updates: u2 } = deps({}, { preflight, env: () => undefined });
+  const good: any = await t2.submit_plan.execute({ rationale: 'план на день тест', slots: [slotOf(['data://prompts/8'])] }, c);
+  assert.equal(good.ok, true, JSON.stringify(good));
+  assert.equal(u2[0][0], 'createPlan');
+
+  // Without slide hosting the carousel is not an allowed format; with it, it is.
+  const noHost: any = await t2.submit_plan.execute({ rationale: 'карусель без хостингу слайдів', slots: [slotOf([], 'carousel')] }, c);
+  assert.equal(noHost.error, 'plan_invalid');
+  assert.match(noHost.details.join('\n'), /формат carousel не дозволений; дозволені: photo/);
+  const { tools: t3 } = deps({}, { preflight, env: (k: string) => ({ SUPABASE_URL: 'u', SUPABASE_SERVICE_KEY: 'k', SUPABASE_CAROUSEL_BUCKET: 'b' } as any)[k] });
+  const hosted: any = await t3.submit_plan.execute({ rationale: 'карусель із хостингом слайдів', slots: [slotOf([], 'carousel')] }, c);
+  assert.equal(hosted.ok, true, JSON.stringify(hosted));
+
+  // A deployment without the pre-flight keeps the old behaviour.
+  const { tools: t4 } = deps();
+  assert.equal(((await t4.submit_plan.execute({ rationale: 'план на день тест', slots: [slotOf(['data://prompts/7'])] }, c)) as any).ok, true);
+});
+
+// Spec 068 FR-007 (review fix R1): an open experiment quota in a format that cannot be produced here forces no slot.
+test('submit_plan: an open carousel quota without slide hosting does not block the plan; with hosting it still needs its slot', async () => {
+  const quota = { directiveId: 'dir-1', resourceRef: 'telegram:@chan', angle: 'Каруселі з порадами', format: 'carousel', remaining: 1, deadline: '2026-10-10T00:00:00.000Z' };
+  const c = { ...ctx('shadow'), role: 'planner' as const, extras: { card: makeCard({ postsPerDayMin: 1, postsPerDayMax: 3, formats: { photo: 1, carousel: 1 } }), planDate: '2026-10-01' } };
+  const two = { rationale: 'два фото за день тест', slots: [
+    { time: '16:00', format: 'photo', topic: 'Тема про космос', source_hints: [], is_experiment: false },
+    { time: '19:00', format: 'photo', topic: 'Тема про зорі', source_hints: [], is_experiment: false },
+  ] };
+  const hosting = (k: string) => ({ SUPABASE_URL: 'u', SUPABASE_SERVICE_KEY: 'k', SUPABASE_CAROUSEL_BUCKET: 'b' } as Record<string, string>)[k];
+
+  const none = deps({}, { experimentQuotas: async () => [quota], env: () => undefined });
+  const ok: any = await none.tools.submit_plan.execute(two, c);
+  assert.equal(ok.ok, true, JSON.stringify(ok));
+  assert.equal(none.updates[0][0], 'createPlan');
+
+  const hosted = deps({}, { experimentQuotas: async () => [quota], env: hosting });
+  const refused: any = await hosted.tools.submit_plan.execute(two, c);
+  assert.equal(refused.error, 'plan_invalid');
+  assert.match(refused.details.join('\n'), /директива dir-1 .*потрібен щонайменше 1 слот.* у форматі carousel/);
+
+  // A quota that does not name a format is not touched.
+  const free = deps({}, { experimentQuotas: async () => [{ ...quota, format: null }], env: () => undefined });
+  assert.equal(((await free.tools.submit_plan.execute(two, c)) as any).error, 'plan_invalid');
 });
 
 // Spec 037 FR-013: editor_v_post_performance rows as the pool returns them (numerics as strings).

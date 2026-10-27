@@ -1,6 +1,6 @@
 # 068 — Stop dead series
 
-Status: planned · Builds on 060 (series breaker), 061 (slot pre-flight), 083 (`post_requires`), 058 (data store) · Migration 095
+Status: done · Builds on 060 (series breaker), 061 (slot pre-flight), 083 (`post_requires`), 058 (data store) · Migration 095
 
 > **Read the «Amendments after the builder check» section at the end first.** Where it differs from the body, the amendment wins.
 

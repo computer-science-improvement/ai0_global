@@ -2,7 +2,8 @@ import { z } from 'zod';
 import type { EditorCard } from '../card';
 import { SUPPORTED_FORMATS } from '../post/post-spec';
 import { isQuietHour, zonedToUtc } from './time';
-import { planScheduleErrors, PlanScheduleCtx, SkippedSeriesInput } from '../schedule/plan-schedule-rules';
+import { EMPTY_DAY_WAY_OUT, materialSkips, planScheduleErrors, PlanScheduleCtx, SkippedSeriesInput } from '../schedule/plan-schedule-rules';
+import { type EmptyDaySlot, ShortDayInput, shortDayPlaceholder, skippedSeriesPlaceholders } from '../schedule/empty-day';
 import { experimentQuotaErrors, type ExperimentQuota } from '../manager/experiment-quota';
 import { pollCapErrors, type PollCapCtx } from './poll-cap';
 import { cardFeedIds, LIVE_SLOT_FIELDS, resolveSlotTopic, type LiveSpec } from '../live/live-slot';
@@ -25,6 +26,7 @@ export const SubmitPlanInput = z.object({
   rationale: z.string().min(10).max(1500),
   slots:     z.array(PlanSlotInput).max(24),
   skipped_series: SkippedSeriesInput,
+  short_day: ShortDayInput,
 });
 export type SubmitPlan = z.infer<typeof SubmitPlanInput>;
 
@@ -41,7 +43,8 @@ export interface PlannedSlot {
   live?:        LiveSpec | null;
 }
 
-export type PlanVerdict = { ok: true; slots: PlannedSlot[] } | { ok: false; errors: string[] };
+/** `empty`: the placeholder slots of an honest empty day (spec 068 FR-004), stored in the plan's transaction. */
+export type PlanVerdict = { ok: true; slots: PlannedSlot[]; empty: EmptyDaySlot[] } | { ok: false; errors: string[] };
 
 const LEAD_MINUTES = 5;
 
@@ -83,17 +86,22 @@ export function validatePlan(
   pollCap?: PollCapCtx,
   /** Spec 040 FR-005: pool ideas the plan names (an idea slot without a topic writes its idea). */
   ideas?: Map<string, PlanIdea>,
+  /** Spec 068 FR-007: can this format be produced here? (a carousel needs slide hosting); a format that cannot is not offered. */
+  formatOk?: (format: string) => boolean,
 ): PlanVerdict {
   const errors: string[] = [];
   const n = plan.slots.length;
   const total = n + reservedAt.length;
   const capacity = remainingCapacity(card, planDate, now);
-  const minToday = Math.min(card.postsPerDayMin, capacity + reservedAt.length);
+  // Spec 068 FR-004: an honest empty day lowers the minimum — a `short_day` to 0, a series skipped with a material cause by its instances.
+  const skippedN = schedule ? materialSkips(plan, schedule, schedule.defaultRef).length : 0;
+  const minToday = plan.short_day ? 0 : Math.max(0, Math.min(card.postsPerDayMin - skippedN, capacity + reservedAt.length));
   if (total < minToday || total > card.postsPerDayMax) {
-    errors.push(`кількість постів (з резервними: ${reservedAt.length}) має бути ${minToday}–${card.postsPerDayMax}, зараз ${total}`);
+    errors.push(`кількість постів (з резервними: ${reservedAt.length}) має бути ${minToday}–${card.postsPerDayMax}, зараз ${total}${total < minToday ? `; ${EMPTY_DAY_WAY_OUT}` : ''}`);
   }
 
-  const allowed = new Set(Object.entries(card.formats).filter(([f, w]) => Number(w) > 0 && (SUPPORTED_FORMATS as readonly string[]).includes(f)).map(([f]) => f));
+  const allowed = new Set(Object.entries(card.formats)
+    .filter(([f, w]) => Number(w) > 0 && (SUPPORTED_FORMATS as readonly string[]).includes(f) && (!formatOk || formatOk(f))).map(([f]) => f));
   // Spec 025 FR-014: a directive's experiment slot may use the format the directive names (if the platform has it),
   // and it does not count against explore_ratio.
   const quotaOf = new Map(experiments.map((q) => [q.directiveId, q]));
@@ -145,5 +153,8 @@ export function validatePlan(
   if (schedule) errors.push(...planScheduleErrors(plan, schedule, schedule.defaultRef));
   if (pollCap) errors.push(...pollCapErrors(plan.slots.map((s) => ({ format: s.format, series: s.series ?? null, sourceHints: s.source_hints })), pollCap, schedule?.series));
 
-  return errors.length ? { ok: false, errors } : { ok: true, slots };
+  if (errors.length) return { ok: false, errors };
+  const empty = schedule ? skippedSeriesPlaceholders(plan, schedule, schedule.defaultRef) : [];
+  if (plan.short_day) empty.push(shortDayPlaceholder({ resourceRef: null, tz: card.timezone, planDate, now, cause: plan.short_day.cause, reason: plan.short_day.reason }));
+  return { ok: true, slots, empty };
 }

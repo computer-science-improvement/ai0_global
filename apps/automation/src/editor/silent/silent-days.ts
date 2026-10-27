@@ -257,6 +257,8 @@ export interface SilentDaysDeps {
   streakN?: number;
   everyMs?: number;
   log?:     (m: string) => void;
+  /** Spec 068 FR-005: the card's minimum for a local day after the dead-series pauses (default: the card's own `postsPerDayMin`). */
+  minPerDay?: (card: EditorCard, day: string, now: Date) => Promise<number>;
 }
 
 export class SilentDaysWatch {
@@ -283,7 +285,7 @@ export class SilentDaysWatch {
     const minOf = new Map<string, number>();
     for (const c of cards) {
       const ref = `telegram:${c.channelKey}`;
-      minOf.set(ref, c.mode === 'off' ? 0 : Math.max(0, Number(c.postsPerDayMin) || 0));
+      minOf.set(ref, c.mode === 'off' ? 0 : await this.minOfCard(c, now));
       if (!anchorOf.has(ref)) anchorOf.set(ref, ref);
     }
     // Resources: every card's channel (a missing plan is a silent day too) and every resource with slots.
@@ -303,6 +305,13 @@ export class SilentDaysWatch {
         ref, tz: tzOf.get(ref) ?? 'Europe/Kyiv', minPerDay: minOf.get(ref) ?? 0, agentId: agentOf.get(anchorOf.get(ref) ?? ref) ?? null,
       })),
     };
+  }
+
+  /** The card's daily minimum for its local today: the pause-aware one when wired, else the card's own (a failure falls back too). */
+  private async minOfCard(c: EditorCard, now: Date): Promise<number> {
+    const own = Math.max(0, Number(c.postsPerDayMin) || 0);
+    if (!this.d.minPerDay) return own;
+    try { return Math.max(0, Number(await this.d.minPerDay(c, localDate(now, c.timezone), now)) || 0); } catch { return own; }
   }
 
   /** Throttled check from the scheduler tick; returns the number of new Inbox notes. */

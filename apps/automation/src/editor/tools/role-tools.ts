@@ -34,6 +34,9 @@ import { NO_FRESH_ITEM } from '../live/live-slot';
 import { storyGuard, type StoryGuardResult } from '../story/story-guard';
 import type { StoryRegistry } from '../story/story.repository';
 import { dryRunOf } from '../roles/preview-run';
+import { SKIP_SLOT_CAUSES, skipSlotError } from '../silent/skip-reasons';
+import { planTimePreflightErrors, producibleQuotas } from '../preflight/plan-time';
+import { formatAvailable, type SlotPreflight } from '../preflight/slot-preflight';
 import { anchorOf, isReusableHost, sourceRefOf, sourceUsedDetails } from '../../data/ledger-anchor';
 import type { LedgerVerdict } from '../../data/content-ledger';
 import { recentAuditPosts } from '../post/variety/recent-posts';
@@ -77,6 +80,10 @@ export interface RoleToolDeps {
   kpiSampleFilter?: string;
   /** Spec 037 T2: the story registry — the story guard of publish_post and the record of a stored / sent post. */
   stories?: Pick<StoryRegistry, 'history' | 'record'>;
+  /** Spec 068 FR-007: the cheap pre-flight checks on the slots of a plan (spent / stale / blocked source, a library row without text, an empty dataset). */
+  preflight?: Pick<SlotPreflight, 'assessPlanned'>;
+  /** Spec 068 FR-007: settings, for the formats that need configuration (slide hosting). */
+  env?: (key: string) => string | undefined;
   now?: () => Date;
 }
 
@@ -250,7 +257,7 @@ export function buildRoleTools(d: RoleToolDeps): EditorTool[] {
   // ── planner ───────────────────────────────────────────────────────────────
   const submitPlan = defineTool({
     name: 'submit_plan',
-    description: 'Зберегти план на день плану (сьогодні; у режимі апруву ввечері — завтра) (завершує роботу). Код перевіряє кількість, час, тихі години, інтервали, формати, частку експериментів, експерименти за директивою (directive_id), серії за розкладом (slot.series або skipped_series з причиною) і правила власника (закріплені пости, заборонені вікна, частота) — при помилці виправ і надішли знову.',
+    description: 'Зберегти план на день плану (сьогодні; у режимі апруву ввечері — завтра) (завершує роботу). Код перевіряє кількість, час, тихі години, інтервали, формати, частку експериментів, експерименти за директивою (directive_id), серії за розкладом (slot.series або skipped_series з причиною) і правила власника (закріплені пости, заборонені вікна, частота) — при помилці виправ і надішли знову. Якщо для серії чи для всього дня немає з чого писати — чесно скажи це: skipped_series з cause no_material (знижує мінімум постів) або short_day {cause, reason} (мінімум 0); код запише це як пропущений слот, а не змусить планувати слоти, які однаково не вийдуть.',
     kind: 'terminal', roles: ['planner'], repeatError: 'same_plan_rejected', placeholdersAbsent: true,
     input: SubmitPlanInput,
     execute: async (plan, ctx) => {
@@ -262,20 +269,27 @@ export function buildRoleTools(d: RoleToolDeps): EditorTool[] {
       const sched = d.schedule ? await d.schedule.planContext(card, (ctx.extras?.network as NetworkCtx | undefined) ?? null, planDate, t, 'single') : undefined;
       // Spec 025 FR-014: a single-channel plan carries the quotas on its own channel only.
       const anchor = `telegram:${card.channelKey}`;
-      const quotas = d.experimentQuotas ? (await d.experimentQuotas(card.channelKey, planDate, t)).filter((q) => q.resourceRef === anchor) : [];
+      const formatOk = d.env ? (f: string) => formatAvailable(f, d.env!).ok : undefined;
+      // Spec 068 FR-007: a quota in a format that cannot be produced here (no slide hosting) forces no slot.
+      const quotas = d.experimentQuotas ? producibleQuotas((await d.experimentQuotas(card.channelKey, planDate, t)).filter((q) => q.resourceRef === anchor), formatOk) : [];
       const pollCap = d.pollCaps ? await d.pollCaps({ refs: [anchor], planDate, tz: card.timezone, defaultRef: anchor }) : undefined;
       const ideas = await planIdeas(d.pool, plan.slots.map((s) => s.idea_id).filter((x): x is string => !!x));
-      const v = validatePlan(plan, sched ? d.schedule!.effectiveCard(card, sched) : card, planDate, t, reserved.map((r) => r.scheduledAt), sched, quotas, pollCap, ideas);
+      const v = validatePlan(plan, sched ? d.schedule!.effectiveCard(card, sched) : card, planDate, t, reserved.map((r) => r.scheduledAt), sched, quotas, pollCap, ideas, formatOk);
       // Spec 041 FR-004: an evergreen fixed slot on a topic of the last 30 days.
       const topicErrors = planTopicErrors(plan.slots, await loadRecentTopics(d.pool, [anchor]));
-      if (!v.ok || topicErrors.length) return { error: 'plan_invalid', details: [...(v.ok ? [] : v.errors), ...topicErrors] };
-      const planId = await d.plans.createPlan(card.channelKey, planDate, plan.rationale, ctx.runId, v.slots);
+      // Spec 068 FR-007: the pre-flight's cheap checks, while the planner can still choose another source.
+      const sourceErrors = v.ok ? await planTimePreflightErrors(d.preflight, card, v.slots.map((s, i) => ({
+        label: `слот ${i + 1} (${plan.slots[i].time})`,
+        slot: { channelKey: card.channelKey, format: s.format, sourceHints: s.sourceHints, ...(s.live ? { topicMode: 'live' as const } : {}), ideaId: s.ideaId ?? null },
+      }))) : [];
+      if (!v.ok || topicErrors.length || sourceErrors.length) return { error: 'plan_invalid', details: [...(v.ok ? [] : v.errors), ...topicErrors, ...sourceErrors] };
+      const planId = await d.plans.createPlan(card.channelKey, planDate, plan.rationale, ctx.runId, v.slots, v.empty);
       // Pool ideas taken into the plan (spec 020) leave the pool; they become `used` once their slots are done.
       const ideaIds = [...new Set(v.slots.map((s) => s.ideaId).filter(Boolean))];
       if (ideaIds.length) {
         await d.pool.query(`UPDATE content_ideas SET status = 'planned', updated_at = now() WHERE id = ANY($1::uuid[]) AND status = 'accepted'`, [ideaIds]).catch(() => {});
       }
-      return { ok: true, plan_id: planId, slots: v.slots.length };
+      return { ok: true, plan_id: planId, slots: v.slots.length, ...(v.empty.length ? { empty_day: v.empty.length } : {}) };
     },
   });
 
@@ -400,13 +414,22 @@ export function buildRoleTools(d: RoleToolDeps): EditorTool[] {
     kind: 'terminal', roles: ['executor'],
     input: z.object({
       reason: z.string().min(5).max(500),
+      // Spec 068 FR-001: why the slot is skipped. The dead-series breaker (spec 060) counts the first three; required unless `code` says it.
+      cause:  z.enum(SKIP_SLOT_CAUSES).optional().describe(
+        'ОБОВʼЯЗКОВО (крім виклику з code): чому слот пропущено. '
+        + 'no_material — матеріалу немає (бібліотека порожня, у рядка немає потрібних полів, свіжого нема), напр. «рядок data://prompts/7 без prompt_text»; '
+        + 'source_used — джерело або рядок уже публікували, напр. «Це джерело вже використано в каналі»; '
+        + 'source_unreachable — джерело не читається (403, таймаут, завелике), напр. «zakon.rada.gov.ua віддає 403»; '
+        + 'quality — матеріал є, але пост вийшов би слабким або неперевіреним, напр. «факти з джерела не підтверджуються»; '
+        + 'other — все інше, напр. «тема не пасує до слота».',
+      ),
       // Spec 034 FR-010: a live slot with nothing fresh in its source.
-      code:   z.enum([NO_FRESH_ITEM, STORY_SKIP]).optional().describe(`${NO_FRESH_ITEM} — у live-слоті немає свіжого неопублікованого матеріалу; ${STORY_SKIP} — історію вже розповів сусідній канал мережі (spec 037 T2)`),
-    }),
-    execute: async ({ reason, code }, ctx) => {
+      code:   z.enum([NO_FRESH_ITEM, STORY_SKIP]).optional().describe(`${NO_FRESH_ITEM} — у live-слоті немає свіжого неопублікованого матеріалу (рахується як no_material); ${STORY_SKIP} — історію вже розповів сусідній канал мережі (spec 037 T2; рахується як other)`),
+    }).refine((v) => !!v.cause || !!v.code, { message: 'вкажи cause: no_material | source_used | source_unreachable | quality | other', path: ['cause'] }),
+    execute: async ({ reason, cause, code }, ctx) => {
       const { slotId } = requireSlotCtx(ctx);
-      await d.plans.updateSlot(slotId, { status: 'skipped', error: code ? `${code}: ${reason}` : `skipped by agent: ${reason}` });
-      return { ok: true, skipped: true, ...(code ? { code } : {}) };
+      await d.plans.updateSlot(slotId, { status: 'skipped', error: skipSlotError(reason, cause, code) });
+      return { ok: true, skipped: true, ...(code ? { code } : {}), ...(cause ? { cause } : {}) };
     },
   });
 

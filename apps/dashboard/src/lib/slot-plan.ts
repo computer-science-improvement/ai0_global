@@ -100,6 +100,10 @@ export const LIVE_ORIGIN_LABEL: Record<LiveSpecView['origin'], string> = {
 /** Why a slot did not produce a post, from its `error` (the system's words stay as the detail). */
 export interface SkipReason { code: string; label: string; detail: string }
 
+const AGENT_CAUSE_LABEL: Record<string, string> = {
+  no_material: 'no material', source_used: 'source already used', source_unreachable: 'source unreachable', quality: 'weak material', other: 'other reason',
+};
+
 export function skipReason(error: string | null | undefined): SkipReason | null {
   if (!error) return null;
   const e = error.trim();
@@ -109,7 +113,12 @@ export function skipReason(error: string | null | undefined): SkipReason | null 
   if (/^critic_failed\b/.test(e)) return { code: 'critic_failed', label: 'Critic unavailable — held', detail: rest(/^critic_failed:?/) };
   if (/^superseded by a new plan/.test(e)) return { code: 'superseded', label: 'Replaced by a newer plan', detail: '' };
   if (/^skipped by owner/.test(e)) return { code: 'owner', label: 'Skipped by you', detail: rest(/^skipped by owner:?/) };
+  // Spec 068: the agent names why (`skipped by agent: <cause>: <reason>`); older rows have the reason only.
+  const cause = /^skipped by agent:\s*(no_material|source_used|source_unreachable|quality|other):\s*/.exec(e);
+  if (cause) return { code: 'agent', label: `Skipped by the agent — ${AGENT_CAUSE_LABEL[cause[1]]}`, detail: e.slice(cause[0].length).trim() };
   if (/^skipped by agent/.test(e)) return { code: 'agent', label: 'Skipped by the agent', detail: rest(/^skipped by agent:?/) };
+  if (/^planner_(no_material|source_unreachable)\b/.test(e)) return { code: 'planner_empty', label: 'Declared empty by the planner', detail: rest(/^planner_(no_material|source_unreachable):?/) };
+  if (/^preflight_no_material\b/.test(e)) return { code: 'preflight_no_material', label: 'Nothing to post from the library row', detail: rest(/^preflight_no_material:?/) };
   if (/^resource_paused/.test(e)) return { code: 'paused', label: 'Resource paused', detail: '' };
   if (/^resource_unavailable\b/.test(e)) return { code: 'unavailable', label: 'Connection broken', detail: rest(/^resource_unavailable:?/) };
   return { code: 'other', label: 'Note', detail: e };

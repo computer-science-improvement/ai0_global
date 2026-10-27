@@ -5,6 +5,7 @@ import type { LiveSpec } from '../live/live-slot';
 import type { StoredCritic } from '../critic/critic';
 import { PREVIEW_STALE_MS, type SlotPreview } from '../roles/preview-run';
 import type { SlotFallback } from '../silent/fallback-ladder';
+import { EMPTY_DAY_ERROR_RE, type EmptyDaySlot } from '../schedule/empty-day';
 
 export type SlotStatus =
   | 'planned' | 'running' | 'published' | 'shadowed' | 'skipped' | 'failed'
@@ -322,7 +323,7 @@ export class EditorPlansRepository {
    * Replace the day's plan atomically: old active plan → superseded, its
    * still-planned content slots → skipped, reserved slots move to the new plan.
    */
-  async createPlan(channelKey: string, planDate: string, rationale: string, runId: string | null, slots: PlannedSlot[]): Promise<string> {
+  async createPlan(channelKey: string, planDate: string, rationale: string, runId: string | null, slots: PlannedSlot[], empty: EmptyDaySlot[] = []): Promise<string> {
     return this.replacePlan(channelKey, planDate, rationale, runId, async (client, planId) => {
       for (const s of slots) {
         await client.query(
@@ -331,7 +332,7 @@ export class EditorPlansRepository {
           [planId, channelKey, s.scheduledAt, s.format, s.topic, s.angle, JSON.stringify(s.sourceHints), s.isExperiment, s.ideaId ?? null,
             s.live ? 'live' : 'fixed', s.live ? JSON.stringify(s.live) : null]);
       }
-    });
+    }, empty);
   }
 
   /**
@@ -342,6 +343,7 @@ export class EditorPlansRepository {
   private async replacePlan(
     channelKey: string, planDate: string, rationale: string, runId: string | null,
     insertSlots: (client: { query: Pool['query'] }, planId: string) => Promise<void>,
+    empty: EmptyDaySlot[] = [],
   ): Promise<string> {
     const client = await this.pool.connect();
     const keepUntil = new Date(this.now().getTime() + REPLAN_KEEP_LEAD_MS);
@@ -361,8 +363,14 @@ export class EditorPlansRepository {
             WHERE plan_id = $1 AND ${REPLACEABLE}`, [o.id, keepUntil]);
         // Spec 023 FR-004 / 024 / 034: pins, reserved, repurposed and every kept post move to the new plan.
         await client.query(`UPDATE editor_slots SET plan_id = $2, updated_at = now() WHERE plan_id = $1 AND ${KEPT}`, [o.id, planId]);
+        // Spec 068 FR-004: the old plan's empty-day placeholders in the future are replaced with it, so a second plan of the
+        // day does not count twice; the ones whose time has passed stay (the planner declared that empty day, and it was counted).
+        await client.query(
+          `UPDATE editor_slots SET error = 'superseded by a new plan', updated_at = now()
+            WHERE plan_id = $1 AND kind = 'content' AND status = 'skipped' AND error ~ '${EMPTY_DAY_ERROR_RE}' AND scheduled_at > $2`, [o.id, keepUntil]);
       }
       await insertSlots(client as any, planId);
+      for (const e of empty) await this.insertEmptyDay(client as any, planId, channelKey, e);
       await client.query(TAG_SERIES_SLOTS, [planId]);
       await client.query('COMMIT');
       return planId;
@@ -372,6 +380,32 @@ export class EditorPlansRepository {
     } finally {
       client.release();
     }
+  }
+
+  /**
+   * Spec 068 FR-004: one placeholder slot of an honest empty day. Written only when the same declaration is not already
+   * counted: a series placeholder with the same series and time, a short-day one on the same resource inside the same day,
+   * and (a series placeholder) an instance the executor or the pre-flight already closed within 90 minutes of it.
+   */
+  private async insertEmptyDay(client: { query: Pool['query'] }, planId: string, channelKey: string, e: EmptyDaySlot): Promise<void> {
+    await client.query(
+      `INSERT INTO editor_slots (plan_id, channel_key, scheduled_at, kind, format, topic, source_hints, status, error, series_name, resource_ref)
+       SELECT $1::uuid, $2::text, $3::timestamptz, 'content', $4::text, $5::text, $6::jsonb, 'skipped', $7::text, $8::text, $9::text
+        WHERE NOT EXISTS (
+          SELECT 1 FROM editor_slots x
+           WHERE x.channel_key = $2 AND x.kind = 'content' AND x.status = 'skipped' AND x.error ~ '${EMPTY_DAY_ERROR_RE}'
+             AND (($8::text IS NOT NULL AND x.series_name = $8::text AND x.scheduled_at = $3::timestamptz)
+               OR ($8::text IS NULL AND x.series_name IS NULL AND x.resource_ref IS NOT DISTINCT FROM $9::text
+                   AND x.scheduled_at >= $10::timestamptz AND x.scheduled_at < $11::timestamptz)))
+          -- The instance was already closed by the executor or the pre-flight (a skip or a failure of the same series within
+          -- 90 minutes of it): the replan's declaration would be a second close of one instance.
+          AND NOT ($8::text IS NOT NULL AND EXISTS (
+            SELECT 1 FROM editor_slots y
+             WHERE y.channel_key = $2 AND y.kind = 'content' AND y.series_name = $8::text AND y.status IN ('skipped', 'failed')
+               AND COALESCE(y.error, '') !~ '^(superseded by a new plan|mode_changed|draft canceled|series_paused)'
+               AND y.scheduled_at BETWEEN $3::timestamptz - interval '90 minutes' AND $3::timestamptz + interval '90 minutes'))`,
+      [planId, channelKey, e.scheduledAt, e.format, e.topic, JSON.stringify(e.sourceHints), e.error, e.seriesName, e.resourceRef,
+        e.day?.from ?? e.scheduledAt, e.day?.to ?? e.scheduledAt]);
   }
 
   /**
@@ -392,6 +426,7 @@ export class EditorPlansRepository {
     }>,
     decisions: PlanDecisionInput[] = [],
     agentId: string | null = null,
+    empty: EmptyDaySlot[] = [],
   ): Promise<string> {
     return this.replacePlan(channelKey, planDate, rationale, runId, async (client, planId) => {
       // Sources first: a derived slot points at its source's row (spec 024 FR-006; no chains, so one pass each).
@@ -424,7 +459,7 @@ export class EditorPlansRepository {
           [agentId, d.ideaId, d.resourceRef, d.decision, d.reason.slice(0, 300) || '—', d.reasonCode, d.slotIndex == null ? null : ids[d.slotIndex],
             d.decidedBy, runId && /^[0-9a-f-]{36}$/i.test(runId) ? runId : null]);
       }
-    });
+    }, empty);
   }
 
   /**

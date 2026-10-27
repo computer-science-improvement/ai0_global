@@ -1,5 +1,6 @@
 import type { Pool } from 'pg';
 import { implementedFormats } from '../../platform/capabilities';
+import { formatAvailable } from '../../preflight/slot-preflight';
 import type { Directive } from '../directives.repository';
 import type { ExperimentQuota } from '../experiment-quota';
 import { anchorRef, notExecutable } from './playbook-change';
@@ -57,6 +58,8 @@ export class SqlExperimentQuotas {
 
 export interface ExperimentExecutorDeps {
   quotas: Pick<SqlExperimentQuotas, 'counts'>;
+  /** Settings: a format that needs configuration (a carousel needs slide hosting) cannot be the quota's format where it is missing. */
+  env?:   (key: string) => string | undefined;
   now?:   () => Date;
 }
 
@@ -86,6 +89,9 @@ export function experimentExecutor(d: ExperimentExecutorDeps): DirectiveExecutor
       if (ref !== anchor && !(ctx.net.mode === 'independent' && ctx.playbook)) return notExecutable(`${ref} не планується окремо (мережа не в режимі independent або без плейбука) — експеримент лише на ${anchor}`);
       const format = typeof p.format === 'string' && p.format.trim() ? p.format.trim() : null;
       if (format && !implementedFormats(res.platform).includes(format)) return notExecutable(`формат ${format} недоступний для ${res.platform} (є: ${implementedFormats(res.platform).join(', ')})`);
+      // Spec 068 FR-007: a format that cannot be produced here would open a quota no plan can fill.
+      const hosted = format && d.env ? formatAvailable(format, d.env) : null;
+      if (hosted && !hosted.ok) return notExecutable(`формат ${format} зараз неможливий: ${hosted.reason}`);
       const max = ctx.playbook ? ctx.playbook.platforms.find((s) => s.resource_ref === ref)?.per_day.max ?? 0 : ctx.card.postsPerDayMax;
       if (max < 1) return notExecutable(`${ref} не має жодного поста на день (per_day.max ${max}) — немає місця для експерименту`);
       return {

@@ -60,6 +60,15 @@ export interface QueryOptions {
   categoryLike?: string;
   todayOnly?:    boolean;
   bodyChars?:    number;
+  /**
+   * Spec 068 FR-008: fetch rows by ref. `ids` are `data_items.id` (the number in `data://<dataset>/<id>`), `legacyRefs` are
+   * `library://…` refs. With either, filters, search, `postableOnly`, `unpostedOn` and the status are not applied: the
+   * caller asked for these rows. Each row comes back with `postable`, `missing` and (with `usedOn`) `used_here`.
+   */
+  ids?:        string[];
+  legacyRefs?: string[];
+  /** Resource ref or channel key for the `used_here` flag of a refs query. */
+  usedOn?:     string | null;
 }
 
 export interface QueryResult {
@@ -67,6 +76,8 @@ export interface QueryResult {
   total?: number;
   /** Fields that were cut to MAX_TEXT characters in at least one row. */
   truncated: string[];
+  /** Refs query only: the id and legacy ref of each row, in the order of `rows`. */
+  found?: Array<{ id: string; legacy_ref: string | null }>;
 }
 
 const TEXT_TYPES: ReadonlySet<FieldType> = new Set(['text', 'long_text', 'url', 'image_url', 'enum', 'text_list']);
@@ -224,28 +235,38 @@ export async function queryDataset(pool: Pick<Pool, 'query'>, schema: DataSchema
   const p = (v: unknown) => { params.push(v); return `$${params.length}`; };
   const where: string[] = [`d.schema_id = ${p(schema.id)}`];
   const status = o.status ?? 'active';
-  if (status !== 'all') where.push(`d.status = ${p(status)}`);
-  if ((o.postableOnly ?? o.audience === 'agent') && schema.post_requires?.length) {
+  // Spec 068 FR-008: rows asked for by ref are read as they are (any status, postable or not), with flags saying which.
+  const byRef = !!(o.ids?.length || o.legacyRefs?.length);
+  if (byRef) {
+    const either: string[] = [];
+    if (o.ids?.length) either.push(`d.id = ANY(${p(o.ids)}::bigint[])`);
+    if (o.legacyRefs?.length) either.push(`d.legacy_ref = ANY(${p(o.legacyRefs)}::text[])`);
+    where.push(`(${either.join(' OR ')})`);
+  }
+  if (!byRef && status !== 'all') where.push(`d.status = ${p(status)}`);
+  if (!byRef && (o.postableOnly ?? o.audience === 'agent') && schema.post_requires?.length) {
     where.push(`data_postable(${p(JSON.stringify(schema.post_requires))}::jsonb, d.data)`);
   }
 
-  for (const flt of o.filters ?? []) {
+  for (const flt of byRef ? [] : o.filters ?? []) {
     const f = byName.get(flt.field);
+    // Spec 068 FR-008: the executor tried `id` 13 times in review 4; the row's ref is the way to fetch one row.
+    const idHint = flt.field === 'id' ? REF_HINT : '';
     if (!f) {
       const allowed = schema.fields.filter((x) => x.filterable && !x.deprecated).map((x) => x.name);
-      throw new DataQueryError('unknown_field', `dataset "${schema.key}" has no field "${flt.field}"; filterable: ${allowed.join(', ') || 'none'}`);
+      throw new DataQueryError('unknown_field', `dataset "${schema.key}" has no field "${flt.field}"; filterable: ${allowed.join(', ') || 'none'}${idHint}`);
     }
     if (!f.filterable) {
       const allowed = schema.fields.filter((x) => x.filterable && !x.deprecated).map((x) => x.name);
-      throw new DataQueryError('field_not_filterable', `field "${flt.field}" of "${schema.key}" is not filterable; filterable: ${allowed.join(', ') || 'none'}`);
+      throw new DataQueryError('field_not_filterable', `field "${flt.field}" of "${schema.key}" is not filterable; filterable: ${allowed.join(', ') || 'none'}${idHint}`);
     }
     where.push(filterSql(schema, f, flt, p, o.today));
   }
 
-  if (o.categoryLike?.trim()) where.push(`d.category ILIKE ${p(o.categoryLike.trim())}`);
-  if (o.todayOnly) where.push(`(d.event_month = ${p(o.today.month)} AND d.event_day = ${p(o.today.day)})`);
+  if (!byRef && o.categoryLike?.trim()) where.push(`d.category ILIKE ${p(o.categoryLike.trim())}`);
+  if (!byRef && o.todayOnly) where.push(`(d.event_month = ${p(o.today.month)} AND d.event_day = ${p(o.today.day)})`);
 
-  if (o.search?.trim()) {
+  if (!byRef && o.search?.trim()) {
     const q = o.search.trim().slice(0, 200);
     const like = p(`%${escapeLike(q)}%`);
     const parts = [`d.search @@ plainto_tsquery('simple', ${p(q)})`, `d.title ILIKE ${like}`, `d.body ILIKE ${like}`];
@@ -254,7 +275,17 @@ export async function queryDataset(pool: Pick<Pool, 'query'>, schema: DataSchema
   }
 
   let cte = '';
-  if (o.unpostedOn) {
+  let flagCols = '';
+  if (byRef) {
+    const need = p(JSON.stringify(schema.post_requires ?? []));
+    flagCols = `, data_postable(${need}::jsonb, d.data) AS postable, data_post_missing(${need}::jsonb, d.data) AS missing`;
+    if (o.usedOn) {
+      cte = `WITH ${usedRefsCte(p(resourceKeys(o.usedOn).resourceRef))} `;
+      const key = p(schema.key);
+      flagCols += `, (EXISTS (SELECT 1 FROM used u WHERE u.ref = 'data://' || ${key} || '/' || d.id::text)
+                      OR (d.legacy_ref IS NOT NULL AND EXISTS (SELECT 1 FROM used u WHERE u.ref = d.legacy_ref))) AS used_here`;
+    }
+  } else if (o.unpostedOn) {
     const { resourceRef } = resourceKeys(o.unpostedOn);
     cte = `WITH ${usedRefsCte(p(resourceRef))} `;
     const key = p(schema.key);
@@ -270,13 +301,13 @@ export async function queryDataset(pool: Pick<Pool, 'query'>, schema: DataSchema
                       (SELECT count(DISTINCT l.resource_ref) FROM content_ledger l
                         WHERE l.status = 'published'
                           AND (l.source_ref = (SELECT 'data://' || s.key || '/' || d.id FROM data_schemas s WHERE s.id = d.schema_id)
-                               OR l.source_ref = d.legacy_ref))::int AS posted_count
+                               OR l.source_ref = d.legacy_ref))::int AS posted_count${flagCols}
                  FROM data_items d WHERE ${whereSql}
                 ORDER BY ${order} LIMIT ${p(limit)} OFFSET ${p(Math.max(0, o.offset ?? 0))}`;
   const { rows } = await pool.query(sql, params);
 
   let total: number | undefined;
-  if (o.withTotal) {
+  if (o.withTotal && !byRef) {
     const countParams = params.slice(0, params.length - 2);
     const { rows: c } = await pool.query(`${cte}SELECT count(*)::int AS n FROM data_items d WHERE ${whereSql}`, countParams);
     total = c[0]?.n ?? 0;
@@ -292,7 +323,7 @@ export async function queryDataset(pool: Pick<Pool, 'query'>, schema: DataSchema
         if (c.cut) truncated.add(f.name);
         row[f.name] = c.value;
       }
-      return row;
+      return byRef ? { ...row, ...refFlags(r) } : row;
     }
     const max = o.bodyChars ?? 300;
     const body = typeof r.body === 'string' && r.body.length > max ? `${r.body.slice(0, max)}…` : r.body;
@@ -307,9 +338,30 @@ export async function queryDataset(pool: Pick<Pool, 'query'>, schema: DataSchema
       event_date: r.event_date ?? null, event_month: r.event_month ?? null, event_day: r.event_day ?? null,
       created_at: r.created_at, updated_at: r.updated_at, import_id: r.import_id ?? null, posted_count: r.posted_count ?? 0,
       data: projected,
+      ...(byRef ? refFlags(r) : {}),
     };
   });
-  return { rows: out, total, truncated: [...truncated] };
+  return {
+    rows: out, total, truncated: [...truncated],
+    ...(byRef ? { found: rows.map((r: any) => ({ id: String(r.id), legacy_ref: (r.legacy_ref ?? null) as string | null })) } : {}),
+  };
+}
+
+/** What the agent is told when it tries to filter by the dataset's own `id` field (spec 068 FR-008). */
+export const REF_HINT = '; щоб взяти рядок за ref — refs: ["data://<dataset>/<id>"] (ref дає query_data у кожному рядку)';
+
+/**
+ * The per-row flags of a refs query: can it be posted, what is missing, is it used on the resource (when one is known).
+ * A row that is not active (hidden, e.g. by an import undo) is not postable whatever its fields hold: `missing` says `status: <s>`.
+ */
+function refFlags(r: { status?: string; postable?: boolean; missing?: string[]; used_here?: boolean }): Record<string, unknown> {
+  const inactive = !!r.status && r.status !== 'active';
+  return {
+    ...(inactive ? { status: r.status } : {}),
+    postable: !inactive && r.postable !== false,
+    missing: [...(r.missing ?? []), ...(inactive ? [`status: ${r.status}`] : [])],
+    ...(r.used_here !== undefined ? { used_here: !!r.used_here } : {}),
+  };
 }
 
 /** Kyiv-local month and day ("today" filters, catalog today-items). */

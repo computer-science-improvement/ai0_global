@@ -15,7 +15,7 @@ import { Playbook, validatePlaybook } from '../network/playbook';
 import { instancesOn, parseCadence, SeriesSourceCatalog, seriesSourceLabel, type SeriesSource } from '../network/series';
 import { normalizePlaybook } from '../network/series-edit';
 import { API_SOURCE_NAMES } from '../tools/api-adapters/names';
-import { planPerDay, PausedSeriesCtx, PlanScheduleCtx, scheduleBlock } from './plan-schedule-rules';
+import { minAfterPauses, planPerDay, PausedSeriesCtx, PlanScheduleCtx, scheduleBlock } from './plan-schedule-rules';
 import type { ScheduleRepository } from './schedule.repository';
 import {
   blackoutAt, pinInstant, ruleDto, ruleLabel, ruleOn, ruleProblems, ruleToInput, ScheduleRule, ScheduleRuleInput, ScheduleRulePatch, shiftDate, weekdayOf,
@@ -184,6 +184,21 @@ export class ScheduleService {
       planDate, defaultRef: anchorRef, now, clocks, rules, pins, series, checkSlotSeries: scope === 'single',
       ...(view ? { paused: view.paused, recentSkips: view.recentSkips } : {}),
     };
+  }
+
+  /**
+   * Spec 068 FR-005: the card's daily minimum after the dead-series pauses (the paused series' instances off it, a paused
+   * resource owes nothing) — what the silent-days check expects of a Telegram channel. Without a pause: the card's own minimum.
+   */
+  async minPerDay(card: EditorCard, day: string, now: Date = this.now()): Promise<number> {
+    const view = this.d.pauses ? await this.d.pauses.forChannel(card.channelKey, now).catch(() => null) : null;
+    if (!view?.paused.length) return card.postsPerDayMin;
+    const sc = await this.scopeByChannel(card.channelKey);
+    const net = isFail(sc) ? null : sc.net;
+    const anchorRef = `telegram:${card.channelKey}`;
+    const clocks: PlanScheduleCtx['clocks'] = net ? this.clocks({ card, net }) : { [anchorRef]: { tz: card.timezone, quiet: { start: card.quietStartHour, end: card.quietEndHour }, gapMin: card.minGapMinutes } };
+    const series = (net?.playbook ? normalizePlaybook(net.playbook).series : []).filter((x) => clocks[x.resource_ref]);
+    return minAfterPauses({ planDate: day, paused: view.paused, series, clocks }, anchorRef, card.postsPerDayMin);
   }
 
   /** The card with the day's posts per day (frequency rule, minus pins) — for validatePlan. */

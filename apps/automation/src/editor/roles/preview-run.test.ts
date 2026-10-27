@@ -184,10 +184,10 @@ test('a critic that does not answer: the preview fails with the reason; no Inbox
 });
 
 test('skip_slot in a preview records the reason; the slot is not skipped', async () => {
-  const h = harness({ executor: [{ calls: [{ name: 'skip_slot', args: { reason: 'Немає перевіреного джерела про туманність' } }] }] });
+  const h = harness({ executor: [{ calls: [{ name: 'skip_slot', args: { reason: 'Немає перевіреного джерела про туманність', cause: 'no_material' } }] }] });
   const p = await h.runner.runPreview(h.slot, h.card);
   assert.equal(p.status, 'skipped');
-  assert.equal(p.reason, 'skipped by agent: Немає перевіреного джерела про туманність');
+  assert.equal(p.reason, 'skipped by agent: no_material: Немає перевіреного джерела про туманність');
   assert.deepEqual(h.writes, []);
 });
 
