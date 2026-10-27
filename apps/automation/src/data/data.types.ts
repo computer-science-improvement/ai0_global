@@ -41,7 +41,33 @@ export interface FieldDef {
 
 export type Roles = Partial<Record<RoleName, string | string[]>>;
 
-export interface ReusePolicy { kind: 'never' | 'after_days'; days?: number }
+/**
+ * When a row may be posted again on a resource (migration 058 / 096):
+ *   • never       — once per resource, for ever;
+ *   • after_days  — again N days after its own last post;
+ *   • cycle       — spec 071: every row once per round; when the resource has used them all, a new round starts.
+ *                   `sequential` goes through `order_by` (else import order), `random` through the rows left in the
+ *                   round. `order_by` names scalar fields of the dataset (at most three).
+ */
+export type ReusePolicy =
+  | { kind: 'never' }
+  | { kind: 'after_days'; days: number }
+  | { kind: 'cycle'; order: 'sequential' | 'random'; order_by?: string[] };
+
+/** Field types a sequential round may sort by. */
+export const ORDERABLE_TYPES: readonly FieldType[] = ['int', 'number', 'date', 'datetime', 'month_day', 'text', 'enum'];
+
+/** What is wrong with a cycle policy's `order_by` against the dataset's fields (null when fine). */
+export function reuseOrderByIssue(policy: { kind: string; order_by?: string[] } | undefined, fields: Pick<FieldDef, 'name' | 'type'>[]): string | null {
+  if (policy?.kind !== 'cycle' || !policy.order_by?.length) return null;
+  const byName = new Map(fields.map((f) => [f.name, f]));
+  for (const n of policy.order_by) {
+    const f = byName.get(n);
+    if (!f) return `order_by points to unknown field ${n}`;
+    if (!ORDERABLE_TYPES.includes(f.type)) return `order_by field ${n} is ${f.type}; use a number, date, text or enum field`;
+  }
+  return null;
+}
 
 export interface DataSchema {
   id:                     string;
@@ -101,6 +127,12 @@ export const rolesSchema = z.object(
 export const reusePolicySchema = z.union([
   z.object({ kind: z.literal('never') }),
   z.object({ kind: z.literal('after_days'), days: z.number().int().min(1).max(3650) }),
+  z.object({
+    kind:     z.literal('cycle'),
+    order:    z.enum(['sequential', 'random']).default('random'),
+    order_by: z.array(z.string().regex(FIELD_NAME_RE)).min(1).max(3)
+      .refine((a) => new Set(a).size === a.length, { message: 'order_by names a field twice' }).optional(),
+  }),
 ]);
 
 /** Groups of field names a row needs for posting: every group needs one filled field. */
@@ -139,6 +171,8 @@ export const schemaInputSchema = z.object({
   for (const k of (s.post_requires ?? []).flat()) {
     if (!names.has(k)) ctx.addIssue({ code: 'custom', message: `post_requires points to unknown field ${k}`, path: ['post_requires'] });
   }
+  const orderBy = reuseOrderByIssue(s.reuse_policy, s.fields);
+  if (orderBy) ctx.addIssue({ code: 'custom', message: orderBy, path: ['reuse_policy', 'order_by'] });
 });
 export type SchemaInput = z.infer<typeof schemaInputSchema>;
 

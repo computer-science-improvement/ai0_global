@@ -11,6 +11,7 @@ import { captionPlain, lintPlatformPost, PlatformLintResult, PlatformPostSpec, r
 import type { PlatformPostsRepository } from './platform-posts.repository';
 import type { ResourcePublisher } from './resource-publisher';
 import { errText } from '../../common/err-text';
+import { isCycleRef } from '../../data/data-rounds';
 
 /** The same idea is a repeat on a resource within this window. Sources go through the content ledger (023 FR-010). */
 export const PLATFORM_IDEA_DEDUP_DAYS = 7;
@@ -113,13 +114,16 @@ export async function publishPlatformNow(d: PublishPlatformDeps, input: PublishP
   const since = new Date(now.getTime() - PLATFORM_IDEA_DEDUP_DAYS * 86_400_000);
   // Approval mode also counts posts that already wait (spec 031), so two waiting posts never share a source.
   const waiting = i.mode === 'approve';
-  const secondRef = i.spec.library_ref && i.spec.source?.url ? i.spec.source.url : null;
+  // Spec 071 A7: the cited URL beside a row of a dataset that repeats in rounds is a citation, not the material — a URL used in an earlier round does not stop the post.
+  const cycleRow = i.spec.library_ref && d.pool && await isCycleRef(d.pool, i.spec.library_ref) ? i.spec.library_ref : null;
+  const secondRef = i.spec.library_ref && i.spec.source?.url && !cycleRow ? i.spec.source.url : null;
   if (!i.probe && (await d.posts.alreadyPosted(i.resourceRef, { source: sourceRef, ideaId: i.spec.idea_id ?? null }, since, waiting)
     || (secondRef && await d.posts.alreadyPosted(i.resourceRef, { source: secondRef }, since, waiting)))) {
     return { error: 'already_posted', details: 'це джерело вже використане на цьому ресурсі (журнал контенту) або ця ідея вже виходила тут за 7 днів' };
   }
   const caption = captionPlain(i.spec, CAPABILITIES[platform].linksClickable);
-  const recent = i.probe ? [] : await d.posts.recentCaptions(i.resourceRef, 40, waiting);
+  // Spec 071 R2: a round-2 row is not told apart from its own earlier post.
+  const recent = i.probe ? [] : await d.posts.recentCaptions(i.resourceRef, 40, waiting, cycleRow);
   const maxSim = recent.reduce((m, t) => Math.max(m, similarity(caption, t)), 0);
   if (caption.length > 40 && maxSim >= PLATFORM_SIMILARITY_LIMIT) {
     return { error: 'too_similar', details: `схожість ${maxSim.toFixed(2)} з нещодавнім постом цього ресурсу` };
@@ -241,7 +245,8 @@ export async function publishApprovedPlatform(d: PublishPlatformDeps, i: Approve
 
   const sourceRef = i.spec.library_ref ?? i.spec.source?.url ?? null;
   const since = new Date(now.getTime() - PLATFORM_IDEA_DEDUP_DAYS * 86_400_000);
-  const recent = await d.posts.recentCaptions(i.resourceRef);
+  const cycleRow = i.spec.library_ref && d.pool && await isCycleRef(d.pool, i.spec.library_ref) ? i.spec.library_ref : null;
+  const recent = await d.posts.recentCaptions(i.resourceRef, 40, false, cycleRow);
   const maxSim = recent.reduce((m, t) => Math.max(m, similarity(i.rendered.caption, t)), 0);
   if (await d.posts.alreadyPosted(i.resourceRef, { source: sourceRef, ideaId: i.spec.idea_id ?? null }, since)
     || (i.rendered.caption.length > 40 && maxSim >= PLATFORM_SIMILARITY_LIMIT)) {

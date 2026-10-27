@@ -41,6 +41,11 @@ export interface SlotFailure {
    * good and the next attempt keeps it. A reject, a low grounding or a wrong topic leave this false.
    */
   fixable?:  boolean;
+  /**
+   * Spec 071: the library row the failed post was written from (its own `library_ref`, never the source URL): what
+   * `passRow` puts aside for the round. Null for a post without a library row.
+   */
+  libraryRef?: string | null;
 }
 
 export type StepOutcome =
@@ -140,6 +145,9 @@ function detailsText(details: unknown): string {
   return String(details);
 }
 
+/** Guard answers that refuse the post's row before anyone read it (the ledger, the series source, the series order). */
+const ROW_GUARD_CODES: ReadonlySet<string> = new Set(['not_next_in_order', 'library_item_already_posted', 'series_source_mismatch']);
+
 /**
  * What the publish tool saw in one run: its last error (lint, guard, critic_revise; null after a success) and the
  * source of the last post it was given (a rejected post is never stored on the slot, so the ladder learns it here).
@@ -147,14 +155,20 @@ function detailsText(details: unknown): string {
 export class PublishProbe {
   last: { code: string; details: unknown } | null = null;
   source: string | null = null;
+  /** Spec 071: the `library_ref` of the last post it was given (a rejected post is never stored on the slot). */
+  libraryRef: string | null = null;
 
   wrap(tools: EditorTool[]): EditorTool[] {
     return tools.map((t) => (t.name !== 'publish_post' && t.name !== 'publish_platform_post') ? t : {
       ...t,
       execute: async (input: any, ctx: any) => {
         this.source = sourceOf(input?.spec) ?? this.source;
+        this.libraryRef = libraryRefOf(input?.spec) ?? this.libraryRef;
         const r = await t.execute(input, ctx);
         this.last = isToolError(r) ? { code: r.error, details: (r as any).details } : null;
+        // Spec 071 R5: a row the guards refused was never judged on its merits, and a later post without a row must not
+        // inherit it — the sticky value is for a post that reached the critic.
+        if (isToolError(r) && ROW_GUARD_CODES.has(r.error)) this.libraryRef = null;
         return r;
       },
     });
@@ -171,6 +185,7 @@ export interface SlotState {
     source_coverage?: string | null; grounding_missing?: string[] | null;
   } | null;
   postSpec?: unknown;
+  platformSpec?: unknown;
 }
 
 /** Spec 063 FR-002: the critic or the executor says the post is not about the slot's topic (the material was not found). */
@@ -200,13 +215,39 @@ function sourceOf(spec: any): string | null {
   return typeof spec?.source?.url === 'string' ? spec.source.url : typeof spec?.library_ref === 'string' ? spec.library_ref : null;
 }
 
+/** Spec 071: the post's own library row (`data://` / `library://`), not the source URL it cites. */
+export function libraryRefOf(spec: any): string | null {
+  return typeof spec?.library_ref === 'string' && spec.library_ref.trim() ? spec.library_ref.trim() : null;
+}
+
+/** Guard and lint codes that say nothing about the row's fitness: the row stays open for the next attempt (spec 071 A2). */
+const NEVER_PASS = new Set(['not_next_in_order', 'library_item_already_posted', 'series_source_mismatch', 'lint_failed', 'too_similar']);
+
+/**
+ * Spec 071 A2: does this failure put the post's library row aside for the round (`passRow`)?
+ *   - a critic reject that is not fixable (a reject, a low grounding, a wrong topic), or any critic reject of a
+ *     `revise_source` step (the row had its second chance);
+ *   - `quiz_answer_mismatch` (the row's answer key is wrong, it will not post);
+ * never a guard or lint code (`not_next_in_order`, `library_item_already_posted`, `series_source_mismatch`, `lint_failed`,
+ * `too_similar`): those say the attempt was wrong, not the row. The caller still relies on the ledger to ignore every ref
+ * that is not a row of a cycle dataset.
+ */
+export function shouldPassRow(f: Pick<SlotFailure, 'kind' | 'code' | 'fixable' | 'libraryRef'>, step: LadderStep): boolean {
+  if (!f.libraryRef || NEVER_PASS.has(f.code)) return false;
+  if (f.code === 'quiz_answer_mismatch') return true;
+  return f.kind === 'critic_reject' && (!f.fixable || step === 'revise_source');
+}
+
 /**
  * Did this attempt fail for a content reason the ladder retries? `probe` is the run's last publish-tool error: a
  * run that ran out of steps on a lint / guard error leaves the slot `running`.
  */
-export function classifyFailure(slot: SlotState, run: Pick<PublishProbe, 'last' | 'source'> | null): SlotFailure | null {
+export function classifyFailure(slot: SlotState, run: (Pick<PublishProbe, 'last' | 'source'> & Partial<Pick<PublishProbe, 'libraryRef'>>) | null): SlotFailure | null {
   const f = classify(slot, run?.last ?? null);
-  return f && !f.sourceUrl && run?.source ? { ...f, sourceUrl: run.source } : f;
+  if (!f) return f;
+  // Spec 071: the post's own library row, from the stored post, else from what the publish tool saw.
+  const libraryRef = f.libraryRef ?? libraryRefOf(slot.postSpec) ?? libraryRefOf(slot.platformSpec) ?? run?.libraryRef ?? null;
+  return { ...f, ...(!f.sourceUrl && run?.source ? { sourceUrl: run.source } : {}), ...(libraryRef ? { libraryRef } : {}) };
 }
 
 function classify(slot: SlotState, probe: PublishProbe['last']): SlotFailure | null {

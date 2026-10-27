@@ -103,11 +103,16 @@ export class PlatformPostsRepository {
     return rows[0]?.at ?? null;
   }
 
-  /** Recent captions for the similarity guard; with `waiting`, posts that wait for approval count too (spec 031). */
-  async recentCaptions(resourceRef: string, limit = 40, waiting = false): Promise<string[]> {
+  /**
+   * Recent captions for the similarity guard; with `waiting`, posts that wait for approval count too (spec 031). `excludeRef`
+   * (spec 071 R2): the earlier posts of that same library row of a dataset that repeats in rounds are left out.
+   */
+  async recentCaptions(resourceRef: string, limit = 40, waiting = false, excludeRef: string | null = null): Promise<string[]> {
     const { rows } = await this.pool.query(
       `SELECT caption FROM platform_posts WHERE resource_ref = $1 AND (status IN ('published','shadowed') OR ($3 AND status = 'awaiting_approval'))
-          AND caption IS NOT NULL ORDER BY posted_at DESC LIMIT $2`, [resourceRef, limit, waiting]);
+          AND caption IS NOT NULL
+          AND ($4::text IS NULL OR content_ref_canonical(COALESCE(spec->>'library_ref', source_ref)) IS DISTINCT FROM content_ref_canonical($4))
+          ORDER BY posted_at DESC LIMIT $2`, [resourceRef, limit, waiting, excludeRef]);
     return rows.map((r) => String(r.caption));
   }
 

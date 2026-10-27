@@ -94,6 +94,7 @@ export type PlannedSlotLike = Pick<EditorSlot, 'channelKey' | 'format' | 'source
 export function usedWhy(hit: Extract<LedgerVerdict, { used: true }>): string {
   const when = hit.at ? ` ${hit.at.toISOString().slice(0, 10)}` : '';
   const where = hit.slotId ? ` у слоті ${hit.slotId}` : '';
+  if (hit.status === 'passed') return 'пропущене в цьому колі — з нього не вийшов пост; повернеться в наступному колі'; // spec 071
   return hit.status === 'waiting' ? 'уже чекає на публікацію' : hit.status === 'error' ? 'позначене як непридатне' : `уже використано${when}${where}`;
 }
 

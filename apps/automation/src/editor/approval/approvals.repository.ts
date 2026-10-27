@@ -234,16 +234,20 @@ export class ApprovalsRepository {
     return new ContentLedger(this.pool).used(channelKey, ref, { publishedOnly: true, excludeSlotId });
   }
 
-  /** Texts published on the channel recently (similarity re-check after approval). */
-  async publishedTexts(channelKey: string, excludeSlotId: string): Promise<string[]> {
+  /**
+   * Texts published on the channel recently (similarity re-check after approval). `excludeRef` (spec 071 R2): the earlier posts
+   * of that same library row of a dataset that repeats in rounds are left out.
+   */
+  async publishedTexts(channelKey: string, excludeSlotId: string, excludeRef: string | null = null): Promise<string[]> {
     const { rows } = await this.pool.query(
       `(SELECT COALESCE(rendered_preview, topic) AS text FROM editor_slots
          WHERE channel_key = $1 AND status = 'published' AND id <> $2 AND updated_at > now() - interval '30 days'
+           AND ($3::text IS NULL OR content_ref_canonical(COALESCE(post_spec->>'library_ref', platform_spec->>'library_ref')) IS DISTINCT FROM content_ref_canonical($3))
          ORDER BY updated_at DESC LIMIT 60)
        UNION ALL
        (SELECT title AS text FROM published_posts
          WHERE channel_id = $1 AND title IS NOT NULL AND editor_slot_id IS NULL ORDER BY posted_at DESC LIMIT 60)`,
-      [channelKey, excludeSlotId]);
+      [channelKey, excludeSlotId, excludeRef]);
     return rows.map((r) => String(r.text ?? ''));
   }
 

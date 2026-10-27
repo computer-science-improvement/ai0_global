@@ -10,7 +10,7 @@ import { fmtRelative } from '../../lib/format';
 import { useDataSuggestions, useDecideSuggestion, type DataSuggestion } from '../../api/data';
 
 const what = (s: DataSuggestion) =>
-  s.target === 'field' ? `Field ${s.field ?? ''}` : s.target === 'suitable_for' ? 'Suitable for' : 'Dataset description';
+  s.target === 'field' ? `Field ${s.field ?? ''}` : s.target === 'suitable_for' ? 'Suitable for' : s.target === 'reuse' ? 'Reuse' : 'Dataset description';
 
 export function DataSuggestions({ schema }: { schema: string }) {
   const q = useDataSuggestions(schema);
@@ -22,7 +22,7 @@ export function DataSuggestions({ schema }: { schema: string }) {
     onSuccess: (r) => {
       if (r.action.status === 'failed') toast.error(r.action.error ?? 'Could not apply the suggestion');
       else if (r.action.status === 'expired') toast.error('The suggestion expired (24 h); ask the agent again');
-      else toast.success(decision === 'apply' ? 'Description updated' : 'Suggestion discarded');
+      else toast.success(decision === 'apply' ? (s.target === 'reuse' ? 'Reuse setting updated' : 'Description updated') : 'Suggestion discarded');
       done();
     },
     onError: (e) => toast.error(describeError(e)),

@@ -77,6 +77,37 @@ test('guards: slot state, lint, similarity, dedup, cap, quiet, gap, off', async 
   assert.equal(await call({ lastPostAt: async () => new Date(NOW.getTime() - 10 * 60_000) }), 'min_gap');
 });
 
+test('071 R2: a round-2 row of a dataset that repeats in rounds is not told apart from its own earlier post; any other dataset is', async () => {
+  const earlier = 'Телескоп Вебб показав туманність Кільце. На знімку видно оболонки газу, які зоря скинула тисячі років тому. NASA #космос';
+  const seen: Array<string | null> = [];
+  // Like the repository: the excluded row's earlier posts are not in the corpus.
+  const recentTexts = async (_k: string, _slot: string | null = null, ex: string | null = null) => { seen.push(ex); return ex ? [] : [earlier]; };
+  const poolOf = (kind: string) => ({
+    query: async (sql: string) => {
+      if (/FROM data_items d JOIN data_schemas s/.test(sql)) return { rows: [{ key: 'facts', id: '42', legacy_ref: null }] };
+      if (/SELECT reuse_policy->>'kind'/.test(sql)) return { rows: [{ kind }] };
+      return { rows: [] };
+    },
+  }) as any;
+  const spec = makeSpec({ origin: 'library', library_ref: 'data://facts/42' });
+
+  const cycle = deps({ recentTexts }, { pool: poolOf('cycle') });
+  const out: any = await cycle.tools.publish_post.execute({ spec }, ctx());
+  assert.equal(out.ok, true, JSON.stringify(out));
+  assert.deepEqual(seen, ['data://facts/42']);
+
+  seen.length = 0;
+  const never = deps({ recentTexts }, { pool: poolOf('never') });
+  assert.equal(((await never.tools.publish_post.execute({ spec }, ctx())) as any).error, 'too_similar');
+  assert.deepEqual(seen, [null], 'the full corpus');
+
+  // A post without a library row keeps the full corpus too.
+  seen.length = 0;
+  const plain = deps({ recentTexts }, { pool: poolOf('cycle') });
+  assert.equal(((await plain.tools.publish_post.execute({ spec: makeSpec() }, ctx())) as any).error, 'too_similar');
+  assert.deepEqual(seen, [null]);
+});
+
 /** A critic gate that passes every post; `onCheck` runs while the "critic reads" (another slot publishing meanwhile). */
 function passingGate(onCheck: () => void = () => {}) {
   const gate = new CriticGate({ critic: { review: async () => { throw new Error('not called'); } } as any, plans: { updateSlot: async () => {} } },

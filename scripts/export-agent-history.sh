@@ -119,6 +119,10 @@ dump data_imports
 dump data_items "SELECT json_build_object('schema', s.key, 'items', count(i.id), 'with_image', count(i.image_url),
     'with_body', count(i.body), 'newest', max(i.created_at))
   FROM data_schemas s LEFT JOIN data_items i ON i.schema_id = s.id GROUP BY s.key ORDER BY s.key"
+# The round each channel is in for datasets that repeat in rounds (071); empty before migration 096.
+dump data_reuse_rounds "SELECT json_build_object('schema', s.key, 'resource_ref', r.resource_ref, 'round', r.round,
+    'started_at', r.started_at, 'updated_at', r.updated_at)
+  FROM data_reuse_rounds r JOIN data_schemas s ON s.id = r.schema_id ORDER BY s.key, r.resource_ref"
 
 # Logs. ai_logs holds the full prompt and output of every AI call: cut like the run steps.
 dump ai_logs "SELECT json_build_object(

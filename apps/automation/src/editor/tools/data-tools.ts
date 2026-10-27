@@ -3,12 +3,13 @@ import { z } from 'zod';
 import { channelOf, defineTool, EditorTool, ToolContext } from '../harness/tool';
 import type { PendingActionsService, PendingAction } from '../agents/pending-actions';
 import { DataStore, DataStoreError } from '../../data/data-store';
-import { buildCatalog } from '../../data/data-catalog';
+import { buildCatalog, reuseText } from '../../data/data-catalog';
 import type { CardSource } from '../card';
 import { catalogOverview, ledgerUsage, runwayDays, seriesLibraryUse, TtlCache } from './catalog-context';
 import { DataQueryError, filterSchema, kyivMonthDay, MAX_AGENT_LIMIT, ORDERS, queryDataset, readableFields, type QueryOptions } from '../../data/data-query';
 import { DATA_REF_RE, LIBRARY_REF_RE } from '../../data/data-refs';
-import type { DataSchema } from '../../data/data.types';
+import { reuseOrderByIssue, reusePolicySchema, type DataSchema } from '../../data/data.types';
+import { isCycle, repeatOf, rollIfDone, roundsOf } from '../../data/data-rounds';
 
 /**
  * Agents work from dataset descriptions (spec 032 FR-010):
@@ -62,12 +63,17 @@ export type QueryDataArgs = z.infer<typeof QueryDataInput>;
 async function zeroHitNote(d: DataToolDeps, s: DataSchema, o: Omit<QueryOptions, 'unpostedOn'>, unposted: string | null | undefined): Promise<string> {
   if (!unposted) return 'no rows match these filters';
   const any = await queryDataset(d.pool, s, { ...o, unpostedOn: null, limit: 1, withTotal: true });
-  if ((any.total ?? 0) > 0) return 'nothing left that is unposted here with these filters; loosen the filters or pick another dataset';
+  if ((any.total ?? 0) > 0) {
+    return isCycle(s.reuse_policy)
+      ? 'nothing left in this round here with these filters (the dataset starts a new round when every postable row is posted); loosen the filters or pick another dataset'
+      : 'nothing left that is unposted here with these filters; loosen the filters or pick another dataset';
+  }
   const asked = (o.filters?.length ?? 0) > 0 || !!o.search?.trim();
   return asked
     ? 'no rows match these filters or this search, used or not: a field you filter or search on may be empty in most rows (see fill % in library_catalog({dataset})); loosen them, search another field or pick another dataset'
-    : 'the dataset has no rows that can be posted (library_catalog shows how many are not postable); pick another dataset';
+    : `${NO_POSTABLE} (library_catalog shows how many are not postable); pick another dataset`;
 }
+const NO_POSTABLE = 'the dataset has no rows that can be posted';
 
 /** `query_data` by ref (spec 068 FR-008): the rows asked for, in the order asked, each with its flags; a ref with no row is `found: false`. */
 async function queryByRefs(d: DataToolDeps, s: DataSchema, i: QueryDataArgs & { refs: string[] }, ctx: ToolContext) {
@@ -122,11 +128,36 @@ export async function runQueryData(d: DataToolDeps, i: QueryDataArgs, ctx: ToolC
       audience: 'agent', fields: i.fields, filters: i.filters, search: i.search,
       order: i.order, limit: i.limit, full: i.full, today: (d.today ?? kyivMonthDay)(),
     };
-    const r = await queryDataset(d.pool, s, { ...opts, unpostedOn: unposted });
+    const run = () => queryDataset(d.pool, s, { ...opts, unpostedOn: unposted });
+    let r = await run();
+    // Spec 071: nothing left on a dataset that repeats in rounds — the round may just have ended. The database decides
+    // (it rolls only when no postable row is open on the resource), then the same query runs again.
+    let rolled = false;
+    if (r.rows.length === 0 && unposted && isCycle(s.reuse_policy) && await rollIfDone(d.pool, s.id, unposted)) {
+      rolled = true;
+      r = await run();
+    }
+    const round = isCycle(s.reuse_policy) && unposted ? (await roundsOf(d.pool, [s.id], unposted)).get(s.id)?.round : undefined;
+    const repeat = repeatOf(s, round);
+    // Sequential round: the first row is the next one in order. `ordered` is set only with unposted_on on that dataset.
+    const next = r.ordered && r.rows.length ? (r.rows[0].ref as string) : undefined;
+    const notes: string[] = [];
+    if (r.truncated.length) notes.push('long texts cut at 2000 characters; ask again with full: true and only that field if you need all of it');
+    if (r.rows.length === 0) {
+      const zero = await zeroHitNote(d, s, opts, unposted);
+      // Spec 071: when no row of the dataset can be posted at all, say why (post_requires) — in place of 068's general line.
+      const dead = unposted ? await unpostableNote(d.pool, s) : null;
+      if (dead && zero.startsWith(NO_POSTABLE)) notes.push(dead);
+      else notes.push(zero, ...(dead ? [dead] : []));
+    }
+    if (rolled && r.rows.length) notes.push('щойно почалось нове коло — усі рядки датасету знову доступні');
+    if (next) notes.push('датасет іде по черзі — бери перший рядок');
     return {
       dataset: s.key, rows: r.rows,
-      ...(r.truncated.length ? { truncated: r.truncated, note: 'long texts cut at 2000 characters; ask again with full: true and only that field if you need all of it' } : {}),
-      ...(r.rows.length === 0 ? { note: await zeroHitNote(d, s, opts, unposted) } : {}),
+      ...(repeat ? { repeat } : {}),
+      ...(next ? { next } : {}),
+      ...(r.truncated.length ? { truncated: r.truncated } : {}),
+      ...(notes.length ? { note: notes.join('; ') } : {}),
       ...(s.contains_personal_data ? { personal_data: true } : {}),
     };
   } catch (err) {
@@ -135,19 +166,37 @@ export async function runQueryData(d: DataToolDeps, i: QueryDataArgs, ctx: ToolC
   }
 }
 
+/**
+ * The zero-hit note for a dataset whose every active row misses what a post needs (`post_requires`, 083): filters and rounds
+ * are not the reason, the rows are. Null when the dataset has no such rule, no rows, or a postable row.
+ */
+async function unpostableNote(pool: Pick<Pool, 'query'>, s: DataSchema): Promise<string | null> {
+  if (!s.post_requires?.length) return null;
+  const { rows } = await pool.query(
+    `SELECT count(*)::int AS n, count(*) FILTER (WHERE data_postable($2::jsonb, d.data))::int AS ok
+       FROM data_items d WHERE d.schema_id = $1 AND d.status = 'active'`, [s.id, JSON.stringify(s.post_requires)]);
+  const n = Number(rows[0]?.n ?? 0);
+  return n > 0 && Number(rows[0]?.ok ?? 0) === 0 ? `every one of the ${n} rows of this dataset lacks what a post needs (post_requires): pick another dataset` : null;
+}
+
 export const EditSchemaInput = z.object({
   dataset:  z.string().min(2).max(63),
-  target:   z.enum(['description', 'suitable_for', 'field']).describe('The dataset description, its suitable_for text, or one field\'s description'),
+  target:   z.enum(['description', 'suitable_for', 'field', 'reuse']).describe('The dataset description, its suitable_for text, one field\'s description, or the reuse rule (how rows repeat)'),
   field:    z.string().max(63).nullish().describe('Field name when target = field'),
-  old_text: z.string().max(4000).describe('The current text, exactly as library_catalog shows it'),
-  new_text: z.string().min(3).max(2000),
+  reuse:    reusePolicySchema.optional().describe('Only with target = reuse: the new rule — {kind:"never"}, {kind:"after_days",days}, or {kind:"cycle",order:"sequential"|"random",order_by?:[field names]} (every row once per channel per round; a new round starts when all are posted)'),
+  old_text: z.string().max(4000).describe('The current text, exactly as library_catalog shows it (with target = reuse: the dataset\'s `reuse` text)'),
+  new_text: z.string().min(3).max(2000).optional().describe('The new text. Not for target = reuse: it is written from `reuse`'),
   evidence: z.string().min(20).max(1000).describe('Why: what you saw in the rows or in the results that the current text gets wrong or misses'),
+}).superRefine((v, c) => {
+  if (v.target === 'reuse' && !v.reuse) c.addIssue({ code: 'custom', message: 'give the new rule in `reuse` when target = reuse', path: ['reuse'] });
+  if (v.target !== 'reuse' && !v.new_text) c.addIssue({ code: 'custom', message: 'new_text is required', path: ['new_text'] });
 });
 export type EditSchemaArgs = z.infer<typeof EditSchemaInput>;
 
 function currentText(s: DataSchema, i: Pick<EditSchemaArgs, 'target' | 'field'>): string | { error: string; details: string } {
   if (i.target === 'description') return s.description ?? '';
   if (i.target === 'suitable_for') return s.suitable_for ?? '';
+  if (i.target === 'reuse') return reuseText(s.reuse_policy);
   if (!i.field) return { error: 'field_required', details: 'name the field when target = field' };
   const f = s.fields.find((x) => x.name === i.field);
   if (!f) return { error: 'unknown_field', details: `dataset "${s.key}" has no field "${i.field}"` };
@@ -164,19 +213,24 @@ export async function applyDataSchemaSuggestion(store: DataStore, payload: Recor
   const cur = currentText(s, p);
   if (typeof cur !== 'string') throw new DataStoreError('invalid', cur.details);
   if (cur.trim() !== p.old_text.trim()) throw new DataStoreError('conflict', 'stale: the text changed after the agent read it; ask for a fresh suggestion');
-  const patch = p.target === 'description' ? { description: p.new_text }
-    : p.target === 'suitable_for' ? { suitable_for: p.new_text }
-    : { fields: s.fields.map((f) => (f.name === p.field ? { ...f, description: p.new_text } : f)) };
+  // Spec 071: `reuse` swaps the policy; `updateSchema` checks `order_by` against the dataset's fields and refuses a bad one.
+  const text = p.new_text ?? '';
+  if (p.target === 'reuse' && !p.reuse) throw new DataStoreError('invalid', 'the suggestion has no reuse rule');
+  const patch = p.target === 'reuse' ? { reuse_policy: p.reuse! }
+    : p.target === 'description' ? { description: text }
+    : p.target === 'suitable_for' ? { suitable_for: text }
+    : { fields: s.fields.map((f) => (f.name === p.field ? { ...f, description: text } : f)) };
   const r = await store.updateSchema(s.key, patch, { changedBy: 'owner (agent suggestion)', reason: `agent suggestion: ${p.evidence}`.slice(0, 500) });
   if (r.diff.structural) throw new DataStoreError('invalid', 'a suggestion may only change descriptions');
   return { dataset: s.key, version: r.schema.version };
 }
 
 /** Last use and runway of one dataset on a resource (spec 023 FR-008). */
-async function datasetUsage(pool: Pick<Pool, 'query'>, resource: string, key: string, unposted: number | undefined) {
+async function datasetUsage(pool: Pick<Pool, 'query'>, resource: string, key: string, unposted: number | undefined, repeats = false) {
   const [use, series] = await Promise.all([ledgerUsage(pool, resource), seriesLibraryUse(pool, resource)]);
   const u = use[key];
-  return { last_used_here: u?.last ? u.last.toISOString() : null, runway_days: runwayDays(unposted, series[key] ?? 0, u?.used28 ?? 0) };
+  // Spec 071: a dataset that repeats in rounds never runs out.
+  return { last_used_here: u?.last ? u.last.toISOString() : null, runway_days: repeats ? null : runwayDays(unposted, series[key] ?? 0, u?.used28 ?? 0) };
 }
 
 export function buildDataTools(d: DataToolDeps): EditorTool[] {
@@ -193,7 +247,7 @@ export function buildDataTools(d: DataToolDeps): EditorTool[] {
       if (dataset) {
         const entries = await buildCatalog(d.pool, { dataset, resource, today: today() });
         if (!entries.length) return { error: 'unknown_dataset', details: `no active dataset "${dataset}"` };
-        const extra = resource ? await datasetUsage(d.pool, resource, entries[0].dataset, entries[0].unposted_here) : {};
+        const extra = resource ? await datasetUsage(d.pool, resource, entries[0].dataset, entries[0].unposted_here, !!entries[0].repeat) : {};
         return { dataset: { ...entries[0], ...extra }, refs: 'rows come back with ref = data://<dataset>/<id>; put it into library_ref when you post from a row' };
       }
       // Spec 023 FR-008: plus the APIs (configured or not, never key values), the card's feeds, last use and runway here; cached 10 min.
@@ -217,7 +271,7 @@ export function buildDataTools(d: DataToolDeps): EditorTool[] {
 
   const editSchema = defineTool({
     name: 'edit_data_schema',
-    description: 'Suggest a better description for a dataset, its suitable_for text or one field, when the rows show the current text is wrong or missing something. The owner applies it with one click; you never change fields, types or roles.',
+    description: 'Suggest a better description for a dataset, its suitable_for text or one field, when the rows show the current text is wrong or missing something. With target = reuse: suggest how the dataset\'s rows repeat (give the new rule in `reuse`, old_text = its current `reuse` text from library_catalog). The owner applies it with one click; you never change fields, types or roles.',
     kind: 'act', roles: ['planner', 'executor', 'reviewer', 'composer', 'orchestrator', 'manager', 'builder'],
     input: EditSchemaInput,
     execute: async (i, ctx) => {
@@ -230,18 +284,25 @@ export function buildDataTools(d: DataToolDeps): EditorTool[] {
         return { error: 'field_not_visible', details: `field "${i.field}" is not visible to agents` };
       }
       if (cur.trim() !== i.old_text.trim()) return { error: 'stale_text', details: `the current text is: ${cur.slice(0, 600)}` };
-      if (cur.trim() === i.new_text.trim()) return { error: 'no_change', details: 'the new text equals the current one' };
+      let newText = i.new_text ?? '';
+      if (i.target === 'reuse') {
+        if (!i.reuse) return { error: 'reuse_required', details: 'give the new rule in `reuse` when target = reuse' };
+        const bad = reuseOrderByIssue(i.reuse, s.fields);
+        if (bad) return { error: 'invalid_reuse', details: bad };
+        newText = reuseText(i.reuse);
+      }
+      if (cur.trim() === newText.trim()) return { error: 'no_change', details: 'the new text equals the current one' };
       const { rows } = await d.pool.query(
         `SELECT 1 FROM pending_actions WHERE kind = 'edit_data_schema' AND status = 'pending'
             AND payload->>'dataset' = $1 AND payload->>'target' = $2 AND COALESCE(payload->>'field', '') = $3 LIMIT 1`,
         [i.dataset, i.target, i.field ?? '']);
       if (rows.length) return { error: 'already_suggested', details: 'a suggestion for this text already waits for the owner' };
       const x = ctx.extras as { chat?: { chatId?: string | null }; agent?: { id?: string }; onAction?: (a: PendingAction) => void } | undefined;
-      const what = i.target === 'field' ? `${i.dataset}.${i.field}` : `${i.dataset} ${i.target === 'description' ? 'description' : 'suitable for'}`;
+      const what = i.target === 'field' ? `${i.dataset}.${i.field}` : `${i.dataset} ${i.target === 'description' ? 'description' : i.target === 'reuse' ? 'reuse rule' : 'suitable for'}`;
       const action = await d.actions.propose({
         chatId: x?.chat?.chatId ?? null, agentId: x?.agent?.id ?? null, kind: 'edit_data_schema',
-        payload: { ...i, field: i.field ?? null },
-        summary: `Edit ${what}: “${i.old_text.slice(0, 200) || '(empty)'}” → “${i.new_text.slice(0, 400)}”. Why: ${i.evidence.slice(0, 300)}`,
+        payload: { ...i, field: i.field ?? null, new_text: newText },
+        summary: `Edit ${what}: “${i.old_text.slice(0, 200) || '(empty)'}” → “${newText.slice(0, 400)}”. Why: ${i.evidence.slice(0, 300)}`,
       });
       try { x?.onAction?.(action); } catch { /* UI stream only */ }
       return { ok: true, pending_action: action.id, note: 'The owner sees the suggestion on the dataset page (and in the chat) and applies or discards it.' };

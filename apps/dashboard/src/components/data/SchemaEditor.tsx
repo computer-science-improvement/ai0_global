@@ -11,8 +11,9 @@ import { ActionsTh, RowActions, TableAction } from '../ui/table';
 import { useConfirm } from '../ui/ConfirmDialog';
 import { describeError, toast } from '../ui/Toast';
 import {
-  changeLabel, FIELD_TYPES, newField, previewSummary, ROLE_LABEL, ROLE_NAMES, schemaPatch, TYPE_LABEL,
-  type FieldDef, type FieldType,
+  changeLabel, FIELD_TYPES, MAX_ORDER_BY, newField, orderableFields, previewSummary, REUSE_CHOICES, reuseChoice, reuseFromChoice,
+  ROLE_LABEL, ROLE_NAMES, ROUNDS_HINT, schemaPatch, setOrderBy, TYPE_LABEL,
+  type FieldDef, type FieldType, type ReuseChoice,
 } from '../../lib/data-store';
 import { previewDatasetEdit, useUpdateDataset, type DataSchema, type EditPreview, type ReusePolicy, type SchemaPatch } from '../../api/data';
 import { Check, RoleSelect } from './ImportWizard';
@@ -87,7 +88,7 @@ export function SchemaEditor({ schema, children }: { schema: DataSchema; childre
           <Field label="Language"><input className="input-field" style={{ width: '100%' }} value={draft.language ?? ''} onChange={(e) => set({ language: e.target.value.trim() || null })} /></Field>
           <Field label="Default license"><input className="input-field" style={{ width: '100%' }} value={draft.default_license} onChange={(e) => set({ default_license: e.target.value })} /></Field>
           <Field label="Reuse" hint="when a row may be posted again on the same resource">
-            <ReuseInput value={draft.reuse_policy} onChange={(v) => set({ reuse_policy: v })} />
+            <ReuseInput value={draft.reuse_policy} fields={draft.fields} onChange={(v) => set({ reuse_policy: v })} />
           </Field>
           <Field label="Status">
             <select className="input-field" style={{ width: '100%' }} value={draft.status} onChange={(e) => set({ status: e.target.value as Editable['status'] })}>
@@ -212,18 +213,49 @@ function PreviewBox({ p, version }: { p: EditPreview; version: number }) {
   );
 }
 
-function ReuseInput({ value, onChange }: { value: ReusePolicy; onChange: (v: ReusePolicy) => void }) {
+/** The Reuse setting (spec 071): never, after N days, or in rounds (every row once per channel, then a new round). */
+function ReuseInput({ value, fields, onChange }: { value: ReusePolicy; fields: FieldDef[]; onChange: (v: ReusePolicy) => void }) {
+  const inOrder = value.kind === 'cycle' && value.order === 'sequential';
   return (
-    <div style={{ display: 'flex', gap: 6 }}>
-      <select className="input-field" style={{ flex: 1 }} value={value.kind}
-        onChange={(e) => onChange(e.target.value === 'never' ? { kind: 'never' } : { kind: 'after_days', days: 365 })}>
-        <option value="never">Never again</option>
-        <option value="after_days">After N days</option>
-      </select>
-      {value.kind === 'after_days' && (
-        <input className="input-field" style={{ width: 80 }} inputMode="numeric" aria-label="Days" value={value.days}
-          onChange={(e) => { const n = Number(e.target.value); if (Number.isInteger(n) && n >= 1 && n <= 3650) onChange({ kind: 'after_days', days: n }); }} />
-      )}
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+      <div style={{ display: 'flex', gap: 6 }}>
+        <select className="input-field" style={{ flex: 1, minWidth: 0 }} aria-label="Reuse" value={reuseChoice(value)}
+          onChange={(e) => onChange(reuseFromChoice(e.target.value as ReuseChoice, value))}>
+          {REUSE_CHOICES.map((c) => <option key={c.value} value={c.value}>{c.label}</option>)}
+        </select>
+        {value.kind === 'after_days' && (
+          <input className="input-field" style={{ width: 80 }} inputMode="numeric" aria-label="Days" value={value.days}
+            onChange={(e) => { const n = Number(e.target.value); if (Number.isInteger(n) && n >= 1 && n <= 3650) onChange({ kind: 'after_days', days: n }); }} />
+        )}
+      </div>
+      {value.kind === 'cycle' && <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>{ROUNDS_HINT}</span>}
+      {value.kind === 'cycle' && inOrder && <OrderBy value={value} fields={fields} onChange={onChange} />}
+    </div>
+  );
+}
+
+/** Up to three ordered selects: "Order by", then "Then by" twice. "Import order" (the default) sends no field. */
+function OrderBy({ value, fields, onChange }: { value: Extract<ReusePolicy, { kind: 'cycle' }>; fields: FieldDef[]; onChange: (v: ReusePolicy) => void }) {
+  const chosen = value.order_by ?? [];
+  const options = orderableFields(fields);
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+      {Array.from({ length: MAX_ORDER_BY }, (_, i) => i).filter((i) => i <= chosen.length).map((i) => {
+        const label = i === 0 ? 'Order by' : 'Then by';
+        const here = chosen[i] ?? '';
+        // A field already used by another select is not offered again; a saved name that is no longer orderable stays visible.
+        const list = [...new Set([...options, ...(here ? [here] : [])])].filter((n) => n === here || !chosen.includes(n));
+        return (
+          <label key={i} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <span className="text-micro" style={{ width: 64, flexShrink: 0, color: 'var(--color-ink-muted)' }}>{label}</span>
+            <select className="input-field" style={{ flex: 1, minWidth: 0 }} aria-label={label} value={here}
+              onChange={(e) => onChange(setOrderBy(value, i, e.target.value))}>
+              <option value="">{i === 0 ? 'Import order' : 'Then import order'}</option>
+              {list.map((n) => <option key={n} value={n}>{n}</option>)}
+            </select>
+          </label>
+        );
+      })}
     </div>
   );
 }
