@@ -170,8 +170,13 @@ test('lazy roll: a read that finds nothing asks the database to roll (query_data
   await publish(d.key, d.ids[0]);
   const f: any = await tools.query_data.execute({ schema: d.key, fields: ['label'], filters: [], search: 'nomatch-zzz', order: 'random', limit: 5, full: false }, ctx);
   assert.deepEqual(f.rows, []);
-  assert.match(f.note, /nothing left in this round here/);
+  assert.match(f.note, /no rows match these filters or this search, used or not/, 'matches nothing at all: the spec 068 note, not a round note');
   assert.equal(await roundOf(d.key), 1, 'a row is still open: no new round');
+  // A search that matches only a row already posted in this round: the round note, still no roll.
+  const g: any = await tools.query_data.execute({ schema: d.key, fields: ['label'], filters: [], search: 'x', order: 'random', limit: 5, full: false }, ctx);
+  assert.deepEqual(g.rows, []);
+  assert.match(g.note, /nothing left in this round here/);
+  assert.equal(await roundOf(d.key), 1, 'y is still open: no new round');
 
   // Every row unpostable: no loop, and the note says why.
   const u = await mk({ kind: 'cycle', order: 'sequential' }, [{ label: 'x' }, { label: 'y' }], { postRequires: [['label']] });
