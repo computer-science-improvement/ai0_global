@@ -340,6 +340,17 @@ test('a series with an open pause gets a ticked resume item right after the seri
   assert.deepEqual(r.asked, ['@ai_global'], 'the pauses of the card\'s channel');
 });
 
+test('a series the owner paused by hand gets an unticked resume item: a new source is not a reason to undo their decision', async () => {
+  const r = rig({ pauses: [pause('series:Prompt of the day', { cause: 'owner', reason: '' })] });
+  const out = await call(r, { series: 'Prompt of the day' });
+  assert.equal(out.ok, true, JSON.stringify(out));
+  const resume = r.proposed[0].payload.then[1];
+  assert.equal(resume.key, RESUME_ITEM);
+  assert.equal(resume.ticked, false);
+  assert.match(resume.summary, /\(paused: paused by the owner\)$/);
+  assert.match(r.proposed[0].summary, /suggest resuming the series you paused \(unticked\)/);
+});
+
 test('a pause of the channel itself is a second, unticked suggestion; both together keep the order series, resume, channel', async () => {
   const r = rig({ pauses: [pause('resource:telegram:@ai_global', { label: 'telegram:@ai_global' }), pause('series:Prompt of the day')] });
   const out = await call(r, { series: 'Prompt of the day' });
@@ -350,7 +361,7 @@ test('a pause of the channel itself is a second, unticked suggestion; both toget
   assert.equal(ch.ticked, false, 'a soft suggestion');
   assert.equal(ch.requires, 'main_rows');
   assert.deepEqual(ch.payload, { pause_id: 'pause-resource:telegram:@ai_global', channel_key: '@ai_global' });
-  assert.match(ch.summary, /^Resume the plain slots of @ai_global, which the breaker paused \(no material to post from: .*\)/);
+  assert.match(ch.summary, /^Resume the plain slots of @ai_global \(paused: no material to post from: .*\)/);
   assert.deepEqual(out.follow_ups.map((f: any) => [f.key, f.ticked]), [['series', true], ['resume', true], ['resume_channel', false]]);
   assert.match(r.proposed[0].summary, /resume the paused series; suggest resuming the channel’s plain slots \(unticked\)\./);
 

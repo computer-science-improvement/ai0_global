@@ -152,8 +152,9 @@ const oneLine = (t: string, n = 140): string => { const x = t.replace(/\s+/g, ' 
 const why = (p: SeriesPause): string => `${CAUSE_TEXT[p.cause]}${p.reason ? `: ${oneLine(p.reason)}` : ''}`;
 
 /**
- * The resume items of a card that binds `i.series`: the series' own open pause (`series:<name>`, ticked, only for an import
- * that found rows, and only if the series now reads the new dataset), and the channel's plain-slot pause (`resource:telegram:<channel>`,
+ * The resume items of a card that binds `i.series`: the series' own open pause (`series:<name>`, only for an import that found
+ * rows, and only if the series now reads the new dataset — ticked when the breaker made it, unticked when the owner paused the
+ * series by hand: a new source is not a reason to undo their decision), and the channel's plain-slot pause (`resource:telegram:<channel>`,
  * unticked, a suggestion). Both are checked again when the card is applied; a read error offers nothing and says so in the notes.
  */
 async function resumeItems(d: BundleDeps, scope: ScheduleScope, i: BundleInput, notes: string[]): Promise<FollowUp[]> {
@@ -168,7 +169,7 @@ async function resumeItems(d: BundleDeps, scope: ScheduleScope, i: BundleInput, 
   const own = open.find((p) => same(seriesNameOfKey(p.key) ?? '\u0000', i.series!));
   if (own) {
     out.push({
-      key: RESUME_ITEM, kind: SERIES_PAUSE_RESUME_KIND, requires: 'main_rows',
+      key: RESUME_ITEM, kind: SERIES_PAUSE_RESUME_KIND, requires: 'main_rows', ...(own.cause === 'owner' ? { ticked: false } : {}),
       payload: { pause_id: own.id, channel_key: own.channelKey, series: i.series, dataset: i.dataset, agent_id: scope.agent.id },
       summary: `Resume series "${i.series}" on ${own.channelKey} (paused: ${why(own)})`,
     });
@@ -178,7 +179,7 @@ async function resumeItems(d: BundleDeps, scope: ScheduleScope, i: BundleInput, 
     out.push({
       key: RESUME_CHANNEL_ITEM, kind: SERIES_PAUSE_RESUME_KIND, requires: 'main_rows', ticked: false,
       payload: { pause_id: channel.id, channel_key: channel.channelKey },
-      summary: `Resume the plain slots of ${channel.channelKey}, which the breaker paused (${why(channel)}); the planner skips the channel while it is paused`,
+      summary: `Resume the plain slots of ${channel.channelKey} (paused: ${why(channel)}); the planner skips the channel while it is paused`,
     });
   }
   return out;
@@ -190,7 +191,7 @@ export function thenLine(then: readonly FollowUp[]): string {
   const part = (t: FollowUp): string =>
     t.key === SERIES_ITEM ? 'bind the series to the dataset (required)'
       : t.key === RULE_ITEM ? 'save the rule'
-        : t.key === RESUME_ITEM ? 'resume the paused series'
+        : t.key === RESUME_ITEM ? (t.ticked === false ? 'suggest resuming the series you paused (unticked)' : 'resume the paused series')
           : t.key === RESUME_CHANNEL_ITEM ? 'suggest resuming the channel’s plain slots (unticked)'
             : t.kind === 'detach_skill' ? `${t.ticked === false ? 'suggest disabling' : 'disable'} skill “${String(t.payload.skill)}”${t.ticked === false ? ' (unticked)' : ''}`
               : t.summary.slice(0, 80);
