@@ -100,7 +100,7 @@ export function buildPlatformTools(d: PlatformToolDeps): EditorTool[] {
         ...(gate ? {
           review: async ({ text, lint }) => {
             const c = await gate.check({
-              text, spec, format: spec.format, warnings: [...lint.warnings, ...media.warnings],
+              text, spec, format: spec.format, warnings: [...lint.warnings, ...media.warnings], poster: media.poster,
               // Spec 041 FR-002: the critic's exact edits are linted again (the same lint and media rules) before going out.
               relint: async (edited) => {
                 const e = edited as typeof spec;

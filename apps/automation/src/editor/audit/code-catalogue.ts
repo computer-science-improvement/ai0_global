@@ -328,8 +328,8 @@ export const CODE_EXPLANATIONS: Record<string, CodeExplanation> = {
   },
   poster_mismatch: {
     title: 'Poster does not fit',
-    explain: 'An AI poster is off topic for the post, or used on a news post (error).',
-    fix: 'Pick a poster whose use matches the topic, or publish without one; never on news.',
+    explain: 'An AI poster is off topic for the post, or used on a news post (error). A post made from a library row is not news.',
+    fix: 'Pick a poster whose use matches the topic (the finding names the ones that fit), or publish without one; never on news.',
   },
   // Spec 041 T1 language gate.
   language_calque: {

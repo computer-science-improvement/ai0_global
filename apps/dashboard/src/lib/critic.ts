@@ -10,6 +10,11 @@ export type CriticVerdictKind = 'pass' | 'revise' | 'reject' | 'error';
 export const CRITIC_SCORE_KEYS = ['ai_likeness', 'sense', 'voice', 'grounding', 'audience_asks', 'format_fit', 'language', 'owner_rules'] as const;
 export type CriticScoreKey = typeof CRITIC_SCORE_KEYS[number];
 
+/** Spec 067: one concrete remark of the critic; a blocking one with a quote found in the post sent the post back for a rewrite. */
+export interface CriticIssue { quote?: string; fix: string; axis: CriticScoreKey; blocking: boolean }
+/** Spec 067: how much of the cited source the critic was shown (the lowest among the cited sources). */
+export type CriticCoverage = 'none' | 'snippet' | 'read' | 'full';
+
 export interface CriticVerdict {
   verdict:        CriticVerdictKind;
   scores:         Partial<Record<CriticScoreKey, number>> | null;
@@ -27,6 +32,15 @@ export interface CriticVerdict {
   cost_usd:       number;
   at:             string;
   final?:         boolean;
+  /** Spec 067: the critic's remarks (≤ 8); older verdicts have none. */
+  issues?:        CriticIssue[];
+  /** Spec 067: pass 2 only, which numbered items of the first pass are fixed. */
+  previous_checks?: Array<{ n: number; fixed: boolean }>;
+  source_coverage?: CriticCoverage;
+  /** Spec 067: numbers the code found in no text the author read. */
+  grounding_missing?: string[];
+  /** Spec 067: owner rules left out of the critic's prompt (a picture rule when the code decided no network poster applies). */
+  rules_skipped?: number[];
   history?:       Array<{ verdict: CriticVerdictKind; scores: Partial<Record<CriticScoreKey, number>> | null; notes: string; reason: string; pass: number; at: string }>;
 }
 
@@ -53,16 +67,17 @@ export const SCORE_HINT: Record<CriticScoreKey, string> = {
 };
 
 /** Badge copy and tone of a verdict ("Critic: pass"). */
-export function verdictBadge(c: Pick<CriticVerdict, 'verdict' | 'final'>): { label: string; tone: Tone } {
+export function verdictBadge(c: Pick<CriticVerdict, 'verdict' | 'final'> & { pass?: number }): { label: string; tone: Tone } {
   switch (c.verdict) {
     case 'pass':   return { label: 'Critic: pass', tone: 'success' };
-    case 'revise': return { label: c.final ? 'Critic: revise (after one rewrite)' : 'Critic: revise', tone: 'warning' };
+    // Spec 067: `final` on the first pass means the slot had used up its critic runs, so there was no rewrite.
+    case 'revise': return { label: c.final && (c.pass ?? 2) > 1 ? 'Critic: revise (after one rewrite)' : 'Critic: revise', tone: 'warning' };
     case 'reject': return { label: 'Critic: reject', tone: 'danger' };
     default:       return { label: 'Critic: unavailable', tone: 'neutral' };
   }
 }
 
-/** Tone of one score: ≤ 2 rejects, 3 asks for a rewrite (the backend thresholds). */
+/** Tone of one score: ≤ 2 is serious (`sense` rejects, any other axis sends the post back once), 3 asks for a rewrite. */
 export function scoreTone(n: number): Tone {
   return n <= 2 ? 'danger' : n === 3 ? 'warning' : 'success';
 }
@@ -88,7 +103,37 @@ export function criticFootnote(c: Pick<CriticVerdict, 'verdict' | 'final' | 'pas
   if (where === 'preview') return 'The critic read this dry-run preview; the real post is reviewed again when it is written.';
   if (where === 'slot') return c.verdict === 'pass' && c.pass > 1 ? 'Passed after one rewrite.' : null;
   if (c.verdict === 'error') return 'The critic did not answer, so this post waits for you and is left out of "Approve all".';
-  if (c.verdict === 'revise' && c.final) return 'The agent rewrote it once and the critic still asks for changes. Decide yourself; it is left out of "Approve all".';
+  if (c.verdict === 'revise' && c.final) {
+    return c.pass > 1
+      ? 'The agent rewrote it once and the critic still asks for changes. Decide yourself; it is left out of "Approve all".'
+      : 'The critic asks for changes, but this slot had used up its critic runs, so the agent could not rewrite it. Decide yourself; it is left out of "Approve all".';
+  }
   if (c.verdict === 'pass' && c.pass > 1) return 'Passed after one rewrite.';
   return null;
+}
+
+/** The critic's remarks for display: the ones that sent the post back first (spec 067); empty for verdicts written before it. */
+export function issueList(c: Pick<CriticVerdict, 'issues'>): Array<CriticIssue & { label: string; tone: Tone; kind: string }> {
+  return (c.issues ?? [])
+    .map((i, idx) => ({ i, idx }))
+    .sort((a, b) => Number(b.i.blocking) - Number(a.i.blocking) || a.idx - b.idx)
+    .map(({ i }) => ({ ...i, label: SCORE_LABEL[i.axis] ?? i.axis, tone: i.blocking ? ('warning' as Tone) : ('neutral' as Tone), kind: i.blocking ? 'Must fix' : 'Advice' }));
+}
+
+/** What the critic could check the post against (spec 067), or null when it is unknown or nothing was read. */
+export function coverageNote(c: Pick<CriticVerdict, 'source_coverage'>): string | null {
+  switch (c.source_coverage) {
+    case 'full':    return 'The critic saw the whole source page.';
+    case 'read':    return 'The critic saw only the part of the document the agent read, so a fact it could not find may be elsewhere in it.';
+    case 'snippet': return 'The critic saw only a feed snippet of the source.';
+    default:        return null;
+  }
+}
+
+/** Owner rules the critic was not asked about (spec 067): a picture rule on a post for which no network poster applies. */
+export function skippedRulesNote(c: Pick<CriticVerdict, 'rules_skipped'>): string | null {
+  const ids = c.rules_skipped ?? [];
+  if (!ids.length) return null;
+  const list = ids.map((id) => `#${id}`).join(', ');
+  return `Not checked by the critic: your picture rule${ids.length > 1 ? 's' : ''} ${list}. The code decided no network poster fits this post, so a post without an image is correct.`;
 }

@@ -2,29 +2,40 @@ import { z } from 'zod';
 import { isSlopWarning } from '../post/slop-lint';
 import type { StoredSource } from './stored-sources';
 import type { FailedEdit, TextEdit } from './spec-edits';
-import { longText, longTextNote } from '../harness/clip-text';
+import { CLIP_MARK, longText, longTextNote } from '../harness/clip-text';
 import type { RejectedEdit } from './safe-edits';
+import type { SourceCoverage } from './read-capture';
 
 /**
  * Spec 034 FR-004: the pre-publish critic's verdict.
  *
  * The critic model scores a post 1–5 on seven axes (spec 041 FR-001 added `language`) and proposes a verdict; code
- * turns the scores into the final verdict (`decideVerdict`), so a lenient model
- * can never pass a post its own scores fail:
+ * turns the scores into the final verdict (`decideVerdict`), so a lenient model can never pass a post its own scores
+ * fail. Spec 067 FR-002 split the contract by pass: a low score no longer kills a post one rewrite can fix, and the
+ * second pass checks the fixes instead of starting again.
  *
- *   1. any score ≤ CRITIC_REJECT_AT (2)                         → reject
+ * Pass 1:
+ *   1. the model's verdict is `reject`, or `sense` ≤ 2          → reject (the post is not about anything)
+ *   2. any other score ≤ CRITIC_REJECT_AT (2)                   → revise (`score_le_2_fixable`)
  *      (`owner_rules` ≤ 2 names the broken owner rules: «owner_rules: #12, #15»)
- *   2. the model's own verdict is `reject`                      → reject
- *   2a. spec 041: owner rules in the prompt without a score or a per-rule verdict → revise (`owner_rules_missing`)
  *   3. any score ≤ CRITIC_REVISE_AT (3)                         → revise
- *   4. ≥ CRITIC_SLOP_REVISE (2) slop warnings from the lint     → revise
- *   5. a humour / slang marker on a resource where it is off    → revise
+ *   4. a blocking issue with a quote found in the post, not fixed by an edit → revise
+ *   5. spec 041: owner rules in the prompt without a score or a per-rule verdict → revise (`owner_rules_missing`);
+ *      ≥ CRITIC_SLOP_REVISE (2) slop warnings; a humour / slang marker on a resource where it is off → revise
  *   6. the model's own verdict is `revise`                      → revise
- *   7. spec 041: a score of 4 with a «quoted» problem in the notes and no edits → revise (`quoted_problem`)
- *   8. otherwise                                                → pass (`pass_with_edits` = a pass whose exact
- *      edits code applies, spec 041 FR-002)
+ *   7. otherwise                                                → pass (`pass_with_edits` = a pass whose exact
+ *      edits code applies, spec 041 FR-002); remarks that are not blocking issues stay advice in the notes
  *
- * The model can make the verdict stricter, never more lenient.
+ * Pass 2 (after the one rewrite):
+ *   1. the model's verdict is `reject`; any score ≤ 2           → reject (grounding ≤ 2 is a revise when the source was
+ *      not read whole and the code found no number missing)
+ *   2. a blocking item of pass 1 not fixed (`previous_checks`; a missing or partial answer counts as unfixed), a new
+ *      blocking issue, a hard lint warning still there, owner rules without a verdict, slop, humour off → revise
+ *   3. otherwise                                                → pass (`pass2_advice`: a new 3 and the model's own
+ *      `revise` without such an item are advice, kept in the notes)
+ *
+ * On pass 1 the model can make the verdict stricter, never more lenient than its scores. On pass 2 only the items
+ * above can: a `revise` of the model with no unfixed item and no new blocking issue ends as a pass.
  */
 
 /** Score axes (1–5, 5 = best). `ai_likeness` 5 = reads as written by a person, 1 = obvious AI text. */
@@ -50,6 +61,20 @@ export const VOICE_OFF_WARNINGS = ['slop_humor_off', 'slop_slang_off'] as const;
 const score = z.number().int().min(1).max(5);
 /** Spec 041 FR-002: at most this many exact edits in one `pass_with_edits`. */
 export const MAX_CRITIC_EDITS = 8;
+/** Spec 067 FR-002: at most this many issues are kept from one verdict (more are cut, not refused). */
+export const MAX_CRITIC_ISSUES = 8;
+
+/**
+ * Spec 067 FR-002: one concrete remark. A `blocking` one with a quote found in the post sends the post back for a
+ * rewrite; the rest is advice. Over-long fields are cut, not refused: a refused verdict costs a critic turn.
+ */
+export const CriticIssueInput = z.object({
+  quote:    longText(0, 200).optional().describe(`Дослівна цитата проблемного місця з поста (як воно написано в пості). Для blocking — обовʼязкова: без цитати, якої в пості немає, код блокуючим це не вважає; ${longTextNote(200)}`),
+  fix:      longText(1, 300).describe(`Що саме виправити, одним реченням; ${longTextNote(300)}`),
+  axis:     z.enum(CRITIC_ALL_SCORE_KEYS).describe('До якої осі оцінок це належить'),
+  blocking: z.boolean().describe('true — без виправлення пост не можна публікувати: фактична помилка (число, імʼя, цитата, якої немає в джерелі), мовна помилка з цитатою, порушене правило власника. false — порада'),
+});
+export type CriticIssue = z.infer<typeof CriticIssueInput>;
 
 /** The critic's tool input (the model's answer). */
 export const CritiqueInput = z.object({
@@ -71,6 +96,13 @@ export const CritiqueInput = z.object({
     quote: z.string().max(200).optional().describe('Для порушеного правила — дослівна цитата з поста, що його порушує'),
   })).max(30).optional()
     .describe('Обовʼязково, коли в промпті є правила власника: вердикт по КОЖНОМУ правилу з блоку'),
+  issues: z.array(CriticIssueInput).optional()
+    .describe(`Конкретні зауваження до поста, до ${MAX_CRITIC_ISSUES}. Блокуючі (blocking: true) повертають пост на переписування; решта — поради. Без issues пост із четвірками проходить`),
+  previous_checks: z.array(z.object({
+    n:     z.number().int().min(1).describe('номер пункту з блоку «Що треба було виправити»'),
+    fixed: z.boolean().describe('true — у новому тексті цього більше немає'),
+  })).optional()
+    .describe('Лише для другого проходу: по КОЖНОМУ пункту з блоку «Що треба було виправити» — виправлено чи ні. Пропущений пункт код вважає невиправленим'),
   verdict: z.enum(['pass', 'pass_with_edits', 'revise', 'reject']),
   edits:   z.array(z.object({
     from: z.string().min(2).max(300).describe('Точний фрагмент тексту поста, як він написаний (має зустрічатися в пості один раз)'),
@@ -92,36 +124,132 @@ export function slopCodes(warnings: ReadonlyArray<{ code: string }>): string[] {
   return warnings.map((w) => w.code).filter(isSlopWarning);
 }
 
-/** A «quoted» fragment of at least two letters in the notes: the critic named a concrete problem. */
-const QUOTED = /«[^»]*\p{L}[^»]*\p{L}[^»]*»|"[^"]*\p{L}[^"]*\p{L}[^"]*"/u;
+/**
+ * Spec 067 FR-002 (A1): what pass 1 asked to fix, numbered [1..n] for pass 2 (the prompt asks `previous_checks` per
+ * number, `decideVerdict` reads the answer). Pass 1's blocking issues; with none (an old-style verdict), one item per
+ * score ≤ 3 and one per edit that did not apply. Empty when pass 1 asked for nothing in particular (a lint-only revise).
+ */
+export interface PreviousItem { n: number; fix: string; quote?: string; axis?: string }
 
-/** Deterministic final verdict from the scores, the model's own verdict and the slop warnings. */
-export function decideVerdict(
-  c: Pick<Critique, 'scores' | 'verdict' | 'broken_rules'> & Partial<Pick<Critique, 'notes' | 'edits'>> & { missing_rules?: number[] },
-  slopWarningCodes: readonly string[] = [],
-): VerdictDecision {
+export function previousItemsOf(
+  prev: (Pick<StoredCritic, 'scores'> & Partial<Pick<StoredCritic, 'issues' | 'edits_failed'>>) | null | undefined,
+): PreviousItem[] {
+  if (!prev) return [];
+  const blocking = (prev.issues ?? []).filter((i) => i.blocking);
+  let items: Array<Omit<PreviousItem, 'n'>>;
+  if (blocking.length) {
+    items = blocking.map((i) => ({ fix: i.fix, ...(i.quote ? { quote: i.quote } : {}), axis: i.axis }));
+  } else {
+    const sc = (prev.scores ?? {}) as Partial<Record<string, number>>;
+    items = [
+      ...CRITIC_ALL_SCORE_KEYS.filter((k) => typeof sc[k] === 'number' && sc[k]! <= CRITIC_REVISE_AT)
+        .map((k) => ({ fix: `оцінка ${k} ${sc[k]} — виправ те, що названо в зауваженнях`, axis: k })),
+      ...(prev.edits_failed ?? []).map((e) => ({ fix: `правка не застосувалась: «${e.from}» → «${e.to}»`, quote: e.from })),
+    ];
+  }
+  return items.map((x, i) => ({ n: i + 1, ...x }));
+}
+
+/** What `decideVerdict` needs beyond the model's answer (spec 067 A2); without it: pass 1, nothing read, nothing to compare. */
+export interface VerdictContext {
+  /** 2 after the one in-run rewrite. */
+  pass:             1 | 2;
+  /** How much of the cited source the critic was shown (the lowest among the cited sources). */
+  coverage:         SourceCoverage;
+  /** Numbers the code found in no text the author read. */
+  codeMissing:      readonly string[];
+  /** Pass 2: the items pass 1 asked to fix. */
+  previousBlocking: readonly PreviousItem[];
+  /** Lint codes that still stand and are never advice: `poster_mismatch`, `number_not_in_sources`. */
+  hardLint:         readonly string[];
+  /** The post text: a blocking issue counts only with a quote that is in it. Absent = the quotes are not checked. */
+  postText?:        string;
+}
+
+/** The lint warnings a second pass may not carry (spec 067 FR-002); `number_not_in_sources` comes from the code check of the numbers. */
+export const HARD_LINT_CODES = ['poster_mismatch', 'number_not_in_sources'] as const;
+
+/** A text for comparing a quote with the post: one kind of quote and apostrophe, one space, no case, no cut marks. */
+const quoteKey = (s: string): string => s.replace(CLIP_MARK, '').replace(/[«»“”„"]/g, '"').replace(/[‘’ʼ`]/g, "'")
+  .replace(/(?:…|\.{3})\s*$/u, '').replace(/^\s*(?:…|\.{3})/u, '').replace(/\s+/g, ' ').trim().toLowerCase();
+
+/**
+ * The blocking issues that send a post back: each has a quote found in the post (so praise in quotes and a vague
+ * remark do not count) and no applied edit of the model removes it (`pass_with_edits`: the quote lies inside an edit's `from`).
+ */
+export function countedIssues(
+  c: Pick<Critique, 'verdict'> & Partial<Pick<Critique, 'issues' | 'edits'>>, postText?: string,
+): CriticIssue[] {
+  const post = postText == null ? null : quoteKey(postText);
+  const fixedBy = c.verdict === 'pass_with_edits' ? (c.edits ?? []).map((e) => quoteKey(e.from)) : [];
+  return (c.issues ?? []).slice(0, MAX_CRITIC_ISSUES).filter((i) => {
+    if (!i.blocking) return false;
+    const q = i.quote ? quoteKey(i.quote) : '';
+    if (!q) return false;
+    if (post != null && !post.includes(q)) return false;
+    return !fixedBy.some((from) => from.includes(q));
+  });
+}
+
+type VerdictInput = Pick<Critique, 'scores' | 'verdict' | 'broken_rules'>
+  & Partial<Pick<Critique, 'notes' | 'edits' | 'issues' | 'previous_checks'>> & { missing_rules?: number[] };
+
+/** Deterministic final verdict from the scores, the model's own verdict, its issues and the slop warnings (see the header). */
+export function decideVerdict(c: VerdictInput, slopWarningCodes: readonly string[] = [], o: Partial<VerdictContext> = {}): VerdictDecision {
   const scores = c.scores as Partial<Record<string, number>>;
   const low = (max: number) => CRITIC_ALL_SCORE_KEYS.filter((k) => typeof scores[k] === 'number' && scores[k]! <= max);
   // Spec 040 FR-011: a low owner_rules axis names the rules the post broke.
   const named = (axes: readonly string[]) => axes.map((k) => (k === 'owner_rules' && c.broken_rules?.length
     ? `owner_rules (${c.broken_rules.map((id) => `#${id}`).join(', ')})` : k)).join(', ');
-  const rejectAxes = low(CRITIC_REJECT_AT);
-  if (rejectAxes.length) return { verdict: 'reject', reason: `score_le_${CRITIC_REJECT_AT}: ${named(rejectAxes)}` };
-  if (c.verdict === 'reject') return { verdict: 'reject', reason: 'model_reject' };
+  const pass = o.pass ?? 1;
+  const counted = countedIssues(c, o.postText);
+  const countedLine = () => `blocking_issue: ${[...new Set(counted.map((i) => i.axis))].join(', ')}`;
   // Spec 041 FR-005: with owner rules in the prompt, every rule gets a verdict (and the axis a score).
-  if (c.missing_rules?.length) return { verdict: 'revise', reason: `owner_rules_missing: ${c.missing_rules.map((id) => `#${id}`).join(', ')}` };
+  const missingRules = c.missing_rules?.length ? { verdict: 'revise' as const, reason: `owner_rules_missing: ${c.missing_rules.map((id) => `#${id}`).join(', ')}` } : null;
+  const slop = slopWarningCodes.length >= CRITIC_SLOP_REVISE ? { verdict: 'revise' as const, reason: `slop_warnings: ${slopWarningCodes.length}` } : null;
+  const off = slopWarningCodes.filter((w) => (VOICE_OFF_WARNINGS as readonly string[]).includes(w));
+  const voiceOff = off.length ? { verdict: 'revise' as const, reason: `voice_off: ${off.join(', ')}` } : null;
+  const edits = c.verdict === 'pass_with_edits' ? c.edits ?? [] : [];
+  const scoresOk = { verdict: 'pass' as const, reason: edits.length ? 'scores_ok_with_edits' : 'scores_ok' };
+
+  if (pass === 2) {
+    if (c.verdict === 'reject') return { verdict: 'reject', reason: 'model_reject' };
+    // A second look at a rewrite: a score of 2 or less is a reject, except grounding when the critic did not see the whole source and the code found no number missing (the fact may be elsewhere in it).
+    const lowAxes = low(CRITIC_REJECT_AT);
+    const unconfirmed = (o.coverage ?? 'none') !== 'full' && !(o.codeMissing ?? []).length;
+    const hard = lowAxes.filter((k) => !(k === 'grounding' && unconfirmed));
+    if (hard.length) return { verdict: 'reject', reason: `score_le_${CRITIC_REJECT_AT}: ${named(hard)}` };
+    if (lowAxes.length) return { verdict: 'revise', reason: `score_le_${CRITIC_REJECT_AT}_fixable: ${named(lowAxes)}` };
+    const items = o.previousBlocking ?? [];
+    if (items.length) {
+      const answered = new Map<number, boolean>();
+      for (const k of c.previous_checks ?? []) answered.set(k.n, (answered.get(k.n) ?? true) && k.fixed);
+      const unfixed = items.filter((it) => answered.get(it.n) !== true);
+      if (unfixed.length) return { verdict: 'revise', reason: `${c.previous_checks?.length ? 'previous_unfixed' : 'previous_checks_missing'}: ${unfixed.map((it) => `#${it.n}`).join(', ')}` };
+    }
+    if (counted.length) return { verdict: 'revise', reason: countedLine() };
+    if (o.hardLint?.length) return { verdict: 'revise', reason: `hard_lint: ${o.hardLint.join(', ')}` };
+    if (missingRules) return missingRules;
+    if (slop) return slop;
+    if (voiceOff) return voiceOff;
+    // Everything else is advice: a new 3, the model's own `revise` with nothing blocking behind it.
+    const advice = [...low(CRITIC_REVISE_AT).map((k) => `${k} ${scores[k]}`), ...(c.verdict === 'revise' ? ['model_revise'] : [])];
+    return advice.length ? { verdict: 'pass', reason: `pass2_advice: ${advice.join(', ')}` } : scoresOk;
+  }
+
+  // Pass 1: only a post that is about nothing, or the model's own reject, is lost; the rest can be fixed once.
+  if ((scores.sense ?? 5) <= CRITIC_REJECT_AT) return { verdict: 'reject', reason: `score_le_${CRITIC_REJECT_AT}: sense` };
+  if (c.verdict === 'reject') return { verdict: 'reject', reason: 'model_reject' };
+  const fixable = low(CRITIC_REJECT_AT);
+  if (fixable.length) return { verdict: 'revise', reason: `score_le_${CRITIC_REJECT_AT}_fixable: ${named(fixable)}` };
   const reviseAxes = low(CRITIC_REVISE_AT);
   if (reviseAxes.length) return { verdict: 'revise', reason: `score_le_${CRITIC_REVISE_AT}: ${named(reviseAxes)}` };
-  if (slopWarningCodes.length >= CRITIC_SLOP_REVISE) return { verdict: 'revise', reason: `slop_warnings: ${slopWarningCodes.length}` };
-  const off = slopWarningCodes.filter((w) => (VOICE_OFF_WARNINGS as readonly string[]).includes(w));
-  if (off.length) return { verdict: 'revise', reason: `voice_off: ${off.join(', ')}` };
+  if (counted.length) return { verdict: 'revise', reason: countedLine() };
+  if (missingRules) return missingRules;
+  if (slop) return slop;
+  if (voiceOff) return voiceOff;
   if (c.verdict === 'revise') return { verdict: 'revise', reason: 'model_revise' };
-  const edits = c.verdict === 'pass_with_edits' ? c.edits ?? [] : [];
-  // Spec 041 FR-002: 7 of 15 passes of review 2 carried a fix the post never got. A 4 that quotes a problem
-  // is fixed, either by the critic's own exact edits or by a rewrite.
-  const fours = low(4);
-  if (fours.length && !edits.length && c.notes && QUOTED.test(c.notes)) return { verdict: 'revise', reason: `quoted_problem: ${named(fours)}` };
-  return { verdict: 'pass', reason: edits.length ? 'scores_ok_with_edits' : 'scores_ok' };
+  return scoresOk;
 }
 
 /**
@@ -161,6 +289,16 @@ export interface StoredCritic {
   cost_total_usd?: number;
   /** Spec 041 FR-005: the critic's verdict on each owner rule in its prompt. */
   rule_checks?:   Array<{ id: number; kept: boolean; quote?: string }>;
+  /** Spec 067 FR-002: the critic's remarks (≤ 8); the blocking ones with a quote found in the post sent it back. */
+  issues?:        CriticIssue[];
+  /** Spec 067 FR-002: pass 2 — which numbered items of the first pass are fixed now. */
+  previous_checks?: Array<{ n: number; fixed: boolean }>;
+  /** Spec 067 FR-001: how much of the cited source the critic was shown (the lowest among the cited sources). */
+  source_coverage?: SourceCoverage;
+  /** Spec 067 A3: the numbers the code check found in no text the author read (≤ 12); with `source_coverage: 'full'` they ban the source. */
+  grounding_missing?: string[];
+  /** Spec 067 FR-005: ids of the owner rules left out of the critic's prompt (a media rule when the code says no poster applies). */
+  rules_skipped?: number[];
   /** Spec 041 FR-002: the exact edits the critic proposed (`pass_with_edits`). */
   edits?:         TextEdit[];
   /** Spec 041 FR-002: what code applied to the spec before publishing (critic edits and lint euphony fixes). */

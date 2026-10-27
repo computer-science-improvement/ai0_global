@@ -135,3 +135,63 @@ test('063 FR-001: the critic passages find the sentence that spells a number or 
   assert.match(ps[0].text, /over a billion dollars and backed Senate Bill 53/);
   assert.deepEqual(ps[0].about, ['$1 млрд', 'SB 53']);
 });
+
+test('067 FR-001: «N з M», "N of M" and N/M are one ratio claim, matched by key (case a902605d: «5 з 10» against "5/10")', () => {
+  const miss = (post: string, src: string) => groundNumbers(post, [{ url: 'u', text: src }]).missing.map((n) => n.text);
+  assert.deepEqual(values('Рівно 5 з 10 моделей пройшли тест.'), [['5 з 10', 'ratio', 0.5]], 'one claim, the parts are not checked on their own');
+  assert.equal(postNumbers('Рівно 5 з 10 моделей.')[0].key, '5/10');
+  // The source writes the same ratio any way.
+  for (const src of ['Passed: 5/10 models.', '5 of 10 models passed.', '5 out of 10 models passed.', 'Пройшли 5 з 10 моделей.', 'Пройшли 5 із 10 моделей.', 'Score 5 / 10.']) {
+    assert.deepEqual(miss('Рівно 5 з 10 моделей пройшли тест.', src), [], src);
+  }
+  for (const post of ['5 із 10 моделей', '5 out of 10 models', '5 of 10 models', '5/10 моделей']) {
+    assert.deepEqual(miss(post, 'Passed: 5/10 models.'), [], post);
+  }
+  // Another way of writing it (the denominator is in the source): as before, by value of the parts that are claims.
+  assert.deepEqual(miss('Рівно 5 з 10 моделей.', 'Five of the 10 models passed (10 tested).'), []);
+  assert.deepEqual(miss('Рівно 5 з 10 моделей.', 'Seven of the 12 models passed.'), ['5 з 10'], 'a real miss stays a miss');
+  // Small numbers are not claims: nothing to check, as before.
+  assert.deepEqual(values('3 з 5 причин очевидні.'), []);
+  // A ratio with a unit is a number with a unit.
+  assert.deepEqual(values('5 з 10 млн користувачів'), [['10 млн', 'count', 1e7]]);
+  assert.deepEqual(values('Знижка 5 з 10%'), [['10%', 'percent', 10]]);
+});
+
+test('067 review R1: a ratio part is a whole number token — space-grouped thousands (regular or no-break space) are not split', () => {
+  const miss = (post: string, src: string) => groundNumbers(post, [{ url: 'u', text: src }]).missing.map((n) => n.text);
+  const ratios = (text: string) => postNumbers(text, AT).filter((n) => n.kind === 'ratio').map((n) => [n.text, n.key, n.value]);
+  for (const sp of [' ', ' ', ' ']) {
+    const post = `Продано 10${sp}000 з 20${sp}000 квитків.`;
+    assert.deepEqual(ratios(post), [[`10${sp}000 з 20${sp}000`, '10000/20000', 0.5]], JSON.stringify(sp));
+    assert.deepEqual(postNumbers(post, AT).map((n) => n.kind), ['ratio'], 'one claim: the parts are not checked on their own');
+    assert.deepEqual(miss(post, 'Продано 10 000 з 20 000 квитків.'), [], 'the identical source');
+    assert.deepEqual(miss(post, '10,000 of 20,000 tickets were sold.'), [], 'an English source');
+    assert.deepEqual(miss(post, '10,000 out of 20,000 tickets were sold.'), []);
+    assert.deepEqual(miss(post, '10 000 / 20 000 tickets'), []);
+    assert.deepEqual(miss(post, '9,000 of 20,000 tickets were sold.'), [`10${sp}000 з 20${sp}000`], 'a real miss stays a miss');
+  }
+  assert.deepEqual(ratios('200 з 1 500 працівників'), [['200 з 1 500', '200/1500', 200 / 1500]]);
+  assert.deepEqual(miss('200 з 1 500 працівників', '200 з 1 500 працівників'), []);
+  assert.deepEqual(miss('200 з 1 500 працівників', '200 of 1,500 employees'), []);
+  assert.deepEqual(ratios('12 з 50 000 заявок'), [['12 з 50 000', '12/50000', 12 / 50000]]);
+  assert.deepEqual(miss('12 з 50 000 заявок', '12 of 50,000 applications'), []);
+  assert.deepEqual(ratios('1 500/2 000 місць'), [['1 500/2 000', '1500/2000', 0.75]]);
+  // A match never starts or ends inside a group: «000 з 20» and «1 5» are not ratios.
+  assert.deepEqual(ratios('Тираж 1 000 з 20 копій').map((r) => r[1]), ['1000/20']);
+  // Money and a unit make it a number with a unit, as before.
+  assert.deepEqual(ratios('2 500 з 10 000 доларів'), []);
+  assert.deepEqual(ratios('2 500 з 10 000 грн'), []);
+  assert.deepEqual(ratios('5 з 10 000 млн'), []);
+  // Versions are not ratios.
+  assert.deepEqual(postNumbers('Підтримка Windows 10/11 і Android 14/15.', AT), []);
+  assert.deepEqual(miss('Підтримка Windows 10/11.', 'Windows 10 and Windows 11 are supported.'), []);
+});
+
+test('067 FR-001: dates written with slashes are not ratios', () => {
+  const miss = (post: string, src: string) => groundNumbers(post, [{ url: 'u', text: src }], AT).missing.map((n) => n.text);
+  assert.deepEqual(miss('Роздача до 19 жовтня.', 'Offer ends 10/19/2026 11:59 PM UTC.'), []);
+  assert.deepEqual(miss('Роздача до 20 жовтня.', 'Offer ends 10/19/2026 11:59 PM UTC.'), ['20 жовтня']);
+  assert.deepEqual(postNumbers('Див. 10/19/2026 і 5/10/2026.').filter((n) => n.kind === 'ratio'), []);
+  assert.deepEqual(values('Роздача з 5 по 10 травня'), [['10 травня', 'date', 510]]);
+  assert.deepEqual(values('Із 5 з 10 травня'), [['10 травня', 'date', 510]], 'before a month name the second number is a date');
+});

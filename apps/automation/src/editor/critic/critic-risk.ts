@@ -12,7 +12,8 @@ import { ATTRIBUTION_RE, QUOTE_RE } from '../post/grounding';
  */
 export const RISK_HIGH_AT = 3;
 
-export type RiskFactor = 'external_source' | 'numbers' | 'quotes' | 'persons' | 'news' | 'library_or_evergreen';
+/** `pinned` (spec 067 FR-003): not a property of the draft — an earlier critic run of the slot was high, so this one stays high. */
+export type RiskFactor = 'external_source' | 'numbers' | 'quotes' | 'persons' | 'news' | 'library_or_evergreen' | 'pinned';
 export interface DraftRisk { score: number; level: 'high' | 'low'; factors: RiskFactor[] }
 
 /** A number that is a fact: not a lone ordinal-looking digit in a list marker. */

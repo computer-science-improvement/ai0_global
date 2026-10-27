@@ -70,7 +70,7 @@ export const INTEGRITY_CODES: Record<string, CodeInfo> = {
   evergreen_unsourced_number: { task: 'T10', level: 'warning', what: 'an evergreen post with specific numbers (%, sums, millions) and no source' },
   // T11 media.
   image_not_from_source:      { task: 'T11', level: 'error',  what: 'news media other than the source\'s own image' },
-  poster_mismatch:            { task: 'T11', level: 'mixed',  what: 'ai_posters poster off topic (warning) or on a news post (error)' },
+  poster_mismatch:            { task: 'T11', level: 'mixed',  what: 'ai_posters poster on a news post (error), or off topic (error before publishing, warning in the post audit; the message names the posters that fit)' },
   // Spec 041 T1 language gate (post/language/lexicon.ts).
   language_calque:            { task: '041', level: 'error',   what: 'an unambiguous russism / calque («приймати участь», «на протязі», «являється», «заточений»)' },
   language_case:              { task: '041', level: 'warning', what: 'a suspect case («трапляється у найвідоміших сервісів» → «з …ими»)' },

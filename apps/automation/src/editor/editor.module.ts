@@ -1622,7 +1622,7 @@ export const EDITOR_PROVIDERS = [
               : null,
           },
           // Spec 034 FR-004: the pre-publish critic of every executor run (live, shadow, approval write-ahead).
-          ...(critic ? { critic: { service: critic, inbox: (i) => infra.inbox.post(i), libraryText: libraryTextOf(pool) } } : {}),
+          ...(critic ? { critic: { service: critic, inbox: (i) => infra.inbox.post(i), libraryText: libraryTextOf(pool), docs: sharedDocStore(env) } } : {}),
           // Spec 037 FR-010: the fallback ladder of a failed post stops at the daily caps (the same gate as every LLM call).
           budget: (() => {
             const gate = editorBudget(pool, env, notify, caps);

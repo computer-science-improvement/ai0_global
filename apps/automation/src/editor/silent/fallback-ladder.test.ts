@@ -6,7 +6,8 @@ import { EditorRunnerService } from '../roles/editor-runner.service';
 import { SkillLibrary } from '../skills/skill-library';
 import { makeCard } from '../post/testing/fixtures';
 import { isToolError } from '../harness/tool';
-import { classifyFailure, isFixableRevise, isWrongTopic, ladderPlan, lighterFormat, PublishProbe, type SlotFallback } from './fallback-ladder';
+import { classifyFailure, isFixableRevise, isWrongTopic, ladderPlan, lighterFormat, passBudgetFor, pinLevelOf, PublishProbe, stepRecord, type SlotFallback } from './fallback-ladder';
+import type { CriticGate } from '../critic/critic-gate';
 import { skipGroupOf } from './skip-reasons';
 
 const NOW = new Date('2026-10-12T09:00:00Z');
@@ -24,7 +25,7 @@ const shadow: Behaviour = (st) => {
 const lint: Behaviour = () => ({ error: 'lint_failed', details: [{ code: 'caption_too_long', message: 'задовго' }] });
 const agentSkip: Behaviour = (st) => { Object.assign(st, { status: 'skipped', error: 'skipped by agent: нічого гідного' }); return { ok: true, skipped: true }; };
 
-function setup(script: Behaviour[], o: { slot?: any; budget?: (n: number) => boolean; evergreen?: boolean; live?: any; card?: any; extraSteps?: number } = {}) {
+function setup(script: Behaviour[], o: { slot?: any; budget?: (n: number) => boolean; evergreen?: boolean; live?: any; card?: any; extraSteps?: number; critic?: boolean } = {}) {
   const st: any = { ...(o.slot ?? baseSlot), status: 'running', error: null, critic: null };
   const runs: any[] = [];
   const patches: any[] = [];
@@ -63,8 +64,11 @@ function setup(script: Behaviour[], o: { slot?: any; budget?: (n: number) => boo
       },
     } : {}),
     ...(o.live ? { live: { scan: async () => o.live } } : {}),
+    // Spec 067: with a critic wired the run gets a gate, whose context carries the slot's pass budget and pin level.
+    ...(o.critic ? { critic: { service: { review: async () => ({ ok: false as const, error: 'x', runIds: [], costUsd: 0 }) } as any } } : {}),
   });
-  return { runner, st, runs, patches, evergreenCalls, card: makeCard(o.card ?? {}) };
+  const gates = () => runs.map((r) => (r.extras?.critic as CriticGate | undefined)?.c);
+  return { runner, st, runs, patches, evergreenCalls, gates, card: makeCard(o.card ?? {}) };
 }
 
 const fallbackOf = (st: any): SlotFallback => st.fallback;
@@ -188,10 +192,83 @@ test('046: no new step after 3 critic passes on the slot (a revise + rewrite cou
     Object.assign(st, { status: 'skipped', error: 'critic_rejected: reject', critic: { verdict: 'reject', notes: 'n', cost_usd: 0.002, history: [{ verdict: 'revise' }] } });
     return { ok: true, failed: 'critic_rejected' } as any;
   };
+  // Spec 067 FR-004: what the scripted attempts report is 2 + 2; the real gate gets a budget of 1 for the second (see the 067 tests below).
   const r = setup([revised, revised, shadow]);
   await r.runner.runExecutor(baseSlot, r.card);
-  assert.equal(r.runs.length, 2, 'initial (2 passes) + next candidate (2 passes) → stop');
+  assert.equal(r.runs.length, 2);
   assert.equal(fallbackOf(r.st).final?.code, 'critic_cap');
+});
+
+const revisedTwice: Behaviour = (st) => {
+  Object.assign(st, { status: 'skipped', error: 'critic_rejected: second revise — revise: n', critic: { verdict: 'revise', notes: 'n', cost_usd: 0.002, history: [{ verdict: 'revise' }] } });
+  return { ok: true, failed: 'critic_rejected' } as any;
+};
+/** One critic pass that ended in a (final) revise: what a gate with a budget of 1 stores. */
+const cappedRevise: Behaviour = (st) => {
+  Object.assign(st, { status: 'skipped', error: 'critic_rejected: cap_revise — revise: n', critic: { verdict: 'revise', notes: 'n', reason: 'cap_revise: model_revise', cost_usd: 0.002 } });
+  return { ok: true, failed: 'critic_rejected' } as any;
+};
+
+test('067 FR-004: the cap of 3 holds — initial (revise + rewrite = 2 passes), then a ladder step (revise_source) with a budget of 1 = 3 critic runs, no fourth', async () => {
+  const s = setup([revisedTwice, cappedRevise, shadow], { critic: true });
+  await s.runner.runExecutor(baseSlot, s.card);
+  assert.equal(s.runs.length, 2, 'no third attempt');
+  assert.deepEqual(s.gates().map((c) => c?.passBudget), [2, 1]);
+  const f = fallbackOf(s.st);
+  assert.deepEqual(f.steps.map((x) => [x.step, x.critic_passes]), [['initial', 2], ['revise_source', 1]], 'a revise is fixable: the first step keeps the source');
+  assert.deepEqual([f.final?.outcome, f.final?.code], ['skipped', 'critic_cap']);
+  assert.equal(passBudgetFor(0), 2);
+  assert.equal(passBudgetFor(1), 2);
+  assert.equal(passBudgetFor(2), 1);
+  assert.equal(passBudgetFor(3), 0);
+  assert.equal(passBudgetFor(5), 0);
+});
+
+test('067 FR-004: a first attempt with one pass spent gets a budget of 2; the 15-minute retry after 2 passes gets 1; after 3 it is skipped as critic_cap', async () => {
+  const one = setup([shadow], { critic: true });
+  await one.runner.runExecutor(baseSlot, one.card);
+  assert.deepEqual(one.gates().map((c) => c?.passBudget), [2], 'a fresh slot: revise + rewrite');
+  const prior = (n: number) => ({ ...baseSlot, fallback: { steps: [{ step: 'initial', at: NOW.toISOString(), format: 'photo', outcome: 'ended', reason: null, verdict: null, run_id: 'r0', cost_usd: 0, critic_passes: n }], final: null } });
+  const retry = setup([shadow], { critic: true });
+  await retry.runner.runExecutor(prior(2), retry.card);
+  assert.deepEqual(retry.gates().map((c) => c?.passBudget), [1]);
+  const spent = setup([shadow], { critic: true });
+  await spent.runner.runExecutor(prior(3), spent.card);
+  assert.equal(spent.runs.length, 0);
+  assert.match(spent.st.error, /^critic_cap: 3 critic passes/);
+});
+
+test('067 FR-003: the critic level is recorded on the step and pins the next ladder step and the retry', async () => {
+  const high = (extra: object = {}): Behaviour => (st) => {
+    Object.assign(st, { status: 'skipped', error: 'critic_rejected: reject (grounding 2): n', critic: { verdict: 'reject', notes: 'n', cost_usd: 0.002, route: { risk: 4, level: 'high', factors: ['numbers'], model: 'claude-sonnet-5-5' }, ...extra } });
+    return { ok: true, skipped: true, critic_rejected: true };
+  };
+  const s = setup([high(), reject, shadow], { critic: true });
+  await s.runner.runExecutor(baseSlot, s.card);
+  assert.deepEqual(s.gates().map((c) => c?.pinLevel ?? null), [null, 'high', 'high'].slice(0, s.runs.length), 'the second run is pinned by the first');
+  const f = fallbackOf(s.st);
+  assert.deepEqual([f.steps[0].critic_level, f.steps[0].critic_model], ['high', 'claude-sonnet-5-5']);
+  assert.equal(f.steps[1].critic_level, undefined, 'a step with no route on the verdict records none');
+  // A retry reads the pin from the earlier attempt's step.
+  const prior = { ...baseSlot, fallback: { steps: [{ step: 'initial', at: NOW.toISOString(), format: 'photo', outcome: 'ended', reason: null, verdict: 'revise', run_id: 'r0', cost_usd: 0, critic_passes: 1, critic_level: 'high' }], final: null } };
+  const r = setup([shadow], { critic: true });
+  await r.runner.runExecutor(prior, r.card);
+  assert.deepEqual(r.gates().map((c) => c?.pinLevel), ['high']);
+});
+
+test('067 stepRecord / pinLevelOf: the level is high when any pass was (a pinned pass 2 is stored high too); low only when every route was low', () => {
+  const at = new Date('2026-10-27T09:00:00Z');
+  const slot = (critic: any) => ({ status: 'skipped', error: null, critic });
+  const level = (critic: any) => stepRecord('initial', 'text', at, slot(critic), null, { runId: 'r1' }).critic_level;
+  assert.equal(level({ verdict: 'revise', route: { level: 'high', model: 'm1' } }), 'high');
+  assert.equal(level({ verdict: 'pass', route: { level: 'low', model: 'm2' }, history: [{ route: { level: 'high' } }] }), 'high', 'a high first pass pins the whole attempt');
+  assert.equal(level({ verdict: 'pass', route: { level: 'low', model: 'm2' }, history: [{ route: { level: 'low' } }] }), 'low');
+  assert.equal(level({ verdict: 'pass' }), undefined);
+  assert.equal(level(null), undefined);
+  assert.equal(stepRecord('initial', 'text', at, slot({ verdict: 'pass', route: { level: 'low', model: 'm2' } }), null, { runId: 'r1' }).critic_model, 'm2');
+  assert.equal(pinLevelOf({ steps: [{}, { critic_level: 'low' }] }), null);
+  assert.equal(pinLevelOf({ steps: [{ critic_level: 'low' }, { critic_level: 'high' }] }), 'high');
+  assert.equal(pinLevelOf(null), null);
 });
 
 test('046: a live (news) slot never falls back to an evergreen post', async () => {

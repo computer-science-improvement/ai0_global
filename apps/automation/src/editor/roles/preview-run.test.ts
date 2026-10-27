@@ -29,8 +29,10 @@ import { PREVIEW_FEATURE, PreviewSink } from './preview-run';
 
 const NOW = new Date('2030-05-06T09:00:00Z');
 const all = (n: number) => Object.fromEntries(CRITIC_SCORE_KEYS.map((k) => [k, n])) as CriticScores;
-const critique = (verdict: 'pass' | 'revise' | 'reject', s: Partial<CriticScores> = {}, notes = 'Добре.') =>
-  ({ calls: [{ name: 'submit_critique', args: { scores: { ...all(5), ...s }, verdict, notes } }], cost: 0.002 });
+const critique = (verdict: 'pass' | 'revise' | 'reject', s: Partial<CriticScores> = {}, notes = 'Добре.', extra: Record<string, unknown> = {}) =>
+  ({ calls: [{ name: 'submit_critique', args: { scores: { ...all(5), ...s }, verdict, notes, ...extra } }], cost: 0.002 });
+/** Spec 067: the second look answers each numbered item of the first pass (pass 1 here had one score ≤ 3). */
+const FIXED = { previous_checks: [{ n: 1, fixed: true }] };
 
 type Turns = ConstructorParameters<typeof FakeLlm>[0];
 
@@ -152,7 +154,7 @@ test('Telegram preview in approval mode never creates an approval card', async (
 test('the critic is part of a preview: revise → one rewrite; reject → "rejected" with the reason, never written to the slot or the Inbox', async () => {
   const rev = harness({
     executor: [publishCall(), publishCall(makeSpec({ body: [{ type: 'lead', text: 'Друга версія: Вебб показав туманність Кільце' }, { type: 'p', text: 'Оболонки газу зоря скинула тисячі років тому.' }] }))],
-    critic: [critique('revise', { ai_likeness: 3 }, 'Прибери штамп.'), critique('pass')],
+    critic: [critique('revise', { ai_likeness: 3 }, 'Прибери штамп.'), critique('pass', {}, 'Добре.', FIXED)],
   });
   const p = await rev.runner.runPreview(rev.slot, rev.card);
   assert.equal(p.status, 'ready');

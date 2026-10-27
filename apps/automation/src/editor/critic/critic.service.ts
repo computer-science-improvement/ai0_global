@@ -1,3 +1,4 @@
+import { Logger } from '@nestjs/common';
 import { criticSteeringLines } from '../steering/steering-prompt';
 import type { SteeringPromptRule } from '../steering/steering.types';
 import type { AgentLoop, AgentLoopResult } from '../harness/agent-loop';
@@ -12,12 +13,13 @@ import { SkillLibrary, type Skill } from '../skills/skill-library';
 import { voiceCoreBody, voiceSettingsLine } from '../roles/voice';
 import { styleSection } from '../post/style/resource-style';
 import { channelLanguage, criticLanguageLines } from '../post/channel-language';
-import { CRITIC_REJECT_AT, CritiqueInput, decideVerdict, type Critique, type StoredCritic } from './critic';
+import { CRITIC_REJECT_AT, CritiqueInput, decideVerdict, HARD_LINT_CODES, MAX_CRITIC_ISSUES, previousItemsOf, type Critique, type StoredCritic } from './critic';
 import type { OwnerRuleLine } from '../rules/owner-rules-prompt';
 import { criticSkillsSection, type CriticSkillsContext, type CriticSkillsRequest } from './critic-skills';
 import { criticDatesLines, type CriticDates } from './critic-dates';
 import { criticStoryLines, type CriticStoryContext } from '../story/story-context';
 import { criticMediaLines, type CriticMediaContext } from './critic-media';
+import type { PosterDecision } from '../post/integrity/checks/media';
 import { criticGroundingLines, criticPassageLines, type CriticSourceContext } from './critic-passages';
 
 /** One attempt of the critic; a second attempt follows a timeout or an error (fail-safe, FR-004). */
@@ -30,7 +32,8 @@ export const roughTokens = (text: string): number => Math.ceil(text.length / 3.5
 const CRITIC_MAX_STEPS = 3;
 export const CRITIC_SKILL = 'editor-critic-workflow';
 /** Prompt caps: the critic sees the post in full, the context clipped. */
-const CAP = { text: 6_000, spec: 3_000, source: 3_000, profile: 1_500, playbook: 2_000, prefs: 800, examples: 2_600 } as const;
+/** Spec 067 FR-001: `source` rose from 3000 to 12000 — a library row or a whole short page comes in full. */
+const CAP = { text: 6_000, spec: 3_000, source: 12_000, profile: 1_500, playbook: 2_000, prefs: 800, examples: 2_600 } as const;
 
 /** What the critic reviews and the context it needs (spec 034 FR-004). */
 export interface CriticRequest {
@@ -65,8 +68,13 @@ export interface CriticRequest {
   lintWarnings?: Array<{ code: string; message: string }>;
   /** Spec 041 FR-007: the draft's risk; a low one is read by the light checker model. Absent = high (the normal model). */
   risk?:        DraftRisk | null;
-  /** Pass 2: the first verdict, so the critic sees what was asked. */
-  previous?:    Pick<StoredCritic, 'verdict' | 'notes' | 'scores'> | null;
+  /**
+   * Spec 067 FR-003: an earlier critic run of this slot was high, so this one is too (sticky high): the light model is
+   * never picked, whatever the rewrite's own risk. A level, not a model id — the owner's critic model is still honoured.
+   */
+  pinLevel?:    'high' | null;
+  /** Pass 2: the first verdict, so the critic sees what was asked (spec 067: its issues and failed edits become the numbered items to check). */
+  previous?:    (Pick<StoredCritic, 'verdict' | 'notes' | 'scores'> & Partial<Pick<StoredCritic, 'issues' | 'edits_failed'>>) | null;
   /** Registry agent whose budget the critic run counts against (the executor's). */
   agent?:       AgentBudget | null;
   /** Spec 037 FR-012: what selects the writer's skills for the critic (resource tone skills, slot signals, skill view). */
@@ -77,6 +85,11 @@ export interface CriticRequest {
   story?:       CriticStoryContext | null;
   /** Spec 037 T11: the post's images (network posters by name and use_for) and the source page's main image. */
   media?:       CriticMediaContext | null;
+  /**
+   * Spec 067 FR-005 / A5: the code's decision on network posters for this post, set for every post with or without an
+   * image. The critic does not judge poster fit; the owner's picture rules are left out of its prompt when no poster applies.
+   */
+  posterDecision?: PosterDecision | null;
   /** Spec 040 FR-011: the channel's owner rules; the critic scores `owner_rules` against them. */
   ownerRules?:  OwnerRuleLine[] | null;
   /** Spec 045 FR-005: the steering rules (advice for format_fit, never a reason to reject). */
@@ -147,7 +160,7 @@ export function criticUserPrompt(r: CriticRequest): string {
       clip(r.examples, CAP.examples));
   }
   if (r.profile && /Табу-теми/.test(r.profile)) s.push('', 'Табу-теми з профілю — це теми, про які ресурс не пише: пост на табу-тему → sense ≤ 2.');
-  s.push(...criticOwnerRulesLines(criticRules(r.ownerRules)));
+  s.push(...criticOwnerRulesLines(criticRules(r.ownerRules, r.posterDecision)));
   s.push(...criticSteeringLines(r.steering));
   s.push('', '## Слот');
   s.push(`Формат: ${r.format}.${r.topic ? ` Тема: ${r.topic}.` : ''}${r.angle ? ` Кут: ${r.angle}.` : ''}`);
@@ -159,22 +172,40 @@ export function criticUserPrompt(r: CriticRequest): string {
   if (r.source?.url || r.source?.excerpt) {
     if (r.source.url) s.push(`URL: ${r.source.url}`);
     if (r.source.passages) s.push(...criticPassageLines(r.source, r.dates?.timezone, CAP.source));
-    else s.push(r.source.excerpt ? `Фрагмент, який читав автор:\n${clip(r.source.excerpt, CAP.source)}` : 'Фрагмента джерела немає — оціни grounding за перевірюваністю тверджень.');
+    else if (r.source.excerpt) {
+      // Spec 067 FR-001: a library row comes whole (every field): what is not in it is not in the source.
+      s.push(r.source.coverage === 'full' ? 'Це весь рядок бібліотеки (усі поля): чого тут немає — немає в джерелі.' : 'Фрагмент, який читав автор:', clip(r.source.excerpt, CAP.source));
+    } else s.push('Фрагмента джерела немає — оціни grounding за перевірюваністю тверджень.');
   } else {
     s.push('Джерела немає — оціни grounding за перевірюваністю тверджень.');
   }
   s.push(...criticGroundingLines(r.source?.grounding));
-  s.push(...criticMediaLines(r.media));
+  s.push(...criticMediaLines(r.media, r.posterDecision));
   s.push('', '## Попередження lint (AI-штампи, гумор і сленг, гігієна тексту та інші перевірки коду)');
   s.push('Це підказки перевірити, а не докази: підтвердь кожне в тексті й уривках, а чого не знайшов — цитуй уривок.');
   const lintWarnings = r.lintWarnings ?? r.slopWarnings;
   s.push(lintWarnings.length ? lintWarnings.map((w) => `- ${w.code}: ${w.message}`).join('\n') : '- немає');
-  if (r.previous) {
-    s.push('', '## Це переписаний пост', `Перший вердикт: ${r.previous.verdict}. Зауваження автору: ${r.previous.notes}`,
-      'Перевір, чи виправлено саме це, і оціни пост заново повністю.');
-  }
+  if (r.previous) s.push(...criticSecondPassLines(r.previous));
   s.push('', 'Оціни пост і виклич submit_critique один раз.');
   return s.join('\n');
+}
+
+/**
+ * Spec 067 FR-002: the second look. The critic does not start again: it says per numbered item of the first pass whether
+ * it is fixed (`previous_checks`), and anything new is advice unless it is a hard error.
+ */
+export function criticSecondPassLines(previous: NonNullable<CriticRequest['previous']>): string[] {
+  const items = previousItemsOf(previous);
+  const out = ['', '## Це переписаний пост', `Перший вердикт: ${previous.verdict}. Зауваження автору: ${previous.notes}`];
+  if (items.length) {
+    out.push('', '### Що треба було виправити (блокуючі пункти першого проходу)',
+      ...items.map((it) => `[${it.n}]${it.axis ? ` (${it.axis})` : ''}${it.quote ? ` «${it.quote}»` : ''} — ${it.fix}`),
+      'У previous_checks дай {n, fixed} по КОЖНОМУ пункту: fixed = true лише коли в новому тексті цього більше немає. Пропущений пункт код вважає невиправленим.');
+  } else {
+    out.push('Перевір, чи виправлено це.');
+  }
+  out.push('Не оцінюй пост заново з нуля: нові зауваження — поради (blocking: false), якщо це не фактична помилка, не мовна помилка з цитатою і не порушене правило власника. Нова трійка в голосі чи форматі — порада, не підстава повертати пост ще раз.');
+  return out;
 }
 
 /** Owner-rules prompt cap: rules are short; a long list is clipped per rule, never dropped. */
@@ -194,9 +225,42 @@ export function criticOwnerRulesLines(rules: readonly OwnerRuleLine[] | null | u
   ];
 }
 
-/** Spec 041 FR-005: the owner rules the critic checks — those a post's text can show (`isTextRule`). */
-export function criticRules(rules: readonly OwnerRuleLine[] | null | undefined): OwnerRuleLine[] {
-  return (rules ?? []).filter(isTextRule);
+/**
+ * Spec 041 FR-005: the owner rules the critic checks — those a post's text can show (`isTextRule`).
+ * Spec 067 FR-005 / A5: and, when the code says no network poster applies to the post (`news_no_poster`, `none_fits`),
+ * not the owner's picture rules («кожен пост з картинкою») — the poster fit is code's, and the rule would turn every
+ * correct text-only post into a violation (rule #13 of the 10-21…10-26 export). Called with the same decision wherever the
+ * rules are used (the prompt and the verdict), so a rule left out never comes back as `owner_rules_missing`.
+ */
+export function criticRules(rules: readonly OwnerRuleLine[] | null | undefined, posterDecision?: PosterDecision | null): OwnerRuleLine[] {
+  const text = (rules ?? []).filter(isTextRule);
+  return noPosterApplies(posterDecision) ? text.filter((x) => !isMediaRule(x)) : text;
+}
+
+/** The text rules of the owner's that `criticRules` leaves out for this decision (their ids go to `rules_skipped`). */
+export function skippedRules(rules: readonly OwnerRuleLine[] | null | undefined, posterDecision?: PosterDecision | null): OwnerRuleLine[] {
+  return noPosterApplies(posterDecision) ? (rules ?? []).filter((x) => isTextRule(x) && isMediaRule(x)) : [];
+}
+
+const noPosterApplies = (d: PosterDecision | null | undefined): boolean => d === 'news_no_poster' || d === 'none_fits';
+
+/**
+ * Spec 067 FR-005: a rule about the post's picture — its text names a picture, an image, an illustration, a poster or a
+ * photo. Kept narrow on purpose: the word must start a word, «фото» is not «фотограф / фотографа / фотографи /
+ * фотографів» (a person) but is «фотографія / фотографією / фотографії» (a picture), and «медіа» is not a picture word
+ * («не цитуй російські медіа» is a rule about sources and stays). A rule that only mentions a picture word still goes
+ * (the log says which one).
+ */
+const MEDIA_RULE = /(?<![\p{L}])(?:картинк|зображен|ілюстрац|світлин|постер|фото(?!граф(?!і[яюєїй]))|image|picture)/iu;
+export function isMediaRule(r: Pick<OwnerRuleLine, 'text'>): boolean {
+  return MEDIA_RULE.test(r.text);
+}
+
+const ruleLog = new Logger('CriticRules');
+/** Logs the owner rules left out of a critic run (once per run, at the call site that builds the request). */
+export function logSkippedRules(r: Pick<CriticRequest, 'slotId' | 'resourceRef' | 'ownerRules' | 'posterDecision'>): void {
+  const out = skippedRules(r.ownerRules, r.posterDecision);
+  if (out.length) ruleLog.log(`${r.resourceRef} slot ${r.slotId ?? '-'}: poster decision ${r.posterDecision} — owner picture rule(s) left out of the critic prompt: ${out.map((x) => `#${x.id}`).join(', ')}`);
 }
 
 /**
@@ -247,17 +311,19 @@ export class CriticService {
     const strong = resolveModel('checker', this.d.env, r.card?.models ?? null, { agentModel: criticModel, defaultModel, workspace });
     // Spec 041 FR-007: a low-risk draft (no external facts to verify) goes to the light model; the lexicon in lint
     // covers the language. High risk keeps the owner's critic model or the role default.
-    const light = r.risk?.level === 'low' ? lightCheckerModel(this.d.env, workspace) : null;
+    // Spec 067 FR-003: a slot whose earlier run was high keeps the strong model — a Sonnet → Haiku flip between passes or ladder steps judged the same facts with a weaker reader.
+    const light = r.risk?.level === 'low' && r.pinLevel !== 'high' ? lightCheckerModel(this.d.env, workspace) : null;
     const model = light ? resolveModel('checker', this.d.env, null, { agentModel: light, workspace }) : strong;
     const tool = defineTool({
       name: 'submit_critique',
-      description: 'Віддати оцінку поста (завершує роботу): оцінки 1–5 за сімома осями (і owner_rules, коли є правила власника), порушені правила (broken_rules), вердикт pass / pass_with_edits (з точними правками edits) / revise / reject і короткі нотатки українською.',
+      description: 'Віддати оцінку поста (завершує роботу): оцінки 1–5 за сімома осями (і owner_rules, коли є правила власника), порушені правила (broken_rules), конкретні зауваження issues (blocking лише для фактичної помилки, мовної помилки з цитатою чи порушеного правила власника), на другому проході previous_checks по кожному пункту, вердикт pass / pass_with_edits (з точними правками edits) / revise / reject і короткі нотатки українською.',
       kind: 'terminal', roles: ['checker'],
       input: CritiqueInput,
       execute: async (c) => ({ ok: true, ...c }),
     });
     const system = criticSystemPrompt(r);
     const user = criticUserPrompt(r);
+    logSkippedRules(r);
     const runIds: string[] = [];
     let cost = 0;
     let error = 'no verdict';
@@ -288,7 +354,14 @@ export class CriticService {
         const parsed = CritiqueInput.safeParse(res.terminalResult);
         if (parsed.success) {
           const critic = this.store(parsed.data, r, model.model, res.runId, cost);
-          return { ok: true, critic: r.risk ? { ...critic, route: { risk: r.risk.score, level: r.risk.level, factors: r.risk.factors, model: model.model } } : critic };
+          // The stored level is the one the critic ran at: a pinned low-risk draft is stored as high, with the `pinned` factor, so the next ladder step reads it from the slot.
+          const pinned = r.pinLevel === 'high' && r.risk?.level === 'low';
+          return {
+            ok: true,
+            critic: r.risk
+              ? { ...critic, route: { risk: r.risk.score, level: pinned ? 'high' as const : r.risk.level, factors: pinned ? [...r.risk.factors, 'pinned' as const] : r.risk.factors, model: model.model } }
+              : critic,
+          };
         }
         error = 'invalid verdict';
         continue;
@@ -302,13 +375,30 @@ export class CriticService {
 
   private store(raw: Critique, r: CriticRequest, model: string, runId: string | null, cost: number): StoredCritic {
     const slop = r.slopWarnings.map((w) => w.code);
-    const c = normalizeOwnerRules(raw, criticRules(r.ownerRules));
-    const d = decideVerdict(c, slop);
+    const c = normalizeOwnerRules(raw, criticRules(r.ownerRules, r.posterDecision));
+    const skipped = skippedRules(r.ownerRules, r.posterDecision);
+    // Spec 067 A2: what the code knows beyond the model's answer — the pass, how much of the source the critic saw, the
+    // numbers the code could not find, the lint that stays a block, and the items pass 1 asked to fix.
+    const coverage = r.source?.coverage ?? 'none';
+    const codeMissing = r.source?.grounding?.missing ?? [];
+    const lintCodes = (r.lintWarnings ?? r.slopWarnings).map((w) => w.code);
+    const hardLint = [...new Set([
+      ...lintCodes.filter((code) => (HARD_LINT_CODES as readonly string[]).includes(code)),
+      ...(codeMissing.length ? ['number_not_in_sources'] : []),
+    ])];
+    const previousBlocking = previousItemsOf(r.previous);
+    const d = decideVerdict(c, slop, { pass: r.previous ? 2 : 1, coverage, codeMissing, hardLint, previousBlocking, postText: r.text });
     const edits = c.verdict === 'pass_with_edits' && d.verdict === 'pass' ? (c.edits ?? []).filter((e) => e.from !== e.to) : [];
+    const issues = (c.issues ?? []).slice(0, MAX_CRITIC_ISSUES);
     return {
       verdict: d.verdict, scores: c.scores, notes: c.notes.trim(), model_verdict: c.verdict, reason: d.reason,
       ...(c.broken_rules ? { broken_rules: c.broken_rules } : {}),
       ...(c.rule_checks ? { rule_checks: c.rule_checks } : {}),
+      ...(issues.length ? { issues } : {}),
+      ...(r.previous && c.previous_checks?.length ? { previous_checks: c.previous_checks } : {}),
+      ...(skipped.length ? { rules_skipped: skipped.map((x) => x.id) } : {}),
+      source_coverage: coverage,
+      ...(codeMissing.length ? { grounding_missing: codeMissing.slice(0, 12) } : {}),
       ...(edits.length ? { edits } : {}),
       pass: r.previous ? 2 : 1, slop_warnings: slop, model, run_id: runId, cost_usd: Number(cost.toFixed(6)),
       at: (this.d.now ?? (() => new Date()))().toISOString(),
