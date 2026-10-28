@@ -14,21 +14,13 @@ const VERDICT_LABEL: Record<Verdict, string> = { good: 'Good', bad: 'Bad' };
 
 function VerdictToggle({ value, onChange, disabled }: { value: Verdict; onChange: (v: Verdict) => void; disabled: boolean }) {
   return (
-    <span role="group" aria-label="Verdict" style={{ display: 'inline-flex', border: '1px solid var(--color-hairline)', borderRadius: 'var(--radius-sm)', overflow: 'hidden' }}>
-      {(['good', 'bad'] as const).map((v) => {
-        const on = value === v;
-        return (
-          <button key={v} type="button" disabled={disabled} aria-pressed={on} onClick={() => onChange(v)}
-            className="text-micro"
-            style={{
-              padding: '4px 10px', border: 0, cursor: disabled ? 'default' : 'pointer', display: 'inline-flex', alignItems: 'center', gap: 4,
-              background: on ? (v === 'good' ? 'var(--color-accent)' : 'var(--color-danger)') : 'transparent',
-              color: on ? 'var(--color-canvas)' : 'var(--color-ink-muted)', fontWeight: on ? 600 : 500,
-            }}>
-            <Icon name={v === 'good' ? 'check' : 'x'} size={12} strokeWidth={2.5} /> {VERDICT_LABEL[v]}
-          </button>
-        );
-      })}
+    <span role="group" aria-label="Verdict" className="verdict">
+      {(['good', 'bad'] as const).map((v) => (
+        <button key={v} type="button" disabled={disabled} aria-pressed={value === v} onClick={() => onChange(v)}
+          className={`chip-toggle${v === 'bad' ? ' is-bad' : ''}`}>
+          <Icon name={v === 'good' ? 'check' : 'x'} size={12} strokeWidth={2.5} /> {VERDICT_LABEL[v]}
+        </button>
+      ))}
     </span>
   );
 }
@@ -41,15 +33,14 @@ function ExampleItem({ n, e, choice, onChange, pending, channelTitle, channelKey
   const edited = choice.text !== null && choice.text.trim() !== e.text.trim();
   const messages = useMemo(() => previewMessages(e, choice.text), [e, choice.text]);
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 8, padding: 12, background: 'var(--color-surface-1)', border: '1px solid var(--color-hairline-soft)', borderRadius: 'var(--radius-lg)', minWidth: 0 }}>
+    <div className="inset example-item">
       <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap' }}>
         <span className="text-caption" style={{ fontWeight: 600, color: 'var(--color-ink)' }}>Example {n}</span>
         <span className="chip">{e.format}</span>
         {edited && <span className="chip">edited</span>}
         <span style={{ marginLeft: 'auto', display: 'inline-flex', gap: 6, alignItems: 'center' }}>
           {pending && (
-            <button type="button" className="btn-ghost text-micro" onClick={() => setEditing((x) => !x)}
-              style={{ display: 'inline-flex', alignItems: 'center', gap: 4, padding: '4px 8px' }} aria-expanded={editing}>
+            <button type="button" className="btn-ghost btn-sm" onClick={() => setEditing((x) => !x)} aria-expanded={editing}>
               <Icon name={editing ? 'check' : 'pencil'} size={12} /> {editing ? 'Done' : 'Edit'}
             </button>
           )}
@@ -59,7 +50,7 @@ function ExampleItem({ n, e, choice, onChange, pending, channelTitle, channelKey
       {editing && pending ? (
         <textarea className="input-field" aria-label={`Text of example ${n}`} rows={6} value={choice.text ?? e.text}
           onChange={(ev) => onChange({ ...choice, text: ev.target.value })}
-          style={{ width: '100%', resize: 'vertical', fontSize: 13, lineHeight: 1.5 }} />
+          style={{ width: '100%', resize: 'vertical', lineHeight: 1.5 }} />
       ) : (
         <TelegramPreview messages={messages} channelTitle={channelTitle} channelKey={channelKey} time="example" />
       )}
@@ -70,7 +61,7 @@ function ExampleItem({ n, e, choice, onChange, pending, channelTitle, channelKey
       ))}
       {pending && choice.verdict === 'bad' && (
         <input className="input-field" aria-label={`Why example ${n} is bad`} placeholder="Why is it bad? (optional, the writer and the critic read it)"
-          value={choice.note} maxLength={300} onChange={(ev) => onChange({ ...choice, note: ev.target.value })} style={{ width: '100%', fontSize: 13 }} />
+          value={choice.note} maxLength={300} onChange={(ev) => onChange({ ...choice, note: ev.target.value })} style={{ width: '100%' }} />
       )}
     </div>
   );
@@ -100,18 +91,13 @@ export function ContentExamplesBody({ payload, state, onChange, pending }: {
           {payload.warnings.map((w, i) => {
             const keep = state.keep[i] ?? true;
             return (
-              <label key={i} style={{
-                display: 'flex', gap: 10, alignItems: 'flex-start', padding: 10, borderRadius: 'var(--radius-md)', minWidth: 0,
-                border: '1px solid var(--color-hairline-soft)', background: 'var(--color-surface-1)', opacity: keep ? 1 : 0.55, cursor: pending ? 'pointer' : 'default',
-              }}>
+              <label key={i} className={`inset example-warning${keep ? '' : ' is-off'}`} style={{ cursor: pending ? 'pointer' : 'default' }}>
                 <input type="checkbox" checked={keep} disabled={!pending} aria-label={`Keep warning: ${w.pattern}`}
                   onChange={(ev) => onChange({ ...state, keep: state.keep.map((x, k) => (k === i ? ev.target.checked : x)) })} style={{ marginTop: 3 }} />
                 <span style={{ display: 'flex', flexDirection: 'column', gap: 4, minWidth: 0 }}>
                   <span className="text-body-sm" style={{ color: 'var(--color-ink)', fontWeight: 600, overflowWrap: 'anywhere' }}>{w.pattern}</span>
                   <span className="text-micro" style={{ color: 'var(--color-ink-muted)', overflowWrap: 'anywhere' }}>{w.why}</span>
-                  <span className="text-body-sm" style={{
-                    color: 'var(--color-ink)', borderLeft: '3px solid var(--color-danger)', paddingLeft: 8, whiteSpace: 'pre-wrap', overflowWrap: 'anywhere',
-                  }}>{w.bad_example}</span>
+                  <span className="text-body-sm card-quote is-bad" style={{ whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>{w.bad_example}</span>
                 </span>
               </label>
             );

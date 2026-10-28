@@ -98,31 +98,23 @@ export function SlashMenu({ matches, hi, onHover, onPick, isMobile }: {
   matches: SlashCommandInfo[]; hi: number; onHover: (i: number) => void; onPick: (c: SlashCommandInfo) => void; isMobile: boolean;
 }) {
   return (
-    <div id={SLASH_LIST_ID} role="listbox" aria-label="Commands" className="compose-rise"
-      style={{
-        position: 'absolute', left: 0, right: isMobile ? 0 : undefined, bottom: 'calc(100% + 6px)', zIndex: 30,
-        width: isMobile ? 'auto' : 'min(480px, 100%)', maxHeight: 320, overflowY: 'auto', padding: 4,
-        background: 'var(--color-surface-2)', border: '1px solid var(--color-hairline)', borderRadius: 'var(--radius-lg)',
-        boxShadow: '0 12px 32px rgba(0,0,0,0.45)',
-      }}>
-      <div className="text-micro" style={{ padding: '4px 8px 6px', color: 'var(--color-ink-dim)' }}>
+    // `onMouseEnter` only moves the highlighted option (the keyboard's state); the look of the highlight is CSS.
+    <div id={SLASH_LIST_ID} role="listbox" aria-label="Commands" className={`chat-menu compose-rise${isMobile ? ' is-mobile' : ''}`}
+      style={{ ['--menu-w' as string]: '480px' }}>
+      <div className="text-micro chat-menu-head">
         Commands run at once, without a model{isMobile ? '' : ' · ↑↓ to move, Enter to pick, Esc to close'}
       </div>
       {matches.map((c, i) => (
-        <div key={c.name} id={`slash-${c.name}`} role="option" aria-selected={i === hi}
+        <div key={c.name} id={`slash-${c.name}`} role="option" aria-selected={i === hi} className="chat-menu-item"
           onMouseDown={(e) => e.preventDefault()}
           onMouseEnter={() => onHover(i)}
-          onClick={() => onPick(c)}
-          style={{
-            padding: '7px 8px', borderRadius: 'var(--radius-sm)', cursor: 'pointer', minWidth: 0,
-            background: i === hi ? 'var(--color-surface-3)' : 'transparent',
-          }}>
-          <div style={{ display: 'flex', gap: 6, alignItems: 'baseline', minWidth: 0 }}>
-            <span className="text-body-sm" style={{ color: 'var(--color-accent)', fontWeight: 500, fontFamily: 'var(--font-mono)' }}>/{c.name}</span>
-            {c.args && <span className="text-micro" style={{ color: 'var(--color-ink-muted)', fontFamily: 'var(--font-mono)' }}>{c.args}</span>}
-          </div>
-          <div className="text-micro" style={{ color: 'var(--color-ink-dim)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-            {c.description}
+          onClick={() => onPick(c)}>
+          <div className="chat-menu-main">
+            <div className="chat-menu-line">
+              <span className="text-body-sm mono chat-menu-key" style={{ fontWeight: 500 }}>/{c.name}</span>
+              {c.args && <span className="text-micro mono" style={{ color: 'var(--color-ink-muted)' }}>{c.args}</span>}
+            </div>
+            <div className="text-micro chat-menu-sub">{c.description}</div>
           </div>
         </div>
       ))}

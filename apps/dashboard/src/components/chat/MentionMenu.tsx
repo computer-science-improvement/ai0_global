@@ -99,33 +99,25 @@ export function MentionMenu({ matches, hi, onHover, onPick, isMobile }: {
   matches: AgentHandle[]; hi: number; onHover: (i: number) => void; onPick: (a: AgentHandle) => void; isMobile: boolean;
 }) {
   return (
-    <div id={MENTION_LIST_ID} role="listbox" aria-label="Agents" className="compose-rise"
-      style={{
-        position: 'absolute', left: 0, right: isMobile ? 0 : undefined, bottom: 'calc(100% + 6px)', zIndex: 30,
-        width: isMobile ? 'auto' : 'min(420px, 100%)', maxHeight: 300, overflowY: 'auto', padding: 4,
-        background: 'var(--color-surface-2)', border: '1px solid var(--color-hairline)', borderRadius: 'var(--radius-lg)',
-        boxShadow: '0 12px 32px rgba(0,0,0,0.45)',
-      }}>
-      <div className="text-micro" style={{ padding: '4px 8px 6px', color: 'var(--color-ink-dim)' }}>
+    // `onMouseEnter` only moves the highlighted option (the keyboard's state); the look of the highlight is CSS.
+    <div id={MENTION_LIST_ID} role="listbox" aria-label="Agents" className={`chat-menu compose-rise${isMobile ? ' is-mobile' : ''}`}
+      style={{ ['--menu-w' as string]: '420px' }}>
+      <div className="text-micro chat-menu-head">
         Talk to an agent{isMobile ? '' : ' · ↑↓ to move, Enter to pick, Esc to close'}
       </div>
       {matches.map((a, i) => (
-        <div key={a.handle} id={`mention-${a.handle}`} role="option" aria-selected={i === hi}
+        <div key={a.handle} id={`mention-${a.handle}`} role="option" aria-selected={i === hi} className="chat-menu-item"
           onMouseDown={(e) => e.preventDefault()}
           onMouseEnter={() => onHover(i)}
-          onClick={() => onPick(a)}
-          style={{
-            display: 'flex', alignItems: 'center', gap: 10, padding: '7px 8px', borderRadius: 'var(--radius-sm)', cursor: 'pointer',
-            background: i === hi ? 'var(--color-surface-3)' : 'transparent',
-          }}>
+          onClick={() => onPick(a)}>
           <AgentGlyph agent={a} size={28} />
-          <div style={{ flex: 1, minWidth: 0 }}>
-            <div style={{ display: 'flex', gap: 6, alignItems: 'baseline', minWidth: 0 }}>
-              <span className="text-body-sm" style={{ color: 'var(--color-ink)', fontWeight: 500, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{a.name}</span>
-              <span className="text-micro" style={{ color: 'var(--color-accent)', flexShrink: 0 }}>@{a.handle}</span>
+          <div className="chat-menu-main">
+            <div className="chat-menu-line">
+              <span className="text-body-sm chat-menu-name">{a.name}</span>
+              <span className="text-micro mono chat-menu-key">@{a.handle}</span>
             </div>
-            <div className="text-micro" style={{ color: 'var(--color-ink-dim)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-              {KIND_LABEL[a.kind] ?? a.kind} · {scopeHint(a)}
+            <div className="text-micro chat-menu-sub">
+              {KIND_LABEL[a.kind] ?? a.kind} · <span className="mono">{scopeHint(a)}</span>
             </div>
           </div>
           <Badge tone={MODE_TONE[a.mode]}>{a.mode}</Badge>

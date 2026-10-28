@@ -34,35 +34,25 @@ export function ToolChips({ items }: { items: ToolActivity[] }) {
   if (!items.length) return null;
   const sel = items.find((t) => t.id === open);
   return (
-    <div style={{ marginBottom: 8 }}>
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+    <div className="tool-chips">
+      <div className="tool-chip-row">
         {items.map((t) => {
           const running = t.ok === undefined;
-          const color = running ? 'var(--color-ink-muted)' : t.ok ? 'var(--color-ink-muted)' : 'var(--color-danger)';
           const hint = argLine(t.args);
           return (
             <button key={t.id} type="button" onClick={() => setOpen(open === t.id ? null : t.id)}
-              title={hint || t.name}
-              style={{
-                display: 'inline-flex', alignItems: 'center', gap: 5, maxWidth: 280, cursor: 'pointer',
-                padding: '3px 9px', borderRadius: 'var(--radius-pill)', fontSize: 11.5, lineHeight: 1.5,
-                background: open === t.id ? 'var(--color-surface-3)' : 'var(--color-surface-2)',
-                border: '1px solid var(--color-hairline)', color,
-              }}>
+              className={`tool-chip${t.ok === false ? ' is-failed' : ''}`} aria-expanded={open === t.id}
+              title={hint || t.name}>
               <Icon name={ICON[t.name] ?? 'wrench'} size={12} />
-              <span style={{ fontFamily: 'var(--font-mono)' }}>{t.name}</span>
-              {hint && <span style={{ color: 'var(--color-ink-dim)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: 140 }}>{hint}</span>}
-              <span aria-hidden>{running ? '…' : t.ok ? '✓' : '✗'}</span>
+              <span className="mono">{t.name}</span>
+              {hint && <span className="tool-chip-arg">{hint}</span>}
+              <span role="img" aria-label={running ? 'running' : t.ok ? 'done' : 'failed'}>{running ? '…' : t.ok ? '✓' : '✗'}</span>
             </button>
           );
         })}
       </div>
       {sel && (
-        <pre className="text-micro" style={{
-          margin: '6px 0 0', padding: 10, maxHeight: 220, overflow: 'auto', whiteSpace: 'pre-wrap', wordBreak: 'break-word',
-          background: 'var(--color-canvas)', border: '1px solid var(--color-hairline)', borderRadius: 'var(--radius-sm)',
-          color: 'var(--color-ink-muted)', fontFamily: 'var(--font-mono)',
-        }}>
+        <pre className="code-block tool-detail">
           {`${sel.name}(${JSON.stringify(sel.args, null, 1)})\n→ ${sel.ok === undefined ? 'running…' : sel.summary ?? ''}`}
         </pre>
       )}

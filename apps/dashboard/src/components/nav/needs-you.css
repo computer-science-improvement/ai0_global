@@ -1,0 +1,14 @@
+/*
+ * Spec 078 (C5): "Waiting for you", the items behind a menu counter, as a flush panel of rows (.panel-row from index.css).
+ * The amber hairline is the human's colour: something here needs the owner. Tokens only. Imported by nav/NeedsYou.tsx.
+ */
+.needs-you { border-color: color-mix(in srgb, var(--color-warning) 30%, transparent); }
+.needs-you .panel-head { padding-bottom: 10px; }
+.needs-you .panel-head > svg { flex: none; color: var(--color-warning); }
+.needs-you .panel-row.needs-you-row { flex-wrap: nowrap; gap: 12px; }
+.needs-you-lead { flex: none; display: inline-flex; color: var(--color-ink-dim); }
+.needs-you-main { flex: 1; min-width: 0; }
+.needs-you-line { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.needs-you-title { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--color-ink); }
+.needs-you-meta { display: block; margin-top: 2px; color: var(--color-ink-muted); }
+.needs-you-row > svg:last-child { flex: none; color: var(--color-ink-dim); }

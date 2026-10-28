@@ -1,0 +1,195 @@
+/*
+ * Spec 078 (C5): the chat page, in the design language. The page fills the shell's full-bleed main (spec 048 FR-004):
+ * chat list | thread | artifact panel, each column scrolling on its own. Tokens only; hover is CSS; motion durations
+ * come from the --dur-* tokens (reduced motion is handled globally at the end of index.css).
+ * Imported by routes/app.chat.tsx and by nav/NeedsYou.tsx (it opens ActionCard dialogs on /app/agents). Never import it from
+ * a component that a node test loads (SlashMenu, ArtifactChip, ArtifactList...): the test runner cannot import CSS.
+ */
+
+/* ── Layout ──────────────────────────────────────────────────────────────── */
+/* The column template is inline (it depends on the viewport and on the open artifact). */
+.chat-grid { display: grid; height: 100%; min-height: 0; }
+
+.chat-list {
+  min-height: 0; display: flex; flex-direction: column; padding: 16px 12px;
+  border-right: 1px solid var(--color-hairline); background: var(--color-surface-1);
+}
+/* The chat list as a drawer (a phone, or a narrow window with the artifact panel open). */
+.chat-scrim { position: fixed; inset: 0; z-index: 55; background: color-mix(in srgb, var(--color-canvas) 72%, transparent); }
+.chat-drawer {
+  position: fixed; top: 0; bottom: 0; left: 0; z-index: 56; width: min(300px, 85vw); padding: 12px;
+  display: flex; flex-direction: column;
+  background: var(--color-canvas); border-right: 1px solid var(--color-hairline); box-shadow: var(--shadow-modal);
+}
+
+.chat-main { display: flex; flex-direction: column; min-width: 0; min-height: 0; padding: 14px 24px 16px; }
+@media (max-width: 860px) { .chat-main { padding: 10px 12px; } }
+.chat-head { display: flex; align-items: center; gap: 8px; min-width: 0; padding-bottom: 10px; border-bottom: 1px solid var(--color-hairline); }
+/* The title is a compact text-subhead, not a PageHeader: the page is a workspace, the thread is the content. */
+h1.chat-title { margin: 0; min-width: 0; flex: 1 1 auto; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 600; letter-spacing: -0.01em; }
+.chat-head-end { margin-left: auto; display: inline-flex; align-items: center; gap: 8px; min-width: 0; flex-shrink: 0; max-width: 50%; }
+@media (max-width: 860px) { .chat-head-end { max-width: 55%; } }
+.chat-live { color: var(--color-ink-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.chat-scroll { flex: 1; min-height: 0; overflow-y: auto; padding: 16px 2px; }
+.chat-thread { display: flex; flex-direction: column; gap: 18px; max-width: 760px; margin: 0 auto; }
+.chat-compose-wrap { width: 100%; max-width: 760px; margin: 0 auto; }
+
+.chat-aside { min-height: 0; display: flex; flex-direction: column; border-left: 1px solid var(--color-hairline); background: var(--color-surface-1); }
+.chat-aside.is-sheet { position: fixed; inset: 0; z-index: 57; border-left: 0; background: var(--color-canvas); }
+
+/* ── The addressed agent (header) ────────────────────────────────────────── */
+.chat-addressee {
+  display: inline-flex; align-items: center; gap: 6px; min-width: 0; max-width: 100%; padding: 4px 10px;
+  border: 1px solid var(--color-hairline); border-radius: var(--radius-pill); background: var(--color-surface-2);
+  color: var(--color-ink); font-size: 12px; text-decoration: none; white-space: nowrap;
+  transition: background var(--dur-fast) ease, border-color var(--dur-fast) ease;
+}
+.chat-addressee:hover { background: var(--color-surface-3); border-color: var(--color-hairline-strong); }
+.chat-addressee-label { flex: none; color: var(--color-ink-dim); }
+.chat-addressee-name { overflow: hidden; text-overflow: ellipsis; }
+.chat-addressee-handle { flex: none; color: var(--color-accent); }
+
+/* ── Messages ────────────────────────────────────────────────────────────── */
+.chat-row { display: flex; gap: 10px; }
+.hub-glyph.chat-glyph { width: 28px; height: 28px; font-size: 15px; }
+.chat-body { min-width: 0; flex: 1; }
+.chat-agent-line { display: flex; align-items: baseline; gap: 6px; margin-bottom: 4px; min-width: 0; }
+.chat-agent-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--color-ink); font-weight: 600; }
+div.chat-text { color: var(--color-ink); line-height: 1.55; overflow-wrap: anywhere; }
+div.chat-text.is-live { color: var(--color-ink-muted); margin-bottom: 8px; }
+.chat-cards { display: flex; flex-direction: column; gap: 10px; }
+.chat-pointer { display: inline-flex; align-items: center; gap: 4px; color: var(--color-ink-dim); }
+
+.chat-user { display: flex; flex-direction: column; align-items: flex-end; }
+.chat-user-bubble {
+  max-width: 85%; padding: 9px 13px; white-space: pre-wrap; overflow-wrap: anywhere;
+  background: var(--color-surface-3); color: var(--color-ink); border-radius: var(--radius-lg);
+}
+
+/* ── "Posts to approve" strip above the thread: a button disclosure ──────── */
+.chat-strip { max-width: 760px; margin: 0 auto 16px; border: 1px solid var(--color-hairline); border-radius: var(--radius-lg); background: var(--color-surface-1); }
+.chat-strip-toggle {
+  position: relative; display: flex; align-items: center; gap: 8px; width: 100%; min-height: 44px; padding: 0 12px;
+  background: none; border: 0; border-radius: inherit; color: var(--color-ink); font: inherit; font-size: 14px; font-weight: 500; text-align: left; cursor: pointer;
+  transition: background var(--dur-fast) ease;
+}
+.chat-strip-toggle:hover { background: color-mix(in srgb, var(--color-ink) 2.5%, transparent); }
+.chat-strip-label { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.chat-strip-chevron { flex: none; display: inline-flex; color: var(--color-ink-dim); transition: transform var(--dur-base) var(--ease-out); }
+.chat-strip-toggle[aria-expanded="true"] .chat-strip-chevron { transform: rotate(180deg); }
+.chat-strip-body { max-height: min(420px, 50vh); overflow-y: auto; padding: 12px; border-top: 1px solid var(--color-hairline); }
+
+/* ── Empty thread: the starting prompts ──────────────────────────────────── */
+.chat-suggest-group { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
+.chat-suggest {
+  position: relative; max-width: 100%; padding: 7px 12px; background: transparent; color: var(--color-ink-muted);
+  border: 1px solid var(--color-hairline-strong); border-radius: var(--radius-md);
+  font: inherit; font-size: 13px; line-height: 1.35; text-align: left; cursor: pointer;
+  transition: color var(--dur-fast) ease, border-color var(--dur-fast) ease;
+}
+.chat-suggest::after { content: ''; position: absolute; inset: -4px 0; }
+.chat-suggest:hover { color: var(--color-ink); border-color: var(--color-ink-dim); }
+
+/* ── Composer ────────────────────────────────────────────────────────────── */
+.chat-composer {
+  position: relative; margin-top: 6px; padding: 10px;
+  background: var(--color-surface-2); border: 1px solid var(--color-hairline-strong); border-radius: var(--radius-xl);
+  transition: border-color var(--dur-fast) ease, box-shadow var(--dur-fast) ease;
+}
+/* The textarea has no outline of its own; the whole box takes the focus ring. */
+.chat-composer:focus-within { border-color: var(--color-accent); box-shadow: 0 0 0 3px var(--color-success-soft); }
+textarea.chat-input {
+  display: block; width: 100%; resize: none; padding: 4px 4px 8px; border: 0; outline: none;
+  background: transparent; color: var(--color-ink); font-weight: 400; line-height: 1.5;
+}
+textarea.chat-input::placeholder { color: var(--color-ink-dim); }
+textarea.chat-input:disabled { opacity: 0.55; cursor: not-allowed; }
+.chat-composer-bar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.input-field.chat-channel { max-width: 240px; min-width: 0; padding: 6px 10px; font-size: 13px; }
+.chat-hint { color: var(--color-ink-dim); }
+.chat-send { margin-left: auto; }
+
+/* ── @ and / menus above the composer ────────────────────────────────────── */
+.chat-menu {
+  position: absolute; left: 0; bottom: calc(100% + 6px); z-index: 30;
+  width: min(var(--menu-w, 420px), 100%); max-height: 320px; overflow-y: auto; padding: 4px;
+  background: var(--color-surface-2); border: 1px solid var(--color-hairline-strong); border-radius: var(--radius-lg); box-shadow: var(--shadow-pop);
+}
+.chat-menu.is-mobile { right: 0; width: auto; }
+.chat-menu-head { padding: 4px 8px 6px; color: var(--color-ink-dim); }
+.chat-menu-item { display: flex; align-items: center; gap: 10px; min-width: 0; padding: 7px 8px; border-radius: var(--radius-sm); cursor: pointer; }
+.chat-menu-item[aria-selected="true"] { background: var(--color-surface-3); }
+.chat-menu-main { flex: 1; min-width: 0; }
+.chat-menu-line { display: flex; align-items: baseline; gap: 6px; min-width: 0; }
+.chat-menu-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--color-ink); font-weight: 500; }
+.chat-menu-key { flex: none; color: var(--color-accent); }
+.chat-menu-sub { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--color-ink-dim); }
+
+/* ── Chat list ───────────────────────────────────────────────────────────── */
+.chat-side { display: flex; flex-direction: column; gap: 14px; min-height: 0; flex: 1; overflow-y: auto; }
+.chat-side-title { margin: 0 0 6px; padding: 0 10px; }
+.input-field.chat-search { flex: none; padding: 6px 10px; font-size: 13px; }
+.chat-side-empty { padding: 0 10px; color: var(--color-ink-dim); }
+
+.chat-item {
+  position: relative; display: flex; align-items: center; gap: 6px; min-height: 44px; padding: 6px 6px 6px 10px;
+  border-radius: var(--radius-md); transition: background var(--dur-fast) ease;
+}
+.chat-item:hover { background: color-mix(in srgb, var(--color-ink) 4%, transparent); }
+.chat-item.is-active { background: var(--color-surface-3); }
+.chat-item.is-active::before {
+  content: ''; position: absolute; left: 0; top: 8px; bottom: 8px; width: 2px; border-radius: var(--radius-pill); background: var(--color-accent);
+}
+.chat-item-main { flex: 1; min-width: 0; padding: 0; background: none; border: 0; color: var(--color-ink); font: inherit; text-align: left; cursor: pointer; }
+.chat-item-title { display: flex; align-items: center; gap: 6px; min-width: 0; }
+.chat-item-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+.chat-item-age { color: var(--color-ink-dim); }
+
+/* Scheduled posts: rows in one hairline group. */
+.chat-sched-list { overflow: hidden; border: 1px solid var(--color-hairline); border-radius: var(--radius-lg); background: var(--color-surface-2); }
+.chat-sched {
+  display: block; width: 100%; padding: 8px 10px; background: none; border: 0; border-top: 1px solid var(--color-hairline);
+  color: var(--color-ink); font: inherit; text-align: left; cursor: pointer; transition: background var(--dur-fast) ease;
+}
+.chat-sched:first-child { border-top: 0; }
+.chat-sched:hover:not(:disabled) { background: color-mix(in srgb, var(--color-ink) 4%, transparent); }
+.chat-sched:disabled { cursor: default; }
+.chat-sched-head { display: flex; align-items: center; gap: 6px; margin-bottom: 2px; }
+.chat-sched-time { color: var(--color-warning); font-weight: 600; }
+.chat-sched-channel { color: var(--color-ink-muted); }
+.chat-sched-title { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* ── Tool activity chips ─────────────────────────────────────────────────── */
+.tool-chips { margin-bottom: 8px; }
+.tool-chip-row { display: flex; flex-wrap: wrap; gap: 6px; }
+.tool-chip {
+  position: relative; display: inline-flex; align-items: center; gap: 5px; max-width: 280px; padding: 3px 9px;
+  background: var(--color-surface-2); color: var(--color-ink-muted); border: 1px solid var(--color-hairline); border-radius: var(--radius-pill);
+  font: inherit; font-size: 12px; line-height: 1.5; cursor: pointer;
+  transition: background var(--dur-fast) ease, border-color var(--dur-fast) ease;
+}
+.tool-chip::after { content: ''; position: absolute; inset: -6px 0; }
+.tool-chip:hover { border-color: var(--color-hairline-strong); }
+.tool-chip[aria-expanded="true"] { background: var(--color-surface-3); }
+.tool-chip.is-failed { color: var(--color-danger); }
+.tool-chip-arg { max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--color-ink-dim); }
+.tool-detail { margin-top: 6px; max-height: 220px; overflow: auto; }
+
+/* ── Cards in the thread and their dialogs ───────────────────────────────── */
+.card-kv { display: grid; grid-template-columns: minmax(96px, 128px) 1fr; gap: 10px; align-items: baseline; }
+.card-kv-body { min-width: 0; overflow-wrap: anywhere; color: var(--color-ink); }
+.card-quote { padding-left: 8px; border-left: 2px solid var(--color-hairline-strong); color: var(--color-ink-muted); }
+.card-quote.is-bad { border-left-color: var(--color-danger); color: var(--color-ink); }
+.card-check { display: flex; gap: 8px; align-items: flex-start; }
+.card-check input { margin-top: 3px; }
+
+/* The verdict of an example post: two chip-toggles, one of them pressed. */
+.verdict { display: inline-flex; gap: 6px; }
+.verdict .chip-toggle { min-height: 32px; padding: 0 10px; gap: 4px; font-size: 12px; }
+.chip-toggle.is-bad[aria-pressed="true"] {
+  color: var(--color-danger-ink); border-color: color-mix(in srgb, var(--color-danger) 40%, transparent); background: var(--color-danger-soft);
+}
+.inset.example-item { display: flex; flex-direction: column; gap: 8px; min-width: 0; padding: 12px; }
+.inset.example-warning { display: flex; gap: 10px; align-items: flex-start; min-width: 0; padding: 10px; transition: opacity var(--dur-base) ease; }
+.inset.example-warning.is-off { opacity: 0.55; }

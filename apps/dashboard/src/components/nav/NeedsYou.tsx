@@ -6,12 +6,13 @@ import { describeError, toast } from '../ui/Toast';
 import { ActionCard, FocusedCardContext } from '../chat/ActionCard';
 import { Badge } from '../ui/Badge';
 import { Icon, type IconName } from '../ui/Icon';
+import { SeverityPill } from '../ui/Pills';
 import { fmtDate, fmtRelative } from '../../lib/format';
+import './needs-you.css';
+// An ActionCard opened from here (CardOpener) shows its dialog on /app/agents too: its classes live in chat.css.
+import '../chat/chat.css';
 
 type Source = 'inbox' | 'directives' | 'chatCards';
-
-const SEVERITY_TONE = { critical: 'danger', action: 'warning', info: 'neutral' } as const;
-const SEVERITY_LABEL = { critical: 'Critical', action: 'Action', info: 'Info' } as const;
 
 /**
  * The items behind a menu counter, on top of the page the counter leads to: the owner sees at once what waits
@@ -32,7 +33,7 @@ export function NeedsYou({ show, currentChatId, style }: { show: Source[]; curre
     for (const i of d.inbox.items) {
       rows.push(
         <Row key={`i${i.id}`} icon="inbox" to="/app/agents/inbox" search={{ tab: 'unread' }}
-          badge={<Badge tone={SEVERITY_TONE[i.severity]}>{SEVERITY_LABEL[i.severity]}</Badge>}
+          badge={<SeverityPill severity={i.severity} />}
           title={i.title} meta={meta(i.agentHandle, i.createdAt)} />,
       );
     }
@@ -66,14 +67,13 @@ export function NeedsYou({ show, currentChatId, style }: { show: Source[]; curre
   return (
     <>
     {dialog}
-    <section className="panel compose-rise" aria-label="Waiting for you"
-      style={{ padding: 12, marginBottom: 16, boxShadow: 'inset 3px 0 0 var(--color-warning)', ...style }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
+    <section className="panel is-section is-flush needs-you compose-rise" aria-label="Waiting for you" style={{ marginBottom: 16, ...style }}>
+      <div className="panel-head">
         <Icon name="warning" size={15} />
-        <span className="text-body" style={{ color: 'var(--color-ink)', fontWeight: 600 }}>Waiting for you</span>
+        <h2 className="text-heading-md" style={{ margin: 0 }}>Waiting for you</h2>
         <Badge tone="warning">{total}</Badge>
       </div>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>{rows}</div>
+      {rows}
     </section>
     </>
   );
@@ -97,9 +97,9 @@ function CardOpener({ id }: { id: string }) {
 function meta(handle: string | null, at: string, what?: string): ReactNode {
   return (
     <>
-      {[what, handle ? `@${handle}` : null].filter(Boolean).join(' · ')}
-      {(what || handle) && ' · '}
-      <span title={fmtDate(at)}>{fmtRelative(at)}</span>
+      {what && <>{what} · </>}
+      {handle && <><span className="mono">@{handle}</span> · </>}
+      <span className="mono" title={fmtDate(at)}>{fmtRelative(at)}</span>
     </>
   );
 }
@@ -108,30 +108,31 @@ function Row({ icon, to, params, search, onClick, badge, title, meta }: {
   icon: IconName; to?: string; params?: Record<string, string>; search?: Record<string, unknown>; onClick?: () => void;
   badge: ReactNode; title: string; meta: ReactNode;
 }) {
-  const style = { display: 'flex', alignItems: 'center', gap: 10, padding: '8px 10px', textDecoration: 'none', color: 'inherit', minWidth: 0 } as const;
   const body = (
     <>
-      <span className="section-glyph" style={{ width: 26, height: 26, flexShrink: 0 }}><Icon name={icon} size={13} /></span>
-      <span style={{ minWidth: 0, flex: 1 }}>
-        <span style={{ display: 'flex', alignItems: 'center', gap: 6, minWidth: 0 }}>
+      <span className="needs-you-lead" aria-hidden><Icon name={icon} size={15} /></span>
+      <span className="needs-you-main">
+        <span className="needs-you-line">
           {badge}
-          <span className="text-body-sm" style={{ color: 'var(--color-ink)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', minWidth: 0 }}>{title}</span>
+          <span className="text-body-sm needs-you-title">{title}</span>
         </span>
-        <span className="text-micro" style={{ color: 'var(--color-ink-muted)', display: 'block', marginTop: 2 }}>{meta}</span>
+        <span className="text-micro needs-you-meta">{meta}</span>
       </span>
       <Icon name="chevron-right" size={14} />
     </>
   );
   return onClick
-    ? <button type="button" onClick={onClick} className="card row-lift" style={{ ...style, width: '100%', textAlign: 'left', font: 'inherit', cursor: 'pointer' }}>{body}</button>
-    : <Link to={to as any} params={params as any} search={search as any} className="card row-lift" style={style}>{body}</Link>;
+    ? <button type="button" onClick={onClick} className="panel-row needs-you-row">{body}</button>
+    : <Link to={to as any} params={params as any} search={search as any} className="panel-row needs-you-row">{body}</Link>;
 }
 
 function More({ to, search, n, what }: { to: string; search?: Record<string, unknown>; n: number; what: string }) {
   return (
-    <Link to={to as any} search={search as any} className="text-caption" style={{ color: 'var(--color-accent)', padding: '2px 10px' }}>
-      +{n} more {what} →
-    </Link>
+    <div className="panel-foot">
+      <Link to={to as any} search={search as any} className="panel-link" style={{ padding: 0 }}>
+        +{n} more {what} →
+      </Link>
+    </div>
   );
 }
 
