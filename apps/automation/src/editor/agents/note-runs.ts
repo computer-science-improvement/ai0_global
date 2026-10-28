@@ -4,7 +4,7 @@ import { DEMOTE_AFTER, noteRun } from './note-gate';
 /**
  * Spec 069 FR-004 / A10: the subjects that keep coming back without a reaction from the owner — the notes `OwnerInbox`
  * posts as info (no card). Nothing is stored: the rule is recomputed here from the Inbox rows and the owner-bot cards,
- * the same rule `postOnce` applies (a run of at least `DEMOTE_AFTER` notes, no card of the run resolved from Telegram,
+ * the same rule `postOnce` applies (a run of at least `DEMOTE_AFTER` notes, no card of the run resolved from Telegram or the dashboard,
  * never a critical one), so the daily summary lists exactly what stopped ringing.
  */
 export interface RepeatingSubject {
@@ -45,10 +45,11 @@ export async function repeatingSubjects(pool: Pick<Pool, 'query'>, now: Date, re
   }
   if (!found.length) return [];
 
-  // The owner reacted to a run when a card of one of its notes was resolved from Telegram since the run began.
+  // The owner reacted to a run when a card of one of its notes was resolved from Telegram, or acted on in the dashboard
+  // (spec 078 D5: `resolved_by 'dashboard:…'`), since the run began.
   const { rows: acted } = await pool.query(
     `SELECT n.subject, n.created_at FROM owner_cards c JOIN agent_inbox n ON c.kind = 'inbox' AND c.ref_id = n.id::text
-      WHERE n.subject = ANY($1::text[]) AND n.created_at > $2 AND c.resolved_by LIKE 'telegram:%'`,
+      WHERE n.subject = ANY($1::text[]) AND n.created_at > $2 AND (c.resolved_by LIKE 'telegram:%' OR c.resolved_by LIKE 'dashboard:%')`,
     [found.map((f) => f.subject), new Date(now.getTime() - LOOKBACK_DAYS * 86_400_000)]);
   const reacted = (f: RepeatingSubject) => (acted as Array<{ subject: string; created_at: Date | string }>)
     .some((a) => a.subject === f.subject && new Date(a.created_at).getTime() >= f.since.getTime());

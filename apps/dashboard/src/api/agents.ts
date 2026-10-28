@@ -187,6 +187,29 @@ export interface InboxItem {
   severity:  'info' | 'action' | 'critical';
   readAt:    string | null;
   createdAt: string;
+  /** Spec 078 gap #1 (optional: a server without it sends none of the three). The repeat-rule subject of the note, e.g. `resource:threads:<id>`. */
+  subject?:  string | null;
+  /** The gate parts the note was posted with, e.g. `state:token_invalid`. */
+  parts?:    string[] | null;
+  /** The note's own buttons (resume, keep paused, pause a series, mute), in the dashboard's English words. */
+  actions?:  InboxActionView[];
+}
+
+/** One stored button of an Inbox note; `key` is what `useInboxAction` sends back. */
+export interface InboxActionView {
+  key:    string;
+  type:   'resume' | 'keep' | 'pause' | 'mute';
+  label:  string;
+  target: { pauseId: string } | { channelKey: string; seriesKey: string; label: string } | { ref: string };
+}
+
+/** What `POST /api/agents/inbox/:id/actions` answers: the outcome code (English text: `inboxActionMessage`), whether it changed anything, the note as it is now. */
+export interface InboxActionResult {
+  /** The owner bot's Ukrainian text; the dashboard shows `code` instead. */
+  outcome: string;
+  code:    'resumed' | 'already_resumed' | 'not_found' | 'kept' | 'paused' | 'already_paused' | 'muted' | 'not_broken' | 'unavailable';
+  changed: boolean;
+  item:    InboxItem | null;
 }
 
 /** The parsed JSON error body of a failed request ({error, details?, issues?}), or null. */
@@ -317,7 +340,28 @@ export function useResumeSeries(handle: string) {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: (id: string) => api<SeriesPausesResponse>(`/api/agents/${enc(handle)}/series-pauses`, { method: 'POST', body: JSON.stringify({ action: 'resume', id }) }),
-    onSuccess: (data) => qc.setQueryData([...KEY, 'series-pauses', handle], data),
+    onSuccess: (data) => {
+      qc.setQueryData([...KEY, 'series-pauses', handle], data);
+      // The server marks the `series_paused` note read; the Inbox shows it gone now, not at the next refetch (spec 078).
+      void qc.invalidateQueries({ queryKey: [...KEY, 'inbox'] });
+    },
+  });
+}
+
+/**
+ * Spec 078 gap #3: pause a series from the dashboard (the planner stops planning it until it is resumed). `key` is
+ * `series:<name>` or `rule:<uuid>`; a `resource:` key is refused. 409 already_paused, 404 no_channel.
+ */
+export function usePauseSeries(handle: string) {
+  const qc = useQueryClient();
+  return useMutation({
+    meta: { silentError: true },
+    mutationFn: (v: { key: string; label: string }) =>
+      api<SeriesPausesResponse>(`/api/agents/${enc(handle)}/series-pauses`, { method: 'POST', body: JSON.stringify({ action: 'pause', key: v.key, label: v.label }) }),
+    onSuccess: (data) => {
+      qc.setQueryData([...KEY, 'series-pauses', handle], data);
+      void qc.invalidateQueries({ queryKey: [...KEY, 'inbox'] });
+    },
   });
 }
 
@@ -416,6 +460,35 @@ export function useMarkInboxRead() {
     mutationFn: (ids: number[] | 'all') =>
       api<{ marked: number }>('/api/agents/inbox/read', { method: 'POST', body: JSON.stringify({ ids }) }),
     onSuccess: () => qc.invalidateQueries({ queryKey: [...KEY, 'inbox'] }),
+  });
+}
+
+/** Spec 078: undo "mark as done" (Dismiss and "Mark all as done" on Today and the Inbox). Clears the read mark and the dashboard's reaction on the note's owner-bot card. */
+export function useMarkInboxUnread() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (ids: number[]) =>
+      api<{ marked: number }>('/api/agents/inbox/unread', { method: 'POST', body: JSON.stringify({ ids }) }),
+    onSuccess: () => qc.invalidateQueries({ queryKey: [...KEY, 'inbox'] }),
+  });
+}
+
+/**
+ * Spec 078 gap #2: press one of a note's stored buttons (resume, keep paused, pause, mute) from the dashboard. `key` must be
+ * one of the note's `actions[].key` (400 unknown_action, 404 note_not_found / not_available). The owner bot's cards run the
+ * same code, so both leave the same trace; the dashboard's press counts as an owner reaction. Errors are shown by the caller.
+ */
+export function useInboxAction() {
+  const qc = useQueryClient();
+  return useMutation({
+    meta: { silentError: true },
+    mutationFn: (v: { id: number; key: string }) =>
+      api<InboxActionResult>(`/api/agents/inbox/${v.id}/actions`, { method: 'POST', body: JSON.stringify({ key: v.key }) }),
+    onSettled: () => {
+      void qc.invalidateQueries({ queryKey: [...KEY, 'inbox'] });
+      void qc.invalidateQueries({ queryKey: [...KEY, 'series-pauses'] });
+      void qc.invalidateQueries({ queryKey: [...KEY, 'profile'] });
+    },
   });
 }
 

@@ -92,12 +92,14 @@ export class SeriesPausesRepository {
   }
 
   /** Planned content slots of a paused series become skipped with `series_paused` ($0). Returns how many. */
-  async skipPlanned(p: Pick<SeriesPause, 'channelKey' | 'key' | 'label'>): Promise<number> {
+  async skipPlanned(p: Pick<SeriesPause, 'channelKey' | 'key' | 'label'> & Partial<Pick<SeriesPause, 'cause'>>): Promise<number> {
     const m = slotMatch(p.key, 3);
+    // The text is what the slot shows as its skip reason: an owner pause is not "repeated skips".
+    const why = p.cause === 'owner' ? 'is paused by the owner' : 'is paused after repeated skips';
     const { rowCount } = await this.pool.query(
       `UPDATE editor_slots s SET status = 'skipped', error = $2, updated_at = now()
         WHERE s.kind = 'content' AND s.status = 'planned' AND s.channel_key = $1 AND ${m.sql}`,
-      [p.channelKey, `${SERIES_PAUSED_CODE}: "${p.label}" is paused after repeated skips (spec 060)`.slice(0, 300), ...m.params]);
+      [p.channelKey, `${SERIES_PAUSED_CODE}: "${p.label}" ${why} (spec 060)`.slice(0, 300), ...m.params]);
     return rowCount ?? 0;
   }
 

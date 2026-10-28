@@ -59,11 +59,22 @@ export interface AgentsServiceDeps {
   ruleLint?: (text: string, orchestrator: Agent) => Promise<Array<{ code: string; detail: string }>>;
   /** Spec 049 FR-003: the source health of a channel card (null without a card). */
   sourceHealth?: (channelKey: string) => Promise<SourceHealthReport | null>;
-  /** Spec 060 FR-001: the dead-series breaker's pauses (agent page → Paused series → Resume). */
-  pauses?: Pick<SeriesPauseActions, 'list' | 'resume'>;
+  /**
+   * Spec 060 FR-001: the dead-series breaker's pauses (agent page → Paused series → Resume). Spec 078 D5: `pause` (the
+   * owner pauses a series from the dashboard) and `execute` (a note's action button) are the same code the owner bot runs.
+   */
+  pauses?: Pick<SeriesPauseActions, 'list' | 'resume' | 'pause' | 'execute'>;
 }
 
-const ResumeBody = z.object({ action: z.literal('resume'), id: z.string().uuid() });
+/** Spec 078 D5 gap #3: `pause` takes the keys a silent-day note offers (`series:<name>`, `rule:<id>`), never a whole resource. */
+const SeriesPauseBody = z.discriminatedUnion('action', [
+  z.object({ action: z.literal('resume'), id: z.string().uuid() }),
+  z.object({ action: z.literal('pause'), key: z.string().regex(/^(series:.{1,200}|rule:[0-9a-f-]{36})$/), label: z.string().trim().min(1).max(200) }),
+]);
+
+/** Spec 078 D5 gap #2: the key of one of the note's own buttons (a pause key carries a JSON triple, so it can be long). */
+const InboxActionBody = z.object({ key: z.string().min(1).max(600) }).strict();
+const InboxUnreadBody = z.object({ ids: z.array(z.number().int().positive()).min(1).max(500) }).strict();
 
 /** The dashboard's view of a pause (the repository's row, dates as ISO strings). */
 function pauseView(p: SeriesPause) {
@@ -385,14 +396,23 @@ export class AgentsService {
     };
   }
 
-  /** Spec 060 FR-001: `{ action: 'resume', id }` resumes a pause of this agent's channel (`resumed_by = 'owner'`). */
+  /**
+   * Spec 060 FR-001: `{ action: 'resume', id }` resumes a pause of this agent's channel (`resumed_by = 'owner'`).
+   * Spec 078 D5 gap #3: `{ action: 'pause', key, label }` opens an owner pause on a series of the channel.
+   */
   async seriesPauseAction(handle: string, body: unknown) {
-    const parsed = ResumeBody.safeParse(body);
-    if (!parsed.success) throw new BadRequestException({ error: 'invalid_body', details: 'expected { action: "resume", id }' });
+    const parsed = SeriesPauseBody.safeParse(body);
+    if (!parsed.success) throw new BadRequestException({ error: 'invalid_body', details: 'expected { action: "resume", id } or { action: "pause", key: "series:<name>" | "rule:<id>", label }' });
     const orch = await this.orchestratorOf(await this.require(handle));
     const key = telegramKeyOf(orch);
     if (!key || !this.d.pauses) throw new NotFoundException({ error: 'no_channel', details: 'this agent has no channel' });
-    const mine = (await this.d.pauses.list(key, 100)).find((p) => p.id === parsed.data.id);
+    const b = parsed.data;
+    if (b.action === 'pause') {
+      const r = await this.d.pauses.pause({ channelKey: key, seriesKey: b.key, label: b.label }, null, 'dashboard');
+      if (!r.changed) throw new ConflictException({ error: 'already_paused', details: 'this series is already paused' });
+      return this.seriesPauses(handle);
+    }
+    const mine = (await this.d.pauses.list(key, 100)).find((p) => p.id === b.id);
     if (!mine) throw new NotFoundException({ error: 'pause_not_found' });
     if (mine.resumedAt) throw new ConflictException({ error: 'not_paused', details: 'this series is already resumed' });
     await this.d.pauses.resume(mine.id, 'dashboard');
@@ -575,5 +595,31 @@ export class AgentsService {
     const p = z.object({ ids: z.union([z.array(z.number().int().positive()).max(500), z.literal('all')]) }).strict().safeParse(body ?? {});
     if (!p.success) throw badRequest(p.error);
     return { marked: await this.d.inbox.markRead(p.data.ids) };
+  }
+
+  /** Spec 078 D5: "Undo" after Dismiss — the notes are unread again. */
+  async markUnread(body: unknown) {
+    const p = InboxUnreadBody.safeParse(body ?? {});
+    if (!p.success) throw badRequest(p.error);
+    return { marked: await this.d.inbox.markUnread(p.data.ids) };
+  }
+
+  /**
+   * Spec 078 D5 gap #2: a button of an Inbox note, pressed in the dashboard. The same rule as the Telegram card: the key must
+   * be one of the actions stored with the note (a client cannot name any pause or resource), and it runs through the same
+   * `SeriesPauseActions` as the owner bot, so both surfaces leave the same trace. Answers what happened and the note.
+   */
+  async inboxAction(id: number, body: unknown) {
+    const p = InboxActionBody.safeParse(body ?? {});
+    if (!p.success) throw badRequest(p.error);
+    const note = await this.d.inbox.get(id);
+    if (!note) throw new NotFoundException({ error: 'note_not_found', id });
+    // `note.actions` is the stored list, cleaned (`actionViews`), keys unchanged: the Telegram callback's check.
+    if (!note.actions.some((a) => a.key === p.data.key)) {
+      throw new BadRequestException({ error: 'unknown_action', details: 'this note has no such action' });
+    }
+    if (!this.d.pauses) throw new NotFoundException({ error: 'not_available', details: 'note actions are not available' });
+    const r = await this.d.pauses.execute(id, p.data.key, 'dashboard');
+    return { outcome: r.outcome, code: r.code, changed: r.changed, item: await this.d.inbox.get(id) };
   }
 }

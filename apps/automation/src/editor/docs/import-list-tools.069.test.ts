@@ -425,11 +425,11 @@ function resumeRig(imported: { inserted: number; updated: number; skipped: numbe
     pauses: {
       resume: async (id: string) => {
         const row = known(id);
-        if (!row) return { outcome: 'x', changed: false, pause: null };
-        if (row.resumedAt) return { outcome: 'already resumed', changed: false, pause: row };
+        if (!row) return { outcome: 'x', changed: false, code: 'not_found' as const, pause: null };
+        if (row.resumedAt) return { outcome: 'already resumed', changed: false, code: 'already_resumed' as const, pause: row };
         resumed.push(id);
         row.resumedAt = new Date();
-        return { outcome: `✅ Відновлено: ${id}`, changed: true, pause: row };
+        return { outcome: `✅ Відновлено: ${id}`, changed: true, code: 'resumed' as const, pause: row };
       },
       list: async (channelKey?: string) => store.filter((x) => !channelKey || x.channelKey.toLowerCase() === channelKey.toLowerCase()).sort((x, y) => Number(!!x.resumedAt) - Number(!!y.resumedAt)),
     },
@@ -589,6 +589,6 @@ test('the resume kind must be registered, or a card that carries it is refused w
   const r = rig({ pauses: [pause('series:Prompt of the day')] });
   await call(r, { series: 'Prompt of the day' });
   assert.throws(() => a.svc.propose({ chatId: 'c', kind: IMPORT_LIST_KIND, payload: r.proposed[0].payload, summary: 's' }), /unknown action kind series_pause_resume in a follow-up/);
-  registerPauseResumeAction(a.svc, { pauses: { resume: async () => ({ outcome: '', changed: true, pause: null }), list: async () => [] } });
+  registerPauseResumeAction(a.svc, { pauses: { resume: async () => ({ outcome: '', changed: true, code: 'resumed' as const, pause: null }), list: async () => [] } });
   assert.equal((await a.svc.propose({ chatId: 'c', kind: IMPORT_LIST_KIND, payload: r.proposed[0].payload, summary: 's' })).status, 'pending');
 });

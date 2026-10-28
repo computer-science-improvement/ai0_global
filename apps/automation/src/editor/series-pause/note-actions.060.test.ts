@@ -158,7 +158,9 @@ function agentsApi() {
     skills: {} as any, inbox: {} as any, setChannelMode: async () => undefined, runNow: async () => ({ started: false, what: '' }), memory: async () => [],
     pauses: {
       list: async (key: string) => state.filter((p) => p.channelKey.toLowerCase() === key.toLowerCase()),
-      resume: async (id: string, via: string) => { resumed.push(`${id}:${via}`); const p = state.find((x) => x.id === id)!; p.resumedAt = new Date(); p.resumedBy = 'owner'; return { outcome: 'ok', changed: true, pause: p }; },
+      resume: async (id: string, via: string) => { resumed.push(`${id}:${via}`); const p = state.find((x) => x.id === id)!; p.resumedAt = new Date(); p.resumedBy = 'owner'; return { outcome: 'ok', changed: true, code: 'resumed' as const, pause: p }; },
+      pause: async () => ({ outcome: 'ok', changed: true, code: 'paused' as const }),
+      execute: async () => ({ outcome: 'ok', changed: true, code: 'resumed' as const }),
     },
   });
   return { svc, resumed };

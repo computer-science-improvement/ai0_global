@@ -1,6 +1,6 @@
 import type { Pool } from 'pg';
 import { DEMOTE_AFTER, decideNote, noteGrowStep, noteRepeatDays, partsKey, stillWording, type NoteGate } from './note-gate';
-import type { NoteAction } from '../series-pause/note-actions';
+import { actionViews, type InboxActionView, type NoteAction } from '../series-pause/note-actions';
 
 export type InboxSeverity = 'info' | 'action' | 'critical';
 
@@ -49,7 +49,18 @@ export interface InboxItem extends Required<Omit<InboxItemInput, 'agentId' | 'al
   agentId:   string | null;
   readAt:    Date | null;
   createdAt: Date;
+  /** Spec 078 D5 gap #1: the problem the note is about and what it said (spec 060 gate); null for a note without a gate. */
+  subject:   string | null;
+  parts:     string[] | null;
+  /** The note's buttons in the dashboard's words (English); the stored Ukrainian labels stay on the Telegram card. */
+  actions:   InboxActionView[];
 }
+
+const toItem = (r: any): InboxItem => ({
+  id: Number(r.id), agentId: r.agent_id ?? null, kind: r.kind, title: r.title, body: r.body ?? null,
+  refType: r.ref_type ?? null, refId: r.ref_id ?? null, severity: r.severity, readAt: r.read_at ?? null, createdAt: r.created_at,
+  subject: r.subject ?? null, parts: r.parts ?? null, actions: actionViews(r.actions),
+});
 
 /**
  * Spec 012 FR-002: while the owner bot's cards are on, a stored note goes to the bot instead of the plain alert (a
@@ -160,14 +171,14 @@ export class OwnerInbox {
 
   /**
    * Spec 069 A10: whether the owner reacted to the subject's run of notes — a card of one of its notes was resolved from
-   * Telegram (`owner_cards.resolved_by LIKE 'telegram:%'`) since the run began. A failed lookup counts as a reaction: a
-   * note is never demoted on a guess.
+   * Telegram (`owner_cards.resolved_by LIKE 'telegram:%'`) or acted on in the dashboard (`'dashboard:%'`, spec 078 D5)
+   * since the run began. A failed lookup counts as a reaction: a note is never demoted on a guess.
    */
   private async ownerActed(subject: string, since: Date | null): Promise<boolean> {
     try {
       const { rows } = await this.pool.query(
         `SELECT 1 FROM owner_cards c JOIN agent_inbox n ON c.kind = 'inbox' AND c.ref_id = n.id::text
-          WHERE n.subject = $1 AND n.created_at >= $2 AND c.resolved_by LIKE 'telegram:%' LIMIT 1`,
+          WHERE n.subject = $1 AND n.created_at >= $2 AND (c.resolved_by LIKE 'telegram:%' OR c.resolved_by LIKE 'dashboard:%') LIMIT 1`,
         [subject, since ?? new Date(0)]);
       return rows.length > 0;
     } catch {
@@ -242,16 +253,32 @@ export class OwnerInbox {
     const { rows } = await this.pool.query(
       `SELECT * FROM agent_inbox WHERE ($1::bool IS NOT TRUE OR read_at IS NULL) ORDER BY created_at DESC LIMIT $2`,
       [o.unreadOnly ?? false, o.limit ?? 100]);
-    return rows.map((r) => ({
-      id: Number(r.id), agentId: r.agent_id ?? null, kind: r.kind, title: r.title, body: r.body ?? null,
-      refType: r.ref_type ?? null, refId: r.ref_id ?? null, severity: r.severity, readAt: r.read_at ?? null, createdAt: r.created_at,
-    })) as InboxItem[];
+    return rows.map(toItem);
+  }
+
+  /** One note (the dashboard's action answer), or null. */
+  async get(id: number): Promise<InboxItem | null> {
+    const { rows } = await this.pool.query(`SELECT * FROM agent_inbox WHERE id = $1`, [id]);
+    return rows[0] ? toItem(rows[0]) : null;
   }
 
   async markRead(ids: number[] | 'all'): Promise<number> {
     const { rowCount } = ids === 'all'
       ? await this.pool.query(`UPDATE agent_inbox SET read_at = now() WHERE read_at IS NULL`)
       : await this.pool.query(`UPDATE agent_inbox SET read_at = now() WHERE id = ANY($1::bigint[]) AND read_at IS NULL`, [ids]);
+    return rowCount ?? 0;
+  }
+
+  /**
+   * Spec 078 D5: "Undo" after Dismiss — the notes are unread again. An owner card of such a note that the dashboard
+   * stamped (`resolved_by 'dashboard:…'`, see `SeriesPauseActions.run`) is unstamped: the note is open, not decided.
+   * A card resolved from Telegram keeps its mark.
+   */
+  async markUnread(ids: number[]): Promise<number> {
+    const { rowCount } = await this.pool.query(`UPDATE agent_inbox SET read_at = NULL WHERE id = ANY($1::bigint[]) AND read_at IS NOT NULL`, [ids]);
+    try {
+      await this.pool.query(`UPDATE owner_cards SET resolved_by = NULL WHERE kind = 'inbox' AND ref_id = ANY($1::text[]) AND resolved_by LIKE 'dashboard:%'`, [ids.map(String)]);
+    } catch { /* the note is unread; a stale stamp only keeps the A10 demotion off */ }
     return rowCount ?? 0;
   }
 }
