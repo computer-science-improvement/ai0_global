@@ -366,11 +366,11 @@ const RULES: Record<string, Rule> = {
   },
   resource_paused: {
     why: 'A resource was paused, so nothing is planned or published on it until it is resumed.',
-    steps: (c) => [read(), c.it.refType === 'directive' && c.ref ? directiveLink(c) : agentLink(c, 'Open active effects')],
+    steps: (c) => [read(), c.it.refType === 'directive' && c.ref ? directiveLink(c) : agentLink(c, 'Open active effects', 'effects')],
   },
   resource_resumed: {
     why: 'A paused resource is back: planning and publishing there start again.',
-    steps: (c) => [read(), c.it.refType === 'directive' && c.ref ? directiveLink(c) : agentLink(c, 'Open active effects')],
+    steps: (c) => [read(), c.it.refType === 'directive' && c.ref ? directiveLink(c) : agentLink(c, 'Open active effects', 'effects')],
   },
   resource_health_ok: {
     why: 'The connection works again; planning and publishing there resume on their own.',

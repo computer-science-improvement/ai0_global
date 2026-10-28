@@ -35,7 +35,8 @@ function DirectiveLink({ id }: { id: string }) {
   );
 }
 
-function PauseRow({ p, delay }: { p: ResourcePause; delay: number }) {
+/** Lift a @manager resource pause early, behind a confirmation (the banner in the agent header uses it too). */
+export function useLiftAction(p: ResourcePause) {
   const confirm = useConfirm();
   const lift = useLiftPause();
   const onLift = async () => {
@@ -49,6 +50,11 @@ function PauseRow({ p, delay }: { p: ResourcePause; delay: number }) {
       onError: (e) => toast.error(errorBody(e)?.error === 'not_paused' ? 'This pause has already ended — refreshed' : errorText(e)),
     });
   };
+  return { onLift, pending: lift.isPending };
+}
+
+function PauseRow({ p, delay }: { p: ResourcePause; delay: number }) {
+  const { onLift, pending } = useLiftAction(p);
   return (
     <div className="card row-lift compose-rise" style={{ ...row, animationDelay: `${delay}ms` }}>
       <span style={{ color: 'var(--color-warning)', display: 'inline-flex' }} aria-hidden><Icon name="pause" size={14} /></span>
@@ -64,7 +70,7 @@ function PauseRow({ p, delay }: { p: ResourcePause; delay: number }) {
         <div className="text-micro tabular-nums" style={{ textAlign: 'right', color: 'var(--color-ink-muted)' }} title={fmtDate(p.until)}>
           until {shortDate(p.until)}<div style={{ color: 'var(--color-ink-dim)' }}>{timeLeft(p.until)}</div>
         </div>
-        <TableAction icon="play" label="Lift" title="Lift the pause now" disabled={lift.isPending} onClick={onLift} />
+        <TableAction icon="play" label="Lift" title="Lift the pause now" disabled={pending} onClick={onLift} />
       </div>
     </div>
   );

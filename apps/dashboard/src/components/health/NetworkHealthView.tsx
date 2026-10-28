@@ -9,6 +9,7 @@ import { Badge } from '../ui/Badge';
 import { Icon, type IconName } from '../ui/Icon';
 import { describeError } from '../ui/Toast';
 import { fmtDate, fmtRelative } from '../../lib/format';
+import { tabSearch, type AgentTab } from '../../lib/agent-tabs';
 import type { BudgetState } from '../../api/spend';
 import {
   useNetworkHealth, type BadConnectionState, type BudgetLine, type ConnectionIssue, type SourceIssue, type StuckGroup, type StuckItem, type StuckKind,
@@ -72,8 +73,8 @@ function Clear({ children }: { children: ReactNode }) {
 
 const List = ({ children }: { children: ReactNode }) => <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>{children}</div>;
 
-const AgentLink = ({ handle, tab }: { handle: string | null | undefined; tab?: 'overview' | 'ideas' | 'playbook' }) => handle
-  ? <Link to="/app/agents/$handle" params={{ handle }} search={tab && tab !== 'overview' ? { tab } : {}} className="link-accent text-micro">@{handle}</Link>
+const AgentLink = ({ handle, tab }: { handle: string | null | undefined; tab?: AgentTab }) => handle
+  ? <Link to="/app/agents/$handle" params={{ handle }} search={tabSearch(tab ?? 'overview')} className="link-accent text-micro">@{handle}</Link>
   : null;
 
 function Count({ n, what }: { n: number; what: string }) {
@@ -129,7 +130,7 @@ function SourcesSection({ rows, delay }: { rows: SourceIssue[]; delay: number })
                   right={<div style={{ display: 'flex', flexDirection: 'column', gap: 2, alignItems: 'flex-end' }}>
                     <span className="tabular-nums" style={{ color: 'var(--color-ink)' }}>{s.successRate === null ? '—' : `${Math.round(s.successRate * 100)}%`}</span>
                     <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>{s.calls ? `${s.ok}/${s.calls} reads` : 'no reads'}</span>
-                    <AgentLink handle={s.agent} />
+                    <AgentLink handle={s.agent} tab="settings" />
                   </div>} />
               );
             })}

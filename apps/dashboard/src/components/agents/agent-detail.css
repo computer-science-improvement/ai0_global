@@ -1,0 +1,88 @@
+/*
+ * Spec 078 (B3): /app/agents/$handle. The look of the shared parts (panels, rows, buttons, tabs, callouts, status marks) is
+ * index.css; this file only lays the page out: the header, the mode block, the banners, the tab bar, the day list. Tokens only.
+ */
+
+/* Header: the xl glyph beside PageHeader (title + chip, description, "@handle → scope", actions). */
+.agent-head { display: flex; gap: 20px; align-items: flex-start; }
+.agent-head > .hub-glyph { margin: 6px 6px 0 6px; }
+.agent-head-main { flex: 1; min-width: 0; }
+.agent-title-tags { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-left: 12px; vertical-align: middle; }
+.agent-sub { display: flex; flex-direction: column; gap: 4px; max-width: 760px; }
+.agent-desc { font-size: 15px; color: var(--color-ink-muted); --clamp: 3; }
+.agent-scope { font-size: 13px; color: var(--color-ink-dim); overflow-wrap: anywhere; }
+
+/* The mode switch (4-up) with one line that says what the mode does. PageHeader keeps a 24px bottom margin: pull up a little. */
+.agent-mode { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 12px 28px; margin: -8px 0 4px; }
+.agent-mode-switch { flex: 1 1 420px; max-width: 560px; min-width: 0; display: flex; flex-direction: column; gap: 8px; }
+.agent-mode-hint { flex: 1 1 260px; min-width: 0; padding-bottom: 12px; color: var(--color-ink-muted); max-width: 520px; }
+
+/* Banners for paused series / resources (callout-warning + Resume / Lift). */
+.agent-banners { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
+.agent-banner { flex-wrap: wrap; align-items: center; }
+.agent-banner > svg { flex-shrink: 0; color: var(--color-warning); }
+.agent-banner-text { flex: 1 1 260px; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.agent-banner-title { font-weight: 600; }
+.agent-banner-sub { font-size: 13px; color: var(--color-ink-muted); }
+.agent-banner-sub.clamp { --clamp: 2; }
+
+/* Overview: a column of blocks 16px apart. */
+.agent-overview { display: flex; flex-direction: column; gap: 16px; }
+.agent-dim { color: var(--color-ink-dim); }
+.agent-muted { color: var(--color-ink-muted); }
+
+/* Today, step by step: time, mark, what happened (title + the reason), mono meta on the right. */
+.day-step { flex-wrap: nowrap; gap: 12px; }
+.day-time { flex: 0 0 44px; font-size: 13px; color: var(--color-ink-muted); }
+.day-step .status-mark { flex-shrink: 0; }
+.day-body { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.day-title { color: var(--color-ink); font-size: 14px; --clamp: 1; }
+.day-note { color: var(--color-ink-muted); font-size: 13px; --clamp: 2; }
+.day-meta { flex: 0 1 auto; max-width: 40%; font-size: 12px; color: var(--color-ink-dim); text-align: right; overflow-wrap: anywhere; }
+.day-now {
+  display: flex; align-items: center; gap: 10px; padding: 0 20px; height: 22px;
+  border-top: 1px solid var(--color-hairline); font-size: 11px; color: var(--color-accent);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--color-accent) 35%, transparent);
+}
+.day-skeleton { height: 96px; background: color-mix(in srgb, var(--color-ink) 3%, transparent); }
+.day-foot-text { color: var(--color-ink-dim); margin-left: auto; }
+
+/* Channel + How posts look: two panels side by side, one under the other on a narrow page. */
+.agent-summaries { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 16px; align-items: start; }
+.summary-skeleton { height: 120px; background: color-mix(in srgb, var(--color-ink) 3%, transparent); border-radius: var(--radius-lg); }
+.agent-facts { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.agent-facts p { margin: 0; }
+.agent-facts-head { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; min-width: 0; }
+.agent-facts-head .chip { max-width: 100%; }
+.agent-facts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr)); gap: 14px 18px; }
+.agent-fact { display: flex; flex-direction: column; gap: 4px; min-width: 0; font-size: 14px; overflow-wrap: anywhere; }
+.agent-fact-wide { grid-column: 1 / -1; }
+.fmt-row { flex-wrap: nowrap; }
+.fmt-main { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.fmt-value { font-size: 14px; color: var(--color-ink); --clamp: 2; }
+.fmt-value.is-unset { color: var(--color-ink-dim); }
+.fmt-row .chip-toggle { flex-shrink: 0; }
+.fmt-card { flex: 1 1 200px; min-width: 0; }
+
+/* Roles: a row per role agent. */
+.agent-role { flex-wrap: wrap; }
+.agent-role-main { flex: 1 1 160px; min-width: 0; }
+.agent-role-name { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; font-size: 14px; }
+.agent-role-kind { color: var(--color-ink); font-weight: 500; }
+.agent-role-spend { min-width: 96px; text-align: right; }
+
+/* Section tabs (underline) and, under a group with several leaves, a row of small tabs. */
+.agent-tabs { margin: 24px 0 20px; }
+.agent-subtabs { margin-top: 14px; }
+
+@media (max-width: 760px) {
+  .day-step { flex-wrap: wrap; row-gap: 4px; }
+  .day-meta { max-width: none; flex-basis: 100%; text-align: left; padding-left: 70px; }
+  .day-now { padding: 0 16px; }
+  .agent-role-spend { text-align: left; }
+  .agent-head { gap: 14px; }
+  .agent-head > .hub-glyph { width: 48px; height: 48px; font-size: 20px; margin: 4px 4px 0; }
+  .agent-title-tags { margin-left: 0; display: flex; margin-top: 8px; }
+  .agent-mode-switch { flex-basis: 100%; max-width: none; }
+  .agent-mode-hint { flex-basis: 100%; padding-bottom: 0; }
+}

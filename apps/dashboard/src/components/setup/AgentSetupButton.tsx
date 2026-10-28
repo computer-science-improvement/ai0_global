@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, type ReactNode } from 'react';
 import { Badge } from '../ui/Badge';
 import { Icon } from '../ui/Icon';
 import { useConfirm } from '../ui/ConfirmDialog';
@@ -9,7 +9,22 @@ import { SetupProposalDialog } from './SetupProposalDialog';
 
 // Spec 042: "Set up from history" on a channel agent's page — starts the analysis of the channel's last 20 posts,
 // or opens the proposal waiting for review; the badge shows the latest proposal's state.
-export function AgentSetupButton({ channelKey }: { channelKey: string }) {
+// Spec 078 B3.2: the logic is a hook so the header's More menu can start it; the button below is the same thing as a button.
+
+export interface AgentSetup {
+  /** The latest proposal's state while one is running or waiting for review (a badge next to the agent's name). */
+  status: { label: string; tone: (typeof SETUP_STATUS)[keyof typeof SETUP_STATUS]['tone'] } | null;
+  /** "Set up from history" · "Review setup" · "Setup running…". */
+  label: string;
+  title: string;
+  busy: boolean;
+  /** Start the analysis (after a confirmation) or open the proposal waiting for review. */
+  start: () => void;
+  /** The proposal dialog: render it once, wherever the trigger lives. */
+  dialog: ReactNode;
+}
+
+export function useAgentSetup(channelKey: string | null): AgentSetup {
   const q = useChannelProposals(channelKey);
   const overview = useSetupOverview();
   const analyze = useAnalyzeChannels();
@@ -19,7 +34,8 @@ export function AgentSetupButton({ channelKey }: { channelKey: string }) {
   const running = isRunning(latest?.status);
   const review = latest && (isReviewable(latest.status) || running) ? latest : null;
 
-  const start = async () => {
+  const begin = async () => {
+    if (!channelKey) return;
     if (!(await confirm(`analyze the last 20 posts of ${channelKey}: ${estimateText(overview.data?.estimateUsd ?? null, 1)}`, { danger: false, confirmLabel: 'Analyze' }))) return;
     analyze.mutate([channelKey], {
       onSuccess: (r) => {
@@ -30,18 +46,26 @@ export function AgentSetupButton({ channelKey }: { channelKey: string }) {
     });
   };
 
+  return {
+    status: review && latest ? { label: `setup: ${SETUP_STATUS[latest.status].label.toLowerCase()}`, tone: SETUP_STATUS[latest.status].tone } : null,
+    label: review ? (running ? 'Setup running…' : 'Review setup') : 'Set up from history',
+    title: review ? 'Open the setup proposal' : 'Read the last 20 posts and propose the brief, profile, formatting, schedule and voice',
+    busy: analyze.isPending,
+    start: () => (review ? setOpen(review.id) : void begin()),
+    dialog: <SetupProposalDialog id={open} onClose={() => setOpen(null)} />,
+  };
+}
+
+/** The same as a stand-alone button with the state badge. */
+export function AgentSetupButton({ channelKey }: { channelKey: string }) {
+  const s = useAgentSetup(channelKey);
   return (
     <>
-      {latest && (isReviewable(latest.status) || running) && (
-        <Badge tone={SETUP_STATUS[latest.status].tone} title="Setup from history">setup: {SETUP_STATUS[latest.status].label.toLowerCase()}</Badge>
-      )}
-      <button className="btn-secondary" style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}
-        disabled={analyze.isPending}
-        title={review ? 'Open the setup proposal' : 'Read the last 20 posts and propose the brief, profile, formatting, schedule and voice'}
-        onClick={() => (review ? setOpen(review.id) : void start())}>
-        <Icon name="sparkles" size={14} /> {review ? (running ? 'Setup running…' : 'Review setup') : 'Set up from history'}
+      {s.status && <Badge tone={s.status.tone} title="Setup from history">{s.status.label}</Badge>}
+      <button className="btn-secondary" disabled={s.busy} title={s.title} onClick={s.start}>
+        <Icon name="sparkles" size={14} /> {s.label}
       </button>
-      <SetupProposalDialog id={open} onClose={() => setOpen(null)} />
+      {s.dialog}
     </>
   );
 }

@@ -10,6 +10,7 @@ import {
 } from './inbox-kinds';
 import type { TreeNode } from './inbox-ref';
 import { fullPathsFromRouteTree } from '../nav/routes';
+import { AGENT_TABS } from './agent-tabs';
 
 const SRC = fileURLToPath(new URL('..', import.meta.url));
 const ROUTES = fullPathsFromRouteTree(readFileSync(`${SRC}routeTree.gen.ts`, 'utf8'));
@@ -136,11 +137,7 @@ test('every kind: the plan survives a bare note (no ref, no agent, no tree, no a
 const LINKS = (p: ReturnType<typeof planNote>) => planSteps(p).filter((s): s is Extract<NoteStep, { type: 'link' }> => s.type === 'link');
 
 // The search keys each target route's validateSearch reads (routes/*.tsx), and the values it accepts.
-const agentTabs = (() => {
-  const src = readFileSync(`${SRC}routes/app.agents_.$handle.tsx`, 'utf8');
-  const m = /const TABS = \[([^\]]+)\] as const/.exec(src);
-  return new Set([...(m?.[1] ?? '').matchAll(/'([a-z]+)'/g)].map((x) => x[1]));
-})();
+const agentTabs = new Set<string>(AGENT_TABS);
 const SEARCH_KEYS: Record<string, string[]> = {
   '/app/agents/$handle': ['tab', 'directive'],
   '/app/connections': ['section', 'tab'],

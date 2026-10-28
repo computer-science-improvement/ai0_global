@@ -10,17 +10,14 @@
 
 import { Link, useNavigate } from '@tanstack/react-router';
 import { useState, type CSSProperties, type ReactNode } from 'react';
-import { SectionCard, StatTile, Field } from '../ui/primitives';
+import { SectionCard, StatStrip, StatTile, Field } from '../ui/primitives';
 import { Badge } from '../ui/Badge';
 import { Icon } from '../ui/Icon';
 import { describeError, toast } from '../ui/Toast';
 import { Modal } from '../Modal';
 import { fmtUsd } from '../editor/EditorUi';
 import { fmtDate, fmtRelative } from '../../lib/format';
-import { AgentGlyph, AgentModeSwitch, FollowsBadge, KIND_LABEL, LastRun, ScopeChip, runsLabel } from './AgentsUi';
-import { ResourceSection } from './ResourceProfile';
-import { FormattingSection } from './ResourceFormatting';
-import { ActiveEffects } from './ActiveEffects';
+import { AgentGlyph, KIND_LABEL, LastRun, ScopeChip, runsLabel } from './AgentsUi';
 import { errorBody, useAgentConfigConflicts, usePatchAgent, type AgentDetail, type AgentPatch, type GrammaticalGender, type ReasoningEffort } from '../../api/agents';
 import { useModelCatalog, type Workspace } from '../../api/models';
 import { ownModelIn, WORKSPACE_LABEL } from '../../lib/models';
@@ -31,8 +28,11 @@ import { useActiveSteering } from '../../api/steering';
 import { useArtifacts } from '../../api/artifacts';
 import { statusLabel } from '../../lib/artifacts';
 import { alignPrompt } from '../../lib/align';
-import { SourcesSection } from './SourcesSection';
-import { PausedSeries } from './PausedSeries';
+import { useDirectives } from '../../api/manager';
+import { adviceCounts, planAtLine } from '../../lib/agent-overview';
+import { zoneLabel } from '../../lib/zoned-time';
+import { TodaySteps } from './TodaySteps';
+import { ChannelSummary, FormattingSummary } from './AgentSummaries';
 
 const HANDLE_RE = /^[a-z][a-z0-9_]{2,31}$/;
 const TIME_RE = /^([01]\d|2[0-3]):[0-5]\d$/;
@@ -96,7 +96,7 @@ function ConflictsLine({ handle }: { handle: string }) {
   const n = q.data?.items?.length ?? q.data?.conflicts.length ?? 0;
   if (!n) return null;
   return (
-    <div className="callout-warning" role="status" style={{ marginBottom: 14, alignItems: 'center', flexWrap: 'wrap', gap: 10 }}>
+    <div className="callout-warning" role="status" style={{ flexWrap: 'wrap', gap: 10 }}>
       <Icon name="warning" size={16} />
       <span style={{ flex: '1 1 240px', minWidth: 0 }}>
         <strong>{n} conflict{n === 1 ? '' : 's'}</strong> with your rules — the agent cannot follow the rules and its config at once.
@@ -107,78 +107,83 @@ function ConflictsLine({ handle }: { handle: string }) {
   );
 }
 
-export function AgentOverview({ data }: { data: AgentDetail }) {
+/** "MANAGER advice · 30 d": how much of @manager's advice the agent followed and declined (orchestrators only). */
+function AdviceTile({ handle }: { handle: string }) {
+  const q = useDirectives({ agent: handle, binding: 'advice' });
+  const { followed, declined } = adviceCounts(q.data?.directives ?? []);
+  const none = !q.data || followed + declined === 0;
+  return (
+    <StatTile label="MANAGER advice · 30 d" value={none ? '—' : `${followed} / ${declined}`}
+      delta={q.data ? (none ? 'no advice yet' : 'followed / declined') : undefined} deltaTone={declined > followed ? 'warning' : 'neutral'} />
+  );
+}
+
+/** The four numbers of the Overview: spend, runs, the daily plan and (orchestrators) the advice record. */
+function OverviewKpis({ data }: { data: AgentDetail }) {
   const a = data.agent;
-  // Spec 038: the agent's model shown and edited is the one of the active workspace.
-  const ws: Workspace = useModelCatalog().data?.workspace ?? 'openrouter';
   const act = a.activity;
   // An orchestrator's day includes its role agents (same roll-up as the list page).
   const kids = data.children;
   const spend = (act?.spentTodayUsd ?? 0) + kids.reduce((s, c) => s + (c.activity?.spentTodayUsd ?? 0), 0);
   const runs = (act?.runsToday ?? 0) + kids.reduce((s, c) => s + (c.activity?.runsToday ?? 0), 0);
   const withRoles = kids.length > 0 ? ' · incl. roles' : '';
+  const card = useEditorChannel(data.channelKey ?? '').data;
+  const lastBad = act?.lastStatus === 'error' || act?.lastStatus === 'budget_exceeded';
   return (
-    <div>
-      <div className="stat-grid compose-rise" style={{ marginBottom: 18 }}>
-        <div className="stat-tile">
-          <div className="text-micro" style={{ color: 'var(--color-ink-dim)', textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: 10 }}>Mode</div>
-          {data.parent ? (
-            // Spec 047 FR-007: a role agent has no mode of its own — it runs in its orchestrator's channel mode.
-            <>
-              <FollowsBadge agent={a} parent={data.parent} />
-              <div className="text-micro" style={{ marginTop: 8, color: 'var(--color-ink-muted)' }}>
-                change it on <Link to="/app/agents/$handle" params={{ handle: data.parent.handle }} style={{ color: 'inherit' }}>@{data.parent.handle}</Link>
-              </div>
-            </>
-          ) : <AgentModeSwitch agent={a} />}
-          {!data.parent && a.shadowUntil && a.mode === 'shadow' && (
-            <div className="text-micro" style={{ marginTop: 8, color: 'var(--color-ink-muted)' }}>shadow until {fmtDate(a.shadowUntil)}</div>
-          )}
-        </div>
-        <StatTile label="Spend today" value={fmtUsd(spend)} icon="analytics"
-          delta={`cap ${a.dailyBudgetUsd == null ? 'default' : fmtUsd(a.dailyBudgetUsd)}${withRoles}`} />
-        <StatTile label="Runs today" value={runs} icon="logs" delta={withRoles ? 'incl. roles' : undefined} />
-        <div className="stat-tile">
-          <div className="text-micro" style={{ color: 'var(--color-ink-dim)', textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: 10 }}>Last run</div>
-          <LastRun activity={act} />
-          {act?.lastRunAt && <div className="text-micro tabular-nums" style={{ marginTop: 8, color: 'var(--color-ink-dim)' }}>{fmtDate(act.lastRunAt)}</div>}
-        </div>
-      </div>
+    <StatStrip label="Key numbers">
+      <StatTile label="Spend today" value={fmtUsd(spend)}
+        delta={`cap ${a.dailyBudgetUsd == null ? 'default' : fmtUsd(a.dailyBudgetUsd)}${withRoles}`} />
+      <StatTile label="Runs today" value={runs} deltaTone={lastBad ? 'danger' : 'neutral'}
+        delta={`${act?.lastRunAt ? `last ${lastBad ? 'failed ' : ''}${fmtRelative(act.lastRunAt)}` : 'no runs yet'}${withRoles}`} />
+      {card && (
+        <StatTile label="Daily plan" value={card.postsPerDayMin === card.postsPerDayMax ? card.postsPerDayMin : `${card.postsPerDayMin}–${card.postsPerDayMax}`}
+          delta={planAtLine({ planHour: card.planHour, approval: card.mode === 'approve', zone: zoneLabel(card.timezone) })} />
+      )}
+      {a.kind === 'orchestrator' && a.scopeId && <AdviceTile handle={a.handle} />}
+    </StatStrip>
+  );
+}
 
-      {a.kind === 'orchestrator' && a.scopeId && <ConflictsLine handle={a.handle} />}
-      {a.kind === 'orchestrator' && <ActiveEffects agent={a} delay={20} />}
-      {a.kind === 'orchestrator' && a.scopeId && <ResourceSection handle={a.handle} />}
-      {a.kind === 'orchestrator' && a.scopeId && <FormattingSection handle={a.handle} />}
-      {a.kind === 'orchestrator' && a.scopeId?.startsWith('telegram:') && <PausedSeries handle={a.handle} />}
-      {a.kind === 'orchestrator' && a.scopeId?.startsWith('telegram:') && <SourcesSection handle={a.handle} />}
-      {a.kind === 'orchestrator' && a.scopeId && <ArtifactsLine handle={a.handle} targetRef={a.scopeId} />}
+export function AgentOverview({ data }: { data: AgentDetail }) {
+  const a = data.agent;
+  // Spec 038: the agent's model shown and edited is the one of the active workspace.
+  const ws: Workspace = useModelCatalog().data?.workspace ?? 'openrouter';
+  const resource = a.kind === 'orchestrator' && !!a.scopeId;
+  return (
+    <div className="agent-overview">
+      {/* The mode (and a role agent's "follows") moved to the page header; paused series to the banners under it. */}
+      <OverviewKpis data={data} />
 
-      <ProfileSummary data={data} ws={ws} />
+      {resource && <ConflictsLine handle={a.handle} />}
+      {data.channelKey && <TodaySteps data={data} delay={30} />}
+
+      {resource && (
+        <div className="agent-summaries">
+          <ChannelSummary handle={a.handle} delay={60} />
+          <FormattingSummary handle={a.handle} scopeRef={a.scopeId} channelKey={data.channelKey} delay={90} />
+        </div>
+      )}
+      {resource && <ArtifactsLine handle={a.handle} targetRef={a.scopeId!} />}
 
       {data.children.length > 0 && (
-        <SectionCard title="Roles" icon="agents" delay={90} style={{ marginTop: 16 }}>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-            {data.children.map((c, i) => (
-              <Link key={c.id} to="/app/agents/$handle" params={{ handle: c.handle }} className="card row-lift compose-rise"
-                style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '10px 14px', textDecoration: 'none', color: 'inherit', flexWrap: 'wrap', animationDelay: `${i * 30}ms` }}>
-                <AgentGlyph agent={c} size={30} />
-                <div style={{ flex: 1, minWidth: 140 }}>
-                  <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' }}>
-                    <span style={{ color: 'var(--color-ink)', fontWeight: 500 }}>{KIND_LABEL[c.kind]}</span>
-                    <span className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>@{c.handle}</span>
-                    {c.status === 'paused' && <Badge tone="danger">paused</Badge>}
-                  </div>
-                  {ownModelIn(c, ws) && <div className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>{ownModelIn(c, ws)}</div>}
+        <SectionCard title="Roles" icon="agents" flush delay={120}>
+          {data.children.map((c) => (
+            <Link key={c.id} to="/app/agents/$handle" params={{ handle: c.handle }} className="panel-row agent-role">
+              <AgentGlyph agent={c} size={30} />
+              <div className="agent-role-main">
+                <div className="agent-role-name">
+                  <span className="agent-role-kind">{KIND_LABEL[c.kind]}</span>
+                  <span className="mono agent-dim">@{c.handle}</span>
+                  {c.status === 'paused' && <Badge tone="danger">paused</Badge>}
                 </div>
-                <span style={{ display: 'inline-flex', alignItems: 'center', gap: 10, marginLeft: 'auto' }}>
-                  <LastRun activity={c.activity} />
-                  <span className="text-micro tabular-nums" style={{ color: 'var(--color-ink-muted)', minWidth: 96, textAlign: 'right' }}>
-                    {fmtUsd(c.activity?.spentTodayUsd ?? 0)} · {runsLabel(c.activity?.runsToday ?? 0)}
-                  </span>
-                </span>
-              </Link>
-            ))}
-          </div>
+                {ownModelIn(c, ws) && <div className="text-micro mono agent-dim">{ownModelIn(c, ws)}</div>}
+              </div>
+              <LastRun activity={c.activity} />
+              <span className="text-micro mono agent-muted agent-role-spend">
+                {fmtUsd(c.activity?.spentTodayUsd ?? 0)} · {runsLabel(c.activity?.runsToday ?? 0)}
+              </span>
+            </Link>
+          ))}
         </SectionCard>
       )}
     </div>
@@ -194,9 +199,10 @@ function Meta({ label, children }: { label: string; children: ReactNode }) {
   );
 }
 
-/** The profile, read-only: the key settings at a glance and Edit, which opens the form in a dialog. */
-function ProfileSummary({ data, ws }: { data: AgentDetail; ws: Workspace }) {
+/** The profile, read-only: the key settings at a glance and Edit, which opens the form in a dialog (Settings tab). */
+export function AgentProfileCard({ data }: { data: AgentDetail }) {
   const a = data.agent;
+  const ws: Workspace = useModelCatalog().data?.workspace ?? 'openrouter';
   const [editing, setEditing] = useState(false);
   const defaultModel = useModelCatalog().data?.defaultModel;
   const model = ownModelIn(a, ws);
@@ -413,7 +419,7 @@ function ArtifactsLine({ handle, targetRef }: { handle: string; targetRef: strin
     rules?.live ? `Owner rules: ${rules.summary.replace(/ rules?$/, '')}` : 'No owner rules',
   ];
   return (
-    <div className="text-body-sm compose-rise" style={{ display: 'flex', alignItems: 'center', gap: 8, margin: '12px 0 4px', color: 'var(--color-ink-muted)', flexWrap: 'wrap' }}>
+    <div className="text-body-sm compose-rise" style={{ display: 'flex', alignItems: 'center', gap: 8, color: 'var(--color-ink-muted)', flexWrap: 'wrap' }}>
       <Icon name="layers" size={14} />
       <span>{parts.join(' · ')}</span>
       <Link to="/app/agents/$handle" params={{ handle }} search={{ tab: 'artifacts' }} className="link-accent">Artifacts →</Link>
