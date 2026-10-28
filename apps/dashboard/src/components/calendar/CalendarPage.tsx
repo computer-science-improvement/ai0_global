@@ -39,6 +39,9 @@ export function CalendarPage({ search, setSearch }: { search: CalendarSearch; se
     agents, schedules, pauses, channels: channelsQ.data?.items ?? [], posts: postsQ.data ?? [], days, today,
   });
   const loading = tree.isLoading || channelsQ.isLoading;
+  // Neither the agents nor the channels came back: say so, instead of "nothing to plan".
+  const broken = !!tree.error && !tree.data && !!channelsQ.error && !channelsQ.data;
+  const retry = () => { void tree.refetch(); void channelsQ.refetch(); void postsQ.refetch(); };
 
   // A `from` equal to today is the default and stays out of the address.
   const go = (to: string) => setSearch({ from: to === today ? undefined : to });
@@ -67,7 +70,7 @@ export function CalendarPage({ search, setSearch }: { search: CalendarSearch; se
         )}
       />
 
-      {tree.error && !tree.data && (
+      {tree.error && !tree.data && !broken && (
         <div className="callout-danger cal-banner" role="alert">Agents did not load, so only channels without an agent and your own posts are shown below.</div>
       )}
       {postsQ.error && (
@@ -77,6 +80,14 @@ export function CalendarPage({ search, setSearch }: { search: CalendarSearch; se
       {loading ? (
         <div className="panel is-section cal-panel" role="status" aria-busy>
           <p className="cal-cell-msg" style={{ padding: 20, margin: 0 }}>Loading the calendar…</p>
+        </div>
+      ) : broken ? (
+        <div className="panel is-section cal-panel">
+          <EmptyState
+            icon="warning" title="The calendar could not load"
+            note="The agents and the channels did not answer. Check the connection and try again."
+            action={<button type="button" className="btn-secondary btn-sm" onClick={retry}>Try again</button>}
+          />
         </div>
       ) : rows.length === 0 ? (
         <div className="panel is-section cal-panel">

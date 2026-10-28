@@ -357,7 +357,9 @@ export function PostComposer({ editing, onDone, variant = 'page', initial, onCan
               ))}
             </div>
             {!channels.length && !channelsQ.isLoading && (
-              <p className="pc-note" style={{ color: 'var(--color-ink-muted)' }}>No channels yet. Add one under Channels first.</p>
+              <p className="pc-note" style={{ color: 'var(--color-ink-muted)' }}>
+                {channelsQ.isError ? 'Your channels did not load. Close this and try again.' : 'No channels yet. Add one under Channels first.'}
+              </p>
             )}
             {err('channel')}
             {askReason && <p className="pc-note">{askReason}</p>}
