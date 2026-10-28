@@ -17,6 +17,9 @@ import { guessLabel, newNavId, parseNavTarget } from '../nav/config';
 import { hrefOf } from '../nav/model';
 import { menuEntries } from '../nav/registry';
 import { pinPage } from '../nav/ops';
+import { liveAgentCount, liveAgentsLabel } from '../nav/sidebar-model';
+import { useEditorChannels } from '../api/editor';
+import './nav/shell.css';
 
 const COLLAPSED_KEY = 'dashboard:sidebar-collapsed';
 /** Spec 048 FR-004: on the chat page the menu is the icon rail unless the viewer opened it there (kept apart from the global choice). */
@@ -100,6 +103,8 @@ export function AppShell() {
   const nav = useResolvedNav();
   const counts = useNavBadgeCounts();
   const attention = isMobile ? rollup([...nav.pinned, ...nav.groups.flatMap((g) => g.items), ...nav.hidden], counts) : null;
+  // Spec 078: the "N agents live" pill counts the channels whose editor agent is in live mode.
+  const live = liveAgentCount(useEditorChannels().data?.channels);
 
   // Collapse the drawer whenever we leave the mobile breakpoint, so resizing
   // a desktop window never leaves a stray overlay open.
@@ -139,12 +144,7 @@ export function AppShell() {
         )}
 
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0, minHeight: 0 }}>
-          <header style={{
-            display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap',
-            padding: isMobile ? '10px 14px' : '12px 20px',
-            borderBottom: '1px solid var(--color-hairline)',
-            background: 'var(--color-canvas)', position: 'sticky', top: 0, zIndex: 10,
-          }}>
+          <header className="topbar">
             {isMobile && (
               <button
                 onClick={() => setNavOpen(true)}
@@ -166,10 +166,16 @@ export function AppShell() {
             <button type="button" className="cmdk-trigger" onClick={() => setPaletteOpen(true)}
               aria-label={`Search pages and actions (${IS_MAC ? '⌘' : 'Ctrl'} K)`} title={`Search (${IS_MAC ? '⌘' : 'Ctrl'} K)`}>
               <Icon name="search" size={15} />
-              {!isMobile && <span>Search…</span>}
+              {!isMobile && <span>Search pages and actions…</span>}
               {!isMobile && <kbd className="kbd">{IS_MAC ? '⌘' : 'Ctrl'} K</kbd>}
             </button>
-            <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: isMobile ? 8 : 12 }}>
+            <div className="topbar-end">
+              {live > 0 && (
+                <span className="shell-live" title="Channels whose agent publishes on its own (live mode)">
+                  <span className="shell-live-dot" aria-hidden />
+                  {liveAgentsLabel(live)}
+                </span>
+              )}
               <Button
                 variant="primary"
                 style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}
@@ -183,8 +189,8 @@ export function AppShell() {
 
           <main style={fullBleed ? { flex: 1, minHeight: 0, width: '100%', overflow: 'hidden' } : {
             flex: 1,
-            padding: isMobile ? '16px 14px 48px' : '24px 30px 60px',
-            maxWidth: 1320, margin: '0 auto', width: '100%',
+            padding: isMobile ? '16px 16px 48px' : '32px 32px 48px',
+            maxWidth: 1240, margin: '0 auto', width: '100%',
           }}>
             <Outlet />
           </main>
