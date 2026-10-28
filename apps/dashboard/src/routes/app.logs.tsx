@@ -2,6 +2,7 @@
 // (GET /activity). Platform + activity-type tabs, a time-range / strategy /
 // channel filter row, 50-per-page pagination, and expandable rows that reveal
 // the run's execution trace (service · action · duration, failing step flagged).
+// Spec 078 C3: a day-grouped timeline in Kyiv time (mono time column, status mark on a spine).
 
 import { useMemo, useState } from 'react';
 import { createFileRoute } from '@tanstack/react-router';
@@ -9,14 +10,18 @@ import { useQuery } from '@tanstack/react-query';
 import { PageHeader } from '../components/ui/PageHeader';
 import { SegmentedTabs } from '../components/SegmentedTabs';
 import { Badge } from '../components/ui/Badge';
+import { StatusMark } from '../components/ui/StatusMark';
 import { Pagination } from '../components/Pagination';
 import { Icon, type IconName } from '../components/ui/Icon';
-import { SectionCard, EmptyState, StatusDot, type Tone } from '../components/ui/primitives';
+import { SectionCard, EmptyState } from '../components/ui/primitives';
 import { activityApi } from '../api/activity';
 import { useStrategies } from '../api/strategies';
 import { useMetaAccounts } from '../api/meta-accounts';
-import { fmtDate } from '../lib/format';
+import { dayEyebrow, dayHeading, fmtDayShort, groupByDay } from '../lib/day-groups';
+import { markTone, type MarkKind } from '../lib/status-tone';
+import { KYIV_TZ, dayIn, fmtDateTimeIn, formatIn } from '../lib/zoned-time';
 import type { ActivityEvent, ActivityType, RunStep } from '../api/types';
+import '../components/activity/activity.css';
 
 export const Route = createFileRoute('/app/logs')({ component: LogsPage });
 
@@ -40,19 +45,13 @@ const RANGE_TABS: ReadonlyArray<{ key: string; label: string; hours: number }> =
   { key: '30d', label: '30 days',  hours: 24 * 30 },
 ];
 
-const TYPE_META: Record<ActivityType, {
-  label: string;
-  tone: 'success' | 'danger' | 'warning' | 'neutral';
-  dot: Tone;
-  icon: IconName;
-}> = {
-  posted:  { label: 'Posted',  tone: 'success', dot: 'success', icon: 'check'   },
-  error:   { label: 'Error',   tone: 'danger',  dot: 'danger',  icon: 'warning' },
-  skipped: { label: 'Skipped', tone: 'warning', dot: 'warning', icon: 'pause'   },
-  running: { label: 'Running', tone: 'neutral', dot: 'accent',  icon: 'refresh' },
-};
+// An activity type is drawn with the mark (and the Badge tone) of the status it stands for: the one status map of the app.
+const EVENT_MARK: Record<ActivityType, MarkKind> = { posted: 'published', error: 'failed', skipped: 'skipped', running: 'running' };
+const EVENT_LABEL: Record<ActivityType, string> = { posted: 'Posted', error: 'Error', skipped: 'Skipped', running: 'Running' };
 
-const STEP_TONE: Record<RunStep['status'], Tone> = { ok: 'success', error: 'danger', skipped: 'warning' };
+// A step of a run's trace (ok / error / skipped) is drawn with the same marks.
+const STEP_MARK: Record<RunStep['status'], MarkKind> = { ok: 'published', error: 'failed', skipped: 'skipped' };
+const STEP_LABEL: Record<RunStep['status'], string> = { ok: 'OK', error: 'Failed', skipped: 'Skipped' };
 
 const PLATFORM_TABS: ReadonlyArray<{ key: string; label: string; icon: IconName }> = [
   { key: 'telegram', label: 'Telegram', icon: 'telegram' },
@@ -68,42 +67,31 @@ function RunStepsPanel({ runId }: { runId: string }) {
     staleTime: 30_000,
   });
 
-  if (q.isLoading) return <p className="text-micro" style={{ color: 'var(--color-ink-dim)', margin: '4px 0 0 40px' }}>Loading trace…</p>;
+  if (q.isLoading) return <div className="log-trace"><span className="log-trace-note">Loading trace…</span></div>;
   const steps = q.data ?? [];
-  if (!steps.length) return <p className="text-micro" style={{ color: 'var(--color-ink-dim)', margin: '4px 0 0 40px' }}>No execution trace recorded for this run.</p>;
+  if (!steps.length) return <div className="log-trace"><span className="log-trace-note">No execution trace recorded for this run.</span></div>;
 
   return (
-    <div style={{ margin: '6px 0 2px 40px', paddingLeft: 14, borderLeft: '1px solid var(--color-hairline)', display: 'flex', flexDirection: 'column', gap: 8 }}>
+    <div className="log-trace">
       {steps.map((s) => (
         <div key={s.seq}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <StatusDot tone={STEP_TONE[s.status]} size={7} />
-            <span className="text-body-sm" style={{ color: 'var(--color-ink)', fontWeight: 500 }}>{s.service}</span>
-            <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>· {s.action}</span>
-            <span className="text-micro" style={{ marginLeft: 'auto', color: 'var(--color-ink-dim)', fontVariantNumeric: 'tabular-nums' }}>
-              {s.durationMs}ms
-            </span>
+          <div className="log-step-head">
+            <StatusMark status={STEP_MARK[s.status]} label={STEP_LABEL[s.status]} size={10} />
+            <span className="log-step-service">{s.service}</span>
+            <span className="log-step-action">· {s.action}</span>
+            <span className="log-step-ms mono tabular-nums">{s.durationMs} ms</span>
           </div>
-          {s.error && (
-            <p className="text-micro" style={{ margin: '2px 0 0 15px', color: 'var(--color-danger)', whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}>
-              {s.error}
-            </p>
-          )}
-          {s.detail && !s.error && (
-            <p className="text-micro" style={{ margin: '2px 0 0 15px', color: 'var(--color-ink-muted)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-              {s.detail}
-            </p>
-          )}
+          {s.error && <p className="log-step-body is-error">{s.error}</p>}
+          {s.detail && !s.error && <p className="log-step-body is-detail clamp" style={{ ['--clamp' as string]: 2 }}>{s.detail}</p>}
         </div>
       ))}
     </div>
   );
 }
 
-// A single feed row — status-rail dot + timeline spine, actor hierarchy, hover
-// lift. Strategy-run rows expand to reveal the execution trace.
-function LogRow({ e, index, isLast }: { e: ActivityEvent; index: number; isLast: boolean }) {
-  const m = TYPE_META[e.type];
+// A single feed row: Kyiv time, status mark on the spine, what happened. Strategy-run rows are buttons that expand to the
+// execution trace.
+function LogRow({ e }: { e: ActivityEvent }) {
   const expandable = e.source === 'strategy_run';
   const [open, setOpen] = useState(false);
   const runId = expandable ? e.id.slice(e.source.length + 1) : null;
@@ -111,78 +99,34 @@ function LogRow({ e, index, isLast }: { e: ActivityEvent; index: number; isLast:
     e.detail != null ? e.detail
     : e.durationMs != null ? `Completed in ${(e.durationMs / 1000).toFixed(1)} s`
     : null;
-  const spinning = e.type === 'running';
+  const kind = EVENT_MARK[e.type];
+
+  const content = (
+    <>
+      <span className="log-time mono tabular-nums" title={`${fmtDateTimeIn(e.at, KYIV_TZ)} Kyiv`}>{formatIn(e.at, KYIV_TZ)}</span>
+      <span className="log-mark"><StatusMark status={kind} label={EVENT_LABEL[e.type]} decorative /></span>
+      <span className="log-main">
+        <span className="log-title">
+          <Badge tone={markTone(kind)}>{EVENT_LABEL[e.type]}</Badge>
+          <span className="text-body-sm log-channel">{e.channel ?? 'Unknown destination'}</span>
+          {e.strategy && <span className="log-strategy mono">› {e.strategy}</span>}
+        </span>
+        {detail && (
+          <span className={`text-body-sm log-detail clamp${e.type === 'error' ? ' is-error' : ''}`} style={{ ['--clamp' as string]: 2 }} title={e.detail ?? undefined}>
+            {detail}
+          </span>
+        )}
+      </span>
+      {expandable && <span className="log-chevron" aria-hidden><Icon name="chevron-right" size={14} /></span>}
+    </>
+  );
 
   return (
-    <div
-      className="compose-rise"
-      style={{ animationDelay: `${Math.min(index, 16) * 22}ms`, position: 'relative' }}
-      onMouseEnter={(ev) => { ev.currentTarget.style.background = 'var(--color-surface-3)'; }}
-      onMouseLeave={(ev) => { ev.currentTarget.style.background = 'transparent'; }}
-    >
-      <div
-        style={{
-          display: 'flex', gap: 14, alignItems: 'flex-start',
-          padding: '14px 16px', borderRadius: 'var(--radius-md)',
-          transition: 'background 130ms ease', cursor: expandable ? 'pointer' : 'default',
-        }}
-        onClick={expandable ? () => setOpen((v) => !v) : undefined}
-      >
-        {/* status rail: StatusDot + connecting spine (spinner ring while running) */}
-        <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', flex: 'none', width: 26 }}>
-          <span style={{
-            position: 'relative', display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-            width: 26, height: 26, flex: 'none',
-          }}>
-            <StatusDot tone={m.dot} size={10} />
-            {spinning && (
-              <span aria-hidden className="logs-spin" style={{
-                position: 'absolute', inset: 4, borderRadius: 'var(--radius-pill)',
-                border: '1.5px solid transparent', borderTopColor: 'var(--color-accent)',
-                animation: 'logs-spin 1s linear infinite',
-              }} />
-            )}
-          </span>
-          {!isLast && (
-            <span style={{ flex: 1, width: 1, minHeight: 14, marginTop: 4, background: 'var(--color-hairline)' }} />
-          )}
-        </div>
-
-        {/* body */}
-        <div style={{ flex: 1, minWidth: 0 }}>
-          <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 8, marginBottom: detail ? 4 : 0 }}>
-            <Badge tone={m.tone}><Icon name={m.icon} size={10} />{m.label}</Badge>
-            <span className="text-body-sm" style={{ color: 'var(--color-ink)', fontWeight: 500, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-              {e.channel ?? 'Unknown destination'}
-            </span>
-            {e.strategy && (
-              <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, color: 'var(--color-ink-dim)', fontSize: 12 }}>
-                <Icon name="chevron-right" size={11} />
-                <Icon name="strategies" size={11} />
-                <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: 220, color: 'var(--color-ink-muted)' }}>{e.strategy}</span>
-              </span>
-            )}
-          </div>
-          {detail && (
-            <p className="text-body-sm" style={{ margin: 0, color: e.type === 'error' ? 'var(--color-danger)' : 'var(--color-ink-muted)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }} title={e.detail ?? undefined}>
-              {detail}
-            </p>
-          )}
-          {open && runId && <RunStepsPanel runId={runId} />}
-        </div>
-
-        {/* expand chevron + timestamp */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8, flex: 'none', paddingTop: 2 }}>
-          <span className="text-body-sm" style={{ color: 'var(--color-ink-dim)', fontVariantNumeric: 'tabular-nums', whiteSpace: 'nowrap' }} title={e.at}>
-            {fmtDate(e.at)}
-          </span>
-          {expandable && (
-            <span aria-hidden style={{ display: 'inline-flex', color: 'var(--color-ink-dim)', transform: open ? 'rotate(90deg)' : 'none', transition: 'transform 130ms ease' }}>
-              <Icon name="chevron-right" size={14} />
-            </span>
-          )}
-        </div>
-      </div>
+    <div className="log-ev">
+      {expandable
+        ? <button type="button" className="panel-row log-row" aria-expanded={open} onClick={() => setOpen((v) => !v)}>{content}</button>
+        : <div className="panel-row log-row">{content}</div>}
+      {open && runId && <RunStepsPanel runId={runId} />}
     </div>
   );
 }
@@ -262,14 +206,16 @@ function LogsPage() {
 
   const items = q.data?.items ?? [];
   const total = q.data?.total ?? 0;
+  const groups = useMemo(() => groupByDay(items), [items]);
+  const today = dayIn(Date.now(), KYIV_TZ);
+  // The API counts only the filter in force, so the number sits on the selected type tab (never a stale one while a new filter loads).
+  const typeOptions = TYPE_TABS.map((t) => (t.key === type && q.data && !q.isPlaceholderData ? { ...t, count: total } : t));
 
   const selectStyle: React.CSSProperties = { padding: '6px 10px', fontSize: 12, minWidth: 130 };
 
   return (
     <div>
-      <style>{`@keyframes logs-spin { to { transform: rotate(360deg); } } @media (prefers-reduced-motion: reduce) { .logs-spin { animation: none !important; } }`}</style>
-
-      <PageHeader title="Logs" subtitle="Automation activity — posts, errors, skips. Click a run to see its execution trace." />
+      <PageHeader eyebrow={dayEyebrow(today)} title="Logs" subtitle="Automation activity — posts, errors, skips. Click a run to see its execution trace." />
 
       {/* Filter row 1: platform + type */}
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, alignItems: 'center', marginBottom: 10 }}>
@@ -277,36 +223,34 @@ function LogsPage() {
           value={platform}
           onChange={(p) => { setPlatform(p); setStrategy(''); setChannelId(''); setPage(1); }}
           options={PLATFORM_TABS}
+          ariaLabel="Platform"
         />
-        <div style={{ overflowX: 'auto', paddingBottom: 2 }}>
-          <SegmentedTabs value={type} onChange={resetPage(setType)} options={TYPE_TABS} />
+        <div style={{ overflowX: 'auto', paddingBottom: 2, maxWidth: '100%' }}>
+          <SegmentedTabs value={type} onChange={resetPage(setType)} options={typeOptions} ariaLabel="Event type" />
         </div>
-        {!q.isLoading && !q.error && (
-          <span style={{ marginLeft: 'auto', color: 'var(--color-ink-dim)', fontSize: 12, fontVariantNumeric: 'tabular-nums' }}>
-            {total} event{total === 1 ? '' : 's'}
-          </span>
-        )}
       </div>
 
       {/* Filter row 2: time range + strategy + channel */}
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, alignItems: 'center', marginBottom: 16 }}>
-        <SegmentedTabs value={range} onChange={resetPage(setRange)} options={[...RANGE_TABS.map(r => ({ key: r.key, label: r.label })), { key: 'custom', label: 'Custom' }]} />
+        <SegmentedTabs value={range} onChange={resetPage(setRange)} ariaLabel="Time range"
+          options={[...RANGE_TABS.map(r => ({ key: r.key, label: r.label })), { key: 'custom', label: 'Custom' }]} />
         {range === 'custom' && (
-          <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
-            <input type="date" value={customFrom} onChange={(e) => resetPage(setCustomFrom)(e.target.value)} className="input-field" style={selectStyle} />
-            <span style={{ color: 'var(--color-ink-dim)', fontSize: 12 }}>→</span>
-            <input type="date" value={customTo} onChange={(e) => resetPage(setCustomTo)(e.target.value)} className="input-field" style={selectStyle} />
+          <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, flexWrap: 'wrap' }}>
+            <input type="date" aria-label="From" value={customFrom} onChange={(e) => resetPage(setCustomFrom)(e.target.value)} className="input-field" style={selectStyle} />
+            <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>→</span>
+            <input type="date" aria-label="To" value={customTo} onChange={(e) => resetPage(setCustomTo)(e.target.value)} className="input-field" style={selectStyle} />
           </span>
         )}
-        <select value={strategy} onChange={(e) => resetPage(setStrategy)(e.target.value)} className="input-field" style={selectStyle}>
+        <select aria-label="Strategy" value={strategy} onChange={(e) => resetPage(setStrategy)(e.target.value)} className="input-field" style={selectStyle}>
           <option value="">All strategies</option>
           {strategyOptions.map((s) => <option key={s} value={s}>{s}</option>)}
         </select>
         <select
+          aria-label={resourceLabel}
           value={channelId}
           onChange={(e) => resetPage(setChannelId)(e.target.value)}
           className="input-field"
-          style={{ ...selectStyle, opacity: resourceOptions.length ? 1 : 0.5 }}
+          style={selectStyle}
           disabled={resourceOptions.length === 0}
           title={resourceOptions.length === 0 ? 'No accounts for this platform' : undefined}
         >
@@ -315,31 +259,17 @@ function LogsPage() {
         </select>
       </div>
 
-      {q.isLoading && (
-        <SectionCard title="Activity" icon="logs">
-          <div style={{ margin: '0 -10px' }}>
-            {[0, 1, 2, 3, 4].map((i) => (
-              <div key={i} className="compose-rise" style={{ animationDelay: `${i * 40}ms`, display: 'flex', gap: 14, alignItems: 'center', padding: '14px 16px' }}>
-                <span style={{ width: 26, height: 26, borderRadius: 'var(--radius-pill)', background: 'var(--color-surface-3)', flex: 'none' }} />
-                <span style={{ height: 12, width: `${42 + ((i * 13) % 34)}%`, borderRadius: 'var(--radius-pill)', background: 'var(--color-surface-3)' }} />
-              </div>
-            ))}
-          </div>
-        </SectionCard>
-      )}
+      {q.isLoading && <div className="panel compose-rise" aria-busy="true" style={{ height: 160, opacity: 0.55 }} />}
 
       {q.error && (
-        <div className="card" style={{ display: 'flex', alignItems: 'center', gap: 12, padding: 16, borderColor: 'var(--color-danger-soft)' }}>
-          <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 30, height: 30, borderRadius: 'var(--radius-pill)', background: 'var(--color-danger-soft)', color: 'var(--color-danger)', flex: 'none' }}>
-            <Icon name="warning" size={15} />
-          </span>
-          <div style={{ flex: 1, minWidth: 0 }}>
-            <p className="text-body-sm" style={{ margin: 0, color: 'var(--color-ink)', fontWeight: 500 }}>Couldn’t load activity</p>
-            <p className="text-body-sm" style={{ margin: '2px 0 0', color: 'var(--color-ink-muted)' }}>{(q.error as Error).message}</p>
+        <div className="callout-danger" style={{ flexWrap: 'wrap' }}>
+          <Icon name="warning" size={16} />
+          <div style={{ flex: '1 1 220px', minWidth: 0 }}>
+            <div className="text-heading-md">Couldn’t load activity</div>
+            <div className="text-body-sm" style={{ color: 'var(--color-ink-muted)', marginTop: 2, overflowWrap: 'anywhere' }}>{(q.error as Error).message}</div>
           </div>
-          <button className="btn-secondary" onClick={() => q.refetch()}>
-            <span style={{ display: 'inline-flex', marginRight: 6, verticalAlign: '-2px' }}><Icon name="refresh" size={13} /></span>
-            Retry
+          <button className="btn-secondary btn-sm" onClick={() => q.refetch()}>
+            <Icon name="refresh" size={13} /> Retry
           </button>
         </div>
       )}
@@ -354,12 +284,23 @@ function LogsPage() {
 
       {!q.isLoading && !q.error && items.length > 0 && (
         <>
-          <SectionCard title="Activity" icon="logs">
-            <div style={{ margin: '0 -10px' }}>
-              {items.map((e, i) => (
-                <LogRow key={e.id} e={e} index={i} isLast={i === items.length - 1} />
-              ))}
-            </div>
+          <SectionCard title="Activity" flush delay={40}
+            action={<span className="mono text-caption" style={{ color: 'var(--color-ink-dim)' }}>Kyiv time</span>}>
+            {groups.map((g, gi) => {
+              const heading = dayHeading(g.day, today);
+              return (
+                <div key={`${g.day}-${gi}`} className="log-group">
+                  <div className="log-day">
+                    <span className="text-overline">{heading}</span>
+                    {(heading === 'Today' || heading === 'Yesterday') && <span className="mono text-micro" style={{ color: 'var(--color-ink-dim)' }}>{fmtDayShort(g.day)}</span>}
+                    <span className="log-day-count mono tabular-nums">{g.items.length}</span>
+                  </div>
+                  <div>
+                    {g.items.map((e) => <LogRow key={e.id} e={e} />)}
+                  </div>
+                </div>
+              );
+            })}
           </SectionCard>
           <Pagination page={page} pageSize={PAGE} total={total} onPage={setPage} />
         </>
