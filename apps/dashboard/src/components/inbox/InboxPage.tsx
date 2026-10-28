@@ -11,7 +11,7 @@ import { PageHeader } from '../ui/PageHeader';
 import type { Crumb } from '../ui/Crumbs';
 import { SectionCard, EmptyState } from '../ui/primitives';
 import { Button } from '../ui/Button';
-import { toast } from '../ui/Toast';
+import { describeError, toast } from '../ui/Toast';
 import { SegmentedTabs } from '../SegmentedTabs';
 import { Modal } from '../Modal';
 import { ApprovalList } from '../approvals/ApprovalList';
@@ -20,7 +20,7 @@ import { InboxDetail } from './InboxDetail';
 import { useMediaQuery } from '../../lib/useMediaQuery';
 import { flattenTree, resolveHandle } from '../../lib/inbox-ref';
 import {
-  APPROVALS_EMPTY_NOTE, agentLabel, autoView, emptyCopy, findNote, groupBySubject, inTab, markedText, newestFirst,
+  APPROVALS_EMPTY_NOTE, INBOX_LIMIT, agentLabel, autoView, emptyCopy, findNote, groupBySubject, inTab, markedText, newestFirst,
   resolveView, selectNote, singleRows, tabCounts, toSearch, unreadIdsOf, type InboxSearch, type InboxTab,
 } from '../../lib/inbox-view';
 import { useAgentInbox, useAgentTree, useMarkInboxRead, useMarkInboxUnread, type AgentNode, type InboxItem } from '../../api/agents';
@@ -85,6 +85,13 @@ export function InboxPage({ search, crumbs, onNavigate }: {
   const setUnread = (u: boolean) => { prev.current = null; go({ unread: u }); };
   const closeSheet = () => go({ note: null });
 
+  // A `?note=` that is not in the list any more (marked done, another tab) is dropped from the URL.
+  const settled = !!source.data && !source.isFetching;
+  useEffect(() => {
+    if (!tab || tab === 'approvals' || !settled || resolved.note == null) return;
+    if (!findNote(rows, resolved.note)) go({ note: null });
+  });
+
   const markDone = (ids: number[], closeAfter = false) => {
     if (!ids.length) return;
     markRead.mutate(ids, {
@@ -137,11 +144,13 @@ export function InboxPage({ search, crumbs, onNavigate }: {
         </SectionCard>
       )}
 
+      {showNotes && source.error && !source.data && <div className="callout-danger">{describeError(source.error)}</div>}
       {showNotes && !source.data && !source.error && <div className="panel is-section compose-rise" style={{ height: 160, opacity: 0.55 }} role="status" aria-label="Loading notes" />}
 
       {showNotes && source.data && rows.length === 0 && empty && (
         <div className="panel is-section">
-          <EmptyState tone={empty.tone} title={empty.title} note={empty.note} />
+          <EmptyState tone={empty.tone} title={empty.title} note={empty.note}
+            action={unreadOnly ? <Button variant="secondary" size="sm" onClick={() => setUnread(false)}>Show read notes</Button> : undefined} />
         </div>
       )}
 
@@ -149,7 +158,8 @@ export function InboxPage({ search, crumbs, onNavigate }: {
         <div className="inbox-split">
           <InboxList groups={rows} selectedKey={selection?.group.key ?? null} popup={narrow}
             showUnreadDot={!unreadOnly} whoOf={(it) => { const a = agentOf(it); return a ? agentLabel(a) : null; }}
-            onSelect={(it) => go({ note: it.id })} />
+            onSelect={(it) => go({ note: it.id })}
+            footer={items.length >= INBOX_LIMIT ? `Showing the ${INBOX_LIMIT} newest notes.` : undefined} />
           {!narrow && selection && (
             <section key={selection.note.id} className="panel is-section inbox-pane anim-fade-up" aria-label="Selected note">
               <InboxDetail item={selection.note} group={selection.group} agent={agentOf(selection.note)} tree={agents} variant="pane" busy={busy}

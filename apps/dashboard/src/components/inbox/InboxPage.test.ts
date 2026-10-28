@@ -88,6 +88,7 @@ test('a bare URL with nothing unread and nothing waiting is the good kind of emp
   const html = await page({}, { unread: [], waiting: 0 });
   assert.equal(selectedTab(html), 'All0');
   assert.match(html, /All clear/);
+  assert.match(html, /Show read notes/);
   assert.match(html, /is-clear/);
   assert.match(html, /<button[^>]*disabled[^>]*>Mark all as done<\/button>/);
   assert.doesNotMatch(html, /Selected note/);
@@ -150,4 +151,26 @@ test('the All view collapses repeats of one problem into one row', async () => {
   // the severity tabs list every note
   const action = await page({ tab: 'action', unread: false }, { all: items, unread: [items[0], items[2]] });
   assert.equal(rowTitles(action).length, 3);
+});
+
+test('an inbox endpoint that fails shows the error, not a crash, and To approve still works', async () => {
+  const html = await page({}, { broken: true, waiting: 0 });
+  assert.match(html, /callout-danger/);
+  assert.match(html, /not_found/);
+  assert.equal(selectedTab(html), 'All');
+  // no counts for the notes tabs
+  assert.doesNotMatch(html, /Critical<span/);
+  // posts waiting and no way to know about notes: the page opens on the posts
+  const posts = await page({}, { broken: true, waiting: 2 });
+  assert.equal(selectedTab(posts), 'To approve2');
+  assert.doesNotMatch(posts, /callout-danger/);
+  // and the notes tab of the same page shows the error
+  assert.match(await page({ tab: 'critical' }, { broken: true, waiting: 2 }), /callout-danger/);
+});
+
+test('at the server cap the list says it shows the newest 200 notes', async () => {
+  const many = Array.from({ length: 200 }, (_, i) => note(i + 1, { title: `Note ${i + 1}` }));
+  const html = await page({ tab: 'all', unread: true }, { unread: many });
+  assert.match(html, /Showing the 200 newest notes\./);
+  assert.doesNotMatch(await page({}), /newest notes/);
 });
