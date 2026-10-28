@@ -12,11 +12,11 @@ Paths are relative to `apps/dashboard/src` unless they start with `apps/`, `docs
 Brief: `research/design-language.md` (all). Handoff §1, §1.1, §2. Prototype CSS of all four app prototypes.
 Owns: `index.css`, `components/ui/*` (except new files other agents add), `SegmentedTabs.tsx`, `Modal.tsx`, `Pagination.tsx`, `lib/status-tone.ts` (new), `lib/useReducedMotion.ts` (new), the six recharts files (animation flag only), `editor/EditorUi.tsx` (tone maps only), `routes/app.index.tsx` (only its local slot tone map → status-tone), `routes/app.landing.tsx` / `routes/app.logs.tsx` (reduced-motion guards only), the 13 hard-coded mono stacks, `data/SchemaEditor.tsx:181`, `apps/dashboard/CLAUDE.md`.
 Must NOT edit: `AppShell.tsx`, `AppSidebar.tsx`, `nav/*` (A2), `api/*` (A3).
-- [ ] A1.1 Tokens (D1): ink-dim/muted, `--font-mono`, `--color-on-warning`, shadow and motion tokens, `.text-heading-md`, `.mono`, `.text-overline`, `.page-title`; replace hard-coded mono stacks; `--shadow-2` defined.
-- [ ] A1.2 Status system (D2): `lib/status-tone.ts` (slot + publication tones, labels, `isMissed`, with node tests pinning the backend prefix lists), `ui/StatusMark.tsx`, MODE_TONE remap + MODE_OPTIONS tones, replace the local maps in `app.index.tsx` and `EditorUi.tsx` (and `app.scheduled.tsx` STATUS_TONE).
-- [ ] A1.3 Global CSS restyle (D3, brief §3–§4): buttons, focus, links, inputs, panel/card/section-head, stat-tile, empty-state, callouts, chip, tabs-pill → track, table-wrap, modal shell, nav-link/nav-badge (classes only; A2 changes the markup), cmdk-trigger/kbd/crumbs, new layout classes (`.panel-head`, `.panel-row`, `.panel-foot`, `.panel-link`, `.inset`, `.code-block`, `.sev*`, `.pill-live`, `.chip-toggle`, `.btn-warning`, `.stat-strip`, keyframes `fade-up`, `pop`, `slide-left`, `pulse-ring`, `grow-x`, `grow-y`), global reduced-motion block, `@media (hover:none)` reveals; delete dead `.nav-item` / `.btn-translucent`.
-- [ ] A1.4 Primitives: `PageHeader` (eyebrow, `.page-title`), `SectionCard` (`flush`, `is-section`, `.panel-link` action), `StatTile` (`spark`, sentence-case label) + `StatStrip` + `Sparkline`, `Badge` 11/600, `EmptyState` `tone`, `SeverityPill` + `LivePill`, `SegmentedTabs` (`count`, `tone`, `variant: 'track'|'underline'`, `size: 'sm'|'md'|'lg'`), `Toast` (div item, optional `{action, ttlMs}`, backward compatible), `Modal` (`size: 'drawer'`, bottom sheet ≤600, hairlines, quiet close), `usePrefersReducedMotion` + `isAnimationActive` in the six charts, chart tooltip radius → token.
-- [ ] A1.5 Docs: `apps/dashboard/CLAUDE.md` (D3 list), index.css comments; a short "Design language" section at the top of CLAUDE.md that wave C agents will follow (page header + eyebrow, flush panel rows, StatStrip, track tabs with counts, StatusMark vs Badge, mono usage, no literal hex/px radius, ≥11px text).
+- [x] A1.1 Tokens (D1): ink-dim/muted, `--font-mono`, `--color-on-warning`, shadow and motion tokens, `.text-heading-md`, `.mono`, `.text-overline`, `.page-title`; replace hard-coded mono stacks; `--shadow-2` defined.
+- [x] A1.2 Status system (D2): `lib/status-tone.ts` (slot + publication tones, labels, `isMissed`, with node tests pinning the backend prefix lists), `ui/StatusMark.tsx`, MODE_TONE remap + MODE_OPTIONS tones, replace the local maps in `app.index.tsx` and `EditorUi.tsx` (and `app.scheduled.tsx` STATUS_TONE).
+- [x] A1.3 Global CSS restyle (D3, brief §3–§4): buttons, focus, links, inputs, panel/card/section-head, stat-tile, empty-state, callouts, chip, tabs-pill → track, table-wrap, modal shell, nav-link/nav-badge (classes only; A2 changes the markup), cmdk-trigger/kbd/crumbs, new layout classes (`.panel-head`, `.panel-row`, `.panel-foot`, `.panel-link`, `.inset`, `.code-block`, `.sev*`, `.pill-live`, `.chip-toggle`, `.btn-warning`, `.stat-strip`, keyframes `fade-up`, `pop`, `slide-left`, `pulse-ring`, `grow-x`, `grow-y`), global reduced-motion block, `@media (hover:none)` reveals; delete dead `.nav-item` / `.btn-translucent`.
+- [x] A1.4 Primitives: `PageHeader` (eyebrow, `.page-title`), `SectionCard` (`flush`, `is-section`, `.panel-link` action), `StatTile` (`spark`, sentence-case label) + `StatStrip` + `Sparkline`, `Badge` 11/600, `EmptyState` `tone`, `SeverityPill` + `LivePill`, `SegmentedTabs` (`count`, `tone`, `variant: 'track'|'underline'`, `size: 'sm'|'md'|'lg'`), `Toast` (div item, optional `{action, ttlMs}`, backward compatible), `Modal` (`size: 'drawer'`, bottom sheet ≤600, hairlines, quiet close), `usePrefersReducedMotion` + `isAnimationActive` in the six charts, chart tooltip radius → token.
+- [x] A1.5 Docs: `apps/dashboard/CLAUDE.md` (D3 list), index.css comments; a short "Design language" section at the top of CLAUDE.md that wave C agents will follow (page header + eyebrow, flush panel rows, StatStrip, track tabs with counts, StatusMark vs Badge, mono usage, no literal hex/px radius, ≥11px text).
 
 ### A2 Navigation, sidebar and top bar
 Brief: `research/nav.md` (all, Skeptic sections override). Handoff §3. Prototype: the `aside.side` and `.top` parts of `App-Today.dc.html`.
@@ -107,5 +107,35 @@ Brief: `research/other-pages.md` §3 (per page) and §5 (batches); CLAUDE.md "De
 ## Status
 (filled in per commit)
 
+- A1 Foundation (branch `worktree-wf_9569abf2-5cb-1`, base `8492e74f`), done:
+  - A1.1 `18bd57dd` tokens
+  - A1.2 `f7848f43` status system
+  - A1.3 `5fd317ca` global CSS restyle
+  - A1.4 `6f980ffe` primitives
+  - A1.5 `b1eeab4d` docs (CLAUDE.md "Design language", index.css comments)
+  - Checked under Node 20: `tsc --noEmit` clean, 321 node tests pass, `VITE_ALLOW_DEV_AUTH=true npm run build` builds. Browser pass is the lead's.
+
 ## Deltas from the spec
 (each agent appends its own subsection)
+
+### A1
+- **Tokens:** added `--color-on-danger` (dark text on the danger fill; white was 3.1:1). Shadow and motion tokens live in a plain `:root` block, not `@theme`, because Tailwind v4 only emits `@theme` variables that are referenced.
+- **Status marks:** `not_planned` is a dashed rounded square and `yours` is a target (ring plus dot), so neither shares its shape with the dashed `shadowed` circle or the plain ring. `expired` is warning-toned in the status table (handoff) while its mark is grey. The publication `canceled` tone is neutral, per the handoff. `app.index.tsx` "not planned" Badge is now warning-toned (it was neutral).
+- **Reduced motion:** the global block collapses durations and also zeroes `animation-delay` and `transition-delay`, with `iteration-count: 1`, and never uses `animation: none` (`.compose-rise` and `.group-card` start at opacity 0). The tooltip animation is also disabled. Charts take `isAnimationActive={!reduced}` from the new `lib/useReducedMotion.ts`.
+- **Primitives:**
+  - `SectionCard.action` stays a free ReactNode; it is not wrapped in `.panel-link` automatically (a page passes `className="panel-link"` to its link).
+  - `PageHeader` `title` and `subtitle` are widened to ReactNode.
+  - `SegmentedTabs` now sets `type="button"` on its options.
+  - `Pagination` Prev and Next both use `btn-secondary btn-sm`.
+  - The `Toaster` live region (`aria-live="polite"`) is always mounted, even when empty, so screen readers announce additions.
+  - `Button` gained `variant="warning"` and `size="sm"`.
+- **Global CSS:**
+  - `.group-card` and `.group-hub` are flattened and use tokens.
+  - Nav and cmdk font sizes below 11px were raised to 11px.
+  - Raw `.panel` padding went 18 to 20px and `.input-field` text went 15 to 14px.
+  - `.empty-note` has a 420px max-width.
+  - `.nav-group-title` is left to A2 (`nav/*` is A2's).
+- **Left for other tasks:**
+  - `AppSidebar.tsx:154` (A2) and `agents/NetworkOfferActions.tsx:68,71` (B3) use `btn-primary` / `btn-secondary` with inline compact padding and are now 40px tall.
+  - `SidebarItem.tsx:63` (A2) still sets an inline `borderColor` on `.nav-badge`, so every badge reads as warning until A2 adds `.is-danger` / `.is-accent`.
+- **Touched outside A1's files** (all listed in the task): the mono font stacks in `components/agents/AgentLoadout.tsx`, `AgentSkills.tsx`, `components/artifacts/ArtifactPanel.tsx`, `components/chat/{ActionCard,SlashMenu,ToolChips}.tsx`, `components/sysadmin/AuditBody.tsx`, `routes/app.models.tsx`; `components/data/SchemaEditor.tsx` (line 181, `var(--shadow-2)`); `routes/app.scheduled.tsx` (publication status tone); `routes/app.index.tsx`, `routes/app.landing.tsx`, `routes/app.logs.tsx` (status map, reduced-motion guards).
