@@ -29,6 +29,7 @@ export interface BadgeCounts {
 }
 
 const plural = (n: number, one: string, many: string) => `${n} ${n === 1 ? one : many}`;
+const known = (...xs: Array<number | null | undefined>) => xs.some((x) => typeof x === 'number');
 const sum = (...xs: Array<number | null | undefined>) => xs.reduce<number>((s, x) => s + (typeof x === 'number' && x > 0 ? x : 0), 0);
 
 /** The counter an item with badge `key` shows, or null for none (zero, null or unknown). */
@@ -38,9 +39,18 @@ export function badgeFor(key: BadgeKey | null, c: BadgeCounts): BadgeView | null
   switch (key) {
     case 'approvals':
       return view(sum(c.approvalsWaiting), 'warning', `${plural(sum(c.approvalsWaiting), 'post', 'posts')} awaiting approval`);
-    case 'agentsInbox':
-      return view(sum(c.agentInboxUnread), sum(c.agentInboxCritical) > 0 ? 'danger' : 'warning',
-        `${sum(c.agentInboxUnread)} unread${sum(c.agentInboxCritical) ? `, ${sum(c.agentInboxCritical)} critical` : ''}`);
+    case 'agentsInbox': {
+      // Spec 078: the Inbox shows the unread notes plus the posts waiting for approval; the title spells out both.
+      if (!known(c.agentInboxUnread, c.approvalsWaiting)) return null;
+      const unread = sum(c.agentInboxUnread);
+      const critical = sum(c.agentInboxCritical);
+      const waiting = sum(c.approvalsWaiting);
+      const parts = [
+        unread ? `${unread} unread${critical ? `, ${critical} critical` : ''}` : '',
+        waiting ? `${plural(waiting, 'post', 'posts')} to approve` : '',
+      ].filter(Boolean);
+      return view(unread + waiting, critical > 0 ? 'danger' : 'warning', parts.join(' · '));
+    }
     case 'directives':
       return view(sum(c.directivesAwaitingOwner), 'danger', `${plural(sum(c.directivesAwaitingOwner), 'directive awaits', 'directives await')} your decision`);
     case 'chat':
@@ -67,8 +77,8 @@ export function badgeText(count: number): string {
 
 const RANK: Record<BadgeTone, number> = { accent: 0, warning: 1, danger: 2 };
 
-/** Counters that already include others. */
-const COVERS: Partial<Record<BadgeKey, BadgeKey[]>> = {};
+/** Counters that already include others: the Inbox sums its unread notes and the posts waiting for approval. */
+const COVERS: Partial<Record<BadgeKey, BadgeKey[]>> = { agentsInbox: ['approvals'] };
 
 /** Badge keys the visible menu already shows (directly or inside a sum). */
 export function shownKeys(visible: ResolvedItem[]): Set<BadgeKey> {
@@ -80,10 +90,13 @@ export function shownKeys(visible: ResolvedItem[]): Set<BadgeKey> {
 /**
  * The strongest counter among `items` (FR-011/FR-014: the mobile hamburger dot,
  * and hidden items rolling up), with a combined title. `skip`: keys already
- * shown elsewhere. null when nothing counts.
+ * shown elsewhere. A counter inside another item's sum (approvals inside the
+ * Inbox) is counted once, whichever of the two comes first in `items`. null
+ * when nothing counts.
  */
 export function rollup(items: ResolvedItem[], c: BadgeCounts, skip: Set<BadgeKey> = new Set()): { tone: BadgeTone; title: string; count: number } | null {
   const seen = new Set<string>(skip);
+  for (const key of [...skip, ...items.map((i) => i.badge)]) for (const k of (key && COVERS[key]) || []) seen.add(k);
   let best: BadgeTone | null = null;
   const titles: string[] = [];
   let count = 0;
