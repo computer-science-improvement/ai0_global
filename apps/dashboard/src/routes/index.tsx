@@ -1,19 +1,25 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { MotionConfig, motion } from 'motion/react';
 import { Icon } from '../components/ui/Icon';
 import { NetworkShowcase } from '../components/landing/NetworkShowcase';
 import { MediaKit } from '../components/landing/MediaKit';
 import { ProofStrip } from '../components/landing/ProofStrip';
-import { AgentHierarchy } from '../components/landing/AgentHierarchy';
 import { HowItWorks } from '../components/landing/HowItWorks';
+import { HeroHeadline } from '../components/landing/HeroHeadline';
+import { HeroOrbit } from '../components/landing/HeroOrbit';
+import { AgentLog } from '../components/landing/AgentLog';
+import { ChannelMarquee } from '../components/landing/ChannelMarquee';
+import { CountUp } from '../components/landing/CountUp';
+import { LoopScope } from '../components/landing/LandingMotion';
+import '../components/landing/landing.css';
 import { AdCtaPair, AdDmLink, LandingCtaProvider, NoTelegramLink, sendCtaBeacon, type LandingCtaApi } from '../components/landing/cta';
 import { AdLeadModal } from '../components/landing/LeadForms';
 import { WhiteLabelSection } from '../components/landing/WhiteLabel';
 import { whiteLabelVisible } from '../lib/lead-form';
 import type { LandingPlacement } from '../api/landing';
 import { useLandingNetworks, useLandingPublicConfig, useLandingPulse } from '../api/landing';
-import { audienceStats, compact, heroPill, heroPlatforms } from '../lib/landing-view';
+import { audienceStats, heroLivePill, heroPlatforms } from '../lib/landing-view';
 
 export const Route = createFileRoute('/')({ component: LandingPage });
 
@@ -24,39 +30,6 @@ const reveal = {
   viewport: { once: true, margin: '-80px' },
   transition: { duration: 0.55, ease: [0.2, 0.7, 0.2, 1] as const },
 };
-
-/** Self-contained rAF count-up: starts when the number scrolls into view,
- *  renders the final value immediately under prefers-reduced-motion. */
-function CountUp({ to }: { to: number }) {
-  const ref = useRef<HTMLSpanElement>(null);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      el.textContent = compact(to);
-      return;
-    }
-    let raf = 0;
-    const run = () => {
-      const t0 = performance.now();
-      const dur = 1100;
-      const step = (t: number) => {
-        const p = Math.min(1, (t - t0) / dur);
-        const eased = 1 - Math.pow(1 - p, 3);
-        el.textContent = compact(Math.round(to * eased));
-        if (p < 1) raf = requestAnimationFrame(step);
-      };
-      raf = requestAnimationFrame(step);
-    };
-    const io = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { io.disconnect(); run(); } },
-      { threshold: 0.4 },
-    );
-    io.observe(el);
-    return () => { io.disconnect(); cancelAnimationFrame(raf); };
-  }, [to]);
-  return <span ref={ref} className="lp-stat-num">0</span>;
-}
 
 function LandingPage() {
   const { data: networks, isLoading, isError } = useLandingNetworks();
@@ -75,6 +48,8 @@ function LandingPage() {
   const [adForm, setAdForm] = useState<{ placement: LandingPlacement; target?: string | null } | null>(null);
   const cta: LandingCtaApi = { track: sendCtaBeacon, openAdForm: setAdForm };
 
+  const pill = heroLivePill(livePulse, platforms.length);
+
   return (
     <MotionConfig reducedMotion="user">
     <LandingCtaProvider value={cta}>
@@ -85,92 +60,81 @@ function LandingPage() {
         <span className="lp-grid" />
       </div>
 
-      {/* ── Top bar ─────────────────────────────────────────────── */}
-      <header className="lp-topbar">
-        <span className="wordmark">
-          <span className="dot" />
-          ai0
-        </span>
-        <nav style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-xs)' }}>
-          {adUrls.topbar
-            ? <AdDmLink href={adUrls.topbar} placement="topbar" className="lp-topbar-cta">Advertise</AdDmLink>
-            : <a href="#advertise" className="lp-topbar-cta">Advertise</a>}
-          <a href="/app" className="lp-topbar-cta">Sign in →</a>
-        </nav>
+      {/* ── Sticky nav ──────────────────────────────────────────── */}
+      <header className="lp-nav">
+        <div className="lp-wrap lp-nav-in">
+          <a href="#top" className="wordmark" aria-label="ai0 home">
+            <span className="dot" />
+            ai0
+          </a>
+          <nav className="lp-nav-links" aria-label="Primary">
+            <a href="#how-it-works" className="lp-nav-link lp-nav-hide">How it works</a>
+            <a href="#networks" className="lp-nav-link lp-nav-hide">Network</a>
+            {adUrls.topbar
+              ? <AdDmLink href={adUrls.topbar} placement="topbar" className="lp-nav-link">Advertise</AdDmLink>
+              : <a href="#advertise" className="lp-nav-link">Advertise</a>}
+            {whiteLabel && <a href="#white-label" className="lp-nav-link lp-nav-hide">White label</a>}
+            <a href="/app" className="lp-hero-cta-secondary lp-btn-sm lp-nav-signin">Sign in <span aria-hidden>→</span></a>
+          </nav>
+        </div>
       </header>
 
       <main className="lp-main">
         {/* ── Hero ──────────────────────────────────────────────── */}
-        <section className="lp-hero">
-          <motion.div
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: [0.2, 0.7, 0.2, 1] }}
-            className="lp-hero-pill"
-          >
-            <span className="lp-hero-pulse" />
-            {heroPill(platforms.length)}
-          </motion.div>
+        <LoopScope as="section" className="lp-hero" id="top">
+          <div className="lp-scan" aria-hidden="true" />
+          <div className="lp-wrap lp-hero-grid">
+            <div className="lp-hero-copy">
+              <div className={`lp-pill lp-fade${pill.live ? '' : ' is-idle'}`}>
+                <span className={`lp-dot ${pill.live ? 'is-live' : 'is-idle'}`} aria-hidden="true" />
+                {pill.text}
+              </div>
 
-          {/* Owner decision 2026-10-06: the headline is always this, whatever the numbers say. */}
-          <motion.h1
-            className="text-display-xl lp-hero-title"
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65, delay: 0.06, ease: [0.2, 0.7, 0.2, 1] }}
-          >
-            A media network run by AI agents
-          </motion.h1>
+              <HeroHeadline />
 
-          <motion.p
-            className="text-subhead lp-hero-sub"
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65, delay: 0.14, ease: [0.2, 0.7, 0.2, 1] }}
-          >
-            {managerLive
-              ? 'A MANAGER agent watches the whole network and issues directives or advice. '
-              : ''}
-            Orchestrator agents plan and write the posts for each channel and profile.
-            {managerLive ? '' : ' A MANAGER agent that steers the whole network is coming soon.'}
-            {' '}The owner approves structural changes and, during the launch period, each post before it goes out.
-          </motion.p>
+              <p className="lp-sub lp-fade" style={{ animationDelay: '0.3s' }}>
+                {managerLive
+                  ? 'A MANAGER agent watches the whole network and issues directives or advice. '
+                  : ''}
+                Orchestrator agents plan and write the posts for each channel and profile.
+                {managerLive ? '' : ' A MANAGER agent that steers the whole network is coming soon.'}
+                {' '}The owner approves structural changes and, during the launch period, each post before it goes out.
+              </p>
 
-          <ProofStrip pulse={livePulse} />
+              <div className="lp-hero-ctas lp-fade" style={{ animationDelay: '0.38s' }}>
+                <a href="#networks" className="lp-hero-cta-primary">See the network <span aria-hidden>↓</span></a>
+                {adUrls.hero
+                  ? (
+                    <AdDmLink href={adUrls.hero} placement="hero" className="lp-hero-cta-secondary">
+                      <Icon name="telegram" size={15} /> Order an ad in Telegram
+                    </AdDmLink>
+                  )
+                  : <a href="#advertise" className="lp-hero-cta-secondary">Advertise with us</a>}
+              </div>
+              {adUrls.hero && <NoTelegramLink placement="hero" className="lp-notg lp-hero-notg" />}
+              {whiteLabel && (
+                <div>
+                  <a href="#white-label" className="lp-hero-wl lp-fade" style={{ animationDelay: '0.44s' }} onClick={() => sendCtaBeacon('white_label', 'hero')}>
+                    White label for your own resources <span aria-hidden>→</span>
+                  </a>
+                </div>
+              )}
 
-          <motion.div
-            className="lp-hero-cta"
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65, delay: 0.22, ease: [0.2, 0.7, 0.2, 1] }}
-          >
-            <a href="#networks" className="lp-hero-cta-primary">See the network ↓</a>
-            {adUrls.hero
-              ? (
-                <AdDmLink href={adUrls.hero} placement="hero" className="lp-hero-cta-secondary">
-                  <Icon name="telegram" size={15} /> Order an ad in Telegram
-                </AdDmLink>
-              )
-              : <a href="#advertise" className="lp-hero-cta-secondary">Advertise with us</a>}
-          </motion.div>
-          {adUrls.hero && <NoTelegramLink placement="hero" />}
-          {whiteLabel && (
-            <a href="#white-label" className="lp-hero-wl" onClick={() => sendCtaBeacon('white_label', 'hero')}>
-              White label for your own resources <span aria-hidden>→</span>
-            </a>
-          )}
+              <ProofStrip pulse={livePulse} variant="row" reserve={pulse.isLoading} />
+            </div>
 
-          {/* Who runs it, drawn from live data: MANAGER → networks → roles → platforms. */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.32, ease: [0.2, 0.7, 0.2, 1] }}
-            style={{ width: '100%' }}
-          >
-            <AgentHierarchy networks={networks} pulse={livePulse} platforms={platforms} />
-          </motion.div>
-        </section>
+            <div className="lp-hero-art">
+              <HeroOrbit networks={networks} pulse={livePulse} platforms={platforms} />
+              <AgentLog pulse={livePulse} />
+            </div>
+          </div>
+        </LoopScope>
 
+        <LoopScope as="div">
+          <ChannelMarquee networks={networks} loading={isLoading} />
+        </LoopScope>
+
+        <div className="lp-wrap">
         {/* ── Networks showcase (FR-007) ────────────────────────── */}
         <motion.section id="networks" className="lp-section" {...reveal}>
           <div className="lp-section-head">
@@ -250,6 +214,7 @@ function LandingPage() {
 
         {/* ── White label (FR-012), only while the flag is on ─────── */}
         {whiteLabel && <WhiteLabelSection />}
+        </div>
       </main>
 
       <AdLeadModal
@@ -260,7 +225,7 @@ function LandingPage() {
       />
 
       {/* ── Footer ────────────────────────────────────────────── */}
-      <footer className="lp-footer">
+      <footer className="lp-wrap lp-footer">
         <span className="wordmark">
           <span className="dot" />
           ai0
@@ -279,117 +244,14 @@ function LandingPage() {
       </footer>
 
       <style>{`
-        .lp-root {
-          position: relative;
-          min-height: 100vh;
-          display: flex;
-          flex-direction: column;
-          background: var(--color-canvas);
-          color: var(--color-ink);
-          overflow-x: clip;
-        }
-        .lp-bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
-        .lp-mesh {
-          position: absolute; top: -260px; left: 50%; transform: translateX(-50%);
-          width: 1100px; height: 760px;
-          background:
-            radial-gradient(closest-side, color-mix(in srgb, var(--color-accent) 26%, transparent), transparent 72%),
-            radial-gradient(closest-side at 30% 40%, color-mix(in srgb, var(--color-accent-deep) 18%, transparent), transparent 70%);
-          filter: blur(28px);
-          opacity: 0.55;
-          animation: lp-breathe 7s ease-in-out infinite;
-        }
-        @keyframes lp-breathe { 0%, 100% { opacity: 0.55; } 50% { opacity: 0.72; } }
-        @media (prefers-reduced-motion: reduce) { .lp-mesh { animation: none; } }
-        .lp-grid {
-          position: absolute; inset: 0;
-          background-image:
-            linear-gradient(var(--color-hairline-soft) 1px, transparent 1px),
-            linear-gradient(90deg, var(--color-hairline-soft) 1px, transparent 1px);
-          background-size: 64px 64px;
-          mask-image: radial-gradient(120% 80% at 50% 0%, #000 0%, transparent 65%);
-          -webkit-mask-image: radial-gradient(120% 80% at 50% 0%, #000 0%, transparent 65%);
-          opacity: 0.5;
-        }
+        /* Sections below the hero (B5.2 restyles these). */
+        .lp-section { padding-top: var(--space-section); }
+        .lp-section-head { margin-bottom: var(--space-xxl); }
+        .lp-section-title { margin: var(--space-sm) 0 0; }
+        .lp-section-sub { margin: var(--space-md) 0 0; color: var(--color-ink-muted); max-width: 56ch; }
 
-        .lp-topbar, .lp-main, .lp-footer {
-          position: relative; z-index: 1;
-          width: 100%; max-width: 1180px; margin: 0 auto;
-          padding-left: var(--space-xl); padding-right: var(--space-xl);
-        }
-        .lp-topbar {
-          display: flex; align-items: center; justify-content: space-between;
-          padding-top: var(--space-xl); padding-bottom: var(--space-xl);
-        }
-        .lp-topbar .wordmark { font-size: 16px; }
-        .lp-topbar-cta {
-          color: var(--color-ink-muted); text-decoration: none;
-          font-size: 14px; font-weight: 500; letter-spacing: -0.14px;
-          padding: 8px 14px; border-radius: var(--radius-sm);
-          transition: color 0.12s ease, background 0.12s ease;
-        }
-        .lp-topbar-cta:hover { color: var(--color-ink); background: var(--color-surface-2); opacity: 1; }
-
-        .lp-main { flex: 1; }
-
-        .lp-hero {
-          display: flex; flex-direction: column; align-items: center; text-align: center;
-          padding-top: var(--space-section);
-          padding-bottom: var(--space-section);
-        }
-        .lp-hero-pill {
-          display: inline-flex; align-items: center; gap: 8px;
-          padding: 6px 14px; margin-bottom: var(--space-xl);
-          border-radius: var(--radius-pill);
-          background: var(--color-surface-2);
-          border: 1px solid var(--color-hairline);
-          color: var(--color-ink-muted);
-          font-size: 13px; font-weight: 500; letter-spacing: -0.13px;
-        }
-        .lp-hero-pulse {
-          width: 7px; height: 7px; border-radius: var(--radius-pill);
-          background: var(--color-accent);
-          box-shadow: 0 0 12px var(--color-accent);
-          animation: lp-pulse 2.4s ease-in-out infinite;
-        }
-        @keyframes lp-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
-        @media (prefers-reduced-motion: reduce) { .lp-hero-pulse { animation: none; } }
-
-        .lp-hero-title { max-width: 14ch; margin: 0; }
-        .lp-hero-sub {
-          max-width: 56ch; margin: var(--space-xl) 0 0;
-          color: var(--color-ink-muted);
-        }
-        .lp-hero-cta {
-          display: flex; align-items: center; gap: var(--space-xl);
-          margin-top: var(--space-xxl); flex-wrap: wrap; justify-content: center;
-        }
-        .lp-hero-cta-primary {
-          display: inline-flex; align-items: center; gap: 8px;
-          padding: 12px 22px; border-radius: var(--radius-sm);
-          background: var(--color-accent); color: var(--color-on-accent);
-          text-decoration: none; font-size: 15px; font-weight: 600; letter-spacing: -0.15px;
-          transition: background 0.15s ease;
-        }
-        .lp-hero-cta-primary:hover { background: var(--color-accent-deep); }
-        .lp-hero-cta-secondary {
-          display: inline-flex; align-items: center; gap: 8px;
-          padding: 12px 22px; border-radius: var(--radius-sm);
-          background: transparent; color: var(--color-ink-muted);
-          border: 1px solid var(--color-hairline-strong);
-          text-decoration: none; font-size: 15px; font-weight: 500; letter-spacing: -0.15px;
-          transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
-        }
-        .lp-hero-cta-secondary:hover {
-          color: var(--color-ink);
-          border-color: var(--color-hairline-strong);
-          background: var(--color-surface-2);
-        }
-
-        /* ── Live stats ──────────────────────────────────────── */
         .lp-stats {
-          display: flex; align-items: center; justify-content: center;
-          gap: var(--space-xxl); flex-wrap: wrap;
+          display: flex; align-items: center; gap: var(--space-xxl); flex-wrap: wrap;
           justify-content: flex-start;
           margin-top: var(--space-xl);
           min-height: 64px;
@@ -408,11 +270,6 @@ function LandingPage() {
           .lp-stat-divider { display: none; }
         }
 
-        .lp-section { padding-top: var(--space-section); }
-        .lp-section-head { margin-bottom: var(--space-xxl); }
-        .lp-section-title { margin: var(--space-sm) 0 0; }
-        .lp-section-sub { margin: var(--space-md) 0 0; color: var(--color-ink-muted); max-width: 56ch; }
-
         .lp-skeleton-grid {
           display: grid;
           grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -426,7 +283,6 @@ function LandingPage() {
           animation: lp-shimmer 1.6s ease-in-out infinite;
         }
         @keyframes lp-shimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }
-        @media (prefers-reduced-motion: reduce) { .lp-skeleton { animation: none; } }
 
         .lp-ad {
           position: relative; overflow: hidden;
@@ -448,26 +304,6 @@ function LandingPage() {
         .lp-ad-sub { margin: 0; max-width: 52ch; color: var(--color-ink-muted); }
         .lp-ad-note { margin: 0; max-width: 52ch; color: var(--color-ink-muted); }
 
-        /* Ad CTA + its "No Telegram?" form link (spec 026 FR-009). */
-        .lp-cta-pair { display: inline-flex; flex-direction: column; align-items: center; gap: var(--space-xs); }
-        .lp-notg {
-          background: none; border: 0; padding: 6px 4px; min-height: 32px; cursor: pointer;
-          font: inherit; font-size: 13px; color: var(--color-ink-muted);
-          text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--color-hairline-strong);
-        }
-        .lp-notg:hover { color: var(--color-ink); }
-        .lp-notg:focus-visible, .lp-topbar-cta:focus-visible, .lp-footer-link:focus-visible {
-          outline: 2px solid var(--color-accent); outline-offset: 2px; border-radius: var(--radius-sm);
-        }
-        .lp-hero > .lp-notg { margin-top: var(--space-sm); }
-        .lp-cta-button { border: 0; cursor: pointer; font-family: inherit; min-height: 44px; }
-        .lp-cta-button:focus-visible, .lp-hero-wl:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; }
-        .lp-hero-wl {
-          margin-top: var(--space-md); display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 8px 4px;
-          color: var(--color-accent); font-size: 14px; font-weight: 500; text-decoration: none;
-        }
-        .lp-hero-wl:hover { text-decoration: underline; text-underline-offset: 3px; opacity: 1; }
-
         .lp-footer {
           display: flex; align-items: center; justify-content: space-between; gap: var(--space-lg);
           flex-wrap: wrap;
@@ -482,14 +318,6 @@ function LandingPage() {
           font-size: 13px; font-weight: 500; letter-spacing: -0.13px;
         }
         .lp-footer-link:hover { color: var(--color-ink); opacity: 1; }
-
-        @media (max-width: 600px) {
-          .lp-topbar, .lp-main, .lp-footer {
-            padding-left: var(--space-lg); padding-right: var(--space-lg);
-          }
-          .lp-hero { padding-top: var(--space-xxl); }
-          .lp-hero-cta { gap: var(--space-md); }
-        }
       `}</style>
     </div>
     </LandingCtaProvider>

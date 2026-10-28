@@ -16,6 +16,8 @@ import {
 } from 'lucide-react';
 // Spec 078 (sidebar): "More tools" and the operator row's Log out.
 import { Ellipsis, LogOut } from 'lucide-react';
+// Spec 078 (landing): the code guards on the guard track.
+import { Gauge, Moon, Power } from 'lucide-react';
 
 const ICONS = {
   overview: LayoutDashboard, strategies: Zap, calendar: CalendarClock,
@@ -42,6 +44,8 @@ const ICONS = {
   map: MapIcon, pen: PenLine, send: Send, 'zoom-in': ZoomIn, 'zoom-out': ZoomOut, fit: Maximize, bell: Bell, gem: Gem,
   // Sidebar (spec 078).
   ellipsis: Ellipsis, logout: LogOut,
+  // Landing guard track (spec 078).
+  gauge: Gauge, moon: Moon, power: Power,
 } satisfies Record<string, LucideIcon>;
 
 export type IconName = keyof typeof ICONS;
