@@ -149,7 +149,7 @@ test('save, read back, stale revision → 409 (draft kept by the client), reset'
 
 test('invalid shapes are 400 with issues; a missing baseRevision is refused', async () => {
   table.rows.clear();
-  const bad = await call('PUT', '/api/nav/config', { config: { ...menu(), schemaVersion: 2 }, baseRevision: null });
+  const bad = await call('PUT', '/api/nav/config', { config: { ...menu(), schemaVersion: 3 }, baseRevision: null });
   assert.equal(bad.status, 400);
   assert.equal(bad.json.error, 'invalid_nav_config');
   assert.equal(bad.json.issues[0].path, 'schemaVersion');

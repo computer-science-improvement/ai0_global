@@ -6,12 +6,12 @@ import assert from 'node:assert/strict';
 import { NAV_REGISTRY, type NavEntry } from './registry';
 import { defaultNav } from './model';
 import { defaultConfig, normalizeNav, resolveNav } from './resolve';
-import type { NavConfigV1 } from './config';
+import type { NavConfig } from './config';
 
 const R = NAV_REGISTRY;
 const labels = (nav: { groups: { title: string; items: { label: string }[] }[] }) =>
   Object.fromEntries(nav.groups.map((g) => [g.title, g.items.map((i) => i.label)]));
-const cfg = (o: Partial<NavConfigV1> = {}): NavConfigV1 => ({ ...defaultConfig(), ...o });
+const cfg = (o: Partial<NavConfig> = {}): NavConfig => ({ ...defaultConfig(), ...o });
 const flat = (nav: { groups: { items: { id: string }[] }[] }) => nav.groups.flatMap((g) => g.items.map((i) => i.id));
 
 test('no config → the default menu, identical to defaultNav()', () => {
@@ -30,7 +30,7 @@ test('the default config round-trips with nothing flagged new', () => {
 });
 
 test('a newer schema shows the default menu and is marked so saving is blocked', () => {
-  const r = resolveNav(R, { ...defaultConfig(), schemaVersion: 2, groups: [] });
+  const r = resolveNav(R, { ...defaultConfig(), schemaVersion: 3, groups: [] });
   assert.equal(r.source, 'newer');
   assert.deepEqual(labels(r), labels(defaultNav()));
   assert.match(r.warnings[0], /newer version/);

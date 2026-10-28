@@ -1,8 +1,12 @@
 // Spec 027 FR-004: the owner's menu as saved in the app_settings row `ui.nav`.
 // Mirrors apps/automation/src/settings/nav/nav-config.schema.ts (shape only).
 
-/** The menu schema this build writes. */
-export const NAV_SCHEMA_VERSION = 1;
+/**
+ * The menu schema this build writes. v2 (spec 078) has the same shape as v1; what
+ * changed is the registry's default menu, so a saved v1 menu is migrated
+ * (nav/migrate.ts) instead of being left to show the old counters and groups.
+ */
+export const NAV_SCHEMA_VERSION = 2;
 
 export interface NavGroupConfig {
   id:      string;
@@ -25,8 +29,8 @@ export interface NavOverride {
   badge?: boolean;
 }
 
-export interface NavConfigV1 {
-  schemaVersion: 1;
+export interface NavConfig {
+  schemaVersion: number;
   groups:    NavGroupConfig[];
   pinned:    string[];
   hidden:    string[];

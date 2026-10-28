@@ -11,7 +11,7 @@ import { isIconName } from '../components/ui/Icon';
 import { NAV_REGISTRY } from './registry';
 import { normalizeNav, resolveNav } from './resolve';
 import { makeRouteMatcher } from './routes';
-import type { NavConfigResponse, NavConfigV1 } from './config';
+import type { NavConfigResponse, NavConfig } from './config';
 import type { BadgeCounts } from './badges';
 import { readNavCache as readCache, writeNavCache as writeCache } from './cache';
 
@@ -66,7 +66,7 @@ export function isConflict(e: unknown): boolean {
 export function useQuickNavEdit() {
   const qc = useQueryClient();
   const m = useMutation({
-    mutationFn: (v: { next: NavConfigV1; base: string | null }) => navApi.putConfig(v.next, v.base),
+    mutationFn: (v: { next: NavConfig; base: string | null }) => navApi.putConfig(v.next, v.base),
     meta: { skipNavBadges: true },
     onMutate: async (v) => {
       await qc.cancelQueries({ queryKey: NAV_CONFIG_KEY });
@@ -87,7 +87,7 @@ export function useQuickNavEdit() {
     },
   });
 
-  const apply = useCallback((op: (c: NavConfigV1) => NavConfigV1): boolean => {
+  const apply = useCallback((op: (c: NavConfig) => NavConfig): boolean => {
     if (m.isPending) return false;
     const cur = qc.getQueryData<NavConfigResponse>(NAV_CONFIG_KEY);
     const n = normalizeNav(NAV_REGISTRY, cur?.config ?? null);

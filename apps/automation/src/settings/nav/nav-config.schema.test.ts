@@ -29,10 +29,12 @@ test('a well-formed menu passes and labels are trimmed', () => {
 });
 
 test('schemaVersion is 1..NAV_SCHEMA_MAX', () => {
-  assert.equal(NAV_SCHEMA_MAX, 1);
+  assert.equal(NAV_SCHEMA_MAX, 2);
   for (const v of [0, NAV_SCHEMA_MAX + 1, 1.5, '1', undefined]) {
     assert.ok(issues({ ...base(), schemaVersion: v }).length > 0, `schemaVersion ${v}`);
   }
+  // A v1 menu (saved before spec 078) is still accepted, and so is a v2 one.
+  for (const v of [1, 2]) assert.deepEqual(issues({ ...base(), schemaVersion: v }), [], `schemaVersion ${v}`);
 });
 
 test('size: more than 32 KB is refused before the shape check', () => {
