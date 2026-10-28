@@ -35,7 +35,7 @@ function actionsHarness(o: { open?: boolean; known?: boolean; profiles?: PauseAc
   } as any;
   const actions = new SeriesPauseActions({ pool, repo, profiles: o.profiles, now: () => new Date('2026-10-28T10:00:00Z') });
   const bodies = () => queries.filter((q) => /SET read_at = COALESCE\(read_at, now\(\)\), body/.test(q.text)).map((q) => String(q.params[1]));
-  const stamps = () => queries.filter((q) => /UPDATE owner_cards SET resolved_by = 'dashboard:owner'/.test(q.text));
+  const stamps = () => queries.filter((q) => /INSERT INTO owner_cards[\s\S]*'dashboard:owner'[\s\S]*ON CONFLICT/.test(q.text));
   return { actions, queries, inserted, bodies, stamps };
 }
 
@@ -75,7 +75,7 @@ test('execute(…, "dashboard"): the same actions, the trace and reason say the 
   assert.deepEqual(r, { outcome: '✅ Відновлено: Prompt', changed: true, code: 'resumed' });
   assert.match(resume.bodies()[0], /resumed "Prompt" on @c from the dashboard /);
   assert.equal(resume.stamps().length, 1);
-  assert.deepEqual(resume.stamps()[0].params, ['41']);
+  assert.deepEqual(resume.stamps()[0].params, [41]);
 
   assert.equal((await actionsHarness({ open: false }).actions.execute(41, `resume:${ID}`, 'dashboard')).code, 'already_resumed');
   assert.equal((await actionsHarness({ known: false, open: false }).actions.execute(41, `resume:${ID}`, 'dashboard')).code, 'not_found');
