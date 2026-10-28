@@ -112,7 +112,11 @@ export interface CalendarSearch {
   post?: string;
 }
 
-const text = (v: unknown): string | undefined => (typeof v === 'string' && v.trim() ? v.trim() : undefined);
+// The router parses `?post=123` into a number; an id is text either way.
+const text = (v: unknown): string | undefined => {
+  const t = typeof v === 'number' ? String(v) : typeof v === 'string' ? v.trim() : '';
+  return t || undefined;
+};
 
 /** What the route keeps of a typed or stale address: a value that is not valid is dropped, never an error page. */
 export function parseCalendarSearch(raw: Record<string, unknown>): CalendarSearch {

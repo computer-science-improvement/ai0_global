@@ -372,6 +372,7 @@ test('the address: an invalid value is dropped, a drawer keeps only the params t
   assert.equal(parseCalendarSearch({ compose: 'edit' }).compose, undefined);           // nothing to edit
   assert.equal(parseCalendarSearch({ compose: 'bogus', channel: '@space' }).channel, undefined);
   assert.equal(parseCalendarSearch({ compose: 1, from: 20261029 }).from, undefined);
+  assert.equal(parseCalendarSearch({ compose: 'edit', post: 12345 }).post, '12345');          // the router turns ?post=12345 into a number
 });
 
 test('the composer starts at noon on a later day, and on the next whole hour today', () => {
