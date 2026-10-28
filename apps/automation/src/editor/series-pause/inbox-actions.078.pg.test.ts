@@ -3,7 +3,8 @@
  * in the dashboard (`AgentsService.inboxAction`) on real rows, next to the Telegram path of the owner bot.
  * - the list returns subject, parts and the English actions; the action leaves "from the dashboard" in the trace;
  * - the card of the note is stamped `dashboard:owner`, the sweep's close keeps the stamp, a Telegram press is not stamped;
- * - the A10 demotion counts the stamp as a reaction (`repeatingSubjects`, `postOnce`).
+ * - the A10 demotion counts the stamp as a reaction (`repeatingSubjects`, `postOnce`);
+ * - mark-unread, and `series-pauses {action:'pause'}` (an owner pause that skips planned slots).
  * Skipped unless EDITOR_PG_TEST_URL is set.
  */
 import { test, before, after } from 'node:test';
@@ -161,4 +162,39 @@ test('A10: a run of notes the owner pressed a button on in the dashboard is no l
   void day;
   assert.deepEqual(await run('silent:telegram:@pga078:Ctrl', false), { listed: 1, sev: 'info' }, 'no reaction: the third note is demoted');
   assert.deepEqual(await run('silent:telegram:@pga078:Dash', true), { listed: 0, sev: 'action' }, 'a dashboard press is a reaction');
+});
+
+test('mark-unread: the notes are unread again; a dashboard stamp is cleared, a Telegram one is kept', { skip }, async () => {
+  const a = await breakerPause('PgU1');
+  const b = await breakerPause('PgU2');
+  const ca = await sentCard(a.noteId);
+  const cb = await sentCard(b.noteId);
+  await svc.inboxAction(a.noteId, { key: `keep:${a.pauseId}` });
+  await cards.resolve(cb.id, 'done', 'ok', 'telegram:42');
+  await inbox.markRead([b.noteId]);
+  assert.equal((await cards.get(ca.id))!.resolvedBy, 'dashboard:owner');
+  assert.ok((await note(a.noteId)).read_at && (await note(b.noteId)).read_at);
+
+  assert.deepEqual(await svc.markUnread({ ids: [a.noteId, b.noteId, 999_999] }), { marked: 2 });
+  assert.equal((await note(a.noteId)).read_at, null);
+  assert.equal((await note(b.noteId)).read_at, null);
+  assert.equal((await cards.get(ca.id))!.resolvedBy, null);
+  assert.equal((await cards.get(cb.id))!.resolvedBy, 'telegram:42');
+  assert.deepEqual(await svc.markUnread({ ids: [a.noteId] }), { marked: 0 }, 'an unread note is not counted again');
+});
+
+test('series-pauses {action:"pause"}: an owner pause that skips the series\' planned slots; a second one is a 409; the page can resume it', { skip }, async () => {
+  const planId = (await db.pool.query(`INSERT INTO editor_plans (channel_key, plan_date, rationale, status) VALUES ($1, '2026-10-29', 'pga078', 'superseded') RETURNING id`, [CH])).rows[0].id;
+  const planned = (await db.pool.query(
+    `INSERT INTO editor_slots (plan_id, channel_key, scheduled_at, kind, format, topic, status, series_name) VALUES ($1, $2, '2026-10-29T12:00:00Z', 'content', 'text', 'pga078', 'planned', 'PgP') RETURNING id`, [planId, CH])).rows[0].id;
+  const after = await svc.seriesPauseAction('pga078', { action: 'pause', key: 'series:PgP', label: 'PgP' });
+  const mine = after.open.find((p) => p.key === 'series:PgP')!;
+  assert.deepEqual([mine.cause, mine.streak, mine.reason], ['owner', 0, 'Paused by the owner from the dashboard']);
+  const slot = (await db.pool.query(`SELECT status, error FROM editor_slots WHERE id = $1`, [planned])).rows[0];
+  assert.equal(slot.status, 'skipped');
+  assert.match(slot.error, /^series_paused: "PgP" is paused by the owner/);
+  await assert.rejects(svc.seriesPauseAction('pga078', { action: 'pause', key: 'series:PgP', label: 'PgP' }), (e: any) => e.getStatus() === 409);
+  await assert.rejects(svc.seriesPauseAction('pga078', { action: 'pause', key: `resource:telegram:${CH}`, label: 'x' }), (e: any) => e.getStatus() === 400);
+  const resumed = await svc.seriesPauseAction('pga078', { action: 'resume', id: mine.id });
+  assert.ok(!resumed.open.some((p) => p.key === 'series:PgP'));
 });

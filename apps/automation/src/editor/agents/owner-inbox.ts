@@ -268,4 +268,17 @@ export class OwnerInbox {
       : await this.pool.query(`UPDATE agent_inbox SET read_at = now() WHERE id = ANY($1::bigint[]) AND read_at IS NULL`, [ids]);
     return rowCount ?? 0;
   }
+
+  /**
+   * Spec 078 D5: "Undo" after Dismiss — the notes are unread again. An owner card of such a note that the dashboard
+   * stamped (`resolved_by 'dashboard:…'`, see `SeriesPauseActions.run`) is unstamped: the note is open, not decided.
+   * A card resolved from Telegram keeps its mark.
+   */
+  async markUnread(ids: number[]): Promise<number> {
+    const { rowCount } = await this.pool.query(`UPDATE agent_inbox SET read_at = NULL WHERE id = ANY($1::bigint[]) AND read_at IS NOT NULL`, [ids]);
+    try {
+      await this.pool.query(`UPDATE owner_cards SET resolved_by = NULL WHERE kind = 'inbox' AND ref_id = ANY($1::text[]) AND resolved_by LIKE 'dashboard:%'`, [ids.map(String)]);
+    } catch { /* the note is unread; a stale stamp only keeps the A10 demotion off */ }
+    return rowCount ?? 0;
+  }
 }
