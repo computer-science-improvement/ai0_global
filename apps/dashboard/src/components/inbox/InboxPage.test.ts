@@ -73,12 +73,14 @@ test('a bare URL opens All with Unread only on, counts on the tabs, and the firs
   assert.match(html, /FYI<span[^>]*>1<\/span>/);
   assert.match(html, /aria-label="Selected note"/);
   assert.ok(paneTitle(html));
+  assert.match(html, /Mark all as done/);
 });
 
 test('a bare URL with nothing unread but posts waiting opens To approve', async () => {
   const html = await page({}, { unread: [], waiting: 2 });
   assert.equal(selectedTab(html), 'To approve2');
   assert.equal(unreadSwitch(html), null);
+  assert.doesNotMatch(html, /Mark all as done/);
   assert.match(html, /Posts to approve/);
 });
 
@@ -87,6 +89,7 @@ test('a bare URL with nothing unread and nothing waiting is the good kind of emp
   assert.equal(selectedTab(html), 'All0');
   assert.match(html, /All clear/);
   assert.match(html, /is-clear/);
+  assert.match(html, /<button[^>]*disabled[^>]*>Mark all as done<\/button>/);
   assert.doesNotMatch(html, /Selected note/);
 });
 
@@ -143,6 +146,7 @@ test('the All view collapses repeats of one problem into one row', async () => {
   const all = await page({ tab: 'all', unread: false }, { all: items, unread: [items[0], items[2]] });
   assert.equal(rowTitles(all).length, 2);
   assert.match(all, /x2/);
+  assert.match(all, /Same problem, 2 notes/);
   // the severity tabs list every note
   const action = await page({ tab: 'action', unread: false }, { all: items, unread: [items[0], items[2]] });
   assert.equal(rowTitles(action).length, 3);
