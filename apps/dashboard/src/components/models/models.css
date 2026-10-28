@@ -1,0 +1,57 @@
+/* /app/models (spec 078 C4): padded cards for the choices, a table inside a panel for the agents, rows for the legacy overrides. */
+
+.mdl-stack { display: flex; flex-direction: column; gap: 16px; }
+.mdl-skeleton { height: 160px; opacity: 0.55; }
+/* The content of a padded card: blocks 14px apart. */
+.mdl-body { display: flex; flex-direction: column; gap: 14px; }
+.mdl-note { margin: 0; font-size: 13px; line-height: 1.55; color: var(--color-ink-muted); max-width: 760px; }
+.mdl-note.is-dim { color: var(--color-ink-dim); }
+.mdl-id { font-family: var(--font-mono); font-feature-settings: normal; font-size: 13px; overflow-wrap: anywhere; }
+.mdl-id.is-dim { color: var(--color-ink-dim); }
+.mdl-id.is-ink { color: var(--color-ink); }
+
+/* A model picker next to its price facts. */
+.mdl-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 16px; align-items: start; }
+.mdl-grid .inset { align-self: stretch; }
+.mdl-facts { display: flex; flex-wrap: wrap; gap: 12px 28px; }
+.mdl-fact { min-width: 0; }
+.mdl-fact-value { margin-top: 4px; font-size: 15px; color: var(--color-ink); font-variant-numeric: tabular-nums; }
+.mdl-row { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; }
+
+/* Workspace: the two options are the control (pressed = the one agents run on). */
+.mdl-ws { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 12px; }
+.mdl-ws-option {
+  display: flex; flex-direction: column; gap: 6px; min-width: 0; padding: 14px 16px; text-align: left; font: inherit; color: inherit; cursor: pointer;
+  background: transparent; border: 1px solid var(--color-hairline-strong); border-radius: var(--radius-lg);
+  transition: border-color var(--dur-base), background var(--dur-base);
+}
+.mdl-ws-option:hover { border-color: var(--color-ink-dim); background: color-mix(in srgb, var(--color-ink) 2.5%, transparent); }
+.mdl-ws-option[aria-pressed="true"] { border-color: var(--color-accent); background: color-mix(in srgb, var(--color-accent) 8%, transparent); }
+.mdl-ws-head { display: flex; align-items: center; gap: 8px; }
+.mdl-ws-name { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; color: var(--color-ink); }
+.mdl-ws-meta { font-size: 13px; line-height: 1.45; color: var(--color-ink-muted); overflow-wrap: anywhere; }
+
+/* Agents table. */
+.mdl-toolbar { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 8px; margin-bottom: 14px; }
+.mdl-toolbar-pick { flex: 1 1 260px; max-width: 420px; min-width: 0; }
+.mdl-who { display: flex; align-items: center; gap: 8px; }
+.mdl-who-name { color: var(--color-ink); text-decoration: none; font-weight: 500; }
+.mdl-who-name.is-child { font-weight: 400; }
+a.mdl-who-name:hover { text-decoration: underline; }
+.mdl-handle { display: block; font-size: 12px; color: var(--color-ink-dim); }
+.mdl-sub { display: block; font-size: 12px; color: var(--color-ink-dim); }
+.table td.mdl-child-pad { padding-left: 36px; }
+.mdl-dim { color: var(--color-ink-dim); }
+.mdl-sub-inline { margin-left: 6px; font-size: 12px; color: var(--color-ink-dim); }
+.mdl-count { font-size: 12px; color: var(--color-ink-dim); }
+
+/* Legacy channel overrides: rows. */
+.mdl-ovr-main { flex: 1 1 220px; min-width: 0; }
+.mdl-ovr-name { color: var(--color-ink); text-decoration: none; font-size: 14px; font-weight: 600; letter-spacing: -0.01em; overflow-wrap: anywhere; }
+a.mdl-ovr-name:hover { text-decoration: underline; }
+.mdl-ovr-model { flex: 1 1 220px; min-width: 0; }
+.mdl-ovr-intro { margin: 0; padding: 0 20px 14px; }
+
+@media (max-width: 600px) {
+  .table td.mdl-child-pad { padding-left: 24px; }
+}

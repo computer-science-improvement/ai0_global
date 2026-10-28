@@ -11,6 +11,7 @@ import { Icon } from '../ui/Icon';
 import { Badge } from '../ui/Badge';
 import { useModelCatalog, type CatalogModel } from '../../api/models';
 import { filterModels, fmtContext, fmtPerM } from '../../lib/models';
+import './model-select.css';
 
 const LIMIT = 80;
 
@@ -117,67 +118,54 @@ export function ModelSelect({
   return (
     <>
       <button
-        ref={trigger} type="button" className="input-field" disabled={disabled}
+        ref={trigger} type="button" className={`input-field ms-trigger${compact ? ' is-compact' : ''}`} disabled={disabled}
         aria-label={ariaLabel} aria-haspopup="listbox" aria-expanded={open} aria-controls={open ? listId : undefined}
         onClick={() => setOpen((o) => !o)}
         onKeyDown={(e) => { if (!open && (e.key === 'ArrowDown' || e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); setOpen(true); } }}
-        style={{
-          width: '100%', boxSizing: 'border-box', display: 'flex', alignItems: 'center', gap: 8, textAlign: 'left', cursor: disabled ? 'not-allowed' : 'pointer',
-          minWidth: 0, ...(compact ? { padding: '6px 10px', fontSize: 13 } : null), ...style,
-        }}
+        style={style}
       >
-        <span style={{ flex: 1, minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', color: value ? 'var(--color-ink)' : 'var(--color-ink-muted)' }}>
+        <span className={`ms-value${value ? ' has-value' : ''}`}>
           {shown}
-          {!compact && sub && <span className="text-micro" style={{ marginLeft: 8, color: 'var(--color-ink-dim)' }}>{sub}</span>}
+          {!compact && sub && <span className="ms-sub">{sub}</span>}
         </span>
         <Icon name="chevron-down" size={14} />
       </button>
       {open && pos && createPortal(
         <div
           ref={pop}
-          style={{
-            position: 'fixed', zIndex: 60, left: pos.left, width: pos.width,
-            ...(pos.up ? { bottom: window.innerHeight - pos.top } : { top: pos.top }),
-            background: 'var(--color-surface-2)', border: '1px solid var(--color-hairline)', borderRadius: 'var(--radius-md)',
-            boxShadow: '0 12px 32px rgba(0, 0, 0, 0.45)', display: 'flex', flexDirection: 'column', overflow: 'hidden',
-          }}
+          className="ms-pop"
+          style={{ left: pos.left, width: pos.width, ...(pos.up ? { bottom: window.innerHeight - pos.top } : { top: pos.top }) }}
         >
-          <div style={{ padding: 8, borderBottom: '1px solid var(--color-hairline-soft)', display: 'flex', alignItems: 'center', gap: 8 }}>
+          <div className="ms-search">
             <Icon name="search" size={14} />
             <input
               autoFocus className="input-field" value={query} onChange={(e) => setQuery(e.target.value)} onKeyDown={onKey}
               placeholder="Search models…" aria-label="Search models" role="combobox" aria-expanded aria-controls={listId}
               aria-activedescendant={options[hi] ? `${listId}-${hi}` : undefined} spellCheck={false} autoCapitalize="none"
-              style={{ flex: 1, minWidth: 0, padding: '6px 10px', fontSize: 13 }}
             />
           </div>
-          <div ref={list} id={listId} role="listbox" aria-label={ariaLabel} style={{ overflowY: 'auto', maxHeight: pos.maxHeight - 60, padding: 4 }}>
-            {catalog.isLoading && <div className="text-micro" style={{ padding: 10, color: 'var(--color-ink-muted)' }}>Loading the model list…</div>}
-            {!catalog.isLoading && options.length === 0 && <div className="text-micro" style={{ padding: 10, color: 'var(--color-ink-muted)' }}>No model matches “{query}”.</div>}
+          <div ref={list} id={listId} role="listbox" aria-label={ariaLabel} className="ms-list" style={{ maxHeight: pos.maxHeight - 60 }}>
+            {catalog.isLoading && <div className="ms-msg">Loading the model list…</div>}
+            {!catalog.isLoading && options.length === 0 && <div className="ms-msg">No model matches “{query}”.</div>}
             {options.map((o, i) => {
               const selected = o.value === value;
               return (
                 <div
                   key={o.key} id={`${listId}-${i}`} data-idx={i} role="option" aria-selected={selected}
+                  className={`ms-opt${i === hi ? ' is-hi' : ''}`}
                   onMouseEnter={() => setHi(i)} onMouseDown={(e) => e.preventDefault()} onClick={() => choose(o)}
-                  style={{
-                    display: 'flex', alignItems: 'center', gap: 8, padding: '7px 10px', borderRadius: 'var(--radius-sm)', cursor: 'pointer',
-                    background: i === hi ? 'var(--color-surface-3)' : 'transparent',
-                  }}
                 >
-                  <span style={{ width: 14, display: 'inline-flex', color: 'var(--color-accent)' }}>{selected && <Icon name="check" size={14} />}</span>
-                  <span style={{ flex: 1, minWidth: 0 }}>
-                    <span style={{ display: 'block', fontSize: 13, color: 'var(--color-ink)', overflowWrap: 'anywhere' }}>{o.label}</span>
-                    {o.model && o.model.name !== o.model.id && (
-                      <span className="text-micro" style={{ display: 'block', color: 'var(--color-ink-dim)', overflowWrap: 'anywhere' }}>{o.model.name}</span>
-                    )}
-                    {o.value === null && <span className="text-micro" style={{ display: 'block', color: 'var(--color-ink-dim)' }}>No own model</span>}
+                  <span className="ms-check">{selected && <Icon name="check" size={14} />}</span>
+                  <span className="ms-opt-main">
+                    <span className="ms-opt-id mono">{o.label}</span>
+                    {o.model && o.model.name !== o.model.id && <span className="ms-opt-name">{o.model.name}</span>}
+                    {o.value === null && <span className="ms-opt-name">No own model</span>}
                   </span>
                   {o.note && <Badge tone="warning">{o.note}</Badge>}
                   {o.model && (
-                    <span className="text-micro tabular-nums" style={{ color: 'var(--color-ink-muted)', textAlign: 'right', whiteSpace: 'nowrap' }}>
+                    <span className="ms-opt-price mono">
                       {fmtPerM(o.model.inPerM)} / {fmtPerM(o.model.outPerM)}
-                      <span style={{ display: 'block', color: 'var(--color-ink-dim)' }}>
+                      <span className="ms-opt-price-sub">
                         {[fmtContext(o.model.contextLength), o.model.supportsReasoning ? 'reasoning' : ''].filter(Boolean).join(' · ')}
                       </span>
                     </span>
@@ -185,13 +173,9 @@ export function ModelSelect({
                 </div>
               );
             })}
-            {total > LIMIT && (
-              <div className="text-micro" style={{ padding: '6px 10px', color: 'var(--color-ink-dim)' }}>
-                Showing {LIMIT} of {total}. Type to narrow the list.
-              </div>
-            )}
+            {total > LIMIT && <div className="ms-more">Showing {LIMIT} of {total}. Type to narrow the list.</div>}
           </div>
-          <div className="text-micro" style={{ padding: '6px 10px', borderTop: '1px solid var(--color-hairline-soft)', color: 'var(--color-ink-dim)' }}>
+          <div className="ms-foot">
             USD per 1M tokens in / out{catalog.data?.source === 'fallback' ? ` · ${catalog.data.workspace === 'anthropic' ? 'Anthropic' : 'OpenRouter'} list unavailable, showing priced models only` : catalog.data?.stale ? ' · list may be outdated' : ''}
           </div>
         </div>,
