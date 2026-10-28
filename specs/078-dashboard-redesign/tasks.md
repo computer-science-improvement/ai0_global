@@ -80,9 +80,9 @@ Appends: `AppShell.tsx` (New post target only), `api/*` hooks if missing.
 ### B5 Landing — `/` and `/white-label`
 Brief: `research/landing.md`. Handoff §8. Prototype `Main.dc.html`.
 Owns: `routes/index.tsx`, `routes/white-label.tsx`, `components/landing/*` except the four admin cards (`CtaStatsCard`, `LeadsCard`, `NetworksCard`, `PublicPageCard`), `lib/landing-view.ts` (+tests).
-- [ ] B5.1 Hero (headline words, orbit, agent log, stats) + channel marquee.
-- [ ] B5.2 Role explorer, loop ring + guard track, approval deck, ad steps, shadow/live demo, network showcase hover; CTA/leads/beacon unchanged.
-- [ ] B5.3 Motion rules (off-screen pause, reduced motion, no-JS), "| DEV" removal, 375px.
+- [x] B5.1 Hero (headline words, orbit, agent log, stats) + channel marquee.
+- [x] B5.2 Role explorer, loop ring + guard track, approval deck, ad steps, shadow/live demo, network showcase hover; CTA/leads/beacon unchanged.
+- [x] B5.3 Motion rules (off-screen pause, reduced motion, no-JS), "| DEV" removal, 375px.
 
 ---
 
@@ -128,6 +128,12 @@ A3 (worktree `wf_9569abf2-5cb-3`):
 - A2.3 `fbbd00d1` schema v2 and the v1 to v2 migration (client and server); `3d6f226d` follow-up: a stored v1 group title that is just the v1 default is not a rename.
 - A2.4 `109716bc` sidebar: group titles, longest-prefix active item, More tools, footer, width 248.
 - A2.5 `1d8ead75` top bar: wide search field, N agents live pill, New post, main padding and max-width.
+
+### B5 Landing (worktree `wf_a4c40803-5b3-5`, base `ad17cb89`)
+- `43fa918e` B5.1 hero: headline words, orbit, agent log, stats row, channel marquee.
+- `4acd5df4` B5.2 sections: role explorer, loop ring and guard track, approval deck, ad steps, shadow/live demo, network card hover.
+- `01f907b9` B5.3 motion rules, no "| DEV" on channel names, CSS lint tests.
+- Checked under Node 20: `tsc --noEmit` clean, 439 node tests pass, `VITE_ALLOW_DEV_AUTH=true npm run build` builds. Browser pass (and the 375px pass) is the lead's.
 
 ## Deltas from the spec
 (each agent appends its own subsection)
@@ -186,3 +192,27 @@ Dashboard:
 - **Files outside A2 ownership:** `api/nav.ts` (the `NavConfigV1` to `NavConfig` type rename, one line), `components/ui/Icon.tsx` (appended `ellipsis`, `logout`; a second import line from lucide-react), `lib/env.ts` (appended `ENV_LABEL`). `VITE_ENV_LABEL` is read at build time only; no CI or Docker change was made, so no environment shows the pill until the build arg is set.
 - **For B2 (Inbox):** the Inbox menu entry still has no `search`, so it opens on the Unread tab; when the counter is made of approvals only, the owner lands on an empty Unread list (`?tab=approvals` holds them). The page title and breadcrumb parent ("Agents") are unchanged.
 - **For the merge with A1:** the sidebar relies on A1's `.nav-link`, `.nav-link-active`, `.nav-badge`, `.nav-dot`, `.btn-icon`, `.btn-ghost`, `.cmdk-trigger` and `.kbd`. `components/nav/sidebar.css` adds only tone modifiers (`.nav-badge.nav-badge-*`, which set colors outright), layout and the footer; `components/nav/shell.css` overrides the trigger's width only at 861px and up (`.topbar .cmdk-trigger`). Check both against A1's restyle (row height 40px makes the short-window rule matter more).
+
+### B5
+Landing (`/`), built from `research/landing.md` and `Main.dc.html` as a layout and behaviour reference (no hex, no Geist, no sample texts as data).
+- **Data, not the prototype's story.** The hero pill, the agent log, the orbit, the explorer's lit roles and platforms, the marquee and the network heading all come from the existing public payloads; nothing is invented.
+  - `agent.log` is phase 1: lines made from the pulse aggregates (posts, autonomy share, skips, ideas reviewed, owner decisions, runs). There is no activity endpoint (gap L1), so nothing is streamed.
+  - The orbit draws the agents that the *networks* carry (`LandingNetwork.agent`). Agents of channels outside a network are not in the payload; the backend addition (`agent` on `LandingNetworkResource`) was not made. With no agent it draws ghost slots.
+  - The explorer's "Orchestrator ×N" is live + in training (`orchestratorsLive + orchestratorsShadow`); the hero pill "Live · N agents" counts live only. They can differ, on purpose (the explorer's `title` says "live and in training").
+  - The #networks heading is `networkHeadline(networks)` ("7 channels and profiles / 4 run by AI agents today"), neutral "The network" while loading, on error or with nothing to show. The prototype's "Seven channels. One agent in charge of each." is false for pipeline channels and was not used. Counters keep "followers reached / channels & profiles / platforms" (the prototype's "platform live" is not computed).
+  - The explorer's platform pills have no "soon" claim; a pill glows only when an agent published there this week.
+  - `ProofStrip variant="row"` leaves out the agents-live tile (it is the pill now); the default tiles of `/white-label` are unchanged. Zero-hide, the "?" definitions, the stale note and the pulse-error hide are kept.
+- **Hero entrance is CSS** (keyframes with `both` fill), not motion, so the text never waits on requestAnimationFrame; the headline finishes in 0.8 s. Sections below the hero use motion `whileInView` once (`Reveal`, `DrawLine`). The mesh "breathing" animation of the prototype was dropped; marquee dots are static.
+- **Compositor-only loops**, with two documented exceptions: the approval deck's `z-index` step (discrete, in `lp-deck`) and the loading skeleton's `background-position` shimmer (it was already there). Prototype loops that animated `top`, `left`, colour, border or shadow (scan, travel, token, step and gate lighting) are transform / opacity: a lit step or gate is an overlay pseudo-element fading in and out, the token moves with `translateX(cqw)`. Pinned by `landing-motion.test.ts`.
+- **Off-screen pause**: `LoopScope` (an IntersectionObserver toggles `.is-offscreen`, one rule pauses everything under it, no React state). Every section that loops is a scope: hero, marquee, how, loop, human, networks, white-label (inside `WhiteLabelSection`) and the closing call to action; the advertise section has nothing that loops.
+- **Reduced motion** is the global block of `index.css`; no override was written for an animation. The only reduced-motion rule in the landing css changes layout (the marquee becomes a wrapped list of channels, the outline words go). Still states: the deck is a stacked pile, the token rests at the start of the rail, the sweep rests, no step or gate is lit, the connector dots are hidden. `Reveal` and `DrawLine` render plain (final state) under reduced motion and where there is no IntersectionObserver.
+- **No-JS**: there is no such state (the dashboard is a client-rendered SPA, `index.html` has only `#root`). What is guaranteed instead: counters carry their final number in the markup and in an sr-only span, entrances end visible.
+- **"| DEV"**: `publicTitle()` (tested) is applied to channel cards, network headers, the marquee and the media kit (title, ad-link aria-label, "No Telegram?" target). Server side is untouched: the DM prefill text built by `landing-networks.service.ts` and `ads-public.controller.ts` still carries the dev title, and the tracker re-syncs the Telegram title, so the clean fix is to strip at read time on the server (`mapTracked`, media kit).
+- **Anchors and CTAs unchanged**: `#top`, `#how-it-works`, `#networks`, `#advertise`, `#order-an-ad`, `#white-label`; placements topbar, hero (+ No Telegram), howitworks, advertise, mediakit, network, resource, footer, whitelabel; white_label beacons from hero and footer; `LandingCtaProvider`, `AdLeadModal`, the lead-form source regexes. The `howitworks` placement stays under the ad steps, so the advertise section has two ad buttons (steps, then after the media kit), counted apart. The steps' "See prices" fallback is gone: with neither a DM link nor the form (the admin preview) there is no button. The nav's White label link is new (the old page had none in the top bar) and sends no beacon; white_label beacons stay on the hero link, the footer link and the section's offer button.
+- **White label on the landing**: three cards chosen by title (`LANDING_WL_TITLES`: Agents for your resources, MANAGER and a KPI digest, Guard rails in code), because "Shadow first" is the demo and the delivery is the single-tenant note. `WhiteLabelFeatures` got a `titles` prop; `WL_FEATURES` is not reordered; `/white-label` still shows all six. `/white-label` itself was not restyled (no landing css, no demo).
+- **Network cards**: hover lifts 6px with the individual `translate` property, not `transform`, because motion leaves an inline `transform: none` on the card after its entrance and that beats a hover `transform` (the old -3px lift probably never showed). The spotlight is the existing per-platform glow, `opacity` 0.35 to 1 over 0.35 s on hover or focus. Both show in the `/app/landing` preview (shared component). Grouping, "Ads here", "Advertise in this network", the 3-state badge and the empty state are kept.
+- **Copy**: the human-in-the-loop lead says "from 20:00 the agents write most of tomorrow's posts" (true: `approval-timing.ts`). The deck cards are English placeholders ("Morning digest", "Quiz question", "Daily pick"), aria-hidden, with an "Illustration" note; the "Approved" stamp is not uppercase (only `.text-overline` is).
+- **Files outside B5's ownership**: `components/ui/Icon.tsx` (appended `gauge`, `moon`, `power` and a second lucide import line, the same place A2 appended `ellipsis`, `logout`: expect a trivial conflict); `lib/no-cyrillic-ui.test.ts` (ALLOW: `HowItWorks.tsx` and `routes/index.tsx` replaced by `components/landing/AdSteps.tsx`; the `#реклама` lead in `index.tsx` is gone, the label lives in step 4).
+- **Removed / kept**: `HowItWorks.tsx` and `AgentHierarchy.tsx` are deleted; `diagramNodes` stays in `landing-view.ts` but is unused. `MediaKit.tsx` exports `MediaKitCards` (presentational) next to `MediaKit` (the hook), so it renders in a test.
+- **Mock bug found**: the mock API returns `autonomyShare` as a fraction (0.86); the real backend sends an integer percent. The landing shows what the payload says, so the hero reads "1%" on the mock.
+- **Not verified in a browser** (the lead's pass): 375px layout, the orbit and ring geometry, the hover lift, the Shadow / Live switch, the deck and token timing, `prefers-reduced-motion`, off-screen pausing, the sticky nav on anchor jumps. Full-page screenshots taken without scrolling show the sections below the hero empty until they are scrolled into view (that is how `whileInView` entrances behave).
