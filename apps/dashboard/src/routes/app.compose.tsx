@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { PageHeader } from '../components/ui/PageHeader';
 import { useCrumbs } from '../nav/hooks';
 import { Icon } from '../components/ui/Icon';
+import { describeError } from '../components/ui/Toast';
 import { PostComposer } from '../components/post/PostComposer';
 import { scheduledPostsApi } from '../api/scheduled-posts';
 
@@ -45,37 +46,30 @@ function ComposePage() {
         />
       </div>
 
-      {/* Contextual hint band — sets expectations before the form, mode-aware. */}
-      <div
-        className="compose-rise"
-        style={{
-          display: 'flex', alignItems: 'flex-start', gap: 10,
-          padding: '11px 14px', marginBottom: 22,
-          background: 'var(--color-success-soft)',
-          border: '1px solid var(--color-hairline-soft)',
-          borderRadius: 'var(--radius-lg)',
-          animationDelay: '80ms',
-        }}
-      >
+      {/* Contextual hint band: sets expectations before the form. */}
+      <div className="inset compose-rise"
+        style={{ display: 'flex', alignItems: 'flex-start', gap: 10, padding: '12px 16px', marginBottom: 24, animationDelay: '80ms' }}>
         <span style={{ display: 'inline-flex', color: 'var(--color-accent)', marginTop: 1, flexShrink: 0 }}>
           <Icon name="info" size={16} />
         </span>
-        <span className="text-body-sm" style={{ color: 'var(--color-ink-muted)', lineHeight: 1.45 }}>
+        <span className="text-body-sm" style={{ color: 'var(--color-ink-muted)', minWidth: 0 }}>
           Edit the message on the left and preview the rendered Telegram bubble on the right.
-          {' '}Formatting accepts Telegram HTML — <code style={{ color: 'var(--color-ink)' }}>&lt;b&gt;</code>,{' '}
+          {' '}Formatting accepts Telegram HTML: <code style={{ color: 'var(--color-ink)' }}>&lt;b&gt;</code>,{' '}
           <code style={{ color: 'var(--color-ink)' }}>&lt;i&gt;</code>,{' '}
           <code style={{ color: 'var(--color-ink)' }}>&lt;a href&gt;</code>.
         </span>
       </div>
 
+      {id && postQ.error && (
+        <div className="callout-danger" style={{ marginBottom: 16 }}>
+          <Icon name="warning" size={16} />
+          <span style={{ minWidth: 0, overflowWrap: 'anywhere' }}>This post could not be loaded: {describeError(postQ.error)}</span>
+        </div>
+      )}
+
       {loading ? (
-        <div
-          className="card compose-rise"
-          style={{
-            display: 'flex', alignItems: 'center', gap: 10,
-            padding: '18px 20px', animationDelay: '120ms',
-          }}
-        >
+        <div className="panel compose-rise" aria-busy="true"
+          style={{ display: 'flex', alignItems: 'center', gap: 10, animationDelay: '120ms' }}>
           <span style={{ display: 'inline-flex', color: 'var(--color-ink-dim)' }}>
             <Icon name="refresh" size={16} />
           </span>
