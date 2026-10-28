@@ -297,7 +297,7 @@ function UpdateAgentView({ p }: { p: Record<string, unknown> }) {
         const text = show(v);
         return (
           <Row key={k} label={k.replace(/_/g, ' ')}>
-            <span style={{ fontFamily: /^[[{]/.test(text) ? 'ui-monospace, SFMono-Regular, Menlo, monospace' : undefined }}>{text}</span>
+            <span style={{ fontFamily: /^[[{]/.test(text) ? 'var(--font-mono)' : undefined }}>{text}</span>
           </Row>
         );
       })}
@@ -329,7 +329,7 @@ function WriteSkillView({ p }: { p: Record<string, unknown> }) {
           <pre className="text-micro" style={{
             margin: '6px 0 0', padding: 10, maxHeight: 360, overflow: 'auto', whiteSpace: 'pre-wrap', wordBreak: 'break-word',
             background: 'var(--color-canvas)', border: '1px solid var(--color-hairline)', borderRadius: 'var(--radius-sm)',
-            color: 'var(--color-ink-muted)', fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace',
+            color: 'var(--color-ink-muted)', fontFamily: 'var(--font-mono)',
           }}>{body}</pre>
         </div>
       )}
@@ -347,7 +347,7 @@ function UpdateArtifactView({ p }: { p: Record<string, unknown> }) {
         <pre className="text-micro" style={{
           margin: 0, padding: 10, maxHeight: 280, overflow: 'auto', whiteSpace: 'pre-wrap', wordBreak: 'break-word',
           background: 'var(--color-canvas)', border: '1px solid var(--color-hairline)', borderRadius: 'var(--radius-sm)',
-          color: 'var(--color-ink-muted)', fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace',
+          color: 'var(--color-ink-muted)', fontFamily: 'var(--font-mono)',
         }}>{JSON.stringify(p.patch ?? {}, null, 2)}</pre>
       </Row>
       <Row label="Then">the artifact gets a new version; the change is checked again at Apply</Row>

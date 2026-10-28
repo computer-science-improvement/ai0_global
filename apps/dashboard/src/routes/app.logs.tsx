@@ -136,7 +136,7 @@ function LogRow({ e, index, isLast }: { e: ActivityEvent; index: number; isLast:
           }}>
             <StatusDot tone={m.dot} size={10} />
             {spinning && (
-              <span aria-hidden style={{
+              <span aria-hidden className="logs-spin" style={{
                 position: 'absolute', inset: 4, borderRadius: 'var(--radius-pill)',
                 border: '1.5px solid transparent', borderTopColor: 'var(--color-accent)',
                 animation: 'logs-spin 1s linear infinite',
@@ -267,7 +267,7 @@ function LogsPage() {
 
   return (
     <div>
-      <style>{`@keyframes logs-spin { to { transform: rotate(360deg); } }`}</style>
+      <style>{`@keyframes logs-spin { to { transform: rotate(360deg); } } @media (prefers-reduced-motion: reduce) { .logs-spin { animation: none !important; } }`}</style>
 
       <PageHeader title="Logs" subtitle="Automation activity — posts, errors, skips. Click a run to see its execution trace." />
 

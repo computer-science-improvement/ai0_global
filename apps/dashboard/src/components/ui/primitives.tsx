@@ -1,10 +1,10 @@
-// Shared "patch-bay" UI primitives — the Groups-page visual language, packaged
-// so every page is built from the SAME parts and reads consistently. Backed by
-// the .panel / .hub-glyph / .stat-tile / .section-head / .status-dot /
-// .empty-state classes in index.css.
+// Shared panel primitives — the building blocks every page is made of, so every page reads the same. Backed by the
+// .panel / .hub-glyph / .stat-tile / .stat-strip / .section-head / .status-dot / .empty-state classes in index.css.
+// See "Design language" in apps/dashboard/CLAUDE.md for which one to use when.
 
 import type { ReactNode, CSSProperties } from 'react';
 import { Icon, type IconName } from './Icon';
+import { Sparkline } from './Sparkline';
 
 export type Tone = 'success' | 'warning' | 'danger' | 'accent' | 'neutral';
 
@@ -16,8 +16,7 @@ const TONE_VAR: Record<Tone, string> = {
   neutral: 'var(--color-ink-dim)',
 };
 
-/** A labelled form field for dialogs/forms — eyebrow label + optional hint,
- *  consistent spacing. Pair with `.input-field` controls. */
+/** A labelled form field for dialogs/forms — label + optional hint, consistent spacing. Pair with `.input-field` controls. */
 export function Field({ label, hint, children, style }: {
   label: string;
   hint?: ReactNode;
@@ -35,16 +34,16 @@ export function Field({ label, hint, children, style }: {
   );
 }
 
-/** A green-tinted hub node holding a brand initial or an icon. */
-export function HubGlyph({ children, size = 38 }: { children: ReactNode; size?: number }) {
+/** A tinted hub node holding a brand initial or an icon. `tone="neutral"` for things that are not agents. */
+export function HubGlyph({ children, size = 38, tone = 'accent' }: { children: ReactNode; size?: number; tone?: 'accent' | 'neutral' }) {
   return (
-    <div className="hub-glyph" style={{ width: size, height: size, fontSize: Math.round(size * 0.42) }} aria-hidden>
+    <div className={`hub-glyph${tone === 'neutral' ? ' is-neutral' : ''}`} style={{ width: size, height: size, fontSize: Math.round(size * 0.42) }} aria-hidden>
       {children}
     </div>
   );
 }
 
-/** A status dot with a soft halo. Tone drives the colour. */
+/** A status dot with a soft halo. Tone drives the colour. For a status that must read by shape use `StatusMark`. */
 export function StatusDot({ tone = 'neutral', size = 8 }: { tone?: Tone; size?: number }) {
   return (
     <span
@@ -54,14 +53,21 @@ export function StatusDot({ tone = 'neutral', size = 8 }: { tone?: Tone; size?: 
   );
 }
 
-/** KPI tile: label, big number, optional +/- delta and leading icon. */
-export function StatTile({ label, value, delta, deltaTone = 'neutral', icon, accent = false, style }: {
+/**
+ * KPI tile: a sentence-case label, a 28px value, an optional delta (mono, toned) and an optional sparkline.
+ * One tile alone is a card; several belong in a `<StatStrip>`.
+ */
+export function StatTile({ label, value, delta, deltaTone = 'neutral', icon, accent = false, spark, style }: {
   label: string;
   value: ReactNode;
+  /** A small line under the value: "+12 vs yesterday". Coloured by `deltaTone`. */
   delta?: ReactNode;
   deltaTone?: Tone;
   icon?: IconName;
+  /** Tints the tile green: the one number the page is about. */
   accent?: boolean;
+  /** Last N values, oldest first: draws a `Sparkline` under the value. */
+  spark?: number[];
   style?: CSSProperties;
 }) {
   return (
@@ -70,30 +76,38 @@ export function StatTile({ label, value, delta, deltaTone = 'neutral', icon, acc
         {icon && (
           <span style={{
             display: 'inline-flex', padding: 7, borderRadius: 'var(--radius-sm)',
-            background: accent ? 'rgba(62,207,142,0.16)' : 'var(--color-surface-3)',
+            background: accent ? 'color-mix(in srgb, var(--color-accent) 16%, transparent)' : 'var(--color-surface-3)',
             color: accent ? 'var(--color-accent)' : 'var(--color-ink-muted)',
           }}>
             <Icon name={icon} size={14} />
           </span>
         )}
-        <span className="text-micro" style={{ color: 'var(--color-ink-dim)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-          {label}
-        </span>
+        <span className="stat-label">{label}</span>
       </div>
-      <div className="tabular-nums" style={{ fontSize: 27, fontWeight: 600, letterSpacing: '-0.02em', color: 'var(--color-ink)', lineHeight: 1.1 }}>
-        {value}
-      </div>
-      {delta != null && (
-        <div className="text-micro" style={{ marginTop: 6, color: TONE_VAR[deltaTone], fontWeight: 500 }}>
-          {delta}
-        </div>
-      )}
+      <div className="stat-value">{value}</div>
+      {delta != null && <div className="stat-delta" style={{ color: TONE_VAR[deltaTone] }}>{delta}</div>}
+      {spark && spark.length > 0 && <div style={{ marginTop: 12 }}><Sparkline values={spark} /></div>}
     </div>
   );
 }
 
-/** Elevated section card with a tinted glyph + title header. */
-export function SectionCard({ title, icon, action, children, style, delay, interactive = false }: {
+/** KPI strip: several `StatTile`s in ONE panel, split by hairlines (instead of a grid of separate cards). */
+export function StatStrip({ children, label, style }: {
+  children: ReactNode;
+  /** Accessible name of the group ("Key numbers"). */
+  label?: string;
+  style?: CSSProperties;
+}) {
+  return <div className="stat-strip" role="group" aria-label={label} style={style}>{children}</div>;
+}
+
+/**
+ * The page's panel: a title (with an optional glyph and a right-hand `action`) over its content.
+ *  - default: content is padded inside the panel.
+ *  - `flush`: no padding; children are full-bleed rows (`<div className="panel-row">`, optional `.panel-foot`). A list of
+ *    entities is rows in a flush panel. A text-link `action` ("Open inbox · 17 →") takes `className="panel-link"`.
+ */
+export function SectionCard({ title, icon, action, children, style, delay, interactive = false, flush = false }: {
   title: ReactNode;
   icon?: IconName;
   action?: ReactNode;
@@ -102,15 +116,17 @@ export function SectionCard({ title, icon, action, children, style, delay, inter
   /** ms entrance delay (pairs with className compose-rise) */
   delay?: number;
   interactive?: boolean;
+  /** Rows instead of padded content (see above). */
+  flush?: boolean;
 }) {
   return (
     <section
-      className={`panel${interactive ? ' is-interactive' : ''}${delay != null ? ' compose-rise' : ''}`}
+      className={`panel is-section${flush ? ' is-flush' : ''}${interactive ? ' is-interactive' : ''}${delay != null ? ' compose-rise' : ''}`}
       style={{ ...(delay != null ? { animationDelay: `${delay}ms` } : null), ...style }}
     >
-      <div className="section-head">
+      <div className={flush ? 'panel-head' : 'section-head'}>
         {icon && <span className="section-glyph"><Icon name={icon} size={15} /></span>}
-        <h2 className="text-heading-md" style={{ margin: 0, fontSize: 14, fontWeight: 600, letterSpacing: '-0.01em', color: 'var(--color-ink)' }}>
+        <h2 className="text-heading-md" style={{ margin: 0, color: 'var(--color-ink)' }}>
           {title}
         </h2>
         {action && <div style={{ marginLeft: 'auto' }}>{action}</div>}
@@ -120,18 +136,23 @@ export function SectionCard({ title, icon, action, children, style, delay, inter
   );
 }
 
-/** Crafted empty/zero state — dashed medallion, title, note, optional action. */
-export function EmptyState({ icon, title, note, action }: {
-  icon: IconName;
+/**
+ * Crafted empty/zero state — medallion, title, note, optional action. Inside a panel it drops its dashed frame.
+ * `tone="clear"` is the good kind of empty ("All clear", "Nothing to approve"): a green medallion with a check.
+ */
+export function EmptyState({ icon, title, note, action, tone = 'neutral' }: {
+  /** Defaults to a check for `clear`, an inbox otherwise. */
+  icon?: IconName;
   title: string;
   note?: ReactNode;
   action?: ReactNode;
+  tone?: 'neutral' | 'clear';
 }) {
   return (
-    <div className="empty-state">
-      <div className="empty-medallion"><Icon name={icon} size={20} /></div>
-      <p className="text-body" style={{ color: 'var(--color-ink)', margin: '0 0 4px', fontWeight: 500 }}>{title}</p>
-      {note && <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)', margin: 0, maxWidth: 460, marginInline: 'auto' }}>{note}</p>}
+    <div className={`empty-state${tone === 'clear' ? ' is-clear' : ''}`}>
+      <div className="empty-medallion"><Icon name={icon ?? (tone === 'clear' ? 'check' : 'inbox')} size={20} /></div>
+      <p className="empty-title">{title}</p>
+      {note && <p className="empty-note">{note}</p>}
       {action && <div style={{ marginTop: 14 }}>{action}</div>}
     </div>
   );

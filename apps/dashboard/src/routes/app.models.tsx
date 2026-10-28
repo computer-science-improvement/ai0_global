@@ -26,7 +26,7 @@ import { fmtContext, fmtPerM, groupAgents, ownCounts, SOURCE_HINT, SOURCE_LABEL,
 // Everything below the Workspace card edits the active workspace's choices; each workspace keeps its own.
 export const Route = createFileRoute('/app/models')({ component: ModelsPage });
 
-const mono = { fontFamily: 'var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace)', fontSize: 13 } as const;
+const mono = { fontFamily: 'var(--font-mono)', fontSize: 13 } as const;
 
 function ModelsPage() {
   const q = useModelsOverview();

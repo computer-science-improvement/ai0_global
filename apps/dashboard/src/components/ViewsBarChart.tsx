@@ -1,12 +1,14 @@
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, Cell } from 'recharts';
 import { format } from 'date-fns';
 import type { TrackedPost } from '../api/types';
+import { usePrefersReducedMotion } from '../lib/useReducedMotion';
 
 // Compact axis ticks (1.2k / 3.4M) so the Y-axis stays narrow on small screens;
 // full grouped number in the tooltip.
 const compact = (n: number) => Intl.NumberFormat('en', { notation: 'compact', maximumFractionDigits: 1 }).format(n);
 
 export function ViewsBarChart({ posts }: { posts: TrackedPost[] }) {
+  const reduced = usePrefersReducedMotion();
   const data = [...posts].reverse().map((p) => ({
     at: new Date(p.postedAt).getTime(), views: p.views ?? 0,
   }));
@@ -44,14 +46,15 @@ export function ViewsBarChart({ posts }: { posts: TrackedPost[] }) {
             allowDecimals={false}
           />
           <Tooltip
+            isAnimationActive={!reduced}
             cursor={{ fill: 'var(--color-accent)', opacity: 0.08 }}
-            contentStyle={{ background: 'var(--color-surface-2)', border: '1px solid var(--color-hairline)', borderRadius: 10, color: 'var(--color-ink)', boxShadow: '0 8px 28px rgba(0,0,0,0.28)' }}
+            contentStyle={{ background: 'var(--color-surface-2)', border: '1px solid var(--color-hairline)', borderRadius: 'var(--radius-md)', color: 'var(--color-ink)', boxShadow: 'var(--shadow-1)' }}
             labelStyle={{ color: 'var(--color-ink-muted)', fontSize: 12 }}
             itemStyle={{ color: 'var(--color-ink)' }}
             labelFormatter={(v) => format(v as number, 'PPp')}
             formatter={(value) => [Number(value).toLocaleString(), 'Views']}
           />
-          <Bar dataKey="views" fill="url(#views-bar)" radius={[4, 4, 0, 0]} maxBarSize={44}>
+          <Bar isAnimationActive={!reduced} dataKey="views" fill="url(#views-bar)" radius={[4, 4, 0, 0]} maxBarSize={44}>
             {/* Highlight the peak post so the best performer reads at a glance. */}
             {data.map((d, i) => (
               <Cell key={i} fillOpacity={peak > 0 && d.views === peak ? 1 : 0.82} />

@@ -118,8 +118,8 @@ export function SlashMenu({ matches, hi, onHover, onPick, isMobile }: {
             background: i === hi ? 'var(--color-surface-3)' : 'transparent',
           }}>
           <div style={{ display: 'flex', gap: 6, alignItems: 'baseline', minWidth: 0 }}>
-            <span className="text-body-sm" style={{ color: 'var(--color-accent)', fontWeight: 500, fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace' }}>/{c.name}</span>
-            {c.args && <span className="text-micro" style={{ color: 'var(--color-ink-muted)', fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace' }}>{c.args}</span>}
+            <span className="text-body-sm" style={{ color: 'var(--color-accent)', fontWeight: 500, fontFamily: 'var(--font-mono)' }}>/{c.name}</span>
+            {c.args && <span className="text-micro" style={{ color: 'var(--color-ink-muted)', fontFamily: 'var(--font-mono)' }}>{c.args}</span>}
           </div>
           <div className="text-micro" style={{ color: 'var(--color-ink-dim)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
             {c.description}

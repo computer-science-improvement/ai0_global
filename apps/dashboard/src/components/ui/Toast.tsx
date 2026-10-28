@@ -1,6 +1,10 @@
 // Minimal app-wide toasts. A tiny module-level store so non-React code (the
 // QueryClient's MutationCache.onError in main.tsx) can raise one; <Toaster/>
-// renders the stack bottom-right. Click a toast to dismiss; errors stay 8 s.
+// renders the stack bottom-right. Click a toast (or its X) to dismiss; errors stay 8 s.
+//
+//   toast.success('Saved');
+//   toast.success('Post canceled', { action: { label: 'Undo', onClick: () => undo() } });   // stays 8 s, Undo dismisses it
+//   toast.error('Could not publish', { ttlMs: 15_000 });
 
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
@@ -8,17 +12,26 @@ import { Icon } from './Icon';
 import { ApiError } from '../../api/client';
 
 type ToastTone = 'danger' | 'success';
-interface ToastItem { id: number; tone: ToastTone; text: string }
+
+/** A button inside the toast ("Undo"). It runs, then the toast closes. */
+export interface ToastAction { label: string; onClick: () => void }
+export interface ToastOptions {
+  action?: ToastAction;
+  /** How long it stays, ms. Default 4 s (success) / 8 s (error); 8 s at least when it carries an action. */
+  ttlMs?: number;
+}
+interface ToastItem { id: number; tone: ToastTone; text: string; action?: ToastAction }
 
 let items: ToastItem[] = [];
 let nextId = 1;
 const listeners = new Set<(t: ToastItem[]) => void>();
 const emit = () => { for (const l of listeners) l(items); };
 
-function push(tone: ToastTone, text: string, ttlMs: number) {
+function push(tone: ToastTone, text: string, defaultTtlMs: number, opts?: ToastOptions) {
   const id = nextId++;
+  const ttlMs = opts?.ttlMs ?? (opts?.action ? Math.max(defaultTtlMs, 8_000) : defaultTtlMs);
   // Collapse an identical message that is already showing (e.g. a retried mutation).
-  items = [...items.filter((t) => t.text !== text), { id, tone, text }].slice(-4);
+  items = [...items.filter((t) => t.text !== text), { id, tone, text, action: opts?.action }].slice(-4);
   emit();
   setTimeout(() => dismiss(id), ttlMs);
 }
@@ -29,8 +42,8 @@ function dismiss(id: number) {
 }
 
 export const toast = {
-  error:   (text: string) => push('danger', text, 8_000),
-  success: (text: string) => push('success', text, 4_000),
+  error:   (text: string, opts?: ToastOptions) => push('danger', text, 8_000, opts),
+  success: (text: string, opts?: ToastOptions) => push('success', text, 4_000, opts),
 };
 
 /**
@@ -53,10 +66,7 @@ export function describeError(err: unknown): string {
   return head;
 }
 
-const TONE: Record<ToastTone, { fg: string; icon: 'warning' | 'check' }> = {
-  danger:  { fg: 'var(--color-danger)',  icon: 'warning' },
-  success: { fg: 'var(--color-success)', icon: 'check' },
-};
+const ICON: Record<ToastTone, 'warning' | 'check'> = { danger: 'warning', success: 'check' };
 
 export function Toaster() {
   const [list, setList] = useState<ToastItem[]>(items);
@@ -64,31 +74,22 @@ export function Toaster() {
     listeners.add(setList);
     return () => { listeners.delete(setList); };
   }, []);
-  if (!list.length) return null;
+  // The live region stays mounted (even when empty) so a screen reader announces what is added to it.
   return createPortal(
-    <div
-      role="status"
-      aria-live="polite"
-      style={{ position: 'fixed', right: 16, bottom: 16, zIndex: 70, display: 'flex', flexDirection: 'column', gap: 8, maxWidth: 'min(420px, calc(100vw - 32px))' }}
-    >
+    <div className="toasts" aria-live="polite">
       {list.map((t) => (
-        <button
-          key={t.id}
-          type="button"
-          onClick={() => dismiss(t.id)}
-          title="Dismiss"
-          className="compose-rise"
-          style={{
-            display: 'flex', alignItems: 'flex-start', gap: 10, textAlign: 'left', cursor: 'pointer',
-            padding: '11px 14px', borderRadius: 'var(--radius-md)',
-            background: 'var(--color-surface-2)', color: 'var(--color-ink)',
-            border: '1px solid var(--color-hairline)', borderLeft: `3px solid ${TONE[t.tone].fg}`,
-            boxShadow: '0 12px 32px rgba(0,0,0,0.45)', fontSize: 13, lineHeight: 1.4,
-          }}
-        >
-          <span style={{ color: TONE[t.tone].fg, display: 'inline-flex', marginTop: 1 }}><Icon name={TONE[t.tone].icon} size={15} /></span>
-          <span style={{ wordBreak: 'break-word' }}>{t.text}</span>
-        </button>
+        <div key={t.id} role="status" className={`toast${t.tone === 'danger' ? ' is-danger' : ''}`} onClick={() => dismiss(t.id)}>
+          <span className="toast-icon"><Icon name={ICON[t.tone]} size={15} /></span>
+          <span className="toast-text">{t.text}</span>
+          {t.action && (
+            <button type="button" className="toast-action" onClick={(e) => { e.stopPropagation(); t.action!.onClick(); dismiss(t.id); }}>
+              {t.action.label}
+            </button>
+          )}
+          <button type="button" className="toast-x" aria-label="Dismiss" onClick={(e) => { e.stopPropagation(); dismiss(t.id); }}>
+            <Icon name="x" size={14} />
+          </button>
+        </div>
       ))}
     </div>,
     document.body,

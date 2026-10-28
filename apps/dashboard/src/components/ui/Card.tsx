@@ -13,7 +13,7 @@ export function Panel({ title, action, children, style }: {
   return (
     <Card style={{ padding: 16, ...style }}>
       <div style={{ display: 'flex', alignItems: 'center', marginBottom: 12 }}>
-        <h3 className="text-heading-md" style={{ margin: 0, fontSize: 13, fontWeight: 500, letterSpacing: '-0.01em' }}>{title}</h3>
+        <h3 className="text-heading-md" style={{ margin: 0 }}>{title}</h3>
         {action && <div style={{ marginLeft: 'auto' }}>{action}</div>}
       </div>
       {children}

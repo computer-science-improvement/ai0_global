@@ -25,7 +25,7 @@ const ORIGIN_TONE: Record<SkillOrigin, 'accent' | 'neutral' | 'success'> = {
 };
 const OUTCOME_TONE = { pending: 'warning', kept: 'success', rolled_back: 'danger', superseded: 'neutral', probing: 'warning', rejected: 'danger' } as const;
 const AUTHOR_TONE = { repo: 'neutral', owner: 'success', agent: 'warning' } as const;
-const mono = 'ui-monospace, SFMono-Regular, Menlo, monospace';
+const mono = 'var(--font-mono)';
 
 type EditTarget = { entry: AgentSkillEntry | null };
 

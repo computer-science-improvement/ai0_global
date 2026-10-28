@@ -1,8 +1,10 @@
 import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid } from 'recharts';
 import { format } from 'date-fns';
 import type { TrackedPost } from '../api/types';
+import { usePrefersReducedMotion } from '../lib/useReducedMotion';
 
 export function EngagementChart({ posts }: { posts: TrackedPost[] }) {
+  const reduced = usePrefersReducedMotion();
   const data = [...posts].reverse()
     .filter((p) => (p.views ?? 0) > 0)
     .map((p) => {
@@ -17,12 +19,13 @@ export function EngagementChart({ posts }: { posts: TrackedPost[] }) {
           <XAxis dataKey="at" tickFormatter={(v) => format(v, 'MMM d')} stroke="var(--color-ink-muted)" tick={{ fill: 'var(--color-ink-muted)' }} />
           <YAxis stroke="var(--color-ink-muted)" tick={{ fill: 'var(--color-ink-muted)' }} tickFormatter={(v) => `${(v * 100).toFixed(1)}%`} />
           <Tooltip
-            contentStyle={{ background: 'var(--color-surface-2)', border: '1px solid var(--color-hairline)', borderRadius: 10, color: 'var(--color-ink)' }}
+            isAnimationActive={!reduced}
+            contentStyle={{ background: 'var(--color-surface-2)', border: '1px solid var(--color-hairline)', borderRadius: 'var(--radius-md)', color: 'var(--color-ink)' }}
             labelStyle={{ color: 'var(--color-ink-muted)' }}
             formatter={(v) => typeof v === 'number' ? `${(v * 100).toFixed(2)}%` : String(v)}
             labelFormatter={(v) => format(v as number, 'PPp')}
           />
-          <Line type="monotone" dataKey="rate" stroke="var(--color-grad-orange)" strokeWidth={2} dot={false} />
+          <Line isAnimationActive={!reduced} type="monotone" dataKey="rate" stroke="var(--color-grad-orange)" strokeWidth={2} dot={false} />
         </LineChart>
       </ResponsiveContainer>
     </div>
