@@ -9,6 +9,9 @@
 /* Panels of one page, a gap apart. */
 .ch-stack { display: grid; gap: 16px; }
 .ch-stack > * { min-width: 0; }
+/* Two panels side by side; one below the other on a phone. */
+.ch-pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 16px; }
+.ch-pair > * { min-width: 0; }
 
 /* The bar above a list or a chart: search, filters, a count on the right. */
 .ch-toolbar { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
@@ -57,7 +60,6 @@
 /* ── Loading rows: grey bars in the rhythm of a channel row (no shimmer, nothing to switch off) ── */
 
 .ch-skel { display: flex; align-items: center; gap: 14px; padding: 14px 20px; border-top: 1px solid var(--color-hairline); }
-.ch-skel:first-child { border-top: 0; }
 .ch-skel-glyph { width: 36px; height: 36px; flex: none; border-radius: var(--radius-md); background: var(--color-surface-3); }
 .ch-skel-lines { flex: 1; min-width: 0; display: grid; gap: 8px; }
 .ch-skel-bar { height: 10px; border-radius: var(--radius-sm); background: var(--color-surface-3); }

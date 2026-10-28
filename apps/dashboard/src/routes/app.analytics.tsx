@@ -9,7 +9,8 @@ import { EVERGREEN_SHARE_MAX, splitReposts } from '../lib/reposts';
 import { PageHeader } from '../components/ui/PageHeader';
 import type { IconName } from '../components/ui/Icon';
 import { SegmentedTabs } from '../components/SegmentedTabs';
-import { StatTile, SectionCard, EmptyState, type Tone } from '../components/ui/primitives';
+import { StatTile, StatStrip, SectionCard, EmptyState, type Tone } from '../components/ui/primitives';
+import { ErrorCallout, SectionCaption } from '../components/channels/ChannelsUi';
 import { SubsHistoryChart } from '../components/SubsHistoryChart';
 import { ViewsBarChart } from '../components/ViewsBarChart';
 import { EngagementChart } from '../components/EngagementChart';
@@ -21,17 +22,7 @@ export const Route = createFileRoute('/app/analytics')({ component: AnalyticsPag
 
 type Tab = 'telegram' | 'meta';
 
-const TAB_OPTIONS: { key: Tab; label: string; icon: IconName }[] = [
-  { key: 'telegram', label: 'Telegram', icon: 'telegram' },
-  { key: 'meta', label: 'Meta', icon: 'facebook' },
-];
-
-/** Platform toggle — the shared SegmentedTabs every page uses. */
-function PlatformToggle({ value, onChange }: { value: Tab; onChange: (t: Tab) => void }) {
-  return <SegmentedTabs value={value} onChange={onChange} options={TAB_OPTIONS} />;
-}
-
-/** Dashed icon empty/loading state used inside chart cards. */
+/** Empty / loading state used inside chart panels (a refresh medallion while loading). */
 function ChartState({ icon = 'analytics', note, loading = false }: { icon?: IconName; note: string; loading?: boolean }) {
   return <EmptyState icon={loading ? 'refresh' : icon} title={note} />;
 }
@@ -82,77 +73,89 @@ function AnalyticsPage() {
   const split = splitReposts(posts);
   const avgViews = split.avgOwnViews;
   const totalReactions = posts.reduce((a, p) => a + (p.reactionsTotal ?? 0), 0);
+  // Views of the last 7 posts, oldest first (the list comes latest first).
+  const viewsSpark = posts.slice(0, 7).reverse().map(p => p.views ?? 0);
 
   const metaReachTotal = insPoints.reduce((a, p) => a + (p.reach ?? 0), 0);
 
   return (
     <div>
       <PageHeader
+        eyebrow="Insights"
         title="Analytics"
         subtitle={tab === 'telegram' ? 'Telegram · my channels' : 'Meta · my accounts'}
-        actions={
-          <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap', justifyContent: 'flex-end' }}>
-            <PlatformToggle value={tab} onChange={setTab} />
-            {tab === 'telegram' && channels.length > 0 && (
-              <select className="input-field" value={channelId} onChange={e => setSel(e.target.value)} style={{ minWidth: 200 }}>
-                {channels.map(c => <option key={c.id} value={c.id}>{channelOptionLabel(c)}</option>)}
-              </select>
-            )}
-            {tab === 'meta' && metaAccounts.length > 0 && (
-              <select className="input-field" value={metaId} onChange={e => setMetaSel(e.target.value)} style={{ minWidth: 200 }}>
-                {metaAccounts.map(a => <option key={a.id} value={a.id}>{a.platform} — {a.username ? `@${a.username}` : a.account_id}</option>)}
-              </select>
-            )}
-          </div>
-        }
       />
 
+      {/* The platform, then which channel or account to read. */}
+      <div className="ch-toolbar">
+        <SegmentedTabs<Tab>
+          value={tab}
+          onChange={setTab}
+          ariaLabel="Platform"
+          options={[
+            { key: 'telegram', label: 'Telegram', icon: 'telegram', count: channelsQ.data ? channels.length : undefined },
+            { key: 'meta',     label: 'Meta',     icon: 'facebook', count: metaQ.data ? metaAccounts.length : undefined },
+          ]}
+        />
+        {tab === 'telegram' && channels.length > 0 && (
+          <select className="input-field" aria-label="Channel" value={channelId} onChange={e => setSel(e.target.value)} style={{ minWidth: 200, maxWidth: '100%' }}>
+            {channels.map(c => <option key={c.id} value={c.id}>{channelOptionLabel(c)}</option>)}
+          </select>
+        )}
+        {tab === 'meta' && metaAccounts.length > 0 && (
+          <select className="input-field" aria-label="Meta account" value={metaId} onChange={e => setMetaSel(e.target.value)} style={{ minWidth: 200, maxWidth: '100%' }}>
+            {metaAccounts.map(a => <option key={a.id} value={a.id}>{a.platform} — {a.username ? `@${a.username}` : a.account_id}</option>)}
+          </select>
+        )}
+      </div>
+
       {tab === 'telegram' ? (
-        !channelId ? (
-          <EmptyState icon="analytics" title="No channels" note="Add your own channel (is_mine) to see analytics." />
+        channelsQ.error ? (
+          <ErrorCallout title="Couldn’t load your channels" message={(channelsQ.error as Error).message} />
+        ) : channelsQ.isPending ? (
+          <div className="panel"><ChartState note="Loading channels…" loading /></div>
+        ) : !channelId ? (
+          <div className="panel"><EmptyState icon="analytics" title="No channels" note="Add your own channel (is_mine) to see analytics." /></div>
         ) : (
-          <div style={{ display: 'grid', gap: 12 }}>
-            <div className="stat-grid">
-              <StatTile
-                label="Subscribers"
-                value={fmtNumber(subsCurrent)}
-                icon="channels"
-                delta={subsDelta != null ? `${signed(subsDelta)} · tracked range` : undefined}
-                deltaTone={deltaTone(subsDelta)}
-              />
-              <StatTile
-                label="Avg views"
-                value={fmtNumber(avgViews)}
-                icon="analytics"
-                delta={split.own > 0 ? `last ${split.own} own posts` : 'no posts'}
-              />
-              <StatTile
-                label="Own vs reposts"
-                value={`${fmtNumber(split.own)} / ${fmtNumber(split.reposts)}`}
-                icon="channels"
-                delta={split.share != null ? `${Math.round(split.share * 100)}% reposts` : 'no posts'}
-                deltaTone={split.share != null && split.share > 0.3 ? 'danger' : 'neutral'}
-              />
-              <StatTile
-                label="Evergreen"
-                value={fmtNumber(split.evergreen)}
-                icon="strategies"
-                delta={split.evergreenShare != null ? `${Math.round(split.evergreenShare * 100)}% of posts · fallback` : 'no posts'}
-                deltaTone={split.evergreenShare != null && split.evergreenShare > EVERGREEN_SHARE_MAX ? 'danger' : 'neutral'}
-              />
-              <StatTile
-                label="Reactions"
-                value={fmtNumber(totalReactions)}
-                icon="strategies"
-                delta={posts.length > 0 ? `across ${posts.length} posts` : 'no posts'}
-              />
+          <div className="ch-stack">
+            <div className="compose-rise">
+              <StatStrip label="Telegram numbers">
+                <StatTile
+                  label="Subscribers"
+                  value={fmtNumber(subsCurrent)}
+                  delta={subsDelta != null ? `${signed(subsDelta)} · tracked range` : undefined}
+                  deltaTone={deltaTone(subsDelta)}
+                />
+                <StatTile
+                  label="Avg views"
+                  value={fmtNumber(avgViews)}
+                  delta={split.own > 0 ? `last ${split.own} own posts` : 'no posts'}
+                  spark={viewsSpark.length > 1 ? viewsSpark : undefined}
+                />
+                <StatTile
+                  label="Own vs reposts"
+                  value={`${fmtNumber(split.own)} / ${fmtNumber(split.reposts)}`}
+                  delta={split.share != null ? `${Math.round(split.share * 100)}% reposts` : 'no posts'}
+                  deltaTone={split.share != null && split.share > 0.3 ? 'danger' : 'neutral'}
+                />
+                <StatTile
+                  label="Evergreen"
+                  value={fmtNumber(split.evergreen)}
+                  delta={split.evergreenShare != null ? `${Math.round(split.evergreenShare * 100)}% of posts · fallback` : 'no posts'}
+                  deltaTone={split.evergreenShare != null && split.evergreenShare > EVERGREEN_SHARE_MAX ? 'danger' : 'neutral'}
+                />
+                <StatTile
+                  label="Reactions"
+                  value={fmtNumber(totalReactions)}
+                  delta={posts.length > 0 ? `across ${posts.length} posts` : 'no posts'}
+                />
+              </StatStrip>
             </div>
 
             <SectionCard
               title="Subscribers"
-              icon="channels"
-              delay={150}
-              action={points.length > 0 ? <span className="text-caption" style={{ color: 'var(--color-ink-dim)', fontSize: 11 }}>{points.length} points</span> : undefined}
+              delay={80}
+              action={points.length > 0 ? <SectionCaption>{points.length} points</SectionCaption> : undefined}
             >
               {subsQ.isPending
                 ? <ChartState note="Loading subscriber history…" loading />
@@ -161,25 +164,15 @@ function AnalyticsPage() {
                   : <ChartState note="No subscriber history yet." />}
             </SectionCard>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 12 }}>
-              <SectionCard
-                title="Views"
-                icon="analytics"
-                delay={200}
-                action={<span className="text-caption" style={{ color: 'var(--color-ink-dim)', fontSize: 11 }}>per post</span>}
-              >
+            <div className="ch-pair">
+              <SectionCard title="Views" delay={120} action={<SectionCaption>per post</SectionCaption>}>
                 {postsQ.isPending
                   ? <ChartState note="Loading posts…" loading />
                   : posts.length > 0
                     ? <ViewsBarChart posts={posts} />
                     : <ChartState note="No posts to chart yet." />}
               </SectionCard>
-              <SectionCard
-                title="Engagement"
-                icon="strategies"
-                delay={250}
-                action={<span className="text-caption" style={{ color: 'var(--color-ink-dim)', fontSize: 11 }}>per post</span>}
-              >
+              <SectionCard title="Engagement" delay={160} action={<SectionCaption>per post</SectionCaption>}>
                 {postsQ.isPending
                   ? <ChartState note="Loading posts…" loading />
                   : posts.length > 0
@@ -188,44 +181,46 @@ function AnalyticsPage() {
               </SectionCard>
             </div>
 
-            <div className="compose-rise" style={{ animationDelay: '300ms' }}>
+            <SectionCard title="ROI estimate" delay={200}>
               <RoiPanel channelId={channelId} />
-            </div>
+            </SectionCard>
           </div>
         )
       ) : (
-        !metaId ? (
-          <EmptyState icon="analytics" title="No Meta accounts" note="Connect a Meta account on the Meta page to see analytics." />
+        metaQ.error ? (
+          <ErrorCallout title="Couldn’t load your Meta accounts" message={(metaQ.error as Error).message} />
+        ) : metaQ.isPending ? (
+          <div className="panel"><ChartState note="Loading Meta accounts…" loading /></div>
+        ) : !metaId ? (
+          <div className="panel"><EmptyState icon="analytics" title="No Meta accounts" note="Connect a Meta account on the Meta page to see analytics." /></div>
         ) : (
-          <div style={{ display: 'grid', gap: 12 }}>
-            <div className="stat-grid">
-              <StatTile
-                label="Followers"
-                value={fmtNumber(histQ.data?.current ?? metaAcc?.followers ?? null)}
-                icon="channels"
-                delta={metaAcc?.followers_delta_24h != null ? `${signed(metaAcc.followers_delta_24h)} · 24h` : '24h'}
-                deltaTone={deltaTone(metaAcc?.followers_delta_24h)}
-              />
-              <StatTile
-                label="Followers Δ 7d"
-                value={histQ.data?.delta7d != null ? signed(histQ.data.delta7d) : '—'}
-                icon="analytics"
-                delta="vs 7 days ago"
-                deltaTone={deltaTone(histQ.data?.delta7d)}
-              />
-              <StatTile
-                label="Reach"
-                value={fmtNumber(hasReach ? metaReachTotal : null)}
-                icon="strategies"
-                delta={insPoints.length > 0 ? `${insPoints.length}-day total` : 'no data'}
-              />
+          <div className="ch-stack">
+            <div className="compose-rise">
+              <StatStrip label="Meta numbers">
+                <StatTile
+                  label="Followers"
+                  value={fmtNumber(histQ.data?.current ?? metaAcc?.followers ?? null)}
+                  delta={metaAcc?.followers_delta_24h != null ? `${signed(metaAcc.followers_delta_24h)} · 24h` : '24h'}
+                  deltaTone={deltaTone(metaAcc?.followers_delta_24h)}
+                />
+                <StatTile
+                  label="Followers Δ 7d"
+                  value={histQ.data?.delta7d != null ? signed(histQ.data.delta7d) : '—'}
+                  delta="vs 7 days ago"
+                  deltaTone={deltaTone(histQ.data?.delta7d)}
+                />
+                <StatTile
+                  label="Reach"
+                  value={fmtNumber(hasReach ? metaReachTotal : null)}
+                  delta={insPoints.length > 0 ? `${insPoints.length}-day total` : 'no data'}
+                />
+              </StatStrip>
             </div>
 
             <SectionCard
               title="Followers over time"
-              icon="channels"
-              delay={150}
-              action={followerPoints.length > 0 ? <span className="text-caption" style={{ color: 'var(--color-ink-dim)', fontSize: 11 }}>{followerPoints.length} points</span> : undefined}
+              delay={80}
+              action={followerPoints.length > 0 ? <SectionCaption>{followerPoints.length} points</SectionCaption> : undefined}
             >
               {histQ.isPending
                 ? <ChartState note="Loading follower history…" loading />
@@ -234,7 +229,7 @@ function AnalyticsPage() {
                   : <ChartState note="No follower data yet." />}
             </SectionCard>
 
-            <SectionCard title="Reach & impressions" icon="analytics" delay={200}>
+            <SectionCard title="Reach & impressions" delay={120}>
               {insQ.isPending
                 ? <ChartState note="Loading insights…" loading />
                 : hasReach
@@ -242,7 +237,7 @@ function AnalyticsPage() {
                   : <ChartState note={metaAcc?.platform === 'threads' ? 'Not available on Threads.' : 'No insight data yet.'} />}
             </SectionCard>
 
-            <SectionCard title="Profile views" icon="analytics" delay={250}>
+            <SectionCard title="Profile views" delay={160}>
               {insQ.isPending
                 ? <ChartState note="Loading insights…" loading />
                 : hasProfileViews
