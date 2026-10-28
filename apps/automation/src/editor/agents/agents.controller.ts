@@ -26,6 +26,12 @@ export class AgentsController {
     return this.svc.markRead(body);
   }
 
+  /** Spec 078 D5 gap #2: a button of an Inbox note (Resume, Keep paused, Pause series, Mute), as the Telegram card runs it. */
+  @Post('agents/inbox/:id/actions')
+  inboxAction(@Param('id', ParseIntPipe) id: number, @Body() body: unknown) {
+    return this.svc.inboxAction(id, body);
+  }
+
   @Get('agents/handles')
   handles() {
     return this.svc.handles();

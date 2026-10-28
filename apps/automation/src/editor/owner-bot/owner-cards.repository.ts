@@ -133,10 +133,14 @@ export class OwnerCardsRepository {
         WHERE id = $1 AND status = 'queued'`, [id, error.slice(0, 500), MAX_ATTEMPTS]);
   }
 
-  /** Settles a live card once: done (the owner acted here) or closed (decided elsewhere, expired). Null when it was not live. */
+  /**
+   * Settles a live card once: done (the owner acted here) or closed (decided elsewhere, expired). Null when it was not live.
+   * `by` null keeps a mark the card already has: the dashboard stamps the card of a note it acted on (`dashboard:owner`,
+   * spec 078 D5) before the sweep closes it as decided there.
+   */
   async resolve(id: number, status: 'done' | 'closed', outcome: string, by: string | null): Promise<OwnerCard | null> {
     const { rows } = await this.pool.query(
-      `UPDATE owner_cards SET status = $2, outcome = $3, resolved_by = $4, resolved_at = now()
+      `UPDATE owner_cards SET status = $2, outcome = $3, resolved_by = COALESCE($4, resolved_by), resolved_at = now()
         WHERE id = $1 AND status IN ('queued', 'open') RETURNING *`, [id, status, outcome.slice(0, 300), by]);
     return rows[0] ? toCard(rows[0]) : null;
   }

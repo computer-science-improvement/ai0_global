@@ -171,14 +171,14 @@ export class OwnerInbox {
 
   /**
    * Spec 069 A10: whether the owner reacted to the subject's run of notes — a card of one of its notes was resolved from
-   * Telegram (`owner_cards.resolved_by LIKE 'telegram:%'`) since the run began. A failed lookup counts as a reaction: a
-   * note is never demoted on a guess.
+   * Telegram (`owner_cards.resolved_by LIKE 'telegram:%'`) or acted on in the dashboard (`'dashboard:%'`, spec 078 D5)
+   * since the run began. A failed lookup counts as a reaction: a note is never demoted on a guess.
    */
   private async ownerActed(subject: string, since: Date | null): Promise<boolean> {
     try {
       const { rows } = await this.pool.query(
         `SELECT 1 FROM owner_cards c JOIN agent_inbox n ON c.kind = 'inbox' AND c.ref_id = n.id::text
-          WHERE n.subject = $1 AND n.created_at >= $2 AND c.resolved_by LIKE 'telegram:%' LIMIT 1`,
+          WHERE n.subject = $1 AND n.created_at >= $2 AND (c.resolved_by LIKE 'telegram:%' OR c.resolved_by LIKE 'dashboard:%') LIMIT 1`,
         [subject, since ?? new Date(0)]);
       return rows.length > 0;
     } catch {

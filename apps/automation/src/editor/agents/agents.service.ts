@@ -59,11 +59,17 @@ export interface AgentsServiceDeps {
   ruleLint?: (text: string, orchestrator: Agent) => Promise<Array<{ code: string; detail: string }>>;
   /** Spec 049 FR-003: the source health of a channel card (null without a card). */
   sourceHealth?: (channelKey: string) => Promise<SourceHealthReport | null>;
-  /** Spec 060 FR-001: the dead-series breaker's pauses (agent page → Paused series → Resume). */
-  pauses?: Pick<SeriesPauseActions, 'list' | 'resume'>;
+  /**
+   * Spec 060 FR-001: the dead-series breaker's pauses (agent page → Paused series → Resume). Spec 078 D5: `execute` (a
+   * note's action button) is the code the owner bot runs.
+   */
+  pauses?: Pick<SeriesPauseActions, 'list' | 'resume' | 'execute'>;
 }
 
 const ResumeBody = z.object({ action: z.literal('resume'), id: z.string().uuid() });
+
+/** Spec 078 D5 gap #2: the key of one of the note's own buttons (a pause key carries a JSON triple, so it can be long). */
+const InboxActionBody = z.object({ key: z.string().min(1).max(600) }).strict();
 
 /** The dashboard's view of a pause (the repository's row, dates as ISO strings). */
 function pauseView(p: SeriesPause) {
@@ -575,5 +581,24 @@ export class AgentsService {
     const p = z.object({ ids: z.union([z.array(z.number().int().positive()).max(500), z.literal('all')]) }).strict().safeParse(body ?? {});
     if (!p.success) throw badRequest(p.error);
     return { marked: await this.d.inbox.markRead(p.data.ids) };
+  }
+
+  /**
+   * Spec 078 D5 gap #2: a button of an Inbox note, pressed in the dashboard. The same rule as the Telegram card: the key must
+   * be one of the actions stored with the note (a client cannot name any pause or resource), and it runs through the same
+   * `SeriesPauseActions` as the owner bot, so both surfaces leave the same trace. Answers what happened and the note.
+   */
+  async inboxAction(id: number, body: unknown) {
+    const p = InboxActionBody.safeParse(body ?? {});
+    if (!p.success) throw badRequest(p.error);
+    const note = await this.d.inbox.get(id);
+    if (!note) throw new NotFoundException({ error: 'note_not_found', id });
+    // `note.actions` is the stored list, cleaned (`actionViews`), keys unchanged: the Telegram callback's check.
+    if (!note.actions.some((a) => a.key === p.data.key)) {
+      throw new BadRequestException({ error: 'unknown_action', details: 'this note has no such action' });
+    }
+    if (!this.d.pauses) throw new NotFoundException({ error: 'not_available', details: 'note actions are not available' });
+    const r = await this.d.pauses.execute(id, p.data.key, 'dashboard');
+    return { outcome: r.outcome, code: r.code, changed: r.changed, item: await this.d.inbox.get(id) };
   }
 }
