@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>ai0 app — Agent Айра</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300..800&amp;family=Geist+Mono:wght@400;500&amp;display=swap">
+<style>
+body{margin:0;background:#0A0C0B}
+a{color:#3DDC97}
+a:hover{color:#8CF5C6}
+.app{font-family:'Geist',system-ui,-apple-system,sans-serif;color:#EDEFEE;background:#0A0C0B;-webkit-font-smoothing:antialiased;display:flex;flex-wrap:wrap;align-items:stretch}
+.mono{font-family:'Geist Mono',ui-monospace,monospace}
+.side{flex:1 0 248px;max-width:100%;box-sizing:border-box;padding:16px 12px 20px;border-right:1px solid rgba(255,255,255,.07);background:#0C0F0E;display:flex;flex-direction:column;gap:2px}
+.main{flex:999 1 560px;min-width:0;box-sizing:border-box}
+.nl{display:flex;align-items:center;gap:10px;min-height:40px;padding:0 10px;border-radius:10px;color:#AEB5B1;text-decoration:none;font-size:14px;transition:background .2s,color .2s}
+.nl:hover{background:rgba(255,255,255,.05);color:#EDEFEE}
+.nl.on{background:rgba(61,220,151,.1);color:#E6FBF1}
+.nl.on svg{color:#3DDC97}
+.ng{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#828C87;padding:18px 10px 6px}
+.cnt{margin-left:auto;font-family:'Geist Mono',monospace;font-size:11px;padding:2px 8px;border-radius:999px;background:rgba(242,178,76,.15);color:#F2B24C}
+.cnt.g{background:rgba(61,220,151,.12);color:#7FF0BE}
+.agl{display:flex;align-items:center;gap:10px;min-height:36px;padding:0 10px 0 28px;border-radius:10px;color:#A3ABA7;text-decoration:none;font-size:13px}
+.agl:hover{background:rgba(255,255,255,.04);color:#EDEFEE}
+.agl.on{color:#EDEFEE;background:rgba(255,255,255,.05)}
+.top{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:14px 32px;border-bottom:1px solid rgba(255,255,255,.07)}
+.search{display:flex;align-items:center;gap:10px;flex:1 1 240px;max-width:440px;min-height:44px;padding:0 12px;border-radius:12px;border:1px solid rgba(255,255,255,.1);background:#0F1312;color:#97A09B;font:inherit;font-size:14px;cursor:pointer;text-align:left;box-sizing:border-box}
+.kbd{margin-left:auto;font-family:'Geist Mono',monospace;font-size:11px;padding:2px 6px;border-radius:6px;border:1px solid rgba(255,255,255,.14);color:#97A09B}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 16px;border-radius:12px;font:inherit;font-weight:600;font-size:14px;text-decoration:none;cursor:pointer;box-sizing:border-box;border:1px solid transparent;transition:transform .2s,background .2s,border-color .2s,box-shadow .2s;white-space:nowrap}
+.btn-p{background:#3DDC97;color:#03170D}
+.btn-p:hover{color:#03170D;transform:translateY(-1px);box-shadow:0 10px 24px -10px rgba(61,220,151,.7)}
+.btn-g{background:transparent;border-color:rgba(255,255,255,.14);color:#EDEFEE}
+.btn-g:hover{color:#FFFFFF;border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.04)}
+.btn-a{background:#F2B24C;color:#1E1404}
+.btn-a:hover{color:#1E1404;transform:translateY(-1px)}
+.btn-q{background:transparent;color:#AEB5B1;border:0}
+.btn-q:hover{color:#EDEFEE;background:rgba(255,255,255,.05)}
+.pnl{background:#101413;border:1px solid rgba(255,255,255,.08);border-radius:18px;box-sizing:border-box}
+.pt{font-size:15px;font-weight:600;letter-spacing:-.01em}
+.lbl{font-size:12px;color:#97A09B}
+.dot{width:8px;height:8px;border-radius:50%;background:#3DDC97;display:inline-block;flex:none;animation:pulseDot 2s ease-out infinite}
+.modes{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));padding:4px;border-radius:14px;background:#0B0E0D;border:1px solid rgba(255,255,255,.1);min-width:min(420px,100%);box-sizing:border-box}
+.modes button{position:relative;min-height:44px;padding:0 12px;border:0;border-radius:10px;background:transparent;color:#AEB5B1;font:inherit;font-size:14px;font-weight:600;cursor:pointer;transition:background .25s,color .25s}
+.modes button:hover{color:#EDEFEE}
+.modes button.on{background:#3DDC97;color:#03170D}
+.modes button.on.ap{background:#F2B24C;color:#1E1404}
+.modes button.on.sh{background:#2A3A33;color:#C8F5DF}
+.modes button.on.off{background:rgba(255,255,255,.14);color:#EDEFEE}
+.tabs{display:flex;gap:2px;flex-wrap:wrap;border-bottom:1px solid rgba(255,255,255,.08)}
+.tabs button{position:relative;display:inline-flex;align-items:center;gap:8px;min-height:46px;padding:0 16px;border:0;background:transparent;color:#AEB5B1;font:inherit;font-size:14px;font-weight:500;cursor:pointer}
+.tabs button:hover{color:#EDEFEE}
+.tabs button.on{color:#EDEFEE}
+.tabs button.on::after{content:'';position:absolute;left:12px;right:12px;bottom:-1px;height:2px;border-radius:2px;background:#3DDC97}
+.tn{font-family:'Geist Mono',monospace;font-size:11px;color:#828C87}
+.banner{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:14px 16px;border-radius:14px;background:rgba(242,178,76,.08);border:1px solid rgba(242,178,76,.3);animation:fadeUp .4s cubic-bezier(.2,.8,.2,1) both}
+.kpi{flex:1 1 180px;padding:18px 20px}
+.ev{display:grid;grid-template-columns:52px 18px 1fr;gap:12px;align-items:start;padding:10px 0}
+.evd{width:12px;height:12px;border-radius:50%;margin-top:4px;box-sizing:border-box;position:relative}
+.ev-ok{background:#3DDC97}
+.ev-skip{border:2px solid #7C8580}
+.ev-miss{background:#F2B24C;border-radius:2px;transform:rotate(45deg)}
+.ev-pause{background:#F2B24C}
+.ev-plan{border:2px solid #3DDC97}
+.evline{position:absolute;left:5px;top:16px;width:2px;height:34px;background:rgba(255,255,255,.08)}
+.field{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 0;border-top:1px solid rgba(255,255,255,.06)}
+.lock{display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:0 10px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:transparent;color:#A3ABA7;font:inherit;font-size:12px;cursor:pointer;position:relative;transition:all .2s}
+.lock::after{content:'';position:absolute;inset:-4px 0}
+.lock:hover{color:#EDEFEE;border-color:rgba(255,255,255,.25)}
+.lock.on{background:rgba(242,178,76,.12);border-color:rgba(242,178,76,.4);color:#F2B24C}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;background:rgba(255,255,255,.06);font-size:12px;color:#C9D0CC}
+.sub{padding:18px 20px;border-radius:16px;background:#0D1110;border:1px solid rgba(255,255,255,.07);flex:1 1 240px}
+.fade{animation:fadeUp .35s cubic-bezier(.2,.8,.2,1) both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:none} }
+@keyframes pulseDot{0%{box-shadow:0 0 0 0 rgba(61,220,151,.65)} 70%{box-shadow:0 0 0 8px rgba(61,220,151,0)} 100%{box-shadow:0 0 0 0 rgba(61,220,151,0)} }
+@media (prefers-reduced-motion: reduce) {
+ .app *,.app *::before,.app *::after{animation:none !important;transition:none !important}
+}
+@media (max-width:760px) {
+ .top{padding:12px 16px}
+ .pad{padding-left:16px !important;padding-right:16px !important}
+ .modes{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+</style>
+</helmet>
+<div class="app">
+<aside class="side" aria-label="Main navigation">
+<div style="display:flex;align-items:center;justify-content:space-between;padding:4px 10px 14px">
+<a href="Main.dc.html" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:#EDEFEE;font-weight:700;font-size:20px;letter-spacing:-.04em"><span class="dot"></span>ai0</a>
+<span class="mono" style="font-size:11px;padding:3px 8px;border-radius:6px;background:rgba(242,178,76,.12);color:#F2B24C">dev</span>
+</div>
+<a class="nl" href="App-Today.dc.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5V21H3z"></path><path d="M9 21v-6h6v6"></path></svg>Today</a>
+<a class="nl" href="App-Inbox.dc.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-6l-2 3h-4l-2-3H2"></path><path d="M5.5 5h13L22 12v7a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-7z"></path></svg>Inbox<span class="cnt">17</span></a>
+<a class="nl" href="#"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>Chat with agents</a>
+<div class="ng">Network</div>
+<a class="nl on" href="App-Agent.dc.html" aria-current="page"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="3"></rect><path d="M12 4v4"></path><circle cx="9" cy="14" r="1"></circle><circle cx="15" cy="14" r="1"></circle></svg>Agents<span class="cnt g">5 live</span></a>
+<a class="agl on" href="App-Agent.dc.html"><span class="dot" style="width:6px;height:6px"></span>Айра</a>
+<a class="agl" href="App-Agent.dc.html"><span class="dot" style="width:6px;height:6px;animation:none"></span>Нова</a>
+<a class="agl" href="App-Agent.dc.html"><span class="dot" style="width:6px;height:6px;animation:none"></span>Prompts</a>
+<a class="agl" href="App-Agent.dc.html"><span class="dot" style="width:6px;height:6px;animation:none"></span>Локо</a>
+<a class="agl" href="App-Agent.dc.html"><span class="dot" style="width:6px;height:6px;animation:none"></span>Машина</a>
+<a class="nl" href="App-Calendar.dc.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4"></path><path d="M8 2v4"></path><path d="M3 10h18"></path></svg>Calendar</a>
+<a class="nl" href="#"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="2"></circle><path d="M16.2 7.8a6 6 0 0 1 0 8.5"></path><path d="M7.8 16.2a6 6 0 0 1 0-8.5"></path><path d="M19 5a10 10 0 0 1 0 14"></path><path d="M5 19A10 10 0 0 1 5 5"></path></svg>Channels</a>
+<a class="nl" href="#"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="3"></circle><circle cx="18" cy="6" r="3"></circle><circle cx="12" cy="18" r="3"></circle><path d="M8.5 7.5 11 16"></path><path d="M15.5 7.5 13 16"></path><path d="M9 6h6"></path></svg>Map</a>
+<div class="ng">Insights</div>
+<a class="nl" href="#"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"></path><path d="M7 16v-5"></path><path d="M12 16V8"></path><path d="M17 16v-8"></path></svg>Analytics</a>
+<a class="nl" href="#"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M14.5 9.5c-.5-1-1.5-1.5-2.5-1.5-1.4 0-2.5.8-2.5 2s1.1 1.7 2.5 2 2.5.8 2.5 2-1.1 2-2.5 2c-1 0-2-.5-2.5-1.5"></path></svg>Spend</a>
+<a class="nl" href="#"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>Health<span class="cnt">2</span></a>
+</aside>
+
+<main class="main">
+<div class="top">
+<button type="button" class="search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m21 21-4.3-4.3"></path></svg>Search pages, agents, posts…<span class="kbd">⌘K</span></button>
+<div style="flex:1 1 0"></div>
+<a class="btn btn-p" href="App-Calendar.dc.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"></path><path d="M5 12h14"></path></svg>New post</a>
+</div>
+
+<div class="pad" style="padding:24px 32px 48px;max-width:1240px;box-sizing:border-box">
+<nav aria-label="Breadcrumb" class="mono" style="font-size:12px;color:#828C87"><a href="App-Agent.dc.html" style="color:#97A09B;text-decoration:none">Agents</a> / Айра</nav>
+
+<div style="display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start;justify-content:space-between;margin-top:14px">
+<div style="display:flex;gap:16px;align-items:center;flex:1 1 380px;min-width:0">
+<div style="width:64px;height:64px;border-radius:20px;background:#18201D;border:1px solid rgba(61,220,151,.4);display:flex;align-items:center;justify-content:center;font-family:'Geist Mono',monospace;font-size:20px;color:#DFF8EC;flex:none;box-shadow:0 0 0 6px rgba(61,220,151,.06)">Ай</div>
+<div style="min-width:0">
+<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><h1 style="margin:0;font-size:32px;font-weight:600;letter-spacing:-.035em">Айра</h1><span class="chip mono">orchestrator</span></div>
+<div style="font-size:14px;color:#A3ABA7;margin-top:4px">Агент каналу AI Технології: новини ШІ, MCP-сервери, промпти та AI-інструменти</div>
+<div class="mono" style="font-size:12px;color:#828C87;margin-top:6px">@ai_global → telegram:@ai0_global</div>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end;flex:0 1 auto;min-width:0">
+<div class="modes" role="radiogroup" aria-label="Agent mode">
+<sc-for list="{{modes}}" as="m" hint-placeholder-count="4">
+<button type="button" role="radio" class="{{m.cls}}" aria-checked="{{m.on}}" onClick="{{m.pick}}">{{m.label}}</button>
+</sc-for>
+</div>
+<div style="font-size:12px;color:#97A09B;text-align:right">{{modeHint}}</div>
+</div>
+</div>
+
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:18px">
+<button type="button" class="btn btn-g"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 4 14 8-14 8z"></path></svg>Run now</button>
+<button type="button" class="btn btn-g"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>Chat with Айра</button>
+<button type="button" class="btn btn-q" aria-label="More actions"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="12" r="1"></circle><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle></svg>More</button>
+</div>
+
+<sc-if value="{{paused}}" hint-placeholder-val="{{true}}">
+<div class="banner" style="margin-top:20px" role="status">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F2B24C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1"></rect><rect x="14" y="4" width="4" height="16" rx="1"></rect></svg>
+<div style="flex:1 1 280px;min-width:0"><div style="font-size:14px;font-weight:600;color:#FBD9A1">Planning paused after 3 skips in a row</div><div style="font-size:13px;color:#C9B48F;margin-top:2px">The agent stopped instead of filling the day with weak posts. Check its sources, then resume.</div></div>
+<button type="button" class="btn btn-a" onClick="{{resume}}">Resume planning</button>
+</div>
+</sc-if>
+<sc-if value="{{resumed}}" hint-placeholder-val="{{false}}">
+<div class="banner" style="margin-top:20px;background:rgba(61,220,151,.07);border-color:rgba(61,220,151,.3)" role="status">
+<span class="dot"></span><div style="flex:1;font-size:14px;color:#C8F5DF">Planning resumed. Next plan at 06:00 Kyiv.</div>
+<button type="button" class="btn btn-q" onClick="{{undoResume}}">Undo</button>
+</div>
+</sc-if>
+
+<div class="tabs" role="tablist" aria-label="Agent sections" style="margin-top:24px">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="5">
+<button type="button" role="tab" class="{{t.cls}}" aria-selected="{{t.on}}" onClick="{{t.pick}}">{{t.label}} <span class="tn">{{t.hint}}</span></button>
+</sc-for>
+</div>
+
+<sc-if value="{{isOverview}}" hint-placeholder-val="{{true}}">
+<div class="fade">
+<div class="pnl" style="margin-top:20px;display:flex;flex-wrap:wrap">
+<div class="kpi"><div class="lbl">Spend today</div><div style="font-size:26px;font-weight:600;letter-spacing:-.03em;margin-top:6px">$0.027</div><div class="lbl">default cap · incl. roles</div></div>
+<div class="kpi" style="border-left:1px solid rgba(255,255,255,.06)"><div class="lbl">Runs today</div><div style="font-size:26px;font-weight:600;letter-spacing:-.03em;margin-top:6px">2</div><div class="lbl">incl. roles</div></div>
+<div class="kpi" style="border-left:1px solid rgba(255,255,255,.06)"><div class="lbl">Daily plan</div><div style="font-size:26px;font-weight:600;letter-spacing:-.03em;margin-top:6px">2–6</div><div class="lbl">posts per day</div></div>
+<div class="kpi" style="border-left:1px solid rgba(255,255,255,.06)"><div class="lbl">MANAGER advice · 30 d</div><div style="font-size:26px;font-weight:600;letter-spacing:-.03em;margin-top:6px">3 <span style="font-size:15px;color:#828C87">/ 1</span></div><div class="lbl">followed / declined</div></div>
+</div>
+
+<div style="display:flex;flex-wrap:wrap;gap:16px;margin-top:16px;align-items:flex-start">
+<section class="pnl" style="flex:1.2 1 420px;min-width:0;padding:20px" aria-labelledby="today-h">
+<div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap"><div id="today-h" class="pt">Today, step by step</div><span class="lbl">Kyiv time</span></div>
+<div style="margin-top:12px">
+<div class="ev"><span class="mono" style="font-size:12px;color:#97A09B">06:00</span><span class="evd ev-ok"><span class="evline"></span></span><div><div style="font-size:14px;font-weight:500">Planner run finished</div><div class="lbl" style="margin-top:2px">ok · 2 slots planned for today</div></div></div>
+<div class="ev"><span class="mono" style="font-size:12px;color:#97A09B">10:00</span><span class="evd ev-skip"><span class="evline"></span></span><div><div style="font-size:14px;font-weight:500">Slot skipped</div><div class="lbl" style="margin-top:2px">no fresh idea passed the playbook check</div></div></div>
+<div class="ev"><span class="mono" style="font-size:12px;color:#97A09B">12:00</span><span class="evd ev-miss"><span class="evline"></span></span><div><div style="font-size:14px;font-weight:500">“AI-новини дня” missed</div><div class="lbl" style="margin-top:2px">fixed series slot went out empty</div></div></div>
+<div class="ev"><span class="mono" style="font-size:12px;color:#97A09B">12:01</span><span class="evd ev-pause"></span><div><div style="font-size:14px;font-weight:500;color:#F2B24C">Planning paused</div><div class="lbl" style="margin-top:2px">3 skips in a row → waiting for you</div></div></div>
+</div>
+</section>
+
+<section class="pnl" style="flex:1 1 360px;min-width:0;padding:20px" aria-labelledby="res-h">
+<div style="display:flex;justify-content:space-between;gap:12px;align-items:center"><div id="res-h" class="pt">Channel</div><span class="chip" style="background:rgba(61,220,151,.12);color:#7FF0BE"><span class="dot" style="width:6px;height:6px"></span>healthy · checked 13 h ago</span></div>
+<div class="mono" style="font-size:13px;margin-top:14px">telegram:@ai0_global</div>
+<div class="lbl" style="margin-top:4px">@ai0_global_test_bot is an admin with the right to post</div>
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:18px;font-size:13px">
+<div style="grid-column:1 / -1"><div class="lbl">Topic</div><div style="margin-top:4px">Новини ШІ, MCP-сервери, готові промпти та AI-інструменти</div></div>
+<div><div class="lbl">Language</div><div style="margin-top:4px">uk</div></div>
+<div><div class="lbl">Time zone</div><div style="margin-top:4px">Europe/Kyiv</div></div>
+<div style="grid-column:1 / -1"><div class="lbl">Goals, by priority</div><div style="display:flex;gap:6px;margin-top:6px;flex-wrap:wrap"><span class="chip">1 · growth</span><span class="chip">2 · engagement</span></div></div>
+</div>
+</section>
+</div>
+
+<section class="pnl" style="margin-top:16px;padding:20px" aria-labelledby="fmt-h">
+<div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline"><div id="fmt-h" class="pt">How posts look</div><span class="lbl">The agent tunes unlocked fields from results — at most 3 changes a day. {{lockedCount}} locked.</span></div>
+<div style="margin-top:10px">
+<sc-for list="{{fields}}" as="fd" hint-placeholder-count="4">
+<div class="field">
+<div style="flex:1 1 160px;min-width:0"><div style="font-size:14px;font-weight:500">{{fd.name}}</div><div class="lbl" style="margin-top:2px">{{fd.note}}</div></div>
+<span class="chip mono">{{fd.value}}</span>
+<button type="button" class="{{fd.cls}}" onClick="{{fd.toggle}}" aria-pressed="{{fd.locked}}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>{{fd.lockLabel}}</button>
+</div>
+</sc-for>
+</div>
+</section>
+</div>
+</sc-if>
+
+<sc-if value="{{isOther}}" hint-placeholder-val="{{false}}">
+<div class="fade" style="margin-top:20px">
+<p style="margin:0 0 14px;font-size:14px;color:#A3ABA7">{{otherIntro}}</p>
+<div style="display:flex;flex-wrap:wrap;gap:12px">
+<sc-for list="{{otherCards}}" as="oc" hint-placeholder-count="3">
+<div class="sub"><div class="mono" style="font-size:11px;color:#828C87;letter-spacing:.08em;text-transform:uppercase">was: {{oc.was}}</div><div style="font-size:16px;font-weight:600;margin-top:8px">{{oc.title}}</div><div style="font-size:13px;line-height:1.55;color:#A3ABA7;margin-top:6px">{{oc.body}}</div></div>
+</sc-for>
+</div>
+</div>
+</sc-if>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1500}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const s = this.state || {};
+    const mode = s.mode ?? 3;
+    const tab = s.tab || 'overview';
+    const resumed = s.resumed === true;
+    const locks = s.locks || { hashtags: true };
+    const M = [
+      { label: 'Off', extra: 'off', hint: 'Off — the agent does nothing.' },
+      { label: 'Shadow', extra: 'sh', hint: 'Shadow — plans and writes next to you, publishes nothing.' },
+      { label: 'Approval', extra: 'ap', hint: 'Approval — tomorrow’s posts wait for you by 20:00.' },
+      { label: 'Live', extra: '', hint: 'Live — publishes on its own through code guards.' }
+    ];
+    const modes = M.map((m, i) => ({
+      label: m.label,
+      on: i === mode,
+      cls: i === mode ? ('on ' + m.extra).trim() : '',
+      pick: () => this.setState({ mode: i })
+    }));
+    const T = [
+      { id: 'overview', label: 'Overview', hint: '' },
+      { id: 'content', label: 'Content', hint: 'plan · ideas · approvals' },
+      { id: 'brain', label: 'Brain', hint: 'playbook · skills · memory' },
+      { id: 'activity', label: 'Activity', hint: 'history · notes' },
+      { id: 'settings', label: 'Settings', hint: 'channel · promo' }
+    ];
+    const tabs = T.map((t) => ({
+      label: t.label,
+      hint: t.hint,
+      on: t.id === tab,
+      cls: t.id === tab ? 'on' : '',
+      pick: () => this.setState({ tab: t.id })
+    }));
+    const OTHER = {
+      content: { intro: 'Everything the agent will publish, in the order it happens.', cards: [
+        { was: 'Plan + Schedule', title: 'Plan', body: 'Today’s and tomorrow’s slots on one timeline, with series and fixed slots marked.' },
+        { was: 'Ideas', title: 'Idea pool', body: 'Ideas from sources, each with the reviewer’s verdict against the playbook.' },
+        { was: 'approvals', title: 'Waiting for you', body: 'Drafts for tomorrow in approve mode. Approve, edit, reschedule or reject with a reason.' }
+      ] },
+      brain: { intro: 'What the agent knows and how it decides.', cards: [
+        { was: 'Playbook', title: 'Playbook', body: 'Owner rules first (e.g. no hashtags), then the agent’s own lessons, each with its source.' },
+        { was: 'Skills + Loadout', title: 'Skills and tools', body: 'Which skills and models each role uses, with cost per run.' },
+        { was: 'memory + artifacts', title: 'Memory and artifacts', body: 'What it remembers about the audience and past posts, plus reports and setups it produced. Forget any line.' }
+      ] },
+      activity: { intro: 'What happened, newest first.', cards: [
+        { was: 'History', title: 'Runs', body: 'Every planner, executor and reviewer run with status, tokens and cost.' },
+        { was: 'Inbox', title: 'Notes from this agent', body: 'The same notes as the main Inbox, filtered to Айра.' },
+        { was: 'Active effects', title: 'In force now', body: 'Directives, followed advice and experiments that currently change behaviour.' }
+      ] },
+      settings: { intro: 'Rarely changed. Kept out of the way.', cards: [
+        { was: 'Resource', title: 'Channel', body: 'Topic, language, goals, time zone, audience, tone, taboos and sources.' },
+        { was: 'Formatting', title: 'Formatting defaults', body: 'Starting values for how posts look before the agent tunes them.' },
+        { was: 'Promo', title: 'Promo', body: 'Cross-promotion and ad slots this channel accepts.' }
+      ] }
+    };
+    const F = [
+      { id: 'hashtags', name: 'Hashtags', value: '0–0', note: 'hashtagMin / hashtagMax · owner rule «хештегів не став»' },
+      { id: 'linkStyle', name: 'Link style', value: '[linkStyle]', note: 'Where the source link goes' },
+      { id: 'emoji', name: 'Emoji', value: '[emojiPolicy]', note: 'How many emoji a post may use' },
+      { id: 'formats', name: 'Format mix', value: '[formats]', note: 'Share of text, quiz, photo… posts' }
+    ];
+    const fields = F.map((f) => {
+      const locked = !!locks[f.id];
+      return Object.assign({}, f, {
+        locked: locked,
+        cls: 'lock' + (locked ? ' on' : ''),
+        lockLabel: locked ? 'Locked' : 'Lock',
+        toggle: () => { const nl = Object.assign({}, locks); nl[f.id] = !locked; this.setState({ locks: nl }); }
+      });
+    });
+    const other = OTHER[tab];
+    return {
+      modes: modes,
+      modeHint: M[mode].hint,
+      paused: !resumed,
+      resumed: resumed,
+      resume: () => this.setState({ resumed: true }),
+      undoResume: () => this.setState({ resumed: false }),
+      tabs: tabs,
+      isOverview: tab === 'overview',
+      isOther: tab !== 'overview',
+      otherIntro: other ? other.intro : '',
+      otherCards: other ? other.cards : [],
+      fields: fields,
+      lockedCount: fields.filter((f) => f.locked).length
+    };
+  }
+}
+</script>
+</body>
+</html>
