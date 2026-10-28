@@ -91,7 +91,7 @@ Brief: `research/other-pages.md` §3 (per page) and §5 (batches); CLAUDE.md "De
 
 - [ ] C1 Channels & intelligence: channels, channels_.$id, tracked, analytics, discovery, recommendations, graph (+ their owned components per brief §5).
 - [ ] C2 Connections, health & map HUD: connections, connections_.groups, connections_.meta_.$accountId, health, map HUD only.
-- [ ] C3 Publishing & spend: editor, editor_.$channel, editor_.run.$id, editor_.slot.$id, scheduled, compose, logs, spend.
+- [x] C3 Publishing & spend: editor, editor_.$channel, editor_.run.$id, editor_.slot.$id, scheduled, compose, logs, spend.
 - [ ] C4 Agents config & system: agents, models, dm, settings (+ settings/*, models/*, strategies/MigrationBanner).
 - [ ] C5 Chat & artifacts: chat, artifacts (+ chat/*, artifacts/*, nav/NeedsYou).
 - [ ] C6 Data, ads & public: data, data_.$key, ads, landing (admin), login, report.$token, app.tsx auth screens, NotFound (+ data/*, landing admin cards).
@@ -128,6 +128,14 @@ A3 (worktree `wf_9569abf2-5cb-3`):
 - A2.3 `fbbd00d1` schema v2 and the v1 to v2 migration (client and server); `3d6f226d` follow-up: a stored v1 group title that is just the v1 default is not a rename.
 - A2.4 `109716bc` sidebar: group titles, longest-prefix active item, More tools, footer, width 248.
 - A2.5 `1d8ead75` top bar: wide search field, N agents live pill, New post, main padding and max-width.
+
+### C3 Publishing & spend (worktree `wf_6e3bf934-224-3`, base `8f674e50`), done
+- C3.1 `83432af3` editor, editor/$channel, run, slot: flush-panel rows, StatStrip, status marks, trace timeline; `EditorUi`, `SlotPlan`, `CardEditorModal` restyled; new `editor.css`, `lib/day-groups.ts` (+ test).
+- C3.2 `a482ea24` scheduled, compose: StatStrip, queue as rows with the "yours" mark, publication Badge, inset hint band.
+- C3.3 `7ec56399` logs: day-grouped Kyiv-time timeline, status marks on a spine, buttons that expand to the trace, CSS hover (`components/activity/activity.css`).
+- C3.4 `c34a7297` spend (report, prices, budgets): underline section tabs, StatStrip, caps as meter rows, callouts, ghost Cancel (`components/spend/spend.css`).
+- C3.1b `cbbdcb9a` editor: type classes instead of inline sizes, token radius for the trace error dot.
+- Checked under Node 20: `tsc --noEmit` clean, 403 node tests pass (398 + 5 in `day-groups.test.ts`), `VITE_ALLOW_DEV_AUTH=true npm run build` builds. Browser pass on the mock at 1280 and 375 (no page-wide horizontal scroll on any of the 8 pages, 3 spend tabs); 404 states of scheduled and logs through a patched `fetch`.
 
 ## Deltas from the spec
 (each agent appends its own subsection)
@@ -196,3 +204,37 @@ Dashboard:
   - The More tools dot rolled up sub-view counters that the list does not show; it now rolls up the More tools list itself.
   - "Edit in menu settings…" on a hidden page focused nothing: the Hidden panel's Restore button now has `navc-hidden-<id>` and gets the focus.
   - Danger text on the danger tint was ~3.8–4.5:1: new `--color-danger-ink` for text on tints (nav counters, `.sev-critical`, selected danger tab, `.chip-danger`, danger toast action), ≥5:1.
+
+### C3
+Editor pages (`app.editor`, `$channel`, `run.$id`, `slot.$id`, `CardEditorModal`, `EditorUi`, `SlotPlan`):
+- **`EditorUi` exports and signatures are unchanged** (12 importers); two additive exports: `SlotStatus({slot, mark})` (decorative `StatusMark` + `Badge`, "Missed" amber from `slotMark`) and `runStatusLabel(status)`. `SlotRow` is a `.panel-row` (mono 48px time, status, chips, clamped topic link, description, Preview, `RowActions`); its `delay` prop stays in the type and is ignored. `SlotCounts` is `Badge`s with `slotTone`. `ModeSwitch` got an `ariaLabel`. `JsonBlock` is `.code-block`.
+- **No CSS import in `EditorUi` / `SlotPlan`.** `AgentsUi` imports `EditorUi` imports `SlotPlan`, and `NoteActions.test.ts` (node) renders that chain, so a `.css` import there breaks the test run. Both style themselves with the global classes plus inline layout. `editor.css` is imported by the routes and by `CardEditorModal`.
+- **`CardEditorModal` is a `size="drawer"`** (it was a centred dialog), form groups are hairline-divided `.form-group`s, sources wrap on a phone, Cancel is `.btn-ghost`.
+- **Run trace is a timeline:** each step is a `button.panel-row.trace-row` (index, dot on a spine: ring = model turn, dot = tool call, square = error; Badge; clamped summary or error excerpt; tokens, cost, ms; chevron) that opens the same Args / Result dialog. The spine is a `::before` on the row; it only lines up because the grid columns are fixed (36px index, 14px dot).
+- **`.no-caps`:** an eyebrow (`.text-overline`) that holds a handle or a resource ref keeps its case.
+- **Day label helpers** `lib/day-groups.ts` (`fmtDayShort`, `dayEyebrow`, `previousDay`, `dayHeading`, `groupByDay`) are pure, Kyiv-based and node-tested (5 tests); the editor eyebrow and the logs timeline use them.
+Scheduled and compose:
+- **Scheduled:** every row leads with the decorative "yours" `StatusMark`; the status Badge is `publicationTone` / `publicationLabel`, so `pending` now reads "Scheduled" (it printed the raw word). A failed row shows its error as a danger line under the preview (it was a warning icon with a tooltip, unreachable on touch). Cancel is a danger icon button behind a divider. The three hand-made skeleton cards are one quiet placeholder panel. **No status filter was added** (new behaviour; the spec says the page later becomes `calendar?view=list`).
+- **Compose:** the hint band is an `.inset`. New: a `.callout-danger` when the post to edit cannot be loaded (before, `?id=` with a 404 showed a silent blank form under "Edit post"). `PostComposer` and the `--color-tg-*` preview colours are untouched.
+Logs:
+- **The CSS is in `components/activity/activity.css`, not `components/logs/`:** `apps/dashboard/.gitignore` ignores anything named `logs`, so a file there cannot be committed without `-f`.
+- **The spinner and its page-level `<style>` are gone.** A running event is a `StatusMark` (it pulses through the global `is-pulse`), so the hand-rolled `prefers-reduced-motion` override is not needed. The hover wash is `.panel-row:hover`, not `onMouseEnter`.
+- **Counts:** `/activity` returns only the total of the filter in force, so the number rides on the selected type tab (hidden while a new filter loads); the other tabs have no count (one request per tab would be new data flow).
+- **Event tone comes from the status map** (`posted` = published, `error` = failed, `skipped` = skipped, `running` = running). `skipped` is therefore neutral (it was amber); labels stay "Posted / Error / Skipped / Running".
+- Strategy-run rows are real `<button>`s (`aria-expanded`), not clickable divs. Times are Kyiv (`formatIn`) with a "Kyiv time" note in the panel head and one heading per Kyiv day (Today / Yesterday / "Thu, 29 Oct"). The filter selects and date inputs got `aria-label`s.
+Spend:
+- **Section tabs are `variant="underline"`.** The blocking count is a `count` plus the `ban` icon on Budgets; the old label "Budgets · N blocking" lost the word "blocking" (the tab's own callout says it). A tone on an underline tab does nothing, so the count is neutral.
+- **Caps and per-agent caps are rows with a 6px meter** (`.spend-bar`, fill colour from `budgetBarColor` through `--bar`), not 9-column tables; the report breakdown and the price table stay tables in padded panels. `.callout-*` are flex rows now, so the multi-line warnings got an icon and a column wrapper. "Shadow runs only" is a `.chip-toggle`. Modals use `.modal-foot` with a ghost Cancel.
+- **`SpendChart` is untouched.**
+Local helpers worth promoting to the shared CSS (the lead's call):
+- `.kv-list` / `.kv-row` (key / value rows), `.panel-note` and `.block-divider` in `editor.css`.
+- The spine-dot-text row: `.trace-row` (editor.css) and `.log-row` (activity.css) are two copies of one idea; both could be a `.timeline-row`.
+- `.spend-bar`: the 6px meter is hand-drawn in the sidebar budget card, `overview/BudgetBar` and here.
+Left as-is, and why:
+- The price table is 11 columns with the 240px `ActionsTh`, so it scrolls inside `table-wrap` at 1280 (preexisting; a column diet would change the data shown).
+- "Tokens in / out" in the report strip wraps its value at ~1280 with the sidebar open (five tiles in one strip).
+- `PostComposer` (B4's), the compose page's `--color-tg-*` colours, the logs filter selects' inline 12px type.
+- `ApprovalCard`, `DraftCard`, `AgentPlan` (in `SlotPlan`) only lost stray sizes; their layout is as before.
+Gotchas:
+- `.panel-row:first-child { border-top: 0 }` removes every hairline when each row is wrapped in its own element (the logs `.log-ev`); `activity.css` puts it back with a more specific rule.
+- The Browser pane is shared: another agent's navigation moved my tab to port 3121 mid-session. Use an own tab and front it (`tabs_select`): a background tab freezes `compose-rise`, so a screenshot shows the page half faded.
