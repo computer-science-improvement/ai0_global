@@ -8,6 +8,7 @@ import { sessionQuery, SESSION_KEY } from '../auth/session';
 import { loginRedirectTarget, parseNext } from '../auth/next';
 import { loginErrorMessage, reasonMessage, stripTokenParam } from '../auth/messages';
 import { Icon } from '../components/ui/Icon';
+import '../components/auth/auth.css';
 
 interface LoginSearch { next?: string; reason?: string; token?: string }
 
@@ -119,34 +120,27 @@ function LoginPage() {
   const devHere = AUTH_MODE === 'dev' && isLocalHost(window.location.hostname);
 
   return (
-    <div style={{
-      display: 'flex', minHeight: '100vh', alignItems: 'center', justifyContent: 'center',
-      padding: 16, background: 'var(--color-canvas)',
-    }}>
-      <div className="card-featured compose-rise" style={{ maxWidth: 400, width: '100%', padding: 32 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 6 }}>
-          <img src="/favicon.svg" alt="" width={28} height={28} style={{ borderRadius: 'var(--radius-md)' }} />
-          <h1 className="text-display-md" style={{ margin: 0 }}>ai0</h1>
+    <div className="au-root">
+      <div className="panel is-section au-card compose-rise">
+        <div className="au-brand">
+          <img src="/favicon.svg" alt="" width={28} height={28} className="au-logo" />
+          <h1 className="page-title au-title">ai0</h1>
         </div>
-        <p style={{ margin: '0 0 22px', fontSize: 15, color: 'var(--color-ink-muted)' }}>Sign in to the dashboard.</p>
+        <p className="au-sub">Sign in to the dashboard.</p>
 
         {reasonText && (
-          <div role="status" style={{
-            display: 'flex', gap: 8, alignItems: 'flex-start', marginBottom: 18, padding: '10px 12px',
-            borderRadius: 'var(--radius-md)', background: 'var(--color-surface-3)', fontSize: 13, color: 'var(--color-ink)',
-          }}>
+          <div role="status" className="inset au-note">
             <Icon name="info" size={15} />
             <span>{reasonText}</span>
           </div>
         )}
 
-        {AUTH_MODE === 'telegram' && <div ref={widgetRef} style={{ minHeight: 40 }} />}
+        {AUTH_MODE === 'telegram' && <div ref={widgetRef} className="au-widget" />}
 
         {AUTH_MODE === 'telegram' && TOKEN_LOGIN && !showToken && (
           <button
             type="button"
-            className="btn-tiny"
-            style={{ marginTop: 18 }}
+            className="btn-tiny au-tokenbtn"
             onClick={() => setShowToken(true)}
             aria-expanded={false}
           >
@@ -157,7 +151,7 @@ function LoginPage() {
         {TOKEN_LOGIN && showToken && (
           <form
             onSubmit={(e) => { e.preventDefault(); void submitToken(token); }}
-            style={{ display: 'flex', flexDirection: 'column', gap: 12, marginTop: AUTH_MODE === 'telegram' ? 18 : 0 }}
+            className={`au-form${AUTH_MODE === 'telegram' ? ' is-after-widget' : ''}`}
           >
             <input
               type="password"
@@ -166,26 +160,25 @@ function LoginPage() {
               onChange={(e) => setToken(e.target.value)}
               placeholder="Access token"
               aria-label="Access token"
-              className="input-field"
-              style={{ width: '100%' }}
+              className="input-field au-field"
               autoComplete="off"
             />
-            <button type="submit" disabled={busy || locked || !token.trim()} className="btn-primary" style={{ width: '100%' }}>
+            <button type="submit" disabled={busy || locked || !token.trim()} className="btn-primary au-full">
               {busy ? 'Checking…' : 'Sign in'}
             </button>
           </form>
         )}
 
         {errorText && (
-          <p role="alert" style={{ marginTop: 12, marginBottom: 0, fontSize: 13, color: 'var(--color-danger)' }}>{errorText}</p>
+          <p role="alert" className="callout-danger au-error">{errorText}</p>
         )}
 
         {AUTH_MODE === 'dev' && (devHere ? (
           <>
-            <p style={{ marginBottom: 20, fontSize: 14, color: 'var(--color-ink-muted)' }}>
+            <p className="au-help">
               Local dev build — the backend's local no-auth bypass decides access.
             </p>
-            <button className="btn-primary" style={{ width: '100%' }} onClick={() => void enter()}>
+            <button className="btn-primary au-full" onClick={() => void enter()}>
               Continue in dev mode
             </button>
           </>
@@ -201,14 +194,13 @@ function LoginPage() {
  */
 function NoSignInMethodBanner() {
   return (
-    <div role="alert" style={{
-      padding: '12px 14px', borderRadius: 'var(--radius-md)',
-      background: 'var(--color-danger-soft)', border: '1px solid var(--color-danger)', color: 'var(--color-ink)',
-    }}>
-      <strong style={{ display: 'block', marginBottom: 4, color: 'var(--color-danger)' }}>This build has no sign-in method</strong>
-      <span style={{ fontSize: 13, color: 'var(--color-ink-muted)' }}>
-        The dashboard was built without token or Telegram sign-in. Rebuild it with a sign-in method to use it here.
-      </span>
+    <div role="alert" className="callout-danger">
+      <div>
+        <strong className="au-banner-title">This build has no sign-in method</strong>
+        <span className="au-banner-text">
+          The dashboard was built without token or Telegram sign-in. Rebuild it with a sign-in method to use it here.
+        </span>
+      </div>
     </div>
   );
 }
