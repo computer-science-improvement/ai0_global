@@ -85,10 +85,10 @@ test('a registry page found nowhere is appended to its default group and flagged
   assert.equal(analytics.items[analytics.items.length - 1].isNew, true);
   // A page whose default group is missing from an old config goes to Home.
   const old = cfg();
-  old.groups = old.groups.filter((g) => g.id !== 'g_content');
+  old.groups = old.groups.filter((g) => g.id !== 'g_analytics');
   const r2 = resolveNav(R, old);
   const home = r2.groups.find((g) => g.id === 'g_home')!;
-  assert.equal(home.items[home.items.length - 1].id, 'data');
+  assert.deepEqual(home.items.slice(-3).map((i) => i.id), ['analytics', 'spend', 'health']);
   // A hidden-by-default page that ships later lands in hidden, not in the menu.
   const extra: NavEntry[] = [...R, { id: 'brand-new-hidden', to: '/app/logs', label: 'Hidden one', icon: 'logs', defaultGroup: 'g_publishing', hiddenByDefault: true, keywords: [] }];
   const r3 = resolveNav(extra, cfg());
@@ -98,13 +98,13 @@ test('a registry page found nowhere is appended to its default group and flagged
 
 test('hidden items leave the menu but stay listed (still routable from ⌘K)', () => {
   const c = cfg();
-  c.groups = c.groups.map((g) => ({ ...g, items: g.items.filter((id) => id !== 'approvals') }));
-  c.hidden = [...c.hidden, 'approvals'];
+  c.groups = c.groups.map((g) => ({ ...g, items: g.items.filter((id) => id !== 'chat') }));
+  c.hidden = [...c.hidden, 'chat'];
   const r = resolveNav(R, c);
-  assert.ok(!flat(r).includes('approvals'));
-  const h = r.hidden.find((i) => i.id === 'approvals')!;
-  assert.equal(h.to, '/app/agents/inbox');
-  assert.equal(h.badge, 'approvals', 'its counter can still roll up');
+  assert.ok(!flat(r).includes('chat'));
+  const h = r.hidden.find((i) => i.id === 'chat')!;
+  assert.equal(h.to, '/app/chat');
+  assert.equal(h.badge, 'chat', 'its counter can still roll up');
 });
 
 test('Overview and Settings are always visible, even when everything is hidden', () => {
@@ -124,11 +124,11 @@ test('Overview and Settings are always visible, even when everything is hidden',
 
 test('duplicate refs keep the first', () => {
   const c = cfg();
-  c.groups[0].items.push('chat');
+  c.groups[0].items.push('agents');
   const r = resolveNav(R, c);
-  assert.equal(flat(r).filter((id) => id === 'chat').length, 1);
-  assert.equal(r.groups[0].items.at(-1)!.id, 'chat', 'first placement (Home) wins over Agents');
-  assert.ok(!r.groups.find((g) => g.id === 'g_agents')!.items.some((i) => i.id === 'chat'));
+  assert.equal(flat(r).filter((id) => id === 'agents').length, 1);
+  assert.equal(r.groups[0].items.at(-1)!.id, 'agents', 'first placement (Home) wins over Network');
+  assert.ok(!r.groups.find((g) => g.id === 'g_agents')!.items.some((i) => i.id === 'agents'));
   const dupGroups = cfg();
   dupGroups.groups.push({ id: 'g_home', items: ['logs'] });
   assert.equal(resolveNav(R, dupGroups).groups.filter((g) => g.id === 'g_home').length, 1);
@@ -137,13 +137,13 @@ test('duplicate refs keep the first', () => {
 test('empty and hidden groups are not rendered; custom groups keep their title', () => {
   const c = cfg();
   c.groups.push({ id: 'g_c_empty', title: 'Empty', items: [] });
-  c.groups.unshift({ id: 'g_c_daily', title: 'Daily', items: ['approvals', 'chat'] });
-  c.groups = c.groups.map((g) => (g.id === 'g_marketing' ? { ...g, hidden: true } : g));
+  c.groups.unshift({ id: 'g_c_daily', title: 'Daily', items: ['agents-inbox', 'chat'] });
+  c.groups = c.groups.map((g) => (g.id === 'g_analytics' ? { ...g, hidden: true } : g));
   const r = resolveNav(R, c);
   assert.equal(r.groups[0].title, 'Daily');
   assert.equal(r.groups[0].custom, true);
-  assert.ok(!r.groups.some((g) => g.id === 'g_c_empty' || g.id === 'g_marketing'));
-  assert.ok(r.hidden.some((i) => i.id === 'ads'), 'items of a hidden group are listed as hidden');
+  assert.ok(!r.groups.some((g) => g.id === 'g_c_empty' || g.id === 'g_analytics'));
+  assert.ok(r.hidden.some((i) => i.id === 'spend'), 'items of a hidden group are listed as hidden');
 });
 
 test('overrides: rename, icon (unknown icons ignored), badge off', () => {

@@ -32,7 +32,7 @@ test('every page of the default menu is reachable in 3 keystrokes or fewer', () 
   const entries = defaultEntries();
   const nav = resolveNav(NAV_REGISTRY, null);
   const top = nav.groups.flatMap((g) => g.items.map((i) => `page:${i.id}`));
-  assert.ok(top.length >= 20, `the default menu has ${top.length} pages`);
+  assert.equal(top.length, 11, `the default menu has ${top.length} pages`);
   const report: string[] = [];
   for (const key of top) {
     const e = entries.find((x) => x.key === key)!;
@@ -41,18 +41,22 @@ test('every page of the default menu is reachable in 3 keystrokes or fewer', () 
   }
   assert.deepEqual(report, []);
   // Spot checks of the obvious ones.
-  for (const [q, label] of [['ag', 'Agents'], ['ch', 'Chat'], ['dm', 'DM inbox'], ['ed', 'Editor'], ['se', 'Settings'], ['sp', 'Spend'], ['po', 'Posts to approve'], ['ads', 'Ads']] as const) {
+  for (const [q, label] of [
+    ['ag', 'Agents'], ['ch', 'Chat'], ['dm', 'DM inbox'], ['ed', 'Editor'], ['se', 'Settings'], ['sp', 'Spend'], ['po', 'Posts to approve'], ['ads', 'Ads'],
+    ['to', 'Today'], ['in', 'Inbox'], ['ca', 'Calendar'], ['ma', 'Map'], ['he', 'Health'], ['own', 'Channels'],
+  ] as const) {
     assert.equal(searchPalette(entries, q)[0].label, label, q);
   }
 });
 
 test('hidden pages are listed and marked; renamed pages match old and new names; paths match', () => {
-  const cfg = setOverride(hideItem(defaultConfig(), 'landing'), 'agents', { label: 'Team' });
+  const cfg = setOverride(hideItem(defaultConfig(), 'health'), 'agents', { label: 'Team' });
   const entries = buildPaletteEntries(resolveNav(NAV_REGISTRY, cfg));
-  const landing = entries.find((e) => e.key === 'page:landing')!;
-  assert.equal(landing.hidden, true);
-  assert.equal(searchPalette(entries, 'landing')[0].key, 'page:landing');
-  assert.equal(entries.find((e) => e.key === 'page:agents-inbox')!.hidden, true, 'hidden by default');
+  const health = entries.find((e) => e.key === 'page:health')!;
+  assert.equal(health.hidden, true);
+  assert.equal(searchPalette(entries, 'health')[0].key, 'page:health');
+  assert.equal(entries.find((e) => e.key === 'page:models')!.hidden, true, 'hidden by default');
+  assert.equal(entries.find((e) => e.key === 'page:agents-inbox')!.hidden, undefined, 'the Inbox is in the default menu');
   assert.equal(entries.find((e) => e.key === 'page:chat')!.hidden, undefined);
   assert.equal(searchPalette(entries, 'team')[0].key, 'page:agents');
   assert.equal(searchPalette(entries, 'agents')[0].key, 'page:agents', 'the default label still matches');

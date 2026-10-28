@@ -15,10 +15,6 @@ const all: BadgeCounts = {
 
 test('each binding: count, tone and an English title', () => {
   assert.deepEqual(badgeFor('approvals', all), { count: 3, tone: 'warning', title: '3 posts awaiting approval' });
-  assert.deepEqual(badgeFor('agents', all), { count: 4, tone: 'warning', title: '4 unread in the agent inbox' });
-  assert.deepEqual(badgeFor('agents', { ...all, directivesAwaitingOwner: 1 })?.tone, 'danger');
-  assert.equal(badgeFor('agents', { ...all, agentInboxCritical: 1 })?.tone, 'danger');
-  assert.equal(badgeFor('agents', { ...all, directivesAwaitingOwner: 2 })?.title, '4 unread in the agent inbox · 2 directives await you');
   assert.deepEqual(badgeFor('agentsInbox', { ...all, agentInboxCritical: 2 }), { count: 4, tone: 'danger', title: '4 unread, 2 critical' });
   assert.deepEqual(badgeFor('directives', { directivesAwaitingOwner: 1 }), { count: 1, tone: 'danger', title: '1 directive awaits your decision' });
   assert.deepEqual(badgeFor('chat', all), { count: 1, tone: 'warning', title: '1 change to confirm in the chat' });
@@ -30,7 +26,7 @@ test('each binding: count, tone and an English title', () => {
 
 test('null (failed source or missing table) and absent counts render nothing', () => {
   const none: BadgeCounts = { approvalsWaiting: null, agentInboxUnread: null, directivesAwaitingOwner: null, dmThreadsNew: null, dmActionsPending: null };
-  for (const k of ['approvals', 'agents', 'agentsInbox', 'directives', 'chat', 'dm', 'editor', 'scheduled'] as const) {
+  for (const k of ['approvals', 'agentsInbox', 'directives', 'chat', 'dm', 'editor', 'scheduled'] as const) {
     assert.equal(badgeFor(k, none), null, k);
     assert.equal(badgeFor(k, {}), null, k);
   }
@@ -44,32 +40,23 @@ test('the pill caps at 99+', () => {
   assert.equal(badgeText(100), '99+');
 });
 
-test('the approvals counter is on by default; the per-item toggle turns a counter off', () => {
+test('the Inbox counter is on by default (approvals are hidden); the per-item toggle turns a counter off', () => {
   const nav = resolveNav(NAV_REGISTRY, null);
-  const approvals = nav.groups.flatMap((g) => g.items).find((i) => i.id === 'approvals')!;
-  assert.equal(badgeFor(approvals.badge, all)?.count, 3);
-  const off = resolveNav(NAV_REGISTRY, setOverride(defaultConfig(), 'approvals', { badge: false }));
-  assert.equal(off.groups.flatMap((g) => g.items).find((i) => i.id === 'approvals')!.badge, null);
+  const inbox = nav.groups.flatMap((g) => g.items).find((i) => i.id === 'agents-inbox')!;
+  assert.equal(badgeFor(inbox.badge, all)?.count, 4);
+  assert.ok(nav.hidden.some((i) => i.id === 'approvals'));
+  const off = resolveNav(NAV_REGISTRY, setOverride(defaultConfig(), 'agents-inbox', { badge: false }));
+  assert.equal(off.groups.flatMap((g) => g.items).find((i) => i.id === 'agents-inbox')!.badge, null);
 });
 
-test('hidden pages roll up (the hamburger / Edit menu dot); the strongest tone wins', () => {
-  const nav = resolveNav(NAV_REGISTRY, hideItem(defaultConfig(), 'approvals'));
+test('hidden pages roll up (the hamburger / More tools dot); the strongest tone wins', () => {
+  const nav = resolveNav(NAV_REGISTRY, hideItem(defaultConfig(), 'chat'));
   const hidden = rollup(nav.hidden, all);
   assert.ok(hidden);
-  assert.equal(hidden!.tone, 'warning', 'approvals and the agent inbox are warnings; directives have no count');
-  assert.equal(rollup(nav.hidden, { ...all, directivesAwaitingOwner: 1 })!.tone, 'danger');
+  assert.equal(hidden!.tone, 'danger', 'a failed slot today is danger');
+  assert.equal(rollup(nav.hidden, { ...all, slotsFailedToday: 0 })!.tone, 'warning');
   assert.match(hidden!.title, /Posts to approve: 3 posts awaiting approval/);
   const everything = rollup([...nav.pinned, ...nav.groups.flatMap((g) => g.items), ...nav.hidden], all);
-  assert.equal(everything!.tone, 'danger', 'a failed slot today is danger');
+  assert.equal(everything!.tone, 'danger');
   assert.equal(rollup(nav.hidden, {}), null);
-});
-
-test('by default nothing hidden needs a dot: the agent inbox and directives are counted inside Agents', () => {
-  const nav = resolveNav(NAV_REGISTRY, null);
-  const visible = [...nav.pinned, ...nav.groups.flatMap((g) => g.items)];
-  assert.equal(rollup(nav.hidden, { ...all, directivesAwaitingOwner: 2 }, shownKeys(visible)), null);
-  // Hide Agents too, and the inbox/directives counters surface again.
-  const noAgents = resolveNav(NAV_REGISTRY, hideItem(defaultConfig(), 'agents'));
-  const v2 = [...noAgents.pinned, ...noAgents.groups.flatMap((g) => g.items)];
-  assert.equal(rollup(noAgents.hidden, all, shownKeys(v2))!.count, 4 + 4, 'Agents (4) and Agent inbox (4) both hidden');
 });

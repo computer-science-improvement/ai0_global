@@ -11,7 +11,7 @@
 // renderNav applies overrides, drops empty/hidden groups, forces Overview and
 // Settings visible and marks custom links whose route is gone.
 import type { IconName } from '../components/ui/Icon';
-import { NAV_GROUPS, NAV_REGISTRY, FORCED_IDS, menuEntries, type NavEntry } from './registry';
+import { DEFAULT_GROUPS, NAV_GROUPS, NAV_REGISTRY, FORCED_IDS, menuEntries, type NavEntry } from './registry';
 import { NAV_SCHEMA_VERSION, type CustomLink, type NavConfigV1, type NavGroupConfig } from './config';
 import { itemFromEntry, type ResolvedItem, type ResolvedNav } from './model';
 
@@ -47,7 +47,7 @@ export function defaultConfig(registry: ReadonlyArray<NavEntry> = NAV_REGISTRY):
   const entries = menuEntries(registry);
   return {
     schemaVersion: 1,
-    groups: NAV_GROUPS.map((g) => ({ id: g.id, items: entries.filter((e) => e.defaultGroup === g.id && !e.hiddenByDefault).map((e) => e.id) })),
+    groups: DEFAULT_GROUPS.map((g) => ({ id: g.id, items: entries.filter((e) => e.defaultGroup === g.id && !e.hiddenByDefault).map((e) => e.id) })),
     pinned: [],
     hidden: entries.filter((e) => e.hiddenByDefault).map((e) => e.id),
     custom: [],

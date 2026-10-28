@@ -162,7 +162,7 @@ export function NavigationTab({ editId, from }: { editId?: string; from?: string
             action={<span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>{refs}/{NAV_LIMITS.refs} items · {draft.groups.length}/{NAV_LIMITS.groups} groups</span>}>
             <p className="text-caption" style={{ margin: '-6px 0 14px', color: 'var(--color-ink-muted)' }}>
               {isMobile ? 'Use ↑ and ↓ to reorder.' : 'Drag rows and groups, or use ↑/↓ (Alt+↑/↓ on a focused row).'} Hidden pages keep working; find them with ⌘K.
-              Overview and Settings are always shown.
+              Today and Settings are always shown.
             </p>
             <Tree draft={draft} edit={edit} isMobile={isMobile} onPickIcon={setIconFor} onFocusRow={setFocusId} />
             <NewGroup draft={draft} edit={edit} />

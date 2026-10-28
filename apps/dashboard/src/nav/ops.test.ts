@@ -32,40 +32,44 @@ test('pin / unpin, at most 10', () => {
 });
 
 test('hide keeps the page reachable; Overview and Settings refuse; show brings it back', () => {
-  const c = hideItem(togglePin(base(), 'approvals'), 'approvals');
-  assert.equal(groupOf(c, 'approvals'), undefined);
-  assert.ok(c.hidden.includes('approvals'));
+  const c = hideItem(togglePin(base(), 'chat'), 'chat');
+  assert.equal(groupOf(c, 'chat'), undefined);
+  assert.ok(c.hidden.includes('chat'));
   assert.deepEqual(c.pinned, [], 'hiding also unpins');
   const nav = resolveNav(R, c);
-  assert.ok(!flat(nav).includes('approvals'));
-  assert.ok(nav.hidden.some((i) => i.id === 'approvals' && i.to === '/app/agents/inbox'));
+  assert.ok(!flat(nav).includes('chat'));
+  assert.ok(nav.hidden.some((i) => i.id === 'chat' && i.to === '/app/chat'));
   const ov = base();
   assert.equal(hideItem(ov, 'overview'), ov, 'a no-op returns the same object');
   const keep = base();
   assert.equal(hideItem(keep, 'settings'), keep);
-  const back = showItem(c, 'approvals', 'g_agents');
-  assert.equal(groupOf(back, 'approvals'), 'g_agents');
-  assert.ok(!back.hidden.includes('approvals'));
+  const back = showItem(c, 'chat', 'g_agents');
+  assert.equal(groupOf(back, 'chat'), 'g_agents');
+  assert.ok(!back.hidden.includes('chat'));
+  // "Restore" of a page hidden by default: its default group exists in the menu.
+  const restored = showItem(base(), 'logs', 'g_agents');
+  assert.equal(groupOf(restored, 'logs'), 'g_agents');
+  assert.ok(!restored.hidden.includes('logs'));
 });
 
 test('move, move-before, nudge across groups, group order', () => {
   let c = moveItem(base(), 'chat', 'g_home', 0);
   assert.equal(c.groups[0].items[0], 'chat');
-  c = moveItemBefore(c, 'logs', 'g_home', 'chat');
-  assert.deepEqual(c.groups[0].items.slice(0, 2), ['logs', 'chat']);
-  c = moveItemBefore(c, 'logs', 'g_home', null);
-  assert.equal(c.groups[0].items.at(-1), 'logs');
+  c = moveItemBefore(c, 'health', 'g_home', 'chat');
+  assert.deepEqual(c.groups[0].items.slice(0, 2), ['health', 'chat']);
+  c = moveItemBefore(c, 'health', 'g_home', null);
+  assert.equal(c.groups[0].items.at(-1), 'health');
   // Same-group drag down: before the item that was two below.
-  const d = moveItemBefore(base(), 'compose', 'g_publishing', 'logs');
-  assert.deepEqual(d.groups.find((g) => g.id === 'g_publishing')!.items.slice(0, 4), ['scheduled', 'editor', 'compose', 'logs']);
-  // ↑ at the top of Agents hops to the end of Home; ↓ at the end of Home hops back.
+  const d = moveItemBefore(base(), 'agents', 'g_agents', 'network-map');
+  assert.deepEqual(d.groups.find((g) => g.id === 'g_agents')!.items, ['calendar', 'channels', 'agents', 'network-map']);
+  // ↑ at the top of Network hops to the end of Home; ↓ at the end of Home hops back.
   let e = nudgeItem(base(), 'agents', -1);
   assert.equal(groupOf(e, 'agents'), 'g_home');
   assert.equal(e.groups[0].items.at(-1), 'agents');
   e = nudgeItem(e, 'agents', 1);
   assert.equal(e.groups[1].items[0], 'agents');
-  e = nudgeItem(e, 'chat', 1);
-  assert.deepEqual(e.groups[1].items, ['agents', 'artifacts', 'chat', 'dm-inbox', 'models', 'network-map']);
+  e = nudgeItem(e, 'agents', 1);
+  assert.deepEqual(e.groups[1].items, ['calendar', 'agents', 'channels', 'network-map']);
   assert.equal(nudgeItem(base(), 'overview', -1).groups[0].items[0], 'overview', 'top of the first group stays');
   assert.equal(moveGroup(base(), 'g_system', 0).groups[0].id, 'g_system');
   assert.equal(nudgeGroup(base(), 'g_home', 1).groups[1].id, 'g_home');
@@ -74,16 +78,16 @@ test('move, move-before, nudge across groups, group order', () => {
 test('custom groups: add, rename, hide, delete (items go to Hidden; forced ones stay visible)', () => {
   let c = addGroup(base(), 'g_c_daily', '  Daily  ');
   assert.equal(c.groups.at(-1)!.title, 'Daily');
-  c = moveItem(c, 'approvals', 'g_c_daily', 0);
+  c = moveItem(c, 'chat', 'g_c_daily', 0);
   c = moveItem(c, 'overview', 'g_c_daily', 0);
   c = renameGroup(c, 'g_c_daily', 'Morning');
   assert.equal(c.groups.at(-1)!.title, 'Morning');
   assert.equal(renameGroup(c, 'g_home', '').groups[0].title, undefined, 'empty = default title');
-  c = setGroupHidden(c, 'g_marketing', true);
-  assert.ok(!flat(resolveNav(R, c)).includes('ads'));
+  c = setGroupHidden(c, 'g_analytics', true);
+  assert.ok(!flat(resolveNav(R, c)).includes('spend'));
   c = deleteGroup(c, 'g_c_daily');
   assert.ok(!c.groups.some((g) => g.id === 'g_c_daily'));
-  assert.ok(c.hidden.includes('approvals'));
+  assert.ok(c.hidden.includes('chat'));
   assert.ok(!c.hidden.includes('overview'));
   assert.ok(flat(resolveNav(R, c)).includes('overview'));
   assert.equal(deleteGroup(base(), 'g_home').groups[0].id, 'g_home', 'built-in groups are only hidden');

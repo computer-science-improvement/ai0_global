@@ -29,7 +29,6 @@ export interface BadgeCounts {
 }
 
 const plural = (n: number, one: string, many: string) => `${n} ${n === 1 ? one : many}`;
-const known = (...xs: Array<number | null | undefined>) => xs.some((x) => typeof x === 'number');
 const sum = (...xs: Array<number | null | undefined>) => xs.reduce<number>((s, x) => s + (typeof x === 'number' && x > 0 ? x : 0), 0);
 
 /** The counter an item with badge `key` shows, or null for none (zero, null or unknown). */
@@ -39,13 +38,6 @@ export function badgeFor(key: BadgeKey | null, c: BadgeCounts): BadgeView | null
   switch (key) {
     case 'approvals':
       return view(sum(c.approvalsWaiting), 'warning', `${plural(sum(c.approvalsWaiting), 'post', 'posts')} awaiting approval`);
-    case 'agents': {
-      if (!known(c.agentInboxUnread, c.directivesAwaitingOwner)) return null;
-      const inbox = sum(c.agentInboxUnread);
-      const dirs = sum(c.directivesAwaitingOwner);
-      const parts = [inbox ? `${inbox} unread in the agent inbox` : '', dirs ? `${plural(dirs, 'directive awaits', 'directives await')} you` : ''].filter(Boolean);
-      return view(inbox + dirs, sum(c.agentInboxCritical) > 0 || dirs > 0 ? 'danger' : 'warning', parts.join(' · '));
-    }
     case 'agentsInbox':
       return view(sum(c.agentInboxUnread), sum(c.agentInboxCritical) > 0 ? 'danger' : 'warning',
         `${sum(c.agentInboxUnread)} unread${sum(c.agentInboxCritical) ? `, ${sum(c.agentInboxCritical)} critical` : ''}`);
@@ -75,8 +67,8 @@ export function badgeText(count: number): string {
 
 const RANK: Record<BadgeTone, number> = { accent: 0, warning: 1, danger: 2 };
 
-/** Counters that already include others: the Agents item sums the agent inbox and the directives. */
-const COVERS: Partial<Record<BadgeKey, BadgeKey[]>> = { agents: ['agentsInbox', 'directives'] };
+/** Counters that already include others. */
+const COVERS: Partial<Record<BadgeKey, BadgeKey[]>> = {};
 
 /** Badge keys the visible menu already shows (directly or inside a sum). */
 export function shownKeys(visible: ResolvedItem[]): Set<BadgeKey> {
