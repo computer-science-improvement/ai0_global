@@ -143,7 +143,7 @@ export function SlotRow({ slot, showChannel = false, tz, feeds, estimateUsd }: {
 
   return (
     <div className="panel-row" style={{ alignItems: 'flex-start' }}>
-      <div className="mono tabular-nums" style={{ width: 48, flexShrink: 0, fontSize: 13, fontWeight: 600, marginTop: 2 }}
+      <div className="mono tabular-nums text-caption" style={{ width: 48, flexShrink: 0, fontWeight: 600, marginTop: 2 }}
         title={tz ? `${zoneLabel(zone)} time` : undefined}>
         {tz ? formatIn(slot.scheduledAt, zone) : fmtTime(slot.scheduledAt)}
       </div>

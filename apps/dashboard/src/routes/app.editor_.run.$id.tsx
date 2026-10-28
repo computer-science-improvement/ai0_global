@@ -36,7 +36,7 @@ function EditorRunPage() {
         ]}
         eyebrow={<>{run.channelKey && <span className="no-caps">{run.channelKey} · </span>}{fmtDate(run.startedAt)}</>}
         title={`${run.role} run`}
-        subtitle={<span className="mono" style={{ fontSize: 13 }}>{run.model}</span>} />
+        subtitle={<span className="mono text-caption">{run.model}</span>} />
 
       <div style={{ display: 'flex', gap: 8, alignItems: 'center', marginBottom: 16 }}>
         <Badge tone={RUN_TONE[run.status]}>{runStatusLabel(run.status)}</Badge>
@@ -44,7 +44,7 @@ function EditorRunPage() {
       {run.error && (
         <div className="callout-danger" style={{ marginBottom: 16 }}>
           <Icon name="warning" size={16} />
-          <span className="mono" style={{ fontSize: 13, minWidth: 0, overflowWrap: 'anywhere' }}>{run.error}</span>
+          <span className="mono text-caption" style={{ minWidth: 0, overflowWrap: 'anywhere' }}>{run.error}</span>
         </div>
       )}
 

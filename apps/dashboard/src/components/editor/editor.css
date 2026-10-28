@@ -51,7 +51,7 @@
   background: var(--color-surface-2); border: 2px solid var(--color-ink-dim); border-radius: 50%;
 }
 .trace-dot.is-tool { background: var(--color-accent); border-color: var(--color-accent); }
-.trace-dot.is-error { background: var(--color-danger); border-color: var(--color-danger); border-radius: 3px; }
+.trace-dot.is-error { background: var(--color-danger); border-color: var(--color-danger); border-radius: var(--radius-xs); }
 .trace-main { min-width: 0; }
 .trace-title { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; min-width: 0; }
 .trace-stats { padding-top: 2px; display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; font-size: 12px; color: var(--color-ink-dim); }
