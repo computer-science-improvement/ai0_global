@@ -398,6 +398,32 @@ a:hover { opacity: 0.85; }
   box-shadow: 0 0 0 4px color-mix(in srgb, var(--dot, var(--color-ink-dim)) 16%, transparent);
 }
 
+/* Status mark (ui/StatusMark, spec 078 D2): a 14px shape per status. The SVG draws in currentColor; the colour is set per status. */
+.status-mark {
+  --mark-size: 14px;
+  position: relative; display: inline-flex; flex: none; vertical-align: middle;
+  width: var(--mark-size); height: var(--mark-size);
+  color: var(--color-ink-dim);
+  transition: transform var(--dur-base) var(--ease-out);
+}
+.status-mark:hover { transform: scale(1.35); }
+.status-mark svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.status-mark.is-planned, .status-mark.is-running, .status-mark.is-approved, .status-mark.is-published { color: var(--color-accent); }
+.status-mark.is-awaiting-approval, .status-mark.is-missed, .status-mark.is-not-planned { color: var(--color-warning); }
+.status-mark.is-failed { color: var(--color-danger); }
+.status-mark.is-yours { color: var(--color-ink); }
+/* A running slot breathes: a ring grows out of the dot. */
+.status-mark.is-pulse::after {
+  content: ''; position: absolute; inset: 2px; border-radius: 50%; pointer-events: none;
+  --dot: var(--color-accent);
+  animation: pulse-ring 2s ease-out infinite;
+}
+@keyframes pulse-ring {
+  0%   { box-shadow: 0 0 0 0 color-mix(in srgb, var(--dot, var(--color-accent)) 65%, transparent); }
+  70%  { box-shadow: 0 0 0 8px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+
 /* Crafted empty state — dashed medallion + copy. */
 .empty-state {
   text-align: center; padding: 44px 32px;

@@ -6,6 +6,7 @@ import { trackingApi } from '../api/tracking';
 import { useStrategies } from '../api/strategies';
 import { useUpcomingSlots, type UpcomingSlot } from '../api/upcoming';
 import { upcomingName, upcomingTitle } from '../lib/slot-plan';
+import { slotTone } from '../lib/status-tone';
 import { useMetaAccounts, useRefreshMetaStats } from '../api/meta-accounts';
 import { PageHeader } from '../components/ui/PageHeader';
 import { Badge } from '../components/ui/Badge';
@@ -31,11 +32,6 @@ function deltaText(n: number): string {
   if (n < 0) return n.toLocaleString('en-US');
   return '0';
 }
-
-const SLOT_STATUS_TONE: Record<string, Tone> = {
-  planned: 'neutral', running: 'accent', shadowed: 'neutral', published: 'success', awaiting_approval: 'warning',
-  approved: 'success', skipped: 'warning', failed: 'danger', expired: 'neutral',
-};
 
 /** "awaiting_approval" → "awaiting approval"; no slot yet → "not planned". */
 function slotStatusLabel(s: UpcomingSlot): string {
@@ -137,7 +133,7 @@ function OverviewPage() {
                     </span>
                     <span style={{ color: 'var(--color-ink)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', maxWidth: 190, minWidth: 0 }}>{upcomingName(u)}</span>
                     <span className="text-micro" style={{ color: 'var(--color-ink-dim)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: 130 }}>{u.channelKey}</span>
-                    <span style={{ marginLeft: 'auto' }}><Badge tone={u.status ? (SLOT_STATUS_TONE[u.status] ?? 'neutral') : 'neutral'}>{slotStatusLabel(u)}</Badge></span>
+                    <span style={{ marginLeft: 'auto' }}><Badge tone={slotTone(u.status)}>{slotStatusLabel(u)}</Badge></span>
                   </Link>
                 ))}
         </SectionCard>

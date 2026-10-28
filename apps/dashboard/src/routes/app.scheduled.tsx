@@ -2,25 +2,16 @@ import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { PageHeader } from '../components/ui/PageHeader';
 import { Icon } from '../components/ui/Icon';
-import { SectionCard, StatTile, EmptyState, StatusDot, type Tone } from '../components/ui/primitives';
+import { SectionCard, StatTile, EmptyState, StatusDot } from '../components/ui/primitives';
 import { Badge } from '../components/ui/Badge';
 import { scheduledPostsApi } from '../api/scheduled-posts';
 import { trackingApi } from '../api/tracking';
 import { useConfirm } from '../components/ui/ConfirmDialog';
 import { fmtDate } from '../lib/format';
+import { PUBLICATION_TONE } from '../lib/status-tone';
 import type { ScheduledPost } from '../api/types';
 
 export const Route = createFileRoute('/app/scheduled')({ component: ScheduledPage });
-
-/** Status → StatusDot tone (keeps the single-green-accent restraint). */
-const STATUS_TONE: Record<ScheduledPost['status'], Tone> = {
-  pending:  'neutral',
-  sending:  'accent',
-  sent:     'success',
-  failed:   'danger',
-  canceled: 'warning',
-  unknown:  'warning', // was mid-send when the service died — delivery unconfirmed
-};
 
 function ScheduledPage() {
   const qc = useQueryClient();
@@ -139,7 +130,7 @@ function PostRow({
     >
       {/* Status dot — the at-a-glance signal. */}
       <span title={p.status} style={{ display: 'inline-flex', flexShrink: 0 }}>
-        <StatusDot tone={STATUS_TONE[p.status]} />
+        <StatusDot tone={PUBLICATION_TONE[p.status]} />
       </span>
 
       {/* Time — the primary anchor. */}
@@ -159,7 +150,7 @@ function PostRow({
           <span className="text-body-sm" style={{ color: 'var(--color-ink)' }}>{channelLabel(p.channelId)}</span>
         </span>
         <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
-          <Badge tone={STATUS_TONE[p.status]}>{p.status}</Badge>
+          <Badge tone={PUBLICATION_TONE[p.status]}>{p.status}</Badge>
           {p.error && (
             <span title={p.error} style={{ display: 'inline-flex', color: 'var(--color-danger)' }}>
               <Icon name="warning" size={12} />

@@ -14,18 +14,21 @@ import { useRunSlot, useSetEditorMode, useSkipSlot } from '../../api/editor';
 import type { Tone } from '../ui/primitives';
 import type { EditorMode, EditorRunStatus, EditorSlot, EditorSlotStatus } from '../../api/types';
 import { formatIn, zoneLabel } from '../../lib/zoned-time';
+import { SLOT_TONE } from '../../lib/status-tone';
 import { PREVIEW_STATUS_LABEL } from '../../lib/slot-plan';
 import { CriticBadge, PreviewButton, SlotDescription, type SlotPlanView } from './SlotPlan';
 
-export const MODE_TONE: Record<EditorMode, Tone> = { off: 'neutral', shadow: 'warning', approve: 'accent', live: 'success' };
+/**
+ * Badge tone of a mode. Warning is the colour of the human (spec 078 D2): a post in approval waits for the owner.
+ * Shadow writes nothing real, so it is as quiet as off.
+ */
+export const MODE_TONE: Record<EditorMode, Tone> = { off: 'neutral', shadow: 'neutral', approve: 'warning', live: 'success' };
 
 /** Owner-facing mode names (spec 031: the approve mode reads "In approval"). */
 export const MODE_LABEL: Record<EditorMode, string> = { off: 'Off', shadow: 'Shadow', approve: 'In approval', live: 'Live' };
 
-export const SLOT_TONE: Record<EditorSlotStatus, Tone> = {
-  planned: 'neutral', running: 'warning', shadowed: 'accent', published: 'success', skipped: 'neutral', failed: 'danger',
-  awaiting_approval: 'warning', approved: 'accent', expired: 'neutral',
-};
+// The slot status map is lib/status-tone.ts (one map for every page); kept exported from here for its importers.
+export { SLOT_TONE };
 
 export const RUN_TONE: Record<EditorRunStatus, Tone> = {
   running: 'warning', ok: 'success', error: 'danger', budget_exceeded: 'danger', max_steps: 'warning', disabled: 'neutral', no_terminal: 'warning',
@@ -56,11 +59,12 @@ export function SlotCounts({ slots }: { slots: Partial<Record<EditorSlotStatus, 
   );
 }
 
+/** Mode tabs: the selected one is filled with its mode colour (off / shadow neutral, approve warning, live green). */
 export const MODE_OPTIONS = [
-  { key: 'off' as const,     label: MODE_LABEL.off },
-  { key: 'shadow' as const,  label: MODE_LABEL.shadow },
-  { key: 'approve' as const, label: MODE_LABEL.approve },
-  { key: 'live' as const,    label: MODE_LABEL.live },
+  { key: 'off' as const,     label: MODE_LABEL.off,     tone: 'neutral' as const },
+  { key: 'shadow' as const,  label: MODE_LABEL.shadow,  tone: 'neutral' as const },
+  { key: 'approve' as const, label: MODE_LABEL.approve, tone: 'warning' as const },
+  { key: 'live' as const,    label: MODE_LABEL.live,    tone: 'accent' as const },
 ];
 
 /**
