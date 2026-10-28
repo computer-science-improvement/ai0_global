@@ -94,7 +94,7 @@ Brief: `research/other-pages.md` §3 (per page) and §5 (batches); CLAUDE.md "De
 - [ ] C3 Publishing & spend: editor, editor_.$channel, editor_.run.$id, editor_.slot.$id, scheduled, compose, logs, spend.
 - [ ] C4 Agents config & system: agents, models, dm, settings (+ settings/*, models/*, strategies/MigrationBanner).
 - [ ] C5 Chat & artifacts: chat, artifacts (+ chat/*, artifacts/*, nav/NeedsYou).
-- [ ] C6 Data, ads & public: data, data_.$key, ads, landing (admin), login, report.$token, app.tsx auth screens, NotFound (+ data/*, landing admin cards).
+- [x] C6 Data, ads & public: data, data_.$key, ads, landing (admin), login, report.$token, app.tsx auth screens, NotFound (+ data/*, landing admin cards).
 
 ---
 
@@ -128,6 +128,14 @@ A3 (worktree `wf_9569abf2-5cb-3`):
 - A2.3 `fbbd00d1` schema v2 and the v1 to v2 migration (client and server); `3d6f226d` follow-up: a stored v1 group title that is just the v1 default is not a rename.
 - A2.4 `109716bc` sidebar: group titles, longest-prefix active item, More tools, footer, width 248.
 - A2.5 `1d8ead75` top bar: wide search field, N agents live pill, New post, main padding and max-width.
+
+### C6 Data, ads & public (branch `worktree-wf_6e3bf934-224-6`, base `8f674e50`)
+- C6.1 `f38cea13` data and dataset detail: PageHeader, StatStrips, flush panels, rows, schema editor with a sticky save bar, import wizard; local `SkeletonRows`; `summarizeDatasets`.
+- C6.2 `d68ff064` ads: stage strip, orders as `.panel-row`s, price list, New order drawer; `lib/ad-orders.ts` with node tests.
+- C6.3 `556be553` landing admin: underline tabs, networks and resources as rows, Public page card, Leads, CTA totals strip; `landing-admin.css`.
+- C6.4 `79bba105` sign-in, session-guard screens and the in-shell 404 on `components/auth/auth.css`.
+- C6.5 `e69b94b3` public report on `components/report/report.css`: PageHeader, StatStrip, SectionCards, width-aware curve.
+- Checked under Node 20: `tsc --noEmit` clean, 403 node tests pass (`ad-orders` 4, `summarizeDatasets` 1 added), `VITE_ALLOW_DEV_AUTH=true vite build` builds. No browser (the lead's pass).
 
 ## Deltas from the spec
 (each agent appends its own subsection)
@@ -196,3 +204,19 @@ Dashboard:
   - The More tools dot rolled up sub-view counters that the list does not show; it now rolls up the More tools list itself.
   - "Edit in menu settings…" on a hidden page focused nothing: the Hidden panel's Restore button now has `navc-hidden-<id>` and gets the focus.
   - Danger text on the danger tint was ~3.8–4.5:1: new `--color-danger-ink` for text on tints (nav counters, `.sev-critical`, selected danger tab, `.chip-danger`, danger toast action), ≥5:1.
+
+### C6
+- **No section glyph on the C6 panels.** The prototype's panel head (`.ph`) has a title only, so the data, ads, landing-admin, leads, CTA and report panels pass no `icon` to `SectionCard` (it stays optional). Empty states keep their medallion icon.
+- **Local `SkeletonRows` (`components/SkeletonRows.tsx` + `skeleton-rows.css`), a candidate for `ui/`.** A few shimmering rows (`rows`, `height`, `flush` to pad like a `.panel-row`, `label` for the status region). It replaces three hand-rolled shimmers (`la-skeleton`, the data pages' "Loading…" text, the report's grey box) and relies on the global reduced-motion block (the old `.la-skeleton` had its own `animation: none` guard, which is gone). Used by data, ads, landing admin and the report.
+- **Status maps stay local where the domain is not a slot or a publication.** `lib/status-tone.ts` covers slots and publications only, so the dataset status (`DATASET_STATUS` in `lib/data-store.ts`), the import status (`ImportHistory`), the ad order status (`lib/ad-orders.ts`, node-tested: names, tones, why a paid order is flagged, the counts) and the lead status (`LeadsCard`) are typed `Tone` maps next to their pages. If the lead wants one place for every status, these four are the ones to move.
+- **KPI strips are derived on the client from the lists the pages already load, no new endpoint:** `summarizeDatasets` (datasets, rows, unposted, last import; "Unposted" reads "—" until the stats job has run), `summarizeOrders` (awaiting payment, paid and still to schedule, scheduled, flagged, published; hidden while there are no orders) and the CTA totals (the old Total row of the table became a six-tile `StatStrip`, so the table has no Total row any more).
+- **Ads: New order is a drawer.** The inline form that sat above the list is now `Modal size="drawer"` opened by the page's primary button ("New order"); fields, validation, `useCreateAdOrder` and the reset-on-success are unchanged. Order rows are `.panel-row`s with a `Badge` status; the payment-link and schedule dialogs keep their fields and the `useConfirm` flow of the price list is unchanged. The Cyrillic allow-list strings of `routes/app.ads.tsx` are kept verbatim.
+- **Filter tabs without counts.** `SegmentedTabs` options get no `count` on the Leads kind filter and on the dataset Rows filter, because the list endpoints are filtered on the server and give no per-option totals (the total is in the panel head instead). The dataset and landing section tabs are `variant="underline"` and take none.
+- **Landing admin.** Its tabs are `variant="underline"` (they are sections of one page). The four inline `<style>` blocks (page, Networks, Public page, Leads) are one file, `components/landing/landing-admin.css` (`la-`, `nc-`, `pp-`, `ld-`, `cs-`). `Panel` from `ui/Card` is no longer used there; resources and networks are rows in flush panels (a featured resource is `.is-selected`, a hidden one recedes with `.la-hidden`). The lead dialog lost its double padding (the wrapper padded inside the dialog's own).
+- **Import wizard.** The "Into" radio is a `SegmentedTabs` ("An existing dataset" / "A new dataset from this file"); `Check` and `RoleSelect` are still exported with the same props. The wizard's logic is untouched.
+- **Schema editor.** The floating save bar is `role="region"`, sticky at the bottom with `--shadow-2` (the only floating element of the data pages); the table inputs got `aria-label`s.
+- **Sign-in and 404 are a `.panel.is-section`** (`card-featured` is no longer used by C6 pages) with the classes in `components/auth/auth.css`. The 404 button reads "Go to Today" because that is the registry label of `/app`; `routes/app.index.tsx` (frozen here) still titles itself "Overview", which B1/the lead may want to align. `.auth-pending-dot` in `index.css` (frozen) still carries its own `@media (prefers-reduced-motion)` rule with `animation: none`; harmless for a dot at full opacity, but it breaks the A1.5 rule if the lead sweeps for it.
+- **Report.** `report.css` keeps the `.rp-*` names; the page uses `PageHeader` (the stage badge is its action), `StatStrip` for the four metrics and `SectionCard` for the curve and the link note. The curve is drawn at the width of its box (`ResizeObserver`, 240 to 760 units, 1 unit = 1px), so its 11px axis labels stay 11px at 375px instead of shrinking with the 640-unit viewBox; the tick thinning (56px) now works in real pixels.
+- **Files outside the C6 ownership list:** `lib/data-store.ts` (+ test) gained `summarizeDatasets`, new `lib/ad-orders.ts` (+ test), new `components/SkeletonRows.tsx` and `skeleton-rows.css`, and this file. Nothing frozen was edited.
+- **Not touched on purpose:** routes, search params and endpoints of every page; `routeTree.gen.ts` (no route change); `components/landing/*` besides the four admin cards; `Modal`, `SegmentedTabs`, `ui/*`, `index.css`.
+- **For the lead's browser pass:** `/app/data` and `/app/data/<key>` (all three tabs; the save bar appears after an edit on Schema; Rows filter chips; the import wizard), `/app/ads` (the empty list, a list with a flagged order, the New order drawer, the payment-link dialog), `/app/landing` (three tabs; reorder arrows; the sticky preview below 1024px becomes static), `/login` (token form, `?reason=`), `/report/<token>` (both stages, a report with fewer than two curve points, a bad token), an unknown `/app/xyz` path. Each at 1280 and 375, with reduced motion on.
