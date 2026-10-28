@@ -90,7 +90,7 @@ Owns: `routes/index.tsx`, `routes/white-label.tsx`, `components/landing/*` excep
 Brief: `research/other-pages.md` §3 (per page) and §5 (batches); CLAUDE.md "Design language" (A1.5). Frozen: `ui/*`, `index.css`, `SegmentedTabs`, `Modal`, `Pagination`, `nav/*`, `AppSidebar`, `AppShell`, chart files, `GraphCanvas`, `agents/AgentsUi`, `approvals/*`, `overview/*`, `today/*`, `inbox/*`, `calendar/*`, `landing/*` public parts. Page CSS goes into an area file (e.g. `components/connections/connections.css`).
 
 - [ ] C1 Channels & intelligence: channels, channels_.$id, tracked, analytics, discovery, recommendations, graph (+ their owned components per brief §5).
-- [ ] C2 Connections, health & map HUD: connections, connections_.groups, connections_.meta_.$accountId, health, map HUD only.
+- [x] C2 Connections, health & map HUD: connections, connections_.groups, connections_.meta_.$accountId, health, map HUD only.
 - [ ] C3 Publishing & spend: editor, editor_.$channel, editor_.run.$id, editor_.slot.$id, scheduled, compose, logs, spend.
 - [ ] C4 Agents config & system: agents, models, dm, settings (+ settings/*, models/*, strategies/MigrationBanner).
 - [ ] C5 Chat & artifacts: chat, artifacts (+ chat/*, artifacts/*, nav/NeedsYou).
@@ -128,6 +128,15 @@ A3 (worktree `wf_9569abf2-5cb-3`):
 - A2.3 `fbbd00d1` schema v2 and the v1 to v2 migration (client and server); `3d6f226d` follow-up: a stored v1 group title that is just the v1 default is not a rename.
 - A2.4 `109716bc` sidebar: group titles, longest-prefix active item, More tools, footer, width 248.
 - A2.5 `1d8ead75` top bar: wide search field, N agents live pill, New post, main padding and max-width.
+
+### C2 Connections, health & map HUD (branch `worktree-wf_6e3bf934-224-2`, base `8f674e50`), done
+- C2.1 `4888968c` connections: every manager is rows in a flush panel (`ConnUi`: `ConnPanel`, `ConnRow`, `ConnStat`, `ConnAdd`), section tabs are a track with counts and sub-tabs are underline with counts (`lib/connection-counts.ts` + test), the Meta rows show the 24 h change and a Refresh stats button.
+- C2.2 `db763176` connections/groups: composer in a panel, group cards on tokens, accessible port remove controls.
+- C2.3 `1f69a71f` connections/meta/$accountId: `PageHeader` with eyebrow, `StatStrip` with a follower trend, an Account row and token facts (`ConnFact`).
+- C2.4 `50050c97` health: `StatStrip` glance, flush panels with `SeverityPill` rows, 6px budget meters, the owner bot as rows (`health.css`).
+- C2.5 `8cee8d88` map HUD: radius, shadow and ink tokens, overline keys, 11px floor, mono counts, `btn-ghost` Cancel (HUD only; `MapStage`, `MapShapes`, `MapPage`, `api/map.ts` and the `FeedPanel` props are untouched).
+- C2.6 `45328a79` connections: delete-dialog notes on classes.
+- Checked under Node 20: `tsc --noEmit` clean, 401 node tests pass (3 new, `connection-counts.test.ts`), `VITE_ALLOW_DEV_AUTH=true npm run build` builds. Browser on the A4 mock at 1280 and 375: no horizontal scroll on any C2 page. The lead's browser pass is still due.
 
 ## Deltas from the spec
 (each agent appends its own subsection)
@@ -196,3 +205,19 @@ Dashboard:
   - The More tools dot rolled up sub-view counters that the list does not show; it now rolls up the More tools list itself.
   - "Edit in menu settings…" on a hidden page focused nothing: the Hidden panel's Restore button now has `navc-hidden-<id>` and gets the focus.
   - Danger text on the danger tint was ~3.8–4.5:1: new `--color-danger-ink` for text on tints (nav counters, `.sev-critical`, selected danger tab, `.chip-danger`, danger toast action), ≥5:1.
+
+### C2
+- **Panel glyphs dropped on the Connections managers.** The rulebook example shows a `SectionCard` icon, but five panels in a row with five identical-weight glyphs added noise next to the 36px row glyphs; the title and the Add button carry the head. The Meta account page keeps `icon` on its token and chart panels.
+- **`components/connections/ConnUi.tsx` is a local helper, not a new shared primitive** (`ConnPanel`, `ConnAdd`, `ConnState`, `ConnError`, `ConnRow`, `ConnStat`, `ConnFact`). If C1 or C4 want the same row, promote it; nothing outside `connections/` and the Meta account route imports it.
+- **Meta rows gained the 24 h change and a "Refresh stats" button** (`useRefreshMetaStats`, already in `api/meta-accounts.ts`). B1 removes the Meta block from Today, so this is the one place left that shows the change and triggers a collection. No endpoint or data-flow change.
+- **Eyebrow of `/app/connections`** reads "N connections · M with errors" from the five list queries (`lib/connection-counts.ts`); a count stays `undefined` until its list loads, so a 404 on one endpoint hides that tab's count and the total instead of showing a wrong one.
+- **The info notes in the Add dialogs use `.inset`, not `callout-warning`.** They say where the secret goes; nothing needs the owner, so amber (the colour of the human) would be wrong. Errors go through `describeError`.
+- **Meta account page:** the hand-made header (`h1.text-display-md`, avatar, chips) became `PageHeader`; the avatar and the state chips moved into an "Account" row (36px lead, handle, platform chip, Active / Paused, Verified / Verify error, target id, last verify). The full `verify_error` text is now shown under the row (it was a tooltip only). The local `Field` that shadowed `ui/Field` is replaced by `ConnFact`. The three tiles became a `StatStrip`; Followers has a sparkline of the last 30 points.
+- **Health: a clear section is one compact row, not an `EmptyState`.** Four stacked empty states would bury the two panels that have content, and "nothing wrong" is a status line, not an empty list. The head count ("clear" / "2 problems") stays. Statuses are `SeverityPill` with the state's own label (critical for token invalid, no access, blocked, failing; action for rate limited, expiring, nothing new). The budget bar is a 6px `.hl-meter` with `anim-grow-x`.
+- **Health eyebrow and the status line:** `app.health.tsx` calls `useNetworkHealth()` itself (same query key, one cache entry) for the eyebrow "N things need attention · updated 2m ago"; the old inline status line in `NetworkHealthView` is gone. The `StatStrip` shows what needs fixing per section and the fullest cap (a blocking cap wins over a higher percentage).
+- **`NetworkHealthView.tsx` is shared with B3 (`AgentLink` tab type).** The `AgentLink` block is textually unchanged and keeps its place; the neighbours (`List` removed, `Count` rewritten) are separated from it by one blank line each, so a merge should be clean but check it.
+- **Map HUD bug fixed on the way:** `.map-feed-text { color: var(--color-danger) }` was unconditional (every feed line was red) and `.map-feed-icon` had its box styles only under `.is-bad`. Now only a failed event is red (`danger-ink`) and the icon box applies to all.
+- **Map HUD sizes:** the legend mode pill (8.5px), the beacon number (9px) and the unit emoji in the drawer lead (10px) are 11px now; the half-pixel sizes of the HUD (12.5px) are 13px. The SVG stage text (building titles, unit labels, level badges at 7.5 to 10.5px) is geometry that scales with the zoom, so it is left alone, as the brief says.
+- **Map reduced-motion block kept as is.** `map.css` still uses `animation: none !important` for `.map-drawer`, `.map-fx`, `.map-beacon` and a few more. The rule against it is about elements that start at `opacity: 0` (`.compose-rise`); none of these do (the drawer's base opacity is 1, the effects are one-offs), and the block also stops the infinite loops (beacon, live dot, working units). Not worth a risky rewrite of a SMIL-adjacent file.
+- **Map HUD touch targets:** icon and toggle buttons stay 32px in the flow (so the bar fits at 375px) and get a 44px hit area through `::after` on coarse pointers only.
+- **Left alone:** `MapLinks.tsx` and `MapAvatar.tsx` (not in the C2 list); `.map-subhead` (used by `MapLinks`) is restyled in `map.css` as an overline. The per-destination tints in `MetaGroupsManager` (`#229ED9`, `#4a7dff`, `#e1497f`, `#c7c7c7`) are kept: they are the allowed tints.
