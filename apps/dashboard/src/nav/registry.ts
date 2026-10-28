@@ -76,13 +76,13 @@ export const NAV_REGISTRY: ReadonlyArray<NavEntry> = [
   // ── Home ──
   { id: 'overview', to: '/app', label: 'Today', icon: 'overview', defaultGroup: 'g_home', exact: true, keywords: ['home', 'dashboard', 'start', 'overview'] },
   // Spec 078: the Inbox absorbed "Posts to approve"; its counter is the unread notes plus the posts waiting.
-  { id: 'agents-inbox', to: '/app/agents/inbox', label: 'Inbox', icon: 'inbox', defaultGroup: 'g_home', badge: 'agentsInbox', parent: 'agents', keywords: ['notifications', 'alerts', 'unread', 'approve', 'approvals', 'posts to approve'] },
+  { id: 'agents-inbox', to: '/app/agents/inbox', label: 'Inbox', icon: 'inbox', defaultGroup: 'g_home', badge: 'agentsInbox', keywords: ['notifications', 'alerts', 'unread', 'approve', 'approvals', 'posts to approve'] },
   { id: 'chat', to: '/app/chat', label: 'Chat', icon: 'chat', defaultGroup: 'g_home', badge: 'chat', keywords: ['ai0', 'talk', 'ask', 'conversation'] },
-  { id: 'approvals', to: '/app/agents/inbox', search: { tab: 'approvals' }, label: 'Posts to approve', icon: 'check', defaultGroup: 'g_home', badge: 'approvals', parent: 'agents', hiddenByDefault: true, subview: true, keywords: ['approve', 'approval', 'review', 'waiting', 'queue'] },
+  { id: 'approvals', to: '/app/agents/inbox', search: { tab: 'approvals' }, label: 'Posts to approve', icon: 'check', defaultGroup: 'g_home', badge: 'approvals', hiddenByDefault: true, subview: true, keywords: ['approve', 'approval', 'review', 'waiting', 'queue'] },
 
   // ── Network ──
   { id: 'agents', to: '/app/agents', label: 'Agents', icon: 'agents', defaultGroup: 'g_agents', badge: 'directives', keywords: ['bots', 'network', 'orchestrator', 'team'] },
-  // Spec 078 wave B turns /app/calendar into the week grid; until then it redirects to Scheduled.
+  // Spec 078: the week grid of agent slots and owner posts, with the composer drawer (?compose=new).
   { id: 'calendar', to: '/app/calendar', label: 'Calendar', icon: 'calendar', defaultGroup: 'g_agents', keywords: ['schedule', 'plan', 'slots', 'upcoming', 'week'] },
   { id: 'channels', to: '/app/channels', search: { filter: 'mine' }, label: 'Channels', icon: 'channels', defaultGroup: 'g_agents', keywords: ['telegram', 'own'] },
   // Spec 056: the whole network as a game map — who works now, what waits for you, how the channels feed each other.

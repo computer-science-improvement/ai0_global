@@ -110,8 +110,10 @@ test('breadcrumbs follow the parent chain, then the dynamic ancestors, with rena
   assert.deepEqual(run.map((c) => c.label), ['Editor', '@space']);
   assert.deepEqual(buildCrumbs('compose').map((c) => c.label), ['Scheduled']);
   assert.deepEqual(buildCrumbs('overview'), []);
-  const renamed = buildCrumbs('agents-inbox', [], (e) => (e.id === 'agents' ? 'Team' : e.label));
+  const renamed = buildCrumbs('agent-detail', [], (e) => (e.id === 'agents' ? 'Team' : e.label));
   assert.deepEqual(renamed.map((c) => c.label), ['Team']);
+  // Spec 078: the Inbox sits in Home, a top-level page, so it has no parent crumb.
+  assert.deepEqual(buildCrumbs('agents-inbox'), []);
 });
 
 test('the FR-013 detail pages render breadcrumbs and dropped their ad-hoc back links', () => {
