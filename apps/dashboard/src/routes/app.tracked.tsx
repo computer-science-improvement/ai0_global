@@ -5,10 +5,12 @@ import { trackingApi } from '../api/tracking';
 import { ChannelRow } from '../components/ChannelRow';
 import { Pagination } from '../components/Pagination';
 import { AddChannelModal } from '../components/AddChannelModal';
+import { ErrorCallout, ListSkeleton, SearchField } from '../components/channels/ChannelsUi';
 import { PageHeader } from '../components/ui/PageHeader';
-import { Icon } from '../components/Icon';
-import { StatTile, StatusDot, EmptyState, type Tone } from '../components/ui/primitives';
+import { Icon } from '../components/ui/Icon';
+import { SectionCard, StatStrip, StatTile, EmptyState } from '../components/ui/primitives';
 import { useConfirm } from '../components/ui/ConfirmDialog';
+import { TRACKING_META } from '../lib/channel-view';
 import type { TrackedChannel } from '../api/types';
 
 const PAGE_SIZE = 50;
@@ -25,18 +27,6 @@ export const Route = createFileRoute('/app/tracked')({
   }),
   component: TrackedPage,
 });
-
-// Tracking-status presentation — a semantic tone + label per state.
-// ok = tracker subscribed & polling; not_subscribed = needs the tracker to
-// join before stats flow; unknown = never resolved yet.
-const TRACKING_META: Record<
-  TrackedChannel['trackingStatus'],
-  { label: string; tone: Tone; help: string }
-> = {
-  ok:             { label: 'Tracking',       tone: 'success', help: 'Tracker is subscribed and polling this channel.' },
-  not_subscribed: { label: 'Not subscribed', tone: 'warning', help: 'The tracker account isn’t subscribed — subscribe to start collecting stats.' },
-  unknown:        { label: 'Unknown',        tone: 'neutral', help: 'Tracking state hasn’t been resolved yet.' },
-};
 
 function TrackedPage() {
   const { page, q } = Route.useSearch();
@@ -79,191 +69,90 @@ function TrackedPage() {
   return (
     <div>
       <PageHeader
+        eyebrow="Insights · competitors"
         title="Tracked channels"
         subtitle="Other people's channels being tracked (not mine)"
         actions={
-          <button onClick={() => setModalOpen(true)} className="btn-primary" style={{ gap: 6 }}>
+          <button type="button" onClick={() => setModalOpen(true)} className="btn-primary">
             <Icon name="plus" size={14} /> Add channel
           </button>
         }
       />
 
-      {/* Status tiles — at-a-glance tracking health across this page. */}
-      {data && data.total > 0 && (
-        <div className="stat-grid" style={{ marginBottom: 18 }}>
-          <StatTile
-            label="Total tracked"
-            value={data.total.toLocaleString()}
-            icon="discovery"
-            accent
-          />
-          <StatTile
-            label="Tracking ok"
-            value={okCount}
-            delta={TRACKING_META.ok.label}
-            deltaTone="success"
-          />
-          <StatTile
-            label="Needs subscribe"
-            value={warnCount}
-            delta={TRACKING_META.not_subscribed.label}
-            deltaTone="warning"
-          />
-        </div>
-      )}
-
-      {/* Search bar — paired with a tracking-status legend so the dots in the
-          list (and stat strip) read unambiguously. */}
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: 16,
-          marginBottom: 20,
-          flexWrap: 'wrap',
-          justifyContent: 'space-between',
-        }}
-      >
-        <div style={{ position: 'relative', flex: 1, minWidth: 220, maxWidth: 360 }}>
-          <span
-            aria-hidden
-            style={{
-              position: 'absolute',
-              left: 12,
-              top: '50%',
-              transform: 'translateY(-50%)',
-              color: 'var(--color-ink-dim)',
-              display: 'flex',
-              pointerEvents: 'none',
-            }}
-          >
-            <Icon name="discovery" size={14} />
+      <div className="ch-toolbar">
+        <SearchField
+          value={q}
+          onChange={(v) => setSearch({ q: v, page: 1 })}
+          placeholder="Search channels…"
+          label="Search tracked channels"
+        />
+        {data && data.total > 0 && (
+          <span className="ch-count mono">
+            {data.total === 1 ? '1 channel' : `${data.total.toLocaleString()} channels`}
           </span>
-          <input
-            value={q}
-            onChange={(e) => setSearch({ q: e.target.value, page: 1 })}
-            placeholder="Search channels…"
-            className="input-field"
-            style={{ width: '100%', paddingLeft: 34 }}
-          />
-        </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 14, flexWrap: 'wrap' }}>
-          {(['ok', 'not_subscribed', 'unknown'] as const).map((s) => {
-            const m = TRACKING_META[s];
-            return (
-              <span
-                key={s}
-                title={m.help}
-                style={{ display: 'flex', alignItems: 'center', gap: 6 }}
-              >
-                <StatusDot tone={m.tone} size={7} />
-                <span className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>{m.label}</span>
-              </span>
-            );
-          })}
-        </div>
+        )}
       </div>
 
-      {/* Loading — skeleton rows that mirror the channel-row rhythm. */}
       {isLoading && (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-          {Array.from({ length: 6 }).map((_, i) => (
-            <div
-              key={i}
-              className="compose-rise"
-              style={{
-                height: 66,
-                background: 'var(--color-surface-1)',
-                borderRadius: 'var(--radius-lg)',
-                opacity: 0.55,
-                animationDelay: `${i * 50}ms`,
-              }}
-            />
-          ))}
-        </div>
+        <SectionCard title="Tracked channels" flush>
+          <ListSkeleton />
+        </SectionCard>
       )}
 
-      {/* Error — a contained danger card rather than a bare line. */}
-      {error && (
-        <div
-          className="card compose-rise"
-          style={{
-            display: 'flex',
-            alignItems: 'flex-start',
-            gap: 12,
-            borderColor: 'var(--color-danger-soft)',
-            background: 'var(--color-danger-soft)',
-          }}
-        >
-          <span style={{ color: 'var(--color-danger)', display: 'flex', marginTop: 1 }}>
-            <Icon name="warning" size={16} />
-          </span>
-          <div>
-            <div className="text-body" style={{ color: 'var(--color-ink)', fontWeight: 500 }}>
-              Couldn’t load tracked channels
-            </div>
-            <div className="text-body-sm" style={{ color: 'var(--color-ink-muted)', marginTop: 2 }}>
-              {(error as Error).message}
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Empty — crafted zero-state medallion shared with the sibling pages. */}
-      {data && data.total === 0 && (
-        <EmptyState
-          icon="discovery"
-          title={q ? 'No channels match your search' : 'No tracked channels yet'}
-          note={
-            q
-              ? 'Try a different name or @username, or clear the search to see everything.'
-              : 'Add a competitor or reference channel to start collecting subscriber and posting intelligence.'
-          }
-          action={
-            q ? (
-              <button onClick={() => setSearch({ q: '', page: 1 })} className="btn-ghost" style={{ gap: 6 }}>
-                <Icon name="x" size={13} /> Clear search
-              </button>
-            ) : (
-              <button onClick={() => setModalOpen(true)} className="btn-primary" style={{ gap: 6 }}>
-                <Icon name="plus" size={14} /> Add channel
-              </button>
-            )
-          }
-        />
-      )}
+      {error && <ErrorCallout title="Couldn’t load tracked channels" message={(error as Error).message} />}
 
       {/* Delete failed — surfaced inline so the row doesn't just "not disappear". */}
       {del.isError && (
-        <div
-          className="card"
-          style={{
-            display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12,
-            borderColor: 'var(--color-danger-soft)', background: 'var(--color-danger-soft)',
-          }}
-        >
-          <span style={{ color: 'var(--color-danger)', display: 'flex' }}>
-            <Icon name="warning" size={14} />
-          </span>
-          <span className="text-body-sm" style={{ color: 'var(--color-ink)' }}>
-            Couldn’t delete the channel: {(del.error as Error).message}
-          </span>
-        </div>
+        <ErrorCallout title="Couldn’t delete the channel" message={(del.error as Error).message} />
       )}
 
-      {/* List — existing ChannelRow, now with a staggered entrance. */}
+      {data && data.total === 0 && (
+        <SectionCard title="Tracked channels" delay={40}>
+          <EmptyState
+            icon="search"
+            title={q ? 'No channels match your search' : 'No tracked channels yet'}
+            note={
+              q
+                ? 'Try a different name or @username, or clear the search to see everything.'
+                : 'Add a competitor or reference channel to start collecting subscriber and posting intelligence.'
+            }
+            action={
+              q ? (
+                <button type="button" onClick={() => setSearch({ q: '', page: 1 })} className="btn-secondary">
+                  <Icon name="x" size={14} /> Clear search
+                </button>
+              ) : (
+                <button type="button" onClick={() => setModalOpen(true)} className="btn-primary">
+                  <Icon name="plus" size={14} /> Add channel
+                </button>
+              )
+            }
+          />
+        </SectionCard>
+      )}
+
       {data && data.total > 0 && (
         <>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-            {items.map((c, i) => (
-              <div
-                key={c.id}
-                className="compose-rise"
-                style={{ animationDelay: `${Math.min(i, 12) * 28}ms` }}
-              >
-                <ChannelRow c={c} onDelete={() => askDelete(c)} />
-              </div>
-            ))}
+          <div className="ch-stack">
+            {/* Tracking health across this page. */}
+            <div className="compose-rise">
+              <StatStrip label="Tracking health on this page">
+                <StatTile label="Total tracked" value={data.total.toLocaleString()} />
+                <StatTile label="Tracking ok" value={okCount} delta={TRACKING_META.ok.label} deltaTone="success" />
+                <StatTile
+                  label="Needs subscribe"
+                  value={warnCount}
+                  delta={TRACKING_META.not_subscribed.label}
+                  deltaTone={warnCount > 0 ? 'warning' : 'neutral'}
+                />
+              </StatStrip>
+            </div>
+
+            <SectionCard title="Tracked channels" flush delay={60}>
+              {items.map((c) => (
+                <ChannelRow key={c.id} c={c} onDelete={() => askDelete(c)} showTracking />
+              ))}
+            </SectionCard>
           </div>
           <Pagination page={page} pageSize={PAGE_SIZE} total={data.total} onPage={(p) => setSearch({ page: p })} />
         </>
