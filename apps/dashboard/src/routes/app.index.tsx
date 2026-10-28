@@ -16,6 +16,11 @@ import { StatTile, SectionCard, EmptyState, StatusDot, type Tone } from '../comp
 import { NetworkHealthCard } from '../components/agents/NetworkHealth';
 import { AgentsCard } from '../components/overview/AgentsCard';
 import { AiSpendCard } from '../components/overview/AiSpendCard';
+import { SeverityPill } from '../components/ui/Pills';
+import { NeedsYouList } from '../components/today/NeedsYouList';
+import { useNeedsYou } from '../components/today/useNeedsYou';
+import { useNow } from '../lib/useNow';
+import { kyivEyebrow, kyivGreeting, needsHeadline } from '../lib/today';
 
 export const Route = createFileRoute('/app/')({ component: OverviewPage });
 
@@ -44,6 +49,8 @@ function slotTime(iso: string): string {
 }
 
 function OverviewPage() {
+  const now = useNow(60_000);
+  const needs = useNeedsYou();
   const strategiesQ = useStrategies();
   // Spec 023 FR-013: agents' series instances and owner pins replace "Active strategies / Upcoming runs";
   // spec 034 FR-012: ordinary planned slots too (a fixed topic, or a live slot's fetch-and-write).
@@ -80,9 +87,20 @@ function OverviewPage() {
 
   return (
     <div>
-      <PageHeader title="Overview" subtitle="Telegram + Meta · audience, publishing, status" />
+      <PageHeader
+        eyebrow={kyivEyebrow(now)}
+        title={needs.loaded ? `${kyivGreeting(now)}. ${needsHeadline(needs.summary.total)}` : `${kyivGreeting(now)}.`}
+        actions={needs.loaded && needs.summary.total > 0 ? (
+          <>
+            {needs.summary.critical > 0 && <SeverityPill severity="critical" label={`${needs.summary.critical} critical`} />}
+            {needs.summary.toAct > 0 && <SeverityPill severity="action" label={`${needs.summary.toAct} to act on`} />}
+          </>
+        ) : undefined}
+      />
 
-      <div className="stat-grid" style={{ marginBottom: 14 }}>
+      <NeedsYouList needs={needs} now={now} />
+
+      <div className="stat-grid" style={{ margin: '16px 0 14px' }}>
         <StatTile icon="channels" label="Subscribers (Telegram)" value={channelsQ.isLoading ? '—' : totalSubs.toLocaleString('en-US')} />
         <StatTile icon="connections" label="Followers (Meta)" value={metaQ.isLoading ? '—' : metaFollowers.toLocaleString('en-US')} />
         <StatTile

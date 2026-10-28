@@ -1,0 +1,32 @@
+/*
+ * Spec 078 B1: Today (/app). Page-specific layout for the panels in components/today/*; colours, radii and type come from the
+ * tokens in index.css, shared parts (.panel, .panel-row, .stat-strip, .sev, .status-mark) from there too. Imported by the
+ * components that use these classes.
+ */
+
+/* Two panels side by side (Needs you + glance, Agents + Live activity); stacked on a narrow screen. */
+.today-row { display: grid; grid-template-columns: minmax(0, 2fr) minmax(300px, 1fr); gap: 16px; margin-top: 16px; align-items: stretch; }
+@media (max-width: 1100px) { .today-row { grid-template-columns: minmax(0, 1fr); } }
+
+/* ── Needs you ─────────────────────────────────────────────────────────────── */
+.need-row { align-items: flex-start; gap: 16px; padding: 16px 20px; animation: slide-in var(--dur-enter) var(--ease-out) both; }
+.need-icon {
+  flex: none; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
+  border-radius: var(--radius-md);
+}
+.need-icon.is-critical { background: var(--color-danger-soft); color: var(--color-danger); }
+.need-icon.is-action { background: var(--color-warning-soft); color: var(--color-warning); }
+.need-icon.is-info { background: color-mix(in srgb, var(--color-ink) 7%, transparent); color: var(--color-ink-muted); }
+.need-main { flex: 1 1 260px; min-width: 0; }
+.need-meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.need-kind { font-size: 12px; color: var(--color-ink-dim); overflow-wrap: anywhere; }
+.need-title { margin-top: 8px; font-size: 15px; font-weight: 600; line-height: 1.35; letter-spacing: -0.01em; overflow-wrap: anywhere; }
+.need-body { margin-top: 4px; font-size: 13px; line-height: 1.55; color: var(--color-ink-muted); }
+.need-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+/* The note's own buttons (NoteActions) and Dismiss share one height; the hit area still reaches 44px. */
+.need-actions :is(.btn-primary, .btn-secondary, .btn-warning, .btn-danger) { min-height: 36px; }
+.need-actions :is(.btn-primary, .btn-secondary, .btn-warning, .btn-danger)::after { content: ''; position: absolute; inset: -4px 0; }
+@media (max-width: 600px) {
+  .need-row { padding: 14px 16px; gap: 12px; }
+  .need-actions { width: 100%; }
+}

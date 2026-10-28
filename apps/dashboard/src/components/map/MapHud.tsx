@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { Icon } from '../ui/Icon';
 import type { MapEvent, MapSnapshot } from '../../api/map';
 import { UNIT_STATES } from '../../api/map';
@@ -7,19 +6,10 @@ import {
 } from '../../lib/map-state';
 import { zoomPercent, type View } from '../../lib/map-view';
 import { Avatar } from './MapAvatar';
+import { useNow } from '../../lib/useNow';
 
 // Spec 056 FR-003: the map's heads-up display — the top bar (minerals, runs, posts, what waits for you), the zoom
 // buttons, the event feed and the legend.
-
-/** Re-renders every `ms` so "12 s ago" stays true. */
-export function useNow(ms = 1000): Date {
-  const [now, setNow] = useState(() => new Date());
-  useEffect(() => {
-    const id = setInterval(() => setNow(new Date()), ms);
-    return () => clearInterval(id);
-  }, [ms]);
-  return now;
-}
 
 export interface TopBarProps {
   snap: MapSnapshot;
