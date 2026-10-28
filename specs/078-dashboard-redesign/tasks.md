@@ -33,11 +33,11 @@ Brief: `research/inbox.md` (all, Skeptic sections override), `research/today.md`
 Owns: `apps/automation/src/editor/agents/owner-inbox.ts`, `apps/automation/src/editor/series-pause/*`, `apps/automation/src/editor/agents/agents.controller.ts` / `agents.service.ts` (inbox + series-pauses parts), their tests; dashboard `lib/inbox-kinds.ts` (new) + `lib/inbox-ref.ts` (new) + tests, `components/inbox/NoteActions.tsx` (new).
 Appends: `api/agents.ts` (types + hooks `useInboxAction`, `usePauseSeries`, `useMarkInboxUnread`; `useResumeSeries` also invalidates `['agents','inbox']`).
 Must NOT edit routes or `index.css`.
-- [ ] A3.1 Gap #1: `InboxItem.subject/parts/actions` with English `actionView`; `OwnerInbox.get(id)`; tests.
-- [ ] A3.2 Gap #2: `POST /api/agents/inbox/:id/actions {key}` (stored-key check, 404/400 codes), `via` threaded through `pause-actions.ts`, outcome `code`, dashboard resolutions count for the A10 demotion; tests (unit + PG where the brief points).
-- [ ] A3.3 Gap #3 + mark-unread: series-pauses `{action:'pause', key, label}`; `POST /api/agents/inbox/unread {ids}`; tests.
-- [ ] A3.4 `lib/inbox-kinds.ts` + `lib/inbox-ref.ts`: every kind → why / primary / secondary descriptors (links and operations), ref parsing, handle resolution; node tests incl. every kind in the brief's list.
-- [ ] A3.5 `components/inbox/NoteActions.tsx` (+ api hooks): runs descriptors, marks read after decisions, invalidates inbox + badges, English toasts, shows server error codes; handles missing handle / missing endpoint gracefully (link fallback).
+- [x] A3.1 Gap #1: `InboxItem.subject/parts/actions` with English `actionView`; `OwnerInbox.get(id)`; tests.
+- [x] A3.2 Gap #2: `POST /api/agents/inbox/:id/actions {key}` (stored-key check, 404/400 codes), `via` threaded through `pause-actions.ts`, outcome `code`, dashboard resolutions count for the A10 demotion; tests (unit + PG where the brief points).
+- [x] A3.3 Gap #3 + mark-unread: series-pauses `{action:'pause', key, label}`; `POST /api/agents/inbox/unread {ids}`; tests.
+- [x] A3.4 `lib/inbox-kinds.ts` + `lib/inbox-ref.ts`: every kind → why / primary / secondary descriptors (links and operations), ref parsing, handle resolution; node tests incl. every kind in the brief's list.
+- [x] A3.5 `components/inbox/NoteActions.tsx` (+ api hooks): runs descriptors, marks read after decisions, invalidates inbox + badges, English toasts, shows server error codes; handles missing handle / missing endpoint gracefully (link fallback).
 
 ### A4 Mock API for visual QA (scratchpad only, never committed)
 Owns: `<scratchpad>/rdmock/` only. No repo edits at all.
@@ -107,5 +107,32 @@ Brief: `research/other-pages.md` §3 (per page) and §5 (batches); CLAUDE.md "De
 ## Status
 (filled in per commit)
 
+A3 (worktree `wf_9569abf2-5cb-3`):
+- `a39a7b9c` A3.1 `Inbox` list returns `subject`, `parts` and English `actions`; `OwnerInbox.get(id)`.
+- `f0b19389` A3.2 `POST /api/agents/inbox/:id/actions`, `via` threaded through `pause-actions.ts`, outcome `code`, dashboard reactions count for the A10 demotion.
+- `0689e01c` A3.3 series-pauses `{action:'pause'}` and `POST /api/agents/inbox/unread`.
+- `a215b15b` A3.4 `lib/inbox-ref.ts` + `lib/inbox-kinds.ts` (48 kinds) with node tests.
+- `4e718e1e` A3.5 `components/inbox/NoteActions.tsx`, `useInboxAction` / `usePauseSeries` / `useMarkInboxUnread`, `useResumeSeries` invalidates the inbox.
+
 ## Deltas from the spec
 (each agent appends its own subsection)
+
+### A3
+Backend (all under `apps/automation/src/editor/`):
+- **`execute()` next to `run()`.** `SeriesPauseActions.run(noteId, key, via)` still returns the Ukrainian string the owner bot shows (default `via = 'telegram'`, so the bot is unchanged; the bot tests prove the string and the default). The new `execute()` returns `{outcome, changed, code}` and the endpoint answers with `code` (`resumed | already_resumed | not_found | kept | paused | already_paused | muted | not_broken | unavailable`); the dashboard maps the code to English, never the `outcome` text.
+- **"`resolved_by`" is `owner_cards.resolved_by`.** `agent_inbox` has no such column. A dashboard press stamps the note's open owner-bot card `resolved_by = 'dashboard:owner'` (only where it is still NULL), and the sweep that closes the card of a read note ("decided in the dashboard") keeps that stamp: `OwnerCardsRepository.resolve` now uses `COALESCE($4, resolved_by)`. The A10 demotion (`agents/note-runs.ts`, `repeatingSubjects`) and `OwnerInbox.ownerActed` count `telegram:%` and `dashboard:%`.
+- **Mark-unread clears only the `dashboard:%` stamp** (and `read_at`). A card a Telegram press resolved stays resolved; a card the sweep already closed is not re-created, so Undo after the sweep brings the note back to the list but not to Telegram.
+- **No existence check for `pause`.** The endpoint pauses by `key` + `label` as the owner bot does; it refuses `resource:` keys and answers 409 `already_paused`, 404 `no_channel`.
+- **`skipPlanned` text is cause-aware** (`series-pauses.repository.ts`): a slot skipped by an owner pause says it is paused by the owner, not "after repeated skips".
+- **Dashboard Resume on the agent page (`useResumeSeries`) does not stamp the card** (it is the old endpoint, not a note action); it now invalidates `['agents','inbox']`, as the brief asked.
+- **Support module** `series-pause/testing/inbox-service.078.ts` (fake service for the unit tests); the PG tests (`inbox-actions.078.pg.test.ts`, 7 tests, skipped without `EDITOR_PG_TEST_URL`) were added in A3.2 and A3.3.
+
+Dashboard:
+- **`critic_failed` is kept** (the skeptic's correction): 48 kinds in `INBOX_KINDS`, pinned by `inbox-kinds.test.ts` against the brief's list. A kind this table does not know ends in "Got it".
+- **Steps instead of one action.** `planNote(item, {tree})` returns `why`, `primary`, `secondary`, `extra[]`; a step is a link, a stored action, or an operation (replan, Threads refresh, directive / contest / playbook decision, autonomy dialog, mode switch, network offer, resume / pause series). A step that cannot run (no handle, no stored actions on an old server) drops out and the next one moves up.
+- **Per-kind decisions** (research/inbox.md section 3): Threads refresh only for `token_expiring` on `threads:`; every other broken connection is "Reconnect" (a link to `/app/connections?section=...&tab=...`, bots / telegraph / MTProto say "Open connections"); no MTProto verify button; skill kinds link to `?tab=skills` (no rollback, no "adopt anyway"); `series_source_empty` opens the agent's Schedule (not Data) and offers "Pause series"; slot kinds are keyed by kind, so `slot` and `editor_slot` both open the slot; `manager_escalation` opens `/app/chat?q=@manager ...`; `directive_contested` leads with Accept refusal, Uphold is secondary; `event_not_covered` offers "Plan a recap today" on the first `telegram:` resource named in its body.
+- **Decisions mark the note read** (directive, playbook, replan, pause, Threads refresh, autonomy / mode change). A 409 that means "already decided" (`not_awaiting_owner`, `not_contested`, `not_pending`) also marks it done. Approve / Decline / Uphold / Accept refusal / playbook decisions ask for the same confirmation as their own pages.
+- **A read note shows its links only** (its decisions were taken or are stale). Pages that want the buttons back after Undo call `useMarkInboxUnread` and the note is unread again.
+- **`api/agents.ts`**: `InboxItem.subject/parts/actions` are optional (an older server sends none); `usePauseSeries(handle)` and `useInboxAction()` are `silentError` (NoteActions toasts English text); `noteErrorMessage` in `inbox-kinds.ts` explains a 404 from a server without the endpoint.
+- **Outside A3's ownership**: `owner-bot/owner-cards.repository.ts` (COALESCE, above), `agents/note-runs.ts` (dashboard reaction in the A10 query), `docs/import-list-tools.069.test.ts` (fake `resume` results gained `code`). `lib/inbox-kinds.test.ts` and `components/inbox/NoteActions.test.ts` read `routeTree.gen.ts` / `nav/routes.ts` (A2's helpers) but change nothing there.
+- **Rendering test**: `NoteActions.test.ts` renders on the server (`react-dom/server`, a memory router); click flows are in the browser checklist below, not automated.
