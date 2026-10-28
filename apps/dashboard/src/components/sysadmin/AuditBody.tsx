@@ -125,7 +125,7 @@ function FindingDetails({ f }: { f: AuditFinding }) {
       {f.fix && <Field label="Fix"><div className="text-body-sm">{fixText(f.fix)}</div></Field>}
       {lines.length > 0 && (
         <Field label="Evidence">
-          <div className="text-micro" style={{ display: 'grid', gap: 2, color: 'var(--color-ink-muted)', fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace', overflowWrap: 'anywhere' }}>
+          <div className="text-micro" style={{ display: 'grid', gap: 2, color: 'var(--color-ink-muted)', fontFamily: 'var(--font-mono)', overflowWrap: 'anywhere' }}>
             {lines.map((l) => <div key={l}>{l}</div>)}
           </div>
         </Field>

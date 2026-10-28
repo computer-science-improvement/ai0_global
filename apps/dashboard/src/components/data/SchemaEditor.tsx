@@ -178,7 +178,7 @@ export function SchemaEditor({ schema, children }: { schema: DataSchema; childre
       </SectionCard>
 
       {dirty && (
-        <div className="panel" style={{ position: 'sticky', bottom: 12, zIndex: 5, display: 'flex', flexDirection: 'column', gap: 10, boxShadow: 'var(--shadow-2, 0 8px 24px rgba(0,0,0,0.35))' }}>
+        <div className="panel" style={{ position: 'sticky', bottom: 12, zIndex: 5, display: 'flex', flexDirection: 'column', gap: 10, boxShadow: 'var(--shadow-2)' }}>
           {preview && <PreviewBox p={preview} version={schema.version} />}
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }}>
             <input className="input-field" style={{ flex: '1 1 200px', minWidth: 0 }} placeholder="Why (optional, kept in the version history)" value={reason} onChange={(e) => setReason(e.target.value)} maxLength={500} />

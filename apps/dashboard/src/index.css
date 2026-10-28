@@ -18,9 +18,10 @@
   --color-hairline-strong: #3a3a3a;
 
   /* ── Ink ladder ─────────────────────────────────────────────────── */
+  /* ink-dim measures >= 4.7:1 on all four surfaces (AA for small text); ink-muted sits a clear step above it. */
   --color-ink:           #ededed;
-  --color-ink-muted:     #a0a0a0;
-  --color-ink-dim:       #6f6f6f;
+  --color-ink-muted:     #b0b0b0;
+  --color-ink-dim:       #949494;
 
   /* ── Single emerald accent ──────────────────────────────────────── */
   --color-accent:        #3ecf8e;
@@ -34,6 +35,9 @@
   --color-warning-soft:  rgba(255, 178, 36, 0.14);
   --color-danger:        #e5704b;
   --color-danger-soft:   rgba(229, 112, 75, 0.14);
+  /* Dark text ON a solid warning / danger fill (btn-warning, btn-danger, solid mode tabs): AA, ~10:1 and ~6:1. */
+  --color-on-warning:    #1f1503;
+  --color-on-danger:     #1f0b05;
 
   /* ── Telegram night theme (draft preview only — a per-destination tint) ── */
   --color-tg-bg:         #0e1621;
@@ -62,6 +66,9 @@
   --space-xl:   24px;
   --space-xxl:  32px;
   --space-section: 64px;
+
+  /* ── Mono — handles, times, counts, kind codes, eyebrow labels (never titles or prose). System stack, no webfont. ── */
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
 /* Gradient tokens retained (Framer spotlight cards) — minimal definitions so
@@ -84,6 +91,19 @@
 }
 
 :root { color-scheme: dark; }
+
+/* Elevation and motion tokens (spec 078 D1). Plain :root so they are always emitted. */
+:root {
+  --shadow-1:     0 8px 28px rgba(0, 0, 0, 0.28);   /* hover lift of an interactive panel / card */
+  --shadow-2:     0 8px 24px rgba(0, 0, 0, 0.35);   /* floating bars (sticky save bar), raised tiles */
+  --shadow-pop:   0 12px 32px rgba(0, 0, 0, 0.45);  /* menus, popovers, toasts */
+  --shadow-modal: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 18px 52px rgba(0, 0, 0, 0.52);  /* dialogs, drawers, sheets */
+
+  --ease-out:  cubic-bezier(0.2, 0.8, 0.2, 1);
+  --dur-fast:  120ms;   /* colour / opacity flicks */
+  --dur-base:  200ms;   /* hover, press, small transitions */
+  --dur-enter: 360ms;   /* entrances (fade-up, pop, slide) */
+}
 
 /* Inter Variable with Framer's OpenType character variants — bespoke voice. */
 @font-face {
@@ -118,9 +138,24 @@ html, body {
 .text-body-sm     { font-size: 14px; font-weight: 500; line-height: 1.40; letter-spacing: -0.14px; }
 .text-caption     { font-size: 13px; font-weight: 500; line-height: 1.20; letter-spacing: -0.13px; }
 .text-micro       { font-size: 12px; font-weight: 400; line-height: 1.20; letter-spacing: -0.12px; }
+/* Panel / dialog-section title tier (SectionCard, Panel, Placeholder). */
+.text-heading-md  { font-size: 15px; font-weight: 600; line-height: 1.30; letter-spacing: -0.01em; }
 
-/* Section label — replaces the uppercase-eyebrow anti-pattern. Sits at
-   `caption` size in `ink-muted`; hierarchy by size+tracking, not weight. */
+/* Monospace voice: handles (@x), times and relative ages, counts, kind codes, ids, technical details.
+   `font-feature-settings: normal` drops the Inter cv/dlig features the body sets, which mono has no use for. */
+.mono { font-family: var(--font-mono); font-feature-settings: normal; }
+/* Overline label (mono 11px, uppercase, wide tracking): the line above a page title, the key of a key/value
+   block, a group title. Not for field labels (that is .text-eyebrow) and never for titles or prose. */
+.text-overline {
+  font-family: var(--font-mono); font-feature-settings: normal;
+  font-size: 11px; font-weight: 500; line-height: 1.30; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--color-ink-dim);
+}
+/* Page title (PageHeader h1): the one 32px tier of the app. */
+.page-title { font-size: 32px; font-weight: 600; line-height: 1.10; letter-spacing: -0.035em; }
+
+/* Field / form label (34 files): `caption` size in `ink-muted`, sentence case, no uppercase. The uppercase
+   mono label is .text-overline, which is for page and block overlines, not for form fields. */
 .text-eyebrow {
   font-size: 13px; font-weight: 500; line-height: 1.20; letter-spacing: -0.13px;
   color: var(--color-ink-muted);
@@ -849,7 +884,7 @@ a:hover { opacity: 0.85; }
 .tg-text { padding: 7px 10px 2px; font-size: 14px; line-height: 1.42; white-space: pre-wrap; word-break: break-word; }
 .tg-text a, .tg-preview-link a { color: var(--color-tg-link); text-decoration: none; }
 .tg-text blockquote { margin: 4px 0; padding: 2px 8px; border-left: 3px solid var(--color-tg-link); background: rgba(106,179,243,0.08); border-radius: 4px; }
-.tg-text code, .tg-text pre { font-family: var(--font-mono, ui-monospace, monospace); font-size: 13px; color: #e3a679; }
+.tg-text code, .tg-text pre { font-family: var(--font-mono); font-size: 13px; color: #e3a679; }
 .tg-meta { display: flex; justify-content: flex-end; align-items: center; gap: 4px; padding: 0 10px 6px; font-size: 11px; color: var(--color-tg-meta); }
 .tg-media { display: block; width: 100%; max-height: 380px; object-fit: cover; background: rgba(255,255,255,0.04); }
 .tg-media-missing { display: flex; align-items: center; justify-content: center; gap: 6px; height: 140px; color: var(--color-tg-meta); font-size: 12px; background: rgba(255,255,255,0.04); padding: 0 12px; text-align: center; word-break: break-all; }
@@ -878,7 +913,7 @@ a:hover { opacity: 0.85; }
 .tg-rich { padding: 7px 10px 2px; font-size: 14px; line-height: 1.42; word-break: break-word; min-width: 0; }
 .tg-rich > :first-child { margin-top: 0; }
 .tg-rich a { color: var(--color-tg-link); text-decoration: none; }
-.tg-rich code, .tg-rich pre { font-family: var(--font-mono, ui-monospace, monospace); font-size: 13px; color: #e3a679; }
+.tg-rich code, .tg-rich pre { font-family: var(--font-mono); font-size: 13px; color: #e3a679; }
 .tg-rich-p { margin: 0 0 6px; white-space: pre-wrap; }
 .tg-rich-h { font-weight: 700; line-height: 1.3; margin: 10px 0 4px; }
 .tg-rich-h1 { font-size: 19px; }
@@ -893,7 +928,7 @@ ul.tg-rich-list { list-style: disc; }
 .tg-rich-quote { margin: 4px 0 6px; padding: 2px 8px; border-left: 3px solid var(--color-tg-link); background: rgba(106,179,243,0.08); border-radius: 4px; }
 .tg-rich-quote .tg-rich-p:last-child { margin-bottom: 0; }
 .tg-rich-pre { margin: 4px 0 6px; padding: 6px 8px; border-radius: 6px; background: rgba(255,255,255,0.05); overflow-x: auto; white-space: pre; }
-.tg-rich-math { margin: 4px 0 6px; padding: 6px 8px; border-radius: 6px; background: rgba(255,255,255,0.05); font-family: var(--font-mono, ui-monospace, monospace); font-size: 13px; overflow-x: auto; white-space: pre; text-align: center; }
+.tg-rich-math { margin: 4px 0 6px; padding: 6px 8px; border-radius: 6px; background: rgba(255,255,255,0.05); font-family: var(--font-mono); font-size: 13px; overflow-x: auto; white-space: pre; text-align: center; }
 .tg-rich-hr { border: 0; border-top: 1px solid rgba(255,255,255,0.12); margin: 8px 0; }
 .tg-rich-footer { margin: 4px 0 6px; font-size: 12px; color: var(--color-tg-meta); white-space: pre-wrap; }
 .tg-rich-table-wrap { max-width: 100%; overflow-x: auto; margin: 4px 0 8px; -webkit-overflow-scrolling: touch; }
@@ -1027,7 +1062,7 @@ ul.tg-rich-list { list-style: disc; }
 }
 
 /* ─── Navigation (spec 027): keycaps ─── */
-.kbd { display: inline-flex; align-items: center; gap: 2px; padding: 0 5px; min-width: 18px; height: 18px; border-radius: var(--radius-xs); border: 1px solid var(--color-hairline-strong); background: var(--color-surface-2); color: var(--color-ink-muted); font-family: var(--font-mono, ui-monospace, monospace); font-size: 10.5px; line-height: 1; }
+.kbd { display: inline-flex; align-items: center; gap: 2px; padding: 0 5px; min-width: 18px; height: 18px; border-radius: var(--radius-xs); border: 1px solid var(--color-hairline-strong); background: var(--color-surface-2); color: var(--color-ink-muted); font-family: var(--font-mono); font-size: 10.5px; line-height: 1; }
 
 /* Chat answers (lib/markdown-lite.tsx): tables scroll sideways on a phone, headings stay small. */
 .md-h { color: var(--color-ink); font-weight: 600; margin: 12px 0 6px; line-height: 1.3; }
@@ -1035,7 +1070,7 @@ ul.tg-rich-list { list-style: disc; }
 .md-h1 { font-size: 1.2em; }
 .md-h2 { font-size: 1.1em; }
 .md-h3 { font-size: 1em; }
-.md-pre { margin: 0 0 8px; padding: 8px 10px; border-radius: var(--radius-sm); background: var(--color-surface-2); border: 1px solid var(--color-hairline); overflow-x: auto; white-space: pre; font-family: var(--font-mono, ui-monospace, monospace); font-size: 12.5px; line-height: 1.5; word-break: normal; }
+.md-pre { margin: 0 0 8px; padding: 8px 10px; border-radius: var(--radius-sm); background: var(--color-surface-2); border: 1px solid var(--color-hairline); overflow-x: auto; white-space: pre; font-family: var(--font-mono); font-size: 12.5px; line-height: 1.5; word-break: normal; }
 .md-quote { margin: 0 0 8px; padding: 2px 0 2px 12px; border-left: 3px solid var(--color-hairline-strong); color: var(--color-ink-muted); }
 .md-hr { border: 0; border-top: 1px solid var(--color-hairline); margin: 10px 0; }
 .md-table-wrap { max-width: 100%; overflow-x: auto; margin: 0 0 8px; border: 1px solid var(--color-hairline); border-radius: var(--radius-sm); -webkit-overflow-scrolling: touch; }

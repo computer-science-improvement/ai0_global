@@ -191,7 +191,7 @@ export function JsonBlock({ value, maxHeight = 360 }: { value: unknown; maxHeigh
       style={{
         margin: 0, padding: 12, maxHeight, overflow: 'auto', whiteSpace: 'pre-wrap', wordBreak: 'break-word',
         background: 'var(--color-canvas)', border: '1px solid var(--color-hairline)', borderRadius: 'var(--radius-sm)',
-        color: 'var(--color-ink-muted)', fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace',
+        color: 'var(--color-ink-muted)', fontFamily: 'var(--font-mono)',
       }}
     >
       {value === undefined || value === null ? '—' : JSON.stringify(value, null, 2)}

@@ -24,7 +24,7 @@ import { DiffView } from '../agents/AgentSkills';
 import { LaunchBody } from '../launch/LaunchBody';
 import { AuditBody } from '../sysadmin/AuditBody';
 
-const mono = 'ui-monospace, SFMono-Regular, Menlo, monospace';
+const mono = 'var(--font-mono)';
 
 /** The API refusal as one line: the type's reasons when there is a list. */
 function refusal(e: unknown): string {

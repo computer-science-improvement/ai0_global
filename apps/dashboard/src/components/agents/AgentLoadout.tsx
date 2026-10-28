@@ -18,7 +18,7 @@ import {
   type LoadoutRules, type LoadoutSkill, type LoadoutSuggestion, type LoadoutTool,
 } from '../../api/loadout';
 
-const mono = 'ui-monospace, SFMono-Regular, Menlo, monospace';
+const mono = 'var(--font-mono)';
 
 export function AgentLoadout({ data }: { data: AgentDetail }) {
   const handle = data.agent.handle;
@@ -117,7 +117,7 @@ export function AgentLoadout({ data }: { data: AgentDetail }) {
         {groups.map((g, gi) => (
           <div key={g.kind} style={{ marginBottom: gi === groups.length - 1 ? 0 : 16 }}>
             <div style={{ display: 'flex', gap: 8, alignItems: 'baseline', flexWrap: 'wrap', margin: '0 0 8px' }}>
-              <h3 className="text-heading-md" style={{ margin: 0, fontSize: 13, fontWeight: 600, color: 'var(--color-ink)' }}>{g.label}</h3>
+              <h3 className="text-heading-md" style={{ margin: 0, color: 'var(--color-ink)' }}>{g.label}</h3>
               <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>
                 {g.enabled} of {g.tools.length} on · ~{fmtTokens(g.tokens)} tokens · {g.note}
               </span>

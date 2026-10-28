@@ -50,7 +50,7 @@ export function ToolChips({ items }: { items: ToolActivity[] }) {
                 border: '1px solid var(--color-hairline)', color,
               }}>
               <Icon name={ICON[t.name] ?? 'wrench'} size={12} />
-              <span style={{ fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace' }}>{t.name}</span>
+              <span style={{ fontFamily: 'var(--font-mono)' }}>{t.name}</span>
               {hint && <span style={{ color: 'var(--color-ink-dim)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: 140 }}>{hint}</span>}
               <span aria-hidden>{running ? '…' : t.ok ? '✓' : '✗'}</span>
             </button>
@@ -61,7 +61,7 @@ export function ToolChips({ items }: { items: ToolActivity[] }) {
         <pre className="text-micro" style={{
           margin: '6px 0 0', padding: 10, maxHeight: 220, overflow: 'auto', whiteSpace: 'pre-wrap', wordBreak: 'break-word',
           background: 'var(--color-canvas)', border: '1px solid var(--color-hairline)', borderRadius: 'var(--radius-sm)',
-          color: 'var(--color-ink-muted)', fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace',
+          color: 'var(--color-ink-muted)', fontFamily: 'var(--font-mono)',
         }}>
           {`${sel.name}(${JSON.stringify(sel.args, null, 1)})\n→ ${sel.ok === undefined ? 'running…' : sel.summary ?? ''}`}
         </pre>

@@ -110,7 +110,7 @@ export function SectionCard({ title, icon, action, children, style, delay, inter
     >
       <div className="section-head">
         {icon && <span className="section-glyph"><Icon name={icon} size={15} /></span>}
-        <h2 className="text-heading-md" style={{ margin: 0, fontSize: 14, fontWeight: 600, letterSpacing: '-0.01em', color: 'var(--color-ink)' }}>
+        <h2 className="text-heading-md" style={{ margin: 0, color: 'var(--color-ink)' }}>
           {title}
         </h2>
         {action && <div style={{ marginLeft: 'auto' }}>{action}</div>}
