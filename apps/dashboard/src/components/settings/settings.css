@@ -1,0 +1,84 @@
+/* /app/settings (spec 078 C4): Configuration (a flush panel per group, one row per setting), Security (sessions as rows, the audit
+   as a table) and Navigation (the menu constructor, whose .navc-* base styles live in index.css and are tuned here). */
+
+.set-tabs { margin-bottom: 20px; }
+.set-stack { display: flex; flex-direction: column; gap: 16px; }
+.set-skeleton { height: 120px; opacity: 0.55; }
+.set-muted { color: var(--color-ink-muted); }
+.set-dim { color: var(--color-ink-dim); }
+.set-warn { color: var(--color-warning); }
+.set-bad { color: var(--color-danger); }
+.set-count { font-size: 12px; color: var(--color-ink-dim); }
+/* Loading and error lines inside a flush panel. */
+.set-pad, .set-loading { font-size: 14px; color: var(--color-ink-muted); }
+.set-pad { padding: 4px 20px 20px; }
+/* The intro line of a padded card. */
+.set-intro { margin: -6px 0 14px; font-size: 13px; line-height: 1.5; color: var(--color-ink-muted); }
+
+/* A quiet-bordered button whose action is destructive (Sign out everywhere): danger text, danger wash on hover. */
+.btn-secondary.is-danger { color: var(--color-danger); border-color: color-mix(in srgb, var(--color-danger) 32%, transparent); }
+.btn-secondary.is-danger:hover:not(:disabled) { background: var(--color-danger-soft); color: var(--color-danger); border-color: var(--color-danger); }
+
+/* ── Configuration ── */
+.set-toolbar { display: flex; flex-direction: column; gap: 10px; }
+.set-search { max-width: 360px; width: 100%; }
+.set-scroll { overflow-x: auto; padding-bottom: 2px; }
+.set-restart { display: flex; align-items: center; gap: 14px; }
+.set-restart p { margin: 2px 0 0; font-size: 13px; color: var(--color-ink-muted); }
+.set-banner { flex-wrap: wrap; justify-content: space-between; }
+.set-banner > span { flex: 1 1 260px; min-width: 0; }
+
+/* A setting row: what it is on the left, the control on the right. */
+.set-row { align-items: flex-start; justify-content: space-between; gap: 8px 16px; }
+.set-main { flex: 1 1 280px; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.set-title { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.set-label { font-size: 14px; font-weight: 500; color: var(--color-ink); }
+.set-key { font-size: 12px; color: var(--color-ink-dim); overflow-wrap: anywhere; }
+.set-help { font-size: 13px; line-height: 1.45; color: var(--color-ink-muted); }
+.set-env { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 12px; color: var(--color-warning); }
+.set-env .mono { overflow-wrap: anywhere; }
+.set-note { font-size: 12px; line-height: 1.45; }
+.set-ctl { flex: 0 1 auto; max-width: 100%; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+.set-draft { display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end; max-width: 100%; }
+.set-draft-actions { display: inline-flex; align-items: center; gap: 6px; }
+/* Inputs next to a 36px button are 36px too. */
+.set-input { width: 260px; max-width: 100%; padding: 8px 12px; }
+.set-input.is-num { width: 120px; text-align: right; font-variant-numeric: tabular-nums; }
+.set-select { min-width: 160px; max-width: 100%; padding: 8px 12px; }
+.set-err { width: 100%; text-align: right; font-size: 12px; color: var(--color-danger); }
+
+/* The old → new pair of a confirm dialog. */
+.set-diff { display: flex; flex-direction: column; gap: 8px; }
+.set-diff-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.set-pill {
+  padding: 3px 10px; border-radius: var(--radius-sm); font-size: 13px; overflow-wrap: anywhere;
+  background: var(--color-surface-3); color: var(--color-ink-muted); border: 1px solid var(--color-hairline);
+}
+.set-pill.is-new { background: var(--color-success-soft); color: var(--color-accent); border-color: var(--color-accent); }
+
+/* ── Security ── */
+.set-actions { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+.set-sess { align-items: center; }
+.set-sess-main { flex: 1 1 260px; min-width: 0; }
+.set-sess-title { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.set-sess-name { font-size: 14px; font-weight: 500; color: var(--color-ink); overflow-wrap: anywhere; }
+.set-sess-meta { margin-top: 2px; font-size: 12px; line-height: 1.5; color: var(--color-ink-dim); overflow-wrap: anywhere; }
+
+/* ── Navigation: tune the constructor from index.css ── */
+.set-bar-state { margin-right: auto; font-size: 13px; color: var(--color-ink-dim); }
+.set-bar-state.is-dirty { color: var(--color-warning); }
+.navc-group { border-radius: var(--radius-lg); padding: 8px; }
+.navc-input { padding: 6px 10px; font-size: 14px; }
+.navc-meta { font-family: var(--font-mono); font-feature-settings: normal; font-size: 11px; }
+.navc-inline-form .input-field, .navc-link-form .input-field { padding: 8px 12px; font-size: 14px; }
+.navc-preview-title { font-family: var(--font-mono); font-feature-settings: normal; font-weight: 500; letter-spacing: 0.1em; }
+.navc-preview-badge { font-family: var(--font-mono); font-feature-settings: normal; }
+.navc-bar { border-radius: var(--radius-lg); box-shadow: var(--shadow-2); }
+
+@media (max-width: 600px) {
+  .set-ctl, .set-draft { justify-content: flex-start; width: 100%; }
+  .set-input, .set-input.is-num { width: 100%; text-align: left; }
+  .set-select { width: 100%; }
+  .set-err { text-align: left; }
+  .set-actions { justify-content: flex-start; }
+}

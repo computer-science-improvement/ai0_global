@@ -137,7 +137,7 @@ export function NavigationTab({ editId, from }: { editId?: string; from?: string
   );
 
   if (q.error && !draft) return <div className="callout-danger">Couldn't load the menu: {describeError(q.error)}</div>;
-  if (!draft || !base) return <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>Loading…</p>;
+  if (!draft || !base) return <div className="panel is-section set-skeleton compose-rise" aria-hidden />;
 
   const blocked = base.source === 'newer';
   const edit = (op: (c: NavConfig) => NavConfig) => setDraft((d) => (d ? op(d) : d));
@@ -146,26 +146,26 @@ export function NavigationTab({ editId, from }: { editId?: string; from?: string
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 16, paddingBottom: 72 }}>
       {blocked && (
-        <div className="callout-warning" style={{ display: 'flex', gap: 10, alignItems: 'center', flexWrap: 'wrap' }}>
+        <div className="callout-warning set-banner">
           <span>This menu was saved by a newer version of the dashboard. Reload the page to edit it; saving here is blocked so it is not overwritten.</span>
-          <button className="btn-tiny" onClick={() => window.location.reload()}>Reload page</button>
+          <button className="btn-secondary btn-sm" onClick={() => window.location.reload()}>Reload page</button>
         </div>
       )}
       {base.unparseable && (
         <div className="callout-warning">The saved menu could not be read, so the default is shown. Save to replace it, or reset to the default.</div>
       )}
       {conflict && (
-        <div className="callout-danger" role="alert" style={{ display: 'flex', gap: 10, alignItems: 'center', flexWrap: 'wrap' }}>
+        <div className="callout-danger set-banner" role="alert">
           <span>Changed in another tab. Your draft is kept here; reload to see the latest menu (your changes will be discarded).</span>
-          <button className="btn-tiny" onClick={() => void reload()}>Reload</button>
+          <button className="btn-secondary btn-sm" onClick={() => void reload()}>Reload</button>
         </div>
       )}
 
       <div className="navc-layout">
         <div style={{ display: 'flex', flexDirection: 'column', gap: 16, minWidth: 0 }}>
-          <SectionCard icon="menu" title="Menu"
-            action={<span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>{refs}/{NAV_LIMITS.refs} items · {draft.groups.length}/{NAV_LIMITS.groups} groups</span>}>
-            <p className="text-caption" style={{ margin: '-6px 0 14px', color: 'var(--color-ink-muted)' }}>
+          <SectionCard title="Menu" delay={0}
+            action={<span className="set-count mono">{refs}/{NAV_LIMITS.refs} items · {draft.groups.length}/{NAV_LIMITS.groups} groups</span>}>
+            <p className="set-intro">
               {isMobile ? 'Use ↑ and ↓ to reorder.' : 'Drag rows and groups, or use ↑/↓ (Alt+↑/↓ on a focused row).'} Hidden pages keep working; find them with ⌘K.
               Today and Settings are always shown.
             </p>
@@ -179,7 +179,7 @@ export function NavigationTab({ editId, from }: { editId?: string; from?: string
 
         {(!isMobile || showPreview) && preview && (
           <div className="navc-preview-wrap">
-            <SectionCard icon="eye" title="Preview">
+            <SectionCard title="Preview" delay={80}>
               <MenuPreview nav={preview} />
             </SectionCard>
           </div>
@@ -187,23 +187,23 @@ export function NavigationTab({ editId, from }: { editId?: string; from?: string
       </div>
 
       <div className="navc-bar" role="region" aria-label="Save menu changes">
-        <span className="text-caption" style={{ color: dirty ? 'var(--color-warning)' : 'var(--color-ink-dim)', marginRight: 'auto' }}>
+        <span className={`set-bar-state${dirty ? ' is-dirty' : ''}`}>
           {dirty ? 'Unsaved changes' : base.revision ? 'Saved' : 'Default menu'}
         </span>
         {isMobile && (
-          <button className="btn-tiny" onClick={() => setShowPreview((v) => !v)} aria-pressed={showPreview}>
+          <button className="btn-ghost btn-sm" onClick={() => setShowPreview((v) => !v)} aria-pressed={showPreview}>
             <Icon name="eye" size={13} /> {showPreview ? 'Hide preview' : 'Preview'}
           </button>
         )}
-        <button className="btn-tiny" disabled={reset.isPending || blocked || (!base.revision && !base.unparseable)}
+        <button className="btn-ghost btn-sm" disabled={reset.isPending || blocked || (!base.revision && !base.unparseable)}
           title="Delete the saved menu and use the default"
           onClick={async () => {
             if (await confirm('reset the menu to the default', { danger: true, confirmLabel: 'Reset', details: 'Your groups, renames, pins, hidden pages and custom links are deleted. Every page keeps working.' })) reset.mutate();
           }}>
           <Icon name="reset" size={13} /> Reset to default
         </button>
-        <button className="btn-secondary" disabled={!dirty || save.isPending} onClick={() => setDraft(JSON.parse(base.json))}>Discard</button>
-        <button className="btn-primary" disabled={!dirty || save.isPending || blocked}
+        <button className="btn-secondary btn-sm" disabled={!dirty || save.isPending} onClick={() => setDraft(JSON.parse(base.json))}>Discard</button>
+        <button className="btn-primary btn-sm" disabled={!dirty || save.isPending || blocked}
           onClick={() => save.mutate({ config: draft, base: base.revision })}>
           {save.isPending ? 'Saving…' : 'Save'}
         </button>
@@ -466,11 +466,11 @@ function AddLink({ draft, edit, from, routeExists }: {
   };
 
   return (
-    <SectionCard icon="link" title="Add a link"
+    <SectionCard title="Add a link" delay={40}
       action={capturable ? (
-        <button className="btn-tiny" onClick={capture} title={from}><Icon name="plus" size={12} /> Add current page</button>
+        <button className="btn-secondary btn-sm" onClick={capture} title={from}><Icon name="plus" size={13} /> Add current page</button>
       ) : undefined}>
-      <p className="text-caption" style={{ margin: '-6px 0 12px', color: 'var(--color-ink-muted)' }}>
+      <p className="set-intro">
         Any dashboard page, with its filters: type the address or use <b>Add current page</b> (open this tab with “Edit menu” from that page).
       </p>
       <form className="navc-link-form" onSubmit={(e) => { e.preventDefault(); add(); }}>
@@ -485,7 +485,7 @@ function AddLink({ draft, edit, from, routeExists }: {
         </select>
         <button type="submit" className="btn-primary" disabled={full} title={full ? `At most ${NAV_LIMITS.custom} links` : undefined}>Add link</button>
       </form>
-      {error && <p className="text-micro" role="alert" style={{ color: 'var(--color-danger)', margin: '8px 0 0' }}>{error}</p>}
+      {error && <p className="text-micro set-bad" role="alert" style={{ margin: '8px 0 0' }}>{error}</p>}
       <IconPicker open={picking} current={icon} onClose={() => setPicking(false)} onPick={(n) => { setIcon(n); setPicking(false); }} />
     </SectionCard>
   );
@@ -500,10 +500,10 @@ function HiddenPanel({ draft, edit, preview }: { draft: NavConfig; edit: (op: (c
     edit((c) => showItem(c, id, c.groups.some((g) => g.id === target && !g.hidden) ? target : undefined));
   };
   return (
-    <SectionCard icon="eye-off" title={`Hidden${unavailable.length ? ' and unavailable' : ''}`}
-      action={<span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>{hidden.length} hidden</span>}>
+    <SectionCard title={`Hidden${unavailable.length ? ' and unavailable' : ''}`} delay={80}
+      action={<span className="set-count mono">{hidden.length} hidden</span>}>
       {hidden.length === 0 && unavailable.length === 0 && (
-        <p className="text-caption" style={{ margin: 0, color: 'var(--color-ink-muted)' }}>Nothing is hidden.</p>
+        <p className="text-caption set-muted" style={{ margin: 0 }}>Nothing is hidden.</p>
       )}
       {hidden.map((id) => {
         const custom = draft.custom.find((c) => c.id === id);
@@ -521,7 +521,7 @@ function HiddenPanel({ draft, edit, preview }: { draft: NavConfig; edit: (op: (c
       })}
       {unavailable.length > 0 && (
         <>
-          <div className="text-eyebrow" style={{ margin: '14px 0 6px' }}>Unavailable</div>
+          <div className="text-overline" style={{ margin: '14px 0 6px' }}>Unavailable</div>
           {unavailable.map((u) => (
             <div key={u.id} className="navc-hidden-row">
               <Icon name="ban" size={14} />

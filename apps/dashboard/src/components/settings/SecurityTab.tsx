@@ -60,50 +60,47 @@ export function SecurityTab() {
   const busy = revoke.isPending || revokeAll.isPending;
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+    <div className="set-stack">
       <SectionCard
         title="Sessions"
-        icon="lock"
+        flush
+        delay={0}
         action={
-          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', justifyContent: 'flex-end' }}>
-            <Button variant="tiny" disabled={busy || others === 0} onClick={onOthers}>Sign out other sessions</Button>
-            <Button variant="tiny-danger" disabled={busy || list.length === 0} onClick={onEverywhere}>Sign out everywhere</Button>
+          <div className="set-actions">
+            <Button variant="secondary" size="sm" disabled={busy || others === 0} onClick={onOthers}>Sign out other sessions</Button>
+            <Button variant="secondary" size="sm" className="is-danger" disabled={busy || list.length === 0} onClick={onEverywhere}>Sign out everywhere</Button>
           </div>
         }
       >
-        {sessions.isLoading && <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>Loading…</p>}
-        {sessions.error && <p className="text-body-sm" style={{ color: 'var(--color-danger)' }}>{(sessions.error as Error).message}</p>}
+        {sessions.isLoading && <div className="set-pad" role="status">Loading…</div>}
+        {sessions.error && <div className="set-pad"><div className="callout-danger" role="alert">{(sessions.error as Error).message}</div></div>}
         {sessions.data && list.length === 0 && (
           <EmptyState icon="lock" title="No active sessions" note="Scripts using the access token as a Bearer header don't open sessions." />
         )}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-          {list.map((s, i) => <SessionRow key={s.id} s={s} index={i} disabled={busy} onRevoke={() => void onRevoke(s)} />)}
-        </div>
+        {list.map((s) => <SessionRow key={s.id} s={s} disabled={busy} onRevoke={() => void onRevoke(s)} />)}
       </SectionCard>
 
-      <SectionCard title="Recent sign-in activity" icon="history">
-        {events.isLoading && <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>Loading…</p>}
-        {events.error && <p className="text-body-sm" style={{ color: 'var(--color-danger)' }}>{(events.error as Error).message}</p>}
-        {events.data && events.data.length === 0 && <EmptyState icon="history" title="No events yet" />}
+      <SectionCard title="Recent sign-in activity" delay={40}
+        action={events.data && events.data.length > 0 ? <span className="set-count mono">last {events.data.length}</span> : undefined}>
+        {events.isLoading && <div className="set-loading" role="status">Loading…</div>}
+        {events.error && <div className="callout-danger" role="alert">{(events.error as Error).message}</div>}
+        {events.data && events.data.length === 0 && <EmptyState icon="history" title="No events yet" note="Sign-ins, sign-outs and failed attempts are listed here." />}
         {events.data && events.data.length > 0 && <EventsTable events={events.data} />}
       </SectionCard>
     </div>
   );
 }
 
-function SessionRow({ s, index, disabled, onRevoke }: { s: AuthSession; index: number; disabled: boolean; onRevoke: () => void }) {
+function SessionRow({ s, disabled, onRevoke }: { s: AuthSession; disabled: boolean; onRevoke: () => void }) {
   return (
-    <div
-      className="card row-lift compose-rise"
-      style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '12px 14px', animationDelay: `${index * 40}ms` }}
-    >
-      <div style={{ minWidth: 0, flex: 1 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
-          <span className="text-body" style={{ color: 'var(--color-ink)', fontWeight: 500 }} title={s.userAgent ?? undefined}>{s.device}</span>
+    <div className="panel-row set-sess">
+      <div className="set-sess-main">
+        <div className="set-sess-title">
+          <span className="set-sess-name" title={s.userAgent ?? undefined}>{s.device}</span>
           {s.current && <Badge tone="success">This device</Badge>}
           <Badge tone="neutral">{METHOD_LABEL[s.method] ?? s.method}</Badge>
         </div>
-        <div className="text-body-sm" style={{ color: 'var(--color-ink-muted)', marginTop: 2 }}>
+        <div className="set-sess-meta mono">
           {s.ip ?? 'unknown IP'} · signed in {fmtDate(s.createdAt)} · last seen {fmtRelative(s.lastSeenAt)} · expires {fmtDate(s.expiresAt)}
         </div>
       </div>
@@ -129,11 +126,11 @@ function EventsTable({ events }: { events: AuthEvent[] }) {
             const k = EVENT_LABEL[e.kind] ?? { label: e.kind, tone: 'neutral' as const };
             return (
               <tr key={e.id}>
-                <td title={fmtDate(e.at)}>{fmtRelative(e.at)}</td>
+                <td className="mono" title={fmtDate(e.at)}>{fmtRelative(e.at)}</td>
                 <td><Badge tone={k.tone}>{k.label}</Badge></td>
                 <td>{e.method ? METHOD_LABEL[e.method] ?? e.method : '—'}</td>
                 <td>{codeLabel(e.code) || '—'}</td>
-                <td>{e.ip ?? '—'}</td>
+                <td className="mono">{e.ip ?? '—'}</td>
                 <td>{e.device ?? '—'}</td>
               </tr>
             );

@@ -1,9 +1,10 @@
-// Spec 039: the Configuration tab — every setting that moved out of .env, built from the server's catalog. One card per
+// Spec 039: the Configuration tab — every setting that moved out of .env, built from the server's catalog. One panel per
 // group, one row per setting: an input by type, where the value comes from (dashboard / .env / default), whether it needs
 // a restart. Every change goes through a confirm showing old → new; secrets are write-only. A banner lists the settings
 // waiting for a restart with the Restart service button (the page then waits for the service to come back).
+// Spec 078 C4: the look (rows in flush panels, group tabs with counts) lives in settings.css, imported by the route.
 
-import { useEffect, useMemo, useState, type CSSProperties, type ReactNode } from 'react';
+import { useEffect, useMemo, useState, type ReactNode } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { settingsApi, type SettingState, type SettingsCatalog } from '../../api/settings';
 import { SegmentedTabs } from '../SegmentedTabs';
@@ -68,12 +69,28 @@ export function ConfigurationTab({ group, onGroup }: { group: string; onGroup: (
   }, [restartingSince, qc]);
 
   const visible = useMemo(() => (data ? filterSettings(data.settings, { group: group === 'all' ? undefined : group, query }) : []), [data, group, query]);
+  // The count on each group tab follows the search, so the tabs say where the matches are.
+  const counts = useMemo(() => {
+    const out = new Map<string, number>();
+    if (!data) return out;
+    out.set('all', filterSettings(data.settings, { query }).length);
+    for (const g of data.groups) out.set(g.id, filterSettings(data.settings, { group: g.id, query }).length);
+    return out;
+  }, [data, query]);
 
   if (restartingSince) {
-    return <div className="card" style={{ color: 'var(--color-ink-muted)' }}>Restarting the automation service… this page reloads the settings when it is back.</div>;
+    return (
+      <section className="panel is-section set-restart compose-rise" role="status">
+        <span className="status-dot is-live" aria-hidden />
+        <div>
+          <h2 className="text-heading-md" style={{ margin: 0 }}>Restarting the automation service</h2>
+          <p>This page reloads the settings when it is back.</p>
+        </div>
+      </section>
+    );
   }
-  if (isLoading) return <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>Loading…</p>;
-  if (error) return <p className="text-body-sm" style={{ color: 'var(--color-danger)' }}>{errorText(error)}</p>;
+  if (isLoading) return <div className="panel is-section set-skeleton compose-rise" aria-hidden />;
+  if (error) return <div className="callout-danger" role="alert">{errorText(error)}</div>;
   if (!data) return null;
 
   const change = async (s: SettingState, next: string) => {
@@ -103,7 +120,7 @@ export function ConfigurationTab({ group, onGroup }: { group: string; onGroup: (
     const ok = await confirm('restart the automation service', {
       danger: true, confirmLabel: 'Restart',
       details: (
-        <p className="text-body-sm" style={{ margin: 0, color: 'var(--color-ink-muted)' }}>
+        <p className="text-body-sm set-muted" style={{ margin: 0 }}>
           Running agent steps stop and publishing pauses for about a minute. Applies: {labelsOf(data, data.pendingRestart) || 'nothing pending'}.
         </p>
       ),
@@ -121,7 +138,7 @@ export function ConfigurationTab({ group, onGroup }: { group: string; onGroup: (
   const shown = groups.filter((g) => visible.some((s) => s.group === g.id));
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+    <div className="set-stack">
       {data.overlayError && (
         <div className="callout-danger">The database settings were not applied at start ({data.overlayError}). The service runs on the .env values.</div>
       )}
@@ -129,37 +146,40 @@ export function ConfigurationTab({ group, onGroup }: { group: string; onGroup: (
         <div className="callout-warning">TOKEN_ENCRYPTION_KEY is not set on the server: keys and tokens stay in .env and cannot be edited here.</div>
       )}
       {(data.pendingRestart.length > 0 || restartError) && (
-        <div className="callout-warning" style={{ flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between' }}>
-          <span style={{ flex: '1 1 260px' }}>
+        <div className="callout-warning set-banner">
+          <span>
             {restartError ?? <>{data.pendingRestart.length} setting{data.pendingRestart.length === 1 ? '' : 's'} apply after a restart: {labelsOf(data, data.pendingRestart)}.</>}
             {!data.restartSupported && <> Restart the local process by hand.</>}
           </span>
-          {data.restartSupported && data.pendingRestart.length > 0 && <Button variant="primary" onClick={restart}>Restart service</Button>}
+          {data.restartSupported && data.pendingRestart.length > 0 && <Button variant="warning" size="sm" onClick={restart}>Restart service</Button>}
         </div>
       )}
-      {save.error && <div className="callout-danger">{errorText(save.error)}</div>}
+      {save.error && <div className="callout-danger" role="alert">{errorText(save.error)}</div>}
 
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+      <div className="set-toolbar">
         <input
-          type="search" className="input-field" placeholder="Search settings" value={query} aria-label="Search settings"
-          onChange={(e) => setQuery(e.target.value)} style={{ maxWidth: 360, width: '100%' }}
+          type="search" className="input-field set-search" placeholder="Search settings" value={query} aria-label="Search settings"
+          onChange={(e) => setQuery(e.target.value)}
         />
-        <div style={{ overflowX: 'auto', paddingBottom: 2 }}>
-          <SegmentedTabs size="sm" value={group} onChange={onGroup} options={[{ key: 'all', label: 'All' }, ...groups.map((g) => ({ key: g.id, label: g.label }))]} />
+        <div className="set-scroll">
+          <SegmentedTabs size="sm" value={group} onChange={onGroup} ariaLabel="Setting groups"
+            options={[{ key: 'all', label: 'All', count: counts.get('all') }, ...groups.map((g) => ({ key: g.id, label: g.label, count: counts.get(g.id) }))]} />
         </div>
       </div>
 
       {shown.length === 0 && <EmptyState icon="search" title="No settings match" note="Try another word or group." />}
-      {shown.map((g) => (
-        <SectionCard key={g.id} title={g.label}>
-          <div style={{ display: 'flex', flexDirection: 'column' }}>
-            {visible.filter((s) => s.group === g.id).map((s, i, arr) => (
-              <SettingRow key={s.key} s={s} last={i === arr.length - 1} busy={save.isPending}
+      {shown.map((g, gi) => {
+        const rows = visible.filter((s) => s.group === g.id);
+        return (
+          <SectionCard key={g.id} title={g.label} flush delay={Math.min(gi, 6) * 40}
+            action={<span className="set-count mono">{rows.length} setting{rows.length === 1 ? '' : 's'}</span>}>
+            {rows.map((s) => (
+              <SettingRow key={s.key} s={s} busy={save.isPending}
                 encryptionReady={data.encryptionReady} onChange={change} onReset={reset} onUseEnv={useEnv} />
             ))}
-          </div>
-        </SectionCard>
-      ))}
+          </SectionCard>
+        );
+      })}
     </div>
   );
 }
@@ -169,60 +189,54 @@ function labelsOf(data: SettingsCatalog, keys: string[]): string {
 }
 
 function Diff({ s, oldText, newText }: { s: SettingState; oldText: string; newText: string }) {
-  const pill = (tone: 'old' | 'new'): CSSProperties => ({
-    padding: '3px 10px', borderRadius: 'var(--radius-sm)', fontSize: 13, fontFamily: 'var(--font-mono, monospace)', overflowWrap: 'anywhere',
-    background: tone === 'old' ? 'var(--color-surface-3)' : 'var(--color-success-soft)',
-    color: tone === 'old' ? 'var(--color-ink-muted)' : 'var(--color-accent)',
-    border: `1px solid ${tone === 'old' ? 'var(--color-hairline)' : 'var(--color-accent)'}`,
-  });
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-      <code className="text-caption" style={{ color: 'var(--color-ink-dim)' }}>{s.key}</code>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
-        <span style={pill('old')}>{oldText}</span>
-        <span style={{ color: 'var(--color-ink-dim)' }}>→</span>
-        <span style={pill('new')}>{newText}</span>
+    <div className="set-diff">
+      <code className="text-caption set-dim">{s.key}</code>
+      <div className="set-diff-row">
+        <span className="set-pill mono">{oldText}</span>
+        <span className="set-dim">→</span>
+        <span className="set-pill is-new mono">{newText}</span>
       </div>
-      {s.apply === 'restart' && <span className="text-caption" style={{ color: 'var(--color-ink-dim)' }}>Applies after a restart of the service.</span>}
-      {s.danger && <span className="text-caption" style={{ color: 'var(--color-danger)' }}>{s.help}</span>}
+      {s.apply === 'restart' && <span className="text-caption set-dim">Applies after a restart of the service.</span>}
+      {s.danger && <span className="text-caption set-bad">{s.help}</span>}
     </div>
   );
 }
 
-function SettingRow({ s, last, busy, encryptionReady, onChange, onReset, onUseEnv }: {
-  s: SettingState; last: boolean; busy: boolean; encryptionReady: boolean;
+function SettingRow({ s, busy, encryptionReady, onChange, onReset, onUseEnv }: {
+  s: SettingState; busy: boolean; encryptionReady: boolean;
   onChange: (s: SettingState, next: string) => Promise<boolean>;
   onReset: (s: SettingState) => void;
   onUseEnv: (s: SettingState) => void;
 }) {
   const src = SOURCE[s.decryptFailed ? 'env' : s.source];
   return (
-    <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'flex-start', justifyContent: 'space-between', gap: '8px 16px', padding: '14px 0', borderBottom: last ? 'none' : '1px solid var(--color-hairline-soft)' }}>
-      <div style={{ flex: '1 1 280px', minWidth: 0, display: 'flex', flexDirection: 'column', gap: 4 }}>
-        <span style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap' }}>
-          <span className="text-body-sm" style={{ color: 'var(--color-ink)', fontWeight: 500 }}>{s.label}</span>
+    <div className="panel-row set-row">
+      <div className="set-main">
+        <span className="set-title">
+          <span className="set-label">{s.label}</span>
           <Badge tone={src.tone} title={src.title}>{src.label}</Badge>
           {s.apply === 'restart' && !s.pendingRestart && <Badge tone="neutral" title="Read when the service starts">restart</Badge>}
           {s.pendingRestart && <Badge tone="warning" title="Changed; applies after a restart">pending restart</Badge>}
           {s.danger && <Badge tone="danger">careful</Badge>}
         </span>
-        <code className="text-caption" style={{ color: 'var(--color-ink-dim)', overflowWrap: 'anywhere' }}>{s.key}</code>
-        <span className="text-caption" style={{ color: 'var(--color-ink-muted)' }}>
+        <code className="set-key mono">{s.key}</code>
+        <span className="set-help">
           {s.help}{s.options && s.type === 'list' ? ` Allowed: ${s.options.join(', ')}.` : ''}
         </span>
         {s.envValue !== null && (
-          <span className="text-caption" style={{ color: 'var(--color-warning)', display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
-            {s.type === 'secret' ? '.env has another value; it is ignored.' : <>.env has <code style={{ overflowWrap: 'anywhere' }}>{s.envValue}</code>; it is ignored.</>}
+          <span className="set-env">
+            {s.type === 'secret' ? '.env has another value; it is ignored.' : <>.env has <code className="mono">{s.envValue}</code>; it is ignored.</>}
             <Button variant="tiny" disabled={busy} onClick={() => onUseEnv(s)}>Use .env value</Button>
           </span>
         )}
         {s.decryptFailed && (
-          <span className="text-caption" style={{ color: 'var(--color-danger)' }}>
+          <span className="set-note set-bad">
             The stored value cannot be decrypted (TOKEN_ENCRYPTION_KEY changed?); the .env value applies. Set it again.
           </span>
         )}
       </div>
-      <div style={{ flex: '0 1 auto', maxWidth: '100%', display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', justifyContent: 'flex-end' }}>
+      <div className="set-ctl">
         <Control s={s} busy={busy} encryptionReady={encryptionReady} onChange={onChange} />
         {s.source === 'db' && <Button variant="tiny" disabled={busy} onClick={() => onReset(s)} title="Back to the built-in default">Reset</Button>}
       </div>
@@ -239,7 +253,7 @@ function Control({ s, busy, encryptionReady, onChange }: {
   }
   if (s.type === 'enum') {
     return (
-      <select className="input-field" value={s.value ?? ''} disabled={busy} aria-label={s.label} style={{ minWidth: 160, maxWidth: '100%' }}
+      <select className="input-field set-select" value={s.value ?? ''} disabled={busy} aria-label={s.label}
         onChange={(e) => { if (e.target.value) void onChange(s, e.target.value); }}>
         {!s.value && <option value="">{s.default ? `default (${s.default})` : 'default'}</option>}
         {(s.options ?? []).map((o) => <option key={o} value={o}>{o}</option>)}
@@ -259,21 +273,20 @@ function DraftInput({ s, busy, onChange }: { s: SettingState; busy: boolean; onC
   const err = dirty ? draftError(s, v) : null;
   const numeric = s.type === 'int' || s.type === 'number';
   return (
-    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', maxWidth: '100%' }}>
+    <span className="set-draft">
       <input
-        type={numeric ? 'number' : 'text'} inputMode={numeric ? 'decimal' : undefined} className="input-field" value={v}
+        type={numeric ? 'number' : 'text'} inputMode={numeric ? 'decimal' : undefined} className={`input-field set-input${numeric ? ' is-num' : ''}`} value={v}
         min={s.min} max={s.max} step={s.type === 'number' ? 'any' : undefined} aria-label={s.label} aria-invalid={!!err}
         placeholder={s.default ? `default: ${s.default}` : 'not set'}
         onChange={(e) => setV(e.target.value)}
-        style={{ width: numeric ? 120 : 260, maxWidth: '100%', padding: '6px 10px', fontSize: 14, textAlign: numeric ? 'right' : 'left', fontVariantNumeric: 'tabular-nums' }}
       />
       {dirty && (
-        <span style={{ display: 'inline-flex', gap: 6, alignItems: 'center' }}>
-          <Button variant="primary" disabled={busy || !!err} onClick={async () => { if (!(await onChange(s, v.trim()))) setV(server); }}>Save</Button>
-          <Button variant="tiny" onClick={() => setV(server)}>Cancel</Button>
+        <span className="set-draft-actions">
+          <Button variant="primary" size="sm" disabled={busy || !!err} onClick={async () => { if (!(await onChange(s, v.trim()))) setV(server); }}>Save</Button>
+          <Button variant="ghost" size="sm" onClick={() => setV(server)}>Cancel</Button>
         </span>
       )}
-      {err && <span className="text-caption" role="alert" style={{ color: 'var(--color-danger)', width: '100%', textAlign: 'right' }}>{err}</span>}
+      {err && <span className="set-err" role="alert">{err}</span>}
     </span>
   );
 }
@@ -285,20 +298,22 @@ function SecretInput({ s, busy, disabled, onChange }: { s: SettingState; busy: b
   const err = v ? draftError(s, v) : null;
   if (!open) {
     return (
-      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+      <span className="set-draft">
         <Badge tone={s.set ? 'success' : 'neutral'}>{s.set ? 'set' : 'not set'}</Badge>
-        <Button variant="secondary" disabled={busy || disabled} onClick={() => setOpen(true)}
+        <Button variant="secondary" size="sm" disabled={busy || disabled} onClick={() => setOpen(true)}
           title={disabled ? 'TOKEN_ENCRYPTION_KEY is not set on the server' : undefined}>{s.set ? 'Replace' : 'Set'}</Button>
       </span>
     );
   }
   return (
-    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', maxWidth: '100%' }}>
-      <input type="password" autoComplete="off" className="input-field" value={v} aria-label={s.label} placeholder="Paste the new value"
-        onChange={(e) => setV(e.target.value)} style={{ width: 260, maxWidth: '100%', padding: '6px 10px', fontSize: 14 }} />
-      <Button variant="primary" disabled={busy || !v.trim() || !!err} onClick={async () => { await onChange(s, v.trim()); setV(''); setOpen(false); }}>Save</Button>
-      <Button variant="tiny" onClick={() => { setV(''); setOpen(false); }}>Cancel</Button>
-      {err && <span className="text-caption" role="alert" style={{ color: 'var(--color-danger)', width: '100%', textAlign: 'right' }}>{err}</span>}
+    <span className="set-draft">
+      <input type="password" autoComplete="off" className="input-field set-input" value={v} aria-label={s.label} placeholder="Paste the new value"
+        onChange={(e) => setV(e.target.value)} />
+      <span className="set-draft-actions">
+        <Button variant="primary" size="sm" disabled={busy || !v.trim() || !!err} onClick={async () => { await onChange(s, v.trim()); setV(''); setOpen(false); }}>Save</Button>
+        <Button variant="ghost" size="sm" onClick={() => { setV(''); setOpen(false); }}>Cancel</Button>
+      </span>
+      {err && <span className="set-err" role="alert">{err}</span>}
     </span>
   );
 }
