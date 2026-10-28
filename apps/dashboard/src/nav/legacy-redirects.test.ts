@@ -7,7 +7,6 @@ import { fileURLToPath } from 'node:url';
 import { Route as AgentRoute } from '../routes/app.agent';
 import { Route as BotsRoute } from '../routes/app.bots';
 import { Route as TelegraphRoute } from '../routes/app.telegraph';
-import { Route as CalendarRoute } from '../routes/app.calendar';
 import { Route as SetupRoute } from '../routes/app.setup';
 import { Route as SteeringRoute } from '../routes/app.steering';
 
@@ -41,14 +40,24 @@ test('spec 048: /app/setup and /app/steering land on Artifacts with the item ope
   assert.deepEqual(redirectOf(SteeringRoute, { set: 's1', target: '@news' }), { to: '/app/artifacts', search: { type: 'steering', open: 'steering:s1' } });
 });
 
-test('/app/calendar redirects to Scheduled', () => {
-  assert.equal(redirectOf(CalendarRoute).to, '/app/scheduled');
+test('spec 078 B4: /app/calendar is the Calendar page (no redirect), and the top-bar New post opens its drawer', () => {
+  const src = fileURLToPath(new URL('..', import.meta.url));
+  const route = readFileSync(`${src}routes/app.calendar.tsx`, 'utf8');
+  assert.match(route, /component\s*:/);
+  assert.match(route, /validateSearch\s*:/);
+  assert.doesNotMatch(route, /redirect\(/);
+  // The top-bar button and the ⌘K "New post" action both land on the drawer; the old composer page still answers /app/compose.
+  const shell = readFileSync(`${src}components/AppShell.tsx`, 'utf8');
+  assert.equal((shell.match(/to: '\/app\/calendar', search: \{ compose: 'new' \}/g) ?? []).length, 2);
+  assert.doesNotMatch(shell, /to: '\/app\/compose'/);
+  assert.equal(existsSync(`${src}routes/app.compose.tsx`), true);
+  assert.equal(existsSync(`${src}routes/app.scheduled.tsx`), true);
 });
 
 test('the /app/connections/$platform stub is gone and nothing renders the legacy pages', () => {
   const src = fileURLToPath(new URL('..', import.meta.url));
   assert.equal(existsSync(`${src}routes/app.connections.$platform.tsx`), false);
-  for (const f of ['app.agent.tsx', 'app.bots.tsx', 'app.telegraph.tsx', 'app.calendar.tsx', 'app.setup.tsx', 'app.steering.tsx']) {
+  for (const f of ['app.agent.tsx', 'app.bots.tsx', 'app.telegraph.tsx', 'app.setup.tsx', 'app.steering.tsx']) {
     const code = readFileSync(`${src}routes/${f}`, 'utf8');
     assert.doesNotMatch(code, /component\s*:/, `${f} must be redirect-only`);
   }

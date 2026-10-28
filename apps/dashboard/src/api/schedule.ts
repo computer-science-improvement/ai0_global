@@ -78,6 +78,8 @@ export interface ScheduleSlot {
   seriesName:     string | null;
   scheduleRuleId: string | null;
   promo:          boolean;
+  /** Spec 078 B4: why the slot was skipped or failed (an older server sends none). */
+  error?:         string | null;
   /** Spec 034 FR-010: `live` = the executor picks the freshest item at slot time (`live` carries the spec). */
   topicMode?:     'fixed' | 'live';
   live?:          LiveSpecView;

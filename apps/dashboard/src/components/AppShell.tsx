@@ -92,7 +92,7 @@ export function AppShell() {
     else if (!quick.isPending) toast.error('Already pinned, or the 10 pins are taken.');
   };
   const onPaletteAction = (a: 'new-post' | 'pin-page' | 'edit-menu' | 'collapse-sidebar') => {
-    if (a === 'new-post') void navigate({ to: '/app/compose' });
+    if (a === 'new-post') void navigate({ to: '/app/calendar', search: { compose: 'new' } });
     else if (a === 'pin-page') pinCurrentPage();
     else if (a === 'edit-menu') editMenu();
     else if (isMobile) setNavOpen(true);
@@ -180,7 +180,7 @@ export function AppShell() {
                 variant="primary"
                 style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}
                 title="New post"
-                onClick={() => navigate({ to: '/app/compose' })}
+                onClick={() => navigate({ to: '/app/calendar', search: { compose: 'new' } })}
               >
                 <Icon name="plus" size={14} />{!isMobile && ' New post'}
               </Button>

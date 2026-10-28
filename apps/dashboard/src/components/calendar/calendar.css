@@ -1,0 +1,124 @@
+/*
+ * Spec 078 B4: the Calendar page (/app/calendar). Tokens only. The status shapes are ui/StatusMark; this file lays out the
+ * week grid, the day agenda of phones, the chips and the legend. Imported by CalendarPage.tsx (not by the grid parts, so
+ * their server-render test needs no CSS loader).
+ */
+
+/* ── toolbar and legend ───────────────────────────────────────────────────── */
+.cal-nav { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.cal-nav .mono { margin-left: 6px; font-size: 13px; color: var(--color-ink-muted); }
+
+.cal-legend { display: flex; flex-wrap: wrap; gap: 8px 16px; margin: 0 0 16px; padding: 0; list-style: none; }
+.cal-legend li { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--color-ink-muted); }
+
+/* ── the week grid ────────────────────────────────────────────────────────── */
+.cal-panel { overflow: hidden; }
+.cal-scroll { overflow-x: auto; }
+.cal-grid {
+  display: grid; grid-template-columns: 176px repeat(5, minmax(156px, 1fr));
+  min-width: 956px;
+}
+
+.cal-hd {
+  display: flex; align-items: center; gap: 6px; padding: 12px;
+  border-bottom: 1px solid var(--color-hairline);
+  font-size: 13px; color: var(--color-ink-muted);
+}
+.cal-hd.is-today { color: var(--color-ink); }
+.cal-dn {
+  display: inline-flex; align-items: center; justify-content: center; min-width: 26px; height: 26px; padding: 0 4px;
+  border-radius: var(--radius-md);
+  font-family: var(--font-mono); font-feature-settings: normal; font-size: 12px;
+}
+.cal-hd.is-today .cal-dn { background: var(--color-accent); color: var(--color-on-accent); }
+
+/* The agent column stays in view when the grid scrolls sideways. */
+.cal-lh {
+  position: sticky; left: 0; z-index: 1;
+  display: flex; align-items: center; gap: 10px; min-width: 0; padding: 12px;
+  background: var(--color-surface-2);
+  border-bottom: 1px solid var(--color-hairline); border-right: 1px solid var(--color-hairline);
+}
+.cal-lh-name { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 13px; font-weight: 600; color: var(--color-ink); text-decoration: none; }
+a.cal-lh-name:hover { text-decoration: underline; }
+.cal-lh-text { min-width: 0; flex: 1; }
+.cal-lh-sub { font-size: 11px; color: var(--color-ink-dim); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cal-lh-note { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-top: 4px; }
+
+.cal-cell {
+  position: relative; display: flex; flex-direction: column; gap: 6px; min-width: 0; min-height: 92px; padding: 8px;
+  border-bottom: 1px solid var(--color-hairline); border-left: 1px solid var(--color-hairline-soft);
+}
+.cal-cell.is-past { background: color-mix(in srgb, var(--color-ink) 1.5%, transparent); }
+.cal-cell.is-today { background: color-mix(in srgb, var(--color-accent) 3%, transparent); }
+.cal-grid .is-last { border-bottom: 0; }
+.cal-row { display: contents; }
+
+.cal-add, .cal-more {
+  display: flex; align-items: center; justify-content: center; gap: 4px;
+  min-height: 32px; border-radius: var(--radius-md); background: transparent; font: inherit; font-size: 12px; cursor: pointer;
+  transition: opacity var(--dur-base), border-color var(--dur-base), color var(--dur-base);
+}
+.cal-add { margin-top: auto; border: 1px dashed var(--color-hairline-strong); color: var(--color-ink-dim); opacity: 0; }
+.cal-cell:hover .cal-add, .cal-add:focus-visible { opacity: 1; }
+.cal-add:hover { border-color: var(--color-accent); color: var(--color-accent); }
+.cal-more { border: 0; color: var(--color-ink-muted); min-height: 24px; }
+.cal-more:hover { color: var(--color-ink); }
+@media (hover: none) { .cal-add { opacity: 1; } }
+@media (pointer: coarse) { .cal-add { min-height: 44px; } .cal-more { min-height: 36px; } }
+
+.cal-cell-msg { font-size: 12px; color: var(--color-ink-dim); }
+
+/* ── chips ────────────────────────────────────────────────────────────────── */
+.cal-chip {
+  display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 2px 8px;
+  width: 100%; box-sizing: border-box; padding: 7px 9px;
+  border: 1px solid transparent; border-radius: var(--radius-md); background: transparent;
+  color: var(--color-ink); font: inherit; font-size: 12px; line-height: 1.3; text-align: left; text-decoration: none;
+  animation: pop var(--dur-enter) var(--ease-out) both;
+}
+a.cal-chip, button.cal-chip { cursor: pointer; transition: box-shadow var(--dur-fast); }
+a.cal-chip:hover, button.cal-chip:hover { box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-ink) 22%, transparent); }
+.cal-time { font-family: var(--font-mono); font-feature-settings: normal; font-size: 11px; color: var(--color-ink-muted); }
+.cal-title { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cal-status {
+  grid-column: 1 / -1; display: flex; align-items: center; gap: 6px; min-width: 0;
+  font-family: var(--font-mono); font-feature-settings: normal; font-size: 11px; color: var(--color-ink-dim);
+}
+.cal-status > span:last-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.cal-chip.is-published { background: color-mix(in srgb, var(--color-accent) 12%, transparent); }
+.cal-chip.is-published .cal-time { color: var(--color-accent); }
+.cal-chip.is-planned, .cal-chip.is-running, .cal-chip.is-approved { border-color: color-mix(in srgb, var(--color-accent) 45%, transparent); }
+.cal-chip.is-planned .cal-status, .cal-chip.is-running .cal-status, .cal-chip.is-approved .cal-status { color: var(--color-accent); }
+.cal-chip.is-awaiting-approval { border-color: color-mix(in srgb, var(--color-warning) 50%, transparent); }
+.cal-chip.is-awaiting-approval .cal-status { color: var(--color-warning); }
+.cal-chip.is-shadowed { border-style: dashed; border-color: var(--color-hairline-strong); }
+.cal-chip.is-skipped, .cal-chip.is-expired { background: color-mix(in srgb, var(--color-ink) 4%, transparent); color: var(--color-ink-dim); }
+.cal-chip.is-skipped .cal-title { text-decoration: line-through; text-decoration-color: color-mix(in srgb, var(--color-ink) 28%, transparent); }
+.cal-chip.is-failed { background: var(--color-danger-soft); border-color: color-mix(in srgb, var(--color-danger) 45%, transparent); }
+.cal-chip.is-failed .cal-status { color: var(--color-danger); }
+.cal-chip.is-missed { background: var(--color-warning-soft); border-color: color-mix(in srgb, var(--color-warning) 35%, transparent); }
+.cal-chip.is-missed .cal-status { color: var(--color-warning); }
+.cal-chip.is-not-planned { border-style: dashed; border-color: color-mix(in srgb, var(--color-warning) 50%, transparent); color: var(--color-ink-muted); }
+.cal-chip.is-not-planned .cal-status { color: var(--color-warning); }
+/* A projection that will not be written (series paused, agent off): quiet, dashed, not struck through. */
+.cal-chip.is-muted { background: transparent; border-style: dashed; border-color: var(--color-hairline-strong); color: var(--color-ink-dim); }
+.cal-chip.is-muted .cal-title { text-decoration: none; }
+/* The owner's own post: the one solid light chip. */
+.cal-chip.is-yours { background: var(--color-ink); color: var(--color-canvas); }
+.cal-chip.is-yours .cal-time, .cal-chip.is-yours .cal-status { color: color-mix(in srgb, var(--color-canvas) 72%, transparent); }
+.cal-chip.is-yours .status-mark { color: var(--color-canvas); }
+.cal-chip.is-alert-danger { box-shadow: inset 0 0 0 2px var(--color-danger); }
+.cal-chip.is-alert-warning { box-shadow: inset 0 0 0 2px var(--color-warning); }
+
+/* ── the day agenda (phones) ──────────────────────────────────────────────── */
+.cal-agenda { display: flex; flex-direction: column; gap: 12px; }
+.cal-agenda .panel-head { gap: 8px; }
+.cal-agenda-row { display: flex; flex-direction: column; gap: 8px; padding: 12px 16px; border-top: 1px solid var(--color-hairline); }
+.cal-agenda-row.is-empty { flex-direction: row; align-items: center; justify-content: space-between; }
+.cal-agenda-row.is-empty .cal-add { width: auto; min-width: 88px; margin-top: 0; padding: 0 12px; }
+.cal-agenda .cal-add { opacity: 1; min-height: 44px; }
+.cal-agenda-who { display: flex; align-items: center; gap: 8px; min-width: 0; }
+
+.cal-banner { margin-bottom: 16px; }
