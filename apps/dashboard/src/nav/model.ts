@@ -1,6 +1,6 @@
 // Spec 027: the resolved menu every navigation surface renders. Pure (no React).
 import type { IconName } from '../components/ui/Icon';
-import { NAV_GROUPS, NAV_REGISTRY, FORCED_IDS, menuEntries, type BadgeKey, type NavEntry } from './registry';
+import { DEFAULT_GROUPS, NAV_REGISTRY, FORCED_IDS, menuEntries, type BadgeKey, type NavEntry } from './registry';
 
 export interface ResolvedItem {
   id:       string;
@@ -19,6 +19,8 @@ export interface ResolvedItem {
   unavailable?: boolean;
   /** Overview and Settings: always visible. */
   forced?:  boolean;
+  /** A tab or section of a bigger page: never listed under "More tools" (registry `subview`). */
+  subview?: boolean;
 }
 
 export interface ResolvedGroup {
@@ -43,15 +45,16 @@ export function itemFromEntry(e: NavEntry): ResolvedItem {
     id: e.id, to: e.to, search: e.search, label: e.label, icon: e.icon, exact: e.exact,
     badge: e.badge ?? null,
     forced: FORCED_IDS.includes(e.id) || undefined,
+    subview: e.subview || undefined,
   };
 }
 
-/** The FR-003 default menu (schema v1): no saved config. */
+/** The default menu (FR-003, spec 078 layout): no saved config. */
 export function defaultNav(registry: ReadonlyArray<NavEntry> = NAV_REGISTRY): ResolvedNav {
   const entries = menuEntries(registry);
   return {
     pinned: [],
-    groups: NAV_GROUPS.map((g) => ({
+    groups: DEFAULT_GROUPS.map((g) => ({
       id: g.id, title: g.title,
       items: entries.filter((e) => e.defaultGroup === g.id && !e.hiddenByDefault).map(itemFromEntry),
     })).filter((g) => g.items.length > 0),

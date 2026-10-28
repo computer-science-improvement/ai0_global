@@ -7,8 +7,11 @@ import { z } from 'zod';
  * an unknown id is skipped there with a warning, never a crash).
  */
 export const NAV_SETTINGS_KEY = 'ui.nav';
-/** The newest menu schema this server accepts. A newer one is refused (a stale build must not overwrite it). */
-export const NAV_SCHEMA_MAX = 1;
+/**
+ * The newest menu schema this server accepts. A newer one is refused (a stale build must not overwrite it).
+ * v2 (spec 078) has the same shape as v1: the dashboard migrates a saved v1 menu to the new default menu.
+ */
+export const NAV_SCHEMA_MAX = 2;
 
 export const NAV_LIMITS = {
   bytes:   32 * 1024,

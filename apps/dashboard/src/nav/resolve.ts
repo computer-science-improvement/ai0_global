@@ -4,19 +4,26 @@
 //   resolveNav = renderNav(normalizeNav(...))
 //
 // normalizeNav turns whatever is stored (nothing, an older or newer schema,
-// garbage, ids that no longer exist) into a complete v1 config: every menu
+// garbage, ids that no longer exist) into a complete config: every menu
 // candidate is placed exactly once (in a group or in `hidden`), unknown ids are
 // parked in `hidden` (listed as Unavailable, never rendered), duplicates keep
 // the first. The constructor edits that normalized config as its draft.
 // renderNav applies overrides, drops empty/hidden groups, forces Overview and
 // Settings visible and marks custom links whose route is gone.
 import type { IconName } from '../components/ui/Icon';
-import { NAV_GROUPS, NAV_REGISTRY, FORCED_IDS, menuEntries, type NavEntry } from './registry';
-import { NAV_SCHEMA_VERSION, type CustomLink, type NavConfigV1, type NavGroupConfig } from './config';
+import { DEFAULT_GROUPS, NAV_GROUPS, NAV_REGISTRY, FORCED_IDS, menuEntries, type NavEntry } from './registry';
+import { NAV_SCHEMA_VERSION, type CustomLink, type NavConfig, type NavGroupConfig } from './config';
 import { itemFromEntry, type ResolvedItem, type ResolvedNav } from './model';
+import { migrateV1ToV2 } from './migrate';
 
-/** Schema migrations: `MIGRATIONS[v]` turns a v config into a v+1 config. None yet (v1 is the first). */
-export const MIGRATIONS: Record<number, (c: any) => any> = {};
+/**
+ * Schema migrations: `MIGRATIONS[v]` turns a v config into a v+1 config. They run
+ * during render, so a step that throws is caught in normalizeNav (default menu + warning).
+ * v1 → v2 (spec 078 D4): same shape, new default menu; see nav/migrate.ts.
+ */
+export const MIGRATIONS: Record<number, (c: any) => any> = {
+  1: (c) => migrateV1ToV2(c, defaultConfig(), NAV_REGISTRY),
+};
 
 export interface ResolveOptions {
   /** Does an href still match a route? (FR-007) Default: everything matches. */
@@ -29,7 +36,7 @@ export interface ResolveOptions {
 }
 
 export interface NormalizedNav {
-  config:   NavConfigV1;
+  config:   NavConfig;
   /** Where the config came from. 'newer' = written by a newer build: shown as default, saving blocked. */
   source:   'default' | 'saved' | 'newer' | 'invalid';
   /** Registry items placed automatically since the last save (FR-006 "new"). */
@@ -42,12 +49,12 @@ export interface NormalizedNav {
 const isObj = (v: unknown): v is Record<string, any> => !!v && typeof v === 'object' && !Array.isArray(v);
 const strArr = (v: unknown): string[] => (Array.isArray(v) ? v.filter((x): x is string => typeof x === 'string') : []);
 
-/** The FR-003 default menu as a v1 config. */
-export function defaultConfig(registry: ReadonlyArray<NavEntry> = NAV_REGISTRY): NavConfigV1 {
+/** The default menu (FR-003) as a config of the current schema. */
+export function defaultConfig(registry: ReadonlyArray<NavEntry> = NAV_REGISTRY): NavConfig {
   const entries = menuEntries(registry);
   return {
-    schemaVersion: 1,
-    groups: NAV_GROUPS.map((g) => ({ id: g.id, items: entries.filter((e) => e.defaultGroup === g.id && !e.hiddenByDefault).map((e) => e.id) })),
+    schemaVersion: NAV_SCHEMA_VERSION,
+    groups: DEFAULT_GROUPS.map((g) => ({ id: g.id, items: entries.filter((e) => e.defaultGroup === g.id && !e.hiddenByDefault).map((e) => e.id) })),
     pinned: [],
     hidden: entries.filter((e) => e.hiddenByDefault).map((e) => e.id),
     custom: [],
@@ -98,7 +105,13 @@ export function normalizeNav(
   for (let v = cfg.schemaVersion; v < current; v++) {
     const step = migrations[v];
     if (!step) { warnings.push(`No migration from menu schema v${v}; showing the default menu.`); return fallback('invalid'); }
-    cfg = step(cfg);
+    try {
+      cfg = step(cfg);
+    } catch {
+      warnings.push(`The saved menu (schema v${v}) could not be upgraded; showing the default menu.`);
+      return fallback('invalid');
+    }
+    if (!isObj(cfg)) { warnings.push('The saved menu is unreadable; showing the default menu.'); return fallback('invalid'); }
   }
 
   const entries = menuEntries(registry);
@@ -152,7 +165,7 @@ export function normalizeNav(
   // Custom links found nowhere stay available from Hidden.
   for (const c of custom) if (!placed.has(c.id)) { placed.add(c.id); hidden.push(c.id); }
 
-  const overrides: NavConfigV1['overrides'] = {};
+  const overrides: NavConfig['overrides'] = {};
   if (isObj(cfg.overrides)) {
     for (const [id, o] of Object.entries(cfg.overrides)) {
       if (!isObj(o) || !byId.has(id)) continue;
@@ -164,7 +177,7 @@ export function normalizeNav(
   }
 
   return {
-    config: { schemaVersion: 1, groups, pinned, hidden, custom, overrides },
+    config: { schemaVersion: current, groups, pinned, hidden, custom, overrides },
     source: 'saved', newIds, unknownIds, warnings,
   };
 }

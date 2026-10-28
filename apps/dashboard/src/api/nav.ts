@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { api } from './client';
-import type { NavConfigResponse, NavConfigV1 } from '../nav/config';
+import type { NavConfigResponse, NavConfig } from '../nav/config';
 
 /** The items behind the menu counters (GET /api/nav/attention). */
 export interface NavAttention {
@@ -18,7 +18,7 @@ export interface NavBadgesResponse {
 // Spec 027: the owner's menu (GET/PUT/DELETE /api/nav/config) and its counters.
 export const navApi = {
   getConfig: () => api<NavConfigResponse>('/api/nav/config'),
-  putConfig: (config: NavConfigV1, baseRevision: string | null) =>
+  putConfig: (config: NavConfig, baseRevision: string | null) =>
     api<{ revision: string }>('/api/nav/config', { method: 'PUT', body: JSON.stringify({ config, baseRevision }) }),
   resetConfig: () => api<{ revision: null }>('/api/nav/config', { method: 'DELETE' }),
   getBadges: (fresh = false) => api<NavBadgesResponse>(`/api/nav/badges${fresh ? '?fresh=1' : ''}`),

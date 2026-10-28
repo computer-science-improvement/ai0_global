@@ -21,7 +21,7 @@ import { describeError, toast } from '../ui/Toast';
 import { useMediaQuery } from '../../lib/useMediaQuery';
 import { NAV_GROUPS, NAV_REGISTRY, navEntry, FORCED_IDS } from '../../nav/registry';
 import { normalizeNav, renderNav } from '../../nav/resolve';
-import { NAV_LIMITS, guessLabel, newNavId, parseNavTarget, type NavConfigResponse, type NavConfigV1 } from '../../nav/config';
+import { NAV_LIMITS, guessLabel, newNavId, parseNavTarget, type NavConfigResponse, type NavConfig } from '../../nav/config';
 import { hrefOf, type ResolvedNav } from '../../nav/model';
 import { writeNavCache } from '../../nav/cache';
 import { isConflict, useNavConfig, useRouteExists } from '../../nav/store';
@@ -41,7 +41,7 @@ export function NavigationTab({ editId, from }: { editId?: string; from?: string
   const routeExists = useRouteExists();
   const isMobile = useMediaQuery('(max-width: 860px)');
 
-  const [draft, setDraft] = useState<NavConfigV1 | null>(null);
+  const [draft, setDraft] = useState<NavConfig | null>(null);
   const [base, setBase] = useState<Base | null>(null);
   const [conflict, setConflict] = useState(false);
   const [showPreview, setShowPreview] = useState(false);
@@ -92,7 +92,7 @@ export function NavigationTab({ editId, from }: { editId?: string; from?: string
   });
 
   const save = useMutation({
-    mutationFn: (v: { config: NavConfigV1; base: string | null }) => navApi.putConfig(v.config, v.base),
+    mutationFn: (v: { config: NavConfig; base: string | null }) => navApi.putConfig(v.config, v.base),
     meta: { silentError: true, skipNavBadges: true },
     onSuccess: (r, v) => {
       const fresh: NavConfigResponse = { config: v.config as unknown as Record<string, unknown>, revision: r.revision };
@@ -135,7 +135,7 @@ export function NavigationTab({ editId, from }: { editId?: string; from?: string
   if (!draft || !base) return <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>Loading…</p>;
 
   const blocked = base.source === 'newer';
-  const edit = (op: (c: NavConfigV1) => NavConfigV1) => setDraft((d) => (d ? op(d) : d));
+  const edit = (op: (c: NavConfig) => NavConfig) => setDraft((d) => (d ? op(d) : d));
   const refs = refCount(draft);
 
   return (
@@ -162,7 +162,7 @@ export function NavigationTab({ editId, from }: { editId?: string; from?: string
             action={<span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>{refs}/{NAV_LIMITS.refs} items · {draft.groups.length}/{NAV_LIMITS.groups} groups</span>}>
             <p className="text-caption" style={{ margin: '-6px 0 14px', color: 'var(--color-ink-muted)' }}>
               {isMobile ? 'Use ↑ and ↓ to reorder.' : 'Drag rows and groups, or use ↑/↓ (Alt+↑/↓ on a focused row).'} Hidden pages keep working; find them with ⌘K.
-              Overview and Settings are always shown.
+              Today and Settings are always shown.
             </p>
             <Tree draft={draft} edit={edit} isMobile={isMobile} onPickIcon={setIconFor} onFocusRow={setFocusId} />
             <NewGroup draft={draft} edit={edit} />
@@ -217,11 +217,11 @@ export function NavigationTab({ editId, from }: { editId?: string; from?: string
 
 // ── helpers ──────────────────────────────────────────────────────────────────
 
-function defaultLabel(draft: NavConfigV1, id: string): string {
+function defaultLabel(draft: NavConfig, id: string): string {
   return navEntry(id)?.label ?? draft.custom.find((c) => c.id === id)?.label ?? id;
 }
 
-function currentIcon(draft: NavConfigV1, id: string): IconName {
+function currentIcon(draft: NavConfig, id: string): IconName {
   const custom = draft.custom.find((c) => c.id === id);
   const name = custom?.icon ?? draft.overrides[id]?.icon ?? navEntry(id)?.icon ?? 'globe';
   return isIconName(name) ? name : 'globe';
@@ -248,7 +248,7 @@ function CommitInput({ id, value, placeholder, label, onCommit, disabled, maxLen
 type Drag = { kind: 'item' | 'group'; id: string } | null;
 
 function Tree({ draft, edit, isMobile, onPickIcon, onFocusRow }: {
-  draft: NavConfigV1; edit: (op: (c: NavConfigV1) => NavConfigV1) => void; isMobile: boolean;
+  draft: NavConfig; edit: (op: (c: NavConfig) => NavConfig) => void; isMobile: boolean;
   onPickIcon: (id: string) => void; onFocusRow: (id: string) => void;
 }) {
   const [drag, setDrag] = useState<Drag>(null);
@@ -411,7 +411,7 @@ function Tree({ draft, edit, isMobile, onPickIcon, onFocusRow }: {
   );
 }
 
-function NewGroup({ draft, edit }: { draft: NavConfigV1; edit: (op: (c: NavConfigV1) => NavConfigV1) => void }) {
+function NewGroup({ draft, edit }: { draft: NavConfig; edit: (op: (c: NavConfig) => NavConfig) => void }) {
   const [title, setTitle] = useState('');
   const full = draft.groups.length >= NAV_LIMITS.groups;
   const add = () => {
@@ -431,7 +431,7 @@ function NewGroup({ draft, edit }: { draft: NavConfigV1; edit: (op: (c: NavConfi
 }
 
 function AddLink({ draft, edit, from, routeExists }: {
-  draft: NavConfigV1; edit: (op: (c: NavConfigV1) => NavConfigV1) => void; from?: string; routeExists: (href: string) => boolean;
+  draft: NavConfig; edit: (op: (c: NavConfig) => NavConfig) => void; from?: string; routeExists: (href: string) => boolean;
 }) {
   const [label, setLabel] = useState('');
   const [target, setTarget] = useState('');
@@ -486,7 +486,7 @@ function AddLink({ draft, edit, from, routeExists }: {
   );
 }
 
-function HiddenPanel({ draft, edit, preview }: { draft: NavConfigV1; edit: (op: (c: NavConfigV1) => NavConfigV1) => void; preview: ResolvedNav | null }) {
+function HiddenPanel({ draft, edit, preview }: { draft: NavConfig; edit: (op: (c: NavConfig) => NavConfig) => void; preview: ResolvedNav | null }) {
   const unavailable = preview?.unavailable ?? [];
   const unavailableIds = new Set(unavailable.map((u) => u.id));
   const hidden = draft.hidden.filter((id) => !unavailableIds.has(id) && (navEntry(id) || draft.custom.some((c) => c.id === id)));

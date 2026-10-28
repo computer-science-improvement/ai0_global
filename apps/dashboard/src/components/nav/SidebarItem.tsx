@@ -11,10 +11,16 @@ const LONG_PRESS_MS = 500;
  * dot in the collapsed rail), a "new" dot, the hover star (pin/unpin), and the
  * right-click / long-press context menu. A custom link whose page is gone
  * renders disabled.
+ *
+ * Spec 078: `active` is decided by the sidebar (nav/sidebar-model.ts activeItemId,
+ * the longest matching prefix), not by the router's fuzzy match, so /app/agents/inbox
+ * lights Inbox and not Agents. The router is told to match exactly, so it never adds a
+ * second highlight.
  */
-export function SidebarItem({ item, collapsed, pinned, badge, onNavigate, onTogglePin, onContext }: {
+export function SidebarItem({ item, collapsed, active, pinned, badge, onNavigate, onTogglePin, onContext }: {
   item:        ResolvedItem;
   collapsed:   boolean;
+  active:      boolean;
   pinned:      boolean;
   badge:       BadgeView | null;
   onNavigate?: () => void;
@@ -45,7 +51,8 @@ export function SidebarItem({ item, collapsed, pinned, badge, onNavigate, onTogg
 
   const count = badge && badge.count > 0 ? badge.count : 0;
   const shown = badgeText(count);
-  const toneVar = badge?.tone === 'danger' ? 'var(--color-danger)' : badge?.tone === 'warning' ? 'var(--color-warning)' : 'var(--color-accent)';
+  const tone = badge?.tone ?? 'accent';
+  const toneVar = tone === 'danger' ? 'var(--color-danger)' : tone === 'warning' ? 'var(--color-warning)' : 'var(--color-accent)';
   const title = collapsed
     ? `${item.label}${count ? ` (${badge!.title})` : ''}`
     : item.unavailable ? 'This page no longer exists' : undefined;
@@ -60,7 +67,7 @@ export function SidebarItem({ item, collapsed, pinned, badge, onNavigate, onTogg
       {!collapsed && <span className="nav-label">{item.label}</span>}
       {!collapsed && item.isNew && !count && <span className="nav-new" title="New page since you last edited the menu">new</span>}
       {!collapsed && count > 0 && (
-        <span className="nav-badge tabular-nums" title={badge!.title} style={{ borderColor: toneVar }}>{shown}</span>
+        <span className={`nav-badge nav-badge-${tone} tabular-nums`} title={badge!.title}>{shown}</span>
       )}
       {count > 0 && <span className="sr-only">, {badge!.title}</span>}
     </>
@@ -76,10 +83,10 @@ export function SidebarItem({ item, collapsed, pinned, badge, onNavigate, onTogg
           to={item.to as any}
           search={routerSearch(item.search) as any}
           onClick={onClick}
-          activeOptions={item.exact ? { exact: true } : undefined}
+          activeOptions={{ exact: true }}
           title={title}
-          className="nav-link"
-          activeProps={{ className: 'nav-link-active' }}
+          className={active ? 'nav-link nav-link-active' : 'nav-link'}
+          aria-current={active ? 'page' : undefined}
           style={{ justifyContent: collapsed ? 'center' : 'flex-start' }}
         >
           {inner}
