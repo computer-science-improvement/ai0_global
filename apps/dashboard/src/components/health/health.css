@@ -1,0 +1,75 @@
+/* Network health page (spec 078 C2): rows of flush panels (`.panel-row` is the shared row; these classes lay out what is
+   inside it), a 6px meter per budget line, and the owner bot's key / value rows. Tokens only, no literal colours. */
+
+/* ── A problem row: glyph, title + pills, meta and detail, links on the right ─────────────────────── */
+.hl-row { align-items: flex-start; }
+.hl-lead {
+  flex: none; width: 36px; height: 36px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: var(--radius-md); background: var(--color-surface-3);
+  border: 1px solid var(--color-hairline); color: var(--color-ink-muted);
+}
+.hl-main { flex: 1 1 180px; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.hl-title { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 8px; min-width: 0; }
+.hl-name { min-width: 0; font-size: 15px; font-weight: 600; letter-spacing: -0.01em; color: var(--color-ink); }
+.hl-meta { font-size: 12px; color: var(--color-ink-dim); }
+.hl-detail { font-size: 13px; color: var(--color-ink-muted); }
+.hl-right { flex: none; margin-left: auto; min-width: 90px; display: flex; flex-direction: column; align-items: flex-end; gap: 2px; text-align: right; }
+.hl-rate { font-size: 15px; font-weight: 600; font-variant-numeric: tabular-nums; color: var(--color-ink); }
+.hl-sub { font-size: 12px; color: var(--color-ink-dim); }
+
+/* The head's count ("2 problems" / "clear"): mono, amber when something needs a look. */
+.hl-count { font-family: var(--font-mono); font-feature-settings: normal; font-size: 12px; color: var(--color-ink-dim); }
+.hl-count.is-warn { color: var(--color-warning); }
+
+/* A section with nothing wrong. */
+.hl-clear { gap: 10px; font-size: 14px; color: var(--color-ink-muted); }
+.hl-ok { flex: none; display: inline-flex; color: var(--color-success); }
+
+/* Text lines inside a panel's foot or between rows. */
+.hl-pad { padding: 0 20px 12px; }
+.hl-pad > .callout-danger, .hl-pad > .callout-warning { margin: 0; }
+.panel-foot.hl-note { font-size: 13px; color: var(--color-ink-muted); }
+.panel-foot.hl-warn { font-size: 13px; color: var(--color-warning); }
+.hl-more { padding: 10px 20px; border-top: 1px solid var(--color-hairline); font-size: 12px; color: var(--color-ink-dim); }
+.hl-skeleton { height: 240px; border-radius: var(--radius-xl); background: var(--color-surface-1); opacity: 0.6; }
+
+/* A group of stuck work: its title (overline) and the rule that put it here. */
+.hl-group {
+  display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 10px;
+  padding: 10px 20px; border-top: 1px solid var(--color-hairline); background: var(--color-surface-2);
+}
+.panel-head + div > .hl-group { border-top: 0; }
+
+/* ── Budget line: label, state, amounts over a 6px meter ──────────────────────────────────────────── */
+.panel-row.hl-budget { flex-direction: column; flex-wrap: nowrap; align-items: stretch; gap: 8px; }
+.hl-budget-top { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 8px; }
+.hl-amount { margin-left: auto; font-family: var(--font-mono); font-feature-settings: normal; font-size: 12px; font-variant-numeric: tabular-nums; color: var(--color-ink-muted); }
+.hl-meter { height: 6px; border-radius: var(--radius-pill); background: var(--color-surface-3); overflow: hidden; }
+.hl-meter-fill { height: 100%; border-radius: var(--radius-pill); background: var(--color-ink-dim); }
+.hl-meter-fill.is-ok { background: var(--color-success); }
+.hl-meter-fill.is-warn { background: var(--color-warning); }
+.hl-meter-fill.is-bad { background: var(--color-danger); }
+
+/* ── Owner bot: status row, the four numbers, key / value rows ────────────────────────────────────── */
+.hl-bot-status { gap: 8px 12px; }
+.hl-muted { font-size: 13px; color: var(--color-ink-muted); }
+.hl-nums {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px;
+  padding: 14px 20px; border-top: 1px solid var(--color-hairline);
+}
+.hl-num { min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.hl-num-value { font-size: 24px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.1; font-variant-numeric: tabular-nums; color: var(--color-ink); }
+.hl-num-note { font-size: 12px; color: var(--color-danger-ink); }
+.hl-kv { align-items: baseline; gap: 4px 16px; }
+.hl-kv-key { flex: 0 0 150px; }
+.hl-kv-value { flex: 1 1 240px; min-width: 0; font-size: 14px; color: var(--color-ink-muted); overflow-wrap: anywhere; }
+.hl-botnote { padding: 12px 20px 0; }
+.hl-botnote > div { margin: 0; }
+
+/* ── Phones: the links of a row drop under it, left aligned; the panel padding follows index.css's 16px ── */
+@media (max-width: 600px) {
+  .hl-right { margin-left: 0; align-items: flex-start; text-align: left; width: 100%; padding-left: 50px; flex-direction: row; flex-wrap: wrap; gap: 4px 14px; }
+  .hl-pad, .hl-more, .hl-group, .hl-nums, .hl-botnote { padding-left: 16px; padding-right: 16px; }
+  .hl-kv-key { flex-basis: 100%; }
+}

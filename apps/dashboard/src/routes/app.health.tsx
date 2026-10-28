@@ -2,15 +2,24 @@ import { createFileRoute } from '@tanstack/react-router';
 import { PageHeader } from '../components/ui/PageHeader';
 import { NetworkHealthView } from '../components/health/NetworkHealthView';
 import { OwnerBotSection } from '../components/health/OwnerBotSection';
+import { useNetworkHealth } from '../api/health';
+import { fmtRelative } from '../lib/format';
 
 // Network health (spec 049 FR-005): connections, sources, budget headroom and stuck work in one place;
 // below them the owner bot (spec 012 FR-007).
-export const Route = createFileRoute('/app/health')({
-  component: () => (
+export const Route = createFileRoute('/app/health')({ component: HealthPage });
+
+function HealthPage() {
+  // The same query as NetworkHealthView (one cache entry): the eyebrow says how the network is doing.
+  const h = useNetworkHealth().data;
+  const eyebrow = h
+    ? `${h.problems ? `${h.problems} thing${h.problems === 1 ? '' : 's'} need${h.problems === 1 ? 's' : ''} attention` : 'All clear'} · updated ${fmtRelative(h.generatedAt)}`
+    : 'Insights';
+  return (
     <div>
-      <PageHeader title="Network health" subtitle="Connections, sources, budget headroom and stuck work across every channel" />
+      <PageHeader eyebrow={eyebrow} title="Network health" subtitle="Connections, sources, budget headroom and stuck work across every channel" />
       <NetworkHealthView />
       <OwnerBotSection delay={240} />
     </div>
-  ),
-});
+  );
+}
