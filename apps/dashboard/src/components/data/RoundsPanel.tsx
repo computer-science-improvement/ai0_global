@@ -8,10 +8,12 @@ import { CompactCard } from '../ui/CompactCard';
 import { useConfirm } from '../ui/ConfirmDialog';
 import { SectionCard } from '../ui/primitives';
 import { describeError, toast } from '../ui/Toast';
+import { SkeletonRows } from '../SkeletonRows';
 import { ApiError } from '../../api/client';
 import { useDatasetRounds, useRestartRound, type DataSchema, type DatasetRounds, type RoundState } from '../../api/data';
 import { fmtDate } from '../../lib/format';
 import { fmtInt, reuseLabel, roundLeft, roundLine, roundPercent } from '../../lib/data-store';
+import './data.css';
 
 export function RoundsPanel({ schema }: { schema: DataSchema }) {
   const repeats = schema.reuse_policy.kind === 'cycle';
@@ -25,7 +27,7 @@ export function RoundsPanel({ schema }: { schema: DataSchema }) {
     const ok = await confirm(`restart the round on ${r.resource_ref}`, {
       danger: false, confirmLabel: 'Restart round',
       details: (
-        <p className="text-body-sm" style={{ margin: 0, color: 'var(--color-ink-muted)' }}>
+        <p className="dx-note">
           Round {r.round + 1} starts now: every row of {schema.title} can be posted on this channel again, including the {fmtInt(r.done)} already posted in round {r.round}.
           {schema.reuse_policy.kind === 'cycle' && schema.reuse_policy.order === 'sequential' ? ' The order starts from the first row.' : ''}
         </p>
@@ -40,11 +42,11 @@ export function RoundsPanel({ schema }: { schema: DataSchema }) {
 
   const rounds: DatasetRounds | undefined = q.data;
   return (
-    <SectionCard title={`Rounds · ${reuseLabel(schema.reuse_policy)}`} icon="refresh">
-      {q.error && <p className="text-body-sm" style={{ color: 'var(--color-danger)', margin: 0 }}>{describeError(q.error)}</p>}
-      {q.isLoading && <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)', margin: 0 }}>Loading…</p>}
+    <SectionCard title={`Rounds · ${reuseLabel(schema.reuse_policy)}`} delay={0}>
+      {q.error && <div className="callout-danger" role="alert">{describeError(q.error)}</div>}
+      {q.isLoading && <SkeletonRows rows={2} height={84} label="Loading rounds" />}
       {rounds && rounds.resources.length === 0 && (
-        <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)', margin: 0 }}>
+        <p className="dx-note">
           No channel has posted from this dataset yet. A channel appears here after its first post, and starts at round 1.
         </p>
       )}
@@ -56,11 +58,12 @@ export function RoundsPanel({ schema }: { schema: DataSchema }) {
               meta={`${roundPercent(r)}%`}
               title={r.resource_ref}
               body={<>{roundLine(r)}. {roundLeft(r)}.</>}
+              extra={<span className="dx-bar" aria-hidden="true"><span className="anim-grow-x" style={{ width: `${roundPercent(r)}%` }} /></span>}
               dialog={{
                 size: 'md', icon: 'refresh', title: r.resource_ref, subtitle: `Round ${r.round} of ${schema.title}`,
                 body: () => <RoundDetails r={r} data={rounds} />,
                 actions: (close) => (
-                  <button type="button" className="btn-secondary" disabled={restart.isPending} style={{ marginLeft: 'auto', display: 'inline-flex', alignItems: 'center', gap: 6 }}
+                  <button type="button" className="btn-secondary" disabled={restart.isPending} style={{ marginLeft: 'auto' }}
                     onClick={() => void restartOn(r, close)}>
                     <Icon name="reset" size={14} /> Restart round
                   </button>
@@ -83,16 +86,16 @@ function RoundDetails({ r, data }: { r: RoundState; data: DatasetRounds }) {
     ...(data.order === 'sequential' ? [['Next row', r.next ?? 'none left in this round'] as [string, string]] : []),
   ];
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 12, minWidth: 0 }}>
-      <dl style={{ display: 'grid', gridTemplateColumns: 'max-content 1fr', gap: '6px 16px', margin: 0 }}>
+    <div className="dx-col" style={{ gap: 12 }}>
+      <dl className="dx-facts inset">
         {rows.map(([k, v]) => (
           <div key={k} style={{ display: 'contents' }}>
-            <dt className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>{k}</dt>
-            <dd className="text-body-sm" style={{ margin: 0, overflowWrap: 'anywhere' }}>{k === 'Next row' && r.next ? <code>{r.next}</code> : v}</dd>
+            <dt className="text-overline">{k}</dt>
+            <dd>{k === 'Next row' && r.next ? <span className="mono">{r.next}</span> : v}</dd>
           </div>
         ))}
       </dl>
-      <p className="text-micro" style={{ color: 'var(--color-ink-dim)', margin: 0 }}>
+      <p className="dx-note is-sm">
         The round rolls on its own when the last open row is posted. Restart it only to start over before that.
       </p>
     </div>

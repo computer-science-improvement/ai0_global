@@ -3,15 +3,18 @@
 
 import { Link } from '@tanstack/react-router';
 import { Badge } from '../ui/Badge';
-import { EmptyState } from '../ui/primitives';
+import { EmptyState, type Tone } from '../ui/primitives';
 import { ActionsTh, RowActions, TableAction } from '../ui/table';
 import { useConfirm } from '../ui/ConfirmDialog';
 import { describeError, toast } from '../ui/Toast';
+import { SkeletonRows } from '../SkeletonRows';
 import { fmtDate } from '../../lib/format';
 import { fmtInt } from '../../lib/data-store';
 import { useImports, useUndoImport, type ImportRecord, type ImportStatus } from '../../api/data';
+import './data.css';
 
-const STATUS: Record<ImportStatus, { label: string; tone: 'success' | 'warning' | 'danger' | 'neutral' | 'accent' }> = {
+// Imports are their own domain (not a slot or a publication), so their tones are not in lib/status-tone.ts.
+const STATUS: Record<ImportStatus, { label: string; tone: Tone }> = {
   committed: { label: 'Imported', tone: 'success' },
   dry_run:   { label: 'Dry run', tone: 'neutral' },
   running:   { label: 'Running', tone: 'warning' },
@@ -32,7 +35,7 @@ export function ImportHistory({ schema, showDataset = !schema }: { schema?: stri
     const ok = await confirm(`undo the import of ${r.filename ?? SOURCE[r.source]} into ${r.schema}`, {
       danger: true, confirmLabel: 'Undo import',
       details: (
-        <p className="text-body-sm" style={{ margin: 0, color: 'var(--color-ink-muted)' }}>
+        <p className="dx-note">
           Rows this import added are deleted unless they were already published (those are hidden instead).
           Rows it updated go back to their previous values.
         </p>
@@ -45,8 +48,8 @@ export function ImportHistory({ schema, showDataset = !schema }: { schema?: stri
     });
   }
 
-  if (q.isLoading) return <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>Loading imports…</p>;
-  if (q.error) return <p className="text-body-sm" style={{ color: 'var(--color-danger)' }}>{describeError(q.error)}</p>;
+  if (q.isLoading) return <SkeletonRows rows={2} height={44} label="Loading imports" />;
+  if (q.error) return <div className="callout-danger" role="alert">{describeError(q.error)}</div>;
   if (!rows.length) return <EmptyState icon="history" title="No imports yet" note="Imported files and rows sent by scripts show up here, with an undo." />;
 
   return (
@@ -72,12 +75,12 @@ export function ImportHistory({ schema, showDataset = !schema }: { schema?: stri
               )}
               <td>
                 <div>{SOURCE[r.source]}</div>
-                {r.filename && <div className="meta" style={{ maxWidth: 220, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }} title={r.filename}>{r.filename}</div>}
+                {r.filename && <div className="meta clamp" style={{ maxWidth: 220, ['--clamp' as string]: 1 }} title={r.filename}>{r.filename}</div>}
               </td>
               <td className="num">{fmtInt(r.rows_total)}</td>
               <td className="num">{fmtInt(r.inserted)}</td>
               <td className="num">{fmtInt(r.updated)}</td>
-              <td className="num">{r.invalid ? <span style={{ color: 'var(--color-warning)' }}>{fmtInt(r.invalid)}</span> : '0'}</td>
+              <td className="num">{r.invalid ? <span className="dx-warn">{fmtInt(r.invalid)}</span> : '0'}</td>
               <td>
                 <Badge tone={STATUS[r.status].tone}>{STATUS[r.status].label}</Badge>
                 {r.status === 'undone' && r.undo_report && (

@@ -6,9 +6,9 @@ import { Link } from '@tanstack/react-router';
 import { useQueryClient } from '@tanstack/react-query';
 import { useMemo, useState, type ReactNode } from 'react';
 import { Modal } from '../Modal';
-import { Badge } from '../ui/Badge';
+import { SegmentedTabs } from '../SegmentedTabs';
 import { Icon } from '../ui/Icon';
-import { Field, StatTile } from '../ui/primitives';
+import { Field, StatStrip, StatTile } from '../ui/primitives';
 import { describeError, toast } from '../ui/Toast';
 import { api } from '../../api/client';
 import {
@@ -19,6 +19,7 @@ import {
   draftMapping, draftProblems, fmtInt, FIELD_TYPES, ROLE_LABEL, roleValueLabel, TYPE_LABEL,
   type DraftField, type FieldType, type RoleName,
 } from '../../lib/data-store';
+import './data.css';
 
 type Step = 'pick' | 'draft' | 'report' | 'done';
 type Mode = 'existing' | 'new';
@@ -133,30 +134,28 @@ export function ImportWizard({ open, onClose, initialSchema }: { open: boolean; 
       {step === 'pick' && (
         <div>
           <Field label="File" hint="UTF-8; comma, semicolon or tab separated CSV, a JSON array of objects, or JSON lines">
-            <input type="file" accept={ACCEPT} className="input-field" style={{ width: '100%' }}
+            <input type="file" accept={ACCEPT} className="input-field dx-fill" aria-label="File to import"
               onChange={(e) => setFile(e.target.files?.[0] ?? null)} />
           </Field>
           <Field label="Into">
-            <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
-              <Radio checked={mode === 'existing'} onChange={() => setMode('existing')}>An existing dataset</Radio>
-              <Radio checked={mode === 'new'} onChange={() => setMode('new')}>A new dataset from this file</Radio>
-            </div>
+            <SegmentedTabs<Mode> value={mode} onChange={setMode} ariaLabel="Import target"
+              options={[{ key: 'existing', label: 'An existing dataset' }, { key: 'new', label: 'A new dataset from this file' }]} />
           </Field>
           {mode === 'existing' && (
             <Field label="Dataset">
-              <select className="input-field" style={{ width: '100%' }} value={schemaKey} onChange={(e) => setSchemaKey(e.target.value)}>
+              <select className="input-field dx-fill" value={schemaKey} onChange={(e) => setSchemaKey(e.target.value)}>
                 <option value="">— choose —</option>
                 {writable.map((d) => <option key={d.key} value={d.key}>{d.title} ({d.key})</option>)}
               </select>
             </Field>
           )}
           {mode === 'new' && (
-            <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)', marginTop: 0 }}>
+            <p className="dx-wizard-hint">
               Column types are guessed from the first 500 rows. You name the fields, describe them for the agents and pick the roles next.
             </p>
           )}
           <div className="modal-foot">
-            <button type="button" className="btn-secondary" onClick={close}>Cancel</button>
+            <button type="button" className="btn-ghost" onClick={close}>Cancel</button>
             <button type="button" className="btn-primary" disabled={!file || busy || (mode === 'existing' && !schemaKey)} onClick={next}>
               {busy ? 'Reading…' : mode === 'existing' ? 'Check file' : 'Draft dataset'}
             </button>
@@ -167,7 +166,7 @@ export function ImportWizard({ open, onClose, initialSchema }: { open: boolean; 
       {step === 'draft' && draft && (
         <DraftEditor draft={draft} onChange={setDraft} locked={!!createdKey}>
           <div className="modal-foot">
-            <button type="button" className="btn-secondary" onClick={() => setStep('pick')} disabled={!!createdKey}>Back</button>
+            <button type="button" className="btn-ghost" onClick={() => setStep('pick')} disabled={!!createdKey}>Back</button>
             <button type="button" className="btn-primary" disabled={busy} onClick={createAndCheck}>
               {busy ? 'Working…' : createdKey ? 'Check file again' : 'Create dataset and check file'}
             </button>
@@ -179,7 +178,7 @@ export function ImportWizard({ open, onClose, initialSchema }: { open: boolean; 
         <ReportView report={report} target={target} mapping={mapping} onMapping={setMapping} mappingEditable={!createdKey}
           keepExtra={keepExtra} onKeepExtra={setKeepExtra} onRecheck={recheck} busy={busy}>
           <div className="modal-foot">
-            <button type="button" className="btn-secondary" onClick={() => setStep(createdKey ? 'draft' : 'pick')} disabled={busy}>Back</button>
+            <button type="button" className="btn-ghost" onClick={() => setStep(createdKey ? 'draft' : 'pick')} disabled={busy}>Back</button>
             <button type="button" className="btn-primary" disabled={busy || report.valid === 0} onClick={commit}>
               {busy ? 'Importing…' : `Commit ${fmtInt(report.new + report.updated)} rows`}
             </button>
@@ -189,13 +188,13 @@ export function ImportWizard({ open, onClose, initialSchema }: { open: boolean; 
 
       {step === 'done' && done && (
         <div>
-          <div className="stat-grid">
-            <StatTile label="Inserted" value={fmtInt(done.inserted ?? 0)} icon="plus" accent />
-            <StatTile label="Updated" value={fmtInt(done.updated)} icon="refresh" />
-            <StatTile label="Skipped" value={fmtInt(done.skipped ?? 0)} icon="skip-forward" />
-            <StatTile label="Invalid" value={fmtInt(done.invalid)} icon="warning" />
-          </div>
-          <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>
+          <StatStrip label="Import result">
+            <StatTile label="Inserted" value={fmtInt(done.inserted ?? 0)} />
+            <StatTile label="Updated" value={fmtInt(done.updated)} />
+            <StatTile label="Skipped" value={fmtInt(done.skipped ?? 0)} />
+            <StatTile label="Invalid" value={fmtInt(done.invalid)} />
+          </StatStrip>
+          <p className="dx-wizard-hint" style={{ marginTop: 14 }}>
             You can undo this import from the dataset's Imports tab.
           </p>
           <div className="modal-foot">
@@ -208,20 +207,11 @@ export function ImportWizard({ open, onClose, initialSchema }: { open: boolean; 
   );
 }
 
-function Radio({ checked, onChange, children }: { checked: boolean; onChange: () => void; children: ReactNode }) {
-  return (
-    <label style={{ display: 'inline-flex', alignItems: 'center', gap: 8, cursor: 'pointer' }}>
-      <input type="radio" checked={checked} onChange={onChange} style={{ accentColor: 'var(--color-accent)' }} />
-      <span className="text-body-sm" style={{ color: 'var(--color-ink)' }}>{children}</span>
-    </label>
-  );
-}
-
 export function Check({ checked, onChange, label, disabled }: { checked: boolean; onChange: (v: boolean) => void; label: string; disabled?: boolean }) {
   return (
-    <label title={label} style={{ display: 'inline-flex', alignItems: 'center', gap: 6, cursor: disabled ? 'not-allowed' : 'pointer' }}>
-      <input type="checkbox" checked={checked} disabled={disabled} onChange={(e) => onChange(e.target.checked)} style={{ accentColor: 'var(--color-accent)' }} />
-      <span className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>{label}</span>
+    <label title={label} className={`dx-check${disabled ? ' is-disabled' : ''}`}>
+      <input type="checkbox" checked={checked} disabled={disabled} onChange={(e) => onChange(e.target.checked)} />
+      <span>{label}</span>
     </label>
   );
 }
@@ -248,50 +238,50 @@ function DraftEditor({ draft, onChange, locked, children }: { draft: Draft; onCh
           <span>The dataset <strong>{draft.key}</strong> is created as a draft. Fix the file and check again, or change the dataset later on its Schema tab.</span>
         </div>
       )}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '0 16px' }}>
+      <div className="dx-grid">
         <Field label="Key" hint="permanent, snake_case">
-          <input className="input-field" style={{ width: '100%' }} value={draft.key} disabled={locked} onChange={(e) => set({ key: e.target.value.trim() })} />
+          <input className="input-field dx-fill mono" value={draft.key} disabled={locked} onChange={(e) => set({ key: e.target.value.trim() })} />
         </Field>
         <Field label="Title">
-          <input className="input-field" style={{ width: '100%' }} value={draft.title} disabled={locked} onChange={(e) => set({ title: e.target.value })} />
+          <input className="input-field dx-fill" value={draft.title} disabled={locked} onChange={(e) => set({ title: e.target.value })} />
         </Field>
         <Field label="Entity" hint="one row is a…">
-          <input className="input-field" style={{ width: '100%' }} value={draft.entity} disabled={locked} placeholder="recipe, quote, event…" onChange={(e) => set({ entity: e.target.value })} />
+          <input className="input-field dx-fill" value={draft.entity} disabled={locked} placeholder="recipe, quote, event…" onChange={(e) => set({ entity: e.target.value })} />
         </Field>
         <Field label="Language">
-          <input className="input-field" style={{ width: '100%' }} value={draft.language} disabled={locked} onChange={(e) => set({ language: e.target.value })} />
+          <input className="input-field dx-fill" value={draft.language} disabled={locked} onChange={(e) => set({ language: e.target.value })} />
         </Field>
       </div>
       <Field label="Description" hint="what the data is, for whom, how to use it — agents read this first">
-        <textarea className="input-field" rows={2} style={{ width: '100%', resize: 'vertical' }} value={draft.description} disabled={locked} onChange={(e) => set({ description: e.target.value })} />
+        <textarea className="input-field dx-resize" rows={2} value={draft.description} disabled={locked} onChange={(e) => set({ description: e.target.value })} />
       </Field>
       <Field label="Suitable for" hint="topics and resources it fits">
-        <input className="input-field" style={{ width: '100%' }} value={draft.suitable_for} disabled={locked} onChange={(e) => set({ suitable_for: e.target.value })} />
+        <input className="input-field dx-fill" value={draft.suitable_for} disabled={locked} onChange={(e) => set({ suitable_for: e.target.value })} />
       </Field>
 
       <div className="text-eyebrow" style={{ margin: '4px 0 8px' }}>Fields</div>
-      <div className="table-wrap" style={{ marginBottom: 16 }}>
+      <div className="table-wrap dx-block">
         <table className="table">
           <thead><tr><th>Import</th><th>Column</th><th>Field name</th><th>Type</th><th>Description for agents</th><th>Flags</th></tr></thead>
           <tbody>
             {draft.fields.map((f, i) => (
               <tr key={f.column} style={{ opacity: f.include ? 1 : 0.5 }}>
-                <td><input type="checkbox" checked={f.include} disabled={locked} onChange={(e) => setField(i, { include: e.target.checked })} style={{ accentColor: 'var(--color-accent)' }} aria-label={`Import column ${f.column}`} /></td>
+                <td><input type="checkbox" className="dx-checkbox" checked={f.include} disabled={locked} onChange={(e) => setField(i, { include: e.target.checked })} aria-label={`Import column ${f.column}`} /></td>
                 <td className="meta" style={{ maxWidth: 160, overflowWrap: 'anywhere' }}>{f.column}</td>
-                <td><input className="input-field" style={{ width: 150, fontFamily: 'var(--font-mono, monospace)' }} value={f.name} disabled={locked || !f.include} onChange={(e) => setField(i, { name: e.target.value.trim() })} /></td>
+                <td><input className="input-field mono dx-name-input" aria-label={`Field name for ${f.column}`} value={f.name} disabled={locked || !f.include} onChange={(e) => setField(i, { name: e.target.value.trim() })} /></td>
                 <td>
-                  <select className="input-field" value={f.type} disabled={locked || !f.include} onChange={(e) => setField(i, { type: e.target.value as FieldType, ...(e.target.value === 'enum' ? {} : { enum: undefined }) })}>
+                  <select className="input-field" aria-label={`Type of ${f.column}`} value={f.type} disabled={locked || !f.include} onChange={(e) => setField(i, { type: e.target.value as FieldType, ...(e.target.value === 'enum' ? {} : { enum: undefined }) })}>
                     {FIELD_TYPES.map((t) => <option key={t} value={t}>{TYPE_LABEL[t]}</option>)}
                   </select>
                   {f.type === 'enum' && (
-                    <input className="input-field" style={{ width: '100%', marginTop: 6 }} placeholder="values, comma separated" disabled={locked || !f.include}
+                    <input className="input-field dx-fill" style={{ marginTop: 6 }} placeholder="values, comma separated" aria-label={`Values of ${f.column}`} disabled={locked || !f.include}
                       value={(f.enum ?? []).join(', ')} onChange={(e) => setField(i, { enum: e.target.value.split(',').map((s) => s.trim()).filter(Boolean) })} />
                   )}
                   {f.example !== undefined && <div className="meta" style={{ marginTop: 4, maxWidth: 200, overflowWrap: 'anywhere' }}>e.g. {String(f.example).slice(0, 60)}</div>}
                 </td>
-                <td><input className="input-field" style={{ width: '100%', minWidth: 180 }} value={f.description} disabled={locked || !f.include} placeholder="What this field holds" onChange={(e) => setField(i, { description: e.target.value })} /></td>
+                <td><input className="input-field dx-fill dx-wide-input" aria-label={`Description of ${f.column}`} value={f.description} disabled={locked || !f.include} placeholder="What this field holds" onChange={(e) => setField(i, { description: e.target.value })} /></td>
                 <td>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                  <div className="dx-flags">
                     <Check label="agents see" checked={f.agent_visible !== false} disabled={locked || !f.include} onChange={(v) => setField(i, { agent_visible: v })} />
                     <Check label="searchable" checked={!!f.searchable} disabled={locked || !f.include} onChange={(v) => setField(i, { searchable: v })} />
                     <Check label="filterable" checked={!!f.filterable} disabled={locked || !f.include} onChange={(v) => setField(i, { filterable: v })} />
@@ -303,7 +293,7 @@ function DraftEditor({ draft, onChange, locked, children }: { draft: Draft; onCh
         </table>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '0 16px' }}>
+      <div className="dx-grid is-fill">
         {(['title', 'body', 'image', 'url', 'category', 'date', 'month_day'] as RoleName[]).map((role) => (
           <Field key={role} label={`Role: ${ROLE_LABEL[role]}`}>
             <RoleSelect value={draft.roles[role]} fields={included.map((f) => f.name)} disabled={locked}
@@ -311,7 +301,7 @@ function DraftEditor({ draft, onChange, locked, children }: { draft: Draft; onCh
           </Field>
         ))}
         <Field label="Dedup key" hint="the same value = the same row">
-          <select className="input-field" style={{ width: '100%' }} value={draft.dedup_key[0] ?? ''} disabled={locked}
+          <select className="input-field dx-fill" value={draft.dedup_key[0] ?? ''} disabled={locked}
             onChange={(e) => set({ dedup_key: e.target.value ? [e.target.value] : [] })}>
             <option value="">— none (every row is new) —</option>
             {included.map((f) => <option key={f.name} value={f.name}>{f.name}</option>)}
@@ -336,7 +326,7 @@ export function RoleSelect({ value, fields, onChange, disabled }: {
   const multi = Array.isArray(value) && value.length > 1;
   const current = multi ? '__multi' : (Array.isArray(value) ? value[0] : value) ?? '';
   return (
-    <select className="input-field" style={{ width: '100%' }} value={current} disabled={disabled}
+    <select className="input-field dx-fill" value={current} disabled={disabled}
       onChange={(e) => onChange(e.target.value === '__multi' ? value : e.target.value || undefined)}>
       <option value="">— none —</option>
       {multi && <option value="__multi">{roleValueLabel(value)}</option>}
@@ -354,21 +344,21 @@ function ReportView({ report, target, mapping, onMapping, mappingEditable, keepE
   const errors = allErrors ? report.errors : report.errors.slice(0, 15);
   return (
     <div>
-      <div className="stat-grid" style={{ marginBottom: 16 }}>
-        <StatTile label="Rows in file" value={fmtInt(report.rows_total)} icon="database" />
-        <StatTile label="Valid" value={fmtInt(report.valid)} icon="check" accent />
-        <StatTile label="New" value={fmtInt(report.new)} icon="plus" />
-        <StatTile label="Updated" value={fmtInt(report.updated)} icon="refresh" />
-        <StatTile label="Invalid" value={fmtInt(report.invalid)} icon="warning" deltaTone="warning" delta={report.invalid ? 'skipped on commit' : undefined} />
-        <StatTile label="Duplicates" value={fmtInt(report.duplicates)} icon="ban" delta={report.duplicates ? 'last row wins' : undefined} />
-      </div>
-      <p className="text-micro" style={{ color: 'var(--color-ink-dim)', marginTop: 0 }}>
+      <StatStrip label="Dry run result" style={{ marginBottom: 16 }}>
+        <StatTile label="Rows in file" value={fmtInt(report.rows_total)} />
+        <StatTile label="Valid" value={fmtInt(report.valid)} />
+        <StatTile label="New" value={fmtInt(report.new)} />
+        <StatTile label="Updated" value={fmtInt(report.updated)} />
+        <StatTile label="Invalid" value={fmtInt(report.invalid)} deltaTone="warning" delta={report.invalid ? 'skipped on commit' : undefined} />
+        <StatTile label="Duplicates" value={fmtInt(report.duplicates)} delta={report.duplicates ? 'last row wins' : undefined} />
+      </StatStrip>
+      <p className="dx-note is-sm" style={{ marginBottom: 16 }}>
         Into <strong>{report.schema}</strong> · validated against version {report.schema_version}{report.delimiter ? ` · delimiter "${report.delimiter === '\t' ? 'tab' : report.delimiter}"` : ''}
       </p>
 
       {mappingEditable && (
-        <details style={{ marginBottom: 16 }} open={Object.values(mapping).some((v) => v === null)}>
-          <summary className="text-eyebrow" style={{ cursor: 'pointer', marginBottom: 8 }}>Column mapping</summary>
+        <details className="dx-details dx-block" open={Object.values(mapping).some((v) => v === null)}>
+          <summary className="text-eyebrow">Column mapping</summary>
           <div className="table-wrap">
             <table className="table">
               <thead><tr><th>Column in the file</th><th>Field</th></tr></thead>
@@ -377,7 +367,7 @@ function ReportView({ report, target, mapping, onMapping, mappingEditable, keepE
                   <tr key={c}>
                     <td style={{ overflowWrap: 'anywhere' }}>{c}</td>
                     <td>
-                      <select className="input-field" value={mapping[c] ?? ''} onChange={(e) => onMapping({ ...mapping, [c]: e.target.value || null })}>
+                      <select className="input-field" aria-label={`Field for column ${c}`} value={mapping[c] ?? ''} onChange={(e) => onMapping({ ...mapping, [c]: e.target.value || null })}>
                         <option value="">— not imported —</option>
                         {fields.map((n) => <option key={n} value={n}>{n}</option>)}
                       </select>
@@ -387,9 +377,9 @@ function ReportView({ report, target, mapping, onMapping, mappingEditable, keepE
               </tbody>
             </table>
           </div>
-          <div style={{ display: 'flex', gap: 12, alignItems: 'center', marginTop: 10, flexWrap: 'wrap' }}>
+          <div className="dx-row" style={{ marginTop: 10 }}>
             <Check label="keep unmapped columns under _extra" checked={keepExtra} onChange={onKeepExtra} />
-            <button type="button" className="btn-secondary" onClick={onRecheck} disabled={busy}>
+            <button type="button" className="btn-secondary btn-sm" onClick={onRecheck} disabled={busy}>
               <Icon name="refresh" size={13} /> Check again
             </button>
           </div>
@@ -397,7 +387,7 @@ function ReportView({ report, target, mapping, onMapping, mappingEditable, keepE
       )}
 
       {report.errors.length > 0 && (
-        <div style={{ marginBottom: 16 }}>
+        <div className="dx-block">
           <div className="text-eyebrow" style={{ marginBottom: 8 }}>First errors</div>
           <div className="table-wrap">
             <table className="table">
@@ -425,23 +415,23 @@ function ReportView({ report, target, mapping, onMapping, mappingEditable, keepE
       {report.preview.length > 0 && (
         <div>
           <div className="text-eyebrow" style={{ marginBottom: 8 }}>Preview through the roles</div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: 10 }}>
+          <div className="dx-prev-grid">
             {report.preview.map((p) => (
-              <div key={p.row} className="card" style={{ padding: 12, display: 'flex', flexDirection: 'column', gap: 6, minWidth: 0 }}>
-                {p.image_url && <img src={p.image_url} alt="" loading="lazy" style={{ width: '100%', height: 110, objectFit: 'cover', borderRadius: 'var(--radius-sm)', background: 'var(--color-surface-3)' }} />}
-                <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' }}>
-                  <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>row {p.row + 1}</span>
+              <div key={p.row} className="dx-prev">
+                {p.image_url && <img src={p.image_url} alt="" loading="lazy" />}
+                <div className="dx-prev-meta">
+                  <span className="mono text-micro dx-dim">row {p.row + 1}</span>
                   {p.category && <span className="chip">{p.category}</span>}
-                  {p.date && <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>{p.date}</span>}
+                  {p.date && <span className="mono text-micro dx-dim">{p.date}</span>}
                 </div>
-                <div className="text-body-sm" style={{ fontWeight: 600, color: 'var(--color-ink)', overflowWrap: 'anywhere' }}>{p.title ?? <em style={{ color: 'var(--color-ink-dim)' }}>no title</em>}</div>
-                {p.body && <div className="text-micro" style={{ color: 'var(--color-ink-muted)', overflowWrap: 'anywhere' }}>{p.body}</div>}
+                <div className="dx-prev-title">{p.title ?? <em className="dx-dim" style={{ fontWeight: 400 }}>no title</em>}</div>
+                {p.body && <div className="text-micro dx-muted" style={{ overflowWrap: 'anywhere' }}>{p.body}</div>}
               </div>
             ))}
           </div>
         </div>
       )}
-      {report.valid === 0 && <div style={{ marginTop: 12 }}><Badge tone="danger">No valid rows — nothing to import</Badge></div>}
+      {report.valid === 0 && <div className="callout-danger" role="alert" style={{ marginTop: 12 }}>No valid rows — nothing to import</div>}
       {children}
     </div>
   );
