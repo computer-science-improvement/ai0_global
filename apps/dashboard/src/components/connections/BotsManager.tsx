@@ -91,7 +91,7 @@ export function BotsManager() {
                         confirmLabel: 'Delete + unbind',
                         details: (
                           <div>
-                            <p className="text-micro" style={{ margin: '0 0 8px', color: 'var(--color-ink-muted)' }}>
+                            <p className="text-micro conn-dialog-note">
                               These channels will fall back to the default bot (or stop publishing if no default is set):
                             </p>
                             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>

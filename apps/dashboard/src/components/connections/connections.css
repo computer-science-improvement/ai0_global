@@ -114,3 +114,9 @@
 .meta-delta.is-up { color: var(--color-success); }
 .meta-delta.is-down { color: var(--color-danger-ink); }
 .meta-scopes { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--color-hairline-soft); }
+
+/* Notes inside the delete-confirm dialogs (they render in a portal, so the classes are plain, not nested). */
+.conn-dialog-note { margin: 0 0 8px; color: var(--color-ink-muted); }
+.conn-dialog-note.is-flush { margin: 0; }
+.conn-dialog-strong { color: var(--color-ink); }
+.conn-dialog-dim { color: var(--color-ink-dim); }

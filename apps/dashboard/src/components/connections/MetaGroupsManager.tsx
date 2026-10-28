@@ -201,7 +201,7 @@ export function MetaGroupsManager() {
                 <button
                   type="button" className="btn-act btn-act-danger" title="Delete group" aria-label={`Delete group ${g.name}`}
                   onClick={async () => {
-                    if (await confirm(`delete group "${g.name}"`, { details: <p className="text-micro" style={{ margin: 0, color: 'var(--color-ink-muted)' }}>Members (channel + accounts) are kept — they're just un-grouped (auto-duplication stops).</p> })) {
+                    if (await confirm(`delete group "${g.name}"`, { details: <p className="text-micro conn-dialog-note is-flush">Members (channel + accounts) are kept — they're just un-grouped (auto-duplication stops).</p> })) {
                       deleteGroup.mutate(g.id);
                       qc.invalidateQueries({ queryKey: CHANNELS_KEY });
                     }

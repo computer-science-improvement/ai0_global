@@ -116,14 +116,14 @@ export function MetaAccountsManager({ platform }: { platform: MetaPlatform }) {
 function AttachedStrategiesList({ strategies }: { strategies: Strategy[] }) {
   return (
     <div>
-      <p className="text-micro" style={{ margin: '0 0 8px', color: 'var(--color-ink-muted)' }}>
+      <p className="text-micro conn-dialog-note">
         These strategies are attached and will be deleted too:
       </p>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
         {strategies.map(s => (
           <span key={s.id} className="chip" style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
-            <span style={{ color: 'var(--color-ink)' }}>{s.ext_id}</span>
-            <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>{s.type}</span>
+            <span className="conn-dialog-strong">{s.ext_id}</span>
+            <span className="text-micro conn-dialog-dim">{s.type}</span>
           </span>
         ))}
       </div>
