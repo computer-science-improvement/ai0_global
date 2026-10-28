@@ -5,7 +5,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import {
-  INBOX_KINDS, healthState, inboxActionMessage, isAlreadyDecided, isSettledCode, planNote, planSteps, stepKey,
+  INBOX_KINDS, healthState, inboxActionMessage, isAlreadyDecided, isSettledCode, noteErrorMessage, planNote, planSteps, stepKey,
   type NoteItem, type NoteStep,
 } from './inbox-kinds';
 import type { TreeNode } from './inbox-ref';
@@ -424,4 +424,17 @@ test('inboxActionMessage: an English message for every code of the server, error
 test('isAlreadyDecided: the 409s that mean somebody decided already', () => {
   for (const e of ['not_awaiting_owner', 'not_contested', 'not_pending']) assert.equal(isAlreadyDecided(e), true, e);
   for (const e of ['not_executable', 'directive_not_found', null, undefined]) assert.equal(isAlreadyDecided(e), false, String(e));
+});
+
+test('noteErrorMessage: our codes in English, an unknown 404 is a server without the endpoint, the rest is the server\'s own text', () => {
+  for (const code of ['unknown_action', 'note_not_found', 'not_available', 'no_channel', 'already_paused', 'pause_not_found', 'not_paused']) {
+    const m = noteErrorMessage(code === 'already_paused' || code === 'not_paused' ? 409 : 404, code);
+    assert.ok(m && m.length > 10, code);
+    assert.doesNotMatch(m, CYRILLIC, code);
+  }
+  assert.match(noteErrorMessage(404, 'Not Found') ?? '', /does not support/);
+  assert.match(noteErrorMessage(404, null) ?? '', /does not support/);
+  assert.equal(noteErrorMessage(500, 'boom'), null);
+  assert.equal(noteErrorMessage(null, null), null);
+  assert.equal(noteErrorMessage(409, 'not_awaiting_owner'), null);
 });

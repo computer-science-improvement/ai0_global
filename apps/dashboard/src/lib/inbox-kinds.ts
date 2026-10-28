@@ -477,3 +477,23 @@ export const isSettledCode = (code: string): boolean => inboxActionMessage(code)
 export function isAlreadyDecided(error: string | null | undefined): boolean {
   return error === 'not_awaiting_owner' || error === 'not_contested' || error === 'not_pending';
 }
+
+/**
+ * English text for the failures of a note's action, or null when the caller should show the server's own message.
+ * `status` is the HTTP status and `code` the `{error}` of the JSON body (see `errorBody` in `api/agents.ts`). A 404 that is
+ * not one of ours is a server without the endpoint yet (the dashboard may be newer than the automation service).
+ */
+export function noteErrorMessage(status: number | null, code: string | null): string | null {
+  switch (code) {
+    case 'unknown_action':  return 'This note no longer offers that action. Refresh the list.';
+    case 'note_not_found':  return 'That note no longer exists.';
+    case 'not_available':   return 'The server cannot run note actions right now.';
+    case 'no_channel':      return 'This agent has no Telegram channel, so there is no series to change.';
+    case 'already_paused':  return 'That series is already paused.';
+    case 'pause_not_found': return 'That pause no longer exists.';
+    case 'not_paused':      return 'That series is not paused any more.';
+    default: break;
+  }
+  if (status === 404) return 'This server does not support that action yet. Update the automation service, or open the page instead.';
+  return null;
+}
