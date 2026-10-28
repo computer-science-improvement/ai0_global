@@ -92,7 +92,7 @@ Brief: `research/other-pages.md` §3 (per page) and §5 (batches); CLAUDE.md "De
 - [ ] C1 Channels & intelligence: channels, channels_.$id, tracked, analytics, discovery, recommendations, graph (+ their owned components per brief §5).
 - [ ] C2 Connections, health & map HUD: connections, connections_.groups, connections_.meta_.$accountId, health, map HUD only.
 - [ ] C3 Publishing & spend: editor, editor_.$channel, editor_.run.$id, editor_.slot.$id, scheduled, compose, logs, spend.
-- [ ] C4 Agents config & system: agents, models, dm, settings (+ settings/*, models/*, strategies/MigrationBanner).
+- [x] C4 Agents config & system: agents, models, dm, settings (+ settings/*, models/*, strategies/MigrationBanner).
 - [ ] C5 Chat & artifacts: chat, artifacts (+ chat/*, artifacts/*, nav/NeedsYou).
 - [ ] C6 Data, ads & public: data, data_.$key, ads, landing (admin), login, report.$token, app.tsx auth screens, NotFound (+ data/*, landing admin cards).
 
@@ -128,6 +128,14 @@ A3 (worktree `wf_9569abf2-5cb-3`):
 - A2.3 `fbbd00d1` schema v2 and the v1 to v2 migration (client and server); `3d6f226d` follow-up: a stored v1 group title that is just the v1 default is not a rename.
 - A2.4 `109716bc` sidebar: group titles, longest-prefix active item, More tools, footer, width 248.
 - A2.5 `1d8ead75` top bar: wide search field, N agents live pill, New post, main padding and max-width.
+
+### C4 Agents config & system (branch `worktree-wf_6e3bf934-224-4`, base `8f674e50`)
+- C4.1 `5a27eb55` agents + MigrationBanner: KPI strip, registry as rows in flush panels, banner as a panel of channel rows.
+- C4.2 `b7df9781` models + ModelSelect: workspace options as the control, price facts in insets, overrides as rows, picker popover on tokens.
+- C4.3 `24623c04` dm: status as a KPI strip, chat intel as two flush panels, category tabs with counts, dialog bodies on overline keys and insets.
+- C4.4 `4106fa6f` settings: underline tabs, setting groups as flush panels with counted tabs, sessions as rows, navigation constructor tuned in `settings.css`.
+- `routes/app.agent.tsx` is redirect-only and was not touched.
+- Checked under Node 20 after every commit: `tsc --noEmit` clean, 398 node tests pass (no new pure logic, so no new tests), `VITE_ALLOW_DEV_AUTH=true npm run build` builds. Browser pass is the lead's.
 
 ## Deltas from the spec
 (each agent appends its own subsection)
@@ -196,3 +204,25 @@ Dashboard:
   - The More tools dot rolled up sub-view counters that the list does not show; it now rolls up the More tools list itself.
   - "Edit in menu settings…" on a hidden page focused nothing: the Hidden panel's Restore button now has `navc-hidden-<id>` and gets the focus.
   - Danger text on the danger tint was ~3.8–4.5:1: new `--color-danger-ink` for text on tints (nav counters, `.sev-critical`, selected danger tab, `.chip-danger`, danger toast action), ≥5:1.
+
+### C4
+Area files: `components/agents-list/agents-list.css`, `components/strategies/migration.css`, `components/models/{models,model-select}.css`, `components/dm/dm.css`, `components/settings/settings.css`. Behaviour, endpoints, routes, search params, element ids and hook order are unchanged.
+
+- **Deviations from the prototype language**
+  - Glyph tiles (`SectionCard icon`) are dropped from every C4 panel head, as in the prototype; `AgentGlyph` stays on agent rows.
+  - `/app/agents`: Orchestrators come before System agents; the KPI strip is "Agents today" (Orchestrators with "N live · M not live", Paused, Runs today, Spend today). `components/agents/*` is frozen, so `OrchestratorRow`, `ChildRow` and `SystemRow` stay in the route, as before. `NeedsYou` (C5) is untouched.
+  - `routes/app.agents.tsx` imports `strategies/migration.css`, not `MigrationBanner.tsx`: `lib/strategies-legacy.test.ts` imports `needsAttention` from the banner under `tsx --test`, which cannot load a `.css` file. Any module a node test imports must stay CSS-free.
+  - `/app/models`: the Workspace SegmentedTabs became two pressed-state option buttons (`.mdl-ws-option[aria-pressed]`) with the explainer text inside, because the choice is the control and each option has a sentence of its own; clicking still calls the same `change(w.id)`. The legacy channel overrides table became rows in a flush panel; the per-row entrance animation of the agents table was dropped (it was rows, not panels).
+  - `ModelSelect`: all styles moved to `model-select.css`; only the popover position and max-height stay inline. `onMouseEnter={() => setHi(i)}` is kept on purpose: it syncs the keyboard cursor with the pointer (state, not a hover style).
+  - `/app/dm`: the Telegram status is a KPI strip (Polling with the cadence as delta, Last polled, Pending actions, New opportunities) and an EmptyState when there is no agent session (also when `/api/agent/status` 404s). One extra request: the unfiltered `useAgentInbox({})` feeds the category tab counts; with the "All" tab it is the same query key as the list, so no second request there. `CAT_TONE.spam` went from warning to neutral (amber is the colour of the human; spam is not a call). The empty-thread note is category-aware. "Connections → Sessions" in the no-session note is a typed `Link`.
+  - `/app/settings`: section tabs are `variant="underline"`; Configuration group tabs carry counts that follow the search box; each group is a flush panel with one `.panel-row` per setting; "Restart service" is `Button variant="warning" size="sm"` (it is the human's call); the restarting state is a panel with a live `status-dot`; Diff pills in the confirm dialog are mono classes; sessions are rows, the sign-in audit stays a table (in `.table-wrap` inside a padded panel, not a flush one, so the table frame does not double the panel frame).
+  - NavigationTab: restyle only; `navc-label-<id>` / `navc-hidden-<id>` and all behaviour are as in wave A. The `.navc-*` base block in `index.css` (frozen) is tuned from `settings.css` (radius-lg groups, 14px inputs, mono meta and preview titles). The sticky bar uses `var(--shadow-2)`, which falls downward while the old inline shadow rose upward; the bar's hairline border carries it at the bottom of the window. `btn-tiny` in the bar and the two callouts became `btn-ghost|secondary btn-sm`; row buttons in the Hidden panel stay `btn-tiny`.
+- **Local helpers worth promoting** (all in area files; the lead may lift them into `index.css`)
+  - `.btn-secondary.is-danger` (settings.css) and `.btn-ghost.dm-danger` (dm.css): the quiet destructive button (Sign out everywhere, Reject, Archive). `.btn-danger` is for a confirm only and `btn-tiny-danger` is too small for a panel head.
+  - `.mdl-ws-option` (models.css): a large pressed-state option tile; `.chip-toggle` is too small to hold a sentence.
+  - `.mdl-note` / `.set-intro` / `.set-muted` / `.set-dim`: muted prose and dim-text helpers; today every page writes `color: var(--color-ink-muted)` inline or invents a class for it.
+- **Left as is, on purpose**
+  - `routes/app.agent.tsx` (redirect-only), `components/agents/AgentsUi` `Toggle` in the Configuration rows, `nav/NeedsYou` (C5), `ConfirmDialog` (frozen `ui/*`).
+  - `AgentGlyph` is called with a numeric `size={28}` on child rows; B3 owns `components/agents/*` and may change the signature.
+  - The `.navc-*` copy in `index.css` is now partly overridden by `settings.css`; the lead can fold the overrides back and delete the duplicate rules.
+  - `CompactCard` dialogs (DM threads and pending actions) keep their own footer via `dialog.actions`; only their bodies were restyled.
