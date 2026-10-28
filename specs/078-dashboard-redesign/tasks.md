@@ -58,9 +58,9 @@ Owns: `routes/app.index.tsx`, `components/overview/*`, new `components/today/*` 
 ### B2 Inbox — `routes/app.agents_.inbox.tsx`
 Brief: `research/inbox.md`. Handoff §5. Prototype `App-Inbox.dc.html`.
 Owns: `routes/app.agents_.inbox.tsx`, new `components/inbox/*` except `NoteActions.tsx` (A3's; fix bugs in it only with a note in Deltas).
-- [ ] B2.1 Tabs + Unread only + search params (legacy mapping) + list with severity marks, grouping by subject, counts.
-- [ ] B2.2 Detail pane (D6) + bottom sheet ≤860 + Mark as done / Mark all as done + Undo.
-- [ ] B2.3 To approve tab around `ApprovalList`; deep links (`note=`), InboxLinks preserved; empty states.
+- [x] B2.1 Tabs + Unread only + search params (legacy mapping) + list with severity marks, grouping by subject, counts.
+- [x] B2.2 Detail pane (D6) + bottom sheet ≤860 + Mark as done / Mark all as done + Undo.
+- [x] B2.3 To approve tab around `ApprovalList`; deep links (`note=`), InboxLinks preserved; empty states.
 
 ### B3 Agent detail — `routes/app.agents_.$handle.tsx`
 Brief: `research/agent.md`. Handoff §6. Prototype `App-Agent.dc.html`.
@@ -134,6 +134,12 @@ A3 (worktree `wf_9569abf2-5cb-3`):
 - B1.2 `ca01c150` Today at a glance (SlotRing, runs, AI budget, busiest channel) and the day timeline (fixed 06-24 axis, StatusMark markers, now-line, past shading, legend).
 - B1.3 `29bc2514` Agents panel (ModeSwitch by channel), Live activity (`useMapSnapshot`, shared with the map), KPI strip with the spend trend, health line; the legacy blocks and `AgentsCard.tsx` are gone.
 - Checked under Node 20: `tsc --noEmit` clean, 431 node tests pass (24 new in `lib/today.test.ts`), `VITE_ALLOW_DEV_AUTH=true npm run build` builds. Looked at in the browser through a dev server on 3111 proxied to the read-only mock (GET only, nothing that writes was clicked) at 1440 and 390 wide, and with the clock pinned to 14:00 Kyiv for the now-line. The lead's browser pass is still to do.
+
+### B2 Inbox (worktree `wf_a4c40803-5b3-2`, base `ad17cb89`)
+- B2.1 `645e1c7f` tabs (To approve / All / Critical / Action / FYI with counts), Unread only, search params with the legacy mapping, list with severity marks and subject groups (`lib/inbox-view.ts`, `components/inbox/InboxList.tsx`, `InboxPage.tsx`, `inbox.css`).
+- B2.2 `2adbc96b` detail pane (`InboxDetail.tsx`), bottom sheet at 860px and below, Mark as done / Mark all as done with Undo, Mark as unread.
+- B2.3 `730972be` stale `?note=` cleanup, error callout, Show read notes action, 200-note cap line; the To approve tab and deep links are covered by tests.
+- Checked under Node 20: `tsc --noEmit` clean, 434 node tests pass, `VITE_ALLOW_DEV_AUTH=true npm run build` builds. Clicks, the sheet, Undo and the 375px layout are the lead's browser pass (checklist in the report).
 
 ## Deltas from the spec
 (each agent appends its own subsection)
@@ -243,3 +249,18 @@ Agents, activity, KPI:
 - **The Meta accounts card's Refresh button is kept** as a ghost button "Refresh Meta numbers" under the KPI strip (it was the only UI for `useRefreshMetaStats`).
 
 Files outside B1's list: `components/map/MapHud.tsx` (its local `useNow` moved to `lib/useNow.ts`, as the task says; one import line changed), `components/map/MapPage.tsx` (switched to `useMapSnapshot`, as the task says).
+
+### B2
+- **Files:** the route is now thin (`validateSearch`, the crumbs, the stylesheet import). The page is `components/inbox/InboxPage.tsx` (`search` and `onNavigate` as props, so it renders under `tsx` in the node tests; CSS is imported only by the route). The pure logic is `lib/inbox-view.ts` with its test (new files outside `components/inbox/`, in B2's lane by name). `NoteActions.tsx` is untouched, no bug found in it.
+- **URL.** `tab=approvals|all|critical|action|fyi`, `unread=false` for Unread only off, `note=<id>`. Legacy: `?tab=unread` is All with Unread only on; `?tab=all` alone is every note (what the old All tab showed), so the page always writes `unread=` next to `tab=all`. Every other tab leaves `unread` out when it is on. The page uses `replace: true` and never adds history entries.
+- **Bare URL.** All with Unread only on, or To approve when no note is unread and posts wait (the sidebar counter is notes plus approvals, so it can no longer land on an empty list). The choice is made once from the data and then held, so the page does not jump to another tab when the last unread note is marked done. A bare `?note=` opens All, with Unread only on when that note is unread and off when it is read, so the list holds it.
+- **Counts** on All / Critical / Action / FYI are over the list as loaded with the current Unread only state (the server has no count endpoint for read notes); To approve uses `useApprovalsCount`. The inbox endpoint sends the 200 newest notes, no paging: the list says so when it hits 200.
+- **Grouping by subject** only in the All view; the severity tabs list every note. The server marks older notes of a subject read when a newer one is posted, so with Unread only on a group is mostly one note; the history list ("Same problem, N notes") matters when read notes are shown. A row shows the newest note and "xN".
+- **Selection.** Wide screens: `?note=`, else the row that was selected, else the first row; after Mark as done the neighbour at the same index moves up. Narrow screens: nothing is selected until a row is tapped. The selection is not written to the URL until the user clicks (the first row is selected visually, not by URL).
+- **Sheet at 860px and below** is `Modal size="drawer"`: Modal turns a drawer into a bottom sheet only at 600px and below, so between 601 and 860px it is a right-hand sheet. The sheet title is the Modal head; the pane variant shows the title itself. Closing the sheet drops `?note=`.
+- **Mark as done** sends every unread note of the row (a group is one problem). **Mark all as done** (page header) sends the unread notes in the current view and tab. Both toast "Marked as done" / "Marked N notes as done" with an Undo that calls `useMarkInboxUnread`. A plan that has its own "Got it" step (`read`) shows only NoteActions' button; the page intercepts `onDone` and replaces NoteActions' plain toast with the Undo one (the toast dedup replaces an identical message). So there are never two "done" buttons for one note.
+- **Read notes** show a "Done" badge, "Mark as unread", and NoteActions' links only (A3's rule).
+- **Crumb parent** stays "Agents" (registry entry `agents-inbox`, `parent: 'agents'`, A2's file); the Inbox sits in Home in the new menu. `useCrumbs('agents-inbox')` is kept in the route because `nav/registry.test.ts` (FR-013) pins it. Changing the parent is one field in `nav/registry.ts`.
+- **Error state.** If the inbox endpoint fails (an older server) the tabs and To approve still work, and the notes area shows a danger callout instead of an empty "All clear".
+- **Technical details** (id, kind, severity, refType, refId, subject, createdAt) are a closed-by-default toggle with a `.code-block`, not a `<details>` (CLAUDE.md).
+- **Left for the browser pass:** clicks, the sheet and focus return, Undo after Mark all as done, 375px, reduced motion. The rendering tests are server-side (seeded query cache) and cannot see them.
