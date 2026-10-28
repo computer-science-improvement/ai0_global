@@ -13,7 +13,8 @@ import { useResumeSeries, useSeriesPauses, type Agent, type SeriesPause } from '
 import { useResourcePauses, type ResourcePause } from '../../api/manager';
 import { useNetworkPlan } from '../../api/network';
 import { pausesOf, shortDate, timeLeft } from '../../lib/directive-view';
-import { capPauses, pauseEffect, pauseSummary, pauseTitle, zoneLabel } from '../../lib/agent-overview';
+import { capPauses, pauseEffect, pauseSummary, pauseTitle } from '../../lib/agent-overview';
+import { zoneLabel } from '../../lib/zoned-time';
 import { nextPlanLine } from '../../lib/mode-hints';
 import { useLiftAction } from './ActiveEffects';
 import { ResourceChip } from './NetworkUi';

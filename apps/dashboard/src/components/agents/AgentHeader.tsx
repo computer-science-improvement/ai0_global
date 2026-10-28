@@ -16,7 +16,7 @@ import { useAgentSetup } from '../setup/AgentSetupButton';
 import { fmtDate } from '../../lib/format';
 import { followedMode } from '../../lib/agent-mode';
 import { followsHint, modeHint, runNowError, runNowState } from '../../lib/mode-hints';
-import { zoneLabel } from '../../lib/agent-overview';
+import { zoneLabel } from '../../lib/zoned-time';
 import { errorBody, usePatchAgent, useRunAgent, type AgentDetail } from '../../api/agents';
 import { useRunManager } from '../../api/manager';
 import { useNetworkPlan } from '../../api/network';
@@ -31,7 +31,7 @@ export function AgentHeader({ data, onEdit }: { data: AgentDetail; onEdit: () =>
 
   // The plan's schedule names the evening batch hour and the zone for the "In approval" line.
   const schedule = useNetworkPlan(orchestratorHandle, '', !!data.channelKey).data?.schedule;
-  const hint = modeHint(a.mode, { kind: a.kind, batchHour: schedule?.batchHour, zone: zoneLabel(schedule?.timezone) });
+  const hint = modeHint(a.mode, { kind: a.kind, batchHour: schedule?.batchHour, zone: schedule ? zoneLabel(schedule.timezone) : null });
 
   const runAgent = useRunAgent();
   const runManager = useRunManager();

@@ -241,7 +241,7 @@ export type InboxTarget =
 /**
  * Where an Inbox entry links (FR-019): every `directive_*` / `resource_paused|resumed` entry with
  * `refType='directive'` opens the directive on the @manager board; a `resource` pause entry (no directive behind
- * it) opens the orchestrator's Overview, where Active effects lists the pauses.
+ * it) opens the orchestrator's "In force now" tab (`?tab=effects`), where Active effects lists the pauses.
  */
 export function inboxTarget(it: { kind: string; refType: string | null; refId: string | null }, agentHandle: string | null): InboxTarget {
   if (it.refType === 'directive' && it.refId) return { to: 'directive', id: it.refId };
