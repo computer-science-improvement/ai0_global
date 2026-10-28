@@ -1,0 +1,27 @@
+/* /app/agents (spec 078 C4): the registry as rows in flush panels. Row anatomy: glyph | name + handle + badges over a meta line |
+   spend and runs | row actions. The panel, the row hairlines and the hover wash are the global .panel-row. */
+
+.agl-main { flex: 1 1 220px; min-width: 0; }
+.agl-title { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 8px; min-width: 0; }
+.agl-name { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; color: var(--color-ink); text-decoration: none; overflow-wrap: anywhere; }
+a.agl-name:hover { text-decoration: underline; }
+.agl-handle { font-size: 12px; color: var(--color-ink-dim); overflow-wrap: anywhere; }
+.agl-sub { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 10px; min-width: 0; margin-top: 4px; font-size: 12px; color: var(--color-ink-muted); }
+.agl-desc { margin: 4px 0 0; font-size: 13px; color: var(--color-ink-muted); }
+
+/* Spend and runs: a mono figure over a quiet caption, right-aligned so the column reads down the panel. */
+.agl-num { min-width: 92px; margin-left: auto; text-align: right; font-variant-numeric: tabular-nums; }
+.agl-num-main { font-size: 13px; font-weight: 500; color: var(--color-ink); }
+.agl-num-sub { font-size: 12px; color: var(--color-ink-dim); }
+
+/* Roles of an orchestrator: indented under it, one step darker than the parent rows. */
+.agl-child { padding-left: 56px; background: color-mix(in srgb, var(--color-surface-1) 55%, transparent); }
+.agl-child .agl-name { font-size: 13px; font-weight: 500; }
+
+/* The loading skeleton of the list. */
+.agl-skeleton { height: 160px; opacity: 0.55; }
+
+@media (max-width: 600px) {
+  .agl-child { padding-left: 32px; }
+  .agl-num { min-width: 0; }
+}
