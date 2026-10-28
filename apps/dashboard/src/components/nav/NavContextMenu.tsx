@@ -8,6 +8,8 @@ export interface NavMenuAction {
   onSelect:  () => void;
   disabled?: boolean;
   title?:    string;
+  /** A short right-aligned note, e.g. a counter ("3"); its meaning goes in `title`. */
+  meta?:     string;
 }
 
 /**
@@ -48,16 +50,19 @@ export function NavContextMenu({ x, y, title, actions, onClose }: {
   }, [onClose]);
 
   const left = Math.max(8, Math.min(x, window.innerWidth - 220));
-  const top = Math.max(8, Math.min(y, window.innerHeight - (actions.length * 34 + 44)));
+  // A long list (the rail's "More tools") scrolls inside the viewport instead of running off it.
+  const room = window.innerHeight - 16;
+  const top = Math.max(8, Math.min(y, window.innerHeight - Math.min(actions.length * 34 + 44, room) - 8));
 
   return createPortal(
-    <div ref={ref} role="menu" aria-label={title ?? 'Menu item actions'} className="nav-ctx" style={{ left, top }}
+    <div ref={ref} role="menu" aria-label={title ?? 'Menu item actions'} className="nav-ctx" style={{ left, top, maxHeight: room, overflowY: 'auto' }}
       onContextMenu={(e) => e.preventDefault()}>
       {title && <div className="nav-ctx-title">{title}</div>}
       {actions.map((a) => (
         <button key={a.label} type="button" role="menuitem" className="nav-ctx-item" disabled={a.disabled} title={a.title}
           onClick={() => { onClose(); a.onSelect(); }}>
           <Icon name={a.icon} size={14} /> {a.label}
+          {a.meta && <span className="nav-ctx-meta tabular-nums">{a.meta}</span>}
         </button>
       ))}
     </div>,

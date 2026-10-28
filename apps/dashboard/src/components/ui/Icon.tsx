@@ -14,6 +14,8 @@ import {
   Map as MapIcon, PenLine, ZoomIn, ZoomOut, Maximize, Bell, Gem,
   type LucideIcon,
 } from 'lucide-react';
+// Spec 078 (sidebar): "More tools" and the operator row's Log out.
+import { Ellipsis, LogOut } from 'lucide-react';
 
 const ICONS = {
   overview: LayoutDashboard, strategies: Zap, calendar: CalendarClock,
@@ -38,6 +40,8 @@ const ICONS = {
   pin: Pin, 'pin-off': PinOff, reset: RotateCcw, 'folder-plus': FolderPlus, enter: CornerDownLeft, search: Search,
   // Network map (spec 056): the page, unit-state glyphs, view controls, the spend gem.
   map: MapIcon, pen: PenLine, send: Send, 'zoom-in': ZoomIn, 'zoom-out': ZoomOut, fit: Maximize, bell: Bell, gem: Gem,
+  // Sidebar (spec 078).
+  ellipsis: Ellipsis, logout: LogOut,
 } satisfies Record<string, LucideIcon>;
 
 export type IconName = keyof typeof ICONS;

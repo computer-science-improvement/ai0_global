@@ -16,3 +16,9 @@ export const TG_BOT_USERNAME = (ENV.VITE_TG_BOT_USERNAME ?? '').trim().replace(/
 export const AUTH_MODE = resolveAuthMode(ENV);
 /** Token sign-in available (the main form in token mode, a collapsed extra in Telegram mode). */
 export const TOKEN_LOGIN = tokenFormEnabled(ENV);
+
+/**
+ * A short build-time label for a non-production deployment ("dev", "stage"): the sidebar
+ * shows it as a small pill. Empty (no pill) unless VITE_ENV_LABEL is set at build time.
+ */
+export const ENV_LABEL = (ENV.VITE_ENV_LABEL ?? '').trim().slice(0, 12);

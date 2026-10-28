@@ -123,6 +123,8 @@ export function AppShell() {
           onNavigate={() => setNavOpen(false)}
           collapsed={railCollapsed}
           onToggleCollapsed={toggleCollapsed}
+          // Hidden only for a server-confirmed dev-bypass identity: there is no session to end then.
+          onLogout={me && me.method !== 'dev' ? onLogout : undefined}
         />
 
         {isMobile && navOpen && (
@@ -168,11 +170,6 @@ export function AppShell() {
               {!isMobile && <kbd className="kbd">{IS_MAC ? '⌘' : 'Ctrl'} K</kbd>}
             </button>
             <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: isMobile ? 8 : 12 }}>
-              {me && !isMobile && (
-                <span className="text-caption" style={{ color: 'var(--color-ink-muted)' }}>
-                  {me.firstName}{me.username ? ` · @${me.username}` : ''}
-                </span>
-              )}
               <Button
                 variant="primary"
                 style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}
@@ -181,9 +178,6 @@ export function AppShell() {
               >
                 <Icon name="plus" size={14} />{!isMobile && ' New post'}
               </Button>
-              {/* Hidden only for a server-confirmed dev-bypass identity: there
-                  is no session to end then. */}
-              {me && me.method !== 'dev' && <Button variant="tiny" onClick={onLogout}>Log out</Button>}
             </div>
           </header>
 
