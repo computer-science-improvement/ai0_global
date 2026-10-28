@@ -9,7 +9,7 @@ import { motion } from 'motion/react';
 import type { LandingNetwork, LandingNetworkResource } from '../../api/landing';
 import { Badge } from '../ui/Badge';
 import { Icon } from '../ui/Icon';
-import { PLATFORM_META, agentChip, aiRunBadge, compact, resourceKey } from '../../lib/landing-view';
+import { PLATFORM_META, agentChip, aiRunBadge, compact, publicTitle, resourceKey } from '../../lib/landing-view';
 import { AdDmLink, NoTelegramLink } from './cta';
 
 const cardVariants = {
@@ -19,8 +19,10 @@ const cardVariants = {
 
 function ResourceCard({ r }: { r: LandingNetworkResource }): JSX.Element {
   const meta = PLATFORM_META[r.platform];
-  const title = r.displayName ?? (r.handle ? `@${r.handle}` : meta.label);
-  const showHandle = !!r.handle && r.displayName !== null;
+  // A visitor never sees a dev suffix ("| DEV"): publicTitle strips it, and a title that was only the suffix falls back to the @handle.
+  const shown = publicTitle(r.displayName);
+  const title = shown ?? (r.handle ? `@${r.handle}` : meta.label);
+  const showHandle = !!r.handle && shown !== null;
   const badge = aiRunBadge(r.aiRun);
 
   return (
@@ -28,7 +30,7 @@ function ResourceCard({ r }: { r: LandingNetworkResource }): JSX.Element {
       <span
         aria-hidden
         className="rs-glow"
-        style={{ background: `radial-gradient(120px 120px at 100% 0%, ${meta.tint}1f, transparent 70%)` }}
+        style={{ background: `radial-gradient(160px 160px at 100% 0%, ${meta.tint}3d, transparent 70%)` }}
       />
       <div className="rs-card-head">
         <span className="rs-avatar" style={{ '--rs-tint': meta.tint } as CSSProperties}>
@@ -74,12 +76,13 @@ function ResourceCard({ r }: { r: LandingNetworkResource }): JSX.Element {
 
 function NetworkBlock({ n }: { n: LandingNetwork }): JSX.Element {
   const chip = agentChip(n.agent);
-  const standalone = n.name === null;
+  const name = publicTitle(n.name);
+  const standalone = name === null;
   return (
-    <section className="ns-net" aria-label={standalone ? 'Standalone channels' : n.name ?? undefined}>
+    <section className="ns-net" aria-label={standalone ? 'Standalone channels' : name}>
       <header className="ns-head">
         <div className="ns-head-main">
-          <h3 className="ns-title">{standalone ? 'Standalone channels' : n.name}</h3>
+          <h3 className="ns-title">{standalone ? 'Standalone channels' : name}</h3>
           {chip && n.agent && (
             <span className={`ns-agent ns-agent-${n.agent.mode}`}>
               <span aria-hidden>{n.agent.emoji ?? '🤖'}</span>
@@ -104,7 +107,7 @@ function NetworkBlock({ n }: { n: LandingNetwork }): JSX.Element {
               Advertise in this network <Icon name="telegram" size={12} />
             </AdDmLink>
           )}
-          {n.adDmUrl && <NoTelegramLink placement="network" target={n.name} className="rs-notg" />}
+          {n.adDmUrl && <NoTelegramLink placement="network" target={name} className="rs-notg" />}
         </div>
       </header>
 
@@ -197,18 +200,19 @@ export function NetworkShowcase({ networks }: { networks: LandingNetwork[] }): J
           border: 1px solid var(--color-hairline);
           border-radius: var(--radius-lg);
           color: var(--color-ink);
-          transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+          transition: translate 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.35s ease, background 0.35s ease, box-shadow 0.35s ease;
         }
+        /* Spec 078 B5.2: the card lifts 6px and its platform spotlight comes up (0.35 to 1). The lift uses the individual
+           translate property, not transform: the entrance (motion) leaves an inline "transform: none" on the card, which
+           would beat a hover transform. Reduced motion is the global block in index.css (transitions collapse). */
         .rs-card-link:hover, .rs-card-link:focus-within {
-          transform: translateY(-3px);
-          border-color: var(--color-hairline-strong);
+          translate: 0 -6px;
+          border-color: color-mix(in srgb, var(--color-accent) 45%, var(--color-hairline-strong));
           background: var(--color-surface-3);
+          box-shadow: var(--shadow-2);
         }
-        @media (prefers-reduced-motion: reduce) {
-          .rs-card, .rs-arrow { transition: none; }
-          .rs-card-link:hover, .rs-card-link:focus-within { transform: none; }
-        }
-        .rs-glow { position: absolute; inset: 0; z-index: -1; opacity: 0.9; pointer-events: none; }
+        .rs-glow { position: absolute; inset: 0; z-index: -1; opacity: 0.35; pointer-events: none; transition: opacity 0.35s ease; }
+        .rs-card:hover .rs-glow, .rs-card:focus-within .rs-glow { opacity: 1; }
         .rs-card-head { position: relative; display: flex; align-items: center; justify-content: space-between; }
         .rs-avatar {
           display: inline-flex; align-items: center; justify-content: center;
@@ -248,7 +252,7 @@ export function NetworkShowcase({ networks }: { networks: LandingNetwork[] }): J
           font-variant-numeric: tabular-nums;
         }
         .rs-followers-label { color: var(--color-ink-muted); }
-        .rs-arrow { color: var(--color-ink-dim); font-size: 15px; transition: color 0.18s ease, transform 0.18s ease; }
+        .rs-arrow { color: var(--color-ink-dim); font-size: 15px; transition: color 0.3s ease, transform 0.3s ease; }
         .rs-card-link:hover .rs-arrow { color: var(--color-accent); transform: translate(2px, -2px); }
         .rs-ad-link {
           position: relative; z-index: 1;

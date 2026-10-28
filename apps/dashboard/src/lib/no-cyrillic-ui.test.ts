@@ -14,10 +14,8 @@ const SRC = fileURLToPath(new URL('..', import.meta.url));
 
 /** file (relative to src/) → exact Cyrillic snippets allowed in it. */
 const ALLOW: Record<string, string[]> = {
-  // Landing: the legal ad hashtag every sponsored post carries.
-  'routes/index.tsx': ['#реклама'],
-  // Landing 'How it works' (spec 026 FR-008): the same legal ad hashtag.
-  'components/landing/HowItWorks.tsx': ['#реклама'],
+  // Landing 'How to order an ad' (spec 026 FR-008, moved here by spec 078 B5.2): the legal ad hashtag every sponsored post carries.
+  'components/landing/AdSteps.tsx': ['#реклама'],
   // Ad order form: the legal ad label and placeholders for Ukrainian ad content.
   'routes/app.ads.tsx': ['#реклама', 'Реклама. Замовник: …', 'ФОП Коваль', 'Детальніше'],
   // Import mapping test: a Cyrillic CSV column header from a user's file (data, not UI).

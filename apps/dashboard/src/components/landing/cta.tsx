@@ -4,7 +4,7 @@
 // POST /api/landing/cta ({cta, placement, lang}: no visitor data).
 //
 // The tracking lives in a context so the shared components (NetworkShowcase,
-// HowItWorks, MediaKit) count clicks on the public page only: the admin live
+// AdSteps, MediaKit) count clicks on the public page only: the admin live
 // preview renders them without a provider, and its clicks are never counted.
 import { createContext, useContext, type JSX, type ReactNode } from 'react';
 import type { LandingPlacement } from '../../api/landing';

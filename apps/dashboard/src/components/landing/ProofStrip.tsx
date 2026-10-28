@@ -2,17 +2,54 @@
 // from GET /api/landing/pulse; tiles with a zero value are hidden (lib/landing-view
 // proofTiles), and the caller hides the whole strip when the pulse fails. Each tile
 // has a "?" button (click/tap, not hover-only) that reveals how the number is counted.
+// Spec 078 B5.1: `variant="row"` is the hero's mono stats line (landing.css `.lp-proofrow`); the default tiles
+// are what /white-label shows.
 import { useId, useState, type JSX } from 'react';
 import type { LandingPulse } from '../../api/landing';
 import { proofTiles } from '../../lib/landing-view';
 
-export function ProofStrip({ pulse }: { pulse: LandingPulse | undefined }): JSX.Element | null {
-  const tiles = proofTiles(pulse);
+export function ProofStrip({ pulse, variant = 'tiles', reserve = false }: {
+  pulse: LandingPulse | undefined;
+  variant?: 'tiles' | 'row';
+  /** Row only: keep the strip's height while the pulse loads, so the hero does not jump when it arrives. */
+  reserve?: boolean;
+}): JSX.Element | null {
+  // The row sits under the agent pill, which already says how many agents are live.
+  const tiles = proofTiles(pulse).filter((t) => variant === 'tiles' || t.key !== 'orchestratorsLive');
   const [open, setOpen] = useState<string | null>(null);
   const baseId = useId();
-  if (tiles.length === 0) return null;
+  if (tiles.length === 0) return variant === 'row' && reserve ? <div className="lp-proofrow is-reserved" aria-hidden="true" /> : null;
 
   const openTile = tiles.find((t) => t.key === open);
+  if (variant === 'row') {
+    return (
+      <div className="lp-proofrow lp-fade" style={{ animationDelay: '0.4s' }} aria-label="Live numbers from the network">
+        <ul className="lp-proofrow-list mono">
+          {tiles.map((t) => {
+            const expanded = open === t.key;
+            const value = <b className="lp-proofrow-value">{t.value}</b>;
+            return (
+              <li key={t.key} className="lp-proofrow-item">
+                {t.key === 'lastAgentPost'
+                  ? <><span className="lp-dot is-live" aria-hidden="true" />{t.label} {value}</>
+                  : <>{value} {t.label}</>}
+                <button
+                  type="button"
+                  className="lp-proofrow-help"
+                  aria-expanded={expanded}
+                  aria-controls={`${baseId}-def`}
+                  aria-label={`How “${t.label}” is counted`}
+                  onClick={() => setOpen(expanded ? null : t.key)}
+                >?</button>
+              </li>
+            );
+          })}
+        </ul>
+        <p id={`${baseId}-def`} className="lp-proofrow-def" aria-live="polite" hidden={!openTile}>{openTile?.definition}</p>
+        {pulse?.stale && <p className="lp-proofrow-def">Numbers from the last successful update.</p>}
+      </div>
+    );
+  }
   return (
     <div className="lp-proof" aria-label="Live numbers from the network">
       <ul className="lp-proof-tiles">
