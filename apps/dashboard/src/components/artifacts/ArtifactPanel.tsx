@@ -2,7 +2,7 @@
 // diff against the one before, and "Ask the agent". The chat shows it as a right column (a full-screen sheet on a
 // phone); the artifacts page opens the same panel. Setup and steering reuse their own views and actions.
 
-import { useState, type ReactNode } from 'react';
+import { Fragment, useState, type ReactNode } from 'react';
 import { Badge } from '../ui/Badge';
 import { Icon } from '../ui/Icon';
 import { Field } from '../ui/primitives';
@@ -24,8 +24,6 @@ import { DiffView } from '../agents/AgentSkills';
 import { LaunchBody } from '../launch/LaunchBody';
 import { AuditBody } from '../sysadmin/AuditBody';
 
-const mono = 'var(--font-mono)';
-
 /** The API refusal as one line: the type's reasons when there is a list. */
 function refusal(e: unknown): string {
   const b = errorBody(e);
@@ -44,19 +42,22 @@ export function ArtifactPanel({ type, id, onClose, onAsk, bare = false }: {
   return (
     <div style={bare ? { display: 'grid' } : { display: 'flex', flexDirection: 'column', minHeight: 0, height: '100%' }}>
       {!bare && <div style={{ display: 'flex', alignItems: 'flex-start', gap: 10, padding: '14px 16px 12px', borderBottom: '1px solid var(--color-hairline)' }}>
-        <span className="btn-icon" aria-hidden style={{ width: 32, height: 32, flexShrink: 0, pointerEvents: 'none' }}><Icon name={meta.icon} size={16} /></span>
+        <span className="section-glyph" aria-hidden><Icon name={meta.icon} size={15} /></span>
         <div style={{ flex: 1, minWidth: 0 }}>
-          <div className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>{meta.label}{d?.row.agent ? ` · @${d.row.agent}` : ''}</div>
-          <h2 className="text-body-sm clamp" style={{ margin: 0, fontWeight: 600, color: 'var(--color-ink)', ['--clamp' as string]: 2 }}>{d?.row.title ?? '…'}</h2>
+          <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, minWidth: 0 }}>
+            <span className="text-overline">{meta.label}</span>
+            {d?.row.agent && <span className="text-micro mono clamp" style={{ color: 'var(--color-ink-muted)', ['--clamp' as string]: 1 }}>@{d.row.agent}</span>}
+          </div>
+          <h2 className="text-heading-md clamp" style={{ margin: '2px 0 0', color: 'var(--color-ink)', ['--clamp' as string]: 2 }}>{d?.row.title ?? '…'}</h2>
           {d && (
-            <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap', marginTop: 4 }}>
+            <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap', marginTop: 6 }}>
               <Badge tone={artifactTone(d.row.status)}>{statusLabel(d.row.status)}</Badge>
-              {d.row.version != null && <span className="text-micro tabular-nums" style={{ color: 'var(--color-ink-muted)' }}>v{d.row.version}</span>}
+              {d.row.version != null && <span className="text-micro mono tabular-nums" style={{ color: 'var(--color-ink-muted)' }}>v{d.row.version}</span>}
               {d.row.live && <span className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>shapes posts now</span>}
             </div>
           )}
         </div>
-        <button type="button" className="btn-icon" onClick={onClose} aria-label="Close the artifact" title="Close" style={{ width: 32, height: 32, flexShrink: 0 }}>
+        <button type="button" className="btn-ghost" onClick={onClose} aria-label="Close the artifact" title="Close" style={{ flexShrink: 0 }}>
           <Icon name="x" size={15} />
         </button>
       </div>}
@@ -67,8 +68,7 @@ export function ArtifactPanel({ type, id, onClose, onAsk, bare = false }: {
         {d && (
           <>
             {onAsk && (
-              <button type="button" className="btn-secondary" onClick={() => onAsk(type, id)}
-                style={{ display: 'inline-flex', alignItems: 'center', gap: 6, justifySelf: 'start' }}>
+              <button type="button" className="btn-secondary" onClick={() => onAsk(type, id)} style={{ justifySelf: 'start' }}>
                 <Icon name="chat" size={14} /> Ask the agent about it
               </button>
             )}
@@ -130,21 +130,25 @@ function RulesBody({ d }: { d: ArtifactDetail }) {
   });
   return (
     <Field label={`Your rules (${rules.length})`} hint="They apply to every run of the channel's agent and win over everything else.">
-      <div style={{ display: 'grid', gap: 6 }}>
-        {rules.map((r) => (
-          <div key={r.id} className="panel" style={{ padding: '8px 10px', display: 'flex', gap: 8, alignItems: 'flex-start' }}>
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <div className="text-body-sm" style={{ whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>{r.kind === 'avoid' ? 'Avoid: ' : ''}{r.text}</div>
-              <div className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>#{r.id}{r.createdAt ? ` · ${fmtRelative(r.createdAt)}` : ''}{r.source ? ` · ${r.source}` : ''}</div>
-            </div>
-            <button type="button" className="btn-act" title="Edit" aria-label="Edit the rule" onClick={() => setEditing(r)}><Icon name="pencil" size={13} /></button>
-            <button type="button" className="btn-act btn-act-danger" title="Retire" aria-label="Retire the rule" disabled={patch.isPending}
-              onClick={async () => { if (await confirm('retire this rule (it stays in the history)', { confirmLabel: 'Retire' })) send({ retire: [r.id] }, 'Rule retired'); }}>
-              <Icon name="trash" size={13} />
-            </button>
+      <div style={{ display: 'grid', gap: 8 }}>
+        {rules.length > 0 && (
+          <div className="panel is-flush">
+            {rules.map((r) => (
+              <div key={r.id} className="panel-row" style={{ flexWrap: 'nowrap', alignItems: 'flex-start', gap: 8 }}>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div className="text-body-sm" style={{ whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>{r.kind === 'avoid' ? 'Avoid: ' : ''}{r.text}</div>
+                  <div className="text-micro mono" style={{ color: 'var(--color-ink-dim)' }}>#{r.id}{r.createdAt ? ` · ${fmtRelative(r.createdAt)}` : ''}{r.source ? ` · ${r.source}` : ''}</div>
+                </div>
+                <button type="button" className="btn-act" title="Edit" aria-label="Edit the rule" onClick={() => setEditing(r)}><Icon name="pencil" size={13} /></button>
+                <button type="button" className="btn-act btn-act-danger" title="Retire" aria-label="Retire the rule" disabled={patch.isPending}
+                  onClick={async () => { if (await confirm('retire this rule (it stays in the history)', { confirmLabel: 'Retire' })) send({ retire: [r.id] }, 'Rule retired'); }}>
+                  <Icon name="trash" size={13} />
+                </button>
+              </div>
+            ))}
           </div>
-        ))}
-        <button type="button" className="btn-secondary" onClick={() => setEditing('new')} style={{ justifySelf: 'start', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+        )}
+        <button type="button" className="btn-secondary" onClick={() => setEditing('new')} style={{ justifySelf: 'start' }}>
           <Icon name="plus" size={13} /> Add a rule
         </button>
       </div>
@@ -163,23 +167,26 @@ function MemoryBody({ d }: { d: ArtifactDetail }) {
   const confirm = useConfirm();
   return (
     <Field label={`Learnt lines (${lines.length})`} hint="Written by the agents from reviews and your approvals. You can retire a line; the agents add new ones.">
-      <div style={{ display: 'grid', gap: 6 }}>
-        {lines.map((r) => (
-          <div key={r.id} className="panel" style={{ padding: '8px 10px', display: 'flex', gap: 8, alignItems: 'flex-start' }}>
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <div className="text-body-sm" style={{ whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>{r.text}</div>
-              <div className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>{r.kind ?? 'note'}{r.by ? ` · ${r.by}` : ''}{r.createdAt ? ` · ${fmtRelative(r.createdAt)}` : ''}</div>
+      {lines.length === 0 && <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>Nothing learnt yet.</span>}
+      {lines.length > 0 && (
+        <div className="panel is-flush">
+          {lines.map((r) => (
+            <div key={r.id} className="panel-row" style={{ flexWrap: 'nowrap', alignItems: 'flex-start', gap: 8 }}>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div className="text-body-sm" style={{ whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>{r.text}</div>
+                <div className="text-micro mono" style={{ color: 'var(--color-ink-dim)' }}>{r.kind ?? 'note'}{r.by ? ` · ${r.by}` : ''}{r.createdAt ? ` · ${fmtRelative(r.createdAt)}` : ''}</div>
+              </div>
+              <button type="button" className="btn-act btn-act-danger" title="Retire" aria-label="Retire the line" disabled={patch.isPending}
+                onClick={async () => {
+                  if (!(await confirm('retire this line from the memory', { confirmLabel: 'Retire' }))) return;
+                  patch.mutate({ type: 'memory', id: d.row.id, patch: { retire: [r.id] } }, { onSuccess: () => toast.success('Line retired'), onError: (e) => toast.error(refusal(e)) });
+                }}>
+                <Icon name="trash" size={13} />
+              </button>
             </div>
-            <button type="button" className="btn-act btn-act-danger" title="Retire" aria-label="Retire the line" disabled={patch.isPending}
-              onClick={async () => {
-                if (!(await confirm('retire this line from the memory', { confirmLabel: 'Retire' }))) return;
-                patch.mutate({ type: 'memory', id: d.row.id, patch: { retire: [r.id] } }, { onSuccess: () => toast.success('Line retired'), onError: (e) => toast.error(refusal(e)) });
-              }}>
-              <Icon name="trash" size={13} />
-            </button>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </Field>
   );
 }
@@ -201,7 +208,7 @@ function SkillBody({ d }: { d: ArtifactDetail }) {
         <Pre>{b.body ?? ''}</Pre>
       </Field>
       {editable && (
-        <button type="button" className="btn-secondary" onClick={() => setOpen(true)} style={{ justifySelf: 'start', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+        <button type="button" className="btn-secondary" onClick={() => setOpen(true)} style={{ justifySelf: 'start' }}>
           <Icon name="pencil" size={13} /> Edit the skill
         </button>
       )}
@@ -234,7 +241,7 @@ function JsonBody({ d }: { d: ArtifactDetail }) {
         <Pre>{shown == null ? 'No active version yet.' : JSON.stringify(shown, null, 2)}</Pre>
       </Field>
       {editable && (
-        <button type="button" className="btn-secondary" onClick={() => setOpen(true)} style={{ justifySelf: 'start', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+        <button type="button" className="btn-secondary" onClick={() => setOpen(true)} style={{ justifySelf: 'start' }}>
           <Icon name="pencil" size={13} /> Edit
         </button>
       )}
@@ -269,6 +276,8 @@ function GenericActions({ d }: { d: ArtifactDetail }) {
   if (d.row.type === 'setup' || d.row.type === 'steering') return null;
   const actions = d.actions.filter((a) => a.key !== 'edit' && a.path);
   if (!actions.length) return null;
+  // One main action per view: the first that is not a destructive one; the others are bordered.
+  const main = actions.find((a) => !a.danger);
   const run = async (a: ArtifactAction) => {
     const ask = a.danger ? `${a.label.toLowerCase()} — ${d.row.title}` : CONFIRM[`${d.row.type}:${a.key}`];
     if (ask && !(await confirm(ask, { confirmLabel: a.label }))) return;
@@ -277,7 +286,7 @@ function GenericActions({ d }: { d: ArtifactDetail }) {
   return (
     <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
       {actions.map((a) => (
-        <button key={a.key} type="button" className={a.danger ? 'btn-ghost' : 'btn-primary'} disabled={act.isPending} onClick={() => run(a)}
+        <button key={a.key} type="button" className={a.danger ? 'btn-ghost' : a === main ? 'btn-primary' : 'btn-secondary'} disabled={act.isPending} onClick={() => run(a)}
           style={a.danger ? { color: 'var(--color-danger)' } : undefined}>{a.label}</button>
       ))}
     </div>
@@ -291,18 +300,18 @@ function Versions({ d }: { d: ArtifactDetail }) {
   if (!d.versions.length) return null;
   return (
     <Field label={`Versions (${d.versions.length})`} hint="Each version against the one before it.">
-      <div style={{ display: 'grid', gap: 4 }}>
+      <div className="panel is-flush">
         {d.versions.map((v) => (
-          <div key={v.version}>
-            <button type="button" className="row-lift" onClick={() => setOpen(open === v.version ? null : v.version)} aria-expanded={open === v.version}
-              style={{ width: '100%', display: 'flex', gap: 8, alignItems: 'baseline', textAlign: 'left', background: open === v.version ? 'var(--color-surface-3)' : 'transparent', border: 'none', borderRadius: 'var(--radius-sm)', padding: '6px 8px', cursor: 'pointer', color: 'var(--color-ink)' }}>
-              <span className="text-body-sm tabular-nums" style={{ fontWeight: 600 }}>v{v.version}</span>
+          <Fragment key={v.version}>
+            <button type="button" className={`panel-row${open === v.version ? ' is-selected' : ''}`} onClick={() => setOpen(open === v.version ? null : v.version)}
+              aria-expanded={open === v.version} style={{ flexWrap: 'nowrap', gap: 8, padding: '10px 14px' }}>
+              <span className="text-body-sm mono tabular-nums" style={{ fontWeight: 600 }}>v{v.version}</span>
               <span className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>{authorLabel(v)}</span>
               <span className="text-micro clamp" style={{ color: 'var(--color-ink-dim)', flex: 1, minWidth: 0, ['--clamp' as string]: 1 }}>{v.reason ?? ''}</span>
-              <span className="text-micro" style={{ color: 'var(--color-ink-dim)', flexShrink: 0 }}>{fmtRelative(v.createdAt)}</span>
+              <span className="text-micro mono" style={{ color: 'var(--color-ink-dim)', flexShrink: 0 }}>{fmtRelative(v.createdAt)}</span>
             </button>
             {open === v.version && <VersionDiff type={d.row.type} id={d.row.id} v={v.version} prev={prevOf(d.versions, v.version)} />}
-          </div>
+          </Fragment>
         ))}
       </div>
     </Field>
@@ -315,11 +324,11 @@ const prevOf = (vs: ArtifactVersionMeta[], v: number) => vs.filter((x) => x.vers
 function VersionDiff({ type, id, v, prev }: { type: ArtifactType; id: string; v: number; prev: number | null }) {
   const cur = useArtifactVersion(type, id, v);
   const before = useArtifactVersion(type, id, prev);
-  if (cur.error) return <div className="callout-danger" style={{ marginTop: 4 }}>{describeError(cur.error)}</div>;
-  if (!cur.data || (prev != null && !before.data)) return <div className="panel" style={{ height: 60, opacity: 0.55, marginTop: 4 }} />;
+  if (cur.error) return <div className="callout-danger" style={{ margin: 8 }}>{describeError(cur.error)}</div>;
+  if (!cur.data || (prev != null && !before.data)) return <div className="panel" style={{ height: 60, opacity: 0.55, margin: 8 }} />;
   const to = versionText(type, cur.data.body);
   return (
-    <div style={{ padding: '6px 8px 10px' }}>
+    <div style={{ padding: '8px 14px 12px' }}>
       {prev == null ? <Pre>{to}</Pre> : <DiffView from={versionText(type, before.data!.body)} to={to} />}
     </div>
   );
@@ -328,13 +337,7 @@ function VersionDiff({ type, id, v, prev }: { type: ArtifactType; id: string; v:
 // ── small parts ─────────────────────────────────────────────────────────────
 
 function Pre({ children }: { children: ReactNode }) {
-  return (
-    <pre style={{
-      margin: 0, padding: 10, maxHeight: 360, overflow: 'auto', whiteSpace: 'pre-wrap', wordBreak: 'break-word',
-      fontFamily: mono, fontSize: 11.5, lineHeight: 1.5,
-      background: 'var(--color-canvas)', border: '1px solid var(--color-hairline)', borderRadius: 'var(--radius-sm)', color: 'var(--color-ink-muted)',
-    }}>{children}</pre>
-  );
+  return <pre className="code-block" style={{ maxHeight: 360, overflow: 'auto' }}>{children}</pre>;
 }
 
 function TextEditDialog({ title, initial, onSave, onClose, busy, rows = 4, mono: isMono = false, hint }: {
@@ -345,10 +348,10 @@ function TextEditDialog({ title, initial, onSave, onClose, busy, rows = 4, mono:
     <Modal open onClose={onClose} title={title} icon="pencil" size={rows > 8 ? 'lg' : 'md'}>
       <div style={{ display: 'grid', gap: 8 }}>
         {hint && <div className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>{hint}</div>}
-        <textarea className="input-field" value={text} rows={rows} onChange={(e) => setText(e.target.value)} autoFocus aria-label={title}
-          style={{ width: '100%', resize: 'vertical', ...(isMono ? { fontFamily: mono, fontSize: 12 } : {}) }} />
+        <textarea className={`input-field${isMono ? ' mono' : ''}`} value={text} rows={rows} onChange={(e) => setText(e.target.value)} autoFocus aria-label={title}
+          style={{ width: '100%', resize: 'vertical' }} />
         <div className="modal-foot">
-          <button type="button" className="btn-secondary" onClick={onClose}>Cancel</button>
+          <button type="button" className="btn-ghost" onClick={onClose}>Cancel</button>
           <button type="button" className="btn-primary" disabled={busy || !text.trim() || text === initial} onClick={() => onSave(text.trim())}>
             {busy ? 'Saving…' : 'Save'}
           </button>

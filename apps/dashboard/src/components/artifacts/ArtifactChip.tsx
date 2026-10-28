@@ -15,21 +15,17 @@ export function ArtifactChip({ chip, active, onOpen }: { chip: Chip; active?: bo
   const status = row?.status ?? chip.status;
   const title = row?.title ?? (chip.title && chip.title !== chip.type ? chip.title : meta.label);
   return (
-    <button type="button" className="row-lift" onClick={() => onOpen(chip.type, chip.id)} aria-pressed={active}
+    // A chip-toggle: pressed while this artifact is open in the side panel.
+    <button type="button" className="chip-toggle" onClick={() => onOpen(chip.type, chip.id)} aria-pressed={active}
       title={gone ? 'This artifact is no longer available' : `Open ${title}`}
-      style={{
-        display: 'inline-flex', alignItems: 'center', gap: 8, maxWidth: '100%', minWidth: 0, padding: '6px 10px',
-        border: `1px solid ${active ? 'var(--color-accent)' : 'var(--color-hairline)'}`, borderRadius: 'var(--radius-md)',
-        background: active ? 'var(--color-surface-3)' : 'var(--color-surface-2)', color: 'var(--color-ink)', cursor: 'pointer', textAlign: 'left',
-        opacity: gone ? 0.6 : 1,
-      }}>
+      style={{ maxWidth: '100%', minWidth: 0, padding: '6px 10px', textAlign: 'left', opacity: gone ? 0.6 : 1 }}>
       <Icon name={meta.icon} size={14} />
       <span style={{ display: 'grid', minWidth: 0 }}>
         <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>{meta.label}</span>
-        <span className="text-body-sm" style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{title}</span>
+        <span className="text-body-sm" style={{ color: 'var(--color-ink)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{title}</span>
       </span>
       {status && <Badge tone={artifactTone(status)}>{statusLabel(status)}</Badge>}
-      {row?.version != null && <span className="text-micro tabular-nums" style={{ color: 'var(--color-ink-muted)', flexShrink: 0 }}>v{row.version}</span>}
+      {row?.version != null && <span className="text-micro mono tabular-nums" style={{ color: 'var(--color-ink-muted)', flexShrink: 0 }}>v{row.version}</span>}
     </button>
   );
 }
@@ -51,7 +47,7 @@ export function ArtifactChips({ chips }: { chips: Chip[] }) {
   if (!chips.length || !ctx) return null;
   const { activeKey, open: onOpen } = ctx;
   return (
-    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginTop: 8 }}>
+    <div role="group" aria-label="Artifacts" style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginTop: 8 }}>
       {chips.map((c) => <ArtifactChip key={`${c.type}:${c.id}`} chip={c} active={activeKey === `${c.type}:${c.id}`} onOpen={onOpen} />)}
     </div>
   );
