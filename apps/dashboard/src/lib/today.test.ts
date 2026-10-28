@@ -4,9 +4,10 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
-  AXIS_END_MIN, AXIS_START_MIN, MARKER_SPAN_MIN, NEEDS_ROWS, activeSlots, axisPct, bucketOf, buildLanes, busiestChannel, capState, greetingFor,
-  inboxLinkCount, kyivEyebrow, kyivGreeting, laneHeight, laneMarkers, legendMarks, needsHeadline, needsSummary, nowLine, openNotes,
-  orchestratorsByChannel, pastPct, otherPlatformCount, reconnectCount, ringArcs, shorten, sortNotes, summarizeDay, telegramSlots,
+  ACTIVITY_ROWS, AXIS_END_MIN, AXIS_START_MIN, MARKER_SPAN_MIN, NEEDS_ROWS, activeSlots, axisPct, bucketOf, buildLanes, busiestChannel, capState,
+  greetingFor, healthLabel, inboxLinkCount, kyivEyebrow, kyivGreeting, laneHeight, laneMarkers, legendMarks, metaFollowersLine, needsHeadline,
+  needsSummary, nowLine, openNotes, orchestratorsByChannel, otherPlatformCount, pastPct, reconnectCount, recentEvents, ringArcs, shorten, signed,
+  sortNotes, summarizeDay, systemAgents, telegramSlots,
   type DayPlan, type DaySlot, type NoteLike,
 } from './today';
 
@@ -333,6 +334,43 @@ test('orchestratorsByChannel: telegram orchestrators anywhere in the tree, keyed
   const map = orchestratorsByChannel(tree);
   assert.deepEqual([...map.keys()], ['@ai_global', '@recipes']);
   assert.equal(orchestratorsByChannel(undefined).size, 0);
+});
+
+test('systemAgents: the manager, builder and auditor roots; orchestrators and unknown kinds are not system agents', () => {
+  const roots = [{ kind: 'manager', n: 1 }, { kind: 'orchestrator', n: 2 }, { kind: 'builder', n: 3 }, { kind: 'auditor', n: 4 }, { kind: 'ideator', n: 5 }];
+  assert.deepEqual(systemAgents(roots).map((r) => r.n), [1, 3, 4]);
+  assert.deepEqual(systemAgents(undefined), []);
+});
+
+test('recentEvents: newest first, at most six by default, the input is not mutated, a bad time sorts last', () => {
+  const ev = (id: string, at: string) => ({ id, at });
+  const input = [ev('a', '2026-10-29T10:00:00Z'), ev('b', '2026-10-29T12:00:00Z'), ev('c', '2026-10-29T11:00:00Z'), ev('d', 'not a date'), ev('e', '2026-10-29T12:00:00Z')];
+  assert.deepEqual(recentEvents(input).map((e) => e.id), ['e', 'b', 'c', 'a', 'd']);
+  assert.deepEqual(input.map((e) => e.id), ['a', 'b', 'c', 'd', 'e']);
+  const many = Array.from({ length: 10 }, (_, i) => ev(`x${i}`, `2026-10-29T0${i}:00:00Z`));
+  assert.equal(recentEvents(many).length, ACTIVITY_ROWS);
+  assert.deepEqual(recentEvents(many, 2).map((e) => e.id), ['x9', 'x8']);
+  assert.deepEqual(recentEvents(null), []);
+  assert.deepEqual(recentEvents(many, -1), []);
+});
+
+test('signed / metaFollowersLine: reconnecting comes before the 24 h change', () => {
+  assert.equal(signed(163), '+163');
+  assert.equal(signed(-40), '−40');
+  assert.equal(signed(0), '0');
+  assert.equal(signed(12345), '+12,345');
+  assert.deepEqual(metaFollowersLine(1, 163), { text: '1 account needs reconnecting', tone: 'warning' });
+  assert.deepEqual(metaFollowersLine(3, 0), { text: '3 accounts need reconnecting', tone: 'warning' });
+  assert.deepEqual(metaFollowersLine(0, 163), { text: '+163 in 24 h', tone: 'success' });
+  assert.deepEqual(metaFollowersLine(0, -5), { text: '−5 in 24 h', tone: 'danger' });
+  assert.deepEqual(metaFollowersLine(0, 0), { text: 'no change in 24 h', tone: 'neutral' });
+});
+
+test('healthLabel: all clear, one problem, many', () => {
+  assert.equal(healthLabel(0), 'all clear');
+  assert.equal(healthLabel(-1), 'all clear');
+  assert.equal(healthLabel(1), '1 problem');
+  assert.equal(healthLabel(2), '2 problems');
 });
 
 test('reconnectCount: unmuted Meta accounts with a dead token or no access; an expiring token and a Telegram problem do not count', () => {

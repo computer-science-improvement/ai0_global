@@ -6,7 +6,9 @@
 
 /* Two panels side by side (Needs you + glance, Agents + Live activity); stacked on a narrow screen. */
 .today-row { display: grid; grid-template-columns: minmax(0, 2fr) minmax(300px, 1fr); gap: 16px; margin-top: 16px; align-items: stretch; }
-@media (max-width: 1100px) { .today-row { grid-template-columns: minmax(0, 1fr); } }
+/* Agents (rows with a four-way switch) get the wider column, Live activity the narrower. */
+.today-row-agents { grid-template-columns: minmax(0, 3fr) minmax(280px, 2fr); }
+@media (max-width: 1100px) { .today-row, .today-row-agents { grid-template-columns: minmax(0, 1fr); } }
 
 /* ── Needs you ─────────────────────────────────────────────────────────────── */
 .need-row { align-items: flex-start; gap: 16px; padding: 16px 20px; animation: slide-in var(--dur-enter) var(--ease-out) both; }
@@ -114,3 +116,39 @@
   .tl-scroll { padding: 0 16px 4px; }
   .tl-legend-hint { display: none; }
 }
+
+/* ── Agents ────────────────────────────────────────────────────────────────── */
+.agent-row { gap: 12px 14px; }
+.agent-id { display: flex; flex-direction: column; gap: 2px; flex: 1 1 140px; min-width: 0; }
+.agent-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 14px; font-weight: 500; color: var(--color-ink); text-decoration: none; }
+.agent-name:hover { color: var(--color-accent); text-decoration: underline; }
+.agent-handle { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 11px; color: var(--color-ink-dim); }
+.agent-switch { flex: none; max-width: 100%; }
+.agent-stats { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; width: 72px; flex: none; text-align: right; }
+.agent-stat { font-size: 12px; color: var(--color-ink-muted); white-space: nowrap; }
+.agent-stat.mono { color: var(--color-ink); }
+.agent-system { gap: 8px 20px; }
+.agent-sys { display: inline-flex; align-items: center; gap: 8px; min-width: 0; color: var(--color-ink-muted); text-decoration: none; padding: 4px 0; }
+.agent-sys:hover .agent-sys-name { color: var(--color-accent); text-decoration: underline; }
+.agent-sys-name { font-weight: 500; color: var(--color-ink); }
+.agent-sys-meta { color: var(--color-ink-dim); }
+@media (max-width: 600px) {
+  .agent-switch { order: 3; width: 100%; }
+  .agent-stats { flex-direction: row; gap: 10px; width: auto; margin-left: auto; align-items: baseline; }
+}
+
+/* ── Live activity ─────────────────────────────────────────────────────────── */
+.act-row { gap: 12px; align-items: flex-start; flex-wrap: nowrap; }
+.act-row.is-bad { box-shadow: inset 2px 0 0 var(--color-danger); }
+.act-icon {
+  flex: none; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;
+  border-radius: var(--radius-md); background: var(--color-surface-3); color: var(--color-ink-muted);
+}
+.act-icon.is-bad { background: var(--color-danger-soft); color: var(--color-danger); }
+.act-main { flex: 1 1 auto; min-width: 0; }
+.act-text { font-size: 13px; line-height: 1.45; color: var(--color-ink); overflow-wrap: anywhere; }
+.act-agent { color: var(--color-ink-muted); font-size: 12px; }
+.act-meta { margin-top: 2px; font-size: 11px; color: var(--color-ink-dim); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* ── KPI strip foot ────────────────────────────────────────────────────────── */
+.today-foot { display: flex; align-items: center; justify-content: space-between; gap: 8px 16px; flex-wrap: wrap; margin-top: 4px; min-height: 44px; }

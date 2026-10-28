@@ -1,11 +1,9 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from '@tanstack/react-router';
-import { useQuery } from '@tanstack/react-query';
-import { MAP_KEY, mapApi, type MapEvent, type MapSnapshot } from '../../api/map';
+import { useMapSnapshot, type MapEvent, type MapSnapshot } from '../../api/map';
 import { EmptyState } from '../ui/primitives';
 import { useMediaQuery } from '../../lib/useMediaQuery';
 import { BUILDING_R, layoutMap, type MapLayout } from '../../lib/map-layout';
-import { pollInterval } from '../../lib/map-diff';
 import { resourceTitle, roadKey } from '../../lib/map-state';
 import { pastRoadCount } from '../../lib/map-links';
 import { AlertsDrawer, BuildingDrawer, InfraDrawer, NetworkDrawer, RoadDrawer, UnitDrawer } from './MapDrawers';
@@ -31,14 +29,7 @@ export function MapPage() {
   const phone = useMediaQuery('(max-width: 639px)');
   const wide = useMediaQuery('(min-width: 1100px)');
   const reduced = useMediaQuery('(prefers-reduced-motion: reduce)');
-  const q = useQuery({
-    queryKey: MAP_KEY,
-    queryFn: mapApi.snapshot,
-    // 5 s while any unit works, 30 s otherwise, and none while the tab is hidden (FR-004). Coming back refetches at once.
-    refetchInterval: (query) => pollInterval(query.state.data, typeof document !== 'undefined' && document.hidden),
-    refetchIntervalInBackground: false,
-    retry: false,
-  });
+  const q = useMapSnapshot();
   const snap = q.data;
 
   const layoutRef = useRef<{ key: string; layout: MapLayout } | null>(null);

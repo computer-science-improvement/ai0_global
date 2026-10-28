@@ -379,7 +379,49 @@ export function orchestratorsByChannel<T extends AgentNodeLike>(nodes: ReadonlyA
   return out;
 }
 
+/** Agents that serve the whole network (the manager, the builder, the auditor): the Agents panel's footer. Roots of the tree only. */
+export const SYSTEM_KINDS: readonly string[] = ['manager', 'builder', 'auditor'];
+
+export function systemAgents<T extends { kind: string }>(roots: ReadonlyArray<T> | null | undefined): T[] {
+  return (roots ?? []).filter((n) => SYSTEM_KINDS.includes(n.kind));
+}
+
+// ── live activity ─────────────────────────────────────────────────────────────
+
+/** How many events Live activity lists. */
+export const ACTIVITY_ROWS = 6;
+
+/** The newest events first (the map feed is not promised to arrive sorted), at most `n`. Does not mutate. */
+export function recentEvents<T extends { id: string; at: string }>(events: ReadonlyArray<T> | null | undefined, n: number = ACTIVITY_ROWS): T[] {
+  const t = (iso: string) => { const v = new Date(iso).getTime(); return Number.isFinite(v) ? v : 0; };
+  return [...(events ?? [])].sort((a, b) => t(b.at) - t(a.at) || (a.id < b.id ? 1 : a.id > b.id ? -1 : 0)).slice(0, Math.max(0, n));
+}
+
 // ── KPI ───────────────────────────────────────────────────────────────────────
+
+/** "+163", "−40", "0": a signed count with a real minus sign. */
+export function signed(n: number): string {
+  if (n > 0) return `+${n.toLocaleString('en-US')}`;
+  if (n < 0) return `−${Math.abs(n).toLocaleString('en-US')}`;
+  return '0';
+}
+
+/**
+ * The line under "Followers (Meta)": accounts that need reconnecting come first (that is the owner's job, amber);
+ * otherwise the change of the last 24 hours.
+ */
+export function metaFollowersLine(reconnect: number, delta24h: number): { text: string; tone: 'warning' | 'success' | 'danger' | 'neutral' } {
+  if (reconnect > 0) return { text: reconnect === 1 ? '1 account needs reconnecting' : `${reconnect} accounts need reconnecting`, tone: 'warning' };
+  if (delta24h > 0) return { text: `${signed(delta24h)} in 24 h`, tone: 'success' };
+  if (delta24h < 0) return { text: `${signed(delta24h)} in 24 h`, tone: 'danger' };
+  return { text: 'no change in 24 h', tone: 'neutral' };
+}
+
+/** "Network health · all clear" / "1 problem" / "4 problems". */
+export function healthLabel(problems: number): string {
+  if (problems <= 0) return 'all clear';
+  return problems === 1 ? '1 problem' : `${problems} problems`;
+}
 
 const META_PLATFORMS: ReadonlySet<string> = new Set(['threads', 'instagram', 'facebook']);
 
