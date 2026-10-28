@@ -131,7 +131,7 @@ A3 (worktree `wf_9569abf2-5cb-3`):
 
 ### B4 Calendar (branch `worktree-wf_a4c40803-5b3-4`, base `ad17cb89`)
 - B4.1 `209f07f2` week grid: 5-day window and `?from=`, rows per orchestrator plus Other channels, chips with StatusMark, not-planned projections, phone agenda, legend; schedule DTO carries the slot `error`. `e0d690a8` follow-up: a crowded cell shows what needs the owner first.
-- B4.2 `b517d15d` composer drawer (`?compose=new|edit`), PostComposer drawer layout and validation timing, Ask the agent, Undo toasts.
+- B4.2 `b517d15d` composer drawer (`?compose=new|edit`), PostComposer drawer layout and validation timing, Ask the agent, Undo toasts. `04d31d56` follow-up: a numeric `?post=` id survives the router's search parser.
 - B4.3 `af8d9948` top-bar New post and the ⌘K action open the drawer; failed-to-load states; `legacy-redirects.test.ts` pins the new route and the New post target.
 - Checked under Node 20: dashboard `tsc --noEmit` clean, 445 node tests pass, `VITE_ALLOW_DEV_AUTH=true npm run build` builds; automation `nest build` builds, `lint` has no errors, `src/editor/schedule/*.test.ts` pass (54 pass, 12 PG tests skipped without a database). `routeTree.gen.ts` did not change. Browser pass is the lead's.
 
