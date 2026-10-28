@@ -1,14 +1,16 @@
 @import "tailwindcss";
 
 /* ============================================================================
- * Framer-style design tokens (see docs/reference/framer-design-reference.md).
- * Single canvas + two surface lifts, monochrome with one chromatic accent.
- * Tokens live in @theme so they're available both as CSS vars and as
- * Tailwind utility classes (`text-ink`, `bg-surface-1`, etc.).
+ * Design tokens and global styles of the dashboard (spec 078; handoff in docs/redesign).
+ * One dark canvas with three surface lifts and hairlines, one green accent, amber for
+ * "a human has to act". Which class to use when: "Design language" in apps/dashboard/CLAUDE.md.
+ * Colour, radius, type and spacing tokens live in @theme so they are available both as CSS vars and
+ * as Tailwind utilities (`text-ink`, `bg-surface-1`...). Shadow and motion tokens are in a plain
+ * :root block further down, because Tailwind v4 only emits @theme variables that are referenced.
  * ========================================================================= */
 
 @theme {
-  /* ── Supabase-dark surfaces ─────────────────────────────────────── */
+  /* ── Dark surfaces ──────────────────────────────────────────────── */
   --color-canvas:        #1b1b1b;
   --color-surface-1:     #202020;  /* sidebar / alt bands */
   --color-surface-2:     #242424;  /* cards, panels */
@@ -67,12 +69,12 @@
   --space-xxl:  32px;
   --space-section: 64px;
 
-  /* ── Mono — handles, times, counts, kind codes, eyebrow labels (never titles or prose). System stack, no webfont. ── */
+  /* ── Mono — handles, times, counts, kind codes, overlines (never titles or prose). System stack, no webfont. ── */
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
-/* Gradient tokens retained (Framer spotlight cards) — minimal definitions so
-   any remaining references don't break; mapped onto the emerald family. */
+/* Legacy gradient tokens, kept so remaining references don't break; mapped onto the emerald family.
+   Do not use them in new code. */
 @theme {
   --color-grad-violet:   #3ecf8e;
   --color-grad-magenta:  #3ecf8e;
@@ -105,7 +107,7 @@
   --dur-enter: 360ms;   /* entrances (fade-up, pop, slide) */
 }
 
-/* Inter Variable with Framer's OpenType character variants — bespoke voice. */
+/* Inter Variable with its OpenType character variants (set on body below). */
 @font-face {
   font-family: 'InterVariable';
   font-style: normal;
@@ -127,7 +129,10 @@ html, body {
 /* ----------------------------------------------------------------------------
  * Typography utilities — tight tracking is the brand signature. Pull these in
  * with className rather than inline fontSize, so the tier is the source of
- * truth.
+ * truth. In pages use .page-title (32), .text-heading-md (15), .text-body (15),
+ * .text-body-sm (14), .text-caption (13), .text-micro (12); nothing below 11px.
+ * The .text-display-* / .text-headline / .text-subhead tiers are the large ones (landing, report, not-found);
+ * a page title is always .page-title via PageHeader.
  * ------------------------------------------------------------------------- */
 .text-display-xl  { font-size: 64px; font-weight: 500; line-height: 0.95; letter-spacing: -3.2px; }
 .text-display-lg  { font-size: 48px; font-weight: 500; line-height: 1.00; letter-spacing: -2.4px; }
