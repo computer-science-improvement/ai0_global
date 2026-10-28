@@ -7,17 +7,18 @@ interface Props {
   onChange: (id: string | null) => void;
 }
 
+/** Which of my channels the placements are for. While the list loads (or fails) the select stays in place, disabled, so the form does not jump. */
 export function TargetChannelPicker({ value, onChange }: Props) {
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, isError } = useQuery({
     queryKey: ['channels', { filter: 'mine' }],
     queryFn: () => trackingApi.listChannels({ filter: 'mine', pageSize: 100 }),
   });
 
-  if (isLoading) {
+  if (isLoading || isError) {
     return (
-      <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>
-        Loading channels…
-      </p>
+      <select className="input-field" aria-label="Target channel" disabled value="" style={{ width: '100%' }}>
+        <option value="">{isLoading ? 'Loading channels…' : 'Couldn’t load your channels'}</option>
+      </select>
     );
   }
 
@@ -25,6 +26,7 @@ export function TargetChannelPicker({ value, onChange }: Props) {
     <select
       value={value ?? ''}
       onChange={e => onChange(e.target.value || null)}
+      aria-label="Target channel"
       className="input-field"
       style={{ width: '100%' }}
     >

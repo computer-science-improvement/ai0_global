@@ -1,7 +1,7 @@
 // Small parts shared by the channel pages (spec 078 C1): a search field, loading rows, an error callout, a loading note,
 // the channel glyph and the panel caption. The styles are in channels.css.
 
-import type { CSSProperties, ReactNode } from 'react';
+import { useState, type CSSProperties, type ReactNode } from 'react';
 import { Icon } from '../Icon';
 import { Icon as UiIcon } from '../ui/Icon';
 import { EmptyState } from '../ui/primitives';
@@ -87,8 +87,17 @@ export function SectionCaption({ children }: { children: ReactNode }) {
   return <span className="ch-cap">{children}</span>;
 }
 
-/** A channel's initial on the neutral glyph tile: 32 / 36px in rows, `xl` (64px) in the entity header. */
-export function ChannelGlyph({ name, size = 'md', title }: { name: string | null | undefined; size?: 'sm' | 'md' | 'xl'; title?: string }) {
+/**
+ * A channel's initial on the neutral glyph tile: 32 / 36px in rows, `xl` (64px) in the entity header. With a `src` the photo
+ * covers the initial; if the photo fails to load the initial shows.
+ */
+export function ChannelGlyph({ name, size = 'md', title, src }: {
+  name: string | null | undefined;
+  size?: 'sm' | 'md' | 'xl';
+  title?: string;
+  src?: string | null;
+}) {
+  const [broken, setBroken] = useState(false);
   return (
     <div
       className={`hub-glyph is-neutral ch-glyph${size === 'sm' ? ' is-sm' : size === 'xl' ? ' is-xl' : ''}`}
@@ -96,6 +105,7 @@ export function ChannelGlyph({ name, size = 'md', title }: { name: string | null
       aria-hidden
     >
       {channelInitial(name)}
+      {src && !broken && <img className="ch-glyph-img" src={src} alt="" loading="lazy" onError={() => setBroken(true)} />}
     </div>
   );
 }

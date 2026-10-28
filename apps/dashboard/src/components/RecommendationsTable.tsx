@@ -1,16 +1,16 @@
-// Dark-canvas rewrite. Uses .table recipe (surface-1 wrapper, hairline-soft
-// dividers, surface-2 row hover). Chips use .chip / .chip.is-active instead
-// of the previous bg-blue-100/text-blue-900 light-theme pair. External
-// links use .link-accent (single chromatic accent), not text-blue-600.
-// font-mono dropped — global tabular-nums already aligns numeric cells.
+// The placements table of the Recommendations page: dense, column-oriented data, so it stays a table (ui/table) and the
+// page frames it in a SectionCard. Themes shared with the target are the accented chips. Wide cells keep their width; on a
+// phone the table scrolls inside its own frame.
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from '@tanstack/react-router';
 import { trackingApi } from '../api/tracking';
-import { Icon } from './Icon';
-import { ChannelAvatar } from './ChannelAvatar';
+import { ChannelGlyph } from './channels/ChannelsUi';
+import { Icon } from './ui/Icon';
+import { EmptyState } from './ui/primitives';
 import { TableAction, RowActions, ActionsTh } from './ui/table';
 import type { RecommendationItem } from '../api/types';
+import './channels/channels.css';
 
 interface Props {
   items:        RecommendationItem[];
@@ -40,17 +40,7 @@ function teleadsUrl(slug: string): string {
 
 export function RecommendationsTable({ items, targetThemes }: Props) {
   if (items.length === 0) {
-    return (
-      <div className="card" style={{
-        textAlign: 'center', padding: 32,
-        background: 'var(--color-surface-1)',
-        border: '1px dashed var(--color-hairline)',
-      }}>
-        <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)', margin: 0 }}>
-          No matches for this target / budget.
-        </p>
-      </div>
-    );
+    return <EmptyState icon="recommendations" title="No matches" note="Nothing fits this target and budget." />;
   }
 
   const targetSet = new Set(targetThemes);
@@ -110,20 +100,17 @@ function RecommendationRow({ item: r, idx, targetSet }: {
 
   return (
     <tr>
-      <td className="meta num" style={{ textAlign: 'left', width: 40 }}>{idx + 1}</td>
+      <td className="mono rec-rank" style={{ textAlign: 'left' }}>{idx + 1}</td>
       <td>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          {r.avatarUrl
-            ? <img src={r.avatarUrl} alt="" style={{ width: 32, height: 32, borderRadius: 9999, objectFit: 'cover' }}
-                onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }} />
-            : <ChannelAvatar name={r.title ?? r.slug} src={null} size={32} />}
+        <div className="rec-ch">
+          <ChannelGlyph name={r.title ?? r.slug} src={r.avatarUrl} size="sm" />
           <div style={{ minWidth: 0 }}>
-            <div className="text-body-sm" style={{ color: 'var(--color-ink)' }}>{r.title}</div>
+            <div className="text-body-sm rec-ch-name">{r.title}</div>
             <a
               href={r.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="link-accent text-micro"
+              className="link-accent mono rec-ch-handle"
               title="Open the channel in Telegram"
             >
               {username ? `@${username}` : 'invite link'}
@@ -132,29 +119,27 @@ function RecommendationRow({ item: r, idx, targetSet }: {
         </div>
       </td>
       <td>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4 }}>
+        <div className="rec-chips">
           {r.themes.slice(0, 5).map(t => (
             <span key={t} className={targetSet.has(t) ? 'chip is-active' : 'chip'}>
               {t}
             </span>
           ))}
           {r.themes.length > 5 && (
-            <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>
-              +{r.themes.length - 5}
-            </span>
+            <span className="mono rec-more">+{r.themes.length - 5}</span>
           )}
         </div>
       </td>
-      <td className="num">{(r.score * 100).toFixed(0)}%</td>
-      <td className="num">{(r.priceMin / 100).toFixed(0)}</td>
-      <td className="num">
+      <td className="num mono">{(r.score * 100).toFixed(0)}%</td>
+      <td className="num mono">{(r.priceMin / 100).toFixed(0)}</td>
+      <td className="num mono">
         {r.estimatedSubsPerAd == null
-          ? <span style={{ color: 'var(--color-ink-dim)' }}>—</span>
+          ? <span className="rec-na">—</span>
           : (r.estimatedSubsPerAd > 0 ? '+' : '') + r.estimatedSubsPerAd}
       </td>
-      <td className="num">
+      <td className="num mono">
         {r.sexRatio == null
-          ? <span style={{ color: 'var(--color-ink-dim)' }}>—</span>
+          ? <span className="rec-na">—</span>
           : `${r.sexRatio}/${100 - r.sexRatio}`}
       </td>
       <td style={{ textAlign: 'right' }}>
@@ -165,29 +150,28 @@ function RecommendationRow({ item: r, idx, targetSet }: {
             onClick={() => track.mutate()}
             disabled={!username || track.isPending}
             title={username
-              ? 'Add this channel to /channels and open its detail page'
+              ? 'Add this channel to your tracked channels and open its page'
               : 'Private invite link — add manually via the Add Channel modal'}
           />
           <a
             href={teleadsUrl(r.slug)}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-tiny"
+            className="btn-tiny rec-ext"
             title="Open the buyer page on teleads.com.ua"
-            style={{ textDecoration: 'none' }}
           >
-            TeleAds ↗
+            TeleAds
+            <Icon name="external" size={12} />
           </a>
           <a
             href={r.link}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-tiny"
+            className="btn-tiny rec-ext"
             title="Open the channel in Telegram"
-            style={{ textDecoration: 'none' }}
           >
-            <Icon name="channels" size={12} style={{ marginRight: 4 }} />
-            TG ↗
+            Telegram
+            <Icon name="external" size={12} />
           </a>
         </RowActions>
       </td>
