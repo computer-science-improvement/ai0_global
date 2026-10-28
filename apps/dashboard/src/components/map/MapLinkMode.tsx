@@ -10,8 +10,6 @@ import { resourceTitle } from '../../lib/map-state';
 // Spec 058: link mode — the HUD's "Link" button; click one building, then another, and the popover at the second one offers what
 // to do with the pair. The mode stays on after an action, so several pairs can be linked one after another.
 
-const MUTED = { margin: 0, color: 'var(--color-ink-muted)' } as const;
-
 /** The line under the HUD while link mode is on. */
 export function LinkHint({ first }: { first: string | null }) {
   return (
@@ -59,7 +57,7 @@ export function LinkPopover({ snap, a, b, x, y, onDone, onCancel }: LinkPopoverP
     if (c.leaves) {
       const ok = await confirm(`move «${nameB}» from «${c.leaves}» into «${c.putIn.name}»`, {
         danger: false, confirmLabel: 'Move',
-        details: <p className="text-micro" style={MUTED}>It leaves «{c.leaves}»: copies planned for it there are skipped. You can move it back any time.</p>,
+        details: <p className="text-micro map-note">It leaves «{c.leaves}»: copies planned for it there are skipped. You can move it back any time.</p>,
       });
       if (!ok) return;
     }
@@ -86,10 +84,10 @@ export function LinkPopover({ snap, a, b, x, y, onDone, onCancel }: LinkPopoverP
             <Icon name="layers" size={14} />Put {nameB} in {c.putIn.name}
           </button>
         )}
-        <button type="button" className="btn-tiny" onClick={onCancel}>Cancel</button>
+        <button type="button" className="btn-ghost btn-sm" onClick={onCancel}>Cancel</button>
       </div>
-      {c.stopped && <p className="text-micro" style={MUTED}><Badge tone="warning">stopped</Badge> You unlinked this pair earlier; linking brings it back.</p>}
-      {c.full && <p className="text-micro" style={MUTED}>«{c.full.name}» already has {resourceTitle(c.full.holder)} on this platform, so {nameB} cannot join it.</p>}
+      {c.stopped && <p className="text-micro map-note"><Badge tone="warning">stopped</Badge> You unlinked this pair earlier; linking brings it back.</p>}
+      {c.full && <p className="text-micro map-note">«{c.full.name}» already has {resourceTitle(c.full.holder)} on this platform, so {nameB} cannot join it.</p>}
     </div>
   );
 }

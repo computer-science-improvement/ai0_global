@@ -30,9 +30,9 @@ export function MapDrawer({ title, subtitle, lead, onClose, children }: {
       <div className="map-drawer-grip" aria-hidden />
       <div className="map-drawer-head">
         {lead}
-        <div style={{ minWidth: 0, flex: 1 }}>
-          <h2 className="text-body" style={{ margin: 0, fontWeight: 600, overflowWrap: 'anywhere' }}>{title}</h2>
-          {subtitle && <div className="text-micro" style={{ marginTop: 4, color: 'var(--color-ink-muted)', display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center' }}>{subtitle}</div>}
+        <div className="map-drawer-main">
+          <h2 className="text-heading-md">{title}</h2>
+          {subtitle && <div className="map-drawer-sub">{subtitle}</div>}
         </div>
         <button type="button" className="map-icon-btn" aria-label="Close" onClick={onClose}><Icon name="x" size={16} /></button>
       </div>
@@ -52,13 +52,12 @@ function Facts({ rows }: { rows: Array<[string, ReactNode]> }) {
 function Section({ title, children }: { title: string; children: ReactNode }) {
   return (
     <section>
-      <h3 className="text-caption" style={{ margin: '0 0 8px', color: 'var(--color-ink-muted)', fontWeight: 600 }}>{title}</h3>
+      <h3 className="text-overline map-section-title">{title}</h3>
       {children}
     </section>
   );
 }
 
-const linkBtn = { background: 'none', border: 0, padding: 0, cursor: 'pointer', font: 'inherit' } as const;
 const healthTone = (h: MapResource['health']) => (h === 'ok' ? 'success' : h === 'warning' ? 'warning' : h === 'broken' ? 'danger' : 'neutral');
 
 const LinkChip = ({ icon, children, ...rest }: { icon: IconName; children: ReactNode } & Record<string, unknown>) => (
@@ -80,17 +79,17 @@ function useGo() {
 
 function AlertRows({ alerts, onShow }: { alerts: MapAlert[]; onShow?: (ref: string) => void }) {
   const go = useGo();
-  if (!alerts.length) return <p className="text-caption" style={{ margin: 0, color: 'var(--color-ink-muted)' }}>Nothing waits for you here.</p>;
+  if (!alerts.length) return <p className="text-caption map-note">Nothing waits for you here.</p>;
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+    <div className="map-alert-list">
       {alerts.map((a, i) => (
-        <div key={`${a.kind}-${a.ref}-${a.agent}-${i}`} className="map-alert-row" style={{ cursor: 'default', flexDirection: 'column', gap: 8 }}>
-          <div style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
-            <span style={{ color: alertTone(a.kind) === 'danger' ? 'var(--color-danger)' : 'var(--color-warning)', flex: 'none', marginTop: 1 }}><Icon name={ALERT_ICON[a.kind] ?? 'warning'} size={16} /></span>
-            <span style={{ flex: 1 }}>{a.title}</span>
+        <div key={`${a.kind}-${a.ref}-${a.agent}-${i}`} className="map-alert-row is-static">
+          <div className="map-alert-top">
+            <span className={`map-alert-icon${alertTone(a.kind) === 'danger' ? ' is-danger' : ''}`}><Icon name={ALERT_ICON[a.kind] ?? 'warning'} size={16} /></span>
+            <span className="map-name">{a.title}</span>
             <Badge tone={alertTone(a.kind) === 'danger' ? 'danger' : 'warning'}>{a.count}</Badge>
           </div>
-          <div style={{ display: 'flex', gap: 8 }}>
+          <div className="map-alert-actions">
             <button type="button" className="btn-tiny" onClick={() => go(a.path)}>Open</button>
             {a.ref && onShow && <button type="button" className="btn-tiny" onClick={() => onShow(a.ref!)}>Show on the map</button>}
           </div>
@@ -110,7 +109,7 @@ export function AlertsDrawer({ snap, onClose, onShow }: { snap: MapSnapshot; onC
 
 function StateChip({ unit }: { unit: Pick<MapUnit, 'state'> }) {
   const st = STATE_META[unit.state];
-  return <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, color: st.color, fontWeight: 600 }}><Icon name={st.icon} size={13} strokeWidth={2.6} />{st.label}</span>;
+  return <span className="map-state" style={{ color: st.color }}><Icon name={st.icon} size={13} strokeWidth={2.6} />{st.label}</span>;
 }
 
 export function BuildingDrawer({ snap, res, onClose, onPickUnit, onShow, onPickInfra, onPickBuilding, onPickNetwork }: {
@@ -130,17 +129,17 @@ export function BuildingDrawer({ snap, res, onClose, onPickUnit, onShow, onPickI
   return (
     <MapDrawer
       title={resourceTitle(res)}
-      lead={<span style={{ width: 38, height: 38, borderRadius: 10, display: 'grid', placeItems: 'center', background: 'var(--color-surface-3)', color: meta.tint, border: `2px solid ${health.color}`, flex: 'none' }}><Icon name={meta.icon} size={20} /></span>}
+      lead={<span className="map-lead" style={{ color: meta.tint, borderColor: health.color }}><Icon name={meta.icon} size={20} /></span>}
       subtitle={<><span>{meta.label}</span>{res.mode && <Badge tone={MODE_META[res.mode].tone}>{MODE_META[res.mode].label}</Badge>}<Badge tone={healthTone(res.health)}>{health.label}</Badge>{res.paused && <Badge tone="neutral">Paused</Badge>}</>}
       onClose={onClose}
     >
       <Facts rows={[
         ['Mode', res.mode ? <span key="m"><strong style={{ color: MODE_META[res.mode].color }}>{MODE_META[res.mode].label}</strong> · {MODE_META[res.mode].help}{res.agent ? <> · <Link to="/app/agents/$handle" params={{ handle: res.agent }} className="link-accent">change</Link></> : null}</span> : 'No agent runs it yet'],
         ['Network', network
-          ? (onPickNetwork ? <button key="n" type="button" className="link-accent" style={linkBtn} onClick={() => onPickNetwork(network.id)} title="Open the network">{network.name}</button> : network.name)
+          ? (onPickNetwork ? <button key="n" type="button" className="link-accent map-linkbtn" onClick={() => onPickNetwork(network.id)} title="Open the network">{network.name}</button> : network.name)
           : `None (in ${PLATFORM_SECTION_NAME[res.platform]})`],
         ['Served by', bots.length ? <span key="b" style={{ display: 'inline-flex', gap: 8, flexWrap: 'wrap' }}>{bots.map((b) => (
-          <button key={b.id} type="button" className="link-accent" style={linkBtn} onClick={() => onPickInfra?.(b.id)}>{b.title}{b.isDefault ? ' (default bot)' : b.kind === 'mtproto' ? ' (reads stats)' : ''}</button>
+          <button key={b.id} type="button" className="link-accent map-linkbtn" onClick={() => onPickInfra?.(b.id)}>{b.title}{b.isDefault ? ' (default bot)' : b.kind === 'mtproto' ? ' (reads stats)' : ''}</button>
         ))}</span> : null],
         ['Followers', res.followers != null ? compactNumber(res.followers) : null],
         ['Posts today', String(res.postsToday)],
@@ -152,17 +151,17 @@ export function BuildingDrawer({ snap, res, onClose, onPickUnit, onShow, onPickI
       <Section title="Waiting here"><AlertRows alerts={alerts} /></Section>
       {here.length > 0 && (
         <Section title="Agents">
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+          <div className="map-stack">
             {here.map((u) => (
-              <button key={u.id} type="button" className="map-alert-row" onClick={() => onPickUnit(u.id)} style={{ alignItems: 'center' }}>
+              <button key={u.id} type="button" className="map-alert-row is-center" onClick={() => onPickUnit(u.id)}>
                 <Avatar handle={u.handle} kind={u.kind} size={24} />
-                <span style={{ flex: 1, minWidth: 0, overflowWrap: 'anywhere' }}>@{u.handle}{u.level != null && <span className="text-micro" style={{ color: 'var(--color-ink-muted)' }}> · Lv {u.level}</span>}</span><StateChip unit={u} />
+                <span className="map-name">@{u.handle}{u.level != null && <span className="text-micro map-muted"> · Lv {u.level}</span>}</span><StateChip unit={u} />
               </button>
             ))}
           </div>
         </Section>
       )}
-      {roads.length > 0 && <p className="text-micro" style={{ margin: 0, color: 'var(--color-ink-muted)' }}>{roads.length} {roads.length === 1 ? 'road' : 'roads'} connect this building to others: click one on the map.</p>}
+      {roads.length > 0 && <p className="text-micro map-note">{roads.length} {roads.length === 1 ? 'road' : 'roads'} connect this building to others: click one on the map.</p>}
       <div className="map-links">
         {res.agent && <LinkChip icon="agents" to="/app/agents/$handle" params={{ handle: res.agent }}>Agent page</LinkChip>}
         <LinkChip icon="check" to="/app/agents/inbox" search={{ tab: 'approvals' }}>Approvals</LinkChip>
@@ -184,7 +183,7 @@ export function NetworkDrawer({ snap, network, onClose, onPickBuilding }: { snap
   return (
     <MapDrawer
       title={network.name}
-      lead={<span style={{ width: 38, height: 38, borderRadius: 10, display: 'grid', placeItems: 'center', background: 'var(--color-surface-3)', color: 'var(--color-accent)', border: '2px solid var(--color-hairline-strong)', flex: 'none' }}><Icon name="layers" size={20} /></span>}
+      lead={<span className="map-lead is-network"><Icon name="layers" size={20} /></span>}
       subtitle={<><span>Network</span>{network.mode && <Badge tone={independent ? 'accent' : 'neutral'}>{independent ? 'Independent' : 'Auto-duplicate'}</Badge>}<Badge tone="neutral">{members.length} {members.length === 1 ? 'member' : 'members'}</Badge></>}
       onClose={onClose}
     >
@@ -213,13 +212,13 @@ export function NetworkDrawer({ snap, network, onClose, onPickBuilding }: { snap
               })}
             </div>
           )
-          : <p className="text-caption" style={{ margin: 0, color: 'var(--color-ink-muted)' }}>Nobody is in this network yet.</p>}
+          : <p className="text-caption map-note">Nobody is in this network yet.</p>}
         <div style={{ marginTop: 10 }}>
-          <button type="button" className="btn-secondary" style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }} onClick={() => setEditing(true)}>
+          <button type="button" className="btn-secondary btn-sm" onClick={() => setEditing(true)}>
             <Icon name="pencil" size={14} />Members…
           </button>
         </div>
-        <p className="text-micro" style={{ margin: '8px 0 0', color: 'var(--color-ink-muted)' }}>
+        <p className="text-micro map-note" style={{ marginTop: 8 }}>
           Adding a resource draws a copy line from the network's Telegram channel to it; taking one out removes the line and skips the copies planned for it.
         </p>
       </Section>
@@ -251,7 +250,7 @@ export function UnitDrawer({ snap, unit, onClose, onPickBuilding }: { snap: MapS
           {unit.emoji && (
             <g transform="translate(13 14)">
               <circle r="8.5" style={{ fill: 'var(--color-surface-2)', stroke: 'var(--color-hairline-strong)' }} />
-              <text textAnchor="middle" dominantBaseline="central" fontSize="10">{unit.emoji}</text>
+              <text textAnchor="middle" dominantBaseline="central" fontSize="11">{unit.emoji}</text>
             </g>
           )}
         </svg>
@@ -261,24 +260,24 @@ export function UnitDrawer({ snap, unit, onClose, onPickBuilding }: { snap: MapS
     >
       <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
         <div className="text-body-sm"><StateChip unit={unit} /></div>
-        <div className="text-caption" style={{ color: 'var(--color-ink-muted)' }}>
+        <div className="text-caption map-note">
           {unit.detail ? `${unit.detail}${unit.stateSince ? ` · since ${ago(unit.stateSince)}` : ''}` : unit.stateSince ? `since ${ago(unit.stateSince)}` : st.help}
         </div>
       </div>
       <Facts rows={[
         ['Mode', unit.effectiveMode === unit.mode ? modeLabel(unit.mode) : `${modeLabel(unit.effectiveMode)} (the channel card; the agent is set to ${modeLabel(unit.mode).toLowerCase()})`],
         ['Spend today', <span key="s" style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-          <span>{usd(unit.spentTodayUsd)}{unit.capUsd != null && <span style={{ color: 'var(--color-ink-muted)' }}> of {usd(unit.capUsd)} cap</span>}</span>
+          <span>{usd(unit.spentTodayUsd)}{unit.capUsd != null && <span className="map-muted"> of {usd(unit.capUsd)} cap</span>}</span>
           {pct != null && <span className={`map-meter${pct >= 90 ? ' is-danger' : pct >= 70 ? ' is-warning' : ''}`} style={{ width: '100%' }}><i style={{ width: `${pct}%` }} /></span>}
         </span>],
         ['Runs today', String(unit.runsToday)],
         ['Last run', unit.lastRunAt ? ago(unit.lastRunAt) : 'No runs yet'],
-        ['Stands at', home ? <button key="h" type="button" className="link-accent" style={linkBtn} onClick={() => onPickBuilding(home.ref)}>{resourceTitle(home)}</button> : 'Headquarters'],
+        ['Stands at', home ? <button key="h" type="button" className="link-accent map-linkbtn" onClick={() => onPickBuilding(home.ref)}>{resourceTitle(home)}</button> : 'Headquarters'],
         ['Works for', parent ? `@${parent.handle}` : null],
         ['Level', unit.level != null ? `${unit.level} of 10${unit.level < 10 && unit.levelStats ? ` · score ${unit.levelStats.score}, the next level at ${unit.level * 10}` : ''}` : null],
       ]} />
       {unit.levelStats && (
-        <p className="text-micro" style={{ margin: 0, color: 'var(--color-ink-muted)' }}>
+        <p className="text-micro map-note">
           {parent ? `Same as @${parent.handle}. ` : ''}Level counts quality, not volume: {levelLine(unit.levelStats)}.
         </p>
       )}
@@ -333,7 +332,7 @@ export function RoadDrawer({ snap, road, onClose, onPickBuilding }: { snap: MapS
       </>}
       onClose={onClose}
     >
-      {road.past && <p className="text-caption" style={{ margin: 0, color: 'var(--color-warning)' }}>Not linked any more — traffic from the last 30 days.</p>}
+      {road.past && <p className="text-caption map-note is-warning">Not linked any more — traffic from the last 30 days.</p>}
       <Facts rows={[
         ['Last 30 days', road.count30d > 0 ? `${road.count30d} ${road.count30d === 1 ? verb.replace(/s$/, '') : verb}` : 'No posts yet'],
         ['Last one', road.lastAt ? ago(road.lastAt) : null],
@@ -369,14 +368,14 @@ export function InfraDrawer({ snap, item, onClose, onPickBuilding, onShow }: {
   return (
     <MapDrawer
       title={item.title}
-      lead={<span style={{ width: 38, height: 38, borderRadius: 10, display: 'grid', placeItems: 'center', background: 'var(--color-surface-3)', color: meta.tint, border: `2px solid ${health.color}`, flex: 'none' }}><Icon name={meta.icon} size={20} /></span>}
+      lead={<span className="map-lead" style={{ color: meta.tint, borderColor: health.color }}><Icon name={meta.icon} size={20} /></span>}
       subtitle={<>
         <span>{meta.label}</span><Badge tone={healthTone(item.health)}>{health.label}</Badge>
         {item.isDefault && <Badge tone="accent">Default bot</Badge>}{!item.active && <Badge tone="neutral">Switched off</Badge>}
       </>}
       onClose={onClose}
     >
-      <p className="text-caption" style={{ margin: 0, color: 'var(--color-ink-muted)' }}>{meta.help}</p>
+      <p className="text-caption map-note">{meta.help}</p>
       <Facts rows={[
         ['Account', item.username && item.kind !== 'telegraph' ? `@${item.username.replace(/^@/, '')}` : null],
         ['Author', item.kind === 'telegraph' ? item.username : null],
@@ -390,15 +389,15 @@ export function InfraDrawer({ snap, item, onClose, onPickBuilding, onShow }: {
       {alerts.length > 0 && <Section title="Waiting here"><AlertRows alerts={alerts} /></Section>}
       {served.length > 0 && (
         <Section title="Channels">
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+          <div className="map-stack">
             {served.map((r) => (
-              <button key={r.ref} type="button" className="map-alert-row" onClick={() => onPickBuilding(r.ref)} style={{ alignItems: 'center' }}>
+              <button key={r.ref} type="button" className="map-alert-row is-center" onClick={() => onPickBuilding(r.ref)}>
                 <span style={{ color: PLATFORM_META[r.platform].tint, flex: 'none' }}><Icon name={PLATFORM_META[r.platform].icon} size={16} /></span>
-                <span style={{ flex: 1, minWidth: 0, overflowWrap: 'anywhere' }}>{resourceTitle(r)}</span>
+                <span className="map-name">{resourceTitle(r)}</span>
               </button>
             ))}
           </div>
-          {item.isDefault && <p className="text-micro" style={{ margin: '6px 0 0', color: 'var(--color-ink-muted)' }}>As the default bot it also publishes to every channel that has no bot of its own.</p>}
+          {item.isDefault && <p className="text-micro map-note" style={{ marginTop: 6 }}>As the default bot it also publishes to every channel that has no bot of its own.</p>}
         </Section>
       )}
       <div className="map-links">

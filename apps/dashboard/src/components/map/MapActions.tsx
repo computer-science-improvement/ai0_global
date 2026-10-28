@@ -43,7 +43,7 @@ export function NetworkPicker({ snap, res }: { snap: MapSnapshot; res: MapResour
       ? await confirm(`move «${title}» into «${groupName}»`, {
         danger: false, confirmLabel: 'Move',
         details: (
-          <p className="text-micro" style={{ margin: 0, color: 'var(--color-ink-muted)' }}>
+          <p className="text-micro map-note">
             {current ? `It leaves «${current.name}». ` : ''}The network's mode then applies to it: with Auto-duplicate the network's Telegram posts are
             copied to it, with Independent the network's agent decides per post. You can move it back any time.
           </p>
@@ -54,7 +54,7 @@ export function NetworkPicker({ snap, res }: { snap: MapSnapshot; res: MapResour
         details: (
           <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
             {isAnchor && <div className="callout-warning"><strong>This is the network's Telegram channel: the network's agent and its playbook are anchored on it.</strong></div>}
-            <p className="text-micro" style={{ margin: 0, color: 'var(--color-ink-muted)' }}>
+            <p className="text-micro map-note">
               The line disappears: the network's posts are no longer copied or adapted to it, copies already planned for it are skipped, and it moves to the {PLATFORM_SECTION_NAME[res.platform]} section. You can put it back any time.
             </p>
           </div>
@@ -104,14 +104,14 @@ export function NetworkPicker({ snap, res }: { snap: MapSnapshot; res: MapResour
         <option value={NEW}>New network…</option>
       </select>
       {naming && (
-        <div style={{ display: 'flex', gap: 8 }}>
+        <div className="map-field-row">
           <input className="input-field" style={{ flex: 1 }} autoFocus placeholder="Network name" value={name} maxLength={80}
             onChange={(e) => setName(e.target.value)} onKeyDown={(e) => { if (e.key === 'Enter') void createAndMove(); if (e.key === 'Escape') setNaming(false); }} />
-          <button type="button" className="btn-primary" disabled={!name.trim() || busy} onClick={() => void createAndMove()}>Create</button>
-          <button type="button" className="btn-secondary" disabled={busy} onClick={() => { setNaming(false); setName(''); }}>Cancel</button>
+          <button type="button" className="btn-primary btn-sm" disabled={!name.trim() || busy} onClick={() => void createAndMove()}>Create</button>
+          <button type="button" className="btn-ghost btn-sm" disabled={busy} onClick={() => { setNaming(false); setName(''); }}>Cancel</button>
         </div>
       )}
-      <p className="text-micro" style={{ margin: 0, color: 'var(--color-ink-muted)' }}>
+      <p className="text-micro map-note">
         One account per platform in a network. Networks are also managed on <Link to="/app/connections/groups" className="link-accent">Connections → Groups</Link>.
       </p>
     </div>
@@ -140,7 +140,7 @@ export function RoadActions({ snap, road }: { snap: MapSnapshot; road: MapRoad }
   const setLinked = async (linked: boolean) => {
     const ok = linked
       ? true
-      : await confirm(`unlink «${nameA}» and «${nameB}»`, { confirmLabel: 'Unlink', details: <p className="text-micro" style={{ margin: 0, color: 'var(--color-ink-muted)' }}>{UNLINK_HELP}</p> });
+      : await confirm(`unlink «${nameA}» and «${nameB}»`, { confirmLabel: 'Unlink', details: <p className="text-micro map-note">{UNLINK_HELP}</p> });
     if (!ok) return;
     try {
       const r = await links.mutateAsync({ ref: road.from, add: linked ? [road.to] : [], remove: linked ? [] : [road.to] });
@@ -154,7 +154,7 @@ export function RoadActions({ snap, road }: { snap: MapSnapshot; road: MapRoad }
     if (!b || !shared) return;
     const ok = await confirm(`take «${nameB}» out of «${shared.name}»`, {
       danger: true, confirmLabel: 'Take out',
-      details: <p className="text-micro" style={{ margin: 0, color: 'var(--color-ink-muted)' }}>The line disappears: the network's posts are no longer copied or adapted to it, copies already planned for it are skipped, and it moves to the {PLATFORM_SECTION_NAME[b.platform]} section. You can put it back from its drawer.</p>,
+      details: <p className="text-micro map-note">The line disappears: the network's posts are no longer copied or adapted to it, copies already planned for it are skipped, and it moves to the {PLATFORM_SECTION_NAME[b.platform]} section. You can put it back from its drawer.</p>,
     });
     if (!ok) return;
     try {
@@ -171,41 +171,39 @@ export function RoadActions({ snap, road }: { snap: MapSnapshot; road: MapRoad }
     } catch (e) { toast.error(errorText(e)); }
   };
 
-  const btn = { justifyContent: 'flex-start', display: 'inline-flex', alignItems: 'center', gap: 8 } as const;
   if (road.past) {
     return (
       <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
         {!copy && (
-          <button type="button" className="btn-secondary" disabled={links.isPending} onClick={() => void setLinked(true)} style={btn}>
+          <button type="button" className="btn-secondary map-btn-start" disabled={links.isPending} onClick={() => void setLinked(true)}>
             <Icon name="link" size={14} />Link again
           </button>
         )}
         {homeNetwork && b && (
-          <button type="button" className="btn-secondary" disabled={setNetwork.isPending || !!placeTaken} onClick={() => void putBack()} style={btn}>
+          <button type="button" className="btn-secondary map-btn-start" disabled={setNetwork.isPending || !!placeTaken} onClick={() => void putBack()}>
             <Icon name="link" size={14} />Put {nameB} back in {homeNetwork.name}
           </button>
         )}
-        {placeTaken && <p className="text-micro" style={{ margin: 0, color: 'var(--color-ink-muted)' }}>«{homeNetwork!.name}» already has {resourceTitle(placeTaken)} on this platform.</p>}
-        {copy && !homeNetwork && <p className="text-micro" style={{ margin: 0, color: 'var(--color-ink-muted)' }}>To copy posts again, put the resource back in a network from its drawer.</p>}
+        {placeTaken && <p className="text-micro map-note">«{homeNetwork!.name}» already has {resourceTitle(placeTaken)} on this platform.</p>}
+        {copy && !homeNetwork && <p className="text-micro map-note">To copy posts again, put the resource back in a network from its drawer.</p>}
       </div>
     );
   }
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
       {!copy && (
-        <button type="button" className="btn-secondary" disabled={links.isPending} onClick={() => void setLinked(false)}
-          style={{ ...btn, color: 'var(--color-danger)' }}>
+        <button type="button" className="btn-secondary map-btn-start map-btn-danger" disabled={links.isPending} onClick={() => void setLinked(false)}>
           <Icon name="x" size={14} />Unlink {nameA} and {nameB}
         </button>
       )}
       {copy && shared && (
-        <button type="button" className="btn-secondary" disabled={setNetwork.isPending} onClick={() => void takeOut()} style={{ ...btn, color: 'var(--color-danger)' }}>
+        <button type="button" className="btn-secondary map-btn-start map-btn-danger" disabled={setNetwork.isPending} onClick={() => void takeOut()}>
           <Icon name="x" size={14} />Take {nameB} out of {shared.name}
         </button>
       )}
       {copy && shared && anchorAgent && shared.mode === 'legacy_duplicate' && <IndependentButton handle={anchorAgent} network={shared.name} />}
       {copy && shared && shared.mode === 'independent' && (
-        <p className="text-micro" style={{ margin: 0, color: 'var(--color-ink-muted)' }}>
+        <p className="text-micro map-note">
           «{shared.name}» is Independent: @{anchorAgent ?? 'the network agent'} decides per post whether to copy, adapt or write a unique one (its playbook).
         </p>
       )}
@@ -220,7 +218,7 @@ export function IndependentButton({ handle, network }: { handle: string; network
   const go = async () => {
     const ok = await confirm(`switch «${network}» to independent`, {
       danger: false, confirmLabel: 'Switch to independent',
-      details: <p className="text-micro" style={{ margin: 0, color: 'var(--color-ink-muted)' }}>Each member becomes its own resource; @{handle} decides per post: duplicate, adapt, unique or skip. Auto-duplication stops from the next plan day once the agent is live with an active playbook.</p>,
+      details: <p className="text-micro map-note">Each member becomes its own resource; @{handle} decides per post: duplicate, adapt, unique or skip. Auto-duplication stops from the next plan day once the agent is live with an active playbook.</p>,
     });
     if (!ok) return;
     set.mutate('independent', {
@@ -229,8 +227,7 @@ export function IndependentButton({ handle, network }: { handle: string; network
     });
   };
   return (
-    <button type="button" className="btn-secondary" disabled={set.isPending} onClick={() => void go()}
-      style={{ justifyContent: 'flex-start', display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+    <button type="button" className="btn-secondary map-btn-start" disabled={set.isPending} onClick={() => void go()}>
       <Icon name="agents" size={14} />Switch {network} to Independent (stop auto-copies)
     </button>
   );

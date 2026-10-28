@@ -53,16 +53,16 @@ export function TopBar({ snap, phone, updatedAt, fast, alertsOpen, feedOpen, leg
   const stale = now.getTime() - updatedAt > 90_000;
   return (
     <div className="map-hud map-topbar" role="toolbar" aria-label="Network map status">
-      <h1><Icon name="map" size={18} /><span className={phone ? 'sr-only' : undefined}>Network map</span></h1>
+      <h1 className="text-heading-md"><Icon name="map" size={18} /><span className={phone ? 'sr-only' : undefined}>Network map</span></h1>
       <span className="map-sep map-hide-phone" />
       <div className="map-stat" title={b.blocking ? 'A spend cap blocks AI calls' : 'AI spend today against the daily cap'}>
         <Icon name="gem" size={15} />
-        <span><b style={{ fontWeight: 600 }}>{usd(b.spentUsd)}</b>{b.capUsd != null && <span className="map-stat-label"> / {usd(b.capUsd)}</span>}</span>
+        <span className="map-num"><b>{usd(b.spentUsd)}</b>{b.capUsd != null && <span className="map-stat-label"> / {usd(b.capUsd)}</span>}</span>
         {b.capUsd != null && <span className={`map-meter ${tone}`} role="progressbar" aria-label="Spend today" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.min(100, b.pct ?? 0)}><i style={{ width: `${Math.min(100, b.pct ?? 0)}%` }} /></span>}
       </div>
-      <div className="map-stat map-hide-phone map-hide-narrow" title="Agent runs started today"><Icon name="play" size={14} /><span>{snap.totals.runsToday}</span><span className="map-stat-label">runs</span></div>
-      <div className="map-stat map-hide-phone map-hide-narrow" title="Posts published today"><Icon name="send" size={14} /><span>{snap.totals.postsToday}</span><span className="map-stat-label">posts</span></div>
-      <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 10 }}>
+      <div className="map-stat map-hide-phone map-hide-narrow" title="Agent runs started today"><Icon name="play" size={14} /><span className="map-num">{snap.totals.runsToday}</span><span className="map-stat-label">runs</span></div>
+      <div className="map-stat map-hide-phone map-hide-narrow" title="Posts published today"><Icon name="send" size={14} /><span className="map-num">{snap.totals.postsToday}</span><span className="map-stat-label">posts</span></div>
+      <div className="map-topbar-end">
         <span className="map-stat map-hide-phone" title={`Updated ${ago(new Date(updatedAt).toISOString(), now)}. The map refreshes every ${fast ? '5' : '30'} seconds.`}>
           <span className={`map-live-dot${stale ? ' is-stale' : ''}${fast && !stale ? ' is-fast' : ''}`} />
           <span className="map-stat-label map-hide-narrow">{stale ? 'Offline' : `Updated ${ago(new Date(updatedAt).toISOString(), now)}`}</span>
@@ -115,9 +115,9 @@ export interface FeedProps {
 function FeedAvatar({ event, unit }: { event: MapEvent; unit?: MapSnapshot['units'][number] }) {
   const bad = isBadEvent(event.kind);
   const badge = (
-    <span className="map-feed-badge" style={{ color: bad ? 'var(--color-danger)' : 'var(--color-ink-muted)' }}><Icon name={EVENT_ICON[event.kind]} size={unit ? 9 : 14} strokeWidth={unit ? 2.8 : 2} /></span>
+    <span className={`map-feed-badge${bad ? ' is-bad' : ''}`}><Icon name={EVENT_ICON[event.kind]} size={unit ? 9 : 14} strokeWidth={unit ? 2.8 : 2} /></span>
   );
-  if (!unit) return <span className="map-feed-icon" style={{ color: bad ? 'var(--color-danger)' : 'var(--color-ink-muted)' }}>{badge}</span>;
+  if (!unit) return <span className={`map-feed-icon${bad ? ' is-bad' : ''}`}>{badge}</span>;
   return <span className="map-feed-avatar"><Avatar handle={unit.handle} kind={unit.kind} size={28} />{badge}</span>;
 }
 
@@ -130,10 +130,10 @@ export function FeedPanel({ events, freshIds, snap, onPick, onClose }: FeedProps
       <div className="map-drawer-grip" aria-hidden />
       <div className="map-feed-head">
         <span>Activity <span className="map-stat-label">last 24 h</span></span>
-        <button type="button" className="map-icon-btn" style={{ width: 28, height: 28 }} aria-label="Hide the feed" onClick={onClose}><Icon name="x" size={14} /></button>
+        <button type="button" className="map-icon-btn is-sm" aria-label="Hide the feed" onClick={onClose}><Icon name="x" size={14} /></button>
       </div>
       {events.length === 0
-        ? <p className="text-caption" style={{ margin: 0, padding: 16, color: 'var(--color-ink-muted)' }}>Nothing has happened in the last 24 hours.</p>
+        ? <p className="text-caption map-feed-empty">Nothing has happened in the last 24 hours.</p>
         : (
           <ul className="map-feed-list">
             {events.map((e) => (
@@ -141,8 +141,8 @@ export function FeedPanel({ events, freshIds, snap, onPick, onClose }: FeedProps
                 <button type="button" className={`map-feed-row${isBadEvent(e.kind) ? ' is-bad' : ''}${freshIds.has(e.id) ? ' is-new' : ''}`} onClick={() => onPick(e)}>
                   <FeedAvatar event={e} unit={e.agent ? units.get(e.agent) : undefined} />
                   <span style={{ minWidth: 0 }}>
-                    <span className="map-feed-text">{e.agent && <b style={{ fontWeight: 600 }}>@{e.agent} </b>}{e.text}</span>
-                    <span className="map-feed-meta block">{[e.ref ? titles.get(e.ref) ?? e.ref : null, ago(e.at, now)].filter(Boolean).join(' · ')}</span>
+                    <span className="map-feed-text">{e.agent && <b>@{e.agent} </b>}{e.text}</span>
+                    <span className="map-feed-meta block">{e.ref ? `${titles.get(e.ref) ?? e.ref} · ` : ''}<span className="mono">{ago(e.at, now)}</span></span>
                   </span>
                 </button>
               </li>
@@ -164,21 +164,21 @@ export function Legend({ onClose }: { onClose: () => void }) {
   return (
     <section className="map-hud map-legend" aria-label="Legend">
       <h2>
-        <span>Legend</span>
-        <button type="button" className="map-icon-btn" style={{ width: 24, height: 24 }} aria-label="Hide the legend" onClick={onClose}><Icon name="x" size={12} /></button>
+        <span className="text-overline">Legend</span>
+        <button type="button" className="map-icon-btn is-xs" aria-label="Hide the legend" onClick={onClose}><Icon name="x" size={12} /></button>
       </h2>
-      <div className="map-legend-sub" style={{ marginTop: 0 }}>Agent state (the ring)</div>
+      <div className="map-legend-sub text-overline" style={{ marginTop: 0 }}>Agent state (the ring)</div>
       <div className="map-legend-grid">
         {UNIT_STATES.map((s) => (
           <span key={s} className="map-legend-item" title={STATE_META[s].help}>
-            <span style={{ width: 16, height: 16, borderRadius: '50%', border: `2px solid ${STATE_META[s].color}`, display: 'grid', placeItems: 'center', color: STATE_META[s].color, flex: 'none' }}>
+            <span className="map-legend-ring" style={{ color: STATE_META[s].color }}>
               <Icon name={STATE_META[s].icon} size={8} strokeWidth={3} />
             </span>
             {STATE_META[s].label}
           </span>
         ))}
       </div>
-      <div className="map-legend-sub">Links (roads)</div>
+      <div className="map-legend-sub text-overline">Links (roads)</div>
       <div className="map-legend-grid">
         {(['duplicate', 'adapt', 'promo', 'repost'] as const).map((k) => (
           <span key={k} className="map-legend-item" title={LEGEND_ROAD_HELP[k]}>
@@ -186,44 +186,44 @@ export function Legend({ onClose }: { onClose: () => void }) {
             {k === 'duplicate' ? 'Copy (auto)' : k === 'adapt' ? 'Copy (agent)' : ROAD_META[k].label}
           </span>
         ))}
-        <span className="map-legend-item" style={{ gridColumn: '1 / -1', color: 'var(--color-ink-muted)' }} title="A thin line is a link with no posts yet">
+        <span className="map-legend-item is-wide is-muted" title="A thin line is a link with no posts yet">
           <svg width="26" height="8" aria-hidden><line x1="1" y1="4" x2="25" y2="4" strokeWidth="1.2" strokeLinecap="round" style={{ stroke: ROAD_META.adapt.color }} opacity="0.6" /></svg>
           Thin: linked, no posts yet
         </span>
-        <span className="map-legend-item" style={{ gridColumn: '1 / -1', color: 'var(--color-ink-muted)' }} title="Shown only with Show past links">
+        <span className="map-legend-item is-wide is-muted" title="Shown only with Show past links">
           <svg width="26" height="14" aria-hidden><line x1="1" y1="7" x2="25" y2="7" strokeWidth="2.4" strokeLinecap="round" strokeDasharray="6 5" style={{ stroke: ROAD_META.promo.color }} opacity="0.35" /></svg>
           ⊘ Past link: not linked any more
         </span>
       </div>
-      <div className="map-legend-sub">Buildings</div>
+      <div className="map-legend-sub text-overline">Buildings</div>
       <div className="map-legend-grid">
-        <span className="map-legend-item"><i style={{ width: 12, height: 12, borderRadius: 4, border: '2.5px solid var(--color-accent)' }} />Connected</span>
-        <span className="map-legend-item"><i style={{ width: 12, height: 12, borderRadius: 4, border: '2.5px solid var(--color-warning)' }} />Needs attention</span>
-        <span className="map-legend-item"><i style={{ width: 12, height: 12, borderRadius: 4, border: '2.5px solid var(--color-danger)' }} />Broken</span>
-        <span className="map-legend-item"><i style={{ width: 12, height: 12, borderRadius: 4, border: '1px dashed var(--color-ink-dim)', background: 'repeating-linear-gradient(45deg, var(--color-ink-dim) 0 1px, transparent 1px 4px)' }} />Paused</span>
-        <span className="map-legend-item" style={{ gridColumn: '1 / -1' }}>
-          <span style={{ width: 14, height: 14, borderRadius: '50%', background: 'var(--color-warning)', color: 'var(--color-on-accent)', fontSize: 9, fontWeight: 700, display: 'grid', placeItems: 'center', flex: 'none' }}>2</span>
+        <span className="map-legend-item"><i className="map-legend-swatch" />Connected</span>
+        <span className="map-legend-item"><i className="map-legend-swatch is-warning" />Needs attention</span>
+        <span className="map-legend-item"><i className="map-legend-swatch is-danger" />Broken</span>
+        <span className="map-legend-item"><i className="map-legend-swatch is-paused" />Paused</span>
+        <span className="map-legend-item is-wide">
+          <span className="map-legend-beacon">2</span>
           Beacon: something waits for you here
         </span>
-        <span className="map-legend-item" style={{ gridColumn: '1 / -1', color: 'var(--color-ink-muted)' }}>
+        <span className="map-legend-item is-wide is-muted">
           {Object.values(PLATFORM_META).map((p) => <Icon key={p.label} name={p.icon} size={12} />)}
         </span>
       </div>
-      <div className="map-legend-sub">Resource mode (the pill)</div>
+      <div className="map-legend-sub text-overline">Resource mode (the pill)</div>
       <div className="map-legend-grid">
         {Object.values(MODE_META).map((m) => (
           <span key={m.label} className="map-legend-item" title={m.help}>
-            <span style={{ fontSize: 8.5, fontWeight: 700, letterSpacing: '0.08em', color: m.color, border: `1px solid ${m.color}`, borderRadius: 7, padding: '1px 5px', flex: 'none' }}>{m.short}</span>
+            <span className="map-legend-pill" style={{ color: m.color }}>{m.short}</span>
             {m.label}
           </span>
         ))}
       </div>
-      <div className="map-legend-sub">Connections</div>
+      <div className="map-legend-sub text-overline">Connections</div>
       <div className="map-legend-grid">
         {Object.values(INFRA_META).map((m) => (
           <span key={m.label} className="map-legend-item"><Icon name={m.icon} size={12} />{m.label}</span>
         ))}
-        <span className="map-legend-item" style={{ gridColumn: '1 / -1' }}>
+        <span className="map-legend-item is-wide">
           <svg width="26" height="8" aria-hidden><line x1="1" y1="4" x2="25" y2="4" strokeWidth="1.6" strokeLinecap="round" strokeDasharray="1 5" style={{ stroke: 'var(--color-ink-muted)' }} /></svg>
           A bot publishes / a session reads (on select)
         </span>
