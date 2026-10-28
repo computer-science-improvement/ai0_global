@@ -12,6 +12,8 @@ import { useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { Icon, type IconName } from '../ui/Icon';
 import { useConfirm } from '../ui/ConfirmDialog';
+import { describeError } from '../ui/Toast';
+import { EmptyState, HubGlyph } from '../ui/primitives';
 import {
   useMetaAccounts, useMetaAccountGroups, useCreateMetaAccountGroup,
   useDeleteMetaAccountGroup, useSetMetaAccountGroup, useSetMetaAccountGroupSource,
@@ -19,6 +21,7 @@ import {
 } from '../../api/meta-accounts';
 import { trackingApi } from '../../api/tracking';
 import type { MetaAccount, MetaPlatform, TrackedChannel } from '../../api/types';
+import './connections.css';
 
 const CHANNELS_KEY = ['groups-channels'];
 const chLabel = (c: TrackedChannel) =>
@@ -124,49 +127,38 @@ export function MetaGroupsManager() {
 
   return (
     <div>
-      <p className="text-micro" style={{ margin: '0 0 16px', color: 'var(--color-ink-dim)', maxWidth: 760, lineHeight: 1.6 }}>
+      <p className="grp-intro">
         A group links a brand's destinations. Each member is its own resource; the network's agent decides per post:
-        duplicate, adapt, unique or skip. While a group still{' '}
-        <b style={{ color: 'var(--color-ink-muted)' }}>auto-duplicates</b> (legacy groups, or an agent that is not live
-        yet), posts published to its <b style={{ color: 'var(--color-ink-muted)' }}>auto-duplicate source</b> are
-        duplicated to every other member (Telegram included) — pick it from the dropdown on each group.
+        duplicate, adapt, unique or skip. While a group still <b>auto-duplicates</b> (legacy groups, or an agent that is
+        not live yet), posts published to its <b>auto-duplicate source</b> are duplicated to every other member
+        (Telegram included) — pick it from the dropdown on each group.
       </p>
 
       {/* Create composer */}
-      <div style={{
-        display: 'flex', gap: 10, alignItems: 'center', marginBottom: 20, padding: 14,
-        borderRadius: 'var(--radius-lg)', border: '1px solid var(--color-hairline)',
-        background: 'var(--color-surface-2)',
-      }}>
-        <div className="group-hub" aria-hidden style={{ width: 34, height: 34, fontSize: 15 }}>
-          <Icon name="plus" size={16} />
-        </div>
+      <section className="panel is-section grp-compose" aria-label="New group">
+        <HubGlyph size={36}><Icon name="plus" size={16} /></HubGlyph>
         <input
-          value={name} onChange={e => setName(e.target.value)} placeholder="New group name — e.g. Recipes"
+          value={name} onChange={e => setName(e.target.value)} placeholder="New group name — e.g. Recipes" aria-label="New group name"
           className="input-field" style={{ flex: 1, minWidth: 180 }}
           onKeyDown={e => { if (e.key === 'Enter') create(); }}
         />
-        <button onClick={create} className="btn-primary" style={{ gap: 6 }} disabled={!name.trim() || createGroup.isPending}>
+        <button onClick={create} className="btn-primary" disabled={!name.trim() || createGroup.isPending}>
           <Icon name="plus" size={14} /> {createGroup.isPending ? 'Creating…' : 'Create group'}
         </button>
-      </div>
+      </section>
 
-      {(la || lg) && <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>Loading…</p>}
-      {err && <p className="text-body-sm" style={{ color: 'var(--color-danger)', marginBottom: 12 }}>{err.message}</p>}
+      {(la || lg) && <p className="grp-state" role="status">Loading…</p>}
+      {err && <div className="callout-danger" role="alert" style={{ marginBottom: 16 }}>{describeError(err)}</div>}
 
       {groups && groups.length === 0 && (
-        <div className="card" style={{ textAlign: 'center', padding: '44px 32px', borderStyle: 'dashed' }}>
-          <div className="group-hub" style={{ margin: '0 auto 12px', width: 44, height: 44 }} aria-hidden>
-            <Icon name="connections" size={20} />
-          </div>
-          <p className="text-body" style={{ color: 'var(--color-ink)', margin: '0 0 4px', fontWeight: 500 }}>No groups yet</p>
-          <p className="text-body-sm" style={{ color: 'var(--color-ink-muted)', margin: 0 }}>
-            Create one above, then wire its Telegram channel + Facebook / Instagram / Threads accounts.
-          </p>
-        </div>
+        <EmptyState
+          icon="connections"
+          title="No groups yet"
+          note="Create one above, then wire its Telegram channel + Facebook / Instagram / Threads accounts."
+        />
       )}
 
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+      <div className="grp-list">
         {(groups ?? []).map((g, i) => {
           const ports = portsFor(g);
           const linked = ports.filter(p => p.assigned).length;
@@ -179,29 +171,23 @@ export function MetaGroupsManager() {
             : [{ key: g.source_platform, label: `${LABEL[g.source_platform] ?? g.source_platform} (not linked)` }, ...wired];
           return (
             <div key={g.id} className="group-card" style={{ animationDelay: `${Math.min(i, 8) * 55}ms` }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16, flexWrap: 'wrap' }}>
-                <div className="group-hub" aria-hidden>{g.name.charAt(0).toUpperCase()}</div>
+              <div className="grp-head">
+                <HubGlyph>{g.name.charAt(0).toUpperCase()}</HubGlyph>
                 <div style={{ flex: 1, minWidth: 0 }}>
-                  <div className="text-body" style={{ color: 'var(--color-ink)', fontWeight: 600, letterSpacing: '-0.01em', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                    {g.name}
-                  </div>
-                  <div className="text-micro" style={{ color: linked === 4 ? 'var(--color-success)' : 'var(--color-ink-dim)', marginTop: 2 }}>
-                    {linked} of 4 destinations linked
-                  </div>
+                  <h2 className="text-heading-md grp-name" style={{ margin: 0 }}>{g.name}</h2>
+                  <div className={`grp-linked${linked === 4 ? ' is-full' : ''}`}>{linked} of 4 destinations linked</div>
                 </div>
 
                 {/* Auto-duplicate source — shown only while the group still auto-duplicates (spec 024 FR-011). */}
                 {autoDuplicates(g) ? (
-                <label style={{ display: 'flex', alignItems: 'center', gap: 7 }} title="The member you publish to — its posts are duplicated to every other member of the group while auto-duplication is on">
-                  <span className="text-eyebrow" style={{ color: 'var(--color-accent)', display: 'inline-flex', alignItems: 'center', gap: 4 }}>
-                    <Icon name="strategies" size={11} /> Auto-duplicate source
-                  </span>
+                <label className="grp-source" title="The member you publish to — its posts are duplicated to every other member of the group while auto-duplication is on">
+                  <span className="text-eyebrow">Auto-duplicate source</span>
                   <select
                     className="input-field"
                     value={g.source_platform}
                     disabled={busy || wired.length === 0}
                     onChange={e => setSource.mutate({ id: g.id, sourcePlatform: e.target.value as GroupSourcePlatform })}
-                    style={{ padding: '5px 10px', fontSize: 12, fontWeight: 600, minWidth: 130 }}
+                    style={{ padding: '5px 10px', fontSize: 13, minWidth: 130 }}
                   >
                     {sourceOptions.map(o => (
                       <option key={o.key} value={o.key}>{LABEL[o.key] ?? o.key} — {o.label}</option>
@@ -213,7 +199,7 @@ export function MetaGroupsManager() {
                 )}
 
                 <button
-                  className="group-del" title="Delete group"
+                  type="button" className="btn-act btn-act-danger" title="Delete group" aria-label={`Delete group ${g.name}`}
                   onClick={async () => {
                     if (await confirm(`delete group "${g.name}"`, { details: <p className="text-micro" style={{ margin: 0, color: 'var(--color-ink-muted)' }}>Members (channel + accounts) are kept — they're just un-grouped (auto-duplication stops).</p> })) {
                       deleteGroup.mutate(g.id);
@@ -221,7 +207,7 @@ export function MetaGroupsManager() {
                     }
                   }}
                 >
-                  <Icon name="trash" size={15} />
+                  <Icon name="trash" size={14} />
                 </button>
               </div>
 
@@ -249,26 +235,19 @@ function Port({ port, busy }: { port: PortData; busy: boolean }) {
         <Icon name={port.icon} size={13} />
         <span>{LABEL[port.key] ?? port.key}</span>
         {port.source && (
-          <span style={{
-            marginLeft: 'auto', color: 'var(--color-accent)', fontSize: 9.5, fontWeight: 600,
-            letterSpacing: '0.04em', display: 'inline-flex', alignItems: 'center', gap: 3,
-          }}>
-            <Icon name="strategies" size={10} /> SOURCE
-          </span>
+          <span className="grp-source-tag"><Icon name="strategies" size={11} /> Source</span>
         )}
       </div>
 
       {port.assigned ? (
         <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 'auto' }}>
-          <span className="text-body-sm" style={{ flex: 1, color: 'var(--color-ink)', fontWeight: 500, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-            {port.assigned.label}
-          </span>
-          <button className="group-x" title="Remove from group" disabled={busy} onClick={() => port.onRemove(port.assigned!.id)}>
+          <span className="text-body-sm grp-port-name">{port.assigned.label}</span>
+          <button type="button" className="group-x" title="Remove from group" aria-label={`Remove ${port.assigned.label} from the group`} disabled={busy} onClick={() => port.onRemove(port.assigned!.id)}>
             <Icon name="x" size={13} />
           </button>
         </div>
       ) : port.options.length === 0 ? (
-        <span className="text-micro" style={{ color: 'var(--color-ink-dim)', marginTop: 'auto' }}>None available</span>
+        <span className="grp-port-none">None available</span>
       ) : (
         <select
           className="group-assign" value="" disabled={busy} style={{ marginTop: 'auto' }}
@@ -280,7 +259,7 @@ function Port({ port, busy }: { port: PortData; busy: boolean }) {
       )}
 
       {port.noBotWarning && (
-        <div className="callout-warning" style={{ marginTop: 8, padding: '7px 10px', gap: 8, fontSize: 11 }}>
+        <div className="callout-warning grp-warn">
           <Icon name="warning" size={13} />
           <span>No bot — this channel can't send or receive group posts.</span>
         </div>

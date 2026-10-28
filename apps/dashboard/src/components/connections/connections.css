@@ -83,3 +83,29 @@
   .conn-pad { padding-left: 16px; padding-right: 16px; }
   .conn-error { padding-left: 16px; padding-right: 16px; }
 }
+
+/* ── Groups page: intro, composer, the cards of .group-card (index.css) with their rails of ports ─────── */
+.grp-intro { margin: 0 0 16px; max-width: 760px; font-size: 13px; line-height: 1.6; color: var(--color-ink-muted); }
+.grp-intro b { color: var(--color-ink); font-weight: 600; }
+.grp-compose { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; padding: 14px 16px; }
+.grp-state { margin: 0 0 12px; font-size: 14px; color: var(--color-ink-muted); }
+.grp-list { display: flex; flex-direction: column; gap: 14px; }
+.grp-head { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 16px; }
+.grp-name { color: var(--color-ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.grp-linked { margin-top: 2px; font-family: var(--font-mono); font-feature-settings: normal; font-size: 12px; color: var(--color-ink-dim); }
+.grp-linked.is-full { color: var(--color-success); }
+.grp-source { display: flex; align-items: center; gap: 8px; }
+.group-card .group-port-head { font-family: var(--font-mono); font-feature-settings: normal; letter-spacing: 0.08em; }
+.grp-source-tag { margin-left: auto; display: inline-flex; align-items: center; gap: 4px; color: var(--color-accent); font-weight: 600; }
+.grp-port-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--color-ink); font-weight: 500; }
+.grp-port-none { margin-top: auto; font-size: 12px; color: var(--color-ink-dim); }
+.callout-warning.grp-warn { margin-top: 8px; padding: 8px 10px; gap: 8px; align-items: flex-start; font-size: 12px; }
+.callout-warning.grp-warn > svg { flex: none; margin-top: 1px; }
+/* The remove control of a filled port: a 28px target (a 44px hit area through ::after), always shown on touch. */
+.group-card .group-x { position: relative; display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; padding: 0; flex: none; }
+.group-card .group-x::after { content: ''; position: absolute; inset: -8px; }
+/* Phones: name and the delete control share the first line, the source picker / "independent" tag drop under them. */
+@media (max-width: 600px) {
+  .grp-source { width: 100%; justify-content: space-between; }
+  .grp-head > .grp-source, .grp-head > .chip { order: 3; }
+}
