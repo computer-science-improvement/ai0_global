@@ -88,6 +88,14 @@ export function rangeLabel(days: readonly string[]): string {
   return days.length === 1 ? f(days[0]) : `${f(days[0])} – ${f(days[days.length - 1])}`;
 }
 
+/** The time a new post starts on: noon for a later day; for today the next whole hour at least 10 minutes away (23:59 late in the evening). */
+export function defaultTime(day: string, now: Date = new Date()): string {
+  if (day !== kyivToday(now)) return DEFAULT_TIME;
+  const [h, m] = formatIn(now, KYIV_TZ).split(':').map(Number);
+  const next = Math.ceil((h * 60 + m + 10) / 60) * 60;
+  return next >= 24 * 60 ? '23:59' : `${String(next / 60).padStart(2, '0')}:00`;
+}
+
 /** The day a "New post" without a cell starts on: tomorrow. */
 export function defaultComposeDay(today: string): string {
   return addDays(today, 1);
@@ -477,6 +485,6 @@ export function askProblems(a: { brief: string; day: string; time: string; tz: s
 }
 
 /** The toast after a save: "Scheduled for @space · Thu, 29 Oct 12:00". */
-export function savedText(verb: 'Scheduled' | 'Draft requested', channel: string, day: string, time: string): string {
+export function savedText(verb: 'Scheduled' | 'Draft requested' | 'Post updated', channel: string, day: string, time: string): string {
   return `${verb} for ${channel} · ${dayLabel(day)} ${time}`;
 }

@@ -4,7 +4,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
   addDays, addLabel, agentChips, askFormat, askHint, askProblems, askRule, askUnavailable, buildRows, calendarAgents, dayLabel, dayParts,
-  defaultComposeDay, isDay, parseCalendarSearch, isSoonerThan, kyivInstant, kyivToday, markOfSlot, pauseOf, plainText, postChip, postTitle, rangeLabel, resolveFrom,
+  defaultComposeDay, defaultTime, isDay, parseCalendarSearch, isSoonerThan, kyivInstant, kyivToday, markOfSlot, pauseOf, plainText, postChip, postTitle, rangeLabel, resolveFrom,
   sortChips, splitKyiv, visibleChips, windowDays, type CalAgent, type CalChip, type ScheduleState,
 } from './calendar';
 
@@ -357,4 +357,12 @@ test('the address: an invalid value is dropped, a drawer keeps only the params t
   assert.equal(parseCalendarSearch({ compose: 'edit' }).compose, undefined);           // nothing to edit
   assert.equal(parseCalendarSearch({ compose: 'bogus', channel: '@space' }).channel, undefined);
   assert.equal(parseCalendarSearch({ compose: 1, from: 20261029 }).from, undefined);
+});
+
+test('the composer starts at noon on a later day, and on the next whole hour today', () => {
+  assert.equal(defaultTime('2026-10-30', NOW), '12:00');
+  assert.equal(defaultTime(TODAY, NOW), '12:00');                                       // 11:00 Kyiv now: 11:10 rounds up to 12:00
+  assert.equal(defaultTime(TODAY, new Date('2026-10-29T09:45:00Z')), '12:00');          // 11:45 Kyiv: 11:55 rounds up to 12:00
+  assert.equal(defaultTime(TODAY, new Date('2026-10-29T09:55:00Z')), '13:00');          // 11:55 Kyiv: 12:05 is over the hour, so 13:00
+  assert.equal(defaultTime(TODAY, new Date('2026-10-29T21:30:00Z')), '23:59');          // 23:30 Kyiv: nothing whole is left today
 });

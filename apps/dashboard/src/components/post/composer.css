@@ -1,0 +1,33 @@
+/*
+ * Spec 078 B4: the post composer. The `page` variant (/app/compose) keeps its own layout; this file styles the `drawer`
+ * variant (the Calendar's side sheet) and the field messages both share. Tokens only. Imported by PostComposer.tsx.
+ */
+.pc-body { display: flex; flex-direction: column; gap: 18px; }
+.pc-row { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.pc-row > label, .pc-row > .pc-label { font-size: 13px; font-weight: 500; line-height: 1.2; letter-spacing: -0.13px; color: var(--color-ink-muted); }
+.pc-grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.pc-channels { display: flex; flex-wrap: wrap; gap: 8px; }
+
+/* The count under a textarea, and a field's own problem. */
+.pc-count { align-self: flex-end; font-size: 12px; color: var(--color-ink-dim); }
+.pc-count.is-over { color: var(--color-danger); }
+.pc-error { margin: 0; font-size: 12px; line-height: 1.3; color: var(--color-danger); }
+.pc-note { margin: 0; font-size: 12px; line-height: 1.4; color: var(--color-warning); }
+.input-field[aria-invalid="true"] { border-color: var(--color-danger); }
+
+/* "More options": a disclosure button, no <details>. */
+.pc-more-toggle { align-self: flex-start; }
+.pc-more { display: flex; flex-direction: column; gap: 14px; padding: 14px; border: 1px solid var(--color-hairline); border-radius: var(--radius-lg); background: var(--color-surface-1); }
+
+/* The Telegram preview frame (channel header over the bubble). */
+.pc-preview { padding: 12px; border: 1px solid var(--color-hairline); border-radius: var(--radius-lg); background: var(--color-surface-1); }
+.pc-preview-head { display: flex; align-items: center; gap: 10px; padding-bottom: 10px; margin-bottom: 12px; border-bottom: 1px solid var(--color-hairline); }
+.pc-preview-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* The footer under the sheet's body: the hint on its own line, then the actions. */
+.pc-foot { flex-wrap: wrap; align-items: center; }
+.pc-hint { flex: 1 1 100%; margin: 0; font-size: 12px; line-height: 1.4; color: var(--color-ink-dim); }
+.pc-foot-extra { margin-right: auto; }
+
+/* The page variant's list of problems. */
+.pc-errors { margin: 0; padding-left: 16px; }

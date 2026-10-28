@@ -3,7 +3,7 @@
 // the owner's own scheduled posts. This component owns the queries and the toolbar; lib/calendar.ts builds the rows.
 
 import './calendar.css';
-import { Link, useNavigate } from '@tanstack/react-router';
+import { Link } from '@tanstack/react-router';
 import { PageHeader } from '../ui/PageHeader';
 import { Icon } from '../ui/Icon';
 import { EmptyState } from '../ui/primitives';
@@ -15,12 +15,12 @@ import {
   type CalRow, type CalendarSearch,
 } from '../../lib/calendar';
 import { CalLegend, DayAgenda, WeekGrid } from './WeekGrid';
+import { ComposerDrawer } from './ComposerDrawer';
 import { useMinute } from './useMinute';
 
 type Patch = { [K in keyof CalendarSearch]?: CalendarSearch[K] | undefined };
 
-export function CalendarPage({ search, setSearch }: { search: CalendarSearch; setSearch: (patch: Patch) => void }) {
-  const navigate = useNavigate();
+export function CalendarPage({ search, setSearch }: { search: CalendarSearch; setSearch: (patch: Patch, opts?: { replace?: boolean }) => void }) {
   const now = useMinute();
   const today = kyivToday(now);
   const from = resolveFrom(search.from, today);
@@ -42,8 +42,10 @@ export function CalendarPage({ search, setSearch }: { search: CalendarSearch; se
 
   // A `from` equal to today is the default and stays out of the address.
   const go = (to: string) => setSearch({ from: to === today ? undefined : to });
-  const onAdd = (_row: CalRow, _day: string) => { void navigate({ to: '/app/compose' }); };
-  const onOpenPost = (_id: string) => { void navigate({ to: '/app/scheduled' }); };
+  // The composer is a drawer driven by the address: Back closes it, and a copied link reopens it.
+  const onAdd = (row: CalRow, day: string) => setSearch({ compose: 'new', channel: row.composeKey ?? undefined, day, post: undefined });
+  const onOpenPost = (id: string) => setSearch({ compose: 'edit', post: id, channel: undefined, day: undefined });
+  const closeDrawer = () => setSearch({ compose: undefined, channel: undefined, day: undefined, post: undefined }, { replace: true });
 
   return (
     <div>
@@ -96,6 +98,11 @@ export function CalendarPage({ search, setSearch }: { search: CalendarSearch; se
             )}
         </>
       )}
+
+      <ComposerDrawer
+        search={search} close={closeDrawer} today={today} agents={agents} schedules={schedules}
+        channels={channelsQ.data?.items} channelsLoading={channelsQ.isLoading} posts={postsQ.data} postsLoading={postsQ.isLoading}
+      />
     </div>
   );
 }

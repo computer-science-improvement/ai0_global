@@ -17,7 +17,7 @@ function CalendarRoute() {
   return (
     <CalendarPage
       search={search}
-      setSearch={(patch) => void navigate({ search: (old) => ({ ...old, ...patch }) })}
+      setSearch={(patch, opts) => void navigate({ search: (old) => ({ ...old, ...patch }), replace: opts?.replace })}
     />
   );
 }
