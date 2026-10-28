@@ -32,8 +32,11 @@ const KIND_ICON = {
   idea_reviewer: 'check', executor: 'rocket', reviewer: 'eye',
 } as const;
 
-/** The agent's emoji in a tinted hub glyph, or its kind icon when there is no emoji. */
-export function AgentGlyph({ agent, size = 38 }: { agent: Pick<Agent, 'emoji' | 'kind'>; size?: number }) {
+/** The agent's emoji in a tinted hub glyph, or its kind icon when there is no emoji. `size="xl"` is the 64px glyph of a page header. */
+export function AgentGlyph({ agent, size = 38 }: { agent: Pick<Agent, 'emoji' | 'kind'>; size?: number | 'xl' }) {
+  if (size === 'xl') {
+    return <div className="hub-glyph is-xl" aria-hidden>{agent.emoji || <Icon name={KIND_ICON[agent.kind]} size={28} />}</div>;
+  }
   return (
     <div className="hub-glyph" aria-hidden style={{ width: size, height: size, fontSize: Math.round(size * 0.5), flexShrink: 0 }}>
       {agent.emoji || <Icon name={KIND_ICON[agent.kind]} size={Math.round(size * 0.45)} />}
@@ -41,9 +44,14 @@ export function AgentGlyph({ agent, size = 38 }: { agent: Pick<Agent, 'emoji' | 
   );
 }
 
+/** What an agent is scoped to, as text: "system", "telegram:ai0_global", "network:space". */
+export function scopeLabel(agent: Pick<Agent, 'scope' | 'scopeId'>): string {
+  return agent.scope === 'system' ? 'system' : agent.scopeId ? (agent.scope === 'network' ? `network:${agent.scopeId}` : agent.scopeId) : agent.scope;
+}
+
 export function ScopeChip({ agent }: { agent: Pick<Agent, 'scope' | 'scopeId'> }) {
-  const label = agent.scope === 'system' ? 'system' : agent.scopeId ? (agent.scope === 'network' ? `network:${agent.scopeId}` : agent.scopeId) : agent.scope;
-  return <span className="chip" style={{ fontSize: 11, maxWidth: '100%', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }} title={label}>{label}</span>;
+  const label = scopeLabel(agent);
+  return <span className="chip mono" style={{ maxWidth: '100%', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }} title={label}>{label}</span>;
 }
 
 /**
@@ -86,7 +94,7 @@ export function LastRun({ activity }: { activity: AgentActivity | null }) {
  * approval: a Telegram resource orchestrator goes through the autonomy dialog
  * (spec 031 FR-010), any other agent through a confirmation.
  */
-export function AgentModeSwitch({ agent }: { agent: Pick<Agent, 'handle' | 'mode' | 'scopeId' | 'kind' | 'name'> }) {
+export function AgentModeSwitch({ agent, size = 'sm' }: { agent: Pick<Agent, 'handle' | 'mode' | 'scopeId' | 'kind' | 'name'>; size?: 'sm' | 'lg' }) {
   const confirm = useConfirm();
   const patch = usePatchAgent(agent.handle);
   const [goLive, setGoLive] = useState(false);
@@ -114,7 +122,7 @@ export function AgentModeSwitch({ agent }: { agent: Pick<Agent, 'handle' | 'mode
   };
   return (
     <>
-      <SegmentedTabs size="sm" value={agent.mode} onChange={onChange} options={MODE_OPTIONS} />
+      <SegmentedTabs size={size} value={agent.mode} onChange={onChange} options={MODE_OPTIONS} ariaLabel={`Mode of @${agent.handle}`} />
       {goLive && channel && <AutonomyDialog channel={channel} title={agent.name} onClose={() => setGoLive(false)} />}
     </>
   );
@@ -146,7 +154,7 @@ export function PauseButton({ agent, compact = false }: { agent: Pick<Agent, 'ha
   );
 }
 
-function PauseModal({ handle, onClose }: { handle: string; onClose: () => void }) {
+export function PauseModal({ handle, onClose }: { handle: string; onClose: () => void }) {
   const patch = usePatchAgent(handle);
   const [choice, setChoice] = useState<PauseChoice>('24h');
   const [until, setUntil] = useState(() => localInputValue(new Date(Date.now() + 3 * 86_400_000)));

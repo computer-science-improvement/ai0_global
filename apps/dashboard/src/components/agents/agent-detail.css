@@ -1,8 +1,39 @@
 /*
  * Spec 078 (B3): /app/agents/$handle. The look of the shared parts (panels, rows, buttons, tabs, callouts, status marks) is
- * index.css; this file only lays the page out: the tab bar, the header, the day list. Tokens only.
+ * index.css; this file only lays the page out: the header, the mode block, the banners, the tab bar, the day list. Tokens only.
  */
+
+/* Header: the xl glyph beside PageHeader (title + chip, description, "@handle → scope", actions). */
+.agent-head { display: flex; gap: 20px; align-items: flex-start; }
+.agent-head > .hub-glyph { margin: 6px 6px 0 6px; }
+.agent-head-main { flex: 1; min-width: 0; }
+.agent-title-tags { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-left: 12px; vertical-align: middle; }
+.agent-sub { display: flex; flex-direction: column; gap: 4px; max-width: 760px; }
+.agent-desc { font-size: 15px; color: var(--color-ink-muted); --clamp: 3; }
+.agent-scope { font-size: 13px; color: var(--color-ink-dim); overflow-wrap: anywhere; }
+
+/* The mode switch (4-up) with one line that says what the mode does. PageHeader keeps a 24px bottom margin: pull up a little. */
+.agent-mode { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 12px 28px; margin: -8px 0 4px; }
+.agent-mode-switch { flex: 1 1 420px; max-width: 560px; min-width: 0; display: flex; flex-direction: column; gap: 8px; }
+.agent-mode-hint { flex: 1 1 260px; min-width: 0; padding-bottom: 12px; color: var(--color-ink-muted); max-width: 520px; }
+
+/* Banners for paused series / resources (callout-warning + Resume / Lift). */
+.agent-banners { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
+.agent-banner { flex-wrap: wrap; align-items: center; }
+.agent-banner > svg { flex-shrink: 0; color: var(--color-warning); }
+.agent-banner-text { flex: 1 1 260px; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.agent-banner-title { font-weight: 600; }
+.agent-banner-sub { font-size: 13px; color: var(--color-ink-muted); }
+.agent-banner-sub.clamp { --clamp: 2; }
 
 /* Section tabs (underline) and, under a group with several leaves, a row of small tabs. */
 .agent-tabs { margin: 24px 0 20px; }
 .agent-subtabs { margin-top: 14px; }
+
+@media (max-width: 760px) {
+  .agent-head { gap: 14px; }
+  .agent-head > .hub-glyph { width: 48px; height: 48px; font-size: 20px; margin: 4px 4px 0; }
+  .agent-title-tags { margin-left: 0; display: flex; margin-top: 8px; }
+  .agent-mode-switch { flex-basis: 100%; max-width: none; }
+  .agent-mode-hint { flex-basis: 100%; padding-bottom: 0; }
+}

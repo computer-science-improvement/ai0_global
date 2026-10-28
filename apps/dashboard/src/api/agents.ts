@@ -254,6 +254,8 @@ export function usePatchAgent(handle: string) {
 export function useRunAgent() {
   const qc = useQueryClient();
   return useMutation({
+    // The agent page maps the error codes (agent_paused, channel_off, replan_in_progress…) to its own toast.
+    meta: { silentError: true },
     mutationFn: (handle: string) => api<{ started: boolean; what: string }>(`/api/agents/${enc(handle)}/run`, { method: 'POST' }),
     onSuccess: (r, handle) => {
       if (r.started) toast.success(`@${handle}: ${r.what}`);

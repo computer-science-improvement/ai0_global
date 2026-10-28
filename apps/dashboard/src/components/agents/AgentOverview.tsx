@@ -17,7 +17,7 @@ import { describeError, toast } from '../ui/Toast';
 import { Modal } from '../Modal';
 import { fmtUsd } from '../editor/EditorUi';
 import { fmtDate, fmtRelative } from '../../lib/format';
-import { AgentGlyph, AgentModeSwitch, FollowsBadge, KIND_LABEL, LastRun, ScopeChip, runsLabel } from './AgentsUi';
+import { AgentGlyph, KIND_LABEL, LastRun, ScopeChip, runsLabel } from './AgentsUi';
 import { errorBody, useAgentConfigConflicts, usePatchAgent, type AgentDetail, type AgentPatch, type GrammaticalGender, type ReasoningEffort } from '../../api/agents';
 import { useModelCatalog, type Workspace } from '../../api/models';
 import { ownModelIn, WORKSPACE_LABEL } from '../../lib/models';
@@ -28,7 +28,6 @@ import { useActiveSteering } from '../../api/steering';
 import { useArtifacts } from '../../api/artifacts';
 import { statusLabel } from '../../lib/artifacts';
 import { alignPrompt } from '../../lib/align';
-import { PausedSeries } from './PausedSeries';
 
 const HANDLE_RE = /^[a-z][a-z0-9_]{2,31}$/;
 const TIME_RE = /^([01]\d|2[0-3]):[0-5]\d$/;
@@ -115,22 +114,8 @@ export function AgentOverview({ data }: { data: AgentDetail }) {
   const withRoles = kids.length > 0 ? ' · incl. roles' : '';
   return (
     <div>
+      {/* The mode (and a role agent's "follows") moved to the page header; paused series to the banners under it. */}
       <div className="stat-grid compose-rise" style={{ marginBottom: 18 }}>
-        <div className="stat-tile">
-          <div className="text-micro" style={{ color: 'var(--color-ink-dim)', textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: 10 }}>Mode</div>
-          {data.parent ? (
-            // Spec 047 FR-007: a role agent has no mode of its own — it runs in its orchestrator's channel mode.
-            <>
-              <FollowsBadge agent={a} parent={data.parent} />
-              <div className="text-micro" style={{ marginTop: 8, color: 'var(--color-ink-muted)' }}>
-                change it on <Link to="/app/agents/$handle" params={{ handle: data.parent.handle }} style={{ color: 'inherit' }}>@{data.parent.handle}</Link>
-              </div>
-            </>
-          ) : <AgentModeSwitch agent={a} />}
-          {!data.parent && a.shadowUntil && a.mode === 'shadow' && (
-            <div className="text-micro" style={{ marginTop: 8, color: 'var(--color-ink-muted)' }}>shadow until {fmtDate(a.shadowUntil)}</div>
-          )}
-        </div>
         <StatTile label="Spend today" value={fmtUsd(spend)} icon="analytics"
           delta={`cap ${a.dailyBudgetUsd == null ? 'default' : fmtUsd(a.dailyBudgetUsd)}${withRoles}`} />
         <StatTile label="Runs today" value={runs} icon="logs" delta={withRoles ? 'incl. roles' : undefined} />
@@ -142,7 +127,6 @@ export function AgentOverview({ data }: { data: AgentDetail }) {
       </div>
 
       {a.kind === 'orchestrator' && a.scopeId && <ConflictsLine handle={a.handle} />}
-      {a.kind === 'orchestrator' && a.scopeId?.startsWith('telegram:') && <PausedSeries handle={a.handle} />}
       {a.kind === 'orchestrator' && a.scopeId && <ArtifactsLine handle={a.handle} targetRef={a.scopeId} />}
 
       {data.children.length > 0 && (

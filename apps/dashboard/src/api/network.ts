@@ -282,10 +282,11 @@ export function useDecideIdea() {
   });
 }
 
-export function useNetworkPlan(handle: string, date: string) {
+export function useNetworkPlan(handle: string, date: string, enabled = true) {
   return useQuery({
     queryKey: [...KEY, 'plan', handle, date],
     queryFn:  () => api<NetworkPlan>(`/api/agents/${enc(handle)}/plan?date=${enc(date)}`),
+    enabled,
     retry:    false,
     // A slot preview in progress (spec 034 FR-012) is polled until it finishes.
     refetchInterval: (q) => (q.state.data?.slots.some((s) => previewRunning(s.previewDraft)) ? 4_000 : 60_000),
