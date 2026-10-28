@@ -1,13 +1,17 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { trackingApi } from '../api/tracking';
 import { fmtNumber, fmtRelative } from '../lib/format';
+import { Badge } from './ui/Badge';
+import { EmptyState } from './ui/primitives';
+import { LoadingNote } from './channels/ChannelsUi';
 
-const CONF_COLOR = {
-  low:    { background: 'rgba(239,68,68,0.18)',  color: 'var(--color-danger)' },
-  medium: { background: 'rgba(245,158,11,0.18)', color: 'var(--color-warning)' },
-  high:   { background: 'rgba(34,197,94,0.18)',  color: 'var(--color-success)' },
-} as const;
+/** How sure the estimate is: a category (low → red, medium → amber, high → green), not a status of the app. */
+const CONFIDENCE_TONE = { low: 'danger', medium: 'warning', high: 'success' } as const;
 
+/**
+ * The ROI estimate of a channel: subscribers per ad placement, how sure the estimate is, the narrative and the risks.
+ * It has no frame of its own: put it in a `SectionCard` (or an `.inset` in a dialog).
+ */
 export function RoiPanel({ channelId }: { channelId: string }) {
   const qc = useQueryClient();
   const q = useQuery({ queryKey: ['roi', channelId], queryFn: () => trackingApi.roi(channelId) });
@@ -16,54 +20,39 @@ export function RoiPanel({ channelId }: { channelId: string }) {
     onSuccess: () => qc.invalidateQueries({ queryKey: ['roi', channelId] }),
   });
 
-  if (q.isLoading) return <p style={{ color: 'var(--color-ink-muted)' }}>Computing ROI…</p>;
-  if (!q.data) return null;
+  if (q.isLoading) return <LoadingNote note="Computing ROI…" />;
+  if (q.error || !q.data) {
+    return (
+      <EmptyState
+        icon="warning"
+        title="No ROI estimate"
+        note={q.error ? (q.error as Error).message : 'Nothing has been computed for this channel yet.'}
+      />
+    );
+  }
   const r = q.data;
 
   return (
-    <div className="card">
-      <div className="flex items-center justify-between">
+    <div className="roi">
+      <div className="roi-top">
         <div>
-          <div style={{ fontSize: 40, fontWeight: 700, letterSpacing: '-1.2px', lineHeight: 1 }} className="tabular-nums">
-            {fmtNumber(r.estimated_subs_per_ad)}
-          </div>
-          <div style={{ fontSize: 12, color: 'var(--color-ink-muted)', marginTop: 4 }}>
-            estimated subscribers per ad placement
-          </div>
+          <div className="stat-value">{fmtNumber(r.estimated_subs_per_ad)}</div>
+          <div className="stat-label" style={{ marginTop: 4 }}>estimated subscribers per ad placement</div>
         </div>
-        <div className="flex items-center gap-2">
-          <span style={{
-            ...CONF_COLOR[r.confidence],
-            borderRadius: 'var(--radius-pill)',
-            padding: '2px 10px',
-            fontSize: 12,
-            fontWeight: 500,
-          }}>
-            {r.confidence}
-          </span>
-          <button
-            onClick={() => m.mutate()}
-            disabled={m.isPending}
-            className="btn-secondary"
-            style={{ opacity: m.isPending ? 0.5 : 1 }}
-          >
+        <div className="roi-actions">
+          <Badge tone={CONFIDENCE_TONE[r.confidence] ?? 'neutral'} title="How sure the estimate is">{r.confidence} confidence</Badge>
+          <button type="button" onClick={() => m.mutate()} disabled={m.isPending} className="btn-secondary btn-sm">
             {m.isPending ? 'Recomputing…' : 'Recompute'}
           </button>
         </div>
       </div>
-      {r.narrative && (
-        <p style={{ marginTop: 12, fontSize: 15, color: 'var(--color-ink)', letterSpacing: '-0.15px' }}>
-          {r.narrative}
-        </p>
-      )}
-      {r.risks.length > 0 && (
-        <ul style={{ marginTop: 8, paddingLeft: 20, fontSize: 14, color: 'var(--color-ink-muted)' }} className="list-disc">
+      {r.narrative && <p className="roi-narrative">{r.narrative}</p>}
+      {(r.risks ?? []).length > 0 && (
+        <ul className="roi-risks">
           {r.risks.map((x, i) => <li key={i}>{x}</li>)}
         </ul>
       )}
-      <div style={{ marginTop: 12, fontSize: 12, color: 'var(--color-ink-muted)' }}>
-        Computed via {r.source} · {fmtRelative(r.computed_at)}
-      </div>
+      <div className="roi-foot mono">Computed via {r.source} · {fmtRelative(r.computed_at)}</div>
     </div>
   );
 }

@@ -2,33 +2,37 @@ import { fmtNumber, fmtRelative } from '../lib/format';
 import type { TrackedPost } from '../api/types';
 import { evergreenBadge, repostBadge } from '../lib/reposts';
 import { Badge } from './ui/Badge';
+import { EmptyState } from './ui/primitives';
+import './channels/channels.css';
 
+/**
+ * Posts as rows of a flush panel (`<SectionCard flush>`): the age, repost / evergreen badges and the numbers on the first
+ * line, the text (three lines at most) under it.
+ */
 export function PostsList({ posts }: { posts: TrackedPost[] }) {
+  if (posts.length === 0) return <EmptyState icon="channels" title="No posts yet" />;
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+    <>
       {posts.map((p) => (
-        <div key={p.id} style={{
-          background: 'var(--color-surface-1)',
-          borderRadius: 'var(--radius-md)',
-          padding: 14,
-        }}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: 12, color: 'var(--color-ink-muted)' }}>
-            <span>
-              {fmtRelative(p.postedAt)}
-              {repostBadge(p.repostFrom) && (
-                <Badge tone="accent" style={{ marginLeft: 8 }}>{repostBadge(p.repostFrom)}</Badge>
-              )}
-              {evergreenBadge(p.evergreen) && (
-                <Badge tone="neutral" style={{ marginLeft: 8 }}>{evergreenBadge(p.evergreen)}</Badge>
-              )}
+        <div key={p.id} className="panel-row ch-post">
+          <div className="ch-post-head">
+            <span className="ch-post-age">
+              <span className="mono">{fmtRelative(p.postedAt)}</span>
+              {repostBadge(p.repostFrom) && <Badge tone="accent">{repostBadge(p.repostFrom)}</Badge>}
+              {evergreenBadge(p.evergreen) && <Badge tone="neutral">{evergreenBadge(p.evergreen)}</Badge>}
             </span>
-            <span className="tabular-nums">👁 {fmtNumber(p.views)} · 🔁 {fmtNumber(p.forwards)} · ❤ {fmtNumber(p.reactionsTotal)} · 💬 {fmtNumber(p.commentsCount)}</span>
+            <span className="ch-post-stats mono">
+              <span><b>{fmtNumber(p.views)}</b> views</span>
+              <span><b>{fmtNumber(p.forwards)}</b> forwards</span>
+              <span><b>{fmtNumber(p.reactionsTotal)}</b> reactions</span>
+              <span><b>{fmtNumber(p.commentsCount)}</b> comments</span>
+            </span>
           </div>
-          <p style={{ marginTop: 8, fontSize: 14, color: 'var(--color-ink)', letterSpacing: '-0.14px', lineHeight: 1.5 }} className="line-clamp-3">
-            {p.text ?? <em style={{ color: 'var(--color-ink-muted)' }}>(media only)</em>}
+          <p className={`ch-post-text clamp${p.text ? '' : ' is-empty'}`}>
+            {p.text ?? '(media only)'}
           </p>
         </div>
       ))}
-    </div>
+    </>
   );
 }
