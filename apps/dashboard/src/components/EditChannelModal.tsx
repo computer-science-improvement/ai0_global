@@ -166,7 +166,7 @@ export function EditChannelModal({ channel, open, onClose }: Props) {
             onChange={e => setPublishPaused(e.target.checked)}
             className="ch-check"
           />
-          <span className="text-body-sm" style={{ color: 'var(--color-ink)' }}>
+          <span className="text-body-sm ch-ink">
             Pause publishing — strategies & forwards into this channel are blocked at publish time
           </span>
         </label>
@@ -180,7 +180,7 @@ export function EditChannelModal({ channel, open, onClose }: Props) {
             onChange={e => setIsMine(e.target.checked)}
             className="ch-check"
           />
-          <span className="text-body-sm" style={{ color: 'var(--color-ink)' }}>
+          <span className="text-body-sm ch-ink">
             Mine — this is one of my own channels (its agent publishes here)
           </span>
         </label>

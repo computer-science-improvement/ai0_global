@@ -188,7 +188,7 @@ function ChannelDetailPage() {
         <div className="callout-warning compose-rise" role="status" style={{ marginBottom: 20, flexWrap: 'wrap' }}>
           <Icon name="pause" size={18} />
           <div style={{ flex: '1 1 260px', minWidth: 0 }}>
-            <div className="text-body-sm" style={{ fontWeight: 600 }}>Publishing is paused</div>
+            <div className="text-body-sm ch-callout-title">Publishing is paused</div>
             <div className="text-micro ch-muted" style={{ marginTop: 2 }}>{CHANNEL_FLAG_HELP.publishPaused}</div>
           </div>
           <button type="button" className="btn-warning btn-sm" disabled={togglePause.isPending} onClick={() => askPause(false)}>

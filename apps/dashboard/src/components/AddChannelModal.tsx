@@ -198,7 +198,7 @@ export function AddChannelModal({ open, onClose, ownership = 'mine' }: {
           {/* Fixed by the page that opened the dialog, so it is read-only. */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
             <Badge tone={forcedMine ? 'success' : 'neutral'}>{forcedMine ? 'mine' : 'external'}</Badge>
-            <span className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>
+            <span className="text-body-sm ch-muted">
               {forcedMine
                 ? 'Strategies can publish into this channel'
                 : 'Tracked only; strategies will not publish here'}

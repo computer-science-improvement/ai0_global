@@ -18,6 +18,7 @@
 .ch-count { margin-left: auto; color: var(--color-ink-dim); font-size: 12px; white-space: nowrap; }
 
 /* Text colours for inline copy (the type tiers do not set a colour). */
+.ch-ink { color: var(--color-ink); }
 .ch-muted { color: var(--color-ink-muted); }
 .ch-faint { color: var(--color-ink-dim); }
 
