@@ -1,0 +1,62 @@
+/* Area styles of the editor pages (spec 078 C3): /app/editor, /app/editor/$channel, the run trace and the slot page.
+   Imported by the routes and by CardEditorModal, never by EditorUi / SlotPlan: those are also imported by the agent pages
+   and by node tests, and they style themselves with the global classes. Colours are tokens only. */
+
+/* ── Key / value rows (the card summary, the facts of a slot) ─────────────── */
+.kv-list { display: flex; flex-direction: column; }
+.kv-row {
+  display: grid; grid-template-columns: minmax(96px, 150px) minmax(0, 1fr); gap: 4px 16px; align-items: baseline;
+  padding: 10px 0; border-top: 1px solid var(--color-hairline);
+}
+.kv-row:first-child { border-top: 0; }
+.kv-key { font-size: 12px; color: var(--color-ink-dim); }
+.kv-value { font-size: 14px; color: var(--color-ink); overflow-wrap: anywhere; min-width: 0; }
+@media (max-width: 600px) { .kv-row { grid-template-columns: minmax(0, 1fr); } }
+
+/* A padded block inside a flush panel (a plan stamp, a rationale) between the head and the rows. */
+.panel-note { display: grid; gap: 8px; padding: 0 20px 14px; min-width: 0; }
+@media (max-width: 600px) { .panel-note { padding: 0 16px 12px; } }
+
+/* An overline or title that holds a handle: the handle keeps its case. */
+.no-caps { text-transform: none; }
+/* A divider between two blocks inside one padded panel (hairline-soft would be invisible on surface-2). */
+.block-divider { border-top: 1px solid var(--color-hairline); padding-top: 12px; margin-top: 12px; }
+
+/* ── Form groups of the card editor ──────────────────────────────────────── */
+.form-group { border-top: 1px solid var(--color-hairline); padding-top: 16px; margin-top: 8px; }
+.form-group-title { margin-bottom: 12px; }
+/* One source of the card: id, kind, ref and a remove button, wrapping on a narrow sheet. */
+.source-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.source-row > .source-id { flex: 1 1 96px; min-width: 0; }
+.source-row > .source-kind { flex: 0 0 96px; }
+.source-row > .source-ref { flex: 3 1 180px; min-width: 0; }
+
+/* ── Run trace: a timeline of steps with a spine through the dots ────────── */
+.panel-row.trace-row {
+  position: relative; display: grid; grid-template-columns: 36px 14px minmax(0, 1fr) auto; gap: 12px; align-items: start;
+  width: 100%;
+}
+.panel-row.trace-row.is-error { background: color-mix(in srgb, var(--color-danger) 5%, transparent); }
+/* The spine runs through the dot column: 20px panel gutter + 36px index + 12px gap + half the dot. */
+.panel-row.trace-row::before {
+  content: ''; position: absolute; left: calc(20px + 36px + 12px + 6px); top: 0; bottom: 0; width: 2px;
+  background: var(--color-hairline);
+}
+.panel-row.trace-row:first-child::before { top: 22px; }
+.panel-row.trace-row:last-child::before { bottom: calc(100% - 22px); }
+.trace-idx { padding-top: 2px; font-size: 12px; color: var(--color-ink-dim); text-align: right; }
+/* The dot sits on the spine; its shape says what the step was (a model turn is a ring, a tool a dot, an error a square). */
+.trace-dot {
+  position: relative; z-index: 1; width: 14px; height: 14px; margin-top: 3px; box-sizing: border-box;
+  background: var(--color-surface-2); border: 2px solid var(--color-ink-dim); border-radius: 50%;
+}
+.trace-dot.is-tool { background: var(--color-accent); border-color: var(--color-accent); }
+.trace-dot.is-error { background: var(--color-danger); border-color: var(--color-danger); border-radius: 3px; }
+.trace-main { min-width: 0; }
+.trace-title { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; min-width: 0; }
+.trace-stats { padding-top: 2px; display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; font-size: 12px; color: var(--color-ink-dim); }
+@media (max-width: 600px) {
+  .panel-row.trace-row { grid-template-columns: 28px 14px minmax(0, 1fr); gap: 10px; }
+  .panel-row.trace-row::before { left: calc(16px + 28px + 10px + 6px); }
+  .trace-stats { grid-column: 3; padding-top: 0; }
+}

@@ -1,12 +1,14 @@
 // Shared bits of the editor-agent pages (/app/editor*, spec 006): status tones,
 // the off/shadow/approve/live switch (live behind a confirmation), slot rows and small
-// formatters.
+// formatters. Imported by the agent pages and by node tests too, so no CSS file is imported here: everything below
+// styles itself with the global classes of index.css (spec 078).
 
 import { Link } from '@tanstack/react-router';
 import { useState } from 'react';
 import { AutonomyDialog } from '../approvals/AutonomyDialog';
 import { Badge } from '../ui/Badge';
 import { Icon } from '../ui/Icon';
+import { StatusMark } from '../ui/StatusMark';
 import { TableAction, RowActions } from '../ui/table';
 import { SegmentedTabs } from '../SegmentedTabs';
 import { useConfirm } from '../ui/ConfirmDialog';
@@ -14,7 +16,7 @@ import { useRunSlot, useSetEditorMode, useSkipSlot } from '../../api/editor';
 import type { Tone } from '../ui/primitives';
 import type { EditorMode, EditorRunStatus, EditorSlot, EditorSlotStatus } from '../../api/types';
 import { formatIn, zoneLabel } from '../../lib/zoned-time';
-import { SLOT_TONE } from '../../lib/status-tone';
+import { SLOT_TONE, slotLabel, slotMark, slotTone, type MissCandidate } from '../../lib/status-tone';
 import { PREVIEW_STATUS_LABEL } from '../../lib/slot-plan';
 import { CriticBadge, PreviewButton, SlotDescription, type SlotPlanView } from './SlotPlan';
 
@@ -34,6 +36,9 @@ export const RUN_TONE: Record<EditorRunStatus, Tone> = {
   running: 'warning', ok: 'success', error: 'danger', budget_exceeded: 'danger', max_steps: 'warning', disabled: 'neutral', no_terminal: 'warning',
 };
 
+/** "budget_exceeded" -> "budget exceeded": the owner-facing text of a run status. */
+export const runStatusLabel = (status: string) => status.replace(/_/g, ' ');
+
 export const SLOT_ORDER: EditorSlotStatus[] = ['planned', 'running', 'awaiting_approval', 'approved', 'shadowed', 'published', 'skipped', 'expired', 'failed'];
 
 export const fmtUsd = (n: number | null | undefined) =>
@@ -48,13 +53,28 @@ export const fmtDuration = (from: string, to: string | null) => {
   return s < 60 ? `${s}s` : `${Math.floor(s / 60)}m ${s % 60}s`;
 };
 
-/** Slot counts of the day as compact status badges. */
+/** Slot counts of the day as compact status badges ("5 published"). */
 export function SlotCounts({ slots }: { slots: Partial<Record<EditorSlotStatus, number>> }) {
   const present = SLOT_ORDER.filter((s) => (slots[s] ?? 0) > 0);
   if (!present.length) return <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>no plan yet</span>;
   return (
     <span style={{ display: 'inline-flex', gap: 4, flexWrap: 'wrap' }}>
-      {present.map((s) => <Badge key={s} tone={SLOT_TONE[s]}>{slots[s]} {s}</Badge>)}
+      {present.map((s) => <Badge key={s} tone={slotTone(s)}>{slots[s]} {slotLabel(s).toLowerCase()}</Badge>)}
+    </span>
+  );
+}
+
+/**
+ * The status of one slot, from the one status map: its mark (the shape tells green statuses apart) and a Badge with the
+ * label. A series or pinned slot that did not go out for no good reason reads "Missed" (amber), not "Skipped".
+ */
+export function SlotStatus({ slot, mark = true }: { slot: MissCandidate; mark?: boolean }) {
+  const kind = slotMark(slot);
+  const missed = kind === 'missed';
+  return (
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+      {mark && <StatusMark status={kind} decorative />}
+      <Badge tone={missed ? 'warning' : slotTone(slot.status)}>{missed ? 'Missed' : slotLabel(slot.status)}</Badge>
     </span>
   );
 }
@@ -85,7 +105,7 @@ export function ModeSwitch({ channelKey, mode, title }: { channelKey: string; mo
 
   return (
     <>
-      <SegmentedTabs size="sm" value={mode} onChange={onChange} options={MODE_OPTIONS} />
+      <SegmentedTabs size="sm" value={mode} onChange={onChange} options={MODE_OPTIONS} ariaLabel={`Mode of ${title || channelKey}`} />
       {goLive && <AutonomyDialog channel={channelKey} title={title} onClose={() => setGoLive(false)} />}
     </>
   );
@@ -102,11 +122,12 @@ export function slotView(slot: EditorSlot): SlotPlanView {
 }
 
 /**
- * One slot as a card-row: time (the channel's zone when given), channel, format, topic, status; what the slot
- * will do (live call or fixed details, skip reason — spec 034 FR-012); the critic's verdict; a dry-run Preview
- * of a fixed planned slot; run / skip while planned.
+ * One slot as a row of a flush panel (`<SectionCard flush>`): time (the channel's zone when given), status mark and
+ * badge, format, topic; what the slot will do (live call or fixed details, skip reason — spec 034 FR-012); the critic's
+ * verdict; a dry-run Preview of a fixed planned slot; run / skip while planned. The panel animates, not its rows, so
+ * `delay` is accepted for the existing callers and ignored.
  */
-export function SlotRow({ slot, showChannel = false, delay = 0, tz, feeds, estimateUsd }: {
+export function SlotRow({ slot, showChannel = false, tz, feeds, estimateUsd }: {
   slot: EditorSlot; showChannel?: boolean; delay?: number; tz?: string; feeds?: Record<string, string>; estimateUsd?: number | null;
 }) {
   const confirm = useConfirm();
@@ -121,25 +142,25 @@ export function SlotRow({ slot, showChannel = false, delay = 0, tz, feeds, estim
   const note = slot.error && slot.status !== 'skipped' && slot.status !== 'failed' && slot.status !== 'expired' ? slot.error : null;
 
   return (
-    <div className="card row-lift compose-rise" style={{ display: 'flex', alignItems: 'flex-start', gap: 14, padding: '11px 16px', animationDelay: `${delay}ms`, flexWrap: 'wrap' }}>
-      <div className="tabular-nums" style={{ width: 52, flexShrink: 0, fontWeight: 600, color: 'var(--color-ink)', marginTop: 2 }}
+    <div className="panel-row" style={{ alignItems: 'flex-start' }}>
+      <div className="mono tabular-nums" style={{ width: 48, flexShrink: 0, fontSize: 13, fontWeight: 600, marginTop: 2 }}
         title={tz ? `${zoneLabel(zone)} time` : undefined}>
         {tz ? formatIn(slot.scheduledAt, zone) : fmtTime(slot.scheduledAt)}
       </div>
-      <div style={{ minWidth: 0, flex: '1 1 220px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap', marginBottom: 3 }}>
-          <Badge tone={SLOT_TONE[slot.status]}>{slot.status}</Badge>
+      <div style={{ minWidth: 0, flex: '1 1 240px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap', marginBottom: 4 }}>
+          <SlotStatus slot={slot} />
           <span className="chip">{slot.format}</span>
           {slot.kind === 'reserved' && <span className="chip">reserved</span>}
           {slot.isExperiment && <span className="chip">experiment</span>}
           <CriticBadge critic={slot.critic} />
-          {showChannel && <span className="text-micro" style={{ color: 'var(--color-ink-muted)' }}>{slot.channelKey}</span>}
+          {showChannel && <span className="mono text-micro" style={{ color: 'var(--color-ink-muted)' }}>{slot.channelKey}</span>}
         </div>
         <Link
           to="/app/editor/slot/$id"
           params={{ id: slot.id }}
-          className="text-body-sm"
-          style={{ color: 'var(--color-ink)', textDecoration: 'none', display: 'block', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}
+          className="text-body-sm clamp"
+          style={{ ['--clamp' as string]: 1, color: 'var(--color-ink)', textDecoration: 'none' }}
         >
           {slot.topic}
         </Link>
@@ -190,14 +211,7 @@ export function SlotRow({ slot, showChannel = false, delay = 0, tz, feeds, estim
 /** Pretty-printed JSON in a scrollable block. */
 export function JsonBlock({ value, maxHeight = 360 }: { value: unknown; maxHeight?: number }) {
   return (
-    <pre
-      className="text-micro"
-      style={{
-        margin: 0, padding: 12, maxHeight, overflow: 'auto', whiteSpace: 'pre-wrap', wordBreak: 'break-word',
-        background: 'var(--color-canvas)', border: '1px solid var(--color-hairline)', borderRadius: 'var(--radius-sm)',
-        color: 'var(--color-ink-muted)', fontFamily: 'var(--font-mono)',
-      }}
-    >
+    <pre className="code-block" style={{ maxHeight, overflow: 'auto' }}>
       {value === undefined || value === null ? '—' : JSON.stringify(value, null, 2)}
     </pre>
   );

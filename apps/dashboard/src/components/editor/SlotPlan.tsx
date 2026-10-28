@@ -47,9 +47,9 @@ export function SlotDescription({ slot, tz, feeds, compact = false }: { slot: Sl
   const item = slot.liveSpec?.item;
   const skip = slot.status === 'skipped' || slot.status === 'failed' || slot.status === 'expired' ? skipReason(slot.error) : null;
   const chips: ReactNode[] = [];
-  if (!live && slot.seriesName) chips.push(<span key="series" className="chip" style={{ fontSize: 10.5 }} title="A recurring series from the playbook">series: {slot.seriesName}</span>);
-  if (slot.pinned) chips.push(<span key="pin" className="chip" style={{ fontSize: 10.5 }} title="Your pinned post">pinned</span>);
-  if (!live && slot.sourceHints?.length) chips.push(<span key="hints" className="chip" style={{ fontSize: 10.5, overflowWrap: 'anywhere' }} title="Where the planner suggests to look">sources: {slot.sourceHints.join(', ')}</span>);
+  if (!live && slot.seriesName) chips.push(<span key="series" className="chip" title="A recurring series from the playbook">series: {slot.seriesName}</span>);
+  if (slot.pinned) chips.push(<span key="pin" className="chip" title="Your pinned post">pinned</span>);
+  if (!live && slot.sourceHints?.length) chips.push(<span key="hints" className="chip" style={{ overflowWrap: 'anywhere' }} title="Where the planner suggests to look">sources: {slot.sourceHints.join(', ')}</span>);
   return (
     <div className="text-micro" style={{ display: 'flex', flexDirection: 'column', gap: 3, minWidth: 0, ...muted }} data-testid="slot-description">
       {live && (
@@ -110,7 +110,7 @@ export function PreviewButton({ slot, estimateUsd, block = false }: { slot: Slot
 function PostBox({ html, plain, children }: { html: string; plain: boolean; children?: ReactNode }) {
   const safe = useMemo(() => sanitizeTelegramHtml(html), [html]);
   return (
-    <div style={{ background: 'var(--color-surface-1)', borderRadius: 'var(--radius-lg)', padding: 14, maxWidth: 480, border: '1px solid var(--color-hairline-soft)', minWidth: 0 }}>
+    <div className="inset" style={{ padding: 14, maxWidth: 480, minWidth: 0 }}>
       {plain && <div className="text-micro" style={{ ...dim, marginBottom: 6 }}>rendered text</div>}
       <div className="text-body-sm" style={{ color: 'var(--color-ink)', whiteSpace: 'pre-wrap', wordBreak: 'break-word', lineHeight: 1.5 }}
         dangerouslySetInnerHTML={{ __html: safe }} />
@@ -216,14 +216,14 @@ export function PlanStamp({ data, tz }: { data: PlanStampData; tz: string }) {
       {data.schedule && <div style={dim}>{planScheduleNote(data.schedule)}</div>}
       {history.length > 0 && (
         <div>
-          <button type="button" className="btn-tiny" style={{ gap: 5, padding: '4px 9px' }} aria-haspopup="dialog" onClick={() => setOpen(true)}>
+          <button type="button" className="btn-tiny" style={{ gap: 5 }} aria-haspopup="dialog" onClick={() => setOpen(true)}>
             <Icon name="history" size={12} /> Earlier plans of this day ({history.length})
           </button>
           <Modal open={open} onClose={() => setOpen(false)} size="lg" icon="history" title="Earlier plans of this day"
             subtitle={`${history.length} superseded plan${history.length === 1 ? '' : 's'} · times in ${tz}`}>
             <div className="text-body-sm" style={{ display: 'grid', gap: 10 }}>
               {history.map((h) => (
-                <div key={h.id} style={{ display: 'flex', gap: 6, alignItems: 'baseline', flexWrap: 'wrap', paddingLeft: 10, borderLeft: '2px solid var(--color-hairline)', minWidth: 0 }}>
+                <div key={h.id} style={{ display: 'flex', gap: 6, alignItems: 'baseline', flexWrap: 'wrap', paddingLeft: 10, borderLeft: '2px solid var(--color-hairline-strong)', minWidth: 0 }}>
                   <span className="tabular-nums" style={{ color: 'var(--color-ink)' }}>{formatIn(h.plannedAt, tz)}</span>
                   {h.runId
                     ? <Link to="/app/editor/run/$id" params={{ id: h.runId }} className="link-accent">{runLabel(h.runRole)} →</Link>

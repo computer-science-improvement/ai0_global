@@ -1,15 +1,15 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
 import { useMemo, useState } from 'react';
 import { PageHeader } from '../components/ui/PageHeader';
-import { SectionCard, StatTile, EmptyState } from '../components/ui/primitives';
-import { Badge } from '../components/ui/Badge';
+import { SectionCard, StatStrip, StatTile, EmptyState, HubGlyph } from '../components/ui/primitives';
 import { Icon } from '../components/ui/Icon';
 import { TableAction, RowActions } from '../components/ui/table';
 import { CardEditorModal } from '../components/editor/CardEditorModal';
-import { ModeSwitch, MODE_TONE, SlotCounts, SlotRow, fmtUsd } from '../components/editor/EditorUi';
+import { ModeSwitch, SlotCounts, SlotRow, fmtUsd } from '../components/editor/EditorUi';
 import { describeError } from '../components/ui/Toast';
 import { useEditorChannels, useEditorPlans, useEditorSpend, useReplan } from '../api/editor';
 import type { EditorChannel, EditorPlan, EditorSpendRow } from '../api/types';
+import { dayEyebrow } from '../lib/day-groups';
 import { feedsOf, plannedAtLine, runLabel } from '../lib/slot-plan';
 
 export const Route = createFileRoute('/app/editor')({ component: EditorPage });
@@ -32,16 +32,18 @@ function EditorPage() {
   const spendToday = list.reduce((s, c) => s + c.today.spendUsd, 0);
   const count = (m: EditorChannel['mode']) => list.filter((c) => c.mode === m).length;
   const failed = todaySlots.filter((s) => s.status === 'failed').length;
+  const modeLine = ([['live', count('live')], ['in approval', count('approve')], ['shadow', count('shadow')], ['off', count('off')]] as const)
+    .filter(([, n]) => n > 0).map(([label, n]) => `${n} ${label}`).join(' · ');
 
   const newBtn = (cls: 'btn-primary' | 'btn-secondary') => (
-    <button className={cls} style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }} onClick={() => setCreating(true)}>
+    <button className={cls} onClick={() => setCreating(true)}>
       <Icon name="plus" size={14} /> New card
     </button>
   );
 
   return (
     <div>
-      <PageHeader title="Editor" subtitle="Autonomous per-channel editors: cards, today's plan, runs and spend" actions={newBtn('btn-primary')} />
+      <PageHeader eyebrow={dayEyebrow(date)} title="Editor" subtitle="Autonomous per-channel editors: cards, today's plan, runs and spend" actions={newBtn('btn-primary')} />
 
       {channels.data && !channels.data.enabled && (
         <div className="callout-warning compose-rise" style={{ marginBottom: 16 }}>
@@ -53,11 +55,13 @@ function EditorPage() {
       {channels.error && <div className="callout-danger" style={{ marginBottom: 16 }}>{describeError(channels.error)}</div>}
 
       {list.length > 0 && (
-        <div className="stat-grid compose-rise" style={{ marginBottom: 18 }}>
-          <StatTile label="Channels" value={list.length} icon="sparkles" accent delta={`${count('live')} live · ${count('approve')} in approval · ${count('shadow')} shadow · ${count('off')} off`} />
-          <StatTile label="Slots today" value={todaySlots.length} icon="calendar" />
-          <StatTile label="Failed today" value={failed} icon="warning" deltaTone={failed ? 'danger' : 'neutral'} delta={failed ? 'needs attention' : undefined} />
-          <StatTile label="Spend today" value={fmtUsd(spendToday)} icon="analytics" />
+        <div className="compose-rise" style={{ marginBottom: 16 }}>
+          <StatStrip label="Editor numbers">
+            <StatTile label="Channels" value={list.length} delta={modeLine || undefined} />
+            <StatTile label="Slots today" value={todaySlots.length} />
+            <StatTile label="Failed today" value={failed} deltaTone={failed ? 'danger' : 'neutral'} delta={failed ? 'needs attention' : undefined} />
+            <StatTile label="Spend today" value={fmtUsd(spendToday)} />
+          </StatStrip>
         </div>
       )}
 
@@ -68,24 +72,20 @@ function EditorPage() {
       )}
 
       {list.length > 0 && (
-        <SectionCard title="Channels" icon="channels" delay={40} style={{ marginBottom: 16 }}>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-            {list.map((c, i) => <ChannelRow key={c.channelKey} c={c} plan={activePlan(c.channelKey)} delay={i * 40} />)}
-          </div>
+        <SectionCard title="Channels" flush delay={40} style={{ marginBottom: 16 }}>
+          {list.map((c) => <ChannelRow key={c.channelKey} c={c} plan={activePlan(c.channelKey)} />)}
         </SectionCard>
       )}
 
       {list.length > 0 && (
-        <SectionCard title={`Today${date ? ` · ${date}` : ''}`} icon="calendar" delay={80} style={{ marginBottom: 16 }}>
+        <SectionCard title={`Today${date ? ` · ${date}` : ''}`} flush delay={80} style={{ marginBottom: 16 }}>
           {todaySlots.length === 0
             ? <EmptyState icon="calendar" title="No slots planned today"
-                note="Planners run at each card's plan hour for channels in shadow, approval or live mode; a channel in approval plans each day the evening before at 20:00, so its posts can be approved that evening. Channels that are off are not planned." />
-            : <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                {todaySlots.map((s, i) => {
-                  const c = byKey.get(s.channelKey);
-                  return <SlotRow key={s.id} slot={s} showChannel delay={i * 25} tz={c?.timezone} feeds={feedsOf(c)} estimateUsd={estimates[s.channelKey] ?? null} />;
-                })}
-              </div>}
+                note="Cards in shadow, approval or live mode are planned at their plan hour; a card that is off is not planned." />
+            : todaySlots.map((s) => {
+                const c = byKey.get(s.channelKey);
+                return <SlotRow key={s.id} slot={s} showChannel tz={c?.timezone} feeds={feedsOf(c)} estimateUsd={estimates[s.channelKey] ?? null} />;
+              })}
         </SectionCard>
       )}
 
@@ -96,21 +96,22 @@ function EditorPage() {
   );
 }
 
-function ChannelRow({ c, plan, delay }: { c: EditorChannel; plan: EditorPlan | null; delay: number }) {
+function ChannelRow({ c, plan }: { c: EditorChannel; plan: EditorPlan | null }) {
   const replan = useReplan();
   const planned = plannedAtLine(plan?.createdAt, c.timezone);
+  const name = c.title || c.channelKey;
   return (
-    <div className="card row-lift compose-rise" style={{ display: 'flex', alignItems: 'center', gap: 16, padding: '13px 18px', flexWrap: 'wrap', animationDelay: `${delay}ms` }}>
-      <div style={{ minWidth: 200, flex: 1 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', marginBottom: 4 }}>
-          <Link to="/app/editor/$channel" params={{ channel: c.channelKey }} style={{ color: 'var(--color-ink)', fontWeight: 600, textDecoration: 'none' }}>
-            {c.title || c.channelKey}
+    <div className="panel-row">
+      <HubGlyph size={32}>{name.replace(/^@/, '').charAt(0).toUpperCase()}</HubGlyph>
+      <div style={{ flex: '1 1 260px', minWidth: 0 }}>
+        <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, flexWrap: 'wrap', marginBottom: 4 }}>
+          <Link to="/app/editor/$channel" params={{ channel: c.channelKey }} className="text-body-sm" style={{ color: 'var(--color-ink)', fontWeight: 600, textDecoration: 'none' }}>
+            {name}
           </Link>
-          <Badge tone={MODE_TONE[c.mode]}>{c.mode}</Badge>
+          <span className="mono text-micro" style={{ color: 'var(--color-ink-muted)' }}>{c.channelKey}</span>
         </div>
         <div className="text-micro" style={{ color: 'var(--color-ink-muted)', display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'center' }}>
-          <span>{c.channelKey}</span>
-          <span>{c.postsPerDayMin}–{c.postsPerDayMax}/day</span>
+          <span className="mono">{c.postsPerDayMin}–{c.postsPerDayMax}/day</span>
           <SlotCounts slots={c.today.slots} />
         </div>
         <div className="text-micro" style={{ color: 'var(--color-ink-dim)', display: 'flex', gap: 6, flexWrap: 'wrap', alignItems: 'center', marginTop: 3 }}>
@@ -123,9 +124,9 @@ function ChannelRow({ c, plan, delay }: { c: EditorChannel; plan: EditorPlan | n
           <span>· plans at {String(c.planHour).padStart(2, '0')}:00{c.mode === 'approve' ? ', the next day at 20:00 the evening before' : ''}</span>
         </div>
       </div>
-      <div className="tabular-nums" style={{ textAlign: 'right', minWidth: 80 }}>
-        <div style={{ fontWeight: 600 }}>{fmtUsd(c.today.spendUsd)}</div>
-        <div className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>{c.today.runs} runs today</div>
+      <div style={{ textAlign: 'right', minWidth: 80 }}>
+        <div className="mono tabular-nums" style={{ fontWeight: 600 }}>{fmtUsd(c.today.spendUsd)}</div>
+        <div className="mono text-micro" style={{ color: 'var(--color-ink-dim)' }}>{c.today.runs} runs today</div>
       </div>
       <ModeSwitch channelKey={c.channelKey} mode={c.mode} title={c.title} />
       <RowActions>
@@ -150,10 +151,10 @@ function SpendSection() {
   }, [spend.data]);
 
   return (
-    <SectionCard title="Spend · last 30 days" icon="analytics" delay={120}
-      action={spend.data ? <span className="text-caption tabular-nums" style={{ color: 'var(--color-ink-muted)' }}>{fmtUsd(spend.data.totalUsd)} total</span> : undefined}>
+    <SectionCard title="Spend · last 30 days" delay={120}
+      action={spend.data ? <span className="mono text-caption tabular-nums" style={{ color: 'var(--color-ink-muted)' }}>{fmtUsd(spend.data.totalUsd)} total</span> : undefined}>
       {days.length === 0
-        ? <EmptyState icon="analytics" title="No LLM spend yet" />
+        ? <EmptyState icon="analytics" title="No LLM spend yet" note="Planner, executor and reviewer runs show up here once a channel is planned." />
         : (
           <div className="table-wrap">
             <table className="table">
@@ -166,14 +167,14 @@ function SpendSection() {
               <tbody>
                 {days.map(([day, rows]) => (
                   <tr key={day}>
-                    <td className="tabular-nums">{day}</td>
+                    <td className="mono tabular-nums">{day}</td>
                     <td>
                       <span style={{ display: 'inline-flex', gap: 6, flexWrap: 'wrap' }}>
-                        {rows.map((r) => <span key={r.channelKey ?? '-'} className="chip">{r.channelKey ?? 'global'} {fmtUsd(r.usd)}</span>)}
+                        {rows.map((r) => <span key={r.channelKey ?? '-'} className="chip mono">{r.channelKey ?? 'global'} {fmtUsd(r.usd)}</span>)}
                       </span>
                     </td>
                     <td className="num">{rows.reduce((s, r) => s + r.runs, 0)}</td>
-                    <td className="num">{fmtUsd(rows.reduce((s, r) => s + r.usd, 0))}</td>
+                    <td className="num mono">{fmtUsd(rows.reduce((s, r) => s + r.usd, 0))}</td>
                   </tr>
                 ))}
               </tbody>
