@@ -4,7 +4,10 @@ import { SegmentedTabs } from '../components/SegmentedTabs';
 import { SpendReport } from '../components/spend/SpendReport';
 import { PricesTab } from '../components/spend/PricesTab';
 import { BudgetsTab } from '../components/spend/BudgetsTab';
+import '../components/spend/spend.css';
 import { useBudgets } from '../api/spend';
+import { dayEyebrow } from '../lib/day-groups';
+import { kyivToday } from '../lib/spend';
 import { parseSpendSearch, type SpendSearch, type SpendTab } from '../lib/spend-search';
 
 // AI spend (spec 029 FR-010): tokens and money across every LLM call — report,
@@ -23,13 +26,14 @@ function SpendPage() {
 
   return (
     <div>
-      <PageHeader title="AI spend" subtitle="Tokens and USD across every LLM call: agents, strategies, DM triage, ROI, dedup, routing" />
-      <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap', marginBottom: 14 }}>
-        <SegmentedTabs value={tab} onChange={(t) => setSearch({ tab: t === 'report' ? undefined : t })}
+      <PageHeader eyebrow={dayEyebrow(kyivToday())} title="AI spend" subtitle="Tokens and USD across every LLM call: agents, strategies, DM triage, ROI, dedup, routing" />
+      <div style={{ marginBottom: 16 }}>
+        {/* A blocking cap is the one thing on this page that needs the owner: its count rides on the Budgets tab. */}
+        <SegmentedTabs variant="underline" ariaLabel="AI spend sections" value={tab} onChange={(t) => setSearch({ tab: t === 'report' ? undefined : t })}
           options={[
             { key: 'report', label: 'Report', icon: 'analytics' },
             { key: 'prices', label: 'Prices', icon: 'spend' },
-            { key: 'budgets', label: blocking ? `Budgets · ${blocking} blocking` : 'Budgets', icon: blocking ? 'ban' : 'lock' },
+            { key: 'budgets', label: 'Budgets', icon: blocking ? 'ban' : 'lock', count: blocking || undefined },
           ]} />
       </div>
       {tab === 'report' && <SpendReport search={search} setSearch={setSearch} />}
