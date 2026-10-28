@@ -109,3 +109,8 @@
   .grp-source { width: 100%; justify-content: space-between; }
   .grp-head > .grp-source, .grp-head > .chip { order: 3; }
 }
+
+/* ── Meta account page: toned follower changes in the stat tiles, the scopes block of the token panel ── */
+.meta-delta.is-up { color: var(--color-success); }
+.meta-delta.is-down { color: var(--color-danger-ink); }
+.meta-scopes { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--color-hairline-soft); }

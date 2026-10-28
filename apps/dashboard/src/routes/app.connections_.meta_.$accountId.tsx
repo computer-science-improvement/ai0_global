@@ -1,15 +1,17 @@
 import type { ReactNode } from 'react';
 import { createFileRoute } from '@tanstack/react-router';
-import { Crumbs } from '../components/ui/Crumbs';
+import { PageHeader } from '../components/ui/PageHeader';
 import { useCrumbs } from '../nav/hooks';
 import { useMetaAccounts, useMetaFollowerHistory, useMetaAccountInsights, useRefreshMetaStats } from '../api/meta-accounts';
 import { MetaReachImpressionsChart } from '../components/MetaReachImpressionsChart';
 import { MetaProfileViewsChart } from '../components/MetaProfileViewsChart';
 import { SubsHistoryChart } from '../components/SubsHistoryChart';
-import { StatTile, SectionCard, EmptyState, StatusDot, HubGlyph, type Tone } from '../components/ui/primitives';
+import { StatTile, StatStrip, SectionCard, EmptyState } from '../components/ui/primitives';
 import { Badge } from '../components/ui/Badge';
+import { Icon } from '../components/ui/Icon';
+import { describeError } from '../components/ui/Toast';
+import { ConnFact, ConnRow } from '../components/connections/ConnUi';
 import { fmtDate } from '../lib/format';
-import { Icon } from '../components/Icon';
 import type { MetaAccount } from '../api/types';
 
 export const Route = createFileRoute('/app/connections_/meta_/$accountId')({ component: MetaAccountDetailPage });
@@ -18,9 +20,9 @@ const PLATFORM_LABEL: Record<string, string> = {
   instagram: 'Instagram', facebook: 'Facebook', threads: 'Threads',
 };
 
-// Token type → chip tone. PAGE tokens are preferred for posting (success);
+// Token type → Badge tone. PAGE tokens are preferred for posting (success);
 // USER tokens work but are shorter-lived / less appropriate (warning).
-const TOKEN_TYPE_TONE: Record<string, Tone> = {
+const TOKEN_TYPE_TONE: Record<string, 'success' | 'warning' | 'neutral'> = {
   PAGE: 'success', SYSTEM_USER: 'neutral', USER: 'warning',
 };
 
@@ -29,31 +31,15 @@ function daysUntil(iso: string): number {
   return Math.floor((new Date(iso).getTime() - Date.now()) / 86_400_000);
 }
 
-function fmtDelta(n: number | null): { text: string; tone: Tone } {
-  if (n == null) return { text: '—', tone: 'neutral' };
-  if (n > 0) return { text: `+${n.toLocaleString()}`, tone: 'success' };
-  if (n < 0) return { text: n.toLocaleString(), tone: 'danger' };
-  return { text: '0', tone: 'neutral' };
+/** A follower change as text, with the direction that colours it (`is-up` / `is-down`, '' for none). */
+function fmtDelta(n: number | null): { text: string; dir: 'is-up' | 'is-down' | '' } {
+  if (n == null) return { text: '—', dir: '' };
+  if (n > 0) return { text: `+${n.toLocaleString()}`, dir: 'is-up' };
+  if (n < 0) return { text: n.toLocaleString(), dir: 'is-down' };
+  return { text: '0', dir: '' };
 }
 
-// ── Identity avatar — picture, else a monogram on a subtle hub glyph ─────────
-
-function Avatar({ url, label }: { url: string | null | undefined; label: string }) {
-  if (url) {
-    return (
-      <img
-        src={url}
-        alt=""
-        width={52}
-        height={52}
-        style={{ borderRadius: 'var(--radius-md)', objectFit: 'cover', boxShadow: 'inset 0 0 0 1px var(--color-hairline)', flexShrink: 0 }}
-      />
-    );
-  }
-  return <HubGlyph size={52}>{(label.trim()[0] ?? '?').toUpperCase()}</HubGlyph>;
-}
-
-// ── Token-metadata panel — type chip, urgency-colored expiry, scope chips ────
+// ── Access token: type, urgency-coloured expiry, source and the granted scopes ───────────────────────
 
 function TokenPanel({ account: a }: { account: MetaAccount }) {
   // Threads accounts skip debug_token server-side, so token info is unobtainable
@@ -62,56 +48,44 @@ function TokenPanel({ account: a }: { account: MetaAccount }) {
 
   const tokenInvalid = !!a.token_checked_at && a.token_valid === false;
 
-  let expiryTone: Tone = 'neutral';
+  let expiryClass = '';
   let expiryText: ReactNode = 'Not checked — Verify to read';
   if (a.token_checked_at) {
     if (tokenInvalid) {
-      expiryTone = 'danger';
+      expiryClass = 'is-bad';
       expiryText = 'Invalid token';
     } else if (!a.token_expires_at) {
-      expiryTone = 'success';
+      expiryClass = 'is-ok';
       expiryText = 'Never expires';
     } else {
       const days = daysUntil(a.token_expires_at);
-      expiryTone = days <= 0 ? 'danger' : days <= 30 ? 'warning' : 'success';
+      expiryClass = days <= 0 ? 'is-bad' : days <= 30 ? 'is-warn' : 'is-ok';
       const tail = days <= 0 ? 'expired' : `in ${days} day${days === 1 ? '' : 's'}`;
       expiryText = `${fmtDate(a.token_expires_at)} · ${tail}`;
     }
   }
-  const expiryColor: Record<Tone, string> = {
-    success: 'var(--color-success)', warning: 'var(--color-warning)', danger: 'var(--color-danger)',
-    accent: 'var(--color-accent)', neutral: 'var(--color-ink-dim)',
-  };
 
-  const tokenTone: Tone = a.token_type ? TOKEN_TYPE_TONE[a.token_type] ?? 'neutral' : 'neutral';
+  const tokenTone = a.token_type ? TOKEN_TYPE_TONE[a.token_type] ?? 'neutral' : 'neutral';
   const scopes = a.token_scopes ?? [];
 
   return (
-    <SectionCard title="Access token" icon="info" delay={60} style={{ marginBottom: 24 }}>
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 24, rowGap: 16 }}>
-        <Field label="Type">
-          <Badge tone={tokenTone}>{a.token_type ?? 'unknown'}</Badge>
-        </Field>
-
-        <Field label="Expiry">
-          <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, color: expiryColor[expiryTone], fontWeight: 500 }}>
-            <StatusDot tone={expiryTone} size={7} />
-            <span className="text-body-sm">{expiryText}</span>
+    <SectionCard title="Access token" icon="info" delay={120} style={{ marginBottom: 20 }}>
+      <div className="conn-facts" style={{ marginTop: 0 }}>
+        <ConnFact label="Type"><Badge tone={tokenTone}>{a.token_type ?? 'unknown'}</Badge></ConnFact>
+        <ConnFact label="Expiry">
+          <span className={`conn-token-expiry ${expiryClass}`}>
+            {expiryClass && <span className="conn-dot" aria-hidden />}
+            {expiryText}
           </span>
-        </Field>
-
-        <Field label="Source">
-          <span className="text-body-sm" style={{ color: 'var(--color-ink-muted)' }}>{a.token_env || '—'}</span>
-        </Field>
+        </ConnFact>
+        <ConnFact label="Source"><span className="mono">{a.token_env || '—'}</span></ConnFact>
       </div>
 
       {scopes.length > 0 && (
-        <div style={{ marginTop: 16, paddingTop: 16, borderTop: '1px solid var(--color-hairline-soft)' }}>
-          <div className="text-micro" style={{ color: 'var(--color-ink-dim)', marginBottom: 8 }}>
-            Scopes · {scopes.length}
-          </div>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
-            {scopes.map(s => <span key={s} className="chip" style={{ fontSize: 11 }}>{s}</span>)}
+        <div className="meta-scopes">
+          <div className="text-overline">Scopes · {scopes.length}</div>
+          <div className="conn-scopes">
+            {scopes.map(s => <span key={s} className="conn-scope">{s}</span>)}
           </div>
         </div>
       )}
@@ -119,12 +93,33 @@ function TokenPanel({ account: a }: { account: MetaAccount }) {
   );
 }
 
-function Field({ label, children }: { label: string; children: ReactNode }) {
+// ── The account: picture, handle, platform and state ────────────────────────────────────────────────
+
+function AccountPanel({ account: a }: { account: MetaAccount }) {
+  const platformLabel = PLATFORM_LABEL[a.platform] ?? a.platform;
+  const initial = ((a.display_name ?? a.account_id).trim()[0] ?? '?').toUpperCase();
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 6, minWidth: 0 }}>
-      <span className="text-micro" style={{ color: 'var(--color-ink-dim)' }}>{label}</span>
-      {children}
-    </div>
+    <SectionCard title="Account" flush delay={60} style={{ marginBottom: 20 }}>
+      <ConnRow lead={a.picture_url ? <img src={a.picture_url} alt="" width={36} height={36} /> : initial}>
+        <div className="conn-title">
+          {a.username
+            ? <span className="conn-name">@{a.username}</span>
+            : <span className="conn-name">{a.display_name ?? a.account_id}</span>}
+          <span className="chip">{platformLabel}</span>
+          {a.active ? <Badge tone="success">Active</Badge> : <Badge tone="neutral">Paused</Badge>}
+          {a.verify_error
+            ? <Badge tone="danger" title={a.verify_error}>Verify error</Badge>
+            : a.username
+              ? <Badge tone="success">Verified</Badge>
+              : null}
+        </div>
+        <div className="conn-sub">
+          <span>id <span className="mono">{a.target_id}</span></span>
+          {a.last_verified_at && <><span aria-hidden>·</span><span>verified <span className="mono">{fmtDate(a.last_verified_at)}</span></span></>}
+        </div>
+      </ConnRow>
+      {a.verify_error && <p className="conn-error" role="alert">{a.verify_error}</p>}
+    </SectionCard>
   );
 }
 
@@ -151,68 +146,44 @@ function MetaAccountDetailPage() {
 
   return (
     <div>
-      <Crumbs crumbs={crumbs} />
-
-      {/* Identity header — avatar + handle + platform / status chips + refresh */}
-      <header
-        className="panel compose-rise"
-        style={{ display: 'flex', alignItems: 'center', gap: 16, margin: '12px 0 24px' }}
-      >
-        <Avatar url={acc?.picture_url} label={title} />
-
-        <div style={{ minWidth: 0 }}>
-          <h1 className="text-display-md" style={{ margin: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-            {title}
-          </h1>
-          <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 8, marginTop: 8 }}>
-            {acc?.username && (
-              <span className="text-caption" style={{ color: 'var(--color-ink-muted)' }}>@{acc.username}</span>
-            )}
-            {platformLabel && <span className="chip">{platformLabel}</span>}
-            {acc && (
-              acc.active
-                ? <Badge tone="success">Active</Badge>
-                : <Badge tone="neutral">Paused</Badge>
-            )}
-            {acc?.verify_error
-              ? <span title={acc.verify_error}><Badge tone="danger">Verify error</Badge></span>
-              : acc?.username
-                ? <Badge tone="success">Verified</Badge>
-                : null}
-          </div>
-        </div>
-
-        <button
-          onClick={() => refresh.mutate()}
-          disabled={refresh.isPending}
-          className="btn-secondary"
-          style={{ marginLeft: 'auto', display: 'inline-flex', alignItems: 'center', gap: 6, flexShrink: 0 }}
-          title="Fetch the latest followers + insights now"
-        >
-          <Icon name="refresh" size={13} />
-          {refresh.isPending ? 'Refreshing…' : 'Refresh'}
-        </button>
-      </header>
+      <PageHeader
+        crumbs={crumbs}
+        eyebrow={platformLabel ? `Meta account · ${platformLabel}` : 'Meta account'}
+        title={title}
+        actions={
+          <button
+            type="button"
+            onClick={() => refresh.mutate()}
+            disabled={refresh.isPending}
+            className="btn-secondary"
+            title="Fetch the latest followers + insights now"
+          >
+            <Icon name="refresh" size={14} /> {refresh.isPending ? 'Refreshing…' : 'Refresh stats'}
+          </button>
+        }
+      />
 
       {refresh.isError && (
-        <p className="text-body-sm" style={{ color: 'var(--color-danger)', margin: '0 0 12px' }}>
-          {(refresh.error as Error).message}
-        </p>
+        <div className="callout-danger" role="alert" style={{ marginBottom: 16 }}>{describeError(refresh.error)}</div>
       )}
 
-      {/* KPI stat tiles */}
-      <div className="stat-grid" style={{ marginBottom: 24 }}>
-        <StatTile label="Followers" value={histQ.data?.current != null ? histQ.data.current.toLocaleString() : '—'} />
-        <StatTile label="Δ 24h" value={d24.text} deltaTone={d24.tone} />
-        <StatTile label="Δ 7d"  value={d7.text}  deltaTone={d7.tone} />
-      </div>
+      {/* Followers now, and the change over a day and a week */}
+      <StatStrip label="Followers" style={{ marginBottom: 20 }}>
+        <StatTile
+          label="Followers"
+          value={histQ.data?.current != null ? histQ.data.current.toLocaleString() : '—'}
+          spark={points.length > 1 ? points.slice(-30).map(p => p.followers) : undefined}
+        />
+        <StatTile label="Change · 24 h" value={<span className={`meta-delta ${d24.dir}`}>{d24.text}</span>} />
+        <StatTile label="Change · 7 days" value={<span className={`meta-delta ${d7.dir}`}>{d7.text}</span>} />
+      </StatStrip>
 
-      {/* Token-metadata panel */}
+      {acc && <AccountPanel account={acc} />}
       {acc && <TokenPanel account={acc} />}
 
       {/* Chart cards */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-        <SectionCard title="Followers over time" icon="graph" delay={120}>
+        <SectionCard title="Followers over time" icon="graph" delay={180}>
           {points.length > 0
             ? <SubsHistoryChart points={points.map(p => ({ at: p.at, subs: p.followers }))} />
             : <EmptyState
@@ -222,7 +193,7 @@ function MetaAccountDetailPage() {
               />}
         </SectionCard>
 
-        <SectionCard title="Reach & impressions" icon="graph" delay={180}>
+        <SectionCard title="Reach & impressions" icon="graph" delay={240}>
           {insLoading
             ? <EmptyState icon="refresh" title="Loading insight data…" />
             : hasReach
@@ -230,7 +201,7 @@ function MetaAccountDetailPage() {
               : <InsightEmpty platform={acc?.platform} />}
         </SectionCard>
 
-        <SectionCard title="Profile views" icon="graph" delay={240}>
+        <SectionCard title="Profile views" icon="graph" delay={300}>
           {insLoading
             ? <EmptyState icon="refresh" title="Loading insight data…" />
             : hasProfileViews

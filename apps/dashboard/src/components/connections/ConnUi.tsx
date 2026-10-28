@@ -86,6 +86,16 @@ export function ConnRow({ lead, children, stat, actions, onOpen, link, title }: 
   );
 }
 
+/** One key / value fact: a mono overline key over its value (rows of `.conn-facts`, the token panel). */
+export function ConnFact({ label, children }: { label: string; children: ReactNode }) {
+  return (
+    <div className="conn-fact">
+      <div className="text-overline">{label}</div>
+      <div className="conn-fact-v">{children}</div>
+    </div>
+  );
+}
+
 /** A number on the right of a row: value over a small label (and an optional toned delta). */
 export function ConnStat({ value, label, delta, tone }: { value: ReactNode; label: string; delta?: ReactNode; tone?: 'up' | 'down' }) {
   return (

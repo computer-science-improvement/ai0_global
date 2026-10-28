@@ -17,7 +17,7 @@ import { Icon } from '../ui/Icon';
 import { Badge } from '../ui/Badge';
 import { TableAction, RowActions } from '../ui/table';
 import { EmptyState } from '../ui/primitives';
-import { ConnAdd, ConnError, ConnPanel, ConnRow, ConnState } from './ConnUi';
+import { ConnAdd, ConnError, ConnFact, ConnPanel, ConnRow, ConnState } from './ConnUi';
 import { useConfirm } from '../ui/ConfirmDialog';
 import type { MtprotoSession } from '../../api/types';
 import { fmtDate } from '../../lib/format';
@@ -120,31 +120,23 @@ function SessionRow({
       </div>
 
       <div className="conn-facts">
-        <Fact label="Account">
+        <ConnFact label="Account">
           {s.username ? <span className="mono">@{s.username}</span> : <span className="conn-fact-v is-dim">—</span>}
-        </Fact>
-        {s.phone && <Fact label="Phone"><span className="mono">{s.phone}</span></Fact>}
-        {s.tg_user_id && <Fact label="User id"><span className="mono conn-fact-v is-muted">{s.tg_user_id}</span></Fact>}
-        <Fact label="App credentials">
+        </ConnFact>
+        {s.phone && <ConnFact label="Phone"><span className="mono">{s.phone}</span></ConnFact>}
+        {s.tg_user_id && <ConnFact label="User id"><span className="mono conn-fact-v is-muted">{s.tg_user_id}</span></ConnFact>}
+        <ConnFact label="App credentials">
           {s.has_api_creds
             ? <span className="mono">api_id {s.api_id}</span>
             : <span className="conn-fact-v is-dim" title="No per-session app credentials — using the .env TELEGRAM_API_ID / TELEGRAM_API_HASH">
                 .env fallback
               </span>}
-        </Fact>
-        <Fact label="Last verified">
+        </ConnFact>
+        <ConnFact label="Last verified">
           <span className="conn-fact-v is-muted">{s.last_verified_at ? fmtDate(s.last_verified_at) : '—'}</span>
-        </Fact>
+        </ConnFact>
       </div>
     </ConnRow>
   );
 }
 
-function Fact({ label, children }: { label: string; children: React.ReactNode }) {
-  return (
-    <div className="conn-fact">
-      <div className="text-overline">{label}</div>
-      <div className="conn-fact-v">{children}</div>
-    </div>
-  );
-}
