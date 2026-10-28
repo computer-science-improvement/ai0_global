@@ -33,7 +33,7 @@
 
 /* Counter tones. The base .nav-badge comes from index.css; these set the colors outright. */
 .nav-badge.nav-badge-warning { background: var(--color-warning-soft); color: var(--color-warning); border-color: transparent; }
-.nav-badge.nav-badge-danger  { background: var(--color-danger-soft);  color: var(--color-danger);  border-color: transparent; }
+.nav-badge.nav-badge-danger  { background: var(--color-danger-soft);  color: var(--color-danger-ink);  border-color: transparent; }
 .nav-badge.nav-badge-accent  { background: var(--color-success-soft); color: var(--color-accent);  border-color: transparent; }
 
 /* ── More tools ─────────────────────────────────────────────────────────── */

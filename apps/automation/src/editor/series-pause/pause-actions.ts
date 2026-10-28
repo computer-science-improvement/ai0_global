@@ -114,11 +114,17 @@ export class SeriesPauseActions {
    * Spec 078 D5: an action pressed in the dashboard is a reaction to the note, like a Telegram button (A10 demotion:
    * `owner_cards.resolved_by LIKE 'dashboard:%'`). The note's card is stamped, live or already closed by the sweep, but
    * never one a Telegram press resolved. A live card stays live: the minute sweep still closes it ("Вирішено в дашборді")
-   * and keeps the stamp (`OwnerCardsRepository.resolve` does not overwrite it with null).
+   * and keeps the stamp (`OwnerCardsRepository.resolve` does not overwrite it with null). A note without a card (a demoted
+   * `info` note, or the bot's cards are off) gets a closed one that only carries the stamp, so the press still counts and
+   * the bot never sends a card for a note the owner already acted on.
    */
   private async stampReaction(noteId: number): Promise<void> {
     try {
-      await this.d.pool.query(`UPDATE owner_cards SET resolved_by = 'dashboard:owner' WHERE kind = 'inbox' AND ref_id = $1 AND resolved_by IS NULL`, [String(noteId)]);
+      await this.d.pool.query(
+        `INSERT INTO owner_cards (kind, ref_id, status, title, resolved_by, resolved_at)
+         SELECT 'inbox', n.id::text, 'closed', left(n.title, 300), 'dashboard:owner', now() FROM agent_inbox n WHERE n.id = $1
+         ON CONFLICT (kind, ref_id) DO UPDATE SET resolved_by = 'dashboard:owner' WHERE owner_cards.resolved_by IS NULL`,
+        [noteId]);
     } catch { /* the action is done; a missing stamp only leaves the demotion rule as it was */ }
   }
 

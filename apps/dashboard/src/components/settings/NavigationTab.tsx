@@ -68,11 +68,16 @@ export function NavigationTab({ editId, from }: { editId?: string; from?: string
     if (!dirtyRef.current) load(q.data);
   }, [q.data, q.isFetchedAfterMount]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // ?edit=<id> (sidebar "Rename…"): focus that item's label once the draft is there.
+  // ?edit=<id> (sidebar "Rename…"): focus that item's label once the draft is there. A hidden page (a More tools chip's
+  // "Edit in menu settings…") has no label field: its Restore button in the Hidden panel gets the focus instead.
   useEffect(() => {
     if (!draft || !editId) return;
-    const el = document.getElementById(`navc-label-${editId}`) as HTMLInputElement | null;
-    if (el) { el.scrollIntoView({ block: 'center', behavior: 'smooth' }); el.focus({ preventScroll: true }); el.select(); }
+    const label = document.getElementById(`navc-label-${editId}`) as HTMLInputElement | null;
+    const el = label ?? document.getElementById(`navc-hidden-${editId}`);
+    if (!el) return;
+    el.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    el.focus({ preventScroll: true });
+    label?.select();
   }, [!!draft, editId]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Keyboard reorder keeps focus on the moved row.
@@ -508,7 +513,7 @@ function HiddenPanel({ draft, edit, preview }: { draft: NavConfig; edit: (op: (c
             <span className="navc-hidden-label">{draft.overrides[id]?.label ?? defaultLabel(draft, id)}</span>
             <span className="navc-meta">{hrefOf(custom ?? navEntry(id)!)}</span>
             <span className="navc-actions">
-              <button className="btn-tiny" onClick={() => restore(id)}>Restore</button>
+              <button id={`navc-hidden-${id}`} className="btn-tiny" onClick={() => restore(id)}>Restore</button>
               {custom && <button className="btn-tiny btn-tiny-danger" onClick={() => edit((c) => removeRef(c, id))}>Remove</button>}
             </span>
           </div>

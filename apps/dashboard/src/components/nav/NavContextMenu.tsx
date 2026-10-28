@@ -15,17 +15,21 @@ export interface NavMenuAction {
 /**
  * Spec 027 FR-009: the small menu a sidebar item opens on right click or long
  * press. Fixed at the pointer (kept on screen), closes on outside click,
- * Escape, scroll or resize; ↑/↓ move between actions.
+ * Escape, page scroll or resize; ↑/↓ move between actions. `anchor`: the button
+ * that opened it (a press on it is its own toggle, not an outside click). Focus
+ * goes back to the anchor, or to what had it before, when the menu closes.
  */
-export function NavContextMenu({ x, y, title, actions, onClose }: {
-  x: number; y: number; title?: string; actions: NavMenuAction[]; onClose: () => void;
+export function NavContextMenu({ x, y, title, actions, onClose, anchor }: {
+  x: number; y: number; title?: string; actions: NavMenuAction[]; onClose: () => void; anchor?: HTMLElement | null;
 }) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const back = anchor ?? (document.activeElement instanceof HTMLElement && document.activeElement !== document.body ? document.activeElement : null);
     const first = ref.current?.querySelector<HTMLButtonElement>('button:not(:disabled)');
     first?.focus();
-    const onDown = (e: Event) => { if (!ref.current?.contains(e.target as Node)) onClose(); };
+    const inside = (t: EventTarget | null) => t instanceof Node && (!!ref.current?.contains(t) || !!anchor?.contains(t));
+    const onDown = (e: Event) => { if (!inside(e.target)) onClose(); };
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') { e.preventDefault(); onClose(); return; }
       if (e.key !== 'ArrowDown' && e.key !== 'ArrowUp') return;
@@ -35,19 +39,24 @@ export function NavContextMenu({ x, y, title, actions, onClose }: {
       btns[(i + (e.key === 'ArrowDown' ? 1 : -1) + btns.length) % btns.length]?.focus();
     };
     const close = () => onClose();
+    // A long list scrolls inside the menu; only a scroll of the page around it closes the menu.
+    const onScroll = (e: Event) => { if (!(e.target instanceof Node && ref.current?.contains(e.target))) onClose(); };
     document.addEventListener('mousedown', onDown);
     document.addEventListener('touchstart', onDown);
     document.addEventListener('keydown', onKey);
     window.addEventListener('resize', close);
-    window.addEventListener('scroll', close, true);
+    window.addEventListener('scroll', onScroll, true);
     return () => {
       document.removeEventListener('mousedown', onDown);
       document.removeEventListener('touchstart', onDown);
       document.removeEventListener('keydown', onKey);
       window.removeEventListener('resize', close);
-      window.removeEventListener('scroll', close, true);
+      window.removeEventListener('scroll', onScroll, true);
+      // The focused item is gone with the menu; put focus back where the owner was, unless they clicked somewhere else.
+      const now = document.activeElement;
+      if (back?.isConnected && (!now || now === document.body)) back.focus({ preventScroll: true });
     };
-  }, [onClose]);
+  }, [onClose, anchor]);
 
   const left = Math.max(8, Math.min(x, window.innerWidth - 220));
   // A long list (the rail's "More tools") scrolls inside the viewport instead of running off it.

@@ -94,6 +94,10 @@
 
 :root { color-scheme: dark; }
 
+/* Danger TEXT on a danger tint (counters, critical pills, the selected danger tab, a danger toast's action): plain
+   --color-danger on --color-danger-soft is ~4.3:1 at 11px, this is ~4.9:1 or better. Fills and borders keep --color-danger. */
+:root { --color-danger-ink: color-mix(in srgb, var(--color-danger) 70%, var(--color-ink)); }
+
 /* Elevation and motion tokens (spec 078 D1). Plain :root so they are always emitted. */
 :root {
   --shadow-1:     0 8px 28px rgba(0, 0, 0, 0.28);   /* hover lift of an interactive panel / card */
@@ -482,7 +486,7 @@ a.panel-row, button.panel-row { width: 100%; color: inherit; font: inherit; text
   font-family: var(--font-mono); font-feature-settings: normal;
   font-size: 11px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; line-height: 1.3;
 }
-.sev-critical { background: var(--color-danger-soft); color: var(--color-danger); }
+.sev-critical { background: var(--color-danger-soft); color: var(--color-danger-ink); }
 .sev-action   { background: var(--color-warning-soft); color: var(--color-warning); }
 .sev-info     { background: color-mix(in srgb, var(--color-ink) 8%, transparent); color: var(--color-ink-muted); }
 .pill-live {
@@ -869,7 +873,7 @@ a.panel-row, button.panel-row { width: 100%; color: inherit; font: inherit; text
 .tabs-pill-item.is-selected { background: var(--color-surface-3); color: var(--color-ink); }
 .tabs-pill-item.is-selected.tone-accent  { background: var(--color-success-soft); color: var(--color-accent); }
 .tabs-pill-item.is-selected.tone-warning { background: var(--color-warning-soft); color: var(--color-warning); }
-.tabs-pill-item.is-selected.tone-danger  { background: var(--color-danger-soft);  color: var(--color-danger); }
+.tabs-pill-item.is-selected.tone-danger  { background: var(--color-danger-soft);  color: var(--color-danger-ink); }
 .tabs-pill-item:disabled { color: var(--color-ink-dim); opacity: 0.6; cursor: not-allowed; }
 .tabs-pill-item.is-sm { min-height: 30px; padding: 0 10px; font-size: 12px; }
 .tabs-pill-item.is-sm::after { inset: -7px 0; }
@@ -935,7 +939,7 @@ a.panel-row, button.panel-row { width: 100%; color: inherit; font: inherit; text
 }
 .chip-danger {
   background: var(--color-danger-soft);
-  color: var(--color-danger);
+  color: var(--color-danger-ink);
 }
 
 /* ----------------------------------------------------------------------------
@@ -1160,7 +1164,7 @@ ul.tg-rich-list { list-style: disc; }
 .nav-label { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 /* Counter pill of a nav row: warning by default, `.is-danger` for a critical item, `.is-accent` for a good count ("5 live"). */
 .nav-badge { margin-left: auto; font-family: var(--font-mono); font-feature-settings: normal; font-size: 11px; font-weight: 500; color: var(--color-warning); background: var(--color-warning-soft); border-radius: var(--radius-pill); padding: 1px 8px; min-width: 20px; text-align: center; line-height: 1.5; }
-.nav-badge.is-danger { color: var(--color-danger); background: var(--color-danger-soft); }
+.nav-badge.is-danger { color: var(--color-danger-ink); background: var(--color-danger-soft); }
 .nav-badge.is-accent { color: var(--color-accent); background: var(--color-success-soft); }
 .nav-new { margin-left: auto; font-size: 11px; color: var(--color-accent); border: 1px solid var(--color-accent); border-radius: var(--radius-pill); padding: 0 7px; line-height: 1.5; }
 .nav-dot { position: absolute; top: -3px; right: -4px; width: 7px; height: 7px; border-radius: var(--radius-pill); box-shadow: 0 0 0 2px var(--color-surface-1); }
@@ -1313,6 +1317,7 @@ ul.tg-rich-list { list-style: disc; }
   animation: slide-in var(--dur-enter) var(--ease-out) both;
 }
 .toast.is-danger { --toast-c: var(--color-danger); }
+.toast.is-danger .toast-action { color: var(--color-danger-ink); }
 .toast-icon { display: inline-flex; flex: none; color: var(--toast-c); }
 .toast-text { flex: 1; min-width: 0; overflow-wrap: anywhere; }
 .toast-action, .toast-x {

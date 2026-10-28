@@ -136,7 +136,7 @@ test('the Telegram path is unchanged: the card button runs through run(), the tr
 
 test('A10: a run of notes the owner pressed a button on in the dashboard is no longer "repeating", and the next note is not demoted', { skip }, async () => {
   const day = 86_400_000;
-  const run = async (subject: string, press: boolean) => {
+  const run = async (subject: string, press: boolean | 'no-card') => {
     const pk = pauseActions([{ channelKey: CH, key: `series:${subject.slice(-4)}`, label: subject.slice(-4) }]);
     const ids: number[] = [];
     for (const [n, ago] of [[0, 7], [1, 4], [2, 1]] as const) {
@@ -148,7 +148,7 @@ test('A10: a run of notes the owner pressed a button on in the dashboard is no l
     }
     assert.equal((await repeatingSubjects(db.pool, new Date(), 3)).filter((x) => x.subject === subject).length, 1, 'listed before any reaction');
     if (press) {
-      await sentCard(ids[0]);
+      if (press !== 'no-card') await sentCard(ids[0]);
       await svc.inboxAction(ids[0], { key: pk[0].key });
     }
     const listed = (await repeatingSubjects(db.pool, new Date(), 3)).filter((x) => x.subject === subject).length;
@@ -162,6 +162,11 @@ test('A10: a run of notes the owner pressed a button on in the dashboard is no l
   void day;
   assert.deepEqual(await run('silent:telegram:@pga078:Ctrl', false), { listed: 1, sev: 'info' }, 'no reaction: the third note is demoted');
   assert.deepEqual(await run('silent:telegram:@pga078:Dash', true), { listed: 0, sev: 'action' }, 'a dashboard press is a reaction');
+  assert.deepEqual(await run('silent:telegram:@pga078:Nocd', 'no-card'), { listed: 0, sev: 'action' }, 'a press on a note with no card counts too');
+  const stub = (await db.pool.query(
+    `SELECT c.status, c.resolved_by FROM owner_cards c JOIN agent_inbox n ON c.ref_id = n.id::text WHERE c.kind = 'inbox' AND n.subject = $1`,
+    ['silent:telegram:@pga078:Nocd'])).rows;
+  assert.deepEqual(stub, [{ status: 'closed', resolved_by: 'dashboard:owner' }], 'the stamp lives on a closed card that is never sent');
 });
 
 test('mark-unread: the notes are unread again; a dashboard stamp is cleared, a Telegram one is kept', { skip }, async () => {

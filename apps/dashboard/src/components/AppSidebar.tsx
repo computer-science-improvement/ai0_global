@@ -53,7 +53,7 @@ export function AppSidebar({ isMobile = false, mobileOpen = false, onNavigate, c
   const quick = useQuickNavEdit();
   const [ctx, setCtx] = useState<{ item: ResolvedItem; x: number; y: number; more: boolean } | null>(null);
   const closeCtx = useCallback(() => setCtx(null), []);
-  const [rail, setRail] = useState<{ x: number; y: number } | null>(null);
+  const [rail, setRail] = useState<{ x: number; y: number; anchor: HTMLElement } | null>(null);
   const closeRail = useCallback(() => setRail(null), []);
 
   // FR-010: live counters (and the spec 031 approvals count).
@@ -61,9 +61,10 @@ export function AppSidebar({ isMobile = false, mobileOpen = false, onNavigate, c
   // FR-011: counters of hidden pages roll up into a dot on "More tools".
   // Pages whose count the menu already shows (e.g. the posts to approve inside the Inbox) are skipped.
   const visible = [...nav.pinned, ...nav.groups.flatMap((g) => g.items)];
-  const hiddenRollup = rollup(nav.hidden, counts, shownKeys(visible));
-
   const more = useMemo(() => moreTools(nav), [nav]);
+  // The dot speaks for the list it opens: sub-views are not in More tools, so their counters do not light it.
+  const hiddenRollup = rollup(more, counts, shownKeys(visible));
+
   // The longest matching prefix wins, so /app/agents/inbox lights Inbox and not Agents.
   const activeId = activeItemId([...visible, ...more], { pathname: loc.pathname, search: loc.search as Record<string, unknown> });
   const activeInMore = !!activeId && more.some((i) => i.id === activeId) && !visible.some((i) => i.id === activeId);
@@ -216,7 +217,11 @@ export function AppSidebar({ isMobile = false, mobileOpen = false, onNavigate, c
             <button type="button" className="nav-link nav-more-btn" style={{ justifyContent: 'center' }}
               aria-haspopup="menu" aria-expanded={!!rail} aria-label={hiddenRollup ? `More tools. Needs attention: ${hiddenRollup.title.replace(/\n/g, '; ')}` : 'More tools'}
               title={moreTitle}
-              onClick={(e) => { const r = e.currentTarget.getBoundingClientRect(); setRail({ x: r.right + 8, y: r.top }); }}>
+              onClick={(e) => {
+                const anchor = e.currentTarget;
+                const r = anchor.getBoundingClientRect();
+                setRail((open) => (open ? null : { x: r.right + 8, y: r.top, anchor }));
+              }}>
               <span style={{ position: 'relative', display: 'inline-flex' }}>
                 <Icon name="ellipsis" size={16} />
                 {moreDot}
@@ -248,7 +253,7 @@ export function AppSidebar({ isMobile = false, mobileOpen = false, onNavigate, c
       </div>
 
       {rail && (
-        <NavContextMenu x={rail.x} y={rail.y} title="More tools" onClose={closeRail} actions={railActions} />
+        <NavContextMenu x={rail.x} y={rail.y} title="More tools" anchor={rail.anchor} onClose={closeRail} actions={railActions} />
       )}
       {ctx && (
         <NavContextMenu
